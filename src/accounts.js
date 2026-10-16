@@ -2,14 +2,14 @@
 const UUID=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export class AccountError extends Error{constructor(message,status=400){super(message);this.status=status;}}
 const cookieValues=request=>Object.fromEntries((request.headers.get('cookie')||'').split(';').map(v=>v.trim().split(/=(.*)/s).slice(0,2)).filter(v=>v.length===2));
-export function createAccounts(env,{fetcher=fetch,db=null}={}){
- const url=(env.SUPABASE_URL||'').replace(/\/$/,''),key=env.SUPABASE_PUBLISHABLE_KEY||env.SUPABASE_ANON_KEY||'',secret=env.SUPABASE_SECRET_KEY||env.SUPABASE_SERVICE_ROLE_KEY||'';
- const enabled=!!(url&&key&&secret),sessions=new Map(),limits=new Map();
+export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null}={}){
+ const url=(env.SUPABASE_URL||'').replace(/\/$/,''),key=env.SUPABASE_PUBLISHABLE_KEY||env.SUPABASE_ANON_KEY||'';
+ const enabled=!!(url&&key&&gameDatabase),sessions=new Map(),limits=new Map();
  const json=(data,status=200,cookies=[])=>{const headers=new Headers({'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});for(const c of cookies)headers.append('Set-Cookie',c);return new Response(JSON.stringify(data),{status,headers});};
- async function remote(path,{method='GET',body,token,admin=false}={}){
+ async function remote(path,{method='GET',body,token}={}){
   if(!enabled)throw new AccountError('Contas ainda não estão conectadas. Você pode jogar como visitante.',503);
-  const apiKey=admin?secret:key,headers={apikey:apiKey,'Content-Type':'application/json'};
-  if(token)headers.Authorization='Bearer '+token;else if(admin&&secret.startsWith('eyJ'))headers.Authorization='Bearer '+secret;
+  const headers={apikey:key,'Content-Type':'application/json'};
+  if(token)headers.Authorization='Bearer '+token;
   let r;try{r=await fetcher(url+path,{method,headers,body:body===undefined?undefined:JSON.stringify(body),signal:AbortSignal.timeout(8000)});}catch{throw new AccountError('O serviço de contas demorou a responder. Tente novamente.',503);}
   const text=await r.text();let data;try{data=text?JSON.parse(text):null;}catch{data=null;}
   if(!r.ok){
@@ -23,7 +23,14 @@ export function createAccounts(env,{fetcher=fetch,db=null}={}){
    throw new AccountError(r.status>=500?'O serviço de contas está indisponível. Tente novamente.':'Não foi possível concluir. Confira os dados e tente novamente.',r.status>=500?503:400);
   }return data;
  }
- const rpc=(name,body,token,admin=false)=>remote('/rest/v1/rpc/'+name,{method:'POST',body,token,admin});
+ async function rpc(name,body,token,admin=false){
+  if(!admin)return remote('/rest/v1/rpc/'+name,{method:'POST',body,token});
+  try{return await gameDatabase.rpc(name,body);}catch(e){
+   const message=String(e.message||'');
+   if(e.code==='P0001'&&/Saia da partida|outra partida|colecionável|coleção|caracteres|Partida encerrada/.test(message))throw new AccountError(message,409);
+   throw new AccountError('O banco do jogo não respondeu. Aguarde e tente novamente.',503);
+  }
+ }
  function checkPending(user){if(db&&db.prepare("SELECT 1 FROM pipa_rewards WHERE json_extract(payload,'$.type')='cut' AND json_extract(payload,'$.loserAccountId')=? LIMIT 1").get(user))throw new AccountError('O resultado da sua última disputa está sendo salvo. Aguarde alguns segundos.',409);}
  function makeCookies(request,session){
   const secure=new URL(request.url).protocol==='https:',prefix=secure?'__Host-':'',flags='; Path=/; HttpOnly; SameSite=Lax'+(secure?'; Secure':'');
