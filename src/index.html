@@ -18,6 +18,7 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div><div class="overlay" id="modal"><section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><button class="close" id="close" aria-label="Fechar">×</button><div class="eyebrow">Manual de rua</div><h2 id="dialogTitle">O segredo está na linha.</h2><div id="dialogBody"></div><button class="primary" id="dialogAction">Entendi. Bora voar ↗</button></section></div>
 <script>
 /* ENGINE */
+/* HOST_CONFIG */
 const $=id=>document.getElementById(id),eng=createEngine(),colors=['#e77c4f','#4d8c72','#648ec4','#d8af4a'],names=['Carcará · clássica e destemida','Mata verde · leve e certeira','Azulão · dona do vento','Raio de sol · nasceu para brilhar'];
 let selected=+(localStorage.getItem('pipaColor')||0),state=null,me=null,token=null,room=null,mode=null,busy=false,syncing=false,errors=0,keys={},sound=false,audioCtx=null,lastEvent=null,lastFrame=0,showResult=false,ping=0;
 $('name').value=localStorage.getItem('pipaName')||'';
@@ -47,6 +48,14 @@ $('sound').onclick=()=>{sound=!sound;if(sound)audioCtx=new(window.AudioContext||
 function beep(){if(!sound||!audioCtx)return;const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.connect(g);g.connect(audioCtx.destination);o.frequency.setValueAtTime(700,audioCtx.currentTime);o.frequency.exponentialRampToValueAtTime(200,audioCtx.currentTime+.2);g.gain.setValueAtTime(.07,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+.25);o.start();o.stop(audioCtx.currentTime+.25);}
 $('fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.querySelector('.arena').requestFullscreen();}catch{toast('Tela cheia não está disponível neste navegador.');}};
 const param=new URLSearchParams(location.search).get('sala');if(param){$('code').value=param.toUpperCase().slice(0,6);toast('Convite recebido! Escolha seu apelido e clique em Entrar.');}
+if(typeof STATIC_HOST!=='undefined'&&STATIC_HOST){
+  $('create').textContent='Jogar treino ↗';$('create').onclick=()=>$('practice').click();
+  $('joinForm').hidden=true;$('joinForm').style.display='none';$('practice').style.display='none';
+  document.querySelector('.divider').textContent='Treino com adversários automáticos';
+  const note=document.createElement('p');note.textContent='Versão GitHub Pages: jogue contra bots. As salas multiplayer precisam de um servidor separado.';note.style.cssText='font-size:10px;line-height:1.7;margin:0;color:#76837a';$('lobby').append(note);
+  $('arenaMode').textContent='Treino no navegador · sem instalação';
+  if(param)toast('Este endereço oferece treino com bots. As salas online precisam do servidor multiplayer.');
+}
 const canvas=$('sky'),ctx=canvas.getContext('2d');let cw=1000,ch=600;
 function resize(){let r=canvas.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);canvas.width=r.width*d;canvas.height=r.height*d;cw=r.width;ch=r.height;}new ResizeObserver(resize).observe(canvas);
 const buildings=Array.from({length:38},(_,i)=>({x:i*31-30,w:26+(i*17%22),h:18+(i*29%68),c:['#aac4b3','#b8c5ad','#8fb5a5','#c6c5a9','#92b4a6'][i%5],roof:i%3===0}));

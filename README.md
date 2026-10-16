@@ -25,6 +25,12 @@ Abra http://localhost:5193. Para jogar em outro aparelho na mesma rede, use o IP
 
 Crie a sala e compartilhe o convite. Os participantes entram usando o código de seis caracteres. Até oito jogadores participam da mesma simulação, sincronizada por HTTP a cada 140 ms. O servidor limita os movimentos, controla dano, energia, pontuação e reentrada; versões concorrentes da sala são atualizadas com compare-and-swap no banco. O desempenho depende da latência da conexão. Sessões ausentes por 15 segundos saem da sala.
 
+## GitHub Pages
+
+O GitHub Pages publica a pasta `docs/` da branch `main`. Essa versão roda o treino com bots integralmente no navegador. O Pages não executa o servidor Node.js/Worker nem o banco de dados, portanto as salas online ficam disponíveis na versão com backend.
+
+Após alterar o jogo, execute `npm run build:pages` e envie a pasta `docs/` atualizada ao GitHub. O arquivo `.nojekyll` preserva a publicação estática direta.
+
 Sites novos são publicados com acesso privado ao proprietário por padrão. Para convidar pessoas externas pela URL publicada, o proprietário precisa ajustar o acesso do Site. A publicação privada pode ser usada imediatamente pelo proprietário; o servidor local permite teste na rede.
 
 ## Arquivos
