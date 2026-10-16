@@ -29,8 +29,7 @@ export function attachRealtime(server,db,progression=null){
       }
       if(b.type==='ping'){send(ws,{type:'pong',at:b.at});return;}
       if(b.type==='input'){
-        const axis=v=>Number.isFinite(v)?Math.max(-1,Math.min(1,v)):0;
-        c.input={x:axis(b.input?.x),y:axis(b.input?.y),cut:!!b.input?.cut};c.seen=now;
+        c.input=engine.sanitizeInput(b.input);c.seen=now;
       }
     }catch{ws.close(1008,'Invalid message');}});
     ws.on('close',()=>{clearTimeout(deadline);const c=clients.get(ws);clients.delete(ws);

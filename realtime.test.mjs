@@ -11,7 +11,7 @@ test('WebSocket authenticates sessions, broadcasts authoritative movement to bot
   const db=new DatabaseSync(':memory:');
   const DB={prepare(sql){let v=[];return {bind(...a){v=a;return this;},async run(){const r=db.prepare(sql).run(...v);return {meta:{changes:Number(r.changes)}};},async first(){return db.prepare(sql).get(...v);}};}};
   async function api(action,b){const r=await worker.fetch(new Request('http://test/api/'+action,{method:'POST',body:JSON.stringify(b)}),{DB});return r.json();}
-  const a=await api('create',{name:'A'}),b=await api('join',{code:a.code,name:'B'});
+  const a=await api('create',{name:'A'}),b=await api('join',{code:a.code,name:'B',color:1});
   const s=JSON.parse(db.prepare('SELECT state FROM pipa_rooms WHERE code=?').get(a.code).state);s.players[0].x=300;s.players[0].y=200;s.players[1].x=800;s.players[1].y=200;db.prepare('UPDATE pipa_rooms SET state=? WHERE code=?').run(JSON.stringify(s),a.code);
   const server=http.createServer(),stop=attachRealtime(server,db);server.listen(0,'127.0.0.1');await once(server,'listening');
   t.after(()=>{stop();server.close();db.close();});
@@ -30,6 +30,10 @@ test('WebSocket authenticates sessions, broadcasts authoritative movement to bot
   c2.ws.send(JSON.stringify({type:'input',input:{x:-999,y:0,cut:false}}));
   const guestMoved=await c1.next(d=>d.type==='state'&&d.state.players.find(p=>p.id===b.me).x<790);
   assert.equal(guestMoved.state.players.find(p=>p.id===b.me).input.x,-1);
+  const guestX=guestMoved.state.players.find(p=>p.id===b.me).x;
+  c2.ws.send(JSON.stringify({type:'input',input:{skill:-1,color:2,damage:999,hp:999}}));
+  const dashed=await c1.next(d=>d.type==='state'&&d.state.players.find(p=>p.id===b.me).skillCount===1);
+  const guest=dashed.state.players.find(p=>p.id===b.me);assert.equal(guest.color,1);assert.ok(guest.x<guestX-80);assert.ok(guest.skillCooldown>6);assert.ok(guest.energy<80);assert.equal(dashed.state.players.find(p=>p.id===a.me).hp,100);
   c1.ws.send(JSON.stringify({type:'ping',at:123}));assert.equal((await c1.next(d=>d.type==='pong')).at,123);
   await c2.next(d=>d.type==='state'&&d.state.players.find(p=>p.id===a.me).input.x===0);
   const bad=await client('invalid-session');const closed=await once(bad.ws,'close');assert.equal(closed[0],1008);

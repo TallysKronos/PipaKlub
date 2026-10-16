@@ -1,12 +1,12 @@
 export function createNetworkView(engine){
   let history=[],own=null,authority=null,ownId=null,receivedAt=0,halfLag=0;
-  const same=(a={},b={})=>a.x===b.x&&a.y===b.y&&!!a.cut===!!b.cut;
+  const same=(a={},b={})=>a.x===b.x&&a.y===b.y&&!!a.cut===!!b.cut&&(a.skill||0)===(b.skill||0);
   function reset(){history=[];own=null;authority=null;ownId=null;receivedAt=0;}
   function receive(state,id,now,rtt=0){
     const p=state.players.find(p=>p.id===id);ownId=id;
     if(p){
-      const snap=!own||!!p.respawn!==!!own.respawn||Math.hypot(p.x-own.x,p.y-own.y)>220;
-      own=snap?{...p}:{...p,x:own.x,y:own.y};authority={...p};
+      const snap=!own||!!p.respawn!==!!own.respawn||p.color!==own.color||(p.skillCount||0)>(own.skillCount||0)||Math.hypot(p.x-own.x,p.y-own.y)>220;
+      own=snap?{...p}:{...p,x:own.x,y:own.y,skillCount:Math.max(p.skillCount||0,own.skillCount||0),skillCooldown:Math.max(p.skillCooldown||0,own.skillCooldown||0)};authority={...p};
     }
     receivedAt=now;halfLag=Math.max(0,Math.min(rtt/2,180));
     history.push({state,at:now});history=history.slice(-24);

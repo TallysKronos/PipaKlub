@@ -11,7 +11,7 @@ function reflectAccount(){
  $('accountHint').textContent=playerAccount?'Seu progresso e suas pipas ficam na sua conta.':'Entre para guardar pipas e ganhar XP nas disputas.';
  $('roomRules').querySelector('[value="capture"]').disabled=!playerAccount;
  if(!playerAccount&&$('roomRules').value==='capture')$('roomRules').value='casual';
- if(playerAccount){const p=playerAccount.profile,k=playerAccount.inventory.find(k=>k.id===p.equipped_kite_id);$('name').value=p.nickname;$('name').readOnly=true;if(k){selected=k.model.color;choices();$('selectionName').textContent=k.model.name+' · equipada';}}
+ if(playerAccount){const p=playerAccount.profile,k=playerAccount.inventory.find(k=>k.id===p.equipped_kite_id);$('name').value=p.nickname;$('name').readOnly=true;if(k){selected=k.model.color;choices();$('selectionName').textContent=k.model.name+' · '+eng.type({color:k.model.color}).name+' · equipada';}}
  else $('name').readOnly=false;
  if(accountModal.style.display==='flex')renderAccountDialog();
 }
@@ -41,7 +41,7 @@ function renderAccountDialog(){
    button.onclick=async()=>{accountSaving=true;renderAccountDialog();try{const d=await accountRequest('equip',{kiteId:k.id});playerAccount=d.account;reflectAccount();toast('Pipa equipada. Pronta para voar!');}catch(e){$('accountMessage').textContent=e.message;}finally{accountSaving=false;renderAccountDialog();}};
    const history=uiElement('button','Ver história','secondary');history.type='button';history.onclick=()=>openKiteStory(k);
    if(k.capture_count)badge.textContent+=' · '+k.capture_count+' '+(k.capture_count===1?'conquista':'conquistas');
-   card.append(art,name,badge,button,history);return card;
+   const skill=document.createElement('p');skill.className='skill-info';const t=eng.type({color:k.model.color});skill.textContent=t.name+' · '+t.skill;skill.title=t.description;card.append(art,name,badge,skill,button,history);return card;
  }));
 }
 async function openAccount(){

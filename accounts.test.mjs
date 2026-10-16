@@ -107,7 +107,7 @@ test('restricted DB adapter verifies TLS, binds values and refuses arbitrary ope
  await db.verify();
 });
 test('a capture switches the loser to a permanent kite and keeps reward metadata private',()=>{
- const e=createEngine(),s=e.create(1000);s.rules='capture';const a=e.player('A',0,'a',1000),b=e.player('B',1,'b',1000);Object.assign(a,{accountId:userA,key:'secretA'});Object.assign(b,{accountId:userB,kiteId:'collectible',basicKiteId:'basic',kitePermanent:false,key:'secretB'});a.x=b.x=400;a.y=b.y=200;a.input={cut:true};b.hp=1;s.players=[a,b];e.step(s,1100);assert.equal(b.kiteId,'basic');assert.equal(s.events[0].kiteId,'collectible');const publicState=JSON.stringify(e.visible(s));assert.ok(!publicState.includes(userA));assert.ok(!publicState.includes('secretA'));assert.ok(!publicState.includes('collectible'));
+ const e=createEngine(),s=e.create(1000);s.rules='capture';const a=e.player('A',0,'a',1000),b=e.player('B',1,'b',1000);Object.assign(a,{accountId:userA,key:'secretA'});Object.assign(b,{accountId:userB,kiteId:'collectible',basicKiteId:'basic',kitePermanent:false,key:'secretB'});a.x=700;b.x=300;a.y=b.y=180;a.input={cut:true};b.hp=1;s.players=[a,b];e.step(s,1100);assert.equal(b.kiteId,'basic');assert.equal(s.events[0].kiteId,'collectible');const publicState=JSON.stringify(e.visible(s));assert.ok(!publicState.includes(userA));assert.ok(!publicState.includes('secretA'));assert.ok(!publicState.includes('collectible'));
 });
 test('every simultaneous cut is queued, and leaving waits for pending captures to settle',async()=>{
  const db=new DatabaseSync(':memory:'),calls=[];let fail=true;

@@ -18,9 +18,23 @@ Abra http://localhost:5193. Para jogar em outro aparelho na mesma rede, use o IP
 ## Controles
 
 - Setas ou WASD: movimento.
-- Espaço: cortar, a até 128 unidades de outra pipa. Segure para causar dano; solte para recuperar energia.
+- Espaço: atacar um cruzamento válido entre as linhas. Segurar repete a puxada a cada 0,65 s; cada tentativa custa 12 de energia, inclusive se errar. Um alvo por puxada.
+- A mira fica verde quando a sua linha cruza a faixa tracejada inimiga. Acertos comuns tiram 18 de durabilidade; a faixa central dourada tira 24. As linhas precisam formar um ângulo de pelo menos 11,54°; contato perto do chão ou da ponta não vale. A parte atacante precisa estar entre 35% e 95% de sua linha, e a faixa vulnerável entre 30% e 85% da linha inimiga (frações medidas desde o chão).
+- Q / E: habilidade da pipa equipada. Custa 25 de energia e recarrega em 7 s. Na Ágil, Q desloca 96 px para esquerda e E para direita.
+- Soltar ataque recupera 18 de energia/s; segurando, 6/s. A durabilidade começa em 100 e só é restaurada ao reaparecer.
 - Cada corte vale 100 pontos. A pipa cortada retorna após 3 segundos.
-- No celular: direcional e botão Cortar na arena.
+- No celular: direcional, ATACAR e SK ← / SK → na arena.
+
+| Tipo | Pipa | Habilidade |
+| --- | --- | --- |
+| Precisa | Carcará (laranja) | Por 2 s, próximo acerto recebe +8 de desgaste |
+| Ágil | Mata verde | Dash lateral de 96 px |
+| Guardiã | Azulão | Reduz desgaste recebido em 60% por 1,5 s |
+| Técnica | Raio de sol | Por 2,5 s, amplia a faixa inimiga atingível para 15%–92% |
+
+Os tipos são derivados do modelo equipado (cor do catálogo), validado pelo servidor para jogadores autenticados. Não há mudança de inventário nem migração de banco nesta atualização. Cortes simultâneos são calculados antes de aplicar as mortes; empates de autoria usam dano e ID estável. Os bots procuram cruzamentos e usam habilidades.
+
+O balanceamento inicial mantém a mesma velocidade e durabilidade para todos os tipos. `combat.test.mjs` cobre geometria, tentativas sem acerto, recargas, dano simultâneo, habilidades e previsão de dash sob atraso.
 
 ## Multiplayer
 

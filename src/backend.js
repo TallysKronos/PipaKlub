@@ -15,7 +15,7 @@ async function api(request,env){
     s.code=code;s.rules=b.rules==='capture'?'capture':'casual';
     if(s.rules==='capture'&&!env.ACCOUNTS?.enabled)return json({error:'Vale pipa precisa de contas conectadas ao banco.'},503);
     const account=env.ACCOUNTS?await env.ACCOUNTS.preparePlayer(request,s):null;
-    const p=engine.player(account?.name||b.name,account?.color??b.color,crypto.randomUUID(),now);p.key=token;if(account)Object.assign(p,account);s.players.push(p);
+    const p=engine.player(account?.name||b.name,account?.color??b.color,crypto.randomUUID(),now);p.key=token;if(account)Object.assign(p,account);engine.seat(s,p);s.players.push(p);
     await env.DB.prepare('INSERT INTO pipa_rooms (code,state,updated) VALUES (?,?,?)').bind(code,JSON.stringify(s),now).run();
     await env.DB.prepare('DELETE FROM pipa_rooms WHERE updated < ?').bind(now-3600000).run();
     return json({code,token,me:p.id,state:visible(s)});
@@ -32,9 +32,9 @@ async function api(request,env){
       if(now>=s.end)return json({error:'Esta partida terminou. Crie uma nova sala.'},409);
       if(s.rules==='capture'&&!env.ACCOUNTS?.enabled)return json({error:'Vale pipa precisa de contas conectadas ao banco.'},503);
       const account=env.ACCOUNTS?await env.ACCOUNTS.preparePlayer(request,s):null;
-      token=crypto.randomUUID();p=engine.player(account?.name||b.name,account?.color??b.color,crypto.randomUUID(),now);p.key=token;if(account)Object.assign(p,account);s.players.push(p);
+      token=crypto.randomUUID();p=engine.player(account?.name||b.name,account?.color??b.color,crypto.randomUUID(),now);p.key=token;if(account)Object.assign(p,account);engine.seat(s,p);s.players.push(p);
     }else if(!p)return json({error:'Sua conexão expirou. Entre na sala novamente.'},401);
-    if(action==='sync'){p.input={x:Math.max(-1,Math.min(1,Number(b.input?.x)||0)),y:Math.max(-1,Math.min(1,Number(b.input?.y)||0)),cut:!!b.input?.cut};p.seen=now;}
+    if(action==='sync'){p.input=engine.sanitizeInput(b.input);p.seen=now;}
     else if(action==='leave')s.players=s.players.filter(q=>q.key!==token);
     else if(action!=='join')return json({error:'Ação inválida.'},400);
     const res=await env.DB.prepare('UPDATE pipa_rooms SET state = ?, rev = rev + 1, updated = ? WHERE code = ? AND rev = ?').bind(JSON.stringify(s),now,code,row.rev).run();
