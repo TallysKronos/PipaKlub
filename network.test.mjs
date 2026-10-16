@@ -23,3 +23,14 @@ test('prediction stays bounded during lost packets and freezes once disconnected
   assert.ok(v.render(16,{x:1,y:0},10)[0].x<=945);
   const a=v.render(900,{x:-1,y:0},.016)[0].x,b=v.render(1100,{x:-1,y:0},.016)[0].x;assert.equal(a,b);
 });
+
+test('host and joining player both keep full movement speed at ten frames per second',()=>{
+ const engine=createEngine(),state=engine.create(0);state.wind=0;
+ state.players=[engine.player('Host',0,'host',0),engine.player('Guest',1,'guest',0)];
+ for(const p of state.players){p.x=400;p.y=200;p.input={x:0,y:0,cut:false};}
+ for(const id of ['host','guest']){
+   const view=createNetworkView(engine);view.receive(structuredClone(state),id,0,200);
+   const p=view.render(100,{x:1,y:0,cut:false},.1).find(p=>p.id===id);
+   assert.equal(p.x,416.5,id+' should move a full 100 ms instead of slowing down when frames drop');
+ }
+});

@@ -27,6 +27,9 @@ test('WebSocket authenticates sessions, broadcasts authoritative movement to bot
   c1.ws.send(JSON.stringify({type:'input',input:{x:999,y:0,cut:false}}));
   const moved=await c2.next(d=>d.type==='state'&&d.state.players.find(p=>p.id===a.me).x>310);
   const p=moved.state.players.find(p=>p.id===a.me);assert.equal(p.input.x,1);assert.ok(p.x<350);
+  c2.ws.send(JSON.stringify({type:'input',input:{x:-999,y:0,cut:false}}));
+  const guestMoved=await c1.next(d=>d.type==='state'&&d.state.players.find(p=>p.id===b.me).x<790);
+  assert.equal(guestMoved.state.players.find(p=>p.id===b.me).input.x,-1);
   c1.ws.send(JSON.stringify({type:'ping',at:123}));assert.equal((await c1.next(d=>d.type==='pong')).at,123);
   await c2.next(d=>d.type==='state'&&d.state.players.find(p=>p.id===a.me).input.x===0);
   const bad=await client('invalid-session');const closed=await once(bad.ws,'close');assert.equal(closed[0],1008);

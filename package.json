@@ -7,7 +7,7 @@
     "build:pages": "node build-pages.mjs",
     "dev": "node build.mjs && node dev.mjs",
     "start": "node dev.mjs",
-    "test": "node --test test.mjs network.test.mjs realtime.test.mjs",
+    "test": "node --test test.mjs network.test.mjs realtime.test.mjs frame-health.test.mjs",
     "validate": "node scripts/validate-artifact.mjs"
   },
   "dependencies": {

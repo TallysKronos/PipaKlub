@@ -32,6 +32,12 @@ O GitHub Pages publica a pasta `docs/` da branch `main`. Essa versão roda o tre
 
 Após alterar o jogo, execute `npm run build:pages` e envie a pasta `docs/` atualizada ao GitHub. O arquivo `.nojekyll` preserva a publicação estática direta.
 
+## Fluidez em aparelhos mais lentos
+
+O cenário é desenhado em uma imagem reutilizada a cada quadro. O placar e os avisos só alteram o DOM quando seu conteúdo muda. Celulares começam no modo leve, com menor resolução de desenho e sem sombras nas pipas. O botão ◐ da arena permite alternar esse modo; em modo automático, duas medições consecutivas abaixo de 40 fps ativam os efeitos leves. O contador na arena mostra a taxa de quadros do aparelho, separada do ping da conexão.
+
+O movimento previsto aceita intervalos de até 100 ms por quadro para preservar a velocidade em aparelhos a 10–20 fps. O mesmo caminho de previsão atende tanto o criador quanto quem entra na sala.
+
 ## Hospedar o multiplayer gratuitamente no Render
 
 O arquivo `render.yaml` configura um Web Service no plano **Free**, com jogo, API multiplayer e SQLite no mesmo processo. O repositório pode permanecer privado.

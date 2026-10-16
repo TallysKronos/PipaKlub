@@ -15,10 +15,10 @@ export function createNetworkView(engine){
     if(!history.length)return [];
     const latest=history.at(-1).state,active=latest.end>latest.last;
     if(own&&active&&!own.respawn&&now-receivedAt<1000){
-      engine.move(own,input,Math.min(dt,.05),latest.wind);
+      engine.move(own,input,Math.min(dt,.1),latest.wind);
       if(authority&&same(input,authority.input)&&now-receivedAt<500){
         const target={...authority};engine.move(target,authority.input,Math.min((now-receivedAt+halfLag)/1000,.25),latest.wind);
-        const blend=1-Math.exp(-3*Math.min(dt,.05));
+        const blend=1-Math.exp(-3*Math.min(dt,.1));
         own.x+=(target.x-own.x)*blend;own.y+=(target.y-own.y)*blend;
       }
     }
