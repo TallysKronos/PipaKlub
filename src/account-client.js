@@ -25,6 +25,7 @@ function renderAccountDialog(){
  $('signupFields').hidden=accountTab!=='signup';$('accountPassword').autocomplete=accountTab==='signup'?'new-password':'current-password';
  $('submitAccount').textContent=accountTab==='signup'?'Criar minha conta':'Entrar';$('switchAccount').textContent=accountTab==='signup'?'Já tenho uma conta':'Ainda não tenho conta';
  $('submitAccount').disabled=!accountsEnabled||accountSaving;
+ if(accountsEnabled&&$('accountMessage').textContent==='O serviço de contas ainda está sendo conectado. O treino e as salas casuais continuam disponíveis.')$('accountMessage').textContent='';
  if(!accountsEnabled)$('accountMessage').textContent='O serviço de contas ainda está sendo conectado. O treino e as salas casuais continuam disponíveis.';
  if(!logged)return;
  const p=playerAccount.profile;$('accountNickname').value=p.nickname;

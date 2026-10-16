@@ -14,6 +14,21 @@ export function createGameDatabase(env,{Pool=pg.Pool}={}){
   ssl:{rejectUnauthorized:true,...(env.PIPA_DB_CA?{ca:env.PIPA_DB_CA.replaceAll('\\n','\n')}:{})},max:2,connectionTimeoutMillis:8000,idleTimeoutMillis:30000,statement_timeout:8000,query_timeout:10000,application_name:'pipaklub'});
  pool.on('error',()=>console.error('Game database connection interrupted.'));
  return {
+  async verify(){
+   const {rows}=await pool.query(`SELECT current_user AS role,
+    NOT (rolsuper OR rolcreaterole OR rolcreatedb OR rolbypassrls OR rolreplication) AS restricted,
+    NOT has_schema_privilege(current_user,'public','CREATE') AS safe_schema,
+    NOT has_table_privilege(current_user,'public.player_profiles','UPDATE') AND
+    NOT has_table_privilege(current_user,'public.player_kites','UPDATE') AND
+    NOT has_table_privilege(current_user,'public.cut_events','INSERT') AS protected_tables,
+    has_function_privilege(current_user,'public.reserve_player_match(uuid,uuid,text,text)','EXECUTE') AND
+    has_function_privilege(current_user,'public.release_player_match(uuid,uuid)','EXECUTE') AND
+    has_function_privilege(current_user,'public.settle_player_cut(text,uuid,uuid,uuid,uuid)','EXECUTE') AND
+    has_function_privilege(current_user,'public.finish_player_match(uuid)','EXECUTE') AS game_functions
+    FROM pg_roles WHERE rolname=current_user`);
+   const r=rows[0];
+   if(r?.role!=='pipa_server'||!r.restricted||!r.safe_schema||!r.protected_tables||!r.game_functions)throw Object.assign(Error('Restricted database permissions must be configured.'),{code:'PIPA_DB_PERMISSIONS'});
+  },
   async rpc(name,body){
    const args=Object.hasOwn(operations,name)&&operations[name];
    if(!args)throw Error('Database operation is not allowed.');

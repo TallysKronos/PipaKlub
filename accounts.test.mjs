@@ -51,6 +51,10 @@ test('real PostgreSQL schema: signup grants one inventory, ownership is protecte
   await db.query('select public.reserve_player_match($1,$2,$3,$4)',[userA,casual,'AABBCC','casual']);await db.query('select public.reserve_player_match($1,$2,$3,$4)',[userB,casual,'AABBCC','casual']);
   assert.equal((await db.query('select public.settle_player_cut($1,$2,$3,$4,$5) as r',[casual+':1',casual,userB,userA,a])).rows[0].r.captured,false);
   assert.equal((await db.query('select owner_id from public.player_kites where id=$1',[a])).rows[0].owner_id,userA);
+  await db.exec('set role pipa_server');
+  class RealPostgresPool{on(){}query(sql,values){return db.query(sql,values);}}
+  await createGameDatabase({PIPA_DB_HOST:'test',PIPA_DB_USER:'pipa_server',PIPA_DB_PASSWORD:'test-only'},{Pool:RealPostgresPool}).verify();
+  await db.exec('reset role');
  }finally{await db.close();}
 });
 
@@ -73,7 +77,7 @@ test('auth returns HttpOnly cookies, never exposes keys, and rejects foreign ori
 
 test('restricted DB adapter verifies TLS, binds values and refuses arbitrary operations or admin logins',async()=>{
  let configuration;const queries=[];
- class Pool{constructor(config){configuration=config;}on(){}async query(sql,values){queries.push({sql,values});return {rows:[{result:{captured:true}}]};}async end(){}}
+ class Pool{constructor(config){configuration=config;}on(){}async query(sql,values){queries.push({sql,values});return {rows:[sql.startsWith('SELECT current_user')?{role:'pipa_server',restricted:true,safe_schema:true,protected_tables:true,game_functions:true}:{result:{captured:true}}]};}async end(){}}
  const env={PIPA_DB_HOST:'pooler.example.test',PIPA_DB_USER:'pipa_server.project',PIPA_DB_PASSWORD:'private-password'};
  const db=createGameDatabase(env,{Pool});
  assert.equal(configuration.ssl.rejectUnauthorized,true);assert.equal(configuration.max,2);
@@ -83,6 +87,7 @@ test('restricted DB adapter verifies TLS, binds values and refuses arbitrary ope
  await assert.rejects(()=>db.rpc('ensure_player',{}));await assert.rejects(()=>db.rpc('constructor',{}));
  assert.throws(()=>createGameDatabase({...env,PIPA_DB_USER:'postgres.project'},{Pool}),/restricted/);
  assert.equal(createGameDatabase({}),null);
+ await db.verify();
 });
 test('a capture switches the loser to a permanent kite and keeps reward metadata private',()=>{
  const e=createEngine(),s=e.create(1000);s.rules='capture';const a=e.player('A',0,'a',1000),b=e.player('B',1,'b',1000);Object.assign(a,{accountId:userA,key:'secretA'});Object.assign(b,{accountId:userB,kiteId:'collectible',basicKiteId:'basic',kitePermanent:false,key:'secretB'});a.x=b.x=400;a.y=b.y=200;a.input={cut:true};b.hp=1;s.players=[a,b];e.step(s,1100);assert.equal(b.kiteId,'basic');assert.equal(s.events[0].kiteId,'collectible');const publicState=JSON.stringify(e.visible(s));assert.ok(!publicState.includes(userA));assert.ok(!publicState.includes('secretA'));assert.ok(!publicState.includes('collectible'));
