@@ -29,5 +29,9 @@ export function createEngine() {
       }
     } return s;
   }
-  return {create,player,step,move,visible};
+  function practiceStep(s,id,input,now){
+    const p=s.players.find(p=>p.id===id);if(p){p.input=input;p.seen=now;}
+    return step(s,now);
+  }
+  return {create,player,step,move,visible,practiceStep};
 }

@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {parseHTML} from 'linkedom';
+import {createEngine} from './src/engine.js';
 
 function ui(accountRequest){
  const {document}=parseHTML('<html><body><div id="matchRewardSummary"></div><div id="collectionMain"></div><section id="kiteStory" hidden><button id="kiteStoryBack"></button><div id="kiteStoryBody"></div></section></body></html>');
@@ -25,4 +26,11 @@ test('a late result cannot overwrite a different match, and a closed kite story 
  app.run("openKiteStory({id:'kite'})");app.run('closeKiteStory()');
  pending[2].resolve({history:{name:'Late kite',permanent:false,captureCount:0,captures:[],createdAt:'2026-10-16T12:00:00Z'}});await app.settle();
  assert.equal(app.document.getElementById('kiteStory').hidden,true);assert.doesNotMatch(app.document.getElementById('kiteStoryBody').textContent,/Late kite/);
+});
+
+test('practice keeps its local player past the multiplayer timeout and reaches the end',()=>{
+ const engine=createEngine(),s=engine.create(1000);s.players=[engine.player('Local',0,'local',1000)];
+ for(let now=1000;now<=s.end+1000;now+=1000)engine.practiceStep(s,'local',{x:1},now);
+ assert.equal(s.players.length,1);assert.equal(s.players[0].id,'local');assert.ok(s.last>=s.end);
+ const x=s.players[0].x;engine.practiceStep(s,'local',{x:-1},s.end+2000);assert.equal(s.players[0].x,x);
 });

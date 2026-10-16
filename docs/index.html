@@ -53,7 +53,11 @@ function createEngine() {
       }
     } return s;
   }
-  return {create,player,step,move,visible};
+  function practiceStep(s,id,input,now){
+    const p=s.players.find(p=>p.id===id);if(p){p.input=input;p.seen=now;}
+    return step(s,now);
+  }
+  return {create,player,step,move,visible,practiceStep};
 }
 
 function createNetworkView(engine){
@@ -211,7 +215,7 @@ if(!mode&&t-lastFrame<1000/30)return;
 const now=Date.now(),dt=Math.min(Math.max((t-lastFrame)/1000,0),.1);
 const health=frameHealth.sample(t,!!mode&&!showResult);
 if(health){setText('renderStats',health.fps+' fps'+(lightMode?' · leve':''));if(health.needsLight&&!lightMode&&allowAutoQuality)setQuality(true,true);}
-if(mode==='practice'&&state){const p=state.players.find(p=>p.id===me);if(p)p.input=input();eng.step(state,now);renderPlayers=null;}else if(mode==='online'&&state){pumpNetwork(t);renderPlayers=networkView.render(t,input(),dt);}
+if(mode==='practice'&&state){eng.practiceStep(state,me,input(),now);renderPlayers=null;}else if(mode==='online'&&state){pumpNetwork(t);renderPlayers=networkView.render(t,input(),dt);}
 draw(t);if(state&&t-lastHud>100){updateHud(now);lastHud=t;}lastFrame=t;
 }requestAnimationFrame(frame);
 function updateHud(now){
