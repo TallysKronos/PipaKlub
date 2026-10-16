@@ -46,7 +46,7 @@ O arquivo `render.yaml` configura um Web Service no plano **Free**, com jogo, AP
 2. Crie um **Blueprint** e selecione esse repositório. O Render lê `render.yaml` e usa os comandos já configurados.
 3. Confira que o serviço está no plano **Free** e conclua a criação. O Render fornece o endereço público `onrender.com` após a implantação.
 
-O servidor gratuito pausa após 15 minutos de inatividade. O primeiro acesso após a pausa pode levar cerca de um minuto. As salas são temporárias e são perdidas se o serviço reiniciar ou for implantado novamente, pois o disco gratuito não é persistente. Não há cadastro ou ranking permanente nesta versão.
+O servidor gratuito pausa após 15 minutos de inatividade. O primeiro acesso após a pausa pode levar cerca de um minuto. As salas são temporárias e são perdidas se o serviço reiniciar ou for implantado novamente, pois o disco gratuito não é persistente. Contas, inventários e cortes confirmados são persistidos separadamente no Supabase.
 
 O servidor usa a porta fornecida em `PORT` e reconhece o HTTPS do proxy para validar corretamente a origem das requisições multiplayer.
 
@@ -55,3 +55,18 @@ Sites novos são publicados com acesso privado ao proprietário por padrão. Par
 ## Arquivos
 
 `src/index.html`: interface, canvas e cliente. `src/engine.js`: simulação compartilhada. `src/backend.js`: API e validação. `build.mjs`: incorpora todo o conteúdo em `worker/index.js` e gera `dist/server/index.js`. `dev.mjs`: servidor local com adaptador SQLite compatível com D1.
+
+## Contas e coleção — Supabase
+
+1. Crie um projeto Supabase e execute `supabase/migrations/001_accounts_inventory.sql` uma única vez no SQL Editor. A migração é transacional e cria as tabelas do jogo, RLS, inventário inicial e funções de captura.
+2. Configure no Render `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY` e `SUPABASE_SECRET_KEY` (ou os nomes legados `SUPABASE_ANON_KEY` / `SUPABASE_SERVICE_ROLE_KEY`). A chave secreta deve ficar apenas nas variáveis protegidas do servidor.
+3. Em Authentication → URL Configuration, defina Site URL como `https://pipaklub.onrender.com` e permita esse endereço como redirecionamento de confirmação.
+4. Mantenha a confirmação de e-mail ativada. Para cadastros públicos, configure SMTP próprio; o remetente padrão do Supabase tem limites e restrições de destinatários. O jogo informa quando a confirmação está indisponível.
+
+Sem essas variáveis, contas e Vale pipa ficam desativados; o modo visitante casual e o treino continuam funcionando. Para executar localmente com um projeto configurado, copie `.env.example` para `.env`, preencha fora do Git e use `node --env-file=.env dev.mjs` após o build.
+
+O cadastro concede uma pipa básica permanente e três colecionáveis. O inventário é criado uma única vez por conta. A pipa equipada e o apelido são validados pelo servidor; equipamento fica bloqueado durante a partida. A modalidade Casual preserva as pipas. Na modalidade Vale pipa, o convidado precisa aceitar explicitamente a regra de perda ao entrar. Uma captura transfere somente a pipa colecionável equipada, e o perdedor volta com a básica. Cada corte entre contas diferentes concede 25 XP, limitado aos primeiros cinco cortes contra a mesma conta em 24 horas. Nível: `1 + floor(sqrt(XP / 100))`.
+
+Movimento e combate continuam no servidor WebSocket. Eventos de recompensa passam por uma fila local com repetição e identificadores idempotentes. A função PostgreSQL transfere a propriedade e grava XP na mesma transação. O banco confirmado é a fonte de verdade da coleção; uma animação de corte, sozinha, não confirma uma transferência. Como o disco gratuito é temporário, uma queda abrupta pode descartar eventos ainda não enviados ao Supabase. Saídas e encerramentos aguardam os cortes pendentes antes de liberar o equipamento.
+
+Tokens de acesso e renovação ficam em cookies HttpOnly, Secure em HTTPS e SameSite=Lax, com prefixo `__Host-`. O navegador não recebe as chaves de administração. RLS permite ler apenas o próprio perfil/inventário; conceder XP e transferir itens são operações exclusivas do servidor. Os testes executam a migração em PostgreSQL local (PGlite) e verificam propriedade, proteção contra escrita direta, idempotência e fila de recompensas.

@@ -1,10 +1,10 @@
 import {WebSocketServer} from 'ws';
 import {createEngine} from './engine.js';
 
-export function attachRealtime(server,db){
+export function attachRealtime(server,db,progression=null){
   const engine=createEngine(),wss=new WebSocketServer({noServer:true,maxPayload:2048,perMessageDeflate:false});
   const clients=new Map();
-  const visible=s=>({...s,players:s.players.map(({key,...p})=>p)});
+  const visible=engine.visible;
   const read=code=>db.prepare('SELECT state FROM pipa_rooms WHERE code=?').get(code);
   const write=(code,s)=>db.prepare('UPDATE pipa_rooms SET state=?,rev=rev+1,updated=? WHERE code=?').run(JSON.stringify(s),Date.now(),code);
   const send=(ws,data)=>{if(ws.readyState===1&&ws.bufferedAmount<65536)ws.send(JSON.stringify(data));};
@@ -46,7 +46,7 @@ export function attachRealtime(server,db){
       for(const [ws,c] of peers){const p=s.players.find(p=>p.id===c.id);if(!p||now-c.seen>15000){ws.close(1008,'Session expired');continue;}
         p.input=now-c.seen>500?{x:0,y:0,cut:false}:c.input;p.seen=c.seen;
       }
-      engine.step(s,now);write(code,s);const packet={type:'state',state:visible(s)};for(const [ws] of peers)send(ws,packet);
+      engine.step(s,now);write(code,s);progression?.observe(s);const packet={type:'state',state:visible(s)};for(const [ws] of peers)send(ws,packet);
     }catch(e){console.error('Realtime tick failed:',e.message);for(const [ws] of peers)ws.close(1011,'Server error');}}
   },1000/30);tick.unref();
   return ()=>{clearInterval(tick);for(const ws of wss.clients)ws.terminate();wss.close();};

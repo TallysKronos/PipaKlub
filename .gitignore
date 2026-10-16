@@ -2,3 +2,6 @@ dist/
 site.tar.gz
 .local/
 node_modules/
+.env
+.env.*
+!.env.example
