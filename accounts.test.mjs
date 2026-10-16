@@ -14,6 +14,7 @@ test('real PostgreSQL schema: signup grants one inventory, ownership is protecte
   await db.exec("create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key,raw_user_meta_data jsonb);create function auth.uid() returns uuid language sql as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;grant usage on schema public,auth to authenticated,anon,service_role;grant execute on function auth.uid() to authenticated,anon,service_role;");
   await db.exec(fs.readFileSync('supabase/migrations/001_accounts_inventory.sql','utf8'));
   await db.exec(fs.readFileSync('supabase/migrations/002_restricted_server.sql','utf8'));
+  await db.exec(fs.readFileSync('supabase/migrations/003_results_and_kite_history.sql','utf8'));
   await db.exec('set role pipa_server');
   await assert.rejects(()=>db.query('select * from auth.users'));
   await assert.rejects(()=>db.query('select * from public.player_profiles'));
@@ -54,6 +55,22 @@ test('real PostgreSQL schema: signup grants one inventory, ownership is protecte
   await db.exec('set role pipa_server');
   class RealPostgresPool{on(){}query(sql,values){return db.query(sql,values);}}
   await createGameDatabase({PIPA_DB_HOST:'test',PIPA_DB_USER:'pipa_server',PIPA_DB_PASSWORD:'test-only'},{Pool:RealPostgresPool}).verify();
+  await db.exec('reset role');
+  await db.query('update public.player_profiles set nickname=$1 where id=$2',['Novo apelido',userB]);
+  await db.exec("set role authenticated;set request.jwt.claim.sub='"+userA+"'");
+  const result=(await db.query('select public.get_player_match_result($1) as r',[match])).rows[0].r;
+  assert.equal(result.totals.xp,125);assert.equal(result.totals.cuts,7);assert.equal(result.totals.captured,1);assert.equal(result.totals.lost,0);
+  assert.equal(result.events.find(e=>e.captured).opponent,'Beto','past events preserve the name used in the duel');
+  assert.ok(!JSON.stringify(result).includes(userB),'results do not reveal other account identifiers');
+  const story=(await db.query('select public.get_kite_history($1) as r',[b])).rows[0].r;
+  assert.equal(story.captureCount,1);assert.equal(story.captures[0].from,'Beto');assert.equal(story.captures[0].to,'Ana');
+  assert.equal((await db.query('select public.get_player_recent_matches() as r')).rows[0].r.length,2);
+  await db.exec("set request.jwt.claim.sub='"+userB+"'");
+  await assert.rejects(()=>db.query('select public.get_kite_history($1)',[b]),/coleção/);
+  const loser=(await db.query('select public.get_player_match_result($1) as r',[match])).rows[0].r;assert.equal(loser.totals.lost,1);assert.equal(loser.totals.xp,0);
+  await db.exec("set request.jwt.claim.sub='55555555-5555-4555-8555-555555555555'");
+  await assert.rejects(()=>db.query('select public.get_player_match_result($1)',[match]),/histórico/);
+  assert.deepEqual((await db.query('select public.get_player_recent_matches() as r')).rows[0].r,[]);
   await db.exec('reset role');
  }finally{await db.close();}
 });
@@ -102,5 +119,31 @@ test('every simultaneous cut is queued, and leaving waits for pending captures t
   assert.equal(db.prepare('SELECT count(*) AS n FROM pipa_rewards').get().n,7);
   await rewards.flush();assert.ok(!calls.includes('release'));
   fail=false;db.prepare('UPDATE pipa_rewards SET retry_at=0').run();await rewards.flush();assert.equal(calls.at(-1),'release');assert.equal(db.prepare('SELECT count(*) AS n FROM pipa_rewards').get().n,0);
+ }finally{rewards.stop();db.close();}
+});
+
+test('result status never confirms saving while rewards remain pending and authorizes before local finalization',async()=>{
+ const env={SUPABASE_URL:'https://project.test',SUPABASE_PUBLISHABLE_KEY:'public'};
+ let progressCalls=0,progress={found:true,finished:true,pending:true},endedAt=new Date().toISOString(),deny=false;
+ const fetcher=async url=>url.endsWith('/auth/v1/user')?new Response(JSON.stringify({id:userA})):deny?new Response(JSON.stringify({message:'Esta partida não está no seu histórico.'}),{status:400}):new Response(JSON.stringify({match:{endedAt},totals:{},events:[]}));
+ const accounts=createAccounts(env,{fetcher,gameDatabase:{},matchProgress(){progressCalls++;return progress;}});
+ const req=()=>new Request('https://game.test/account/match-result',{method:'POST',headers:{'Content-Type':'application/json',cookie:'__Host-pipa_access=valid'},body:JSON.stringify({matchId:match})});
+ assert.equal((await (await accounts.handle(req())).json()).status,'saving');
+ progress.pending=false;assert.equal((await (await accounts.handle(req())).json()).status,'saved');
+ endedAt=null;progress.finished=false;assert.equal((await (await accounts.handle(req())).json()).status,'playing');
+ progress.found=false;assert.equal((await (await accounts.handle(req())).json()).status,'unconfirmed');
+ const before=progressCalls;deny=true;assert.equal((await accounts.handle(req())).status,400);assert.equal(progressCalls,before);
+});
+
+test('reading an ended HTTP-only match queues its finalization and waits for cuts',async()=>{
+ const db=new DatabaseSync(':memory:');db.exec('CREATE TABLE pipa_rooms(code TEXT,state TEXT)');
+ db.prepare('INSERT INTO pipa_rooms VALUES(?,?)').run('ABCDEF',JSON.stringify({id:match,end:Date.now()-1}));
+ let fail=true;const calls=[];
+ const rewards=createProgression(db,{enabled:true,async settle(){if(fail)throw Error('offline');},async finish(){calls.push('finished');}});
+ try{
+  rewards.observe({id:match,code:'ABCDEF',last:0,end:Date.now()+1000,events:[{id:match+':1',matchId:match,winnerAccountId:userA,loserAccountId:userB}]});
+  assert.equal(rewards.status(match).pending,true);await rewards.flush();assert.deepEqual(calls,[]);
+  fail=false;db.exec('UPDATE pipa_rewards SET retry_at=0');await rewards.flush();
+  assert.deepEqual(calls,['finished']);assert.deepEqual(rewards.status(match),{found:true,finished:true,pending:false});
  }finally{rewards.stop();db.close();}
 });

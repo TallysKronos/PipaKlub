@@ -2,7 +2,7 @@
 const UUID=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export class AccountError extends Error{constructor(message,status=400){super(message);this.status=status;}}
 const cookieValues=request=>Object.fromEntries((request.headers.get('cookie')||'').split(';').map(v=>v.trim().split(/=(.*)/s).slice(0,2)).filter(v=>v.length===2));
-export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null}={}){
+export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matchProgress=()=>({found:false,pending:false,finished:false})}={}){
  const url=(env.SUPABASE_URL||'').replace(/\/$/,''),key=env.SUPABASE_PUBLISHABLE_KEY||env.SUPABASE_ANON_KEY||'';
  const enabled=!!(url&&key&&gameDatabase),sessions=new Map(),limits=new Map();
  const json=(data,status=200,cookies=[])=>{const headers=new Headers({'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});for(const c of cookies)headers.append('Set-Cookie',c);return new Response(JSON.stringify(data),{status,headers});};
@@ -73,6 +73,7 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null}={})
    if(action==='config'&&request.method==='GET')return json({enabled,features:{inventory:enabled,xp:enabled,capture:enabled}});
    if(!enabled)throw new AccountError('Contas ainda não estão conectadas. Você pode jogar como visitante.',503);
    if(action==='session'&&request.method==='GET'){const who=await identity(request,true);if(!who)return json({account:null},200,makeCookies(request,null));return json({account:await accountFor(who)},200,who.setCookies);}
+   if(action==='history'&&request.method==='GET'){const who=await identity(request,true);if(!who)throw new AccountError('Entre na sua conta para continuar.',401);return json({matches:await rpc('get_player_recent_matches',{},who.access)},200,who.setCookies);}
    if(request.method!=='POST'||!request.headers.get('content-type')?.includes('application/json'))throw new AccountError('Pedido inválido.',405);
    const raw=await request.text();if(raw.length>4096)throw new AccountError('Pedido muito grande.',413);let b;try{b=JSON.parse(raw);}catch{throw new AccountError('Pedido inválido.');}
    if(action==='login'||action==='signup'){
@@ -87,6 +88,17 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null}={})
    if(action==='logout'){const values=cookieValues(request),access=values['__Host-pipa_access']||values.pipa_access;if(access){sessions.delete(access);try{await remote('/auth/v1/logout',{method:'POST',token:access});}catch{}}return json({ok:true},200,makeCookies(request,null));}
    const who=await identity(request,true);
    if(!who)throw new AccountError('Entre na sua conta para continuar.',401);
+   if(action==='match-result'){
+    if(!UUID.test(String(b.matchId)))throw new AccountError('Partida inválida.');
+    // Authorize in Postgres before inspecting the local outbox or finalizing a match.
+    const result=await rpc('get_player_match_result',{p_match:b.matchId},who.access),progress=matchProgress(b.matchId);
+    const status=result.match.endedAt&&!progress.pending?'saved':progress.found&&!progress.finished?'playing':progress.found||progress.pending?'saving':'unconfirmed';
+    return json({result,status},200,who.setCookies);
+   }
+   if(action==='kite-history'){
+    if(!UUID.test(String(b.kiteId)))throw new AccountError('Pipa inválida.');
+    return json({history:await rpc('get_kite_history',{p_kite:b.kiteId},who.access)},200,who.setCookies);
+   }
    if(action==='equip'){checkPending(who.id);if(!UUID.test(String(b.kiteId)))throw new AccountError('Pipa inválida.');await rpc('equip_player_kite',{p_kite:b.kiteId},who.access);}
    else if(action==='profile'){const nickname=String(b.nickname||'').trim();if(nickname.length<2||nickname.length>18)throw new AccountError('Use um apelido de 2 a 18 caracteres.');await rpc('update_player_name',{p_nickname:nickname},who.access);}
    else throw new AccountError('Ação não encontrada.',404);

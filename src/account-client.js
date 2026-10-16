@@ -27,7 +27,7 @@ function renderAccountDialog(){
  $('submitAccount').disabled=!accountsEnabled||accountSaving;
  if(accountsEnabled&&$('accountMessage').textContent==='O serviço de contas ainda está sendo conectado. O treino e as salas casuais continuam disponíveis.')$('accountMessage').textContent='';
  if(!accountsEnabled)$('accountMessage').textContent='O serviço de contas ainda está sendo conectado. O treino e as salas casuais continuam disponíveis.';
- if(!logged)return;
+ if(!logged){closeKiteStory();return;}
  const p=playerAccount.profile;$('accountNickname').value=p.nickname;
  $('accountLevel').textContent='Nível '+p.level;$('accountXP').textContent=p.xp+' / '+p.next_level_xp+' XP';
  const base=(p.level-1)**2*100;$('accountXPBar').style.width=Math.min(100,(p.xp-base)/Math.max(1,p.next_level_xp-base)*100)+'%';
@@ -39,14 +39,16 @@ function renderAccountDialog(){
    const badge=document.createElement('small');badge.textContent=k.permanent?'Básica permanente':k.capture_count?'Conquistada em duelo':'Colecionável';
    const button=document.createElement('button');button.className='secondary';button.textContent=k.id===p.equipped_kite_id?'Equipada':'Equipar';button.disabled=accountSaving||k.id===p.equipped_kite_id||!!mode;
    button.onclick=async()=>{accountSaving=true;renderAccountDialog();try{const d=await accountRequest('equip',{kiteId:k.id});playerAccount=d.account;reflectAccount();toast('Pipa equipada. Pronta para voar!');}catch(e){$('accountMessage').textContent=e.message;}finally{accountSaving=false;renderAccountDialog();}};
-   card.append(art,name,badge,button);return card;
+   const history=uiElement('button','Ver história','secondary');history.type='button';history.onclick=()=>openKiteStory(k);
+   if(k.capture_count)badge.textContent+=' · '+k.capture_count+' '+(k.capture_count===1?'conquista':'conquistas');
+   card.append(art,name,badge,button,history);return card;
  }));
 }
 async function openAccount(){
  if(mode){toast('Saia da partida para abrir sua coleção.');return;}
- keys={};$('accountMessage').textContent='';accountModal.style.display='flex';renderAccountDialog();$('closeAccount').focus();await refreshAccount();
+ keys={};closeKiteStory();$('accountMessage').textContent='';accountModal.style.display='flex';renderAccountDialog();$('closeAccount').focus();await refreshAccount();await loadRecentMatches();
 }
-function closeAccount(){accountModal.style.display='none';$('accountPassword').value='';$('accountButton').focus();}
+function closeAccount(){closeKiteStory();accountModal.style.display='none';$('accountPassword').value='';$('accountButton').focus();}
 $('accountButton').onclick=openAccount;$('closeAccount').onclick=closeAccount;
 accountModal.onclick=e=>{if(e.target===accountModal)closeAccount();};
 $('switchAccount').onclick=()=>{accountTab=accountTab==='login'?'signup':'login';$('accountMessage').textContent='';renderAccountDialog();};
@@ -54,7 +56,7 @@ $('accountForm').onsubmit=async e=>{
  e.preventDefault();if(accountSaving||!accountsEnabled)return;accountSaving=true;renderAccountDialog();$('accountMessage').textContent='Conectando…';
  try{const d=await accountRequest(accountTab,{email:$('accountEmail').value,password:$('accountPassword').value,nickname:$('signupName').value});$('accountPassword').value='';
    if(d.confirmation){accountTab='login';$('accountMessage').textContent=d.message;}
-   else{playerAccount=d.account;reflectAccount();$('accountMessage').textContent='Conta conectada. Sua coleção está pronta.';toast('Bem-vindo ao Pipa Club!');}
+   else{playerAccount=d.account;reflectAccount();loadRecentMatches();$('accountMessage').textContent='Conta conectada. Sua coleção está pronta.';toast('Bem-vindo ao Pipa Club!');}
  }catch(e){$('accountMessage').textContent=e.name==='AbortError'?'A conexão demorou. Tente novamente.':e.message;}
  finally{accountSaving=false;renderAccountDialog();}
 };

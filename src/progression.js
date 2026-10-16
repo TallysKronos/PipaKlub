@@ -1,6 +1,6 @@
 // Only server-created combat events enter this outbox. Never accept rewards from clients.
 export function createProgression(db,accounts){
- if(!accounts.enabled)return {observe(){},release(){},stop(){}};
+ if(!accounts.enabled)return {observe(){},release(){},stop(){},status(){return {found:false,pending:false,finished:false};}};
  db.exec('CREATE TABLE IF NOT EXISTS pipa_rewards (id TEXT PRIMARY KEY,payload TEXT NOT NULL,attempts INTEGER NOT NULL DEFAULT 0,retry_at INTEGER NOT NULL DEFAULT 0)');
  const observed=new Set();let busy=false,closed=false;
  function queue(id,payload){if(observed.has(id))return;db.prepare('INSERT OR IGNORE INTO pipa_rewards(id,payload) VALUES(?,?)').run(id,JSON.stringify(payload));observed.add(id);if(observed.size>10000)observed.clear();}
@@ -22,5 +22,12 @@ export function createProgression(db,accounts){
   }finally{busy=false;}
  }
  const timer=setInterval(flush,400);timer.unref();
- return {observe,flush,release(userId,matchId){queue(matchId+':leave:'+userId,{type:'release',userId,matchId});},stop(){closed=true;clearInterval(timer);}};
+ function status(matchId){
+  const row=db.prepare("SELECT state FROM pipa_rooms WHERE json_extract(state,'$.id')=? LIMIT 1").get(matchId),s=row&&JSON.parse(row.state);
+  const finished=!!s&&Date.now()>=s.end;
+  if(finished)queue(matchId+':end',{type:'finish',matchId});
+  const pending=!!db.prepare("SELECT 1 FROM pipa_rewards WHERE json_extract(payload,'$.matchId')=? AND json_extract(payload,'$.type') IN ('cut','finish') LIMIT 1").get(matchId);
+  return {found:!!s,finished,pending};
+ }
+ return {observe,flush,status,release(userId,matchId){queue(matchId+':leave:'+userId,{type:'release',userId,matchId});},stop(){closed=true;clearInterval(timer);}};
 }

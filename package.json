@@ -7,7 +7,7 @@
     "build:pages": "node build-pages.mjs",
     "dev": "node build.mjs && node dev.mjs",
     "start": "node dev.mjs",
-    "test": "node --test test.mjs network.test.mjs realtime.test.mjs frame-health.test.mjs accounts.test.mjs",
+    "test": "node --test test.mjs network.test.mjs realtime.test.mjs frame-health.test.mjs accounts.test.mjs results.test.mjs",
     "validate": "node scripts/validate-artifact.mjs"
   },
   "dependencies": {
@@ -15,6 +15,7 @@
     "ws": "^8.22.0"
   },
   "devDependencies": {
-    "@electric-sql/pglite": "^0.5.10"
+    "@electric-sql/pglite": "^0.5.10",
+    "linkedom": "^0.18.13"
   }
 }
