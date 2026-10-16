@@ -1,0 +1,11 @@
+{
+  "name": "pipa-club",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node build.mjs && node dev.mjs",
+    "test": "node --test test.mjs",
+    "validate": "node scripts/validate-artifact.mjs"
+  }
+}
