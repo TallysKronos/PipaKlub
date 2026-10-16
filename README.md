@@ -31,6 +31,18 @@ O GitHub Pages publica a pasta `docs/` da branch `main`. Essa versão roda o tre
 
 Após alterar o jogo, execute `npm run build:pages` e envie a pasta `docs/` atualizada ao GitHub. O arquivo `.nojekyll` preserva a publicação estática direta.
 
+## Hospedar o multiplayer gratuitamente no Render
+
+O arquivo `render.yaml` configura um Web Service no plano **Free**, com jogo, API multiplayer e SQLite no mesmo processo. O repositório pode permanecer privado.
+
+1. Entre em https://dashboard.render.com e conecte sua conta GitHub, concedendo acesso ao repositório `TallysKronos/PipaKlub`.
+2. Crie um **Blueprint** e selecione esse repositório. O Render lê `render.yaml` e usa os comandos já configurados.
+3. Confira que o serviço está no plano **Free** e conclua a criação. O Render fornece o endereço público `onrender.com` após a implantação.
+
+O servidor gratuito pausa após 15 minutos de inatividade. O primeiro acesso após a pausa pode levar cerca de um minuto. As salas são temporárias e são perdidas se o serviço reiniciar ou for implantado novamente, pois o disco gratuito não é persistente. Não há cadastro ou ranking permanente nesta versão.
+
+O servidor usa a porta fornecida em `PORT` e reconhece o HTTPS do proxy para validar corretamente a origem das requisições multiplayer.
+
 Sites novos são publicados com acesso privado ao proprietário por padrão. Para convidar pessoas externas pela URL publicada, o proprietário precisa ajustar o acesso do Site. A publicação privada pode ser usada imediatamente pelo proprietário; o servidor local permite teste na rede.
 
 ## Arquivos

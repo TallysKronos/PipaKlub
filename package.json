@@ -6,6 +6,7 @@
     "build": "node build.mjs",
     "build:pages": "node build-pages.mjs",
     "dev": "node build.mjs && node dev.mjs",
+    "start": "node dev.mjs",
     "test": "node --test test.mjs",
     "validate": "node scripts/validate-artifact.mjs"
   }
