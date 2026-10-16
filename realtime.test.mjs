@@ -1,0 +1,35 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import http from 'node:http';
+import {once} from 'node:events';
+import {DatabaseSync} from 'node:sqlite';
+import WebSocket from 'ws';
+import worker from './worker/index.js';
+import {attachRealtime} from './src/realtime.js';
+
+test('WebSocket authenticates sessions, broadcasts authoritative movement to both players, and rejects malformed messages',async t=>{
+  const db=new DatabaseSync(':memory:');
+  const DB={prepare(sql){let v=[];return {bind(...a){v=a;return this;},async run(){const r=db.prepare(sql).run(...v);return {meta:{changes:Number(r.changes)}};},async first(){return db.prepare(sql).get(...v);}};}};
+  async function api(action,b){const r=await worker.fetch(new Request('http://test/api/'+action,{method:'POST',body:JSON.stringify(b)}),{DB});return r.json();}
+  const a=await api('create',{name:'A'}),b=await api('join',{code:a.code,name:'B'});
+  const s=JSON.parse(db.prepare('SELECT state FROM pipa_rooms WHERE code=?').get(a.code).state);s.players[0].x=300;s.players[0].y=200;s.players[1].x=800;s.players[1].y=200;db.prepare('UPDATE pipa_rooms SET state=? WHERE code=?').run(JSON.stringify(s),a.code);
+  const server=http.createServer(),stop=attachRealtime(server,db);server.listen(0,'127.0.0.1');await once(server,'listening');
+  t.after(()=>{stop();server.close();db.close();});
+  async function client(token){
+    const ws=new WebSocket('ws://127.0.0.1:'+server.address().port+'/realtime');const queue=[],waiters=[];
+    ws.on('message',raw=>{const d=JSON.parse(String(raw));queue.push(d);if(queue.length>90)queue.shift();for(const check of [...waiters])check();});
+    await once(ws,'open');ws.send(JSON.stringify({type:'hello',code:a.code,token}));
+    function next(predicate){return new Promise((resolve,reject)=>{const timer=setTimeout(()=>{waiters.splice(waiters.indexOf(check),1);reject(Error('Snapshot timed out'));},3000);function check(){const index=queue.findIndex(predicate);if(index>=0){clearTimeout(timer);const packet=queue.splice(index,1)[0];const w=waiters.indexOf(check);if(w>=0)waiters.splice(w,1);resolve(packet);}}waiters.push(check);check();});}
+    return {ws,next};
+  }
+  const c1=await client(a.token),c2=await client(b.token);
+  const initial=await c1.next(d=>d.type==='state');assert.equal(initial.state.players.length,2);assert.ok(!JSON.stringify(initial).includes(b.token));
+  c1.ws.send(JSON.stringify({type:'input',input:{x:999,y:0,cut:false}}));
+  const moved=await c2.next(d=>d.type==='state'&&d.state.players.find(p=>p.id===a.me).x>310);
+  const p=moved.state.players.find(p=>p.id===a.me);assert.equal(p.input.x,1);assert.ok(p.x<350);
+  c1.ws.send(JSON.stringify({type:'ping',at:123}));assert.equal((await c1.next(d=>d.type==='pong')).at,123);
+  await c2.next(d=>d.type==='state'&&d.state.players.find(p=>p.id===a.me).input.x===0);
+  const bad=await client('invalid-session');const closed=await once(bad.ws,'close');assert.equal(closed[0],1008);
+  c1.ws.send('{');assert.equal((await once(c1.ws,'close'))[0],1008);
+  c2.ws.close();
+});
