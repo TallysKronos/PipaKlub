@@ -382,6 +382,8 @@ body.in-match .game-side{display:flex!important}
 .pause-btn{width:46px;height:46px;font-size:20px}
 .room-chip{border:3px solid var(--line);border-radius:999px;background:var(--paper);box-shadow:0 3px 0 var(--line);padding:6px 12px;font:400 14px var(--px);letter-spacing:2px}
 @media (max-width:560px){.room-chip{display:none}}
+.consent-bar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);width:min(560px,calc(100% - 32px));z-index:60;padding:14px 16px;display:grid;gap:8px}.consent-bar[hidden]{display:none}.consent-bar p{margin:0;font-size:13px;line-height:1.5}.consent-bar div{display:flex;gap:8px;justify-content:flex-end}
+.link-btn{background:none;border:0;box-shadow:none;color:inherit;opacity:.7;text-decoration:underline;font-size:12px;padding:4px;margin:6px auto 0;display:block;cursor:pointer}.link-btn[hidden]{display:none}
 body.in-match .arena-bottom{display:none}
 @media(max-width:900px){
  .game-side{left:50%;transform:translateX(-50%);top:8px}
@@ -446,7 +448,7 @@ body.in-match .arena-bottom{display:none}
 <button class="profile-card" id="profileButton" aria-label="Editar apelido e almática"><span class="profile-art" id="profileArt"></span><span class="profile-text"><b id="profileName">Pipeiro</b><small id="selectionName">Carcará · clássica e destemida</small></span><span class="profile-edit" aria-hidden="true">✎</span></button>
 <div class="menu-actions"><button class="primary" id="trailsButton">⚔ Trilhas</button><button class="btn btn-teal" id="quickButton">▶ Partida rápida</button>
 <div class="menu-row"><button class="secondary" id="practice">Treino livre</button><button class="secondary" id="friendsButton">Jogar com amigos</button></div>
-<div class="menu-row three"><button class="secondary small" id="meetAssis">Sr. Assis</button><button class="secondary small" id="dexButton">Pipa Dex</button><button class="secondary small" id="rulesButton">Regras</button></div></div>
+<div class="menu-row three"><button class="secondary small" id="meetAssis">Sr. Assis</button><button class="secondary small" id="dexButton">Pipa Dex</button><button class="secondary small" id="rulesButton">Regras</button></div><button class="link-btn" id="privacyButton" hidden>Privacidade</button></div>
 </aside>
 </div>
 
@@ -481,9 +483,10 @@ body.in-match .arena-bottom{display:none}
 <div class="sheet" id="pauseSheet" hidden><section class="panel sheet-card" role="dialog" aria-modal="true" aria-labelledby="pauseTitle"><button class="close" data-close-sheet aria-label="Continuar">×</button><div class="eyebrow" id="pauseEyebrow">Pausa</div><h2 id="pauseTitle">Jogo pausado</h2><p class="pause-note" id="pauseNote"></p>
 <div id="pauseRoom"></div><div class="pause-tools" id="pauseTools"></div>
 <button class="primary" data-close-sheet>Continuar ▶</button><div class="menu-row"><button class="secondary" id="pauseRules">Regras</button><button class="secondary" id="pauseLeave">Sair da partida</button></div></section></div>
+<aside class="panel consent-bar" id="consentBar" hidden role="dialog" aria-labelledby="consentTitle"><b id="consentTitle">Ajude a melhorar o Pipa Club</b><p>Com sua permissão, usamos o Microsoft Clarity para ver, de forma anônima, como as pessoas jogam (cliques, toques e rolagem). Não coletamos senha nem e-mail. Você pode mudar isso em “Privacidade”.</p><div><button class="secondary" id="consentNo">Agora não</button><button class="primary" id="consentYes">Aceitar</button></div></aside>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="overlay" id="modal"><section class="panel dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><button class="close" id="close" aria-label="Fechar">×</button><div class="eyebrow" id="dialogEyebrow">Manual de rua</div><h2 id="dialogTitle">O segredo está na linha.</h2><div id="dialogBody"></div><button class="primary" id="dialogAction">Entendi. Bora voar ↗</button></section></div>
-<div class="overlay" id="accountModal"><section class="panel account-card" role="dialog" aria-modal="true" aria-labelledby="accountTitle"><button class="close" id="closeAccount" aria-label="Fechar conta">×</button><div class="eyebrow">Seu clube, sua coleção</div><h2 id="accountTitle">De volta ao céu.</h2><div id="accountAuth"><form class="account-form" id="accountForm"><div id="signupFields" hidden><label for="signupName">Seu apelido</label><input id="signupName" minlength="2" maxlength="18" autocomplete="nickname" value="Pipeiro"></div><label for="accountEmail">E-mail</label><input id="accountEmail" type="email" autocomplete="email" required><label for="accountPassword">Senha</label><input id="accountPassword" type="password" minlength="8" maxlength="128" autocomplete="current-password" required><button class="primary" id="submitAccount" type="submit">Entrar</button></form><button class="secondary" id="switchAccount">Ainda não tenho conta</button></div><div id="accountCollection" hidden><div id="collectionMain"><div class="account-summary"><div><b id="accountLevel">Nível 1</b><span id="accountXP">0 XP</span></div><div class="meter"><i id="accountXPBar"></i></div><small id="accountCuts">0 cortes</small></div><form class="nickname-form" id="nicknameForm"><label for="accountNickname">Apelido<input id="accountNickname" minlength="2" maxlength="18" required></label><button type="submit" class="secondary">Salvar</button></form><b id="collectionCount">Suas pipas</b><div class="inventory-list" id="inventoryList"></div><h3>Souls especiais de evento</h3><p class="collection-info">Exclusivas de eventos. Vinculadas à conta, sem troca por cortes. Use no casual ou no treino; em Vale pipa, equipe uma colecionável.</p><div class="inventory-list" id="eventSoulsList"></div><p class="collection-info">A pipa básica é sua para sempre. Em Vale pipa, a colecionável equipada pode passar para quem cortar sua linha. No casual, sua coleção fica protegida. Cada corte entre contas rende 25 XP, até cinco vezes contra o mesmo adversário em 24 horas.</p><h3>Últimos duelos</h3><div id="recentMatches"></div><button class="secondary" id="logoutAccount">Sair da conta</button></div><section id="kiteStory" hidden><button class="secondary" id="kiteStoryBack">← Voltar à coleção</button><div id="kiteStoryBody" aria-live="polite"></div></section></div><p class="account-message" id="accountMessage" role="status" aria-live="polite"></p></section></div>
+<div class="overlay" id="accountModal" data-clarity-mask="true"><section class="panel account-card" role="dialog" aria-modal="true" aria-labelledby="accountTitle"><button class="close" id="closeAccount" aria-label="Fechar conta">×</button><div class="eyebrow">Seu clube, sua coleção</div><h2 id="accountTitle">De volta ao céu.</h2><div id="accountAuth"><form class="account-form" id="accountForm"><div id="signupFields" hidden><label for="signupName">Seu apelido</label><input id="signupName" minlength="2" maxlength="18" autocomplete="nickname" value="Pipeiro"></div><label for="accountEmail">E-mail</label><input id="accountEmail" type="email" autocomplete="email" required><label for="accountPassword">Senha</label><input id="accountPassword" type="password" minlength="8" maxlength="128" autocomplete="current-password" required><button class="primary" id="submitAccount" type="submit">Entrar</button></form><button class="secondary" id="switchAccount">Ainda não tenho conta</button></div><div id="accountCollection" hidden><div id="collectionMain"><div class="account-summary"><div><b id="accountLevel">Nível 1</b><span id="accountXP">0 XP</span></div><div class="meter"><i id="accountXPBar"></i></div><small id="accountCuts">0 cortes</small></div><form class="nickname-form" id="nicknameForm"><label for="accountNickname">Apelido<input id="accountNickname" minlength="2" maxlength="18" required></label><button type="submit" class="secondary">Salvar</button></form><b id="collectionCount">Suas pipas</b><div class="inventory-list" id="inventoryList"></div><h3>Souls especiais de evento</h3><p class="collection-info">Exclusivas de eventos. Vinculadas à conta, sem troca por cortes. Use no casual ou no treino; em Vale pipa, equipe uma colecionável.</p><div class="inventory-list" id="eventSoulsList"></div><p class="collection-info">A pipa básica é sua para sempre. Em Vale pipa, a colecionável equipada pode passar para quem cortar sua linha. No casual, sua coleção fica protegida. Cada corte entre contas rende 25 XP, até cinco vezes contra o mesmo adversário em 24 horas.</p><h3>Últimos duelos</h3><div id="recentMatches"></div><button class="secondary" id="logoutAccount">Sair da conta</button></div><section id="kiteStory" hidden><button class="secondary" id="kiteStoryBack">← Voltar à coleção</button><div id="kiteStoryBody" aria-live="polite"></div></section></div><p class="account-message" id="accountMessage" role="status" aria-live="polite"></p></section></div>
 
 <div class="overlay" id="trails" hidden><section class="panel trails-card" role="dialog" aria-modal="true" aria-labelledby="trailsTitle">
 <header class="trails-header"><div><div class="eyebrow">Modo RPG</div><h2 id="trailsTitle">Trilhas</h2><p id="trailMastery"></p></div><div class="trail-wallet"><small>Moedas</small><b>🪙 <span id="trailCoins">0</span></b></div><button class="close" id="trailsClose" aria-label="Fechar trilhas">×</button></header>
@@ -826,7 +829,7 @@ function trainee(now){const p=eng.player(profile().name,selected,'you',now),equi
 // Quick match: the server seats us with whoever is waiting and fills the rest with bots. Without a server it is an offline duel.
 function offlineQuick(){trailStage=null;const now=Date.now(),s=eng.create(now,{mode:'rounds',quick:true});eng.admit(s,trainee(now),now);eng.fillBots(s,now);enter(s,'you','practice');}
 async function quickMatch(){if(busy)return;if(typeof STATIC_HOST!=='undefined'&&STATIC_HOST){offlineQuick();return;}busy=true;$('quickButton').disabled=true;try{const d=await request('quick',profile());token=d.token;enter(d.state,d.me,'online',d.code);history.replaceState(null,'','?sala='+d.code);}catch(e){if(e.status===503){toast('Servidor online indisponível: partida rápida contra bots.');offlineQuick();}else toast(e.name==='AbortError'?'A conexão demorou. Tente novamente.':e.message);}finally{busy=false;$('quickButton').disabled=false;}}
-$('quickButton').onclick=quickMatch;
+$('quickButton').onclick=()=>{track('quick_match');quickMatch();};
 $('practice').onclick=()=>{trailStage=null;const now=Date.now(),s=eng.create(now,{mode:$('matchFormat').value});eng.admit(s,trainee(now),now);['Zeca','Bia','Nando'].forEach((n,i)=>{const b=eng.player(n,(i+selected+1)%4,'bot'+i,now);b.bot=true;eng.admit(s,b,now);});enter(s,'you','practice');};
 function leave(){sessionVersion++;resetFx();if(!document.querySelector('#pauseSheet[hidden]'))$('pauseSheet').hidden=true;pausedAt=0;document.querySelector('.arena-bottom').append(document.querySelector('.arena-tools'));$('gameSide').append($('roomStrip'));$('roomChip').hidden=true;resetPointer();document.body.classList.remove('in-match');const old=socket;socket=null;realtime=false;old?.close();networkView.reset();renderPlayers=null;if(mode==='online')request('leave',{code:room,token}).catch(()=>{});mode=null;state=null;me=null;keys={};skillUntil=0;$('lobby').style.display='block';$('gameSide').style.display='none';$('arenaCopy').style.display='block';$('hud').style.display='none';$('touch').classList.remove('active');$('events').textContent='';$('combatReadout').textContent='';$('liveLabel').textContent='Explore a arena';$('arenaMode').textContent='Seu próximo duelo começa aqui.';history.replaceState(null,'',location.pathname);}
 $('leave').onclick=()=>{leave();refreshRewards();};
@@ -1114,7 +1117,7 @@ let resultContext=null,resultTimer=null,resultVersion=0,storyVersion=0;
 const resultDate=value=>new Intl.DateTimeFormat('pt-BR',{dateStyle:'short',timeStyle:'short'}).format(new Date(value));
 function uiElement(tag,text,className){const el=document.createElement(tag);if(text!==undefined)el.textContent=text;if(className)el.className=className;return el;}
 function stopMatchResult(){resultContext=null;resultVersion++;clearTimeout(resultTimer);}
-function showMatchResult(s,ranking=[]){
+function showMatchResult(s,ranking=[]){if(!s.trail)track(s.quick?'quick_match_end':mode==='online'?'online_match_end':'practice_end');
  stopMatchResult();
  const mine=s.players?.find(p=>p.id===me),authenticated=mode==='online'&&!!playerAccount;
  const rounds=s.mode==='rounds',rows=ranking.map((q,i)=>'<div class="result-rank'+(q.id===me?' me':'')+'"><span><i class="result-dot" style="background:'+playerColor(q)+'"></i>'+(i+1)+'. '+playerTag(q)+' '+escapeHTML(q.name)+(q.id===me?' · você':'')+'</span><b>'+(rounds?(q.rounds||0)+' ★ · ':'')+q.score+' pts</b></div>').join('');
@@ -1424,13 +1427,13 @@ function startStage(id){
  closeTrails();const now=Date.now(),level=trails.aiLevel(st,trailProgress),s=eng.create(now,{mode:'rounds',roundsToWin:st.rounds});s.trail=id;
  eng.admit(s,trainee(now),now);
  st.foes.forEach((f,i)=>{const b=eng.player(f.name,f.color,'ai'+i,now);b.bot=true;b.ai={level};if(f.soul){b.soul=f.soul;art.load(f.soul);}eng.admit(s,b,now);});
- trailStage=id;enter(s,'you','practice');setText('liveLabel',st.name+' · IA nível '+level);
+ trailStage=id;enter(s,'you','practice');track('trail_start',{trail_stage:id});setText('liveLabel',st.name+' · IA nível '+level);
 }
 function dropCard(id){const item=ART_CONFIG.items.find(i=>i.id===id);if(!item)return '';return '<div class="drop-reward"><img src="'+escapeHTML(item.url)+'" alt=""><div><small>Nova rabiola conquistada!</small><b>'+escapeHTML(item.name)+'</b></div></div>';}
 // Called by the results screen when a trail duel ends.
 function showTrailResult(s,ranking,mine){
  const won=(mine?.rounds||0)>=s.roundsToWin,r=trails.settle(trailProgress,s.trail,{won,roundsLost:Math.max(0,(s.round||0)-(mine?.rounds||0))});
- trailProgress=r.progress;saveTrails();reflectCoins();
+ trailProgress=r.progress;saveTrails();reflectCoins();track(won?'trail_win':'trail_loss',{trail_stage:s.trail});
  const st=trails.stage(s.trail),next=trails.nextStage(s.trail),canNext=won&&next&&trails.unlocked(trailProgress,next.id);
  const rows=ranking.map((q,i)=>'<div class="result-rank'+(q.id===me?' me':'')+'"><span><i class="result-dot" style="background:'+playerColor(q)+'"></i>'+(i+1)+'. '+escapeHTML(q.name)+(q.id===me?' · você':'')+'</span><b>'+(q.rounds||0)+' ★</b></div>').join('');
  // Sr. Assis coaches harder the more a stage resists: the stage tip, then the line-tip trick, then the right almática.
@@ -1448,6 +1451,25 @@ $('trailsButton').onclick=openTrails;$('trailsClose').onclick=closeTrails;$('tra
 $('trails').onclick=e=>{if(e.target===$('trails'))closeTrails();};
 addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('trails').hidden)closeTrails();});
 reflectCoins();
+
+// Microsoft Clarity, only with the player's consent (LGPD). The project id comes from CLARITY_ID at build
+// time; without it nothing is loaded and the privacy controls stay hidden. track() is safe to call always.
+const CLARITY_ID="",CONSENT_KEY='pipaConsentV1';
+function consentChoice(){try{return localStorage.getItem(CONSENT_KEY);}catch{return null;}}
+function loadClarity(){
+ if(!CLARITY_ID||window.clarity)return;
+ window.clarity=function(){(window.clarity.q=window.clarity.q||[]).push(arguments);};
+ const tag=document.createElement('script');tag.async=true;tag.src='https://www.clarity.ms/tag/'+encodeURIComponent(CLARITY_ID);document.head.append(tag);
+ window.clarity('consent');
+}
+function track(name,tags){if(!window.clarity||consentChoice()!=='yes')return;try{window.clarity('event',name);if(tags)for(const [k,v] of Object.entries(tags))window.clarity('set',k,String(v));}catch{}}
+function setConsent(yes){try{localStorage.setItem(CONSENT_KEY,yes?'yes':'no');}catch{}$('consentBar').hidden=true;if(yes)loadClarity();else if(window.clarity)location.reload();}
+function openConsent(){$('consentBar').hidden=false;}
+if(CLARITY_ID){
+ $('privacyButton').hidden=false;$('privacyButton').onclick=openConsent;
+ $('consentYes').onclick=()=>setConsent(true);$('consentNo').onclick=()=>setConsent(false);
+ const choice=consentChoice();if(choice==='yes')loadClarity();else if(choice!=='no')openConsent();
+}
 
 // Introduction uses the same atlas and dialogue data shipped with the game.
 let introductionOpen=false,introductionStep=0,introductionTick=0,introductionFocus=null,typing=null;

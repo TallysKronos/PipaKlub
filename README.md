@@ -67,6 +67,15 @@ O progresso e as moedas ficam no aparelho (`localStorage`, chave `pipaTrailsV1`)
 
 Crie a sala e compartilhe o convite. Os participantes entram usando o código de seis caracteres. Até oito jogadores participam da mesma simulação. No servidor Node/Render, uma conexão WebSocket transmite atualizações a 30 Hz e envia comandos assim que mudam, com manutenção a cada 50 ms. O cliente prevê o movimento da própria pipa imediatamente, corrige diferenças suavemente e interpola os adversários. O servidor controla dano, energia, pontuação e reentrada. Uma conexão HTTP de compatibilidade é usada automaticamente se WebSocket estiver indisponível (inclusive no Worker do Sites). O ping continua representando a viagem de ida e volta ao servidor; a previsão local evita esperar por ela para mover a pipa. Sessões ausentes por 15 segundos saem da sala.
 
+## Telemetria (Microsoft Clarity)
+
+O Clarity só é carregado depois que o jogador aceita o aviso de privacidade (LGPD). O botão “Privacidade” no menu permite mudar a escolha. A janela de conta é mascarada nas gravações. Para ativar, crie um projeto em clarity.microsoft.com e defina o id no build:
+
+- Render: adicione a variável de ambiente `CLARITY_ID` no serviço; o `npm run build` do deploy usa o valor.
+- GitHub Pages: `CLARITY_ID=seu_id npm run build:pages` e faça commit de `docs/`.
+
+Sem `CLARITY_ID`, nada é carregado e o aviso não aparece. Eventos enviados: `quick_match`, `quick_match_end`, `online_match_end`, `practice_end`, `trail_start`, `trail_win` e `trail_loss`.
+
 ## GitHub Pages
 
 O GitHub Pages publica a pasta `docs/` da branch `main`. Essa versão roda o treino com bots integralmente no navegador. O Pages não executa o servidor Node.js/Worker nem o banco de dados, portanto as salas online ficam disponíveis na versão com backend.

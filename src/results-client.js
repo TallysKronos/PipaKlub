@@ -2,7 +2,7 @@ let resultContext=null,resultTimer=null,resultVersion=0,storyVersion=0;
 const resultDate=value=>new Intl.DateTimeFormat('pt-BR',{dateStyle:'short',timeStyle:'short'}).format(new Date(value));
 function uiElement(tag,text,className){const el=document.createElement(tag);if(text!==undefined)el.textContent=text;if(className)el.className=className;return el;}
 function stopMatchResult(){resultContext=null;resultVersion++;clearTimeout(resultTimer);}
-function showMatchResult(s,ranking=[]){
+function showMatchResult(s,ranking=[]){if(!s.trail)track(s.quick?'quick_match_end':mode==='online'?'online_match_end':'practice_end');
  stopMatchResult();
  const mine=s.players?.find(p=>p.id===me),authenticated=mode==='online'&&!!playerAccount;
  const rounds=s.mode==='rounds',rows=ranking.map((q,i)=>'<div class="result-rank'+(q.id===me?' me':'')+'"><span><i class="result-dot" style="background:'+playerColor(q)+'"></i>'+(i+1)+'. '+playerTag(q)+' '+escapeHTML(q.name)+(q.id===me?' · você':'')+'</span><b>'+(rounds?(q.rounds||0)+' ★ · ':'')+q.score+' pts</b></div>').join('');
