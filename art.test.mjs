@@ -11,6 +11,9 @@ function app({seen=false,search='',failed=false,reduced=false}={}){
  for(const canvas of document.querySelectorAll('canvas'))canvas.getContext=()=>({clearRect(){},drawImage(...args){draws.push({canvas:canvas.id,args});},imageSmoothingEnabled:true});
  const context=vm.createContext({document,console,crypto,Date,Intl,URLSearchParams,AbortController,performance:{now:()=>100},location:{search,hash:'',pathname:'/',protocol:'https:',host:'test'},history:{replaceState(){}},localStorage:{getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,v)},matchMedia:()=>({matches:reduced}),ResizeObserver:class{observe(){}},requestAnimationFrame(){},setInterval(){},clearInterval(){},setTimeout(fn,delay){timers.push({fn,delay});return timers.length;},clearTimeout(){},fetch:async()=>({ok:true,json:async()=>({enabled:false})}),Image:class{set src(url){requests.push(url);queueMicrotask(()=>failed?this.onerror():this.onload());}},addEventListener(name,fn){if(!listeners.has(name))listeners.set(name,[]);listeners.get(name).push(fn);}});
  vm.runInContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],context);
+ context.cancelAnimationFrame=()=>{};
+ // Linkedom exposes select.value as read-only; browsers implement a setter.
+ for(const select of document.querySelectorAll('select')){let value;Object.defineProperty(select,'value',{configurable:true,get(){return value??this.querySelector('option[selected]')?.value??this.querySelector('option')?.value??'';},set(next){value=next;}});}
  return {document,requests,draws,storage,run:code=>vm.runInContext(code,context),auto:()=>timers.find(t=>t.delay===650).fn(),settle:()=>new Promise(r=>setImmediate(r)),key:key=>{for(const fn of listeners.get('keydown'))fn({key,target:{tagName:'BODY'},preventDefault(){},stopImmediatePropagation(){}});}};
 }
 test('new visitors meet Assis, all eight steps swap artwork, finish starts training and replay remains available',async()=>{
@@ -50,4 +53,38 @@ test('special Souls load only on demand and animate all five states using their 
  assert.match(a.document.getElementById('inventoryList').textContent,/Especial de evento/);
  assert.match(a.document.getElementById('selectionName').textContent,/Alvaneve/);
  a.run("$('practice').onclick()");assert.equal(a.run("state.players.find(p=>p.id==='you').soul"),'alvaneve');
+});
+
+test('public Pipa Dex lists all creatures, searches accents, filters and previews without unlocking inventory',async()=>{
+ const a=app();await a.settle();a.document.getElementById('workshop').onclick();await a.settle();a.auto();assert.equal(a.run('introductionOpen'),false);
+ assert.equal(a.document.getElementById('pipaDex').hidden,false);
+ assert.equal(a.document.querySelectorAll('#dexList button').length,9);
+ assert.equal(a.document.getElementById('dexName').textContent,'Carcará');
+ assert.equal(a.document.querySelectorAll('#dexAnimation option').length,1);
+ a.run("$('dexSearch').value='azulao';filterDex()");await a.settle();
+ assert.equal(a.document.getElementById('dexName').textContent,'Azulão');
+ assert.match(a.document.getElementById('dexStory').textContent,/chuva/);
+ a.run("$('dexSearch').value='';$('dexFilter').value='event';filterDex()");await a.settle();
+ assert.equal(a.document.querySelectorAll('#dexList button').length,4);
+ assert.equal(a.document.querySelectorAll('#dexAnimation option').length,5);
+ assert.match(a.document.getElementById('dexObtain').textContent,/exclusiva de eventos/);
+ assert.equal(a.run('playerAccount'),null);assert.equal(a.run('mode'),null);
+ for(const state of ['idle','flight','skill','hurt','victory']){
+  a.run("$('dexAnimation').value='"+state+"';$('dexAnimation').onchange();dexElapsed=180;drawDex()");
+  const rect=a.draws.filter(d=>d.canvas==='dexCanvas').at(-1).args.slice(1,5),atlas=artConfig().atlases.flautrevo;
+  assert.ok(atlas.animations[state].some(key=>JSON.stringify(Object.values(atlas.frames[key].frame))===JSON.stringify(rect)));
+ }
+ a.run("$('dexSearch').value='nao-existe';filterDex()");assert.equal(a.document.getElementById('dexEmpty').hidden,false);assert.equal(a.document.getElementById('dexDetails').hidden,true);
+ a.run("$('dexSearch').value='';$('dexFilter').value='companion';filterDex()");await a.settle();assert.equal(a.document.getElementById('dexName').textContent,'Nozinho');assert.match(a.document.getElementById('dexObtain').textContent,/não é uma pipa equipável/);
+ a.key('Escape');assert.equal(a.document.getElementById('pipaDex').hidden,true);assert.equal(a.run('dexFrame'),0);
+});
+
+test('Dex respects reduced motion and keeps lore available when sprite loading fails',async()=>{
+ const a=app({seen:true,reduced:true,failed:true});await a.settle();a.document.getElementById('workshop').onclick();await a.settle();
+ assert.equal(a.run('dexPlaying'),false);assert.equal(a.document.getElementById('dexPlay').textContent,'Reproduzir');
+ assert.equal(a.document.getElementById('dexRetry').hidden,false);assert.match(a.document.getElementById('dexLoad').textContent,/não carregou/);
+ assert.match(a.document.getElementById('dexStory').textContent,/Carcará/);
+ a.document.getElementById('dexPlay').onclick();assert.equal(a.run('dexPlaying'),true);
+ a.document.getElementById('dexPlay').onclick();assert.equal(a.run('dexPlaying'),false);
+ a.document.getElementById('dexClose').onclick();assert.equal(a.run('dexOpen'),false);
 });
