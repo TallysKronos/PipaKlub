@@ -29,6 +29,22 @@ function app({seen=false,search='',failed=false,reduced=false,member=false}={}){
  for(const select of document.querySelectorAll('select')){let value;Object.defineProperty(select,'value',{configurable:true,get(){return value??this.querySelector('option[selected]')?.value??this.querySelector('option')?.value??'';},set(next){value=next;}});}
  return {document,requests,draws,storage,run:code=>vm.runInContext(code,context),auto:()=>timers.find(t=>t.delay===650).fn(),settle:()=>new Promise(r=>setImmediate(r)),key:key=>{for(const fn of listeners.get('keydown'))fn({key,target:{tagName:'BODY'},preventDefault(){},stopImmediatePropagation(){}});}};
 }
+test('rebicar follows accepted attacks, mirrors its pull and never changes simulation coordinates',()=>{
+ const a=app({seen:true});
+ const result=a.run(`(()=>{const p=eng.player('Teste',0,'test',0);p.x=500;p.y=300;eng.move(p,{cut:true,x:1},.016);const start=rebicarPose(p);eng.move(p,{cut:true,x:1},.06);const pull=rebicarPose(p),left=rebicarPose({...p,facing:-1}),quiet=rebicarPose(p,true);const before=[p.x,p.y];rebicarPose(p);return {start,pull,left,quiet,position:before,after:[p.x,p.y],strikes:p.strikes,end:rebicarPose({...p,attackCooldown:.2}),dead:rebicarPose({...p,respawn:123})};})()`);
+ assert.equal(result.start.active,true);assert.equal(result.strikes,1);assert.ok(Math.abs(result.pull.tilt)>.1);assert.equal(result.pull.tilt,-result.left.tilt);assert.equal(result.pull.dx,-result.left.dx);assert.equal(result.pull.dy,result.left.dy);
+ assert.deepEqual([...result.position],[...result.after]);assert.equal(result.end.active,false);assert.equal(result.dead.active,false);
+ assert.equal(result.quiet.active,true);assert.ok(result.quiet.alpha>0);assert.equal(result.quiet.dx,0);assert.equal(result.quiet.dy,0);assert.equal(result.quiet.tilt,0);
+ for(const energy of [0,11])assert.equal(a.run(`(()=>{const p=eng.player('T',0,'t',0);p.energy=${energy};eng.move(p,{cut:true},.016);return rebicarPose(p).active;})()`),false,'insufficient energy does not fake an attack');
+ assert.equal(a.run(`(()=>{const p=eng.player('T',0,'t',0);eng.move(p,{cut:true,dodge:true},.016);return rebicarPose(p).active;})()`),false,'dodging does not fake a rebicada');
+});
+
+test('universal rebicar wraps every Pipamon sprite and light mode keeps its visible feedback',()=>{
+ const a=app({seen:true});
+ const result=a.run(`(()=>{const bodies=[],moves=[],waves=[];ctx=new Proxy({},{get:(o,k)=>k==='measureText'?()=>({width:70}):o[k]||((...args)=>{if(k==='translate')moves.push(args);if(k==='stroke')waves.push(1);}),set:(o,k,v)=>(o[k]=v,true)});kiteBody=(col,t,p)=>bodies.push(p.soul||p.color);lightMode=true;for(const entry of ART_CONFIG.dex.entries){const p=eng.player(entry.name,entry.color,entry.id,0);p.soul=entry.id;p.x=500;p.y=300;p.attackCooldown=.59;kite(p,100);}return {bodies,moves,waves,count:ART_CONFIG.dex.entries.length};})()`);
+ assert.equal(result.count,33);assert.equal(result.bodies.length,33);assert.equal(result.moves.length,33);assert.ok(result.moves.every(([x,y])=>x!==500&&y!==300));assert.ok(result.waves.length>=66,'light mode retains the line pulse and pull arc');
+});
+
 test('visitors can practice but trails and Dex request an account and cannot grant progress',async()=>{
  const a=app({seen:true});await a.settle();
  assert.ok([...a.document.querySelectorAll('[data-members-only]')].every(el=>el.hidden));
