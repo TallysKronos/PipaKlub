@@ -1029,6 +1029,7 @@ async function loadDexArt(retry=false){
 }
 function selectDex(entry){
  dexEntry=entry;dexState='idle';dexElapsed=0;dexLast=0;$('dexDetails').hidden=false;
+ $('dexDetails').scrollTop=0;dexOverlay.querySelector('.dex-layout').scrollTop=0;
  $('dexNumber').textContent='REGISTRO '+String(dexEntries.indexOf(entry)+1).padStart(3,'0');
  $('dexName').textContent=entry.name;$('dexSubtitle').textContent=entry.title;
  $('dexGroup').textContent=entry.group==='event'?'Especial de evento':entry.group==='companion'?'Companheiro':'Almática de rua';
