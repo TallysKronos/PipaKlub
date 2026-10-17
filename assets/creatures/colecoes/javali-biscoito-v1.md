@@ -12,10 +12,10 @@ Nome provisório; novo Pipamon, sem substituir os existentes. Total atual: 34 re
 
 ## Conferência
 
-109 testes validados, incluindo os 16 retângulos, escala constante, cinco estados, catálogo e distribuição dos arquivos. Build Worker/Pages e artefato válidos. Equipado pela interface na conta Ana do banco local, exibido em treino e na Dex, sem erros no navegador. Concessão de demonstração idempotente e restrita ao script local.
+110 testes validados, incluindo os 16 retângulos, escala constante, cinco estados, catálogo e distribuição dos arquivos. Build Worker/Pages e artefato válidos. Equipado pela interface na conta Ana do banco local, exibido em treino e na Dex, sem erros no navegador. Concessão de demonstração idempotente e restrita ao script local.
 
 Alguns efeitos já encostam nas bordas da imagem enviada; pixels externos ausentes não foram reconstruídos. Nenhum efeito foi removido. A página HTML de auditoria permite inspecionar os 16 quadros e cinco animações em fundos diferentes e inverter a direção.
 
 ## Publicação
 
-Migração 012_javali_biscoito.sql registra o modelo para concessão administrativa de evento. Não concede inventário em produção nem cria drops. Rabiola e receita de invocação aguardam seus respectivos assets e definição. O nome é provisório; o ID javali-biscoito é estável. Não houve merge, migração ou deploy em produção.
+Migração 012_javali_biscoito.sql registra o modelo para concessão administrativa de evento. Não concede inventário em produção nem cria drops. A rabiola está cadastrada como item de evento. A migração 013_javali_summoning.sql registra o feitiço em espiral para usar a receita da própria rabiola. O fluxo completo e os cenários de falha foram auditados; veja INVOCACAO-JAVALI.md. O nome é provisório; o ID javali-biscoito é estável. Não houve merge, migração ou deploy em produção.

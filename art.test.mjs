@@ -218,13 +218,14 @@ test('Dex respects reduced motion and keeps lore available when sprite loading f
 
 test('each Dex entry shows its own tail, keeps companion provenance and never grants inventory',async()=>{
  const a=app({seen:true});await a.settle();a.run('playerAccount={profile:{},inventory:[]}');a.document.getElementById('workshop').onclick();
- const config=artConfig();assert.equal(config.items.length,33);assert.equal(new Set(config.items.map(i=>i.image)).size,33);
+ const config=artConfig();assert.equal(config.items.length,34);assert.equal(new Set(config.items.map(i=>i.image)).size,34);
  for(const entry of config.dex.entries){
   a.run('selectDex(dexEntries.find(e=>e.id==='+JSON.stringify(entry.id)+'))');
   const root=a.document.getElementById('dexItemsSection'),cards=root.querySelectorAll('.dex-item');if(!entry.items.length){assert.equal(entry.id,'javali-biscoito');assert.equal(root.hidden,true);assert.equal(cards.length,0);continue;}assert.equal(root.hidden,false);assert.equal(cards.length,1);
   const item=config.items.find(i=>i.id===entry.items[0]);assert.equal(item.pipamon,entry.id);assert.equal(item.name,'Rabiola de '+entry.name);
   const image=cards[0].querySelector('img');assert.equal(image.getAttribute('src'),item.url);assert.equal(image.alt,item.name);assert.equal(image.loading,'lazy');
   if(entry.group==='companion'){assert.equal(item.source,'companion');assert.match(root.textContent,/não aparece como selvagem/);assert.doesNotMatch(root.textContent,/Drop previsto/);}
+  else if(entry.id==='javali-biscoito'){assert.equal(item.source,'event');assert.match(root.textContent,/Origem: evento/);assert.doesNotMatch(root.textContent,/selvagem|Drop previsto/);}
   else{assert.equal(item.source,'wild');assert.match(root.textContent,new RegExp(entry.name+' selvagem'));
    // Rabiolas dropped by trail bosses say where to earn them; the rest are still coming.
    if(['rabiola-raio-de-sol','rabiola-chaspiral','rabiola-flautrevo'].includes(item.id))assert.match(root.textContent,/Prêmio: .+ \(Trilhas\)/);else assert.match(root.textContent,/Em breve/);}
@@ -237,7 +238,7 @@ test('all tail PNGs are published with content hashes, HEAD and cache validation
  const serve=createAssetHandler();
  for(const item of artConfig().items){
   const url='https://game.test/'+item.url,r=await serve(new Request(url));assert.equal(r.status,200);assert.match(r.headers.get('cache-control'),/immutable/);assert.equal(r.headers.get('content-type'),'image/png');
-  const bytes=Buffer.from(await r.arrayBuffer());assert.equal(bytes.readUInt32BE(16),209);assert.equal(bytes.readUInt32BE(20),209);assert.equal(bytes[25],6);
+  const bytes=Buffer.from(await r.arrayBuffer());assert.equal(bytes.readUInt32BE(16),item.imageSize?.w||209);assert.equal(bytes.readUInt32BE(20),item.imageSize?.h||209);assert.equal(bytes[25],6);
   assert.deepEqual(fs.readFileSync('docs/assets/'+item.image),bytes);
   assert.equal((await serve(new Request(url,{method:'HEAD'}))).status,200);
   assert.equal((await serve(new Request(url,{headers:{'if-none-match':r.headers.get('etag')}}))).status,304);

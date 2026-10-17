@@ -23,11 +23,15 @@ if(!(await postgres.query("select to_regclass('public.player_trails') installed"
 if(!(await postgres.query("select to_regclass('public.line_styles') installed")).rows[0].installed)await postgres.exec(fs.readFileSync('supabase/migrations/010_line_cosmetics.sql','utf8'));
 if(!(await postgres.query("select to_regclass('public.daily_challenge_rewards') installed")).rows[0].installed)await postgres.exec(fs.readFileSync('supabase/migrations/011_daily_challenge.sql','utf8'));
 await postgres.exec(fs.readFileSync('supabase/migrations/012_javali_biscoito.sql','utf8'));
+await postgres.exec(fs.readFileSync('supabase/migrations/013_javali_summoning.sql','utf8'));
 const players={ana:{id:'11111111-1111-4111-8111-111111111111',nickname:'Ana Local'},beto:{id:'22222222-2222-4222-8222-222222222222',nickname:'Beto Local'}};
 for(const p of Object.values(players))await postgres.query('insert into auth.users values($1,$2) on conflict(id) do nothing',[p.id,{nickname:p.nickname}]);
 await postgres.query("select public.grant_event_soul($1,'flautrevo','local-demo')",[players.ana.id]);
 await postgres.query("select public.grant_event_soul($1,'javali-biscoito','local-demo-javali-v1')",[players.ana.id]);
 for(const p of Object.values(players))for(const [i,model,source] of [[1,'mata','drop'],[2,'azulao','purchase'],[3,'marulume','event'],[4,'raio','drop'],[5,'mata','drop']])await postgres.query('select public.grant_summon_tail($1,$2,$3,$4)',[p.id,model,source,'local-summon-'+i]);
+// Isolated Javali fixtures: failure, interruption, success and duplicate prevention.
+for(let i=1;i<=4;i++)await postgres.query('select public.grant_summon_tail($1,$2,$3,$4)',[players.beto.id,'javali-biscoito','event','local-javali-summon-'+i]);
+await postgres.query("insert into public.player_pipamon_sightings(owner_id,model_id) values($1,'javali-biscoito') on conflict do nothing",[players.beto.id]);
 // Demo sightings include two creatures without a tail, to exercise locked cards.
 for(const p of Object.values(players))await postgres.query("insert into public.player_pipamon_sightings(owner_id,model_id) select $1,id from public.kite_models where id in ('marulume','alvaneve','hiponilo') on conflict do nothing",[p.id]);
 const operations={player_daily:[],player_lines:['p_action','p_style','p_operation'],player_trails:['p_action','p_operation','p_payload'],get_player_account:[],get_player_recent_matches:[],get_player_match_result:['p_match'],get_kite_history:['p_kite'],equip_player_kite:['p_kite'],update_player_name:['p_nickname'],player_trade:['p_action','p_code','p_kite','p_revision'],player_summon:['p_action','p_tail','p_ritual','p_path','p_request','p_session','p_target'],record_player_sighting:['p_model']};
