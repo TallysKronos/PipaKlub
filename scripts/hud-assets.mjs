@@ -10,5 +10,5 @@ export function hudSpriteCSS(){
  return Object.entries(atlas.frames).map(([id,[sheet,x,y,w,h]])=>{
   const s=atlas.sheets[sheet];if(x<0||y<0||x+w>s.width||y+h>s.height)throw Error('HUD frame outside sheet: '+id);
   return '.hud-art-'+id+'{background-image:url("'+s.url+'")!important;background-size:'+s.width/w*100+'% '+s.height/h*100+'%!important;background-position:'+x/(s.width-w)*100+'% '+y/(s.height-h)*100+'%!important}';
- }).join('\n');
+ }).join('\n')+'\n@media(max-width:700px) and (min-height:501px){.hud-board>.hud-art-back{background-size:351.4874% 640%!important;background-position:32.3021% 13.7731%!important}}';
 }

@@ -2,7 +2,7 @@
 let normalLineNonce=0,normalLineHeld=false,normalLineSide=1;
 const normalLineHUD=document.createElement('section');normalLineHUD.id='normalLineHUD';normalLineHUD.hidden=true;
 normalLineHUD.setAttribute('aria-label','Rebicadas da linha');
-normalLineHUD.innerHTML=`<label>Rebicada<select id="normalLineChoice" aria-label="Escolher rebicada"></select></label><button id="normalLineSide" class="secondary" aria-label="Trocar lado da rebicada">Direita ↔</button><button id="normalLineUse" class="primary">Rebicar · R</button><small id="normalLineState" role="status"></small><p id="normalLineHint"></p>`;
+normalLineHUD.innerHTML=`<label>Rebicada<select id="normalLineChoice" aria-label="Escolher rebicada"></select></label><button id="normalLineSide" class="secondary" aria-label="Trocar lado da rebicada">Direita</button><button id="normalLineUse" class="primary">Rebicar · R</button><small id="normalLineState" role="status"></small><p id="normalLineHint"></p>`;
 document.querySelector('.combat-deck').prepend(normalLineHUD);
 for(const d of eng.lineSkills){const o=document.createElement('option');o.value=d.id;o.textContent=d.name;$('normalLineChoice').append(o);}
 try{const saved=localStorage.getItem('pipaLineMove');if(eng.lineSkills.some(d=>d.id===saved))$('normalLineChoice').value=saved;}catch{}
@@ -18,11 +18,12 @@ function updateNormalLineHUD(){
  const d=normalLineChoice(),k=p.lineMove;const blocked=!!(p.respawn||pausedAt||state.phase&&state.phase!=='live');
  $('normalLineChoice').disabled=!!k||normalLineHeld;$('normalLineSide').disabled=!!k||normalLineHeld;
  $('normalLineUse').disabled=blocked||(!normalLineHeld&&(!!k||p.lineCooldown>0||p.energy<d.cost));
- setText('normalLineState',k?.phase==='charge'?'Linha tensionada · solte R':k?eng.lineSkills.find(s=>s.id===k.id).name+' em movimento':blocked?'Aguarde a partida':p.lineCooldown>0?'Recarga · '+p.lineCooldown.toFixed(1)+' s':p.energy<d.cost?'Precisa de '+d.cost+' de energia':'Pronta · segure R e solte');
+ setText('normalLineState',k?.phase==='charge'?'Linha tensionada · solte R':k?'Em movimento':blocked?'Aguarde a partida':p.lineCooldown>0?'Recarga · '+p.lineCooldown.toFixed(1)+' s':p.energy<d.cost?'Precisa de '+d.cost+' de energia':'Pronta · segure R e solte');
  setText('normalLineHint',d.description+' · '+d.cost+' energia · '+d.cooldown+' s de recarga.');
+ $('normalLineChoice').title=$('normalLineHint').textContent;$('normalLineUse').title=$('normalLineHint').textContent;$('normalLineUse').setAttribute('aria-describedby','normalLineHint');
 }
 $('normalLineChoice').onchange=()=>{try{localStorage.setItem('pipaLineMove',normalLineChoice().id);}catch{}updateNormalLineHUD();};
-$('normalLineSide').onclick=()=>{normalLineSide*=-1;$('normalLineSide').textContent=normalLineSide<0?'Esquerda ↔':'Direita ↔';};
+$('normalLineSide').onclick=()=>{normalLineSide*=-1;const button=$('normalLineSide'),label=button.querySelector('.hud-button-content')||button;label.textContent=normalLineSide<0?'Esquerda':'Direita';button.title='Lado da rebicada: '+(normalLineSide<0?'esquerda':'direita');};
 $('normalLineUse').onpointerdown=e=>{e.preventDefault();e.stopPropagation();normalLineStart();e.currentTarget.setPointerCapture?.(e.pointerId);};
 for(const event of ['pointerup','pointercancel','lostpointercapture'])$('normalLineUse').addEventListener(event,resetNormalLine);
 $('normalLineUse').addEventListener('keydown',e=>{if(['Enter',' '].includes(e.key)){e.preventDefault();if(!e.repeat)normalLineStart();}});

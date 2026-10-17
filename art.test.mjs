@@ -72,6 +72,14 @@ test('painted HUD serves its real alpha atlases in both builds and every crop st
  ui.run(`state.players[0].color=2;updateHud(Date.now());`);assert.equal(ui.document.querySelectorAll('#playerPortrait .hud-art-portrait').length,1,'equipping a different partner preserves its illustrated frame');
 });
 
+test('HUD keeps content separate from art, side changes preserve sprites, and mobile tabs release held controls',async()=>{
+ const ui=app({seen:true});await ui.settle();ui.run(`var audited=eng.create(Date.now());audited.players=[eng.player('Nome comprido',1,'audited',Date.now())];enter(audited,'audited','practice');updateHud(Date.now());updateNormalLineHUD();normalLineStart();`);
+ const side=ui.document.querySelector('#normalLineSide');assert.equal(side.querySelectorAll('[class*="hud-art-button-"]').length,4);side.onclick();assert.equal(side.querySelectorAll('[class*="hud-art-button-"]').length,4);assert.equal(side.querySelector('.hud-button-content').textContent,'Esquerda');
+ assert.ok(ui.document.querySelector('#normalLineHUD>.hud-panel-content'));assert.equal(ui.run('normalLineHeld'),true);
+ ui.document.querySelector('[data-hud-tab="partner"]').onclick();assert.equal(ui.run('normalLineHeld'),false);assert.equal(ui.document.querySelector('.combat-deck').dataset.panel,'partner');assert.equal(ui.document.querySelector('[data-hud-tab="partner"]').getAttribute('aria-pressed'),'true');
+ const audit=fs.readFileSync('docs/hud-audit.html','utf8'),script=audit.slice(audit.indexOf('<script>')+8,audit.lastIndexOf('</script>'));assert.doesNotThrow(()=>new vm.Script(script));assert.match(script,/210/);assert.match(script,/content-overflow/);assert.match(script,/button-label/);
+});
+
 test('a failed initial account check retries automatically and unlocks login without losing typed fields',async()=>{
  const ui=app({seen:true,hosted:true});await ui.settle();
  await ui.run(`(async()=>{var attempts=0;globalThis.retryWake=null;setTimeout=(fn,ms)=>{if(ms===3000)retryWake=fn;return 1};fetch=async()=>{throw Error('temporary connection failure')};$('accountEmail').value='player@example.test';$('accountPassword').value='test-only-password';await initializeAccounts();accountModal.style.display='flex';renderAccountDialog();})()`);
