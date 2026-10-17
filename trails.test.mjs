@@ -25,7 +25,7 @@ test('the AI adapts: wins raise mastery and AI level, losses lower it, both stay
 });
 test('stored progress is sanitised',()=>{
  const p=t.sanitize({coins:-50,stars:{'morro-1':99,'fake':3,'morro-2':'x'},mastery:999,wins:'7'});
- assert.deepEqual(p,{coins:0,stars:{'morro-1':3},mastery:t.MASTERY_MAX,wins:7,losses:0,fails:{}});
+ assert.deepEqual(p,{coins:0,stars:{'morro-1':3},mastery:t.MASTERY_MAX,wins:7,losses:0,fails:{},items:[]});
  assert.deepEqual(t.sanitize('lixo'),t.defaults());
 });
 test('higher AI levels beat lower ones and keep bot defaults unchanged',()=>{
@@ -44,4 +44,12 @@ test('extra rivals cap the mastery bonus, and repeated losses ease the stage unt
  assert.ok(levels.at(-1)<levels[0]);assert.equal(t.aiLevel(t.stage('praia-1'),{...p,mastery:0}),t.stage('praia-1').level-1,'relief after three losses');
  const won=t.settle(p,'praia-1',{won:true,roundsLost:1});assert.deepEqual(won.progress.fails,{});
  for(const id of ['morro-3','torres-2','torres-4'])assert.equal(t.stage(id).counter,2,'Guardiã is the recommended answer where the audit found it decisive');
+});
+
+test('each boss drops its Pipamon rabiola once, and only real drops survive sanitising',()=>{
+ for(const trail of t.trails)assert.ok(trail.stages.at(-1).drop,'every trail boss has a drop');
+ let p=t.defaults();const lost=t.settle(p,'morro-5',{won:false});assert.equal(lost.drop,null);
+ const first=t.settle(lost.progress,'morro-5',{won:true,roundsLost:0});assert.equal(first.drop,'rabiola-raio-de-sol');assert.deepEqual(first.progress.items,['rabiola-raio-de-sol']);
+ const again=t.settle(first.progress,'morro-5',{won:true});assert.equal(again.drop,null);assert.equal(again.progress.items.length,1);
+ assert.deepEqual(t.sanitize({items:['rabiola-chaspiral','rabiola-chaspiral','inventada',7]}).items,['rabiola-chaspiral']);
 });

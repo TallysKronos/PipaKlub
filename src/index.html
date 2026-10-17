@@ -346,6 +346,13 @@ body.in-match .arena canvas{cursor:crosshair}
 .stage-kite.selected{background:#ffe9a8;box-shadow:0 3px 0 var(--line),inset 0 0 0 3px var(--gold)}
 .stage-kite.recommended:after{content:'Recomendada';position:absolute;top:-11px;left:50%;transform:translateX(-50%);white-space:nowrap;padding:0 5px;border:2px solid var(--line);border-radius:6px;background:var(--teal);color:#fff;font:400 9px var(--px);letter-spacing:.5px}
 .trail-coach{text-align:left;margin:12px 0 0;padding:10px 12px;border:3px dashed #e3cf9b;border-radius:10px;background:var(--paper-2);font-size:13px!important;line-height:1.5}
+.stage-drop{display:flex;gap:10px;align-items:center;padding:8px 10px;border:3px solid var(--line);border-radius:10px;background:linear-gradient(90deg,#ffe9a8,#fff6dd)}
+.stage-drop img{width:56px;height:56px;object-fit:contain;image-rendering:pixelated;border:2px solid var(--line);border-radius:8px;background:#fffdf4}
+.stage-drop small{display:block;font:400 11px var(--px);letter-spacing:1px;text-transform:uppercase;color:var(--orange-d)}.stage-drop b{display:block;font:400 16px var(--px)}.stage-drop span{font-size:12px;color:var(--ink-soft)}
+.drop-reward{display:flex;align-items:center;gap:12px;margin:12px auto 4px;max-width:360px;padding:10px 14px;border:3px solid var(--line);border-radius:12px;background:linear-gradient(90deg,#ffe9a8,#fff6dd);box-shadow:0 4px 0 var(--line);text-align:left;animation:dropIn .5s ease-out}
+.drop-reward img{width:72px;height:72px;object-fit:contain;image-rendering:pixelated}.drop-reward small{display:block;font:400 12px var(--px);color:var(--orange-d);letter-spacing:1px;text-transform:uppercase}.drop-reward b{font:400 20px var(--px)}
+@keyframes dropIn{0%{transform:scale(.6) rotate(-6deg);opacity:0}70%{transform:scale(1.06)}}
+.dex-item-status.owned{color:var(--green);font-weight:800}
 .stage-facts{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;margin:2px 0}.stage-facts dt{font:400 11px var(--px);letter-spacing:1px;text-transform:uppercase;color:var(--orange-d)}.stage-facts dd{margin:2px 0 0;font-size:12px}
 .stage-tip{display:flex;gap:10px;align-items:center;padding:10px;border:3px dashed #e3cf9b;border-radius:10px;background:var(--paper-2)}
 .stage-tip canvas{width:60px;height:70px;flex:none;image-rendering:pixelated}.stage-tip p{margin:0;font-size:13px;line-height:1.5}
@@ -441,7 +448,7 @@ body.in-match .arena canvas{cursor:crosshair}
 <div class="trails-layout"><div class="trail-list" id="trailList"></div>
 <aside class="stage-card" aria-live="polite"><div class="eyebrow" id="stageTrail"></div><h3 id="stageName"></h3><div class="stage-foes" id="stageFoes"></div><div class="stage-label">Sua almática</div><div class="stage-kites" id="stageKites"></div>
 <dl class="stage-facts"><div><dt>Dificuldade</dt><dd id="stageLevel"></dd></div><div><dt>Formato</dt><dd id="stageFormat"></dd></div><div><dt>Recompensa</dt><dd id="stageReward"></dd></div><div><dt>Recorde</dt><dd id="stageBest"></dd></div></dl>
-<div class="stage-tip"><canvas id="stageAssis" width="96" height="112" aria-hidden="true"></canvas><p><b>Sr. Assis:</b> <span id="stageTip"></span></p></div>
+<div class="stage-drop" id="stageDrop" hidden><img id="stageDropImage" alt="" width="64" height="64"><div><small>Prêmio do chefe</small><b id="stageDropName"></b><span id="stageDropState"></span></div></div><div class="stage-tip"><canvas id="stageAssis" width="96" height="112" aria-hidden="true"></canvas><p><b>Sr. Assis:</b> <span id="stageTip"></span></p></div>
 <button class="primary" id="trailStart">Voar ▶</button><p class="stage-foot">A IA aprende com você: cada vitória deixa as próximas pipas mais espertas; uma derrota alivia um pouco.</p></aside></div>
 </section></div>
 <div class="overlay" id="pipaDex" hidden><section class="panel dex-card" role="dialog" aria-modal="true" aria-labelledby="dexTitle">

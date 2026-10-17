@@ -8,12 +8,15 @@ function renderDexItems(entry){
  const companion=entry.group==='companion';
  $('dexItemsTitle').textContent=companion?'Item do companheiro':'Itens dropáveis';
  $('dexItemsHint').textContent=companion?'Nozinho acompanha o Sr. Assis e não aparece como selvagem. Sua rabiola fica registrada aqui como item associado.':'Rabiola prevista para encontros com '+entry.name+' selvagem. Os drops ainda não estão disponíveis.';
+ // Rabiolas dropped by trail bosses show where to earn them and whether this device already has them.
+ const bossDrop=id=>{try{return trails.stages.find(st=>st.drop===id)||null;}catch{return null;}},owned=id=>{try{return trailProgress.items.includes(id);}catch{return false;}};
+ if(!companion&&(entry.items||[]).some(bossDrop))$('dexItemsHint').textContent='Esta rabiola é o prêmio de um chefe das Trilhas: vença-o pela primeira vez para conquistá-la.';
  const cards=(entry.items||[]).map(id=>ART_CONFIG.items.find(item=>item.id===id)).filter(Boolean).map(item=>{
   const card=uiElement('article',undefined,'dex-item'),stage=uiElement('div',undefined,'dex-item-art'),image=document.createElement('img');
   image.alt=item.name;image.width=209;image.height=209;image.loading='lazy';image.decoding='async';
   const fallback=uiElement('span','Imagem indisponível','dex-item-fallback');fallback.hidden=true;
   image.onerror=()=>{image.hidden=true;fallback.hidden=false;};image.onload=()=>{image.hidden=false;fallback.hidden=true;};image.src=item.url;stage.append(image,fallback);
-  const info=uiElement('div',undefined,'dex-item-info');info.append(uiElement('span','Rabiola','dex-item-kind'),uiElement('h5',item.name),uiElement('p',companion?'Associada ao companheiro':'Origem: '+entry.name+' selvagem'),uiElement('span',companion?'Item de referência':'Drop previsto · Em breve','dex-item-status'));
+  const info=uiElement('div',undefined,'dex-item-info');info.append(uiElement('span','Rabiola','dex-item-kind'),uiElement('h5',item.name),uiElement('p',companion?'Associada ao companheiro':'Origem: '+entry.name+' selvagem'),uiElement('span',companion?'Item de referência':owned(item.id)?'Conquistada ✓':bossDrop(item.id)?'Prêmio: '+bossDrop(item.id).name+' (Trilhas)':'Drop previsto · Em breve','dex-item-status'+(owned(item.id)?' owned':'')));
   card.append(stage,info);return card;
  });
  $('dexItemsList').replaceChildren(...cards);$('dexItemsSection').hidden=cards.length===0;

@@ -346,6 +346,13 @@ body.in-match .arena canvas{cursor:crosshair}
 .stage-kite.selected{background:#ffe9a8;box-shadow:0 3px 0 var(--line),inset 0 0 0 3px var(--gold)}
 .stage-kite.recommended:after{content:'Recomendada';position:absolute;top:-11px;left:50%;transform:translateX(-50%);white-space:nowrap;padding:0 5px;border:2px solid var(--line);border-radius:6px;background:var(--teal);color:#fff;font:400 9px var(--px);letter-spacing:.5px}
 .trail-coach{text-align:left;margin:12px 0 0;padding:10px 12px;border:3px dashed #e3cf9b;border-radius:10px;background:var(--paper-2);font-size:13px!important;line-height:1.5}
+.stage-drop{display:flex;gap:10px;align-items:center;padding:8px 10px;border:3px solid var(--line);border-radius:10px;background:linear-gradient(90deg,#ffe9a8,#fff6dd)}
+.stage-drop img{width:56px;height:56px;object-fit:contain;image-rendering:pixelated;border:2px solid var(--line);border-radius:8px;background:#fffdf4}
+.stage-drop small{display:block;font:400 11px var(--px);letter-spacing:1px;text-transform:uppercase;color:var(--orange-d)}.stage-drop b{display:block;font:400 16px var(--px)}.stage-drop span{font-size:12px;color:var(--ink-soft)}
+.drop-reward{display:flex;align-items:center;gap:12px;margin:12px auto 4px;max-width:360px;padding:10px 14px;border:3px solid var(--line);border-radius:12px;background:linear-gradient(90deg,#ffe9a8,#fff6dd);box-shadow:0 4px 0 var(--line);text-align:left;animation:dropIn .5s ease-out}
+.drop-reward img{width:72px;height:72px;object-fit:contain;image-rendering:pixelated}.drop-reward small{display:block;font:400 12px var(--px);color:var(--orange-d);letter-spacing:1px;text-transform:uppercase}.drop-reward b{font:400 20px var(--px)}
+@keyframes dropIn{0%{transform:scale(.6) rotate(-6deg);opacity:0}70%{transform:scale(1.06)}}
+.dex-item-status.owned{color:var(--green);font-weight:800}
 .stage-facts{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;margin:2px 0}.stage-facts dt{font:400 11px var(--px);letter-spacing:1px;text-transform:uppercase;color:var(--orange-d)}.stage-facts dd{margin:2px 0 0;font-size:12px}
 .stage-tip{display:flex;gap:10px;align-items:center;padding:10px;border:3px dashed #e3cf9b;border-radius:10px;background:var(--paper-2)}
 .stage-tip canvas{width:60px;height:70px;flex:none;image-rendering:pixelated}.stage-tip p{margin:0;font-size:13px;line-height:1.5}
@@ -441,7 +448,7 @@ body.in-match .arena canvas{cursor:crosshair}
 <div class="trails-layout"><div class="trail-list" id="trailList"></div>
 <aside class="stage-card" aria-live="polite"><div class="eyebrow" id="stageTrail"></div><h3 id="stageName"></h3><div class="stage-foes" id="stageFoes"></div><div class="stage-label">Sua almática</div><div class="stage-kites" id="stageKites"></div>
 <dl class="stage-facts"><div><dt>Dificuldade</dt><dd id="stageLevel"></dd></div><div><dt>Formato</dt><dd id="stageFormat"></dd></div><div><dt>Recompensa</dt><dd id="stageReward"></dd></div><div><dt>Recorde</dt><dd id="stageBest"></dd></div></dl>
-<div class="stage-tip"><canvas id="stageAssis" width="96" height="112" aria-hidden="true"></canvas><p><b>Sr. Assis:</b> <span id="stageTip"></span></p></div>
+<div class="stage-drop" id="stageDrop" hidden><img id="stageDropImage" alt="" width="64" height="64"><div><small>Prêmio do chefe</small><b id="stageDropName"></b><span id="stageDropState"></span></div></div><div class="stage-tip"><canvas id="stageAssis" width="96" height="112" aria-hidden="true"></canvas><p><b>Sr. Assis:</b> <span id="stageTip"></span></p></div>
 <button class="primary" id="trailStart">Voar ▶</button><p class="stage-foot">A IA aprende com você: cada vitória deixa as próximas pipas mais espertas; uma derrota alivia um pouco.</p></aside></div>
 </section></div>
 <div class="overlay" id="pipaDex" hidden><section class="panel dex-card" role="dialog" aria-modal="true" aria-labelledby="dexTitle">
@@ -1133,12 +1140,15 @@ function renderDexItems(entry){
  const companion=entry.group==='companion';
  $('dexItemsTitle').textContent=companion?'Item do companheiro':'Itens dropáveis';
  $('dexItemsHint').textContent=companion?'Nozinho acompanha o Sr. Assis e não aparece como selvagem. Sua rabiola fica registrada aqui como item associado.':'Rabiola prevista para encontros com '+entry.name+' selvagem. Os drops ainda não estão disponíveis.';
+ // Rabiolas dropped by trail bosses show where to earn them and whether this device already has them.
+ const bossDrop=id=>{try{return trails.stages.find(st=>st.drop===id)||null;}catch{return null;}},owned=id=>{try{return trailProgress.items.includes(id);}catch{return false;}};
+ if(!companion&&(entry.items||[]).some(bossDrop))$('dexItemsHint').textContent='Esta rabiola é o prêmio de um chefe das Trilhas: vença-o pela primeira vez para conquistá-la.';
  const cards=(entry.items||[]).map(id=>ART_CONFIG.items.find(item=>item.id===id)).filter(Boolean).map(item=>{
   const card=uiElement('article',undefined,'dex-item'),stage=uiElement('div',undefined,'dex-item-art'),image=document.createElement('img');
   image.alt=item.name;image.width=209;image.height=209;image.loading='lazy';image.decoding='async';
   const fallback=uiElement('span','Imagem indisponível','dex-item-fallback');fallback.hidden=true;
   image.onerror=()=>{image.hidden=true;fallback.hidden=false;};image.onload=()=>{image.hidden=false;fallback.hidden=true;};image.src=item.url;stage.append(image,fallback);
-  const info=uiElement('div',undefined,'dex-item-info');info.append(uiElement('span','Rabiola','dex-item-kind'),uiElement('h5',item.name),uiElement('p',companion?'Associada ao companheiro':'Origem: '+entry.name+' selvagem'),uiElement('span',companion?'Item de referência':'Drop previsto · Em breve','dex-item-status'));
+  const info=uiElement('div',undefined,'dex-item-info');info.append(uiElement('span','Rabiola','dex-item-kind'),uiElement('h5',item.name),uiElement('p',companion?'Associada ao companheiro':'Origem: '+entry.name+' selvagem'),uiElement('span',companion?'Item de referência':owned(item.id)?'Conquistada ✓':bossDrop(item.id)?'Prêmio: '+bossDrop(item.id).name+' (Trilhas)':'Drop previsto · Em breve','dex-item-status'+(owned(item.id)?' owned':'')));
   card.append(stage,info);return card;
  });
  $('dexItemsList').replaceChildren(...cards);$('dexItemsSection').hidden=cards.length===0;
@@ -1235,33 +1245,34 @@ function createTrails(){
       {id:'morro-2',name:'Folha ao vento',level:2,rounds:2,coins:12,foes:[foe('Bia',1)],tip:'A Bia muda de lado num sopro. Não persiga a pipa: espere a linha dela cruzar a sua.'},
       {id:'morro-3',counter:2,name:'Dois na laje',level:2,rounds:2,coins:16,foes:[foe('Juninho',2),foe('Lia',3)],tip:'Com três no céu, deixe os dois se cortarem e entre para terminar o serviço.'},
       {id:'morro-4',name:'Teimosia azul',level:3,rounds:2,coins:18,foes:[foe('Tião',2)],tip:'Quando aparecer o anel vermelho, você está na mira: aperte Shift (ou ESQ) para esquivar. Esquivando na hora do puxão, o próximo acerto sai crítico.'},
-      {id:'morro-5',name:'Mestre Nando',level:4,rounds:3,coins:30,boss:true,foes:[foe('Mestre Nando',3)],tip:'Nando lê o céu como um mapa. Guarde energia: quem puxa sem parar perde o fôlego.'}
+      {id:'morro-5',drop:'rabiola-raio-de-sol',name:'Mestre Nando',level:4,rounds:3,coins:30,boss:true,foes:[foe('Mestre Nando',3)],tip:'Nando lê o céu como um mapa. Guarde energia: quem puxa sem parar perde o fôlego.'}
     ]},
     {id:'praia',name:'Trilha da Beira-Mar',subtitle:'Vento forte, linha firme',accent:'#2f9e8f',stages:[
       {id:'praia-1',name:'Brisa salgada',level:4,rounds:2,coins:20,foes:[foe('Dona Cida',0)],tip:'Abra o ângulo e puxe com a pipa em movimento: centro dourado + ângulo aberto + relada é CORTE CRÍTICO.'},
       {id:'praia-2',counter:0,name:'Ventania',level:3,rounds:2,coins:24,foes:[foe('Kauã',1),foe('Mel',3)],tip:'Dois rivais rápidos. Fique alto e escolha quem cruzar primeiro.'},
       {id:'praia-3',name:'Rede de pescador',level:5,rounds:2,coins:26,foes:[foe('Seu Dito',2)],tip:'Seu Dito desvia quando percebe a sua mira. Mude o ângulo antes de puxar.'},
       {id:'praia-4',name:'Trio do píer',level:5,rounds:2,coins:32,foes:[foe('Ravi',0),foe('Nina',1),foe('Caio',3)],tip:'Quatro linhas no céu. Quem sobrevive é quem não fica no meio da confusão.'},
-      {id:'praia-5',name:'Chaspiral',level:6,rounds:3,coins:50,boss:true,foes:[foe('Chaspiral',1,'chaspiral')],tip:'A fada do chá dança de um lado ao outro. Mire onde ela vai estar, não onde está.'}
+      {id:'praia-5',drop:'rabiola-chaspiral',name:'Chaspiral',level:6,rounds:3,coins:50,boss:true,foes:[foe('Chaspiral',1,'chaspiral')],tip:'A fada do chá dança de um lado ao outro. Mire onde ela vai estar, não onde está.'}
     ]},
     {id:'torres',name:'Trilha dos Campanários',subtitle:'Lendas entre os sinos',accent:'#8b4fd6',stages:[
       {id:'torres-1',name:'Sino da tarde',level:6,rounds:2,coins:34,foes:[foe('Irmã Lu',3)],tip:'Irmã Lu amplia a zona de corte. Mantenha distância quando o foco dela acender.'},
       {id:'torres-2',counter:2,name:'Brasas do beco',level:7,rounds:2,coins:40,foes:[foe('Trinca-brasas',2,'trinca-brasas')],tip:'Três cabeças, uma guarda de ferro. Ataque nos intervalos da proteção.'},
       {id:'torres-3',counter:2,name:'Neve de verão',level:7,rounds:2,coins:44,foes:[foe('Alvaneve',0,'alvaneve')],tip:'Alvaneve pune quem fica parado. Cruze, puxe e saia.'},
       {id:'torres-4',counter:2,name:'Coro das torres',level:7,rounds:2,coins:50,foes:[foe('Benê',2),foe('Sol',3),foe('Teca',1)],tip:'O coro ataca o mais fraco. Não deixe sua linha baixar sem reagir.'},
-      {id:'torres-5',name:'Flautrevo',level:8,rounds:3,coins:80,boss:true,foes:[foe('Flautrevo',3,'flautrevo')],tip:'A flauta dele confunde o vento. Respire, leia o cruzamento e seja paciente.'}
+      {id:'torres-5',drop:'rabiola-flautrevo',name:'Flautrevo',level:8,rounds:3,coins:80,boss:true,foes:[foe('Flautrevo',3,'flautrevo')],tip:'A flauta dele confunde o vento. Respire, leia o cruzamento e seja paciente.'}
     ]}
   ];
   const stages=TRAILS.flatMap((t,ti)=>t.stages.map((s,si)=>({...s,trail:t.id,trailIndex:ti,index:si})));
   const stage=id=>stages.find(s=>s.id===id)||null;
   const MASTERY_MAX=8;
-  function defaults(){return {coins:0,stars:{},mastery:0,wins:0,losses:0,fails:{}};}
+  const DROPS=stages.filter(s=>s.drop).map(s=>s.drop);
+  function defaults(){return {coins:0,stars:{},mastery:0,wins:0,losses:0,fails:{},items:[]};}
   // Progress lives in the player's device for now; never trust it for anything shared.
   function sanitize(p){
     const d=defaults();if(!p||typeof p!=='object')return d;
     const stars={},fails={};for(const s of stages){const v=Math.trunc(Number(p.stars?.[s.id]));if(v>0)stars[s.id]=clamp(v,1,3);const f=Math.trunc(Number(p.fails?.[s.id]));if(f>0)fails[s.id]=clamp(f,1,99);}
     const n=(v,max)=>clamp(Math.trunc(Number(v))||0,0,max);
-    return {coins:n(p.coins,1e9),stars,mastery:n(p.mastery,MASTERY_MAX),wins:n(p.wins,1e9),losses:n(p.losses,1e9),fails};
+    return {coins:n(p.coins,1e9),stars,mastery:n(p.mastery,MASTERY_MAX),wins:n(p.wins,1e9),losses:n(p.losses,1e9),fails,items:[...new Set(Array.isArray(p.items)?p.items.filter(id=>DROPS.includes(id)):[])]};
   }
   function unlocked(p,id){const i=stages.findIndex(s=>s.id===id);return i===0||(i>0&&!!p.stars[stages[i-1].id]);}
   // Difficulty adapts: every two points of mastery add one AI level on top of the stage's base level.
@@ -1273,13 +1284,15 @@ function createTrails(){
     const st=stage(id),before=sanitize(p),next=sanitize(p);if(!st)return {progress:before,coins:0,stars:0,firstClear:false};
     const stars=won?clamp(3-roundsLost,1,3):0,firstClear=won&&!before.stars[id];
     const coins=won?Math.round(st.coins*(1+(stars-1)*.25))+(firstClear?st.coins:0):0;
+    // Bosses drop their Pipamon's rabiola the first time they are beaten.
+    const drop=won&&st.drop&&!before.items.includes(st.drop)?st.drop:null;if(drop)next.items.push(drop);
     next.coins+=coins;if(won){next.wins++;next.stars[id]=Math.max(before.stars[id]||0,stars);next.mastery=clamp(before.mastery+(stars===3?2:1),0,MASTERY_MAX);delete next.fails[id];}
     else{next.losses++;next.fails[id]=(before.fails[id]||0)+1;next.mastery=clamp(before.mastery-(next.fails[id]>=2?2:1),0,MASTERY_MAX);}
-    return {progress:next,coins,stars,firstClear,fails:next.fails[id]||0,levelBefore:aiLevel(st,before),levelAfter:aiLevel(st,next)};
+    return {progress:next,coins,stars,firstClear,drop,fails:next.fails[id]||0,levelBefore:aiLevel(st,before),levelAfter:aiLevel(st,next)};
   }
   const totalStars=p=>Object.values(p.stars).reduce((a,b)=>a+b,0);
   const nextStage=id=>{const i=stages.findIndex(s=>s.id===id);return i>=0?stages[i+1]||null:null;};
-  return {RELIEF_AFTER,trails:TRAILS,stages,stage,defaults,sanitize,unlocked,aiLevel,settle,totalStars,nextStage,MASTERY_MAX};
+  return {DROPS,RELIEF_AFTER,trails:TRAILS,stages,stage,defaults,sanitize,unlocked,aiLevel,settle,totalStars,nextStage,MASTERY_MAX};
 }
 
 // Trilhas UI: trail map, stage briefing, AI duels and coin payouts. Progress is stored on this device.
@@ -1306,7 +1319,7 @@ function closeTrails(){$('trails').hidden=true;$('trails').style.display='none';
 function renderTrails(){
  setText('trailCoins',String(trailProgress.coins));
  const bonus=Math.floor(trailProgress.mastery/2);
- setText('trailMastery','Maestria '+trailProgress.mastery+'/'+trails.MASTERY_MAX+(bonus?' · a IA está +'+bonus+' nível'+(bonus>1?'s':'')+' mais esperta':' · a IA ainda está te conhecendo'));
+ setText('trailMastery','Rabiolas '+trailProgress.items.length+'/'+trails.DROPS.length+' · Maestria '+trailProgress.mastery+'/'+trails.MASTERY_MAX+(bonus?' · a IA está +'+bonus+' nível'+(bonus>1?'s':'')+' mais esperta':' · a IA ainda está te conhecendo'));
  $('trailList').replaceChildren(...trails.trails.map(t=>{
   const card=document.createElement('section');card.className='trail';card.style.setProperty('--accent',t.accent);
   const earned=t.stages.reduce((n,s)=>n+(trailProgress.stars[s.id]||0),0);
@@ -1332,6 +1345,8 @@ function renderStage(){
  setText('stageFormat','Melhor de '+(st.rounds*2-1)+' · vence quem fizer '+st.rounds+' rodada'+(st.rounds>1?'s':''));
  setText('stageReward','🪙 '+st.coins+'–'+Math.round(st.coins*1.5)+' moedas'+(best?'':' · +'+st.coins+' na primeira vitória'));
  setText('stageBest',best?'Seu melhor: '+starText(best):'Ainda não vencida');
+ const drop=st.drop&&ART_CONFIG.items.find(i=>i.id===st.drop);$('stageDrop').hidden=!drop;
+ if(drop){$('stageDropImage').src=drop.url;$('stageDropImage').alt=drop.name;setText('stageDropName',drop.name);setText('stageDropState',trailProgress.items.includes(drop.id)?'Conquistada ✓':'Na primeira vitória contra o chefe');}
  setText('stageTip',fails>=2?TIP_TECHNIQUE:st.tip);
  $('trailStart').disabled=!open;$('trailStart').textContent=open?(best?'Voar de novo ▶':'Voar ▶'):'Vença a etapa anterior';
  if(art.load)art.load('sr-assis-expressions').then(()=>{const c=$('stageAssis'),g=c.getContext('2d');g.clearRect(0,0,c.width,c.height);art.draw(g,'sr-assis-expressions','speaking',0,0,c.width,c.height,true);});
@@ -1343,6 +1358,7 @@ function startStage(id){
  st.foes.forEach((f,i)=>{const b=eng.player(f.name,f.color,'ai'+i,now);b.bot=true;b.ai={level};if(f.soul){b.soul=f.soul;art.load(f.soul);}eng.admit(s,b,now);});
  trailStage=id;enter(s,'you','practice');setText('liveLabel',st.name+' · IA nível '+level);
 }
+function dropCard(id){const item=ART_CONFIG.items.find(i=>i.id===id);if(!item)return '';return '<div class="drop-reward"><img src="'+escapeHTML(item.url)+'" alt=""><div><small>Nova rabiola conquistada!</small><b>'+escapeHTML(item.name)+'</b></div></div>';}
 // Called by the results screen when a trail duel ends.
 function showTrailResult(s,ranking,mine){
  const won=(mine?.rounds||0)>=s.roundsToWin,r=trails.settle(trailProgress,s.trail,{won,roundsLost:Math.max(0,(s.round||0)-(mine?.rounds||0))});
@@ -1354,7 +1370,7 @@ function showTrailResult(s,ranking,mine){
  const coach=won?'':r.fails>=trails.RELIEF_AFTER?(counter!==null?'A '+TYPE_NAMES[counter]+' é a melhor resposta para esta etapa. ':'')+'A IA desta etapa vai pegar mais leve até você vencer. '+TIP_TECHNIQUE:r.fails===2?TIP_TECHNIQUE:st.tip;
  const levelNote=r.levelAfter>r.levelBefore?'A IA aprendeu com você: agora ela joga no nível '+r.levelAfter+'.':r.levelAfter<r.levelBefore?'A IA vai pegar um pouco mais leve: nível '+r.levelAfter+'.':'IA desta etapa: nível '+r.levelAfter+'.';
  modal(won?(st.boss?'Chefe derrotado!':'Etapa vencida!'):'Não foi dessa vez.',
-  '<div class="trail-result"><div class="result-stars" aria-label="'+r.stars+' de 3 estrelas">'+'★'.repeat(r.stars)+'<span class="off">'+'★'.repeat(3-r.stars)+'</span></div>'+(won?'<div class="coin-gain">+'+r.coins+' 🪙'+(r.firstClear?'<small>inclui bônus da primeira vitória</small>':'')+'</div>':'<p>Rodadas vencidas: '+(mine?.rounds||0)+' de '+s.roundsToWin+'. Treine o cruzamento e tente de novo.</p>')+(coach?'<p class="trail-coach"><b>Sr. Assis:</b> '+escapeHTML(coach)+'</p>':'')+'<p class="trail-note">'+levelNote+' Total: '+trailProgress.coins+' moedas.</p></div>'+rows+
+  '<div class="trail-result"><div class="result-stars" aria-label="'+r.stars+' de 3 estrelas">'+'★'.repeat(r.stars)+'<span class="off">'+'★'.repeat(3-r.stars)+'</span></div>'+(r.drop?dropCard(r.drop):'')+(won?'<div class="coin-gain">+'+r.coins+' 🪙'+(r.firstClear?'<small>inclui bônus da primeira vitória</small>':'')+'</div>':'<p>Rodadas vencidas: '+(mine?.rounds||0)+' de '+s.roundsToWin+'. Treine o cruzamento e tente de novo.</p>')+(coach?'<p class="trail-coach"><b>Sr. Assis:</b> '+escapeHTML(coach)+'</p>':'')+'<p class="trail-note">'+levelNote+' Total: '+trailProgress.coins+' moedas.</p></div>'+rows+
   '<button class="primary" id="rematchButton">'+(canNext?'Próxima etapa ▶':'Tentar de novo ↻')+'</button>'+(counter!==null&&!won&&!playerAccount?'<button class="secondary" id="trailCounter">Tentar com a '+TYPE_NAMES[counter]+' ↻</button>':''),'Voltar às trilhas',st.name);
  $('rematchButton').onclick=()=>{closeModal();startStage(canNext?next.id:s.trail);};
  if($('trailCounter'))$('trailCounter').onclick=()=>{selected=counter;try{localStorage.setItem('pipaColor',String(counter));}catch{}choices();closeModal();startStage(s.trail);};
