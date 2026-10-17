@@ -1,19 +1,63 @@
 // Poll only while the authenticated collection is visible; server owns all state.
-let currentTrade=null,tradeBusy=false,tradeSelection='';
+let currentTrade=null,tradeBusy=false,tradeSelection='',tradeAnimating=false,lastCompletedTrade=null,tradeFlightTimer;
 const tradePanel=document.createElement('section');
-tradePanel.innerHTML='<h3>Trocas por convite · 1 por 1</h3><p>Convide um amigo. Cada um oferece uma colecionável e confirma as duas ofertas. Alterar uma oferta desfaz ambas as confirmações. A sala expira em 10 minutos.</p><button class="secondary" id="tradeCreate">Criar convite</button><label for="tradeCode">Código do convite</label><input id="tradeCode" maxlength="12" autocomplete="off"><button class="secondary" id="tradeJoin">Entrar</button><div id="tradeState" role="status" aria-live="polite"></div><div id="tradeActions"></div><button class="secondary" id="tradeHistory">Histórico de trocas</button><div id="tradeHistoryList"></div>';
+tradePanel.className='trade-panel';
+tradePanel.innerHTML='<h3>Encontro nas estrelas</h3><p class="trade-intro">Uma pipa de cada lado. Dois novos caminhos pelo céu.</p><div id="tradeScene" class="trade-scene"><div class="trade-nebula" aria-hidden="true"></div><div class="trade-stars" aria-hidden="true">✦ · ˚ 　 ✧ 　　 · ✦ 　 ˚ · 　 ✧</div><div class="trade-scene-heading"><small>CLUBE DAS TROCAS · 1 POR 1</small><h4 id="tradeSceneTitle">O céu conecta vocês</h4><p id="tradeSceneHint">Convide um amigo para começar.</p></div><div id="tradeFlights" class="trade-flights"></div><div class="trade-horizon" aria-hidden="true"></div></div><button class="secondary" id="tradeReplay" hidden>Rever o encontro</button><p class="trade-intro">Escolham suas colecionáveis e confirmem as duas ofertas. Uma alteração desfaz as confirmações. O convite dura 10 minutos.</p><button class="secondary" id="tradeCreate">Criar convite</button><label for="tradeCode">Código do convite</label><input id="tradeCode" maxlength="12" autocomplete="off"><button class="secondary" id="tradeJoin">Entrar</button><div id="tradeState" role="status" aria-live="polite"></div><div id="tradeActions"></div><button class="secondary" id="tradeHistory">Histórico de trocas</button><div id="tradeHistoryList"></div>';
 $('collectionMain').insertBefore(tradePanel,$('inventoryList'));
+function tradeKiteArt(k){
+ const image=uiElement('div',undefined,'trade-kite-art');
+ if(!k){image.textContent='?';return image;}
+ const color=Number.isInteger(k.color)?k.color:({ 'Mata verde':1,'Azulão':2,'Raio de sol':3 })[k.name]??0;
+ if(typeof art!=='undefined')image.innerHTML=art.markup(color);
+ else image.textContent='◇';
+ return image;
+}
+function paintTradeScene(t,completed=false){
+ const flights=$('tradeFlights');flights.replaceChildren();
+ for(const side of ['host','guest']){
+  const k=t?.[side+'Kite'],name=t?.[(completed?(side==='host'?'guest':'host'):side)+'Name']||(side==='host'?'Você':'Seu amigo');
+  const flight=uiElement('div',undefined,'trade-flight trade-flight-'+side);
+  flight.append(tradeKiteArt(k),uiElement('span',undefined,'trade-orb'));
+  const caption=uiElement('div',undefined,'trade-flight-caption');
+  caption.append(uiElement('b',k?.name||'Escolha uma pipa'),uiElement('small',name));
+  flight.append(caption);flights.append(flight);
+ }
+ $('tradeSceneTitle').textContent=completed?'Novos ventos, novas histórias':t?.hostKite&&t?.guestKite?'Prontas para um novo caminho':'Duas pipas, um encontro';
+ $('tradeSceneHint').textContent=completed?'Troca concluída. As pipas já estão nas novas coleções.':t?.hostKite&&t?.guestKite?'Confiram as ofertas e confirmem dos dois lados.':'Cada participante oferece uma colecionável.';
+}
+function playTradeFlight(t,forceMotion=false){
+ if(!t?.hostKite||!t?.guestKite)return;
+ clearTimeout(tradeFlightTimer);lastCompletedTrade=t;tradeAnimating=true;
+ const reduced=!forceMotion&&typeof matchMedia==='function'&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const scene=$('tradeScene');scene.classList.remove('is-flying','trade-landed');paintTradeScene(t);
+ scene.classList.toggle('trade-motion',forceMotion);
+ $('tradeSceneTitle').textContent='Um encontro entre estrelas';
+ $('tradeSceneHint').textContent='Troca confirmada! As pipas seguem para seus novos donos.';
+ $('tradeReplay').hidden=true;
+ // A fresh layout restarts only this decorative animation, never the transfer.
+ if(!reduced){void scene.offsetWidth;scene.classList.add('is-flying');}
+ scene.scrollIntoView?.({behavior:reduced?'instant':'smooth',block:'center'});
+ const finish=()=>{tradeAnimating=false;scene.classList.remove('is-flying');scene.classList.add('trade-landed');paintTradeScene(t,true);$('tradeReplay').textContent=reduced?'Ver com animação':'Rever o encontro';$('tradeReplay').hidden=false;renderTrade();};
+ if(reduced)finish();else tradeFlightTimer=setTimeout(finish,5800);
+}
 async function tradeAction(action,extra={}){
- if(tradeBusy||!playerAccount)return;tradeBusy=true;renderTrade();
+ if(tradeBusy||tradeAnimating||!playerAccount)return;tradeBusy=true;renderTrade();
  try{const d=await accountRequest('trade',{action,code:currentTrade?.code,revision:currentTrade?.revision,...extra});
-  if(action==='history'){$('tradeHistoryList').replaceChildren(...d.trade.map(t=>uiElement('p',t.code+' · '+tradeStatus(t.status)+' · '+new Date(t.created_at).toLocaleString()+(t.receipt?' · '+t.receipt.hostName+': '+t.receipt.hostKite.name+' ↔ '+t.receipt.guestName+': '+t.receipt.guestKite.name:''))));}
-  else {const before=currentTrade?.status;if(action!=='read')tradeSelection='';currentTrade=d.trade;renderTrade();if(currentTrade?.status==='completed'&&before!=='completed')await refreshAccount();}
+  if(action!=='read')$('accountMessage').textContent='';
+  if(action==='history'){$('tradeHistoryList').replaceChildren(...d.trade.map(t=>{
+   const row=uiElement('div',undefined,'trade-receipt');
+   row.append(uiElement('p',t.code+' · '+tradeStatus(t.status)+' · '+new Date(t.created_at).toLocaleString()+(t.receipt?' · '+t.receipt.hostName+': '+t.receipt.hostKite.name+' ↔ '+t.receipt.guestName+': '+t.receipt.guestKite.name:'')));
+   if(t.status==='completed'&&t.receipt){const replay=uiElement('button','Rever encontro','secondary');replay.type='button';replay.onclick=()=>{if(!tradeAnimating)playTradeFlight({...t.receipt,code:t.code,status:'completed'},true);};row.append(replay);}
+   return row;
+  }));}
+  else {const previous=currentTrade;if(action!=='read')tradeSelection='';currentTrade=d.trade?{...(previous?.code===d.trade.code?previous:{}),...d.trade}:null;renderTrade();if(currentTrade?.status==='completed'&&previous?.status==='open'){playTradeFlight(currentTrade);await refreshAccount();}}
  }catch(e){$('accountMessage').textContent=e.message;}
  finally{tradeBusy=false;renderTrade();}
 }
 function tradeStatus(status){return ({open:'Em negociação',completed:'Concluída',cancelled:'Cancelada',expired:'Expirada'})[status]||status;}
 function renderTrade(){
- const t=currentTrade,open=t?.status==='open';$('tradeCreate').disabled=tradeBusy||open;$('tradeJoin').disabled=tradeBusy||open;
+ const t=currentTrade,open=t?.status==='open';$('tradeCreate').disabled=tradeBusy||tradeAnimating||open;$('tradeJoin').disabled=tradeBusy||tradeAnimating||open;
+ if(!tradeAnimating){if(open){$('tradeScene').classList.remove('trade-landed');paintTradeScene(t);$('tradeReplay').hidden=true;}else if(!lastCompletedTrade)paintTradeScene(t);}
  const state=$('tradeState');state.replaceChildren();const actions=$('tradeActions');actions.replaceChildren();
  if(!t)return;
  state.append(uiElement('p','Convite '+t.code+' · '+tradeStatus(t.status)));
@@ -35,4 +79,6 @@ function renderTrade(){
 $('tradeCreate').onclick=()=>tradeAction('create',{code:null});
 $('tradeJoin').onclick=()=>tradeAction('join',{code:$('tradeCode').value.trim().toUpperCase()});
 $('tradeHistory').onclick=()=>tradeAction('history');
-setInterval(()=>{if(playerAccount&&accountModal.style.display==='flex')tradeAction('read',{code:currentTrade?.status==='open'?currentTrade.code:null});else if(!playerAccount){currentTrade=null;tradeSelection='';$('tradeHistoryList').replaceChildren();renderTrade();}},3000);
+$('tradeReplay').onclick=()=>playTradeFlight(lastCompletedTrade,true);
+setInterval(()=>{if(playerAccount&&accountModal.style.display==='flex')tradeAction('read',{code:currentTrade?.status==='open'?currentTrade.code:null});else if(!playerAccount){clearTimeout(tradeFlightTimer);tradeAnimating=false;currentTrade=null;lastCompletedTrade=null;tradeSelection='';$('tradeReplay').hidden=true;$('tradeScene').classList.remove('is-flying','trade-landed');$('tradeHistoryList').replaceChildren();renderTrade();}},3000);
+paintTradeScene(null);

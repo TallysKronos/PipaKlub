@@ -216,6 +216,37 @@ body.in-match .arena canvas{cursor:crosshair}
 .inventory-card small{display:block;font-size:10px;color:var(--muted);margin-top:4px}
 .inventory-card .secondary{font-size:11px;padding:7px 5px}
 .inventory-card .skill-info{font-size:10px;line-height:1.5;margin:8px 0;color:var(--teal-d)}
+.trade-panel{margin:22px 0;padding-bottom:22px;border-bottom:2px dashed #b5aa89}
+.trade-panel h3{margin-bottom:4px}.trade-intro{font-size:12px;line-height:1.65;color:var(--ink-soft)}
+.trade-scene{--flight-duration:5.8s;position:relative;isolation:isolate;overflow:hidden;height:350px;border:3px solid #263348;border-radius:16px;background:radial-gradient(ellipse at 50% 12%,#374377 0%,#19263f 44%,#0d182b 100%);color:#fff9e8;box-shadow:inset 0 0 45px #080e2780,0 5px 0 #22303b;margin:16px 0 10px}
+.trade-nebula{position:absolute;inset:20% -10% -35%;background:radial-gradient(ellipse at 30% 45%,#60d9de25,transparent 50%),radial-gradient(ellipse at 75% 45%,#ce9be732,transparent 50%);transform:rotate(-20deg);pointer-events:none}
+.trade-stars{position:absolute;inset:90px 10px auto;color:#fff3c7;font-size:24px;line-height:3;word-spacing:8px;white-space:normal;opacity:.6;pointer-events:none}
+.trade-stars:after{content:'·　✧　 ˚　　 ✦　 ·　 ✧　 ˚　 ·';position:absolute;left:0;right:0;top:70px;font-size:17px;color:#8fdaea}
+.trade-scene-heading{position:relative;z-index:3;text-align:center;padding:22px 14px 0;pointer-events:none}
+.trade-scene-heading small{font:11px var(--pixel);letter-spacing:2px;color:#a9c5e0}.trade-scene-heading h4{font:25px var(--px);margin:8px 0;color:#fff5d3;text-shadow:0 3px #080e27}
+.trade-scene-heading p{font-size:11px;margin:0;color:#c6d5eb;line-height:1.5}
+.trade-flights{position:absolute;inset:0;z-index:2}.trade-flight{position:absolute;top:190px;left:20%;width:120px;transform:translateX(-50%);text-align:center}
+.trade-flight-guest{left:80%}.trade-kite-art{height:78px;font:44px var(--px);color:#d4e9e8;filter:drop-shadow(0 0 14px #8fe4ea55);position:relative;z-index:2}
+.trade-kite-art svg{width:90px;height:78px}.trade-kite-art .almatic-icon{height:90px;max-width:100px;margin:auto;image-rendering:pixelated}
+.trade-flight-caption{margin-top:14px;font-size:12px;text-shadow:0 2px #0c1528;transition:opacity .3s}.trade-flight-caption b,.trade-flight-caption small{display:block}.trade-flight-caption small{font-size:10px;color:#b5c9dc;margin-top:4px}
+.trade-orb{position:absolute;width:24px;height:24px;border-radius:50%;left:calc(50% - 12px);top:28px;background:#f4ffff;box-shadow:0 0 14px 6px #baf7ff,0 0 35px 13px #5bbde688,0 0 65px 22px #558bea55;opacity:0;z-index:3}
+.trade-flight-guest .trade-orb{background:#fff8da;box-shadow:0 0 14px 6px #ffecbb,0 0 35px 13px #e7a3dc88,0 0 65px 22px #ad7fe655}
+.trade-orb:after{content:'';position:absolute;left:7px;top:14px;width:10px;height:90px;background:linear-gradient(#baf7ffbb,transparent);border-radius:50%;filter:blur(2px)}
+.trade-flight-guest .trade-orb:after{background:linear-gradient(#ffecbbbb,transparent)}
+.trade-horizon{position:absolute;bottom:-75px;left:-10%;width:120%;height:120px;border-radius:50%;border-top:1px solid #8fd8e444;background:radial-gradient(ellipse at 50% 0,#487ea333,#12223d);box-shadow:0 -12px 45px #73dbea15}
+.is-flying .trade-flight-host{animation:trade-host-path var(--flight-duration) cubic-bezier(.4,0,.25,1) both}.is-flying .trade-flight-guest{animation:trade-guest-path var(--flight-duration) cubic-bezier(.4,0,.25,1) both}
+.is-flying .trade-kite-art{animation:trade-dissolve var(--flight-duration) both}.is-flying .trade-orb{animation:trade-light var(--flight-duration) both}.is-flying .trade-flight-caption{animation:trade-captions var(--flight-duration) both}
+.is-flying .trade-stars{animation:trade-starlight var(--flight-duration) both}.is-flying .trade-nebula{animation:trade-nebula var(--flight-duration) both}
+.trade-landed .trade-flight-host{left:80%}.trade-landed .trade-flight-guest{left:20%}
+@keyframes trade-host-path{0%,15%{left:20%;transform:translate(-50%,0)}42%{left:30%;transform:translate(-50%,-105px)}58%{left:57%;transform:translate(-50%,-125px)}78%{left:79%;transform:translate(-50%,-75px)}94%,100%{left:80%;transform:translate(-50%,0)}}
+@keyframes trade-guest-path{0%,15%{left:80%;transform:translate(-50%,0)}42%{left:70%;transform:translate(-50%,-80px)}58%{left:43%;transform:translate(-50%,-100px)}78%{left:21%;transform:translate(-50%,-60px)}94%,100%{left:20%;transform:translate(-50%,0)}}
+@keyframes trade-dissolve{0%,8%{opacity:1;transform:scale(1);filter:brightness(1)}20%{opacity:.9;transform:scale(.65);filter:brightness(5) drop-shadow(0 0 18px #fff)}29%,76%{opacity:0;transform:scale(.1);filter:brightness(6)}89%{opacity:1;transform:scale(1.12);filter:brightness(2)}100%{opacity:1;transform:scale(1);filter:brightness(1)}}
+@keyframes trade-light{0%,10%{opacity:0;transform:scale(.2)}23%,73%{opacity:1;transform:scale(1)}82%{opacity:1;transform:scale(1.7)}95%,100%{opacity:0;transform:scale(.1)}}
+@keyframes trade-captions{0%,8%,98%,100%{opacity:1}20%,88%{opacity:0}}
+@keyframes trade-starlight{0%,100%{opacity:.6;transform:translateY(0)}50%{opacity:1;transform:translateY(20px)}}
+@keyframes trade-nebula{0%,100%{opacity:.65}55%{opacity:1.8}}
+@media(max-width:480px){.trade-scene{height:330px}.trade-scene-heading h4{font-size:21px}.trade-flight{width:96px;top:182px}.trade-flight-caption{font-size:11px}.trade-kite-art .almatic-icon{max-width:86px}}
+@media(prefers-reduced-motion:reduce){.trade-scene:not(.trade-motion) *{animation:none!important;transition:none!important}}
 .collection-info{font-size:12px;color:var(--muted);line-height:1.6}
 .recent-match{width:100%;text-align:left;border:3px solid var(--line);border-radius:9px;background:#fffdf4;padding:12px;margin:7px 0;overflow-wrap:anywhere}
 .recent-match b,.recent-match span,.recent-match small{display:block}

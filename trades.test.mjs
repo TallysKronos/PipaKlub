@@ -82,3 +82,22 @@ test('joining a match while trading reports a conflict instead of a database out
  const accounts=createAccounts({SUPABASE_URL:'https://db.test',SUPABASE_PUBLISHABLE_KEY:'key'},{gameDatabase:{async rpc(){throw Object.assign(Error('Troca: cancele a negociação antes de entrar em partida.'),{code:'P0001'});}},fetcher:async()=>new Response(JSON.stringify({id:a}))});
  await assert.rejects(()=>accounts.preparePlayer(new Request('https://game.test/api/join',{headers:{cookie:'__Host-pipa_access=token'}}),{id:c,code:'ABCDEF',rules:'casual',players:[]}),e=>e.status===409&&e.message.startsWith('Troca:'));
 });
+test('trade celebration waits for committed success, survives polling and replays without transferring again',async()=>{
+ const {document}=parseHTML('<html><body><div id="collectionMain"><div id="inventoryList"></div></div><div id="accountMessage"></div></body></html>');
+ let timer,requests=0,fail=false,reduced=false;
+ const state={code:'ABCDEF123456',status:'open',revision:7,isHost:true,hostName:'Ana',guestName:'Beto',hostKite:{id:'a',name:'Mata verde'},guestKite:{id:'b',name:'Azulão'}};
+ const context=vm.createContext({document,Date,console,$:id=>document.getElementById(id),setInterval(){},setTimeout(fn){timer=fn;return 1;},clearTimeout(){},matchMedia:()=>({matches:reduced}),accountModal:{style:{display:'flex'}},playerAccount:{inventory:[]},refreshAccount:async()=>{},accountRequest:async(action,body)=>{requests++;if(fail)throw Error('Falha ao confirmar');return {trade:body.action==='confirm'?{code:state.code,status:'completed'}:state};},uiElement(tag,text,className){const el=document.createElement(tag);if(text)el.textContent=text;if(className)el.className=className;return el;}});
+ vm.runInContext(fs.readFileSync('src/trade-client.js','utf8'),context);
+ const run=code=>vm.runInContext(code,context);
+ await run("tradeAction('read')");assert.equal(document.querySelectorAll('.trade-flight').length,2);
+ fail=true;await run("tradeAction('confirm')");assert.equal(run('tradeAnimating'),false);assert.equal(timer,undefined);
+ fail=false;await run("tradeAction('confirm')");assert.equal(run('tradeAnimating'),true);assert.ok(document.getElementById('tradeScene').classList.contains('is-flying'));
+ assert.equal(document.getElementById('tradeFlights').textContent.includes('Mata verde'),true,'terminal responses keep the displayed offers');
+ const committedRequests=requests;await run("tradeAction('read')");assert.equal(requests,committedRequests,'polling cannot interrupt the cinematic');
+ timer();assert.equal(run('tradeAnimating'),false);assert.equal(document.getElementById('tradeReplay').hidden,false);
+ assert.match(document.querySelector('.trade-flight-host').textContent,/Beto/);
+ await run("currentTrade=null;renderTrade()");assert.ok(document.getElementById('tradeScene').classList.contains('trade-landed'));
+ document.getElementById('tradeReplay').onclick();assert.equal(requests,committedRequests,'replay is entirely local');timer();
+ reduced=true;run('playTradeFlight(lastCompletedTrade)');assert.equal(run('tradeAnimating'),false);assert.equal(document.getElementById('tradeScene').classList.contains('is-flying'),false);
+ document.getElementById('tradeReplay').onclick();assert.equal(run('tradeAnimating'),true,'explicit playback opts into motion');timer();
+});
