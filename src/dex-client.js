@@ -31,7 +31,7 @@ function selectDex(entry){
  $('dexDetails').scrollTop=0;dexOverlay.querySelector('.dex-layout').scrollTop=0;
  $('dexNumber').textContent='REGISTRO '+String(dexEntries.indexOf(entry)+1).padStart(3,'0');
  $('dexName').textContent=entry.name;$('dexSubtitle').textContent=entry.title;
- $('dexGroup').textContent=entry.group==='event'?'Especial de evento':entry.group==='companion'?'Companheiro':'Almática de rua';
+ $('dexGroup').textContent=entry.group==='event'?(entry.rarity==='rara'?'Rara de evento':'Especial de evento')+(entry.collection?' · '+entry.collection:''):entry.group==='companion'?'Companheiro':'Almática de rua';
  const owned=!!playerAccount?.inventory.some(k=>k.model_id===entry.model);
  $('dexOwnership').textContent=owned?'Na sua coleção':entry.group==='companion'?'Ao lado do Sr. Assis':playerAccount?'Ainda não está na sua coleção':'Entre na conta para acompanhar sua coleção';
  $('dexHabitat').textContent=entry.habitat;$('dexLegend').textContent=entry.legend||'Uma história original do Pipa Club';

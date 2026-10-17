@@ -1,12 +1,7 @@
 export function createArtAssets(config){
  const images=new Map(),loading=new Map(),atlases=config.atlases;
  const creatureNames=['carcara','mata-verde','azulao','raio-de-sol'];
- const specials=[
-  {id:'flautrevo',name:'Flautrevo',color:3,legend:'O morcego flautista de Hamelin.'},
-  {id:'trinca-brasas',name:'Trinca-brasas',color:2,legend:'Três cabeças guardam as brasas de Cérbero.'},
-  {id:'alvaneve',name:'Alvaneve',color:0,legend:'Um dragão sob o encanto da Rainha da Neve.'},
-  {id:'chaspiral',name:'Chaspiral',color:1,legend:'A fada do chá que escapou do País das Maravilhas.'}
- ];
+ const specials=config.dex.entries.filter(e=>e.group==='event'&&atlases[e.atlas]).map(e=>({id:e.id,name:e.name,color:e.color,legend:e.title,collection:e.collection,rarity:e.rarity||'especial'}));
  const special=id=>specials.find(s=>s.id===id);
  const reduced=typeof matchMedia==='function'&&matchMedia('(prefers-reduced-motion:reduce)').matches;
  function load(name,retry=false){
@@ -17,7 +12,7 @@ export function createArtAssets(config){
  }
  function draw(context,name,frame,x,y,width,height,fit=false){
   const image=images.get(name),def=atlases[name]?.frames[frame];if(!image||!def)return false;
-  const f=def.frame,b=def.contentBounds,r=fit?{x:f.x+b.x,y:f.y+b.y,w:b.w,h:b.h}:f;
+  const f=def.frame,b=fit?def.contentBounds:atlases[name].meta.viewport,r=b?{x:f.x+b.x,y:f.y+b.y,w:b.w,h:b.h}:f;
   const scale=Math.min(width/r.w,height/r.h),w=r.w*scale,h=r.h*scale;
   const smoothing=context.imageSmoothingEnabled;context.imageSmoothingEnabled=false;
   context.drawImage(image,r.x,r.y,r.w,r.h,x+(width-w)/2,y+(height-h)/2,w,h);context.imageSmoothingEnabled=smoothing;return true;
@@ -36,7 +31,11 @@ export function createArtAssets(config){
   const name=creatureNames[color]||creatureNames[0],seq=atlases['pipas-almaticas'].animations[name];
   return draw(context,'pipas-almaticas',seq[reduced?0:Math.floor(time/190)%seq.length],x,y,size,size);
  }
- function markup(color,soul){if(special(soul))return '<span class="almatic-icon special-icon" aria-hidden="true" style="background-image:url('+atlases[soul].meta.url+');background-size:400% 400%;background-position:0 0"></span>';color=Number.isInteger(color)&&color>=0&&color<4?color:0;return '<span class="almatic-icon" aria-hidden="true" style="background-image:url('+atlases['pipas-almaticas'].meta.url+');background-position:0 '+(color*100/3)+'%"></span>';}
+ function markup(color,soul){if(special(soul)){
+  const a=atlases[soul],v=a.meta.viewport;
+  const framing=v?'background-size:'+a.meta.size.w/v.w*100+'% '+a.meta.size.h/v.h*100+'%;background-position:'+v.x/(a.meta.size.w-v.w)*100+'% '+v.y/(a.meta.size.h-v.h)*100+'%':'background-size:400% 400%;background-position:0 0';
+  return '<span class="almatic-icon special-icon" aria-hidden="true" style="background-image:url('+a.meta.url+');'+framing+'"></span>';
+ }color=Number.isInteger(color)&&color>=0&&color<4?color:0;return '<span class="almatic-icon" aria-hidden="true" style="background-image:url('+atlases['pipas-almaticas'].meta.url+');background-position:0 '+(color*100/3)+'%"></span>';}
  load('pipas-almaticas');
  return {load,draw,creature,markup,atlases,reduced,specials,special};
 }

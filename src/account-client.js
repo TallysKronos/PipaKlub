@@ -47,7 +47,7 @@ function renderAccountDialog(){
  $('eventSoulsList').replaceChildren(...art.specials.map(s=>{
   const card=uiElement('article',undefined,'inventory-card event-soul'+(owned.has(s.id)?'':' event-locked'));
   const image=uiElement('div',undefined,'inventory-art');image.innerHTML=art.markup(s.color,s.id);
-  card.append(image,uiElement('b',s.name),uiElement('small',owned.has(s.id)?'Na sua coleção':'Bloqueada · recompensa de evento'),uiElement('p',s.legend,'skill-info'));
+  card.append(image,uiElement('b',s.name),uiElement('small',(owned.has(s.id)?'Na sua coleção':'Bloqueada · recompensa de evento')+(s.rarity==='rara'?' · Rara':'')),uiElement('p',s.legend,'skill-info'));
   return card;
  }));
 }

@@ -16,6 +16,7 @@ test('real PostgreSQL schema: signup grants one inventory, ownership is protecte
   await db.exec(fs.readFileSync('supabase/migrations/002_restricted_server.sql','utf8'));
   await db.exec(fs.readFileSync('supabase/migrations/003_results_and_kite_history.sql','utf8'));
   await db.exec(fs.readFileSync('supabase/migrations/004_event_souls.sql','utf8'));
+  await db.exec(fs.readFileSync('supabase/migrations/005_soul_collections.sql','utf8'));
   await db.exec('set role pipa_server');
   await assert.rejects(()=>db.query('select * from auth.users'));
   await assert.rejects(()=>db.query('select * from public.player_profiles'));
@@ -79,7 +80,7 @@ test('real PostgreSQL schema: signup grants one inventory, ownership is protecte
 test('event Souls require an administrator grant, stay bound, and never enter the starter kit',async()=>{
  const db=new PGlite();try{
   await db.exec("create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key,raw_user_meta_data jsonb);create function auth.uid() returns uuid language sql as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;grant usage on schema public,auth to authenticated,anon,service_role;grant execute on function auth.uid() to authenticated,anon,service_role;");
-  for(const file of ['001_accounts_inventory.sql','002_restricted_server.sql','003_results_and_kite_history.sql','004_event_souls.sql'])await db.exec(fs.readFileSync('supabase/migrations/'+file,'utf8'));
+  for(const file of ['001_accounts_inventory.sql','002_restricted_server.sql','003_results_and_kite_history.sql','004_event_souls.sql','005_soul_collections.sql'])await db.exec(fs.readFileSync('supabase/migrations/'+file,'utf8'));
   await db.query('insert into auth.users values($1,$2),($3,$4)',[userA,{nickname:'Ana'},userB,{nickname:'Beto'}]);
   assert.equal((await db.query("select count(*)::int n from public.player_kites where owner_id=$1",[userB])).rows[0].n,4);
   for(const role of ['anon','authenticated','pipa_server','service_role']){
@@ -89,7 +90,7 @@ test('event Souls require an administrator grant, stay bound, and never enter th
   }
   await assert.rejects(()=>db.query("insert into public.player_kites(owner_id,model_id,permanent) values($1,'flautrevo',true)",[userB]),/concessão/);
   const models=(await db.query("select * from public.kite_models where acquisition='event' order by id")).rows;
-  assert.equal(models.length,4);
+  assert.equal(models.length,28);
   const granted=[];
   for(const m of models){
    const item=(await db.query('select public.grant_event_soul($1,$2,$3) id',[userA,m.id,'fundador-v1'])).rows[0].id;granted.push(item);
@@ -97,7 +98,7 @@ test('event Souls require an administrator grant, stay bound, and never enter th
    await assert.rejects(()=>db.query('update public.player_kites set owner_id=$1 where id=$2',[userB,item]),/vinculada/);
    await assert.rejects(()=>db.query('update public.player_kites set permanent=false where id=$1',[item]),/permanente/);
   }
-  assert.equal((await db.query('select count(*)::int n from public.player_kites where owner_id=$1',[userA])).rows[0].n,8);
+  assert.equal((await db.query('select count(*)::int n from public.player_kites where owner_id=$1',[userA])).rows[0].n,32);
   await db.exec("set role authenticated;set request.jwt.claim.sub='"+userB+"'");
   await assert.rejects(()=>db.query('select public.equip_player_kite($1)',[granted[0]]),/coleção/);
   await db.exec("set request.jwt.claim.sub='"+userA+"'");
@@ -111,7 +112,7 @@ test('event Souls require an administrator grant, stay bound, and never enter th
    await db.exec('reset role;set role authenticated');
   }
   const account=(await db.query('select public.get_player_account() r')).rows[0].r;
-  assert.equal(account.inventory.filter(k=>k.model.acquisition==='event'&&k.permanent).length,4);
+  assert.equal(account.inventory.filter(k=>k.model.acquisition==='event'&&k.permanent).length,28);
   await db.exec('reset role');
   // Multiple permanent Souls must not make the basic-kite fallback ambiguous.
   const basic=(await db.query("select id from public.player_kites where owner_id=$1 and model_id='basica'",[userA])).rows[0].id;

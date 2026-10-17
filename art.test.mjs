@@ -6,6 +6,17 @@ import {parseHTML} from 'linkedom';
 import {createAssetHandler} from './src/static-assets.js';
 import {artConfig} from './scripts/art-build.mjs';
 
+test('collection viewports enclose every pose without changing the crop scale across states',()=>{
+ const config=artConfig(),entries=config.dex.entries.filter(e=>e.collection);
+ assert.equal(entries.length,24);assert.equal(new Set(entries.map(e=>e.id)).size,24);
+ for(const e of entries){
+  const a=config.atlases[e.atlas],v=a.meta.viewport;assert.equal(e.model,e.id);assert.ok(e.color>=0&&e.color<=3);
+  assert.ok(v&&v.w>0&&v.h>0);assert.equal(Object.keys(a.frames).length,16);
+  for(const f of Object.values(a.frames)){const b=f.contentBounds;assert.ok(v.x<=b.x&&v.y<=b.y);assert.ok(v.x+v.w>=b.x+b.w&&v.y+v.h>=b.y+b.h);assert.ok(v.x+v.w<=f.frame.w&&v.y+v.h<=f.frame.h);}
+  assert.equal(Object.keys(a.animations).length,5);assert.ok(e.story.length>0);
+ }
+});
+
 function app({seen=false,search='',failed=false,reduced=false}={}){
  const html=fs.readFileSync('docs/index.html','utf8'),{document}=parseHTML(html),timers=[],requests=[],draws=[],listeners=new Map(),storage=new Map(seen?[['pipaAssisIntroV1','done']]:[]);
  for(const canvas of document.querySelectorAll('canvas'))canvas.getContext=()=>({clearRect(){},drawImage(...args){draws.push({canvas:canvas.id,args});},imageSmoothingEnabled:true});
@@ -36,20 +47,20 @@ test('asset route serves every real PNG with hash caching, HEAD and ETag; unknow
 
 test('special Souls load only on demand and animate all five states using their real atlas rectangles',async()=>{
  const a=app({seen:true});await a.settle();assert.equal(a.requests.length,1);
- for(const soul of ['flautrevo','trinca-brasas','alvaneve','chaspiral']){
+ for(const soul of artConfig().dex.entries.filter(e=>e.group==='event').map(e=>e.id)){
   a.run("art.load('"+soul+"')");await a.settle();
   for(const [state,extra,victory] of [['idle',{},false],['flight',{input:{x:1}},false],['skill',{skillCooldown:6.7},false],['hurt',{hitFlash:.05},false],['victory',{},true]]){
    const time=200,p={soul,...extra};a.run("art.creature($('sky').getContext('2d'),0,"+time+",-56,-44,112,"+JSON.stringify(p)+","+victory+")");
    const actual=a.draws.at(-1).args.slice(1,5),atlas=artConfig().atlases[soul];
-   assert.ok(atlas.animations[state].some(key=>{const f=atlas.frames[key].frame;return JSON.stringify(actual)===JSON.stringify([f.x,f.y,f.w,f.h]);}),soul+' '+state);
+   assert.ok(atlas.animations[state].some(key=>{const f=atlas.frames[key].frame,v=atlas.meta.viewport;return JSON.stringify(actual)===JSON.stringify(v?[f.x+v.x,f.y+v.y,v.w,v.h]:[f.x,f.y,f.w,f.h]);}),soul+' '+state);
   }
  }
- assert.equal(a.requests.length,5);
+ assert.equal(a.requests.length,29);
  assert.match(a.run("art.markup(0,'alvaneve')"),/especiais\/alvaneve\.png/);
  assert.ok(!a.run("art.markup(0,'<script>')").includes('<script>'));
  const account={profile:{nickname:'Ana',level:1,xp:0,next_level_xp:100,cuts:0,equipped_kite_id:'owned'},inventory:[{id:'owned',model_id:'alvaneve',permanent:true,model:{name:'Alvaneve',color:0,soul:'alvaneve',acquisition:'event'}}]};
  a.run('playerAccount='+JSON.stringify(account)+';reflectAccount();renderAccountDialog();');
- assert.equal(a.document.querySelectorAll('#eventSoulsList .event-locked').length,3);
+ assert.equal(a.document.querySelectorAll('#eventSoulsList .event-locked').length,27);
  assert.match(a.document.getElementById('inventoryList').textContent,/Especial de evento/);
  assert.match(a.document.getElementById('selectionName').textContent,/Alvaneve/);
  a.run("$('practice').onclick()");assert.equal(a.run("state.players.find(p=>p.id==='you').soul"),'alvaneve');
@@ -58,14 +69,14 @@ test('special Souls load only on demand and animate all five states using their 
 test('public Pipa Dex lists all creatures, searches accents, filters and previews without unlocking inventory',async()=>{
  const a=app();await a.settle();a.document.getElementById('workshop').onclick();await a.settle();a.auto();assert.equal(a.run('introductionOpen'),false);
  assert.equal(a.document.getElementById('pipaDex').hidden,false);
- assert.equal(a.document.querySelectorAll('#dexList button').length,9);
+ assert.equal(a.document.querySelectorAll('#dexList button').length,33);
  assert.equal(a.document.getElementById('dexName').textContent,'Carcará');
  assert.equal(a.document.querySelectorAll('#dexAnimation option').length,1);
  a.run("$('dexSearch').value='azulao';filterDex()");await a.settle();
  assert.equal(a.document.getElementById('dexName').textContent,'Azulão');
  assert.match(a.document.getElementById('dexStory').textContent,/chuva/);
  a.run("$('dexSearch').value='';$('dexFilter').value='event';filterDex()");await a.settle();
- assert.equal(a.document.querySelectorAll('#dexList button').length,4);
+ assert.equal(a.document.querySelectorAll('#dexList button').length,28);
  assert.equal(a.document.querySelectorAll('#dexAnimation option').length,5);
  assert.match(a.document.getElementById('dexObtain').textContent,/exclusiva de eventos/);
  assert.equal(a.run('playerAccount'),null);assert.equal(a.run('mode'),null);
