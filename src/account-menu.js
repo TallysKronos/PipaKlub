@@ -12,10 +12,9 @@ eventsPage.append(events.previousElementSibling.previousElementSibling,events.pr
 const duelsPage=clubPage('history'),duels=$('recentMatches');duelsPage.append(duels.previousElementSibling,duels);
 clubPage('trades').append(tradePanel);
 summonEntry.hidden=true;clubPage('summon').append(summonEntry,summonRoom);
-const farmPage=clubPage('farm');farmPage.innerHTML='<div class="club-farm-art" aria-hidden="true"></div><h3>Fazenda de pipas</h3><p>Este cantinho ainda está sendo preparado.</p><p>A fazenda estará disponível em uma próxima atualização.</p><span class="club-badge">Em breve</span>';
-farmPage.querySelector('.club-farm-art').style.backgroundImage=`url("${ART_CONFIG.menu.farm.url}")`;
-const clubTitles={home:'Seu cantinho no clube',collection:'Minhas pipas',trades:'Trocas por convite',summon:'Invocar Pipamon',farm:'Fazenda de pipas',profile:'Meu perfil',history:'Meus duelos',events:'Souls de evento'};
-const clubEntries=[['collection','Minhas pipas','Equipe e conheça sua coleção.',0],['trades','Trocas','Uma pipa, um novo encontro.',1],['summon','Invocação','Encontre o Sr. Assis.',2],['farm','Fazenda de pipas','Em breve',3],['profile','Meu perfil','Nome e progresso no clube.',4],['history','Meus duelos','Relembre suas partidas.',5]];
+const farmPage=clubPage('farm');
+const clubTitles={home:'Seu cantinho no clube',collection:'Minhas pipas',trades:'Trocas por convite',summon:'Invocar Pipamon',farm:'Fazenda de Pipamons',profile:'Meu perfil',history:'Meus duelos',events:'Souls de evento'};
+const clubEntries=[['collection','Minhas pipas','Equipe e conheça sua coleção.',0],['trades','Trocas','Uma pipa, um novo encontro.',1],['summon','Invocação','Encontre o Sr. Assis.',2],['farm','Fazenda de Pipamons','Veja sua coleção passeando.',3],['profile','Meu perfil','Nome e progresso no clube.',4],['history','Meus duelos','Relembre suas partidas.',5]];
 for(const [id,title,description,index] of clubEntries){
  const button=uiElement('button',undefined,'club-tile');button.type='button';button.dataset.page=id;
  const illustration=uiElement('span',undefined,'club-tile-art');illustration.setAttribute('aria-hidden','true');illustration.style.backgroundImage=`url("${ART_CONFIG.menu[id].url}")`;
@@ -28,6 +27,7 @@ function syncClubMenu(){
  for(const [id,node] of clubPages)node.hidden=id!==accountPage;
 }
 function navigateClub(page){
+ if(!playerAccount){openAccount();return;}
  if(!clubTitles[page])return;
  if(summonOpen&&page!=='summon')leaveSummoner();
  closeKiteStory();accountPage=page;$('accountMessage').textContent='';syncClubMenu();

@@ -25,6 +25,7 @@ export function createArtAssets(config){
   finally{context.restore();}
  }
  function drawCreature(context,color,time,x=-56,y=-44,size=112,player={},victory=false){
+  const frozen=reduced&&player.animate!==true;
   if(special(player.soul)){
    const a=atlases[player.soul];if(!images.has(player.soul))load(player.soul);
    const hurt=player.hitFlash>0,skill=player.skillCooldown>6.37;
@@ -33,10 +34,10 @@ export function createArtAssets(config){
    const seq=a.animations[state],durations=a.playback[state].durations,total=durations.reduce((sum,d)=>sum+d,0);
    let at=a.playback[state].loop?Math.max(0,elapsed)%total:Math.min(total-1,Math.max(0,elapsed)),index=0;
    while(index<seq.length-1&&at>=durations[index])at-=durations[index++];
-   if(draw(context,player.soul,seq[reduced?0:index],x-8,y-8,size+16,size+16))return true;
+   if(draw(context,player.soul,seq[frozen?0:index],x-8,y-8,size+16,size+16))return true;
   }
   const name=creatureNames[color]||creatureNames[0],seq=atlases['pipas-almaticas'].animations[name];
-  return draw(context,'pipas-almaticas',seq[reduced?0:Math.floor(time/190)%seq.length],x,y,size,size);
+  return draw(context,'pipas-almaticas',seq[frozen?0:Math.floor(time/190)%seq.length],x,y,size,size);
  }
  function markup(color,soul){if(special(soul)){
   const a=atlases[soul],v=a.meta.viewport;
