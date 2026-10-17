@@ -43,3 +43,26 @@ test('lab UI draws, pauses on focus loss, resets held controls and exits without
  vm.runInContext("skyKeys.add(' ');skyHeld.z=1",scope);listeners.get('blur')();assert.equal(vm.runInContext('skyPaused',scope),true);assert.equal(vm.runInContext('skyKeys.size+skyHeld.z',scope),0);
  vm.runInContext('skyClose()',scope);assert.equal(document.getElementById('skyExperiment').hidden,true);assert.equal(document.body.classList.contains('sky-testing'),false);assert.equal(vm.runInContext('mode',scope),null);
 });
+function alignedSkill(id,{guard=false}={}){
+ const s=e.create();s.bot.z=s.player.z;e.startSkill(s,id);e.releaseSkill(s);
+ for(let i=0;i<100&&s.player.lineSkill;i++){s.bot.x=-s.player.x;s.bot.y=s.player.y;s.bot.z=s.player.z;if(guard)s.charge=2;e.step(s,{},.02);}
+ return s;
+}
+test('six line skills move in distinct paths and only their contact windows deal damage',()=>{
+ assert.equal(new Set(e.skills.map(d=>JSON.stringify([.2,.5,.8].map(t=>e.skillPose({id:d.id,direction:1},t))))).size,6);
+ const expected={puxao:68,chicote:76,estilingue:72,laco:80,folha:100,duplo:74};
+ for(const def of e.skills){const s=alignedSkill(def.id);assert.equal(s.bot.hp,expected[def.id],def.id);assert.equal(s.player.lineSkill,null);assert.ok(s.player.lineCooldown>0);assert.ok(s.player.trail.length>0);}
+ assert.equal(e.skillWindow('puxao',.2),null);assert.equal(e.skillWindow('puxao',.6).critical,true);assert.equal(e.skillWindow('folha',.6),null);
+});
+test('line skill costs, cooldown, missed geometry and cancelled preparation cannot mint hits',()=>{
+ const s=e.create();s.player.energy=0;assert.equal(e.startSkill(s,'puxao'),false);s.player.energy=100;
+ assert.equal(e.startSkill(s,'unknown'),false);assert.equal(e.startSkill(s,'puxao'),true);assert.equal(s.player.energy,72);assert.equal(e.startSkill(s,'laco'),false);assert.equal(e.attack(s,s.player),false);
+ e.cancelCharge(s);assert.equal(s.player.lineSkill,null);assert.equal(e.releaseSkill(s),false);assert.equal(e.startSkill(s,'puxao'),false);
+ s.player.lineCooldown=0;s.bot.x=260;s.bot.z=1050;e.startSkill(s,'puxao');e.releaseSkill(s);for(let i=0;i<24;i++)e.step(s,{},.05);assert.equal(s.bot.hp,100);
+});
+test('second pulse defeats an existing guard, loose leaf grants no invulnerability, and a hit interrupts a loop',()=>{
+ const guarded=alignedSkill('duplo',{guard:true});assert.equal(guarded.bot.hp,77);assert.equal(guarded.player.impact.guardBreak,true);
+ const noGuard=alignedSkill('duplo');assert.equal(noGuard.player.impact.guardBreak,false);
+ const leaf=alignedSkill('folha');assert.equal(leaf.player.dodge,0);assert.equal(leaf.bot.hp,100);
+ const s=e.create();s.bot.z=s.player.z;e.startSkill(s,'laco');e.attack(s,s.bot);assert.equal(s.player.lineSkill,null);assert.equal(s.player.hp,80);assert.match(s.message,/interrompido/);
+});
