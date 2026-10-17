@@ -18,6 +18,8 @@ function showSummonStage(stage){
  for(const [id,key] of [['summonMenu','npc'],['summonCatalog','catalog'],['summonPreparation','preparation'],['summonDamaged','damaged'],['summonRitual','ascendant']])$(id).hidden=stage!==key;
  $('summonNotice').hidden=!['preparation','ascendant'].includes(stage);$('summonReveal').hidden=true;
  for(const [i,node] of [...summonStages.querySelectorAll('.summon-steps span')].entries())node.classList.toggle('current',i===['npc','catalog','preparation','ascendant'].indexOf(stage));
+ const card=document.querySelector('.account-card');if(card)card.scrollTop=0;
+ if(stage==='ascendant')requestAnimationFrame(()=>$('summonBoard').scrollIntoView?.({block:'center'}));
 }
 function summonTailArt(modelId,small=false){
  const entry=typeof ART_CONFIG!=='undefined'?ART_CONFIG.dex.entries.find(e=>e.model===modelId):null;
@@ -47,7 +49,7 @@ function renderSummonCatalog(){
  $('summonSeenGrid').replaceChildren(...(summonData.seen||[]).map(p=>{
   const available=p.availableTailIds.length>0,card=uiElement('button',undefined,'summon-seen-card '+(available?'available':'locked'));card.type='button';card.dataset.modelId=p.modelId;card.setAttribute('aria-label',p.name+' · '+(available?'Rabiola disponível':'Bloqueado'));
   const image=uiElement('div',undefined,'summon-seen-art');image.innerHTML=art.markup(p.color,p.soul);const badge=uiElement('span',undefined,'summon-availability');
-  if(available)badge.append(summonTailArt(p.modelId,true));else{badge.textContent='🔒';badge.setAttribute('aria-label','Sem rabiola compatível');}
+  if(available){if(art.icon)badge.innerHTML=art.icon('tail-ready');else badge.append(summonTailArt(p.modelId,true));badge.setAttribute('aria-label','Rabiola disponível');}else{if(art.icon)badge.innerHTML=art.icon('locked');else badge.textContent='🔒';badge.setAttribute('aria-label','Sem rabiola compatível');}
   card.append(image,badge,uiElement('b',p.name),uiElement('small',available?'Pode invocar':'Bloqueado'));card.onclick=()=>prepareSummon(p);return card;
  }));
  if(!summonData.seen?.length)$('summonSeenGrid').append(uiElement('p','Nenhum Pipamon avistado ainda. Explore a Pipa Dex ou encontre jogadores em partidas.'));
@@ -66,7 +68,7 @@ function prepareSummon(p){
 }
 function renderSummonDamaged(){
  $('summonDamagedList').replaceChildren(...summonData.tails.filter(t=>t.status==='damaged').map(t=>{
-  const card=uiElement('article',undefined,'summon-tail damaged');card.append(summonTailArt(t.modelId),uiElement('b','Rabiola de '+t.name),uiElement('small','Danificada · somente descarte'));
+  const card=uiElement('article',undefined,'summon-tail damaged');if(art.icon)card.innerHTML=art.icon('tail-damaged');card.append(summonTailArt(t.modelId),uiElement('b','Rabiola de '+t.name),uiElement('small','Danificada · somente descarte'));
   const discard=uiElement('button','Descartar rabiola','secondary');discard.onclick=async()=>{try{await summonCall('discard',{tailId:t.id});await loadSummonTails();}catch(e){$('summonMessage').textContent=e.message;}};card.append(discard);return card;
  }));
  if(!$('summonDamagedList').children.length)$('summonDamagedList').append(uiElement('p','Nenhuma rabiola danificada.'));
@@ -91,9 +93,10 @@ summonStart.onclick=async()=>{
 function updateSummonRun(run){
  summonRitual=run;summonReload.hidden=run.status==='active';$('summonTries').textContent=run.remaining+' de 3 tentativas restantes';
  if(run.status==='active')return;
- $('summonRitual').hidden=true;$('leaveSummoner').textContent='← Menu do clube';
+ $('summonRitual').hidden=true;$('summonNotice').hidden=true;$('leaveSummoner').textContent='← Menu do clube';
  const reveal=$('summonReveal');reveal.hidden=false;reveal.replaceChildren();
  if(run.status==='succeeded'){
+  if(typeof summonDesignReveal==='function')summonDesignReveal(reveal);
   const sprite=uiElement('div',undefined,'summon-new-pipamon');sprite.innerHTML=art.markup(run.color,run.soul);reveal.append(sprite,uiElement('h3',run.name+' atendeu ao chamado!'),uiElement('p','Este Pipamon agora faz parte da sua coleção.'));
   $('summonSpeech').textContent='Um novo laço nasceu. Cuide bem dessa história!';refreshAccount();
  }else{

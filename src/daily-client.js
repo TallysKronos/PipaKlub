@@ -4,7 +4,7 @@ function dailyDescription(data){
  return {...day,...data};
 }
 function dailyCard(day){
- return '<div class="daily-sky '+day.weather+'" aria-hidden="true"><span>☁</span><b>✦</b><i>〰</i></div><p class="daily-date">'+escapeHTML(day.date)+' · renova às 00:00 UTC (21h de Brasília)</p><h3>'+escapeHTML(day.name)+'</h3><p>'+escapeHTML(day.description)+'</p>';
+ return '<div class="daily-sky '+day.weather+'" aria-hidden="true">'+art.icon(day.weather,'weather-icon')+'</div><p class="daily-date">'+escapeHTML(day.date)+' · renova às 00:00 UTC (21h de Brasília)</p><h3>'+escapeHTML(day.name)+'</h3><p>'+escapeHTML(day.description)+'</p>';
 }
 async function openDaily(){
  if(mode||!requireClubAccount('Céu do dia'))return;

@@ -44,7 +44,7 @@ function farmTick(time){
 }
 function startFarm(){if(farmIsOpen()&&!farmPaused&&farm.visible().length&&!farmFrame)farmFrame=requestAnimationFrame(farmTick);}
 async function loadFarmSprites(retry=false){
- const epoch=++farmEpoch,names=[...new Set(['pipas-almaticas',...farm.visible().map(p=>p.soul).filter(id=>art.atlases[id])])];
+ const epoch=++farmEpoch,names=[...new Set(['pipas-almaticas',...farm.visible().flatMap(p=>[p.soul,art.basic?.(p.color)]).filter(id=>art.atlases[id])])];
  $('farmLoadStatus').textContent='';$('farmRetry').hidden=true;
  const loaded=await Promise.all(names.map(name=>art.load(name,retry)));
  if(epoch!==farmEpoch||!farmIsOpen())return;

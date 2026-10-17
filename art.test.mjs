@@ -60,6 +60,16 @@ test('club menu isolates features, preserves trade inputs and returns home when 
  assert.equal(a.document.getElementById('eventSoulsList').parentElement.id,'club-events');
 });
 
+test('integrated designs name the trail leaders and reveal ritual effects only after confirmed success',async()=>{
+ const a=app({seen:true});await a.settle();a.run('playerAccount={profile:{nickname:"Ana",level:1},inventory:[]};openTrails()');await a.settle();
+ assert.match(a.document.getElementById('trailList').textContent,/Mikka/);assert.match(a.document.getElementById('trailList').textContent,/Lohan/);assert.match(a.document.getElementById('trailList').textContent,/Kleie/);
+ for(const [stage,name]of [['morro-5','Mikka'],['praia-5','Lohan'],['torres-5','Kleie']]){a.run("trailPick='"+stage+"';renderStage()");await a.settle();assert.equal(a.document.getElementById('stageSpeaker').textContent,name+':');assert.equal(a.document.getElementById('trailStart').disabled,true);}
+ a.run("updateSummonRun({status:'failed',remaining:0})");assert.equal(a.document.querySelector('.ritual-reveal-portal'),null);
+ a.run("updateSummonRun({status:'succeeded',remaining:2,name:'Mata',color:1})");assert.equal(a.document.querySelectorAll('#summonReveal .ritual-reveal-portal').length,1);assert.equal(a.document.querySelectorAll('#summonReveal .ritual-reveal-particles').length,1);
+ assert.equal(a.document.getElementById('summonNotice').hidden,true,'completed rituals do not keep the interruption warning');
+ assert.match(a.document.documentElement.style.getPropertyValue('--ritual-scene'),/ascendente-fundo-v1/);
+});
+
 test('daily menu requires login, renders confirmed coins, and starts only a server daily room',async()=>{
  const a=app({seen:true});await a.settle();
  a.run("for(const b of document.querySelectorAll('button'))b.focus=()=>{};openDaily()");
@@ -105,7 +115,7 @@ test('skip, invitations, keyboard blocking and image failure do not prevent play
  const a=app({failed:true,member:true});a.auto();await a.settle();assert.equal(a.document.getElementById('assisRetry').hidden,false);assert.match(a.document.getElementById('assisLoad').textContent,/não carregaram/);a.key('e');assert.equal(a.run('input().skill'),0);a.document.getElementById('assisSkip').onclick();assert.equal(a.run('introductionOpen'),false);a.run("$('practice').onclick()");assert.equal(a.run('mode'),'practice');assert.equal(a.run("art.creature({},0,0)"),false);
 });
 test('arena draws actual atlas frames, restores smoothing, and reduced motion freezes the selected creature',async()=>{
- const a=app({reduced:true,seen:true});await a.settle();a.run("art.creature($('sky').getContext('2d'),2,0)");a.run("art.creature($('sky').getContext('2d'),2,1200)");const d=a.draws.filter(d=>d.canvas==='sky');assert.equal(d.length,2);assert.deepEqual(d[0].args.slice(1),d[1].args.slice(1));assert.match(a.run('kiteSVG(colors[2])'),/almatic-icon/);assert.match(a.run('kiteSVG(colors[2])'),/idle\.png\?v=/);
+ const a=app({reduced:true,seen:true});await a.settle();a.run("art.creature($('sky').getContext('2d'),2,0)");a.run("art.creature($('sky').getContext('2d'),2,1200)");const d=a.draws.filter(d=>d.canvas==='sky');assert.equal(d.length,2);assert.deepEqual(d[0].args.slice(1),d[1].args.slice(1));assert.match(a.run('kiteSVG(colors[2])'),/almatic-icon/);assert.match(a.run('kiteSVG(colors[2])'),/basicos-v2\/azulao\.png\?v=/);
 });
 test('left-facing starter and event sprites mirror around their own center without leaking canvas transforms',async()=>{
  const a=app({seen:true});await a.settle();await a.run("art.load('flautrevo')");
@@ -161,7 +171,7 @@ test('member Pipa Dex lists all creatures, searches accents, filters and preview
  assert.equal(a.document.getElementById('pipaDex').hidden,false);
  assert.equal(a.document.querySelectorAll('#dexList button').length,33);
  assert.equal(a.document.getElementById('dexName').textContent,'Carcará');
- assert.equal(a.document.querySelectorAll('#dexAnimation option').length,1);
+ assert.equal(a.document.querySelectorAll('#dexAnimation option').length,5);
  a.run("$('dexSearch').value='azulao';filterDex()");await a.settle();
  assert.equal(a.document.getElementById('dexName').textContent,'Azulão');
  assert.match(a.document.getElementById('dexStory').textContent,/chuva/);
