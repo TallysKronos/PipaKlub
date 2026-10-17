@@ -17,10 +17,12 @@ if(!(await postgres.query("select to_regclass('public.kite_trades') installed"))
  await postgres.exec("create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key,raw_user_meta_data jsonb);create function auth.uid() returns uuid language sql as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;grant usage on schema public,auth to authenticated,anon,service_role;grant execute on function auth.uid() to authenticated,anon,service_role;");
  for(const name of fs.readdirSync('supabase/migrations').filter(n=>n.endsWith('.sql')).sort())await postgres.exec(fs.readFileSync('supabase/migrations/'+name,'utf8'));
 }
+if(!(await postgres.query("select to_regclass('public.summon_tails') installed")).rows[0].installed)await postgres.exec(fs.readFileSync('supabase/migrations/007_summoning.sql','utf8'));
 const players={ana:{id:'11111111-1111-4111-8111-111111111111',nickname:'Ana Local'},beto:{id:'22222222-2222-4222-8222-222222222222',nickname:'Beto Local'}};
 for(const p of Object.values(players))await postgres.query('insert into auth.users values($1,$2) on conflict(id) do nothing',[p.id,{nickname:p.nickname}]);
 await postgres.query("select public.grant_event_soul($1,'flautrevo','local-demo')",[players.ana.id]);
-const operations={get_player_account:[],get_player_recent_matches:[],get_player_match_result:['p_match'],get_kite_history:['p_kite'],equip_player_kite:['p_kite'],update_player_name:['p_nickname'],player_trade:['p_action','p_code','p_kite','p_revision']};
+for(const p of Object.values(players))for(const [i,model,source] of [[1,'mata','drop'],[2,'azulao','purchase'],[3,'marulume','event'],[4,'raio','drop'],[5,'mata','drop']])await postgres.query('select public.grant_summon_tail($1,$2,$3,$4)',[p.id,model,source,'local-summon-'+i]);
+const operations={get_player_account:[],get_player_recent_matches:[],get_player_match_result:['p_match'],get_kite_history:['p_kite'],equip_player_kite:['p_kite'],update_player_name:['p_nickname'],player_trade:['p_action','p_code','p_kite','p_revision'],player_summon:['p_action','p_tail','p_ritual','p_path','p_request','p_session']};
 const serverOperations={reserve_player_match:['p_user','p_match','p_code','p_mode'],release_player_match:['p_user','p_match'],settle_player_cut:['p_event','p_match','p_winner','p_loser','p_kite'],finish_player_match:['p_match']};
 async function rpc(name,body,uid){
  const args=Object.hasOwn(uid?operations:serverOperations,name)&&(uid?operations:serverOperations)[name];

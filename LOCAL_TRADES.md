@@ -16,3 +16,7 @@ O adaptador local emula apenas autenticação e transporte das RPCs. Regras de t
 Dados persistem em `.local/trade-demo/`, ignorada pelo Git. Após reiniciar, entre novamente pelos links. Para recomeçar com inventários novos, pare o servidor com Ctrl+C e renomeie essa pasta antes de iniciar novamente. Isso preserva os dados anteriores para recuperação.
 
 Limite: PGlite usa uma instância local com transações serializadas. O ambiente testa o fluxo integrado, mas não substitui homologação de concorrência entre conexões PostgreSQL/Supabase independentes antes da produção.
+
+## Invocação com o NPC
+
+Em Minha conta, selecionar “Visitar o invocador”. Ana e Beto recebem cinco rabiolas fictícias, representando drops, compras e eventos. O servidor local instala a migração 007 se ausente, sem apagar as trocas existentes. Usar uma rabiola inicia um ritual com três tentativas; sair antes da conclusão a transforma em rabiola danificada, que só pode ser descartada. O feitiço pode ser consultado e desenhado com mouse, toque ou teclado. Não há loja ou cobrança real neste ambiente. Detalhes e pontos de integração em `SUMMONING.md`.

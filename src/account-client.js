@@ -56,7 +56,7 @@ async function openAccount(){
  if(mode){toast('Saia da partida para abrir sua coleção.');return;}
  keys={};closeKiteStory();$('accountMessage').textContent='';accountModal.style.display='flex';renderAccountDialog();$('closeAccount').focus();await refreshAccount();await loadRecentMatches();
 }
-function closeAccount(){closeKiteStory();accountModal.style.display='none';$('accountPassword').value='';$('accountButton').focus();}
+function closeAccount(){if(typeof leaveSummoner==='function'&&summonOpen)leaveSummoner();closeKiteStory();accountModal.style.display='none';$('accountPassword').value='';$('accountButton').focus();}
 $('accountButton').onclick=openAccount;$('closeAccount').onclick=closeAccount;
 accountModal.onclick=e=>{if(e.target===accountModal)closeAccount();};
 $('switchAccount').onclick=()=>{accountTab=accountTab==='login'?'signup':'login';$('accountMessage').textContent='';renderAccountDialog();};
