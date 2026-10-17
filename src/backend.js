@@ -1,4 +1,4 @@
-const engine=createEngine();
+const engine=createEngine(),serverTrails=createTrails();
 const visible=engine.visible;
 let initialized;
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json','Cache-Control':'no-store'}});
@@ -11,6 +11,7 @@ async function api(request,env){
   let b;try{const raw=await request.text();if(raw.length>4096)throw Error();b=JSON.parse(raw);}catch{return json({error:'Pedido inválido.'},400);}
   await init(env.DB);let action=new URL(request.url).pathname.split('/').pop();const now=Date.now();
   if(action==='create')return json(await createRoom(request,env,{...b,quick:false},now));
+  if(action==='trail')return json(await createRoom(request,env,{name:b.name,color:b.color,mode:'rounds'},now,false,String(b.stage||'')));
   if(action==='daily')return json(await createRoom(request,env,{name:b.name,color:b.color,mode:'rounds'},now,true));
   // Quick match: join the open quick room when there is one, otherwise open a new one.
   if(action==='quick'){const open=await openQuickRoom(env,now);if(!open)return json(await createRoom(request,env,{name:b.name,color:b.color,mode:'rounds',quick:true},now));b={...b,code:open,rules:'casual',captureConsent:false};action='join';}
@@ -22,7 +23,7 @@ async function api(request,env){
     const row=await env.DB.prepare('SELECT state, rev FROM pipa_rooms WHERE code = ?').bind(code).first();
     if(!row)return json({error:'Sala não encontrada. Confira o código.'},404);
     const s=JSON.parse(row.state);engine.step(s,now);
-    if(s.daily)return json({error:'O desafio diário é individual. Abra o Céu do dia no menu.'},403);
+    if(s.daily||s.trail)return json({error:s.trail?'Esta Trilha é individual. Abra as Trilhas no menu.':'O desafio diário é individual. Abra o Céu do dia no menu.'},403);
     if(s.rules==='capture'&&!b.captureConsent)return json({error:'Confirme a regra Vale pipa para entrar.'},400);
     if(s.players.length>=8)return json({error:'Sala cheia. O limite é de 8 jogadores.'},409);
     if(now>=s.end)return json({error:s.next?'Esta partida terminou. A revanche está na sala '+s.next+'.':'Esta partida terminou. Crie uma nova sala.',next:s.next},409);
@@ -45,12 +46,12 @@ async function api(request,env){
       // The rematch is a fresh room (fresh match id for rewards); the first player to ask creates it, the rest are pointed to it.
       if(now<s.end)return json({code,token,me:p.id,state:visible(s)});
       if(s.next)return json({next:s.next});
-      const room=await createRoom(request,env,{name:p.name,color:p.color,rules:s.rules,mode:s.mode},now,!!s.daily);
+      const room=await createRoom(request,env,{name:p.name,color:p.color,rules:s.rules,mode:s.mode},now,!!s.daily,s.trail||null);
       s.next=room.code;await env.DB.prepare('UPDATE pipa_rooms SET state = ?, rev = rev + 1 WHERE code = ? AND rev = ?').bind(JSON.stringify(s),code,row.rev).run();
       return json(room);
     }
     if(action==='sync'){p.input=engine.sanitizeInput(b.input);p.seen=now;}
-    else if(action==='leave')s.players=s.players.filter(q=>q.key!==token);
+    else if(action==='leave'){s.players=s.players.filter(q=>q.key!==token);if(s.trail){s.end=Math.min(s.end,now);s.last=Math.max(s.last,s.end);}}
     else if(action!=='join')return json({error:'Ação inválida.'},400);
     const res=await env.DB.prepare('UPDATE pipa_rooms SET state = ?, rev = rev + 1, updated = ? WHERE code = ? AND rev = ?').bind(JSON.stringify(s),now,code,row.rev).run();
     if(res.meta.changes){env.PROGRESSION?.observe(s);if(action==='leave'&&p.accountId){if(env.PROGRESSION)env.PROGRESSION.release(p.accountId,s.id);else await env.ACCOUNTS?.release(p.accountId,s.id);}return json({code,token,me:p.id,state:visible(s)});}
@@ -67,16 +68,19 @@ async function openQuickRoom(env,now){
   if(!s.quick||now>=s.end||humans>=s.quick.size)return null;
   return s.phase==='waiting'||(s.phase!=='live'&&s.players.some(p=>p.bot))?code:null;
 }
-async function createRoom(request,env,b,now,daily=false){
-  const code=crypto.randomUUID().replaceAll('-','').slice(0,6).toUpperCase(),token=crypto.randomUUID(),s=engine.create(now,{mode:b.mode,quick:b.quick,roundsToWin:daily?2:3});
-  if(daily)s.daily=engine.daily(now);
+async function createRoom(request,env,b,now,daily=false,trailId=null){
+  const stage=trailId!==null?serverTrails.stage(trailId):null;if(trailId!==null&&!stage)throw Object.assign(Error('Etapa inválida.'),{status:400});
+  const code=crypto.randomUUID().replaceAll('-','').slice(0,6).toUpperCase(),token=crypto.randomUUID(),s=engine.create(now,{mode:b.mode,quick:b.quick,roundsToWin:stage?stage.rounds:daily?2:3});
+  if(daily)s.daily=engine.daily(now);if(stage)s.trail=stage.id;
   s.code=code;s.rules=b.rules==='capture'?'capture':'casual';
   if(s.rules==='capture'&&!env.ACCOUNTS?.enabled)throw Object.assign(Error('Vale pipa precisa de contas conectadas ao banco.'),{status:503});
   const account=env.ACCOUNTS?await env.ACCOUNTS.preparePlayer(request,s):null;
-  if(!account&&(daily||s.quick||s.rules!=='casual'||s.mode!=='rounds'))throw Object.assign(Error('Entre na conta para criar modalidades especiais. Visitantes podem convidar para a partida padrão.'),{status:401});
+  if(!account&&(stage||daily||s.quick||s.rules!=='casual'||s.mode!=='rounds'))throw Object.assign(Error('Entre na conta para criar modalidades especiais. Visitantes podem convidar para a partida padrão.'),{status:401});
+  let trailData;if(stage){try{trailData=await env.ACCOUNTS.registerTrail(account.accountId,s.id,stage.id);s.trailOwner=account.accountId;}catch(e){await releaseAccount(env,account,s);throw e;}}
   const p=engine.player(account?.name||b.name,account?.color??b.color,crypto.randomUUID(),now);p.key=token;if(account)Object.assign(p,account);engine.admit(s,p,now);
+  if(stage){const level=serverTrails.aiLevel(stage,serverTrails.sanitize(trailData.progress));for(const [i,f] of stage.foes.entries()){const bot=engine.player(f.name,f.color,'trail-bot-'+i,now);bot.bot=true;bot.ai={level};if(f.soul)bot.soul=f.soul;engine.admit(s,bot,now);}}
   if(daily){const bot=engine.player('Guardião do céu',0,'bot-'+crypto.randomUUID(),now);bot.bot=true;bot.ai={level:4};engine.admit(s,bot,now);}
-  await env.DB.prepare('INSERT INTO pipa_rooms (code,state,updated) VALUES (?,?,?)').bind(code,JSON.stringify(s),now).run();
+  try{await env.DB.prepare('INSERT INTO pipa_rooms (code,state,updated) VALUES (?,?,?)').bind(code,JSON.stringify(s),now).run();}catch(e){await releaseAccount(env,account,s);throw e;}
   if(s.quick)await env.DB.prepare('INSERT INTO pipa_rooms (code,state,updated) VALUES (?,?,?) ON CONFLICT(code) DO UPDATE SET state=excluded.state, updated=excluded.updated').bind(QUICK_POINTER,JSON.stringify({code}),now).run();
   await env.DB.prepare('DELETE FROM pipa_rooms WHERE updated < ?').bind(now-3600000).run();
   return {code,token,me:p.id,state:visible(s)};

@@ -31,7 +31,7 @@ export function createEngine() {
   function fillBots(s,now){const used=new Set(s.players.map(p=>p.name));let n=0;while(s.players.length<s.quick.size){const name=BOT_NAMES.find(x=>!used.has(x))||'Pipeiro '+(++n);used.add(name);const b=player(name,Math.floor(Math.random()*4),'bot-'+crypto.randomUUID(),now);b.bot=true;b.ai={level:s.quick.level};admit(s,b,now);}}
   // A player joining mid-round in rounds mode watches until the next round starts.
   function admit(s,p,now){seat(s,p);p.shield=SHIELD;if(s.mode==='rounds'&&(s.phase==='live'||s.phase==='intermission'))p.respawn=now;s.players.push(p);return p;}
-  function visible(s){const {_pendingCuts,dailyResult,...publicState}=s;return {...publicState,players:s.players.map(({key,accountId,kiteId,basicKiteId,strike,...p})=>p),events:s.events.map(({id,text,at,capture,winnerId,loserId,kind,round})=>({id,text,at,capture,winnerId,loserId,kind,round}))};}
+  function visible(s){const {_pendingCuts,dailyResult,trailResult,trailOwner,...publicState}=s;return {...publicState,players:s.players.map(({key,accountId,kiteId,basicKiteId,strike,...p})=>p),events:s.events.map(({id,text,at,capture,winnerId,loserId,kind,round})=>({id,text,at,capture,winnerId,loserId,kind,round}))};}
   // Fixed anchors and straight segments are also used by the renderer. Fractions run ground -> kite.
   // The seat also fixes the player number (P1..P8) shown with the player's colour.
   function seat(s,p){if(!Number.isFinite(p.anchorX))p.anchorX=ANCHORS.find(x=>!s.players.some(q=>q!==p&&q.anchorX===x))??500;if(!Number.isInteger(p.slot)){const i=ANCHORS.indexOf(p.anchorX);p.slot=i>=0?i:s.players.indexOf(p)%8;}return p;}
@@ -44,7 +44,7 @@ export function createEngine() {
     if(winner)winner.rounds=(winner.rounds||0)+1;
     s.events.unshift({kind:'round',round:s.round,text:winner?winner.name+' venceu a rodada '+s.round:'Rodada '+s.round+' empatada',at:now,id:s.id+':r'+s.round,winnerId:winner?.id});s.events=s.events.slice(0,4);
     s.phase='intermission';s.phaseUntil=now+INTERMISSION;
-    if(winner&&winner.rounds>=s.roundsToWin){s.end=now+INTERMISSION;if(s.daily)s.dailyResult={winnerId:winner.id,accountId:winner.accountId||null};}
+    if(winner&&winner.rounds>=s.roundsToWin){s.end=now+INTERMISSION;if(s.daily)s.dailyResult={winnerId:winner.id,accountId:winner.accountId||null};if(s.trail){const owner=s.players.find(p=>p.accountId===s.trailOwner);if(owner)s.trailResult={userId:s.trailOwner,stage:s.trail,won:winner.id===owner.id,roundsLost:s.players.filter(p=>p.id!==owner.id).reduce((n,p)=>n+(p.rounds||0),0)};}}
   }
   function advance(s,now){
     if(s.phase==='waiting'){if(s.quick){if(s.players.length>=s.quick.size||now>=s.quick.fillAt){fillBots(s,now);startRound(s,now);}}else if(s.players.length>=2)startRound(s,now);}
@@ -133,7 +133,7 @@ export function createEngine() {
   function step(s,now) {
     s._pendingCuts=[];const dt=clamp((now-s.last)/1000,0,.25);s.last=now;s.wind=Math.sin(now/9000)*(s.daily?.weather==='wind'?36:12);
     if(now>=s.end)return s;s.players=s.players.filter(p=>p.bot||now-p.seen<15000);
-    if(s.daily&&!s.players.some(p=>!p.bot)){s.end=now;return s;}
+    if((s.daily||s.trail)&&!s.players.some(p=>!p.bot)){s.end=now;return s;}
     // A quick room with nobody real left in it closes instead of letting bots fly alone.
     if(s.quick&&s.quick.fillAt<=now&&!s.players.some(p=>!p.bot)){s.end=now;return s;}
     for(const p of s.players)seat(s,p);

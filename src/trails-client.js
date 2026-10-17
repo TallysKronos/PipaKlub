@@ -17,13 +17,13 @@ function openTrails(){
  if(!requireClubAccount('as Trilhas'))return;
  if(mode){toast('Saia da partida para abrir as trilhas.');return;}
  trailPick=trailPick&&trails.unlocked(trailProgress,trailPick)?trailPick:firstOpenStage().id;
- renderTrails();$('trails').hidden=false;$('trails').style.display='flex';$('trailStart').focus({preventScroll:true});
+ trailSync.sync();renderTrails();$('trails').hidden=false;$('trails').style.display='flex';$('trailStart').focus({preventScroll:true});
 }
 function closeTrails(){$('trails').hidden=true;$('trails').style.display='none';}
 function renderTrails(){
  setText('trailCoins',String(trailProgress.coins));
  const bonus=Math.floor(trailProgress.mastery/2);
- setText('trailMastery','Rabiolas '+trailProgress.items.length+'/'+trails.DROPS.length+' · Maestria '+trailProgress.mastery+'/'+trails.MASTERY_MAX+(bonus?' · a IA está +'+bonus+' nível'+(bonus>1?'s':'')+' mais esperta':' · a IA ainda está te conhecendo'));
+ setText('trailMastery','Rabiolas recebidas na conta '+trailRewards.length+'/'+trails.DROPS.length+' · Maestria '+trailProgress.mastery+'/'+trails.MASTERY_MAX+(bonus?' · a IA está +'+bonus+' nível'+(bonus>1?'s':'')+' mais esperta':' · a IA ainda está te conhecendo'));
  $('trailList').replaceChildren(...trails.trails.map(t=>{
   const card=document.createElement('section');card.className='trail';card.style.setProperty('--accent',t.accent);
   const earned=t.stages.reduce((n,s)=>n+(trailProgress.stars[s.id]||0),0);
@@ -50,20 +50,23 @@ function renderStage(){
  setText('stageFormat','Melhor de '+(st.rounds*2-1)+' · vence quem fizer '+st.rounds+' rodada'+(st.rounds>1?'s':''));
  setText('stageReward','🪙 '+st.coins+'–'+Math.round(st.coins*1.5)+' moedas'+(best?'':' · +'+st.coins+' na primeira vitória'));
  setText('stageBest',best?'Seu melhor: '+starText(best):'Ainda não vencida');
+ const oldSummon=$('stageSummon');if(oldSummon)oldSummon.remove();
  const drop=st.drop&&ART_CONFIG.items.find(i=>i.id===st.drop);$('stageDrop').hidden=!drop;
- if(drop){$('stageDropImage').src=drop.url;$('stageDropImage').alt=drop.name;setText('stageDropName',drop.name);setText('stageDropState',trailProgress.items.includes(drop.id)?'Conquistada ✓':'Na primeira vitória contra o chefe');}
+ if(drop){$('stageDropImage').src=drop.url;$('stageDropImage').alt=drop.name;setText('stageDropName',drop.name);const claim=trailRewards.find(r=>r.stage===st.id);setText('stageDropState',claim?(claim.status==='ready'?'Recebida na conta · Pronta para invocar':'Recebida na conta · '+({used:'em ritual',consumed:'já utilizada',damaged:'danificada',discarded:'descartada'}[claim.status]||claim.status)):trailProgress.items.includes(drop.id)?'Registro antigo · Vença novamente para receber na conta':'Na primeira vitória confirmada contra o chefe');}
+ if(drop&&trailRewards.some(r=>r.stage===st.id&&r.status==='ready')){const button=uiElement('button','Ir ao invocador ✦','secondary');button.id='stageSummon';button.onclick=()=>openTrailSummoner(st.drop);$('stageDrop').after(button);}
  setText('stageTip',fails>=2?TIP_TECHNIQUE:st.tip);
  $('trailStart').disabled=!open;$('trailStart').textContent=open?(best?'Voar de novo ▶':'Voar ▶'):'Vença a etapa anterior';
 
 }
-function startStage(id){
- if(!requireClubAccount('as Trilhas'))return;
+async function startStage(id){
+ if(busy||!requireClubAccount('as Trilhas'))return;
  const st=trails.stage(id);if(!st||!trails.unlocked(trailProgress,id))return;
- closeTrails();const now=Date.now(),level=trails.aiLevel(st,trailProgress),s=eng.create(now,{mode:'rounds',roundsToWin:st.rounds});s.trail=id;s.trailOwner=trailSync.user;
- eng.admit(s,trainee(now),now);
- st.foes.forEach((f,i)=>{const b=eng.player(f.name,f.color,'ai'+i,now);b.bot=true;b.ai={level};if(f.soul){b.soul=f.soul;art.load(f.soul);}eng.admit(s,b,now);});
- trailStage=id;enter(s,'you','practice');track('trail_start',{trail_stage:id});setText('liveLabel',st.name+' · IA nível '+level);
+ busy=true;$('trailStart').disabled=true;
+ try{const d=await request('trail',{...profile(),stage:id});closeTrails();token=d.token;trailStage=id;enter(d.state,d.me,'online',d.code);$('roomChip').hidden=true;$('copy').style.display='none';$('roomBox').style.display='none';setText('liveLabel',st.name);track('trail_start',{trail_stage:id});}
+ catch(e){toast(e.name==='AbortError'?'A conexão demorou. Tente novamente.':e.message);}
+ finally{busy=false;if(!$('trails').hidden)renderStage();}
 }
+
 function dropCard(id){const item=ART_CONFIG.items.find(i=>i.id===id);if(!item)return '';return '<div class="drop-reward"><img src="'+escapeHTML(item.url)+'" alt=""><div><small>Nova rabiola conquistada!</small><b>'+escapeHTML(item.name)+'</b></div></div>';}
 // Called by the results screen when a trail duel ends.
 function showTrailResult(s,ranking,mine){

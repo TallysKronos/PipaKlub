@@ -20,7 +20,8 @@ test('line shop atomically debits confirmed coins, owns/equips once and reserves
   const styles=createLineStyles();assert.deepEqual(data.catalog.map(i=>[i.id,i.price]).sort(),styles.items.map(i=>[i.id,i.price]).sort());
   await assert.rejects(()=>call('buy','azul',crypto.randomUUID()),/insuficientes/);
   await assert.rejects(()=>call('equip','azul'),/adquira/);
-  await db.query("select public.player_trails('import',$1,$2)",[crypto.randomUUID(),{coins:50}]);
+  // Trusted fixture only: players can no longer mint coins through legacy imports.
+  await db.exec('reset role');await db.query("update public.player_trails set progress=jsonb_set(progress,'{coins}','50'::jsonb) where owner_id=$1",[a]);await as(a);
   // Simultaneous purchases cannot spend the same 50 coins twice.
   const buys=await Promise.allSettled([call('buy','azul',crypto.randomUUID()),call('buy','coral',crypto.randomUUID())]);
   assert.equal(buys.filter(r=>r.status==='fulfilled').length,1);data=await call();assert.equal(data.progress.coins,20);assert.equal(data.owned.length,1);

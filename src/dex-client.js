@@ -11,8 +11,8 @@ function renderDexItems(entry){
  $('dexItemsHint').textContent=companion?'Nozinho acompanha o Sr. Assis e não aparece como selvagem. Sua rabiola fica registrada aqui como item associado.':'Rabiola prevista para encontros com '+entry.name+' selvagem. Os drops ainda não estão disponíveis.';
  if(eventItem)$('dexItemsHint').textContent='Receba a rabiola em um evento e leve ao Sr. Assis. É preciso conhecer este Pipamon e ainda não possuir sua Soul vinculada.';
  // Rabiolas dropped by trail bosses show where to earn them and whether this device already has them.
- const bossDrop=id=>{try{return trails.stages.find(st=>st.drop===id)||null;}catch{return null;}},owned=id=>{try{return trailProgress.items.includes(id);}catch{return false;}};
- if(!companion&&(entry.items||[]).some(bossDrop))$('dexItemsHint').textContent='Vença o chefe das Trilhas pela primeira vez para conquistar esta rabiola neste aparelho. A recompensa local ainda não pode ser usada na invocação online.';
+ const bossDrop=id=>{try{return trails.stages.find(st=>st.drop===id)||null;}catch{return null;}},owned=id=>{try{return trailRewards.some(r=>r.dropId===id);}catch{return false;}};
+ if(!companion&&(entry.items||[]).some(bossDrop))$('dexItemsHint').textContent='Vença o chefe das Trilhas no duelo online para receber a rabiola na conta e usá-la no Sr. Assis. O prêmio é entregue uma vez por chefe.';
  const cards=(entry.items||[]).map(id=>ART_CONFIG.items.find(item=>item.id===id)).filter(Boolean).map(item=>{
   const card=uiElement('article',undefined,'dex-item'),stage=uiElement('div',undefined,'dex-item-art'),image=document.createElement('img');
   image.alt=item.name;image.width=209;image.height=209;image.loading='lazy';image.decoding='async';
