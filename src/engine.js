@@ -13,7 +13,37 @@ export function createEngine() {
   ];
   const SHIELD=2.5,COUNTDOWN=3000,INTERMISSION=3200,ROUND=60000,MATCH=180000,ROUNDS_TO_WIN=3,ANCHORS=[90,910,325,675,207,793,442,558];
   const type=p=>types[clamp(Math.trunc(Number(p.color)||0),0,3)];
-  function sanitizeInput(i={}) {return {x:Number.isFinite(i?.x)?clamp(i.x,-1,1):0,y:Number.isFinite(i?.y)?clamp(i.y,-1,1):0,cut:!!i?.cut,skill:i?.skill===-1?-1:i?.skill===1?1:0,dodge:!!i?.dodge};}
+  const lineSkills=[
+    {id:'puxao',name:'Puxão',cost:28,cooldown:4,duration:1.05,description:'Mergulho e subida: crítico na retomada, com contato válido.'},
+    {id:'chicote',name:'Chicote lateral',cost:26,cooldown:4.5,duration:.8,description:'Varredura lateral. Erro deixa recuperação mais longa.'},
+    {id:'estilingue',name:'Estilingue',cost:32,cooldown:5,duration:1,description:'Recue e dispare para buscar o cruzamento.'},
+    {id:'laco',name:'Laço',cost:30,cooldown:5,duration:1.2,description:'Mude o ângulo numa volta. Acerto recebido interrompe.'},
+    {id:'folha',name:'Folha solta',cost:20,cooldown:3.5,duration:1.1,description:'Ceda linha e reposicione. Sem dano ou invulnerabilidade.'},
+    {id:'duplo',name:'Duplo toque',cost:30,cooldown:4.5,duration:1.1,description:'Dois pulsos: o segundo desfaz uma Linha firme ativa.'}
+  ];
+  function sanitizeInput(i={}) {const out={x:Number.isFinite(i?.x)?clamp(i.x,-1,1):0,y:Number.isFinite(i?.y)?clamp(i.y,-1,1):0,cut:!!i?.cut,skill:i?.skill===-1?-1:i?.skill===1?1:0,dodge:!!i?.dodge};if(Number.isSafeInteger(i?.lineNonce)&&i.lineNonce>0&&i.lineNonce<=2147483647){out.lineNonce=i.lineNonce;out.lineId=lineSkills.some(s=>s.id===i.lineId)?i.lineId:'';out.lineHeld=i.lineHeld===true;out.lineSide=i.lineSide===-1?-1:1;}return out;}
+  function lineMotion(k,t){
+    t=clamp(t,0,1);const d=k.side;
+    if(k.id==='puxao')return {x:0,y:t<.42?110*Math.sin(t/.42*Math.PI/2):110*Math.cos((t-.42)/.58*Math.PI/2)};
+    if(k.id==='chicote')return {x:d*140*Math.sin(t*Math.PI),y:30*Math.sin(t*Math.PI*2)};
+    if(k.id==='estilingue'){const n=t<.3?-45*t/.3:-45+170*Math.sin((t-.3)/.7*Math.PI/2);return {x:k.forward.x*n,y:k.forward.y*n};}
+    if(k.id==='laco')return {x:d*80*Math.sin(t*Math.PI*2),y:-55*(1-Math.cos(t*Math.PI*2))};
+    if(k.id==='folha')return {x:d*95*Math.sin(t*Math.PI/2),y:85*Math.sin(t*Math.PI)};
+    return {x:d*22*Math.sin(t*Math.PI*2),y:-50*Math.sin(t*Math.PI*4)};
+  }
+  function lineWindow(id,t){if(id==='puxao')return t>=.45&&t<.9?{slot:0,damage:32,crit:true}:null;if(id==='chicote')return t>.18&&t<.65?{slot:0,damage:24}:null;if(id==='estilingue')return t>.4&&t<.86?{slot:0,damage:28}:null;if(id==='laco')return t>.2&&t<.88?{slot:0,damage:20}:null;if(id==='duplo')return t>.15&&t<.4?{slot:0,damage:8}:t>.63&&t<.9?{slot:1,damage:18,breakGuard:true}:null;return null;}
+  function moveLine(p,i,dt){
+    if(i.lineNonce>(p.lineSeen||0)){
+      p.lineSeen=i.lineNonce;const d=lineSkills.find(d=>d.id===i.lineId);
+      if(d&&!p.lineMove&&!(p.lineCooldown>0)&&!(p.evade>0)&&p.energy>=d.cost){const a=line(p).a,len=Math.hypot(p.x-a.x,p.y-a.y)||1;p.energy-=d.cost;p.lineCooldown=d.cooldown;p.shield=0;p.lineCount=(p.lineCount||0)+1;p.lineMove={id:d.id,side:i.lineSide,phase:'charge',held:0,elapsed:0,origin:{x:p.x,y:p.y},forward:{x:(p.x-a.x)/len,y:(p.y-a.y)/len},hits:[]};}
+    }
+    const k=p.lineMove;if(!k)return;
+    if(k.phase==='charge'){k.held+=dt;if(!i.lineHeld||k.held>=1.2){k.phase='move';k.origin={x:p.x,y:p.y};}else return;}
+    const d=lineSkills.find(d=>d.id===k.id);k.elapsed+=dt;const t=clamp(k.elapsed/d.duration,0,1),offset=lineMotion(k,t);
+    p.x=clamp(k.origin.x+offset.x,55,945);p.y=clamp(k.origin.y+offset.y,70,480);
+    const window=lineWindow(k.id,t);if(window&&!k.hits.includes(window.slot))p.lineStrike={...window,id:k.id};
+    if(t===1){p.lineMove=null;p.attackCooldown=Math.max(p.attackCooldown,k.id==='chicote'&&!k.hits.length?.85:.25);}
+  }
   // Dodge: a short burst during which strikes slide off. Dodging the instant a rival pulls is a
   // perfect dodge: the energy comes back and the next hit within COUNTER seconds is critical.
   const DODGE={cost:18,cooldown:2.2,time:.28,speed:3.2},COUNTER=2;
@@ -31,11 +61,11 @@ export function createEngine() {
   function fillBots(s,now){const used=new Set(s.players.map(p=>p.name));let n=0;while(s.players.length<s.quick.size){const name=BOT_NAMES.find(x=>!used.has(x))||'Pipeiro '+(++n);used.add(name);const b=player(name,Math.floor(Math.random()*4),'bot-'+crypto.randomUUID(),now);b.bot=true;b.ai={level:s.quick.level};admit(s,b,now);}}
   // A player joining mid-round in rounds mode watches until the next round starts.
   function admit(s,p,now){seat(s,p);p.shield=SHIELD;if(s.mode==='rounds'&&(s.phase==='live'||s.phase==='intermission'))p.respawn=now;s.players.push(p);return p;}
-  function visible(s){const {_pendingCuts,dailyResult,trailResult,trailOwner,...publicState}=s;return {...publicState,players:s.players.map(({key,accountId,kiteId,basicKiteId,strike,...p})=>p),events:s.events.map(({id,text,at,capture,winnerId,loserId,kind,round})=>({id,text,at,capture,winnerId,loserId,kind,round}))};}
+  function visible(s){const {_pendingCuts,dailyResult,trailResult,trailOwner,...publicState}=s;return {...publicState,players:s.players.map(({key,accountId,kiteId,basicKiteId,strike,lineStrike,...p})=>p),events:s.events.map(({id,text,at,capture,winnerId,loserId,kind,round})=>({id,text,at,capture,winnerId,loserId,kind,round}))};}
   // Fixed anchors and straight segments are also used by the renderer. Fractions run ground -> kite.
   // The seat also fixes the player number (P1..P8) shown with the player's colour.
   function seat(s,p){if(!Number.isFinite(p.anchorX))p.anchorX=ANCHORS.find(x=>!s.players.some(q=>q!==p&&q.anchorX===x))??500;if(!Number.isInteger(p.slot)){const i=ANCHORS.indexOf(p.anchorX);p.slot=i>=0?i:s.players.indexOf(p)%8;}return p;}
-  function reset(p){Object.assign(p,{hp:100,energy:100,respawn:0,skillTime:0,skillCooldown:0,attackCooldown:0,shield:0,hitFlash:0,flash:0,botFocus:-.4,attack:false,x:clamp(500+(p.anchorX-500)*.8,55,945),y:290});}
+  function reset(p){Object.assign(p,{hp:100,energy:100,respawn:0,skillTime:0,skillCooldown:0,attackCooldown:0,lineMove:null,lineStrike:null,lineCooldown:0,shield:0,hitFlash:0,flash:0,botFocus:-.4,attack:false,x:clamp(500+(p.anchorX-500)*.8,55,945),y:290});}
   function startRound(s,now){s.phase='countdown';s.phaseUntil=now+COUNTDOWN;if(s.mode==='rounds')s.round=(s.round||0)+1;for(const p of s.players)reset(p);}
   function finishRound(s,now){
     const alive=s.players.filter(p=>!p.respawn).sort((a,b)=>b.hp-a.hp);
@@ -43,6 +73,7 @@ export function createEngine() {
     const winner=alive.length===1||(alive.length>1&&alive[0].hp>alive[1].hp)?alive[0]:null;
     if(winner)winner.rounds=(winner.rounds||0)+1;
     s.events.unshift({kind:'round',round:s.round,text:winner?winner.name+' venceu a rodada '+s.round:'Rodada '+s.round+' empatada',at:now,id:s.id+':r'+s.round,winnerId:winner?.id});s.events=s.events.slice(0,4);
+    for(const p of s.players){p.lineMove=null;p.lineStrike=null;p.strike=false;}
     s.phase='intermission';s.phaseUntil=now+INTERMISSION;
     if(winner&&winner.rounds>=s.roundsToWin){s.end=now+INTERMISSION;if(s.daily)s.dailyResult={winnerId:winner.id,accountId:winner.accountId||null};if(s.trail){const owner=s.players.find(p=>p.accountId===s.trailOwner);if(owner)s.trailResult={userId:s.trailOwner,stage:s.trail,won:winner.id===owner.id,roundsLost:s.players.filter(p=>p.id!==owner.id).reduce((n,p)=>n+(p.rounds||0),0)};}}
   }
@@ -65,7 +96,7 @@ export function createEngine() {
     return {x:l.a.x+r.x*u,y:l.a.y+r.y*u,own:u,enemy:w,angle,shielded,valid:!shielded&&u>=.35&&u<=.95&&w>=(focus?.15:.3)&&w<=(focus?.92:.85),perfect:w>=.52&&w<=.68};
   }
   function move(p,input,dt,wind=0,weather){
-    p.strike=false;if(p.respawn)return;
+    p.strike=false;p.lineStrike=null;if(p.respawn)return;
     dt=clamp(Number(dt)||0,0,.25);const i=sanitizeInput(input);
     // Persist visual direction through idle/vertical movement and network snapshots.
     if(Math.abs(i.x)>.05)p.facing=i.x<0?-1:1;
@@ -73,18 +104,20 @@ export function createEngine() {
     p.attackCooldown=Math.max(0,(p.attackCooldown||0)-dt);
     p.skillCooldown=Math.max(0,(p.skillCooldown||0)-dt);
     p.skillTime=Math.max(0,(p.skillTime||0)-dt);
+    p.lineCooldown=Math.max(0,(p.lineCooldown||0)-dt);
     p.flash=Math.max(0,(p.flash||0)-dt);p.hitFlash=Math.max(0,(p.hitFlash||0)-dt);p.shield=Math.max(0,(p.shield||0)-dt);
     p.evade=Math.max(0,(p.evade||0)-dt);p.dodgeCooldown=Math.max(0,(p.dodgeCooldown||0)-dt);p.counter=Math.max(0,(p.counter||0)-dt);
-    if(i.dodge&&p.dodgeCooldown<=0&&p.energy>=DODGE.cost){const d=Math.hypot(i.x,i.y);p.energy-=DODGE.cost;p.dodgeCooldown=DODGE.cooldown;p.evade=DODGE.time;p.dodgeDir=d>.1?{x:i.x/d,y:i.y/d}:{x:0,y:-1};p.dodges=(p.dodges||0)+1;}
-    if(i.skill&&p.skillCooldown<=0&&p.energy>=25){
+    if(i.dodge&&!p.lineMove&&p.dodgeCooldown<=0&&p.energy>=DODGE.cost){const d=Math.hypot(i.x,i.y);p.energy-=DODGE.cost;p.dodgeCooldown=DODGE.cooldown;p.evade=DODGE.time;p.dodgeDir=d>.1?{x:i.x/d,y:i.y/d}:{x:0,y:-1};p.dodges=(p.dodges||0)+1;}
+    if(i.skill&&!p.lineMove&&p.skillCooldown<=0&&p.energy>=25){
       p.energy-=25;p.skillCooldown=7;p.skillTime=type(p).duration;p.skillCount=(p.skillCount||0)+1;
       if(p.color===1){p.x=clamp(p.x+i.skill*96,55,945);p.dashDirection=i.skill;p.facing=i.skill;}
     }
     const m=Math.max(1,Math.hypot(i.x,i.y)),ox=p.x,oy=p.y;
     if(p.evade>0&&p.dodgeDir){p.x=clamp(p.x+(p.dodgeDir.x*165*DODGE.speed+wind)*dt,55,945);p.y=clamp(p.y+p.dodgeDir.y*165*DODGE.speed*dt,70,480);}
-    else{p.x=clamp(p.x+(i.x/m*165+wind)*dt,55,945);p.y=clamp(p.y+i.y/m*165*dt,70,480);}
+    else if(!p.lineMove||p.lineMove.phase==='charge'){p.x=clamp(p.x+(i.x/m*165+wind)*dt,55,945);p.y=clamp(p.y+i.y/m*165*dt,70,480);}
+    moveLine(p,i,dt);
     if(dt>0){p.vx=(p.x-ox)/dt;p.vy=(p.y-oy)/dt;}
-    p.attack=i.cut&&p.energy>=12&&!(p.evade>0);
+    p.attack=i.cut&&p.energy>=12&&!(p.evade>0)&&!p.lineMove;
     if(p.attack&&p.attackCooldown<=0){p.energy-=12;p.attackCooldown=.65;p.strike=true;p.flash=.16;p.shield=0;p.strikes=(p.strikes||0)+1;}
     p.energy=clamp(p.energy+(i.cut?6:18)*dt*(weather==='rain'?.7:1),0,100);p.input=i;
   }
@@ -140,27 +173,29 @@ export function createEngine() {
     if(s.phase)advance(s,now);
     const live=!s.phase||s.phase==='live',rounds=s.mode==='rounds';
     for(const p of s.players){
-      if(s.phase==='intermission'){p.strike=false;continue;}
-      if(p.respawn){if(rounds||now<p.respawn)continue;p.respawn=0;p.hp=100;p.energy=100;p.skillTime=0;p.attackCooldown=.65;p.skillCooldown=Math.max(2,p.skillCooldown||0);p.x=160+Math.random()*680;p.y=160+Math.random()*220;p.shield=SHIELD;p.botFocus=0;}
+      if(s.phase==='intermission'){p.strike=false;p.lineStrike=null;p.lineMove=null;continue;}
+      if(p.respawn){if(rounds||now<p.respawn)continue;p.respawn=0;p.hp=100;p.energy=100;p.skillTime=0;p.lineMove=null;p.lineStrike=null;p.lineCooldown=Math.max(2,p.lineCooldown||0);p.attackCooldown=.65;p.skillCooldown=Math.max(2,p.skillCooldown||0);p.x=160+Math.random()*680;p.y=160+Math.random()*220;p.shield=SHIELD;p.botFocus=0;}
       if(p.bot)p.input=botInput(s,p,dt);
-      if(live)move(p,p.input,dt,s.wind,s.daily?.weather);else{const held=p.input;move(p,{...held,cut:false,skill:0},dt,s.wind,s.daily?.weather);p.input=held;}
+      if(live)move(p,p.input,dt,s.wind,s.daily?.weather);else{const held=p.input;p.lineSeen=Math.max(p.lineSeen||0,held?.lineNonce||0);move(p,{...held,cut:false,skill:0,lineNonce:0},dt,s.wind,s.daily?.weather);p.input=held;}
     }
     // Resolve simultaneous strikes together, independent of who created the room.
     const hits=[];
-    for(const p of s.players){if(!p.strike||p.respawn)continue;
+    for(const p of s.players){if((!p.strike&&!p.lineStrike)||p.respawn)continue;
       const targets=s.players.map(q=>({q,c:contact(p,q)})).filter(t=>t.c?.valid).sort((a,b)=>Math.abs(a.c.enemy-.6)-Math.abs(b.c.enemy-.6)||a.q.id.localeCompare(b.q.id));
       const t=targets[0];p.aim=t?'hit':'miss';if(!t)continue;
+      const maneuver=p.lineStrike;if(maneuver&&p.lineMove&&!p.lineMove.hits.includes(maneuver.slot))p.lineMove.hits.push(maneuver.slot);
       if(t.q.evade>0){p.aim='dodged';t.q.perfectDodges=(t.q.perfectDodges||0)+1;t.q.energy=clamp(t.q.energy+DODGE.cost,0,100);t.q.counter=COUNTER;continue;}
-      const cut=cutDamage(p,t.c);let damage=cut.damage;if(cut.crit){p.crits=(p.crits||0)+1;p.counter=0;}
-      if(p.color===0&&p.skillTime>0){damage+=8;p.skillTime=0;}
-      if(t.q.color===2&&t.q.skillTime>0)damage*=.4;
+      const cut=maneuver?{damage:maneuver.damage,crit:!!maneuver.crit,clean:t.c.angle>=.85,moving:true,shallow:t.c.angle<.45}:cutDamage(p,t.c);let damage=cut.damage;if(cut.crit){p.crits=(p.crits||0)+1;p.counter=0;}
+      if(!maneuver&&p.color===0&&p.skillTime>0){damage+=8;p.skillTime=0;}
+      const breakGuard=!!maneuver?.breakGuard&&t.q.color===2&&t.q.skillTime>0;
+      if(t.q.color===2&&t.q.skillTime>0&&!breakGuard)damage*=.4;
       if(s.daily?.weather==='wax')damage*=1.25;
-      hits.push({p,q:t.q,damage,c:t.c,cut});p.hits=(p.hits||0)+1;
+      if(maneuver)p.flash=.16;hits.push({p,q:t.q,damage,c:t.c,cut,breakGuard});p.hits=(p.hits||0)+1;
     }
-    for(const h of hits){h.q.hp=Math.max(0,h.q.hp-h.damage);h.q.hitFlash=.25;h.q.lastHit={x:h.c.x,y:h.c.y,damage:Math.round(h.damage),crit:h.cut.crit,clean:h.cut.clean,moving:h.cut.moving};}
+    for(const h of hits){h.q.hp=Math.max(0,h.q.hp-h.damage);h.q.hitFlash=.25;if(h.breakGuard)h.q.skillTime=0;if(h.q.lineMove?.id==='laco'){h.q.lineMove=null;h.q.lineStrike=null;}h.q.lastHit={x:h.c.x,y:h.c.y,damage:Math.round(h.damage),crit:h.cut.crit,clean:h.cut.clean,moving:h.cut.moving,breakGuard:h.breakGuard};}
     for(const q of s.players){if(q.hp>0||q.respawn)continue;
       const winner=hits.filter(h=>h.q===q).sort((a,b)=>b.damage-a.damage||a.p.id.localeCompare(b.p.id))[0];if(!winner)continue;
-      const p=winner.p;q.respawn=rounds?now:now+3000;q.attack=false;p.score+=100;p.cuts++;
+      const p=winner.p;q.respawn=rounds?now:now+3000;q.attack=false;q.lineMove=null;q.lineStrike=null;p.score+=100;p.cuts++;
       const cut={text:p.name+' cortou '+q.name,at:now,id:s.id+':'+(++s.cutSequence),winnerId:p.id,loserId:q.id,matchId:s.id,winnerAccountId:p.accountId,loserAccountId:q.accountId,kiteId:q.kiteId,capture:s.rules==='capture'&&!q.kitePermanent};
       s.events.unshift(cut);s._pendingCuts.push(cut);s.events=s.events.slice(0,4);
       if(s.rules==='capture'&&q.accountId&&q.basicKiteId){q.kiteId=q.basicKiteId;q.kitePermanent=true;q.color=0;q.soul=null;q.skillTime=0;}
@@ -169,5 +204,5 @@ export function createEngine() {
     return s;
   }
   function practiceStep(s,id,input,now){const p=s.players.find(p=>p.id===id);if(p){p.input=sanitizeInput(input);p.seen=now;}return step(s,now);}
-  return {daily,QUICK,fillBots,SHIELD,DODGE,COUNTER,cutDamage,brain,create,admit,player,step,move,visible,practiceStep,line,contact,types,type,sanitizeInput,seat};
+  return {daily,QUICK,fillBots,SHIELD,DODGE,COUNTER,cutDamage,brain,create,admit,player,step,move,visible,practiceStep,line,contact,types,type,sanitizeInput,seat,lineSkills,lineMotion,lineWindow};
 }

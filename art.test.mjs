@@ -21,7 +21,7 @@ test('collection viewports enclose every pose without changing the crop scale ac
 function app({seen=false,search='',failed=false,reduced=false,member=false}={}){
  const html=fs.readFileSync('docs/index.html','utf8'),{document}=parseHTML(html),timers=[],requests=[],draws=[],listeners=new Map(),storage=new Map(seen?[['pipaAssisIntroV1','done']]:[]);
  for(const canvas of document.querySelectorAll('canvas'))canvas.getContext=()=>({clearRect(){},drawImage(...args){draws.push({canvas:canvas.id,args});},imageSmoothingEnabled:true});
- const context=vm.createContext({document,console,crypto,Date,Intl,URLSearchParams,AbortController,performance:{now:()=>100},location:{search,hash:'',pathname:'/',protocol:'https:',host:'test'},history:{replaceState(){}},localStorage:{getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,v)},matchMedia:()=>({matches:reduced}),ResizeObserver:class{observe(){}},requestAnimationFrame(){},setInterval(){},clearInterval(){},setTimeout(fn,delay){timers.push({fn,delay});return timers.length;},clearTimeout(){},fetch:async()=>({ok:true,json:async()=>({enabled:false})}),Image:class{set src(url){requests.push(url);queueMicrotask(()=>failed?this.onerror():this.onload());}},addEventListener(name,fn){if(!listeners.has(name))listeners.set(name,[]);listeners.get(name).push(fn);}});
+ const context=vm.createContext({document,console,crypto,Date,Intl,URLSearchParams,AbortController,performance:{now:()=>100},location:{search,hash:'',pathname:'/',protocol:'https:',host:'test'},history:{replaceState(){}},localStorage:{getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,v)},matchMedia:()=>({matches:reduced}),MutationObserver:document.defaultView.MutationObserver,ResizeObserver:class{observe(){}},requestAnimationFrame(){},setInterval(){},clearInterval(){},setTimeout(fn,delay){timers.push({fn,delay});return timers.length;},clearTimeout(){},fetch:async()=>({ok:true,json:async()=>({enabled:false})}),Image:class{set src(url){requests.push(url);queueMicrotask(()=>failed?this.onerror():this.onload());}},addEventListener(name,fn){if(!listeners.has(name))listeners.set(name,[]);listeners.get(name).push(fn);}});
  vm.runInContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],context);
  if(member)vm.runInContext('playerAccount={profile:{nickname:"Ana",level:1},inventory:[]}',context);
  context.cancelAnimationFrame=()=>{};
@@ -29,6 +29,22 @@ function app({seen=false,search='',failed=false,reduced=false,member=false}={}){
  for(const select of document.querySelectorAll('select')){let value;Object.defineProperty(select,'value',{configurable:true,get(){return value??this.querySelector('option[selected]')?.value??this.querySelector('option')?.value??'';},set(next){value=next;}});}
  return {document,requests,draws,storage,run:code=>vm.runInContext(code,context),auto:()=>timers.find(t=>t.delay===650).fn(),settle:()=>new Promise(r=>setImmediate(r)),key:key=>{for(const fn of listeners.get('keydown'))fn({key,target:{tagName:'BODY'},preventDefault(){},stopImmediatePropagation(){}});}};
 }
+
+test('normal match exposes six rebicadas, keeps Q/E class skills and clears held input when pausing',async()=>{
+ const ui=app({seen:true});await ui.settle();
+ ui.run(`var lineState=eng.create(Date.now());lineState.players=[Object.assign(eng.player('Teste',0,'normal',Date.now()),{anchorX:90})];enter(lineState,'normal','practice');updateNormalLineHUD();`);
+ assert.equal(ui.document.querySelector('#normalLineHUD').hidden,false);assert.equal(ui.document.querySelectorAll('#normalLineChoice option').length,6);
+ ui.run(`$('normalLineChoice').value='puxao';normalLineStart();keys.q=true;`);
+ assert.equal(ui.run('input().lineHeld'),true);assert.equal(ui.run('input().skill'),-1);
+ ui.run(`eng.practiceStep(state,me,input(),state.last+50);updateNormalLineHUD();`);
+ assert.match(ui.document.querySelector('#normalLineState').textContent,/tensionada/);
+ ui.run('openPause();');assert.equal(ui.run('input().lineHeld'),false);
+ ui.run('normalLineStart();');assert.equal(ui.run('input().lineHeld'),false,'menus cannot queue a rebicada');
+ ui.run('closeSheet();leave();updateNormalLineHUD();');assert.equal(ui.document.querySelector('#normalLineHUD').hidden,true);
+ ui.run(`playerAccount={profile:{id:'test',nickname:'Teste'},inventory:[]};showCourtyard();homeActions.lab();syncHomeInert();`);
+ assert.equal(ui.document.querySelector('#skyExperiment').hidden,false);assert.equal(ui.document.querySelector('#courtyard').inert,true);
+ ui.run('skyClose();syncHomeInert();');assert.equal(ui.document.querySelector('#courtyard').inert,false);
+});
 test('rebicar follows accepted attacks, mirrors its pull and never changes simulation coordinates',()=>{
  const a=app({seen:true});
  const result=a.run(`(()=>{const p=eng.player('Teste',0,'test',0);p.x=500;p.y=300;eng.move(p,{cut:true,x:1},.016);const start=rebicarPose(p);eng.move(p,{cut:true,x:1},.06);const pull=rebicarPose(p),left=rebicarPose({...p,facing:-1}),quiet=rebicarPose(p,true);const before=[p.x,p.y];rebicarPose(p);return {start,pull,left,quiet,position:before,after:[p.x,p.y],strikes:p.strikes,end:rebicarPose({...p,attackCooldown:.2}),dead:rebicarPose({...p,respawn:123})};})()`);
@@ -120,15 +136,15 @@ test('school tour can be replayed and skipped, lessons leave cleanly without cha
  a.document.getElementById('schoolTour').onclick();assert.equal(a.document.getElementById('schoolTourOverlay').hidden,false);
 });
 
-test('new members meet Assis, all eight steps swap artwork, finish opens the school tour and replay remains available',async()=>{
- const a=app({member:true});await a.settle();assert.equal(a.requests.length,1);a.auto();await a.settle();assert.equal(a.document.getElementById('assisIntro').hidden,false);assert.match(a.document.getElementById('assisSpeech').textContent,/Nozinho/);assert.equal(a.requests.length,4);assert.match(a.document.getElementById('assisLoad').textContent,/pesquisador/);
+test('legacy Assis presentation remains available explicitly, while the new first-flight flow owns automatic arrival',async()=>{
+ const a=app({member:true});await a.settle();assert.equal(a.requests.length,1);a.auto();assert.equal(a.run('introductionOpen'),false);a.run('openIntroduction()');await a.settle();assert.equal(a.document.getElementById('assisIntro').hidden,false);assert.match(a.document.getElementById('assisSpeech').textContent,/Nozinho/);assert.equal(a.requests.length,4);assert.match(a.document.getElementById('assisLoad').textContent,/pesquisador/);
  const expressions=new Set(),poses=new Set();for(let i=0;i<8;i++){expressions.add(a.run('ART_CONFIG.intro.steps[introductionStep].expression'));poses.add(a.run('ART_CONFIG.intro.steps[introductionStep].pose'));a.document.getElementById('assisNext').onclick();}
  assert.equal(expressions.size,8);assert.equal(poses.size,8);assert.equal(a.run('mode'),null);assert.equal(a.document.getElementById('schoolTourOverlay').hidden,false);assert.equal(a.document.getElementById('assisIntro').hidden,true);assert.equal(a.storage.get('pipaAssisIntroV1'),'done');assert.ok(a.draws.some(d=>d.canvas==='assisBody'));assert.ok(a.draws.some(d=>d.canvas==='assisFace'));assert.ok(a.draws.some(d=>d.canvas==='assisCompanion'));
  a.run('closeSchoolTour();closeSchool();leave()');a.document.getElementById('how').onclick();await a.settle();assert.equal(a.requests.length,4);assert.equal(a.document.getElementById('assisIntro').hidden,false);
 });
 test('skip, invitations, keyboard blocking and image failure do not prevent playing',async()=>{
  for(const options of [{seen:true},{search:'?sala=ABCDEF'}]){const a=app(options);a.auto();await a.settle();assert.equal(a.run('introductionOpen'),false);}
- const a=app({failed:true,member:true});a.auto();await a.settle();assert.equal(a.document.getElementById('assisRetry').hidden,false);assert.match(a.document.getElementById('assisLoad').textContent,/não carregaram/);a.key('e');assert.equal(a.run('input().skill'),0);a.document.getElementById('assisSkip').onclick();assert.equal(a.run('introductionOpen'),false);a.run("$('practice').onclick()");assert.equal(a.run('mode'),'practice');assert.equal(a.run("art.creature({},0,0)"),false);
+ const a=app({failed:true,member:true});a.auto();a.run('openIntroduction()');await a.settle();assert.equal(a.document.getElementById('assisRetry').hidden,false);assert.match(a.document.getElementById('assisLoad').textContent,/não carregaram/);a.key('e');assert.equal(a.run('input().skill'),0);a.document.getElementById('assisSkip').onclick();assert.equal(a.run('introductionOpen'),false);a.run("$('practice').onclick()");assert.equal(a.run('mode'),'practice');assert.equal(a.run("art.creature({},0,0)"),false);
 });
 test('arena draws actual atlas frames, restores smoothing, and reduced motion freezes the selected creature',async()=>{
  const a=app({reduced:true,seen:true});await a.settle();a.run("art.creature($('sky').getContext('2d'),2,0)");a.run("art.creature($('sky').getContext('2d'),2,1200)");const d=a.draws.filter(d=>d.canvas==='sky');assert.equal(d.length,2);assert.deepEqual(d[0].args.slice(1),d[1].args.slice(1));assert.match(a.run('kiteSVG(colors[2])'),/almatic-icon/);assert.match(a.run('kiteSVG(colors[2])'),/basicos-v2\/azulao\.png\?v=/);

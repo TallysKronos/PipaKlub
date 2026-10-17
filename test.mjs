@@ -6,6 +6,14 @@ import {createEngine} from './src/engine.js';
 const sqlite=new DatabaseSync(':memory:');
 const DB={prepare(sql){let v=[];return {bind(...a){v=a;return this;},async run(){const r=sqlite.prepare(sql).run(...v);return {meta:{changes:Number(r.changes)}};},async first(){return sqlite.prepare(sql).get(...v);}};}};
 async function call(action,data,extra={}){const r=await worker.fetch(new Request('https://game.test/api/'+action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}),{DB,...extra});return {status:r.status,...await r.json()};}
+
+test('HTTP fallback accepts normal rebicadas from the joining player and acknowledges one press only',async()=>{
+ const a=await call('create',{name:'Host'}),b=await call('join',{code:a.code,name:'Guest'});
+ const s=JSON.parse(sqlite.prepare('select state from pipa_rooms where code=?').get(a.code).state);s.phase='live';s.phaseUntil=Date.now()+60000;s.last=Date.now()-50;sqlite.prepare('update pipa_rooms set state=? where code=?').run(JSON.stringify(s),a.code);
+ const input={lineNonce:1,lineId:'folha',lineHeld:true,lineSide:-1,damage:999};
+ await call('sync',{code:a.code,token:b.token,input});const first=await call('sync',{code:a.code,token:b.token,input});const p=first.state.players.find(p=>p.id===b.me);assert.equal(p.lineMove.id,'folha');assert.equal(p.lineMove.side,-1);assert.equal(p.lineCount,1);assert.ok(p.energy<85);
+ const second=await call('sync',{code:a.code,token:b.token,input:{...input,lineHeld:false}});assert.equal(second.state.players.find(p=>p.id===b.me).lineCount,1);assert.equal(second.state.players.find(p=>p.id===a.me).hp,100);
+});
 test('two players share a room, inputs are authoritative, credentials are private, leave removes a player',async()=>{
  const a=await call('create',{name:'Ana',color:0});assert.equal(a.status,200);assert.equal(a.state.players.length,1);assert.notEqual(a.me,a.token);assert.ok(!JSON.stringify(a.state).includes(a.token));
  const b=await call('join',{code:a.code,name:'Beto',color:2});assert.equal(b.state.players.length,2);assert.ok(!JSON.stringify(b.state).includes(a.token));

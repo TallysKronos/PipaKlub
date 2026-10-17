@@ -36,6 +36,14 @@ test('WebSocket authenticates sessions, broadcasts authoritative movement to bot
   const guest=dashed.state.players.find(p=>p.id===b.me);assert.equal(guest.color,1);assert.ok(guest.x<guestX-80);assert.ok(guest.skillCooldown>6);assert.ok(guest.energy<80);assert.equal(dashed.state.players.find(p=>p.id===a.me).hp,100);
   c1.ws.send(JSON.stringify({type:'ping',at:123}));assert.equal((await c1.next(d=>d.type==='pong')).at,123);
   await c2.next(d=>d.type==='state'&&d.state.players.find(p=>p.id===a.me).input.x===0);
+  // Either side can use normal-mode maneuvers; the server owns the cost and motion.
+  c2.ws.send(JSON.stringify({type:'input',input:{lineNonce:1,lineId:'puxao',lineHeld:true,lineSide:-1,damage:999}}));
+  const charged=await c1.next(d=>d.type==='state'&&d.state.players.find(p=>p.id===b.me).lineMove?.phase==='charge');
+  assert.equal(charged.state.players.find(p=>p.id===b.me).lineMove.side,-1);
+  c2.ws.send(JSON.stringify({type:'input',input:{lineNonce:1,lineId:'puxao',lineHeld:false,lineSide:-1}}));
+  const released=await c1.next(d=>d.type==='state'&&d.state.players.find(p=>p.id===b.me).lineMove?.phase==='move');
+  assert.equal(released.state.players.find(p=>p.id===b.me).lineCount,1);
+  assert.equal(released.state.players.find(p=>p.id===a.me).hp,100,'a distant line is never damaged');
   const bad=await client('invalid-session');const closed=await once(bad.ws,'close');assert.equal(closed[0],1008);
   c1.ws.send('{');assert.equal((await once(c1.ws,'close'))[0],1008);
   c2.ws.close();
