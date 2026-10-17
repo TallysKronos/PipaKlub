@@ -16,7 +16,7 @@ const partnerAbilityFrame=battleArt(document.querySelector('.hud-skill'),'slot',
 $('pauseButton').textContent='';battleArt($('pauseButton'),'pause','pause-icon');
 for(const [id,icon] of [['quality','settings'],['sound','sound']]){$(id).textContent='';battleArt($(id),icon,'tool-icon');}
 let battleArtRequested=false;
-function ensureBattleArt(){if(battleArtRequested)return;battleArtRequested=true;let loaded=0;const sheets=Object.values(ART_CONFIG.hud.sheets);for(const sheet of sheets){const image=new Image();image.onload=()=>{if(++loaded===sheets.length)document.body.dataset.hudArtReady='true';};image.onerror=()=>document.body.classList.add('hud-art-unavailable');image.src=sheet.url;}}
+function ensureBattleArt(){if(battleArtRequested)return;battleArtRequested=true;document.body.classList.add('hud-art-loading');let loaded=0;const sheets=Object.values(ART_CONFIG.hud.sheets);for(const sheet of sheets){const image=new Image();image.onload=()=>{if(++loaded===sheets.length){document.body.dataset.hudArtReady='true';document.body.classList.remove('hud-art-loading');}};image.onerror=()=>{document.body.classList.remove('hud-art-loading');document.body.classList.add('hud-art-unavailable');};image.src=sheet.url;}}
 function updateBattleHUD(p){
  if(!mode||!p)return;
  ensureBattleArt();
