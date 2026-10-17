@@ -1,5 +1,10 @@
 export function createEngine() {
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  function daily(now=Date.now()){
+    const day=Math.floor(now/86400000),weather=['wind','wax','rain','fog'][((day%4)+4)%4];
+    const details={wind:['Ventania','Rajadas três vezes mais fortes. Antecipe a direção da pipa.'],wax:['Linha encerada','Os acertos desgastam 25% mais a linha dos dois jogadores.'],rain:['Garoa','A energia dos dois jogadores recupera 30% mais devagar.'],fog:['Neblina','O cenário fica encoberto; pipas e miras continuam visíveis.']}[weather];
+    return {date:new Date(now).toISOString().slice(0,10),weather,name:details[0],description:details[1],reward:25};
+  }
   const types=[
     {name:'Precisa',skill:'Puxão preciso',description:'Por 2 s, seu próximo acerto causa +8 de desgaste.',duration:2},
     {name:'Ágil',skill:'Dash lateral',description:'Avance 96 px à esquerda ou à direita para reposicionar a linha.',duration:.22},
@@ -26,7 +31,7 @@ export function createEngine() {
   function fillBots(s,now){const used=new Set(s.players.map(p=>p.name));let n=0;while(s.players.length<s.quick.size){const name=BOT_NAMES.find(x=>!used.has(x))||'Pipeiro '+(++n);used.add(name);const b=player(name,Math.floor(Math.random()*4),'bot-'+crypto.randomUUID(),now);b.bot=true;b.ai={level:s.quick.level};admit(s,b,now);}}
   // A player joining mid-round in rounds mode watches until the next round starts.
   function admit(s,p,now){seat(s,p);p.shield=SHIELD;if(s.mode==='rounds'&&(s.phase==='live'||s.phase==='intermission'))p.respawn=now;s.players.push(p);return p;}
-  function visible(s){const {_pendingCuts,...publicState}=s;return {...publicState,players:s.players.map(({key,accountId,kiteId,basicKiteId,strike,...p})=>p),events:s.events.map(({id,text,at,capture,winnerId,loserId,kind,round})=>({id,text,at,capture,winnerId,loserId,kind,round}))};}
+  function visible(s){const {_pendingCuts,dailyResult,...publicState}=s;return {...publicState,players:s.players.map(({key,accountId,kiteId,basicKiteId,strike,...p})=>p),events:s.events.map(({id,text,at,capture,winnerId,loserId,kind,round})=>({id,text,at,capture,winnerId,loserId,kind,round}))};}
   // Fixed anchors and straight segments are also used by the renderer. Fractions run ground -> kite.
   // The seat also fixes the player number (P1..P8) shown with the player's colour.
   function seat(s,p){if(!Number.isFinite(p.anchorX))p.anchorX=ANCHORS.find(x=>!s.players.some(q=>q!==p&&q.anchorX===x))??500;if(!Number.isInteger(p.slot)){const i=ANCHORS.indexOf(p.anchorX);p.slot=i>=0?i:s.players.indexOf(p)%8;}return p;}
@@ -39,7 +44,7 @@ export function createEngine() {
     if(winner)winner.rounds=(winner.rounds||0)+1;
     s.events.unshift({kind:'round',round:s.round,text:winner?winner.name+' venceu a rodada '+s.round:'Rodada '+s.round+' empatada',at:now,id:s.id+':r'+s.round,winnerId:winner?.id});s.events=s.events.slice(0,4);
     s.phase='intermission';s.phaseUntil=now+INTERMISSION;
-    if(winner&&winner.rounds>=s.roundsToWin)s.end=now+INTERMISSION;
+    if(winner&&winner.rounds>=s.roundsToWin){s.end=now+INTERMISSION;if(s.daily)s.dailyResult={winnerId:winner.id,accountId:winner.accountId||null};}
   }
   function advance(s,now){
     if(s.phase==='waiting'){if(s.quick){if(s.players.length>=s.quick.size||now>=s.quick.fillAt){fillBots(s,now);startRound(s,now);}}else if(s.players.length>=2)startRound(s,now);}
@@ -59,7 +64,7 @@ export function createEngine() {
     const shielded=q.shield>0;
     return {x:l.a.x+r.x*u,y:l.a.y+r.y*u,own:u,enemy:w,angle,shielded,valid:!shielded&&u>=.35&&u<=.95&&w>=(focus?.15:.3)&&w<=(focus?.92:.85),perfect:w>=.52&&w<=.68};
   }
-  function move(p,input,dt,wind=0){
+  function move(p,input,dt,wind=0,weather){
     p.strike=false;if(p.respawn)return;
     dt=clamp(Number(dt)||0,0,.25);const i=sanitizeInput(input);
     // Persist visual direction through idle/vertical movement and network snapshots.
@@ -81,7 +86,7 @@ export function createEngine() {
     if(dt>0){p.vx=(p.x-ox)/dt;p.vy=(p.y-oy)/dt;}
     p.attack=i.cut&&p.energy>=12&&!(p.evade>0);
     if(p.attack&&p.attackCooldown<=0){p.energy-=12;p.attackCooldown=.65;p.strike=true;p.flash=.16;p.shield=0;p.strikes=(p.strikes||0)+1;}
-    p.energy=clamp(p.energy+(i.cut?6:18)*dt,0,100);p.input=i;
+    p.energy=clamp(p.energy+(i.cut?6:18)*dt*(weather==='rain'?.7:1),0,100);p.input=i;
   }
   // Bot brain. p.ai.level (1-10) scales reaction, rest between pulls, speed, aim, dodging,
   // energy discipline and skill timing. Bots without a level keep the practice defaults.
@@ -126,8 +131,9 @@ export function createEngine() {
     return {x:clamp((x-p.x)/80,-b.speed,b.speed),y:clamp((y-p.y)/80,-b.speed,b.speed),cut:pull,skill};
   }
   function step(s,now) {
-    s._pendingCuts=[];const dt=clamp((now-s.last)/1000,0,.25);s.last=now;s.wind=Math.sin(now/9000)*12;
+    s._pendingCuts=[];const dt=clamp((now-s.last)/1000,0,.25);s.last=now;s.wind=Math.sin(now/9000)*(s.daily?.weather==='wind'?36:12);
     if(now>=s.end)return s;s.players=s.players.filter(p=>p.bot||now-p.seen<15000);
+    if(s.daily&&!s.players.some(p=>!p.bot)){s.end=now;return s;}
     // A quick room with nobody real left in it closes instead of letting bots fly alone.
     if(s.quick&&s.quick.fillAt<=now&&!s.players.some(p=>!p.bot)){s.end=now;return s;}
     for(const p of s.players)seat(s,p);
@@ -137,7 +143,7 @@ export function createEngine() {
       if(s.phase==='intermission'){p.strike=false;continue;}
       if(p.respawn){if(rounds||now<p.respawn)continue;p.respawn=0;p.hp=100;p.energy=100;p.skillTime=0;p.attackCooldown=.65;p.skillCooldown=Math.max(2,p.skillCooldown||0);p.x=160+Math.random()*680;p.y=160+Math.random()*220;p.shield=SHIELD;p.botFocus=0;}
       if(p.bot)p.input=botInput(s,p,dt);
-      if(live)move(p,p.input,dt,s.wind);else{const held=p.input;move(p,{...held,cut:false,skill:0},dt,s.wind);p.input=held;}
+      if(live)move(p,p.input,dt,s.wind,s.daily?.weather);else{const held=p.input;move(p,{...held,cut:false,skill:0},dt,s.wind,s.daily?.weather);p.input=held;}
     }
     // Resolve simultaneous strikes together, independent of who created the room.
     const hits=[];
@@ -148,6 +154,7 @@ export function createEngine() {
       const cut=cutDamage(p,t.c);let damage=cut.damage;if(cut.crit){p.crits=(p.crits||0)+1;p.counter=0;}
       if(p.color===0&&p.skillTime>0){damage+=8;p.skillTime=0;}
       if(t.q.color===2&&t.q.skillTime>0)damage*=.4;
+      if(s.daily?.weather==='wax')damage*=1.25;
       hits.push({p,q:t.q,damage,c:t.c,cut});p.hits=(p.hits||0)+1;
     }
     for(const h of hits){h.q.hp=Math.max(0,h.q.hp-h.damage);h.q.hitFlash=.25;h.q.lastHit={x:h.c.x,y:h.c.y,damage:Math.round(h.damage),crit:h.cut.crit,clean:h.cut.clean,moving:h.cut.moving};}
@@ -162,5 +169,5 @@ export function createEngine() {
     return s;
   }
   function practiceStep(s,id,input,now){const p=s.players.find(p=>p.id===id);if(p){p.input=sanitizeInput(input);p.seen=now;}return step(s,now);}
-  return {QUICK,fillBots,SHIELD,DODGE,COUNTER,cutDamage,brain,create,admit,player,step,move,visible,practiceStep,line,contact,types,type,sanitizeInput,seat};
+  return {daily,QUICK,fillBots,SHIELD,DODGE,COUNTER,cutDamage,brain,create,admit,player,step,move,visible,practiceStep,line,contact,types,type,sanitizeInput,seat};
 }

@@ -45,13 +45,16 @@ test('rooms start in the chosen format; rematch creates one new room and points 
  const timed=await call('create',{name:'T',mode:'time'},{ACCOUNTS:{preparePlayer:async()=>({accountId:'registered',name:'Time',color:0})}});assert.equal(timed.state.mode,'time');assert.equal((await call('join',{code:timed.code,name:'Visitante'})).status,401);assert.equal((await call('create',{name:'Visitante',mode:'time'})).status,401);
 });
 test('quick match seats waiting players together and fills the room with bots after the wait',async()=>{
- const a=await call('quick',{name:'Ana',color:0});assert.equal(a.status,200);assert.ok(a.state.quick);assert.equal(a.state.phase,'waiting');
- const b=await call('quick',{name:'Beto',color:1});assert.equal(b.status,200);assert.equal(b.code,a.code,'second player joins the open quick room');
+ const signed=name=>({ACCOUNTS:{enabled:true,preparePlayer:async()=>({accountId:name,name})}});
+ assert.equal((await call('quick',{})).status,401);
+ const a=await call('quick',{name:'Ana',color:0},signed('Ana'));assert.equal(a.status,200);assert.ok(a.state.quick);assert.equal(a.state.phase,'waiting');
+ const b=await call('quick',{name:'Beto',color:1},signed('Beto'));assert.equal(b.status,200);assert.equal(b.code,a.code,'second player joins the open quick room');
+ assert.equal((await call('join',{code:a.code})).status,401);
  const row=sqlite.prepare('SELECT state FROM pipa_rooms WHERE code = ?').get(a.code),s=JSON.parse(row.state);
  s.quick.fillAt=Date.now()-1;sqlite.prepare('UPDATE pipa_rooms SET state = ? WHERE code = ?').run(JSON.stringify(s),a.code);
  const sync=await call('sync',{code:a.code,token:a.token,input:{}});
  assert.equal(sync.state.players.length,4);assert.equal(sync.state.players.filter(p=>p.bot).length,2);assert.notEqual(sync.state.phase,'waiting');
- const c=await call('quick',{name:'Caio',color:2});assert.equal(c.status,200);
+ const c=await call('quick',{name:'Caio',color:2},signed('Caio'));assert.equal(c.status,200);
  if(c.code===a.code){assert.equal(c.state.players.length,4);assert.equal(c.state.players.filter(p=>p.bot).length,1,'a bot gives up its seat');}
  else assert.equal(c.state.players.length,1,'a live room is not interrupted: a new quick room opens');
 });

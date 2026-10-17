@@ -24,12 +24,14 @@ function renderSchool(){
  $('schoolLessons').replaceChildren(...school.lessons.map((lesson,i)=>{const b=document.createElement('button');b.type='button';b.className='school-lesson secondary';b.textContent=(schoolDone.includes(lesson.id)?'✓ ':'')+(i+1)+'. '+lesson.name;b.onclick=()=>startSchoolLesson(i);return b;}));
 }
 function openSchool(){
+ if(!requireClubAccount('Escola do Sr. Assis'))return;
  if(mode){toast('Saia da partida para visitar a escola.');return;}
  if(introductionOpen)closeIntroduction();if(accountModal.style.display==='flex')closeAccount();
  closeTrails();keys={};resetPointer();renderSchool();schoolHub.hidden=false;schoolHub.style.display='flex';$('schoolClose').focus?.();
  art.load('sr-assis-expressions').then(()=>{const c=$('schoolAssis'),context=c.getContext('2d');if(!context)return;context.clearRect(0,0,c.width,c.height);art.draw(context,'sr-assis-expressions','speaking',0,0,c.width,c.height,true);});
 }
 function startSchoolLesson(index){
+ if(!requireClubAccount('Escola do Sr. Assis'))return;
  if(mode&& !schoolRun)return;
  if(schoolRun){schoolRun=null;leave();}
  closeSchool();closeSchoolTour(false);trailStage=null;
@@ -74,9 +76,9 @@ function renderSchoolTour(){
  $('schoolTourTitle').textContent=title;$('schoolTourText').textContent=text;$('schoolTourBack').disabled=schoolTourStep===0;
  $('schoolTourNext').textContent=schoolTourStep===schoolTourStops.length-1?'Começar as lições ▶':'Continuar ▶';positionSchoolSpot();$('schoolTourNext').focus?.();
 }
-function openSchoolTour(){if(mode)return;if(introductionOpen)closeIntroduction();closeSchool();schoolTourStep=0;schoolTour.hidden=false;keys={};renderSchoolTour();}
+function openSchoolTour(){if(mode||!requireClubAccount('Escola do Sr. Assis'))return;if(introductionOpen)closeIntroduction();closeSchool();schoolTourStep=0;schoolTour.hidden=false;keys={};renderSchoolTour();}
 function closeSchoolTour(remember=true){if(schoolTourStep<0)return;schoolTourStep=-1;schoolTour.hidden=true;if(remember)try{localStorage.setItem(TOUR_KEY,'done');}catch{}}
-function firstSchoolVisit(){openSchool();let seen=false;try{seen=localStorage.getItem(TOUR_KEY)==='done';}catch{}if(!seen)openSchoolTour();}
+function firstSchoolVisit(){if(!requireClubAccount('Escola do Sr. Assis'))return;openSchool();let seen=false;try{seen=localStorage.getItem(TOUR_KEY)==='done';}catch{}if(!seen)openSchoolTour();}
 $('schoolTour').onclick=openSchoolTour;
 $('schoolTourBack').onclick=()=>{schoolTourStep=Math.max(0,schoolTourStep-1);renderSchoolTour();};
 $('schoolTourNext').onclick=()=>{if(schoolTourStep===schoolTourStops.length-1){closeSchoolTour();openSchool();}else{schoolTourStep++;renderSchoolTour();}};
