@@ -31,11 +31,13 @@ test('PostgreSQL invite trade: permissions, membership, revision, atomic swap, r
   await as(b);t=await call('offer',code,bk,t.revision);
   await as(a);t=await call('confirm',code,null,t.revision);assert.equal(t.hostConfirmed,true);
   const old=t.revision;t=await call('offer',code,ak2,t.revision);assert.equal(t.hostConfirmed,false);assert.equal(t.guestConfirmed,false);
+  await db.query('select public.equip_player_kite($1)',[ak2]);
   await as(b);await assert.rejects(()=>call('confirm',code,null,old),/mudou/);
   t=await call('confirm',code,null,t.revision);await as(a);t=await call('confirm',code,null,t.revision);assert.equal(t.status,'completed');
   assert.equal((await call('confirm',code,null,t.revision)).status,'completed');
   await db.exec('reset role');assert.equal((await db.query('select owner_id from public.player_kites where id=$1',[ak2])).rows[0].owner_id,b);assert.equal((await db.query('select owner_id from public.player_kites where id=$1',[bk])).rows[0].owner_id,a);
   assert.equal((await db.query('select count(*)::int n from public.player_kites')).rows[0].n,12);
+  assert.equal((await db.query('select equipped_kite_id from public.player_profiles where id=$1',[a])).rows[0].equipped_kite_id,basic);
   await as(a);const history=await call('history');assert.equal(history.length,1);assert.equal(history[0].receipt.hostKite.id,ak2);
   t=await call('create');assert.equal((await call('cancel',t.code)).status,'cancelled');
   t=await call('create');await db.exec('reset role');await db.query("update public.kite_trades set expires_at=now()-interval '1 second' where code=$1",[t.code]);
@@ -75,4 +77,8 @@ test('trade HTTP authenticates and validates input before calling the user RPC',
  assert.equal((await accounts.handle(request({action:'offer',kiteId:'bad'}))).status,400);
  assert.equal((await accounts.handle(request({action:'create'}))).status,200);
  const rpc=calls.find(([url])=>url.endsWith('/rpc/player_trade'));assert.equal(rpc[1].headers.Authorization,'Bearer token');assert.equal(JSON.parse(rpc[1].body).p_action,'create');
+});
+test('joining a match while trading reports a conflict instead of a database outage',async()=>{
+ const accounts=createAccounts({SUPABASE_URL:'https://db.test',SUPABASE_PUBLISHABLE_KEY:'key'},{gameDatabase:{async rpc(){throw Object.assign(Error('Troca: cancele a negociação antes de entrar em partida.'),{code:'P0001'});}},fetcher:async()=>new Response(JSON.stringify({id:a}))});
+ await assert.rejects(()=>accounts.preparePlayer(new Request('https://game.test/api/join',{headers:{cookie:'__Host-pipa_access=token'}}),{id:c,code:'ABCDEF',rules:'casual',players:[]}),e=>e.status===409&&e.message.startsWith('Troca:'));
 });

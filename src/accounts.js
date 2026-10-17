@@ -27,7 +27,7 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
   if(!admin)return remote('/rest/v1/rpc/'+name,{method:'POST',body,token});
   try{return await gameDatabase.rpc(name,body);}catch(e){
    const message=String(e.message||'');
-   if(e.code==='P0001'&&/Saia da partida|outra partida|colecionável|coleção|caracteres|Partida encerrada/.test(message))throw new AccountError(message,409);
+   if(e.code==='P0001'&&/Troca:|Saia da partida|outra partida|colecionável|coleção|caracteres|Partida encerrada/.test(message))throw new AccountError(message,409);
    throw new AccountError('O banco do jogo não respondeu. Aguarde e tente novamente.',503);
   }
  }
