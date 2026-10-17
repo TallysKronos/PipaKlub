@@ -334,17 +334,24 @@ body.in-match .arena canvas{cursor:crosshair}
 .node-stars{font:400 12px var(--px);color:var(--gold-d);min-height:16px;letter-spacing:1px}
 .stage-card{border-left:3px solid var(--line);background:var(--paper);padding:18px;overflow:auto;display:flex;flex-direction:column;gap:10px}
 .stage-card h3{font:400 28px/1.05 var(--px);margin:0}
-.stage-foes{display:grid;gap:8px}
+.stage-foes{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
 .stage-foe{display:flex;align-items:center;gap:10px;padding:6px 10px 6px 6px;border:3px solid var(--line);border-radius:10px;background:#fffdf4}
 .foe-art{width:54px;height:54px;flex:none;border:2px solid var(--line);border-radius:8px;background:radial-gradient(circle,#fff,#ffe8a8);overflow:hidden}
 .stage-foe b{display:block;font:400 17px var(--px)}.stage-foe small{color:var(--ink-soft);font-size:12px}
+.stage-label{font:400 11px var(--px);letter-spacing:1px;text-transform:uppercase;color:var(--orange-d);margin-top:2px}
+.stage-kites{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.stage-kite{position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 2px;border:3px solid var(--line);border-radius:9px;background:#fffdf4;box-shadow:0 3px 0 var(--line)}
+.stage-kite .foe-art{width:42px;height:42px;border:0;background:none}.stage-kite small{font:400 11px var(--px)}
+.stage-kite.selected{background:#ffe9a8;box-shadow:0 3px 0 var(--line),inset 0 0 0 3px var(--gold)}
+.stage-kite.recommended:after{content:'Recomendada';position:absolute;top:-11px;left:50%;transform:translateX(-50%);white-space:nowrap;padding:0 5px;border:2px solid var(--line);border-radius:6px;background:var(--teal);color:#fff;font:400 9px var(--px);letter-spacing:.5px}
+.trail-coach{text-align:left;margin:12px 0 0;padding:10px 12px;border:3px dashed #e3cf9b;border-radius:10px;background:var(--paper-2);font-size:13px!important;line-height:1.5}
 .stage-facts{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;margin:2px 0}.stage-facts dt{font:400 11px var(--px);letter-spacing:1px;text-transform:uppercase;color:var(--orange-d)}.stage-facts dd{margin:2px 0 0;font-size:12px}
 .stage-tip{display:flex;gap:10px;align-items:center;padding:10px;border:3px dashed #e3cf9b;border-radius:10px;background:var(--paper-2)}
 .stage-tip canvas{width:60px;height:70px;flex:none;image-rendering:pixelated}.stage-tip p{margin:0;font-size:13px;line-height:1.5}
 #trailStart{font-size:20px;padding:12px;margin-top:auto}
 .stage-foot{font-size:11px;color:var(--muted);margin:0;line-height:1.4}
 .trail-result{text-align:center;margin:4px 0 12px}
-.result-stars{font:400 46px/1 var(--px);color:var(--gold);text-shadow:0 3px 0 var(--line),2px 0 0 var(--line),-2px 0 0 var(--line),0 -2px 0 var(--line);letter-spacing:6px}
+.result-stars .off{color:#cfc6b1}.result-stars{font:400 46px/1 var(--px);color:var(--gold);text-shadow:0 3px 0 var(--line),2px 0 0 var(--line),-2px 0 0 var(--line),0 -2px 0 var(--line);letter-spacing:6px}
 .coin-gain{display:inline-block;margin:12px 0 4px;padding:6px 18px;border:3px solid var(--line);border-radius:999px;background:var(--gold);box-shadow:0 4px 0 var(--line);font:400 26px var(--px)}
 .coin-gain small{display:block;font:700 11px Nunito,sans-serif}
 .trail-note{font-size:13px!important}
@@ -430,7 +437,7 @@ body.in-match .arena canvas{cursor:crosshair}
 <div class="overlay" id="trails" hidden><section class="panel trails-card" role="dialog" aria-modal="true" aria-labelledby="trailsTitle">
 <header class="trails-header"><div><div class="eyebrow">Modo RPG</div><h2 id="trailsTitle">Trilhas</h2><p id="trailMastery"></p></div><div class="trail-wallet"><small>Moedas</small><b>🪙 <span id="trailCoins">0</span></b></div><button class="close" id="trailsClose" aria-label="Fechar trilhas">×</button></header>
 <div class="trails-layout"><div class="trail-list" id="trailList"></div>
-<aside class="stage-card" aria-live="polite"><div class="eyebrow" id="stageTrail"></div><h3 id="stageName"></h3><div class="stage-foes" id="stageFoes"></div>
+<aside class="stage-card" aria-live="polite"><div class="eyebrow" id="stageTrail"></div><h3 id="stageName"></h3><div class="stage-foes" id="stageFoes"></div><div class="stage-label">Sua almática</div><div class="stage-kites" id="stageKites"></div>
 <dl class="stage-facts"><div><dt>Dificuldade</dt><dd id="stageLevel"></dd></div><div><dt>Formato</dt><dd id="stageFormat"></dd></div><div><dt>Recompensa</dt><dd id="stageReward"></dd></div><div><dt>Recorde</dt><dd id="stageBest"></dd></div></dl>
 <div class="stage-tip"><canvas id="stageAssis" width="96" height="112" aria-hidden="true"></canvas><p><b>Sr. Assis:</b> <span id="stageTip"></span></p></div>
 <button class="primary" id="trailStart">Voar ▶</button><p class="stage-foot">A IA aprende com você: cada vitória deixa as próximas pipas mais espertas; uma derrota alivia um pouco.</p></aside></div>
@@ -526,7 +533,11 @@ function createEngine() {
   }
   function botInput(s,p,dt){
     const b=brain(p.ai?.level),foes=s.players.filter(q=>q.id!==p.id&&!q.respawn&&!(q.shield>0));
-    const target=foes.sort((a,c)=>Number(!!contact(p,c)?.valid)-Number(!!contact(p,a)?.valid)||(b.weakest?a.hp-c.hp:0)||Math.hypot(a.x-p.x,a.y-p.y)-Math.hypot(c.x-p.x,c.y-p.y)||a.id.localeCompare(c.id))[0];
+    // Leveled bots spread out: a kite another bot is already hunting is a worse target, so free-for-all
+    // stages stay every-pilot-for-himself instead of turning into bots ganging up on the player.
+    const hunters=q=>p.ai?s.players.filter(o=>o.bot&&o!==p&&!o.respawn&&o.aiTarget===q.id).length:0;
+    const target=foes.sort((a,c)=>hunters(a)-hunters(c)||Number(!!contact(p,c)?.valid)-Number(!!contact(p,a)?.valid)||(b.weakest?a.hp-c.hp:0)||Math.hypot(a.x-p.x,a.y-p.y)-Math.hypot(c.x-p.x,c.y-p.y)||a.id.localeCompare(c.id))[0];
+    p.aiTarget=target?.id;
     // Seek a crossing on the target line rather than chasing its kite; weaker bots wobble around the golden centre.
     const frac=.6+b.jitter*Math.sin(s.last/650+(p.slot||0)*1.7);
     let x=500,y=180;
@@ -793,6 +804,8 @@ if(p.hitFlash>0){ctx.fillStyle='#e0442a'+(Math.round(p.hitFlash*4*160).toString(
 if(p.skillTime>0){ctx.strokeStyle=p.color===2?'#648ec4':'#fff8ca';ctx.lineWidth=3;ctx.beginPath();ctx.arc(x,y,41,0,Math.PI*2);ctx.stroke();}
 }
 ctx.translate(x,y);ctx.rotate(Math.sin(t/1600+p.color)*.1+(p.input?.x||0)*.17);kiteBody(col,t,p);ctx.restore();
+// The safe tip of the own line (cuts without being cut) sits under the sprite, so it is drawn on top.
+if(mine&&!p.respawn){const s1=at(.86),s2=at(.95);ctx.save();ctx.lineCap='round';ctx.globalAlpha=.9;ctx.strokeStyle='#ffffff';ctx.lineWidth=8;ctx.beginPath();ctx.moveTo(s1.x,s1.y);ctx.lineTo(s2.x,s2.y);ctx.stroke();ctx.strokeStyle='#2fbf6a';ctx.lineWidth=4.5;ctx.stroke();ctx.restore();}
 if(!demo){ctx.font=(mine?'700 ':'600 ')+'12px Nunito, sans-serif';ctx.textAlign='center';let name=playerTag(p)+' · '+p.name+(mine?' (você)':'')+botTag(p);let width=labelWidths.get(name);if(width===undefined){width=ctx.measureText(name).width+20;labelWidths.set(name,width);}if(mine){ctx.fillStyle='#fff';ctx.beginPath();ctx.roundRect(x-width/2-2,y-62,width+4,25,6);ctx.fill();}ctx.fillStyle=pc;ctx.beginPath();ctx.roundRect(x-width/2,y-60,width,21,5);ctx.fill();ctx.fillStyle='#fff';ctx.fillText(name,x,y-46);const bw=mine?60:44;ctx.fillStyle='#ffffffb0';ctx.fillRect(x-bw/2,y-36,bw,mine?5:3);ctx.fillStyle=p.hp>40?'#427857':'#d8784c';ctx.fillRect(x-bw/2,y-36,bw*p.hp/100,mine?5:3);if(mine){ctx.fillStyle='#ffffff90';ctx.fillRect(x-bw/2,y-30,bw,3);ctx.fillStyle=p.energy<12?'#c9a23b':'#4a7fb0';ctx.fillRect(x-bw/2,y-30,bw*p.energy/100,3);}}}
 function kiteBody(col,t,p={}){const victory=state?.phase==='intermission'&&state.events.find(e=>e.kind==='round')?.winnerId===p.id;if(art.creature(ctx,colors.indexOf(col),t,-56,-44,112,p,victory))return;ctx.shadowColor='#37594e35';ctx.shadowBlur=lightMode?0:7;ctx.shadowOffsetY=lightMode?0:7;ctx.fillStyle=col;ctx.beginPath();ctx.moveTo(0,-30);ctx.lineTo(27,-3);ctx.lineTo(0,35);ctx.lineTo(-27,-3);ctx.closePath();ctx.fill();ctx.shadowBlur=0;ctx.shadowOffsetY=0;ctx.fillStyle='#ffffff45';ctx.beginPath();ctx.moveTo(0,-30);ctx.lineTo(0,35);ctx.lineTo(-27,-3);ctx.fill();ctx.strokeStyle='#fff9';ctx.lineWidth=.9;ctx.beginPath();ctx.moveTo(0,-30);ctx.lineTo(0,35);ctx.moveTo(-27,-3);ctx.lineTo(27,-3);ctx.stroke();ctx.strokeStyle=col;ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(0,35);for(let i=1;i<30;i++)ctx.lineTo(Math.sin(i*.4-t/350)*i*.42,35+i*2);ctx.stroke();for(let i=0;i<4;i++){let yy=47+i*12,xx=Math.sin((yy-35)/2*.4-t/350)*(yy-35)/2*.42;ctx.fillStyle=col;ctx.beginPath();ctx.moveTo(xx-5,yy-3);ctx.lineTo(xx+5,yy+3);ctx.lineTo(xx+5,yy-3);ctx.lineTo(xx-5,yy+3);ctx.fill();}}
 function drawScenery(t){const sky=ctx.createLinearGradient(0,0,0,600);sky.addColorStop(0,'#c2e0e5');sky.addColorStop(.7,'#e1eeDF');sky.addColorStop(1,'#f1eccf');ctx.fillStyle=sky;ctx.fillRect(0,0,1000,600);
@@ -1171,50 +1184,53 @@ function createTrails(){
     {id:'morro',name:'Trilha do Morro do Sol',subtitle:'Onde todo pipeiro começa',accent:'#f28a3a',stages:[
       {id:'morro-1',name:'Primeiro cruzamento',level:1,rounds:2,coins:10,foes:[foe('Zeca',0)],tip:'Cruze sua linha na faixa tracejada dele e segure o clique quando a mira ficar verde.'},
       {id:'morro-2',name:'Folha ao vento',level:2,rounds:2,coins:12,foes:[foe('Bia',1)],tip:'A Bia muda de lado num sopro. Não persiga a pipa: espere a linha dela cruzar a sua.'},
-      {id:'morro-3',name:'Dois na laje',level:2,rounds:2,coins:16,foes:[foe('Juninho',2),foe('Lia',3)],tip:'Com três no céu, deixe os dois se cortarem e entre para terminar o serviço.'},
+      {id:'morro-3',counter:2,name:'Dois na laje',level:2,rounds:2,coins:16,foes:[foe('Juninho',2),foe('Lia',3)],tip:'Com três no céu, deixe os dois se cortarem e entre para terminar o serviço.'},
       {id:'morro-4',name:'Teimosia azul',level:3,rounds:2,coins:18,foes:[foe('Tião',2)],tip:'O Tião firma a linha quando você ameaça. Ataque logo depois que a proteção acabar.'},
       {id:'morro-5',name:'Mestre Nando',level:4,rounds:3,coins:30,boss:true,foes:[foe('Mestre Nando',3)],tip:'Nando lê o céu como um mapa. Guarde energia: quem puxa sem parar perde o fôlego.'}
     ]},
     {id:'praia',name:'Trilha da Beira-Mar',subtitle:'Vento forte, linha firme',accent:'#2f9e8f',stages:[
       {id:'praia-1',name:'Brisa salgada',level:4,rounds:2,coins:20,foes:[foe('Dona Cida',0)],tip:'Dona Cida acerta forte quando prepara o puxão. Saia da mira quando ela brilhar.'},
-      {id:'praia-2',name:'Ventania',level:4,rounds:2,coins:24,foes:[foe('Kauã',1),foe('Mel',3)],tip:'Dois rivais rápidos. Fique alto e escolha quem cruzar primeiro.'},
+      {id:'praia-2',counter:0,name:'Ventania',level:3,rounds:2,coins:24,foes:[foe('Kauã',1),foe('Mel',3)],tip:'Dois rivais rápidos. Fique alto e escolha quem cruzar primeiro.'},
       {id:'praia-3',name:'Rede de pescador',level:5,rounds:2,coins:26,foes:[foe('Seu Dito',2)],tip:'Seu Dito desvia quando percebe a sua mira. Mude o ângulo antes de puxar.'},
       {id:'praia-4',name:'Trio do píer',level:5,rounds:2,coins:32,foes:[foe('Ravi',0),foe('Nina',1),foe('Caio',3)],tip:'Quatro linhas no céu. Quem sobrevive é quem não fica no meio da confusão.'},
       {id:'praia-5',name:'Chaspiral',level:6,rounds:3,coins:50,boss:true,foes:[foe('Chaspiral',1,'chaspiral')],tip:'A fada do chá dança de um lado ao outro. Mire onde ela vai estar, não onde está.'}
     ]},
     {id:'torres',name:'Trilha dos Campanários',subtitle:'Lendas entre os sinos',accent:'#8b4fd6',stages:[
       {id:'torres-1',name:'Sino da tarde',level:6,rounds:2,coins:34,foes:[foe('Irmã Lu',3)],tip:'Irmã Lu amplia a zona de corte. Mantenha distância quando o foco dela acender.'},
-      {id:'torres-2',name:'Brasas do beco',level:7,rounds:2,coins:40,foes:[foe('Trinca-brasas',2,'trinca-brasas')],tip:'Três cabeças, uma guarda de ferro. Ataque nos intervalos da proteção.'},
-      {id:'torres-3',name:'Neve de verão',level:7,rounds:2,coins:44,foes:[foe('Alvaneve',0,'alvaneve')],tip:'Alvaneve pune quem fica parado. Cruze, puxe e saia.'},
-      {id:'torres-4',name:'Coro das torres',level:7,rounds:2,coins:50,foes:[foe('Benê',2),foe('Sol',3),foe('Teca',1)],tip:'O coro ataca o mais fraco. Não deixe sua linha baixar sem reagir.'},
+      {id:'torres-2',counter:2,name:'Brasas do beco',level:7,rounds:2,coins:40,foes:[foe('Trinca-brasas',2,'trinca-brasas')],tip:'Três cabeças, uma guarda de ferro. Ataque nos intervalos da proteção.'},
+      {id:'torres-3',counter:2,name:'Neve de verão',level:7,rounds:2,coins:44,foes:[foe('Alvaneve',0,'alvaneve')],tip:'Alvaneve pune quem fica parado. Cruze, puxe e saia.'},
+      {id:'torres-4',counter:2,name:'Coro das torres',level:7,rounds:2,coins:50,foes:[foe('Benê',2),foe('Sol',3),foe('Teca',1)],tip:'O coro ataca o mais fraco. Não deixe sua linha baixar sem reagir.'},
       {id:'torres-5',name:'Flautrevo',level:8,rounds:3,coins:80,boss:true,foes:[foe('Flautrevo',3,'flautrevo')],tip:'A flauta dele confunde o vento. Respire, leia o cruzamento e seja paciente.'}
     ]}
   ];
   const stages=TRAILS.flatMap((t,ti)=>t.stages.map((s,si)=>({...s,trail:t.id,trailIndex:ti,index:si})));
   const stage=id=>stages.find(s=>s.id===id)||null;
   const MASTERY_MAX=8;
-  function defaults(){return {coins:0,stars:{},mastery:0,wins:0,losses:0};}
+  function defaults(){return {coins:0,stars:{},mastery:0,wins:0,losses:0,fails:{}};}
   // Progress lives in the player's device for now; never trust it for anything shared.
   function sanitize(p){
     const d=defaults();if(!p||typeof p!=='object')return d;
-    const stars={};for(const s of stages){const v=Math.trunc(Number(p.stars?.[s.id]));if(v>0)stars[s.id]=clamp(v,1,3);}
+    const stars={},fails={};for(const s of stages){const v=Math.trunc(Number(p.stars?.[s.id]));if(v>0)stars[s.id]=clamp(v,1,3);const f=Math.trunc(Number(p.fails?.[s.id]));if(f>0)fails[s.id]=clamp(f,1,99);}
     const n=(v,max)=>clamp(Math.trunc(Number(v))||0,0,max);
-    return {coins:n(p.coins,1e9),stars,mastery:n(p.mastery,MASTERY_MAX),wins:n(p.wins,1e9),losses:n(p.losses,1e9)};
+    return {coins:n(p.coins,1e9),stars,mastery:n(p.mastery,MASTERY_MAX),wins:n(p.wins,1e9),losses:n(p.losses,1e9),fails};
   }
   function unlocked(p,id){const i=stages.findIndex(s=>s.id===id);return i===0||(i>0&&!!p.stars[stages[i-1].id]);}
   // Difficulty adapts: every two points of mastery add one AI level on top of the stage's base level.
-  function aiLevel(st,p){return clamp(st.level+Math.floor(p.mastery/2),1,10);}
+  // Extra rivals already make a stage harder, so there mastery adds at most one level; after three
+  // losses in a row on a stage its AI eases off by one level until the stage is won.
+  const RELIEF_AFTER=3;
+  function aiLevel(st,p){const bonus=Math.min(st.foes.length>1?1:MASTERY_MAX,Math.floor(p.mastery/2)),relief=(p.fails?.[st.id]||0)>=RELIEF_AFTER?1:0;return clamp(st.level+bonus-relief,1,10);}
   function settle(p,id,{won,roundsLost=0}){
     const st=stage(id),before=sanitize(p),next=sanitize(p);if(!st)return {progress:before,coins:0,stars:0,firstClear:false};
     const stars=won?clamp(3-roundsLost,1,3):0,firstClear=won&&!before.stars[id];
     const coins=won?Math.round(st.coins*(1+(stars-1)*.25))+(firstClear?st.coins:0):0;
-    next.coins+=coins;if(won){next.wins++;next.stars[id]=Math.max(before.stars[id]||0,stars);next.mastery=clamp(before.mastery+(stars===3?2:1),0,MASTERY_MAX);}
-    else{next.losses++;next.mastery=clamp(before.mastery-1,0,MASTERY_MAX);}
-    return {progress:next,coins,stars,firstClear,levelBefore:aiLevel(st,before),levelAfter:aiLevel(st,next)};
+    next.coins+=coins;if(won){next.wins++;next.stars[id]=Math.max(before.stars[id]||0,stars);next.mastery=clamp(before.mastery+(stars===3?2:1),0,MASTERY_MAX);delete next.fails[id];}
+    else{next.losses++;next.fails[id]=(before.fails[id]||0)+1;next.mastery=clamp(before.mastery-(next.fails[id]>=2?2:1),0,MASTERY_MAX);}
+    return {progress:next,coins,stars,firstClear,fails:next.fails[id]||0,levelBefore:aiLevel(st,before),levelAfter:aiLevel(st,next)};
   }
   const totalStars=p=>Object.values(p.stars).reduce((a,b)=>a+b,0);
   const nextStage=id=>{const i=stages.findIndex(s=>s.id===id);return i>=0?stages[i+1]||null:null;};
-  return {trails:TRAILS,stages,stage,defaults,sanitize,unlocked,aiLevel,settle,totalStars,nextStage,MASTERY_MAX};
+  return {RELIEF_AFTER,trails:TRAILS,stages,stage,defaults,sanitize,unlocked,aiLevel,settle,totalStars,nextStage,MASTERY_MAX};
 }
 
 // Trilhas UI: trail map, stage briefing, AI duels and coin payouts. Progress is stored on this device.
@@ -1223,6 +1239,13 @@ let trailProgress=loadTrails(),trailStage=null,trailPick=null;
 function loadTrails(){try{return trails.sanitize(JSON.parse(localStorage.getItem(TRAILS_KEY)||'null'));}catch{return trails.defaults();}}
 function saveTrails(){try{localStorage.setItem(TRAILS_KEY,JSON.stringify(trailProgress));}catch{}}
 function reflectCoins(){setText('coinCount',String(trailProgress.coins));}
+const TIP_TECHNIQUE='Truque de pipeiro: cruze com a ponta da sua linha, pertinho da sua pipa (o trecho verde, fora da sua faixa tracejada). Dali você corta, mas não pode ser cortado.';
+// Kite choice inside the briefing, so guests can switch almática between attempts.
+function renderStageKites(st){
+ $('stageKites').replaceChildren(...TYPE_NAMES.map((name,i)=>{const b=document.createElement('button');b.className='stage-kite'+(selected===i?' selected':'')+(st.counter===i?' recommended':'');b.setAttribute('aria-pressed',String(selected===i));b.setAttribute('aria-label',name+(st.counter===i?' (recomendada)':''));
+  b.innerHTML='<span class="foe-art">'+art.markup(i)+'</span><small></small>';b.querySelector('small').textContent=name;
+  b.onclick=()=>{if(playerAccount){closeTrails();openAccount();return;}selected=i;try{localStorage.setItem('pipaColor',String(i));}catch{}choices();renderStage();};return b;}));
+}
 const starText=n=>'★'.repeat(n)+'☆'.repeat(3-n);
 function firstOpenStage(){return trails.stages.find(s=>trails.unlocked(trailProgress,s.id)&&!trailProgress.stars[s.id])||trails.stages.at(-1);}
 function openTrails(){
@@ -1254,11 +1277,13 @@ function renderStage(){
  const st=trails.stage(trailPick),open=trails.unlocked(trailProgress,st.id),level=trails.aiLevel(st,trailProgress),best=trailProgress.stars[st.id]||0,trail=trails.trails[st.trailIndex];
  setText('stageTrail',trail.name+' · Etapa '+(st.index+1)+(st.boss?' · CHEFE':''));setText('stageName',st.name);
  $('stageFoes').replaceChildren(...st.foes.map(f=>{const row=document.createElement('div');row.className='stage-foe';row.innerHTML='<span class="foe-art">'+art.markup(f.color,f.soul)+'</span><div><b></b><small></small></div>';row.querySelector('b').textContent=f.name;row.querySelector('small').textContent=TYPE_NAMES[f.color]+(f.soul?' · Alma lendária':'');return row;}));
- setText('stageLevel','IA nível '+level+(level>st.level?' (base '+st.level+', +'+(level-st.level)+' pela sua maestria)':''));
+ const fails=trailProgress.fails[st.id]||0;
+ setText('stageLevel','IA nível '+level+(level>st.level?' (base '+st.level+', +'+(level-st.level)+' pela sua maestria)':level<st.level?' (pegando mais leve depois de '+fails+' derrotas)':''));
+ renderStageKites(st);
  setText('stageFormat','Melhor de '+(st.rounds*2-1)+' · vence quem fizer '+st.rounds+' rodada'+(st.rounds>1?'s':''));
  setText('stageReward','🪙 '+st.coins+'–'+Math.round(st.coins*1.5)+' moedas'+(best?'':' · +'+st.coins+' na primeira vitória'));
  setText('stageBest',best?'Seu melhor: '+starText(best):'Ainda não vencida');
- setText('stageTip',st.tip);
+ setText('stageTip',fails>=2?TIP_TECHNIQUE:st.tip);
  $('trailStart').disabled=!open;$('trailStart').textContent=open?(best?'Voar de novo ▶':'Voar ▶'):'Vença a etapa anterior';
  if(art.load)art.load('sr-assis-expressions').then(()=>{const c=$('stageAssis'),g=c.getContext('2d');g.clearRect(0,0,c.width,c.height);art.draw(g,'sr-assis-expressions','speaking',0,0,c.width,c.height,true);});
 }
@@ -1275,11 +1300,15 @@ function showTrailResult(s,ranking,mine){
  trailProgress=r.progress;saveTrails();reflectCoins();
  const st=trails.stage(s.trail),next=trails.nextStage(s.trail),canNext=won&&next&&trails.unlocked(trailProgress,next.id);
  const rows=ranking.map((q,i)=>'<div class="result-rank'+(q.id===me?' me':'')+'"><span><i class="result-dot" style="background:'+playerColor(q)+'"></i>'+(i+1)+'. '+escapeHTML(q.name)+(q.id===me?' · você':'')+'</span><b>'+(q.rounds||0)+' ★</b></div>').join('');
+ // Sr. Assis coaches harder the more a stage resists: the stage tip, then the line-tip trick, then the right almática.
+ const counter=Number.isInteger(st.counter)&&st.counter!==selected?st.counter:null;
+ const coach=won?'':r.fails>=trails.RELIEF_AFTER?(counter!==null?'A '+TYPE_NAMES[counter]+' é a melhor resposta para esta etapa. ':'')+'A IA desta etapa vai pegar mais leve até você vencer. '+TIP_TECHNIQUE:r.fails===2?TIP_TECHNIQUE:st.tip;
  const levelNote=r.levelAfter>r.levelBefore?'A IA aprendeu com você: agora ela joga no nível '+r.levelAfter+'.':r.levelAfter<r.levelBefore?'A IA vai pegar um pouco mais leve: nível '+r.levelAfter+'.':'IA desta etapa: nível '+r.levelAfter+'.';
  modal(won?(st.boss?'Chefe derrotado!':'Etapa vencida!'):'Não foi dessa vez.',
-  '<div class="trail-result"><div class="result-stars">'+starText(r.stars)+'</div>'+(won?'<div class="coin-gain">+'+r.coins+' 🪙'+(r.firstClear?'<small>inclui bônus da primeira vitória</small>':'')+'</div>':'<p>Rodadas vencidas: '+(mine?.rounds||0)+' de '+s.roundsToWin+'. Treine o cruzamento e tente de novo.</p>')+'<p class="trail-note">'+levelNote+' Total: '+trailProgress.coins+' moedas.</p></div>'+rows+
-  '<button class="primary" id="rematchButton">'+(canNext?'Próxima etapa ▶':'Tentar de novo ↻')+'</button>','Voltar às trilhas',st.name);
+  '<div class="trail-result"><div class="result-stars" aria-label="'+r.stars+' de 3 estrelas">'+'★'.repeat(r.stars)+'<span class="off">'+'★'.repeat(3-r.stars)+'</span></div>'+(won?'<div class="coin-gain">+'+r.coins+' 🪙'+(r.firstClear?'<small>inclui bônus da primeira vitória</small>':'')+'</div>':'<p>Rodadas vencidas: '+(mine?.rounds||0)+' de '+s.roundsToWin+'. Treine o cruzamento e tente de novo.</p>')+(coach?'<p class="trail-coach"><b>Sr. Assis:</b> '+escapeHTML(coach)+'</p>':'')+'<p class="trail-note">'+levelNote+' Total: '+trailProgress.coins+' moedas.</p></div>'+rows+
+  '<button class="primary" id="rematchButton">'+(canNext?'Próxima etapa ▶':'Tentar de novo ↻')+'</button>'+(counter!==null&&!won&&!playerAccount?'<button class="secondary" id="trailCounter">Tentar com a '+TYPE_NAMES[counter]+' ↻</button>':''),'Voltar às trilhas',st.name);
  $('rematchButton').onclick=()=>{closeModal();startStage(canNext?next.id:s.trail);};
+ if($('trailCounter'))$('trailCounter').onclick=()=>{selected=counter;try{localStorage.setItem('pipaColor',String(counter));}catch{}choices();closeModal();startStage(s.trail);};
  $('dialogAction').className='secondary';$('dialogAction').onclick=()=>{closeModal();openTrails();};
 }
 $('trailsButton').onclick=openTrails;$('trailsClose').onclick=closeTrails;$('trailStart').onclick=()=>startStage(trailPick);

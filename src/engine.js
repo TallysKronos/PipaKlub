@@ -73,7 +73,11 @@ export function createEngine() {
   }
   function botInput(s,p,dt){
     const b=brain(p.ai?.level),foes=s.players.filter(q=>q.id!==p.id&&!q.respawn&&!(q.shield>0));
-    const target=foes.sort((a,c)=>Number(!!contact(p,c)?.valid)-Number(!!contact(p,a)?.valid)||(b.weakest?a.hp-c.hp:0)||Math.hypot(a.x-p.x,a.y-p.y)-Math.hypot(c.x-p.x,c.y-p.y)||a.id.localeCompare(c.id))[0];
+    // Leveled bots spread out: a kite another bot is already hunting is a worse target, so free-for-all
+    // stages stay every-pilot-for-himself instead of turning into bots ganging up on the player.
+    const hunters=q=>p.ai?s.players.filter(o=>o.bot&&o!==p&&!o.respawn&&o.aiTarget===q.id).length:0;
+    const target=foes.sort((a,c)=>hunters(a)-hunters(c)||Number(!!contact(p,c)?.valid)-Number(!!contact(p,a)?.valid)||(b.weakest?a.hp-c.hp:0)||Math.hypot(a.x-p.x,a.y-p.y)-Math.hypot(c.x-p.x,c.y-p.y)||a.id.localeCompare(c.id))[0];
+    p.aiTarget=target?.id;
     // Seek a crossing on the target line rather than chasing its kite; weaker bots wobble around the golden centre.
     const frac=.6+b.jitter*Math.sin(s.last/650+(p.slot||0)*1.7);
     let x=500,y=180;

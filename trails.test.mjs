@@ -25,7 +25,7 @@ test('the AI adapts: wins raise mastery and AI level, losses lower it, both stay
 });
 test('stored progress is sanitised',()=>{
  const p=t.sanitize({coins:-50,stars:{'morro-1':99,'fake':3,'morro-2':'x'},mastery:999,wins:'7'});
- assert.deepEqual(p,{coins:0,stars:{'morro-1':3},mastery:t.MASTERY_MAX,wins:7,losses:0});
+ assert.deepEqual(p,{coins:0,stars:{'morro-1':3},mastery:t.MASTERY_MAX,wins:7,losses:0,fails:{}});
  assert.deepEqual(t.sanitize('lixo'),t.defaults());
 });
 test('higher AI levels beat lower ones and keep bot defaults unchanged',()=>{
@@ -33,4 +33,15 @@ test('higher AI levels beat lower ones and keep bot defaults unchanged',()=>{
  const duel=(la,lb,seed)=>{const s=e.create(0,{mode:'rounds',roundsToWin:2}),a=e.player('A',seed%4,'a',0),b=e.player('B',(seed+1)%4,'b',0);a.bot=b.bot=true;a.ai={level:la};b.ai={level:lb};
   if(seed%2){e.admit(s,a,0);e.admit(s,b,0);}else{e.admit(s,b,0);e.admit(s,a,0);}for(let now=16;now<s.end&&now<600000;now+=16)e.step(s,now);return (a.rounds||0)>(b.rounds||0);};
  let strong=0;for(let i=0;i<8;i++)strong+=duel(8,2,i)?1:0;assert.ok(strong>=7,'level 8 should beat level 2, won '+strong+'/8');
+});
+
+test('extra rivals cap the mastery bonus, and repeated losses ease the stage until it is won',()=>{
+ const max={...t.defaults(),mastery:t.MASTERY_MAX};
+ assert.equal(t.aiLevel(t.stage('praia-2'),max),t.stage('praia-2').level+1,'two rivals: at most +1');
+ assert.equal(t.aiLevel(t.stage('praia-1'),max),t.stage('praia-1').level+4);
+ let p=max;const levels=[];for(let i=0;i<4;i++){const r=t.settle(p,'praia-1',{won:false});p=r.progress;levels.push(r.levelAfter);assert.equal(r.fails,i+1);}
+ assert.deepEqual(p.fails,{'praia-1':4});assert.equal(p.mastery,t.MASTERY_MAX-1-2-2-2,'second loss in a row drops mastery faster');
+ assert.ok(levels.at(-1)<levels[0]);assert.equal(t.aiLevel(t.stage('praia-1'),{...p,mastery:0}),t.stage('praia-1').level-1,'relief after three losses');
+ const won=t.settle(p,'praia-1',{won:true,roundsLost:1});assert.deepEqual(won.progress.fails,{});
+ for(const id of ['morro-3','torres-2','torres-4'])assert.equal(t.stage(id).counter,2,'Guardiã is the recommended answer where the audit found it decisive');
 });

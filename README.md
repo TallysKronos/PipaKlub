@@ -49,6 +49,13 @@ Três trilhas com cinco etapas cada (`src/trails.js`). Cada etapa é um duelo po
 
 A IA tem níveis de 1 a 10 (`brain` em `src/engine.js`): tempo de reação, descanso entre puxadas, velocidade, precisão da mira no centro dourado, desvio quando está na mira do rival, reserva de energia, escolha do alvo mais fraco e uso tático da habilidade. Bots sem nível mantêm o comportamento do treino livre. A dificuldade é adaptativa: a Maestria (0–8) sobe a cada vitória (+2 com 3 estrelas) e cai a cada derrota; cada 2 pontos somam um nível à IA de todas as etapas.
 
+Equilíbrio auditado (`trails-audit.test.mjs`): um jogador simulado com atraso de visão, mouse com velocidade limitada, erro de mira e tempo de reação, sem truques nem habilidade, precisa terminar todas as trilhas tentando de novo. Regras que garantem isso:
+
+- Bots com nível espalham os alvos: em etapas com vários rivais, um bot evita caçar quem outro bot já está caçando, para a disputa ser cada um por si.
+- Em etapas com mais de um rival, a Maestria soma no máximo +1 nível.
+- Derrotas seguidas na mesma etapa derrubam a Maestria mais rápido (−2 a partir da segunda) e, depois de três, a IA daquela etapa joga um nível abaixo até você vencer.
+- O Sr. Assis orienta a cada derrota: a dica da etapa, depois o truque da ponta da linha (o trecho verde entre 86% e 95% da sua linha corta sem poder ser cortado), depois a almática recomendada para a etapa. A almática pode ser trocada na própria tela da etapa, inclusive sem conta.
+
 O progresso e as moedas ficam no aparelho (`localStorage`, chave `pipaTrailsV1`) e ainda não vão para a conta; por serem calculados no navegador, não devem valer para recompensas compartilhadas.
 
 ## Multiplayer
