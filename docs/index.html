@@ -165,6 +165,11 @@ body:not(.in-match) .combat-readout{display:none}
 .touch-actions .skill-touch{font-size:12px;background:#ffe9a8}
 @media (pointer:coarse){.touch.active{display:flex}}
 body.in-match .arena canvas{cursor:crosshair}
+/* The mobile lobby scroll layer must not intercept arena gestures in a match. */
+body.in-match .menu{display:none}
+.school-coach{pointer-events:none}
+.school-coach button{pointer-events:auto}
+@media(pointer:coarse){body.in-school .school-coach{bottom:124px}}
 .dpad{display:none!important}
 .drag-hint{align-self:end;padding:6px 12px;border-radius:9px;border:3px solid var(--line);background:#fff6ddd0;font:400 13px var(--px);pointer-events:none}
 
@@ -522,6 +527,8 @@ body.in-match .arena-bottom{display:none}
 .club-tile-art{width:clamp(80px,17dvh,140px);flex-shrink:0;margin:0 auto}.club-tile b{font-size:16px;margin:9px 8px 3px}.club-tile small{font-size:12px;font-weight:400;padding:0 8px;line-height:1.4}.club-events{grid-column:1/-1}.club-back{margin-bottom:16px}.club-page>h3{margin-top:8px}.club-farm-art{max-width:260px;margin:auto;border-radius:20px}.club-badge{display:inline-block;background:#eee3c7;color:#6a532b;padding:6px 12px;border-radius:20px;font-size:12px}.club-page .trade-panel{margin-top:0}.club-page .summon-room{margin-top:0}
 @media(max-width:560px){.account-card{padding:20px 14px}.club-home{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.club-tile b{font-size:14px}.club-tile small{font-size:11px}.account-card h2{font-size:24px}}
 @media(prefers-reduced-motion:reduce){.club-tile{transition:none}.club-tile:hover{transform:none}}
+.school-card{position:relative;max-width:720px;max-height:90dvh;overflow:auto;width:100%;padding:24px}.school-heading{display:flex;align-items:center;gap:16px}.school-heading canvas{flex-shrink:0}.school-heading h2{font:26px var(--px);margin:5px 0}.school-heading p{font-size:14px;line-height:1.5}.school-lessons{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}.school-lesson{text-align:left;padding:15px!important}.school-links,.school-controls{display:flex;gap:8px;flex-wrap:wrap}.school-links>*{flex:1}.school-coach{position:fixed;z-index:45;bottom:16px;left:18px;width:min(370px,calc(100vw - 36px));padding:14px 16px;background:#fffdf5f5;border:2px solid #263b3d;border-radius:16px;box-shadow:0 4px 0 #263b3d30}.school-coach p{font-size:13px;line-height:1.45;margin:8px 0}.school-coach b{font:20px var(--px)}.school-coach .school-controls button{font-size:11px;padding:8px}.school-controls button{width:auto!important;flex:1;margin:0!important}.school-links button{width:auto!important;margin:0!important}.school-coach[hidden],.school-tour[hidden]{display:none!important}.school-tour{position:fixed;inset:0;z-index:150;background:#132b3d65}.school-spot{position:fixed;border:3px solid #ffe072;border-radius:14px;box-shadow:0 0 0 3px #1b3e3d;pointer-events:none}.school-tour-card{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);width:min(540px,calc(100vw - 32px));padding:20px}.school-tour-card h2{font:24px var(--px);margin:6px 0}.school-tour-card p{line-height:1.5;font-size:14px}.in-school .hud-clock,.in-school #combatReadout{display:none}
+@media(max-width:600px){.school-card{padding:18px}.school-heading canvas{width:65px;height:75px}.school-heading h2{font-size:22px}.school-lessons{grid-template-columns:1fr}.school-coach{bottom:12px;padding:10px 12px;width:calc(100vw - 24px);left:12px}.school-coach p{font-size:12px;margin:5px 0}.school-coach b{font-size:18px}.school-tour-card{bottom:12px}}
 </style></head>
 <body>
 <div id="game">
@@ -1097,8 +1104,8 @@ if(!mode&&t-lastFrame<1000/30)return;
 const now=Date.now(),dt=Math.min(Math.max((t-lastFrame)/1000,0),.1);
 const health=frameHealth.sample(t,!!mode&&!showResult);
 if(health){setText('renderStats',health.fps+' fps'+(lightMode?' · leve':''));if(health.needsLight&&!lightMode&&allowAutoQuality)setQuality(true,true);}
-if(mode==='practice'&&state&&!pausedAt){eng.practiceStep(state,me,input(),now);renderPlayers=null;}else if(mode==='online'&&state){pumpNetwork(t);renderPlayers=networkView.render(t,input(),dt);}
-draw(t);if(state&&t-lastHud>100){updateHud(serverNow());lastHud=t;}lastFrame=t;
+if(mode==='practice'&&state&&!pausedAt){if(schoolRun)stepSchool(now);else eng.practiceStep(state,me,input(),now);renderPlayers=null;}else if(mode==='online'&&state){pumpNetwork(t);renderPlayers=networkView.render(t,input(),dt);}
+draw(t);drawSchoolGuide();if(state&&t-lastHud>100){updateHud(serverNow());lastHud=t;}lastFrame=t;
 }requestAnimationFrame(frame);
 function updateHud(now){
 const p=state.players.find(p=>p.id===me);if(!p)return;
@@ -1943,5 +1950,132 @@ addEventListener('keydown',e=>{
 setInterval(()=>{if(introductionOpen&&!document.hidden){introductionTick++;renderIntroduction();}},180);
 // Invitations go straight to the lobby, so newcomers can join friends without a blocking introduction.
 setTimeout(()=>{if(!introSeen()&&!mode&&!param&&$('pipaDex').hidden&&$('accountModal').style.display!=='flex'&&$('modal').style.display!=='flex')openIntroduction();},650);
+
+// Offline exercises use the real combat engine and never grant inventory or coins.
+function createSchool(engine){
+ const lessons=[
+  {id:'crossing',name:'Cruze as linhas',hint:'Leve sua pipa até o círculo verde. Quando as linhas se cruzarem, ataque com Espaço, clique ou o botão Cortar.',success:'Acertou! É o cruzamento das linhas que corta, não a proximidade das pipas.'},
+  {id:'tip',name:'A ponta da sua linha',hint:'Busque o círculo verde e ataque. O cruzamento deve ficar perto da sua pipa, fora da faixa vulnerável da sua linha.',success:'Boa! A ponta da sua linha alcança o rival, enquanto ele não alcança sua faixa vulnerável.'},
+  {id:'golden',name:'Centro dourado',hint:'Alinhe com o círculo e ataque o trecho dourado da linha da pipa de treino. Observe a mira no cruzamento.',success:'No centro dourado, seu puxão desgasta mais a linha rival.'},
+  {id:'critical',name:'Rele para o crítico',hint:'Chegue ao círculo. Mantenha a pipa em movimento enquanto ataca o centro dourado em ângulo aberto. Um toque na diagonal com ataque funciona.',success:'Crítico! Centro dourado + ângulo aberto + movimento no momento do puxão.'},
+  {id:'dodge',name:'Esquiva perfeita',hint:'Aguarde o aviso “Agora!” e toque Shift, botão do meio ou Esquivar. Fique no cruzamento para desviar do puxão.',success:'Esquiva perfeita! Você recuperou a energia da esquiva e ganhou um contra-ataque crítico.'},
+  {id:'energy',name:'Recupere seu fôlego',hint:'Sua energia começa baixa. Solte o ataque e observe a barra subir até 90%. Mover a pipa não impede a recuperação.',success:'Pronto para voar! Soltar o ataque recupera energia mais rápido. Sua linha não se conserta sozinha.'}
+ ];
+ function create(index,now){
+  if(!Number.isInteger(index)||!lessons[index])throw Error('Lição inválida');
+  const state=engine.create(now),p=engine.player('Você',0,'you',now),q=engine.player('Pipa de treino',1,'school-nozinho',now);
+  Object.assign(p,{anchorX:90,x:index===4?700:350,y:180,shield:0,hp:100});
+  Object.assign(q,{anchorX:910,x:300,y:180,shield:0,hp:100});state.players=[p,q];state.school=true;
+  if(index===5)p.energy=25;
+  return {index,state,target:index===1?{x:550,y:300}:{x:700,y:180},started:now,last:now,complete:false,warning:'',contact:null};
+ }
+ function tick(run,input,now){
+  if(run.complete)return run;
+  const {state,index}=run,[p,q]=state.players,dt=Math.min(.25,Math.max(0,(now-run.last)/1000));run.last=now;
+  // No time limit, eliminations, automatic opponent AI, network writes or rewards.
+  state.end=now+3600000;p.seen=q.seen=now;q.input={};p.hp=q.hp=100;q.x=300;q.y=180;
+  if(index===4){const phase=((run.elapsed||0)*1000)%4000;q.input={cut:phase>=2200&&phase<2450};run.warning=phase>=2200&&phase<2450?'Agora! Esquive!':phase>=1200&&phase<2200?'Prepare-se… o puxão vem aí.':'Aguarde o sinal do alvo.';}
+  const hits=p.hits||0,crits=p.crits||0,dodges=p.perfectDodges||0;
+  engine.practiceStep(state,p.id,input,now);const c=engine.contact(p,q);run.contact=c;
+  const hit=(p.hits||0)>hits;
+  run.complete=index===0?hit:index===1?hit&&c?.own>=.85&&!engine.contact(q,p)?.valid:index===2?hit&&c?.perfect:index===3?(p.crits||0)>crits:index===4?(p.perfectDodges||0)>dodges:!input.cut&&p.energy>=90;
+  run.elapsed=(run.elapsed||0)+dt;return run;
+ }
+ return {lessons,create,tick};
+}
+
+const school=createSchool(eng),SCHOOL_KEY='pipaSchoolV1',TOUR_KEY='pipaMenuTourV1';
+let schoolRun=null,schoolDone=[],schoolTourStep=-1,schoolLastNotice='';
+try{const saved=JSON.parse(localStorage.getItem(SCHOOL_KEY)||'[]');if(Array.isArray(saved))schoolDone=saved.filter(id=>school.lessons.some(l=>l.id===id));}catch{}
+const schoolHub=document.createElement('div');schoolHub.id='schoolHub';schoolHub.className='overlay';schoolHub.hidden=true;
+schoolHub.innerHTML='<section class="panel school-card" role="dialog" aria-modal="true" aria-labelledby="schoolTitle"><button class="close" id="schoolClose" aria-label="Fechar escola">×</button><div class="school-heading"><canvas id="schoolAssis" width="90" height="100" aria-label="Sr. Assis"></canvas><div><div class="eyebrow">Um passo de cada vez</div><h2 id="schoolTitle">Escola do Sr. Assis</h2><p>Treine à vontade. Aqui você não perde pipas e não gasta itens.</p></div></div><p id="schoolProgress" role="status"></p><div id="schoolLessons" class="school-lessons"></div><div class="school-links"><button class="secondary" id="schoolTour">Conhecer os menus</button><button class="secondary" id="schoolTalk">Conversar com o Sr. Assis</button><button class="primary" id="schoolMorro">Ir para o Morro ▶</button></div><p class="collection-info">Seu avanço nas lições fica salvo neste aparelho.</p></section>';
+document.body.append(schoolHub);
+const schoolCoach=document.createElement('section');schoolCoach.id='schoolCoach';schoolCoach.className='school-coach';schoolCoach.hidden=true;schoolCoach.setAttribute('aria-label','Orientação do Sr. Assis');
+schoolCoach.innerHTML='<div class="eyebrow" id="schoolNumber"></div><b id="schoolLessonName"></b><p id="schoolHint"></p><p id="schoolNotice" role="status" aria-live="polite"></p><div class="school-controls"><button class="secondary" id="schoolRetry">Recomeçar</button><button class="secondary" id="schoolExit">Voltar à escola</button><button class="primary" id="schoolNext" disabled>Próxima lição ▶</button></div>';
+document.body.append(schoolCoach);
+const schoolTour=document.createElement('div');schoolTour.id='schoolTourOverlay';schoolTour.hidden=true;schoolTour.className='school-tour';
+schoolTour.innerHTML='<div id="schoolSpot" class="school-spot" aria-hidden="true"></div><section class="panel school-tour-card" role="dialog" aria-modal="true" aria-labelledby="schoolTourTitle"><div class="eyebrow" id="schoolTourCount"></div><h2 id="schoolTourTitle"></h2><p id="schoolTourText"></p><div class="school-controls"><button class="secondary" id="schoolTourSkip">Pular tour</button><button class="secondary" id="schoolTourBack">Voltar</button><button class="primary" id="schoolTourNext">Continuar ▶</button></div></section>';
+document.body.append(schoolTour);
+const schoolTourStops=[
+ ['accountButton','Seu lugar no clube','Entre na conta para guardar suas pipas. Em Minha conta você encontra coleção, trocas, invocação e seu perfil.'],
+ ['trailsButton','Comece pelo Morro','As Trilhas são desafios em sequência. Comece na etapa 1 do Morro; as vitórias abrem novos caminhos.'],
+ ['quickButton','Um encontro no céu','Partida rápida procura jogadores e completa a sala com bots quando necessário.'],
+ ['practice','Treine sem pressa','O treino livre deixa você experimentar movimentos e habilidades contra bots.'],
+ ['dexButton','Conheça os Pipamon','A Pipa Dex reúne criaturas, histórias e rabiolas. Consultar a Dex não entrega pipas à sua conta.'],
+ ['meetAssis','Eu fico por aqui','Volte à Escola do Sr. Assis quando quiser repetir uma lição. Agora vamos praticar!']
+];
+function closeSchool(){schoolHub.hidden=true;schoolHub.style.display='none';$('meetAssis').focus?.();}
+function renderSchool(){
+ $('schoolProgress').textContent=schoolDone.length+' de '+school.lessons.length+' lições concluídas';
+ $('schoolLessons').replaceChildren(...school.lessons.map((lesson,i)=>{const b=document.createElement('button');b.type='button';b.className='school-lesson secondary';b.textContent=(schoolDone.includes(lesson.id)?'✓ ':'')+(i+1)+'. '+lesson.name;b.onclick=()=>startSchoolLesson(i);return b;}));
+}
+function openSchool(){
+ if(mode){toast('Saia da partida para visitar a escola.');return;}
+ if(introductionOpen)closeIntroduction();if(accountModal.style.display==='flex')closeAccount();
+ closeTrails();keys={};resetPointer();renderSchool();schoolHub.hidden=false;schoolHub.style.display='flex';$('schoolClose').focus?.();
+ art.load('sr-assis-expressions').then(()=>{const c=$('schoolAssis'),context=c.getContext('2d');if(!context)return;context.clearRect(0,0,c.width,c.height);art.draw(context,'sr-assis-expressions','speaking',0,0,c.width,c.height,true);});
+}
+function startSchoolLesson(index){
+ if(mode&& !schoolRun)return;
+ if(schoolRun){schoolRun=null;leave();}
+ closeSchool();closeSchoolTour(false);trailStage=null;
+ schoolRun=school.create(index,Date.now());enter(schoolRun.state,'you','practice');
+ schoolCoach.hidden=false;document.body.classList.add('in-school');schoolLastNotice='';
+ const lesson=school.lessons[index];$('schoolNumber').textContent='Escola · lição '+(index+1)+' de '+school.lessons.length;
+ $('schoolLessonName').textContent=lesson.name;$('schoolHint').textContent=lesson.hint;$('schoolNotice').textContent='';$('schoolNext').disabled=true;
+ $('schoolNext').textContent=index===school.lessons.length-1?'Ir para o Morro ▶':'Próxima lição ▶';
+ setText('liveLabel','Escola do Sr. Assis');setText('arenaMode','Exercício livre · sem perdas');setText('modeLabel','ESCOLA');
+ $('sky').focus?.();
+}
+function stepSchool(now){
+ if(!schoolRun)return;school.tick(schoolRun,input(),now);
+ const lesson=school.lessons[schoolRun.index],notice=schoolRun.complete?lesson.success:schoolRun.warning||(schoolRun.index===5?'Solte o ataque e acompanhe sua energia subir até 90%.':'Busque o círculo verde para preparar o cruzamento.');
+ if(notice!==schoolLastNotice){schoolLastNotice=notice;$('schoolNotice').textContent=notice;}
+ if(schoolRun.complete&&!schoolRun.saved){
+  schoolRun.saved=true;if(!schoolDone.includes(lesson.id)){schoolDone.push(lesson.id);try{localStorage.setItem(SCHOOL_KEY,JSON.stringify(schoolDone));}catch{}}
+  keys={};resetPointer();$('schoolNext').disabled=false;$('schoolNext').focus?.();
+ }
+}
+function drawSchoolGuide(){
+ if(!schoolRun||schoolRun.complete||schoolRun.index>=4)return;
+ const {x,y}=schoolRun.target;ctx.save();ctx.strokeStyle='#26704b';ctx.fillStyle='#ffffffb0';ctx.lineWidth=3;ctx.setLineDash([5,5]);ctx.beginPath();ctx.arc(x,y,30,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#183e38';ctx.font='16px sans-serif';ctx.textAlign='center';ctx.fillText('Mire aqui',x,y-42);ctx.restore();
+}
+function exitSchoolLesson(){schoolRun=null;schoolCoach.hidden=true;document.body.classList.remove('in-school');}
+const schoolOriginalLeave=leave;
+leave=function(){exitSchoolLesson();schoolOriginalLeave();};
+function goSchoolMorro(){if(schoolRun)leave();closeSchool();closeSchoolTour(false);trailPick=trails.stages[0].id;openTrails();}
+$('schoolRetry').onclick=()=>{if(schoolRun)startSchoolLesson(schoolRun.index);};
+$('schoolExit').onclick=()=>{leave();openSchool();};
+$('schoolNext').onclick=()=>{if(!schoolRun?.complete)return;const next=schoolRun.index+1;if(next<school.lessons.length)startSchoolLesson(next);else goSchoolMorro();};
+$('schoolClose').onclick=closeSchool;$('schoolMorro').onclick=goSchoolMorro;
+$('schoolTalk').onclick=()=>{closeSchool();openIntroduction();};
+schoolHub.onclick=e=>{if(e.target===schoolHub)closeSchool();};
+function positionSchoolSpot(){
+ if(schoolTourStep<0)return;const target=$(schoolTourStops[schoolTourStep][0]);target.scrollIntoView?.({block:'nearest'});const r=target.getBoundingClientRect();
+ const card=schoolTour.querySelector('.school-tour-card'),above=r.top>(document.documentElement.clientHeight||600)/2;card.style.top=above?'24px':'auto';card.style.bottom=above?'auto':'24px';
+ Object.assign($('schoolSpot').style,{left:r.left-6+'px',top:r.top-6+'px',width:r.width+12+'px',height:r.height+12+'px'});
+}
+function renderSchoolTour(){
+ const [,title,text]=schoolTourStops[schoolTourStep];$('schoolTourCount').textContent='Conheça o clube · '+(schoolTourStep+1)+' de '+schoolTourStops.length;
+ $('schoolTourTitle').textContent=title;$('schoolTourText').textContent=text;$('schoolTourBack').disabled=schoolTourStep===0;
+ $('schoolTourNext').textContent=schoolTourStep===schoolTourStops.length-1?'Começar as lições ▶':'Continuar ▶';positionSchoolSpot();$('schoolTourNext').focus?.();
+}
+function openSchoolTour(){if(mode)return;if(introductionOpen)closeIntroduction();closeSchool();schoolTourStep=0;schoolTour.hidden=false;keys={};renderSchoolTour();}
+function closeSchoolTour(remember=true){if(schoolTourStep<0)return;schoolTourStep=-1;schoolTour.hidden=true;if(remember)try{localStorage.setItem(TOUR_KEY,'done');}catch{}}
+function firstSchoolVisit(){openSchool();let seen=false;try{seen=localStorage.getItem(TOUR_KEY)==='done';}catch{}if(!seen)openSchoolTour();}
+$('schoolTour').onclick=openSchoolTour;
+$('schoolTourBack').onclick=()=>{schoolTourStep=Math.max(0,schoolTourStep-1);renderSchoolTour();};
+$('schoolTourNext').onclick=()=>{if(schoolTourStep===schoolTourStops.length-1){closeSchoolTour();openSchool();}else{schoolTourStep++;renderSchoolTour();}};
+$('schoolTourSkip').onclick=()=>{closeSchoolTour();openSchool();};
+addEventListener('resize',positionSchoolSpot);
+addEventListener('keydown',e=>{
+ const panel=schoolTourStep>=0?schoolTour:!schoolHub.hidden?schoolHub:null;
+ if(!panel)return;
+ if(e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();if(schoolTourStep>=0){closeSchoolTour();openSchool();}else closeSchool();}
+ if(e.key==='Tab'){const buttons=[...panel.querySelectorAll('button')].filter(b=>!b.disabled),first=buttons[0],last=buttons.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus?.();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus?.();}}
+},true);
+$('meetAssis').textContent='Escola do Sr. Assis';$('meetAssis').onclick=firstSchoolVisit;
+const schoolIntroNext=$('assisNext').onclick;
+$('assisNext').onclick=()=>{if(introductionStep===ART_CONFIG.intro.steps.length-1){closeIntroduction();firstSchoolVisit();}else schoolIntroNext();};
 
 </script></body></html>

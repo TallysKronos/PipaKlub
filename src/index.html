@@ -165,6 +165,11 @@ body:not(.in-match) .combat-readout{display:none}
 .touch-actions .skill-touch{font-size:12px;background:#ffe9a8}
 @media (pointer:coarse){.touch.active{display:flex}}
 body.in-match .arena canvas{cursor:crosshair}
+/* The mobile lobby scroll layer must not intercept arena gestures in a match. */
+body.in-match .menu{display:none}
+.school-coach{pointer-events:none}
+.school-coach button{pointer-events:auto}
+@media(pointer:coarse){body.in-school .school-coach{bottom:124px}}
 .dpad{display:none!important}
 .drag-hint{align-self:end;padding:6px 12px;border-radius:9px;border:3px solid var(--line);background:#fff6ddd0;font:400 13px var(--px);pointer-events:none}
 
@@ -522,6 +527,8 @@ body.in-match .arena-bottom{display:none}
 .club-tile-art{width:clamp(80px,17dvh,140px);flex-shrink:0;margin:0 auto}.club-tile b{font-size:16px;margin:9px 8px 3px}.club-tile small{font-size:12px;font-weight:400;padding:0 8px;line-height:1.4}.club-events{grid-column:1/-1}.club-back{margin-bottom:16px}.club-page>h3{margin-top:8px}.club-farm-art{max-width:260px;margin:auto;border-radius:20px}.club-badge{display:inline-block;background:#eee3c7;color:#6a532b;padding:6px 12px;border-radius:20px;font-size:12px}.club-page .trade-panel{margin-top:0}.club-page .summon-room{margin-top:0}
 @media(max-width:560px){.account-card{padding:20px 14px}.club-home{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.club-tile b{font-size:14px}.club-tile small{font-size:11px}.account-card h2{font-size:24px}}
 @media(prefers-reduced-motion:reduce){.club-tile{transition:none}.club-tile:hover{transform:none}}
+.school-card{position:relative;max-width:720px;max-height:90dvh;overflow:auto;width:100%;padding:24px}.school-heading{display:flex;align-items:center;gap:16px}.school-heading canvas{flex-shrink:0}.school-heading h2{font:26px var(--px);margin:5px 0}.school-heading p{font-size:14px;line-height:1.5}.school-lessons{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}.school-lesson{text-align:left;padding:15px!important}.school-links,.school-controls{display:flex;gap:8px;flex-wrap:wrap}.school-links>*{flex:1}.school-coach{position:fixed;z-index:45;bottom:16px;left:18px;width:min(370px,calc(100vw - 36px));padding:14px 16px;background:#fffdf5f5;border:2px solid #263b3d;border-radius:16px;box-shadow:0 4px 0 #263b3d30}.school-coach p{font-size:13px;line-height:1.45;margin:8px 0}.school-coach b{font:20px var(--px)}.school-coach .school-controls button{font-size:11px;padding:8px}.school-controls button{width:auto!important;flex:1;margin:0!important}.school-links button{width:auto!important;margin:0!important}.school-coach[hidden],.school-tour[hidden]{display:none!important}.school-tour{position:fixed;inset:0;z-index:150;background:#132b3d65}.school-spot{position:fixed;border:3px solid #ffe072;border-radius:14px;box-shadow:0 0 0 3px #1b3e3d;pointer-events:none}.school-tour-card{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);width:min(540px,calc(100vw - 32px));padding:20px}.school-tour-card h2{font:24px var(--px);margin:6px 0}.school-tour-card p{line-height:1.5;font-size:14px}.in-school .hud-clock,.in-school #combatReadout{display:none}
+@media(max-width:600px){.school-card{padding:18px}.school-heading canvas{width:65px;height:75px}.school-heading h2{font-size:22px}.school-lessons{grid-template-columns:1fr}.school-coach{bottom:12px;padding:10px 12px;width:calc(100vw - 24px);left:12px}.school-coach p{font-size:12px;margin:5px 0}.school-coach b{font-size:18px}.school-tour-card{bottom:12px}}
 </style></head>
 <body>
 <div id="game">
@@ -827,8 +834,8 @@ if(!mode&&t-lastFrame<1000/30)return;
 const now=Date.now(),dt=Math.min(Math.max((t-lastFrame)/1000,0),.1);
 const health=frameHealth.sample(t,!!mode&&!showResult);
 if(health){setText('renderStats',health.fps+' fps'+(lightMode?' · leve':''));if(health.needsLight&&!lightMode&&allowAutoQuality)setQuality(true,true);}
-if(mode==='practice'&&state&&!pausedAt){eng.practiceStep(state,me,input(),now);renderPlayers=null;}else if(mode==='online'&&state){pumpNetwork(t);renderPlayers=networkView.render(t,input(),dt);}
-draw(t);if(state&&t-lastHud>100){updateHud(serverNow());lastHud=t;}lastFrame=t;
+if(mode==='practice'&&state&&!pausedAt){if(schoolRun)stepSchool(now);else eng.practiceStep(state,me,input(),now);renderPlayers=null;}else if(mode==='online'&&state){pumpNetwork(t);renderPlayers=networkView.render(t,input(),dt);}
+draw(t);drawSchoolGuide();if(state&&t-lastHud>100){updateHud(serverNow());lastHud=t;}lastFrame=t;
 }requestAnimationFrame(frame);
 function updateHud(now){
 const p=state.players.find(p=>p.id===me);if(!p)return;
