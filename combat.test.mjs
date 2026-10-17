@@ -125,6 +125,22 @@ test('mouse or finger steers the kite with analog input; held keys win and the l
  for(const fn of listeners.get('keyup'))fn({key:'ArrowUp'});assert.deepEqual([vm.runInContext('input().x',context),vm.runInContext('input().y',context)],[0,0],'keys hand control back until the mouse moves again');
  canvasListeners.get('pointerdown')({pointerType:'touch',pointerId:7,button:0,clientX:500,clientY:500,preventDefault(){}});i=vm.runInContext('input()',context);assert.equal(i.x,0);assert.equal(i.y,1,'finger pulls the kite to just above the touch');
  canvasListeners.get('pointerup')({pointerType:'touch',pointerId:7,type:'pointerup'});i=vm.runInContext('input()',context);assert.equal(i.y,0);
+ assert.equal(i.cut,true,'a quick tap remains queued for the next network update');
+ vm.runInContext('attackUntil=Date.now()-1;skillUntil=0',context);assert.equal(vm.runInContext('input().cut',context),false);
+ const touch=(name,x,y,id=8)=>fire(name,{pointerType:'touch',pointerId:id,clientX:x,clientY:y});
+ touch('pointerdown',500,300);touch('pointermove',430,305);assert.equal(vm.runInContext('input().skill',context),-1);
+ vm.runInContext('skillUntil=0',context);touch('pointermove',600,305);assert.equal(vm.runInContext('input().skill',context),0,'one skill per swipe');
+ touch('pointerup',600,305);assert.equal(vm.runInContext('input().cut',context),false,'swipes never attack');
+ touch('pointerdown',500,300);touch('pointermove',570,305);assert.equal(vm.runInContext('input().skill',context),1);touch('pointerup',570,305);
+ vm.runInContext('skillUntil=0',context);touch('pointerdown',500,300);touch('pointermove',510,380);assert.equal(vm.runInContext('input().skill',context),0,'vertical movement does not trigger a skill');touch('pointerup',510,380);assert.equal(vm.runInContext('input().cut',context),false);
+ touch('pointerdown',500,300);touch('pointercancel',500,300);assert.equal(vm.runInContext('input().cut',context),false,'cancel is never a tap');
+ touch('pointerdown',500,300);touch('pointerdown',100,100,9);assert.equal(vm.runInContext('pointer.id',context),8,'second finger cannot steal steering');touch('pointerup',100,100,9);assert.equal(vm.runInContext('pointer.id',context),8);touch('pointercancel',500,300);
+ fire('pointermove',{clientX:200,clientY:300});vm.runInContext('eng.move(state.players.find(p=>p.id===me),input(),.016)',context);assert.equal(vm.runInContext('state.players.find(p=>p.id===me).facing',context),-1);
+ fire('pointermove',{clientX:800,clientY:300});vm.runInContext('eng.move(state.players.find(p=>p.id===me),input(),.016)',context);assert.equal(vm.runInContext('state.players.find(p=>p.id===me).facing',context),1);
+ touch('pointerdown',500,300);touch('pointerup',500,300);for(const fn of listeners.get('blur'))fn();assert.equal(vm.runInContext('input().cut',context),false,'losing focus clears queued attacks');
+ sky.width=390;sky.height=720;sky.getBoundingClientRect=()=>({left:0,top:0,width:390,height:720});
+ const view=vm.runInContext('worldView()',context);assert.equal(view.portrait,true);assert.ok(view.s>390/1000,'portrait gets a closer view');
+ for(const x of [55,500,945]){vm.runInContext(`state.players.find(p=>p.id===me).x=${x}`,context);const v=vm.runInContext('worldView()',context),screenX=x*v.s+v.x;assert.ok(screenX>=0&&screenX<=390,'own kite remains visible at both world boundaries');fire('pointermove',{clientX:screenX+30,clientY:300*v.s+v.y});assert.ok(vm.runInContext('input().x',context)>0,'pointer uses the same camera as rendering');}
 });
 
 test('cut quality: open angle and a moving kite add damage, a shallow angle removes it, all three on the golden centre is critical',()=>{
