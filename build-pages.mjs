@@ -1,3 +1,4 @@
+import {makeHudAudit} from './scripts/hud-audit.mjs';
 import {hudSpriteCSS} from './scripts/hud-assets.mjs';
 import {artSource,copyArt} from './scripts/art-build.mjs';
 import fs from 'node:fs';
@@ -19,3 +20,5 @@ fs.writeFileSync('docs/.nojekyll','');
 console.log('GitHub Pages ready in docs/. Multiplayer server is deployed separately.');
 
 copyArt('docs');
+
+fs.writeFileSync('docs/hud-audit.html',makeHudAudit(html));
