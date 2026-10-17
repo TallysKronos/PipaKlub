@@ -88,13 +88,18 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
    if(action==='logout'){const values=cookieValues(request),access=values['__Host-pipa_access']||values.pipa_access;if(access){sessions.delete(access);try{await remote('/auth/v1/logout',{method:'POST',token:access});}catch{}}return json({ok:true},200,makeCookies(request,null));}
    const who=await identity(request,true);
    if(!who)throw new AccountError('Entre na sua conta para continuar.',401);
+   if(action==='sighting'){
+    if(typeof b.modelId!=='string'||!/^[a-z0-9-]{1,80}$/.test(b.modelId))throw new AccountError('Pipamon inválido.');
+    await rpc('record_player_sighting',{p_model:b.modelId},who.access);return json({ok:true},200,who.setCookies);
+   }
    if(action==='summon'){
     if(!['inventory','start','attempt','touch','abandon','discard'].includes(b.action))throw new AccountError('Ação de invocação inválida.');
     for(const k of ['tailId','ritualId','requestId','sessionId'])if(b[k]!=null&&!UUID.test(String(b[k])))throw new AccountError('Ritual inválido.');
+    if(b.targetModelId!=null&&(typeof b.targetModelId!=='string'||!/^[a-z0-9-]{1,80}$/.test(b.targetModelId)))throw new AccountError('Pipamon inválido.');
     if(b.path!=null&&(!Array.isArray(b.path)||b.path.length<1||b.path.length>9||b.path.some(n=>!Number.isInteger(n)||n<1||n>9)))throw new AccountError('Desenho inválido.');
     if(b.action==='start')rateLimit(request,'summon-start');
     checkPending(who.id);
-    return json({summon:await rpc('player_summon',{p_action:b.action,p_tail:b.tailId||null,p_ritual:b.ritualId||null,p_path:b.path||null,p_request:b.requestId||null,p_session:b.sessionId||null},who.access)},200,who.setCookies);
+    return json({summon:await rpc('player_summon',{p_action:b.action,p_tail:b.tailId||null,p_ritual:b.ritualId||null,p_path:b.path||null,p_request:b.requestId||null,p_session:b.sessionId||null,p_target:b.targetModelId||null},who.access)},200,who.setCookies);
    }
    if(action==='trade'){
     if(!['create','join','read','offer','confirm','cancel','history'].includes(b.action))throw new AccountError('Ação de troca inválida.');

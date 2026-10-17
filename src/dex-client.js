@@ -1,5 +1,6 @@
 // Public field guide. Browsing never grants or equips inventory items.
 const dexEntries=ART_CONFIG.dex.entries,dexOverlay=$('pipaDex');
+const reportedSightings=new Set();
 let dexEntry=dexEntries[0],dexState='idle',dexElapsed=0,dexLast=0,dexFrame=0,dexOpen=false,dexPlaying=!art.reduced,dexVersion=0;
 const dexLabels={idle:'Repouso',flight:'Voo',skill:'Habilidade',hurt:'Dano',victory:'Vitória',greet:'Saudação',happy:'Alegria'};
 function dexStates(entry){return entry.sequence?['idle']:Object.keys(art.atlases[entry.atlas].animations);}
@@ -41,6 +42,7 @@ async function loadDexArt(retry=false){
  if(loaded)drawDex();
 }
 function selectDex(entry){
+ if(playerAccount&&entry.model){const key=(playerAccount.profile?.id||'')+':'+entry.model;if(!reportedSightings.has(key)){reportedSightings.add(key);accountRequest('sighting',{modelId:entry.model}).catch(()=>reportedSightings.delete(key));}}
  dexEntry=entry;dexState='idle';dexElapsed=0;dexLast=0;$('dexDetails').hidden=false;
  $('dexDetails').scrollTop=0;dexOverlay.querySelector('.dex-layout').scrollTop=0;
  $('dexNumber').textContent='REGISTRO '+String(dexEntries.indexOf(entry)+1).padStart(3,'0');

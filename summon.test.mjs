@@ -40,6 +40,8 @@ test('summoning consumes immediately, grants exactly once, enforces three attemp
   await auth(a);r=await call('start',{tailId:tail2});
   for(let i=0;i<3;i++)r=await call('attempt',{ritualId:r.id,path:[1],requestId:randomUUID()});
   assert.equal(r.status,'failed');assert.equal(r.remaining,0);assert.equal((await call('attempt',{ritualId:r.id,path:r.pattern,requestId:randomUUID()})).status,'failed');
+  await assert.rejects(()=>call('start',{tailId:tail3}),/ainda não viu/);
+  await db.query('select public.record_player_sighting($1)',['marulume']);
   r=await call('start',{tailId:tail3});const soul=await call('attempt',{ritualId:r.id,path:r.pattern,requestId:randomUUID()});assert.equal(soul.status,'succeeded');
   await db.exec('reset role');assert.equal((await db.query('select permanent from public.player_kites where id=$1',[soul.kiteId])).rows[0].permanent,true);await assert.rejects(()=>db.query('update public.player_kites set owner_id=$1 where id=$2',[b,soul.kiteId]),/vinculada/);
   await auth(a);r=await call('start',{tailId:tail4});assert.equal((await call('abandon',{ritualId:r.id})).status,'abandoned');
@@ -48,6 +50,20 @@ test('summoning consumes immediately, grants exactly once, enforces three attemp
   await db.exec('reset role');const expiredTail=await grant('mata','expired');await auth(a);r=await call('start',{tailId:expiredTail});
   await db.exec('reset role');await db.query("update public.summon_rituals set expires_at=now()-interval '1 second' where id=$1",[r.id]);
   await auth(a);assert.equal((await call('attempt',{ritualId:r.id,path:r.pattern,requestId:randomUUID()})).status,'abandoned');assert.equal((await call('inventory')).tails[0].status,'damaged');
+  await db.exec('reset role');assert.equal((await db.query('select count(*)::int n from public.summon_recipes')).rows[0].n,0,'no alternative is enabled by default');
+  const alt=await grant('mata','alternative');await auth(a);
+  const targetedStart=async()=> (await db.query("select public.player_summon('start',$1,null,null,null,$2,'azulao') r",[alt,session])).rows[0].r;
+  await assert.rejects(targetedStart,/não aceita/);
+  await db.exec('reset role');assert.equal((await db.query('select status from public.summon_tails where id=$1',[alt])).rows[0].status,'ready','unsupported combinations do not consume the tail');
+  await db.query("insert into public.summon_recipes values('azulao','mata','raio')");await auth(a);
+  r=await targetedStart();assert.equal(r.targetModelId,'azulao');assert.equal(r.resultModelId,'raio');
+  const variant=await call('attempt',{ritualId:r.id,path:r.pattern,requestId:randomUUID()});
+  await db.exec('reset role');assert.equal((await db.query('select model_id from public.player_kites where id=$1',[variant.kiteId])).rows[0].model_id,'raio','the configured form is awarded, rather than the tail or target model');
+  const opponent=(await db.query("select public.grant_event_soul($1,'hiponilo','sighting-test') id",[b])).rows[0].id;
+  await db.query('update public.player_profiles set equipped_kite_id=$1 where id=$2',[opponent,b]);
+  const encounter=randomUUID();await db.query("select public.reserve_player_match($1,$2,'ABCDEF','casual')",[a,encounter]);await db.query("select public.reserve_player_match($1,$2,'ABCDEF','casual')",[b,encounter]);
+  await auth(a);assert.ok((await call('inventory')).seen.some(p=>p.modelId==='hiponilo'),'encountering another equipped Pipamon records a sighting');
+  await assert.rejects(()=>db.query("select public.record_player_sighting('inventado')"),/desconhecido/);
  }finally{await db.close();}
 });
 test('spell tracing captures intermediate stars, ignores repeated nodes and samples fast swipes in order',()=>{
@@ -68,18 +84,29 @@ function summonUI(request){
  document.getElementById('summonAssis').getContext=()=>({});
  return {document,run:code=>vm.runInContext(code,context)};
 }
-const testTail={id:'tail',name:'Mata verde',color:1,source:'drop',status:'ready',pattern:[1,2,3,6,9]};
+const testTail={id:'tail',modelId:'mata',name:'Mata verde',color:1,source:'drop',status:'ready',pattern:[1,2,3,6,9]};
+const testInventory=()=>({tails:[testTail],seen:[{modelId:'mata',name:'Mata verde',color:1,pattern:testTail.pattern,availableTailIds:['tail']},{modelId:'azulao',name:'Azulão',color:2,pattern:[1,2,5,6],availableTailIds:[]}]});
+function chooseTestTail(app){app.document.getElementById('summonInvoke').onclick();app.document.querySelector('#summonSeenGrid button').onclick();app.document.querySelector('#summonTailList button').onclick();}
 test('summon UI retries a lost response with the same request and abandons on leaving',async()=>{
  const calls=[];let lost=true;
- const app=summonUI(async body=>{calls.push(body);if(body.action==='inventory')return {tails:[testTail]};if(body.action==='start')return {id:'ritual',status:'active',remaining:3,pattern:testTail.pattern};if(body.action==='attempt'){if(lost){lost=false;throw Error('offline');}return {id:'ritual',status:'active',remaining:2,pattern:testTail.pattern};}return {};});
- await app.run('openSummoner()');app.document.querySelector('#summonTailList button').onclick();await app.run('summonStart.onclick()');
+ const app=summonUI(async body=>{calls.push(body);if(body.action==='inventory')return testInventory();if(body.action==='start')return {id:'ritual',status:'active',remaining:3,pattern:testTail.pattern};if(body.action==='attempt'){if(lost){lost=false;throw Error('offline');}return {id:'ritual',status:'active',remaining:2,pattern:testTail.pattern};}return {};});
+ await app.run('openSummoner()');chooseTestTail(app);await app.run('summonStart.onclick()');
  await app.run('summonPath=[1];submitSummon()');assert.equal(app.run('!!summonPending'),true);
  await app.run('submitSummon()');const attempts=calls.filter(c=>c.action==='attempt');assert.equal(attempts.length,2);assert.equal(attempts[0].requestId,attempts[1].requestId);assert.equal(app.run('summonRitual.remaining'),2);
  app.run('leaveSummoner()');assert.equal(calls.at(-1).action,'abandon');assert.equal(calls.at(-1).ritualId,'ritual');assert.equal(app.document.getElementById('collectionMain').hidden,false);
 });
 test('closing during an in-flight ritual start still abandons the consumed tail',async()=>{
  let resolveStart;const calls=[];
- const app=summonUI(async body=>{calls.push(body);if(body.action==='inventory')return {tails:[testTail]};if(body.action==='start')return new Promise(resolve=>{resolveStart=resolve;});return {};});
- await app.run('openSummoner()');app.document.querySelector('#summonTailList button').onclick();const pending=app.run('summonStart.onclick()');app.run('leaveSummoner()');
+ const app=summonUI(async body=>{calls.push(body);if(body.action==='inventory')return testInventory();if(body.action==='start')return new Promise(resolve=>{resolveStart=resolve;});return {};});
+ await app.run('openSummoner()');chooseTestTail(app);const pending=app.run('summonStart.onclick()');app.run('leaveSummoner()');
  resolveStart({id:'late-ritual',status:'active',remaining:3,pattern:testTail.pattern});await pending;assert.equal(calls.at(-1).action,'abandon');assert.equal(calls.at(-1).ritualId,'late-ritual');assert.equal(app.run('summonRitual'),null);
+});
+test('NPC catalog lists seen Pipamon with availability badges, then requires tail selection and explicit Use',async()=>{
+ const calls=[];const app=summonUI(async body=>{calls.push(body);if(body.action==='inventory')return testInventory();return {id:'ritual',status:'active',remaining:3,pattern:testTail.pattern};});
+ await app.run('openSummoner()');assert.equal(app.document.getElementById('summonMenu').hidden,false);assert.equal(app.document.getElementById('summonCatalog').hidden,true);
+ app.document.getElementById('summonInvoke').onclick();const cards=app.document.querySelectorAll('#summonSeenGrid button');assert.equal(cards.length,2);assert.equal(cards[1].classList.contains('locked'),true);
+ cards[1].onclick();assert.equal(app.document.querySelector('#summonTailList button').disabled,true);assert.equal(app.document.getElementById('summonStart').disabled,true);
+ app.document.getElementById('summonPreparationBack').onclick();cards[0].onclick();assert.equal(app.document.getElementById('summonStart').disabled,true);
+ app.document.querySelector('#summonTailList button').onclick();assert.equal(app.document.getElementById('summonStart').disabled,false);assert.equal(app.document.getElementById('summonRitual').hidden,true);assert.equal(calls.length,1,'browsing and selection do not consume anything');
+ await app.run('summonStart.onclick()');assert.equal(calls.at(-1).targetModelId,'mata');assert.equal(calls.at(-1).tailId,'tail');assert.equal(app.document.getElementById('summonPreparation').hidden,true);assert.equal(app.document.getElementById('summonRitual').hidden,false);
 });
