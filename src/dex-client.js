@@ -6,9 +6,10 @@ const dexLabels={idle:'Repouso',flight:'Voo',skill:'Habilidade',hurt:'Dano',vict
 function dexStates(entry){return entry.sequence?['idle']:Object.keys(art.atlases[entry.atlas].animations);}
 function dexSequence(){const a=art.atlases[dexEntry.atlas];return a.animations[dexEntry.sequence||dexState];}
 function renderDexItems(entry){
- const companion=entry.group==='companion';
- $('dexItemsTitle').textContent=companion?'Item do companheiro':'Itens dropáveis';
+ const companion=entry.group==='companion',eventItem=(entry.items||[]).some(id=>ART_CONFIG.items.find(i=>i.id===id)?.source==='event');
+ $('dexItemsTitle').textContent=companion?'Item do companheiro':eventItem?'Rabiola de evento':'Itens dropáveis';
  $('dexItemsHint').textContent=companion?'Nozinho acompanha o Sr. Assis e não aparece como selvagem. Sua rabiola fica registrada aqui como item associado.':'Rabiola prevista para encontros com '+entry.name+' selvagem. Os drops ainda não estão disponíveis.';
+ if(eventItem)$('dexItemsHint').textContent='Receba a rabiola em um evento e leve ao Sr. Assis. É preciso conhecer este Pipamon e ainda não possuir sua Soul vinculada.';
  // Rabiolas dropped by trail bosses show where to earn them and whether this device already has them.
  const bossDrop=id=>{try{return trails.stages.find(st=>st.drop===id)||null;}catch{return null;}},owned=id=>{try{return trailProgress.items.includes(id);}catch{return false;}};
  if(!companion&&(entry.items||[]).some(bossDrop))$('dexItemsHint').textContent='Vença o chefe das Trilhas pela primeira vez para conquistar esta rabiola neste aparelho. A recompensa local ainda não pode ser usada na invocação online.';
@@ -17,7 +18,7 @@ function renderDexItems(entry){
   image.alt=item.name;image.width=209;image.height=209;image.loading='lazy';image.decoding='async';
   const fallback=uiElement('span','Imagem indisponível','dex-item-fallback');fallback.hidden=true;
   image.onerror=()=>{image.hidden=true;fallback.hidden=false;};image.onload=()=>{image.hidden=false;fallback.hidden=true;};image.src=item.url;stage.append(image,fallback);
-  const info=uiElement('div',undefined,'dex-item-info');info.append(uiElement('span','Rabiola','dex-item-kind'),uiElement('h5',item.name),uiElement('p',companion?'Associada ao companheiro':'Origem: '+entry.name+' selvagem'),uiElement('span',companion?'Item de referência':owned(item.id)?'Conquistada ✓':bossDrop(item.id)?'Prêmio: '+bossDrop(item.id).name+' (Trilhas)':'Drop previsto · Em breve','dex-item-status'+(owned(item.id)?' owned':'')));
+  const info=uiElement('div',undefined,'dex-item-info');info.append(uiElement('span','Rabiola','dex-item-kind'),uiElement('h5',item.name),uiElement('p',companion?'Associada ao companheiro':item.source==='event'?'Origem: evento': 'Origem: '+entry.name+' selvagem'),uiElement('span',companion?'Item de referência':item.source==='event'?'Concessão de evento · Invocação no Sr. Assis':owned(item.id)?'Conquistada ✓':bossDrop(item.id)?'Prêmio: '+bossDrop(item.id).name+' (Trilhas)':'Drop previsto · Em breve','dex-item-status'+(owned(item.id)?' owned':'')));
   card.append(stage,info);return card;
  });
  $('dexItemsList').replaceChildren(...cards);$('dexItemsSection').hidden=cards.length===0;

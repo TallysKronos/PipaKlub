@@ -21534,6 +21534,586 @@
         "format": "RGBA8888",
         "recommendedFps": 7
       }
+    },
+    "javali-biscoito": {
+      "frames": {
+        "javali-biscoito_00": {
+          "frame": {
+            "x": 0,
+            "y": 0,
+            "w": 314,
+            "h": 314
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 314,
+            "h": 314
+          },
+          "sourceSize": {
+            "w": 314,
+            "h": 314
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "contentBounds": {
+            "x": 0,
+            "y": 31,
+            "w": 314,
+            "h": 283
+          }
+        },
+        "javali-biscoito_01": {
+          "frame": {
+            "x": 314,
+            "y": 0,
+            "w": 313,
+            "h": 314
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 313,
+            "h": 314
+          },
+          "sourceSize": {
+            "w": 314,
+            "h": 314
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "contentBounds": {
+            "x": 0,
+            "y": 19,
+            "w": 313,
+            "h": 295
+          }
+        },
+        "javali-biscoito_02": {
+          "frame": {
+            "x": 627,
+            "y": 0,
+            "w": 314,
+            "h": 314
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 314,
+            "h": 314
+          },
+          "sourceSize": {
+            "w": 314,
+            "h": 314
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "contentBounds": {
+            "x": 5,
+            "y": 21,
+            "w": 303,
+            "h": 293
+          }
+        },
+        "javali-biscoito_03": {
+          "frame": {
+            "x": 941,
+            "y": 0,
+            "w": 313,
+            "h": 314
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 313,
+            "h": 314
+          },
+          "sourceSize": {
+            "w": 314,
+            "h": 314
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "contentBounds": {
+            "x": 0,
+            "y": 23,
+            "w": 313,
+            "h": 291
+          }
+        },
+        "javali-biscoito_04": {
+          "frame": {
+            "x": 0,
+            "y": 314,
+            "w": 314,
+            "h": 313
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 314,
+            "h": 313
+          },
+          "sourceSize": {
+            "w": 314,
+            "h": 314
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "contentBounds": {
+            "x": 0,
+            "y": 0,
+            "w": 314,
+            "h": 313
+          }
+        },
+        "javali-biscoito_05": {
+          "frame": {
+            "x": 314,
+            "y": 314,
+            "w": 313,
+            "h": 313
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 313,
+            "h": 313
+          },
+          "sourceSize": {
+            "w": 314,
+            "h": 314
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "contentBounds": {
+            "x": 0,
+            "y": 0,
+            "w": 313,
+            "h": 313
+          }
+        },
+        "javali-biscoito_06": {
+          "frame": {
+            "x": 627,
+            "y": 314,
+            "w": 314,
+            "h": 313
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 314,
+            "h": 313
+          },
+          "sourceSize": {
+            "w": 314,
+            "h": 314
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "contentBounds": {
+            "x": 0,
+            "y": 0,
+            "w": 314,
+            "h": 313
+          }
+        },
+        "javali-biscoito_07": {
+          "frame": {
+            "x": 941,
+            "y": 314,
+            "w": 313,
+            "h": 313
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 313,
+            "h": 313
+          },
+          "sourceSize": {
+            "w": 314,
+            "h": 314
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "contentBounds": {
+            "x": 0,
+            "y": 0,
+            "w": 313,
+            "h": 313
+          }
+        },
+        "javali-biscoito_08": {
+          "frame": {
+            "x": 0,
+            "y": 627,
+            "w": 314,
+            "h": 314
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 314,
+            "h": 314
+          },
+          "sourceSize": {
+            "w": 314,
+            "h": 314
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "contentBounds": {
+            "x": 0,
+            "y": 0,
+            "w": 314,
+            "h": 314
+          }
+        },
+        "javali-biscoito_09": {
+          "frame": {
+            "x": 314,
+            "y": 627,
+            "w": 313,
+            "h": 314
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 313,
+            "h": 314
+          },
+          "sourceSize": {
+            "w": 314,
+            "h": 314
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "contentBounds": {
+            "x": 0,
+            "y": 0,
+            "w": 313,
+            "h": 309
+          }
+        },
+        "javali-biscoito_10": {
+          "frame": {
+            "x": 627,
+            "y": 627,
+            "w": 314,
+            "h": 314
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 314,
+            "h": 314
+          },
+          "sourceSize": {
+            "w": 314,
+            "h": 314
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "contentBounds": {
+            "x": 0,
+            "y": 0,
+            "w": 314,
+            "h": 314
+          }
+        },
+        "javali-biscoito_11": {
+          "frame": {
+            "x": 941,
+            "y": 627,
+            "w": 313,
+            "h": 314
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 313,
+            "h": 314
+          },
+          "sourceSize": {
+            "w": 314,
+            "h": 314
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "contentBounds": {
+            "x": 0,
+            "y": 0,
+            "w": 313,
+            "h": 314
+          }
+        },
+        "javali-biscoito_12": {
+          "frame": {
+            "x": 0,
+            "y": 941,
+            "w": 314,
+            "h": 313
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 314,
+            "h": 313
+          },
+          "sourceSize": {
+            "w": 314,
+            "h": 314
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "contentBounds": {
+            "x": 0,
+            "y": 0,
+            "w": 314,
+            "h": 313
+          }
+        },
+        "javali-biscoito_13": {
+          "frame": {
+            "x": 314,
+            "y": 941,
+            "w": 313,
+            "h": 313
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 313,
+            "h": 313
+          },
+          "sourceSize": {
+            "w": 314,
+            "h": 314
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "contentBounds": {
+            "x": 0,
+            "y": 0,
+            "w": 313,
+            "h": 313
+          }
+        },
+        "javali-biscoito_14": {
+          "frame": {
+            "x": 627,
+            "y": 941,
+            "w": 314,
+            "h": 313
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 314,
+            "h": 313
+          },
+          "sourceSize": {
+            "w": 314,
+            "h": 314
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "contentBounds": {
+            "x": 0,
+            "y": 0,
+            "w": 314,
+            "h": 313
+          }
+        },
+        "javali-biscoito_15": {
+          "frame": {
+            "x": 941,
+            "y": 941,
+            "w": 313,
+            "h": 313
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 313,
+            "h": 313
+          },
+          "sourceSize": {
+            "w": 314,
+            "h": 314
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "contentBounds": {
+            "x": 0,
+            "y": 0,
+            "w": 313,
+            "h": 313
+          }
+        }
+      },
+      "animations": {
+        "idle": [
+          "javali-biscoito_00",
+          "javali-biscoito_01",
+          "javali-biscoito_02",
+          "javali-biscoito_03"
+        ],
+        "flight": [
+          "javali-biscoito_04",
+          "javali-biscoito_05",
+          "javali-biscoito_06",
+          "javali-biscoito_07"
+        ],
+        "skill": [
+          "javali-biscoito_08",
+          "javali-biscoito_09",
+          "javali-biscoito_10",
+          "javali-biscoito_11"
+        ],
+        "hurt": [
+          "javali-biscoito_12",
+          "javali-biscoito_13"
+        ],
+        "victory": [
+          "javali-biscoito_14",
+          "javali-biscoito_15"
+        ]
+      },
+      "meta": {
+        "app": "PipaKlub — user supplied artwork",
+        "image": "creatures/colecoes/javali-biscoito-v1.png",
+        "size": {
+          "w": 1254,
+          "h": 1254
+        },
+        "scale": "1",
+        "format": "RGBA8888",
+        "columns": 4,
+        "rows": 4,
+        "name": "Javali de Biscoito",
+        "concept": "Pipamon novo — nome provisório",
+        "viewport": {
+          "x": 0,
+          "y": 0,
+          "w": 314,
+          "h": 314
+        }
+      },
+      "playback": {
+        "idle": {
+          "durations": [
+            200,
+            200,
+            200,
+            200
+          ],
+          "loop": true,
+          "returnTo": null
+        },
+        "flight": {
+          "durations": [
+            120,
+            120,
+            120,
+            120
+          ],
+          "loop": true,
+          "returnTo": null
+        },
+        "skill": {
+          "durations": [
+            150,
+            170,
+            190,
+            190
+          ],
+          "loop": false,
+          "returnTo": "idle"
+        },
+        "hurt": {
+          "durations": [
+            120,
+            130
+          ],
+          "loop": false,
+          "returnTo": "idle"
+        },
+        "victory": {
+          "durations": [
+            350,
+            450
+          ],
+          "loop": true,
+          "returnTo": null
+        }
+      }
     }
   }
 }

@@ -289,6 +289,19 @@
       "availability": "planned"
     },
     {
+      "id": "rabiola-javali-biscoito",
+      "name": "Rabiola de Javali de Biscoito",
+      "kind": "rabiola",
+      "image": "items/rabiolas/rabiola-javali-biscoito.png",
+      "pipamon": "javali-biscoito",
+      "source": "event",
+      "availability": "event",
+      "imageSize": {
+        "w": 1254,
+        "h": 1254
+      }
+    },
+    {
       "id": "rabiola-nozinho",
       "name": "Rabiola de Nozinho",
       "kind": "rabiola",
