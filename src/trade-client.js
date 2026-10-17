@@ -26,7 +26,7 @@ function paintTradeScene(t,completed=false){
   const k=t?.[side+'Kite'],name=t?.[(completed?(side==='host'?'guest':'host'):side)+'Name']||(side==='host'?'Você':'Seu amigo');
   const flight=uiElement('div',undefined,'trade-flight trade-flight-'+side);
   flight.append(tradeKiteArt(k),uiElement('span',undefined,'trade-orb'));
-  const comet=uiElement('span',undefined,'trade-comet');comet.setAttribute('aria-hidden','true');flight.append(comet);
+  const comet=uiElement('span',undefined,'trade-comet');comet.setAttribute('aria-hidden','true');comet.append(uiElement('span',undefined,'trade-comet-frames'));flight.append(comet);
   const motes=uiElement('div',undefined,'trade-motes');motes.setAttribute('aria-hidden','true');
   for(let i=0;i<12;i++){
    const mote=uiElement('i',undefined,'trade-mote'),angle=i*2.4;

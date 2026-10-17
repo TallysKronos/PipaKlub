@@ -4,10 +4,15 @@ Generated using the built-in image generation tool. Original output preserved wi
 
 - `trade-celestial.png`: 1254 × 1254, true RGBA (alpha range 0–253), four equal 627 × 627 cells. Cyan comet at (0,0); gold comet at (627,0); encounter seal at (0,627); stardust cluster at (627,627). CSS uses 200% background size and corner positions, so no preprocessing is needed.
 - `trade-sky.png`: 1672 × 941 RGB illustration, used as the ceremony background.
+- `trade-spirit-16.png`: animated spirit, 4 × 4 equal cells read left-to-right, top-to-bottom. Frames 0–3 form the light, 4–11 cycle at approximately 11 fps during flight, and 12–15 disperse it. No interpolation between cells. Cyan source is tinted warm gold for the second player; the outer flight movement is separate from the sprite's internal animation.
 
 The atlas is requested only while `.is-flying` is active. The sky appears with the trade scene. Simple CSS lights remain available if either texture fails to load. Animations stop when the ceremony finishes; small viewports render half the trail particles. The source assets are served by an explicit allowlist and copied to both build outputs. No authentication or database change is required for this visual update.
 
 ## Final prompts
+
+### Animated spirit spritesheet
+
+Use case: stylized-concept. Production VFX ANIMATION SPRITESHEET, not a collection of different effects. A precise 4 columns by 4 rows uniform grid, 16 equal square cells, transparent RGBA background. Reading order left to right then top to bottom is time: one single magical luminous comet transforms continuously through 16 consecutive frames. All frames same center, same scale and orientation, entirely contained within each cell with 15 percent transparent margin. No grid lines, no labels. The subject in each frame is the SAME upward pointing cyan-white spirit flame with soft pale gold core, flowing curling cyan and lavender wisps, tiny four-point stars and trailing magical dust. Frame 1 tiny gathering spark; 2-4 light gathering and wisps unfurl; 5-8 bright full comet, wisps curling and changing shape between every frame; 9-12 bright pulsating core and flowing split wisps, distinct successive silhouettes; 13-15 breaking into glimmering motes; 16 fading sparkles. Keep a bright readable core and deliberate silhouette changes so it genuinely animates. Hand painted polished 2D fantasy video game effects, elegant fluid energy, translucent feathered alpha edges, no characters, no backgrounds, no scenery, no text or numbers, no checkerboard. Every cell must contain ONLY one animation frame and there must be exactly 16 cells in a 4x4 grid. Aim for square image 1536x1536.
 
 ### Transparent VFX atlas
 

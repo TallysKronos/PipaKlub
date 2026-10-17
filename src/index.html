@@ -257,7 +257,14 @@ body.in-match .arena canvas{cursor:crosshair}
 .trade-shockwave{pointer-events:none;position:absolute;z-index:1;width:120px;height:70px;border-radius:50%;border:2px solid #fff1d1;box-shadow:0 0 16px #a4f4ff,inset 0 0 18px #b4ddff;left:calc(50% - 60px);top:160px;opacity:0}
 .trade-burst{position:absolute;left:50%;top:195px;z-index:4;pointer-events:none}.trade-burst-spark{position:absolute;left:-13px;top:-13px;width:26px;height:26px;background-size:200% 200%;background-position:100% 100%;opacity:0}
 .trade-motes{position:absolute;top:20px;left:50%;z-index:2;pointer-events:none}.trade-mote{position:absolute;width:var(--size);height:var(--size);left:calc(var(--size) / -2);top:0;opacity:0;background-size:200% 200%;background-position:100% 100%;filter:drop-shadow(0 0 4px #aff5ff)}
-.trade-scene.is-flying .trade-comet,.trade-scene.is-flying .trade-convergence,.trade-scene.is-flying .trade-mote,.trade-scene.is-flying .trade-burst-spark{background-image:url('assets/vfx/trade-celestial.png')}
+.trade-scene.is-flying .trade-convergence,.trade-scene.is-flying .trade-mote,.trade-scene.is-flying .trade-burst-spark{background-image:url('assets/vfx/trade-celestial.png')}
+.trade-comet-frames{display:block;width:100%;height:100%;background-size:400% 400%;background-repeat:no-repeat;background-position:0 0}
+.trade-flight-guest .trade-comet-frames{filter:sepia(1) saturate(2) hue-rotate(345deg)}
+.is-flying .trade-comet-frames{background-image:url('assets/vfx/trade-spirit-16.png');animation:trade-spirit-form .4s steps(1,end) .65s forwards,trade-spirit-loop .72s steps(1,end) 1.05s 6,trade-spirit-fade .4s steps(1,end) 5.37s forwards}
+/* Each stop selects one cell, with no interpolation or sliding between frames. */
+@keyframes trade-spirit-form{0%{background-position:0% 0%}25%{background-position:33.333333% 0%}50%{background-position:66.666667% 0%}75%,100%{background-position:100% 0%}}
+@keyframes trade-spirit-loop{0%{background-position:0% 33.333333%}12.5%{background-position:33.333333% 33.333333%}25%{background-position:66.666667% 33.333333%}37.5%{background-position:100% 33.333333%}50%{background-position:0% 66.666667%}62.5%{background-position:33.333333% 66.666667%}75%{background-position:66.666667% 66.666667%}87.5%,100%{background-position:100% 66.666667%}}
+@keyframes trade-spirit-fade{0%{background-position:0% 100%}25%{background-position:33.333333% 100%}50%{background-position:66.666667% 100%}75%,100%{background-position:100% 100%}}
 .is-flying .trade-comet{animation:trade-comet-reveal var(--flight-duration) both}.is-flying .trade-flight-host .trade-comet{rotate:-12deg}.is-flying .trade-flight-guest .trade-comet{rotate:12deg}
 .is-flying .trade-convergence{animation:trade-encounter var(--flight-duration) ease-in-out both}.is-flying .trade-shockwave{animation:trade-wave var(--flight-duration) ease-out both}
 .is-flying .trade-burst-spark{animation:trade-shards var(--flight-duration) ease-out both}.is-flying .trade-mote{animation:trade-mote-stream 1.4s var(--delay) ease-out infinite}

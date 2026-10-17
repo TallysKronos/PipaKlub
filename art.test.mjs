@@ -47,10 +47,10 @@ test('asset route serves every real PNG with hash caching, HEAD and ETag; unknow
 });
 test('generated trade textures retain alpha, ship in Pages and are served by the asset allowlist',async()=>{
  const serve=createAssetHandler();
- for(const name of ['trade-celestial','trade-sky']){
+ for(const name of ['trade-celestial','trade-sky','trade-spirit-16']){
   const file='vfx/'+name+'.png',bytes=fs.readFileSync('assets/'+file),hash=createHash('sha256').update(bytes).digest('hex').slice(0,12);
   assert.deepEqual(fs.readFileSync('docs/assets/'+file),bytes);
-  if(name==='trade-celestial'){assert.equal(bytes[25],6,'atlas is RGBA');assert.equal(bytes.readUInt32BE(16),bytes.readUInt32BE(20),'four equal square cells');}
+  if(name!=='trade-sky'){assert.equal(bytes[25],6,'atlas is RGBA');assert.equal(bytes.readUInt32BE(16),bytes.readUInt32BE(20),'atlas cells use a square grid');}
   const r=await serve(new Request('https://game.test/assets/'+file+'?v='+hash));assert.equal(r.status,200);assert.match(r.headers.get('cache-control'),/immutable/);assert.deepEqual(Buffer.from(await r.arrayBuffer()),bytes);
   assert.equal((await serve(new Request('https://game.test/assets/'+file,{method:'HEAD'}))).status,200);
  }
