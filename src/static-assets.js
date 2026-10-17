@@ -7,7 +7,7 @@ export function createAssetHandler(){
  const cache=new Map();
  return async request=>{
   const url=new URL(request.url);if(!url.pathname.startsWith('/assets/'))return null;
-  const file=url.pathname.slice(8);if(!files.includes(file))return new Response('Asset not found',{status:404});
+  const file=url.pathname.slice(8);if(!files.includes(file)&&!['backgrounds/quintal-clube-v1.png','packs/cidade-v1/mapa.png','packs/cidade-v1/insignias.png'].includes(file))return new Response('Asset not found',{status:404});
   if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405,headers:{Allow:'GET, HEAD'}});
   let item=cache.get(file);
   if(!item){try{const data=await fs.readFile(new URL('../assets/'+file,import.meta.url)),hash=createHash('sha256').update(data).digest('hex').slice(0,12);item={data,hash};cache.set(file,item);}catch{return new Response('Asset unavailable',{status:503});}}

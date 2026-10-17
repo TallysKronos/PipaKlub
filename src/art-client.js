@@ -23,6 +23,11 @@ export function createArtAssets(config){
   context.drawImage(image,f.x+sx,f.y+sy,sw,sh,x+(width-w)/2,y+(height-h)/2,sw*scale,sh*scale);context.imageSmoothingEnabled=smoothing;return true;
  }
  function creature(context,color,time,x=-56,y=-44,size=112,player={},victory=false){
+  if(player.soul==='nozinho'){
+   if(!images.has('nozinho'))load('nozinho');
+   const seq=atlases.nozinho.animations[victory?'happy':player.hitFlash>0?'hurt':player.skillCooldown>6.37?'skill':'idle'];
+   return draw(context,'nozinho',seq[reduced?0:Math.floor(time/170)%seq.length],x,y,size,size,true);
+  }
   const left=player.facing===-1||(player.facing!==1&&player.input?.x<-.05);
   if(!left)return drawCreature(context,color,time,x,y,size,player,victory);
   context.save();

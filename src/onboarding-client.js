@@ -63,4 +63,4 @@ addEventListener('keydown',e=>{
 },true);
 setInterval(()=>{if(introductionOpen&&!document.hidden){introductionTick++;renderIntroduction();}},180);
 // Invitations go straight to the lobby, so newcomers can join friends without a blocking introduction.
-setTimeout(()=>{if(playerAccount&&!introSeen()&&!mode&&!param&&$('pipaDex').hidden&&$('accountModal').style.display!=='flex'&&$('modal').style.display!=='flex')openIntroduction();},650);
+setTimeout(()=>{if(typeof onCourtyardAccount!=='function'&&playerAccount&&!introSeen()&&!mode&&!param&&$('pipaDex').hidden&&$('accountModal').style.display!=='flex'&&$('modal').style.display!=='flex')openIntroduction();},650);
