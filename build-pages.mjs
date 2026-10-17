@@ -6,7 +6,7 @@ const html=fs.readFileSync('src/index.html','utf8')
   .replace('/* ENGINE */',engine).replace('/* ART_CLIENT */',artSource()).replace('/* ONBOARDING_CLIENT */',fs.readFileSync('src/onboarding-client.js','utf8'))
   .replace('/* NETWORK_VIEW */',fs.readFileSync('src/network-view.js','utf8').replace('export function','function'))
   .replace('/* FRAME_HEALTH */',fs.readFileSync('src/frame-health.js','utf8').replace('export function','function'))
-  .replace('/* ACCOUNT_CLIENT */',fs.readFileSync('src/account-client.js','utf8')+'\n'+fs.readFileSync('src/results-client.js','utf8'))
+  .replace('/* ACCOUNT_CLIENT */',fs.readFileSync('src/account-client.js','utf8')+'\n'+fs.readFileSync('src/results-client.js','utf8')+'\n'+fs.readFileSync('src/trade-client.js','utf8'))
   .replace('/* HOST_CONFIG */','const STATIC_HOST = true;')
   .replace('/* DEX_CLIENT */',fs.readFileSync('src/dex-client.js','utf8'));
 new Script(html.match(/<script>([\s\S]*?)<\/script>/)[1]);
