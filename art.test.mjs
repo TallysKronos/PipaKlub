@@ -52,11 +52,27 @@ test('club navigation abandons an active ritual before opening another feature',
  assert.equal(a.document.getElementById('club-profile').hidden,false);
 });
 
-test('new visitors meet Assis, all eight steps swap artwork, finish starts training and replay remains available',async()=>{
+test('school tour can be replayed and skipped, lessons leave cleanly without changing free practice',async()=>{
+ const a=app({seen:true});await a.settle();
+ a.run('firstSchoolVisit()');assert.equal(a.document.getElementById('schoolTourOverlay').hidden,false);
+ a.document.getElementById('schoolTourNext').onclick();assert.match(a.document.getElementById('schoolTourTitle').textContent,/Morro/);
+ a.document.getElementById('schoolTourSkip').onclick();assert.equal(a.document.getElementById('schoolHub').hidden,false);
+ assert.equal(a.storage.get('pipaMenuTourV1'),'done');
+ a.run('startSchoolLesson(0)');assert.equal(a.run('mode'),'practice');assert.equal(a.run('state.school'),true);
+ assert.equal(a.document.getElementById('schoolNext').disabled,true);
+ a.document.getElementById('schoolNext').onclick();assert.equal(a.run('schoolRun.index'),0,'cannot skip completion through Next');
+ a.document.getElementById('schoolExit').onclick();assert.equal(a.run('mode'),null);assert.equal(a.run('schoolRun'),null);
+ assert.equal(a.document.getElementById('schoolCoach').hidden,true);
+ a.run("closeSchool();$('practice').onclick()");assert.equal(a.run('mode'),'practice');assert.equal(a.run('state.school'),undefined);
+ a.run('leave();firstSchoolVisit()');assert.equal(a.document.getElementById('schoolTourOverlay').hidden,true);
+ a.document.getElementById('schoolTour').onclick();assert.equal(a.document.getElementById('schoolTourOverlay').hidden,false);
+});
+
+test('new visitors meet Assis, all eight steps swap artwork, finish opens the school tour and replay remains available',async()=>{
  const a=app();await a.settle();assert.equal(a.requests.length,1);a.auto();await a.settle();assert.equal(a.document.getElementById('assisIntro').hidden,false);assert.match(a.document.getElementById('assisSpeech').textContent,/Nozinho/);assert.equal(a.requests.length,4);assert.match(a.document.getElementById('assisLoad').textContent,/pesquisador/);
  const expressions=new Set(),poses=new Set();for(let i=0;i<8;i++){expressions.add(a.run('ART_CONFIG.intro.steps[introductionStep].expression'));poses.add(a.run('ART_CONFIG.intro.steps[introductionStep].pose'));a.document.getElementById('assisNext').onclick();}
- assert.equal(expressions.size,8);assert.equal(poses.size,8);assert.equal(a.run('mode'),'practice');assert.equal(a.document.getElementById('assisIntro').hidden,true);assert.equal(a.storage.get('pipaAssisIntroV1'),'done');assert.ok(a.draws.some(d=>d.canvas==='assisBody'));assert.ok(a.draws.some(d=>d.canvas==='assisFace'));assert.ok(a.draws.some(d=>d.canvas==='assisCompanion'));
- a.run('leave()');a.document.getElementById('how').onclick();await a.settle();assert.equal(a.requests.length,4);assert.equal(a.document.getElementById('assisIntro').hidden,false);
+ assert.equal(expressions.size,8);assert.equal(poses.size,8);assert.equal(a.run('mode'),null);assert.equal(a.document.getElementById('schoolTourOverlay').hidden,false);assert.equal(a.document.getElementById('assisIntro').hidden,true);assert.equal(a.storage.get('pipaAssisIntroV1'),'done');assert.ok(a.draws.some(d=>d.canvas==='assisBody'));assert.ok(a.draws.some(d=>d.canvas==='assisFace'));assert.ok(a.draws.some(d=>d.canvas==='assisCompanion'));
+ a.run('closeSchoolTour();closeSchool();leave()');a.document.getElementById('how').onclick();await a.settle();assert.equal(a.requests.length,4);assert.equal(a.document.getElementById('assisIntro').hidden,false);
 });
 test('skip, invitations, keyboard blocking and image failure do not prevent playing',async()=>{
  for(const options of [{seen:true},{search:'?sala=ABCDEF'}]){const a=app(options);a.auto();await a.settle();assert.equal(a.run('introductionOpen'),false);}
