@@ -23,6 +23,7 @@ function updateBattleHUD(p){
  const entry=ART_CONFIG.dex.entries.find(e=>p.soul?e.id===p.soul:e.atlas===art.basic(p.color));
  setText('partnerName',entry?.name||'Parceiro almático');
  setText('battleMode',state.trail?'Trilha · '+state.trail.split('-')[0]:state.daily?'Céu do dia':mode==='practice'?'Voo de treino':state.rules==='capture'?'Vale pipa':'Duelo de pipas');
+ setText('roundInfo',state.phase==='waiting'?(state.quick?'Buscando rivais':'Aguardando rival'):state.mode==='rounds'?'Rodada '+state.round+' · '+state.roundsToWin+' vitórias':'Partida por tempo');
  $('hud').dataset.danger=String(p.hp<=30&&!p.respawn);$('hud').dataset.phase=state.phase||'live';
  const key=(state.mode||'time')+'|'+(state.roundsToWin||3)+'|'+(p.rounds||0);
  if($('roundPips').dataset.key!==key){$('roundPips').dataset.key=key;$('roundPips').replaceChildren();if(state.mode==='rounds'){for(let n=0;n<(state.roundsToWin||3);n++){const pip=document.createElement('i');pip.className='hud-art-round-'+(n<(p.rounds||0)?'won won':'empty');pip.setAttribute('aria-hidden','true');$('roundPips').append(pip);}$('roundPips').setAttribute('aria-label',(p.rounds||0)+' de '+(state.roundsToWin||3)+' rodadas vencidas');}}
