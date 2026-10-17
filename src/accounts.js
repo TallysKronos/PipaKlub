@@ -18,7 +18,7 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
    if(r.status===429)throw new AccountError('Muitas tentativas. Aguarde um pouco e tente novamente.',429);
    if(data?.error_code==='email_not_confirmed')throw new AccountError('Confirme seu e-mail antes de entrar.',403);
    if(data?.code?.startsWith('PGRST')||data?.code==='42883')throw new AccountError('O banco de contas ainda precisa ser configurado.',503);
-   if(message.startsWith('Invocação:')||message.startsWith('Troca:')||message.includes('Saia da partida')||message.includes('outra partida')||message.includes('colecionável')||message.includes('coleção')||message.includes('caracteres'))throw new AccountError(message,409);
+   if(message.startsWith('Trilhas:')||message.startsWith('Invocação:')||message.startsWith('Troca:')||message.includes('Saia da partida')||message.includes('outra partida')||message.includes('colecionável')||message.includes('coleção')||message.includes('caracteres'))throw new AccountError(message,409);
    if(data?.error_code==='over_email_send_rate_limit'||data?.error_code==='email_address_not_authorized')throw new AccountError('O envio de confirmação está indisponível. O administrador precisa configurar o e-mail do jogo.',503);
    throw new AccountError(r.status>=500?'O serviço de contas está indisponível. Tente novamente.':'Não foi possível concluir. Confira os dados e tente novamente.',r.status>=500?503:400);
   }return data;
@@ -59,10 +59,10 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
   const xp=Number(data.profile.xp)||0,level=1+Math.floor(Math.sqrt(xp/100));
   return {...data,profile:{...data.profile,level,next_level_xp:level*level*100}};
  }
- function rateLimit(request,action){
+ function rateLimit(request,action,max=12){
   const ip=(request.headers.get('x-forwarded-for')||'local').split(',')[0],id=action+':'+ip,now=Date.now();
   if(limits.size>5000)for(const [k,v] of limits)if(v.until<now)limits.delete(k);
-  let entry=limits.get(id);if(!entry||entry.until<now){entry={count:0,until:now+900000};limits.set(id,entry);}if(++entry.count>12)throw new AccountError('Muitas tentativas. Aguarde 15 minutos.',429);
+  let entry=limits.get(id);if(!entry||entry.until<now){entry={count:0,until:now+900000};limits.set(id,entry);}if(++entry.count>max)throw new AccountError('Muitas tentativas. Aguarde 15 minutos.',429);
  }
  async function handle(request){
   const path=new URL(request.url).pathname;
@@ -88,6 +88,14 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
    if(action==='logout'){const values=cookieValues(request),access=values['__Host-pipa_access']||values.pipa_access;if(access){sessions.delete(access);try{await remote('/auth/v1/logout',{method:'POST',token:access});}catch{}}return json({ok:true},200,makeCookies(request,null));}
    const who=await identity(request,true);
    if(!who)throw new AccountError('Entre na sua conta para continuar.',401);
+   if(action==='trails'){
+    if(!['read','import','result'].includes(b.action)||b.action!=='read'&&!UUID.test(String(b.operationId)))throw new AccountError('Operação de trilha inválida.');
+    const payload=b.payload??{};
+    if(!payload||typeof payload!=='object'||Array.isArray(payload))throw new AccountError('Progresso inválido.');
+    if(b.action==='result'&&(!/^(morro|praia|torres)-[1-5]$/.test(String(payload.stage))||typeof payload.won!=='boolean'||!Number.isInteger(payload.roundsLost)||payload.roundsLost<0||payload.roundsLost>5))throw new AccountError('Resultado de trilha inválido.');
+    if(b.action!=='read')rateLimit(request,'trails-'+who.id,120);
+    return json({trails:await rpc('player_trails',{p_action:b.action,p_operation:b.operationId||null,p_payload:payload},who.access)},200,who.setCookies);
+   }
    if(action==='sighting'){
     if(typeof b.modelId!=='string'||!/^[a-z0-9-]{1,80}$/.test(b.modelId))throw new AccountError('Pipamon inválido.');
     await rpc('record_player_sighting',{p_model:b.modelId},who.access);return json({ok:true},200,who.setCookies);

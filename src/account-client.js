@@ -3,7 +3,7 @@ let playerAccount=null,accountsEnabled=false,accountTab='login',accountSaving=fa
 const accountModal=$('accountModal');
 async function accountRequest(action,body){
  const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),12000);
- try{const r=await fetch('/account/'+action,{method:body===undefined?'GET':'POST',headers:body===undefined?{}:{'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body),signal:controller.signal});const d=await r.json();if(!r.ok)throw Error(d.error||'Não foi possível acessar sua conta.');return d;}finally{clearTimeout(timeout);}
+ try{const r=await fetch('/account/'+action,{method:body===undefined?'GET':'POST',headers:body===undefined?{}:{'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body),signal:controller.signal});const d=await r.json();if(!r.ok)throw Object.assign(Error(d.error||'Não foi possível acessar sua conta.'),{status:r.status});return d;}finally{clearTimeout(timeout);}
 }
 function reflectAccount(){
  $('accountButton').textContent=playerAccount?'Minha conta':'Entrar';
@@ -14,6 +14,7 @@ function reflectAccount(){
  if(playerAccount){const p=playerAccount.profile,k=playerAccount.inventory.find(k=>k.id===p.equipped_kite_id);$('name').value=p.nickname;$('name').readOnly=true;if(k){selected=k.model.color;choices();const chosen=$('kites').querySelector('[data-color="'+selected+'"]');if(chosen){chosen.innerHTML=art.markup(selected,k.model.soul);chosen.setAttribute('aria-label',k.model.name+' · equipada');}$('selectionName').textContent=k.model.name+' · '+eng.type({color:k.model.color}).name+' · equipada';}}
  else {$('name').readOnly=false;choices();}
  if(accountModal.style.display==='flex')renderAccountDialog();
+ if(typeof onTrailAccountChange==='function')onTrailAccountChange();
 }
 async function refreshAccount(){
  if(!accountsEnabled)return;

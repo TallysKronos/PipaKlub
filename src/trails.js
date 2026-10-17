@@ -30,7 +30,7 @@ export function createTrails(){
   const MASTERY_MAX=8;
   const DROPS=stages.filter(s=>s.drop).map(s=>s.drop);
   function defaults(){return {coins:0,stars:{},mastery:0,wins:0,losses:0,fails:{},items:[]};}
-  // Progress lives in the player's device for now; never trust it for anything shared.
+  // Offline results and legacy saves are unverified; syncing does not authorize shared rewards.
   function sanitize(p){
     const d=defaults();if(!p||typeof p!=='object')return d;
     const stars={},fails={};for(const s of stages){const v=Math.trunc(Number(p.stars?.[s.id]));if(v>0)stars[s.id]=clamp(v,1,3);const f=Math.trunc(Number(p.fails?.[s.id]));if(f>0)fails[s.id]=clamp(f,1,99);}
