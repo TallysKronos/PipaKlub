@@ -94,3 +94,21 @@ test('time mode waits for a second player before the clock starts; late joiners 
  e.admit(s,e.player('B',1,'b',5000),5000);at(s,5016);assert.equal(s.phase,'countdown');a.seen=s.players[1].seen=8100;at(s,8100);assert.equal(s.phase,'live');assert.equal(s.end,8100+180000);
  const r=roundsDuel();at(r.s,16);at(r.s,3100);assert.equal(r.s.phase,'live');const c=e.admit(r.s,e.player('C',2,'c',3100),3100);assert.ok(c.respawn);at(r.s,3200);assert.ok(c.respawn);
 });
+
+test('mouse or finger steers the kite with analog input; held keys win and the left button attacks',async()=>{
+ const {parseHTML}=await import('linkedom'),fs=await import('node:fs'),vm=await import('node:vm');
+ const html=fs.readFileSync('docs/index.html','utf8'),{document}=parseHTML(html),listeners=new Map(),canvasListeners=new Map();
+ const context=vm.createContext({document,console,crypto,Date,Intl,URLSearchParams,AbortController,performance:{now:()=>0},location:{search:'',hash:'',pathname:'/',protocol:'https:',host:'game.test'},history:{replaceState(){}},localStorage:{getItem:k=>k==='pipaAssisIntroV1'?'done':null,setItem(){}},matchMedia:()=>({matches:true}),ResizeObserver:class{observe(){}},requestAnimationFrame(){},setInterval(){},clearInterval(){},setTimeout(){return 1;},clearTimeout(){},fetch:async()=>({ok:true,json:async()=>({enabled:false})}),Image:class{},addEventListener:(name,fn)=>{if(!listeners.has(name))listeners.set(name,[]);listeners.get(name).push(fn);}});
+ const sky=document.getElementById('sky');sky.getContext=()=>({});sky.width=1000;sky.height=600;sky.getBoundingClientRect=()=>({left:0,top:0,width:1000,height:600});sky.addEventListener=(name,fn)=>canvasListeners.set(name,fn);
+ vm.runInContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],context);
+ vm.runInContext("$('practice').onclick();const me0=state.players.find(p=>p.id===me);me0.x=500;me0.y=300;",context);
+ const fire=(name,e)=>canvasListeners.get(name)({pointerType:'mouse',button:0,pointerId:1,preventDefault(){},type:name,...e});
+ fire('pointermove',{clientX:800,clientY:300});let i=vm.runInContext('input()',context);assert.equal(i.x,1);assert.equal(i.y,0);assert.equal(i.cut,false);
+ fire('pointermove',{clientX:535,clientY:300});i=vm.runInContext('input()',context);assert.ok(i.x>0&&i.x<1,'slows down near the cursor');
+ fire('pointerdown',{clientX:535,clientY:300});assert.equal(vm.runInContext('input().cut',context),true);fire('pointerup',{clientX:535,clientY:300});assert.equal(vm.runInContext('input().cut',context),false);
+ fire('pointerdown',{button:2,clientX:200,clientY:300});assert.equal(vm.runInContext('input().skill',context),-1,'right click dashes toward the cursor side');
+ for(const fn of listeners.get('keydown'))fn({key:'ArrowUp',target:{tagName:'CANVAS'},preventDefault(){}});i=vm.runInContext('input()',context);assert.equal(i.x,0);assert.equal(i.y,-1);
+ for(const fn of listeners.get('keyup'))fn({key:'ArrowUp'});assert.deepEqual([vm.runInContext('input().x',context),vm.runInContext('input().y',context)],[0,0],'keys hand control back until the mouse moves again');
+ canvasListeners.get('pointerdown')({pointerType:'touch',pointerId:7,button:0,clientX:500,clientY:500,preventDefault(){}});i=vm.runInContext('input()',context);assert.equal(i.x,0);assert.equal(i.y,1,'finger pulls the kite to just above the touch');
+ canvasListeners.get('pointerup')({pointerType:'touch',pointerId:7,type:'pointerup'});i=vm.runInContext('input()',context);assert.equal(i.y,0);
+});
