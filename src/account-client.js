@@ -23,6 +23,7 @@ function reflectAccount(){
  if(accountModal.style.display==='flex')renderAccountDialog();
  if(typeof onTrailAccountChange==='function')onTrailAccountChange();
  if(typeof onLineAccountChange==='function')onLineAccountChange();
+ if(typeof onCourtyardAccount==='function')onCourtyardAccount();
 }
 async function refreshAccount(){
  if(!accountsEnabled)return;

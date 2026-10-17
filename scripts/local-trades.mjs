@@ -25,17 +25,18 @@ if(!(await postgres.query("select to_regclass('public.daily_challenge_rewards') 
 await postgres.exec(fs.readFileSync('supabase/migrations/012_javali_biscoito.sql','utf8'));
 await postgres.exec(fs.readFileSync('supabase/migrations/013_javali_summoning.sql','utf8'));
 if(!(await postgres.query("select to_regclass('public.trail_runs') installed")).rows[0].installed)await postgres.exec(fs.readFileSync('supabase/migrations/014_verified_trail_rewards.sql','utf8'));
-const players={ana:{id:'11111111-1111-4111-8111-111111111111',nickname:'Ana Local'},beto:{id:'22222222-2222-4222-8222-222222222222',nickname:'Beto Local'}};
+if(!(await postgres.query("select to_regclass('public.player_journeys') installed" )).rows[0].installed)await postgres.exec(fs.readFileSync('supabase/migrations/015_first_flight.sql','utf8'));
+const players={ana:{id:'11111111-1111-4111-8111-111111111111',nickname:'Ana Local'},beto:{id:'22222222-2222-4222-8222-222222222222',nickname:'Beto Local'},cora:{id:'33333333-3333-4333-8333-333333333333',nickname:'Cora Local'}};
 for(const p of Object.values(players))await postgres.query('insert into auth.users values($1,$2) on conflict(id) do nothing',[p.id,{nickname:p.nickname}]);
 await postgres.query("select public.grant_event_soul($1,'flautrevo','local-demo')",[players.ana.id]);
 await postgres.query("select public.grant_event_soul($1,'javali-biscoito','local-demo-javali-v1')",[players.ana.id]);
-for(const p of Object.values(players))for(const [i,model,source] of [[1,'mata','drop'],[2,'azulao','purchase'],[3,'marulume','event'],[4,'raio','drop'],[5,'mata','drop']])await postgres.query('select public.grant_summon_tail($1,$2,$3,$4)',[p.id,model,source,'local-summon-'+i]);
+for(const p of [players.ana,players.beto])for(const [i,model,source] of [[1,'mata','drop'],[2,'azulao','purchase'],[3,'marulume','event'],[4,'raio','drop'],[5,'mata','drop']])await postgres.query('select public.grant_summon_tail($1,$2,$3,$4)',[p.id,model,source,'local-summon-'+i]);
 // Isolated Javali fixtures: failure, interruption, success and duplicate prevention.
 for(let i=1;i<=4;i++)await postgres.query('select public.grant_summon_tail($1,$2,$3,$4)',[players.beto.id,'javali-biscoito','event','local-javali-summon-'+i]);
 await postgres.query("insert into public.player_pipamon_sightings(owner_id,model_id) values($1,'javali-biscoito') on conflict do nothing",[players.beto.id]);
 // Demo sightings include two creatures without a tail, to exercise locked cards.
-for(const p of Object.values(players))await postgres.query("insert into public.player_pipamon_sightings(owner_id,model_id) select $1,id from public.kite_models where id in ('marulume','alvaneve','hiponilo') on conflict do nothing",[p.id]);
-const operations={get_player_trail_result:['p_match'],player_daily:[],player_lines:['p_action','p_style','p_operation'],player_trails:['p_action','p_operation','p_payload'],get_player_account:[],get_player_recent_matches:[],get_player_match_result:['p_match'],get_kite_history:['p_kite'],equip_player_kite:['p_kite'],update_player_name:['p_nickname'],player_trade:['p_action','p_code','p_kite','p_revision'],player_summon:['p_action','p_tail','p_ritual','p_path','p_request','p_session','p_target'],record_player_sighting:['p_model']};
+for(const p of [players.ana,players.beto])await postgres.query("insert into public.player_pipamon_sightings(owner_id,model_id) select $1,id from public.kite_models where id in ('marulume','alvaneve','hiponilo') on conflict do nothing",[p.id]);
+const operations={player_journey:['p_action','p_model','p_lesson'],get_player_trail_result:['p_match'],player_daily:[],player_lines:['p_action','p_style','p_operation'],player_trails:['p_action','p_operation','p_payload'],get_player_account:[],get_player_recent_matches:[],get_player_match_result:['p_match'],get_kite_history:['p_kite'],equip_player_kite:['p_kite'],update_player_name:['p_nickname'],player_trade:['p_action','p_code','p_kite','p_revision'],player_summon:['p_action','p_tail','p_ritual','p_path','p_request','p_session','p_target'],record_player_sighting:['p_model']};
 const serverOperations={register_trail_run:['p_user','p_match','p_stage'],settle_trail_run:['p_user','p_match','p_stage','p_won','p_rounds_lost'],settle_daily_challenge:['p_user','p_match','p_day'],reserve_player_match:['p_user','p_match','p_code','p_mode'],release_player_match:['p_user','p_match'],settle_player_cut:['p_event','p_match','p_winner','p_loser','p_kite'],finish_player_match:['p_match']};
 async function rpc(name,body,uid){
  const args=Object.hasOwn(uid?operations:serverOperations,name)&&(uid?operations:serverOperations)[name];
@@ -65,7 +66,7 @@ async function localAuth(url,options={}){
   try{return response(await rpc(path.slice('/rest/v1/rpc/'.length),body,tokens.get(token)));}
   catch(e){return response({message:e.message,code:e.code||'P0001'},400);}
  }
- return response({message:'Cadastro indisponível no ambiente local. Use Ana ou Beto.'},400);
+ return response({message:'Cadastro indisponível no ambiente local. Use Ana, Beto ou Cora.'},400);
 }
 const sqlite=new DatabaseSync('.local/trade-demo/rooms.db');
 sqlite.exec('PRAGMA journal_mode=WAL;CREATE TABLE IF NOT EXISTS pipa_rooms (code TEXT PRIMARY KEY,state TEXT NOT NULL,rev INTEGER NOT NULL DEFAULT 0,updated INTEGER NOT NULL)');
@@ -80,14 +81,14 @@ const server=http.createServer(async(req,res)=>{
   const origin='http://'+req.headers.host;
   let request=new Request(origin+req.url,{method:req.method,headers:req.headers,...(chunks.length?{body:Buffer.concat(chunks)}:{})});
   let r;
-  const demo=/^\/local\/(ana|beto)$/.exec(new URL(request.url).pathname);
+  const demo=/^\/local\/(ana|beto|cora)$/.exec(new URL(request.url).pathname);
   if(demo){
    const login=await accounts.handle(new Request(origin+'/account/login',{method:'POST',headers:{'Content-Type':'application/json',Origin:origin},body:JSON.stringify({email:demo[1]+'@local.test',password:'TesteLocal123!'})}));
    const headers=new Headers({Location:'/'});for(const cookie of login.headers.getSetCookie())headers.append('Set-Cookie',cookie);
    r=login.ok?new Response(null,{status:303,headers}):login;
   }else r=await serveAsset(request)||await accounts.handle(request)||await worker.fetch(request,{DB,ACCOUNTS:accounts,PROGRESSION:progression});
   if(new URL(request.url).pathname==='/'&&r.headers.get('content-type')?.includes('text/html')){
-   const html=(await r.text()).replace('<body>','<body><div style="background:#ffe9a8;padding:10px;text-align:center;font:14px sans-serif">TESTE LOCAL · Banco isolado · Sem dados de produção · '+(req.headers.host.startsWith('localhost')?'Beto':'Ana')+'</div>');
+   const html=(await r.text()).replace('<body>','<body><div style="background:#ffe9a8;padding:10px;text-align:center;font:14px sans-serif">TESTE LOCAL · Banco isolado · Sem dados de produção · Contas de teste</div>');
    r=new Response(html,{status:r.status,headers:r.headers});
   }
   const headers=Object.fromEntries(r.headers),cookies=r.headers.getSetCookie();if(cookies.length)headers['set-cookie']=cookies;

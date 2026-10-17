@@ -560,6 +560,7 @@ body.in-match .arena-bottom{display:none}
 @keyframes ritual-particles{0%{background-position:0 100%;opacity:0}25%{background-position:33.333333% 100%;opacity:1}50%{background-position:66.666667% 100%;opacity:1}75%{background-position:100% 100%;opacity:1}100%{background-position:100% 100%;opacity:0}}
 body.light-mode .ritual-board-portal{animation:none}body.light-mode .ritual-reveal-particles{display:none}@media(prefers-reduced-motion:reduce){.ritual-board-portal,.ritual-reveal-portal,.ritual-reveal-particles{animation:none}.ritual-reveal-portal{background-position:0 66.666667%;opacity:.4}.ritual-reveal-particles{display:none}}
 .summon-room:has(#summonRitual:not([hidden])) .summon-npc,.summon-room:has(#summonRitual:not([hidden])) .summon-warning{display:none}.summon-board{max-width:min(360px,42dvh)}
+/* COURTYARD_STYLE */
 </style></head>
 <body>
 <div id="game">
@@ -795,7 +796,7 @@ for(let layer=0;layer<2;layer++){ctx.save();ctx.translate(layer?-17:0,layer?26:0
 function worldView(){const portrait=!!mode&&canvas.height>canvas.width*1.15,span=portrait?620:1000,s=Math.min(canvas.width/span,canvas.height/(portrait?820:600)),own=portrait?ownKite():null,cx=own?Math.max(span/2,Math.min(1000-span/2,own.x)):500;return {s,x:canvas.width/2-cx*s,y:(canvas.height-600*s)/2,portrait};}
 function drawScenery(t){if(backgroundScene&&art.background(ctx,backgroundScene,0,0,1000,600))return;drawLegacyScenery(t);}
 function draw(t){
-const scene=state?.trail?ART_CONFIG.designs.scenes[state.trail.split('-')[0]]:null;
+const scene=state?.trail?ART_CONFIG.designs.scenes[state.trail.split('-')[0]]:state?.firstFlight?ART_CONFIG.designs.scenes.morro:null;
 if(scene!==backgroundScene){backgroundScene=scene;background=null;if(scene)art.load(scene).then(ok=>{if(ok&&backgroundScene===scene)background=null;});}
 const view=worldView();
 if(!background){background=document.createElement('canvas');background.width=canvas.width;background.height=canvas.height;const main=ctx;ctx=background.getContext('2d',{alpha:false});if(view.portrait){const cover=Math.max(canvas.width/1000,canvas.height/600);ctx.setTransform(cover,0,0,cover,(canvas.width-1000*cover)/2,0);drawScenery(0);}else{if(view.x>0){ctx.setTransform(canvas.width/1000,0,0,canvas.height/600,0,0);drawScenery(0);ctx.setTransform(1,0,0,1,0,0);ctx.fillStyle='#1b2a3618';ctx.fillRect(0,0,canvas.width,canvas.height);}else{ctx.fillStyle='#c2e0e5';ctx.fillRect(0,0,canvas.width,view.y+1);ctx.fillStyle='#46705b';ctx.fillRect(0,view.y+600*view.s-1,canvas.width,canvas.height);}ctx.setTransform(view.s,0,0,view.s,view.x,view.y);drawScenery(0);}ctx=main;}
@@ -879,8 +880,8 @@ if(!mode&&t-lastFrame<1000/30)return;
 const now=Date.now(),dt=Math.min(Math.max((t-lastFrame)/1000,0),.1);
 const health=frameHealth.sample(t,!!mode&&!showResult);
 if(health){setText('renderStats',health.fps+' fps'+(lightMode?' · leve':''));if(health.needsLight&&!lightMode&&allowAutoQuality)setQuality(true,true);}
-if(mode==='practice'&&state&&!pausedAt){if(schoolRun)stepSchool(now);else eng.practiceStep(state,me,input(),now);renderPlayers=null;}else if(mode==='online'&&state){pumpNetwork(t);renderPlayers=networkView.render(t,input(),dt);}
-draw(t);drawSchoolGuide();if(state&&t-lastHud>100){updateHud(serverNow());lastHud=t;}lastFrame=t;
+if(mode==='practice'&&state&&!pausedAt){if(typeof stepFirstFlight==='function'&&firstFlightRun)stepFirstFlight(now);else if(schoolRun)stepSchool(now);else eng.practiceStep(state,me,input(),now);renderPlayers=null;}else if(mode==='online'&&state){pumpNetwork(t);renderPlayers=networkView.render(t,input(),dt);}
+if(typeof drawCourtyard==='function'&&drawCourtyard(t)){lastFrame=t;return;}draw(t);drawSchoolGuide();if(typeof drawFirstFlightGuide==='function')drawFirstFlightGuide();if(state&&t-lastHud>100){updateHud(serverNow());lastHud=t;}lastFrame=t;
 }requestAnimationFrame(frame);
 function updateHud(now){
 const p=state.players.find(p=>p.id===me);if(!p)return;
@@ -912,4 +913,5 @@ function escapeHTML(s){const d=document.createElement('div');d.textContent=s;ret
 /* TRAILS */
 /* TELEMETRY */
 /* ONBOARDING_CLIENT */
+/* COURTYARD_CLIENT */
 </script></body></html>
