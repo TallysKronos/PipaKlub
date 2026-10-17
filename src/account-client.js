@@ -11,8 +11,8 @@ function reflectAccount(){
  $('accountHint').textContent=playerAccount?'Seu progresso e suas pipas ficam na sua conta.':'Entre para guardar pipas e ganhar XP nas disputas.';
  $('roomRules').querySelector('[value="capture"]').disabled=!playerAccount;
  if(!playerAccount&&$('roomRules').value==='capture')$('roomRules').value='casual';
- if(playerAccount){const p=playerAccount.profile,k=playerAccount.inventory.find(k=>k.id===p.equipped_kite_id);$('name').value=p.nickname;$('name').readOnly=true;if(k){selected=k.model.color;choices();$('selectionName').textContent=k.model.name+' · '+eng.type({color:k.model.color}).name+' · equipada';}}
- else $('name').readOnly=false;
+ if(playerAccount){const p=playerAccount.profile,k=playerAccount.inventory.find(k=>k.id===p.equipped_kite_id);$('name').value=p.nickname;$('name').readOnly=true;if(k){selected=k.model.color;choices();const chosen=$('kites').querySelector('[data-color="'+selected+'"]');if(chosen){chosen.innerHTML=art.markup(selected,k.model.soul);chosen.setAttribute('aria-label',k.model.name+' · equipada');}$('selectionName').textContent=k.model.name+' · '+eng.type({color:k.model.color}).name+' · equipada';}}
+ else {$('name').readOnly=false;choices();}
  if(accountModal.style.display==='flex')renderAccountDialog();
 }
 async function refreshAccount(){
@@ -33,17 +33,25 @@ function renderAccountDialog(){
  const base=(p.level-1)**2*100;$('accountXPBar').style.width=Math.min(100,(p.xp-base)/Math.max(1,p.next_level_xp-base)*100)+'%';
  $('accountCuts').textContent=p.cuts+' cortes';$('collectionCount').textContent=playerAccount.inventory.length+' pipas';
  const list=$('inventoryList');list.replaceChildren(...playerAccount.inventory.map(k=>{
-   const card=document.createElement('article');card.className='inventory-card'+(k.id===p.equipped_kite_id?' equipped':'');
-   const art=document.createElement('div');art.className='inventory-art';art.innerHTML=kiteSVG(colors[k.model.color]||colors[0]);
+   const card=document.createElement('article');card.className='inventory-card'+(k.model.acquisition==='event'?' event-soul':'')+(k.id===p.equipped_kite_id?' equipped':'');
+   const art=document.createElement('div');art.className='inventory-art';art.innerHTML=kiteSVG(colors[k.model.color]||colors[0],k.model.soul);
    const name=document.createElement('b');name.textContent=k.model.name;
-   const badge=document.createElement('small');badge.textContent=k.permanent?'Básica permanente':k.capture_count?'Conquistada em duelo':'Colecionável';
+   const badge=document.createElement('small');badge.textContent=k.model.acquisition==='event'?'Especial de evento · vinculada à conta':k.permanent?'Básica permanente':k.capture_count?'Conquistada em duelo':'Colecionável';
    const button=document.createElement('button');button.className='secondary';button.textContent=k.id===p.equipped_kite_id?'Equipada':'Equipar';button.disabled=accountSaving||k.id===p.equipped_kite_id||!!mode;
    button.onclick=async()=>{accountSaving=true;renderAccountDialog();try{const d=await accountRequest('equip',{kiteId:k.id});playerAccount=d.account;reflectAccount();toast('Pipa equipada. Pronta para voar!');}catch(e){$('accountMessage').textContent=e.message;}finally{accountSaving=false;renderAccountDialog();}};
    const history=uiElement('button','Ver história','secondary');history.type='button';history.onclick=()=>openKiteStory(k);
    if(k.capture_count)badge.textContent+=' · '+k.capture_count+' '+(k.capture_count===1?'conquista':'conquistas');
    const skill=document.createElement('p');skill.className='skill-info';const t=eng.type({color:k.model.color});skill.textContent=t.name+' · '+t.skill;skill.title=t.description;card.append(art,name,badge,skill,button,history);return card;
  }));
+ const owned=new Set(playerAccount.inventory.map(k=>k.model_id));
+ $('eventSoulsList').replaceChildren(...art.specials.map(s=>{
+  const card=uiElement('article',undefined,'inventory-card event-soul'+(owned.has(s.id)?'':' event-locked'));
+  const image=uiElement('div',undefined,'inventory-art');image.innerHTML=art.markup(s.color,s.id);
+  card.append(image,uiElement('b',s.name),uiElement('small',owned.has(s.id)?'Na sua coleção':'Bloqueada · recompensa de evento'),uiElement('p',s.legend,'skill-info'));
+  return card;
+ }));
 }
+
 async function openAccount(){
  if(mode){toast('Saia da partida para abrir sua coleção.');return;}
  keys={};closeKiteStory();$('accountMessage').textContent='';accountModal.style.display='flex';renderAccountDialog();$('closeAccount').focus();await refreshAccount();await loadRecentMatches();

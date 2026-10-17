@@ -1,6 +1,13 @@
 export function createArtAssets(config){
  const images=new Map(),loading=new Map(),atlases=config.atlases;
  const creatureNames=['carcara','mata-verde','azulao','raio-de-sol'];
+ const specials=[
+  {id:'flautrevo',name:'Flautrevo',color:3,legend:'O morcego flautista de Hamelin.'},
+  {id:'trinca-brasas',name:'Trinca-brasas',color:2,legend:'Três cabeças guardam as brasas de Cérbero.'},
+  {id:'alvaneve',name:'Alvaneve',color:0,legend:'Um dragão sob o encanto da Rainha da Neve.'},
+  {id:'chaspiral',name:'Chaspiral',color:1,legend:'A fada do chá que escapou do País das Maravilhas.'}
+ ];
+ const special=id=>specials.find(s=>s.id===id);
  const reduced=typeof matchMedia==='function'&&matchMedia('(prefers-reduced-motion:reduce)').matches;
  function load(name,retry=false){
   if(images.has(name))return Promise.resolve(true);
@@ -15,11 +22,21 @@ export function createArtAssets(config){
   const smoothing=context.imageSmoothingEnabled;context.imageSmoothingEnabled=false;
   context.drawImage(image,r.x,r.y,r.w,r.h,x+(width-w)/2,y+(height-h)/2,w,h);context.imageSmoothingEnabled=smoothing;return true;
  }
- function creature(context,color,time,x=-56,y=-44,size=112){
+ function creature(context,color,time,x=-56,y=-44,size=112,player={},victory=false){
+  if(special(player.soul)){
+   const a=atlases[player.soul];if(!images.has(player.soul))load(player.soul);
+   const hurt=player.hitFlash>0,skill=player.skillCooldown>6.37;
+   const state=victory?'victory':hurt?'hurt':skill?'skill':Math.hypot(player.input?.x||0,player.input?.y||0)>.1?'flight':'idle';
+   const elapsed=victory?time:hurt?250-player.hitFlash*1000:skill?7000-player.skillCooldown*1000:time;
+   const seq=a.animations[state],durations=a.playback[state].durations,total=durations.reduce((sum,d)=>sum+d,0);
+   let at=a.playback[state].loop?Math.max(0,elapsed)%total:Math.min(total-1,Math.max(0,elapsed)),index=0;
+   while(index<seq.length-1&&at>=durations[index])at-=durations[index++];
+   if(draw(context,player.soul,seq[reduced?0:index],x-8,y-8,size+16,size+16))return true;
+  }
   const name=creatureNames[color]||creatureNames[0],seq=atlases['pipas-almaticas'].animations[name];
   return draw(context,'pipas-almaticas',seq[reduced?0:Math.floor(time/190)%seq.length],x,y,size,size);
  }
- function markup(color){color=Number.isInteger(color)&&color>=0&&color<4?color:0;return '<span class="almatic-icon" aria-hidden="true" style="background-image:url('+atlases['pipas-almaticas'].meta.url+');background-position:0 '+(color*100/3)+'%"></span>';}
+ function markup(color,soul){if(special(soul))return '<span class="almatic-icon special-icon" aria-hidden="true" style="background-image:url('+atlases[soul].meta.url+');background-size:400% 400%;background-position:0 0"></span>';color=Number.isInteger(color)&&color>=0&&color<4?color:0;return '<span class="almatic-icon" aria-hidden="true" style="background-image:url('+atlases['pipas-almaticas'].meta.url+');background-position:0 '+(color*100/3)+'%"></span>';}
  load('pipas-almaticas');
- return {load,draw,creature,markup,atlases,reduced};
+ return {load,draw,creature,markup,atlases,reduced,specials,special};
 }

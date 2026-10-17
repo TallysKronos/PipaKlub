@@ -62,11 +62,11 @@ async function openKiteStory(kite){
  const version=++storyVersion;$('collectionMain').hidden=true;$('kiteStory').hidden=false;
  const root=$('kiteStoryBody');root.replaceChildren(uiElement('p','Buscando a história desta pipa…'));$('kiteStoryBack').focus();
  try{const {history:h}=await accountRequest('kite-history',{kiteId:kite.id});if(version!==storyVersion)return;
-  root.replaceChildren(uiElement('h3',h.name),uiElement('p',h.permanent?'Básica permanente. Ela acompanha você em todos os duelos.':h.captureCount+' '+(h.captureCount===1?'troca de dono em duelo.':'trocas de dono em duelos.')));
+  root.replaceChildren(uiElement('h3',h.name),uiElement('p',kite.model.acquisition==='event'?'Especial de evento. Vinculada à sua conta e protegida contra capturas.':h.permanent?'Básica permanente. Ela acompanha você em todos os duelos.':h.captureCount+' '+(h.captureCount===1?'troca de dono em duelo.':'trocas de dono em duelos.')));
   const list=uiElement('ol',undefined,'history-list');
   for(const capture of h.captures){const li=uiElement('li');li.append(uiElement('b',capture.to+' conquistou de '+capture.from),uiElement('span','Sala '+capture.room),uiElement('small',resultDate(capture.at)));list.append(li);}root.append(list);
   if(h.captureCount>h.captures.length)root.append(uiElement('p','Mostrando as 30 conquistas mais recentes.','history-note'));
-  root.append(uiElement('p','Recebida no inventário inicial em '+resultDate(h.createdAt)+'.','history-note'));
+  root.append(uiElement('p',(kite.model.acquisition==='event'?'Recebida como recompensa especial em ':'Recebida no inventário inicial em ')+resultDate(h.createdAt)+'.','history-note'));
  }catch(e){if(version===storyVersion)root.replaceChildren(uiElement('p',e.message,'history-note'));}
 }
 $('kiteStoryBack').onclick=closeKiteStory;

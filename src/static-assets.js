@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
-const files=['characters/sr-assis/poses.png','characters/sr-assis/expressions.png','creatures/nozinho/sprites.png','creatures/pipas-almaticas/idle.png'];
+const files=['characters/sr-assis/poses.png','characters/sr-assis/expressions.png','creatures/nozinho/sprites.png','creatures/pipas-almaticas/idle.png','creatures/especiais/flautrevo.png','creatures/especiais/trinca-brasas.png','creatures/especiais/alvaneve.png','creatures/especiais/chaspiral.png'];
 export function createAssetHandler(){
  const cache=new Map();
  return async request=>{

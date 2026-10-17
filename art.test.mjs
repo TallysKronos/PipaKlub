@@ -30,3 +30,24 @@ test('asset route serves every real PNG with hash caching, HEAD and ETag; unknow
  const serve=createAssetHandler();for(const a of Object.values(artConfig().atlases)){const url='https://game.test/'+a.meta.url,r=await serve(new Request(url));assert.equal(r.status,200);assert.equal(r.headers.get('content-type'),'image/png');assert.match(r.headers.get('cache-control'),/immutable/);const bytes=new Uint8Array(await r.arrayBuffer());assert.deepEqual([...bytes.slice(0,8)],[137,80,78,71,13,10,26,10]);const head=await serve(new Request(url,{method:'HEAD'}));assert.equal((await head.arrayBuffer()).byteLength,0);const cached=await serve(new Request(url,{headers:{'if-none-match':r.headers.get('etag')}}));assert.equal(cached.status,304);const file='docs/'+a.meta.url.split('?')[0];assert.ok(fs.existsSync(file));assert.deepEqual(fs.readFileSync(file),Buffer.from(bytes));}
  assert.equal((await serve(new Request('https://game.test/assets/.env'))).status,404);assert.equal((await serve(new Request('https://game.test/assets/characters/sr-assis/poses.png',{method:'POST'}))).status,405);assert.equal(await serve(new Request('https://game.test/api/create')),null);
 });
+
+test('special Souls load only on demand and animate all five states using their real atlas rectangles',async()=>{
+ const a=app({seen:true});await a.settle();assert.equal(a.requests.length,1);
+ for(const soul of ['flautrevo','trinca-brasas','alvaneve','chaspiral']){
+  a.run("art.load('"+soul+"')");await a.settle();
+  for(const [state,extra,victory] of [['idle',{},false],['flight',{input:{x:1}},false],['skill',{skillCooldown:6.7},false],['hurt',{hitFlash:.05},false],['victory',{},true]]){
+   const time=200,p={soul,...extra};a.run("art.creature($('sky').getContext('2d'),0,"+time+",-56,-44,112,"+JSON.stringify(p)+","+victory+")");
+   const actual=a.draws.at(-1).args.slice(1,5),atlas=artConfig().atlases[soul];
+   assert.ok(atlas.animations[state].some(key=>{const f=atlas.frames[key].frame;return JSON.stringify(actual)===JSON.stringify([f.x,f.y,f.w,f.h]);}),soul+' '+state);
+  }
+ }
+ assert.equal(a.requests.length,5);
+ assert.match(a.run("art.markup(0,'alvaneve')"),/especiais\/alvaneve\.png/);
+ assert.ok(!a.run("art.markup(0,'<script>')").includes('<script>'));
+ const account={profile:{nickname:'Ana',level:1,xp:0,next_level_xp:100,cuts:0,equipped_kite_id:'owned'},inventory:[{id:'owned',model_id:'alvaneve',permanent:true,model:{name:'Alvaneve',color:0,soul:'alvaneve',acquisition:'event'}}]};
+ a.run('playerAccount='+JSON.stringify(account)+';reflectAccount();renderAccountDialog();');
+ assert.equal(a.document.querySelectorAll('#eventSoulsList .event-locked').length,3);
+ assert.match(a.document.getElementById('inventoryList').textContent,/Especial de evento/);
+ assert.match(a.document.getElementById('selectionName').textContent,/Alvaneve/);
+ a.run("$('practice').onclick()");assert.equal(a.run("state.players.find(p=>p.id==='you').soul"),'alvaneve');
+});
