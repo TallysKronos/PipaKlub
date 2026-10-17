@@ -9,6 +9,6 @@ export function hudSpriteCSS(){
  const atlas=hudAssets();
  return Object.entries(atlas.frames).map(([id,[sheet,x,y,w,h]])=>{
   const s=atlas.sheets[sheet];if(x<0||y<0||x+w>s.width||y+h>s.height)throw Error('HUD frame outside sheet: '+id);
-  return '.hud-art-'+id+'{background-image:url("'+s.url+'")!important;background-size:'+s.width/w*100+'% '+s.height/h*100+'%;background-position:'+x/(s.width-w)*100+'% '+y/(s.height-h)*100+'%}';
+  return '.hud-art-'+id+'{background-image:url("'+s.url+'")!important;background-size:'+s.width/w*100+'% '+s.height/h*100+'%!important;background-position:'+x/(s.width-w)*100+'% '+y/(s.height-h)*100+'%!important}';
  }).join('\n');
 }
