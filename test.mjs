@@ -24,3 +24,12 @@ test('combat consumes energy, awards one cut, respawns and ends without further 
  const e=createEngine(),s=e.create(1000),a=e.player('A',0,'a',1000),b=e.player('B',1,'b',1000);a.x=700;b.x=300;a.y=b.y=180;a.input={cut:true};b.hp=1;s.players=[a,b];e.step(s,1100);assert.equal(a.score,100);assert.equal(a.cuts,1);assert.ok(b.respawn);assert.ok(a.energy<100);e.step(s,1200);assert.equal(a.score,100);a.input={};e.step(s,4200);assert.equal(b.hp,100);assert.equal(b.respawn,0);a.input={};let en=a.energy;e.step(s,4300);assert.ok(a.energy>en);s.end=4300;let x=a.x;a.input={x:1};e.step(s,4400);assert.equal(a.x,x);
 });
 
+test('a slow account check does not lose the join race against the realtime tick',async()=>{
+ const a=await call('create',{name:'Host'});let calls=0,released=0;
+ const tick=setInterval(()=>sqlite.prepare('UPDATE pipa_rooms SET rev=rev+1 WHERE code=?').run(a.code),10);
+ const ACCOUNTS={enabled:true,async preparePlayer(){calls++;await new Promise(r=>setTimeout(r,40));return {accountId:'u1',name:'Logada'};},async release(){released++;}};
+ try{
+  const r=await worker.fetch(new Request('https://game.test/api/join',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:a.code,name:'Guest'})}),{DB,ACCOUNTS});const b=await r.json();
+  assert.equal(r.status,200,b.error);assert.equal(b.state.players.length,2);assert.equal(calls,1);assert.equal(released,0);
+ }finally{clearInterval(tick);}
+});
