@@ -95,5 +95,5 @@ $('tradeCreate').onclick=()=>tradeAction('create',{code:null});
 $('tradeJoin').onclick=()=>tradeAction('join',{code:$('tradeCode').value.trim().toUpperCase()});
 $('tradeHistory').onclick=()=>tradeAction('history');
 $('tradeReplay').onclick=()=>playTradeFlight(lastCompletedTrade,true);
-setInterval(()=>{if(playerAccount&&accountModal.style.display==='flex')tradeAction('read',{code:currentTrade?.status==='open'?currentTrade.code:null});else if(!playerAccount){clearTimeout(tradeFlightTimer);tradeAnimating=false;currentTrade=null;lastCompletedTrade=null;tradeSelection='';$('tradeReplay').hidden=true;$('tradeScene').classList.remove('is-flying','trade-landed');$('tradeHistoryList').replaceChildren();renderTrade();}},3000);
+setInterval(()=>{if(playerAccount&&accountModal.style.display==='flex'&&(typeof accountPage==='undefined'||accountPage==='trades'))tradeAction('read',{code:currentTrade?.status==='open'?currentTrade.code:null});else if(!playerAccount){clearTimeout(tradeFlightTimer);tradeAnimating=false;currentTrade=null;lastCompletedTrade=null;tradeSelection='';$('tradeReplay').hidden=true;$('tradeScene').classList.remove('is-flying','trade-landed');$('tradeHistoryList').replaceChildren();renderTrade();}},3000);
 paintTradeScene(null);

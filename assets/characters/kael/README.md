@@ -1,0 +1,13 @@
+# Kael — spritesheet v1
+
+PNG transparente gerado com a ferramenta integrada de imagens. Identidade baseada no esboço fornecido, versão azul; estilo baseado no Sr. Assis do jogo.
+
+Grade: 4 colunas × 4 linhas. Linha 1: repouso e expressões. Linha 2: estudos de caminhada. Linha 3: controle e puxada da linha. Linha 4: saudação, pensamento, prontidão e vitória.
+
+Primeira versão artística: revisar pivôs, direção do olhar, alinhamento e continuidade dos ciclos antes de usar como animação final. Sem integração automática ao jogo.
+
+Arquivos: outputs/kael-spritesheet-v1.png; PipaKlub/assets/characters/kael/sprites-v1.png.
+
+## Prompt final
+
+Use case: identity-preserve. Create a production game CHARACTER SPRITESHEET of Kael, the young male protagonist from reference image 1. Reference image 1 is the CHARACTER IDENTITY AND COSTUME authority; use ONLY the first BLUE colorway at the bottom left. Reference image 2 is ONLY the rendering style reference from our existing game, never copy its older man, white coat or goggles. Preserve Kael's youthful face, large reddish-brown eyes, light skin, oversized swept spiky dark navy-blue hair with shaved dark sides, slim youthful build, open short navy jacket with long sleeves and tiny silver shoulder studs, black shirt, turquoise segmented necklace, slate blue slim pants with the dark thigh strap, dark ankle boots, and two long thin dangling jacket straps. Render as crisp 2D illustrated game sprites with near-black outlines, clean angular cel shaded color clusters, slightly pixel-textured edges matching reference 2; no painterly textures, no 3D. Exactly 4 equal columns by 4 equal rows on a transparent canvas, 1536x2048 if possible; sixteen equal 384x512 cells. Each cell contains one complete full body Kael, same scale, same costume and proportions, with safe transparent margins and baseline consistent within each row. No grid lines, no labels, no text, no scenery, no watermark. Reading order: row 1 four idle animation frames in three-quarter view facing right, subtle breathing and blinking. Row 2 four walk-cycle frames facing right, clear alternating legs and opposite arms, consecutive contact/down/passing/up poses. Row 3 four consecutive kite-control action frames facing right, empty hands miming holding and pulling a kite string: anticipation, reach, strong pull, recovery; no weapons or actual visible string crossing cells. Row 4 four expressive full-body poses: welcoming wave, thoughtful hand at chin, determined ready stance, joyful victory with fist raised. Keep hair silhouette and all costume details identical between cells. All hands anatomically clear. Character must stay entirely within each cell, ample padding above hair and below boots.

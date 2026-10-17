@@ -28,6 +28,30 @@ function app({seen=false,search='',failed=false,reduced=false}={}){
  for(const select of document.querySelectorAll('select')){let value;Object.defineProperty(select,'value',{configurable:true,get(){return value??this.querySelector('option[selected]')?.value??this.querySelector('option')?.value??'';},set(next){value=next;}});}
  return {document,requests,draws,storage,run:code=>vm.runInContext(code,context),auto:()=>timers.find(t=>t.delay===650).fn(),settle:()=>new Promise(r=>setImmediate(r)),key:key=>{for(const fn of listeners.get('keydown'))fn({key,target:{tagName:'BODY'},preventDefault(){},stopImmediatePropagation(){}});}};
 }
+test('club menu isolates features, preserves trade inputs and returns home when reopened',async()=>{
+ const a=app({seen:true});await a.settle();
+ a.run(`for(const b of document.querySelectorAll('button'))b.focus=()=>{}; playerAccount={profile:{nickname:'Ana',level:1,xp:0,next_level_xp:100,cuts:0},inventory:[]}; renderAccountDialog();`);
+ assert.equal(a.document.getElementById('clubHome').hidden,false);
+ for(const id of ['collection','trades','profile','history','events','farm']){
+  a.run(`navigateClub('${id}')`);
+  assert.equal(a.document.getElementById('clubHome').hidden,true);
+  for(const page of a.document.querySelectorAll('.club-page'))assert.equal(page.hidden,page.id!=='club-'+id);
+ }
+ a.run(`navigateClub('trades');document.getElementById('tradeCode').value='KEEP123';navigateClub('profile');renderAccountDialog();navigateClub('trades');`);
+ assert.equal(a.document.getElementById('tradeCode').value,'KEEP123');
+ a.run('closeAccount();openAccount()');assert.equal(a.document.getElementById('clubHome').hidden,false);
+ assert.equal(a.document.getElementById('recentMatches').parentElement.id,'club-history');
+ assert.equal(a.document.getElementById('eventSoulsList').parentElement.id,'club-events');
+});
+
+test('club navigation abandons an active ritual before opening another feature',async()=>{
+ const a=app({seen:true});await a.settle();
+ a.run(`for(const b of document.querySelectorAll('button'))b.focus=()=>{};playerAccount={};accountPage='summon';summonOpen=true;summonRitual={id:'ritual-1',status:'active'};var abandoned=[];summonCall=async(action,body)=>{abandoned.push({action,body});};navigateClub('profile');`);
+ assert.equal(a.run('summonOpen'),false);assert.equal(a.run('summonRitual'),null);
+ assert.equal(a.run('abandoned[0].action'),'abandon');assert.equal(a.run('abandoned[0].body.ritualId'),'ritual-1');
+ assert.equal(a.document.getElementById('club-profile').hidden,false);
+});
+
 test('new visitors meet Assis, all eight steps swap artwork, finish starts training and replay remains available',async()=>{
  const a=app();await a.settle();assert.equal(a.requests.length,1);a.auto();await a.settle();assert.equal(a.document.getElementById('assisIntro').hidden,false);assert.match(a.document.getElementById('assisSpeech').textContent,/Nozinho/);assert.equal(a.requests.length,4);assert.match(a.document.getElementById('assisLoad').textContent,/pesquisador/);
  const expressions=new Set(),poses=new Set();for(let i=0;i<8;i++){expressions.add(a.run('ART_CONFIG.intro.steps[introductionStep].expression'));poses.add(a.run('ART_CONFIG.intro.steps[introductionStep].pose'));a.document.getElementById('assisNext').onclick();}
