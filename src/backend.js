@@ -10,18 +10,9 @@ async function api(request,env){
   if(Number(request.headers.get('content-length'))>4096)return json({error:'Pedido muito grande.'},413);
   let b;try{const raw=await request.text();if(raw.length>4096)throw Error();b=JSON.parse(raw);}catch{return json({error:'Pedido inválido.'},400);}
   await init(env.DB);const action=new URL(request.url).pathname.split('/').pop(),now=Date.now();
-  if(action==='create'){
-    const code=crypto.randomUUID().replaceAll('-','').slice(0,6).toUpperCase(),token=crypto.randomUUID(),s=engine.create(now);
-    s.code=code;s.rules=b.rules==='capture'?'capture':'casual';
-    if(s.rules==='capture'&&!env.ACCOUNTS?.enabled)return json({error:'Vale pipa precisa de contas conectadas ao banco.'},503);
-    const account=env.ACCOUNTS?await env.ACCOUNTS.preparePlayer(request,s):null;
-    const p=engine.player(account?.name||b.name,account?.color??b.color,crypto.randomUUID(),now);p.key=token;if(account)Object.assign(p,account);engine.seat(s,p);p.shield=engine.SHIELD;s.players.push(p);
-    await env.DB.prepare('INSERT INTO pipa_rooms (code,state,updated) VALUES (?,?,?)').bind(code,JSON.stringify(s),now).run();
-    await env.DB.prepare('DELETE FROM pipa_rooms WHERE updated < ?').bind(now-3600000).run();
-    return json({code,token,me:p.id,state:visible(s)});
-  }
+  if(action==='create')return json(await createRoom(request,env,b,now));
   const code=String(b.code||'').toUpperCase();if(!/^[A-F0-9]{6}$/.test(code))return json({error:'Use o código de 6 caracteres da sala.'},400);
-  if(action==='inspect'){const row=await env.DB.prepare('SELECT state, rev FROM pipa_rooms WHERE code = ?').bind(code).first();if(!row)return json({error:'Sala não encontrada. Confira o código.'},404);const s=JSON.parse(row.state);return json({code,rules:s.rules||'casual'});}
+  if(action==='inspect'){const row=await env.DB.prepare('SELECT state, rev FROM pipa_rooms WHERE code = ?').bind(code).first();if(!row)return json({error:'Sala não encontrada. Confira o código.'},404);const s=JSON.parse(row.state);if(now>=s.end)return json({error:s.next?'Esta partida terminou. A revanche está na sala '+s.next+'.':'Esta partida terminou. Crie uma nova sala.',next:s.next},409);return json({code,rules:s.rules||'casual',mode:s.mode||'time'});}
   // The account check is a network call: do it once, before the retry loop, so the realtime tick cannot win every retry.
   let account=null;
   if(action==='join'){
@@ -30,7 +21,7 @@ async function api(request,env){
     const s=JSON.parse(row.state);engine.step(s,now);
     if(s.rules==='capture'&&!b.captureConsent)return json({error:'Confirme a regra Vale pipa para entrar.'},400);
     if(s.players.length>=8)return json({error:'Sala cheia. O limite é de 8 jogadores.'},409);
-    if(now>=s.end)return json({error:'Esta partida terminou. Crie uma nova sala.'},409);
+    if(now>=s.end)return json({error:s.next?'Esta partida terminou. A revanche está na sala '+s.next+'.':'Esta partida terminou. Crie uma nova sala.',next:s.next},409);
     if(s.rules==='capture'&&!env.ACCOUNTS?.enabled)return json({error:'Vale pipa precisa de contas conectadas ao banco.'},503);
     account=env.ACCOUNTS?await env.ACCOUNTS.preparePlayer(request,s):null;
   }
@@ -41,8 +32,16 @@ async function api(request,env){
     if(action==='join'){
       if(s.players.length>=8){await releaseAccount(env,account,s);return json({error:'Sala cheia. O limite é de 8 jogadores.'},409);}
       if(account?.accountId&&s.players.some(q=>q.accountId===account.accountId)){await releaseAccount(env,account,s);return json({error:'Você já entrou nesta sala.'},409);}
-      token=crypto.randomUUID();p=engine.player(account?.name||b.name,account?.color??b.color,crypto.randomUUID(),now);p.key=token;if(account)Object.assign(p,account);engine.seat(s,p);p.shield=engine.SHIELD;s.players.push(p);
+      token=crypto.randomUUID();p=engine.player(account?.name||b.name,account?.color??b.color,crypto.randomUUID(),now);p.key=token;if(account)Object.assign(p,account);engine.admit(s,p,now);
     }else if(!p)return json({error:'Sua conexão expirou. Entre na sala novamente.'},401);
+    if(action==='rematch'){
+      // The rematch is a fresh room (fresh match id for rewards); the first player to ask creates it, the rest are pointed to it.
+      if(now<s.end)return json({code,token,me:p.id,state:visible(s)});
+      if(s.next)return json({next:s.next});
+      const room=await createRoom(request,env,{name:p.name,color:p.color,rules:s.rules,mode:s.mode},now);
+      s.next=room.code;await env.DB.prepare('UPDATE pipa_rooms SET state = ?, rev = rev + 1 WHERE code = ? AND rev = ?').bind(JSON.stringify(s),code,row.rev).run();
+      return json(room);
+    }
     if(action==='sync'){p.input=engine.sanitizeInput(b.input);p.seen=now;}
     else if(action==='leave')s.players=s.players.filter(q=>q.key!==token);
     else if(action!=='join')return json({error:'Ação inválida.'},400);
@@ -51,6 +50,16 @@ async function api(request,env){
   }
   if(action==='join'){const row=await env.DB.prepare('SELECT state FROM pipa_rooms WHERE code = ?').bind(code).first();if(row)await releaseAccount(env,account,JSON.parse(row.state));}
   return json({error:'Sala ocupada. Tente novamente.'},409);
+}
+async function createRoom(request,env,b,now){
+  const code=crypto.randomUUID().replaceAll('-','').slice(0,6).toUpperCase(),token=crypto.randomUUID(),s=engine.create(now,{mode:b.mode});
+  s.code=code;s.rules=b.rules==='capture'?'capture':'casual';
+  if(s.rules==='capture'&&!env.ACCOUNTS?.enabled)throw Object.assign(Error('Vale pipa precisa de contas conectadas ao banco.'),{status:503});
+  const account=env.ACCOUNTS?await env.ACCOUNTS.preparePlayer(request,s):null;
+  const p=engine.player(account?.name||b.name,account?.color??b.color,crypto.randomUUID(),now);p.key=token;if(account)Object.assign(p,account);engine.admit(s,p,now);
+  await env.DB.prepare('INSERT INTO pipa_rooms (code,state,updated) VALUES (?,?,?)').bind(code,JSON.stringify(s),now).run();
+  await env.DB.prepare('DELETE FROM pipa_rooms WHERE updated < ?').bind(now-3600000).run();
+  return {code,token,me:p.id,state:visible(s)};
 }
 async function releaseAccount(env,account,s){if(!account?.accountId)return;try{if(env.PROGRESSION)env.PROGRESSION.release(account.accountId,s.id);else await env.ACCOUNTS?.release(account.accountId,s.id);}catch{}}
 export default {async fetch(request,env){try{const u=new URL(request.url);if(u.pathname.startsWith('/api/'))return await api(request,env);if(u.pathname==='/health')return json({ok:true});return new Response(PAGE,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'same-origin'}});}catch(e){console.error(e);return json({error:e.status?e.message:'Não foi possível conectar. Tente novamente ou entre no treino.'},e.status||500);}}};

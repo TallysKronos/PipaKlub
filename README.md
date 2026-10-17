@@ -22,7 +22,12 @@ Abra http://localhost:5193. Para jogar em outro aparelho na mesma rede, use o IP
 - A mira fica verde quando a sua linha cruza a faixa tracejada inimiga. Acertos comuns tiram 18 de durabilidade; a faixa central dourada tira 24. As linhas precisam formar um ângulo de pelo menos 11,54°; contato perto do chão ou da ponta não vale. A parte atacante precisa estar entre 35% e 95% de sua linha, e a faixa vulnerável entre 30% e 85% da linha inimiga (frações medidas desde o chão).
 - Q / E: habilidade da pipa equipada. Custa 25 de energia e recarrega em 7 s. Na Ágil, Q desloca 96 px para esquerda e E para direita.
 - Soltar ataque recupera 18 de energia/s; segurando, 6/s. A durabilidade começa em 100 e só é restaurada ao reaparecer.
-- Cada corte vale 100 pontos. A pipa cortada retorna após 3 segundos.
+- Cada corte vale 100 pontos.
+- Formatos (escolhidos ao criar a sala ou o treino):
+  - **Rodadas (padrão):** contagem 3-2-1, quem é cortado espera a rodada acabar; a última pipa no céu vence a rodada e todos voltam com a linha cheia. Vence quem ganhar 3 rodadas. Rodada sem corte em 60 s vai para a linha mais inteira; corte duplo é empate.
+  - **Tempo:** 3 minutos, contados só quando o segundo jogador entra. A pipa cortada retorna após 3 segundos.
+- Cada jogador tem número e cor fixos pelo assento (P1 azul, P2 vermelho, P3 amarelo, P4 verde…), usados no nome, na linha e no placar.
+- Revanche: no resultado, o primeiro a pedir cria uma sala nova com as mesmas regras e os demais entram nela com um clique.
 - Ao entrar e ao reaparecer, a pipa fica protegida por 2,5 s (anel tracejado branco). Atacar encerra a proteção.
 - Acertos, dano, cortes e reaparecimento aparecem na arena: números flutuantes, "ACERTOU!", pipa caindo e faixa central. Os bots miram por um instante antes de puxar.
 - No celular: direcional, ATACAR e SK ← / SK → na arena.

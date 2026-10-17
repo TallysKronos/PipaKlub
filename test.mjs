@@ -33,3 +33,14 @@ test('a slow account check does not lose the join race against the realtime tick
   assert.equal(r.status,200,b.error);assert.equal(b.state.players.length,2);assert.equal(calls,1);assert.equal(released,0);
  }finally{clearInterval(tick);}
 });
+test('rooms start in the chosen format; rematch creates one new room and points everyone else to it',async()=>{
+ const a=await call('create',{name:'Ana',mode:'rounds'});assert.equal(a.state.mode,'rounds');assert.equal(a.state.phase,'waiting');assert.equal(a.state.players[0].slot,0);
+ const b=await call('join',{code:a.code,name:'Beto'});assert.equal(b.state.players.find(p=>p.id===b.me).slot,1);assert.equal((await call('sync',{code:a.code,token:b.token,input:{}})).state.phase,'countdown');
+ assert.equal((await call('rematch',{code:a.code,token:a.token})).code,a.code,'no rematch while the match is running');
+ const s=JSON.parse(sqlite.prepare('SELECT state FROM pipa_rooms WHERE code=?').get(a.code).state);s.end=Date.now()-1;sqlite.prepare('UPDATE pipa_rooms SET state=? WHERE code=?').run(JSON.stringify(s),a.code);
+ const first=await call('rematch',{code:a.code,token:a.token});assert.equal(first.status,200);assert.notEqual(first.code,a.code);assert.equal(first.state.mode,'rounds');assert.ok(first.token);
+ const second=await call('rematch',{code:a.code,token:b.token});assert.equal(second.next,first.code);
+ const old=await call('inspect',{code:a.code});assert.equal(old.status,409);assert.equal(old.next,first.code);
+ const joined=await call('join',{code:first.code,name:'Beto'});assert.equal(joined.status,200);assert.equal(joined.state.players.length,2);
+ assert.equal((await call('create',{name:'T',mode:'time'})).state.mode,'time');
+});

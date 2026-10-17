@@ -6,14 +6,35 @@ export function createEngine() {
     {name:'Guardiã',skill:'Linha firme',description:'Receba 60% menos desgaste durante 1,5 s.',duration:1.5},
     {name:'Técnica',skill:'Foco',description:'Por 2,5 s, alcance uma faixa maior da linha inimiga.',duration:2.5}
   ];
-  const SHIELD=2.5;
+  const SHIELD=2.5,COUNTDOWN=3000,INTERMISSION=3200,ROUND=60000,MATCH=180000,ROUNDS_TO_WIN=3,ANCHORS=[90,910,325,675,207,793,442,558];
   const type=p=>types[clamp(Math.trunc(Number(p.color)||0),0,3)];
   function sanitizeInput(i={}) {return {x:Number.isFinite(i?.x)?clamp(i.x,-1,1):0,y:Number.isFinite(i?.y)?clamp(i.y,-1,1):0,cut:!!i?.cut,skill:i?.skill===-1?-1:i?.skill===1?1:0};}
   function player(name,color,id,now) {return {id,name:String(name||'Pipeiro').slice(0,18),color:clamp(Math.trunc(Number(color)||0),0,3),x:220+Math.random()*560,y:160+Math.random()*240,hp:100,energy:100,score:0,cuts:0,input:{},seen:now,respawn:0,attack:false,attackCooldown:0,skillCooldown:0,skillTime:0,skillCount:0};}
-  function create(now=Date.now()) {return {id:crypto.randomUUID(),rules:'casual',cutSequence:0,players:[],last:now,end:now+180000,events:[],wind:0};}
-  function visible(s){const {_pendingCuts,...publicState}=s;return {...publicState,players:s.players.map(({key,accountId,kiteId,basicKiteId,strike,...p})=>p),events:s.events.map(({id,text,at,capture,winnerId,loserId})=>({id,text,at,capture,winnerId,loserId}))};}
+  // Without options the match is live at once (legacy/tests). Rooms and practice pass a mode and start in 'waiting'.
+  function create(now=Date.now(),opts) {const s={id:crypto.randomUUID(),rules:'casual',cutSequence:0,players:[],last:now,end:now+MATCH,events:[],wind:0};if(opts){s.mode=opts.mode==='time'?'time':'rounds';s.phase='waiting';s.round=0;s.roundsToWin=ROUNDS_TO_WIN;s.end=now+3600000;}return s;}
+  // A player joining mid-round in rounds mode watches until the next round starts.
+  function admit(s,p,now){seat(s,p);p.shield=SHIELD;if(s.mode==='rounds'&&(s.phase==='live'||s.phase==='intermission'))p.respawn=now;s.players.push(p);return p;}
+  function visible(s){const {_pendingCuts,...publicState}=s;return {...publicState,players:s.players.map(({key,accountId,kiteId,basicKiteId,strike,...p})=>p),events:s.events.map(({id,text,at,capture,winnerId,loserId,kind,round})=>({id,text,at,capture,winnerId,loserId,kind,round}))};}
   // Fixed anchors and straight segments are also used by the renderer. Fractions run ground -> kite.
-  function seat(s,p){if(!Number.isFinite(p.anchorX))p.anchorX=[90,910,325,675,207,793,442,558].find(x=>!s.players.some(q=>q!==p&&q.anchorX===x))??500;return p;}
+  // The seat also fixes the player number (P1..P8) shown with the player's colour.
+  function seat(s,p){if(!Number.isFinite(p.anchorX))p.anchorX=ANCHORS.find(x=>!s.players.some(q=>q!==p&&q.anchorX===x))??500;if(!Number.isInteger(p.slot)){const i=ANCHORS.indexOf(p.anchorX);p.slot=i>=0?i:s.players.indexOf(p)%8;}return p;}
+  function reset(p){Object.assign(p,{hp:100,energy:100,respawn:0,skillTime:0,skillCooldown:0,attackCooldown:0,shield:0,hitFlash:0,flash:0,botFocus:-.4,attack:false,x:clamp(500+(p.anchorX-500)*.8,55,945),y:290});}
+  function startRound(s,now){s.phase='countdown';s.phaseUntil=now+COUNTDOWN;if(s.mode==='rounds')s.round=(s.round||0)+1;for(const p of s.players)reset(p);}
+  function finishRound(s,now){
+    const alive=s.players.filter(p=>!p.respawn).sort((a,b)=>b.hp-a.hp);
+    // Last kite standing wins; on timeout the healthiest line wins, a tie is a draw.
+    const winner=alive.length===1||(alive.length>1&&alive[0].hp>alive[1].hp)?alive[0]:null;
+    if(winner)winner.rounds=(winner.rounds||0)+1;
+    s.events.unshift({kind:'round',round:s.round,text:winner?winner.name+' venceu a rodada '+s.round:'Rodada '+s.round+' empatada',at:now,id:s.id+':r'+s.round,winnerId:winner?.id});s.events=s.events.slice(0,4);
+    s.phase='intermission';s.phaseUntil=now+INTERMISSION;
+    if(winner&&winner.rounds>=s.roundsToWin)s.end=now+INTERMISSION;
+  }
+  function advance(s,now){
+    if(s.phase==='waiting'){if(s.players.length>=2)startRound(s,now);}
+    else if(s.phase==='countdown'){if(now>=s.phaseUntil){s.phase='live';if(s.mode==='time'){s.end=now+MATCH;s.phaseUntil=s.end;}else{s.phaseUntil=now+ROUND;if(s.round===1)s.end=now+12*60000;}}}
+    else if(s.phase==='intermission'){if(now>=s.phaseUntil)startRound(s,now);}
+    else if(s.phase==='live'&&s.mode==='rounds'){if(s.players.length<2){s.phase='waiting';for(const p of s.players)reset(p);}else if(now>=s.phaseUntil)finishRound(s,now);}
+  }
   function line(p){return {a:{x:Number.isFinite(p.anchorX)?p.anchorX:110+(p.color*219)%800,y:585},b:{x:p.x,y:p.y}};}
   function contact(p,q){
     if(p.id===q.id||p.respawn||q.respawn)return null;
@@ -45,10 +66,13 @@ export function createEngine() {
   }
   function step(s,now) {
     s._pendingCuts=[];const dt=clamp((now-s.last)/1000,0,.25);s.last=now;s.wind=Math.sin(now/9000)*12;
-    s.players=s.players.filter(p=>p.bot||now-p.seen<15000);if(now>=s.end)return s;
+    if(now>=s.end)return s;s.players=s.players.filter(p=>p.bot||now-p.seen<15000);
     for(const p of s.players)seat(s,p);
+    if(s.phase)advance(s,now);
+    const live=!s.phase||s.phase==='live',rounds=s.mode==='rounds';
     for(const p of s.players){
-      if(p.respawn){if(now<p.respawn)continue;p.respawn=0;p.hp=100;p.energy=100;p.skillTime=0;p.attackCooldown=.65;p.skillCooldown=Math.max(2,p.skillCooldown||0);p.x=160+Math.random()*680;p.y=160+Math.random()*220;p.shield=SHIELD;p.botFocus=0;}
+      if(s.phase==='intermission'){p.strike=false;continue;}
+      if(p.respawn){if(rounds||now<p.respawn)continue;p.respawn=0;p.hp=100;p.energy=100;p.skillTime=0;p.attackCooldown=.65;p.skillCooldown=Math.max(2,p.skillCooldown||0);p.x=160+Math.random()*680;p.y=160+Math.random()*220;p.shield=SHIELD;p.botFocus=0;}
       if(p.bot){
         const target=s.players.filter(q=>q.id!==p.id&&!q.respawn&&!(q.shield>0)).sort((a,b)=>Number(!!contact(p,b)?.valid)-Number(!!contact(p,a)?.valid)||Math.hypot(a.x-p.x,a.y-p.y)-Math.hypot(b.x-p.x,b.y-p.y)||a.id.localeCompare(b.id))[0];
         // Seek a crossing near 60% of the target line, rather than chasing its kite.
@@ -59,7 +83,7 @@ export function createEngine() {
         const pull=!!c?.valid&&p.botFocus>=.7;if(pull&&p.attackCooldown<=0&&p.energy>=12)p.botFocus=-.9;
         p.input={x:clamp((x-p.x)/80,-.8,.8),y:clamp((y-p.y)/80,-.8,.8),cut:pull,skill:pull&&p.energy>=40?(p.x<500?1:-1):0};
       }
-      move(p,p.input,dt,s.wind);
+      if(live)move(p,p.input,dt,s.wind);else{const held=p.input;move(p,{...held,cut:false,skill:0},dt,s.wind);p.input=held;}
     }
     // Resolve simultaneous strikes together, independent of who created the room.
     const hits=[];
@@ -74,13 +98,14 @@ export function createEngine() {
     for(const h of hits){h.q.hp=Math.max(0,h.q.hp-h.damage);h.q.hitFlash=.25;h.q.lastHit={x:h.c.x,y:h.c.y,damage:Math.round(h.damage)};}
     for(const q of s.players){if(q.hp>0||q.respawn)continue;
       const winner=hits.filter(h=>h.q===q).sort((a,b)=>b.damage-a.damage||a.p.id.localeCompare(b.p.id))[0];if(!winner)continue;
-      const p=winner.p;q.respawn=now+3000;q.attack=false;p.score+=100;p.cuts++;
+      const p=winner.p;q.respawn=rounds?now:now+3000;q.attack=false;p.score+=100;p.cuts++;
       const cut={text:p.name+' cortou '+q.name,at:now,id:s.id+':'+(++s.cutSequence),winnerId:p.id,loserId:q.id,matchId:s.id,winnerAccountId:p.accountId,loserAccountId:q.accountId,kiteId:q.kiteId,capture:s.rules==='capture'&&!q.kitePermanent};
       s.events.unshift(cut);s._pendingCuts.push(cut);s.events=s.events.slice(0,4);
       if(s.rules==='capture'&&q.accountId&&q.basicKiteId){q.kiteId=q.basicKiteId;q.kitePermanent=true;q.color=0;q.skillTime=0;}
     }
+    if(rounds&&s.phase==='live'&&s.players.filter(p=>!p.respawn).length<=1)finishRound(s,now);
     return s;
   }
   function practiceStep(s,id,input,now){const p=s.players.find(p=>p.id===id);if(p){p.input=sanitizeInput(input);p.seen=now;}return step(s,now);}
-  return {SHIELD,create,player,step,move,visible,practiceStep,line,contact,types,type,sanitizeInput,seat};
+  return {SHIELD,create,admit,player,step,move,visible,practiceStep,line,contact,types,type,sanitizeInput,seat};
 }

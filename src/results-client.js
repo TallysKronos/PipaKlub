@@ -5,10 +5,11 @@ function stopMatchResult(){resultContext=null;resultVersion++;clearTimeout(resul
 function showMatchResult(s,ranking=[]){
  stopMatchResult();
  const mine=s.players?.find(p=>p.id===me),authenticated=mode==='online'&&!!playerAccount;
- const rows=ranking.map((q,i)=>'<div class="result-rank'+(q.id===me?' me':'')+'"><span>'+(i+1)+'. '+escapeHTML(q.name)+(q.id===me?' · você':'')+'</span><b>'+q.score+' pts</b></div>').join('');
+ const rounds=s.mode==='rounds',rows=ranking.map((q,i)=>'<div class="result-rank'+(q.id===me?' me':'')+'"><span><i class="result-dot" style="background:'+playerColor(q)+'"></i>'+(i+1)+'. '+playerTag(q)+' '+escapeHTML(q.name)+(q.id===me?' · você':'')+'</span><b>'+(rounds?(q.rounds||0)+' ★ · ':'')+q.score+' pts</b></div>').join('');
  const place=ranking.findIndex(q=>q.id===me)+1,cuts=mine?.cuts||0;
  modal(place===1?'O céu é seu!':'Cada duelo deixa uma história.',
-  (place?'<p class="result-place">Você ficou em '+place+'º de '+ranking.length+'</p>':'')+'<p>Seus cortes: '+cuts+'.</p><div id="matchRewardSummary" class="match-rewards" aria-live="polite"></div>'+rows,'Voltar ao lobby','Resultado do duelo');
+  (place?'<p class="result-place">Você ficou em '+place+'º de '+ranking.length+'</p>':'')+'<p>'+(rounds?'Rodadas vencidas: '+(mine?.rounds||0)+' · ':'')+'Seus cortes: '+cuts+'.</p><div id="matchRewardSummary" class="match-rewards" aria-live="polite"></div>'+rows+'<button class="secondary" id="rematchButton">'+(mode==='online'?'Revanche com a turma ↻':'Jogar de novo ↻')+'</button>','Voltar ao lobby','Resultado do duelo');
+ $('rematchButton').onclick=rematch;
  if(!authenticated){$('matchRewardSummary').append(uiElement('p',mode==='practice'?'O treino não altera XP nem a coleção.':'Como visitante, você participa da disputa sem salvar XP ou conquistar pipas. Entre na sua conta para guardar seu progresso.'));return;}
  beginMatchResult(s.id);
 }
@@ -69,3 +70,16 @@ async function openKiteStory(kite){
  }catch(e){if(version===storyVersion)root.replaceChildren(uiElement('p',e.message,'history-note'));}
 }
 $('kiteStoryBack').onclick=closeKiteStory;
+
+// Online rematch: the first player creates the next room, everyone else is pointed to it and joins.
+async function rematch(){
+ const button=$('rematchButton');button.disabled=true;
+ if(mode!=='online'){closeModal();$('practice').click();return;}
+ try{
+  const d=await request('rematch',{code:room,token});
+  stopMatchResult();$('modal').style.display='none';showResult=false;
+  if(d.next){leave();$('code').value=d.next;await online('join');return;}
+  const old=socket;socket=null;realtime=false;old?.close();
+  token=d.token;enter(d.state,d.me,'online',d.code);history.replaceState(null,'','?sala='+d.code);toast('Revanche criada! Os outros jogadores entram pelo botão Revanche.');
+ }catch(e){button.disabled=false;toast(e.name==='AbortError'?'A conexão demorou. Tente novamente.':e.message);}
+}

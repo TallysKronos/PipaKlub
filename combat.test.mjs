@@ -51,7 +51,7 @@ test('real page handlers preserve a quick skill tap for the next network frame a
  const context=vm.createContext({document,console,crypto,Date,Intl,URLSearchParams,AbortController,performance:{now:()=>0},location:{search:'',hash:'',pathname:'/',protocol:'https:',host:'game.test'},history:{replaceState(){}},localStorage:{getItem(){return null;},setItem(){}},matchMedia:()=>({matches:false}),ResizeObserver:class{observe(){}},requestAnimationFrame(){},setInterval(){},setTimeout(){return 1;},clearTimeout(){},fetch:async()=>({ok:true,json:async()=>({enabled:false})}),addEventListener:(name,fn)=>{if(!listeners.has(name))listeners.set(name,[]);listeners.get(name).push(fn);}});
  document.getElementById('sky').getContext=()=>({});
  vm.runInContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],context);
- vm.runInContext("selected=1;$('practice').onclick()",context);
+ vm.runInContext("selected=1;$('practice').onclick();state.phase='live';state.phaseUntil=state.last+60000",context);
  const button=document.querySelector('[data-key="e"]');button.setPointerCapture=()=>{};button.onpointerdown({preventDefault(){},pointerId:1});button.onpointerup();
  assert.equal(vm.runInContext('input().skill',context),1);
  vm.runInContext('eng.practiceStep(state,me,input(),state.last+16)',context);
@@ -68,4 +68,29 @@ test('spawn shield blocks damage until it expires, and attacking ends it early',
  b.shield=0;a.attackCooldown=0;e.step(s,1068);assert.equal(b.hp,76);assert.equal(a.hits,1);
  const own=duel();own.a.shield=e.SHIELD;e.step(own.s,1034);assert.equal(own.a.shield,0);assert.equal(own.a.strikes,1);
  const back=duel();back.b.hp=1;e.step(back.s,1034);assert.ok(back.b.respawn);back.a.input={};e.step(back.s,back.b.respawn);assert.ok(back.b.shield>2&&back.b.shield<=e.SHIELD);
+});
+
+function roundsDuel(mode='rounds'){const s=e.create(0,{mode}),a=e.player('A',0,'a',0),b=e.player('B',1,'b',0);e.admit(s,a,0);e.admit(s,b,0);return {s,a,b};}
+const at=(s,t)=>{for(const p of s.players)p.seen=t;return e.step(s,t);};
+test('players get stable numbers P1..P8 from their seats',()=>{
+ const s=e.create(0,{mode:'rounds'});for(let i=0;i<8;i++)e.admit(s,e.player('P',0,'p'+i,0),0);assert.deepEqual(s.players.map(p=>p.slot),[0,1,2,3,4,5,6,7]);
+});
+test('rounds: countdown blocks attacks, the last kite standing wins, nobody respawns mid-round, everyone returns at full line',()=>{
+ const {s,a,b}=roundsDuel();at(s,16);assert.equal(s.phase,'countdown');assert.equal(s.round,1);
+ Object.assign(a,{x:700,y:180,input:{cut:true}});Object.assign(b,{x:300,y:180,anchorX:910});a.anchorX=90;
+ at(s,1000);assert.equal(b.hp,100,'no damage during countdown');
+ at(s,3016);assert.equal(s.phase,'live');Object.assign(a,{x:700,y:180});Object.assign(b,{x:300,y:180});b.hp=1;a.attackCooldown=0;at(s,3050);
+ assert.ok(b.respawn);assert.equal(s.phase,'intermission');assert.equal(a.rounds,1);assert.equal(s.events[0].kind,'round');assert.equal(s.events[0].winnerId,'a');
+ a.hp=40;at(s,5000);assert.ok(b.respawn,'the cut player waits for the round to end');
+ at(s,6300);assert.equal(s.phase,'countdown');assert.equal(s.round,2);assert.equal(b.respawn,0);assert.equal(a.hp,100);assert.equal(b.hp,100);
+});
+test('rounds: three round wins end the match; a timeout goes to the healthiest line',()=>{
+ const {s,a,b}=roundsDuel();let t=16;at(s,t);
+ for(let r=0;r<3;r++){t+=3100;at(s,t);assert.equal(s.phase,'live');a.hp=90;b.hp=50;t+=60100;at(s,t);assert.equal(s.phase,'intermission');t+=3300;at(s,t);}
+ assert.equal(a.rounds,3);assert.equal(b.rounds||0,0);assert.ok(t>=s.end,'match is over after the third round win');
+});
+test('time mode waits for a second player before the clock starts; late joiners in rounds watch until the next round',()=>{
+ const s=e.create(0,{mode:'time'}),a=e.player('A',0,'a',0);e.admit(s,a,0);at(s,5000);assert.equal(s.phase,'waiting');assert.ok(s.end>3000000);
+ e.admit(s,e.player('B',1,'b',5000),5000);at(s,5016);assert.equal(s.phase,'countdown');a.seen=s.players[1].seen=8100;at(s,8100);assert.equal(s.phase,'live');assert.equal(s.end,8100+180000);
+ const r=roundsDuel();at(r.s,16);at(r.s,3100);assert.equal(r.s.phase,'live');const c=e.admit(r.s,e.player('C',2,'c',3100),3100);assert.ok(c.respawn);at(r.s,3200);assert.ok(c.respawn);
 });

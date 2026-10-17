@@ -13,7 +13,7 @@ export function createNetworkView(engine){
   }
   function render(now,input,dt){
     if(!history.length)return [];
-    const latest=history.at(-1).state,active=latest.end>latest.last;
+    const latest=history.at(-1).state,active=latest.end>latest.last&&latest.phase!=='intermission';
     if(own&&active&&!own.respawn&&now-receivedAt<1000){
       engine.move(own,input,Math.min(dt,.1),latest.wind);
       if(authority&&same(input,authority.input)&&now-receivedAt<500){
