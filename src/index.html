@@ -238,6 +238,9 @@ body.in-match .arena canvas{cursor:crosshair}
 .is-flying .trade-kite-art{animation:trade-dissolve var(--flight-duration) both}.is-flying .trade-orb{animation:trade-light var(--flight-duration) both}.is-flying .trade-flight-caption{animation:trade-captions var(--flight-duration) both}
 .is-flying .trade-stars{animation:trade-starlight var(--flight-duration) both}.is-flying .trade-nebula{animation:trade-nebula var(--flight-duration) both}
 .trade-landed .trade-flight-host{left:80%}.trade-landed .trade-flight-guest{left:20%}
+.trade-flight-guest .trade-kite-art{scale:-1 1}
+/* At arrival the new owners' companions turn toward each other again. */
+.trade-landed .trade-flight-host .trade-kite-art{scale:-1 1}.trade-landed .trade-flight-guest .trade-kite-art{scale:1 1}
 @keyframes trade-host-path{0%,15%{left:20%;transform:translate(-50%,0)}42%{left:30%;transform:translate(-50%,-105px)}58%{left:57%;transform:translate(-50%,-125px)}78%{left:79%;transform:translate(-50%,-75px)}94%,100%{left:80%;transform:translate(-50%,0)}}
 @keyframes trade-guest-path{0%,15%{left:80%;transform:translate(-50%,0)}42%{left:70%;transform:translate(-50%,-80px)}58%{left:43%;transform:translate(-50%,-100px)}78%{left:21%;transform:translate(-50%,-60px)}94%,100%{left:20%;transform:translate(-50%,0)}}
 @keyframes trade-dissolve{0%,8%{opacity:1;transform:scale(1);filter:brightness(1)}20%{opacity:.9;transform:scale(.65);filter:brightness(5) drop-shadow(0 0 18px #fff)}29%,76%{opacity:0;transform:scale(.1);filter:brightness(6)}89%{opacity:1;transform:scale(1.12);filter:brightness(2)}100%{opacity:1;transform:scale(1);filter:brightness(1)}}
@@ -623,7 +626,7 @@ function observe(players){
   if(prev){
    if(q.respawn&&!prev.respawn){
     const cut=state.events.find(e=>e.loserId===q.id),killer=cut&&state.players.find(k=>k.id===cut.winnerId);
-    fx.push({kind:'fall',x:prev.x,y:prev.y,anchorX:q.anchorX,color:colors[prev.color??q.color],soul:prev.soul,born:performance.now(),spin:prev.x<500?-1:1});
+    fx.push({kind:'fall',x:prev.x,y:prev.y,anchorX:q.anchorX,color:colors[prev.color??q.color],soul:prev.soul,facing:prev.facing,born:performance.now(),spin:prev.x<500?-1:1});
     if(mine){cutBy=killer?'por '+killer.name+' · ':'';if(!roundShown)banner('CORTADO!',cutBy+(rounds?'você volta na próxima rodada':'volta em 3'),'bad',!rounds,'cut');hurt();sfx('lost');}
     else if(cut?.winnerId===me){floatText(prev.x,prev.y-20,'+100','#b78928',28,1400);if(!roundShown)banner('Você cortou '+q.name+'!','+100 pontos','good');sfx('cut');}
     else sfx('event');
@@ -634,7 +637,7 @@ function observe(players){
    if(!q.respawn&&prev.respawn&&mine&&!rounds){banner('De volta ao céu!','Protegido por alguns segundos','good');sfx('back');}
    if(mine&&(q.strikes||0)>(prev.strikes||0)){if((q.hits||0)>(prev.hits||0)){if(!cutNow)floatText(shown.x,shown.y-84,'ACERTOU!','#26704b',18,800);sfx('hit');}else{floatText(shown.x,shown.y-84,'errou','#6b7c69',13,600);sfx('miss');}}
   }
-  seen.set(q.id,{color:q.color,soul:q.soul,hp:q.hp,respawn:q.respawn,hits:q.hits,strikes:q.strikes,x:q.respawn?prev?.x??shown.x:shown.x,y:q.respawn?prev?.y??shown.y:shown.y});
+  seen.set(q.id,{color:q.color,soul:q.soul,facing:shown.facing??q.facing,hp:q.hp,respawn:q.respawn,hits:q.hits,strikes:q.strikes,x:q.respawn?prev?.x??shown.x:shown.x,y:q.respawn?prev?.y??shown.y:shown.y});
  }
 }
 function drawFx(t){
@@ -644,7 +647,7 @@ function drawFx(t){
   else{const fall=k*k*420,x=f.x+f.spin*k*60+Math.sin(k*12)*14,y=f.y+fall;ctx.globalAlpha=k<.75?1:1-(k-.75)/.25;
    ctx.strokeStyle='#3f6e6590';ctx.lineWidth=1.2;ctx.setLineDash([3,4]);ctx.beginPath();ctx.moveTo(x,y+30);ctx.quadraticCurveTo(x-f.spin*40,y+90,x-f.spin*20,y+160);ctx.stroke();ctx.setLineDash([]);
    if(k<.25){ctx.strokeStyle='#fff4a8';ctx.lineWidth=3;for(let i=0;i<8;i++){const a=i*Math.PI/4,r=20+k*160;ctx.beginPath();ctx.moveTo(f.x+Math.cos(a)*r*.5,f.y+Math.sin(a)*r*.5);ctx.lineTo(f.x+Math.cos(a)*r,f.y+Math.sin(a)*r);ctx.stroke();}}
-   ctx.translate(x,y);ctx.rotate(f.spin*k*7);ctx.scale(1-k*.3,1-k*.3);kiteBody(f.color,t,{soul:f.soul,hitFlash:.25});}
+   ctx.translate(x,y);ctx.rotate(f.spin*k*7);ctx.scale(1-k*.3,1-k*.3);kiteBody(f.color,t,{soul:f.soul,facing:f.facing,hitFlash:.25});}
   ctx.restore();}
 }
 let lastHud=0,rankingKey='',eventsKey='',playerKey='';
