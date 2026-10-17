@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 const manifest=JSON.parse(await fs.readFile(new URL('../assets/atlas.json',import.meta.url),'utf8'));
-const files=Object.values(manifest.atlases).map(a=>a.meta.image);
+const files=[...Object.values(manifest.atlases).map(a=>a.meta.image),'vfx/trade-celestial.png','vfx/trade-sky.png'];
 export function createAssetHandler(){
  const cache=new Map();
  return async request=>{

@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
+import {createHash} from 'node:crypto';
 import {parseHTML} from 'linkedom';
 import {createAssetHandler} from './src/static-assets.js';
 import {artConfig} from './scripts/art-build.mjs';
@@ -43,6 +44,17 @@ test('arena draws actual atlas frames, restores smoothing, and reduced motion fr
 test('asset route serves every real PNG with hash caching, HEAD and ETag; unknown files cannot be read',async()=>{
  const serve=createAssetHandler();for(const a of Object.values(artConfig().atlases)){const url='https://game.test/'+a.meta.url,r=await serve(new Request(url));assert.equal(r.status,200);assert.equal(r.headers.get('content-type'),'image/png');assert.match(r.headers.get('cache-control'),/immutable/);const bytes=new Uint8Array(await r.arrayBuffer());assert.deepEqual([...bytes.slice(0,8)],[137,80,78,71,13,10,26,10]);const head=await serve(new Request(url,{method:'HEAD'}));assert.equal((await head.arrayBuffer()).byteLength,0);const cached=await serve(new Request(url,{headers:{'if-none-match':r.headers.get('etag')}}));assert.equal(cached.status,304);const file='docs/'+a.meta.url.split('?')[0];assert.ok(fs.existsSync(file));assert.deepEqual(fs.readFileSync(file),Buffer.from(bytes));}
  assert.equal((await serve(new Request('https://game.test/assets/.env'))).status,404);assert.equal((await serve(new Request('https://game.test/assets/characters/sr-assis/poses.png',{method:'POST'}))).status,405);assert.equal(await serve(new Request('https://game.test/api/create')),null);
+});
+test('generated trade textures retain alpha, ship in Pages and are served by the asset allowlist',async()=>{
+ const serve=createAssetHandler();
+ for(const name of ['trade-celestial','trade-sky']){
+  const file='vfx/'+name+'.png',bytes=fs.readFileSync('assets/'+file),hash=createHash('sha256').update(bytes).digest('hex').slice(0,12);
+  assert.deepEqual(fs.readFileSync('docs/assets/'+file),bytes);
+  if(name==='trade-celestial'){assert.equal(bytes[25],6,'atlas is RGBA');assert.equal(bytes.readUInt32BE(16),bytes.readUInt32BE(20),'four equal square cells');}
+  const r=await serve(new Request('https://game.test/assets/'+file+'?v='+hash));assert.equal(r.status,200);assert.match(r.headers.get('cache-control'),/immutable/);assert.deepEqual(Buffer.from(await r.arrayBuffer()),bytes);
+  assert.equal((await serve(new Request('https://game.test/assets/'+file,{method:'HEAD'}))).status,200);
+ }
+ const css=fs.readFileSync('src/index.html','utf8');assert.match(css,/trade-celestial\.png/);assert.match(css,/trade-sky\.png/);
 });
 
 test('special Souls load only on demand and animate all five states using their real atlas rectangles',async()=>{

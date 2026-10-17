@@ -247,6 +247,29 @@ body.in-match .arena canvas{cursor:crosshair}
 @keyframes trade-nebula{0%,100%{opacity:.65}55%{opacity:1.8}}
 @media(max-width:480px){.trade-scene{height:330px}.trade-scene-heading h4{font-size:21px}.trade-flight{width:96px;top:182px}.trade-flight-caption{font-size:11px}.trade-kite-art .almatic-icon{max-width:86px}}
 @media(prefers-reduced-motion:reduce){.trade-scene:not(.trade-motion) *{animation:none!important;transition:none!important}}
+/* Generated RGBA VFX atlas: cyan comet | gold comet / encounter seal | stardust. */
+.trade-scene{--flight-duration:7.2s;height:410px;background-image:linear-gradient(#08112644,#0d163033),url('assets/vfx/trade-sky.png');background-size:cover;background-position:center;border-color:#8da3b577;box-shadow:inset 0 0 36px #03081770,0 5px 0 #22303b}
+.trade-scene-heading{padding-top:25px;text-shadow:0 2px 8px #030817}.trade-scene-heading h4{font-size:26px}.trade-scene-heading p{max-width:370px;margin:auto}
+.trade-flight{top:250px}.trade-stars{opacity:.22;top:130px;font-size:16px}.trade-horizon{opacity:.15}.trade-nebula{opacity:.3}
+.trade-comet{position:absolute;width:116px;height:145px;left:calc(50% - 58px);top:-12px;opacity:0;z-index:3;pointer-events:none;background-size:200% 200%;background-position:0 0;filter:drop-shadow(0 0 10px #6ee8ff77);transform-origin:50% 32%}
+.trade-flight-guest .trade-comet{background-position:100% 0;filter:drop-shadow(0 0 10px #ffe8ad77)}
+.trade-convergence{pointer-events:none;position:absolute;z-index:2;left:calc(50% - 110px);top:86px;width:220px;height:220px;opacity:0;background-size:200% 200%;background-position:0 100%;mix-blend-mode:screen}
+.trade-shockwave{pointer-events:none;position:absolute;z-index:1;width:120px;height:70px;border-radius:50%;border:2px solid #fff1d1;box-shadow:0 0 16px #a4f4ff,inset 0 0 18px #b4ddff;left:calc(50% - 60px);top:160px;opacity:0}
+.trade-burst{position:absolute;left:50%;top:195px;z-index:4;pointer-events:none}.trade-burst-spark{position:absolute;left:-13px;top:-13px;width:26px;height:26px;background-size:200% 200%;background-position:100% 100%;opacity:0}
+.trade-motes{position:absolute;top:20px;left:50%;z-index:2;pointer-events:none}.trade-mote{position:absolute;width:var(--size);height:var(--size);left:calc(var(--size) / -2);top:0;opacity:0;background-size:200% 200%;background-position:100% 100%;filter:drop-shadow(0 0 4px #aff5ff)}
+.trade-scene.is-flying .trade-comet,.trade-scene.is-flying .trade-convergence,.trade-scene.is-flying .trade-mote,.trade-scene.is-flying .trade-burst-spark{background-image:url('assets/vfx/trade-celestial.png')}
+.is-flying .trade-comet{animation:trade-comet-reveal var(--flight-duration) both}.is-flying .trade-flight-host .trade-comet{rotate:-12deg}.is-flying .trade-flight-guest .trade-comet{rotate:12deg}
+.is-flying .trade-convergence{animation:trade-encounter var(--flight-duration) ease-in-out both}.is-flying .trade-shockwave{animation:trade-wave var(--flight-duration) ease-out both}
+.is-flying .trade-burst-spark{animation:trade-shards var(--flight-duration) ease-out both}.is-flying .trade-mote{animation:trade-mote-stream 1.4s var(--delay) ease-out infinite}
+.is-flying .trade-motes{animation:trade-motes-window var(--flight-duration) both}.is-flying .trade-orb:after{opacity:.2}
+.trade-landed .trade-kite-art{filter:drop-shadow(0 0 15px #b5e9ff88)}
+@keyframes trade-comet-reveal{0%,9%{opacity:0;transform:scale(.2)}23%{opacity:.95;transform:scale(.75)}43%,65%{opacity:1;transform:scale(1.1)}79%{opacity:.8;transform:scale(.75)}91%,100%{opacity:0;transform:scale(.15)}}
+@keyframes trade-encounter{0%,36%{opacity:0;transform:scale(.1) rotate(-35deg)}49%{opacity:.8;transform:scale(.75) rotate(-5deg)}58%{opacity:1;transform:scale(1.2) rotate(5deg)}76%{opacity:0;transform:scale(1.6) rotate(20deg)}100%{opacity:0;transform:scale(1.6)}}
+@keyframes trade-wave{0%,48%{opacity:0;transform:scale(.1)}56%{opacity:.8;transform:scale(.9)}76%,100%{opacity:0;transform:scale(4)}}
+@keyframes trade-shards{0%,50%{opacity:0;transform:translate(0,0) scale(.1)}56%{opacity:1;transform:translate(0,0) scale(.8)}79%,100%{opacity:0;transform:translate(var(--bx),var(--by)) rotate(var(--spin)) scale(.2)}}
+@keyframes trade-mote-stream{0%{opacity:0;transform:translate(0,0) scale(.4)}18%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(100deg) scale(.1)}}
+@keyframes trade-motes-window{0%,12%,92%,100%{opacity:0}24%,78%{opacity:1}}
+@media(max-width:480px){.trade-scene{height:385px}.trade-flight{top:230px}.trade-scene-heading h4{font-size:22px}.trade-comet{width:96px;height:120px;left:calc(50% - 48px)}.trade-convergence{width:180px;height:180px;left:calc(50% - 90px);top:90px}.trade-burst{top:180px}.trade-mote:nth-child(n+7){display:none}}
 .collection-info{font-size:12px;color:var(--muted);line-height:1.6}
 .recent-match{width:100%;text-align:left;border:3px solid var(--line);border-radius:9px;background:#fffdf4;padding:12px;margin:7px 0;overflow-wrap:anywhere}
 .recent-match b,.recent-match span,.recent-match small{display:block}

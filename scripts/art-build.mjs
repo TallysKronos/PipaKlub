@@ -9,5 +9,5 @@ export function artConfig(){
  const dex=JSON.parse(fs.readFileSync('assets/pipa-dex.json','utf8'));
  return {atlases,intro,dex};
 }
-export function copyArt(directory){for(const a of Object.values(artConfig().atlases)){const dest=path.join(directory,'assets',a.meta.image);fs.mkdirSync(path.dirname(dest),{recursive:true});fs.copyFileSync(path.join('assets',a.meta.image),dest);}}
+export function copyArt(directory){for(const image of [...Object.values(artConfig().atlases).map(a=>a.meta.image),'vfx/trade-celestial.png','vfx/trade-sky.png']){const dest=path.join(directory,'assets',image);fs.mkdirSync(path.dirname(dest),{recursive:true});fs.copyFileSync(path.join('assets',image),dest);}}
 export function artSource(){return 'const ART_CONFIG = '+JSON.stringify(artConfig())+';\n'+fs.readFileSync('src/art-client.js','utf8').replace('export function','function')+'\nconst art=createArtAssets(ART_CONFIG);';}

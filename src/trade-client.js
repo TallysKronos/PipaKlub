@@ -4,6 +4,14 @@ const tradePanel=document.createElement('section');
 tradePanel.className='trade-panel';
 tradePanel.innerHTML='<h3>Encontro nas estrelas</h3><p class="trade-intro">Uma pipa de cada lado. Dois novos caminhos pelo céu.</p><div id="tradeScene" class="trade-scene"><div class="trade-nebula" aria-hidden="true"></div><div class="trade-stars" aria-hidden="true">✦ · ˚ 　 ✧ 　　 · ✦ 　 ˚ · 　 ✧</div><div class="trade-scene-heading"><small>CLUBE DAS TROCAS · 1 POR 1</small><h4 id="tradeSceneTitle">O céu conecta vocês</h4><p id="tradeSceneHint">Convide um amigo para começar.</p></div><div id="tradeFlights" class="trade-flights"></div><div class="trade-horizon" aria-hidden="true"></div></div><button class="secondary" id="tradeReplay" hidden>Rever o encontro</button><p class="trade-intro">Escolham suas colecionáveis e confirmem as duas ofertas. Uma alteração desfaz as confirmações. O convite dura 10 minutos.</p><button class="secondary" id="tradeCreate">Criar convite</button><label for="tradeCode">Código do convite</label><input id="tradeCode" maxlength="12" autocomplete="off"><button class="secondary" id="tradeJoin">Entrar</button><div id="tradeState" role="status" aria-live="polite"></div><div id="tradeActions"></div><button class="secondary" id="tradeHistory">Histórico de trocas</button><div id="tradeHistoryList"></div>';
 $('collectionMain').insertBefore(tradePanel,$('inventoryList'));
+const convergence=uiElement('div',undefined,'trade-convergence');convergence.setAttribute('aria-hidden','true');$('tradeScene').append(convergence);
+const shockwave=uiElement('div',undefined,'trade-shockwave');shockwave.setAttribute('aria-hidden','true');$('tradeScene').append(shockwave);
+const burst=uiElement('div',undefined,'trade-burst');burst.setAttribute('aria-hidden','true');
+for(let i=0;i<16;i++){
+ const spark=uiElement('i',undefined,'trade-burst-spark'),angle=i*Math.PI/8;
+ spark.style.setProperty('--bx',Math.round(Math.cos(angle)*140)+'px');spark.style.setProperty('--by',Math.round(Math.sin(angle)*95)+'px');spark.style.setProperty('--spin',i*27+'deg');burst.append(spark);
+}
+$('tradeScene').append(burst);
 function tradeKiteArt(k){
  const image=uiElement('div',undefined,'trade-kite-art');
  if(!k){image.textContent='?';return image;}
@@ -18,6 +26,13 @@ function paintTradeScene(t,completed=false){
   const k=t?.[side+'Kite'],name=t?.[(completed?(side==='host'?'guest':'host'):side)+'Name']||(side==='host'?'Você':'Seu amigo');
   const flight=uiElement('div',undefined,'trade-flight trade-flight-'+side);
   flight.append(tradeKiteArt(k),uiElement('span',undefined,'trade-orb'));
+  const comet=uiElement('span',undefined,'trade-comet');comet.setAttribute('aria-hidden','true');flight.append(comet);
+  const motes=uiElement('div',undefined,'trade-motes');motes.setAttribute('aria-hidden','true');
+  for(let i=0;i<12;i++){
+   const mote=uiElement('i',undefined,'trade-mote'),angle=i*2.4;
+   mote.style.setProperty('--dx',Math.round(Math.cos(angle)*(24+i*3))+'px');mote.style.setProperty('--dy',(35+i*6)+'px');mote.style.setProperty('--delay',(i*.12)+'s');mote.style.setProperty('--size',(12+i%4*5)+'px');motes.append(mote);
+  }
+  flight.append(motes);
   const caption=uiElement('div',undefined,'trade-flight-caption');
   caption.append(uiElement('b',k?.name||'Escolha uma pipa'),uiElement('small',name));
   flight.append(caption);flights.append(flight);
@@ -38,7 +53,7 @@ function playTradeFlight(t,forceMotion=false){
  if(!reduced){void scene.offsetWidth;scene.classList.add('is-flying');}
  scene.scrollIntoView?.({behavior:reduced?'instant':'smooth',block:'center'});
  const finish=()=>{tradeAnimating=false;scene.classList.remove('is-flying');scene.classList.add('trade-landed');paintTradeScene(t,true);$('tradeReplay').textContent=reduced?'Ver com animação':'Rever o encontro';$('tradeReplay').hidden=false;renderTrade();};
- if(reduced)finish();else tradeFlightTimer=setTimeout(finish,5800);
+ if(reduced)finish();else tradeFlightTimer=setTimeout(finish,7200);
 }
 async function tradeAction(action,extra={}){
  if(tradeBusy||tradeAnimating||!playerAccount)return;tradeBusy=true;renderTrade();
