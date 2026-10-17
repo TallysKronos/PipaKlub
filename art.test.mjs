@@ -45,6 +45,18 @@ test('normal match exposes six rebicadas, keeps Q/E class skills and clears held
  assert.equal(ui.document.querySelector('#skyExperiment').hidden,false);assert.equal(ui.document.querySelector('#courtyard').inert,true);
  ui.run('skyClose();syncHomeInert();');assert.equal(ui.document.querySelector('#courtyard').inert,false);
 });
+
+test('battle instruments show real partner, rounds and low-line state; unavailable actions and keyboard buttons remain usable',async()=>{
+ const ui=app({seen:true});await ui.settle();
+ ui.run(`var hudState=eng.create(Date.now(),{mode:'rounds'});hudState.phase='live';hudState.players=[Object.assign(eng.player('Ana',1,'hud',Date.now()),{hp:24,rounds:2})];enter(hudState,'hud','practice');updateNormalLineHUD();`);
+ assert.equal(ui.document.querySelector('#partnerName').textContent,'Mata verde');assert.equal(ui.document.querySelector('#hud').dataset.danger,'true');assert.equal(ui.document.querySelectorAll('#roundPips .won').length,2);
+ assert.equal(ui.document.querySelector('#hp').parentElement.getAttribute('aria-valuenow'),'24');
+ ui.run(`document.querySelector('.hud-basics [data-key=" "]').onclick({detail:0});`);assert.equal(ui.run('input().cut'),true,'Enter on the attack button queues a real attack');
+ ui.run(`document.querySelector('.hud-basics [data-key="dodge"]').onclick({detail:0});`);assert.equal(ui.run('input().dodge'),true);
+ ui.run(`state.players[0].energy=5;state.players[0].skillCooldown=3;updateNormalLineHUD();`);
+ assert.ok(ui.document.querySelector('.skill-actions button').disabled);assert.ok(ui.document.querySelector('.hud-basics [data-key="dodge"]').disabled);assert.match(ui.document.querySelector('#skillStatus').textContent,/Recarga/);
+ assert.equal(ui.document.querySelector('.combat-deck').contains(ui.document.querySelector('#normalLineHUD')),true);
+});
 test('rebicar follows accepted attacks, mirrors its pull and never changes simulation coordinates',()=>{
  const a=app({seen:true});
  const result=a.run(`(()=>{const p=eng.player('Teste',0,'test',0);p.x=500;p.y=300;eng.move(p,{cut:true,x:1},.016);const start=rebicarPose(p);eng.move(p,{cut:true,x:1},.06);const pull=rebicarPose(p),left=rebicarPose({...p,facing:-1}),quiet=rebicarPose(p,true);const before=[p.x,p.y];rebicarPose(p);return {start,pull,left,quiet,position:before,after:[p.x,p.y],strikes:p.strikes,end:rebicarPose({...p,attackCooldown:.2}),dead:rebicarPose({...p,respawn:123})};})()`);
