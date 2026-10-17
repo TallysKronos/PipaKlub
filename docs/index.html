@@ -560,6 +560,7 @@ body.in-match .arena-bottom{display:none}
 @keyframes ritual-particles{0%{background-position:0 100%;opacity:0}25%{background-position:33.333333% 100%;opacity:1}50%{background-position:66.666667% 100%;opacity:1}75%{background-position:100% 100%;opacity:1}100%{background-position:100% 100%;opacity:0}}
 body.light-mode .ritual-board-portal{animation:none}body.light-mode .ritual-reveal-particles{display:none}@media(prefers-reduced-motion:reduce){.ritual-board-portal,.ritual-reveal-portal,.ritual-reveal-particles{animation:none}.ritual-reveal-portal{background-position:0 66.666667%;opacity:.4}.ritual-reveal-particles{display:none}}
 .summon-room:has(#summonRitual:not([hidden])) .summon-npc,.summon-room:has(#summonRitual:not([hidden])) .summon-warning{display:none}.summon-board{max-width:min(360px,42dvh)}
+.sky-testing{overflow:hidden}.sky-testing #game{visibility:hidden}#skyExperiment{position:fixed;inset:0;z-index:100;background:#eaf0df;color:#203d46;padding:12px}#skyExperiment[hidden]{display:none}.sky-lab{height:100%;max-width:1440px;margin:auto;display:flex;flex-direction:column;gap:10px}.sky-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.sky-top small{font:10px system-ui;letter-spacing:2px}.sky-top h2{font:24px var(--pixel);margin:3px 0}.sky-top button{padding:8px 12px}.sky-stage{position:relative;flex:1;min-height:180px;overflow:hidden;border:3px solid #294752;border-radius:15px;background:#9dcbd9}#skyDuelCanvas{width:100%;height:100%;display:block;touch-action:none}.sky-score{position:absolute;inset:14px 18px auto;display:flex;justify-content:space-between;gap:8px;pointer-events:none;font:bold 13px system-ui;color:#153b4c}.sky-score span,.sky-score b{padding:7px 10px;background:#fff8e6eb;border-radius:7px}.sky-contact{position:absolute;bottom:15px;left:50%;transform:translateX(-50%);max-width:85%;text-align:center;border:2px solid #52727e;background:#fff7e8ed;padding:8px 15px;border-radius:8px;font:bold 12px system-ui;pointer-events:none}.sky-contact.ready{background:#e4ffc6;border-color:#367447}.sky-contact.danger{background:#ffe1ce;border-color:#b75038}.sky-bottom{padding:0 5px}.sky-readout{display:flex;justify-content:space-between;gap:12px;font:12px system-ui;margin-bottom:8px}.sky-readout small{white-space:nowrap}.sky-controls{display:flex;justify-content:center;gap:8px}.sky-controls button{touch-action:none;padding:10px 16px;font-size:14px}.sky-help{font:12px/1.5 system-ui;text-align:center;margin:8px 0 0}.sky-result{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#173d50c9;color:#fff6dd;text-align:center;padding:15px}.sky-result[hidden]{display:none}.sky-result h3{font-size:30px;margin:5px}.sky-result p{font:13px system-ui}.sky-result button{margin-top:15px}@media(max-width:600px){#skyExperiment{padding:7px}.sky-lab{gap:7px}.sky-top h2{font-size:20px}.sky-top small{font-size:8px;letter-spacing:1px}.sky-top button{padding:7px;font-size:12px}.sky-controls{display:grid;grid-template-columns:repeat(2,1fr)}.sky-controls button{font-size:12px;padding:9px}.sky-readout{display:block;font-size:11px}.sky-readout small{display:block;margin-top:4px}.sky-help{font-size:10px}.sky-score{inset:9px 8px auto;font-size:10px}.sky-score span,.sky-score b{padding:5px}.sky-contact{bottom:8px;font-size:10px;width:80%;padding:6px}}
 </style></head>
 <body>
 <div id="game">
@@ -1168,7 +1169,7 @@ function drawFx(t){
 let lastHud=0,rankingKey='',eventsKey='',playerKey='';
 function frame(t){
 requestAnimationFrame(frame);
-if(document.hidden){lastFrame=t;frameHealth.sample(t,false);return;}
+if(document.hidden||document.body.classList.contains('sky-testing')){lastFrame=t;frameHealth.sample(t,false);return;}
 if(!mode&&t-lastFrame<1000/30)return;
 const now=Date.now(),dt=Math.min(Math.max((t-lastFrame)/1000,0),.1);
 const health=frameHealth.sample(t,!!mode&&!showResult);
@@ -2565,5 +2566,103 @@ addEventListener('keydown',e=>{
 $('meetAssis').textContent='Escola do Sr. Assis';$('meetAssis').onclick=firstSchoolVisit;
 const schoolIntroNext=$('assisNext').onclick;
 $('assisNext').onclick=()=>{if(introductionStep===ART_CONFIG.intro.steps.length-1){closeIntroduction();firstSchoolVisit();}else schoolIntroNext();};
+
+// Isolated, local 2.5D experiment. Never awards account progress or inventory.
+function createSkyDuel(){
+ const clamp=(n,a,b)=>Math.max(a,Math.min(b,n)),add=(a,b)=>({x:a.x+b.x,y:a.y+b.y,z:a.z+b.z}),sub=(a,b)=>({x:a.x-b.x,y:a.y-b.y,z:a.z-b.z}),mul=(a,n)=>({x:a.x*n,y:a.y*n,z:a.z*n}),dot=(a,b)=>a.x*b.x+a.y*b.y+a.z*b.z;
+ function contact(a,b){
+  const u=sub(a,a.anchor),v=sub(b,b.anchor),w=sub(a.anchor,b.anchor),aa=dot(u,u),bb=dot(u,v),cc=dot(v,v),dd=dot(u,w),ee=dot(v,w),den=aa*cc-bb*bb;
+  let s=den>1e-6?clamp((bb*ee-cc*dd)/den,.22,.98):.5,t=0;
+  for(let i=0;i<4;i++){t=clamp((bb*s+ee)/cc,.22,.98);s=clamp((bb*t-dd)/aa,.22,.98);}
+  const p=add(a.anchor,mul(u,s)),q=add(b.anchor,mul(v,t)),d=sub(p,q),distance=Math.sqrt(dot(d,d));
+  const angle=Math.sqrt(Math.max(0,1-bb*bb/(aa*cc)));
+  return {point:mul(add(p,q),.5),distance,valid:distance<24&&angle>.12,s,t};
+ }
+ const pilot=(id,x,z,anchor)=>({id,x,y:200,z,anchor,hp:100,energy:100,cooldown:0,dodge:0,dodgeCooldown:0,flash:0,pull:0});
+ function create(){return {time:0,left:90,player:pilot('you',100,480,{x:-240,y:-280,z:40}),bot:pilot('bot',-100,730,{x:240,y:-280,z:40}),charge:0,rest:2,ended:false,winner:null,message:'Cruze as linhas no mesmo plano. Verde = pode cortar.'};}
+ function attack(s,who){
+  if(s.ended||who.cooldown>0||who.energy<16||who.dodge>0)return false;
+  const enemy=who===s.player?s.bot:s.player,c=contact(who,enemy);who.energy-=16;who.cooldown=.7;who.pull=.28;
+  if(c.valid&&enemy.dodge<=0){enemy.hp=Math.max(0,enemy.hp-20);enemy.flash=.3;s.message=who===s.player?'Acerto! −20 de linha do rival.':'Sua linha sofreu um corte. Esquive quando o rival preparar a puxada.';}
+  else s.message=enemy.dodge>0?'Esquiva! A puxada passou.':'Sem contato em profundidade. Avance, recue ou reposicione.';
+  if(enemy.hp===0){s.ended=true;s.winner=who.id;}return true;
+ }
+ function step(s,input,seconds){
+  if(s.ended)return;const dt=clamp(seconds,0,.05);s.time+=dt;s.left=Math.max(0,90-s.time);
+  for(const p of [s.player,s.bot]){for(const k of ['cooldown','dodge','dodgeCooldown','flash','pull'])p[k]=Math.max(0,p[k]-dt);p.energy=Math.min(100,p.energy+dt*12);}
+  const p=s.player,b=s.bot;
+  if(input.dodge&&p.dodgeCooldown===0&&p.energy>=22){p.energy-=22;p.dodge=.55;p.dodgeCooldown=3;p.x=clamp(p.x+(input.x<0?-1:1)*75,-270,270);}
+  const speed=p.dodge>0?320:175;
+  p.x=clamp(p.x+clamp(Number(input.x)||0,-1,1)*speed*dt,-270,270);p.y=clamp(p.y+clamp(Number(input.y)||0,-1,1)*speed*dt,80,330);p.z=clamp(p.z+clamp(Number(input.z)||0,-1,1)*230*dt,330,1050);
+  // The rival periodically seeks the player's plane, then advertises its attack.
+  const approach=s.rest<.9,tx=-p.x+Math.sin(s.time*.8)*65,ty=approach?p.y:210+Math.sin(s.time*.7)*70,tz=approach?p.z:p.z+170+Math.sin(s.time*.5)*90;
+  const ease=Math.min(1,dt*1.8);b.x=clamp(b.x+(tx-b.x)*ease,-260,260);b.y=clamp(b.y+(ty-b.y)*ease,80,330);b.z=clamp(b.z+(tz-b.z)*ease,330,1050);
+  s.rest=Math.max(0,s.rest-dt);
+  if(s.charge>0){s.charge-=dt;if(s.charge<=0){attack(s,b);s.rest=2.5;}}
+  else if(s.rest===0&&contact(b,p).valid&&s.time>4)s.charge=.9;
+  if(input.attack)attack(s,p);
+  if(!s.ended&&s.left===0){s.ended=true;s.winner=p.hp===b.hp?'draw':p.hp>b.hp?'you':'bot';}
+ }
+ return {create,step,contact,attack};
+}
+
+// A separate canvas and input lifetime keep this experiment outside live matches.
+const skyDuel=createSkyDuel();let skyMatch=null,skyActive=false,skyPaused=false,skyRAF=0,skyLast=0,skyClock=0,skyPaint=0,skyKeys=new Set(),skyPointer=null,skyHeld={attack:false,z:0},skyFocus=null;
+const skyExperiment=document.createElement('div');skyExperiment.id='skyExperiment';skyExperiment.hidden=true;
+skyExperiment.innerHTML=`<section class="sky-lab" role="dialog" aria-modal="true" aria-labelledby="skyTitle"><header class="sky-top"><div><small>LABORATÓRIO · TREINO LOCAL 2.5D</small><h2 id="skyTitle">Duelo nas Alturas</h2></div><div><button id="skyPause" class="secondary">Pausar</button><button id="skyExit" class="secondary">Sair</button></div></header><div class="sky-stage"><canvas id="skyDuelCanvas" aria-label="Duelo com profundidade: mova com WASD ou setas, R e F para avançar e recuar, espaço para atacar e Shift para esquivar."></canvas><div class="sky-score"><span id="skyYourHP"></span><b id="skyTime"></b><span id="skyBotHP"></span></div><div class="sky-contact" id="skyContact" role="status"></div><div class="sky-result" id="skyResult" hidden><h3 id="skyResultTitle"></h3><p>Experimento local: sem XP, moedas ou perda de pipas.</p><button class="primary" id="skyRestart">Voar de novo</button></div></div><div class="sky-bottom"><div class="sky-readout"><b id="skyFeedback" role="status"></b><small id="skyEnergy"></small></div><div class="sky-controls"><button class="secondary" id="skyNear" aria-label="Avançar em profundidade">Avançar · R</button><button class="secondary" id="skyFar" aria-label="Recuar em profundidade">Recuar · F</button><button class="primary" id="skyAttack">Puxar · espaço</button><button class="secondary" id="skyDodge">Esquiva · Shift</button></div><p class="sky-help">Arraste para guiar ou use WASD / setas. R avança até o rival, F recua; a roda do mouse também muda a profundidade. Cruze as linhas e puxe quando a mira ficar verde. O aviso vermelho antecipa o ataque do rival.</p></div></section>`;
+document.body.append(skyExperiment);
+const skyButton=uiElement('button','✦ Duelo nas Alturas · teste','secondary');skyButton.id='skyDuelButton';skyButton.type='button';document.querySelector('.menu-actions').append(skyButton);
+const skyCanvas=$('skyDuelCanvas'),skyCtx=skyCanvas.getContext('2d');
+function skyProject(p,w,h){const scale=650/(p.z+300);return {x:w/2+(p.x-skyMatch.player.x*.24)*scale,y:h*.25+(370-p.y)*scale,scale};}
+function skyResetInput(){skyKeys.clear();skyPointer=null;skyHeld={attack:false,z:0};}
+function skyStart(){skyMatch=skyDuel.create();skyPaused=false;skyClock=0;skyLast=0;skyResetInput();$('skyResult').hidden=true;$('skyPause').textContent='Pausar';}
+function skyOpen(){if(mode){toast('Saia da partida para abrir o laboratório.');return;}skyFocus=document.activeElement;skyActive=true;skyExperiment.hidden=false;document.body.classList.add('sky-testing');skyStart();$('skyExit').focus();skyRAF=requestAnimationFrame(skyTick);}
+function skyClose(){skyActive=false;cancelAnimationFrame(skyRAF);skyRAF=0;skyResetInput();skyExperiment.hidden=true;document.body.classList.remove('sky-testing');skyFocus?.focus();}
+function skyTogglePause(){skyPaused=!skyPaused;skyResetInput();skyLast=0;$('skyPause').textContent=skyPaused?'Continuar':'Pausar';}
+skyButton.onclick=skyOpen;$('skyExit').onclick=skyClose;$('skyRestart').onclick=skyStart;$('skyPause').onclick=skyTogglePause;
+const skyHandled=new Set(['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright','r','f',' ','shift','escape','p']);
+document.addEventListener('keydown',e=>{if(!skyActive)return;const key=e.key.toLowerCase();if(!skyHandled.has(key))return;e.preventDefault();e.stopImmediatePropagation();if(key==='escape'){skyClose();return;}if(key==='p'){if(!e.repeat)skyTogglePause();return;}skyKeys.add(key);},true);
+document.addEventListener('keyup',e=>{if(!skyActive)return;const key=e.key.toLowerCase();if(skyHandled.has(key)){e.preventDefault();e.stopImmediatePropagation();skyKeys.delete(key);}},true);
+addEventListener('blur',()=>{if(skyActive&&!skyPaused)skyTogglePause();});document.addEventListener('visibilitychange',()=>{if(document.hidden&&skyActive&&!skyPaused)skyTogglePause();});
+skyCanvas.addEventListener('pointerdown',e=>{if(skyPaused||skyMatch.ended||skyPointer)return;e.preventDefault();skyCanvas.setPointerCapture(e.pointerId);skyPointer={id:e.pointerId,x:e.clientX,y:e.clientY};});
+skyCanvas.addEventListener('pointermove',e=>{if(skyPointer?.id===e.pointerId){skyPointer.x=e.clientX;skyPointer.y=e.clientY;}});
+for(const event of ['pointerup','pointercancel','lostpointercapture'])skyCanvas.addEventListener(event,e=>{if(skyPointer?.id===e.pointerId)skyPointer=null;});
+skyCanvas.addEventListener('wheel',e=>{e.preventDefault();if(!skyPaused&&!skyMatch.ended)skyMatch.player.z=Math.max(330,Math.min(1050,skyMatch.player.z+Math.sign(e.deltaY)*50));},{passive:false});
+skyCanvas.addEventListener('contextmenu',e=>e.preventDefault());
+function skyHold(id,down,up){const button=$(id);button.addEventListener('pointerdown',e=>{e.preventDefault();button.setPointerCapture(e.pointerId);down();});for(const event of ['pointerup','pointercancel','lostpointercapture'])button.addEventListener(event,up);}
+skyHold('skyNear',()=>skyHeld.z=1,()=>skyHeld.z=0);skyHold('skyFar',()=>skyHeld.z=-1,()=>skyHeld.z=0);skyHold('skyAttack',()=>skyHeld.attack=true,()=>skyHeld.attack=false);
+$('skyDodge').onclick=()=>{if(!skyPaused&&!skyMatch.ended)skyDuel.step(skyMatch,{dodge:true},0);};
+// Keyboard activation works for the same controls without requiring pointer events.
+for(const [id,action]of [['skyNear',()=>skyMatch.player.z=Math.min(1050,skyMatch.player.z+70)],['skyFar',()=>skyMatch.player.z=Math.max(330,skyMatch.player.z-70)],['skyAttack',()=>skyDuel.attack(skyMatch,skyMatch.player)]])$(id).addEventListener('click',e=>{if(e.detail===0&&!skyPaused&&!skyMatch.ended)action();});
+function skyTick(t){if(!skyActive)return;const dt=skyLast?Math.min(.05,(t-skyLast)/1000):0;skyLast=t;
+ if(!skyPaused){const has=k=>skyKeys.has(k),input={x:Number(has('d')||has('arrowright'))-Number(has('a')||has('arrowleft')),y:Number(has('w')||has('arrowup'))-Number(has('s')||has('arrowdown')),z:Number(has('r'))-Number(has('f'))||skyHeld.z,attack:has(' ')||skyHeld.attack,dodge:has('shift')};
+  if(skyPointer&&!input.x&&!input.y){const r=skyCanvas.getBoundingClientRect(),p=skyProject(skyMatch.player,r.width,r.height),dx=skyPointer.x-r.left-p.x,dy=skyPointer.y-r.top-p.y;input.x=Math.max(-1,Math.min(1,dx/70));input.y=Math.max(-1,Math.min(1,-dy/70));}
+  skyDuel.step(skyMatch,input,dt);skyClock+=dt;
+ }
+ if(t-skyPaint>=(lightMode?33:16)||skyMatch.ended){skyDraw(t);skyPaint=t;}skyRAF=requestAnimationFrame(skyTick);
+}
+function skyDraw(t){
+ const r=skyCanvas.getBoundingClientRect(),w=Math.max(1,r.width),h=Math.max(1,r.height),d=Math.min(devicePixelRatio||1,lightMode?1:1.5);if(skyCanvas.width!==Math.round(w*d)||skyCanvas.height!==Math.round(h*d)){skyCanvas.width=Math.round(w*d);skyCanvas.height=Math.round(h*d);}skyCtx.setTransform(d,0,0,d,0,0);
+ const c=skyCtx,s=skyMatch,contact=skyDuel.contact(s.player,s.bot),time=art.reduced?0:skyClock*1000;
+ const g=c.createLinearGradient(0,0,0,h);g.addColorStop(0,'#387cb0');g.addColorStop(.65,'#a7d8df');g.addColorStop(1,'#e5efdd');c.fillStyle=g;c.fillRect(0,0,w,h);
+ // Cloud layers move at different speeds and remain behind combat silhouettes.
+ for(let layer=0;layer<3;layer++)for(let i=0;i<4;i++){const cw=100+layer*65,x=((i*w/3+time*(.004+layer*.004))%(w+cw))-cw/2,y=h*(.12+layer*.24)+Math.sin(i*2+layer)*20;c.fillStyle=['#e4f3ef77','#f1f8edaa','#fff8e4cc'][layer];c.beginPath();c.ellipse(x,y,cw,13+layer*9,0,0,Math.PI*2);c.ellipse(x+cw*.3,y-12,cw*.55,22+layer*5,0,0,Math.PI*2);c.fill();}
+ c.fillStyle='#6e9b9f35';c.beginPath();c.moveTo(0,h);for(let x=0;x<=w;x+=w/12)c.lineTo(x,h*.86-Math.sin(x/w*17)*h*.035);c.lineTo(w,h);c.fill();
+ const project=p=>skyProject(p,w,h),line=(a,b,color,width=2)=>{c.strokeStyle=color;c.lineWidth=width;c.beginPath();c.moveTo(a.x,a.y);c.lineTo(b.x,b.y);c.stroke();};
+ for(const p of [s.player,s.bot]){const a=project(p.anchor),b=project(p);line(a,b,p===s.player?'#f8f1cc':'#294e76',p.pull>0?4:2);if(p.dodge>0){c.setLineDash([5,5]);c.strokeStyle='#fff';c.lineWidth=2;c.beginPath();c.ellipse(b.x,b.y,57*b.scale,30*b.scale,0,0,Math.PI*2);c.stroke();c.setLineDash([]);}}
+ // Far-to-near sorting provides real occlusion as the pilots change depth.
+ for(const p of [s.player,s.bot].sort((a,b)=>b.z-a.z)){const b=project(p),size=175*b.scale,own=p===s.player,alt=own?playerAccount?.inventory.find(k=>k.id===playerAccount.profile.equipped_kite_id):null,color=own?selected:2;c.save();c.globalAlpha=p.flash>0?.5:1;
+  art.creature(c,color,time,b.x-size/2,b.y-size*.62,size,{soul:alt?.model?.soul||null,facing:own?1:-1,animate:!skyPaused&&!art.reduced,input:{x:own?1:-1,y:0},hitFlash:p.flash,skillCooldown:p.pull>0?6.9:0});c.restore();
+  c.fillStyle=own?'#16434b':'#263a61';c.font='bold 12px system-ui';c.textAlign='center';c.fillText(own?'VOCÊ':'RIVAL',b.x,b.y+size*.45);c.fillStyle='#173a4940';c.fillRect(b.x-28,b.y+size*.5,56,4);c.fillStyle=own?'#35a28e':'#e47c59';c.fillRect(b.x-28,b.y+size*.5,56*p.hp/100,4);
+ }
+ if(contact.valid){const p=project(contact.point);c.strokeStyle='#246c4e';c.fillStyle='#e3ffbe';c.lineWidth=3;c.beginPath();c.arc(p.x,p.y,12,0,Math.PI*2);c.fill();c.stroke();line({x:p.x-18,y:p.y},{x:p.x+18,y:p.y},'#246c4e');line({x:p.x,y:p.y-18},{x:p.x,y:p.y+18},'#246c4e');}
+ // Depth ruler is a tactical instrument rather than a claim of 3D sprite rotation.
+ const rx=w-28,top=65,len=Math.max(70,h-160);c.strokeStyle='#25556966';c.lineWidth=4;c.beginPath();c.moveTo(rx,top);c.lineTo(rx,top+len);c.stroke();for(const p of [s.bot,s.player]){const y=top+(p.z-330)/720*len;c.fillStyle=p===s.player?'#e9ffd4':'#df715c';c.beginPath();c.arc(rx,y,6,0,Math.PI*2);c.fill();}c.font='10px system-ui';c.fillStyle='#214653';c.textAlign='right';c.fillText('PERTO',rx-10,top);c.fillText('LONGE',rx-10,top+len);
+ if(skyPaused){c.fillStyle='#12324677';c.fillRect(0,0,w,h);c.fillStyle='#fff6dc';c.font='bold 25px system-ui';c.textAlign='center';c.fillText('Pausado',w/2,h/2);}
+ $('skyYourHP').textContent='Sua linha · '+s.player.hp+'%';$('skyBotHP').textContent='Rival · '+s.bot.hp+'%';$('skyTime').textContent=Math.ceil(s.left)+'s';
+ const status=$('skyContact');status.className='sky-contact'+(s.charge>0?' danger':contact.valid?' ready':'');status.textContent=s.charge>0?'Rival preparando puxada · esquive!':contact.valid?'CRUZAMENTO REAL · PUXE!':'Aproxime as linhas no mesmo plano · distância '+Math.round(contact.distance);
+ $('skyFeedback').textContent=s.message;$('skyEnergy').textContent='Energia '+Math.round(s.player.energy)+'% · Esquiva '+(s.player.dodgeCooldown>0?s.player.dodgeCooldown.toFixed(1)+'s':'pronta')+' · Profundidade '+Math.round(s.player.z);
+ if(s.ended){$('skyResult').hidden=false;$('skyResultTitle').textContent=s.winner==='you'?'Você conquistou o céu!':s.winner==='draw'?'Duelo empatado':'O rival venceu esta vez';}
+}
 
 </script></body></html>
