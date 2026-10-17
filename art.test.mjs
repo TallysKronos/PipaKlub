@@ -58,6 +58,20 @@ test('battle instruments show real partner, rounds and low-line state; unavailab
  assert.equal(ui.document.querySelector('.combat-deck').contains(ui.document.querySelector('#normalLineHUD')),true);
 });
 
+test('painted HUD serves its real alpha atlases in both builds and every crop stays inside its image',async()=>{
+ const config=artConfig(),serve=createAssetHandler();assert.equal(Object.keys(config.hud.sheets).length,2);
+ for(const sheet of Object.values(config.hud.sheets)){
+  const bytes=fs.readFileSync('assets/'+sheet.image);assert.equal(bytes[25],6);assert.equal(bytes.readUInt32BE(16),sheet.width);assert.equal(bytes.readUInt32BE(20),sheet.height);assert.deepEqual(fs.readFileSync('docs/assets/'+sheet.image),bytes);
+  const result=await serve(new Request('https://game.test/'+sheet.url));assert.equal(result.status,200);assert.match(result.headers.get('cache-control'),/immutable/);assert.deepEqual(Buffer.from(await result.arrayBuffer()),bytes);
+ }
+ for(const [id,[key,x,y,w,h]] of Object.entries(config.hud.frames)){const sheet=config.hud.sheets[key];assert.ok(x>=0&&y>=0&&w>0&&h>0&&x+w<=sheet.width&&y+h<=sheet.height,id);}
+ const ui=app({seen:true});await ui.settle();ui.run(`var painted=eng.create(Date.now());painted.players=[eng.player('Ana',0,'art-hud',Date.now())];enter(painted,'art-hud','practice');updateHud(Date.now());updateNormalLineHUD();`);
+ assert.equal(ui.document.querySelectorAll('#playerPortrait .hud-art-portrait').length,1);assert.ok(ui.document.querySelector('.hud-player>.hud-art-nameplate'));assert.ok(ui.document.querySelector('#hp').classList.contains('hud-art-hp-fill'));
+ for(const state of ['normal','hover','pressed','disabled'])assert.ok(ui.document.querySelector('#normalLineUse>.hud-art-button-'+state));
+ ui.run(`$('normalLineChoice').value='folha';updateNormalLineHUD();`);assert.ok(ui.document.querySelector('#normalLineUse>.hud-art-folha'));
+ ui.run(`state.players[0].color=2;updateHud(Date.now());`);assert.equal(ui.document.querySelectorAll('#playerPortrait .hud-art-portrait').length,1,'equipping a different partner preserves its illustrated frame');
+});
+
 test('a failed initial account check retries automatically and unlocks login without losing typed fields',async()=>{
  const ui=app({seen:true,hosted:true});await ui.settle();
  await ui.run(`(async()=>{var attempts=0;globalThis.retryWake=null;setTimeout=(fn,ms)=>{if(ms===3000)retryWake=fn;return 1};fetch=async()=>{throw Error('temporary connection failure')};$('accountEmail').value='player@example.test';$('accountPassword').value='test-only-password';await initializeAccounts();accountModal.style.display='flex';renderAccountDialog();})()`);
