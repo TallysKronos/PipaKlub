@@ -37,6 +37,7 @@ async function loadIntroductionArt(retry=false){
  $('assisRetry').hidden=loaded.every(Boolean);renderIntroduction();
 }
 function openIntroduction(){
+ if(!requireClubAccount('Sr. Assis'))return;
  if(mode){toast('Saia da partida para conversar com o Sr. Assis.');return;}
  if($('accountModal').style.display==='flex')return;
  introductionFocus=document.activeElement;introductionOpen=true;introductionStep=0;keys={};skillUntil=0;
@@ -62,4 +63,4 @@ addEventListener('keydown',e=>{
 },true);
 setInterval(()=>{if(introductionOpen&&!document.hidden){introductionTick++;renderIntroduction();}},180);
 // Invitations go straight to the lobby, so newcomers can join friends without a blocking introduction.
-setTimeout(()=>{if(!introSeen()&&!mode&&!param&&$('pipaDex').hidden&&$('accountModal').style.display!=='flex'&&$('modal').style.display!=='flex')openIntroduction();},650);
+setTimeout(()=>{if(playerAccount&&!introSeen()&&!mode&&!param&&$('pipaDex').hidden&&$('accountModal').style.display!=='flex'&&$('modal').style.display!=='flex')openIntroduction();},650);

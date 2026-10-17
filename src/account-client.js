@@ -8,7 +8,9 @@ async function accountRequest(action,body){
 }
 function reflectAccount(){
  $('accountButton').textContent=playerAccount?'Minha conta':'Entrar';
- $('dailyButton').textContent=playerAccount?'✦ Céu do dia':'🔒 Céu do dia';
+ for(const el of document.querySelectorAll('[data-members-only]'))el.hidden=!playerAccount;
+ $('lobby').classList.toggle('guest-menu',!playerAccount);
+ $('dailyButton').textContent='✦ Céu do dia';
  $('trailsButton').textContent=playerAccount?'⚔ Trilhas':'🔒 Trilhas';$('dexButton').textContent=playerAccount?'Pipa Dex':'🔒 Pipa Dex';document.querySelector('.coin-chip').hidden=!playerAccount;
  $('matchFormat').disabled=!playerAccount;$('roomRules').disabled=!playerAccount;
  if(!playerAccount){$('matchFormat').value='rounds';$('roomRules').value='casual';}

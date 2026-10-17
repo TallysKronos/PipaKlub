@@ -18,11 +18,12 @@ test('collection viewports enclose every pose without changing the crop scale ac
  }
 });
 
-function app({seen=false,search='',failed=false,reduced=false}={}){
+function app({seen=false,search='',failed=false,reduced=false,member=false}={}){
  const html=fs.readFileSync('docs/index.html','utf8'),{document}=parseHTML(html),timers=[],requests=[],draws=[],listeners=new Map(),storage=new Map(seen?[['pipaAssisIntroV1','done']]:[]);
  for(const canvas of document.querySelectorAll('canvas'))canvas.getContext=()=>({clearRect(){},drawImage(...args){draws.push({canvas:canvas.id,args});},imageSmoothingEnabled:true});
  const context=vm.createContext({document,console,crypto,Date,Intl,URLSearchParams,AbortController,performance:{now:()=>100},location:{search,hash:'',pathname:'/',protocol:'https:',host:'test'},history:{replaceState(){}},localStorage:{getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,v)},matchMedia:()=>({matches:reduced}),ResizeObserver:class{observe(){}},requestAnimationFrame(){},setInterval(){},clearInterval(){},setTimeout(fn,delay){timers.push({fn,delay});return timers.length;},clearTimeout(){},fetch:async()=>({ok:true,json:async()=>({enabled:false})}),Image:class{set src(url){requests.push(url);queueMicrotask(()=>failed?this.onerror():this.onload());}},addEventListener(name,fn){if(!listeners.has(name))listeners.set(name,[]);listeners.get(name).push(fn);}});
  vm.runInContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],context);
+ if(member)vm.runInContext('playerAccount={profile:{nickname:"Ana",level:1},inventory:[]}',context);
  context.cancelAnimationFrame=()=>{};
  // Linkedom exposes select.value as read-only; browsers implement a setter.
  for(const select of document.querySelectorAll('select')){let value;Object.defineProperty(select,'value',{configurable:true,get(){return value??this.querySelector('option[selected]')?.value??this.querySelector('option')?.value??'';},set(next){value=next;}});}
@@ -30,6 +31,13 @@ function app({seen=false,search='',failed=false,reduced=false}={}){
 }
 test('visitors can practice but trails and Dex request an account and cannot grant progress',async()=>{
  const a=app({seen:true});await a.settle();
+ assert.ok([...a.document.querySelectorAll('[data-members-only]')].every(el=>el.hidden));
+ for(const id of ['practice','rulesButton','profileButton','accountButton'])assert.equal(a.document.getElementById(id).hidden,false);
+ a.auto();assert.equal(a.run('introductionOpen'),false);
+ await a.run('quickMatch()');assert.equal(a.run('mode'),null);
+ a.run('closeAccount();playerAccount={profile:{nickname:"Ana",level:1},inventory:[]};reflectAccount()');
+ assert.ok([...a.document.querySelectorAll('[data-members-only]')].every(el=>!el.hidden));
+ a.run('playerAccount=null;reflectAccount()');assert.ok([...a.document.querySelectorAll('[data-members-only]')].every(el=>el.hidden));
  a.run('openTrails()');assert.equal(a.document.getElementById('trails').hidden,true);assert.equal(a.document.getElementById('accountModal').style.display,'flex');
  a.run("closeAccount();startStage('morro-1')");assert.equal(a.run('mode'),null);assert.equal(a.run('trailStage'),null);
  a.run('closeAccount();openDex()');assert.equal(a.document.getElementById('pipaDex').hidden,true);
@@ -71,7 +79,7 @@ test('club navigation abandons an active ritual before opening another feature',
 });
 
 test('school tour can be replayed and skipped, lessons leave cleanly without changing free practice',async()=>{
- const a=app({seen:true});await a.settle();
+ const a=app({seen:true,member:true});await a.settle();
  a.run('firstSchoolVisit()');assert.equal(a.document.getElementById('schoolTourOverlay').hidden,false);
  a.document.getElementById('schoolTourNext').onclick();assert.match(a.document.getElementById('schoolTourTitle').textContent,/Morro/);
  a.document.getElementById('schoolTourSkip').onclick();assert.equal(a.document.getElementById('schoolHub').hidden,false);
@@ -86,15 +94,15 @@ test('school tour can be replayed and skipped, lessons leave cleanly without cha
  a.document.getElementById('schoolTour').onclick();assert.equal(a.document.getElementById('schoolTourOverlay').hidden,false);
 });
 
-test('new visitors meet Assis, all eight steps swap artwork, finish opens the school tour and replay remains available',async()=>{
- const a=app();await a.settle();assert.equal(a.requests.length,1);a.auto();await a.settle();assert.equal(a.document.getElementById('assisIntro').hidden,false);assert.match(a.document.getElementById('assisSpeech').textContent,/Nozinho/);assert.equal(a.requests.length,4);assert.match(a.document.getElementById('assisLoad').textContent,/pesquisador/);
+test('new members meet Assis, all eight steps swap artwork, finish opens the school tour and replay remains available',async()=>{
+ const a=app({member:true});await a.settle();assert.equal(a.requests.length,1);a.auto();await a.settle();assert.equal(a.document.getElementById('assisIntro').hidden,false);assert.match(a.document.getElementById('assisSpeech').textContent,/Nozinho/);assert.equal(a.requests.length,4);assert.match(a.document.getElementById('assisLoad').textContent,/pesquisador/);
  const expressions=new Set(),poses=new Set();for(let i=0;i<8;i++){expressions.add(a.run('ART_CONFIG.intro.steps[introductionStep].expression'));poses.add(a.run('ART_CONFIG.intro.steps[introductionStep].pose'));a.document.getElementById('assisNext').onclick();}
  assert.equal(expressions.size,8);assert.equal(poses.size,8);assert.equal(a.run('mode'),null);assert.equal(a.document.getElementById('schoolTourOverlay').hidden,false);assert.equal(a.document.getElementById('assisIntro').hidden,true);assert.equal(a.storage.get('pipaAssisIntroV1'),'done');assert.ok(a.draws.some(d=>d.canvas==='assisBody'));assert.ok(a.draws.some(d=>d.canvas==='assisFace'));assert.ok(a.draws.some(d=>d.canvas==='assisCompanion'));
  a.run('closeSchoolTour();closeSchool();leave()');a.document.getElementById('how').onclick();await a.settle();assert.equal(a.requests.length,4);assert.equal(a.document.getElementById('assisIntro').hidden,false);
 });
 test('skip, invitations, keyboard blocking and image failure do not prevent playing',async()=>{
  for(const options of [{seen:true},{search:'?sala=ABCDEF'}]){const a=app(options);a.auto();await a.settle();assert.equal(a.run('introductionOpen'),false);}
- const a=app({failed:true});a.auto();await a.settle();assert.equal(a.document.getElementById('assisRetry').hidden,false);assert.match(a.document.getElementById('assisLoad').textContent,/não carregaram/);a.key('e');assert.equal(a.run('input().skill'),0);a.document.getElementById('assisSkip').onclick();assert.equal(a.run('introductionOpen'),false);a.run("$('practice').onclick()");assert.equal(a.run('mode'),'practice');assert.equal(a.run("art.creature({},0,0)"),false);
+ const a=app({failed:true,member:true});a.auto();await a.settle();assert.equal(a.document.getElementById('assisRetry').hidden,false);assert.match(a.document.getElementById('assisLoad').textContent,/não carregaram/);a.key('e');assert.equal(a.run('input().skill'),0);a.document.getElementById('assisSkip').onclick();assert.equal(a.run('introductionOpen'),false);a.run("$('practice').onclick()");assert.equal(a.run('mode'),'practice');assert.equal(a.run("art.creature({},0,0)"),false);
 });
 test('arena draws actual atlas frames, restores smoothing, and reduced motion freezes the selected creature',async()=>{
  const a=app({reduced:true,seen:true});await a.settle();a.run("art.creature($('sky').getContext('2d'),2,0)");a.run("art.creature($('sky').getContext('2d'),2,1200)");const d=a.draws.filter(d=>d.canvas==='sky');assert.equal(d.length,2);assert.deepEqual(d[0].args.slice(1),d[1].args.slice(1));assert.match(a.run('kiteSVG(colors[2])'),/almatic-icon/);assert.match(a.run('kiteSVG(colors[2])'),/idle\.png\?v=/);
