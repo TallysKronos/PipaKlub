@@ -7,11 +7,11 @@ export function createTrails(){
       {id:'morro-1',name:'Primeiro cruzamento',level:1,rounds:2,coins:10,foes:[foe('Zeca',0)],tip:'Cruze sua linha na faixa tracejada dele e segure o clique quando a mira ficar verde.'},
       {id:'morro-2',name:'Folha ao vento',level:2,rounds:2,coins:12,foes:[foe('Bia',1)],tip:'A Bia muda de lado num sopro. Não persiga a pipa: espere a linha dela cruzar a sua.'},
       {id:'morro-3',counter:2,name:'Dois na laje',level:2,rounds:2,coins:16,foes:[foe('Juninho',2),foe('Lia',3)],tip:'Com três no céu, deixe os dois se cortarem e entre para terminar o serviço.'},
-      {id:'morro-4',name:'Teimosia azul',level:3,rounds:2,coins:18,foes:[foe('Tião',2)],tip:'O Tião firma a linha quando você ameaça. Ataque logo depois que a proteção acabar.'},
+      {id:'morro-4',name:'Teimosia azul',level:3,rounds:2,coins:18,foes:[foe('Tião',2)],tip:'Quando aparecer o anel vermelho, você está na mira: aperte Shift (ou ESQ) para esquivar. Esquivando na hora do puxão, o próximo acerto sai crítico.'},
       {id:'morro-5',name:'Mestre Nando',level:4,rounds:3,coins:30,boss:true,foes:[foe('Mestre Nando',3)],tip:'Nando lê o céu como um mapa. Guarde energia: quem puxa sem parar perde o fôlego.'}
     ]},
     {id:'praia',name:'Trilha da Beira-Mar',subtitle:'Vento forte, linha firme',accent:'#2f9e8f',stages:[
-      {id:'praia-1',name:'Brisa salgada',level:4,rounds:2,coins:20,foes:[foe('Dona Cida',0)],tip:'Dona Cida acerta forte quando prepara o puxão. Saia da mira quando ela brilhar.'},
+      {id:'praia-1',name:'Brisa salgada',level:4,rounds:2,coins:20,foes:[foe('Dona Cida',0)],tip:'Abra o ângulo e puxe com a pipa em movimento: centro dourado + ângulo aberto + relada é CORTE CRÍTICO.'},
       {id:'praia-2',counter:0,name:'Ventania',level:3,rounds:2,coins:24,foes:[foe('Kauã',1),foe('Mel',3)],tip:'Dois rivais rápidos. Fique alto e escolha quem cruzar primeiro.'},
       {id:'praia-3',name:'Rede de pescador',level:5,rounds:2,coins:26,foes:[foe('Seu Dito',2)],tip:'Seu Dito desvia quando percebe a sua mira. Mude o ângulo antes de puxar.'},
       {id:'praia-4',name:'Trio do píer',level:5,rounds:2,coins:32,foes:[foe('Ravi',0),foe('Nina',1),foe('Caio',3)],tip:'Quatro linhas no céu. Quem sobrevive é quem não fica no meio da confusão.'},

@@ -29,7 +29,7 @@ test('stored progress is sanitised',()=>{
  assert.deepEqual(t.sanitize('lixo'),t.defaults());
 });
 test('higher AI levels beat lower ones and keep bot defaults unchanged',()=>{
- const e=createEngine();assert.deepEqual(e.brain(),{focus:.7,rest:.9,speed:.8,jitter:0,dodge:0,reserve:0,smart:false,weakest:false});
+ const e=createEngine();assert.deepEqual(e.brain(),{focus:.7,rest:.9,speed:.8,jitter:0,dodge:0,reserve:0,smart:false,weakest:false,evade:0,sweep:false,tip:.7});
  const duel=(la,lb,seed)=>{const s=e.create(0,{mode:'rounds',roundsToWin:2}),a=e.player('A',seed%4,'a',0),b=e.player('B',(seed+1)%4,'b',0);a.bot=b.bot=true;a.ai={level:la};b.ai={level:lb};
   if(seed%2){e.admit(s,a,0);e.admit(s,b,0);}else{e.admit(s,b,0);e.admit(s,a,0);}for(let now=16;now<s.end&&now<600000;now+=16)e.step(s,now);return (a.rounds||0)>(b.rounds||0);};
  let strong=0;for(let i=0;i<8;i++)strong+=duel(8,2,i)?1:0;assert.ok(strong>=7,'level 8 should beat level 2, won '+strong+'/8');

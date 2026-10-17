@@ -3,24 +3,26 @@ import assert from 'node:assert/strict';
 import {createEngine} from './src/engine.js';
 import {createNetworkView} from './src/network-view.js';
 const e=createEngine();
+// The test duel crosses at an open angle with a still kite: a clean golden-centre cut, 24 x 1.2 = 28.8.
+const CLEAN=100-24*1.2;
 function duel(){const s=e.create(1000),a=e.player('A',0,'a',1000),b=e.player('B',1,'b',1000);Object.assign(a,{x:700,y:180,anchorX:90,input:{cut:true}});Object.assign(b,{x:300,y:180,anchorX:910});s.players=[a,b];return {s,a,b};}
 
 test('only a valid line crossing deals damage; kite proximity, ground intersections and parallel lines do not',()=>{
- const {s,a,b}=duel();assert.ok(e.contact(a,b).valid);e.step(s,1034);assert.equal(b.hp,76);assert.equal(a.hp,100);
+ const {s,a,b}=duel();assert.ok(e.contact(a,b).valid);e.step(s,1034);assert.ok(Math.abs(b.hp-CLEAN)<1e-9);assert.equal(a.hp,100);
  const nearby=duel();nearby.a.x=400;nearby.b.x=401;nearby.a.y=nearby.b.y=200;e.step(nearby.s,1034);assert.equal(nearby.b.hp,100);
  const parallel=duel();parallel.b.anchorX=90;parallel.a.x=parallel.b.x=400;e.step(parallel.s,1034);assert.equal(parallel.b.hp,100);
  const ground=duel();ground.a.x=900;ground.b.x=100;ground.b.anchorX=110;assert.equal(e.contact(ground.a,ground.b),null);e.step(ground.s,1034);assert.equal(ground.b.hp,100);
 });
 test('one pull hits one target, misses cost energy, cooldown and low energy prevent spam',()=>{
- const {s,a,b}=duel(),c={...b,id:'c'};s.players.push(c);e.step(s,1034);assert.equal(b.hp,76);assert.equal(c.hp,100);const hp=b.hp;e.step(s,1068);assert.equal(b.hp,hp);
+ const {s,a,b}=duel(),c={...b,id:'c'};s.players.push(c);e.step(s,1034);assert.ok(Math.abs(b.hp-CLEAN)<1e-9);assert.equal(c.hp,100);const hp=b.hp;e.step(s,1068);assert.equal(b.hp,hp);
  a.attackCooldown=0;a.energy=11;e.step(s,1100);assert.equal(b.hp,hp);a.energy=100;a.x=80;a.attackCooldown=0;e.step(s,1134);assert.ok(a.energy<90);assert.equal(b.hp,hp);
 });
 test('simultaneous fatal strikes resolve identically when player order is reversed',()=>{
  for(const reverse of [false,true]){const {s,a,b}=duel();a.hp=b.hp=1;b.input={cut:true};if(reverse)s.players.reverse();e.step(s,1034);assert.equal(a.cuts,1);assert.equal(b.cuts,1);assert.ok(a.respawn&&b.respawn);assert.equal(s._pendingCuts.length,2);assert.equal(new Set(s.events.map(x=>x.id)).size,2);}
 });
 test('precision is consumed once, guard reduces damage, focus opens a previously invalid crossing',()=>{
- const precise=duel();precise.a.input={cut:true,skill:1};e.step(precise.s,1034);assert.equal(precise.b.hp,68);assert.equal(precise.a.skillTime,0);
- const guard=duel();guard.b.color=2;guard.b.input={skill:1};e.step(guard.s,1034);assert.ok(Math.abs(guard.b.hp-90.4)<.001);
+ const precise=duel();precise.a.input={cut:true,skill:1};e.step(precise.s,1034);assert.ok(Math.abs(precise.b.hp-(CLEAN-8))<1e-9);assert.equal(precise.a.skillTime,0);
+ const guard=duel();guard.b.color=2;guard.b.input={skill:1};e.step(guard.s,1034);assert.ok(Math.abs(guard.b.hp-(100-24*1.2*.4))<.001);
  const {a,b}=duel();a.color=3;let found=false;
  for(let y=80;y<460;y+=10)for(let x=100;x<900;x+=10){a.x=x;a.y=y;a.skillTime=0;const before=e.contact(a,b);a.skillTime=1;const after=e.contact(a,b);if(before&&!before.valid&&after?.valid){found=true;break;}}
  assert.ok(found,'focus must expand the enemy vulnerability zone');
@@ -28,7 +30,7 @@ test('precision is consumed once, guard reduces damage, focus opens a previously
 test('dash obeys direction, arena limits, cost, cooldown and input sanitization',()=>{
  for(const direction of [-1,1]){const p=e.player('Dash',1,'dash',0);p.x=500;e.move(p,{skill:direction,hp:999,damage:999},0);assert.equal(p.x,500+96*direction);assert.equal(p.energy,75);assert.equal(p.skillCount,1);e.move(p,{skill:-direction},.1);assert.equal(p.skillCount,1);assert.equal(p.x,500+96*direction);}
  const p=e.player('Edge',1,'edge',0);p.x=940;e.move(p,{skill:1},0);assert.equal(p.x,945);p.skillCooldown=0;p.energy=24;e.move(p,{skill:-1},0);assert.equal(p.x,945);
- assert.deepEqual(e.sanitizeInput({x:Infinity,y:-99,skill:99,damage:999}),{x:0,y:-1,cut:false,skill:0});
+ assert.deepEqual(e.sanitizeInput({x:Infinity,y:-99,skill:99,damage:999}),{x:0,y:-1,cut:false,skill:0,dodge:false});
 });
 test('prediction does not repeat a dash when an older authority snapshot arrives',()=>{
  const {s,a}=duel();a.color=1;a.x=400;a.input={};const view=createNetworkView(e);view.receive(structuredClone(s),'a',0,200);
@@ -65,7 +67,7 @@ test('real page handlers preserve a quick skill tap for the next network frame a
 
 test('spawn shield blocks damage until it expires, and attacking ends it early',()=>{
  const {s,a,b}=duel();b.shield=e.SHIELD;assert.equal(e.contact(a,b).valid,false);e.step(s,1034);assert.equal(b.hp,100);assert.equal(a.hits||0,0);
- b.shield=0;a.attackCooldown=0;e.step(s,1068);assert.equal(b.hp,76);assert.equal(a.hits,1);
+ b.shield=0;a.attackCooldown=0;e.step(s,1068);assert.ok(Math.abs(b.hp-CLEAN)<1e-9);assert.equal(a.hits,1);
  const own=duel();own.a.shield=e.SHIELD;e.step(own.s,1034);assert.equal(own.a.shield,0);assert.equal(own.a.strikes,1);
  const back=duel();back.b.hp=1;e.step(back.s,1034);assert.ok(back.b.respawn);back.a.input={};e.step(back.s,back.b.respawn);assert.ok(back.b.shield>2&&back.b.shield<=e.SHIELD);
 });
@@ -111,4 +113,24 @@ test('mouse or finger steers the kite with analog input; held keys win and the l
  for(const fn of listeners.get('keyup'))fn({key:'ArrowUp'});assert.deepEqual([vm.runInContext('input().x',context),vm.runInContext('input().y',context)],[0,0],'keys hand control back until the mouse moves again');
  canvasListeners.get('pointerdown')({pointerType:'touch',pointerId:7,button:0,clientX:500,clientY:500,preventDefault(){}});i=vm.runInContext('input()',context);assert.equal(i.x,0);assert.equal(i.y,1,'finger pulls the kite to just above the touch');
  canvasListeners.get('pointerup')({pointerType:'touch',pointerId:7,type:'pointerup'});i=vm.runInContext('input()',context);assert.equal(i.y,0);
+});
+
+test('cut quality: open angle and a moving kite add damage, a shallow angle removes it, all three on the golden centre is critical',()=>{
+ const c=(angle,perfect)=>({angle,perfect});
+ assert.equal(e.cutDamage({},c(.6,false)).damage,18);
+ assert.ok(Math.abs(e.cutDamage({},c(.9,false)).damage-18*1.2)<1e-9);
+ assert.ok(Math.abs(e.cutDamage({},c(.3,false)).damage-18*.8)<1e-9);
+ assert.ok(Math.abs(e.cutDamage({vx:150},c(.6,false)).damage-18*1.15)<1e-9);
+ const crit=e.cutDamage({vx:150},c(.95,true));assert.equal(crit.crit,true);assert.equal(crit.damage,24*1.75);
+ assert.equal(e.cutDamage({vx:150},c(.95,false)).crit,false,'outside the golden centre is never a natural critical');
+ assert.equal(e.cutDamage({counter:1},c(.6,false)).crit,true,'a counter after a perfect dodge is critical');
+});
+test('dodge: costs energy, has a cooldown, moves fast, blocks attacking; a perfect dodge refunds energy and makes the next hit critical',()=>{
+ const p=e.player('D',0,'d',0);p.x=500;p.y=300;e.move(p,{x:1,dodge:true},.1);
+ assert.equal(p.energy,100-e.DODGE.cost+18*.1);assert.ok(p.x>500+165*.1*2,'dodge is a fast burst');assert.ok(p.evade>0);
+ const x=p.x;e.move(p,{dodge:true,cut:true},.05);assert.equal(p.dodges,1,'cooldown prevents a second dodge');assert.equal(p.strike,false,'no pulling while dodging');
+ const {s,a,b}=duel();b.input={dodge:true};const energy=b.energy;e.step(s,1034);
+ assert.equal(b.hp,100,'a strike during the dodge slides off');assert.equal(b.perfectDodges,1);assert.equal(a.aim,'dodged');assert.equal(b.energy,Math.min(100,energy-e.DODGE.cost+e.DODGE.cost+18*.034));assert.ok(b.counter>0);
+ b.input={cut:true};a.input={};b.attackCooldown=0;Object.assign(b,{x:300,y:180,evade:0});Object.assign(a,{x:700,y:180});e.step(s,1068);
+ assert.ok(Math.abs(a.hp-(100-24*1.75))<1e-9,'the counter hit is critical');assert.equal(b.counter,0);assert.equal(b.crits,1);
 });

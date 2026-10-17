@@ -8,7 +8,16 @@ export function createEngine() {
   ];
   const SHIELD=2.5,COUNTDOWN=3000,INTERMISSION=3200,ROUND=60000,MATCH=180000,ROUNDS_TO_WIN=3,ANCHORS=[90,910,325,675,207,793,442,558];
   const type=p=>types[clamp(Math.trunc(Number(p.color)||0),0,3)];
-  function sanitizeInput(i={}) {return {x:Number.isFinite(i?.x)?clamp(i.x,-1,1):0,y:Number.isFinite(i?.y)?clamp(i.y,-1,1):0,cut:!!i?.cut,skill:i?.skill===-1?-1:i?.skill===1?1:0};}
+  function sanitizeInput(i={}) {return {x:Number.isFinite(i?.x)?clamp(i.x,-1,1):0,y:Number.isFinite(i?.y)?clamp(i.y,-1,1):0,cut:!!i?.cut,skill:i?.skill===-1?-1:i?.skill===1?1:0,dodge:!!i?.dodge};}
+  // Dodge: a short burst during which strikes slide off. Dodging the instant a rival pulls is a
+  // perfect dodge: the energy comes back and the next hit within COUNTER seconds is critical.
+  const DODGE={cost:18,cooldown:2.2,time:.28,speed:3.2},COUNTER=2;
+  // Cut quality: open angle (clean), moving kite (relada), golden centre; all three together is critical.
+  function cutDamage(p,c){
+    const clean=c.angle>=.85,shallow=c.angle<.45,moving=Math.hypot(p.vx||0,p.vy||0)>=110,crit=(c.perfect&&clean&&moving)||p.counter>0;
+    const base=c.perfect?24:18,damage=crit?base*1.75:base*(1+(clean?.2:0)-(shallow?.2:0)+(moving?.15:0));
+    return {damage,crit,clean,moving,shallow};
+  }
   function player(name,color,id,now) {return {id,name:String(name||'Pipeiro').slice(0,18),color:clamp(Math.trunc(Number(color)||0),0,3),x:220+Math.random()*560,y:160+Math.random()*240,hp:100,energy:100,score:0,cuts:0,input:{},seen:now,respawn:0,attack:false,attackCooldown:0,skillCooldown:0,skillTime:0,skillCount:0};}
   // Without options the match is live at once (legacy/tests). Rooms and practice pass a mode and start in 'waiting'.
   function create(now=Date.now(),opts) {const s={id:crypto.randomUUID(),rules:'casual',cutSequence:0,players:[],last:now,end:now+MATCH,events:[],wind:0};if(opts){s.mode=opts.mode==='time'?'time':'rounds';s.phase='waiting';s.round=0;s.roundsToWin=clamp(Math.trunc(opts.roundsToWin)||ROUNDS_TO_WIN,1,5);s.end=now+3600000;}return s;}
@@ -45,7 +54,7 @@ export function createEngine() {
     if(u<=.05||u>=.98||w<=.05||w>=.98)return null;
     const focus=p.color===3&&p.skillTime>0;
     const shielded=q.shield>0;
-    return {x:l.a.x+r.x*u,y:l.a.y+r.y*u,own:u,enemy:w,shielded,valid:!shielded&&u>=.35&&u<=.95&&w>=(focus?.15:.3)&&w<=(focus?.92:.85),perfect:w>=.52&&w<=.68};
+    return {x:l.a.x+r.x*u,y:l.a.y+r.y*u,own:u,enemy:w,angle,shielded,valid:!shielded&&u>=.35&&u<=.95&&w>=(focus?.15:.3)&&w<=(focus?.92:.85),perfect:w>=.52&&w<=.68};
   }
   function move(p,input,dt,wind=0){
     p.strike=false;if(p.respawn)return;
@@ -54,22 +63,26 @@ export function createEngine() {
     p.skillCooldown=Math.max(0,(p.skillCooldown||0)-dt);
     p.skillTime=Math.max(0,(p.skillTime||0)-dt);
     p.flash=Math.max(0,(p.flash||0)-dt);p.hitFlash=Math.max(0,(p.hitFlash||0)-dt);p.shield=Math.max(0,(p.shield||0)-dt);
+    p.evade=Math.max(0,(p.evade||0)-dt);p.dodgeCooldown=Math.max(0,(p.dodgeCooldown||0)-dt);p.counter=Math.max(0,(p.counter||0)-dt);
+    if(i.dodge&&p.dodgeCooldown<=0&&p.energy>=DODGE.cost){const d=Math.hypot(i.x,i.y);p.energy-=DODGE.cost;p.dodgeCooldown=DODGE.cooldown;p.evade=DODGE.time;p.dodgeDir=d>.1?{x:i.x/d,y:i.y/d}:{x:0,y:-1};p.dodges=(p.dodges||0)+1;}
     if(i.skill&&p.skillCooldown<=0&&p.energy>=25){
       p.energy-=25;p.skillCooldown=7;p.skillTime=type(p).duration;p.skillCount=(p.skillCount||0)+1;
       if(p.color===1){p.x=clamp(p.x+i.skill*96,55,945);p.dashDirection=i.skill;}
     }
-    const m=Math.max(1,Math.hypot(i.x,i.y));
-    p.x=clamp(p.x+(i.x/m*165+wind)*dt,55,945);p.y=clamp(p.y+i.y/m*165*dt,70,480);
-    p.attack=i.cut&&p.energy>=12;
+    const m=Math.max(1,Math.hypot(i.x,i.y)),ox=p.x,oy=p.y;
+    if(p.evade>0&&p.dodgeDir){p.x=clamp(p.x+(p.dodgeDir.x*165*DODGE.speed+wind)*dt,55,945);p.y=clamp(p.y+p.dodgeDir.y*165*DODGE.speed*dt,70,480);}
+    else{p.x=clamp(p.x+(i.x/m*165+wind)*dt,55,945);p.y=clamp(p.y+i.y/m*165*dt,70,480);}
+    if(dt>0){p.vx=(p.x-ox)/dt;p.vy=(p.y-oy)/dt;}
+    p.attack=i.cut&&p.energy>=12&&!(p.evade>0);
     if(p.attack&&p.attackCooldown<=0){p.energy-=12;p.attackCooldown=.65;p.strike=true;p.flash=.16;p.shield=0;p.strikes=(p.strikes||0)+1;}
     p.energy=clamp(p.energy+(i.cut?6:18)*dt,0,100);p.input=i;
   }
   // Bot brain. p.ai.level (1-10) scales reaction, rest between pulls, speed, aim, dodging,
   // energy discipline and skill timing. Bots without a level keep the practice defaults.
   function brain(level){
-    if(!level)return {focus:.7,rest:.9,speed:.8,jitter:0,dodge:0,reserve:0,smart:false,weakest:false};
+    if(!level)return {focus:.7,rest:.9,speed:.8,jitter:0,dodge:0,reserve:0,smart:false,weakest:false,evade:0,sweep:false,tip:.7};
     const k=Math.pow((clamp(level,1,10)-1)/9,.75);
-    return {focus:.95-.8*k,rest:1.15-.95*k,speed:.6+.4*k,jitter:.16*(1-k),dodge:clamp((level-2)/8,0,1),reserve:level>=5?24:0,smart:level>=3,weakest:level>=6};
+    return {focus:.95-.8*k,rest:1.15-.95*k,speed:.6+.4*k,jitter:.16*(1-k),dodge:clamp((level-2)/8,0,1),reserve:level>=5?24:0,smart:level>=3,weakest:level>=6,evade:level>=4?.04+.025*(level-4):0,sweep:level>=7,tip:level>=8?.88:.7};
   }
   function botInput(s,p,dt){
     const b=brain(p.ai?.level),foes=s.players.filter(q=>q.id!==p.id&&!q.respawn&&!(q.shield>0));
@@ -81,7 +94,7 @@ export function createEngine() {
     // Seek a crossing on the target line rather than chasing its kite; weaker bots wobble around the golden centre.
     const frac=.6+b.jitter*Math.sin(s.last/650+(p.slot||0)*1.7);
     let x=500,y=180;
-    if(target){const l=line(target),a=line(p).a,c={x:l.a.x+(l.b.x-l.a.x)*frac,y:l.a.y+(l.b.y-l.a.y)*frac};x=clamp(a.x+(c.x-a.x)/.7,55,945);y=clamp(a.y+(c.y-a.y)/.7,70,480);}
+    if(target){const l=line(target),a=line(p).a,c={x:l.a.x+(l.b.x-l.a.x)*frac,y:l.a.y+(l.b.y-l.a.y)*frac};x=clamp(a.x+(c.x-a.x)/b.tip,55,945);y=clamp(a.y+(c.y-a.y)/b.tip,70,480);}
     const c=target&&contact(p,target);
     // Dodge: when a rival can cut us and we cannot answer, slide the kite away from the crossing.
     const threat=b.dodge?s.players.map(q=>q.id!==p.id&&!q.respawn?contact(q,p):null).find(t=>t?.valid):null;
@@ -98,6 +111,12 @@ export function createEngine() {
       else if(p.color===2&&threat)skill=1;
       else if(p.color===3&&c&&!c.valid)skill=1;
     }
+    // Evasion: once a rival has had us in its sights for a moment and is about to pull, burst away from the crossing.
+    let dodge=false;const hunter=b.evade?s.players.find(q=>q.id!==p.id&&!q.respawn&&q.input?.cut&&q.energy>=12&&contact(q,p)?.valid):null;
+    p.threatTime=hunter?(p.threatTime||0)+dt:0;
+    if(hunter&&!c?.valid&&p.dodgeCooldown<=0&&p.energy>=DODGE.cost+12&&p.threatTime>=b.focus*.6&&(hunter.attackCooldown||0)<=b.evade){const t=contact(hunter,p),dx=p.x-t.x,dy=p.y-t.y,d=Math.hypot(dx,dy)||1;return {x:dx/d,y:dy/d,cut:false,skill:0,dodge:true};}
+    // Sweep (relada): strong bots slide along their own line while pulling, which keeps the crossing and earns cut speed.
+    if(b.sweep&&c?.valid){const a=line(p).a,dx=p.x-a.x,dy=p.y-a.y,d=Math.hypot(dx,dy)||1,dir=Math.sin(s.last/260+(p.slot||0))>0?1:-1;return {x:dx/d*.8*dir,y:dy/d*.8*dir,cut:pull,skill};}
     return {x:clamp((x-p.x)/80,-b.speed,b.speed),y:clamp((y-p.y)/80,-b.speed,b.speed),cut:pull,skill};
   }
   function step(s,now) {
@@ -117,12 +136,13 @@ export function createEngine() {
     for(const p of s.players){if(!p.strike||p.respawn)continue;
       const targets=s.players.map(q=>({q,c:contact(p,q)})).filter(t=>t.c?.valid).sort((a,b)=>Math.abs(a.c.enemy-.6)-Math.abs(b.c.enemy-.6)||a.q.id.localeCompare(b.q.id));
       const t=targets[0];p.aim=t?'hit':'miss';if(!t)continue;
-      let damage=t.c.perfect?24:18;
+      if(t.q.evade>0){p.aim='dodged';t.q.perfectDodges=(t.q.perfectDodges||0)+1;t.q.energy=clamp(t.q.energy+DODGE.cost,0,100);t.q.counter=COUNTER;continue;}
+      const cut=cutDamage(p,t.c);let damage=cut.damage;if(cut.crit){p.crits=(p.crits||0)+1;p.counter=0;}
       if(p.color===0&&p.skillTime>0){damage+=8;p.skillTime=0;}
       if(t.q.color===2&&t.q.skillTime>0)damage*=.4;
-      hits.push({p,q:t.q,damage,c:t.c});p.hits=(p.hits||0)+1;
+      hits.push({p,q:t.q,damage,c:t.c,cut});p.hits=(p.hits||0)+1;
     }
-    for(const h of hits){h.q.hp=Math.max(0,h.q.hp-h.damage);h.q.hitFlash=.25;h.q.lastHit={x:h.c.x,y:h.c.y,damage:Math.round(h.damage)};}
+    for(const h of hits){h.q.hp=Math.max(0,h.q.hp-h.damage);h.q.hitFlash=.25;h.q.lastHit={x:h.c.x,y:h.c.y,damage:Math.round(h.damage),crit:h.cut.crit,clean:h.cut.clean,moving:h.cut.moving};}
     for(const q of s.players){if(q.hp>0||q.respawn)continue;
       const winner=hits.filter(h=>h.q===q).sort((a,b)=>b.damage-a.damage||a.p.id.localeCompare(b.p.id))[0];if(!winner)continue;
       const p=winner.p;q.respawn=rounds?now:now+3000;q.attack=false;p.score+=100;p.cuts++;
@@ -134,5 +154,5 @@ export function createEngine() {
     return s;
   }
   function practiceStep(s,id,input,now){const p=s.players.find(p=>p.id===id);if(p){p.input=sanitizeInput(input);p.seen=now;}return step(s,now);}
-  return {SHIELD,brain,create,admit,player,step,move,visible,practiceStep,line,contact,types,type,sanitizeInput,seat};
+  return {SHIELD,DODGE,COUNTER,cutDamage,brain,create,admit,player,step,move,visible,practiceStep,line,contact,types,type,sanitizeInput,seat};
 }

@@ -23,6 +23,9 @@ Abra http://localhost:5193. Para jogar em outro aparelho na mesma rede, use o IP
 - Botão direito do mouse, Q ou E: habilidade da pipa equipada. Custa 25 de energia e recarrega em 7 s. Na Ágil, o dash de 96 px vai para o lado do cursor (ou Q esquerda / E direita).
 - Soltar ataque recupera 18 de energia/s; segurando, 6/s. A durabilidade começa em 100 e só é restaurada ao reaparecer.
 - Cada corte vale 100 pontos.
+- Qualidade do corte: ângulo aberto entre as linhas (corte limpo) +20%, ângulo raso −20%, puxar com a pipa em movimento (relada) +15%. Centro dourado + ângulo aberto + relada = corte crítico, ×1,75.
+- Esquiva: Shift, botão do meio do mouse ou ESQ no celular. Arranque rápido de 0,28 s em que nenhum golpe pega; custa 18 de energia e recarrega em 2,2 s. Esquiva perfeita (no instante do puxão rival) devolve a energia e torna crítico o próximo acerto em até 2 s. Um anel vermelho mostra quando um rival tem cruzamento válido sobre você.
+- A IA esquiva a partir do nível 4, rela para buscar críticos a partir do 7 e, do 8 em diante, cruza com a ponta da linha.
 - Formatos (escolhidos ao criar a sala ou o treino):
   - **Rodadas (padrão):** contagem 3-2-1, quem é cortado espera a rodada acabar; a última pipa no céu vence a rodada e todos voltam com a linha cheia. Vence quem ganhar 3 rodadas. Rodada sem corte em 60 s vai para a linha mais inteira; corte duplo é empate.
   - **Tempo:** 3 minutos, contados só quando o segundo jogador entra. A pipa cortada retorna após 3 segundos.
