@@ -165,6 +165,11 @@ body:not(.in-match) .combat-readout{display:none}
 .touch-actions .skill-touch{font-size:12px;background:#ffe9a8}
 @media (pointer:coarse){.touch.active{display:flex}}
 body.in-match .arena canvas{cursor:crosshair}
+/* The mobile lobby scroll layer must not intercept arena gestures in a match. */
+body.in-match .menu{display:none}
+.school-coach{pointer-events:none}
+.school-coach button{pointer-events:auto}
+@media(pointer:coarse){body.in-school .school-coach{bottom:124px}}
 .dpad{display:none!important}
 .drag-hint{align-self:end;padding:6px 12px;border-radius:9px;border:3px solid var(--line);background:#fff6ddd0;font:400 13px var(--px);pointer-events:none}
 
