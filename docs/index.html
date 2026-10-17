@@ -672,7 +672,7 @@ function createEngine() {
   function fillBots(s,now){const used=new Set(s.players.map(p=>p.name));let n=0;while(s.players.length<s.quick.size){const name=BOT_NAMES.find(x=>!used.has(x))||'Pipeiro '+(++n);used.add(name);const b=player(name,Math.floor(Math.random()*4),'bot-'+crypto.randomUUID(),now);b.bot=true;b.ai={level:s.quick.level};admit(s,b,now);}}
   // A player joining mid-round in rounds mode watches until the next round starts.
   function admit(s,p,now){seat(s,p);p.shield=SHIELD;if(s.mode==='rounds'&&(s.phase==='live'||s.phase==='intermission'))p.respawn=now;s.players.push(p);return p;}
-  function visible(s){const {_pendingCuts,dailyResult,...publicState}=s;return {...publicState,players:s.players.map(({key,accountId,kiteId,basicKiteId,strike,...p})=>p),events:s.events.map(({id,text,at,capture,winnerId,loserId,kind,round})=>({id,text,at,capture,winnerId,loserId,kind,round}))};}
+  function visible(s){const {_pendingCuts,dailyResult,trailResult,trailOwner,...publicState}=s;return {...publicState,players:s.players.map(({key,accountId,kiteId,basicKiteId,strike,...p})=>p),events:s.events.map(({id,text,at,capture,winnerId,loserId,kind,round})=>({id,text,at,capture,winnerId,loserId,kind,round}))};}
   // Fixed anchors and straight segments are also used by the renderer. Fractions run ground -> kite.
   // The seat also fixes the player number (P1..P8) shown with the player's colour.
   function seat(s,p){if(!Number.isFinite(p.anchorX))p.anchorX=ANCHORS.find(x=>!s.players.some(q=>q!==p&&q.anchorX===x))??500;if(!Number.isInteger(p.slot)){const i=ANCHORS.indexOf(p.anchorX);p.slot=i>=0?i:s.players.indexOf(p)%8;}return p;}
@@ -685,7 +685,7 @@ function createEngine() {
     if(winner)winner.rounds=(winner.rounds||0)+1;
     s.events.unshift({kind:'round',round:s.round,text:winner?winner.name+' venceu a rodada '+s.round:'Rodada '+s.round+' empatada',at:now,id:s.id+':r'+s.round,winnerId:winner?.id});s.events=s.events.slice(0,4);
     s.phase='intermission';s.phaseUntil=now+INTERMISSION;
-    if(winner&&winner.rounds>=s.roundsToWin){s.end=now+INTERMISSION;if(s.daily)s.dailyResult={winnerId:winner.id,accountId:winner.accountId||null};}
+    if(winner&&winner.rounds>=s.roundsToWin){s.end=now+INTERMISSION;if(s.daily)s.dailyResult={winnerId:winner.id,accountId:winner.accountId||null};if(s.trail){const owner=s.players.find(p=>p.accountId===s.trailOwner);if(owner)s.trailResult={userId:s.trailOwner,stage:s.trail,won:winner.id===owner.id,roundsLost:s.players.filter(p=>p.id!==owner.id).reduce((n,p)=>n+(p.rounds||0),0)};}}
   }
   function advance(s,now){
     if(s.phase==='waiting'){if(s.quick){if(s.players.length>=s.quick.size||now>=s.quick.fillAt){fillBots(s,now);startRound(s,now);}}else if(s.players.length>=2)startRound(s,now);}
@@ -774,7 +774,7 @@ function createEngine() {
   function step(s,now) {
     s._pendingCuts=[];const dt=clamp((now-s.last)/1000,0,.25);s.last=now;s.wind=Math.sin(now/9000)*(s.daily?.weather==='wind'?36:12);
     if(now>=s.end)return s;s.players=s.players.filter(p=>p.bot||now-p.seen<15000);
-    if(s.daily&&!s.players.some(p=>!p.bot)){s.end=now;return s;}
+    if((s.daily||s.trail)&&!s.players.some(p=>!p.bot)){s.end=now;return s;}
     // A quick room with nobody real left in it closes instead of letting bots fly alone.
     if(s.quick&&s.quick.fillAt<=now&&!s.players.some(p=>!p.bot)){s.end=now;return s;}
     for(const p of s.players)seat(s,p);
@@ -1305,6 +1305,7 @@ function showMatchResult(s,ranking=[]){if(!s.trail)track(s.quick?'quick_match_en
  const mine=s.players?.find(p=>p.id===me),authenticated=mode==='online'&&!!playerAccount;
  const rounds=s.mode==='rounds',rows=ranking.map((q,i)=>'<div class="result-rank'+(q.id===me?' me':'')+'"><span><i class="result-dot" style="background:'+playerColor(q)+'"></i>'+(i+1)+'. '+playerTag(q)+' '+escapeHTML(q.name)+(q.id===me?' · você':'')+'</span><b>'+(rounds?(q.rounds||0)+' ★ · ':'')+q.score+' pts</b></div>').join('');
  if(s.daily){showDailyResult(s,mine);return;}
+ if(s.trail&&mode==='online'){showOnlineTrailResult(s,ranking,mine);return;}
  if(s.trail&&mode==='practice'){showTrailResult(s,ranking,mine);return;}
  const place=ranking.findIndex(q=>q.id===me)+1,cuts=mine?.cuts||0;
  modal(place===1?'O céu é seu!':'Cada duelo deixa uma história.',
@@ -1817,8 +1818,8 @@ function renderDexItems(entry){
  $('dexItemsHint').textContent=companion?'Nozinho acompanha o Sr. Assis e não aparece como selvagem. Sua rabiola fica registrada aqui como item associado.':'Rabiola prevista para encontros com '+entry.name+' selvagem. Os drops ainda não estão disponíveis.';
  if(eventItem)$('dexItemsHint').textContent='Receba a rabiola em um evento e leve ao Sr. Assis. É preciso conhecer este Pipamon e ainda não possuir sua Soul vinculada.';
  // Rabiolas dropped by trail bosses show where to earn them and whether this device already has them.
- const bossDrop=id=>{try{return trails.stages.find(st=>st.drop===id)||null;}catch{return null;}},owned=id=>{try{return trailProgress.items.includes(id);}catch{return false;}};
- if(!companion&&(entry.items||[]).some(bossDrop))$('dexItemsHint').textContent='Vença o chefe das Trilhas pela primeira vez para conquistar esta rabiola neste aparelho. A recompensa local ainda não pode ser usada na invocação online.';
+ const bossDrop=id=>{try{return trails.stages.find(st=>st.drop===id)||null;}catch{return null;}},owned=id=>{try{return trailRewards.some(r=>r.dropId===id);}catch{return false;}};
+ if(!companion&&(entry.items||[]).some(bossDrop))$('dexItemsHint').textContent='Vença o chefe das Trilhas no duelo online para receber a rabiola na conta e usá-la no Sr. Assis. O prêmio é entregue uma vez por chefe.';
  const cards=(entry.items||[]).map(id=>ART_CONFIG.items.find(item=>item.id===id)).filter(Boolean).map(item=>{
   const card=uiElement('article',undefined,'dex-item'),stage=uiElement('div',undefined,'dex-item-art'),image=document.createElement('img');
   image.alt=item.name;image.width=209;image.height=209;image.loading='lazy';image.decoding='async';
@@ -2074,13 +2075,13 @@ function openTrails(){
  if(!requireClubAccount('as Trilhas'))return;
  if(mode){toast('Saia da partida para abrir as trilhas.');return;}
  trailPick=trailPick&&trails.unlocked(trailProgress,trailPick)?trailPick:firstOpenStage().id;
- renderTrails();$('trails').hidden=false;$('trails').style.display='flex';$('trailStart').focus({preventScroll:true});
+ trailSync.sync();renderTrails();$('trails').hidden=false;$('trails').style.display='flex';$('trailStart').focus({preventScroll:true});
 }
 function closeTrails(){$('trails').hidden=true;$('trails').style.display='none';}
 function renderTrails(){
  setText('trailCoins',String(trailProgress.coins));
  const bonus=Math.floor(trailProgress.mastery/2);
- setText('trailMastery','Rabiolas '+trailProgress.items.length+'/'+trails.DROPS.length+' · Maestria '+trailProgress.mastery+'/'+trails.MASTERY_MAX+(bonus?' · a IA está +'+bonus+' nível'+(bonus>1?'s':'')+' mais esperta':' · a IA ainda está te conhecendo'));
+ setText('trailMastery','Rabiolas recebidas na conta '+trailRewards.length+'/'+trails.DROPS.length+' · Maestria '+trailProgress.mastery+'/'+trails.MASTERY_MAX+(bonus?' · a IA está +'+bonus+' nível'+(bonus>1?'s':'')+' mais esperta':' · a IA ainda está te conhecendo'));
  $('trailList').replaceChildren(...trails.trails.map(t=>{
   const card=document.createElement('section');card.className='trail';card.style.setProperty('--accent',t.accent);
   const earned=t.stages.reduce((n,s)=>n+(trailProgress.stars[s.id]||0),0);
@@ -2107,20 +2108,23 @@ function renderStage(){
  setText('stageFormat','Melhor de '+(st.rounds*2-1)+' · vence quem fizer '+st.rounds+' rodada'+(st.rounds>1?'s':''));
  setText('stageReward','🪙 '+st.coins+'–'+Math.round(st.coins*1.5)+' moedas'+(best?'':' · +'+st.coins+' na primeira vitória'));
  setText('stageBest',best?'Seu melhor: '+starText(best):'Ainda não vencida');
+ const oldSummon=$('stageSummon');if(oldSummon)oldSummon.remove();
  const drop=st.drop&&ART_CONFIG.items.find(i=>i.id===st.drop);$('stageDrop').hidden=!drop;
- if(drop){$('stageDropImage').src=drop.url;$('stageDropImage').alt=drop.name;setText('stageDropName',drop.name);setText('stageDropState',trailProgress.items.includes(drop.id)?'Conquistada ✓':'Na primeira vitória contra o chefe');}
+ if(drop){$('stageDropImage').src=drop.url;$('stageDropImage').alt=drop.name;setText('stageDropName',drop.name);const claim=trailRewards.find(r=>r.stage===st.id);setText('stageDropState',claim?(claim.status==='ready'?'Recebida na conta · Pronta para invocar':'Recebida na conta · '+({used:'em ritual',consumed:'já utilizada',damaged:'danificada',discarded:'descartada'}[claim.status]||claim.status)):trailProgress.items.includes(drop.id)?'Registro antigo · Vença novamente para receber na conta':'Na primeira vitória confirmada contra o chefe');}
+ if(drop&&trailRewards.some(r=>r.stage===st.id&&r.status==='ready')){const button=uiElement('button','Ir ao invocador ✦','secondary');button.id='stageSummon';button.onclick=()=>openTrailSummoner(st.drop);$('stageDrop').after(button);}
  setText('stageTip',fails>=2?TIP_TECHNIQUE:st.tip);
  $('trailStart').disabled=!open;$('trailStart').textContent=open?(best?'Voar de novo ▶':'Voar ▶'):'Vença a etapa anterior';
 
 }
-function startStage(id){
- if(!requireClubAccount('as Trilhas'))return;
+async function startStage(id){
+ if(busy||!requireClubAccount('as Trilhas'))return;
  const st=trails.stage(id);if(!st||!trails.unlocked(trailProgress,id))return;
- closeTrails();const now=Date.now(),level=trails.aiLevel(st,trailProgress),s=eng.create(now,{mode:'rounds',roundsToWin:st.rounds});s.trail=id;s.trailOwner=trailSync.user;
- eng.admit(s,trainee(now),now);
- st.foes.forEach((f,i)=>{const b=eng.player(f.name,f.color,'ai'+i,now);b.bot=true;b.ai={level};if(f.soul){b.soul=f.soul;art.load(f.soul);}eng.admit(s,b,now);});
- trailStage=id;enter(s,'you','practice');track('trail_start',{trail_stage:id});setText('liveLabel',st.name+' · IA nível '+level);
+ busy=true;$('trailStart').disabled=true;
+ try{const d=await request('trail',{...profile(),stage:id});closeTrails();token=d.token;trailStage=id;enter(d.state,d.me,'online',d.code);$('roomChip').hidden=true;$('copy').style.display='none';$('roomBox').style.display='none';setText('liveLabel',st.name);track('trail_start',{trail_stage:id});}
+ catch(e){toast(e.name==='AbortError'?'A conexão demorou. Tente novamente.':e.message);}
+ finally{busy=false;if(!$('trails').hidden)renderStage();}
 }
+
 function dropCard(id){const item=ART_CONFIG.items.find(i=>i.id===id);if(!item)return '';return '<div class="drop-reward"><img src="'+escapeHTML(item.url)+'" alt=""><div><small>Nova rabiola conquistada!</small><b>'+escapeHTML(item.name)+'</b></div></div>';}
 // Called by the results screen when a trail duel ends.
 function showTrailResult(s,ranking,mine){
@@ -2144,23 +2148,62 @@ $('trails').onclick=e=>{if(e.target===$('trails'))closeTrails();};
 addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('trails').hidden)closeTrails();});
 reflectCoins();
 
+let trailRewards=[],trailRewardOwner=null,legacyArchiveNotice=false;
 const trailSyncMessages={guest:'Progresso salvo neste aparelho. Entre para levar suas Trilhas com você.',saving:'Salvando suas Trilhas…',saved:'Trilhas salvas na sua conta.',pending:'Há resultados aguardando envio.',offline:'Sem sincronizar agora. Seu progresso continua neste aparelho; tentaremos novamente.',conflict:'O progresso precisa ser conferido. Os resultados continuam neste aparelho. Tente sincronizar novamente.',storage:'O navegador não permitiu salvar. Mantenha esta aba aberta e libere o armazenamento para evitar perda de progresso.',claimed:'O progresso de visitante já foi vinculado a outra conta.'};
 const trailSyncLine=document.createElement('div');trailSyncLine.className='trail-sync-line';
 trailSyncLine.innerHTML='<p id="trailSyncStatus" role="status" aria-live="polite"></p><button class="secondary" id="trailSyncRetry" hidden>Sincronizar novamente</button>';
 $('trailMastery').after(trailSyncLine);
 const trailSync=createTrailSync({trails,storage:localStorage,uuid:()=>crypto.randomUUID(),
- send:async body=>(await accountRequest('trails',body)).trails,
+ send:async body=>{const owner=playerAccount?.profile?.id,data=(await accountRequest('trails',body)).trails;if(owner===playerAccount?.profile?.id){trailRewards=data.rewards||[];legacyArchiveNotice||=!!data.legacyArchived;}return data;},
  withLock:fn=>typeof navigator!=='undefined'&&navigator.locks?navigator.locks.request('pipa-trail-import',fn):fn(),
  onChange:p=>{trailProgress=p;reflectCoins();if(!$('trails').hidden&&!mode)renderTrails();},
- onStatus:status=>{$('trailSyncStatus').textContent=trailSyncMessages[status];$('trailSyncRetry').hidden=!['offline','conflict','storage','pending'].includes(status);}
+ onStatus:status=>{$('trailSyncStatus').textContent=trailSyncMessages[status]+(status==='saved'&&legacyArchiveNotice?' Dados antigos deste aparelho foram preservados como histórico; novos prêmios exigem vitória no servidor.':'');$('trailSyncRetry').hidden=!['offline','conflict','storage','pending'].includes(status);}
 });
-function onTrailAccountChange(){trailSync.setUser(playerAccount?.profile?.id||null);}
+function onTrailAccountChange(){const owner=playerAccount?.profile?.id||null;if(owner!==trailRewardOwner){trailRewards=[];legacyArchiveNotice=false;trailRewardOwner=owner;}trailSync.setUser(playerAccount?.profile?.id||null);}
 $('trailSyncRetry').onclick=()=>trailSync.retry();
 $('trailSyncStatus').textContent=trailSyncMessages.guest;
 addEventListener('online',()=>trailSync.retry());
 addEventListener('storage',event=>{if(event.key?.startsWith('pipaTrailAccountV1:')||event.key==='pipaTrailsV1')trailSync.changed();});
 setInterval(()=>{if(typeof document!=='undefined'&&!document.hidden)trailSync.sync();},30000);
 onTrailAccountChange();
+
+function acceptTrailSnapshot(data,owner){if(owner!==playerAccount?.profile?.id)return;trailRewards=data.rewards||trailRewards;trailSync.accept(data,owner);}
+
+// Account rewards come exclusively from the server ledger; previews never grant inventory.
+let trailResultVersion=0;
+async function openTrailSummoner(dropId){
+ if(!playerAccount)return;
+ closeTrails();closeModal();if(mode)leave();
+ await openAccount();if(!playerAccount)return;navigateClub('summon');
+}
+function showOnlineTrailResult(s,ranking,mine){
+ const owner=playerAccount?.profile?.id,match=s.id,version=++trailResultVersion,st=trails.stage(s.trail),won=(mine?.rounds||0)>=s.roundsToWin;
+ modal(won?(st.boss?'Chefe derrotado!':'Etapa vencida!'):'Não foi dessa vez.',
+ (st.boss?trailLeaderMarkup(trails.trails[st.trailIndex],won?'victory':'ready'):'')+'<p>'+escapeHTML(st.name)+'</p><div id="trailOnlineReward" role="status" aria-live="polite">Conferindo o resultado na sua conta…</div>','Voltar às trilhas',st.name);
+ $('dialogAction').className='secondary';$('dialogAction').onclick=()=>{closeModal();openTrails();};
+ let attempts=0;
+ const current=()=>version===trailResultVersion&&state?.id===match&&showResult&&playerAccount?.profile?.id===owner&&!!$('trailOnlineReward');
+ async function check(){
+  if(!current())return;
+  try{
+   const data=await accountRequest('trail-result',{matchId:match});if(!current())return;
+   acceptTrailSnapshot(data.trails,owner);const root=$('trailOnlineReward'),r=data.trails.result;root.replaceChildren();
+   root.append(uiElement('p',data.status==='saved'?'✓ Resultado salvo na sua conta.':data.status==='abandoned'?'Partida encerrada sem resultado confirmado.':'Salvando suas conquistas… Você pode voltar ao menu; o servidor continuará tentando.','save-status'));
+   if(r){
+    const stars=uiElement('div','★'.repeat(r.stars)+'☆'.repeat(3-r.stars),'result-stars');stars.setAttribute('aria-label',r.stars+' de 3 estrelas');root.append(stars);
+    root.append(uiElement('p',r.won?'+'+r.coins+' moedas confirmadas'+(r.firstClear?' · bônus da primeira vitória incluído':''):'Tente novamente: o progresso anterior continua na conta.','coin-gain'));
+    if(r.drop){const item=ART_CONFIG.items.find(i=>i.id===r.drop),card=uiElement('div',undefined,'drop-reward');if(item){const image=document.createElement('img');image.src=item.url;image.alt=item.name;card.append(image,uiElement('b',item.name+' · recebida na conta'));}root.append(card);}
+    if(data.status==='saved'){
+     if(r.tailId){const summon=uiElement('button','Ir ao invocador ✦','primary');summon.id='trailGoSummoner';summon.onclick=()=>openTrailSummoner(r.drop);root.append(summon);}
+     const next=r.won&&trails.nextStage(s.trail),again=uiElement('button',next?'Próxima etapa ▶':'Tentar de novo ↻','secondary');again.id='rematchButton';again.onclick=()=>{closeModal();startStage(next?next.id:s.trail);};root.append(again);return;
+    }
+   }
+   if(data.status!=='abandoned'&&++attempts<12)setTimeout(check,1500);else addRetry(root);
+  }catch(e){if(!current())return;const root=$('trailOnlineReward');root.replaceChildren(uiElement('p','Não conseguimos conferir agora. O servidor mantém a entrega pendente. '+e.message));addRetry(root);}
+ }
+ function addRetry(root){const retry=uiElement('button','Conferir novamente','secondary');retry.onclick=()=>{attempts=0;check();};root.append(retry);}
+ check();
+}
 
 function createLineStyles(){
  const items=[

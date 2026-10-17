@@ -27,7 +27,7 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
   if(!admin)return remote('/rest/v1/rpc/'+name,{method:'POST',body,token});
   try{return await gameDatabase.rpc(name,body);}catch(e){
    const message=String(e.message||'');
-   if(e.code==='P0001'&&/Troca:|Saia da partida|outra partida|colecionável|coleção|caracteres|Partida encerrada/.test(message))throw new AccountError(message,409);
+   if(e.code==='P0001'&&/Trilhas:|Troca:|Saia da partida|outra partida|colecionável|coleção|caracteres|Partida encerrada/.test(message))throw new AccountError(message,409);
    throw new AccountError('O banco do jogo não respondeu. Aguarde e tente novamente.',503);
   }
  }
@@ -95,6 +95,11 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
     if(b.action!=='read')rateLimit(request,'lines-'+who.id,120);
     return json({lines:await rpc('player_lines',{p_action:b.action,p_style:b.styleId||null,p_operation:b.operationId||null},who.access)},200,who.setCookies);
    }
+   if(action==='trail-result'){
+    if(!UUID.test(String(b.matchId)))throw new AccountError('Partida inválida.');
+    const trails=await rpc('get_player_trail_result',{p_match:b.matchId},who.access),pending=matchProgress(b.matchId);
+    return json({trails,status:trails.result?(pending.pending?'saving':'saved'):trails.ended?'abandoned':pending.pending?'saving':'playing'},200,who.setCookies);
+   }
    if(action==='trails'){
     if(!['read','import','result'].includes(b.action)||b.action!=='read'&&!UUID.test(String(b.operationId)))throw new AccountError('Operação de trilha inválida.');
     const payload=b.payload??{};
@@ -153,5 +158,7 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
  const settle=e=>rpc('settle_player_cut',{p_event:e.id,p_match:e.matchId,p_winner:e.winnerAccountId,p_loser:e.loserAccountId,p_kite:e.kiteId||null},null,true);
  const finish=match=>rpc('finish_player_match',{p_match:match},null,true);
   const settleDaily=e=>rpc('settle_daily_challenge',{p_user:e.userId,p_match:e.matchId,p_day:e.day},null,true);
-  return {enabled,handle,preparePlayer,release,settle,finish,settleDaily};
+  const registerTrail=(user,match,stage)=>rpc('register_trail_run',{p_user:user,p_match:match,p_stage:stage},null,true);
+  const settleTrail=e=>rpc('settle_trail_run',{p_user:e.userId,p_match:e.matchId,p_stage:e.stage,p_won:e.won,p_rounds_lost:e.roundsLost},null,true);
+  return {enabled,handle,preparePlayer,release,settle,finish,settleDaily,registerTrail,settleTrail};
 }

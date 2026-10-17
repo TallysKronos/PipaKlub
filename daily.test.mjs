@@ -45,7 +45,8 @@ test('daily bonus is server-only, atomic, once per account/day across matches an
   await db.exec("reset role;set role authenticated;set request.jwt.claim.sub='"+uid+"'");
   const current=(await db.query('select public.player_daily() d')).rows[0].d;assert.equal(current.claimed,true);assert.equal(current.progress.coins,25);assert.equal(current.revision,1);
   // Purchases debit the same locked wallet, and a reward replay cannot refund the purchase.
-  await db.query("select public.player_trails('import',$1,$2)",[crypto.randomUUID(),{coins:10}]);await db.query("select public.player_lines('buy','azul',$1)",[crypto.randomUUID()]);
+  // Trusted fixture; unverified imports are now archived without minting currency.
+  await db.exec('reset role');await db.query("update public.player_trails set progress=jsonb_set(progress,'{coins}',to_jsonb((progress->>'coins')::int+10)),revision=revision+1 where owner_id=$1",[uid]);await db.exec("set role authenticated;set request.jwt.claim.sub='"+uid+"'");await db.query("select public.player_lines('buy','azul',$1)",[crypto.randomUUID()]);
   await db.exec('reset role;set role pipa_server');await reward();
   await db.exec("reset role;set role authenticated;set request.jwt.claim.sub='"+uid+"'");assert.equal((await db.query('select public.player_daily() d')).rows[0].d.progress.coins,5);
   await db.exec("reset role;set role authenticated;set request.jwt.claim.sub='"+other+"'");assert.equal((await db.query('select public.player_daily() d')).rows[0].d.claimed,false);
