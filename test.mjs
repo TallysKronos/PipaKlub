@@ -44,3 +44,18 @@ test('rooms start in the chosen format; rematch creates one new room and points 
  const joined=await call('join',{code:first.code,name:'Beto'});assert.equal(joined.status,200);assert.equal(joined.state.players.length,2);
  assert.equal((await call('create',{name:'T',mode:'time'})).state.mode,'time');
 });
+test('quick match seats waiting players together and fills the room with bots after the wait',async()=>{
+ const a=await call('quick',{name:'Ana',color:0});assert.equal(a.status,200);assert.ok(a.state.quick);assert.equal(a.state.phase,'waiting');
+ const b=await call('quick',{name:'Beto',color:1});assert.equal(b.status,200);assert.equal(b.code,a.code,'second player joins the open quick room');
+ const row=sqlite.prepare('SELECT state FROM pipa_rooms WHERE code = ?').get(a.code),s=JSON.parse(row.state);
+ s.quick.fillAt=Date.now()-1;sqlite.prepare('UPDATE pipa_rooms SET state = ? WHERE code = ?').run(JSON.stringify(s),a.code);
+ const sync=await call('sync',{code:a.code,token:a.token,input:{}});
+ assert.equal(sync.state.players.length,4);assert.equal(sync.state.players.filter(p=>p.bot).length,2);assert.notEqual(sync.state.phase,'waiting');
+ const c=await call('quick',{name:'Caio',color:2});assert.equal(c.status,200);
+ if(c.code===a.code){assert.equal(c.state.players.length,4);assert.equal(c.state.players.filter(p=>p.bot).length,1,'a bot gives up its seat');}
+ else assert.equal(c.state.players.length,1,'a live room is not interrupted: a new quick room opens');
+});
+test('engine: a quick room with no people left closes',()=>{
+ const e=createEngine(),now=Date.now(),s=e.create(now,{mode:'rounds',quick:true}),p=e.player('Ana',0,'a',now);e.admit(s,p,now);
+ e.step(s,now+11000);assert.equal(s.players.length,4);p.seen=now-60000;e.step(s,now+30000);assert.ok(s.end<=now+30000);
+});

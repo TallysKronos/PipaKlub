@@ -63,6 +63,8 @@ O progresso e as moedas ficam no aparelho (`localStorage`, chave `pipaTrailsV1`)
 
 ## Multiplayer
 
+**Partida rápida:** o botão junta você a quem já está esperando na fila. Depois de 10 s, os lugares vazios (até 4) são completados com bots nível 4. Se uma pessoa chegar entre rodadas, ela assume o lugar de um bot. Uma sala rápida sem nenhuma pessoa é encerrada. Sem servidor (GitHub Pages), a partida rápida é um duelo offline contra 3 bots.
+
 Crie a sala e compartilhe o convite. Os participantes entram usando o código de seis caracteres. Até oito jogadores participam da mesma simulação. No servidor Node/Render, uma conexão WebSocket transmite atualizações a 30 Hz e envia comandos assim que mudam, com manutenção a cada 50 ms. O cliente prevê o movimento da própria pipa imediatamente, corrige diferenças suavemente e interpola os adversários. O servidor controla dano, energia, pontuação e reentrada. Uma conexão HTTP de compatibilidade é usada automaticamente se WebSocket estiver indisponível (inclusive no Worker do Sites). O ping continua representando a viagem de ida e volta ao servidor; a previsão local evita esperar por ela para mover a pipa. Sessões ausentes por 15 segundos saem da sala.
 
 ## GitHub Pages

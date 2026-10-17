@@ -9,8 +9,10 @@ async function api(request,env){
   if(!env.DB)return json({error:'Servidor online indisponível. Você pode jogar no treino.'},503);
   if(Number(request.headers.get('content-length'))>4096)return json({error:'Pedido muito grande.'},413);
   let b;try{const raw=await request.text();if(raw.length>4096)throw Error();b=JSON.parse(raw);}catch{return json({error:'Pedido inválido.'},400);}
-  await init(env.DB);const action=new URL(request.url).pathname.split('/').pop(),now=Date.now();
+  await init(env.DB);let action=new URL(request.url).pathname.split('/').pop();const now=Date.now();
   if(action==='create')return json(await createRoom(request,env,b,now));
+  // Quick match: join the open quick room when there is one, otherwise open a new one.
+  if(action==='quick'){const open=await openQuickRoom(env,now);if(!open)return json(await createRoom(request,env,{name:b.name,color:b.color,mode:'rounds',quick:true},now));b={...b,code:open,rules:'casual',captureConsent:false};action='join';}
   const code=String(b.code||'').toUpperCase();if(!/^[A-F0-9]{6}$/.test(code))return json({error:'Use o código de 6 caracteres da sala.'},400);
   if(action==='inspect'){const row=await env.DB.prepare('SELECT state, rev FROM pipa_rooms WHERE code = ?').bind(code).first();if(!row)return json({error:'Sala não encontrada. Confira o código.'},404);const s=JSON.parse(row.state);if(now>=s.end)return json({error:s.next?'Esta partida terminou. A revanche está na sala '+s.next+'.':'Esta partida terminou. Crie uma nova sala.',next:s.next},409);return json({code,rules:s.rules||'casual',mode:s.mode||'time'});}
   // The account check is a network call: do it once, before the retry loop, so the realtime tick cannot win every retry.
@@ -30,6 +32,8 @@ async function api(request,env){
     if(!row)return json({error:'Sala não encontrada. Confira o código.'},404);
     let s=JSON.parse(row.state);engine.step(s,now);let token=b.token,p=s.players.find(p=>p.key===token);
     if(action==='join'){
+      // A person who arrives at a full quick room takes a bot's seat between rounds.
+      if(s.quick&&s.players.length>=s.quick.size){const i=s.players.findIndex(q=>q.bot);if(i<0||s.phase==='live'){await releaseAccount(env,account,s);return json({error:'Sala cheia. Tente a partida rápida de novo.'},409);}s.players.splice(i,1);}
       if(s.players.length>=8){await releaseAccount(env,account,s);return json({error:'Sala cheia. O limite é de 8 jogadores.'},409);}
       if(account?.accountId&&s.players.some(q=>q.accountId===account.accountId)){await releaseAccount(env,account,s);return json({error:'Você já entrou nesta sala.'},409);}
       token=crypto.randomUUID();p=engine.player(account?.name||b.name,account?.color??b.color,crypto.randomUUID(),now);p.key=token;if(account)Object.assign(p,account);engine.admit(s,p,now);
@@ -51,13 +55,23 @@ async function api(request,env){
   if(action==='join'){const row=await env.DB.prepare('SELECT state FROM pipa_rooms WHERE code = ?').bind(code).first();if(row)await releaseAccount(env,account,JSON.parse(row.state));}
   return json({error:'Sala ocupada. Tente novamente.'},409);
 }
+// One pointer row names the quick room that is currently open; room codes are hex, so it never collides.
+const QUICK_POINTER='QUICK!';
+async function openQuickRoom(env,now){
+  const pointer=await env.DB.prepare('SELECT state FROM pipa_rooms WHERE code = ?').bind(QUICK_POINTER).first();if(!pointer)return null;
+  const code=JSON.parse(pointer.state).code,row=await env.DB.prepare('SELECT state FROM pipa_rooms WHERE code = ?').bind(code).first();if(!row)return null;
+  const s=JSON.parse(row.state),humans=s.players.filter(p=>!p.bot&&now-p.seen<15000).length;
+  if(!s.quick||now>=s.end||humans>=s.quick.size)return null;
+  return s.phase==='waiting'||(s.phase!=='live'&&s.players.some(p=>p.bot))?code:null;
+}
 async function createRoom(request,env,b,now){
-  const code=crypto.randomUUID().replaceAll('-','').slice(0,6).toUpperCase(),token=crypto.randomUUID(),s=engine.create(now,{mode:b.mode});
+  const code=crypto.randomUUID().replaceAll('-','').slice(0,6).toUpperCase(),token=crypto.randomUUID(),s=engine.create(now,{mode:b.mode,quick:b.quick});
   s.code=code;s.rules=b.rules==='capture'?'capture':'casual';
   if(s.rules==='capture'&&!env.ACCOUNTS?.enabled)throw Object.assign(Error('Vale pipa precisa de contas conectadas ao banco.'),{status:503});
   const account=env.ACCOUNTS?await env.ACCOUNTS.preparePlayer(request,s):null;
   const p=engine.player(account?.name||b.name,account?.color??b.color,crypto.randomUUID(),now);p.key=token;if(account)Object.assign(p,account);engine.admit(s,p,now);
   await env.DB.prepare('INSERT INTO pipa_rooms (code,state,updated) VALUES (?,?,?)').bind(code,JSON.stringify(s),now).run();
+  if(s.quick)await env.DB.prepare('INSERT INTO pipa_rooms (code,state,updated) VALUES (?,?,?) ON CONFLICT(code) DO UPDATE SET state=excluded.state, updated=excluded.updated').bind(QUICK_POINTER,JSON.stringify({code}),now).run();
   await env.DB.prepare('DELETE FROM pipa_rooms WHERE updated < ?').bind(now-3600000).run();
   return {code,token,me:p.id,state:visible(s)};
 }

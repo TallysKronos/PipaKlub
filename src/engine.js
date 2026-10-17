@@ -20,7 +20,10 @@ export function createEngine() {
   }
   function player(name,color,id,now) {return {id,name:String(name||'Pipeiro').slice(0,18),color:clamp(Math.trunc(Number(color)||0),0,3),x:220+Math.random()*560,y:160+Math.random()*240,hp:100,energy:100,score:0,cuts:0,input:{},seen:now,respawn:0,attack:false,attackCooldown:0,skillCooldown:0,skillTime:0,skillCount:0};}
   // Without options the match is live at once (legacy/tests). Rooms and practice pass a mode and start in 'waiting'.
-  function create(now=Date.now(),opts) {const s={id:crypto.randomUUID(),rules:'casual',cutSequence:0,players:[],last:now,end:now+MATCH,events:[],wind:0};if(opts){s.mode=opts.mode==='time'?'time':'rounds';s.phase='waiting';s.round=0;s.roundsToWin=clamp(Math.trunc(opts.roundsToWin)||ROUNDS_TO_WIN,1,5);s.end=now+3600000;}return s;}
+  // Quick match: wait a few seconds for people, then fill the empty seats with bots and start.
+  const QUICK={wait:10000,size:4,level:4},BOT_NAMES=['Zeca','Bia','Nando','Lia','Juninho','Mel','Tião','Kauã','Nina','Caio'];
+  function create(now=Date.now(),opts) {const s={id:crypto.randomUUID(),rules:'casual',cutSequence:0,players:[],last:now,end:now+MATCH,events:[],wind:0};if(opts){s.mode=opts.mode==='time'?'time':'rounds';s.phase='waiting';s.round=0;s.roundsToWin=clamp(Math.trunc(opts.roundsToWin)||ROUNDS_TO_WIN,1,5);s.end=now+3600000;if(opts.quick)s.quick={fillAt:now+QUICK.wait,size:QUICK.size,level:QUICK.level};}return s;}
+  function fillBots(s,now){const used=new Set(s.players.map(p=>p.name));let n=0;while(s.players.length<s.quick.size){const name=BOT_NAMES.find(x=>!used.has(x))||'Pipeiro '+(++n);used.add(name);const b=player(name,Math.floor(Math.random()*4),'bot-'+crypto.randomUUID(),now);b.bot=true;b.ai={level:s.quick.level};admit(s,b,now);}}
   // A player joining mid-round in rounds mode watches until the next round starts.
   function admit(s,p,now){seat(s,p);p.shield=SHIELD;if(s.mode==='rounds'&&(s.phase==='live'||s.phase==='intermission'))p.respawn=now;s.players.push(p);return p;}
   function visible(s){const {_pendingCuts,...publicState}=s;return {...publicState,players:s.players.map(({key,accountId,kiteId,basicKiteId,strike,...p})=>p),events:s.events.map(({id,text,at,capture,winnerId,loserId,kind,round})=>({id,text,at,capture,winnerId,loserId,kind,round}))};}
@@ -39,7 +42,7 @@ export function createEngine() {
     if(winner&&winner.rounds>=s.roundsToWin)s.end=now+INTERMISSION;
   }
   function advance(s,now){
-    if(s.phase==='waiting'){if(s.players.length>=2)startRound(s,now);}
+    if(s.phase==='waiting'){if(s.quick){if(s.players.length>=s.quick.size||now>=s.quick.fillAt){fillBots(s,now);startRound(s,now);}}else if(s.players.length>=2)startRound(s,now);}
     else if(s.phase==='countdown'){if(now>=s.phaseUntil){s.phase='live';if(s.mode==='time'){s.end=now+MATCH;s.phaseUntil=s.end;}else{s.phaseUntil=now+ROUND;if(s.round===1)s.end=now+12*60000;}}}
     else if(s.phase==='intermission'){if(now>=s.phaseUntil)startRound(s,now);}
     else if(s.phase==='live'&&s.mode==='rounds'){if(s.players.length<2){s.phase='waiting';for(const p of s.players)reset(p);}else if(now>=s.phaseUntil)finishRound(s,now);}
@@ -122,6 +125,8 @@ export function createEngine() {
   function step(s,now) {
     s._pendingCuts=[];const dt=clamp((now-s.last)/1000,0,.25);s.last=now;s.wind=Math.sin(now/9000)*12;
     if(now>=s.end)return s;s.players=s.players.filter(p=>p.bot||now-p.seen<15000);
+    // A quick room with nobody real left in it closes instead of letting bots fly alone.
+    if(s.quick&&s.quick.fillAt<=now&&!s.players.some(p=>!p.bot)){s.end=now;return s;}
     for(const p of s.players)seat(s,p);
     if(s.phase)advance(s,now);
     const live=!s.phase||s.phase==='live',rounds=s.mode==='rounds';
@@ -154,5 +159,5 @@ export function createEngine() {
     return s;
   }
   function practiceStep(s,id,input,now){const p=s.players.find(p=>p.id===id);if(p){p.input=sanitizeInput(input);p.seen=now;}return step(s,now);}
-  return {SHIELD,DODGE,COUNTER,cutDamage,brain,create,admit,player,step,move,visible,practiceStep,line,contact,types,type,sanitizeInput,seat};
+  return {QUICK,fillBots,SHIELD,DODGE,COUNTER,cutDamage,brain,create,admit,player,step,move,visible,practiceStep,line,contact,types,type,sanitizeInput,seat};
 }
