@@ -84,6 +84,7 @@ function filterDex(){
  else{$('dexDetails').hidden=true;dexVersion++;if(dexFrame)cancelAnimationFrame(dexFrame);dexFrame=0;}
 }
 function openDex(){
+ if(!requireClubAccount('a Pipa Dex'))return;
  if(mode){toast('Saia da partida para consultar a Pipa Dex.');return;}
  if(introductionOpen)return;
  keys={};skillUntil=0;dexOpen=true;dexOverlay.hidden=false;$('dexSearch').value='';$('dexFilter').value='all';filterDex();$('dexClose').focus();

@@ -5,7 +5,7 @@ import worker from './worker/index.js';
 import {createEngine} from './src/engine.js';
 const sqlite=new DatabaseSync(':memory:');
 const DB={prepare(sql){let v=[];return {bind(...a){v=a;return this;},async run(){const r=sqlite.prepare(sql).run(...v);return {meta:{changes:Number(r.changes)}};},async first(){return sqlite.prepare(sql).get(...v);}};}};
-async function call(action,data){const r=await worker.fetch(new Request('https://game.test/api/'+action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}),{DB});return {status:r.status,...await r.json()};}
+async function call(action,data,extra={}){const r=await worker.fetch(new Request('https://game.test/api/'+action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}),{DB,...extra});return {status:r.status,...await r.json()};}
 test('two players share a room, inputs are authoritative, credentials are private, leave removes a player',async()=>{
  const a=await call('create',{name:'Ana',color:0});assert.equal(a.status,200);assert.equal(a.state.players.length,1);assert.notEqual(a.me,a.token);assert.ok(!JSON.stringify(a.state).includes(a.token));
  const b=await call('join',{code:a.code,name:'Beto',color:2});assert.equal(b.state.players.length,2);assert.ok(!JSON.stringify(b.state).includes(a.token));
@@ -42,7 +42,7 @@ test('rooms start in the chosen format; rematch creates one new room and points 
  const second=await call('rematch',{code:a.code,token:b.token});assert.equal(second.next,first.code);
  const old=await call('inspect',{code:a.code});assert.equal(old.status,409);assert.equal(old.next,first.code);
  const joined=await call('join',{code:first.code,name:'Beto'});assert.equal(joined.status,200);assert.equal(joined.state.players.length,2);
- assert.equal((await call('create',{name:'T',mode:'time'})).state.mode,'time');
+ const timed=await call('create',{name:'T',mode:'time'},{ACCOUNTS:{preparePlayer:async()=>({accountId:'registered',name:'Time',color:0})}});assert.equal(timed.state.mode,'time');assert.equal((await call('join',{code:timed.code,name:'Visitante'})).status,401);assert.equal((await call('create',{name:'Visitante',mode:'time'})).status,401);
 });
 test('quick match seats waiting players together and fills the room with bots after the wait',async()=>{
  const a=await call('quick',{name:'Ana',color:0});assert.equal(a.status,200);assert.ok(a.state.quick);assert.equal(a.state.phase,'waiting');

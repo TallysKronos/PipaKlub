@@ -26,6 +26,7 @@ async function api(request,env){
     if(now>=s.end)return json({error:s.next?'Esta partida terminou. A revanche está na sala '+s.next+'.':'Esta partida terminou. Crie uma nova sala.',next:s.next},409);
     if(s.rules==='capture'&&!env.ACCOUNTS?.enabled)return json({error:'Vale pipa precisa de contas conectadas ao banco.'},503);
     account=env.ACCOUNTS?await env.ACCOUNTS.preparePlayer(request,s):null;
+    if(!account&&(s.rules!=='casual'||s.mode!=='rounds'))return json({error:'Entre na conta para jogar modalidades especiais. Visitantes podem jogar a partida padrão.'},401);
   }
   for(let n=0;n<8;n++){
     let row=await env.DB.prepare('SELECT state, rev FROM pipa_rooms WHERE code = ?').bind(code).first();
@@ -69,6 +70,7 @@ async function createRoom(request,env,b,now){
   s.code=code;s.rules=b.rules==='capture'?'capture':'casual';
   if(s.rules==='capture'&&!env.ACCOUNTS?.enabled)throw Object.assign(Error('Vale pipa precisa de contas conectadas ao banco.'),{status:503});
   const account=env.ACCOUNTS?await env.ACCOUNTS.preparePlayer(request,s):null;
+  if(!account&&(s.rules!=='casual'||s.mode!=='rounds'))throw Object.assign(Error('Entre na conta para criar modalidades especiais. Visitantes podem convidar para a partida padrão.'),{status:401});
   const p=engine.player(account?.name||b.name,account?.color??b.color,crypto.randomUUID(),now);p.key=token;if(account)Object.assign(p,account);engine.admit(s,p,now);
   await env.DB.prepare('INSERT INTO pipa_rooms (code,state,updated) VALUES (?,?,?)').bind(code,JSON.stringify(s),now).run();
   if(s.quick)await env.DB.prepare('INSERT INTO pipa_rooms (code,state,updated) VALUES (?,?,?) ON CONFLICT(code) DO UPDATE SET state=excluded.state, updated=excluded.updated').bind(QUICK_POINTER,JSON.stringify({code}),now).run();

@@ -1,12 +1,16 @@
 // This script is embedded into the page. It never stores authentication tokens.
 let playerAccount=null,accountsEnabled=false,accountTab='login',accountSaving=false,rewardRefreshTimer;
 const accountModal=$('accountModal');
+function requireClubAccount(feature){if(playerAccount)return true;toast('Entre ou crie sua conta para acessar '+feature+'.');openAccount();return false;}
 async function accountRequest(action,body){
  const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),12000);
  try{const r=await fetch('/account/'+action,{method:body===undefined?'GET':'POST',headers:body===undefined?{}:{'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body),signal:controller.signal});const d=await r.json();if(!r.ok)throw Object.assign(Error(d.error||'Não foi possível acessar sua conta.'),{status:r.status});return d;}finally{clearTimeout(timeout);}
 }
 function reflectAccount(){
  $('accountButton').textContent=playerAccount?'Minha conta':'Entrar';
+ $('trailsButton').textContent=playerAccount?'⚔ Trilhas':'🔒 Trilhas';$('dexButton').textContent=playerAccount?'Pipa Dex':'🔒 Pipa Dex';document.querySelector('.coin-chip').hidden=!playerAccount;
+ $('matchFormat').disabled=!playerAccount;$('roomRules').disabled=!playerAccount;
+ if(!playerAccount){$('matchFormat').value='rounds';$('roomRules').value='casual';}
  $('profileSummary').textContent=playerAccount?playerAccount.profile.nickname+' · Nível '+playerAccount.profile.level:'Jogue como visitante';
  $('accountHint').textContent=playerAccount?'Seu progresso e suas pipas ficam na sua conta.':'Entre para guardar pipas e ganhar XP nas disputas.';
  $('roomRules').querySelector('[value="capture"]').disabled=!playerAccount;
@@ -15,6 +19,7 @@ function reflectAccount(){
  else {$('name').readOnly=false;choices();}
  if(accountModal.style.display==='flex')renderAccountDialog();
  if(typeof onTrailAccountChange==='function')onTrailAccountChange();
+ if(typeof onLineAccountChange==='function')onLineAccountChange();
 }
 async function refreshAccount(){
  if(!accountsEnabled)return;
