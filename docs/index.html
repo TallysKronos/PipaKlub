@@ -119,12 +119,12 @@ body.in-match .topbar{display:none}
 body:not(.in-match) .combat-readout{display:none}
 
 /* Match strip: room, invite, leave */
-.game-side{display:none;position:absolute;left:14px;bottom:14px;z-index:6;padding:8px;max-width:min(420px,calc(100% - 290px))}
-.game-side .strip{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+
+
 .room-code{display:flex;align-items:center;gap:8px;padding:4px 10px;border:3px dashed var(--line);border-radius:8px;background:#fffdf4}
 .room-code small{font:600 10px var(--px);letter-spacing:1px;color:var(--muted)}
 .room-code b{font:700 20px var(--px);letter-spacing:3px}
-.game-side .secondary{width:auto;font-size:12px;padding:6px 10px;margin:0}
+
 .status{font-size:11px;color:var(--ink-soft);margin:6px 2px 0;line-height:1.35}
 #modeLabel,.game-side h2,#gameTip{display:none}
 
@@ -284,9 +284,6 @@ body.in-match .arena canvas{cursor:crosshair}
  .hud-skill{display:none}
  .combat-readout{top:auto;bottom:162px;font-size:11px;max-width:92%}
  .events{bottom:220px;left:8px;font-size:11px}
- .game-side{left:50%;transform:translateX(-50%);top:8px;bottom:auto;max-width:none;padding:5px}
- .game-side .status{display:none}
- .game-side .room-code{padding:2px 8px}
  .room-code b{font-size:16px}
  .arena-bottom{display:none}
   .touch{bottom:10px;left:8px;right:8px}
@@ -302,7 +299,6 @@ body.in-match .arena canvas{cursor:crosshair}
  .inventory-list{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:900px) and (orientation:portrait){
- .game-side{left:8px;right:auto;transform:none;top:auto;bottom:178px}
  .combat-readout{bottom:150px}
  .events{bottom:228px}
  body.in-match .rotate-hint{display:flex}
@@ -364,6 +360,41 @@ body.in-match .arena canvas{cursor:crosshair}
 .coin-gain small{display:block;font:700 11px Nunito,sans-serif}
 .trail-note{font-size:13px!important}
 @media(max-width:900px){#trails{padding:6px}.trails-card{height:97dvh}.trails-layout{display:block;overflow:auto}.stage-card{border-left:0;border-top:3px solid var(--line)}.trails-header{padding:14px 60px 10px 14px}.trails-header h2{font-size:28px}.trail-wallet b{font-size:20px}.node-dot{width:40px;height:40px;font-size:16px}.trail-node.boss .node-dot{width:48px;height:48px}.trail-path:before{top:20px}.coin-chip{font-size:12px;padding:3px 8px}}
+
+/* Menu and sheets: big buttons up front, everything else one tap away. */
+.profile-card{display:flex;align-items:center;gap:10px;width:100%;padding:8px 12px 8px 8px;border:3px solid var(--line);border-radius:12px;background:#fffdf4;box-shadow:0 4px 0 var(--line);text-align:left}
+.profile-art{width:52px;height:52px;flex:none;border:2px solid var(--line);border-radius:9px;background:radial-gradient(circle,#fff,#ffe8a8);overflow:hidden}
+.profile-text{flex:1;min-width:0}.profile-text b{display:block;font:400 20px var(--px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.profile-text small{display:block;font-size:12px;color:var(--ink-soft)}
+.profile-edit{font-size:18px;color:var(--ink-soft)}
+.menu-actions .btn-teal{font-size:18px;padding:11px}
+.menu-row.three{grid-template-columns:1fr 1fr 1fr}.secondary.small{font-size:12px;padding:7px 4px}
+.sheet{position:fixed;inset:0;z-index:70;background:#14202ba8;display:flex;align-items:center;justify-content:center;padding:16px}
+.sheet[hidden]{display:none!important}
+.sheet-card{position:relative;width:min(440px,100%);max-height:90dvh;overflow:auto;padding:22px 20px 20px;display:flex;flex-direction:column;gap:10px}
+.sheet-card h2{font:400 26px var(--px);margin:0 0 4px}.sheet-card label{margin:6px 0 0}
+.sheet-card .close{position:absolute}
+.pause-note{margin:0;font-size:13px;color:var(--ink-soft)}
+.pause-room{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.pause-room .secondary{width:auto;font-size:13px;padding:7px 12px}
+.pause-tools .arena-tools{display:flex;gap:8px;align-items:center;justify-content:flex-start}.pause-tools .render-stats{color:var(--ink-soft);text-shadow:none}
+.game-side{display:none;position:absolute;top:14px;left:calc(50% + 100px);z-index:7;padding:0;background:none;border:0;box-shadow:none;max-width:none;align-items:center;gap:8px}
+.game-side .pause-room,.game-side .status{display:none}
+body.in-match .game-side{display:flex!important}
+.pause-btn{width:46px;height:46px;font-size:20px}
+.room-chip{border:3px solid var(--line);border-radius:999px;background:var(--paper);box-shadow:0 3px 0 var(--line);padding:6px 12px;font:400 14px var(--px);letter-spacing:2px}
+body.in-match .arena-bottom{display:none}
+@media(max-width:900px){
+ .game-side{left:50%;transform:translateX(-50%);top:8px}
+ .pause-btn{width:42px;height:42px}
+ .hud-board{padding:5px 8px}.hud-live{display:none}
+ #leaderboard{display:flex;flex-wrap:wrap;gap:2px 10px;max-width:150px}
+ #leaderboard .row{padding:0;gap:4px}#leaderboard .row .nm{display:none}
+ .events{bottom:auto;top:140px;font-size:11px}.events div:nth-child(2){display:none}
+ .rotate-hint{animation:fadeAway 5s forwards}
+ .sheet{align-items:flex-end;padding:0}
+ .sheet-card{width:100%;border-radius:18px 18px 0 0;max-height:85dvh;padding-bottom:calc(20px + env(safe-area-inset-bottom,0px))}
+ .topbar .top-actions #how,.topbar .top-actions #workshop{display:none}
+}
+@keyframes fadeAway{80%{opacity:1}100%{opacity:0;visibility:hidden}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}.arena.shake canvas,.assis-companion,.assis-body,.rpg-next .arrow,.rpg-typed.typing:after{animation:none}.banner.show{animation-duration:2.4s}}
 
 /* Pipa Dex: the professor's field notebook. */
@@ -410,14 +441,11 @@ body.in-match .arena canvas{cursor:crosshair}
 
 <div class="menu">
 <div class="logo" id="arenaCopy"><h1>PIPA<br><span>CLUB</span></h1><div class="tagline">O céu é a sua arena</div><p>Guie sua almática com o mouse (ou o dedo), cruze as linhas e segure o clique para cortar. Último no céu vence a rodada!</p></div>
-<aside class="panel lobby-panel" id="lobby"><div class="side-label">Preparar voo</div><h2>Pronto para puxar a linha?</h2>
-<label for="name">Seu apelido</label><input id="name" maxlength="18" placeholder="Como te chamam na rua?" value="" autocomplete="nickname">
-<label>Sua almática</label><div class="kites" id="kites"></div><div class="selection-name" id="selectionName">Carcará · clássica e destemida</div><p class="account-hint" id="accountHint">Entre para guardar pipas e ganhar XP nas disputas.</p>
-<div class="menu-actions"><button class="primary" id="trailsButton">⚔ Trilhas</button><div class="menu-row"><button class="secondary" id="practice">Treino livre</button><button class="btn btn-teal" id="create">Criar sala</button></div>
-<div class="divider">ou entre na turma</div><form class="join" id="joinForm"><input id="code" maxlength="6" placeholder="CÓDIGO" aria-label="Código da sala" required pattern="[a-fA-F0-9]{6}"><button class="secondary" type="submit" id="join">Entrar</button></form>
-<button class="secondary meet-assis" id="meetAssis">Falar com o Sr. Assis</button></div>
-<details class="options"><summary>Opções da partida</summary><label for="matchFormat">Formato</label><select class="room-rules" id="matchFormat"><option value="rounds">Rodadas · melhor de 5</option><option value="time">Tempo · 3 minutos</option></select><p class="rules-description" id="formatDescription"></p>
-<label for="roomRules">Tipo de disputa</label><select class="room-rules" id="roomRules"><option value="casual">Casual · coleção protegida</option><option value="capture" disabled>Vale pipa · vale a pipa equipada</option></select><p class="rules-description" id="rulesDescription">Casual: suas pipas ficam protegidas. Cortes entre contas rendem XP.</p></details>
+<aside class="panel lobby-panel" id="lobby">
+<button class="profile-card" id="profileButton" aria-label="Editar apelido e almática"><span class="profile-art" id="profileArt"></span><span class="profile-text"><b id="profileName">Pipeiro</b><small id="selectionName">Carcará · clássica e destemida</small></span><span class="profile-edit" aria-hidden="true">✎</span></button>
+<div class="menu-actions"><button class="primary" id="trailsButton">⚔ Trilhas</button><button class="btn btn-teal" id="quickButton">▶ Partida rápida</button>
+<div class="menu-row"><button class="secondary" id="practice">Treino livre</button><button class="secondary" id="friendsButton">Jogar com amigos</button></div>
+<div class="menu-row three"><button class="secondary small" id="meetAssis">Sr. Assis</button><button class="secondary small" id="dexButton">Pipa Dex</button><button class="secondary small" id="rulesButton">Regras</button></div></div>
 </aside>
 </div>
 
@@ -430,8 +458,9 @@ body.in-match .arena canvas{cursor:crosshair}
 <div class="panel hud-skill"><b id="skillName"></b><small id="skillDescription"></small><small id="skillStatus"></small><small id="dodgeStatus" class="dodge-status"></small><div class="skill-actions"><button data-key="q">◀ Q</button><button data-key="e">E ▶</button></div></div>
 </div>
 
-<div class="panel game-side" id="gameSide"><div class="side-label" id="modeLabel">MULTIPLAYER</div><h2>Disputa nas alturas.</h2><p id="gameTip">Chame a turma e conquiste o céu.</p>
-<div class="strip"><div class="room-code" id="roomBox"><small>SALA</small><b id="roomCode"></b></div><button class="secondary" id="copy">Copiar convite</button><button class="secondary" id="leave">Sair</button></div>
+<div class="game-side" id="gameSide"><button class="icon-btn pause-btn" id="pauseButton" aria-label="Menu da partida">☰</button><button class="room-chip" id="roomChip" hidden></button>
+<div class="sr" id="modeLabel">MULTIPLAYER</div><p class="sr" id="gameTip">Chame a turma e conquiste o céu.</p>
+<div class="pause-room" id="roomStrip"><div class="room-code" id="roomBox"><small>SALA</small><b id="roomCode"></b></div><button class="secondary" id="copy">Copiar convite</button><button class="secondary sr" id="leave">Sair</button></div>
 <div class="status" id="status">Cruze as linhas e ataque quando a mira ficar verde.</div></div>
 
 <div class="rotate-hint" aria-hidden="true">↻ Gire o celular para ver a arena maior</div><div class="events" id="events"></div><div class="combat-readout" id="combatReadout" role="status" aria-live="polite"></div><div class="banner" id="banner" aria-live="assertive"><b id="bannerTitle"></b><small id="bannerSub"></small></div>
@@ -439,6 +468,18 @@ body.in-match .arena canvas{cursor:crosshair}
 <div class="arena-bottom"><div class="arena-caption"><span id="arenaMode">Seu próximo duelo começa aqui.</span></div><div class="arena-tools"><span class="render-stats" id="renderStats" title="Fluidez da imagem no seu aparelho">— fps</span><button class="icon-btn" id="quality" aria-label="Ativar modo leve" title="Modo leve: menos efeitos">◐</button><button class="icon-btn" id="sound" aria-label="Ativar som" title="Som">♪</button><button class="icon-btn" id="fullscreen" aria-label="Tela cheia" title="Tela cheia">⛶</button></div></div>
 </section>
 </div>
+
+<div class="sheet" id="profileSheet" hidden><section class="panel sheet-card" role="dialog" aria-modal="true" aria-labelledby="profileSheetTitle"><button class="close" data-close-sheet aria-label="Fechar">×</button><div class="eyebrow">Perfil</div><h2 id="profileSheetTitle">Seu pipeiro</h2>
+<label for="name">Seu apelido</label><input id="name" maxlength="18" placeholder="Como te chamam na rua?" value="" autocomplete="nickname">
+<label>Sua almática</label><div class="kites" id="kites"></div><p class="account-hint" id="accountHint">Entre para guardar pipas e ganhar XP nas disputas.</p>
+<button class="primary" data-close-sheet>Pronto</button></section></div>
+<div class="sheet" id="friendsSheet" hidden><section class="panel sheet-card" role="dialog" aria-modal="true" aria-labelledby="friendsSheetTitle"><button class="close" data-close-sheet aria-label="Fechar">×</button><div class="eyebrow">Sala com amigos</div><h2 id="friendsSheetTitle">Jogar com a turma</h2>
+<button class="btn btn-teal" id="create">Criar sala</button><div class="divider">ou entre com o código</div><form class="join" id="joinForm"><input id="code" maxlength="6" placeholder="CÓDIGO" aria-label="Código da sala" required pattern="[a-fA-F0-9]{6}"><button class="secondary" type="submit" id="join">Entrar</button></form>
+<details class="options"><summary>Opções da partida</summary><label for="matchFormat">Formato</label><select class="room-rules" id="matchFormat"><option value="rounds">Rodadas · melhor de 5</option><option value="time">Tempo · 3 minutos</option></select><p class="rules-description" id="formatDescription"></p>
+<label for="roomRules">Tipo de disputa</label><select class="room-rules" id="roomRules"><option value="casual">Casual · coleção protegida</option><option value="capture" disabled>Vale pipa · vale a pipa equipada</option></select><p class="rules-description" id="rulesDescription">Casual: suas pipas ficam protegidas. Cortes entre contas rendem XP.</p></details></section></div>
+<div class="sheet" id="pauseSheet" hidden><section class="panel sheet-card" role="dialog" aria-modal="true" aria-labelledby="pauseTitle"><button class="close" data-close-sheet aria-label="Continuar">×</button><div class="eyebrow" id="pauseEyebrow">Pausa</div><h2 id="pauseTitle">Jogo pausado</h2><p class="pause-note" id="pauseNote"></p>
+<div id="pauseRoom"></div><div class="pause-tools" id="pauseTools"></div>
+<button class="primary" data-close-sheet>Continuar ▶</button><div class="menu-row"><button class="secondary" id="pauseRules">Regras</button><button class="secondary" id="pauseLeave">Sair da partida</button></div></section></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="overlay" id="modal"><section class="panel dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><button class="close" id="close" aria-label="Fechar">×</button><div class="eyebrow" id="dialogEyebrow">Manual de rua</div><h2 id="dialogTitle">O segredo está na linha.</h2><div id="dialogBody"></div><button class="primary" id="dialogAction">Entendi. Bora voar ↗</button></section></div>
 <div class="overlay" id="accountModal"><section class="panel account-card" role="dialog" aria-modal="true" aria-labelledby="accountTitle"><button class="close" id="closeAccount" aria-label="Fechar conta">×</button><div class="eyebrow">Seu clube, sua coleção</div><h2 id="accountTitle">De volta ao céu.</h2><div id="accountAuth"><form class="account-form" id="accountForm"><div id="signupFields" hidden><label for="signupName">Seu apelido</label><input id="signupName" minlength="2" maxlength="18" autocomplete="nickname" value="Pipeiro"></div><label for="accountEmail">E-mail</label><input id="accountEmail" type="email" autocomplete="email" required><label for="accountPassword">Senha</label><input id="accountPassword" type="password" minlength="8" maxlength="128" autocomplete="current-password" required><button class="primary" id="submitAccount" type="submit">Entrar</button></form><button class="secondary" id="switchAccount">Ainda não tenho conta</button></div><div id="accountCollection" hidden><div id="collectionMain"><div class="account-summary"><div><b id="accountLevel">Nível 1</b><span id="accountXP">0 XP</span></div><div class="meter"><i id="accountXPBar"></i></div><small id="accountCuts">0 cortes</small></div><form class="nickname-form" id="nicknameForm"><label for="accountNickname">Apelido<input id="accountNickname" minlength="2" maxlength="18" required></label><button type="submit" class="secondary">Salvar</button></form><b id="collectionCount">Suas pipas</b><div class="inventory-list" id="inventoryList"></div><h3>Souls especiais de evento</h3><p class="collection-info">Exclusivas de eventos. Vinculadas à conta, sem troca por cortes. Use no casual ou no treino; em Vale pipa, equipe uma colecionável.</p><div class="inventory-list" id="eventSoulsList"></div><p class="collection-info">A pipa básica é sua para sempre. Em Vale pipa, a colecionável equipada pode passar para quem cortar sua linha. No casual, sua coleção fica protegida. Cada corte entre contas rende 25 XP, até cinco vezes contra o mesmo adversário em 24 horas.</p><h3>Últimos duelos</h3><div id="recentMatches"></div><button class="secondary" id="logoutAccount">Sair da conta</button></div><section id="kiteStory" hidden><button class="secondary" id="kiteStoryBack">← Voltar à coleção</button><div id="kiteStoryBody" aria-live="polite"></div></section></div><p class="account-message" id="accountMessage" role="status" aria-live="polite"></p></section></div>
@@ -755,7 +796,9 @@ function pumpNetwork(now){
 }
 $('name').value=localStorage.getItem('pipaName')||'';
 function kiteSVG(c,soul){return art.markup(colors.indexOf(c),soul);}function legacyKiteSVG(c){return '<svg viewBox="0 0 45 60" aria-hidden="true"><path d="M22 3 39 21 22 44 5 21Z" fill="'+c+'"/><path d="M22 3 22 44 5 21Z" fill="#ffffff40"/><path d="M22 3v41M5 21h34" stroke="#fff9" stroke-width=".8"/><path d="M22 44c-9 5 7 7 0 14" fill="none" stroke="'+c+'" stroke-width="1.2"/></svg>';}
-function choices(){$('kites').innerHTML=colors.map((c,i)=>'<button class="kite-choice '+(selected===i?'selected':'')+'" data-color="'+i+'" aria-pressed="'+(selected===i)+'" aria-label="'+names[i].split(' ·')[0]+'">'+kiteSVG(c)+'</button>').join('');$('selectionName').textContent=names[selected].split(' ·')[0]+' · '+eng.types[selected].name+' · '+eng.types[selected].skill;} choices();
+function choices(){$('kites').innerHTML=colors.map((c,i)=>'<button class="kite-choice '+(selected===i?'selected':'')+'" data-color="'+i+'" aria-pressed="'+(selected===i)+'" aria-label="'+names[i].split(' ·')[0]+'">'+kiteSVG(c)+'</button>').join('');$('selectionName').textContent=names[selected].split(' ·')[0]+' · '+eng.types[selected].name+' · '+eng.types[selected].skill;reflectProfile();}
+function reflectProfile(){$('profileName').textContent=$('name').value.trim()||'Pipeiro';$('profileArt').innerHTML=art.markup(selected);}
+choices();$('name').addEventListener('input',reflectProfile);
 $('kites').onclick=e=>{if(playerAccount){openAccount();return;}let b=e.target.closest('button');if(b){selected=+b.dataset.color;localStorage.setItem('pipaColor',selected);choices();}};
 let skillIntent=0,skillUntil=0;function queueSkill(key){skillIntent=key==='q'?-1:1;skillUntil=Date.now()+220;}
 // A dodge press is held briefly so the next network frame carries it.
@@ -764,7 +807,7 @@ addEventListener('keydown',e=>{if(mode&&e.key==='Shift'&&!e.repeat&&!/INPUT|TEXT
 let toastTimer;function toast(t){$('toast').textContent=t;$('toast').style.display='block';clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').style.display='none',4200);}
 async function request(action,data){const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),7000);try{const r=await fetch('/api/'+action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),signal:controller.signal});const d=await r.json();if(!r.ok)throw Error(d.error||'Falha de conexão.');return d;}finally{clearTimeout(timeout);}}
 function profile(){let name=$('name').value.trim()||'Pipeiro';localStorage.setItem('pipaName',name);return {name,color:selected};}
-function enter(s,id,type,code){sessionVersion++;resetFx();resetPointer();playerKey='';document.body.classList.add('in-match');rankingKey='';eventsKey='';setText('renderStats','— fps'+(lightMode?' · leve':''));state=s;me=id;mode=type;room=code;showResult=false;errors=0;keys={};skillUntil=0;ping=0;lastPingAt=0;lastInputAt=0;lastInput='';nextSocketAt=0;lastServerAt=performance.now();networkView.reset();networkView.receive(s,id,lastServerAt);renderPlayers=null;if(type==='online')connectRealtime();$('lobby').style.display='none';$('gameSide').style.display='block';$('arenaCopy').style.display='none';$('hud').style.display='block';$('touch').classList.add('active');$('liveLabel').textContent=type==='practice'?'Treino com bots':'Sala online';$('arenaMode').textContent=(type==='practice'?'Treino · 3 bots':'Sala '+code+' · '+(s.rules==='capture'?'Vale pipa':'Casual'))+(formatName(s)?' · '+formatName(s):'');$('modeLabel').textContent=type==='practice'?'MODO TREINO':'MULTIPLAYER ONLINE';$('roomBox').style.display=type==='practice'?'none':'block';$('copy').style.display=type==='practice'?'none':'flex';$('roomCode').textContent=code||'';$('gameTip').textContent=type==='practice'?'Experimente os movimentos e encontre seu ritmo.':'Compartilhe o código com seus amigos.';}
+function enter(s,id,type,code){sessionVersion++;resetFx();$('pauseTools').append(document.querySelector('.arena-tools'));$('pauseRoom').append($('roomStrip'));$('roomChip').hidden=type!=='online';$('roomChip').textContent='SALA '+(code||'');resetPointer();playerKey='';document.body.classList.add('in-match');rankingKey='';eventsKey='';setText('renderStats','— fps'+(lightMode?' · leve':''));state=s;me=id;mode=type;room=code;showResult=false;errors=0;keys={};skillUntil=0;ping=0;lastPingAt=0;lastInputAt=0;lastInput='';nextSocketAt=0;lastServerAt=performance.now();networkView.reset();networkView.receive(s,id,lastServerAt);renderPlayers=null;if(type==='online')connectRealtime();$('lobby').style.display='none';$('gameSide').style.display='block';$('arenaCopy').style.display='none';$('hud').style.display='block';$('touch').classList.add('active');$('liveLabel').textContent=type==='practice'?'Treino com bots':'Sala online';$('arenaMode').textContent=(type==='practice'?'Treino · 3 bots':'Sala '+code+' · '+(s.rules==='capture'?'Vale pipa':'Casual'))+(formatName(s)?' · '+formatName(s):'');$('modeLabel').textContent=type==='practice'?'MODO TREINO':'MULTIPLAYER ONLINE';$('roomBox').style.display=type==='practice'?'none':'block';$('copy').style.display=type==='practice'?'none':'flex';$('roomCode').textContent=code||'';$('gameTip').textContent=type==='practice'?'Experimente os movimentos e encontre seu ritmo.':'Compartilhe o código com seus amigos.';}
 async function online(action){if(busy)return;busy=true;$('create').disabled=true;$('join').disabled=true;try{const code=$('code').value.trim();let rules=$('roomRules').value,captureConsent=rules==='capture';if(action==='join'){const info=await request('inspect',{code});rules=info.rules;if(rules==='capture'){if(!playerAccount)throw Error('Entre na sua conta para jogar Vale pipa.');captureConsent=confirm('Esta sala é Vale pipa. Ao ser cortado, sua pipa colecionável equipada passa para o adversário. Deseja entrar?');if(!captureConsent)return;}}let d=await request(action,{...profile(),code,rules,captureConsent,mode:$('matchFormat').value});token=d.token;enter(d.state,d.me||d.token,'online',d.code);history.replaceState(null,'','?sala='+d.code);}catch(e){toast(e.name==='AbortError'?'A conexão demorou. Tente novamente ou jogue no treino.':e.message);}finally{busy=false;$('create').disabled=false;$('join').disabled=false;}}
 $('create').onclick=()=>online('create');$('joinForm').onsubmit=e=>{e.preventDefault();online('join');};
 const formats={rounds:'Rodadas: quem é cortado espera a rodada acabar. Todos voltam com a linha cheia; vence quem ganhar 3 rodadas.',time:'Tempo: 3 minutos contando a partir do segundo jogador. Quem é cortado volta em 3 s; vence quem tiver mais pontos.'};
@@ -775,7 +818,7 @@ const formatName=s=>s.mode==='rounds'?'Rodadas':s.mode==='time'?'Tempo':'';
 // The local player for practice and trails, wearing the equipped Soul when signed in.
 function trainee(now){const p=eng.player(profile().name,selected,'you',now),equipped=playerAccount?.inventory.find(k=>k.id===playerAccount.profile.equipped_kite_id);p.soul=equipped?.model.soul||null;return p;}
 $('practice').onclick=()=>{trailStage=null;const now=Date.now(),s=eng.create(now,{mode:$('matchFormat').value});eng.admit(s,trainee(now),now);['Zeca','Bia','Nando'].forEach((n,i)=>{const b=eng.player(n,(i+selected+1)%4,'bot'+i,now);b.bot=true;eng.admit(s,b,now);});enter(s,'you','practice');};
-function leave(){sessionVersion++;resetFx();resetPointer();document.body.classList.remove('in-match');const old=socket;socket=null;realtime=false;old?.close();networkView.reset();renderPlayers=null;if(mode==='online')request('leave',{code:room,token}).catch(()=>{});mode=null;state=null;me=null;keys={};skillUntil=0;$('lobby').style.display='block';$('gameSide').style.display='none';$('arenaCopy').style.display='block';$('hud').style.display='none';$('touch').classList.remove('active');$('events').textContent='';$('combatReadout').textContent='';$('liveLabel').textContent='Explore a arena';$('arenaMode').textContent='Seu próximo duelo começa aqui.';history.replaceState(null,'',location.pathname);}
+function leave(){sessionVersion++;resetFx();if(!document.querySelector('#pauseSheet[hidden]'))$('pauseSheet').hidden=true;pausedAt=0;document.querySelector('.arena-bottom').append(document.querySelector('.arena-tools'));$('gameSide').append($('roomStrip'));$('roomChip').hidden=true;resetPointer();document.body.classList.remove('in-match');const old=socket;socket=null;realtime=false;old?.close();networkView.reset();renderPlayers=null;if(mode==='online')request('leave',{code:room,token}).catch(()=>{});mode=null;state=null;me=null;keys={};skillUntil=0;$('lobby').style.display='block';$('gameSide').style.display='none';$('arenaCopy').style.display='block';$('hud').style.display='none';$('touch').classList.remove('active');$('events').textContent='';$('combatReadout').textContent='';$('liveLabel').textContent='Explore a arena';$('arenaMode').textContent='Seu próximo duelo começa aqui.';history.replaceState(null,'',location.pathname);}
 $('leave').onclick=()=>{leave();refreshRewards();};
 $('copy').onclick=async()=>{let url=location.origin+location.pathname+'?sala='+room;try{await navigator.clipboard.writeText(url);toast('Convite copiado! Compartilhe com sua turma.');}catch{toast('Código da sala: '+room);}};
 // Pointer steering: the kite flies toward the mouse, or just above the finger on touch screens.
@@ -806,13 +849,26 @@ $('sound').onclick=()=>{sound=!sound;if(sound)audioCtx=new(window.AudioContext||
 $('fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.querySelector('.arena').requestFullscreen();}catch{toast('Tela cheia não está disponível neste navegador.');}};
 const param=new URLSearchParams(location.search).get('sala');if(param){$('code').value=param.toUpperCase().slice(0,6);toast('Convite recebido! Escolha seu apelido e clique em Entrar.');}
 if(typeof STATIC_HOST!=='undefined'&&STATIC_HOST){
-  $('create').textContent='Jogar treino ↗';$('create').onclick=()=>$('practice').click();
-  $('joinForm').hidden=true;$('joinForm').style.display='none';$('practice').style.display='none';
-  document.querySelector('.divider').textContent='Treino com adversários automáticos';
+  $('friendsButton').hidden=true;
   const note=document.createElement('p');note.textContent='Versão GitHub Pages: jogue contra bots. As salas multiplayer precisam de um servidor separado.';note.style.cssText='font-size:10px;line-height:1.7;margin:0;color:#76837a';$('lobby').append(note);
   $('arenaMode').textContent='Treino no navegador · sem instalação';
   if(param)toast('Este endereço oferece treino com bots. As salas online precisam do servidor multiplayer.');
 }
+// Sheets keep secondary menus one tap away so the screen stays clean, especially on phones.
+let sheetReturn=null;
+function openSheet(id){closeSheet();sheetReturn=document.activeElement;$(id).hidden=false;keys={};skillUntil=0;$(id).querySelector('input,select,button:not([data-close-sheet])')?.focus({preventScroll:true});}
+function closeSheet(){const open=document.querySelector('.sheet:not([hidden])');if(!open)return false;open.hidden=true;if(open.id==='pauseSheet')resumeGame();sheetReturn?.focus?.({preventScroll:true});return true;}
+document.querySelectorAll('.sheet').forEach(sh=>sh.addEventListener('click',e=>{if(e.target===sh||e.target.closest('[data-close-sheet]'))closeSheet();}));
+$('profileButton').onclick=()=>openSheet('profileSheet');$('friendsButton').onclick=()=>openSheet('friendsSheet');
+$('dexButton').onclick=()=>$('workshop').onclick?.();$('rulesButton').onclick=()=>showRules();
+// Pause: practice and trails freeze; online matches keep running for everyone else.
+let pausedAt=0;
+function openPause(){if(!mode||showResult)return;const local=mode==='practice';setText('pauseTitle',local?'Jogo pausado':'Menu da partida');setText('pauseNote',local?'O tempo para enquanto este menu está aberto.':'A partida continua rolando para os outros pipeiros.');if(local)pausedAt=Date.now();openSheet('pauseSheet');}
+function resumeGame(){if(!pausedAt||!state){pausedAt=0;return;}const d=Date.now()-pausedAt;pausedAt=0;if(mode!=='practice')return;
+ state.end+=d;state.last+=d;if(state.phaseUntil)state.phaseUntil+=d;for(const p of state.players)if(p.respawn)p.respawn+=d;for(const e of state.events)e.at+=d;}
+$('pauseButton').onclick=openPause;$('pauseLeave').onclick=()=>{closeSheet();$('leave').onclick();};$('pauseRules').onclick=()=>{closeSheet();showRules();};
+$('roomChip').onclick=()=>$('copy').onclick();
+addEventListener('keydown',e=>{if(e.key!=='Escape')return;if(closeSheet()){e.preventDefault();return;}if(mode&&!showResult&&$('modal').style.display!=='flex'&&!document.querySelector('.overlay[style*="flex"]')){e.preventDefault();openPause();}});
 const canvas=$('sky');let ctx=canvas.getContext('2d',{alpha:false}),background=null;
 const qualityPreference=localStorage.getItem('pipaQuality');
 let lightMode=qualityPreference==='light'||(!qualityPreference&&(matchMedia('(pointer:coarse)').matches||matchMedia('(prefers-reduced-motion:reduce)').matches)),allowAutoQuality=qualityPreference!=='full';
@@ -930,7 +986,7 @@ if(!mode&&t-lastFrame<1000/30)return;
 const now=Date.now(),dt=Math.min(Math.max((t-lastFrame)/1000,0),.1);
 const health=frameHealth.sample(t,!!mode&&!showResult);
 if(health){setText('renderStats',health.fps+' fps'+(lightMode?' · leve':''));if(health.needsLight&&!lightMode&&allowAutoQuality)setQuality(true,true);}
-if(mode==='practice'&&state){eng.practiceStep(state,me,input(),now);renderPlayers=null;}else if(mode==='online'&&state){pumpNetwork(t);renderPlayers=networkView.render(t,input(),dt);}
+if(mode==='practice'&&state&&!pausedAt){eng.practiceStep(state,me,input(),now);renderPlayers=null;}else if(mode==='online'&&state){pumpNetwork(t);renderPlayers=networkView.render(t,input(),dt);}
 draw(t);if(state&&t-lastHud>100){updateHud(serverNow());lastHud=t;}lastFrame=t;
 }requestAnimationFrame(frame);
 function updateHud(now){
@@ -941,7 +997,7 @@ setText('roundInfo',phase==='waiting'?'Aguardando adversário':phase==='countdow
 if(phase==='countdown'&&bannerHeld&&bannerKind==='count')setText('bannerSub','Começa em '+Math.max(1,until));
 if(playerKey!==p.slot+'|'+p.name+'|'+p.color+'|'+(p.soul||'')){playerKey=p.slot+'|'+p.name+'|'+p.color+'|'+(p.soul||'');$('playerPortrait').innerHTML=art.markup(p.color,p.soul);const tag=document.createElement('span');tag.className='player-tag';tag.style.background=playerColor(p);tag.textContent=playerTag(p);$('playerName').replaceChildren(tag,' '+p.name);}
 const ranking=rankPlayers(state),key=JSON.stringify(ranking.map(p=>[p.id,p.name,p.score,p.rounds,p.bot,p.slot]));
-if(key!==rankingKey){rankingKey=key;$('leaderboard').replaceChildren(...ranking.map((q,i)=>{const row=document.createElement('div');row.className='row'+(q.id===me?' me':'');const n=document.createElement('span'),dot=document.createElement('i'),s=document.createElement('b');dot.style.background=playerColor(q);n.append(dot,playerTag(q)+' '+q.name+botTag(q));s.textContent=rounds?(q.rounds||0)+' ★':q.score;row.append(n,s);return row;}));}
+if(key!==rankingKey){rankingKey=key;$('leaderboard').replaceChildren(...ranking.map((q,i)=>{const row=document.createElement('div');row.className='row'+(q.id===me?' me':'');const n=document.createElement('span'),dot=document.createElement('i'),s=document.createElement('b');dot.style.background=playerColor(q);const nm=document.createElement('span');nm.className='nm';nm.textContent=' '+q.name+botTag(q);n.append(dot,playerTag(q),nm);s.textContent=rounds?(q.rounds||0)+' ★':q.score;row.append(n,s);return row;}));}
 for(const k of ['hp','energy']){const percent=Math.ceil(p[k])+'%';if($(k).style.width!==percent)$(k).style.width=percent;setText(k+'Label',percent);}
 const threat=state.players.find(q=>q.id!==p.id&&!q.respawn&&eng.contact(q,p)?.valid),dodgeReady=!(p.dodgeCooldown>0)&&p.energy>=eng.DODGE.cost;
 setText('dodgeStatus',p.evade>0?'Esquivando…':p.dodgeCooldown>0?'Esquiva: recarga '+p.dodgeCooldown.toFixed(1)+' s':p.energy<eng.DODGE.cost?'Esquiva: precisa de '+eng.DODGE.cost+' de energia':'Esquiva pronta · Shift ou botão do meio');
