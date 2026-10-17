@@ -8,8 +8,8 @@ function showMatchResult(s,ranking=[]){
  const rounds=s.mode==='rounds',rows=ranking.map((q,i)=>'<div class="result-rank'+(q.id===me?' me':'')+'"><span><i class="result-dot" style="background:'+playerColor(q)+'"></i>'+(i+1)+'. '+playerTag(q)+' '+escapeHTML(q.name)+(q.id===me?' · você':'')+'</span><b>'+(rounds?(q.rounds||0)+' ★ · ':'')+q.score+' pts</b></div>').join('');
  const place=ranking.findIndex(q=>q.id===me)+1,cuts=mine?.cuts||0;
  modal(place===1?'O céu é seu!':'Cada duelo deixa uma história.',
-  (place?'<p class="result-place">Você ficou em '+place+'º de '+ranking.length+'</p>':'')+'<p>'+(rounds?'Rodadas vencidas: '+(mine?.rounds||0)+' · ':'')+'Seus cortes: '+cuts+'.</p><div id="matchRewardSummary" class="match-rewards" aria-live="polite"></div>'+rows+'<button class="secondary" id="rematchButton">'+(mode==='online'?'Revanche com a turma ↻':'Jogar de novo ↻')+'</button>','Voltar ao lobby','Resultado do duelo');
- $('rematchButton').onclick=rematch;
+  (place?'<p class="result-place">Você ficou em '+place+'º de '+ranking.length+'</p>':'')+'<p>'+(rounds?'Rodadas vencidas: '+(mine?.rounds||0)+' · ':'')+'Seus cortes: '+cuts+'.</p><div id="matchRewardSummary" class="match-rewards" aria-live="polite"></div>'+rows+'<button class="primary" id="rematchButton">'+(mode==='online'?'Revanche com a turma ↻':'Jogar de novo ↻')+'</button>','Voltar ao menu','Resultado do duelo');
+ $('rematchButton').onclick=rematch;$('dialogAction').className='secondary';
  if(!authenticated){$('matchRewardSummary').append(uiElement('p',mode==='practice'?'O treino não altera XP nem a coleção.':'Como visitante, você participa da disputa sem salvar XP ou conquistar pipas. Entre na sua conta para guardar seu progresso.'));return;}
  beginMatchResult(s.id);
 }
