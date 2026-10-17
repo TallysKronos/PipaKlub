@@ -52,6 +52,16 @@ test('club menu isolates features, preserves trade inputs and returns home when 
  assert.equal(a.document.getElementById('eventSoulsList').parentElement.id,'club-events');
 });
 
+test('daily menu requires login, renders confirmed coins, and starts only a server daily room',async()=>{
+ const a=app({seen:true});await a.settle();
+ a.run("for(const b of document.querySelectorAll('button'))b.focus=()=>{};openDaily()");
+ assert.equal(a.document.getElementById('accountModal').style.display,'flex');assert.equal(a.run('mode'),null);
+ a.run(`closeAccount();playerAccount={profile:{id:'daily-user'}};var dailyAccepted;trailSync.accept=data=>dailyAccepted=data;accountRequest=async()=>({daily:{date:'2026-10-17',weather:'fog',claimed:false,progress:{coins:25},revision:2}})`);
+ await a.run('openDaily()');assert.match(a.document.getElementById('dialogBody').textContent,/Neblina/);assert.match(a.document.getElementById('dialogBody').textContent,/primeira vitória/);assert.equal(a.run('dailyAccepted.revision'),2);
+ a.run(`request=async(action,body)=>{if(action!=='daily')throw Error('wrong action');return {code:'DA1A00',token:'secret',me:'pilot',state:{id:'daily',players:[],events:[],daily:{name:'Ventania'}}}};connectRealtime=()=>{}`);
+ await a.run('startDaily()');assert.equal(a.run('mode'),'online');assert.equal(a.run('token'),'secret');assert.equal(a.document.getElementById('copy').style.display,'none');assert.match(a.document.getElementById('arenaMode').textContent,/Céu do dia/);
+});
+
 test('club navigation abandons an active ritual before opening another feature',async()=>{
  const a=app({seen:true});await a.settle();
  a.run(`for(const b of document.querySelectorAll('button'))b.focus=()=>{};playerAccount={};accountPage='summon';summonOpen=true;summonRitual={id:'ritual-1',status:'active'};var abandoned=[];summonCall=async(action,body)=>{abandoned.push({action,body});};navigateClub('profile');`);

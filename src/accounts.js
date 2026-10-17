@@ -88,6 +88,7 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
    if(action==='logout'){const values=cookieValues(request),access=values['__Host-pipa_access']||values.pipa_access;if(access){sessions.delete(access);try{await remote('/auth/v1/logout',{method:'POST',token:access});}catch{}}return json({ok:true},200,makeCookies(request,null));}
    const who=await identity(request,true);
    if(!who)throw new AccountError('Entre na sua conta para continuar.',401);
+   if(action==='daily')return json({daily:await rpc('player_daily',{},who.access)},200,who.setCookies);
    if(action==='lines'){
     if(!['read','buy','equip'].includes(b.action)||b.action!=='read'&&!/^(classic|azul|coral|menta|pontilhada|dourada)$/.test(String(b.styleId)))throw new AccountError('Visual de linha inválido.');
     if(b.action==='buy'&&!UUID.test(String(b.operationId)))throw new AccountError('Compra inválida.');
@@ -151,5 +152,6 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
  const release=(user,match)=>enabled&&UUID.test(user||'')?rpc('release_player_match',{p_user:user,p_match:match},null,true):Promise.resolve();
  const settle=e=>rpc('settle_player_cut',{p_event:e.id,p_match:e.matchId,p_winner:e.winnerAccountId,p_loser:e.loserAccountId,p_kite:e.kiteId||null},null,true);
  const finish=match=>rpc('finish_player_match',{p_match:match},null,true);
- return {enabled,handle,preparePlayer,release,settle,finish};
+  const settleDaily=e=>rpc('settle_daily_challenge',{p_user:e.userId,p_match:e.matchId,p_day:e.day},null,true);
+  return {enabled,handle,preparePlayer,release,settle,finish,settleDaily};
 }

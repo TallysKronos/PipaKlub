@@ -1,11 +1,12 @@
 import pg from 'pg';
 
-// The DB login can execute these four functions, with no direct table access.
+// The DB login can execute only the listed game functions, with no direct table access.
 const operations=Object.freeze({
  reserve_player_match:['p_user','p_match','p_code','p_mode'],
  release_player_match:['p_user','p_match'],
  settle_player_cut:['p_event','p_match','p_winner','p_loser','p_kite'],
- finish_player_match:['p_match']
+ finish_player_match:['p_match'],
+ settle_daily_challenge:['p_user','p_match','p_day']
 });
 export function createGameDatabase(env,{Pool=pg.Pool}={}){
  if(!env.PIPA_DB_HOST||!env.PIPA_DB_USER||!env.PIPA_DB_PASSWORD)return null;
@@ -24,7 +25,8 @@ export function createGameDatabase(env,{Pool=pg.Pool}={}){
     has_function_privilege(current_user,'public.reserve_player_match(uuid,uuid,text,text)','EXECUTE') AND
     has_function_privilege(current_user,'public.release_player_match(uuid,uuid)','EXECUTE') AND
     has_function_privilege(current_user,'public.settle_player_cut(text,uuid,uuid,uuid,uuid)','EXECUTE') AND
-    has_function_privilege(current_user,'public.finish_player_match(uuid)','EXECUTE') AS game_functions
+    has_function_privilege(current_user,'public.finish_player_match(uuid)','EXECUTE') AND
+    has_function_privilege(current_user,'public.settle_daily_challenge(uuid,uuid,date)','EXECUTE') AS game_functions
     FROM pg_roles WHERE rolname=current_user`);
    const r=rows[0];
    if(r?.role!=='pipa_server'||!r.restricted||!r.safe_schema||!r.protected_tables||!r.game_functions)throw Object.assign(Error('Restricted database permissions must be configured.'),{code:'PIPA_DB_PERMISSIONS'});

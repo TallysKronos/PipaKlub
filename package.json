@@ -8,7 +8,7 @@
     "dev": "node build.mjs && node dev.mjs",
     "dev:trades": "node build.mjs && node scripts/local-trades.mjs",
     "start": "node dev.mjs",
-    "test": "node --test art.test.mjs combat.test.mjs test.mjs network.test.mjs realtime.test.mjs frame-health.test.mjs accounts.test.mjs results.test.mjs trails.test.mjs trails-audit.test.mjs trades.test.mjs summon.test.mjs school.test.mjs trail-sync.test.mjs line-styles.test.mjs",
+    "test": "node --test art.test.mjs combat.test.mjs test.mjs network.test.mjs realtime.test.mjs frame-health.test.mjs accounts.test.mjs results.test.mjs trails.test.mjs trails-audit.test.mjs trades.test.mjs summon.test.mjs school.test.mjs trail-sync.test.mjs line-styles.test.mjs daily.test.mjs",
     "validate": "node scripts/validate-artifact.mjs"
   },
   "dependencies": {

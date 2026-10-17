@@ -55,6 +55,10 @@ test('real PostgreSQL schema: signup grants one inventory, ownership is protecte
   assert.equal((await db.query('select public.settle_player_cut($1,$2,$3,$4,$5) as r',[casual+':1',casual,userB,userA,a])).rows[0].r.captured,false);
   assert.equal((await db.query('select owner_id from public.player_kites where id=$1',[a])).rows[0].owner_id,userA);
   await db.exec('set role pipa_server');
+  // Verify the running adapter against the complete upgraded schema.
+  await db.exec('reset role');
+  for(const f of fs.readdirSync('supabase/migrations').filter(f=>f.endsWith('.sql')&&Number(f.slice(0,3))>=6).sort())await db.exec(fs.readFileSync('supabase/migrations/'+f,'utf8'));
+  await db.exec('set role pipa_server');
   class RealPostgresPool{on(){}query(sql,values){return db.query(sql,values);}}
   await createGameDatabase({PIPA_DB_HOST:'test',PIPA_DB_USER:'pipa_server',PIPA_DB_PASSWORD:'test-only'},{Pool:RealPostgresPool}).verify();
   await db.exec('reset role');
