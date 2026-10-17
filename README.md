@@ -43,6 +43,14 @@ Os tipos são derivados do modelo equipado (cor do catálogo), validado pelo ser
 
 O balanceamento inicial mantém a mesma velocidade e durabilidade para todos os tipos. `combat.test.mjs` cobre geometria, tentativas sem acerto, recargas, dano simultâneo, habilidades e previsão de dash sob atraso.
 
+## Trilhas (modo RPG)
+
+Três trilhas com cinco etapas cada (`src/trails.js`). Cada etapa é um duelo por rodadas contra pipas da IA; a quinta é um chefe (as Almas especiais aparecem como chefes e elites). Vencer paga moedas: o valor base mais 25% por estrela extra, e o dobro na primeira vitória. Etapas já vencidas podem ser repetidas para farmar.
+
+A IA tem níveis de 1 a 10 (`brain` em `src/engine.js`): tempo de reação, descanso entre puxadas, velocidade, precisão da mira no centro dourado, desvio quando está na mira do rival, reserva de energia, escolha do alvo mais fraco e uso tático da habilidade. Bots sem nível mantêm o comportamento do treino livre. A dificuldade é adaptativa: a Maestria (0–8) sobe a cada vitória (+2 com 3 estrelas) e cai a cada derrota; cada 2 pontos somam um nível à IA de todas as etapas.
+
+O progresso e as moedas ficam no aparelho (`localStorage`, chave `pipaTrailsV1`) e ainda não vão para a conta; por serem calculados no navegador, não devem valer para recompensas compartilhadas.
+
 ## Multiplayer
 
 Crie a sala e compartilhe o convite. Os participantes entram usando o código de seis caracteres. Até oito jogadores participam da mesma simulação. No servidor Node/Render, uma conexão WebSocket transmite atualizações a 30 Hz e envia comandos assim que mudam, com manutenção a cada 50 ms. O cliente prevê o movimento da própria pipa imediatamente, corrige diferenças suavemente e interpola os adversários. O servidor controla dano, energia, pontuação e reentrada. Uma conexão HTTP de compatibilidade é usada automaticamente se WebSocket estiver indisponível (inclusive no Worker do Sites). O ping continua representando a viagem de ida e volta ao servidor; a previsão local evita esperar por ela para mover a pipa. Sessões ausentes por 15 segundos saem da sala.

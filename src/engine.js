@@ -11,7 +11,7 @@ export function createEngine() {
   function sanitizeInput(i={}) {return {x:Number.isFinite(i?.x)?clamp(i.x,-1,1):0,y:Number.isFinite(i?.y)?clamp(i.y,-1,1):0,cut:!!i?.cut,skill:i?.skill===-1?-1:i?.skill===1?1:0};}
   function player(name,color,id,now) {return {id,name:String(name||'Pipeiro').slice(0,18),color:clamp(Math.trunc(Number(color)||0),0,3),x:220+Math.random()*560,y:160+Math.random()*240,hp:100,energy:100,score:0,cuts:0,input:{},seen:now,respawn:0,attack:false,attackCooldown:0,skillCooldown:0,skillTime:0,skillCount:0};}
   // Without options the match is live at once (legacy/tests). Rooms and practice pass a mode and start in 'waiting'.
-  function create(now=Date.now(),opts) {const s={id:crypto.randomUUID(),rules:'casual',cutSequence:0,players:[],last:now,end:now+MATCH,events:[],wind:0};if(opts){s.mode=opts.mode==='time'?'time':'rounds';s.phase='waiting';s.round=0;s.roundsToWin=ROUNDS_TO_WIN;s.end=now+3600000;}return s;}
+  function create(now=Date.now(),opts) {const s={id:crypto.randomUUID(),rules:'casual',cutSequence:0,players:[],last:now,end:now+MATCH,events:[],wind:0};if(opts){s.mode=opts.mode==='time'?'time':'rounds';s.phase='waiting';s.round=0;s.roundsToWin=clamp(Math.trunc(opts.roundsToWin)||ROUNDS_TO_WIN,1,5);s.end=now+3600000;}return s;}
   // A player joining mid-round in rounds mode watches until the next round starts.
   function admit(s,p,now){seat(s,p);p.shield=SHIELD;if(s.mode==='rounds'&&(s.phase==='live'||s.phase==='intermission'))p.respawn=now;s.players.push(p);return p;}
   function visible(s){const {_pendingCuts,...publicState}=s;return {...publicState,players:s.players.map(({key,accountId,kiteId,basicKiteId,strike,...p})=>p),events:s.events.map(({id,text,at,capture,winnerId,loserId,kind,round})=>({id,text,at,capture,winnerId,loserId,kind,round}))};}
@@ -64,6 +64,38 @@ export function createEngine() {
     if(p.attack&&p.attackCooldown<=0){p.energy-=12;p.attackCooldown=.65;p.strike=true;p.flash=.16;p.shield=0;p.strikes=(p.strikes||0)+1;}
     p.energy=clamp(p.energy+(i.cut?6:18)*dt,0,100);p.input=i;
   }
+  // Bot brain. p.ai.level (1-10) scales reaction, rest between pulls, speed, aim, dodging,
+  // energy discipline and skill timing. Bots without a level keep the practice defaults.
+  function brain(level){
+    if(!level)return {focus:.7,rest:.9,speed:.8,jitter:0,dodge:0,reserve:0,smart:false,weakest:false};
+    const k=Math.pow((clamp(level,1,10)-1)/9,.75);
+    return {focus:.95-.8*k,rest:1.15-.95*k,speed:.6+.4*k,jitter:.16*(1-k),dodge:clamp((level-2)/8,0,1),reserve:level>=5?24:0,smart:level>=3,weakest:level>=6};
+  }
+  function botInput(s,p,dt){
+    const b=brain(p.ai?.level),foes=s.players.filter(q=>q.id!==p.id&&!q.respawn&&!(q.shield>0));
+    const target=foes.sort((a,c)=>Number(!!contact(p,c)?.valid)-Number(!!contact(p,a)?.valid)||(b.weakest?a.hp-c.hp:0)||Math.hypot(a.x-p.x,a.y-p.y)-Math.hypot(c.x-p.x,c.y-p.y)||a.id.localeCompare(c.id))[0];
+    // Seek a crossing on the target line rather than chasing its kite; weaker bots wobble around the golden centre.
+    const frac=.6+b.jitter*Math.sin(s.last/650+(p.slot||0)*1.7);
+    let x=500,y=180;
+    if(target){const l=line(target),a=line(p).a,c={x:l.a.x+(l.b.x-l.a.x)*frac,y:l.a.y+(l.b.y-l.a.y)*frac};x=clamp(a.x+(c.x-a.x)/.7,55,945);y=clamp(a.y+(c.y-a.y)/.7,70,480);}
+    const c=target&&contact(p,target);
+    // Dodge: when a rival can cut us and we cannot answer, slide the kite away from the crossing.
+    const threat=b.dodge?s.players.map(q=>q.id!==p.id&&!q.respawn?contact(q,p):null).find(t=>t?.valid):null;
+    if(threat&&!c?.valid){const dx=p.x-threat.x,dy=p.y-threat.y,d=Math.hypot(dx,dy)||1;x=p.x+dx/d*120*b.dodge+(x-p.x)*(1-b.dodge);y=p.y+dy/d*120*b.dodge+(y-p.y)*(1-b.dodge);}
+    // Aim for a moment before pulling and rest after each pull, so a human can react.
+    p.botFocus=c?.valid?(p.botFocus||0)+dt:Math.min(0,p.botFocus||0)+dt;
+    const pull=!!c?.valid&&p.botFocus>=b.focus&&(p.energy>=12+b.reserve||target.hp<=24);
+    if(pull&&p.attackCooldown<=0&&p.energy>=12)p.botFocus=-b.rest;
+    let skill=0;
+    if(!b.smart)skill=pull&&p.energy>=40?(p.x<500?1:-1):0;
+    else if(p.skillCooldown<=0&&p.energy>=25+b.reserve/2){
+      if(p.color===0&&pull)skill=1;
+      else if(p.color===1&&Math.abs(x-p.x)>140)skill=x<p.x?-1:1;
+      else if(p.color===2&&threat)skill=1;
+      else if(p.color===3&&c&&!c.valid)skill=1;
+    }
+    return {x:clamp((x-p.x)/80,-b.speed,b.speed),y:clamp((y-p.y)/80,-b.speed,b.speed),cut:pull,skill};
+  }
   function step(s,now) {
     s._pendingCuts=[];const dt=clamp((now-s.last)/1000,0,.25);s.last=now;s.wind=Math.sin(now/9000)*12;
     if(now>=s.end)return s;s.players=s.players.filter(p=>p.bot||now-p.seen<15000);
@@ -73,16 +105,7 @@ export function createEngine() {
     for(const p of s.players){
       if(s.phase==='intermission'){p.strike=false;continue;}
       if(p.respawn){if(rounds||now<p.respawn)continue;p.respawn=0;p.hp=100;p.energy=100;p.skillTime=0;p.attackCooldown=.65;p.skillCooldown=Math.max(2,p.skillCooldown||0);p.x=160+Math.random()*680;p.y=160+Math.random()*220;p.shield=SHIELD;p.botFocus=0;}
-      if(p.bot){
-        const target=s.players.filter(q=>q.id!==p.id&&!q.respawn&&!(q.shield>0)).sort((a,b)=>Number(!!contact(p,b)?.valid)-Number(!!contact(p,a)?.valid)||Math.hypot(a.x-p.x,a.y-p.y)-Math.hypot(b.x-p.x,b.y-p.y)||a.id.localeCompare(b.id))[0];
-        // Seek a crossing near 60% of the target line, rather than chasing its kite.
-        let x=500,y=180;
-        if(target){const l=line(target),a=line(p).a,c={x:l.a.x+(l.b.x-l.a.x)*.6,y:l.a.y+(l.b.y-l.a.y)*.6};x=clamp(a.x+(c.x-a.x)/.7,55,945);y=clamp(a.y+(c.y-a.y)/.7,70,480);}
-        // Bots aim for a moment before pulling and rest after each pull, so a human can react.
-        const c=target&&contact(p,target);p.botFocus=c?.valid?(p.botFocus||0)+dt:Math.min(0,p.botFocus||0)+dt;
-        const pull=!!c?.valid&&p.botFocus>=.7;if(pull&&p.attackCooldown<=0&&p.energy>=12)p.botFocus=-.9;
-        p.input={x:clamp((x-p.x)/80,-.8,.8),y:clamp((y-p.y)/80,-.8,.8),cut:pull,skill:pull&&p.energy>=40?(p.x<500?1:-1):0};
-      }
+      if(p.bot)p.input=botInput(s,p,dt);
       if(live)move(p,p.input,dt,s.wind);else{const held=p.input;move(p,{...held,cut:false,skill:0},dt,s.wind);p.input=held;}
     }
     // Resolve simultaneous strikes together, independent of who created the room.
@@ -107,5 +130,5 @@ export function createEngine() {
     return s;
   }
   function practiceStep(s,id,input,now){const p=s.players.find(p=>p.id===id);if(p){p.input=sanitizeInput(input);p.seen=now;}return step(s,now);}
-  return {SHIELD,create,admit,player,step,move,visible,practiceStep,line,contact,types,type,sanitizeInput,seat};
+  return {SHIELD,brain,create,admit,player,step,move,visible,practiceStep,line,contact,types,type,sanitizeInput,seat};
 }
