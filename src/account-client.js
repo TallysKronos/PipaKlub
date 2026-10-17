@@ -1,5 +1,7 @@
 // This script is embedded into the page. It never stores authentication tokens.
 let playerAccount=null,accountsEnabled=false,accountTab='login',accountSaving=false,rewardRefreshTimer;
+let accountConnection='checking',accountConfigPending=null,accountRetryTimer=null,accountRetryCount=0;
+const accountConnectionMessages={checking:'Conectando ao serviço de contas…',offline:'Não foi possível conectar ao serviço de contas. Vamos tentar novamente; você também pode usar o botão abaixo.',disabled:'O login está temporariamente indisponível no servidor. Tente conectar novamente em instantes.',static:'O login está disponível no endereço oficial do jogo. Abra o PipaKlub online para entrar na sua conta.'};
 const accountModal=$('accountModal');
 function requireClubAccount(feature){if(playerAccount)return true;toast('Entre ou crie sua conta para acessar '+feature+'.');openAccount();return false;}
 async function accountRequest(action,body){
@@ -35,8 +37,10 @@ function renderAccountDialog(){
  $('signupFields').hidden=accountTab!=='signup';$('accountPassword').autocomplete=accountTab==='signup'?'new-password':'current-password';
  $('submitAccount').textContent=accountTab==='signup'?'Criar minha conta':'Entrar';$('switchAccount').textContent=accountTab==='signup'?'Já tenho uma conta':'Ainda não tenho conta';
  $('submitAccount').disabled=!accountsEnabled||accountSaving;
- if(accountsEnabled&&$('accountMessage').textContent==='O serviço de contas ainda está sendo conectado. O treino e as salas casuais continuam disponíveis.')$('accountMessage').textContent='';
- if(!accountsEnabled)$('accountMessage').textContent='O serviço de contas ainda está sendo conectado. O treino e as salas casuais continuam disponíveis.';
+ $('retryAccounts').hidden=accountsEnabled||accountConnection==='checking'||accountConnection==='static';$('retryAccounts').disabled=accountConnection==='checking';
+ $('accountServerLink').hidden=accountConnection!=='static';$('submitAccount').setAttribute('aria-busy',String(accountConnection==='checking'||accountSaving));
+ if(!accountsEnabled)$('accountMessage').textContent=accountConnectionMessages[accountConnection]||accountConnectionMessages.offline;
+ else if(Object.values(accountConnectionMessages).includes($('accountMessage').textContent))$('accountMessage').textContent='';
  if(!logged){closeKiteStory();return;}
  const p=playerAccount.profile;$('accountNickname').value=p.nickname;
  $('accountLevel').textContent='Nível '+p.level;$('accountXP').textContent=p.xp+' / '+p.next_level_xp+' XP';
@@ -64,7 +68,7 @@ function renderAccountDialog(){
 
 async function openAccount(){
  if(mode){toast('Saia da partida para abrir sua coleção.');return;}
- keys={};closeKiteStory();$('accountMessage').textContent='';accountModal.style.display='flex';renderAccountDialog();$('closeAccount').focus();await refreshAccount();await loadRecentMatches();
+ keys={};closeKiteStory();$('accountMessage').textContent='';accountModal.style.display='flex';renderAccountDialog();$('closeAccount').focus();if(!accountsEnabled)await initializeAccounts();else await refreshAccount();await loadRecentMatches();
 }
 function closeAccount(){if(typeof leaveSummoner==='function'&&summonOpen)leaveSummoner();closeKiteStory();accountModal.style.display='none';$('accountPassword').value='';$('accountButton').focus();}
 $('accountButton').onclick=openAccount;$('closeAccount').onclick=closeAccount;
@@ -87,9 +91,20 @@ addEventListener('keydown',e=>{
  if(e.key==='Tab'){const items=[...accountModal.querySelectorAll('button,input,select')].filter(el=>!el.disabled&&el.getClientRects().length);const first=items[0],last=items.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}
 });
 async function initializeAccounts(){
- if(typeof STATIC_HOST!=='undefined'&&STATIC_HOST)return;
- try{accountsEnabled=(await accountRequest('config')).enabled;if(accountsEnabled)await refreshAccount();}catch{}reflectAccount();
+ if(typeof STATIC_HOST!=='undefined'&&STATIC_HOST){accountConnection='static';if(accountModal.style.display==='flex')renderAccountDialog();return false;}
+ if(accountConfigPending)return accountConfigPending;
+ clearTimeout(accountRetryTimer);accountRetryTimer=null;accountConnection='checking';if(accountModal.style.display==='flex')renderAccountDialog();
+ accountConfigPending=(async()=>{
+  try{const config=await accountRequest('config');accountsEnabled=config.enabled===true;accountConnection=accountsEnabled?'ready':'disabled';if(accountsEnabled){accountRetryCount=0;await refreshAccount();}}
+  catch{accountConnection='offline';if(accountRetryCount<3){const delay=3000*2**accountRetryCount++;accountRetryTimer=setTimeout(()=>{accountRetryTimer=null;return initializeAccounts();},delay);}}
+  finally{reflectAccount();}
+  return accountsEnabled;
+ })();
+ try{return await accountConfigPending;}finally{accountConfigPending=null;}
 }
+$('retryAccounts').onclick=()=>{accountRetryCount=0;return initializeAccounts();};
+addEventListener('online',()=>{if(!accountsEnabled)initializeAccounts();});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!accountsEnabled&&accountConnection==='offline')initializeAccounts();});
 function refreshRewards(){if(!playerAccount)return;clearTimeout(rewardRefreshTimer);rewardRefreshTimer=setTimeout(refreshAccount,1800);}
 if(location.hash.includes('access_token=')){history.replaceState(null,'',location.pathname+location.search);toast('E-mail confirmado. Entre na sua conta para continuar.');}
 initializeAccounts();setInterval(refreshAccount,15*60*1000);

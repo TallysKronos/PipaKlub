@@ -708,7 +708,7 @@ body.in-match #pauseSheet .sheet-card{background:var(--battle-panel);color:var(-
 <aside class="panel consent-bar" id="consentBar" hidden role="dialog" aria-labelledby="consentTitle"><b id="consentTitle">Ajude a melhorar o Pipa Club</b><p>Com sua permissão, usamos o Microsoft Clarity para ver, de forma anônima, como as pessoas jogam (cliques, toques e rolagem). Não coletamos senha nem e-mail. Você pode mudar isso em “Privacidade”.</p><div><button class="secondary" id="consentNo">Agora não</button><button class="primary" id="consentYes">Aceitar</button></div></aside>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="overlay" id="modal"><section class="panel dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><button class="close" id="close" aria-label="Fechar">×</button><div class="eyebrow" id="dialogEyebrow">Manual de rua</div><h2 id="dialogTitle">O segredo está na linha.</h2><div id="dialogBody"></div><button class="primary" id="dialogAction">Entendi. Bora voar ↗</button></section></div>
-<div class="overlay" id="accountModal" data-clarity-mask="true"><section class="panel account-card" role="dialog" aria-modal="true" aria-labelledby="accountTitle"><button class="close" id="closeAccount" aria-label="Fechar conta">×</button><div class="eyebrow">Seu clube, sua coleção</div><h2 id="accountTitle">De volta ao céu.</h2><div id="accountAuth"><form class="account-form" id="accountForm"><div id="signupFields" hidden><label for="signupName">Seu apelido</label><input id="signupName" minlength="2" maxlength="18" autocomplete="nickname" value="Pipeiro"></div><label for="accountEmail">E-mail</label><input id="accountEmail" type="email" autocomplete="email" required><label for="accountPassword">Senha</label><input id="accountPassword" type="password" minlength="8" maxlength="128" autocomplete="current-password" required><button class="primary" id="submitAccount" type="submit">Entrar</button></form><button class="secondary" id="switchAccount">Ainda não tenho conta</button></div><div id="accountCollection" hidden><div id="collectionMain"><div class="account-summary"><div><b id="accountLevel">Nível 1</b><span id="accountXP">0 XP</span></div><div class="meter"><i id="accountXPBar"></i></div><small id="accountCuts">0 cortes</small></div><form class="nickname-form" id="nicknameForm"><label for="accountNickname">Apelido<input id="accountNickname" minlength="2" maxlength="18" required></label><button type="submit" class="secondary">Salvar</button></form><b id="collectionCount">Suas pipas</b><div class="inventory-list" id="inventoryList"></div><h3>Souls especiais de evento</h3><p class="collection-info">Exclusivas de eventos. Vinculadas à conta, sem troca por cortes. Use no casual ou no treino; em Vale pipa, equipe uma colecionável.</p><div class="inventory-list" id="eventSoulsList"></div><p class="collection-info">A pipa básica é sua para sempre. Em Vale pipa, a colecionável equipada pode passar para quem cortar sua linha. No casual, sua coleção fica protegida. Cada corte entre contas rende 25 XP, até cinco vezes contra o mesmo adversário em 24 horas.</p><h3>Últimos duelos</h3><div id="recentMatches"></div><button class="secondary" id="logoutAccount">Sair da conta</button></div><section id="kiteStory" hidden><button class="secondary" id="kiteStoryBack">← Voltar à coleção</button><div id="kiteStoryBody" aria-live="polite"></div></section></div><p class="account-message" id="accountMessage" role="status" aria-live="polite"></p></section></div>
+<div class="overlay" id="accountModal" data-clarity-mask="true"><section class="panel account-card" role="dialog" aria-modal="true" aria-labelledby="accountTitle"><button class="close" id="closeAccount" aria-label="Fechar conta">×</button><div class="eyebrow">Seu clube, sua coleção</div><h2 id="accountTitle">De volta ao céu.</h2><div id="accountAuth"><form class="account-form" id="accountForm"><div id="signupFields" hidden><label for="signupName">Seu apelido</label><input id="signupName" minlength="2" maxlength="18" autocomplete="nickname" value="Pipeiro"></div><label for="accountEmail">E-mail</label><input id="accountEmail" type="email" autocomplete="email" required><label for="accountPassword">Senha</label><input id="accountPassword" type="password" minlength="8" maxlength="128" autocomplete="current-password" required><button class="primary" id="submitAccount" type="submit">Entrar</button></form><button class="secondary" id="switchAccount">Ainda não tenho conta</button></div><div id="accountCollection" hidden><div id="collectionMain"><div class="account-summary"><div><b id="accountLevel">Nível 1</b><span id="accountXP">0 XP</span></div><div class="meter"><i id="accountXPBar"></i></div><small id="accountCuts">0 cortes</small></div><form class="nickname-form" id="nicknameForm"><label for="accountNickname">Apelido<input id="accountNickname" minlength="2" maxlength="18" required></label><button type="submit" class="secondary">Salvar</button></form><b id="collectionCount">Suas pipas</b><div class="inventory-list" id="inventoryList"></div><h3>Souls especiais de evento</h3><p class="collection-info">Exclusivas de eventos. Vinculadas à conta, sem troca por cortes. Use no casual ou no treino; em Vale pipa, equipe uma colecionável.</p><div class="inventory-list" id="eventSoulsList"></div><p class="collection-info">A pipa básica é sua para sempre. Em Vale pipa, a colecionável equipada pode passar para quem cortar sua linha. No casual, sua coleção fica protegida. Cada corte entre contas rende 25 XP, até cinco vezes contra o mesmo adversário em 24 horas.</p><h3>Últimos duelos</h3><div id="recentMatches"></div><button class="secondary" id="logoutAccount">Sair da conta</button></div><section id="kiteStory" hidden><button class="secondary" id="kiteStoryBack">← Voltar à coleção</button><div id="kiteStoryBody" aria-live="polite"></div></section></div><p class="account-message" id="accountMessage" role="status" aria-live="polite"></p><button type="button" class="secondary" id="retryAccounts" hidden>Tentar conectar novamente</button><a id="accountServerLink" href="https://pipaklub.onrender.com/" hidden>Abrir PipaKlub online</a></section></div>
 
 <div class="overlay" id="trails" hidden><section class="panel trails-card" role="dialog" aria-modal="true" aria-labelledby="trailsTitle">
 <header class="trails-header"><div><div class="eyebrow">Modo RPG</div><h2 id="trailsTitle">Trilhas</h2><p id="trailMastery"></p></div><div class="trail-wallet"><small>Moedas</small><b>🪙 <span id="trailCoins">0</span></b></div><button class="close" id="trailsClose" aria-label="Fechar trilhas">×</button></header>
@@ -1342,6 +1342,8 @@ if(!left&&!showResult){showResult=true;resetFx();showMatchResult(state,ranking);
 function escapeHTML(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
 // This script is embedded into the page. It never stores authentication tokens.
 let playerAccount=null,accountsEnabled=false,accountTab='login',accountSaving=false,rewardRefreshTimer;
+let accountConnection='checking',accountConfigPending=null,accountRetryTimer=null,accountRetryCount=0;
+const accountConnectionMessages={checking:'Conectando ao serviço de contas…',offline:'Não foi possível conectar ao serviço de contas. Vamos tentar novamente; você também pode usar o botão abaixo.',disabled:'O login está temporariamente indisponível no servidor. Tente conectar novamente em instantes.',static:'O login está disponível no endereço oficial do jogo. Abra o PipaKlub online para entrar na sua conta.'};
 const accountModal=$('accountModal');
 function requireClubAccount(feature){if(playerAccount)return true;toast('Entre ou crie sua conta para acessar '+feature+'.');openAccount();return false;}
 async function accountRequest(action,body){
@@ -1377,8 +1379,10 @@ function renderAccountDialog(){
  $('signupFields').hidden=accountTab!=='signup';$('accountPassword').autocomplete=accountTab==='signup'?'new-password':'current-password';
  $('submitAccount').textContent=accountTab==='signup'?'Criar minha conta':'Entrar';$('switchAccount').textContent=accountTab==='signup'?'Já tenho uma conta':'Ainda não tenho conta';
  $('submitAccount').disabled=!accountsEnabled||accountSaving;
- if(accountsEnabled&&$('accountMessage').textContent==='O serviço de contas ainda está sendo conectado. O treino e as salas casuais continuam disponíveis.')$('accountMessage').textContent='';
- if(!accountsEnabled)$('accountMessage').textContent='O serviço de contas ainda está sendo conectado. O treino e as salas casuais continuam disponíveis.';
+ $('retryAccounts').hidden=accountsEnabled||accountConnection==='checking'||accountConnection==='static';$('retryAccounts').disabled=accountConnection==='checking';
+ $('accountServerLink').hidden=accountConnection!=='static';$('submitAccount').setAttribute('aria-busy',String(accountConnection==='checking'||accountSaving));
+ if(!accountsEnabled)$('accountMessage').textContent=accountConnectionMessages[accountConnection]||accountConnectionMessages.offline;
+ else if(Object.values(accountConnectionMessages).includes($('accountMessage').textContent))$('accountMessage').textContent='';
  if(!logged){closeKiteStory();return;}
  const p=playerAccount.profile;$('accountNickname').value=p.nickname;
  $('accountLevel').textContent='Nível '+p.level;$('accountXP').textContent=p.xp+' / '+p.next_level_xp+' XP';
@@ -1406,7 +1410,7 @@ function renderAccountDialog(){
 
 async function openAccount(){
  if(mode){toast('Saia da partida para abrir sua coleção.');return;}
- keys={};closeKiteStory();$('accountMessage').textContent='';accountModal.style.display='flex';renderAccountDialog();$('closeAccount').focus();await refreshAccount();await loadRecentMatches();
+ keys={};closeKiteStory();$('accountMessage').textContent='';accountModal.style.display='flex';renderAccountDialog();$('closeAccount').focus();if(!accountsEnabled)await initializeAccounts();else await refreshAccount();await loadRecentMatches();
 }
 function closeAccount(){if(typeof leaveSummoner==='function'&&summonOpen)leaveSummoner();closeKiteStory();accountModal.style.display='none';$('accountPassword').value='';$('accountButton').focus();}
 $('accountButton').onclick=openAccount;$('closeAccount').onclick=closeAccount;
@@ -1429,9 +1433,20 @@ addEventListener('keydown',e=>{
  if(e.key==='Tab'){const items=[...accountModal.querySelectorAll('button,input,select')].filter(el=>!el.disabled&&el.getClientRects().length);const first=items[0],last=items.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}
 });
 async function initializeAccounts(){
- if(typeof STATIC_HOST!=='undefined'&&STATIC_HOST)return;
- try{accountsEnabled=(await accountRequest('config')).enabled;if(accountsEnabled)await refreshAccount();}catch{}reflectAccount();
+ if(typeof STATIC_HOST!=='undefined'&&STATIC_HOST){accountConnection='static';if(accountModal.style.display==='flex')renderAccountDialog();return false;}
+ if(accountConfigPending)return accountConfigPending;
+ clearTimeout(accountRetryTimer);accountRetryTimer=null;accountConnection='checking';if(accountModal.style.display==='flex')renderAccountDialog();
+ accountConfigPending=(async()=>{
+  try{const config=await accountRequest('config');accountsEnabled=config.enabled===true;accountConnection=accountsEnabled?'ready':'disabled';if(accountsEnabled){accountRetryCount=0;await refreshAccount();}}
+  catch{accountConnection='offline';if(accountRetryCount<3){const delay=3000*2**accountRetryCount++;accountRetryTimer=setTimeout(()=>{accountRetryTimer=null;return initializeAccounts();},delay);}}
+  finally{reflectAccount();}
+  return accountsEnabled;
+ })();
+ try{return await accountConfigPending;}finally{accountConfigPending=null;}
 }
+$('retryAccounts').onclick=()=>{accountRetryCount=0;return initializeAccounts();};
+addEventListener('online',()=>{if(!accountsEnabled)initializeAccounts();});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!accountsEnabled&&accountConnection==='offline')initializeAccounts();});
 function refreshRewards(){if(!playerAccount)return;clearTimeout(rewardRefreshTimer);rewardRefreshTimer=setTimeout(refreshAccount,1800);}
 if(location.hash.includes('access_token=')){history.replaceState(null,'',location.pathname+location.search);toast('E-mail confirmado. Entre na sua conta para continuar.');}
 initializeAccounts();setInterval(refreshAccount,15*60*1000);

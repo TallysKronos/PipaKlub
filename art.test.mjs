@@ -18,8 +18,8 @@ test('collection viewports enclose every pose without changing the crop scale ac
  }
 });
 
-function app({seen=false,search='',failed=false,reduced=false,member=false}={}){
- const html=fs.readFileSync('docs/index.html','utf8'),{document}=parseHTML(html),timers=[],requests=[],draws=[],listeners=new Map(),storage=new Map(seen?[['pipaAssisIntroV1','done']]:[]);
+function app({seen=false,search='',failed=false,reduced=false,member=false,hosted=false}={}){
+ const html=fs.readFileSync('docs/index.html','utf8').replace('const STATIC_HOST = true;',hosted?'const STATIC_HOST = false;':'const STATIC_HOST = true;'),{document}=parseHTML(html),timers=[],requests=[],draws=[],listeners=new Map(),storage=new Map(seen?[['pipaAssisIntroV1','done']]:[]);
  for(const canvas of document.querySelectorAll('canvas'))canvas.getContext=()=>({clearRect(){},drawImage(...args){draws.push({canvas:canvas.id,args});},imageSmoothingEnabled:true});
  const context=vm.createContext({document,console,crypto,Date,Intl,URLSearchParams,AbortController,performance:{now:()=>100},location:{search,hash:'',pathname:'/',protocol:'https:',host:'test'},history:{replaceState(){}},localStorage:{getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,v)},matchMedia:()=>({matches:reduced}),MutationObserver:document.defaultView.MutationObserver,ResizeObserver:class{observe(){}},requestAnimationFrame(){},setInterval(){},clearInterval(){},setTimeout(fn,delay){timers.push({fn,delay});return timers.length;},clearTimeout(){},fetch:async()=>({ok:true,json:async()=>({enabled:false})}),Image:class{set src(url){requests.push(url);queueMicrotask(()=>failed?this.onerror():this.onload());}},addEventListener(name,fn){if(!listeners.has(name))listeners.set(name,[]);listeners.get(name).push(fn);}});
  vm.runInContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],context);
@@ -56,6 +56,27 @@ test('battle instruments show real partner, rounds and low-line state; unavailab
  ui.run(`state.players[0].energy=5;state.players[0].skillCooldown=3;updateNormalLineHUD();`);
  assert.ok(ui.document.querySelector('.skill-actions button').disabled);assert.ok(ui.document.querySelector('.hud-basics [data-key="dodge"]').disabled);assert.match(ui.document.querySelector('#skillStatus').textContent,/Recarga/);
  assert.equal(ui.document.querySelector('.combat-deck').contains(ui.document.querySelector('#normalLineHUD')),true);
+});
+
+test('a failed initial account check retries automatically and unlocks login without losing typed fields',async()=>{
+ const ui=app({seen:true,hosted:true});await ui.settle();
+ await ui.run(`(async()=>{var attempts=0;globalThis.retryWake=null;setTimeout=(fn,ms)=>{if(ms===3000)retryWake=fn;return 1};fetch=async()=>{throw Error('temporary connection failure')};$('accountEmail').value='player@example.test';$('accountPassword').value='test-only-password';await initializeAccounts();accountModal.style.display='flex';renderAccountDialog();})()`);
+ assert.equal(ui.run('accountConnection'),'offline');assert.ok(ui.document.querySelector('#submitAccount').disabled);assert.equal(ui.document.querySelector('#retryAccounts').hidden,false);assert.doesNotMatch(ui.document.querySelector('#accountMessage').textContent,/ainda está sendo conectado/);
+ await ui.run(`(async()=>{fetch=async url=>({ok:true,json:async()=>url.endsWith('/config')?{enabled:true}:{account:null}});await retryWake();})()`);
+ assert.equal(ui.run('accountsEnabled'),true);assert.equal(ui.document.querySelector('#submitAccount').disabled,false);assert.equal(ui.document.querySelector('#retryAccounts').hidden,true);assert.equal(ui.document.querySelector('#accountEmail').value,'player@example.test');assert.equal(ui.document.querySelector('#accountPassword').value,'test-only-password');
+});
+
+test('opening login recovers disabled configuration, shares pending checks and preserves explicit server unavailability',async()=>{
+ const ui=app({seen:true,hosted:true});await ui.settle();
+ ui.run(`var configCalls=0,releaseConfig;fetch=async url=>{if(url.endsWith('/config')){configCalls++;return new Promise(resolve=>releaseConfig=()=>resolve({ok:true,json:async()=>({enabled:true})}));}return {ok:true,json:async()=>({account:null})}};var checkOne=initializeAccounts(),checkTwo=openAccount();`);
+ assert.equal(ui.run('configCalls'),1);ui.run('releaseConfig();');await ui.run('Promise.all([checkOne,checkTwo])');assert.equal(ui.document.querySelector('#submitAccount').disabled,false);
+ await ui.run(`(async()=>{fetch=async()=>({ok:true,json:async()=>({enabled:false})});await initializeAccounts();})()`);
+ assert.equal(ui.run('accountConnection'),'disabled');assert.ok(ui.document.querySelector('#submitAccount').disabled);assert.match(ui.document.querySelector('#accountMessage').textContent,/indisponível no servidor/);
+});
+
+test('static Pages directs accounts to the official server instead of showing a never-ending connection message',async()=>{
+ const ui=app({seen:true});await ui.settle();await ui.run('openAccount()');
+ assert.equal(ui.document.querySelector('#accountServerLink').hidden,false);assert.equal(ui.document.querySelector('#accountServerLink').getAttribute('href'),'https://pipaklub.onrender.com/');assert.ok(ui.document.querySelector('#submitAccount').disabled);assert.equal(ui.document.querySelector('#retryAccounts').hidden,true);
 });
 test('rebicar follows accepted attacks, mirrors its pull and never changes simulation coordinates',()=>{
  const a=app({seen:true});
