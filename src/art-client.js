@@ -15,8 +15,12 @@ export function createArtAssets(config){
   const image=images.get(name),def=atlases[name]?.frames[frame];if(!image||!def)return false;
   const f=def.frame,b=fit?def.contentBounds:atlases[name].meta.viewport,r=b?{x:f.x+b.x,y:f.y+b.y,w:b.w,h:b.h}:f;
   const scale=Math.min(width/r.w,height/r.h),w=r.w*scale,h=r.h*scale;
+  // Sheets with indivisible dimensions may have cells one pixel smaller than the common viewport.
+  // Keep one scale/pivot, but never sample beyond this frame into its neighbour.
+  const sx=Math.max(0,r.x-f.x),sy=Math.max(0,r.y-f.y),sw=Math.min(r.w,f.w-sx),sh=Math.min(r.h,f.h-sy);
+  if(sw<=0||sh<=0)return false;
   const smoothing=context.imageSmoothingEnabled;context.imageSmoothingEnabled=false;
-  context.drawImage(image,r.x,r.y,r.w,r.h,x+(width-w)/2,y+(height-h)/2,w,h);context.imageSmoothingEnabled=smoothing;return true;
+  context.drawImage(image,f.x+sx,f.y+sy,sw,sh,x+(width-w)/2,y+(height-h)/2,sw*scale,sh*scale);context.imageSmoothingEnabled=smoothing;return true;
  }
  function creature(context,color,time,x=-56,y=-44,size=112,player={},victory=false){
   const left=player.facing===-1||(player.facing!==1&&player.input?.x<-.05);
