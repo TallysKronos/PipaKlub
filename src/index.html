@@ -802,7 +802,7 @@ function draw(t){
 const scene=state?.trail?ART_CONFIG.designs.scenes[state.trail.split('-')[0]]:ART_CONFIG.designs.scenes.morro;
 if(scene!==backgroundScene){backgroundScene=scene;background=null;if(scene)art.load(scene).then(ok=>{if(ok&&backgroundScene===scene)background=null;});}
 const view=worldView();
-if(!background){background=document.createElement('canvas');background.width=canvas.width;background.height=canvas.height;const main=ctx;ctx=background.getContext('2d',{alpha:false});if(view.portrait){const cover=Math.max(canvas.width/1000,canvas.height/600);ctx.setTransform(cover,0,0,cover,(canvas.width-1000*cover)/2,0);drawScenery(0);}else{if(view.x>0){ctx.setTransform(canvas.width/1000,0,0,canvas.height/600,0,0);drawScenery(0);ctx.setTransform(1,0,0,1,0,0);ctx.fillStyle='#1b2a3618';ctx.fillRect(0,0,canvas.width,canvas.height);}else{ctx.fillStyle='#c2e0e5';ctx.fillRect(0,0,canvas.width,view.y+1);ctx.fillStyle='#46705b';ctx.fillRect(0,view.y+600*view.s-1,canvas.width,canvas.height);}ctx.setTransform(view.s,0,0,view.s,view.x,view.y);drawScenery(0);}ctx=main;}
+if(!background){background=document.createElement('canvas');background.width=canvas.width;background.height=canvas.height;const main=ctx;ctx=background.getContext('2d',{alpha:false});const cover=Math.max(canvas.width/1000,canvas.height/600);ctx.setTransform(cover,0,0,cover,(canvas.width-1000*cover)/2,(canvas.height-600*cover)/2);drawScenery(0);ctx=main;}
 ctx.setTransform(1,0,0,1,0,0);ctx.drawImage(background,0,0);ctx.setTransform(view.s,0,0,view.s,view.x,view.y);
 drawDailyWeather(t);
 if(state)observe(renderPlayers||state.players);

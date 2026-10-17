@@ -10,7 +10,7 @@ function updateBattleHUD(p){
  const blocked=!!(p.respawn||pausedAt||state.phase&&state.phase!=='live'),ready=!(p.skillCooldown>0)&&p.energy>=25&&!blocked;
  for(const b of document.querySelectorAll('.skill-actions button')){b.title=eng.type(p).description;b.disabled=!ready;}
  $('skillName').title=eng.type(p).description;
- const skill=p.skillTime>0?'Habilidade ativa':p.skillCooldown>0?'Recarga · '+p.skillCooldown.toFixed(1)+' s':p.energy<25?'Precisa de 25 de energia':'Pronta · 25 energia';setText('skillStatus',skill);
+ const skill=blocked?'Aguarde a partida':p.skillTime>0?'Habilidade ativa':p.skillCooldown>0?'Recarga · '+p.skillCooldown.toFixed(1)+' s':p.energy<25?'Precisa de 25 de energia':'Pronta · 25 energia';setText('skillStatus',skill);
  setText('flightStatus',mode==='online'?(realtime?'Tempo real':'Conexão compatível')+' · '+ping+' ms':'Arraste ou use WASD para voar');
  const dodge=!(p.dodgeCooldown>0)&&p.energy>=eng.DODGE.cost&&!blocked;
  const button=document.querySelector('.hud-basics [data-key="dodge"]');button.title=p.dodgeCooldown>0?'Recarga · '+p.dodgeCooldown.toFixed(1)+' s':'Esquiva · Shift · 18 energia';button.disabled=!dodge;
