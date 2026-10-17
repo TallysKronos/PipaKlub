@@ -135,3 +135,9 @@ Texturas PNG são carregadas separadamente e têm URL com hash e cache. Apenas a
 ## Céu do Dia
 
 Desafio diário online para contas cadastradas, com condição global, duelo contra bot e 25 moedas na primeira vitória do dia. Aplicar a migração 011 antes de publicar o servidor. Regras, limites de persistência e roteiro de verificação em [DAILY_CHALLENGE.md](DAILY_CHALLENGE.md).
+
+## Fazenda de Pipamons — primeira versão
+
+Em **Minha conta → Fazenda de Pipamons**, as espécies da coleção passeiam em um cenário 2D, usando os sprites existentes, incluindo especiais. Há uma presença por modelo, com as quantidades listadas abaixo. Coleções maiores são divididas em grupos de até 12 espécies para limitar animação e carregamento. A direção do sprite acompanha o movimento; o passeio alterna deslocamentos e pausas, com sombras e ordem de profundidade.
+
+O passeio pode ser pausado e para ao fechar a tela, sair do menu ou ocultar a aba. Movimento reduzido inicia a cena estática; o botão Retomar passeio permite ativar a animação explicitamente. Falhas de imagem permitem tentar novamente. A fazenda usa somente a coleção autenticada atual: não concede itens/moedas, não equipa ou transfere pipas e não salva as posições dos sprites. Não exige migração ou segredo adicional. Móveis, customização, personagem controlável e Kael ficam fora desta primeira versão.
