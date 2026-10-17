@@ -1,7 +1,7 @@
 import {artSource,copyArt} from './scripts/art-build.mjs';
 import fs from 'node:fs';
 const engine=fs.readFileSync('src/engine.js','utf8').replace('export function','function');
-const clarityId=String(process.env.CLARITY_ID||'').trim();if(clarityId&&!/^[a-z0-9]{6,20}$/i.test(clarityId))throw Error('CLARITY_ID inválido: use o id do projeto no Clarity.');
+const clarityId=String(process.env.CLARITY_ID??'yz4vye9268').trim();if(clarityId&&!/^[a-z0-9]{6,20}$/i.test(clarityId))throw Error('CLARITY_ID inválido: use o id do projeto no Clarity.');
 const telemetry=fs.readFileSync('src/telemetry-client.js','utf8').replace("/* CLARITY_ID */''",JSON.stringify(clarityId));
 const network=fs.readFileSync('src/network-view.js','utf8').replace('export function','function');
 const frames=fs.readFileSync('src/frame-health.js','utf8').replace('export function','function');

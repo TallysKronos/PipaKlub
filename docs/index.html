@@ -1454,7 +1454,7 @@ reflectCoins();
 
 // Microsoft Clarity, only with the player's consent (LGPD). The project id comes from CLARITY_ID at build
 // time; without it nothing is loaded and the privacy controls stay hidden. track() is safe to call always.
-const CLARITY_ID="",CONSENT_KEY='pipaConsentV1';
+const CLARITY_ID="yz4vye9268",CONSENT_KEY='pipaConsentV1';
 function consentChoice(){try{return localStorage.getItem(CONSENT_KEY);}catch{return null;}}
 function loadClarity(){
  if(!CLARITY_ID||window.clarity)return;

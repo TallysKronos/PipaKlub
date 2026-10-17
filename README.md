@@ -69,12 +69,9 @@ Crie a sala e compartilhe o convite. Os participantes entram usando o código de
 
 ## Telemetria (Microsoft Clarity)
 
-O Clarity só é carregado depois que o jogador aceita o aviso de privacidade (LGPD). O botão “Privacidade” no menu permite mudar a escolha. A janela de conta é mascarada nas gravações. Para ativar, crie um projeto em clarity.microsoft.com e defina o id no build:
+O Clarity só é carregado depois que o jogador aceita o aviso de privacidade (LGPD). O botão “Privacidade” no menu permite mudar a escolha. A janela de conta é mascarada nas gravações. O projeto (`yz4vye9268`) já vem embutido no build. Para usar outro, defina `CLARITY_ID` ao rodar `npm run build` ou `npm run build:pages`; com `CLARITY_ID=` vazio, o Clarity fica desligado.
 
-- Render: adicione a variável de ambiente `CLARITY_ID` no serviço; o `npm run build` do deploy usa o valor.
-- GitHub Pages: `CLARITY_ID=seu_id npm run build:pages` e faça commit de `docs/`.
-
-Sem `CLARITY_ID`, nada é carregado e o aviso não aparece. Eventos enviados: `quick_match`, `quick_match_end`, `online_match_end`, `practice_end`, `trail_start`, `trail_win` e `trail_loss`.
+Eventos enviados: `quick_match`, `quick_match_end`, `online_match_end`, `practice_end`, `trail_start`, `trail_win` e `trail_loss`.
 
 ## GitHub Pages
 

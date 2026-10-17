@@ -2,7 +2,7 @@ import {artSource,copyArt} from './scripts/art-build.mjs';
 import fs from 'node:fs';
 import {Script} from 'node:vm';
 const engine=fs.readFileSync('src/engine.js','utf8').replace('export function','function');
-const clarityId=String(process.env.CLARITY_ID||'').trim();if(clarityId&&!/^[a-z0-9]{6,20}$/i.test(clarityId))throw Error('CLARITY_ID inválido: use o id do projeto no Clarity.');
+const clarityId=String(process.env.CLARITY_ID??'yz4vye9268').trim();if(clarityId&&!/^[a-z0-9]{6,20}$/i.test(clarityId))throw Error('CLARITY_ID inválido: use o id do projeto no Clarity.');
 const telemetry=fs.readFileSync('src/telemetry-client.js','utf8').replace("/* CLARITY_ID */''",JSON.stringify(clarityId));
 const html=fs.readFileSync('src/index.html','utf8')
   .replace('/* ENGINE */',engine).replace('/* ART_CLIENT */',artSource()).replace('/* ONBOARDING_CLIENT */',fs.readFileSync('src/onboarding-client.js','utf8'))
