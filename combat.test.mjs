@@ -62,3 +62,10 @@ test('real page handlers preserve a quick skill tap for the next network frame a
  assert.equal(vm.runInContext('input().skill',context),-1);
  for(const fn of listeners.get('blur'))fn();assert.equal(vm.runInContext('input().skill',context),0);
 });
+
+test('spawn shield blocks damage until it expires, and attacking ends it early',()=>{
+ const {s,a,b}=duel();b.shield=e.SHIELD;assert.equal(e.contact(a,b).valid,false);e.step(s,1034);assert.equal(b.hp,100);assert.equal(a.hits||0,0);
+ b.shield=0;a.attackCooldown=0;e.step(s,1068);assert.equal(b.hp,76);assert.equal(a.hits,1);
+ const own=duel();own.a.shield=e.SHIELD;e.step(own.s,1034);assert.equal(own.a.shield,0);assert.equal(own.a.strikes,1);
+ const back=duel();back.b.hp=1;e.step(back.s,1034);assert.ok(back.b.respawn);back.a.input={};e.step(back.s,back.b.respawn);assert.ok(back.b.shield>2&&back.b.shield<=e.SHIELD);
+});

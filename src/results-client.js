@@ -5,9 +5,10 @@ function stopMatchResult(){resultContext=null;resultVersion++;clearTimeout(resul
 function showMatchResult(s,ranking=[]){
  stopMatchResult();
  const mine=s.players?.find(p=>p.id===me),authenticated=mode==='online'&&!!playerAccount;
- const rows=ranking.map((q,i)=>'<div class="result-rank"><span>'+(i+1)+'. '+escapeHTML(q.name)+'</span><b>'+q.score+' pts</b></div>').join('');
- modal(ranking[0]?.id===me?'O céu é seu!':'Cada duelo deixa uma história.',
-  '<p>Partida encerrada. '+(mine?.cuts||0)+' cortes na arena.</p><div id="matchRewardSummary" class="match-rewards" aria-live="polite"></div>'+rows,'Voltar ao lobby','Resultado do duelo');
+ const rows=ranking.map((q,i)=>'<div class="result-rank'+(q.id===me?' me':'')+'"><span>'+(i+1)+'. '+escapeHTML(q.name)+(q.id===me?' · você':'')+'</span><b>'+q.score+' pts</b></div>').join('');
+ const place=ranking.findIndex(q=>q.id===me)+1,cuts=mine?.cuts||0;
+ modal(place===1?'O céu é seu!':'Cada duelo deixa uma história.',
+  (place?'<p class="result-place">Você ficou em '+place+'º de '+ranking.length+'</p>':'')+'<p>Seus cortes: '+cuts+'.</p><div id="matchRewardSummary" class="match-rewards" aria-live="polite"></div>'+rows,'Voltar ao lobby','Resultado do duelo');
  if(!authenticated){$('matchRewardSummary').append(uiElement('p',mode==='practice'?'O treino não altera XP nem a coleção.':'Como visitante, você participa da disputa sem salvar XP ou conquistar pipas. Entre na sua conta para guardar seu progresso.'));return;}
  beginMatchResult(s.id);
 }

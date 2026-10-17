@@ -23,6 +23,8 @@ Abra http://localhost:5193. Para jogar em outro aparelho na mesma rede, use o IP
 - Q / E: habilidade da pipa equipada. Custa 25 de energia e recarrega em 7 s. Na Ágil, Q desloca 96 px para esquerda e E para direita.
 - Soltar ataque recupera 18 de energia/s; segurando, 6/s. A durabilidade começa em 100 e só é restaurada ao reaparecer.
 - Cada corte vale 100 pontos. A pipa cortada retorna após 3 segundos.
+- Ao entrar e ao reaparecer, a pipa fica protegida por 2,5 s (anel tracejado branco). Atacar encerra a proteção.
+- Acertos, dano, cortes e reaparecimento aparecem na arena: números flutuantes, "ACERTOU!", pipa caindo e faixa central. Os bots miram por um instante antes de puxar.
 - No celular: direcional, ATACAR e SK ← / SK → na arena.
 
 | Tipo | Pipa | Habilidade |
