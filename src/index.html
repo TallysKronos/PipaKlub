@@ -217,6 +217,85 @@ body.in-match .arena canvas{cursor:crosshair}
 .inventory-card small{display:block;font-size:10px;color:var(--muted);margin-top:4px}
 .inventory-card .secondary{font-size:11px;padding:7px 5px}
 .inventory-card .skill-info{font-size:10px;line-height:1.5;margin:8px 0;color:var(--teal-d)}
+.trade-panel{margin:22px 0;padding-bottom:22px;border-bottom:2px dashed #b5aa89}
+.summon-entry{margin:24px 0;padding:20px;border:2px solid #aa8f57;border-radius:14px;background:linear-gradient(135deg,#fff5d7,#f0e3c9)}.summon-entry h3{margin:5px 0}.summon-entry p{font-size:12px}
+.summon-steps{display:flex;gap:6px;flex-wrap:wrap;margin:16px 0}.summon-steps span{padding:5px 10px;background:#e9dfc5;color:#7d775e;border-radius:20px;font-size:11px}.summon-steps span.current{background:#23445a;color:#fff6d8;box-shadow:0 2px 0 #102b3d}
+#summonMenu{background:linear-gradient(135deg,#f7e5bb,#fff9e8);padding:24px 18px;border:2px solid #b6a16e;border-radius:14px}#summonMenu .primary{width:100%;margin-bottom:12px}.summon-help{font-size:11px;line-height:1.6;color:var(--muted)}
+.summon-seen-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.summon-seen-card{position:relative;border:2px solid #988d6e;border-radius:13px;padding:14px 8px;background:#fff9ea;text-align:center;min-width:0}.summon-seen-card.available{border-color:#43827c;box-shadow:0 3px 0 #315e59;background:#eff8e8}.summon-seen-card.locked{background:#ece7d9}.summon-seen-card.locked .summon-seen-art{filter:grayscale(.55)}.summon-seen-card b,.summon-seen-card small{display:block}.summon-seen-card small{font-size:10px;color:var(--muted);margin-top:5px}.summon-seen-art{height:95px}.summon-seen-art .almatic-icon{width:100px;height:95px;margin:auto}.summon-availability{position:absolute;top:5px;right:5px;border:2px solid #a3915b;border-radius:50%;background:#fff6da;width:40px;height:40px;display:grid;place-items:center;font-size:19px}.summon-item-badge{width:34px;height:34px;object-fit:contain;image-rendering:pixelated}
+.summon-pair{display:grid;grid-template-columns:minmax(100px,.8fr) minmax(0,1.2fr);gap:16px;align-items:start}.summon-chosen{position:sticky;top:0;padding:16px 8px;border:2px solid #94a996;border-radius:14px;background:radial-gradient(#f3f6d5,#e4ead4);text-align:center}.summon-chosen-art{height:150px}.summon-chosen-art .almatic-icon{max-width:160px;margin:auto}.summon-chosen small{font-size:10px;color:var(--muted)}.summon-pair .summon-tail-list{grid-template-columns:1fr}.summon-ribbon-image{width:100%;max-width:100px;height:90px;object-fit:contain;image-rendering:pixelated}.summon-pair .summon-tail.incompatible{opacity:.55}.summon-pair .summon-tail.selected{border:3px solid #2a8b7b;background:#e2f4d7;box-shadow:0 0 0 3px #79b99555}#summonSelectedTail{font-size:12px;padding:10px;background:#f1e5c6;border-radius:8px}#summonStart{width:100%;margin-top:12px}
+@media(max-width:480px){.summon-seen-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.summon-pair{gap:10px;grid-template-columns:100px minmax(0,1fr)}.summon-chosen-art{height:90px}.summon-chosen h3{font-size:15px}.summon-pair .summon-tail{padding:10px 6px}.summon-pair .summon-tail b{font-size:12px}.summon-pair .summon-tail .secondary{font-size:11px}}
+.summon-npc{display:flex;gap:12px;align-items:center}.summon-npc canvas{width:105px;height:125px;flex:none;image-rendering:pixelated}.summon-npc h3{margin:6px 0}.summon-npc p{font-size:12px;line-height:1.6}.summon-warning{font-size:12px;line-height:1.7;background:#ffe9bc;border:2px solid #b88548;padding:12px;border-radius:10px}
+.summon-tail-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.summon-tail{padding:14px;border:2px solid #8c927b;background:#fffaf0;border-radius:12px;text-align:center}.summon-tail b,.summon-tail small{display:block}.summon-tail small{font-size:11px;color:var(--muted);margin:8px 0}.summon-tail-art{height:80px;position:relative}.summon-tail-art:after{content:'〰';position:absolute;bottom:0;right:12%;font-size:36px;color:#c58b36;rotate:70deg}.summon-tail-art .almatic-icon{width:90px;height:80px;margin:auto}.summon-tail.damaged{filter:grayscale(.8);opacity:.7}
+.summon-ritual-header{display:flex;justify-content:space-between;align-items:center;gap:12px}.summon-ritual-header span{font-size:12px;border-radius:20px;background:#e9d7ac;padding:6px 10px}
+.summon-board{position:relative;max-width:360px;width:100%;aspect-ratio:1;margin:12px auto;border:3px solid #8fa8b8;border-radius:50%;background:radial-gradient(#11274788,#0c172f88),url('assets/vfx/trade-sky.png') center/cover;touch-action:none;user-select:none;box-shadow:0 0 0 7px #1b2e4914,inset 0 0 40px #78d4e32a}
+.summon-board svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}.summon-stroke,.summon-guide{fill:none;stroke-linecap:round;stroke-linejoin:round}.summon-stroke{stroke:#fff5bb;stroke-width:4;filter:drop-shadow(0 0 5px #8cedff)}.summon-guide{stroke:#b9dce2;stroke-width:2;stroke-dasharray:4 8;opacity:.5}
+.summon-node{position:absolute;width:54px;height:54px;translate:-50% -50%;border:2px solid #a8d8e6;border-radius:50%;background:radial-gradient(#c6f2f455,#19314a);color:#fff9e0;font:20px var(--pixel);box-shadow:0 0 15px #7bd2f122;cursor:crosshair;padding:0;touch-action:none}.summon-node.on{border-color:#ffe6a0;background:#f6d46d;color:#29334c;box-shadow:0 0 22px #ffe6a088}.summon-node:disabled{cursor:wait;opacity:.85}
+#summonPatternHint{font-size:12px;line-height:1.6;overflow-wrap:anywhere}#summonMessage{font-size:13px;line-height:1.6;min-height:24px}.summon-reveal{position:relative;overflow:hidden;border:3px solid #8ca5bb;border-radius:16px;background:#10213a url('assets/vfx/trade-sky.png') center/cover;padding:28px 18px;color:#fff7d7;text-align:center}.summon-reveal h3{font-size:24px;text-shadow:0 2px #10213a}.summon-reveal p{font-size:12px}.summon-new-pipamon{width:170px;height:170px;margin:0 auto;animation:summon-arrive 1.5s ease-out both;filter:drop-shadow(0 0 22px #a7efff)}.summon-new-pipamon .almatic-icon{width:100%;height:100%}@keyframes summon-arrive{0%{opacity:0;scale:.2;filter:brightness(8) blur(9px)}65%{opacity:1;scale:1.1;filter:brightness(2) blur(0)}100%{opacity:1;scale:1;filter:brightness(1)}}
+@media(max-width:480px){.summon-tail-list{grid-template-columns:1fr}.summon-npc canvas{width:80px;height:110px}.summon-node{width:48px;height:48px}.summon-ritual-header{flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){.summon-new-pipamon{animation:none}}
+.trade-panel h3{margin-bottom:4px}.trade-intro{font-size:12px;line-height:1.65;color:var(--ink-soft)}
+.trade-scene{--flight-duration:5.8s;position:relative;isolation:isolate;overflow:hidden;height:350px;border:3px solid #263348;border-radius:16px;background:radial-gradient(ellipse at 50% 12%,#374377 0%,#19263f 44%,#0d182b 100%);color:#fff9e8;box-shadow:inset 0 0 45px #080e2780,0 5px 0 #22303b;margin:16px 0 10px}
+.trade-nebula{position:absolute;inset:20% -10% -35%;background:radial-gradient(ellipse at 30% 45%,#60d9de25,transparent 50%),radial-gradient(ellipse at 75% 45%,#ce9be732,transparent 50%);transform:rotate(-20deg);pointer-events:none}
+.trade-stars{position:absolute;inset:90px 10px auto;color:#fff3c7;font-size:24px;line-height:3;word-spacing:8px;white-space:normal;opacity:.6;pointer-events:none}
+.trade-stars:after{content:'·　✧　 ˚　　 ✦　 ·　 ✧　 ˚　 ·';position:absolute;left:0;right:0;top:70px;font-size:17px;color:#8fdaea}
+.trade-scene-heading{position:relative;z-index:3;text-align:center;padding:22px 14px 0;pointer-events:none}
+.trade-scene-heading small{font:11px var(--pixel);letter-spacing:2px;color:#a9c5e0}.trade-scene-heading h4{font:25px var(--px);margin:8px 0;color:#fff5d3;text-shadow:0 3px #080e27}
+.trade-scene-heading p{font-size:11px;margin:0;color:#c6d5eb;line-height:1.5}
+.trade-flights{position:absolute;inset:0;z-index:2}.trade-flight{position:absolute;top:190px;left:20%;width:120px;transform:translateX(-50%);text-align:center}
+.trade-flight-guest{left:80%}.trade-kite-art{height:78px;font:44px var(--px);color:#d4e9e8;filter:drop-shadow(0 0 14px #8fe4ea55);position:relative;z-index:2}
+.trade-kite-art svg{width:90px;height:78px}.trade-kite-art .almatic-icon{height:90px;max-width:100px;margin:auto;image-rendering:pixelated}
+.trade-flight-caption{margin-top:14px;font-size:12px;text-shadow:0 2px #0c1528;transition:opacity .3s}.trade-flight-caption b,.trade-flight-caption small{display:block}.trade-flight-caption small{font-size:10px;color:#b5c9dc;margin-top:4px}
+.trade-orb{position:absolute;width:24px;height:24px;border-radius:50%;left:calc(50% - 12px);top:28px;background:#f4ffff;box-shadow:0 0 14px 6px #baf7ff,0 0 35px 13px #5bbde688,0 0 65px 22px #558bea55;opacity:0;z-index:3}
+.trade-flight-guest .trade-orb{background:#fff8da;box-shadow:0 0 14px 6px #ffecbb,0 0 35px 13px #e7a3dc88,0 0 65px 22px #ad7fe655}
+.trade-orb:after{content:'';position:absolute;left:7px;top:14px;width:10px;height:90px;background:linear-gradient(#baf7ffbb,transparent);border-radius:50%;filter:blur(2px)}
+.trade-flight-guest .trade-orb:after{background:linear-gradient(#ffecbbbb,transparent)}
+.trade-horizon{position:absolute;bottom:-75px;left:-10%;width:120%;height:120px;border-radius:50%;border-top:1px solid #8fd8e444;background:radial-gradient(ellipse at 50% 0,#487ea333,#12223d);box-shadow:0 -12px 45px #73dbea15}
+.is-flying .trade-flight-host{animation:trade-host-path var(--flight-duration) cubic-bezier(.4,0,.25,1) both}.is-flying .trade-flight-guest{animation:trade-guest-path var(--flight-duration) cubic-bezier(.4,0,.25,1) both}
+.is-flying .trade-kite-art{animation:trade-dissolve var(--flight-duration) both}.is-flying .trade-orb{animation:trade-light var(--flight-duration) both}.is-flying .trade-flight-caption{animation:trade-captions var(--flight-duration) both}
+.is-flying .trade-stars{animation:trade-starlight var(--flight-duration) both}.is-flying .trade-nebula{animation:trade-nebula var(--flight-duration) both}
+.trade-landed .trade-flight-host{left:80%}.trade-landed .trade-flight-guest{left:20%}
+.trade-flight-guest .trade-kite-art{scale:-1 1}
+/* At arrival the new owners' companions turn toward each other again. */
+.trade-landed .trade-flight-host .trade-kite-art{scale:-1 1}.trade-landed .trade-flight-guest .trade-kite-art{scale:1 1}
+@keyframes trade-host-path{0%,15%{left:20%;transform:translate(-50%,0)}42%{left:30%;transform:translate(-50%,-105px)}58%{left:57%;transform:translate(-50%,-125px)}78%{left:79%;transform:translate(-50%,-75px)}94%,100%{left:80%;transform:translate(-50%,0)}}
+@keyframes trade-guest-path{0%,15%{left:80%;transform:translate(-50%,0)}42%{left:70%;transform:translate(-50%,-80px)}58%{left:43%;transform:translate(-50%,-100px)}78%{left:21%;transform:translate(-50%,-60px)}94%,100%{left:20%;transform:translate(-50%,0)}}
+@keyframes trade-dissolve{0%,8%{opacity:1;transform:scale(1);filter:brightness(1)}20%{opacity:.9;transform:scale(.65);filter:brightness(5) drop-shadow(0 0 18px #fff)}29%,76%{opacity:0;transform:scale(.1);filter:brightness(6)}89%{opacity:1;transform:scale(1.12);filter:brightness(2)}100%{opacity:1;transform:scale(1);filter:brightness(1)}}
+@keyframes trade-light{0%,10%{opacity:0;transform:scale(.2)}23%,73%{opacity:1;transform:scale(1)}82%{opacity:1;transform:scale(1.7)}95%,100%{opacity:0;transform:scale(.1)}}
+@keyframes trade-captions{0%,8%,98%,100%{opacity:1}20%,88%{opacity:0}}
+@keyframes trade-starlight{0%,100%{opacity:.6;transform:translateY(0)}50%{opacity:1;transform:translateY(20px)}}
+@keyframes trade-nebula{0%,100%{opacity:.65}55%{opacity:1.8}}
+@media(max-width:480px){.trade-scene{height:330px}.trade-scene-heading h4{font-size:21px}.trade-flight{width:96px;top:182px}.trade-flight-caption{font-size:11px}.trade-kite-art .almatic-icon{max-width:86px}}
+@media(prefers-reduced-motion:reduce){.trade-scene:not(.trade-motion) *{animation:none!important;transition:none!important}}
+/* Generated RGBA VFX atlas: cyan comet | gold comet / encounter seal | stardust. */
+.trade-scene{--flight-duration:7.2s;height:410px;background-image:linear-gradient(#08112644,#0d163033),url('assets/vfx/trade-sky.png');background-size:cover;background-position:center;border-color:#8da3b577;box-shadow:inset 0 0 36px #03081770,0 5px 0 #22303b}
+.trade-scene-heading{padding-top:25px;text-shadow:0 2px 8px #030817}.trade-scene-heading h4{font-size:26px}.trade-scene-heading p{max-width:370px;margin:auto}
+.trade-flight{top:250px}.trade-stars{opacity:.22;top:130px;font-size:16px}.trade-horizon{opacity:.15}.trade-nebula{opacity:.3}
+.trade-comet{position:absolute;width:116px;height:145px;left:calc(50% - 58px);top:-12px;opacity:0;z-index:3;pointer-events:none;background-size:200% 200%;background-position:0 0;filter:drop-shadow(0 0 10px #6ee8ff77);transform-origin:50% 32%}
+.trade-flight-guest .trade-comet{background-position:100% 0;filter:drop-shadow(0 0 10px #ffe8ad77)}
+.trade-convergence{pointer-events:none;position:absolute;z-index:2;left:calc(50% - 110px);top:86px;width:220px;height:220px;opacity:0;background-size:200% 200%;background-position:0 100%;mix-blend-mode:screen}
+.trade-shockwave{pointer-events:none;position:absolute;z-index:1;width:120px;height:70px;border-radius:50%;border:2px solid #fff1d1;box-shadow:0 0 16px #a4f4ff,inset 0 0 18px #b4ddff;left:calc(50% - 60px);top:160px;opacity:0}
+.trade-burst{position:absolute;left:50%;top:195px;z-index:4;pointer-events:none}.trade-burst-spark{position:absolute;left:-13px;top:-13px;width:26px;height:26px;background-size:200% 200%;background-position:100% 100%;opacity:0}
+.trade-motes{position:absolute;top:20px;left:50%;z-index:2;pointer-events:none}.trade-mote{position:absolute;width:var(--size);height:var(--size);left:calc(var(--size) / -2);top:0;opacity:0;background-size:200% 200%;background-position:100% 100%;filter:drop-shadow(0 0 4px #aff5ff)}
+.trade-scene.is-flying .trade-convergence,.trade-scene.is-flying .trade-mote,.trade-scene.is-flying .trade-burst-spark{background-image:url('assets/vfx/trade-celestial.png')}
+.trade-comet-frames{display:block;width:100%;height:100%;background-size:400% 400%;background-repeat:no-repeat;background-position:0 0}
+.trade-flight-guest .trade-comet-frames{filter:sepia(1) saturate(2) hue-rotate(345deg)}
+.is-flying .trade-comet-frames{background-image:url('assets/vfx/trade-spirit-16.png');animation:trade-spirit-form .4s steps(1,end) .65s forwards,trade-spirit-loop .72s steps(1,end) 1.05s 6,trade-spirit-fade .4s steps(1,end) 5.37s forwards}
+/* Each stop selects one cell, with no interpolation or sliding between frames. */
+@keyframes trade-spirit-form{0%{background-position:0% 0%}25%{background-position:33.333333% 0%}50%{background-position:66.666667% 0%}75%,100%{background-position:100% 0%}}
+@keyframes trade-spirit-loop{0%{background-position:0% 33.333333%}12.5%{background-position:33.333333% 33.333333%}25%{background-position:66.666667% 33.333333%}37.5%{background-position:100% 33.333333%}50%{background-position:0% 66.666667%}62.5%{background-position:33.333333% 66.666667%}75%{background-position:66.666667% 66.666667%}87.5%,100%{background-position:100% 66.666667%}}
+@keyframes trade-spirit-fade{0%{background-position:0% 100%}25%{background-position:33.333333% 100%}50%{background-position:66.666667% 100%}75%,100%{background-position:100% 100%}}
+.is-flying .trade-comet{animation:trade-comet-reveal var(--flight-duration) both}.is-flying .trade-flight-host .trade-comet{rotate:-12deg}.is-flying .trade-flight-guest .trade-comet{rotate:12deg}
+.is-flying .trade-convergence{animation:trade-encounter var(--flight-duration) ease-in-out both}.is-flying .trade-shockwave{animation:trade-wave var(--flight-duration) ease-out both}
+.is-flying .trade-burst-spark{animation:trade-shards var(--flight-duration) ease-out both}.is-flying .trade-mote{animation:trade-mote-stream 1.4s var(--delay) ease-out infinite}
+.is-flying .trade-motes{animation:trade-motes-window var(--flight-duration) both}.is-flying .trade-orb:after{opacity:.2}
+.trade-landed .trade-kite-art{filter:drop-shadow(0 0 15px #b5e9ff88)}
+@keyframes trade-comet-reveal{0%,9%{opacity:0;transform:scale(.2)}23%{opacity:.95;transform:scale(.75)}43%,65%{opacity:1;transform:scale(1.1)}79%{opacity:.8;transform:scale(.75)}91%,100%{opacity:0;transform:scale(.15)}}
+@keyframes trade-encounter{0%,36%{opacity:0;transform:scale(.1) rotate(-35deg)}49%{opacity:.8;transform:scale(.75) rotate(-5deg)}58%{opacity:1;transform:scale(1.2) rotate(5deg)}76%{opacity:0;transform:scale(1.6) rotate(20deg)}100%{opacity:0;transform:scale(1.6)}}
+@keyframes trade-wave{0%,48%{opacity:0;transform:scale(.1)}56%{opacity:.8;transform:scale(.9)}76%,100%{opacity:0;transform:scale(4)}}
+@keyframes trade-shards{0%,50%{opacity:0;transform:translate(0,0) scale(.1)}56%{opacity:1;transform:translate(0,0) scale(.8)}79%,100%{opacity:0;transform:translate(var(--bx),var(--by)) rotate(var(--spin)) scale(.2)}}
+@keyframes trade-mote-stream{0%{opacity:0;transform:translate(0,0) scale(.4)}18%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(100deg) scale(.1)}}
+@keyframes trade-motes-window{0%,12%,92%,100%{opacity:0}24%,78%{opacity:1}}
+@media(max-width:480px){.trade-scene{height:385px}.trade-flight{top:230px}.trade-scene-heading h4{font-size:22px}.trade-comet{width:96px;height:120px;left:calc(50% - 48px)}.trade-convergence{width:180px;height:180px;left:calc(50% - 90px);top:90px}.trade-burst{top:180px}.trade-mote:nth-child(n+7){display:none}}
 .collection-info{font-size:12px;color:var(--muted);line-height:1.6}
 .recent-match{width:100%;text-align:left;border:3px solid var(--line);border-radius:9px;background:#fffdf4;padding:12px;margin:7px 0;overflow-wrap:anywhere}
 .recent-match b,.recent-match span,.recent-match small{display:block}
@@ -703,7 +782,7 @@ function observe(players){
   if(prev){
    if(q.respawn&&!prev.respawn){
     const cut=state.events.find(e=>e.loserId===q.id),killer=cut&&state.players.find(k=>k.id===cut.winnerId);
-    fx.push({kind:'fall',x:prev.x,y:prev.y,anchorX:q.anchorX,color:colors[prev.color??q.color],soul:prev.soul,born:performance.now(),spin:prev.x<500?-1:1});
+    fx.push({kind:'fall',x:prev.x,y:prev.y,anchorX:q.anchorX,color:colors[prev.color??q.color],soul:prev.soul,facing:prev.facing,born:performance.now(),spin:prev.x<500?-1:1});
     if(mine){cutBy=killer?'por '+killer.name+' · ':'';if(!roundShown)banner('CORTADO!',cutBy+(rounds?'você volta na próxima rodada':'volta em 3'),'bad',!rounds,'cut');hurt();sfx('lost');}
     else if(cut?.winnerId===me){floatText(prev.x,prev.y-20,'+100','#b78928',28,1400);if(!roundShown)banner('Você cortou '+q.name+'!','+100 pontos','good');sfx('cut');}
     else sfx('event');
@@ -716,7 +795,7 @@ function observe(players){
    if((q.perfectDodges||0)>(prev.perfectDodges||0)){floatText(shown.x,shown.y-84,'ESQUIVA PERFEITA!','#1f7fd0',mine?22:16,1200);if(mine){sfx('back');banner('Esquiva perfeita!','Contra-ataque: o próximo acerto é crítico','good');}}
    if((q.dodges||0)>(prev.dodges||0))fx.push({kind:'ghost',x:prev.x,y:prev.y,color:colors[q.color],p:{...q},born:performance.now()});
   }
-  seen.set(q.id,{color:q.color,soul:q.soul,hp:q.hp,respawn:q.respawn,hits:q.hits,strikes:q.strikes,crits:q.crits,dodges:q.dodges,perfectDodges:q.perfectDodges,x:q.respawn?prev?.x??shown.x:shown.x,y:q.respawn?prev?.y??shown.y:shown.y});
+  seen.set(q.id,{color:q.color,soul:q.soul,facing:shown.facing??q.facing,hp:q.hp,respawn:q.respawn,hits:q.hits,strikes:q.strikes,crits:q.crits,dodges:q.dodges,perfectDodges:q.perfectDodges,x:q.respawn?prev?.x??shown.x:shown.x,y:q.respawn?prev?.y??shown.y:shown.y});
  }
 }
 function drawFx(t){
@@ -728,7 +807,7 @@ function drawFx(t){
   else{const fall=k*k*420,x=f.x+f.spin*k*60+Math.sin(k*12)*14,y=f.y+fall;ctx.globalAlpha=k<.75?1:1-(k-.75)/.25;
    ctx.strokeStyle='#3f6e6590';ctx.lineWidth=1.2;ctx.setLineDash([3,4]);ctx.beginPath();ctx.moveTo(x,y+30);ctx.quadraticCurveTo(x-f.spin*40,y+90,x-f.spin*20,y+160);ctx.stroke();ctx.setLineDash([]);
    if(k<.25){ctx.strokeStyle='#fff4a8';ctx.lineWidth=3;for(let i=0;i<8;i++){const a=i*Math.PI/4,r=20+k*160;ctx.beginPath();ctx.moveTo(f.x+Math.cos(a)*r*.5,f.y+Math.sin(a)*r*.5);ctx.lineTo(f.x+Math.cos(a)*r,f.y+Math.sin(a)*r);ctx.stroke();}}
-   ctx.translate(x,y);ctx.rotate(f.spin*k*7);ctx.scale(1-k*.3,1-k*.3);kiteBody(f.color,t,{soul:f.soul,hitFlash:.25});}
+   ctx.translate(x,y);ctx.rotate(f.spin*k*7);ctx.scale(1-k*.3,1-k*.3);kiteBody(f.color,t,{soul:f.soul,facing:f.facing,hitFlash:.25});}
   ctx.restore();}
 }
 let lastHud=0,rankingKey='',eventsKey='',playerKey='';

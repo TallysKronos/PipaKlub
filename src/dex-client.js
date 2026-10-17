@@ -1,5 +1,6 @@
 // Public field guide. Browsing never grants or equips inventory items.
 const dexEntries=ART_CONFIG.dex.entries,dexOverlay=$('pipaDex');
+const reportedSightings=new Set();
 let dexEntry=dexEntries[0],dexState='idle',dexElapsed=0,dexLast=0,dexFrame=0,dexOpen=false,dexPlaying=!art.reduced,dexVersion=0;
 const dexLabels={idle:'Repouso',flight:'Voo',skill:'Habilidade',hurt:'Dano',victory:'Vitória',greet:'Saudação',happy:'Alegria'};
 function dexStates(entry){return entry.sequence?['idle']:Object.keys(art.atlases[entry.atlas].animations);}
@@ -10,7 +11,7 @@ function renderDexItems(entry){
  $('dexItemsHint').textContent=companion?'Nozinho acompanha o Sr. Assis e não aparece como selvagem. Sua rabiola fica registrada aqui como item associado.':'Rabiola prevista para encontros com '+entry.name+' selvagem. Os drops ainda não estão disponíveis.';
  // Rabiolas dropped by trail bosses show where to earn them and whether this device already has them.
  const bossDrop=id=>{try{return trails.stages.find(st=>st.drop===id)||null;}catch{return null;}},owned=id=>{try{return trailProgress.items.includes(id);}catch{return false;}};
- if(!companion&&(entry.items||[]).some(bossDrop))$('dexItemsHint').textContent='Esta rabiola é o prêmio de um chefe das Trilhas: vença-o pela primeira vez para conquistá-la.';
+ if(!companion&&(entry.items||[]).some(bossDrop))$('dexItemsHint').textContent='Vença o chefe das Trilhas pela primeira vez para conquistar esta rabiola neste aparelho. A recompensa local ainda não pode ser usada na invocação online.';
  const cards=(entry.items||[]).map(id=>ART_CONFIG.items.find(item=>item.id===id)).filter(Boolean).map(item=>{
   const card=uiElement('article',undefined,'dex-item'),stage=uiElement('div',undefined,'dex-item-art'),image=document.createElement('img');
   image.alt=item.name;image.width=209;image.height=209;image.loading='lazy';image.decoding='async';
@@ -44,6 +45,7 @@ async function loadDexArt(retry=false){
  if(loaded)drawDex();
 }
 function selectDex(entry){
+ if(playerAccount&&entry.model){const key=(playerAccount.profile?.id||'')+':'+entry.model;if(!reportedSightings.has(key)){reportedSightings.add(key);accountRequest('sighting',{modelId:entry.model}).catch(()=>reportedSightings.delete(key));}}
  dexEntry=entry;dexState='idle';dexElapsed=0;dexLast=0;$('dexDetails').hidden=false;
  $('dexDetails').scrollTop=0;dexOverlay.querySelector('.dex-layout').scrollTop=0;
  $('dexNumber').textContent='REGISTRO '+String(dexEntries.indexOf(entry)+1).padStart(3,'0');

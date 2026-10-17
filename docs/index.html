@@ -217,6 +217,85 @@ body.in-match .arena canvas{cursor:crosshair}
 .inventory-card small{display:block;font-size:10px;color:var(--muted);margin-top:4px}
 .inventory-card .secondary{font-size:11px;padding:7px 5px}
 .inventory-card .skill-info{font-size:10px;line-height:1.5;margin:8px 0;color:var(--teal-d)}
+.trade-panel{margin:22px 0;padding-bottom:22px;border-bottom:2px dashed #b5aa89}
+.summon-entry{margin:24px 0;padding:20px;border:2px solid #aa8f57;border-radius:14px;background:linear-gradient(135deg,#fff5d7,#f0e3c9)}.summon-entry h3{margin:5px 0}.summon-entry p{font-size:12px}
+.summon-steps{display:flex;gap:6px;flex-wrap:wrap;margin:16px 0}.summon-steps span{padding:5px 10px;background:#e9dfc5;color:#7d775e;border-radius:20px;font-size:11px}.summon-steps span.current{background:#23445a;color:#fff6d8;box-shadow:0 2px 0 #102b3d}
+#summonMenu{background:linear-gradient(135deg,#f7e5bb,#fff9e8);padding:24px 18px;border:2px solid #b6a16e;border-radius:14px}#summonMenu .primary{width:100%;margin-bottom:12px}.summon-help{font-size:11px;line-height:1.6;color:var(--muted)}
+.summon-seen-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.summon-seen-card{position:relative;border:2px solid #988d6e;border-radius:13px;padding:14px 8px;background:#fff9ea;text-align:center;min-width:0}.summon-seen-card.available{border-color:#43827c;box-shadow:0 3px 0 #315e59;background:#eff8e8}.summon-seen-card.locked{background:#ece7d9}.summon-seen-card.locked .summon-seen-art{filter:grayscale(.55)}.summon-seen-card b,.summon-seen-card small{display:block}.summon-seen-card small{font-size:10px;color:var(--muted);margin-top:5px}.summon-seen-art{height:95px}.summon-seen-art .almatic-icon{width:100px;height:95px;margin:auto}.summon-availability{position:absolute;top:5px;right:5px;border:2px solid #a3915b;border-radius:50%;background:#fff6da;width:40px;height:40px;display:grid;place-items:center;font-size:19px}.summon-item-badge{width:34px;height:34px;object-fit:contain;image-rendering:pixelated}
+.summon-pair{display:grid;grid-template-columns:minmax(100px,.8fr) minmax(0,1.2fr);gap:16px;align-items:start}.summon-chosen{position:sticky;top:0;padding:16px 8px;border:2px solid #94a996;border-radius:14px;background:radial-gradient(#f3f6d5,#e4ead4);text-align:center}.summon-chosen-art{height:150px}.summon-chosen-art .almatic-icon{max-width:160px;margin:auto}.summon-chosen small{font-size:10px;color:var(--muted)}.summon-pair .summon-tail-list{grid-template-columns:1fr}.summon-ribbon-image{width:100%;max-width:100px;height:90px;object-fit:contain;image-rendering:pixelated}.summon-pair .summon-tail.incompatible{opacity:.55}.summon-pair .summon-tail.selected{border:3px solid #2a8b7b;background:#e2f4d7;box-shadow:0 0 0 3px #79b99555}#summonSelectedTail{font-size:12px;padding:10px;background:#f1e5c6;border-radius:8px}#summonStart{width:100%;margin-top:12px}
+@media(max-width:480px){.summon-seen-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.summon-pair{gap:10px;grid-template-columns:100px minmax(0,1fr)}.summon-chosen-art{height:90px}.summon-chosen h3{font-size:15px}.summon-pair .summon-tail{padding:10px 6px}.summon-pair .summon-tail b{font-size:12px}.summon-pair .summon-tail .secondary{font-size:11px}}
+.summon-npc{display:flex;gap:12px;align-items:center}.summon-npc canvas{width:105px;height:125px;flex:none;image-rendering:pixelated}.summon-npc h3{margin:6px 0}.summon-npc p{font-size:12px;line-height:1.6}.summon-warning{font-size:12px;line-height:1.7;background:#ffe9bc;border:2px solid #b88548;padding:12px;border-radius:10px}
+.summon-tail-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.summon-tail{padding:14px;border:2px solid #8c927b;background:#fffaf0;border-radius:12px;text-align:center}.summon-tail b,.summon-tail small{display:block}.summon-tail small{font-size:11px;color:var(--muted);margin:8px 0}.summon-tail-art{height:80px;position:relative}.summon-tail-art:after{content:'〰';position:absolute;bottom:0;right:12%;font-size:36px;color:#c58b36;rotate:70deg}.summon-tail-art .almatic-icon{width:90px;height:80px;margin:auto}.summon-tail.damaged{filter:grayscale(.8);opacity:.7}
+.summon-ritual-header{display:flex;justify-content:space-between;align-items:center;gap:12px}.summon-ritual-header span{font-size:12px;border-radius:20px;background:#e9d7ac;padding:6px 10px}
+.summon-board{position:relative;max-width:360px;width:100%;aspect-ratio:1;margin:12px auto;border:3px solid #8fa8b8;border-radius:50%;background:radial-gradient(#11274788,#0c172f88),url('assets/vfx/trade-sky.png') center/cover;touch-action:none;user-select:none;box-shadow:0 0 0 7px #1b2e4914,inset 0 0 40px #78d4e32a}
+.summon-board svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}.summon-stroke,.summon-guide{fill:none;stroke-linecap:round;stroke-linejoin:round}.summon-stroke{stroke:#fff5bb;stroke-width:4;filter:drop-shadow(0 0 5px #8cedff)}.summon-guide{stroke:#b9dce2;stroke-width:2;stroke-dasharray:4 8;opacity:.5}
+.summon-node{position:absolute;width:54px;height:54px;translate:-50% -50%;border:2px solid #a8d8e6;border-radius:50%;background:radial-gradient(#c6f2f455,#19314a);color:#fff9e0;font:20px var(--pixel);box-shadow:0 0 15px #7bd2f122;cursor:crosshair;padding:0;touch-action:none}.summon-node.on{border-color:#ffe6a0;background:#f6d46d;color:#29334c;box-shadow:0 0 22px #ffe6a088}.summon-node:disabled{cursor:wait;opacity:.85}
+#summonPatternHint{font-size:12px;line-height:1.6;overflow-wrap:anywhere}#summonMessage{font-size:13px;line-height:1.6;min-height:24px}.summon-reveal{position:relative;overflow:hidden;border:3px solid #8ca5bb;border-radius:16px;background:#10213a url('assets/vfx/trade-sky.png') center/cover;padding:28px 18px;color:#fff7d7;text-align:center}.summon-reveal h3{font-size:24px;text-shadow:0 2px #10213a}.summon-reveal p{font-size:12px}.summon-new-pipamon{width:170px;height:170px;margin:0 auto;animation:summon-arrive 1.5s ease-out both;filter:drop-shadow(0 0 22px #a7efff)}.summon-new-pipamon .almatic-icon{width:100%;height:100%}@keyframes summon-arrive{0%{opacity:0;scale:.2;filter:brightness(8) blur(9px)}65%{opacity:1;scale:1.1;filter:brightness(2) blur(0)}100%{opacity:1;scale:1;filter:brightness(1)}}
+@media(max-width:480px){.summon-tail-list{grid-template-columns:1fr}.summon-npc canvas{width:80px;height:110px}.summon-node{width:48px;height:48px}.summon-ritual-header{flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){.summon-new-pipamon{animation:none}}
+.trade-panel h3{margin-bottom:4px}.trade-intro{font-size:12px;line-height:1.65;color:var(--ink-soft)}
+.trade-scene{--flight-duration:5.8s;position:relative;isolation:isolate;overflow:hidden;height:350px;border:3px solid #263348;border-radius:16px;background:radial-gradient(ellipse at 50% 12%,#374377 0%,#19263f 44%,#0d182b 100%);color:#fff9e8;box-shadow:inset 0 0 45px #080e2780,0 5px 0 #22303b;margin:16px 0 10px}
+.trade-nebula{position:absolute;inset:20% -10% -35%;background:radial-gradient(ellipse at 30% 45%,#60d9de25,transparent 50%),radial-gradient(ellipse at 75% 45%,#ce9be732,transparent 50%);transform:rotate(-20deg);pointer-events:none}
+.trade-stars{position:absolute;inset:90px 10px auto;color:#fff3c7;font-size:24px;line-height:3;word-spacing:8px;white-space:normal;opacity:.6;pointer-events:none}
+.trade-stars:after{content:'·　✧　 ˚　　 ✦　 ·　 ✧　 ˚　 ·';position:absolute;left:0;right:0;top:70px;font-size:17px;color:#8fdaea}
+.trade-scene-heading{position:relative;z-index:3;text-align:center;padding:22px 14px 0;pointer-events:none}
+.trade-scene-heading small{font:11px var(--pixel);letter-spacing:2px;color:#a9c5e0}.trade-scene-heading h4{font:25px var(--px);margin:8px 0;color:#fff5d3;text-shadow:0 3px #080e27}
+.trade-scene-heading p{font-size:11px;margin:0;color:#c6d5eb;line-height:1.5}
+.trade-flights{position:absolute;inset:0;z-index:2}.trade-flight{position:absolute;top:190px;left:20%;width:120px;transform:translateX(-50%);text-align:center}
+.trade-flight-guest{left:80%}.trade-kite-art{height:78px;font:44px var(--px);color:#d4e9e8;filter:drop-shadow(0 0 14px #8fe4ea55);position:relative;z-index:2}
+.trade-kite-art svg{width:90px;height:78px}.trade-kite-art .almatic-icon{height:90px;max-width:100px;margin:auto;image-rendering:pixelated}
+.trade-flight-caption{margin-top:14px;font-size:12px;text-shadow:0 2px #0c1528;transition:opacity .3s}.trade-flight-caption b,.trade-flight-caption small{display:block}.trade-flight-caption small{font-size:10px;color:#b5c9dc;margin-top:4px}
+.trade-orb{position:absolute;width:24px;height:24px;border-radius:50%;left:calc(50% - 12px);top:28px;background:#f4ffff;box-shadow:0 0 14px 6px #baf7ff,0 0 35px 13px #5bbde688,0 0 65px 22px #558bea55;opacity:0;z-index:3}
+.trade-flight-guest .trade-orb{background:#fff8da;box-shadow:0 0 14px 6px #ffecbb,0 0 35px 13px #e7a3dc88,0 0 65px 22px #ad7fe655}
+.trade-orb:after{content:'';position:absolute;left:7px;top:14px;width:10px;height:90px;background:linear-gradient(#baf7ffbb,transparent);border-radius:50%;filter:blur(2px)}
+.trade-flight-guest .trade-orb:after{background:linear-gradient(#ffecbbbb,transparent)}
+.trade-horizon{position:absolute;bottom:-75px;left:-10%;width:120%;height:120px;border-radius:50%;border-top:1px solid #8fd8e444;background:radial-gradient(ellipse at 50% 0,#487ea333,#12223d);box-shadow:0 -12px 45px #73dbea15}
+.is-flying .trade-flight-host{animation:trade-host-path var(--flight-duration) cubic-bezier(.4,0,.25,1) both}.is-flying .trade-flight-guest{animation:trade-guest-path var(--flight-duration) cubic-bezier(.4,0,.25,1) both}
+.is-flying .trade-kite-art{animation:trade-dissolve var(--flight-duration) both}.is-flying .trade-orb{animation:trade-light var(--flight-duration) both}.is-flying .trade-flight-caption{animation:trade-captions var(--flight-duration) both}
+.is-flying .trade-stars{animation:trade-starlight var(--flight-duration) both}.is-flying .trade-nebula{animation:trade-nebula var(--flight-duration) both}
+.trade-landed .trade-flight-host{left:80%}.trade-landed .trade-flight-guest{left:20%}
+.trade-flight-guest .trade-kite-art{scale:-1 1}
+/* At arrival the new owners' companions turn toward each other again. */
+.trade-landed .trade-flight-host .trade-kite-art{scale:-1 1}.trade-landed .trade-flight-guest .trade-kite-art{scale:1 1}
+@keyframes trade-host-path{0%,15%{left:20%;transform:translate(-50%,0)}42%{left:30%;transform:translate(-50%,-105px)}58%{left:57%;transform:translate(-50%,-125px)}78%{left:79%;transform:translate(-50%,-75px)}94%,100%{left:80%;transform:translate(-50%,0)}}
+@keyframes trade-guest-path{0%,15%{left:80%;transform:translate(-50%,0)}42%{left:70%;transform:translate(-50%,-80px)}58%{left:43%;transform:translate(-50%,-100px)}78%{left:21%;transform:translate(-50%,-60px)}94%,100%{left:20%;transform:translate(-50%,0)}}
+@keyframes trade-dissolve{0%,8%{opacity:1;transform:scale(1);filter:brightness(1)}20%{opacity:.9;transform:scale(.65);filter:brightness(5) drop-shadow(0 0 18px #fff)}29%,76%{opacity:0;transform:scale(.1);filter:brightness(6)}89%{opacity:1;transform:scale(1.12);filter:brightness(2)}100%{opacity:1;transform:scale(1);filter:brightness(1)}}
+@keyframes trade-light{0%,10%{opacity:0;transform:scale(.2)}23%,73%{opacity:1;transform:scale(1)}82%{opacity:1;transform:scale(1.7)}95%,100%{opacity:0;transform:scale(.1)}}
+@keyframes trade-captions{0%,8%,98%,100%{opacity:1}20%,88%{opacity:0}}
+@keyframes trade-starlight{0%,100%{opacity:.6;transform:translateY(0)}50%{opacity:1;transform:translateY(20px)}}
+@keyframes trade-nebula{0%,100%{opacity:.65}55%{opacity:1.8}}
+@media(max-width:480px){.trade-scene{height:330px}.trade-scene-heading h4{font-size:21px}.trade-flight{width:96px;top:182px}.trade-flight-caption{font-size:11px}.trade-kite-art .almatic-icon{max-width:86px}}
+@media(prefers-reduced-motion:reduce){.trade-scene:not(.trade-motion) *{animation:none!important;transition:none!important}}
+/* Generated RGBA VFX atlas: cyan comet | gold comet / encounter seal | stardust. */
+.trade-scene{--flight-duration:7.2s;height:410px;background-image:linear-gradient(#08112644,#0d163033),url('assets/vfx/trade-sky.png');background-size:cover;background-position:center;border-color:#8da3b577;box-shadow:inset 0 0 36px #03081770,0 5px 0 #22303b}
+.trade-scene-heading{padding-top:25px;text-shadow:0 2px 8px #030817}.trade-scene-heading h4{font-size:26px}.trade-scene-heading p{max-width:370px;margin:auto}
+.trade-flight{top:250px}.trade-stars{opacity:.22;top:130px;font-size:16px}.trade-horizon{opacity:.15}.trade-nebula{opacity:.3}
+.trade-comet{position:absolute;width:116px;height:145px;left:calc(50% - 58px);top:-12px;opacity:0;z-index:3;pointer-events:none;background-size:200% 200%;background-position:0 0;filter:drop-shadow(0 0 10px #6ee8ff77);transform-origin:50% 32%}
+.trade-flight-guest .trade-comet{background-position:100% 0;filter:drop-shadow(0 0 10px #ffe8ad77)}
+.trade-convergence{pointer-events:none;position:absolute;z-index:2;left:calc(50% - 110px);top:86px;width:220px;height:220px;opacity:0;background-size:200% 200%;background-position:0 100%;mix-blend-mode:screen}
+.trade-shockwave{pointer-events:none;position:absolute;z-index:1;width:120px;height:70px;border-radius:50%;border:2px solid #fff1d1;box-shadow:0 0 16px #a4f4ff,inset 0 0 18px #b4ddff;left:calc(50% - 60px);top:160px;opacity:0}
+.trade-burst{position:absolute;left:50%;top:195px;z-index:4;pointer-events:none}.trade-burst-spark{position:absolute;left:-13px;top:-13px;width:26px;height:26px;background-size:200% 200%;background-position:100% 100%;opacity:0}
+.trade-motes{position:absolute;top:20px;left:50%;z-index:2;pointer-events:none}.trade-mote{position:absolute;width:var(--size);height:var(--size);left:calc(var(--size) / -2);top:0;opacity:0;background-size:200% 200%;background-position:100% 100%;filter:drop-shadow(0 0 4px #aff5ff)}
+.trade-scene.is-flying .trade-convergence,.trade-scene.is-flying .trade-mote,.trade-scene.is-flying .trade-burst-spark{background-image:url('assets/vfx/trade-celestial.png')}
+.trade-comet-frames{display:block;width:100%;height:100%;background-size:400% 400%;background-repeat:no-repeat;background-position:0 0}
+.trade-flight-guest .trade-comet-frames{filter:sepia(1) saturate(2) hue-rotate(345deg)}
+.is-flying .trade-comet-frames{background-image:url('assets/vfx/trade-spirit-16.png');animation:trade-spirit-form .4s steps(1,end) .65s forwards,trade-spirit-loop .72s steps(1,end) 1.05s 6,trade-spirit-fade .4s steps(1,end) 5.37s forwards}
+/* Each stop selects one cell, with no interpolation or sliding between frames. */
+@keyframes trade-spirit-form{0%{background-position:0% 0%}25%{background-position:33.333333% 0%}50%{background-position:66.666667% 0%}75%,100%{background-position:100% 0%}}
+@keyframes trade-spirit-loop{0%{background-position:0% 33.333333%}12.5%{background-position:33.333333% 33.333333%}25%{background-position:66.666667% 33.333333%}37.5%{background-position:100% 33.333333%}50%{background-position:0% 66.666667%}62.5%{background-position:33.333333% 66.666667%}75%{background-position:66.666667% 66.666667%}87.5%,100%{background-position:100% 66.666667%}}
+@keyframes trade-spirit-fade{0%{background-position:0% 100%}25%{background-position:33.333333% 100%}50%{background-position:66.666667% 100%}75%,100%{background-position:100% 100%}}
+.is-flying .trade-comet{animation:trade-comet-reveal var(--flight-duration) both}.is-flying .trade-flight-host .trade-comet{rotate:-12deg}.is-flying .trade-flight-guest .trade-comet{rotate:12deg}
+.is-flying .trade-convergence{animation:trade-encounter var(--flight-duration) ease-in-out both}.is-flying .trade-shockwave{animation:trade-wave var(--flight-duration) ease-out both}
+.is-flying .trade-burst-spark{animation:trade-shards var(--flight-duration) ease-out both}.is-flying .trade-mote{animation:trade-mote-stream 1.4s var(--delay) ease-out infinite}
+.is-flying .trade-motes{animation:trade-motes-window var(--flight-duration) both}.is-flying .trade-orb:after{opacity:.2}
+.trade-landed .trade-kite-art{filter:drop-shadow(0 0 15px #b5e9ff88)}
+@keyframes trade-comet-reveal{0%,9%{opacity:0;transform:scale(.2)}23%{opacity:.95;transform:scale(.75)}43%,65%{opacity:1;transform:scale(1.1)}79%{opacity:.8;transform:scale(.75)}91%,100%{opacity:0;transform:scale(.15)}}
+@keyframes trade-encounter{0%,36%{opacity:0;transform:scale(.1) rotate(-35deg)}49%{opacity:.8;transform:scale(.75) rotate(-5deg)}58%{opacity:1;transform:scale(1.2) rotate(5deg)}76%{opacity:0;transform:scale(1.6) rotate(20deg)}100%{opacity:0;transform:scale(1.6)}}
+@keyframes trade-wave{0%,48%{opacity:0;transform:scale(.1)}56%{opacity:.8;transform:scale(.9)}76%,100%{opacity:0;transform:scale(4)}}
+@keyframes trade-shards{0%,50%{opacity:0;transform:translate(0,0) scale(.1)}56%{opacity:1;transform:translate(0,0) scale(.8)}79%,100%{opacity:0;transform:translate(var(--bx),var(--by)) rotate(var(--spin)) scale(.2)}}
+@keyframes trade-mote-stream{0%{opacity:0;transform:translate(0,0) scale(.4)}18%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(100deg) scale(.1)}}
+@keyframes trade-motes-window{0%,12%,92%,100%{opacity:0}24%,78%{opacity:1}}
+@media(max-width:480px){.trade-scene{height:385px}.trade-flight{top:230px}.trade-scene-heading h4{font-size:22px}.trade-comet{width:96px;height:120px;left:calc(50% - 48px)}.trade-convergence{width:180px;height:180px;left:calc(50% - 90px);top:90px}.trade-burst{top:180px}.trade-mote:nth-child(n+7){display:none}}
 .collection-info{font-size:12px;color:var(--muted);line-height:1.6}
 .recent-match{width:100%;text-align:left;border:3px solid var(--line);border-radius:9px;background:#fffdf4;padding:12px;margin:7px 0;overflow-wrap:anywhere}
 .recent-match b,.recent-match span,.recent-match small{display:block}
@@ -577,6 +656,9 @@ function createEngine() {
   function move(p,input,dt,wind=0){
     p.strike=false;if(p.respawn)return;
     dt=clamp(Number(dt)||0,0,.25);const i=sanitizeInput(input);
+    // Persist visual direction through idle/vertical movement and network snapshots.
+    if(Math.abs(i.x)>.05)p.facing=i.x<0?-1:1;
+    else if(p.facing!==-1&&p.facing!==1)p.facing=1;
     p.attackCooldown=Math.max(0,(p.attackCooldown||0)-dt);
     p.skillCooldown=Math.max(0,(p.skillCooldown||0)-dt);
     p.skillTime=Math.max(0,(p.skillTime||0)-dt);
@@ -585,7 +667,7 @@ function createEngine() {
     if(i.dodge&&p.dodgeCooldown<=0&&p.energy>=DODGE.cost){const d=Math.hypot(i.x,i.y);p.energy-=DODGE.cost;p.dodgeCooldown=DODGE.cooldown;p.evade=DODGE.time;p.dodgeDir=d>.1?{x:i.x/d,y:i.y/d}:{x:0,y:-1};p.dodges=(p.dodges||0)+1;}
     if(i.skill&&p.skillCooldown<=0&&p.energy>=25){
       p.energy-=25;p.skillCooldown=7;p.skillTime=type(p).duration;p.skillCount=(p.skillCount||0)+1;
-      if(p.color===1){p.x=clamp(p.x+i.skill*96,55,945);p.dashDirection=i.skill;}
+      if(p.color===1){p.x=clamp(p.x+i.skill*96,55,945);p.dashDirection=i.skill;p.facing=i.skill;}
     }
     const m=Math.max(1,Math.hypot(i.x,i.y)),ox=p.x,oy=p.y;
     if(p.evade>0&&p.dodgeDir){p.x=clamp(p.x+(p.dodgeDir.x*165*DODGE.speed+wind)*dt,55,945);p.y=clamp(p.y+p.dodgeDir.y*165*DODGE.speed*dt,70,480);}
@@ -698,6 +780,13 @@ function createArtAssets(config){
   context.drawImage(image,r.x,r.y,r.w,r.h,x+(width-w)/2,y+(height-h)/2,w,h);context.imageSmoothingEnabled=smoothing;return true;
  }
  function creature(context,color,time,x=-56,y=-44,size=112,player={},victory=false){
+  const left=player.facing===-1||(player.facing!==1&&player.input?.x<-.05);
+  if(!left)return drawCreature(context,color,time,x,y,size,player,victory);
+  context.save();
+  try{context.translate(2*x+size,0);context.scale(-1,1);return drawCreature(context,color,time,x,y,size,player,victory);}
+  finally{context.restore();}
+ }
+ function drawCreature(context,color,time,x=-56,y=-44,size=112,player={},victory=false){
   if(special(player.soul)){
    const a=atlases[player.soul];if(!images.has(player.soul))load(player.soul);
    const hurt=player.hitFlash>0,skill=player.skillCooldown>6.37;
@@ -963,7 +1052,7 @@ function observe(players){
   if(prev){
    if(q.respawn&&!prev.respawn){
     const cut=state.events.find(e=>e.loserId===q.id),killer=cut&&state.players.find(k=>k.id===cut.winnerId);
-    fx.push({kind:'fall',x:prev.x,y:prev.y,anchorX:q.anchorX,color:colors[prev.color??q.color],soul:prev.soul,born:performance.now(),spin:prev.x<500?-1:1});
+    fx.push({kind:'fall',x:prev.x,y:prev.y,anchorX:q.anchorX,color:colors[prev.color??q.color],soul:prev.soul,facing:prev.facing,born:performance.now(),spin:prev.x<500?-1:1});
     if(mine){cutBy=killer?'por '+killer.name+' · ':'';if(!roundShown)banner('CORTADO!',cutBy+(rounds?'você volta na próxima rodada':'volta em 3'),'bad',!rounds,'cut');hurt();sfx('lost');}
     else if(cut?.winnerId===me){floatText(prev.x,prev.y-20,'+100','#b78928',28,1400);if(!roundShown)banner('Você cortou '+q.name+'!','+100 pontos','good');sfx('cut');}
     else sfx('event');
@@ -976,7 +1065,7 @@ function observe(players){
    if((q.perfectDodges||0)>(prev.perfectDodges||0)){floatText(shown.x,shown.y-84,'ESQUIVA PERFEITA!','#1f7fd0',mine?22:16,1200);if(mine){sfx('back');banner('Esquiva perfeita!','Contra-ataque: o próximo acerto é crítico','good');}}
    if((q.dodges||0)>(prev.dodges||0))fx.push({kind:'ghost',x:prev.x,y:prev.y,color:colors[q.color],p:{...q},born:performance.now()});
   }
-  seen.set(q.id,{color:q.color,soul:q.soul,hp:q.hp,respawn:q.respawn,hits:q.hits,strikes:q.strikes,crits:q.crits,dodges:q.dodges,perfectDodges:q.perfectDodges,x:q.respawn?prev?.x??shown.x:shown.x,y:q.respawn?prev?.y??shown.y:shown.y});
+  seen.set(q.id,{color:q.color,soul:q.soul,facing:shown.facing??q.facing,hp:q.hp,respawn:q.respawn,hits:q.hits,strikes:q.strikes,crits:q.crits,dodges:q.dodges,perfectDodges:q.perfectDodges,x:q.respawn?prev?.x??shown.x:shown.x,y:q.respawn?prev?.y??shown.y:shown.y});
  }
 }
 function drawFx(t){
@@ -988,7 +1077,7 @@ function drawFx(t){
   else{const fall=k*k*420,x=f.x+f.spin*k*60+Math.sin(k*12)*14,y=f.y+fall;ctx.globalAlpha=k<.75?1:1-(k-.75)/.25;
    ctx.strokeStyle='#3f6e6590';ctx.lineWidth=1.2;ctx.setLineDash([3,4]);ctx.beginPath();ctx.moveTo(x,y+30);ctx.quadraticCurveTo(x-f.spin*40,y+90,x-f.spin*20,y+160);ctx.stroke();ctx.setLineDash([]);
    if(k<.25){ctx.strokeStyle='#fff4a8';ctx.lineWidth=3;for(let i=0;i<8;i++){const a=i*Math.PI/4,r=20+k*160;ctx.beginPath();ctx.moveTo(f.x+Math.cos(a)*r*.5,f.y+Math.sin(a)*r*.5);ctx.lineTo(f.x+Math.cos(a)*r,f.y+Math.sin(a)*r);ctx.stroke();}}
-   ctx.translate(x,y);ctx.rotate(f.spin*k*7);ctx.scale(1-k*.3,1-k*.3);kiteBody(f.color,t,{soul:f.soul,hitFlash:.25});}
+   ctx.translate(x,y);ctx.rotate(f.spin*k*7);ctx.scale(1-k*.3,1-k*.3);kiteBody(f.color,t,{soul:f.soul,facing:f.facing,hitFlash:.25});}
   ctx.restore();}
 }
 let lastHud=0,rankingKey='',eventsKey='',playerKey='';
@@ -1085,7 +1174,7 @@ async function openAccount(){
  if(mode){toast('Saia da partida para abrir sua coleção.');return;}
  keys={};closeKiteStory();$('accountMessage').textContent='';accountModal.style.display='flex';renderAccountDialog();$('closeAccount').focus();await refreshAccount();await loadRecentMatches();
 }
-function closeAccount(){closeKiteStory();accountModal.style.display='none';$('accountPassword').value='';$('accountButton').focus();}
+function closeAccount(){if(typeof leaveSummoner==='function'&&summonOpen)leaveSummoner();closeKiteStory();accountModal.style.display='none';$('accountPassword').value='';$('accountButton').focus();}
 $('accountButton').onclick=openAccount;$('closeAccount').onclick=closeAccount;
 accountModal.onclick=e=>{if(e.target===accountModal)closeAccount();};
 $('switchAccount').onclick=()=>{accountTab=accountTab==='login'?'signup':'login';$('accountMessage').textContent='';renderAccountDialog();};
@@ -1103,7 +1192,7 @@ $('roomRules').onchange=()=>$('rulesDescription').textContent=$('roomRules').val
 addEventListener('keydown',e=>{
  if(accountModal.style.display!=='flex')return;
  if(e.key==='Escape'){e.preventDefault();closeAccount();}
- if(e.key==='Tab'){const items=[...accountModal.querySelectorAll('button,input')].filter(el=>!el.disabled&&el.getClientRects().length);const first=items[0],last=items.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}
+ if(e.key==='Tab'){const items=[...accountModal.querySelectorAll('button,input,select')].filter(el=>!el.disabled&&el.getClientRects().length);const first=items[0],last=items.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}
 });
 async function initializeAccounts(){
  if(typeof STATIC_HOST!=='undefined'&&STATIC_HOST)return;
@@ -1201,8 +1290,266 @@ async function rematch(){
  }catch(e){button.disabled=false;toast(e.name==='AbortError'?'A conexão demorou. Tente novamente.':e.message);}
 }
 
+// Poll only while the authenticated collection is visible; server owns all state.
+let currentTrade=null,tradeBusy=false,tradeSelection='',tradeAnimating=false,lastCompletedTrade=null,tradeFlightTimer;
+const tradePanel=document.createElement('section');
+tradePanel.className='trade-panel';
+tradePanel.innerHTML='<h3>Encontro nas estrelas</h3><p class="trade-intro">Uma pipa de cada lado. Dois novos caminhos pelo céu.</p><div id="tradeScene" class="trade-scene"><div class="trade-nebula" aria-hidden="true"></div><div class="trade-stars" aria-hidden="true">✦ · ˚ 　 ✧ 　　 · ✦ 　 ˚ · 　 ✧</div><div class="trade-scene-heading"><small>CLUBE DAS TROCAS · 1 POR 1</small><h4 id="tradeSceneTitle">O céu conecta vocês</h4><p id="tradeSceneHint">Convide um amigo para começar.</p></div><div id="tradeFlights" class="trade-flights"></div><div class="trade-horizon" aria-hidden="true"></div></div><button class="secondary" id="tradeReplay" hidden>Rever o encontro</button><p class="trade-intro">Escolham suas colecionáveis e confirmem as duas ofertas. Uma alteração desfaz as confirmações. O convite dura 10 minutos.</p><button class="secondary" id="tradeCreate">Criar convite</button><label for="tradeCode">Código do convite</label><input id="tradeCode" maxlength="12" autocomplete="off"><button class="secondary" id="tradeJoin">Entrar</button><div id="tradeState" role="status" aria-live="polite"></div><div id="tradeActions"></div><button class="secondary" id="tradeHistory">Histórico de trocas</button><div id="tradeHistoryList"></div>';
+$('collectionMain').insertBefore(tradePanel,$('inventoryList'));
+const convergence=uiElement('div',undefined,'trade-convergence');convergence.setAttribute('aria-hidden','true');$('tradeScene').append(convergence);
+const shockwave=uiElement('div',undefined,'trade-shockwave');shockwave.setAttribute('aria-hidden','true');$('tradeScene').append(shockwave);
+const burst=uiElement('div',undefined,'trade-burst');burst.setAttribute('aria-hidden','true');
+for(let i=0;i<16;i++){
+ const spark=uiElement('i',undefined,'trade-burst-spark'),angle=i*Math.PI/8;
+ spark.style.setProperty('--bx',Math.round(Math.cos(angle)*140)+'px');spark.style.setProperty('--by',Math.round(Math.sin(angle)*95)+'px');spark.style.setProperty('--spin',i*27+'deg');burst.append(spark);
+}
+$('tradeScene').append(burst);
+function tradeKiteArt(k){
+ const image=uiElement('div',undefined,'trade-kite-art');
+ if(!k){image.textContent='?';return image;}
+ const color=Number.isInteger(k.color)?k.color:({ 'Mata verde':1,'Azulão':2,'Raio de sol':3 })[k.name]??0;
+ if(typeof art!=='undefined')image.innerHTML=art.markup(color);
+ else image.textContent='◇';
+ return image;
+}
+function paintTradeScene(t,completed=false){
+ const flights=$('tradeFlights');flights.replaceChildren();
+ for(const side of ['host','guest']){
+  const k=t?.[side+'Kite'],name=t?.[(completed?(side==='host'?'guest':'host'):side)+'Name']||(side==='host'?'Você':'Seu amigo');
+  const flight=uiElement('div',undefined,'trade-flight trade-flight-'+side);
+  flight.append(tradeKiteArt(k),uiElement('span',undefined,'trade-orb'));
+  const comet=uiElement('span',undefined,'trade-comet');comet.setAttribute('aria-hidden','true');comet.append(uiElement('span',undefined,'trade-comet-frames'));flight.append(comet);
+  const motes=uiElement('div',undefined,'trade-motes');motes.setAttribute('aria-hidden','true');
+  for(let i=0;i<12;i++){
+   const mote=uiElement('i',undefined,'trade-mote'),angle=i*2.4;
+   mote.style.setProperty('--dx',Math.round(Math.cos(angle)*(24+i*3))+'px');mote.style.setProperty('--dy',(35+i*6)+'px');mote.style.setProperty('--delay',(i*.12)+'s');mote.style.setProperty('--size',(12+i%4*5)+'px');motes.append(mote);
+  }
+  flight.append(motes);
+  const caption=uiElement('div',undefined,'trade-flight-caption');
+  caption.append(uiElement('b',k?.name||'Escolha uma pipa'),uiElement('small',name));
+  flight.append(caption);flights.append(flight);
+ }
+ $('tradeSceneTitle').textContent=completed?'Novos ventos, novas histórias':t?.hostKite&&t?.guestKite?'Prontas para um novo caminho':'Duas pipas, um encontro';
+ $('tradeSceneHint').textContent=completed?'Troca concluída. As pipas já estão nas novas coleções.':t?.hostKite&&t?.guestKite?'Confiram as ofertas e confirmem dos dois lados.':'Cada participante oferece uma colecionável.';
+}
+function playTradeFlight(t,forceMotion=false){
+ if(!t?.hostKite||!t?.guestKite)return;
+ clearTimeout(tradeFlightTimer);lastCompletedTrade=t;tradeAnimating=true;
+ const reduced=!forceMotion&&typeof matchMedia==='function'&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const scene=$('tradeScene');scene.classList.remove('is-flying','trade-landed');paintTradeScene(t);
+ scene.classList.toggle('trade-motion',forceMotion);
+ $('tradeSceneTitle').textContent='Um encontro entre estrelas';
+ $('tradeSceneHint').textContent='Troca confirmada! As pipas seguem para seus novos donos.';
+ $('tradeReplay').hidden=true;
+ // A fresh layout restarts only this decorative animation, never the transfer.
+ if(!reduced){void scene.offsetWidth;scene.classList.add('is-flying');}
+ scene.scrollIntoView?.({behavior:reduced?'instant':'smooth',block:'center'});
+ const finish=()=>{tradeAnimating=false;scene.classList.remove('is-flying');scene.classList.add('trade-landed');paintTradeScene(t,true);$('tradeReplay').textContent=reduced?'Ver com animação':'Rever o encontro';$('tradeReplay').hidden=false;renderTrade();};
+ if(reduced)finish();else tradeFlightTimer=setTimeout(finish,7200);
+}
+async function tradeAction(action,extra={}){
+ if(tradeBusy||tradeAnimating||!playerAccount)return;tradeBusy=true;renderTrade();
+ try{const d=await accountRequest('trade',{action,code:currentTrade?.code,revision:currentTrade?.revision,...extra});
+  if(action!=='read')$('accountMessage').textContent='';
+  if(action==='history'){$('tradeHistoryList').replaceChildren(...d.trade.map(t=>{
+   const row=uiElement('div',undefined,'trade-receipt');
+   row.append(uiElement('p',t.code+' · '+tradeStatus(t.status)+' · '+new Date(t.created_at).toLocaleString()+(t.receipt?' · '+t.receipt.hostName+': '+t.receipt.hostKite.name+' ↔ '+t.receipt.guestName+': '+t.receipt.guestKite.name:'')));
+   if(t.status==='completed'&&t.receipt){const replay=uiElement('button','Rever encontro','secondary');replay.type='button';replay.onclick=()=>{if(!tradeAnimating)playTradeFlight({...t.receipt,code:t.code,status:'completed'},true);};row.append(replay);}
+   return row;
+  }));}
+  else {const previous=currentTrade;if(action!=='read')tradeSelection='';currentTrade=d.trade?{...(previous?.code===d.trade.code?previous:{}),...d.trade}:null;renderTrade();if(currentTrade?.status==='completed'&&previous?.status==='open'){playTradeFlight(currentTrade);await refreshAccount();}}
+ }catch(e){$('accountMessage').textContent=e.message;}
+ finally{tradeBusy=false;renderTrade();}
+}
+function tradeStatus(status){return ({open:'Em negociação',completed:'Concluída',cancelled:'Cancelada',expired:'Expirada'})[status]||status;}
+function renderTrade(){
+ const t=currentTrade,open=t?.status==='open';$('tradeCreate').disabled=tradeBusy||tradeAnimating||open;$('tradeJoin').disabled=tradeBusy||tradeAnimating||open;
+ if(!tradeAnimating){if(open){$('tradeScene').classList.remove('trade-landed');paintTradeScene(t);$('tradeReplay').hidden=true;}else if(!lastCompletedTrade)paintTradeScene(t);}
+ const state=$('tradeState');state.replaceChildren();const actions=$('tradeActions');actions.replaceChildren();
+ if(!t)return;
+ state.append(uiElement('p','Convite '+t.code+' · '+tradeStatus(t.status)));
+ if(!open)return;
+ state.append(uiElement('p','Expira às '+new Date(t.expiresAt).toLocaleTimeString()));
+ state.append(uiElement('p',(t.hostName||'Anfitrião')+': '+(t.hostKite?.name||'Sem oferta')+(t.hostConfirmed?' · Confirmado':'')));
+ state.append(uiElement('p',(t.guestName||'Aguardando amigo')+': '+(t.guestKite?.name||'Sem oferta')+(t.guestConfirmed?' · Confirmado':'')));
+ const select=document.createElement('select');select.setAttribute('aria-label','Sua pipa para troca');
+ const blank=document.createElement('option');blank.value='';blank.textContent='Escolha uma colecionável';select.append(blank);
+ for(const k of playerAccount?.inventory||[]){if(k.permanent||k.model.acquisition==='event')continue;const o=document.createElement('option');o.value=k.id;o.textContent=k.model.name+' · '+k.id.slice(0,8);select.append(o);}
+ select.value=tradeSelection||(t.isHost?t.hostKite:t.guestKite)?.id||'';
+ select.onchange=()=>{tradeSelection=select.value;};
+ select.disabled=tradeBusy;actions.append(select);
+ const button=(label,action,disabled=false)=>{const b=uiElement('button',label,'secondary');b.type='button';b.disabled=tradeBusy||disabled;b.onclick=action;actions.append(b);};
+ button('Oferecer pipa',()=>tradeAction('offer',{kiteId:select.value}),false);
+ button('Confirmar as duas ofertas',()=>tradeAction('confirm'),!t.hostKite||!t.guestKite||(t.isHost?t.hostConfirmed:t.guestConfirmed));
+ button('Cancelar troca',()=>tradeAction('cancel'));
+}
+$('tradeCreate').onclick=()=>tradeAction('create',{code:null});
+$('tradeJoin').onclick=()=>tradeAction('join',{code:$('tradeCode').value.trim().toUpperCase()});
+$('tradeHistory').onclick=()=>tradeAction('history');
+$('tradeReplay').onclick=()=>playTradeFlight(lastCompletedTrade,true);
+setInterval(()=>{if(playerAccount&&accountModal.style.display==='flex')tradeAction('read',{code:currentTrade?.status==='open'?currentTrade.code:null});else if(!playerAccount){clearTimeout(tradeFlightTimer);tradeAnimating=false;currentTrade=null;lastCompletedTrade=null;tradeSelection='';$('tradeReplay').hidden=true;$('tradeScene').classList.remove('is-flying','trade-landed');$('tradeHistoryList').replaceChildren();renderTrade();}},3000);
+paintTradeScene(null);
+
+// Android-style intermediate-node capture, shared by pointer and keyboard input.
+function extendSummonPath(path,node){
+ if(!Number.isInteger(node)||node<1||node>9||path.includes(node))return [...path];
+ const result=[...path],last=result.at(-1);
+ if(last){const ax=(last-1)%3,ay=Math.floor((last-1)/3),bx=(node-1)%3,by=Math.floor((node-1)/3);
+  if((ax+bx)%2===0&&(ay+by)%2===0){const mid=(ay+by)/2*3+(ax+bx)/2+1;if(!result.includes(mid)&&mid!==node)result.push(mid);}
+ }
+ result.push(node);return result;
+}
+function sampleSummonSegment(path,a,b,radius=28){
+ const dx=b.x-a.x,dy=b.y-a.y,length=dx*dx+dy*dy;
+ const hits=[];
+ for(let node=1;node<=9;node++){
+  if(path.includes(node))continue;
+  const x=50+(node-1)%3*100,y=50+Math.floor((node-1)/3)*100;
+  const t=length?Math.max(0,Math.min(1,((x-a.x)*dx+(y-a.y)*dy)/length)):0;
+  if(Math.hypot(a.x+t*dx-x,a.y+t*dy-y)<=radius)hits.push({node,t});
+ }
+ hits.sort((a,b)=>a.t-b.t);
+ return hits.reduce((result,hit)=>extendSummonPath(result,hit.node),path);
+}
+
+// Ritual sessions live only in memory: leaving/reloading cannot restart attempts.
+let summonOpen=false,summonBusy=false,summonRitual=null,summonTail=null,summonPath=[],summonPending=null,summonDrawing=null;
+let summonData={tails:[],seen:[]},summonTarget=null;
+const summonDisplayName=p=>(typeof ART_CONFIG!=='undefined'?ART_CONFIG.dex.entries.find(e=>e.model===p.modelId)?.name:null)||p.name;
+const summonSession=crypto.randomUUID();
+const summonEntry=uiElement('section',undefined,'summon-entry');
+summonEntry.innerHTML='<div class="eyebrow">O ateliê do Sr. Assis</div><h3>Uma rabiola. Uma nova história.</h3><p>Traga uma rabiola e desenhe a constelação do seu Pipamon.</p><button class="primary" id="visitSummoner">Visitar o invocador ✦</button>';
+$('collectionMain').insertBefore(summonEntry,$('inventoryList'));
+const summonRoom=uiElement('section',undefined,'summon-room');summonRoom.id='summonRoom';summonRoom.hidden=true;
+summonRoom.innerHTML='<button class="secondary" id="leaveSummoner">← Voltar à coleção</button><div class="summon-npc"><canvas id="summonAssis" width="130" height="150" aria-label="Sr. Assis, invocador"></canvas><div><div class="eyebrow">Sr. Assis · Invocador</div><h3>O chamado da rabiola</h3><p id="summonSpeech">Cada rabiola guarda uma ligação. O feitiço certo desperta quem está do outro lado.</p></div></div><p id="summonNotice" class="summon-warning">A rabiola é consumida ao iniciar. Você tem 3 tentativas. Sair, fechar ou recarregar durante o ritual deixa uma rabiola danificada, que só pode ser descartada.</p><div id="summonTailList" class="summon-tail-list"></div><div id="summonRitual" hidden><div class="summon-ritual-header"><h3 id="summonTarget"></h3><span id="summonTries"></span></div><div id="summonBoard" class="summon-board" aria-label="Constelação de nove estrelas"><svg viewBox="0 0 300 300" aria-hidden="true"><polyline id="summonGuide" class="summon-guide"/><polyline id="summonStroke" class="summon-stroke"/></svg></div><p id="summonPatternHint"></p><button class="secondary" id="summonShowPattern">Consultar feitiço</button><button class="secondary" id="summonClear">Limpar desenho</button><button class="primary" id="summonSubmit">Lançar feitiço</button></div><div id="summonReveal" class="summon-reveal" hidden></div><p id="summonMessage" role="status" aria-live="polite"></p>';
+$('accountCollection').append(summonRoom);
+const summonReload=uiElement('button','Atualizar rabiolas','secondary');summonReload.type='button';summonReload.onclick=()=>{if(!summonRitual&&!summonBusy)loadSummonTails().catch(e=>{$('summonMessage').textContent=e.message;});};summonRoom.insertBefore(summonReload,$('summonTailList'));
+const summonStages=uiElement('div');
+summonStages.innerHTML='<nav class="summon-steps" aria-label="Etapas da invocação"><span>NPC</span><span>Pipamon</span><span>Rabiola</span><span>Ascendente</span></nav><div id="summonMenu"><h3>Como posso ajudar?</h3><p>Os Pipamon que você conhece podem ouvir seu chamado.</p><button class="primary" id="summonInvoke">Invocar Pipamon ✦</button><button class="secondary" id="summonDamagedMenu">Rabiolas danificadas</button></div><section id="summonCatalog" hidden><button class="secondary" id="summonCatalogBack">← Conversar com o NPC</button><h3>Pipamon que você já viu</h3><p class="summon-help">A rabiola no card indica que você pode invocar. O cadeado indica que falta uma rabiola compatível ou que a Soul vinculada já está na coleção.</p><div id="summonSeenGrid" class="summon-seen-grid"></div></section><section id="summonPreparation" hidden><button class="secondary" id="summonPreparationBack">← Escolher outro Pipamon</button><h3>Prepare o chamado</h3><div class="summon-pair"><article id="summonChosenPipamon" class="summon-chosen"></article><div><h4>Suas rabiolas</h4><p class="summon-help">Escolha uma rabiola compatível e depois clique em Usar.</p><div id="summonTailSlot"></div></div></div><p id="summonSelectedTail" role="status">Nenhuma rabiola selecionada.</p></section><section id="summonDamaged" hidden><button class="secondary" id="summonDamagedBack">← Conversar com o NPC</button><h3>Rabiolas danificadas</h3><div id="summonDamagedList" class="summon-tail-list"></div></section>';
+summonRoom.insertBefore(summonStages,summonReload);$('summonTailSlot').append($('summonTailList'));
+const ascendantTitle=uiElement('div','Ascendente · desenhe o feitiço','eyebrow');$('summonRitual').prepend(ascendantTitle);
+function showSummonStage(stage){
+ for(const [id,key] of [['summonMenu','npc'],['summonCatalog','catalog'],['summonPreparation','preparation'],['summonDamaged','damaged'],['summonRitual','ascendant']])$(id).hidden=stage!==key;
+ $('summonNotice').hidden=!['preparation','ascendant'].includes(stage);$('summonReveal').hidden=true;
+ for(const [i,node] of [...summonStages.querySelectorAll('.summon-steps span')].entries())node.classList.toggle('current',i===['npc','catalog','preparation','ascendant'].indexOf(stage));
+}
+function summonTailArt(modelId,small=false){
+ const entry=typeof ART_CONFIG!=='undefined'?ART_CONFIG.dex.entries.find(e=>e.model===modelId):null;
+ const item=entry&&ART_CONFIG.items?.find(i=>i.pipamon===entry.id&&i.kind==='rabiola');
+ if(!item)return uiElement('span','〰','summon-ribbon-fallback');
+ const image=document.createElement('img');image.src=item.url;image.alt=item.name;image.loading='lazy';image.decoding='async';image.className=small?'summon-item-badge':'summon-ribbon-image';return image;
+}
+for(let i=1;i<=9;i++){
+ const node=uiElement('button',String(i),'summon-node');node.type='button';node.dataset.node=i;node.style.left=(50+(i-1)%3*100)/3+'%';node.style.top=(50+Math.floor((i-1)/3)*100)/3+'%';node.setAttribute('aria-label','Estrela '+i);
+ node.onclick=e=>{if(e.detail===0&&!summonBusy&&!summonPending&&summonRitual?.status==='active'){summonPath=extendSummonPath(summonPath,i);paintSummonPath();}};
+ $('summonBoard').append(node);
+}
+const summonPoints=path=>path.map(n=>[50+(n-1)%3*100,50+Math.floor((n-1)/3)*100].join(',')).join(' ');
+function paintSummonPath(){
+ $('summonStroke').setAttribute('points',summonPoints(summonPath));
+ for(const node of $('summonBoard').querySelectorAll('button')){node.classList.toggle('on',summonPath.includes(Number(node.dataset.node)));node.disabled=summonBusy||!!summonPending;}
+ $('summonClear').disabled=summonBusy||!!summonPending;$('summonSubmit').disabled=summonBusy||(!summonPath.length&&!summonPending);$('summonSubmit').textContent=summonPending?'Reenviar tentativa':'Lançar feitiço';
+}
+async function summonCall(action,extra={}){return (await accountRequest('summon',{action,sessionId:summonSession,ritualId:summonRitual?.id,...extra})).summon;}
+async function loadSummonTails(){
+ const data=await summonCall('inventory');if(!summonOpen)return;
+ summonData={...data,seen:(data.seen||[]).map(p=>({...p,name:summonDisplayName(p)})),tails:data.tails.map(t=>({...t,name:summonDisplayName(t)}))};renderSummonCatalog();renderSummonDamaged();
+ if(data.active&&!summonRitual)$('summonMessage').textContent='Um ritual anterior ainda está encerrando. Ao interromper a conexão, a rabiola fica danificada em até 45 segundos. Atualize a lista após esse prazo.';
+ if(summonTarget&&!summonRitual){summonTarget=summonData.seen.find(p=>p.modelId===summonTarget.modelId)||null;if(summonTarget)prepareSummon(summonTarget);else showSummonStage('catalog');}
+}
+function renderSummonCatalog(){
+ $('summonSeenGrid').replaceChildren(...(summonData.seen||[]).map(p=>{
+  const available=p.availableTailIds.length>0,card=uiElement('button',undefined,'summon-seen-card '+(available?'available':'locked'));card.type='button';card.dataset.modelId=p.modelId;card.setAttribute('aria-label',p.name+' · '+(available?'Rabiola disponível':'Bloqueado'));
+  const image=uiElement('div',undefined,'summon-seen-art');image.innerHTML=art.markup(p.color,p.soul);const badge=uiElement('span',undefined,'summon-availability');
+  if(available)badge.append(summonTailArt(p.modelId,true));else{badge.textContent='🔒';badge.setAttribute('aria-label','Sem rabiola compatível');}
+  card.append(image,badge,uiElement('b',p.name),uiElement('small',available?'Pode invocar':'Bloqueado'));card.onclick=()=>prepareSummon(p);return card;
+ }));
+ if(!summonData.seen?.length)$('summonSeenGrid').append(uiElement('p','Nenhum Pipamon avistado ainda. Explore a Pipa Dex ou encontre jogadores em partidas.'));
+}
+function prepareSummon(p){
+ summonTarget=p;summonTail=null;showSummonStage('preparation');$('summonStart').hidden=false;$('summonStart').disabled=true;$('summonStart').textContent='Usar rabiola → Ascendente';$('summonSelectedTail').textContent='Nenhuma rabiola selecionada.';
+ const chosen=$('summonChosenPipamon');chosen.replaceChildren();const image=uiElement('div',undefined,'summon-chosen-art');image.innerHTML=art.markup(p.color,p.soul);chosen.append(image,uiElement('h3',p.name),uiElement('small','Pipamon escolhido'));
+ $('summonTailList').replaceChildren(...summonData.tails.filter(t=>t.status==='ready').map(tail=>{
+  const compatible=p.availableTailIds.includes(tail.id),card=uiElement('article',undefined,'summon-tail '+(compatible?'compatible':'incompatible'));card.append(summonTailArt(tail.modelId),uiElement('b','Rabiola de '+tail.name));
+  card.append(uiElement('small',compatible?'Compatível':'🔒 Não pode ser usada neste chamado'));
+  const button=uiElement('button','Selecionar rabiola','secondary');button.type='button';button.disabled=!compatible||!!summonData.active||summonBusy;
+  button.onclick=()=>{summonTail=tail;for(const c of $('summonTailList').children)c.classList.toggle('selected',c===card);$('summonSelectedTail').textContent='Selecionada: rabiola de '+tail.name;$('summonStart').disabled=false;};card.append(button);return card;
+ }));
+ if(!$('summonTailList').children.length)$('summonTailList').append(uiElement('p','Você não tem rabiolas prontas para usar.'));
+ $('summonTarget').textContent=p.name;$('summonPatternHint').textContent='Feitiço: '+p.pattern.join(' → ');$('summonGuide').setAttribute('points',summonPoints(p.pattern));
+}
+function renderSummonDamaged(){
+ $('summonDamagedList').replaceChildren(...summonData.tails.filter(t=>t.status==='damaged').map(t=>{
+  const card=uiElement('article',undefined,'summon-tail damaged');card.append(summonTailArt(t.modelId),uiElement('b','Rabiola de '+t.name),uiElement('small','Danificada · somente descarte'));
+  const discard=uiElement('button','Descartar rabiola','secondary');discard.onclick=async()=>{try{await summonCall('discard',{tailId:t.id});await loadSummonTails();}catch(e){$('summonMessage').textContent=e.message;}};card.append(discard);return card;
+ }));
+ if(!$('summonDamagedList').children.length)$('summonDamagedList').append(uiElement('p','Nenhuma rabiola danificada.'));
+}
+$('summonInvoke').onclick=()=>showSummonStage('catalog');$('summonCatalogBack').onclick=()=>showSummonStage('npc');$('summonPreparationBack').onclick=()=>{summonTarget=null;summonTail=null;showSummonStage('catalog');};$('summonDamagedMenu').onclick=()=>showSummonStage('damaged');$('summonDamagedBack').onclick=()=>showSummonStage('npc');
+const summonStart=uiElement('button','Usar rabiola → Ascendente','primary');summonStart.id='summonStart';summonStart.hidden=true;$('summonPreparation').append(summonStart);
+summonStart.onclick=async()=>{
+ if(summonBusy||!summonTail)return;summonBusy=true;summonStart.disabled=true;
+ try{
+  const run=await summonCall('start',{tailId:summonTail.id,targetModelId:summonTarget.modelId});
+  // Closing while the start request was in flight must still damage this item.
+  if(!summonOpen){await summonCall('abandon',{ritualId:run.id});return;}
+  summonRitual=run;summonPath=[];summonPending=null;
+  showSummonStage('ascendant');
+  $('summonStart').hidden=true;$('summonTailList').hidden=true;$('summonBoard').hidden=false;
+  for(const id of ['summonShowPattern','summonClear','summonSubmit'])$(id).hidden=false;
+  $('summonGuide').style.display='none';$('summonPatternHint').textContent='Desenhe ligando as estrelas. Ao soltar, o feitiço é enviado. Pelo teclado, use Tab e Espaço e depois Lançar feitiço.';
+  $('summonSpeech').textContent='A rabiola foi utilizada. Concentre-se na constelação e faça o chamado!';
+  $('leaveSummoner').textContent='Sair do ritual · danifica a rabiola';updateSummonRun(run);
+ }catch(e){$('summonMessage').textContent=e.message;}finally{summonBusy=false;summonStart.disabled=false;paintSummonPath();}
+};
+function updateSummonRun(run){
+ summonRitual=run;summonReload.hidden=run.status==='active';$('summonTries').textContent=run.remaining+' de 3 tentativas restantes';
+ if(run.status==='active')return;
+ $('summonRitual').hidden=true;$('leaveSummoner').textContent='← Voltar à coleção';
+ const reveal=$('summonReveal');reveal.hidden=false;reveal.replaceChildren();
+ if(run.status==='succeeded'){
+  const sprite=uiElement('div',undefined,'summon-new-pipamon');sprite.innerHTML=art.markup(run.color,run.soul);reveal.append(sprite,uiElement('h3',run.name+' atendeu ao chamado!'),uiElement('p','Este Pipamon agora faz parte da sua coleção.'));
+  $('summonSpeech').textContent='Um novo laço nasceu. Cuide bem dessa história!';refreshAccount();
+ }else{
+  reveal.append(uiElement('h3',run.status==='failed'?'O chamado se apagou.':'O ritual foi interrompido.'),uiElement('p',run.status==='failed'?'As três tentativas terminaram. A rabiola foi consumida.':'A rabiola ficou danificada e só pode ser descartada.'));
+ }
+ summonRitual=null;summonTail=null;summonPending=null;summonPath=[];
+}
+async function submitSummon(){
+ if(summonBusy||summonRitual?.status!=='active'||(!summonPath.length&&!summonPending))return;
+ summonPending??={path:[...summonPath],requestId:crypto.randomUUID()};summonBusy=true;paintSummonPath();
+ const runId=summonRitual.id;
+ try{const run=await summonCall('attempt',summonPending);if(!summonOpen||summonRitual?.id!==runId)return;
+  summonPending=null;summonPath=[];updateSummonRun(run);$('summonMessage').textContent=run.status==='active'?'O símbolo não corresponde. Respire e tente novamente.':run.status==='succeeded'?'Invocação confirmada na sua coleção.':'';
+ }catch(e){$('summonMessage').textContent=e.message+' Reenvie a mesma tentativa para consultar o resultado, sem gastar outra.';}
+ finally{summonBusy=false;paintSummonPath();}
+}
+$('summonSubmit').onclick=submitSummon;$('summonClear').onclick=()=>{if(!summonPending){summonPath=[];paintSummonPath();}};
+$('summonShowPattern').onclick=()=>{$('summonGuide').style.display=$('summonGuide').style.display==='none'?'':'none';$('summonPatternHint').textContent=$('summonGuide').style.display==='none'?'Desenhe a constelação.':'Feitiço: '+summonRitual.pattern.join(' → ');};
+const board=$('summonBoard');
+const boardPoint=e=>{const r=board.getBoundingClientRect();return {x:(e.clientX-r.left)/r.width*300,y:(e.clientY-r.top)/r.height*300};};
+board.onpointerdown=e=>{if(e.button!==0||summonBusy||summonPending||summonRitual?.status!=='active')return;e.preventDefault();summonPath=[];summonDrawing={id:e.pointerId,point:boardPoint(e)};board.setPointerCapture(e.pointerId);summonPath=sampleSummonSegment([],summonDrawing.point,summonDrawing.point);paintSummonPath();};
+board.onpointermove=e=>{if(summonDrawing?.id!==e.pointerId)return;const point=boardPoint(e);summonPath=sampleSummonSegment(summonPath,summonDrawing.point,point);summonDrawing.point=point;paintSummonPath();};
+board.onpointerup=e=>{if(summonDrawing?.id!==e.pointerId)return;summonDrawing=null;submitSummon();};
+board.onpointercancel=()=>{summonDrawing=null;summonPath=[];paintSummonPath();};
+async function openSummoner(){
+ if(!playerAccount||mode)return;keys={};summonOpen=true;$('collectionMain').hidden=true;summonRoom.hidden=false;$('summonReveal').hidden=true;$('summonRitual').hidden=true;$('summonTailList').hidden=false;$('summonMessage').textContent='';$('leaveSummoner').focus();
+ $('leaveSummoner').textContent='← Voltar à coleção';$('summonSpeech').textContent='Cada rabiola guarda uma ligação. O feitiço certo desperta quem está do outro lado.';
+ summonReload.hidden=false;
+ summonTarget=null;summonTail=null;showSummonStage('npc');
+ try{await loadSummonTails();await art.load('sr-assis-poses');if(summonOpen){const c=$('summonAssis');art.draw(c.getContext('2d'),'sr-assis-poses','welcome',0,0,c.width,c.height,true);}}catch(e){$('summonMessage').textContent=e.message;}
+}
+function leaveSummoner(){
+ const run=summonRitual;summonOpen=false;summonRitual=null;summonTail=null;summonPending=null;summonDrawing=null;summonRoom.hidden=true;$('collectionMain').hidden=false;
+ if(run?.status==='active')summonCall('abandon',{ritualId:run.id}).catch(()=>{});
+}
+$('visitSummoner').onclick=openSummoner;$('leaveSummoner').onclick=leaveSummoner;
+setInterval(async()=>{if(!summonOpen||summonRitual?.status!=='active')return;const id=summonRitual.id;try{const run=await summonCall('touch');if(summonRitual?.id===id&&run.status!=='active')updateSummonRun(run);}catch{}},12000);
+addEventListener('pagehide',()=>{if(summonRitual?.status==='active'&&typeof navigator!=='undefined')navigator.sendBeacon('/account/summon',new Blob([JSON.stringify({action:'abandon',ritualId:summonRitual.id,sessionId:summonSession})],{type:'application/json'}));});
+
 // Public field guide. Browsing never grants or equips inventory items.
 const dexEntries=ART_CONFIG.dex.entries,dexOverlay=$('pipaDex');
+const reportedSightings=new Set();
 let dexEntry=dexEntries[0],dexState='idle',dexElapsed=0,dexLast=0,dexFrame=0,dexOpen=false,dexPlaying=!art.reduced,dexVersion=0;
 const dexLabels={idle:'Repouso',flight:'Voo',skill:'Habilidade',hurt:'Dano',victory:'Vitória',greet:'Saudação',happy:'Alegria'};
 function dexStates(entry){return entry.sequence?['idle']:Object.keys(art.atlases[entry.atlas].animations);}
@@ -1213,7 +1560,7 @@ function renderDexItems(entry){
  $('dexItemsHint').textContent=companion?'Nozinho acompanha o Sr. Assis e não aparece como selvagem. Sua rabiola fica registrada aqui como item associado.':'Rabiola prevista para encontros com '+entry.name+' selvagem. Os drops ainda não estão disponíveis.';
  // Rabiolas dropped by trail bosses show where to earn them and whether this device already has them.
  const bossDrop=id=>{try{return trails.stages.find(st=>st.drop===id)||null;}catch{return null;}},owned=id=>{try{return trailProgress.items.includes(id);}catch{return false;}};
- if(!companion&&(entry.items||[]).some(bossDrop))$('dexItemsHint').textContent='Esta rabiola é o prêmio de um chefe das Trilhas: vença-o pela primeira vez para conquistá-la.';
+ if(!companion&&(entry.items||[]).some(bossDrop))$('dexItemsHint').textContent='Vença o chefe das Trilhas pela primeira vez para conquistar esta rabiola neste aparelho. A recompensa local ainda não pode ser usada na invocação online.';
  const cards=(entry.items||[]).map(id=>ART_CONFIG.items.find(item=>item.id===id)).filter(Boolean).map(item=>{
   const card=uiElement('article',undefined,'dex-item'),stage=uiElement('div',undefined,'dex-item-art'),image=document.createElement('img');
   image.alt=item.name;image.width=209;image.height=209;image.loading='lazy';image.decoding='async';
@@ -1247,6 +1594,7 @@ async function loadDexArt(retry=false){
  if(loaded)drawDex();
 }
 function selectDex(entry){
+ if(playerAccount&&entry.model){const key=(playerAccount.profile?.id||'')+':'+entry.model;if(!reportedSightings.has(key)){reportedSightings.add(key);accountRequest('sighting',{modelId:entry.model}).catch(()=>reportedSightings.delete(key));}}
  dexEntry=entry;dexState='idle';dexElapsed=0;dexLast=0;$('dexDetails').hidden=false;
  $('dexDetails').scrollTop=0;dexOverlay.querySelector('.dex-layout').scrollTop=0;
  $('dexNumber').textContent='REGISTRO '+String(dexEntries.indexOf(entry)+1).padStart(3,'0');

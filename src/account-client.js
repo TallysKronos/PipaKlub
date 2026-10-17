@@ -56,7 +56,7 @@ async function openAccount(){
  if(mode){toast('Saia da partida para abrir sua coleção.');return;}
  keys={};closeKiteStory();$('accountMessage').textContent='';accountModal.style.display='flex';renderAccountDialog();$('closeAccount').focus();await refreshAccount();await loadRecentMatches();
 }
-function closeAccount(){closeKiteStory();accountModal.style.display='none';$('accountPassword').value='';$('accountButton').focus();}
+function closeAccount(){if(typeof leaveSummoner==='function'&&summonOpen)leaveSummoner();closeKiteStory();accountModal.style.display='none';$('accountPassword').value='';$('accountButton').focus();}
 $('accountButton').onclick=openAccount;$('closeAccount').onclick=closeAccount;
 accountModal.onclick=e=>{if(e.target===accountModal)closeAccount();};
 $('switchAccount').onclick=()=>{accountTab=accountTab==='login'?'signup':'login';$('accountMessage').textContent='';renderAccountDialog();};
@@ -74,7 +74,7 @@ $('roomRules').onchange=()=>$('rulesDescription').textContent=$('roomRules').val
 addEventListener('keydown',e=>{
  if(accountModal.style.display!=='flex')return;
  if(e.key==='Escape'){e.preventDefault();closeAccount();}
- if(e.key==='Tab'){const items=[...accountModal.querySelectorAll('button,input')].filter(el=>!el.disabled&&el.getClientRects().length);const first=items[0],last=items.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}
+ if(e.key==='Tab'){const items=[...accountModal.querySelectorAll('button,input,select')].filter(el=>!el.disabled&&el.getClientRects().length);const first=items[0],last=items.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}
 });
 async function initializeAccounts(){
  if(typeof STATIC_HOST!=='undefined'&&STATIC_HOST)return;

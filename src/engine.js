@@ -62,6 +62,9 @@ export function createEngine() {
   function move(p,input,dt,wind=0){
     p.strike=false;if(p.respawn)return;
     dt=clamp(Number(dt)||0,0,.25);const i=sanitizeInput(input);
+    // Persist visual direction through idle/vertical movement and network snapshots.
+    if(Math.abs(i.x)>.05)p.facing=i.x<0?-1:1;
+    else if(p.facing!==-1&&p.facing!==1)p.facing=1;
     p.attackCooldown=Math.max(0,(p.attackCooldown||0)-dt);
     p.skillCooldown=Math.max(0,(p.skillCooldown||0)-dt);
     p.skillTime=Math.max(0,(p.skillTime||0)-dt);
@@ -70,7 +73,7 @@ export function createEngine() {
     if(i.dodge&&p.dodgeCooldown<=0&&p.energy>=DODGE.cost){const d=Math.hypot(i.x,i.y);p.energy-=DODGE.cost;p.dodgeCooldown=DODGE.cooldown;p.evade=DODGE.time;p.dodgeDir=d>.1?{x:i.x/d,y:i.y/d}:{x:0,y:-1};p.dodges=(p.dodges||0)+1;}
     if(i.skill&&p.skillCooldown<=0&&p.energy>=25){
       p.energy-=25;p.skillCooldown=7;p.skillTime=type(p).duration;p.skillCount=(p.skillCount||0)+1;
-      if(p.color===1){p.x=clamp(p.x+i.skill*96,55,945);p.dashDirection=i.skill;}
+      if(p.color===1){p.x=clamp(p.x+i.skill*96,55,945);p.dashDirection=i.skill;p.facing=i.skill;}
     }
     const m=Math.max(1,Math.hypot(i.x,i.y)),ox=p.x,oy=p.y;
     if(p.evade>0&&p.dodgeDir){p.x=clamp(p.x+(p.dodgeDir.x*165*DODGE.speed+wind)*dt,55,945);p.y=clamp(p.y+p.dodgeDir.y*165*DODGE.speed*dt,70,480);}

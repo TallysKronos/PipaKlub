@@ -5,6 +5,18 @@ import {createNetworkView} from './src/network-view.js';
 const e=createEngine();
 // The test duel crosses at an open angle with a still kite: a clean golden-centre cut, 24 x 1.2 = 28.8.
 const CLEAN=100-24*1.2;
+test('facing follows horizontal steering and dash, persists at rest, and reaches network observers',()=>{
+ const p=e.player('Direção',1,'facing',1000);
+ e.move(p,{x:-1},.1);assert.equal(p.facing,-1);
+ e.move(p,{y:1},.1);assert.equal(p.facing,-1);
+ e.move(p,{x:.01},.1);assert.equal(p.facing,-1,'tiny analog noise does not turn the character');
+ e.move(p,{},.1);assert.equal(p.facing,-1);
+ e.move(p,{x:1},.1);assert.equal(p.facing,1);
+ e.move(p,{skill:-1},0);assert.equal(p.facing,-1);
+ const s=e.create(1000);s.players=[p];assert.equal(e.visible(s).players[0].facing,-1);
+ const view=createNetworkView(e);view.receive(s,p.id,1000);assert.equal(view.render(1016,{x:1},.016)[0].facing,1,'own prediction turns immediately');
+ assert.equal(p.facing,-1,'prediction does not change authority');
+});
 function duel(){const s=e.create(1000),a=e.player('A',0,'a',1000),b=e.player('B',1,'b',1000);Object.assign(a,{x:700,y:180,anchorX:90,input:{cut:true}});Object.assign(b,{x:300,y:180,anchorX:910});s.players=[a,b];return {s,a,b};}
 
 test('only a valid line crossing deals damage; kite proximity, ground intersections and parallel lines do not',()=>{

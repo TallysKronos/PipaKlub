@@ -18,6 +18,13 @@ export function createArtAssets(config){
   context.drawImage(image,r.x,r.y,r.w,r.h,x+(width-w)/2,y+(height-h)/2,w,h);context.imageSmoothingEnabled=smoothing;return true;
  }
  function creature(context,color,time,x=-56,y=-44,size=112,player={},victory=false){
+  const left=player.facing===-1||(player.facing!==1&&player.input?.x<-.05);
+  if(!left)return drawCreature(context,color,time,x,y,size,player,victory);
+  context.save();
+  try{context.translate(2*x+size,0);context.scale(-1,1);return drawCreature(context,color,time,x,y,size,player,victory);}
+  finally{context.restore();}
+ }
+ function drawCreature(context,color,time,x=-56,y=-44,size=112,player={},victory=false){
   if(special(player.soul)){
    const a=atlases[player.soul];if(!images.has(player.soul))load(player.soul);
    const hurt=player.hitFlash>0,skill=player.skillCooldown>6.37;

@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
+import {createHash} from 'node:crypto';
 import {parseHTML} from 'linkedom';
 import {createAssetHandler} from './src/static-assets.js';
 import {artConfig} from './scripts/art-build.mjs';
@@ -40,9 +41,32 @@ test('skip, invitations, keyboard blocking and image failure do not prevent play
 test('arena draws actual atlas frames, restores smoothing, and reduced motion freezes the selected creature',async()=>{
  const a=app({reduced:true,seen:true});await a.settle();a.run("art.creature($('sky').getContext('2d'),2,0)");a.run("art.creature($('sky').getContext('2d'),2,1200)");const d=a.draws.filter(d=>d.canvas==='sky');assert.equal(d.length,2);assert.deepEqual(d[0].args.slice(1),d[1].args.slice(1));assert.match(a.run('kiteSVG(colors[2])'),/almatic-icon/);assert.match(a.run('kiteSVG(colors[2])'),/idle\.png\?v=/);
 });
+test('left-facing starter and event sprites mirror around their own center without leaking canvas transforms',async()=>{
+ const a=app({seen:true});await a.settle();await a.run("art.load('flautrevo')");
+ a.run("var mirrorCalls=[];var mirrorCtx={imageSmoothingEnabled:true,save(){mirrorCalls.push('save')},restore(){mirrorCalls.push('restore')},translate(x,y){mirrorCalls.push(['translate',x,y])},scale(x,y){mirrorCalls.push(['scale',x,y])},drawImage(){mirrorCalls.push('draw')}}");
+ for(const soul of [null,'flautrevo']){
+  a.run('mirrorCalls=[];art.creature(mirrorCtx,0,200,10,20,80,'+JSON.stringify({soul,facing:-1})+')');
+  const calls=JSON.parse(a.run('JSON.stringify(mirrorCalls)'));
+  assert.deepEqual(calls,['save',['translate',100,0],['scale',-1,1],'draw','restore']);
+  assert.equal(a.run('mirrorCtx.imageSmoothingEnabled'),true);
+  a.run('mirrorCalls=[];art.creature(mirrorCtx,0,200,10,20,80,'+JSON.stringify({soul,facing:1})+')');
+  assert.equal(a.run("mirrorCalls.join(',')"),'draw');
+ }
+});
 test('asset route serves every real PNG with hash caching, HEAD and ETag; unknown files cannot be read',async()=>{
  const serve=createAssetHandler();for(const a of Object.values(artConfig().atlases)){const url='https://game.test/'+a.meta.url,r=await serve(new Request(url));assert.equal(r.status,200);assert.equal(r.headers.get('content-type'),'image/png');assert.match(r.headers.get('cache-control'),/immutable/);const bytes=new Uint8Array(await r.arrayBuffer());assert.deepEqual([...bytes.slice(0,8)],[137,80,78,71,13,10,26,10]);const head=await serve(new Request(url,{method:'HEAD'}));assert.equal((await head.arrayBuffer()).byteLength,0);const cached=await serve(new Request(url,{headers:{'if-none-match':r.headers.get('etag')}}));assert.equal(cached.status,304);const file='docs/'+a.meta.url.split('?')[0];assert.ok(fs.existsSync(file));assert.deepEqual(fs.readFileSync(file),Buffer.from(bytes));}
  assert.equal((await serve(new Request('https://game.test/assets/.env'))).status,404);assert.equal((await serve(new Request('https://game.test/assets/characters/sr-assis/poses.png',{method:'POST'}))).status,405);assert.equal(await serve(new Request('https://game.test/api/create')),null);
+});
+test('generated trade textures retain alpha, ship in Pages and are served by the asset allowlist',async()=>{
+ const serve=createAssetHandler();
+ for(const name of ['trade-celestial','trade-sky','trade-spirit-16']){
+  const file='vfx/'+name+'.png',bytes=fs.readFileSync('assets/'+file),hash=createHash('sha256').update(bytes).digest('hex').slice(0,12);
+  assert.deepEqual(fs.readFileSync('docs/assets/'+file),bytes);
+  if(name!=='trade-sky'){assert.equal(bytes[25],6,'atlas is RGBA');assert.equal(bytes.readUInt32BE(16),bytes.readUInt32BE(20),'atlas cells use a square grid');}
+  const r=await serve(new Request('https://game.test/assets/'+file+'?v='+hash));assert.equal(r.status,200);assert.match(r.headers.get('cache-control'),/immutable/);assert.deepEqual(Buffer.from(await r.arrayBuffer()),bytes);
+  assert.equal((await serve(new Request('https://game.test/assets/'+file,{method:'HEAD'}))).status,200);
+ }
+ const css=fs.readFileSync('src/index.html','utf8');assert.match(css,/trade-celestial\.png/);assert.match(css,/trade-sky\.png/);
 });
 
 test('special Souls load only on demand and animate all five states using their real atlas rectangles',async()=>{

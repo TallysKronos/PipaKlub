@@ -18,7 +18,7 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
    if(r.status===429)throw new AccountError('Muitas tentativas. Aguarde um pouco e tente novamente.',429);
    if(data?.error_code==='email_not_confirmed')throw new AccountError('Confirme seu e-mail antes de entrar.',403);
    if(data?.code?.startsWith('PGRST')||data?.code==='42883')throw new AccountError('O banco de contas ainda precisa ser configurado.',503);
-   if(message.includes('Saia da partida')||message.includes('outra partida')||message.includes('colecionável')||message.includes('coleção')||message.includes('caracteres'))throw new AccountError(message,409);
+   if(message.startsWith('Invocação:')||message.startsWith('Troca:')||message.includes('Saia da partida')||message.includes('outra partida')||message.includes('colecionável')||message.includes('coleção')||message.includes('caracteres'))throw new AccountError(message,409);
    if(data?.error_code==='over_email_send_rate_limit'||data?.error_code==='email_address_not_authorized')throw new AccountError('O envio de confirmação está indisponível. O administrador precisa configurar o e-mail do jogo.',503);
    throw new AccountError(r.status>=500?'O serviço de contas está indisponível. Tente novamente.':'Não foi possível concluir. Confira os dados e tente novamente.',r.status>=500?503:400);
   }return data;
@@ -27,7 +27,7 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
   if(!admin)return remote('/rest/v1/rpc/'+name,{method:'POST',body,token});
   try{return await gameDatabase.rpc(name,body);}catch(e){
    const message=String(e.message||'');
-   if(e.code==='P0001'&&/Saia da partida|outra partida|colecionável|coleção|caracteres|Partida encerrada/.test(message))throw new AccountError(message,409);
+   if(e.code==='P0001'&&/Troca:|Saia da partida|outra partida|colecionável|coleção|caracteres|Partida encerrada/.test(message))throw new AccountError(message,409);
    throw new AccountError('O banco do jogo não respondeu. Aguarde e tente novamente.',503);
   }
  }
@@ -88,6 +88,28 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
    if(action==='logout'){const values=cookieValues(request),access=values['__Host-pipa_access']||values.pipa_access;if(access){sessions.delete(access);try{await remote('/auth/v1/logout',{method:'POST',token:access});}catch{}}return json({ok:true},200,makeCookies(request,null));}
    const who=await identity(request,true);
    if(!who)throw new AccountError('Entre na sua conta para continuar.',401);
+   if(action==='sighting'){
+    if(typeof b.modelId!=='string'||!/^[a-z0-9-]{1,80}$/.test(b.modelId))throw new AccountError('Pipamon inválido.');
+    await rpc('record_player_sighting',{p_model:b.modelId},who.access);return json({ok:true},200,who.setCookies);
+   }
+   if(action==='summon'){
+    if(!['inventory','start','attempt','touch','abandon','discard'].includes(b.action))throw new AccountError('Ação de invocação inválida.');
+    for(const k of ['tailId','ritualId','requestId','sessionId'])if(b[k]!=null&&!UUID.test(String(b[k])))throw new AccountError('Ritual inválido.');
+    if(b.targetModelId!=null&&(typeof b.targetModelId!=='string'||!/^[a-z0-9-]{1,80}$/.test(b.targetModelId)))throw new AccountError('Pipamon inválido.');
+    if(b.path!=null&&(!Array.isArray(b.path)||b.path.length<1||b.path.length>9||b.path.some(n=>!Number.isInteger(n)||n<1||n>9)))throw new AccountError('Desenho inválido.');
+    if(b.action==='start')rateLimit(request,'summon-start');
+    checkPending(who.id);
+    return json({summon:await rpc('player_summon',{p_action:b.action,p_tail:b.tailId||null,p_ritual:b.ritualId||null,p_path:b.path||null,p_request:b.requestId||null,p_session:b.sessionId||null,p_target:b.targetModelId||null},who.access)},200,who.setCookies);
+   }
+   if(action==='trade'){
+    if(!['create','join','read','offer','confirm','cancel','history'].includes(b.action))throw new AccountError('Ação de troca inválida.');
+    if(b.code!=null&&!/^[A-Z0-9]{12}$/i.test(String(b.code)))throw new AccountError('Código de convite inválido.');
+    if(b.kiteId!=null&&!UUID.test(String(b.kiteId)))throw new AccountError('Pipa inválida.');
+    if(b.revision!=null&&(!Number.isSafeInteger(b.revision)||b.revision<0))throw new AccountError('Oferta inválida.');
+    if(b.action==='create'||b.action==='join')rateLimit(request,'trade-'+b.action);
+    checkPending(who.id);
+    return json({trade:await rpc('player_trade',{p_action:b.action,p_code:b.code||null,p_kite:b.kiteId||null,p_revision:b.revision??null},who.access)},200,who.setCookies);
+   }
    if(action==='match-result'){
     if(!UUID.test(String(b.matchId)))throw new AccountError('Partida inválida.');
     // Authorize in Postgres before inspecting the local outbox or finalizing a match.
