@@ -1337,6 +1337,7 @@ setText('status',status);if(mode==='online')setText('liveLabel',realtime?'Em tem
 const events=state.events.filter(e=>now-e.at<4000).slice(0,2),eventKey=events.map(e=>e.id).join(',');
 if(eventKey!==eventsKey){eventsKey=eventKey;$('events').replaceChildren(...events.map(e=>{const d=document.createElement('div');d.textContent='✧ '+e.text;if(e.winnerId===me)d.className='mine';else if(e.loserId===me)d.className='lost';return d;}));}
 if(state.events[0]&&state.events[0].id!==lastEvent){lastEvent=state.events[0].id;if(state.events[0].winnerId===me||state.events[0].loserId===me)refreshRewards();}
+updateBattleHUD(p);
 if(!left&&!showResult){showResult=true;resetFx();showMatchResult(state,ranking);}}
 function escapeHTML(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
 // This script is embedded into the page. It never stores authentication tokens.
