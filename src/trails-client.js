@@ -14,6 +14,7 @@ function renderStageKites(st){
 const starText=n=>'★'.repeat(n)+'☆'.repeat(3-n);
 function firstOpenStage(){return trails.stages.find(s=>trails.unlocked(trailProgress,s.id)&&!trailProgress.stars[s.id])||trails.stages.at(-1);}
 function openTrails(){
+ if(!requireClubAccount('as Trilhas'))return;
  if(mode){toast('Saia da partida para abrir as trilhas.');return;}
  trailPick=trailPick&&trails.unlocked(trailProgress,trailPick)?trailPick:firstOpenStage().id;
  renderTrails();$('trails').hidden=false;$('trails').style.display='flex';$('trailStart').focus({preventScroll:true});
@@ -55,6 +56,7 @@ function renderStage(){
  if(art.load)art.load('sr-assis-expressions').then(()=>{const c=$('stageAssis'),g=c.getContext('2d');g.clearRect(0,0,c.width,c.height);art.draw(g,'sr-assis-expressions','speaking',0,0,c.width,c.height,true);});
 }
 function startStage(id){
+ if(!requireClubAccount('as Trilhas'))return;
  const st=trails.stage(id);if(!st||!trails.unlocked(trailProgress,id))return;
  closeTrails();const now=Date.now(),level=trails.aiLevel(st,trailProgress),s=eng.create(now,{mode:'rounds',roundsToWin:st.rounds});s.trail=id;s.trailOwner=trailSync.user;
  eng.admit(s,trainee(now),now);

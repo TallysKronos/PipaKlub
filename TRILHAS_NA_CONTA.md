@@ -21,7 +21,7 @@ Rollback: voltar o aplicativo anterior sem apagar tabelas ou operações. Manter
 
 ## Limite de confiança
 
-As Trilhas continuam sendo um modo offline. O servidor calcula os valores de recompensa e exige desbloqueio sequencial para novos resultados, mas não comprova a execução de uma partida offline nem a autenticidade do save antigo. O log preserva origem e payload. Moedas e itens deste modo não devem financiar compras compartilhadas, ranking ou concessões de inventário sem uma fonte de resultados verificável. Esta mudança não concede rabiolas em `summon_tails` nem pipas em `player_kites`; preserva os registros de drops das Trilhas, como antes.
+As Trilhas continuam sendo um modo offline. O servidor calcula os valores de recompensa e exige desbloqueio sequencial para novos resultados, mas não comprova a execução de uma partida offline nem a autenticidade do save antigo. O log preserva origem e payload. As moedas podem financiar os cosméticos pessoais não transferíveis da PIP-8. Não usar esses resultados como comprovação para moeda paga, ranking ou concessões de inventário sem uma fonte verificável. Esta mudança não concede rabiolas em `summon_tails` nem pipas em `player_kites`; preserva os registros de drops das Trilhas, como antes.
 
 ## Validação e revisão
 

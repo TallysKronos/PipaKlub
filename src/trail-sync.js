@@ -76,5 +76,6 @@ export function createTrailSync({trails,storage,send,uuid,onChange=()=>{},onStat
  }
  async function retry(){blocked=false;storageProblem=false;if(user)try{await transferGuest(user);emit();}catch{onStatus('storage');}return sync();}
  function changed(){emit();return sync();}
- return {setUser,sync,retry,changed,record,progress,pending,merge,get user(){return user;}};
+ function accept(result,owner=user){if(!owner||owner!==user)return;const cached=read(baseKey(owner),null);if(!cached||Number(result.revision)>=Number(cached.revision)){write(baseKey(owner),{progress:trails.sanitize(result.progress),revision:result.revision});emit();}}
+ return {setUser,sync,retry,changed,record,progress,pending,merge,accept,get user(){return user;}};
 }

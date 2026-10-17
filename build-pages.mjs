@@ -10,7 +10,7 @@ const html=fs.readFileSync('src/index.html','utf8')
   .replace('/* FRAME_HEALTH */',fs.readFileSync('src/frame-health.js','utf8').replace('export function','function'))
   .replace('/* ACCOUNT_CLIENT */',fs.readFileSync('src/account-client.js','utf8')+'\n'+fs.readFileSync('src/results-client.js','utf8')+'\n'+fs.readFileSync('src/trade-client.js','utf8')+'\n'+fs.readFileSync('src/summon-pattern.js','utf8').replaceAll('export function','function')+'\n'+fs.readFileSync('src/summon-client.js','utf8')+'\n'+fs.readFileSync('src/account-menu.js','utf8'))
   .replace('/* HOST_CONFIG */','const STATIC_HOST = true;')
-  .replace('/* DEX_CLIENT */',fs.readFileSync('src/dex-client.js','utf8')).replace('/* TELEMETRY */',telemetry).replace('/* TRAILS */',fs.readFileSync('src/trails.js','utf8').replace('export function','function')+'\n'+fs.readFileSync('src/trail-sync.js','utf8').replace('export function','function')+'\n'+fs.readFileSync('src/trails-client.js','utf8')+'\n'+fs.readFileSync('src/trail-sync-client.js','utf8'));
+  .replace('/* DEX_CLIENT */',fs.readFileSync('src/dex-client.js','utf8')).replace('/* TELEMETRY */',telemetry).replace('/* TRAILS */',fs.readFileSync('src/trails.js','utf8').replace('export function','function')+'\n'+fs.readFileSync('src/trail-sync.js','utf8').replace('export function','function')+'\n'+fs.readFileSync('src/trails-client.js','utf8')+'\n'+fs.readFileSync('src/trail-sync-client.js','utf8')+'\n'+fs.readFileSync('src/line-styles.js','utf8').replace('export function','function')+'\nconst lineStyles=createLineStyles();\n'+fs.readFileSync('src/line-shop-client.js','utf8'));
 new Script(html.match(/<script>([\s\S]*?)<\/script>/)[1]);
 fs.mkdirSync('docs',{recursive:true});
 fs.writeFileSync('docs/index.html',html);

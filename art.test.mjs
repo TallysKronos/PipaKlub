@@ -28,6 +28,14 @@ function app({seen=false,search='',failed=false,reduced=false}={}){
  for(const select of document.querySelectorAll('select')){let value;Object.defineProperty(select,'value',{configurable:true,get(){return value??this.querySelector('option[selected]')?.value??this.querySelector('option')?.value??'';},set(next){value=next;}});}
  return {document,requests,draws,storage,run:code=>vm.runInContext(code,context),auto:()=>timers.find(t=>t.delay===650).fn(),settle:()=>new Promise(r=>setImmediate(r)),key:key=>{for(const fn of listeners.get('keydown'))fn({key,target:{tagName:'BODY'},preventDefault(){},stopImmediatePropagation(){}});}};
 }
+test('visitors can practice but trails and Dex request an account and cannot grant progress',async()=>{
+ const a=app({seen:true});await a.settle();
+ a.run('openTrails()');assert.equal(a.document.getElementById('trails').hidden,true);assert.equal(a.document.getElementById('accountModal').style.display,'flex');
+ a.run("closeAccount();startStage('morro-1')");assert.equal(a.run('mode'),null);assert.equal(a.run('trailStage'),null);
+ a.run('closeAccount();openDex()');assert.equal(a.document.getElementById('pipaDex').hidden,true);
+ a.run("closeAccount();openSheet('friendsSheet');$('practice').onclick()");assert.equal(a.run('mode'),'practice');assert.equal(a.run('state.rules'),'casual');assert.equal(a.run('state.mode'),'rounds');assert.equal(a.document.getElementById('friendsSheet').hidden,true);
+});
+
 test('club menu isolates features, preserves trade inputs and returns home when reopened',async()=>{
  const a=app({seen:true});await a.settle();
  a.run(`for(const b of document.querySelectorAll('button'))b.focus=()=>{}; playerAccount={profile:{nickname:'Ana',level:1,xp:0,next_level_xp:100,cuts:0},inventory:[]}; renderAccountDialog();`);
@@ -130,8 +138,8 @@ test('special Souls load only on demand and animate all five states using their 
  a.run("$('practice').onclick()");assert.equal(a.run("state.players.find(p=>p.id==='you').soul"),'alvaneve');
 });
 
-test('public Pipa Dex lists all creatures, searches accents, filters and previews without unlocking inventory',async()=>{
- const a=app();await a.settle();a.document.getElementById('workshop').onclick();await a.settle();a.auto();assert.equal(a.run('introductionOpen'),false);
+test('member Pipa Dex lists all creatures, searches accents, filters and previews without unlocking inventory',async()=>{
+ const a=app();await a.settle();a.run('playerAccount={profile:{},inventory:[]}');a.document.getElementById('workshop').onclick();await a.settle();a.auto();assert.equal(a.run('introductionOpen'),false);
  assert.equal(a.document.getElementById('pipaDex').hidden,false);
  assert.equal(a.document.querySelectorAll('#dexList button').length,33);
  assert.equal(a.document.getElementById('dexName').textContent,'Carcará');
@@ -143,7 +151,7 @@ test('public Pipa Dex lists all creatures, searches accents, filters and preview
  assert.equal(a.document.querySelectorAll('#dexList button').length,28);
  assert.equal(a.document.querySelectorAll('#dexAnimation option').length,5);
  assert.match(a.document.getElementById('dexObtain').textContent,/exclusiva de eventos/);
- assert.equal(a.run('playerAccount'),null);assert.equal(a.run('mode'),null);
+ assert.equal(a.run('playerAccount.inventory.length'),0);assert.equal(a.run('mode'),null);
  for(const state of ['idle','flight','skill','hurt','victory']){
   a.run("$('dexAnimation').value='"+state+"';$('dexAnimation').onchange();dexElapsed=180;drawDex()");
   const rect=a.draws.filter(d=>d.canvas==='dexCanvas').at(-1).args.slice(1,5),atlas=artConfig().atlases.flautrevo;
@@ -155,7 +163,7 @@ test('public Pipa Dex lists all creatures, searches accents, filters and preview
 });
 
 test('Dex respects reduced motion and keeps lore available when sprite loading fails',async()=>{
- const a=app({seen:true,reduced:true,failed:true});await a.settle();a.document.getElementById('workshop').onclick();await a.settle();
+ const a=app({seen:true,reduced:true,failed:true});await a.settle();a.run('playerAccount={profile:{},inventory:[]}');a.document.getElementById('workshop').onclick();await a.settle();
  assert.equal(a.run('dexPlaying'),false);assert.equal(a.document.getElementById('dexPlay').textContent,'Reproduzir');
  assert.equal(a.document.getElementById('dexRetry').hidden,false);assert.match(a.document.getElementById('dexLoad').textContent,/não carregou/);
  assert.match(a.document.getElementById('dexStory').textContent,/Carcará/);
@@ -165,7 +173,7 @@ test('Dex respects reduced motion and keeps lore available when sprite loading f
 });
 
 test('each Dex entry shows its own tail, keeps companion provenance and never grants inventory',async()=>{
- const a=app({seen:true});await a.settle();a.document.getElementById('workshop').onclick();
+ const a=app({seen:true});await a.settle();a.run('playerAccount={profile:{},inventory:[]}');a.document.getElementById('workshop').onclick();
  const config=artConfig();assert.equal(config.items.length,33);assert.equal(new Set(config.items.map(i=>i.image)).size,33);
  for(const entry of config.dex.entries){
   a.run('selectDex(dexEntries.find(e=>e.id==='+JSON.stringify(entry.id)+'))');
@@ -178,7 +186,7 @@ test('each Dex entry shows its own tail, keeps companion provenance and never gr
    if(['rabiola-raio-de-sol','rabiola-chaspiral','rabiola-flautrevo'].includes(item.id))assert.match(root.textContent,/Prêmio: .+ \(Trilhas\)/);else assert.match(root.textContent,/Em breve/);}
  }
  const failed=a.document.querySelector('#dexItemsList img'),fallback=a.document.querySelector('.dex-item-fallback');failed.onerror();assert.equal(failed.hidden,true);assert.equal(fallback.hidden,false);assert.match(a.document.getElementById('dexItemsList').textContent,/Rabiola de Nozinho/);
- a.run('selectDex(dexEntries[0])');assert.equal(a.document.querySelector('.dex-item-fallback').hidden,true);assert.equal(a.run('playerAccount'),null);assert.equal(a.run('mode'),null);
+ a.run('selectDex(dexEntries[0])');assert.equal(a.document.querySelector('.dex-item-fallback').hidden,true);assert.equal(a.run('playerAccount.inventory.length'),0);assert.equal(a.run('mode'),null);
 });
 
 test('all tail PNGs are published with content hashes, HEAD and cache validation',async()=>{

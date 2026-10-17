@@ -18,7 +18,7 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
    if(r.status===429)throw new AccountError('Muitas tentativas. Aguarde um pouco e tente novamente.',429);
    if(data?.error_code==='email_not_confirmed')throw new AccountError('Confirme seu e-mail antes de entrar.',403);
    if(data?.code?.startsWith('PGRST')||data?.code==='42883')throw new AccountError('O banco de contas ainda precisa ser configurado.',503);
-   if(message.startsWith('Trilhas:')||message.startsWith('Invocação:')||message.startsWith('Troca:')||message.includes('Saia da partida')||message.includes('outra partida')||message.includes('colecionável')||message.includes('coleção')||message.includes('caracteres'))throw new AccountError(message,409);
+   if(message.startsWith('Linhas:')||message.startsWith('Trilhas:')||message.startsWith('Invocação:')||message.startsWith('Troca:')||message.includes('Saia da partida')||message.includes('outra partida')||message.includes('colecionável')||message.includes('coleção')||message.includes('caracteres'))throw new AccountError(message,409);
    if(data?.error_code==='over_email_send_rate_limit'||data?.error_code==='email_address_not_authorized')throw new AccountError('O envio de confirmação está indisponível. O administrador precisa configurar o e-mail do jogo.',503);
    throw new AccountError(r.status>=500?'O serviço de contas está indisponível. Tente novamente.':'Não foi possível concluir. Confira os dados e tente novamente.',r.status>=500?503:400);
   }return data;
@@ -88,6 +88,12 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
    if(action==='logout'){const values=cookieValues(request),access=values['__Host-pipa_access']||values.pipa_access;if(access){sessions.delete(access);try{await remote('/auth/v1/logout',{method:'POST',token:access});}catch{}}return json({ok:true},200,makeCookies(request,null));}
    const who=await identity(request,true);
    if(!who)throw new AccountError('Entre na sua conta para continuar.',401);
+   if(action==='lines'){
+    if(!['read','buy','equip'].includes(b.action)||b.action!=='read'&&!/^(classic|azul|coral|menta|pontilhada|dourada)$/.test(String(b.styleId)))throw new AccountError('Visual de linha inválido.');
+    if(b.action==='buy'&&!UUID.test(String(b.operationId)))throw new AccountError('Compra inválida.');
+    if(b.action!=='read')rateLimit(request,'lines-'+who.id,120);
+    return json({lines:await rpc('player_lines',{p_action:b.action,p_style:b.styleId||null,p_operation:b.operationId||null},who.access)},200,who.setCookies);
+   }
    if(action==='trails'){
     if(!['read','import','result'].includes(b.action)||b.action!=='read'&&!UUID.test(String(b.operationId)))throw new AccountError('Operação de trilha inválida.');
     const payload=b.payload??{};

@@ -96,3 +96,10 @@ test('late account responses cannot replace a different account; two tabs keep i
  await one.setUser(a);await two.setUser(a);one.record(win,crypto.randomUUID());two.record(win,crypto.randomUUID());
  assert.equal(one.pending(a).length,2);assert.equal(two.pending(a).length,2);assert.equal(one.progress().coins,40);
 });
+
+test('an old trail response cannot refund a later cosmetic purchase',async()=>{
+ const disk=storage(),sync=createTrailSync({trails,storage:disk,uuid:()=>crypto.randomUUID(),send:async()=>({progress:{...trails.defaults(),coins:100},revision:1})});
+ await sync.setUser(a);sync.accept({progress:{...trails.defaults(),coins:70},revision:2},a);assert.equal(sync.progress().coins,70);
+ await sync.sync();assert.equal(sync.progress().coins,70);
+ sync.accept({progress:{...trails.defaults(),coins:999},revision:3},b);assert.equal(sync.progress().coins,70);
+});
