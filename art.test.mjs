@@ -99,3 +99,30 @@ test('Dex respects reduced motion and keeps lore available when sprite loading f
  a.document.getElementById('dexPlay').onclick();assert.equal(a.run('dexPlaying'),false);
  a.document.getElementById('dexClose').onclick();assert.equal(a.run('dexOpen'),false);
 });
+
+test('each Dex entry shows its own tail, keeps companion provenance and never grants inventory',async()=>{
+ const a=app({seen:true});await a.settle();a.document.getElementById('workshop').onclick();
+ const config=artConfig();assert.equal(config.items.length,33);assert.equal(new Set(config.items.map(i=>i.image)).size,33);
+ for(const entry of config.dex.entries){
+  a.run('selectDex(dexEntries.find(e=>e.id==='+JSON.stringify(entry.id)+'))');
+  const root=a.document.getElementById('dexItemsSection'),cards=root.querySelectorAll('.dex-item');assert.equal(root.hidden,false);assert.equal(cards.length,1);
+  const item=config.items.find(i=>i.id===entry.items[0]);assert.equal(item.pipamon,entry.id);assert.equal(item.name,'Rabiola de '+entry.name);
+  const image=cards[0].querySelector('img');assert.equal(image.getAttribute('src'),item.url);assert.equal(image.alt,item.name);assert.equal(image.loading,'lazy');
+  if(entry.group==='companion'){assert.equal(item.source,'companion');assert.match(root.textContent,/não aparece como selvagem/);assert.doesNotMatch(root.textContent,/Drop previsto/);}
+  else{assert.equal(item.source,'wild');assert.match(root.textContent,new RegExp(entry.name+' selvagem'));assert.match(root.textContent,/Em breve/);}
+ }
+ const failed=a.document.querySelector('#dexItemsList img'),fallback=a.document.querySelector('.dex-item-fallback');failed.onerror();assert.equal(failed.hidden,true);assert.equal(fallback.hidden,false);assert.match(a.document.getElementById('dexItemsList').textContent,/Rabiola de Nozinho/);
+ a.run('selectDex(dexEntries[0])');assert.equal(a.document.querySelector('.dex-item-fallback').hidden,true);assert.equal(a.run('playerAccount'),null);assert.equal(a.run('mode'),null);
+});
+
+test('all tail PNGs are published with content hashes, HEAD and cache validation',async()=>{
+ const serve=createAssetHandler();
+ for(const item of artConfig().items){
+  const url='https://game.test/'+item.url,r=await serve(new Request(url));assert.equal(r.status,200);assert.match(r.headers.get('cache-control'),/immutable/);assert.equal(r.headers.get('content-type'),'image/png');
+  const bytes=Buffer.from(await r.arrayBuffer());assert.equal(bytes.readUInt32BE(16),209);assert.equal(bytes.readUInt32BE(20),209);assert.equal(bytes[25],6);
+  assert.deepEqual(fs.readFileSync('docs/assets/'+item.image),bytes);
+  assert.equal((await serve(new Request(url,{method:'HEAD'}))).status,200);
+  assert.equal((await serve(new Request(url,{headers:{'if-none-match':r.headers.get('etag')}}))).status,304);
+ }
+ assert.equal((await serve(new Request('https://game.test/assets/items/rabiolas/unknown.png'))).status,404);
+});

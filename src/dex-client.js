@@ -4,6 +4,20 @@ let dexEntry=dexEntries[0],dexState='idle',dexElapsed=0,dexLast=0,dexFrame=0,dex
 const dexLabels={idle:'Repouso',flight:'Voo',skill:'Habilidade',hurt:'Dano',victory:'Vitória',greet:'Saudação',happy:'Alegria'};
 function dexStates(entry){return entry.sequence?['idle']:Object.keys(art.atlases[entry.atlas].animations);}
 function dexSequence(){const a=art.atlases[dexEntry.atlas];return a.animations[dexEntry.sequence||dexState];}
+function renderDexItems(entry){
+ const companion=entry.group==='companion';
+ $('dexItemsTitle').textContent=companion?'Item do companheiro':'Itens dropáveis';
+ $('dexItemsHint').textContent=companion?'Nozinho acompanha o Sr. Assis e não aparece como selvagem. Sua rabiola fica registrada aqui como item associado.':'Rabiola prevista para encontros com '+entry.name+' selvagem. Os drops ainda não estão disponíveis.';
+ const cards=(entry.items||[]).map(id=>ART_CONFIG.items.find(item=>item.id===id)).filter(Boolean).map(item=>{
+  const card=uiElement('article',undefined,'dex-item'),stage=uiElement('div',undefined,'dex-item-art'),image=document.createElement('img');
+  image.alt=item.name;image.width=209;image.height=209;image.loading='lazy';image.decoding='async';
+  const fallback=uiElement('span','Imagem indisponível','dex-item-fallback');fallback.hidden=true;
+  image.onerror=()=>{image.hidden=true;fallback.hidden=false;};image.onload=()=>{image.hidden=false;fallback.hidden=true;};image.src=item.url;stage.append(image,fallback);
+  const info=uiElement('div',undefined,'dex-item-info');info.append(uiElement('span','Rabiola','dex-item-kind'),uiElement('h5',item.name),uiElement('p',companion?'Associada ao companheiro':'Origem: '+entry.name+' selvagem'),uiElement('span',companion?'Item de referência':'Drop previsto · Em breve','dex-item-status'));
+  card.append(stage,info);return card;
+ });
+ $('dexItemsList').replaceChildren(...cards);$('dexItemsSection').hidden=cards.length===0;
+}
 function drawDex(){
  const canvas=$('dexCanvas'),context=canvas.getContext('2d'),a=art.atlases[dexEntry.atlas],seq=dexSequence();
  const durations=a.playback?.[dexState]?.durations||seq.map(key=>a.frames[key].duration||190),total=durations.reduce((sum,v)=>sum+v,0);
@@ -37,6 +51,7 @@ function selectDex(entry){
  $('dexHabitat').textContent=entry.habitat;$('dexLegend').textContent=entry.legend||'Uma história original do Pipa Club';
  $('dexStory').replaceChildren(...entry.story.map(text=>uiElement('p',text)));
  $('dexNote').textContent='“'+entry.note+'”';$('dexObtain').textContent=entry.obtain;
+ renderDexItems(entry);
  const type=eng.types[entry.color];$('dexSkillName').textContent=entry.group==='companion'?'Laços de amizade':type.name+' · '+type.skill;
  $('dexSkillInfo').textContent=entry.group==='companion'?'Nozinho recebe novos pipeiros com o Sr. Assis e não participa dos duelos.':type.description+' Custo: 25 de energia. Recarga: 7 s.';
  const states=dexStates(entry);$('dexAnimation').replaceChildren(...states.map(state=>{const option=document.createElement('option');option.value=state;option.textContent=dexLabels[state]||state;return option;}));$('dexAnimation').value='idle';

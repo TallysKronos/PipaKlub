@@ -1,7 +1,8 @@
 import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 const manifest=JSON.parse(await fs.readFile(new URL('../assets/atlas.json',import.meta.url),'utf8'));
-const files=Object.values(manifest.atlases).map(a=>a.meta.image);
+const items=JSON.parse(await fs.readFile(new URL('../assets/pipa-items.json',import.meta.url),'utf8')).items;
+const files=[...Object.values(manifest.atlases).map(a=>a.meta.image),...items.map(i=>i.image)];
 export function createAssetHandler(){
  const cache=new Map();
  return async request=>{
