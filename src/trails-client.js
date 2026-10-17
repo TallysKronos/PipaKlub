@@ -1,4 +1,4 @@
-// Trilhas UI: trail map, stage briefing, AI duels and coin payouts. Progress is stored on this device.
+// Trilhas UI: trail map, stage briefing, AI duels and coin payouts. Progress uses the per-account outbox, with a guest save on this device.
 const trails=createTrails(),TRAILS_KEY='pipaTrailsV1',TYPE_NAMES=['Precisa','Ágil','Guardiã','Técnica'];
 let trailProgress=loadTrails(),trailStage=null,trailPick=null;
 function loadTrails(){try{return trails.sanitize(JSON.parse(localStorage.getItem(TRAILS_KEY)||'null'));}catch{return trails.defaults();}}
@@ -56,7 +56,7 @@ function renderStage(){
 }
 function startStage(id){
  const st=trails.stage(id);if(!st||!trails.unlocked(trailProgress,id))return;
- closeTrails();const now=Date.now(),level=trails.aiLevel(st,trailProgress),s=eng.create(now,{mode:'rounds',roundsToWin:st.rounds});s.trail=id;
+ closeTrails();const now=Date.now(),level=trails.aiLevel(st,trailProgress),s=eng.create(now,{mode:'rounds',roundsToWin:st.rounds});s.trail=id;s.trailOwner=trailSync.user;
  eng.admit(s,trainee(now),now);
  st.foes.forEach((f,i)=>{const b=eng.player(f.name,f.color,'ai'+i,now);b.bot=true;b.ai={level};if(f.soul){b.soul=f.soul;art.load(f.soul);}eng.admit(s,b,now);});
  trailStage=id;enter(s,'you','practice');track('trail_start',{trail_stage:id});setText('liveLabel',st.name+' · IA nível '+level);
@@ -64,8 +64,8 @@ function startStage(id){
 function dropCard(id){const item=ART_CONFIG.items.find(i=>i.id===id);if(!item)return '';return '<div class="drop-reward"><img src="'+escapeHTML(item.url)+'" alt=""><div><small>Nova rabiola conquistada!</small><b>'+escapeHTML(item.name)+'</b></div></div>';}
 // Called by the results screen when a trail duel ends.
 function showTrailResult(s,ranking,mine){
- const won=(mine?.rounds||0)>=s.roundsToWin,r=trails.settle(trailProgress,s.trail,{won,roundsLost:Math.max(0,(s.round||0)-(mine?.rounds||0))});
- trailProgress=r.progress;saveTrails();reflectCoins();track(won?'trail_win':'trail_loss',{trail_stage:s.trail});
+ const won=(mine?.rounds||0)>=s.roundsToWin,r=trailSync.record({stage:s.trail,won,roundsLost:Math.max(0,(s.round||0)-(mine?.rounds||0))},s.id,s.trailOwner??null);
+ trailProgress=trailSync.progress();reflectCoins();track(won?'trail_win':'trail_loss',{trail_stage:s.trail});
  const st=trails.stage(s.trail),next=trails.nextStage(s.trail),canNext=won&&next&&trails.unlocked(trailProgress,next.id);
  const rows=ranking.map((q,i)=>'<div class="result-rank'+(q.id===me?' me':'')+'"><span><i class="result-dot" style="background:'+playerColor(q)+'"></i>'+(i+1)+'. '+escapeHTML(q.name)+(q.id===me?' · você':'')+'</span><b>'+(q.rounds||0)+' ★</b></div>').join('');
  // Sr. Assis coaches harder the more a stage resists: the stage tip, then the line-tip trick, then the right almática.

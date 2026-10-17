@@ -529,6 +529,7 @@ body.in-match .arena-bottom{display:none}
 @media(prefers-reduced-motion:reduce){.club-tile{transition:none}.club-tile:hover{transform:none}}
 .school-card{position:relative;max-width:720px;max-height:90dvh;overflow:auto;width:100%;padding:24px}.school-heading{display:flex;align-items:center;gap:16px}.school-heading canvas{flex-shrink:0}.school-heading h2{font:26px var(--px);margin:5px 0}.school-heading p{font-size:14px;line-height:1.5}.school-lessons{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}.school-lesson{text-align:left;padding:15px!important}.school-links,.school-controls{display:flex;gap:8px;flex-wrap:wrap}.school-links>*{flex:1}.school-coach{position:fixed;z-index:45;bottom:16px;left:18px;width:min(370px,calc(100vw - 36px));padding:14px 16px;background:#fffdf5f5;border:2px solid #263b3d;border-radius:16px;box-shadow:0 4px 0 #263b3d30}.school-coach p{font-size:13px;line-height:1.45;margin:8px 0}.school-coach b{font:20px var(--px)}.school-coach .school-controls button{font-size:11px;padding:8px}.school-controls button{width:auto!important;flex:1;margin:0!important}.school-links button{width:auto!important;margin:0!important}.school-coach[hidden],.school-tour[hidden]{display:none!important}.school-tour{position:fixed;inset:0;z-index:150;background:#132b3d65}.school-spot{position:fixed;border:3px solid #ffe072;border-radius:14px;box-shadow:0 0 0 3px #1b3e3d;pointer-events:none}.school-tour-card{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);width:min(540px,calc(100vw - 32px));padding:20px}.school-tour-card h2{font:24px var(--px);margin:6px 0}.school-tour-card p{line-height:1.5;font-size:14px}.in-school .hud-clock,.in-school #combatReadout{display:none}
 @media(max-width:600px){.school-card{padding:18px}.school-heading canvas{width:65px;height:75px}.school-heading h2{font-size:22px}.school-lessons{grid-template-columns:1fr}.school-coach{bottom:12px;padding:10px 12px;width:calc(100vw - 24px);left:12px}.school-coach p{font-size:12px;margin:5px 0}.school-coach b{font-size:18px}.school-tour-card{bottom:12px}}
+.trail-sync-line p{font-size:12px;margin:6px 0;color:var(--ink-soft)}.trail-sync-line button{width:auto;font-size:11px;padding:5px 8px;margin:4px 0}
 </style></head>
 <body>
 <div id="game">
@@ -1137,7 +1138,7 @@ let playerAccount=null,accountsEnabled=false,accountTab='login',accountSaving=fa
 const accountModal=$('accountModal');
 async function accountRequest(action,body){
  const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),12000);
- try{const r=await fetch('/account/'+action,{method:body===undefined?'GET':'POST',headers:body===undefined?{}:{'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body),signal:controller.signal});const d=await r.json();if(!r.ok)throw Error(d.error||'Não foi possível acessar sua conta.');return d;}finally{clearTimeout(timeout);}
+ try{const r=await fetch('/account/'+action,{method:body===undefined?'GET':'POST',headers:body===undefined?{}:{'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body),signal:controller.signal});const d=await r.json();if(!r.ok)throw Object.assign(Error(d.error||'Não foi possível acessar sua conta.'),{status:r.status});return d;}finally{clearTimeout(timeout);}
 }
 function reflectAccount(){
  $('accountButton').textContent=playerAccount?'Minha conta':'Entrar';
@@ -1148,6 +1149,7 @@ function reflectAccount(){
  if(playerAccount){const p=playerAccount.profile,k=playerAccount.inventory.find(k=>k.id===p.equipped_kite_id);$('name').value=p.nickname;$('name').readOnly=true;if(k){selected=k.model.color;choices();const chosen=$('kites').querySelector('[data-color="'+selected+'"]');if(chosen){chosen.innerHTML=art.markup(selected,k.model.soul);chosen.setAttribute('aria-label',k.model.name+' · equipada');}$('selectionName').textContent=k.model.name+' · '+eng.type({color:k.model.color}).name+' · equipada';}}
  else {$('name').readOnly=false;choices();}
  if(accountModal.style.display==='flex')renderAccountDialog();
+ if(typeof onTrailAccountChange==='function')onTrailAccountChange();
 }
 async function refreshAccount(){
  if(!accountsEnabled)return;
@@ -1752,7 +1754,7 @@ function createTrails(){
   const MASTERY_MAX=8;
   const DROPS=stages.filter(s=>s.drop).map(s=>s.drop);
   function defaults(){return {coins:0,stars:{},mastery:0,wins:0,losses:0,fails:{},items:[]};}
-  // Progress lives in the player's device for now; never trust it for anything shared.
+  // Offline results and legacy saves are unverified; syncing does not authorize shared rewards.
   function sanitize(p){
     const d=defaults();if(!p||typeof p!=='object')return d;
     const stars={},fails={};for(const s of stages){const v=Math.trunc(Number(p.stars?.[s.id]));if(v>0)stars[s.id]=clamp(v,1,3);const f=Math.trunc(Number(p.fails?.[s.id]));if(f>0)fails[s.id]=clamp(f,1,99);}
@@ -1780,7 +1782,88 @@ function createTrails(){
   return {DROPS,RELIEF_AFTER,trails:TRAILS,stages,stage,defaults,sanitize,unlocked,aiLevel,settle,totalStars,nextStage,MASTERY_MAX};
 }
 
-// Trilhas UI: trail map, stage briefing, AI duels and coin payouts. Progress is stored on this device.
+// Durable per-account outbox: each match/import has an immutable UUID.
+function createTrailSync({trails,storage,send,uuid,onChange=()=>{},onStatus=()=>{},withLock=async fn=>fn()}){
+ const GUEST='pipaTrailsV1',TOKEN='pipaTrailImportV1',PREFIX='pipaTrailAccountV1:';
+ let user=null,generation=0,busy=false,again=false,blocked=false,storageProblem=false;
+ const memory=new Map();
+ function read(key,fallback){try{return JSON.parse(storage.getItem(key))??fallback;}catch{return fallback;}}
+ function write(key,value){try{storage.setItem(key,JSON.stringify(value));}catch(e){storageProblem=true;throw e;}}
+ const baseKey=id=>PREFIX+id+':base',opPrefix=id=>PREFIX+id+':op:';
+ function pending(id){
+  const map=new Map(memory.get(id)||[]);
+  try{for(let i=0;i<storage.length;i++){const key=storage.key(i);if(key?.startsWith(opPrefix(id))){const op=read(key,null);if(op)map.set(op.id,op);}}}catch{}
+  return [...map.values()].sort((a,b)=>a.at-b.at||a.id.localeCompare(b.id));
+ }
+ function merge(a,b){
+  a=trails.sanitize(a);b=trails.sanitize(b);
+  for(const k of ['coins','wins','losses'])a[k]=Math.min(1e9,a[k]+b[k]);
+  a.mastery=Math.max(a.mastery,b.mastery);
+  for(const k of ['stars','fails'])for(const [id,n] of Object.entries(b[k]))a[k][id]=Math.max(a[k][id]||0,n);
+  a.items=[...new Set([...a.items,...b.items])];return a;
+ }
+ function progress(id=user){
+  if(!id)return trails.sanitize(read(GUEST,null));
+  let p=trails.sanitize(read(baseKey(id),null)?.progress);
+  for(const op of pending(id))p=op.action==='import'?merge(p,op.payload):trails.settle(p,op.payload.stage,op.payload).progress;
+  return p;
+ }
+ function emit(){onChange(progress());}
+ function enqueue(id,op){
+  if(!memory.has(id))memory.set(id,new Map());memory.get(id).set(op.id,op);
+  try{write(opPrefix(id)+op.id,op);memory.get(id).delete(op.id);return true;}catch{onStatus('storage');return false;}
+ }
+ async function transferGuest(id){
+  await withLock(async()=>{
+   if(user!==id)return;
+   const guest=trails.sanitize(read(GUEST,null));
+   if(!guest.coins&&!guest.wins&&!guest.losses&&!Object.keys(guest.stars).length&&!guest.items.length)return;
+   let token=read(TOKEN,null);
+   if(token?.owner&&token.owner!==id){onStatus('claimed');return;}
+   if(!token){token={id:uuid(),owner:id,payload:guest};write(TOKEN,token);}
+   // The outbox is committed before the visitor save is cleared.
+   const op={id:token.id,action:'import',payload:token.payload,at:0};
+   if(!enqueue(id,op))return;
+   write(GUEST,trails.defaults());storage.removeItem(TOKEN);
+  });
+ }
+ async function setUser(id){
+  id=id||null;if(id===user)return;
+  user=id;generation++;blocked=false;storageProblem=false;emit();
+  if(id){try{await transferGuest(id);}catch{onStatus('storage');}if(user!==id)return;emit();await sync();}
+  else onStatus('guest');
+ }
+ async function sync(){
+  if(!user||blocked)return;
+  if(busy){again=true;return;}
+  const id=user,version=generation;busy=true;onStatus('saving');
+  try{
+   let first=true;
+   while(user===id&&generation===version){
+    const op=pending(id)[0];if(!op&&!first)break;first=false;
+    const result=await send(op?{action:op.action,operationId:op.id,payload:op.payload}:{action:'read'});
+    if(user!==id||generation!==version)break;
+    const cached=read(baseKey(id),null);
+    if(!cached||Number(result.revision)>=Number(cached.revision))write(baseKey(id),{progress:trails.sanitize(result.progress),revision:result.revision});
+    if(op){storage.removeItem(opPrefix(id)+op.id);memory.get(id)?.delete(op.id);}
+    emit();
+   }
+   if(user===id&&generation===version)onStatus(storageProblem?'storage':pending(id).length?'pending':'saved');
+  }catch(e){if(user===id&&generation===version){blocked=e.status===409;onStatus(storageProblem?'storage':blocked?'conflict':'offline');}}
+  finally{busy=false;if(again){again=false;sync();}}
+ }
+ function record(payload,operationId=uuid(),owner=user){
+  if(!owner){const result=trails.settle(progress(null),payload.stage,payload);try{write(GUEST,result.progress);}catch{onStatus('storage');}if(!user)onChange(result.progress);return result;}
+  const result=trails.settle(progress(owner),payload.stage,payload);
+  if(!pending(owner).some(op=>op.id===operationId))enqueue(owner,{id:operationId,action:'result',payload,at:Math.max(Date.now(),...pending(owner).map(op=>op.at+1))});
+  if(owner===user){emit();sync();}return result;
+ }
+ async function retry(){blocked=false;storageProblem=false;if(user)try{await transferGuest(user);emit();}catch{onStatus('storage');}return sync();}
+ function changed(){emit();return sync();}
+ return {setUser,sync,retry,changed,record,progress,pending,merge,get user(){return user;}};
+}
+
+// Trilhas UI: trail map, stage briefing, AI duels and coin payouts. Progress uses the per-account outbox, with a guest save on this device.
 const trails=createTrails(),TRAILS_KEY='pipaTrailsV1',TYPE_NAMES=['Precisa','Ágil','Guardiã','Técnica'];
 let trailProgress=loadTrails(),trailStage=null,trailPick=null;
 function loadTrails(){try{return trails.sanitize(JSON.parse(localStorage.getItem(TRAILS_KEY)||'null'));}catch{return trails.defaults();}}
@@ -1838,7 +1921,7 @@ function renderStage(){
 }
 function startStage(id){
  const st=trails.stage(id);if(!st||!trails.unlocked(trailProgress,id))return;
- closeTrails();const now=Date.now(),level=trails.aiLevel(st,trailProgress),s=eng.create(now,{mode:'rounds',roundsToWin:st.rounds});s.trail=id;
+ closeTrails();const now=Date.now(),level=trails.aiLevel(st,trailProgress),s=eng.create(now,{mode:'rounds',roundsToWin:st.rounds});s.trail=id;s.trailOwner=trailSync.user;
  eng.admit(s,trainee(now),now);
  st.foes.forEach((f,i)=>{const b=eng.player(f.name,f.color,'ai'+i,now);b.bot=true;b.ai={level};if(f.soul){b.soul=f.soul;art.load(f.soul);}eng.admit(s,b,now);});
  trailStage=id;enter(s,'you','practice');track('trail_start',{trail_stage:id});setText('liveLabel',st.name+' · IA nível '+level);
@@ -1846,8 +1929,8 @@ function startStage(id){
 function dropCard(id){const item=ART_CONFIG.items.find(i=>i.id===id);if(!item)return '';return '<div class="drop-reward"><img src="'+escapeHTML(item.url)+'" alt=""><div><small>Nova rabiola conquistada!</small><b>'+escapeHTML(item.name)+'</b></div></div>';}
 // Called by the results screen when a trail duel ends.
 function showTrailResult(s,ranking,mine){
- const won=(mine?.rounds||0)>=s.roundsToWin,r=trails.settle(trailProgress,s.trail,{won,roundsLost:Math.max(0,(s.round||0)-(mine?.rounds||0))});
- trailProgress=r.progress;saveTrails();reflectCoins();track(won?'trail_win':'trail_loss',{trail_stage:s.trail});
+ const won=(mine?.rounds||0)>=s.roundsToWin,r=trailSync.record({stage:s.trail,won,roundsLost:Math.max(0,(s.round||0)-(mine?.rounds||0))},s.id,s.trailOwner??null);
+ trailProgress=trailSync.progress();reflectCoins();track(won?'trail_win':'trail_loss',{trail_stage:s.trail});
  const st=trails.stage(s.trail),next=trails.nextStage(s.trail),canNext=won&&next&&trails.unlocked(trailProgress,next.id);
  const rows=ranking.map((q,i)=>'<div class="result-rank'+(q.id===me?' me':'')+'"><span><i class="result-dot" style="background:'+playerColor(q)+'"></i>'+(i+1)+'. '+escapeHTML(q.name)+(q.id===me?' · você':'')+'</span><b>'+(q.rounds||0)+' ★</b></div>').join('');
  // Sr. Assis coaches harder the more a stage resists: the stage tip, then the line-tip trick, then the right almática.
@@ -1865,6 +1948,24 @@ $('trailsButton').onclick=openTrails;$('trailsClose').onclick=closeTrails;$('tra
 $('trails').onclick=e=>{if(e.target===$('trails'))closeTrails();};
 addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('trails').hidden)closeTrails();});
 reflectCoins();
+
+const trailSyncMessages={guest:'Progresso salvo neste aparelho. Entre para levar suas Trilhas com você.',saving:'Salvando suas Trilhas…',saved:'Trilhas salvas na sua conta.',pending:'Há resultados aguardando envio.',offline:'Sem sincronizar agora. Seu progresso continua neste aparelho; tentaremos novamente.',conflict:'O progresso precisa ser conferido. Os resultados continuam neste aparelho. Tente sincronizar novamente.',storage:'O navegador não permitiu salvar. Mantenha esta aba aberta e libere o armazenamento para evitar perda de progresso.',claimed:'O progresso de visitante já foi vinculado a outra conta.'};
+const trailSyncLine=document.createElement('div');trailSyncLine.className='trail-sync-line';
+trailSyncLine.innerHTML='<p id="trailSyncStatus" role="status" aria-live="polite"></p><button class="secondary" id="trailSyncRetry" hidden>Sincronizar novamente</button>';
+$('trailMastery').after(trailSyncLine);
+const trailSync=createTrailSync({trails,storage:localStorage,uuid:()=>crypto.randomUUID(),
+ send:async body=>(await accountRequest('trails',body)).trails,
+ withLock:fn=>typeof navigator!=='undefined'&&navigator.locks?navigator.locks.request('pipa-trail-import',fn):fn(),
+ onChange:p=>{trailProgress=p;reflectCoins();if(!$('trails').hidden&&!mode)renderTrails();},
+ onStatus:status=>{$('trailSyncStatus').textContent=trailSyncMessages[status];$('trailSyncRetry').hidden=!['offline','conflict','storage','pending'].includes(status);}
+});
+function onTrailAccountChange(){trailSync.setUser(playerAccount?.profile?.id||null);}
+$('trailSyncRetry').onclick=()=>trailSync.retry();
+$('trailSyncStatus').textContent=trailSyncMessages.guest;
+addEventListener('online',()=>trailSync.retry());
+addEventListener('storage',event=>{if(event.key?.startsWith('pipaTrailAccountV1:')||event.key==='pipaTrailsV1')trailSync.changed();});
+setInterval(()=>{if(typeof document!=='undefined'&&!document.hidden)trailSync.sync();},30000);
+onTrailAccountChange();
 
 // Microsoft Clarity, only with the player's consent (LGPD). The project id comes from CLARITY_ID at build
 // time; without it nothing is loaded and the privacy controls stay hidden. track() is safe to call always.
