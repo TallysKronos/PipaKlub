@@ -28,12 +28,12 @@ function renderTrails(){
   const card=document.createElement('section');card.className='trail';card.style.setProperty('--accent',t.accent);
   const earned=t.stages.reduce((n,s)=>n+(trailProgress.stars[s.id]||0),0);
   card.innerHTML='<header><div><b></b><small></small></div><span class="trail-stars"></span></header><div class="trail-path"></div>';
-  card.querySelector('b').textContent=t.name;card.querySelector('small').textContent=t.subtitle;card.querySelector('.trail-stars').textContent='★ '+earned+'/'+t.stages.length*3;
+  card.querySelector('header').insertAdjacentHTML('afterbegin',trailLeaderMarkup(t,'idle',false));card.querySelector('b').textContent=t.name;card.querySelector('small').textContent=t.subtitle+' · Líder '+t.leaderName;card.querySelector('.trail-stars').textContent='★ '+earned+'/'+t.stages.length*3;
   card.querySelector('.trail-path').append(...t.stages.map((s,i)=>{
    const node=document.createElement('button'),open=trails.unlocked(trailProgress,s.id),stars=trailProgress.stars[s.id]||0;
    node.className='trail-node'+(s.boss?' boss':'')+(open?'':' locked')+(stars?' cleared':'')+(s.id===trailPick?' picked':'');
    node.innerHTML='<span class="node-dot"></span><span class="node-stars"></span>';
-   node.querySelector('.node-dot').textContent=open?(s.boss?'☠':String(i+1)):'🔒';node.querySelector('.node-stars').textContent=stars?starText(stars):'';
+   node.querySelector('.node-dot').innerHTML=!open?art.icon('locked'):s.boss?art.icon('boss'):stars?art.icon('completed'):String(i+1);node.querySelector('.node-stars').textContent=stars?starText(stars):'';
    node.setAttribute('aria-label',s.name+(open?'':' (bloqueada)')+(stars?' · '+stars+' estrelas':''));node.setAttribute('aria-pressed',String(s.id===trailPick));
    node.onclick=()=>{trailPick=s.id;renderTrails();};return node;}));
   return card;}));
@@ -42,6 +42,7 @@ function renderTrails(){
 function renderStage(){
  const st=trails.stage(trailPick),open=trails.unlocked(trailProgress,st.id),level=trails.aiLevel(st,trailProgress),best=trailProgress.stars[st.id]||0,trail=trails.trails[st.trailIndex];
  setText('stageTrail',trail.name+' · Etapa '+(st.index+1)+(st.boss?' · CHEFE':''));setText('stageName',st.name);
+ renderTrailLeader(trail,st);
  $('stageFoes').replaceChildren(...st.foes.map(f=>{const row=document.createElement('div');row.className='stage-foe';row.innerHTML='<span class="foe-art">'+art.markup(f.color,f.soul)+'</span><div><b></b><small></small></div>';row.querySelector('b').textContent=f.name;row.querySelector('small').textContent=TYPE_NAMES[f.color]+(f.soul?' · Alma lendária':'');return row;}));
  const fails=trailProgress.fails[st.id]||0;
  setText('stageLevel','IA nível '+level+(level>st.level?' (base '+st.level+', +'+(level-st.level)+' pela sua maestria)':level<st.level?' (pegando mais leve depois de '+fails+' derrotas)':''));
@@ -53,7 +54,7 @@ function renderStage(){
  if(drop){$('stageDropImage').src=drop.url;$('stageDropImage').alt=drop.name;setText('stageDropName',drop.name);setText('stageDropState',trailProgress.items.includes(drop.id)?'Conquistada ✓':'Na primeira vitória contra o chefe');}
  setText('stageTip',fails>=2?TIP_TECHNIQUE:st.tip);
  $('trailStart').disabled=!open;$('trailStart').textContent=open?(best?'Voar de novo ▶':'Voar ▶'):'Vença a etapa anterior';
- if(art.load)art.load('sr-assis-expressions').then(()=>{const c=$('stageAssis'),g=c.getContext('2d');g.clearRect(0,0,c.width,c.height);art.draw(g,'sr-assis-expressions','speaking',0,0,c.width,c.height,true);});
+
 }
 function startStage(id){
  if(!requireClubAccount('as Trilhas'))return;
@@ -75,7 +76,7 @@ function showTrailResult(s,ranking,mine){
  const coach=won?'':r.fails>=trails.RELIEF_AFTER?(counter!==null?'A '+TYPE_NAMES[counter]+' é a melhor resposta para esta etapa. ':'')+'A IA desta etapa vai pegar mais leve até você vencer. '+TIP_TECHNIQUE:r.fails===2?TIP_TECHNIQUE:st.tip;
  const levelNote=r.levelAfter>r.levelBefore?'A IA aprendeu com você: agora ela joga no nível '+r.levelAfter+'.':r.levelAfter<r.levelBefore?'A IA vai pegar um pouco mais leve: nível '+r.levelAfter+'.':'IA desta etapa: nível '+r.levelAfter+'.';
  modal(won?(st.boss?'Chefe derrotado!':'Etapa vencida!'):'Não foi dessa vez.',
-  '<div class="trail-result"><div class="result-stars" aria-label="'+r.stars+' de 3 estrelas">'+'★'.repeat(r.stars)+'<span class="off">'+'★'.repeat(3-r.stars)+'</span></div>'+(r.drop?dropCard(r.drop):'')+(won?'<div class="coin-gain">+'+r.coins+' 🪙'+(r.firstClear?'<small>inclui bônus da primeira vitória</small>':'')+'</div>':'<p>Rodadas vencidas: '+(mine?.rounds||0)+' de '+s.roundsToWin+'. Treine o cruzamento e tente de novo.</p>')+(coach?'<p class="trail-coach"><b>Sr. Assis:</b> '+escapeHTML(coach)+'</p>':'')+'<p class="trail-note">'+levelNote+' Total: '+trailProgress.coins+' moedas.</p></div>'+rows+
+  (st.boss?trailLeaderMarkup(trails.trails[st.trailIndex],won?'victory':'ready'):'')+'<div class="trail-result"><div class="result-stars" aria-label="'+r.stars+' de 3 estrelas">'+'★'.repeat(r.stars)+'<span class="off">'+'★'.repeat(3-r.stars)+'</span></div>'+(r.drop?dropCard(r.drop):'')+(won?'<div class="coin-gain">+'+r.coins+' 🪙'+(r.firstClear?'<small>inclui bônus da primeira vitória</small>':'')+'</div>':'<p>Rodadas vencidas: '+(mine?.rounds||0)+' de '+s.roundsToWin+'. Treine o cruzamento e tente de novo.</p>')+(coach?'<p class="trail-coach"><b>Sr. Assis:</b> '+escapeHTML(coach)+'</p>':'')+'<p class="trail-note">'+levelNote+' Total: '+trailProgress.coins+' moedas.</p></div>'+rows+
   '<button class="primary" id="rematchButton">'+(canNext?'Próxima etapa ▶':'Tentar de novo ↻')+'</button>'+(counter!==null&&!won&&!playerAccount?'<button class="secondary" id="trailCounter">Tentar com a '+TYPE_NAMES[counter]+' ↻</button>':''),'Voltar às trilhas',st.name);
  $('rematchButton').onclick=()=>{closeModal();startStage(canNext?next.id:s.trail);};
  if($('trailCounter'))$('trailCounter').onclick=()=>{selected=counter;try{localStorage.setItem('pipaColor',String(counter));}catch{}choices();closeModal();startStage(s.trail);};

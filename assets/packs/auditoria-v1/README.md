@@ -18,4 +18,4 @@ manifest.json contém tamanhos reais e recortes inteiros, incluindo células alt
 
 Abrir index.html para revisar as imagens e sequências sem instalar ferramentas. Fundos possuem proporções reais diferentes; definir o enquadramento de cada cenário na integração, mantendo o céu central livre para o combate.
 
-Este lote é de arte e preparação: ainda não foi registrado no atlas principal, copiado pelo build do jogo ou integrado às telas. Os assets atuais continuam preservados. Sem merge ou deploy.
+Lote integrado ao atlas principal, build e servidor de assets. assets/designs.json define as quatro criaturas básicas, os cenários das três Trilhas, seus líderes e o Ascendente. As imagens anteriores permanecem como fallback. Os líderes usam poses estáticas; seus ciclos de caminhada ainda não foram adotados. Sem merge ou deploy.

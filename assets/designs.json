@@ -1,0 +1,33 @@
+{
+  "basics": [
+    "basic-carcara",
+    "basic-mata-verde",
+    "basic-azulao",
+    "basic-raio-de-sol"
+  ],
+  "scenes": {
+    "morro": "scene-trilha-morro-do-sol",
+    "praia": "scene-trilha-beira-mar",
+    "torres": "scene-trilha-campanarios"
+  },
+  "leaders": {
+    "morro": {
+      "id": "leader-mikka",
+      "name": "Mikka"
+    },
+    "praia": {
+      "id": "leader-lohan",
+      "name": "Lohan"
+    },
+    "torres": {
+      "id": "leader-kleie",
+      "name": "Kleie"
+    }
+  },
+  "icons": "ui-simbolos-12",
+  "ritual": {
+    "background": "scene-ascendente-fundo",
+    "portal": "ascendente-portal-16",
+    "particles": "ascendente-particulas"
+  }
+}

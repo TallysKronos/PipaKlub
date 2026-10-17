@@ -1,7 +1,7 @@
 {
   "version": 1,
   "generatedWith": "Built-in imagegen",
-  "integrated": false,
+  "integrated": true,
   "assetCount": 14,
   "newPngCount": 11,
   "entries": [
@@ -247,7 +247,8 @@
         "height": 1254,
         "cornerAlpha": 0,
         "pixelFormat": "Format32bppArgb"
-      }
+      },
+      "integrated": true
     },
     {
       "id": "mata-verde",
@@ -491,7 +492,8 @@
         "height": 1254,
         "cornerAlpha": 0,
         "pixelFormat": "Format32bppArgb"
-      }
+      },
+      "integrated": true
     },
     {
       "id": "azulao",
@@ -735,7 +737,8 @@
         "height": 1254,
         "cornerAlpha": 0,
         "pixelFormat": "Format32bppArgb"
-      }
+      },
+      "integrated": true
     },
     {
       "id": "raio-de-sol",
@@ -979,7 +982,8 @@
         "height": 1254,
         "cornerAlpha": 0,
         "pixelFormat": "Format32bppArgb"
-      }
+      },
+      "integrated": true
     },
     {
       "id": "trilha-morro-do-sol",
@@ -1016,7 +1020,8 @@
         "height": 941,
         "cornerAlpha": 255,
         "pixelFormat": "Format24bppRgb"
-      }
+      },
+      "integrated": true
     },
     {
       "id": "trilha-beira-mar",
@@ -1053,7 +1058,8 @@
         "height": 971,
         "cornerAlpha": 255,
         "pixelFormat": "Format24bppRgb"
-      }
+      },
+      "integrated": true
     },
     {
       "id": "trilha-campanarios",
@@ -1090,7 +1096,8 @@
         "height": 971,
         "cornerAlpha": 255,
         "pixelFormat": "Format24bppRgb"
-      }
+      },
+      "integrated": true
     },
     {
       "id": "ascendente-fundo",
@@ -1127,7 +1134,8 @@
         "height": 1024,
         "cornerAlpha": 255,
         "pixelFormat": "Format24bppRgb"
-      }
+      },
+      "integrated": true
     },
     {
       "id": "ascendente-portal-16",
@@ -1367,7 +1375,8 @@
         "height": 1254,
         "cornerAlpha": 1,
         "pixelFormat": "Format32bppArgb"
-      }
+      },
+      "integrated": true
     },
     {
       "id": "ascendente-particulas",
@@ -1609,7 +1618,8 @@
         "height": 1254,
         "cornerAlpha": 0,
         "pixelFormat": "Format32bppArgb"
-      }
+      },
+      "integrated": true
     },
     {
       "id": "ui-simbolos-12",
@@ -1778,7 +1788,8 @@
         "height": 1086,
         "cornerAlpha": 0,
         "pixelFormat": "Format32bppArgb"
-      }
+      },
+      "integrated": true
     },
     {
       "id": "mikka",
@@ -2020,7 +2031,8 @@
           "15"
         ]
       },
-      "status": "Review walking continuity and per-pose pivots before animation integration"
+      "status": "Review walking continuity and per-pose pivots before animation integration",
+      "integrated": true
     },
     {
       "id": "lohan",
@@ -2262,7 +2274,8 @@
           "15"
         ]
       },
-      "status": "Review walking continuity and per-pose pivots before animation integration"
+      "status": "Review walking continuity and per-pose pivots before animation integration",
+      "integrated": true
     },
     {
       "id": "kleie",
@@ -2504,7 +2517,8 @@
           "15"
         ]
       },
-      "status": "Review walking continuity and per-pose pivots before animation integration"
+      "status": "Review walking continuity and per-pose pivots before animation integration",
+      "integrated": true
     }
   ]
 }

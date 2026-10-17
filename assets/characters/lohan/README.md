@@ -4,7 +4,7 @@ Primeira versão artística para líder das Trilhas, criada com a ferramenta int
 
 Grade 4 × 4. Linha 1: repouso/expressões. Linha 2: estudos de caminhada para a direita. Linha 3: controle e puxada de linha. Linha 4: saudação, pensamento, prontidão e vitória.
 
-Revisar margens, pivôs, separação de quadros e continuidade dos ciclos antes de usar como animação final. Folha conceitual: ainda não registrada no atlas, build ou jogo. Não substitui os líderes atuais nem define automaticamente a Trilha de cada personagem.
+Registrada no atlas principal, no build e na lista de imagens do servidor. Usada como líder nas Trilhas, em poses estáticas de apresentação, prontidão e vitória. Revisar a continuidade da caminhada antes de usá-la como ciclo de locomoção; essa animação não é necessária ao uso atual. Kael permanece fora da integração.
 
 ## Prompt final
 
