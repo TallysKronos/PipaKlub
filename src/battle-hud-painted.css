@@ -144,3 +144,4 @@ body.in-match .events div{padding:6px 9px;background:#294d3ded;color:#fff4db;bor
  .combat-deck #normalLineSide{width:76px;font-size:10px}
  .combat-deck #normalLineHUD>.hud-panel-content{grid-template-columns:minmax(0,1fr) 76px}
 }
+@media(max-height:500px){.hud .meter i{height:14px;top:-2px}.hud .hud-art-track{inset:-2px}}
