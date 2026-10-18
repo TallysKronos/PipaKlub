@@ -130,6 +130,8 @@ Tokens de acesso e renovação ficam em cookies HttpOnly, Secure em HTTPS e Same
 
 ## Sr. Assis, Nozinho e criaturas almáticas
 
+As regras para produzir e auditar HUD, personagens, Pipamons, spritesheets, tiles, objetos, mapas e efeitos estão no [Manual mestre de assets](MANUAL-DE-ASSETS.md). O Markdown é a fonte editável; a edição de consulta pode ser gerada com `scripts/render-asset-manual.py` usando Python e ReportLab.
+
 A arena, a seleção e a coleção usam as quatro criaturas do atlas em `assets/`. As animações são desenhadas sobre a mesma geometria de combate. O professor apresenta o jogo em oito etapas, com poses e expressões diferentes e o Nozinho animado. A primeira visita sem convite abre a introdução; é possível pular, rever em Como jogar ou Conheça o Sr. Assis e iniciar o treino ao concluir. Convites entram direto no lobby. O progresso da apresentação fica somente no aparelho.
 
 Texturas PNG são carregadas separadamente e têm URL com hash e cache. Apenas a folha de pipas é carregada no lobby; as três folhas do professor/Nozinho carregam quando a introdução abre. Falhas nas imagens não impedem entrar ou jogar. Movimento reduzido mantém os sprites sem animação. No Render, `src/static-assets.js` serve uma lista fixa de imagens, sem acesso livre a arquivos. O build de Pages copia as quatro imagens para `docs/assets/`.
