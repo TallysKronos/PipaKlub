@@ -277,9 +277,9 @@
       "mode": "nine",
       "insets": [
         200,
-        62,
+        100,
         46,
-        62
+        100
       ],
       "scale": 0.45
     },
@@ -301,7 +301,7 @@
         0,
         70
       ],
-      "scale": 0.16
+      "scale": 0.17475728155339806
     },
     "energy-track": {
       "mode": "three",
@@ -311,7 +311,7 @@
         0,
         70
       ],
-      "scale": 0.16
+      "scale": 0.17475728155339806
     },
     "button-normal": {
       "mode": "three",
@@ -400,6 +400,26 @@
       "scale": 0.26666666666666666,
       "mirrorLeft": true,
       "centerStart": 102
+    },
+    "hp-fill": {
+      "mode": "three",
+      "insets": [
+        0,
+        8,
+        0,
+        8
+      ],
+      "scale": 0.3389830508474576
+    },
+    "energy-fill": {
+      "mode": "three",
+      "insets": [
+        0,
+        8,
+        0,
+        8
+      ],
+      "scale": 0.3389830508474576
     }
   }
 }

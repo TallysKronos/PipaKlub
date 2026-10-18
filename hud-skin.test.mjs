@@ -31,7 +31,7 @@ test('reusing a skin replaces only its decorative pieces, preserving content and
 });
 
 test('both published builds contain the reusable kit and use pixel-based caps',()=>{
- const css=hudSpriteCSS();assert.match(css,/--hud-cap-l:27\.9px/);assert.match(css,/background-image:none!important/);
+ const css=hudSpriteCSS();assert.match(css,/--hud-cap-l:45px/);assert.match(css,/background-image:none!important/);assert.match(css,/!important;transform:scaleX\(-1\)/);
  for(const file of ['docs/index.html','worker/index.js']){const built=fs.readFileSync(file,'utf8');assert.match(built,/mountHudSkin/);assert.match(built,/hud-slice-tl/);}
  const kit=fs.readFileSync('docs/hud-kit.html','utf8');assert.match(kit,/Verificar cantos/);assert.doesNotThrow(()=>new vm.Script(kit.slice(kit.indexOf('<script>')+8,kit.lastIndexOf('</script>'))));
 });

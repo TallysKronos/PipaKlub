@@ -22,7 +22,7 @@ export function hudSpriteCSS(){
  const sprites=Object.entries(atlas.frames).map(([id,rect])=>'.hud-art-'+id+'{'+cropCSS(atlas,rect)+'}');
  const sliced=Object.entries(atlas.slices).flatMap(([id,spec])=>{
   const [t,r,b,l]=spec.insets,s=spec.scale,px=n=>Number((n*s).toFixed(4));
-  return ['.hud-sliced[data-hud-skin="'+id+'"]{--hud-cap-t:'+px(t)+'px;--hud-cap-r:'+px(r)+'px;--hud-cap-b:'+px(b)+'px;--hud-cap-l:'+px(l)+'px}',...Object.entries(hudSliceRects(atlas,id)).map(([part,rect])=>'.hud-sliced[data-hud-skin="'+id+'"]>.hud-slice-'+part+'{'+cropCSS(atlas,rect)+(spec.mirrorLeft&&part==='l'?'transform:scaleX(-1);':'')+'}')];
+  return ['.hud-sliced[data-hud-skin="'+id+'"]{--hud-cap-t:'+px(t)+'px;--hud-cap-r:'+px(r)+'px;--hud-cap-b:'+px(b)+'px;--hud-cap-l:'+px(l)+'px}',...Object.entries(hudSliceRects(atlas,id)).map(([part,rect])=>'.hud-sliced[data-hud-skin="'+id+'"]>.hud-slice-'+part+'{'+cropCSS(atlas,rect)+(spec.mirrorLeft&&part==='l'?';transform:scaleX(-1);':'')+'}')];
  });
  return sprites.concat(sliced).join('\n')+'\n'+fs.readFileSync('src/hud-skin.css','utf8');
 }

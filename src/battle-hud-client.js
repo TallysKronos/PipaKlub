@@ -1,6 +1,6 @@
 // Presentation only: never changes combat rules, inputs or server rewards.
 function battleArt(parent,frame,kind='back'){
- const node=document.createElement('span');node.className='hud-art hud-art-'+frame+' hud-art-'+kind;node.setAttribute('aria-hidden','true');parent.append(node);mountHudSkin(node,parent.id==='normalLineSide'&&frame.startsWith('button-')?frame.replace('button-','button-compact-'):frame,ART_CONFIG.hud);return node;
+ const node=document.createElement('span');node.className='hud-art hud-art-'+frame+' hud-art-'+kind;node.setAttribute('aria-hidden','true');parent.append(node);mountHudSkin(node,(parent.id==='normalLineSide'||parent.closest('.skill-actions'))&&frame.startsWith('button-')?frame.replace('button-','button-compact-'):frame,ART_CONFIG.hud);return node;
 }
 // Each painted frame owns a measured inner content box, independent of its artwork.
 for(const selector of ['.hud-player','.hud-clock','.hud-board','#normalLineHUD','.hud-skill','.hud-basics']){
@@ -19,7 +19,7 @@ for(const [selector,frame] of [['.hud-player','ranking'],['.hud-clock','clock'],
  const parent=document.querySelector(selector);parent.classList.add('hud-painted');battleArt(parent,frame);
 }
 battleArt($('playerPortrait'),'portrait','overlay');
-for(const id of ['hp','energy']){const fill=$(id);fill.classList.add('hud-art-'+(id==='hp'?'hp-fill':'energy-fill'));battleArt(fill.parentElement,id==='hp'?'hp-track':'energy-track','track');}
+for(const id of ['hp','energy']){const fill=$(id);fill.classList.add('hud-art-'+(id==='hp'?'hp-fill':'energy-fill'));fill.classList.add('hud-art');mountHudSkin(fill,id==='hp'?'hp-fill':'energy-fill',ART_CONFIG.hud);battleArt(fill.parentElement,id==='hp'?'hp-track':'energy-track','track');}
 for(const button of document.querySelectorAll('.combat-deck button')){
  button.classList.add('hud-painted-button');for(const state of ['normal','hover','pressed','disabled'])battleArt(button,'button-'+state,'button-'+state);
 }
