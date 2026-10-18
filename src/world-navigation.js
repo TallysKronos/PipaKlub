@@ -3,6 +3,7 @@ import {createWorldGeometry} from './world-map.js';
 export function createWorldNavigation(scene){
  const geometry=scene.tiled?createWorldGeometry(scene.tiled):null;
  const nodes=scene.nodes.map(([x,y])=>({x,y})),distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+ const adjacency=nodes.map(()=>[]);for(const [a,b]of scene.edges){const cost=distance(nodes[a],nodes[b]);adjacency[a].push([b,cost]);adjacency[b].push([a,cost]);}
  function project(p){
   if(!Number.isFinite(p?.x)||!Number.isFinite(p?.y))p=nodes[scene.spawn];
   let best=null;
@@ -10,10 +11,11 @@ export function createWorldNavigation(scene){
   return best;
  }
  function shortest(start,end){
-  const costs=nodes.map(()=>Infinity),previous=[],pending=new Set(nodes.map((_,i)=>i));costs[start]=0;
-  while(pending.size){const a=[...pending].sort((a,b)=>costs[a]-costs[b])[0];if(!Number.isFinite(costs[a]))return null;pending.delete(a);if(a===end)break;
-   for(const [u,v]of scene.edges){const b=u===a?v:v===a?u:null;if(b===null||!pending.has(b))continue;const d=costs[a]+distance(nodes[a],nodes[b]);if(d<costs[b]){costs[b]=d;previous[b]=a;}}
-  }
+  const costs=nodes.map(()=>Infinity),previous=[],heap=[];costs[start]=0;
+  function push(id,cost){const entry={id,cost};heap.push(entry);let i=heap.length-1;while(i){const p=(i-1)>>1;if(heap[p].cost<=cost)break;heap[i]=heap[p];i=p;}heap[i]=entry;}
+  function pop(){const first=heap[0],last=heap.pop();if(heap.length){let i=0;while(i*2+1<heap.length){let c=i*2+1;if(c+1<heap.length&&heap[c+1].cost<heap[c].cost)c++;if(last.cost<=heap[c].cost)break;heap[i]=heap[c];i=c;}heap[i]=last;}return first;}
+  push(start,0);while(heap.length){const {id:a,cost}=pop();if(cost!==costs[a])continue;if(a===end)break;for(const [b,weight]of adjacency[a]){const d=cost+weight;if(d<costs[b]){costs[b]=d;previous[b]=a;push(b,d);}}}
+  if(!Number.isFinite(costs[end]))return null;
   const path=[end];while(path[0]!==start){const p=previous[path[0]];if(p===undefined)return null;path.unshift(p);}return {cost:costs[end],points:path.map(i=>nodes[i])};
  }
  function route(from,to){

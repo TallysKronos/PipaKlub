@@ -1,0 +1,3807 @@
+{
+  "schema": "pipaklub-atelier",
+  "version": 1,
+  "name": "Quintal do Clube · modular",
+  "map": {
+    "type": "map",
+    "version": "1.10",
+    "tiledversion": "1.11.0",
+    "orientation": "orthogonal",
+    "renderorder": "right-down",
+    "width": 48,
+    "height": 32,
+    "tilewidth": 32,
+    "tileheight": 32,
+    "infinite": false,
+    "tilesets": [],
+    "layers": [
+      {
+        "id": 1,
+        "name": "Walkable",
+        "type": "objectgroup",
+        "draworder": "topdown",
+        "opacity": 1,
+        "visible": true,
+        "x": 0,
+        "y": 0,
+        "objects": [
+          {
+            "id": 1,
+            "name": "Gramado do quintal",
+            "x": 64,
+            "y": 224,
+            "width": 1408,
+            "height": 736,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "ground_frame",
+                "type": "string",
+                "value": "grass"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "name": "Caminho do portao",
+            "x": 704,
+            "y": 224,
+            "width": 192,
+            "height": 512,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "ground_frame",
+                "type": "string",
+                "value": "dirt"
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "name": "Rua da varanda",
+            "x": 192,
+            "y": 480,
+            "width": 1056,
+            "height": 160,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "ground_frame",
+                "type": "string",
+                "value": "dirt"
+              }
+            ]
+          },
+          {
+            "id": 4,
+            "name": "Patio de voo",
+            "x": 512,
+            "y": 608,
+            "width": 576,
+            "height": 224,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "ground_frame",
+                "type": "string",
+                "value": "dirt"
+              }
+            ]
+          },
+          {
+            "id": 5,
+            "name": "Caminho do mural",
+            "x": 928,
+            "y": 800,
+            "width": 416,
+            "height": 160,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "ground_frame",
+                "type": "string",
+                "value": "dirt"
+              }
+            ]
+          },
+          {
+            "id": 6,
+            "name": "Caminho dos carreteis",
+            "x": 160,
+            "y": 704,
+            "width": 512,
+            "height": 128,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "ground_frame",
+                "type": "string",
+                "value": "dirt"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Solids",
+        "type": "objectgroup",
+        "draworder": "topdown",
+        "opacity": 1,
+        "visible": true,
+        "x": 0,
+        "y": 0,
+        "objects": [
+          {
+            "id": 7,
+            "name": "Varanda do clube",
+            "x": 96,
+            "y": 256,
+            "width": 480,
+            "height": 224,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 480
+              }
+            ]
+          },
+          {
+            "id": 9,
+            "name": "Pilar esquerdo do portao",
+            "x": 592,
+            "y": 192,
+            "width": 96,
+            "height": 96,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 288
+              }
+            ]
+          },
+          {
+            "id": 10,
+            "name": "Pilar direito do portao",
+            "x": 912,
+            "y": 192,
+            "width": 96,
+            "height": 96,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 288
+              }
+            ]
+          },
+          {
+            "id": 11,
+            "name": "Folha aberta esquerda",
+            "x": 688,
+            "y": 224,
+            "width": 72,
+            "height": 64,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 288
+              }
+            ]
+          },
+          {
+            "id": 12,
+            "name": "Folha aberta direita",
+            "x": 840,
+            "y": 224,
+            "width": 72,
+            "height": 64,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 288
+              }
+            ]
+          },
+          {
+            "id": 14,
+            "name": "Banca de linhas",
+            "x": 1136,
+            "y": 304,
+            "width": 224,
+            "height": 96,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 400
+              }
+            ]
+          },
+          {
+            "id": 15,
+            "name": "Mesa do Sr. Assis",
+            "x": 240,
+            "y": 512,
+            "width": 144,
+            "height": 48,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 560
+              }
+            ]
+          },
+          {
+            "id": 16,
+            "name": "Expositor de carreteis",
+            "x": 192,
+            "y": 736,
+            "width": 112,
+            "height": 48,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 784
+              }
+            ]
+          },
+          {
+            "id": 17,
+            "name": "Banco e mural dos amigos",
+            "x": 1136,
+            "y": 832,
+            "width": 160,
+            "height": 48,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 880
+              }
+            ]
+          },
+          {
+            "id": 18,
+            "name": "Muro norte 78",
+            "x": 78,
+            "y": 216,
+            "width": 102,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 232
+              }
+            ]
+          },
+          {
+            "id": 19,
+            "name": "Muro norte 78",
+            "x": 180,
+            "y": 216,
+            "width": 102,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 232
+              }
+            ]
+          },
+          {
+            "id": 20,
+            "name": "Muro norte 78",
+            "x": 282,
+            "y": 216,
+            "width": 102,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 232
+              }
+            ]
+          },
+          {
+            "id": 21,
+            "name": "Muro norte 78",
+            "x": 384,
+            "y": 216,
+            "width": 102,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 232
+              }
+            ]
+          },
+          {
+            "id": 22,
+            "name": "Muro norte 78",
+            "x": 486,
+            "y": 216,
+            "width": 102,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 232
+              }
+            ]
+          },
+          {
+            "id": 23,
+            "name": "Muro norte 78",
+            "x": 588,
+            "y": 216,
+            "width": 6,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 232
+              }
+            ]
+          },
+          {
+            "id": 24,
+            "name": "Muro norte 1008",
+            "x": 1008,
+            "y": 216,
+            "width": 102,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 232
+              }
+            ]
+          },
+          {
+            "id": 25,
+            "name": "Muro norte 1008",
+            "x": 1110,
+            "y": 216,
+            "width": 102,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 232
+              }
+            ]
+          },
+          {
+            "id": 26,
+            "name": "Muro norte 1008",
+            "x": 1212,
+            "y": 216,
+            "width": 102,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 232
+              }
+            ]
+          },
+          {
+            "id": 27,
+            "name": "Muro norte 1008",
+            "x": 1314,
+            "y": 216,
+            "width": 102,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 232
+              }
+            ]
+          },
+          {
+            "id": 28,
+            "name": "Muro norte 1008",
+            "x": 1416,
+            "y": 216,
+            "width": 39,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 232
+              }
+            ]
+          },
+          {
+            "id": 29,
+            "name": "Muro sul",
+            "x": 78,
+            "y": 960,
+            "width": 102,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 976
+              }
+            ]
+          },
+          {
+            "id": 30,
+            "name": "Muro sul",
+            "x": 180,
+            "y": 960,
+            "width": 102,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 976
+              }
+            ]
+          },
+          {
+            "id": 31,
+            "name": "Muro sul",
+            "x": 282,
+            "y": 960,
+            "width": 102,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 976
+              }
+            ]
+          },
+          {
+            "id": 32,
+            "name": "Muro sul",
+            "x": 384,
+            "y": 960,
+            "width": 102,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 976
+              }
+            ]
+          },
+          {
+            "id": 33,
+            "name": "Muro sul",
+            "x": 486,
+            "y": 960,
+            "width": 102,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 976
+              }
+            ]
+          },
+          {
+            "id": 34,
+            "name": "Muro sul",
+            "x": 588,
+            "y": 960,
+            "width": 102,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 976
+              }
+            ]
+          },
+          {
+            "id": 35,
+            "name": "Muro sul",
+            "x": 690,
+            "y": 960,
+            "width": 102,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 976
+              }
+            ]
+          },
+          {
+            "id": 36,
+            "name": "Muro sul",
+            "x": 792,
+            "y": 960,
+            "width": 102,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 976
+              }
+            ]
+          },
+          {
+            "id": 37,
+            "name": "Muro sul",
+            "x": 894,
+            "y": 960,
+            "width": 102,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 976
+              }
+            ]
+          },
+          {
+            "id": 38,
+            "name": "Muro sul",
+            "x": 996,
+            "y": 960,
+            "width": 102,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 976
+              }
+            ]
+          },
+          {
+            "id": 39,
+            "name": "Muro sul",
+            "x": 1098,
+            "y": 960,
+            "width": 102,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 976
+              }
+            ]
+          },
+          {
+            "id": 40,
+            "name": "Muro sul",
+            "x": 1200,
+            "y": 960,
+            "width": 102,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 976
+              }
+            ]
+          },
+          {
+            "id": 41,
+            "name": "Muro sul",
+            "x": 1302,
+            "y": 960,
+            "width": 102,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 976
+              }
+            ]
+          },
+          {
+            "id": 42,
+            "name": "Muro sul",
+            "x": 1404,
+            "y": 960,
+            "width": 51,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 976
+              }
+            ]
+          },
+          {
+            "id": 43,
+            "name": "Muro lateral oeste",
+            "x": 48,
+            "y": 240,
+            "width": 16,
+            "height": 102,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 342
+              }
+            ]
+          },
+          {
+            "id": 44,
+            "name": "Muro lateral oeste",
+            "x": 48,
+            "y": 342,
+            "width": 16,
+            "height": 102,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 444
+              }
+            ]
+          },
+          {
+            "id": 45,
+            "name": "Muro lateral oeste",
+            "x": 48,
+            "y": 444,
+            "width": 16,
+            "height": 102,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 546
+              }
+            ]
+          },
+          {
+            "id": 46,
+            "name": "Muro lateral oeste",
+            "x": 48,
+            "y": 546,
+            "width": 16,
+            "height": 102,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 648
+              }
+            ]
+          },
+          {
+            "id": 47,
+            "name": "Muro lateral oeste",
+            "x": 48,
+            "y": 648,
+            "width": 16,
+            "height": 102,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 750
+              }
+            ]
+          },
+          {
+            "id": 48,
+            "name": "Muro lateral oeste",
+            "x": 48,
+            "y": 750,
+            "width": 16,
+            "height": 102,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 852
+              }
+            ]
+          },
+          {
+            "id": 49,
+            "name": "Muro lateral oeste",
+            "x": 48,
+            "y": 852,
+            "width": 16,
+            "height": 87,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 939
+              }
+            ]
+          },
+          {
+            "id": 50,
+            "name": "Muro lateral leste",
+            "x": 1472,
+            "y": 240,
+            "width": 16,
+            "height": 102,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 342
+              }
+            ]
+          },
+          {
+            "id": 51,
+            "name": "Muro lateral leste",
+            "x": 1472,
+            "y": 342,
+            "width": 16,
+            "height": 102,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 444
+              }
+            ]
+          },
+          {
+            "id": 52,
+            "name": "Muro lateral leste",
+            "x": 1472,
+            "y": 444,
+            "width": 16,
+            "height": 102,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 546
+              }
+            ]
+          },
+          {
+            "id": 53,
+            "name": "Muro lateral leste",
+            "x": 1472,
+            "y": 546,
+            "width": 16,
+            "height": 102,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 648
+              }
+            ]
+          },
+          {
+            "id": 54,
+            "name": "Muro lateral leste",
+            "x": 1472,
+            "y": 648,
+            "width": 16,
+            "height": 102,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 750
+              }
+            ]
+          },
+          {
+            "id": 55,
+            "name": "Muro lateral leste",
+            "x": 1472,
+            "y": 750,
+            "width": 16,
+            "height": 102,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 852
+              }
+            ]
+          },
+          {
+            "id": 56,
+            "name": "Muro lateral leste",
+            "x": 1472,
+            "y": 852,
+            "width": 16,
+            "height": 87,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 939
+              }
+            ]
+          },
+          {
+            "id": 57,
+            "name": "Quina wall-corner",
+            "x": 48,
+            "y": 216,
+            "width": 30,
+            "height": 24,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 240
+              }
+            ]
+          },
+          {
+            "id": 58,
+            "name": "Quina wall-ne",
+            "x": 1455,
+            "y": 216,
+            "width": 33,
+            "height": 24,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 240
+              }
+            ]
+          },
+          {
+            "id": 59,
+            "name": "Quina wall-sw",
+            "x": 48,
+            "y": 939,
+            "width": 30,
+            "height": 37,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 976
+              }
+            ]
+          },
+          {
+            "id": 60,
+            "name": "Quina wall-se",
+            "x": 1455,
+            "y": 939,
+            "width": 33,
+            "height": 37,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 976
+              }
+            ]
+          },
+          {
+            "id": 61,
+            "name": "Tronco de arvore",
+            "x": 98,
+            "y": 266,
+            "width": 28,
+            "height": 28,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 294
+              }
+            ]
+          },
+          {
+            "id": 63,
+            "name": "Tronco de arvore",
+            "x": 1426,
+            "y": 282,
+            "width": 28,
+            "height": 28,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 310
+              }
+            ]
+          },
+          {
+            "id": 65,
+            "name": "Tronco de arvore",
+            "x": 82,
+            "y": 666,
+            "width": 28,
+            "height": 28,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 694
+              }
+            ]
+          },
+          {
+            "id": 67,
+            "name": "Tronco de arvore",
+            "x": 1426,
+            "y": 730,
+            "width": 28,
+            "height": 28,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 758
+              }
+            ]
+          },
+          {
+            "id": 69,
+            "name": "Tronco de arvore",
+            "x": 418,
+            "y": 906,
+            "width": 28,
+            "height": 28,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 934
+              }
+            ]
+          },
+          {
+            "id": 71,
+            "name": "Tronco de arvore",
+            "x": 786,
+            "y": 922,
+            "width": 28,
+            "height": 28,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 950
+              }
+            ]
+          },
+          {
+            "id": 73,
+            "name": "Tronco de arvore",
+            "x": 1314,
+            "y": 218,
+            "width": 28,
+            "height": 28,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 246
+              }
+            ]
+          },
+          {
+            "id": 75,
+            "name": "Tronco de arvore",
+            "x": 66,
+            "y": 154,
+            "width": 28,
+            "height": 28,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 182
+              }
+            ]
+          },
+          {
+            "id": 77,
+            "name": "Tronco de arvore",
+            "x": 418,
+            "y": 138,
+            "width": 28,
+            "height": 28,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 166
+              }
+            ]
+          },
+          {
+            "id": 79,
+            "name": "Tronco de arvore",
+            "x": 1042,
+            "y": 146,
+            "width": 28,
+            "height": 28,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 174
+              }
+            ]
+          },
+          {
+            "id": 81,
+            "name": "Tronco de arvore",
+            "x": 1298,
+            "y": 154,
+            "width": 28,
+            "height": 28,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 182
+              }
+            ]
+          },
+          {
+            "id": 83,
+            "name": "Tronco de arvore",
+            "x": 1474,
+            "y": 154,
+            "width": 28,
+            "height": 28,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 182
+              }
+            ]
+          },
+          {
+            "id": 85,
+            "name": "banana",
+            "x": 1080.0,
+            "y": 340,
+            "width": 16,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 356
+              }
+            ]
+          },
+          {
+            "id": 86,
+            "name": "banana",
+            "x": 1400.0,
+            "y": 500,
+            "width": 16,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 516
+              }
+            ]
+          },
+          {
+            "id": 87,
+            "name": "banana",
+            "x": 120.0,
+            "y": 900,
+            "width": 16,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 916
+              }
+            ]
+          },
+          {
+            "id": 88,
+            "name": "flowerpot",
+            "x": 616.0,
+            "y": 276,
+            "width": 16,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 292
+              }
+            ]
+          },
+          {
+            "id": 89,
+            "name": "flowerpot",
+            "x": 968.0,
+            "y": 276,
+            "width": 16,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 292
+              }
+            ]
+          },
+          {
+            "id": 90,
+            "name": "flowerpot",
+            "x": 584.0,
+            "y": 468,
+            "width": 16,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 484
+              }
+            ]
+          },
+          {
+            "id": 91,
+            "name": "flowerpot",
+            "x": 1096.0,
+            "y": 436,
+            "width": 16,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 452
+              }
+            ]
+          },
+          {
+            "id": 92,
+            "name": "flowerpot",
+            "x": 1368.0,
+            "y": 660,
+            "width": 16,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 676
+              }
+            ]
+          },
+          {
+            "id": 93,
+            "name": "bench",
+            "x": 912.0,
+            "y": 660,
+            "width": 96,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 676
+              }
+            ]
+          },
+          {
+            "id": 94,
+            "name": "lamp",
+            "x": 1016.0,
+            "y": 532,
+            "width": 16,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 548
+              }
+            ]
+          },
+          {
+            "id": 95,
+            "name": "lamp",
+            "x": 664.0,
+            "y": 308,
+            "width": 16,
+            "height": 16,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 324
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Foreground",
+        "type": "objectgroup",
+        "draworder": "topdown",
+        "opacity": 1,
+        "visible": true,
+        "x": 0,
+        "y": 0,
+        "objects": [
+          {
+            "id": 8,
+            "name": "Telhado do clube",
+            "x": 332,
+            "y": 270,
+            "width": 8,
+            "height": 8,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 480
+              }
+            ]
+          },
+          {
+            "id": 13,
+            "name": "Portao aberto",
+            "x": 796,
+            "y": 284,
+            "width": 8,
+            "height": 8,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 288
+              }
+            ]
+          },
+          {
+            "id": 62,
+            "name": "Copa de arvore",
+            "x": 108,
+            "y": 264,
+            "width": 8,
+            "height": 8,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 294
+              }
+            ]
+          },
+          {
+            "id": 64,
+            "name": "Copa de arvore",
+            "x": 1436,
+            "y": 280,
+            "width": 8,
+            "height": 8,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 310
+              }
+            ]
+          },
+          {
+            "id": 66,
+            "name": "Copa de arvore",
+            "x": 92,
+            "y": 664,
+            "width": 8,
+            "height": 8,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 694
+              }
+            ]
+          },
+          {
+            "id": 68,
+            "name": "Copa de arvore",
+            "x": 1436,
+            "y": 728,
+            "width": 8,
+            "height": 8,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 758
+              }
+            ]
+          },
+          {
+            "id": 70,
+            "name": "Copa de arvore",
+            "x": 428,
+            "y": 904,
+            "width": 8,
+            "height": 8,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 934
+              }
+            ]
+          },
+          {
+            "id": 72,
+            "name": "Copa de arvore",
+            "x": 796,
+            "y": 920,
+            "width": 8,
+            "height": 8,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 950
+              }
+            ]
+          },
+          {
+            "id": 74,
+            "name": "Copa de arvore",
+            "x": 1324,
+            "y": 216,
+            "width": 8,
+            "height": 8,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 246
+              }
+            ]
+          },
+          {
+            "id": 76,
+            "name": "Copa de arvore",
+            "x": 76,
+            "y": 152,
+            "width": 8,
+            "height": 8,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 182
+              }
+            ]
+          },
+          {
+            "id": 78,
+            "name": "Copa de arvore",
+            "x": 428,
+            "y": 136,
+            "width": 8,
+            "height": 8,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 166
+              }
+            ]
+          },
+          {
+            "id": 80,
+            "name": "Copa de arvore",
+            "x": 1052,
+            "y": 144,
+            "width": 8,
+            "height": 8,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 174
+              }
+            ]
+          },
+          {
+            "id": 82,
+            "name": "Copa de arvore",
+            "x": 1308,
+            "y": 152,
+            "width": 8,
+            "height": 8,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 182
+              }
+            ]
+          },
+          {
+            "id": 84,
+            "name": "Copa de arvore",
+            "x": 1484,
+            "y": 152,
+            "width": 8,
+            "height": 8,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "sort_y",
+                "type": "int",
+                "value": 182
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Interactions",
+        "type": "objectgroup",
+        "draworder": "topdown",
+        "opacity": 1,
+        "visible": true,
+        "x": 0,
+        "y": 0,
+        "objects": [
+          {
+            "id": 96,
+            "name": "Varanda dos parceiros",
+            "x": 256,
+            "y": 480,
+            "width": 128,
+            "height": 96,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "action",
+                "type": "string",
+                "value": "collection"
+              },
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "place_id",
+                "type": "string",
+                "value": "collection"
+              }
+            ]
+          },
+          {
+            "id": 97,
+            "name": "Sr. Assis e Nozinho",
+            "x": 384,
+            "y": 592,
+            "width": 128,
+            "height": 96,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "action",
+                "type": "string",
+                "value": "professor"
+              },
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "place_id",
+                "type": "string",
+                "value": "professor"
+              }
+            ]
+          },
+          {
+            "id": 98,
+            "name": "Banca de linhas",
+            "x": 1184,
+            "y": 432,
+            "width": 128,
+            "height": 96,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "action",
+                "type": "string",
+                "value": "shop"
+              },
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "place_id",
+                "type": "string",
+                "value": "shop"
+              }
+            ]
+          },
+          {
+            "id": 99,
+            "name": "Círculo de invocação",
+            "x": 1216,
+            "y": 576,
+            "width": 96,
+            "height": 96,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "action",
+                "type": "string",
+                "value": "summon"
+              },
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "place_id",
+                "type": "string",
+                "value": "summon"
+              }
+            ]
+          },
+          {
+            "id": 100,
+            "name": "Mural dos amigos",
+            "x": 1152,
+            "y": 896,
+            "width": 128,
+            "height": 64,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "action",
+                "type": "string",
+                "value": "friends"
+              },
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "place_id",
+                "type": "string",
+                "value": "friends"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Spawns",
+        "type": "objectgroup",
+        "draworder": "topdown",
+        "opacity": 1,
+        "visible": true,
+        "x": 0,
+        "y": 0,
+        "objects": [
+          {
+            "id": 102,
+            "name": "Chegada ao clube",
+            "x": 736,
+            "y": 688,
+            "width": 64,
+            "height": 64,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Exits",
+        "type": "objectgroup",
+        "draworder": "topdown",
+        "opacity": 1,
+        "visible": true,
+        "x": 0,
+        "y": 0,
+        "objects": [
+          {
+            "id": 101,
+            "name": "Portão para Kronasta",
+            "x": 752,
+            "y": 240,
+            "width": 96,
+            "height": 96,
+            "rotation": 0,
+            "visible": true,
+            "properties": [
+              {
+                "name": "action",
+                "type": "string",
+                "value": "city"
+              },
+              {
+                "name": "level",
+                "type": "int",
+                "value": 0
+              },
+              {
+                "name": "place_id",
+                "type": "string",
+                "value": "gate"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "name": "scene_name",
+        "type": "string",
+        "value": "Quintal do Clube"
+      },
+      {
+        "name": "scene_id",
+        "type": "string",
+        "value": "quintal"
+      },
+      {
+        "name": "overview",
+        "type": "bool",
+        "value": true
+      },
+      {
+        "name": "ground_corner_radius",
+        "type": "int",
+        "value": 24
+      },
+      {
+        "name": "actor_height",
+        "type": "int",
+        "value": 72
+      },
+      {
+        "name": "foot_radius",
+        "type": "int",
+        "value": 10
+      },
+      {
+        "name": "professor_x",
+        "type": "int",
+        "value": 416
+      },
+      {
+        "name": "professor_y",
+        "type": "int",
+        "value": 608
+      },
+      {
+        "name": "nozinho_x",
+        "type": "int",
+        "value": 466
+      },
+      {
+        "name": "nozinho_y",
+        "type": "int",
+        "value": 626
+      }
+    ],
+    "nextobjectid": 103,
+    "nextlayerid": 7
+  },
+  "layout": {
+    "bindings": {
+      "7": {
+        "frame": "club-veranda",
+        "width": 540,
+        "footX": 336,
+        "footY": 480
+      },
+      "8": {
+        "frame": "club-roof",
+        "width": 580,
+        "footX": 336,
+        "footY": 274
+      },
+      "9": {
+        "hidden": true
+      },
+      "10": {
+        "hidden": true
+      },
+      "11": {
+        "hidden": true
+      },
+      "12": {
+        "hidden": true
+      },
+      "13": {
+        "frame": "club-gate",
+        "width": 416,
+        "footX": 800,
+        "footY": 288
+      },
+      "14": {
+        "frame": "line-stall",
+        "width": 288,
+        "footX": 1248,
+        "footY": 416
+      },
+      "15": {
+        "frame": "craft-table",
+        "width": 208,
+        "footX": 312,
+        "footY": 560
+      },
+      "16": {
+        "frame": "spool-rack",
+        "width": 176,
+        "footX": 248,
+        "footY": 800
+      },
+      "17": {
+        "frame": "friends-board",
+        "width": 256,
+        "footX": 1216,
+        "footY": 896
+      },
+      "18": {
+        "frame": "wall-horizontal",
+        "width": 102,
+        "footX": 78,
+        "footY": 198,
+        "sourceWidth": 544
+      },
+      "19": {
+        "frame": "wall-horizontal",
+        "width": 102,
+        "footX": 180,
+        "footY": 198,
+        "sourceWidth": 544
+      },
+      "20": {
+        "frame": "wall-horizontal",
+        "width": 102,
+        "footX": 282,
+        "footY": 198,
+        "sourceWidth": 544
+      },
+      "21": {
+        "frame": "wall-horizontal",
+        "width": 102,
+        "footX": 384,
+        "footY": 198,
+        "sourceWidth": 544
+      },
+      "22": {
+        "frame": "wall-horizontal",
+        "width": 102,
+        "footX": 486,
+        "footY": 198,
+        "sourceWidth": 544
+      },
+      "23": {
+        "frame": "wall-horizontal",
+        "width": 6,
+        "footX": 588,
+        "footY": 198,
+        "sourceWidth": 32
+      },
+      "24": {
+        "frame": "wall-horizontal",
+        "width": 102,
+        "footX": 1008,
+        "footY": 198,
+        "sourceWidth": 544
+      },
+      "25": {
+        "frame": "wall-horizontal",
+        "width": 102,
+        "footX": 1110,
+        "footY": 198,
+        "sourceWidth": 544
+      },
+      "26": {
+        "frame": "wall-horizontal",
+        "width": 102,
+        "footX": 1212,
+        "footY": 198,
+        "sourceWidth": 544
+      },
+      "27": {
+        "frame": "wall-horizontal",
+        "width": 102,
+        "footX": 1314,
+        "footY": 198,
+        "sourceWidth": 544
+      },
+      "28": {
+        "frame": "wall-horizontal",
+        "width": 39,
+        "footX": 1416,
+        "footY": 198,
+        "sourceWidth": 208
+      },
+      "29": {
+        "frame": "wall-south",
+        "width": 102,
+        "footX": 78,
+        "footY": 939,
+        "sourceWidth": 544
+      },
+      "30": {
+        "frame": "wall-south",
+        "width": 102,
+        "footX": 180,
+        "footY": 939,
+        "sourceWidth": 544
+      },
+      "31": {
+        "frame": "wall-south",
+        "width": 102,
+        "footX": 282,
+        "footY": 939,
+        "sourceWidth": 544
+      },
+      "32": {
+        "frame": "wall-south",
+        "width": 102,
+        "footX": 384,
+        "footY": 939,
+        "sourceWidth": 544
+      },
+      "33": {
+        "frame": "wall-south",
+        "width": 102,
+        "footX": 486,
+        "footY": 939,
+        "sourceWidth": 544
+      },
+      "34": {
+        "frame": "wall-south",
+        "width": 102,
+        "footX": 588,
+        "footY": 939,
+        "sourceWidth": 544
+      },
+      "35": {
+        "frame": "wall-south",
+        "width": 102,
+        "footX": 690,
+        "footY": 939,
+        "sourceWidth": 544
+      },
+      "36": {
+        "frame": "wall-south",
+        "width": 102,
+        "footX": 792,
+        "footY": 939,
+        "sourceWidth": 544
+      },
+      "37": {
+        "frame": "wall-south",
+        "width": 102,
+        "footX": 894,
+        "footY": 939,
+        "sourceWidth": 544
+      },
+      "38": {
+        "frame": "wall-south",
+        "width": 102,
+        "footX": 996,
+        "footY": 939,
+        "sourceWidth": 544
+      },
+      "39": {
+        "frame": "wall-south",
+        "width": 102,
+        "footX": 1098,
+        "footY": 939,
+        "sourceWidth": 544
+      },
+      "40": {
+        "frame": "wall-south",
+        "width": 102,
+        "footX": 1200,
+        "footY": 939,
+        "sourceWidth": 544
+      },
+      "41": {
+        "frame": "wall-south",
+        "width": 102,
+        "footX": 1302,
+        "footY": 939,
+        "sourceWidth": 544
+      },
+      "42": {
+        "frame": "wall-south",
+        "width": 51,
+        "footX": 1404,
+        "footY": 939,
+        "sourceWidth": 272
+      },
+      "43": {
+        "frame": "wall-vertical",
+        "width": 42,
+        "footX": 36,
+        "footY": 240,
+        "sourceHeight": 544
+      },
+      "44": {
+        "frame": "wall-vertical",
+        "width": 42,
+        "footX": 36,
+        "footY": 342,
+        "sourceHeight": 544
+      },
+      "45": {
+        "frame": "wall-vertical",
+        "width": 42,
+        "footX": 36,
+        "footY": 444,
+        "sourceHeight": 544
+      },
+      "46": {
+        "frame": "wall-vertical",
+        "width": 42,
+        "footX": 36,
+        "footY": 546,
+        "sourceHeight": 544
+      },
+      "47": {
+        "frame": "wall-vertical",
+        "width": 42,
+        "footX": 36,
+        "footY": 648,
+        "sourceHeight": 544
+      },
+      "48": {
+        "frame": "wall-vertical",
+        "width": 42,
+        "footX": 36,
+        "footY": 750,
+        "sourceHeight": 544
+      },
+      "49": {
+        "frame": "wall-vertical",
+        "width": 42,
+        "footX": 36,
+        "footY": 852,
+        "sourceHeight": 464
+      },
+      "50": {
+        "frame": "wall-east",
+        "width": 42,
+        "footX": 1455,
+        "footY": 240,
+        "sourceHeight": 544
+      },
+      "51": {
+        "frame": "wall-east",
+        "width": 42,
+        "footX": 1455,
+        "footY": 342,
+        "sourceHeight": 544
+      },
+      "52": {
+        "frame": "wall-east",
+        "width": 42,
+        "footX": 1455,
+        "footY": 444,
+        "sourceHeight": 544
+      },
+      "53": {
+        "frame": "wall-east",
+        "width": 42,
+        "footX": 1455,
+        "footY": 546,
+        "sourceHeight": 544
+      },
+      "54": {
+        "frame": "wall-east",
+        "width": 42,
+        "footX": 1455,
+        "footY": 648,
+        "sourceHeight": 544
+      },
+      "55": {
+        "frame": "wall-east",
+        "width": 42,
+        "footX": 1455,
+        "footY": 750,
+        "sourceHeight": 544
+      },
+      "56": {
+        "frame": "wall-east",
+        "width": 42,
+        "footX": 1455,
+        "footY": 852,
+        "sourceHeight": 464
+      },
+      "57": {
+        "frame": "wall-corner",
+        "width": 42,
+        "footX": 36,
+        "footY": 198
+      },
+      "58": {
+        "frame": "wall-ne",
+        "width": 42,
+        "footX": 1455,
+        "footY": 198
+      },
+      "59": {
+        "frame": "wall-sw",
+        "width": 42,
+        "footX": 36,
+        "footY": 939
+      },
+      "60": {
+        "frame": "wall-se",
+        "width": 42,
+        "footX": 1455,
+        "footY": 939
+      },
+      "61": {
+        "frame": "trunk",
+        "width": 42,
+        "footX": 112,
+        "footY": 294
+      },
+      "62": {
+        "frame": "canopy",
+        "width": 248,
+        "footX": 112,
+        "footY": 268,
+        "anchorY": 1
+      },
+      "63": {
+        "frame": "trunk",
+        "width": 42,
+        "footX": 1440,
+        "footY": 310
+      },
+      "64": {
+        "frame": "canopy",
+        "width": 256,
+        "footX": 1440,
+        "footY": 284,
+        "anchorY": 1
+      },
+      "65": {
+        "frame": "trunk",
+        "width": 42,
+        "footX": 96,
+        "footY": 694
+      },
+      "66": {
+        "frame": "canopy",
+        "width": 208,
+        "footX": 96,
+        "footY": 668,
+        "anchorY": 1
+      },
+      "67": {
+        "frame": "trunk",
+        "width": 42,
+        "footX": 1440,
+        "footY": 758
+      },
+      "68": {
+        "frame": "canopy",
+        "width": 224,
+        "footX": 1440,
+        "footY": 732,
+        "anchorY": 1
+      },
+      "69": {
+        "frame": "trunk",
+        "width": 42,
+        "footX": 432,
+        "footY": 934
+      },
+      "70": {
+        "frame": "canopy",
+        "width": 208,
+        "footX": 432,
+        "footY": 908,
+        "anchorY": 1
+      },
+      "71": {
+        "frame": "trunk",
+        "width": 42,
+        "footX": 800,
+        "footY": 950
+      },
+      "72": {
+        "frame": "canopy",
+        "width": 176,
+        "footX": 800,
+        "footY": 924,
+        "anchorY": 1
+      },
+      "73": {
+        "frame": "trunk",
+        "width": 42,
+        "footX": 1328,
+        "footY": 246
+      },
+      "74": {
+        "frame": "canopy",
+        "width": 192,
+        "footX": 1328,
+        "footY": 220,
+        "anchorY": 1
+      },
+      "75": {
+        "frame": "trunk",
+        "width": 42,
+        "footX": 80,
+        "footY": 182
+      },
+      "76": {
+        "frame": "canopy",
+        "width": 260,
+        "footX": 80,
+        "footY": 156,
+        "anchorY": 1
+      },
+      "77": {
+        "frame": "trunk",
+        "width": 42,
+        "footX": 432,
+        "footY": 166
+      },
+      "78": {
+        "frame": "canopy",
+        "width": 256,
+        "footX": 432,
+        "footY": 140,
+        "anchorY": 1
+      },
+      "79": {
+        "frame": "trunk",
+        "width": 42,
+        "footX": 1056,
+        "footY": 174
+      },
+      "80": {
+        "frame": "canopy",
+        "width": 264,
+        "footX": 1056,
+        "footY": 148,
+        "anchorY": 1
+      },
+      "81": {
+        "frame": "trunk",
+        "width": 42,
+        "footX": 1312,
+        "footY": 182
+      },
+      "82": {
+        "frame": "canopy",
+        "width": 260,
+        "footX": 1312,
+        "footY": 156,
+        "anchorY": 1
+      },
+      "83": {
+        "frame": "trunk",
+        "width": 42,
+        "footX": 1488,
+        "footY": 182
+      },
+      "84": {
+        "frame": "canopy",
+        "width": 248,
+        "footX": 1488,
+        "footY": 156,
+        "anchorY": 1
+      },
+      "85": {
+        "frame": "banana",
+        "width": 96,
+        "footX": 1088,
+        "footY": 352
+      },
+      "86": {
+        "frame": "banana",
+        "width": 112,
+        "footX": 1408,
+        "footY": 512
+      },
+      "87": {
+        "frame": "banana",
+        "width": 96,
+        "footX": 128,
+        "footY": 912
+      },
+      "88": {
+        "frame": "flowerpot",
+        "width": 56,
+        "footX": 624,
+        "footY": 288
+      },
+      "89": {
+        "frame": "flowerpot",
+        "width": 56,
+        "footX": 976,
+        "footY": 288
+      },
+      "90": {
+        "frame": "flowerpot",
+        "width": 48,
+        "footX": 592,
+        "footY": 480
+      },
+      "91": {
+        "frame": "flowerpot",
+        "width": 48,
+        "footX": 1104,
+        "footY": 448
+      },
+      "92": {
+        "frame": "flowerpot",
+        "width": 56,
+        "footX": 1376,
+        "footY": 672
+      },
+      "93": {
+        "frame": "bench",
+        "width": 144,
+        "footX": 960,
+        "footY": 672
+      },
+      "94": {
+        "frame": "lamp",
+        "width": 30,
+        "footX": 1024,
+        "footY": 544
+      },
+      "95": {
+        "frame": "lamp",
+        "width": 30,
+        "footX": 672,
+        "footY": 320
+      }
+    },
+    "decorations": [
+      {
+        "frame": "summon-dais",
+        "width": 384,
+        "footX": 1248,
+        "footY": 672,
+        "sortY": 0,
+        "level": 0
+      },
+      {
+        "frame": "pennants",
+        "width": 288,
+        "footX": 800,
+        "footY": 208,
+        "sortY": 208,
+        "level": 0
+      },
+      {
+        "frame": "shrub",
+        "width": 128,
+        "footX": 1040,
+        "footY": 928,
+        "sortY": 928,
+        "level": 0
+      },
+      {
+        "frame": "shrub",
+        "width": 128,
+        "footX": 1344,
+        "footY": 912,
+        "sortY": 912,
+        "level": 0
+      },
+      {
+        "frame": "shrub",
+        "width": 96,
+        "footX": 1152,
+        "footY": 240,
+        "sortY": 240,
+        "level": 0
+      },
+      {
+        "frame": "shrub",
+        "width": 112,
+        "footX": 352,
+        "footY": 848,
+        "sortY": 848,
+        "level": 0
+      },
+      {
+        "frame": "shrub",
+        "width": 112,
+        "footX": 576,
+        "footY": 928,
+        "sortY": 928,
+        "level": 0
+      },
+      {
+        "frame": "shrub",
+        "width": 120,
+        "footX": 96,
+        "footY": 512,
+        "sortY": 512,
+        "level": 0
+      },
+      {
+        "frame": "shrub",
+        "width": 112,
+        "footX": 1408,
+        "footY": 896,
+        "sortY": 896,
+        "level": 0
+      },
+      {
+        "frame": "shrub",
+        "width": 96,
+        "footX": 1104,
+        "footY": 256,
+        "sortY": 256,
+        "level": 0
+      }
+    ],
+    "audit": {
+      "enforce": true
+    }
+  },
+  "kit": {
+    "version": 1,
+    "style": "2D chibi RPG, orthographic three-quarter view",
+    "baseGrid": 32,
+    "actorHeight": 64,
+    "generatedWith": "built-in image_gen",
+    "sheets": {
+      "architecture": {
+        "image": "world/morro-kit-v1/architecture-v1.png",
+        "width": 1536,
+        "height": 1024,
+        "columns": 2,
+        "rows": 2
+      },
+      "vegetation": {
+        "image": "world/morro-kit-v1/vegetation-v1.png",
+        "width": 1536,
+        "height": 1024,
+        "columns": 2,
+        "rows": 2
+      },
+      "masonry": {
+        "image": "world/morro-kit-v1/masonry-v1.png",
+        "width": 1536,
+        "height": 1024,
+        "columns": 2,
+        "rows": 2
+      },
+      "props": {
+        "image": "world/morro-kit-v1/props-v1.png",
+        "width": 1536,
+        "height": 1024,
+        "columns": 3,
+        "rows": 2
+      },
+      "ground": {
+        "image": "world/morro-kit-v1/ground-v1.png",
+        "width": 1254,
+        "height": 1254,
+        "columns": 2,
+        "rows": 2
+      },
+      "details": {
+        "image": "world/morro-kit-v1/details-v1.png",
+        "width": 1536,
+        "height": 1024,
+        "columns": 2,
+        "rows": 2
+      },
+      "quintal-walls": {
+        "image": "world/quintal-kit-v1/walls-v2.png",
+        "width": 1254,
+        "height": 1254
+      },
+      "quintal-buildings": {
+        "image": "world/quintal-kit-v1/buildings-v1.png",
+        "width": 1536,
+        "height": 1024,
+        "columns": 2,
+        "rows": 2
+      },
+      "quintal-furniture": {
+        "image": "world/quintal-kit-v1/furniture-v1.png",
+        "width": 1536,
+        "height": 1024,
+        "columns": 2,
+        "rows": 2
+      }
+    },
+    "frames": {
+      "house-yellow": {
+        "sheet": "architecture",
+        "x": 66,
+        "y": 138,
+        "w": 758,
+        "h": 327,
+        "cell": {
+          "x": 0,
+          "y": 0,
+          "w": 840,
+          "h": 512
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedHeight": 192,
+        "layer": "object",
+        "recommendedWidth": 448
+      },
+      "roof-terracotta": {
+        "sheet": "architecture",
+        "x": 855,
+        "y": 203,
+        "w": 646,
+        "h": 239,
+        "cell": {
+          "x": 840,
+          "y": 0,
+          "w": 696,
+          "h": 512
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedHeight": 96,
+        "layer": "foreground",
+        "recommendedWidth": 448
+      },
+      "house-salmon": {
+        "sheet": "architecture",
+        "x": 59,
+        "y": 579,
+        "w": 773,
+        "h": 348,
+        "cell": {
+          "x": 0,
+          "y": 512,
+          "w": 840,
+          "h": 512
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedHeight": 192,
+        "layer": "object",
+        "recommendedWidth": 448
+      },
+      "gate": {
+        "sheet": "architecture",
+        "x": 923,
+        "y": 598,
+        "w": 518,
+        "h": 327,
+        "cell": {
+          "x": 840,
+          "y": 512,
+          "w": 696,
+          "h": 512
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedHeight": 112,
+        "layer": "object",
+        "recommendedWidth": 192
+      },
+      "canopy": {
+        "sheet": "vegetation",
+        "x": 133,
+        "y": 32,
+        "w": 636,
+        "h": 508,
+        "cell": {
+          "x": 0,
+          "y": 0,
+          "w": 800,
+          "h": 576
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 1.08
+        },
+        "recommendedHeight": 160,
+        "layer": "foreground"
+      },
+      "trunk": {
+        "sheet": "vegetation",
+        "x": 968,
+        "y": 104,
+        "w": 391,
+        "h": 417,
+        "cell": {
+          "x": 800,
+          "y": 0,
+          "w": 736,
+          "h": 526
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedHeight": 64,
+        "layer": "object"
+      },
+      "shrub": {
+        "sheet": "vegetation",
+        "x": 167,
+        "y": 611,
+        "w": 573,
+        "h": 372,
+        "cell": {
+          "x": 0,
+          "y": 576,
+          "w": 800,
+          "h": 448
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedHeight": 40,
+        "layer": "object"
+      },
+      "banana": {
+        "sheet": "vegetation",
+        "x": 840,
+        "y": 532,
+        "w": 618,
+        "h": 446,
+        "cell": {
+          "x": 800,
+          "y": 526,
+          "w": 736,
+          "h": 498
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedHeight": 96,
+        "layer": "object"
+      },
+      "wall-horizontal": {
+        "sheet": "quintal-walls",
+        "x": 352,
+        "y": 128,
+        "w": 544,
+        "h": 224,
+        "anchor": {
+          "x": 0,
+          "y": 0
+        },
+        "recommendedWidth": 102.0,
+        "layer": "object",
+        "wallAxis": "x"
+      },
+      "wall-vertical": {
+        "sheet": "quintal-walls",
+        "x": 128,
+        "y": 352,
+        "w": 224,
+        "h": 544,
+        "anchor": {
+          "x": 0,
+          "y": 0
+        },
+        "recommendedWidth": 42.0,
+        "layer": "object",
+        "wallAxis": "y"
+      },
+      "wall-corner": {
+        "sheet": "quintal-walls",
+        "x": 128,
+        "y": 128,
+        "w": 224,
+        "h": 224,
+        "anchor": {
+          "x": 0,
+          "y": 0
+        },
+        "recommendedWidth": 42.0,
+        "layer": "object",
+        "wallAxis": null
+      },
+      "stairs": {
+        "sheet": "masonry",
+        "x": 942,
+        "y": 490,
+        "w": 404,
+        "h": 449,
+        "cell": {
+          "x": 880,
+          "y": 460,
+          "w": 656,
+          "h": 564
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedHeight": 128,
+        "layer": "object"
+      },
+      "bench": {
+        "sheet": "props",
+        "x": 100,
+        "y": 310,
+        "w": 412,
+        "h": 262,
+        "cell": {
+          "x": 0,
+          "y": 0,
+          "w": 590,
+          "h": 608
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedHeight": 48,
+        "layer": "object"
+      },
+      "lamp": {
+        "sheet": "props",
+        "x": 699,
+        "y": 64,
+        "w": 138,
+        "h": 513,
+        "cell": {
+          "x": 590,
+          "y": 0,
+          "w": 410,
+          "h": 608
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedHeight": 112,
+        "layer": "object"
+      },
+      "water-tank": {
+        "sheet": "props",
+        "x": 1131,
+        "y": 305,
+        "w": 277,
+        "h": 280,
+        "cell": {
+          "x": 1000,
+          "y": 0,
+          "w": 536,
+          "h": 608
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedHeight": 64,
+        "layer": "object"
+      },
+      "fence": {
+        "sheet": "props",
+        "x": 56,
+        "y": 723,
+        "w": 499,
+        "h": 210,
+        "cell": {
+          "x": 0,
+          "y": 608,
+          "w": 590,
+          "h": 416
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedHeight": 48,
+        "layer": "object"
+      },
+      "flowerpot": {
+        "sheet": "props",
+        "x": 627,
+        "y": 626,
+        "w": 293,
+        "h": 319,
+        "cell": {
+          "x": 590,
+          "y": 608,
+          "w": 410,
+          "h": 416
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedHeight": 40,
+        "layer": "object"
+      },
+      "pennants": {
+        "sheet": "props",
+        "x": 1039,
+        "y": 693,
+        "w": 452,
+        "h": 229,
+        "cell": {
+          "x": 1000,
+          "y": 608,
+          "w": 536,
+          "h": 416
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedHeight": 96,
+        "layer": "object"
+      },
+      "dirt": {
+        "sheet": "ground",
+        "x": 0,
+        "y": 0,
+        "w": 627,
+        "h": 627,
+        "cell": {
+          "x": 0,
+          "y": 0,
+          "w": 627,
+          "h": 627
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedHeight": 64,
+        "layer": "ground"
+      },
+      "grass": {
+        "sheet": "ground",
+        "x": 627,
+        "y": 0,
+        "w": 627,
+        "h": 627,
+        "cell": {
+          "x": 627,
+          "y": 0,
+          "w": 627,
+          "h": 627
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedHeight": 64,
+        "layer": "ground"
+      },
+      "sidewalk": {
+        "sheet": "ground",
+        "x": 0,
+        "y": 627,
+        "w": 627,
+        "h": 627,
+        "cell": {
+          "x": 0,
+          "y": 627,
+          "w": 627,
+          "h": 627
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedHeight": 64,
+        "layer": "ground"
+      },
+      "cobblestone": {
+        "sheet": "ground",
+        "x": 627,
+        "y": 627,
+        "w": 627,
+        "h": 627,
+        "cell": {
+          "x": 627,
+          "y": 627,
+          "w": 627,
+          "h": 627
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedHeight": 64,
+        "layer": "ground"
+      },
+      "door-closed": {
+        "sheet": "details",
+        "x": 217,
+        "y": 77,
+        "w": 376,
+        "h": 432,
+        "cell": {
+          "x": 0,
+          "y": 0,
+          "w": 768,
+          "h": 534
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedHeight": 96,
+        "layer": "object"
+      },
+      "door-open": {
+        "sheet": "details",
+        "x": 940,
+        "y": 79,
+        "w": 376,
+        "h": 431,
+        "cell": {
+          "x": 768,
+          "y": 0,
+          "w": 768,
+          "h": 534
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedHeight": 96,
+        "layer": "object"
+      },
+      "utility-pole": {
+        "sheet": "details",
+        "x": 261,
+        "y": 559,
+        "w": 285,
+        "h": 414,
+        "cell": {
+          "x": 0,
+          "y": 534,
+          "w": 768,
+          "h": 490
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedHeight": 128,
+        "layer": "object"
+      },
+      "wire": {
+        "sheet": "details",
+        "x": 792,
+        "y": 694,
+        "w": 653,
+        "h": 127,
+        "cell": {
+          "x": 768,
+          "y": 534,
+          "w": 768,
+          "h": 490
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedHeight": 24,
+        "layer": "object"
+      },
+      "wall-south": {
+        "sheet": "quintal-walls",
+        "x": 352,
+        "y": 896,
+        "w": 544,
+        "h": 224,
+        "anchor": {
+          "x": 0,
+          "y": 0
+        },
+        "recommendedWidth": 102.0,
+        "layer": "object",
+        "wallAxis": "x"
+      },
+      "wall-east": {
+        "sheet": "quintal-walls",
+        "x": 896,
+        "y": 352,
+        "w": 224,
+        "h": 544,
+        "anchor": {
+          "x": 0,
+          "y": 0
+        },
+        "recommendedWidth": 42.0,
+        "layer": "object",
+        "wallAxis": "y"
+      },
+      "wall-ne": {
+        "sheet": "quintal-walls",
+        "x": 896,
+        "y": 128,
+        "w": 224,
+        "h": 224,
+        "anchor": {
+          "x": 0,
+          "y": 0
+        },
+        "recommendedWidth": 42.0,
+        "layer": "object",
+        "wallAxis": null
+      },
+      "wall-sw": {
+        "sheet": "quintal-walls",
+        "x": 128,
+        "y": 896,
+        "w": 224,
+        "h": 224,
+        "anchor": {
+          "x": 0,
+          "y": 0
+        },
+        "recommendedWidth": 42.0,
+        "layer": "object",
+        "wallAxis": null
+      },
+      "wall-se": {
+        "sheet": "quintal-walls",
+        "x": 896,
+        "y": 896,
+        "w": 224,
+        "h": 224,
+        "anchor": {
+          "x": 0,
+          "y": 0
+        },
+        "recommendedWidth": 42.0,
+        "layer": "object",
+        "wallAxis": null
+      },
+      "club-veranda": {
+        "sheet": "quintal-buildings",
+        "x": 14,
+        "y": 102,
+        "w": 800,
+        "h": 374,
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedWidth": 540,
+        "layer": "object"
+      },
+      "club-roof": {
+        "sheet": "quintal-buildings",
+        "x": 816,
+        "y": 148,
+        "w": 714,
+        "h": 249,
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedWidth": 580,
+        "layer": "foreground"
+      },
+      "club-gate": {
+        "sheet": "quintal-buildings",
+        "x": 35,
+        "y": 540,
+        "w": 777,
+        "h": 372,
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedWidth": 416,
+        "layer": "foreground"
+      },
+      "line-stall": {
+        "sheet": "quintal-buildings",
+        "x": 862,
+        "y": 520,
+        "w": 622,
+        "h": 435,
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedWidth": 288,
+        "layer": "object"
+      },
+      "craft-table": {
+        "sheet": "quintal-furniture",
+        "x": 58,
+        "y": 55,
+        "w": 686,
+        "h": 418,
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedWidth": 208,
+        "layer": "object"
+      },
+      "spool-rack": {
+        "sheet": "quintal-furniture",
+        "x": 850,
+        "y": 28,
+        "w": 635,
+        "h": 478,
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedWidth": 176,
+        "layer": "object"
+      },
+      "summon-dais": {
+        "sheet": "quintal-furniture",
+        "x": 47,
+        "y": 558,
+        "w": 769,
+        "h": 370,
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedWidth": 384,
+        "layer": "foreground"
+      },
+      "friends-board": {
+        "sheet": "quintal-furniture",
+        "x": 848,
+        "y": 512,
+        "w": 641,
+        "h": 478,
+        "anchor": {
+          "x": 0.5,
+          "y": 1
+        },
+        "recommendedWidth": 256,
+        "layer": "object"
+      }
+    }
+  },
+  "images": {}
+}

@@ -1,0 +1,2410 @@
+{
+  "type": "map",
+  "version": "1.10",
+  "tiledversion": "1.11.0",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "width": 48,
+  "height": 32,
+  "tilewidth": 32,
+  "tileheight": 32,
+  "infinite": false,
+  "tilesets": [],
+  "layers": [
+    {
+      "id": 1,
+      "name": "Walkable",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "objects": [
+        {
+          "id": 1,
+          "name": "Gramado do quintal",
+          "x": 64,
+          "y": 224,
+          "width": 1408,
+          "height": 736,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "grass"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Caminho do portao",
+          "x": 704,
+          "y": 224,
+          "width": 192,
+          "height": 512,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "dirt"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Rua da varanda",
+          "x": 192,
+          "y": 480,
+          "width": 1056,
+          "height": 160,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "dirt"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Patio de voo",
+          "x": 512,
+          "y": 608,
+          "width": 576,
+          "height": 224,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "dirt"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Caminho do mural",
+          "x": 928,
+          "y": 800,
+          "width": 416,
+          "height": 160,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "dirt"
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Caminho dos carreteis",
+          "x": 160,
+          "y": 704,
+          "width": 512,
+          "height": 128,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "dirt"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Solids",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "objects": [
+        {
+          "id": 7,
+          "name": "Varanda do clube",
+          "x": 96,
+          "y": 256,
+          "width": 480,
+          "height": 224,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 480
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "name": "Pilar esquerdo do portao",
+          "x": 592,
+          "y": 192,
+          "width": 96,
+          "height": 96,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 288
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "name": "Pilar direito do portao",
+          "x": 912,
+          "y": 192,
+          "width": 96,
+          "height": 96,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 288
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "name": "Folha aberta esquerda",
+          "x": 688,
+          "y": 224,
+          "width": 72,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 288
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "name": "Folha aberta direita",
+          "x": 840,
+          "y": 224,
+          "width": 72,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 288
+            }
+          ]
+        },
+        {
+          "id": 14,
+          "name": "Banca de linhas",
+          "x": 1136,
+          "y": 304,
+          "width": 224,
+          "height": 96,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 400
+            }
+          ]
+        },
+        {
+          "id": 15,
+          "name": "Mesa do Sr. Assis",
+          "x": 240,
+          "y": 512,
+          "width": 144,
+          "height": 48,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 560
+            }
+          ]
+        },
+        {
+          "id": 16,
+          "name": "Expositor de carreteis",
+          "x": 192,
+          "y": 736,
+          "width": 112,
+          "height": 48,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 784
+            }
+          ]
+        },
+        {
+          "id": 17,
+          "name": "Banco e mural dos amigos",
+          "x": 1136,
+          "y": 832,
+          "width": 160,
+          "height": 48,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 880
+            }
+          ]
+        },
+        {
+          "id": 18,
+          "name": "Muro norte 78",
+          "x": 78,
+          "y": 216,
+          "width": 102,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 232
+            }
+          ]
+        },
+        {
+          "id": 19,
+          "name": "Muro norte 78",
+          "x": 180,
+          "y": 216,
+          "width": 102,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 232
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "name": "Muro norte 78",
+          "x": 282,
+          "y": 216,
+          "width": 102,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 232
+            }
+          ]
+        },
+        {
+          "id": 21,
+          "name": "Muro norte 78",
+          "x": 384,
+          "y": 216,
+          "width": 102,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 232
+            }
+          ]
+        },
+        {
+          "id": 22,
+          "name": "Muro norte 78",
+          "x": 486,
+          "y": 216,
+          "width": 102,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 232
+            }
+          ]
+        },
+        {
+          "id": 23,
+          "name": "Muro norte 78",
+          "x": 588,
+          "y": 216,
+          "width": 6,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 232
+            }
+          ]
+        },
+        {
+          "id": 24,
+          "name": "Muro norte 1008",
+          "x": 1008,
+          "y": 216,
+          "width": 102,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 232
+            }
+          ]
+        },
+        {
+          "id": 25,
+          "name": "Muro norte 1008",
+          "x": 1110,
+          "y": 216,
+          "width": 102,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 232
+            }
+          ]
+        },
+        {
+          "id": 26,
+          "name": "Muro norte 1008",
+          "x": 1212,
+          "y": 216,
+          "width": 102,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 232
+            }
+          ]
+        },
+        {
+          "id": 27,
+          "name": "Muro norte 1008",
+          "x": 1314,
+          "y": 216,
+          "width": 102,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 232
+            }
+          ]
+        },
+        {
+          "id": 28,
+          "name": "Muro norte 1008",
+          "x": 1416,
+          "y": 216,
+          "width": 39,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 232
+            }
+          ]
+        },
+        {
+          "id": 29,
+          "name": "Muro sul",
+          "x": 78,
+          "y": 960,
+          "width": 102,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 976
+            }
+          ]
+        },
+        {
+          "id": 30,
+          "name": "Muro sul",
+          "x": 180,
+          "y": 960,
+          "width": 102,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 976
+            }
+          ]
+        },
+        {
+          "id": 31,
+          "name": "Muro sul",
+          "x": 282,
+          "y": 960,
+          "width": 102,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 976
+            }
+          ]
+        },
+        {
+          "id": 32,
+          "name": "Muro sul",
+          "x": 384,
+          "y": 960,
+          "width": 102,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 976
+            }
+          ]
+        },
+        {
+          "id": 33,
+          "name": "Muro sul",
+          "x": 486,
+          "y": 960,
+          "width": 102,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 976
+            }
+          ]
+        },
+        {
+          "id": 34,
+          "name": "Muro sul",
+          "x": 588,
+          "y": 960,
+          "width": 102,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 976
+            }
+          ]
+        },
+        {
+          "id": 35,
+          "name": "Muro sul",
+          "x": 690,
+          "y": 960,
+          "width": 102,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 976
+            }
+          ]
+        },
+        {
+          "id": 36,
+          "name": "Muro sul",
+          "x": 792,
+          "y": 960,
+          "width": 102,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 976
+            }
+          ]
+        },
+        {
+          "id": 37,
+          "name": "Muro sul",
+          "x": 894,
+          "y": 960,
+          "width": 102,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 976
+            }
+          ]
+        },
+        {
+          "id": 38,
+          "name": "Muro sul",
+          "x": 996,
+          "y": 960,
+          "width": 102,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 976
+            }
+          ]
+        },
+        {
+          "id": 39,
+          "name": "Muro sul",
+          "x": 1098,
+          "y": 960,
+          "width": 102,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 976
+            }
+          ]
+        },
+        {
+          "id": 40,
+          "name": "Muro sul",
+          "x": 1200,
+          "y": 960,
+          "width": 102,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 976
+            }
+          ]
+        },
+        {
+          "id": 41,
+          "name": "Muro sul",
+          "x": 1302,
+          "y": 960,
+          "width": 102,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 976
+            }
+          ]
+        },
+        {
+          "id": 42,
+          "name": "Muro sul",
+          "x": 1404,
+          "y": 960,
+          "width": 51,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 976
+            }
+          ]
+        },
+        {
+          "id": 43,
+          "name": "Muro lateral oeste",
+          "x": 48,
+          "y": 240,
+          "width": 16,
+          "height": 102,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 342
+            }
+          ]
+        },
+        {
+          "id": 44,
+          "name": "Muro lateral oeste",
+          "x": 48,
+          "y": 342,
+          "width": 16,
+          "height": 102,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 444
+            }
+          ]
+        },
+        {
+          "id": 45,
+          "name": "Muro lateral oeste",
+          "x": 48,
+          "y": 444,
+          "width": 16,
+          "height": 102,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 546
+            }
+          ]
+        },
+        {
+          "id": 46,
+          "name": "Muro lateral oeste",
+          "x": 48,
+          "y": 546,
+          "width": 16,
+          "height": 102,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 648
+            }
+          ]
+        },
+        {
+          "id": 47,
+          "name": "Muro lateral oeste",
+          "x": 48,
+          "y": 648,
+          "width": 16,
+          "height": 102,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 750
+            }
+          ]
+        },
+        {
+          "id": 48,
+          "name": "Muro lateral oeste",
+          "x": 48,
+          "y": 750,
+          "width": 16,
+          "height": 102,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 852
+            }
+          ]
+        },
+        {
+          "id": 49,
+          "name": "Muro lateral oeste",
+          "x": 48,
+          "y": 852,
+          "width": 16,
+          "height": 87,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 939
+            }
+          ]
+        },
+        {
+          "id": 50,
+          "name": "Muro lateral leste",
+          "x": 1472,
+          "y": 240,
+          "width": 16,
+          "height": 102,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 342
+            }
+          ]
+        },
+        {
+          "id": 51,
+          "name": "Muro lateral leste",
+          "x": 1472,
+          "y": 342,
+          "width": 16,
+          "height": 102,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 444
+            }
+          ]
+        },
+        {
+          "id": 52,
+          "name": "Muro lateral leste",
+          "x": 1472,
+          "y": 444,
+          "width": 16,
+          "height": 102,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 546
+            }
+          ]
+        },
+        {
+          "id": 53,
+          "name": "Muro lateral leste",
+          "x": 1472,
+          "y": 546,
+          "width": 16,
+          "height": 102,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 648
+            }
+          ]
+        },
+        {
+          "id": 54,
+          "name": "Muro lateral leste",
+          "x": 1472,
+          "y": 648,
+          "width": 16,
+          "height": 102,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 750
+            }
+          ]
+        },
+        {
+          "id": 55,
+          "name": "Muro lateral leste",
+          "x": 1472,
+          "y": 750,
+          "width": 16,
+          "height": 102,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 852
+            }
+          ]
+        },
+        {
+          "id": 56,
+          "name": "Muro lateral leste",
+          "x": 1472,
+          "y": 852,
+          "width": 16,
+          "height": 87,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 939
+            }
+          ]
+        },
+        {
+          "id": 57,
+          "name": "Quina wall-corner",
+          "x": 48,
+          "y": 216,
+          "width": 30,
+          "height": 24,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 240
+            }
+          ]
+        },
+        {
+          "id": 58,
+          "name": "Quina wall-ne",
+          "x": 1455,
+          "y": 216,
+          "width": 33,
+          "height": 24,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 240
+            }
+          ]
+        },
+        {
+          "id": 59,
+          "name": "Quina wall-sw",
+          "x": 48,
+          "y": 939,
+          "width": 30,
+          "height": 37,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 976
+            }
+          ]
+        },
+        {
+          "id": 60,
+          "name": "Quina wall-se",
+          "x": 1455,
+          "y": 939,
+          "width": 33,
+          "height": 37,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 976
+            }
+          ]
+        },
+        {
+          "id": 61,
+          "name": "Tronco de arvore",
+          "x": 98,
+          "y": 266,
+          "width": 28,
+          "height": 28,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 294
+            }
+          ]
+        },
+        {
+          "id": 63,
+          "name": "Tronco de arvore",
+          "x": 1426,
+          "y": 282,
+          "width": 28,
+          "height": 28,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 310
+            }
+          ]
+        },
+        {
+          "id": 65,
+          "name": "Tronco de arvore",
+          "x": 82,
+          "y": 666,
+          "width": 28,
+          "height": 28,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 694
+            }
+          ]
+        },
+        {
+          "id": 67,
+          "name": "Tronco de arvore",
+          "x": 1426,
+          "y": 730,
+          "width": 28,
+          "height": 28,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 758
+            }
+          ]
+        },
+        {
+          "id": 69,
+          "name": "Tronco de arvore",
+          "x": 418,
+          "y": 906,
+          "width": 28,
+          "height": 28,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 934
+            }
+          ]
+        },
+        {
+          "id": 71,
+          "name": "Tronco de arvore",
+          "x": 786,
+          "y": 922,
+          "width": 28,
+          "height": 28,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 950
+            }
+          ]
+        },
+        {
+          "id": 73,
+          "name": "Tronco de arvore",
+          "x": 1314,
+          "y": 218,
+          "width": 28,
+          "height": 28,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 246
+            }
+          ]
+        },
+        {
+          "id": 75,
+          "name": "Tronco de arvore",
+          "x": 66,
+          "y": 154,
+          "width": 28,
+          "height": 28,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 182
+            }
+          ]
+        },
+        {
+          "id": 77,
+          "name": "Tronco de arvore",
+          "x": 418,
+          "y": 138,
+          "width": 28,
+          "height": 28,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 166
+            }
+          ]
+        },
+        {
+          "id": 79,
+          "name": "Tronco de arvore",
+          "x": 1042,
+          "y": 146,
+          "width": 28,
+          "height": 28,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 174
+            }
+          ]
+        },
+        {
+          "id": 81,
+          "name": "Tronco de arvore",
+          "x": 1298,
+          "y": 154,
+          "width": 28,
+          "height": 28,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 182
+            }
+          ]
+        },
+        {
+          "id": 83,
+          "name": "Tronco de arvore",
+          "x": 1474,
+          "y": 154,
+          "width": 28,
+          "height": 28,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 182
+            }
+          ]
+        },
+        {
+          "id": 85,
+          "name": "banana",
+          "x": 1080.0,
+          "y": 340,
+          "width": 16,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 356
+            }
+          ]
+        },
+        {
+          "id": 86,
+          "name": "banana",
+          "x": 1400.0,
+          "y": 500,
+          "width": 16,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 516
+            }
+          ]
+        },
+        {
+          "id": 87,
+          "name": "banana",
+          "x": 120.0,
+          "y": 900,
+          "width": 16,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 916
+            }
+          ]
+        },
+        {
+          "id": 88,
+          "name": "flowerpot",
+          "x": 616.0,
+          "y": 276,
+          "width": 16,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 292
+            }
+          ]
+        },
+        {
+          "id": 89,
+          "name": "flowerpot",
+          "x": 968.0,
+          "y": 276,
+          "width": 16,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 292
+            }
+          ]
+        },
+        {
+          "id": 90,
+          "name": "flowerpot",
+          "x": 584.0,
+          "y": 468,
+          "width": 16,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 484
+            }
+          ]
+        },
+        {
+          "id": 91,
+          "name": "flowerpot",
+          "x": 1096.0,
+          "y": 436,
+          "width": 16,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 452
+            }
+          ]
+        },
+        {
+          "id": 92,
+          "name": "flowerpot",
+          "x": 1368.0,
+          "y": 660,
+          "width": 16,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 676
+            }
+          ]
+        },
+        {
+          "id": 93,
+          "name": "bench",
+          "x": 912.0,
+          "y": 660,
+          "width": 96,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 676
+            }
+          ]
+        },
+        {
+          "id": 94,
+          "name": "lamp",
+          "x": 1016.0,
+          "y": 532,
+          "width": 16,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 548
+            }
+          ]
+        },
+        {
+          "id": 95,
+          "name": "lamp",
+          "x": 664.0,
+          "y": 308,
+          "width": 16,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 324
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Foreground",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "objects": [
+        {
+          "id": 8,
+          "name": "Telhado do clube",
+          "x": 332,
+          "y": 270,
+          "width": 8,
+          "height": 8,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 480
+            }
+          ]
+        },
+        {
+          "id": 13,
+          "name": "Portao aberto",
+          "x": 796,
+          "y": 284,
+          "width": 8,
+          "height": 8,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 288
+            }
+          ]
+        },
+        {
+          "id": 62,
+          "name": "Copa de arvore",
+          "x": 108,
+          "y": 264,
+          "width": 8,
+          "height": 8,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 294
+            }
+          ]
+        },
+        {
+          "id": 64,
+          "name": "Copa de arvore",
+          "x": 1436,
+          "y": 280,
+          "width": 8,
+          "height": 8,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 310
+            }
+          ]
+        },
+        {
+          "id": 66,
+          "name": "Copa de arvore",
+          "x": 92,
+          "y": 664,
+          "width": 8,
+          "height": 8,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 694
+            }
+          ]
+        },
+        {
+          "id": 68,
+          "name": "Copa de arvore",
+          "x": 1436,
+          "y": 728,
+          "width": 8,
+          "height": 8,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 758
+            }
+          ]
+        },
+        {
+          "id": 70,
+          "name": "Copa de arvore",
+          "x": 428,
+          "y": 904,
+          "width": 8,
+          "height": 8,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 934
+            }
+          ]
+        },
+        {
+          "id": 72,
+          "name": "Copa de arvore",
+          "x": 796,
+          "y": 920,
+          "width": 8,
+          "height": 8,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 950
+            }
+          ]
+        },
+        {
+          "id": 74,
+          "name": "Copa de arvore",
+          "x": 1324,
+          "y": 216,
+          "width": 8,
+          "height": 8,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 246
+            }
+          ]
+        },
+        {
+          "id": 76,
+          "name": "Copa de arvore",
+          "x": 76,
+          "y": 152,
+          "width": 8,
+          "height": 8,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 182
+            }
+          ]
+        },
+        {
+          "id": 78,
+          "name": "Copa de arvore",
+          "x": 428,
+          "y": 136,
+          "width": 8,
+          "height": 8,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 166
+            }
+          ]
+        },
+        {
+          "id": 80,
+          "name": "Copa de arvore",
+          "x": 1052,
+          "y": 144,
+          "width": 8,
+          "height": 8,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 174
+            }
+          ]
+        },
+        {
+          "id": 82,
+          "name": "Copa de arvore",
+          "x": 1308,
+          "y": 152,
+          "width": 8,
+          "height": 8,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 182
+            }
+          ]
+        },
+        {
+          "id": 84,
+          "name": "Copa de arvore",
+          "x": 1484,
+          "y": 152,
+          "width": 8,
+          "height": 8,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 182
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Interactions",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "objects": [
+        {
+          "id": 96,
+          "name": "Varanda dos parceiros",
+          "x": 256,
+          "y": 480,
+          "width": 128,
+          "height": 96,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "action",
+              "type": "string",
+              "value": "collection"
+            },
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "place_id",
+              "type": "string",
+              "value": "collection"
+            }
+          ]
+        },
+        {
+          "id": 97,
+          "name": "Sr. Assis e Nozinho",
+          "x": 384,
+          "y": 592,
+          "width": 128,
+          "height": 96,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "action",
+              "type": "string",
+              "value": "professor"
+            },
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "place_id",
+              "type": "string",
+              "value": "professor"
+            }
+          ]
+        },
+        {
+          "id": 98,
+          "name": "Banca de linhas",
+          "x": 1184,
+          "y": 432,
+          "width": 128,
+          "height": 96,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "action",
+              "type": "string",
+              "value": "shop"
+            },
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "place_id",
+              "type": "string",
+              "value": "shop"
+            }
+          ]
+        },
+        {
+          "id": 99,
+          "name": "Círculo de invocação",
+          "x": 1216,
+          "y": 576,
+          "width": 96,
+          "height": 96,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "action",
+              "type": "string",
+              "value": "summon"
+            },
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "place_id",
+              "type": "string",
+              "value": "summon"
+            }
+          ]
+        },
+        {
+          "id": 100,
+          "name": "Mural dos amigos",
+          "x": 1152,
+          "y": 896,
+          "width": 128,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "action",
+              "type": "string",
+              "value": "friends"
+            },
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "place_id",
+              "type": "string",
+              "value": "friends"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Spawns",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "objects": [
+        {
+          "id": 102,
+          "name": "Chegada ao clube",
+          "x": 736,
+          "y": 688,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Exits",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "objects": [
+        {
+          "id": 101,
+          "name": "Portão para Kronasta",
+          "x": 752,
+          "y": 240,
+          "width": 96,
+          "height": 96,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "action",
+              "type": "string",
+              "value": "city"
+            },
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "place_id",
+              "type": "string",
+              "value": "gate"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "scene_name",
+      "type": "string",
+      "value": "Quintal do Clube"
+    },
+    {
+      "name": "scene_id",
+      "type": "string",
+      "value": "quintal"
+    },
+    {
+      "name": "overview",
+      "type": "bool",
+      "value": true
+    },
+    {
+      "name": "ground_corner_radius",
+      "type": "int",
+      "value": 24
+    },
+    {
+      "name": "actor_height",
+      "type": "int",
+      "value": 72
+    },
+    {
+      "name": "foot_radius",
+      "type": "int",
+      "value": 10
+    },
+    {
+      "name": "professor_x",
+      "type": "int",
+      "value": 416
+    },
+    {
+      "name": "professor_y",
+      "type": "int",
+      "value": 608
+    },
+    {
+      "name": "nozinho_x",
+      "type": "int",
+      "value": 466
+    },
+    {
+      "name": "nozinho_y",
+      "type": "int",
+      "value": 626
+    }
+  ],
+  "nextobjectid": 103,
+  "nextlayerid": 7
+}

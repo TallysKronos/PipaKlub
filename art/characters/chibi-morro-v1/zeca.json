@@ -1,0 +1,220 @@
+{
+  "name": "Zeca",
+  "image": "sheets/zeca.png",
+  "directions": [
+    "south",
+    "west",
+    "east",
+    "north"
+  ],
+  "frames": [
+    {
+      "x": 0,
+      "y": 0,
+      "w": 444,
+      "h": 462,
+      "bounds": {
+        "x": 122,
+        "y": 60,
+        "w": 221,
+        "h": 387
+      },
+      "direction": "south",
+      "pose": "idle",
+      "footAnchor": {
+        "x": 232.5,
+        "y": 447
+      }
+    },
+    {
+      "x": 444,
+      "y": 0,
+      "w": 443,
+      "h": 462,
+      "bounds": {
+        "x": 115,
+        "y": 61,
+        "w": 226,
+        "h": 388
+      },
+      "direction": "west",
+      "pose": "idle",
+      "footAnchor": {
+        "x": 228.0,
+        "y": 449
+      }
+    },
+    {
+      "x": 887,
+      "y": 0,
+      "w": 443,
+      "h": 462,
+      "bounds": {
+        "x": 116,
+        "y": 62,
+        "w": 225,
+        "h": 387
+      },
+      "direction": "east",
+      "pose": "idle",
+      "footAnchor": {
+        "x": 228.5,
+        "y": 449
+      }
+    },
+    {
+      "x": 1330,
+      "y": 0,
+      "w": 444,
+      "h": 462,
+      "bounds": {
+        "x": 111,
+        "y": 63,
+        "w": 220,
+        "h": 383
+      },
+      "direction": "north",
+      "pose": "idle",
+      "footAnchor": {
+        "x": 221.0,
+        "y": 446
+      }
+    },
+    {
+      "x": 0,
+      "y": 462,
+      "w": 444,
+      "h": 425,
+      "bounds": {
+        "x": 124,
+        "y": 14,
+        "w": 219,
+        "h": 374
+      },
+      "direction": "south",
+      "pose": "step",
+      "footAnchor": {
+        "x": 233.5,
+        "y": 388
+      }
+    },
+    {
+      "x": 444,
+      "y": 462,
+      "w": 443,
+      "h": 425,
+      "bounds": {
+        "x": 114,
+        "y": 20,
+        "w": 221,
+        "h": 364
+      },
+      "direction": "west",
+      "pose": "step",
+      "footAnchor": {
+        "x": 224.5,
+        "y": 384
+      }
+    },
+    {
+      "x": 887,
+      "y": 462,
+      "w": 443,
+      "h": 425,
+      "bounds": {
+        "x": 117,
+        "y": 17,
+        "w": 223,
+        "h": 368
+      },
+      "direction": "east",
+      "pose": "step",
+      "footAnchor": {
+        "x": 228.5,
+        "y": 385
+      }
+    },
+    {
+      "x": 1330,
+      "y": 462,
+      "w": 444,
+      "h": 425,
+      "bounds": {
+        "x": 105,
+        "y": 17,
+        "w": 221,
+        "h": 371
+      },
+      "direction": "north",
+      "pose": "step",
+      "footAnchor": {
+        "x": 215.5,
+        "y": 388
+      }
+    }
+  ],
+  "size": {
+    "w": 1774,
+    "h": 887
+  },
+  "referenceHeight": 387.0,
+  "animations": {
+    "south": {
+      "idle": [
+        0
+      ],
+      "walk": [
+        0,
+        4
+      ],
+      "durations": [
+        170,
+        170
+      ],
+      "loop": true
+    },
+    "west": {
+      "idle": [
+        1
+      ],
+      "walk": [
+        1,
+        5
+      ],
+      "durations": [
+        170,
+        170
+      ],
+      "loop": true
+    },
+    "east": {
+      "idle": [
+        2
+      ],
+      "walk": [
+        2,
+        6
+      ],
+      "durations": [
+        170,
+        170
+      ],
+      "loop": true
+    },
+    "north": {
+      "idle": [
+        3
+      ],
+      "walk": [
+        3,
+        7
+      ],
+      "durations": [
+        170,
+        170
+      ],
+      "loop": true
+    }
+  },
+  "status": "art-v1-animation-review"
+}

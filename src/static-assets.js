@@ -10,13 +10,15 @@ const districtFiles=Object.values(JSON.parse(await fs.readFile(new URL('../asset
 const plazaFiles=JSON.parse(await fs.readFile(new URL('../assets/hub/praca-v1/manifest.json',import.meta.url),'utf8')).files.map(f=>'hub/praca-v1/'+f);
 const worldFiles=JSON.parse(await fs.readFile(new URL('../assets/world/identity-v2/manifest.json',import.meta.url),'utf8')).files.map(f=>'world/identity-v2/'+f);
 const worldKitFiles=Object.values(JSON.parse(await fs.readFile(new URL('../assets/world/morro-kit-v1/manifest.json',import.meta.url),'utf8')).sheets).map(s=>s.image);
+worldKitFiles.push(...Object.values(JSON.parse(await fs.readFile(new URL('../assets/world/quintal-kit-v1/manifest.json',import.meta.url),'utf8')).sheets).map(s=>s.image));
+const worldActorFiles=Object.values(JSON.parse(await fs.readFile(new URL('../assets/characters/overworld-v1/manifest.json',import.meta.url),'utf8')).characters).map(a=>a.image);
 const kitFiles=[...Object.values(kit.components),...Object.values(kit.icons)].map(c=>c.image).filter(f=>f.endsWith('.png')).map(f=>'ui/kit-switch-v1/'+f);
 const files=[...worldKitFiles,...rivalFiles,...encounterFiles,...districtFiles,...kitFiles,...Object.values(hud.sheets).map(s=>s.image),...Object.values(manifest.atlases).map(a=>a.meta.image),...items.map(i=>i.image),'vfx/trade-celestial.png','vfx/trade-sky.png','vfx/trade-spirit-16.png',"ui/club-collection-v2.png","ui/club-trades-v2.png","ui/club-summon-v2.png","ui/club-farm-v2.png","ui/club-profile-v2.png","ui/club-history-v2.png"];
 export function createAssetHandler(){
  const cache=new Map();
  return async request=>{
   const url=new URL(request.url);if(!url.pathname.startsWith('/assets/'))return null;
-  const file=url.pathname.slice(8);if(!files.includes(file)&&!plazaFiles.includes(file)&&!worldFiles.includes(file)&&!['backgrounds/quintal-clube-v1.png','packs/cidade-v1/mapa.png','packs/cidade-v1/insignias.png'].includes(file))return new Response('Asset not found',{status:404});
+  const file=url.pathname.slice(8);if(!files.includes(file)&&!plazaFiles.includes(file)&&!worldFiles.includes(file)&&!worldActorFiles.includes(file)&&!['backgrounds/quintal-clube-v1.png','packs/cidade-v1/mapa.png','packs/cidade-v1/insignias.png'].includes(file))return new Response('Asset not found',{status:404});
   if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405,headers:{Allow:'GET, HEAD'}});
   let item=cache.get(file);
   if(!item){try{const data=await fs.readFile(new URL('../assets/'+file,import.meta.url)),hash=createHash('sha256').update(data).digest('hex').slice(0,12);item={data,hash};cache.set(file,item);}catch{return new Response('Asset unavailable',{status:503});}}

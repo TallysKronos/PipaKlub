@@ -1,0 +1,186 @@
+[
+  {
+    "id": "club-veranda",
+    "sheet": "quintal-buildings",
+    "bounds": {
+      "sheet": "quintal-buildings",
+      "x": 14,
+      "y": 102,
+      "w": 800,
+      "h": 374,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedWidth": 540,
+      "layer": "object"
+    },
+    "cell": {
+      "x": 0,
+      "y": 0,
+      "w": 816,
+      "h": 512
+    }
+  },
+  {
+    "id": "club-roof",
+    "sheet": "quintal-buildings",
+    "bounds": {
+      "sheet": "quintal-buildings",
+      "x": 816,
+      "y": 148,
+      "w": 714,
+      "h": 249,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedWidth": 580,
+      "layer": "foreground"
+    },
+    "cell": {
+      "x": 816,
+      "y": 0,
+      "w": 720,
+      "h": 512
+    }
+  },
+  {
+    "id": "club-gate",
+    "sheet": "quintal-buildings",
+    "bounds": {
+      "sheet": "quintal-buildings",
+      "x": 35,
+      "y": 540,
+      "w": 777,
+      "h": 372,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedWidth": 416,
+      "layer": "foreground"
+    },
+    "cell": {
+      "x": 0,
+      "y": 512,
+      "w": 816,
+      "h": 512
+    }
+  },
+  {
+    "id": "line-stall",
+    "sheet": "quintal-buildings",
+    "bounds": {
+      "sheet": "quintal-buildings",
+      "x": 862,
+      "y": 520,
+      "w": 622,
+      "h": 435,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedWidth": 288,
+      "layer": "object"
+    },
+    "cell": {
+      "x": 816,
+      "y": 512,
+      "w": 720,
+      "h": 512
+    }
+  },
+  {
+    "id": "craft-table",
+    "sheet": "quintal-furniture",
+    "bounds": {
+      "sheet": "quintal-furniture",
+      "x": 58,
+      "y": 55,
+      "w": 686,
+      "h": 418,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedWidth": 208,
+      "layer": "object"
+    },
+    "cell": {
+      "x": 0,
+      "y": 0,
+      "w": 832,
+      "h": 512
+    }
+  },
+  {
+    "id": "spool-rack",
+    "sheet": "quintal-furniture",
+    "bounds": {
+      "sheet": "quintal-furniture",
+      "x": 850,
+      "y": 28,
+      "w": 635,
+      "h": 478,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedWidth": 176,
+      "layer": "object"
+    },
+    "cell": {
+      "x": 832,
+      "y": 0,
+      "w": 704,
+      "h": 512
+    }
+  },
+  {
+    "id": "summon-dais",
+    "sheet": "quintal-furniture",
+    "bounds": {
+      "sheet": "quintal-furniture",
+      "x": 47,
+      "y": 558,
+      "w": 769,
+      "h": 370,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedWidth": 384,
+      "layer": "foreground"
+    },
+    "cell": {
+      "x": 0,
+      "y": 512,
+      "w": 832,
+      "h": 512
+    }
+  },
+  {
+    "id": "friends-board",
+    "sheet": "quintal-furniture",
+    "bounds": {
+      "sheet": "quintal-furniture",
+      "x": 848,
+      "y": 512,
+      "w": 641,
+      "h": 478,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedWidth": 256,
+      "layer": "object"
+    },
+    "cell": {
+      "x": 832,
+      "y": 512,
+      "w": 704,
+      "h": 512
+    }
+  }
+]

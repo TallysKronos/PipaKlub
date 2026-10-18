@@ -1,0 +1,1330 @@
+{
+  "version": 1,
+  "kind": "overworld-chibi",
+  "columns": 4,
+  "rows": 2,
+  "directions": [
+    "south",
+    "west",
+    "east",
+    "north"
+  ],
+  "characters": {
+    "sr-assis": {
+      "name": "Sr. Assis",
+      "image": "characters/overworld-v1/sr-assis.png",
+      "directions": [
+        "south",
+        "west",
+        "east",
+        "north"
+      ],
+      "frames": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 444,
+          "h": 463,
+          "bounds": {
+            "x": 134,
+            "y": 77,
+            "w": 199,
+            "h": 368
+          },
+          "direction": "south",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 233.5,
+            "y": 445
+          }
+        },
+        {
+          "x": 444,
+          "y": 0,
+          "w": 443,
+          "h": 463,
+          "bounds": {
+            "x": 131,
+            "y": 76,
+            "w": 197,
+            "h": 371
+          },
+          "direction": "west",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 229.5,
+            "y": 447
+          }
+        },
+        {
+          "x": 887,
+          "y": 0,
+          "w": 443,
+          "h": 463,
+          "bounds": {
+            "x": 112,
+            "y": 76,
+            "w": 195,
+            "h": 372
+          },
+          "direction": "east",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 209.5,
+            "y": 448
+          }
+        },
+        {
+          "x": 1330,
+          "y": 0,
+          "w": 444,
+          "h": 463,
+          "bounds": {
+            "x": 113,
+            "y": 77,
+            "w": 194,
+            "h": 368
+          },
+          "direction": "north",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 210.0,
+            "y": 445
+          }
+        },
+        {
+          "x": 0,
+          "y": 463,
+          "w": 444,
+          "h": 424,
+          "bounds": {
+            "x": 125,
+            "y": 21,
+            "w": 209,
+            "h": 356
+          },
+          "direction": "south",
+          "pose": "step",
+          "footAnchor": {
+            "x": 229.5,
+            "y": 377
+          }
+        },
+        {
+          "x": 444,
+          "y": 463,
+          "w": 443,
+          "h": 424,
+          "bounds": {
+            "x": 123,
+            "y": 16,
+            "w": 206,
+            "h": 361
+          },
+          "direction": "west",
+          "pose": "step",
+          "footAnchor": {
+            "x": 226.0,
+            "y": 377
+          }
+        },
+        {
+          "x": 887,
+          "y": 463,
+          "w": 443,
+          "h": 424,
+          "bounds": {
+            "x": 111,
+            "y": 16,
+            "w": 206,
+            "h": 361
+          },
+          "direction": "east",
+          "pose": "step",
+          "footAnchor": {
+            "x": 214.0,
+            "y": 377
+          }
+        },
+        {
+          "x": 1330,
+          "y": 463,
+          "w": 444,
+          "h": 424,
+          "bounds": {
+            "x": 110,
+            "y": 19,
+            "w": 197,
+            "h": 360
+          },
+          "direction": "north",
+          "pose": "step",
+          "footAnchor": {
+            "x": 208.5,
+            "y": 379
+          }
+        }
+      ],
+      "size": {
+        "w": 1774,
+        "h": 887
+      },
+      "referenceHeight": 369.5,
+      "animations": {
+        "south": {
+          "idle": [
+            0
+          ],
+          "walk": [
+            0,
+            4
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        },
+        "west": {
+          "idle": [
+            1
+          ],
+          "walk": [
+            1,
+            5
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        },
+        "east": {
+          "idle": [
+            2
+          ],
+          "walk": [
+            2,
+            6
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        },
+        "north": {
+          "idle": [
+            3
+          ],
+          "walk": [
+            3,
+            7
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        }
+      }
+    },
+    "zeca": {
+      "name": "Zeca",
+      "image": "characters/overworld-v1/zeca.png",
+      "directions": [
+        "south",
+        "west",
+        "east",
+        "north"
+      ],
+      "frames": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 444,
+          "h": 462,
+          "bounds": {
+            "x": 122,
+            "y": 60,
+            "w": 221,
+            "h": 387
+          },
+          "direction": "south",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 232.5,
+            "y": 447
+          }
+        },
+        {
+          "x": 444,
+          "y": 0,
+          "w": 443,
+          "h": 462,
+          "bounds": {
+            "x": 115,
+            "y": 61,
+            "w": 226,
+            "h": 388
+          },
+          "direction": "west",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 228.0,
+            "y": 449
+          }
+        },
+        {
+          "x": 887,
+          "y": 0,
+          "w": 443,
+          "h": 462,
+          "bounds": {
+            "x": 116,
+            "y": 62,
+            "w": 225,
+            "h": 387
+          },
+          "direction": "east",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 228.5,
+            "y": 449
+          }
+        },
+        {
+          "x": 1330,
+          "y": 0,
+          "w": 444,
+          "h": 462,
+          "bounds": {
+            "x": 111,
+            "y": 63,
+            "w": 220,
+            "h": 383
+          },
+          "direction": "north",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 221.0,
+            "y": 446
+          }
+        },
+        {
+          "x": 0,
+          "y": 462,
+          "w": 444,
+          "h": 425,
+          "bounds": {
+            "x": 124,
+            "y": 14,
+            "w": 219,
+            "h": 374
+          },
+          "direction": "south",
+          "pose": "step",
+          "footAnchor": {
+            "x": 233.5,
+            "y": 388
+          }
+        },
+        {
+          "x": 444,
+          "y": 462,
+          "w": 443,
+          "h": 425,
+          "bounds": {
+            "x": 114,
+            "y": 20,
+            "w": 221,
+            "h": 364
+          },
+          "direction": "west",
+          "pose": "step",
+          "footAnchor": {
+            "x": 224.5,
+            "y": 384
+          }
+        },
+        {
+          "x": 887,
+          "y": 462,
+          "w": 443,
+          "h": 425,
+          "bounds": {
+            "x": 117,
+            "y": 17,
+            "w": 223,
+            "h": 368
+          },
+          "direction": "east",
+          "pose": "step",
+          "footAnchor": {
+            "x": 228.5,
+            "y": 385
+          }
+        },
+        {
+          "x": 1330,
+          "y": 462,
+          "w": 444,
+          "h": 425,
+          "bounds": {
+            "x": 105,
+            "y": 17,
+            "w": 221,
+            "h": 371
+          },
+          "direction": "north",
+          "pose": "step",
+          "footAnchor": {
+            "x": 215.5,
+            "y": 388
+          }
+        }
+      ],
+      "size": {
+        "w": 1774,
+        "h": 887
+      },
+      "referenceHeight": 387.0,
+      "animations": {
+        "south": {
+          "idle": [
+            0
+          ],
+          "walk": [
+            0,
+            4
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        },
+        "west": {
+          "idle": [
+            1
+          ],
+          "walk": [
+            1,
+            5
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        },
+        "east": {
+          "idle": [
+            2
+          ],
+          "walk": [
+            2,
+            6
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        },
+        "north": {
+          "idle": [
+            3
+          ],
+          "walk": [
+            3,
+            7
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        }
+      }
+    },
+    "bia": {
+      "name": "Bia",
+      "image": "characters/overworld-v1/bia.png",
+      "directions": [
+        "south",
+        "west",
+        "east",
+        "north"
+      ],
+      "frames": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 444,
+          "h": 461,
+          "bounds": {
+            "x": 125,
+            "y": 65,
+            "w": 232,
+            "h": 380
+          },
+          "direction": "south",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 241.0,
+            "y": 445
+          }
+        },
+        {
+          "x": 444,
+          "y": 0,
+          "w": 443,
+          "h": 461,
+          "bounds": {
+            "x": 110,
+            "y": 63,
+            "w": 229,
+            "h": 384
+          },
+          "direction": "west",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 224.5,
+            "y": 447
+          }
+        },
+        {
+          "x": 887,
+          "y": 0,
+          "w": 443,
+          "h": 461,
+          "bounds": {
+            "x": 105,
+            "y": 63,
+            "w": 229,
+            "h": 384
+          },
+          "direction": "east",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 219.5,
+            "y": 447
+          }
+        },
+        {
+          "x": 1330,
+          "y": 0,
+          "w": 444,
+          "h": 461,
+          "bounds": {
+            "x": 87,
+            "y": 65,
+            "w": 232,
+            "h": 380
+          },
+          "direction": "north",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 203.0,
+            "y": 445
+          }
+        },
+        {
+          "x": 0,
+          "y": 461,
+          "w": 444,
+          "h": 426,
+          "bounds": {
+            "x": 124,
+            "y": 14,
+            "w": 228,
+            "h": 374
+          },
+          "direction": "south",
+          "pose": "step",
+          "footAnchor": {
+            "x": 238.0,
+            "y": 388
+          }
+        },
+        {
+          "x": 444,
+          "y": 461,
+          "w": 443,
+          "h": 426,
+          "bounds": {
+            "x": 110,
+            "y": 14,
+            "w": 233,
+            "h": 374
+          },
+          "direction": "west",
+          "pose": "step",
+          "footAnchor": {
+            "x": 226.5,
+            "y": 388
+          }
+        },
+        {
+          "x": 887,
+          "y": 461,
+          "w": 443,
+          "h": 426,
+          "bounds": {
+            "x": 100,
+            "y": 14,
+            "w": 234,
+            "h": 374
+          },
+          "direction": "east",
+          "pose": "step",
+          "footAnchor": {
+            "x": 217.0,
+            "y": 388
+          }
+        },
+        {
+          "x": 1330,
+          "y": 461,
+          "w": 444,
+          "h": 426,
+          "bounds": {
+            "x": 92,
+            "y": 18,
+            "w": 229,
+            "h": 370
+          },
+          "direction": "north",
+          "pose": "step",
+          "footAnchor": {
+            "x": 206.5,
+            "y": 388
+          }
+        }
+      ],
+      "size": {
+        "w": 1774,
+        "h": 887
+      },
+      "referenceHeight": 382.0,
+      "animations": {
+        "south": {
+          "idle": [
+            0
+          ],
+          "walk": [
+            0,
+            4
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        },
+        "west": {
+          "idle": [
+            1
+          ],
+          "walk": [
+            1,
+            5
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        },
+        "east": {
+          "idle": [
+            2
+          ],
+          "walk": [
+            2,
+            6
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        },
+        "north": {
+          "idle": [
+            3
+          ],
+          "walk": [
+            3,
+            7
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        }
+      }
+    },
+    "juninho": {
+      "name": "Juninho",
+      "image": "characters/overworld-v1/juninho.png",
+      "directions": [
+        "south",
+        "west",
+        "east",
+        "north"
+      ],
+      "frames": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 444,
+          "h": 470,
+          "bounds": {
+            "x": 128,
+            "y": 74,
+            "w": 217,
+            "h": 383
+          },
+          "direction": "south",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 236.5,
+            "y": 457
+          }
+        },
+        {
+          "x": 444,
+          "y": 0,
+          "w": 443,
+          "h": 470,
+          "bounds": {
+            "x": 117,
+            "y": 76,
+            "w": 237,
+            "h": 381
+          },
+          "direction": "west",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 235.5,
+            "y": 457
+          }
+        },
+        {
+          "x": 887,
+          "y": 0,
+          "w": 443,
+          "h": 470,
+          "bounds": {
+            "x": 89,
+            "y": 76,
+            "w": 234,
+            "h": 381
+          },
+          "direction": "east",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 206.0,
+            "y": 457
+          }
+        },
+        {
+          "x": 1330,
+          "y": 0,
+          "w": 444,
+          "h": 470,
+          "bounds": {
+            "x": 101,
+            "y": 77,
+            "w": 216,
+            "h": 380
+          },
+          "direction": "north",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 209.0,
+            "y": 457
+          }
+        },
+        {
+          "x": 0,
+          "y": 470,
+          "w": 444,
+          "h": 417,
+          "bounds": {
+            "x": 122,
+            "y": 14,
+            "w": 221,
+            "h": 370
+          },
+          "direction": "south",
+          "pose": "step",
+          "footAnchor": {
+            "x": 232.5,
+            "y": 384
+          }
+        },
+        {
+          "x": 444,
+          "y": 470,
+          "w": 443,
+          "h": 417,
+          "bounds": {
+            "x": 119,
+            "y": 15,
+            "w": 234,
+            "h": 369
+          },
+          "direction": "west",
+          "pose": "step",
+          "footAnchor": {
+            "x": 236.0,
+            "y": 384
+          }
+        },
+        {
+          "x": 887,
+          "y": 470,
+          "w": 443,
+          "h": 417,
+          "bounds": {
+            "x": 90,
+            "y": 14,
+            "w": 234,
+            "h": 370
+          },
+          "direction": "east",
+          "pose": "step",
+          "footAnchor": {
+            "x": 207.0,
+            "y": 384
+          }
+        },
+        {
+          "x": 1330,
+          "y": 470,
+          "w": 444,
+          "h": 417,
+          "bounds": {
+            "x": 101,
+            "y": 14,
+            "w": 218,
+            "h": 370
+          },
+          "direction": "north",
+          "pose": "step",
+          "footAnchor": {
+            "x": 210.0,
+            "y": 384
+          }
+        }
+      ],
+      "size": {
+        "w": 1774,
+        "h": 887
+      },
+      "referenceHeight": 381.0,
+      "animations": {
+        "south": {
+          "idle": [
+            0
+          ],
+          "walk": [
+            0,
+            4
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        },
+        "west": {
+          "idle": [
+            1
+          ],
+          "walk": [
+            1,
+            5
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        },
+        "east": {
+          "idle": [
+            2
+          ],
+          "walk": [
+            2,
+            6
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        },
+        "north": {
+          "idle": [
+            3
+          ],
+          "walk": [
+            3,
+            7
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        }
+      }
+    },
+    "lia": {
+      "name": "Lia",
+      "image": "characters/overworld-v1/lia.png",
+      "directions": [
+        "south",
+        "west",
+        "east",
+        "north"
+      ],
+      "frames": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 444,
+          "h": 455,
+          "bounds": {
+            "x": 92,
+            "y": 41,
+            "w": 248,
+            "h": 405
+          },
+          "direction": "south",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 216.0,
+            "y": 446
+          }
+        },
+        {
+          "x": 444,
+          "y": 0,
+          "w": 443,
+          "h": 455,
+          "bounds": {
+            "x": 102,
+            "y": 27,
+            "w": 275,
+            "h": 421
+          },
+          "direction": "west",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 239.5,
+            "y": 448
+          }
+        },
+        {
+          "x": 887,
+          "y": 0,
+          "w": 443,
+          "h": 455,
+          "bounds": {
+            "x": 66,
+            "y": 30,
+            "w": 271,
+            "h": 418
+          },
+          "direction": "east",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 201.5,
+            "y": 448
+          }
+        },
+        {
+          "x": 1330,
+          "y": 0,
+          "w": 444,
+          "h": 455,
+          "bounds": {
+            "x": 104,
+            "y": 41,
+            "w": 248,
+            "h": 405
+          },
+          "direction": "north",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 228.0,
+            "y": 446
+          }
+        },
+        {
+          "x": 0,
+          "y": 455,
+          "w": 444,
+          "h": 432,
+          "bounds": {
+            "x": 89,
+            "y": 8,
+            "w": 258,
+            "h": 400
+          },
+          "direction": "south",
+          "pose": "step",
+          "footAnchor": {
+            "x": 218.0,
+            "y": 408
+          }
+        },
+        {
+          "x": 444,
+          "y": 455,
+          "w": 443,
+          "h": 432,
+          "bounds": {
+            "x": 93,
+            "y": 9,
+            "w": 275,
+            "h": 396
+          },
+          "direction": "west",
+          "pose": "step",
+          "footAnchor": {
+            "x": 230.5,
+            "y": 405
+          }
+        },
+        {
+          "x": 887,
+          "y": 455,
+          "w": 443,
+          "h": 432,
+          "bounds": {
+            "x": 75,
+            "y": 11,
+            "w": 276,
+            "h": 393
+          },
+          "direction": "east",
+          "pose": "step",
+          "footAnchor": {
+            "x": 213.0,
+            "y": 404
+          }
+        },
+        {
+          "x": 1330,
+          "y": 455,
+          "w": 444,
+          "h": 432,
+          "bounds": {
+            "x": 97,
+            "y": 8,
+            "w": 258,
+            "h": 400
+          },
+          "direction": "north",
+          "pose": "step",
+          "footAnchor": {
+            "x": 226.0,
+            "y": 408
+          }
+        }
+      ],
+      "size": {
+        "w": 1774,
+        "h": 887
+      },
+      "referenceHeight": 411.5,
+      "animations": {
+        "south": {
+          "idle": [
+            0
+          ],
+          "walk": [
+            0,
+            4
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        },
+        "west": {
+          "idle": [
+            1
+          ],
+          "walk": [
+            1,
+            5
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        },
+        "east": {
+          "idle": [
+            2
+          ],
+          "walk": [
+            2,
+            6
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        },
+        "north": {
+          "idle": [
+            3
+          ],
+          "walk": [
+            3,
+            7
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        }
+      }
+    },
+    "tiao": {
+      "name": "Tião",
+      "image": "characters/overworld-v1/tiao.png",
+      "directions": [
+        "south",
+        "west",
+        "east",
+        "north"
+      ],
+      "frames": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 444,
+          "h": 466,
+          "bounds": {
+            "x": 129,
+            "y": 64,
+            "w": 211,
+            "h": 389
+          },
+          "direction": "south",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 234.5,
+            "y": 453
+          }
+        },
+        {
+          "x": 444,
+          "y": 0,
+          "w": 443,
+          "h": 466,
+          "bounds": {
+            "x": 134,
+            "y": 65,
+            "w": 200,
+            "h": 388
+          },
+          "direction": "west",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 234.0,
+            "y": 453
+          }
+        },
+        {
+          "x": 887,
+          "y": 0,
+          "w": 443,
+          "h": 466,
+          "bounds": {
+            "x": 100,
+            "y": 68,
+            "w": 203,
+            "h": 385
+          },
+          "direction": "east",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 201.5,
+            "y": 453
+          }
+        },
+        {
+          "x": 1330,
+          "y": 0,
+          "w": 444,
+          "h": 466,
+          "bounds": {
+            "x": 99,
+            "y": 64,
+            "w": 212,
+            "h": 389
+          },
+          "direction": "north",
+          "pose": "idle",
+          "footAnchor": {
+            "x": 205.0,
+            "y": 453
+          }
+        },
+        {
+          "x": 0,
+          "y": 466,
+          "w": 444,
+          "h": 421,
+          "bounds": {
+            "x": 128,
+            "y": 13,
+            "w": 217,
+            "h": 375
+          },
+          "direction": "south",
+          "pose": "step",
+          "footAnchor": {
+            "x": 236.5,
+            "y": 388
+          }
+        },
+        {
+          "x": 444,
+          "y": 466,
+          "w": 443,
+          "h": 421,
+          "bounds": {
+            "x": 114,
+            "y": 13,
+            "w": 219,
+            "h": 375
+          },
+          "direction": "west",
+          "pose": "step",
+          "footAnchor": {
+            "x": 223.5,
+            "y": 388
+          }
+        },
+        {
+          "x": 887,
+          "y": 466,
+          "w": 443,
+          "h": 421,
+          "bounds": {
+            "x": 103,
+            "y": 13,
+            "w": 221,
+            "h": 375
+          },
+          "direction": "east",
+          "pose": "step",
+          "footAnchor": {
+            "x": 213.5,
+            "y": 388
+          }
+        },
+        {
+          "x": 1330,
+          "y": 466,
+          "w": 444,
+          "h": 421,
+          "bounds": {
+            "x": 95,
+            "y": 13,
+            "w": 215,
+            "h": 375
+          },
+          "direction": "north",
+          "pose": "step",
+          "footAnchor": {
+            "x": 202.5,
+            "y": 388
+          }
+        }
+      ],
+      "size": {
+        "w": 1774,
+        "h": 887
+      },
+      "referenceHeight": 388.5,
+      "animations": {
+        "south": {
+          "idle": [
+            0
+          ],
+          "walk": [
+            0,
+            4
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        },
+        "west": {
+          "idle": [
+            1
+          ],
+          "walk": [
+            1,
+            5
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        },
+        "east": {
+          "idle": [
+            2
+          ],
+          "walk": [
+            2,
+            6
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        },
+        "north": {
+          "idle": [
+            3
+          ],
+          "walk": [
+            3,
+            7
+          ],
+          "durations": [
+            170,
+            170
+          ],
+          "loop": true
+        }
+      }
+    }
+  },
+  "characterCount": 6,
+  "frameCount": 48
+}

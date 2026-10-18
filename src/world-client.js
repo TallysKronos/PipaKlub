@@ -1,5 +1,7 @@
 function worldMissionContext(next){return {worldId:worldRuntime.id,nearStage:worldRuntime.near?.stage,rivals:next?.foes.map(f=>f.name).join(' e '),place:next&&ART_CONFIG.courtyard.places[trails.trails[next.trailIndex].id]?.places[next.index]?.[0]};}
-async function loadWorldRivals(){for(const [name,rival]of Object.entries(ART_CONFIG.designs.rivals||{}))homeArt.images['rival-'+name]=rival;await Promise.all(Object.keys(ART_CONFIG.designs.rivals||{}).map(name=>homeLoadImage('rival-'+name)));await art.load('leader-mikka');}
+const worldActors=createWorldActors(homeArt.world?.actors);
+async function loadWorldActors(names,retry=false){return Promise.all(names.map(async name=>{const actor=worldActors.get(name);if(actor&&await homeLoadImage('world-npc-'+actor.id,retry))return true;const rival=ART_CONFIG.designs.rivals?.[name];if(rival){homeArt.images['rival-'+name]=rival;return homeLoadImage('rival-'+name,retry);}return false;}));}
+async function loadWorldRivals(retry=false){await loadWorldActors(Object.keys(ART_CONFIG.designs.rivals||{}),retry);await art.load('leader-mikka',retry);}
 // Explorable places share art direction, camera, actor scale and existing server encounters.
 const worldScenes=homeArt.world?.scenes||{},worldRuntime={id:'quintal',owner:null,states:{},camera:null,near:null,error:'',loading:false};
 // Explicit preview only: the complete campaign map remains the default.
@@ -26,7 +28,7 @@ function updateWorldContext(){
  button.disabled=worldRuntime.loading||!place&&!worldRuntime.error;setText('worldInteract',worldRuntime.error?'Tentar carregar':place?.stage?'Ver desafio · E':place?'Interagir · E':'Aproxime-se');
 }
 async function loadWorldImage(id,retry=false){
- if(worldScenes[id]?.tiled){const owner=worldRuntime.owner;worldRuntime.loading=true;worldRuntime.error='';updateWorldContext();const loaded=await Promise.all(Object.keys(homeArt.world.kit.sheets).map(sheet=>homeLoadImage('world-kit-'+sheet,retry)));if(worldRuntime.owner!==owner||worldRuntime.id!==id)return;worldRuntime.loading=false;worldRuntime.error=loaded.every(Boolean)?'':'Algumas artes não carregaram. Tente carregar novamente.';updateWorldContext();return;}
+ if(worldScenes[id]?.tiled){const owner=worldRuntime.owner;worldRuntime.loading=true;worldRuntime.error='';updateWorldContext();const loaded=await Promise.all(Object.keys(worldScenes[id].art?.kit.sheets||homeArt.world.kit.sheets).map(sheet=>homeLoadImage('world-kit-'+sheet,retry)));if(worldRuntime.owner!==owner||worldRuntime.id!==id)return;worldRuntime.loading=false;worldRuntime.error=loaded.every(Boolean)?'':'Algumas artes não carregaram. Tente carregar novamente.';updateWorldContext();return;}
  const owner=worldRuntime.owner;worldRuntime.loading=true;worldRuntime.error='';updateWorldContext();const okay=await homeLoadImage('world-'+id,retry);
  if(worldRuntime.owner!==owner||worldRuntime.id!==id)return;worldRuntime.loading=false;worldRuntime.error=okay?'':'O cenário não carregou. Você pode usar o menu.';updateWorldContext();
 }
@@ -41,7 +43,7 @@ function worldGo(place){
 }
 function worldWalkTo(point){const state=worldState();state.navigation.target(state.actor,point);if(state.actor.navigationMessage)toast(state.actor.navigationMessage);}
 function interactWorld(){
- if(mode||courtyard.hidden||courtyard.inert)return;if(worldRuntime.error){loadWorldImage(worldRuntime.id,true);return;}
+ if(mode||courtyard.hidden||courtyard.inert)return;if(worldRuntime.error){loadWorldImage(worldRuntime.id,true);if(worldRuntime.id==='morro')loadWorldRivals(true);else loadWorldActors(['Sr. Assis'],true);return;}
  const place=worldRuntime.near;if(!place)return;
  if(place.stage){
   if(!trails.unlocked(trailProgress,place.stage)){toast('Vença o encontro anterior para abrir este desafio.');return;}
@@ -58,9 +60,8 @@ function drawWorldRival(g,place,time){
  const stage=trails.stage(place.stage);if(!stage||stage.boss&&!trails.unlocked(trailProgress,stage.id))return;
  const node=worldState().navigation.nodes[place.node],height=worldScene().actorSize*1.12;
  stage.foes.forEach((foe,i)=>{const x=node.x+35+i*45,y=node.y-3;worldShadow(g,x,y,13);
-  const image=homeImages.get('rival-'+foe.name);if(image){const width=height*image.width/image.height;g.drawImage(image,x-width/2,y-height,width,height);}
-  else if(stage.boss)art.draw(g,'leader-mikka','0',x-height*.4,y-height,height*.8,height,true);
-  else return;
+  const direction=worldActors.facing(x,y,worldState().actor),chibi=worldActors.draw(g,homeImages,foe.name,x,y,height,{direction,time});
+  if(!chibi){const image=homeImages.get('rival-'+foe.name);if(image){const width=height*image.width/image.height;g.drawImage(image,x-width/2,y-height,width,height);}else if(stage.boss)art.draw(g,'leader-mikka','0',x-height*.4,y-height,height*.8,height,true);else return;}
   g.font='bold 13px Nunito, sans-serif';g.textAlign='center';g.lineWidth=4;g.strokeStyle='#fff1d6';g.strokeText(foe.name,x,y-height-8);g.fillStyle='#294b43';g.fillText(foe.name,x,y-height-8);
  });
 }
@@ -73,12 +74,13 @@ function drawWorldScene(g,time,dt){
  const target=state.navigation.camera(state.actor,width,height),previous=worldRuntime.camera,blend=art.reduced||!previous?1:1-Math.exp(-dt*9),camera=previous?{x:previous.x+(target.x-previous.x)*blend,y:previous.y+(target.y-previous.y)*blend,scale:target.scale}:target;worldRuntime.camera=camera;
  g.save();g.scale(camera.scale,camera.scale);g.translate(-camera.x,-camera.y);const image=homeImages.get('world-'+worldRuntime.id);if(scene.art)drawWorldArtGround(g,scene,homeImages);else if(scene.tiled)drawWorldBlockout(g,scene);else if(image)g.drawImage(image,0,0,scene.width,scene.height);else{g.fillStyle='#d1d8a6';g.fillRect(0,0,scene.width,scene.height);}
  for(const place of scene.places){const p=state.navigation.nodes[place.node],open=!place.stage||trails.unlocked(trailProgress,place.stage),near=worldRuntime.near?.id===place.id;g.strokeStyle=open?'#fff0b1':'#71888c';g.fillStyle=open?'#164a6580':'#293c4655';g.lineWidth=near?3:2;g.beginPath();g.ellipse(p.x,p.y-2,near?18:12,near?8:5,0,0,Math.PI*2);g.fill();g.stroke();}
- const partnerSize=Math.round(scene.actorSize*.77),equipped=playerAccount.inventory.find(k=>k.id===playerAccount.profile.equipped_kite_id),follower=state.navigation.follower(state.actor,scene.actorSize*.74),resident=!scene.tiled&&state.actor.history.length<2?{x:follower.x+scene.actorSize*.62,y:follower.y+5}:follower,actors=[{id:'player',x:state.actor.x,level:state.actor.level,y:state.actor.y,draw:()=>drawWorldHuman(g,state.actor,time)}];
+ const partnerSize=Math.round(scene.actorSize*.77),equipped=playerAccount.inventory.find(k=>k.id===playerAccount.profile.equipped_kite_id),follower=state.navigation.follower(state.actor,scene.actorSize*.74),resident=worldPartnerStart(scene,state,follower),actors=[{id:'player',x:state.actor.x,level:state.actor.level,y:state.actor.y,draw:()=>drawWorldHuman(g,state.actor,time)}];
  if(equipped&&!['arrival','choose'].includes(journey?.phase))actors.push({level:state.navigation.geometry?.level(resident)??0,y:resident.y,draw:()=>{worldShadow(g,resident.x,resident.y,partnerSize*.25);if(typeof drawPipamonGlow==='function')drawPipamonGlow(g,eng.pipamons.progress(equipped.pipamon_xp).level,time,resident.x,resident.y-partnerSize*.5,partnerSize*.5,true,!moving);art.creature(g,equipped.model.color,time,resident.x-partnerSize/2,resident.y-partnerSize,partnerSize,{soul:equipped.model.soul,facing:state.actor.direction===1?-1:1,animate:state.actor.moving||moving,input:{x:state.actor.moving?(state.actor.direction===1?-1:1):0}})}});
  if(worldRuntime.id==='morro')for(const place of scene.places)if(place.stage)actors.push({level:state.navigation.geometry?.level(state.navigation.nodes[place.node])??0,y:state.navigation.nodes[place.node].y-3,draw:()=>drawWorldRival(g,place,time)});
  if(worldRuntime.id==='quintal'){
-  actors.push({y:600,draw:()=>{worldShadow(g,365,600);art.draw(g,'sr-assis-poses','welcome',329,500,73,100,true)}});
-  actors.push({y:619,draw:()=>{const seq=art.atlases.nozinho?.animations?.idle;if(seq)art.draw(g,'nozinho',seq[moving?Math.floor(time/180)%seq.length:0],410,581,38,38,true)}});
+  const p=scene.tiled?.properties||{},px=p.professor_x??365,py=p.professor_y??600,nx=p.nozinho_x??429,ny=p.nozinho_y??619;
+  actors.push({id:'sr-assis',x:px,y:py,level:state.navigation.geometry?.level({x:px,y:py})??0,draw:()=>{worldShadow(g,px,py);if(!worldActors.draw(g,homeImages,'Sr. Assis',px,py,scene.actorSize*1.08,{direction:worldActors.facing(px,py,state.actor),time}))art.draw(g,'sr-assis-poses','welcome',px-36,py-100,73,100,true)}});
+  actors.push({x:nx,y:ny,level:state.navigation.geometry?.level({x:nx,y:ny})??0,draw:()=>{const seq=art.atlases.nozinho?.animations?.idle;if(seq)art.draw(g,'nozinho',seq[moving?Math.floor(time/180)%seq.length:0],nx-19,ny-38,38,38,true)}});
  }
  for(const entry of worldRenderQueue(scene,actors)){if(entry.kind==='actor')entry.draw();else drawWorldObject(g,entry,homeImages);}g.restore();updateWorldContext();
 }

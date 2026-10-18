@@ -91,7 +91,7 @@ export function parseWorldMap(map){
  if(layers.Spawns.length!==1)fail('exatamente um spawn obrigatório.');
  const spawn=nodeFor(layers.Spawns[0]),seen=new Set([spawn]),queue=[spawn],adj=nodes.map(()=>[]);for(const [a,b]of edges){adj[a].push(b);adj[b].push(a);}for(let i=0;i<queue.length;i++)for(const b of adj[queue[i]])if(!seen.has(b)){seen.add(b);queue.push(b);}
  const stages=new Set(),places=[...layers.Exits,...layers.Interactions].map(r=>{const node=nodeFor(r),stage=r.properties.stage,action=r.properties.action;if(!seen.has(node))fail('zona inacessível a partir do spawn: '+r.name);if(stage){if(stages.has(stage))fail('stage duplicado: '+stage);stages.add(stage);}if(!stage&&!action)fail('zona sem action/stage: '+r.name);return {id:'tiled-'+r.id,name:r.name,node,...stage?{stage}:{action}};});
- return {name:'Morro do Sol · piloto',width,height,actorSize,spawn,nodes,edges,places,tiled:{layers,properties,levels:regions.map(r=>r.properties.level)}};
+ return {name:properties.scene_name||'Morro do Sol · piloto',overview:properties.overview===true,width,height,actorSize,spawn,nodes,edges,places,tiled:{layers,properties,levels:regions.map(r=>r.properties.level)}};
 }
 
 export function drawWorldBlockout(g,scene){

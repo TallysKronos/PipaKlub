@@ -1,0 +1,220 @@
+{
+  "name": "Juninho",
+  "image": "sheets/juninho-v2.png",
+  "directions": [
+    "south",
+    "west",
+    "east",
+    "north"
+  ],
+  "frames": [
+    {
+      "x": 0,
+      "y": 0,
+      "w": 444,
+      "h": 470,
+      "bounds": {
+        "x": 128,
+        "y": 74,
+        "w": 217,
+        "h": 383
+      },
+      "direction": "south",
+      "pose": "idle",
+      "footAnchor": {
+        "x": 236.5,
+        "y": 457
+      }
+    },
+    {
+      "x": 444,
+      "y": 0,
+      "w": 443,
+      "h": 470,
+      "bounds": {
+        "x": 117,
+        "y": 76,
+        "w": 237,
+        "h": 381
+      },
+      "direction": "west",
+      "pose": "idle",
+      "footAnchor": {
+        "x": 235.5,
+        "y": 457
+      }
+    },
+    {
+      "x": 887,
+      "y": 0,
+      "w": 443,
+      "h": 470,
+      "bounds": {
+        "x": 89,
+        "y": 76,
+        "w": 234,
+        "h": 381
+      },
+      "direction": "east",
+      "pose": "idle",
+      "footAnchor": {
+        "x": 206.0,
+        "y": 457
+      }
+    },
+    {
+      "x": 1330,
+      "y": 0,
+      "w": 444,
+      "h": 470,
+      "bounds": {
+        "x": 101,
+        "y": 77,
+        "w": 216,
+        "h": 380
+      },
+      "direction": "north",
+      "pose": "idle",
+      "footAnchor": {
+        "x": 209.0,
+        "y": 457
+      }
+    },
+    {
+      "x": 0,
+      "y": 470,
+      "w": 444,
+      "h": 417,
+      "bounds": {
+        "x": 122,
+        "y": 14,
+        "w": 221,
+        "h": 370
+      },
+      "direction": "south",
+      "pose": "step",
+      "footAnchor": {
+        "x": 232.5,
+        "y": 384
+      }
+    },
+    {
+      "x": 444,
+      "y": 470,
+      "w": 443,
+      "h": 417,
+      "bounds": {
+        "x": 119,
+        "y": 15,
+        "w": 234,
+        "h": 369
+      },
+      "direction": "west",
+      "pose": "step",
+      "footAnchor": {
+        "x": 236.0,
+        "y": 384
+      }
+    },
+    {
+      "x": 887,
+      "y": 470,
+      "w": 443,
+      "h": 417,
+      "bounds": {
+        "x": 90,
+        "y": 14,
+        "w": 234,
+        "h": 370
+      },
+      "direction": "east",
+      "pose": "step",
+      "footAnchor": {
+        "x": 207.0,
+        "y": 384
+      }
+    },
+    {
+      "x": 1330,
+      "y": 470,
+      "w": 444,
+      "h": 417,
+      "bounds": {
+        "x": 101,
+        "y": 14,
+        "w": 218,
+        "h": 370
+      },
+      "direction": "north",
+      "pose": "step",
+      "footAnchor": {
+        "x": 210.0,
+        "y": 384
+      }
+    }
+  ],
+  "size": {
+    "w": 1774,
+    "h": 887
+  },
+  "referenceHeight": 381.0,
+  "animations": {
+    "south": {
+      "idle": [
+        0
+      ],
+      "walk": [
+        0,
+        4
+      ],
+      "durations": [
+        170,
+        170
+      ],
+      "loop": true
+    },
+    "west": {
+      "idle": [
+        1
+      ],
+      "walk": [
+        1,
+        5
+      ],
+      "durations": [
+        170,
+        170
+      ],
+      "loop": true
+    },
+    "east": {
+      "idle": [
+        2
+      ],
+      "walk": [
+        2,
+        6
+      ],
+      "durations": [
+        170,
+        170
+      ],
+      "loop": true
+    },
+    "north": {
+      "idle": [
+        3
+      ],
+      "walk": [
+        3,
+        7
+      ],
+      "durations": [
+        170,
+        170
+      ],
+      "loop": true
+    }
+  },
+  "status": "art-v1-animation-review"
+}

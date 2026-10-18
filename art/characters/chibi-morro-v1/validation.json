@@ -1,0 +1,638 @@
+[
+  {
+    "id": "sr-assis",
+    "size": [
+      1774,
+      887
+    ],
+    "format": "RGBA",
+    "transparent": true,
+    "frameCount": 8,
+    "uniqueFrames": 8,
+    "alphaThreshold": 96,
+    "rowSplit": 463,
+    "minimumMargin": 15,
+    "geometryPassed": true,
+    "checks": [
+      {
+        "frame": 0,
+        "margin": 18,
+        "bounds": {
+          "x": 134,
+          "y": 77,
+          "w": 199,
+          "h": 368
+        }
+      },
+      {
+        "frame": 1,
+        "margin": 16,
+        "bounds": {
+          "x": 131,
+          "y": 76,
+          "w": 197,
+          "h": 371
+        }
+      },
+      {
+        "frame": 2,
+        "margin": 15,
+        "bounds": {
+          "x": 112,
+          "y": 76,
+          "w": 195,
+          "h": 372
+        }
+      },
+      {
+        "frame": 3,
+        "margin": 18,
+        "bounds": {
+          "x": 113,
+          "y": 77,
+          "w": 194,
+          "h": 368
+        }
+      },
+      {
+        "frame": 4,
+        "margin": 21,
+        "bounds": {
+          "x": 125,
+          "y": 21,
+          "w": 209,
+          "h": 356
+        }
+      },
+      {
+        "frame": 5,
+        "margin": 16,
+        "bounds": {
+          "x": 123,
+          "y": 16,
+          "w": 206,
+          "h": 361
+        }
+      },
+      {
+        "frame": 6,
+        "margin": 16,
+        "bounds": {
+          "x": 111,
+          "y": 16,
+          "w": 206,
+          "h": 361
+        }
+      },
+      {
+        "frame": 7,
+        "margin": 19,
+        "bounds": {
+          "x": 110,
+          "y": 19,
+          "w": 197,
+          "h": 360
+        }
+      }
+    ],
+    "sha256": "3e3dfd31760e7807d91198ed0d370d067bef6143a7e16875ad6e97ee6d7abee4",
+    "visualReview": {
+      "identity": "Chibi silhouette, clothes, colors and four directions inspected.",
+      "limitations": [
+        "Minor thin color fringes remain on some contours.",
+        "Reel hand/occlusion is simplified and sometimes changes across views; review before close-up use.",
+        "Two-pose walk matches Kael overworld contract; this is not a full four-step walk cycle."
+      ]
+    }
+  },
+  {
+    "id": "zeca",
+    "size": [
+      1774,
+      887
+    ],
+    "format": "RGBA",
+    "transparent": true,
+    "frameCount": 8,
+    "uniqueFrames": 8,
+    "alphaThreshold": 96,
+    "rowSplit": 462,
+    "minimumMargin": 13,
+    "geometryPassed": true,
+    "checks": [
+      {
+        "frame": 0,
+        "margin": 15,
+        "bounds": {
+          "x": 122,
+          "y": 60,
+          "w": 221,
+          "h": 387
+        }
+      },
+      {
+        "frame": 1,
+        "margin": 13,
+        "bounds": {
+          "x": 115,
+          "y": 61,
+          "w": 226,
+          "h": 388
+        }
+      },
+      {
+        "frame": 2,
+        "margin": 13,
+        "bounds": {
+          "x": 116,
+          "y": 62,
+          "w": 225,
+          "h": 387
+        }
+      },
+      {
+        "frame": 3,
+        "margin": 16,
+        "bounds": {
+          "x": 111,
+          "y": 63,
+          "w": 220,
+          "h": 383
+        }
+      },
+      {
+        "frame": 4,
+        "margin": 14,
+        "bounds": {
+          "x": 124,
+          "y": 14,
+          "w": 219,
+          "h": 374
+        }
+      },
+      {
+        "frame": 5,
+        "margin": 20,
+        "bounds": {
+          "x": 114,
+          "y": 20,
+          "w": 221,
+          "h": 364
+        }
+      },
+      {
+        "frame": 6,
+        "margin": 17,
+        "bounds": {
+          "x": 117,
+          "y": 17,
+          "w": 223,
+          "h": 368
+        }
+      },
+      {
+        "frame": 7,
+        "margin": 17,
+        "bounds": {
+          "x": 105,
+          "y": 17,
+          "w": 221,
+          "h": 371
+        }
+      }
+    ],
+    "sha256": "66d431036eb0d23b91215797d7d5b898643c1c8abbbe3401b276b03efa032a20",
+    "visualReview": {
+      "identity": "Chibi silhouette, clothes, colors and four directions inspected.",
+      "limitations": [
+        "Minor thin color fringes remain on some contours.",
+        "Reel hand/occlusion is simplified and sometimes changes across views; review before close-up use.",
+        "Two-pose walk matches Kael overworld contract; this is not a full four-step walk cycle."
+      ]
+    }
+  },
+  {
+    "id": "bia",
+    "size": [
+      1774,
+      887
+    ],
+    "format": "RGBA",
+    "transparent": true,
+    "frameCount": 8,
+    "uniqueFrames": 8,
+    "alphaThreshold": 96,
+    "rowSplit": 461,
+    "minimumMargin": 14,
+    "geometryPassed": true,
+    "checks": [
+      {
+        "frame": 0,
+        "margin": 16,
+        "bounds": {
+          "x": 125,
+          "y": 65,
+          "w": 232,
+          "h": 380
+        }
+      },
+      {
+        "frame": 1,
+        "margin": 14,
+        "bounds": {
+          "x": 110,
+          "y": 63,
+          "w": 229,
+          "h": 384
+        }
+      },
+      {
+        "frame": 2,
+        "margin": 14,
+        "bounds": {
+          "x": 105,
+          "y": 63,
+          "w": 229,
+          "h": 384
+        }
+      },
+      {
+        "frame": 3,
+        "margin": 16,
+        "bounds": {
+          "x": 87,
+          "y": 65,
+          "w": 232,
+          "h": 380
+        }
+      },
+      {
+        "frame": 4,
+        "margin": 14,
+        "bounds": {
+          "x": 124,
+          "y": 14,
+          "w": 228,
+          "h": 374
+        }
+      },
+      {
+        "frame": 5,
+        "margin": 14,
+        "bounds": {
+          "x": 110,
+          "y": 14,
+          "w": 233,
+          "h": 374
+        }
+      },
+      {
+        "frame": 6,
+        "margin": 14,
+        "bounds": {
+          "x": 100,
+          "y": 14,
+          "w": 234,
+          "h": 374
+        }
+      },
+      {
+        "frame": 7,
+        "margin": 18,
+        "bounds": {
+          "x": 92,
+          "y": 18,
+          "w": 229,
+          "h": 370
+        }
+      }
+    ],
+    "sha256": "07d2c7687868075cdf8abd6c75a2a7dc95e7d1591485713113c5d6c97b36cd1b",
+    "visualReview": {
+      "identity": "Chibi silhouette, clothes, colors and four directions inspected.",
+      "limitations": [
+        "Minor thin color fringes remain on some contours.",
+        "Reel hand/occlusion is simplified and sometimes changes across views; review before close-up use.",
+        "Two-pose walk matches Kael overworld contract; this is not a full four-step walk cycle."
+      ]
+    }
+  },
+  {
+    "id": "juninho",
+    "size": [
+      1774,
+      887
+    ],
+    "format": "RGBA",
+    "transparent": true,
+    "frameCount": 8,
+    "uniqueFrames": 8,
+    "alphaThreshold": 96,
+    "rowSplit": 470,
+    "minimumMargin": 13,
+    "geometryPassed": true,
+    "checks": [
+      {
+        "frame": 0,
+        "margin": 13,
+        "bounds": {
+          "x": 128,
+          "y": 74,
+          "w": 217,
+          "h": 383
+        }
+      },
+      {
+        "frame": 1,
+        "margin": 13,
+        "bounds": {
+          "x": 117,
+          "y": 76,
+          "w": 237,
+          "h": 381
+        }
+      },
+      {
+        "frame": 2,
+        "margin": 13,
+        "bounds": {
+          "x": 89,
+          "y": 76,
+          "w": 234,
+          "h": 381
+        }
+      },
+      {
+        "frame": 3,
+        "margin": 13,
+        "bounds": {
+          "x": 101,
+          "y": 77,
+          "w": 216,
+          "h": 380
+        }
+      },
+      {
+        "frame": 4,
+        "margin": 14,
+        "bounds": {
+          "x": 122,
+          "y": 14,
+          "w": 221,
+          "h": 370
+        }
+      },
+      {
+        "frame": 5,
+        "margin": 15,
+        "bounds": {
+          "x": 119,
+          "y": 15,
+          "w": 234,
+          "h": 369
+        }
+      },
+      {
+        "frame": 6,
+        "margin": 14,
+        "bounds": {
+          "x": 90,
+          "y": 14,
+          "w": 234,
+          "h": 370
+        }
+      },
+      {
+        "frame": 7,
+        "margin": 14,
+        "bounds": {
+          "x": 101,
+          "y": 14,
+          "w": 218,
+          "h": 370
+        }
+      }
+    ],
+    "sha256": "7f0eff0d4d744a1c147daaf34db76c0d17c6bad7745a13483986d2a184aa711f",
+    "visualReview": {
+      "identity": "Chibi silhouette, clothes, colors and four directions inspected.",
+      "limitations": [
+        "Minor thin color fringes remain on some contours.",
+        "Reel hand/occlusion is simplified and sometimes changes across views; review before close-up use.",
+        "Two-pose walk matches Kael overworld contract; this is not a full four-step walk cycle."
+      ]
+    }
+  },
+  {
+    "id": "lia",
+    "size": [
+      1774,
+      887
+    ],
+    "format": "RGBA",
+    "transparent": true,
+    "frameCount": 8,
+    "uniqueFrames": 8,
+    "alphaThreshold": 96,
+    "rowSplit": 455,
+    "minimumMargin": 7,
+    "geometryPassed": true,
+    "checks": [
+      {
+        "frame": 0,
+        "margin": 9,
+        "bounds": {
+          "x": 92,
+          "y": 41,
+          "w": 248,
+          "h": 405
+        }
+      },
+      {
+        "frame": 1,
+        "margin": 7,
+        "bounds": {
+          "x": 102,
+          "y": 27,
+          "w": 275,
+          "h": 421
+        }
+      },
+      {
+        "frame": 2,
+        "margin": 7,
+        "bounds": {
+          "x": 66,
+          "y": 30,
+          "w": 271,
+          "h": 418
+        }
+      },
+      {
+        "frame": 3,
+        "margin": 9,
+        "bounds": {
+          "x": 104,
+          "y": 41,
+          "w": 248,
+          "h": 405
+        }
+      },
+      {
+        "frame": 4,
+        "margin": 8,
+        "bounds": {
+          "x": 89,
+          "y": 8,
+          "w": 258,
+          "h": 400
+        }
+      },
+      {
+        "frame": 5,
+        "margin": 9,
+        "bounds": {
+          "x": 93,
+          "y": 9,
+          "w": 275,
+          "h": 396
+        }
+      },
+      {
+        "frame": 6,
+        "margin": 11,
+        "bounds": {
+          "x": 75,
+          "y": 11,
+          "w": 276,
+          "h": 393
+        }
+      },
+      {
+        "frame": 7,
+        "margin": 8,
+        "bounds": {
+          "x": 97,
+          "y": 8,
+          "w": 258,
+          "h": 400
+        }
+      }
+    ],
+    "sha256": "af2911c2d8e5d32162be4d1e44c84cae9797ee322cab78f44d3773767e6c5728",
+    "visualReview": {
+      "identity": "Chibi silhouette, clothes, colors and four directions inspected.",
+      "limitations": [
+        "Minor thin color fringes remain on some contours.",
+        "Reel hand/occlusion is simplified and sometimes changes across views; review before close-up use.",
+        "Two-pose walk matches Kael overworld contract; this is not a full four-step walk cycle."
+      ]
+    }
+  },
+  {
+    "id": "tiao",
+    "size": [
+      1774,
+      887
+    ],
+    "format": "RGBA",
+    "transparent": true,
+    "frameCount": 8,
+    "uniqueFrames": 8,
+    "alphaThreshold": 96,
+    "rowSplit": 466,
+    "minimumMargin": 13,
+    "geometryPassed": true,
+    "checks": [
+      {
+        "frame": 0,
+        "margin": 13,
+        "bounds": {
+          "x": 129,
+          "y": 64,
+          "w": 211,
+          "h": 389
+        }
+      },
+      {
+        "frame": 1,
+        "margin": 13,
+        "bounds": {
+          "x": 134,
+          "y": 65,
+          "w": 200,
+          "h": 388
+        }
+      },
+      {
+        "frame": 2,
+        "margin": 13,
+        "bounds": {
+          "x": 100,
+          "y": 68,
+          "w": 203,
+          "h": 385
+        }
+      },
+      {
+        "frame": 3,
+        "margin": 13,
+        "bounds": {
+          "x": 99,
+          "y": 64,
+          "w": 212,
+          "h": 389
+        }
+      },
+      {
+        "frame": 4,
+        "margin": 13,
+        "bounds": {
+          "x": 128,
+          "y": 13,
+          "w": 217,
+          "h": 375
+        }
+      },
+      {
+        "frame": 5,
+        "margin": 13,
+        "bounds": {
+          "x": 114,
+          "y": 13,
+          "w": 219,
+          "h": 375
+        }
+      },
+      {
+        "frame": 6,
+        "margin": 13,
+        "bounds": {
+          "x": 103,
+          "y": 13,
+          "w": 221,
+          "h": 375
+        }
+      },
+      {
+        "frame": 7,
+        "margin": 13,
+        "bounds": {
+          "x": 95,
+          "y": 13,
+          "w": 215,
+          "h": 375
+        }
+      }
+    ],
+    "sha256": "131426868b91df1b0224ca0038b5d85250bf5afbe23da1039eab6923e77be22d",
+    "visualReview": {
+      "identity": "Chibi silhouette, clothes, colors and four directions inspected.",
+      "limitations": [
+        "Minor thin color fringes remain on some contours.",
+        "Reel hand/occlusion is simplified and sometimes changes across views; review before close-up use.",
+        "Two-pose walk matches Kael overworld contract; this is not a full four-step walk cycle."
+      ]
+    }
+  }
+]

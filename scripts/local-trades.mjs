@@ -11,8 +11,9 @@ import {attachRealtime} from '../src/realtime.js';
 
 const port=Number(process.env.LOCAL_TRADE_PORT||5194);
 if(!Number.isInteger(port)||port<1024||port>65535)throw Error('LOCAL_TRADE_PORT inválida.');
-fs.mkdirSync('.local/trade-demo',{recursive:true});
-const postgres=new PGlite('.local/trade-demo/postgres');await postgres.waitReady;
+const demoSlot=process.env.LOCAL_TRADE_SLOT||'trade-demo';if(!/^[a-z0-9-]{1,60}$/.test(demoSlot))throw Error('LOCAL_TRADE_SLOT inválido.');
+const demoDirectory='.local/'+demoSlot;fs.mkdirSync(demoDirectory,{recursive:true});
+const postgres=new PGlite(demoDirectory+'/postgres');await postgres.waitReady;
 if(!(await postgres.query("select to_regclass('public.kite_trades') installed")).rows[0].installed){
  await postgres.exec("create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key,raw_user_meta_data jsonb);create function auth.uid() returns uuid language sql as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;grant usage on schema public,auth to authenticated,anon,service_role;grant execute on function auth.uid() to authenticated,anon,service_role;");
  for(const name of fs.readdirSync('supabase/migrations').filter(n=>n.endsWith('.sql')).sort())await postgres.exec(fs.readFileSync('supabase/migrations/'+name,'utf8'));
@@ -70,7 +71,7 @@ async function localAuth(url,options={}){
  }
  return response({message:'Cadastro indisponível no ambiente local. Use Ana, Beto ou Cora.'},400);
 }
-const sqlite=new DatabaseSync('.local/trade-demo/rooms.db');
+const sqlite=new DatabaseSync(demoDirectory+'/rooms.db');
 sqlite.exec('PRAGMA journal_mode=WAL;CREATE TABLE IF NOT EXISTS pipa_rooms (code TEXT PRIMARY KEY,state TEXT NOT NULL,rev INTEGER NOT NULL DEFAULT 0,updated INTEGER NOT NULL)');
 const DB={prepare(sql){let values=[];return {bind(...v){values=v;return this;},async run(){const r=sqlite.prepare(sql).run(...values);return {meta:{changes:Number(r.changes)}};},async first(){return sqlite.prepare(sql).get(...values);}};}};
 const accounts=createAccounts({SUPABASE_URL:'http://local-auth.invalid',SUPABASE_PUBLISHABLE_KEY:'local-only'},{fetcher:localAuth,db:sqlite,gameDatabase:{rpc:(name,body)=>rpc(name,body)},matchProgress:id=>progression.status(id)});
@@ -98,7 +99,7 @@ const server=http.createServer(async(req,res)=>{
  }catch(e){console.error('Local demo:',e.message);res.writeHead(500);res.end('Falha no ambiente local.');}
 });
 const closeRealtime=attachRealtime(server,sqlite,progression);
-server.listen(port,'127.0.0.1',()=>console.log('TESTE LOCAL — Ana: http://127.0.0.1:'+port+'/local/ana\nBeto: http://localhost:'+port+'/local/beto\nBanco persistente em .local/trade-demo. Nenhum acesso ao Supabase real.'));
+server.listen(port,'127.0.0.1',()=>console.log('TESTE LOCAL — Ana: http://127.0.0.1:'+port+'/local/ana\nBeto: http://localhost:'+port+'/local/beto\nBanco persistente em '+demoDirectory+'. Nenhum acesso ao Supabase real.'));
 let stopping=false;
 const stop=()=>{if(stopping)return;stopping=true;closeRealtime();progression.stop();server.close(async()=>{sqlite.close();await postgres.close();process.exit(0);});};
 process.on('SIGTERM',stop);process.on('SIGINT',stop);

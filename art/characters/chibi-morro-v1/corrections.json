@@ -1,0 +1,15 @@
+{
+  "tool": "built-in image_gen",
+  "corrections": [
+    {
+      "id": "sr-assis",
+      "prompt": "Precise small correction to this existing 4 columns x2 rows chibi sprite sheet. Preserve ALL eight poses, original positions, proportions, colors, transparency, goggles, lab coat, face and pixel-like rendering. Change ONLY the location of the tiny blue/white ID badge in the SIDE PROFILE sprites: in column2 (character looking LEFT) BOTH rows remove the badge from the visible near side, it belongs on the far hidden chest. In column3 (character looking RIGHT) BOTH rows add the tiny ID badge to the visible near LEFT chest of the coat, immediately below lapel. Front sprites column1 stay exactly the same with badge on viewer RIGHT. Back sprites unchanged with no badge. The badge stays on anatomical LEFT chest in all views. No other changes. Background transparent, no particles, no new props.",
+      "selected": "sr-assis-v2.png"
+    },
+    {
+      "id": "juninho",
+      "prompt": "Precise small correction to this existing 4 columns x2 rows chibi spritesheet. Preserve all eight characters, positions, dimensions, proportions, identity, costumes, poses, colors and crisp pixel-like style. Correct ONLY the BACK VIEW BASEBALL CAPS in column4 (both top and bottom rows). The boy wears his cap BACKWARDS. When he faces away from us, the cap's curved wide visor/brim must project toward the viewer, visible above nape at the bottom of cap. REMOVE the adjustable perforated strap/opening from these two rear views and replace it with the cap's closed crown and visible curved blue visor facing the viewer. All other six sprites unchanged, especially side profiles with visor behind head. Keep transparent background clean, no extra elements.",
+      "selected": "juninho-v2.png"
+    }
+  ]
+}

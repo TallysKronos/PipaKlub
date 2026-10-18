@@ -1,0 +1,34 @@
+{
+  "image": "world/quintal-kit-v1/walls-v2.png",
+  "size": [
+    1254,
+    1254
+  ],
+  "alpha": [
+    0,
+    255
+  ],
+  "emptyCenter": true,
+  "edges": {
+    "west": {
+      "repeatAlphaIoU": 0.9936305732484076,
+      "outerEdgeVariationSourcePixels": 1,
+      "innerEdgeVariationSourcePixels": 1
+    },
+    "east": {
+      "repeatAlphaIoU": 1.0,
+      "outerEdgeVariationSourcePixels": 1,
+      "innerEdgeVariationSourcePixels": 1
+    },
+    "north": {
+      "repeatAlphaIoU": 1.0,
+      "outerEdgeVariationSourcePixels": 2,
+      "innerEdgeVariationSourcePixels": 1
+    },
+    "south": {
+      "repeatAlphaIoU": 0.9935897435897436,
+      "outerEdgeVariationSourcePixels": 2,
+      "innerEdgeVariationSourcePixels": 2
+    }
+  }
+}
