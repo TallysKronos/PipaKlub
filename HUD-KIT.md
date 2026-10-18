@@ -28,7 +28,7 @@ Botões principais usam altura de 56 px e largura recomendada a partir de 120 px
 ## Demonstração e testes
 
 - `/hud-kit`: compara botões e faixas em diferentes larguras e permite variar largura e altura de um painel. O botão de verificação mede os cantos reais do DOM em 24 combinações.
-- `/hud-audit`: matriz da arena real, cobrindo 290 cenários responsivos e estados de jogo.
+- `/hud-audit`: matriz da arena real, cobrindo 319 cenários responsivos e estados de jogo.
 - `npm test`: inclui cobertura dos recortes, preservação de conteúdo e eventos ao reaplicar skins e integração nos dois builds.
 - `npm run validate`: valida o artefato do servidor.
 

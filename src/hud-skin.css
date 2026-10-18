@@ -33,3 +33,4 @@
 @media(max-width:700px) and (min-height:501px) and (max-height:650px){.combat-deck .skill-actions .hud-painted-button>.hud-sliced{--hud-cap-l:18.0364px;--hud-cap-r:18.0364px}}
 @media(max-width:700px) and (min-height:501px){.hud .meter>.hud-sliced[data-hud-skin$="-track"]{--hud-cap-l:10.8738px;--hud-cap-r:10.8738px}.hud .meter>.hud-sliced[data-hud-skin$="-fill"]{--hud-cap-l:2.4407px;--hud-cap-r:2.4407px}}
 @media(max-height:500px){.combat-deck .skill-actions .hud-painted-button>.hud-sliced{--hud-cap-l:16.5333px;--hud-cap-r:16.5333px}.hud .meter>.hud-sliced[data-hud-skin$="-track"]{--hud-cap-l:9.5146px;--hud-cap-r:9.5146px}.hud .meter>.hud-sliced[data-hud-skin$="-fill"]{--hud-cap-l:1.8983px;--hud-cap-r:1.8983px}}
+.combat-deck #normalLineSide .hud-button-content{text-transform:none;letter-spacing:0;font-size:9px}

@@ -14,7 +14,7 @@ A auditoria usa a página `/hud-audit`, que monta a arena real em um iframe de t
 
 ## Verificação reproduzível
 
-Abra `/hud-audit` e clique em **Auditar matriz completa**. A matriz cobre 13 tamanhos, de 320x568 e 568x320 até 1920x1080, com dez estados: pronto, recarga, pouca energia, cortado, contagem, pausa, assets indisponíveis, carregando rebicada, movimento e foco. Nos formatos com abas são verificados os três painéis, totalizando 290 cenários.
+Abra `/hud-audit` e clique em **Auditar matriz completa**. A matriz cobre 13 tamanhos, de 320x568 e 568x320 até 1920x1080, com onze estados: pronto, recarga, pouca energia, cortado, contagem, pausa, assets indisponíveis, carregando rebicada, movimento, foco e seletor com o lado esquerdo. Nos formatos com abas são verificados os três painéis, totalizando 319 cenários.
 
 São medidos limites da tela, encaixe no papel, colisão entre painéis, arte e texto dos botões, transbordamento interno e caixa da pausa. O placar possui rolagem intencional; nomes longos usam reticências e preservam o nome completo no título. A matriz é complementada por inspeção visual no navegador.
 

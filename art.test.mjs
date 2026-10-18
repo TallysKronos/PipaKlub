@@ -77,7 +77,7 @@ test('HUD keeps content separate from art, side changes preserve sprites, and mo
  const side=ui.document.querySelector('#normalLineSide');assert.equal(side.querySelectorAll('[class*="hud-art-button-"]').length,4);side.onclick();assert.equal(side.querySelectorAll('[class*="hud-art-button-"]').length,4);assert.equal(side.querySelector('.hud-button-content').textContent,'Esquerda');
  assert.ok(ui.document.querySelector('#normalLineHUD>.hud-panel-content'));assert.equal(ui.run('normalLineHeld'),true);
  ui.document.querySelector('[data-hud-tab="partner"]').onclick();assert.equal(ui.run('normalLineHeld'),false);assert.equal(ui.document.querySelector('.combat-deck').dataset.panel,'partner');assert.equal(ui.document.querySelector('[data-hud-tab="partner"]').getAttribute('aria-pressed'),'true');
- const audit=fs.readFileSync('docs/hud-audit.html','utf8'),script=audit.slice(audit.indexOf('<script>')+8,audit.lastIndexOf('</script>'));assert.doesNotThrow(()=>new vm.Script(script));assert.match(script,/290/);assert.match(script,/content-overflow/);assert.match(script,/button-label/);
+ const audit=fs.readFileSync('docs/hud-audit.html','utf8'),script=audit.slice(audit.indexOf('<script>')+8,audit.lastIndexOf('</script>'));assert.doesNotThrow(()=>new vm.Script(script));assert.match(script,/319/);assert.match(script,/content-overflow/);assert.match(script,/button-label/);
 });
 
 test('a failed initial account check retries automatically and unlocks login without losing typed fields',async()=>{
