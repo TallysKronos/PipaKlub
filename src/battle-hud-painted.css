@@ -130,3 +130,17 @@ body.in-match .events div{padding:6px 9px;background:#294d3ded;color:#fff4db;bor
 
 @media(max-height:500px){.combat-deck .hud-basics kbd{display:none}}
 @media(max-height:500px) and (max-width:700px){.hud .hud-player{width:190px}.hud .portrait{width:50px;height:60px;top:32px}.hud .hud-clock{width:112px}}
+/* Include meter art in the personal panel safe area. */
+@media(max-width:700px),(max-height:500px){.hud .hud-player{--paper-bottom:28%}}
+@media(min-width:701px) and (max-width:900px) and (min-height:501px){.combat-deck .hud-basics button{font-size:10px}.combat-deck .hud-basics kbd{display:none}}
+@media(max-height:500px){
+ .combat-deck{left:112px;right:8px;bottom:6px;transform:none;width:auto;display:block}
+ .combat-deck>section,.combat-deck>.hud-skill,.combat-deck>.hud-basics,.combat-deck>#normalLineHUD{display:none;grid-column:auto;height:148px}
+ .combat-deck[data-panel=line]>#normalLineHUD,.combat-deck[data-panel=partner]>.hud-skill,.combat-deck[data-panel=flight]>.hud-basics{display:block}
+ .hud-deck-tabs{position:absolute;left:8px;right:auto;bottom:6px;width:96px;height:148px;display:flex;flex-direction:column;gap:6px;pointer-events:auto}
+ .hud-deck-tabs button{flex:1;min-height:44px;padding:0 4px;background:#fff2cb;color:#273d35;border:1px solid #98713f;border-radius:5px;font:800 11px/16px Nunito,sans-serif}
+ .hud-deck-tabs button[aria-pressed=true]{background:#28574b;color:#fff2cb}
+ #normalLineState{top:0;left:0;grid-row:auto}
+ .combat-deck #normalLineSide{width:76px;font-size:10px}
+ .combat-deck #normalLineHUD>.hud-panel-content{grid-template-columns:minmax(0,1fr) 76px}
+}
