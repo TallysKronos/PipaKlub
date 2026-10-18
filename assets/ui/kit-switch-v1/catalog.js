@@ -32,7 +32,7 @@ window.verifyKit=()=>{
 };
 $('#verify').addEventListener('click',window.verifyKit);
 const cards=[['carcara','Carcará','Disponível',''],['mata-verde','Mata verde','Equipado','equipped'],['nevagume','Nevagume','Evento','event'],['yaguaru-memoria','Yaguarú','Bloqueado','locked']];
-$('#cards').innerHTML=cards.map(([id,name,state,badge])=>`<button type="button" class="pk-card" aria-label="${name}, ${state}"${badge==='locked'?' aria-disabled="true"':''} aria-pressed="${badge==='equipped'}" data-event="${badge==='event'||badge==='locked'}">${skin('portrait-card')}<span class="pk-content"><img class="pk-card-art" src="examples/${id}.png" alt=""><strong>${name}</strong><small>${state}</small></span>${badge?`<img class="pk-badge" src="icons/badge-${badge}.svg" alt="">`:''}</button>`).join('');
+$('#cards').innerHTML=cards.map(([id,name,state,badge])=>`<button type="button" class="pk-card" aria-label="${name}, ${state}"${badge==='locked'?' aria-disabled="true"':''} aria-pressed="${badge==='equipped'}" data-event="${badge==='event'||badge==='locked'}">${skin('portrait-card')}<span class="pk-content"><img class="pk-card-art" src="examples/${id}.png" alt=""><strong title="${name}">${name}</strong><small>${state}</small></span>${badge?`<img class="pk-badge" src="icons/badge-${badge}.svg" alt="">`:''}</button>`).join('');
 $('#cards').addEventListener('click',e=>{const card=e.target.closest('button');if(card)$('#collectionStatus').textContent='Prévia de estado: '+card.getAttribute('aria-label')+'. Nenhum item da conta é alterado.';});
 function selectTab(tab){
  const tabs=$$('[role=tab]');for(const t of tabs){t.setAttribute('aria-selected',String(t===tab));t.tabIndex=t===tab?0:-1;}
@@ -47,18 +47,23 @@ for(const tab of $$('[role=tab]')){
 }
 // Start on Todos so all four state examples are visible at first.
 selectTab($('#tab-all'));
-$('#roomCode').innerHTML=Array.from({length:6},(_,i)=>`<label>${skin('input')}<input aria-label="Caractere ${i+1} do código da sala" maxlength="1" pattern="[A-Za-z0-9]" autocomplete="off" value="${'PIPA24'[i]}"></label>`).join('');
-$('#roomCode').addEventListener('input',e=>{e.target.value=e.target.value.replace(/[^A-Za-z0-9]/g,'').toUpperCase();});
+$('#roomCode').innerHTML=Array.from({length:6},(_,i)=>`<label>${skin('input')}<input aria-label="Caractere ${i+1} do código da sala" maxlength="1" pattern="[A-Fa-f0-9]" autocomplete="off" value="${'A1F04C'[i]}"></label>`).join('');
+$('#roomCode').addEventListener('input',e=>{// Room codes are hexadecimal: 0-9 and A-F only.
+ e.target.value=e.target.value.replace(/[^A-Fa-f0-9]/g,'').toUpperCase();});
 const actions=[['dodge','Esquiva','dodge'],['maneuver','Rebicada','maneuver'],['skill','Habilidade','skill']];
-$('#fan').innerHTML=actions.map(([id,label,command])=>`<button type="button" class="pk-action" aria-label="${label}">${skin('action-paper')}<img class="pk-action-icon" src="icons/battle-${id}.png" alt="">${id==='maneuver'?'<svg class="pk-cooldown" viewBox="0 0 120 120" aria-hidden="true"><circle class="pk-cooldown-track" cx="60" cy="60" r="53"/><circle class="pk-cooldown-progress" cx="60" cy="60" r="53"/></svg>':''}<img class="pk-glyph" data-command="${command}" alt=""><span class="action-label">${label}</span></button>`).join('');
+$('#fan').innerHTML=actions.map(([id,label,command])=>`<button type="button" class="pk-action" aria-label="${label}">${skin('action-paper')}<img class="pk-action-icon" src="icons/battle-${id}.png" alt="">${id==='maneuver'?'<svg class="pk-cooldown" viewBox="0 0 120 120" aria-hidden="true"><circle class="pk-cooldown-track" cx="60" cy="60" r="53"/><circle class="pk-cooldown-progress" cx="60" cy="60" r="53"/></svg>':''}${id==='skill'?'<span class="pk-glyph-pair"><img class="pk-glyph" data-command="skill" alt=""><img class="pk-glyph" data-command="skillRight" alt=""></span>':`<img class="pk-glyph" data-command="${command}" alt="">`}<span class="action-label">${label}</span></button>`).join('');
 function updateCooldown(){const value=Number($('#cooldown').value);$('#fan').style.setProperty('--pk-cooldown',String(333*(1-value/100)));$('#cooldownStatus').textContent=value+'% de recarga concluída';}
 $('#cooldown').addEventListener('input',updateCooldown);updateCooldown();
-const maps={xbox:{confirm:'xbox-a',back:'xbox-b',dodge:'xbox-b',maneuver:'xbox-x',skill:'xbox-lb'},ps:{confirm:'ps-cross',back:'ps-circle',dodge:'ps-circle',maneuver:'ps-square',skill:'ps-l1'},keyboard:{confirm:'key-enter',back:'key-escape',dodge:'key-space',maneuver:'key-x',skill:'key-q'},touch:{confirm:'touch-tap',back:'back',dodge:'touch-tap',maneuver:'hold',skill:'touch-tap'}};
+const maps={xbox:{confirm:'xbox-a',back:'xbox-b',dodge:'xbox-b',maneuver:'xbox-x',skill:'xbox-lb',skillRight:'xbox-rb'},ps:{confirm:'ps-cross',back:'ps-circle',dodge:'ps-circle',maneuver:'ps-square',skill:'ps-l1',skillRight:'ps-r1'},keyboard:{confirm:'key-enter',back:'key-escape',dodge:'key-shift',maneuver:'key-r',skill:'key-q',skillRight:'key-e'},touch:{confirm:'touch-tap',back:'back',dodge:'touch-tap',maneuver:'hold',skill:'touch-drag',skillRight:'touch-drag'}};
 window.setKitPlatform=platform=>{
  const map=maps[platform]||maps.xbox;
  for(const img of $$('[data-command]')){img.src='glyphs/'+map[img.dataset.command]+'.svg';img.alt=map[img.dataset.command];}
 };
 $('#platform').addEventListener('change',e=>window.setKitPlatform(e.target.value));window.setKitPlatform('xbox');
+for(const row of $$('#options [role=switch]'))row.addEventListener('click',()=>row.setAttribute('aria-checked',String(row.getAttribute('aria-checked')!=='true')));
+const cycle=(id,values)=>$(id).addEventListener('click',()=>{const v=$(id).querySelector('.pk-value'),i=values.indexOf(v.textContent);v.textContent=values[(i+1)%values.length];});
+cycle('#optQuality',['Alta','Média','Leve']);cycle('#optGlyphs',['Automático','Xbox','PlayStation','Teclado']);
+let toastTimer;$('#optToast').addEventListener('click',()=>{$('#kitToast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>{$('#kitToast').hidden=true;},2400);});
 try{
  const response=await fetch('manifest.json');if(!response.ok)throw Error('Manifesto indisponível.');const manifest=await response.json();window.kitManifest=manifest;
  $('#glyphGrid').innerHTML=Object.entries(manifest.glyphs).map(([id,g])=>`<div class="glyph-item"><img src="${g.image}" alt="${id}" loading="lazy"><span>${id}</span></div>`).join('');

@@ -74,7 +74,7 @@ glyphBodies['xbox-menu']=circle+'<path d="M22 24h20M22 32h20M22 40h20"/>';
 glyphBodies['xbox-view']=circle+'<path d="M26 25V21H43V36H38M21 28h16v15H21Z"/>';
 glyphBodies['ps-options']=key+'<path d="M22 24h20M22 32h20M22 40h20"/>';
 glyphBodies['ps-create']=key+'<path d="M23 30h18M32 21v18M22 45h20"/>';
-const keys={up:'↑',down:'↓',left:'←',right:'→',enter:'↵',escape:'Esc',space:'␣',tab:'Tab',w:'W',a:'A',s:'S',d:'D',q:'Q',e:'E',x:'X',y:'Y'};
+const keys={up:'↑',down:'↓',left:'←',right:'→',enter:'↵',escape:'Esc',space:'␣',tab:'Tab',w:'W',a:'A',s:'S',d:'D',q:'Q',e:'E',x:'X',y:'Y',r:'R',shift:'Shift'};
 for(const [id,label]of Object.entries(keys))glyphBodies['key-'+id]=key+text(label,label.length>1?18:25);
 glyphBodies['dpad']='<path fill="#164c48" d="M24 6h16v18h18v16H40v18H24V40H6V24h18Z"/><path d="m28 17 4-4 4 4m11 11 4 4-4 4M28 47l4 4 4-4M17 28l-4 4 4 4"/>';
 glyphBodies['stick']=circle+'<circle cx="32" cy="32" r="11"/><path d="M32 9v7m23 16h-7M32 55v-7M9 32h7"/>';

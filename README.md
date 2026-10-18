@@ -33,7 +33,9 @@ Abra http://localhost:5193. Para jogar em outro aparelho na mesma rede, use o IP
 - Revanche: no resultado, o primeiro a pedir cria uma sala nova com as mesmas regras e os demais entram nela com um clique.
 - Ao entrar e ao reaparecer, a pipa fica protegida por 2,5 s (anel tracejado branco). Atacar encerra a proteção.
 - Acertos, dano, cortes e reaparecimento aparecem na arena: números flutuantes, "ACERTOU!", pipa caindo e faixa central. Os bots miram por um instante antes de puxar.
-- No celular: arraste o dedo no céu (a pipa fica um pouco acima do dedo); ATACAR e SK ← / SK → na arena.
+- No celular: arraste o dedo no céu (a pipa fica um pouco acima do dedo) e toque no céu para atacar. Esquiva, Rebicada e Habilidade ficam no leque redondo do canto inferior direito.
+- Controle (Steam Deck, Xbox, PlayStation): analógico esquerdo pilota, Ⓐ segura o ataque, Ⓑ esquiva, Ⓧ segura e solta a rebicada, Ⓨ troca o lado da rebicada, LB/RB usam a habilidade para a esquerda ou a direita e Start pausa. Nos menus, direcional ou analógico movem o foco, Ⓐ escolhe, Ⓑ volta, LB/RB trocam de aba e o analógico direito rola a tela. Os ícones de comando mudam sozinhos para o último dispositivo usado (controle, teclado ou toque).
+- A rebicada da partida é escolhida no menu de pausa. A HUD fica nos cantos: linha e energia em cima à esquerda, tempo no centro, placar à direita e o leque de ações embaixo à direita.
 
 | Tipo | Pipa | Habilidade |
 | --- | --- | --- |

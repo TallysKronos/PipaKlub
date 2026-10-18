@@ -35,7 +35,7 @@ function navigateClub(page){
  if(page==='summon'&&!summonOpen)openSummoner();
  if(page==='history')loadRecentMatches();
  if(page==='trades'&&playerAccount)tradeAction('read',{code:currentTrade?.status==='open'?currentTrade.code:null});
- if(page==='home')clubHome.querySelector('button').focus();else clubBack.focus();
+ if(page==='home')clubHome.querySelector('button').focus();else (clubBack.offsetParent?clubBack:document.getElementById('club-'+page)?.querySelector('button,input,select')||$('closeAccount'))?.focus({preventScroll:true});
 }
 clubBack.onclick=()=>navigateClub('home');
 const originalLeaveSummoner=leaveSummoner;

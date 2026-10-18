@@ -43,7 +43,7 @@ test('city navigation respects unlocks, enters the briefing and returns to the m
  ui.run('selectCity(3)');assert.equal(ui.document.getElementById('cityExplore').hidden,true);
  ui.run('selectCity(0)');assert.equal(ui.document.getElementById('cityExplore').disabled,false);ui.document.getElementById('cityExplore').onclick();assert.equal(ui.document.getElementById('trails').hidden,false);assert.equal(ui.document.getElementById('cityScreen').hidden,true);
  ui.run('closeTrails()');assert.equal(ui.document.getElementById('cityScreen').hidden,false);assert.equal(ui.document.getElementById('trails').hidden,true);
- ui.run('openHomeMenu();renderHomeMenu("arenaGroup")');assert.ok(ui.document.getElementById('homeMenuLinks').children.length<=6);
+ ui.run('openHomeMenu();renderHomeMenu("playGroup")');assert.ok(ui.document.getElementById('homeMenuLinks').children.length<=6);
 });
 
 test('a scene destination opens its own screen before background account refresh completes',async()=>{

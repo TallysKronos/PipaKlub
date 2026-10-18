@@ -3,7 +3,9 @@ import {createHash} from 'node:crypto';
 const manifest=JSON.parse(await fs.readFile(new URL('../assets/atlas.json',import.meta.url),'utf8'));
 const items=JSON.parse(await fs.readFile(new URL('../assets/pipa-items.json',import.meta.url),'utf8')).items;
 const hud=JSON.parse(await fs.readFile(new URL('../assets/ui/hud-papel-bambu-v1/manifest.json',import.meta.url),'utf8'));
-const files=[...Object.values(hud.sheets).map(s=>s.image),...Object.values(manifest.atlases).map(a=>a.meta.image),...items.map(i=>i.image),'vfx/trade-celestial.png','vfx/trade-sky.png','vfx/trade-spirit-16.png',"ui/club-collection-v2.png","ui/club-trades-v2.png","ui/club-summon-v2.png","ui/club-farm-v2.png","ui/club-profile-v2.png","ui/club-history-v2.png"];
+const kit=JSON.parse(await fs.readFile(new URL('../assets/ui/kit-switch-v1/manifest.json',import.meta.url),'utf8'));
+const kitFiles=[...Object.values(kit.components),...Object.values(kit.icons)].map(c=>c.image).filter(f=>f.endsWith('.png')).map(f=>'ui/kit-switch-v1/'+f);
+const files=[...kitFiles,...Object.values(hud.sheets).map(s=>s.image),...Object.values(manifest.atlases).map(a=>a.meta.image),...items.map(i=>i.image),'vfx/trade-celestial.png','vfx/trade-sky.png','vfx/trade-spirit-16.png',"ui/club-collection-v2.png","ui/club-trades-v2.png","ui/club-summon-v2.png","ui/club-farm-v2.png","ui/club-profile-v2.png","ui/club-history-v2.png"];
 export function createAssetHandler(){
  const cache=new Map();
  return async request=>{

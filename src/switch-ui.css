@@ -1,0 +1,62 @@
+/* Controller layer: focus ring, command bar and the corner battle HUD (Papel e Bambu kit). */
+body[data-input=gamepad]{cursor:none}
+body[data-input=gamepad] :focus{outline:4px solid #ffe16a!important;outline-offset:3px;border-radius:12px;animation:pad-focus-pulse 1.8s ease-in-out infinite}
+@keyframes pad-focus-pulse{50%{outline-color:#fff5b1}}
+.command-bar{position:fixed;left:50%;bottom:max(12px,env(safe-area-inset-bottom));z-index:120;display:flex;align-items:center;gap:22px;min-height:56px;padding:10px 40px;transform:translateX(-50%);border-style:solid;border-width:10px 31px;border-color:transparent;border-image:var(--kit-footer) 20 62 fill/10px 31px stretch;color:#fff0cd;font:800 16px/1 'Nunito',system-ui,sans-serif;white-space:nowrap;pointer-events:none}
+.command-bar[hidden]{display:none}
+.command-bar .command{display:inline-flex;align-items:center;gap:7px}
+.command-bar .command:has(> img:only-child)+.command{margin-left:-16px}
+body[data-input=gamepad] .keyboard-hint{display:none}
+.kit-glyph{width:30px;height:30px;display:inline-block;vertical-align:middle}
+@media (prefers-reduced-motion:reduce){body[data-input=gamepad] :focus{animation:none}}
+/* Corner HUD: the bottom panels leave the arena; actions live in a fan in the lower-right corner. */
+body.in-match .combat-deck,body.in-match .hud-deck-tabs{display:none!important}
+.action-fan{position:absolute;right:max(28px,env(safe-area-inset-right));bottom:max(24px,env(safe-area-inset-bottom));z-index:8;width:300px;height:250px;pointer-events:none}
+.action-fan[hidden]{display:none}
+.fan-action{position:absolute;display:grid;place-items:center;width:96px;height:96px;padding:22px;border:0;background:transparent;pointer-events:auto;touch-action:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.fan-base{position:absolute;inset:0;background:var(--kit-action-paper) center/contain no-repeat}
+.fan-maneuver .fan-base{background-image:var(--kit-action-teal)}
+.fan-icon{position:relative;z-index:1;max-width:100%;max-height:100%;object-fit:contain}
+.fan-ring{position:absolute;inset:-4px;width:calc(100% + 8px);height:calc(100% + 8px);transform:rotate(-90deg);pointer-events:none;z-index:2}
+.fan-ring-track{stroke:#142f31;stroke-width:5;fill:none;opacity:0}
+.fan-ring-progress{stroke:#ffe16a;stroke-width:5;fill:none;stroke-linecap:round;stroke-dasharray:333;stroke-dashoffset:var(--fan-cooldown,0);opacity:0;transition:stroke-dashoffset .1s linear}
+.fan-action.is-cooling .fan-ring-track,.fan-action.is-cooling .fan-ring-progress{opacity:1}
+.fan-action.is-cooling .fan-icon,.fan-action.is-blocked .fan-icon{filter:saturate(.35) brightness(.85)}
+.fan-action.is-held{transform:scale(.94)}
+.fan-glyphs{position:absolute;right:-6px;bottom:-2px;z-index:3;display:flex;gap:2px}
+.fan-glyphs .kit-glyph{width:30px;height:30px}
+body[data-input=touch] .fan-glyphs,body[data-input=mouse] .fan-skill .fan-glyphs img+img{display:none}
+.fan-label{position:absolute;left:50%;bottom:-22px;transform:translateX(-50%);z-index:3;padding:2px 8px;border-radius:9px;background:#14353aE6;color:#fff0cd;font:800 13px/1.3 'Nunito',system-ui,sans-serif;white-space:nowrap}
+.fan-dodge{left:0;bottom:22px}
+.fan-maneuver{left:96px;bottom:60px;width:116px;height:116px;padding:24px}
+.fan-skill{left:196px;bottom:150px}
+.pause-line{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0;font:800 15px 'Nunito',system-ui,sans-serif}
+.pause-line select{min-height:44px;padding:0 10px;border-radius:10px;font:800 15px 'Nunito',system-ui,sans-serif}
+@media (max-height:520px){.action-fan{transform:scale(.72);transform-origin:right bottom;right:max(12px,env(safe-area-inset-right));bottom:max(10px,env(safe-area-inset-bottom))}}
+@media (max-width:520px){.action-fan{transform:scale(.78);transform-origin:right bottom;right:10px;bottom:max(14px,env(safe-area-inset-bottom))}}
+/* Pause: the battle HUD steps back so the menu is the only thing to read. */
+body.is-paused #hud,body.is-paused .action-fan{opacity:.3;filter:saturate(.5)}
+body.in-match #pauseSheet p.pause-note{color:#4b5a4f;opacity:1}
+/* Home menu: a centred panel with six big tiles (kit window + painted icons); groups list below. */
+.game-menu{justify-content:center!important}
+.game-menu-panel{width:min(820px,calc(100% - 32px))!important;height:auto!important;max-height:calc(100% - 32px);border:3px solid #8da499!important;border-radius:18px;box-shadow:0 18px 60px #0008}
+.game-menu .home-tiles{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.game-menu .home-tiles .home-tile{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:150px;padding:6px!important;border-style:solid!important;border-width:25px!important;border-color:transparent!important;border-image:var(--kit-window) 50 50 48 50 fill/25px stretch!important;color:#213d39!important;text-align:center!important;border-radius:12px!important}
+.game-menu .home-tile img{width:72px;height:72px;object-fit:contain}
+.game-menu .home-tile strong{font:400 24px/1.1 'Lilita One','Trebuchet MS',sans-serif}
+.game-menu .home-tile:hover{filter:brightness(1.08)}
+.game-menu .home-tile:focus-visible,body[data-input=gamepad] .game-menu .home-tile:focus{outline:4px solid #ffe16a!important;outline-offset:4px}
+.game-menu .home-menu-close{grid-column:1/-1;justify-self:center;width:auto!important;margin-top:4px;padding:10px 18px!important;text-align:center!important;font-weight:800;color:#cfe2d6!important}
+.game-menu .home-list button{font-size:20px!important;min-height:52px}
+@media (max-width:640px),(max-height:520px){.game-menu .home-tiles{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.game-menu .home-tiles .home-tile{min-height:104px;border-width:16px!important;border-image-width:16px!important}.game-menu .home-tile img{width:44px;height:44px}.game-menu .home-tile strong{font-size:17px}.game-menu-panel{padding:18px!important}.game-menu h2{margin-bottom:10px!important;font-size:22px!important}}
+@media (max-width:420px){.game-menu .home-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* Destructive actions read as destructive: brick red, cream text. */
+button.danger.menu-art-button .menu-button-skin{filter:hue-rotate(-14deg) saturate(1.25) brightness(.78)}
+button.danger{color:#fff0cd!important}
+/* In the clube the back bar did the same as the × (and B/Esc); keep one way out. */
+.club-back.same-as-close{display:none!important}
+/* Button hierarchy: only the main action keeps the orange ribbon; secondary actions use the kit's paper base. */
+button.secondary.menu-art-button:not(.danger)>.menu-button-skin{display:none!important}
+button.secondary.menu-art-button:not(.danger){border-style:solid!important;border-color:transparent!important;border-width:0 32px!important;border-image:var(--kit-button-secondary) 0 64 fill/0 32px stretch!important;padding:12px 10px!important;color:#213d39!important}
+button.secondary.menu-art-button:not(.danger):hover:not(:disabled){filter:brightness(1.06)}
+button.secondary.menu-art-button:not(.danger):disabled{border-image-source:var(--kit-button-disabled)!important;color:#66604e!important}

@@ -10,7 +10,9 @@ $('skyLineSkill').onchange=skySkillHint;skySkillHint();$('skyLineSide').onclick=
 function skyBeginLine(){if(!skyActive||skyPaused||skyMatch.ended)return;const direction=skyKeys.has('a')||skyKeys.has('arrowleft')?-1:skyLineSide;if(!skyDuel.startSkill(skyMatch,skySkillChoice().id,direction))skyMatch.message='Skill indisponível: confira energia, recarga ou manobra em curso.';}
 function skyEndLine(){if(skyActive&&!skyPaused)skyDuel.releaseSkill(skyMatch);}
 
-const skyButton=uiElement('button','✦ Duelo nas Alturas · teste','secondary');skyButton.id='skyDuelButton';skyButton.type='button';document.querySelector('.menu-actions').append(skyButton);
+const skyButton=uiElement('button','✦ Duelo nas Alturas · teste','secondary');skyButton.id='skyDuelButton';skyButton.type='button';
+// Still an experiment: only reachable with ?lab, never in the player's own menus.
+skyButton.hidden=!/[?&]lab\b/.test(globalThis.location?.search||'');document.querySelector('.menu-actions').append(skyButton);
 const skyCanvas=$('skyDuelCanvas'),skyCtx=skyCanvas.getContext('2d');
 function skyProject(p,w,h){const scale=650/(p.z+300);return {x:w/2+(p.x-skyMatch.player.x*.24)*scale,y:h*.25+(370-p.y)*scale,scale};}
 function skyResetInput(){skyDuel.cancelCharge(skyMatch);skyKeys.clear();skyPointer=null;skyHeld={attack:false,z:0};}

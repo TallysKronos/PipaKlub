@@ -6,7 +6,7 @@ Pacote de fundação visual produzido a partir da análise da proposta Switch. �
 
 - 16 bases PNG com transparência: quatro botões, janela, cartão, duas abas, duas bases de ação, balão, cabeçalho, rodapé, recurso, campo e tooltip.
 - Nove ícones pintados: seis destinos do menu e três ações de batalha.
-- 48 glifos SVG: Xbox, PlayStation, teclado/mouse e toque, também reunidos em `glyphs.svg`.
+- 50 glifos SVG: Xbox, PlayStation, teclado/mouse e toque, também reunidos em `glyphs.svg`.
 - Quatro selos SVG: equipado, bloqueado, evento e crítico.
 - Quatro retratos de demonstração recortados das artes existentes; não são criaturas novas.
 - `manifest.json`: dimensões, coordenadas de origem, insets, escala, tamanho mínimo e hashes dos recortes.
@@ -59,6 +59,12 @@ Foco é contorno independente em `:focus-visible` ou `.pk-focus`. Ponteiro e pre
 O PNG `tab-selected.png` contém um indicador central pintado e deve preservar sua proporção. Para **abas redimensionáveis**, o componente `.pk-tab[aria-selected=true]` usa a base secundária em três partes e um indicador geométrico separado. Assim o triângulo não se alarga junto com a aba.
 
 As duas bases circulares também são peças inteiras. Use `background-size:contain`, sem esticar largura e altura de maneira independente. A moldura do retrato usa nove partes; seu rosto é uma camada separada.
+
+## Opções e avisos
+
+`.pk-list` com `.pk-row` monta as linhas de Pausa e Opções (base `button-secondary`, alvo de 64 px). Para liga/desliga, use `role="switch"` com `aria-checked` e um `.pk-switch` dentro da linha. Volume usa `<input type="range" class="pk-slider">`. `.pk-toast` é o aviso rápido (base `tooltip`) e `.pk-scroll` dá a barra de rolagem nas cores do kit.
+
+Nomes longos no `.pk-card` ficam numa linha, com reticências; coloque o nome completo em `title` e no `aria-label`. A Habilidade sai para os dois lados, então o leque mostra dois glifos em `.pk-glyph-pair` (LB/RB, L1/R1, Q/E). Códigos de sala usam só 0–9 e A–F.
 
 ## Comandos e batalha
 
