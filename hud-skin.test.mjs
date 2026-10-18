@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {parseHTML} from 'linkedom';
-import {hudAssets,hudSliceRects,hudSpriteCSS} from './scripts/hud-assets.mjs';
+import {hudAssets,hudSliceRects,hudSliceSample,hudSpriteCSS} from './scripts/hud-assets.mjs';
 import {mountHudSkin} from './src/hud-skin.js';
 
 test('HUD cuts cover their source without overlap or missing pixels',()=>{
@@ -28,6 +28,11 @@ test('reusing a skin replaces only its decorative pieces, preserving content and
  assert.equal(button.querySelector('.label'),label);assert.equal(button.onclick,click);assert.equal(button.textContent,'Jogar');
  assert.ok([...layer.children].every(e=>e.getAttribute('aria-hidden')==='true'));
  mountHudSkin(layer,'clock',atlas);assert.equal(layer.children.length,0);assert.equal(layer.classList.contains('hud-sliced'),false);
+});
+
+test('seam gutters stay inside the atlas frame and leave fixed corners unchanged',()=>{
+ const atlas=hudAssets();for(const id of Object.keys(atlas.slices))for(const [part,rect]of Object.entries(hudSliceRects(atlas,id))){const s=hudSliceSample(atlas,id,part,rect),[,x,y,w,h]=atlas.frames[id];assert.ok(s[1]>=x&&s[2]>=y&&s[1]+s[3]<=x+w&&s[2]+s[4]<=y+h);assert.ok(s[1]<=rect[1]&&s[2]<=rect[2]&&s[1]+s[3]>=rect[1]+rect[3]&&s[2]+s[4]>=rect[2]+rect[4]);if(part.length===2)assert.deepEqual(s,rect);}
+ const css=hudSpriteCSS();assert.match(css,/--hud-seam:\.5px/);assert.match(css,/calc\(var\(--hud-cap-l\) - var\(--hud-seam\)\)/);
 });
 
 test('both published builds contain the reusable kit and use pixel-based caps',()=>{

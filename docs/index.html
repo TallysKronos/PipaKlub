@@ -676,6 +676,13 @@ body.game-shell:not(.in-match) #game{visibility:hidden}
  .collection-search,.dex-search-row{grid-template-columns:minmax(0,1fr) 70px}.collection-stage,.dex-stage{height:170px}
  .dex-header{padding:0 42px 8px 0}.dex-header p,.dex-header .eyebrow{display:none}.dex-header h2{font-size:22px}
 }
+/* Explicit rows prevent intrinsic aspect ratios collapsing the portrait grid. */
+.dex-list,.inventory-list{grid-auto-rows:max-content}
+.portrait-card,.dex-entry.secondary{height:158px;min-height:158px}
+.portrait-card small,.dex-entry small{white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.collection-stage canvas,.dex-stage canvas{position:absolute;inset:0;width:100%;height:100%;max-width:none;min-height:0;aspect-ratio:auto!important;object-fit:contain}
+@media(max-width:600px) and (min-height:501px){.portrait-card,.dex-entry.secondary{height:104px;min-height:104px}}
+@media(max-height:500px){.portrait-card,.dex-entry.secondary{height:130px;min-height:130px}}
 
 /* Ink, brass and living paper: the battle instruments share one visual language. */
 :root{--battle-ink:#142f39;--battle-panel:#142f39f5;--battle-edge:#78958b;--battle-text:#fff1d0;--battle-muted:#b7cbc3;--battle-gold:#edc77b;--battle-green:#8bd7a6;--battle-energy:#82c9e3;--battle-danger:#ff9c85;--battle-shadow:0 8px 24px #132f3933}

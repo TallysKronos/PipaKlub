@@ -17,6 +17,7 @@ function menuAuditBoot(screen){
   for(const dialog of dialogs){const r=dialog.getBoundingClientRect();if(r.x<-1||r.y<-1||r.right>W+1||r.bottom>H+1)errors.push({kind:'dialog-viewport',element:dialog.className,box:{x:r.x,y:r.y,w:r.width,h:r.height}});
    for(const e of dialog.querySelectorAll('input,select,button,canvas')){if(!visible(e)||e.closest('.inventory-list,.dex-list'))continue;const b=e.getBoundingClientRect();if(b.x<r.x-1||b.right>r.right+1)errors.push({kind:'horizontal-overflow',element:e.id||e.className});}
   }
+  for(const e of document.querySelectorAll('.collection-stage canvas,.dex-stage canvas'))if(visible(e)){const r=e.getBoundingClientRect(),p=e.parentElement.getBoundingClientRect();if(r.y<p.y-1||r.bottom>p.bottom+1)errors.push({kind:'sprite-clipped',element:e.id});}
   for(const selector of ['.dex-list','.dex-details','.collection-browser','.inventory-details']){const e=document.querySelector(selector);if(e&&visible(e)&&e.getBoundingClientRect().height<65)errors.push({kind:'collapsed-pane',element:selector});}
   for(const e of document.querySelectorAll('.portrait-card'))if(visible(e)&&e.scrollHeight>e.clientHeight+2)errors.push({kind:'portrait-overflow',id:e.dataset.dexId||e.dataset.kiteId,scroll:e.scrollHeight,height:e.clientHeight});
   parent.postMessage({type:'menu-audit',result:{width:W,height:H,screen,errors,portraits:document.querySelectorAll('.pipamon-portrait').length}},'*');
