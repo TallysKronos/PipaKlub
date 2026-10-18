@@ -71,7 +71,7 @@ test('normal match exposes six rebicadas, keeps Q/E class skills and clears held
 test('battle instruments show real partner, rounds and low-line state; unavailable actions and keyboard buttons remain usable',async()=>{
  const ui=app({seen:true});await ui.settle();
  ui.run(`var hudState=eng.create(Date.now(),{mode:'rounds'});hudState.phase='live';hudState.players=[Object.assign(eng.player('Ana',1,'hud',Date.now()),{hp:24,rounds:2})];enter(hudState,'hud','practice');updateNormalLineHUD();`);
- assert.equal(ui.document.querySelector('#partnerName').textContent,'Mata verde');assert.equal(ui.document.querySelector('#hud').dataset.danger,'true');assert.equal(ui.document.querySelectorAll('#roundPips .won').length,2);
+ assert.equal(ui.document.querySelector('#partnerName').textContent,'Mata verde · Nv. 1');assert.equal(ui.document.querySelector('#hud').dataset.danger,'true');assert.equal(ui.document.querySelectorAll('#roundPips .won').length,2);
  assert.equal(ui.document.querySelector('#hp').parentElement.getAttribute('aria-valuenow'),'24');
  ui.run(`document.querySelector('.hud-basics [data-key=" "]').onclick({detail:0});`);assert.equal(ui.run('input().cut'),true,'Enter on the attack button queues a real attack');
  ui.run(`document.querySelector('.hud-basics [data-key="dodge"]').onclick({detail:0});`);assert.equal(ui.run('input().dodge'),true);

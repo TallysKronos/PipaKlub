@@ -23,6 +23,7 @@ function showOnlineTrailResult(s,ranking,mine){
     root.append(uiElement('p',r.won?'+'+r.coins+' moedas confirmadas'+(r.firstClear?' · bônus da primeira vitória incluído':''):'Tente novamente: o progresso anterior continua na conta.','coin-gain'));
     if(r.drop){const item=ART_CONFIG.items.find(i=>i.id===r.drop),card=uiElement('div',undefined,'drop-reward');if(item){const image=document.createElement('img');image.src=item.url;image.alt=item.name;card.append(image,uiElement('b',item.name+' · recebida na conta'));}root.append(card);}
     if(data.status==='saved'){
+     refreshRewards();if(r.pipamonXp!=null)root.append(uiElement('p','+'+r.pipamonXp+' XP para o parceiro desta Trilha.','pipamon-result-xp'));
      if(r.tailId){const summon=uiElement('button','Ir ao invocador ✦','primary');summon.id='trailGoSummoner';summon.onclick=()=>openTrailSummoner(r.drop);root.append(summon);}
      const next=r.won&&trails.nextStage(s.trail),again=uiElement('button',r.won?'Ver meu caminho ▶':'Tentar de novo ↻','secondary');again.id='rematchButton';again.onclick=()=>{if(r.won)returnToDistrict(s.trail,true);else{returnToDistrict(s.trail,false);presentStage(s.trail);}};root.append(again);return;
     }

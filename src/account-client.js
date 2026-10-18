@@ -29,7 +29,7 @@ function reflectAccount(){
 }
 async function refreshAccount(){
  if(!accountsEnabled)return;
- try{const d=await accountRequest('session');playerAccount=d.account;reflectAccount();}catch(e){if(accountModal.style.display==='flex')$('accountMessage').textContent=e.message;}
+ try{const d=await accountRequest('session');const previous=playerAccount;playerAccount=d.account;announcePipamonLevels(previous,playerAccount);reflectAccount();}catch(e){if(accountModal.style.display==='flex')$('accountMessage').textContent=e.message;}
 }
 function renderAccountDialog(){
  const logged=!!playerAccount;$('accountAuth').hidden=logged;$('accountCollection').hidden=!logged;

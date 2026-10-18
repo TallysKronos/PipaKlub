@@ -34,7 +34,7 @@ function updateBattleHUD(p){
  if(!mode||!p)return;
  ensureBattleArt();
  const entry=ART_CONFIG.dex.entries.find(e=>p.soul?e.id===p.soul:e.atlas===art.basic(p.color));
- setText('partnerName',entry?.name||'Parceiro almático');
+ setText('partnerName',(entry?.name||'Parceiro almático')+' · Nv. '+eng.pipamons.level(p.pipamonLevel));
  setText('battleMode',state.trail?'Trilha · '+state.trail.split('-')[0]:state.daily?'Céu do dia':mode==='practice'?'Voo de treino':state.rules==='capture'?'Vale pipa':'Duelo de pipas');
  setText('roundInfo',state.phase==='waiting'?(state.quick?'Buscando rivais':'Aguardando rival'):state.mode==='rounds'?(matchMedia('(max-width:900px), (max-height:500px)').matches?'R':'Rodada ')+state.round+' · '+state.roundsToWin+' vitórias':'Partida por tempo');
  $('hud').dataset.danger=String(p.hp<=30&&!p.respawn);$('hud').dataset.phase=state.phase||'live';
@@ -50,5 +50,5 @@ function updateBattleHUD(p){
  const dodge=!(p.dodgeCooldown>0)&&p.energy>=eng.DODGE.cost&&!blocked;
  const button=document.querySelector('.hud-basics [data-key="dodge"]');button.title=p.dodgeCooldown>0?'Recarga · '+p.dodgeCooldown.toFixed(1)+' s':'Esquiva · Shift · 18 energia';button.disabled=!dodge;
  document.querySelector('.hud-basics [data-key=" "]').disabled=blocked||p.energy<12;
- for(const [id,value] of [['hp',p.hp],['energy',p.energy]]){const meter=$(id).parentElement;meter.setAttribute('role','meter');meter.setAttribute('aria-label',id==='hp'?'Durabilidade da linha':'Energia');meter.setAttribute('aria-valuemin','0');meter.setAttribute('aria-valuemax','100');meter.setAttribute('aria-valuenow',String(Math.max(0,Math.round(value))));}
+ for(const [id,value] of [['hp',p.hp],['energy',p.energy]]){const meter=$(id).parentElement;meter.setAttribute('role','meter');meter.setAttribute('aria-label',id==='hp'?'Durabilidade da linha':'Energia');meter.setAttribute('aria-valuemin','0');meter.setAttribute('aria-valuemax',String(id==='hp'?eng.pipamonStats(p).line:eng.pipamonStats(p).energy));meter.setAttribute('aria-valuenow',String(Math.max(0,Math.round(value))));}
 }

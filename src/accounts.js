@@ -1,4 +1,6 @@
 // Supabase credentials stay on the server. Browser sessions use HttpOnly cookies.
+import {createEngine} from './engine.js';
+const pipamonProgression=createEngine().pipamons;
 const UUID=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export class AccountError extends Error{constructor(message,status=400){super(message);this.status=status;}}
 const cookieValues=request=>Object.fromEntries((request.headers.get('cookie')||'').split(';').map(v=>v.trim().split(/=(.*)/s).slice(0,2)).filter(v=>v.length===2));
@@ -57,7 +59,7 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
    if(!pending&&(!p||Date.now()-p.seen>15000||Date.now()>=s.end)){await rpc('release_player_match',{p_user:who.id,p_match:data.profile.active_match},null,true);data=await rpc('get_player_account',{},who.access);}
   }
   const xp=Number(data.profile.xp)||0,level=1+Math.floor(Math.sqrt(xp/100));
-  return {...data,profile:{...data.profile,level,next_level_xp:level*level*100}};
+  return {...data,inventory:(data.inventory||[]).map(k=>({...k,progression:pipamonProgression.progress(k.pipamon_xp)})),profile:{...data.profile,level,next_level_xp:level*level*100}};
  }
  function rateLimit(request,action,max=12){
   const ip=(request.headers.get('x-forwarded-for')||'local').split(',')[0],id=action+':'+ip,now=Date.now();

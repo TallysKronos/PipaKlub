@@ -1,7 +1,7 @@
 function menuAuditBoot(screen){
  introductionOpen=false;accountSaving=false;accountsEnabled=true;accountConnection='ready';
  $('assisIntro').hidden=true;
- const entries=ART_CONFIG.dex.entries.filter(e=>e.model),inventory=entries.map((e,n)=>({id:'visual-'+n,model_id:e.model,permanent:n<4,capture_count:n%3,model:{name:e.name,color:e.color,soul:e.group==='event'?e.id:null,acquisition:e.group==='event'?'event':'starter'}}));
+ const entries=ART_CONFIG.dex.entries.filter(e=>e.model),inventory=entries.map((e,n)=>({id:'visual-'+n,model_id:e.model,pipamon_xp:eng.pipamons.xpForLevel([1,20,30,40,45,50][n%6]),permanent:n<4,capture_count:n%3,model:{name:e.name,color:e.color,soul:e.group==='event'?e.id:null,acquisition:e.group==='event'?'event':'starter'}}));
  playerAccount={profile:{id:'visual-only',nickname:'Pipeiro da prévia',level:8,xp:5100,next_level_xp:6400,cuts:28,equipped_kite_id:inventory[0].id},inventory};
  accountRequest=async(action)=>{if(['equip','profile','logout','sighting','trade','summon'].includes(action))throw Error('Esta é apenas uma prévia visual.');return {account:playerAccount,matches:[],coins:0};};
  $('accountModal').style.display='flex';renderAccountDialog();

@@ -38,6 +38,7 @@ function showDailyResult(s,mine){
    if(state?.id!==match||!showResult||playerAccount?.profile?.id!==owner||!$('dailyRewardStatus'))return;
    trailSync.accept(daily,owner);
    $('dailyRewardStatus').textContent=result.status==='saved'?'✓ Resultado salvo. O bônus de 25 moedas é recebido uma vez por dia.' : 'Salvando seu bônus… Ele será enviado mesmo se você voltar ao menu.';
+   if(result.status==='saved')refreshRewards();
    if(result.status!=='saved'&&++tries<12)setTimeout(check,1500);
    else if(result.status!=='saved'){const retry=uiElement('button','Conferir novamente','secondary');retry.onclick=()=>{tries=0;check();};$('dailyRewardStatus').append(retry);}
   }catch(e){if(state?.id===match&&$('dailyRewardStatus')){const root=$('dailyRewardStatus');root.replaceChildren(uiElement('p','O servidor continuará tentando salvar. '+e.message));const retry=uiElement('button','Conferir novamente','secondary');retry.onclick=check;root.append(retry);}}

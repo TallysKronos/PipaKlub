@@ -1,5 +1,16 @@
 export function createEngine() {
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  // Individual Pipamon progression. AI difficulty and the player's account level are separate.
+  const pipamons=(()=>{
+    const maxLevel=50,xpForLevel=l=>{const n=clamp(Math.trunc(Number(l)||1),1,maxLevel)-1;return 40*n+10*n*n;},maxXp=xpForLevel(maxLevel);
+    const tiers=[{id:'aura',name:'Aura',min:50,color:'#edb7ff'},{id:'diamond',name:'Diamante',min:45,color:'#8be5ff'},{id:'platinum',name:'Platina',min:40,color:'#b8f4de'},{id:'gold',name:'Ouro',min:30,color:'#ffd46a'},{id:'silver',name:'Prata',min:20,color:'#dce5f5'}];
+    const level=value=>clamp(Math.trunc(Number.isFinite(Number(value))?Number(value):1),1,maxLevel);
+    const statCache=new Map();
+    function stats(value){const l=level(value);if(statCache.has(l))return statCache.get(l);const f=(l-1)/49,s=Object.freeze({line:Math.round(100+20*f),energy:Math.round(100+15*f),attack:1+.12*f,defense:1+.10*f,speed:165*(1+.08*f),regen:18*(1+.10*f)});statCache.set(l,s);return s;}
+    function progress(value){const xp=clamp(Math.trunc(Number.isFinite(Number(value))?Number(value):0),0,maxXp);let l=1;while(l<maxLevel&&xp>=xpForLevel(l+1))l++;const start=xpForLevel(l),next=l===maxLevel?null:xpForLevel(l+1);return {xp,level:l,maxLevel,maxXp,start,next,into:xp-start,needed:next===null?0:next-start,percent:next===null?100:(xp-start)/(next-start)*100,tier:tiers.find(t=>l>=t.min)||null,stats:stats(l)};}
+    return {maxLevel,maxXp,xpForLevel,level,stats,progress,tiers,tier:value=>tiers.find(t=>level(value)>=t.min)||null};
+  })();
+  const pipamonStats=p=>pipamons.stats(p.pipamonLevel);
   function daily(now=Date.now()){
     const day=Math.floor(now/86400000),weather=['wind','wax','rain','fog'][((day%4)+4)%4];
     const details={wind:['Ventania','Rajadas três vezes mais fortes. Antecipe a direção da pipa.'],wax:['Linha encerada','Os acertos desgastam 25% mais a linha dos dois jogadores.'],rain:['Garoa','A energia dos dois jogadores recupera 30% mais devagar.'],fog:['Neblina','O cenário fica encoberto; pipas e miras continuam visíveis.']}[weather];
@@ -60,12 +71,12 @@ export function createEngine() {
   function create(now=Date.now(),opts) {const s={id:crypto.randomUUID(),rules:'casual',cutSequence:0,players:[],last:now,end:now+MATCH,events:[],wind:0};if(opts){s.mode=opts.mode==='time'?'time':'rounds';s.phase='waiting';s.round=0;s.roundsToWin=clamp(Math.trunc(opts.roundsToWin)||ROUNDS_TO_WIN,1,5);s.end=now+3600000;if(opts.quick)s.quick={fillAt:now+QUICK.wait,size:QUICK.size,level:QUICK.level};}return s;}
   function fillBots(s,now){const used=new Set(s.players.map(p=>p.name));let n=0;while(s.players.length<s.quick.size){const name=BOT_NAMES.find(x=>!used.has(x))||'Pipeiro '+(++n);used.add(name);const b=player(name,Math.floor(Math.random()*4),'bot-'+crypto.randomUUID(),now);b.bot=true;b.ai={level:s.quick.level};admit(s,b,now);}}
   // A player joining mid-round in rounds mode watches until the next round starts.
-  function admit(s,p,now){seat(s,p);p.shield=SHIELD;if(s.mode==='rounds'&&(s.phase==='live'||s.phase==='intermission'))p.respawn=now;s.players.push(p);return p;}
+  function admit(s,p,now){seat(s,p);p.pipamonLevel=pipamons.level(p.pipamonLevel);p.hp=pipamonStats(p).line;p.energy=pipamonStats(p).energy;p.shield=SHIELD;if(s.mode==='rounds'&&(s.phase==='live'||s.phase==='intermission'))p.respawn=now;s.players.push(p);return p;}
   function visible(s){const {_pendingCuts,dailyResult,trailResult,trailOwner,...publicState}=s;return {...publicState,players:s.players.map(({key,accountId,kiteId,basicKiteId,strike,lineStrike,...p})=>p),events:s.events.map(({id,text,at,capture,winnerId,loserId,kind,round})=>({id,text,at,capture,winnerId,loserId,kind,round}))};}
   // Fixed anchors and straight segments are also used by the renderer. Fractions run ground -> kite.
   // The seat also fixes the player number (P1..P8) shown with the player's colour.
   function seat(s,p){if(!Number.isFinite(p.anchorX))p.anchorX=ANCHORS.find(x=>!s.players.some(q=>q!==p&&q.anchorX===x))??500;if(!Number.isInteger(p.slot)){const i=ANCHORS.indexOf(p.anchorX);p.slot=i>=0?i:s.players.indexOf(p)%8;}return p;}
-  function reset(p){Object.assign(p,{hp:100,energy:100,respawn:0,skillTime:0,skillCooldown:0,attackCooldown:0,lineMove:null,lineStrike:null,lineCooldown:0,shield:0,hitFlash:0,flash:0,botFocus:-.4,attack:false,x:clamp(500+(p.anchorX-500)*.8,55,945),y:290});}
+  function reset(p){Object.assign(p,{hp:pipamonStats(p).line,energy:pipamonStats(p).energy,respawn:0,skillTime:0,skillCooldown:0,attackCooldown:0,lineMove:null,lineStrike:null,lineCooldown:0,shield:0,hitFlash:0,flash:0,botFocus:-.4,attack:false,x:clamp(500+(p.anchorX-500)*.8,55,945),y:290});}
   function startRound(s,now){s.phase='countdown';s.phaseUntil=now+COUNTDOWN;if(s.mode==='rounds')s.round=(s.round||0)+1;for(const p of s.players)reset(p);}
   function finishRound(s,now){
     const alive=s.players.filter(p=>!p.respawn).sort((a,b)=>b.hp-a.hp);
@@ -114,12 +125,12 @@ export function createEngine() {
     }
     const m=Math.max(1,Math.hypot(i.x,i.y)),ox=p.x,oy=p.y;
     if(p.evade>0&&p.dodgeDir){p.x=clamp(p.x+(p.dodgeDir.x*165*DODGE.speed+wind)*dt,55,945);p.y=clamp(p.y+p.dodgeDir.y*165*DODGE.speed*dt,70,480);}
-    else if(!p.lineMove||p.lineMove.phase==='charge'){p.x=clamp(p.x+(i.x/m*165+wind)*dt,55,945);p.y=clamp(p.y+i.y/m*165*dt,70,480);}
+    else if(!p.lineMove||p.lineMove.phase==='charge'){p.x=clamp(p.x+(i.x/m*pipamonStats(p).speed+wind)*dt,55,945);p.y=clamp(p.y+i.y/m*pipamonStats(p).speed*dt,70,480);}
     moveLine(p,i,dt);
     if(dt>0){p.vx=(p.x-ox)/dt;p.vy=(p.y-oy)/dt;}
     p.attack=i.cut&&p.energy>=12&&!(p.evade>0)&&!p.lineMove;
     if(p.attack&&p.attackCooldown<=0){p.energy-=12;p.attackCooldown=.65;p.strike=true;p.flash=.16;p.shield=0;p.strikes=(p.strikes||0)+1;}
-    p.energy=clamp(p.energy+(i.cut?6:18)*dt*(weather==='rain'?.7:1),0,100);p.input=i;
+    p.energy=clamp(p.energy+(i.cut?6:pipamonStats(p).regen)*dt*(weather==='rain'?.7:1),0,pipamonStats(p).energy);p.input=i;
   }
   // Bot brain. p.ai.level (1-10) scales reaction, rest between pulls, speed, aim, dodging,
   // energy discipline and skill timing. Bots without a level keep the practice defaults.
@@ -174,7 +185,7 @@ export function createEngine() {
     const live=!s.phase||s.phase==='live',rounds=s.mode==='rounds';
     for(const p of s.players){
       if(s.phase==='intermission'){p.strike=false;p.lineStrike=null;p.lineMove=null;continue;}
-      if(p.respawn){if(rounds||now<p.respawn)continue;p.respawn=0;p.hp=100;p.energy=100;p.skillTime=0;p.lineMove=null;p.lineStrike=null;p.lineCooldown=Math.max(2,p.lineCooldown||0);p.attackCooldown=.65;p.skillCooldown=Math.max(2,p.skillCooldown||0);p.x=160+Math.random()*680;p.y=160+Math.random()*220;p.shield=SHIELD;p.botFocus=0;}
+      if(p.respawn){if(rounds||now<p.respawn)continue;p.respawn=0;p.hp=pipamonStats(p).line;p.energy=pipamonStats(p).energy;p.skillTime=0;p.lineMove=null;p.lineStrike=null;p.lineCooldown=Math.max(2,p.lineCooldown||0);p.attackCooldown=.65;p.skillCooldown=Math.max(2,p.skillCooldown||0);p.x=160+Math.random()*680;p.y=160+Math.random()*220;p.shield=SHIELD;p.botFocus=0;}
       if(p.bot)p.input=botInput(s,p,dt);
       if(live)move(p,p.input,dt,s.wind,s.daily?.weather);else{const held=p.input;p.lineSeen=Math.max(p.lineSeen||0,held?.lineNonce||0);move(p,{...held,cut:false,skill:0,lineNonce:0},dt,s.wind,s.daily?.weather);p.input=held;}
     }
@@ -184,12 +195,13 @@ export function createEngine() {
       const targets=s.players.map(q=>({q,c:contact(p,q)})).filter(t=>t.c?.valid).sort((a,b)=>Math.abs(a.c.enemy-.6)-Math.abs(b.c.enemy-.6)||a.q.id.localeCompare(b.q.id));
       const t=targets[0];p.aim=t?'hit':'miss';if(!t)continue;
       const maneuver=p.lineStrike;if(maneuver&&p.lineMove&&!p.lineMove.hits.includes(maneuver.slot))p.lineMove.hits.push(maneuver.slot);
-      if(t.q.evade>0){p.aim='dodged';t.q.perfectDodges=(t.q.perfectDodges||0)+1;t.q.energy=clamp(t.q.energy+DODGE.cost,0,100);t.q.counter=COUNTER;continue;}
+      if(t.q.evade>0){p.aim='dodged';t.q.perfectDodges=(t.q.perfectDodges||0)+1;t.q.energy=clamp(t.q.energy+DODGE.cost,0,pipamonStats(t.q).energy);t.q.counter=COUNTER;continue;}
       const cut=maneuver?{damage:maneuver.damage,crit:!!maneuver.crit,clean:t.c.angle>=.85,moving:true,shallow:t.c.angle<.45}:cutDamage(p,t.c);let damage=cut.damage;if(cut.crit){p.crits=(p.crits||0)+1;p.counter=0;}
       if(!maneuver&&p.color===0&&p.skillTime>0){damage+=8;p.skillTime=0;}
       const breakGuard=!!maneuver?.breakGuard&&t.q.color===2&&t.q.skillTime>0;
       if(t.q.color===2&&t.q.skillTime>0&&!breakGuard)damage*=.4;
       if(s.daily?.weather==='wax')damage*=1.25;
+      damage*=pipamonStats(p).attack/pipamonStats(t.q).defense;
       if(maneuver)p.flash=.16;hits.push({p,q:t.q,damage,c:t.c,cut,breakGuard});p.hits=(p.hits||0)+1;
     }
     for(const h of hits){h.q.hp=Math.max(0,h.q.hp-h.damage);h.q.hitFlash=.25;if(h.breakGuard)h.q.skillTime=0;if(h.q.lineMove?.id==='laco'){h.q.lineMove=null;h.q.lineStrike=null;}h.q.lastHit={x:h.c.x,y:h.c.y,damage:Math.round(h.damage),crit:h.cut.crit,clean:h.cut.clean,moving:h.cut.moving,breakGuard:h.breakGuard};}
@@ -198,11 +210,11 @@ export function createEngine() {
       const p=winner.p;q.respawn=rounds?now:now+3000;q.attack=false;q.lineMove=null;q.lineStrike=null;p.score+=100;p.cuts++;
       const cut={text:p.name+' cortou '+q.name,at:now,id:s.id+':'+(++s.cutSequence),winnerId:p.id,loserId:q.id,matchId:s.id,winnerAccountId:p.accountId,loserAccountId:q.accountId,kiteId:q.kiteId,capture:s.rules==='capture'&&!q.kitePermanent};
       s.events.unshift(cut);s._pendingCuts.push(cut);s.events=s.events.slice(0,4);
-      if(s.rules==='capture'&&q.accountId&&q.basicKiteId){q.kiteId=q.basicKiteId;q.kitePermanent=true;q.color=0;q.soul=null;q.skillTime=0;}
+      if(s.rules==='capture'&&q.accountId&&q.basicKiteId){q.kiteId=q.basicKiteId;q.kitePermanent=true;q.color=0;q.soul=null;q.pipamonLevel=pipamons.level(q.basicPipamonLevel);q.skillTime=0;}
     }
     if(rounds&&s.phase==='live'&&s.players.filter(p=>!p.respawn).length<=1)finishRound(s,now);
     return s;
   }
   function practiceStep(s,id,input,now){const p=s.players.find(p=>p.id===id);if(p){p.input=sanitizeInput(input);p.seen=now;}return step(s,now);}
-  return {daily,QUICK,fillBots,SHIELD,DODGE,COUNTER,cutDamage,brain,create,admit,player,step,move,visible,practiceStep,line,contact,types,type,sanitizeInput,seat,lineSkills,lineMotion,lineWindow};
+  return {pipamons,pipamonStats,daily,QUICK,fillBots,SHIELD,DODGE,COUNTER,cutDamage,brain,create,admit,player,step,move,visible,practiceStep,line,contact,types,type,sanitizeInput,seat,lineSkills,lineMotion,lineWindow};
 }
