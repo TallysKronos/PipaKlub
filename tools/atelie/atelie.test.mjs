@@ -1,11 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {pathToFileURL} from 'node:url';
 import {zip} from './zip.js';
 const root=new URL('../../',import.meta.url),read=p=>JSON.parse(fs.readFileSync(new URL(p,root),'utf8'));
 let source=fs.readFileSync(new URL('./model.js',import.meta.url),'utf8');
-for(const file of ['world-map.js','world-art.js'])source=source.replace('/src/'+file,pathToFileURL(new URL('src/'+file,root).pathname.replace(/^\/(?=[A-Z]:)/,'' )).href);
+for(const file of ['world-map.js','world-art.js'])source=source.replace('/src/'+file,new URL('src/'+file,root).href);
 const model=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
 const sample=()=>({schema:'pipaklub-atelier',version:1,name:'Teste local',kit:read('assets/world/morro-kit-v1/manifest.json'),map:read('assets/world/morro-pilot/blockout.tmj'),layout:read('assets/world/morro-pilot/art.json'),images:{}});
 test('editor roundtrips actual Tiled pilot and leaves encounter identities intact',()=>{

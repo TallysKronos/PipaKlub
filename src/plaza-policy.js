@@ -13,6 +13,7 @@ export function createPlazaPolicy(){
   if(phase==='arrival'||phase==='choose')return {title:'Seu primeiro parceiro',body:'Encontre o Sr. Assis e escolha quem vai voar com você.',action:'professor'};
   if(phase==='practice')return {title:'Seu primeiro voo',body:'Aprenda a rebicar com o Sr. Assis e o Nozinho.',action:'professor'};
   if(phase==='city')return {title:'Um mundo para explorar',body:'Visite a cidade e conheça seu primeiro bairro.',action:'city'};
+  if(context.roadCleared)return {title:context.roadFinal?'Bairro conquistado':'Caminho liberado',body:context.roadFinal?'Você venceu o campeão. Siga pela saída para explorar a cidade.':'A vitória foi confirmada. Suba e siga para a próxima área do Morro.',action:'worldAdvance',stage:null};
   if(context.complete)return {title:'Jornada concluída',body:'Você venceu os três bairros disponíveis! Revisite seus rivais ou encontre seus amigos enquanto os próximos bairros são preparados.',action:'city',stage:null};
   if(context.worldId==='morro'&&next?.trailIndex===0)return {title:context.nearStage===next.id?'Seu próximo duelo':'Encontre seu rival',body:(context.nearStage===next.id?'Converse com ':'Encontre ')+(context.rivals||'seu rival')+' em '+(context.place||'seu próximo encontro')+'.',action:'nextEncounter',stage:next.id};
   return {title:'Próximo desafio',body:trail?'Explore a '+trail.name+' e encontre seu próximo duelo.':'Explore a cidade dos ventos.',action:'city',stage:next?.id||null};

@@ -83,6 +83,17 @@ function worldRoundedTerrainPath(g,contours,radius){
 }
 
 const worldArtGroundCache=new WeakMap();
+// Tiled image layers are authored at native size; physics remains in object layers.
+export function drawWorldPaintedGround(g,scene,images){
+ g.fillStyle='#b4b58a';g.fillRect(0,0,scene.width,scene.height);
+ for(const r of scene.tiled.images.filter(i=>i.render==='ground')){const image=images.get('world-kit-'+r.sheet);if(image){g.save();g.globalAlpha*=r.opacity;g.drawImage(image,r.x,r.y,r.w,r.h);g.restore();}}
+}
+export function validateWorldPaintedImages(scene,sheets){
+ if(!scene.tiled.images.some(i=>i.render==='ground'))throw Error('Arte Tiled: camada base ausente');
+ for(const r of scene.tiled.images){const s=sheets[r.sheet];if(!s||s.image.split('/').at(-1)!==r.image||s.width!==r.w||s.height!==r.h)throw Error('Arte Tiled: imagem não registrada ou dimensões divergentes: '+r.name);}
+ for(const r of scene.tiled.layers.Foreground)if(r.properties.image_sheet){const s=sheets[r.properties.image_sheet];if(!s||r.x+r.w>s.width||r.y+r.h>s.height)throw Error('Arte Tiled: recorte de primeiro plano inválido: '+r.name);}
+ return scene;
+}
 export function drawWorldArtGround(g,scene,images,uncached=false){
  if(!uncached&&typeof OffscreenCanvas!=='undefined'&&Object.keys(scene.art.kit.sheets).every(id=>images.has('world-kit-'+id))){let canvas=worldArtGroundCache.get(scene.art);if(!canvas){canvas=new OffscreenCanvas(scene.width,scene.height);drawWorldArtGround(canvas.getContext('2d'),scene,images,true);worldArtGroundCache.set(scene.art,canvas);}g.drawImage(canvas,0,0);return;}
  const kit=scene.art.kit;

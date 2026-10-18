@@ -20,7 +20,7 @@ function reflectAccount(){
  $('accountHint').textContent=playerAccount?'Seu progresso e suas pipas ficam na sua conta.':'Entre para guardar pipas e ganhar XP nas disputas.';
  $('roomRules').querySelector('[value="capture"]').disabled=!playerAccount;
  if(!playerAccount&&$('roomRules').value==='capture')$('roomRules').value='casual';
- if(playerAccount){const p=playerAccount.profile,k=playerAccount.inventory.find(k=>k.id===p.equipped_kite_id);$('name').value=p.nickname;$('name').readOnly=true;if(k){selected=k.model.color;choices();const chosen=$('kites').querySelector('[data-color="'+selected+'"]');if(chosen){chosen.innerHTML=art.markup(selected,k.model.soul);chosen.setAttribute('aria-label',k.model.name+' · equipada');}$('selectionName').textContent=k.model.name+' · '+eng.type({color:k.model.color}).name+' · equipada';}}
+ if(playerAccount){const p=playerAccount.profile,k=playerAccount.inventory.find(k=>k.id===p.equipped_kite_id);$('name').value=p.nickname;$('name').readOnly=true;if(k){selected=k.model.color;choices();const chosen=$('kites').querySelector('[data-color="'+selected+'"]');if(chosen){chosen.innerHTML=art.markup(selected,k.model.soul);chosen.setAttribute('aria-label',(k.personal_name||k.model.name)+' · equipada');}$('selectionName').textContent=(k.personal_name||k.model.name)+' · '+eng.type({color:k.model.color}).name+' · equipada';}}
  else {$('name').readOnly=false;choices();}
  if(accountModal.style.display==='flex')renderAccountDialog();
  if(typeof onTrailAccountChange==='function')onTrailAccountChange();
@@ -48,7 +48,7 @@ function renderAccountDialog(){
  $('accountCuts').textContent=p.cuts+' cortes';$('collectionCount').textContent=playerAccount.inventory.length+' pipas';
  renderInventory();
  const owned=new Set(playerAccount.inventory.map(k=>k.model_id));
- $('eventSoulsList').replaceChildren(...art.specials.map(s=>{
+ $('eventSoulsList').replaceChildren(...art.specials.filter(s=>s.id!=='rabbito').map(s=>{
   const card=uiElement('article',undefined,'inventory-card event-soul'+(owned.has(s.id)?'':' event-locked'));
   const image=uiElement('div',undefined,'inventory-art');image.innerHTML=art.markup(s.color,s.id);
   card.append(image,uiElement('b',s.name),uiElement('small',(owned.has(s.id)?'Na sua coleção':'Bloqueada · recompensa de evento')+(s.rarity==='rara'?' · Rara':'')),uiElement('p',s.legend,'skill-info'));

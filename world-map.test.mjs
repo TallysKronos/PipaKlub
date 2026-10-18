@@ -10,9 +10,9 @@ test('Tiled pilot retains encounter identities and all destinations are connecte
  assert.equal(scene.width,1280);assert.equal(scene.actorSize,64);
  for(const p of scene.places)assert.ok(nav.route(nav.nodes[scene.spawn],nav.nodes[p.node]).length);
 });
-test('different floors connect exclusively through the authored stair',()=>{
- const s=parseWorldMap(read()),levels=s.tiled.levels,stairs=s.tiled.layers.Walkable.find(r=>r.properties.connects_to===1);
- let transitions=0;for(const [a,b]of s.edges)if(levels[a]!==levels[b]){transitions++;assert.ok([s.nodes[a],s.nodes[b]].some(([x,y])=>x>=stairs.x&&x<=stairs.x+stairs.w&&y>=stairs.y&&y<=stairs.y+stairs.h));}
+test('different floors connect exclusively through authored stairs',()=>{
+ const s=parseWorldMap(read()),levels=s.tiled.levels,stairs=s.tiled.layers.Walkable.filter(r=>r.properties.connects_to===1);
+ let transitions=0;for(const [a,b]of s.edges)if(levels[a]!==levels[b]){transitions++;assert.ok(stairs.some(stair=>[s.nodes[a],s.nodes[b]].some(([x,y])=>x>=stair.x&&x<=stair.x+stair.w&&y>=stair.y&&y<=stair.y+stair.h)));}
  assert.ok(transitions>0);
 });
 test('missing layers, unsupported shapes and duplicate ids fail explicitly',()=>{
@@ -21,7 +21,7 @@ test('missing layers, unsupported shapes and duplicate ids fail explicitly',()=>
  const d=read();d.layers[0].objects[1].id=d.layers[0].objects[0].id;assert.throws(()=>parseWorldMap(d),/duplicado/);
 });
 test('unreachable encounters prevent a misleading successful build',()=>{
- const m=read();m.layers.find(l=>l.name==='Walkable').objects=m.layers[0].objects.filter(o=>o.name!=='Escada');
+ const m=read();m.layers.find(l=>l.name==='Walkable').objects=m.layers[0].objects.filter(o=>!o.properties.some(p=>p.name==='connects_to'));
  assert.throws(()=>parseWorldMap(m),/inacessível/);
 });
 test('invalid geometry, floor connector and scale are rejected',()=>{
@@ -114,4 +114,20 @@ test('an occluding upper part fades for the player but never for another floor',
  assert.equal(find(worldRenderQueue(scene,[actor])).opacity,.45);
  assert.equal(find(worldRenderQueue(scene,[{...actor,level:1}])).opacity,1);
  assert.equal(find(worldRenderQueue(scene,[{...actor,y:720}])).opacity,1);
+});
+
+test('courtyard discovery and both independent stairs are usable without crossing houses',()=>{
+ const map=read(),scene=parseWorldMap(map),nav=createWorldNavigation(scene),story=scene.places.find(p=>p.action==='pilot_story');
+ assert.match(story.story,/lençóis/);
+ const actor=nav.create();
+ for(const point of [nav.nodes[story.node],{x:1184,y:352},{x:688,y:352},nav.nodes[scene.places.find(p=>p.stage==='morro-2').node],nav.nodes[scene.spawn]]){
+ assert.ok(nav.target(actor,point).length);let steps=0;while(actor.path.length&&steps++<3000){nav.step(actor,.1);assert.ok(nav.geometry.safe(actor));assert.ok(nav.geometry.safe(nav.follower(actor)));}assert.ok(steps<3000);
+ }
+ for(const id of [3,26]){const copy=structuredClone(map);copy.layers[0].objects=copy.layers[0].objects.filter(o=>o.id!==id);assert.doesNotThrow(()=>parseWorldMap(copy));}
+});
+
+test('return stair reduces the actual route rather than only adding another corridor',()=>{
+ function length(map){const scene=parseWorldMap(map),nav=createWorldNavigation(scene),start=nav.nodes[scene.spawn],end=nav.nodes[scene.places.find(p=>p.stage==='morro-2').node],path=nav.route(start,end);let previous=start,total=0;for(const p of path){total+=nav.distance(previous,p);previous=p;}return total;}
+ const map=read(),withReturn=length(map);map.layers[0].objects=map.layers[0].objects.filter(o=>o.id!==26);
+ assert.ok(length(map)>withReturn,'a useful return must save walking distance');
 });

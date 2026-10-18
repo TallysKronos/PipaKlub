@@ -1,7 +1,7 @@
 export function createArtAssets(config){
  const images=new Map(),loading=new Map(),atlases=config.atlases;
  const creatureNames=['carcara','mata-verde','azulao','raio-de-sol'];
- const specials=config.dex.entries.filter(e=>e.group==='event'&&atlases[e.atlas]).map(e=>({id:e.id,name:e.name,color:e.color,legend:e.title,collection:e.collection,rarity:e.rarity||'especial'}));
+ const specials=config.dex.entries.filter(e=>['event','story'].includes(e.group)&&atlases[e.atlas]).map(e=>({id:e.id,name:e.name,color:e.color,legend:e.title,collection:e.collection,rarity:e.rarity||'especial'}));
  const special=id=>specials.find(s=>s.id===id);
  const reduced=typeof matchMedia==='function'&&matchMedia('(prefers-reduced-motion:reduce)').matches;
  function load(name,retry=false){

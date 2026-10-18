@@ -1,0 +1,654 @@
+{
+  "type": "map",
+  "version": "1.10",
+  "tiledversion": "1.11.0",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "width": 48,
+  "height": 32,
+  "tilewidth": 32,
+  "tileheight": 32,
+  "infinite": false,
+  "nextlayerid": 9,
+  "nextobjectid": 24,
+  "layers": [
+    {
+      "id": 1,
+      "name": "Cenario pintado",
+      "type": "imagelayer",
+      "x": 0,
+      "y": 0,
+      "opacity": 1,
+      "visible": true,
+      "image": "plaza-base-v1.png",
+      "imagewidth": 1536,
+      "imageheight": 1024,
+      "properties": [
+        {
+          "name": "sheet",
+          "type": "string",
+          "value": "plaza-slice-base"
+        },
+        {
+          "name": "render",
+          "type": "string",
+          "value": "ground"
+        },
+        {
+          "name": "level",
+          "type": "int",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Walkable",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "objects": [
+        {
+          "id": 1,
+          "name": "Praca principal",
+          "x": 352,
+          "y": 544,
+          "width": 992,
+          "height": 192,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Largo da entrada",
+          "x": 352,
+          "y": 736,
+          "width": 768,
+          "height": 96,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Oficina de pipas",
+          "x": 160,
+          "y": 656,
+          "width": 256,
+          "height": 112,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Portao de casa",
+          "x": 224,
+          "y": 736,
+          "width": 128,
+          "height": 128,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Caminho do quintal",
+          "x": 224,
+          "y": 864,
+          "width": 192,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Escadaria",
+          "x": 800,
+          "y": 240,
+          "width": 112,
+          "height": 304,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "connects_to",
+              "type": "int",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "name": "Patamar da caixa dagua",
+          "x": 640,
+          "y": 144,
+          "width": 512,
+          "height": 96,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Solids",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "objects": [
+        {
+          "id": 8,
+          "name": "Contencao oeste",
+          "x": 320,
+          "y": 240,
+          "width": 464,
+          "height": 288,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "hidden",
+              "type": "bool",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "name": "Contencao leste",
+          "x": 928,
+          "y": 240,
+          "width": 512,
+          "height": 288,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "hidden",
+              "type": "bool",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "name": "Mesa do artesao",
+          "x": 176,
+          "y": 528,
+          "width": 144,
+          "height": 112,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "hidden",
+              "type": "bool",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "name": "Pilar oeste do portao",
+          "x": 192,
+          "y": 752,
+          "width": 40,
+          "height": 112,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "hidden",
+              "type": "bool",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "name": "Pilar leste do portao",
+          "x": 344,
+          "y": 776,
+          "width": 56,
+          "height": 88,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "hidden",
+              "type": "bool",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": 13,
+          "name": "Tronco de sombra",
+          "x": 1184,
+          "y": 768,
+          "width": 64,
+          "height": 56,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "hidden",
+              "type": "bool",
+              "value": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Foreground",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "objects": [
+        {
+          "id": 14,
+          "name": "Cobertura do portao",
+          "x": 192,
+          "y": 704,
+          "width": 192,
+          "height": 96,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 816
+            },
+            {
+              "name": "image_sheet",
+              "type": "string",
+              "value": "plaza-slice-base"
+            }
+          ]
+        },
+        {
+          "id": 21,
+          "name": "Passagem bloqueada da praça",
+          "x": 800,
+          "y": 544,
+          "width": 112,
+          "height": 24,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 568
+            },
+            {
+              "name": "hidden",
+              "type": "bool",
+              "value": true
+            },
+            {
+              "name": "road_gate",
+              "type": "bool",
+              "value": true
+            },
+            {
+              "name": "requires_clear",
+              "type": "string",
+              "value": "morro-1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Interactions",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "objects": [
+        {
+          "id": 15,
+          "name": "Zeca",
+          "x": 512,
+          "y": 592,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "stage",
+              "type": "string",
+              "value": "morro-1"
+            }
+          ]
+        },
+        {
+          "id": 17,
+          "name": "Oficina de pipas",
+          "x": 192,
+          "y": 656,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "action",
+              "type": "string",
+              "value": "pilot_story"
+            },
+            {
+              "name": "story",
+              "type": "string",
+              "value": "Na oficina da praça, cada pipa começa com bambu, papel e um pouco de paciência. Os moradores usam a caixa-d’água para indicar o caminho: siga a escadaria e encontre o patamar do bairro."
+            }
+          ]
+        },
+        {
+          "id": 22,
+          "name": "Subir a escadaria",
+          "x": 816,
+          "y": 608,
+          "width": 32,
+          "height": 32,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "action",
+              "type": "string",
+              "value": "road_gate"
+            },
+            {
+              "name": "requires_stage",
+              "type": "string",
+              "value": "morro-1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Spawns",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "objects": [
+        {
+          "id": 18,
+          "name": "Chegada ao Morro",
+          "x": 512,
+          "y": 736,
+          "width": 32,
+          "height": 32,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Exits",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "objects": [
+        {
+          "id": 19,
+          "name": "Voltar ao quintal",
+          "x": 256,
+          "y": 864,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "action",
+              "type": "string",
+              "value": "quintal"
+            }
+          ]
+        },
+        {
+          "id": 23,
+          "name": "Seguir para a Escadaria da Sombra",
+          "x": 816,
+          "y": 160,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 1
+            },
+            {
+              "name": "action",
+              "type": "string",
+              "value": "road_next"
+            },
+            {
+              "name": "requires_stage",
+              "type": "string",
+              "value": "morro-1"
+            },
+            {
+              "name": "target",
+              "type": "string",
+              "value": "morro-area-2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Arvore em primeiro plano",
+      "type": "imagelayer",
+      "x": 0,
+      "y": 0,
+      "opacity": 1,
+      "visible": true,
+      "image": "plaza-tree-v1.png",
+      "imagewidth": 1536,
+      "imageheight": 1024,
+      "properties": [
+        {
+          "name": "sheet",
+          "type": "string",
+          "value": "plaza-slice-tree"
+        },
+        {
+          "name": "render",
+          "type": "string",
+          "value": "depth"
+        },
+        {
+          "name": "level",
+          "type": "int",
+          "value": 0
+        },
+        {
+          "name": "sort_y",
+          "type": "int",
+          "value": 800
+        },
+        {
+          "name": "occlusion_x",
+          "type": "int",
+          "value": 928
+        },
+        {
+          "name": "occlusion_y",
+          "type": "int",
+          "value": 400
+        },
+        {
+          "name": "occlusion_w",
+          "type": "int",
+          "value": 512
+        },
+        {
+          "name": "occlusion_h",
+          "type": "int",
+          "value": 400
+        }
+      ]
+    }
+  ],
+  "tilesets": [],
+  "properties": [
+    {
+      "name": "name",
+      "type": "string",
+      "value": "Morro do Sol · Praça da Chegada"
+    },
+    {
+      "name": "actor_height",
+      "type": "int",
+      "value": 64
+    },
+    {
+      "name": "foot_radius",
+      "type": "int",
+      "value": 12
+    },
+    {
+      "name": "chapter",
+      "type": "int",
+      "value": 1
+    },
+    {
+      "name": "stage_id",
+      "type": "string",
+      "value": "morro-1"
+    }
+  ]
+}

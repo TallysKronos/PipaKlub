@@ -22114,6 +22114,292 @@
           "returnTo": null
         }
       }
+    },
+    "rabbito": {
+      "frames": {
+        "0": {
+          "frame": {
+            "x": 0,
+            "y": 0,
+            "w": 512,
+            "h": 512
+          },
+          "contentBounds": {
+            "x": 99,
+            "y": 45,
+            "w": 281,
+            "h": 395
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 512,
+            "h": 512
+          },
+          "sourceSize": {
+            "w": 512,
+            "h": 512
+          }
+        },
+        "1": {
+          "frame": {
+            "x": 512,
+            "y": 0,
+            "w": 512,
+            "h": 512
+          },
+          "contentBounds": {
+            "x": 73,
+            "y": 47,
+            "w": 283,
+            "h": 394
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 512,
+            "h": 512
+          },
+          "sourceSize": {
+            "w": 512,
+            "h": 512
+          }
+        },
+        "2": {
+          "frame": {
+            "x": 1024,
+            "y": 0,
+            "w": 512,
+            "h": 512
+          },
+          "contentBounds": {
+            "x": 57,
+            "y": 97,
+            "w": 369,
+            "h": 313
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 512,
+            "h": 512
+          },
+          "sourceSize": {
+            "w": 512,
+            "h": 512
+          }
+        },
+        "3": {
+          "frame": {
+            "x": 1536,
+            "y": 0,
+            "w": 512,
+            "h": 512
+          },
+          "contentBounds": {
+            "x": 38,
+            "y": 103,
+            "w": 401,
+            "h": 282
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 512,
+            "h": 512
+          },
+          "sourceSize": {
+            "w": 512,
+            "h": 512
+          }
+        },
+        "4": {
+          "frame": {
+            "x": 0,
+            "y": 512,
+            "w": 512,
+            "h": 512
+          },
+          "contentBounds": {
+            "x": 75,
+            "y": 46,
+            "w": 381,
+            "h": 360
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 512,
+            "h": 512
+          },
+          "sourceSize": {
+            "w": 512,
+            "h": 512
+          }
+        },
+        "5": {
+          "frame": {
+            "x": 512,
+            "y": 512,
+            "w": 512,
+            "h": 512
+          },
+          "contentBounds": {
+            "x": 96,
+            "y": 46,
+            "w": 368,
+            "h": 351
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 512,
+            "h": 512
+          },
+          "sourceSize": {
+            "w": 512,
+            "h": 512
+          }
+        },
+        "6": {
+          "frame": {
+            "x": 1024,
+            "y": 512,
+            "w": 512,
+            "h": 512
+          },
+          "contentBounds": {
+            "x": 82,
+            "y": 154,
+            "w": 373,
+            "h": 239
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 512,
+            "h": 512
+          },
+          "sourceSize": {
+            "w": 512,
+            "h": 512
+          }
+        },
+        "7": {
+          "frame": {
+            "x": 1536,
+            "y": 512,
+            "w": 512,
+            "h": 512
+          },
+          "contentBounds": {
+            "x": 110,
+            "y": 23,
+            "w": 305,
+            "h": 387
+          },
+          "rotated": false,
+          "trimmed": false,
+          "spriteSourceSize": {
+            "x": 0,
+            "y": 0,
+            "w": 512,
+            "h": 512
+          },
+          "sourceSize": {
+            "w": 512,
+            "h": 512
+          }
+        }
+      },
+      "meta": {
+        "image": "story/kael-birthday-v1/rabbito.png",
+        "size": {
+          "w": 2048,
+          "h": 1024
+        },
+        "scale": "1",
+        "viewport": {
+          "x": 0,
+          "y": 0,
+          "w": 512,
+          "h": 512
+        }
+      },
+      "animations": {
+        "idle": [
+          "0",
+          "1"
+        ],
+        "flight": [
+          "2",
+          "3"
+        ],
+        "skill": [
+          "4",
+          "5"
+        ],
+        "hurt": [
+          "6"
+        ],
+        "victory": [
+          "7"
+        ]
+      },
+      "playback": {
+        "idle": {
+          "durations": [
+            280,
+            280
+          ],
+          "loop": true,
+          "returnTo": null
+        },
+        "flight": {
+          "durations": [
+            160,
+            160
+          ],
+          "loop": true,
+          "returnTo": null
+        },
+        "skill": {
+          "durations": [
+            220,
+            220
+          ],
+          "loop": false,
+          "returnTo": "idle"
+        },
+        "hurt": {
+          "durations": [
+            220
+          ],
+          "loop": false,
+          "returnTo": "idle"
+        },
+        "victory": {
+          "durations": [
+            220
+          ],
+          "loop": true,
+          "returnTo": null
+        }
+      }
     }
   }
 }

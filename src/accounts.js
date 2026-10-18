@@ -90,6 +90,14 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
    if(action==='logout'){const values=cookieValues(request),access=values['__Host-pipa_access']||values.pipa_access;if(access){sessions.delete(access);try{await remote('/auth/v1/logout',{method:'POST',token:access});}catch{}}return json({ok:true},200,makeCookies(request,null));}
    const who=await identity(request,true);
    if(!who)throw new AccountError('Entre na sua conta para continuar.',401);
+   if(action==='opening'){
+    if(!['read','advance','name'].includes(b.action))throw new AccountError('Abertura: ação inválida.');
+    if(b.step!=null&&(!Number.isInteger(b.step)||b.step<0||b.step>14))throw new AccountError('Abertura: cena inválida.');
+    if(b.name!=null&&(typeof b.name!=='string'||[...b.name].length>24||/[\u0000-\u001f\u007f]/.test(b.name)))throw new AccountError('Nome do parceiro inválido.');
+    checkPending(who.id);
+    const opening=await rpc('player_opening',{p_action:b.action,p_step:b.step??null,p_name:b.name??null},who.access);
+    return json({opening,...(opening.partner_id?{account:await accountFor(who)}:{}),...(opening.step===14?{journey:await rpc('player_journey',{p_action:'read',p_model:null,p_lesson:null},who.access)}:{})},200,who.setCookies);
+   }
    if(action==='journey'){
     if(!['read','welcome','choose','advance','skip','finish'].includes(b.action))throw new AccountError('Primeiro voo: ação inválida.');
     if(b.modelId!=null&&!['basica','mata','azulao','raio'].includes(b.modelId))throw new AccountError('Primeiro voo: parceiro inválido.');

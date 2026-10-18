@@ -8,7 +8,7 @@
     "dev": "node build.mjs && node dev.mjs",
     "dev:trades": "node build.mjs && node scripts/local-trades.mjs",
     "start": "node dev.mjs",
-    "test": "node --test art.test.mjs hud-skin.test.mjs combat.test.mjs test.mjs network.test.mjs realtime.test.mjs frame-health.test.mjs accounts.test.mjs results.test.mjs trails.test.mjs trails-audit.test.mjs trades.test.mjs summon.test.mjs school.test.mjs trail-sync.test.mjs line-styles.test.mjs daily.test.mjs farm.test.mjs design.test.mjs javali-summon.test.mjs trail-rewards.test.mjs sky-duel.test.mjs first-flight.test.mjs normal-line-skills.test.mjs switch-nav.test.mjs ui-kit.test.mjs pipamon-levels.test.mjs plaza.test.mjs world-navigation.test.mjs world-map.test.mjs world-kit.test.mjs world-actors.test.mjs tools/atelie/atelie.test.mjs quintal-modular.test.mjs world-structure.test.mjs",
+    "test": "node --test opening.test.mjs art.test.mjs hud-skin.test.mjs combat.test.mjs test.mjs network.test.mjs realtime.test.mjs frame-health.test.mjs accounts.test.mjs results.test.mjs trails.test.mjs trails-audit.test.mjs trades.test.mjs summon.test.mjs school.test.mjs trail-sync.test.mjs line-styles.test.mjs daily.test.mjs farm.test.mjs design.test.mjs javali-summon.test.mjs trail-rewards.test.mjs sky-duel.test.mjs first-flight.test.mjs normal-line-skills.test.mjs switch-nav.test.mjs ui-kit.test.mjs pipamon-levels.test.mjs plaza.test.mjs world-navigation.test.mjs world-map.test.mjs world-kit.test.mjs world-actors.test.mjs tools/atelie/atelie.test.mjs quintal-modular.test.mjs world-structure.test.mjs world-painted.test.mjs neighborhood-road.test.mjs",
     "validate": "node scripts/validate-artifact.mjs",
     "atelier": "node tools/atelie/server.mjs",
     "audit:world": "node scripts/audit-world.mjs"

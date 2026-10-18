@@ -42,7 +42,7 @@ export function parseWorldMap(map){
  for(const key of ['width','height','tilewidth','tileheight'])if(!Number.isInteger(map[key])||map[key]<=0)fail(key+' deve ser inteiro positivo.');
  const width=map.width*map.tilewidth,height=map.height*map.tileheight;
  if(width>16384||height>16384||map.width*map.height>65536)fail('dimensões excedem o limite de exploração.');
- const required=['Walkable','Solids','Foreground','Interactions','Spawns','Exits'],layers={},ids=new Set(),layerIds=new Set();
+ const required=['Walkable','Solids','Foreground','Interactions','Spawns','Exits'],layers={},images=[],ids=new Set(),layerIds=new Set();
  const props=o=>Object.fromEntries((o.properties||[]).map(p=>[p.name,p.value]));
  function visit(list,ox=0,oy=0){
   if(!Array.isArray(list))fail('layers ausente.');
@@ -50,6 +50,15 @@ export function parseWorldMap(map){
    if(layerIds.has(l.id))fail('id de camada duplicado: '+l.id);layerIds.add(l.id);
    const x=ox+(l.offsetx||0),y=oy+(l.offsety||0);
    if(l.type==='group'){visit(l.layers,x,y);continue;}
+   if(l.type==='imagelayer'){
+    const p=props(l),w=l.imagewidth,h=l.imageheight,px=x+(l.x||0),py=y+(l.y||0),opacity=l.opacity??1;
+    if(!/^[a-zA-Z0-9_-]+\.png$/.test(l.image||'')||!/^[a-zA-Z0-9_-]+$/.test(p.sheet||''))fail('imagem deve usar arquivo local PNG e sheet registrado: '+l.name);
+    if(!['ground','depth'].includes(p.render)||![w,h].every(v=>Number.isInteger(v)&&v>0)||![px,py,opacity].every(Number.isFinite)||px<0||py<0||px+w>width||py+h>height||opacity<0||opacity>1||l.repeatx||l.repeaty||(l.parallaxx??1)!==1||(l.parallaxy??1)!==1)fail('camada de imagem inválida: '+l.name);
+    if(!Number.isInteger(p.level)||p.level<0||p.render==='depth'&&(!Number.isFinite(p.sort_y)||p.sort_y<0||p.sort_y>height))fail('piso/apoio de imagem inválido: '+l.name);
+    let occlusion=null;if(p.occlusion_x!==undefined){occlusion={x:p.occlusion_x,y:p.occlusion_y,w:p.occlusion_w,h:p.occlusion_h};if(!Object.values(occlusion).every(Number.isFinite)||occlusion.w<=0||occlusion.h<=0||occlusion.x<px||occlusion.y<py||occlusion.x+occlusion.w>px+w||occlusion.y+occlusion.h>py+h)fail('área de oclusão inválida: '+l.name);}
+    if(l.visible!==false)images.push({id:l.id,name:l.name,image:l.image,sheet:p.sheet,x:px,y:py,w,h,render:p.render,level:p.level,sortY:p.sort_y??0,opacity,occlusion});
+    continue;
+   }
    if(!required.includes(l.name))fail('camada não suportada: '+l.name);
    if(l.type!=='objectgroup'||layers[l.name])fail('camada deve ser um grupo de objetos único: '+l.name);
    if(l.x||l.y)fail('use offsetx/offsety para deslocar camadas.');
@@ -68,6 +77,7 @@ export function parseWorldMap(map){
  if(!Number.isFinite(actorSize)||actorSize<=0||!Number.isFinite(radius)||radius<=0||radius>=Math.min(map.tilewidth,map.tileheight)/2)fail('escala do ator ou raio dos pés inválido.');
  const contains=(r,x,y)=>x>=r.x&&x<=r.x+r.w&&y>=r.y&&y<=r.y+r.h;
  for(const r of layers.Walkable){if(!Number.isInteger(r.properties.level)||r.properties.level<0)fail('Walkable exige level inteiro: '+r.name);if(r.properties.connects_to!==undefined&&(!Number.isInteger(r.properties.connects_to)||r.properties.connects_to===r.properties.level||!layers.Walkable.some(s=>s.properties.level===r.properties.connects_to)))fail('conexão de nível inválida: '+r.name);}
+ for(const image of images)if(!layers.Walkable.some(r=>r.properties.level===image.level))fail('piso de imagem inexistente: '+image.name);
  for(const a of layers.Walkable)for(const b of layers.Walkable)if(a.id<b.id&&a.properties.level!==b.properties.level&&Math.min(a.x+a.w,b.x+b.w)>Math.max(a.x,b.x)&&Math.min(a.y+a.h,b.y+b.h)>Math.max(a.y,b.y))fail('pisos sobrepostos exigem contrato próprio: '+a.name+'/'+b.name);
  for(const r of [...layers.Solids,...layers.Foreground]){
   const level=r.properties.level??0,sortY=r.properties.sort_y??r.y+r.h;
@@ -90,8 +100,8 @@ export function parseWorldMap(map){
  function nodeFor(r){const cx=r.x+r.w/2,cy=r.y+r.h/2;let best=-1,d=Infinity;nodes.forEach(([x,y],i)=>{if(!contains(r,x,y)||r.properties.level!==undefined&&regions[i].properties.level!==r.properties.level)return;const n=Math.hypot(x-cx,y-cy);if(n<d){best=i;d=n;}});if(best<0)fail('zona sem ponto acessível: '+r.name);return best;}
  if(layers.Spawns.length!==1)fail('exatamente um spawn obrigatório.');
  const spawn=nodeFor(layers.Spawns[0]),seen=new Set([spawn]),queue=[spawn],adj=nodes.map(()=>[]);for(const [a,b]of edges){adj[a].push(b);adj[b].push(a);}for(let i=0;i<queue.length;i++)for(const b of adj[queue[i]])if(!seen.has(b)){seen.add(b);queue.push(b);}
- const stages=new Set(),places=[...layers.Exits,...layers.Interactions].map(r=>{const node=nodeFor(r),stage=r.properties.stage,action=r.properties.action;if(!seen.has(node))fail('zona inacessível a partir do spawn: '+r.name);if(stage){if(stages.has(stage))fail('stage duplicado: '+stage);stages.add(stage);}if(!stage&&!action)fail('zona sem action/stage: '+r.name);return {id:'tiled-'+r.id,name:r.name,node,...stage?{stage}:{action}};});
- return {name:properties.scene_name||'Morro do Sol · piloto',overview:properties.overview===true,width,height,actorSize,spawn,nodes,edges,places,tiled:{layers,properties,levels:regions.map(r=>r.properties.level)}};
+ const stages=new Set(),places=[...layers.Exits,...layers.Interactions].map(r=>{const node=nodeFor(r),stage=r.properties.stage,action=r.properties.action;if(!seen.has(node))fail('zona inacessível a partir do spawn: '+r.name);if(stage){if(stages.has(stage))fail('stage duplicado: '+stage);stages.add(stage);}if(!stage&&!action)fail('zona sem action/stage: '+r.name);return {id:'tiled-'+r.id,name:r.name,node,...stage?{stage}:{action},...(typeof r.properties.story==='string'?{story:r.properties.story}:{}),...(typeof r.properties.requires_stage==='string'?{requiresStage:r.properties.requires_stage}:{}),...(typeof r.properties.target==='string'?{target:r.properties.target}:{})};});
+ return {name:properties.scene_name||properties.name||'Morro do Sol · piloto',overview:properties.overview===true,width,height,actorSize,spawn,nodes,edges,places,tiled:{layers,images,properties,levels:regions.map(r=>r.properties.level)}};
 }
 
 export function drawWorldBlockout(g,scene){
@@ -108,13 +118,17 @@ export function drawWorldBlockout(g,scene){
 export function worldRenderQueue(scene,actors){
  const entries=actors.map((a,i)=>({...a,level:a.level??0,kind:'actor',order:i}));
  if(scene.art)for(const entry of scene.art.objects)entries.push({...entry,order:entries.length});
- else if(scene.tiled)for(const name of ['Solids','Foreground'])for(const r of scene.tiled.layers[name])entries.push({kind:name==='Solids'?'solid':'foreground',rect:r,level:r.properties.level,y:r.properties.sort_y,order:entries.length});
+ else if(scene.tiled)for(const name of ['Solids','Foreground'])for(const r of scene.tiled.layers[name])entries.push({kind:name==='Solids'?'solid':'foreground',rect:r,level:r.properties.level,y:r.properties.sort_y,order:entries.length,...scene.painted&&r.properties.image_sheet?{sprite:{sheet:r.properties.image_sheet,sx:r.x,sy:r.y,sw:r.w,sh:r.h,x:r.x,y:r.y,w:r.w,h:r.h}}:{}});
+ if(scene.painted)for(const image of scene.tiled.images.filter(i=>i.render==='depth'))entries.push({kind:'painted',image,level:image.level,y:image.sortY,order:entries.length});
  const player=actors.find(a=>a.id==='player'),size=scene.actorSize||64;
  for(const e of entries)if(e.kind==='foreground'&&player){const r=e.sprite||e.rect;e.opacity=e.level===(player.level??0)&&e.y>player.y&&player.x+size*.3>r.x&&player.x-size*.3<r.x+r.w&&player.y>r.y&&player.y-size<r.y+r.h?.45:1;}
+ for(const e of entries)if(e.kind==='painted'&&player){const r=e.image.occlusion;e.opacity=r&&e.level===(player.level??0)&&e.y>player.y&&player.x+size*.3>r.x&&player.x-size*.3<r.x+r.w&&player.y>r.y&&player.y-size<r.y+r.h?.55:1;}
  return entries.sort((a,b)=>a.level-b.level||a.y-b.y||((a.kind==='actor'?2:a.kind==='foreground'?1:0)-(b.kind==='actor'?2:b.kind==='foreground'?1:0))||a.order-b.order);
 }
 
 export function drawWorldObject(g,entry,images){
+ if(entry.kind==='painted'){const r=entry.image,image=images?.get('world-kit-'+r.sheet);if(image){g.save();g.globalAlpha*=r.opacity*(entry.opacity??1);g.drawImage(image,r.x,r.y,r.w,r.h);g.restore();}return;}
+ if(entry.rect?.properties.hidden)return;
  if(entry.sprite){const s=entry.sprite,image=images?.get('world-kit-'+s.sheet);if(image){g.save();g.globalAlpha*=entry.opacity??1;g.drawImage(image,s.sx,s.sy,s.sw,s.sh,s.x,s.y,s.w,s.h);g.restore();}return;}
  const r=entry.rect,kind=r.properties.visual_kind;
  g.save();g.globalAlpha*=entry.opacity??1;g.fillStyle=entry.kind==='solid'?'#a76c4f':kind==='tree'?'#568963':kind==='wall'?'#c19a6b':'#955642';g.strokeStyle='#695843';g.lineWidth=2;

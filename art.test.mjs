@@ -9,10 +9,10 @@ import {artConfig} from './scripts/art-build.mjs';
 
 test('collection viewports enclose every pose without changing the crop scale across states',()=>{
  const config=artConfig(),entries=config.dex.entries.filter(e=>e.collection);
- assert.equal(entries.length,24);assert.equal(new Set(entries.map(e=>e.id)).size,24);
+ assert.equal(entries.length,25);assert.equal(new Set(entries.map(e=>e.id)).size,25);
  for(const e of entries){
   const a=config.atlases[e.atlas],v=a.meta.viewport;assert.equal(e.model,e.id);assert.ok(e.color>=0&&e.color<=3);
-  assert.ok(v&&v.w>0&&v.h>0);assert.equal(Object.keys(a.frames).length,16);
+  assert.ok(v&&v.w>0&&v.h>0);assert.equal(Object.keys(a.frames).length,e.id==='rabbito'?8:16);
   for(const f of Object.values(a.frames)){const b=f.contentBounds;assert.ok(v.x<=b.x&&v.y<=b.y);assert.ok(v.x+v.w>=b.x+b.w&&v.y+v.h>=b.y+b.h);assert.ok(v.x+v.w<=f.frame.w&&v.y+v.h<=f.frame.h);}
   assert.equal(Object.keys(a.animations).length,5);assert.ok(e.story.length>0);
  }
@@ -150,7 +150,7 @@ test('rebicar follows accepted attacks, mirrors its pull and never changes simul
 test('universal rebicar wraps every Pipamon sprite and light mode keeps its visible feedback',()=>{
  const a=app({seen:true});
  const result=a.run(`(()=>{const bodies=[],moves=[],waves=[];ctx=new Proxy({},{get:(o,k)=>k==='measureText'?()=>({width:70}):o[k]||((...args)=>{if(k==='translate')moves.push(args);if(k==='stroke')waves.push(1);}),set:(o,k,v)=>(o[k]=v,true)});kiteBody=(col,t,p)=>bodies.push(p.soul||p.color);lightMode=true;for(const entry of ART_CONFIG.dex.entries){const p=eng.player(entry.name,entry.color,entry.id,0);p.soul=entry.id;p.x=500;p.y=300;p.attackCooldown=.59;kite(p,100);}return {bodies,moves,waves,count:ART_CONFIG.dex.entries.length};})()`);
- assert.equal(result.count,34);assert.equal(result.bodies.length,34);assert.equal(result.moves.length,34);assert.ok(result.moves.every(([x,y])=>x!==500&&y!==300));assert.ok(result.waves.length>=68,'light mode retains the line pulse and pull arc');
+ assert.equal(result.count,35);assert.equal(result.bodies.length,35);assert.equal(result.moves.length,35);assert.ok(result.moves.every(([x,y])=>x!==500&&y!==300));assert.ok(result.waves.length>=68,'light mode retains the line pulse and pull arc');
 });
 
 test('visitors can practice but trails and Dex request an account and cannot grant progress',async()=>{
@@ -293,7 +293,7 @@ test('special Souls load only on demand and animate all five states using their 
 test('member Pipa Dex lists all creatures, searches accents, filters and previews without unlocking inventory',async()=>{
  const a=app();await a.settle();a.run('playerAccount={profile:{},inventory:[]}');a.document.getElementById('workshop').onclick();await a.settle();a.auto();assert.equal(a.run('introductionOpen'),false);
  assert.equal(a.document.getElementById('pipaDex').hidden,false);
- assert.equal(a.document.querySelectorAll('#dexList button').length,34);
+ assert.equal(a.document.querySelectorAll('#dexList button').length,35);
  assert.equal(a.document.getElementById('dexName').textContent,'Carcará');
  assert.equal(a.document.querySelectorAll('#dexAnimation option').length,5);
  a.run("$('dexSearch').value='azulao';filterDex()");await a.settle();
@@ -329,7 +329,7 @@ test('each Dex entry shows its own tail, keeps companion provenance and never gr
  const config=artConfig();assert.equal(config.items.length,34);assert.equal(new Set(config.items.map(i=>i.image)).size,34);
  for(const entry of config.dex.entries){
   a.run('selectDex(dexEntries.find(e=>e.id==='+JSON.stringify(entry.id)+'))');
-  const root=a.document.getElementById('dexItemsSection'),cards=root.querySelectorAll('.dex-item');if(!entry.items.length){assert.equal(entry.id,'javali-biscoito');assert.equal(root.hidden,true);assert.equal(cards.length,0);continue;}assert.equal(root.hidden,false);assert.equal(cards.length,1);
+  const root=a.document.getElementById('dexItemsSection'),cards=root.querySelectorAll('.dex-item');if(!entry.items.length){assert.ok(['javali-biscoito','rabbito'].includes(entry.id));assert.equal(root.hidden,true);assert.equal(cards.length,0);continue;}assert.equal(root.hidden,false);assert.equal(cards.length,1);
   const item=config.items.find(i=>i.id===entry.items[0]);assert.equal(item.pipamon,entry.id);assert.equal(item.name,'Rabiola de '+entry.name);
   const image=cards[0].querySelector('img');assert.equal(image.getAttribute('src'),item.url);assert.equal(image.alt,item.name);assert.equal(image.loading,'lazy');
   if(entry.group==='companion'){assert.equal(item.source,'companion');assert.match(root.textContent,/não aparece como selvagem/);assert.doesNotMatch(root.textContent,/Drop previsto/);}
@@ -338,7 +338,7 @@ test('each Dex entry shows its own tail, keeps companion provenance and never gr
    // Rabiolas dropped by trail bosses say where to earn them; the rest are still coming.
    if(['rabiola-raio-de-sol','rabiola-chaspiral','rabiola-flautrevo'].includes(item.id))assert.match(root.textContent,/Prêmio: .+ \(Trilhas\)/);else assert.match(root.textContent,/Em breve/);}
  }
- const failed=a.document.querySelector('#dexItemsList img'),fallback=a.document.querySelector('.dex-item-fallback');failed.onerror();assert.equal(failed.hidden,true);assert.equal(fallback.hidden,false);assert.match(a.document.getElementById('dexItemsList').textContent,/Rabiola de Nozinho/);
+ a.run("selectDex(dexEntries.find(e=>e.id==='nozinho'))");const failed=a.document.querySelector('#dexItemsList img'),fallback=a.document.querySelector('.dex-item-fallback');failed.onerror();assert.equal(failed.hidden,true);assert.equal(fallback.hidden,false);assert.match(a.document.getElementById('dexItemsList').textContent,/Rabiola de Nozinho/);
  a.run('selectDex(dexEntries[0])');assert.equal(a.document.querySelector('.dex-item-fallback').hidden,true);assert.equal(a.run('playerAccount.inventory.length'),0);assert.equal(a.run('mode'),null);
 });
 
@@ -459,4 +459,17 @@ test('solo help sits above pause and closes back to the frozen practice menu',as
  a.run(`var pauseState=eng.create(Date.now());pauseState.players=[eng.player('Ana',0,'pause-local',Date.now())];enter(pauseState,'pause-local','practice');openPause();$('pauseRules').onclick()`);
  assert.equal(a.document.getElementById('modal').classList.contains('pause-help'),true);assert.equal(a.document.getElementById('pauseSheet').inert,true);assert.ok(a.run('pausedAt>0'));
  a.run('closeModal()');assert.equal(a.document.getElementById('pauseSheet').inert,false);assert.equal(a.document.getElementById('pauseSheet').hidden,false);assert.ok(a.run('pausedAt>0'));a.run('closeSheet()');assert.equal(a.run('pausedAt'),0);
+});
+
+test('Morro chapter gates require a confirmed account victory and preserve return transitions',async()=>{
+ const a=app({seen:true,search:'?overworld=pilot'});await a.settle();
+ a.run(`playerAccount={profile:{id:'road-test',nickname:'Teste',level:1},inventory:[]};journey={phase:'complete'};showCourtyard();`);
+ await a.run(`trailSync.setUser('road-test')`);
+ a.run(`openWorld('morro');worldSyncRoadGate();`);
+ assert.equal(a.run('worldRuntime.id'),'morro');assert.equal(a.run('worldState().roadGateClosed'),true);assert.equal(a.run('worldScene().places.filter(p=>p.stage).length'),1);
+ a.run(`let gateRenderCount=0;drawWorldRoadGate=()=>gateRenderCount++;drawWorldHuman=()=>{};drawWorldRival=()=>{};$('courtyardCanvas').width=854;$('courtyardCanvas').height=612;drawWorldScene(new Proxy({globalAlpha:1},{get:(o,k)=>k in o?o[k]:(()=>{})}),100,.01);`);assert.equal(a.run('gateRenderCount'),1);
+ a.run(`openWorld('morro-area-2')`);assert.equal(a.run('worldRuntime.id'),'morro');
+ const stars={};for(let i=1;i<=5;i++){stars['morro-'+i]=1;a.run('trailSync.accept('+JSON.stringify({revision:i,progress:{stars}})+',"road-test");worldSyncRoadGate();');assert.equal(a.run('worldState().roadGateClosed'),false);if(i<5){a.run(`worldRuntime.near=worldScene().places.find(p=>p.action==='road_next');interactWorld();`);assert.equal(a.run('worldRuntime.id'),'morro-area-'+(i+1));if(i===2){a.run(`returnToDistrict('morro-3',false);worldSyncRoadGate();`);assert.equal(a.run('worldRuntime.id'),'morro-area-3');assert.equal(a.run('worldState().roadGateClosed'),true);}}}
+ a.run(`worldRuntime.near=worldScene().places.find(p=>p.action==='road_back');interactWorld();`);assert.equal(a.run('worldRuntime.id'),'morro-area-4');assert.equal(a.run('worldState().actor.level'),1);
+ await a.run(`trailSync.setUser('other-owner')`);a.run(`playerAccount={profile:{id:'other-owner',nickname:'Outro',level:1},inventory:[]};refreshWorldHUD();openWorld('morro-area-5');`);assert.equal(a.run('worldRuntime.id'),'quintal');
 });

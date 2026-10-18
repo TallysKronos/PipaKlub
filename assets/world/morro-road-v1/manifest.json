@@ -1,0 +1,56 @@
+{
+  "chapters": [
+    {
+      "id": "morro",
+      "stage": "morro-1",
+      "name": "Praça da Chegada",
+      "map": "world/morro-plaza-v1/road-1.tmj"
+    },
+    {
+      "id": "morro-area-2",
+      "stage": "morro-2",
+      "name": "Escadaria da Sombra",
+      "map": "world/morro-road-v1/area-2.tmj"
+    },
+    {
+      "id": "morro-area-3",
+      "stage": "morro-3",
+      "name": "Laje dos Ventos",
+      "map": "world/morro-road-v1/area-3.tmj"
+    },
+    {
+      "id": "morro-area-4",
+      "stage": "morro-4",
+      "name": "Mirante da Caixa-d’água",
+      "map": "world/morro-road-v1/area-4.tmj"
+    },
+    {
+      "id": "morro-area-5",
+      "stage": "morro-5",
+      "name": "Parque dos Ventos",
+      "map": "world/morro-road-v1/area-5.tmj"
+    }
+  ],
+  "sheets": {
+    "morro-road-2": {
+      "image": "world/morro-road-v1/escadaria-v1.png",
+      "width": 1536,
+      "height": 1024
+    },
+    "morro-road-3": {
+      "image": "world/morro-road-v1/laje-v1.png",
+      "width": 1536,
+      "height": 1024
+    },
+    "morro-road-4": {
+      "image": "world/morro-road-v1/mirante-v1.png",
+      "width": 1536,
+      "height": 1024
+    },
+    "morro-road-5": {
+      "image": "world/morro-road-v1/parque-v1.png",
+      "width": 1536,
+      "height": 1024
+    }
+  }
+}

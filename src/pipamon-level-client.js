@@ -26,5 +26,5 @@ function renderPipamonProgress(kite){
 function announcePipamonLevels(previous,current){
  if(!previous||!current||previous.profile?.id!==current.profile?.id)return;
  const raised=(current.inventory||[]).filter(k=>{const old=previous.inventory?.find(o=>o.id===k.id);return old&&pipamonProgress(k).level>pipamonProgress(old).level;});
- if(!raised.length)return;const k=raised[0],p=pipamonProgress(k);toast(k.model.name+' chegou ao nível '+p.level+'!'+(p.tier?' Brilho '+p.tier.name+'.':'')+(raised.length>1?' Outros parceiros também evoluíram.':''));
+ if(!raised.length)return;const k=raised[0],p=pipamonProgress(k);toast((k.personal_name||k.model.name)+' chegou ao nível '+p.level+'!'+(p.tier?' Brilho '+p.tier.name+'.':'')+(raised.length>1?' Outros parceiros também evoluíram.':''));
 }

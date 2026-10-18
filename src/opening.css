@@ -1,0 +1,11 @@
+.kael-opening{position:fixed;inset:0;z-index:180;display:grid;grid-template-rows:1fr auto;background:#141d28;color:#f9ecd0;isolation:isolate}
+.kael-opening[hidden]{display:none}.opening-stage{position:relative;min-height:0;overflow:hidden;background:#1b2428}.opening-stage canvas{width:100%;height:100%;display:block;object-fit:contain}
+.opening-heading{position:absolute;top:max(18px,env(safe-area-inset-top));left:4%;margin:0;font-size:clamp(13px,1.3vw,19px);text-shadow:0 2px 4px #000;pointer-events:none;letter-spacing:.12em;text-transform:uppercase}
+.opening-dialog{background:#fff4d9;color:#342d30;border-top:5px solid #594a3a;padding:18px max(5%,env(safe-area-inset-right)) max(18px,env(safe-area-inset-bottom));box-shadow:0 -8px 25px #0004;min-height:165px}
+.opening-dialog strong{color:#765135;display:block;font-size:18px}.opening-dialog p{font-size:clamp(17px,1.6vw,23px);line-height:1.5;max-width:1050px;margin:8px 0 16px;min-height:2.8em}
+.opening-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.opening-actions .opening-next{margin-left:auto}.opening-actions button{min-height:46px}.opening-actions small{color:#685d51}.opening-name{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.opening-name[hidden]{display:none}.opening-name input{min-width:220px;background:#fffcf1;color:#352f30;font-size:20px;border:2px solid #8c7654;border-radius:8px;padding:10px}
+.opening-status{color:#8c352c;font-size:15px;min-height:22px}.opening-pause{position:static;order:1;margin-left:auto}.opening-actions .opening-next{order:2;margin-left:0}.opening-gift{position:absolute;top:14%;left:50%;transform:translateX(-50%);padding:12px 24px;background:#fff3d8;color:#473d2d;border:3px solid #9e7441;border-radius:8px;box-shadow:0 6px 0 #322b2370;text-align:center}.opening-gift[hidden]{display:none}.opening-gift small{display:block;margin-top:4px}
+body.in-opening #commandBar{display:none!important}
+@media(max-height:650px){.opening-dialog{min-height:130px;padding-top:10px}.opening-dialog p{font-size:17px;margin:5px 0 10px;min-height:2em}}
+@media(prefers-reduced-motion:reduce){.kael-opening *{animation:none!important;transition:none!important}}
+

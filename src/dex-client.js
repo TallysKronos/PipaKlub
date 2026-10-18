@@ -51,7 +51,7 @@ function selectDex(entry){
  $('dexDetails').scrollTop=0;dexOverlay.querySelector('.dex-layout').scrollTop=0;
  $('dexNumber').textContent='REGISTRO '+String(dexEntries.indexOf(entry)+1).padStart(3,'0');
  $('dexName').textContent=entry.name;$('dexSubtitle').textContent=entry.title;
- $('dexGroup').textContent=entry.group==='event'?(entry.rarity==='rara'?'Rara de evento':'Especial de evento')+(entry.collection?' · '+entry.collection:''):entry.group==='companion'?'Companheiro':'Almática de rua';
+ $('dexGroup').textContent=entry.group==='story'?'Parceiro da história':entry.group==='event'?(entry.rarity==='rara'?'Rara de evento':'Especial de evento')+(entry.collection?' · '+entry.collection:''):entry.group==='companion'?'Companheiro':'Almática de rua';
  const owned=!!playerAccount?.inventory.some(k=>k.model_id===entry.model);
  $('dexOwnership').textContent=owned?'Na sua coleção':entry.group==='companion'?'Ao lado do Sr. Assis':playerAccount?'Ainda não está na sua coleção':'Entre na conta para acompanhar sua coleção';
  $('dexHabitat').textContent=entry.habitat;$('dexLegend').textContent=entry.legend||'Uma história original do Pipa Club';
@@ -74,9 +74,9 @@ function filterDex(){
  $('dexEmpty').hidden=entries.length>0;
  releasePipamonPortraits($('dexList'));$('dexList').replaceChildren(...entries.map(entry=>{
   const button=uiElement('button',undefined,'secondary dex-entry portrait-card');button.type='button';button.dataset.dexId=entry.id;
-  button.setAttribute('aria-pressed',String(entry.id===dexEntry.id));button.setAttribute('aria-label',entry.name+' · '+(entry.group==='event'?'Especial de evento':entry.group==='companion'?'Companheiro':'Almática de rua'));
+  button.setAttribute('aria-pressed',String(entry.id===dexEntry.id));button.setAttribute('aria-label',entry.name+' · '+(entry.group==='story'?'Parceiro da história':entry.group==='event'?'Especial de evento':entry.group==='companion'?'Companheiro':'Almática de rua'));
   const image=pipamonPortrait(entry);image.classList.add('dex-thumb');
-  const text=uiElement('span');text.append(uiElement('b',entry.name),uiElement('small',entry.group==='event'?'Especial de evento':entry.group==='companion'?'Companheiro':eng.types[entry.color].name));button.append(image,text);
+  const text=uiElement('span');text.append(uiElement('b',entry.name),uiElement('small',entry.group==='story'?'Parceiro da história':entry.group==='event'?'Especial de evento':entry.group==='companion'?'Companheiro':eng.types[entry.color].name));button.append(image,text);
   button.onclick=()=>selectDex(entry);return button;
  }));
  if(entries.length)selectDex(entries.find(e=>e.id===dexEntry.id)||entries[0]);

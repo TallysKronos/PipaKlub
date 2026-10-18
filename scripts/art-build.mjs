@@ -1,5 +1,5 @@
 import {parseWorldMap} from '../src/world-map.js';
-import {buildWorldArtPlan} from '../src/world-art.js';
+import {buildWorldArtPlan,validateWorldPaintedImages} from '../src/world-art.js';
 import {hudAssets} from './hud-assets.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -30,14 +30,20 @@ export function artConfig(){
  world.kit=JSON.parse(fs.readFileSync('assets/world/morro-kit-v1/manifest.json','utf8'));
  world.quintalKit=JSON.parse(fs.readFileSync('assets/world/quintal-kit-v1/manifest.json','utf8'));
  for(const [id,sheet]of Object.entries(world.quintalKit.sheets)){const image=sheet.image,hash=createHash('sha256').update(fs.readFileSync(path.join('assets',image))).digest('hex').slice(0,12);images['world-kit-'+id]={image,url:'assets/'+image+'?v='+hash};}
+ const morroRoad=JSON.parse(fs.readFileSync('assets/world/morro-road-v1/manifest.json','utf8'));
+ Object.assign(world.kit.sheets,JSON.parse(fs.readFileSync('assets/world/morro-plaza-v1/manifest.json','utf8')).sheets,morroRoad.sheets);
  for(const [id,sheet]of Object.entries(world.kit.sheets)){const image=sheet.image,hash=createHash('sha256').update(fs.readFileSync(path.join('assets',image))).digest('hex').slice(0,12);images['world-kit-'+id]={image,url:'assets/'+image+'?v='+hash};}
  for(const [id,scene]of Object.entries(world.scenes)){const image='world/identity-v2/'+scene.image,hash=createHash('sha256').update(fs.readFileSync(path.join('assets',image))).digest('hex').slice(0,12);images['world-'+id]={image,url:'assets/'+image+'?v='+hash};}
  world.scenes.quintal=parseWorldMap(JSON.parse(fs.readFileSync('assets/world/quintal-modular-v1/blockout.tmj','utf8')));
  world.scenes.quintal.art=buildWorldArtPlan(world.scenes.quintal,world.quintalKit,JSON.parse(fs.readFileSync('assets/world/quintal-modular-v1/art.json','utf8')));
  world.pilot=parseWorldMap(JSON.parse(fs.readFileSync('assets/world/morro-pilot/blockout.tmj','utf8')));
  world.pilot.art=buildWorldArtPlan(world.pilot,world.kit,JSON.parse(fs.readFileSync('assets/world/morro-pilot/art.json','utf8')));
+ world.paintedPilot=validateWorldPaintedImages(parseWorldMap(JSON.parse(fs.readFileSync('assets/world/morro-plaza-v1/plaza.tmj','utf8'))),world.kit.sheets);world.paintedPilot.painted=true;
+ world.morroRoad=morroRoad.chapters.map(c=>{const scene=validateWorldPaintedImages(parseWorldMap(JSON.parse(fs.readFileSync('assets/'+c.map,'utf8'))),world.kit.sheets);scene.painted=true;return {...c,scene};});
+ const opening=JSON.parse(fs.readFileSync('assets/story/kael-birthday-v1/manifest.json','utf8'));
+ for(const def of Object.values(opening.images))def.url='assets/'+def.image+'?v='+createHash('sha256').update(fs.readFileSync('assets/'+def.image)).digest('hex').slice(0,12);
  const courtyard={places:districtPlaces,images,plaza,world,districts:city.districts,badges:city.sheets.insignias.frames};
- return {atlases,intro,dex,items,menu,designs,portraits,courtyard,hud:hudAssets(),kit:kitAssets()};
+ return {opening,atlases,intro,dex,items,menu,designs,portraits,courtyard,hud:hudAssets(),kit:kitAssets()};
 }
 // Papel e Bambu kit: PNG bases and battle icons are served as files; the small glyph SVGs ride inline.
 const KIT='ui/kit-switch-v1/';
@@ -46,5 +52,5 @@ function kitAssets(){
  const {m,components,icons}=kitFiles(),url=image=>{const file=path.join('assets',KIT,image);return 'assets/'+KIT+image+'?v='+createHash('sha256').update(fs.readFileSync(file)).digest('hex').slice(0,12);};
  return {components:Object.fromEntries(components.map(id=>[id,url(m.components[id].image)])),icons:Object.fromEntries(icons.map(id=>[id,url(m.icons[id].image)])),glyphs:Object.fromEntries(Object.entries(m.glyphs).map(([id,g])=>[id,fs.readFileSync(path.join('assets',KIT,g.image),'utf8')]))};
 }
-export function copyArt(directory){const config=artConfig();for(const image of [...Object.values(config.atlases).map(a=>a.meta.image),...config.items.map(i=>i.image),'vfx/trade-celestial.png','vfx/trade-sky.png','vfx/trade-spirit-16.png',...Object.values(config.menu).map(a=>a.image),...Object.values(config.designs.encounters).map(a=>a.image),...Object.values(config.designs.rivals).map(a=>a.image),...Object.values(config.courtyard.images).map(a=>a.image),...Object.values(config.hud.sheets).map(a=>a.image),...[...Object.values(config.kit.components),...Object.values(config.kit.icons)].map(u=>u.slice(7).split('?')[0])]){const dest=path.join(directory,'assets',image);fs.mkdirSync(path.dirname(dest),{recursive:true});fs.copyFileSync(path.join('assets',image),dest);}}
+export function copyArt(directory){const config=artConfig();for(const image of [...Object.values(config.opening.images).map(a=>a.image),...Object.values(config.atlases).map(a=>a.meta.image),...config.items.map(i=>i.image),'vfx/trade-celestial.png','vfx/trade-sky.png','vfx/trade-spirit-16.png',...Object.values(config.menu).map(a=>a.image),...Object.values(config.designs.encounters).map(a=>a.image),...Object.values(config.designs.rivals).map(a=>a.image),...Object.values(config.courtyard.images).map(a=>a.image),...Object.values(config.hud.sheets).map(a=>a.image),...[...Object.values(config.kit.components),...Object.values(config.kit.icons)].map(u=>u.slice(7).split('?')[0])]){const dest=path.join(directory,'assets',image);fs.mkdirSync(path.dirname(dest),{recursive:true});fs.copyFileSync(path.join('assets',image),dest);}}
 export function artSource(){return 'const ART_CONFIG = '+JSON.stringify(artConfig())+';\n'+fs.readFileSync('src/art-client.js','utf8').replace('export function','function')+'\nconst art=createArtAssets(ART_CONFIG);';}

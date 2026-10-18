@@ -2,7 +2,7 @@
   "bindings": {
     "5": {
       "frame": "house-yellow",
-      "width": 320
+      "width": 224
     },
     "6": {
       "frame": "house-salmon",
@@ -62,14 +62,18 @@
     },
     "22": {
       "hidden": true
+    },
+    "30": {
+      "frame": "bench",
+      "width": 104
     }
   },
   "decorations": [
     {
       "frame": "roof-terracotta",
-      "width": 320,
-      "footX": 288,
-      "footY": 438,
+      "width": 224,
+      "footX": 240,
+      "footY": 470,
       "sortY": 544,
       "level": 0
     },
@@ -98,22 +102,6 @@
       "level": 0
     },
     {
-      "frame": "banana",
-      "height": 104,
-      "footX": 1120,
-      "footY": 690,
-      "sortY": 690,
-      "level": 0
-    },
-    {
-      "frame": "shrub",
-      "width": 144,
-      "footX": 1070,
-      "footY": 750,
-      "sortY": 750,
-      "level": 0
-    },
-    {
       "frame": "bench",
       "width": 96,
       "footX": 832,
@@ -128,6 +116,30 @@
       "footY": 116,
       "sortY": 116,
       "level": 1
+    },
+    {
+      "frame": "banana",
+      "height": 110,
+      "footX": 1245,
+      "footY": 670,
+      "sortY": 670,
+      "level": 0
+    },
+    {
+      "frame": "pennants",
+      "width": 160,
+      "footX": 896,
+      "footY": 320,
+      "sortY": 384,
+      "level": 0
+    },
+    {
+      "frame": "flowerpot",
+      "height": 34,
+      "footX": 1095,
+      "footY": 744,
+      "sortY": 744,
+      "level": 0
     }
   ]
 }

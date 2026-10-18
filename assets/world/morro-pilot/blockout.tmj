@@ -10,7 +10,7 @@
   "tileheight": 32,
   "infinite": false,
   "nextlayerid": 7,
-  "nextobjectid": 23,
+  "nextobjectid": 32,
   "layers": [
     {
       "id": 1,
@@ -94,6 +94,130 @@
               "value": 1
             }
           ]
+        },
+        {
+          "id": 23,
+          "name": "Patio dos varais",
+          "x": 672,
+          "y": 576,
+          "width": 480,
+          "height": 96,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 24,
+          "name": "Passagem da bananeira",
+          "x": 1152,
+          "y": 320,
+          "width": 64,
+          "height": 352,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 25,
+          "name": "Beco dos varais",
+          "x": 672,
+          "y": 320,
+          "width": 480,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 26,
+          "name": "Escada do retorno",
+          "x": 384,
+          "y": 256,
+          "width": 64,
+          "height": 128,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "connects_to",
+              "type": "int",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "id": 27,
+          "name": "Passagem de casa",
+          "x": 352,
+          "y": 384,
+          "width": 96,
+          "height": 192,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 28,
+          "name": "Terraco de ligacao",
+          "x": 384,
+          "y": 128,
+          "width": 128,
+          "height": 128,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "id": 31,
+          "name": "Recanto do banco",
+          "x": 944,
+          "y": 672,
+          "width": 272,
+          "height": 96,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
         }
       ]
     },
@@ -112,7 +236,7 @@
           "name": "Casa oeste",
           "x": 128,
           "y": 384,
-          "width": 320,
+          "width": 224,
           "height": 160,
           "rotation": 0,
           "visible": true,
@@ -163,7 +287,7 @@
           "x": 704,
           "y": 256,
           "width": 32,
-          "height": 128,
+          "height": 64,
           "rotation": 0,
           "visible": true,
           "properties": []
@@ -184,7 +308,7 @@
           "name": "Cerca da praca",
           "x": 128,
           "y": 544,
-          "width": 320,
+          "width": 224,
           "height": 32,
           "rotation": 0,
           "visible": true,
@@ -248,6 +372,28 @@
               "name": "level",
               "type": "int",
               "value": 0
+            }
+          ]
+        },
+        {
+          "id": 30,
+          "name": "Banco do patio",
+          "x": 976,
+          "y": 720,
+          "width": 96,
+          "height": 24,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 744
             }
           ]
         }
@@ -381,7 +527,7 @@
         {
           "id": 15,
           "name": "Bia",
-          "x": 896,
+          "x": 416,
           "y": 160,
           "width": 64,
           "height": 64,
@@ -397,6 +543,33 @@
               "name": "level",
               "type": "int",
               "value": 1
+            }
+          ]
+        },
+        {
+          "id": 29,
+          "name": "Memorias do vento",
+          "x": 992,
+          "y": 640,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "action",
+              "type": "string",
+              "value": "pilot_story"
+            },
+            {
+              "name": "story",
+              "type": "string",
+              "value": "Dona Celina guarda aqui os varais que o vento vive embolando. Ela conta que, antes das disputas, as crianças aprendiam a ler o vento observando os lençóis. Da escadaria, uma caixa-d’água marca a subida. No alto, o bairro ainda tem histórias para contar."
             }
           ]
         }
@@ -460,7 +633,7 @@
         },
         {
           "id": 18,
-          "name": "Continuacao futura",
+          "name": "Vista do Parque dos Ventos",
           "x": 1024,
           "y": 160,
           "width": 32,
@@ -483,7 +656,7 @@
     {
       "name": "design_phase",
       "type": "string",
-      "value": "blockout"
+      "value": "exploration-slice-v2"
     },
     {
       "name": "actor_height",

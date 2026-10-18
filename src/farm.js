@@ -8,7 +8,7 @@ export function createFarm({random=Math.random}={}){
   const groups=new Map();
   for(const kite of inventory){if(!kite?.model||!kite.model_id)continue;const id=kite.model_id;
    if(groups.has(id)){groups.get(id).count++;continue;}
-   groups.set(id,{id,name:kite.model.name||'Pipamon',color:kite.model.color,soul:kite.model.soul||null,count:1});
+   groups.set(id,{id,name:kite.personal_name||kite.model.name||'Pipamon',color:kite.model.color,soul:kite.model.soul||null,count:1});
   }
   const previous=new Map(residents.map(p=>[p.id,p]));
   residents=[...groups.values()].sort((a,b)=>a.id.localeCompare(b.id)).map(info=>{

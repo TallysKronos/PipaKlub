@@ -65,6 +65,7 @@ function switchTab(step){
 }
 function scrollFocused(dy){let el=document.activeElement;while(el&&el!==document.body){const s=getComputedStyle(el);if(/(auto|scroll)/.test(s.overflowY)&&el.scrollHeight>el.clientHeight){el.scrollTop+=dy;return;}el=el.parentElement;}}
 function startPressed(){
+ if(document.body.classList.contains('in-opening')){$('openingPause').click();return;}
  if(mode){if(pausedAt||!$('pauseSheet').hidden)goBack();else openPause();return;}
  if(typeof gameMenu!=='undefined'&&playerAccount){if(gameMenu.hidden)openHomeMenu();else closeHomeMenu();}
 }

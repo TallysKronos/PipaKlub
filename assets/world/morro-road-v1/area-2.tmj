@@ -1,0 +1,384 @@
+{
+  "type": "map",
+  "version": "1.10",
+  "tiledversion": "1.11.0",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "width": 48,
+  "height": 32,
+  "tilewidth": 32,
+  "tileheight": 32,
+  "infinite": false,
+  "tilesets": [],
+  "properties": [
+    {
+      "name": "name",
+      "type": "string",
+      "value": "Morro do Sol · Escadaria da Sombra"
+    },
+    {
+      "name": "actor_height",
+      "type": "int",
+      "value": 64
+    },
+    {
+      "name": "foot_radius",
+      "type": "int",
+      "value": 12
+    },
+    {
+      "name": "chapter",
+      "type": "int",
+      "value": 2
+    },
+    {
+      "name": "stage_id",
+      "type": "string",
+      "value": "morro-2"
+    }
+  ],
+  "layers": [
+    {
+      "id": 1,
+      "name": "Cenario Escadaria da Sombra",
+      "type": "imagelayer",
+      "x": 0,
+      "y": 0,
+      "visible": true,
+      "opacity": 1,
+      "image": "escadaria-v1.png",
+      "imagewidth": 1536,
+      "imageheight": 1024,
+      "properties": [
+        {
+          "name": "sheet",
+          "type": "string",
+          "value": "morro-road-2"
+        },
+        {
+          "name": "render",
+          "type": "string",
+          "value": "ground"
+        },
+        {
+          "name": "level",
+          "type": "int",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Walkable",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "visible": true,
+      "opacity": 1,
+      "objects": [
+        {
+          "id": 1,
+          "name": "Clareira de encontro",
+          "x": 448,
+          "y": 544,
+          "width": 704,
+          "height": 192,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Acesso sul",
+          "x": 640,
+          "y": 736,
+          "width": 320,
+          "height": 96,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Entrada da área",
+          "x": 736,
+          "y": 832,
+          "width": 128,
+          "height": 192,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Subida de saida",
+          "x": 752,
+          "y": 240,
+          "width": 112,
+          "height": 304,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "connects_to",
+              "type": "int",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Patamar de saida",
+          "x": 576,
+          "y": 128,
+          "width": 480,
+          "height": 112,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Solids",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "visible": true,
+      "opacity": 1,
+      "objects": []
+    },
+    {
+      "id": 4,
+      "name": "Foreground",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "visible": true,
+      "opacity": 1,
+      "objects": [
+        {
+          "id": 6,
+          "name": "Passagem desta área",
+          "x": 752,
+          "y": 544,
+          "width": 112,
+          "height": 24,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 568
+            },
+            {
+              "name": "hidden",
+              "type": "bool",
+              "value": true
+            },
+            {
+              "name": "road_gate",
+              "type": "bool",
+              "value": true
+            },
+            {
+              "name": "requires_clear",
+              "type": "string",
+              "value": "morro-2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Interactions",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "visible": true,
+      "opacity": 1,
+      "objects": [
+        {
+          "id": 7,
+          "name": "Encontro do bairro",
+          "x": 608,
+          "y": 608,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "stage",
+              "type": "string",
+              "value": "morro-2"
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "name": "Passagem para a próxima área",
+          "x": 752,
+          "y": 608,
+          "width": 112,
+          "height": 32,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "action",
+              "type": "string",
+              "value": "road_gate"
+            },
+            {
+              "name": "requires_stage",
+              "type": "string",
+              "value": "morro-2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Spawns",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "visible": true,
+      "opacity": 1,
+      "objects": [
+        {
+          "id": 9,
+          "name": "Entrada sul",
+          "x": 752,
+          "y": 864,
+          "width": 32,
+          "height": 32,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Exits",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "visible": true,
+      "opacity": 1,
+      "objects": [
+        {
+          "id": 10,
+          "name": "Voltar para Praça da Chegada",
+          "x": 752,
+          "y": 928,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "action",
+              "type": "string",
+              "value": "road_back"
+            },
+            {
+              "name": "target",
+              "type": "string",
+              "value": "morro"
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "name": "Seguir para Laje dos Ventos",
+          "x": 784,
+          "y": 160,
+          "width": 64,
+          "height": 32,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 1
+            },
+            {
+              "name": "action",
+              "type": "string",
+              "value": "road_next"
+            },
+            {
+              "name": "requires_stage",
+              "type": "string",
+              "value": "morro-2"
+            },
+            {
+              "name": "target",
+              "type": "string",
+              "value": "morro-area-3"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "nextobjectid": 12,
+  "nextlayerid": 8
+}

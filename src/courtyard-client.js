@@ -33,7 +33,7 @@ async function loadHomeArt(retry=false){
  if(epoch!==journeyEpoch)return;const okay=ground.every(key=>homeImages.has(key));$('courtyardStage').style.backgroundImage=modular?'none':okay?'url("'+homeArt.images[scene].url+'")':'';if(!okay){journeyError='O cenário não carregou. Use o menu ou tente carregar novamente.';$('homeResidents').textContent=journeyError;}if(homeArt.world)worldArtLoaded('quintal',okay);drawCityBadge();drawCityMarkers();
 }
 function syncHomeInert(){
- const blocked=!gameMenu.hidden||!cityScreen.hidden||!skyExperiment.hidden||[accountModal,dexOverlay,schoolHub,$('trails'),$('modal'),...document.querySelectorAll('.sheet')].some(el=>!el.hidden&&el.style.display!=='none'&&(el.classList.contains('sheet')||el.style.display==='flex'));
+ const blocked=document.body.classList.contains('in-opening')||!gameMenu.hidden||!cityScreen.hidden||!skyExperiment.hidden||[accountModal,dexOverlay,schoolHub,$('trails'),$('modal'),...document.querySelectorAll('.sheet')].some(el=>!el.hidden&&el.style.display!=='none'&&(el.classList.contains('sheet')||el.style.display==='flex'));
  if(courtyard.inert!==blocked)courtyard.inert=blocked;
 }
 new MutationObserver(syncHomeInert).observe(document.body,{subtree:true,attributes:true,attributeFilter:['hidden','style']});
@@ -41,7 +41,7 @@ function showCourtyard(){
  const show=!!playerAccount&&!mode&&(!param||homeInvitationHandled);courtyard.hidden=!show;document.body.classList.toggle('game-shell',!!playerAccount);if(show){updateHomeIdentity();syncHomeInert();}
 }
 function updateHomeIdentity(){
- if(!playerAccount)return;const p=playerAccount.profile,k=playerAccount.inventory.find(k=>k.id===p.equipped_kite_id);$('homePlayerName').textContent=p.nickname;$('homePartnerName').textContent=journey?.phase==='arrival'||journey?.phase==='choose'?'Um parceiro está esperando por você':k?'Parceiro equipado · '+k.model.name:'Seu lugar no clube';
+ if(!playerAccount)return;const p=playerAccount.profile,k=playerAccount.inventory.find(k=>k.id===p.equipped_kite_id);$('homePlayerName').textContent=p.nickname;$('homePartnerName').textContent=journey?.phase==='arrival'||journey?.phase==='choose'?'Um parceiro está esperando por você':k?'Parceiro equipado · '+(k.personal_name||k.model.name):'Seu lugar no clube';
  const signature=p.id+'|'+playerAccount.inventory.map(k=>k.id+':'+k.model_id).join('|');if(signature!==homeSignature){homeSignature=signature;homeFarm.setCollection(playerAccount.inventory);}
  $('homeResidents').textContent=homeFarm.residents.length+' espécies no seu quintal'+(homeFarm.pages>1?' · passeios em grupos':'');
  $('homeMotion').textContent=homeMotionPaused?'Retomar passeio':'Pausar passeio';
@@ -50,13 +50,13 @@ function updateHomeIdentity(){
 }
 async function onCourtyardAccount(){
  const owner=playerAccount?.profile?.id||null;showCourtyard();if(owner===journeyOwner){if(owner)updateHomeIdentity();return;}
- journeyOwner=owner;journeyEpoch++;journey=null;journeyError='';journeyBusy=false;homeReplay=false;journeyLoading=false;homeSignature='';homeFarm.setCollection([]);cityScreen.hidden=true;gameMenu.hidden=true;hideJourney();if(firstFlightRun){firstFlightRun=null;flightCoach.hidden=true;leave();}
+ resetOpening(owner);journeyOwner=owner;journeyEpoch++;journey=null;journeyError='';journeyBusy=false;homeReplay=false;journeyLoading=false;homeSignature='';homeFarm.setCollection([]);cityScreen.hidden=true;gameMenu.hidden=true;hideJourney();if(firstFlightRun){firstFlightRun=null;flightCoach.hidden=true;leave();}
  if(!owner)return;loadHomeArt();await loadJourney();
 }
 async function loadJourney(){
  if(!journeyOwner)return;const epoch=journeyEpoch,owner=journeyOwner;journeyLoading=true;updateHomeIdentity();
- try{const d=await accountRequest('journey',{action:'read'});if(epoch!==journeyEpoch||owner!==playerAccount?.profile?.id)return;journey=d.journey;journeyError='';if(accountModal.style.display==='flex')closeAccount();showCourtyard();if(!mode&&!param)renderJourney();}
- catch(e){if(epoch!==journeyEpoch)return;journeyError=e.message;if(!mode)renderJourney();}
+ try{const d=await accountRequest('journey',{action:'read'});if(epoch!==journeyEpoch||owner!==playerAccount?.profile?.id)return;journey=d.journey;await readOpening();if(epoch!==journeyEpoch||owner!==playerAccount?.profile?.id)return;journeyError='';if(accountModal.style.display==='flex')closeAccount();showCourtyard();if(!mode&&!param)renderJourney();}
+ catch(e){if(epoch!==journeyEpoch)return;journey=null;journeyError=e.message;if(!mode)renderJourney();}
  finally{if(epoch===journeyEpoch){journeyLoading=false;updateHomeIdentity();}}
 }
 async function saveJourney(action,body={}){
@@ -71,7 +71,7 @@ function dialogue(title,text,action,fn,{later=false}={}){
  hideJourney();$('journeyTitle').textContent=title;$('journeySpeech').textContent=text;$('journeyStatus').textContent='';$('journeyContinue').textContent=action;$('journeyContinue').onclick=fn;$('journeyDialog').hidden=false;$('journeyLater').textContent='Ficar no quintal';$('journeyLater').hidden=!later;$('journeyLater').onclick=hideJourney;$('homeDestinations').inert=!later;$('journeyContinue').focus({preventScroll:true});
 }
 function renderJourney(){
- if(mode||!playerAccount)return;if(journeyError&&!journey){dialogue('Vamos recuperar seu próximo passo',journeyError,'Tentar novamente',loadJourney,{later:true});return;}
+ if(mode||!playerAccount)return;if(openingState?.step<14&&!homeReplay){showOpening(false);return;}if(journeyError&&!journey){dialogue('Vamos recuperar seu próximo passo',journeyError,'Tentar novamente',loadJourney,{later:true});return;}
  if(homeReplay||journey?.phase==='arrival')dialogue('Seu lugar no céu','Chegou numa boa hora. Sou o Sr. Assis, e este é o Nozinho. Antes de visitar a cidade, vamos encontrar um parceiro e sentir o vento.','Conhecer os parceiros',async()=>{if(homeReplay||await saveJourney('welcome'))choosePartner()});
  else if(journey?.phase==='choose')choosePartner();
  else if(journey?.phase==='practice')dialogue('Vamos voar juntos?','Seu parceiro está esperando. Nozinho vai ajudar a praticar movimento, rebique, energia e habilidade. Aqui não há perdas nem consumo de itens.','Continuar o primeiro voo',()=>startFirstFlight(),{later:true});
@@ -133,7 +133,7 @@ const homeMenuGroups={
  // Root: six big destinations (Switch-style tiles). Trilhas and Partida rápida sit one press inside Jogar.
  root:[['playGroup','Jogar','menu-play'],['collection','Parceiros','menu-partners'],['dex','Pipa Dex','menu-dex'],['clubGroup','Clube','menu-club'],['school','Escola','menu-school'],['optionsGroup','Opções','menu-options']],
  playGroup:[['root','← Voltar'],['trails','Trilhas'],['quick','Partida rápida'],['daily','Céu do dia'],['friends','Jogar com amigos'],['practice','Treino livre'],...(new URLSearchParams(location.search).has('lab')?[['lab','Laboratório · Duelo nas Alturas']]:[])],
- clubGroup:[['root','← Voltar'],['summon','Invocação'],['trades','Trocas por convite'],['shop','Banca de linhas'],['history','Meus duelos'],['events','Souls de evento'],['profile','Meu perfil'],['professor','Meu primeiro voo']],
+ clubGroup:[['root','← Voltar'],['summon','Invocação'],['trades','Trocas por convite'],['shop','Banca de linhas'],['history','Meus duelos'],['events','Souls de evento'],['profile','Meu perfil'],['professor','Meu primeiro voo'],['story','Rever a abertura']],
  optionsGroup:[['root','← Voltar'],['sound','Som'],['quality','Qualidade da imagem'],['fullscreen','Tela cheia'],...(CLARITY_ID?[['privacy','Privacidade']]:[]),['rules','Regras'],['reload','Recarregar cenário'],['logout','Sair da conta']]
 };
 let homeMenuGroup='root';
@@ -180,4 +180,5 @@ addEventListener('keydown',e=>{
  if(gameMenu.hidden&&!$('partnerChoice').hidden&&['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();const next=(homePartner+(e.key==='ArrowRight'?1:-1)+partners.length)%partners.length,b=$('partnerOptions').children[next];b.click();b.focus()}
 },true);
 addEventListener('online',()=>{if(journeyError&&!journey)loadJourney()});
+/* OPENING_CLIENT */
 onCourtyardAccount();

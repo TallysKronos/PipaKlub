@@ -1,7 +1,8 @@
 // Durable per-account outbox: each match/import has an immutable UUID.
 export function createTrailSync({trails,storage,send,uuid,onChange=()=>{},onStatus=()=>{},withLock=async fn=>fn()}){
  const GUEST='pipaTrailsV1',TOKEN='pipaTrailImportV1',PREFIX='pipaTrailAccountV1:';
- let user=null,generation=0,busy=false,again=false,blocked=false,storageProblem=false;
+ let user=null,generation=0,busy=false,again=false,blocked=false,storageProblem=false,verified=null,verifiedRevision=-1;
+ function remember(result){if(Number.isFinite(result?.revision)&&result.revision>=verifiedRevision){verified=trails.sanitize(result.progress);verifiedRevision=result.revision;}}
  const memory=new Map();
  function read(key,fallback){try{return JSON.parse(storage.getItem(key))??fallback;}catch{return fallback;}}
  function write(key,value){try{storage.setItem(key,JSON.stringify(value));}catch(e){storageProblem=true;throw e;}}
@@ -45,7 +46,7 @@ export function createTrailSync({trails,storage,send,uuid,onChange=()=>{},onStat
  }
  async function setUser(id){
   id=id||null;if(id===user)return;
-  user=id;generation++;blocked=false;storageProblem=false;emit();
+  user=id;generation++;blocked=false;storageProblem=false;verified=null;verifiedRevision=-1;emit();
   if(id){try{await transferGuest(id);}catch{onStatus('storage');}if(user!==id)return;emit();await sync();}
   else onStatus('guest');
  }
@@ -59,6 +60,7 @@ export function createTrailSync({trails,storage,send,uuid,onChange=()=>{},onStat
     const op=pending(id)[0];if(!op&&!first)break;first=false;
     const result=await send(op?{action:op.action,operationId:op.id,payload:op.payload}:{action:'read'});
     if(user!==id||generation!==version)break;
+    remember(result);
     const cached=read(baseKey(id),null);
     if(!cached||Number(result.revision)>=Number(cached.revision))write(baseKey(id),{progress:trails.sanitize(result.progress),revision:result.revision});
     if(op){storage.removeItem(opPrefix(id)+op.id);memory.get(id)?.delete(op.id);}
@@ -76,6 +78,6 @@ export function createTrailSync({trails,storage,send,uuid,onChange=()=>{},onStat
  }
  async function retry(){blocked=false;storageProblem=false;if(user)try{await transferGuest(user);emit();}catch{onStatus('storage');}return sync();}
  function changed(){emit();return sync();}
- function accept(result,owner=user){if(!owner||owner!==user)return;const cached=read(baseKey(owner),null);if(!cached||Number(result.revision)>=Number(cached.revision)){write(baseKey(owner),{progress:trails.sanitize(result.progress),revision:result.revision});emit();}}
- return {setUser,sync,retry,changed,record,progress,pending,merge,accept,get user(){return user;}};
+ function accept(result,owner=user){if(!owner||owner!==user)return;remember(result);const cached=read(baseKey(owner),null);if(!cached||Number(result.revision)>=Number(cached.revision)){write(baseKey(owner),{progress:trails.sanitize(result.progress),revision:result.revision});emit();}}
+ return {setUser,sync,retry,changed,record,progress,pending,merge,accept,confirmed:()=>user&&verified?trails.sanitize(verified):null,get user(){return user;}};
 }
