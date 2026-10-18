@@ -70,3 +70,24 @@ test('engine: a quick room with no people left closes',()=>{
  const e=createEngine(),now=Date.now(),s=e.create(now,{mode:'rounds',quick:true}),p=e.player('Ana',0,'a',now);e.admit(s,p,now);
  e.step(s,now+11000);assert.equal(s.players.length,4);p.seen=now-60000;e.step(s,now+30000);assert.ok(s.end<=now+30000);
 });
+
+test('the server assigns Morro rival styles from the stage rather than the client request',async()=>{
+ const profiles={'morro-1':['patient'],'morro-2':['mobile'],'morro-3':['patient','mobile'],'morro-4':['guard'],'morro-5':['reader'],'praia-1':[undefined]};
+ const accounts={enabled:true,preparePlayer:async()=>({accountId:'story-player',name:'Pipeiro',color:0}),registerTrail:async()=>({progress:{}})};
+ for(const [stage,styles]of Object.entries(profiles)){
+  const room=await call('trail',{stage,aiStyle:'untrusted-client',name:'Pipeiro'},{ACCOUNTS:accounts});assert.equal(room.status,200,stage);
+  const saved=JSON.parse(sqlite.prepare('select state from pipa_rooms where code=?').get(room.code).state);
+  assert.deepEqual(saved.players.filter(p=>p.bot).map(p=>p.ai.style),styles);
+ }
+});
+
+
+test('solo pause endpoint rejects multiplayer, invalid sessions and malformed intent',async()=>{
+ const accounts={enabled:true,preparePlayer:async()=>({accountId:'pause-owner',name:'Owner',color:0}),registerTrail:async()=>({progress:{}})};
+ const a=await call('trail',{stage:'morro-1'},{ACCOUNTS:accounts});assert.equal(a.status,200);
+ assert.equal((await call('pause',{code:a.code,token:'forged',paused:true})).status,401);
+ assert.equal((await call('pause',{code:a.code,token:a.token,paused:'yes'})).status,403);
+ const paused=await call('pause',{code:a.code,token:a.token,paused:true});assert.equal(paused.state.soloPaused,true);assert.equal(paused.state.trailOwner,undefined);
+ assert.equal((await call('pause',{code:a.code,token:a.token,paused:false})).state.soloPaused,false);
+ const multi=await call('create',{name:'Host'});assert.equal((await call('pause',{code:multi.code,token:multi.token,paused:true})).status,403);
+});

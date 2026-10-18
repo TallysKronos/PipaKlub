@@ -4,6 +4,10 @@ const tradePanel=document.createElement('section');
 tradePanel.className='trade-panel';
 tradePanel.innerHTML='<h3>Encontro nas estrelas</h3><p class="trade-intro">Uma pipa de cada lado. Dois novos caminhos pelo céu.</p><div id="tradeScene" class="trade-scene"><div class="trade-nebula" aria-hidden="true"></div><div class="trade-stars" aria-hidden="true">✦ · ˚ 　 ✧ 　　 · ✦ 　 ˚ · 　 ✧</div><div class="trade-scene-heading"><small>CLUBE DAS TROCAS · 1 POR 1</small><h4 id="tradeSceneTitle">O céu conecta vocês</h4><p id="tradeSceneHint">Convide um amigo para começar.</p></div><div id="tradeFlights" class="trade-flights"></div><div class="trade-horizon" aria-hidden="true"></div></div><button class="secondary" id="tradeReplay" hidden>Rever o encontro</button><p class="trade-intro">Escolham suas colecionáveis e confirmem as duas ofertas. Uma alteração desfaz as confirmações. O convite dura 10 minutos.</p><button class="secondary" id="tradeCreate">Criar convite</button><label for="tradeCode">Código do convite</label><input id="tradeCode" maxlength="12" autocomplete="off"><button class="secondary" id="tradeJoin">Entrar</button><div id="tradeState" role="status" aria-live="polite"></div><div id="tradeActions"></div><button class="secondary" id="tradeHistory">Histórico de trocas</button><div id="tradeHistoryList"></div>';
 $('collectionMain').insertBefore(tradePanel,$('inventoryList'));
+// Put invitation controls before the decorative scene, within the first screen.
+const tradeInvitation=uiElement('div',undefined,'trade-invitation-controls');
+tradeInvitation.append($('tradeCreate'),tradePanel.querySelector('label[for="tradeCode"]'),$('tradeCode'),$('tradeJoin'));
+$('tradeScene').before(tradeInvitation,$('tradeState'),$('tradeActions'));
 const convergence=uiElement('div',undefined,'trade-convergence');convergence.setAttribute('aria-hidden','true');$('tradeScene').append(convergence);
 const shockwave=uiElement('div',undefined,'trade-shockwave');shockwave.setAttribute('aria-hidden','true');$('tradeScene').append(shockwave);
 const burst=uiElement('div',undefined,'trade-burst');burst.setAttribute('aria-hidden','true');

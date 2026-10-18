@@ -5,7 +5,9 @@ function menuAuditBoot(screen){
  playerAccount={profile:{id:'visual-only',nickname:'Pipeiro da prévia',level:8,xp:5100,next_level_xp:6400,cuts:28,equipped_kite_id:inventory[0].id},inventory};
  accountRequest=async(action)=>{if(['equip','profile','logout','sighting','trade','summon'].includes(action))throw Error('Esta é apenas uma prévia visual.');return {account:playerAccount,matches:[],coins:0};};
  $('accountModal').style.display='flex';renderAccountDialog();
- if(screen.startsWith('entry-')){const id='morro-'+screen.split('-')[1];$('accountModal').style.display='none';trailPick=id;for(const stage of trails.stages){if(stage.id===id)break;trailProgress.stars[stage.id]=1;}$('trails').dataset.district='0';$('trails').hidden=false;$('trails').style.display='flex';renderTrails();presentStage(id);}
+ if(screen==='encounter-picker'){$('accountModal').style.display='none';chooseEncounterPartner('morro-1');}
+ else if(screen.startsWith('story-')){const [,outcome,number]=screen.split('-'),id='morro-'+number;$('accountModal').style.display='none';modal(outcome==='won'?'Um novo caminho':'O vento muda',trailStoryMarkup(id,outcome,{confirmed:true,firstClear:true}),'Voltar ao mapa do bairro','Prévia narrativa isolada');$('modal').classList.add('story-result');}
+ else if(screen.startsWith('entry-')){const id='morro-'+screen.split('-')[1];$('accountModal').style.display='none';trailPick=id;for(const stage of trails.stages){if(stage.id===id)break;trailProgress.stars[stage.id]=1;}$('trails').dataset.district='0';$('trails').hidden=false;$('trails').style.display='flex';renderTrails();presentStage(id);}
  else if(screen==='district-victory'){$('accountModal').style.display='none';trailSync.sync=()=>{};trailProgress.stars['morro-1']=2;returnToDistrict('morro-1',true);}
  else if(screen==='dex'){$('accountModal').style.display='none';openDex();}
  else if(screen==='inventory')navigateClub('collection');
@@ -39,6 +41,8 @@ function menuAuditBoot(screen){
   for(const e of document.querySelectorAll('.collection-stage canvas,.dex-stage canvas'))if(visible(e)){const r=e.getBoundingClientRect(),p=e.parentElement.getBoundingClientRect();if(r.y<p.y-1||r.bottom>p.bottom+1)errors.push({kind:'sprite-clipped',element:e.id});}
   for(const selector of ['.dex-list','.dex-details','.collection-browser','.inventory-details']){const e=document.querySelector(selector);if(e&&visible(e)&&e.getBoundingClientRect().height<65)errors.push({kind:'collapsed-pane',element:selector});}
   for(const e of document.querySelectorAll('.portrait-card'))if(visible(e)&&e.scrollHeight>e.clientHeight+2)errors.push({kind:'portrait-overflow',id:e.dataset.dexId||e.dataset.kiteId,scroll:e.scrollHeight,height:e.clientHeight});
+  const primary=screen==='trades'?['tradeCreate','tradeCode','tradeJoin']:screen==='inventory'?['inventoryEquip']:screen==='encounter-picker'||screen.startsWith('entry-')?['dialogAction']:[];
+  for(const id of primary){const e=document.getElementById(id);if(!e||!visible(e)){errors.push({kind:'missing-primary-action',id});continue;}const r=e.getBoundingClientRect(),pane=e.closest('.inventory-details,#dialogBody,.account-card'),bottom=pane?Math.min(H,pane.getBoundingClientRect().bottom):H;if(r.y<0||r.bottom>bottom+1)errors.push({kind:'primary-action-outside-first-view',id,top:r.y,bottom:r.bottom,limit:bottom});}
   parent.postMessage({type:'menu-audit',result:{width:W,height:H,screen,errors,portraits:document.querySelectorAll('.pipamon-portrait').length}},'*');
  })));
 }

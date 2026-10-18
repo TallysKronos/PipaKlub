@@ -1,3 +1,9 @@
+function currentPlazaMission(){
+ const next=trails.stages.find(stage=>trails.unlocked(trailProgress,stage.id)&&!trailProgress.stars[stage.id]),trail=next&&trails.trails[next.trailIndex];
+ const context=typeof worldMissionContext==='function'?worldMissionContext(next):{};
+ return plazaPolicy.mission(journeyLoading?'arrival':journey?.phase,next,trail,{...context,complete:journey?.phase==='complete'&&!next});
+}
+function updatePlazaMission(){if(!$('plazaMissionTitle'))return;const m=currentPlazaMission();$('homeObjective').textContent=journeyLoading?'Preparando sua chegada ao clube…':m.body;$('plazaMissionTitle').textContent=m.title;}
 // Scenic home: artwork, actors and HUD are independent layers. No simulated balances.
 const plazaPolicy=createPlazaPolicy();
 const plazaActor={x:735,y:655,target:{x:735,y:655},direction:3,owner:null},plazaFollower={x:805,y:660};
@@ -17,7 +23,7 @@ function initPlaza(){
  const mission=courtyard.querySelector('.home-objective');mission.className='plaza-mission plaza-paper';
  const title=mission.querySelector('small');title.textContent='Missão atual';title.id='plazaMissionTitle';
  const objective=$('homeObjective'),missionButton=uiElement('button',undefined,'plaza-mission-action');missionButton.append(objective,uiElement('span','›'));mission.append(missionButton);
- plazaAction(missionButton,()=>{const n=firstOpenStage(),m=plazaPolicy.mission(journey?.phase,n,trails.trails[n?.trailIndex]);homeActions[m.action]()});
+ plazaAction(missionButton,()=>{const n=firstOpenStage(),m=currentPlazaMission();homeActions[m.action]()});
  const menu=$('homeMenuButton');menu.className='plaza-menu';menu.replaceChildren(plazaIcon('settings'));menu.setAttribute('aria-label','Abrir menu do clube');menu.title='Menu · Esc';
  const wallet=uiElement('div',undefined,'plaza-wallet');wallet.setAttribute('aria-label','Moedas da conta');wallet.innerHTML='<span aria-hidden="true" class="plaza-coin">✦</span><b id="plazaCoins">0</b><span class="plaza-wallet-label">moedas</span>';hud.append(wallet);
  const nav=uiElement('nav',undefined,'plaza-rail');nav.setAttribute('aria-label','Atalhos da praça');
@@ -45,7 +51,7 @@ function refreshPlazaHUD(){
  if(!$('plazaXP')||!playerAccount)return;
  const p=plazaPolicy.profile(playerAccount.profile);$('plazaLevel').textContent='Nv. '+p.level;$('plazaXPLabel').textContent=p.xp.toLocaleString('pt-BR')+' XP';$('plazaXPLabel').title=p.xp+' / '+p.next+' XP';$('plazaXPFill').style.width=p.percent+'%';$('plazaXP').setAttribute('aria-valuenow',String(Math.round(p.percent)));$('plazaXP').setAttribute('aria-valuetext',p.xp+' de '+p.next+' XP · Nível '+p.level);
  $('plazaCoins').textContent=Number(trailProgress.coins||0).toLocaleString('pt-BR');
- const next=firstOpenStage(),trail=trails.trails[next?.trailIndex],m=plazaPolicy.mission(journeyLoading?'arrival':journey?.phase,next,trail);$('homeObjective').textContent=journeyLoading?'Preparando sua chegada ao clube…':m.body;$('plazaMissionTitle').textContent=m.title;
+ const next=firstOpenStage(),trail=trails.trails[next?.trailIndex];updatePlazaMission();
  const district=homeArt.districts[next?.trailIndex||0];$('plazaDistrictName').textContent=district?.name||'Cidade dos ventos';const im=homeArt.images['district-'+(trail?.id||'morro')]||homeArt.images.city;$('plazaDistrictImage').src=im.url;
  if(plazaActor.owner!==playerAccount.profile.id){Object.assign(plazaActor,{x:735,y:655,target:{x:735,y:655},direction:3,owner:playerAccount.profile.id});Object.assign(plazaFollower,{x:805,y:660});}
  refreshWorldHUD();
@@ -66,7 +72,7 @@ function drawPlazaScene(g,t,dt){
  if(plazaFollower.y<a.y)partner();human(a.x,a.y,a.direction,87,walking);if(plazaFollower.y>=a.y)partner();
 }
 function openPlazaMissions(){
- const next=firstOpenStage(),trail=trails.trails[next?.trailIndex],m=plazaPolicy.mission(journey?.phase,next,trail);
+ const next=firstOpenStage(),trail=trails.trails[next?.trailIndex],m=currentPlazaMission();
  modal('Seu próximo voo','<div id="plazaMissionBody" class="plaza-mission-list"></div>','Voltar à praça','Missões do clube');
  const body=$('plazaMissionBody');body.append(uiElement('h3',m.title),uiElement('p',m.body));
  for(const district of trails.trails){const finished=district.stages.filter(s=>trailProgress.stars[s.id]).length,row=uiElement('div',undefined,'plaza-mission-row');row.append(uiElement('b',district.name),uiElement('span',finished+' / '+district.stages.length+' lugares vencidos'));body.append(row);}

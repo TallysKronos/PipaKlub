@@ -162,3 +162,15 @@ test('dodge: costs energy, has a cooldown, moves fast, blocks attacking; a perfe
  b.input={cut:true};a.input={};b.attackCooldown=0;Object.assign(b,{x:300,y:180,evade:0});Object.assign(a,{x:700,y:180});e.step(s,1068);
  assert.ok(Math.abs(a.hp-(100-24*1.75))<1e-9,'the counter hit is critical');assert.equal(b.counter,0);assert.equal(b.crits,1);
 });
+
+
+test('authoritative solo pause freezes combat and round timers, resumes and expires disconnected owners',()=>{
+ const now=100000,s=e.create(now,{mode:'rounds'}),p=e.player('Owner',0,'owner',now),bot=e.player('Bot',1,'bot',now);p.accountId='a';bot.bot=true;bot.ai={level:3};s.trail='morro-1';s.trailOwner='a';e.admit(s,p,now);e.admit(s,bot,now);s.phase='live';s.phaseUntil=now+60000;p.input={x:1,cut:true};
+ assert.equal(e.setSoloPause(s,{id:'other',accountId:'other'},true,now),false);assert.equal(e.setSoloPause(s,p,true,now),true);
+ const before=JSON.stringify(s.players),remaining=s.phaseUntil-s.last;for(let i=1;i<=4;i++){p.seen=now+i*1000;e.step(s,now+i*1000);}
+ assert.deepEqual(s.players.map(q=>[q.x,q.y,q.hp,q.energy,q.cuts]),JSON.parse(before).map(q=>[q.x,q.y,q.hp,q.energy,q.cuts]));assert.equal(s.phaseUntil-s.last,remaining);assert.equal(s.cutSequence,0);
+ const view=createNetworkView(e);view.receive(e.visible(s),p.id,0);assert.equal(view.render(200,{x:1,cut:true},.1)[0].x,p.x);
+ assert.equal(e.setSoloPause(s,p,false,now+4000),true);e.step(s,now+4016);assert.equal(s.soloPaused,false);
+ e.setSoloPause(s,p,true,now+4016);e.step(s,now+30000);assert.ok(s.end<=now+30000);assert.equal(s.players.some(q=>!q.bot),false);
+ const multi=e.create(now,{mode:'rounds'});e.admit(multi,p,now);assert.equal(e.setSoloPause(multi,p,true,now),false);
+});

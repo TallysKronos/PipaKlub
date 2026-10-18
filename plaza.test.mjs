@@ -22,3 +22,11 @@ test('all new hub assets are served with hashed URLs and copied to Pages, source
  for(const file of config.courtyard.plaza.files){const key='plaza-'+file.replace('.png',''),asset=config.courtyard.images[key],response=await serve(new Request('https://test/'+asset.url,{method:'HEAD'}));assert.equal(response.status,200,file);assert.match(response.headers.get('cache-control'),/immutable/);assert.ok(fs.existsSync('docs/assets/'+asset.image),file);}
  for(const file of ['prompts.json','sources/icons.png','manifest.json'])assert.equal((await serve(new Request('https://test/assets/hub/praca-v1/'+file))).status,404);
 });
+
+
+test('campaign mission distinguishes arrival, the nearby rival and completed content',()=>{
+ const p=createPlazaPolicy(),stage={id:'morro-1',trailIndex:0};
+ const seek=p.mission('complete',stage,{name:'Morro'},{worldId:'morro',rivals:'Zeca',place:'Praça de chegada'});assert.match(seek.body,/Encontre Zeca/);assert.equal(seek.action,'nextEncounter');
+ assert.match(p.mission('complete',stage,{}, {worldId:'morro',nearStage:'morro-1',rivals:'Zeca',place:'Praça'}).body,/Converse com Zeca/);
+ const done=p.mission('complete',null,null,{complete:true});assert.equal(done.stage,null);assert.equal(done.title,'Jornada concluída');assert.match(done.body,/três bairros/);
+});

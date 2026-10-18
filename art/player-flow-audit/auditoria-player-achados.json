@@ -1,0 +1,166 @@
+{
+  "date": "2026-10-18",
+  "environment": "Servidor local; base 540a961 com melhorias locais",
+  "findings": [
+    {
+      "priority": "P1",
+      "id": "01",
+      "title": "Pausa solo não pausa",
+      "evidence": "No duelo real com Zeca, abri o menu e tentei consultar Regras. O rival terminou a partida enquanto o menu estava aberto.",
+      "change": "Separar a pausa da campanha solo da regra multiplayer; congelar a simulação solo no servidor com retomada segura.",
+      "acceptance": "Abrir pausa ou ajuda durante uma Trilha não altera posições, energia, tempo ou placar até retomar."
+    },
+    {
+      "priority": "P1",
+      "id": "02",
+      "title": "Rivais ausentes do mundo",
+      "evidence": "Na Praça de chegada, o tamer alcança o ponto, mas não há Zeca visível; a arte dele só aparece depois de Ver desafio.",
+      "change": "Integrar personagens aos pontos de encontro, com silhueta legível, nome ao aproximar e interação clara. Manter a líder oculta até a etapa correta.",
+      "acceptance": "Consigo encontrar o primeiro rival olhando o cenário, sem recorrer à lista de destinos."
+    },
+    {
+      "priority": "P1",
+      "id": "03",
+      "title": "Objetivo não acompanha a localização",
+      "evidence": "Dentro do Morro, a missão ainda manda explorar a Trilha do Morro do Sol. Não orienta a encontrar Zeca.",
+      "change": "Usar objetivos por etapa e por contexto: sair do Quintal, chegar ao bairro, conversar com rival, vencer, seguir ao próximo lugar.",
+      "acceptance": "O objetivo muda ao entrar no bairro e aponta o próximo encontro real sem revelar a campeã."
+    },
+    {
+      "priority": "P1",
+      "id": "04",
+      "title": "Não existe encerramento claro da campanha disponível",
+      "evidence": "Na conta Beto, os três bairros aparecem com 5/5 encontros vencidos, mas a missão ainda aponta Campanários como próximo duelo.",
+      "change": "Criar estado explícito de conclusão do conteúdo disponível, com revisitas opcionais e distinção dos nove bairros em preparação.",
+      "acceptance": "Após os quinze encontros, o jogo reconhece a conquista e não vende uma repetição como progresso novo."
+    },
+    {
+      "priority": "P1",
+      "id": "05",
+      "title": "Contraste do kit quebra fundos especiais",
+      "evidence": "Nas trocas, título e instruções verdes ficam quase invisíveis sobre o céu noturno. O cabeçalho escuro do mapa também perde legibilidade.",
+      "change": "Definir temas de superfície clara e escura; limitar a regra global que colore títulos, parágrafos e small.",
+      "acceptance": "Todos os textos das trocas e do mapa são legíveis no próprio contexto, sem trocar o fundo temático."
+    },
+    {
+      "priority": "P1",
+      "id": "06",
+      "title": "Ação principal fica abaixo da rolagem",
+      "evidence": "Trocas abre com uma cena muito alta; Criar convite e entrar com código ficam fora da primeira área visível até em 1280×720. Em parceiros, imagem e apresentação empurram ações e progresso para baixo.",
+      "change": "Reservar uma área fixa para a ação principal; limitar a cena decorativa e separar detalhes em abas.",
+      "acceptance": "Sem rolar, consigo criar/entrar na troca e identificar qual parceiro está equipado e como trocá-lo."
+    },
+    {
+      "priority": "P1",
+      "id": "07",
+      "title": "Preparação de duelo perde o contexto",
+      "evidence": "Em Campanários, clicar em uma das quatro almáticas fecha a Trilha e abre o menu antigo Seu cantinho no clube, em vez de selecionar o parceiro.",
+      "change": "Abrir um seletor da coleção com retorno ao mesmo encontro; indicar explicitamente o parceiro equipado no briefing.",
+      "acceptance": "Escolho outro parceiro e volto ao mesmo desafio com a escolha confirmada, sem procurar o bairro novamente."
+    },
+    {
+      "priority": "P2",
+      "id": "08",
+      "title": "HUD de combate disputa atenção com o duelo",
+      "evidence": "Os dois pergaminhos ocupam muita área com espaços vazios; relógio, nomes, avisos, rodadas e botões decorados competem entre si.",
+      "change": "Reduzir molduras e painéis; priorizar linha, energia, rival e placar. Mover informação de rede para detalhes.",
+      "acceptance": "Em uma olhada reconheço minha condição, o adversário e o resultado parcial sem perder as pipas."
+    },
+    {
+      "priority": "P2",
+      "id": "09",
+      "title": "Linguagem de ataque não está unificada",
+      "evidence": "As telas usam ataque, rebique, rebicada e puxão; o HUD também traz R e tipos de rebicada antes de uma explicação contextual.",
+      "change": "Definir vocabulário: Rebicar como ação básica, Habilidade como especial e técnica de rebicada como sistema avançado.",
+      "acceptance": "Treino, HUD, regras e dicas usam o mesmo nome e ensinam comandos na ordem em que são necessários."
+    },
+    {
+      "priority": "P2",
+      "id": "10",
+      "title": "Invocação e mochila prometem obtenção pouco clara",
+      "evidence": "A mochila vazia recomenda duelos contra selvagens. A Dex de Carcará diz que os drops de selvagens ainda não estão disponíveis. A invocação mostra cadeados, mas não orienta um caminho imediato para conseguir a primeira rabiola.",
+      "change": "Mostrar a fonte realmente disponível para cada item; separar recompensas de campeão, evento e conteúdo futuro.",
+      "acceptance": "Um jogador com mochila vazia entende qual ação disponível pode gerar sua primeira rabiola."
+    },
+    {
+      "priority": "P2",
+      "id": "11",
+      "title": "Dois sistemas de menu coexistem",
+      "evidence": "Há o menu ilustrado novo e Seu cantinho no clube antigo; a Fazenda aparece no antigo, mas não nos destinos principais do menu novo.",
+      "change": "Unificar a árvore de navegação e decidir se Fazenda é lugar do Quintal ou uma tela própria acessível diretamente.",
+      "acceptance": "Toda função existente tem um caminho principal previsível, e escolher parceiro nunca abre uma central diferente."
+    },
+    {
+      "priority": "P2",
+      "id": "12",
+      "title": "Bairros mudam de linguagem de interação",
+      "evidence": "Morro é caminhada com tamer; Campanários abre mapa com marcadores, estatísticas de IA e classes.",
+      "change": "Definir o padrão da campanha e sinalizar os bairros ainda em transição; expandir exploração depois de fechar o primeiro bairro.",
+      "acceptance": "A passagem ao bairro seguinte preserva os mesmos conceitos de andar, conhecer o rival e iniciar duelo."
+    },
+    {
+      "priority": "P2",
+      "id": "13",
+      "title": "Fazenda foge da direção de arte",
+      "evidence": "O fundo de formas planas e contornos grossos da Fazenda contrasta fortemente com o Quintal ilustrado e com o Javali detalhado.",
+      "change": "Reutilizar a linguagem do Quintal e a escala dos personagens; priorizar composição coerente antes de pedir mais ilustrações avulsas.",
+      "acceptance": "A Fazenda parece pertencer ao mesmo mundo quando alterno entre ela e o Quintal."
+    },
+    {
+      "priority": "P2",
+      "id": "14",
+      "title": "Interface ainda explica implementação",
+      "evidence": "Coleção exibe px/s, recuperação por segundo, limites UTC e uma longa regra de XP. A Trilha exibe nível da IA e nomes de classes no lugar de uma apresentação do rival.",
+      "change": "Separar resumo jogável de detalhes avançados e regras de economia. Explicar efeitos em linguagem do jogador.",
+      "acceptance": "Entendo a personalidade e a função do parceiro sem precisar interpretar unidades ou regras administrativas."
+    },
+    {
+      "priority": "P2",
+      "id": "15",
+      "title": "Progressão do tamer e do parceiro se confundem",
+      "evidence": "O perfil superior mostra nível 1 e 0 XP do pipeiro; a derrota concede +20 XP ao parceiro. O retorno não evidencia visualmente a diferença.",
+      "change": "Nomear as duas progressões e animar a recompensa no retrato do Pipamon que a recebeu.",
+      "acceptance": "Após a batalha, sei quem ganhou XP, quanto falta para o próximo nível e por que o nível do tamer pode não mudar."
+    },
+    {
+      "priority": "P2",
+      "id": "16",
+      "title": "Rodapé de exploração ocupa o mundo",
+      "evidence": "Um grande painel permanente com select de destinos e botão encobre o piso e aproximações do tamer. Falta um sinal claro de destino do clique e de caminhada em andamento.",
+      "change": "Usar indicação compacta no mundo, cursor/destino e interação perto do personagem; manter lista de destinos como navegação assistida opcional.",
+      "acceptance": "Posso explorar visualmente, sei onde cliquei e vejo tamer e parceiro livres de painéis."
+    },
+    {
+      "priority": "P2",
+      "id": "17",
+      "title": "Resultado mistura boa narrativa e estilos antigos",
+      "evidence": "A reação de Zeca acolhe bem a derrota; logo abaixo há selo de salvamento, estrelas grandes, faixa amarela e texto de XP com hierarquia diferente.",
+      "change": "Criar uma composição única: reação do rival, resultado, recompensa, próximo objetivo e ações sempre visíveis.",
+      "acceptance": "Derrota não parece erro de sistema; vitória e recompensa são compreendidas antes de sair da tela."
+    },
+    {
+      "priority": "P3",
+      "id": "18",
+      "title": "Nomes de lugares e criaturas variam",
+      "evidence": "Quintal, praça, clube, Kronasta e cidade dos ventos aparecem sem relação explícita; Carcará também aparece como Pipa de rua no inventário.",
+      "change": "Criar um glossário e aplicar os nomes públicos de modo consistente, preservando apenas distinções intencionais.",
+      "acceptance": "O jogador sabe onde está e reconhece o mesmo parceiro em treino, coleção e batalha."
+    },
+    {
+      "priority": "P3",
+      "id": "19",
+      "title": "Dex entrega muita informação antes da descoberta",
+      "evidence": "A conta inicial vê os 34 registros e nomes completos, enquanto a invocação trabalha só com espécies vistas.",
+      "change": "Decidir editorialmente o que é conhecido, visto e possuído; usar sombras ou pistas se o objetivo for preservar descoberta.",
+      "acceptance": "A Dex desperta curiosidade e distingue claramente catálogo global de descobertas da conta."
+    },
+    {
+      "priority": "P3",
+      "id": "20",
+      "title": "Acabamento de texto e componentes ainda varia",
+      "evidence": "Alguns rótulos de botões quebram junto às bordas; no treino, textos do alvo se sobrepõem ao nome do jogador. Fechamentos e cartões têm tratamentos diferentes.",
+      "change": "Auditar componentes em contexto e em telas pequenas de desktop; padronizar tamanhos, contraste, foco e quebra de rótulos.",
+      "acceptance": "Nenhuma informação importante coincide com a moldura ou com o alvo do tutorial em 854×612 e 1280×720."
+    }
+  ]
+}

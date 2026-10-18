@@ -50,7 +50,8 @@ async function api(request,env){
       s.next=room.code;await env.DB.prepare('UPDATE pipa_rooms SET state = ?, rev = rev + 1 WHERE code = ? AND rev = ?').bind(JSON.stringify(s),code,row.rev).run();
       return json(room);
     }
-    if(action==='sync'){p.input=engine.sanitizeInput(b.input);p.seen=now;}
+    if(action==='pause'){if(typeof b.paused!=='boolean'||!engine.setSoloPause(s,p,b.paused,now))return json({error:'A pausa é exclusiva da sua campanha solo.'},403);}
+    else if(action==='sync'){p.input=engine.sanitizeInput(b.input);p.seen=now;}
     else if(action==='leave'){s.players=s.players.filter(q=>q.key!==token);if(s.trail){s.end=Math.min(s.end,now);s.last=Math.max(s.last,s.end);}}
     else if(action!=='join')return json({error:'Ação inválida.'},400);
     const res=await env.DB.prepare('UPDATE pipa_rooms SET state = ?, rev = rev + 1, updated = ? WHERE code = ? AND rev = ?').bind(JSON.stringify(s),now,code,row.rev).run();
@@ -78,7 +79,7 @@ async function createRoom(request,env,b,now,daily=false,trailId=null){
   if(!account&&(stage||daily||s.quick||s.rules!=='casual'||s.mode!=='rounds'))throw Object.assign(Error('Entre na conta para criar modalidades especiais. Visitantes podem convidar para a partida padrão.'),{status:401});
   let trailData;if(stage){try{trailData=await env.ACCOUNTS.registerTrail(account.accountId,s.id,stage.id);s.trailOwner=account.accountId;}catch(e){await releaseAccount(env,account,s);throw e;}}
   const p=engine.player(account?.name||b.name,account?.color??b.color,crypto.randomUUID(),now);p.key=token;if(account)Object.assign(p,account);engine.admit(s,p,now);
-  if(stage){const level=serverTrails.aiLevel(stage,serverTrails.sanitize(trailData.progress));for(const [i,f] of stage.foes.entries()){const bot=engine.player(f.name,f.color,'trail-bot-'+i,now);bot.bot=true;bot.ai={level};if(f.soul)bot.soul=f.soul;engine.admit(s,bot,now);}}
+  if(stage){const level=serverTrails.aiLevel(stage,serverTrails.sanitize(trailData.progress));for(const [i,f] of stage.foes.entries()){const bot=engine.player(f.name,f.color,'trail-bot-'+i,now);bot.bot=true;bot.ai={level,style:serverTrails.story(stage.id)?.styles[i]};if(f.soul)bot.soul=f.soul;engine.admit(s,bot,now);}}
   if(daily){const bot=engine.player('Guardião do céu',0,'bot-'+crypto.randomUUID(),now);bot.bot=true;bot.ai={level:4};engine.admit(s,bot,now);}
   try{await env.DB.prepare('INSERT INTO pipa_rooms (code,state,updated) VALUES (?,?,?)').bind(code,JSON.stringify(s),now).run();}catch(e){await releaseAccount(env,account,s);throw e;}
   if(s.quick)await env.DB.prepare('INSERT INTO pipa_rooms (code,state,updated) VALUES (?,?,?) ON CONFLICT(code) DO UPDATE SET state=excluded.state, updated=excluded.updated').bind(QUICK_POINTER,JSON.stringify({code}),now).run();

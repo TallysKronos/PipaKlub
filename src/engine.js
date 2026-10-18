@@ -134,13 +134,19 @@ export function createEngine() {
   }
   // Bot brain. p.ai.level (1-10) scales reaction, rest between pulls, speed, aim, dodging,
   // energy discipline and skill timing. Bots without a level keep the practice defaults.
-  function brain(level){
+  function brain(level,style){
     if(!level)return {focus:.7,rest:.9,speed:.8,jitter:0,dodge:0,reserve:0,smart:false,weakest:false,evade:0,sweep:false,tip:.7};
     const k=Math.pow((clamp(level,1,10)-1)/9,.75);
-    return {focus:.95-.8*k,rest:1.15-.95*k,speed:.6+.4*k,jitter:.16*(1-k),dodge:clamp((level-2)/8,0,1),reserve:level>=5?24:0,smart:level>=3,weakest:level>=6,evade:level>=4?.04+.025*(level-4):0,sweep:level>=7,tip:level>=8?.88:.7};
+    const b={focus:.95-.8*k,rest:1.15-.95*k,speed:.6+.4*k,jitter:.16*(1-k),dodge:clamp((level-2)/8,0,1),reserve:level>=5?24:0,smart:level>=3,weakest:level>=6,evade:level>=4?.04+.025*(level-4):0,sweep:level>=7,tip:level>=8?.88:.7};
+    // Rivals trade strengths without changing damage, costs or cooldowns.
+    if(style==='patient'){b.focus*=1.15;b.rest*=1.1;b.speed*=.95;}
+    else if(style==='mobile'){b.speed=Math.min(1,b.speed+.1);b.jitter=Math.min(.22,b.jitter+.04);b.focus*=1.15;}
+    else if(style==='guard'){b.reserve=Math.max(b.reserve,10);b.dodge=Math.max(b.dodge,.25);b.focus*=1.1;}
+    else if(style==='reader'){b.reserve=Math.max(b.reserve,18);b.dodge=Math.min(.9,b.dodge+.1);b.focus*=1.1;}
+    return b;
   }
   function botInput(s,p,dt){
-    const b=brain(p.ai?.level),foes=s.players.filter(q=>q.id!==p.id&&!q.respawn&&!(q.shield>0));
+    const b=brain(p.ai?.level,p.ai?.style),foes=s.players.filter(q=>q.id!==p.id&&!q.respawn&&!(q.shield>0));
     // Leveled bots spread out: a kite another bot is already hunting is a worse target, so free-for-all
     // stages stay every-pilot-for-himself instead of turning into bots ganging up on the player.
     const hunters=q=>p.ai?s.players.filter(o=>o.bot&&o!==p&&!o.respawn&&o.aiTarget===q.id).length:0;
@@ -174,8 +180,19 @@ export function createEngine() {
     if(b.sweep&&c?.valid){const a=line(p).a,dx=p.x-a.x,dy=p.y-a.y,d=Math.hypot(dx,dy)||1,dir=Math.sin(s.last/260+(p.slot||0))>0?1:-1;return {x:dx/d*.8*dir,y:dy/d*.8*dir,cut:pull,skill};}
     return {x:clamp((x-p.x)/80,-b.speed,b.speed),y:clamp((y-p.y)/80,-b.speed,b.speed),cut:pull,skill};
   }
+  // Only the authenticated owner of a private campaign room can freeze its simulation.
+  function setSoloPause(s,p,paused,now){
+    if(!s.trail||!p?.accountId||p.accountId!==s.trailOwner||s.players.some(q=>!q.bot&&q.id!==p.id)||now>=s.end)return false;
+    s.soloPaused=paused===true;p.input={};p.seen=now;return true;
+  }
   function step(s,now) {
-    s._pendingCuts=[];const dt=clamp((now-s.last)/1000,0,.25);s.last=now;s.wind=Math.sin(now/9000)*(s.daily?.weather==='wind'?36:12);
+    s._pendingCuts=[];
+    if(s.soloPaused&&s.trail){
+      const owner=s.players.find(p=>!p.bot&&p.accountId===s.trailOwner&&now-p.seen<15000);
+      if(owner){const elapsed=Math.max(0,now-s.last);s.end+=elapsed;if(s.phaseUntil)s.phaseUntil+=elapsed;for(const p of s.players)if(p.respawn)p.respawn+=elapsed;for(const event of s.events)event.at+=elapsed;s.last=now;return s;}
+      s.soloPaused=false;
+    }
+    const dt=clamp((now-s.last)/1000,0,.25);s.last=now;s.wind=Math.sin(now/9000)*(s.daily?.weather==='wind'?36:12);
     if(now>=s.end)return s;s.players=s.players.filter(p=>p.bot||now-p.seen<15000);
     if((s.daily||s.trail)&&!s.players.some(p=>!p.bot)){s.end=now;return s;}
     // A quick room with nobody real left in it closes instead of letting bots fly alone.
@@ -216,5 +233,5 @@ export function createEngine() {
     return s;
   }
   function practiceStep(s,id,input,now){const p=s.players.find(p=>p.id===id);if(p){p.input=sanitizeInput(input);p.seen=now;}return step(s,now);}
-  return {pipamons,pipamonStats,daily,QUICK,fillBots,SHIELD,DODGE,COUNTER,cutDamage,brain,create,admit,player,step,move,visible,practiceStep,line,contact,types,type,sanitizeInput,seat,lineSkills,lineMotion,lineWindow};
+  return {setSoloPause,pipamons,pipamonStats,daily,QUICK,fillBots,SHIELD,DODGE,COUNTER,cutDamage,brain,create,admit,player,step,move,visible,practiceStep,line,contact,types,type,sanitizeInput,seat,lineSkills,lineMotion,lineWindow};
 }

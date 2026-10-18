@@ -421,3 +421,42 @@ test('returning to a district highlights only a confirmed unlocked next place',a
  assert.equal(a.run('trailPick'),'morro-2');assert.match(a.document.getElementById('districtArrival').textContent,/Lugar conquistado/);
  a.run("returnToDistrict('morro-2',false)");assert.equal(a.run('trailPick'),'morro-2');
 });
+
+
+test('all five Morro rival cutouts have alpha, versioned routes and identical published files',async()=>{
+ const config=artConfig(),serve=createAssetHandler(),rivals=config.designs.rivals;
+ assert.deepEqual(Object.keys(rivals),['Zeca','Bia','Juninho','Lia','Tião']);
+ for(const [name,rival]of Object.entries(rivals)){
+  const reply=await serve(new Request('https://game.test/'+rival.url));assert.equal(reply.status,200,name);
+  assert.match(reply.headers.get('cache-control'),/immutable/);const bytes=Buffer.from(await reply.arrayBuffer());
+  assert.equal(bytes[25],6,name+' must preserve RGBA');assert.ok(bytes.readUInt32BE(16)>=512);assert.ok(bytes.readUInt32BE(20)>=512);
+  assert.deepEqual(fs.readFileSync('docs/assets/'+rival.image),bytes);
+  assert.equal((await serve(new Request('https://game.test/'+rival.url,{method:'HEAD'}))).status,200);
+ }
+});
+
+test('encounter portraits follow current speakers, preserve the hidden leader and wait for confirmed outcomes',async()=>{
+ const a=app({member:true});await a.settle();
+ const before=a.run("trailStoryMarkup('morro-1')");assert.match(before,/zeca-v1/);assert.doesNotMatch(before,/bia-v1|Mikka/);
+ const duo=a.run("trailStoryMarkup('morro-3')");assert.match(duo,/juninho-v1/);assert.match(duo,/lia-v1/);
+ assert.equal(a.run("trailStoryMarkup('morro-1','won')"),'');
+ const after=a.run("trailStoryMarkup('morro-1','won',{confirmed:true})");assert.match(after,/zeca-v1/);assert.doesNotMatch(after,/bia-v1/);
+});
+
+
+test('encounter partner choice uses owned inventory and returns to the same briefing after confirmed equipment',async()=>{
+ const a=app({member:true});await a.settle();
+ a.run(`playerAccount={profile:{id:'choose-owner',nickname:'Ana',equipped_kite_id:'one'},inventory:[{id:'one',model_id:'basica',permanent:true,model:{name:'Carcará',color:0}},{id:'two',model_id:'mata',permanent:true,model:{name:'Mata verde',color:1}}]};onTrailAccountChange=()=>{};onCourtyardAccount=()=>{};onLineAccountChange=()=>{};var resolveChoice;accountRequest=()=>new Promise(resolve=>resolveChoice=resolve);presentStage('morro-1');chooseEncounterPartner('morro-1');`);
+ assert.equal(a.document.querySelectorAll('#encounterPartnerList button').length,2);
+ const pending=a.document.querySelectorAll('#encounterPartnerList button')[1].onclick();assert.equal(a.run('playerAccount.profile.equipped_kite_id'),'one');
+ a.run(`resolveChoice({account:{...playerAccount,profile:{...playerAccount.profile,equipped_kite_id:'two'}}})`);await pending;
+ assert.equal(a.run('playerAccount.profile.equipped_kite_id'),'two');assert.match(a.document.getElementById('dialogTitle').textContent,/Praça/);assert.match(a.document.querySelector('.encounter-partner-summary').textContent,/Mata verde/);assert.equal(a.run('mode'),null);
+});
+
+
+test('solo help sits above pause and closes back to the frozen practice menu',async()=>{
+ const a=app({seen:true});await a.settle();
+ a.run(`var pauseState=eng.create(Date.now());pauseState.players=[eng.player('Ana',0,'pause-local',Date.now())];enter(pauseState,'pause-local','practice');openPause();$('pauseRules').onclick()`);
+ assert.equal(a.document.getElementById('modal').classList.contains('pause-help'),true);assert.equal(a.document.getElementById('pauseSheet').inert,true);assert.ok(a.run('pausedAt>0'));
+ a.run('closeModal()');assert.equal(a.document.getElementById('pauseSheet').inert,false);assert.equal(a.document.getElementById('pauseSheet').hidden,false);assert.ok(a.run('pausedAt>0'));a.run('closeSheet()');assert.equal(a.run('pausedAt'),0);
+});

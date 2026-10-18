@@ -48,9 +48,9 @@ test('city navigation respects unlocks, enters Morro exploration and preserves o
 
 test('exploration cannot unlock encounters, preserves position after battle and clears another account',async()=>{
  const ui=journeyUI();await ui.settle();await ui.run(`accountRequest=async()=>({journey:{phase:'complete'}});playerAccount={profile:{id:'world-a',nickname:'Ana'},inventory:[]};onCourtyardAccount()`);await ui.settle();
- ui.run(`openWorld('morro');worldGo(worldScene().places.find(p=>p.stage==='morro-5'));worldRuntime.loading=false;updateWorldContext();interactWorld()`);
+ ui.run(`openWorld('morro');worldGo(worldScene().places.find(p=>p.stage==='morro-5'));for(let i=0;i<3000&&worldState().actor.path.length;i++)worldState().navigation.step(worldState().actor,.1);worldRuntime.loading=false;updateWorldContext();interactWorld()`);
  assert.equal(ui.run('mode'),null);assert.notEqual(ui.document.getElementById('modal').style.display,'flex');assert.equal(ui.run('trailProgress.stars["morro-5"]||0'),0);
- ui.run(`worldGo(worldScene().places.find(p=>p.stage==='morro-1'));worldRuntime.loading=false;updateWorldContext();interactWorld()`);
+ ui.run(`worldGo(worldScene().places.find(p=>p.stage==='morro-1'));for(let i=0;i<3000&&worldState().actor.path.length;i++)worldState().navigation.step(worldState().actor,.1);worldRuntime.loading=false;updateWorldContext();interactWorld()`);
  assert.equal(ui.document.getElementById('modal').classList.contains('encounter-preview'),true);assert.equal(ui.run('mode'),null);assert.equal(ui.run('modalReturnFocus.id'),'worldInteract');
  ui.run(`closeModal();var lastWorldPosition={x:worldState().actor.x,y:worldState().actor.y};returnToDistrict('morro-1',false)`);
  assert.equal(ui.run('worldRuntime.id'),'morro');assert.equal(ui.run('worldState().actor.x'),ui.run('lastWorldPosition.x'));assert.equal(ui.document.getElementById('trails').hidden,true);
@@ -125,4 +125,28 @@ test('journey endpoint requires auth and rejects forged models or checkpoints be
 test('courtyard assets are served by the allowlist with PNG types; other pack data stays private to builds',async()=>{
  const serve=createAssetHandler();for(const p of ['backgrounds/quintal-clube-v1.png','packs/cidade-v1/mapa.png','packs/cidade-v1/insignias.png']){const response=await serve(new Request('http://localhost/assets/'+p));assert.equal(response.status,200);assert.equal(response.headers.get('Content-Type'),'image/png');}
  assert.equal((await serve(new Request('http://localhost/assets/packs/cidade-v1/PROMPTS.json'))).status,404);
+});
+
+
+test('click-to-walk progresses with ambient motion paused and reduced, with genuine directional sprite frames',async()=>{
+ const ui=journeyUI();await ui.settle();
+ ui.run(`playerAccount={profile:{id:'walker',nickname:'Walker'},inventory:[]};journey={phase:'complete'};journeyOwner='walker';showCourtyard();refreshWorldHUD();homeMotionPaused=true;var walkingState=worldState(),walkingStart={x:walkingState.actor.x,y:walkingState.actor.y};worldGo(worldScene().places[0]);`);
+ assert.equal(ui.run('art.reduced'),true);assert.equal(ui.run('homeMotionPaused'),true);
+ assert.equal(ui.run('walkingState.actor.x===walkingStart.x&&walkingState.actor.y===walkingStart.y'),true,'input must queue a route, never teleport');
+ ui.run(`drawWorldScene($('courtyardCanvas').getContext('2d'),100,.1)`);
+ assert.equal(ui.run('walkingState.actor.moving'),true);assert.ok(ui.run('walkingState.navigation.distance(walkingStart,walkingState.actor)>0'));
+ const poses=ui.run(`(()=>{const frames=[];homeImages.set('plaza-kael',{});const g={fillStyle:'',beginPath(){},ellipse(){},fill(){},drawImage(...args){frames.push(args.slice(1,5))}};drawWorldHuman(g,walkingState.actor,0);drawWorldHuman(g,walkingState.actor,180);return frames;})()`);
+ assert.notDeepEqual([...poses[0]],[...poses[1]],'manual walking advances the existing spritesheet even with ambient motion paused');
+ for(let i=0;i<200;i++)ui.run(`drawWorldScene($('courtyardCanvas').getContext('2d'),1000,.1)`);
+ assert.equal(ui.run('walkingState.actor.path.length'),0);assert.equal(ui.run('worldRuntime.near.id===worldScene().places[0].id'),true);
+});
+
+
+test('world objectives identify the nearby rival, completion and hide the champion before unlock',async()=>{
+ const ui=journeyUI();await ui.settle();await ui.run(`accountRequest=async()=>({journey:{phase:'complete'}});playerAccount={profile:{id:'mission-test',nickname:'Ana'},inventory:[]};onCourtyardAccount()`);await ui.settle();
+ ui.run(`openWorld('morro');worldGo(worldScene().places.find(p=>p.stage==='morro-1'));for(let i=0;i<1000&&worldState().actor.path.length;i++)worldState().navigation.step(worldState().actor,.1);updateWorldContext()`);
+ assert.match(ui.document.getElementById('homeObjective').textContent,/Converse com Zeca/);
+ ui.run(`var rivalNames=[];homeImages.set('rival-Zeca',{});var rivalContext={fillStyle:'',beginPath(){},ellipse(){},fill(){},drawImage(){},strokeText(){},fillText(name){rivalNames.push(name)}};drawWorldRival(rivalContext,worldScene().places.find(p=>p.stage==='morro-1'),0);drawWorldRival(rivalContext,worldScene().places.find(p=>p.stage==='morro-5'),0);`);
+ assert.equal(ui.run('rivalNames.join()'),'Zeca');
+ ui.run(`for(const stage of trails.stages)trailProgress.stars[stage.id]=1;updateWorldContext()`);assert.match(ui.document.getElementById('homeObjective').textContent,/venceu os três bairros/);assert.equal(ui.document.getElementById('plazaMissionTitle').textContent,'Jornada concluída');
 });

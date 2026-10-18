@@ -53,3 +53,12 @@ test('each boss drops its Pipamon rabiola once, and only real drops survive sani
  const again=t.settle(first.progress,'morro-5',{won:true});assert.equal(again.drop,null);assert.equal(again.progress.items.length,1);
  assert.deepEqual(t.sanitize({items:['rabiola-chaspiral','rabiola-chaspiral','inventada',7]}).items,['rabiola-chaspiral']);
 });
+
+test('Morro encounters have distinct voices, tactics and spoiler-free clues before the park',()=>{
+ const e=createEngine(),styles=new Set();
+ for(const stage of t.trails[0].stages){const story=t.story(stage.id);assert.ok(story.before.length&&story.won.length&&story.lost.length&&story.nextHint);assert.equal(story.styles.length,stage.foes.length);for(const style of story.styles){styles.add(style);const b=e.brain(stage.level,style);assert.ok(b.focus>0&&b.rest>0&&b.speed>0&&b.speed<=1&&b.reserve>=0);}
+ if(!stage.boss)assert.doesNotMatch(JSON.stringify(story),/Mikka|Lohan|Kleie/);
+ }
+ assert.equal(styles.size,4);assert.equal(t.story('praia-1'),null);
+ const base=e.brain(4);assert.deepEqual(e.brain(4,'unrecognized'),base);assert.ok(e.brain(4,'mobile').speed>base.speed);assert.ok(e.brain(4,'patient').focus>base.focus);assert.ok(e.brain(4,'guard').reserve>base.reserve);assert.ok(e.brain(4,'reader').reserve>base.reserve);
+});

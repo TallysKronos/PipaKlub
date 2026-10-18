@@ -74,7 +74,7 @@ function trailUI(send){
  const el=(tag,text,cls)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(cls)node.className=cls;return node;};
  const ctx=vm.createContext({document,console,$:id=>document.getElementById(id),uiElement:el,trails:createTrails(),trailLeaderMarkup:()=>'',escapeHTML:s=>s,ART_CONFIG:{items:[{id:'rabiola-raio-de-sol',name:'Rabiola de Raio de sol',url:'assets/test.png'}]},accountRequest:send,refreshRewards:()=>{},acceptTrailSnapshot:(d,o)=>accepted.push([d,o]),setTimeout:fn=>timers.push(fn),closeTrails:()=>actions.push('close-trails'),openAccount:async()=>actions.push('account'),navigateClub:p=>actions.push(p),returnToDistrict:(id,won)=>actions.push(['district',id,won]),presentStage:id=>actions.push(['preview',id]),startStage:p=>actions.push(p)});
  ctx.actions=actions;ctx.modal=(title,body)=>document.getElementById('body').innerHTML=body;vm.runInContext(`let state={id:'match',trail:'morro-5'},showResult=true,playerAccount={profile:{id:'${a}'}},mode='online';function closeModal(){mode=null;state=null;actions.push('close-result');}function leave(){actions.push('leave');}`,ctx);
- vm.runInContext(fs.readFileSync('src/trail-rewards-client.js','utf8'),ctx);return {document,timers,actions,accepted,run:code=>vm.runInContext(code,ctx),settle:()=>new Promise(r=>setImmediate(r))};
+ vm.runInContext(fs.readFileSync('src/encounter-story-client.js','utf8'),ctx);vm.runInContext(fs.readFileSync('src/trail-rewards-client.js','utf8'),ctx);return {document,timers,actions,accepted,run:code=>vm.runInContext(code,ctx),settle:()=>new Promise(r=>setImmediate(r))};
 }
 test('results wait for confirmed rewards and the invoker button exits the match before opening the NPC',async()=>{
  let count=0;const calls=[],app=trailUI(async(action,payload)=>{calls.push([action,payload]);return ++count===1?{status:'saving',trails:{result:null}}:{status:'saved',trails:{result:{won:true,stars:3,coins:45,firstClear:false,drop:'rabiola-raio-de-sol',tailId:'tail'}}};});
@@ -93,3 +93,17 @@ test('an abandoned solo trail releases its account after connection expiry witho
 test('confirmed trail wins return to the district map instead of starting a second battle',async()=>{const app=trailUI(async()=>({status:'saved',trails:{result:{won:true,stars:2,coins:45}}}));app.run('showOnlineTrailResult(state,[],{rounds:3})');await app.settle();assert.equal(app.document.querySelector('#rematchButton').textContent,'Ver meu caminho ▶');app.document.querySelector('#rematchButton').onclick();assert.deepEqual(app.actions,[['district','morro-5',true]]);});
 
 test('retrying a confirmed defeat restores the district before opening the encounter presentation',async()=>{const app=trailUI(async()=>({status:'saved',trails:{result:{won:false,stars:0,coins:0}}}));app.run('showOnlineTrailResult(state,[],{rounds:0})');await app.settle();app.document.querySelector('#rematchButton').onclick();assert.deepEqual(app.actions,[['district','morro-5',false],['preview','morro-5']]);});
+
+test('Mikka celebration and next-place dialogue wait for the confirmed result and distinguish replays',async()=>{
+ let count=0;const app=trailUI(async()=>++count===1?{status:'saving',trails:{result:null}}:{status:'saved',trails:{result:{won:true,stars:3,coins:45,firstClear:true}}});
+ app.run('showOnlineTrailResult(state,[],{rounds:3})');await app.settle();
+ assert.doesNotMatch(app.document.body.textContent,/O Morro do Sol conhece seu nome|Bairro concluído/);
+ app.timers.shift()();await app.settle();assert.match(app.document.body.textContent,/O Morro do Sol conhece seu nome/);assert.match(app.document.body.textContent,/Beira-Mar/);
+ assert.equal(app.run("trailStoryMarkup('morro-5','won',{confirmed:false,firstClear:true})"),'');
+ assert.doesNotMatch(app.run("trailStoryMarkup('morro-5','won',{confirmed:true,firstClear:false})"),/Bairro concluído/);
+});
+
+test('confirmed defeat provides encouragement without a completion banner or new-place promise',async()=>{
+ const app=trailUI(async()=>({status:'saved',trails:{result:{won:false,stars:0,coins:0,firstClear:false}}}));app.run('showOnlineTrailResult(state,[],{rounds:0})');await app.settle();
+ assert.match(app.document.getElementById('trailStoryOutcome').textContent,/por mérito seu/);assert.doesNotMatch(app.document.body.textContent,/Bairro concluído|Beira-Mar/);
+});

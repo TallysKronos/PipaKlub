@@ -15,7 +15,7 @@ export function createNetworkView(engine){
   }
   function render(now,input,dt){
     if(!history.length)return [];
-    const latest=history.at(-1).state,active=latest.end>latest.last&&(!latest.phase||latest.phase==='live');
+    const latest=history.at(-1).state;if(latest.soloPaused)return latest.players.map(clone);const active=latest.end>latest.last&&(!latest.phase||latest.phase==='live');
     if(own&&active&&!own.respawn&&now-receivedAt<1000){
       engine.move(own,input,Math.min(dt,.1),latest.wind,latest.daily?.weather);
       if(authority&&!own.lineMove&&same(input,authority.input)&&now-receivedAt<500){

@@ -26,7 +26,7 @@ test('a human-like player without tricks can finish every trail within a few tri
  let p=t.defaults();const tries={};
  for(const st of t.stages){let n=0,won=false;
   while(!won&&n<10){n++;const s=e.create(0,{mode:'rounds',roundsToWin:st.rounds}),me=e.player('Eu',0,'you',0),level=t.aiLevel(st,p);e.admit(s,me,0);
-   st.foes.forEach((f,i)=>{const b=e.player(f.name,f.color,'ai'+i,0);b.bot=true;b.ai={level};e.admit(s,b,0);});
+   st.foes.forEach((f,i)=>{const b=e.player(f.name,f.color,'ai'+i,0);b.bot=true;b.ai={level,style:t.story(st.id)?.styles[i]};e.admit(s,b,0);});
    const h=human(e,rand);for(let now=16;now<s.end&&now<900000;now+=16)e.practiceStep(s,'you',h(s,me,.016),now);
    won=(me.rounds||0)>=s.roundsToWin;p=t.settle(p,st.id,{won,roundsLost:Math.max(0,(s.round||0)-(me.rounds||0))}).progress;}
   tries[st.id]=n;assert.ok(won,st.id+' was not beaten in 10 tries: '+JSON.stringify(tries));}

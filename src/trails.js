@@ -25,6 +25,155 @@ export function createTrails(){
       {id:'torres-5',drop:'rabiola-flautrevo',name:'Desafio de Kleie',level:8,rounds:3,coins:80,boss:true,foes:[foe('Kleie',3,'flautrevo')],tip:'A flauta dele confunde o vento. Respire, leia o cruzamento e seja paciente.'}
     ]}
   ];
+  const STORIES={
+  "morro-1": {
+    "styles": [
+      "patient"
+    ],
+    "tactic": "Zeca observa o cruzamento antes de puxar.",
+    "before": [
+      [
+        "Zeca",
+        "Quem passa por esse portão ganha uma boa-vinda e um desafio! Não precisa correr: me mostra seu primeiro rebique."
+      ]
+    ],
+    "won": [
+      [
+        "Zeca",
+        "Aí sim! Você ouviu o vento antes de puxar. A Bia está na escadaria, debaixo da árvore. Ela nunca fica parada!"
+      ]
+    ],
+    "lost": [
+      [
+        "Zeca",
+        "Sem pressa. Olha para onde as linhas se cruzam e guarda energia para a hora certa. O portão continua aberto para você."
+      ]
+    ],
+    "nextHint": "Siga até a árvore da escadaria. Bia lê o vento pelas folhas."
+  },
+  "morro-2": {
+    "styles": [
+      "mobile"
+    ],
+    "tactic": "Bia muda de posição, mas demora um pouco mais para preparar o rebique.",
+    "before": [
+      [
+        "Bia",
+        "Tá vendo as folhas? Elas avisam quando o vento vai virar. Eu gosto de mudar de lado com ele. Consegue me acompanhar?"
+      ]
+    ],
+    "won": [
+      [
+        "Bia",
+        "Você encontrou meu ritmo! Lá na laje tem uma dupla fazendo barulho. O Juninho pensa antes de puxar; a Lia vai na frente."
+      ]
+    ],
+    "lost": [
+      [
+        "Bia",
+        "Não precisa me perseguir pelo céu inteiro. Espera minha linha passar pelo seu caminho. Tenta mais uma vez!"
+      ]
+    ],
+    "nextHint": "Na laje, Juninho e Lia voam juntos — mas cada um tem seu ritmo."
+  },
+  "morro-3": {
+    "styles": [
+      "patient",
+      "mobile"
+    ],
+    "tactic": "Juninho prepara puxões com calma; Lia se movimenta mais. Os rivais também disputam entre si.",
+    "before": [
+      [
+        "Juninho",
+        "Aqui na laje a gente combina o começo, mas cada pipa faz seu caminho."
+      ],
+      [
+        "Lia",
+        "E eu não prometo esperar ninguém! Quando três linhas se encontram, vale escolher bem a sua hora."
+      ]
+    ],
+    "won": [
+      [
+        "Juninho",
+        "Boa leitura! Você não entrou no meio da confusão."
+      ],
+      [
+        "Lia",
+        "O Tião está no mirante da caixa-d’água. Se ele fechar a guarda, muda o jeito de chegar!"
+      ]
+    ],
+    "lost": [
+      [
+        "Juninho",
+        "Com três no céu, dá para observar antes de entrar."
+      ],
+      [
+        "Lia",
+        "Escolhe um cruzamento bom. Correr atrás de todo mundo só gasta fôlego!"
+      ]
+    ],
+    "nextHint": "Suba até o mirante da caixa-d’água. Tião prefere guardar energia."
+  },
+  "morro-4": {
+    "styles": [
+      "guard"
+    ],
+    "tactic": "Tião conserva energia e procura sair de cruzamentos perigosos.",
+    "before": [
+      [
+        "Tião",
+        "Lá de cima parece que dá para alcançar tudo. Eu prefiro guardar o fôlego e escolher meu espaço. Vamos ver como você chega."
+      ]
+    ],
+    "won": [
+      [
+        "Tião",
+        "Você teve paciência para encontrar a abertura. O parque fica logo depois do mirante. Tem alguém esperando por quem consegue chegar até lá."
+      ]
+    ],
+    "lost": [
+      [
+        "Tião",
+        "Minha guarda não fica fechada para sempre. Voa, observa e muda o ângulo. O céu tem mais de um caminho."
+      ]
+    ],
+    "nextHint": "O caminho do parque está aberto. Uma última pipa espera no gramado."
+  },
+  "morro-5": {
+    "styles": [
+      "reader"
+    ],
+    "tactic": "Mikka guarda energia e prepara o rebique depois de ler o cruzamento.",
+    "before": [
+      [
+        "Mikka",
+        "Então foi você que atravessou o bairro! Sou Mikka. Cada um daqui te mostrou um jeito de voar. Agora quero conhecer o seu."
+      ],
+      [
+        "Mikka",
+        "Não precisa imitar ninguém. Encontre seu espaço, escute o vento e vamos fazer uma boa história no céu."
+      ]
+    ],
+    "won": [
+      [
+        "Mikka",
+        "Seu jeito de voar já faz parte deste bairro. Foi bonito ver você escolher a hora de insistir e a hora de respirar."
+      ],
+      [
+        "Mikka",
+        "Quando quiser, volte ao parque. Mas tem outro vento te chamando lá na Beira-Mar."
+      ]
+    ],
+    "lost": [
+      [
+        "Mikka",
+        "Você chegou até aqui por mérito seu. Não deixa um duelo apagar os outros encontros. Descansa, observa seu parceiro e volta quando quiser."
+      ]
+    ],
+    "nextHint": "O Morro do Sol ficou na sua história. A Beira-Mar agora espera por você."
+  }
+};
+  const story=id=>STORIES[id]||null;
   const stages=TRAILS.flatMap((t,ti)=>t.stages.map((s,si)=>({...s,trail:t.id,trailIndex:ti,index:si})));
   const stage=id=>stages.find(s=>s.id===id)||null;
   const MASTERY_MAX=8;
@@ -55,5 +204,5 @@ export function createTrails(){
   }
   const totalStars=p=>Object.values(p.stars).reduce((a,b)=>a+b,0);
   const nextStage=id=>{const i=stages.findIndex(s=>s.id===id);return i>=0?stages[i+1]||null:null;};
-  return {DROPS,RELIEF_AFTER,trails:TRAILS,stages,stage,defaults,sanitize,unlocked,aiLevel,settle,totalStars,nextStage,MASTERY_MAX};
+  return {story,DROPS,RELIEF_AFTER,trails:TRAILS,stages,stage,defaults,sanitize,unlocked,aiLevel,settle,totalStars,nextStage,MASTERY_MAX};
 }
