@@ -4,8 +4,10 @@ const manifest=JSON.parse(await fs.readFile(new URL('../assets/atlas.json',impor
 const items=JSON.parse(await fs.readFile(new URL('../assets/pipa-items.json',import.meta.url),'utf8')).items;
 const hud=JSON.parse(await fs.readFile(new URL('../assets/ui/hud-papel-bambu-v1/manifest.json',import.meta.url),'utf8'));
 const kit=JSON.parse(await fs.readFile(new URL('../assets/ui/kit-switch-v1/manifest.json',import.meta.url),'utf8'));
+const encounterFiles=Object.values(JSON.parse(await fs.readFile(new URL('../assets/encounter-scenes.json',import.meta.url),'utf8'))).map(s=>s.image);
+const districtFiles=Object.values(JSON.parse(await fs.readFile(new URL('../assets/district-places.json',import.meta.url),'utf8'))).map(p=>p.image);
 const kitFiles=[...Object.values(kit.components),...Object.values(kit.icons)].map(c=>c.image).filter(f=>f.endsWith('.png')).map(f=>'ui/kit-switch-v1/'+f);
-const files=[...kitFiles,...Object.values(hud.sheets).map(s=>s.image),...Object.values(manifest.atlases).map(a=>a.meta.image),...items.map(i=>i.image),'vfx/trade-celestial.png','vfx/trade-sky.png','vfx/trade-spirit-16.png',"ui/club-collection-v2.png","ui/club-trades-v2.png","ui/club-summon-v2.png","ui/club-farm-v2.png","ui/club-profile-v2.png","ui/club-history-v2.png"];
+const files=[...encounterFiles,...districtFiles,...kitFiles,...Object.values(hud.sheets).map(s=>s.image),...Object.values(manifest.atlases).map(a=>a.meta.image),...items.map(i=>i.image),'vfx/trade-celestial.png','vfx/trade-sky.png','vfx/trade-spirit-16.png',"ui/club-collection-v2.png","ui/club-trades-v2.png","ui/club-summon-v2.png","ui/club-farm-v2.png","ui/club-profile-v2.png","ui/club-history-v2.png"];
 export function createAssetHandler(){
  const cache=new Map();
  return async request=>{

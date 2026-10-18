@@ -5,7 +5,7 @@ function trailLeaderMarkup(trail,pose='idle',label=true){
  return '<span class="trail-leader-art">'+art.frameMarkup(leader.id,frame)+'</span>'+(label?'<span class="trail-leader-caption"><b>'+escapeHTML(leader.name)+'</b><small>Líder da Trilha</small></span>':'');
 }
 function renderTrailLeader(trail,stage){
- const leader=stage.boss?ART_CONFIG.designs.leaders[trail.id]:null,id=leader?.id||'sr-assis-expressions',frame=leader?'14':'speaking';
+ const leader=stage.boss&&districtLeaderKnown(trail)?ART_CONFIG.designs.leaders[trail.id]:null,id=leader?.id||'sr-assis-expressions',frame=leader?'14':'speaking';
  $('stageSpeaker').textContent=(leader?.name||'Sr. Assis')+':';
  const canvas=$('stageAssis'),context=canvas.getContext('2d');context.clearRect(0,0,canvas.width,canvas.height);
  art.load(id).then(ok=>{if(!ok||trailPick!==stage.id||$('trails').hidden)return;context.clearRect(0,0,canvas.width,canvas.height);art.draw(context,id,frame,0,0,canvas.width,canvas.height,true);});

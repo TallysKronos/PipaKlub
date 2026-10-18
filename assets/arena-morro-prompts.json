@@ -1,0 +1,48 @@
+{
+  "tool": "image_gen (integrated)",
+  "intent": "new images; Morro map used as style reference",
+  "prompts": [
+    {
+      "id": "morro-1",
+      "prompt": "Create a NEW standalone 2D background for a Brazilian kite creature RPG battle, PipaKlub. Reference image ONLY for art style and neighborhood architecture, not a map edit. Hand-drawn crisp outlines, warm cel-shaded anime game background. Wide 16:9 landscape, ground-level side-on arena view looking across the neighborhood. Critical gameplay composition: upper 70% must be very open low-detail blue sky with a few soft clouds, no foreground objects or characters, so thin colored kite lines remain legible. All identifiable local architecture and lush tropical foliage along the lower 30%, horizon at 75% height. Keep center sky clean, no creatures, no people, no text, labels, numbers, interface, frame or vignette. Full bleed illustration. A small welcoming neighborhood plaza with an open wooden gate, a tiled compass medallion in the paving, low terracotta-roofed homes and tropical flowers. Sunny morning."
+    },
+    {
+      "id": "morro-2",
+      "prompt": "Create a NEW standalone 2D background for a Brazilian kite creature RPG battle, PipaKlub. Reference image ONLY for art style and neighborhood architecture, not a map edit. Hand-drawn crisp outlines, warm cel-shaded anime game background. Wide 16:9 landscape, ground-level side-on arena view looking across the neighborhood. Critical gameplay composition: upper 70% must be very open low-detail blue sky with a few soft clouds, no foreground objects or characters, so thin colored kite lines remain legible. All identifiable local architecture and lush tropical foliage along the lower 30%, horizon at 75% height. Keep center sky clean, no creatures, no people, no text, labels, numbers, interface, frame or vignette. Full bleed illustration. Leafy hillside stairway with a large shade tree at the far left edge, stone steps, low colorful hillside houses along the bottom. Breezy bright midday. Tree canopy must stay low or far at edge, not cover the sky."
+    },
+    {
+      "id": "morro-3",
+      "prompt": "Create a NEW standalone 2D background for a Brazilian kite creature RPG battle, PipaKlub. Reference image ONLY for art style and neighborhood architecture, not a map edit. Hand-drawn crisp outlines, warm cel-shaded anime game background. Wide 16:9 landscape, ground-level side-on arena view looking across the neighborhood. Critical gameplay composition: upper 70% must be very open low-detail blue sky with a few soft clouds, no foreground objects or characters, so thin colored kite lines remain legible. All identifiable local architecture and lush tropical foliage along the lower 30%, horizon at 75% height. Keep center sky clean, no creatures, no people, no text, labels, numbers, interface, frame or vignette. Full bleed illustration. A flat rooftop terrace with a low red brick parapet, a small blue water tank at far lower-left, kite spools and distant terracotta roofs along the bottom. Warm afternoon, no lines drawn across sky."
+    },
+    {
+      "id": "morro-4",
+      "prompt": "Create a NEW standalone 2D background for a Brazilian kite creature RPG battle, PipaKlub. Reference image ONLY for art style and neighborhood architecture, not a map edit. Hand-drawn crisp outlines, warm cel-shaded anime game background. Wide 16:9 landscape, ground-level side-on arena view looking across the neighborhood. Critical gameplay composition: upper 70% must be very open low-detail blue sky with a few soft clouds, no foreground objects or characters, so thin colored kite lines remain legible. All identifiable local architecture and lush tropical foliage along the lower 30%, horizon at 75% height. Keep center sky clean, no creatures, no people, no text, labels, numbers, interface, frame or vignette. Full bleed illustration. A hilltop lookout platform, small blue water tower at the lower-right edge, wooden railing, distant mountains and bay below a very spacious sky. Golden afternoon."
+    },
+    {
+      "id": "morro-5",
+      "prompt": "Create a NEW standalone 2D background for a Brazilian kite creature RPG battle, PipaKlub. Reference image ONLY for art style and neighborhood architecture, not a map edit. Hand-drawn crisp outlines, warm cel-shaded anime game background. Wide 16:9 landscape, ground-level side-on arena view looking across the neighborhood. Critical gameplay composition: upper 70% must be very open low-detail blue sky with a few soft clouds, no foreground objects or characters, so thin colored kite lines remain legible. All identifiable local architecture and lush tropical foliage along the lower 30%, horizon at 75% height. Keep center sky clean, no creatures, no people, no text, labels, numbers, interface, frame or vignette. Full bleed illustration. A welcoming public park called Parque dos Ventos, but NO written signs. Circular grassy lawn, a tiled roof gazebo at lower-left, low benches, flowerbeds and tropical trees at bottom corners. Special warm golden late-afternoon light, celebratory colorful pennants along the gazebo roof ONLY. Arena for the neighborhood champion, spacious and serene, never a circus."
+    }
+  ],
+  "files": [
+    {
+      "id": "morro-1",
+      "file": "assets/backgrounds/arena-morro-1-v1.png"
+    },
+    {
+      "id": "morro-2",
+      "file": "assets/backgrounds/arena-morro-2-v1.png"
+    },
+    {
+      "id": "morro-3",
+      "file": "assets/backgrounds/arena-morro-3-v1.png"
+    },
+    {
+      "id": "morro-4",
+      "file": "assets/backgrounds/arena-morro-4-v1.png"
+    },
+    {
+      "id": "morro-5",
+      "file": "assets/backgrounds/arena-morro-5-v1.png"
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+/* Source caps come from the kit manifest; artwork corners never stretch. */
+:root{--kit-ink:#294b43;--kit-muted:#52665a;--kit-paper:#fff2cf}
+body.ui-kit-ready button[data-kit-button="primary"]{border-style:solid!important;border-color:transparent!important;border-width:0px 32px 0px 32px!important;border-image:var(--kit-button-primary) 0 64 0 64 fill / 0px 32px 0px 32px / 0 stretch!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:var(--kit-ink)!important;text-shadow:none!important}
+body.ui-kit-ready button[data-kit-button="secondary"]{border-style:solid!important;border-color:transparent!important;border-width:0px 32px 0px 32px!important;border-image:var(--kit-button-secondary) 0 64 0 64 fill / 0px 32px 0px 32px / 0 stretch!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:var(--kit-ink)!important;text-shadow:none!important}
+body.ui-kit-ready button[data-kit-button="destructive"]{border-style:solid!important;border-color:transparent!important;border-width:0px 32px 0px 32px!important;border-image:var(--kit-button-destructive) 0 64 0 64 fill / 0px 32px 0px 32px / 0 stretch!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:var(--kit-ink)!important;text-shadow:none!important}
+body.ui-kit-ready button[data-kit-button="disabled"]{border-style:solid!important;border-color:transparent!important;border-width:0px 32px 0px 32px!important;border-image:var(--kit-button-disabled) 0 64 0 64 fill / 0px 32px 0px 32px / 0 stretch!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:var(--kit-ink)!important;text-shadow:none!important}
+body.ui-kit-ready [data-kit-surface="window"]{border-style:solid!important;border-color:transparent!important;border-width:25px 25px 24px 25px!important;border-image:var(--kit-window) 50 50 48 50 fill / 25px 25px 24px 25px / 0 stretch!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:var(--kit-ink)!important;text-shadow:none!important}
+body.ui-kit-ready [data-kit-surface="portrait-card"]{border-style:solid!important;border-color:transparent!important;border-width:33px 16px 14px 27px!important;border-image:var(--kit-portrait-card) 66 32 28 54 fill / 33px 16px 14px 27px / 0 stretch!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:var(--kit-ink)!important;text-shadow:none!important}
+body.ui-kit-ready [data-kit-surface="tab"]{border-style:solid!important;border-color:transparent!important;border-width:11px 31px 14px 31px!important;border-image:var(--kit-tab) 22 62 28 62 fill / 11px 31px 14px 31px / 0 stretch!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:var(--kit-ink)!important;text-shadow:none!important}
+body.ui-kit-ready [data-kit-surface="speech"]{border-style:solid!important;border-color:transparent!important;border-width:16px 19px 24px 24px!important;border-image:var(--kit-speech) 32 38 48 48 fill / 16px 19px 24px 24px / 0 stretch!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:var(--kit-ink)!important;text-shadow:none!important}
+body.ui-kit-ready [data-kit-surface="header"]{border-style:solid!important;border-color:transparent!important;border-width:9px 21px 17px 31px!important;border-image:var(--kit-header) 18 42 34 62 fill / 9px 21px 17px 31px / 0 stretch!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:var(--kit-ink)!important;text-shadow:none!important}
+body.ui-kit-ready [data-kit-surface="footer"]{border-style:solid!important;border-color:transparent!important;border-width:10px 31px 10px 31px!important;border-image:var(--kit-footer) 20 62 20 62 fill / 10px 31px 10px 31px / 0 stretch!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:var(--kit-ink)!important;text-shadow:none!important}
+body.ui-kit-ready [data-kit-surface="resource"]{border-style:solid!important;border-color:transparent!important;border-width:11px 30px 11px 30px!important;border-image:var(--kit-resource) 22 60 22 60 fill / 11px 30px 11px 30px / 0 stretch!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:var(--kit-ink)!important;text-shadow:none!important}
+body.ui-kit-ready [data-kit-surface="input"]{border-style:solid!important;border-color:transparent!important;border-width:22px 22px 22px 22px!important;border-image:var(--kit-input) 44 44 44 44 fill / 22px 22px 22px 22px / 0 stretch!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:var(--kit-ink)!important;text-shadow:none!important}
+body.ui-kit-ready [data-kit-surface="tooltip"]{border-style:solid!important;border-color:transparent!important;border-width:18px 21px 18px 21px!important;border-image:var(--kit-tooltip) 36 42 36 42 fill / 18px 21px 18px 21px / 0 stretch!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;color:var(--kit-ink)!important;text-shadow:none!important}
+body.ui-kit-ready [data-kit-surface]>.menu-skin-layer,body.ui-kit-ready [data-kit-button]>.menu-button-skin{display:none!important}
+body.ui-kit-ready [data-kit-surface] :is(h2,h3,p,small,.eyebrow){color:var(--kit-ink)}
+body.ui-kit-ready [data-kit-surface] .muted{color:var(--kit-muted)}
+body.ui-kit-ready button[data-kit-button]{min-height:48px;padding:8px 12px!important;width:auto;font-family:var(--font)!important;line-height:1.25;isolation:isolate}
+body.ui-kit-ready button[data-kit-button=primary]{color:#fff5d9!important}
+body.ui-kit-ready button[data-kit-button]:disabled{border-image-source:var(--kit-button-disabled)!important;color:#59645b!important;filter:none;opacity:1}
+body.ui-kit-ready button[data-kit-button]:not(:disabled):hover{filter:brightness(1.07)}
+body.ui-kit-ready button[data-kit-button]:not(:disabled):active{transform:translateY(2px)}
+body.ui-kit-ready :is([data-kit-button],[data-kit-surface=portrait-card]):focus-visible{outline:3px solid #ae542e;outline-offset:3px}
+body.ui-kit-ready .home-identity{padding:3px 7px;max-width:320px}
+body.ui-kit-ready .home-identity small{color:var(--kit-muted)}
+body.ui-kit-ready .home-objective{padding:0 5px;max-width:400px}
+body.ui-kit-ready .home-objective small{color:#865429;letter-spacing:1px}
+body.ui-kit-ready .home-footer>span{padding:0 5px}
+body.ui-kit-ready .journey-dialog{padding:7px 14px 10px}
+body.ui-kit-ready .journey-dialog p{color:var(--kit-ink)}
+body.ui-kit-ready .journey-status{color:#89522d}
+body.ui-kit-ready .game-menu-panel{padding:14px 20px}
+body.ui-kit-ready .game-menu :is(h2,small){color:var(--kit-ink)}
+body.ui-kit-ready .city-brief{padding:6px 9px}
+body.ui-kit-ready .city-brief :is(h2,p,.eyebrow){color:var(--kit-ink)}
+body.ui-kit-ready .flight-coach{padding:4px 10px 8px}
+body.ui-kit-ready .partner-option{padding:4px!important}
+body.ui-kit-ready .partner-option[aria-pressed=true]{outline:4px solid #e9b74f;outline-offset:3px}
+body.ui-kit-ready .partner-option :is(b,small){color:var(--kit-ink)}
+body.ui-kit-ready .scene-destination span,body.ui-kit-ready .city-region small{background:transparent;border:solid transparent;border-width:0 18px;border-image:var(--kit-button-secondary) 0 64 fill / 0 18px / 0 stretch;border-radius:0;color:var(--kit-ink);text-shadow:none;padding:6px 2px}
+body.ui-kit-ready .scene-destination:hover span{background:transparent}
+body.ui-kit-ready .courtyard,body.ui-kit-ready .city-screen,body.ui-kit-ready .city-stage{background-color:#344c3d}
+body.ui-kit-ready.game-shell :is(#accountModal,#trails,#pipaDex){background:#233c32e8}
+body.ui-kit-ready #toast{padding:4px 9px;max-width:calc(100vw - 24px)}
+body.ui-kit-ready .account-card,body.ui-kit-ready .dex-card,body.ui-kit-ready .trails-card{padding:12px!important;box-sizing:border-box}
+@media(max-width:600px){body.ui-kit-ready .home-hud{gap:5px}body.ui-kit-ready .home-identity{max-width:220px}body.ui-kit-ready .home-identity b{font-size:16px}body.ui-kit-ready .game-menu-panel{padding:6px}body.ui-kit-ready .journey-dialog{width:calc(100vw - 20px)}}
+@media(prefers-reduced-motion:reduce){body.ui-kit-ready button[data-kit-button]:active{transform:none}}
+
+body.ui-kit-ready .farm-pages{flex-wrap:wrap;justify-content:center}body.ui-kit-ready .farm-pages button{max-width:100%;min-width:0}
+body.ui-kit-ready .school-links{display:flex;flex-wrap:wrap;gap:10px}body.ui-kit-ready .school-links button{flex:1 1 210px;height:auto!important;min-height:64px;white-space:normal;font-size:14px!important}
+body.ui-kit-ready [data-kit-surface]>.close{width:44px;height:44px;border:0!important;border-radius:0;background:var(--kit-action-paper) center/contain no-repeat!important;box-shadow:none!important;color:var(--kit-ink)}
+body.ui-kit-ready .city-region small{width:115px;max-width:115px;box-sizing:border-box;border-width:0 12px;border-image-width:0 12px;min-height:29px;padding:3px 0;font-size:10px;line-height:12px;white-space:normal}
+
+/* Fill every aspect ratio with scene art instead of solid letterbox bars. */
+body.ui-kit-ready :is(.courtyard,.city-screen){isolation:isolate;background:#779b73}
+body.ui-kit-ready :is(.courtyard,.city-screen)::before{display:none}
+body.ui-kit-ready .city-stage{background:transparent}
+/* City atlas: one paper surface, with a map plate and a district legend. */
+body.ui-kit-ready .city-screen{background:transparent;border:solid transparent;border-width:25px;border-image:var(--kit-window) 50 50 48 50 fill / 25px / 0 stretch;box-sizing:border-box;color:var(--kit-ink)}
+body.ui-kit-ready .city-screen::before{display:none}
+body.ui-kit-ready .city-screen .home-hud{top:12px;left:14px;right:14px;align-items:center}
+body.ui-kit-ready .city-stage{left:12px;right:320px;top:115px;bottom:45px;background:transparent;overflow:visible}
+body.ui-kit-ready .city-stage::before{content:'MAPA DOS BAIRROS';position:absolute;top:-30px;left:8px;color:#806039;font:800 11px var(--font);letter-spacing:2px}
+body.ui-kit-ready .city-stage::after{content:'Escolha uma insígnia para conhecer o bairro';position:absolute;bottom:-28px;left:0;right:0;text-align:center;font:700 11px var(--font);color:#6b7056}
+body.ui-kit-ready .city-world{width:min(100%,calc((100dvh - 210px)*1.5));aspect-ratio:3/2;background-size:100% 100%;outline:2px solid #9b8050;outline-offset:5px;box-shadow:0 3px 8px #55422335}
+body.ui-kit-ready .city-screen .city-brief{left:auto;right:8px;top:135px;bottom:45px;width:285px;overflow:auto;border:0!important;border-image:none!important;background:transparent!important;padding:15px 12px!important;box-shadow:none!important}
+body.ui-kit-ready .city-screen .city-brief::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(transparent,#b8995b 18%,#b8995b 82%,transparent)}
+body.ui-kit-ready .city-screen .city-brief h2{font-size:30px;margin-top:12px}
+body.ui-kit-ready .city-screen .city-brief p{font-size:14px;line-height:1.65}
+body.ui-kit-ready .city-screen .city-brief .journey-actions{justify-content:stretch;margin-top:24px}
+body.ui-kit-ready .city-screen .city-brief button{width:100%!important}
+@media(max-width:800px){body.ui-kit-ready .city-screen{border-width:16px;border-image-width:16px}body.ui-kit-ready .city-stage{left:12px;right:12px;top:110px;bottom:255px}body.ui-kit-ready .city-world{width:min(100%,calc((100dvh - 420px)*1.5))}body.ui-kit-ready .city-screen .city-brief{top:auto;bottom:8px;left:12px;right:12px;width:auto;height:205px;padding:8px!important}body.ui-kit-ready .city-screen .city-brief::before{width:auto;height:2px;right:0;bottom:auto}body.ui-kit-ready .city-screen .city-brief h2{font-size:24px;margin:4px 0}body.ui-kit-ready .city-screen .city-brief p{font-size:12px;line-height:1.35}body.ui-kit-ready .city-screen .city-brief .journey-actions{margin-top:6px}}
+@media(max-height:550px) and (min-width:801px){body.ui-kit-ready .city-stage{top:90px;bottom:35px}body.ui-kit-ready .city-world{width:min(100%,calc((100dvh - 175px)*1.5))}body.ui-kit-ready .city-screen .city-brief{top:90px;bottom:15px}}
+
+/* Ambient HUD: informational text belongs to the scene, without pasted panels. */
+body.ui-kit-ready .courtyard .home-identity,body.ui-kit-ready .courtyard .home-objective{background:none;border:0;border-image:none;box-shadow:none;border-radius:0;padding:6px 2px;color:#fff6dd;text-shadow:0 2px 3px #173e32,1px 0 2px #173e32,-1px 0 2px #173e32;cursor:default}
+body.ui-kit-ready .courtyard .home-identity b{font:24px var(--px);color:#fff6dd}
+body.ui-kit-ready .courtyard .home-identity small{color:#fff0c7;font-size:12px}
+body.ui-kit-ready .courtyard .home-objective{text-align:center;max-width:340px}
+body.ui-kit-ready .courtyard .home-objective small{color:#ffe2a1;letter-spacing:2px;font-size:10px;font-weight:800;margin-bottom:4px}
+body.ui-kit-ready .courtyard .home-objective b{color:#fff6dd;font-size:14px;font-weight:800}
+@media(max-width:800px){body.ui-kit-ready .courtyard .home-identity b{font-size:19px}body.ui-kit-ready .courtyard .home-objective{max-width:230px}body.ui-kit-ready .courtyard .home-objective b{font-size:12px}}
+
+/* First-session direction: the courtyard is a full-bleed place, not a menu plate. */
+body.ui-kit-ready .courtyard-stage{width:max(100vw,177.7778dvh);aspect-ratio:16/9}
+body.ui-kit-ready .courtyard::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(#16382e65,transparent 23%,transparent 80%,#16382e65);z-index:1}
+body.ui-kit-ready .courtyard .home-hud,body.ui-kit-ready .courtyard .home-footer{z-index:3}
+body.ui-kit-ready .scene-destination{left:clamp(calc((100% - 100vw)/2 + 88px),var(--destination-x),calc((100% + 100vw)/2 - 88px))!important;top:clamp(calc((100% - 100dvh)/2 + 150px),var(--destination-y),calc((100% + 100dvh)/2 - 110px))!important}
+body.ui-kit-ready .scene-destination span{opacity:0;transform:translateY(5px);transition:opacity .15s,transform .15s;pointer-events:none}
+body.ui-kit-ready .scene-destination:before{content:'◇';font-size:30px;color:#fff3cd;filter:drop-shadow(0 2px 3px #173e32)}
+body.ui-kit-ready .scene-destination:hover span,body.ui-kit-ready .scene-destination:focus-visible span{opacity:1;transform:none}
+body.ui-kit-ready .scene-destination:focus-visible:before{color:#ffe09a;transform:translateY(-5px) scale(1.15)}
+body.ui-kit-ready .courtyard .home-footer>span{background:none;border:0;padding:0;color:#fff4d9;text-shadow:0 2px 3px #173e32;cursor:default}
+body.ui-kit-ready .journey-dialog{max-width:900px;bottom:34px;padding:14px 22px 12px}
+body.ui-kit-ready .journey-dialog .eyebrow{font-size:12px;letter-spacing:1px;color:#866033}
+body.ui-kit-ready .journey-dialog h2{font-size:30px;margin:8px 0}
+body.ui-kit-ready .journey-dialog p{font-size:17px;line-height:1.6;max-width:70ch}
+body.ui-kit-ready .partner-choice{background:#173a35ed;padding:65px 36px 32px}
+body.ui-kit-ready .partner-choice>p{max-width:760px;font-size:16px;line-height:1.6}
+body.ui-kit-ready .partner-option{transition:transform .15s,filter .15s}
+body.ui-kit-ready .partner-option[aria-pressed=false]{filter:saturate(.65);transform:scale(.96)}
+body.ui-kit-ready .partner-option[aria-pressed=true]{filter:none;transform:translateY(-8px);outline:3px solid #efc56e}
+body.ui-kit-ready .partner-option small:last-child{display:none}
+body.ui-kit-ready .partner-option b{font-size:25px}
+.partner-connection{min-height:48px;max-width:720px;text-align:center;color:#fff2d0;font-size:17px;line-height:1.5;margin:18px auto 0}
+body.ui-kit-ready .flight-coach p{font-size:16px;line-height:1.55}
+body.ui-kit-ready .flight-coach:has(#flightNext:not([hidden])){outline:3px solid #d8b35d;outline-offset:3px}
+body[data-input=gamepad].ui-kit-ready .journey-dialog{bottom:100px}
+body[data-input=gamepad].ui-kit-ready .courtyard .home-footer{bottom:86px}
+@media(max-width:600px){body.ui-kit-ready .scene-destination{min-width:70px}body.ui-kit-ready .journey-dialog p{font-size:14px}body.ui-kit-ready .journey-dialog h2{font-size:23px}body.ui-kit-ready .partner-choice{padding:75px 14px 20px}.partner-connection{font-size:14px;margin-top:8px}}
+@media(prefers-reduced-motion:reduce){body.ui-kit-ready .scene-destination span,body.ui-kit-ready .partner-option{transition:none}body.ui-kit-ready .partner-option[aria-pressed=true]{transform:none}}
+body.ui-kit-ready .partner-choice{box-sizing:border-box}
+body.ui-kit-ready .flight-coach{width:min(560px,calc(100vw - 44px));padding:5px 12px 8px}
+body.ui-kit-ready .flight-coach h2{font-size:25px;margin:4px 0}
+body.ui-kit-ready .flight-coach p{margin:7px 0;font-size:15px}
+body.ui-kit-ready .flight-coach .journey-actions{flex-wrap:nowrap;gap:10px}
+body.ui-kit-ready .flight-coach .journey-actions button{flex:1;min-width:0;border-width:0 16px!important;border-image-width:0 16px!important;padding:8px 3px!important;font-size:13px!important;min-height:44px}
+body.ui-kit-ready .journey-status:empty{display:none}
+/* The first conversation owns attention; navigation returns when it ends. */
+body.ui-kit-ready .courtyard:has(.partner-choice:not([hidden])) :is(.home-hud,.home-footer),body.ui-kit-ready .courtyard:has(.journey-dialog:not([hidden])) :is(.home-hud,.home-footer){visibility:hidden;pointer-events:none}
+/* District journey: discovery first, details on selection. */
+body.ui-kit-ready .city-region .city-emblem{width:44px;height:50px;transition:transform .15s}
+body.ui-kit-ready .city-region small{opacity:0;transition:opacity .15s}
+body.ui-kit-ready .city-region[aria-pressed=true] small,body.ui-kit-ready .city-region:hover small,body.ui-kit-ready .city-region:focus-visible small{opacity:1}
+body.ui-kit-ready .city-region[aria-pressed=true] .city-emblem{transform:scale(1.18)}
+body.ui-kit-ready .city-region.future{opacity:.65}
+.district-arrival{display:flex;gap:18px;align-items:center;padding:10px 4px 20px;border-bottom:1px solid #b89b63;flex-shrink:0}
+.district-arrival[hidden],.trail[hidden]{display:none!important}
+.district-arrival .trail-leader-art{width:100px;height:126px;flex:0 0 100px}
+.district-arrival small{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#82613c}
+.district-arrival h3{font:30px var(--px);margin:4px 0;color:#294b43}
+.district-arrival p{font-size:14px;line-height:1.6;margin:8px 0;max-width:50ch}
+body.ui-kit-ready #trails[data-district] .trail{border:0;border-top:0;box-shadow:none;background:transparent;padding:18px 2px}
+body.ui-kit-ready #trails[data-district] .trail>header .trail-leader-art{display:none}
+body.ui-kit-ready #trails[data-district] .trail-path{padding-top:15px}
+body.ui-kit-ready .stage-card #trailStart{font-size:16px;min-height:56px;white-space:normal}
+@media(prefers-reduced-motion:reduce){body.ui-kit-ready .city-region .city-emblem,body.ui-kit-ready .city-region small{transition:none}}
+body.ui-kit-ready #trails[data-district] #trailMastery{display:none}
+body.ui-kit-ready .trails-card .close{width:44px;height:44px;border:0;border-radius:0;background:var(--kit-action-paper) center/contain no-repeat;box-shadow:none}
+@media(min-width:701px){body.ui-kit-ready #trails[data-district] .trails-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,43%);overflow:hidden;min-height:0}body.ui-kit-ready #trails[data-district] .trail-list{padding:12px;min-height:0;overflow:auto}body.ui-kit-ready #trails[data-district] .stage-card{overflow:auto;min-height:0;border-top:0}body.ui-kit-ready #trails[data-district] .district-arrival{gap:10px}body.ui-kit-ready #trails[data-district] .district-arrival p{font-size:13px}body.ui-kit-ready #trails[data-district] .district-arrival .trail-leader-art{width:76px;flex-basis:76px;height:110px}body.ui-kit-ready #trails[data-district] .trail>header{flex-wrap:wrap}}
+.stage-details{display:contents}
+body.ui-kit-ready #trails[data-district] .stage-card{overflow:hidden}
+body.ui-kit-ready #trails[data-district] .stage-details{display:block;flex:1;min-height:0;overflow:auto;padding-right:8px}
+body.ui-kit-ready #trails[data-district] .stage-details>*{margin-bottom:12px}
+body.ui-kit-ready #trails[data-district] #trailStart{flex-shrink:0;width:100%;margin-top:6px}
+body.ui-kit-ready #trails[data-district] .stage-foot{display:none}
+/* Neighborhood exploration map; encounter pins sit on illustrated places. */
+body.ui-kit-ready .district-arrival{padding:4px 0 12px;border:0;font-size:14px;line-height:1.6;color:#5d664e}
+body.ui-kit-ready .trail-path.district-places{display:block;position:relative;width:100%;aspect-ratio:3/2;min-height:210px;background-position:center;background-size:100% 100%;margin:14px 0 6px;padding:0;border-radius:8px;overflow:visible;box-shadow:inset 0 0 0 2px #9b8050}
+body.ui-kit-ready .trail-path.district-places:before{display:none}
+body.ui-kit-ready .district-places .place-node{position:absolute;transform:translate(-50%,-50%);margin:0;padding:0;width:48px;min-width:48px;height:48px;min-height:48px;background:none;border:0;box-shadow:none;z-index:1}
+body.ui-kit-ready .district-places .place-node.picked,body.ui-kit-ready .district-places .place-node:focus-visible{z-index:3}
+body.ui-kit-ready .district-places .node-dot,body.ui-kit-ready .district-places .boss .node-dot{width:38px;height:38px;font-size:16px;margin:auto;border-width:2px;box-shadow:0 2px 5px #16382e70}
+body.ui-kit-ready .district-places .node-stars{position:absolute;top:-13px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:10px;text-shadow:0 1px 2px #294b43}
+.place-label{position:absolute;top:45px;left:50%;transform:translateX(-50%);padding:4px 7px;background:#fff0cfee;color:#294b43;font-size:11px;font-weight:800;line-height:1.3;border-radius:3px;white-space:nowrap;opacity:0;pointer-events:none;box-shadow:0 2px 4px #18382d35}
+.place-node.picked .place-label,.place-node:hover .place-label,.place-node:focus-visible .place-label{opacity:1}
+.unrevealed-rival{font-size:15px;line-height:1.65;padding:12px 0;color:#5c6550}
+@media(min-width:701px){body.ui-kit-ready #trails[data-district] .trails-layout{grid-template-columns:minmax(0,1fr) minmax(290px,36%)}}
+body.ui-kit-ready #trails[data-district] .trail>header{display:none}
+body.ui-kit-ready #trails[data-district] .trail{padding:0 2px 6px}
+body.ui-kit-ready #trails[data-district] .trail-list{gap:4px}
+body.ui-kit-ready #trails[data-district] .district-places{margin-top:2px}
+.encounter-landscape{height:clamp(140px,25dvh,250px);width:100%;background-position:center;background-size:cover;border-radius:6px;box-shadow:inset 0 0 0 1px #ac8c53;margin-bottom:16px}
+.encounter-intro{display:flex;align-items:center;gap:20px;color:#294b43}.encounter-intro h3{font:30px var(--px);margin:5px 0}.encounter-intro p{font-size:15px;line-height:1.6;margin:8px 0}.encounter-intro .trail-leader-art{width:100px;min-width:100px;height:140px}.district-outcome{font-size:15px;font-weight:800;color:#2f6d53;border-left:3px solid #bd9146;padding:4px 12px;margin:0 0 10px}
+@media(prefers-reduced-motion:no-preference){.encounter-intro{animation:scene-arrival .25s ease-out}}
+#modal.encounter-preview{z-index:110}
+#modal.encounter-preview .dialog{width:min(800px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto}
+#modal.encounter-preview #dialogTitle{font-size:30px}
+#modal.encounter-preview .dialog{display:flex;flex-direction:column;max-width:800px;box-sizing:border-box;padding:12px}
+#modal.encounter-preview #dialogBody{flex:1;min-height:0;overflow:auto;padding-right:5px}
+#modal.encounter-preview #dialogAction{flex-shrink:0;align-self:flex-end}
+#modal.encounter-preview #dialogEyebrow,#modal.encounter-preview #dialogTitle{flex-shrink:0;padding-right:38px}
+@media(max-width:550px){.encounter-intro{gap:10px}.encounter-intro .trail-leader-art{min-width:65px;width:65px;height:100px}.encounter-intro h3{font-size:25px}.encounter-intro p{font-size:14px}#modal.encounter-preview #dialogTitle{font-size:24px}}

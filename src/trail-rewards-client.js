@@ -8,8 +8,8 @@ async function openTrailSummoner(dropId){
 function showOnlineTrailResult(s,ranking,mine){
  const owner=playerAccount?.profile?.id,match=s.id,version=++trailResultVersion,st=trails.stage(s.trail),won=(mine?.rounds||0)>=s.roundsToWin;
  modal(won?(st.boss?'Chefe derrotado!':'Etapa vencida!'):'Não foi dessa vez.',
- (st.boss?trailLeaderMarkup(trails.trails[st.trailIndex],won?'victory':'ready'):'')+'<p>'+escapeHTML(st.name)+'</p><div id="trailOnlineReward" role="status" aria-live="polite">Conferindo o resultado na sua conta…</div>','Voltar às trilhas',st.name);
- $('dialogAction').className='secondary';$('dialogAction').onclick=()=>{closeModal();openTrails();};
+ (st.boss?trailLeaderMarkup(trails.trails[st.trailIndex],won?'victory':'ready'):'')+'<p>'+escapeHTML(st.name)+'</p><div id="trailOnlineReward" role="status" aria-live="polite">Conferindo o resultado na sua conta…</div>','Voltar ao mapa do bairro',st.name);
+ $('dialogAction').className='secondary';$('dialogAction').onclick=()=>returnToDistrict(s.trail,won);
  let attempts=0;
  const current=()=>version===trailResultVersion&&state?.id===match&&showResult&&playerAccount?.profile?.id===owner&&!!$('trailOnlineReward');
  async function check(){
@@ -24,7 +24,7 @@ function showOnlineTrailResult(s,ranking,mine){
     if(r.drop){const item=ART_CONFIG.items.find(i=>i.id===r.drop),card=uiElement('div',undefined,'drop-reward');if(item){const image=document.createElement('img');image.src=item.url;image.alt=item.name;card.append(image,uiElement('b',item.name+' · recebida na conta'));}root.append(card);}
     if(data.status==='saved'){
      if(r.tailId){const summon=uiElement('button','Ir ao invocador ✦','primary');summon.id='trailGoSummoner';summon.onclick=()=>openTrailSummoner(r.drop);root.append(summon);}
-     const next=r.won&&trails.nextStage(s.trail),again=uiElement('button',next?'Próxima etapa ▶':'Tentar de novo ↻','secondary');again.id='rematchButton';again.onclick=()=>{closeModal();startStage(next?next.id:s.trail);};root.append(again);return;
+     const next=r.won&&trails.nextStage(s.trail),again=uiElement('button',r.won?'Ver meu caminho ▶':'Tentar de novo ↻','secondary');again.id='rematchButton';again.onclick=()=>{if(r.won)returnToDistrict(s.trail,true);else{returnToDistrict(s.trail,false);presentStage(s.trail);}};root.append(again);return;
     }
    }
    if(data.status!=='abandoned'&&++attempts<12)setTimeout(check,1500);else addRetry(root);

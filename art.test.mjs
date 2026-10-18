@@ -27,7 +27,7 @@ function app({seen=false,search='',failed=false,reduced=false,member=false,hoste
  context.cancelAnimationFrame=()=>{};
  // Linkedom exposes select.value as read-only; browsers implement a setter.
  for(const select of document.querySelectorAll('select')){let value;Object.defineProperty(select,'value',{configurable:true,get(){return value??this.querySelector('option[selected]')?.value??this.querySelector('option')?.value??'';},set(next){value=next;}});}
- return {document,requests,draws,storage,run:code=>vm.runInContext(code,context),auto:()=>timers.find(t=>t.delay===650).fn(),settle:()=>new Promise(r=>setImmediate(r)),key:key=>{for(const fn of listeners.get('keydown'))fn({key,target:{tagName:'BODY'},preventDefault(){},stopImmediatePropagation(){}});}};
+ return {document,requests,draws,storage,run:code=>vm.runInContext(code,context),auto:()=>timers.find(t=>t.delay===650).fn(),settle:()=>new Promise(r=>setImmediate(r)),key:key=>{let stopped=false;for(const fn of listeners.get('keydown')){fn({key,target:{tagName:'BODY'},preventDefault(){},stopImmediatePropagation(){stopped=true;}});if(stopped)break;}}};
 }
 
 test('portrait collections keep selection, filtering and confirmed equipment separate from ownership',async()=>{
@@ -169,10 +169,10 @@ test('club menu isolates features, preserves trade inputs and returns home when 
  assert.equal(a.document.getElementById('eventSoulsList').parentElement.id,'club-events');
 });
 
-test('integrated designs name the trail leaders and reveal ritual effects only after confirmed success',async()=>{
+test('integrated designs preserve leader discovery and reveal ritual effects only after confirmed success',async()=>{
  const a=app({seen:true});await a.settle();a.run('playerAccount={profile:{nickname:"Ana",level:1},inventory:[]};openTrails()');await a.settle();
- assert.match(a.document.getElementById('trailList').textContent,/Mikka/);assert.match(a.document.getElementById('trailList').textContent,/Lohan/);assert.match(a.document.getElementById('trailList').textContent,/Kleie/);
- for(const [stage,name]of [['morro-5','Mikka'],['praia-5','Lohan'],['torres-5','Kleie']]){a.run("trailPick='"+stage+"';renderStage()");await a.settle();assert.equal(a.document.getElementById('stageSpeaker').textContent,name+':');assert.equal(a.document.getElementById('trailStart').disabled,true);}
+ assert.doesNotMatch(a.document.getElementById('trailList').textContent,/Mikka|Lohan|Kleie/);
+ for(const [stage,name]of [['morro-5','Mikka'],['praia-5','Lohan'],['torres-5','Kleie']]){a.run("trailPick='"+stage+"';renderStage()");await a.settle();assert.equal(a.document.getElementById('stageSpeaker').textContent,'Sr. Assis:');assert.equal(a.document.getElementById('trailStart').disabled,true);}
  a.run("updateSummonRun({status:'failed',remaining:0})");assert.equal(a.document.querySelector('.ritual-reveal-portal'),null);
  a.run("updateSummonRun({status:'succeeded',remaining:2,name:'Mata',color:1})");assert.equal(a.document.querySelectorAll('#summonReveal .ritual-reveal-portal').length,1);assert.equal(a.document.querySelectorAll('#summonReveal .ritual-reveal-particles').length,1);
  assert.equal(a.document.getElementById('summonNotice').hidden,true,'completed rituals do not keep the interruption warning');
@@ -339,3 +339,70 @@ test('all tail PNGs are published with content hashes, HEAD and cache validation
  assert.equal((await serve(new Request('https://game.test/assets/items/rabiolas/unknown.png'))).status,404);
 });
 
+
+test('first-flight instructions follow the active input device without resetting the lesson',async()=>{
+ const a=app({member:true});await a.settle();
+ assert.match(a.run("inputDevice='gamepad-xbox';firstFlightInstruction(1)"),/pressione A/);
+ assert.match(a.run("inputDevice='gamepad-ps';firstFlightInstruction(3)"),/L1 ou R1/);
+ assert.match(a.run("inputDevice='touch';firstFlightInstruction(3)"),/Deslize/);
+ assert.match(a.run("inputDevice='keyboard';firstFlightInstruction(0)"),/WASD/);
+});
+
+test('choosing the first partner shows a welcome only after server confirmation, before entering practice',async()=>{
+ const a=app({member:true});await a.settle();
+ a.run("playerAccount.profile.id='test';journeyOwner='test';homeReplay=false;accountRequest=async()=>({journey:{phase:'practice'}});choosePartner()");
+ a.document.getElementById('partnerOptions').children[2].onclick();
+ assert.match(a.document.getElementById('partnerConnection').textContent,/proteção/);
+ await a.document.getElementById('partnerConfirm').onclick();
+ assert.equal(a.run('mode'),null);assert.match(a.document.getElementById('journeyTitle').textContent,/Azulão/);
+ assert.match(a.document.getElementById('journeySpeech').textContent,/não consome itens/);
+ assert.equal(a.document.getElementById('journeyDialog').hidden,false);
+});
+
+
+test('city district briefing keeps its five encounters separate and clears the scope when closed',async()=>{
+ const a=app({member:true});await a.settle();
+ a.run("$('trails').dataset.district='0';trailPick=trails.trails[0].stages[0].id;renderTrails()");
+ assert.equal(a.document.querySelectorAll('.trail:not([hidden])').length,1);
+ assert.doesNotMatch(a.document.getElementById('districtArrival').textContent,/Mikka/);assert.equal(a.document.querySelectorAll('.trail:not([hidden]) .place-node').length,5);
+ assert.match(a.document.getElementById('stageTrail').textContent,/Encontro 1 de 5/);
+ a.run('closeTrails();renderTrails()');
+ assert.equal(a.document.getElementById('districtArrival').hidden,true);
+ assert.equal(a.document.querySelectorAll('.trail:not([hidden])').length,3);
+});
+
+test('district maps keep every leader hidden until the final encounter is unlocked',async()=>{
+ const a=app({member:true});await a.settle();
+ for(const id of ['morro','praia','torres']){
+  a.run(`trailProgress=trails.defaults();trailPick=trails.trails.find(t=>t.id==='${id}').stages.at(-1).id;renderTrails()`);
+  const text=a.document.getElementById('trails').textContent;
+  assert.doesNotMatch(text,/Mikka|Lohan|Kleie/);
+  assert.equal(a.document.getElementById('trailStart').disabled,true);
+  assert.equal(a.document.getElementById('stageSpeaker').textContent,'Sr. Assis:');
+  a.run(`for(const st of trails.stages){if(st.id===trailPick)break;trailProgress.stars[st.id]=1;}renderTrails()`);
+  const name=a.run('trails.trails[trails.stage(trailPick).trailIndex].leaderName');
+  assert.ok(a.document.getElementById('stageFoes').textContent.includes(name));
+  assert.equal(a.document.getElementById('trailStart').disabled,false);
+ }
+});
+
+test('encounter presentation starts no match, blocks locked leaders and returns focus on cancellation',async()=>{
+ const a=app({member:true});await a.settle();
+ a.run("trailPick='morro-1';$('trails').hidden=false;renderTrails();presentStage('morro-1')");
+ assert.equal(a.run('mode'),null);assert.equal(a.document.getElementById('modal').style.display,'flex');
+ assert.match(a.document.getElementById('dialogTitle').textContent,/Praça de chegada/);
+ assert.match(a.document.getElementById('dialogBody').textContent,/Zeca/);
+ a.key('Escape');assert.equal(a.document.getElementById('trails').hidden,false);a.run('presentStage("morro-5")');
+ assert.equal(a.document.getElementById('modal').style.display,'none');
+ assert.equal(a.run('mode'),null);
+});
+
+test('returning to a district highlights only a confirmed unlocked next place',async()=>{
+ const a=app({member:true});await a.settle();
+ a.run("trailProgress=trails.defaults();trailSync.sync=()=>{};returnToDistrict('morro-1',true)");
+ assert.equal(a.run('trailPick'),'morro-1');assert.equal(a.document.getElementById('trails').dataset.district,'0');
+ assert.match(a.document.getElementById('districtArrival').textContent,/Conferindo o resultado/);
+ a.run("trailProgress.stars['morro-1']=2;renderTrails()");
+ assert.equal(a.run('trailPick'),'morro-2');assert.match(a.document.getElementById('districtArrival').textContent,/Lugar conquistado/);
+ a.run("returnToDistrict('morro-2',false)");assert.equal(a.run('trailPick'),'morro-2');
+});

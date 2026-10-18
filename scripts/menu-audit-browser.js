@@ -5,12 +5,24 @@ function menuAuditBoot(screen){
  playerAccount={profile:{id:'visual-only',nickname:'Pipeiro da prévia',level:8,xp:5100,next_level_xp:6400,cuts:28,equipped_kite_id:inventory[0].id},inventory};
  accountRequest=async(action)=>{if(['equip','profile','logout','sighting','trade','summon'].includes(action))throw Error('Esta é apenas uma prévia visual.');return {account:playerAccount,matches:[],coins:0};};
  $('accountModal').style.display='flex';renderAccountDialog();
- if(screen==='dex'){$('accountModal').style.display='none';openDex();}
+ if(screen.startsWith('entry-')){const id='morro-'+screen.split('-')[1];$('accountModal').style.display='none';trailPick=id;for(const stage of trails.stages){if(stage.id===id)break;trailProgress.stars[stage.id]=1;}$('trails').dataset.district='0';$('trails').hidden=false;$('trails').style.display='flex';renderTrails();presentStage(id);}
+ else if(screen==='district-victory'){$('accountModal').style.display='none';trailSync.sync=()=>{};trailProgress.stars['morro-1']=2;returnToDistrict('morro-1',true);}
+ else if(screen==='dex'){$('accountModal').style.display='none';openDex();}
  else if(screen==='inventory')navigateClub('collection');
  else if(screen==='club')navigateClub('home');
  else if(screen==='profile')navigateClub('profile');
  else if(screen==='friends'){$('accountModal').style.display='none';openSheet('friendsSheet');}
- else if(screen==='trails'){$('accountModal').style.display='none';openTrails();}
+ else if(['courtyard','menu','dialogue','partners','city','firstflight'].includes(screen)){
+ $('accountModal').style.display='none';journey={phase:'complete'};journeyOwner=playerAccount.profile.id;showCourtyard();loadHomeArt();
+ if(screen==='menu')openHomeMenu();
+ if(screen==='city'){hideJourney();cityScreen.hidden=false;$('cityWorld').style.backgroundImage='url('+JSON.stringify(homeArt.images.city.url)+')';selectCity(0);}
+ if(screen==='firstflight'){homeReplay=true;startFirstFlight();}
+ if(screen==='dialogue')dialogue('Um novo vento','Seus parceiros estão esperando. Explore a cidade e aprenda com o Sr. Assis.','Continuar',()=>{});
+ if(screen==='partners'){journey.phase='choose';renderJourney();}
+ }
+ else if(screen==='school'){$('accountModal').style.display='none';openSchool();}
+ else if(['history','trades','farm','summon'].includes(screen))navigateClub(screen);
+ else if(['trails','district','district-praia','district-torres'].includes(screen)){$('accountModal').style.display='none';if(screen.startsWith('district')){const i=screen==='district-praia'?1:screen==='district-torres'?2:0;$('trails').dataset.district=String(i);trailPick=trails.trails[i].stages[0].id;}openTrails();if(screen.startsWith('district')){trailPick=trails.trails[Number($('trails').dataset.district)].stages[0].id;renderTrails();}}
  function visible(e){const r=e.getBoundingClientRect(),s=getComputedStyle(e);return r.width>1&&r.height>1&&s.display!=='none'&&s.visibility!=='hidden';}
  document.fonts.ready.then(()=>requestAnimationFrame(()=>requestAnimationFrame(()=>{
   const errors=[],W=innerWidth,H=innerHeight,dialogs=[...document.querySelectorAll('[role="dialog"]')].filter(visible);
@@ -27,5 +39,5 @@ let currentFrame,pending;
 function showMenu(w,h,screen){return new Promise(resolve=>{currentFrame?.remove();const frame=document.createElement('iframe');frame.width=w;frame.height=h;frame.style.width=w+'px';frame.style.height=h+'px';frame.title='Menus '+w+' por '+h;frame.srcdoc=MENU_GAME.replace('</body>','<script>('+menuAuditBoot.toString()+')('+JSON.stringify(screen)+')<\/script></body>');currentFrame=frame;pending=resolve;document.querySelector('#preview').append(frame);});}
 addEventListener('message',e=>{if(e.source!==currentFrame?.contentWindow||e.origin!==location.origin||e.data?.type!=='menu-audit')return;document.querySelector('#report').textContent=JSON.stringify(e.data.result,null,2);pending?.(e.data.result);pending=null;});
 document.querySelector('#show').onclick=()=>showMenu(+document.querySelector('#w').value,+document.querySelector('#h').value,document.querySelector('#screen').value);
-document.querySelector('#matrix').onclick=async()=>{const b=document.querySelector('#matrix');b.disabled=true;const rows=[];try{for(const [w,h]of [[320,568],[390,844],[568,320],[768,1024],[1104,700],[1440,900],[1920,1080]])for(const screen of ['dex','inventory','club','profile','friends','trails']){document.querySelector('#progress').textContent=(rows.length+1)+'/42 · '+w+'×'+h+' · '+screen;rows.push(await showMenu(w,h,screen));}document.querySelector('#report').textContent=JSON.stringify({cases:rows.length,failures:rows.filter(r=>r.errors.length).length,rows},null,2);document.querySelector('#progress').textContent='Concluído';}finally{b.disabled=false;}};
+document.querySelector('#matrix').onclick=async()=>{const b=document.querySelector('#matrix');b.disabled=true;const rows=[];try{for(const [w,h]of [[320,568],[390,844],[568,320],[768,1024],[1104,700],[1440,900],[1920,1080]])for(const screen of ['courtyard','menu','dialogue','partners','city','firstflight','school','dex','inventory','club','profile','friends','trails','district','history','trades','farm','summon']){document.querySelector('#progress').textContent=(rows.length+1)+'/126 · '+w+'×'+h+' · '+screen;rows.push(await showMenu(w,h,screen));}document.querySelector('#report').textContent=JSON.stringify({cases:rows.length,failures:rows.filter(r=>r.errors.length).length,rows},null,2);document.querySelector('#progress').textContent='Concluído';}finally{b.disabled=false;}};
 document.querySelector('#show').click();
