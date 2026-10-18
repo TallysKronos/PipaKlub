@@ -1,0 +1,499 @@
+{
+  "type": "map",
+  "version": "1.10",
+  "tiledversion": "1.11.0",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "width": 40,
+  "height": 28,
+  "tilewidth": 32,
+  "tileheight": 32,
+  "infinite": false,
+  "nextlayerid": 7,
+  "nextobjectid": 23,
+  "layers": [
+    {
+      "id": 1,
+      "name": "Walkable",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "objects": [
+        {
+          "id": 1,
+          "name": "Praca",
+          "x": 128,
+          "y": 576,
+          "width": 544,
+          "height": 192,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Viela",
+          "x": 512,
+          "y": 384,
+          "width": 160,
+          "height": 192,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Escada",
+          "x": 512,
+          "y": 256,
+          "width": 160,
+          "height": 128,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "connects_to",
+              "type": "int",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Patamar",
+          "x": 512,
+          "y": 128,
+          "width": 544,
+          "height": 128,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Solids",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "objects": [
+        {
+          "id": 5,
+          "name": "Casa oeste",
+          "x": 128,
+          "y": 384,
+          "width": 320,
+          "height": 160,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 6,
+          "name": "Casa da esquina",
+          "x": 704,
+          "y": 384,
+          "width": 448,
+          "height": 192,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 7,
+          "name": "Casa superior",
+          "x": 736,
+          "y": 32,
+          "width": 320,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "name": "Muro esquerdo da escada",
+          "x": 448,
+          "y": 256,
+          "width": 32,
+          "height": 288,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 9,
+          "name": "Muro direito da escada",
+          "x": 704,
+          "y": 256,
+          "width": 32,
+          "height": 128,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 10,
+          "name": "Canteiro da praca",
+          "x": 160,
+          "y": 800,
+          "width": 480,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 11,
+          "name": "Cerca da praca",
+          "x": 128,
+          "y": 544,
+          "width": 320,
+          "height": 32,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 19,
+          "name": "Tronco da arvore",
+          "x": 144,
+          "y": 656,
+          "width": 32,
+          "height": 32,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 688
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "name": "Base do muro da praca",
+          "x": 400,
+          "y": 640,
+          "width": 96,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 656
+            }
+          ]
+        },
+        {
+          "id": 22,
+          "name": "Base da luminaria",
+          "x": 612,
+          "y": 716,
+          "width": 24,
+          "height": 24,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Foreground",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "objects": [
+        {
+          "id": 12,
+          "name": "Copa oeste",
+          "x": 80,
+          "y": 512,
+          "width": 160,
+          "height": 160,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 688
+            },
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "visual_kind",
+              "type": "string",
+              "value": "tree"
+            }
+          ]
+        },
+        {
+          "id": 13,
+          "name": "Cobertura da esquina",
+          "x": 672,
+          "y": 352,
+          "width": 352,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 576
+            },
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "visual_kind",
+              "type": "string",
+              "value": "roof"
+            }
+          ]
+        },
+        {
+          "id": 21,
+          "name": "Muro da praca",
+          "x": 400,
+          "y": 592,
+          "width": 96,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 656
+            },
+            {
+              "name": "visual_kind",
+              "type": "string",
+              "value": "wall"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Interactions",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "objects": [
+        {
+          "id": 14,
+          "name": "Zeca",
+          "x": 256,
+          "y": 608,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "stage",
+              "type": "string",
+              "value": "morro-1"
+            },
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 15,
+          "name": "Bia",
+          "x": 896,
+          "y": 160,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "stage",
+              "type": "string",
+              "value": "morro-2"
+            },
+            {
+              "name": "level",
+              "type": "int",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Spawns",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "objects": [
+        {
+          "id": 16,
+          "name": "Entrada",
+          "x": 224,
+          "y": 704,
+          "width": 32,
+          "height": 32,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Exits",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "objects": [
+        {
+          "id": 17,
+          "name": "Retorno ao quintal",
+          "x": 128,
+          "y": 704,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "action",
+              "type": "string",
+              "value": "quintal"
+            }
+          ]
+        },
+        {
+          "id": 18,
+          "name": "Continuacao futura",
+          "x": 1024,
+          "y": 160,
+          "width": 32,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "action",
+              "type": "string",
+              "value": "pilot_boundary"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tilesets": [],
+  "properties": [
+    {
+      "name": "design_phase",
+      "type": "string",
+      "value": "blockout"
+    },
+    {
+      "name": "actor_height",
+      "type": "int",
+      "value": 64
+    },
+    {
+      "name": "foot_radius",
+      "type": "int",
+      "value": 12
+    }
+  ]
+}

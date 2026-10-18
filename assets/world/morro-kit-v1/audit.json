@@ -1,0 +1,314 @@
+[
+  {
+    "id": "house-yellow",
+    "alpha": true,
+    "coverage": 0.496,
+    "margins": [
+      66,
+      138,
+      16,
+      47
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "roof-terracotta",
+    "alpha": true,
+    "coverage": 0.386,
+    "margins": [
+      15,
+      203,
+      35,
+      70
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "house-salmon",
+    "alpha": true,
+    "coverage": 0.555,
+    "margins": [
+      59,
+      67,
+      8,
+      97
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "gate",
+    "alpha": true,
+    "coverage": 0.347,
+    "margins": [
+      83,
+      86,
+      95,
+      99
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "canopy",
+    "alpha": true,
+    "coverage": 0.493,
+    "margins": [
+      133,
+      32,
+      31,
+      36
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "trunk",
+    "alpha": true,
+    "coverage": 0.193,
+    "margins": [
+      168,
+      104,
+      177,
+      5
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "shrub",
+    "alpha": true,
+    "coverage": 0.423,
+    "margins": [
+      167,
+      35,
+      60,
+      41
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "banana",
+    "alpha": true,
+    "coverage": 0.392,
+    "margins": [
+      40,
+      6,
+      78,
+      46
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "wall-horizontal",
+    "alpha": true,
+    "coverage": 0.284,
+    "margins": [
+      133,
+      172,
+      49,
+      49
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "wall-vertical",
+    "alpha": true,
+    "coverage": 0.161,
+    "margins": [
+      157,
+      83,
+      299,
+      25
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "wall-corner",
+    "alpha": true,
+    "coverage": 0.225,
+    "margins": [
+      195,
+      51,
+      151,
+      106
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "stairs",
+    "alpha": true,
+    "coverage": 0.397,
+    "margins": [
+      62,
+      30,
+      190,
+      85
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "bench",
+    "alpha": true,
+    "coverage": 0.206,
+    "margins": [
+      100,
+      310,
+      78,
+      36
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "lamp",
+    "alpha": true,
+    "coverage": 0.147,
+    "margins": [
+      109,
+      64,
+      163,
+      31
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "water-tank",
+    "alpha": true,
+    "coverage": 0.202,
+    "margins": [
+      131,
+      305,
+      128,
+      23
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "fence",
+    "alpha": true,
+    "coverage": 0.26,
+    "margins": [
+      56,
+      115,
+      35,
+      91
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "flowerpot",
+    "alpha": true,
+    "coverage": 0.355,
+    "margins": [
+      37,
+      18,
+      80,
+      79
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "pennants",
+    "alpha": true,
+    "coverage": 0.196,
+    "margins": [
+      39,
+      85,
+      45,
+      102
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "dirt",
+    "alpha": false,
+    "coverage": 1,
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "grass",
+    "alpha": false,
+    "coverage": 1,
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "sidewalk",
+    "alpha": false,
+    "coverage": 1,
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "cobblestone",
+    "alpha": false,
+    "coverage": 1,
+    "margins": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "door-closed",
+    "alpha": true,
+    "coverage": 0.372,
+    "margins": [
+      217,
+      77,
+      175,
+      25
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "door-open",
+    "alpha": true,
+    "coverage": 0.378,
+    "margins": [
+      172,
+      79,
+      220,
+      24
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "utility-pole",
+    "alpha": true,
+    "coverage": 0.132,
+    "margins": [
+      261,
+      25,
+      222,
+      51
+    ],
+    "needsReview": false
+  },
+  {
+    "id": "wire",
+    "alpha": true,
+    "coverage": 0.052,
+    "margins": [
+      24,
+      160,
+      91,
+      203
+    ],
+    "needsReview": false
+  }
+]

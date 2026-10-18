@@ -1,0 +1,133 @@
+{
+  "bindings": {
+    "5": {
+      "frame": "house-yellow",
+      "width": 320
+    },
+    "6": {
+      "frame": "house-salmon",
+      "width": 448
+    },
+    "7": {
+      "frame": "wall-horizontal",
+      "width": 320
+    },
+    "8": {
+      "frame": "wall-vertical",
+      "repeat": "y",
+      "width": 40,
+      "step": 56
+    },
+    "9": {
+      "frame": "wall-vertical",
+      "repeat": "y",
+      "width": 40,
+      "step": 56
+    },
+    "10": {
+      "frame": "shrub",
+      "repeat": "x",
+      "width": 112,
+      "step": 96
+    },
+    "11": {
+      "frame": "fence",
+      "repeat": "x",
+      "width": 112,
+      "step": 104
+    },
+    "12": {
+      "frame": "canopy",
+      "height": 160
+    },
+    "13": {
+      "frame": "roof-terracotta",
+      "width": 448,
+      "footX": 928,
+      "footY": 420,
+      "anchorY": 1
+    },
+    "19": {
+      "frame": "trunk",
+      "height": 64
+    },
+    "20": {
+      "hidden": true
+    },
+    "21": {
+      "frame": "wall-horizontal",
+      "width": 112,
+      "footX": 448,
+      "footY": 656
+    },
+    "22": {
+      "hidden": true
+    }
+  },
+  "decorations": [
+    {
+      "frame": "roof-terracotta",
+      "width": 320,
+      "footX": 288,
+      "footY": 438,
+      "sortY": 544,
+      "level": 0
+    },
+    {
+      "frame": "water-tank",
+      "height": 56,
+      "footX": 989,
+      "footY": 287,
+      "sortY": 576,
+      "level": 0
+    },
+    {
+      "frame": "lamp",
+      "height": 104,
+      "footX": 624,
+      "footY": 728,
+      "sortY": 728,
+      "level": 0
+    },
+    {
+      "frame": "flowerpot",
+      "height": 36,
+      "footX": 350,
+      "footY": 552,
+      "sortY": 552,
+      "level": 0
+    },
+    {
+      "frame": "banana",
+      "height": 104,
+      "footX": 1120,
+      "footY": 690,
+      "sortY": 690,
+      "level": 0
+    },
+    {
+      "frame": "shrub",
+      "width": 144,
+      "footX": 1070,
+      "footY": 750,
+      "sortY": 750,
+      "level": 0
+    },
+    {
+      "frame": "bench",
+      "width": 96,
+      "footX": 832,
+      "footY": 116,
+      "sortY": 116,
+      "level": 1
+    },
+    {
+      "frame": "flowerpot",
+      "height": 36,
+      "footX": 1000,
+      "footY": 116,
+      "sortY": 116,
+      "level": 1
+    }
+  ]
+}

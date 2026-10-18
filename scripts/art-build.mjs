@@ -1,3 +1,5 @@
+import {parseWorldMap} from '../src/world-map.js';
+import {buildWorldArtPlan} from '../src/world-art.js';
 import {hudAssets} from './hud-assets.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -23,7 +25,11 @@ export function artConfig(){
  const plaza=JSON.parse(fs.readFileSync('assets/hub/praca-v1/manifest.json','utf8'));
  for(const file of plaza.files){const image='hub/praca-v1/'+file,hash=createHash('sha256').update(fs.readFileSync(path.join('assets',image))).digest('hex').slice(0,12);images['plaza-'+file.replace('.png','')]={image,url:'assets/'+image+'?v='+hash};}
  const world=JSON.parse(fs.readFileSync('assets/world/identity-v2/manifest.json','utf8'));
+ world.kit=JSON.parse(fs.readFileSync('assets/world/morro-kit-v1/manifest.json','utf8'));
+ for(const [id,sheet]of Object.entries(world.kit.sheets)){const image=sheet.image,hash=createHash('sha256').update(fs.readFileSync(path.join('assets',image))).digest('hex').slice(0,12);images['world-kit-'+id]={image,url:'assets/'+image+'?v='+hash};}
  for(const [id,scene]of Object.entries(world.scenes)){const image='world/identity-v2/'+scene.image,hash=createHash('sha256').update(fs.readFileSync(path.join('assets',image))).digest('hex').slice(0,12);images['world-'+id]={image,url:'assets/'+image+'?v='+hash};}
+ world.pilot=parseWorldMap(JSON.parse(fs.readFileSync('assets/world/morro-pilot/blockout.tmj','utf8')));
+ world.pilot.art=buildWorldArtPlan(world.pilot,world.kit,JSON.parse(fs.readFileSync('assets/world/morro-pilot/art.json','utf8')));
  const courtyard={places:districtPlaces,images,plaza,world,districts:city.districts,badges:city.sheets.insignias.frames};
  return {atlases,intro,dex,items,menu,designs,portraits,courtyard,hud:hudAssets(),kit:kitAssets()};
 }

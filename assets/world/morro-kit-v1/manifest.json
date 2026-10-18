@@ -1,0 +1,551 @@
+{
+  "version": 1,
+  "style": "2D chibi RPG, orthographic three-quarter view",
+  "baseGrid": 32,
+  "actorHeight": 64,
+  "generatedWith": "built-in image_gen",
+  "sheets": {
+    "architecture": {
+      "image": "world/morro-kit-v1/architecture-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "columns": 2,
+      "rows": 2
+    },
+    "vegetation": {
+      "image": "world/morro-kit-v1/vegetation-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "columns": 2,
+      "rows": 2
+    },
+    "masonry": {
+      "image": "world/morro-kit-v1/masonry-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "columns": 2,
+      "rows": 2
+    },
+    "props": {
+      "image": "world/morro-kit-v1/props-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "columns": 3,
+      "rows": 2
+    },
+    "ground": {
+      "image": "world/morro-kit-v1/ground-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "columns": 2,
+      "rows": 2
+    },
+    "details": {
+      "image": "world/morro-kit-v1/details-v1.png",
+      "width": 1536,
+      "height": 1024,
+      "columns": 2,
+      "rows": 2
+    }
+  },
+  "frames": {
+    "house-yellow": {
+      "sheet": "architecture",
+      "x": 66,
+      "y": 138,
+      "w": 758,
+      "h": 327,
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 840,
+        "h": 512
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 192,
+      "layer": "object",
+      "recommendedWidth": 448
+    },
+    "roof-terracotta": {
+      "sheet": "architecture",
+      "x": 855,
+      "y": 203,
+      "w": 646,
+      "h": 239,
+      "cell": {
+        "x": 840,
+        "y": 0,
+        "w": 696,
+        "h": 512
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 96,
+      "layer": "foreground",
+      "recommendedWidth": 448
+    },
+    "house-salmon": {
+      "sheet": "architecture",
+      "x": 59,
+      "y": 579,
+      "w": 773,
+      "h": 348,
+      "cell": {
+        "x": 0,
+        "y": 512,
+        "w": 840,
+        "h": 512
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 192,
+      "layer": "object",
+      "recommendedWidth": 448
+    },
+    "gate": {
+      "sheet": "architecture",
+      "x": 923,
+      "y": 598,
+      "w": 518,
+      "h": 327,
+      "cell": {
+        "x": 840,
+        "y": 512,
+        "w": 696,
+        "h": 512
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 112,
+      "layer": "object",
+      "recommendedWidth": 192
+    },
+    "canopy": {
+      "sheet": "vegetation",
+      "x": 133,
+      "y": 32,
+      "w": 636,
+      "h": 508,
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 800,
+        "h": 576
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1.08
+      },
+      "recommendedHeight": 160,
+      "layer": "foreground"
+    },
+    "trunk": {
+      "sheet": "vegetation",
+      "x": 968,
+      "y": 104,
+      "w": 391,
+      "h": 417,
+      "cell": {
+        "x": 800,
+        "y": 0,
+        "w": 736,
+        "h": 526
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 64,
+      "layer": "object"
+    },
+    "shrub": {
+      "sheet": "vegetation",
+      "x": 167,
+      "y": 611,
+      "w": 573,
+      "h": 372,
+      "cell": {
+        "x": 0,
+        "y": 576,
+        "w": 800,
+        "h": 448
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 40,
+      "layer": "object"
+    },
+    "banana": {
+      "sheet": "vegetation",
+      "x": 840,
+      "y": 532,
+      "w": 618,
+      "h": 446,
+      "cell": {
+        "x": 800,
+        "y": 526,
+        "w": 736,
+        "h": 498
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 96,
+      "layer": "object"
+    },
+    "wall-horizontal": {
+      "sheet": "masonry",
+      "x": 133,
+      "y": 172,
+      "w": 698,
+      "h": 239,
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 880,
+        "h": 460
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 64,
+      "layer": "object"
+    },
+    "wall-vertical": {
+      "sheet": "masonry",
+      "x": 1037,
+      "y": 83,
+      "w": 200,
+      "h": 352,
+      "cell": {
+        "x": 880,
+        "y": 0,
+        "w": 656,
+        "h": 460
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 128,
+      "layer": "object"
+    },
+    "wall-corner": {
+      "sheet": "masonry",
+      "x": 195,
+      "y": 511,
+      "w": 534,
+      "h": 407,
+      "cell": {
+        "x": 0,
+        "y": 460,
+        "w": 880,
+        "h": 564
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 96,
+      "layer": "object"
+    },
+    "stairs": {
+      "sheet": "masonry",
+      "x": 942,
+      "y": 490,
+      "w": 404,
+      "h": 449,
+      "cell": {
+        "x": 880,
+        "y": 460,
+        "w": 656,
+        "h": 564
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 128,
+      "layer": "object"
+    },
+    "bench": {
+      "sheet": "props",
+      "x": 100,
+      "y": 310,
+      "w": 412,
+      "h": 262,
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 590,
+        "h": 608
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 48,
+      "layer": "object"
+    },
+    "lamp": {
+      "sheet": "props",
+      "x": 699,
+      "y": 64,
+      "w": 138,
+      "h": 513,
+      "cell": {
+        "x": 590,
+        "y": 0,
+        "w": 410,
+        "h": 608
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 112,
+      "layer": "object"
+    },
+    "water-tank": {
+      "sheet": "props",
+      "x": 1131,
+      "y": 305,
+      "w": 277,
+      "h": 280,
+      "cell": {
+        "x": 1000,
+        "y": 0,
+        "w": 536,
+        "h": 608
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 64,
+      "layer": "object"
+    },
+    "fence": {
+      "sheet": "props",
+      "x": 56,
+      "y": 723,
+      "w": 499,
+      "h": 210,
+      "cell": {
+        "x": 0,
+        "y": 608,
+        "w": 590,
+        "h": 416
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 48,
+      "layer": "object"
+    },
+    "flowerpot": {
+      "sheet": "props",
+      "x": 627,
+      "y": 626,
+      "w": 293,
+      "h": 319,
+      "cell": {
+        "x": 590,
+        "y": 608,
+        "w": 410,
+        "h": 416
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 40,
+      "layer": "object"
+    },
+    "pennants": {
+      "sheet": "props",
+      "x": 1039,
+      "y": 693,
+      "w": 452,
+      "h": 229,
+      "cell": {
+        "x": 1000,
+        "y": 608,
+        "w": 536,
+        "h": 416
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 96,
+      "layer": "object"
+    },
+    "dirt": {
+      "sheet": "ground",
+      "x": 0,
+      "y": 0,
+      "w": 627,
+      "h": 627,
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 627,
+        "h": 627
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 64,
+      "layer": "ground"
+    },
+    "grass": {
+      "sheet": "ground",
+      "x": 627,
+      "y": 0,
+      "w": 627,
+      "h": 627,
+      "cell": {
+        "x": 627,
+        "y": 0,
+        "w": 627,
+        "h": 627
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 64,
+      "layer": "ground"
+    },
+    "sidewalk": {
+      "sheet": "ground",
+      "x": 0,
+      "y": 627,
+      "w": 627,
+      "h": 627,
+      "cell": {
+        "x": 0,
+        "y": 627,
+        "w": 627,
+        "h": 627
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 64,
+      "layer": "ground"
+    },
+    "cobblestone": {
+      "sheet": "ground",
+      "x": 627,
+      "y": 627,
+      "w": 627,
+      "h": 627,
+      "cell": {
+        "x": 627,
+        "y": 627,
+        "w": 627,
+        "h": 627
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 64,
+      "layer": "ground"
+    },
+    "door-closed": {
+      "sheet": "details",
+      "x": 217,
+      "y": 77,
+      "w": 376,
+      "h": 432,
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "w": 768,
+        "h": 534
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 96,
+      "layer": "object"
+    },
+    "door-open": {
+      "sheet": "details",
+      "x": 940,
+      "y": 79,
+      "w": 376,
+      "h": 431,
+      "cell": {
+        "x": 768,
+        "y": 0,
+        "w": 768,
+        "h": 534
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 96,
+      "layer": "object"
+    },
+    "utility-pole": {
+      "sheet": "details",
+      "x": 261,
+      "y": 559,
+      "w": 285,
+      "h": 414,
+      "cell": {
+        "x": 0,
+        "y": 534,
+        "w": 768,
+        "h": 490
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 128,
+      "layer": "object"
+    },
+    "wire": {
+      "sheet": "details",
+      "x": 792,
+      "y": 694,
+      "w": 653,
+      "h": 127,
+      "cell": {
+        "x": 768,
+        "y": 534,
+        "w": 768,
+        "h": 490
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "recommendedHeight": 24,
+      "layer": "object"
+    }
+  }
+}

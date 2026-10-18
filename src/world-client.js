@@ -2,6 +2,8 @@ function worldMissionContext(next){return {worldId:worldRuntime.id,nearStage:wor
 async function loadWorldRivals(){for(const [name,rival]of Object.entries(ART_CONFIG.designs.rivals||{}))homeArt.images['rival-'+name]=rival;await Promise.all(Object.keys(ART_CONFIG.designs.rivals||{}).map(name=>homeLoadImage('rival-'+name)));await art.load('leader-mikka');}
 // Explorable places share art direction, camera, actor scale and existing server encounters.
 const worldScenes=homeArt.world?.scenes||{},worldRuntime={id:'quintal',owner:null,states:{},camera:null,near:null,error:'',loading:false};
+// Explicit preview only: the complete campaign map remains the default.
+if(new URLSearchParams(location.search).get('overworld')==='pilot'&&homeArt.world?.pilot)worldScenes.morro=homeArt.world.pilot;
 for(const [id,scene]of Object.entries(worldScenes)){const navigation=createWorldNavigation(scene);worldRuntime.states[id]={navigation,actor:navigation.create()};}
 function worldState(){return worldRuntime.states[worldRuntime.id];}
 function worldScene(){return worldScenes[worldRuntime.id];}
@@ -18,11 +20,13 @@ function renderWorldDestinations(){
 function updateWorldContext(){
  if(!$('worldPlace'))return;const state=worldState(),scene=worldScene();if(!state||!scene)return;
  const near=[...scene.places].sort((a,b)=>state.navigation.distance(state.actor,state.navigation.nodes[a.node])-state.navigation.distance(state.actor,state.navigation.nodes[b.node]))[0];
- worldRuntime.near=near&&state.navigation.distance(state.actor,state.navigation.nodes[near.node])<=82?near:null;
+ const nearPoint=near&&state.navigation.nodes[near.node],geometry=state.navigation.geometry;
+ worldRuntime.near=near&&state.navigation.distance(state.actor,nearPoint)<=82&&(!geometry||geometry.level(state.actor)===geometry.level(nearPoint)&&geometry.segment(state.actor,nearPoint))?near:null;
  const place=worldRuntime.near,button=$('worldInteract');const missionKey=worldRuntime.id+'|'+(place?.id||'')+'|'+JSON.stringify(trailProgress.stars);if(worldRuntime.missionKey!==missionKey){worldRuntime.missionKey=missionKey;updatePlazaMission();}setText('worldPlace',worldRuntime.loading?'Carregando cenário…':worldRuntime.error||place&&worldPlaceLabel(place)||'Siga os caminhos e encontre um lugar');
  button.disabled=worldRuntime.loading||!place&&!worldRuntime.error;setText('worldInteract',worldRuntime.error?'Tentar carregar':place?.stage?'Ver desafio · E':place?'Interagir · E':'Aproxime-se');
 }
 async function loadWorldImage(id,retry=false){
+ if(worldScenes[id]?.tiled){const owner=worldRuntime.owner;worldRuntime.loading=true;worldRuntime.error='';updateWorldContext();const loaded=await Promise.all(Object.keys(homeArt.world.kit.sheets).map(sheet=>homeLoadImage('world-kit-'+sheet,retry)));if(worldRuntime.owner!==owner||worldRuntime.id!==id)return;worldRuntime.loading=false;worldRuntime.error=loaded.every(Boolean)?'':'Algumas artes não carregaram. Tente carregar novamente.';updateWorldContext();return;}
  const owner=worldRuntime.owner;worldRuntime.loading=true;worldRuntime.error='';updateWorldContext();const okay=await homeLoadImage('world-'+id,retry);
  if(worldRuntime.owner!==owner||worldRuntime.id!==id)return;worldRuntime.loading=false;worldRuntime.error=okay?'':'O cenário não carregou. Você pode usar o menu.';updateWorldContext();
 }
@@ -33,8 +37,9 @@ function openWorld(id){
  hideJourney();closeHomeMenu();cityScreen.hidden=true;skyExperiment.hidden=true;closeTrails();cityBriefOpen=false;worldRuntime.id=id;worldRuntime.camera=null;worldRuntime.near=null;worldRuntime.error='';worldRuntime.loading=false;showCourtyard();renderWorldDestinations();refreshWorldHUD();loadWorldImage(id);if(id==='morro')loadWorldRivals();$('worldDestination').focus({preventScroll:true});
 }
 function worldGo(place){
- const state=worldState();if(!state||!place)return;state.navigation.target(state.actor,state.navigation.nodes[place.node]);worldRuntime.near=null;updateWorldContext();
+ const state=worldState();if(!state||!place)return;worldWalkTo(state.navigation.nodes[place.node]);worldRuntime.near=null;updateWorldContext();
 }
+function worldWalkTo(point){const state=worldState();state.navigation.target(state.actor,point);if(state.actor.navigationMessage)toast(state.actor.navigationMessage);}
 function interactWorld(){
  if(mode||courtyard.hidden||courtyard.inert)return;if(worldRuntime.error){loadWorldImage(worldRuntime.id,true);return;}
  const place=worldRuntime.near;if(!place)return;
@@ -42,7 +47,7 @@ function interactWorld(){
   if(!trails.unlocked(trailProgress,place.stage)){toast('Vença o encontro anterior para abrir este desafio.');return;}
   trailPick=place.stage;presentStage(place.stage);modalReturnFocus=$('worldInteract');return;
  }
- if(place.action==='quintal'){openWorld('quintal');return;}homeActions[place.action]?.();
+ if(place.action==='quintal'){openWorld('quintal');return;}if(place.action==='pilot_boundary'){toast('Este é o limite do trecho piloto. O restante do Morro está no mapa completo.');return;}homeActions[place.action]?.();
 }
 function worldShadow(g,x,y,r=16){g.fillStyle='#17394235';g.beginPath();g.ellipse(x,y-2,r,5,0,0,Math.PI*2);g.fill();}
 function drawWorldHuman(g,actor,time){
@@ -66,23 +71,24 @@ function drawWorldScene(g,time,dt){
  // Explicit player movement stays active when ambient animations are paused or reduced.
  const moving=!homeMotionPaused&&!art.reduced;state.navigation.step(state.actor,dt);
  const target=state.navigation.camera(state.actor,width,height),previous=worldRuntime.camera,blend=art.reduced||!previous?1:1-Math.exp(-dt*9),camera=previous?{x:previous.x+(target.x-previous.x)*blend,y:previous.y+(target.y-previous.y)*blend,scale:target.scale}:target;worldRuntime.camera=camera;
- g.save();g.scale(camera.scale,camera.scale);g.translate(-camera.x,-camera.y);const image=homeImages.get('world-'+worldRuntime.id);if(image)g.drawImage(image,0,0,scene.width,scene.height);else{g.fillStyle='#d1d8a6';g.fillRect(0,0,scene.width,scene.height);}
+ g.save();g.scale(camera.scale,camera.scale);g.translate(-camera.x,-camera.y);const image=homeImages.get('world-'+worldRuntime.id);if(scene.art)drawWorldArtGround(g,scene,homeImages);else if(scene.tiled)drawWorldBlockout(g,scene);else if(image)g.drawImage(image,0,0,scene.width,scene.height);else{g.fillStyle='#d1d8a6';g.fillRect(0,0,scene.width,scene.height);}
  for(const place of scene.places){const p=state.navigation.nodes[place.node],open=!place.stage||trails.unlocked(trailProgress,place.stage),near=worldRuntime.near?.id===place.id;g.strokeStyle=open?'#fff0b1':'#71888c';g.fillStyle=open?'#164a6580':'#293c4655';g.lineWidth=near?3:2;g.beginPath();g.ellipse(p.x,p.y-2,near?18:12,near?8:5,0,0,Math.PI*2);g.fill();g.stroke();}
- const partnerSize=Math.round(scene.actorSize*.77),equipped=playerAccount.inventory.find(k=>k.id===playerAccount.profile.equipped_kite_id),follower=state.navigation.follower(state.actor,scene.actorSize*.74),resident=state.actor.history.length<2?{x:follower.x+scene.actorSize*.62,y:follower.y+5}:follower,actors=[{y:state.actor.y,draw:()=>drawWorldHuman(g,state.actor,time)}];
- if(equipped&&!['arrival','choose'].includes(journey?.phase))actors.push({y:resident.y,draw:()=>{worldShadow(g,resident.x,resident.y,partnerSize*.25);if(typeof drawPipamonGlow==='function')drawPipamonGlow(g,eng.pipamons.progress(equipped.pipamon_xp).level,time,resident.x,resident.y-partnerSize*.5,partnerSize*.5,true,!moving);art.creature(g,equipped.model.color,time,resident.x-partnerSize/2,resident.y-partnerSize,partnerSize,{soul:equipped.model.soul,facing:state.actor.direction===1?-1:1,animate:state.actor.moving||moving,input:{x:state.actor.moving?(state.actor.direction===1?-1:1):0}})}});
- if(worldRuntime.id==='morro')for(const place of scene.places)if(place.stage)actors.push({y:state.navigation.nodes[place.node].y-3,draw:()=>drawWorldRival(g,place,time)});
+ const partnerSize=Math.round(scene.actorSize*.77),equipped=playerAccount.inventory.find(k=>k.id===playerAccount.profile.equipped_kite_id),follower=state.navigation.follower(state.actor,scene.actorSize*.74),resident=!scene.tiled&&state.actor.history.length<2?{x:follower.x+scene.actorSize*.62,y:follower.y+5}:follower,actors=[{id:'player',x:state.actor.x,level:state.actor.level,y:state.actor.y,draw:()=>drawWorldHuman(g,state.actor,time)}];
+ if(equipped&&!['arrival','choose'].includes(journey?.phase))actors.push({level:state.navigation.geometry?.level(resident)??0,y:resident.y,draw:()=>{worldShadow(g,resident.x,resident.y,partnerSize*.25);if(typeof drawPipamonGlow==='function')drawPipamonGlow(g,eng.pipamons.progress(equipped.pipamon_xp).level,time,resident.x,resident.y-partnerSize*.5,partnerSize*.5,true,!moving);art.creature(g,equipped.model.color,time,resident.x-partnerSize/2,resident.y-partnerSize,partnerSize,{soul:equipped.model.soul,facing:state.actor.direction===1?-1:1,animate:state.actor.moving||moving,input:{x:state.actor.moving?(state.actor.direction===1?-1:1):0}})}});
+ if(worldRuntime.id==='morro')for(const place of scene.places)if(place.stage)actors.push({level:state.navigation.geometry?.level(state.navigation.nodes[place.node])??0,y:state.navigation.nodes[place.node].y-3,draw:()=>drawWorldRival(g,place,time)});
  if(worldRuntime.id==='quintal'){
   actors.push({y:600,draw:()=>{worldShadow(g,365,600);art.draw(g,'sr-assis-poses','welcome',329,500,73,100,true)}});
   actors.push({y:619,draw:()=>{const seq=art.atlases.nozinho?.animations?.idle;if(seq)art.draw(g,'nozinho',seq[moving?Math.floor(time/180)%seq.length:0],410,581,38,38,true)}});
  }
- for(const actor of actors.sort((a,b)=>a.y-b.y))actor.draw();g.restore();updateWorldContext();
+ for(const entry of worldRenderQueue(scene,actors)){if(entry.kind==='actor')entry.draw();else drawWorldObject(g,entry,homeImages);}g.restore();updateWorldContext();
 }
 function refreshWorldOwner(){if(worldRuntime.owner!==playerAccount?.profile.id)refreshWorldHUD();}
 function initWorld(){
  if(!homeArt.world)return;courtyard.classList.add('world-ready');$('homeDestinations').replaceChildren();
+ const worldOriginalLeave=leave;leave=function(...args){const result=worldOriginalLeave(...args);if(worldScenes.morro?.art)history.replaceState(null,'',location.pathname+'?overworld=pilot');return result;};
  const panel=uiElement('section',undefined,'world-context plaza-paper');panel.setAttribute('aria-label','Exploração do lugar');panel.innerHTML='<div class="world-location"><b id="worldName"></b><span id="worldPlace" role="status"></span></div><div class="world-controls"><label class="sr-only" for="worldDestination">Escolher destino do passeio</label><select id="worldDestination"></select><button id="worldInteract">Interagir · E</button></div>';
  courtyard.append(panel);$('worldInteract').onclick=interactWorld;$('worldDestination').onchange=()=>{const place=worldScene().places.find(p=>p.id===$('worldDestination').value);if(place)worldGo(place);$('worldDestination').value='';};
- $('courtyardStage').addEventListener('click',event=>{if(event.target.closest('button,select')||courtyard.inert||mode||!playerAccount||!$('journeyDialog').hidden||!$('partnerChoice').hidden)return;const r=$('courtyardCanvas').getBoundingClientRect(),camera=worldRuntime.camera;if(!camera)return;worldState().navigation.target(worldState().actor,{x:(event.clientX-r.left)/camera.scale+camera.x,y:(event.clientY-r.top)/camera.scale+camera.y});});
+ $('courtyardStage').addEventListener('click',event=>{if(event.target.closest('button,select')||courtyard.inert||mode||!playerAccount||!$('journeyDialog').hidden||!$('partnerChoice').hidden)return;const r=$('courtyardCanvas').getBoundingClientRect(),camera=worldRuntime.camera;if(!camera)return;worldWalkTo({x:(event.clientX-r.left)/camera.scale+camera.x,y:(event.clientY-r.top)/camera.scale+camera.y});});
  const oldSelectCity=selectCity;selectCity=function(i){oldSelectCity(i);if(i===0)$('cityExplore').onclick=()=>openWorld('morro');};
  const oldTrails=homeActions.trails;homeActions.trails=()=>journey?.phase==='complete'&&firstOpenStage()?.trailIndex===0?openWorld('morro'):oldTrails();homeActions.quintal=()=>openWorld('quintal');homeActions.nextEncounter=()=>{const next=trails.stages.find(st=>trails.unlocked(trailProgress,st.id)&&!trailProgress.stars[st.id]);const place=worldScene().places.find(p=>p.stage===next?.id);if(place){if(worldRuntime.near?.id===place.id)interactWorld();else worldGo(place);}else homeActions.city();};
  const oldReturn=returnToDistrict;returnToDistrict=function(id,won=false){const stage=trails.stage(id);if(worldRuntime.id!=='morro'||stage?.trailIndex!==0||worldRuntime.owner!==playerAccount?.profile.id)return oldReturn(id,won);closeModal();if(mode)leave();const next=trails.nextStage(id);trailPick=won&&next&&trails.unlocked(trailProgress,next.id)?next.id:id;openWorld('morro');};
