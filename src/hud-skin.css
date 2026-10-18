@@ -34,3 +34,14 @@
 @media(max-width:700px) and (min-height:501px){.hud .meter>.hud-sliced[data-hud-skin$="-track"]{--hud-cap-l:10.8738px;--hud-cap-r:10.8738px}.hud .meter>.hud-sliced[data-hud-skin$="-fill"]{--hud-cap-l:2.4407px;--hud-cap-r:2.4407px}}
 @media(max-height:500px){.combat-deck .skill-actions .hud-painted-button>.hud-sliced{--hud-cap-l:16.5333px;--hud-cap-r:16.5333px}.hud .meter>.hud-sliced[data-hud-skin$="-track"]{--hud-cap-l:9.5146px;--hud-cap-r:9.5146px}.hud .meter>.hud-sliced[data-hud-skin$="-fill"]{--hud-cap-l:1.8983px;--hud-cap-r:1.8983px}}
 .combat-deck #normalLineSide .hud-button-content{text-transform:none;letter-spacing:0;font-size:9px}
+/* Subpixel seams: straight edges overlap their neighbours by half a CSS pixel.
+   Source sampling includes the corresponding half-pixel gutter; corners stay fixed. */
+.hud-sliced{--hud-seam:.5px}
+.hud-sliced>.hud-slice-t,.hud-sliced>.hud-slice-b{left:calc(var(--hud-cap-l) - var(--hud-seam));right:calc(var(--hud-cap-r) - var(--hud-seam))}
+.hud-sliced>.hud-slice-t{height:calc(var(--hud-cap-t) + var(--hud-seam))}
+.hud-sliced>.hud-slice-b{height:calc(var(--hud-cap-b) + var(--hud-seam))}
+.hud-sliced[data-hud-slice=nine]>.hud-slice-l,.hud-sliced[data-hud-slice=nine]>.hud-slice-r{top:calc(var(--hud-cap-t) - var(--hud-seam));bottom:calc(var(--hud-cap-b) - var(--hud-seam))}
+.hud-sliced[data-hud-slice=nine]>.hud-slice-l{width:calc(var(--hud-cap-l) + var(--hud-seam))}
+.hud-sliced[data-hud-slice=nine]>.hud-slice-r{width:calc(var(--hud-cap-r) + var(--hud-seam))}
+.hud-sliced>.hud-slice-c{left:calc(var(--hud-cap-l) - var(--hud-seam));right:calc(var(--hud-cap-r) - var(--hud-seam))}
+.hud-sliced[data-hud-slice=nine]>.hud-slice-c{top:calc(var(--hud-cap-t) - var(--hud-seam));bottom:calc(var(--hud-cap-b) - var(--hud-seam))}

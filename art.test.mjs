@@ -30,6 +30,28 @@ function app({seen=false,search='',failed=false,reduced=false,member=false,hoste
  return {document,requests,draws,storage,run:code=>vm.runInContext(code,context),auto:()=>timers.find(t=>t.delay===650).fn(),settle:()=>new Promise(r=>setImmediate(r)),key:key=>{for(const fn of listeners.get('keydown'))fn({key,target:{tagName:'BODY'},preventDefault(){},stopImmediatePropagation(){}});}};
 }
 
+test('portrait collections keep selection, filtering and confirmed equipment separate from ownership',async()=>{
+ const a=app({seen:true,reduced:true});await a.settle();
+ const account={profile:{id:'visual-test',nickname:'Ana',level:1,xp:0,next_level_xp:100,cuts:0,equipped_kite_id:'basic'},inventory:[{id:'basic',model_id:'basica',permanent:true,model:{name:'Carcará',color:0,soul:null,acquisition:'starter'}},{id:'special',model_id:'alvaneve',permanent:true,model:{name:'Alvaneve',color:0,soul:'alvaneve',acquisition:'event'}}]};
+ a.run('playerAccount='+JSON.stringify(account)+";accountModal.style.display='flex';renderAccountDialog();navigateClub('collection');");
+ assert.equal(a.document.querySelectorAll('#inventoryList .pipamon-portrait').length,2);
+ a.document.querySelector('[data-kite-id="special"]').onclick();await a.settle();
+ assert.equal(a.document.querySelector('#inventoryName').textContent,'Alvaneve');assert.equal(a.run('inventoryPreviewFrame'),0,'reduced motion does not start animation');
+ assert.equal(a.run('playerAccount.profile.equipped_kite_id'),'basic');
+ a.run("$('inventorySearch').value='nao existe';renderInventory();");assert.equal(a.document.querySelector('#inventoryDetails').hidden,true);assert.equal(a.document.querySelector('#inventoryEmpty').hidden,false);
+ a.run("$('inventorySearch').value='';$('inventoryFilter').value='event';renderInventory();");assert.equal(a.document.querySelectorAll('#inventoryList button').length,1);assert.equal(a.document.querySelector('#inventoryName').textContent,'Alvaneve');
+ a.run("var pendingEquip,called;onTrailAccountChange=()=>{};onLineAccountChange=()=>{};onCourtyardAccount=()=>{};accountRequest=(action,data)=>{called={action,data};return new Promise(resolve=>pendingEquip=resolve)};var equipPromise=equipInventory(playerAccount.inventory[1]);");
+ assert.equal(a.run('playerAccount.profile.equipped_kite_id'),'basic');assert.equal(a.document.querySelector('#inventoryEquip').disabled,true);
+ a.run("pendingEquip({account:{...playerAccount,profile:{...playerAccount.profile,equipped_kite_id:'special'}}});");await a.run('equipPromise');
+ assert.equal(a.run('called.action'),'equip');assert.equal(a.run('called.data.kiteId'),'special');assert.equal(a.run('playerAccount.profile.equipped_kite_id'),'special');assert.equal(a.run('playerAccount.inventory.length'),2);
+ a.run('closeAccount();');assert.equal(a.run('inventoryPreviewFrame'),0);
+});
+
+test('every Dex portrait is an explicit in-frame face crop shared with inventory',()=>{
+ const config=artConfig();assert.equal(Object.keys(config.portraits).length,config.dex.entries.length);
+ for(const e of config.dex.entries){const [x,y,size]=config.portraits[e.id].crop,a=config.atlases[e.atlas],f=a.frames[a.animations[e.sequence||'idle'][0]].frame;assert.ok(x>=0&&y>=0&&size>0&&x+size<=f.w&&y+size<=f.h,e.id);}
+});
+
 test('normal match exposes six rebicadas, keeps Q/E class skills and clears held input when pausing',async()=>{
  const ui=app({seen:true});await ui.settle();
  ui.run(`var lineState=eng.create(Date.now());lineState.players=[Object.assign(eng.player('Teste',0,'normal',Date.now()),{anchorX:90})];enter(lineState,'normal','practice');updateNormalLineHUD();`);

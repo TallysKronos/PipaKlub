@@ -17,12 +17,18 @@ function cropCSS(atlas,[sheet,x,y,w,h]){
  const s=atlas.sheets[sheet];if(w<=0||h<=0||x<0||y<0||x+w>s.width||y+h>s.height)throw Error('HUD crop outside sheet');
  return 'background-image:url("'+s.url+'")!important;background-size:'+s.width/w*100+'% '+s.height/h*100+'%!important;background-position:'+x/(s.width-w)*100+'% '+y/(s.height-h)*100+'%!important';
 }
+export function hudSliceSample(atlas,id,part,rect){
+ const spec=atlas.slices[id];if(part.length===2||spec.mode==='three'&&part!=='c')return rect;
+ const [sheet,x,y,w,h]=rect,[,fx,fy,fw,fh]=atlas.frames[id],bleed=.5;
+ const x1=Math.max(fx,x-bleed),y1=spec.mode==='three'?y:Math.max(fy,y-bleed),x2=Math.min(fx+fw,x+w+bleed),y2=spec.mode==='three'?y+h:Math.min(fy+fh,y+h+bleed);
+ return [sheet,x1,y1,x2-x1,y2-y1];
+}
 export function hudSpriteCSS(){
  const atlas=hudAssets();
  const sprites=Object.entries(atlas.frames).map(([id,rect])=>'.hud-art-'+id+'{'+cropCSS(atlas,rect)+'}');
  const sliced=Object.entries(atlas.slices).flatMap(([id,spec])=>{
   const [t,r,b,l]=spec.insets,s=spec.scale,px=n=>Number((n*s).toFixed(4));
-  return ['.hud-sliced[data-hud-skin="'+id+'"]{--hud-cap-t:'+px(t)+'px;--hud-cap-r:'+px(r)+'px;--hud-cap-b:'+px(b)+'px;--hud-cap-l:'+px(l)+'px}',...Object.entries(hudSliceRects(atlas,id)).map(([part,rect])=>'.hud-sliced[data-hud-skin="'+id+'"]>.hud-slice-'+part+'{'+cropCSS(atlas,rect)+(spec.mirrorLeft&&part==='l'?';transform:scaleX(-1);':'')+'}')];
+  return ['.hud-sliced[data-hud-skin="'+id+'"]{--hud-cap-t:'+px(t)+'px;--hud-cap-r:'+px(r)+'px;--hud-cap-b:'+px(b)+'px;--hud-cap-l:'+px(l)+'px}',...Object.entries(hudSliceRects(atlas,id)).map(([part,rect])=>'.hud-sliced[data-hud-skin="'+id+'"]>.hud-slice-'+part+'{'+cropCSS(atlas,hudSliceSample(atlas,id,part,rect))+(spec.mirrorLeft&&part==='l'?';transform:scaleX(-1);':'')+'}')];
  });
  return sprites.concat(sliced).join('\n')+'\n'+fs.readFileSync('src/hud-skin.css','utf8');
 }

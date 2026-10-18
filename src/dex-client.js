@@ -27,7 +27,7 @@ function drawDex(){
  const canvas=$('dexCanvas'),context=canvas.getContext('2d'),a=art.atlases[dexEntry.atlas],seq=dexSequence();
  const durations=a.playback?.[dexState]?.durations||seq.map(key=>a.frames[key].duration||190),total=durations.reduce((sum,v)=>sum+v,0);
  let at=dexElapsed%total,index=0;while(index<seq.length-1&&at>=durations[index])at-=durations[index++];
- context.clearRect(0,0,360,300);art.draw(context,dexEntry.atlas,seq[index],30,0,300,300);
+ context.clearRect(0,0,canvas.width,canvas.height);art.draw(context,dexEntry.atlas,seq[index],40,0,canvas.width-80,canvas.height);
 }
 function tickDex(t){
  dexFrame=0;if(!dexOpen||!dexPlaying)return;
@@ -72,12 +72,10 @@ function filterDex(){
  const entries=dexEntries.filter(e=>(group==='all'||e.group===group)&&normalize(e.name+' '+e.title+' '+(e.legend||'')).includes(query));
  $('dexCount').textContent=entries.length+' de '+dexEntries.length+' registros';
  $('dexEmpty').hidden=entries.length>0;
- $('dexList').replaceChildren(...entries.map(entry=>{
-  const button=uiElement('button',undefined,'secondary dex-entry');button.type='button';button.dataset.dexId=entry.id;
-  button.setAttribute('aria-pressed',String(entry.id===dexEntry.id));
-  const image=uiElement('span',undefined,'dex-thumb');
-  // Nozinho uses his first atlas tile; playable entries reuse collection thumbnails.
-  image.innerHTML=entry.group==='companion'?'<span class="almatic-icon" aria-hidden="true" style="background-image:url('+art.atlases.nozinho.meta.url+');background-position:0 0"></span>':art.markup(entry.color,entry.group==='event'?entry.id:null);
+ releasePipamonPortraits($('dexList'));$('dexList').replaceChildren(...entries.map(entry=>{
+  const button=uiElement('button',undefined,'secondary dex-entry portrait-card');button.type='button';button.dataset.dexId=entry.id;
+  button.setAttribute('aria-pressed',String(entry.id===dexEntry.id));button.setAttribute('aria-label',entry.name+' · '+(entry.group==='event'?'Especial de evento':entry.group==='companion'?'Companheiro':'Almática de rua'));
+  const image=pipamonPortrait(entry);image.classList.add('dex-thumb');
   const text=uiElement('span');text.append(uiElement('b',entry.name),uiElement('small',entry.group==='event'?'Especial de evento':entry.group==='companion'?'Companheiro':eng.types[entry.color].name));button.append(image,text);
   button.onclick=()=>selectDex(entry);return button;
  }));
