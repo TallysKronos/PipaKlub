@@ -12,9 +12,10 @@ function menuAuditBoot(screen){
  else if(screen==='club')navigateClub('home');
  else if(screen==='profile')navigateClub('profile');
  else if(screen==='friends'){$('accountModal').style.display='none';openSheet('friendsSheet');}
- else if(['courtyard','menu','dialogue','partners','city','firstflight'].includes(screen)){
+ else if(['courtyard','world-morro','menu','dialogue','partners','city','firstflight'].includes(screen)){
  $('accountModal').style.display='none';journey={phase:'complete'};journeyOwner=playerAccount.profile.id;showCourtyard();loadHomeArt();
  if(screen==='menu')openHomeMenu();
+ if(screen==='world-morro')openWorld('morro');
  if(screen==='city'){hideJourney();cityScreen.hidden=false;$('cityWorld').style.backgroundImage='url('+JSON.stringify(homeArt.images.city.url)+')';selectCity(0);}
  if(screen==='firstflight'){homeReplay=true;startFirstFlight();}
  if(screen==='dialogue')dialogue('Um novo vento','Seus parceiros estão esperando. Explore a cidade e aprenda com o Sr. Assis.','Continuar',()=>{});
@@ -26,6 +27,12 @@ function menuAuditBoot(screen){
  function visible(e){const r=e.getBoundingClientRect(),s=getComputedStyle(e);return r.width>1&&r.height>1&&s.display!=='none'&&s.visibility!=='hidden';}
  document.fonts.ready.then(()=>requestAnimationFrame(()=>requestAnimationFrame(()=>{
   const errors=[],W=innerWidth,H=innerHeight,dialogs=[...document.querySelectorAll('[role="dialog"]')].filter(visible);
+  if(screen==='courtyard'||screen==='world-morro'){
+   const boxes=['.plaza-profile','.plaza-wallet','.plaza-menu','.plaza-mission','.plaza-rail','.plaza-destination','.plaza-welcome','.plaza-footer','.world-context'].map(s=>document.querySelector(s)).filter(e=>e&&visible(e));
+   for(const e of boxes){const r=e.getBoundingClientRect();if(r.left<0||r.top<0||r.right>W+1||r.bottom>H+1)errors.push({kind:'plaza-viewport',element:e.className});}
+   for(let i=0;i<boxes.length;i++)for(let j=i+1;j<boxes.length;j++){const a=boxes[i].getBoundingClientRect(),b=boxes[j].getBoundingClientRect();if(Math.min(a.right,b.right)-Math.max(a.left,b.left)>1&&Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>1)errors.push({kind:'plaza-overlap',elements:[boxes[i].className,boxes[j].className]});}
+   for(const button of document.querySelectorAll('.plaza-rail button,.plaza-profile,.plaza-menu,.plaza-mission button,.plaza-destination button,.plaza-footer button,.world-controls button,.world-controls select'))if(visible(button)){const r=button.getBoundingClientRect();if(r.width<44||r.height<44)errors.push({kind:'plaza-target',element:button.id});}
+  }
   for(const dialog of dialogs){const r=dialog.getBoundingClientRect();if(r.x<-1||r.y<-1||r.right>W+1||r.bottom>H+1)errors.push({kind:'dialog-viewport',element:dialog.className,box:{x:r.x,y:r.y,w:r.width,h:r.height}});
    for(const e of dialog.querySelectorAll('input,select,button,canvas')){if(!visible(e)||e.closest('.inventory-list,.dex-list'))continue;const b=e.getBoundingClientRect();if(b.x<r.x-1||b.right>r.right+1)errors.push({kind:'horizontal-overflow',element:e.id||e.className});}
   }
@@ -40,4 +47,6 @@ function showMenu(w,h,screen){return new Promise(resolve=>{currentFrame?.remove(
 addEventListener('message',e=>{if(e.source!==currentFrame?.contentWindow||e.origin!==location.origin||e.data?.type!=='menu-audit')return;document.querySelector('#report').textContent=JSON.stringify(e.data.result,null,2);pending?.(e.data.result);pending=null;});
 document.querySelector('#show').onclick=()=>showMenu(+document.querySelector('#w').value,+document.querySelector('#h').value,document.querySelector('#screen').value);
 document.querySelector('#matrix').onclick=async()=>{const b=document.querySelector('#matrix');b.disabled=true;const rows=[];try{for(const [w,h]of [[320,568],[390,844],[568,320],[768,1024],[1104,700],[1440,900],[1920,1080]])for(const screen of ['courtyard','menu','dialogue','partners','city','firstflight','school','dex','inventory','club','profile','friends','trails','district','history','trades','farm','summon']){document.querySelector('#progress').textContent=(rows.length+1)+'/126 · '+w+'×'+h+' · '+screen;rows.push(await showMenu(w,h,screen));}document.querySelector('#report').textContent=JSON.stringify({cases:rows.length,failures:rows.filter(r=>r.errors.length).length,rows},null,2);document.querySelector('#progress').textContent='Concluído';}finally{b.disabled=false;}};
+const auditParams=new URLSearchParams(location.search);if([...document.querySelector('#screen').options].some(o=>o.value===auditParams.get('screen')))document.querySelector('#screen').value=auditParams.get('screen');
+for(const [key,min,max]of [['w',320,1920],['h',320,1080]])if(auditParams.has(key)){const n=Number(auditParams.get(key));if(Number.isFinite(n))document.querySelector('#'+key).value=Math.max(min,Math.min(max,n));}
 document.querySelector('#show').click();

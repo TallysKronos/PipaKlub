@@ -18,7 +18,11 @@ export function artConfig(){
  const city=JSON.parse(fs.readFileSync('assets/packs/cidade-v1/manifest.json','utf8'));
  const districtPlaces=JSON.parse(fs.readFileSync('assets/district-places.json','utf8'));
  const images=Object.fromEntries(Object.entries({home:'backgrounds/quintal-clube-v1.png',city:'packs/cidade-v1/mapa.png',badges:'packs/cidade-v1/insignias.png',...Object.fromEntries(Object.entries(districtPlaces).map(([id,p])=>['district-'+id,p.image]))}).map(([id,image])=>{const hash=createHash('sha256').update(fs.readFileSync(path.join('assets',image))).digest('hex').slice(0,12);return [id,{image,url:'assets/'+image+'?v='+hash}]}));
- const courtyard={places:districtPlaces,images,districts:city.districts,badges:city.sheets.insignias.frames};
+ const plaza=JSON.parse(fs.readFileSync('assets/hub/praca-v1/manifest.json','utf8'));
+ for(const file of plaza.files){const image='hub/praca-v1/'+file,hash=createHash('sha256').update(fs.readFileSync(path.join('assets',image))).digest('hex').slice(0,12);images['plaza-'+file.replace('.png','')]={image,url:'assets/'+image+'?v='+hash};}
+ const world=JSON.parse(fs.readFileSync('assets/world/identity-v2/manifest.json','utf8'));
+ for(const [id,scene]of Object.entries(world.scenes)){const image='world/identity-v2/'+scene.image,hash=createHash('sha256').update(fs.readFileSync(path.join('assets',image))).digest('hex').slice(0,12);images['world-'+id]={image,url:'assets/'+image+'?v='+hash};}
+ const courtyard={places:districtPlaces,images,plaza,world,districts:city.districts,badges:city.sheets.insignias.frames};
  return {atlases,intro,dex,items,menu,designs,portraits,courtyard,hud:hudAssets(),kit:kitAssets()};
 }
 // Papel e Bambu kit: PNG bases and battle icons are served as files; the small glyph SVGs ride inline.

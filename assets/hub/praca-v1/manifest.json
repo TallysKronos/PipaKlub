@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "width": 1536,
+  "height": 1024,
+  "files": [
+    "plaza.png",
+    "kael.png",
+    "avatar.png",
+    "icon-backpack.png",
+    "icon-partners.png",
+    "icon-map.png",
+    "icon-missions.png",
+    "icon-settings.png",
+    "icon-chat.png"
+  ],
+  "icons": {
+    "backpack": "icon-backpack.png",
+    "partners": "icon-partners.png",
+    "map": "icon-map.png",
+    "missions": "icon-missions.png",
+    "settings": "icon-settings.png",
+    "chat": "icon-chat.png"
+  },
+  "actor": {
+    "image": "kael.png",
+    "directions": [
+      "south",
+      "west",
+      "east",
+      "north"
+    ],
+    "frames": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 444,
+        "h": 444,
+        "bounds": {
+          "x": 129,
+          "y": 68,
+          "w": 217,
+          "h": 374
+        }
+      },
+      {
+        "x": 444,
+        "y": 0,
+        "w": 443,
+        "h": 444,
+        "bounds": {
+          "x": 119,
+          "y": 69,
+          "w": 227,
+          "h": 375
+        }
+      },
+      {
+        "x": 887,
+        "y": 0,
+        "w": 444,
+        "h": 444,
+        "bounds": {
+          "x": 97,
+          "y": 69,
+          "w": 227,
+          "h": 375
+        }
+      },
+      {
+        "x": 1331,
+        "y": 0,
+        "w": 443,
+        "h": 444,
+        "bounds": {
+          "x": 97,
+          "y": 68,
+          "w": 216,
+          "h": 374
+        }
+      },
+      {
+        "x": 0,
+        "y": 444,
+        "w": 444,
+        "h": 443,
+        "bounds": {
+          "x": 128,
+          "y": 36,
+          "w": 218,
+          "h": 367
+        }
+      },
+      {
+        "x": 444,
+        "y": 444,
+        "w": 443,
+        "h": 443,
+        "bounds": {
+          "x": 119,
+          "y": 0,
+          "w": 226,
+          "h": 403
+        }
+      },
+      {
+        "x": 887,
+        "y": 444,
+        "w": 444,
+        "h": 443,
+        "bounds": {
+          "x": 97,
+          "y": 0,
+          "w": 227,
+          "h": 402
+        }
+      },
+      {
+        "x": 1331,
+        "y": 444,
+        "w": 443,
+        "h": 443,
+        "bounds": {
+          "x": 96,
+          "y": 36,
+          "w": 218,
+          "h": 366
+        }
+      }
+    ]
+  }
+}

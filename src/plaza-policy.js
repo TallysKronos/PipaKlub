@@ -1,0 +1,19 @@
+// Presentation policy: account XP is independent of each Pipamon's own level.
+export function createPlazaPolicy(){
+ const paths=[{left:600,right:825,top:560,bottom:1010},{left:235,right:1000,top:560,bottom:625}];
+ function point(x,y){
+  if(!Number.isFinite(x)||!Number.isFinite(y))return {x:735,y:630};
+  return paths.map(p=>({x:Math.max(p.left,Math.min(p.right,x)),y:Math.max(p.top,Math.min(p.bottom,y))})).sort((a,b)=>Math.hypot(x-a.x,y-a.y)-Math.hypot(x-b.x,y-b.y))[0];
+ }
+ function profile(p){
+  const level=Math.max(1,Math.floor(Number(p?.level)||1)),xp=Math.max(0,Number(p?.xp)||0),base=(level-1)**2*100,next=Math.max(base+1,Number(p?.next_level_xp)||level**2*100);
+  return {level,xp,next,percent:Math.max(0,Math.min(100,(xp-base)/(next-base)*100))};
+ }
+ function mission(phase,next,trail){
+  if(phase==='arrival'||phase==='choose')return {title:'Seu primeiro parceiro',body:'Encontre o Sr. Assis e escolha quem vai voar com você.',action:'professor'};
+  if(phase==='practice')return {title:'Seu primeiro voo',body:'Aprenda a rebicar com o Sr. Assis e o Nozinho.',action:'professor'};
+  if(phase==='city')return {title:'Um mundo para explorar',body:'Visite a cidade e conheça seu primeiro bairro.',action:'city'};
+  return {title:'Próximo desafio',body:trail?'Explore a '+trail.name+' e encontre seu próximo duelo.':'Explore a cidade dos ventos.',action:'city',stage:next?.id||null};
+ }
+ return {point,profile,mission};
+}

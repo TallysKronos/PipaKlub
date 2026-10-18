@@ -29,8 +29,8 @@ function homeLoadImage(key,retry=false){
  const p=new Promise(resolve=>{const image=new Image();image.onload=()=>{homeImages.set(key,image);resolve(true)};image.onerror=()=>{homeImageLoads.delete(key);resolve(false)};image.src=homeArt.images[key].url});homeImageLoads.set(key,p);return p;
 }
 async function loadHomeArt(retry=false){
- const epoch=journeyEpoch;await Promise.all(['home','city','badges'].map(k=>homeLoadImage(k,retry)));await Promise.all(['sr-assis-poses','nozinho',...partners.map(p=>art.basic(p.color))].filter(Boolean).map(id=>art.load(id,retry)));
- if(epoch!==journeyEpoch)return;const image=homeImages.get('home');if(image)$('courtyardStage').style.backgroundImage='url("'+homeArt.images.home.url+'")';if(!image){journeyError='O cenário não carregou. Use o menu ou tente carregar novamente.';$('homeResidents').textContent=journeyError;}drawCityBadge();drawCityMarkers();
+ const scene=homeArt.world?'world-quintal':homeArt.plaza?'plaza-plaza':'home',epoch=journeyEpoch;await Promise.all([scene,'city','badges',...(homeArt.plaza?['plaza-kael']:[])].map(k=>homeLoadImage(k,retry)));await Promise.all(['sr-assis-poses','nozinho',...partners.map(p=>art.basic(p.color))].filter(Boolean).map(id=>art.load(id,retry)));
+ if(epoch!==journeyEpoch)return;const image=homeImages.get(scene);if(image)$('courtyardStage').style.backgroundImage='url("'+homeArt.images[scene].url+'")';if(!image){journeyError='O cenário não carregou. Use o menu ou tente carregar novamente.';$('homeResidents').textContent=journeyError;}if(homeArt.world)worldArtLoaded('quintal',!!image);drawCityBadge();drawCityMarkers();
 }
 function syncHomeInert(){
  const blocked=!gameMenu.hidden||!cityScreen.hidden||!skyExperiment.hidden||[accountModal,dexOverlay,schoolHub,$('trails'),$('modal'),...document.querySelectorAll('.sheet')].some(el=>!el.hidden&&el.style.display!=='none'&&(el.classList.contains('sheet')||el.style.display==='flex'));
@@ -46,6 +46,7 @@ function updateHomeIdentity(){
  $('homeResidents').textContent=homeFarm.residents.length+' espécies no seu quintal'+(homeFarm.pages>1?' · passeios em grupos':'');
  $('homeMotion').textContent=homeMotionPaused?'Retomar passeio':'Pausar passeio';
  const next=firstOpenStage();$('homeObjective').textContent=journeyLoading?'Preparando seu lugar no clube…':journey?.phase==='arrival'||journey?.phase==='choose'?'Conheça seu primeiro parceiro':journey?.phase==='practice'?'Seu primeiro voo com o Nozinho':journey?.phase==='city'?'Seu parceiro está pronto. Visite a cidade.':next?'Visite '+trails.trails[next.trailIndex].name:'Explore a cidade e cuide dos seus parceiros';
+ refreshPlazaHUD();
 }
 async function onCourtyardAccount(){
  const owner=playerAccount?.profile?.id||null;showCourtyard();if(owner===journeyOwner){if(owner)updateHomeIdentity();return;}
@@ -112,9 +113,8 @@ $('flightSkip').onclick=async()=>{if(homeReplay){homeReplay=false;leave();return
 function drawCourtyard(t){
  if(courtyard.hidden||mode)return false;if(courtyard.inert){homeLast=t;return true;}if(t-homeDrawAt<1000/30)return true;homeDrawAt=t;const c=$('courtyardCanvas'),g=c.getContext('2d');g.clearRect(0,0,c.width,c.height);
  for(const painting of $('partnerOptions').querySelectorAll('canvas')){const context=painting.getContext('2d');context.clearRect(0,0,240,240);art.creature(context,+painting.dataset.partner,t,0,0,240,{animate:!art.reduced});}
- const dt=homeLast?Math.min(.1,(t-homeLast)/1000):0;homeLast=t;if(!homeMotionPaused){homeFarm.step(dt);if(homeFarm.pages>1&&t-homeGroupAt>20000){homeGroupAt=t;homeFarm.turn(homeFarm.page===homeFarm.pages-1?-homeFarm.page:1)}}
- for(const p of [...(journey?.phase==='arrival'||journey?.phase==='choose'?[]:homeFarm.visible())].sort((a,b)=>a.y-b.y)){const x=210+p.x*.73,y=160+p.y*1.25,size=90+(p.y-310)*.1;g.fillStyle='#16362b28';g.beginPath();g.ellipse(x,y-3,size*.25,7,0,0,Math.PI*2);g.fill();art.creature(g,p.color,t+p.phase,x-size/2,y-size,size,{soul:p.soul,facing:p.facing,animate:!homeMotionPaused,input:{x:!homeMotionPaused&&p.moving?p.facing:0}});}
- art.draw(g,'sr-assis-poses','welcome',240,440,160,205,true);const seq=art.atlases.nozinho.animations.idle;art.draw(g,'nozinho',seq[art.reduced?0:Math.floor(t/180)%seq.length],370,590,90,90,true);
+ const dt=homeLast?Math.min(.1,(t-homeLast)/1000):0;homeLast=t;
+ drawWorldScene(g,t,dt);
  return true;
 }
 $('homeMotion').onclick=()=>{homeMotionPaused=!homeMotionPaused;updateHomeIdentity()};

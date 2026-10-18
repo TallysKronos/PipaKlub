@@ -3,7 +3,7 @@ const trails=createTrails(),TRAILS_KEY='pipaTrailsV1',TYPE_NAMES=['Precisa','Ág
 let trailProgress=loadTrails(),trailStage=null,trailPick=null;
 function loadTrails(){try{return trails.sanitize(JSON.parse(localStorage.getItem(TRAILS_KEY)||'null'));}catch{return trails.defaults();}}
 function saveTrails(){try{localStorage.setItem(TRAILS_KEY,JSON.stringify(trailProgress));}catch{}}
-function reflectCoins(){setText('coinCount',String(trailProgress.coins));}
+function reflectCoins(){setText('coinCount',String(trailProgress.coins));if($('plazaCoins'))$('plazaCoins').textContent=Number(trailProgress.coins||0).toLocaleString('pt-BR');}
 const TIP_TECHNIQUE='Truque de pipeiro: cruze com a ponta da sua linha, pertinho da sua pipa (o trecho verde, fora da sua faixa tracejada). Dali você corta, mas não pode ser cortado.';
 // Kite choice inside the briefing, so guests can switch almática between attempts.
 function renderStageKites(st){

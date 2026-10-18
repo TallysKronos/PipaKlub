@@ -36,14 +36,27 @@ test('failed starter save keeps the choice screen open and does not start a prac
  assert.equal(ui.run('mode'),null);assert.equal(ui.run('firstFlightRun'),null);assert.equal(ui.run('playerAccount.profile.equipped_kite_id'),'k1');assert.equal(ui.document.getElementById('partnerChoice').hidden,false);assert.equal(ui.document.getElementById('partnerStatus').textContent,'Sem conexão');
 });
 
-test('city navigation respects unlocks, enters the briefing and returns to the map without a web selector list',async()=>{
+test('city navigation respects unlocks, enters Morro exploration and preserves other district briefings',async()=>{
  const ui=journeyUI();await ui.settle();await ui.run(`accountRequest=async()=>({journey:{phase:'complete',lesson:5}});playerAccount={profile:{id:'city-player',nickname:'Nova',equipped_kite_id:'k1'},inventory:[{id:'k1',model_id:'basica',model:{color:0,name:'Carcará'}}]};onCourtyardAccount()`);await ui.settle();
  await ui.run('openCity()');assert.equal(ui.document.getElementById('cityScreen').hidden,false);
  ui.run('selectCity(1)');assert.equal(ui.document.getElementById('cityExplore').disabled,true);assert.equal(ui.document.querySelector('[data-district="1"]').classList.contains('locked'),true);
  ui.run('selectCity(3)');assert.equal(ui.document.getElementById('cityExplore').hidden,true);
- ui.run('selectCity(0)');assert.equal(ui.document.getElementById('cityExplore').disabled,false);ui.document.getElementById('cityExplore').onclick();assert.equal(ui.document.getElementById('trails').hidden,false);assert.equal(ui.document.getElementById('cityScreen').hidden,true);
- ui.run('closeTrails()');assert.equal(ui.document.getElementById('cityScreen').hidden,false);assert.equal(ui.document.getElementById('trails').hidden,true);
+ ui.run('selectCity(0)');assert.equal(ui.document.getElementById('cityExplore').disabled,false);ui.document.getElementById('cityExplore').onclick();assert.equal(ui.document.getElementById('trails').hidden,true);assert.equal(ui.document.getElementById('cityScreen').hidden,true);assert.equal(ui.run('worldRuntime.id'),'morro');
+ ui.run('openWorld("quintal");openCity();selectCity(1)');assert.equal(ui.document.getElementById('cityExplore').disabled,true);assert.equal(ui.document.getElementById('trails').hidden,true);
  ui.run('openHomeMenu();renderHomeMenu("playGroup")');assert.ok(ui.document.getElementById('homeMenuLinks').children.length<=6);
+});
+
+test('exploration cannot unlock encounters, preserves position after battle and clears another account',async()=>{
+ const ui=journeyUI();await ui.settle();await ui.run(`accountRequest=async()=>({journey:{phase:'complete'}});playerAccount={profile:{id:'world-a',nickname:'Ana'},inventory:[]};onCourtyardAccount()`);await ui.settle();
+ ui.run(`openWorld('morro');worldGo(worldScene().places.find(p=>p.stage==='morro-5'));worldRuntime.loading=false;updateWorldContext();interactWorld()`);
+ assert.equal(ui.run('mode'),null);assert.notEqual(ui.document.getElementById('modal').style.display,'flex');assert.equal(ui.run('trailProgress.stars["morro-5"]||0'),0);
+ ui.run(`worldGo(worldScene().places.find(p=>p.stage==='morro-1'));worldRuntime.loading=false;updateWorldContext();interactWorld()`);
+ assert.equal(ui.document.getElementById('modal').classList.contains('encounter-preview'),true);assert.equal(ui.run('mode'),null);assert.equal(ui.run('modalReturnFocus.id'),'worldInteract');
+ ui.run(`closeModal();var lastWorldPosition={x:worldState().actor.x,y:worldState().actor.y};returnToDistrict('morro-1',false)`);
+ assert.equal(ui.run('worldRuntime.id'),'morro');assert.equal(ui.run('worldState().actor.x'),ui.run('lastWorldPosition.x'));assert.equal(ui.document.getElementById('trails').hidden,true);
+ await ui.run(`playerAccount={profile:{id:'world-b',nickname:'Bia'},inventory:[]};onCourtyardAccount()`);await ui.settle();assert.equal(ui.run('worldRuntime.id'),'quintal');assert.equal(ui.run('worldRuntime.owner'),'world-b');assert.equal(ui.run('worldState().actor.path.length'),0);
+ ui.run(`worldArtLoaded('quintal',false)`);assert.match(ui.document.getElementById('worldPlace').textContent,/não carregou/);assert.equal(ui.document.getElementById('worldInteract').disabled,false);
+ await ui.run(`homeLoadImage=async()=>true;loadWorldImage('quintal',true)`);assert.equal(ui.run('worldRuntime.error'),'');assert.equal(ui.run('worldRuntime.loading'),false);
 });
 
 test('a scene destination opens its own screen before background account refresh completes',async()=>{

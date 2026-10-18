@@ -30,6 +30,21 @@ function app({seen=false,search='',failed=false,reduced=false,member=false,hoste
  return {document,requests,draws,storage,run:code=>vm.runInContext(code,context),auto:()=>timers.find(t=>t.delay===650).fn(),settle:()=>new Promise(r=>setImmediate(r)),key:key=>{let stopped=false;for(const fn of listeners.get('keydown')){fn({key,target:{tagName:'BODY'},preventDefault(){},stopImmediatePropagation(){stopped=true;}});if(stopped)break;}}};
 }
 
+test('plaza HUD uses account progression, routes missions and options, and never grants collection items',async()=>{
+ const a=app({seen:true});await a.settle();
+ a.run(`playerAccount={profile:{id:'plaza-a',nickname:'Ana',level:8,xp:5100,next_level_xp:6400,equipped_kite_id:null},inventory:[]};journey={phase:'complete'};trailProgress.coins=123;showCourtyard();`);
+ assert.equal(a.document.getElementById('plazaCoins').textContent,'123');assert.equal(a.document.getElementById('plazaLevel').textContent,'Nv. 8');assert.equal(a.document.getElementById('plazaXP').getAttribute('aria-valuenow'),'13');
+ a.document.getElementById('plazaNav-missions').onclick();assert.match(a.document.getElementById('dialogTitle').textContent,/próximo voo/);assert.equal(a.document.querySelectorAll('.plaza-mission-row').length,3);assert.equal(a.run('mode'),null);
+ a.run('closeModal()');a.document.getElementById('plazaNav-settings').onclick();assert.equal(a.run('homeMenuGroup'),'optionsGroup');a.run('closeHomeMenu()');assert.equal(a.run('playerAccount.inventory.length'),0);
+ a.run('trailProgress.coins=27;reflectCoins()');assert.equal(a.document.getElementById('plazaCoins').textContent,'27');
+});
+test('plaza backpack displays only confirmed owned tails and ignores replies from a previous account',async()=>{
+ const a=app({seen:true});await a.settle();
+ a.run(`playerAccount={profile:{id:'bag-a',nickname:'Ana',level:1},inventory:[]};accountRequest=async()=>({summon:{tails:[{id:'one',modelId:'basica',name:'Carcará',status:'ready'},{id:'two',modelId:'basica',name:'Carcará',status:'damaged'},{id:'used',modelId:'basica',name:'Carcará',status:'consumed'}]}});`);
+ await a.run('openPlazaBag()');assert.equal(a.document.querySelectorAll('.plaza-bag-item').length,2);assert.match(a.document.getElementById('plazaBagStatus').textContent,/2 rabiolas/);
+ a.run('closeModal();var bagResolve;accountRequest=()=>new Promise(resolve=>bagResolve=resolve);var bagRequest=openPlazaBag();playerAccount={profile:{id:"bag-b"},inventory:[]};bagResolve({summon:{tails:[{id:"old",modelId:"basica",name:"Carcará",status:"ready"}]}})');
+ await a.run('bagRequest');assert.equal(a.document.querySelectorAll('.plaza-bag-item').length,0);assert.equal(a.run('playerAccount.inventory.length'),0);
+});
 test('portrait collections keep selection, filtering and confirmed equipment separate from ownership',async()=>{
  const a=app({seen:true,reduced:true});await a.settle();
  const account={profile:{id:'visual-test',nickname:'Ana',level:1,xp:0,next_level_xp:100,cuts:0,equipped_kite_id:'basic'},inventory:[{id:'basic',model_id:'basica',permanent:true,model:{name:'Carcará',color:0,soul:null,acquisition:'starter'}},{id:'special',model_id:'alvaneve',permanent:true,model:{name:'Alvaneve',color:0,soul:'alvaneve',acquisition:'event'}}]};
