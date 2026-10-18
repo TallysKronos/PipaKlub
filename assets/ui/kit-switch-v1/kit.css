@@ -1,0 +1,53 @@
+/* Opt-in components. Import skins.css first; no global game styles are changed. */
+.pk-kit{--pk-ink:#213d39;--pk-paper:#fff0cd;--pk-focus:#ffe16a;--pk-teal:#14534f;--pk-title:'Lilita One','Trebuchet MS',sans-serif;--pk-body:'Nunito','Segoe UI',sans-serif;color:var(--pk-ink);font:700 18px/1.45 var(--pk-body)}
+.pk-kit *{box-sizing:border-box}
+.pk-kit [hidden]{display:none!important}
+.pk-kit button,.pk-kit input,.pk-kit select{font:inherit}
+.pk-button,.pk-tab,.pk-menu,.pk-card,.pk-action{position:relative;isolation:isolate;border:0;background:transparent;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.pk-content{position:relative;z-index:1}
+.pk-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:max-content;height:64px;padding:0 42px;white-space:nowrap;font-weight:900}
+.pk-button>.pk-skin{inset:5px 0}
+.pk-button[data-variant=destructive]{color:var(--pk-paper)}
+.pk-button[data-variant=header]{color:var(--pk-paper)}
+.pk-button:disabled{cursor:not-allowed;color:#66604e}
+.pk-button:disabled>.pk-skin{border-image-source:url('components/button-disabled.png')}
+.pk-kit :is(.pk-button,.pk-tab,.pk-menu,.pk-card,.pk-action):focus-visible,.pk-focus{outline:3px solid var(--pk-focus);outline-offset:4px;border-radius:12px;animation:pk-focus-pulse 1.8s ease-in-out infinite}
+.pk-kit :is(.pk-button,.pk-tab,.pk-menu,.pk-card,.pk-action):hover:not(:disabled)>.pk-skin,.pk-kit [data-state=hover]>.pk-skin{filter:brightness(1.12)}
+.pk-kit :is(.pk-button,.pk-tab,.pk-menu,.pk-card,.pk-action):active:not(:disabled),.pk-kit [data-state=pressed]{transform:translateY(2px)}
+.pk-kit [data-state=pressed]>.pk-skin{filter:brightness(.87)}
+.pk-button[aria-busy=true] .pk-content::before{content:'';display:inline-block;width:16px;height:16px;margin-right:8px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;vertical-align:-2px;animation:pk-spin .8s linear infinite}
+.pk-button .pk-glyph{width:28px;height:28px;margin:-4px 0;vertical-align:middle}
+.pk-tabs{display:flex;gap:12px;flex-wrap:wrap}
+.pk-tab{display:inline-flex;align-items:center;justify-content:center;min-width:132px;height:56px;padding:0 38px;font-weight:900}
+.pk-tab[aria-selected=true]>.pk-skin{border-width:0 32px;border-image-source:url('components/button-secondary.png');border-image-slice:0 64 0 64 fill}
+.pk-tab[aria-selected=true]::after{content:'';position:absolute;bottom:-2px;left:calc(50% - 8px);border-left:8px solid transparent;border-right:8px solid transparent;border-top:9px solid #eb702b;filter:drop-shadow(0 1px 0 #213d39)}
+.pk-frame{position:relative;isolation:isolate;padding:32px;min-width:100px;min-height:100px}
+.pk-frame>.pk-content{height:100%}
+.pk-menu{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-width:180px;min-height:164px;padding:18px 28px}
+.pk-menu .pk-content{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px}
+.pk-menu img{width:88px;height:88px;object-fit:contain;display:block}
+.pk-menu strong{font:900 24px/1.15 var(--pk-title)}
+.pk-card{width:148px;height:188px;padding:34px 22px 24px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px}
+.pk-card .pk-content{display:flex;flex-direction:column;align-items:center}
+.pk-card .pk-card-art{width:90px;height:90px;object-fit:contain}
+.pk-card .pk-badge{position:absolute;right:3px;bottom:9px;width:34px;height:34px;z-index:2}
+.pk-card[aria-disabled=true] .pk-card-art{filter:sepia(1) saturate(.2);opacity:.6}
+.pk-card[aria-pressed=true]::after{content:'';position:absolute;inset:8px;border:2px solid #14534f;border-radius:7px;pointer-events:none}
+.pk-action{width:112px;height:112px;min-width:64px;min-height:64px;display:grid;place-items:center;padding:25px}
+.pk-skin[data-skin^=action-]{background-size:contain}
+.pk-action .pk-action-icon{position:relative;z-index:1;max-width:100%;max-height:100%;object-fit:contain}
+.pk-action .pk-glyph{position:absolute;right:2px;bottom:0;width:30px;height:30px;z-index:2}
+.pk-action .pk-cooldown{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg);pointer-events:none;z-index:2}
+.pk-cooldown-track{stroke:#142f31;stroke-width:4;fill:none}
+.pk-cooldown-progress{stroke:#ffe16a;stroke-width:4;fill:none;stroke-linecap:round;stroke-dasharray:333;stroke-dashoffset:var(--pk-cooldown,0);transition:stroke-dashoffset .15s linear}
+.pk-code{display:flex;gap:8px}
+.pk-code label{position:relative;width:56px;height:64px;display:grid;place-items:center}
+.pk-code input{position:relative;z-index:1;width:100%;height:100%;padding:8px;border:0;background:transparent;color:var(--pk-ink);font-size:25px;text-align:center;text-transform:uppercase;outline:none;border-radius:8px}
+.pk-code input:focus-visible{outline:3px solid var(--pk-focus);outline-offset:2px}
+.pk-command-bar{position:relative;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px 24px;min-height:64px;padding:14px 36px;color:var(--pk-paper);font-size:16px}
+.pk-command-bar>.pk-skin{border-width:12px 24px}
+.pk-command{position:relative;z-index:1;display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.pk-glyph{width:32px;height:32px;object-fit:contain;display:inline-block;vertical-align:middle}
+@keyframes pk-focus-pulse{50%{outline-color:#fff5b1}}
+@keyframes pk-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.pk-kit *,.pk-kit *::before,.pk-kit *::after{animation:none!important;transition:none!important}}

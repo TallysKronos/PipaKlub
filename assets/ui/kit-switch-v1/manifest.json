@@ -1,0 +1,994 @@
+{
+  "version": 1,
+  "name": "Papel e bambu · Switch",
+  "units": "source pixels",
+  "components": {
+    "button-primary": {
+      "image": "components/button-primary.png",
+      "width": 274,
+      "height": 108,
+      "sourceRect": [
+        29,
+        106,
+        274,
+        108
+      ],
+      "sha256": "b5824845e93c432547382cdaa9107b83a8573218b0202c7b272eba8c38d6faff",
+      "mode": "three",
+      "insets": [
+        0,
+        64,
+        0,
+        64
+      ],
+      "scale": 0.5,
+      "minSize": [
+        88,
+        24
+      ]
+    },
+    "button-secondary": {
+      "image": "components/button-secondary.png",
+      "width": 272,
+      "height": 108,
+      "sourceRect": [
+        336,
+        106,
+        272,
+        108
+      ],
+      "sha256": "f9f11a189e3d42347dfe59af8697400bfb3ba8cd0d9d1f09d3130db648d43ef1",
+      "mode": "three",
+      "insets": [
+        0,
+        64,
+        0,
+        64
+      ],
+      "scale": 0.5,
+      "minSize": [
+        88,
+        24
+      ]
+    },
+    "button-destructive": {
+      "image": "components/button-destructive.png",
+      "width": 274,
+      "height": 108,
+      "sourceRect": [
+        644,
+        106,
+        274,
+        108
+      ],
+      "sha256": "a2846b988440fbdcd47b0af6a3511982440882335280218fc77d42aabe297dcc",
+      "mode": "three",
+      "insets": [
+        0,
+        64,
+        0,
+        64
+      ],
+      "scale": 0.5,
+      "minSize": [
+        88,
+        24
+      ]
+    },
+    "button-disabled": {
+      "image": "components/button-disabled.png",
+      "width": 273,
+      "height": 108,
+      "sourceRect": [
+        953,
+        106,
+        273,
+        108
+      ],
+      "sha256": "cf14601905a74ba5e318c6627ed57b0bede1762c538b579cbbcc37d33ee6ef16",
+      "mode": "three",
+      "insets": [
+        0,
+        64,
+        0,
+        64
+      ],
+      "scale": 0.5,
+      "minSize": [
+        88,
+        24
+      ]
+    },
+    "window": {
+      "image": "components/window.png",
+      "width": 261,
+      "height": 198,
+      "sourceRect": [
+        42,
+        364,
+        261,
+        198
+      ],
+      "sha256": "2d7f6ea92a73c9401cf232c26a7477572fd27bb8246ea07e02731dcfc7b555d5",
+      "mode": "nine",
+      "insets": [
+        50,
+        50,
+        48,
+        50
+      ],
+      "scale": 0.5,
+      "minSize": [
+        74,
+        73
+      ]
+    },
+    "portrait-card": {
+      "image": "components/portrait-card.png",
+      "width": 197,
+      "height": 219,
+      "sourceRect": [
+        370,
+        344,
+        197,
+        219
+      ],
+      "sha256": "7434a0f50ea6cbd5401c2b747117fcb7736587530146b16ecc25c2ccbbf39360",
+      "mode": "nine",
+      "insets": [
+        66,
+        32,
+        28,
+        54
+      ],
+      "scale": 0.5,
+      "minSize": [
+        67,
+        71
+      ]
+    },
+    "tab-selected": {
+      "image": "components/tab-selected.png",
+      "width": 275,
+      "height": 105,
+      "sourceRect": [
+        644,
+        409,
+        275,
+        105
+      ],
+      "sha256": "b38968a46f3f645fb88fb3b6e386a5671c6fd13979bbf5bded3b29abefa6c314",
+      "mode": "whole"
+    },
+    "tab": {
+      "image": "components/tab.png",
+      "width": 278,
+      "height": 96,
+      "sourceRect": [
+        950,
+        411,
+        278,
+        96
+      ],
+      "sha256": "ce0f6394a7b47570f9f9d38de9187a0632a430cdb0caaea145e2a0f579a23d13",
+      "mode": "nine",
+      "insets": [
+        22,
+        62,
+        28,
+        62
+      ],
+      "scale": 0.5,
+      "minSize": [
+        86,
+        49
+      ]
+    },
+    "action-paper": {
+      "image": "components/action-paper.png",
+      "width": 245,
+      "height": 231,
+      "sourceRect": [
+        40,
+        663,
+        245,
+        231
+      ],
+      "sha256": "568ea461a64bd4660c8d037207e566ad61099da3027313cbd9b272bd51c58e11",
+      "mode": "whole"
+    },
+    "action-teal": {
+      "image": "components/action-teal.png",
+      "width": 245,
+      "height": 231,
+      "sourceRect": [
+        350,
+        663,
+        245,
+        231
+      ],
+      "sha256": "0aa72086caeeac1e55b932b3be8b6c6c21eaad289c982ab45e3ac88aa4276ef4",
+      "mode": "whole"
+    },
+    "speech": {
+      "image": "components/speech.png",
+      "width": 277,
+      "height": 150,
+      "sourceRect": [
+        643,
+        711,
+        277,
+        150
+      ],
+      "sha256": "0efc9ff0ba739189315a26e2d97a18492dd851e8c0ac44526064d5a07f608d6e",
+      "mode": "nine",
+      "insets": [
+        32,
+        38,
+        48,
+        48
+      ],
+      "scale": 0.5,
+      "minSize": [
+        67,
+        64
+      ]
+    },
+    "header": {
+      "image": "components/header.png",
+      "width": 265,
+      "height": 114,
+      "sourceRect": [
+        955,
+        730,
+        265,
+        114
+      ],
+      "sha256": "6bb60e0c44fcd8034a692e83a851840d18fc6d07abebbf9678692c8af71ba57f",
+      "mode": "nine",
+      "insets": [
+        18,
+        42,
+        34,
+        62
+      ],
+      "scale": 0.5,
+      "minSize": [
+        76,
+        50
+      ]
+    },
+    "footer": {
+      "image": "components/footer.png",
+      "width": 270,
+      "height": 85,
+      "sourceRect": [
+        36,
+        1031,
+        270,
+        85
+      ],
+      "sha256": "d5705961c51e195fa9eea2fd4081ab816662c2d51c90d2cb7d0f4d32e209d717",
+      "mode": "nine",
+      "insets": [
+        20,
+        62,
+        20,
+        62
+      ],
+      "scale": 0.5,
+      "minSize": [
+        86,
+        44
+      ]
+    },
+    "resource": {
+      "image": "components/resource.png",
+      "width": 277,
+      "height": 102,
+      "sourceRect": [
+        336,
+        1025,
+        277,
+        102
+      ],
+      "sha256": "8b4947e7183e3f4e9a8761782ad87943d5efdc8e5be59dbaa592a2bdd2ad7099",
+      "mode": "nine",
+      "insets": [
+        22,
+        60,
+        22,
+        60
+      ],
+      "scale": 0.5,
+      "minSize": [
+        84,
+        46
+      ]
+    },
+    "input": {
+      "image": "components/input.png",
+      "width": 199,
+      "height": 186,
+      "sourceRect": [
+        681,
+        976,
+        199,
+        186
+      ],
+      "sha256": "41968d0ab0567a4892d91efbdd9ae058d9d7c1c3dbdb0065a3303122fd41c913",
+      "mode": "nine",
+      "insets": [
+        44,
+        44,
+        44,
+        44
+      ],
+      "scale": 0.5,
+      "minSize": [
+        68,
+        68
+      ]
+    },
+    "tooltip": {
+      "image": "components/tooltip.png",
+      "width": 264,
+      "height": 139,
+      "sourceRect": [
+        955,
+        1002,
+        264,
+        139
+      ],
+      "sha256": "a00191f90ddeb4a83e252aea8fffd3ca4a20a795141b9ae6667b21610675a6f1",
+      "mode": "nine",
+      "insets": [
+        36,
+        42,
+        36,
+        42
+      ],
+      "scale": 0.5,
+      "minSize": [
+        66,
+        60
+      ]
+    }
+  },
+  "icons": {
+    "menu-play": {
+      "image": "icons/menu-play.png",
+      "width": 355,
+      "height": 417,
+      "sourceRect": [
+        48,
+        57,
+        355,
+        417
+      ],
+      "sha256": "ac016446a4aa189cf5e9ebb7cf874d536b07f769a446f058517c7862318fc9c6",
+      "mode": "whole"
+    },
+    "menu-partners": {
+      "image": "icons/menu-partners.png",
+      "width": 323,
+      "height": 378,
+      "sourceRect": [
+        466,
+        85,
+        323,
+        378
+      ],
+      "sha256": "d883b0bc6235e3b4566190662aa7e9c20bc0384276775f21c7f88b4f5a0a6669",
+      "mode": "whole"
+    },
+    "menu-dex": {
+      "image": "icons/menu-dex.png",
+      "width": 396,
+      "height": 359,
+      "sourceRect": [
+        838,
+        112,
+        396,
+        359
+      ],
+      "sha256": "53c6ed4e63411da6b0dff471f1a4da74f26ac7d76ef4427ad8f45da2a61705f8",
+      "mode": "whole"
+    },
+    "menu-club": {
+      "image": "icons/menu-club.png",
+      "width": 339,
+      "height": 335,
+      "sourceRect": [
+        65,
+        522,
+        339,
+        335
+      ],
+      "sha256": "52ffdd3db19587b760f392d014143795c4630add74fdb0277869416567638494",
+      "mode": "whole"
+    },
+    "menu-school": {
+      "image": "icons/menu-school.png",
+      "width": 360,
+      "height": 315,
+      "sourceRect": [
+        448,
+        538,
+        360,
+        315
+      ],
+      "sha256": "404c5ab5c711961822f012a0b37646009ea5bae1d97923478db6c81d450c6396",
+      "mode": "whole"
+    },
+    "menu-options": {
+      "image": "icons/menu-options.png",
+      "width": 343,
+      "height": 339,
+      "sourceRect": [
+        863,
+        514,
+        343,
+        339
+      ],
+      "sha256": "d0c7390ee6151fc1e0fa4ee30fe367bd4b5c90828ff7fe733c7a1865304a2eda",
+      "mode": "whole"
+    },
+    "battle-maneuver": {
+      "image": "icons/battle-maneuver.png",
+      "width": 321,
+      "height": 220,
+      "sourceRect": [
+        63,
+        950,
+        321,
+        220
+      ],
+      "sha256": "0f9740d6aa54988d869e82a93a4b02fb8d56efd3f2caa1491183b193e2b0d4c8",
+      "mode": "whole"
+    },
+    "battle-skill": {
+      "image": "icons/battle-skill.png",
+      "width": 288,
+      "height": 283,
+      "sourceRect": [
+        483,
+        905,
+        288,
+        283
+      ],
+      "sha256": "03f0d3281923f37b482a796794eba9ae688c025238f8bde791045a364669f47c",
+      "mode": "whole"
+    },
+    "battle-dodge": {
+      "image": "icons/battle-dodge.png",
+      "width": 307,
+      "height": 253,
+      "sourceRect": [
+        884,
+        934,
+        307,
+        253
+      ],
+      "sha256": "dca51a7d0e073718918d11810673ba940696797f601976f5d7f811d9fe626736",
+      "mode": "whole"
+    },
+    "badge-locked": {
+      "image": "icons/badge-locked.svg",
+      "mode": "whole",
+      "width": 64,
+      "height": 64
+    },
+    "badge-equipped": {
+      "image": "icons/badge-equipped.svg",
+      "mode": "whole",
+      "width": 64,
+      "height": 64
+    },
+    "badge-event": {
+      "image": "icons/badge-event.svg",
+      "mode": "whole",
+      "width": 64,
+      "height": 64
+    },
+    "badge-critical": {
+      "image": "icons/badge-critical.svg",
+      "mode": "whole",
+      "width": 64,
+      "height": 64
+    }
+  },
+  "glyphs": {
+    "xbox-a": {
+      "image": "glyphs/xbox-a.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "xbox-b": {
+      "image": "glyphs/xbox-b.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "xbox-x": {
+      "image": "glyphs/xbox-x.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "xbox-y": {
+      "image": "glyphs/xbox-y.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "ps-cross": {
+      "image": "glyphs/ps-cross.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "ps-circle": {
+      "image": "glyphs/ps-circle.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "ps-square": {
+      "image": "glyphs/ps-square.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "ps-triangle": {
+      "image": "glyphs/ps-triangle.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "xbox-lb": {
+      "image": "glyphs/xbox-lb.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "xbox-rb": {
+      "image": "glyphs/xbox-rb.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "xbox-lt": {
+      "image": "glyphs/xbox-lt.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "xbox-rt": {
+      "image": "glyphs/xbox-rt.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "xbox-ls": {
+      "image": "glyphs/xbox-ls.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "xbox-rs": {
+      "image": "glyphs/xbox-rs.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "ps-l1": {
+      "image": "glyphs/ps-l1.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "ps-r1": {
+      "image": "glyphs/ps-r1.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "ps-l2": {
+      "image": "glyphs/ps-l2.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "ps-r2": {
+      "image": "glyphs/ps-r2.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "ps-l3": {
+      "image": "glyphs/ps-l3.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "ps-r3": {
+      "image": "glyphs/ps-r3.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "xbox-menu": {
+      "image": "glyphs/xbox-menu.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "xbox-view": {
+      "image": "glyphs/xbox-view.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "ps-options": {
+      "image": "glyphs/ps-options.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "ps-create": {
+      "image": "glyphs/ps-create.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "key-up": {
+      "image": "glyphs/key-up.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "key-down": {
+      "image": "glyphs/key-down.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "key-left": {
+      "image": "glyphs/key-left.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "key-right": {
+      "image": "glyphs/key-right.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "key-enter": {
+      "image": "glyphs/key-enter.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "key-escape": {
+      "image": "glyphs/key-escape.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "key-space": {
+      "image": "glyphs/key-space.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "key-tab": {
+      "image": "glyphs/key-tab.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "key-w": {
+      "image": "glyphs/key-w.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "key-a": {
+      "image": "glyphs/key-a.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "key-s": {
+      "image": "glyphs/key-s.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "key-d": {
+      "image": "glyphs/key-d.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "key-q": {
+      "image": "glyphs/key-q.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "key-e": {
+      "image": "glyphs/key-e.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "key-x": {
+      "image": "glyphs/key-x.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "key-y": {
+      "image": "glyphs/key-y.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "dpad": {
+      "image": "glyphs/dpad.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "stick": {
+      "image": "glyphs/stick.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "mouse-left": {
+      "image": "glyphs/mouse-left.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "mouse-right": {
+      "image": "glyphs/mouse-right.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "touch-tap": {
+      "image": "glyphs/touch-tap.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "touch-drag": {
+      "image": "glyphs/touch-drag.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "hold": {
+      "image": "glyphs/hold.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    },
+    "back": {
+      "image": "glyphs/back.svg",
+      "viewBox": [
+        0,
+        0,
+        64,
+        64
+      ]
+    }
+  },
+  "tokens": {
+    "paper": "#fff0cd",
+    "ink": "#213d39",
+    "teal": "#14534f",
+    "primary": "#e96723",
+    "danger": "#a73129",
+    "focus": "#ffe16a",
+    "minTarget": 48
+  },
+  "examples": [
+    {
+      "id": "carcara",
+      "name": "Carcará",
+      "image": "examples/carcara.png",
+      "reusedFrom": "creatures/basicos-v2/carcara.png",
+      "sourceRect": [
+        100,
+        60,
+        150,
+        150
+      ]
+    },
+    {
+      "id": "mata-verde",
+      "name": "Mata verde",
+      "image": "examples/mata-verde.png",
+      "reusedFrom": "creatures/basicos-v2/mata-verde.png",
+      "sourceRect": [
+        85,
+        60,
+        155,
+        155
+      ]
+    },
+    {
+      "id": "nevagume",
+      "name": "Nevagume",
+      "image": "examples/nevagume.png",
+      "reusedFrom": "creatures/colecoes/nevagume.png",
+      "sourceRect": [
+        165,
+        145,
+        110,
+        110
+      ]
+    },
+    {
+      "id": "yaguaru-memoria",
+      "name": "Yaguarú",
+      "image": "examples/yaguaru-memoria.png",
+      "reusedFrom": "creatures/colecoes/yaguaru-memoria.png",
+      "sourceRect": [
+        170,
+        100,
+        120,
+        120
+      ]
+    }
+  ]
+}

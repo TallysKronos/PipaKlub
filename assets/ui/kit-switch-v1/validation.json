@@ -1,0 +1,97 @@
+{
+  "counts": {
+    "components": 16,
+    "glyphs": 48,
+    "icons": 13,
+    "brokenImages": []
+  },
+  "cases": [
+    {
+      "width": 1280,
+      "height": 800,
+      "pageOverflow": false,
+      "verification": {
+        "cases": 24,
+        "failures": 0,
+        "caps": [
+          "25px",
+          "25px",
+          "24px",
+          "25px"
+        ]
+      },
+      "smallTargets": []
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "pageOverflow": false,
+      "verification": {
+        "cases": 24,
+        "failures": 0,
+        "caps": [
+          "25px",
+          "25px",
+          "24px",
+          "25px"
+        ]
+      },
+      "smallTargets": []
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "pageOverflow": false,
+      "verification": {
+        "cases": 24,
+        "failures": 0,
+        "caps": [
+          "25px",
+          "25px",
+          "24px",
+          "25px"
+        ]
+      },
+      "smallTargets": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "pageOverflow": false,
+      "verification": {
+        "cases": 24,
+        "failures": 0,
+        "caps": [
+          "25px",
+          "25px",
+          "24px",
+          "25px"
+        ]
+      },
+      "smallTargets": []
+    }
+  ],
+  "keyboard": true,
+  "platform": true,
+  "tabs": true,
+  "fractional": {
+    "caps": {
+      "cases": 24,
+      "failures": 0,
+      "caps": [
+        "24.8px",
+        "24.8px",
+        "24px",
+        "24.8px"
+      ]
+    },
+    "overflow": false
+  },
+  "content": {
+    "buttonLabelFits": true,
+    "panelContentScrolls": true
+  },
+  "reducedMotion": true,
+  "errors": [],
+  "requests": []
+}
