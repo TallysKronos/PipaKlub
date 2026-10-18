@@ -66,7 +66,7 @@ test('painted HUD serves its real alpha atlases in both builds and every crop st
  }
  for(const [id,[key,x,y,w,h]] of Object.entries(config.hud.frames)){const sheet=config.hud.sheets[key];assert.ok(x>=0&&y>=0&&w>0&&h>0&&x+w<=sheet.width&&y+h<=sheet.height,id);}
  const ui=app({seen:true});await ui.settle();ui.run(`var painted=eng.create(Date.now());painted.players=[eng.player('Ana',0,'art-hud',Date.now())];enter(painted,'art-hud','practice');updateHud(Date.now());updateNormalLineHUD();`);
- assert.equal(ui.document.querySelectorAll('#playerPortrait .hud-art-portrait').length,1);assert.ok(ui.document.querySelector('.hud-player>.hud-art-nameplate'));assert.ok(ui.document.querySelector('#hp').classList.contains('hud-art-hp-fill'));
+ assert.equal(ui.document.querySelectorAll('#playerPortrait .hud-art-portrait').length,1);assert.ok(ui.document.querySelector('.hud-player>.hud-art-ranking'));assert.ok(ui.document.querySelector('#hp').classList.contains('hud-art-hp-fill'));
  for(const state of ['normal','hover','pressed','disabled'])assert.ok(ui.document.querySelector('#normalLineUse>.hud-art-button-'+state));
  ui.run(`$('normalLineChoice').value='folha';updateNormalLineHUD();`);assert.ok(ui.document.querySelector('#normalLineUse>.hud-art-folha'));
  ui.run(`state.players[0].color=2;updateHud(Date.now());`);assert.equal(ui.document.querySelectorAll('#playerPortrait .hud-art-portrait').length,1,'equipping a different partner preserves its illustrated frame');

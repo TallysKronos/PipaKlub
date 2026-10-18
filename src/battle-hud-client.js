@@ -1,6 +1,6 @@
 // Presentation only: never changes combat rules, inputs or server rewards.
 function battleArt(parent,frame,kind='back'){
- const node=document.createElement('span');node.className='hud-art hud-art-'+frame+' hud-art-'+kind;node.setAttribute('aria-hidden','true');parent.append(node);return node;
+ const node=document.createElement('span');node.className='hud-art hud-art-'+frame+' hud-art-'+kind;node.setAttribute('aria-hidden','true');parent.append(node);mountHudSkin(node,parent.id==='normalLineSide'&&frame.startsWith('button-')?frame.replace('button-','button-compact-'):frame,ART_CONFIG.hud);return node;
 }
 // Each painted frame owns a measured inner content box, independent of its artwork.
 for(const selector of ['.hud-player','.hud-clock','.hud-board','#normalLineHUD','.hud-skill','.hud-basics']){
@@ -15,7 +15,7 @@ for(const button of document.querySelectorAll('.combat-deck button')){const labe
 const battleDeck=document.querySelector('.combat-deck'),deckTabs=document.createElement('nav');deckTabs.className='hud-deck-tabs';deckTabs.setAttribute('aria-label','Painéis de combate');battleDeck.dataset.panel='line';
 for(const [id,label,selector] of [['line','Rebicada','#normalLineHUD'],['partner','Parceiro','.hud-skill'],['flight','Voo','.hud-basics']]){const button=document.createElement('button');button.type='button';button.dataset.hudTab=id;button.textContent=label;button.setAttribute('aria-pressed',String(id==='line'));const panel=document.querySelector(selector);if(!panel.id)panel.id='hud-panel-'+id;button.setAttribute('aria-controls',panel.id);button.onclick=()=>{resetNormalLine();battleDeck.dataset.panel=id;for(const tab of deckTabs.querySelectorAll('button'))tab.setAttribute('aria-pressed',String(tab===button));};deckTabs.append(button);}
 battleDeck.before(deckTabs);
-for(const [selector,frame] of [['.hud-player','nameplate'],['.hud-clock','clock'],['.hud-board','ranking'],['#normalLineHUD','ranking'],['.combat-deck .hud-skill','ranking'],['.hud-basics','ranking']]){
+for(const [selector,frame] of [['.hud-player','ranking'],['.hud-clock','clock'],['.hud-board','ranking'],['#normalLineHUD','ranking'],['.combat-deck .hud-skill','ranking'],['.hud-basics','ranking']]){
  const parent=document.querySelector(selector);parent.classList.add('hud-painted');battleArt(parent,frame);
 }
 battleArt($('playerPortrait'),'portrait','overlay');
