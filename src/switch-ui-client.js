@@ -22,7 +22,7 @@ function visibleRect(el){const r=el.getBoundingClientRect();return r.width>1&&r.
 function focusTargets(){
  const out=[];
  for(const el of document.querySelectorAll('button,a[href],input:not([type=hidden]),select,textarea,[tabindex]:not([tabindex="-1"])')){
-  if(el.disabled||el.closest('[inert],[hidden],[aria-hidden=true]')||el.id==='commandBar')continue;
+  if(el.disabled||el.closest('[inert],[hidden],[aria-hidden=true]')||el.id==='commandBar'||el.classList.contains('pilot-command'))continue;
   const r=visibleRect(el);if(!r)continue;
   const cx=Math.min(innerWidth-1,Math.max(0,r.left+r.width/2)),cy=Math.min(innerHeight-1,Math.max(0,r.top+r.height/2)),hit=document.elementFromPoint(cx,cy);
   if(!hit||!(hit===el||el.contains(hit)||hit.contains(el)&&hit!==document.body))continue;
@@ -103,8 +103,10 @@ function pollPads(){
  if(pressed(B.lb))switchTab(-1);
  if(pressed(B.rb))switchTab(1);
  if(pressed(B.start))startPressed();
+ if(pressed(B.x))pressKey('x');
+ if(pressed(B.y))pressKey('y');
  const scroll=switchNav.stick(0,pad.axes[3]||0).y;if(scroll)scrollFocused(scroll*18);
- for(const i of [B.x,B.y,B.view,B.up,B.down,B.left,B.right])padPrev[i]=down(i);
+ for(const i of [B.view,B.up,B.down,B.left,B.right])padPrev[i]=down(i);
 }
 // Battle input from the pad, merged by input() in the page.
 function padInput(){return padState.active?padState:null;}

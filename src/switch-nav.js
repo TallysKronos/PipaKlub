@@ -4,10 +4,10 @@ export function createSwitchNav(){
  // Standard Gamepad API button order (Xbox layout; Steam Deck and most pads report it).
  const BUTTONS={a:0,b:1,x:2,y:3,lb:4,rb:5,lt:6,rt:7,view:8,start:9,ls:10,rs:11,up:12,down:13,left:14,right:15};
  const GLYPHS={
-  xbox:{confirm:'xbox-a',back:'xbox-b',attack:'xbox-a',dodge:'xbox-b',maneuver:'xbox-x',side:'xbox-y',skill:'xbox-lb',skillRight:'xbox-rb',pause:'xbox-menu',menu:'xbox-menu',tabLeft:'xbox-lb',tabRight:'xbox-rb',move:'stick',navigate:'dpad'},
-  ps:{confirm:'ps-cross',back:'ps-circle',attack:'ps-cross',dodge:'ps-circle',maneuver:'ps-square',side:'ps-triangle',skill:'ps-l1',skillRight:'ps-r1',pause:'ps-options',menu:'ps-options',tabLeft:'ps-l1',tabRight:'ps-r1',move:'stick',navigate:'dpad'},
-  keyboard:{confirm:'key-enter',back:'key-escape',attack:'key-space',dodge:'key-shift',maneuver:'key-r',side:'mouse-right',skill:'key-q',skillRight:'key-e',pause:'key-escape',menu:'key-escape',tabLeft:'key-q',tabRight:'key-e',move:'key-w',navigate:'key-tab'},
-  touch:{confirm:'touch-tap',back:'back',attack:'touch-tap',dodge:'touch-tap',maneuver:'hold',side:'touch-tap',skill:'touch-drag',skillRight:'touch-drag',pause:'touch-tap',menu:'touch-tap',tabLeft:'touch-tap',tabRight:'touch-tap',move:'touch-drag',navigate:'touch-tap'}
+  xbox:{actionX:'xbox-x',actionY:'xbox-y',confirm:'xbox-a',back:'xbox-b',attack:'xbox-a',dodge:'xbox-b',maneuver:'xbox-x',side:'xbox-y',skill:'xbox-lb',skillRight:'xbox-rb',pause:'xbox-menu',menu:'xbox-menu',tabLeft:'xbox-lb',tabRight:'xbox-rb',move:'stick',navigate:'dpad'},
+  ps:{actionX:'ps-square',actionY:'ps-triangle',confirm:'ps-cross',back:'ps-circle',attack:'ps-cross',dodge:'ps-circle',maneuver:'ps-square',side:'ps-triangle',skill:'ps-l1',skillRight:'ps-r1',pause:'ps-options',menu:'ps-options',tabLeft:'ps-l1',tabRight:'ps-r1',move:'stick',navigate:'dpad'},
+  keyboard:{actionX:'key-x',actionY:'key-y',confirm:'key-enter',back:'key-escape',attack:'key-space',dodge:'key-shift',maneuver:'key-r',side:'mouse-right',skill:'key-q',skillRight:'key-e',pause:'key-escape',menu:'key-escape',tabLeft:'key-q',tabRight:'key-e',move:'key-w',navigate:'key-tab'},
+  touch:{actionX:'touch-tap',actionY:'touch-tap',confirm:'touch-tap',back:'back',attack:'touch-tap',dodge:'touch-tap',maneuver:'hold',side:'touch-tap',skill:'touch-drag',skillRight:'touch-drag',pause:'touch-tap',menu:'touch-tap',tabLeft:'touch-tap',tabRight:'touch-tap',move:'touch-drag',navigate:'touch-tap'}
  };
  // DualShock/DualSense report Sony ids; everything else (Xbox, Steam Deck, generic XInput) uses the Xbox glyphs.
  const padKind=id=>/054c|sony|playstation|dualshock|dualsense|wireless controller/i.test(id||'')?'ps':'xbox';

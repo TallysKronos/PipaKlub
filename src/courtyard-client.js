@@ -171,7 +171,7 @@ addEventListener('keydown',e=>{
  if(e.key==='Escape'){
   if(!gameMenu.hidden){e.preventDefault();e.stopImmediatePropagation();if(homeMenuGroup!=='root')renderHomeMenu();else closeHomeMenu();return;}
   if(!cityScreen.hidden){e.preventDefault();e.stopImmediatePropagation();$('cityBack').click();return;}
-  if(!courtyard.hidden&&!courtyard.inert){e.preventDefault();e.stopImmediatePropagation();openHomeMenu();return;}
+  if(!courtyard.hidden&&!courtyard.inert&&!(typeof dexOpen!=='undefined'&&dexOpen)){e.preventDefault();e.stopImmediatePropagation();openHomeMenu();return;}
  }
  if(panel&&e.key==='Tab'){const buttons=[...panel.querySelectorAll('button')].filter(b=>!b.hidden&&!b.disabled&&b.getClientRects().length),first=buttons[0],last=buttons.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus()}}
  if(!gameMenu.hidden&&['ArrowDown','ArrowUp'].includes(e.key)){const buttons=[...$('homeMenuLinks').querySelectorAll('button')],i=buttons.indexOf(document.activeElement);e.preventDefault();buttons[(i+(e.key==='ArrowDown'?1:-1)+buttons.length)%buttons.length].focus()}
