@@ -130,7 +130,7 @@ function pilotTabs(select,host){
  const bar=document.createElement('div');bar.className='pilot-tabs';bar.setAttribute('role','tablist');
  const sync=()=>{for(const t of bar.querySelectorAll('[role=tab]')){const on=t.dataset.value===select.value;t.setAttribute('aria-selected',String(on));if(on)t.scrollIntoView?.({block:'nearest',inline:'nearest'});}};
  for(const o of select.options){const t=document.createElement('button');t.type='button';t.setAttribute('role','tab');t.dataset.value=o.value;t.textContent=o.textContent;t.onclick=()=>{select.value=o.value;select.dispatchEvent(new Event('change',{bubbles:true}));sync();};bar.append(t);}
- host.before(bar);select.closest('label,div')?.classList.add('pilot-hidden-control');sync();select.addEventListener('change',sync);
+ host.before(bar);select.closest('label,div')?.classList.add('pilot-hidden-control');sync();select.addEventListener('change',sync);bar.sync=sync;
  return bar;
 }
 function pilotStep(bar,step){const tabs=[...bar.querySelectorAll('[role=tab]')],i=tabs.findIndex(t=>t.getAttribute('aria-selected')==='true'),n=tabs[(Math.max(0,i)+step+tabs.length)%tabs.length];n.click();}
@@ -166,6 +166,41 @@ addEventListener('keydown',e=>{
  if(key==='y'){e.preventDefault();(inv?invSearch:dexSearch)?.();}
  if(key==='x'&&inv){e.preventDefault();$('inventoryHistory')?.click();}
 });
+
+// ---------------------------------------------------------------- the kite marks focus in every text list
+document.documentElement.style.setProperty('--pilot-kite','url("data:image/svg+xml,'+encodeURIComponent(PILOT_KITE.replace('<svg ','<svg xmlns="http://www.w3.org/2000/svg" '))+'")');
+
+// ---------------------------------------------------------------- pause: a short list, rebicada as tabs, labelled toggles
+{
+ const sheet=$('pauseSheet'),card=sheet.querySelector('.sheet-card');card.classList.add('pilot-pause');
+ const line=$('pauseLineChoice'),lineTabs=line?pilotTabs(line,line.closest('label')):null;
+ if(lineTabs){const label=document.createElement('p');label.className='pilot-tabs-label';label.textContent='Rebicada';lineTabs.before(label);}
+ const list=document.createElement('div');list.className='pilot-pause-list';
+ const resume=card.querySelector('button.primary[data-close-sheet]'),rules=$('pauseRules'),leave=$('pauseLeave');
+ for(const b of [resume,rules,leave]){b.classList.add('pilot-text-option');list.append(b);}
+ resume.textContent='Continuar';card.querySelector('.menu-row')?.remove();$('pauseNote').after(list);
+ const footer=document.createElement('div');footer.className='pilot-footer pilot-footer-inline pilot-pause-footer';
+ footer.append(pilotCommand('confirm','Escolher'),...(lineTabs?[pilotCommand('tabLeft','',()=>pilotStep(lineTabs,-1)),pilotCommand('tabRight','Rebicada',()=>pilotStep(lineTabs,1))]:[]),pilotCommand('back','Continuar',pilotEscape));card.append(footer);
+ new MutationObserver(()=>{if(sheet.hidden)return;lineTabs?.sync();requestAnimationFrame(()=>{if(!sheet.hidden)resume.focus({preventScroll:true});});}).observe(sheet,{attributes:true,attributeFilter:['hidden']});
+ addEventListener('keydown',e=>{if(sheet.hidden||!lineTabs||e.ctrlKey||e.metaKey||e.altKey)return;const k=e.key.toLowerCase();if(k==='q'||k==='e'){e.preventDefault();e.stopImmediatePropagation();pilotStep(lineTabs,k==='q'?-1:1);}},true);
+ addEventListener('keydown',e=>{if(sheet.hidden||!['ArrowUp','ArrowDown'].includes(e.key))return;const items=[...list.querySelectorAll('button')].filter(b=>!b.hidden&&!b.disabled),i=items.indexOf(document.activeElement);if(i<0)return;e.preventDefault();e.stopImmediatePropagation();items[(i+(e.key==='ArrowDown'?1:-1)+items.length)%items.length].focus({preventScroll:true});},true);
+}
+
+// ---------------------------------------------------------------- plaza bag and missions: info on paper, actions in the footer
+{
+ const box=$('modal'),action=$('dialogAction');
+ const mark=(button,command)=>{if(!button||button.querySelector('.pilot-modal-glyph'))return;const g=glyphImage(command);g.classList.add('pilot-modal-glyph');button.prepend(g);button.classList.add('pilot-modal-command');};
+ const sync=()=>{
+  const plaza=!!box.querySelector('#plazaMissionBody,#plazaBagItems');box.classList.toggle('pilot-plaza',plaza);
+  if(!plaza){action.querySelector('.pilot-modal-glyph')?.remove();action.classList.remove('pilot-modal-command');return;}
+  mark(action,'back');const primary=box.querySelector('#dialogBody button.primary');mark(primary,'confirm');
+  if(primary&&!primary.dataset.pilotFocused&&(document.activeElement===$('close')||document.activeElement===document.body)){primary.dataset.pilotFocused='true';primary.focus({preventScroll:true});}
+ };
+ new MutationObserver(sync).observe(box,{childList:true,subtree:true,attributes:true,attributeFilter:['style']});
+}
+
+// ---------------------------------------------------------------- opening: the room fills the screen, places read as choices
+if($('kaelOpening'))$('kaelOpening').classList.add('pilot-opening');
 
 // ---------------------------------------------------------------- results never open under a pause
 if(typeof showMatchResult==='function'){const classicResult=showMatchResult;showMatchResult=function(...args){if(!$('pauseSheet').hidden)closeSheet();return classicResult.apply(this,args);};}

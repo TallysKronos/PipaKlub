@@ -1511,7 +1511,61 @@ button.pilot-command:hover{color:#ffd65a}
 .pilot-ui.in-match #flightStatus{display:none!important}
 @media (max-height:520px){.pilot-ui.in-match .hud .hud-player{transform:scale(.62)}.pilot-ui.in-match .hud .hud-board{transform:scale(.66)}}
 
-@media (prefers-reduced-motion:reduce){.pilot-kite,.pilot-option{transition:none}.pilot-kite svg,.pilot-kite-mini{animation:none}}
+/* Text lists inside paper cards: the same rule as the menu, ink on paper, a kite marks the focus. */
+.pilot-ui .pilot-text-option,.pilot-ui .sheet-card button.pilot-text-option.menu-art-button{border-image:none!important;border-image-source:none!important;font-family:'Lilita One','Trebuchet MS',sans-serif!important;font-weight:400!important;padding-left:38px!important;margin-left:-38px!important}
+.pilot-ui .pilot-text-option{position:relative;display:flex!important;align-items:center;width:auto!important;min-height:44px!important;margin:0!important;padding:4px 10px 4px 38px!important;border:0!important;border-image:none!important;border-radius:0!important;background:none!important;box-shadow:none!important;color:#405e52!important;font:400 clamp(22px,2vw,28px)/1.1 'Lilita One','Trebuchet MS',sans-serif!important;text-transform:none!important;letter-spacing:.01em!important;text-align:left;cursor:pointer;outline:none!important;transition:color .12s,transform .16s}
+.pilot-ui .pilot-text-option>.menu-button-skin,.pilot-ui .pilot-text-option>.hud-art,.pilot-ui .pilot-text-option>.pk-skin{display:none!important}
+.pilot-ui .pilot-text-option::before{content:'';position:absolute;left:2px;top:50%;width:20px;height:32px;margin-top:-17px;background:var(--pilot-kite) center/contain no-repeat;opacity:0;transform:translateX(-6px);transition:opacity .12s,transform .16s}
+.pilot-ui .sheet-card button.pilot-text-option.menu-art-button{color:#405e52!important;text-shadow:none!important}
+.pilot-ui .sheet-card button.pilot-text-option.menu-art-button:hover{color:#213d39!important}
+.pilot-ui .sheet-card button.pilot-text-option.menu-art-button:focus{color:#c14e22!important}
+.pilot-ui .pilot-text-option:hover{color:#213d39!important}
+.pilot-ui .pilot-text-option:focus,.pilot-ui .pilot-text-option:focus-visible{color:#c14e22!important;transform:translateX(6px)}
+.pilot-ui .pilot-text-option:focus::before{opacity:1;transform:none}
+.pilot-ui .pilot-text-option.danger:focus{color:#a3311d!important}
+
+/* Pause */
+.pilot-ui .pilot-pause{padding-bottom:78px!important;width:min(600px,94vw)!important;max-width:none!important}
+.pilot-ui .pilot-pause .pilot-pause-footer{gap:22px;left:40px;right:40px}
+.pilot-pause-list{display:flex;flex-direction:column;align-items:flex-start;gap:2px;margin:6px 0 14px}
+.pilot-ui .pilot-pause .pilot-tabs-label{margin:4px 0 0!important;color:#5a4a2c!important;opacity:1!important;font:800 13px/1.2 'Nunito',sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.pilot-ui .pilot-pause .render-stats{display:none!important}
+.pilot-ui .pilot-pause .pause-tools .arena-tools{gap:6px;flex-wrap:wrap}
+.pilot-ui .pilot-pause .pause-tools .icon-btn{width:auto!important;min-width:0!important;height:auto!important;min-height:36px!important;padding:4px 12px!important;border:2px solid #b9a07a!important;border-radius:999px!important;background:#fff6df!important;box-shadow:none!important;color:#213d39!important;font:800 14px/1 'Nunito',sans-serif!important}
+.pilot-ui .pilot-pause .pause-tools .icon-btn{font-size:0!important}.pilot-ui .pilot-pause .pause-tools .icon-btn>*{display:none!important}
+.pilot-ui .pilot-pause .pause-tools .icon-btn::after{content:attr(aria-label);font-size:14px}
+.pilot-ui .pilot-pause .pause-tools .icon-btn:focus-visible{outline:3px solid #ffd65a!important;outline-offset:2px}
+.pilot-ui .pilot-pause .pilot-pause-footer{display:flex}
+.pilot-ui .pilot-pause .close{display:none!important}
+
+/* Plaza bag and missions */
+.pilot-ui #modal.pilot-plaza .dialog{display:flex!important;flex-wrap:wrap;align-items:center;column-gap:26px}
+.pilot-ui #modal.pilot-plaza .dialog>*{flex:1 0 100%}
+.pilot-ui #modal.pilot-plaza #dialogBody,.pilot-ui #modal.pilot-plaza #plazaMissionBody{display:contents}
+.pilot-ui #modal.pilot-plaza #plazaMissionBody>*{flex:1 0 100%}
+.pilot-ui #modal.pilot-plaza #plazaMissionBody>button.primary{order:20;margin-left:auto!important}
+.pilot-ui #modal.pilot-plaza #dialogBody>*{flex:1 0 100%}
+.pilot-ui #modal.pilot-plaza #dialogBody>button.primary{order:20;margin-left:auto!important}
+.pilot-ui #modal.pilot-plaza #dialogAction{order:21}
+.pilot-ui #modal.pilot-plaza .close{display:none!important}
+.pilot-ui #modal.pilot-plaza button.pilot-modal-command{flex:none!important;display:inline-flex!important;align-items:center;gap:8px;width:auto!important;min-height:44px!important;margin:12px 0 0!important;padding:10px 4px 0!important;border:0!important;border-image:none!important;border-top:2px dashed #b9a07a!important;border-radius:0!important;background:none!important;box-shadow:none!important;color:#213d39!important;font:800 18px/1 'Nunito',sans-serif!important;text-transform:none!important;letter-spacing:0!important;cursor:pointer}
+.pilot-ui #modal.pilot-plaza button.pilot-modal-command>.menu-button-skin,.pilot-ui #modal.pilot-plaza button.pilot-modal-command>.hud-art,.pilot-ui #modal.pilot-plaza button.pilot-modal-command>.pk-skin{display:none!important}
+.pilot-ui #modal.pilot-plaza button.pilot-modal-command:hover,.pilot-ui #modal.pilot-plaza button.pilot-modal-command:focus-visible{color:#c14e22!important;outline:none!important}
+.pilot-ui #modal.pilot-plaza button.pilot-modal-command:focus-visible .kit-glyph{outline:3px solid #ffd65a;outline-offset:2px;border-radius:6px}
+.pilot-ui #modal.pilot-plaza .kit-glyph{width:30px;height:30px}
+.pilot-ui #modal.pilot-plaza .plaza-mission-row{border-top-style:dotted}
+
+/* Opening: warm wood around the room instead of black bars; places are choices with the kite. */
+.pilot-ui .pilot-opening .opening-stage{background:radial-gradient(ellipse at 50% 45%,#0000 38%,#1d120acc 100%),repeating-linear-gradient(90deg,#5b3a20 0 46px,#52341c 46px 48px,#603d22 48px 94px,#4d301a 94px 96px),#5b3a20}
+.pilot-ui .pilot-opening .opening-heading{text-shadow:0 2px 0 #1d120a}
+.pilot-ui .pilot-opening .opening-places{gap:6px}
+.pilot-ui .pilot-opening .opening-place{position:relative;padding:4px 12px 4px 28px!important;min-height:40px!important;color:#405e52!important;font:400 20px/1 'Lilita One','Trebuchet MS',sans-serif!important;text-decoration:none!important;outline:none!important}
+.pilot-ui .pilot-opening .opening-place::before{content:'';position:absolute;left:4px;top:50%;width:18px;height:28px;margin-top:-15px;background:var(--pilot-kite) center/contain no-repeat;opacity:0;transition:opacity .12s}
+.pilot-ui .pilot-opening .opening-place:hover{color:#213d39!important}
+.pilot-ui .pilot-opening .opening-place:focus-visible,.pilot-ui .pilot-opening .opening-place[aria-pressed=true]{color:#c14e22!important}
+.pilot-ui .pilot-opening .opening-place:focus-visible::before,.pilot-ui .pilot-opening .opening-place[aria-pressed=true]::before{opacity:1}
+
+@media (prefers-reduced-motion:reduce){.pilot-kite,.pilot-option,.pilot-text-option,.pilot-text-option::before{transition:none}.pilot-kite svg,.pilot-kite-mini{animation:none}}
 button.pilot-command:disabled{opacity:.55;cursor:default}
 
 </style></head>
@@ -5653,7 +5707,7 @@ function pilotTabs(select,host){
  const bar=document.createElement('div');bar.className='pilot-tabs';bar.setAttribute('role','tablist');
  const sync=()=>{for(const t of bar.querySelectorAll('[role=tab]')){const on=t.dataset.value===select.value;t.setAttribute('aria-selected',String(on));if(on)t.scrollIntoView?.({block:'nearest',inline:'nearest'});}};
  for(const o of select.options){const t=document.createElement('button');t.type='button';t.setAttribute('role','tab');t.dataset.value=o.value;t.textContent=o.textContent;t.onclick=()=>{select.value=o.value;select.dispatchEvent(new Event('change',{bubbles:true}));sync();};bar.append(t);}
- host.before(bar);select.closest('label,div')?.classList.add('pilot-hidden-control');sync();select.addEventListener('change',sync);
+ host.before(bar);select.closest('label,div')?.classList.add('pilot-hidden-control');sync();select.addEventListener('change',sync);bar.sync=sync;
  return bar;
 }
 function pilotStep(bar,step){const tabs=[...bar.querySelectorAll('[role=tab]')],i=tabs.findIndex(t=>t.getAttribute('aria-selected')==='true'),n=tabs[(Math.max(0,i)+step+tabs.length)%tabs.length];n.click();}
@@ -5689,6 +5743,41 @@ addEventListener('keydown',e=>{
  if(key==='y'){e.preventDefault();(inv?invSearch:dexSearch)?.();}
  if(key==='x'&&inv){e.preventDefault();$('inventoryHistory')?.click();}
 });
+
+// ---------------------------------------------------------------- the kite marks focus in every text list
+document.documentElement.style.setProperty('--pilot-kite','url("data:image/svg+xml,'+encodeURIComponent(PILOT_KITE.replace('<svg ','<svg xmlns="http://www.w3.org/2000/svg" '))+'")');
+
+// ---------------------------------------------------------------- pause: a short list, rebicada as tabs, labelled toggles
+{
+ const sheet=$('pauseSheet'),card=sheet.querySelector('.sheet-card');card.classList.add('pilot-pause');
+ const line=$('pauseLineChoice'),lineTabs=line?pilotTabs(line,line.closest('label')):null;
+ if(lineTabs){const label=document.createElement('p');label.className='pilot-tabs-label';label.textContent='Rebicada';lineTabs.before(label);}
+ const list=document.createElement('div');list.className='pilot-pause-list';
+ const resume=card.querySelector('button.primary[data-close-sheet]'),rules=$('pauseRules'),leave=$('pauseLeave');
+ for(const b of [resume,rules,leave]){b.classList.add('pilot-text-option');list.append(b);}
+ resume.textContent='Continuar';card.querySelector('.menu-row')?.remove();$('pauseNote').after(list);
+ const footer=document.createElement('div');footer.className='pilot-footer pilot-footer-inline pilot-pause-footer';
+ footer.append(pilotCommand('confirm','Escolher'),...(lineTabs?[pilotCommand('tabLeft','',()=>pilotStep(lineTabs,-1)),pilotCommand('tabRight','Rebicada',()=>pilotStep(lineTabs,1))]:[]),pilotCommand('back','Continuar',pilotEscape));card.append(footer);
+ new MutationObserver(()=>{if(sheet.hidden)return;lineTabs?.sync();requestAnimationFrame(()=>{if(!sheet.hidden)resume.focus({preventScroll:true});});}).observe(sheet,{attributes:true,attributeFilter:['hidden']});
+ addEventListener('keydown',e=>{if(sheet.hidden||!lineTabs||e.ctrlKey||e.metaKey||e.altKey)return;const k=e.key.toLowerCase();if(k==='q'||k==='e'){e.preventDefault();e.stopImmediatePropagation();pilotStep(lineTabs,k==='q'?-1:1);}},true);
+ addEventListener('keydown',e=>{if(sheet.hidden||!['ArrowUp','ArrowDown'].includes(e.key))return;const items=[...list.querySelectorAll('button')].filter(b=>!b.hidden&&!b.disabled),i=items.indexOf(document.activeElement);if(i<0)return;e.preventDefault();e.stopImmediatePropagation();items[(i+(e.key==='ArrowDown'?1:-1)+items.length)%items.length].focus({preventScroll:true});},true);
+}
+
+// ---------------------------------------------------------------- plaza bag and missions: info on paper, actions in the footer
+{
+ const box=$('modal'),action=$('dialogAction');
+ const mark=(button,command)=>{if(!button||button.querySelector('.pilot-modal-glyph'))return;const g=glyphImage(command);g.classList.add('pilot-modal-glyph');button.prepend(g);button.classList.add('pilot-modal-command');};
+ const sync=()=>{
+  const plaza=!!box.querySelector('#plazaMissionBody,#plazaBagItems');box.classList.toggle('pilot-plaza',plaza);
+  if(!plaza){action.querySelector('.pilot-modal-glyph')?.remove();action.classList.remove('pilot-modal-command');return;}
+  mark(action,'back');const primary=box.querySelector('#dialogBody button.primary');mark(primary,'confirm');
+  if(primary&&!primary.dataset.pilotFocused&&(document.activeElement===$('close')||document.activeElement===document.body)){primary.dataset.pilotFocused='true';primary.focus({preventScroll:true});}
+ };
+ new MutationObserver(sync).observe(box,{childList:true,subtree:true,attributes:true,attributeFilter:['style']});
+}
+
+// ---------------------------------------------------------------- opening: the room fills the screen, places read as choices
+if($('kaelOpening'))$('kaelOpening').classList.add('pilot-opening');
 
 // ---------------------------------------------------------------- results never open under a pause
 if(typeof showMatchResult==='function'){const classicResult=showMatchResult;showMatchResult=function(...args){if(!$('pauseSheet').hidden)closeSheet();return classicResult.apply(this,args);};}
