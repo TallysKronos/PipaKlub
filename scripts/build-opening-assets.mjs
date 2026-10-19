@@ -16,12 +16,17 @@ async function measure(file,cols,rows){
  const frames=Array.from({length:cols*rows},(_,i)=>{const x=Math.round(i%cols*info.width/cols),y=Math.round(Math.floor(i/cols)*info.height/rows),w=Math.round((i%cols+1)*info.width/cols)-x,h=Math.round((Math.floor(i/cols)+1)*info.height/rows)-y;let left=w,top=h,right=-1,bottom=-1;for(let cy=0;cy<h;cy++)for(let cx=0;cx<w;cx++)if(data[((y+cy)*info.width+x+cx)*4+3]>32){left=Math.min(left,cx);top=Math.min(top,cy);right=Math.max(right,cx);bottom=Math.max(bottom,cy);}if(right<left)throw Error('Empty cell '+file+' '+i);return {x,y,w,h,bounds:{x:left,y:top,w:right-left+1,h:bottom-top+1}};});
  return {width:info.width,height:info.height,frames};
 }
-const mother=await measure('mother.png',2,1),rabbit=await measure('rabbito.png',4,2);
+const mother=await measure('mother-overworld-v2.png',4,2),rabbit=await measure('rabbito.png',4,2);
 const actors={mother,rabbito:rabbit},images={};
 for(const file of ['bedroom','downstairs','mother','rabbito','tail']){const m=await sharp(root+'/'+file+'.png').metadata();images[file]={image:'story/kael-birthday-v1/'+file+'.png',width:m.width,height:m.height,alpha:!!m.hasAlpha};}
+images.mother={...images.mother,image:'story/kael-birthday-v1/mother-overworld-v2.png',width:mother.width,height:mother.height,alpha:true};
+const projectMetadata=await sharp(root+'/rabbito-project-clean-v2.png').metadata();
+if(projectMetadata.width!==1536||projectMetadata.height!==1024||!projectMetadata.hasAlpha)throw Error('Projeto Rabbito: os recortes da bancada exigem PNG RGBA 1536×1024.');
+images.project={image:'story/kael-birthday-v1/rabbito-project-clean-v2.png',width:projectMetadata.width,height:projectMetadata.height,alpha:!!projectMetadata.hasAlpha};
 images.kael={image:'hub/praca-v1/kael.png'};
 const rooms={bedroom:{image:'bedroom',width:1536,height:1024,entry:[760,800],floor:[450,460,850,330],tv:[473,178,88,59],desk:[1010,560],exit:{target:'downstairs',x:760,y:800}},downstairs:{image:'downstairs',width:1536,height:1024,entry:[1220,630],floor:[520,460,680,240],exit:{target:'quintal',x:760,y:700},stairs:{target:'bedroom',x:1220,y:630}}};
-rooms.bedroom.blocking={kaelTV:[540,570],kaelDesk:[1010,560],motherEntry:[820,880],mother:[820,590],rabbito:[1145,520]};
+rooms.bedroom.blocking={kaelTV:[540,570],kaelDesk:[1050,510],motherEntry:[780,855],mother:[900,640],rabbito:[1145,640]};
+rooms.bedroom.blocked=[[1080,390,110,150]];
 rooms.bedroom.walkable=[[450,460,850,330],[670,780,200,130]];
 rooms.downstairs.blocking={kael:[860,650],mother:[660,640],rabbito:[1000,650]};
 rooms.downstairs.walkable=[[520,460,680,240],[670,650,220,230]];

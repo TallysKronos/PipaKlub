@@ -1,3 +1,4 @@
+import {seedCollection} from './test-support/collection-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -14,6 +15,7 @@ test('summoning consumes immediately, grants exactly once, enforces three attemp
   await db.exec("create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key,raw_user_meta_data jsonb);create function auth.uid() returns uuid language sql as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;grant usage on schema public,auth to authenticated,anon,service_role;");
   for(const f of fs.readdirSync('supabase/migrations').sort())await db.exec(fs.readFileSync('supabase/migrations/'+f,'utf8'));
   for(const id of [a,b])await db.query('insert into auth.users values($1,$2)',[id,{nickname:'Pipeiro'}]);
+await seedCollection(db,[a,b]);
   const grant=async(model,ref,source='drop')=>(await db.query('select public.grant_summon_tail($1,$2,$3,$4) id',[a,model,source,ref])).rows[0].id;
   const tail=await grant('mata','first'),tail2=await grant('azulao','second','purchase'),tail3=await grant('marulume','third','event'),tail4=await grant('raio','fourth');
   assert.equal(await grant('mata','first'),tail,'verified delivery retries do not duplicate items');

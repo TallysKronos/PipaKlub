@@ -45,7 +45,7 @@ function renderAccountDialog(){
  const p=playerAccount.profile;$('accountNickname').value=p.nickname;
  $('accountLevel').textContent='Nível '+p.level;$('accountXP').textContent=p.xp+' / '+p.next_level_xp+' XP';
  const base=(p.level-1)**2*100;$('accountXPBar').style.width=Math.min(100,(p.xp-base)/Math.max(1,p.next_level_xp-base)*100)+'%';
- $('accountCuts').textContent=p.cuts+' cortes';$('collectionCount').textContent=playerAccount.inventory.length+' pipas';
+ $('accountCuts').textContent=p.cuts+' cortes';$('collectionCount').textContent=playerAccount.inventory.length+(playerAccount.inventory.length===1?' pipa':' pipas');
  renderInventory();
  const owned=new Set(playerAccount.inventory.map(k=>k.model_id));
  $('eventSoulsList').replaceChildren(...art.specials.filter(s=>s.id!=='rabbito').map(s=>{

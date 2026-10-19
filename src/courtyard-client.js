@@ -74,7 +74,7 @@ function renderJourney(){
  if(mode||!playerAccount)return;if(openingState?.step<14&&!homeReplay){showOpening(false);return;}if(journeyError&&!journey){dialogue('Vamos recuperar seu próximo passo',journeyError,'Tentar novamente',loadJourney,{later:true});return;}
  if(homeReplay||journey?.phase==='arrival')dialogue('Seu lugar no céu','Chegou numa boa hora. Sou o Sr. Assis, e este é o Nozinho. Antes de visitar a cidade, vamos encontrar um parceiro e sentir o vento.','Conhecer os parceiros',async()=>{if(homeReplay||await saveJourney('welcome'))choosePartner()});
  else if(journey?.phase==='choose')choosePartner();
- else if(journey?.phase==='practice')dialogue('Vamos voar juntos?','Seu parceiro está esperando. Nozinho vai ajudar a praticar movimento, rebique, energia e habilidade. Aqui não há perdas nem consumo de itens.','Continuar o primeiro voo',()=>startFirstFlight(),{later:true});
+ else if(journey?.phase==='practice')dialogue('Vamos voar juntos?',openingState?.partner_id?'Sua mãe me contou sobre o desenho e a Rabiola Antiga… Nunca vi um nascimento assim. '+(openingState.partner_name||'Rabbito')+' parece confiar em você. Vamos descobrir juntos como ele encontra o vento? Nozinho vai ajudar, sem perdas nem consumo de itens.':'Seu parceiro está com você. Nozinho vai ajudar a praticar movimento, rebique, energia e habilidade. Aqui não há perdas nem consumo de itens.','Continuar o primeiro voo',()=>startFirstFlight(),{later:true});
  else if(journey?.phase==='city')dialogue('Um corte, uma nova história','Nozinho está bem! Sua coleção fica aqui no quintal. Quando quiser um novo desafio, passe pelo portão e conheça o Morro do Sol.','Explorar a cidade',openCity,{later:true});
  else hideJourney();
 }
@@ -90,7 +90,7 @@ $('partnerConfirm').onclick=async()=>{const chosen=partners[homePartner];if(home
 function startFirstFlight(){
  if(mode||!playerAccount||journeyLoading||journeyBusy)return;hideJourney();closeHomeMenu();
  const equipped=playerAccount.inventory.find(k=>k.id===playerAccount.profile.equipped_kite_id),p=homeReplay?partners[homePartner]:{color:equipped?.model.color??0,soul:equipped?.model.soul};
- firstFlightRun=firstFlight.create({...p,lesson:homeReplay?0:journey?.lesson||0,name:playerAccount.profile.nickname},Date.now());flightSaved=false;enter(firstFlightRun.state,'you','practice');document.body.classList.add('in-first-flight');flightCoach.hidden=false;renderFlightCoach();art.load('nozinho');setText('liveLabel','Sr. Assis e Nozinho');setText('arenaMode','Primeiro voo · treino sem perdas');$('sky').focus?.();
+ firstFlightRun=firstFlight.create({...p,lesson:homeReplay?0:journey?.lesson||0,name:playerAccount.profile.nickname,partnerName:homeReplay?null:equipped?.personal_name},Date.now());flightSaved=false;enter(firstFlightRun.state,'you','practice');document.body.classList.add('in-first-flight');flightCoach.hidden=false;renderFlightCoach();art.load('nozinho');setText('liveLabel','Sr. Assis e Nozinho');setText('arenaMode','Primeiro voo · treino sem perdas');$('sky').focus?.();
 }
 function firstFlightInstruction(index){
  const device=typeof inputDevice==='string'?inputDevice:'keyboard';

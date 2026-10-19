@@ -34,7 +34,9 @@ function updateBattleHUD(p){
  if(!mode||!p)return;
  ensureBattleArt();
  const entry=ART_CONFIG.dex.entries.find(e=>p.soul?e.id===p.soul:e.atlas===art.basic(p.color));
- setText('partnerName',(entry?.name||'Parceiro almático')+' · Nv. '+eng.pipamons.level(p.pipamonLevel));
+ const equipped=typeof playerAccount!=='undefined'?playerAccount?.inventory?.find(k=>k.id===playerAccount.profile?.equipped_kite_id):null;
+ const nickname=p.partnerName||(equipped&&(equipped.model?.soul||null)===(p.soul||null)&&equipped.model?.color===p.color?equipped.personal_name:null);
+ setText('partnerName',(nickname||entry?.name||'Parceiro almático')+' · Nv. '+eng.pipamons.level(p.pipamonLevel));
  setText('battleMode',state.trail?'Trilha · '+state.trail.split('-')[0]:state.daily?'Céu do dia':mode==='practice'?'Voo de treino':state.rules==='capture'?'Vale pipa':'Duelo de pipas');
  setText('roundInfo',state.phase==='waiting'?(state.quick?'Buscando rivais':'Aguardando rival'):state.mode==='rounds'?(matchMedia('(max-width:900px), (max-height:500px)').matches?'R':'Rodada ')+state.round+' · '+state.roundsToWin+' vitórias':'Partida por tempo');
  $('hud').dataset.danger=String(p.hp<=30&&!p.respawn);$('hud').dataset.phase=state.phase||'live';

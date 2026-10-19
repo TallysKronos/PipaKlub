@@ -1,3 +1,4 @@
+import {seedCollection} from './test-support/collection-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -12,6 +13,7 @@ test('PostgreSQL invite trade: permissions, membership, revision, atomic swap, r
   await db.exec("create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key,raw_user_meta_data jsonb);create function auth.uid() returns uuid language sql as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;grant usage on schema public,auth to authenticated,anon,service_role;");
   for(const f of fs.readdirSync('supabase/migrations').sort())await db.exec(fs.readFileSync('supabase/migrations/'+f,'utf8'));
   for(const id of [a,b,c])await db.query('insert into auth.users values($1,$2)',[id,{nickname:id===a?'Ana':'Amigo'}]);
+await seedCollection(db,[a,b,c]);
   const kite=async(id,model)=>(await db.query('select id from public.player_kites where owner_id=$1 and model_id=$2',[id,model])).rows[0].id;
   const ak=await kite(a,'mata'),ak2=await kite(a,'raio'),bk=await kite(b,'azulao'),basic=await kite(a,'basica');
   const as=async id=>db.exec("reset role;set role authenticated;set request.jwt.claim.sub='"+id+"'");

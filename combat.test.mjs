@@ -19,6 +19,11 @@ test('facing follows horizontal steering and dash, persists at rest, and reaches
 });
 function duel(){const s=e.create(1000),a=e.player('A',0,'a',1000),b=e.player('B',1,'b',1000);Object.assign(a,{x:700,y:180,anchorX:90,input:{cut:true}});Object.assign(b,{x:300,y:180,anchorX:910});s.players=[a,b];return {s,a,b};}
 
+test('a captured collectible falls back to the owned story partner with its species, name and level',()=>{
+ const {s,b}=duel();s.rules='capture';Object.assign(b,{hp:1,accountId:'owner',kiteId:'collectible',basicKiteId:'story',basicSoul:'rabbito',basicColor:0,basicPartnerName:'Pingo',basicPipamonLevel:4});
+ e.step(s,1034);assert.equal(b.kiteId,'story');assert.equal(b.soul,'rabbito');assert.equal(b.partnerName,'Pingo');assert.equal(b.pipamonLevel,4);assert.equal(b.kitePermanent,true);
+});
+
 test('only a valid line crossing deals damage; kite proximity, ground intersections and parallel lines do not',()=>{
  const {s,a,b}=duel();assert.ok(e.contact(a,b).valid);e.step(s,1034);assert.ok(Math.abs(b.hp-CLEAN)<1e-9);assert.equal(a.hp,100);
  const nearby=duel();nearby.a.x=400;nearby.b.x=401;nearby.a.y=nearby.b.y=200;e.step(nearby.s,1034);assert.equal(nearby.b.hp,100);

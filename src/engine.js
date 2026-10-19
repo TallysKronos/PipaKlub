@@ -227,7 +227,7 @@ export function createEngine() {
       const p=winner.p;q.respawn=rounds?now:now+3000;q.attack=false;q.lineMove=null;q.lineStrike=null;p.score+=100;p.cuts++;
       const cut={text:p.name+' cortou '+q.name,at:now,id:s.id+':'+(++s.cutSequence),winnerId:p.id,loserId:q.id,matchId:s.id,winnerAccountId:p.accountId,loserAccountId:q.accountId,kiteId:q.kiteId,capture:s.rules==='capture'&&!q.kitePermanent};
       s.events.unshift(cut);s._pendingCuts.push(cut);s.events=s.events.slice(0,4);
-      if(s.rules==='capture'&&q.accountId&&q.basicKiteId){q.kiteId=q.basicKiteId;q.kitePermanent=true;q.color=0;q.soul=null;q.pipamonLevel=pipamons.level(q.basicPipamonLevel);q.skillTime=0;}
+      if(s.rules==='capture'&&q.accountId&&q.basicKiteId){q.kiteId=q.basicKiteId;q.kitePermanent=true;q.color=q.basicColor??0;q.soul=q.basicSoul||null;q.partnerName=q.basicPartnerName||null;q.pipamonLevel=pipamons.level(q.basicPipamonLevel);q.skillTime=0;}
     }
     if(rounds&&s.phase==='live'&&s.players.filter(p=>!p.respawn).length<=1)finishRound(s,now);
     return s;

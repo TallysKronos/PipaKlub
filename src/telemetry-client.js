@@ -14,5 +14,7 @@ function openConsent(){$('consentBar').hidden=false;}
 if(CLARITY_ID){
  $('privacyButton').hidden=false;$('privacyButton').onclick=openConsent;
  $('consentYes').onclick=()=>setConsent(true);$('consentNo').onclick=()=>setConsent(false);
- const choice=consentChoice();if(choice==='yes')loadClarity();else if(choice!=='no')openConsent();
+ // Optional analytics is off until chosen in Privacidade. Never interrupt a
+ // story, tutorial or combat with an unsolicited consent overlay.
+ const choice=consentChoice();if(choice==='yes')loadClarity();
 }

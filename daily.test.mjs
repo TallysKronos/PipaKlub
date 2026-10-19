@@ -1,3 +1,4 @@
+import {seedCollection} from './test-support/collection-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -30,6 +31,7 @@ test('daily bonus is server-only, atomic, once per account/day across matches an
   await db.exec("create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key,raw_user_meta_data jsonb);create function auth.uid() returns uuid language sql as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;grant usage on schema public,auth to authenticated,anon,service_role;grant execute on function auth.uid() to authenticated,anon,service_role;");
   for(const f of fs.readdirSync('supabase/migrations').filter(f=>f.endsWith('.sql')).sort())await db.exec(fs.readFileSync('supabase/migrations/'+f,'utf8'));
   for(const id of [uid,other])await db.query('insert into auth.users values($1,$2)',[id,{nickname:'Teste'}]);
+await seedCollection(db,[uid,other]);
   const today=(await db.query("select to_char(now() at time zone 'UTC','YYYY-MM-DD') d")).rows[0].d,match=crypto.randomUUID(),second=crypto.randomUUID();
   const reward=(user=uid,m=match,day=today)=>db.query('select public.settle_daily_challenge($1,$2,$3) r',[user,m,day]);
   await db.exec('set role anon');await assert.rejects(()=>db.query('select public.player_daily()'),/permission denied/);

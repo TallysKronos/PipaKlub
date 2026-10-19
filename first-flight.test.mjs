@@ -97,13 +97,14 @@ test('journey migration preserves old accounts; starter choice is protected, ato
   await db.exec("create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key,raw_user_meta_data jsonb);create function auth.uid() returns uuid language sql as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;grant usage on schema public,auth to authenticated,anon,service_role;grant execute on function auth.uid() to authenticated,anon,service_role;");
   for(const f of fs.readdirSync('supabase/migrations').filter(f=>f.endsWith('.sql')).sort()){
    if(f.startsWith('015'))await db.query('insert into auth.users values($1,$2)',[a,{nickname:'Antiga'}]);
+   if(f.startsWith('018'))await db.query('insert into auth.users values($1,$2) on conflict do nothing',[b,{nickname:'Nova'}]);
    await db.exec(fs.readFileSync('supabase/migrations/'+f,'utf8'));
   }
   const old=(await db.query('select equipped_kite_id,xp from public.player_profiles where id=$1',[a])).rows[0];
   const auth=async id=>db.exec("reset role;set role authenticated;set request.jwt.claim.sub='"+id+"'");
   const journey=async(action='read',model=null,lesson=null)=>(await db.query('select public.player_journey($1,$2,$3) r',[action,model,lesson])).rows[0].r;
   await auth(a);assert.equal((await journey()).phase,'complete');await assert.rejects(()=>journey('choose','raio'),/professor/);await assert.rejects(()=>db.query('select * from public.player_journeys'),/permission denied/);
-  await db.exec('reset role');assert.deepEqual((await db.query('select equipped_kite_id,xp from public.player_profiles where id=$1',[a])).rows[0],old);await db.query('insert into auth.users values($1,$2)',[b,{nickname:'Nova'}]);
+  await db.exec('reset role');assert.deepEqual((await db.query('select equipped_kite_id,xp from public.player_profiles where id=$1',[a])).rows[0],old);await db.query('insert into auth.users values($1,$2) on conflict do nothing',[b,{nickname:'Nova'}]);
   await auth(b);assert.equal((await journey()).phase,'arrival');await assert.rejects(()=>journey('skip'),/escolha/i);await journey('welcome');await journey('welcome');await assert.rejects(()=>journey('choose','javali-biscoito'),/inválido/);
   await db.exec('reset role;set role pipa_server');await db.query("select public.reserve_player_match($1,$2,'ABCDEF','casual')",[b,match]);await auth(b);await assert.rejects(()=>journey('choose','azulao'),/Saia da partida/);
   await db.exec('reset role;set role pipa_server');await db.query('select public.release_player_match($1,$2)',[b,match]);await auth(b);

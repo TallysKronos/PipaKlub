@@ -30,6 +30,7 @@ if(!(await postgres.query("select to_regclass('public.player_journeys') installe
 if(!(await postgres.query("select to_regclass('public.pipamon_xp_events') installed")).rows[0].installed)await postgres.exec(fs.readFileSync('supabase/migrations/016_pipamon_leveling.sql','utf8'));
 
 if(!(await postgres.query("select to_regclass('public.player_openings') installed")).rows[0].installed)await postgres.exec(fs.readFileSync('supabase/migrations/017_kael_opening.sql','utf8'));
+await postgres.exec(fs.readFileSync('supabase/migrations/018_story_first_collection.sql','utf8'));
 const players={kael:{id:'55555555-5555-4555-8555-555555555555',nickname:'Kael Local'},davi:{id:'44444444-4444-4444-8444-444444444444',nickname:'Kael Local'},ana:{id:'11111111-1111-4111-8111-111111111111',nickname:'Ana Local'},beto:{id:'22222222-2222-4222-8222-222222222222',nickname:'Beto Local'},cora:{id:'33333333-3333-4333-8333-333333333333',nickname:'Cora Local'}};
 for(const p of Object.values(players))await postgres.query('insert into auth.users values($1,$2) on conflict(id) do nothing',[p.id,{nickname:p.nickname}]);
 await postgres.query("select public.grant_event_soul($1,'flautrevo','local-demo')",[players.ana.id]);

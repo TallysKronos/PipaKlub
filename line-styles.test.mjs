@@ -1,3 +1,4 @@
+import {seedCollection} from './test-support/collection-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -12,6 +13,7 @@ test('line shop atomically debits confirmed coins, owns/equips once and reserves
   await db.exec("create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key,raw_user_meta_data jsonb);create function auth.uid() returns uuid language sql as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;grant usage on schema public,auth to authenticated,anon,service_role;grant execute on function auth.uid() to authenticated,anon,service_role;");
   for(const f of fs.readdirSync('supabase/migrations').filter(f=>f.endsWith('.sql')).sort())await db.exec(fs.readFileSync('supabase/migrations/'+f,'utf8'));
   for(const id of [a,b])await db.query('insert into auth.users values($1,$2)',[id,{nickname:'Teste'}]);
+await seedCollection(db,[a,b]);
   const as=async id=>db.exec("reset role;set role authenticated;set request.jwt.claim.sub='"+id+"'");
   const call=async(action='read',style=null,op=null)=>(await db.query('select public.player_lines($1,$2,$3) l',[action,style,op])).rows[0].l;
   await db.exec('set role anon');await assert.rejects(()=>call(),/permission denied/);

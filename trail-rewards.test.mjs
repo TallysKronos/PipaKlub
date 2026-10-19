@@ -1,3 +1,4 @@
+import {seedCollection} from './test-support/collection-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -11,7 +12,8 @@ import vm from 'node:vm';
 import {parseHTML} from 'linkedom';
 import {createTrails} from './src/trails.js';
 const a='11111111-1111-4111-8111-111111111111',b='22222222-2222-4222-8222-222222222222';
-const setup=async(beforeMigration=null)=>{const db=new PGlite();await db.exec("create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key,raw_user_meta_data jsonb);create function auth.uid() returns uuid language sql as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;grant usage on schema public,auth to authenticated,anon,service_role;");for(const f of fs.readdirSync('supabase/migrations').filter(f=>f.endsWith('.sql')).sort()){if(f.startsWith('014')&&beforeMigration)await beforeMigration(db);await db.exec(fs.readFileSync('supabase/migrations/'+f,'utf8'));}for(const id of[a,b])await db.query('insert into auth.users values($1,$2) on conflict do nothing',[id,{nickname:'Teste'}]);return db;};
+const setup=async(beforeMigration=null)=>{const db=new PGlite();await db.exec("create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key,raw_user_meta_data jsonb);create function auth.uid() returns uuid language sql as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;grant usage on schema public,auth to authenticated,anon,service_role;");for(const f of fs.readdirSync('supabase/migrations').filter(f=>f.endsWith('.sql')).sort()){if(f.startsWith('014')&&beforeMigration)await beforeMigration(db);await db.exec(fs.readFileSync('supabase/migrations/'+f,'utf8'));}for(const id of[a,b])await db.query('insert into auth.users values($1,$2) on conflict do nothing',[id,{nickname:'Teste'}]);await seedCollection(db,[a,b]);
+return db;};
 
 test('verified trail ledger: no forged client awards, unique boss tail, summon/equip and immutable receipt',async()=>{
  const db=await setup();try{

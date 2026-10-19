@@ -1,8 +1,34 @@
 # Abertura — melhorias aprovadas para a próxima etapa
 
+Direção revisada e implementada localmente: encenação de RPG clássico.
+A mãe usa overworld chibi compatível com Kael, entra pela porta e navega pelo
+chão; a rabiola é apresentada no centro com cenário escurecido. O projeto
+permanece na bancada durante o brilho, Rabbito surge no chão e se aproxima.
+Depois do nome, o jogador caminha até a conexão da escada, seguido do parceiro.
+Entrega e vínculo são subentendidos: não há promessa de carinho ou mãos sem
+poses correspondentes. Esta decisão substitui a proposta anterior de gestos
+detalhados. Ver o registro atual em ABERTURA-VALIDACAO-E-MIGRACAO.md.
+
 Direção aprovada pelo usuário: transformar a abertura em uma sequência curta
 de descoberta, interação e vínculo com Rabbito. Este documento descreve trabalho
-futuro; não indica que as melhorias abaixo já estão implementadas.
+planejado; o estado das entregas está registrado nas atualizações abaixo.
+
+Revisão após auditoria como comprador (19/10/2026): nascimento dividido em
+momentos interativos, câmera próxima, nome compacto, caminhada no andar de
+baixo, conversa opcional com a mãe, recepção de Assis contextualizada e apelido
+no treino implementados localmente. A migração 018 remove o kit automático
+somente de cadastros futuros e mantém retorno seguro ao parceiro permanente
+após captura. Consentimento opcional disponível em Privacidade, sem interromper
+a narrativa. Ver ABERTURA-VALIDACAO-E-MIGRACAO.md. Poses exclusivas de carinho
+e a caminhada até a escada no quarto continuam como polimento futuro.
+
+Atualização 19/10/2026: base do quarto jogável implementada localmente, com
+TV na tela física e câmera, caminhada com colisão, três pontos de interação,
+arte da pipa inacabada, encaixe animado da vareta e retorno à bancada com a
+Rabiola Antiga. Detalhes e verificação em assets/story/kael-birthday-v1/README.md.
+O nascimento com primeiro contato, as reações adicionais dos personagens e a
+saída jogável da casa continuam como trabalho seguinte, assim como a coleção
+inicial e a relação entre apelido da conta e identidade do protagonista.
 
 ## Entrega 1 — quarto jogável
 

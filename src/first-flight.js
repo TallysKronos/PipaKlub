@@ -7,9 +7,9 @@ export function createFirstFlight(engine){
   {title:'O jeito do seu parceiro',hint:'Use o botão direito do mouse, Q ou E para experimentar sua habilidade.',success:'Cada parceiro tem seu jeito de enfrentar o vento.'},
   {title:'Uma rodada com o Nozinho',hint:'Cruze as linhas e rebique para fazer seu primeiro corte. Nozinho está só treinando com você.',success:'Primeiro corte! Nozinho está bem e o professor está orgulhoso.'}
  ];
- function create({color=0,soul=null,lesson=0,name='Você'}={},now=Date.now()){
+ function create({color=0,soul=null,lesson=0,name='Você',partnerName=null}={},now=Date.now()){
   const state=engine.create(now),p=engine.player(name,color,'you',now),q=engine.player('Nozinho',1,'first-nozinho',now);
-  Object.assign(p,{anchorX:90,x:350,y:180,shield:0,soul});Object.assign(q,{anchorX:910,x:300,y:180,shield:0,soul:'nozinho'});
+  Object.assign(p,{anchorX:90,x:350,y:180,shield:0,soul,partnerName});Object.assign(q,{anchorX:910,x:300,y:180,shield:0,soul:'nozinho'});
   state.players=[p,q];state.firstFlight=true;state.end=now+3600000;
   const run={state,index:Math.max(0,Math.min(4,lesson)),complete:false,target:{x:700,y:180},last:now};prepare(run);return run;
  }

@@ -1,3 +1,4 @@
+import {seedCollection} from './test-support/collection-fixture.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -15,6 +16,7 @@ test('Javali own-tail spiral: immediate use, three failures, damage/discard, exp
   assert.deepEqual(pattern.reduce(extendSummonPath,[]),pattern,'drawing does not auto-insert unexpected nodes');
   assert.equal((await db.query('select count(*)::int n from public.summon_recipes')).rows[0].n,0,'no foreign-tail recipe');
   for(const id of [user,other])await db.query('insert into auth.users values($1,$2)',[id,{nickname:'Teste'}]);
+await seedCollection(db,[user,other]);
   assert.equal((await db.query('select count(*)::int n from public.player_kites where model_id=$1',[model])).rows[0].n,0,'migration never grants the model');
   const grant=async ref=>(await db.query("select public.grant_summon_tail($1,$2,'event',$3) id",[user,model,ref])).rows[0].id;
   const tails=[];for(let i=0;i<5;i++)tails.push(await grant('javali-'+i));assert.equal(await grant('javali-0'),tails[0]);

@@ -79,6 +79,12 @@ function pollPads(){
  const move=switchNav.stick(pad.axes[0]||0,pad.axes[1]||0),any=pad.buttons.some(b=>b.pressed)||Math.hypot(move.x,move.y)>.3;
  if(any)setInputDevice(switchNav.padKind(pad.id)==='ps'?'gamepad-ps':'gamepad-xbox');
  if(!inputDevice.startsWith('gamepad')){for(let i=0;i<pad.buttons.length;i++)padPrev[i]=down(i);return;}
+ if(typeof openingWalkActive==='function'&&openingWalkActive()){
+  padState.active=false;padState.x=move.x+(down(B.right)?1:0)-(down(B.left)?1:0);padState.y=move.y+(down(B.down)?1:0)-(down(B.up)?1:0);padState.cut=false;padState.skill=0;
+  if(pressed(B.a)){const spot=openingNearestSpot();if(spot)openingInspect(spot.id);}
+  if(pressed(B.b)||pressed(B.start))$('openingPause').click();
+  for(let i=0;i<pad.buttons.length;i++)padPrev[i]=down(i);return;
+ }
  const live=battleLive();padState.active=live;
  if(live){
   padState.x=move.x;padState.y=move.y;padState.cut=down(B.a);padState.skill=down(B.lb)?-1:down(B.rb)?1:0;

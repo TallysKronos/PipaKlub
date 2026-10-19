@@ -1,0 +1,17 @@
+{
+  "tool": "image_gen integrada",
+  "status": "integrado localmente",
+  "generation": "Use case: style-transfer. Production PNG RGBA sprite sheet for PipaKlub overworld. Image 1 (Kael sheet) is STRICT style/proportions/camera/reference ONLY; Image 2 is mother character identity ONLY. Generate ONLY the mother in Kael's small RPG chibi overworld style: oversized round head about 45% total body height, compact short body/legs, dark crisp pixel-aware contour, flat limited cel shading, warm tan skin, dark navy hair tied in bun, teal blouse, coral skirt, brown sandals. NO tall illustration proportions. Exactly 8 complete isolated sprites in a regular 4-column 2-row grid, equal cells, generous transparent padding and consistent foot baseline. Top row idle facing front/down, left, right, back/up. Bottom row one walking step facing front/down, left, right, back/up. Same identity/scale in all eight, stationary pivot; walking moves limbs not frame position. Orthographic RPG camera same as Kael. No item held, no text, no labels, no shadows on ground, no scenery, no glow, no Kael. Transparent background, preserve skirt/hair continuity. Output 1536x1024 if possible. Each sprite contained entirely within its cell.",
+  "cleanup": "Precise-object-edit: preserve all eight mother RPG sprites exactly: identical identity, pixels of face/clothes, 4x2 grid, cell placement, proportions and poses. Remove ONLY all surrounding brown/blue haze/glow and cast shadows outside the outlined character silhouettes. No glow, no shadows, no background. The area outside each dark outer outline must be fully transparent alpha zero, with clean antialiased edges only. Preserve all opaque hair, skin, teal shirt, coral skirt and sandals. Do not invent new details. Production transparent PNG RGBA same1536x1024 grid.",
+  "reference_roles": {
+    "assets/hub/praca-v1/kael.png": "style, proportions, directions",
+    "mother.png": "identity, clothing and palette"
+  },
+  "grid": {
+    "columns": 4,
+    "rows": 2,
+    "width": 1536,
+    "height": 1024
+  },
+  "source": "exec-135da13b-719f-4b6d-baff-429ad7307b9c.png"
+}
