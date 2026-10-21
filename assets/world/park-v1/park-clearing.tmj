@@ -1,0 +1,908 @@
+{
+  "type": "map",
+  "version": "1.10",
+  "tiledversion": "1.11.0",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "width": 48,
+  "height": 32,
+  "tilewidth": 32,
+  "tileheight": 32,
+  "infinite": false,
+  "tilesets": [],
+  "layers": [
+    {
+      "id": 1,
+      "name": "Walkable",
+      "type": "objectgroup",
+      "objects": [
+        {
+          "id": 1,
+          "name": "Prado explorável",
+          "x": 80,
+          "y": 192,
+          "width": 1376,
+          "height": 752,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "grass"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Entrada",
+          "x": 160,
+          "y": 768,
+          "width": 128,
+          "height": 160,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "sidewalk"
+            },
+            {
+              "name": "safe_area",
+              "type": "bool",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Passeio do jardim",
+          "x": 192,
+          "y": 752,
+          "width": 464,
+          "height": 112,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "dirt"
+            },
+            {
+              "name": "safe_area",
+              "type": "bool",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Curva dos bancos",
+          "x": 544,
+          "y": 480,
+          "width": 112,
+          "height": 320,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "dirt"
+            },
+            {
+              "name": "safe_area",
+              "type": "bool",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Passeio até a clareira",
+          "x": 576,
+          "y": 464,
+          "width": 768,
+          "height": 112,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "dirt"
+            },
+            {
+              "name": "safe_area",
+              "type": "bool",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Saída entre árvores",
+          "x": 1232,
+          "y": 352,
+          "width": 112,
+          "height": 176,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "dirt"
+            },
+            {
+              "name": "safe_area",
+              "type": "bool",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "name": "Largo de descanso",
+          "x": 272,
+          "y": 416,
+          "width": 272,
+          "height": 256,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "sidewalk"
+            },
+            {
+              "name": "safe_area",
+              "type": "bool",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "name": "Acesso ao largo",
+          "x": 400,
+          "y": 608,
+          "width": 200,
+          "height": 96,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "dirt"
+            },
+            {
+              "name": "safe_area",
+              "type": "bool",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": 34,
+          "name": "Habitat de capim 1",
+          "x": 730,
+          "y": 310,
+          "width": 430,
+          "height": 112,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "grass"
+            },
+            {
+              "name": "encounter_zone",
+              "type": "string",
+              "value": "park-clearing"
+            }
+          ]
+        },
+        {
+          "id": 35,
+          "name": "Habitat de capim 2",
+          "x": 130,
+          "y": 340,
+          "width": 126,
+          "height": 150,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "grass"
+            },
+            {
+              "name": "encounter_zone",
+              "type": "string",
+              "value": "park-clearing"
+            }
+          ]
+        },
+        {
+          "id": 36,
+          "name": "Habitat de capim 3",
+          "x": 1000,
+          "y": 672,
+          "width": 330,
+          "height": 144,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "grass"
+            },
+            {
+              "name": "encounter_zone",
+              "type": "string",
+              "value": "park-clearing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Solids",
+      "type": "objectgroup",
+      "objects": [
+        {
+          "id": 14,
+          "name": "park-tree",
+          "x": 93,
+          "y": 252,
+          "width": 38,
+          "height": 28,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 280
+            }
+          ]
+        },
+        {
+          "id": 15,
+          "name": "park-tree-flower",
+          "x": 341,
+          "y": 244,
+          "width": 38,
+          "height": 28,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 272
+            }
+          ]
+        },
+        {
+          "id": 16,
+          "name": "park-tree",
+          "x": 631,
+          "y": 248,
+          "width": 38,
+          "height": 28,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 276
+            }
+          ]
+        },
+        {
+          "id": 17,
+          "name": "park-tree",
+          "x": 929,
+          "y": 252,
+          "width": 38,
+          "height": 28,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 280
+            }
+          ]
+        },
+        {
+          "id": 18,
+          "name": "park-tree-flower",
+          "x": 1211,
+          "y": 246,
+          "width": 38,
+          "height": 28,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 274
+            }
+          ]
+        },
+        {
+          "id": 19,
+          "name": "park-tree",
+          "x": 1441,
+          "y": 276,
+          "width": 38,
+          "height": 28,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 304
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "name": "park-tree",
+          "x": 71,
+          "y": 562,
+          "width": 38,
+          "height": 28,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 590
+            }
+          ]
+        },
+        {
+          "id": 21,
+          "name": "park-tree-flower",
+          "x": 1426,
+          "y": 642,
+          "width": 38,
+          "height": 28,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 670
+            }
+          ]
+        },
+        {
+          "id": 22,
+          "name": "park-tree",
+          "x": 41,
+          "y": 942,
+          "width": 38,
+          "height": 28,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 970
+            }
+          ]
+        },
+        {
+          "id": 23,
+          "name": "park-tree",
+          "x": 821,
+          "y": 954,
+          "width": 38,
+          "height": 28,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 982
+            }
+          ]
+        },
+        {
+          "id": 24,
+          "name": "park-tree-flower",
+          "x": 1101,
+          "y": 942,
+          "width": 38,
+          "height": 28,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 970
+            }
+          ]
+        },
+        {
+          "id": 25,
+          "name": "park-tree",
+          "x": 1421,
+          "y": 923,
+          "width": 38,
+          "height": 28,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 951
+            }
+          ]
+        },
+        {
+          "id": 26,
+          "name": "park-tree-flower",
+          "x": 895,
+          "y": 690,
+          "width": 42,
+          "height": 30,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 720
+            }
+          ]
+        },
+        {
+          "id": 27,
+          "name": "park-tree",
+          "x": 254,
+          "y": 472,
+          "width": 40,
+          "height": 28,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 500
+            }
+          ]
+        },
+        {
+          "id": 28,
+          "name": "bench",
+          "x": 330,
+          "y": 552,
+          "width": 100,
+          "height": 22,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 574
+            }
+          ]
+        },
+        {
+          "id": 29,
+          "name": "bench",
+          "x": 1060,
+          "y": 578,
+          "width": 100,
+          "height": 22,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 600
+            }
+          ]
+        },
+        {
+          "id": 30,
+          "name": "lamp",
+          "x": 261,
+          "y": 667,
+          "width": 18,
+          "height": 18,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 685
+            }
+          ]
+        },
+        {
+          "id": 31,
+          "name": "lamp",
+          "x": 1201,
+          "y": 562,
+          "width": 18,
+          "height": 18,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 580
+            }
+          ]
+        },
+        {
+          "id": 32,
+          "name": "flowerpot",
+          "x": 134,
+          "y": 861,
+          "width": 24,
+          "height": 20,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 881
+            }
+          ]
+        },
+        {
+          "id": 33,
+          "name": "flowerpot",
+          "x": 292,
+          "y": 861,
+          "width": 24,
+          "height": 20,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 881
+            }
+          ]
+        },
+        {
+          "id": 37,
+          "name": "fence",
+          "x": 290,
+          "y": 686,
+          "width": 150,
+          "height": 18,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 704
+            }
+          ]
+        },
+        {
+          "id": 38,
+          "name": "fence",
+          "x": 1025,
+          "y": 832,
+          "width": 150,
+          "height": 18,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 850
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Foreground",
+      "type": "objectgroup",
+      "objects": []
+    },
+    {
+      "id": 4,
+      "name": "Interactions",
+      "type": "objectgroup",
+      "objects": [
+        {
+          "id": 12,
+          "name": "Placa: habitats e encontros",
+          "x": 296,
+          "y": 784,
+          "width": 72,
+          "height": 64,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "action",
+              "type": "string",
+              "value": "wildGuide"
+            }
+          ]
+        },
+        {
+          "id": 13,
+          "name": "Descansar no largo",
+          "x": 344,
+          "y": 576,
+          "width": 72,
+          "height": 64,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "action",
+              "type": "string",
+              "value": "wildRest"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Spawns",
+      "type": "objectgroup",
+      "objects": [
+        {
+          "id": 9,
+          "name": "Chegada ao parque",
+          "x": 192,
+          "y": 784,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Exits",
+      "type": "objectgroup",
+      "objects": [
+        {
+          "id": 10,
+          "name": "Voltar ao Jardim das Pipas",
+          "x": 192,
+          "y": 864,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "action",
+              "type": "string",
+              "value": "street_scene"
+            },
+            {
+              "name": "target",
+              "type": "string",
+              "value": "park-trail"
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "name": "Atalho para a Rua dos Ventos",
+          "x": 1256,
+          "y": 368,
+          "width": 64,
+          "height": 64,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "action",
+              "type": "string",
+              "value": "street_scene"
+            },
+            {
+              "name": "target",
+              "type": "string",
+              "value": "quintal"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "scene_name",
+      "type": "string",
+      "value": "Parque dos Ventos · Clareira do Papel"
+    },
+    {
+      "name": "scene_id",
+      "type": "string",
+      "value": "park-clearing"
+    },
+    {
+      "name": "overview",
+      "type": "bool",
+      "value": false
+    },
+    {
+      "name": "actor_height",
+      "type": "int",
+      "value": 72
+    },
+    {
+      "name": "foot_radius",
+      "type": "int",
+      "value": 10
+    },
+    {
+      "name": "ground_corner_radius",
+      "type": "int",
+      "value": 34
+    },
+    {
+      "name": "terrain_tile_size",
+      "type": "int",
+      "value": 256
+    }
+  ]
+}

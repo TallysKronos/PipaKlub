@@ -15,7 +15,8 @@ document.body.classList.add('pilot-ui');
 
 // ---------------------------------------------------------------- main menu
 const PILOT_NOTES={
- playGroup:'Trilhas, partida rápida, céu do dia, amigos e treino livre.',collection:'Seus Pipamons, níveis e quem voa com você.',dex:'O caderno de campo do Sr. Assis: todas as almáticas já vistas.',
+ park:'Explore o capim alto, encontre Pipamons e procure rabiolas. As trilhas de terra são seguras.',wildResume:'Recupere um encontro pendente sem sortear outra recompensa.',classes:'Especialize Rabbito no nível 15 e aprimore sua classe no nível 35.',farm:'Seus parceiros passeando.',
+ explorationGroup:'Explore o parque para desenvolver parceiros ou siga a campanha pelos bairros.',playGroup:'Parque dos Ventos, Trilhas, partida rápida, céu do dia, amigos e treino livre.',collection:'Seus Pipamons, níveis e quem voa com você.',dex:'O caderno de campo do Sr. Assis: todas as almáticas já vistas.',
  backpack:'Rabiolas e lembranças guardadas na mochila.',missions:'O próximo vento a seguir na sua jornada.',city:'Os bairros de Kronasta, seus rivais e trilhas.',
  clubGroup:'Invocação, trocas, banca de linhas, duelos e perfil.',school:'Lições de voo com o Sr. Assis, uma por vez.',optionsGroup:'Som, imagem, privacidade e conta.',
  trails:'Desafios em sequência pelos bairros. As vitórias abrem novos caminhos.',quick:'Entre com quem está esperando; bots completam a sala.',daily:'Um céu diferente a cada dia, com recompensa.',
@@ -26,7 +27,7 @@ const PILOT_NOTES={
  reload:'Recarregar as imagens do cenário.',logout:'Sair desta conta neste aparelho.'
 };
 const PILOT_ROOT=[['playGroup','Jogar'],['collection','Parceiros'],['dex','Pipa Dex'],['backpack','Mochila'],['missions','Missões'],['city','Mapa da cidade'],['clubGroup','Clube'],['school','Escola do Sr. Assis'],['optionsGroup','Opções']];
-const PILOT_TITLES={root:'Caderno do pipeiro',playGroup:'Jogar',clubGroup:'Clube',optionsGroup:'Opções'};
+const PILOT_TITLES={root:'Caderno do pipeiro',playGroup:'Jogar',explorationGroup:'Exploração e campanha',clubGroup:'Clube',optionsGroup:'Opções'};
 if(typeof homeActions==='object'){homeActions.backpack=()=>{hideJourney();closeHomeMenu();openPlazaBag()};homeActions.missions=()=>{hideJourney();closeHomeMenu();openPlazaMissions()};}
 const pilotMenu=document.createElement('div');pilotMenu.className='pilot-menu';
 pilotMenu.innerHTML='<div class="pilot-menu-col"><p class="pilot-crumb" id="pilotCrumb"></p><h2 class="pilot-menu-title" id="pilotMenuTitle"></h2><nav class="pilot-menu-list" id="pilotMenuList" aria-labelledby="pilotMenuTitle"></nav><svg class="pilot-line" id="pilotLine" aria-hidden="true"><path/></svg><span class="pilot-spool" aria-hidden="true"></span></div>'+
@@ -35,7 +36,7 @@ pilotMenu.innerHTML='<div class="pilot-menu-col"><p class="pilot-crumb" id="pilo
 gameMenu.append(pilotMenu);
 const menuKite=pilotKite();pilotMenu.querySelector('.pilot-menu-col').append(menuKite);
 let pilotGroup='root',pilotFrom={},pilotAnim=0,pilotLineUntil=0;
-const pilotItems=group=>group==='root'?PILOT_ROOT:homeMenuGroups[group].filter(([id])=>id!=='root').map(([id,label])=>[id,label]);
+const pilotItems=group=>group==='root'?PILOT_ROOT:homeMenuGroups[group].filter(([id,label])=>id!=='root'&&!label.startsWith('←')).map(([id,label])=>[id,label]);
 let pilotReturn=null;
 function pilotOpen(id){if(homeMenuGroups[id]){pilotFrom[id]=document.activeElement?.dataset?.destination||id;renderHomeMenu(id);}else{const group=pilotGroup;pilotReturn=null;closeHomeMenu();homeActions[id]?.();pilotReturn={group,id};}}
 // Set after the action: opening a screen may close another one first, which must not count as back.
@@ -58,7 +59,7 @@ function pilotFooter(){
 function pilotRenderMenu(group,focusId){
  pilotGroup=group;setText('pilotMenuTitle',PILOT_TITLES[group]||'Menu');setText('pilotCrumb',group==='root'?'Rua dos Ventos':'Caderno do pipeiro ›');
  const list=$('pilotMenuList');list.replaceChildren(...pilotItems(group).map(([id,label])=>{
-  const b=document.createElement('button');b.type='button';b.className='pilot-option'+(homeMenuGroups[id]?' has-sub':'');b.dataset.destination=id;b.textContent=label;
+  const b=document.createElement('button');b.type='button';b.className='pilot-option'+(homeMenuGroups[id]?' has-sub':'');b.dataset.destination=id;b.textContent=id==='autosave'?'Salvamento automático: '+(campaignData?.autosave_enabled===false?'desligado':'ligado'):label;if(id==='autosave')b.setAttribute('aria-pressed',String(campaignData?.autosave_enabled!==false));
   b.onclick=()=>pilotOpen(id);b.onmouseenter=()=>b.focus({preventScroll:true});b.onfocus=()=>pilotFocus(b);return b;}));
  pilotFooter();
  const target=list.querySelector('[data-destination="'+focusId+'"]')||list.querySelector('button');target?.focus({preventScroll:true});

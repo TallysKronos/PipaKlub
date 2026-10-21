@@ -6,8 +6,8 @@ export function createPlazaPolicy(){
   return paths.map(p=>({x:Math.max(p.left,Math.min(p.right,x)),y:Math.max(p.top,Math.min(p.bottom,y))})).sort((a,b)=>Math.hypot(x-a.x,y-a.y)-Math.hypot(x-b.x,y-b.y))[0];
  }
  function profile(p){
-  const level=Math.max(1,Math.floor(Number(p?.level)||1)),xp=Math.max(0,Number(p?.xp)||0),base=(level-1)**2*100,next=Math.max(base+1,Number(p?.next_level_xp)||level**2*100);
-  return {level,xp,next,percent:Math.max(0,Math.min(100,(xp-base)/(next-base)*100))};
+  const level=Math.min(100,Math.max(1,Math.floor(Number(p?.level)||1))),xp=Math.max(0,Number(p?.xp)||0),base=Number.isFinite(p?.level_base_xp)?p.level_base_xp:(level-1)**2*100,next=level===100?xp:Math.max(base+1,Number(p?.next_level_xp)||level**2*100);
+  return {level,xp,next,percent:level===100?100:Math.max(0,Math.min(100,(xp-base)/(next-base)*100))};
  }
  function mission(phase,next,trail,context={}){
   if(phase==='arrival'||phase==='choose')return {title:'Seu primeiro parceiro',body:'Visite a casa do Sr. Assis e escolha quem vai voar com você.',action:'professor'};

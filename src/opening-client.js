@@ -7,7 +7,7 @@ openingScreen.innerHTML='<div class="opening-stage"><canvas id="openingCanvas" w
 document.body.append(openingScreen);
 homeActions.story=()=>showOpening(true);
 /* OPENING_ROOM_CLIENT */
-function closeOpening(){openingResetRoom();openingCastStep=-1;openingGiftOpen=false;openingScreen.hidden=true;document.body.classList.remove('in-opening');cancelAnimationFrame(openingFrame);openingFrame=0;courtyard.inert=false;syncHomeInert();}
+function closeOpening(){gameLoading.cancel('opening');openingResetRoom();openingCastStep=-1;openingGiftOpen=false;openingScreen.hidden=true;document.body.classList.remove('in-opening');cancelAnimationFrame(openingFrame);openingFrame=0;courtyard.inert=false;syncHomeInert();}
 function resetOpening(owner){openingEpoch++;openingOwner=owner;openingState=null;openingBusy=false;openingReplay=false;closeOpening();}
 async function readOpening(){
  const epoch=openingEpoch,owner=openingOwner;if(!owner)return;
@@ -29,8 +29,8 @@ async function loadOpeningArt(retry=false){
 async function showOpening(replay=false){
  if(!playerAccount||mode)return;openingReplay=replay;if(replay)openingState={step:0,partner_name:'Rabbito'};
  if(!openingState||openingState.step>=14)return;hideJourney();closeHomeMenu();cityScreen.hidden=true;openingScreen.hidden=false;document.body.classList.add('in-opening');courtyard.inert=true;openingLast=0;const i=openingState.step;openingActor=i===3||i<3?{x:540,y:570,direction:3,path:[]}:i===7||i===5||i===6?{x:940,y:650,direction:1,path:[]}:i>=12?{x:860,y:650,direction:0,path:[]}:{x:1050,y:510,direction:2,path:[]};renderOpening();
- const epoch=openingEpoch;const okay=await loadOpeningArt();if(epoch!==openingEpoch||openingScreen.hidden)return;if(!okay){$('openingStatus').textContent='Não foi possível carregar todas as artes. Sua cena está salva. Tente novamente.';$('openingRetry').hidden=false;}
- if(!openingFrame)openingFrame=requestAnimationFrame(drawOpening);
+ const gate=gameLoading.start('opening','Um fio de sorte',{retry:()=>showOpening(replay),back:()=>{closeOpening();openHomeMenu();}});const epoch=openingEpoch;const okay=await loadOpeningArt();if(epoch!==openingEpoch||openingScreen.hidden){gate.cancel();return;}if(!okay){gate.fail('Não foi possível carregar a cena. Seu progresso está salvo.');$('openingStatus').textContent='Não foi possível carregar todas as artes. Sua cena está salva. Tente novamente.';$('openingRetry').hidden=false;}
+ if(!okay)return;openingSince=performance.now();if(!openingFrame)openingFrame=requestAnimationFrame(drawOpening);await gate.done();
 }
 function openingGiftWasSeen(){if(openingReplay)return false;try{return localStorage.getItem('pipaGiftSeenV1:'+openingOwner)==='yes';}catch{return false;}}
 function renderOpening(){

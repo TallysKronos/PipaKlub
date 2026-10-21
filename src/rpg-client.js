@@ -1,0 +1,59 @@
+// Authenticated progression and encounters. The client never chooses drops or grants XP.
+let rpgEpoch=0,rpgOwner=null,classBusy=false,wildBusy=false,wildDistance=0,wildThreshold=1900,wildGrace=0,wildReturn=null,wildResultEpoch=0;
+let wildReturnAction=null;
+const beforeRpgCloseModal=closeModal;closeModal=function(){if(wildReturnAction){const action=wildReturnAction;wildReturnAction=null;action();return;}return beforeRpgCloseModal();};$('close').onclick=()=>closeModal();
+const classPanel=document.createElement('dialog');classPanel.id='classPanel';classPanel.className='world-discovery plaza-paper class-panel';classPanel.setAttribute('aria-labelledby','classTitle');
+classPanel.innerHTML='<header><h2 id="classTitle">Ateliê de especializações · Sr. Assis</h2><button id="classClose">Voltar · B / Esc</button></header><p>Rabbito mantém seu nome, nível e vínculo. Escolha uma classe no nível 15 e aprimore no 35. Você pode se reespecializar gratuitamente aqui.</p><label>Seu parceiro<select id="classPartner"></select></label><div id="classCards" class="class-cards"></div><p id="classStatus" role="status" aria-live="polite"></p><p>O tamer chega ao nível 100. Skills de tamer serão adicionadas futuramente; ainda não há pontos para gastar.</p>';
+document.body.append(classPanel);
+function renderClasses(){
+ const select=$('classPartner'),previous=select.value,owned=playerAccount?.inventory.filter(k=>k.model_id==='rabbito')||[];select.replaceChildren();
+ for(const k of owned){const option=document.createElement('option');option.value=k.id;option.textContent=(k.personal_name||'Rabbito')+' · Nv. '+pipamonProgress(k).level;select.append(option);}if(owned.some(k=>k.id===previous))select.value=previous;
+ const k=owned.find(k=>k.id===select.value)||owned[0],level=k?pipamonProgress(k).level:0,root=$('classCards');root.replaceChildren();
+ for(const [id,definition]of Object.entries(eng.classes)){const card=uiElement('article',undefined,'class-card '+id),name=k?.class_rank===2&&k.pipamon_class===id?definition.advanced:definition.name;card.append(uiElement('h3',name),uiElement('p',definition.description),uiElement('p',id==='velocista'?'Classe: +8% velocidade e +4% recuperação; −5% linha. Aprimorada: +16% velocidade e +8% recuperação.':'Classe: +4% ataque e +8% recuperação; −5% velocidade. Aprimorada: +8% ataque e +16% recuperação.'));
+  const choose=uiElement('button',k?.pipamon_class===id?'Classe atual · '+definition.name:'Escolher '+definition.name);choose.disabled=classBusy||!k||level<15||k.pipamon_class===id;choose.onclick=()=>applyClass(k,id,false);
+  const upgrade=uiElement('button','Aprimorar · '+definition.advanced);upgrade.disabled=classBusy||!k||level<35||k.pipamon_class!==id||k.class_rank===2;upgrade.onclick=()=>applyClass(k,id,true);card.append(choose,upgrade);root.append(card);
+ }
+ select.disabled=classBusy||!owned.length;$('classClose').disabled=classBusy;$('classStatus').textContent=!k?'Rabbito precisa fazer parte da sua coleção.':level<15?'Desenvolva este parceiro até o nível 15. Atualmente: '+level+'.':k.pipamon_class?'Classe: '+eng.classes[k.pipamon_class].name+' · '+(k.class_rank===2?'aprimorada':'aprimoramento no nível 35'):'Seu parceiro está pronto para escolher um caminho.';
+}
+async function applyClass(k,id,upgrade){if(classBusy)return;classBusy=true;const owner=playerAccount.profile.id,epoch=rpgEpoch;renderClasses();$('classStatus').textContent='Confirmando especialização…';try{const d=await accountRequest('specialization',{kiteId:k.id,classId:id,upgrade,version:k.class_version||0});if(epoch!==rpgEpoch||owner!==playerAccount?.profile.id)return;playerAccount=d.account;reflectAccount();renderClasses();toast(upgrade?'Classe aprimorada!':'Especialização confirmada.');}catch(e){$('classStatus').textContent=e.message;toast(e.message);}finally{classBusy=false;if(epoch===rpgEpoch){renderClasses();}}}
+homeActions.classes=async()=>{if(mode||!requireClubAccount('as especializações'))return;hideJourney();closeHomeMenu();const owner=playerAccount.profile.id;openWorld('professor-home');await loadWorldImage('professor-home');if(owner!==playerAccount?.profile.id)return;renderClasses();classPanel.showModal();$('classPartner').focus();};
+$('classPartner').onchange=renderClasses;$('classClose').onclick=()=>{if(!classBusy)classPanel.close();};classPanel.addEventListener('cancel',e=>{if(classBusy)e.preventDefault();});
+homeActions.park=()=>{hideJourney();closeHomeMenu();openWorld('park-trail');};
+homeActions.wildGuide=()=>dialogue('Parque dos Ventos','Procure Pipamons no capim alto. O caminho de terra e o banco são seguros. Vitória desenvolve seu parceiro e pode render a rabiola da espécie. A primeira vitória garante uma rabiola; depois, no máximo sete vitórias seguidas ficam sem rabiola. Você pode fugir sem perder seu parceiro.','Voltar à exploração',hideJourney,{later:true});
+homeActions.wildRest=()=>{wildGrace=Date.now()+12000;wildDistance=0;dialogue('Um lugar para respirar','Aqui não há encontros. Seus parceiros estão protegidos. Se perder um duelo selvagem, você volta ao apoio do parque; XP e rabiolas só são concedidos na vitória.','Continuar explorando',hideJourney,{later:true});};
+function stepWildExploration(before,time){
+ const id=worldRuntime.id;if(!id.startsWith('park-')||wildBusy||!worldWalkActive())return;
+ const actor=worldState().actor,moved=Math.hypot(actor.x-before.x,actor.y-before.y);if(!moved)return;
+ const rectangles=worldScene().tiled.layers.Walkable,inside=r=>actor.x>=r.x&&actor.x<=r.x+r.w&&actor.y>=r.y&&actor.y<=r.y+r.h;
+ if(rectangles.some(r=>r.properties.safe_area&&inside(r)))return;if(Date.now()<wildGrace)return;
+ if(!rectangles.some(r=>r.properties.encounter_zone===id&&inside(r)))return;
+ wildDistance+=moved;if(wildDistance>=wildThreshold){wildDistance=0;wildThreshold=1900+Math.random()*1000;startWildEncounter(id);}
+}
+async function startWildEncounter(zone){
+ if(wildBusy||mode||!playerAccount||worldRuntime.id!==zone)return;wildBusy=true;const owner=playerAccount.profile.id,epoch=rpgEpoch;worldClearWalking();worldState().actor.path=[];wildReturn={scene:zone,...campaignCheckpoint()};
+ const gate=gameLoading.start('wild','O vento trouxe um encontro',{retry:()=>startWildEncounter(zone),back:()=>{gate.cancel();wildGrace=Date.now()+12000;}});
+ try{const d=await request('wild',{zone});if(owner!==playerAccount?.profile.id||epoch!==rpgEpoch){gate.cancel();return;}token=d.token;await Promise.all(d.state.players.map(p=>art.load(p.soul||art.basic(p.color))));enter(d.state,d.me,'online',d.code);$('roomChip').hidden=true;await gate.done();}
+ catch(e){gate.fail(e.message);}finally{wildBusy=false;}
+}
+async function recoverWildEncounter(){
+ if(!playerAccount||mode)return;const owner=playerAccount.profile.id,epoch=rpgEpoch;
+ try{const d=await accountRequest('wild',{});if(owner!==playerAccount?.profile.id||epoch!==rpgEpoch||mode)return;const pending=d.wild.pending;if(!pending)return;
+  const seat=roomSessions.read(pending.code,owner);dialogue('Seu encontro está pendente',seat?'Você pode retomar a mesma batalha. O encontro e o sorteio de recompensa permanecem os mesmos.':'O encontro anterior ficou sem conexão. Encerre-o sem recompensas para continuar explorando.',seat?'Retomar encontro':'Encerrar sem recompensa',async()=>{try{if(seat){const data=await request('resume',{code:pending.code,token:seat.token});token=data.token;wildReturn={scene:pending.zone};hideJourney();enter(data.state,data.me,'online',data.code);}else{const data=await accountRequest('wild-abandon',{matchId:pending.matchId});playerAccount=data.account;reflectAccount();hideJourney();wildGrace=Date.now()+12000;}}catch(e){toast(e.message);}},{later:true});
+ }catch(e){toast(e.message);}
+}
+homeActions.wildResume=recoverWildEncounter;
+const fleeWildButton=uiElement('button','Fugir do encontro · F','wild-flee');fleeWildButton.id='wildFlee';fleeWildButton.hidden=true;document.body.append(fleeWildButton);
+async function fleeWild(){if(wildBusy||mode!=='online'||!state?.wild||showResult)return;wildBusy=true;try{const d=await request('flee',{code:room,token});state=d.state;keys={};resetPointer();showResult=true;showWildResult(state,state.players.find(p=>p.id===me));}catch(e){toast(e.message);}finally{wildBusy=false;}}
+fleeWildButton.onclick=fleeWild;addEventListener('keydown',e=>{if(e.key.toLowerCase()==='f'&&!e.repeat&&mode==='online'&&state?.wild&&!showResult&&!e.target?.closest('input,textarea')){e.preventDefault();fleeWild();}});
+const pauseFlee=uiElement('button','Fugir do encontro · sem recompensa');pauseFlee.id='wildPauseFlee';pauseFlee.hidden=true;$('pauseTools').append(pauseFlee);pauseFlee.onclick=()=>{closeSheet();fleeWild();};
+const beforeWildEnter=enter;enter=function(...args){const result=beforeWildEnter(...args);pauseFlee.hidden=fleeWildButton.hidden=!args[0]?.wild;return result;};
+const beforeWildLeave=leave;leave=function(...args){pauseFlee.hidden=fleeWildButton.hidden=true;return beforeWildLeave(...args);};
+function showWildResult(s,mine){
+ fleeWildButton.hidden=true;const epoch=++wildResultEpoch,owner=playerAccount?.profile.id,won=(mine?.rounds||0)>=s.roundsToWin;let confirmed=null;
+ modal(won?'Encontro vencido!':'Fim do encontro','<p id="wildResultStatus" role="status">Conferindo o resultado no servidor…</p><div id="wildReward"></div>','Voltar ao parque','Parque dos Ventos');
+ const returnToPark=()=>{wildResultEpoch++;wildReturnAction=null;beforeRpgCloseModal();if(mode)leave();const lost=confirmed?.status==='lost'||!confirmed&&mine?.hp<=0,scene=lost?'park-trail':wildReturn?.scene||s.wild.zone;openWorld(scene);if(lost){const current=worldState();current.actor=current.navigation.create();}else if(wildReturn?.x!=null&&wildReturn.scene===scene){const current=worldState();current.navigation.target(current.actor,wildReturn,true);}wildGrace=Date.now()+12000;wildDistance=0;};
+ wildReturnAction=returnToPark;$('dialogAction').onclick=returnToPark;
+ let attempts=0;async function check(){if(epoch!==wildResultEpoch||owner!==playerAccount?.profile.id)return;try{const d=await accountRequest('wild',{matchId:s.id});if(epoch!==wildResultEpoch)return;const r=d.wild.result;if(!r){$('wildResultStatus').textContent='Salvando resultado… Você pode voltar; o servidor continuará tentando.';if(++attempts<15)setTimeout(check,1200);return;}confirmed=r;playerAccount=d.account;reflectAccount();$('wildResultStatus').textContent=r.status==='won'?'✓ Vitória confirmada.':r.status==='fled'?'Você fugiu. Seu parceiro e seus itens estão protegidos.':r.status==='lost'?'Seu parceiro está bem. Você voltará ao apoio do parque.':'Encontro encerrado sem recompensas.';const root=$('wildReward');root.replaceChildren();root.append(uiElement('p','+'+r.pipamonXp+' XP do parceiro · +'+r.tamerXp+' XP do tamer'));if(r.tailId){const entry=ART_CONFIG.dex.entries.find(e=>e.model===r.modelId),card=uiElement('div',undefined,'wild-tail'),item=ART_CONFIG.items.find(i=>i.pipamon===entry?.id);if(item){const im=document.createElement('img');im.src=item.url;im.alt=item.name;card.append(im);}card.append(uiElement('b','Rabiola de '+(entry?.name||r.modelId)+' recebida!'),uiElement('p',r.firstTail?'Sua primeira rabiola. Leve ao professor para invocar.':'Leve ao professor para tentar uma invocação.'));root.append(card);}}
+ catch(e){if(epoch===wildResultEpoch){$('wildResultStatus').textContent=e.message;if(++attempts<15)setTimeout(check,1800);}}}check();
+}
+const rpgAccountChange=onCourtyardAccount;onCourtyardAccount=async function(){const owner=playerAccount?.profile.id||null,changed=owner!==rpgOwner;if(changed){rpgOwner=owner;rpgEpoch++;classBusy=false;wildBusy=false;wildDistance=0;wildGrace=Date.now()+10000;wildResultEpoch++;if(classPanel.open)classPanel.close();fleeWildButton.hidden=true;}await rpgAccountChange();if(changed&&owner&&owner===playerAccount?.profile.id&&!mode)await recoverWildEncounter();};

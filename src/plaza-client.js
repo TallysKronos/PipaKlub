@@ -1,4 +1,5 @@
 function currentPlazaMission(){
+ if(typeof worldRuntime!=='undefined'&&worldRuntime.id?.startsWith('park-'))return {title:'Habitats do parque',body:'Procure Pipamons no capim alto. A trilha de terra é segura.',action:'wildGuide',stage:null};
  const next=trails.stages.find(stage=>trails.unlocked(trailProgress,stage.id)&&!trailProgress.stars[stage.id]),trail=next&&trails.trails[next.trailIndex];
  const context=typeof worldMissionContext==='function'?worldMissionContext(next):{};
  return plazaPolicy.mission(journeyLoading?'arrival':journey?.phase,next,trail,{...context,demo:trails.demo,complete:journey?.phase==='complete'&&!next});

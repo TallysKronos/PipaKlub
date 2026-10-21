@@ -311,12 +311,12 @@ test('generated trade textures retain alpha, ship in Pages and are served by the
 });
 
 test('special Souls load only on demand and animate all five states using their real atlas rectangles',async()=>{
- const a=app({seen:true});await a.settle();assert.equal(a.requests.length,1);
- for(const soul of artConfig().dex.entries.filter(e=>e.group==='event').map(e=>e.id)){
+ const config=artConfig(),a=app({seen:true});await a.settle();assert.equal(a.requests.length,1);
+ for(const soul of config.dex.entries.filter(e=>e.group==='event').map(e=>e.id)){
   a.run("art.load('"+soul+"')");await a.settle();
   for(const [state,extra,victory] of [['idle',{},false],['flight',{input:{x:1}},false],['skill',{skillCooldown:6.7},false],['hurt',{hitFlash:.05},false],['victory',{},true]]){
    const time=200,p={soul,...extra};a.run("art.creature($('sky').getContext('2d'),0,"+time+",-56,-44,112,"+JSON.stringify(p)+","+victory+")");
-   const actual=a.draws.at(-1).args.slice(1,5),atlas=artConfig().atlases[soul];
+   const actual=a.draws.at(-1).args.slice(1,5),atlas=config.atlases[soul];
    assert.ok(atlas.animations[state].some(key=>{const f=atlas.frames[key].frame,v=atlas.meta.viewport;return JSON.stringify(actual)===JSON.stringify(v?[f.x+v.x,f.y+v.y,Math.min(v.w,f.w-v.x),Math.min(v.h,f.h-v.y)]:[f.x,f.y,f.w,f.h]);}),soul+' '+state);
   }
  }

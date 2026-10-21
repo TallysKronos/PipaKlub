@@ -1,0 +1,23 @@
+.game-loading{position:fixed;inset:0;width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;padding:0;border:0;background:#d6edf0;color:#28464d;overflow:hidden;z-index:2147483000}
+.game-loading[open]{display:grid;place-items:center}.game-loading::backdrop{background:#142d36}
+.game-loading .loading-card{position:relative;text-align:center;width:min(520px,88vw);padding:36px 30px;background:#fff7e6;border:3px solid #365056;border-radius:24px;box-shadow:0 8px 0 #29464f,0 20px 70px #33586433}
+.loading-brand{font-weight:900;letter-spacing:.22em;font-size:12px;color:#667c7b}.loading-card h2{margin:8px 0;font-size:clamp(22px,3vw,32px)}.loading-card #loadingDetail{min-height:42px;font-size:15px}
+.loading-tip{margin:18px 0 0;font-size:12px;color:#617a78}
+.loading-emblem{position:relative;width:74px;height:92px;margin:0 auto 12px;animation:loading-fly 1.8s ease-in-out infinite}
+.loading-emblem i{display:block;position:absolute;left:14px;top:8px;width:45px;height:45px;transform:rotate(45deg);background:linear-gradient(135deg,#eeb95e 50%,#5eaba8 50%);border:3px solid #31545a;border-radius:5px}
+.loading-emblem i:after{content:'';position:absolute;left:40px;top:40px;width:2px;height:40px;background:#31545a;transform:rotate(-45deg);transform-origin:top}
+.loading-emblem b{position:absolute;bottom:0;left:44px;color:#d5914f;font-size:25px}
+.loading-card [role=progressbar]{height:10px;background:#dce9e4;border:1px solid #77928b;border-radius:8px;overflow:hidden}.loading-card #loadingFill{display:block;height:100%;background:#4597ba;transition:width .15s}
+.loading-card .indeterminate #loadingFill{width:32%;animation:loading-progress 1.4s ease-in-out infinite}
+.loading-actions{display:flex;justify-content:center;gap:12px;margin-top:16px}.loading-actions:has(button:not([hidden])){min-height:44px}
+.loading-actions button{font:inherit;font-weight:800;color:#294b52;background:#f4d58e;border:2px solid #627d76;border-radius:12px;padding:10px 18px}
+.loading-sky span{position:absolute;width:250px;height:70px;background:#f5fbefaa;border-radius:100%;top:22%;left:8%}.loading-sky span+span{top:auto;bottom:20%;left:auto;right:3%;width:340px}
+.game-is-loading #commandBar{visibility:hidden}.game-loading.loading-error .loading-emblem{animation:none}
+@keyframes loading-fly{50%{transform:translateY(-8px) rotate(5deg)}}@keyframes loading-progress{0%{transform:translateX(-110%)}100%{transform:translateX(420%)}}
+@media(prefers-reduced-motion:reduce){.loading-emblem,.loading-card .indeterminate #loadingFill{animation:none}.loading-card #loadingFill{transition:none}.loading-card .indeterminate #loadingFill{width:100%;opacity:.5}}
+.game-loading:not([open]){display:none}
+#autosaveIndicator{position:fixed;right:24px;bottom:22px;z-index:22000;padding:10px 16px;background:#233f46ed;color:#fff8e7;border:2px solid #c7dad6;border-radius:12px;font-size:14px;pointer-events:none;box-shadow:0 3px 0 #142b32}
+#autosaveIndicator[hidden]{display:none}
+#autosaveIndicator.saving{animation:autosave-pulse 1s ease-in-out infinite alternate}
+@keyframes autosave-pulse{to{opacity:.65}}
+@media(prefers-reduced-motion:reduce){#autosaveIndicator.saving{animation:none}}

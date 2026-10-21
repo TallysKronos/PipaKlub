@@ -20,3 +20,15 @@ createRuinsTitle({document,host:globalThis,location,
  storage:typeof sessionStorage==='undefined'?null:sessionStorage,
  requestFrame:fn=>requestAnimationFrame(fn),cancelFrame:id=>cancelAnimationFrame(id)});
 syncRuinsMenuMotion();
+
+if(gameLoading.active&&loadingScreen.open){loadingScreen.close();loadingScreen.showModal();}
+if(typeof navigator!=='undefined'&&navigator.userAgent){
+ async function loadTitlePresentation(){
+  const gate=gameLoading.start('presentation','Preparando sua aventura',{retry:loadTitlePresentation,back:()=>gate.cancel()});
+  if(loadingScreen.open){loadingScreen.close();loadingScreen.showModal();}
+  let loaded=0;const assets=Object.values(ruinsSceneAssets).filter(a=>a?.url);gate.update(0,assets.length,'Carregando a tela inicial…');
+  const results=await Promise.all(assets.map(a=>new Promise(resolve=>{const image=new Image();image.onload=()=>{gate.update(++loaded,assets.length);resolve(true);};image.onerror=()=>resolve(false);image.src=a.url;})));
+  if(results.every(Boolean))await gate.done();else gate.fail('A apresentação não carregou. Tente novamente ou continue com o fundo simples.');
+ }
+ loadTitlePresentation();
+}

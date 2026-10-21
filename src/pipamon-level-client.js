@@ -11,17 +11,17 @@ function drawPipamonGlow(context,level,time,x,y,radius=48,light=false,reduced=fa
  }
  context.restore();
 }
-function pipamonProgress(kite){return eng.pipamons.progress(kite?.pipamon_xp);}
+function pipamonProgress(kite){const p=eng.pipamons.progress(kite?.pipamon_xp);return {...p,stats:eng.pipamons.stats(p.level,kite?.pipamon_class,kite?.class_rank)};}
 function renderPipamonProgress(kite){
  const root=$('inventoryProgress');if(!root)return;
  const p=pipamonProgress(kite),tier=p.tier;root.replaceChildren();root.dataset.tier=tier?.id||'none';
- const heading=uiElement('div',undefined,'pipamon-progress-heading');heading.append(uiElement('h4','Nível '+p.level+' / 50'),uiElement('span',tier?'✦ '+tier.name:'Em formação','pipamon-tier'));root.append(heading);
+ const heading=uiElement('div',undefined,'pipamon-progress-heading');heading.append(uiElement('h4','Nível '+p.level+' / 50'),uiElement('span',tier?'✦ '+tier.name:'Em formação','pipamon-tier'));root.append(heading);if(kite.pipamon_class){const c=eng.classes[kite.pipamon_class];root.append(uiElement('p',c?(kite.class_rank===2?c.advanced:c.name):kite.pipamon_class,'class-badge'));}
  const meter=uiElement('div',undefined,'pipamon-xp-track');meter.setAttribute('role','progressbar');meter.setAttribute('aria-label','XP deste Pipamon');meter.setAttribute('aria-valuemin','0');meter.setAttribute('aria-valuemax','100');meter.setAttribute('aria-valuenow',String(Math.floor(p.percent)));meter.setAttribute('aria-valuetext',p.next===null?'Nível máximo':p.into+' de '+p.needed+' XP para o próximo nível');
  const fill=uiElement('span');fill.style.width=p.percent+'%';meter.append(fill);root.append(meter,uiElement('p',p.next===null?'Nível máximo · Aura desbloqueada':p.into+' / '+p.needed+' XP · faltam '+(p.next-p.xp)+' para o nível '+(p.level+1),'pipamon-xp-caption'));
  const stats=uiElement('dl',undefined,'pipamon-stats'),s=p.stats;
  for(const [label,value]of [['Linha',s.line],['Energia',s.energy],['Ataque',Math.round(s.attack*100)+'%'],['Defesa',Math.round(s.defense*100)+'%'],['Velocidade',Math.round(s.speed)+' px/s'],['Recuperação',s.regen.toFixed(1)+'/s']]){const item=uiElement('div');item.append(uiElement('dt',label),uiElement('dd',String(value)));stats.append(item);}root.append(stats);
  const milestones=uiElement('ol',undefined,'pipamon-milestones');milestones.setAttribute('aria-label','Marcos de brilho');for(const t of [...eng.pipamons.tiers].reverse()){const item=uiElement('li',t.min+' · '+t.name);item.dataset.unlocked=String(p.level>=t.min);milestones.append(item);}root.append(milestones);
- root.append(uiElement('p','XP individual: cortes válidos +25; Trilhas +120 na primeira vitória, +80 ao repetir ou +20 na derrota; desafio diário +100 uma vez ao dia. Treino e partidas como visitante não dão XP. Limite: 2.000 XP por conta/dia (UTC).','pipamon-xp-help'));
+ root.append(uiElement('p','XP individual: cortes válidos +25; Trilhas +120 na primeira vitória, +80 ao repetir ou +20 na derrota; desafio diário +100 uma vez ao dia. Treino e partidas como visitante não dão XP. Pipamons até nível 50. O tamer recebe 20% do XP efetivamente desenvolvido pelo parceiro; parceiros no máximo não geram esse XP. Sem cota diária de XP PvE.','pipamon-xp-help'));
 }
 function announcePipamonLevels(previous,current){
  if(!previous||!current||previous.profile?.id!==current.profile?.id)return;

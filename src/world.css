@@ -17,3 +17,26 @@ body.ui-kit-ready .plaza.world-ready .courtyard-stage{inset:0;left:0;top:0;trans
 .world-painted .plaza-mission{width:230px;top:80px;right:16px;padding:8px 12px}.world-painted .plaza-mission>small{font-size:12px}.world-painted .plaza-mission-action{min-height:38px}.world-painted .plaza-mission-action b{font-size:11px}
 .world-painted .world-context{width:min(480px,calc(100vw - 24px));bottom:12px;padding:7px 10px;display:flex;align-items:center;gap:12px}.world-painted .world-location{flex:1}.world-painted .world-location>b{font-size:12px}.world-painted .world-location>span{font-size:11px}.world-painted .world-controls{margin:0}.world-painted .world-controls select{width:112px;height:38px;font-size:10px}.world-painted .world-controls button{min-width:112px;min-height:38px;font-size:11px!important;padding:6px!important}
 @media(max-width:700px){.world-painted .world-context{display:block;bottom:calc(91px + env(safe-area-inset-bottom))}.world-painted .world-controls{margin-top:5px}.world-painted .plaza-mission{width:190px;top:90px}.world-painted .plaza-profile{width:200px!important}}
+.campaign-panel{width:min(960px,94vw);max-height:92dvh;overflow:auto;padding:24px;color:#293e48}
+.campaign-panel::backdrop{background:#142d3ccc}
+.campaign-panel header{display:flex;justify-content:space-between;gap:16px;align-items:center}
+.campaign-panel h2{margin:0}.campaign-panel p{font-size:14px;line-height:1.5}.campaign-panel button{font:inherit}
+.campaign-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0}
+.campaign-panel [role=tablist]{display:flex;gap:12px;margin:20px 0 10px}
+.campaign-panel [role=tab][aria-selected=true]{outline:3px solid #318dc8;background:#e3f4fa}
+.campaign-slots{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.campaign-slot{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:130px;min-width:0;border:2px solid #a38f68;border-radius:12px;background:#fff7e7;padding:8px}
+.campaign-slot.selected,.campaign-slot:focus-visible{outline:3px solid #318dc8;outline-offset:2px}
+.campaign-slot b{font-size:13px}.campaign-slot small{font-size:11px;opacity:.7}.campaign-slot canvas{width:100px;height:78px;max-width:100%}
+.campaign-slot.empty{background:#d4c6ac44;border-style:dashed;color:#6d6b5f}.campaign-slot.empty span{font-size:12px}
+.campaign-panel #campaignConfirm{padding:16px;border:2px solid #a54a40;border-radius:12px;background:#fff0e6}
+.campaign-panel #campaignConfirmation{display:block;width:min(350px,100%);margin-top:8px}
+.campaign-panel #campaignStatus{min-height:22px;font-weight:bold}
+@media(max-width:700px){.campaign-slots{grid-template-columns:repeat(3,minmax(0,1fr))}.campaign-panel{padding:16px}.campaign-panel header{align-items:flex-start}}
+.campaign-panel[open]{display:flex;flex-direction:column;height:min(90dvh,850px);overflow:hidden}
+.campaign-panel>header,.campaign-panel>.campaign-actions,.campaign-panel>[role=tablist]{flex-shrink:0}
+.campaign-panel>p{margin:6px 0;font-size:12px;line-height:1.35}
+.campaign-panel>.campaign-actions{margin:9px 0}
+.campaign-panel>[role=tablist]{margin:8px 0}
+.campaign-panel .campaign-slots{flex:1;min-height:100px;overflow:auto;padding:5px}
+.campaign-panel #campaignConfirm{position:absolute;z-index:2;left:16px;right:16px;bottom:16px;box-shadow:0 -18px 60px #102c44aa}

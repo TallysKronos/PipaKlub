@@ -33,6 +33,7 @@ function focusTargets(){
 function focusPad(el){el.focus({preventScroll:true});el.scrollIntoView?.({block:'nearest',inline:'nearest'});renderCommandBar();}
 const PRIMARY=['[autofocus]','#journeyContinue','#partnerConfirm','#flightNext','#trailStart','#rematchButton','#assisNext','.primary','.pk-button'];
 function moveFocus(dir){
+ if(typeof campaignMoveFocus==='function'&&campaignMoveFocus(dir))return;
  const targets=focusTargets();if(!targets.length)return;
  const current=targets.find(t=>t.el===document.activeElement);
  // First press lands on the screen's main action when there is one, else the top-left target.
@@ -63,7 +64,7 @@ function confirmFocus(){
  el.click();
 }
 function pressKey(key){padSynthetic=true;try{const target=document.activeElement&&document.activeElement!==document.body?document.activeElement:document;for(const type of ['keydown','keyup'])target.dispatchEvent(new KeyboardEvent(type,{key,bubbles:true,cancelable:true}));}finally{padSynthetic=false;}}
-function goBack(){pressKey('Escape');}
+function goBack(){if(typeof classPanel!=='undefined'&&classPanel.open){if(!classBusy)classPanel.close();return;}if(typeof campaignPanel!=='undefined'&&campaignPanel.open){campaignClose();return;}pressKey('Escape');}
 // LB/RB: tabs when the screen has them, otherwise the first filter select.
 function switchTab(step){
  if(typeof pilotSwitchPage==='function'&&pilotSwitchPage(step))return;
@@ -82,6 +83,7 @@ function startPressed(){
 function pollPads(){
  requestAnimationFrame(pollPads);
  const pads=navigator.getGamepads?.()||[];const pad=[...pads].find(p=>p&&p.connected&&p.mapping==='standard')||[...pads].find(p=>p&&p.connected);
+ if(gameLoading.active){padState.active=false;padState.cut=false;padState.skill=0;padState.x=padState.y=0;if(pad){const a=!!pad.buttons[0]?.pressed,b=!!pad.buttons[1]?.pressed;if(loadingView.failed&&a&&!padPrev[0])loadingView.retry?.();if(loadingView.failed&&b&&!padPrev[1])loadingView.back?.();for(let i=0;i<pad.buttons.length;i++)padPrev[i]=!!pad.buttons[i]?.pressed;}return;}
  if(document.body.classList.contains('in-title')){padState.active=false;padState.cut=false;padState.skill=0;padState.x=padState.y=0;if(pad)for(let i=0;i<pad.buttons.length;i++)padPrev[i]=!!pad.buttons[i]?.pressed;return;}
  if(!pad){padState.active=false;padState.cut=false;padState.skill=0;padState.x=padState.y=0;return;}
  const B=switchNav.BUTTONS,down=i=>!!pad.buttons[i]?.pressed,now=performance.now();
@@ -93,6 +95,11 @@ function pollPads(){
   padState.active=false;padState.x=move.x+(down(B.right)?1:0)-(down(B.left)?1:0);padState.y=move.y+(down(B.down)?1:0)-(down(B.up)?1:0);padState.cut=false;padState.skill=0;
   if(pressed(B.a)){const spot=openingNearestSpot();if(spot)openingInspect(spot.id);}
   if(pressed(B.b)||pressed(B.start))$('openingPause').click();
+  for(let i=0;i<pad.buttons.length;i++)padPrev[i]=down(i);return;
+ }
+ if(typeof worldWalkActive==='function'&&worldWalkActive()){
+  padState.active=false;padState.x=move.x+(down(B.right)?1:0)-(down(B.left)?1:0);padState.y=move.y+(down(B.down)?1:0)-(down(B.up)?1:0);padState.cut=false;padState.skill=0;
+  if(pressed(B.a))interactWorld();if(pressed(B.b)||pressed(B.start))startPressed();
   for(let i=0;i<pad.buttons.length;i++)padPrev[i]=down(i);return;
  }
  const live=battleLive();padState.active=live;
@@ -128,7 +135,8 @@ function renderCommandBar(){
  const gamepad=inputDevice.startsWith('gamepad');
  const live=mode&&!showResult&&!pausedAt&&$('pauseSheet').hidden;
  const tabs=gamepad&&focusTargets().some(t=>t.el.matches('[role=tab],[data-hud-tab],.tab-button'));
- const items=live?[]:[['confirm','Selecionar'],['back','Voltar'],...(tabs?[['tabLeft',''],['tabRight','Abas']]:[]),...(!mode&&playerAccount?[['menu','Menu']]:[])];
+ const walking=typeof worldWalkActive==='function'&&worldWalkActive();
+ const items=live?[]:walking?[['confirm','Conversar / examinar'],['menu','Menu']]:[['confirm','Selecionar'],['back','Voltar'],...(tabs?[['tabLeft',''],['tabRight','Abas']]:[]),...(!mode&&playerAccount?[['menu','Menu']]:[])];
  const key=inputDevice+'|'+items.map(i=>i.join(':')).join(',');
  commandBar.hidden=!gamepad||!items.length;if(key===commandKey)return;commandKey=key;
  commandBar.replaceChildren(...items.map(([command,label])=>{const span=document.createElement('span');span.className='command';span.append(glyphImage(command));if(label)span.append(label);return span;}));

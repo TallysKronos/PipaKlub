@@ -36,3 +36,4 @@ body.game-shell:not(.in-match) #game{visibility:hidden}
 .city-region:hover,.city-region:focus-visible{outline:none;filter:brightness(1.15)}.city-region:focus-visible .city-emblem{outline:3px solid #ffe4a6;outline-offset:3px;border-radius:10px}
 .city-region.future{background:transparent!important}.city-region.locked .city-emblem{filter:grayscale(.8) drop-shadow(0 3px 3px #193b41);opacity:.75}
 @keyframes scene-arrival{from{opacity:0}to{opacity:1}}.courtyard,.city-screen{animation:scene-arrival .25s ease-out}@media(prefers-reduced-motion:reduce){.courtyard,.city-screen{animation:none}}
+.in-first-flight .hud-board{display:none!important}

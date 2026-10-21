@@ -1,0 +1,501 @@
+{
+  "bindings": {
+    "14": {
+      "frame": "park-tree",
+      "width": 290,
+      "footX": 112,
+      "footY": 280
+    },
+    "15": {
+      "frame": "park-tree-flower",
+      "width": 310,
+      "footX": 360,
+      "footY": 272
+    },
+    "16": {
+      "frame": "park-tree",
+      "width": 280,
+      "footX": 650,
+      "footY": 276
+    },
+    "17": {
+      "frame": "park-tree",
+      "width": 320,
+      "footX": 948,
+      "footY": 280
+    },
+    "18": {
+      "frame": "park-tree-flower",
+      "width": 285,
+      "footX": 1230,
+      "footY": 274
+    },
+    "19": {
+      "frame": "park-tree",
+      "width": 290,
+      "footX": 1460,
+      "footY": 304
+    },
+    "20": {
+      "frame": "park-tree",
+      "width": 280,
+      "footX": 90,
+      "footY": 590
+    },
+    "21": {
+      "frame": "park-tree-flower",
+      "width": 300,
+      "footX": 1445,
+      "footY": 670
+    },
+    "22": {
+      "frame": "park-tree",
+      "width": 220,
+      "footX": 60,
+      "footY": 970
+    },
+    "23": {
+      "frame": "park-tree",
+      "width": 240,
+      "footX": 840,
+      "footY": 982
+    },
+    "24": {
+      "frame": "park-tree-flower",
+      "width": 250,
+      "footX": 1120,
+      "footY": 970
+    },
+    "25": {
+      "frame": "park-tree",
+      "width": 320,
+      "footX": 1440,
+      "footY": 951
+    },
+    "26": {
+      "frame": "park-gazebo",
+      "width": 290,
+      "footX": 414,
+      "footY": 488
+    },
+    "27": {
+      "frame": "park-tree-flower",
+      "width": 300,
+      "footX": 900,
+      "footY": 740
+    },
+    "28": {
+      "frame": "bench",
+      "width": 132,
+      "footX": 380,
+      "footY": 574
+    },
+    "29": {
+      "frame": "bench",
+      "width": 130,
+      "footX": 1110,
+      "footY": 600
+    },
+    "30": {
+      "frame": "lamp",
+      "width": 32,
+      "footX": 270,
+      "footY": 685
+    },
+    "31": {
+      "frame": "lamp",
+      "width": 32,
+      "footX": 1210,
+      "footY": 580
+    },
+    "32": {
+      "frame": "flowerpot",
+      "width": 48,
+      "footX": 146,
+      "footY": 881
+    },
+    "33": {
+      "frame": "flowerpot",
+      "width": 48,
+      "footX": 304,
+      "footY": 881
+    },
+    "37": {
+      "frame": "fence",
+      "width": 160,
+      "footX": 365,
+      "footY": 704
+    },
+    "38": {
+      "frame": "fence",
+      "width": 164,
+      "footX": 1100,
+      "footY": 850
+    }
+  },
+  "decorations": [
+    {
+      "frame": "park-habitat",
+      "width": 116,
+      "footX": 828,
+      "footY": 352,
+      "level": 0,
+      "sortY": 340
+    },
+    {
+      "frame": "park-habitat",
+      "width": 122,
+      "footX": 900,
+      "footY": 352,
+      "level": 0,
+      "sortY": 340
+    },
+    {
+      "frame": "park-habitat",
+      "width": 110,
+      "footX": 972,
+      "footY": 352,
+      "level": 0,
+      "sortY": 340
+    },
+    {
+      "frame": "park-habitat",
+      "width": 116,
+      "footX": 1044,
+      "footY": 352,
+      "level": 0,
+      "sortY": 340
+    },
+    {
+      "frame": "park-habitat",
+      "width": 122,
+      "footX": 1116,
+      "footY": 352,
+      "level": 0,
+      "sortY": 340
+    },
+    {
+      "frame": "park-habitat",
+      "width": 110,
+      "footX": 766,
+      "footY": 390,
+      "level": 0,
+      "sortY": 378
+    },
+    {
+      "frame": "park-habitat",
+      "width": 116,
+      "footX": 838,
+      "footY": 390,
+      "level": 0,
+      "sortY": 378
+    },
+    {
+      "frame": "park-habitat",
+      "width": 122,
+      "footX": 910,
+      "footY": 390,
+      "level": 0,
+      "sortY": 378
+    },
+    {
+      "frame": "park-habitat",
+      "width": 110,
+      "footX": 982,
+      "footY": 390,
+      "level": 0,
+      "sortY": 378
+    },
+    {
+      "frame": "park-habitat",
+      "width": 116,
+      "footX": 1054,
+      "footY": 390,
+      "level": 0,
+      "sortY": 378
+    },
+    {
+      "frame": "park-habitat",
+      "width": 122,
+      "footX": 1126,
+      "footY": 390,
+      "level": 0,
+      "sortY": 378
+    },
+    {
+      "frame": "park-habitat",
+      "width": 110,
+      "footX": 756,
+      "footY": 428,
+      "level": 0,
+      "sortY": 416
+    },
+    {
+      "frame": "park-habitat",
+      "width": 116,
+      "footX": 828,
+      "footY": 428,
+      "level": 0,
+      "sortY": 416
+    },
+    {
+      "frame": "park-habitat",
+      "width": 122,
+      "footX": 900,
+      "footY": 428,
+      "level": 0,
+      "sortY": 416
+    },
+    {
+      "frame": "park-habitat",
+      "width": 110,
+      "footX": 972,
+      "footY": 428,
+      "level": 0,
+      "sortY": 416
+    },
+    {
+      "frame": "park-habitat",
+      "width": 116,
+      "footX": 1044,
+      "footY": 428,
+      "level": 0,
+      "sortY": 416
+    },
+    {
+      "frame": "park-habitat",
+      "width": 110,
+      "footX": 160,
+      "footY": 372,
+      "level": 0,
+      "sortY": 360
+    },
+    {
+      "frame": "park-habitat",
+      "width": 116,
+      "footX": 232,
+      "footY": 372,
+      "level": 0,
+      "sortY": 360
+    },
+    {
+      "frame": "park-habitat",
+      "width": 110,
+      "footX": 170,
+      "footY": 410,
+      "level": 0,
+      "sortY": 398
+    },
+    {
+      "frame": "park-habitat",
+      "width": 116,
+      "footX": 242,
+      "footY": 410,
+      "level": 0,
+      "sortY": 398
+    },
+    {
+      "frame": "park-habitat",
+      "width": 110,
+      "footX": 160,
+      "footY": 448,
+      "level": 0,
+      "sortY": 436
+    },
+    {
+      "frame": "park-habitat",
+      "width": 116,
+      "footX": 232,
+      "footY": 448,
+      "level": 0,
+      "sortY": 436
+    },
+    {
+      "frame": "park-habitat",
+      "width": 110,
+      "footX": 170,
+      "footY": 486,
+      "level": 0,
+      "sortY": 474
+    },
+    {
+      "frame": "park-habitat",
+      "width": 116,
+      "footX": 242,
+      "footY": 486,
+      "level": 0,
+      "sortY": 474
+    },
+    {
+      "frame": "park-habitat",
+      "width": 116,
+      "footX": 1152,
+      "footY": 712,
+      "level": 0,
+      "sortY": 700
+    },
+    {
+      "frame": "park-habitat",
+      "width": 122,
+      "footX": 1224,
+      "footY": 712,
+      "level": 0,
+      "sortY": 700
+    },
+    {
+      "frame": "park-habitat",
+      "width": 110,
+      "footX": 1296,
+      "footY": 712,
+      "level": 0,
+      "sortY": 700
+    },
+    {
+      "frame": "park-habitat",
+      "width": 110,
+      "footX": 1090,
+      "footY": 750,
+      "level": 0,
+      "sortY": 738
+    },
+    {
+      "frame": "park-habitat",
+      "width": 116,
+      "footX": 1162,
+      "footY": 750,
+      "level": 0,
+      "sortY": 738
+    },
+    {
+      "frame": "park-habitat",
+      "width": 122,
+      "footX": 1234,
+      "footY": 750,
+      "level": 0,
+      "sortY": 738
+    },
+    {
+      "frame": "park-habitat",
+      "width": 110,
+      "footX": 1306,
+      "footY": 750,
+      "level": 0,
+      "sortY": 738
+    },
+    {
+      "frame": "park-habitat",
+      "width": 110,
+      "footX": 1080,
+      "footY": 788,
+      "level": 0,
+      "sortY": 776
+    },
+    {
+      "frame": "park-habitat",
+      "width": 116,
+      "footX": 1152,
+      "footY": 788,
+      "level": 0,
+      "sortY": 776
+    },
+    {
+      "frame": "park-habitat",
+      "width": 122,
+      "footX": 1224,
+      "footY": 788,
+      "level": 0,
+      "sortY": 776
+    },
+    {
+      "frame": "park-habitat",
+      "width": 110,
+      "footX": 1296,
+      "footY": 788,
+      "level": 0,
+      "sortY": 776
+    },
+    {
+      "frame": "shrub",
+      "width": 115,
+      "footX": 136,
+      "footY": 425,
+      "level": 0,
+      "sortY": 425
+    },
+    {
+      "frame": "shrub",
+      "width": 90,
+      "footX": 180,
+      "footY": 466,
+      "level": 0,
+      "sortY": 466
+    },
+    {
+      "frame": "shrub",
+      "width": 110,
+      "footX": 1300,
+      "footY": 622,
+      "level": 0,
+      "sortY": 622
+    },
+    {
+      "frame": "shrub",
+      "width": 125,
+      "footX": 1390,
+      "footY": 798,
+      "level": 0,
+      "sortY": 798
+    },
+    {
+      "frame": "shrub",
+      "width": 110,
+      "footX": 710,
+      "footY": 875,
+      "level": 0,
+      "sortY": 875
+    },
+    {
+      "frame": "shrub",
+      "width": 110,
+      "footX": 1160,
+      "footY": 910,
+      "level": 0,
+      "sortY": 910
+    },
+    {
+      "frame": "shrub",
+      "width": 95,
+      "footX": 490,
+      "footY": 326,
+      "level": 0,
+      "sortY": 326
+    },
+    {
+      "frame": "flowerpot",
+      "width": 42,
+      "footX": 320,
+      "footY": 636,
+      "level": 0,
+      "sortY": 636
+    },
+    {
+      "frame": "flowerpot",
+      "width": 42,
+      "footX": 490,
+      "footY": 624,
+      "level": 0,
+      "sortY": 624
+    },
+    {
+      "frame": "flowerpot",
+      "width": 42,
+      "footX": 1170,
+      "footY": 610,
+      "level": 0,
+      "sortY": 610
+    }
+  ],
+  "audit": {
+    "enforce": true
+  }
+}

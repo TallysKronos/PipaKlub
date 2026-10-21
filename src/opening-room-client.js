@@ -10,7 +10,7 @@ const bench=uiElement('section',undefined,'opening-workbench');bench.id='opening
 bench.innerHTML='<div class="opening-bench-card"><h2 id="openingBenchTitle">Uma ideia feita de papel</h2><p>O corpo de papel já está pronto. Falta encaixar a última vareta na armação.</p><canvas id="openingProjectArt" width="1536" height="1024" role="img" aria-label="Projeto físico do Rabbito, feito de papel e bambu, ainda sem rabiola"></canvas><div><button type="button" class="secondary" id="openingBenchBack">Olhar o quarto</button><button type="button" class="primary" id="openingBenchPlace">Encaixar a última vareta</button></div><p id="openingBenchStatus" role="status"></p></div>';
 openingScreen.querySelector('.opening-stage').append(bench);
 function openingRoomStep(){return [3,7,11,13].includes(openingState?.step);}
-function openingWalkActive(){return !openingScreen.hidden&&openingRoomStep()&&!openingWorkbench&&!openingBusy&&!openingGiftOpen;}
+function openingWalkActive(){return !gameLoading.active&&!openingScreen.hidden&&openingRoomStep()&&!openingWorkbench&&!openingBusy&&!openingGiftOpen;}
 function openingClearWalking(){openingWalkKeys={};openingWalkIntent=null;openingActor.path=[];openingActor.moving=false;}
 function openingCloseBench(){openingCraftAt=null;openingCraftSaving=false;openingWorkbench=false;bench.hidden=true;openingRoomSignature='';openingRefreshRoomUI();}
 function openingResetRoom(){openingCraftAt=null;openingCraftSaving=false;openingClearWalking();openingRoomNavigation=openingState?.step===13?openingDownstairsNavigation:openingState?.step===11?openingExitNavigation:openingBedroomNavigation;openingWorkbench=false;bench.hidden=true;roomPlaces.hidden=true;openingRoomSignature='';}
@@ -19,7 +19,7 @@ function openingRefreshRoomUI(){
  roomPlaces.hidden=!openingRoomStep()||openingGiftOpen;if(openingGiftOpen){$('openingSpeaker').textContent='Presente de aniversário';$('openingNext').textContent='Guardar Rabiola Antiga';$('openingNext').disabled=openingBusy;$('openingHint').textContent='Confirmar para guardar o presente';return;}if(!openingRoomStep()){$('openingNext').disabled=openingBusy||openingCastBusy();return;}
  const near=openingNearestSpot(),signature=[openingState.step,near?.id,openingBusy,openingWorkbench,typeof inputDevice==='string'?inputDevice:'keyboard'].join('|');if(signature===openingRoomSignature)return;openingRoomSignature=signature;
  $('openingSpeaker').textContent=openingState.step===11?'Seu parceiro vai com você':openingState.step===13?'Seu primeiro passeio juntos':openingState.step===3?'Termine seu projeto':'Uma ideia inesperada';
- $('openingHint').textContent=typeof inputDevice==='string'&&inputDevice.startsWith('gamepad')?'Analógico · A interage · B pausa':'WASD / clique para andar · E interage';
+ $('openingHint').textContent=typeof inputDevice==='string'&&inputDevice.startsWith('gamepad')?'Analógico · A interage · B pausa':'Setas / WASD / clique para andar · E interage';
  $('openingNext').textContent=near?.id==='stairs'?'Descer a escada · E':near?.id==='exit'?'Sair para a rua · E':near?.id==='mother'?'Conversar · E':near?.id==='desk'?(openingState.step===3?'Montar Rabbito':'Ver projeto'):near?'Examinar · E':'Aproxime-se';
  $('openingNext').disabled=openingBusy||openingWorkbench||!near;
  roomPlaces.setAttribute('aria-label',openingState.step===13?'Lugares da casa':'Lugares do quarto');
@@ -68,6 +68,8 @@ function openingStepRoom(dt){
  if(!openingWalkActive())return;const input={x:(openingWalkKeys.d||openingWalkKeys.arrowright?1:0)-(openingWalkKeys.a||openingWalkKeys.arrowleft?1:0),y:(openingWalkKeys.s||openingWalkKeys.arrowdown?1:0)-(openingWalkKeys.w||openingWalkKeys.arrowup?1:0)};
  if(typeof padState!=='undefined'&&inputDevice.startsWith('gamepad')){input.x=padState.x;input.y=padState.y;}
  if(input.x||input.y)openingWalkIntent=null;openingRoomNavigation.tick(openingActor,input,dt);openingRefreshRoomUI();
+ const entrance=openingRoomNavigation.hotspots.find(p=>['stairs','exit'].includes(p.id)&&Math.hypot(openingActor.x-p.x,openingActor.y-p.y)<42);
+ if(entrance&&openingActor.moving){openingInspect(entrance.id);return;}
  if(openingWalkIntent&&!openingActor.path?.length){const id=openingWalkIntent;openingWalkIntent=null;if(openingRoomNavigation.near(openingActor,id))openingInspect(id);}
 }
 $('openingCanvas').addEventListener('pointerdown',e=>{
@@ -85,7 +87,7 @@ addEventListener('keydown',e=>{
 addEventListener('keyup',e=>{delete openingWalkKeys[e.key.toLowerCase()];});addEventListener('blur',openingClearWalking);document.addEventListener('visibilitychange',()=>{if(document.hidden)openingClearWalking();});
 function drawOpeningRoomPlaces(g){
  if(!openingRoomStep()||openingWorkbench)return;
- for(const p of openingRoomNavigation.hotspots){const near=openingRoomNavigation.near(openingActor,p.id);g.save();g.fillStyle=near?'#fff0b9':'#fff0b988';g.strokeStyle='#546e62';g.lineWidth=3;g.beginPath();g.ellipse(p.x,p.y+8,25,9,0,0,Math.PI*2);g.fill();g.stroke();g.restore();}
+ for(const p of openingRoomNavigation.hotspots){const near=openingRoomNavigation.near(openingActor,p.id);g.save();g.fillStyle=near?'#fff0b9':'#fff0b988';g.strokeStyle='#546e62';g.lineWidth=3;g.beginPath();if(['stairs','exit'].includes(p.id)){g.fillStyle='#55c8ef';g.strokeStyle='#20536b';g.moveTo(p.x-15,p.y-5);g.lineTo(p.x,p.y+10);g.lineTo(p.x+15,p.y-5);g.lineTo(p.x+9,p.y-11);g.lineTo(p.x,p.y-2);g.lineTo(p.x-9,p.y-11);g.closePath();}else g.ellipse(p.x,p.y+8,25,9,0,0,Math.PI*2);g.fill();g.stroke();g.restore();}
  if(openingActor.path?.length){const p=openingActor.path.at(-1);g.strokeStyle='#fff1bd';g.lineWidth=3;g.beginPath();g.arc(p.x,p.y,9,0,Math.PI*2);g.stroke();}
 }
 function drawOpeningBroadcast(g,t,featured){

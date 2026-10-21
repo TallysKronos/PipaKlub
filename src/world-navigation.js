@@ -34,6 +34,20 @@ export function createWorldNavigation(scene){
   if(geometry&&path.some((point,i)=>i&&!geometry.segment(path[i-1],point))){actor.navigationMessage='Não há caminho até esse destino.';return [];}
   actor.path=path;actor.moving=false;if(immediate&&path.length){Object.assign(actor,path.at(-1));actor.level=geometry?.level(actor)??0;actor.history=path.map(p=>({...p}));actor.path=[];}return path;
  }
+ // Direct control walks the authored floor, not just graph edges. Small swept
+ // steps prevent tunnelling; independent axes let the actor slide along walls.
+ function move(actor,input,seconds){
+  let x=Number(input?.x)||0,y=Number(input?.y)||0;const magnitude=Math.hypot(x,y);actor.path=[];actor.moving=false;
+  if(magnitude<.08)return false;x/=Math.max(1,magnitude);y/=Math.max(1,magnitude);
+  actor.direction=Math.abs(x)>Math.abs(y)?x<0?1:2:y<0?3:0;
+  const amount=Math.max(0,Math.min(.1,seconds||0))*145,steps=Math.max(1,Math.ceil(amount/4));
+  const allowed=p=>geometry?geometry.segment(actor,p):p.x>=0&&p.y>=0&&p.x<=scene.width&&p.y<=scene.height;
+  for(let i=0;i<steps;i++){const dx=x*amount/steps,dy=y*amount/steps,p={x:actor.x+dx,y:actor.y+dy};let changed=false;
+   if(allowed(p)){Object.assign(actor,p);changed=true;}else{const px={x:actor.x+dx,y:actor.y};if(dx&&allowed(px)){Object.assign(actor,px);changed=true;}const py={x:actor.x,y:actor.y+dy};if(dy&&allowed(py)){Object.assign(actor,py);changed=true;}}
+   if(changed){actor.level=geometry?.level(actor)??0;actor.moving=true;if(distance(actor,actor.history.at(-1))>=3)actor.history.push({x:actor.x,y:actor.y});}
+  }
+  if(actor.history.length>400)actor.history.splice(0,actor.history.length-400);return actor.moving;
+ }
  function step(actor,seconds){
   let budget=Math.max(0,Math.min(.1,seconds||0))*145;actor.moving=false;
   while(actor.path.length&&budget>0){const p=actor.path[0],dx=p.x-actor.x,dy=p.y-actor.y,d=Math.hypot(dx,dy);if(d<.01){actor.path.shift();continue;}const move=Math.min(d,budget),next={x:actor.x+dx/d*move,y:actor.y+dy/d*move};if(geometry&&!geometry.segment(actor,next)){actor.path=[];actor.navigationMessage='Caminho bloqueado.';break;}Object.assign(actor,next);actor.level=geometry?.level(actor)??0;actor.direction=Math.abs(dx)>Math.abs(dy)?dx<0?1:2:dy<0?3:0;actor.moving=true;budget-=move;if(distance(actor,actor.history.at(-1))>=3||move===d)actor.history.push({x:actor.x,y:actor.y});if(move===d)actor.path.shift();}
@@ -43,5 +57,5 @@ export function createWorldNavigation(scene){
   const history=[...actor.history,{x:actor.x,y:actor.y}];for(let i=history.length-1;i>0;i--){const a=history[i],b=history[i-1],d=distance(a,b);if(d>=gap&&d>0)return {x:a.x+(b.x-a.x)*gap/d,y:a.y+(b.y-a.y)*gap/d};gap-=d;}return {...history[0]};
  }
  function camera(actor,width,height){const floor=scene.overview&&width>=701?0:width<701?.9:1,scale=Math.max(floor,width/scene.width,height/scene.height),x=Math.max(0,Math.min(scene.width-width/scale,actor.x-width/scale*.5)),y=Math.max(0,Math.min(scene.height-height/scale,actor.y-height/scale*.57));return {x,y,scale};}
- return {nodes,project,route,create,target,step,follower,camera,distance,geometry};
+ return {nodes,project,route,create,target,move,step,follower,camera,distance,geometry};
 }

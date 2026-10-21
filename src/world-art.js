@@ -97,7 +97,7 @@ export function validateWorldPaintedImages(scene,sheets){
 export function drawWorldArtGround(g,scene,images,uncached=false){
  if(!uncached&&typeof OffscreenCanvas!=='undefined'&&Object.keys(scene.art.kit.sheets).every(id=>images.has('world-kit-'+id))){let canvas=worldArtGroundCache.get(scene.art);if(!canvas){canvas=new OffscreenCanvas(scene.width,scene.height);drawWorldArtGround(canvas.getContext('2d'),scene,images,true);worldArtGroundCache.set(scene.art,canvas);}g.drawImage(canvas,0,0);return;}
  const kit=scene.art.kit;
- function tile(id,x,y,w,h,size=128){const f=kit.frames[id],image=images.get('world-kit-'+f.sheet);if(!image){g.fillStyle=id==='grass'?'#8daa54':'#d7bf8f';g.fillRect(x,y,w,h);return;}g.save();g.beginPath();g.rect(x,y,w,h);g.clip();for(let py=Math.floor(y/size)*size;py<y+h;py+=size)for(let px=Math.floor(x/size)*size;px<x+w;px+=size)g.drawImage(image,f.x,f.y,f.w,f.h,px,py,size,size);g.restore();}
+ function tile(id,x,y,w,h,size=scene.tiled.properties.terrain_tile_size||128){const f=kit.frames[id],image=images.get('world-kit-'+f.sheet);if(!image){g.fillStyle=id==='grass'?'#8daa54':'#d7bf8f';g.fillRect(x,y,w,h);return;}g.save();g.beginPath();g.rect(x,y,w,h);g.clip();for(let py=Math.floor(y/size)*size;py<y+h;py+=size)for(let px=Math.floor(x/size)*size;px<x+w;px+=size)g.drawImage(image,f.x,f.y,f.w,f.h,px,py,size,size);g.restore();}
  tile('grass',0,0,scene.width,scene.height);
  const radius=scene.tiled.properties.ground_corner_radius||0,groups=new Map();
  for(const r of scene.tiled.layers.Walkable){const id=r.properties.ground_frame||(r.properties.level===1?'sidewalk':'dirt'),key=id+':'+r.properties.level;if(!groups.has(key))groups.set(key,{id,rects:[]});groups.get(key).rects.push(r);}

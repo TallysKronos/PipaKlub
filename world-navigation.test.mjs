@@ -20,3 +20,11 @@ test('same-edge destinations do not walk to a node and back; reduced movement te
 test('camera remains inside the world for mobile and desktop, including viewports larger than the source',()=>{
  const scene=manifest.scenes.morro,nav=createWorldNavigation(scene);for(const [w,h]of [[390,844],[1104,650],[1920,1080]])for(const p of nav.nodes){const c=nav.camera(p,w,h);assert.ok(c.x>=0&&c.y>=0);assert.ok(c.x<=Math.max(0,scene.width-w/c.scale));assert.ok(c.y<=Math.max(0,scene.height-h/c.scale));}
 });
+
+test('direct walking uses the whole floor, normalizes diagonals and never tunnels through walls',()=>{
+ const scene=manifest.scenes.quintal,nav=createWorldNavigation(scene),actor=nav.create();
+ // A point between authored grid nodes remains a valid direct-control position.
+ const origin={x:actor.x,y:actor.y};nav.move(actor,{x:1,y:1},.1);
+ assert.ok(nav.geometry?nav.geometry.safe(actor):true);assert.ok(Math.hypot(actor.x-origin.x,actor.y-origin.y)<=14.5001);
+ assert.equal(actor.path.length,0);const stopped={x:actor.x,y:actor.y};nav.move(actor,{x:0,y:0},.1);assert.equal(actor.moving,false);assert.equal(actor.x,stopped.x);assert.equal(actor.y,stopped.y);
+});

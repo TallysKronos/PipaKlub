@@ -8,8 +8,10 @@ import {createAccounts} from '../src/accounts.js';
 import {createProgression} from '../src/progression.js';
 import {createAssetHandler} from '../src/static-assets.js';
 import {attachRealtime} from '../src/realtime.js';
+import {localSessionCookies} from './local-session-cookies.mjs';
 
 const port=Number(process.env.LOCAL_TRADE_PORT||5194);
+const localCookies=localSessionCookies(port);
 if(!Number.isInteger(port)||port<1024||port>65535)throw Error('LOCAL_TRADE_PORT inválida.');
 const demoSlot=process.env.LOCAL_TRADE_SLOT||'trade-demo';if(!/^[a-z0-9-]{1,60}$/.test(demoSlot))throw Error('LOCAL_TRADE_SLOT inválido.');
 const demoDirectory='.local/'+demoSlot;fs.mkdirSync(demoDirectory,{recursive:true});
@@ -31,6 +33,10 @@ if(!(await postgres.query("select to_regclass('public.pipamon_xp_events') instal
 
 if(!(await postgres.query("select to_regclass('public.player_openings') installed")).rows[0].installed)await postgres.exec(fs.readFileSync('supabase/migrations/017_kael_opening.sql','utf8'));
 await postgres.exec(fs.readFileSync('supabase/migrations/018_story_first_collection.sql','utf8'));
+if(!(await postgres.query("select to_regclass('public.player_campaign_saves') installed")).rows[0].installed)await postgres.exec(fs.readFileSync('supabase/migrations/019_campaign_saves.sql','utf8'));
+if(!(await postgres.query("select 1 from information_schema.columns where table_schema='public' and table_name='player_campaign_saves' and column_name='autosave_enabled'")).rows.length)await postgres.exec(fs.readFileSync('supabase/migrations/020_campaign_autosave.sql','utf8'));
+if(!(await postgres.query("select 1 from information_schema.columns where table_schema='public' and table_name='player_profiles' and column_name='tamer_xp'")).rows.length)await postgres.exec(fs.readFileSync('supabase/migrations/021_tamers_and_classes.sql','utf8'));
+if(!(await postgres.query("select to_regclass('public.wild_runs') installed")).rows[0].installed)await postgres.exec(fs.readFileSync('supabase/migrations/022_wild_encounters.sql','utf8'));
 const players={kael:{id:'55555555-5555-4555-8555-555555555555',nickname:'Kael Local'},davi:{id:'44444444-4444-4444-8444-444444444444',nickname:'Kael Local'},ana:{id:'11111111-1111-4111-8111-111111111111',nickname:'Ana Local'},beto:{id:'22222222-2222-4222-8222-222222222222',nickname:'Beto Local'},cora:{id:'33333333-3333-4333-8333-333333333333',nickname:'Cora Local'}};
 for(const p of Object.values(players))await postgres.query('insert into auth.users values($1,$2) on conflict(id) do nothing',[p.id,{nickname:p.nickname}]);
 await postgres.query("select public.grant_event_soul($1,'flautrevo','local-demo')",[players.ana.id]);
@@ -41,8 +47,8 @@ for(let i=1;i<=4;i++)await postgres.query('select public.grant_summon_tail($1,$2
 await postgres.query("insert into public.player_pipamon_sightings(owner_id,model_id) values($1,'javali-biscoito') on conflict do nothing",[players.beto.id]);
 // Demo sightings include two creatures without a tail, to exercise locked cards.
 for(const p of [players.ana,players.beto])await postgres.query("insert into public.player_pipamon_sightings(owner_id,model_id) select $1,id from public.kite_models where id in ('marulume','alvaneve','hiponilo') on conflict do nothing",[p.id]);
-const operations={player_opening:['p_action','p_step','p_name'],player_journey:['p_action','p_model','p_lesson'],get_player_trail_result:['p_match'],player_daily:[],player_lines:['p_action','p_style','p_operation'],player_trails:['p_action','p_operation','p_payload'],get_player_account:[],get_player_recent_matches:[],get_player_match_result:['p_match'],get_kite_history:['p_kite'],equip_player_kite:['p_kite'],update_player_name:['p_nickname'],player_trade:['p_action','p_code','p_kite','p_revision'],player_summon:['p_action','p_tail','p_ritual','p_path','p_request','p_session','p_target'],record_player_sighting:['p_model']};
-const serverOperations={register_trail_run:['p_user','p_match','p_stage'],settle_trail_run:['p_user','p_match','p_stage','p_won','p_rounds_lost'],settle_daily_challenge:['p_user','p_match','p_day'],reserve_player_match:['p_user','p_match','p_code','p_mode'],release_player_match:['p_user','p_match'],settle_player_cut:['p_event','p_match','p_winner','p_loser','p_kite'],finish_player_match:['p_match']};
+const operations={player_abandon_wild:['p_match'],player_wild:['p_match'],player_specialization:['p_kite','p_class','p_upgrade','p_version'],player_campaign:['p_action','p_revision','p_checkpoint','p_keep','p_seen','p_confirmation'],player_opening:['p_action','p_step','p_name'],player_journey:['p_action','p_model','p_lesson'],get_player_trail_result:['p_match'],player_daily:[],player_lines:['p_action','p_style','p_operation'],player_trails:['p_action','p_operation','p_payload'],get_player_account:[],get_player_recent_matches:[],get_player_match_result:['p_match'],get_kite_history:['p_kite'],equip_player_kite:['p_kite'],update_player_name:['p_nickname'],player_trade:['p_action','p_code','p_kite','p_revision'],player_summon:['p_action','p_tail','p_ritual','p_path','p_request','p_session','p_target'],record_player_sighting:['p_model']};
+const serverOperations={register_wild_run:['p_user','p_match','p_zone'],settle_wild_run:['p_user','p_match','p_outcome'],register_trail_run:['p_user','p_match','p_stage'],settle_trail_run:['p_user','p_match','p_stage','p_won','p_rounds_lost'],settle_daily_challenge:['p_user','p_match','p_day'],reserve_player_match:['p_user','p_match','p_code','p_mode'],release_player_match:['p_user','p_match'],settle_player_cut:['p_event','p_match','p_winner','p_loser','p_kite'],finish_player_match:['p_match']};
 async function rpc(name,body,uid){
  const args=Object.hasOwn(uid?operations:serverOperations,name)&&(uid?operations:serverOperations)[name];
  if(!args)throw Error('RPC local não permitida.');
@@ -84,7 +90,8 @@ const server=http.createServer(async(req,res)=>{
   if(!['127.0.0.1:'+port,'localhost:'+port].includes(req.headers.host)){res.writeHead(403);res.end('Ambiente disponível somente em localhost.');return;}
   const chunks=[];let size=0;for await(const chunk of req){size+=chunk.length;if(size>4096){res.writeHead(413);res.end();return;}chunks.push(chunk);}
   const origin='http://'+req.headers.host;
-  let request=new Request(origin+req.url,{method:req.method,headers:req.headers,...(chunks.length?{body:Buffer.concat(chunks)}:{})});
+  const requestHeaders=new Headers(req.headers);requestHeaders.set('cookie',localCookies.incoming(req.headers.cookie));
+  let request=new Request(origin+req.url,{method:req.method,headers:requestHeaders,...(chunks.length?{body:Buffer.concat(chunks)}:{})});
   let r;
   const demo=/^\/local\/(ana|beto|cora|davi|kael)$/.exec(new URL(request.url).pathname);
   if(demo){
@@ -96,7 +103,7 @@ const server=http.createServer(async(req,res)=>{
    const html=(await r.text()).replace('<body>','<body><div style="background:#ffe9a8;padding:10px;text-align:center;font:14px sans-serif">TESTE LOCAL · Banco isolado · Sem dados de produção · Contas de teste</div>');
    r=new Response(html,{status:r.status,headers:r.headers});
   }
-  const headers=Object.fromEntries(r.headers),cookies=r.headers.getSetCookie();if(cookies.length)headers['set-cookie']=cookies;
+  const headers=Object.fromEntries(r.headers),cookies=r.headers.getSetCookie().map(localCookies.outgoing);if(cookies.length)headers['set-cookie']=cookies;
   res.writeHead(r.status,headers);res.end(Buffer.from(await r.arrayBuffer()));
  }catch(e){console.error('Local demo:',e.message);res.writeHead(500);res.end('Falha no ambiente local.');}
 });

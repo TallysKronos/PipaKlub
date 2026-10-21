@@ -72,6 +72,12 @@ test('craft shows its placement before advancing, cancellation writes nothing, a
  assert.equal(ui.run('openingState.step'),3);assert.equal(ui.document.getElementById('openingBenchPlace').disabled,false);assert.equal(ui.document.getElementById('openingWorkbench').hidden,false);assert.equal(ui.document.getElementById('openingBenchStatus').textContent,'Sem conexão');assert.equal(ui.run('playerAccount.inventory.length'),0);
 });
 
+test('walking into the opening staircase advances without requiring an interaction button',async()=>{
+ const ui=openingUI();await ui.settle();await ui.run("playerAccount={profile:{id:'door-walker',nickname:'Kael'},inventory:[]};openingOwner='door-walker';openingState={step:11};showOpening(false)");
+ ui.run("openingReplay=true;openingActor={x:780,y:810,direction:0,path:[]};openingWalkKeys.arrowdown=true;openingStepRoom(.05);openingStepRoom(.05);");await ui.settle();
+ assert.equal(ui.run('openingState.step'),12);assert.equal(ui.run('Object.keys(openingWalkKeys).length'),0);
+});
+
 test('classic staging gates the gift, keeps walking on the floor and reaches both exits with a following partner',async()=>{
  const ui=openingUI();await ui.settle();await ui.run(`playerAccount={profile:{id:'cast',nickname:'Kael'},inventory:[]};openingOwner='cast';openingState={step:5};showOpening(false)`);await ui.settle();ui.run('openingReplay=true');
  assert.equal(ui.document.getElementById('consentBar').hidden,true);

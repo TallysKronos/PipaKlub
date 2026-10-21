@@ -66,11 +66,18 @@ function updateHomeIdentity(){
 async function onCourtyardAccount(){
  const owner=playerAccount?.profile?.id||null;showCourtyard();if(owner===journeyOwner){if(owner)updateHomeIdentity();return;}
  resetOpening(owner);journeyOwner=owner;journeyEpoch++;journey=null;journeyError='';journeyBusy=false;homeReplay=false;journeyLoading=false;homeSignature='';homeFarm.setCollection([]);cityScreen.hidden=true;gameMenu.hidden=true;hideJourney();if(firstFlightRun){firstFlightRun=null;flightCoach.hidden=true;leave();}
- if(!owner)return;loadHomeArt();if(param)await recoverRoomInvitation();if(owner===journeyOwner)await loadJourney();
+ if(typeof resetCampaignClient==='function')resetCampaignClient();for(const key of ['entry','world','opening','campaign','city','club'])gameLoading.cancel(key);if(!owner)return;
+ const entry=gameLoading.start('entry','Retomando sua aventura',{retry:()=>loadHomeEntry(owner),back:()=>{entry.cancel();openHomeMenu();}});
+ await loadHomeEntry(owner,entry);
+}
+async function loadHomeEntry(owner,entry){
+ entry=entry||gameLoading.start('entry','Retomando sua aventura',{retry:()=>loadHomeEntry(owner)});
+ try{const artReady=loadHomeArt();if(param)await recoverRoomInvitation();if(owner===journeyOwner)await loadJourney();const ready=await artReady;if(owner!==journeyOwner){entry.cancel();return;}if(journeyError){entry.fail(journeyError);return;}if(openingState?.step>=14&&!mode&&homeArt.world){await loadWorldImage(worldRuntime.id);entry.cancel();return;}if(!ready&&openingState?.step>=14){entry.fail('O cenário não carregou. Tente novamente.');return;}await entry.done();}
+ catch(e){if(owner===journeyOwner)entry.fail(e.message);else entry.cancel();}
 }
 async function loadJourney(){
  if(!journeyOwner)return;const epoch=journeyEpoch,owner=journeyOwner;journeyLoading=true;updateHomeIdentity();
- try{const d=await accountRequest('journey',{action:'read'});if(epoch!==journeyEpoch||owner!==playerAccount?.profile?.id)return;journey=d.journey;await readOpening();if(epoch!==journeyEpoch||owner!==playerAccount?.profile?.id)return;journeyError='';if(accountModal.style.display==='flex')closeAccount();showCourtyard();if(!mode&&!param)renderJourney();}
+ try{const d=await accountRequest('journey',{action:'read'});if(epoch!==journeyEpoch||owner!==playerAccount?.profile?.id)return;journey=d.journey;await readOpening();if(epoch!==journeyEpoch||owner!==playerAccount?.profile?.id)return;journeyError='';if(accountModal.style.display==='flex')closeAccount();showCourtyard();if(!mode&&!param)renderJourney();if(typeof campaignResumeOnce==='function')await campaignResumeOnce(owner);}
  catch(e){if(epoch!==journeyEpoch)return;journey=null;journeyError=e.message;if(!mode)renderJourney();}
  finally{if(epoch===journeyEpoch){journeyLoading=false;updateHomeIdentity();}}
 }
@@ -140,7 +147,7 @@ function drawCourtyard(t){
  return true;
 }
 $('homeMotion').onclick=()=>{homeMotionPaused=!homeMotionPaused;updateHomeIdentity()};
-async function openClubDestination(page){if(mode||!playerAccount)return;hideJourney();closeHomeMenu();const loading=openAccount();if(playerAccount&&!mode)navigateClub(page);await loading;}
+async function openClubDestination(page){if(mode||!playerAccount)return;hideJourney();closeHomeMenu();const gate=gameLoading.start('club','Abrindo o clube',{retry:()=>openClubDestination(page),back:()=>{gate.cancel();closeAccount();}});try{const accountReady=openAccount();const pageReady=playerAccount&&!mode?navigateClub(page):Promise.resolve();await Promise.all([accountReady,pageReady]);await gate.done();}catch(e){gate.fail(e.message);}}
 const homeActions={
  feedback:()=>modal('Ajude a melhorar a demo','<p>Conte onde você estava, o que tentou fazer e o que aconteceu. O formulário pede os passos e o aparelho usado.</p><p><a class="secondary" href="https://github.com/TallysKronos/PipaKlub/issues/new?template=demo-feedback.yml" target="_blank" rel="noopener noreferrer">Abrir formulário de feedback no GitHub</a></p>','Voltar ao clube','Feedback · demo-rc.1'),
  demo:()=>openDemoFinale(),
@@ -156,16 +163,17 @@ for(const b of courtyard.querySelectorAll('[data-home-action]'))b.onclick=()=>ho
 const homeMenuGroups={
  // Root: six big destinations (Switch-style tiles). Trilhas and Partida rápida sit one press inside Jogar.
  root:[['playGroup','Jogar','menu-play'],['collection','Parceiros','menu-partners'],['dex','Pipa Dex','menu-dex'],['clubGroup','Clube','menu-club'],['school','Escola','menu-school'],['optionsGroup','Opções','menu-options']],
- playGroup:[['root','← Voltar'],['trails','Trilhas'],['quick','Partida rápida'],['daily','Céu do dia'],['friends','Jogar com amigos'],['practice','Treino livre'],...(new URLSearchParams(location.search).has('lab')?[['lab','Laboratório · Duelo nas Alturas']]:[])],
- clubGroup:[['root','← Voltar'],['summon','Invocação'],['trades','Trocas por convite'],['shop','Banca de linhas'],['history','Meus duelos'],['events','Souls de evento'],['profile','Meu perfil'],['professor','Meu primeiro voo'],['story','Rever a abertura']],
- optionsGroup:[['root','← Voltar'],['sound','Som'],['quality','Qualidade da imagem'],['fullscreen','Tela cheia'],...(CLARITY_ID?[['privacy','Privacidade']]:[]),['feedback','Enviar feedback da demo'],['rules','Regras'],['reload','Recarregar cenário'],['logout','Sair da conta']]
+ playGroup:[['root','← Voltar'],['explorationGroup','Exploração e campanha'],['quick','Partida rápida'],['daily','Céu do dia'],['friends','Jogar com amigos'],['practice','Treino livre'],...(new URLSearchParams(location.search).has('lab')?[['lab','Laboratório · Duelo nas Alturas']]:[])],
+ explorationGroup:[['playGroup','← Voltar'],['park','Parque dos Ventos'],['wildResume','Retomar encontro selvagem'],['trails','Trilhas da cidade']],
+ clubGroup:[['root','← Voltar'],['classes','Classes do Rabbito'],['farm','Fazenda dos parceiros'],['summon','Invocação'],['trades','Trocas por convite'],['shop','Banca de linhas'],['history','Meus duelos'],['events','Souls de evento'],['profile','Meu perfil'],['professor','Meu primeiro voo'],['story','Rever a abertura']],
+ optionsGroup:[['root','← Voltar'],['save','Save e bancos'],['autosave','Salvamento automático'],['sound','Som'],['quality','Qualidade da imagem'],['fullscreen','Tela cheia'],...(CLARITY_ID?[['privacy','Privacidade']]:[]),['feedback','Enviar feedback da demo'],['rules','Regras'],['reload','Recarregar cenário'],['logout','Sair da conta']]
 };
 let homeMenuGroup='root';
 function renderHomeMenu(group='root'){
- homeMenuGroup=group;$('homeMenuTitle').textContent={root:'Rua dos Ventos',playGroup:'Jogar',clubGroup:'Vida no clube',optionsGroup:'Opções'}[group];
+ homeMenuGroup=group;$('homeMenuTitle').textContent={root:'Rua dos Ventos',playGroup:'Jogar',explorationGroup:'Exploração e campanha',clubGroup:'Vida no clube',optionsGroup:'Opções'}[group];
  const open=id=>{if(homeMenuGroups[id])renderHomeMenu(id);else{closeHomeMenu();homeActions[id]()}};
  $('homeMenuLinks').className=group==='root'?'home-tiles':'home-list';
- $('homeMenuLinks').replaceChildren(...homeMenuGroups[group].map(([id,label,icon])=>{const b=uiElement('button',icon?undefined:label);b.type='button';b.dataset.destination=id;if(icon){b.className='home-tile';const img=document.createElement('img');img.alt='';img.src=ART_CONFIG.kit?.icons?.[icon]||'';b.append(img,uiElement('strong',label));}b.onclick=()=>open(id);return b}));
+ $('homeMenuLinks').replaceChildren(...homeMenuGroups[group].map(([id,label,icon])=>{if(id==='autosave')label='Salvamento automático: '+(campaignData?.autosave_enabled===false?'desligado':'ligado');const b=uiElement('button',icon?undefined:label);b.type='button';b.dataset.destination=id;if(icon){b.className='home-tile';const img=document.createElement('img');img.alt='';img.src=ART_CONFIG.kit?.icons?.[icon]||'';b.append(img,uiElement('strong',label));}b.onclick=()=>open(id);return b}));
  if(group==='root'){const close=uiElement('button','Voltar ao passeio','home-menu-close');close.type='button';close.onclick=closeHomeMenu;$('homeMenuLinks').append(close);}
  $('homeMenuLinks').querySelector('button').focus();
 }
@@ -182,7 +190,7 @@ function selectCity(i){
 }
 async function openCity(){
  if(mode||!playerAccount)return;if(!journey||['arrival','choose'].includes(journey.phase)){renderJourney();return;}if(journey.phase==='practice'){dialogue('Vamos terminar seu primeiro voo?','Você pode treinar com o Nozinho ou pular a prática e conhecer a cidade. Nenhuma recompensa é concedida ao pular.','Continuar o treino',startFirstFlight,{later:true});$('journeyLater').hidden=false;$('journeyLater').textContent='Pular e visitar a cidade';$('journeyLater').onclick=async()=>{if(await saveJourney('skip'))openCity()};return;}
- if(journey.phase==='city'&&!await saveJourney('finish'))return;hideJourney();closeHomeMenu();cityScreen.hidden=false;$('cityWorld').style.backgroundImage='url("'+homeArt.images.city.url+'")';await trailSync.sync();if(cityScreen.hidden)return;selectCity(Math.min(2,firstOpenStage().trailIndex));syncHomeInert();$('cityBack').focus();
+ if(journey.phase==='city'&&!await saveJourney('finish'))return;const gate=gameLoading.start('city','Explorando a cidade',{retry:()=>openCity(),back:()=>{gate.cancel();cityScreen.hidden=true;showCourtyard();}});try{if(!await homeLoadImage('city',true))throw new Error('O mapa não carregou. Tente novamente.');hideJourney();closeHomeMenu();cityScreen.hidden=false;$('cityWorld').style.backgroundImage='url("'+homeArt.images.city.url+'")';await trailSync.sync();if(cityScreen.hidden){gate.cancel();return;}selectCity(Math.min(2,firstOpenStage().trailIndex));syncHomeInert();await gate.done();$('cityBack').focus();}catch(e){gate.fail(e.message);}
 }
 $('cityBack').onclick=()=>{cityScreen.hidden=true;showCourtyard();$('homeMenuButton').focus()};
 let cityBriefOpen=false;
@@ -193,7 +201,7 @@ const courtyardCloseAccount=closeAccount;closeAccount=function(){courtyardCloseA
 addEventListener('keydown',e=>{
  if(!playerAccount||mode)return;const panel=!gameMenu.hidden?gameMenu:!cityScreen.hidden?cityScreen:!$('partnerChoice').hidden?$('partnerChoice'):!$('journeyDialog').hidden?$('journeyDialog'):null;
  if(e.key==='Escape'){
-  if(!gameMenu.hidden){e.preventDefault();e.stopImmediatePropagation();if(homeMenuGroup!=='root')renderHomeMenu();else closeHomeMenu();return;}
+  if(!gameMenu.hidden){e.preventDefault();e.stopImmediatePropagation();if(homeMenuGroup!=='root')renderHomeMenu(homeMenuGroup==='explorationGroup'?'playGroup':'root');else closeHomeMenu();return;}
   if(!cityScreen.hidden){e.preventDefault();e.stopImmediatePropagation();$('cityBack').click();return;}
   if(!courtyard.hidden&&!courtyard.inert&&!(typeof dexOpen!=='undefined'&&dexOpen)){e.preventDefault();e.stopImmediatePropagation();openHomeMenu();return;}
  }

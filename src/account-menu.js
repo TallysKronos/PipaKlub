@@ -32,10 +32,11 @@ function navigateClub(page){
  if(summonOpen&&page!=='summon')leaveSummoner();
  closeKiteStory();accountPage=page;$('accountMessage').textContent='';syncClubMenu();
  document.querySelector('.account-card').scrollTop=0;
- if(page==='summon'&&!summonOpen)openSummoner();
- if(page==='history')loadRecentMatches();
- if(page==='trades'&&playerAccount)tradeAction('read',{code:currentTrade?.status==='open'?currentTrade.code:null});
+ let ready=Promise.resolve();if(page==='summon'&&!summonOpen)ready=openSummoner();
+ if(page==='history')ready=loadRecentMatches();
+ if(page==='trades'&&playerAccount)ready=tradeAction('read',{code:currentTrade?.status==='open'?currentTrade.code:null});
  if(page==='home')clubHome.querySelector('button').focus();else (clubBack.offsetParent?clubBack:document.getElementById('club-'+page)?.querySelector('button,input,select')||$('closeAccount'))?.focus({preventScroll:true});
+ return ready;
 }
 clubBack.onclick=()=>navigateClub('home');
 const originalLeaveSummoner=leaveSummoner;

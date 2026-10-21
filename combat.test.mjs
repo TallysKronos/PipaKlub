@@ -70,6 +70,7 @@ test('real page handlers preserve a quick skill tap for the next network frame a
  const context=vm.createContext({document,console,crypto,Date,Intl,URLSearchParams,AbortController,performance:{now:()=>0},location:{search:'',hash:'',pathname:'/',protocol:'https:',host:'game.test'},history:{replaceState(){}},localStorage:{getItem(){return null;},setItem(){}},matchMedia:()=>({matches:false}),MutationObserver:document.defaultView.MutationObserver,ResizeObserver:class{observe(){}},requestAnimationFrame(){},setInterval(){},setTimeout(){return 1;},clearTimeout(){},fetch:async()=>({ok:true,json:async()=>({enabled:false})}),addEventListener:(name,fn)=>{if(!listeners.has(name))listeners.set(name,[]);listeners.get(name).push(fn);}});
  document.getElementById('sky').getContext=()=>({});
  vm.runInContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],context);
+ await new Promise(resolve=>setImmediate(resolve)); // Input begins after the initial loading gate settles.
  vm.runInContext("selected=1;$('practice').onclick();state.phase='live';state.phaseUntil=state.last+60000",context);
  const button=document.querySelector('[data-key="e"]');button.setPointerCapture=()=>{};button.onpointerdown({preventDefault(){},pointerId:1});button.onpointerup();
  assert.equal(vm.runInContext('input().skill',context),1);
@@ -120,6 +121,7 @@ test('mouse or finger steers the kite with analog input; held keys win and the l
  const context=vm.createContext({document,console,crypto,Date,Intl,URLSearchParams,AbortController,performance:{now:()=>0},location:{search:'',hash:'',pathname:'/',protocol:'https:',host:'game.test'},history:{replaceState(){}},localStorage:{getItem:k=>k==='pipaAssisIntroV1'?'done':null,setItem(){}},matchMedia:()=>({matches:true}),MutationObserver:document.defaultView.MutationObserver,ResizeObserver:class{observe(){}},requestAnimationFrame(){},setInterval(){},clearInterval(){},setTimeout(){return 1;},clearTimeout(){},fetch:async()=>({ok:true,json:async()=>({enabled:false})}),Image:class{},addEventListener:(name,fn)=>{if(!listeners.has(name))listeners.set(name,[]);listeners.get(name).push(fn);}});
  const sky=document.getElementById('sky');sky.getContext=()=>({});sky.width=1000;sky.height=600;sky.getBoundingClientRect=()=>({left:0,top:0,width:1000,height:600});sky.addEventListener=(name,fn)=>canvasListeners.set(name,fn);
  vm.runInContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],context);
+ await new Promise(resolve=>setImmediate(resolve)); // Input begins after the initial loading gate settles.
  vm.runInContext("$('practice').onclick();const me0=state.players.find(p=>p.id===me);me0.x=500;me0.y=300;",context);
  const fire=(name,e)=>canvasListeners.get(name)({pointerType:'mouse',button:0,pointerId:1,preventDefault(){},type:name,...e});
  fire('pointermove',{clientX:800,clientY:300});let i=vm.runInContext('input()',context);assert.equal(i.x,1);assert.equal(i.y,0);assert.equal(i.cut,false);

@@ -1,6 +1,6 @@
 // Supabase credentials stay on the server. Browser sessions use HttpOnly cookies.
 import {createEngine} from './engine.js';
-const pipamonProgression=createEngine().pipamons;
+const progressionEngine=createEngine(),pipamonProgression=progressionEngine.pipamons;
 const UUID=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export class AccountError extends Error{constructor(message,status=400){super(message);this.status=status;}}
 const cookieValues=request=>Object.fromEntries((request.headers.get('cookie')||'').split(';').map(v=>v.trim().split(/=(.*)/s).slice(0,2)).filter(v=>v.length===2));
@@ -28,7 +28,7 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
    if(r.status===429)throw new AccountError('Muitas tentativas. Aguarde um pouco e tente novamente.',429);
    if(data?.error_code==='email_not_confirmed')throw new AccountError('Confirme seu e-mail antes de entrar.',403);
    if(data?.code?.startsWith('PGRST')||data?.code==='42883')throw new AccountError('O banco de contas ainda precisa ser configurado.',503);
-   if(message.startsWith('Primeiro voo:')||message.startsWith('Linhas:')||message.startsWith('Trilhas:')||message.startsWith('Invocação:')||message.startsWith('Troca:')||message.includes('Saia da partida')||message.includes('outra partida')||message.includes('colecionável')||message.includes('coleção')||message.includes('caracteres'))throw new AccountError(message,409);
+   if(message.startsWith('Classes:')||message.startsWith('Exploração:')||message.startsWith('Progressão:')||message.startsWith('Save:')||message.startsWith('Save alterado')||message.startsWith('Depósito:')||message.startsWith('Digite EXCLUIR')||message.startsWith('Encerre sua troca')||message.startsWith('Conclua sua invocação')||message.startsWith('Conclua o primeiro voo')||message.startsWith('Sua coleção mudou')||message.startsWith('Primeiro voo:')||message.startsWith('Linhas:')||message.startsWith('Trilhas:')||message.startsWith('Invocação:')||message.startsWith('Troca:')||message.includes('Saia da partida')||message.includes('outra partida')||message.includes('colecionável')||message.includes('coleção')||message.includes('caracteres'))throw new AccountError(message,409);
    if(data?.error_code==='over_email_send_rate_limit'||data?.error_code==='email_address_not_authorized')throw new AccountError('O envio de confirmação está indisponível. O administrador precisa configurar o e-mail do jogo.',503);
    throw new AccountError(r.status>=500?'O serviço de contas está indisponível. Tente novamente.':'Não foi possível concluir. Confira os dados e tente novamente.',r.status>=500?503:400);
   }return data;
@@ -37,7 +37,7 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
   if(!admin)return remote('/rest/v1/rpc/'+name,{method:'POST',body,token});
   try{return await gameDatabase.rpc(name,body);}catch(e){
    const message=String(e.message||'');
-   if(e.code==='P0001'&&/Trilhas:|Troca:|Saia da partida|outra partida|colecionável|coleção|caracteres|Partida encerrada/.test(message))throw new AccountError(message,409);
+   if(e.code==='P0001'&&/Exploração:|Classes:|Depósito:|Save:|Trilhas:|Troca:|Saia da partida|outra partida|colecionável|coleção|caracteres|Partida encerrada/.test(message))throw new AccountError(message,409);
    throw new AccountError('O banco do jogo não respondeu. Aguarde e tente novamente.',503);
   }
  }
@@ -66,8 +66,8 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
    const pending=db.prepare("SELECT 1 FROM pipa_rewards WHERE json_extract(payload,'$.matchId')=? LIMIT 1").get(data.profile.active_match);
    if(!pending&&(!p||Date.now()-p.seen>15000||Date.now()>=s.end)){await rpc('release_player_match',{p_user:who.id,p_match:data.profile.active_match},null,true);data=await rpc('get_player_account',{},who.access);}
   }
-  const xp=Number(data.profile.xp)||0,level=1+Math.floor(Math.sqrt(xp/100));
-  return {...data,inventory:(data.inventory||[]).map(k=>({...k,progression:pipamonProgression.progress(k.pipamon_xp)})),profile:{...data.profile,level,next_level_xp:level*level*100}};
+  const legacy=data.profile.tamer_xp==null,xp=Number(legacy?data.profile.xp:data.profile.tamer_xp)||0,tamer=progressionEngine.tamers.progress(xp),level=legacy?Math.min(100,1+Math.floor(Math.sqrt(xp/100))):tamer.level;
+  return {...data,inventory:(data.inventory||[]).map(k=>({...k,progression:{...pipamonProgression.progress(k.pipamon_xp),stats:pipamonProgression.stats(pipamonProgression.progress(k.pipamon_xp).level,k.pipamon_class,k.class_rank)}})),profile:{...data.profile,xp,level,max_level:100,level_base_xp:legacy?(level-1)**2*100:tamer.start,next_level_xp:level===100?null:legacy?level*level*100:tamer.next}};
  }
  function rateLimit(request,action,max=12){
   const ip=(request.headers.get('x-forwarded-for')||'local').split(',')[0],id=action+':'+ip,now=Date.now();
@@ -126,6 +126,20 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
    if(action==='logout'){const values=cookieValues(request),access=values['__Host-pipa_access']||values.pipa_access;if(access){sessions.delete(access);try{await remote('/auth/v1/logout',{method:'POST',token:access});}catch{}}return json({ok:true},200,makeCookies(request,null));}
    const who=await identity(request,true);
    if(!who)throw new AccountError('Entre na sua conta para continuar.',401);
+   if(action==='wild'){if(b.matchId!=null&&!UUID.test(String(b.matchId)))throw new AccountError('Exploração: encontro inválido.');return json({wild:await rpc('player_wild',{p_match:b.matchId||null},who.access),account:await accountFor(who)},200,who.setCookies);}
+   if(action==='wild-abandon'){if(!UUID.test(String(b.matchId)))throw new AccountError('Exploração: encontro inválido.');await rpc('player_abandon_wild',{p_match:b.matchId},who.access);return json({account:await accountFor(who)},200,who.setCookies);}
+   if(action==='specialization'){if(!UUID.test(String(b.kiteId))||!['velocista','condutor'].includes(b.classId)||typeof b.upgrade!=='boolean'||!Number.isSafeInteger(b.version))throw new AccountError('Classes: opção inválida.');checkPending(who.id);rateLimit(request,'classes-'+who.id,60);await rpc('player_specialization',{p_kite:b.kiteId,p_class:b.classId,p_upgrade:b.upgrade,p_version:b.version},who.access);return json({account:await accountFor(who)},200,who.setCookies);}
+   if(action==='campaign'){
+    if(!['read','save','autosave','settings','protect','reset','discard'].includes(b.action))throw new AccountError('Save: ação inválida.');
+    if(b.action!=='read'&&(!Number.isSafeInteger(b.revision)||b.revision<0))throw new AccountError('Save: revisão inválida.');
+    for(const list of ['keep','seen'])if(b[list]!=null&&(!Array.isArray(b[list])||b[list].length>(list==='keep'?20:5000)||b[list].some(id=>!UUID.test(String(id)))))throw new AccountError('Depósito: lista inválida.');
+    if(['save','autosave'].includes(b.action)&&(!b.checkpoint||typeof b.checkpoint.scene!=='string'||!Number.isFinite(b.checkpoint.x)||!Number.isFinite(b.checkpoint.y)||!Number.isInteger(b.checkpoint.direction)))throw new AccountError('Save: posição inválida.');
+    if(b.action==='settings'&&typeof b.checkpoint?.enabled!=='boolean')throw new AccountError('Save: configuração inválida.');
+    if(b.action==='reset'&&b.confirmation!=='EXCLUIR SAVE')throw new AccountError('Digite EXCLUIR SAVE para confirmar.');
+    checkPending(who.id);if(b.action!=='read')rateLimit(request,'campaign-'+who.id,b.action==='reset'?6:120);
+    const campaign=await rpc('player_campaign',{p_action:b.action,p_revision:b.revision??null,p_checkpoint:b.checkpoint??null,p_keep:b.keep??null,p_seen:b.seen??null,p_confirmation:b.confirmation??null},who.access);
+    return json({campaign,account:await accountFor(who),...(b.action==='reset'?{opening:await rpc('player_opening',{p_action:'read',p_step:null,p_name:null},who.access),journey:await rpc('player_journey',{p_action:'read',p_model:null,p_lesson:null},who.access),trails:await rpc('player_trails',{p_action:'read',p_operation:null,p_payload:{}},who.access)}:{})},200,who.setCookies);
+   }
    if(action==='opening'){
     if(!['read','advance','name'].includes(b.action))throw new AccountError('Abertura: ação inválida.');
     if(b.step!=null&&(!Number.isInteger(b.step)||b.step<0||b.step>14))throw new AccountError('Abertura: cena inválida.');
@@ -214,5 +228,6 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
   const settleDaily=e=>rpc('settle_daily_challenge',{p_user:e.userId,p_match:e.matchId,p_day:e.day},null,true);
   const registerTrail=(user,match,stage)=>rpc('register_trail_run',{p_user:user,p_match:match,p_stage:stage},null,true);
   const settleTrail=e=>rpc('settle_trail_run',{p_user:e.userId,p_match:e.matchId,p_stage:e.stage,p_won:e.won,p_rounds_lost:e.roundsLost},null,true);
-  return {enabled,handle,preparePlayer,release,settle,finish,settleDaily,registerTrail,settleTrail};
+  const registerWild=(user,match,zone)=>rpc('register_wild_run',{p_user:user,p_match:match,p_zone:zone},null,true),settleWild=e=>rpc('settle_wild_run',{p_user:e.userId,p_match:e.matchId,p_outcome:e.outcome},null,true);
+  return {enabled,handle,registerWild,settleWild,preparePlayer,release,settle,finish,settleDaily,registerTrail,settleTrail};
 }

@@ -1,0 +1,115 @@
+{
+  "version": 2,
+  "style": "Brazilian neighborhood 2D RPG; complete trees",
+  "generatedWith": "built-in image_gen",
+  "sheets": {
+    "park-nature-v2": {
+      "image": "world/park-kit-v2/park-atlas-v2.png",
+      "width": 1536,
+      "height": 1024
+    },
+    "park-terrain-v2": {
+      "image": "world/park-kit-v2/terrain-v2.png",
+      "width": 1536,
+      "height": 1024
+    }
+  },
+  "frames": {
+    "park-tree": {
+      "sheet": "park-nature-v2",
+      "x": 96,
+      "y": 8,
+      "w": 612,
+      "h": 496,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "layer": "object"
+    },
+    "park-gazebo": {
+      "sheet": "park-nature-v2",
+      "x": 896,
+      "y": 16,
+      "w": 550,
+      "h": 496,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "layer": "object"
+    },
+    "park-tree-flower": {
+      "sheet": "park-nature-v2",
+      "x": 90,
+      "y": 514,
+      "w": 620,
+      "h": 498,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "layer": "object"
+    },
+    "park-habitat": {
+      "sheet": "park-nature-v2",
+      "x": 864,
+      "y": 624,
+      "w": 590,
+      "h": 344,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "layer": "object"
+    },
+    "grass": {
+      "sheet": "park-terrain-v2",
+      "x": 0,
+      "y": 0,
+      "w": 768,
+      "h": 512,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "layer": "ground"
+    },
+    "dirt": {
+      "sheet": "park-terrain-v2",
+      "x": 768,
+      "y": 0,
+      "w": 768,
+      "h": 512,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "layer": "ground"
+    },
+    "sidewalk": {
+      "sheet": "park-terrain-v2",
+      "x": 0,
+      "y": 512,
+      "w": 768,
+      "h": 512,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "layer": "ground"
+    },
+    "cobblestone": {
+      "sheet": "park-terrain-v2",
+      "x": 768,
+      "y": 512,
+      "w": 768,
+      "h": 512,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "layer": "ground"
+    }
+  }
+}

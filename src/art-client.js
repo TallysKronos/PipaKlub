@@ -35,6 +35,7 @@ export function createArtAssets(config){
   finally{context.restore();}
  }
  function drawCreature(context,color,time,x=-56,y=-44,size=112,player={},victory=false){
+  if(player.soul==='rabbito'&&player.classRank>0&&['velocista','condutor'].includes(player.pipamonClass)){context.save();context.globalAlpha=.65;context.strokeStyle=player.pipamonClass==='velocista'?'#75e2ed':'#f7d175';context.lineWidth=Math.max(2,size*.025);const phase=reduced?0:time/700;for(let i=0;i<player.classRank+1;i++){context.beginPath();if(player.pipamonClass==='velocista'){const yy=y+size*(.35+i*.16);context.moveTo(x-size*.12,yy);context.quadraticCurveTo(x+size*.2,yy+Math.sin(phase+i)*size*.08,x+size*.4,yy);}else context.ellipse(x+size*.5,y+size*.6,size*(.42+i*.08),size*.16,Math.sin(phase)*.15,0,Math.PI*2);context.stroke();}context.restore();}
   const frozen=reduced&&player.animate!==true;
   const asset=special(player.soul)?player.soul:config.designs?.basics?.[color];
   if(asset&&atlases[asset]){

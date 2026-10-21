@@ -11,7 +11,33 @@ const worldScenes=homeArt.world?.scenes||{},worldRuntime={id:'quintal',owner:nul
 const worldMapMode=new URLSearchParams(location.search).get('overworld');
 if(worldMapMode==='blockout'&&homeArt.world?.pilot)worldScenes.morro=homeArt.world.pilot;
 /* WORLD_ROAD_CLIENT */
+const parkStreet=worldScenes.quintal,parkAnchor=parkStreet.places.find(p=>p.action==='farm');if(parkAnchor)Object.assign(parkAnchor,{name:'Parque dos Ventos · exploração',action:'street_scene',target:'park-trail'});
 for(const [id,scene]of Object.entries(worldScenes)){const navigation=createWorldNavigation(scene);worldRuntime.states[id]={navigation,actor:navigation.create()};}
+const worldKeys=new Set();
+function worldWalkActive(){return !!playerAccount&&!gameLoading.active&&!mode&&!courtyard.hidden&&!courtyard.inert&&!worldRuntime.loading&&!worldRuntime.error&&!document.body.classList.contains('in-opening')&&gameMenu.hidden&&cityScreen.hidden&&$('journeyDialog').hidden&&$('partnerChoice').hidden&&!$('worldDiscovery')?.open&&!document.querySelector('dialog[open]');}
+function worldClearWalking(){worldKeys.clear();if(typeof padState!=='undefined')padState.x=padState.y=0;}
+function worldInput(){const x=(worldKeys.has('d')||worldKeys.has('arrowright')?1:0)-(worldKeys.has('a')||worldKeys.has('arrowleft')?1:0),y=(worldKeys.has('s')||worldKeys.has('arrowdown')?1:0)-(worldKeys.has('w')||worldKeys.has('arrowup')?1:0);if(x||y)return {x,y};return typeof padState!=='undefined'&&inputDevice.startsWith('gamepad')?{x:padState.x,y:padState.y}:{x:0,y:0};}
+function worldIsEntrance(place){return ['street_scene','road_next','road_back','quintal','city'].includes(place.action);}
+function worldEntranceHeading(place){if(place.action==='city')return 2;return place.action==='road_back'||place.action==='quintal'||place.action==='street_scene'&&worldRuntime.id!=='quintal'&&place.target!=='kael-bedroom'?0:3;}
+function worldArriveAtDoor(place){
+ const s=worldState(),p=s.navigation.nodes[place.node],heading=worldEntranceHeading(place),vectors=[[0,-64],[64,0],[-64,0],[0,64]],preferred=vectors[heading];
+ s.navigation.target(s.actor,p,true);
+ const inward=[preferred,...vectors].map(([x,y])=>({x:p.x+x,y:p.y+y})).find(q=>!s.navigation.geometry||s.navigation.geometry.segment(p,q));
+ if(inward)s.navigation.target(s.actor,inward,true);s.actor.direction=[3,2,1,0][heading];worldRuntime.portalLatch=place.id;
+}
+function worldAutoEnter(previous){
+ if(!worldWalkActive()||!worldState().actor.moving)return;const state=worldState(),scene=worldScene(),actor=state.actor;
+ if(worldRuntime.portalLatch){const latched=scene.places.find(p=>p.id===worldRuntime.portalLatch);if(!latched||state.navigation.distance(actor,state.navigation.nodes[latched.node])>45)worldRuntime.portalLatch=null;}
+ const portal=scene.places.find(p=>worldIsEntrance(p)&&p.id!==worldRuntime.portalLatch&&state.navigation.distance(actor,state.navigation.nodes[p.node])<=22&&state.navigation.distance(actor,state.navigation.nodes[p.node])<state.navigation.distance(previous,state.navigation.nodes[p.node])-.001);
+ if(!portal)return;if(portal.action==='road_next'&&!['open','complete'].includes(worldRoadGateState()?.state))return;
+ worldRuntime.near=portal;worldRuntime.portalLatch=portal.id;interactWorld();
+ const back=worldScene().places.filter(worldIsEntrance).sort((a,b)=>worldState().navigation.distance(worldState().actor,worldState().navigation.nodes[a.node])-worldState().navigation.distance(worldState().actor,worldState().navigation.nodes[b.node]))[0];if(back&&worldState().navigation.distance(worldState().actor,worldState().navigation.nodes[back.node])<50)worldArriveAtDoor(back);
+}
+function drawWorldEntrance(g,place,time){
+ if(!worldIsEntrance(place))return;const state=worldState(),p=state.navigation.nodes[place.node],open=place.action!=='road_next'||['open','complete'].includes(worldRoadGateState()?.state);if(!open)return;
+ const near=worldRuntime.near?.id===place.id,bob=art.reduced?0:Math.sin(time/350)*2;
+ g.save();g.translate(p.x,p.y-14+bob);const down=place.action==='road_back'||place.action==='quintal'||place.action==='street_scene'&&worldRuntime.id!=='quintal'&&place.target!=='kael-bedroom';g.rotate(place.action==='city'?Math.PI/2:down?Math.PI:0);g.strokeStyle=near?'#d9f5ff':'#9ddcf5';g.fillStyle=near?'#348fe5':'#317bb6';g.lineWidth=2;g.beginPath();g.moveTo(-9,3);g.lineTo(0,-5);g.lineTo(9,3);g.lineTo(0,0);g.closePath();g.fill();g.stroke();g.restore();
+}
 function worldState(){return worldRuntime.states[worldRuntime.id];}
 function worldScene(){return worldScenes[worldRuntime.id];}
 function worldPlaceLabel(place){if(worldRoadChapter()&&['road_next','road_gate'].includes(place.action))return place.name+' · '+worldRoadGateLabel(worldRoadChapter(),worldRoadGateState());if(!place.stage)return place.name;const st=trails.stage(place.stage),open=trails.unlocked(trailProgress,place.stage);return place.name+(open?(trailProgress.stars[place.stage]?' · vencido':''):' · bloqueado')+(st?.boss&&!open?' · encontro desconhecido':'');}
@@ -29,20 +55,30 @@ function updateWorldContext(){
  const near=[...scene.places].sort((a,b)=>state.navigation.distance(state.actor,state.navigation.nodes[a.node])-state.navigation.distance(state.actor,state.navigation.nodes[b.node]))[0];
  const nearPoint=near&&state.navigation.nodes[near.node],geometry=state.navigation.geometry;
  worldRuntime.near=near&&state.navigation.distance(state.actor,nearPoint)<=82&&(!geometry||geometry.level(state.actor)===geometry.level(nearPoint)&&geometry.segment(state.actor,nearPoint))?near:null;
- const place=worldRuntime.near,button=$('worldInteract');const missionKey=worldRuntime.id+'|'+(place?.id||'')+'|'+JSON.stringify(trailProgress.stars);if(worldRuntime.missionKey!==missionKey){worldRuntime.missionKey=missionKey;updatePlazaMission();}setText('worldPlace',worldRuntime.loading?'Carregando cenário…':worldRuntime.error||place&&worldPlaceLabel(place)||'Siga os caminhos e encontre um lugar');
+ const place=worldRuntime.near,button=$('worldInteract');const missionKey=worldRuntime.id+'|'+(place?.id||'')+'|'+JSON.stringify(trailProgress.stars);if(worldRuntime.missionKey!==missionKey){worldRuntime.missionKey=missionKey;updatePlazaMission();}setText('worldPlace',worldRuntime.loading?'Carregando cenário…':worldRuntime.error||place&&worldPlaceLabel(place)||'Setas / WASD / analógico para andar · avance na seta azul para entrar');
  button.disabled=worldRuntime.loading||!place&&!worldRuntime.error;setText('worldInteract',worldRuntime.error?'Tentar carregar':place?.stage?'Ver desafio · E':place?'Interagir · E':'Aproxime-se');
 }
 async function loadWorldImage(id,retry=false){
- if(worldScenes[id]?.tiled){const owner=worldRuntime.owner;worldRuntime.loading=true;worldRuntime.error='';updateWorldContext();const loaded=await Promise.all([...new Set(worldScenes[id].painted?worldScenes[id].tiled.images.map(i=>i.sheet):Object.keys(worldScenes[id].art?.kit.sheets||homeArt.world.kit.sheets)),...(worldRoadChapter(id)?[homeArt.world.kit.frames.fence.sheet]:[])].map(sheet=>homeLoadImage('world-kit-'+sheet,retry)));if(worldRuntime.owner!==owner||worldRuntime.id!==id)return;worldRuntime.loading=false;worldRuntime.error=loaded.every(Boolean)?'':'Algumas artes não carregaram. Tente carregar novamente.';updateWorldContext();return;}
- const owner=worldRuntime.owner;worldRuntime.loading=true;worldRuntime.error='';updateWorldContext();const okay=await homeLoadImage('world-'+id,retry);
- if(worldRuntime.owner!==owner||worldRuntime.id!==id)return;worldRuntime.loading=false;worldRuntime.error=okay?'':'O cenário não carregou. Você pode usar o menu.';updateWorldContext();
+ const scene=worldScenes[id];if(!scene)return false;const owner=worldRuntime.owner,epoch=worldRuntime.loadEpoch=(worldRuntime.loadEpoch||0)+1;
+ const gate=gameLoading.start('world','Entrando em '+scene.name,{retry:()=>loadWorldImage(id,true),back:()=>{gate.cancel();if(id!=='quintal')openWorld('quintal');else openHomeMenu();}});
+ worldRuntime.loading=true;worldRuntime.error='';updateWorldContext();
+ const tasks=scene.tiled?[...new Set(scene.painted?scene.tiled.images.map(i=>i.sheet):Object.keys(scene.art?.kit.sheets||homeArt.world.kit.sheets)),...(worldRoadChapter(id)?[homeArt.world.kit.frames.fence.sheet]:[])].map(sheet=>()=>homeLoadImage('world-kit-'+sheet,retry)):[()=>homeLoadImage('world-'+id,retry)];
+ tasks.push(()=>homeLoadImage('plaza-kael',retry));
+ if(id==='kael-home')tasks.push(()=>loadWorldActors(['Mãe'],retry).then(a=>a.every(Boolean)));
+ if(id==='professor-home'){tasks.push(()=>loadWorldActors(['Sr. Assis'],retry).then(a=>a.every(Boolean)));if(homeArt.images['world-companion-nozinho'])tasks.push(()=>loadWorldCompanionImage('nozinho',retry));}
+ if(id==='morro'||worldRoadChapter(id))tasks.push(async()=>{const flags=await loadWorldActors(Object.keys(ART_CONFIG.designs.rivals||{}),retry);return flags.every(Boolean);});
+ const kite=playerAccount?.inventory.find(k=>k.id===playerAccount.profile.equipped_kite_id),companion=worldCompanions.get(kite?.model);
+ if(companion)tasks.push(()=>loadWorldCompanionImage(companion.id,retry));else if(kite)tasks.push(()=>art.load(kite.model.soul||art.basic(kite.model.color),retry));
+ let done=0;gate.update(0,tasks.length,'Carregando cenário e personagens…');
+ try{const flags=await Promise.all(tasks.map(async task=>{const okay=await task();gate.update(++done,tasks.length);return okay;}));if(owner!==worldRuntime.owner||id!==worldRuntime.id||epoch!==worldRuntime.loadEpoch){gate.cancel();return false;}worldRuntime.loading=false;worldRuntime.error=flags.every(Boolean)?'':'Algumas artes não carregaram. Tente carregar novamente.';updateWorldContext();if(worldRuntime.error){gate.fail(worldRuntime.error);return false;}await gate.done();if(typeof campaignScheduleAutosave==='function')campaignScheduleAutosave();return true;}
+ catch(e){if(gate.current){worldRuntime.loading=false;worldRuntime.error='O cenário não carregou. Tente novamente.';gate.fail(worldRuntime.error);updateWorldContext();}return false;}
 }
 function worldArtLoaded(id,okay){if(!$('worldPlace')||worldRuntime.id!==id)return;worldRuntime.loading=false;worldRuntime.error=okay?'':'O cenário não carregou. Você pode usar o menu.';updateWorldContext();}
 function openWorld(id,{arrival}={}){
- if(!worldScenes[id]||mode||!requireClubAccount('a exploração'))return;
+ if(!worldScenes[id]||mode||!requireClubAccount('a exploração'))return;if(id.startsWith('park-')&&!['city','complete'].includes(journey?.phase)){toast('Conclua o primeiro voo com o professor antes de explorar o parque.');return;}
  if(worldRoadChapter(id)&&!worldRoad.canEnter(id,worldRoadProgress())){toast(worldRoadProgress()?'Vença o encontro anterior para abrir esta área.':'Aguarde a confirmação do progresso na conta.');return;}
  if((id==='morro'||worldRoadChapter(id))&&journey?.phase!=='complete'){homeActions.city();return;}
- hideJourney();closeHomeMenu();cityScreen.hidden=true;skyExperiment.hidden=true;closeTrails();cityBriefOpen=false;worldRuntime.id=id;worldRuntime.missionKey=null;worldRuntime.camera=null;worldRuntime.near=null;worldRuntime.error='';worldRuntime.loading=false;worldSyncRoadGate();if(arrival){const state=worldState();state.actor=state.navigation.create();if(arrival==='north'){const exit=worldScene().places.find(p=>p.action==='road_next');if(exit)state.navigation.target(state.actor,state.navigation.nodes[exit.node],true);}}showCourtyard();renderWorldDestinations();refreshWorldHUD();loadWorldImage(id);if(id==='morro'||worldRoadChapter(id))loadWorldRivals();if(id==='professor-home')loadWorldActors(['Sr. Assis']);if(id==='kael-home')loadWorldActors(['Mãe']);$('worldDestination').focus({preventScroll:true});
+ hideJourney();closeHomeMenu();cityScreen.hidden=true;skyExperiment.hidden=true;closeTrails();cityBriefOpen=false;if(worldState()){worldState().actor.path=[];worldState().actor.moving=false;}worldRuntime.id=id;worldRuntime.portalLatch=null;worldClearWalking();worldRuntime.missionKey=null;worldRuntime.camera=null;worldRuntime.near=null;worldRuntime.error='';worldRuntime.loading=false;worldSyncRoadGate();if(arrival){const state=worldState();state.actor=state.navigation.create();if(arrival==='north'){const exit=worldScene().places.find(p=>p.action==='road_next');if(exit)state.navigation.target(state.actor,state.navigation.nodes[exit.node],true);}}showCourtyard();renderWorldDestinations();refreshWorldHUD();loadWorldImage(id);if(id==='morro'||worldRoadChapter(id))loadWorldRivals();if(id==='professor-home')loadWorldActors(['Sr. Assis']);if(id==='kael-home')loadWorldActors(['Mãe']);$('courtyardCanvas').setAttribute('tabindex','-1');$('courtyardCanvas').focus({preventScroll:true});
 }
 function worldGo(place){
  const state=worldState();if(!state||!place)return;if(worldRoadChapter()&&place.action==='road_next'&&!['open','complete'].includes(worldRoadGateState().state)){const gate=worldScene().places.find(p=>p.action==='road_gate');if(gate)worldGo(gate);toast(worldRoadGateLabel(worldRoadChapter(),worldRoadGateState()));return;}worldWalkTo(state.navigation.nodes[place.node]);worldRuntime.near=null;updateWorldContext();
@@ -57,7 +93,7 @@ function interactWorld(){
   trailPick=place.stage;presentStage(place.stage);modalReturnFocus=$('worldInteract');return;
  }
  if(place.action==='pilot_story'){const dialog=$('worldDiscovery');$('worldDiscoveryTitle').textContent=place.name;$('worldDiscoveryText').textContent=place.story;dialog.showModal();return;}
- if(place.action==='street_scene'){const from=worldRuntime.id;openWorld(place.target,{arrival:'door'});const state=worldState(),back=worldScene().places.find(p=>p.action==='street_scene'&&p.target===from);if(back)state.navigation.target(state.actor,state.navigation.nodes[back.node],true);state.actor.direction=place.target==='quintal'?0:3;updateWorldContext();return;}
+ if(place.action==='wildGuide'){homeActions.wildGuide();return;}if(place.action==='wildRest'){homeActions.wildRest();return;}if(place.action==='street_scene'){const from=worldRuntime.id;openWorld(place.target,{arrival:'door'});const back=worldScene().places.find(p=>p.action==='street_scene'&&p.target===from);if(back)worldArriveAtDoor(back);updateWorldContext();return;}
  if(place.action==='quintal'){openWorld('quintal');return;}if(place.action==='pilot_boundary'){toast('Entre as casas, você avista o Parque dos Ventos. O caminho até lá faz parte da próxima etapa do bairro.');return;}homeActions[place.action]?.();
 }
 function worldShadow(g,x,y,r=16){g.fillStyle='#17394235';g.beginPath();g.ellipse(x,y-2,r,5,0,0,Math.PI*2);g.fill();}
@@ -79,10 +115,10 @@ function drawWorldScene(g,time,dt){
  if(!playerAccount)return;refreshWorldOwner();const state=worldState(),scene=worldScene(),canvas=$('courtyardCanvas'),stage=$('courtyardStage'),width=Math.round(stage.clientWidth)||canvas.width,height=Math.round(stage.clientHeight)||canvas.height;
  if(canvas.width!==width||canvas.height!==height){canvas.width=width;canvas.height=height;}
  // Explicit player movement stays active when ambient animations are paused or reduced.
- const moving=!homeMotionPaused&&!art.reduced;worldSyncRoadGate();worldPrimeCompanionTrail(scene,state);state.navigation.step(state.actor,dt);
+ const moving=!homeMotionPaused&&!art.reduced;worldSyncRoadGate();worldPrimeCompanionTrail(scene,state);const walkEnabled=worldWalkActive(),manual=walkEnabled?worldInput():{x:0,y:0},before={x:state.actor.x,y:state.actor.y};if(walkEnabled){if(manual.x||manual.y)state.navigation.move(state.actor,manual,dt);else state.navigation.step(state.actor,dt);worldAutoEnter(before);if(scene!==worldScene())return;if(typeof stepWildExploration==='function')stepWildExploration(before,time);}else{state.actor.moving=false;worldClearWalking();}
  const target=state.navigation.camera(state.actor,width,height),previous=worldRuntime.camera,blend=art.reduced||!previous?1:1-Math.exp(-dt*9),camera=previous?{x:previous.x+(target.x-previous.x)*blend,y:previous.y+(target.y-previous.y)*blend,scale:target.scale}:target;worldRuntime.camera=camera;
  g.save();g.scale(camera.scale,camera.scale);g.translate(-camera.x,-camera.y);const image=homeImages.get('world-'+worldRuntime.id);if(scene.painted)drawWorldPaintedGround(g,scene,homeImages);else if(scene.art)drawWorldArtGround(g,scene,homeImages);else if(scene.tiled)drawWorldBlockout(g,scene);else if(image)g.drawImage(image,0,0,scene.width,scene.height);else{g.fillStyle='#d1d8a6';g.fillRect(0,0,scene.width,scene.height);}
- for(const place of scene.places){const p=state.navigation.nodes[place.node],open=!place.stage||trails.unlocked(trailProgress,place.stage),near=worldRuntime.near?.id===place.id;g.strokeStyle=open?'#fff0b1':'#71888c';g.fillStyle=open?'#164a6580':'#293c4655';g.lineWidth=near?3:2;g.beginPath();g.ellipse(p.x,p.y-2,near?18:12,near?8:5,0,0,Math.PI*2);g.fill();g.stroke();}
+ for(const place of scene.places)drawWorldEntrance(g,place,time);
  const partnerSize=Math.round(scene.actorSize*.66),equipped=playerAccount.inventory.find(k=>k.id===playerAccount.profile.equipped_kite_id),follower=state.navigation.follower(state.actor,scene.actorSize*.74),resident=worldPartnerStart(scene,state,follower),actors=[{id:'player',x:state.actor.x,level:state.actor.level,y:state.actor.y,draw:()=>drawWorldHuman(g,state.actor,time)}];
  const companion=worldCompanions.get(equipped?.model),companionKey=playerAccount.profile.id+'|'+(equipped?.id||'');
  if(state.companionKey!==companionKey){state.companionKey=companionKey;state.companionMotion=null;}
@@ -101,12 +137,14 @@ function drawWorldScene(g,time,dt){
  for(const entry of worldRenderQueue(scene,actors)){if(entry.kind==='actor')entry.draw();else drawWorldObject(g,entry,homeImages);}g.restore();updateWorldContext();
 }
 function refreshWorldOwner(){if(worldRuntime.owner!==playerAccount?.profile.id)refreshWorldHUD();}
+addEventListener('keydown',event=>{const key=event.key.toLowerCase();if(!['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright'].includes(key)||!worldWalkActive()||event.ctrlKey||event.metaKey||event.altKey||['INPUT','TEXTAREA','SELECT'].includes(event.target?.tagName))return;event.preventDefault();worldKeys.add(key);});
+addEventListener('keyup',event=>worldKeys.delete(event.key.toLowerCase()));addEventListener('blur',worldClearWalking);document.addEventListener('visibilitychange',()=>{if(document.hidden)worldClearWalking();});
 function initWorld(){
  if(!homeArt.world)return;courtyard.classList.add('world-ready');$('homeDestinations').replaceChildren();
  const worldOriginalLeave=leave;leave=function(...args){const result=worldOriginalLeave(...args);if(['legacy','blockout','pilot'].includes(worldMapMode))history.replaceState(null,'',location.pathname+'?overworld='+worldMapMode);return result;};
  const panel=uiElement('section',undefined,'world-context plaza-paper');panel.setAttribute('aria-label','Exploração do lugar');panel.innerHTML='<div class="world-location"><b id="worldName"></b><span id="worldPlace" role="status"></span></div><div class="world-controls"><label class="sr-only" for="worldDestination">Escolher destino do passeio</label><select id="worldDestination"></select><button id="worldInteract">Interagir · E</button></div>';
  const discovery=uiElement('dialog',undefined,'world-discovery plaza-paper');discovery.id='worldDiscovery';discovery.setAttribute('aria-labelledby','worldDiscoveryTitle');discovery.innerHTML='<h2 id="worldDiscoveryTitle"></h2><p id="worldDiscoveryText"></p><form method="dialog"><button autofocus>Continuar explorando</button></form>';document.body.append(discovery);
- courtyard.append(panel);$('worldInteract').onclick=interactWorld;$('worldDestination').onchange=()=>{const place=worldScene().places.find(p=>p.id===$('worldDestination').value);if(place)worldGo(place);$('worldDestination').value='';};
+ courtyard.append(panel);$('worldInteract').onclick=interactWorld;$('worldDestination').onchange=()=>{const place=worldScene().places.find(p=>p.id===$('worldDestination').value);if(place)worldGo(place);$('worldDestination').value='';$('courtyardCanvas').focus({preventScroll:true});};
  $('courtyardStage').addEventListener('click',event=>{if(event.target.closest('button,select')||courtyard.inert||mode||!playerAccount||!$('journeyDialog').hidden||!$('partnerChoice').hidden)return;const r=$('courtyardCanvas').getBoundingClientRect(),camera=worldRuntime.camera;if(!camera)return;worldWalkTo({x:(event.clientX-r.left)/camera.scale+camera.x,y:(event.clientY-r.top)/camera.scale+camera.y});});
  const oldSelectCity=selectCity;selectCity=function(i){oldSelectCity(i);if(i===0)$('cityExplore').onclick=()=>openWorld('morro');};
  const oldTrails=homeActions.trails;homeActions.trails=()=>journey?.phase==='complete'&&firstOpenStage()?.trailIndex===0?openWorld('morro'):oldTrails();homeActions.farm=()=>{hideJourney();closeHomeMenu();openClubDestination('farm')};homeActions.quintal=()=>openWorld('quintal');homeActions.nextEncounter=()=>{const next=trails.stages.find(st=>trails.unlocked(trailProgress,st.id)&&!trailProgress.stars[st.id]);const destination=worldRoadEnabled&&worldRoadChapters.find(c=>c.stage===next?.id);if(destination&&destination.id!==worldRuntime.id){openWorld(destination.id);return;}const place=worldScene().places.find(p=>p.stage===next?.id);if(place){if(worldRuntime.near?.id===place.id)interactWorld();else worldGo(place);}else homeActions.city();};
@@ -117,3 +155,6 @@ function initWorld(){
  renderWorldDestinations();if(playerAccount)refreshWorldHUD();
 }
 initWorld();
+
+/* CAMPAIGN_CLIENT */
+/* RPG_CLIENT */

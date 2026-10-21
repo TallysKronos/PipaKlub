@@ -1,16 +1,18 @@
 export function createEngine() {
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  const tamers=(()=>{const maxLevel=100,xpForLevel=value=>{const n=clamp(Math.trunc(Number(value)||1),1,100)-1;return 20*n+3*n*n;};function progress(value){const maxXp=xpForLevel(100),xp=clamp(Math.trunc(Number(value)||0),0,maxXp);let level=1;while(level<100&&xp>=xpForLevel(level+1))level++;const start=xpForLevel(level),next=level===100?null:xpForLevel(level+1);return {xp,level,maxLevel,maxXp,start,next,percent:next===null?100:(xp-start)/(next-start)*100};}return {maxLevel,xpForLevel,progress};})();
+  const classes={velocista:{name:'Velocista',advanced:'Rastro dos Ventos',description:'Mais velocidade e esquiva, com uma linha mais delicada.'},condutor:{name:'Condutor',advanced:'Mestre dos Fios',description:'Mais precisão e recuperação de energia, com voo mais lento.'}};
   // Individual Pipamon progression. AI difficulty and the player's account level are separate.
   const pipamons=(()=>{
     const maxLevel=50,xpForLevel=l=>{const n=clamp(Math.trunc(Number(l)||1),1,maxLevel)-1;return 40*n+10*n*n;},maxXp=xpForLevel(maxLevel);
     const tiers=[{id:'aura',name:'Aura',min:50,color:'#edb7ff'},{id:'diamond',name:'Diamante',min:45,color:'#8be5ff'},{id:'platinum',name:'Platina',min:40,color:'#b8f4de'},{id:'gold',name:'Ouro',min:30,color:'#ffd46a'},{id:'silver',name:'Prata',min:20,color:'#dce5f5'}];
     const level=value=>clamp(Math.trunc(Number.isFinite(Number(value))?Number(value):1),1,maxLevel);
     const statCache=new Map();
-    function stats(value){const l=level(value);if(statCache.has(l))return statCache.get(l);const f=(l-1)/49,s=Object.freeze({line:Math.round(100+20*f),energy:Math.round(100+15*f),attack:1+.12*f,defense:1+.10*f,speed:165*(1+.08*f),regen:18*(1+.10*f)});statCache.set(l,s);return s;}
+    function stats(value,specialization=null,rank=0){const l=level(value),r=classes[specialization]?clamp(Math.trunc(rank)||0,0,2):0,key=l+':'+specialization+':'+r;if(statCache.has(key))return statCache.get(key);const f=(l-1)/49,s={line:Math.round(100+20*f),energy:Math.round(100+15*f),attack:1+.12*f,defense:1+.10*f,speed:165*(1+.08*f),regen:18*(1+.10*f)};if(r&&specialization==='velocista'){s.speed*=1+.08*r;s.line=Math.round(s.line*.95);s.regen*=1+.04*r;}if(r&&specialization==='condutor'){s.attack*=1+.04*r;s.regen*=1+.08*r;s.speed*=.95;}Object.freeze(s);statCache.set(key,s);return s;}
     function progress(value){const xp=clamp(Math.trunc(Number.isFinite(Number(value))?Number(value):0),0,maxXp);let l=1;while(l<maxLevel&&xp>=xpForLevel(l+1))l++;const start=xpForLevel(l),next=l===maxLevel?null:xpForLevel(l+1);return {xp,level:l,maxLevel,maxXp,start,next,into:xp-start,needed:next===null?0:next-start,percent:next===null?100:(xp-start)/(next-start)*100,tier:tiers.find(t=>l>=t.min)||null,stats:stats(l)};}
     return {maxLevel,maxXp,xpForLevel,level,stats,progress,tiers,tier:value=>tiers.find(t=>level(value)>=t.min)||null};
   })();
-  const pipamonStats=p=>pipamons.stats(p.pipamonLevel);
+  const pipamonStats=p=>pipamons.stats(p.pipamonLevel,p.pipamonClass,p.classRank);
   function daily(now=Date.now()){
     const day=Math.floor(now/86400000),weather=['wind','wax','rain','fog'][((day%4)+4)%4];
     const details={wind:['Ventania','Rajadas três vezes mais fortes. Antecipe a direção da pipa.'],wax:['Linha encerada','Os acertos desgastam 25% mais a linha dos dois jogadores.'],rain:['Garoa','A energia dos dois jogadores recupera 30% mais devagar.'],fog:['Neblina','O cenário fica encoberto; pipas e miras continuam visíveis.']}[weather];
@@ -72,7 +74,7 @@ export function createEngine() {
   function fillBots(s,now){const used=new Set(s.players.map(p=>p.name));let n=0;while(s.players.length<s.quick.size){const name=BOT_NAMES.find(x=>!used.has(x))||'Pipeiro '+(++n);used.add(name);const b=player(name,Math.floor(Math.random()*4),'bot-'+crypto.randomUUID(),now);b.bot=true;b.ai={level:s.quick.level};admit(s,b,now);}}
   // A player joining mid-round in rounds mode watches until the next round starts.
   function admit(s,p,now){seat(s,p);p.pipamonLevel=pipamons.level(p.pipamonLevel);p.hp=pipamonStats(p).line;p.energy=pipamonStats(p).energy;p.shield=SHIELD;if(s.mode==='rounds'&&(s.phase==='live'||s.phase==='intermission'))p.respawn=now;s.players.push(p);return p;}
-  function visible(s){const {_pendingCuts,dailyResult,trailResult,trailOwner,...publicState}=s;return {...publicState,players:s.players.map(({key,accountId,kiteId,basicKiteId,strike,lineStrike,...p})=>p),events:s.events.map(({id,text,at,capture,winnerId,loserId,kind,round})=>({id,text,at,capture,winnerId,loserId,kind,round}))};}
+  function visible(s){const {_pendingCuts,dailyResult,trailResult,trailOwner,wildResult,wildOwner,...publicState}=s;return {...publicState,players:s.players.map(({key,accountId,kiteId,basicKiteId,strike,lineStrike,...p})=>p),events:s.events.map(({id,text,at,capture,winnerId,loserId,kind,round})=>({id,text,at,capture,winnerId,loserId,kind,round}))};}
   // Fixed anchors and straight segments are also used by the renderer. Fractions run ground -> kite.
   // The seat also fixes the player number (P1..P8) shown with the player's colour.
   function seat(s,p){if(!Number.isFinite(p.anchorX))p.anchorX=ANCHORS.find(x=>!s.players.some(q=>q!==p&&q.anchorX===x))??500;if(!Number.isInteger(p.slot)){const i=ANCHORS.indexOf(p.anchorX);p.slot=i>=0?i:s.players.indexOf(p)%8;}return p;}
@@ -86,7 +88,7 @@ export function createEngine() {
     s.events.unshift({kind:'round',round:s.round,text:winner?winner.name+' venceu a rodada '+s.round:'Rodada '+s.round+' empatada',at:now,id:s.id+':r'+s.round,winnerId:winner?.id});s.events=s.events.slice(0,4);
     for(const p of s.players){p.lineMove=null;p.lineStrike=null;p.strike=false;}
     s.phase='intermission';s.phaseUntil=now+INTERMISSION;
-    if(winner&&winner.rounds>=s.roundsToWin){s.end=now+INTERMISSION;if(s.daily)s.dailyResult={winnerId:winner.id,accountId:winner.accountId||null};if(s.trail){const owner=s.players.find(p=>p.accountId===s.trailOwner);if(owner)s.trailResult={userId:s.trailOwner,stage:s.trail,won:winner.id===owner.id,roundsLost:s.players.filter(p=>p.id!==owner.id).reduce((n,p)=>n+(p.rounds||0),0)};}}
+    if(winner&&winner.rounds>=s.roundsToWin){s.end=now+INTERMISSION;if(s.wild){const own=s.players.find(p=>p.accountId===s.wildOwner);if(own)s.wildResult={userId:s.wildOwner,matchId:s.id,outcome:winner.id===own.id?'won':'lost'};}if(s.daily)s.dailyResult={winnerId:winner.id,accountId:winner.accountId||null};if(s.trail){const owner=s.players.find(p=>p.accountId===s.trailOwner);if(owner)s.trailResult={userId:s.trailOwner,stage:s.trail,won:winner.id===owner.id,roundsLost:s.players.filter(p=>p.id!==owner.id).reduce((n,p)=>n+(p.rounds||0),0)};}}
   }
   function advance(s,now){
     if(s.phase==='waiting'){if(s.quick){if(s.players.length>=s.quick.size||now>=s.quick.fillAt){fillBots(s,now);startRound(s,now);}}else if(s.players.length>=2)startRound(s,now);}
@@ -182,19 +184,19 @@ export function createEngine() {
   }
   // Only the authenticated owner of a private campaign room can freeze its simulation.
   function setSoloPause(s,p,paused,now){
-    if(!s.trail||!p?.accountId||p.accountId!==s.trailOwner||s.players.some(q=>!q.bot&&q.id!==p.id)||now>=s.end)return false;
+    if(!(s.trail||s.wild)||!p?.accountId||p.accountId!==(s.trailOwner||s.wildOwner)||s.players.some(q=>!q.bot&&q.id!==p.id)||now>=s.end)return false;
     s.soloPaused=paused===true;p.input={};p.seen=now;return true;
   }
   function step(s,now) {
     s._pendingCuts=[];
-    if(s.soloPaused&&s.trail){
+    if(s.soloPaused&&(s.trail||s.wild)){
       const owner=s.players.find(p=>!p.bot&&p.accountId===s.trailOwner&&now-p.seen<60000);
       if(owner){const elapsed=Math.max(0,now-s.last);s.end+=elapsed;if(s.phaseUntil)s.phaseUntil+=elapsed;for(const p of s.players)if(p.respawn)p.respawn+=elapsed;for(const event of s.events)event.at+=elapsed;s.last=now;return s;}
       s.soloPaused=false;
     }
     const dt=clamp((now-s.last)/1000,0,.25);s.last=now;s.wind=Math.sin(now/9000)*(s.daily?.weather==='wind'?36:12);
     if(now>=s.end)return s;s.players=s.players.filter(p=>p.bot||now-p.seen<60000);
-    if((s.daily||s.trail)&&!s.players.some(p=>!p.bot)){s.end=now;return s;}
+    if((s.daily||s.trail||s.wild)&&!s.players.some(p=>!p.bot)){s.end=now;return s;}
     // A quick room with nobody real left in it closes instead of letting bots fly alone.
     if(s.quick&&s.quick.fillAt<=now&&!s.players.some(p=>!p.bot)){s.end=now;return s;}
     for(const p of s.players)seat(s,p);
@@ -227,11 +229,11 @@ export function createEngine() {
       const p=winner.p;q.respawn=rounds?now:now+3000;q.attack=false;q.lineMove=null;q.lineStrike=null;p.score+=100;p.cuts++;
       const cut={text:p.name+' cortou '+q.name,at:now,id:s.id+':'+(++s.cutSequence),winnerId:p.id,loserId:q.id,matchId:s.id,winnerAccountId:p.accountId,loserAccountId:q.accountId,kiteId:q.kiteId,capture:s.rules==='capture'&&!q.kitePermanent};
       s.events.unshift(cut);s._pendingCuts.push(cut);s.events=s.events.slice(0,4);
-      if(s.rules==='capture'&&q.accountId&&q.basicKiteId){q.kiteId=q.basicKiteId;q.kitePermanent=true;q.color=q.basicColor??0;q.soul=q.basicSoul||null;q.partnerName=q.basicPartnerName||null;q.pipamonLevel=pipamons.level(q.basicPipamonLevel);q.skillTime=0;}
+      if(s.rules==='capture'&&q.accountId&&q.basicKiteId){q.kiteId=q.basicKiteId;q.kitePermanent=true;q.color=q.basicColor??0;q.soul=q.basicSoul||null;q.partnerName=q.basicPartnerName||null;q.pipamonLevel=pipamons.level(q.basicPipamonLevel);q.pipamonClass=q.basicPipamonClass||null;q.classRank=q.basicClassRank||0;q.skillTime=0;}
     }
     if(rounds&&s.phase==='live'&&s.players.filter(p=>!p.respawn).length<=1)finishRound(s,now);
     return s;
   }
   function practiceStep(s,id,input,now){const p=s.players.find(p=>p.id===id);if(p){p.input=sanitizeInput(input);p.seen=now;}return step(s,now);}
-  return {setSoloPause,pipamons,pipamonStats,daily,QUICK,fillBots,SHIELD,DODGE,COUNTER,cutDamage,brain,create,admit,player,step,move,visible,practiceStep,line,contact,types,type,sanitizeInput,seat,lineSkills,lineMotion,lineWindow};
+  return {setSoloPause,tamers,classes,pipamons,pipamonStats,daily,QUICK,fillBots,SHIELD,DODGE,COUNTER,cutDamage,brain,create,admit,player,step,move,visible,practiceStep,line,contact,types,type,sanitizeInput,seat,lineSkills,lineMotion,lineWindow};
 }

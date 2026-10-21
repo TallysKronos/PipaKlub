@@ -64,8 +64,8 @@ function renderAccountDialog(){
  else if(Object.values(accountConnectionMessages).includes($('accountMessage').textContent))$('accountMessage').textContent='';
  if(!logged){closeKiteStory();return;}
  const p=playerAccount.profile;$('accountNickname').value=p.nickname;
- $('accountLevel').textContent='Nível '+p.level;$('accountXP').textContent=p.xp+' / '+p.next_level_xp+' XP';
- const base=(p.level-1)**2*100;$('accountXPBar').style.width=Math.min(100,(p.xp-base)/Math.max(1,p.next_level_xp-base)*100)+'%';
+ $('accountLevel').textContent='Nível '+p.level;$('accountXP').textContent=p.level===100?'Nível máximo · '+p.xp+' XP':p.xp+' / '+p.next_level_xp+' XP';
+ const base=p.level_base_xp??(p.level-1)**2*100;$('accountXPBar').style.width=(p.level===100?100:Math.min(100,(p.xp-base)/Math.max(1,p.next_level_xp-base)*100))+'%';
  $('accountCuts').textContent=p.cuts+' cortes';$('collectionCount').textContent=playerAccount.inventory.length+(playerAccount.inventory.length===1?' pipa':' pipas');
  renderInventory();
  const owned=new Set(playerAccount.inventory.map(k=>k.model_id));
@@ -102,13 +102,13 @@ addEventListener('keydown',e=>{
  if(e.key==='Tab'){const items=[...accountModal.querySelectorAll('button,input,select')].filter(el=>!el.disabled&&el.getClientRects().length);const first=items[0],last=items.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}
 });
 async function initializeAccounts(){
- if(typeof STATIC_HOST!=='undefined'&&STATIC_HOST){accountConnection='static';if(accountModal.style.display==='flex')renderAccountDialog();return false;}
+ if(typeof STATIC_HOST!=='undefined'&&STATIC_HOST){accountConnection='static';if(accountModal.style.display==='flex')renderAccountDialog();bootLoading.done();return false;}
  if(accountConfigPending)return accountConfigPending;
  clearTimeout(accountRetryTimer);accountRetryTimer=null;accountConnection='checking';if(accountModal.style.display==='flex')renderAccountDialog();
  accountConfigPending=(async()=>{
   try{const config=await accountRequest('config');accountsEnabled=config.enabled===true;accountConnection=accountsEnabled?'ready':'disabled';if(accountsEnabled){accountRetryCount=0;await refreshAccount();}}
   catch{accountConnection='offline';if(accountRetryCount<3){const delay=3000*2**accountRetryCount++;accountRetryTimer=setTimeout(()=>{accountRetryTimer=null;return initializeAccounts();},delay);}}
-  finally{reflectAccount();}
+  finally{reflectAccount();bootLoading.done();}
   return accountsEnabled;
  })();
  try{return await accountConfigPending;}finally{accountConfigPending=null;}

@@ -9,6 +9,50 @@ import {createAssetHandler} from './src/static-assets.js';
 import vm from 'node:vm';
 import {parseHTML} from 'linkedom';
 
+test('autosave shows pending confirmation, preserves bank drafts and skips disabled or loading scenes',async()=>{
+ const ui=journeyUI();await ui.settle();
+ ui.run("playerAccount={profile:{id:'autosaver',nickname:'Kael'},inventory:[]};journey={phase:'complete'};journeyOwner='autosaver';openingState={step:14};showCourtyard();refreshWorldHUD();");await ui.run('loadWorldImage(worldRuntime.id)');
+ ui.run("campaignData={revision:3,autosave_enabled:true};campaignKeep=new Set(['draft']);var autoCalls=[];var resolveAuto;accountRequest=(endpoint,body)=>{autoCalls.push(body);return new Promise(resolve=>resolveAuto=resolve);};var autoPending=campaignAutosave();");
+ assert.equal(ui.run('autosaveIndicator.hidden'),false);assert.match(ui.run('autosaveIndicator.textContent'),/Salvando/);assert.equal(ui.run('autoCalls[0].action'),'autosave');
+ ui.run("resolveAuto({campaign:{revision:4,autosave_enabled:true,autosave_checkpoint:autoCalls[0].checkpoint}})");await ui.run('autoPending');
+ assert.match(ui.run('autosaveIndicator.textContent'),/Salvo.*slot 0/);assert.equal(ui.run("campaignKeep.has('draft')"),true);
+ ui.run("autosaveLast='';campaignData.autosave_enabled=false;");await ui.run('campaignAutosave()');assert.equal(ui.run('autoCalls.length'),1);
+ ui.run("campaignData.autosave_enabled=true;var heldGate=gameLoading.start('test','Carregando');");await ui.run('campaignAutosave()');assert.equal(ui.run('autoCalls.length'),1);ui.run('heldGate.cancel()');
+});
+
+test('scene loading blocks movement until essential art resolves and exposes a recoverable failure',async()=>{
+ const ui=journeyUI();await ui.settle();
+ ui.run("playerAccount={profile:{id:'loading-player',nickname:'Kael'},inventory:[]};journey={phase:'complete'};journeyOwner='loading-player';openingState={step:14};showCourtyard();refreshWorldHUD();var originalHomeLoad=homeLoadImage;var releaseArt;var heldArt=new Promise(resolve=>{releaseArt=resolve;});homeLoadImage=()=>heldArt;var pendingScene=loadWorldImage(worldRuntime.id);");
+ assert.equal(ui.run('gameLoading.active'),true);assert.equal(ui.run('worldWalkActive()'),false);
+ ui.run('releaseArt(false)');await ui.run('pendingScene');
+ assert.equal(ui.run('loadingView.failed'),true);assert.equal(ui.run("typeof loadingView.retry==='function'&&typeof loadingView.back==='function'"),true);
+ ui.run('homeLoadImage=originalHomeLoad');await ui.run('loadingView.retry()');
+ assert.equal(ui.run('gameLoading.active'),false);assert.equal(ui.run('worldWalkActive()'),true);
+});
+
+test('walking enters doors automatically, latches the return portal and pauses under menus',async()=>{
+ const ui=journeyUI();await ui.settle();
+ ui.run("playerAccount={profile:{id:'doors',nickname:'Kael'},inventory:[]};journey={phase:'complete'};journeyOwner='doors';openingState={step:14};showCourtyard();refreshWorldHUD();");
+ await ui.run('loadWorldImage(worldRuntime.id)');
+ ui.run("var door=worldScene().places.find(p=>p.target==='kael-home'),point=worldState().navigation.nodes[door.node];worldState().navigation.target(worldState().actor,{x:point.x,y:point.y+40},true);worldKeys.add('arrowup');drawWorldScene($('courtyardCanvas').getContext('2d'),100,.1);drawWorldScene($('courtyardCanvas').getContext('2d'),200,.1);");
+ assert.equal(ui.run('worldRuntime.id'),'kael-home');await ui.run('loadWorldImage(worldRuntime.id)');
+ ui.run("worldKeys.add('arrowdown');drawWorldScene($('courtyardCanvas').getContext('2d'),300,.1);");
+ assert.equal(ui.run('worldRuntime.id'),'kael-home','the reciprocal spawn does not bounce straight back outside');
+ ui.run("worldClearWalking();var still={x:worldState().actor.x,y:worldState().actor.y};openHomeMenu();worldKeys.add('arrowleft');drawWorldScene($('courtyardCanvas').getContext('2d'),400,.1);");
+ assert.equal(ui.run('worldState().actor.x===still.x&&worldState().actor.y===still.y'),true);
+ assert.equal(ui.run('worldKeys.size'),0);
+});
+
+test('the controller stick walks the overworld instead of moving menu focus',async()=>{
+ const ui=journeyUI();await ui.settle();
+ ui.run("playerAccount={profile:{id:'pad-walker',nickname:'Kael'},inventory:[]};journey={phase:'complete'};journeyOwner='pad-walker';openingState={step:14};showCourtyard();refreshWorldHUD();");
+ await ui.run('loadWorldImage(worldRuntime.id)');
+ ui.run("var fakePad={connected:true,mapping:'standard',id:'Xbox',axes:[1,0,0,0],buttons:Array.from({length:17},()=>({pressed:false}))};var navigator={getGamepads:()=>[fakePad]};var beforePad=worldState().actor.x;pollPads();drawWorldScene($('courtyardCanvas').getContext('2d'),100,.1);");
+ assert.ok(ui.run('worldState().actor.x>beforePad'));assert.equal(ui.run('padState.active'),false);
+ ui.run("fakePad.axes=[0,0,0,0];pollPads();var afterPad=worldState().actor.x;drawWorldScene($('courtyardCanvas').getContext('2d'),200,.1);");
+ assert.equal(ui.run('worldState().actor.x'),ui.run('afterPad'));
+});
+
 function journeyUI(search=''){
  const html=fs.readFileSync('docs/index.html','utf8'),{document}=parseHTML(html),listeners=new Map();
  const canvasPrototype=Object.getPrototypeOf(document.createElement('canvas'));
@@ -145,6 +189,7 @@ test('courtyard assets are served by the allowlist with PNG types; other pack da
 test('click-to-walk progresses with ambient motion paused and reduced, with genuine directional sprite frames',async()=>{
  const ui=journeyUI();await ui.settle();
  ui.run(`playerAccount={profile:{id:'walker',nickname:'Walker'},inventory:[]};journey={phase:'complete'};journeyOwner='walker';showCourtyard();refreshWorldHUD();homeMotionPaused=true;var walkingState=worldState(),walkingStart={x:walkingState.actor.x,y:walkingState.actor.y};worldGo(worldScene().places[0]);`);
+ await ui.run('loadWorldImage(worldRuntime.id)');
  assert.equal(ui.run('art.reduced'),true);assert.equal(ui.run('homeMotionPaused'),true);
  assert.equal(ui.run('walkingState.actor.x===walkingStart.x&&walkingState.actor.y===walkingStart.y'),true,'input must queue a route, never teleport');
  ui.run(`drawWorldScene($('courtyardCanvas').getContext('2d'),100,.1)`);

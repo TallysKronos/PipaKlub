@@ -6,6 +6,7 @@ function showMatchResult(s,ranking=[]){if(!s.trail)track(s.quick?'quick_match_en
  stopMatchResult();
  const mine=s.players?.find(p=>p.id===me),authenticated=mode==='online'&&!!playerAccount;
  const rounds=s.mode==='rounds',rows=ranking.map((q,i)=>'<div class="result-rank'+(q.id===me?' me':'')+'"><span><i class="result-dot" style="background:'+playerColor(q)+'"></i>'+(i+1)+'. '+playerTag(q)+' '+escapeHTML(q.name)+(q.id===me?' · você':'')+'</span><b>'+(rounds?(q.rounds||0)+' ★ · ':'')+q.score+' pts</b></div>').join('');
+ if(s.wild){showWildResult(s,mine);return;}
  if(s.daily){showDailyResult(s,mine);return;}
  if(s.trail&&mode==='online'){showOnlineTrailResult(s,ranking,mine);return;}
  if(s.trail&&mode==='practice'){showTrailResult(s,ranking,mine);return;}
