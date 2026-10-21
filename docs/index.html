@@ -2125,12 +2125,14 @@ function connectRealtime(){
   if(mode!=='online'||socket||performance.now()<nextSocketAt)return;
   const version=sessionVersion,ws=new WebSocket((location.protocol==='https:'?'wss:':'ws:')+'//'+location.host+'/realtime');socket=ws;
   const timeout=setTimeout(()=>{if(!realtime&&socket===ws)ws.close();},4000);
+  const sessionEnded=replaced=>{if(socket!==ws)return;clearTimeout(timeout);roomSessions.remove(room);mode=null;leave();toast(replaced?'Esta partida foi retomada em outra aba.':'Sua sessão expirou. Entre em uma nova sala.');};
   ws.onopen=()=>{if(version!==sessionVersion)return ws.close();ws.send(JSON.stringify({type:'hello',code:room,token}));};
   ws.onmessage=e=>{if(socket!==ws||mode!=='online'||version!==sessionVersion)return;try{const d=JSON.parse(e.data);
+    if(d.type==='session-replaced'||d.type==='session-expired'){sessionEnded(d.type==='session-replaced');return;}
     if(d.type==='state'){clearTimeout(timeout);realtime=true;receiveState(d.state);}
     else if(d.type==='pong'&&Number.isFinite(d.at)){const sample=Math.round(performance.now()-d.at);if(sample>=0&&sample<10000)ping=ping?Math.round(ping*.75+sample*.25):sample;}
   }catch{}};
-  ws.onerror=()=>{};ws.onclose=e=>{clearTimeout(timeout);if(socket===ws){socket=null;realtime=false;if(e.reason==='Session resumed'){roomSessions.remove(room);mode=null;leave();toast('Esta partida foi retomada em outra aba.');return;}nextSocketAt=performance.now()+3000;}};
+  ws.onerror=()=>{};ws.onclose=e=>{clearTimeout(timeout);if(socket===ws){if(e.reason==='Session resumed'||e.reason==='Invalid session'){sessionEnded(e.reason==='Session resumed');return;}socket=null;realtime=false;nextSocketAt=performance.now()+3000;}};
 }
 function pumpNetwork(now){
   if(mode!=='online'||showResult)return;

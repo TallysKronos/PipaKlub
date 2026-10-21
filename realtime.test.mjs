@@ -12,7 +12,7 @@ test('a frozen room cannot revive a seat through WebSocket after the 60 second g
  const response=await worker.fetch(new Request('http://test/api/create',{method:'POST',body:JSON.stringify({name:'Expired QA',mode:'rounds',rules:'casual'})}),{DB}),seat=await response.json();
  const state=JSON.parse(db.prepare('select state from pipa_rooms where code=?').get(seat.code).state);state.players[0].seen=Date.now()-61000;db.prepare('update pipa_rooms set state=? where code=?').run(JSON.stringify(state),seat.code);
  const server=http.createServer(),stop=attachRealtime(server,db);server.listen(0,'127.0.0.1');await once(server,'listening');t.after(()=>{stop();server.close();db.close();});
- const ws=new WebSocket('ws://127.0.0.1:'+server.address().port+'/realtime');await once(ws,'open');const outcome=new Promise(resolve=>{ws.once('message',()=>resolve('state'));ws.once('close',code=>resolve(code));});ws.send(JSON.stringify({type:'hello',code:seat.code,token:seat.token}));assert.equal(await outcome,1008);
+ const ws=new WebSocket('ws://127.0.0.1:'+server.address().port+'/realtime');await once(ws,'open');const outcome=new Promise(resolve=>{ws.once('message',raw=>resolve(JSON.parse(String(raw))));ws.once('close',code=>resolve(code));});ws.send(JSON.stringify({type:'hello',code:seat.code,token:seat.token}));assert.deepEqual(await outcome,{type:'session-expired'});assert.equal((await once(ws,'close'))[0],1008);
 });
 
 test('WebSocket authenticates sessions, broadcasts authoritative movement to both players, and rejects malformed messages',async t=>{
@@ -54,6 +54,7 @@ test('WebSocket authenticates sessions, broadcasts authoritative movement to bot
   assert.equal(released.state.players.find(p=>p.id===b.me).lineCount,1);
   assert.equal(released.state.players.find(p=>p.id===a.me).hp,100,'a distant line is never damaged');
   const previousClosed=once(c2.ws,'close'),replacement=await client(b.token);assert.equal((await previousClosed)[0],1000);
+  assert.equal((await c2.next(d=>d.type==='session-replaced')).type,'session-replaced');
   const restored=await replacement.next(d=>d.type==='state');assert.equal(restored.state.id,a.state.id);assert.equal(restored.state.players.length,2);assert.equal(restored.state.players.find(p=>p.id===b.me).slot,1);
   replacement.ws.send(JSON.stringify({type:'input',input:{x:1}}));await c1.next(d=>d.type==='state'&&d.state.players.find(p=>p.id===b.me).input.x===1);
   const bad=await client('invalid-session');const closed=await once(bad.ws,'close');assert.equal(closed[0],1008);

@@ -9,9 +9,9 @@ function verify(name,ok,detail={},fatal=true){checks.push({name,passed:!!ok,elap
 async function call(path,body,origin=base.origin){const t=Date.now(),r=await fetch(new URL(path,base),{method:body===undefined?'GET':'POST',headers:body===undefined?{}:{'Content-Type':'application/json',Origin:origin},body:body===undefined?undefined:JSON.stringify(body),signal:AbortSignal.timeout(15000)});return {status:r.status,data:await r.json(),ms:Date.now()-t};}
 async function api(action,body){const r=await call('/api/'+action,body);if(r.status!==200)throw Error('Owned-room action failed: '+action+' ('+r.status+')');return r.data;}
 async function socket(seat){
- const ws=new WebSocket(new URL('/realtime',base).href.replace(/^http/,'ws'),{origin:base.origin}),c={ws,state:null,lastStateAt:0,closed:null,pongs:new Map()};clients.push(c);
- ws.on('message',raw=>{const d=JSON.parse(String(raw));if(d.type==='state'){c.state=d.state;c.lastStateAt=Date.now();}if(d.type==='pong')c.pongs.set(d.at,Date.now());});ws.on('close',(code)=>c.closed=code);ws.on('error',()=>{});
- await new Promise((resolve,reject)=>{ws.once('open',resolve);ws.once('error',reject);});ws.send(JSON.stringify({type:'hello',code:seat.code,token:seat.token}));await wait(()=>c.state||c.closed);return c;
+ const ws=new WebSocket(new URL('/realtime',base).href.replace(/^http/,'ws'),{origin:base.origin}),c={ws,state:null,lastStateAt:0,closed:null,notice:null,pongs:new Map()};clients.push(c);
+ ws.on('message',raw=>{const d=JSON.parse(String(raw));if(d.type==='state'){c.state=d.state;c.lastStateAt=Date.now();}if(d.type==='session-replaced'||d.type==='session-expired')c.notice=d.type;if(d.type==='pong')c.pongs.set(d.at,Date.now());});ws.on('close',(code)=>c.closed=code);ws.on('error',()=>{});
+ await new Promise((resolve,reject)=>{ws.once('open',resolve);ws.once('error',reject);});ws.send(JSON.stringify({type:'hello',code:seat.code,token:seat.token}));await wait(()=>c.state||c.closed||c.notice);return c;
 }
 function keep(c,input={}){const timer=setInterval(()=>{if(c.ws.readyState===1)c.ws.send(JSON.stringify({type:'input',input}));},100);timers.push(timer);return timer;}
 try{
@@ -35,13 +35,13 @@ try{
  verify('movement reaches the other player',two.state.players.find(p=>p.id===a.me).input.x===1);
  verify('client cannot forge hp score or class',two.state.players.find(p=>p.id===a.me).hp===100&&!two.state.players.some(p=>p.score===999)&&two.state.players.find(p=>p.id===a.me).color===0);
  await wait(()=>two.state.players.find(p=>p.id===a.me)?.input.x===0);verify('stale input neutralized',two.state.players.find(p=>p.id===a.me).input.x===0);
- stage='replacement handshake';const replacement=await socket(a);stage='previous socket close';await wait(()=>one.closed!==null,6000).catch(()=>{});verify('new socket takes the same seat',replacement.state.players.length===2&&Date.now()-one.lastStateAt>700,{previousCloseCode:one.closed,previousReadyState:one.ws.readyState,previousSnapshotAgeMs:Date.now()-one.lastStateAt});one.ws.terminate();const firstKeep=keep(replacement);
+ stage='replacement handshake';const replacement=await socket(a);stage='previous socket notice';await wait(()=>one.notice==='session-replaced');verify('new socket takes the same seat',replacement.state.players.length===2&&one.notice==='session-replaced',{notice:one.notice});one.ws.terminate();const firstKeep=keep(replacement);
  stage='short reconnect';replacement.ws.close();await wait(()=>replacement.closed!==null);const resumed=await api('resume',{code:a.code,token:a.token});verify('short reconnect preserves identity and population',resumed.me===a.me&&resumed.state.id===a.state.id&&resumed.state.players.length===2);clearInterval(firstKeep);
  clearInterval(secondKeep);two.ws.close();await wait(()=>two.closed!==null);await api('leave',{code:b.code,token:b.token});const departed=await call('/api/resume',{code:b.code,token:b.token});verify('explicit leave invalidates seat',departed.status===401);
  await api('leave',{code:a.code,token:a.token});
  stage='expiry setup';const quiet=await api('create',{name:'Expiry QA',mode:'rounds',rules:'casual'});seats.push(quiet);const q=await socket(quiet);q.ws.close();await wait(()=>q.closed!==null);
  console.log(JSON.stringify({step:'waiting-for-expiry',seconds:62}));await sleep(62000);
- stage='expired socket handshake';const expired=await socket(quiet);verify('socket cannot revive an expired frozen room seat',expired.closed===1008&&!expired.state);
+ stage='expired socket handshake';const expired=await socket(quiet);verify('socket cannot revive an expired frozen room seat',expired.notice==='session-expired'&&!expired.state,{notice:expired.notice});
  const httpExpired=await call('/api/resume',{code:quiet.code,token:quiet.token});verify('HTTP also rejects expired seat',httpExpired.status===401);
  console.log(JSON.stringify({step:checks.every(c=>c.passed)?'passed':'failed',checks:checks.length,elapsedSeconds:Math.round((Date.now()-started)/1000)}));
 }catch(e){console.log(JSON.stringify({step:'failed',stage,error:e.message,checks:checks.length,elapsedMs:Date.now()-started,sockets:clients.map(c=>({closed:c.closed,stateReceived:!!c.state}))}));process.exitCode=1;}

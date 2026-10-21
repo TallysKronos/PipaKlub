@@ -23,9 +23,9 @@ export function attachRealtime(server,db,progression=null){
       if(!c){
         if(b.type!=='hello'||!/^[A-F0-9]{6}$/.test(String(b.code)))return ws.close(1008,'Invalid room');
         const row=read(b.code),s=row&&JSON.parse(row.state),p=typeof b.token==='string'&&b.token.length>=20?s?.players.find(p=>!p.bot&&p.key===b.token):null;
-        if(!p||now-p.seen>=60000)return ws.close(1008,'Invalid session');
+        if(!p||now-p.seen>=60000){send(ws,{type:'session-expired'});return ws.close(1008,'Invalid session');}
         // Reloading hands control to the new socket; one seat cannot receive competing input streams.
-        for(const [other,peer]of clients)if(peer.code===b.code&&peer.id===p.id){clients.delete(other);other.close(1000,'Session resumed');}
+        for(const [other,peer]of clients)if(peer.code===b.code&&peer.id===p.id){clients.delete(other);send(other,{type:'session-replaced'});other.close(1000,'Session resumed');}
         clearTimeout(deadline);c={code:b.code,id:p.id,input:{x:0,y:0,cut:false},seen:now};clients.set(ws,c);
         send(ws,{type:'state',state:visible(s)});return;
       }

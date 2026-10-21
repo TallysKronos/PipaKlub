@@ -49,6 +49,16 @@ test('a verified recovery session opens the authenticated account instead of ask
  assert.equal(a.document.getElementById('accountButton').textContent,'Minha conta');assert.equal(a.document.getElementById('accountAuth').hidden,true);assert.equal(a.document.getElementById('accountEmail').value,'verified@example.test');assert.equal(a.run('passwordRecoveryToken'),null);assert.equal(a.document.getElementById('recoveryConfirm').value,'');
 });
 
+test('explicit session notices return the old tab home without releasing the seat or reconnecting',async()=>{
+ for(const notice of ['session-replaced','session-expired']){
+  const a=app({seen:true});await a.settle();
+  a.run(`var auditRequests=[],removedRooms=[];request=async(action)=>{auditRequests.push(action);return {};};roomSessions.remove=code=>removedRooms.push(code);WebSocket=class{close(){this.closed=true;}send(){}};WebSocket.OPEN=1;mode='online';room='ABCDEF';token='unit-test-seat-key';state=eng.create(Date.now());me='unit';socket=null;nextSocketAt=0;connectRealtime();var previousSocket=socket;`);
+  a.run(`previousSocket.onmessage({data:JSON.stringify({type:${JSON.stringify(notice)}})});`);
+  assert.equal(a.run('mode'),null);assert.equal(a.run('socket'),null);assert.equal(a.run('previousSocket.closed'),true);assert.equal(a.run('auditRequests.length'),0);assert.equal(a.run('removedRooms.join()'),'ABCDEF');assert.equal(a.document.body.classList.contains('in-match'),false);
+  a.run(`previousSocket.onclose({reason:''});`);assert.equal(a.run('mode'),null);assert.equal(a.run('auditRequests.length'),0);
+ }
+});
+
 test('plaza HUD uses account progression, routes missions and options, and never grants collection items',async()=>{
  const a=app({seen:true});await a.settle();
  a.run(`playerAccount={profile:{id:'plaza-a',nickname:'Ana',level:8,xp:5100,next_level_xp:6400,equipped_kite_id:null},inventory:[]};journey={phase:'complete'};trailProgress.coins=123;showCourtyard();`);
