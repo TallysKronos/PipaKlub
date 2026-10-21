@@ -1,7 +1,7 @@
-// This extension is installed only in the explicit Morro preview. Battle and rewards
-// continue to use the existing account/server flow.
+// The five-area Morro is the campaign default. Battle and rewards continue to
+// use the existing account/server flow; legacy studies remain explicit opt-ins.
 const worldRoadChapters=homeArt.world?.morroRoad||[],worldRoad=createNeighborhoodRoad(worldRoadChapters.length?worldRoadChapters:[{id:'morro',stage:'morro-1'}]);
-const worldRoadEnabled=new URLSearchParams(location.search).get('overworld')==='pilot'&&worldRoadChapters.length===5;
+const worldRoadEnabled=!['legacy','blockout'].includes(worldMapMode)&&worldRoadChapters.length===5;
 if(worldRoadEnabled)for(const c of worldRoadChapters)worldScenes[c.id]=c.scene;
 function worldRoadChapter(id=worldRuntime.id){return worldRoadEnabled?worldRoadChapters.find(c=>c.id===id):null;}
 function worldRoadProgress(){return typeof trailSync!=='undefined'&&trailSync.user===playerAccount?.profile?.id?trailSync.confirmed():null;}

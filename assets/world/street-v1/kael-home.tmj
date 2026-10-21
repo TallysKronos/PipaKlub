@@ -187,6 +187,11 @@
               "name": "level",
               "type": "int",
               "value": 0
+            },
+            {
+              "name": "hidden",
+              "type": "bool",
+              "value": true
             }
           ]
         }

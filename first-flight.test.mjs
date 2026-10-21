@@ -9,12 +9,12 @@ import {createAssetHandler} from './src/static-assets.js';
 import vm from 'node:vm';
 import {parseHTML} from 'linkedom';
 
-function journeyUI(){
+function journeyUI(search=''){
  const html=fs.readFileSync('docs/index.html','utf8'),{document}=parseHTML(html),listeners=new Map();
  const canvasPrototype=Object.getPrototypeOf(document.createElement('canvas'));
  canvasPrototype.getContext=()=>new Proxy({imageSmoothingEnabled:true},{get:(o,k)=>k in o?o[k]:()=>{},set:(o,k,v)=>(o[k]=v,true)});
  for(const select of document.querySelectorAll('select')){let value;Object.defineProperty(select,'value',{get(){return value??this.querySelector('option')?.value??''},set(v){value=v}})}
- const context=vm.createContext({document,console,Date,Intl,crypto,URLSearchParams,AbortController,performance:{now:()=>0},location:{search:'',hash:'',pathname:'/',protocol:'http:',host:'test'},history:{replaceState(){}},localStorage:{getItem(){return null},setItem(){}},matchMedia:()=>({matches:true}),ResizeObserver:class{observe(){}},MutationObserver:class{observe(){}},requestAnimationFrame(){},cancelAnimationFrame(){},setInterval(){},clearInterval(){},setTimeout(){return 1},clearTimeout(){},fetch:async()=>({ok:true,json:async()=>({enabled:false})}),Image:class{width=1536;height=864;set src(v){queueMicrotask(()=>this.onload?.())}},addEventListener(name,fn){if(!listeners.has(name))listeners.set(name,[]);listeners.get(name).push(fn)}});
+ const context=vm.createContext({document,console,Date,Intl,crypto,URLSearchParams,AbortController,performance:{now:()=>0},location:{search,hash:'',pathname:'/',protocol:'http:',host:'test'},history:{replaceState(){}},localStorage:{getItem(){return null},setItem(){}},matchMedia:()=>({matches:true}),ResizeObserver:class{observe(){}},MutationObserver:class{observe(){}},requestAnimationFrame(){},cancelAnimationFrame(){},setInterval(){},clearInterval(){},setTimeout(){return 1},clearTimeout(){},fetch:async()=>({ok:true,json:async()=>({enabled:false})}),Image:class{width=1536;height=864;set src(v){queueMicrotask(()=>this.onload?.())}},addEventListener(name,fn){if(!listeners.has(name))listeners.set(name,[]);listeners.get(name).push(fn)}});
  vm.runInContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],context);
  return {document,run:code=>vm.runInContext(code,context),settle:()=>new Promise(r=>setImmediate(r))};
 }
@@ -37,6 +37,16 @@ test('failed starter save keeps the choice screen open and does not start a prac
  assert.equal(ui.run('mode'),null);assert.equal(ui.run('firstFlightRun'),null);assert.equal(ui.run('playerAccount.profile.equipped_kite_id'),'k1');assert.equal(ui.document.getElementById('partnerChoice').hidden,false);assert.equal(ui.document.getElementById('partnerStatus').textContent,'Sem conexão');
 });
 
+test('first-flight continue saves the completed lesson and advances the same run',async()=>{
+ const ui=journeyUI();await ui.settle();
+ await ui.run(`accountRequest=async(action)=>action==='journey'?{journey:{phase:'practice',lesson:0}}:{};playerAccount={profile:{id:'flight-ui',nickname:'Kael',equipped_kite_id:'k1'},inventory:[{id:'k1',model_id:'rabbito',model:{color:0,name:'Rabbito',soul:'rabbito'}}]};onCourtyardAccount()`);await ui.settle();
+ ui.run(`homeActions.professor();startFirstFlight();firstFlightRun.complete=true;renderFlightCoach();var savedFlightLesson=null;accountRequest=async(action,body)=>{savedFlightLesson=body.lesson;return {journey:{phase:'practice',lesson:body.lesson}}}`);
+ await ui.document.getElementById('flightNext').onclick();
+ assert.equal(ui.run('savedFlightLesson'),1);
+ assert.equal(ui.run('firstFlightRun.index'),1);
+ assert.equal(ui.document.getElementById('flightNext').hidden,true);
+});
+
 test('city navigation respects unlocks, enters Morro exploration and preserves other district briefings',async()=>{
  const ui=journeyUI();await ui.settle();await ui.run(`accountRequest=async()=>({journey:{phase:'complete',lesson:5}});playerAccount={profile:{id:'city-player',nickname:'Nova',equipped_kite_id:'k1'},inventory:[{id:'k1',model_id:'basica',model:{color:0,name:'Carcará'}}]};onCourtyardAccount()`);await ui.settle();
  await ui.run('openCity()');assert.equal(ui.document.getElementById('cityScreen').hidden,false);
@@ -47,14 +57,15 @@ test('city navigation respects unlocks, enters Morro exploration and preserves o
  ui.run('openHomeMenu();renderHomeMenu("playGroup")');assert.ok(ui.document.getElementById('homeMenuLinks').children.length<=6);
 });
 
-test('exploration cannot unlock encounters, preserves position after battle and clears another account',async()=>{
- const ui=journeyUI();await ui.settle();await ui.run(`accountRequest=async()=>({journey:{phase:'complete'}});playerAccount={profile:{id:'world-a',nickname:'Ana'},inventory:[]};onCourtyardAccount()`);await ui.settle();
+test('legacy exploration cannot unlock encounters, preserves position after battle and clears another account',async()=>{
+ const ui=journeyUI('?overworld=legacy');await ui.settle();await ui.run(`accountRequest=async()=>({journey:{phase:'complete'}});playerAccount={profile:{id:'world-a',nickname:'Ana'},inventory:[]};onCourtyardAccount()`);await ui.settle();
  ui.run(`openWorld('morro');worldGo(worldScene().places.find(p=>p.stage==='morro-5'));for(let i=0;i<3000&&worldState().actor.path.length;i++)worldState().navigation.step(worldState().actor,.1);worldRuntime.loading=false;updateWorldContext();interactWorld()`);
  assert.equal(ui.run('mode'),null);assert.notEqual(ui.document.getElementById('modal').style.display,'flex');assert.equal(ui.run('trailProgress.stars["morro-5"]||0'),0);
  ui.run(`worldGo(worldScene().places.find(p=>p.stage==='morro-1'));for(let i=0;i<3000&&worldState().actor.path.length;i++)worldState().navigation.step(worldState().actor,.1);worldRuntime.loading=false;updateWorldContext();interactWorld()`);
  assert.equal(ui.document.getElementById('modal').classList.contains('encounter-preview'),true);assert.equal(ui.run('mode'),null);assert.equal(ui.run('modalReturnFocus.id'),'worldInteract');
  ui.run(`closeModal();var lastWorldPosition={x:worldState().actor.x,y:worldState().actor.y};returnToDistrict('morro-1',false)`);
  assert.equal(ui.run('worldRuntime.id'),'morro');assert.equal(ui.run('worldState().actor.x'),ui.run('lastWorldPosition.x'));assert.equal(ui.document.getElementById('trails').hidden,true);
+ assert.match(ui.document.getElementById('homeObjective').textContent,/Converse com Zeca/);
  await ui.run(`playerAccount={profile:{id:'world-b',nickname:'Bia'},inventory:[]};onCourtyardAccount()`);await ui.settle();assert.equal(ui.run('worldRuntime.id'),'quintal');assert.equal(ui.run('worldRuntime.owner'),'world-b');assert.equal(ui.run('worldState().actor.path.length'),0);
  ui.run(`worldArtLoaded('quintal',false)`);assert.match(ui.document.getElementById('worldPlace').textContent,/não carregou/);assert.equal(ui.document.getElementById('worldInteract').disabled,false);
  await ui.run(`homeLoadImage=async()=>true;loadWorldImage('quintal',true)`);assert.equal(ui.run('worldRuntime.error'),'');assert.equal(ui.run('worldRuntime.loading'),false);
@@ -145,8 +156,8 @@ test('click-to-walk progresses with ambient motion paused and reduced, with genu
 });
 
 
-test('world objectives identify the nearby rival, completion and hide the champion before unlock',async()=>{
- const ui=journeyUI();await ui.settle();await ui.run(`accountRequest=async()=>({journey:{phase:'complete'}});playerAccount={profile:{id:'mission-test',nickname:'Ana'},inventory:[]};onCourtyardAccount()`);await ui.settle();
+test('legacy world objectives identify the nearby rival, completion and hide the champion before unlock',async()=>{
+ const ui=journeyUI('?overworld=legacy');await ui.settle();await ui.run(`accountRequest=async()=>({journey:{phase:'complete'}});playerAccount={profile:{id:'mission-test',nickname:'Ana'},inventory:[]};onCourtyardAccount()`);await ui.settle();
  ui.run(`openWorld('morro');worldGo(worldScene().places.find(p=>p.stage==='morro-1'));for(let i=0;i<1000&&worldState().actor.path.length;i++)worldState().navigation.step(worldState().actor,.1);updateWorldContext()`);
  assert.match(ui.document.getElementById('homeObjective').textContent,/Converse com Zeca/);
  ui.run(`var rivalNames=[];homeImages.set('rival-Zeca',{});var rivalContext={fillStyle:'',beginPath(){},ellipse(){},fill(){},drawImage(){},strokeText(){},fillText(name){rivalNames.push(name)}};drawWorldRival(rivalContext,worldScene().places.find(p=>p.stage==='morro-1'),0);drawWorldRival(rivalContext,worldScene().places.find(p=>p.stage==='morro-5'),0);`);
@@ -161,4 +172,64 @@ test('street doors preserve the account and provide repeatable entry, upstairs a
   ui.run(`var portal=worldScene().places.find(p=>p.action==='street_scene'&&p.target===${JSON.stringify(target)});worldState().navigation.target(worldState().actor,worldState().navigation.nodes[portal.node],true);updateWorldContext();interactWorld();`);await ui.settle();assert.equal(ui.run('worldRuntime.id'),target);assert.ok(ui.run('worldRuntime.near?.action===\"street_scene\"'),'reciprocal door is immediately available');
  }
  assert.equal(ui.run('streetWrites'),0);assert.equal(ui.run('JSON.stringify(playerAccount)===residentBefore'),true);assert.equal(ui.run('openingState.step'),14);
+});
+
+test('default campaign traverses all five Morro areas only after confirmed victories and ends the demo',async()=>{
+ const ui=journeyUI();await ui.settle();
+ ui.run(`var roadStorage=new Map();localStorage.getItem=key=>roadStorage.get(key)||null;localStorage.setItem=(key,value)=>roadStorage.set(key,String(value));localStorage.removeItem=key=>roadStorage.delete(key);localStorage.key=i=>[...roadStorage.keys()][i];Object.defineProperty(localStorage,'length',{get:()=>roadStorage.size});`);
+ await ui.run(`accountRequest=async(action)=>action==='trails'?{trails:{revision:1,progress:trails.defaults()}}:action==='journey'?{journey:{phase:'complete',lesson:5}}:{opening:{step:14}};playerAccount={profile:{id:'road-player',nickname:'Kael',equipped_kite_id:'r'},inventory:[{id:'r',model:{color:0,name:'Rabbito',soul:'rabbito'}}]};onCourtyardAccount()`);await ui.settle();
+ await ui.run(`trailSync.setUser('road-player')`);
+ ui.run(`acceptTrailSnapshot({revision:2,progress:trails.defaults()},'road-player');openWorld('morro');var roadVerified={stars:{}};var moveToRoadPlace=action=>{const p=worldScene().places.find(p=>p.action===action);worldState().navigation.target(worldState().actor,worldState().navigation.nodes[p.node],true);worldRuntime.loading=false;updateWorldContext();};`);
+ assert.equal(ui.run('worldRoadEnabled'),true);
+ assert.equal(ui.run('location.search'),'');
+ for(let i=0;i<5;i++){
+  const id=i?'morro-area-'+(i+1):'morro';
+  assert.equal(ui.run('worldRuntime.id'),id);
+  assert.equal(ui.run('worldScene().painted'),true);
+  assert.equal(ui.run('worldScene().places.filter(p=>p.stage).length'),1);
+  assert.equal(ui.run('worldRoadGateState().state'),'locked');
+  if(i<4){ui.run(`openWorld('morro-area-${i+2}')`);assert.equal(ui.run('worldRuntime.id'),id);}
+  ui.run(`moveToRoadPlace('road_gate');interactWorld()`);
+  assert.equal(ui.run('worldRuntime.id'),id);
+  assert.equal(ui.run('worldState().roadGateClosed'),true);
+  // An optimistic result on the client is not enough to open the fence.
+  ui.run(`trailProgress.stars['morro-${i+1}']=3;worldSyncRoadGate()`);
+  assert.equal(ui.run('worldState().roadGateClosed'),true);
+  // Simulate the existing result endpoint delivering its owner-scoped snapshot.
+  ui.run(`roadVerified.stars['morro-${i+1}']=1;acceptTrailSnapshot({revision:${i+3},progress:roadVerified},'road-player');worldSyncRoadGate();updateWorldContext()`);
+  assert.equal(ui.run('worldState().roadGateClosed'),false);
+  assert.equal(ui.run('worldRoadGateState().state'),i===4?'complete':'open');
+  ui.run(`var roadBattlePosition={x:worldState().actor.x,y:worldState().actor.y};returnToDistrict('morro-${i+1}',true)`);
+  assert.equal(ui.run('worldRuntime.id'),id);
+  assert.equal(ui.run('worldState().actor.x'),ui.run('roadBattlePosition.x'));
+  assert.equal(ui.run('worldState().actor.y'),ui.run('roadBattlePosition.y'));
+  if(i){
+   ui.run(`moveToRoadPlace('road_back');interactWorld()`);
+   assert.equal(ui.run('worldRuntime.id'),i===1?'morro':'morro-area-'+i);
+   ui.run(`moveToRoadPlace('road_next');interactWorld()`);
+   assert.equal(ui.run('worldRuntime.id'),id);
+  }
+  ui.run(`moveToRoadPlace('road_next');interactWorld()`);
+ }
+ assert.match(ui.document.getElementById('dialogTitle').textContent,/Morro do Sol/);
+ assert.ok(ui.document.querySelector('#modal .demo-finale'));
+ assert.equal(ui.document.getElementById('dialogAction').textContent,'Continuar explorando');
+ assert.equal(ui.run('playerAccount.inventory[0].id'),'r');
+ await ui.run(`closeModal();playerAccount={profile:{id:'another-road-player',nickname:'Outra conta'},inventory:[]};onCourtyardAccount()`);await ui.settle();
+ assert.equal(ui.run('worldRuntime.id'),'quintal');
+ assert.equal(ui.run('worldRoadProgress()'),null);
+ ui.run(`openWorld('morro-area-5')`);
+ assert.equal(ui.run('worldRuntime.id'),'quintal','previous owner victories never grant access to a new account');
+});
+
+test('default map selection survives leaving a match without adding a preview flag',async()=>{
+ const ui=journeyUI();await ui.settle();ui.run(`var replacedURLs=[];history.replaceState=(a,b,url)=>replacedURLs.push(url);leave()`);
+ assert.ok(ui.run(`replacedURLs.every(url=>!url.includes('overworld=pilot'))`));
+ for(const mode of ['legacy','blockout']){
+  const study=journeyUI('?overworld='+mode);await study.settle();
+  assert.equal(study.run('worldRoadEnabled'),false);
+  study.run(`var studyURL;history.replaceState=(a,b,url)=>studyURL=url;leave()`);
+  assert.equal(study.run('studyURL'),'/?overworld='+mode);
+ }
+ const bookmark=journeyUI('?overworld=pilot');await bookmark.settle();assert.equal(bookmark.run('worldRoadEnabled'),true);
 });

@@ -24,7 +24,7 @@ function openDemoFinale(){
  closeTrails();closeModal();if(mode)leave();hideJourney();closeHomeMenu();
  modal('O Morro do Sol conhece seu nome',
   '<section class="demo-finale"><div class="eyebrow">História da demo concluída</div><p>Você deu vida ao seu primeiro parceiro e venceu os cinco encontros do Morro do Sol. Obrigado por fazer parte do começo do PipaKlub!</p><p>Seu progresso, seus parceiros e suas recompensas continuam na conta. Os próximos bairros chegam na versão completa.</p><div class="demo-final-actions"><button id="demoOnline" class="primary">Jogar com amigos</button><button id="demoSummon" class="secondary">Visitar o invocador</button><button id="demoRevisit" class="secondary">Revisitar o Morro do Sol</button></div></section>',
-  'Voltar ao quintal','PipaKlub · Demo');
+  'Continuar explorando','PipaKlub · Demo');
  $('dialogAction').className='secondary';$('demoOnline').onclick=()=>{closeModal();homeActions.friends();};$('demoSummon').onclick=()=>{closeModal();homeActions.summon();};$('demoRevisit').onclick=()=>{closeModal();openWorld('morro');};$('demoOnline').focus({preventScroll:true});
 }
 function openTrails(){

@@ -36,7 +36,7 @@ function openingGiftWasSeen(){if(openingReplay)return false;try{return localStor
 function renderOpening(){
  const i=openingState?.step??0,s=KAEL_OPENING[i];if(!s){closeOpening();return;}
  openingResetRoom();openingBirthBeat=0;openingGiftOpen=i===7&&!openingGiftWasSeen();openingPrepareCast(i);openingScreen.classList.toggle('partner-moment',i>=9&&i<=10);openingScreen.classList.toggle('naming-partner',i===10);openingScreen.classList.toggle('room-playable',openingRoomStep());openingSince=performance.now();$('openingSpeaker').textContent=s.speaker;$('openingSpeech').textContent=i===11?(openingState.partner_name||'Rabbito')+'… '+s.text:s.text;
- $('openingGift').hidden=!openingGiftOpen;$('openingGiftArt').src=ART_CONFIG.opening.images.tail.url;$('openingNameForm').hidden=i!==10;$('openingNext').hidden=i===10;$('openingNext').textContent=i===13?'Ir para o quintal':i===11?'Caminhar até a escada':i===8?'Colocar Rabiola Antiga':'Continuar';$('openingRetry').hidden=true;$('openingStatus').textContent='';
+ $('openingGift').hidden=!openingGiftOpen;$('openingGiftArt').src=ART_CONFIG.opening.images.tail.url;$('openingNameForm').hidden=i!==10;$('openingNext').hidden=i===10;$('openingNext').textContent=i===13?'Ir para a rua':i===11?'Caminhar até a escada':i===8?'Colocar Rabiola Antiga':'Continuar';$('openingRetry').hidden=true;$('openingStatus').textContent='';
  $('openingPause').textContent=openingReplay?'Sair da reprise':'Continuar depois';$('openingHint').textContent=openingReplay?'Reprise · não altera sua coleção':'Enter para continuar · Esc para retomar depois';
  if(i===9)openingRenderBirth();openingSetBusy();if(i===10){$('openingName').value='';$('openingName').focus({preventScroll:true});}else $('openingNext').focus({preventScroll:true});
 }

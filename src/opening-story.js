@@ -13,5 +13,5 @@ export const KAEL_OPENING=[
  {speaker:'Seu primeiro parceiro',text:'Ele para ao seu lado e olha para você. Como você quer chamar seu parceiro?',shot:'name'},
  {speaker:'Kael',text:'Agora somos uma dupla. Vamos mostrar ao Sr. Assis que você consegue voar! A escada fica na porta ao sul.',shot:'partner'},
  {speaker:'Mãe',text:'Meu filho… você acabou de dar vida ao seu próprio desenho. Ainda nem acredito!',shot:'downstairs'},
- {speaker:'Mãe',text:'Vou avisar o Sr. Assis sobre o que aconteceu. Ele vai ajudar vocês no primeiro voo. A saída para o quintal fica ao sul. Vão juntos e com cuidado, está bem?',shot:'downstairs'}
+ {speaker:'Mãe',text:'Vou avisar o Sr. Assis sobre o que aconteceu. Ele vai ajudar vocês no primeiro voo. A saída para a Rua dos Ventos fica ao sul. Vão juntos e com cuidado, está bem?',shot:'downstairs'}
 ];

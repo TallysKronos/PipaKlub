@@ -1,10 +1,10 @@
 const openingBedroomNavigation=createOpeningRoom(ART_CONFIG.opening.rooms.bedroom);
 const openingExitNavigation=createOpeningRoom({...ART_CONFIG.opening.rooms.bedroom,hotspots:[{id:'stairs',name:'Escada para o andar de baixo',x:780,y:855,hit:[660,775,240,160]}]});
-const openingDownstairsNavigation=createOpeningRoom({...ART_CONFIG.opening.rooms.downstairs,hotspots:[{id:'mother',name:'Conversar com a mãe',x:780,y:640,hit:[830,510,100,150]},{id:'exit',name:'Sair para o quintal',x:780,y:825,hit:[660,740,240,180]}]});
+const openingDownstairsNavigation=createOpeningRoom({...ART_CONFIG.opening.rooms.downstairs,hotspots:[{id:'mother',name:'Conversar com a mãe',x:780,y:640,hit:[830,510,100,150]},{id:'exit',name:'Sair para a rua',x:780,y:825,hit:[660,740,240,180]}]});
 let openingRoomNavigation=openingBedroomNavigation;
 let openingWalkKeys={},openingWalkIntent=null,openingWorkbench=false,openingRoomSignature='',openingCraftAt=null,openingCraftSaving=false;
 const roomPlaces=uiElement('nav',undefined,'opening-places');roomPlaces.id='openingPlaces';roomPlaces.hidden=true;roomPlaces.setAttribute('aria-label','Lugares do quarto');
-for(const spot of [...openingBedroomNavigation.hotspots,...openingDownstairsNavigation.hotspots,...openingExitNavigation.hotspots]){const b=uiElement('button',({tv:'TV',drawings:'Desenhos',desk:'Mesa',mother:'Mãe',exit:'Saída para o quintal',stairs:'Escada'}[spot.id]),'opening-place');b.type='button';b.dataset.openingPlace=spot.id;b.onclick=()=>openingWalkTo(spot.id);roomPlaces.append(b);}
+for(const spot of [...openingBedroomNavigation.hotspots,...openingDownstairsNavigation.hotspots,...openingExitNavigation.hotspots]){const b=uiElement('button',({tv:'TV',drawings:'Desenhos',desk:'Mesa',mother:'Mãe',exit:'Saída para a rua',stairs:'Escada'}[spot.id]),'opening-place');b.type='button';b.dataset.openingPlace=spot.id;b.onclick=()=>openingWalkTo(spot.id);roomPlaces.append(b);}
 $('openingSpeech').after(roomPlaces);
 const bench=uiElement('section',undefined,'opening-workbench');bench.id='openingWorkbench';bench.hidden=true;bench.setAttribute('aria-labelledby','openingBenchTitle');
 bench.innerHTML='<div class="opening-bench-card"><h2 id="openingBenchTitle">Uma ideia feita de papel</h2><p>O corpo de papel já está pronto. Falta encaixar a última vareta na armação.</p><canvas id="openingProjectArt" width="1536" height="1024" role="img" aria-label="Projeto físico do Rabbito, feito de papel e bambu, ainda sem rabiola"></canvas><div><button type="button" class="secondary" id="openingBenchBack">Olhar o quarto</button><button type="button" class="primary" id="openingBenchPlace">Encaixar a última vareta</button></div><p id="openingBenchStatus" role="status"></p></div>';
@@ -20,7 +20,7 @@ function openingRefreshRoomUI(){
  const near=openingNearestSpot(),signature=[openingState.step,near?.id,openingBusy,openingWorkbench,typeof inputDevice==='string'?inputDevice:'keyboard'].join('|');if(signature===openingRoomSignature)return;openingRoomSignature=signature;
  $('openingSpeaker').textContent=openingState.step===11?'Seu parceiro vai com você':openingState.step===13?'Seu primeiro passeio juntos':openingState.step===3?'Termine seu projeto':'Uma ideia inesperada';
  $('openingHint').textContent=typeof inputDevice==='string'&&inputDevice.startsWith('gamepad')?'Analógico · A interage · B pausa':'WASD / clique para andar · E interage';
- $('openingNext').textContent=near?.id==='stairs'?'Descer a escada · E':near?.id==='exit'?'Sair para o quintal · E':near?.id==='mother'?'Conversar · E':near?.id==='desk'?(openingState.step===3?'Montar Rabbito':'Ver projeto'):near?'Examinar · E':'Aproxime-se';
+ $('openingNext').textContent=near?.id==='stairs'?'Descer a escada · E':near?.id==='exit'?'Sair para a rua · E':near?.id==='mother'?'Conversar · E':near?.id==='desk'?(openingState.step===3?'Montar Rabbito':'Ver projeto'):near?'Examinar · E':'Aproxime-se';
  $('openingNext').disabled=openingBusy||openingWorkbench||!near;
  roomPlaces.setAttribute('aria-label',openingState.step===13?'Lugares da casa':'Lugares do quarto');
  for(const b of roomPlaces.querySelectorAll('button')){b.hidden=!openingRoomNavigation.hotspots.some(p=>p.id===b.dataset.openingPlace);b.disabled=openingBusy||openingWorkbench;b.setAttribute('aria-pressed',String(b.dataset.openingPlace===near?.id));}
