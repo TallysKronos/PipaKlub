@@ -14,7 +14,7 @@
 | Layout/artes | Atlas, bounds, arquivos publicados, navegação e regras do mundo | `art.test.mjs`, `ui-kit.test.mjs`, `pilot-ui.test.mjs`, testes `world-*` e `neighborhood-road.test.mjs` | Automatizado; não é cobertura de todas as resoluções |
 | Partida completa | Dois visitantes, três vitórias, recuperação dos dois lados, mesma revanche, limpeza das salas | `scripts/smoke-demo-release.mjs` | Executado localmente; execução remota precisa constar no relatório da publicação |
 
-Suíte atual: 285 testes passaram, incluindo a entrada após recuperação e os diagnósticos de autenticação. O workflow `Demo validation` executa os dois builds e `npm test` em PRs e pushes em main, sem segredos de produção. Publicar o workflow não equivale a configurar branch protection nem a fazer o Render esperar o CI.
+Suíte atual: 286 testes passaram, incluindo a entrada após recuperação, os diagnósticos de autenticação e a recusa de WebSocket expirado em uma sala congelada. O pacote de instalação 017/018 possui mais um teste separado em `scripts/demo-opening-package.test.mjs`, que verifica preservação de coleções e concessão única do parceiro. O workflow `Demo validation` executa os dois builds, esse teste do pacote e `npm test` em PRs e pushes em main, sem segredos de produção. Publicar o workflow não equivale a configurar branch protection nem a fazer o Render esperar o CI.
 
 ## Testes propostos
 

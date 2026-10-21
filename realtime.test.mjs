@@ -7,8 +7,17 @@ import WebSocket from 'ws';
 import worker from './worker/index.js';
 import {attachRealtime} from './src/realtime.js';
 
+test('a frozen room cannot revive a seat through WebSocket after the 60 second grace period',async t=>{
+ const db=new DatabaseSync(':memory:');const DB={prepare(sql){let v=[];return {bind(...a){v=a;return this;},async run(){const r=db.prepare(sql).run(...v);return {meta:{changes:Number(r.changes)}};},async first(){return db.prepare(sql).get(...v);}};}};
+ const response=await worker.fetch(new Request('http://test/api/create',{method:'POST',body:JSON.stringify({name:'Expired QA',mode:'rounds',rules:'casual'})}),{DB}),seat=await response.json();
+ const state=JSON.parse(db.prepare('select state from pipa_rooms where code=?').get(seat.code).state);state.players[0].seen=Date.now()-61000;db.prepare('update pipa_rooms set state=? where code=?').run(JSON.stringify(state),seat.code);
+ const server=http.createServer(),stop=attachRealtime(server,db);server.listen(0,'127.0.0.1');await once(server,'listening');t.after(()=>{stop();server.close();db.close();});
+ const ws=new WebSocket('ws://127.0.0.1:'+server.address().port+'/realtime');await once(ws,'open');const outcome=new Promise(resolve=>{ws.once('message',()=>resolve('state'));ws.once('close',code=>resolve(code));});ws.send(JSON.stringify({type:'hello',code:seat.code,token:seat.token}));assert.equal(await outcome,1008);
+});
+
 test('WebSocket authenticates sessions, broadcasts authoritative movement to both players, and rejects malformed messages',async t=>{
   const db=new DatabaseSync(':memory:');
+  db.exec('CREATE TABLE pipa_rooms (code TEXT PRIMARY KEY,state TEXT NOT NULL,rev INTEGER NOT NULL DEFAULT 0,updated INTEGER NOT NULL)');
   const DB={prepare(sql){let v=[];return {bind(...a){v=a;return this;},async run(){const r=db.prepare(sql).run(...v);return {meta:{changes:Number(r.changes)}};},async first(){return db.prepare(sql).get(...v);}};}};
   async function api(action,b){const r=await worker.fetch(new Request('http://test/api/'+action,{method:'POST',body:JSON.stringify(b)}),{DB});return r.json();}
   const a=await api('create',{name:'A'}),b=await api('join',{code:a.code,name:'B',color:1});
