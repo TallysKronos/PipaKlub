@@ -18,10 +18,10 @@ test('collection viewports enclose every pose without changing the crop scale ac
  }
 });
 
-function app({seen=false,search='',failed=false,reduced=false,member=false,hosted=false}={}){
+function app({seen=false,search='',hash='',failed=false,reduced=false,member=false,hosted=false}={}){
  const html=fs.readFileSync('docs/index.html','utf8').replace('const STATIC_HOST = true;',hosted?'const STATIC_HOST = false;':'const STATIC_HOST = true;'),{document}=parseHTML(html),timers=[],requests=[],draws=[],listeners=new Map(),storage=new Map(seen?[['pipaAssisIntroV1','done']]:[]);
  for(const canvas of document.querySelectorAll('canvas'))canvas.getContext=()=>({clearRect(){},drawImage(...args){draws.push({canvas:canvas.id,args});},imageSmoothingEnabled:true});
- const context=vm.createContext({document,console,crypto,Date,Intl,URLSearchParams,AbortController,performance:{now:()=>100},location:{search,hash:'',pathname:'/',protocol:'https:',host:'test'},history:{replaceState(){}},localStorage:{getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,v)},matchMedia:()=>({matches:reduced}),MutationObserver:document.defaultView.MutationObserver,ResizeObserver:class{observe(){}},requestAnimationFrame(){},setInterval(){},clearInterval(){},setTimeout(fn,delay){timers.push({fn,delay});return timers.length;},clearTimeout(){},fetch:async()=>({ok:true,json:async()=>({enabled:false})}),Image:class{set src(url){requests.push(url);queueMicrotask(()=>failed?this.onerror():this.onload());}},addEventListener(name,fn){if(!listeners.has(name))listeners.set(name,[]);listeners.get(name).push(fn);}});
+ const context=vm.createContext({document,console,crypto,Date,Intl,URLSearchParams,AbortController,performance:{now:()=>100},location:{search,hash,pathname:'/',protocol:'https:',host:'test'},history:{replaceState(){}},localStorage:{getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,v)},matchMedia:()=>({matches:reduced}),MutationObserver:document.defaultView.MutationObserver,ResizeObserver:class{observe(){}},requestAnimationFrame(){},setInterval(){},clearInterval(){},setTimeout(fn,delay){timers.push({fn,delay});return timers.length;},clearTimeout(){},fetch:async()=>({ok:true,json:async()=>({enabled:false})}),Image:class{set src(url){requests.push(url);queueMicrotask(()=>failed?this.onerror():this.onload());}},addEventListener(name,fn){if(!listeners.has(name))listeners.set(name,[]);listeners.get(name).push(fn);}});
  vm.runInContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],context);
  if(member)vm.runInContext('playerAccount={profile:{nickname:"Ana",level:1},inventory:[]}',context);
  context.cancelAnimationFrame=()=>{};
@@ -30,18 +30,31 @@ function app({seen=false,search='',failed=false,reduced=false,member=false,hoste
  return {document,requests,draws,storage,run:code=>vm.runInContext(code,context),auto:()=>timers.find(t=>t.delay===650).fn(),settle:()=>new Promise(r=>setImmediate(r)),key:key=>{let stopped=false;for(const fn of listeners.get('keydown')){fn({key,target:{tagName:'BODY'},preventDefault(){},stopImmediatePropagation(){stopped=true;}});if(stopped)break;}}};
 }
 
+test('forgot-password requests do not send a typed login password and preserve a retry path',async()=>{
+ const a=app();await a.settle();a.run(`$('accountEmail').value='player@example.test';$('accountPassword').value='NeverForwardThis';var recoveryRequests=[];accountRequest=async(action,body)=>{recoveryRequests.push({action,body});return {message:'Confira seu e-mail.'};};`);
+ a.document.getElementById('forgotPassword').onclick();assert.equal(a.document.getElementById('recoveryEmail').value,'player@example.test');await a.document.getElementById('recoveryForm').onsubmit({preventDefault(){}});assert.equal(a.run('recoveryRequests[0].action'),'recover');assert.equal(a.run('Object.keys(recoveryRequests[0].body).join()'),'email');assert.equal(a.document.getElementById('recoveryStatus').textContent,'Confira seu e-mail.');
+ a.document.getElementById('recoveryCancel').onclick();assert.equal(a.document.getElementById('passwordRecovery').hidden,true);
+});
+
+test('recovery links open password confirmation without persisting the token and discard it after completion',async()=>{
+ const a=app({hash:'#type=recovery&access_token=unit-recovery-token-not-a-credential&refresh_token=discard-this-too'});await a.settle();assert.equal(a.run('accountRecoveryMode'),'reset');assert.equal(a.document.getElementById('accountModal').style.display,'flex');assert.equal(a.run('recoveryFragment.get("access_token")'),null);assert.equal(a.run('recoveryFragment.get("refresh_token")'),null);
+ a.run(`var resets=0;accountRequest=async()=>{resets++;return {message:'Senha atualizada.'};};$('recoveryPassword').value='UnitTestOnly123!';$('recoveryConfirm').value='DifferentUnitTest!';`);await a.document.getElementById('recoveryForm').onsubmit({preventDefault(){}});assert.equal(a.run('resets'),0);assert.match(a.document.getElementById('recoveryStatus').textContent,/iguais/);
+ a.run(`$('recoveryConfirm').value='UnitTestOnly123!'`);await a.document.getElementById('recoveryForm').onsubmit({preventDefault(){}});assert.equal(a.run('resets'),1);assert.equal(a.run('passwordRecoveryToken'),null);assert.equal(a.run('accountRecoveryMode'),null);assert.equal(a.document.getElementById('recoveryPassword').value,'');assert.ok([...a.storage.values()].every(v=>!v.includes('unit-recovery-token')));
+});
+
 test('plaza HUD uses account progression, routes missions and options, and never grants collection items',async()=>{
  const a=app({seen:true});await a.settle();
  a.run(`playerAccount={profile:{id:'plaza-a',nickname:'Ana',level:8,xp:5100,next_level_xp:6400,equipped_kite_id:null},inventory:[]};journey={phase:'complete'};trailProgress.coins=123;showCourtyard();`);
- assert.equal(a.document.getElementById('plazaCoins').textContent,'123');assert.equal(a.document.getElementById('plazaLevel').textContent,'Nv. 8');assert.equal(a.document.getElementById('plazaXP').getAttribute('aria-valuenow'),'13');
- a.document.getElementById('plazaNav-missions').onclick();assert.match(a.document.getElementById('dialogTitle').textContent,/próximo voo/);assert.equal(a.document.querySelectorAll('.plaza-mission-row').length,3);assert.equal(a.run('mode'),null);
+ assert.equal(a.document.getElementById('plazaCoins').textContent,'123');assert.equal(a.document.getElementById('plazaLevel').textContent,'Pipeiro · Nv. 8');assert.equal(a.document.getElementById('plazaXP').getAttribute('aria-valuenow'),'13');
+ a.document.getElementById('plazaNav-missions').onclick();assert.match(a.document.getElementById('dialogTitle').textContent,/próximo voo/);assert.equal(a.document.querySelectorAll('.plaza-mission-row').length,1);assert.equal(a.run('mode'),null);
  a.run('closeModal()');a.document.getElementById('plazaNav-settings').onclick();assert.equal(a.run('homeMenuGroup'),'optionsGroup');a.run('closeHomeMenu()');assert.equal(a.run('playerAccount.inventory.length'),0);
  a.run('trailProgress.coins=27;reflectCoins()');assert.equal(a.document.getElementById('plazaCoins').textContent,'27');
 });
 test('plaza backpack displays only confirmed owned tails and ignores replies from a previous account',async()=>{
  const a=app({seen:true});await a.settle();
- a.run(`playerAccount={profile:{id:'bag-a',nickname:'Ana',level:1},inventory:[]};accountRequest=async()=>({summon:{tails:[{id:'one',modelId:'basica',name:'Carcará',status:'ready'},{id:'two',modelId:'basica',name:'Carcará',status:'damaged'},{id:'used',modelId:'basica',name:'Carcará',status:'consumed'}]}});`);
- await a.run('openPlazaBag()');assert.equal(a.document.querySelectorAll('.plaza-bag-item').length,2);assert.match(a.document.getElementById('plazaBagStatus').textContent,/2 rabiolas/);
+ a.run(`playerAccount={profile:{id:'bag-a',nickname:'Ana',level:1},inventory:[]};accountRequest=async()=>({summon:{tails:[{id:'one',modelId:'basica',name:'Carcará',status:'ready'},{id:'another',modelId:'basica',name:'Carcará',status:'ready'},{id:'two',modelId:'basica',name:'Carcará',status:'damaged'},{id:'used',modelId:'basica',name:'Carcará',status:'consumed'}]}});`);
+ await a.run('openPlazaBag()');assert.equal(a.document.querySelectorAll('.plaza-bag-item').length,2);assert.match(a.document.getElementById('plazaBagStatus').textContent,/3 rabiolas/);
+ const cards=[...a.document.querySelectorAll('.plaza-bag-item')];assert.match(cards[0].textContent,/×2/);assert.match(cards[0].textContent,/Pronta/);assert.match(cards[1].textContent,/×1/);assert.match(cards[1].textContent,/Danificada/);
  a.run('closeModal();var bagResolve;accountRequest=()=>new Promise(resolve=>bagResolve=resolve);var bagRequest=openPlazaBag();playerAccount={profile:{id:"bag-b"},inventory:[]};bagResolve({summon:{tails:[{id:"old",modelId:"basica",name:"Carcará",status:"ready"}]}})');
  await a.run('bagRequest');assert.equal(a.document.querySelectorAll('.plaza-bag-item').length,0);assert.equal(a.run('playerAccount.inventory.length'),0);
 });
@@ -238,6 +251,17 @@ test('skip, invitations, keyboard blocking and image failure do not prevent play
  for(const options of [{seen:true},{search:'?sala=ABCDEF'}]){const a=app(options);a.auto();await a.settle();assert.equal(a.run('introductionOpen'),false);}
  const a=app({failed:true,member:true});a.auto();a.run('openIntroduction()');await a.settle();assert.equal(a.document.getElementById('assisRetry').hidden,false);assert.match(a.document.getElementById('assisLoad').textContent,/não carregaram/);a.key('e');assert.equal(a.run('input().skill'),0);a.document.getElementById('assisSkip').onclick();assert.equal(a.run('introductionOpen'),false);a.run("$('practice').onclick()");assert.equal(a.run('mode'),'practice');assert.equal(a.run("art.creature({},0,0)"),false);
 });
+
+test('a signed-in room invitation exposes join and cancel instead of an empty game shell',async()=>{
+ const a=app({seen:true,member:true,search:'?sala=ABCDEF'});await a.settle();
+ assert.equal(a.run('offerRoomInvitation()'),true);
+ assert.equal(a.document.getElementById('courtyard').hidden,false);
+ assert.equal(a.document.getElementById('friendsSheet').hidden,false);
+ assert.equal(a.document.getElementById('code').value,'ABCDEF');
+ assert.equal(a.run('mode'),null,'opening an invitation never silently enters a match');
+ a.run('closeSheet()');assert.equal(a.document.getElementById('courtyard').hidden,false);
+ assert.equal(a.run('offerRoomInvitation()'),false,'refreshing account data does not reopen a dismissed invitation');
+});
 test('arena draws actual atlas frames, restores smoothing, and reduced motion freezes the selected creature',async()=>{
  const a=app({reduced:true,seen:true});await a.settle();a.run("art.creature($('sky').getContext('2d'),2,0)");a.run("art.creature($('sky').getContext('2d'),2,1200)");const d=a.draws.filter(d=>d.canvas==='sky');assert.equal(d.length,2);assert.deepEqual(d[0].args.slice(1),d[1].args.slice(1));assert.match(a.run('kiteSVG(colors[2])'),/almatic-icon/);assert.match(a.run('kiteSVG(colors[2])'),/basicos-v2\/azulao\.png\?v=/);
 });
@@ -359,8 +383,25 @@ test('first-flight instructions follow the active input device without resetting
  const a=app({member:true});await a.settle();
  assert.match(a.run("inputDevice='gamepad-xbox';firstFlightInstruction(1)"),/pressione A/);
  assert.match(a.run("inputDevice='gamepad-ps';firstFlightInstruction(3)"),/L1 ou R1/);
- assert.match(a.run("inputDevice='touch';firstFlightInstruction(3)"),/Deslize/);
+ assert.match(a.run("inputDevice='touch';firstFlightInstruction(3)"),/botão Habilidade/);
  assert.match(a.run("inputDevice='keyboard';firstFlightInstruction(0)"),/WASD/);
+});
+
+test('demo completion leaves three working routes and future districts stay unavailable with legacy wins',async()=>{
+ const a=app({member:true});await a.settle();
+ a.run(`playerAccount.profile.id='demo-ui';journey={phase:'complete'};for(const stage of trails.stages)trailProgress.stars[stage.id]=3;selectCity(1);`);
+ assert.equal(a.document.getElementById('cityExplore').hidden,true);assert.match(a.document.getElementById('cityDescription').textContent,/demo inclui/);assert.equal(a.run('firstOpenStage().id'),'morro-5');
+ a.run('openDemoFinale()');assert.match(a.document.getElementById('dialogTitle').textContent,/Morro do Sol/);assert.ok(a.document.getElementById('demoOnline'));assert.ok(a.document.getElementById('demoSummon'));assert.ok(a.document.getElementById('demoRevisit'));
+ a.document.getElementById('demoOnline').onclick();assert.equal(a.document.getElementById('friendsSheet').hidden,false);
+});
+
+test('first invocation rehearsal uses no server calls or tails and enables the real ritual only after a valid practice',async()=>{
+ const a=app({member:true});await a.settle();
+ a.run(`playerAccount.inventory=[{id:'story'}];summonData={tails:[{id:'tail',modelId:'raio',name:'Raio de sol',status:'ready'}],seen:[]};var rehearsalCalls=0;summonCall=async()=>{rehearsalCalls++;};prepareSummon({modelId:'raio',name:'Raio de sol',color:3,pattern:[1,2,5],availableTailIds:['tail']});`);
+ a.document.querySelector('#summonTailList button').onclick();assert.equal(a.document.getElementById('summonStart').disabled,true);
+ a.document.getElementById('summonPracticeButton').onclick();
+ for(const n of [1,2,5])a.document.querySelector(`[aria-label="Estrela de ensaio ${n}"]`).onclick();
+ assert.equal(a.document.getElementById('summonStart').disabled,false);assert.equal(a.run('rehearsalCalls'),0);assert.equal(a.run('summonData.tails[0].status'),'ready');assert.equal(a.run('playerAccount.inventory.length'),1);
 });
 
 test('choosing the first partner shows a welcome only after server confirmation, before entering practice',async()=>{
@@ -383,7 +424,7 @@ test('city district briefing keeps its five encounters separate and clears the s
  assert.match(a.document.getElementById('stageTrail').textContent,/Encontro 1 de 5/);
  a.run('closeTrails();renderTrails()');
  assert.equal(a.document.getElementById('districtArrival').hidden,true);
- assert.equal(a.document.querySelectorAll('.trail:not([hidden])').length,3);
+ assert.equal(a.document.querySelectorAll('.trail:not([hidden])').length,1);
 });
 
 test('district maps keep every leader hidden until the final encounter is unlocked',async()=>{
@@ -396,6 +437,7 @@ test('district maps keep every leader hidden until the final encounter is unlock
   assert.equal(a.document.getElementById('stageSpeaker').textContent,'Sr. Assis:');
   a.run(`for(const st of trails.stages){if(st.id===trailPick)break;trailProgress.stars[st.id]=1;}renderTrails()`);
   const name=a.run('trails.trails[trails.stage(trailPick).trailIndex].leaderName');
+  if(id!=='morro'){assert.equal(a.document.getElementById('trailStart').disabled,true,'future districts stay locked even with legacy progress');continue;}
   assert.ok(a.document.getElementById('stageFoes').textContent.includes(name));
   assert.equal(a.document.getElementById('trailStart').disabled,false);
  }

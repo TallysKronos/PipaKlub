@@ -27,7 +27,7 @@ function showOnlineTrailResult(s,ranking,mine){
      refreshRewards();if(r.pipamonXp!=null)root.append(uiElement('p','+'+r.pipamonXp+' XP para o parceiro desta Trilha.','pipamon-result-xp'));
      updateTrailStoryOutcome(s.trail,r,data.status);
      if(r.tailId){const summon=uiElement('button','Ir ao invocador ✦','primary');summon.id='trailGoSummoner';summon.onclick=()=>openTrailSummoner(r.drop);root.append(summon);}
-     const next=r.won&&trails.nextStage(s.trail),again=uiElement('button',r.won?'Ver meu caminho ▶':'Tentar de novo ↻','secondary');again.id='rematchButton';again.onclick=()=>{if(r.won)returnToDistrict(s.trail,true);else{returnToDistrict(s.trail,false);presentStage(s.trail);}};root.append(again);return;
+     const finale=trails.demo&&s.trail==='morro-5'&&r.won,again=uiElement('button',finale?'Concluir a demo ▶':r.won?'Ver meu caminho ▶':'Tentar de novo ↻',finale?'primary':'secondary');again.id='rematchButton';again.onclick=()=>{if(finale)openDemoFinale();else if(r.won)returnToDistrict(s.trail,true);else{returnToDistrict(s.trail,false);presentStage(s.trail);}};root.append(again);again.focus({preventScroll:true});return;
     }
    }
    if(data.status!=='abandoned'&&++attempts<12)setTimeout(check,1500);else addRetry(root);

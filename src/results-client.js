@@ -12,7 +12,7 @@ function showMatchResult(s,ranking=[]){if(!s.trail)track(s.quick?'quick_match_en
  const place=ranking.findIndex(q=>q.id===me)+1,cuts=mine?.cuts||0;
  modal(place===1?'O céu é seu!':'Cada duelo deixa uma história.',
   (place?'<p class="result-place">Você ficou em '+place+'º de '+ranking.length+'</p>':'')+'<p>'+(rounds?'Rodadas vencidas: '+(mine?.rounds||0)+' · ':'')+'Seus cortes: '+cuts+'.</p><div id="matchRewardSummary" class="match-rewards" aria-live="polite"></div>'+rows+'<button class="primary" id="rematchButton">'+(s.quick?'Nova partida rápida ▶':mode==='online'?'Revanche com a turma ↻':'Jogar de novo ↻')+'</button>','Voltar ao menu','Resultado do duelo');
- $('rematchButton').onclick=rematch;$('dialogAction').className='secondary';
+ $('rematchButton').onclick=rematch;$('dialogAction').className='secondary';$('rematchButton').focus({preventScroll:true});
  if(!authenticated){$('matchRewardSummary').append(uiElement('p',mode==='practice'?'O treino não altera XP nem a coleção.':'Como visitante, você participa da disputa sem salvar XP ou conquistar pipas. Entre na sua conta para guardar seu progresso.'));return;}
  beginMatchResult(s.id);
 }

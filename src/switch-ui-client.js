@@ -38,6 +38,14 @@ function moveFocus(dir){
  // First press lands on the screen's main action when there is one, else the top-left target.
  if(!current){const first=PRIMARY.map(s=>targets.find(t=>t.el.matches(s))).find(Boolean)||targets.slice().sort((a,b)=>a.top-b.top||a.left-b.left)[0];focusPad(first.el);return;}
  const el=current.el;
+ // Reading panels have their own scroll, independent of the portrait browser.
+ if(el.matches('.pilot-detail-tabs [role=tab]')&&dir==='down'){
+  const panel=document.getElementById(el.getAttribute('aria-controls'));if(panel){focusPad(panel);return;}
+ }
+ if(el.matches('.pilot-detail-page')){
+  if(dir==='left'){const tab=document.getElementById(el.getAttribute('aria-labelledby'));if(tab){focusPad(tab);return;}}
+  if((dir==='up'||dir==='down')&&el.scrollHeight>el.clientHeight){el.scrollTop+=dir==='up'?-56:56;return;}
+ }
  // Sliders and selects take left/right as value changes, like a console options screen.
  if((dir==='left'||dir==='right')&&el.matches('input[type=range],select')){
   const step=dir==='right'?1:-1;
@@ -58,6 +66,7 @@ function pressKey(key){padSynthetic=true;try{const target=document.activeElement
 function goBack(){pressKey('Escape');}
 // LB/RB: tabs when the screen has them, otherwise the first filter select.
 function switchTab(step){
+ if(typeof pilotSwitchPage==='function'&&pilotSwitchPage(step))return;
  const tabs=focusTargets().map(t=>t.el).filter(el=>el.matches('[role=tab],[data-hud-tab],[aria-pressed][data-tab],.tab-button'));
  if(tabs.length>1){const i=tabs.findIndex(el=>el.getAttribute('aria-selected')==='true'||el.getAttribute('aria-pressed')==='true'||el.classList.contains('active'));const next=tabs[(Math.max(0,i)+step+tabs.length)%tabs.length];next.click();next.focus({preventScroll:true});return;}
  const select=focusTargets().map(t=>t.el).find(el=>el.tagName==='SELECT');

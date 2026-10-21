@@ -1,8 +1,27 @@
-// This script is embedded into the page. It never stores authentication tokens.
+// Cookie sessions stay HttpOnly. The recovery-link token is kept only in memory until submission or cancellation.
 let playerAccount=null,accountsEnabled=false,accountTab='login',accountSaving=false,rewardRefreshTimer;
 let accountConnection='checking',accountConfigPending=null,accountRetryTimer=null,accountRetryCount=0;
 const accountConnectionMessages={checking:'Conectando ao serviço de contas…',offline:'Não foi possível conectar ao serviço de contas. Vamos tentar novamente; você também pode usar o botão abaixo.',disabled:'O login está temporariamente indisponível no servidor. Tente conectar novamente em instantes.',static:'O login está disponível no endereço oficial do jogo. Abra o PipaKlub online para entrar na sua conta.'};
 const accountModal=$('accountModal');
+let accountRecoveryMode=null,passwordRecoveryToken=null;
+const recoveryFragment=new URLSearchParams(location.hash.slice(1));
+if(recoveryFragment.get('type')==='recovery'&&recoveryFragment.get('access_token')){passwordRecoveryToken=recoveryFragment.get('access_token');accountRecoveryMode='reset';history.replaceState(null,'',location.pathname+location.search);}
+recoveryFragment.delete('access_token');recoveryFragment.delete('refresh_token');
+const forgotPassword=uiElement('button','Esqueci minha senha','secondary');forgotPassword.id='forgotPassword';forgotPassword.type='button';$('accountAuth').append(forgotPassword);
+const passwordRecovery=uiElement('section');passwordRecovery.id='passwordRecovery';passwordRecovery.hidden=true;
+passwordRecovery.innerHTML='<p id="recoveryHelp"></p><form class="account-form" id="recoveryForm"><label id="recoveryEmailLabel" for="recoveryEmail">E-mail da conta</label><input id="recoveryEmail" type="email" autocomplete="email"><label id="recoveryPasswordLabel" for="recoveryPassword">Nova senha</label><input id="recoveryPassword" type="password" minlength="8" maxlength="128" autocomplete="new-password"><label id="recoveryConfirmLabel" for="recoveryConfirm">Repita a nova senha</label><input id="recoveryConfirm" type="password" minlength="8" maxlength="128" autocomplete="new-password"><button type="submit" class="primary" id="recoverySubmit">Enviar link de recuperação</button></form><button type="button" class="secondary" id="recoveryCancel">Voltar ao login</button><p id="recoveryStatus" role="status" aria-live="polite"></p>';
+$('accountAuth').after(passwordRecovery);
+function closeRecovery(){accountRecoveryMode=null;passwordRecoveryToken=null;$('recoveryPassword').value='';$('recoveryConfirm').value='';$('recoveryStatus').textContent='';}
+forgotPassword.onclick=()=>{accountRecoveryMode='request';$('recoveryEmail').value=$('accountEmail').value;renderAccountDialog();$('recoveryEmail').focus({preventScroll:true});};
+$('recoveryCancel').onclick=()=>{closeRecovery();renderAccountDialog();$('accountEmail').focus({preventScroll:true});};
+$('recoveryForm').onsubmit=async e=>{
+ e.preventDefault();if(accountSaving)return;const resetting=accountRecoveryMode==='reset',token=passwordRecoveryToken;
+ if(resetting&&$('recoveryPassword').value!==$('recoveryConfirm').value){$('recoveryStatus').textContent='As duas senhas precisam ser iguais.';return;}
+ accountSaving=true;$('recoverySubmit').disabled=true;$('recoveryCancel').disabled=true;$('recoveryStatus').textContent=resetting?'Atualizando sua senha…':'Enviando o link…';
+ try{const result=await accountRequest(resetting?'reset-password':'recover',resetting?{token,password:$('recoveryPassword').value}:{email:$('recoveryEmail').value});if(resetting){closeRecovery();playerAccount=null;accountTab='login';reflectAccount();$('accountMessage').textContent=result.message;}else $('recoveryStatus').textContent=result.message;}
+ catch(err){$('recoveryStatus').textContent=err.name==='AbortError'?'A conexão demorou. Tente novamente.':err.message;}
+ finally{accountSaving=false;$('recoverySubmit').disabled=false;$('recoveryCancel').disabled=false;$('recoveryPassword').value='';$('recoveryConfirm').value='';renderAccountDialog();}
+};
 function requireClubAccount(feature){if(playerAccount)return true;toast('Entre ou crie sua conta para acessar '+feature+'.');openAccount();return false;}
 async function accountRequest(action,body){
  const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),12000);
@@ -32,6 +51,8 @@ async function refreshAccount(){
  try{const d=await accountRequest('session');const previous=playerAccount;playerAccount=d.account;announcePipamonLevels(previous,playerAccount);reflectAccount();}catch(e){if(accountModal.style.display==='flex')$('accountMessage').textContent=e.message;}
 }
 function renderAccountDialog(){
+ passwordRecovery.hidden=!accountRecoveryMode;forgotPassword.hidden=!!playerAccount||accountTab!=='login';
+ if(accountRecoveryMode){const resetting=accountRecoveryMode==='reset';$('accountAuth').hidden=true;$('accountCollection').hidden=true;$('accountTitle').textContent=resetting?'Escolha sua nova senha':'Recupere sua conta';$('recoveryHelp').textContent=resetting?'Escolha uma senha exclusiva para jogar. Nunca envie sua senha pelo chat.':'Enviaremos um link ao e-mail da sua conta. Se o link expirar, você pode solicitar outro.';for(const id of ['recoveryEmail','recoveryEmailLabel'])$(id).hidden=resetting;$('recoveryEmail').required=!resetting;for(const id of ['recoveryPassword','recoveryPasswordLabel','recoveryConfirm','recoveryConfirmLabel'])$(id).hidden=!resetting;$('recoveryPassword').required=$('recoveryConfirm').required=resetting;$('recoverySubmit').textContent=resetting?'Salvar nova senha':'Enviar link de recuperação';return;}
  const logged=!!playerAccount;$('accountAuth').hidden=logged;$('accountCollection').hidden=!logged;
  $('accountTitle').textContent=logged?'Sua coleção, sua história.':accountTab==='signup'?'Seu lugar no céu.':'De volta ao céu.';
  $('signupFields').hidden=accountTab!=='signup';$('accountPassword').autocomplete=accountTab==='signup'?'new-password':'current-password';
@@ -60,7 +81,7 @@ async function openAccount(){
  if(mode){toast('Saia da partida para abrir sua coleção.');return;}
  keys={};closeKiteStory();$('accountMessage').textContent='';accountModal.style.display='flex';renderAccountDialog();$('closeAccount').focus();if(!accountsEnabled)await initializeAccounts();else await refreshAccount();await loadRecentMatches();
 }
-function closeAccount(){if(typeof leaveSummoner==='function'&&summonOpen)leaveSummoner();closeKiteStory();accountModal.style.display='none';$('accountPassword').value='';$('accountButton').focus();}
+function closeAccount(){closeRecovery();if(typeof leaveSummoner==='function'&&summonOpen)leaveSummoner();closeKiteStory();accountModal.style.display='none';$('accountPassword').value='';$('accountButton').focus();}
 $('accountButton').onclick=openAccount;$('closeAccount').onclick=closeAccount;
 accountModal.onclick=e=>{if(e.target===accountModal)closeAccount();};
 $('switchAccount').onclick=()=>{accountTab=accountTab==='login'?'signup':'login';$('accountMessage').textContent='';renderAccountDialog();};
@@ -96,5 +117,6 @@ $('retryAccounts').onclick=()=>{accountRetryCount=0;return initializeAccounts();
 addEventListener('online',()=>{if(!accountsEnabled)initializeAccounts();});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!accountsEnabled&&accountConnection==='offline')initializeAccounts();});
 function refreshRewards(){if(!playerAccount)return;clearTimeout(rewardRefreshTimer);rewardRefreshTimer=setTimeout(refreshAccount,1800);}
-if(location.hash.includes('access_token=')){history.replaceState(null,'',location.pathname+location.search);toast('E-mail confirmado. Entre na sua conta para continuar.');}
+if(location.hash.includes('access_token=')){history.replaceState(null,'',location.pathname+location.search);if(!passwordRecoveryToken)toast('E-mail confirmado. Entre na sua conta para continuar.');}
+if(passwordRecoveryToken)Promise.resolve().then(()=>{accountModal.style.display='flex';renderAccountDialog();$('recoveryPassword').focus({preventScroll:true});});
 initializeAccounts();setInterval(refreshAccount,15*60*1000);

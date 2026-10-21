@@ -1,5 +1,5 @@
 // Trilhas: single-player road of AI duels. Pure data and rules, shared by the page and the tests.
-export function createTrails(){
+export function createTrails({demo=false}={}){
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
   const foe=(name,color,soul)=>soul?{name,color,soul}:{name,color};
   const TRAILS=[
@@ -173,7 +173,7 @@ export function createTrails(){
     "nextHint": "O Morro do Sol ficou na sua história. A Beira-Mar agora espera por você."
   }
 };
-  const story=id=>STORIES[id]||null;
+  const story=id=>demo&&id==='morro-5'?{...STORIES[id],won:[['Mikka','Você conquistou o Morro do Sol! Essa rabiola é o começo de um novo laço. Passe no ateliê do professor para conhecer seu próximo parceiro.']],nextHint:'Você concluiu a história desta demo. Revisite o Morro, cuide dos seus parceiros e desafie seus amigos no online.'}:STORIES[id]||null;
   const stages=TRAILS.flatMap((t,ti)=>t.stages.map((s,si)=>({...s,trail:t.id,trailIndex:ti,index:si})));
   const stage=id=>stages.find(s=>s.id===id)||null;
   const MASTERY_MAX=8;
@@ -186,7 +186,9 @@ export function createTrails(){
     const n=(v,max)=>clamp(Math.trunc(Number(v))||0,0,max);
     return {coins:n(p.coins,1e9),stars,mastery:n(p.mastery,MASTERY_MAX),wins:n(p.wins,1e9),losses:n(p.losses,1e9),fails,items:[...new Set(Array.isArray(p.items)?p.items.filter(id=>DROPS.includes(id)):[])]};
   }
-  function unlocked(p,id){const i=stages.findIndex(s=>s.id===id);return i===0||(i>0&&!!p.stars[stages[i-1].id]);}
+  const available=id=>!!stage(id)&&(!demo||stage(id).trailIndex===0);
+  const completed=p=>stages.filter(s=>available(s.id)).every(s=>!!p.stars[s.id]);
+  function unlocked(p,id){const i=stages.findIndex(s=>s.id===id);return available(id)&&(i===0||(i>0&&!!p.stars[stages[i-1].id]));}
   // Difficulty adapts: every two points of mastery add one AI level on top of the stage's base level.
   // Extra rivals already make a stage harder, so there mastery adds at most one level; after three
   // losses in a row on a stage its AI eases off by one level until the stage is won.
@@ -203,6 +205,6 @@ export function createTrails(){
     return {progress:next,coins,stars,firstClear,drop,fails:next.fails[id]||0,levelBefore:aiLevel(st,before),levelAfter:aiLevel(st,next)};
   }
   const totalStars=p=>Object.values(p.stars).reduce((a,b)=>a+b,0);
-  const nextStage=id=>{const i=stages.findIndex(s=>s.id===id);return i>=0?stages[i+1]||null:null;};
-  return {story,DROPS,RELIEF_AFTER,trails:TRAILS,stages,stage,defaults,sanitize,unlocked,aiLevel,settle,totalStars,nextStage,MASTERY_MAX};
+  const nextStage=id=>{const i=stages.findIndex(s=>s.id===id),s=i>=0?stages[i+1]:null;return s&&available(s.id)?s:null;};
+  return {demo,available,completed,story,DROPS,RELIEF_AFTER,trails:TRAILS,stages,stage,defaults,sanitize,unlocked,aiLevel,settle,totalStars,nextStage,MASTERY_MAX};
 }

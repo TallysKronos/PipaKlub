@@ -6,8 +6,9 @@ const pilotUI=!/[?&]classico\b/.test(location.search);
 const PILOT_KITE='<svg viewBox="0 0 40 64" aria-hidden="true"><path d="M20 2 37 20 20 40 3 20Z" fill="#f2a33a" stroke="#213d39" stroke-width="2.5" stroke-linejoin="round"/><path d="M20 2 20 40M3 20h34" stroke="#213d39" stroke-width="1.6"/><path d="M20 2 37 20 20 20Z" fill="#e2603a"/><path d="M20 40c-6 5 6 7 0 12s5 6 0 10" fill="none" stroke="#213d39" stroke-width="2"/><path d="m15 47 5 2 5-2M15 56l5 2 5-2" stroke="#e2603a" stroke-width="3" stroke-linecap="round"/></svg>';
 function pilotKite(cls='pilot-kite'){const k=document.createElement('span');k.className=cls;k.setAttribute('aria-hidden','true');k.innerHTML=PILOT_KITE;return k;}
 // Footer commands are also buttons, so mouse and touch use the same command system as the controller.
-function pilotCommand(command,label,fn){const c=document.createElement(fn?'button':'span');c.className='pilot-command';if(fn){c.type='button';c.tabIndex=-1;c.onclick=fn;}c.append(glyphImage(command),document.createTextNode(label));return c;}
+function pilotCommand(command,label,fn){const c=document.createElement(fn?'button':'span');c.className='pilot-command';if(fn){c.type='button';c.tabIndex=-1;c.onclick=fn;if(!label)c.setAttribute('aria-label',command==='tabLeft'?'Página anterior':'Próxima página');}c.append(glyphImage(command),document.createTextNode(label));return c;}
 const pilotEscape=()=>pressKey('Escape');
+let pilotSwitchPage=null;
 
 if(pilotUI){
 document.body.classList.add('pilot-ui');
@@ -139,15 +140,61 @@ function pilotSearch(input,label){
  return ()=>{wrap?.classList.toggle('pilot-collapsed');if(!wrap?.classList.contains('pilot-collapsed'))input.focus();};
 }
 function pilotCollectionFooter(host,items){const f=document.createElement('footer');f.className='pilot-footer pilot-footer-inline';f.append(...items.map(([c,l,fn])=>pilotCommand(c,l,fn)));host.append(f);return f;}
-let invTabs=null,dexTabs=null,invSearch=null,dexSearch=null;
+let invTabs=null,dexTabs=null,invSearch=null,dexSearch=null,invPages=null,dexPages=null;
 function pilotWireCollection(){
- if(!invTabs&&$('inventoryFilter')&&$('inventoryList')){invTabs=pilotTabs($('inventoryFilter'),$('inventoryList'));invSearch=pilotSearch($('inventorySearch'));pilotCollectionFooter($('inventoryList').closest('.account-card')||$('inventoryList').parentElement,[['confirm','Equipar',()=>$('inventoryEquip')?.click()],['actionX','Histórico',()=>$('inventoryHistory')?.click()],['actionY','Buscar',()=>invSearch?.()],['tabLeft','',()=>pilotStep(invTabs,-1)],['tabRight','Filtro',()=>pilotStep(invTabs,1)],['back','Voltar',()=>closeAccount()]]).classList.add('pilot-inventory-footer');
+ if(!invTabs&&$('inventoryFilter')&&$('inventoryList')){invTabs=pilotTabs($('inventoryFilter'),$('inventoryList'));invSearch=pilotSearch($('inventorySearch'));pilotCollectionFooter($('inventoryList').closest('.account-card')||$('inventoryList').parentElement,[['confirm','Equipar',()=>$('inventoryEquip')?.click()],['actionX','Histórico',()=>$('inventoryHistory')?.click()],['actionY','Buscar',()=>invSearch?.()],['tabLeft','',()=>invPages?.step(-1)],['tabRight','Ficha',()=>invPages?.step(1)],['back','Voltar',()=>closeAccount()]]).classList.add('pilot-inventory-footer');
   // The footer mirrors the real equip button: same label, same disabled state.
   const equip=$('inventoryEquip'),cmd=document.querySelector('.pilot-inventory-footer .pilot-command');
   if(equip&&cmd){const sync=()=>{cmd.disabled=equip.disabled;cmd.lastChild.textContent=equip.disabled&&/equipada/i.test(equip.textContent)?'Equipada':'Equipar';};new MutationObserver(sync).observe(equip,{attributes:true,childList:true,characterData:true,subtree:true});sync();}}
  if(!dexTabs&&$('dexFilter')&&$('dexList')){dexTabs=pilotTabs($('dexFilter'),$('dexList'));dexSearch=pilotSearch($('dexSearch'));}
 }
 pilotWireCollection();new MutationObserver(pilotWireCollection).observe(document.body,{childList:true,subtree:true});
+
+// Two stable regions: the full creature on the left, the identity and reading page on the right.
+{
+ const inv=$('inventoryDetails'),dex=$('dexDetails'),summary=uiElement('div',undefined,'pilot-partner-summary');summary.id='pilotPartnerSummary';
+ const nodes=selector=>[...dex.querySelectorAll(selector)];
+ const heading=dex.querySelector('.dex-profile>div:last-child'),stage=dex.querySelector('.dex-stage');
+ heading.classList.add('creature-heading');dex.prepend(stage,heading);dex.querySelector('.dex-profile').remove();
+ const dexFacts=dex.querySelector('.dex-facts'),obtain=$('dexObtain'),obtainTitle=obtain.previousElementSibling;
+ const story=$('dexStory'),storyTitle=story.previousElementSibling;
+ const controls=dex.querySelector('.dex-controls');controls.classList.add('pilot-animation-controls');
+ dexPages=createDetailPages(dex,{id:'dex-detail',label:'Páginas da Pipa Dex',pages:[
+  {label:'Visão geral',nodes:[dexFacts,obtainTitle,obtain]},
+  {label:'Técnica',nodes:nodes('.dex-skill')},
+  {label:'História',nodes:[storyTitle,story,dex.querySelector('.dex-note')]},
+  {label:'Rabiola',nodes:[$('dexItemsSection')]},
+  {label:'Animações',nodes:[controls,$('dexAnimationHint')]}
+ ]});
+ const lore=$('inventoryLore').parentElement,notes=[...inv.querySelectorAll('.collection-info')];
+ invPages=createDetailPages(inv,{id:'inventory-detail',label:'Páginas do parceiro',pages:[
+  {label:'Visão geral',nodes:[summary,inv.querySelector('.collection-facts')]},
+  {label:'Status',nodes:[$('inventoryProgress')]},
+  {label:'Técnica',nodes:[inv.querySelector('.collection-skill'),...notes]},
+  {label:'História',nodes:[lore]}
+ ]});
+ // Asset errors remain visible, including on a different reading page.
+ const invStage=inv.querySelector('.collection-stage');invStage.append($('inventoryLoad'));
+ stage.append($('dexLoad'),$('dexRetry'));
+ for(const canvas of [$('inventoryCanvas'),$('dexCanvas')]){canvas.width=600;canvas.height=760;}
+ const selectOwned=selectInventory;
+ selectInventory=function(kite){
+  const pending=selectOwned(kite),p=pipamonProgress(kite);
+  summary.replaceChildren();
+  const level=uiElement('p','Nível '+p.level+' / 50','pilot-summary-level'),tier=uiElement('span',p.tier?p.tier.name:'Em formação','pipamon-tier');level.append(tier);summary.append(level);
+  const stats=uiElement('dl',undefined,'pilot-summary-stats');
+  for(const [name,value]of [['Linha',p.stats.line],['Energia',p.stats.energy]]){const item=uiElement('div');item.append(uiElement('dt',name),uiElement('dd',String(value)));stats.append(item);}
+  summary.append(stats,uiElement('p',p.next===null?'Nível máximo':p.into+' / '+p.needed+' XP para o próximo nível','pilot-summary-xp'));
+  const skill=uiElement('div',undefined,'pilot-summary-skill');skill.append(uiElement('b',$('inventorySkill').textContent),uiElement('p',$('inventorySkillDescription').textContent));summary.append(skill);
+  return pending;
+ };
+ const footer=pilotCollectionFooter(dex.closest('.dex-card'),[['actionY','Buscar',()=>dexSearch?.()],['tabLeft','',()=>dexPages.step(-1)],['tabRight','Ficha',()=>dexPages.step(1)],['back','Voltar',()=>closeDex()]]);footer.classList.add('pilot-dex-footer');
+}
+// LB/RB and Q/E have one meaning here: change the reading page. Filters remain explicit choices.
+pilotSwitchPage=step=>{
+ const pager=!$('pauseSheet').hidden?null:inventoryVisible()?invPages:dexOpen?dexPages:null;
+ if(!pager)return false;pager.step(step);return true;
+};
 // Opening a collection lands on the partner that is shown (the equipped one), not on the close button.
 function pilotLandOnCard(list,selector){
  const a=document.activeElement;if(!list.offsetParent||list.contains(a)&&a!==list)return;
@@ -162,7 +209,7 @@ document.addEventListener('focusout',e=>{const card=e.target.closest?.('#invento
 addEventListener('keydown',e=>{
  if(/INPUT|TEXTAREA|SELECT/.test(e.target?.tagName||''))return;const key=e.key.toLowerCase();
  const inv=$('inventoryList')?.offsetParent?invTabs:null,dex=$('dexList')?.offsetParent?dexTabs:null,bar=inv||dex;if(!bar)return;
- if(key==='q'||key==='e'){e.preventDefault();pilotStep(bar,key==='q'?-1:1);}
+ if(key==='q'||key==='e'){e.preventDefault();pilotSwitchPage?.(key==='q'?-1:1);}
  if(key==='y'){e.preventDefault();(inv?invSearch:dexSearch)?.();}
  if(key==='x'&&inv){e.preventDefault();$('inventoryHistory')?.click();}
 });
@@ -174,15 +221,26 @@ document.documentElement.style.setProperty('--pilot-kite','url("data:image/svg+x
 {
  const sheet=$('pauseSheet'),card=sheet.querySelector('.sheet-card');card.classList.add('pilot-pause');
  const line=$('pauseLineChoice'),lineTabs=line?pilotTabs(line,line.closest('label')):null;
- if(lineTabs){const label=document.createElement('p');label.className='pilot-tabs-label';label.textContent='Rebicada';lineTabs.before(label);}
+ let syncLine=()=>{},stepLine=()=>{};
+ if(lineTabs){
+  lineTabs.hidden=true;lineTabs.classList.add('pilot-line-hidden');
+  const picker=uiElement('section',undefined,'pilot-line-picker');picker.setAttribute('aria-label','Rebicada equipada');
+  const title=uiElement('p','Rebicada','pilot-tabs-label'),row=uiElement('div',undefined,'pilot-line-row');
+  const prev=uiElement('button','‹'),next=uiElement('button','›'),name=uiElement('span');prev.type=next.type='button';prev.setAttribute('aria-label','Rebicada anterior');next.setAttribute('aria-label','Próxima rebicada');name.setAttribute('aria-live','polite');
+  const info=uiElement('p',undefined,'pilot-line-info');info.id='pilotLineInfo';
+  syncLine=()=>{const i=[...line.options].findIndex(o=>o.value===line.value),d=eng.lineSkills.find(d=>d.id===line.value);name.textContent=(i+1)+' / '+line.options.length+' · '+(d?.name||line.options[i]?.textContent||'');info.textContent=d?d.description+' · '+d.cost+' de energia · Recarga '+d.cooldown+' s.':'';};
+  stepLine=n=>{pilotStep(lineTabs,n);syncLine();};prev.onclick=()=>stepLine(-1);next.onclick=()=>stepLine(1);
+  row.append(prev,name,next);picker.append(title,row,info);lineTabs.after(picker);syncLine();
+  const pages=pilotSwitchPage;pilotSwitchPage=n=>{if(!sheet.hidden){stepLine(n);return true;}return pages?.(n)||false;};
+ }
  const list=document.createElement('div');list.className='pilot-pause-list';
  const resume=card.querySelector('button.primary[data-close-sheet]'),rules=$('pauseRules'),leave=$('pauseLeave');
  for(const b of [resume,rules,leave]){b.classList.add('pilot-text-option');list.append(b);}
  resume.textContent='Continuar';card.querySelector('.menu-row')?.remove();$('pauseNote').after(list);
  const footer=document.createElement('div');footer.className='pilot-footer pilot-footer-inline pilot-pause-footer';
- footer.append(pilotCommand('confirm','Escolher'),...(lineTabs?[pilotCommand('tabLeft','',()=>pilotStep(lineTabs,-1)),pilotCommand('tabRight','Rebicada',()=>pilotStep(lineTabs,1))]:[]),pilotCommand('back','Continuar',pilotEscape));card.append(footer);
- new MutationObserver(()=>{if(sheet.hidden)return;lineTabs?.sync();requestAnimationFrame(()=>{if(!sheet.hidden)resume.focus({preventScroll:true});});}).observe(sheet,{attributes:true,attributeFilter:['hidden']});
- addEventListener('keydown',e=>{if(sheet.hidden||!lineTabs||e.ctrlKey||e.metaKey||e.altKey)return;const k=e.key.toLowerCase();if(k==='q'||k==='e'){e.preventDefault();e.stopImmediatePropagation();pilotStep(lineTabs,k==='q'?-1:1);}},true);
+ footer.append(pilotCommand('confirm','Escolher'),...(lineTabs?[pilotCommand('tabLeft','',()=>stepLine(-1)),pilotCommand('tabRight','Rebicada',()=>stepLine(1))]:[]),pilotCommand('back','Continuar',pilotEscape));card.append(footer);
+ new MutationObserver(()=>{if(sheet.hidden)return;lineTabs?.sync();syncLine();requestAnimationFrame(()=>{if(!sheet.hidden)resume.focus({preventScroll:true});});}).observe(sheet,{attributes:true,attributeFilter:['hidden']});
+ addEventListener('keydown',e=>{if(sheet.hidden||!lineTabs||e.ctrlKey||e.metaKey||e.altKey)return;const k=e.key.toLowerCase();if(k==='q'||k==='e'){e.preventDefault();e.stopImmediatePropagation();stepLine(k==='q'?-1:1);}},true);
  addEventListener('keydown',e=>{if(sheet.hidden||!['ArrowUp','ArrowDown'].includes(e.key))return;const items=[...list.querySelectorAll('button')].filter(b=>!b.hidden&&!b.disabled),i=items.indexOf(document.activeElement);if(i<0)return;e.preventDefault();e.stopImmediatePropagation();items[(i+(e.key==='ArrowDown'?1:-1)+items.length)%items.length].focus({preventScroll:true});},true);
 }
 

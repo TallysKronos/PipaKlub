@@ -43,7 +43,7 @@ leaveSummoner=function(){originalLeaveSummoner();if(accountPage==='summon'){acco
 $('leaveSummoner').onclick=()=>navigateClub('home');
 $('leaveSummoner').hidden=true;
 const originalRenderAccountDialog=renderAccountDialog;
-renderAccountDialog=function(){originalRenderAccountDialog();if(!playerAccount)accountPage='home';syncClubMenu();};
+renderAccountDialog=function(){originalRenderAccountDialog();if(accountRecoveryMode)return;if(!playerAccount)accountPage='home';syncClubMenu();};
 const originalOpenAccount=openAccount;
 openAccount=async function(){if(!mode){accountPage='home';syncClubMenu();}return originalOpenAccount();};
 $('accountButton').onclick=openAccount;

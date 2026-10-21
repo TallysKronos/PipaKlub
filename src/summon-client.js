@@ -1,6 +1,17 @@
 // Ritual sessions live only in memory: leaving/reloading cannot restart attempts.
 let summonOpen=false,summonBusy=false,summonRitual=null,summonTail=null,summonPath=[],summonPending=null,summonDrawing=null;
 let summonData={tails:[],seen:[]},summonTarget=null;
+const summonRehearsed=new Set();
+function needsSummonPractice(){return playerAccount?.inventory?.length===1&&!summonRehearsed.has(summonTarget?.modelId);}
+function openSummonPractice(){
+ const target=summonTarget;if(!target)return;let path=[];
+ let panel=$('summonPractice');if(!panel){panel=uiElement('section',undefined,'summon-practice');panel.id='summonPractice';$('summonPreparation').append(panel);}
+ panel.hidden=false;panel.replaceChildren(uiElement('h4','Ensaio sem consumir itens'),uiElement('p','Clique nas estrelas nesta ordem: '+target.pattern.join(' → ')+'. Você pode errar e repetir sem perder a rabiola.'));
+ const board=uiElement('div',undefined,'summon-practice-grid'),status=uiElement('p','Nenhuma estrela selecionada.');status.setAttribute('role','status');
+ const reset=()=>{path=[];for(const b of board.children)b.setAttribute('aria-pressed','false');status.textContent='Tente de novo: '+target.pattern.join(' → ');};
+ for(let i=1;i<=9;i++){const b=uiElement('button',String(i),'secondary');b.type='button';b.setAttribute('aria-label','Estrela de ensaio '+i);b.setAttribute('aria-pressed','false');b.onclick=()=>{if(path.length>=target.pattern.length)reset();path=extendSummonPath(path,i);b.setAttribute('aria-pressed','true');status.textContent='Seu desenho: '+path.join(' → ');if(path.length===target.pattern.length){if(path.every((n,j)=>n===target.pattern[j])){summonRehearsed.add(target.modelId);status.textContent='Ensaio concluído! Nenhum item foi usado. Selecione sua rabiola e inicie quando estiver pronto.';$('summonStart').disabled=!summonTail;$('summonStart').focus({preventScroll:true});}else status.textContent+=' · O símbolo é diferente. Reinicie para tentar novamente.';}};board.append(b);}
+ const again=uiElement('button','Reiniciar ensaio','secondary');again.onclick=reset;panel.append(board,status,again);board.querySelector('button').focus({preventScroll:true});
+}
 const summonDisplayName=p=>(typeof ART_CONFIG!=='undefined'?ART_CONFIG.dex.entries.find(e=>e.model===p.modelId)?.name:null)||p.name;
 const summonSession=crypto.randomUUID();
 const summonEntry=uiElement('section',undefined,'summon-entry');
@@ -55,16 +66,19 @@ function renderSummonCatalog(){
  if(!summonData.seen?.length)$('summonSeenGrid').append(uiElement('p','Nenhum Pipamon avistado ainda. Explore a Pipa Dex ou encontre jogadores em partidas.'));
 }
 function prepareSummon(p){
+ $('summonPractice')?.remove();$('summonPracticeButton')?.remove();
  summonTarget=p;summonTail=null;showSummonStage('preparation');$('summonStart').hidden=false;$('summonStart').disabled=true;$('summonStart').textContent='Usar rabiola → Ascendente';$('summonSelectedTail').textContent='Nenhuma rabiola selecionada.';
  const chosen=$('summonChosenPipamon');chosen.replaceChildren();const image=uiElement('div',undefined,'summon-chosen-art');image.innerHTML=art.markup(p.color,p.soul);chosen.append(image,uiElement('h3',p.name),uiElement('small','Pipamon escolhido'));
  $('summonTailList').replaceChildren(...summonData.tails.filter(t=>t.status==='ready').map(tail=>{
   const compatible=p.availableTailIds.includes(tail.id),card=uiElement('article',undefined,'summon-tail '+(compatible?'compatible':'incompatible'));card.append(summonTailArt(tail.modelId),uiElement('b','Rabiola de '+tail.name));
   card.append(uiElement('small',compatible?'Compatível':'🔒 Não pode ser usada neste chamado'));
   const button=uiElement('button','Selecionar rabiola','secondary');button.type='button';button.disabled=!compatible||!!summonData.active||summonBusy;
-  button.onclick=()=>{summonTail=tail;for(const c of $('summonTailList').children)c.classList.toggle('selected',c===card);$('summonSelectedTail').textContent='Selecionada: rabiola de '+tail.name;$('summonStart').disabled=false;};card.append(button);return card;
+  button.onclick=()=>{summonTail=tail;for(const c of $('summonTailList').children)c.classList.toggle('selected',c===card);$('summonSelectedTail').textContent='Selecionada: rabiola de '+tail.name+(needsSummonPractice()?'. Faça o ensaio gratuito antes do primeiro ritual.':'');$('summonStart').disabled=needsSummonPractice();};card.append(button);return card;
  }));
  if(!$('summonTailList').children.length)$('summonTailList').append(uiElement('p','Você não tem rabiolas prontas para usar.'));
  $('summonTarget').textContent=p.name;$('summonPatternHint').textContent='Feitiço: '+p.pattern.join(' → ');$('summonGuide').setAttribute('points',summonPoints(p.pattern));
+ const practice=uiElement('button','Ensaiar feitiço sem usar rabiola','secondary');practice.id='summonPracticeButton';practice.onclick=openSummonPractice;$('summonStart').before(practice);
+ if(needsSummonPractice())$('summonSelectedTail').textContent='Seu primeiro chamado: ensaie o feitiço gratuitamente antes de consumir a rabiola.';
 }
 function renderSummonDamaged(){
  $('summonDamagedList').replaceChildren(...summonData.tails.filter(t=>t.status==='damaged').map(t=>{
@@ -76,7 +90,7 @@ function renderSummonDamaged(){
 $('summonInvoke').onclick=()=>showSummonStage('catalog');$('summonCatalogBack').onclick=()=>showSummonStage('npc');$('summonPreparationBack').onclick=()=>{summonTarget=null;summonTail=null;showSummonStage('catalog');};$('summonDamagedMenu').onclick=()=>showSummonStage('damaged');$('summonDamagedBack').onclick=()=>showSummonStage('npc');
 const summonStart=uiElement('button','Usar rabiola → Ascendente','primary');summonStart.id='summonStart';summonStart.hidden=true;$('summonPreparation').append(summonStart);
 summonStart.onclick=async()=>{
- if(summonBusy||!summonTail)return;summonBusy=true;summonStart.disabled=true;
+ if(summonBusy||!summonTail||needsSummonPractice())return;summonBusy=true;summonStart.disabled=true;
  try{
   const run=await summonCall('start',{tailId:summonTail.id,targetModelId:summonTarget.modelId});
   // Closing while the start request was in flight must still damage this item.
@@ -98,6 +112,7 @@ function updateSummonRun(run){
  if(run.status==='succeeded'){
   if(typeof summonDesignReveal==='function')summonDesignReveal(reveal);
   const sprite=uiElement('div',undefined,'summon-new-pipamon');sprite.innerHTML=art.markup(run.color,run.soul);reveal.append(sprite,uiElement('h3',run.name+' atendeu ao chamado!'),uiElement('p','Este Pipamon agora faz parte da sua coleção.'));
+  const view=uiElement('button','Ver meu novo parceiro','primary');view.id='summonViewPartner';view.onclick=async()=>{view.disabled=true;try{await refreshAccount();leaveSummoner();inventorySelection=run.kiteId||null;navigateClub('collection');const kite=playerAccount?.inventory.find(k=>k.id===run.kiteId);if(kite){await selectInventory(kite);$('inventoryEquip').focus({preventScroll:true});}}finally{view.disabled=false;}};reveal.append(view);view.focus({preventScroll:true});
   $('summonSpeech').textContent='Um novo laço nasceu. Cuide bem dessa história!';refreshAccount();
  }else{
   reveal.append(uiElement('h3',run.status==='failed'?'O chamado se apagou.':'O ritual foi interrompido.'),uiElement('p',run.status==='failed'?'As três tentativas terminaram. A rabiola foi consumida.':'A rabiola ficou danificada e só pode ser descartada.'));

@@ -40,6 +40,21 @@ new MutationObserver(syncHomeInert).observe(document.body,{subtree:true,attribut
 function showCourtyard(){
  const show=!!playerAccount&&!mode&&(!param||homeInvitationHandled);courtyard.hidden=!show;document.body.classList.toggle('game-shell',!!playerAccount);if(show){updateHomeIdentity();syncHomeInert();}
 }
+// A room URL must always leave a visible route to join or cancel after a reload.
+// Missing credentials show the invitation; existing tab credentials resume the same seat.
+function offerRoomInvitation(){
+ if(!playerAccount||mode||!param||homeInvitationHandled)return false;
+ homeInvitationHandled=true;showCourtyard();openSheet('friendsSheet');return true;
+}
+async function recoverRoomInvitation(){
+ if(!param||mode||homeInvitationHandled)return;
+ const owner=playerAccount?.profile.id||null,saved=roomSessions.read(param,owner);
+ if(!saved){offerRoomInvitation();return;}
+ homeInvitationHandled=true;showCourtyard();busy=true;
+ try{const d=await request('resume',{code:param,token:saved.token});if(playerAccount?.profile.id!==owner)return;token=d.token;trailStage=d.state.trail||null;enter(d.state,d.me,'online',d.code);if(d.state.trail){$('roomChip').hidden=true;if(d.state.soloPaused)openPause();}toast('Conexão recuperada. Você voltou à mesma partida.');}
+ catch(e){if(playerAccount?.profile.id!==owner)return;if([401,404,409].includes(e.status))roomSessions.remove(param);openSheet('friendsSheet');toast(e.status===401||e.status===404?'Esta sessão terminou. Você pode entrar em uma nova sala.':'Não foi possível retomar. Tente entrar novamente.');}
+ finally{busy=false;}
+}
 function updateHomeIdentity(){
  if(!playerAccount)return;const p=playerAccount.profile,k=playerAccount.inventory.find(k=>k.id===p.equipped_kite_id);$('homePlayerName').textContent=p.nickname;$('homePartnerName').textContent=journey?.phase==='arrival'||journey?.phase==='choose'?'Um parceiro está esperando por você':k?'Parceiro equipado · '+(k.personal_name||k.model.name):'Seu lugar no clube';
  const signature=p.id+'|'+playerAccount.inventory.map(k=>k.id+':'+k.model_id).join('|');if(signature!==homeSignature){homeSignature=signature;homeFarm.setCollection(playerAccount.inventory);}
@@ -51,7 +66,7 @@ function updateHomeIdentity(){
 async function onCourtyardAccount(){
  const owner=playerAccount?.profile?.id||null;showCourtyard();if(owner===journeyOwner){if(owner)updateHomeIdentity();return;}
  resetOpening(owner);journeyOwner=owner;journeyEpoch++;journey=null;journeyError='';journeyBusy=false;homeReplay=false;journeyLoading=false;homeSignature='';homeFarm.setCollection([]);cityScreen.hidden=true;gameMenu.hidden=true;hideJourney();if(firstFlightRun){firstFlightRun=null;flightCoach.hidden=true;leave();}
- if(!owner)return;loadHomeArt();await loadJourney();
+ if(!owner)return;loadHomeArt();if(param)await recoverRoomInvitation();if(owner===journeyOwner)await loadJourney();
 }
 async function loadJourney(){
  if(!journeyOwner)return;const epoch=journeyEpoch,owner=journeyOwner;journeyLoading=true;updateHomeIdentity();
@@ -94,18 +109,24 @@ function startFirstFlight(){
 }
 function firstFlightInstruction(index){
  const device=typeof inputDevice==='string'?inputDevice:'keyboard';
- if(device.startsWith('gamepad')){const attack=device==='gamepad-ps'?'✕':'A',skill=device==='gamepad-ps'?'L1 ou R1':'LB ou RB';return ['Use o analógico esquerdo para levar seu parceiro até o círculo.','Chegue ao círculo. Quando a mira ficar verde, pressione '+attack+' para rebicar.','Solte '+attack+' para recuperar energia. Você pode continuar voando.','Pressione '+skill+' para experimentar a habilidade do seu parceiro.','Cruze as linhas e pressione '+attack+' para rebicar. Nozinho está só treinando.'][index];}
- if(device==='touch')return ['Arraste no céu até o círculo.','Chegue ao círculo e toque no céu para rebicar quando a mira ficar verde.','Pare de atacar para recuperar energia. Você pode continuar voando.','Deslize rapidamente para um lado para experimentar a habilidade.','Cruze as linhas e toque para rebicar. Nozinho está só treinando.'][index];
+ if(index===3){
+  const r=firstFlightRun,p=r?.state.players[0]||{color:selected},pad=device.startsWith('gamepad'),ps=device==='gamepad-ps',touch=device==='touch',action=r?.exercise||'skill';
+  if(action==='dodge')return 'Esquiva: '+(pad?'pressione '+(ps?'○':'B'):touch?'toque no botão Esquiva':'pressione Shift ou use o botão Esquiva')+'. Você avança um pouco e evita ataques durante o desvio. Não é a habilidade do parceiro.';
+  if(action==='line')return 'Rebicada da linha: segure e solte '+(pad?(ps?'□':'X'):touch?'o botão Rebicada':'R ou o botão Rebicada')+'. Observe a trajetória até a manobra terminar. Ela usa energia e tem sua própria recarga; não substitui o ataque.';
+  return 'Habilidade do parceiro · '+eng.type(p).skill+': '+eng.type(p).description+' '+(pad?'Use '+(ps?'L1 ou R1':'LB ou RB'):touch?'Use o botão Habilidade':'Use Q / E ou o botão Habilidade')+'. '+(p.color===1?'Observe o avanço lateral.':p.color===2?'Ative a proteção e deixe Nozinho acertar uma vez.':'Ative e acerte Nozinho enquanto o efeito está ativo.');
+ }
+ if(device.startsWith('gamepad')){const attack=device==='gamepad-ps'?'✕':'A',skill=device==='gamepad-ps'?'L1 ou R1':'LB ou RB';return ['Use o analógico esquerdo para levar seu parceiro até o círculo.','Chegue ao círculo. Quando a mira ficar verde, pressione '+attack+' para atacar.','Solte '+attack+' para recuperar energia. Você pode continuar voando.','Pressione '+skill+' para experimentar a habilidade do seu parceiro.','Cruze as linhas e pressione '+attack+' para atacar. Nozinho está só treinando.'][index];}
+ if(device==='touch')return ['Arraste no céu até o círculo.','Chegue ao círculo e toque no céu para atacar quando a mira ficar verde.','Pare de atacar para recuperar energia. Você pode continuar voando.','Deslize rapidamente para um lado para experimentar a habilidade.','Cruze as linhas e toque para atacar. Nozinho está só treinando.'][index];
  return firstFlight.lessons[index].hint;
 }
 function refreshFirstFlightInstruction(){if(firstFlightRun&&!firstFlightRun.complete)$('flightHint').textContent=firstFlightInstruction(firstFlightRun.index);}
 function renderFlightCoach(){if(!firstFlightRun)return;const r=firstFlightRun,l=firstFlight.lessons[r.index];$('flightStep').textContent='Sr. Assis · '+(r.index+1)+' de 5';$('flightTitle').textContent=l.title;$('flightHint').textContent=r.complete?l.success:firstFlightInstruction(r.index);$('flightStatus').textContent='';$('flightNext').hidden=!r.complete;$('flightNext').textContent=r.index===4?'Voltar para o quintal':'Próximo passo';}
 function stepFirstFlight(now){
- const r=firstFlightRun;if(!r)return;firstFlight.tick(r,input(),now);if(r.complete&&!flightSaved){flightSaved=true;keys={};resetPointer();renderFlightCoach();$('flightNext').focus({preventScroll:true});}
+ const r=firstFlightRun;if(!r)return;const exercise=r.exercise;firstFlight.tick(r,input(),now);if(exercise!==r.exercise){keys={};resetPointer();renderFlightCoach();}if(r.complete&&!flightSaved){flightSaved=true;keys={};resetPointer();renderFlightCoach();$('flightNext').focus({preventScroll:true});}
 }
 function drawFirstFlightGuide(){
  const r=firstFlightRun;if(!r||r.complete||r.index!==0&&r.index!==1&&r.index!==4)return;
- ctx.save();ctx.strokeStyle='#267d6b';ctx.fillStyle='#e3ffe4a0';ctx.lineWidth=3;ctx.setLineDash([6,5]);ctx.beginPath();ctx.arc(r.target.x,r.target.y,36,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#164b46';ctx.font='16px sans-serif';ctx.textAlign='center';ctx.fillText(r.index===0?'Voe até aqui':'Cruze e rebique',r.target.x,r.target.y-48);ctx.restore();
+ ctx.save();ctx.strokeStyle='#267d6b';ctx.fillStyle='#e3ffe4a0';ctx.lineWidth=3;ctx.setLineDash([6,5]);ctx.beginPath();ctx.arc(r.target.x,r.target.y,36,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#164b46';ctx.font='16px sans-serif';ctx.textAlign='center';ctx.fillText(r.index===0?'Voe até aqui':'Cruze e ataque',r.target.x,r.target.y-48);ctx.restore();
 }
 $('flightNext').onclick=async()=>{const r=firstFlightRun;if(!r?.complete)return;const replay=homeReplay;if(!replay&&!await saveJourney('advance',{lesson:r.index+1}))return;if(firstFlightRun!==r)return;if(r.index===4){homeReplay=false;leave();if(replay)dialogue('Bons ventos, parceiro!','Você pode voltar ao professor sempre que quiser. Sua coleção e seus prêmios continuam os mesmos.','Voltar ao quintal',hideJourney);else renderJourney();}else{firstFlight.next(r);flightSaved=false;keys={};resetPointer();renderFlightCoach();$('sky').focus?.();}};
 $('flightExit').onclick=()=>{homeReplay=false;leave()};
@@ -120,6 +141,8 @@ function drawCourtyard(t){
 $('homeMotion').onclick=()=>{homeMotionPaused=!homeMotionPaused;updateHomeIdentity()};
 async function openClubDestination(page){if(mode||!playerAccount)return;hideJourney();closeHomeMenu();const loading=openAccount();if(playerAccount&&!mode)navigateClub(page);await loading;}
 const homeActions={
+ feedback:()=>modal('Ajude a melhorar a demo','<p>Conte onde você estava, o que tentou fazer e o que aconteceu. O formulário pede os passos e o aparelho usado.</p><p><a class="secondary" href="https://github.com/TallysKronos/PipaKlub/issues/new?template=demo-feedback.yml" target="_blank" rel="noopener noreferrer">Abrir formulário de feedback no GitHub</a></p>','Voltar ao clube','Feedback · demo-rc.1'),
+ demo:()=>openDemoFinale(),
  lab:()=>{hideJourney();closeHomeMenu();skyOpen()},
  collection:()=>openClubDestination('collection'),summon:()=>openClubDestination('summon'),trades:()=>openClubDestination('trades'),profile:()=>openClubDestination('profile'),history:()=>openClubDestination('history'),events:()=>openClubDestination('events'),
  city:()=>openCity(),
@@ -134,7 +157,7 @@ const homeMenuGroups={
  root:[['playGroup','Jogar','menu-play'],['collection','Parceiros','menu-partners'],['dex','Pipa Dex','menu-dex'],['clubGroup','Clube','menu-club'],['school','Escola','menu-school'],['optionsGroup','Opções','menu-options']],
  playGroup:[['root','← Voltar'],['trails','Trilhas'],['quick','Partida rápida'],['daily','Céu do dia'],['friends','Jogar com amigos'],['practice','Treino livre'],...(new URLSearchParams(location.search).has('lab')?[['lab','Laboratório · Duelo nas Alturas']]:[])],
  clubGroup:[['root','← Voltar'],['summon','Invocação'],['trades','Trocas por convite'],['shop','Banca de linhas'],['history','Meus duelos'],['events','Souls de evento'],['profile','Meu perfil'],['professor','Meu primeiro voo'],['story','Rever a abertura']],
- optionsGroup:[['root','← Voltar'],['sound','Som'],['quality','Qualidade da imagem'],['fullscreen','Tela cheia'],...(CLARITY_ID?[['privacy','Privacidade']]:[]),['rules','Regras'],['reload','Recarregar cenário'],['logout','Sair da conta']]
+ optionsGroup:[['root','← Voltar'],['sound','Som'],['quality','Qualidade da imagem'],['fullscreen','Tela cheia'],...(CLARITY_ID?[['privacy','Privacidade']]:[]),['feedback','Enviar feedback da demo'],['rules','Regras'],['reload','Recarregar cenário'],['logout','Sair da conta']]
 };
 let homeMenuGroup='root';
 function renderHomeMenu(group='root'){
@@ -152,8 +175,8 @@ for(const [i,d]of homeArt.districts.entries()){const b=uiElement('button',undefi
 function drawCityBadge(){const im=homeImages.get('badges'),f=homeArt.badges[cityPick];if(!im||!f)return;const c=$('cityBadge'),g=c.getContext('2d');g.clearRect(0,0,c.width,c.height);g.drawImage(im,f.x,f.y,f.w,f.h,3,3,c.width-6,c.height-6)}
 function drawCityMarkers(){const im=homeImages.get('badges');if(!im)return;for(const [i,b]of [...$('cityWorld').querySelectorAll('button')].entries()){let c=b.querySelector('canvas');if(!c){b.querySelector('.city-emblem').remove();c=document.createElement('canvas');c.width=80;c.height=90;c.className='city-emblem';c.setAttribute('aria-hidden','true');b.prepend(c)}const g=c.getContext('2d'),f=homeArt.badges[i];g.clearRect(0,0,80,90);g.drawImage(im,f.x,f.y,f.w,f.h,4,3,72,84)}}
 function selectCity(i){
- cityPick=i;const d=homeArt.districts[i],trail=trails.trails[i];for(const b of $('cityWorld').querySelectorAll('button')){const index=+b.dataset.district,locked=index<3&&!trails.unlocked(trailProgress,trails.trails[index].stages[0].id);b.setAttribute('aria-pressed',String(index===i));b.classList.toggle('locked',locked);b.setAttribute('aria-label',homeArt.districts[index].name+(index>=3?' · em preparação':locked?' · bloqueado':''));}$('cityChapter').textContent='Bairro '+String(i+1).padStart(2,'0');$('cityName').textContent=d.name;$('cityDescription').textContent=i<3?'Explore cinco lugares deste bairro. Vença cada encontro para abrir caminho e descobrir quem espera no desafio final.':'Este bairro faz parte da expansão da cidade e ainda está em preparação.';
- const next=trail?.stages.find(s=>trails.unlocked(trailProgress,s.id)&&!trailProgress.stars[s.id])||trail?.stages.at(-1),unlocked=i<3&&trails.unlocked(trailProgress,trail.stages[0].id);$('cityExplore').hidden=i>=3;$('cityExplore').disabled=!unlocked;$('cityExplore').textContent=unlocked?(trail.stages.every(s=>trailProgress.stars[s.id])?'Revisitar '+d.name:'Explorar '+d.name):'Conclua o bairro anterior';$('cityRecord').textContent=i<3?trail.stages.filter(s=>trailProgress.stars[s.id]).length+' de 5 lugares vencidos · '+(districtLeaderKnown(trail)?'Encontro final: '+d.leader:'Caminhos por descobrir'):'Novos encontros e disputa de títulos chegam na expansão. Nenhum progresso foi concedido.';
+ cityPick=i;const d=homeArt.districts[i],trail=trails.trails[i],outsideDemo=trails.demo&&i>0;for(const b of $('cityWorld').querySelectorAll('button')){const index=+b.dataset.district,locked=index<3&&!trails.unlocked(trailProgress,trails.trails[index].stages[0].id);b.setAttribute('aria-pressed',String(index===i));b.classList.toggle('locked',locked);b.setAttribute('aria-label',homeArt.districts[index].name+(index>=3?' · em preparação':locked?' · bloqueado':''));}$('cityChapter').textContent=outsideDemo?'Versão completa · em breve':'Bairro '+String(i+1).padStart(2,'0');$('cityName').textContent=d.name;$('cityDescription').textContent=outsideDemo?'A demo inclui a abertura, o Morro do Sol e o online. Este bairro faz parte da versão completa.':i<3?'Explore cinco lugares deste bairro. Vença cada encontro para abrir caminho e descobrir quem espera no desafio final.':'Este bairro faz parte da expansão da cidade e ainda está em preparação.';
+ const next=trail?.stages.find(s=>trails.unlocked(trailProgress,s.id)&&!trailProgress.stars[s.id])||trail?.stages.at(-1),unlocked=i<3&&trails.unlocked(trailProgress,trail.stages[0].id);$('cityExplore').hidden=i>=3||outsideDemo;$('cityExplore').disabled=!unlocked;$('cityExplore').textContent=unlocked?(trail.stages.every(s=>trailProgress.stars[s.id])?'Revisitar '+d.name:'Explorar '+d.name):'Conclua o bairro anterior';$('cityRecord').textContent=outsideDemo?'Fora do conteúdo desta demo. Seu progresso e seus parceiros continuam salvos.':i<3?trail.stages.filter(s=>trailProgress.stars[s.id]).length+' de 5 lugares vencidos · '+(districtLeaderKnown(trail)?'Encontro final: '+d.leader:'Caminhos por descobrir'):'Novos encontros e disputa de títulos chegam na expansão. Nenhum progresso foi concedido.';
  $('cityExplore').onclick=()=>{if(!unlocked)return;cityScreen.hidden=true;cityBriefOpen=true;$('trails').dataset.district=String(i);trailPick=next.id;openTrails();syncHomeInert()};drawCityBadge();
 }
 async function openCity(){

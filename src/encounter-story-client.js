@@ -12,5 +12,5 @@ function updateTrailStoryOutcome(id,result,status){
  const root=$('trailStoryOutcome');if(!root||status!=='saved'||!result)return;
  const key=id+'|'+result.won+'|'+result.firstClear;if(root.dataset.storyKey===key)return;root.dataset.storyKey=key;
  root.innerHTML=trailStoryMarkup(id,result.won?'won':'lost',{confirmed:true,firstClear:!!result.firstClear});
- if(id==='morro-5'&&result.won&&result.firstClear){if($('dialogTitle'))$('dialogTitle').textContent='Bons ventos, novo caminho!';if(typeof sfx==='function')sfx('cut');}
+ if(id==='morro-5'&&result.won&&result.firstClear){if($('dialogTitle'))$('dialogTitle').textContent=trails.demo?'Morro do Sol conquistado!':'Bons ventos, novo caminho!';if(typeof sfx==='function')sfx('cut');}
 }

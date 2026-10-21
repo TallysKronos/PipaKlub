@@ -39,6 +39,7 @@ button.pilot-command:hover{color:#ffd65a}
 
 /* Dialogue: portrait, nameplate tied with string, speech, quiet advance. */
 .pilot-ui .pilot-dialogue{display:grid!important;grid-template-columns:auto 1fr;grid-template-areas:'face name' 'face title' 'face text' 'face status' 'face actions';column-gap:22px;align-items:start}
+.pilot-ui .pilot-dialogue[hidden]{display:none!important}
 .pilot-ui .pilot-dialogue>*{grid-column:2}
 .pilot-ui .pilot-dialogue .pilot-portrait,.pilot-ui .pilot-dialogue .pilot-face{grid-area:face;grid-column:1;width:132px;height:132px;align-self:center;border-radius:50%;border:4px solid #213d39;background:#f6e3b8;object-fit:cover}
 .pilot-ui .pilot-dialogue .pilot-face[hidden]{display:none}
@@ -55,7 +56,10 @@ button.pilot-command:hover{color:#ffd65a}
 .pilot-kite-mini{display:inline-block;width:18px;height:28px;margin-left:2px;animation:pilot-bob 1.2s ease-in-out infinite}
 .pilot-kite-mini svg{width:100%;height:100%}
 @keyframes pilot-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-.pilot-ui .opening-dialog #openingHint{display:none}
+.pilot-ui .opening-dialog #openingHint{display:block;font-size:13px;line-height:1.4;margin:4px 0;color:var(--ink)}
+.demo-final-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}.demo-final-actions button{min-height:44px;white-space:nowrap}.demo-finale p{max-width:64ch;line-height:1.6}
+.summon-practice{padding:16px;margin-top:16px;border-top:2px solid currentColor}.summon-practice-grid{display:grid;grid-template-columns:repeat(3,minmax(44px,72px));gap:12px;margin:16px 0}.summon-practice-grid button{min-height:44px}.summon-practice-grid button[aria-pressed=true]{outline:3px solid var(--ink)}
+.pilot-ui #roomChip{white-space:nowrap;min-width:max-content;width:auto;max-width:none;flex-shrink:0;letter-spacing:1px}
 
 /* Collection and Dex: tabs instead of selects, search on demand, inline command footer. */
 .pilot-tabs{display:flex;flex:none;align-items:center;gap:2px;min-height:44px;margin:4px 0 10px;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
@@ -140,3 +144,88 @@ button.pilot-command:hover{color:#ffd65a}
 
 @media (prefers-reduced-motion:reduce){.pilot-kite,.pilot-option,.pilot-text-option,.pilot-text-option::before{transition:none}.pilot-kite svg,.pilot-kite-mini{animation:none}}
 button.pilot-command:disabled{opacity:.55;cursor:default}
+
+/* Benchmark pass: a field guide with a permanent creature, a short reading page and a stable footer. */
+.pilot-ui .collection-layout,.pilot-ui .dex-layout{grid-template-columns:248px minmax(0,1fr);gap:24px}
+.pilot-ui #inventoryList,.pilot-ui #dexList{grid-template-columns:repeat(2,minmax(0,1fr))!important;padding:5px 6px 12px;gap:12px}
+.pilot-ui .portrait-card b,.pilot-ui .dex-entry b{font-size:14px;line-height:18px}
+.pilot-ui .portrait-card small,.pilot-ui .dex-entry small{font-size:11px;line-height:15px}
+.pilot-ui .portrait-card,.pilot-ui .dex-entry.secondary{height:164px;min-height:164px;padding:8px}
+.pilot-ui .portrait-card[aria-pressed=true]{border-color:#9a642e;background:#f5e4ba;box-shadow:inset 0 0 0 1px #9a642e}
+.pilot-ui .portrait-card.equipped::after{content:'✓';width:24px;height:24px;font-size:15px;line-height:24px}
+.pilot-ui #dexList .dex-entry:focus,.pilot-ui #inventoryList .inventory-card:focus{outline:3px solid #b94723!important;outline-offset:2px}
+body.pilot-ui .dex-card{padding:24px 32px 84px!important}
+.pilot-ui .pilot-paged-detail{display:grid;grid-template-columns:minmax(220px,.85fr) minmax(280px,1fr);grid-template-rows:auto auto minmax(0,1fr);gap:16px 24px;overflow:hidden!important;padding:4px 8px 4px 0!important}
+.pilot-ui .pilot-paged-detail[hidden]{display:none!important}
+.pilot-ui .pilot-paged-detail>.collection-stage,.pilot-ui .pilot-paged-detail>.dex-stage{grid-column:1;grid-row:2/4;width:100%;height:auto!important;min-height:0!important;align-self:stretch;margin:0;border-radius:12px;background-color:#d7e6d4}
+.pilot-ui .pilot-paged-detail>.creature-heading{grid-column:2;grid-row:2;min-width:0;margin:0}
+.pilot-ui .pilot-paged-detail h3{font:400 clamp(28px,2.8vw,40px)/1.05 'Lilita One',sans-serif!important;margin:4px 0 6px!important;letter-spacing:0}
+.pilot-ui .pilot-paged-detail .creature-heading p{font-size:15px;line-height:1.4}
+.pilot-ui .pilot-paged-detail .collection-status,.pilot-ui .pilot-paged-detail .dex-ownership,.pilot-ui .pilot-paged-detail .dex-badge{font-size:13px;line-height:1.45}
+.pilot-detail-tabs{grid-column:1/-1;grid-row:1;display:flex;gap:4px;flex-wrap:wrap;padding:0 0 10px;border-bottom:1px solid #b9a07a}
+.pilot-ui .pilot-detail-tabs button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 14px;border:0;border-radius:6px;background:transparent;color:#405e52;font:800 16px/1.25 'Nunito',sans-serif;white-space:nowrap;cursor:pointer}
+.pilot-ui .pilot-detail-tabs button:hover{background:#edddba}
+.pilot-ui .pilot-detail-tabs button[aria-selected=true]{background:#215c50;color:#fff6df}
+.pilot-ui .pilot-detail-tabs button:focus{outline:3px solid #b94723;outline-offset:2px}
+.pilot-detail-body{grid-column:2;grid-row:3;min-height:0;min-width:0;display:flex;overflow:hidden}
+.pilot-detail-page{width:100%;min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;padding:4px 12px 16px 4px;border-radius:6px;outline-offset:-3px}
+.pilot-detail-page[hidden]{display:none!important}
+.pilot-detail-page:focus{outline:3px solid #b94723}
+.pilot-ui .pilot-detail-page p,.pilot-ui .pilot-detail-page .collection-lore p,.pilot-ui .pilot-detail-page .dex-story p{font:600 16px/1.6 'Nunito',sans-serif;color:#405345;max-width:62ch}
+.pilot-ui .pilot-detail-page h4,.pilot-ui .pilot-detail-page .dex-section-title{font-size:17px;line-height:1.4}
+.pilot-ui .pilot-detail-page .collection-facts,.pilot-ui .pilot-detail-page .dex-facts{grid-template-columns:1fr;gap:12px;margin:8px 0 16px;padding:12px 0}
+.pilot-ui .pilot-detail-page dt{font-size:12px!important;line-height:1.4!important}
+.pilot-ui .pilot-detail-page dd{font-size:16px!important;line-height:1.4!important}
+.pilot-summary-level{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:0 0 12px!important;font-weight:900!important;font-size:20px!important}
+.pilot-summary-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0}
+.pilot-summary-stats>div{padding:10px 12px;border:1px solid #b9a07a;border-radius:8px;background:#fff6df}
+.pilot-summary-stats dd{margin:4px 0 0;font-weight:900!important;font-size:24px!important}
+.pilot-ui .pilot-summary-xp{font-size:14px!important;margin:8px 0 16px}
+.pilot-summary-skill{padding-top:12px;border-top:1px dashed #b9a07a}
+.pilot-summary-skill b{font-size:18px}.pilot-summary-skill p{margin:6px 0}
+.pilot-ui .pilot-detail-page .pipamon-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+.pilot-ui .pilot-detail-page .dex-items{padding-top:0;margin-top:0;border:0}
+.pilot-ui .pilot-detail-page .dex-item{display:flex;flex-wrap:wrap}.pilot-ui .pilot-detail-page .dex-item-art,.pilot-ui .pilot-detail-page .dex-item-art img{width:104px;height:104px}
+.pilot-ui .pilot-detail-page .dex-note{margin:12px 0}
+.pilot-ui .pilot-detail-page .pilot-animation-controls{display:flex;flex-wrap:wrap;gap:10px}
+.pilot-ui .pilot-animation-controls #dexAnimation,.pilot-ui .pilot-animation-controls #dexPlay,.pilot-ui .pilot-animation-controls #dexReplay,.pilot-ui .pilot-animation-controls label:has(>#dexAnimation),.pilot-ui .pilot-detail-page #dexAnimationHint{display:block!important}
+.pilot-ui .pilot-animation-controls label{flex:1 0 100%;font-size:16px}
+.pilot-ui .pilot-animation-controls button{min-height:44px;font-size:15px!important}
+.pilot-ui .pilot-paged-detail .collection-stage>[role=status],.pilot-ui .pilot-paged-detail .dex-stage>[role=status]{position:absolute;inset:auto 12px 30px;margin:0;background:#fff6dfeb;border-radius:6px;z-index:2;font:700 14px/1.5 'Nunito',sans-serif}
+.pilot-ui .pilot-paged-detail [role=status]:empty{display:none}
+.pilot-ui .pilot-paged-detail #dexRetry{position:absolute;bottom:62px;max-width:90%;z-index:3}
+.pilot-ui .pilot-dex-footer{display:flex;left:32px;right:32px;bottom:18px}
+.pilot-ui .pilot-inventory-footer{gap:16px}
+.pilot-ui .collection-browser>.pilot-tabs,.pilot-ui .dex-aside>.pilot-tabs{flex-wrap:wrap;overflow:visible;gap:4px;margin-bottom:12px}
+.pilot-ui .pilot-footer-inline .pilot-command{gap:6px;min-height:44px;padding:0 4px!important;margin:0}
+.pilot-ui .pilot-line-hidden{display:none!important}
+.pilot-line-picker{margin:12px 0 8px}
+.pilot-line-row{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;gap:12px;align-items:center;margin-top:8px}
+.pilot-line-row>span{text-align:center;font:800 19px/1.3 'Nunito',sans-serif;color:#214e43}
+.pilot-line-row>button{min-height:44px;min-width:44px;border:1px solid #b9a07a;border-radius:8px;background:#fff6df;color:#214e43;font:800 28px/1 'Nunito',sans-serif;cursor:pointer}
+.pilot-line-row>button:hover{background:#edddba}.pilot-line-row>button:focus{outline:3px solid #b94723;outline-offset:2px}
+.pilot-ui .pilot-pause .pilot-line-info{font:600 14px/1.45 'Nunito',sans-serif;color:#405345!important;margin:8px 0 0;min-height:40px}
+.pilot-ui .pilot-pause{max-height:calc(100dvh - 32px)!important;overflow:auto;padding-top:24px!important}
+.pilot-ui .pilot-pause-list{gap:0;margin-bottom:8px}
+.plaza-bag-item{position:relative}.plaza-bag-quantity{position:absolute;right:10px;top:10px;background:#215c50;color:#fff6df;border-radius:6px;padding:4px 8px;font:900 16px/1.2 'Nunito',sans-serif}
+.pilot-ui #modal.pilot-plaza button.pilot-modal-command:focus{outline:3px solid #b94723!important;outline-offset:4px!important;border-radius:4px!important}
+
+/* No blanket scaling: readable ink and numbers inside the existing nine-slice artwork. */
+.pilot-ui.in-match .hud .hud-player{transform:none;width:360px;height:156px;--paper-left:24%;--paper-right:10%;--paper-top:21%;--paper-bottom:23%}
+.pilot-ui.in-match .hud .hud-player-info{gap:5px}
+.pilot-ui.in-match .hud .hud-name{font-size:16px;line-height:20px}
+.pilot-ui.in-match .hud .hud-eyebrow{font-size:12px;line-height:16px}
+.pilot-ui.in-match .hud .bar-row{min-height:22px;gap:8px}
+.pilot-ui.in-match .hud .bar-row small{font-size:13px;line-height:18px;width:47px}
+.pilot-ui.in-match .hud .bar-row b{font-size:14px;line-height:18px;width:38px;font-variant-numeric:tabular-nums}
+.pilot-ui.in-match .hud .hud-board{transform:none;width:226px;height:220px}
+.pilot-ui.in-match .hud #leaderboard .row{font-size:12px;line-height:18px}
+.pilot-ui.in-match .hud .hud-live{font-size:12px;line-height:16px}
+.pilot-ui.in-match .hud .portrait{width:82px;height:88px;top:26px}
+.pilot-ui.in-match .hud .round-info{font-size:12px;line-height:16px}
+.pilot-ui.in-match .fan-label{font-size:14px;line-height:18px}
+@media(min-width:1600px){.pilot-ui .collection-layout,.pilot-ui .dex-layout{grid-template-columns:300px minmax(0,1fr)}.pilot-ui #inventoryList,.pilot-ui #dexList{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:1050px){.pilot-ui .collection-layout,.pilot-ui .dex-layout{grid-template-columns:200px minmax(0,1fr);gap:16px}.pilot-ui .pilot-paged-detail{grid-template-columns:minmax(160px,.8fr) minmax(220px,1fr);gap:12px}.pilot-ui .pilot-detail-tabs button{padding-inline:10px;font-size:14px}}
+@media(max-width:760px){.pilot-ui .pilot-paged-detail{grid-template-columns:minmax(0,1fr);grid-template-rows:auto 200px auto minmax(140px,1fr);overflow:auto!important}.pilot-ui .pilot-paged-detail>.collection-stage,.pilot-ui .pilot-paged-detail>.dex-stage{grid-column:1;grid-row:2}.pilot-ui .pilot-paged-detail>.creature-heading{grid-column:1;grid-row:3}.pilot-ui .pilot-detail-body{grid-column:1;grid-row:4;min-height:160px}.pilot-ui .pilot-inventory-footer{gap:8px;left:20px;right:20px;flex-wrap:wrap;font-size:13px}.pilot-ui .pilot-dex-footer{left:20px;right:20px;font-size:13px;gap:12px}.pilot-ui.in-match .hud .hud-player{width:265px;height:144px}.pilot-ui.in-match .hud .bar-row small{width:39px;font-size:11px}.pilot-ui.in-match .hud .hud-name{font-size:13px}.pilot-ui.in-match .hud .bar-row b{width:30px;font-size:12px}.pilot-ui.in-match .hud .portrait{width:58px;height:68px}.pilot-ui.in-match .hud .hud-board{width:184px;height:210px}}
+@media(max-width:600px){.pilot-ui .collection-layout,.pilot-ui .dex-layout{grid-template-columns:1fr;grid-template-rows:160px minmax(0,1fr)}.pilot-ui #inventoryList,.pilot-ui #dexList{display:flex!important;gap:10px}.pilot-ui .portrait-card,.pilot-ui .dex-entry.secondary{height:104px;min-height:104px;min-width:84px;width:84px}.pilot-ui .portrait-card b,.pilot-ui .dex-entry b{font-size:11px;line-height:14px}.pilot-ui .pilot-paged-detail h3{font-size:28px!important}}
+@media(max-height:520px){.pilot-ui .pilot-pause{padding-bottom:72px!important}.pilot-ui .pilot-line-picker{margin-top:4px}.pilot-ui .pilot-line-info{min-height:0}.pilot-ui.in-match .hud .hud-player{height:136px}.pilot-ui.in-match .hud .hud-board{height:190px}.pilot-ui .pilot-detail-tabs button{min-height:36px}}

@@ -9,6 +9,23 @@ import {DatabaseSync} from 'node:sqlite';
 import {createGameDatabase} from './src/game-database.js';
 
 const userA='11111111-1111-4111-8111-111111111111',userB='22222222-2222-4222-8222-222222222222',match='33333333-3333-4333-8333-333333333333';
+test('password recovery fixes the return destination, hides account existence and limits email requests',async()=>{
+ const sent=[],a=createAccounts({SUPABASE_URL:'https://provider.test',SUPABASE_PUBLISHABLE_KEY:'public'},{gameDatabase:{rpc(){}},fetcher:async(url,options)=>{sent.push({url,...options});return new Response('{}');}});
+ const request=body=>new Request('https://game.test/account/recover',{method:'POST',headers:{'Content-Type':'application/json',Origin:'https://game.test'},body:JSON.stringify(body)});
+ assert.equal((await a.handle(request({email:'invalid'}))).status,400);
+ const first=await a.handle(request({email:'player@example.test',redirectTo:'https://untrusted.test/'}));assert.equal(first.status,200);assert.match((await first.json()).message,/Se houver uma conta/);assert.equal(sent[0].url,'https://provider.test/auth/v1/recover?redirect_to=https%3A%2F%2Fgame.test%2F');assert.deepEqual(JSON.parse(sent[0].body),{email:'player@example.test'});
+ for(let i=0;i<3;i++)assert.equal((await a.handle(request({email:'unknown@example.test'}))).status,200);
+ assert.equal((await a.handle(request({email:'player@example.test'}))).status,429);
+});
+
+test('password replacement requires a provider-validated bearer and never uses a client-chosen user or admin key',async()=>{
+ let accepted=false;const sent=[],a=createAccounts({SUPABASE_URL:'https://provider.test',SUPABASE_PUBLISHABLE_KEY:'public'},{gameDatabase:{rpc(){throw Error('must not use game SQL')}},fetcher:async(url,options)=>{sent.push({url,...options});return accepted?new Response('{}'):new Response('{"error_code":"invalid_credentials"}',{status:401});}});
+ const request=body=>new Request('https://game.test/account/reset-password',{method:'POST',headers:{'Content-Type':'application/json',Origin:'https://game.test'},body:JSON.stringify(body)});
+ assert.equal((await a.handle(request({password:'ValidTestOnlyPassword!'}))).status,401);assert.equal(sent.length,0);
+ assert.equal((await a.handle(request({token:'recovery-test-token-not-real',password:'ValidTestOnlyPassword!'}))).status,401);
+ accepted=true;const result=await a.handle(request({token:'recovery-test-token-not-real',password:'ValidTestOnlyPassword!',userId:userB}));assert.equal(result.status,200);assert.equal(sent.at(-1).url,'https://provider.test/auth/v1/user');assert.equal(sent.at(-1).method,'PUT');assert.equal(sent.at(-1).headers.Authorization,'Bearer recovery-test-token-not-real');assert.deepEqual(JSON.parse(sent.at(-1).body),{password:'ValidTestOnlyPassword!'});assert.equal(result.headers.getSetCookie().length,2);
+ const cross=new Request('https://game.test/account/reset-password',{method:'POST',headers:{'Content-Type':'application/json',Origin:'https://untrusted.test'},body:'{}'});assert.equal((await a.handle(cross)).status,403);
+});
 test('real PostgreSQL schema: signup grants one inventory, ownership is protected, cuts transfer once and casual preserves items',async()=>{
  const db=new PGlite();try{
   await db.exec("create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key,raw_user_meta_data jsonb);create function auth.uid() returns uuid language sql as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;grant usage on schema public,auth to authenticated,anon,service_role;grant execute on function auth.uid() to authenticated,anon,service_role;");

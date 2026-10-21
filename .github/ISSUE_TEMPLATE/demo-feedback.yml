@@ -1,0 +1,37 @@
+name: Feedback da demo
+description: Relatar um erro ou dificuldade ao jogar a demo do PipaKlub.
+title: "[Demo] "
+body:
+  - type: markdown
+    attributes:
+      value: "Obrigado por testar! Não inclua senhas, links de recuperação ou dados pessoais."
+  - type: input
+    id: version
+    attributes:
+      label: Versão e endereço do jogo
+      value: "demo-rc.1 · https://pipaklub.onrender.com/"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: O que você tentou fazer?
+      description: Conte os passos e o lugar onde aconteceu.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: O que aconteceu e o que você esperava?
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Aparelho e navegador
+      placeholder: "Ex.: notebook Windows, Chrome, teclado e mouse"
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Print e frequência
+      description: Se puder, inclua um print e diga se consegue repetir o problema.

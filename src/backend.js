@@ -1,5 +1,6 @@
-const engine=createEngine(),serverTrails=createTrails();
+const engine=createEngine(),serverTrails=createTrails({demo:true});
 const visible=engine.visible;
+function serverStep(s,now){for(const p of s.players)if(!p.bot&&now-p.seen>500)p.input={};return engine.step(s,now);}
 let initialized;
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json','Cache-Control':'no-store'}});
 async function init(db){if(!initialized)initialized=db.prepare('CREATE TABLE IF NOT EXISTS pipa_rooms (code TEXT PRIMARY KEY, state TEXT NOT NULL, rev INTEGER NOT NULL DEFAULT 0, updated INTEGER NOT NULL)').run().catch(e=>{initialized=null;throw e;});await initialized;}
@@ -22,7 +23,7 @@ async function api(request,env){
   if(action==='join'){
     const row=await env.DB.prepare('SELECT state, rev FROM pipa_rooms WHERE code = ?').bind(code).first();
     if(!row)return json({error:'Sala não encontrada. Confira o código.'},404);
-    const s=JSON.parse(row.state);engine.step(s,now);
+    const s=JSON.parse(row.state);serverStep(s,now);
     if(s.daily||s.trail)return json({error:s.trail?'Esta Trilha é individual. Abra as Trilhas no menu.':'O desafio diário é individual. Abra o Céu do dia no menu.'},403);
     if(s.rules==='capture'&&!b.captureConsent)return json({error:'Confirme a regra Vale pipa para entrar.'},400);
     if(s.players.length>=8)return json({error:'Sala cheia. O limite é de 8 jogadores.'},409);
@@ -34,7 +35,7 @@ async function api(request,env){
   for(let n=0;n<8;n++){
     let row=await env.DB.prepare('SELECT state, rev FROM pipa_rooms WHERE code = ?').bind(code).first();
     if(!row)return json({error:'Sala não encontrada. Confira o código.'},404);
-    let s=JSON.parse(row.state);engine.step(s,now);let token=b.token,p=s.players.find(p=>p.key===token);
+    let s=JSON.parse(row.state);serverStep(s,now);let token=b.token,p=typeof token==='string'&&token.length>=20?s.players.find(p=>!p.bot&&p.key===token):null;
     if(action==='join'){
       // A person who arrives at a full quick room takes a bot's seat between rounds.
       if(s.quick&&s.players.length>=s.quick.size){const i=s.players.findIndex(q=>q.bot);if(i<0||s.phase==='live'){await releaseAccount(env,account,s);return json({error:'Sala cheia. Tente a partida rápida de novo.'},409);}s.players.splice(i,1);}
@@ -50,7 +51,8 @@ async function api(request,env){
       s.next=room.code;await env.DB.prepare('UPDATE pipa_rooms SET state = ?, rev = rev + 1 WHERE code = ? AND rev = ?').bind(JSON.stringify(s),code,row.rev).run();
       return json(room);
     }
-    if(action==='pause'){if(typeof b.paused!=='boolean'||!engine.setSoloPause(s,p,b.paused,now))return json({error:'A pausa é exclusiva da sua campanha solo.'},403);}
+    if(action==='resume'){p.input=engine.sanitizeInput({});p.seen=now;}
+    else if(action==='pause'){if(typeof b.paused!=='boolean'||!engine.setSoloPause(s,p,b.paused,now))return json({error:'A pausa é exclusiva da sua campanha solo.'},403);}
     else if(action==='sync'){p.input=engine.sanitizeInput(b.input);p.seen=now;}
     else if(action==='leave'){s.players=s.players.filter(q=>q.key!==token);if(s.trail){s.end=Math.min(s.end,now);s.last=Math.max(s.last,s.end);}}
     else if(action!=='join')return json({error:'Ação inválida.'},400);
@@ -71,6 +73,7 @@ async function openQuickRoom(env,now){
 }
 async function createRoom(request,env,b,now,daily=false,trailId=null){
   const stage=trailId!==null?serverTrails.stage(trailId):null;if(trailId!==null&&!stage)throw Object.assign(Error('Etapa inválida.'),{status:400});
+  if(stage&&!serverTrails.available(stage.id))throw Object.assign(Error('Este bairro chega na versão completa. A demo inclui o Morro do Sol e as partidas online.'),{status:403});
   const code=crypto.randomUUID().replaceAll('-','').slice(0,6).toUpperCase(),token=crypto.randomUUID(),s=engine.create(now,{mode:b.mode,quick:b.quick,roundsToWin:stage?stage.rounds:daily?2:3});
   if(daily)s.daily=engine.daily(now);if(stage)s.trail=stage.id;
   s.code=code;s.rules=b.rules==='capture'?'capture':'casual';
@@ -87,4 +90,4 @@ async function createRoom(request,env,b,now,daily=false,trailId=null){
   return {code,token,me:p.id,state:visible(s)};
 }
 async function releaseAccount(env,account,s){if(!account?.accountId)return;try{if(env.PROGRESSION)env.PROGRESSION.release(account.accountId,s.id);else await env.ACCOUNTS?.release(account.accountId,s.id);}catch{}}
-export default {async fetch(request,env){try{const u=new URL(request.url);if(u.pathname==='/menu-audit')return new Response(MENU_AUDIT_PAGE,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'}});if(u.pathname==='/hud-kit')return new Response(HUD_KIT_PAGE,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'}});if(u.pathname==='/hud-audit')return new Response(AUDIT_PAGE,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'}});if(u.pathname.startsWith('/assets/'))return env.ASSETS?env.ASSETS.fetch(request):new Response('Asset not found',{status:404});if(u.pathname.startsWith('/api/'))return await api(request,env);if(u.pathname==='/health')return json({ok:true});return new Response(PAGE,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'same-origin'}});}catch(e){console.error(e);return json({error:e.status?e.message:'Não foi possível conectar. Tente novamente ou entre no treino.'},e.status||500);}}};
+export default {async fetch(request,env){try{const u=new URL(request.url);if(u.pathname==='/menu-audit')return new Response(MENU_AUDIT_PAGE,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'}});if(u.pathname==='/hud-kit')return new Response(HUD_KIT_PAGE,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'}});if(u.pathname==='/hud-audit')return new Response(AUDIT_PAGE,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'}});if(u.pathname.startsWith('/assets/'))return env.ASSETS?env.ASSETS.fetch(request):new Response('Asset not found',{status:404});if(u.pathname.startsWith('/api/'))return await api(request,env);if(u.pathname==='/health')return json({ok:true,release:'demo-rc.1',demo:true});return new Response(PAGE,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'same-origin'}});}catch(e){console.error(e);return json({error:e.status?e.message:'Não foi possível conectar. Tente novamente ou entre no treino.'},e.status||500);}}};

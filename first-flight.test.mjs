@@ -74,7 +74,8 @@ test('first flight observes real movement, hit, energy, skill and a cut, for all
    assert.equal(run.index,index);assert.equal(flight.next(run),false,'cannot skip an unobserved exercise');
    for(let frame=0;frame<2400&&!run.complete;frame++){
     const p=run.state.players[0],dx=run.target.x-p.x,dy=run.target.y-p.y,d=Math.hypot(dx,dy);
-    flight.tick(run,{x:d>5?dx/d:0,y:d>5?dy/d:0,cut:index===1||index===4,skill:index===3?1:0,dodge:false},now+=1000/60);
+    const skill=index===3&&run.exercise==='skill',dodge=index===3&&run.exercise==='dodge',line=index===3&&run.exercise==='line'&&!(p.evade>0);
+    flight.tick(run,{x:index===3?0:d>5?dx/d:0,y:index===3?0:d>5?dy/d:0,cut:index===1||index===4||skill,skill:skill?1:0,dodge,lineNonce:line?1:0,lineId:'puxao',lineHeld:false,lineSide:1},now+=1000/60);
    }
    assert.equal(run.complete,true,'partner '+color+', lesson '+index);
    if(index===0)assert.equal(run.state.players[0].hits||0,0,'movement alone has no hit');
@@ -149,5 +150,5 @@ test('world objectives identify the nearby rival, completion and hide the champi
  assert.match(ui.document.getElementById('homeObjective').textContent,/Converse com Zeca/);
  ui.run(`var rivalNames=[];homeImages.set('rival-Zeca',{});var rivalContext={fillStyle:'',beginPath(){},ellipse(){},fill(){},drawImage(){},strokeText(){},fillText(name){rivalNames.push(name)}};drawWorldRival(rivalContext,worldScene().places.find(p=>p.stage==='morro-1'),0);drawWorldRival(rivalContext,worldScene().places.find(p=>p.stage==='morro-5'),0);`);
  assert.equal(ui.run('rivalNames.join()'),'Zeca');
- ui.run(`for(const stage of trails.stages)trailProgress.stars[stage.id]=1;updateWorldContext()`);assert.match(ui.document.getElementById('homeObjective').textContent,/venceu os três bairros/);assert.equal(ui.document.getElementById('plazaMissionTitle').textContent,'Jornada concluída');
+ ui.run(`for(const stage of trails.stages)trailProgress.stars[stage.id]=1;updateWorldContext()`);assert.match(ui.document.getElementById('homeObjective').textContent,/conquistou o Morro/);assert.equal(ui.document.getElementById('plazaMissionTitle').textContent,'Demo concluída');
 });

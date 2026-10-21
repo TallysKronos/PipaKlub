@@ -1,5 +1,5 @@
 // Trilhas UI: trail map, stage briefing, AI duels and coin payouts. Progress uses the per-account outbox, with a guest save on this device.
-const trails=createTrails(),TRAILS_KEY='pipaTrailsV1',TYPE_NAMES=['Precisa','Ágil','Guardiã','Técnica'];
+const trails=createTrails({demo:true}),TRAILS_KEY='pipaTrailsV1',TYPE_NAMES=['Precisa','Ágil','Guardiã','Técnica'];
 let trailProgress=loadTrails(),trailStage=null,trailPick=null;
 function loadTrails(){try{return trails.sanitize(JSON.parse(localStorage.getItem(TRAILS_KEY)||'null'));}catch{return trails.defaults();}}
 function saveTrails(){try{localStorage.setItem(TRAILS_KEY,JSON.stringify(trailProgress));}catch{}}
@@ -18,7 +18,15 @@ const stageDetails=uiElement('div',undefined,'stage-details');
 for(const child of [...document.querySelector('.stage-card').children])if(child.id!=='trailStart'&&!child.classList.contains('stage-foot'))stageDetails.append(child);
 document.querySelector('.stage-card').prepend(stageDetails);
 const starText=n=>'★'.repeat(n)+'☆'.repeat(3-n);
-function firstOpenStage(){return trails.stages.find(s=>trails.unlocked(trailProgress,s.id)&&!trailProgress.stars[s.id])||trails.stages.at(-1);}
+function firstOpenStage(){return trails.stages.find(s=>trails.unlocked(trailProgress,s.id)&&!trailProgress.stars[s.id])||trails.stages.filter(s=>trails.available(s.id)).at(-1);}
+function openDemoFinale(){
+ if(!trails.demo||!trails.completed(trailProgress))return;
+ closeTrails();closeModal();if(mode)leave();hideJourney();closeHomeMenu();
+ modal('O Morro do Sol conhece seu nome',
+  '<section class="demo-finale"><div class="eyebrow">História da demo concluída</div><p>Você deu vida ao seu primeiro parceiro e venceu os cinco encontros do Morro do Sol. Obrigado por fazer parte do começo do PipaKlub!</p><p>Seu progresso, seus parceiros e suas recompensas continuam na conta. Os próximos bairros chegam na versão completa.</p><div class="demo-final-actions"><button id="demoOnline" class="primary">Jogar com amigos</button><button id="demoSummon" class="secondary">Visitar o invocador</button><button id="demoRevisit" class="secondary">Revisitar o Morro do Sol</button></div></section>',
+  'Voltar ao quintal','PipaKlub · Demo');
+ $('dialogAction').className='secondary';$('demoOnline').onclick=()=>{closeModal();homeActions.friends();};$('demoSummon').onclick=()=>{closeModal();homeActions.summon();};$('demoRevisit').onclick=()=>{closeModal();openWorld('morro');};$('demoOnline').focus({preventScroll:true});
+}
 function openTrails(){
  if(!requireClubAccount('as Trilhas'))return;
  if(mode){toast('Saia da partida para abrir as trilhas.');return;}
@@ -32,7 +40,7 @@ function renderTrails(){
  const previous=$('trails').dataset.returnStage;if(previous&&$('trails').dataset.returnWon==='yes'&&$('trails').dataset.returnAdvanced!=='yes'&&trailProgress.stars[previous]){const next=trails.nextStage(previous);if(next&&next.trailIndex===trails.stage(previous).trailIndex&&trails.unlocked(trailProgress,next.id))trailPick=next.id;$('trails').dataset.returnAdvanced='yes';}
  const district=Number($('trails').dataset.district),focused=$('trails').dataset.district!==undefined&&Number.isInteger(district)&&district>=0&&district<trails.trails.length;
  const destination=focused?trails.trails[district]:null;
- $('trailsTitle').textContent=destination?destination.name:'Trilhas da cidade';document.querySelector('.trails-header .eyebrow').textContent=destination?'Seu próximo desafio':'Jornada da cidade';
+ $('trailsTitle').textContent=destination?destination.name:(trails.demo?'Demo · Morro do Sol':'Trilhas da cidade');document.querySelector('.trails-header .eyebrow').textContent=destination?'Seu próximo desafio':'Jornada da cidade';
  let arrival=$('districtArrival');if(!arrival){arrival=uiElement('section',undefined,'district-arrival');arrival.id='districtArrival';}
  arrival.hidden=!destination;
  if(destination){arrival.replaceChildren(uiElement('div','Explore os cinco lugares do bairro. Cada vitória abre um novo caminho. O último encontro guarda uma surpresa.'));}
@@ -41,7 +49,7 @@ function renderTrails(){
  const bonus=Math.floor(trailProgress.mastery/2);
  setText('trailMastery','Rabiolas recebidas na conta '+trailRewards.length+'/'+trails.DROPS.length+' · Maestria '+trailProgress.mastery+'/'+trails.MASTERY_MAX+(bonus?' · a IA está +'+bonus+' nível'+(bonus>1?'s':'')+' mais esperta':' · a IA ainda está te conhecendo'));
  $('trailList').replaceChildren(...trails.trails.map(t=>{
-  const card=document.createElement('section');card.className='trail';card.hidden=focused&&t!==destination;card.style.setProperty('--accent',t.accent);
+  const card=document.createElement('section');card.className='trail';card.hidden=(trails.demo&&t.id!=='morro')||focused&&t!==destination;card.style.setProperty('--accent',t.accent);
   const earned=t.stages.reduce((n,s)=>n+(trailProgress.stars[s.id]||0),0);
   card.innerHTML='<header><div><b></b><small></small></div><span class="trail-stars"></span></header><div class="trail-path"></div>';
   card.querySelector('b').textContent=t.name;card.querySelector('small').textContent=t.subtitle;card.querySelector('.trail-stars').textContent='★ '+earned+'/'+t.stages.length*3;
@@ -135,7 +143,7 @@ function showTrailResult(s,ranking,mine){
   '<button class="primary" id="rematchButton">'+(won?'Ver meu caminho ▶':'Tentar de novo ↻')+'</button>'+(counter!==null&&!won&&!playerAccount?'<button class="secondary" id="trailCounter">Tentar com a '+TYPE_NAMES[counter]+' ↻</button>':''),'Voltar ao mapa do bairro',st.name);
  $('rematchButton').onclick=()=>{if(won)returnToDistrict(s.trail,true);else{returnToDistrict(s.trail,false);presentStage(s.trail);}};
  if($('trailCounter'))$('trailCounter').onclick=()=>{selected=counter;try{localStorage.setItem('pipaColor',String(counter));}catch{}choices();closeModal();startStage(s.trail);};
- if(trails.story(s.trail))$('modal').classList.add('story-result');$('dialogAction').className='secondary';$('dialogAction').onclick=()=>returnToDistrict(s.trail,won);
+ $('rematchButton').focus({preventScroll:true});if(trails.story(s.trail))$('modal').classList.add('story-result');$('dialogAction').className='secondary';$('dialogAction').onclick=()=>returnToDistrict(s.trail,won);
 }
 $('trailsButton').onclick=openTrails;$('trailsClose').onclick=closeTrails;$('trailStart').onclick=()=>presentStage(trailPick);
 $('trails').onclick=e=>{if(e.target===$('trails'))closeTrails();};

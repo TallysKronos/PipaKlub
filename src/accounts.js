@@ -78,6 +78,22 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
    if(action==='history'&&request.method==='GET'){const who=await identity(request,true);if(!who)throw new AccountError('Entre na sua conta para continuar.',401);return json({matches:await rpc('get_player_recent_matches',{},who.access)},200,who.setCookies);}
    if(request.method!=='POST'||!request.headers.get('content-type')?.includes('application/json'))throw new AccountError('Pedido inválido.',405);
    const raw=await request.text();if(raw.length>4096)throw new AccountError('Pedido muito grande.',413);let b;try{b=JSON.parse(raw);}catch{throw new AccountError('Pedido inválido.');}
+   if(action==='recover'){
+    rateLimit(request,'recover',5);const email=String(b.email||'').trim();
+    if(email.length>254||!/^\S+@\S+\.\S+$/.test(email))throw new AccountError('Informe um e-mail válido.');
+    // The destination is derived from this server, never accepted from the client.
+    const destination=new URL(request.url).origin+'/';
+    await remote('/auth/v1/recover?redirect_to='+encodeURIComponent(destination),{method:'POST',body:{email}});
+    return json({ok:true,message:'Se houver uma conta com este e-mail, você receberá um link para escolher uma nova senha.'});
+   }
+   if(action==='reset-password'){
+    rateLimit(request,'reset-password',8);const password=String(b.password||''),token=String(b.token||'');
+    if(password.length<8||password.length>128)throw new AccountError('Use uma senha de 8 a 128 caracteres.');
+    if(token.length<20||token.length>3500)throw new AccountError('Abra um link de recuperação válido recebido no e-mail.',401);
+    // Supabase validates the bearer and authorizes the change on that user; cookies and body user IDs cannot choose an account.
+    await remote('/auth/v1/user',{method:'PUT',token,body:{password}});
+    sessions.clear();return json({ok:true,message:'Senha atualizada. Entre com sua nova senha.'},200,makeCookies(request,null));
+   }
    if(action==='login'||action==='signup'){
     rateLimit(request,action);
     const email=String(b.email||'').trim(),password=String(b.password||'');

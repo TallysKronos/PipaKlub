@@ -10,7 +10,7 @@ function normalLineChoice(){return eng.lineSkills.find(d=>d.id===$('normalLineCh
 function normalLineInput(){return normalLineNonce?{lineNonce:normalLineNonce,lineId:normalLineChoice().id,lineHeld:normalLineHeld,lineSide:normalLineSide}:{};}
 function resetNormalLine(){normalLineHeld=false;}
 function normalLineStart(){
- const p=ownKite();if(!mode||!p||p.respawn||pausedAt||showResult||skyActive||!$('pauseSheet').hidden||$('modal').style.display==='flex'||state?.phase&&state.phase!=='live'||p.lineMove||p.lineCooldown>0||p.energy<normalLineChoice().cost)return;
+ const p=ownKite();if(!mode||!p||p.respawn||p.evade>0||pausedAt||showResult||skyActive||!$('pauseSheet').hidden||$('modal').style.display==='flex'||state?.phase&&state.phase!=='live'||p.lineMove||p.lineCooldown>0||p.energy<normalLineChoice().cost)return;
  normalLineNonce=Math.max(normalLineNonce,p.lineSeen||0)+1;normalLineHeld=true;
 }
 function updateNormalLineHUD(){

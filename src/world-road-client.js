@@ -26,5 +26,5 @@ function worldRoadInteract(place){
  if(place.action==='road_back'){openWorld(place.target,{arrival:'north'});return true;}
  const status=worldRoadGateState();if(!['open','complete'].includes(status.state)){toast(worldRoadGateLabel(c,status));trailSync.retry();return true;}
  if(place.action==='road_gate'){const exit=worldScene().places.find(p=>p.action==='road_next');worldGo(exit);return true;}
- if(status.next)openWorld(status.next.id,{arrival:'south'});else homeActions.city();return true;
+ if(status.next)openWorld(status.next.id,{arrival:'south'});else if(trails.demo)openDemoFinale();else homeActions.city();return true;
 }

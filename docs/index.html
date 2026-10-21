@@ -464,7 +464,7 @@ body.in-match .menu{display:none}
 .game-side .pause-room,.game-side .status{display:none}
 body.in-match .game-side{display:flex!important}
 .pause-btn{width:46px;height:46px;font-size:20px}
-.room-chip{border:3px solid var(--line);border-radius:999px;background:var(--paper);box-shadow:0 3px 0 var(--line);padding:6px 12px;font:400 14px var(--px);letter-spacing:2px}
+.room-chip{white-space:nowrap;flex-shrink:0;min-width:max-content;border:3px solid var(--line);border-radius:999px;background:var(--paper);box-shadow:0 3px 0 var(--line);padding:6px 12px;font:400 14px var(--px);letter-spacing:2px}
 @media (max-width:560px){.room-chip{display:none}}
 .consent-bar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);width:min(560px,calc(100% - 32px));z-index:60;padding:14px 16px;display:grid;gap:8px}.consent-bar[hidden]{display:none}.consent-bar p{margin:0;font-size:13px;line-height:1.5}.consent-bar div{display:flex;gap:8px;justify-content:flex-end}
 .link-btn{background:none;border:0;box-shadow:none;color:inherit;opacity:.7;text-decoration:underline;font-size:12px;padding:4px;margin:6px auto 0;display:block;cursor:pointer}.link-btn[hidden]{display:none}
@@ -1318,8 +1318,8 @@ body.ui-kit-ready .partner-choice{box-sizing:border-box}
 body.ui-kit-ready .flight-coach{width:min(560px,calc(100vw - 44px));padding:5px 12px 8px}
 body.ui-kit-ready .flight-coach h2{font-size:25px;margin:4px 0}
 body.ui-kit-ready .flight-coach p{margin:7px 0;font-size:15px}
-body.ui-kit-ready .flight-coach .journey-actions{flex-wrap:nowrap;gap:10px}
-body.ui-kit-ready .flight-coach .journey-actions button{flex:1;min-width:0;border-width:0 16px!important;border-image-width:0 16px!important;padding:8px 3px!important;font-size:13px!important;min-height:44px}
+body.ui-kit-ready .flight-coach .journey-actions{flex-wrap:wrap;gap:10px}
+body.ui-kit-ready .flight-coach .journey-actions button{flex:0 1 auto;min-width:max-content;white-space:nowrap;border-width:0 16px!important;border-image-width:0 16px!important;padding:8px 8px!important;font-size:13px!important;min-height:44px}
 body.ui-kit-ready .journey-status:empty{display:none}
 /* The first conversation owns attention; navigation returns when it ends. */
 body.ui-kit-ready .courtyard:has(.partner-choice:not([hidden])) :is(.home-hud,.home-footer),body.ui-kit-ready .courtyard:has(.journey-dialog:not([hidden])) :is(.home-hud,.home-footer){visibility:hidden;pointer-events:none}
@@ -1466,6 +1466,7 @@ button.pilot-command:hover{color:#ffd65a}
 
 /* Dialogue: portrait, nameplate tied with string, speech, quiet advance. */
 .pilot-ui .pilot-dialogue{display:grid!important;grid-template-columns:auto 1fr;grid-template-areas:'face name' 'face title' 'face text' 'face status' 'face actions';column-gap:22px;align-items:start}
+.pilot-ui .pilot-dialogue[hidden]{display:none!important}
 .pilot-ui .pilot-dialogue>*{grid-column:2}
 .pilot-ui .pilot-dialogue .pilot-portrait,.pilot-ui .pilot-dialogue .pilot-face{grid-area:face;grid-column:1;width:132px;height:132px;align-self:center;border-radius:50%;border:4px solid #213d39;background:#f6e3b8;object-fit:cover}
 .pilot-ui .pilot-dialogue .pilot-face[hidden]{display:none}
@@ -1482,7 +1483,10 @@ button.pilot-command:hover{color:#ffd65a}
 .pilot-kite-mini{display:inline-block;width:18px;height:28px;margin-left:2px;animation:pilot-bob 1.2s ease-in-out infinite}
 .pilot-kite-mini svg{width:100%;height:100%}
 @keyframes pilot-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-.pilot-ui .opening-dialog #openingHint{display:none}
+.pilot-ui .opening-dialog #openingHint{display:block;font-size:13px;line-height:1.4;margin:4px 0;color:var(--ink)}
+.demo-final-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}.demo-final-actions button{min-height:44px;white-space:nowrap}.demo-finale p{max-width:64ch;line-height:1.6}
+.summon-practice{padding:16px;margin-top:16px;border-top:2px solid currentColor}.summon-practice-grid{display:grid;grid-template-columns:repeat(3,minmax(44px,72px));gap:12px;margin:16px 0}.summon-practice-grid button{min-height:44px}.summon-practice-grid button[aria-pressed=true]{outline:3px solid var(--ink)}
+.pilot-ui #roomChip{white-space:nowrap;min-width:max-content;width:auto;max-width:none;flex-shrink:0;letter-spacing:1px}
 
 /* Collection and Dex: tabs instead of selects, search on demand, inline command footer. */
 .pilot-tabs{display:flex;flex:none;align-items:center;gap:2px;min-height:44px;margin:4px 0 10px;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
@@ -1568,6 +1572,91 @@ button.pilot-command:hover{color:#ffd65a}
 @media (prefers-reduced-motion:reduce){.pilot-kite,.pilot-option,.pilot-text-option,.pilot-text-option::before{transition:none}.pilot-kite svg,.pilot-kite-mini{animation:none}}
 button.pilot-command:disabled{opacity:.55;cursor:default}
 
+/* Benchmark pass: a field guide with a permanent creature, a short reading page and a stable footer. */
+.pilot-ui .collection-layout,.pilot-ui .dex-layout{grid-template-columns:248px minmax(0,1fr);gap:24px}
+.pilot-ui #inventoryList,.pilot-ui #dexList{grid-template-columns:repeat(2,minmax(0,1fr))!important;padding:5px 6px 12px;gap:12px}
+.pilot-ui .portrait-card b,.pilot-ui .dex-entry b{font-size:14px;line-height:18px}
+.pilot-ui .portrait-card small,.pilot-ui .dex-entry small{font-size:11px;line-height:15px}
+.pilot-ui .portrait-card,.pilot-ui .dex-entry.secondary{height:164px;min-height:164px;padding:8px}
+.pilot-ui .portrait-card[aria-pressed=true]{border-color:#9a642e;background:#f5e4ba;box-shadow:inset 0 0 0 1px #9a642e}
+.pilot-ui .portrait-card.equipped::after{content:'✓';width:24px;height:24px;font-size:15px;line-height:24px}
+.pilot-ui #dexList .dex-entry:focus,.pilot-ui #inventoryList .inventory-card:focus{outline:3px solid #b94723!important;outline-offset:2px}
+body.pilot-ui .dex-card{padding:24px 32px 84px!important}
+.pilot-ui .pilot-paged-detail{display:grid;grid-template-columns:minmax(220px,.85fr) minmax(280px,1fr);grid-template-rows:auto auto minmax(0,1fr);gap:16px 24px;overflow:hidden!important;padding:4px 8px 4px 0!important}
+.pilot-ui .pilot-paged-detail[hidden]{display:none!important}
+.pilot-ui .pilot-paged-detail>.collection-stage,.pilot-ui .pilot-paged-detail>.dex-stage{grid-column:1;grid-row:2/4;width:100%;height:auto!important;min-height:0!important;align-self:stretch;margin:0;border-radius:12px;background-color:#d7e6d4}
+.pilot-ui .pilot-paged-detail>.creature-heading{grid-column:2;grid-row:2;min-width:0;margin:0}
+.pilot-ui .pilot-paged-detail h3{font:400 clamp(28px,2.8vw,40px)/1.05 'Lilita One',sans-serif!important;margin:4px 0 6px!important;letter-spacing:0}
+.pilot-ui .pilot-paged-detail .creature-heading p{font-size:15px;line-height:1.4}
+.pilot-ui .pilot-paged-detail .collection-status,.pilot-ui .pilot-paged-detail .dex-ownership,.pilot-ui .pilot-paged-detail .dex-badge{font-size:13px;line-height:1.45}
+.pilot-detail-tabs{grid-column:1/-1;grid-row:1;display:flex;gap:4px;flex-wrap:wrap;padding:0 0 10px;border-bottom:1px solid #b9a07a}
+.pilot-ui .pilot-detail-tabs button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 14px;border:0;border-radius:6px;background:transparent;color:#405e52;font:800 16px/1.25 'Nunito',sans-serif;white-space:nowrap;cursor:pointer}
+.pilot-ui .pilot-detail-tabs button:hover{background:#edddba}
+.pilot-ui .pilot-detail-tabs button[aria-selected=true]{background:#215c50;color:#fff6df}
+.pilot-ui .pilot-detail-tabs button:focus{outline:3px solid #b94723;outline-offset:2px}
+.pilot-detail-body{grid-column:2;grid-row:3;min-height:0;min-width:0;display:flex;overflow:hidden}
+.pilot-detail-page{width:100%;min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;padding:4px 12px 16px 4px;border-radius:6px;outline-offset:-3px}
+.pilot-detail-page[hidden]{display:none!important}
+.pilot-detail-page:focus{outline:3px solid #b94723}
+.pilot-ui .pilot-detail-page p,.pilot-ui .pilot-detail-page .collection-lore p,.pilot-ui .pilot-detail-page .dex-story p{font:600 16px/1.6 'Nunito',sans-serif;color:#405345;max-width:62ch}
+.pilot-ui .pilot-detail-page h4,.pilot-ui .pilot-detail-page .dex-section-title{font-size:17px;line-height:1.4}
+.pilot-ui .pilot-detail-page .collection-facts,.pilot-ui .pilot-detail-page .dex-facts{grid-template-columns:1fr;gap:12px;margin:8px 0 16px;padding:12px 0}
+.pilot-ui .pilot-detail-page dt{font-size:12px!important;line-height:1.4!important}
+.pilot-ui .pilot-detail-page dd{font-size:16px!important;line-height:1.4!important}
+.pilot-summary-level{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:0 0 12px!important;font-weight:900!important;font-size:20px!important}
+.pilot-summary-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0}
+.pilot-summary-stats>div{padding:10px 12px;border:1px solid #b9a07a;border-radius:8px;background:#fff6df}
+.pilot-summary-stats dd{margin:4px 0 0;font-weight:900!important;font-size:24px!important}
+.pilot-ui .pilot-summary-xp{font-size:14px!important;margin:8px 0 16px}
+.pilot-summary-skill{padding-top:12px;border-top:1px dashed #b9a07a}
+.pilot-summary-skill b{font-size:18px}.pilot-summary-skill p{margin:6px 0}
+.pilot-ui .pilot-detail-page .pipamon-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+.pilot-ui .pilot-detail-page .dex-items{padding-top:0;margin-top:0;border:0}
+.pilot-ui .pilot-detail-page .dex-item{display:flex;flex-wrap:wrap}.pilot-ui .pilot-detail-page .dex-item-art,.pilot-ui .pilot-detail-page .dex-item-art img{width:104px;height:104px}
+.pilot-ui .pilot-detail-page .dex-note{margin:12px 0}
+.pilot-ui .pilot-detail-page .pilot-animation-controls{display:flex;flex-wrap:wrap;gap:10px}
+.pilot-ui .pilot-animation-controls #dexAnimation,.pilot-ui .pilot-animation-controls #dexPlay,.pilot-ui .pilot-animation-controls #dexReplay,.pilot-ui .pilot-animation-controls label:has(>#dexAnimation),.pilot-ui .pilot-detail-page #dexAnimationHint{display:block!important}
+.pilot-ui .pilot-animation-controls label{flex:1 0 100%;font-size:16px}
+.pilot-ui .pilot-animation-controls button{min-height:44px;font-size:15px!important}
+.pilot-ui .pilot-paged-detail .collection-stage>[role=status],.pilot-ui .pilot-paged-detail .dex-stage>[role=status]{position:absolute;inset:auto 12px 30px;margin:0;background:#fff6dfeb;border-radius:6px;z-index:2;font:700 14px/1.5 'Nunito',sans-serif}
+.pilot-ui .pilot-paged-detail [role=status]:empty{display:none}
+.pilot-ui .pilot-paged-detail #dexRetry{position:absolute;bottom:62px;max-width:90%;z-index:3}
+.pilot-ui .pilot-dex-footer{display:flex;left:32px;right:32px;bottom:18px}
+.pilot-ui .pilot-inventory-footer{gap:16px}
+.pilot-ui .collection-browser>.pilot-tabs,.pilot-ui .dex-aside>.pilot-tabs{flex-wrap:wrap;overflow:visible;gap:4px;margin-bottom:12px}
+.pilot-ui .pilot-footer-inline .pilot-command{gap:6px;min-height:44px;padding:0 4px!important;margin:0}
+.pilot-ui .pilot-line-hidden{display:none!important}
+.pilot-line-picker{margin:12px 0 8px}
+.pilot-line-row{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;gap:12px;align-items:center;margin-top:8px}
+.pilot-line-row>span{text-align:center;font:800 19px/1.3 'Nunito',sans-serif;color:#214e43}
+.pilot-line-row>button{min-height:44px;min-width:44px;border:1px solid #b9a07a;border-radius:8px;background:#fff6df;color:#214e43;font:800 28px/1 'Nunito',sans-serif;cursor:pointer}
+.pilot-line-row>button:hover{background:#edddba}.pilot-line-row>button:focus{outline:3px solid #b94723;outline-offset:2px}
+.pilot-ui .pilot-pause .pilot-line-info{font:600 14px/1.45 'Nunito',sans-serif;color:#405345!important;margin:8px 0 0;min-height:40px}
+.pilot-ui .pilot-pause{max-height:calc(100dvh - 32px)!important;overflow:auto;padding-top:24px!important}
+.pilot-ui .pilot-pause-list{gap:0;margin-bottom:8px}
+.plaza-bag-item{position:relative}.plaza-bag-quantity{position:absolute;right:10px;top:10px;background:#215c50;color:#fff6df;border-radius:6px;padding:4px 8px;font:900 16px/1.2 'Nunito',sans-serif}
+.pilot-ui #modal.pilot-plaza button.pilot-modal-command:focus{outline:3px solid #b94723!important;outline-offset:4px!important;border-radius:4px!important}
+
+/* No blanket scaling: readable ink and numbers inside the existing nine-slice artwork. */
+.pilot-ui.in-match .hud .hud-player{transform:none;width:360px;height:156px;--paper-left:24%;--paper-right:10%;--paper-top:21%;--paper-bottom:23%}
+.pilot-ui.in-match .hud .hud-player-info{gap:5px}
+.pilot-ui.in-match .hud .hud-name{font-size:16px;line-height:20px}
+.pilot-ui.in-match .hud .hud-eyebrow{font-size:12px;line-height:16px}
+.pilot-ui.in-match .hud .bar-row{min-height:22px;gap:8px}
+.pilot-ui.in-match .hud .bar-row small{font-size:13px;line-height:18px;width:47px}
+.pilot-ui.in-match .hud .bar-row b{font-size:14px;line-height:18px;width:38px;font-variant-numeric:tabular-nums}
+.pilot-ui.in-match .hud .hud-board{transform:none;width:226px;height:220px}
+.pilot-ui.in-match .hud #leaderboard .row{font-size:12px;line-height:18px}
+.pilot-ui.in-match .hud .hud-live{font-size:12px;line-height:16px}
+.pilot-ui.in-match .hud .portrait{width:82px;height:88px;top:26px}
+.pilot-ui.in-match .hud .round-info{font-size:12px;line-height:16px}
+.pilot-ui.in-match .fan-label{font-size:14px;line-height:18px}
+@media(min-width:1600px){.pilot-ui .collection-layout,.pilot-ui .dex-layout{grid-template-columns:300px minmax(0,1fr)}.pilot-ui #inventoryList,.pilot-ui #dexList{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:1050px){.pilot-ui .collection-layout,.pilot-ui .dex-layout{grid-template-columns:200px minmax(0,1fr);gap:16px}.pilot-ui .pilot-paged-detail{grid-template-columns:minmax(160px,.8fr) minmax(220px,1fr);gap:12px}.pilot-ui .pilot-detail-tabs button{padding-inline:10px;font-size:14px}}
+@media(max-width:760px){.pilot-ui .pilot-paged-detail{grid-template-columns:minmax(0,1fr);grid-template-rows:auto 200px auto minmax(140px,1fr);overflow:auto!important}.pilot-ui .pilot-paged-detail>.collection-stage,.pilot-ui .pilot-paged-detail>.dex-stage{grid-column:1;grid-row:2}.pilot-ui .pilot-paged-detail>.creature-heading{grid-column:1;grid-row:3}.pilot-ui .pilot-detail-body{grid-column:1;grid-row:4;min-height:160px}.pilot-ui .pilot-inventory-footer{gap:8px;left:20px;right:20px;flex-wrap:wrap;font-size:13px}.pilot-ui .pilot-dex-footer{left:20px;right:20px;font-size:13px;gap:12px}.pilot-ui.in-match .hud .hud-player{width:265px;height:144px}.pilot-ui.in-match .hud .bar-row small{width:39px;font-size:11px}.pilot-ui.in-match .hud .hud-name{font-size:13px}.pilot-ui.in-match .hud .bar-row b{width:30px;font-size:12px}.pilot-ui.in-match .hud .portrait{width:58px;height:68px}.pilot-ui.in-match .hud .hud-board{width:184px;height:210px}}
+@media(max-width:600px){.pilot-ui .collection-layout,.pilot-ui .dex-layout{grid-template-columns:1fr;grid-template-rows:160px minmax(0,1fr)}.pilot-ui #inventoryList,.pilot-ui #dexList{display:flex!important;gap:10px}.pilot-ui .portrait-card,.pilot-ui .dex-entry.secondary{height:104px;min-height:104px;min-width:84px;width:84px}.pilot-ui .portrait-card b,.pilot-ui .dex-entry b{font-size:11px;line-height:14px}.pilot-ui .pilot-paged-detail h3{font-size:28px!important}}
+@media(max-height:520px){.pilot-ui .pilot-pause{padding-bottom:72px!important}.pilot-ui .pilot-line-picker{margin-top:4px}.pilot-ui .pilot-line-info{min-height:0}.pilot-ui.in-match .hud .hud-player{height:136px}.pilot-ui.in-match .hud .hud-board{height:190px}.pilot-ui .pilot-detail-tabs button{min-height:36px}}
+
 </style></head>
 <body>
 <div id="game">
@@ -1611,7 +1700,7 @@ button.pilot-command:disabled{opacity:.55;cursor:default}
 <label>Sua almática</label><div class="kites" id="kites"></div><p class="account-hint" id="accountHint">Entre para guardar pipas e ganhar XP nas disputas.</p>
 <button class="primary" data-close-sheet>Pronto</button></section></div>
 <div class="sheet" id="friendsSheet" hidden><section class="panel sheet-card" role="dialog" aria-modal="true" aria-labelledby="friendsSheetTitle"><button class="close" data-close-sheet aria-label="Fechar">×</button><div class="eyebrow">Sala com amigos</div><h2 id="friendsSheetTitle">Jogar com a turma</h2>
-<button class="btn btn-teal" id="create">Criar sala</button><div class="divider">ou entre com o código</div><form class="join" id="joinForm"><input id="code" maxlength="6" placeholder="CÓDIGO" aria-label="Código da sala" required pattern="[a-fA-F0-9]{6}"><button class="secondary" type="submit" id="join">Entrar</button></form>
+<button class="btn btn-teal" id="create">Criar sala</button><div class="divider">ou entre com o código</div><form class="join" id="joinForm" novalidate><input id="code" maxlength="6" placeholder="CÓDIGO" aria-label="Código da sala" required pattern="[a-fA-F0-9]{6}" aria-describedby="roomCodeHelp"><button class="secondary" type="submit" id="join">Entrar</button></form><small id="roomCodeHelp">Código de 6 caracteres: números de 0 a 9 e letras de A a F.</small>
 <details class="options"><summary>Opções da partida</summary><label for="matchFormat">Formato</label><select class="room-rules" id="matchFormat"><option value="rounds">Rodadas · melhor de 5</option><option value="time">Tempo · 3 minutos</option></select><p class="rules-description" id="formatDescription"></p>
 <label for="roomRules">Tipo de disputa</label><select class="room-rules" id="roomRules"><option value="casual">Casual · coleção protegida</option><option value="capture" disabled>Vale pipa · vale a pipa equipada</option></select><p class="rules-description" id="rulesDescription">Casual: suas pipas ficam protegidas. Cortes entre contas rendem XP.</p></details></section></div>
 <div class="sheet" id="pauseSheet" hidden><section class="panel sheet-card" role="dialog" aria-modal="true" aria-labelledby="pauseTitle"><button class="close" data-close-sheet aria-label="Continuar">×</button><div class="eyebrow" id="pauseEyebrow">Pausa</div><h2 id="pauseTitle">Jogo pausado</h2><p class="pause-note" id="pauseNote"></p>
@@ -1837,12 +1926,12 @@ function createEngine() {
   function step(s,now) {
     s._pendingCuts=[];
     if(s.soloPaused&&s.trail){
-      const owner=s.players.find(p=>!p.bot&&p.accountId===s.trailOwner&&now-p.seen<15000);
+      const owner=s.players.find(p=>!p.bot&&p.accountId===s.trailOwner&&now-p.seen<60000);
       if(owner){const elapsed=Math.max(0,now-s.last);s.end+=elapsed;if(s.phaseUntil)s.phaseUntil+=elapsed;for(const p of s.players)if(p.respawn)p.respawn+=elapsed;for(const event of s.events)event.at+=elapsed;s.last=now;return s;}
       s.soloPaused=false;
     }
     const dt=clamp((now-s.last)/1000,0,.25);s.last=now;s.wind=Math.sin(now/9000)*(s.daily?.weather==='wind'?36:12);
-    if(now>=s.end)return s;s.players=s.players.filter(p=>p.bot||now-p.seen<15000);
+    if(now>=s.end)return s;s.players=s.players.filter(p=>p.bot||now-p.seen<60000);
     if((s.daily||s.trail)&&!s.players.some(p=>!p.bot)){s.end=now;return s;}
     // A quick room with nobody real left in it closes instead of letting bots fly alone.
     if(s.quick&&s.quick.fillAt<=now&&!s.players.some(p=>!p.bot)){s.end=now;return s;}
@@ -1958,6 +2047,15 @@ function createArtAssets(config){
 }
 
 const art=createArtAssets(ART_CONFIG);
+// The existing seat credential stays in this tab, never in invitation URLs or public state.
+function createRoomSessions(storage){
+ const key=code=>'pipaRoomV1:'+String(code).toUpperCase();
+ function read(code,owner=null){try{const s=JSON.parse(storage?.getItem(key(code))||'null');return s&&typeof s.token==='string'&&s.token.length<=100&&s.owner===owner?s:null;}catch{return null;}}
+ function save(code,token,owner=null){if(!/^[A-F0-9]{6}$/.test(code||'')||!token)return;try{storage?.setItem(key(code),JSON.stringify({token,owner}));}catch{}}
+ function remove(code){try{storage?.removeItem(key(code));}catch{}}
+ return {read,save,remove};
+}
+
 function createNetworkView(engine){
   let history=[],own=null,authority=null,ownId=null,receivedAt=0,halfLag=0;
   const clone=p=>({...p,lineMove:p.lineMove?{...p.lineMove,origin:{...p.lineMove.origin},forward:{...p.lineMove.forward},hits:[...p.lineMove.hits]}:null});
@@ -2018,6 +2116,7 @@ function createFrameHealth(){
 
 const STATIC_HOST = true;
 const $=id=>document.getElementById(id),eng=createEngine(),colors=['#e77c4f','#4d8c72','#648ec4','#d8af4a'],names=['Carcará · clássica e destemida','Mata verde · leve e certeira','Azulão · dona do vento','Raio de sol · nasceu para brilhar'];
+const roomSessions=createRoomSessions(typeof sessionStorage==='undefined'?null:sessionStorage);
 let selected=+(localStorage.getItem('pipaColor')||0),state=null,me=null,token=null,room=null,mode=null,busy=false,syncing=false,errors=0,keys={},sound=false,audioCtx=null,lastEvent=null,lastFrame=0,showResult=false,ping=0;
 const networkView=createNetworkView(eng);
 let socket=null,realtime=false,nextSocketAt=0,lastServerAt=0,lastInputAt=0,lastPingAt=0,lastInput='',lastPollAt=0,renderPlayers=null,sessionVersion=0;
@@ -2031,7 +2130,7 @@ function connectRealtime(){
     if(d.type==='state'){clearTimeout(timeout);realtime=true;receiveState(d.state);}
     else if(d.type==='pong'&&Number.isFinite(d.at)){const sample=Math.round(performance.now()-d.at);if(sample>=0&&sample<10000)ping=ping?Math.round(ping*.75+sample*.25):sample;}
   }catch{}};
-  ws.onerror=()=>{};ws.onclose=()=>{clearTimeout(timeout);if(socket===ws){socket=null;realtime=false;nextSocketAt=performance.now()+3000;}};
+  ws.onerror=()=>{};ws.onclose=e=>{clearTimeout(timeout);if(socket===ws){socket=null;realtime=false;if(e.reason==='Session resumed'){roomSessions.remove(room);mode=null;leave();toast('Esta partida foi retomada em outra aba.');return;}nextSocketAt=performance.now()+3000;}};
 }
 function pumpNetwork(now){
   if(mode!=='online'||showResult)return;
@@ -2055,8 +2154,8 @@ addEventListener('keydown',e=>{if(mode&&e.key==='Shift'&&!e.repeat&&!/INPUT|TEXT
 let toastTimer;function toast(t){$('toast').textContent=t;$('toast').style.display='block';clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').style.display='none',4200);}
 async function request(action,data){const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),7000);try{const r=await fetch('/api/'+action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),signal:controller.signal});const d=await r.json();if(!r.ok)throw Object.assign(Error(d.error||'Falha de conexão.'),{status:r.status});return d;}finally{clearTimeout(timeout);}}
 function profile(){let name=$('name').value.trim()||'Pipeiro';localStorage.setItem('pipaName',name);return {name,color:selected};}
-function enter(s,id,type,code){$('dailyCondition').hidden=!s.daily;$('dailyCondition').textContent=s.daily?'✦ '+s.daily.name:'';closeSheet();sessionVersion++;resetFx();$('pauseTools').append(document.querySelector('.arena-tools'));$('pauseRoom').append($('roomStrip'));$('roomChip').hidden=type!=='online';$('roomChip').textContent='SALA '+(code||'');resetPointer();background=null;playerKey='';document.body.classList.add('in-match');rankingKey='';eventsKey='';setText('renderStats','— fps'+(lightMode?' · leve':''));state=s;me=id;mode=type;room=code;showResult=false;errors=0;keys={};skillUntil=0;ping=0;lastPingAt=0;lastInputAt=0;lastInput='';nextSocketAt=0;lastServerAt=performance.now();networkView.reset();networkView.receive(s,id,lastServerAt);renderPlayers=null;if(type==='online')connectRealtime();$('lobby').style.display='none';$('gameSide').style.display='block';$('arenaCopy').style.display='none';$('hud').style.display='block';$('touch').classList.add('active');$('liveLabel').textContent=type==='practice'?'Treino com bots':'Sala online';$('arenaMode').textContent=(type==='practice'?'Treino · 3 bots':'Sala '+code+' · '+(s.rules==='capture'?'Vale pipa':'Casual'))+(formatName(s)?' · '+formatName(s):'');$('modeLabel').textContent=type==='practice'?'MODO TREINO':'MULTIPLAYER ONLINE';$('roomBox').style.display=type==='practice'?'none':'block';$('copy').style.display=type==='practice'?'none':'flex';$('roomCode').textContent=code||'';$('gameTip').textContent=type==='practice'?'Experimente os movimentos e encontre seu ritmo.':'Compartilhe o código com seus amigos.';}
-async function online(action){if(busy)return;busy=true;$('create').disabled=true;$('join').disabled=true;try{const code=$('code').value.trim();let rules=playerAccount?$('roomRules').value:'casual',captureConsent=rules==='capture';if(action==='join'){const info=await request('inspect',{code});rules=info.rules;if(rules==='capture'){if(!playerAccount)throw Error('Entre na sua conta para jogar Vale pipa.');captureConsent=confirm('Esta sala é Vale pipa. Ao ser cortado, sua pipa colecionável equipada passa para o adversário. Deseja entrar?');if(!captureConsent)return;}}let d=await request(action,{...profile(),code,rules,captureConsent,mode:playerAccount?$('matchFormat').value:'rounds'});token=d.token;enter(d.state,d.me||d.token,'online',d.code);history.replaceState(null,'','?sala='+d.code);}catch(e){toast(e.name==='AbortError'?'A conexão demorou. Tente novamente ou jogue no treino.':e.message);}finally{busy=false;$('create').disabled=false;$('join').disabled=false;}}
+function enter(s,id,type,code){$('dailyCondition').hidden=!s.daily;$('dailyCondition').textContent=s.daily?'✦ '+s.daily.name:'';closeSheet();sessionVersion++;resetFx();$('pauseTools').append(document.querySelector('.arena-tools'));$('pauseRoom').append($('roomStrip'));$('roomChip').hidden=type!=='online';$('roomChip').textContent='SALA '+(code||'');resetPointer();background=null;playerKey='';document.body.classList.add('in-match');rankingKey='';eventsKey='';setText('renderStats','— fps'+(lightMode?' · leve':''));state=s;me=id;mode=type;room=code;if(type==='online')roomSessions.save(code,token,playerAccount?.profile.id||null);showResult=false;errors=0;keys={};skillUntil=0;ping=0;lastPingAt=0;lastInputAt=0;lastInput='';nextSocketAt=0;lastServerAt=performance.now();networkView.reset();networkView.receive(s,id,lastServerAt);renderPlayers=null;if(type==='online')connectRealtime();$('lobby').style.display='none';$('gameSide').style.display='block';$('arenaCopy').style.display='none';$('hud').style.display='block';$('touch').classList.add('active');$('liveLabel').textContent=type==='practice'?'Treino com bots':'Sala online';$('arenaMode').textContent=(type==='practice'?'Treino · 3 bots':'Sala '+code+' · '+(s.rules==='capture'?'Vale pipa':'Casual'))+(formatName(s)?' · '+formatName(s):'');$('modeLabel').textContent=type==='practice'?'MODO TREINO':'MULTIPLAYER ONLINE';$('roomBox').style.display=type==='practice'?'none':'block';$('copy').style.display=type==='practice'?'none':'flex';$('roomCode').textContent=code||'';$('gameTip').textContent=type==='practice'?'Experimente os movimentos e encontre seu ritmo.':'Compartilhe o código com seus amigos.';}
+async function online(action){if(busy)return;busy=true;$('create').disabled=true;$('join').disabled=true;try{const code=$('code').value.trim();let rules=playerAccount?$('roomRules').value:'casual',captureConsent=rules==='capture';if(action==='join'&&!/^[A-F0-9]{6}$/i.test(code)){toast('Digite as 6 letras e números do convite (0–9 e A–F).');$('code').focus();return;}if(action==='join'){const saved=roomSessions.read(code,playerAccount?.profile.id||null);if(saved){try{const d=await request('resume',{code,token:saved.token});token=d.token;trailStage=d.state.trail||null;enter(d.state,d.me,'online',d.code);history.replaceState(null,'','?sala='+d.code);return;}catch(e){if(e.status!==401&&e.status!==404)throw e;roomSessions.remove(code);}}const info=await request('inspect',{code});rules=info.rules;if(rules==='capture'){if(!playerAccount)throw Error('Entre na sua conta para jogar Vale pipa.');captureConsent=confirm('Esta sala é Vale pipa. Ao ser cortado, sua pipa colecionável equipada passa para o adversário. Deseja entrar?');if(!captureConsent)return;}}let d=await request(action,{...profile(),code,rules,captureConsent,mode:playerAccount?$('matchFormat').value:'rounds'});token=d.token;enter(d.state,d.me||d.token,'online',d.code);history.replaceState(null,'','?sala='+d.code);}catch(e){toast(e.name==='AbortError'?'A conexão demorou. Tente novamente ou jogue no treino.':e.message);}finally{busy=false;$('create').disabled=false;$('join').disabled=false;}}
 $('create').onclick=()=>online('create');$('joinForm').onsubmit=e=>{e.preventDefault();online('join');};
 const formats={rounds:'Rodadas: quem é cortado espera a rodada acabar. Todos voltam com a linha cheia; vence quem ganhar 3 rodadas.',time:'Tempo: 3 minutos contando a partir do segundo jogador. Quem é cortado volta em 3 s; vence quem tiver mais pontos.'};
 function reflectFormat(){$('formatDescription').textContent=formats[$('matchFormat').value];}
@@ -2070,7 +2169,7 @@ function offlineQuick(){if(!requireClubAccount('Partida rápida'))return;trailSt
 async function quickMatch(){if(busy||!requireClubAccount('Partida rápida'))return;if(typeof STATIC_HOST!=='undefined'&&STATIC_HOST){offlineQuick();return;}busy=true;$('quickButton').disabled=true;try{const d=await request('quick',profile());token=d.token;enter(d.state,d.me,'online',d.code);history.replaceState(null,'','?sala='+d.code);}catch(e){if(e.status===503){toast('Servidor online indisponível: partida rápida contra bots.');offlineQuick();}else toast(e.name==='AbortError'?'A conexão demorou. Tente novamente.':e.message);}finally{busy=false;$('quickButton').disabled=false;}}
 $('quickButton').onclick=()=>{track('quick_match');quickMatch();};
 $('practice').onclick=()=>{trailStage=null;const now=Date.now(),s=eng.create(now,{mode:$('matchFormat').value});eng.admit(s,trainee(now),now);['Zeca','Bia','Nando'].forEach((n,i)=>{const b=eng.player(n,(i+selected+1)%4,'bot'+i,now);b.bot=true;eng.admit(s,b,now);});enter(s,'you','practice');};
-function leave(){sessionVersion++;resetFx();if(!document.querySelector('#pauseSheet[hidden]'))$('pauseSheet').hidden=true;pausedAt=0;document.querySelector('.arena-bottom').append(document.querySelector('.arena-tools'));$('gameSide').append($('roomStrip'));$('roomChip').hidden=true;resetPointer();background=null;document.body.classList.remove('in-match');const old=socket;socket=null;realtime=false;old?.close();networkView.reset();renderPlayers=null;if(mode==='online')request('leave',{code:room,token}).catch(()=>{});mode=null;state=null;me=null;keys={};skillUntil=0;$('lobby').style.display='block';$('gameSide').style.display='none';$('arenaCopy').style.display='block';$('hud').style.display='none';$('touch').classList.remove('active');$('events').textContent='';$('combatReadout').textContent='';$('liveLabel').textContent='Explore a arena';$('arenaMode').textContent='Seu próximo duelo começa aqui.';history.replaceState(null,'',location.pathname);}
+function leave(){if(mode==='online')roomSessions.remove(room);sessionVersion++;resetFx();if(!document.querySelector('#pauseSheet[hidden]'))$('pauseSheet').hidden=true;pausedAt=0;document.querySelector('.arena-bottom').append(document.querySelector('.arena-tools'));$('gameSide').append($('roomStrip'));$('roomChip').hidden=true;resetPointer();background=null;document.body.classList.remove('in-match');const old=socket;socket=null;realtime=false;old?.close();networkView.reset();renderPlayers=null;if(mode==='online')request('leave',{code:room,token}).catch(()=>{});mode=null;state=null;me=null;keys={};skillUntil=0;$('lobby').style.display='block';$('gameSide').style.display='none';$('arenaCopy').style.display='block';$('hud').style.display='none';$('touch').classList.remove('active');$('events').textContent='';$('combatReadout').textContent='';$('liveLabel').textContent='Explore a arena';$('arenaMode').textContent='Seu próximo duelo começa aqui.';history.replaceState(null,'',location.pathname);}
 $('leave').onclick=()=>{leave();refreshRewards();};
 $('copy').onclick=async()=>{let url=location.origin+location.pathname+'?sala='+room;try{await navigator.clipboard.writeText(url);toast('Convite copiado! Compartilhe com sua turma.');}catch{toast('Código da sala: '+room);}};
 // Pointer steering: the kite flies toward the mouse, or just above the finger on touch screens.
@@ -2093,14 +2192,14 @@ document.querySelectorAll('[data-key]').forEach(b=>{b.onpointerdown=e=>{e.preven
 setInterval(()=>pumpNetwork(performance.now()),50);
 setInterval(async()=>{const t=performance.now();if(mode!=='online'||syncing||showResult||realtime||t-lastPollAt<180)return;syncing=true;lastPollAt=t;const version=sessionVersion;try{let d=await request('sync',{code:room,token,input:input()});if(mode==='online'&&version===sessionVersion){if(!realtime)ping=Math.round(performance.now()-t);receiveState(d.state);}}catch(e){if(version!==sessionVersion||realtime)return;errors++;if(errors===3)toast('Conexão instável. Tentando reconectar…');if(errors>=8){leave();toast('A conexão caiu. Entre novamente usando o código da sala.');}}finally{syncing=false;}},40);
 let modalReturnFocus=null;
-function modal(title,body,action='Entendi. Bora voar ↗',eyebrow='Manual de rua'){modalReturnFocus=null;if($('modal').classList.contains('encounter-preview'))$('trails').inert=false;$('modal').classList.remove('encounter-preview','story-result','pause-help');$('dialogEyebrow').textContent=eyebrow;$('modal').querySelector('.dialog').classList.toggle('duel-dialog',eyebrow!=='Manual de rua');$('dialogTitle').textContent=title;$('dialogBody').innerHTML=body;$('dialogAction').textContent=action;$('dialogAction').className='primary';$('dialogAction').onclick=closeModal;$('modal').style.display='flex';$('close').focus();keys={};skillUntil=0;}
+function modal(title,body,action='Entendi. Bora voar ↗',eyebrow='Manual de rua'){modalReturnFocus=null;if($('modal').classList.contains('encounter-preview'))$('trails').inert=false;$('modal').classList.remove('encounter-preview','story-result','pause-help');$('dialogEyebrow').textContent=eyebrow;$('modal').querySelector('.dialog').classList.toggle('duel-dialog',eyebrow!=='Manual de rua');$('dialogTitle').textContent=title;$('dialogBody').innerHTML=body;$('dialogAction').textContent=action;$('dialogAction').className='primary';$('dialogAction').onclick=closeModal;$('modal').style.display='flex';$('dialogAction').focus({preventScroll:true});keys={};skillUntil=0;}
 function closeModal(){if($('modal').classList.contains('pause-help'))$('pauseSheet').inert=false;if($('modal').classList.contains('encounter-preview'))$('trails').inert=false;$('modal').classList.remove('encounter-preview','story-result','pause-help');const returnFocus=modalReturnFocus;modalReturnFocus=null;stopMatchResult();$('modal').style.display='none';if(showResult){leave();showResult=false;refreshRewards();}(returnFocus?.isConnected?returnFocus:$('how')).focus();}
 $('close').onclick=$('dialogAction').onclick=closeModal;$('modal').onclick=e=>{if(e.target===$('modal'))closeModal();};addEventListener('keydown',e=>{if(e.key==='Escape'&&$('modal').style.display==='flex'){e.preventDefault();e.stopImmediatePropagation();closeModal();return;}if(e.key==='Tab'&&$('modal').style.display==='flex'){const items=[...$('modal').querySelectorAll('button')].filter(el=>!el.disabled&&el.getClientRects().length);if(e.shiftKey&&document.activeElement===items[0]){e.preventDefault();items.at(-1).focus();}else if(!e.shiftKey&&document.activeElement===items.at(-1)){e.preventDefault();items[0].focus();}}});
 function showRules(){modal('O segredo está na linha.','<p>Até 8 jogadores. Nas Rodadas, a última pipa no céu vence e quem fizer 3 rodadas leva a partida; no modo Tempo, são 3 minutos. Cada corte vale 100 pontos.</p><ul><li><b>Posicione:</b> mova o mouse e a pipa vai atrás; no celular, arraste o dedo no céu. Setas ou WASD também funcionam. Cruze sua linha com a faixa tracejada da linha inimiga, longe do chão e das pontas. Linhas quase paralelas não acertam.</li><li><b>Ataque:</b> mire no cruzamento verde e segure o botão esquerdo do mouse, espaço ou ATACAR; no celular, dê um toque breve no céu. Cada puxada custa 12 de energia e tem intervalo de 0,65 s. Segurar repete; errar também gasta energia. Só um alvo por puxada.</li><li><b>Desgaste:</b> acertos tiram 18 de linha; no centro dourado, 24. Ângulo aberto (corte limpo) dá +20%, ângulo raso tira 20% e puxar com a pipa em movimento (relada) dá +15%. Centro dourado + ângulo aberto + relada = CRÍTICO (×1,75). A linha começa com 100 e não se regenera durante a vida.</li><li><b>Esquiva:</b> Shift, botão do meio do mouse ou ESQ no celular. Um arranque rápido em que nada te corta (18 de energia, recarga de 2,2 s). Esquivar no instante em que o rival puxa é uma esquiva perfeita: a energia volta e o próximo acerto é crítico. O anel vermelho avisa quando você está na mira.</li><li><b>Habilidade:</b> botão direito do mouse, Q ou E; no celular, deslize rapidamente para esquerda ou direita (SK ← / → também funciona em paisagem). Custa 25 de energia, recarga de 7 s. Na pipa Ágil, o dash vai para o lado do mouse (ou da tecla). Veja o efeito da sua pipa no painel.</li><li><b>Recupere:</b> solte ataque para recuperar 18 de energia/s. Ao ser cortado, você volta em 3 s. Em Vale pipa, a colecionável passa ao vencedor e você retorna com a básica.</li></ul>');}
 $('arenaTab').onclick=()=>$('sky').scrollIntoView({behavior:'smooth',block:'center'});
 $('sound').onclick=()=>{sound=!sound;if(sound)audioCtx=new(window.AudioContext||window.webkitAudioContext)();$('sound').classList.toggle('sound-on',sound);$('sound').setAttribute('aria-label',sound?'Desativar som':'Ativar som');toast(sound?'Som ativado':'Som desativado');};
 $('fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.querySelector('.arena').requestFullscreen();}catch{toast('Tela cheia não está disponível neste navegador.');}};
-const param=new URLSearchParams(location.search).get('sala');if(param){$('code').value=param.toUpperCase().slice(0,6);toast('Convite recebido! Escolha seu apelido e clique em Entrar.');}
+const param=new URLSearchParams(location.search).get('sala');if(param){$('code').value=param.toUpperCase().slice(0,6);toast('Convite recebido. Entre com o código da sala.');}
 if(typeof STATIC_HOST!=='undefined'&&STATIC_HOST){
   $('friendsButton').hidden=true;
   const note=document.createElement('p');note.textContent='Versão GitHub Pages: jogue contra bots. As salas multiplayer precisam de um servidor separado.';note.style.cssText='font-size:10px;line-height:1.7;margin:0;color:#76837a';$('lobby').append(note);
@@ -2109,7 +2208,7 @@ if(typeof STATIC_HOST!=='undefined'&&STATIC_HOST){
 }
 // Sheets keep secondary menus one tap away so the screen stays clean, especially on phones.
 let sheetReturn=null;
-function openSheet(id){closeSheet();sheetReturn=document.activeElement;$(id).hidden=false;keys={};skillUntil=0;dodgeUntil=0;resetPointer();$(id).querySelector('input,select,button:not([data-close-sheet])')?.focus({preventScroll:true});}
+function openSheet(id){closeSheet();sheetReturn=document.activeElement;$(id).hidden=false;keys={};skillUntil=0;dodgeUntil=0;resetPointer();(id==='friendsSheet'&&$('code').value?$('join'):$(id).querySelector('input,select,button:not([data-close-sheet])'))?.focus({preventScroll:true});}
 function closeSheet(){const open=document.querySelector('.sheet:not([hidden])');if(!open)return false;open.hidden=true;if(open.id==='pauseSheet')resumeGame();sheetReturn?.focus?.({preventScroll:true});return true;}
 document.querySelectorAll('.sheet').forEach(sh=>sh.addEventListener('click',e=>{if(e.target===sh||e.target.closest('[data-close-sheet]'))closeSheet();}));
 $('profileButton').onclick=()=>openSheet('profileSheet');$('friendsButton').onclick=()=>openSheet('friendsSheet');
@@ -2192,7 +2291,7 @@ if(state&&view.portrait){ctx.save();ctx.setTransform(1,0,0,1,0,0);const unit=can
 let fx=[],seen=new Map(),bannerTimer=0,bannerHeld=false,bannerKind='',hurtTimer=0,cutBy='',lastPhase='',lastRoundEvent='';
 // Player identity is the seat number (P1..P8) and its colour, independent of the kite model.
 const PLAYER_COLORS=['#2f6fdb','#d63c3c','#c99a06','#2e9a4f','#8b4fd6','#e2711d','#d6449a','#1497ad'];
-const botTag=p=>p.ai?' · Nv '+p.ai.level:p.bot?' · bot':'';
+const botTag=p=>p.bot?' · IA'+(p.ai?' Nv '+p.ai.level:''):'';
 const playerColor=p=>PLAYER_COLORS[(p.slot??0)%8],playerTag=p=>'P'+((p.slot??0)+1);
 const rankPlayers=s=>[...s.players].sort((a,b)=>(s.mode==='rounds'?(b.rounds||0)-(a.rounds||0):0)||b.score-a.score||(a.slot??0)-(b.slot??0));
 // Server timestamps compared with the server's own clock, so a skewed device clock does not shift timers.
@@ -2276,22 +2375,41 @@ const threat=state.players.find(q=>q.id!==p.id&&!q.respawn&&eng.contact(q,p)?.va
 setText('dodgeStatus',p.evade>0?'Esquivando…':p.dodgeCooldown>0?'Esquiva: recarga '+p.dodgeCooldown.toFixed(1)+' s':p.energy<eng.DODGE.cost?'Esquiva: precisa de '+eng.DODGE.cost+' de energia':'Esquiva pronta · Shift ou botão do meio');
 document.querySelectorAll('.dodge-touch').forEach(b=>b.classList.toggle('cooling',!dodgeReady));
 const ability=eng.type(p);setText('skillName',ability.name+' · '+ability.skill);setText('skillDescription',ability.description);setText('skillStatus',(p.skillCooldown>0?'Recarga: '+p.skillCooldown.toFixed(1)+' s':p.energy<25?'Precisa de 25 de energia':'Pronta · 25 energia · botão direito ou Q / E')+(p.skillTime>0?' · ativa':''));
-const target=state.players.map(q=>eng.contact(p,q)).find(c=>c?.valid);
+const aimed=state.players.map(q=>({q,c:eng.contact(p,q)})).filter(t=>t.c?.valid).sort((a,b)=>Math.abs(a.c.enemy-.6)-Math.abs(b.c.enemy-.6)||a.q.id.localeCompare(b.q.id))[0],target=aimed?.c;
 if(p.respawn&&bannerHeld&&bannerKind==='cut'&&!rounds)setText('bannerSub',cutBy+'volta em '+Math.max(1,Math.ceil((p.respawn-now)/1000)));
-setText('combatReadout',seeking!==null?'Procurando pipeiros · bots completam a sala no fim da contagem':phase==='waiting'?'Aguardando adversário · treine os movimentos':phase==='countdown'?'Prepare-se · ataques liberados no JÁ!':phase==='intermission'?'Fim da rodada':p.respawn?(rounds?'Cortado · aguarde a próxima rodada':'Linha cortada · aguarde'):p.counter>0?'Contra-ataque! O próximo acerto é CRÍTICO':threat&&!target?(dodgeReady?'Na mira de '+threat.name+' · esquive (Shift)':'Na mira de '+threat.name+' · saia do cruzamento'):p.shield>0?'Protegido · atacar encerra a proteção':p.energy<12?'Sem energia · solte o ataque':target?(target.perfect?(target.angle>=.85?'Centro em ângulo aberto · rele para o CRÍTICO':'Centro alinhado · abra o ângulo'):target.angle<.45?'Ângulo raso · dano fraco':'Cruzamento válido · ataque'):(p.flash>0&&p.aim==='miss'?'Ataque sem acerto · reposicione':'Cruze sua linha na faixa tracejada inimiga'));
+setText('combatReadout',seeking!==null?'Procurando pipeiros · bots completam a sala no fim da contagem':phase==='waiting'?'Aguardando adversário · treine os movimentos':phase==='countdown'?'Prepare-se · ataques liberados no JÁ!':phase==='intermission'?'Fim da rodada':p.respawn?(rounds?'Cortado · aguarde a próxima rodada':'Linha cortada · aguarde'):p.counter>0?'Contra-ataque! O próximo acerto é CRÍTICO':threat&&!target?(dodgeReady?'Na mira de '+threat.name+' · esquive (Shift)':'Na mira de '+threat.name+' · saia do cruzamento'):p.shield>0?'Protegido · atacar encerra a proteção':p.energy<12?'Sem energia · solte o ataque':target?("Alvo: "+aimed.q.name+" · "+(target.perfect?(target.angle>=.85?'Centro em ângulo aberto · rele para o CRÍTICO':'Centro alinhado · abra o ângulo'):target.angle<.45?'Ângulo raso · dano fraco':'Cruzamento válido · ataque')):(p.flash>0&&p.aim==='miss'?'Ataque sem acerto · reposicione':'Cruze sua linha na faixa tracejada inimiga'));
 let status=p.respawn?(rounds?'Sua linha foi cortada! Você volta na próxima rodada.':'Sua linha foi cortada! Voltando ao céu em '+Math.max(1,Math.ceil((p.respawn-now)/1000))+'…'):mode==='online'?(state.players.length===1?'Aguardando a turma. Compartilhe o convite para começar a disputa.':state.players.length+' jogadores no céu · '+(realtime?'tempo real':'modo compatível')+' · '+ping+' ms'):'Mira verde: segure o clique para puxar. Faixa dourada: mais desgaste. Botão direito: habilidade. Solte para recuperar energia.';
-setText('status',status);if(mode==='online')setText('liveLabel',realtime?'Em tempo real':'Conexão compatível');
+setText('status',status);if(mode==='online')setText('liveLabel',(realtime?'Em tempo real':'Conexão compatível')+(state.quick?' · '+state.players.filter(p=>p.bot).length+' IA':''));
 const events=state.events.filter(e=>now-e.at<4000).slice(0,2),eventKey=events.map(e=>e.id).join(',');
 if(eventKey!==eventsKey){eventsKey=eventKey;$('events').replaceChildren(...events.map(e=>{const d=document.createElement('div');d.textContent='✧ '+e.text;if(e.winnerId===me)d.className='mine';else if(e.loserId===me)d.className='lost';return d;}));}
 if(state.events[0]&&state.events[0].id!==lastEvent){lastEvent=state.events[0].id;if(state.events[0].winnerId===me||state.events[0].loserId===me)refreshRewards();}
 updateBattleHUD(p);
 if(!left&&!showResult){showResult=true;resetFx();showMatchResult(state,ranking);}}
 function escapeHTML(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
-// This script is embedded into the page. It never stores authentication tokens.
+// Cookie sessions stay HttpOnly. The recovery-link token is kept only in memory until submission or cancellation.
 let playerAccount=null,accountsEnabled=false,accountTab='login',accountSaving=false,rewardRefreshTimer;
 let accountConnection='checking',accountConfigPending=null,accountRetryTimer=null,accountRetryCount=0;
 const accountConnectionMessages={checking:'Conectando ao serviço de contas…',offline:'Não foi possível conectar ao serviço de contas. Vamos tentar novamente; você também pode usar o botão abaixo.',disabled:'O login está temporariamente indisponível no servidor. Tente conectar novamente em instantes.',static:'O login está disponível no endereço oficial do jogo. Abra o PipaKlub online para entrar na sua conta.'};
 const accountModal=$('accountModal');
+let accountRecoveryMode=null,passwordRecoveryToken=null;
+const recoveryFragment=new URLSearchParams(location.hash.slice(1));
+if(recoveryFragment.get('type')==='recovery'&&recoveryFragment.get('access_token')){passwordRecoveryToken=recoveryFragment.get('access_token');accountRecoveryMode='reset';history.replaceState(null,'',location.pathname+location.search);}
+recoveryFragment.delete('access_token');recoveryFragment.delete('refresh_token');
+const forgotPassword=uiElement('button','Esqueci minha senha','secondary');forgotPassword.id='forgotPassword';forgotPassword.type='button';$('accountAuth').append(forgotPassword);
+const passwordRecovery=uiElement('section');passwordRecovery.id='passwordRecovery';passwordRecovery.hidden=true;
+passwordRecovery.innerHTML='<p id="recoveryHelp"></p><form class="account-form" id="recoveryForm"><label id="recoveryEmailLabel" for="recoveryEmail">E-mail da conta</label><input id="recoveryEmail" type="email" autocomplete="email"><label id="recoveryPasswordLabel" for="recoveryPassword">Nova senha</label><input id="recoveryPassword" type="password" minlength="8" maxlength="128" autocomplete="new-password"><label id="recoveryConfirmLabel" for="recoveryConfirm">Repita a nova senha</label><input id="recoveryConfirm" type="password" minlength="8" maxlength="128" autocomplete="new-password"><button type="submit" class="primary" id="recoverySubmit">Enviar link de recuperação</button></form><button type="button" class="secondary" id="recoveryCancel">Voltar ao login</button><p id="recoveryStatus" role="status" aria-live="polite"></p>';
+$('accountAuth').after(passwordRecovery);
+function closeRecovery(){accountRecoveryMode=null;passwordRecoveryToken=null;$('recoveryPassword').value='';$('recoveryConfirm').value='';$('recoveryStatus').textContent='';}
+forgotPassword.onclick=()=>{accountRecoveryMode='request';$('recoveryEmail').value=$('accountEmail').value;renderAccountDialog();$('recoveryEmail').focus({preventScroll:true});};
+$('recoveryCancel').onclick=()=>{closeRecovery();renderAccountDialog();$('accountEmail').focus({preventScroll:true});};
+$('recoveryForm').onsubmit=async e=>{
+ e.preventDefault();if(accountSaving)return;const resetting=accountRecoveryMode==='reset',token=passwordRecoveryToken;
+ if(resetting&&$('recoveryPassword').value!==$('recoveryConfirm').value){$('recoveryStatus').textContent='As duas senhas precisam ser iguais.';return;}
+ accountSaving=true;$('recoverySubmit').disabled=true;$('recoveryCancel').disabled=true;$('recoveryStatus').textContent=resetting?'Atualizando sua senha…':'Enviando o link…';
+ try{const result=await accountRequest(resetting?'reset-password':'recover',resetting?{token,password:$('recoveryPassword').value}:{email:$('recoveryEmail').value});if(resetting){closeRecovery();playerAccount=null;accountTab='login';reflectAccount();$('accountMessage').textContent=result.message;}else $('recoveryStatus').textContent=result.message;}
+ catch(err){$('recoveryStatus').textContent=err.name==='AbortError'?'A conexão demorou. Tente novamente.':err.message;}
+ finally{accountSaving=false;$('recoverySubmit').disabled=false;$('recoveryCancel').disabled=false;$('recoveryPassword').value='';$('recoveryConfirm').value='';renderAccountDialog();}
+};
 function requireClubAccount(feature){if(playerAccount)return true;toast('Entre ou crie sua conta para acessar '+feature+'.');openAccount();return false;}
 async function accountRequest(action,body){
  const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),12000);
@@ -2321,6 +2439,8 @@ async function refreshAccount(){
  try{const d=await accountRequest('session');const previous=playerAccount;playerAccount=d.account;announcePipamonLevels(previous,playerAccount);reflectAccount();}catch(e){if(accountModal.style.display==='flex')$('accountMessage').textContent=e.message;}
 }
 function renderAccountDialog(){
+ passwordRecovery.hidden=!accountRecoveryMode;forgotPassword.hidden=!!playerAccount||accountTab!=='login';
+ if(accountRecoveryMode){const resetting=accountRecoveryMode==='reset';$('accountAuth').hidden=true;$('accountCollection').hidden=true;$('accountTitle').textContent=resetting?'Escolha sua nova senha':'Recupere sua conta';$('recoveryHelp').textContent=resetting?'Escolha uma senha exclusiva para jogar. Nunca envie sua senha pelo chat.':'Enviaremos um link ao e-mail da sua conta. Se o link expirar, você pode solicitar outro.';for(const id of ['recoveryEmail','recoveryEmailLabel'])$(id).hidden=resetting;$('recoveryEmail').required=!resetting;for(const id of ['recoveryPassword','recoveryPasswordLabel','recoveryConfirm','recoveryConfirmLabel'])$(id).hidden=!resetting;$('recoveryPassword').required=$('recoveryConfirm').required=resetting;$('recoverySubmit').textContent=resetting?'Salvar nova senha':'Enviar link de recuperação';return;}
  const logged=!!playerAccount;$('accountAuth').hidden=logged;$('accountCollection').hidden=!logged;
  $('accountTitle').textContent=logged?'Sua coleção, sua história.':accountTab==='signup'?'Seu lugar no céu.':'De volta ao céu.';
  $('signupFields').hidden=accountTab!=='signup';$('accountPassword').autocomplete=accountTab==='signup'?'new-password':'current-password';
@@ -2349,7 +2469,7 @@ async function openAccount(){
  if(mode){toast('Saia da partida para abrir sua coleção.');return;}
  keys={};closeKiteStory();$('accountMessage').textContent='';accountModal.style.display='flex';renderAccountDialog();$('closeAccount').focus();if(!accountsEnabled)await initializeAccounts();else await refreshAccount();await loadRecentMatches();
 }
-function closeAccount(){if(typeof leaveSummoner==='function'&&summonOpen)leaveSummoner();closeKiteStory();accountModal.style.display='none';$('accountPassword').value='';$('accountButton').focus();}
+function closeAccount(){closeRecovery();if(typeof leaveSummoner==='function'&&summonOpen)leaveSummoner();closeKiteStory();accountModal.style.display='none';$('accountPassword').value='';$('accountButton').focus();}
 $('accountButton').onclick=openAccount;$('closeAccount').onclick=closeAccount;
 accountModal.onclick=e=>{if(e.target===accountModal)closeAccount();};
 $('switchAccount').onclick=()=>{accountTab=accountTab==='login'?'signup':'login';$('accountMessage').textContent='';renderAccountDialog();};
@@ -2385,7 +2505,8 @@ $('retryAccounts').onclick=()=>{accountRetryCount=0;return initializeAccounts();
 addEventListener('online',()=>{if(!accountsEnabled)initializeAccounts();});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!accountsEnabled&&accountConnection==='offline')initializeAccounts();});
 function refreshRewards(){if(!playerAccount)return;clearTimeout(rewardRefreshTimer);rewardRefreshTimer=setTimeout(refreshAccount,1800);}
-if(location.hash.includes('access_token=')){history.replaceState(null,'',location.pathname+location.search);toast('E-mail confirmado. Entre na sua conta para continuar.');}
+if(location.hash.includes('access_token=')){history.replaceState(null,'',location.pathname+location.search);if(!passwordRecoveryToken)toast('E-mail confirmado. Entre na sua conta para continuar.');}
+if(passwordRecoveryToken)Promise.resolve().then(()=>{accountModal.style.display='flex';renderAccountDialog();$('recoveryPassword').focus({preventScroll:true});});
 initializeAccounts();setInterval(refreshAccount,15*60*1000);
 
 let resultContext=null,resultTimer=null,resultVersion=0,storyVersion=0;
@@ -2402,7 +2523,7 @@ function showMatchResult(s,ranking=[]){if(!s.trail)track(s.quick?'quick_match_en
  const place=ranking.findIndex(q=>q.id===me)+1,cuts=mine?.cuts||0;
  modal(place===1?'O céu é seu!':'Cada duelo deixa uma história.',
   (place?'<p class="result-place">Você ficou em '+place+'º de '+ranking.length+'</p>':'')+'<p>'+(rounds?'Rodadas vencidas: '+(mine?.rounds||0)+' · ':'')+'Seus cortes: '+cuts+'.</p><div id="matchRewardSummary" class="match-rewards" aria-live="polite"></div>'+rows+'<button class="primary" id="rematchButton">'+(s.quick?'Nova partida rápida ▶':mode==='online'?'Revanche com a turma ↻':'Jogar de novo ↻')+'</button>','Voltar ao menu','Resultado do duelo');
- $('rematchButton').onclick=rematch;$('dialogAction').className='secondary';
+ $('rematchButton').onclick=rematch;$('dialogAction').className='secondary';$('rematchButton').focus({preventScroll:true});
  if(!authenticated){$('matchRewardSummary').append(uiElement('p',mode==='practice'?'O treino não altera XP nem a coleção.':'Como visitante, você participa da disputa sem salvar XP ou conquistar pipas. Entre na sua conta para guardar seu progresso.'));return;}
  beginMatchResult(s.id);
 }
@@ -2607,6 +2728,17 @@ function sampleSummonSegment(path,a,b,radius=28){
 // Ritual sessions live only in memory: leaving/reloading cannot restart attempts.
 let summonOpen=false,summonBusy=false,summonRitual=null,summonTail=null,summonPath=[],summonPending=null,summonDrawing=null;
 let summonData={tails:[],seen:[]},summonTarget=null;
+const summonRehearsed=new Set();
+function needsSummonPractice(){return playerAccount?.inventory?.length===1&&!summonRehearsed.has(summonTarget?.modelId);}
+function openSummonPractice(){
+ const target=summonTarget;if(!target)return;let path=[];
+ let panel=$('summonPractice');if(!panel){panel=uiElement('section',undefined,'summon-practice');panel.id='summonPractice';$('summonPreparation').append(panel);}
+ panel.hidden=false;panel.replaceChildren(uiElement('h4','Ensaio sem consumir itens'),uiElement('p','Clique nas estrelas nesta ordem: '+target.pattern.join(' → ')+'. Você pode errar e repetir sem perder a rabiola.'));
+ const board=uiElement('div',undefined,'summon-practice-grid'),status=uiElement('p','Nenhuma estrela selecionada.');status.setAttribute('role','status');
+ const reset=()=>{path=[];for(const b of board.children)b.setAttribute('aria-pressed','false');status.textContent='Tente de novo: '+target.pattern.join(' → ');};
+ for(let i=1;i<=9;i++){const b=uiElement('button',String(i),'secondary');b.type='button';b.setAttribute('aria-label','Estrela de ensaio '+i);b.setAttribute('aria-pressed','false');b.onclick=()=>{if(path.length>=target.pattern.length)reset();path=extendSummonPath(path,i);b.setAttribute('aria-pressed','true');status.textContent='Seu desenho: '+path.join(' → ');if(path.length===target.pattern.length){if(path.every((n,j)=>n===target.pattern[j])){summonRehearsed.add(target.modelId);status.textContent='Ensaio concluído! Nenhum item foi usado. Selecione sua rabiola e inicie quando estiver pronto.';$('summonStart').disabled=!summonTail;$('summonStart').focus({preventScroll:true});}else status.textContent+=' · O símbolo é diferente. Reinicie para tentar novamente.';}};board.append(b);}
+ const again=uiElement('button','Reiniciar ensaio','secondary');again.onclick=reset;panel.append(board,status,again);board.querySelector('button').focus({preventScroll:true});
+}
 const summonDisplayName=p=>(typeof ART_CONFIG!=='undefined'?ART_CONFIG.dex.entries.find(e=>e.model===p.modelId)?.name:null)||p.name;
 const summonSession=crypto.randomUUID();
 const summonEntry=uiElement('section',undefined,'summon-entry');
@@ -2661,16 +2793,19 @@ function renderSummonCatalog(){
  if(!summonData.seen?.length)$('summonSeenGrid').append(uiElement('p','Nenhum Pipamon avistado ainda. Explore a Pipa Dex ou encontre jogadores em partidas.'));
 }
 function prepareSummon(p){
+ $('summonPractice')?.remove();$('summonPracticeButton')?.remove();
  summonTarget=p;summonTail=null;showSummonStage('preparation');$('summonStart').hidden=false;$('summonStart').disabled=true;$('summonStart').textContent='Usar rabiola → Ascendente';$('summonSelectedTail').textContent='Nenhuma rabiola selecionada.';
  const chosen=$('summonChosenPipamon');chosen.replaceChildren();const image=uiElement('div',undefined,'summon-chosen-art');image.innerHTML=art.markup(p.color,p.soul);chosen.append(image,uiElement('h3',p.name),uiElement('small','Pipamon escolhido'));
  $('summonTailList').replaceChildren(...summonData.tails.filter(t=>t.status==='ready').map(tail=>{
   const compatible=p.availableTailIds.includes(tail.id),card=uiElement('article',undefined,'summon-tail '+(compatible?'compatible':'incompatible'));card.append(summonTailArt(tail.modelId),uiElement('b','Rabiola de '+tail.name));
   card.append(uiElement('small',compatible?'Compatível':'🔒 Não pode ser usada neste chamado'));
   const button=uiElement('button','Selecionar rabiola','secondary');button.type='button';button.disabled=!compatible||!!summonData.active||summonBusy;
-  button.onclick=()=>{summonTail=tail;for(const c of $('summonTailList').children)c.classList.toggle('selected',c===card);$('summonSelectedTail').textContent='Selecionada: rabiola de '+tail.name;$('summonStart').disabled=false;};card.append(button);return card;
+  button.onclick=()=>{summonTail=tail;for(const c of $('summonTailList').children)c.classList.toggle('selected',c===card);$('summonSelectedTail').textContent='Selecionada: rabiola de '+tail.name+(needsSummonPractice()?'. Faça o ensaio gratuito antes do primeiro ritual.':'');$('summonStart').disabled=needsSummonPractice();};card.append(button);return card;
  }));
  if(!$('summonTailList').children.length)$('summonTailList').append(uiElement('p','Você não tem rabiolas prontas para usar.'));
  $('summonTarget').textContent=p.name;$('summonPatternHint').textContent='Feitiço: '+p.pattern.join(' → ');$('summonGuide').setAttribute('points',summonPoints(p.pattern));
+ const practice=uiElement('button','Ensaiar feitiço sem usar rabiola','secondary');practice.id='summonPracticeButton';practice.onclick=openSummonPractice;$('summonStart').before(practice);
+ if(needsSummonPractice())$('summonSelectedTail').textContent='Seu primeiro chamado: ensaie o feitiço gratuitamente antes de consumir a rabiola.';
 }
 function renderSummonDamaged(){
  $('summonDamagedList').replaceChildren(...summonData.tails.filter(t=>t.status==='damaged').map(t=>{
@@ -2682,7 +2817,7 @@ function renderSummonDamaged(){
 $('summonInvoke').onclick=()=>showSummonStage('catalog');$('summonCatalogBack').onclick=()=>showSummonStage('npc');$('summonPreparationBack').onclick=()=>{summonTarget=null;summonTail=null;showSummonStage('catalog');};$('summonDamagedMenu').onclick=()=>showSummonStage('damaged');$('summonDamagedBack').onclick=()=>showSummonStage('npc');
 const summonStart=uiElement('button','Usar rabiola → Ascendente','primary');summonStart.id='summonStart';summonStart.hidden=true;$('summonPreparation').append(summonStart);
 summonStart.onclick=async()=>{
- if(summonBusy||!summonTail)return;summonBusy=true;summonStart.disabled=true;
+ if(summonBusy||!summonTail||needsSummonPractice())return;summonBusy=true;summonStart.disabled=true;
  try{
   const run=await summonCall('start',{tailId:summonTail.id,targetModelId:summonTarget.modelId});
   // Closing while the start request was in flight must still damage this item.
@@ -2704,6 +2839,7 @@ function updateSummonRun(run){
  if(run.status==='succeeded'){
   if(typeof summonDesignReveal==='function')summonDesignReveal(reveal);
   const sprite=uiElement('div',undefined,'summon-new-pipamon');sprite.innerHTML=art.markup(run.color,run.soul);reveal.append(sprite,uiElement('h3',run.name+' atendeu ao chamado!'),uiElement('p','Este Pipamon agora faz parte da sua coleção.'));
+  const view=uiElement('button','Ver meu novo parceiro','primary');view.id='summonViewPartner';view.onclick=async()=>{view.disabled=true;try{await refreshAccount();leaveSummoner();inventorySelection=run.kiteId||null;navigateClub('collection');const kite=playerAccount?.inventory.find(k=>k.id===run.kiteId);if(kite){await selectInventory(kite);$('inventoryEquip').focus({preventScroll:true});}}finally{view.disabled=false;}};reveal.append(view);view.focus({preventScroll:true});
   $('summonSpeech').textContent='Um novo laço nasceu. Cuide bem dessa história!';refreshAccount();
  }else{
   reveal.append(uiElement('h3',run.status==='failed'?'O chamado se apagou.':'O ritual foi interrompido.'),uiElement('p',run.status==='failed'?'As três tentativas terminaram. A rabiola foi consumida.':'A rabiola ficou danificada e só pode ser descartada.'));
@@ -2787,7 +2923,7 @@ leaveSummoner=function(){originalLeaveSummoner();if(accountPage==='summon'){acco
 $('leaveSummoner').onclick=()=>navigateClub('home');
 $('leaveSummoner').hidden=true;
 const originalRenderAccountDialog=renderAccountDialog;
-renderAccountDialog=function(){originalRenderAccountDialog();if(!playerAccount)accountPage='home';syncClubMenu();};
+renderAccountDialog=function(){originalRenderAccountDialog();if(accountRecoveryMode)return;if(!playerAccount)accountPage='home';syncClubMenu();};
 const originalOpenAccount=openAccount;
 openAccount=async function(){if(!mode){accountPage='home';syncClubMenu();}return originalOpenAccount();};
 $('accountButton').onclick=openAccount;
@@ -3009,7 +3145,7 @@ addEventListener('keydown',e=>{
 });
 
 // Trilhas: single-player road of AI duels. Pure data and rules, shared by the page and the tests.
-function createTrails(){
+function createTrails({demo=false}={}){
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
   const foe=(name,color,soul)=>soul?{name,color,soul}:{name,color};
   const TRAILS=[
@@ -3183,7 +3319,7 @@ function createTrails(){
     "nextHint": "O Morro do Sol ficou na sua história. A Beira-Mar agora espera por você."
   }
 };
-  const story=id=>STORIES[id]||null;
+  const story=id=>demo&&id==='morro-5'?{...STORIES[id],won:[['Mikka','Você conquistou o Morro do Sol! Essa rabiola é o começo de um novo laço. Passe no ateliê do professor para conhecer seu próximo parceiro.']],nextHint:'Você concluiu a história desta demo. Revisite o Morro, cuide dos seus parceiros e desafie seus amigos no online.'}:STORIES[id]||null;
   const stages=TRAILS.flatMap((t,ti)=>t.stages.map((s,si)=>({...s,trail:t.id,trailIndex:ti,index:si})));
   const stage=id=>stages.find(s=>s.id===id)||null;
   const MASTERY_MAX=8;
@@ -3196,7 +3332,9 @@ function createTrails(){
     const n=(v,max)=>clamp(Math.trunc(Number(v))||0,0,max);
     return {coins:n(p.coins,1e9),stars,mastery:n(p.mastery,MASTERY_MAX),wins:n(p.wins,1e9),losses:n(p.losses,1e9),fails,items:[...new Set(Array.isArray(p.items)?p.items.filter(id=>DROPS.includes(id)):[])]};
   }
-  function unlocked(p,id){const i=stages.findIndex(s=>s.id===id);return i===0||(i>0&&!!p.stars[stages[i-1].id]);}
+  const available=id=>!!stage(id)&&(!demo||stage(id).trailIndex===0);
+  const completed=p=>stages.filter(s=>available(s.id)).every(s=>!!p.stars[s.id]);
+  function unlocked(p,id){const i=stages.findIndex(s=>s.id===id);return available(id)&&(i===0||(i>0&&!!p.stars[stages[i-1].id]));}
   // Difficulty adapts: every two points of mastery add one AI level on top of the stage's base level.
   // Extra rivals already make a stage harder, so there mastery adds at most one level; after three
   // losses in a row on a stage its AI eases off by one level until the stage is won.
@@ -3213,8 +3351,8 @@ function createTrails(){
     return {progress:next,coins,stars,firstClear,drop,fails:next.fails[id]||0,levelBefore:aiLevel(st,before),levelAfter:aiLevel(st,next)};
   }
   const totalStars=p=>Object.values(p.stars).reduce((a,b)=>a+b,0);
-  const nextStage=id=>{const i=stages.findIndex(s=>s.id===id);return i>=0?stages[i+1]||null:null;};
-  return {story,DROPS,RELIEF_AFTER,trails:TRAILS,stages,stage,defaults,sanitize,unlocked,aiLevel,settle,totalStars,nextStage,MASTERY_MAX};
+  const nextStage=id=>{const i=stages.findIndex(s=>s.id===id),s=i>=0?stages[i+1]:null;return s&&available(s.id)?s:null;};
+  return {demo,available,completed,story,DROPS,RELIEF_AFTER,trails:TRAILS,stages,stage,defaults,sanitize,unlocked,aiLevel,settle,totalStars,nextStage,MASTERY_MAX};
 }
 
 // Durable per-account outbox: each match/import has an immutable UUID.
@@ -3315,11 +3453,11 @@ function updateTrailStoryOutcome(id,result,status){
  const root=$('trailStoryOutcome');if(!root||status!=='saved'||!result)return;
  const key=id+'|'+result.won+'|'+result.firstClear;if(root.dataset.storyKey===key)return;root.dataset.storyKey=key;
  root.innerHTML=trailStoryMarkup(id,result.won?'won':'lost',{confirmed:true,firstClear:!!result.firstClear});
- if(id==='morro-5'&&result.won&&result.firstClear){if($('dialogTitle'))$('dialogTitle').textContent='Bons ventos, novo caminho!';if(typeof sfx==='function')sfx('cut');}
+ if(id==='morro-5'&&result.won&&result.firstClear){if($('dialogTitle'))$('dialogTitle').textContent=trails.demo?'Morro do Sol conquistado!':'Bons ventos, novo caminho!';if(typeof sfx==='function')sfx('cut');}
 }
 
 // Trilhas UI: trail map, stage briefing, AI duels and coin payouts. Progress uses the per-account outbox, with a guest save on this device.
-const trails=createTrails(),TRAILS_KEY='pipaTrailsV1',TYPE_NAMES=['Precisa','Ágil','Guardiã','Técnica'];
+const trails=createTrails({demo:true}),TRAILS_KEY='pipaTrailsV1',TYPE_NAMES=['Precisa','Ágil','Guardiã','Técnica'];
 let trailProgress=loadTrails(),trailStage=null,trailPick=null;
 function loadTrails(){try{return trails.sanitize(JSON.parse(localStorage.getItem(TRAILS_KEY)||'null'));}catch{return trails.defaults();}}
 function saveTrails(){try{localStorage.setItem(TRAILS_KEY,JSON.stringify(trailProgress));}catch{}}
@@ -3338,7 +3476,15 @@ const stageDetails=uiElement('div',undefined,'stage-details');
 for(const child of [...document.querySelector('.stage-card').children])if(child.id!=='trailStart'&&!child.classList.contains('stage-foot'))stageDetails.append(child);
 document.querySelector('.stage-card').prepend(stageDetails);
 const starText=n=>'★'.repeat(n)+'☆'.repeat(3-n);
-function firstOpenStage(){return trails.stages.find(s=>trails.unlocked(trailProgress,s.id)&&!trailProgress.stars[s.id])||trails.stages.at(-1);}
+function firstOpenStage(){return trails.stages.find(s=>trails.unlocked(trailProgress,s.id)&&!trailProgress.stars[s.id])||trails.stages.filter(s=>trails.available(s.id)).at(-1);}
+function openDemoFinale(){
+ if(!trails.demo||!trails.completed(trailProgress))return;
+ closeTrails();closeModal();if(mode)leave();hideJourney();closeHomeMenu();
+ modal('O Morro do Sol conhece seu nome',
+  '<section class="demo-finale"><div class="eyebrow">História da demo concluída</div><p>Você deu vida ao seu primeiro parceiro e venceu os cinco encontros do Morro do Sol. Obrigado por fazer parte do começo do PipaKlub!</p><p>Seu progresso, seus parceiros e suas recompensas continuam na conta. Os próximos bairros chegam na versão completa.</p><div class="demo-final-actions"><button id="demoOnline" class="primary">Jogar com amigos</button><button id="demoSummon" class="secondary">Visitar o invocador</button><button id="demoRevisit" class="secondary">Revisitar o Morro do Sol</button></div></section>',
+  'Voltar ao quintal','PipaKlub · Demo');
+ $('dialogAction').className='secondary';$('demoOnline').onclick=()=>{closeModal();homeActions.friends();};$('demoSummon').onclick=()=>{closeModal();homeActions.summon();};$('demoRevisit').onclick=()=>{closeModal();openWorld('morro');};$('demoOnline').focus({preventScroll:true});
+}
 function openTrails(){
  if(!requireClubAccount('as Trilhas'))return;
  if(mode){toast('Saia da partida para abrir as trilhas.');return;}
@@ -3352,7 +3498,7 @@ function renderTrails(){
  const previous=$('trails').dataset.returnStage;if(previous&&$('trails').dataset.returnWon==='yes'&&$('trails').dataset.returnAdvanced!=='yes'&&trailProgress.stars[previous]){const next=trails.nextStage(previous);if(next&&next.trailIndex===trails.stage(previous).trailIndex&&trails.unlocked(trailProgress,next.id))trailPick=next.id;$('trails').dataset.returnAdvanced='yes';}
  const district=Number($('trails').dataset.district),focused=$('trails').dataset.district!==undefined&&Number.isInteger(district)&&district>=0&&district<trails.trails.length;
  const destination=focused?trails.trails[district]:null;
- $('trailsTitle').textContent=destination?destination.name:'Trilhas da cidade';document.querySelector('.trails-header .eyebrow').textContent=destination?'Seu próximo desafio':'Jornada da cidade';
+ $('trailsTitle').textContent=destination?destination.name:(trails.demo?'Demo · Morro do Sol':'Trilhas da cidade');document.querySelector('.trails-header .eyebrow').textContent=destination?'Seu próximo desafio':'Jornada da cidade';
  let arrival=$('districtArrival');if(!arrival){arrival=uiElement('section',undefined,'district-arrival');arrival.id='districtArrival';}
  arrival.hidden=!destination;
  if(destination){arrival.replaceChildren(uiElement('div','Explore os cinco lugares do bairro. Cada vitória abre um novo caminho. O último encontro guarda uma surpresa.'));}
@@ -3361,7 +3507,7 @@ function renderTrails(){
  const bonus=Math.floor(trailProgress.mastery/2);
  setText('trailMastery','Rabiolas recebidas na conta '+trailRewards.length+'/'+trails.DROPS.length+' · Maestria '+trailProgress.mastery+'/'+trails.MASTERY_MAX+(bonus?' · a IA está +'+bonus+' nível'+(bonus>1?'s':'')+' mais esperta':' · a IA ainda está te conhecendo'));
  $('trailList').replaceChildren(...trails.trails.map(t=>{
-  const card=document.createElement('section');card.className='trail';card.hidden=focused&&t!==destination;card.style.setProperty('--accent',t.accent);
+  const card=document.createElement('section');card.className='trail';card.hidden=(trails.demo&&t.id!=='morro')||focused&&t!==destination;card.style.setProperty('--accent',t.accent);
   const earned=t.stages.reduce((n,s)=>n+(trailProgress.stars[s.id]||0),0);
   card.innerHTML='<header><div><b></b><small></small></div><span class="trail-stars"></span></header><div class="trail-path"></div>';
   card.querySelector('b').textContent=t.name;card.querySelector('small').textContent=t.subtitle;card.querySelector('.trail-stars').textContent='★ '+earned+'/'+t.stages.length*3;
@@ -3455,7 +3601,7 @@ function showTrailResult(s,ranking,mine){
   '<button class="primary" id="rematchButton">'+(won?'Ver meu caminho ▶':'Tentar de novo ↻')+'</button>'+(counter!==null&&!won&&!playerAccount?'<button class="secondary" id="trailCounter">Tentar com a '+TYPE_NAMES[counter]+' ↻</button>':''),'Voltar ao mapa do bairro',st.name);
  $('rematchButton').onclick=()=>{if(won)returnToDistrict(s.trail,true);else{returnToDistrict(s.trail,false);presentStage(s.trail);}};
  if($('trailCounter'))$('trailCounter').onclick=()=>{selected=counter;try{localStorage.setItem('pipaColor',String(counter));}catch{}choices();closeModal();startStage(s.trail);};
- if(trails.story(s.trail))$('modal').classList.add('story-result');$('dialogAction').className='secondary';$('dialogAction').onclick=()=>returnToDistrict(s.trail,won);
+ $('rematchButton').focus({preventScroll:true});if(trails.story(s.trail))$('modal').classList.add('story-result');$('dialogAction').className='secondary';$('dialogAction').onclick=()=>returnToDistrict(s.trail,won);
 }
 $('trailsButton').onclick=openTrails;$('trailsClose').onclick=closeTrails;$('trailStart').onclick=()=>presentStage(trailPick);
 $('trails').onclick=e=>{if(e.target===$('trails'))closeTrails();};
@@ -3512,7 +3658,7 @@ function showOnlineTrailResult(s,ranking,mine){
      refreshRewards();if(r.pipamonXp!=null)root.append(uiElement('p','+'+r.pipamonXp+' XP para o parceiro desta Trilha.','pipamon-result-xp'));
      updateTrailStoryOutcome(s.trail,r,data.status);
      if(r.tailId){const summon=uiElement('button','Ir ao invocador ✦','primary');summon.id='trailGoSummoner';summon.onclick=()=>openTrailSummoner(r.drop);root.append(summon);}
-     const next=r.won&&trails.nextStage(s.trail),again=uiElement('button',r.won?'Ver meu caminho ▶':'Tentar de novo ↻','secondary');again.id='rematchButton';again.onclick=()=>{if(r.won)returnToDistrict(s.trail,true);else{returnToDistrict(s.trail,false);presentStage(s.trail);}};root.append(again);return;
+     const finale=trails.demo&&s.trail==='morro-5'&&r.won,again=uiElement('button',finale?'Concluir a demo ▶':r.won?'Ver meu caminho ▶':'Tentar de novo ↻',finale?'primary':'secondary');again.id='rematchButton';again.onclick=()=>{if(finale)openDemoFinale();else if(r.won)returnToDistrict(s.trail,true);else{returnToDistrict(s.trail,false);presentStage(s.trail);}};root.append(again);again.focus({preventScroll:true});return;
     }
    }
    if(data.status!=='abandoned'&&++attempts<12)setTimeout(check,1500);else addRetry(root);
@@ -4054,10 +4200,10 @@ function skyDraw(t){
 function createFirstFlight(engine){
  const lessons=[
   {title:'Encontre o vento',hint:'Mova o mouse ou use WASD / setas. Leve seu parceiro até o círculo.',success:'Seu parceiro acompanha você. Agora vamos cruzar as linhas.'},
-  {title:'Seu primeiro rebique',hint:'Chegue ao círculo. Quando a mira ficar verde, clique ou pressione Espaço para rebicar.',success:'Bom puxão! O cruzamento das linhas é o que permite cortar.'},
+  {title:'Ataque no cruzamento',hint:'Seu alvo é Nozinho. Cruze sua linha na faixa tracejada dele. Quando a mira ficar verde, clique ou pressione Espaço para atacar. Sem cruzamento, o ataque erra.',success:'Acertou! Ataque é clique / Espaço. Rebicada é outra ação: uma manobra da linha, usada com R.'},
   {title:'Recupere o fôlego',hint:'Solte o ataque. Você pode continuar voando enquanto a energia se recupera.',success:'É isso. Alternar ataque e descanso mantém sua energia.'},
-  {title:'O jeito do seu parceiro',hint:'Use o botão direito do mouse, Q ou E para experimentar sua habilidade.',success:'Cada parceiro tem seu jeito de enfrentar o vento.'},
-  {title:'Uma rodada com o Nozinho',hint:'Cruze as linhas e rebique para fazer seu primeiro corte. Nozinho está só treinando com você.',success:'Primeiro corte! Nozinho está bem e o professor está orgulhoso.'}
+  {title:'Três ferramentas para o duelo',hint:'Experimente a habilidade do parceiro, a esquiva e a rebicada. São três ações diferentes.',success:'Você viu a habilidade, desviou e soltou uma rebicada. Ataque no cruzamento; esquive para sair da mira; use a manobra para reposicionar.'},
+  {title:'Uma rodada com o Nozinho',hint:'Escolha a linha de Nozinho como alvo: cruze a faixa tracejada e ataque com clique / Espaço. O centro dourado, em ângulo aberto e em movimento, favorece o crítico.',success:'Primeiro corte! Nozinho está bem e o professor está orgulhoso.'}
  ];
  function create({color=0,soul=null,lesson=0,name='Você',partnerName=null}={},now=Date.now()){
   const state=engine.create(now),p=engine.player(name,color,'you',now),q=engine.player('Nozinho',1,'first-nozinho',now);
@@ -4065,13 +4211,21 @@ function createFirstFlight(engine){
   state.players=[p,q];state.firstFlight=true;state.end=now+3600000;
   const run={state,index:Math.max(0,Math.min(4,lesson)),complete:false,target:{x:700,y:180},last:now};prepare(run);return run;
  }
- function prepare(run){const [p,q]=run.state.players;run.complete=false;run.baseScore=p.score;run.baseHits=p.hits||0;p.hp=100;p.energy=run.index===2?25:100;p.skillCooldown=0;p.respawn=0;p.shield=0;q.hp=run.index===4?30:100;q.respawn=0;q.shield=0;q.x=300;q.y=180;}
+ function prepare(run){const [p,q]=run.state.players;run.complete=false;run.exercise='skill';run.skillActivated=false;run.baseSkill=p.skillCount||0;run.baseDodge=p.dodges||0;run.baseLine=p.lineCount||0;run.baseScore=p.score;run.baseHits=p.hits||0;p.hp=100;p.energy=run.index===2?25:100;p.skillCooldown=0;p.skillTime=0;p.dodgeCooldown=0;p.evade=0;p.lineCooldown=0;p.lineMove=null;p.respawn=0;p.shield=0;q.hp=run.index===4?30:100;q.respawn=0;q.shield=0;q.x=300;q.y=180;if(run.index===3){p.x=700;p.y=180;}}
  function next(run){if(!run.complete)return false;if(run.index===4)return false;run.index++;prepare(run);return true;}
  function tick(run,input,now){
   if(run.complete)return run;const [p,q]=run.state.players;run.state.end=now+3600000;p.seen=q.seen=now;p.hp=100;q.input={};q.x=300;q.y=180;
   if(run.index<4)q.hp=100;
+  if(run.index===3&&run.exercise==='skill'&&p.color===2&&p.skillTime>0)q.input={cut:true};
+  const hadSkill=p.skillTime>0,oldSkills=p.skillCount||0,oldX=p.x,oldHits=p.hits||0,oldFoeHits=q.hits||0;
   engine.practiceStep(run.state,p.id,input,now);run.last=now;
-  run.complete=run.index===0?Math.hypot(p.x-run.target.x,p.y-run.target.y)<45:run.index===1?(p.hits||0)>run.baseHits:run.index===2?!input.cut&&p.energy>=90:run.index===3?p.skillCooldown>0:p.score>run.baseScore;
+  if(run.index===3){
+   run.skillActivated||=(p.skillCount||0)>run.baseSkill;
+   const effect=p.color===1?Math.abs(p.x-oldX)>=70:p.color===2?(q.hits||0)>oldFoeHits&&p.hp<100:(p.hits||0)>oldHits;
+   if(run.exercise==='skill'&&run.skillActivated&&(hadSkill||p.skillTime>0||(p.skillCount||0)>oldSkills)&&effect){run.exercise='dodge';p.energy=100;}
+   if(run.exercise==='dodge'&&(p.dodges||0)>run.baseDodge){run.exercise='line';p.energy=100;}
+   run.complete=run.exercise==='line'&&(p.lineCount||0)>run.baseLine&&!p.lineMove;
+  }else run.complete=run.index===0?Math.hypot(p.x-run.target.x,p.y-run.target.y)<45:run.index===1?(p.hits||0)>run.baseHits:run.index===2?!input.cut&&p.energy>=90:p.score>run.baseScore;
   return run;
  }
  return {lessons,create,next,tick};
@@ -4119,6 +4273,21 @@ new MutationObserver(syncHomeInert).observe(document.body,{subtree:true,attribut
 function showCourtyard(){
  const show=!!playerAccount&&!mode&&(!param||homeInvitationHandled);courtyard.hidden=!show;document.body.classList.toggle('game-shell',!!playerAccount);if(show){updateHomeIdentity();syncHomeInert();}
 }
+// A room URL must always leave a visible route to join or cancel after a reload.
+// Missing credentials show the invitation; existing tab credentials resume the same seat.
+function offerRoomInvitation(){
+ if(!playerAccount||mode||!param||homeInvitationHandled)return false;
+ homeInvitationHandled=true;showCourtyard();openSheet('friendsSheet');return true;
+}
+async function recoverRoomInvitation(){
+ if(!param||mode||homeInvitationHandled)return;
+ const owner=playerAccount?.profile.id||null,saved=roomSessions.read(param,owner);
+ if(!saved){offerRoomInvitation();return;}
+ homeInvitationHandled=true;showCourtyard();busy=true;
+ try{const d=await request('resume',{code:param,token:saved.token});if(playerAccount?.profile.id!==owner)return;token=d.token;trailStage=d.state.trail||null;enter(d.state,d.me,'online',d.code);if(d.state.trail){$('roomChip').hidden=true;if(d.state.soloPaused)openPause();}toast('Conexão recuperada. Você voltou à mesma partida.');}
+ catch(e){if(playerAccount?.profile.id!==owner)return;if([401,404,409].includes(e.status))roomSessions.remove(param);openSheet('friendsSheet');toast(e.status===401||e.status===404?'Esta sessão terminou. Você pode entrar em uma nova sala.':'Não foi possível retomar. Tente entrar novamente.');}
+ finally{busy=false;}
+}
 function updateHomeIdentity(){
  if(!playerAccount)return;const p=playerAccount.profile,k=playerAccount.inventory.find(k=>k.id===p.equipped_kite_id);$('homePlayerName').textContent=p.nickname;$('homePartnerName').textContent=journey?.phase==='arrival'||journey?.phase==='choose'?'Um parceiro está esperando por você':k?'Parceiro equipado · '+(k.personal_name||k.model.name):'Seu lugar no clube';
  const signature=p.id+'|'+playerAccount.inventory.map(k=>k.id+':'+k.model_id).join('|');if(signature!==homeSignature){homeSignature=signature;homeFarm.setCollection(playerAccount.inventory);}
@@ -4130,7 +4299,7 @@ function updateHomeIdentity(){
 async function onCourtyardAccount(){
  const owner=playerAccount?.profile?.id||null;showCourtyard();if(owner===journeyOwner){if(owner)updateHomeIdentity();return;}
  resetOpening(owner);journeyOwner=owner;journeyEpoch++;journey=null;journeyError='';journeyBusy=false;homeReplay=false;journeyLoading=false;homeSignature='';homeFarm.setCollection([]);cityScreen.hidden=true;gameMenu.hidden=true;hideJourney();if(firstFlightRun){firstFlightRun=null;flightCoach.hidden=true;leave();}
- if(!owner)return;loadHomeArt();await loadJourney();
+ if(!owner)return;loadHomeArt();if(param)await recoverRoomInvitation();if(owner===journeyOwner)await loadJourney();
 }
 async function loadJourney(){
  if(!journeyOwner)return;const epoch=journeyEpoch,owner=journeyOwner;journeyLoading=true;updateHomeIdentity();
@@ -4173,18 +4342,24 @@ function startFirstFlight(){
 }
 function firstFlightInstruction(index){
  const device=typeof inputDevice==='string'?inputDevice:'keyboard';
- if(device.startsWith('gamepad')){const attack=device==='gamepad-ps'?'✕':'A',skill=device==='gamepad-ps'?'L1 ou R1':'LB ou RB';return ['Use o analógico esquerdo para levar seu parceiro até o círculo.','Chegue ao círculo. Quando a mira ficar verde, pressione '+attack+' para rebicar.','Solte '+attack+' para recuperar energia. Você pode continuar voando.','Pressione '+skill+' para experimentar a habilidade do seu parceiro.','Cruze as linhas e pressione '+attack+' para rebicar. Nozinho está só treinando.'][index];}
- if(device==='touch')return ['Arraste no céu até o círculo.','Chegue ao círculo e toque no céu para rebicar quando a mira ficar verde.','Pare de atacar para recuperar energia. Você pode continuar voando.','Deslize rapidamente para um lado para experimentar a habilidade.','Cruze as linhas e toque para rebicar. Nozinho está só treinando.'][index];
+ if(index===3){
+  const r=firstFlightRun,p=r?.state.players[0]||{color:selected},pad=device.startsWith('gamepad'),ps=device==='gamepad-ps',touch=device==='touch',action=r?.exercise||'skill';
+  if(action==='dodge')return 'Esquiva: '+(pad?'pressione '+(ps?'○':'B'):touch?'toque no botão Esquiva':'pressione Shift ou use o botão Esquiva')+'. Você avança um pouco e evita ataques durante o desvio. Não é a habilidade do parceiro.';
+  if(action==='line')return 'Rebicada da linha: segure e solte '+(pad?(ps?'□':'X'):touch?'o botão Rebicada':'R ou o botão Rebicada')+'. Observe a trajetória até a manobra terminar. Ela usa energia e tem sua própria recarga; não substitui o ataque.';
+  return 'Habilidade do parceiro · '+eng.type(p).skill+': '+eng.type(p).description+' '+(pad?'Use '+(ps?'L1 ou R1':'LB ou RB'):touch?'Use o botão Habilidade':'Use Q / E ou o botão Habilidade')+'. '+(p.color===1?'Observe o avanço lateral.':p.color===2?'Ative a proteção e deixe Nozinho acertar uma vez.':'Ative e acerte Nozinho enquanto o efeito está ativo.');
+ }
+ if(device.startsWith('gamepad')){const attack=device==='gamepad-ps'?'✕':'A',skill=device==='gamepad-ps'?'L1 ou R1':'LB ou RB';return ['Use o analógico esquerdo para levar seu parceiro até o círculo.','Chegue ao círculo. Quando a mira ficar verde, pressione '+attack+' para atacar.','Solte '+attack+' para recuperar energia. Você pode continuar voando.','Pressione '+skill+' para experimentar a habilidade do seu parceiro.','Cruze as linhas e pressione '+attack+' para atacar. Nozinho está só treinando.'][index];}
+ if(device==='touch')return ['Arraste no céu até o círculo.','Chegue ao círculo e toque no céu para atacar quando a mira ficar verde.','Pare de atacar para recuperar energia. Você pode continuar voando.','Deslize rapidamente para um lado para experimentar a habilidade.','Cruze as linhas e toque para atacar. Nozinho está só treinando.'][index];
  return firstFlight.lessons[index].hint;
 }
 function refreshFirstFlightInstruction(){if(firstFlightRun&&!firstFlightRun.complete)$('flightHint').textContent=firstFlightInstruction(firstFlightRun.index);}
 function renderFlightCoach(){if(!firstFlightRun)return;const r=firstFlightRun,l=firstFlight.lessons[r.index];$('flightStep').textContent='Sr. Assis · '+(r.index+1)+' de 5';$('flightTitle').textContent=l.title;$('flightHint').textContent=r.complete?l.success:firstFlightInstruction(r.index);$('flightStatus').textContent='';$('flightNext').hidden=!r.complete;$('flightNext').textContent=r.index===4?'Voltar para o quintal':'Próximo passo';}
 function stepFirstFlight(now){
- const r=firstFlightRun;if(!r)return;firstFlight.tick(r,input(),now);if(r.complete&&!flightSaved){flightSaved=true;keys={};resetPointer();renderFlightCoach();$('flightNext').focus({preventScroll:true});}
+ const r=firstFlightRun;if(!r)return;const exercise=r.exercise;firstFlight.tick(r,input(),now);if(exercise!==r.exercise){keys={};resetPointer();renderFlightCoach();}if(r.complete&&!flightSaved){flightSaved=true;keys={};resetPointer();renderFlightCoach();$('flightNext').focus({preventScroll:true});}
 }
 function drawFirstFlightGuide(){
  const r=firstFlightRun;if(!r||r.complete||r.index!==0&&r.index!==1&&r.index!==4)return;
- ctx.save();ctx.strokeStyle='#267d6b';ctx.fillStyle='#e3ffe4a0';ctx.lineWidth=3;ctx.setLineDash([6,5]);ctx.beginPath();ctx.arc(r.target.x,r.target.y,36,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#164b46';ctx.font='16px sans-serif';ctx.textAlign='center';ctx.fillText(r.index===0?'Voe até aqui':'Cruze e rebique',r.target.x,r.target.y-48);ctx.restore();
+ ctx.save();ctx.strokeStyle='#267d6b';ctx.fillStyle='#e3ffe4a0';ctx.lineWidth=3;ctx.setLineDash([6,5]);ctx.beginPath();ctx.arc(r.target.x,r.target.y,36,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#164b46';ctx.font='16px sans-serif';ctx.textAlign='center';ctx.fillText(r.index===0?'Voe até aqui':'Cruze e ataque',r.target.x,r.target.y-48);ctx.restore();
 }
 $('flightNext').onclick=async()=>{const r=firstFlightRun;if(!r?.complete)return;const replay=homeReplay;if(!replay&&!await saveJourney('advance',{lesson:r.index+1}))return;if(firstFlightRun!==r)return;if(r.index===4){homeReplay=false;leave();if(replay)dialogue('Bons ventos, parceiro!','Você pode voltar ao professor sempre que quiser. Sua coleção e seus prêmios continuam os mesmos.','Voltar ao quintal',hideJourney);else renderJourney();}else{firstFlight.next(r);flightSaved=false;keys={};resetPointer();renderFlightCoach();$('sky').focus?.();}};
 $('flightExit').onclick=()=>{homeReplay=false;leave()};
@@ -4199,6 +4374,8 @@ function drawCourtyard(t){
 $('homeMotion').onclick=()=>{homeMotionPaused=!homeMotionPaused;updateHomeIdentity()};
 async function openClubDestination(page){if(mode||!playerAccount)return;hideJourney();closeHomeMenu();const loading=openAccount();if(playerAccount&&!mode)navigateClub(page);await loading;}
 const homeActions={
+ feedback:()=>modal('Ajude a melhorar a demo','<p>Conte onde você estava, o que tentou fazer e o que aconteceu. O formulário pede os passos e o aparelho usado.</p><p><a class="secondary" href="https://github.com/TallysKronos/PipaKlub/issues/new?template=demo-feedback.yml" target="_blank" rel="noopener noreferrer">Abrir formulário de feedback no GitHub</a></p>','Voltar ao clube','Feedback · demo-rc.1'),
+ demo:()=>openDemoFinale(),
  lab:()=>{hideJourney();closeHomeMenu();skyOpen()},
  collection:()=>openClubDestination('collection'),summon:()=>openClubDestination('summon'),trades:()=>openClubDestination('trades'),profile:()=>openClubDestination('profile'),history:()=>openClubDestination('history'),events:()=>openClubDestination('events'),
  city:()=>openCity(),
@@ -4213,7 +4390,7 @@ const homeMenuGroups={
  root:[['playGroup','Jogar','menu-play'],['collection','Parceiros','menu-partners'],['dex','Pipa Dex','menu-dex'],['clubGroup','Clube','menu-club'],['school','Escola','menu-school'],['optionsGroup','Opções','menu-options']],
  playGroup:[['root','← Voltar'],['trails','Trilhas'],['quick','Partida rápida'],['daily','Céu do dia'],['friends','Jogar com amigos'],['practice','Treino livre'],...(new URLSearchParams(location.search).has('lab')?[['lab','Laboratório · Duelo nas Alturas']]:[])],
  clubGroup:[['root','← Voltar'],['summon','Invocação'],['trades','Trocas por convite'],['shop','Banca de linhas'],['history','Meus duelos'],['events','Souls de evento'],['profile','Meu perfil'],['professor','Meu primeiro voo'],['story','Rever a abertura']],
- optionsGroup:[['root','← Voltar'],['sound','Som'],['quality','Qualidade da imagem'],['fullscreen','Tela cheia'],...(CLARITY_ID?[['privacy','Privacidade']]:[]),['rules','Regras'],['reload','Recarregar cenário'],['logout','Sair da conta']]
+ optionsGroup:[['root','← Voltar'],['sound','Som'],['quality','Qualidade da imagem'],['fullscreen','Tela cheia'],...(CLARITY_ID?[['privacy','Privacidade']]:[]),['feedback','Enviar feedback da demo'],['rules','Regras'],['reload','Recarregar cenário'],['logout','Sair da conta']]
 };
 let homeMenuGroup='root';
 function renderHomeMenu(group='root'){
@@ -4231,8 +4408,8 @@ for(const [i,d]of homeArt.districts.entries()){const b=uiElement('button',undefi
 function drawCityBadge(){const im=homeImages.get('badges'),f=homeArt.badges[cityPick];if(!im||!f)return;const c=$('cityBadge'),g=c.getContext('2d');g.clearRect(0,0,c.width,c.height);g.drawImage(im,f.x,f.y,f.w,f.h,3,3,c.width-6,c.height-6)}
 function drawCityMarkers(){const im=homeImages.get('badges');if(!im)return;for(const [i,b]of [...$('cityWorld').querySelectorAll('button')].entries()){let c=b.querySelector('canvas');if(!c){b.querySelector('.city-emblem').remove();c=document.createElement('canvas');c.width=80;c.height=90;c.className='city-emblem';c.setAttribute('aria-hidden','true');b.prepend(c)}const g=c.getContext('2d'),f=homeArt.badges[i];g.clearRect(0,0,80,90);g.drawImage(im,f.x,f.y,f.w,f.h,4,3,72,84)}}
 function selectCity(i){
- cityPick=i;const d=homeArt.districts[i],trail=trails.trails[i];for(const b of $('cityWorld').querySelectorAll('button')){const index=+b.dataset.district,locked=index<3&&!trails.unlocked(trailProgress,trails.trails[index].stages[0].id);b.setAttribute('aria-pressed',String(index===i));b.classList.toggle('locked',locked);b.setAttribute('aria-label',homeArt.districts[index].name+(index>=3?' · em preparação':locked?' · bloqueado':''));}$('cityChapter').textContent='Bairro '+String(i+1).padStart(2,'0');$('cityName').textContent=d.name;$('cityDescription').textContent=i<3?'Explore cinco lugares deste bairro. Vença cada encontro para abrir caminho e descobrir quem espera no desafio final.':'Este bairro faz parte da expansão da cidade e ainda está em preparação.';
- const next=trail?.stages.find(s=>trails.unlocked(trailProgress,s.id)&&!trailProgress.stars[s.id])||trail?.stages.at(-1),unlocked=i<3&&trails.unlocked(trailProgress,trail.stages[0].id);$('cityExplore').hidden=i>=3;$('cityExplore').disabled=!unlocked;$('cityExplore').textContent=unlocked?(trail.stages.every(s=>trailProgress.stars[s.id])?'Revisitar '+d.name:'Explorar '+d.name):'Conclua o bairro anterior';$('cityRecord').textContent=i<3?trail.stages.filter(s=>trailProgress.stars[s.id]).length+' de 5 lugares vencidos · '+(districtLeaderKnown(trail)?'Encontro final: '+d.leader:'Caminhos por descobrir'):'Novos encontros e disputa de títulos chegam na expansão. Nenhum progresso foi concedido.';
+ cityPick=i;const d=homeArt.districts[i],trail=trails.trails[i],outsideDemo=trails.demo&&i>0;for(const b of $('cityWorld').querySelectorAll('button')){const index=+b.dataset.district,locked=index<3&&!trails.unlocked(trailProgress,trails.trails[index].stages[0].id);b.setAttribute('aria-pressed',String(index===i));b.classList.toggle('locked',locked);b.setAttribute('aria-label',homeArt.districts[index].name+(index>=3?' · em preparação':locked?' · bloqueado':''));}$('cityChapter').textContent=outsideDemo?'Versão completa · em breve':'Bairro '+String(i+1).padStart(2,'0');$('cityName').textContent=d.name;$('cityDescription').textContent=outsideDemo?'A demo inclui a abertura, o Morro do Sol e o online. Este bairro faz parte da versão completa.':i<3?'Explore cinco lugares deste bairro. Vença cada encontro para abrir caminho e descobrir quem espera no desafio final.':'Este bairro faz parte da expansão da cidade e ainda está em preparação.';
+ const next=trail?.stages.find(s=>trails.unlocked(trailProgress,s.id)&&!trailProgress.stars[s.id])||trail?.stages.at(-1),unlocked=i<3&&trails.unlocked(trailProgress,trail.stages[0].id);$('cityExplore').hidden=i>=3||outsideDemo;$('cityExplore').disabled=!unlocked;$('cityExplore').textContent=unlocked?(trail.stages.every(s=>trailProgress.stars[s.id])?'Revisitar '+d.name:'Explorar '+d.name):'Conclua o bairro anterior';$('cityRecord').textContent=outsideDemo?'Fora do conteúdo desta demo. Seu progresso e seus parceiros continuam salvos.':i<3?trail.stages.filter(s=>trailProgress.stars[s.id]).length+' de 5 lugares vencidos · '+(districtLeaderKnown(trail)?'Encontro final: '+d.leader:'Caminhos por descobrir'):'Novos encontros e disputa de títulos chegam na expansão. Nenhum progresso foi concedido.';
  $('cityExplore').onclick=()=>{if(!unlocked)return;cityScreen.hidden=true;cityBriefOpen=true;$('trails').dataset.district=String(i);trailPick=next.id;openTrails();syncHomeInert()};drawCityBadge();
 }
 async function openCity(){
@@ -4472,9 +4649,10 @@ async function showOpening(replay=false){
  const epoch=openingEpoch;const okay=await loadOpeningArt();if(epoch!==openingEpoch||openingScreen.hidden)return;if(!okay){$('openingStatus').textContent='Não foi possível carregar todas as artes. Sua cena está salva. Tente novamente.';$('openingRetry').hidden=false;}
  if(!openingFrame)openingFrame=requestAnimationFrame(drawOpening);
 }
+function openingGiftWasSeen(){if(openingReplay)return false;try{return localStorage.getItem('pipaGiftSeenV1:'+openingOwner)==='yes';}catch{return false;}}
 function renderOpening(){
  const i=openingState?.step??0,s=KAEL_OPENING[i];if(!s){closeOpening();return;}
- openingResetRoom();openingBirthBeat=0;openingGiftOpen=i===7;openingPrepareCast(i);openingScreen.classList.toggle('partner-moment',i>=9&&i<=10);openingScreen.classList.toggle('naming-partner',i===10);openingScreen.classList.toggle('room-playable',openingRoomStep());openingSince=performance.now();$('openingSpeaker').textContent=s.speaker;$('openingSpeech').textContent=i===11?(openingState.partner_name||'Rabbito')+'… '+s.text:s.text;
+ openingResetRoom();openingBirthBeat=0;openingGiftOpen=i===7&&!openingGiftWasSeen();openingPrepareCast(i);openingScreen.classList.toggle('partner-moment',i>=9&&i<=10);openingScreen.classList.toggle('naming-partner',i===10);openingScreen.classList.toggle('room-playable',openingRoomStep());openingSince=performance.now();$('openingSpeaker').textContent=s.speaker;$('openingSpeech').textContent=i===11?(openingState.partner_name||'Rabbito')+'… '+s.text:s.text;
  $('openingGift').hidden=!openingGiftOpen;$('openingGiftArt').src=ART_CONFIG.opening.images.tail.url;$('openingNameForm').hidden=i!==10;$('openingNext').hidden=i===10;$('openingNext').textContent=i===13?'Ir para o quintal':i===11?'Caminhar até a escada':i===8?'Colocar Rabiola Antiga':'Continuar';$('openingRetry').hidden=true;$('openingStatus').textContent='';
  $('openingPause').textContent=openingReplay?'Sair da reprise':'Continuar depois';$('openingHint').textContent=openingReplay?'Reprise · não altera sua coleção':'Enter para continuar · Esc para retomar depois';
  if(i===9)openingRenderBirth();openingSetBusy();if(i===10){$('openingName').value='';$('openingName').focus({preventScroll:true});}else $('openingNext').focus({preventScroll:true});
@@ -4486,7 +4664,7 @@ async function advanceOpeningScene(){
  if(openingState.step>=14){closeOpening();await loadJourney();return;}renderOpening();
 }
 function openingRenderBirth(){const beat=openingBirthMoments[openingBirthBeat];$('openingSpeaker').textContent=beat.speaker;$('openingSpeech').textContent=beat.text;$('openingNext').textContent=beat.action;openingSince=performance.now();}
-async function nextOpening(){if(openingBusy||openingCastBusy())return;if(openingGiftOpen){openingGiftOpen=false;$('openingGift').hidden=true;openingRoomSignature='';openingRefreshRoomUI();return;}if(openingState?.step===9&&openingBirthBeat<openingBirthMoments.length-1){openingBirthBeat++;openingRenderBirth();return;}if(openingRoomStep()){const spot=openingNearestSpot();if(spot)await openingInspect(spot.id);return;}return advanceOpeningScene();}
+async function nextOpening(){if(openingBusy||openingCastBusy())return;if(openingGiftOpen){if(!openingReplay){try{localStorage.setItem('pipaGiftSeenV1:'+openingOwner,'yes');}catch{}}openingGiftOpen=false;$('openingGift').hidden=true;openingRoomSignature='';openingRefreshRoomUI();return;}if(openingState?.step===9&&openingBirthBeat<openingBirthMoments.length-1){openingBirthBeat++;openingRenderBirth();return;}if(openingRoomStep()){const spot=openingNearestSpot();if(spot)await openingInspect(spot.id);return;}return advanceOpeningScene();}
 $('openingNext').onclick=nextOpening;
 $('openingNameForm').onsubmit=async e=>{e.preventDefault();if(openingBusy||openingState?.step!==10||openingScreen.hidden)return;const name=$('openingName').value.trim()||'Rabbito';if([...name].length>24||/[\u0000-\u001f\u007f]/.test(name)){$('openingStatus').textContent='Use até 24 caracteres, sem quebras de linha.';return;}if(openingReplay){openingState.partner_name=name;openingState.step=11;}else if(!await openingRequest('name',{name}))return;renderOpening();};
 $('openingPause').onclick=async()=>{if(openingBusy)return;const replay=openingReplay;closeOpening();if(replay){openingReplay=false;await loadJourney();}else dialogue('Um fio de sorte','Seu lugar na história está salvo. Continue quando estiver pronto.','Continuar a história',()=>showOpening(false));};
@@ -4531,6 +4709,7 @@ function createPlazaPolicy(){
   if(phase==='arrival'||phase==='choose')return {title:'Seu primeiro parceiro',body:'Encontre o Sr. Assis e escolha quem vai voar com você.',action:'professor'};
   if(phase==='practice')return {title:'Seu primeiro voo',body:'Aprenda a rebicar com o Sr. Assis e o Nozinho.',action:'professor'};
   if(phase==='city')return {title:'Um mundo para explorar',body:'Visite a cidade e conheça seu primeiro bairro.',action:'city'};
+  if(context.demo&&context.complete)return {title:'Demo concluída',body:'Você conquistou o Morro do Sol! Conheça seu novo parceiro, revisite o bairro ou jogue online com seus amigos.',action:'demo',stage:null};
   if(context.roadCleared)return {title:context.roadFinal?'Bairro conquistado':'Caminho liberado',body:context.roadFinal?'Você venceu o campeão. Siga pela saída para explorar a cidade.':'A vitória foi confirmada. Suba e siga para a próxima área do Morro.',action:'worldAdvance',stage:null};
   if(context.complete)return {title:'Jornada concluída',body:'Você venceu os três bairros disponíveis! Revisite seus rivais ou encontre seus amigos enquanto os próximos bairros são preparados.',action:'city',stage:null};
   if(context.worldId==='morro'&&next?.trailIndex===0)return {title:context.nearStage===next.id?'Seu próximo duelo':'Encontre seu rival',body:(context.nearStage===next.id?'Converse com ':'Encontre ')+(context.rivals||'seu rival')+' em '+(context.place||'seu próximo encontro')+'.',action:'nextEncounter',stage:next.id};
@@ -4542,7 +4721,7 @@ function createPlazaPolicy(){
 function currentPlazaMission(){
  const next=trails.stages.find(stage=>trails.unlocked(trailProgress,stage.id)&&!trailProgress.stars[stage.id]),trail=next&&trails.trails[next.trailIndex];
  const context=typeof worldMissionContext==='function'?worldMissionContext(next):{};
- return plazaPolicy.mission(journeyLoading?'arrival':journey?.phase,next,trail,{...context,complete:journey?.phase==='complete'&&!next});
+ return plazaPolicy.mission(journeyLoading?'arrival':journey?.phase,next,trail,{...context,demo:trails.demo,complete:journey?.phase==='complete'&&!next});
 }
 function updatePlazaMission(){if(!$('plazaMissionTitle'))return;const m=currentPlazaMission();$('homeObjective').textContent=journeyLoading?'Preparando sua chegada ao clube…':m.body;$('plazaMissionTitle').textContent=m.title;}
 // Scenic home: artwork, actors and HUD are independent layers. No simulated balances.
@@ -4590,7 +4769,7 @@ function initPlaza(){
 }
 function refreshPlazaHUD(){
  if(!$('plazaXP')||!playerAccount)return;
- const p=plazaPolicy.profile(playerAccount.profile);$('plazaLevel').textContent='Nv. '+p.level;$('plazaXPLabel').textContent=p.xp.toLocaleString('pt-BR')+' XP';$('plazaXPLabel').title=p.xp+' / '+p.next+' XP';$('plazaXPFill').style.width=p.percent+'%';$('plazaXP').setAttribute('aria-valuenow',String(Math.round(p.percent)));$('plazaXP').setAttribute('aria-valuetext',p.xp+' de '+p.next+' XP · Nível '+p.level);
+ const p=plazaPolicy.profile(playerAccount.profile);$('plazaLevel').textContent='Pipeiro · Nv. '+p.level;$('plazaXPLabel').textContent=p.xp.toLocaleString('pt-BR')+' XP';$('plazaXPLabel').title=p.xp+' / '+p.next+' XP';$('plazaXPFill').style.width=p.percent+'%';$('plazaXP').setAttribute('aria-valuenow',String(Math.round(p.percent)));$('plazaXP').setAttribute('aria-valuetext',p.xp+' de '+p.next+' XP · Nível '+p.level);
  $('plazaCoins').textContent=Number(trailProgress.coins||0).toLocaleString('pt-BR');
  const next=firstOpenStage(),trail=trails.trails[next?.trailIndex];updatePlazaMission();
  const district=homeArt.districts[next?.trailIndex||0];$('plazaDistrictName').textContent=district?.name||'Cidade dos ventos';const im=homeArt.images['district-'+(trail?.id||'morro')]||homeArt.images.city;$('plazaDistrictImage').src=im.url;
@@ -4613,20 +4792,25 @@ function drawPlazaScene(g,t,dt){
  if(plazaFollower.y<a.y)partner();human(a.x,a.y,a.direction,87,walking);if(plazaFollower.y>=a.y)partner();
 }
 function openPlazaMissions(){
+ const origin=document.activeElement;
  const next=firstOpenStage(),trail=trails.trails[next?.trailIndex],m=currentPlazaMission();
  modal('Seu próximo voo','<div id="plazaMissionBody" class="plaza-mission-list"></div>','Voltar à praça','Missões do clube');
  const body=$('plazaMissionBody');body.append(uiElement('h3',m.title),uiElement('p',m.body));
- for(const district of trails.trails){const finished=district.stages.filter(s=>trailProgress.stars[s.id]).length,row=uiElement('div',undefined,'plaza-mission-row');row.append(uiElement('b',district.name),uiElement('span',finished+' / '+district.stages.length+' lugares vencidos'));body.append(row);}
- const button=uiElement('button',m.action==='professor'?'Falar com o Sr. Assis':'Abrir mapa da cidade','primary');button.onclick=()=>{closeModal();homeActions[m.action]()};body.append(button);
+ for(const district of trails.trails.filter(t=>!trails.demo||t.id==='morro')){const finished=district.stages.filter(s=>trailProgress.stars[s.id]).length,row=uiElement('div',undefined,'plaza-mission-row');row.append(uiElement('b',district.name),uiElement('span',finished+' / '+district.stages.length+' lugares vencidos'));body.append(row);}
+ const button=uiElement('button',m.action==='demo'?'Ver conclusão da demo':m.action==='professor'?'Falar com o Sr. Assis':'Abrir mapa da cidade','primary');button.onclick=()=>{closeModal();homeActions[m.action]()};body.append(button);
+ modalReturnFocus=origin;button.focus({preventScroll:true});
 }
 async function openPlazaBag(){
+ const origin=document.activeElement;
  modal('Sua mochila','<p id="plazaBagStatus" role="status">Buscando suas rabiolas…</p><div id="plazaBagItems" class="plaza-bag-items"></div>','Voltar à praça','Itens da conta');
  const container=$('plazaBagItems'),status=$('plazaBagStatus'),owner=playerAccount?.profile.id;
+ modalReturnFocus=origin;$('dialogAction').focus({preventScroll:true});
  try{
   const response=await accountRequest('summon',{action:'inventory',sessionId:summonSession});
   if(owner!==playerAccount?.profile.id||$('plazaBagItems')!==container||$('modal').style.display!=='flex')return;
   const tails=(response.summon?.tails||[]).filter(t=>['ready','damaged'].includes(t.status));status.textContent=tails.length?tails.length+' rabiola'+(tails.length===1?'':'s')+' na mochila.':'Sua mochila está vazia. Encontre rabiolas nos duelos contra Pipamons selvagens.';
-  for(const tail of tails){const card=uiElement('article',undefined,'plaza-bag-item');card.append(summonTailArt(tail.modelId),uiElement('b','Rabiola de '+summonDisplayName(tail)),uiElement('small',tail.status==='ready'?'Pronta para invocação':'Danificada'));container.append(card);}
+  const groups=new Map();for(const tail of tails){const key=tail.modelId+':'+tail.status;if(!groups.has(key))groups.set(key,{tail,count:0});groups.get(key).count++;}
+  for(const {tail,count}of groups.values()){const card=uiElement('article',undefined,'plaza-bag-item');card.append(summonTailArt(tail.modelId),uiElement('b','Rabiola de '+summonDisplayName(tail)),uiElement('span','×'+count,'plaza-bag-quantity'),uiElement('small',tail.status==='ready'?'Pronta para invocação':'Danificada'));container.append(card);}
   const go=uiElement('button','Visitar o invocador','primary');go.onclick=()=>{closeModal();homeActions.summon()};container.after(go);
  }catch(e){if(owner!==playerAccount?.profile.id||$('plazaBagItems')!==container)return;status.textContent=e.message||'Não foi possível carregar a mochila.';const retry=uiElement('button','Tentar novamente','secondary');retry.onclick=openPlazaBag;container.append(retry);}
 }
@@ -5012,7 +5196,7 @@ function worldRoadInteract(place){
  if(place.action==='road_back'){openWorld(place.target,{arrival:'north'});return true;}
  const status=worldRoadGateState();if(!['open','complete'].includes(status.state)){toast(worldRoadGateLabel(c,status));trailSync.retry();return true;}
  if(place.action==='road_gate'){const exit=worldScene().places.find(p=>p.action==='road_next');worldGo(exit);return true;}
- if(status.next)openWorld(status.next.id,{arrival:'south'});else homeActions.city();return true;
+ if(status.next)openWorld(status.next.id,{arrival:'south'});else if(trails.demo)openDemoFinale();else homeActions.city();return true;
 }
 
 for(const [id,scene]of Object.entries(worldScenes)){const navigation=createWorldNavigation(scene);worldRuntime.states[id]={navigation,actor:navigation.create()};}
@@ -5127,7 +5311,7 @@ function normalLineChoice(){return eng.lineSkills.find(d=>d.id===$('normalLineCh
 function normalLineInput(){return normalLineNonce?{lineNonce:normalLineNonce,lineId:normalLineChoice().id,lineHeld:normalLineHeld,lineSide:normalLineSide}:{};}
 function resetNormalLine(){normalLineHeld=false;}
 function normalLineStart(){
- const p=ownKite();if(!mode||!p||p.respawn||pausedAt||showResult||skyActive||!$('pauseSheet').hidden||$('modal').style.display==='flex'||state?.phase&&state.phase!=='live'||p.lineMove||p.lineCooldown>0||p.energy<normalLineChoice().cost)return;
+ const p=ownKite();if(!mode||!p||p.respawn||p.evade>0||pausedAt||showResult||skyActive||!$('pauseSheet').hidden||$('modal').style.display==='flex'||state?.phase&&state.phase!=='live'||p.lineMove||p.lineCooldown>0||p.energy<normalLineChoice().cost)return;
  normalLineNonce=Math.max(normalLineNonce,p.lineSeen||0)+1;normalLineHeld=true;
 }
 function updateNormalLineHUD(){
@@ -5254,7 +5438,7 @@ async function selectInventory(kite){
  $('inventoryOwnership').textContent=equipped?'Equipada para o próximo voo':kite.model_id==='rabbito'?'Parceiro da história · vinculado à conta':kite.model.acquisition==='event'?'Soul de evento · vinculada à conta':kite.permanent?'Básica permanente':'Colecionável · pode ser conquistada em Vale pipa';
  $('inventorySkill').textContent=t.name+' · '+t.skill;$('inventorySkillDescription').textContent=t.description;
  $('inventoryLore').replaceChildren(...(e?.story||[]).map(text=>uiElement('p',text)));
- $('inventoryCaptures').textContent=(kite.capture_count||0)+' conquistas';$('inventoryHabitat').textContent=e?.habitat||'Céus de Kronasta';
+ $('inventoryCaptures').textContent=(kite.capture_count||0)+' transferências em Vale pipa · não conta vitórias da história';$('inventoryHabitat').textContent=e?.habitat||'Céus de Kronasta';
  const equip=$('inventoryEquip');equip.textContent=equipped?'Já está equipada':'Equipar Pipamon';equip.disabled=accountSaving||equipped||!!mode;
  equip.onclick=()=>equipInventory(kite);$('inventoryHistory').onclick=()=>{stopInventoryPreview();openKiteStory(kite);};
  $('inventoryCanvas').setAttribute('aria-label',(kite.personal_name||kite.model.name)+' — corpo inteiro animado');
@@ -5418,6 +5602,14 @@ function moveFocus(dir){
  // First press lands on the screen's main action when there is one, else the top-left target.
  if(!current){const first=PRIMARY.map(s=>targets.find(t=>t.el.matches(s))).find(Boolean)||targets.slice().sort((a,b)=>a.top-b.top||a.left-b.left)[0];focusPad(first.el);return;}
  const el=current.el;
+ // Reading panels have their own scroll, independent of the portrait browser.
+ if(el.matches('.pilot-detail-tabs [role=tab]')&&dir==='down'){
+  const panel=document.getElementById(el.getAttribute('aria-controls'));if(panel){focusPad(panel);return;}
+ }
+ if(el.matches('.pilot-detail-page')){
+  if(dir==='left'){const tab=document.getElementById(el.getAttribute('aria-labelledby'));if(tab){focusPad(tab);return;}}
+  if((dir==='up'||dir==='down')&&el.scrollHeight>el.clientHeight){el.scrollTop+=dir==='up'?-56:56;return;}
+ }
  // Sliders and selects take left/right as value changes, like a console options screen.
  if((dir==='left'||dir==='right')&&el.matches('input[type=range],select')){
   const step=dir==='right'?1:-1;
@@ -5438,6 +5630,7 @@ function pressKey(key){padSynthetic=true;try{const target=document.activeElement
 function goBack(){pressKey('Escape');}
 // LB/RB: tabs when the screen has them, otherwise the first filter select.
 function switchTab(step){
+ if(typeof pilotSwitchPage==='function'&&pilotSwitchPage(step))return;
  const tabs=focusTargets().map(t=>t.el).filter(el=>el.matches('[role=tab],[data-hud-tab],[aria-pressed][data-tab],.tab-button'));
  if(tabs.length>1){const i=tabs.findIndex(el=>el.getAttribute('aria-selected')==='true'||el.getAttribute('aria-pressed')==='true'||el.classList.contains('active'));const next=tabs[(Math.max(0,i)+step+tabs.length)%tabs.length];next.click();next.focus({preventScroll:true});return;}
  const select=focusTargets().map(t=>t.el).find(el=>el.tagName==='SELECT');
@@ -5575,6 +5768,47 @@ for(const [selector,key] of [['.courtyard','home'],['.city-screen','city']]){
  if(scene&&url)scene.style.setProperty('--scene-backdrop','url('+JSON.stringify(url)+')');
 }
 
+// Detail pages keep the creature and identity on screen while only the reading area scrolls.
+// DOM nodes are moved, not cloned: existing renderers and server actions keep their references.
+function createDetailPages(root,{id,label,pages,onChange=()=>{}}){
+ const doc=root.ownerDocument,bar=doc.createElement('nav'),body=doc.createElement('div');
+ bar.className='pilot-detail-tabs';bar.setAttribute('role','tablist');bar.setAttribute('aria-label',label);bar.dataset.detailTabs=id;
+ body.className='pilot-detail-body';
+ let active=0;
+ const panels=pages.map((page,i)=>{
+  const tab=doc.createElement('button');tab.type='button';tab.id=id+'-tab-'+i;tab.textContent=page.label;
+  tab.setAttribute('role','tab');tab.setAttribute('aria-controls',id+'-page-'+i);
+  const panel=doc.createElement('section');panel.id=id+'-page-'+i;panel.className='pilot-detail-page';panel.tabIndex=0;
+  panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby',tab.id);
+  for(const node of page.nodes||[])if(node)panel.append(node);
+  tab.onclick=()=>select(i);
+  tab.onkeydown=e=>{
+   if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){
+    e.preventDefault();e.stopPropagation();select(e.key==='Home'?0:e.key==='End'?pages.length-1:active+(e.key==='ArrowRight'?1:-1),true);
+   }else if(e.key==='ArrowDown'){e.preventDefault();e.stopPropagation();panel.focus({preventScroll:true});}
+  };
+  panel.onkeydown=e=>{
+   if(e.target!==panel)return;
+   if(e.key==='ArrowLeft'){e.preventDefault();e.stopPropagation();tabs[active].focus({preventScroll:true});return;}
+   if(['ArrowUp','ArrowDown','PageUp','PageDown','Home','End'].includes(e.key)){
+    e.preventDefault();e.stopPropagation();
+    const amount=e.key==='Home'?-panel.scrollHeight:e.key==='End'?panel.scrollHeight:(e.key.endsWith('Up')?-1:1)*(e.key.startsWith('Page')?panel.clientHeight*.8:56);
+    panel.scrollTop+=amount;
+   }
+  };
+  bar.append(tab);body.append(panel);return panel;
+ });
+ const tabs=[...bar.children];
+ function select(index,focus=false){
+  active=(index+pages.length)%pages.length;
+  tabs.forEach((tab,i)=>{tab.setAttribute('aria-selected',String(i===active));tab.tabIndex=i===active?0:-1;panels[i].hidden=i!==active;});
+  if(focus)tabs[active].focus({preventScroll:true});
+  onChange(active);return panels[active];
+ }
+ root.classList.add('pilot-paged-detail');root.append(bar,body);select(0);
+ return {bar,body,panels,select,step:(n,focus=true)=>select(active+n,focus),get active(){return active;}};
+}
+
 // PIP-50 pilot: one navigation language for the menu, dialogue, collection and battle HUD.
 // The player navigates by pulling a line: a small kite on a string marks the focused option.
 // Presentation only: it reuses the existing actions, never grants, unlocks or changes rules.
@@ -5583,8 +5817,9 @@ const pilotUI=!/[?&]classico\b/.test(location.search);
 const PILOT_KITE='<svg viewBox="0 0 40 64" aria-hidden="true"><path d="M20 2 37 20 20 40 3 20Z" fill="#f2a33a" stroke="#213d39" stroke-width="2.5" stroke-linejoin="round"/><path d="M20 2 20 40M3 20h34" stroke="#213d39" stroke-width="1.6"/><path d="M20 2 37 20 20 20Z" fill="#e2603a"/><path d="M20 40c-6 5 6 7 0 12s5 6 0 10" fill="none" stroke="#213d39" stroke-width="2"/><path d="m15 47 5 2 5-2M15 56l5 2 5-2" stroke="#e2603a" stroke-width="3" stroke-linecap="round"/></svg>';
 function pilotKite(cls='pilot-kite'){const k=document.createElement('span');k.className=cls;k.setAttribute('aria-hidden','true');k.innerHTML=PILOT_KITE;return k;}
 // Footer commands are also buttons, so mouse and touch use the same command system as the controller.
-function pilotCommand(command,label,fn){const c=document.createElement(fn?'button':'span');c.className='pilot-command';if(fn){c.type='button';c.tabIndex=-1;c.onclick=fn;}c.append(glyphImage(command),document.createTextNode(label));return c;}
+function pilotCommand(command,label,fn){const c=document.createElement(fn?'button':'span');c.className='pilot-command';if(fn){c.type='button';c.tabIndex=-1;c.onclick=fn;if(!label)c.setAttribute('aria-label',command==='tabLeft'?'Página anterior':'Próxima página');}c.append(glyphImage(command),document.createTextNode(label));return c;}
 const pilotEscape=()=>pressKey('Escape');
+let pilotSwitchPage=null;
 
 if(pilotUI){
 document.body.classList.add('pilot-ui');
@@ -5716,15 +5951,61 @@ function pilotSearch(input,label){
  return ()=>{wrap?.classList.toggle('pilot-collapsed');if(!wrap?.classList.contains('pilot-collapsed'))input.focus();};
 }
 function pilotCollectionFooter(host,items){const f=document.createElement('footer');f.className='pilot-footer pilot-footer-inline';f.append(...items.map(([c,l,fn])=>pilotCommand(c,l,fn)));host.append(f);return f;}
-let invTabs=null,dexTabs=null,invSearch=null,dexSearch=null;
+let invTabs=null,dexTabs=null,invSearch=null,dexSearch=null,invPages=null,dexPages=null;
 function pilotWireCollection(){
- if(!invTabs&&$('inventoryFilter')&&$('inventoryList')){invTabs=pilotTabs($('inventoryFilter'),$('inventoryList'));invSearch=pilotSearch($('inventorySearch'));pilotCollectionFooter($('inventoryList').closest('.account-card')||$('inventoryList').parentElement,[['confirm','Equipar',()=>$('inventoryEquip')?.click()],['actionX','Histórico',()=>$('inventoryHistory')?.click()],['actionY','Buscar',()=>invSearch?.()],['tabLeft','',()=>pilotStep(invTabs,-1)],['tabRight','Filtro',()=>pilotStep(invTabs,1)],['back','Voltar',()=>closeAccount()]]).classList.add('pilot-inventory-footer');
+ if(!invTabs&&$('inventoryFilter')&&$('inventoryList')){invTabs=pilotTabs($('inventoryFilter'),$('inventoryList'));invSearch=pilotSearch($('inventorySearch'));pilotCollectionFooter($('inventoryList').closest('.account-card')||$('inventoryList').parentElement,[['confirm','Equipar',()=>$('inventoryEquip')?.click()],['actionX','Histórico',()=>$('inventoryHistory')?.click()],['actionY','Buscar',()=>invSearch?.()],['tabLeft','',()=>invPages?.step(-1)],['tabRight','Ficha',()=>invPages?.step(1)],['back','Voltar',()=>closeAccount()]]).classList.add('pilot-inventory-footer');
   // The footer mirrors the real equip button: same label, same disabled state.
   const equip=$('inventoryEquip'),cmd=document.querySelector('.pilot-inventory-footer .pilot-command');
   if(equip&&cmd){const sync=()=>{cmd.disabled=equip.disabled;cmd.lastChild.textContent=equip.disabled&&/equipada/i.test(equip.textContent)?'Equipada':'Equipar';};new MutationObserver(sync).observe(equip,{attributes:true,childList:true,characterData:true,subtree:true});sync();}}
  if(!dexTabs&&$('dexFilter')&&$('dexList')){dexTabs=pilotTabs($('dexFilter'),$('dexList'));dexSearch=pilotSearch($('dexSearch'));}
 }
 pilotWireCollection();new MutationObserver(pilotWireCollection).observe(document.body,{childList:true,subtree:true});
+
+// Two stable regions: the full creature on the left, the identity and reading page on the right.
+{
+ const inv=$('inventoryDetails'),dex=$('dexDetails'),summary=uiElement('div',undefined,'pilot-partner-summary');summary.id='pilotPartnerSummary';
+ const nodes=selector=>[...dex.querySelectorAll(selector)];
+ const heading=dex.querySelector('.dex-profile>div:last-child'),stage=dex.querySelector('.dex-stage');
+ heading.classList.add('creature-heading');dex.prepend(stage,heading);dex.querySelector('.dex-profile').remove();
+ const dexFacts=dex.querySelector('.dex-facts'),obtain=$('dexObtain'),obtainTitle=obtain.previousElementSibling;
+ const story=$('dexStory'),storyTitle=story.previousElementSibling;
+ const controls=dex.querySelector('.dex-controls');controls.classList.add('pilot-animation-controls');
+ dexPages=createDetailPages(dex,{id:'dex-detail',label:'Páginas da Pipa Dex',pages:[
+  {label:'Visão geral',nodes:[dexFacts,obtainTitle,obtain]},
+  {label:'Técnica',nodes:nodes('.dex-skill')},
+  {label:'História',nodes:[storyTitle,story,dex.querySelector('.dex-note')]},
+  {label:'Rabiola',nodes:[$('dexItemsSection')]},
+  {label:'Animações',nodes:[controls,$('dexAnimationHint')]}
+ ]});
+ const lore=$('inventoryLore').parentElement,notes=[...inv.querySelectorAll('.collection-info')];
+ invPages=createDetailPages(inv,{id:'inventory-detail',label:'Páginas do parceiro',pages:[
+  {label:'Visão geral',nodes:[summary,inv.querySelector('.collection-facts')]},
+  {label:'Status',nodes:[$('inventoryProgress')]},
+  {label:'Técnica',nodes:[inv.querySelector('.collection-skill'),...notes]},
+  {label:'História',nodes:[lore]}
+ ]});
+ // Asset errors remain visible, including on a different reading page.
+ const invStage=inv.querySelector('.collection-stage');invStage.append($('inventoryLoad'));
+ stage.append($('dexLoad'),$('dexRetry'));
+ for(const canvas of [$('inventoryCanvas'),$('dexCanvas')]){canvas.width=600;canvas.height=760;}
+ const selectOwned=selectInventory;
+ selectInventory=function(kite){
+  const pending=selectOwned(kite),p=pipamonProgress(kite);
+  summary.replaceChildren();
+  const level=uiElement('p','Nível '+p.level+' / 50','pilot-summary-level'),tier=uiElement('span',p.tier?p.tier.name:'Em formação','pipamon-tier');level.append(tier);summary.append(level);
+  const stats=uiElement('dl',undefined,'pilot-summary-stats');
+  for(const [name,value]of [['Linha',p.stats.line],['Energia',p.stats.energy]]){const item=uiElement('div');item.append(uiElement('dt',name),uiElement('dd',String(value)));stats.append(item);}
+  summary.append(stats,uiElement('p',p.next===null?'Nível máximo':p.into+' / '+p.needed+' XP para o próximo nível','pilot-summary-xp'));
+  const skill=uiElement('div',undefined,'pilot-summary-skill');skill.append(uiElement('b',$('inventorySkill').textContent),uiElement('p',$('inventorySkillDescription').textContent));summary.append(skill);
+  return pending;
+ };
+ const footer=pilotCollectionFooter(dex.closest('.dex-card'),[['actionY','Buscar',()=>dexSearch?.()],['tabLeft','',()=>dexPages.step(-1)],['tabRight','Ficha',()=>dexPages.step(1)],['back','Voltar',()=>closeDex()]]);footer.classList.add('pilot-dex-footer');
+}
+// LB/RB and Q/E have one meaning here: change the reading page. Filters remain explicit choices.
+pilotSwitchPage=step=>{
+ const pager=!$('pauseSheet').hidden?null:inventoryVisible()?invPages:dexOpen?dexPages:null;
+ if(!pager)return false;pager.step(step);return true;
+};
 // Opening a collection lands on the partner that is shown (the equipped one), not on the close button.
 function pilotLandOnCard(list,selector){
  const a=document.activeElement;if(!list.offsetParent||list.contains(a)&&a!==list)return;
@@ -5739,7 +6020,7 @@ document.addEventListener('focusout',e=>{const card=e.target.closest?.('#invento
 addEventListener('keydown',e=>{
  if(/INPUT|TEXTAREA|SELECT/.test(e.target?.tagName||''))return;const key=e.key.toLowerCase();
  const inv=$('inventoryList')?.offsetParent?invTabs:null,dex=$('dexList')?.offsetParent?dexTabs:null,bar=inv||dex;if(!bar)return;
- if(key==='q'||key==='e'){e.preventDefault();pilotStep(bar,key==='q'?-1:1);}
+ if(key==='q'||key==='e'){e.preventDefault();pilotSwitchPage?.(key==='q'?-1:1);}
  if(key==='y'){e.preventDefault();(inv?invSearch:dexSearch)?.();}
  if(key==='x'&&inv){e.preventDefault();$('inventoryHistory')?.click();}
 });
@@ -5751,15 +6032,26 @@ document.documentElement.style.setProperty('--pilot-kite','url("data:image/svg+x
 {
  const sheet=$('pauseSheet'),card=sheet.querySelector('.sheet-card');card.classList.add('pilot-pause');
  const line=$('pauseLineChoice'),lineTabs=line?pilotTabs(line,line.closest('label')):null;
- if(lineTabs){const label=document.createElement('p');label.className='pilot-tabs-label';label.textContent='Rebicada';lineTabs.before(label);}
+ let syncLine=()=>{},stepLine=()=>{};
+ if(lineTabs){
+  lineTabs.hidden=true;lineTabs.classList.add('pilot-line-hidden');
+  const picker=uiElement('section',undefined,'pilot-line-picker');picker.setAttribute('aria-label','Rebicada equipada');
+  const title=uiElement('p','Rebicada','pilot-tabs-label'),row=uiElement('div',undefined,'pilot-line-row');
+  const prev=uiElement('button','‹'),next=uiElement('button','›'),name=uiElement('span');prev.type=next.type='button';prev.setAttribute('aria-label','Rebicada anterior');next.setAttribute('aria-label','Próxima rebicada');name.setAttribute('aria-live','polite');
+  const info=uiElement('p',undefined,'pilot-line-info');info.id='pilotLineInfo';
+  syncLine=()=>{const i=[...line.options].findIndex(o=>o.value===line.value),d=eng.lineSkills.find(d=>d.id===line.value);name.textContent=(i+1)+' / '+line.options.length+' · '+(d?.name||line.options[i]?.textContent||'');info.textContent=d?d.description+' · '+d.cost+' de energia · Recarga '+d.cooldown+' s.':'';};
+  stepLine=n=>{pilotStep(lineTabs,n);syncLine();};prev.onclick=()=>stepLine(-1);next.onclick=()=>stepLine(1);
+  row.append(prev,name,next);picker.append(title,row,info);lineTabs.after(picker);syncLine();
+  const pages=pilotSwitchPage;pilotSwitchPage=n=>{if(!sheet.hidden){stepLine(n);return true;}return pages?.(n)||false;};
+ }
  const list=document.createElement('div');list.className='pilot-pause-list';
  const resume=card.querySelector('button.primary[data-close-sheet]'),rules=$('pauseRules'),leave=$('pauseLeave');
  for(const b of [resume,rules,leave]){b.classList.add('pilot-text-option');list.append(b);}
  resume.textContent='Continuar';card.querySelector('.menu-row')?.remove();$('pauseNote').after(list);
  const footer=document.createElement('div');footer.className='pilot-footer pilot-footer-inline pilot-pause-footer';
- footer.append(pilotCommand('confirm','Escolher'),...(lineTabs?[pilotCommand('tabLeft','',()=>pilotStep(lineTabs,-1)),pilotCommand('tabRight','Rebicada',()=>pilotStep(lineTabs,1))]:[]),pilotCommand('back','Continuar',pilotEscape));card.append(footer);
- new MutationObserver(()=>{if(sheet.hidden)return;lineTabs?.sync();requestAnimationFrame(()=>{if(!sheet.hidden)resume.focus({preventScroll:true});});}).observe(sheet,{attributes:true,attributeFilter:['hidden']});
- addEventListener('keydown',e=>{if(sheet.hidden||!lineTabs||e.ctrlKey||e.metaKey||e.altKey)return;const k=e.key.toLowerCase();if(k==='q'||k==='e'){e.preventDefault();e.stopImmediatePropagation();pilotStep(lineTabs,k==='q'?-1:1);}},true);
+ footer.append(pilotCommand('confirm','Escolher'),...(lineTabs?[pilotCommand('tabLeft','',()=>stepLine(-1)),pilotCommand('tabRight','Rebicada',()=>stepLine(1))]:[]),pilotCommand('back','Continuar',pilotEscape));card.append(footer);
+ new MutationObserver(()=>{if(sheet.hidden)return;lineTabs?.sync();syncLine();requestAnimationFrame(()=>{if(!sheet.hidden)resume.focus({preventScroll:true});});}).observe(sheet,{attributes:true,attributeFilter:['hidden']});
+ addEventListener('keydown',e=>{if(sheet.hidden||!lineTabs||e.ctrlKey||e.metaKey||e.altKey)return;const k=e.key.toLowerCase();if(k==='q'||k==='e'){e.preventDefault();e.stopImmediatePropagation();stepLine(k==='q'?-1:1);}},true);
  addEventListener('keydown',e=>{if(sheet.hidden||!['ArrowUp','ArrowDown'].includes(e.key))return;const items=[...list.querySelectorAll('button')].filter(b=>!b.hidden&&!b.disabled),i=items.indexOf(document.activeElement);if(i<0)return;e.preventDefault();e.stopImmediatePropagation();items[(i+(e.key==='ArrowDown'?1:-1)+items.length)%items.length].focus({preventScroll:true});},true);
 }
 

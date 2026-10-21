@@ -22,8 +22,10 @@ export function attachRealtime(server,db,progression=null){
       const b=JSON.parse(String(raw));let c=clients.get(ws);
       if(!c){
         if(b.type!=='hello'||!/^[A-F0-9]{6}$/.test(String(b.code)))return ws.close(1008,'Invalid room');
-        const row=read(b.code),s=row&&JSON.parse(row.state),p=s?.players.find(p=>p.key===b.token);
+        const row=read(b.code),s=row&&JSON.parse(row.state),p=typeof b.token==='string'&&b.token.length>=20?s?.players.find(p=>!p.bot&&p.key===b.token):null;
         if(!p)return ws.close(1008,'Invalid session');
+        // Reloading hands control to the new socket; one seat cannot receive competing input streams.
+        for(const [other,peer]of clients)if(peer.code===b.code&&peer.id===p.id){clients.delete(other);other.close(1000,'Session resumed');}
         clearTimeout(deadline);c={code:b.code,id:p.id,input:{x:0,y:0,cut:false},seen:now};clients.set(ws,c);
         send(ws,{type:'state',state:visible(s)});return;
       }
@@ -45,6 +47,7 @@ export function attachRealtime(server,db,progression=null){
       for(const [ws,c] of peers){const p=s.players.find(p=>p.id===c.id);if(!p||now-c.seen>15000){ws.close(1008,'Session expired');continue;}
         p.input=now-c.seen>500?{x:0,y:0,cut:false}:c.input;p.seen=c.seen;
       }
+      for(const p of s.players)if(!p.bot&&now-p.seen>500)p.input={};
       engine.step(s,now);write(code,s);progression?.observe(s);const packet={type:'state',state:visible(s)};for(const [ws] of peers)send(ws,packet);
     }catch(e){console.error('Realtime tick failed:',e.message);for(const [ws] of peers)ws.close(1011,'Server error');}}
   },1000/30);tick.unref();

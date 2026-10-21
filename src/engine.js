@@ -188,12 +188,12 @@ export function createEngine() {
   function step(s,now) {
     s._pendingCuts=[];
     if(s.soloPaused&&s.trail){
-      const owner=s.players.find(p=>!p.bot&&p.accountId===s.trailOwner&&now-p.seen<15000);
+      const owner=s.players.find(p=>!p.bot&&p.accountId===s.trailOwner&&now-p.seen<60000);
       if(owner){const elapsed=Math.max(0,now-s.last);s.end+=elapsed;if(s.phaseUntil)s.phaseUntil+=elapsed;for(const p of s.players)if(p.respawn)p.respawn+=elapsed;for(const event of s.events)event.at+=elapsed;s.last=now;return s;}
       s.soloPaused=false;
     }
     const dt=clamp((now-s.last)/1000,0,.25);s.last=now;s.wind=Math.sin(now/9000)*(s.daily?.weather==='wind'?36:12);
-    if(now>=s.end)return s;s.players=s.players.filter(p=>p.bot||now-p.seen<15000);
+    if(now>=s.end)return s;s.players=s.players.filter(p=>p.bot||now-p.seen<60000);
     if((s.daily||s.trail)&&!s.players.some(p=>!p.bot)){s.end=now;return s;}
     // A quick room with nobody real left in it closes instead of letting bots fly alone.
     if(s.quick&&s.quick.fillAt<=now&&!s.players.some(p=>!p.bot)){s.end=now;return s;}

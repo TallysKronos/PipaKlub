@@ -28,7 +28,7 @@ async function selectInventory(kite){
  $('inventoryOwnership').textContent=equipped?'Equipada para o próximo voo':kite.model_id==='rabbito'?'Parceiro da história · vinculado à conta':kite.model.acquisition==='event'?'Soul de evento · vinculada à conta':kite.permanent?'Básica permanente':'Colecionável · pode ser conquistada em Vale pipa';
  $('inventorySkill').textContent=t.name+' · '+t.skill;$('inventorySkillDescription').textContent=t.description;
  $('inventoryLore').replaceChildren(...(e?.story||[]).map(text=>uiElement('p',text)));
- $('inventoryCaptures').textContent=(kite.capture_count||0)+' conquistas';$('inventoryHabitat').textContent=e?.habitat||'Céus de Kronasta';
+ $('inventoryCaptures').textContent=(kite.capture_count||0)+' transferências em Vale pipa · não conta vitórias da história';$('inventoryHabitat').textContent=e?.habitat||'Céus de Kronasta';
  const equip=$('inventoryEquip');equip.textContent=equipped?'Já está equipada':'Equipar Pipamon';equip.disabled=accountSaving||equipped||!!mode;
  equip.onclick=()=>equipInventory(kite);$('inventoryHistory').onclick=()=>{stopInventoryPreview();openKiteStory(kite);};
  $('inventoryCanvas').setAttribute('aria-label',(kite.personal_name||kite.model.name)+' — corpo inteiro animado');

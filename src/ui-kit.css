@@ -114,8 +114,8 @@ body.ui-kit-ready .partner-choice{box-sizing:border-box}
 body.ui-kit-ready .flight-coach{width:min(560px,calc(100vw - 44px));padding:5px 12px 8px}
 body.ui-kit-ready .flight-coach h2{font-size:25px;margin:4px 0}
 body.ui-kit-ready .flight-coach p{margin:7px 0;font-size:15px}
-body.ui-kit-ready .flight-coach .journey-actions{flex-wrap:nowrap;gap:10px}
-body.ui-kit-ready .flight-coach .journey-actions button{flex:1;min-width:0;border-width:0 16px!important;border-image-width:0 16px!important;padding:8px 3px!important;font-size:13px!important;min-height:44px}
+body.ui-kit-ready .flight-coach .journey-actions{flex-wrap:wrap;gap:10px}
+body.ui-kit-ready .flight-coach .journey-actions button{flex:0 1 auto;min-width:max-content;white-space:nowrap;border-width:0 16px!important;border-image-width:0 16px!important;padding:8px 8px!important;font-size:13px!important;min-height:44px}
 body.ui-kit-ready .journey-status:empty{display:none}
 /* The first conversation owns attention; navigation returns when it ends. */
 body.ui-kit-ready .courtyard:has(.partner-choice:not([hidden])) :is(.home-hud,.home-footer),body.ui-kit-ready .courtyard:has(.journey-dialog:not([hidden])) :is(.home-hud,.home-footer){visibility:hidden;pointer-events:none}

@@ -44,7 +44,10 @@ test('WebSocket authenticates sessions, broadcasts authoritative movement to bot
   const released=await c1.next(d=>d.type==='state'&&d.state.players.find(p=>p.id===b.me).lineMove?.phase==='move');
   assert.equal(released.state.players.find(p=>p.id===b.me).lineCount,1);
   assert.equal(released.state.players.find(p=>p.id===a.me).hp,100,'a distant line is never damaged');
+  const previousClosed=once(c2.ws,'close'),replacement=await client(b.token);assert.equal((await previousClosed)[0],1000);
+  const restored=await replacement.next(d=>d.type==='state');assert.equal(restored.state.id,a.state.id);assert.equal(restored.state.players.length,2);assert.equal(restored.state.players.find(p=>p.id===b.me).slot,1);
+  replacement.ws.send(JSON.stringify({type:'input',input:{x:1}}));await c1.next(d=>d.type==='state'&&d.state.players.find(p=>p.id===b.me).input.x===1);
   const bad=await client('invalid-session');const closed=await once(bad.ws,'close');assert.equal(closed[0],1008);
   c1.ws.send('{');assert.equal((await once(c1.ws,'close'))[0],1008);
-  c2.ws.close();
+  replacement.ws.close();
 });

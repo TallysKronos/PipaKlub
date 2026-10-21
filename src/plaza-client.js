@@ -1,7 +1,7 @@
 function currentPlazaMission(){
  const next=trails.stages.find(stage=>trails.unlocked(trailProgress,stage.id)&&!trailProgress.stars[stage.id]),trail=next&&trails.trails[next.trailIndex];
  const context=typeof worldMissionContext==='function'?worldMissionContext(next):{};
- return plazaPolicy.mission(journeyLoading?'arrival':journey?.phase,next,trail,{...context,complete:journey?.phase==='complete'&&!next});
+ return plazaPolicy.mission(journeyLoading?'arrival':journey?.phase,next,trail,{...context,demo:trails.demo,complete:journey?.phase==='complete'&&!next});
 }
 function updatePlazaMission(){if(!$('plazaMissionTitle'))return;const m=currentPlazaMission();$('homeObjective').textContent=journeyLoading?'Preparando sua chegada ao clube…':m.body;$('plazaMissionTitle').textContent=m.title;}
 // Scenic home: artwork, actors and HUD are independent layers. No simulated balances.
@@ -49,7 +49,7 @@ function initPlaza(){
 }
 function refreshPlazaHUD(){
  if(!$('plazaXP')||!playerAccount)return;
- const p=plazaPolicy.profile(playerAccount.profile);$('plazaLevel').textContent='Nv. '+p.level;$('plazaXPLabel').textContent=p.xp.toLocaleString('pt-BR')+' XP';$('plazaXPLabel').title=p.xp+' / '+p.next+' XP';$('plazaXPFill').style.width=p.percent+'%';$('plazaXP').setAttribute('aria-valuenow',String(Math.round(p.percent)));$('plazaXP').setAttribute('aria-valuetext',p.xp+' de '+p.next+' XP · Nível '+p.level);
+ const p=plazaPolicy.profile(playerAccount.profile);$('plazaLevel').textContent='Pipeiro · Nv. '+p.level;$('plazaXPLabel').textContent=p.xp.toLocaleString('pt-BR')+' XP';$('plazaXPLabel').title=p.xp+' / '+p.next+' XP';$('plazaXPFill').style.width=p.percent+'%';$('plazaXP').setAttribute('aria-valuenow',String(Math.round(p.percent)));$('plazaXP').setAttribute('aria-valuetext',p.xp+' de '+p.next+' XP · Nível '+p.level);
  $('plazaCoins').textContent=Number(trailProgress.coins||0).toLocaleString('pt-BR');
  const next=firstOpenStage(),trail=trails.trails[next?.trailIndex];updatePlazaMission();
  const district=homeArt.districts[next?.trailIndex||0];$('plazaDistrictName').textContent=district?.name||'Cidade dos ventos';const im=homeArt.images['district-'+(trail?.id||'morro')]||homeArt.images.city;$('plazaDistrictImage').src=im.url;
@@ -72,20 +72,25 @@ function drawPlazaScene(g,t,dt){
  if(plazaFollower.y<a.y)partner();human(a.x,a.y,a.direction,87,walking);if(plazaFollower.y>=a.y)partner();
 }
 function openPlazaMissions(){
+ const origin=document.activeElement;
  const next=firstOpenStage(),trail=trails.trails[next?.trailIndex],m=currentPlazaMission();
  modal('Seu próximo voo','<div id="plazaMissionBody" class="plaza-mission-list"></div>','Voltar à praça','Missões do clube');
  const body=$('plazaMissionBody');body.append(uiElement('h3',m.title),uiElement('p',m.body));
- for(const district of trails.trails){const finished=district.stages.filter(s=>trailProgress.stars[s.id]).length,row=uiElement('div',undefined,'plaza-mission-row');row.append(uiElement('b',district.name),uiElement('span',finished+' / '+district.stages.length+' lugares vencidos'));body.append(row);}
- const button=uiElement('button',m.action==='professor'?'Falar com o Sr. Assis':'Abrir mapa da cidade','primary');button.onclick=()=>{closeModal();homeActions[m.action]()};body.append(button);
+ for(const district of trails.trails.filter(t=>!trails.demo||t.id==='morro')){const finished=district.stages.filter(s=>trailProgress.stars[s.id]).length,row=uiElement('div',undefined,'plaza-mission-row');row.append(uiElement('b',district.name),uiElement('span',finished+' / '+district.stages.length+' lugares vencidos'));body.append(row);}
+ const button=uiElement('button',m.action==='demo'?'Ver conclusão da demo':m.action==='professor'?'Falar com o Sr. Assis':'Abrir mapa da cidade','primary');button.onclick=()=>{closeModal();homeActions[m.action]()};body.append(button);
+ modalReturnFocus=origin;button.focus({preventScroll:true});
 }
 async function openPlazaBag(){
+ const origin=document.activeElement;
  modal('Sua mochila','<p id="plazaBagStatus" role="status">Buscando suas rabiolas…</p><div id="plazaBagItems" class="plaza-bag-items"></div>','Voltar à praça','Itens da conta');
  const container=$('plazaBagItems'),status=$('plazaBagStatus'),owner=playerAccount?.profile.id;
+ modalReturnFocus=origin;$('dialogAction').focus({preventScroll:true});
  try{
   const response=await accountRequest('summon',{action:'inventory',sessionId:summonSession});
   if(owner!==playerAccount?.profile.id||$('plazaBagItems')!==container||$('modal').style.display!=='flex')return;
   const tails=(response.summon?.tails||[]).filter(t=>['ready','damaged'].includes(t.status));status.textContent=tails.length?tails.length+' rabiola'+(tails.length===1?'':'s')+' na mochila.':'Sua mochila está vazia. Encontre rabiolas nos duelos contra Pipamons selvagens.';
-  for(const tail of tails){const card=uiElement('article',undefined,'plaza-bag-item');card.append(summonTailArt(tail.modelId),uiElement('b','Rabiola de '+summonDisplayName(tail)),uiElement('small',tail.status==='ready'?'Pronta para invocação':'Danificada'));container.append(card);}
+  const groups=new Map();for(const tail of tails){const key=tail.modelId+':'+tail.status;if(!groups.has(key))groups.set(key,{tail,count:0});groups.get(key).count++;}
+  for(const {tail,count}of groups.values()){const card=uiElement('article',undefined,'plaza-bag-item');card.append(summonTailArt(tail.modelId),uiElement('b','Rabiola de '+summonDisplayName(tail)),uiElement('span','×'+count,'plaza-bag-quantity'),uiElement('small',tail.status==='ready'?'Pronta para invocação':'Danificada'));container.append(card);}
   const go=uiElement('button','Visitar o invocador','primary');go.onclick=()=>{closeModal();homeActions.summon()};container.after(go);
  }catch(e){if(owner!==playerAccount?.profile.id||$('plazaBagItems')!==container)return;status.textContent=e.message||'Não foi possível carregar a mochila.';const retry=uiElement('button','Tentar novamente','secondary');retry.onclick=openPlazaBag;container.append(retry);}
 }

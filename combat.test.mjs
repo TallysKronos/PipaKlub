@@ -176,6 +176,6 @@ test('authoritative solo pause freezes combat and round timers, resumes and expi
  assert.deepEqual(s.players.map(q=>[q.x,q.y,q.hp,q.energy,q.cuts]),JSON.parse(before).map(q=>[q.x,q.y,q.hp,q.energy,q.cuts]));assert.equal(s.phaseUntil-s.last,remaining);assert.equal(s.cutSequence,0);
  const view=createNetworkView(e);view.receive(e.visible(s),p.id,0);assert.equal(view.render(200,{x:1,cut:true},.1)[0].x,p.x);
  assert.equal(e.setSoloPause(s,p,false,now+4000),true);e.step(s,now+4016);assert.equal(s.soloPaused,false);
- e.setSoloPause(s,p,true,now+4016);e.step(s,now+30000);assert.ok(s.end<=now+30000);assert.equal(s.players.some(q=>!q.bot),false);
+ e.setSoloPause(s,p,true,now+4016);e.step(s,now+30000);assert.equal(s.soloPaused,true,'allow recovery during the one minute grace period');e.step(s,now+70000);assert.ok(s.end<=now+70000);assert.equal(s.players.some(q=>!q.bot),false);
  const multi=e.create(now,{mode:'rounds'});e.admit(multi,p,now);assert.equal(e.setSoloPause(multi,p,true,now),false);
 });

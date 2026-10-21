@@ -17,6 +17,11 @@ function openingUI(){
  return {document,run:s=>vm.runInContext(s,context),settle:()=>new Promise(r=>setImmediate(r))};
 }
 
+test('a dismissed gift reveal is not replayed on reload and the explicit story replay still shows it',async()=>{
+ const ui=openingUI();await ui.settle();ui.run(`var giftMemory=new Map();localStorage.getItem=k=>giftMemory.get(k)||null;localStorage.setItem=(k,v)=>giftMemory.set(k,v);openingOwner='gift-owner';openingState={step:7,tail_state:'kept'};renderOpening();`);
+ assert.equal(ui.run('openingGiftOpen'),true);await ui.run('nextOpening()');assert.equal(ui.run('openingState.step'),7);assert.equal(ui.run('giftMemory.get("pipaGiftSeenV1:gift-owner")'),'yes');ui.run('renderOpening()');assert.equal(ui.run('openingGiftOpen'),false);ui.run('openingReplay=true;renderOpening()');assert.equal(ui.run('openingGiftOpen'),true);
+});
+
 test('naming failure stays in the opening, retries once, and stale-account responses cannot grant or open a scene',async()=>{
  const ui=openingUI();await ui.settle();
  await ui.run(`accountRequest=async(action)=>action==='opening'?{opening:{step:10,tail_state:'attached'}}:{journey:{phase:'arrival',lesson:0}};playerAccount={profile:{id:'a',nickname:'Nova',equipped_kite_id:'basic'},inventory:[{id:'basic',model_id:'basica',model:{color:0,name:'Carcará'}}]};onCourtyardAccount()`);await ui.settle();
