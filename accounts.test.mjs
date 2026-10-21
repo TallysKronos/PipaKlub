@@ -9,6 +9,23 @@ import {DatabaseSync} from 'node:sqlite';
 import {createGameDatabase} from './src/game-database.js';
 
 const userA='11111111-1111-4111-8111-111111111111',userB='22222222-2222-4222-8222-222222222222',match='33333333-3333-4333-8333-333333333333';
+test('login distinguishes rejected credentials from profile permission and provider configuration failures without logging private data',async()=>{
+ const request=()=>new Request('https://game.test/account/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:'ana@example.test',password:'test-only-password'})});
+ for(const failure of [
+  {profile:false,status:400,data:{error_code:'invalid_credentials'},expected:401,message:/E-mail ou senha inválidos/},
+  {profile:false,status:401,data:{message:'Invalid API key'},expected:503,message:/CONTA-CONEXAO/},
+  {profile:false,status:401,data:{message:'unexpected authorization rejection'},expected:503,message:/CONTA-AUTH/},
+  {profile:true,status:401,data:{code:'PGRST301',message:'private provider details'},expected:503,message:/CONTA-PERFIL/},
+  {profile:true,status:403,data:{code:'42501',message:'private provider details'},expected:503,message:/CONTA-PERFIL/}
+ ]){
+  const logs=[],a=createAccounts({SUPABASE_URL:'https://provider.test',SUPABASE_PUBLISHABLE_KEY:'private-test-key'},{gameDatabase:{},diagnostics:entry=>logs.push(entry),fetcher:async url=>{
+   if(failure.profile&&url.includes('/auth/v1/token'))return new Response(JSON.stringify({access_token:'private-test-access',refresh_token:'private-test-refresh',user:{id:userA}}));
+   return new Response(JSON.stringify({...failure.data,identity:'ana@example.test',token:'private-test-access'}),{status:failure.status});
+  }});
+  const result=await a.handle(request());assert.equal(result.status,failure.expected);assert.match((await result.json()).error,failure.message);assert.equal(result.headers.getSetCookie().length,0);
+  assert.equal(logs.length,1);assert.equal(logs[0].operation,failure.profile?'profile':'login');assert.equal(logs[0].status,failure.status);assert.doesNotMatch(JSON.stringify(logs),/ana@|private-|test-only-password/);
+ }
+});
 test('password recovery fixes the return destination, hides account existence and limits email requests',async()=>{
  const sent=[],a=createAccounts({SUPABASE_URL:'https://provider.test',SUPABASE_PUBLISHABLE_KEY:'public'},{gameDatabase:{rpc(){}},fetcher:async(url,options)=>{sent.push({url,...options});return new Response('{}');}});
  const request=body=>new Request('https://game.test/account/recover',{method:'POST',headers:{'Content-Type':'application/json',Origin:'https://game.test'},body:JSON.stringify(body)});

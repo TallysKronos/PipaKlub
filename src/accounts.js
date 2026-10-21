@@ -4,7 +4,7 @@ const pipamonProgression=createEngine().pipamons;
 const UUID=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export class AccountError extends Error{constructor(message,status=400){super(message);this.status=status;}}
 const cookieValues=request=>Object.fromEntries((request.headers.get('cookie')||'').split(';').map(v=>v.trim().split(/=(.*)/s).slice(0,2)).filter(v=>v.length===2));
-export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matchProgress=()=>({found:false,pending:false,finished:false})}={}){
+export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matchProgress=()=>({found:false,pending:false,finished:false}),diagnostics=entry=>console.warn('Account provider rejected:',JSON.stringify(entry))}={}){
  const url=(env.SUPABASE_URL||'').replace(/\/$/,''),key=env.SUPABASE_PUBLISHABLE_KEY||env.SUPABASE_ANON_KEY||'';
  const enabled=!!(url&&key&&gameDatabase),sessions=new Map(),limits=new Map();
  const json=(data,status=200,cookies=[])=>{const headers=new Headers({'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});for(const c of cookies)headers.append('Set-Cookie',c);return new Response(JSON.stringify(data),{status,headers});};
@@ -16,7 +16,15 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
   const text=await r.text();let data;try{data=text?JSON.parse(text):null;}catch{data=null;}
   if(!r.ok){
    const message=data?.message||data?.msg||data?.error_description||'';
-   if(r.status===401||data?.error_code==='invalid_credentials')throw new AccountError('E-mail ou senha inválidos, ou sessão expirada.',401);
+   const operation=path.startsWith('/rest/')?'profile':path.includes('grant_type=password')?'login':path.includes('grant_type=refresh_token')?'refresh':path.startsWith('/auth/v1/recover')?'recover':path.startsWith('/auth/v1/user')?(method==='PUT'?'reset':'session'):'auth';
+   const rawCode=data?.error_code||data?.code||'',providerCode=/^(?:PGRST\d{3}|42501|42883|invalid_credentials|email_not_confirmed|bad_jwt|session_not_found|refresh_token_not_found|refresh_token_already_used|over_email_send_rate_limit|email_address_not_authorized)$/.test(rawCode)?rawCode:'unclassified';
+   const keyRejected=/invalid api key|no api key|invalid apikey|api key.*(?:invalid|missing)/i.test(message);
+   // Diagnostics contain only a fixed operation, status and allowlisted code. Never log provider bodies, credentials, tokens or identities.
+   diagnostics({operation,status:r.status,code:providerCode,keyRejected});
+   if(keyRejected)throw new AccountError('A conexão do jogo com o serviço de contas precisa ser corrigida. Código CONTA-CONEXAO.',503);
+   if(operation==='profile'&&(r.status===401||r.status===403))throw new AccountError('O serviço de perfil recusou o acesso à sua conta. Código CONTA-PERFIL. Não é necessário trocar sua senha novamente.',503);
+   if(data?.error_code==='invalid_credentials')throw new AccountError('E-mail ou senha inválidos.',401);
+   if(r.status===401){if(operation==='login')throw new AccountError('O serviço de autenticação recusou a conexão do jogo. Código CONTA-AUTH.',503);throw new AccountError(operation==='reset'?'O link de recuperação é inválido ou expirou. Solicite um novo link.':'Sua sessão expirou. Entre novamente.',401);}
    if(r.status===429)throw new AccountError('Muitas tentativas. Aguarde um pouco e tente novamente.',429);
    if(data?.error_code==='email_not_confirmed')throw new AccountError('Confirme seu e-mail antes de entrar.',403);
    if(data?.code?.startsWith('PGRST')||data?.code==='42883')throw new AccountError('O banco de contas ainda precisa ser configurado.',503);
