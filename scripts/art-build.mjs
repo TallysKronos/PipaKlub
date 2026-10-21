@@ -22,10 +22,14 @@ export function artConfig(){
  const city=JSON.parse(fs.readFileSync('assets/packs/cidade-v1/manifest.json','utf8'));
  const districtPlaces=JSON.parse(fs.readFileSync('assets/district-places.json','utf8'));
  const images=Object.fromEntries(Object.entries({home:'backgrounds/quintal-clube-v1.png',city:'packs/cidade-v1/mapa.png',badges:'packs/cidade-v1/insignias.png',...Object.fromEntries(Object.entries(districtPlaces).map(([id,p])=>['district-'+id,p.image]))}).map(([id,image])=>{const hash=createHash('sha256').update(fs.readFileSync(path.join('assets',image))).digest('hex').slice(0,12);return [id,{image,url:'assets/'+image+'?v='+hash}]}));
+ const title=JSON.parse(fs.readFileSync('assets/title/elo-das-ruinas-v1/manifest.json','utf8'));
+ for(const [id,def]of Object.entries(title.images)){const hash=createHash('sha256').update(fs.readFileSync(path.join('assets',def.image))).digest('hex').slice(0,12);images['title-'+id]={...def,url:'assets/'+def.image+'?v='+hash};}
  const plaza=JSON.parse(fs.readFileSync('assets/hub/praca-v1/manifest.json','utf8'));
  for(const file of plaza.files){const image='hub/praca-v1/'+file,hash=createHash('sha256').update(fs.readFileSync(path.join('assets',image))).digest('hex').slice(0,12);images['plaza-'+file.replace('.png','')]={image,url:'assets/'+image+'?v='+hash};}
  const world=JSON.parse(fs.readFileSync('assets/world/identity-v2/manifest.json','utf8'));
  world.actors=JSON.parse(fs.readFileSync('assets/characters/overworld-v1/manifest.json','utf8'));
+ world.companions=JSON.parse(fs.readFileSync('assets/creatures/overworld-v1/manifest.json','utf8'));
+ for(const [id,actor]of Object.entries(world.companions.species)){const image=actor.image,hash=createHash('sha256').update(fs.readFileSync(path.join('assets',image))).digest('hex').slice(0,12);images['world-companion-'+id]={image,url:'assets/'+image+'?v='+hash};}
  const mom=JSON.parse(fs.readFileSync('assets/story/kael-birthday-v1/manifest.json','utf8'));world.actors.characters.mother={name:'Mãe',image:mom.images.mother.image,frames:mom.actors.mother.frames.map(f=>({...f,footAnchor:{x:f.bounds.x+f.bounds.w/2,y:f.bounds.y+f.bounds.h}})),referenceHeight:Math.max(...mom.actors.mother.frames.map(f=>f.bounds.h))};
  for(const [id,actor]of Object.entries(world.actors.characters)){const image=actor.image,hash=createHash('sha256').update(fs.readFileSync(path.join('assets',image))).digest('hex').slice(0,12);images['world-npc-'+id]={image,url:'assets/'+image+'?v='+hash};}
  world.kit=JSON.parse(fs.readFileSync('assets/world/morro-kit-v1/manifest.json','utf8'));

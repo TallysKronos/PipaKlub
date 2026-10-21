@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "kind": "animated-title-layers",
+  "title": "Soulmonsters: Elo das Ruínas",
+  "images": {
+    "background": {
+      "image": "title/elo-das-ruinas-v1/ruins.png",
+      "alpha": false,
+      "width": 1672,
+      "height": 941
+    },
+    "presence": {
+      "image": "title/elo-das-ruinas-v1/eremor-shadow.png",
+      "alpha": true,
+      "width": 1536,
+      "height": 1024
+    }
+  },
+  "animation": {
+    "cameraSeconds": 36,
+    "breathSeconds": 8,
+    "fogSeconds": [
+      24,
+      34
+    ],
+    "lineSeconds": 9
+  },
+  "status": "local-review"
+}

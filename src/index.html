@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="pt-BR">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#1b2a36"><meta name="description" content="O céu é a sua arena. Escolha sua pipa, chame os amigos e entre na batalha do Pipa Club."><title>Pipa Club — O céu é a sua arena</title>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#1b2a36"><meta name="description" content="Soulmonsters: Elo das Ruínas. Uma aventura de vínculos, linhas e criaturas de pipa."><title>Soulmonsters: Elo das Ruínas</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@600;700;800;900&family=Pixelify+Sans:wght@600;700&display=swap');
 /* Game UI: chunky outlined panels and buttons that match the pixel-art characters. */
@@ -568,6 +568,7 @@ body.light-mode .ritual-board-portal{animation:none}body.light-mode .ritual-reve
 /* SWITCH_UI_STYLE */
 /* UI_KIT_STYLE */
 /* PILOT_UI_STYLE */
+/* TITLE_SCREEN_STYLE */
 </style></head>
 <body>
 <div id="game">
@@ -577,13 +578,15 @@ body.light-mode .ritual-board-portal{animation:none}body.light-mode .ritual-reve
 <nav class="top-actions" aria-label="Menu"><span class="coin-chip" title="Moedas das trilhas">🪙 <b id="coinCount">0</b></span><button id="arenaTab">Arena</button><button class="secondary chip" id="how" data-members-only hidden>Como jogar</button><button class="secondary chip" id="workshop" data-members-only hidden>Pipa Dex</button><div class="header-account"><span id="profileSummary">Jogue como visitante</span><button class="secondary chip account-open" id="accountButton">Entrar</button></div></nav></div>
 
 <div class="menu">
-<div class="logo" id="arenaCopy"><h1>PIPA<br><span>CLUB</span></h1><div class="tagline">O céu é a sua arena</div><p>Guie sua almática com o mouse (ou o dedo), cruze as linhas e segure o clique para cortar. Último no céu vence a rodada!</p></div>
+<div class="logo" id="arenaCopy"><div class="ruins-menu-kicker">Uma história começa com um elo</div><h1><span class="ruins-brand">Soulmonsters</span><span class="ruins-subtitle">Elo das Ruínas</span></h1><p>Algumas histórias esperam sob a terra.<br>A sua começa ao encontrar um parceiro.</p></div>
 <aside class="panel lobby-panel guest-menu" id="lobby">
+<button class="ruins-menu-continue" id="ruinsContinue" type="button">Entrar na aventura <span aria-hidden="true">›</span></button><p class="ruins-menu-note">Conecte sua conta ou crie seu primeiro elo.</p>
 <button class="profile-card" id="profileButton" aria-label="Editar apelido e almática"><span class="profile-art" id="profileArt"></span><span class="profile-text"><b id="profileName">Pipeiro</b><small id="selectionName">Carcará · clássica e destemida</small></span><span class="profile-edit" aria-hidden="true">✎</span></button>
 <div class="menu-actions"><button class="primary" id="trailsButton" data-members-only hidden>⚔ Trilhas</button><button class="secondary" id="dailyButton" data-members-only hidden>✦ Céu do dia</button><button class="btn btn-teal" id="quickButton" data-members-only hidden>▶ Partida rápida</button>
 <div class="menu-row"><button class="secondary" id="practice">Treino livre</button><button class="secondary" id="friendsButton">Jogar com amigos</button></div>
 <div class="menu-row three"><button class="secondary small" id="meetAssis" data-members-only hidden>Sr. Assis</button><button class="secondary small" id="dexButton" data-members-only hidden>Pipa Dex</button><button class="secondary small" id="rulesButton">Regras</button></div><button class="link-btn" id="privacyButton" hidden>Privacidade</button></div>
 </aside>
+<button class="ruins-motion" id="ruinsMenuMotion" type="button" aria-pressed="false">Pausar animação</button><small class="ruins-edition">Demo em desenvolvimento</small>
 </div>
 
 <div class="hud" id="hud">
@@ -653,6 +656,7 @@ body.light-mode .ritual-board-portal{animation:none}body.light-mode .ritual-reve
 /* NETWORK_VIEW */
 /* FRAME_HEALTH */
 /* HOST_CONFIG */
+/* TITLE_SCREEN_CLIENT */
 const $=id=>document.getElementById(id),eng=createEngine(),colors=['#e77c4f','#4d8c72','#648ec4','#d8af4a'],names=['Carcará · clássica e destemida','Mata verde · leve e certeira','Azulão · dona do vento','Raio de sol · nasceu para brilhar'];
 const roomSessions=createRoomSessions(typeof sessionStorage==='undefined'?null:sessionStorage);
 let selected=+(localStorage.getItem('pipaColor')||0),state=null,me=null,token=null,room=null,mode=null,busy=false,syncing=false,errors=0,keys={},sound=false,audioCtx=null,lastEvent=null,lastFrame=0,showResult=false,ping=0;
@@ -892,7 +896,7 @@ function drawFx(t){
 let lastHud=0,rankingKey='',eventsKey='',playerKey='';
 function frame(t){
 requestAnimationFrame(frame);
-if(document.hidden||document.body.classList.contains('sky-testing')){lastFrame=t;frameHealth.sample(t,false);return;}
+if(document.hidden||document.body.classList.contains('sky-testing')||document.body.classList.contains('in-title')){lastFrame=t;frameHealth.sample(t,false);return;}
 if(!mode&&t-lastFrame<1000/30)return;
 const now=Date.now(),dt=Math.min(Math.max((t-lastFrame)/1000,0),.1);
 const health=frameHealth.sample(t,!!mode&&!showResult);

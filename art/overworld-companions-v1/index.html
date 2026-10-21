@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Soulmonsters · Revisão dos companheiros</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#f5eedc;color:#26394d;font:16px/1.5 system-ui}main{max-width:1080px;padding:30px 24px;margin:auto}h1{margin:0;font-size:30px}p{max-width:850px}button,select{font:inherit;padding:9px 14px;border:1px solid #a99b78;background:#fffaf0;color:inherit;border-radius:6px}label{margin-right:15px}.tools{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:20px 0}canvas{width:100%;height:auto;background:#e0d7bc;border:1px solid #a99b78;border-radius:8px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}article{background:#fffbef;padding:16px;border:1px solid #d2c4a5}h2{font-size:18px;margin:0 0 12px}.note{font-size:13px;color:#675f4a}a{color:#315b72}@media(max-width:650px){.cards{grid-template-columns:1fr}main{padding:20px 12px}}</style>
+<main><h1>Companheiros de overworld</h1><p>Quatro direções próprias, repouso e locomoção. A anatomia de pipa permanece visível. As vistas abaixo usam o mesmo renderizador instalado no jogo.</p>
+<div class="tools"><label>Parceiro <select id="species" aria-label="Parceiro"></select></label><button id="motion" aria-pressed="true">Pausar caminhada</button><span id="status" role="status">Carregando folhas…</span></div>
+<canvas id="walk" width="960" height="300" aria-label="Kael e seu parceiro percorrem uma curva no cenário da Rua dos Ventos"></canvas>
+<p class="note">Prévia isolada: percurso ilustrativo, sem colisões ou conta. Altura de Kael: 65 px; companheiro: 43 px antes do ajuste por espécie. Abaixo: Sul · Oeste · Leste · Norte, em escala normal e ampliada.</p>
+<div class="cards" id="cards"></div><p><a href="../../assets/creatures/overworld-v1/README.md">Ficha de produção e limites da revisão</a></p></main>
+<script type="module">
+import {createWorldCompanions,worldCompanionMotion} from '../../src/world-actors.js';
+const pack=await(await fetch('../../assets/creatures/overworld-v1/manifest.json')).json(),renderer=createWorldCompanions(pack),images=new Map(),select=document.querySelector('#species'),cards=document.querySelector('#cards'),walk=document.querySelector('#walk'),status=document.querySelector('#status');
+const load=src=>new Promise((resolve,reject)=>{const i=new Image();i.onload=()=>resolve(i);i.onerror=()=>reject(Error('Falha: '+src));i.src=src;});
+let kael,street,playing=true;
+try{
+ await Promise.all(Object.values(pack.species).map(async a=>{images.set('world-companion-'+a.id,await load('../../assets/'+a.image));const o=document.createElement('option');o.value=a.id;o.textContent=a.name;select.append(o);const article=document.createElement('article'),h=document.createElement('h2'),c=document.createElement('canvas');h.textContent=a.name;c.width=464;c.height=210;c.setAttribute('aria-label',a.name+' nas quatro direções');article.append(h,c);cards.append(article);a.canvas=c;}));
+ kael=await load('../../assets/hub/praca-v1/kael.png');street=await load('../../assets/world/street-v1/street.png');select.value='rabbito';status.textContent=images.size+' folhas carregadas · 8 frames por espécie';
+}catch(e){status.textContent=e.message;throw e;}
+// Keep catalog order stable even when image decoding finishes in a different order.
+for(const a of Object.values(pack.species)){select.append([...select.options].find(o=>o.value===a.id));cards.append(a.canvas.parentElement);}
+document.querySelector('#motion').onclick=e=>{playing=!playing;e.target.textContent=playing?'Pausar caminhada':'Retomar caminhada';e.target.setAttribute('aria-pressed',String(playing));};
+let clock=0,last=0,previous=null;
+function point(t){const points=[[260,210],[650,210],[650,120],[360,120],[360,210],[260,210]],lengths=points.slice(1).map((p,i)=>Math.hypot(p[0]-points[i][0],p[1]-points[i][1]));let at=((t%lengths.reduce((s,n)=>s+n,0))+lengths.reduce((s,n)=>s+n,0))%lengths.reduce((s,n)=>s+n,0);for(let i=0;i<lengths.length;i++){if(at<=lengths[i]){const [x,y]=points[i],p=points[i+1],r=at/lengths[i];return {x:x+(p[0]-x)*r,y:y+(p[1]-y)*r,direction:Math.abs(p[0]-x)>Math.abs(p[1]-y)?p[0]<x?1:2:p[1]<y?3:0};}at-=lengths[i];}}
+function render(now){const dt=Math.min(40,Math.max(0,now-last));last=now;if(playing)clock+=dt;
+ for(const a of Object.values(pack.species)){const g=a.canvas.getContext('2d');g.clearRect(0,0,464,210);for(let d=0;d<4;d++){g.fillStyle='#53604b';g.font='12px system-ui';g.textAlign='center';g.fillText(['Sul','Oeste','Leste','Norte'][d],58+d*116,18);renderer.draw(g,images,{soul:a.id},58+d*116,80,43,{direction:d,moving:playing,time:clock});renderer.draw(g,images,{soul:a.id},58+d*116,202,86,{direction:d,moving:playing,time:clock});}}
+ const g=walk.getContext('2d');g.clearRect(0,0,960,300);g.drawImage(street,0,0,street.width,street.height,0,-200,960,640);g.fillStyle='#f8ecd9d9';g.fillRect(140,70,680,200);g.strokeStyle='#b3a48a';g.lineWidth=2;g.setLineDash([5,6]);g.beginPath();g.moveTo(260,210);g.lineTo(650,210);g.lineTo(650,120);g.lineTo(360,120);g.lineTo(360,210);g.lineTo(260,210);g.stroke();g.setLineDash([]);
+ const p=point(clock*.065),f=point(clock*.065-50),motion=worldCompanionMotion(previous,f,f.direction);previous=motion;
+ const drawKael=()=>{const scale=65/380,col=p.direction,row=playing&&Math.floor(clock/170)%2?1:0;g.imageSmoothingEnabled=false;g.drawImage(kael,Math.round(col*kael.width/4),row*kael.height/2,Math.round(kael.width/4),kael.height/2,p.x-237*scale,p.y-442*scale,444*scale,443.5*scale);};
+ const drawPartner=()=>renderer.draw(g,images,{soul:select.value},f.x,f.y,43,{direction:motion.direction,moving:playing,time:clock});
+ if(f.y<p.y){drawPartner();drawKael();}else{drawKael();drawPartner();}requestAnimationFrame(render);
+}requestAnimationFrame(render);
+</script></html>

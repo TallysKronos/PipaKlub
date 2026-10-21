@@ -81,7 +81,7 @@ async function openAccount(){
  if(mode){toast('Saia da partida para abrir sua coleção.');return;}
  keys={};closeKiteStory();$('accountMessage').textContent='';accountModal.style.display='flex';renderAccountDialog();$('closeAccount').focus();if(!accountsEnabled)await initializeAccounts();else await refreshAccount();await loadRecentMatches();
 }
-function closeAccount(){closeRecovery();if(typeof leaveSummoner==='function'&&summonOpen)leaveSummoner();closeKiteStory();accountModal.style.display='none';$('accountPassword').value='';$('accountButton').focus();}
+function closeAccount(){closeRecovery();if(typeof leaveSummoner==='function'&&summonOpen)leaveSummoner();closeKiteStory();accountModal.style.display='none';$('accountPassword').value='';((!playerAccount&&!mode&&$('ruinsContinue'))||$('accountButton')).focus();}
 $('accountButton').onclick=openAccount;$('closeAccount').onclick=closeAccount;
 accountModal.onclick=e=>{if(e.target===accountModal)closeAccount();};
 $('switchAccount').onclick=()=>{accountTab=accountTab==='login'?'signup':'login';$('accountMessage').textContent='';renderAccountDialog();};

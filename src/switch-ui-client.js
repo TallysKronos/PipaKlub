@@ -82,6 +82,7 @@ function startPressed(){
 function pollPads(){
  requestAnimationFrame(pollPads);
  const pads=navigator.getGamepads?.()||[];const pad=[...pads].find(p=>p&&p.connected&&p.mapping==='standard')||[...pads].find(p=>p&&p.connected);
+ if(document.body.classList.contains('in-title')){padState.active=false;padState.cut=false;padState.skill=0;padState.x=padState.y=0;if(pad)for(let i=0;i<pad.buttons.length;i++)padPrev[i]=!!pad.buttons[i]?.pressed;return;}
  if(!pad){padState.active=false;padState.cut=false;padState.skill=0;padState.x=padState.y=0;return;}
  const B=switchNav.BUTTONS,down=i=>!!pad.buttons[i]?.pressed,now=performance.now();
  const pressed=i=>{const d=down(i),was=padPrev[i];padPrev[i]=d;return d&&!was;},released=i=>{const d=down(i),was=padPrev[i];padPrev[i]=d;return !d&&was;};

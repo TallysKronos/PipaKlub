@@ -12,11 +12,13 @@ const worldFiles=JSON.parse(await fs.readFile(new URL('../assets/world/identity-
 const worldKitFiles=Object.values(JSON.parse(await fs.readFile(new URL('../assets/world/morro-kit-v1/manifest.json',import.meta.url),'utf8')).sheets).map(s=>s.image);
 worldKitFiles.push(...Object.values(JSON.parse(await fs.readFile(new URL('../assets/world/quintal-kit-v1/manifest.json',import.meta.url),'utf8')).sheets).map(s=>s.image));
 const worldActorFiles=Object.values(JSON.parse(await fs.readFile(new URL('../assets/characters/overworld-v1/manifest.json',import.meta.url),'utf8')).characters).map(a=>a.image);
+worldActorFiles.push(...Object.values(JSON.parse(await fs.readFile(new URL('../assets/creatures/overworld-v1/manifest.json',import.meta.url),'utf8')).species).map(a=>a.image));
 const paintedWorldFiles=Object.values(JSON.parse(await fs.readFile(new URL('../assets/world/morro-plaza-v1/manifest.json',import.meta.url),'utf8')).sheets).map(s=>s.image);
 paintedWorldFiles.push(...Object.values(JSON.parse(await fs.readFile(new URL('../assets/world/morro-road-v1/manifest.json',import.meta.url),'utf8')).sheets).map(s=>s.image));
 paintedWorldFiles.push(...Object.values(JSON.parse(await fs.readFile(new URL('../assets/world/street-v1/manifest.json',import.meta.url),'utf8')).sheets).map(s=>s.image));
 const kitFiles=[...Object.values(kit.components),...Object.values(kit.icons)].map(c=>c.image).filter(f=>f.endsWith('.png')).map(f=>'ui/kit-switch-v1/'+f);
 const openingFiles=Object.values(JSON.parse(await fs.readFile(new URL('../assets/story/kael-birthday-v1/manifest.json',import.meta.url),'utf8')).images).map(s=>s.image);
+openingFiles.push(...Object.values(JSON.parse(await fs.readFile(new URL('../assets/title/elo-das-ruinas-v1/manifest.json',import.meta.url),'utf8')).images).map(s=>s.image));
 const files=[...openingFiles,...paintedWorldFiles,...worldKitFiles,...rivalFiles,...encounterFiles,...districtFiles,...kitFiles,...Object.values(hud.sheets).map(s=>s.image),...Object.values(manifest.atlases).map(a=>a.meta.image),...items.map(i=>i.image),'vfx/trade-celestial.png','vfx/trade-sky.png','vfx/trade-spirit-16.png',"ui/club-collection-v2.png","ui/club-trades-v2.png","ui/club-summon-v2.png","ui/club-farm-v2.png","ui/club-profile-v2.png","ui/club-history-v2.png"];
 export function createAssetHandler(){
  const cache=new Map();
