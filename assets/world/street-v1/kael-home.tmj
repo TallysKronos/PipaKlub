@@ -1,0 +1,323 @@
+{
+  "type": "map",
+  "version": "1.10",
+  "tiledversion": "1.11.0",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "width": 48,
+  "height": 32,
+  "tilewidth": 32,
+  "tileheight": 32,
+  "infinite": false,
+  "tilesets": [],
+  "properties": [
+    {
+      "name": "scene_name",
+      "type": "string",
+      "value": "Casa de Kael · sala"
+    },
+    {
+      "name": "overview",
+      "type": "bool",
+      "value": true
+    },
+    {
+      "name": "actor_height",
+      "type": "int",
+      "value": 100
+    },
+    {
+      "name": "foot_radius",
+      "type": "int",
+      "value": 10
+    },
+    {
+      "name": "professor_x",
+      "type": "int",
+      "value": 592
+    },
+    {
+      "name": "professor_y",
+      "type": "int",
+      "value": 416
+    },
+    {
+      "name": "nozinho_x",
+      "type": "int",
+      "value": 672
+    },
+    {
+      "name": "nozinho_y",
+      "type": "int",
+      "value": 448
+    }
+  ],
+  "layers": [
+    {
+      "id": 1,
+      "name": "Cenário",
+      "type": "imagelayer",
+      "x": 0,
+      "y": 0,
+      "opacity": 1,
+      "visible": true,
+      "image": "downstairs.png",
+      "imagewidth": 1536,
+      "imageheight": 1024,
+      "properties": [
+        {
+          "name": "sheet",
+          "type": "string",
+          "value": "street-kael-home"
+        },
+        {
+          "name": "render",
+          "type": "string",
+          "value": "ground"
+        },
+        {
+          "name": "level",
+          "type": "int",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Walkable",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "objects": [
+        {
+          "id": 100,
+          "name": "Chão da sala 0",
+          "type": "",
+          "x": 448,
+          "y": 384,
+          "width": 480,
+          "height": 352,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 101,
+          "name": "Chão da sala 1",
+          "type": "",
+          "x": 896,
+          "y": 512,
+          "width": 448,
+          "height": 224,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 102,
+          "name": "Chão da sala 2",
+          "type": "",
+          "x": 1312,
+          "y": 704,
+          "width": 144,
+          "height": 96,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 103,
+          "name": "Chão da sala 3",
+          "type": "",
+          "x": 672,
+          "y": 704,
+          "width": 224,
+          "height": 192,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Solids",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "objects": [
+        {
+          "id": 200,
+          "name": "Vaso ao lado da escada",
+          "type": "",
+          "x": 1280,
+          "y": 608,
+          "width": 96,
+          "height": 96,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Foreground",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "objects": []
+    },
+    {
+      "id": 5,
+      "name": "Interactions",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "objects": [
+        {
+          "id": 4,
+          "name": "Sair para a rua",
+          "type": "",
+          "x": 752,
+          "y": 816,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "action",
+              "type": "string",
+              "value": "street_scene"
+            },
+            {
+              "name": "target",
+              "type": "string",
+              "value": "quintal"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Subir para o quarto",
+          "type": "",
+          "x": 1360,
+          "y": 720,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "action",
+              "type": "string",
+              "value": "street_scene"
+            },
+            {
+              "name": "target",
+              "type": "string",
+              "value": "kael-bedroom"
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Conversar com a mãe",
+          "type": "",
+          "x": 624,
+          "y": 560,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "action",
+              "type": "string",
+              "value": "pilot_story"
+            },
+            {
+              "name": "story",
+              "type": "string",
+              "value": "Sua mãe sorri: “A casa sempre vai estar aqui para vocês dois. Cuide bem do seu parceiro… e volte para me contar as novidades!”"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Spawns",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "objects": [
+        {
+          "id": 7,
+          "name": "Entrada",
+          "type": "",
+          "x": 752,
+          "y": 752,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Exits",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "objects": []
+    }
+  ],
+  "nextobjectid": 201,
+  "nextlayerid": 8
+}

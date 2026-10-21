@@ -56,7 +56,7 @@ function pilotFooter(){
  const f=$('pilotMenuFooter');f.replaceChildren(pilotCommand('confirm','Escolher',()=>$('pilotMenuList').querySelector('.pilot-option:focus')?.click()),pilotCommand('back',pilotGroup==='root'?'Fechar':'Voltar',pilotEscape));
 }
 function pilotRenderMenu(group,focusId){
- pilotGroup=group;setText('pilotMenuTitle',PILOT_TITLES[group]||'Menu');setText('pilotCrumb',group==='root'?'Quintal do Clube':'Caderno do pipeiro ›');
+ pilotGroup=group;setText('pilotMenuTitle',PILOT_TITLES[group]||'Menu');setText('pilotCrumb',group==='root'?'Rua dos Ventos':'Caderno do pipeiro ›');
  const list=$('pilotMenuList');list.replaceChildren(...pilotItems(group).map(([id,label])=>{
   const b=document.createElement('button');b.type='button';b.className='pilot-option'+(homeMenuGroups[id]?' has-sub':'');b.dataset.destination=id;b.textContent=label;
   b.onclick=()=>pilotOpen(id);b.onmouseenter=()=>b.focus({preventScroll:true});b.onfocus=()=>pilotFocus(b);return b;}));

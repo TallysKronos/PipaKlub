@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "sheets": {
+    "street-quintal": {
+      "image": "world/street-v1/street.png",
+      "width": 1536,
+      "height": 1024
+    },
+    "street-kite-shop": {
+      "image": "world/street-v1/shop.png",
+      "width": 1536,
+      "height": 1024
+    },
+    "street-professor-home": {
+      "image": "world/street-v1/professor.png",
+      "width": 1536,
+      "height": 1024
+    },
+    "street-kael-home": {
+      "image": "world/street-v1/downstairs.png",
+      "width": 1536,
+      "height": 1024
+    },
+    "street-kael-bedroom": {
+      "image": "world/street-v1/bedroom.png",
+      "width": 1536,
+      "height": 1024
+    }
+  },
+  "scenes": {
+    "quintal": "world/street-v1/quintal.tmj",
+    "kite-shop": "world/street-v1/kite-shop.tmj",
+    "professor-home": "world/street-v1/professor-home.tmj",
+    "kael-home": "world/street-v1/kael-home.tmj",
+    "kael-bedroom": "world/street-v1/kael-bedroom.tmj"
+  }
+}

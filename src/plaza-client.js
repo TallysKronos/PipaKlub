@@ -13,7 +13,7 @@ function plazaAction(button,fn){button.type='button';button.onclick=()=>{if(!pla
 function initPlaza(){
  if(!homeArt.plaza)return;
  courtyard.classList.add('plaza');courtyard.setAttribute('aria-label','Praça do PipaKlub');
- const canvas=$('courtyardCanvas');canvas.width=1536;canvas.height=1024;canvas.setAttribute('aria-label','Kael e seu parceiro na praça. Clique no caminho para passear.');
+ const canvas=$('courtyardCanvas');canvas.width=1536;canvas.height=1024;canvas.setAttribute('aria-label','Kael e seu parceiro no bairro. Clique no caminho para passear.');
  const hud=courtyard.querySelector('.home-hud');hud.className='plaza-hud';
  const identity=courtyard.querySelector('.home-identity');identity.className='plaza-profile-copy';
  const profile=uiElement('button',undefined,'plaza-profile plaza-paper');profile.id='plazaProfile';profile.setAttribute('aria-label','Abrir meu perfil');
@@ -74,7 +74,7 @@ function drawPlazaScene(g,t,dt){
 function openPlazaMissions(){
  const origin=document.activeElement;
  const next=firstOpenStage(),trail=trails.trails[next?.trailIndex],m=currentPlazaMission();
- modal('Seu próximo voo','<div id="plazaMissionBody" class="plaza-mission-list"></div>','Voltar à praça','Missões do clube');
+ modal('Seu próximo voo','<div id="plazaMissionBody" class="plaza-mission-list"></div>','Voltar ao passeio','Missões do clube');
  const body=$('plazaMissionBody');body.append(uiElement('h3',m.title),uiElement('p',m.body));
  for(const district of trails.trails.filter(t=>!trails.demo||t.id==='morro')){const finished=district.stages.filter(s=>trailProgress.stars[s.id]).length,row=uiElement('div',undefined,'plaza-mission-row');row.append(uiElement('b',district.name),uiElement('span',finished+' / '+district.stages.length+' lugares vencidos'));body.append(row);}
  const button=uiElement('button',m.action==='demo'?'Ver conclusão da demo':m.action==='professor'?'Falar com o Sr. Assis':'Abrir mapa da cidade','primary');button.onclick=()=>{closeModal();homeActions[m.action]()};body.append(button);
@@ -82,7 +82,7 @@ function openPlazaMissions(){
 }
 async function openPlazaBag(){
  const origin=document.activeElement;
- modal('Sua mochila','<p id="plazaBagStatus" role="status">Buscando suas rabiolas…</p><div id="plazaBagItems" class="plaza-bag-items"></div>','Voltar à praça','Itens da conta');
+ modal('Sua mochila','<p id="plazaBagStatus" role="status">Buscando suas rabiolas…</p><div id="plazaBagItems" class="plaza-bag-items"></div>','Voltar ao passeio','Itens da conta');
  const container=$('plazaBagItems'),status=$('plazaBagStatus'),owner=playerAccount?.profile.id;
  modalReturnFocus=origin;$('dialogAction').focus({preventScroll:true});
  try{

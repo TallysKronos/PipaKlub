@@ -24,13 +24,14 @@ test('late journey responses cannot open or overwrite another account, and the s
  ui.run(`var resolveOld;accountRequest=async(action,body)=>{if(action==='journey'&&playerAccount.profile.id==='old')return new Promise(r=>resolveOld=r);if(action==='journey')return {journey:{phase:'practice',lesson:3,starter_model:'mata'}};return {}};playerAccount={profile:{id:'old',nickname:'Antiga',equipped_kite_id:'k1'},inventory:[{id:'k1',model_id:'basica',model:{color:0,name:'Carcará'}}]};var oldLoad=onCourtyardAccount();`);
  await ui.run(`playerAccount={profile:{id:'new',nickname:'Nova',equipped_kite_id:'k2'},inventory:[{id:'k2',model_id:'mata',model:{color:1,name:'Mata verde'}}]};onCourtyardAccount()`);await ui.settle();
  ui.run(`resolveOld({journey:{phase:'arrival',lesson:0}})`);await ui.run('oldLoad');await ui.settle();
- assert.equal(ui.run('journeyOwner'),'new');assert.equal(ui.run('journey.phase'),'practice');assert.equal(ui.run('journey.lesson'),3);assert.equal(ui.document.getElementById('journeyTitle').textContent,'Vamos voar juntos?');
+ assert.equal(ui.run('journeyOwner'),'new');assert.equal(ui.run('journey.phase'),'practice');assert.equal(ui.run('journey.lesson'),3);ui.run('homeActions.professor()');assert.equal(ui.document.getElementById('journeyTitle').textContent,'Vamos voar juntos?');
  ui.run('startFirstFlight()');assert.equal(ui.run('firstFlightRun.index'),3);assert.equal(ui.run('firstFlightRun.state.players[0].color'),1);ui.run('leave()');assert.equal(ui.run('mode'),null);assert.equal(ui.document.getElementById('courtyard').hidden,false);
  ui.run('playerAccount=null;onCourtyardAccount()');assert.equal(ui.run('journey'),null);assert.equal(ui.document.getElementById('courtyard').hidden,true);
 });
 
 test('failed starter save keeps the choice screen open and does not start a practice or alter the account',async()=>{
  const ui=journeyUI();await ui.settle();await ui.run(`accountRequest=async()=>({journey:{phase:'choose',lesson:0}});playerAccount={profile:{id:'new',nickname:'Nova',equipped_kite_id:'k1'},inventory:[{id:'k1',model_id:'basica',model:{color:0,name:'Carcará'}}]};onCourtyardAccount()`);await ui.settle();
+ ui.run('homeActions.professor()');
  assert.equal(ui.document.getElementById('partnerChoice').hidden,false);
  ui.run(`accountRequest=async()=>{throw Error('Sem conexão')}`);await ui.document.getElementById('partnerConfirm').onclick();
  assert.equal(ui.run('mode'),null);assert.equal(ui.run('firstFlightRun'),null);assert.equal(ui.run('playerAccount.profile.equipped_kite_id'),'k1');assert.equal(ui.document.getElementById('partnerChoice').hidden,false);assert.equal(ui.document.getElementById('partnerStatus').textContent,'Sem conexão');
@@ -151,4 +152,13 @@ test('world objectives identify the nearby rival, completion and hide the champi
  ui.run(`var rivalNames=[];homeImages.set('rival-Zeca',{});var rivalContext={fillStyle:'',beginPath(){},ellipse(){},fill(){},drawImage(){},strokeText(){},fillText(name){rivalNames.push(name)}};drawWorldRival(rivalContext,worldScene().places.find(p=>p.stage==='morro-1'),0);drawWorldRival(rivalContext,worldScene().places.find(p=>p.stage==='morro-5'),0);`);
  assert.equal(ui.run('rivalNames.join()'),'Zeca');
  ui.run(`for(const stage of trails.stages)trailProgress.stars[stage.id]=1;updateWorldContext()`);assert.match(ui.document.getElementById('homeObjective').textContent,/conquistou o Morro/);assert.equal(ui.document.getElementById('plazaMissionTitle').textContent,'Demo concluída');
+});
+
+test('street doors preserve the account and provide repeatable entry, upstairs and return routes',async()=>{
+ const ui=journeyUI();await ui.settle();
+ ui.run(`playerAccount={profile:{id:'resident',nickname:'Kael',equipped_kite_id:'r'},inventory:[{id:'r',model:{color:0,name:'Rabbito'}}]};journey={phase:'complete'};journeyOwner='resident';openingState={step:14,partner_id:'r'};showCourtyard();refreshWorldHUD();var streetWrites=0;accountRequest=async()=>{streetWrites++;throw Error('Map visits must not write progress')};var residentBefore=JSON.stringify(playerAccount);`);
+ for(const target of ['kael-home','kael-bedroom','kael-home','quintal','kite-shop','quintal','professor-home','quintal']){
+  ui.run(`var portal=worldScene().places.find(p=>p.action==='street_scene'&&p.target===${JSON.stringify(target)});worldState().navigation.target(worldState().actor,worldState().navigation.nodes[portal.node],true);updateWorldContext();interactWorld();`);await ui.settle();assert.equal(ui.run('worldRuntime.id'),target);assert.ok(ui.run('worldRuntime.near?.action===\"street_scene\"'),'reciprocal door is immediately available');
+ }
+ assert.equal(ui.run('streetWrites'),0);assert.equal(ui.run('JSON.stringify(playerAccount)===residentBefore'),true);assert.equal(ui.run('openingState.step'),14);
 });

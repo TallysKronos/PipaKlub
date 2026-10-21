@@ -1,0 +1,502 @@
+{
+  "type": "map",
+  "version": "1.10",
+  "tiledversion": "1.11.0",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "width": 48,
+  "height": 32,
+  "tilewidth": 32,
+  "tileheight": 32,
+  "infinite": false,
+  "tilesets": [],
+  "properties": [
+    {
+      "name": "scene_name",
+      "type": "string",
+      "value": "Rua dos Ventos"
+    },
+    {
+      "name": "overview",
+      "type": "bool",
+      "value": true
+    },
+    {
+      "name": "actor_height",
+      "type": "int",
+      "value": 100
+    },
+    {
+      "name": "foot_radius",
+      "type": "int",
+      "value": 10
+    },
+    {
+      "name": "professor_x",
+      "type": "int",
+      "value": 592
+    },
+    {
+      "name": "professor_y",
+      "type": "int",
+      "value": 416
+    },
+    {
+      "name": "nozinho_x",
+      "type": "int",
+      "value": 672
+    },
+    {
+      "name": "nozinho_y",
+      "type": "int",
+      "value": 448
+    }
+  ],
+  "layers": [
+    {
+      "id": 1,
+      "name": "Cenário",
+      "type": "imagelayer",
+      "x": 0,
+      "y": 0,
+      "opacity": 1,
+      "visible": true,
+      "image": "street.png",
+      "imagewidth": 1536,
+      "imageheight": 1024,
+      "properties": [
+        {
+          "name": "sheet",
+          "type": "string",
+          "value": "street-quintal"
+        },
+        {
+          "name": "render",
+          "type": "string",
+          "value": "ground"
+        },
+        {
+          "name": "level",
+          "type": "int",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Walkable",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "objects": [
+        {
+          "id": 1,
+          "name": "Chão 0",
+          "type": "",
+          "x": 64,
+          "y": 480,
+          "width": 1312,
+          "height": 224,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Chão 1",
+          "type": "",
+          "x": 176,
+          "y": 352,
+          "width": 128,
+          "height": 160,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Chão 2",
+          "type": "",
+          "x": 688,
+          "y": 352,
+          "width": 128,
+          "height": 160,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Chão 3",
+          "type": "",
+          "x": 1312,
+          "y": 352,
+          "width": 128,
+          "height": 224,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Chão 4",
+          "type": "",
+          "x": 1280,
+          "y": 480,
+          "width": 224,
+          "height": 96,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Chão 5",
+          "type": "",
+          "x": 352,
+          "y": 672,
+          "width": 128,
+          "height": 288,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "name": "Chão 6",
+          "type": "",
+          "x": 352,
+          "y": 928,
+          "width": 800,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "name": "Chão 7",
+          "type": "",
+          "x": 1056,
+          "y": 672,
+          "width": 128,
+          "height": 288,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "name": "Chão 8",
+          "type": "",
+          "x": 512,
+          "y": 736,
+          "width": 544,
+          "height": 128,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "name": "Chão 9",
+          "type": "",
+          "x": 736,
+          "y": 832,
+          "width": 96,
+          "height": 128,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Solids",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "objects": []
+    },
+    {
+      "id": 4,
+      "name": "Foreground",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "objects": []
+    },
+    {
+      "id": 5,
+      "name": "Interactions",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "objects": [
+        {
+          "id": 11,
+          "name": "Casa de Kael",
+          "type": "",
+          "x": 208,
+          "y": 368,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "action",
+              "type": "string",
+              "value": "street_scene"
+            },
+            {
+              "name": "target",
+              "type": "string",
+              "value": "kael-home"
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "name": "Casa do Sr. Assis",
+          "type": "",
+          "x": 720,
+          "y": 368,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "action",
+              "type": "string",
+              "value": "street_scene"
+            },
+            {
+              "name": "target",
+              "type": "string",
+              "value": "professor-home"
+            }
+          ]
+        },
+        {
+          "id": 13,
+          "name": "Loja de pipas",
+          "type": "",
+          "x": 1328,
+          "y": 368,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "action",
+              "type": "string",
+              "value": "street_scene"
+            },
+            {
+              "name": "target",
+              "type": "string",
+              "value": "kite-shop"
+            }
+          ]
+        },
+        {
+          "id": 14,
+          "name": "Explorar a cidade",
+          "type": "",
+          "x": 1424,
+          "y": 496,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "action",
+              "type": "string",
+              "value": "city"
+            }
+          ]
+        },
+        {
+          "id": 15,
+          "name": "Mural · amigos",
+          "type": "",
+          "x": 368,
+          "y": 768,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "action",
+              "type": "string",
+              "value": "friends"
+            }
+          ]
+        },
+        {
+          "id": 16,
+          "name": "Mural · trocas",
+          "type": "",
+          "x": 368,
+          "y": 832,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "action",
+              "type": "string",
+              "value": "trades"
+            }
+          ]
+        },
+        {
+          "id": 17,
+          "name": "Seus parceiros",
+          "type": "",
+          "x": 752,
+          "y": 784,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "action",
+              "type": "string",
+              "value": "collection"
+            }
+          ]
+        },
+        {
+          "id": 150,
+          "name": "Jardim · fazenda dos parceiros",
+          "type": "",
+          "x": 896,
+          "y": 768,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "action",
+              "type": "string",
+              "value": "farm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Spawns",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "objects": [
+        {
+          "id": 18,
+          "name": "Entrada",
+          "type": "",
+          "x": 208,
+          "y": 496,
+          "width": 64,
+          "height": 64,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Exits",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "objects": []
+    }
+  ],
+  "nextobjectid": 151,
+  "nextlayerid": 8
+}

@@ -6,8 +6,8 @@ import {createWorldGeometry} from './src/world-map.js';
 import {createWorldNavigation} from './src/world-navigation.js';
 import {createAssetHandler} from './src/static-assets.js';
 import {worldPartnerStart} from './src/world-actors.js';
-const config=artConfig(),scene=config.courtyard.world.scenes.quintal;
-test('default courtyard is a complete editable modular map with the six existing actions',()=>{
+const config=artConfig(),scene=config.courtyard.world.legacyCourtyard;
+test('preserved legacy courtyard is a complete editable modular map with the six existing actions',()=>{
  assert.equal(scene.name,'Quintal do Clube');assert.ok(scene.art);assert.ok(scene.tiled);assert.equal(scene.image,undefined);
  assert.equal(scene.overview,true);
  assert.deepEqual(scene.places.map(p=>p.action).sort(),['city','collection','friends','professor','shop','summon']);
