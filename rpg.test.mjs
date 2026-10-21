@@ -53,16 +53,16 @@ test('verified wild rewards, pity, resets and class changes are private, atomic 
   for(const id of [a,b]){await db.query('insert into auth.users values($1,$2)',[id,{nickname:'RPG Tester'}]);await db.query('select public.ensure_player($1,$2)',[id,'RPG Tester']);}
   await auth(a);for(let n=0;n<10;n++)await q("select public.player_opening('advance',$1,null)",[n]);
   const kite=(await q("select public.player_opening('name',10,'Vento') r")).r.partner_id;
-  await assert.rejects(()=>q("select public.player_specialization($1,'velocista',false,0)",[kite]),/nível 15/);
+  await assert.rejects(()=>q("select public.player_classes($1,'velocista-1',0)",[kite]),/nível 15/);
   await db.exec('reset role');await db.query('update public.player_kites set pipamon_xp=$1 where id=$2',[engine.pipamons.xpForLevel(15),kite]);
-  await auth(a);let k=(await q("select public.player_specialization($1,'velocista',false,0) r",[kite])).r;
+  await auth(a);let k=(await q("select public.player_classes($1,'velocista-1',0) r",[kite])).r.kite;
   assert.equal(k.class_rank,1);assert.equal(k.personal_name,'Vento');
-  await assert.rejects(()=>q("select public.player_specialization($1,'condutor',false,0)",[kite]),/alterado/);
-  await assert.rejects(()=>q("select public.player_specialization($1,'velocista',true,1)",[kite]),/nível 35/);
-  await auth(b);await assert.rejects(()=>q("select public.player_specialization($1,'condutor',false,1)",[kite]),/sua coleção/);
+  await assert.rejects(()=>q("select public.player_classes($1,'condutor-1',0)",[kite]),/alterado/);
+  await assert.rejects(()=>q("select public.player_classes($1,'velocista-2',1)",[kite]),/nível 35/);
+  await auth(b);await assert.rejects(()=>q("select public.player_classes($1,'condutor-1',1)",[kite]),/sua coleção/);
   await db.exec('reset role');await db.query('update public.player_kites set pipamon_xp=$1 where id=$2',[engine.pipamons.xpForLevel(35),kite]);
-  await auth(a);k=(await q("select public.player_specialization($1,'velocista',true,1) r",[kite])).r;assert.equal(k.class_rank,2);
-  const xp=k.pipamon_xp;k=(await q("select public.player_specialization($1,'condutor',false,2) r",[kite])).r;assert.equal(k.class_rank,2);assert.equal(k.pipamon_xp,xp);assert.equal(k.personal_name,'Vento');
+  await auth(a);k=(await q("select public.player_classes($1,'velocista-2',1) r",[kite])).r.kite;assert.equal(k.class_rank,2);
+  const xp=k.pipamon_xp;k=(await q("select public.player_classes($1,'condutor-1',2) r",[kite])).r.kite;assert.equal(k.class_rank,1);assert.equal(k.pipamon_xp,xp);assert.equal(k.personal_name,'Vento');
   await assert.rejects(()=>q("select public.award_tamer_xp($1,'forge',100)",[a]),/permission denied/);
   await assert.rejects(()=>q("select public.settle_wild_run($1,$2,'won')",[a,randomUUID()]),/permission denied/);
   await assert.rejects(()=>q('select * from public.wild_runs'),/permission denied/);
@@ -71,7 +71,7 @@ test('verified wild rewards, pity, resets and class changes are private, atomic 
    await db.exec('reset role');await db.query("update public.wild_runs set created_at=now()-interval '30 seconds' where owner_id=$1",[a]);
    const id=randomUUID();await db.exec('set role pipa_server');
    const snapshot=(await q("select public.reserve_player_match($1,$2,'ABCDEF','casual') r",[a,id])).r;
-   assert.equal(snapshot.pipamonClass,'condutor');assert.equal(snapshot.classRank,2);
+   assert.equal(snapshot.pipamonClass,'condutor');assert.equal(snapshot.classRank,1);
    const encounter=(await q('select public.register_wild_run($1,$2,$3) r',[a,id,zone])).r;
    assert.equal(encounter.drop_roll,undefined);assert.deepEqual((await q('select public.register_wild_run($1,$2,$3) r',[a,id,zone])).r,encounter);
    return {id,encounter};
@@ -80,7 +80,7 @@ test('verified wild rewards, pity, resets and class changes are private, atomic 
    await db.exec('reset role;set role pipa_server');const result=(await q('select public.settle_wild_run($1,$2,$3) r',[a,id,outcome])).r;
    await q('select public.finish_player_match($1)',[id]);return result;
   };
-  let run=await start();await auth(a);await assert.rejects(()=>q("select public.player_specialization($1,'velocista',false,3)",[kite]),/Saia da partida/);
+  let run=await start();await auth(a);await assert.rejects(()=>q("select public.player_classes($1,'velocista-1',3)",[kite]),/saia da partida/);
   await auth(b);await assert.rejects(()=>q('select public.player_wild($1)',[run.id]),/inexistente/);
   const first=await finish(run.id,'won');assert.ok(first.tailId);assert.equal(first.firstTail,true);assert.equal(first.pipamonXp,20);assert.equal(first.tamerXp,4);
   assert.deepEqual(await finish(run.id,'won'),first,'retry returns immutable receipt');
@@ -94,5 +94,45 @@ test('verified wild rewards, pity, resets and class changes are private, atomic 
   await auth(a);const save=(await q('select public.player_campaign() r')).r;
   await q("select public.player_campaign('reset',$1,null,$2,$3,'EXCLUIR SAVE')",[save.revision,[kite],ids]);
   assert.equal((await finish(run.id,'won')).status,'abandoned','old result cannot reward a reset save');
+ }finally{await db.close();}
+});
+
+test('constellation consumes items once, gates parents and base stats, preserves unlocks and allows multiple Rabbitknights',async()=>{
+ const db=new PGlite(),owner=randomUUID();
+ try{
+  await db.exec("create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key,raw_user_meta_data jsonb);create function auth.uid() returns uuid language sql as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;grant usage on schema public,auth to authenticated,anon,service_role;grant execute on function auth.uid() to authenticated,anon,service_role;");
+  for(const f of fs.readdirSync('supabase/migrations').filter(f=>f.endsWith('.sql')).sort())await db.exec(fs.readFileSync('supabase/migrations/'+f,'utf8'));
+  const q=async(sql,args=[])=>(await db.query(sql,args)).rows[0];
+  await db.query('insert into auth.users values($1,$2)',[owner,{nickname:'Classes'}]);
+  const auth=()=>db.exec("reset role;set role authenticated;set request.jwt.claim.sub='"+owner+"'");
+  const birth=async()=>{await auth();for(let i=0;i<10;i++)await q("select public.player_opening('advance',$1,null)",[i]);return (await q("select public.player_opening('name',10,'Estrela') r")).r.partner_id;};
+  const first=await birth();await db.exec('reset role');await db.query('update public.player_kites set pipamon_xp=$1 where id=$2',[engine.pipamons.xpForLevel(45),first]);await auth();
+  let view=(await q('select public.player_classes($1) r',[first])).r;assert.equal(view.nodes.length,7);assert.equal(view.nodes.filter(n=>n.branch==='rabbitknight').length,1);assert.ok(view.nodes.every(n=>!n.unlocked));
+  const choose=async(id,node,version)=>(await q('select public.player_classes($1,$2,$3) r',[id,node,version])).r;
+  await assert.rejects(()=>choose(first,'velocista-3',0),/anterior/);
+  await assert.rejects(()=>choose(first,'rabbitknight',0),/item especial/);
+  await assert.rejects(()=>q("select public.player_specialization($1,'velocista',true,0)",[first]),/aba Classes/);
+  await db.exec('reset role');await db.query("insert into public.player_class_items values($1,'mascara-do-guerreiro',2),($1,'pluma-dos-ventos',1)",[owner]);
+  // A trusted test catalog modification proves status requirements aren't checked only in the UI.
+  await db.query("update public.pipamon_class_nodes set threshold=999 where id='velocista-1'");await auth();await assert.rejects(()=>choose(first,'velocista-1',0),/atributo base/);
+  await db.exec("reset role;update public.pipamon_class_nodes set threshold=168 where id='velocista-1'");await auth();
+  view=await choose(first,'velocista-1',0);view=await choose(first,'velocista-2',view.version);view=await choose(first,'velocista-3',view.version);
+  assert.equal(view.kite.class_rank,3);assert.equal(view.items['pluma-dos-ventos'],0);assert.equal(view.kite.personal_name,'Estrela');
+  view=await choose(first,'base',view.version);view=await choose(first,'velocista-3',view.version);assert.equal(view.items['pluma-dos-ventos'],0,'reselection consumes nothing');
+  const old=view.version;view=await choose(first,'rabbitknight',old);assert.equal(view.items['mascara-do-guerreiro'],1);assert.equal(view.current,'rabbitknight');
+  await assert.rejects(()=>choose(first,'rabbitknight',old),/alterado/);
+  const xp=view.kite.pipamon_xp;view=await choose(first,'base',view.version);view=await choose(first,'rabbitknight',view.version);assert.equal(view.items['mascara-do-guerreiro'],1);assert.equal(view.kite.pipamon_xp,xp);
+  const save=(await q('select public.player_campaign() r')).r;const ids=(await db.query('select id from public.player_kites where owner_id=$1',[owner])).rows.map(k=>k.id);
+  await q("select public.player_campaign('reset',$1,null,$2,$3,'EXCLUIR SAVE')",[save.revision,[first],ids]);const second=await birth();
+  await db.exec('reset role');await db.query('update public.player_kites set pipamon_xp=$1 where id=$2',[engine.pipamons.xpForLevel(25),second]);await auth();
+  view=await choose(second,'rabbitknight',0);assert.equal(view.items['mascara-do-guerreiro'],0);assert.equal((await q('select public.player_classes($1) r',[first])).r.current,'rabbitknight');
+  assert.equal(view.kite.personal_name,'Estrela');await assert.rejects(()=>q('select * from public.player_class_items'),/permission denied/);
+  const stats=engine.pipamons.stats(25,'rabbitknight',1),base=engine.pipamons.stats(25);assert.ok(stats.attack>base.attack&&stats.defense>base.defense&&stats.speed<base.speed);
+  await assert.rejects(()=>q('select public.grant_class_milestones($1)',[owner]),/permission denied/);
+  await db.exec('reset role');
+  await db.query("with m as(insert into public.game_matches(id,room_code,mode) select gen_random_uuid(),'AA0000','casual' from generate_series(1,30) returning id) insert into public.wild_runs(match_id,owner_id,kite_id,zone,model_id,enemy_level,drop_roll,status,result) select id,$1,$2,'park-trail','basica',1,.5,'won','{}'::jsonb from m",[owner,second]);
+  const awards=(await q('select public.grant_class_milestones($1) r',[owner])).r;assert.equal(awards.length,6);assert.equal(awards.filter(i=>i==='mascara-do-guerreiro').length,2,'special class items remain obtainable for additional partners');
+  assert.deepEqual((await q('select public.grant_class_milestones($1) r',[owner])).r,[],'milestone replay cannot mint extra items');
+  await auth();assert.equal((await q('select public.player_classes($1) r',[second])).r.items['mascara-do-guerreiro'],2);
  }finally{await db.close();}
 });

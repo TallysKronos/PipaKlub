@@ -33,6 +33,7 @@ function focusTargets(){
 function focusPad(el){el.focus({preventScroll:true});el.scrollIntoView?.({block:'nearest',inline:'nearest'});renderCommandBar();}
 const PRIMARY=['[autofocus]','#journeyContinue','#partnerConfirm','#flightNext','#trailStart','#rematchButton','#assisNext','.primary','.pk-button'];
 function moveFocus(dir){
+ if(typeof classMoveFocus==='function'&&classMoveFocus(document.activeElement,dir))return;
  if(typeof campaignMoveFocus==='function'&&campaignMoveFocus(dir))return;
  const targets=focusTargets();if(!targets.length)return;
  const current=targets.find(t=>t.el===document.activeElement);

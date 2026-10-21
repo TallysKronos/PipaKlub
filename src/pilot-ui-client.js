@@ -171,9 +171,10 @@ pilotWireCollection();new MutationObserver(pilotWireCollection).observe(document
  invPages=createDetailPages(inv,{id:'inventory-detail',label:'Páginas do parceiro',pages:[
   {label:'Visão geral',nodes:[summary,inv.querySelector('.collection-facts')]},
   {label:'Status',nodes:[$('inventoryProgress')]},
+  {label:'Classes',nodes:[$('inventoryClasses')]},
   {label:'Técnica',nodes:[inv.querySelector('.collection-skill'),...notes]},
   {label:'História',nodes:[lore]}
- ]});
+ ],onChange(index){inv.classList.toggle('class-constellation-active',index===2);if(index===2&&typeof loadPipamonClasses==='function'){const kite=playerAccount?.inventory.find(k=>k.id===inventorySelection);if(kite)loadPipamonClasses(kite);}}});
  // Asset errors remain visible, including on a different reading page.
  const invStage=inv.querySelector('.collection-stage');invStage.append($('inventoryLoad'));
  stage.append($('dexLoad'),$('dexRetry'));

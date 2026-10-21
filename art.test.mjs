@@ -532,3 +532,17 @@ test('Morro chapter gates require a confirmed account victory and preserve retur
  a.run(`worldRuntime.near=worldScene().places.find(p=>p.action==='road_back');interactWorld();`);assert.equal(a.run('worldRuntime.id'),'morro-area-4');assert.equal(a.run('worldState().actor.level'),1);
  await a.run(`trailSync.setUser('other-owner')`);a.run(`playerAccount={profile:{id:'other-owner',nickname:'Outro',level:1},inventory:[]};refreshWorldHUD();openWorld('morro-area-5');`);assert.equal(a.run('worldRuntime.id'),'quintal');
 });
+
+test('partner class tab shows locked silhouettes and requirements without mutating collection on selection',async()=>{
+ const a=app({seen:true,reduced:true});await a.settle();
+ const account={profile:{id:'class-ui',nickname:'Kael',level:1,cuts:0,equipped_kite_id:'rabbit'},inventory:[{id:'rabbit',model_id:'rabbito',pipamon_xp:120,class_version:0,model:{name:'Rabbito',color:0,soul:'rabbito',acquisition:'event'}}]};
+ a.run('playerAccount='+JSON.stringify(account)+";accountModal.style.display='flex';renderAccountDialog();navigateClub('collection');var classUiCalls=[];accountRequest=async(action,body)=>{classUiCalls.push({action,body});return {classes:{version:0,current:'base',nodes:[{id:'rabbitknight',branch:'rabbitknight',rank:1,name:'Rabbitknight',description:'Classe especial sem evoluções',x:82,y:48,min_level:25,stat:'attack',threshold:1.05,actualStat:1,item:'mascara-do-guerreiro',unlocked:false,hasParent:true}],items:{},parkWins:0}}};");
+ assert.equal(a.run('classUiCalls.length'),0,'collection preview does not request or mutate classes');
+ a.document.getElementById('inventory-detail-tab-2').onclick();await a.settle();
+ assert.equal(a.document.getElementById('inventory-detail-tab-2').getAttribute('aria-selected'),'true');assert.ok(a.document.getElementById('inventoryDetails').classList.contains('class-constellation-active'));
+ const node=a.document.querySelector('[data-class-node="rabbitknight"]');assert.ok(node.classList.contains('silhouette'));node.onclick();
+ assert.match(a.document.querySelector('.class-node-detail').textContent,/Nível 25/);assert.match(a.document.querySelector('.class-node-detail').textContent,/Máscara do Guerreiro/);assert.equal(a.document.querySelector('.class-confirm').disabled,true);
+ assert.equal(a.run('classUiCalls.length'),1);assert.equal(a.run('classUiCalls[0].body.nodeId'),undefined,'choosing a node is inspection only');
+ assert.equal(a.run('playerAccount.inventory[0].class_version'),0);assert.equal(a.run('homeMenuGroups.clubGroup.some(([id])=>id==="classes")'),false);
+ a.document.getElementById('inventory-detail-tab-0').onclick();assert.equal(a.document.getElementById('inventoryDetails').classList.contains('class-constellation-active'),false);
+});

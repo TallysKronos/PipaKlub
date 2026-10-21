@@ -165,7 +165,7 @@ const homeMenuGroups={
  root:[['playGroup','Jogar','menu-play'],['collection','Parceiros','menu-partners'],['dex','Pipa Dex','menu-dex'],['clubGroup','Clube','menu-club'],['school','Escola','menu-school'],['optionsGroup','Opções','menu-options']],
  playGroup:[['root','← Voltar'],['explorationGroup','Exploração e campanha'],['quick','Partida rápida'],['daily','Céu do dia'],['friends','Jogar com amigos'],['practice','Treino livre'],...(new URLSearchParams(location.search).has('lab')?[['lab','Laboratório · Duelo nas Alturas']]:[])],
  explorationGroup:[['playGroup','← Voltar'],['park','Parque dos Ventos'],['wildResume','Retomar encontro selvagem'],['trails','Trilhas da cidade']],
- clubGroup:[['root','← Voltar'],['classes','Classes do Rabbito'],['farm','Fazenda dos parceiros'],['summon','Invocação'],['trades','Trocas por convite'],['shop','Banca de linhas'],['history','Meus duelos'],['events','Souls de evento'],['profile','Meu perfil'],['professor','Meu primeiro voo'],['story','Rever a abertura']],
+ clubGroup:[['root','← Voltar'],['farm','Fazenda dos parceiros'],['summon','Invocação'],['trades','Trocas por convite'],['shop','Banca de linhas'],['history','Meus duelos'],['events','Souls de evento'],['profile','Meu perfil'],['professor','Meu primeiro voo'],['story','Rever a abertura']],
  optionsGroup:[['root','← Voltar'],['save','Save e bancos'],['autosave','Salvamento automático'],['sound','Som'],['quality','Qualidade da imagem'],['fullscreen','Tela cheia'],...(CLARITY_ID?[['privacy','Privacidade']]:[]),['feedback','Enviar feedback da demo'],['rules','Regras'],['reload','Recarregar cenário'],['logout','Sair da conta']]
 };
 let homeMenuGroup='root';
