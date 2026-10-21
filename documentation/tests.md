@@ -5,8 +5,8 @@
 | Caso/regra | Comportamento esperado, inclusive negação | Evidência | Estado |
 |---|---|---|---|
 | Economia e ownership | Não forjar proprietário, privilégio ou duplicar liquidação | `accounts.test.mjs`, `trail-rewards.test.mjs`, `trades.test.mjs`, `summon.test.mjs` | Automatizado, PostgreSQL local |
-| Recuperação | Destino fixo, limite de envios, bearer obrigatório e confirmado pelo provedor, ID arbitrário ignorado | `accounts.test.mjs`; [flows](flows.md) | Automatizado com provedor simulado |
-| UI de recuperação | Confirmar senha, não reenviar senha do login, não persistir token | `art.test.mjs` | Automatizado de UI/DOM |
+| Recuperação | Destino fixo, limite de envios, bearer confirmado, identidade arbitrária ignorada; entrada automática exige o mesmo ID do usuário atualizado e usa o e-mail do provedor. Falha posterior não mascara a troca já concluída | `accounts.test.mjs`; [flows](flows.md) | Automatizado com provedor simulado |
+| UI de recuperação | Confirmar senha, não reenviar senha antiga do login, não persistir token, abrir a conta quando a sessão da recuperação é confirmada | `art.test.mjs` | Automatizado de UI/DOM |
 | Limite da demo | Negar bairros futuros antes de reservar; preservar histórico antigo | `test.mjs`, `art.test.mjs` | Automatizado |
 | Reconexão | Mesmo jogador/partida; sem nova reserva; chave inválida/removida negada; um socket assume o lugar | `test.mjs`, `realtime.test.mjs` | Automatizado HTTP e socket real local |
 | Tutorial | Movimento, acerto, energia, efeito das quatro classes, esquiva e manobra | `first-flight.test.mjs` | Automatizado; replay visual com Carcará |
@@ -14,7 +14,7 @@
 | Layout/artes | Atlas, bounds, arquivos publicados, navegação e regras do mundo | `art.test.mjs`, `ui-kit.test.mjs`, `pilot-ui.test.mjs`, testes `world-*` e `neighborhood-road.test.mjs` | Automatizado; não é cobertura de todas as resoluções |
 | Partida completa | Dois visitantes, três vitórias, recuperação dos dois lados, mesma revanche, limpeza das salas | `scripts/smoke-demo-release.mjs` | Executado localmente; execução remota precisa constar no relatório da publicação |
 
-Suíte da candidata: 282 testes passaram. O workflow `Demo validation` executa os dois builds e `npm test` em PRs e pushes em main, sem segredos de produção. Publicar o workflow não equivale a configurar branch protection nem a fazer o Render esperar o CI.
+Suíte atual: 285 testes passaram, incluindo a entrada após recuperação e os diagnósticos de autenticação. O workflow `Demo validation` executa os dois builds e `npm test` em PRs e pushes em main, sem segredos de produção. Publicar o workflow não equivale a configurar branch protection nem a fazer o Render esperar o CI.
 
 ## Testes propostos
 

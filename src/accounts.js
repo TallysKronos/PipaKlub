@@ -99,8 +99,20 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
     if(password.length<8||password.length>128)throw new AccountError('Use uma senha de 8 a 128 caracteres.');
     if(token.length<20||token.length>3500)throw new AccountError('Abra um link de recuperação válido recebido no e-mail.',401);
     // Supabase validates the bearer and authorizes the change on that user; cookies and body user IDs cannot choose an account.
-    await remote('/auth/v1/user',{method:'PUT',token,body:{password}});
-    sessions.clear();return json({ok:true,message:'Senha atualizada. Entre com sua nova senha.'},200,makeCookies(request,null));
+    const updated=await remote('/auth/v1/user',{method:'PUT',token,body:{password}});
+    if(!UUID.test(updated?.id||'')||typeof updated?.email!=='string'||!/^\S+@\S+\.\S+$/.test(updated.email))throw new AccountError('O provedor não confirmou os dados da conta atualizada. Código CONTA-RECUPERACAO.',503);
+    sessions.clear();
+    // Confirm the freshly set password against the provider's email, never a client-chosen identity.
+    // This also avoids asking the player to retype a password into a form with stale autofill.
+    try{
+     const session=await remote('/auth/v1/token?grant_type=password',{method:'POST',body:{email:updated.email,password}});
+     if(!session?.access_token||session.user?.id!==updated.id)throw new AccountError('O provedor não confirmou a entrada na conta recuperada.',503);
+     const account=await accountFor({id:updated.id,access:session.access_token});
+     return json({ok:true,passwordUpdated:true,account,loginEmail:updated.email,message:'Senha atualizada e conta conectada. Sua coleção está pronta.'},200,makeCookies(request,session));
+    }catch(e){
+     // The password change already happened; do not report it as a failed change or encourage another reset.
+     return json({ok:true,passwordUpdated:true,account:null,loginEmail:updated.email,message:'Senha atualizada, mas não foi possível concluir a entrada automática. Código CONTA-POS-RECUPERACAO. '+(e instanceof AccountError?e.message:'Tente entrar novamente.')},200,makeCookies(request,null));
+    }
    }
    if(action==='login'||action==='signup'){
     rateLimit(request,action);

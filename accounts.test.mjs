@@ -35,13 +35,25 @@ test('password recovery fixes the return destination, hides account existence an
  assert.equal((await a.handle(request({email:'player@example.test'}))).status,429);
 });
 
-test('password replacement requires a provider-validated bearer and never uses a client-chosen user or admin key',async()=>{
- let accepted=false;const sent=[],a=createAccounts({SUPABASE_URL:'https://provider.test',SUPABASE_PUBLISHABLE_KEY:'public'},{gameDatabase:{rpc(){throw Error('must not use game SQL')}},fetcher:async(url,options)=>{sent.push({url,...options});return accepted?new Response('{}'):new Response('{"error_code":"invalid_credentials"}',{status:401});}});
+test('password replacement validates the bearer and signs in using only the provider-confirmed identity and freshly set password',async()=>{
+ let accepted=false;const sent=[],a=createAccounts({SUPABASE_URL:'https://provider.test',SUPABASE_PUBLISHABLE_KEY:'public'},{gameDatabase:{rpc(){throw Error('must not use game SQL')}},diagnostics(){},fetcher:async(url,options)=>{sent.push({url,...options});if(!accepted)return new Response('{"error_code":"invalid_credentials"}',{status:401});return new Response(JSON.stringify(url.endsWith('/auth/v1/user')?{id:userA,email:'verified@example.test'}:url.includes('grant_type=password')?{access_token:'private-reset-access',refresh_token:'private-reset-refresh',expires_in:3600,user:{id:userA}}:{profile:{id:userA,nickname:'Ana',xp:0,cuts:0},inventory:[]}));}});
  const request=body=>new Request('https://game.test/account/reset-password',{method:'POST',headers:{'Content-Type':'application/json',Origin:'https://game.test'},body:JSON.stringify(body)});
  assert.equal((await a.handle(request({password:'ValidTestOnlyPassword!'}))).status,401);assert.equal(sent.length,0);
  assert.equal((await a.handle(request({token:'recovery-test-token-not-real',password:'ValidTestOnlyPassword!'}))).status,401);
- accepted=true;const result=await a.handle(request({token:'recovery-test-token-not-real',password:'ValidTestOnlyPassword!',userId:userB}));assert.equal(result.status,200);assert.equal(sent.at(-1).url,'https://provider.test/auth/v1/user');assert.equal(sent.at(-1).method,'PUT');assert.equal(sent.at(-1).headers.Authorization,'Bearer recovery-test-token-not-real');assert.deepEqual(JSON.parse(sent.at(-1).body),{password:'ValidTestOnlyPassword!'});assert.equal(result.headers.getSetCookie().length,2);
+ accepted=true;const result=await a.handle(request({token:'recovery-test-token-not-real',password:'ValidTestOnlyPassword!',userId:userB,email:'untrusted@example.test'}));assert.equal(result.status,200);const put=sent.findLast(r=>r.method==='PUT');assert.equal(put.url,'https://provider.test/auth/v1/user');assert.equal(put.headers.Authorization,'Bearer recovery-test-token-not-real');assert.deepEqual(JSON.parse(put.body),{password:'ValidTestOnlyPassword!'});
+ const login=sent.find(r=>r.url.includes('grant_type=password'));assert.deepEqual(JSON.parse(login.body),{email:'verified@example.test',password:'ValidTestOnlyPassword!'});assert.equal(sent.at(-1).headers.Authorization,'Bearer private-reset-access');assert.ok(result.headers.getSetCookie().every(c=>c.includes('HttpOnly')&&c.includes('Secure')&&!c.includes('Max-Age=0')));const body=await result.text();assert.doesNotMatch(body,/private-reset-|ValidTestOnlyPassword/);const value=JSON.parse(body);assert.equal(value.account.profile.id,userA);assert.equal(value.passwordUpdated,true);
  const cross=new Request('https://game.test/account/reset-password',{method:'POST',headers:{'Content-Type':'application/json',Origin:'https://untrusted.test'},body:'{}'});assert.equal((await a.handle(cross)).status,403);
+});
+test('recovery does not claim a password failure after a confirmed change, and never creates a session for a different returned identity',async()=>{
+ for(const rejection of ['credentials','identity','profile']){
+  const a=createAccounts({SUPABASE_URL:'https://provider.test',SUPABASE_PUBLISHABLE_KEY:'public'},{gameDatabase:{},diagnostics(){},fetcher:async url=>{
+   if(url.endsWith('/auth/v1/user'))return new Response(JSON.stringify({id:userA,email:'verified@example.test'}));
+   if(url.includes('grant_type=password'))return rejection==='credentials'?new Response('{"error_code":"invalid_credentials"}',{status:400}):new Response(JSON.stringify({access_token:'private-recovery-session',user:{id:rejection==='identity'?userB:userA}}));
+   return new Response('{"code":"PGRST301"}',{status:401});
+  }});
+  const response=await a.handle(new Request('https://game.test/account/reset-password',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:'unit-test-recovery-token',password:'UnitTestOnlyPassword!'})}));
+  assert.equal(response.status,200);const body=await response.json();assert.equal(body.passwordUpdated,true);assert.equal(body.account,null);assert.equal(body.loginEmail,'verified@example.test');assert.match(body.message,/CONTA-POS-RECUPERACAO/);assert.ok(response.headers.getSetCookie().every(c=>c.includes('Max-Age=0')));
+ }
 });
 test('real PostgreSQL schema: signup grants one inventory, ownership is protected, cuts transfer once and casual preserves items',async()=>{
  const db=new PGlite();try{

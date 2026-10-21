@@ -42,6 +42,13 @@ test('recovery links open password confirmation without persisting the token and
  a.run(`$('recoveryConfirm').value='UnitTestOnly123!'`);await a.document.getElementById('recoveryForm').onsubmit({preventDefault(){}});assert.equal(a.run('resets'),1);assert.equal(a.run('passwordRecoveryToken'),null);assert.equal(a.run('accountRecoveryMode'),null);assert.equal(a.document.getElementById('recoveryPassword').value,'');assert.ok([...a.storage.values()].every(v=>!v.includes('unit-recovery-token')));
 });
 
+test('a verified recovery session opens the authenticated account instead of asking for another login',async()=>{
+ const a=app({hash:'#type=recovery&access_token=unit-recovery-token-not-a-credential'});await a.settle();
+ a.run(`loadRecentMatches=()=>{};onCourtyardAccount=()=>{};onTrailAccountChange=()=>{};onLineAccountChange=()=>{};accountRequest=async()=>({loginEmail:'verified@example.test',message:'Senha atualizada e conta conectada.',account:{profile:{id:'11111111-1111-4111-8111-111111111111',nickname:'Ana',level:1,xp:0,next_level_xp:100,cuts:0,equipped_kite_id:null},inventory:[]}});$('recoveryPassword').value='UnitTestOnlyPassword!';$('recoveryConfirm').value='UnitTestOnlyPassword!';`);
+ await a.document.getElementById('recoveryForm').onsubmit({preventDefault(){}});
+ assert.equal(a.document.getElementById('accountButton').textContent,'Minha conta');assert.equal(a.document.getElementById('accountAuth').hidden,true);assert.equal(a.document.getElementById('accountEmail').value,'verified@example.test');assert.equal(a.run('passwordRecoveryToken'),null);assert.equal(a.document.getElementById('recoveryConfirm').value,'');
+});
+
 test('plaza HUD uses account progression, routes missions and options, and never grants collection items',async()=>{
  const a=app({seen:true});await a.settle();
  a.run(`playerAccount={profile:{id:'plaza-a',nickname:'Ana',level:8,xp:5100,next_level_xp:6400,equipped_kite_id:null},inventory:[]};journey={phase:'complete'};trailProgress.coins=123;showCourtyard();`);

@@ -18,13 +18,13 @@ $('recoveryForm').onsubmit=async e=>{
  e.preventDefault();if(accountSaving)return;const resetting=accountRecoveryMode==='reset',token=passwordRecoveryToken;
  if(resetting&&$('recoveryPassword').value!==$('recoveryConfirm').value){$('recoveryStatus').textContent='As duas senhas precisam ser iguais.';return;}
  accountSaving=true;$('recoverySubmit').disabled=true;$('recoveryCancel').disabled=true;$('recoveryStatus').textContent=resetting?'Atualizando sua senha…':'Enviando o link…';
- try{const result=await accountRequest(resetting?'reset-password':'recover',resetting?{token,password:$('recoveryPassword').value}:{email:$('recoveryEmail').value});if(resetting){closeRecovery();playerAccount=null;accountTab='login';reflectAccount();$('accountMessage').textContent=result.message;}else $('recoveryStatus').textContent=result.message;}
+ try{const result=await accountRequest(resetting?'reset-password':'recover',resetting?{token,password:$('recoveryPassword').value}:{email:$('recoveryEmail').value});if(resetting){closeRecovery();playerAccount=result.account||null;if(result.loginEmail)$('accountEmail').value=result.loginEmail;accountTab='login';reflectAccount();$('accountMessage').textContent=result.message;if(playerAccount){loadRecentMatches();toast('Bem-vindo de volta ao Pipa Club!');}}else $('recoveryStatus').textContent=result.message;}
  catch(err){$('recoveryStatus').textContent=err.name==='AbortError'?'A conexão demorou. Tente novamente.':err.message;}
  finally{accountSaving=false;$('recoverySubmit').disabled=false;$('recoveryCancel').disabled=false;$('recoveryPassword').value='';$('recoveryConfirm').value='';renderAccountDialog();}
 };
 function requireClubAccount(feature){if(playerAccount)return true;toast('Entre ou crie sua conta para acessar '+feature+'.');openAccount();return false;}
 async function accountRequest(action,body){
- const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),12000);
+ const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),action==='reset-password'?30000:12000);
  try{const r=await fetch('/account/'+action,{method:body===undefined?'GET':'POST',headers:body===undefined?{}:{'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body),signal:controller.signal});const d=await r.json();if(!r.ok)throw Object.assign(Error(d.error||'Não foi possível acessar sua conta.'),{status:r.status});return d;}finally{clearTimeout(timeout);}
 }
 function reflectAccount(){
