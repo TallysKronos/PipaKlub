@@ -220,3 +220,28 @@ button.encounter-partner[aria-pressed=true]{background:#d9e9d4;border-color:#3e7
 #modal.encounter-preview .encounter-landscape{height:clamp(90px,18dvh,170px)}
 
 body.ui-kit-ready #tradeActions:not(:empty){top:0;bottom:auto}#tradeState p{margin:5px 0;font-size:13px}
+
+/* Result and encounter screens: the story scrolls, the next step never does. */
+.dialog-footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:10px;flex-shrink:0;margin-top:8px;padding-top:10px;border-top:1px solid #d6bf8f}
+.dialog-footer>button{margin:0!important}
+.dialog-footer>#dialogAction{margin-right:auto!important;align-self:auto!important}
+@media(max-height:780px){
+ #modal.encounter-preview .encounter-landscape{height:clamp(64px,12dvh,120px);margin-bottom:10px}
+ #modal:is(.encounter-preview,.story-result) #dialogTitle{font-size:26px;margin:2px 0 6px}
+ #modal:is(.encounter-preview,.story-result) .encounter-story{margin:6px 0}
+ #modal:is(.encounter-preview,.story-result) .encounter-story blockquote{margin:6px 0}
+ #modal:is(.encounter-preview,.story-result) .encounter-story blockquote p{font-size:15px;line-height:1.5}
+ #modal:is(.encounter-preview,.story-result) .rival-story-art{flex-basis:70px;width:70px;height:98px}
+ #modal:is(.encounter-preview,.story-result) .story-before .rival-story-art{flex-basis:84px;width:84px;height:118px}
+ .encounter-partner-summary{padding:4px 0 8px}
+}
+@media(max-width:550px){.dialog-footer{gap:8px}.dialog-footer>#dialogAction{margin-right:0!important;order:9;width:100%}}
+
+/* Dialogue advance prompts are text commands: mark focus with an underline, not the plaza's white box. */
+.pilot-ui .pilot-dialogue button.pilot-advance:focus-visible{outline:none!important;filter:none!important;text-decoration:underline 3px #e0a63a;text-underline-offset:7px}
+/* A conversation owns the bottom of the screen: the walking bar steps aside. */
+body:has(#journeyDialog:not([hidden])) .world-context{visibility:hidden}
+/* First flight: once a lesson is done, the next step is the loudest button in the coach. */
+body.ui-kit-ready .flight-coach .journey-actions #flightNext{order:-1;font-size:16px!important;padding:10px 14px!important;min-height:50px}
+.pilot-ui .pilot-dialogue button.pilot-advance:disabled{color:#7b6d55!important;font-weight:700!important;cursor:default}
+.pilot-ui .pilot-dialogue button.pilot-advance:disabled :is(.kit-glyph,.pilot-kite-mini){display:none}

@@ -9,7 +9,7 @@ body:
     id: version
     attributes:
       label: Versão e endereço do jogo
-      value: "demo-rc.1 · https://pipaklub.onrender.com/"
+      value: "demo-rc.2 · https://pipaklub.onrender.com/"
     validations:
       required: true
   - type: textarea

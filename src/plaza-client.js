@@ -33,7 +33,7 @@ function initPlaza(){
  }courtyard.append(nav);
  const destination=uiElement('section',undefined,'plaza-destination plaza-paper');destination.setAttribute('aria-label','Explorar a cidade');
  destination.innerHTML='<h2 id="plazaDistrictName">Cidade dos ventos</h2><div class="plaza-postcard"><img id="plazaDistrictImage" alt="" loading="lazy"></div><button id="plazaVisit" class="plaza-primary">Ir para a cidade <span aria-hidden="true">▶</span></button>';courtyard.append(destination);plazaAction($('plazaVisit'),()=>homeActions.city());
- const welcome=uiElement('div',undefined,'plaza-welcome');welcome.append(plazaIcon('chat'));const copy=uiElement('div');copy.append(uiElement('b','Bem-vindo ao PipaKlub!'),uiElement('span','Treine, explore e encontre novos parceiros.'));welcome.append(copy);courtyard.append(welcome);
+ const welcome=uiElement('div',undefined,'plaza-welcome');welcome.append(plazaIcon('chat'));const copy=uiElement('div');copy.append(uiElement('b','Bem-vindo a Soulmonsters!'),uiElement('span','Treine, explore e encontre novos parceiros.'));welcome.append(copy);courtyard.append(welcome);
  const footer=courtyard.querySelector('.home-footer');footer.className='plaza-footer';$('homeMotion').className='plaza-motion';
  const residents=$('homeResidents');residents.setAttribute('aria-live','polite');footer.append(uiElement('small','Clique no caminho para passear.','plaza-walk-hint'));
  const destinations=$('homeDestinations');destinations.replaceChildren();

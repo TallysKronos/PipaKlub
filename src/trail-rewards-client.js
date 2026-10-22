@@ -8,7 +8,7 @@ async function openTrailSummoner(dropId){
 function showOnlineTrailResult(s,ranking,mine){
  const owner=playerAccount?.profile?.id,match=s.id,version=++trailResultVersion,st=trails.stage(s.trail),won=(mine?.rounds||0)>=s.roundsToWin;
  modal(won?(st.boss?'Chefe derrotado!':'Etapa vencida!'):'Não foi dessa vez.',
- (st.boss?trailLeaderMarkup(trails.trails[st.trailIndex],won?'victory':'ready'):'')+'<p>'+escapeHTML(st.name)+'</p><div id="trailStoryOutcome"></div><div id="trailOnlineReward" role="status" aria-live="polite">Conferindo o resultado na sua conta…</div>','Voltar ao mapa do bairro',st.name);
+ (st.boss?trailLeaderMarkup(trails.trails[st.trailIndex],won?'victory':'ready'):'')+'<div id="trailStoryOutcome"></div><div id="trailOnlineReward" role="status" aria-live="polite">Conferindo o resultado na sua conta…</div>','Voltar ao mapa do bairro',st.name);
  if(trails.story(s.trail))$('modal')?.classList.add('story-result');
  $('dialogAction').className='secondary';$('dialogAction').onclick=()=>returnToDistrict(s.trail,won);
  let attempts=0;
@@ -26,8 +26,8 @@ function showOnlineTrailResult(s,ranking,mine){
     if(data.status==='saved'){
      refreshRewards();if(r.pipamonXp!=null)root.append(uiElement('p','+'+r.pipamonXp+' XP para o parceiro desta Trilha.','pipamon-result-xp'));
      updateTrailStoryOutcome(s.trail,r,data.status);
-     if(r.tailId){const summon=uiElement('button','Ir ao invocador ✦','primary');summon.id='trailGoSummoner';summon.onclick=()=>openTrailSummoner(r.drop);root.append(summon);}
-     const finale=trails.demo&&s.trail==='morro-5'&&r.won,again=uiElement('button',finale?'Concluir a demo ▶':r.won?'Ver meu caminho ▶':'Tentar de novo ↻',finale?'primary':'secondary');again.id='rematchButton';again.onclick=()=>{if(finale)openDemoFinale();else if(r.won)returnToDistrict(s.trail,true);else{returnToDistrict(s.trail,false);presentStage(s.trail);}};root.append(again);again.focus({preventScroll:true});return;
+     if(r.tailId){const summon=uiElement('button','Ir ao invocador ✦','primary');summon.id='trailGoSummoner';summon.onclick=()=>openTrailSummoner(r.drop);placeDialogActions(summon);}
+     const finale=trails.demo&&s.trail==='morro-5'&&r.won,again=uiElement('button',finale?'Concluir a demo ▶':r.won?'Ver meu caminho ▶':'Tentar de novo ↻',finale?'primary':'secondary');again.id='rematchButton';again.onclick=()=>{if(finale)openDemoFinale();else if(r.won)returnToDistrict(s.trail,true);else{returnToDistrict(s.trail,false);presentStage(s.trail);}};placeDialogActions(again);again.focus({preventScroll:true});return;
     }
    }
    if(data.status!=='abandoned'&&++attempts<12)setTimeout(check,1500);else addRetry(root);

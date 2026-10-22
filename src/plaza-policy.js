@@ -1,4 +1,6 @@
 // Presentation policy: account XP is independent of each Pipamon's own level.
+// "na Praça da Chegada", "no Mirante": the place names are proper nouns with their own article.
+const placeIn=place=>(/^(Mirante|Parque|Morro|Quintal)\b/.test(place)?' no ':/^(Praça|Escadaria|Laje|Rua|Casa|Loja|Trilha)\b/.test(place)?' na ':' em ')+place;
 export function createPlazaPolicy(){
  const paths=[{left:600,right:825,top:560,bottom:1010},{left:235,right:1000,top:560,bottom:625}];
  function point(x,y){
@@ -16,7 +18,7 @@ export function createPlazaPolicy(){
   if(context.demo&&context.complete)return {title:'Demo concluída',body:'Você conquistou o Morro do Sol! Conheça seu novo parceiro, revisite o bairro ou jogue online com seus amigos.',action:'demo',stage:null};
   if(context.roadCleared)return {title:context.roadFinal?'Bairro conquistado':'Caminho liberado',body:context.roadFinal?'Você venceu o campeão. Siga pela saída para explorar a cidade.':'A vitória foi confirmada. Suba e siga para a próxima área do Morro.',action:'worldAdvance',stage:null};
   if(context.complete)return {title:'Jornada concluída',body:'Você venceu os três bairros disponíveis! Revisite seus rivais ou encontre seus amigos enquanto os próximos bairros são preparados.',action:'city',stage:null};
-  if(context.worldId==='morro'&&next?.trailIndex===0)return {title:context.nearStage===next.id?'Seu próximo duelo':'Encontre seu rival',body:(context.nearStage===next.id?'Converse com ':'Encontre ')+(context.rivals||'seu rival')+' em '+(context.place||'seu próximo encontro')+'.',action:'nextEncounter',stage:next.id};
+  if(context.worldId==='morro'&&next?.trailIndex===0)return {title:context.nearStage===next.id?'Seu próximo duelo':'Encontre seu rival',body:(context.nearStage===next.id?'Converse com ':'Encontre ')+(context.rivals||'seu rival')+(context.place?placeIn(context.place):' em seu próximo encontro')+'.',action:'nextEncounter',stage:next.id};
   return {title:'Próximo desafio',body:trail?'Explore a '+trail.name+' e encontre seu próximo duelo.':'Explore a cidade dos ventos.',action:'city',stage:next?.id||null};
  }
  return {point,profile,mission};
