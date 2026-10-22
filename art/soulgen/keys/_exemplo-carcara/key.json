@@ -1,0 +1,102 @@
+{
+ "id": "carcara",
+ "name": "Carcará",
+ "placeholder": true,
+ "cell": 64,
+ "sizeClass": "medium",
+ "tier": 2,
+ "shadowSize": 1,
+ "palette": [
+  "#2a1610",
+  "#652311",
+  "#c26129",
+  "#ffa850",
+  "#ffc872",
+  "#d8bca7",
+  "#fff8d8",
+  "#3f1815",
+  "#71563e",
+  "#5e1c0e",
+  "#e0782f",
+  "#ffc26e",
+  "#b8641e",
+  "#ffeb71"
+ ],
+ "variants": {
+  "noturno": [
+   "#2a1610",
+   "#303652",
+   "#5f609e",
+   "#9289d2",
+   "#bcacef",
+   "#b9bcd0",
+   "#f1ecff",
+   "#182037",
+   "#423d63",
+   "#232e49",
+   "#5b5fae",
+   "#948bd4",
+   "#b8641e",
+   "#ffeb71"
+  ]
+ },
+ "parts": {
+  "body": {
+   "file": "body.png"
+  },
+  "wing_near": {
+   "file": "wing-near.png",
+   "pivot": [
+    55,
+    39
+   ],
+   "side": "right"
+  },
+  "wing_far": {
+   "file": "wing-far.png",
+   "pivot": [
+    41,
+    41
+   ],
+   "side": "left"
+  },
+  "tail": {
+   "file": "tail.png",
+   "pivot": [
+    48,
+    54
+   ]
+  }
+ },
+ "faces": {
+  "normal": "face-normal.png",
+  "blink": "face-blink.png",
+  "fierce": "face-fierce.png",
+  "hurt": "face-hurt.png",
+  "happy": "face-happy.png"
+ },
+ "anchors": {
+  "head": [
+   48,
+   38
+  ],
+  "center": [
+   48,
+   42
+  ],
+  "effect": [
+   48,
+   38
+  ],
+  "tail": [
+   48,
+   54
+  ]
+ },
+ "fx": {
+  "hot": "#fff8d8",
+  "mid": "#ffeb71",
+  "dim": "#ffc26e",
+  "edge": "#c26129"
+ }
+}
