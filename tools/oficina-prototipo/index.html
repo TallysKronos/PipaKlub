@@ -57,262 +57,298 @@ label.slider{display:grid;gap:4px;font-weight:800;font-size:14px}input[type=rang
 .keys{font-size:12px;color:var(--ink-soft)}kbd{font:800 11px var(--body);border:1px solid #21393555;border-bottom-width:2px;border-radius:4px;padding:0 5px;background:#fff}
 footer{margin-top:16px;color:#cdbb98;font-size:13px;max-width:80ch}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.clock{display:flex;align-items:center;gap:12px}.clock b{font:400 34px/1 var(--display);color:var(--teal);font-variant-numeric:tabular-nums;min-width:3.2ch}.clock.low b{color:var(--bad)}
+.silhouette{display:flex;gap:14px;align-items:center}.silhouette canvas{width:96px;height:96px;aspect-ratio:auto;background:transparent;cursor:default;border-radius:0}
+.legend{display:grid;gap:3px;font-size:13px;font-weight:800}.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.toolbelt .tool kbd{margin-left:6px;background:transparent;color:inherit;border-color:currentColor}
+.defects{display:grid;gap:4px;font-size:13px}.defects div{display:flex;justify-content:space-between;gap:8px}.defects .done{color:var(--ok);font-weight:800}
+[hidden]{display:none!important}
+.countdown{position:absolute;inset:10px;display:grid;place-items:center;pointer-events:none;font:400 96px var(--display);color:var(--paper);text-shadow:0 4px 0 #0007}
 </style>
 
 <header>
- <span class="proto">Protótipo · PIP-58</span>
+ <span class="proto">Protótipo v2 · PIP-58</span>
  <h1>Oficina das Almas</h1>
- <p>Construa o corpo de pipa do Rabbito com as próprias mãos. A execução vira bônus no exemplar; um erro estrutural consome o lote, nunca a rabiola.</p>
+ <p>A alma deixou uma marca dentro da folha bruta. Revele-a sem rasgar, conserte os materiais e desperte o Rabbito. Inspirado na limpeza de fósseis de Fossil Fighters e no reparo de placas de Digimon Story Lost Evolution.</p>
 </header>
 <ol class="steps" id="steps"></ol>
 <main>
  <section class="bench" aria-label="Bancada">
   <canvas id="bench" width="1200" height="880" tabindex="0" aria-label="Bancada de trabalho. Use o mouse, o toque ou o teclado conforme as instruções do painel."></canvas>
+  <div class="countdown" id="countdown" hidden></div>
   <div class="toolbelt" id="toolbelt"></div>
  </section>
  <aside class="panel" id="panel" aria-live="polite"></aside>
 </main>
-<footer>Protótipo de design: regras e números são propostas para aprovação. No jogo, receitas, estoque, notas, bônus e o sorteio da aparência rara são decididos pelo servidor; o cliente só envia as ações da bancada. Os materiais aqui são de exemplo.</footer>
+<footer>Protótipo de design: regras, tempos e números são propostas para aprovação, e a arte é provisória até as peças do Codex. No jogo, a folha, os defeitos, as notas, o bônus e o sorteio da aparência rara são decididos pelo servidor; o cliente só envia as ações da bancada. Os materiais aqui são de exemplo.</footer>
 
 <script type="module">
-import {MOLDS, BUDGET, DIMENSIONS, INTEGRITY, VARIANT_CHANCE, GLUE_CELL, outlineDistance, scoreCut, scoreGlue, scoreAssembly, scoreBalance, flightTilt, idealKnot, scoreLink, craftBonus, statSheet, canStart, reserve, attemptOutcome, rollVariant} from './model.mjs';
+import {MOLDS, BUDGET, DIMENSIONS, VARIANT_CHANCE, scoreAssembly, scoreBalance, flightTilt, scoreLink, craftBonus, statSheet, canStart, reserve, rollVariant} from './model.mjs';
+import {CELL, AREA, PAPERS, REVEAL_SECONDS, REPAIR_SECONDS, KNIFE, SNIPS, createSheet, strike, lightVisible, revealScore, DEFECTS, TOOLS, createDefects, work, repairScore, AUTO_CAP} from './bancada-v2.mjs';
 
-const STEPS = [['prep','Preparar'],['corte','Cortar'],['colagem','Colar'],['montagem','Montar'],['equilibrio','Equilibrar'],['elo','Rabiola e elo'],['resultado','Resultado']];
+const STEPS = [['prep','Preparar'],['revelar','Revelar'],['reparar','Reparar'],['montagem','Montar'],['equilibrio','Equilibrar'],['elo','Rabiola e elo'],['resultado','Resultado']];
 const STAT_NAMES = {speed:'Velocidade', line:'Linha', regen:'Recuperação', energy:'Energia'};
-const DIM_NAMES = {corte:'Corte', colagem:'Colagem', equilibrio:'Equilíbrio', elo:'Elo'};
-const canvas = document.getElementById('bench'), g = canvas.getContext('2d'), panel = document.getElementById('panel'), belt = document.getElementById('toolbelt');
+const DIM_NAMES = {revelacao:'Revelação', reparo:'Reparo', equilibrio:'Equilíbrio', elo:'Elo'};
+const canvas = document.getElementById('bench'), g = canvas.getContext('2d'), panel = document.getElementById('panel'), belt = document.getElementById('toolbelt'), cd = document.getElementById('countdown');
 g.scale(2, 2);
-const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches, PERIOD = 1200;
 
 const S = {
- step: 'prep', moldId: 'rabbito-tradicional', practice: false, rabiola: true,
+ step: 'prep', moldId: 'rabbito-tradicional', paper: 'manteiga', practice: false, rabiola: true, forceVariant: false,
  stock: {papel: 3, vareta: 2, cola: 1, fioEncerado: 0},
- light: false, strokes: [], current: null, cursor: {x: 300, y: 60}, glue: new Set(),
- placed: {x: 390, y: 254, angle: 14}, drag: null, knot: .55, tested: false, testAt: 0,
- taps: [], pulseStart: 0, integrity: INTEGRITY.max, damageBase: 0, scores: {}, results: {}, outcome: null, variant: null, forceVariant: false, startedAt: 0
+ sheet: null, tool: 'estilete', cursor: {x: 300, y: 220}, light: {uses: 2, until: 0}, timer: {left: 0, last: 0, running: false},
+ countdownUntil: 0, defects: [], repair: {damage: 0}, holding: null, lastPos: null, flash: [],
+ placed: {x: 390, y: 254, angle: 14}, drag: null, knot: .55, tested: false, testAt: 0, taps: [], pulseStart: 0,
+ scores: {}, results: {}, outcome: null, variant: 'padrao', auto: false
 };
 const mold = () => MOLDS[S.moldId];
 
 // ---------- desenho ----------
 function poly(points, close = true) { g.beginPath(); points.forEach(([x, y], i) => i ? g.lineTo(x, y) : g.moveTo(x, y)); if (close) g.closePath(); }
-function sheet() { g.fillStyle = '#4a3324'; g.fillRect(0, 0, 600, 440); g.fillStyle = '#5a3f2c'; for (let y = 0; y < 440; y += 34) g.fillRect(0, y, 600, 1); g.fillStyle = '#f6ead0'; g.fillRect(120, 6, 360, 428); g.strokeStyle = '#d8c39b'; g.strokeRect(120.5, 6.5, 359, 427); }
-function lightOverlay(m) {
- g.save(); g.setLineDash([6, 5]); g.lineWidth = 2; g.strokeStyle = '#1b8a7a'; poly(m.outline); g.stroke(); g.setLineDash([]);
- g.fillStyle = '#1b8a7a30'; for (const [x, y, w, h] of m.tabs) g.fillRect(x, y, w, h);
- for (const [x, y, w, h] of m.joints) { g.fillStyle = '#a8322a22'; g.fillRect(x, y, w, h); g.strokeStyle = '#a8322a'; g.lineWidth = 1; g.strokeRect(x + .5, y + .5, w - 1, h - 1); }
- g.restore();
-}
-function cutPiece(m, dx = 0, dy = 0, angle = 0) {
- g.save(); const cx = 300, cy = 214; g.translate(cx + dx, cy + dy); g.rotate(angle * Math.PI / 180); g.translate(-cx, -cy);
- poly(m.outline); g.fillStyle = '#fbeac2'; g.fill(); g.lineWidth = 2; g.strokeStyle = '#7a5a36'; g.stroke();
+const CAP = [[300, 70], [318, 20], [338, 18], [340, 92], [300, 120], [260, 92], [262, 18], [282, 20]];
+// marca = a alma ainda na folha: luminosa e bem diferente dos retalhos, para o jogador saber onde parar.
+function piece(m, variant, marca = false) {
+ if (marca) { g.save(); g.shadowColor = '#5fe0cf'; g.shadowBlur = 14; poly(m.outline); g.fillStyle = '#c9f4ec'; g.fill(); g.restore(); g.lineWidth = 3; g.strokeStyle = '#1b8a7a'; poly(m.outline); g.stroke(); }
+ else { poly(m.outline); g.fillStyle = '#fbeac2'; g.fill(); g.lineWidth = 2; g.strokeStyle = '#7a5a36'; g.stroke(); }
+ if (variant === 'excepcional') { g.save(); poly(m.outline); g.clip(); poly(CAP); g.fillStyle = '#5a3322'; g.fill(); g.restore(); }
  g.fillStyle = '#5ec2b766'; poly([[300, 120], [380, 210], [300, 340], [220, 210]]); g.fill();
  g.fillStyle = '#213d39'; g.beginPath(); g.arc(282, 190, 5, 0, 7); g.arc(318, 190, 5, 0, 7); g.fill();
- g.restore();
 }
-function frame(m) { g.save(); g.strokeStyle = '#8a5a2b'; g.lineWidth = 6; g.lineCap = 'round'; g.beginPath(); g.moveTo(300, 92); g.lineTo(300, 372); g.moveTo(186, 200); g.lineTo(414, 200); g.stroke(); g.restore(); }
-function glueLayer() { g.fillStyle = '#e8f3ff88'; for (const key of S.glue) { const [x, y] = key.split(',').map(Number); g.fillRect(x * GLUE_CELL, y * GLUE_CELL, GLUE_CELL, GLUE_CELL); } }
-function strokesLayer() { g.save(); g.lineWidth = 2.5; g.lineJoin = g.lineCap = 'round'; for (const s of [...S.strokes, S.current].filter(Boolean)) { g.strokeStyle = s.inside ? '#a8322a' : '#213d39'; poly(s.points, false); g.stroke(); } g.restore(); }
-
-function draw(t = performance.now()) {
- const m = mold(); g.clearRect(0, 0, 600, 440);
- if (S.step === 'prep') { sheet(); lightOverlay(m); g.fillStyle = '#213d39'; g.font = '800 15px Nunito'; g.textAlign = 'center'; g.fillText('Molde ' + m.name + ' · ' + m.species, 300, 420); }
- if (S.step === 'corte') { sheet(); if (S.light) lightOverlay(m); strokesLayer(); g.save(); g.strokeStyle = '#c14e22'; g.lineWidth = 2; g.beginPath(); g.arc(S.cursor.x, S.cursor.y, 7, 0, 7); g.stroke(); g.restore(); }
- if (S.step === 'colagem') { g.fillStyle = '#4a3324'; g.fillRect(0, 0, 600, 440); cutPiece(m); if (S.light) lightOverlay(m); glueLayer(); }
- if (S.step === 'montagem') { g.fillStyle = '#4a3324'; g.fillRect(0, 0, 600, 440); frame(m); g.globalAlpha = .9; cutPiece(m, S.placed.x - m.frame.x, S.placed.y - m.frame.y, S.placed.angle); g.globalAlpha = 1; if (S.light) { g.save(); g.setLineDash([6, 5]); g.strokeStyle = '#1b8a7a'; g.lineWidth = 2; poly(m.outline); g.stroke(); g.restore(); } }
- if (S.step === 'equilibrio') drawFlight(m, t);
- if (S.step === 'elo') drawLink(m, t);
- if (S.step === 'resultado') drawResult(m, t);
- requestAnimationFrame(draw);
+function frame() { g.save(); g.strokeStyle = '#8a5a2b'; g.lineWidth = 6; g.lineCap = 'round'; g.beginPath(); g.moveTo(300, 92); g.lineTo(300, 372); g.moveTo(186, 200); g.lineTo(414, 200); g.stroke(); g.restore(); }
+const COVER = ['#efe2c4', '#e2cfa6', '#cdb487', '#b39a6c'];
+function drawSheet(t) {
+ const s = S.sheet, m = mold(); g.fillStyle = '#4a3324'; g.fillRect(0, 0, 600, 440);
+ piece(m, s.variant, true);
+ for (const c of s.cells) {
+  if (c.damage > .02 && c.piece) { g.fillStyle = 'rgba(168,50,42,' + Math.min(.85, c.damage * 1.2) + ')'; g.fillRect(c.x - 3, c.y - 3, CELL, CELL); }
+  if (c.cover > .05) { const k = Math.min(3, Math.floor(c.cover)); g.fillStyle = COVER[k]; g.fillRect(c.x - 3, c.y - 3, CELL, CELL); if (((c.x * 7 + c.y * 13) | 0) % 5 === 0) { g.fillStyle = '#0000000d'; g.fillRect(c.x - 3, c.y - 1, CELL, 1); } }
+ }
+ const lit = t < S.light.until || t < S.countdownUntil;
+ if (lit) { g.fillStyle = s.variant === 'excepcional' ? 'rgba(224,166,58,.55)' : 'rgba(64,224,208,.45)'; for (const c of s.cells) if (c.cover > .05 && lightVisible(s, c)) { g.fillStyle = c.mark ? 'rgba(224,120,40,.6)' : 'rgba(64,224,208,.45)'; g.fillRect(c.x - 3, c.y - 3, CELL, CELL); } }
+ for (const f of S.flash) { const a = 1 - (t - f.at) / 260; if (a <= 0) continue; g.strokeStyle = 'rgba(255,255,255,' + a + ')'; g.lineWidth = 2; g.beginPath(); g.arc(f.x, f.y, f.r * (1.2 - a * .2), 0, 7); g.stroke(); }
+ S.flash = S.flash.filter(f => t - f.at < 260);
+ const r = S.tool === 'estilete' ? KNIFE.radius : SNIPS.radius; g.strokeStyle = '#c14e22'; g.lineWidth = 2; g.beginPath(); g.arc(S.cursor.x, S.cursor.y, r, 0, 7); g.stroke();
 }
+const DEFECT_COLORS = {rasgo: '#a8322a', ruga: '#8c7a5a', farpa: '#6b4a2b', mancha: '#5b4632', embolada: '#2a4f6e'};
+function drawRepair(t) {
+ const m = mold(); g.fillStyle = '#4a3324'; g.fillRect(0, 0, 600, 440); piece(m, S.sheet.variant); frame();
+ for (const d of S.defects) {
+  const def = DEFECTS[d.type]; g.save(); g.translate(d.x, d.y);
+  if (!d.done) {
+   g.strokeStyle = DEFECT_COLORS[d.type]; g.fillStyle = DEFECT_COLORS[d.type]; g.lineWidth = 3;
+   if (d.type === 'rasgo') { g.beginPath(); g.moveTo(-14, -8); g.lineTo(-4, 2); g.lineTo(2, -6); g.lineTo(14, 8); g.stroke(); }
+   if (d.type === 'ruga') for (const y of [-8, 0, 8]) { g.beginPath(); g.moveTo(-16, y); g.quadraticCurveTo(0, y - 6, 16, y); g.stroke(); }
+   if (d.type === 'farpa') for (const x of [-10, 0, 10]) { g.beginPath(); g.moveTo(x, 4); g.lineTo(x + 5, -10); g.stroke(); }
+   if (d.type === 'mancha') { g.globalAlpha = .55; g.beginPath(); g.ellipse(0, 0, 18, 12, .4, 0, 7); g.fill(); }
+   if (d.type === 'embolada') for (let i = 0; i < 3; i++) { g.beginPath(); g.ellipse(i * 4 - 4, 0, 10, 6, i, 0, 7); g.stroke(); }
+   const p = Math.min(1, d.work / def.need); if (p > 0) { g.globalAlpha = 1; g.strokeStyle = '#3f7a52'; g.lineWidth = 4; g.beginPath(); g.arc(0, 0, d.r, -Math.PI / 2, -Math.PI / 2 + p * Math.PI * 2); g.stroke(); }
+  } else { g.strokeStyle = '#3f7a52'; g.lineWidth = 3; g.beginPath(); g.moveTo(-8, 0); g.lineTo(-2, 6); g.lineTo(10, -8); g.stroke(); }
+  g.restore();
+ }
+ for (const f of S.flash) { const a = 1 - (t - f.at) / 400; if (a <= 0) continue; g.fillStyle = 'rgba(168,50,42,' + a + ')'; g.font = '800 16px Nunito'; g.textAlign = 'center'; g.fillText(f.text, f.x, f.y - 30 - (1 - a) * 12); }
+ S.flash = S.flash.filter(f => t - f.at < 400);
+ g.strokeStyle = '#c14e22'; g.lineWidth = 2; g.beginPath(); g.arc(S.cursor.x, S.cursor.y, 10, 0, 7); g.stroke();
+}
+function drawAssembly() { const m = mold(); g.fillStyle = '#4a3324'; g.fillRect(0, 0, 600, 440); frame(); g.save(); g.globalAlpha = .92; const cx = 300, cy = 214; g.translate(S.placed.x, S.placed.y); g.rotate(S.placed.angle * Math.PI / 180); g.translate(-cx, -cy); piece(m, S.sheet.variant); g.restore(); }
 function drawFlight(m, t) {
  const sky = g.createLinearGradient(0, 0, 0, 440); sky.addColorStop(0, '#7fc7e6'); sky.addColorStop(1, '#d9f0f7'); g.fillStyle = sky; g.fillRect(0, 0, 600, 440);
- const tilt = flightTilt(m, S.results.colagem, S.knot), active = S.tested && t - S.testAt < 2600, sway = active && !reduced ? Math.sin((t - S.testAt) / 180) * 6 : 0;
- const ang = (S.tested ? Math.max(-1.6, Math.min(1.6, tilt)) * 26 : 0) + sway;
- g.save(); g.translate(300, 190); g.rotate(ang * Math.PI / 180); g.scale(.62, .62); g.translate(-300, -214); cutPiece(m); frame(m);
- const ky = 92 + (372 - 92) * S.knot; g.fillStyle = '#c14e22'; g.beginPath(); g.arc(300, ky, 7, 0, 7); g.fill(); g.restore();
+ const tilt = flightTilt(m, S.results.colagem, S.knot), sway = S.tested && t - S.testAt < 2600 && !reduced ? Math.sin((t - S.testAt) / 180) * 6 : 0, ang = (S.tested ? Math.max(-1.6, Math.min(1.6, tilt)) * 26 : 0) + sway;
+ g.save(); g.translate(300, 190); g.rotate(ang * Math.PI / 180); g.scale(.62, .62); g.translate(-300, -214); piece(m, S.sheet.variant); frame(); g.fillStyle = '#c14e22'; g.beginPath(); g.arc(300, 92 + 280 * S.knot, 7, 0, 7); g.fill(); g.restore();
  g.strokeStyle = '#213d39aa'; g.lineWidth = 1.5; g.beginPath(); g.moveTo(300, 190); g.lineTo(80, 430); g.stroke();
  g.fillStyle = '#213d39'; g.font = '800 14px Nunito'; g.textAlign = 'left'; g.fillText(S.tested ? 'Inclinação ' + Math.round(ang) + '°' : 'Teste o voo para ver a inclinação', 16, 26);
 }
-const PERIOD = 1200;
 function drawLink(m, t) {
- g.fillStyle = '#123b40'; g.fillRect(0, 0, 600, 440); g.save(); g.translate(300, 200); g.scale(.55, .55); g.translate(-300, -214); cutPiece(m); frame(m); g.restore();
- const phase = ((t - S.pulseStart) % PERIOD) / PERIOD, r = 30 + 90 * phase;
- g.strokeStyle = 'rgba(224,166,58,' + (1 - phase) + ')'; g.lineWidth = 4; g.beginPath(); g.arc(300, 200, r, 0, 7); g.stroke();
+ g.fillStyle = '#123b40'; g.fillRect(0, 0, 600, 440); g.save(); g.translate(300, 200); g.scale(.55, .55); g.translate(-300, -214); piece(m, S.sheet.variant); frame(); g.restore();
+ const phase = ((t - S.pulseStart) % PERIOD) / PERIOD; g.strokeStyle = 'rgba(224,166,58,' + (1 - phase) + ')'; g.lineWidth = 4; g.beginPath(); g.arc(300, 200, 30 + 90 * phase, 0, 7); g.stroke();
  g.strokeStyle = '#fff2d6'; g.lineWidth = 2; g.setLineDash([4, 6]); g.beginPath(); g.arc(300, 200, 120, 0, 7); g.stroke(); g.setLineDash([]);
  g.strokeStyle = '#e0a63a'; g.lineWidth = 3; g.beginPath(); g.moveTo(300, 302); for (let i = 0; i < 6; i++) g.quadraticCurveTo(300 + (i % 2 ? 18 : -18), 316 + i * 20, 300, 330 + i * 20); g.stroke();
  g.fillStyle = '#fff2d6'; g.font = '800 14px Nunito'; g.textAlign = 'center'; g.fillText('Puxe quando o anel dourado tocar o círculo tracejado · ' + S.taps.length + '/3', 300, 28);
 }
 function drawResult(m, t) {
  g.fillStyle = '#123b40'; g.fillRect(0, 0, 600, 440);
- if (S.outcome?.kind?.startsWith('falha')) { g.save(); g.translate(300, 214); g.rotate(.2); g.translate(-300, -214); g.globalAlpha = .5; cutPiece(m); g.restore(); g.fillStyle = '#fff2d6'; g.font = '28px Lilita One'; g.textAlign = 'center'; g.fillText('A armação cedeu', 300, 60); return; }
+ if (S.outcome?.kind?.startsWith('falha')) { g.save(); g.translate(300, 214); g.rotate(.2); g.translate(-300, -214); g.globalAlpha = .5; piece(m, S.sheet?.variant); g.restore(); g.fillStyle = '#fff2d6'; g.font = '28px Lilita One'; g.textAlign = 'center'; g.fillText('A peça cedeu', 300, 60); return; }
  const glow = reduced ? .5 : .5 + .5 * Math.sin(t / 400); g.fillStyle = 'rgba(224,166,58,' + (.15 + .2 * glow) + ')'; g.beginPath(); g.arc(300, 214, 170, 0, 7); g.fill();
- cutPiece(m); if (S.variant === 'excepcional') { g.save(); poly([[300, 70], [318, 20], [338, 18], [340, 92], [300, 120], [260, 92], [262, 18], [282, 20]]); g.fillStyle = '#5a3322'; g.fill(); g.restore(); }
- g.fillStyle = '#fff2d6'; g.font = '28px Lilita One'; g.textAlign = 'center'; g.fillText('Rabbito despertou', 300, 410);
+ piece(m, S.sheet.variant); g.fillStyle = '#fff2d6'; g.font = '28px Lilita One'; g.textAlign = 'center'; g.fillText('Rabbito despertou', 300, 410);
+}
+function draw(t = performance.now()) {
+ const m = mold(); g.clearRect(0, 0, 600, 440); tick(t);
+ if (S.step === 'prep') { g.fillStyle = '#4a3324'; g.fillRect(0, 0, 600, 440); g.fillStyle = COVER[2]; g.fillRect(AREA.x, AREA.y, AREA.w, AREA.h); g.fillStyle = '#213d39'; g.font = '800 15px Nunito'; g.textAlign = 'center'; g.fillText(PAPERS[S.paper].name + ' · molde ' + m.name, 300, 228); }
+ if (S.step === 'revelar') drawSheet(t);
+ if (S.step === 'reparar') drawRepair(t);
+ if (S.step === 'montagem') drawAssembly();
+ if (S.step === 'equilibrio') drawFlight(m, t);
+ if (S.step === 'elo') drawLink(m, t);
+ if (S.step === 'resultado') drawResult(m, t);
+ if (S.step === 'revelar') drawMeter();
+ requestAnimationFrame(draw);
+}
+// Medidor na silhueta: dourado = marca revelada, vermelho = rasgo (como o crânio azul e vermelho do Fossil Fighters).
+function drawMeter() {
+ const mc = document.getElementById('meter'); if (!mc) return; const q = mc.getContext('2d'), m = mold(), r = revealScore(S.sheet);
+ q.setTransform(1, 0, 0, 1, 0, 0); q.clearRect(0, 0, mc.width, mc.height); q.setTransform(mc.width / 440, 0, 0, mc.height / 440, mc.width / 440 * -80, 0);
+ const path = () => { q.beginPath(); m.outline.forEach(([x, y], i) => i ? q.lineTo(x, y) : q.moveTo(x, y)); q.closePath(); };
+ path(); q.fillStyle = '#21393522'; q.fill(); q.save(); path(); q.clip();
+ q.fillStyle = '#e0a63a'; q.fillRect(0, 440 - 440 * r.revealed, 600, 440 * r.revealed);
+ q.fillStyle = '#a8322acc'; q.fillRect(0, 0, 600, 440 * Math.min(1, r.damage / .5));
+ q.restore(); path(); q.lineWidth = 8; q.strokeStyle = '#213d39'; q.stroke();
 }
 
-// ---------- entrada na bancada ----------
-function toLocal(e) { const r = canvas.getBoundingClientRect(); return {x: (e.clientX - r.left) * 600 / r.width, y: (e.clientY - r.top) * 440 / r.height}; }
-function addCutPoint(p) {
- const s = S.current; const last = s.points.at(-1);
- // Interpola para a precisão não depender da frequência de eventos do dispositivo.
- if (last) { const d = Math.hypot(p.x - last[0], p.y - last[1]), n = Math.ceil(d / 3); for (let i = 1; i <= n; i++) s.points.push([last[0] + (p.x - last[0]) * i / n, last[1] + (p.y - last[1]) * i / n]); } else s.points.push([p.x, p.y]);
- s.inside = s.points.some(q => outlineDistance(q, mold().outline) < -INTEGRITY.insideTolerance);
+// ---------- tempo ----------
+function startTimer(seconds, countdown = 0) { S.timer = {left: seconds, last: performance.now() + countdown, running: true}; S.countdownUntil = performance.now() + countdown; }
+function tick(t) {
+ if (S.countdownUntil > t) { cd.hidden = false; cd.textContent = Math.ceil((S.countdownUntil - t) / 1000); } else cd.hidden = true;
+ const T = S.timer; if (!T.running || t < T.last || document.hidden) { T.last = Math.max(T.last, t); return; }
+ T.left -= (t - T.last) / 1000; T.last = t;
+ if (S.holding && S.step === 'reparar') { const d = S.defects.find(x => x.id === S.holding.id); if (d) applyRepair(d, 'remendo', 16, false); }
+ const el = document.getElementById('clock'); if (el) { el.textContent = Math.max(0, Math.ceil(T.left)) + 's'; el.parentElement.classList.toggle('low', T.left < 15); }
+ if (T.left <= 0) { T.running = false; endStage(true); }
 }
-function paintGlue(p) { const R = 12; for (let x = p.x - R; x <= p.x + R; x += GLUE_CELL / 2) for (let y = p.y - R; y <= p.y + R; y += GLUE_CELL / 2) if (Math.hypot(x - p.x, y - p.y) <= R) S.glue.add(Math.floor(x / GLUE_CELL) + ',' + Math.floor(y / GLUE_CELL)); }
+document.addEventListener('visibilitychange', () => { S.timer.last = performance.now(); });
+
+// ---------- entrada ----------
+function toLocal(e) { const r = canvas.getBoundingClientRect(); return {x: (e.clientX - r.left) * 600 / r.width, y: (e.clientY - r.top) * 440 / r.height}; }
+const live = () => S.timer.running && performance.now() >= S.countdownUntil;
+function hit(p) { if (!live()) return; strike(S.sheet, S.tool, p.x, p.y); if (S.tool === 'estilete') S.flash.push({x: p.x, y: p.y, r: KNIFE.radius, at: performance.now()}); if (revealScore(S.sheet).failed) return fail('A marca rasgou demais e a peça cedeu.'); renderPanelSoon(); }
+function snipTo(p) { const last = S.lastPos; if (!last) { hit(p); S.lastPos = p; return; } const d = Math.hypot(p.x - last.x, p.y - last.y), n = Math.floor(d / 4); for (let i = 1; i <= n; i++) hit({x: last.x + (p.x - last.x) * i / n, y: last.y + (p.y - last.y) * i / n}); if (n) S.lastPos = p; }
+const defectAt = p => S.defects.find(d => Math.hypot(d.x - p.x, d.y - p.y) <= d.r);
+function applyRepair(d, tool, amount, feedback = true) {
+ const out = work(S.repair, d, tool, amount);
+ if (out.wrong && feedback) S.flash.push({x: d.x, y: d.y, at: performance.now(), text: 'Ferramenta errada'});
+ if (out.overwork && feedback && Math.random() < .2) S.flash.push({x: d.x, y: d.y, at: performance.now(), text: 'Já está bom'});
+ if (repairScore(S.defects, S.repair).failed) return fail('O material não aguentou tantos erros no reparo.');
+ renderPanelSoon();
+}
+function repairDown(p) { if (!live()) return; const d = defectAt(p); if (!d) return; if (S.tool === 'remendo') S.holding = d; else if (S.tool === 'agulha') applyRepair(d, 'agulha', 1); else if (DEFECTS[d.type].tool !== S.tool) applyRepair(d, S.tool, 10); S.lastPos = p; }
+function repairMove(p) { if (!live() || !S.lastPos) return; const d = defectAt(p), dist = Math.hypot(p.x - S.lastPos.x, p.y - S.lastPos.y); S.lastPos = p; if (!d || ['remendo', 'agulha'].includes(S.tool)) { if (S.holding && d !== S.holding) S.holding = null; return; } if (DEFECTS[d.type].tool === S.tool) applyRepair(d, S.tool, dist); }
 canvas.addEventListener('pointerdown', e => {
- const p = toLocal(e); canvas.setPointerCapture(e.pointerId);
- if (S.step === 'corte') { S.current = {points: [], inside: false}; addCutPoint(p); S.cursor = p; }
- if (S.step === 'colagem') { S.painting = true; paintGlue(p); }
+ const p = toLocal(e); canvas.setPointerCapture(e.pointerId); S.cursor = p; S.down = true;
+ if (S.step === 'revelar') { S.lastPos = null; if (S.tool === 'estilete') hit(p); else snipTo(p); }
+ if (S.step === 'reparar') repairDown(p);
  if (S.step === 'montagem') S.drag = {x: p.x - S.placed.x, y: p.y - S.placed.y};
  if (S.step === 'elo') pull();
 });
 canvas.addEventListener('pointermove', e => {
- const p = toLocal(e); if (S.step === 'corte') S.cursor = p;
- if (S.step === 'corte' && S.current) addCutPoint(p);
- if (S.step === 'colagem' && S.painting) { paintGlue(p); renderPanelSoon(); }
+ const p = toLocal(e); S.cursor = p; if (!S.down) return;
+ if (S.step === 'revelar' && S.tool === 'tesourinha') snipTo(p);
+ if (S.step === 'reparar') repairMove(p);
  if (S.step === 'montagem' && S.drag) { S.placed.x = p.x - S.drag.x; S.placed.y = p.y - S.drag.y; renderPanelSoon(); }
 });
-const endPointer = () => { if (S.current) { S.strokes.push(S.current); S.current = null; if (!checkFailure()) renderAll(); } if (S.painting) { S.painting = false; if (!checkFailure()) renderPanel(); } S.drag = null; };
-canvas.addEventListener('pointerup', endPointer); canvas.addEventListener('pointercancel', endPointer);
+const up = () => { S.down = false; S.lastPos = null; S.holding = null; S.drag = null; };
+canvas.addEventListener('pointerup', up); canvas.addEventListener('pointercancel', up);
 canvas.addEventListener('wheel', e => { if (S.step !== 'montagem') return; e.preventDefault(); S.placed.angle += Math.sign(e.deltaY) * 2; renderPanel(); }, {passive: false});
-// Teclado: setas movem a ferramenta; Espaço corta/pinta/puxa enquanto pressionado; Q/E giram a peça.
-const held = new Set();
+// Teclado: setas movem a ferramenta, Espaço usa, números trocam de ferramenta, L acende a Luz, Q/E giram na montagem.
 canvas.addEventListener('keydown', e => {
- const step = e.shiftKey ? 1 : 4, k = e.key;
- if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(k)) e.preventDefault();
- const move = {ArrowUp: [0, -step], ArrowDown: [0, step], ArrowLeft: [-step, 0], ArrowRight: [step, 0]}[k];
- if (k === ' ' && !held.has(' ')) { held.add(' '); if (S.step === 'corte') { S.current = {points: [], inside: false}; addCutPoint(S.cursor); } if (S.step === 'elo') pull(); }
- if (move && S.step === 'montagem') { S.placed.x += move[0]; S.placed.y += move[1]; renderPanel(); }
- else if (move) { S.cursor = {x: S.cursor.x + move[0], y: S.cursor.y + move[1]}; if (S.step === 'corte' && S.current) addCutPoint(S.cursor); if (S.step === 'colagem' && held.has(' ')) { paintGlue(S.cursor); renderPanelSoon(); } }
- if (S.step === 'colagem' && k === ' ') paintGlue(S.cursor);
- if (S.step === 'montagem' && (k === 'q' || k === 'e')) { S.placed.angle += k === 'q' ? -2 : 2; renderPanel(); }
+ const k = e.key, step = e.shiftKey ? 2 : 6, mv = {ArrowUp: [0, -step], ArrowDown: [0, step], ArrowLeft: [-step, 0], ArrowRight: [step, 0]}[k];
+ if (mv || k === ' ') e.preventDefault();
+ const tools = S.step === 'revelar' ? ['estilete', 'tesourinha'] : S.step === 'reparar' ? Object.keys(TOOLS) : [];
+ if (/^[1-5]$/.test(k) && tools[k - 1]) { S.tool = tools[k - 1]; renderBelt(); }
+ if (k.toLowerCase() === 'l' && S.step === 'revelar') useLight();
+ if (S.step === 'montagem') { if (mv) { S.placed.x += mv[0]; S.placed.y += mv[1]; renderPanel(); } if (k === 'q' || k === 'e') { S.placed.angle += k === 'q' ? -2 : 2; renderPanel(); } return; }
+ if (mv) { const prev = S.cursor; S.cursor = {x: prev.x + mv[0], y: prev.y + mv[1]}; if (S.down && S.step === 'revelar' && S.tool === 'tesourinha') snipTo(S.cursor); if (S.down && S.step === 'reparar') repairMove(S.cursor); }
+ if (k === ' ' && !e.repeat) { S.down = true; S.lastPos = null; if (S.step === 'revelar') S.tool === 'estilete' ? hit(S.cursor) : snipTo(S.cursor); if (S.step === 'reparar') repairDown(S.cursor); if (S.step === 'elo') pull(); }
 });
-canvas.addEventListener('keyup', e => { if (e.key === ' ') { held.delete(' '); endPointer(); } });
+canvas.addEventListener('keyup', e => { if (e.key === ' ') up(); });
 
-// ---------- etapas ----------
-function damage() { const cut = scoreCut(mold(), S.strokes.flatMap(s => s.points)).damage, glue = S.step === 'prep' || S.step === 'corte' ? 0 : scoreGlue(mold(), S.glue).damage; return S.damageBase + cut + glue; }
-function integrity() { return Math.max(0, Math.round(INTEGRITY.max - damage())); }
-function checkFailure() { const out = attemptOutcome({integrity: integrity(), practice: S.practice}); if (out) { S.outcome = out; go('resultado'); return true; } return false; }
+// ---------- fluxo ----------
+function useLight() { if (S.light.uses <= 0 || !live()) return; S.light.uses--; S.light.until = performance.now() + 2500; renderBelt(); }
 function pull() { if (S.taps.length >= 3) return; S.taps.push(performance.now() - S.pulseStart); renderPanel(); }
-function go(step) { S.step = step; if (step === 'elo') { S.pulseStart = performance.now(); S.taps = []; } if (step === 'equilibrio') S.tested = false; renderAll(); canvas.focus({preventScroll: true}); }
-
-function finish(dim, result) { S.results[dim] = result; S.scores[dim] = result.score; }
-function awaken() {
- S.outcome = {kind: 'sucesso', consumed: !S.practice, rabiolaKept: false};
- S.variant = S.forceVariant ? 'excepcional' : rollVariant(Math.random);
- go('resultado');
+function fail(reason) { S.timer.running = false; S.outcome = {kind: S.practice ? 'falha-treino' : 'falha', reason}; go('resultado'); }
+function endStage(timeUp = false) {
+ if (S.step === 'revelar') { const r = revealScore(S.sheet); S.results.revelacao = r; S.scores.revelacao = S.auto ? Math.min(r.score, AUTO_CAP) : r.score; S.timeUp = timeUp; S.defects = createDefects(S.paper, S.seed); S.repair = {damage: 0}; S.tool = 'remendo'; startTimer(REPAIR_SECONDS, 1200); go('reparar'); }
+ else if (S.step === 'reparar') { const r = repairScore(S.defects, S.repair); S.results.reparo = r; S.scores.reparo = r.score; S.timer.running = false; go('montagem'); }
 }
-function restart() { Object.assign(S, {strokes: [], current: null, glue: new Set(), placed: {x: 390, y: 254, angle: 14}, knot: .55, tested: false, taps: [], damageBase: 0, scores: {}, results: {}, outcome: null, variant: null, light: false}); go('prep'); }
+function go(step) { S.step = step; if (step === 'elo') { S.pulseStart = performance.now(); S.taps = []; } if (step === 'equilibrio') S.tested = false; renderAll(); canvas.focus({preventScroll: true}); }
+function begin() {
+ if (!S.practice) S.stock = reserve(S.stock, mold());
+ // No jogo, o servidor sorteia a aparência uma vez por alma ao abrir a primeira tentativa; falhar não sorteia de novo.
+ S.variant = S.forceVariant ? 'excepcional' : rollVariant(Math.random); S.seed = 1 + Math.floor(Math.random() * 1e6);
+ S.sheet = createSheet(mold(), S.paper, S.seed, S.variant); S.light = {uses: 2, until: 0}; S.tool = 'estilete'; S.scores = {}; S.results = {}; S.outcome = null;
+ startTimer(REVEAL_SECONDS, 3000); go('revelar');
+}
+function restart() { Object.assign(S, {sheet: null, defects: [], placed: {x: 390, y: 254, angle: 14}, knot: .55, tested: false, taps: [], scores: {}, results: {}, outcome: null, timer: {left: 0, last: 0, running: false}}); go('prep'); }
 
 // ---------- painel ----------
 let soon = 0; function renderPanelSoon() { if (!soon) soon = requestAnimationFrame(() => { soon = 0; renderPanel(); }); }
-const el = (html) => { const t = document.createElement('template'); t.innerHTML = html.trim(); return t.content; };
+const el = html => { const t = document.createElement('template'); t.innerHTML = html.trim(); return t.content; };
 const pct = v => Math.round(v * 100) + '%';
-function meter(label, value, danger = false) { return `<div class="meter"><span>${label}</span><span class="bar ${danger ? 'danger' : ''}"><i style="width:${Math.max(0, Math.min(100, value))}%"></i></span><span>${Math.round(value)}</span></div>`; }
-function integrityMeter() { const v = integrity(); return meter('Integridade', v, v < 40); }
-
-function renderSteps() {
- const idx = STEPS.findIndex(s => s[0] === S.step);
- document.getElementById('steps').replaceChildren(...STEPS.map(([id, name], i) => { const li = document.createElement('li'); li.textContent = name; if (i === idx) li.setAttribute('aria-current', 'step'); else if (i < idx) li.className = 'done'; return li; }));
-}
+const meter = (label, value, danger = false) => `<div class="meter"><span>${label}</span><span class="bar ${danger ? 'danger' : ''}"><i style="width:${Math.max(0, Math.min(100, value))}%"></i></span><span>${Math.round(value)}</span></div>`;
+const clock = () => `<div class="clock"><b id="clock">${Math.max(0, Math.ceil(S.timer.left))}s</b><span class="hint">O tempo pausa se você sair da aba. Se acabar, a etapa termina com o que foi feito.</span></div>`;
+function renderSteps() { const idx = STEPS.findIndex(s => s[0] === S.step); document.getElementById('steps').replaceChildren(...STEPS.map(([, name], i) => { const li = document.createElement('li'); li.textContent = name; if (i === idx) li.setAttribute('aria-current', 'step'); else if (i < idx) li.className = 'done'; return li; })); }
 function renderBelt() {
- const tools = {corte: 'Tesoura', colagem: 'Pincel de cola', montagem: 'Pinça'}[S.step];
  belt.replaceChildren();
- if (!tools) return;
- const active = document.createElement('button'); active.className = 'tool'; active.setAttribute('aria-pressed', 'true'); active.textContent = tools; active.disabled = true;
- const light = document.createElement('button'); light.className = 'tool'; light.setAttribute('aria-pressed', String(S.light)); light.textContent = 'Luz do molde'; light.onclick = () => { S.light = !S.light; renderBelt(); };
- belt.append(active, light);
- if (S.step === 'corte') { const undo = document.createElement('button'); undo.className = 'secondary'; undo.textContent = 'Desfazer último traço'; undo.disabled = !S.strokes.length; undo.onclick = () => { const s = S.strokes.pop(); const solo = scoreCut(mold(), s.points).damage; S.damageBase += solo * .5; renderAll(); }; belt.append(undo); }
+ const tools = S.step === 'revelar' ? {estilete: 'Estilete', tesourinha: 'Tesourinha'} : S.step === 'reparar' ? TOOLS : null;
+ if (tools) Object.entries(tools).forEach(([id, name], i) => { const b = document.createElement('button'); b.className = 'tool'; b.setAttribute('aria-pressed', String(S.tool === id)); b.innerHTML = name + '<kbd>' + (i + 1) + '</kbd>'; b.onclick = () => { S.tool = id; renderBelt(); canvas.focus({preventScroll: true}); }; belt.append(b); });
+ if (S.step === 'revelar') { const b = document.createElement('button'); b.className = 'tool'; b.innerHTML = 'Luz do molde · ' + S.light.uses + '<kbd>L</kbd>'; b.disabled = !S.light.uses; b.onclick = () => { useLight(); canvas.focus({preventScroll: true}); }; belt.append(b); }
  if (S.step === 'montagem') for (const [label, d] of [['Girar ⟲', -2], ['Girar ⟳', 2]]) { const b = document.createElement('button'); b.className = 'secondary'; b.textContent = label; b.onclick = () => { S.placed.angle += d; renderPanel(); }; belt.append(b); }
 }
-
 function renderPanel() {
  const m = mold(); let html = '';
  if (S.step === 'prep') {
   const check = canStart(S.stock, m, S.rabiola);
-  html = `<h2>Alma e molde</h2>
-  <div class="choices">${Object.values(MOLDS).map(x => `<label class="choice"><input type="radio" name="mold" id="mold-${x.id}" value="${x.id}" ${x.id === S.moldId ? 'checked' : ''}><span><b>${x.species} · ${x.name}</b> <span class="chip ${x.rarity === 'comum' ? '' : 'rare'}">${x.rarity}</span><br><span class="hint">Receita: ${Object.entries(x.recipe).map(([k, n]) => n + ' ' + k).join(', ')} · bônus até ${pct(BUDGET[x.rarity])}</span></span></label>`).join('')}</div>
-  <dl class="kv"><dt>Papel de seda</dt><dd>${S.stock.papel}</dd><dt>Varetas</dt><dd>${S.stock.vareta}</dd><dt>Cola</dt><dd>${S.stock.cola}</dd><dt>Fio encerado</dt><dd>${S.stock.fioEncerado}</dd><dt>Rabiola do Rabbito</dt><dd>${S.rabiola ? '1' : '0'}</dd></dl>
-  <label class="row"><input type="checkbox" id="practice" ${S.practice ? 'checked' : ''}> Treino sem consumo de materiais (não gera parceiro)</label>
-  ${check.ok ? `<div class="warnbox">${S.practice ? 'Treino: nada será consumido e nenhum parceiro nasce.' : `Ao começar, <b>${Object.entries(m.recipe).map(([k, n]) => n + ' ' + k).join(', ')}</b> ficam comprometidos. Se a armação ceder, esse lote é perdido. <b>A rabiola fica protegida</b>: ela só entra na última etapa.`}</div>` : `<div class="badbox">Faltam materiais: ${check.missing.join(', ')}. Nada foi consumido.</div>`}
+  html = `<h2>Alma, molde e papel</h2>
+  <div class="choices">${Object.values(MOLDS).map(x => `<label class="choice"><input type="radio" name="mold" value="${x.id}" ${x.id === S.moldId ? 'checked' : ''}><span><b>${x.species} · ${x.name}</b> <span class="chip ${x.rarity === 'comum' ? '' : 'rare'}">${x.rarity}</span><br><span class="hint">${Object.entries(x.recipe).map(([k, n]) => n + ' ' + k).join(', ')} · bônus até ${pct(BUDGET[x.rarity])}</span></span></label>`).join('')}</div>
+  <div class="choices">${Object.entries(PAPERS).map(([id, p]) => `<label class="choice"><input type="radio" name="paper" value="${id}" ${id === S.paper ? 'checked' : ''}><span><b>${p.name}</b><br><span class="hint">${id === 'seda' ? 'Rasga fácil; mais defeitos para reparar.' : id === 'encerado' ? 'A Luz do molde só atravessa depois de tirar a camada de cima.' : 'Equilibrado.'}</span></span></label>`).join('')}</div>
+  <label class="row"><input type="checkbox" id="practice" ${S.practice ? 'checked' : ''}> Treino sem consumo de materiais</label>
+  <label class="row"><input type="checkbox" id="force" ${S.forceVariant ? 'checked' : ''}> Teste: forçar a aparência excepcional</label>
+  ${check.ok ? `<div class="warnbox">${S.practice ? 'Treino: nada será consumido e nenhum parceiro nasce.' : `Ao começar, <b>${Object.entries(m.recipe).map(([k, n]) => n + ' ' + k).join(', ')}</b> ficam comprometidos. Se a peça ceder, esse lote é perdido. <b>A rabiola fica protegida</b>: ela só entra na última etapa.`}</div>` : `<div class="badbox">Faltam materiais: ${check.missing.join(', ')}. Nada foi consumido.</div>`}
   <button class="primary" id="start" ${check.ok || S.practice ? '' : 'disabled'}>${S.practice ? 'Começar treino' : 'Comprometer materiais e começar'}</button>`;
  }
- if (S.step === 'corte') {
-  const r = scoreCut(m, S.strokes.flatMap(s => s.points));
-  html = `<h2>Cortar a vela</h2><p class="hint">Trace o contorno com a tesoura. As orelhas e a ponta têm o próprio recorte. Cortar para dentro da peça marca o papel e reduz a integridade. Ligue a Luz do molde para ver o contorno.</p>
-  ${meter('Contorno', r.coverage * 100)}${meter('Precisão', Math.max(0, 100 - r.meanError * 6))}${integrityMeter()}
-  <p class="keys">Arraste para cortar · <kbd>Setas</kbd> movem a tesoura · segure <kbd>Espaço</kbd> para cortar</p>
-  <button class="primary" id="next" ${r.complete ? '' : 'disabled'}>Separar a peça</button>`;
+ if (S.step === 'revelar') {
+  const r = revealScore(S.sheet);
+  html = `<h2>Revelar a marca da alma</h2>${clock()}
+  <div class="silhouette"><canvas id="meter" width="192" height="192" aria-hidden="true"></canvas><div class="legend"><span><i style="background:var(--gold)"></i>Revelada ${pct(r.revealed)}</span><span><i style="background:var(--bad)"></i>Rasgo ${pct(r.damage)} · cede em 50%</span><span>Nota ${r.score}</span></div></div>${r.damage > .3 ? '<div class="badbox">A marca está rasgando. Troque para a tesourinha e pare onde ela já apareceu.</div>' : ''}
+  <p class="hint"><b>Estilete</b>: um clique arranca uma camada inteira, mas rasga onde a marca já aparece e o tranco atinge o entorno. <b>Tesourinha</b>: arraste para raspar pouco a pouco, quase sem rasgar. Durante a contagem a Luz mostra a marca; depois ela tem ${S.light.uses} uso(s).</p>
+  <p class="keys">Clique/arraste · <kbd>Setas</kbd> + <kbd>Espaço</kbd> · <kbd>1</kbd> <kbd>2</kbd> trocam · <kbd>L</kbd> Luz</p>
+  <div class="row"><button class="primary" id="next">Concluir revelação</button><button class="secondary" id="auto">Chamar o artesão (nota até ${AUTO_CAP})</button></div>`;
  }
- if (S.step === 'colagem') {
-  const r = scoreGlue(m, S.glue);
-  html = `<h2>Colar nas varetas</h2><p class="hint">Passe cola nas faixas onde as varetas encostam. Cola demais pesa a pipa; cola nas articulações das orelhas trava o movimento e enfraquece a armação.</p>
-  ${meter('Faixas cobertas', r.coverage * 100)}${meter('Excesso', Math.min(100, r.waste * 100), r.waste > .3)}${integrityMeter()}
-  ${r.jointHit ? `<div class="badbox">Cola em ${r.jointHit} ponto(s) das articulações.</div>` : ''}
-  <p class="keys">Arraste para pintar · <kbd>Setas</kbd> + <kbd>Espaço</kbd> no teclado</p>
-  <button class="primary" id="next" ${r.complete ? '' : 'disabled'}>Deixar secar e montar</button>`;
+ if (S.step === 'reparar') {
+  const r = repairScore(S.defects, S.repair);
+  html = `<h2>Reparar os materiais</h2>${clock()}
+  <p class="hint">Cada defeito pede a ferramenta certa. Errar ou insistir depois de pronto danifica o material.</p>
+  <div class="defects">${S.defects.map(d => `<div class="${d.done ? 'done' : ''}"><span>${DEFECTS[d.type].name}</span><span>${d.done ? 'pronto' : '?'}</span></div>`).join('')}</div>
+  ${meter('Consertados', r.fixed * 100)}${meter('Dano', r.damage * 100, r.damage > .25)}
+  <p class="keys">Remendo: segure · Ferro, lixa e pano: esfregue · Agulha: três toques · <kbd>1</kbd>–<kbd>5</kbd> trocam</p>
+  <button class="primary" id="next">Concluir reparo</button>`;
  }
- if (S.step === 'montagem') {
-  const r = scoreAssembly(m, S.placed);
-  html = `<h2>Montar na armação</h2><p class="hint">Use a pinça para assentar a vela sobre a cruz de varetas. Alinhe a ponta com a vareta central.</p>
-  <dl class="kv"><dt>Distância do encaixe</dt><dd>${Math.round(r.dist)} px</dd><dt>Ângulo</dt><dd>${Math.round(r.angle)}°</dd></dl>${meter('Encaixe', r.score)}
-  <p class="keys">Arraste para mover · roda do mouse, <kbd>Q</kbd>/<kbd>E</kbd> ou os botões para girar · <kbd>Setas</kbd> ajustam</p>
-  <button class="primary" id="next" ${r.complete ? '' : 'disabled'}>Fixar e testar o voo</button>`;
- }
- if (S.step === 'equilibrio') {
-  const tilt = flightTilt(m, S.results.colagem, S.knot), r = scoreBalance(m, S.results.colagem, S.knot);
-  const clue = !S.tested ? 'Ajuste o nó do cabresto e teste.' : Math.abs(tilt) < .15 ? 'Voo estável.' : tilt > 0 ? 'A pipa embica para a frente: suba o nó.' : 'A pipa empina e perde vento: desça o nó.';
-  html = `<h2>Testar o equilíbrio</h2><p class="hint">Cada molde e o peso da cola mudam o ponto ideal. Teste quantas vezes quiser; vale o último ajuste.</p>
-  <label class="slider" for="knot">Ponto do nó na vareta: ${Math.round(S.knot * 100)}%<input type="range" id="knot" min="10" max="75" value="${Math.round(S.knot * 100)}"></label>
-  <div class="${S.tested && Math.abs(tilt) < .15 ? 'okbox' : 'warnbox'}">${clue}</div>
-  <div class="row"><button class="secondary" id="test">Testar voo</button><button class="primary" id="next" ${S.tested && r.complete ? '' : 'disabled'}>Amarrar a rabiola</button></div>`;
- }
- if (S.step === 'elo') {
-  const r = scoreLink(S.taps, PERIOD);
-  html = `<h2>Rabiola e elo</h2><p class="hint">A rabiola entra por último. Puxe a linha três vezes no compasso do vento para sincronizar o elo.</p>
-  <p class="keys">Toque na bancada, clique ou <kbd>Espaço</kbd></p>
-  ${S.taps.length ? meter('Sincronia', r.score) : ''}
-  <label class="row"><input type="checkbox" id="force" ${S.forceVariant ? 'checked' : ''}> Teste: forçar a aparência excepcional</label>
-  <div class="row"><button class="secondary" id="again" ${S.taps.length ? '' : 'disabled'}>Recomeçar o compasso</button><button class="primary" id="next" ${r.complete ? '' : 'disabled'}>Despertar</button></div>`;
- }
+ if (S.step === 'montagem') { const r = scoreAssembly(m, S.placed); html = `<h2>Montar na armação</h2><p class="hint">Use a pinça para assentar a vela sobre a cruz de varetas.</p><dl class="kv"><dt>Distância</dt><dd>${Math.round(r.dist)} px</dd><dt>Ângulo</dt><dd>${Math.round(r.angle)}°</dd></dl>${meter('Encaixe', r.score)}<p class="keys">Arraste · roda, <kbd>Q</kbd>/<kbd>E</kbd> ou botões para girar · <kbd>Setas</kbd> ajustam</p><button class="primary" id="next" ${r.complete ? '' : 'disabled'}>Fixar e testar o voo</button>`; }
+ if (S.step === 'equilibrio') { const tilt = flightTilt(m, null, S.knot), r = scoreBalance(m, null, S.knot); const clue = !S.tested ? 'Ajuste o nó do cabresto e teste.' : Math.abs(tilt) < .15 ? 'Voo estável.' : tilt > 0 ? 'A pipa embica para a frente: suba o nó.' : 'A pipa empina e perde vento: desça o nó.'; html = `<h2>Testar o equilíbrio</h2><label class="slider" for="knot">Ponto do nó na vareta: ${Math.round(S.knot * 100)}%<input type="range" id="knot" min="10" max="75" value="${Math.round(S.knot * 100)}"></label><div class="${S.tested && Math.abs(tilt) < .15 ? 'okbox' : 'warnbox'}">${clue}</div><div class="row"><button class="secondary" id="test">Testar voo</button><button class="primary" id="next" ${S.tested && r.complete ? '' : 'disabled'}>Amarrar a rabiola</button></div>`; }
+ if (S.step === 'elo') { const r = scoreLink(S.taps, PERIOD); html = `<h2>Rabiola e elo</h2><p class="hint">A rabiola entra por último. Puxe a linha três vezes no compasso do vento.</p><p class="keys">Toque na bancada, clique ou <kbd>Espaço</kbd></p>${S.taps.length ? meter('Sincronia', r.score) : ''}<div class="row"><button class="secondary" id="again" ${S.taps.length ? '' : 'disabled'}>Recomeçar o compasso</button><button class="primary" id="next" ${r.complete ? '' : 'disabled'}>Despertar</button></div>`; }
  if (S.step === 'resultado') html = resultHTML(m);
  panel.replaceChildren(el(html)); bindPanel();
 }
 function resultHTML(m) {
- if (S.outcome.kind.startsWith('falha')) return `<h2>A armação cedeu</h2>
-  <div class="badbox">A integridade chegou a zero por cortes para dentro da peça ou cola nas articulações.</div>
-  <dl class="kv"><dt>Materiais do lote</dt><dd>${S.outcome.consumed ? 'consumidos' : 'treino · nada consumido'}</dd><dt>Rabiola</dt><dd>intacta</dd><dt>Parceiro</dt><dd>não nasceu</dd></dl>
-  <p class="hint">Uma nova tentativa exige um novo lote. Queda de conexão ou recarga não contam como falha: o jogo retoma do último estado confirmado.</p>
-  <button class="primary" id="restart">Voltar à preparação</button>`;
+ if (S.outcome.kind.startsWith('falha')) return `<h2>A peça cedeu</h2><div class="badbox">${S.outcome.reason}</div>
+  <dl class="kv"><dt>Materiais do lote</dt><dd>${S.outcome.kind === 'falha' ? 'consumidos' : 'treino · nada consumido'}</dd><dt>Rabiola</dt><dd>intacta</dd><dt>Aparência da alma</dt><dd>${S.variant} (mantida na próxima tentativa)</dd></dl>
+  <p class="hint">Uma nova tentativa exige um novo lote. Queda de conexão ou recarga não contam como falha.</p><button class="primary" id="restart">Voltar à preparação</button>`;
  const bonus = craftBonus(m, S.scores), sheetRows = statSheet(bonus.bonus);
  return `<h2>Rabbito despertou</h2>
- <div class="row"><span class="chip ${m.rarity === 'comum' ? '' : 'rare'}">Molde ${m.name} · ${m.rarity}</span><span class="chip ${S.variant === 'excepcional' ? 'rare' : ''}">Aparência ${S.variant}</span>${S.practice ? '<span class="chip">Treino</span>' : ''}</div>
+ <div class="row"><span class="chip ${m.rarity === 'comum' ? '' : 'rare'}">Molde ${m.name} · ${m.rarity}</span><span class="chip">${PAPERS[S.paper].name}</span><span class="chip ${S.variant === 'excepcional' ? 'rare' : ''}">Aparência ${S.variant}</span>${S.practice ? '<span class="chip">Treino</span>' : ''}${S.auto ? '<span class="chip">Artesão</span>' : ''}</div>
  <table><thead><tr><th>Etapa</th><th>Nota</th><th>Alimenta</th></tr></thead><tbody>${Object.entries(DIMENSIONS).map(([d, s]) => `<tr><td>${DIM_NAMES[d]}</td><td>${S.scores[d] ?? 0}</td><td>${STAT_NAMES[s]} <span class="plus">+${(bonus.bonus[s] * 100).toFixed(1)}%</span></td></tr>`).join('')}</tbody></table>
  <table><thead><tr><th>Atributo (nível 1)</th><th>Base</th><th>Oficina</th><th>Total</th></tr></thead><tbody>${Object.entries(sheetRows).map(([k, v]) => `<tr><td>${STAT_NAMES[k]}</td><td>${v.base}</td><td class="plus">+${v.craft}</td><td>${v.total}</td></tr>`).join('')}</tbody></table>
- <p class="hint">Bônus total ${(bonus.total * 100).toFixed(1)}% de ${(bonus.budget * 100).toFixed(0)}% possíveis neste molde. Notas abaixo de 50 não dão bônus nem penalidade. Aparência sorteada uma vez (proposta: 1 em ${Math.round(1 / VARIANT_CHANCE)}), sem relação com a nota.</p>
- <div class="okbox">${S.practice ? 'Treino concluído: nada consumido, nenhum parceiro criado.' : 'Lote e rabiola usados na mesma confirmação que cria o exemplar.'}</div>
+ <p class="hint">Bônus ${(bonus.total * 100).toFixed(1)}% de ${(bonus.budget * 100).toFixed(0)}% possíveis neste molde. Abaixo de 50 não há bônus nem penalidade. Aparência sorteada uma vez por alma (proposta: 1 em ${Math.round(1 / VARIANT_CHANCE)}).</p>
  <button class="primary" id="restart">Construir outro</button>`;
 }
 function bindPanel() {
  const on = (id, ev, fn) => { const x = document.getElementById(id); if (x) x[ev] = fn; };
  panel.querySelectorAll('input[name=mold]').forEach(r => r.onchange = () => { S.moldId = r.value; renderAll(); });
+ panel.querySelectorAll('input[name=paper]').forEach(r => r.onchange = () => { S.paper = r.value; renderAll(); });
  on('practice', 'onchange', e => { S.practice = e.target.checked; renderPanel(); });
- on('start', 'onclick', () => { if (!S.practice) S.stock = reserve(S.stock, mold()); S.startedAt = performance.now(); go('corte'); });
+ on('force', 'onchange', e => { S.forceVariant = e.target.checked; });
+ on('start', 'onclick', begin);
+ on('auto', 'onclick', () => { S.auto = true; for (const c of S.sheet.cells) if (c.piece) { c.cover = 0; c.damage = Math.max(c.damage, .25); } endStage(); });
  on('knot', 'oninput', e => { S.knot = e.target.value / 100; S.tested = false; renderPanel(); });
  on('test', 'onclick', () => { S.tested = true; S.testAt = performance.now(); renderPanel(); });
  on('again', 'onclick', () => { S.taps = []; S.pulseStart = performance.now(); renderPanel(); });
- on('force', 'onchange', e => { S.forceVariant = e.target.checked; });
  on('restart', 'onclick', restart);
  on('next', 'onclick', () => {
   const m = mold();
-  if (S.step === 'corte') { finish('corte', scoreCut(m, S.strokes.flatMap(s => s.points))); if (!checkFailure()) go('colagem'); }
-  else if (S.step === 'colagem') { finish('colagem', scoreGlue(m, S.glue)); if (!checkFailure()) go('montagem'); }
-  else if (S.step === 'montagem') { finish('montagem', scoreAssembly(m, S.placed)); go('equilibrio'); }
-  else if (S.step === 'equilibrio') { finish('equilibrio', scoreBalance(m, S.results.colagem, S.knot)); go('elo'); }
-  else if (S.step === 'elo') { finish('elo', scoreLink(S.taps, PERIOD)); awaken(); }
+  if (S.step === 'revelar' || S.step === 'reparar') endStage();
+  else if (S.step === 'montagem') go('equilibrio');
+  else if (S.step === 'equilibrio') { S.scores.equilibrio = scoreBalance(m, null, S.knot).score; go('elo'); }
+  else if (S.step === 'elo') { S.scores.elo = scoreLink(S.taps, PERIOD).score; S.outcome = {kind: 'sucesso'}; go('resultado'); }
  });
 }
 function renderAll() { renderSteps(); renderBelt(); renderPanel(); }
-// Exemplo de trabalho em andamento para a primeira vista: preparação com estoque de exemplo e a Luz do molde acesa.
+window.oficina = S; // inspeção no console durante o playtest
 renderAll(); requestAnimationFrame(draw);
 </script>

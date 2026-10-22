@@ -11,3 +11,7 @@ __pycache__/
 *.py[cod]
 # Private evidence from the production account: keep local, never publish by default.
 art/ui-reviews/demo-dependencies-2026-10-22/
+
+# Referências de terceiros da Oficina das Almas: só consulta local (FONTES.md é versionado)
+art/oficina-das-almas/referencias/*
+!art/oficina-das-almas/referencias/FONTES.md

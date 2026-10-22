@@ -1,7 +1,7 @@
 // Oficina das Almas · protótipo de regras (PIP-58). Funções puras, sem DOM.
 // No jogo real estas regras rodam no servidor; o cliente só envia as ações da bancada.
 
-export const RULES_VERSION = 'oficina-proto-1';
+export const RULES_VERSION = 'oficina-proto-2';
 
 // Molde do Rabbito (tradicional): vela com duas orelhas. Coordenadas da bancada (0..600 × 0..440).
 export const MOLDS = {
@@ -29,7 +29,8 @@ export const MOLDS = {
 // Teto total de bônus (fração) por raridade do molde. Nível 50 dá +20% de linha; classe rank 3 dá até +24% de velocidade.
 export const BUDGET = {comum: .04, raro: .06, epico: .08};
 // Cada dimensão alimenta um atributo existente do combate (src/engine.js).
-export const DIMENSIONS = {corte: 'speed', colagem: 'line', equilibrio: 'regen', elo: 'energy'};
+// v2: revelação (o corte da peça) e reparo dos materiais substituem corte e colagem do v1.
+export const DIMENSIONS = {revelacao: 'speed', reparo: 'line', equilibrio: 'regen', elo: 'energy'};
 // Falha só por dano estrutural: cortes para dentro da peça e cola nas articulações somam dano.
 export const INTEGRITY = {max: 100, cutInsidePerPx: .9, glueOnJointPerCell: 2.5, insideTolerance: 6};
 // Proposta: 1 em 256 no primeiro despertar bem-sucedido. Configurável; desligada até aprovação.

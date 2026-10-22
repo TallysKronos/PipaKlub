@@ -33,13 +33,13 @@ test('montagem, equilíbrio e elo medem o erro, não a quantidade de cliques', (
 });
 
 test('bônus respeita o teto do molde e execuções diferentes geram exemplares diferentes', () => {
-  const perfect = craftBonus(mold, {corte: 100, colagem: 100, equilibrio: 100, elo: 100});
+  const perfect = craftBonus(mold, {revelacao: 100, reparo: 100, equilibrio: 100, elo: 100});
   assert.equal(perfect.total, BUDGET.comum);
-  const mid = craftBonus(mold, {corte: 75, colagem: 70, equilibrio: 80, elo: 60}), weak = craftBonus(mold, {corte: 40, colagem: 45, equilibrio: 30, elo: 10});
+  const mid = craftBonus(mold, {revelacao: 75, reparo: 70, equilibrio: 80, elo: 60}), weak = craftBonus(mold, {revelacao: 40, reparo: 45, equilibrio: 30, elo: 10});
   assert.ok(mid.total > 0 && mid.total < perfect.total && weak.total === 0, 'abaixo de 50 não pune nem bonifica');
   assert.notDeepEqual(statSheet(mid.bonus), statSheet(perfect.bonus));
   assert.equal(statSheet(perfect.bonus).speed.base, 165, 'base separada da contribuição da oficina');
-  assert.ok(craftBonus(MOLDS['rabbito-vela-leve'], {corte: 100, colagem: 100, equilibrio: 100, elo: 100}).total <= BUDGET.raro);
+  assert.ok(craftBonus(MOLDS['rabbito-vela-leve'], {revelacao: 100, reparo: 100, equilibrio: 100, elo: 100}).total <= BUDGET.raro);
 });
 
 test('economia: sem materiais não inicia; falha consome o lote e preserva a rabiola; treino não consome', () => {

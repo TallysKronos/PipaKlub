@@ -1,0 +1,265 @@
+{
+ "schema": "oficina-das-almas-brief-v1",
+ "status": "pendente",
+ "epic": "PIP-58",
+ "deliverTo": "art/oficina-das-almas/v1/",
+ "consumer": "tools/oficina-prototipo/index.html",
+ "logicalBench": [
+  600,
+  440
+ ],
+ "exportScale": 2,
+ "sheetArea": {
+  "x": 120,
+  "y": 4,
+  "w": 360,
+  "h": 432
+ },
+ "outlines": {
+  "rabbito-tradicional": [
+   [
+    300,
+    70
+   ],
+   [
+    318,
+    20
+   ],
+   [
+    338,
+    18
+   ],
+   [
+    340,
+    92
+   ],
+   [
+    430,
+    200
+   ],
+   [
+    300,
+    380
+   ],
+   [
+    170,
+    200
+   ],
+   [
+    260,
+    92
+   ],
+   [
+    262,
+    18
+   ],
+   [
+    282,
+    20
+   ]
+  ],
+  "rabbito-vela-leve": [
+   [
+    300,
+    64
+   ],
+   [
+    316,
+    14
+   ],
+   [
+    334,
+    14
+   ],
+   [
+    338,
+    88
+   ],
+   [
+    446,
+    196
+   ],
+   [
+    300,
+    392
+   ],
+   [
+    154,
+    196
+   ],
+   [
+    262,
+    88
+   ],
+   [
+    266,
+    14
+   ],
+   [
+    284,
+    14
+   ]
+  ]
+ },
+ "frame": {
+  "vertical": [
+   [
+    300,
+    92
+   ],
+   [
+    300,
+    372
+   ]
+  ],
+  "horizontal": [
+   [
+    186,
+    200
+   ],
+   [
+    414,
+    200
+   ]
+  ]
+ },
+ "papers": [
+  "seda",
+  "manteiga",
+  "encerado"
+ ],
+ "coverDepths": [
+  1,
+  2,
+  3
+ ],
+ "tools": {
+  "estilete": {
+   "hotspot": [
+    10,
+    54
+   ]
+  },
+  "tesourinha": {
+   "hotspot": [
+    8,
+    56
+   ]
+  },
+  "luz-do-molde": {
+   "hotspot": [
+    32,
+    32
+   ]
+  },
+  "remendo": {
+   "hotspot": [
+    10,
+    54
+   ]
+  },
+  "ferro": {
+   "hotspot": [
+    32,
+    56
+   ]
+  },
+  "lixa": {
+   "hotspot": [
+    32,
+    32
+   ]
+  },
+  "pano": {
+   "hotspot": [
+    32,
+    40
+   ]
+  },
+  "agulha": {
+   "hotspot": [
+    6,
+    58
+   ]
+  }
+ },
+ "defects": [
+  "rasgo",
+  "ruga",
+  "farpa",
+  "mancha",
+  "embolada"
+ ],
+ "defectStates": [
+  "aberto",
+  "consertado"
+ ],
+ "appearances": [
+  "padrao",
+  "excepcional"
+ ],
+ "files": [
+  "bancada-fundo.png",
+  "folha-seda-camada-1.png",
+  "folha-seda-camada-2.png",
+  "folha-seda-camada-3.png",
+  "folha-manteiga-camada-1.png",
+  "folha-manteiga-camada-2.png",
+  "folha-manteiga-camada-3.png",
+  "folha-encerado-camada-1.png",
+  "folha-encerado-camada-2.png",
+  "folha-encerado-camada-3.png",
+  "rasgo-borda-1.png",
+  "rasgo-borda-2.png",
+  "rasgo-borda-3.png",
+  "rasgo-borda-4.png",
+  "rasgo-borda-5.png",
+  "rasgo-borda-6.png",
+  "marca-rabbito-padrao.png",
+  "marca-rabbito-excepcional.png",
+  "marca-rabbito-vela-leve-padrao.png",
+  "marca-rabbito-vela-leve-excepcional.png",
+  "vela-rabbito-padrao.png",
+  "vela-rabbito-excepcional.png",
+  "vela-rabbito-vela-leve-padrao.png",
+  "vela-rabbito-vela-leve-excepcional.png",
+  "armacao.png",
+  "ferramenta-estilete.png",
+  "ferramenta-tesourinha.png",
+  "ferramenta-luz-do-molde.png",
+  "ferramenta-remendo.png",
+  "ferramenta-ferro.png",
+  "ferramenta-lixa.png",
+  "ferramenta-pano.png",
+  "ferramenta-agulha.png",
+  "cursor-estilete.png",
+  "cursor-tesourinha.png",
+  "cursor-luz-do-molde.png",
+  "cursor-remendo.png",
+  "cursor-ferro.png",
+  "cursor-lixa.png",
+  "cursor-pano.png",
+  "cursor-agulha.png",
+  "defeito-rasgo-aberto.png",
+  "defeito-rasgo-consertado.png",
+  "defeito-ruga-aberto.png",
+  "defeito-ruga-consertado.png",
+  "defeito-farpa-aberto.png",
+  "defeito-farpa-consertado.png",
+  "defeito-mancha-aberto.png",
+  "defeito-mancha-consertado.png",
+  "defeito-embolada-aberto.png",
+  "defeito-embolada-consertado.png",
+  "medidor-silhueta.png",
+  "lascas.png",
+  "brilho-revelacao.png",
+  "despertar.png"
+ ],
+ "references": {
+  "folder": "art/oficina-das-almas/referencias/",
+  "index": "art/oficina-das-almas/referencias/FONTES.md",
+  "gitIgnored": true
+ },
+ "integration": "nao integrado",
+ "publication": "nao publicado"
+}

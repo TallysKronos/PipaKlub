@@ -63,8 +63,8 @@ Quatro notas de 0 a 100, cada uma ligada a um atributo que o combate já usa (`s
 
 | Etapa | Atributo | Por quê |
 |---|---|---|
-| Corte | `speed` | contorno limpo, menos arrasto |
-| Colagem | `line` | colagem firme aguenta mais corte |
+| Revelação | `speed` | peça inteira e sem rasgo, menos arrasto |
+| Reparo | `line` | material consertado aguenta mais corte |
 | Equilíbrio | `regen` | voo estável gasta menos energia |
 | Elo | `energy` | sintonia aumenta a reserva |
 
@@ -100,6 +100,8 @@ Quatro notas de 0 a 100, cada uma ligada a um atributo que o combate já usa (`s
 - Contas existentes não recebem materiais nem aparências em massa na migração.
 
 ## 9. Arte e animação
+
+Pedido de arte para o Codex em [`art/oficina-das-almas/BRIEF.md`](../../art/oficina-das-almas/BRIEF.md). O protótipo v2 (`bancada-v2.mjs`) já usa revelação e reparo; o v1 (corte por contorno e cola) ficou registrado no histórico do git.
 
 - Por molde e espécie: contorno de corte, faixas de cola, articulações, armação, pivôs, amarração e ponto da rabiola, desenhados sobre a mesma arte do rig colorido.
 - O despertar usa a peça montada e passa para o rig do Soulgen Studio, sem trocar de desenho no meio.
