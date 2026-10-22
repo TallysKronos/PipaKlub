@@ -6,10 +6,14 @@ export async function createCarcara(sizeFor){
  const sources={original:'/art/soulgen/keys/carcara/source/layers-generated.png',fierce:'/art/soulgen/keys/carcara/color-rig/body-fierce.png',hurt:'/art/soulgen/keys/carcara/color-rig/body-hurt.png',happy:'/art/soulgen/keys/carcara/color-rig/body-happy.png'};
  for(const [id,src]of Object.entries(sources)){const {width,height}=await sizeFor(src);project.assets[id]={src,width,height,name:id};}
  const names={body:'Corpo e expressão',wingFar:'Asa distante',wingNear:'Asa próxima',tail:'Rabiola'};
- for(const [i,id]of ['tail','wingFar','body','wingNear'].entries()){const p=parts[id];project.parts.push({id,name:names[id],asset:'original',source:[...p.source],rect:[...p.rect],pivot:p.pivot?[...p.pivot]:[48,42],z:i,parent:null,visible:true,...id==='body'?{faces:Object.fromEntries(['fierce','hurt','happy'].map(face=>[face,{asset:face,source:[0,0,280,361]}])),faceWindows:[[14,143,48,57],[90,155,55,64]]}:{}});}
+ for(const [i,id]of ['tail','wingFar','body','wingNear'].entries()){const p=parts[id];project.parts.push({id,name:names[id],asset:'original',source:[...p.source],rect:[...p.rect],pivot:p.pivot?[...p.pivot]:[48,42],z:i,parent:null,visible:true,...{tail:{lag:.1},wingFar:{lag:.04}}[id],...id==='body'?{faces:Object.fromEntries(['fierce','hurt','happy'].map(face=>[face,{asset:face,source:[0,0,280,361]}])),faceWindows:[[14,143,48,57],[90,155,55,64]]}:{}});}
+ // Keys taken from the approved rig itself: its one-shot clips are smoothstep timelines (exact with 'smooth'
+ // keys), its loops are sines (12 spline keys per cycle stay well inside the edit tolerance).
+ const keyTimes={skill:[0,.4,.74,1.1,1.65,2],hurt:[0,.1,.23,.4,.72,1.1],victory:[0,.55,1.05,1.55,2.4]};
  for(const [id,c]of Object.entries(clips)){
-  const times=new Set([0,c.seconds]);for(let i=0;i<c.seconds*30;i++)times.add(Math.round(i/30*1e6)/1e6);for(const t of [.03,.1,.22,.23,.25,.4,.55,.72,.74,1.05,1.1,1.55,1.65,2.08])if(t<c.seconds)times.add(t);
-  project.clips[id]={...c,frames:[...times].sort((a,b)=>a-b).map(t=>{const p=pose(id,t);return {t,ease:'linear',values:{root:{...identity(),x:p.x,y:p.y,rotation:p.lean},wingNear:{...identity(),rotation:p.near},wingFar:{...identity(),rotation:p.far},tail:{...identity(),rotation:p.tail}}};}),expressions:id==='skill'?[{start:.22,end:1.65,face:'fierce'}]:id==='hurt'?[{start:.03,end:.72,face:'hurt'}]:id==='victory'?[{start:.25,end:2.08,face:'happy'}]:[]};
+  const times=keyTimes[id]||Array.from({length:13},(_,i)=>Math.round(i*c.seconds/12*1e6)/1e6),ease=keyTimes[id]?'smooth':'spline';
+  project.clips[id]={...c,frames:times.map(t=>{const p=pose(id,t);return {t,ease,values:{root:{...identity(),x:p.x,y:p.y,rotation:p.lean},wingNear:{...identity(),rotation:p.near},wingFar:{...identity(),rotation:p.far},tail:{...identity(),rotation:p.tail}}};}),expressions:id==='skill'?[{start:.22,end:1.65,face:'fierce'}]:id==='hurt'?[{start:.03,end:.72,face:'hurt'}]:id==='victory'?[{start:.25,end:2.08,face:'happy'}]:[]};
  }
+ // Follow-through approved on 2026-10-22: the rabiola trails the body by 0.10 s, the far wing by 0.04 s.
  return project;
 }

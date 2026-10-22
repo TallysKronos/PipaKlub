@@ -1,0 +1,57 @@
+{
+  "schema": "soulgen-full-color-rig-brief-v1",
+  "status": "pendente",
+  "id": "mata-verde",
+  "name": "Mata verde",
+  "format": "full-color-cutout-rig",
+  "guidelines": "art/soulgen/DIRETRIZES-RIG-COLORIDO.md",
+  "approvedExample": "art/soulgen/keys/carcara/color-rig/",
+  "deliverTo": "art/soulgen/keys/mata-verde/",
+  "reference": "assets/creatures/basicos-v2/mata-verde.png",
+  "identity": {
+    "species": "Mata verde, folha que se enrolou numa pipa durante uma ventania",
+    "personality": "Brincalhona, curiosa e esquiva; muda de lado num sopro e escapa por espaços pequenos",
+    "kiteAnatomy": [
+      "vela em forma de folha larga, com nervuras claras que fazem papel de varetas",
+      "asas laterais de folha, finas e flexíveis como uma arraia",
+      "coroa de três folhas pontudas no topo, como orelhas",
+      "rabiola de cipó com contas douradas terminando numa folha"
+    ],
+    "paletteLock": "preservar arte aprovada: verdes de folha, nervuras amarelo-claras, rosto creme, contas douradas"
+  },
+  "view": {"angle": "três quartos", "facing": "esquerda, igual ao Carcará"},
+  "coordinateSystem": {"unit": "unidade lógica de montagem", "width": 96, "height": 96, "textureResolution": "preservar fonte original"},
+  "parts": [
+    {"id": "body", "role": "vela-folha central com rosto, coroa fixa e nervura central", "drawOrder": 2, "attachment": "raiz do corpo"},
+    {"id": "wingFar", "role": "folha lateral distante, parcialmente atrás do corpo", "drawOrder": 1, "pivot": "junção da folha com a vela, no lado distante", "motionLimits": "−25° a +20°"},
+    {"id": "wingNear", "role": "folha lateral próxima, sobre o corpo", "drawOrder": 3, "pivot": "junção da folha com a vela, no lado próximo", "motionLimits": "−30° a +25°"},
+    {"id": "tail", "role": "cipó com contas e folha final", "drawOrder": 0, "pivot": "nó do cipó sob a vela", "motionLimits": "−18° a +18°"},
+    {"id": "crown", "optional": true, "role": "coroa de folhas, só se ficar separada sem fenda", "drawOrder": 4, "pivot": "base da coroa no topo da vela", "motionLimits": "−8° a +8°"}
+  ],
+  "partFields": ["id", "file", "sourceRect", "destinationRect", "pivot", "drawOrder", "attachment", "motionLimits"],
+  "expressions": {
+    "required": ["normal", "fierce", "hurt", "happy"],
+    "optional": ["blink"],
+    "notes": {
+      "normal": "curiosa, sorriso leve",
+      "fierce": "travessa e decidida, olhos estreitos, sem perder o sorriso de canto",
+      "hurt": "olhos apertados, folhas da coroa abaixadas só na face (sem mudar a silhueta)",
+      "happy": "olhos ^ ^, boca aberta"
+    },
+    "invariants": ["dimensoes", "alpha", "silhueta", "pixels fora das janelas faciais"],
+    "timingUnit": "seconds",
+    "windowsByClip": {"skill": [0.15, 1.2], "hurt": [0.03, 0.65], "victory": [0.2, 1.9]}
+  },
+  "clips": [
+    {"id": "idle", "loop": true, "seconds": 2.8, "motion": "flutua de leve com balanço lateral; folhas laterais ondulam fora de fase; o cipó atrasa"},
+    {"id": "flight", "loop": true, "seconds": 1.0, "motion": "batida ondulante como arraia: a ponta da folha atrasa em relação à raiz; corpo inclina para a frente"},
+    {"id": "skill", "loop": false, "seconds": 1.6, "hitTime": 0.5, "motion": "Esquiva: recolhe, dispara de lado num sopro e volta; o impacto é o fim do disparo"},
+    {"id": "hurt", "loop": false, "seconds": 1.0, "motion": "recuo curto e balanço de recuperação"},
+    {"id": "victory", "loop": false, "seconds": 2.2, "motion": "giro alegre no lugar com as folhas abertas e retorno ao repouso"}
+  ],
+  "suggestedFollowThrough": {"tail": 0.12, "wingFar": 0.05},
+  "deliverables": ["fontes e prompts", "rig e registro facial", "acoes e tempos", "previa independente", "testes e validacao", "evidencia visual"],
+  "acceptance": ["cores originais", "juntas conectadas", "ciclos continuos", "recuperacao estavel", "expressoes sincronizadas", "sem mudanca de alpha na face", "revisao em fundos claro e escuro", "silhueta diferente do Carcará na escala de jogo"],
+  "integration": "nao integrado",
+  "publication": "nao publicado"
+}
