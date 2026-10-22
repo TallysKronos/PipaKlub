@@ -48,6 +48,12 @@ A auditoria verifica estrutura, ciclos de parentesco, recortes, tempos, alpha e 
 
 São aceitos PNGs incorporados ou fontes locais da biblioteca Soulgen. Há limites de peças, imagens, quadros e dimensão do atlas para evitar travar o navegador. O servidor escuta somente em loopback, serve arquivos permitidos e não aceita escrita HTTP. Não acessa contas, saves, banco ou economia do jogo.
 
+## No jogo (`?rig`)
+
+`npm run studio:export-game` copia os rigs aprovados para `assets/creatures/rig-v1/` (PNGs originais + projeto). O build serve e versiona esses arquivos como as outras artes. Abrindo o jogo com `?rig` no endereço, o Carcará da batalha é desenhado pelo rig em vez do atlas pintado; sem a opção nada é baixado nem muda.
+
+O rig lê o mesmo estado da batalha que o atlas: dano, especial, voo e vitória. Quando um corte acerta (contador de golpes do jogador sobe), ele toca o Golpe a partir da pose de impacto e faz a recuperação em dobro de velocidade. O motor do jogo continua decidindo cada acerto; a animação se ajusta ao acerto, nunca o contrário. Enquanto as imagens carregam, e para as outras espécies, o atlas pintado continua sendo usado.
+
 ## Preset do Carcará
 
 O preset usa as poses do rig aprovado em vez de gravar a curva 30 vezes por segundo: Golpe, Dano e Vitória têm as mesmas poses suaves do rig (6, 6 e 5 poses, sem diferença de movimento); Repouso e Voo usam 13 poses contínuas por ciclo (diferença máxima de 0,06°). Projetos salvos antes desta mudança continuam abrindo como estavam; para enxugar uma ação antiga, use **Simplificar poses**. O atraso fica desligado no preset: o movimento aprovado não muda.
