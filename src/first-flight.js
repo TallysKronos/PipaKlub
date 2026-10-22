@@ -9,7 +9,7 @@ export function createFirstFlight(engine){
  ];
  function create({color=0,soul=null,lesson=0,name='Você',partnerName=null}={},now=Date.now()){
   const state=engine.create(now),p=engine.player(name,color,'you',now),q=engine.player('Nozinho',1,'first-nozinho',now);
-  Object.assign(p,{anchorX:90,x:350,y:180,shield:0,soul,partnerName});Object.assign(q,{anchorX:910,x:300,y:180,shield:0,soul:'nozinho'});
+  Object.assign(p,{anchorX:90,x:190,y:320,shield:0,soul,partnerName});Object.assign(q,{anchorX:910,x:300,y:180,shield:0,soul:'nozinho'});
   state.players=[p,q];state.firstFlight=true;state.end=now+3600000;
   const run={state,index:Math.max(0,Math.min(4,lesson)),complete:false,target:{x:700,y:180},last:now};prepare(run);return run;
  }

@@ -57,7 +57,7 @@ function pilotFooter(){
  const f=$('pilotMenuFooter');f.replaceChildren(pilotCommand('confirm','Escolher',()=>$('pilotMenuList').querySelector('.pilot-option:focus')?.click()),pilotCommand('back',pilotGroup==='root'?'Fechar':'Voltar',pilotEscape));
 }
 function pilotRenderMenu(group,focusId){
- pilotGroup=group;setText('pilotMenuTitle',PILOT_TITLES[group]||'Menu');setText('pilotCrumb',group==='root'?'Rua dos Ventos':'Caderno do pipeiro ›');
+ pilotGroup=group;setText('pilotMenuTitle',PILOT_TITLES[group]||'Menu');setText('pilotCrumb',group==='root'?(document.getElementById('worldName')?.textContent.trim()||'Rua dos Ventos'):'Caderno do pipeiro ›');
  const list=$('pilotMenuList');list.replaceChildren(...pilotItems(group).map(([id,label])=>{
   const b=document.createElement('button');b.type='button';b.className='pilot-option'+(homeMenuGroups[id]?' has-sub':'');b.dataset.destination=id;b.textContent=id==='autosave'?'Salvamento automático: '+(campaignData?.autosave_enabled===false?'desligado':'ligado'):label;if(id==='autosave')b.setAttribute('aria-pressed',String(campaignData?.autosave_enabled!==false));
   b.onclick=()=>pilotOpen(id);b.onmouseenter=()=>b.focus({preventScroll:true});b.onfocus=()=>pilotFocus(b);return b;}));

@@ -54,7 +54,7 @@ function selectDex(entry){
  $('dexGroup').textContent=entry.group==='story'?'Parceiro da história':entry.group==='event'?(entry.rarity==='rara'?'Rara de evento':'Especial de evento')+(entry.collection?' · '+entry.collection:''):entry.group==='companion'?'Companheiro':'Almática de rua';
  const owned=!!playerAccount?.inventory.some(k=>k.model_id===entry.model);
  $('dexOwnership').textContent=owned?'Na sua coleção':entry.group==='companion'?'Ao lado do Sr. Assis':playerAccount?'Ainda não está na sua coleção':'Entre na conta para acompanhar sua coleção';
- $('dexHabitat').textContent=entry.habitat;$('dexLegend').textContent=entry.legend||'Uma história original do Pipa Club';
+ $('dexHabitat').textContent=entry.habitat;$('dexLegend').textContent=entry.legend||'Uma história original de Soulmonsters';
  $('dexStory').replaceChildren(...entry.story.map(text=>uiElement('p',text)));
  $('dexNote').textContent='“'+entry.note+'”';$('dexObtain').textContent=entry.obtain;
  renderDexItems(entry);

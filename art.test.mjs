@@ -464,7 +464,7 @@ test('encounter presentation starts no match, blocks locked leaders and returns 
  const a=app({member:true});await a.settle();
  a.run("trailPick='morro-1';$('trails').hidden=false;renderTrails();presentStage('morro-1')");
  assert.equal(a.run('mode'),null);assert.equal(a.document.getElementById('modal').style.display,'flex');
- assert.match(a.document.getElementById('dialogTitle').textContent,/Praça de chegada/);
+ assert.match(a.document.getElementById('dialogTitle').textContent,/Praça da Chegada/);
  assert.match(a.document.getElementById('dialogBody').textContent,/Zeca/);
  a.key('Escape');assert.equal(a.document.getElementById('trails').hidden,false);a.run('presentStage("morro-5")');
  assert.equal(a.document.getElementById('modal').style.display,'none');

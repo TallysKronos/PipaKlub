@@ -18,7 +18,7 @@ $('recoveryForm').onsubmit=async e=>{
  e.preventDefault();if(accountSaving)return;const resetting=accountRecoveryMode==='reset',token=passwordRecoveryToken;
  if(resetting&&$('recoveryPassword').value!==$('recoveryConfirm').value){$('recoveryStatus').textContent='As duas senhas precisam ser iguais.';return;}
  accountSaving=true;$('recoverySubmit').disabled=true;$('recoveryCancel').disabled=true;$('recoveryStatus').textContent=resetting?'Atualizando sua senha…':'Enviando o link…';
- try{const result=await accountRequest(resetting?'reset-password':'recover',resetting?{token,password:$('recoveryPassword').value}:{email:$('recoveryEmail').value});if(resetting){closeRecovery();playerAccount=result.account||null;if(result.loginEmail)$('accountEmail').value=result.loginEmail;accountTab='login';reflectAccount();$('accountMessage').textContent=result.message;if(playerAccount){loadRecentMatches();toast('Bem-vindo de volta ao Pipa Club!');}}else $('recoveryStatus').textContent=result.message;}
+ try{const result=await accountRequest(resetting?'reset-password':'recover',resetting?{token,password:$('recoveryPassword').value}:{email:$('recoveryEmail').value});if(resetting){closeRecovery();playerAccount=result.account||null;if(result.loginEmail)$('accountEmail').value=result.loginEmail;accountTab='login';reflectAccount();$('accountMessage').textContent=result.message;if(playerAccount){loadRecentMatches();toast('Bem-vindo de volta!');}}else $('recoveryStatus').textContent=result.message;}
  catch(err){$('recoveryStatus').textContent=err.name==='AbortError'?'A conexão demorou. Tente novamente.':err.message;}
  finally{accountSaving=false;$('recoverySubmit').disabled=false;$('recoveryCancel').disabled=false;$('recoveryPassword').value='';$('recoveryConfirm').value='';renderAccountDialog();}
 };
@@ -89,7 +89,7 @@ $('accountForm').onsubmit=async e=>{
  e.preventDefault();if(accountSaving||!accountsEnabled)return;accountSaving=true;renderAccountDialog();$('accountMessage').textContent='Conectando…';
  try{const d=await accountRequest(accountTab,{email:$('accountEmail').value,password:$('accountPassword').value,nickname:$('signupName').value});$('accountPassword').value='';
    if(d.confirmation){accountTab='login';$('accountMessage').textContent=d.message;}
-   else{playerAccount=d.account;reflectAccount();loadRecentMatches();$('accountMessage').textContent='Conta conectada. Sua coleção está pronta.';toast('Bem-vindo ao Pipa Club!');}
+   else{playerAccount=d.account;reflectAccount();loadRecentMatches();$('accountMessage').textContent='Conta conectada. Sua coleção está pronta.';toast('Bem-vindo a Soulmonsters!');}
  }catch(e){$('accountMessage').textContent=e.name==='AbortError'?'A conexão demorou. Tente novamente.':e.message;}
  finally{accountSaving=false;renderAccountDialog();}
 };

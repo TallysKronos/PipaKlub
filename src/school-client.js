@@ -54,7 +54,7 @@ function stepSchool(now){
 }
 function drawSchoolGuide(){
  if(!schoolRun||schoolRun.complete||schoolRun.index>=4)return;
- const {x,y}=schoolRun.target;ctx.save();ctx.strokeStyle='#26704b';ctx.fillStyle='#ffffffb0';ctx.lineWidth=3;ctx.setLineDash([5,5]);ctx.beginPath();ctx.arc(x,y,30,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#183e38';ctx.font='16px sans-serif';ctx.textAlign='center';ctx.fillText('Mire aqui',x,y-42);ctx.restore();
+ const {x,y}=schoolRun.target;ctx.save();ctx.strokeStyle='#26704b';ctx.fillStyle='#ffffffb0';ctx.lineWidth=3;ctx.setLineDash([5,5]);ctx.beginPath();ctx.arc(x,y,30,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#183e38';ctx.font='800 17px Nunito,sans-serif';ctx.textAlign='center';ctx.fillText('Mire aqui',x,y-42);ctx.restore();
 }
 function exitSchoolLesson(){schoolRun=null;schoolCoach.hidden=true;document.body.classList.remove('in-school');}
 const schoolOriginalLeave=leave;

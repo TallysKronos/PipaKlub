@@ -26,7 +26,7 @@ test('all new hub assets are served with hashed URLs and copied to Pages, source
 
 test('campaign mission distinguishes arrival, the nearby rival and completed content',()=>{
  const p=createPlazaPolicy(),stage={id:'morro-1',trailIndex:0};
- const seek=p.mission('complete',stage,{name:'Morro'},{worldId:'morro',rivals:'Zeca',place:'Praça de chegada'});assert.match(seek.body,/Encontre Zeca/);assert.equal(seek.action,'nextEncounter');
+ const seek=p.mission('complete',stage,{name:'Morro'},{worldId:'morro',rivals:'Zeca',place:'Praça da Chegada'});assert.match(seek.body,/Encontre Zeca na Praça da Chegada\./);assert.equal(seek.action,'nextEncounter');
  assert.match(p.mission('complete',stage,{}, {worldId:'morro',nearStage:'morro-1',rivals:'Zeca',place:'Praça'}).body,/Converse com Zeca/);
  const done=p.mission('complete',null,null,{complete:true});assert.equal(done.stage,null);assert.equal(done.title,'Jornada concluída');assert.match(done.body,/três bairros/);
 });

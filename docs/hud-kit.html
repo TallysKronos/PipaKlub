@@ -146,6 +146,13 @@
 .hud-sliced[data-hud-slice=nine]>.hud-slice-r{width:calc(var(--hud-cap-r) + var(--hud-seam))}
 .hud-sliced>.hud-slice-c{left:calc(var(--hud-cap-l) - var(--hud-seam));right:calc(var(--hud-cap-r) - var(--hud-seam))}
 .hud-sliced[data-hud-slice=nine]>.hud-slice-c{top:calc(var(--hud-cap-t) - var(--hud-seam));bottom:calc(var(--hud-cap-b) - var(--hud-seam))}
+/* Timer and round line both sit on the clock's paper, above its lower rim. */
+@media(min-width:701px) and (min-height:501px){.hud .hud-clock.hud-painted{--paper-top:47%;--paper-bottom:31%}.hud .hud-clock.hud-painted .round-info{position:absolute;left:50%;top:calc(100% + 36px);transform:translateX(-50%);white-space:nowrap;width:max-content;font-size:11px;line-height:15px;padding:1px 9px;border-radius:8px;background:#173b44d9;color:#fff3d6!important}.hud .hud-clock.hud-painted .round-pips{top:auto;bottom:-23px}}
+/* Duels list two or three pilots: the scoreboard fits them instead of reserving room for four. */
+@media(min-width:901px) and (min-height:501px){.hud .hud-board.hud-painted:not(:has(#leaderboard .row:nth-child(4))){height:172px}}
+@media(max-width:700px),(max-height:500px){.hud .hud-clock.hud-painted .round-info{position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;width:max-content;font-size:9px;line-height:13px;padding:1px 7px;border-radius:7px;background:#173b44d9;color:#fff3d6!important}}
+@media(max-width:700px) and (min-height:501px){.hud .hud-clock.hud-painted .round-info{top:calc(100% + 10px)}.hud .hud-clock.hud-painted .timer{font-size:18px}}
+@media(max-height:500px){.hud .hud-clock.hud-painted .round-info{top:calc(100% + 19px)}}
 
 </style><main><header><div>PIPAKLUB / ASSETS DE INTERFACE</div><h1>Uma moldura, vários tamanhos.</h1><p>Pontas e cantos mantêm as mesmas dimensões. O centro e as bordas retas acompanham o espaço disponível. Os recortes usam os pixels originais do atlas.</p><a href="/hud-audit">Abrir auditoria da arena</a></header>
 <h2>Botões · 3 partes</h2><div class="samples" id="buttons"></div><div class="samples states" id="states"></div>

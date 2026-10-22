@@ -40,7 +40,7 @@ function drawWorldEntrance(g,place,time){
 }
 function worldState(){return worldRuntime.states[worldRuntime.id];}
 function worldScene(){return worldScenes[worldRuntime.id];}
-function worldPlaceLabel(place){if(worldRoadChapter()&&['road_next','road_gate'].includes(place.action))return place.name+' · '+worldRoadGateLabel(worldRoadChapter(),worldRoadGateState());if(!place.stage)return place.name;const st=trails.stage(place.stage),open=trails.unlocked(trailProgress,place.stage);return place.name+(open?(trailProgress.stars[place.stage]?' · vencido':''):' · bloqueado')+(st?.boss&&!open?' · encontro desconhecido':'');}
+function worldPlaceLabel(place){if(worldRoadChapter()&&['road_next','road_gate'].includes(place.action))return place.name+' · '+worldRoadGateLabel(worldRoadChapter(),worldRoadGateState());if(!place.stage)return place.name;const st=trails.stage(place.stage),open=trails.unlocked(trailProgress,place.stage);const who=!st?place.name:st.boss&&!open?'Encontro final':st.foes.map(f=>f.name).join(' e ');return who+(open?(trailProgress.stars[place.stage]?' · vencido':''):' · bloqueado');}
 function refreshWorldHUD(){
  if(!$('worldPlace')||!playerAccount)return;
  if(worldRuntime.owner!==playerAccount.profile.id){worldRuntime.owner=playerAccount.profile.id;worldRuntime.id='quintal';for(const state of Object.values(worldRuntime.states))state.actor=state.navigation.create();worldRuntime.camera=null;worldRuntime.near=null;worldRuntime.error='';worldRuntime.loading=!homeImages.has('world-kit-street-quintal');renderWorldDestinations();}
@@ -55,7 +55,7 @@ function updateWorldContext(){
  const near=[...scene.places].sort((a,b)=>state.navigation.distance(state.actor,state.navigation.nodes[a.node])-state.navigation.distance(state.actor,state.navigation.nodes[b.node]))[0];
  const nearPoint=near&&state.navigation.nodes[near.node],geometry=state.navigation.geometry;
  worldRuntime.near=near&&state.navigation.distance(state.actor,nearPoint)<=82&&(!geometry||geometry.level(state.actor)===geometry.level(nearPoint)&&geometry.segment(state.actor,nearPoint))?near:null;
- const place=worldRuntime.near,button=$('worldInteract');const missionKey=worldRuntime.id+'|'+(place?.id||'')+'|'+JSON.stringify(trailProgress.stars);if(worldRuntime.missionKey!==missionKey){worldRuntime.missionKey=missionKey;updatePlazaMission();}setText('worldPlace',worldRuntime.loading?'Carregando cenário…':worldRuntime.error||place&&worldPlaceLabel(place)||'Setas / WASD / analógico para andar · avance na seta azul para entrar');
+ const place=worldRuntime.near,button=$('worldInteract');const missionKey=worldRuntime.id+'|'+(place?.id||'')+'|'+JSON.stringify(trailProgress.stars);if(worldRuntime.missionKey!==missionKey){worldRuntime.missionKey=missionKey;updatePlazaMission();}setText('worldPlace',worldRuntime.loading?'Carregando cenário…':worldRuntime.error||place&&worldPlaceLabel(place)||(typeof inputDevice==='string'&&inputDevice==='touch'?'Toque no caminho para andar · siga a seta azul para entrar':'Setas / WASD / analógico para andar · avance na seta azul para entrar'));
  button.disabled=worldRuntime.loading||!place&&!worldRuntime.error;setText('worldInteract',worldRuntime.error?'Tentar carregar':place?.stage?'Ver desafio · E':place?'Interagir · E':'Aproxime-se');
 }
 async function loadWorldImage(id,retry=false){
@@ -104,7 +104,7 @@ function drawWorldHuman(g,actor,time){
 function drawWorldRival(g,place,time){
  const stage=trails.stage(place.stage);if(!stage||stage.boss&&!trails.unlocked(trailProgress,stage.id))return;
  const node=worldState().navigation.nodes[place.node],height=worldScene().actorSize*1.12;
- stage.foes.forEach((foe,i)=>{const x=node.x+35+i*45,y=node.y-3;worldShadow(g,x,y,13);
+ stage.foes.forEach((foe,i)=>{const x=node.x+58+i*46,y=node.y-3;worldShadow(g,x,y,13);
   const direction=worldActors.facing(x,y,worldState().actor),chibi=worldActors.draw(g,homeImages,foe.name,x,y,height,{direction,time});
   if(!chibi){const image=homeImages.get('rival-'+foe.name);if(image){const width=height*image.width/image.height;g.drawImage(image,x-width/2,y-height,width,height);}else if(stage.boss)art.draw(g,'leader-mikka','0',x-height*.4,y-height,height*.8,height,true);else return;}
   g.font='bold 13px Nunito, sans-serif';g.textAlign='center';g.lineWidth=4;g.strokeStyle='#fff1d6';g.strokeText(foe.name,x,y-height-8);g.fillStyle='#294b43';g.fillText(foe.name,x,y-height-8);

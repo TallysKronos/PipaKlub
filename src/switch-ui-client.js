@@ -1,7 +1,8 @@
 // Controller layer: gamepad in menus and battle, spatial focus, device glyphs and the command bar.
 // It only drives the controls that already exist (clicks, Escape, the battle input); rules stay untouched.
 const switchNav=createSwitchNav();
-let inputDevice='mouse',padSynthetic=false;
+// Phones start with touch glyphs and hints; the first key, click or pad press still switches.
+let inputDevice=typeof matchMedia==='function'&&matchMedia('(pointer:coarse)').matches?'touch':'mouse',padSynthetic=false;if(document.body)document.body.dataset.input=inputDevice;
 const padState={x:0,y:0,cut:false,skill:0,active:false},padPrev=[],padRepeat=switchNav.repeater();
 const glyphURL=id=>{const svg=ART_CONFIG.kit?.glyphs?.[id];return svg?'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg):'';};
 function glyphImage(command,cls='kit-glyph'){const img=document.createElement('img');img.className=cls;img.alt='';img.dataset.glyph=command;img.src=glyphURL(switchNav.glyphSet(inputDevice)[command]);return img;}
