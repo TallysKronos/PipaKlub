@@ -8,6 +8,9 @@ A navegação **Montar → Animar → Revisar e exportar** mostra apenas os cont
 
 - **Biblioteca visual:** miniaturas dos recortes, busca por nome, visibilidade por camada, bloqueio de edição e isolamento da peça selecionada. O isolamento é só uma ajuda da prévia: não altera visibilidade salva nem exportação. A revisão restaura a criatura completa.
 - **Montagem:** arraste múltiplos PNGs para a prévia ou importe todos na mesma seleção. Setas movem peça e pivô juntos; Shift move dez unidades. V ativa movimento, P ativa marcação de pivô. Enquadrar volta à vista geral; Focar peça aproxima o recorte selecionado. Centralizar pivô é um ponto de partida, não substitui a articulação anatômica.
+- **Interpolação:** *Suave* para na pose (bom para golpes e assentamentos); *Contínua* passa pela pose sem parar, com a curva puxada pelas poses vizinhas e fechando o ciclo nas ações contínuas (bom para voo e repouso); *Linear* mantém velocidade constante.
+- **Simplificar poses:** reduz as poses da ação ao mínimo que mantém o movimento a até 0,04 unidade e 0,15° do atual, sempre preservando início, fim e impacto. Testa poses contínuas e suaves e fica com a que precisar de menos. Depois de simplificar, só repete após uma pose nova ser gravada, para o erro não se acumular. Use em gravações densas ou importadas.
+- **Atraso do movimento (acompanhamento):** cada peça pode seguir seus próprios canais com atraso de 0 a 1 s. O corpo continua liderando e a peça termina o gesto um pouco depois, como rabiola e penas. Em ações contínuas o atraso dá a volta no ciclo; em ações únicas a peça segura a primeira pose até o atraso passar.
 - **Recorte automático:** remove margens totalmente transparentes preservando a posição e escala dos pixels visíveis e o pivô. Não modifica o PNG. Peças com expressões registradas mantêm obrigatoriamente o recorte canônico e não usam essa operação.
 - **Animação:** a linha do tempo posiciona as poses proporcionalmente à duração e marca o impacto. Clique para buscar um instante ou use Quadro anterior/próximo e Ir ao impacto. Pose anterior mostra uma referência translúcida do quadro-chave anterior apenas na prévia.
 - **Reaproveitar poses:** copiar/colar atua no canal selecionado, entre instantes ou peças; Zerar canal restaura seus deslocamentos, rotação e escalas. Essas operações criam um ajuste pendente. Grave para confirmar ou use Descartar ajuste. O editor impede trocar de etapa, ação ou instante enquanto houver um ajuste pendente, sem recorrer a uma confirmação bloqueante.
@@ -44,6 +47,10 @@ O preset preserva a arte de `art/soulgen/keys/carcara/color-rig` e segue `art/so
 A auditoria verifica estrutura, ciclos de parentesco, recortes, tempos, alpha e pixels fora das janelas faciais. Avisos de margem exigem inspeção visual. Ela não substitui revisão artística de encaixes ou silhueta.
 
 São aceitos PNGs incorporados ou fontes locais da biblioteca Soulgen. Há limites de peças, imagens, quadros e dimensão do atlas para evitar travar o navegador. O servidor escuta somente em loopback, serve arquivos permitidos e não aceita escrita HTTP. Não acessa contas, saves, banco ou economia do jogo.
+
+## Preset do Carcará
+
+O preset usa as poses do rig aprovado em vez de gravar a curva 30 vezes por segundo: Golpe, Dano e Vitória têm as mesmas poses suaves do rig (6, 6 e 5 poses, sem diferença de movimento); Repouso e Voo usam 13 poses contínuas por ciclo (diferença máxima de 0,06°). Projetos salvos antes desta mudança continuam abrindo como estavam; para enxugar uma ação antiga, use **Simplificar poses**. O atraso fica desligado no preset: o movimento aprovado não muda.
 
 ## Validação
 

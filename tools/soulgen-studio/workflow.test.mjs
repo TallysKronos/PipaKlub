@@ -31,3 +31,21 @@ test('auto trim refuses registered faces, locked art and empty crops without par
  for(const changes of [{faces:{happy:{}}},{locked:true}]){const p={...part(),...changes},before=JSON.stringify(p);assert.throws(()=>trimPart(p,[0,0,1,1]));assert.equal(JSON.stringify(p),before);}
  const p=part(),before=JSON.stringify(p);assert.throws(()=>trimPart(p,null));assert.throws(()=>trimPart(p,[0,0,999,4]));assert.equal(JSON.stringify(p),before);
 });
+test('simplify keeps a dense recording within tolerance, keeps start, end and impact, and is undoable data',async()=>{
+ const {simplifyClip,SIMPLIFY_TOLERANCE}=await import('./workflow.mjs');const {sample,clone,putKey,trackAt}=await import('./model.mjs');
+ const fs=await import('node:fs');const {createCarcara}=await import('./carcara.mjs');
+ const p=await createCarcara(async src=>{const png=fs.readFileSync(new URL('../..'+src,import.meta.url));return {width:png.readUInt32BE(16),height:png.readUInt32BE(20)};});
+ // a dense hand-made style recording: 30 linear keys per second sampled from the preset
+ const c=p.clips.skill,dense=clone(c);dense.frames=[];for(let i=0;i<=60;i++){const t=Math.min(c.seconds,i/30);dense.frames.push({t:Math.round(t*1000)/1000,ease:'linear',values:sample(p,'skill',t).values});}
+ const q=clone(p);q.clips.skill=dense;const reference=clone(dense),r=simplifyClip(q,'skill');
+ assert.equal(r.changed,true);assert.ok(r.after<=r.before*.6,`${r.before} -> ${r.after}`);
+ const times=q.clips.skill.frames.map(f=>f.t);assert.ok(times.includes(0)&&times.includes(c.seconds)&&times.includes(.74));
+ for(let t=0;t<=c.seconds;t+=1/120)for(const id of ['root','wingNear','wingFar','tail']){const a=trackAt(q.clips.skill,id,t),b=trackAt(reference,id,t);assert.ok(Math.abs(a.rotation-b.rotation)<=SIMPLIFY_TOLERANCE.rotation+1e-9);assert.ok(Math.abs(a.x-b.x)<=SIMPLIFY_TOLERANCE.position+1e-9);}
+ assert.equal(simplifyClip(q,'skill').changed,false,'already minimal');
+});
+test('simplify is not repeated on its own output until a pose is recorded',async()=>{
+ const {simplifyClip}=await import('./workflow.mjs');const {putKey,sample,clone}=await import('./model.mjs');
+ const p={schema:'soulgen-studio',version:1,parts:[],clips:{a:{seconds:1,loop:false,frames:Array.from({length:31},(_,i)=>({t:i/30,ease:'linear',values:{root:{x:Math.sin(i/30*3)*10,y:0,rotation:0,scaleX:1,scaleY:1}}}))}}};
+ assert.equal(simplifyClip(p,'a').changed,true);assert.equal(simplifyClip(p,'a').changed,false);
+ putKey(p,'a',.5,clone(sample(p,'a',.5).values));assert.equal(p.clips.a.simplified,undefined);
+});

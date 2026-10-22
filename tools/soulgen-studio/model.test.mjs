@@ -31,3 +31,19 @@ test('atlas export preserves action metadata, impact, bounded dimensions and ref
  const a=exportPlan(preset);assert.ok(a.frames.length>100);assert.equal(a.animations.skill.hitTime,.74);assert.equal(a.animations.skill.hitFrame,9);assert.equal(a.animations.idle.loop,true);assert.equal(a.animations.hurt.loop,false);assert.ok(a.pixelPivot.y<a.cell/2);assert.ok(a.frames.every(f=>f.x+f.w<=a.width&&f.y+f.h<=a.height));assert.equal(a.frames.at(-1).time,preset.clips.victory.seconds);
  assert.throws(()=>exportPlan(preset,{fps:60,cell:512,columns:1}),/grande/);assert.throws(()=>exportPlan(preset,{clipIds:['missing']}));assert.throws(()=>exportPlan(preset,{fps:0}));
 });
+test('continuous (spline) keys pass through every pose, close loops smoothly and the preset stays compact and faithful',()=>{
+ for(const [id,c]of Object.entries(preset.clips)){
+  assert.ok(c.frames.length<=13,id+' keeps few editable poses');
+  for(let t=0;t<=c.seconds;t+=1/120){const p=sample(preset,id,t).values,a=approvedPose(id,t);assert.ok(Math.abs(p.root.y-a.y)<.01,id+' y');assert.ok(Math.abs(p.tail.rotation-a.tail)<.1,id+' tail');}
+  for(const f of c.frames){const v=sample(preset,id,f.t).values.wingNear.rotation;assert.ok(Math.abs(v-(f.values.wingNear?.rotation??0))<1e-9,id+' passes through its key');}
+ }
+ const c=preset.clips.flight,e=1e-4,slope=t=>(sample(preset,'flight',t+e).values.wingNear.rotation-sample(preset,'flight',t-e).values.wingNear.rotation)/(2*e);
+ assert.ok(Math.abs(slope(e*2)-slope(c.seconds-e*2))<1,'loop seam has matching speed');
+ assert.ok(Math.abs(slope(c.frames[1].t))>50,'spline does not stop at an inner key');
+});
+test('lag delays only that part and is validated',()=>{
+ const p=clone(preset);p.parts.find(q=>q.id==='tail').lag=.12;
+ for(const t of [.2,.9,2.5]){const a=sample(p,'idle',t),b=sample(preset,'idle',t-.12);assert.ok(Math.abs(a.values.tail.rotation-b.values.tail.rotation)<1e-9);assert.deepEqual(a.values.root,sample(preset,'idle',t).values.root);}
+ assert.deepEqual(sample(p,'skill',.05).values.tail,sample(preset,'skill',0).values.tail,'one-shot clips hold the first pose until the lag passes');
+ assert.equal(validate(p).ok,true);p.parts[0].lag=2;assert.equal(validate(p).ok,false);p.parts[0].lag=-1;assert.equal(validate(p).ok,false);
+});

@@ -1,4 +1,4 @@
-import {clone,identity,sample} from './model.mjs';
+import {clone,identity,sample,trackAt,CHANNELS} from './model.mjs';
 
 // Editor operations stay separate from the exported animation runtime.
 export function adjacentKey(clip,time,direction){
@@ -36,4 +36,25 @@ export function trimPart(part,bounds){
  const [x,y,w,h]=bounds,[sx,sy,sw,sh]=part.source,[dx,dy,dw,dh]=part.rect;
  if(x<0||y<0||w<1||h<1||x+w>sw||y+h>sh)throw Error('Limites de recorte inválidos.');
  part.source=[sx+x,sy+y,w,h];part.rect=[dx+x/sw*dw,dy+y/sh*dh,w/sw*dw,h/sh*dh];
+}
+
+// Fewest keys that keep every track within tolerance of the current curve (positions in units, rotation in
+// degrees, scales as factors). Keys are spline keys; the start, the end and the impact are always kept.
+export const SIMPLIFY_TOLERANCE={position:.04,rotation:.15,scale:.004};
+export function simplifyClip(project,clipId,tolerance=SIMPLIFY_TOLERANCE){
+ const c=project.clips[clipId];if(!c)throw Error('Animação inexistente.');
+ // Simplifying again would measure against an already simplified curve and let the error pile up.
+ if(c.simplified)return {before:c.frames.length,after:c.frames.length,changed:false};
+ const ids=['root',...project.parts.map(p=>p.id)],step=1/120,times=[];for(let t=0;t<c.seconds;t+=step)times.push(Math.round(t*1e6)/1e6);times.push(c.seconds);
+ const scaleOf=k=>k==='rotation'?tolerance.rotation:k.startsWith('scale')?tolerance.scale:tolerance.position;
+ const target=times.map(t=>Object.fromEntries(ids.map(id=>[id,trackAt(c,id,t)])));
+ const fixed=new Set([0,c.seconds]);if(c.hitTime!=null)fixed.add(Math.round(c.hitTime*1000)/1000);const before=c.frames.length;
+ const worst=candidate=>{let best=null;times.forEach((t,i)=>{for(const id of ids){const v=trackAt(candidate,id,t);for(const k of CHANNELS){const e=Math.abs(v[k]-target[i][id][k])/scaleOf(k);if(!best||e>best.e)best={e,t};}}});return best;};
+ // Try keys that pass through (spline) and keys that settle (smooth); keep whichever needs fewer poses.
+ const fit=ease=>{const keyAt=t=>({t,ease,values:Object.fromEntries(ids.map(id=>[id,trackAt(c,id,t)]))});let keys=[...fixed].sort((a,b)=>a-b).map(keyAt);
+  for(let guard=0;guard<before;guard++){const w=worst({...c,frames:keys});if(!w||w.e<=1)return keys;const t=Math.round(w.t*1000)/1000;if(keys.some(k=>Math.abs(k.t-t)<.0005))return null;keys=[...keys,keyAt(t)].sort((a,b)=>a.t-b.t);}
+  return null;};
+ const keys=['spline','smooth'].map(fit).filter(Boolean).sort((a,b)=>a.length-b.length)[0];
+ if(!keys||keys.length>=before)return {before,after:before,changed:false};
+ c.frames=keys.map(k=>({...k,values:clone(k.values)}));c.simplified=true;return {before,after:keys.length,changed:true};
 }
