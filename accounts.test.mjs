@@ -208,6 +208,20 @@ test('restricted DB adapter verifies TLS, binds values and refuses arbitrary ope
  assert.equal(createGameDatabase({}),null);
  await db.verify();
 });
+test('wild encounter registration and settlement cross the real restricted DB adapter',async()=>{
+ const queries=[];
+ class Pool{on(){}async query(sql,values){queries.push({sql,values});return {rows:[{result:{ok:true}}]};}}
+ const gameDatabase=createGameDatabase({PIPA_DB_HOST:'pooler.example.test',PIPA_DB_USER:'pipa_server.project',PIPA_DB_PASSWORD:'test-only'},{Pool});
+ const accounts=createAccounts({SUPABASE_URL:'https://auth.invalid',SUPABASE_PUBLISHABLE_KEY:'test-only'},{gameDatabase});
+ assert.deepEqual(await accounts.registerWild(userA,match,'park-trail'),{ok:true});
+ assert.deepEqual(await accounts.settleWild({userId:userA,matchId:match,outcome:'won'}),{ok:true});
+ assert.deepEqual(queries,[
+  {sql:'SELECT public.register_wild_run($1,$2,$3) AS result',values:[userA,match,'park-trail']},
+  {sql:'SELECT public.settle_wild_run($1,$2,$3) AS result',values:[userA,match,'won']}
+ ]);
+ await assert.rejects(()=>gameDatabase.rpc('player_campaign',{}),/not allowed/);
+});
+
 test('a capture switches the loser to a permanent kite and keeps reward metadata private',()=>{
  const e=createEngine(),s=e.create(1000);s.rules='capture';const a=e.player('A',0,'a',1000),b=e.player('B',1,'b',1000);Object.assign(a,{accountId:userA,key:'secretA'});Object.assign(b,{accountId:userB,kiteId:'collectible',basicKiteId:'basic',kitePermanent:false,key:'secretB'});a.x=700;b.x=300;a.y=b.y=180;a.input={cut:true};b.hp=1;s.players=[a,b];e.step(s,1100);assert.equal(b.kiteId,'basic');assert.equal(s.events[0].kiteId,'collectible');const publicState=JSON.stringify(e.visible(s));assert.ok(!publicState.includes(userA));assert.ok(!publicState.includes('secretA'));assert.ok(!publicState.includes('collectible'));
 });

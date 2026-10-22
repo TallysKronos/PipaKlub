@@ -6,7 +6,8 @@ const operations=Object.freeze({
  release_player_match:['p_user','p_match'],
  settle_player_cut:['p_event','p_match','p_winner','p_loser','p_kite'],
  finish_player_match:['p_match'],
- register_trail_run:['p_user','p_match','p_stage'],settle_trail_run:['p_user','p_match','p_stage','p_won','p_rounds_lost'],settle_daily_challenge:['p_user','p_match','p_day']
+ register_trail_run:['p_user','p_match','p_stage'],settle_trail_run:['p_user','p_match','p_stage','p_won','p_rounds_lost'],settle_daily_challenge:['p_user','p_match','p_day'],
+ register_wild_run:['p_user','p_match','p_zone'],settle_wild_run:['p_user','p_match','p_outcome']
 });
 export function createGameDatabase(env,{Pool=pg.Pool}={}){
  if(!env.PIPA_DB_HOST||!env.PIPA_DB_USER||!env.PIPA_DB_PASSWORD)return null;
