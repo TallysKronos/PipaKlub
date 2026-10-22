@@ -1,0 +1,195 @@
+{
+  "layers": {
+    "body.png": {
+      "size": [
+        96,
+        96
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "colors": 14,
+      "bounds": [
+        35,
+        24,
+        61,
+        58
+      ],
+      "sha256": "dc9fc3348c4fec2935e5bb076080e0edd23af83dae0b06d66bdd7e526d8d19e1"
+    },
+    "face-blink.png": {
+      "size": [
+        96,
+        96
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "colors": 10,
+      "bounds": [
+        36,
+        39,
+        55,
+        45
+      ],
+      "sha256": "305ee33e7d3d73843d9bccc6ebef1e7ba9c0b9fb3c39e950f30ecda053c18cb9"
+    },
+    "face-fierce.png": {
+      "size": [
+        96,
+        96
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "colors": 14,
+      "bounds": [
+        36,
+        39,
+        55,
+        45
+      ],
+      "sha256": "e1944ed6a0f9c388d980cee97a6fd9914073f1a7eb233e534c1dcb960237eb97"
+    },
+    "face-happy.png": {
+      "size": [
+        96,
+        96
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "colors": 12,
+      "bounds": [
+        36,
+        39,
+        55,
+        45
+      ],
+      "sha256": "32f669b4a8fbb1e64c8356ff9fdf3c69dbbfca08bd66dcd27825d8a94a91957e"
+    },
+    "face-hurt.png": {
+      "size": [
+        96,
+        96
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "colors": 14,
+      "bounds": [
+        36,
+        39,
+        55,
+        45
+      ],
+      "sha256": "042fbb77e0e68029818f8d6ec594690c6fefb0a7030d65f287623b162a6d773c"
+    },
+    "face-normal.png": {
+      "size": [
+        96,
+        96
+      ],
+      "alpha": [
+        0
+      ],
+      "colors": 0,
+      "bounds": null,
+      "sha256": "e93cf7cf69e59a49eaaa011e5f0ec7b6e385408ba1b4025b9231832d7c87ec46"
+    },
+    "review-dark.png": {
+      "size": [
+        1265,
+        712
+      ],
+      "alpha": [
+        255
+      ],
+      "colors": 91543,
+      "bounds": [
+        0,
+        0,
+        1265,
+        712
+      ],
+      "sha256": "ed47f7103139586fb26e5e5ecb60f0b5edf317fad1699d4c8e79ec6b0a6194c5"
+    },
+    "tail.png": {
+      "size": [
+        96,
+        96
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "colors": 8,
+      "bounds": [
+        45,
+        54,
+        69,
+        74
+      ],
+      "sha256": "0d92de150c03e264f97bdb7e06ec574daa049f5b93ce2026a160215e02716a4e"
+    },
+    "wing-far.png": {
+      "size": [
+        96,
+        96
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "colors": 13,
+      "bounds": [
+        21,
+        33,
+        39,
+        51
+      ],
+      "sha256": "764e10b4875c7491f538e4151aaa1848ad87e45f3ccd39eae1f6491ff1a0c872"
+    },
+    "wing-near.png": {
+      "size": [
+        96,
+        96
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "colors": 12,
+      "bounds": [
+        54,
+        32,
+        77,
+        53
+      ],
+      "sha256": "590f2cf3e4a1ff5fc0b4912b142f4cfc57d4d7ac44ec042df97c82a4ddf9aa01"
+    }
+  },
+  "checks": {
+    "base": {
+      "errors": 0,
+      "warnings": 0,
+      "colors": 15,
+      "frames": 16
+    },
+    "noturno": {
+      "errors": 0,
+      "warnings": 0,
+      "colors": 15,
+      "frames": 16
+    },
+    "variant_alpha_and_ink": "preserved"
+  },
+  "source_branch": "origin/claude/soulgen-codex",
+  "pipeline_commit": "41be85d",
+  "integration": "not integrated"
+}
