@@ -28,7 +28,7 @@ function tick(ms){
   ctx.drawImage(p.img,index*w,a.y,w,h,(240-w*3)/2,(230-h*3)/2,w*3,h*3);
  }requestAnimationFrame(tick);
 }requestAnimationFrame(tick);</script>'''
-(root/'preview.html').write_text(html,encoding='utf-8')
+(root/'pixel-legacy-preview.html').write_text(html,encoding='utf-8')
 layers={}
 for p in sorted(root.glob('*.png')):
     if p.name.startswith('pose'):continue

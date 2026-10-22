@@ -2,6 +2,8 @@
 
 **Status:** entregue · **Entrega:** `art/soulgen/keys/carcara/` · **Formato:** ver `art/soulgen/README.md`
 
+**Revisão preferida após feedback do usuário:** `keys/carcara/color-rig/`, com arte original colorida, animação contínua e expressões de golpe/dano/vitória. A restrição de 15 cores e as verificações do pipeline abaixo documentam a versão anterior; não se aplicam à nova apresentação solicitada. A prévia principal agora abre a revisão colorida.
+
 Entrega local de 2026-10-21: nove camadas 96×96, `key.json`, pose composta, fonte gerada e prompts, prévia autônoma e validação. Pipeline original executado nas versões normal/noturna: 16 quadros por versão, 15 cores, zero erros e zero avisos; contorno e alpha da variante preservados. Animações inspecionadas na prévia sobre fundos claro/escuro. Consulte `keys/carcara/README.md`. A integração no jogo e a publicação permanecem etapas separadas.
 
 ## Quem é

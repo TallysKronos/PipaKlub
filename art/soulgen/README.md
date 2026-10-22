@@ -1,4 +1,19 @@
-# Soulgen · pipeline de Soulmonsters em pixel art
+# Soulgen · arte em camadas e animação de Soulmonsters
+
+## Diretriz atual aprovada
+
+A referência aprovada pelo usuário em 2026-10-21 é o **rig colorido com expressões registradas do Carcará**. Preserve a arte original em cores e detalhes, articule as partes por pivôs fixos e sincronize olhos/sobrancelhas com golpe, dano e vitória. Não converta automaticamente esse modelo em pixel art ou em uma variante monocromática.
+
+- [Diretrizes completas de criação, animação e revisão](DIRETRIZES-RIG-COLORIDO.md)
+- [Modelo de brief para novas criaturas](BRIEF-RIG-COLORIDO.template.json)
+- [Exemplo aprovado e reprodução](keys/carcara/color-rig/README.md)
+- [Prévia independente do Carcará](keys/carcara/preview.html)
+
+O exemplo é a referência do comportamento e do acabamento aprovados. Espécies novas precisam de suas próprias anatomias, cores, fontes, recortes e pivôs; não devem herdar coordenadas do Carcará por cópia.
+
+## Pipeline anterior de pixel art
+
+As regras abaixo descrevem um formato alternativo anterior. A grade 96×96, a paleta de até 15 cores, o alpha binário e `tools/soulgen/lint.py` só se aplicam a esse formato quando solicitado explicitamente. Não são critérios de aprovação do rig colorido. Os arquivos e ferramentas anteriores permanecem preservados.
 
 Integração entre quem desenha (Codex ou artista) e o gerador (Claude). O artista desenha **uma pose-chave por espécie**, separada em camadas; o gerador faz todas as animações, variantes de cor e verificações, e exporta no formato do jogo.
 
