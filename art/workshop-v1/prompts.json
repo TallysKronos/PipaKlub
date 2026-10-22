@@ -1,0 +1,17 @@
+{
+  "tool": "image_gen",
+  "date": "2026-10-22",
+  "background": {
+    "prompt": "Create a finished 2D anime adventure game background for Soulmonsters' kite-making workshop, called Oficina das Almas. Landscape 3:2 composition. A warmly sunlit Brazilian neighborhood artisan studio, seen as a close elevated three-quarter view of a large wooden workbench. Main CENTRAL 65 percent of image is an EMPTY pale warm cream cutting mat on a wooden desk, unobstructed and flat for gameplay overlay. Around the OUTSIDE edges only: bamboo spars in a jar, small spool of teal thread, rolls of ivory kite paper, subtle terracotta drawers, leafy plant, hanging little teal and ivory paper kites on rear wall. Warm honey light from upper left, navy contour ink, restrained cel-shaded painted 2D anime background, rich warm wood against cool teal accents, handmade magical realism. No people, NO creatures, no letters, no labels, no UI, no grid, no watermark. The craftable creature and interactive objects will be overlaid separately in the EMPTY center. Carefully composed game-ready illustration, clean shapes and texture understated; not photorealistic, not 3D. Art must look full color not a blue blueprint.",
+    "source": "exec-3fc39e71-aa4a-4dd5-988e-7684f6a1fd17.png",
+    "output": "assets/workshop/v1/bench.png",
+    "transparent": false
+  },
+  "rabbito": {
+    "prompt": "Create a transparent production cutout asset atlas for the Soulmonsters Rabbito shown in the reference, matching EXACTLY the first standing Rabbito on upper left: adorable ivory paper rabbit, deep navy blue eyes, teal scarf and angular kite paper anatomy, golden bamboo rods, tied knots and golden bow kite tail. Full color clean anime 2D ink and restrained cel shading. SIX ISOLATED pieces in a perfectly spaced 3 columns x 2 rows atlas, with large transparent gaps, no labels. Top row LEFT: the COMPLETE rabbit body in front three-quarter facing right, including head, face, little arms, standing legs and teal scarf, but WITHOUT both long ears and WITHOUT tail. Top row CENTER: ONE long upright ivory/teal paper kite ear, full bamboo rods and golden knot at its bottom, seen matching same view as body, complete root. Top row RIGHT: the OTHER slightly angled upright ivory/teal kite ear, full rods and complete root. Bottom row LEFT: the golden kite tail with three connected golden bows and continuous curved cord, complete base knot. Bottom row CENTER: SAME earless tailless body, exactly same proportions and silhouette but eyes happily closed with tiny smile, no new limbs or pose. Bottom row RIGHT: TWO separate slender bamboo spars crossed into a kite frame, golden twine ties and small teal paper corners. Do not add an ear to body! Art will be assembled with ears at head roots and tail behind body. Preserve ivory body, teal scarf, navy eyes, golden bamboo from supplied reference. NOT 3D, NOT pixel quantized, not new creature species. Large, isolated, complete painted roots for animation overlap, transparent background.",
+    "reference": "assets/story/kael-birthday-v1/rabbito.png",
+    "source": "exec-7254afe6-53cb-4213-9a70-608dfd97f093.png",
+    "output": "assets/workshop/v1/rabbito-parts.png",
+    "transparent": true
+  }
+}

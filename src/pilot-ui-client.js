@@ -18,10 +18,10 @@ const PILOT_NOTES={
  park:'Explore o capim alto, encontre Pipamons e procure rabiolas. As trilhas de terra são seguras.',wildResume:'Recupere um encontro pendente sem sortear outra recompensa.',classes:'Especialize Rabbito no nível 15 e aprimore sua classe no nível 35.',farm:'Seus parceiros passeando.',
  explorationGroup:'Explore o parque para desenvolver parceiros ou siga a campanha pelos bairros.',playGroup:'Parque dos Ventos, Trilhas, partida rápida, céu do dia, amigos e treino livre.',collection:'Seus Pipamons, níveis e quem voa com você.',dex:'O caderno de campo do Sr. Assis: todas as almáticas já vistas.',
  backpack:'Rabiolas e lembranças guardadas na mochila.',missions:'O próximo vento a seguir na sua jornada.',city:'Os bairros de Kronasta, seus rivais e trilhas.',
- clubGroup:'Invocação, trocas, banca de linhas, duelos e perfil.',school:'Lições de voo com o Sr. Assis, uma por vez.',optionsGroup:'Som, imagem, privacidade e conta.',
+ clubGroup:'Oficina das Almas, trocas, banca de linhas, duelos e perfil.',school:'Lições de voo com o Sr. Assis, uma por vez.',optionsGroup:'Som, imagem, privacidade e conta.',
  trails:'Desafios em sequência pelos bairros. As vitórias abrem novos caminhos.',quick:'Entre com quem está esperando; bots completam a sala.',daily:'Um céu diferente a cada dia, com recompensa.',
  friends:'Crie uma sala e mande o código para a turma.',practice:'Voo livre contra bots, sem recompensa.',lab:'Experimento em teste.',
- summon:'Chame um Pipamon com uma rabiola e o ritual certo.',trades:'Troque pipas com um amigo, com confirmação dos dois lados.',shop:'Linhas novas para o seu voo, compradas com moedas.',
+ summon:'Construa o corpo do parceiro e una sua rabiola.',trades:'Troque pipas com um amigo, com confirmação dos dois lados.',shop:'Linhas novas para o seu voo, compradas com moedas.',
  history:'Seus últimos duelos e resultados.',events:'Almas especiais de evento.',profile:'Seu nome, nível e conquistas.',professor:'Repetir o primeiro voo com o Sr. Assis.',story:'Rever a abertura sem perder o progresso.',
  sound:'Ligar ou desligar o som.',quality:'Modo leve para aparelhos mais simples.',fullscreen:'Ocupar a tela inteira.',privacy:'Escolher se o jogo pode medir o uso.',rules:'Como o corte, a esquiva e a energia funcionam.',
  reload:'Recarregar as imagens do cenário.',logout:'Sair desta conta neste aparelho.'

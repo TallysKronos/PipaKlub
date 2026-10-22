@@ -1,0 +1,112 @@
+<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Oficina das Almas · criação e despertar</title><style>
+*{box-sizing:border-box}body{margin:0;background:#263f3e;color:#294b53;font:15px/1.6 system-ui,sans-serif}main{max-width:1240px;margin:24px auto;padding:28px;background:#fff4dc;border:2px solid #bca16d;border-radius:16px}h1{font-size:clamp(26px,4vw,40px);line-height:1.15;margin:8px 0 14px}header p{max-width:72ch}button{font:inherit;border:1px solid #9a875f;border-radius:7px;padding:10px 14px;color:#294b53;background:#fff6e2;cursor:pointer;min-height:44px}button:disabled{opacity:.5;cursor:default}.primary{background:#315f60;color:#fff7de}.eyebrow{text-transform:uppercase;font-size:11px;letter-spacing:.13em;font-weight:700}.preview-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0 18px}.preview-tabs [aria-current]{background:#315f60;color:#fff7de}.preview-footer{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:24px;font-size:12px}input{font:inherit}button:focus-visible{outline:3px solid #318d96;outline-offset:3px}@media(max-width:760px){main{margin:0;padding:16px;border-radius:0}.preview-tabs button{padding:8px 10px;font-size:12px}}
+.workshop-room{color:var(--ink,#294b53)}
+.workshop-heading{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 0 18px;border-bottom:1px solid #b8a67f}.workshop-heading h3{font-size:clamp(24px,3vw,34px);margin:5px 0 10px}.workshop-heading p{max-width:54ch;margin:0;line-height:1.6}.workshop-seal{font-size:64px;color:#3c8b86}
+.workshop-steps{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0}.workshop-steps span{font-size:12px;padding:8px 12px;border:1px solid #bbaa8b;border-radius:6px;background:#f8efd9}.workshop-steps [aria-current]{color:#fff7e2;background:#315f60;border-color:#315f60}
+.workshop-layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(210px,1fr);gap:20px;align-items:start}.workshop-scene{position:relative;min-width:0;overflow:hidden;border:2px solid #8e774f;border-radius:12px;background:#ead0a0}.workshop-scene canvas{display:block;width:100%;height:auto;aspect-ratio:3/2}.workshop-motion{position:absolute;top:10px;left:10px;font-size:11px!important;min-height:32px!important;background:#fff8e9e8!important}.workshop-controls h3{font-size:23px;margin:8px 0 12px;line-height:1.2}.workshop-controls p{font-size:13px;line-height:1.6}.workshop-controls>.primary,.workshop-controls>.secondary{width:100%;margin-top:10px}.workshop-points{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0}.workshop-points button{font-size:12px;padding:10px 6px;min-height:44px}.workshop-range{display:grid;grid-template-columns:1fr auto;gap:8px;margin:18px 0;font-size:13px}.workshop-range input{grid-column:1;accent-color:#368982;width:100%;min-height:34px}.workshop-range output{grid-column:2;grid-row:2;align-self:center;font-weight:700;min-width:25px}.workshop-readout{border-top:1px solid #b8a67f;padding-top:15px;margin-top:20px}.workshop-readout span{display:block;font-size:22px;font-weight:700}.workshop-readout small{display:block;font-size:11px;margin-top:7px;line-height:1.5}.workshop-help,.workshop-supplies{font-size:12px!important;line-height:1.6;color:#53635f}.workshop-result{padding:20px 0;text-align:center}.workshop-result h3{font-size:28px}.workshop-result button{margin:6px}.workshop-room #summonMenu{margin-top:20px}.workshop-room #summonMenu p{font-size:13px;line-height:1.6}.workshop-room #summonMessage:not(:empty){padding:12px;background:#f1e5c6;border-left:3px solid #3b817b}.workshop-room button:focus-visible,.workshop-room input:focus-visible{outline:3px solid #266f77;outline-offset:3px}.workshop-room #workshopArtStatus:not(:empty){padding:8px;background:#fff5da;font-size:12px}
+@media(max-width:760px){.workshop-layout{grid-template-columns:1fr}.workshop-controls{padding:0 4px}.workshop-controls h3{font-size:22px}.workshop-steps span{padding:7px 8px;font-size:11px}.workshop-heading{gap:8px}.workshop-seal{font-size:42px}.workshop-motion{top:5px;left:5px;font-size:10px!important;padding:4px 8px!important}}
+</style><main class="workshop-room"><header><div class="eyebrow">Soulmonsters · Elo das Ruínas</div><h1>Oficina das Almas</h1><p>Do primeiro encaixe ao primeiro movimento. Explore a construção do Rabbito na bancada do Sr. Assis.</p><small>Prévia visual interativa · sem conta, consumo de itens ou concessão de parceiros.</small></header><nav class="preview-tabs" id="tabs" aria-label="Etapas para revisão"></nav><div class="workshop-layout"><div class="workshop-scene"><canvas id="scene" width="960" height="640" aria-label="Rabbito na bancada animada"></canvas></div><aside class="workshop-controls"><div id="tool" class="eyebrow"></div><h3 id="title"></h3><p id="hint"></p><div id="inputs"></div><div class="workshop-readout"><span id="score"></span><small>Qualidade visual · sem bônus de combate</small></div><button id="next" class="primary"></button><button id="redo" class="secondary">Refazer etapa</button></aside></div><footer class="preview-footer"><button id="pause">Pausar animação</button><label><input id="reduced" type="checkbox"> Movimento reduzido</label><label>Velocidade <select id="speed"><option value="1">1×</option><option value="0.35">0,35×</option></select></label><span id="status" role="status">Carregando arte…</span></footer></main><script>
+// Construction data shared by the game, preview and tests. No constellation paths.
+const WORKSHOP_STAGES=[
+ {id:'frame',name:'Armação',tool:'Varetas de bambu',title:'Dê estrutura ao corpo.',hint:'Toque nos quatro apoios da bancada em ordem, ou use os botões. O gabarito mantém a estrutura alinhada.',action:'Confirmar armação'},
+ {id:'knots',name:'Nós',tool:'Linha e amarração',title:'Firme cada encontro.',hint:'Ajuste a tensão para 65. Um nó firme sustenta a vela sem apertar demais a armação.',action:'Firmar os nós'},
+ {id:'paper',name:'Papel',tool:'Papel de seda',title:'Revele a forma do parceiro.',hint:'Siga os quatro pontos na bancada, ou use os botões, para recortar e aplicar cada parte do papel.',action:'Aplicar o papel'},
+ {id:'balance',name:'Equilíbrio',tool:'Ponto de amarração',title:'Encontre o ponto de voo.',hint:'Mova o ponto de amarração até 50. Observe a inclinação da montagem e a estabilidade.',action:'Confirmar equilíbrio'},
+ {id:'soul',name:'Elo',tool:'Rabiola da alma',title:'Uma alma. Um novo começo.',hint:'Equilibre vento e tensão em 50 e una a rabiola. A linha será o elo de manifestação.',action:'Unir rabiola e despertar'}
+];
+function workshopInput(){return {joints:[],cuts:[],tension:35,balance:25,wind:35,soulTension:70};}
+function workshopPayload(stage,input){
+ if(stage===0)return {joints:[...input.joints]};
+ if(stage===1)return {tension:Number(input.tension)};
+ if(stage===2)return {cuts:[...input.cuts]};
+ if(stage===3)return {balance:Number(input.balance)};
+ if(stage===4)return {wind:Number(input.wind),tension:Number(input.soulTension)};
+ throw Error('Etapa de montagem inválida.');
+}
+function workshopReady(stage,input){return stage===0?input.joints.length===4:stage===2?input.cuts.length===4:stage>=1&&stage<=4;}
+function validWorkshopPayload(stage,payload){
+ if(!payload||typeof payload!=='object'||Array.isArray(payload))return false;
+ if(stage===0||stage===2){const key=stage===0?'joints':'cuts';return Object.keys(payload).length===1&&Array.isArray(payload[key])&&payload[key].length===4&&payload[key].every((v,i)=>v===i);}
+ const keys=stage===1?['tension']:stage===3?['balance']:stage===4?['wind','tension']:[];
+ return keys.length>0&&Object.keys(payload).length===keys.length&&keys.every(k=>Number.isInteger(payload[k])&&payload[k]>=0&&payload[k]<=100);
+}
+function workshopQuality(stage,input){return stage===1?Math.max(0,100-Math.abs(input.tension-65)*2):stage===3?Math.max(0,100-Math.abs(input.balance-50)*2):stage===4?Math.max(0,100-Math.abs(input.wind-50)-Math.abs(input.soulTension-50)):100;}
+function workshopPose(stage,input,time,reduced=false){
+ const motion=reduced?0:1,settled=stage>=5;
+ return {rise:settled?Math.sin(time*2)*4*motion:0,tilt:(stage===3?(input.balance-50)*.14:0)+Math.sin(time*1.8)*.8*motion*(settled?1:0),ear:Math.sin(time*2.3)*.025*motion,tail:Math.sin(time*2.3-.7)*.06*motion,glow:stage===4?(workshopQuality(stage,input)/100):settled?1:0};
+}
+
+// Canvas composition: art retains its original colour; guides are functional geometry.
+function createWorkshopRenderer({bench,parts,rects,drawCreature,reduced=()=>false}){
+ let lastStage=-1,stageAt=0,lastCount=-1,countAt=0;
+ function piece(g,id,x,y,w,h,angle=0,px=.5,py=.5){
+  const r=rects?.[id];if(!parts?.complete||!r)return;
+  g.save();g.translate(x,y);g.rotate(angle);g.drawImage(parts,...r,-w*px,-h*py,w,h);g.restore();
+ }
+ return function draw(g,job,input,time){
+  const W=960,H=640,stage=job?.stage??0,p=workshopPose(stage,input,time,reduced());
+  if(lastStage!==stage){lastStage=stage;stageAt=time;lastCount=-1;}
+  const ease=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);},arrival=reduced()?1:ease((time-stageAt)/.9);
+  g.clearRect(0,0,W,H);if(bench?.complete&&bench.naturalWidth)g.drawImage(bench,0,0,W,H);
+  else {g.fillStyle='#ead0a0';g.fillRect(0,0,W,H);}
+  const x=480,y=400;
+  // Ground contact is independent of the animated root.
+  g.beginPath();g.ellipse(x,y+119,80,7,0,0,Math.PI*2);g.fillStyle='#50412b30';g.fill();
+  g.save();g.translate(x,y);g.rotate(p.tilt*Math.PI/180);g.translate(0,stage>=5?(-12+p.rise)*arrival:p.rise);
+  if(stage>=5&&!reduced()){
+   const elapsed=time-stageAt,burst=Math.max(0,1-elapsed/2.8),bloom=1+.045*Math.sin(Math.min(elapsed/1.5,1)*Math.PI);g.scale(bloom,bloom);
+   g.save();g.globalAlpha=burst*.55;const aura=g.createRadialGradient(0,-15,15,0,-15,190);aura.addColorStop(0,'#fff6cd');aura.addColorStop(.6,'#79d8ca88');aura.addColorStop(1,'#79d8ca00');g.fillStyle=aura;g.fillRect(-200,-210,400,400);g.restore();
+  }
+  const rabbit=job.modelId==='rabbito'||job.targetModelId==='rabbito';
+  const pts=rabbit?[[-65,-155],[28,-155],[50,8],[-48,70]]:[[0,-100],[105,0],[0,100],[-105,0]],count=stage>0?4:input.joints.length;
+  const ends=rabbit?[[-25,-47],[28,-47],[-48,70],[50,8]]:pts.map((_,i)=>pts[(i+1)%4]);
+  if(lastCount!==count){lastCount=count;countAt=time;}
+  if(stage<3){
+   if(rabbit&&parts?.complete){g.globalAlpha=.10;piece(g,'body',0,30,148,178);piece(g,'earFar',28,-47,42,113,0,.5,.94);piece(g,'earNear',-25,-47,66,119,0,.5,.94);g.globalAlpha=1;}
+   g.strokeStyle='#75685466';g.lineWidth=2;g.setLineDash([6,6]);for(let i=0;i<4;i++){g.beginPath();g.moveTo(...pts[i]);g.lineTo(...ends[i]);g.stroke();}g.setLineDash([]);
+   for(let i=0;i<count;i++){const a=pts[i],b=ends[i],f=stage===0&&i===count-1&&!reduced()?ease((time-countAt)/.4):1;g.beginPath();g.moveTo(...a);g.lineTo(a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f);g.strokeStyle='#6d472b';g.lineWidth=9;g.stroke();g.strokeStyle='#e8bc75';g.lineWidth=5;g.stroke();}
+   if(stage>=1)for(const [a,b] of pts){g.save();g.translate(a,b);g.rotate(.7);g.strokeStyle='#fbefcf';g.lineWidth=4;g.strokeRect(-6,-6,12,12);g.restore();}
+   if(stage===2&&input.cuts.length){if(rabbit){if(input.cuts.length>=1)piece(g,'earNear',-25,-47,66,119,0,.5,.94);if(input.cuts.length>=2)piece(g,'earFar',28,-47,42,113,0,.5,.94);if(input.cuts.length>=3){g.save();if(input.cuts.length===3){g.beginPath();g.rect(-90,-70,180,100);g.clip();}piece(g,'body',0,30,148,178);g.restore();}}else{g.globalAlpha=.22;g.fillStyle='#38a6a0';g.beginPath();pts.slice(0,input.cuts.length+1).forEach(([a,b],i)=>i?g.lineTo(a,b):g.moveTo(a,b));g.lineTo(0,0);g.closePath();g.fill();g.globalAlpha=1;}}
+   if(stage===1){g.fillStyle='#e1d6b6';g.fillRect(-100,130,200,10);g.fillStyle='#398e86';g.fillRect(20,130,20,10);g.fillStyle='#254c5a';const needle=reduced()?input.tension:50+Math.sin(time*2.2)*45;g.fillRect(-100+needle*2,124,3,22);}
+   if(stage===0||stage===2)pts.forEach(([a,b],i)=>{const done=(stage===0?input.joints:input.cuts).length>i;g.beginPath();g.arc(a,b,13,0,Math.PI*2);g.fillStyle=done?'#337f79':'#fff4d5';g.fill();g.strokeStyle='#425959';g.lineWidth=2;g.stroke();g.fillStyle=done?'#fff4d5':'#314c54';g.font='bold 14px sans-serif';g.textAlign='center';g.textBaseline='middle';g.fillText(String(i+1),a,b);});
+  }
+  if(stage>=3){
+   if(rabbit&&parts?.complete&&rects){
+    // One anatomical coordinate space. Ears overlap their fixed roots on the body.
+    if(stage>=4)piece(g,'tail',-52,43,128,85,p.tail,.9,.5);
+    // Keep the canonical body. The unregistered happy body is an unused source study.
+    g.globalAlpha=stage===3?arrival:1;piece(g,'body',0,30,148,178,0,.5,.5);
+    piece(g,'earFar',28,-47,42,113,p.ear,.5,.94);
+    piece(g,'earNear',-25,-47,66,119,-p.ear,.5,.94);g.globalAlpha=1;
+   }else if(drawCreature)drawCreature(g,job,time,-115,-120,230,stage>=5?'victory':'idle');
+   if(stage===3){g.beginPath();g.moveTo(0,10);g.bezierCurveTo(40,80,-50,115,(input.balance-50)*2,155);g.strokeStyle='#254c5a';g.lineWidth=2;g.stroke();g.beginPath();g.arc((input.balance-50)*2,155,7,0,7);g.fillStyle='#b66f42';g.fill();}
+  }
+  if(stage===4||stage>=5){
+   g.save();g.globalAlpha=stage>=5?.35:.12+p.glow*.25;g.strokeStyle='#309d96';g.lineWidth=3;g.beginPath();g.ellipse(0,115,155,30,0,0,7);g.stroke();g.restore();
+   if(!reduced())for(let i=0;i<12;i++){const a=i*2.399+time*.3,r=105+Math.sin(time+i)*16;g.fillStyle=i%2?'#e7b54c':'#53a69e';g.globalAlpha=.65;g.beginPath();g.arc(Math.cos(a)*r,Math.sin(a)*r*.6-25,2+i%3,0,7);g.fill();}g.globalAlpha=1;
+   g.strokeStyle='#2c716e';g.lineWidth=2;g.beginPath();g.moveTo(0,65);g.bezierCurveTo(65,135,-60,120,-12,177);g.stroke();
+  }
+  g.restore();
+  // Functional preview caption; not painted into the source image.
+  g.fillStyle='#fff8e9e8';g.fillRect(340,554,280,38);g.fillStyle='#294b53';g.font='bold 15px sans-serif';g.textAlign='center';g.fillText(stage>=5?'Um novo elo ganhou vida':stage<3?'Gabarito de montagem · quatro apoios':job.name||'Seu parceiro',480,578);
+ };
+}
+
+const config={"version":1,"images":{"bench":{"image":"workshop/v1/bench.png"},"parts":{"image":"workshop/v1/rabbito-parts.png"}},"rects":{"body":[112,172,334,425],"happy":[620,595,312,413],"earNear":[640,27,324,464],"earFar":[1250,65,165,448],"tail":[55,690,452,274],"frame":[1140,645,352,332]},"logicalSize":[960,640],"sourceSize":[1536,1024],"identity":"Rabbito aprovado em assets/story/kael-birthday-v1/rabbito.png","notes":"Arte original gerada por image_gen. Variante feliz preservada como estudo; não alternar o corpo sem registro facial. Outros modelos usam o atlas existente."},images={},$=id=>document.getElementById(id);let stage=0,input=workshopInput(),clock=0,last=0,playing=true;
+const poseJob=()=>({stage,status:stage===5?'completed':'building',modelId:'rabbito',name:'Rabbito'});
+const draw=createWorkshopRenderer({bench:images.bench,parts:images.parts,rects:config.rects,reduced:()=>$('reduced').checked});
+const loaded=Promise.all(Object.entries(config.images).map(([id,a])=>new Promise((resolve,reject)=>{const im=new Image();images[id]=im;im.onload=resolve;im.onerror=reject;im.src='/assets/'+a.image;})));
+let render;
+function update(){
+ $('tabs').replaceChildren();[...WORKSHOP_STAGES.map(s=>s.name),'Despertar'].forEach((name,i)=>{const b=document.createElement('button');b.textContent=String(i+1)+' '+name;if(stage===i)b.setAttribute('aria-current','step');b.onclick=()=>{stage=i;input=workshopInput();update();};$('tabs').append(b);});
+ const s=WORKSHOP_STAGES[stage];$('tool').textContent=s?.tool||'Um novo elo ganhou vida';$('title').textContent=s?.title||'Rabbito despertou.';$('hint').textContent=s?.hint||'Orelhas e rabiola acompanham o corpo sem soltar seus pontos de encaixe. A sombra permanece na bancada.';$('inputs').replaceChildren();
+ if(stage===0||stage===2){const field=stage===0?'joints':'cuts';for(let i=0;i<4;i++){const b=document.createElement('button');b.textContent=(stage===0?'Encaixar vareta ':'Recortar parte ')+(i+1);b.disabled=i!==input[field].length;b.onclick=()=>{input[field].push(i);update();};$('inputs').append(b);}}
+ else if(stage<5){const fields=stage===1?[['tension','Tensão do nó',65]]:stage===3?[['balance','Ponto de amarração',50]]:[['wind','Direção do vento',50],['soulTension','Tensão da linha',50]];for(const [key,label,target] of fields){const row=document.createElement('label');row.className='workshop-range';const caption=document.createElement('span');caption.textContent=label+' · alvo '+target;const range=document.createElement('input');range.type='range';range.min=0;range.max=100;range.value=input[key];range.setAttribute('aria-label',label);const out=document.createElement('output');out.textContent=input[key];range.oninput=()=>{input[key]=Number(range.value);out.textContent=range.value;readout();};row.append(caption,range,out);$('inputs').append(row);}const help=document.createElement('button');help.textContent='Ajustar com o Sr. Assis';help.onclick=()=>{fields.forEach(([key,,target])=>input[key]=target);update();};$('inputs').append(help);}
+ $('next').hidden=stage===5;$('next').textContent=s?.action||'';$('redo').textContent=stage===5?'Construir novamente':'Refazer etapa';readout();
+}
+function readout(){$('next').disabled=!workshopReady(stage,input);$('score').textContent=stage===0?input.joints.length+'/4 encaixes':stage===2?input.cuts.length+'/4 partes':stage===5?'O primeiro voo começa com um elo':workshopQuality(stage,input)+'% · ajuste';}
+$('next').onclick=()=>{if(workshopReady(stage,input)){stage++;input=workshopInput();update();}};$('redo').onclick=()=>{if(stage===5)stage=0;input=workshopInput();update();};$('pause').onclick=()=>{playing=!playing;$('pause').textContent=playing?'Pausar animação':'Reproduzir animação';last=0;};
+$('scene').onpointerdown=e=>{if(![0,2].includes(stage))return;const r=$('scene').getBoundingClientRect(),x=(e.clientX-r.left)/r.width*960-480,y=(e.clientY-r.top)/r.height*640-400,field=stage===0?'joints':'cuts',n=input[field].length,p=[[-65,-155],[28,-155],[50,8],[-48,70]][n];if(p&&Math.hypot(x-p[0],y-p[1])<30){input[field].push(n);update();}};
+document.addEventListener('visibilitychange',()=>{last=0;});
+loaded.then(()=>{render=createWorkshopRenderer({bench:images.bench,parts:images.parts,rects:config.rects,reduced:()=>$('reduced').checked});$('status').textContent='Arte carregada · mesma composição usada no jogo';function tick(t){if(!document.hidden&&playing)clock+=(last?Math.min((t-last)/1000,.05):0)*Number($('speed').value);last=document.hidden?0:t;render($('scene').getContext('2d'),poseJob(),input,clock);requestAnimationFrame(tick);}requestAnimationFrame(tick);}).catch(()=>$('status').textContent='Falha ao carregar as imagens. Recarregue a prévia.');update();
+</script></html>

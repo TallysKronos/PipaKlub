@@ -8,7 +8,7 @@ courtyard.innerHTML=`<div class="courtyard-stage" id="courtyardStage"><canvas id
 <button class="scene-destination" data-home-action="collection" style="left:19%;top:43%"><span>Meus parceiros</span></button>
 <button class="scene-destination" data-home-action="city" style="left:51%;top:39%"><span>Explorar a cidade</span></button>
 <button class="scene-destination" data-home-action="shop" style="left:86%;top:40%"><span>Banca de linhas</span></button>
-<button class="scene-destination" data-home-action="summon" style="left:84%;top:61%"><span>Invocação</span></button>
+<button class="scene-destination" data-home-action="summon" style="left:84%;top:61%"><span>Oficina das Almas</span></button>
 <button class="scene-destination" data-home-action="friends" style="left:91%;top:84%"><span>Encontro dos amigos</span></button>
 <button class="scene-destination" data-home-action="professor" style="left:22%;top:70%"><span>Sr. Assis</span></button></div></div>
 <div class="home-hud"><div class="home-identity"><b id="homePlayerName"></b><small id="homePartnerName"></small></div><div class="home-objective"><small>Seu próximo voo</small><b id="homeObjective"></b></div><button class="home-command" id="homeMenuButton">Menu · Esc</button></div>
@@ -165,7 +165,7 @@ const homeMenuGroups={
  root:[['playGroup','Jogar','menu-play'],['collection','Parceiros','menu-partners'],['dex','Pipa Dex','menu-dex'],['clubGroup','Clube','menu-club'],['school','Escola','menu-school'],['optionsGroup','Opções','menu-options']],
  playGroup:[['root','← Voltar'],['explorationGroup','Exploração e campanha'],['quick','Partida rápida'],['daily','Céu do dia'],['friends','Jogar com amigos'],['practice','Treino livre'],...(new URLSearchParams(location.search).has('lab')?[['lab','Laboratório · Duelo nas Alturas']]:[])],
  explorationGroup:[['playGroup','← Voltar'],['park','Parque dos Ventos'],['wildResume','Retomar encontro selvagem'],['trails','Trilhas da cidade']],
- clubGroup:[['root','← Voltar'],['farm','Fazenda dos parceiros'],['summon','Invocação'],['trades','Trocas por convite'],['shop','Banca de linhas'],['history','Meus duelos'],['events','Souls de evento'],['profile','Meu perfil'],['professor','Meu primeiro voo'],['story','Rever a abertura']],
+ clubGroup:[['root','← Voltar'],['farm','Fazenda dos parceiros'],['summon','Oficina das Almas'],['trades','Trocas por convite'],['shop','Banca de linhas'],['history','Meus duelos'],['events','Souls de evento'],['profile','Meu perfil'],['professor','Meu primeiro voo'],['story','Rever a abertura']],
  optionsGroup:[['root','← Voltar'],['save','Save e bancos'],['autosave','Salvamento automático'],['sound','Som'],['quality','Qualidade da imagem'],['fullscreen','Tela cheia'],...(CLARITY_ID?[['privacy','Privacidade']]:[]),['feedback','Enviar feedback da demo'],['rules','Regras'],['reload','Recarregar cenário'],['logout','Sair da conta']]
 };
 let homeMenuGroup='root';

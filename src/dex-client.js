@@ -18,7 +18,7 @@ function renderDexItems(entry){
   image.alt=item.name;image.width=209;image.height=209;image.loading='lazy';image.decoding='async';
   const fallback=uiElement('span','Imagem indisponível','dex-item-fallback');fallback.hidden=true;
   image.onerror=()=>{image.hidden=true;fallback.hidden=false;};image.onload=()=>{image.hidden=false;fallback.hidden=true;};image.src=item.url;stage.append(image,fallback);
-  const info=uiElement('div',undefined,'dex-item-info');info.append(uiElement('span','Rabiola','dex-item-kind'),uiElement('h5',item.name),uiElement('p',companion?'Associada ao companheiro':item.source==='event'?'Origem: evento': 'Origem: '+entry.name+' selvagem'),uiElement('span',companion?'Item de referência':item.source==='event'?'Concessão de evento · Invocação no Sr. Assis':owned(item.id)?'Conquistada ✓':bossDrop(item.id)?'Prêmio: '+bossDrop(item.id).name+' (Trilhas)':'Drop previsto · Em breve','dex-item-status'+(owned(item.id)?' owned':'')));
+  const info=uiElement('div',undefined,'dex-item-info');info.append(uiElement('span','Rabiola','dex-item-kind'),uiElement('h5',item.name),uiElement('p',companion?'Associada ao companheiro':item.source==='event'?'Origem: evento': 'Origem: '+entry.name+' selvagem'),uiElement('span',companion?'Item de referência':item.source==='event'?'Concessão de evento · Oficina das Almas no Sr. Assis':owned(item.id)?'Conquistada ✓':bossDrop(item.id)?'Prêmio: '+bossDrop(item.id).name+' (Trilhas)':'Drop previsto · Em breve','dex-item-status'+(owned(item.id)?' owned':'')));
   card.append(stage,info);return card;
  });
  $('dexItemsList').replaceChildren(...cards);$('dexItemsSection').hidden=cards.length===0;

@@ -37,7 +37,7 @@ function initPlaza(){
  const footer=courtyard.querySelector('.home-footer');footer.className='plaza-footer';$('homeMotion').className='plaza-motion';
  const residents=$('homeResidents');residents.setAttribute('aria-live','polite');footer.append(uiElement('small','Clique no caminho para passear.','plaza-walk-hint'));
  const destinations=$('homeDestinations');destinations.replaceChildren();
- for(const [action,label,x,y]of [['playGroup','Clube · Jogar',49,43],['summon','Ateliê · Invocação',17,52],['shop','Banca de linhas',74,53],['professor','Sr. Assis',31,61]]){
+ for(const [action,label,x,y]of [['playGroup','Clube · Jogar',49,43],['summon','Ateliê · Oficina das Almas',17,52],['shop','Banca de linhas',74,53],['professor','Sr. Assis',31,61]]){
   const b=uiElement('button',undefined,'scene-destination');b.dataset.homeAction=action;b.style.left=x+'%';b.style.top=y+'%';b.style.setProperty('--destination-x',x+'%');b.style.setProperty('--destination-y',y+'%');b.append(uiElement('span',label));b.setAttribute('aria-label',label);plazaAction(b,()=>action==='playGroup'?(openHomeMenu(),renderHomeMenu('playGroup')):homeActions[action]());destinations.append(b);
  }
  $('courtyardStage').addEventListener('click',event=>{
@@ -87,12 +87,12 @@ async function openPlazaBag(){
  const container=$('plazaBagItems'),status=$('plazaBagStatus'),owner=playerAccount?.profile.id;
  modalReturnFocus=origin;$('dialogAction').focus({preventScroll:true});
  try{
-  const response=await accountRequest('summon',{action:'inventory',sessionId:summonSession});
+  const response=await accountRequest('workshop',{action:'inventory'});
   if(owner!==playerAccount?.profile.id||$('plazaBagItems')!==container||$('modal').style.display!=='flex')return;
-  const tails=(response.summon?.tails||[]).filter(t=>['ready','damaged'].includes(t.status));status.textContent=tails.length?tails.length+' rabiola'+(tails.length===1?'':'s')+' na mochila.':'Sua mochila está vazia. Encontre rabiolas nos duelos contra Pipamons selvagens.';
+  const tails=(response.workshop?.tails||[]).filter(t=>['ready','damaged'].includes(t.status));status.textContent=tails.length?tails.length+' rabiola'+(tails.length===1?'':'s')+' na mochila.':'Sua mochila está vazia. Encontre rabiolas nos duelos contra Pipamons selvagens.';
   const groups=new Map();for(const tail of tails){const key=tail.modelId+':'+tail.status;if(!groups.has(key))groups.set(key,{tail,count:0});groups.get(key).count++;}
-  for(const {tail,count}of groups.values()){const card=uiElement('article',undefined,'plaza-bag-item');card.append(summonTailArt(tail.modelId),uiElement('b','Rabiola de '+summonDisplayName(tail)),uiElement('span','×'+count,'plaza-bag-quantity'),uiElement('small',tail.status==='ready'?'Pronta para invocação':'Danificada'));container.append(card);}
-  const go=uiElement('button','Visitar o invocador','primary');go.onclick=()=>{closeModal();homeActions.summon()};container.after(go);
+  for(const {tail,count}of groups.values()){const card=uiElement('article',undefined,'plaza-bag-item');card.append(summonTailArt(tail.modelId),uiElement('b','Rabiola de '+summonDisplayName(tail)),uiElement('span','×'+count,'plaza-bag-quantity'),uiElement('small',tail.status==='ready'?'Pronta para montagem':'Danificada'));container.append(card);}
+  const go=uiElement('button','Visitar o artesão','primary');go.onclick=()=>{closeModal();homeActions.summon()};container.after(go);
  }catch(e){if(owner!==playerAccount?.profile.id||$('plazaBagItems')!==container)return;status.textContent=e.message||'Não foi possível carregar a mochila.';const retry=uiElement('button','Tentar novamente','secondary');retry.onclick=openPlazaBag;container.append(retry);}
 }
 initPlaza();

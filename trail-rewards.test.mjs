@@ -30,9 +30,9 @@ test('verified trail ledger: no forged client awards, unique boss tail, summon/e
  for(const stage of ['morro-2','morro-3','morro-4']){match=await create(stage);await settle(match,stage,true,stage==='morro-3'?2:0);await finish(match);}
  match=await create('morro-5');const reward=await settle(match,'morro-5');assert.equal(reward.drop,'rabiola-raio-de-sol');assert.ok(reward.tailId);await finish(match);
  await auth(a);const snapshot=(await db.query('select public.get_player_trail_result($1) r',[match])).rows[0].r;assert.equal(snapshot.result.tailId,reward.tailId);assert.equal(snapshot.rewards.length,1);assert.equal(snapshot.rewards[0].status,'ready');
- let inventory=(await db.query("select public.player_summon('inventory') r")).rows[0].r;assert.ok(inventory.seen.some(p=>p.modelId==='raio'&&p.availableTailIds.includes(reward.tailId)));
- const session=randomUUID(),ritual=(await db.query("select public.player_summon('start',$1,null,null,null,$2,'raio') r",[reward.tailId,session])).rows[0].r;
- const called=(await db.query("select public.player_summon('attempt',null,$1,$2,$3,$4) r",[ritual.id,ritual.pattern,randomUUID(),session])).rows[0].r;assert.equal(called.status,'succeeded');await db.query('select public.equip_player_kite($1)',[called.kiteId]);
+ let inventory=(await db.query("select public.player_workshop('inventory') r")).rows[0].r;assert.ok(inventory.seen.some(p=>p.modelId==='raio'&&p.availableTailIds.includes(reward.tailId)));
+ const job=(await db.query("select public.player_workshop('start',$1,null,'raio') r",[reward.tailId])).rows[0].r;
+  let called;for(const [stage,payload]of [{joints:[0,1,2,3]},{tension:65},{cuts:[0,1,2,3]},{balance:50},{wind:50,tension:50}].entries())called=(await db.query("select public.player_workshop('advance',null,$1,null,$2,$3,$4) r",[job.id,stage,payload,randomUUID()])).rows[0].r;assert.equal(called.status,'completed');await db.query('select public.equip_player_kite($1)',[called.kiteId]);
  await server();assert.deepEqual(await settle(match,'morro-5'),reward,'retries cannot resurrect a consumed tail');
  const replay=await create('morro-5');const noDrop=await settle(replay,'morro-5');assert.equal(noDrop.tailId,null);assert.equal(noDrop.drop,null);await finish(replay);
  await auth(a);const final=await read();assert.equal(final.rewards.length,1);assert.equal(final.rewards[0].status,'consumed');

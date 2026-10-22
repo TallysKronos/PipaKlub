@@ -1,5 +1,6 @@
 // Supabase credentials stay on the server. Browser sessions use HttpOnly cookies.
 import {createEngine} from './engine.js';
+import {validWorkshopPayload} from './workshop-model.js';
 const progressionEngine=createEngine(),pipamonProgression=progressionEngine.pipamons;
 const UUID=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export class AccountError extends Error{constructor(message,status=400){super(message);this.status=status;}}
@@ -28,6 +29,7 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
    if(r.status===429)throw new AccountError('Muitas tentativas. Aguarde um pouco e tente novamente.',429);
    if(data?.error_code==='email_not_confirmed')throw new AccountError('Confirme seu e-mail antes de entrar.',403);
    if(data?.code?.startsWith('PGRST')||data?.code==='42883')throw new AccountError('O banco de contas ainda precisa ser configurado.',503);
+   if(message.startsWith('Oficina:'))throw new AccountError(message,409);
    if(message.startsWith('Classes:')||message.startsWith('Exploração:')||message.startsWith('Progressão:')||message.startsWith('Save:')||message.startsWith('Save alterado')||message.startsWith('Depósito:')||message.startsWith('Digite EXCLUIR')||message.startsWith('Encerre sua troca')||message.startsWith('Conclua sua invocação')||message.startsWith('Conclua o primeiro voo')||message.startsWith('Sua coleção mudou')||message.startsWith('Primeiro voo:')||message.startsWith('Linhas:')||message.startsWith('Trilhas:')||message.startsWith('Invocação:')||message.startsWith('Troca:')||message.includes('Saia da partida')||message.includes('outra partida')||message.includes('colecionável')||message.includes('coleção')||message.includes('caracteres'))throw new AccountError(message,409);
    if(data?.error_code==='over_email_send_rate_limit'||data?.error_code==='email_address_not_authorized')throw new AccountError('O envio de confirmação está indisponível. O administrador precisa configurar o e-mail do jogo.',503);
    throw new AccountError(r.status>=500?'O serviço de contas está indisponível. Tente novamente.':'Não foi possível concluir. Confira os dados e tente novamente.',r.status>=500?503:400);
@@ -181,14 +183,17 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
     if(typeof b.modelId!=='string'||!/^[a-z0-9-]{1,80}$/.test(b.modelId))throw new AccountError('Pipamon inválido.');
     await rpc('record_player_sighting',{p_model:b.modelId},who.access);return json({ok:true},200,who.setCookies);
    }
-   if(action==='summon'){
-    if(!['inventory','start','attempt','touch','abandon','discard'].includes(b.action))throw new AccountError('Ação de invocação inválida.');
-    for(const k of ['tailId','ritualId','requestId','sessionId'])if(b[k]!=null&&!UUID.test(String(b[k])))throw new AccountError('Ritual inválido.');
-    if(b.targetModelId!=null&&(typeof b.targetModelId!=='string'||!/^[a-z0-9-]{1,80}$/.test(b.targetModelId)))throw new AccountError('Pipamon inválido.');
-    if(b.path!=null&&(!Array.isArray(b.path)||b.path.length<1||b.path.length>9||b.path.some(n=>!Number.isInteger(n)||n<1||n>9)))throw new AccountError('Desenho inválido.');
-    if(b.action==='start')rateLimit(request,'summon-start');
+   if(action==='workshop'){
+    if(!['inventory','start','advance','restore'].includes(b.action))throw new AccountError('Ação de oficina inválida.');
+    for(const k of ['tailId','jobId','requestId'])if(b[k]!=null&&!UUID.test(String(b[k])))throw new AccountError('Montagem inválida.');
+    if(b.targetModelId!=null&&(typeof b.targetModelId!=='string'||!/^[a-z0-9-]{1,80}$/.test(b.targetModelId)))throw new AccountError('Molde inválido.');
+    if(b.action==='advance'&&(!validWorkshopPayload(b.stage,b.payload)||!b.requestId||!b.jobId))throw new AccountError('Oficina: complete os encaixes ou confira os ajustes desta etapa.');
+    if(b.action==='start')rateLimit(request,'workshop-start');
     checkPending(who.id);
-    return json({summon:await rpc('player_summon',{p_action:b.action,p_tail:b.tailId||null,p_ritual:b.ritualId||null,p_path:b.path||null,p_request:b.requestId||null,p_session:b.sessionId||null,p_target:b.targetModelId||null},who.access)},200,who.setCookies);
+    return json({workshop:await rpc('player_workshop',{p_action:b.action,p_tail:b.tailId||null,p_job:b.jobId||null,p_target:b.targetModelId||null,p_stage:b.stage??null,p_payload:b.payload||null,p_request:b.requestId||null},who.access)},200,who.setCookies);
+   }
+   if(action==='summon'){
+    return json({error:'O ritual de constelação foi substituído pela Oficina das Almas. Recarregue o jogo para construir seu parceiro.'},410,who.setCookies);
    }
    if(action==='trade'){
     if(!['create','join','read','offer','confirm','cancel','history'].includes(b.action))throw new AccountError('Ação de troca inválida.');

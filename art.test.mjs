@@ -69,10 +69,10 @@ test('plaza HUD uses account progression, routes missions and options, and never
 });
 test('plaza backpack displays only confirmed owned tails and ignores replies from a previous account',async()=>{
  const a=app({seen:true});await a.settle();
- a.run(`playerAccount={profile:{id:'bag-a',nickname:'Ana',level:1},inventory:[]};accountRequest=async()=>({summon:{tails:[{id:'one',modelId:'basica',name:'Carcará',status:'ready'},{id:'another',modelId:'basica',name:'Carcará',status:'ready'},{id:'two',modelId:'basica',name:'Carcará',status:'damaged'},{id:'used',modelId:'basica',name:'Carcará',status:'consumed'}]}});`);
+ a.run(`playerAccount={profile:{id:'bag-a',nickname:'Ana',level:1},inventory:[]};accountRequest=async()=>({workshop:{tails:[{id:'one',modelId:'basica',name:'Carcará',status:'ready'},{id:'another',modelId:'basica',name:'Carcará',status:'ready'},{id:'two',modelId:'basica',name:'Carcará',status:'damaged'},{id:'used',modelId:'basica',name:'Carcará',status:'consumed'}]}});`);
  await a.run('openPlazaBag()');assert.equal(a.document.querySelectorAll('.plaza-bag-item').length,2);assert.match(a.document.getElementById('plazaBagStatus').textContent,/3 rabiolas/);
  const cards=[...a.document.querySelectorAll('.plaza-bag-item')];assert.match(cards[0].textContent,/×2/);assert.match(cards[0].textContent,/Pronta/);assert.match(cards[1].textContent,/×1/);assert.match(cards[1].textContent,/Danificada/);
- a.run('closeModal();var bagResolve;accountRequest=()=>new Promise(resolve=>bagResolve=resolve);var bagRequest=openPlazaBag();playerAccount={profile:{id:"bag-b"},inventory:[]};bagResolve({summon:{tails:[{id:"old",modelId:"basica",name:"Carcará",status:"ready"}]}})');
+ a.run('closeModal();var bagResolve;accountRequest=()=>new Promise(resolve=>bagResolve=resolve);var bagRequest=openPlazaBag();playerAccount={profile:{id:"bag-b"},inventory:[]};bagResolve({workshop:{tails:[{id:"old",modelId:"basica",name:"Carcará",status:"ready"}]}})');
  await a.run('bagRequest');assert.equal(a.document.querySelectorAll('.plaza-bag-item').length,0);assert.equal(a.run('playerAccount.inventory.length'),0);
 });
 test('portrait collections keep selection, filtering and confirmed equipment separate from ownership',async()=>{
@@ -214,14 +214,12 @@ test('club menu isolates features, preserves trade inputs and returns home when 
  assert.equal(a.document.getElementById('eventSoulsList').parentElement.id,'club-events');
 });
 
-test('integrated designs preserve leader discovery and reveal ritual effects only after confirmed success',async()=>{
+test('integrated designs preserve leader discovery and show workshop completion only after a confirmed job',async()=>{
  const a=app({seen:true});await a.settle();a.run('playerAccount={profile:{nickname:"Ana",level:1},inventory:[]};openTrails()');await a.settle();
  assert.doesNotMatch(a.document.getElementById('trailList').textContent,/Mikka|Lohan|Kleie/);
  for(const [stage,name]of [['morro-5','Mikka'],['praia-5','Lohan'],['torres-5','Kleie']]){a.run("trailPick='"+stage+"';renderStage()");await a.settle();assert.equal(a.document.getElementById('stageSpeaker').textContent,'Sr. Assis:');assert.equal(a.document.getElementById('trailStart').disabled,true);}
- a.run("updateSummonRun({status:'failed',remaining:0})");assert.equal(a.document.querySelector('.ritual-reveal-portal'),null);
- a.run("updateSummonRun({status:'succeeded',remaining:2,name:'Mata',color:1})");assert.equal(a.document.querySelectorAll('#summonReveal .ritual-reveal-portal').length,1);assert.equal(a.document.querySelectorAll('#summonReveal .ritual-reveal-particles').length,1);
- assert.equal(a.document.getElementById('summonNotice').hidden,true,'completed rituals do not keep the interruption warning');
- assert.match(a.document.documentElement.style.getPropertyValue('--ritual-scene'),/ascendente-fundo-v1/);
+ a.run("summonRitual={id:'job',stage:4,status:'building',modelId:'mata'};renderWorkshop()");assert.equal(a.document.getElementById('summonReveal').hidden,true);
+ a.run("summonRitual={id:'job',stage:5,status:'completed',name:'Mata',modelId:'mata',quality:100};renderWorkshop()");assert.equal(a.document.getElementById('summonReveal').hidden,false);assert.match(a.document.getElementById('workshopResultTitle').textContent,/despertou/);assert.equal(a.document.getElementById('summonBoard'),null);
 });
 
 test('daily menu requires login, renders confirmed coins, and starts only a server daily room',async()=>{
@@ -234,11 +232,11 @@ test('daily menu requires login, renders confirmed coins, and starts only a serv
  await a.run('startDaily()');assert.equal(a.run('mode'),'online');assert.equal(a.run('token'),'secret');assert.equal(a.document.getElementById('copy').style.display,'none');assert.match(a.document.getElementById('arenaMode').textContent,/Céu do dia/);
 });
 
-test('club navigation abandons an active ritual before opening another feature',async()=>{
+test('club navigation preserves a workshop when opening another feature',async()=>{
  const a=app({seen:true});await a.settle();
- a.run(`for(const b of document.querySelectorAll('button'))b.focus=()=>{};playerAccount={};accountPage='summon';summonOpen=true;summonRitual={id:'ritual-1',status:'active'};var abandoned=[];summonCall=async(action,body)=>{abandoned.push({action,body});};navigateClub('profile');`);
+ a.run(`for(const b of document.querySelectorAll('button'))b.focus=()=>{};playerAccount={};accountPage='summon';summonOpen=true;summonRitual={id:'ritual-1',status:'active'};var abandoned=[];workshopCall=async(action,body)=>{abandoned.push({action,body});};navigateClub('profile');`);
  assert.equal(a.run('summonOpen'),false);assert.equal(a.run('summonRitual'),null);
- assert.equal(a.run('abandoned[0].action'),'abandon');assert.equal(a.run('abandoned[0].body.ritualId'),'ritual-1');
+ assert.equal(a.run('abandoned.length'),0);
  assert.equal(a.document.getElementById('club-profile').hidden,false);
 });
 
@@ -412,13 +410,8 @@ test('demo completion leaves three working routes and future districts stay unav
  a.document.getElementById('demoOnline').onclick();assert.equal(a.document.getElementById('friendsSheet').hidden,false);
 });
 
-test('first invocation rehearsal uses no server calls or tails and enables the real ritual only after a valid practice',async()=>{
- const a=app({member:true});await a.settle();
- a.run(`playerAccount.inventory=[{id:'story'}];summonData={tails:[{id:'tail',modelId:'raio',name:'Raio de sol',status:'ready'}],seen:[]};var rehearsalCalls=0;summonCall=async()=>{rehearsalCalls++;};prepareSummon({modelId:'raio',name:'Raio de sol',color:3,pattern:[1,2,5],availableTailIds:['tail']});`);
- a.document.querySelector('#summonTailList button').onclick();assert.equal(a.document.getElementById('summonStart').disabled,true);
- a.document.getElementById('summonPracticeButton').onclick();
- for(const n of [1,2,5])a.document.querySelector(`[aria-label="Estrela de ensaio ${n}"]`).onclick();
- assert.equal(a.document.getElementById('summonStart').disabled,false);assert.equal(a.run('rehearsalCalls'),0);assert.equal(a.run('summonData.tails[0].status'),'ready');assert.equal(a.run('playerAccount.inventory.length'),1);
+test('workshop selection consumes nothing before an explicit start and no constellation is rendered',async()=>{
+ const a=app({member:true});await a.settle();a.run("summonData={tails:[{id:'tail',modelId:'raio',name:'Raio',status:'ready'}],seen:[]};prepareSummon({modelId:'raio',name:'Raio',color:3,availableTailIds:['tail']});");a.document.querySelector('#summonTailList button').onclick();assert.equal(a.document.getElementById('summonStart').disabled,false);assert.equal(a.document.getElementById('summonBoard'),null);assert.equal(a.run("summonData.tails[0].status"),'ready');
 });
 
 test('choosing the first partner shows a welcome only after server confirmation, before entering practice',async()=>{

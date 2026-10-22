@@ -26,7 +26,7 @@ function showOnlineTrailResult(s,ranking,mine){
     if(data.status==='saved'){
      refreshRewards();if(r.pipamonXp!=null)root.append(uiElement('p','+'+r.pipamonXp+' XP para o parceiro desta Trilha.','pipamon-result-xp'));
      updateTrailStoryOutcome(s.trail,r,data.status);
-     if(r.tailId){const summon=uiElement('button','Ir ao invocador ✦','primary');summon.id='trailGoSummoner';summon.onclick=()=>openTrailSummoner(r.drop);placeDialogActions(summon);}
+     if(r.tailId){const summon=uiElement('button','Ir ao artesão ✦','primary');summon.id='trailGoSummoner';summon.onclick=()=>openTrailSummoner(r.drop);placeDialogActions(summon);}
      const finale=trails.demo&&s.trail==='morro-5'&&r.won,again=uiElement('button',finale?'Concluir a demo ▶':r.won?'Ver meu caminho ▶':'Tentar de novo ↻',finale?'primary':'secondary');again.id='rematchButton';again.onclick=()=>{if(finale)openDemoFinale();else if(r.won)returnToDistrict(s.trail,true);else{returnToDistrict(s.trail,false);presentStage(s.trail);}};placeDialogActions(again);again.focus({preventScroll:true});return;
     }
    }

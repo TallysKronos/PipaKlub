@@ -10,7 +10,7 @@ test('Javali own-tail spiral: immediate use, three failures, damage/discard, exp
  const db=new PGlite(),user='33333333-3333-4333-8333-333333333333',other='44444444-4444-4444-8444-444444444444',model='javali-biscoito',session=randomUUID(),pattern=[7,4,1,2,3,6,9,8,5];
  try{
   await db.exec("create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key,raw_user_meta_data jsonb);create function auth.uid() returns uuid language sql as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;grant usage on schema public,auth to authenticated,anon,service_role;");
-  for(const f of fs.readdirSync('supabase/migrations').filter(f=>f.endsWith('.sql')).sort())await db.exec(fs.readFileSync('supabase/migrations/'+f,'utf8'));
+  for(const f of fs.readdirSync('supabase/migrations').filter(f=>f.endsWith('.sql')&&f<'024').sort())await db.exec(fs.readFileSync('supabase/migrations/'+f,'utf8'));
   await db.exec(fs.readFileSync('supabase/migrations/013_javali_summoning.sql','utf8'));
   assert.deepEqual((await db.query('select pattern from public.summon_spells where model_id=$1',[model])).rows[0].pattern,pattern);
   assert.deepEqual(pattern.reduce(extendSummonPath,[]),pattern,'drawing does not auto-insert unexpected nodes');
