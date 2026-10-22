@@ -4,10 +4,13 @@ Inclui `feature/ui-kit-consistente` (saves, salvamento automático, parque, clas
 
 A ordem importa: **o banco antes do servidor**. O Render publica a cada push na `main`; o servidor novo usa tabelas que só existem depois da 019–023.
 
+**Aplicação registrada em 2026-10-22:** o pacote 019–023 foi autorizado pelo usuário e executado em produção. Os oito indicadores do passo 1 e as nove verificações de `3-verificar-permissoes.sql` passaram. Save manual, autosave e encontro selvagem foram verificados no cliente publicado. As capturas privadas permanecem somente no ambiente local, em `art/ui-reviews/demo-dependencies-2026-10-22/`, pasta ignorada pelo Git. Não reaplique o pacote em um schema já migrado; consulte os indicadores primeiro. Se a instalação estiver parcial, pare e investigue quais etapas foram concluídas.
+
 1. **Verificar** — no SQL Editor do Supabase de produção, rode `1-verificar.sql`. Esperado: `m017_*` e `m018_*` = `true`; `m019`–`m023` = `false`.
    Se a 017 ou a 018 vier `false`, pare: aplique `supabase/migrations/017_kael_opening.sql` e `018_story_first_collection.sql` primeiro.
 2. **Migrar** — rode `2-migracoes-019-023.sql` inteiro (as cinco migrações, na ordem, cada uma na sua transação). Se alguma falhar, pare aqui e não faça o merge.
 3. **Conferir** — rode `1-verificar.sql` de novo. Esperado: tudo `true`.
+   Rode também `3-verificar-permissoes.sql`: os nove resultados devem ser `true`.
 4. **Publicar** — merge do PR na `main`. Aguardar o deploy do Render.
 5. **Depois do deploy**:
    - `https://pipaklub.onrender.com/health` mostra `demo-rc.2`.
