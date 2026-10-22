@@ -4681,7 +4681,7 @@ function drawCourtyard(t){
 $('homeMotion').onclick=()=>{homeMotionPaused=!homeMotionPaused;updateHomeIdentity()};
 async function openClubDestination(page){if(mode||!playerAccount)return;hideJourney();closeHomeMenu();const gate=gameLoading.start('club','Abrindo o clube',{retry:()=>openClubDestination(page),back:()=>{gate.cancel();closeAccount();}});try{const accountReady=openAccount();const pageReady=playerAccount&&!mode?navigateClub(page):Promise.resolve();await Promise.all([accountReady,pageReady]);await gate.done();}catch(e){gate.fail(e.message);}}
 const homeActions={
- feedback:()=>modal('Ajude a melhorar a demo','<p>Conte onde você estava, o que tentou fazer e o que aconteceu. O formulário pede os passos e o aparelho usado.</p><p><a class="secondary" href="https://github.com/TallysKronos/PipaKlub/issues/new?template=demo-feedback.yml" target="_blank" rel="noopener noreferrer">Abrir formulário de feedback no GitHub</a></p>','Voltar ao clube','Feedback · demo-rc.1'),
+ feedback:()=>modal('Ajude a melhorar a demo','<p>Conte onde você estava, o que tentou fazer e o que aconteceu. O formulário pede os passos e o aparelho usado.</p><p><a class="secondary" href="https://github.com/TallysKronos/PipaKlub/issues/new?template=demo-feedback.yml" target="_blank" rel="noopener noreferrer">Abrir formulário de feedback no GitHub</a></p>','Voltar ao clube','Feedback · demo-rc.2'),
  demo:()=>openDemoFinale(),
  lab:()=>{hideJourney();closeHomeMenu();skyOpen()},
  collection:()=>openClubDestination('collection'),summon:()=>openClubDestination('summon'),trades:()=>openClubDestination('trades'),profile:()=>openClubDestination('profile'),history:()=>openClubDestination('history'),events:()=>openClubDestination('events'),

@@ -15,7 +15,7 @@ async function socket(seat){
 }
 function keep(c,input={}){const timer=setInterval(()=>{if(c.ws.readyState===1)c.ws.send(JSON.stringify({type:'input',input}));},100);timers.push(timer);return timer;}
 try{
- const health=await call('/health');verify('expected demo service',health.status===200&&health.data.demo&&health.data.release==='demo-rc.1');
+ const health=await call('/health');verify('expected demo service',health.status===200&&health.data.demo&&health.data.release==='demo-rc.2');
  const config=await call('/account/config');verify('account service configured',config.data.enabled===true);
  const session=await call('/account/session');verify('visitor has no account',session.status===200&&session.data.account===null);
  const denied=await call('/account/profile',{nickname:'Visitor QA'});verify('visitor cannot alter a profile',denied.status===401);

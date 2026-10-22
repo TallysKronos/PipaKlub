@@ -16,7 +16,7 @@ async function socket(seat){
 }
 let a,b,one,two,inputTimer;
 try{
- const health=await(await fetch(new URL('/health',base),{signal:AbortSignal.timeout(15000)})).json();assert(health.release==='demo-rc.1'&&health.demo,'Expected demo-rc.1 before creating test rooms.');
+ const health=await(await fetch(new URL('/health',base),{signal:AbortSignal.timeout(15000)})).json();assert(health.release==='demo-rc.2'&&health.demo,'Expected demo-rc.2 before creating test rooms.');
  a=await api('create',{name:'Demo QA A',color:0,mode:'rounds',rules:'casual'});rooms.push({a});b=await api('join',{name:'Demo QA B',color:1,code:a.code});rooms[0].b=b;
  assert(a.state.id===b.state.id&&b.state.players.length===2,'Both visitors must share one match.');one=await socket(a);two=await socket(b);
  let lastRound=0;
