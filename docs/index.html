@@ -850,6 +850,42 @@ body.in-opening #commandBar{display:none!important}
 .workshop-steps{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0}.workshop-steps span{font-size:12px;padding:8px 12px;border:1px solid #bbaa8b;border-radius:6px;background:#f8efd9}.workshop-steps [aria-current]{color:#fff7e2;background:#315f60;border-color:#315f60}
 .workshop-layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(210px,1fr);gap:20px;align-items:start}.workshop-scene{position:relative;min-width:0;overflow:hidden;border:2px solid #8e774f;border-radius:12px;background:#ead0a0}.workshop-scene canvas{display:block;width:100%;height:auto;aspect-ratio:3/2}.workshop-motion{position:absolute;top:10px;left:10px;font-size:11px!important;min-height:32px!important;background:#fff8e9e8!important}.workshop-controls h3{font-size:23px;margin:8px 0 12px;line-height:1.2}.workshop-controls p{font-size:13px;line-height:1.6}.workshop-controls>.primary,.workshop-controls>.secondary{width:100%;margin-top:10px}.workshop-points{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0}.workshop-points button{font-size:12px;padding:10px 6px;min-height:44px}.workshop-range{display:grid;grid-template-columns:1fr auto;gap:8px;margin:18px 0;font-size:13px}.workshop-range input{grid-column:1;accent-color:#368982;width:100%;min-height:34px}.workshop-range output{grid-column:2;grid-row:2;align-self:center;font-weight:700;min-width:25px}.workshop-readout{border-top:1px solid #b8a67f;padding-top:15px;margin-top:20px}.workshop-readout span{display:block;font-size:22px;font-weight:700}.workshop-readout small{display:block;font-size:11px;margin-top:7px;line-height:1.5}.workshop-help,.workshop-supplies{font-size:12px!important;line-height:1.6;color:#53635f}.workshop-result{padding:20px 0;text-align:center}.workshop-result h3{font-size:28px}.workshop-result button{margin:6px}.workshop-room #summonMenu{margin-top:20px}.workshop-room #summonMenu p{font-size:13px;line-height:1.6}.workshop-room #summonMessage:not(:empty){padding:12px;background:#f1e5c6;border-left:3px solid #3b817b}.workshop-room button:focus-visible,.workshop-room input:focus-visible{outline:3px solid #266f77;outline-offset:3px}.workshop-room #workshopArtStatus:not(:empty){padding:8px;background:#fff5da;font-size:12px}
 @media(max-width:760px){.workshop-layout{grid-template-columns:1fr}.workshop-controls{padding:0 4px}.workshop-controls h3{font-size:22px}.workshop-steps span{padding:7px 8px;font-size:11px}.workshop-heading{gap:8px}.workshop-seal{font-size:42px}.workshop-motion{top:5px;left:5px;font-size:10px!important;padding:4px 8px!important}}
+.workshop-reveal-head{display:flex;align-items:center;gap:12px;margin:14px 0 8px}.workshop-reveal-head b{font:400 34px/1 'Lilita One',sans-serif;color:#294b53;font-variant-numeric:tabular-nums;min-width:3ch}.workshop-reveal-head b.low{color:#a8322a}.workshop-reveal-head span{font-size:12px;color:#53635f}
+.workshop-tools{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}.workshop-tools button:last-child{grid-column:1/-1}.workshop-tools button[aria-pressed=true]{outline:3px solid #266f77;outline-offset:1px}
+.workshop-reveal-bars{display:grid;gap:6px;margin:12px 0;font-size:12px;font-weight:700}.workshop-reveal-bars>div{display:grid;grid-template-columns:minmax(0,1fr) 90px 38px;align-items:center;gap:8px}.workshop-reveal-bars em{display:block;height:9px;border-radius:5px;background:#29404033;overflow:hidden}.workshop-reveal-bars i{display:block;height:100%;width:0;background:#e0a63a;transition:width .15s}.workshop-reveal-bars [data-bar=tear] i{background:#a8322a}.workshop-reveal-bars b{text-align:right;font-variant-numeric:tabular-nums}
+#workshopCanvas:focus-visible{outline:3px solid #266f77;outline-offset:-3px}
+
+/* Montagem em tela cheia: a bancada é a cena; etapas viram HUD no topo e as ferramentas um painel de papel ao lado. */
+.workshop-room.is-building{position:fixed;inset:0;z-index:5;overflow:auto;display:grid;grid-template-rows:auto auto minmax(0,1fr);gap:8px;padding:max(12px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));background:radial-gradient(120% 90% at 50% 40%,#3b2a1f 0%,#22170f 70%,#160f0a 100%);color:#fff2d6}
+.workshop-room.is-building .workshop-heading,.workshop-room.is-building>#summonMenu,.workshop-room.is-building>#summonCatalog,.workshop-room.is-building>#summonPreparation,.workshop-room.is-building>#summonDamaged{display:none!important}
+.workshop-room.is-building #leaveSummoner{justify-self:start;min-height:38px!important;font-size:13px!important}
+.workshop-room.is-building #summonMessage:empty{display:none}
+.workshop-room.is-building #summonMessage:not(:empty){margin:0;justify-self:center;max-width:70ch;padding:8px 14px;border-radius:8px;border-left:0;background:#fff2d6;color:#294b53;font-size:13px;font-weight:700}
+.workshop-room.is-building #workshopBuild{min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr);gap:10px}
+.workshop-room.is-building .workshop-steps{margin:0;justify-content:center}
+.workshop-room.is-building .workshop-steps span{background:#ffffff14;border-color:#ffffff33;color:#e9dcc0;font-weight:800}
+.workshop-room.is-building .workshop-steps [aria-current]{background:#fff2d6;border-color:#e0a63a;color:#294b53}
+.workshop-room.is-building .workshop-layout{min-height:0;grid-template-columns:minmax(0,1fr) minmax(280px,360px);gap:16px;align-items:stretch}
+.workshop-room.is-building .workshop-scene{align-self:center;justify-self:center;width:min(100%,calc((100dvh - 150px)*1.5));border:4px solid #6b4a2b;border-radius:14px;box-shadow:0 10px 30px #0008}
+.workshop-room.is-building .workshop-controls{min-height:0;overflow:auto;background:#fff4dc;color:#294b53;border:2px solid #bca16d;border-radius:14px;padding:14px 16px;box-shadow:0 10px 30px #0006}
+.workshop-room.is-building .workshop-controls>.primary,.workshop-room.is-building .workshop-controls>.secondary{margin-top:8px}
+.workshop-room.is-building .workshop-result{grid-column:1/-1;background:#fff4dc;color:#294b53;border-radius:14px;padding:16px}
+@media(max-width:860px){.workshop-room.is-building .workshop-layout{grid-template-columns:1fr;align-items:start}.workshop-room.is-building .workshop-scene{width:100%}.workshop-room.is-building .workshop-controls{overflow:visible}}
+@media(max-height:520px) and (min-width:600px){.workshop-room.is-building{gap:4px}.workshop-room.is-building .workshop-layout{grid-template-columns:minmax(0,1fr) minmax(250px,300px)}.workshop-room.is-building .workshop-scene{width:min(100%,calc((100dvh - 96px)*1.5))}.workshop-room.is-building .workshop-controls{padding:10px 12px}.workshop-room.is-building .workshop-controls h3{font-size:19px;margin:4px 0}.workshop-room.is-building .workshop-controls p{font-size:12px;line-height:1.45;margin:4px 0}}
+.workshop-hud{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.workshop-hud .workshop-steps{flex:1}
+.workshop-room:not(.is-building) #workshopExit{display:none}
+.workshop-room.is-building #workshopExit{min-height:38px!important;font-size:13px!important}
+@media(min-width:861px){.workshop-room.is-building #summonReveal:not([hidden]){position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));width:min(360px,calc(100vw - 32px));z-index:2;box-shadow:0 10px 30px #0008;border:2px solid #e0a63a}}
+.workshop-room.is-building #summonReveal h3{margin:6px 0}.workshop-room.is-building #summonReveal p{font-size:13px;margin:6px 0}
+/* Celular em pé: durante a revelação a câmera aproxima a folha (área x 300–660, y 190–590 da bancada de 960 × 640). */
+@media(max-width:600px){
+ .workshop-room.is-building .workshop-steps{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scrollbar-width:none}
+ .workshop-room.is-building .workshop-steps span{flex:none;padding:6px 9px;font-size:11px}
+ .workshop-room.is-revealing .workshop-scene{aspect-ratio:9/10}
+ .workshop-room.is-revealing .workshop-scene canvas{position:absolute;width:266.67%;max-width:none;left:-83.33%;top:-47.5%}
+ .workshop-room.is-revealing .workshop-motion{display:none}
+}
+@media(max-width:600px){.workshop-room.is-building .workshop-hud{margin-bottom:6px}.workshop-room.is-building .workshop-hud .workshop-steps{min-width:0}}
 
 /* Ink, brass and living paper: the battle instruments share one visual language. */
 :root{--battle-ink:#142f39;--battle-panel:#142f39f5;--battle-edge:#78958b;--battle-text:#fff1d0;--battle-muted:#b7cbc3;--battle-gold:#edc77b;--battle-green:#8bd7a6;--battle-energy:#82c9e3;--battle-danger:#ff9c85;--battle-shadow:0 8px 24px #132f3933}
@@ -3151,15 +3187,15 @@ paintTradeScene(null);
 const WORKSHOP_STAGES=[
  {id:'frame',name:'Armação',tool:'Varetas de bambu',title:'Dê estrutura ao corpo.',hint:'Toque nos quatro apoios da bancada em ordem, ou use os botões. O gabarito mantém a estrutura alinhada.',action:'Confirmar armação'},
  {id:'knots',name:'Nós',tool:'Linha e amarração',title:'Firme cada encontro.',hint:'Ajuste a tensão para 65. Um nó firme sustenta a vela sem apertar demais a armação.',action:'Firmar os nós'},
- {id:'paper',name:'Papel',tool:'Papel de seda',title:'Revele a forma do parceiro.',hint:'Siga os quatro pontos na bancada, ou use os botões, para recortar e aplicar cada parte do papel.',action:'Aplicar o papel'},
+ {id:'paper',name:'Papel',tool:'Estilete e tesourinha',title:'Revele a marca da alma.',hint:'Retalhos colados escondem a forma do parceiro. O estilete arranca uma camada por golpe, mas rasga onde a marca já aparece; a tesourinha raspa devagar. A Luz do molde mostra a marca por instantes.',action:'Aplicar o papel'},
  {id:'balance',name:'Equilíbrio',tool:'Ponto de amarração',title:'Encontre o ponto de voo.',hint:'Mova o ponto de amarração até 50. Observe a inclinação da montagem e a estabilidade.',action:'Confirmar equilíbrio'},
  {id:'soul',name:'Elo',tool:'Rabiola da alma',title:'Uma alma. Um novo começo.',hint:'Equilibre vento e tensão em 50 e una a rabiola. A linha será o elo de manifestação.',action:'Unir rabiola e despertar'}
 ];
-function workshopInput(){return {joints:[],cuts:[],tension:35,balance:25,wind:35,soulTension:70};}
+function workshopInput(){return {joints:[],cuts:[],tension:35,balance:25,wind:35,soulTension:70,revealScore:null};}
 function workshopPayload(stage,input){
  if(stage===0)return {joints:[...input.joints]};
  if(stage===1)return {tension:Number(input.tension)};
- if(stage===2)return {cuts:[...input.cuts]};
+ if(stage===2)return input.revealScore==null?{cuts:[...input.cuts]}:{cuts:[...input.cuts],reveal:Math.max(0,Math.min(100,Math.round(input.revealScore)))};
  if(stage===3)return {balance:Number(input.balance)};
  if(stage===4)return {wind:Number(input.wind),tension:Number(input.soulTension)};
  throw Error('Etapa de montagem inválida.');
@@ -3167,7 +3203,7 @@ function workshopPayload(stage,input){
 function workshopReady(stage,input){return stage===0?input.joints.length===4:stage===2?input.cuts.length===4:stage>=1&&stage<=4;}
 function validWorkshopPayload(stage,payload){
  if(!payload||typeof payload!=='object'||Array.isArray(payload))return false;
- if(stage===0||stage===2){const key=stage===0?'joints':'cuts';return Object.keys(payload).length===1&&Array.isArray(payload[key])&&payload[key].length===4&&payload[key].every((v,i)=>v===i);}
+ if(stage===0||stage===2){const key=stage===0?'joints':'cuts',extra=stage===2&&'reveal' in payload;if(extra&&!(Number.isInteger(payload.reveal)&&payload.reveal>=0&&payload.reveal<=100))return false;return Object.keys(payload).length===(extra?2:1)&&Array.isArray(payload[key])&&payload[key].length===4&&payload[key].every((v,i)=>v===i);}
  const keys=stage===1?['tension']:stage===3?['balance']:stage===4?['wind','tension']:[];
  return keys.length>0&&Object.keys(payload).length===keys.length&&keys.every(k=>Number.isInteger(payload[k])&&payload[k]>=0&&payload[k]<=100);
 }
@@ -3175,6 +3211,69 @@ function workshopQuality(stage,input){return stage===1?Math.max(0,100-Math.abs(i
 function workshopPose(stage,input,time,reduced=false){
  const motion=reduced?0:1,settled=stage>=5;
  return {rise:settled?Math.sin(time*2)*4*motion:0,tilt:(stage===3?(input.balance-50)*.14:0)+Math.sin(time*1.8)*.8*motion*(settled?1:0),ear:Math.sin(time*2.3)*.025*motion,tail:Math.sin(time*2.3-.7)*.06*motion,glow:stage===4?(workshopQuality(stage,input)/100):settled?1:0};
+}
+
+// Oficina das Almas · etapa do papel: a marca da alma está sob retalhos colados e precisa ser revelada sem rasgar.
+// Estilete = arranca uma camada num raio largo e rasga onde a marca já aparece; tesourinha = raspa devagar.
+// Coordenadas locais da bancada (centro da criatura em 0,0), como em workshop-renderer.js.
+const REVEAL_CELL=6,REVEAL_AREA={x:-132,y:-192,w:264,h:342},REVEAL_SECONDS=90,REVEAL_COUNTDOWN=3,REVEAL_FAIL=.5,REVEAL_DONE=.9,REVEAL_LIGHTS=2;
+const REVEAL_TOOLS={estilete:{radius:24,shock:34,tear:.45,shockTear:.12},tesourinha:{radius:9,layer:.3,tear:.008}};
+// Papel do kit do ateliê: manteiga (equilibrado). Outros papéis entram com a economia de materiais.
+const REVEAL_PAPER={fragility:1,cover:[1.2,2.4],lightDepth:3};
+function revealRandom(seed){let s=seed>>>0||1;return ()=>(s=(s*1664525+1013904223)>>>0)/4294967296;}
+// mask(x,y) diz se o ponto local pertence à marca (silhueta real da espécie).
+function createReveal(mask,seed=1){
+ const r=revealRandom(seed),cols=Math.floor(REVEAL_AREA.w/REVEAL_CELL),rows=Math.floor(REVEAL_AREA.h/REVEAL_CELL),cells=[];
+ const blobs=Array.from({length:8},()=>({x:REVEAL_AREA.x+r()*REVEAL_AREA.w,y:REVEAL_AREA.y+r()*REVEAL_AREA.h,s:30+r()*60,a:r()*.9}));
+ for(let j=0;j<rows;j++)for(let i=0;i<cols;i++){
+  const x=REVEAL_AREA.x+i*REVEAL_CELL+REVEAL_CELL/2,y=REVEAL_AREA.y+j*REVEAL_CELL+REVEAL_CELL/2,piece=!!mask(x,y);
+  let cover=REVEAL_PAPER.cover[0]+(REVEAL_PAPER.cover[1]-REVEAL_PAPER.cover[0])*r()*.5;
+  for(const b of blobs){const d=Math.hypot(x-b.x,y-b.y);if(d<b.s)cover+=b.a*(1-d/b.s);}
+  if(!piece)cover+=.6;
+  cells.push({x,y,piece,cover:Math.min(3,cover),damage:0});
+ }
+ return {seed,cols,rows,cells,lights:REVEAL_LIGHTS,lightUntil:0,flashes:[],strikes:0};
+}
+function revealAround(state,x,y,radius,fn){
+ const i0=Math.max(0,Math.floor((x-radius-REVEAL_AREA.x)/REVEAL_CELL)),i1=Math.min(state.cols-1,Math.floor((x+radius-REVEAL_AREA.x)/REVEAL_CELL));
+ const j0=Math.max(0,Math.floor((y-radius-REVEAL_AREA.y)/REVEAL_CELL)),j1=Math.min(state.rows-1,Math.floor((y+radius-REVEAL_AREA.y)/REVEAL_CELL));
+ for(let j=j0;j<=j1;j++)for(let i=i0;i<=i1;i++){const c=state.cells[j*state.cols+i],d=Math.hypot(c.x-x,c.y-y);if(d<=radius)fn(c,d);}
+}
+function revealStrike(state,tool,x,y){
+ const t=REVEAL_TOOLS[tool],f=REVEAL_PAPER.fragility;if(!t)return revealScore(state);state.strikes++;
+ if(tool==='estilete')revealAround(state,x,y,t.shock,(c,d)=>{
+  if(d<=t.radius){const left=c.cover-(1-.4*d/t.radius);if(left<0&&c.piece)c.damage=Math.min(1,c.damage-left*t.tear*f);c.cover=Math.max(0,left);}
+  else if(c.piece&&c.cover<.3)c.damage=Math.min(1,c.damage+t.shockTear*f*(1-d/t.shock));
+ });
+ else revealAround(state,x,y,t.radius,c=>{const left=c.cover-t.layer;if(left<0&&c.piece)c.damage=Math.min(1,c.damage+t.tear*f);c.cover=Math.max(0,left);});
+ return revealScore(state);
+}
+// Nota = quanto da marca apareceu × (1 − rasgo médio). Rasgo médio de 50% faz a folha ceder.
+function revealScore(state){
+ let n=0,shown=0,dmg=0;for(const c of state.cells)if(c.piece){n++;if(c.cover<=.05)shown++;dmg+=c.damage;}
+ const revealed=n?shown/n:0,damage=n?dmg/n:0;
+ return {revealed,damage,score:Math.round(100*revealed*(1-damage)),failed:damage>=REVEAL_FAIL,done:revealed>=REVEAL_DONE};
+}
+const revealLightVisible=c=>c.piece&&c.cover<=REVEAL_PAPER.lightDepth;
+// Máscara pela silhueta real: as mesmas peças e posições que o renderer usa para o Rabbito; demais espécies usam o losango do gabarito.
+function revealMask(parts,rects,rabbit){
+ if(!rabbit||!parts?.complete||!rects||typeof document==='undefined'){const pts=[[0,-100],[105,0],[0,100],[-105,0]];return (x,y)=>{let inside=false;for(let i=0,j=3;i<4;j=i++){const [xi,yi]=pts[i],[xj,yj]=pts[j];if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi)+xi)inside=!inside;}return inside;};}
+ const c=document.createElement('canvas');c.width=REVEAL_AREA.w;c.height=REVEAL_AREA.h;const g=c.getContext('2d',{willReadFrequently:true});g.translate(-REVEAL_AREA.x,-REVEAL_AREA.y);
+ for(const [id,x,y,w,h,px,py] of [['body',0,30,148,178,.5,.5],['earFar',28,-47,42,113,.5,.94],['earNear',-25,-47,66,119,.5,.94]]){const r=rects[id];if(r)g.drawImage(parts,...r,x-w*px,y-h*py,w,h);}
+ const data=g.getImageData(0,0,c.width,c.height).data;
+ return (x,y)=>{const i=Math.floor(x-REVEAL_AREA.x),j=Math.floor(y-REVEAL_AREA.y);return i>=0&&j>=0&&i<c.width&&j<c.height&&data[(j*c.width+i)*4+3]>60;};
+}
+const REVEAL_COVER=['#efe2c4','#e2cfa6','#cdb487','#b39a6c'];
+// Desenha sobre a marca (já pintada pelo renderer) os retalhos, rasgos, a Luz e o cursor da ferramenta.
+function drawWorkshopReveal(g,state,time,{tool,cursor,lit,reduced}){
+ for(const c of state.cells){
+  if(c.piece&&c.damage>.02){g.fillStyle='rgba(168,50,42,'+Math.min(.85,c.damage*1.2)+')';g.fillRect(c.x-3,c.y-3,REVEAL_CELL,REVEAL_CELL);}
+  if(c.cover>.05){g.fillStyle=REVEAL_COVER[Math.min(3,Math.floor(c.cover))];g.fillRect(c.x-3,c.y-3,REVEAL_CELL,REVEAL_CELL);if(((c.x*7+c.y*13)|0)%5===0){g.fillStyle='#0000000d';g.fillRect(c.x-3,c.y-1,REVEAL_CELL,1);}}
+ }
+ if(lit){g.fillStyle='rgba(64,224,208,.45)';for(const c of state.cells)if(c.cover>.05&&revealLightVisible(c))g.fillRect(c.x-3,c.y-3,REVEAL_CELL,REVEAL_CELL);}
+ if(!reduced)for(const f of state.flashes){const a=1-(time-f.at)/.26;if(a<=0)continue;g.strokeStyle='rgba(255,255,255,'+a+')';g.lineWidth=2;g.beginPath();g.arc(f.x,f.y,REVEAL_TOOLS.estilete.radius*(1.2-a*.2),0,7);g.stroke();}
+ state.flashes=state.flashes.filter(f=>time-f.at<.26);
+ if(cursor){g.strokeStyle='#c14e22';g.lineWidth=2;g.beginPath();g.arc(cursor.x,cursor.y,REVEAL_TOOLS[tool]?.radius||10,0,7);g.stroke();}
 }
 
 // Canvas composition: art retains its original colour; guides are functional geometry.
@@ -3202,7 +3301,13 @@ function createWorkshopRenderer({bench,parts,rects,drawCreature,reduced=()=>fals
   const pts=rabbit?[[-65,-155],[28,-155],[50,8],[-48,70]]:[[0,-100],[105,0],[0,100],[-105,0]],count=stage>0?4:input.joints.length;
   const ends=rabbit?[[-25,-47],[28,-47],[-48,70],[50,8]]:pts.map((_,i)=>pts[(i+1)%4]);
   if(lastCount!==count){lastCount=count;countAt=time;}
-  if(stage<3){
+  if(stage===2&&input.reveal&&typeof drawWorkshopReveal==='function'){
+   // A marca da alma brilha sob os retalhos; a escavação cobre o desenho real da espécie.
+   g.save();g.shadowColor='#5fe0cf';g.shadowBlur=reduced()?0:18;
+   if(rabbit&&parts?.complete){piece(g,'body',0,30,148,178);piece(g,'earFar',28,-47,42,113,0,.5,.94);piece(g,'earNear',-25,-47,66,119,0,.5,.94);}
+   else{g.beginPath();pts.forEach(([a,b],i)=>i?g.lineTo(a,b):g.moveTo(a,b));g.closePath();g.fillStyle='#c9f4ec';g.fill();g.lineWidth=3;g.strokeStyle='#1b8a7a';g.stroke();}
+   g.restore();drawWorkshopReveal(g,input.reveal,time,{...input.revealView,reduced:reduced()});
+  }else if(stage<3){
    if(rabbit&&parts?.complete){g.globalAlpha=.10;piece(g,'body',0,30,148,178);piece(g,'earFar',28,-47,42,113,0,.5,.94);piece(g,'earNear',-25,-47,66,119,0,.5,.94);g.globalAlpha=1;}
    g.strokeStyle='#75685466';g.lineWidth=2;g.setLineDash([6,6]);for(let i=0;i<4;i++){g.beginPath();g.moveTo(...pts[i]);g.lineTo(...ends[i]);g.stroke();}g.setLineDash([]);
    for(let i=0;i<count;i++){const a=pts[i],b=ends[i],f=stage===0&&i===count-1&&!reduced()?ease((time-countAt)/.4):1;g.beginPath();g.moveTo(...a);g.lineTo(a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f);g.strokeStyle='#6d472b';g.lineWidth=9;g.stroke();g.strokeStyle='#e8bc75';g.lineWidth=5;g.stroke();}
@@ -3229,12 +3334,13 @@ function createWorkshopRenderer({bench,parts,rects,drawCreature,reduced=()=>fals
   }
   g.restore();
   // Functional preview caption; not painted into the source image.
-  g.fillStyle='#fff8e9e8';g.fillRect(340,554,280,38);g.fillStyle='#294b53';g.font='bold 15px sans-serif';g.textAlign='center';g.fillText(stage>=5?'Um novo elo ganhou vida':stage<3?'Gabarito de montagem · quatro apoios':job.name||'Seu parceiro',480,578);
+  g.fillStyle='#fff8e9e8';g.fillRect(340,554,280,38);g.fillStyle='#294b53';g.font='bold 15px sans-serif';g.textAlign='center';g.fillText(stage>=5?'Um novo elo ganhou vida':stage===2&&input.reveal?'Revele a marca sem rasgar':stage<3?'Gabarito de montagem · quatro apoios':job.name||'Seu parceiro',480,578);
  };
 }
 
 // Keep club entry points; construction now uses /account/workshop, never a spell path.
 let summonOpen=false,summonBusy=false,summonRitual=null,summonTarget=null,summonTail=null;
+let workshopReveal=null,workshopRevealTool='estilete',workshopRevealCursor=null,workshopRevealTimer=null,workshopRevealPrev=null,workshopRevealTries=0;
 let summonData={tails:[],seen:[]},workshopDraft=workshopInput(),workshopPending=null,workshopFrame=0,workshopClock=0,workshopLast=0,workshopEpoch=0;
 const summonDisplayName=p=>(typeof ART_CONFIG!=='undefined'?ART_CONFIG.dex.entries.find(e=>e.model===p.modelId)?.name:null)||p.name;
 const summonEntry=uiElement('section',undefined,'summon-entry');
@@ -3248,7 +3354,7 @@ summonRoom.innerHTML=`<button class="secondary" id="leaveSummoner">← Voltar ao
  <section id="summonCatalog" hidden><button id="summonCatalogBack" class="secondary">← Oficina</button><h3>Qual parceiro vamos construir?</h3><p>Explore para conhecer espécies e trazer novas rabiolas ao ateliê.</p><div id="summonSeenGrid" class="summon-seen-grid"></div></section>
  <section id="summonPreparation" hidden><button id="summonPreparationBack" class="secondary">← Moldes</button><div class="summon-pair"><article id="summonChosenPipamon" class="summon-chosen"></article><div><h4>A alma que dará vida à montagem</h4><div id="summonTailList" class="summon-tail-list"></div></div></div><p id="summonSelectedTail">Selecione uma rabiola.</p><p class="workshop-supplies">Kit do ateliê: varetas de bambu, papel de seda e linha. Sem custo de materiais nesta versão. A rabiola fica reservada; sair não danifica a alma.</p><button id="summonStart" class="primary" disabled>Levar à bancada</button></section>
  <section id="summonDamaged" hidden><button id="summonDamagedBack" class="secondary">← Oficina</button><h3>Todo elo merece outra chance.</h3><p>O Sr. Assis restaura gratuitamente rabiolas danificadas pelo ritual antigo.</p><div id="summonDamagedList" class="summon-tail-list"></div></section>
- <section id="workshopBuild" hidden><nav id="workshopSteps" class="workshop-steps" aria-label="Progresso da montagem"></nav><div class="workshop-layout"><div class="workshop-scene"><canvas id="workshopCanvas" width="960" height="640" aria-label="Bancada animada de construção do Soulmonster"></canvas><button class="workshop-motion secondary" id="workshopMotion" aria-pressed="false">Reduzir movimento</button><p id="workshopArtStatus" role="status"></p></div><aside class="workshop-controls"><div id="workshopTool" class="eyebrow"></div><h3 id="workshopTitle" tabindex="-1"></h3><p id="workshopHint"></p><div id="workshopInputs"></div><div class="workshop-readout"><span id="workshopReadout"></span><small>Qualidade de montagem · sem bônus de combate</small></div><button id="workshopConfirm" class="primary"></button><button id="workshopRedo" class="secondary">Refazer esta etapa</button><p class="workshop-help">Pode sair e retomar. Cada etapa confirmada fica salva na sua conta.</p></aside></div></section>
+ <section id="workshopBuild" hidden><div class="workshop-hud"><button class="secondary" id="workshopExit">← Sair da bancada</button><nav id="workshopSteps" class="workshop-steps" aria-label="Progresso da montagem"></nav></div><div class="workshop-layout"><div class="workshop-scene"><canvas id="workshopCanvas" width="960" height="640" aria-label="Bancada animada de construção do Soulmonster"></canvas><button class="workshop-motion secondary" id="workshopMotion" aria-pressed="false">Reduzir movimento</button><p id="workshopArtStatus" role="status"></p></div><aside class="workshop-controls"><div id="workshopTool" class="eyebrow"></div><h3 id="workshopTitle" tabindex="-1"></h3><p id="workshopHint"></p><div id="workshopInputs"></div><div class="workshop-readout"><span id="workshopReadout"></span><small>Qualidade de montagem · sem bônus de combate</small></div><button id="workshopConfirm" class="primary"></button><button id="workshopRedo" class="secondary">Refazer esta etapa</button><p class="workshop-help">Pode sair e retomar. Cada etapa confirmada fica salva na sua conta.</p></aside></div></section>
  <section id="summonReveal" class="workshop-result" hidden><div class="eyebrow">O despertar</div><h3 id="workshopResultTitle"></h3><p>Rabiola unida, corpo construído e parceiro confirmado na coleção.</p><button id="summonViewPartner" class="primary">Ver meu novo parceiro</button><button id="workshopAgain" class="secondary">Voltar à oficina</button></section>`;
 $('accountCollection').append(summonRoom);
 const workshopAssets=typeof ART_CONFIG!=='undefined'?ART_CONFIG.workshop:null;
@@ -3282,13 +3388,15 @@ function workshopAnimate(){
  if(workshopFrame||!summonOpen||!summonRitual||!workshopDraw)return;
  const tick=t=>{workshopFrame=0;if(!summonOpen||!summonRitual)return;if(document.hidden){workshopLast=0;return;}
   workshopClock+=workshopLast?Math.min((t-workshopLast)/1000,.05):0;workshopLast=t;
-  workshopDraw($('workshopCanvas').getContext('2d'),summonRitual,workshopDraft,workshopClock);workshopFrame=requestAnimationFrame(tick);
+  workshopRevealTick();const g=$('workshopCanvas').getContext('2d');workshopDraw(g,summonRitual,workshopDraft,workshopClock);workshopRevealOverlay(g);workshopFrame=requestAnimationFrame(tick);
  };workshopFrame=requestAnimationFrame(tick);
 }
 document.addEventListener('visibilitychange',()=>{workshopLast=0;if(!document.hidden)workshopAnimate();});
 $('workshopMotion').onclick=()=>{workshopReduced=!workshopReduced;$('workshopMotion').setAttribute('aria-pressed',String(workshopReduced));$('workshopMotion').textContent=workshopReduced?'Ativar movimento':'Reduzir movimento';};
 function showSummonStage(stage){
  for(const [id,key] of [['summonMenu','npc'],['summonCatalog','catalog'],['summonPreparation','preparation'],['summonDamaged','damaged'],['workshopBuild','build']])$(id).hidden=stage!==key;$('summonReveal').hidden=true;
+ // A montagem ocupa a tela inteira, como uma cena de jogo; menus e catálogo continuam no clube.
+ summonRoom.classList.toggle('is-building',stage==='build');
 }
 async function workshopCall(action,extra={}){return (await accountRequest('workshop',{action,...extra})).workshop;}
 async function loadSummonTails(){
@@ -3310,23 +3418,98 @@ function renderSummonDamaged(){
  $('summonDamagedList').replaceChildren(...summonData.tails.filter(t=>t.status==='damaged').map(t=>{const card=uiElement('article',undefined,'summon-tail'),button=uiElement('button','Restaurar gratuitamente','secondary');button.onclick=async()=>{button.disabled=true;try{await workshopCall('restore',{tailId:t.id});await loadSummonTails();$('summonMessage').textContent='Rabiola restaurada.';}catch(e){$('summonMessage').textContent=e.message;button.disabled=false;}};card.append(summonTailArt(t.modelId),uiElement('b',t.name),button);return card;}));
  if(!$('summonDamagedList').children.length)$('summonDamagedList').append(uiElement('p','Nenhuma rabiola precisa de restauração.'));
 }
-function workshopReadout(){const stage=summonRitual.stage;$('workshopConfirm').disabled=summonBusy||(!workshopPending&&!workshopReady(stage,workshopDraft));$('workshopReadout').textContent=stage===0?workshopDraft.joints.length+'/4 encaixes':stage===2?workshopDraft.cuts.length+'/4 partes do contorno':workshopQuality(stage,workshopDraft)+'% · '+(stage===1?'firmeza':stage===3?'estabilidade':'sincronia');}
+function workshopReadout(){const stage=summonRitual.stage;$('workshopConfirm').disabled=summonBusy||(!workshopPending&&!workshopReady(stage,workshopDraft));$('workshopReadout').textContent=stage===0?workshopDraft.joints.length+'/4 encaixes':stage===2?workshopRevealReadout():workshopQuality(stage,workshopDraft)+'% · '+(stage===1?'firmeza':stage===3?'estabilidade':'sincronia');}
 function renderWorkshop(){
- if(!summonRitual)return;const stage=summonRitual.stage,done=summonRitual.status==='completed';showSummonStage('build');
+ if(!summonRitual)return;const stage=summonRitual.stage,done=summonRitual.status==='completed';showSummonStage('build');if(stage!==2||done)workshopReveal=null;summonRoom.classList.toggle('is-revealing',stage===2&&!done);
  $('workshopSteps').replaceChildren(...WORKSHOP_STAGES.map((s,i)=>{const node=uiElement('span',(i<stage?'✓ ':String(i+1)+' ')+s.name);if(i===stage)node.setAttribute('aria-current','step');return node;}));
  $('workshopRedo').hidden=done;$('workshopConfirm').hidden=done;$('workshopInputs').replaceChildren();
  if(done){$('workshopTitle').textContent='Um novo elo ganhou vida.';$('workshopHint').textContent='Seu parceiro foi confirmado na coleção. A montagem não altera os atributos de combate.';$('workshopTool').textContent='Montagem concluída';$('workshopReadout').textContent='Qualidade '+summonRitual.quality+'/100';$('summonReveal').hidden=false;$('workshopResultTitle').textContent=summonDisplayName(summonRitual)+' despertou!';}
  else{
   const step=WORKSHOP_STAGES[stage];$('workshopTitle').textContent=step.title;$('workshopHint').textContent=step.hint;$('workshopTool').textContent=step.tool;$('workshopConfirm').textContent=workshopPending?'Reenviar confirmação':step.action;
-  if(stage===0||stage===2){const field=stage===0?'joints':'cuts',group=uiElement('div',undefined,'workshop-points');for(let i=0;i<4;i++){const button=uiElement('button',(stage===0?'Encaixar vareta ':'Recortar parte ')+(i+1),'secondary');button.disabled=!!workshopPending||summonBusy||i!==workshopDraft[field].length;button.onclick=()=>{workshopDraft[field].push(i);renderWorkshop();($('workshopInputs').querySelector('button:not([disabled])')||$('workshopConfirm')).focus({preventScroll:true});};group.append(button);}$('workshopInputs').append(group);}
+  if(stage===2)workshopRevealControls();
+  else if(stage===0){const field='joints',group=uiElement('div',undefined,'workshop-points');for(let i=0;i<4;i++){const button=uiElement('button','Encaixar vareta '+(i+1),'secondary');button.disabled=!!workshopPending||summonBusy||i!==workshopDraft[field].length;button.onclick=()=>{workshopDraft[field].push(i);renderWorkshop();($('workshopInputs').querySelector('button:not([disabled])')||$('workshopConfirm')).focus({preventScroll:true});};group.append(button);}$('workshopInputs').append(group);}
   else{const fields=stage===1?[['tension','Tensão do nó',65]]:stage===3?[['balance','Ponto de amarração',50]]:[['wind','Direção do vento',50],['soulTension','Tensão da linha',50]];
    for(const [key,label,target]of fields){const row=uiElement('label',undefined,'workshop-range'),range=document.createElement('input'),out=uiElement('output',String(workshopDraft[key]));range.type='range';range.min='0';range.max='100';range.step='1';range.value=workshopDraft[key];range.disabled=!!workshopPending||summonBusy;range.setAttribute('aria-label',label);range.oninput=()=>{workshopDraft[key]=Number(range.value);out.textContent=range.value;workshopReadout();};row.append(uiElement('span',label+' · alvo '+target),range,out);$('workshopInputs').append(row);}
    const help=uiElement('button','Ajustar com o Sr. Assis','secondary');help.disabled=!!workshopPending||summonBusy;help.onclick=()=>{for(const [key,,target]of fields)workshopDraft[key]=target;renderWorkshop();$('workshopConfirm').focus({preventScroll:true});};$('workshopInputs').append(help);
    if(stage===1){const timed=uiElement('button','Apertar no ritmo da linha','secondary');timed.disabled=!!workshopPending||summonBusy;timed.onclick=()=>{workshopDraft.tension=Math.round(50+Math.sin(workshopClock*2.2)*45);renderWorkshop();};$('workshopInputs').append(timed);}
   }workshopReadout();
- }$('workshopRedo').disabled=summonBusy||!!workshopPending;workshopAnimate();
+ }$('workshopRedo').disabled=summonBusy||!!workshopPending;$('workshopExit').disabled=summonBusy;workshopAnimate();
 }
-$('workshopRedo').onclick=()=>{workshopDraft=workshopInput();renderWorkshop();};
+// Sair da bancada volta ao ateliê sem perder nada: as etapas confirmadas estão na conta e a montagem pode ser retomada.
+$('workshopExit').onclick=()=>{if(summonBusy)return;if(summonRitual&&summonRitual.status!=='completed')summonData.active=summonRitual;summonRitual=null;workshopReveal=null;workshopPending=null;showSummonStage('npc');$('workshopResume').hidden=!summonData.active;$('summonMessage').textContent=summonData.active?'Montagem guardada. Retome quando quiser.':'';$('summonInvoke').focus({preventScroll:true});};
+$('workshopRedo').onclick=()=>{workshopDraft=workshopInput();if(summonRitual?.stage===2)workshopRevealBegin();renderWorkshop();};
+// Etapa do papel: escavação da marca da alma (PIP-58). Tempo de bancada pausa com a aba oculta, como o resto da animação.
+function workshopRevealActive(){return !!(summonRitual&&summonRitual.status!=='completed'&&summonRitual.stage===2&&workshopReveal&&!workshopPending&&!summonBusy);}
+function workshopRevealLive(){return workshopRevealActive()&&workshopRevealTimer&&workshopClock>=workshopRevealTimer.start&&!workshopRevealTimer.over&&!workshopReveal.failed;}
+function workshopRevealBegin(){
+ const rabbit=summonRitual.modelId==='rabbito'||summonRitual.targetModelId==='rabbito',id=String(summonRitual.id||'');let seed=++workshopRevealTries;for(const ch of id)seed=(seed*31+ch.charCodeAt(0))>>>0;
+ workshopReveal=createReveal(revealMask(workshopImages.parts,workshopAssets?.rects,rabbit),seed);workshopReveal.job=summonRitual.id;workshopReveal.fallback=rabbit&&!workshopImages.parts?.naturalWidth;workshopRevealTool='estilete';workshopRevealCursor=null;
+ workshopRevealTimer={start:workshopClock+REVEAL_COUNTDOWN,end:workshopClock+REVEAL_COUNTDOWN+REVEAL_SECONDS,over:false,shown:-1};
+ workshopDraft.cuts=[];workshopDraft.revealScore=null;workshopDraft.reveal=workshopReveal;
+}
+function workshopRevealSettle(){
+ const r=revealScore(workshopReveal);
+ if(r.failed){workshopReveal.failed=true;workshopDraft.cuts=[];workshopDraft.revealScore=null;$('summonMessage').textContent='A marca rasgou demais e a folha cedeu. Recomece a folha: nesta versão o papel é do ateliê e a rabiola continua guardada.';workshopRevealControls();return;}
+ else if(r.done||workshopRevealTimer.over){workshopDraft.cuts=[0,1,2,3];workshopDraft.revealScore=r.score;}
+ workshopReadout();
+}
+function workshopRevealStrike(x,y){
+ if(!workshopRevealLive())return;revealStrike(workshopReveal,workshopRevealTool,x,y);
+ if(workshopRevealTool==='estilete')workshopReveal.flashes.push({x,y,at:workshopClock});workshopRevealSettle();
+}
+function workshopRevealPointer(event,down){
+ if(!workshopRevealActive())return false;const c=$('workshopCanvas'),r=c.getBoundingClientRect(),p={x:(event.clientX-r.left)/r.width*960-480,y:(event.clientY-r.top)/r.height*640-400};
+ workshopRevealCursor=p;if(event.type==='pointerdown'){c.setPointerCapture?.(event.pointerId);workshopRevealPrev=null;}
+ if(event.type==='pointerdown'&&workshopRevealTool==='estilete')workshopRevealStrike(p.x,p.y);
+ else if(workshopRevealTool==='tesourinha'&&(event.type==='pointerdown'||down))workshopRevealSnip(p);
+ return true;
+}
+// Interpolada a cada 4 px: a nota não depende da frequência de eventos do aparelho.
+function workshopRevealSnip(p){const a=workshopRevealPrev;if(!a){workshopRevealStrike(p.x,p.y);workshopRevealPrev=p;return;}const n=Math.floor(Math.hypot(p.x-a.x,p.y-a.y)/4);for(let i=1;i<=n;i++)workshopRevealStrike(a.x+(p.x-a.x)*i/n,a.y+(p.y-a.y)*i/n);if(n)workshopRevealPrev=p;}
+function workshopRevealLight(){if(!workshopRevealLive()||workshopReveal.lights<=0)return;workshopReveal.lights--;workshopReveal.lightUntil=workshopClock+2.5;workshopRevealControls();workshopReadout();}
+function workshopRevealTick(){
+ if(!workshopRevealActive())return;
+ // A arte das peças pode chegar depois de retomar a montagem: refaz a folha com a silhueta certa antes do primeiro golpe.
+ if(workshopReveal.fallback&&workshopImages.parts?.naturalWidth&&!workshopReveal.strikes){workshopRevealTries--;workshopRevealBegin();workshopRevealControls();}
+ workshopDraft.reveal=workshopReveal;
+ workshopDraft.revealView={tool:workshopRevealTool,cursor:workshopRevealCursor,lit:workshopClock<workshopRevealTimer.start||workshopClock<workshopReveal.lightUntil};
+ if(!workshopRevealTimer.over&&workshopClock>=workshopRevealTimer.end){workshopRevealTimer.over=true;$('summonMessage').textContent='Tempo esgotado: a etapa fica com o que foi revelado.';workshopRevealSettle();workshopRevealControls();}
+ const left=Math.max(0,Math.ceil(workshopRevealTimer.end-Math.max(workshopClock,workshopRevealTimer.start)));
+ if(left!==workshopRevealTimer.shown){workshopRevealTimer.shown=left;const t=$('workshopRevealClock');if(t){t.textContent=left+'s';t.classList.toggle('low',left<=15);}}
+}
+function workshopRevealOverlay(g){
+ if(!workshopRevealActive()||workshopClock>=workshopRevealTimer.start)return;
+ g.save();g.fillStyle='#fff8e9';g.strokeStyle='#294b53';g.lineWidth=8;g.font='bold 120px Lilita One, sans-serif';g.textAlign='center';g.textBaseline='middle';
+ const n=String(Math.ceil(workshopRevealTimer.start-workshopClock));g.strokeText(n,480,300);g.fillText(n,480,300);g.restore();
+}
+function workshopRevealReadout(){
+ if(!workshopReveal)return '';const r=revealScore(workshopReveal);
+ const bars=$('workshopRevealBars');if(bars){bars.querySelector('[data-bar=shown] i').style.width=Math.round(r.revealed*100)+'%';bars.querySelector('[data-bar=tear] i').style.width=Math.round(Math.min(1,r.damage/REVEAL_FAIL)*100)+'%';bars.querySelector('[data-bar=shown] b').textContent=Math.round(r.revealed*100)+'%';bars.querySelector('[data-bar=tear] b').textContent=Math.round(r.damage*100)+'%';}
+ return workshopReveal.failed?'A folha cedeu':'Nota '+r.score+(r.damage>.3&&!workshopReveal.failed?' · a marca está rasgando: use a tesourinha':'');
+}
+function workshopRevealControls(){
+ if(!workshopReveal||workshopReveal.job!==summonRitual.id)workshopRevealBegin();const live=!workshopReveal.failed&&!workshopRevealTimer.over;$('workshopInputs').replaceChildren();
+ const head=uiElement('div',undefined,'workshop-reveal-head');const clock=uiElement('b',Math.ceil(REVEAL_SECONDS)+'s');clock.id='workshopRevealClock';head.append(clock,uiElement('span','Tempo de bancada · pausa se você sair da aba'));
+ const tools=uiElement('div',undefined,'workshop-tools');tools.setAttribute('role','group');tools.setAttribute('aria-label','Ferramentas');
+ for(const [id,label] of [['estilete','Estilete'],['tesourinha','Tesourinha']]){const b=uiElement('button',label,'secondary');b.setAttribute('aria-pressed',String(workshopRevealTool===id));b.disabled=!live||!!workshopPending||summonBusy;b.onclick=()=>{workshopRevealTool=id;workshopRevealControls();$('workshopCanvas').focus({preventScroll:true});};tools.append(b);}
+ const light=uiElement('button','Luz do molde ('+workshopReveal.lights+')','secondary');light.disabled=!live||workshopReveal.lights<=0||!!workshopPending||summonBusy;light.onclick=()=>{workshopRevealLight();$('workshopCanvas').focus({preventScroll:true});};tools.append(light);
+ const bars=uiElement('div',undefined,'workshop-reveal-bars');bars.id='workshopRevealBars';bars.innerHTML='<div data-bar="shown"><span>Marca revelada</span><i></i><b>0%</b></div><div data-bar="tear"><span>Rasgo · cede em 50%</span><i></i><b>0%</b></div>';
+ for(const row of bars.children){const track=document.createElement('em');track.append(row.querySelector('i'));row.insertBefore(track,row.querySelector('b'));}
+ const keys=uiElement('p','Mouse ou toque na bancada · Setas movem a ferramenta, Espaço usa, 1 e 2 trocam, L acende a Luz.','workshop-help');
+ $('workshopInputs').append(head,tools,bars,keys);if(workshopReveal.failed){const again=uiElement('button','Recomeçar a folha','primary');again.onclick=()=>{workshopDraft=workshopInput();workshopRevealBegin();renderWorkshop();};$('workshopInputs').append(again);}
+ workshopRevealTimer.shown=-1;workshopReadout();
+}
+$('workshopCanvas').tabIndex=0;
+$('workshopCanvas').addEventListener('keydown',event=>{
+ if(!workshopRevealActive())return;const k=event.key,step=event.shiftKey?3:8,mv={ArrowUp:[0,-step],ArrowDown:[0,step],ArrowLeft:[-step,0],ArrowRight:[step,0]}[k];
+ if(mv||k===' ')event.preventDefault();
+ if(k==='1'||k==='2'){workshopRevealTool=k==='1'?'estilete':'tesourinha';workshopRevealControls();}
+ if(k.toLowerCase()==='l')workshopRevealLight();
+ const at=workshopRevealCursor||{x:0,y:-20};
+ if(mv){workshopRevealCursor={x:at.x+mv[0],y:at.y+mv[1]};if(workshopRevealTool==='tesourinha'&&workshopRevealPrev)workshopRevealSnip(workshopRevealCursor);}
+ if(k===' '&&!event.repeat){workshopRevealCursor=at;if(workshopRevealTool==='estilete')workshopRevealStrike(at.x,at.y);else{workshopRevealPrev=null;workshopRevealSnip(at);}}
+});
+$('workshopCanvas').addEventListener('keyup',event=>{if(event.key===' ')workshopRevealPrev=null;});
 // Direct manipulation and equivalent keyboard buttons share the same ordered input.
 function workshopPoint(event){
  if(!summonRitual||summonBusy||workshopPending||![0,2].includes(summonRitual.stage))return;
@@ -3335,8 +3518,9 @@ function workshopPoint(event){
  const rabbit=summonRitual.modelId==='rabbito',points=rabbit?[[-65,-155],[28,-155],[50,8],[-48,70]]:[[0,-100],[105,0],[0,100],[-105,0]];
  if(i<4&&Math.hypot(x-points[i][0],y-points[i][1])<30){workshopDraft[field].push(i);renderWorkshop();}
 }
-$('workshopCanvas').onpointerdown=event=>{if(event.button!==0)return;workshopPoint(event);};
-$('workshopCanvas').onpointermove=event=>{if(event.buttons===1)workshopPoint(event);};
+$('workshopCanvas').onpointerdown=event=>{if(event.button!==0)return;if(workshopRevealPointer(event,true))return;workshopPoint(event);};
+$('workshopCanvas').onpointermove=event=>{if(workshopRevealPointer(event,event.buttons===1&&!event.type.endsWith('down')))return;if(event.buttons===1)workshopPoint(event);};
+$('workshopCanvas').onpointerup=$('workshopCanvas').onpointercancel=()=>{workshopRevealPrev=null;};
 $('workshopConfirm').onclick=async()=>{
  if(summonBusy||!summonRitual||(!workshopPending&&!workshopReady(summonRitual.stage,workshopDraft)))return;
  workshopPending??={jobId:summonRitual.id,stage:summonRitual.stage,payload:workshopPayload(summonRitual.stage,workshopDraft),requestId:crypto.randomUUID()};
@@ -3359,7 +3543,7 @@ async function openSummoner(){
  try{await loadSummonTails();if(summonOpen){$('summonMessage').textContent='';await workshopLoadArt();}}
  catch(e){if(summonOpen){$('summonMessage').textContent=e.message+' Tente conectar novamente. Sua montagem permanece na conta.';const retry=uiElement('button','Tentar novamente','secondary');retry.onclick=openSummoner;$('summonMessage').append(retry);}}
 }
-function leaveSummoner(){summonOpen=false;workshopEpoch++;summonRitual=null;workshopPending=null;summonTail=null;workshopLast=0;if(workshopFrame)cancelAnimationFrame(workshopFrame);workshopFrame=0;summonRoom.hidden=true;$('collectionMain').hidden=false;}
+function leaveSummoner(){summonRoom.classList.remove('is-building','is-revealing');summonOpen=false;workshopEpoch++;summonRitual=null;workshopPending=null;summonTail=null;workshopLast=0;if(workshopFrame)cancelAnimationFrame(workshopFrame);workshopFrame=0;summonRoom.hidden=true;$('collectionMain').hidden=false;}
 $('leaveSummoner').onclick=leaveSummoner;$('visitSummoner').onclick=openSummoner;
 
 // Keep account features on separate screens without recreating their live state.
