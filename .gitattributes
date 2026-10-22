@@ -1,2 +1,10 @@
 # Preserve PDF bytes and avoid text diffs or line-ending conversion.
 *.pdf binary
+art/benchmarks/pokemon-digimon-2026-10-20/fontes/digimon-world-next-order-manual-oficial.pdf filter=lfs diff=lfs merge=lfs -text
+art/world-quintal-modular-v1/quintal-modular-editavel-v1.zip filter=lfs diff=lfs merge=lfs -text
+output/PipaKlub-Fios-do-Principio-Paginas-01-08-v1.zip filter=lfs diff=lfs merge=lfs -text
+output/eremor-sprites-v1.zip filter=lfs diff=lfs merge=lfs -text
+output/pdf/PipaKlub-Fios-do-Principio-Paginas-01-08-v1.pdf filter=lfs diff=lfs merge=lfs -text
+output/pdf/pipaklub-benchmark-pokemon-digimon.pdf filter=lfs diff=lfs merge=lfs -text
+output/pipaklub-benchmark-pokemon-digimon.zip filter=lfs diff=lfs merge=lfs -text
+output/soulmonsters-overworld-v1.zip filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,510 @@
+{
+  "status": "needs-cleanup",
+  "frames": {
+    "urso-menta_00": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 314
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "state": "idle",
+      "duration": 220
+    },
+    "urso-menta_01": {
+      "frame": {
+        "x": 314,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 314
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "state": "idle",
+      "duration": 150
+    },
+    "urso-menta_02": {
+      "frame": {
+        "x": 627,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 314
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "state": "idle",
+      "duration": 220
+    },
+    "urso-menta_03": {
+      "frame": {
+        "x": 940,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 314
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "state": "idle",
+      "duration": 220
+    },
+    "urso-menta_04": {
+      "frame": {
+        "x": 0,
+        "y": 314,
+        "w": 314,
+        "h": 313
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 313
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 313
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "state": "flight",
+      "duration": 130
+    },
+    "urso-menta_05": {
+      "frame": {
+        "x": 314,
+        "y": 314,
+        "w": 313,
+        "h": 313
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 313
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 313
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "state": "flight",
+      "duration": 110
+    },
+    "urso-menta_06": {
+      "frame": {
+        "x": 627,
+        "y": 314,
+        "w": 313,
+        "h": 313
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 313
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 313
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "state": "flight",
+      "duration": 130
+    },
+    "urso-menta_07": {
+      "frame": {
+        "x": 940,
+        "y": 314,
+        "w": 314,
+        "h": 313
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 313
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 313
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "state": "flight",
+      "duration": 110
+    },
+    "urso-menta_08": {
+      "frame": {
+        "x": 0,
+        "y": 627,
+        "w": 314,
+        "h": 313
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 313
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 313
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "state": "skill",
+      "duration": 160
+    },
+    "urso-menta_09": {
+      "frame": {
+        "x": 314,
+        "y": 627,
+        "w": 313,
+        "h": 313
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 313
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 313
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "state": "skill",
+      "duration": 180
+    },
+    "urso-menta_10": {
+      "frame": {
+        "x": 627,
+        "y": 627,
+        "w": 313,
+        "h": 313
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 313
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 313
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "state": "skill",
+      "duration": 110
+    },
+    "urso-menta_11": {
+      "frame": {
+        "x": 940,
+        "y": 627,
+        "w": 314,
+        "h": 313
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 313
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 313
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "state": "skill",
+      "duration": 180
+    },
+    "urso-menta_12": {
+      "frame": {
+        "x": 0,
+        "y": 940,
+        "w": 314,
+        "h": 314
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 314
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "state": "hurt",
+      "duration": 150
+    },
+    "urso-menta_13": {
+      "frame": {
+        "x": 314,
+        "y": 940,
+        "w": 313,
+        "h": 314
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 314
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "state": "hurt",
+      "duration": 210
+    },
+    "urso-menta_14": {
+      "frame": {
+        "x": 627,
+        "y": 940,
+        "w": 313,
+        "h": 314
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 314
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "state": "victory",
+      "duration": 300
+    },
+    "urso-menta_15": {
+      "frame": {
+        "x": 940,
+        "y": 940,
+        "w": 314,
+        "h": 314
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 314
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "state": "victory",
+      "duration": 420
+    }
+  },
+  "animations": {
+    "idle": [
+      "urso-menta_00",
+      "urso-menta_01",
+      "urso-menta_02",
+      "urso-menta_03"
+    ],
+    "flight": [
+      "urso-menta_04",
+      "urso-menta_05",
+      "urso-menta_06",
+      "urso-menta_07"
+    ],
+    "skill": [
+      "urso-menta_08",
+      "urso-menta_09",
+      "urso-menta_10",
+      "urso-menta_11"
+    ],
+    "hurt": [
+      "urso-menta_12",
+      "urso-menta_13"
+    ],
+    "victory": [
+      "urso-menta_14",
+      "urso-menta_15"
+    ]
+  },
+  "meta": {
+    "app": "PipaKlub Soul Art - DRAFT",
+    "image": "urso-menta.png",
+    "size": {
+      "w": 1254,
+      "h": 1254
+    },
+    "scale": "1",
+    "format": "RGBA8888",
+    "columns": 4,
+    "rows": 4,
+    "name": "Urso verde-menta (nome provisório)"
+  },
+  "playback": {
+    "idle": {
+      "durations": [
+        220,
+        150,
+        220,
+        220
+      ],
+      "loop": true,
+      "returnTo": null
+    },
+    "flight": {
+      "durations": [
+        130,
+        110,
+        130,
+        110
+      ],
+      "loop": true,
+      "returnTo": null
+    },
+    "skill": {
+      "durations": [
+        160,
+        180,
+        110,
+        180
+      ],
+      "loop": false,
+      "returnTo": "idle"
+    },
+    "hurt": {
+      "durations": [
+        150,
+        210
+      ],
+      "loop": false,
+      "returnTo": "idle"
+    },
+    "victory": {
+      "durations": [
+        300,
+        420
+      ],
+      "loop": true,
+      "returnTo": null
+    }
+  }
+}

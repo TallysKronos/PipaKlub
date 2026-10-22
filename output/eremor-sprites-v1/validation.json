@@ -1,0 +1,286 @@
+{
+  "battle": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "alphaThreshold": 32,
+    "minimumMargin": 14,
+    "sha256": "41f9d0056d0b1ed9c643873dfbaa07a447f7064fe034949e23bdaec5c8cbbd98",
+    "frames": [
+      {
+        "index": 0,
+        "margin": 27,
+        "bounds": {
+          "x": 59,
+          "y": 104,
+          "w": 246,
+          "h": 182
+        }
+      },
+      {
+        "index": 1,
+        "margin": 28,
+        "bounds": {
+          "x": 28,
+          "y": 102,
+          "w": 233,
+          "h": 183
+        }
+      },
+      {
+        "index": 2,
+        "margin": 27,
+        "bounds": {
+          "x": 33,
+          "y": 102,
+          "w": 240,
+          "h": 184
+        }
+      },
+      {
+        "index": 3,
+        "margin": 27,
+        "bounds": {
+          "x": 39,
+          "y": 101,
+          "w": 235,
+          "h": 185
+        }
+      },
+      {
+        "index": 4,
+        "margin": 30,
+        "bounds": {
+          "x": 41,
+          "y": 99,
+          "w": 279,
+          "h": 175
+        }
+      },
+      {
+        "index": 5,
+        "margin": 19,
+        "bounds": {
+          "x": 42,
+          "y": 92,
+          "w": 231,
+          "h": 182
+        }
+      },
+      {
+        "index": 6,
+        "margin": 20,
+        "bounds": {
+          "x": 22,
+          "y": 97,
+          "w": 266,
+          "h": 175
+        }
+      },
+      {
+        "index": 7,
+        "margin": 20,
+        "bounds": {
+          "x": 48,
+          "y": 96,
+          "w": 236,
+          "h": 176
+        }
+      },
+      {
+        "index": 8,
+        "margin": 38,
+        "bounds": {
+          "x": 43,
+          "y": 89,
+          "w": 269,
+          "h": 182
+        }
+      },
+      {
+        "index": 9,
+        "margin": 15,
+        "bounds": {
+          "x": 34,
+          "y": 52,
+          "w": 243,
+          "h": 218
+        }
+      },
+      {
+        "index": 10,
+        "margin": 14,
+        "bounds": {
+          "x": 14,
+          "y": 73,
+          "w": 272,
+          "h": 185
+        }
+      },
+      {
+        "index": 11,
+        "margin": 21,
+        "bounds": {
+          "x": 36,
+          "y": 81,
+          "w": 247,
+          "h": 181
+        }
+      },
+      {
+        "index": 12,
+        "margin": 36,
+        "bounds": {
+          "x": 63,
+          "y": 65,
+          "w": 251,
+          "h": 179
+        }
+      },
+      {
+        "index": 13,
+        "margin": 23,
+        "bounds": {
+          "x": 31,
+          "y": 69,
+          "w": 238,
+          "h": 177
+        }
+      },
+      {
+        "index": 14,
+        "margin": 24,
+        "bounds": {
+          "x": 31,
+          "y": 51,
+          "w": 253,
+          "h": 195
+        }
+      },
+      {
+        "index": 15,
+        "margin": 29,
+        "bounds": {
+          "x": 45,
+          "y": 62,
+          "w": 230,
+          "h": 184
+        }
+      }
+    ],
+    "geometryValid": true,
+    "animationApproval": "manual-review-required"
+  },
+  "overworld": {
+    "size": [
+      1536,
+      1024
+    ],
+    "alphaRange": [
+      0,
+      254
+    ],
+    "alphaThreshold": 32,
+    "minimumMargin": 50,
+    "sha256": "28e12e418642af9e81114a1ca594771a97e90fa8a400e8b99b8f4d2c537e87a7",
+    "frames": [
+      {
+        "index": 0,
+        "margin": 66,
+        "bounds": {
+          "x": 92,
+          "y": 179,
+          "w": 226,
+          "h": 220
+        }
+      },
+      {
+        "index": 1,
+        "margin": 50,
+        "bounds": {
+          "x": 84,
+          "y": 181,
+          "w": 250,
+          "h": 220
+        }
+      },
+      {
+        "index": 2,
+        "margin": 58,
+        "bounds": {
+          "x": 58,
+          "y": 180,
+          "w": 223,
+          "h": 221
+        }
+      },
+      {
+        "index": 3,
+        "margin": 86,
+        "bounds": {
+          "x": 90,
+          "y": 177,
+          "w": 208,
+          "h": 221
+        }
+      },
+      {
+        "index": 4,
+        "margin": 69,
+        "bounds": {
+          "x": 91,
+          "y": 105,
+          "w": 224,
+          "h": 237
+        }
+      },
+      {
+        "index": 5,
+        "margin": 58,
+        "bounds": {
+          "x": 80,
+          "y": 120,
+          "w": 246,
+          "h": 230
+        }
+      },
+      {
+        "index": 6,
+        "margin": 50,
+        "bounds": {
+          "x": 50,
+          "y": 117,
+          "w": 243,
+          "h": 232
+        }
+      },
+      {
+        "index": 7,
+        "margin": 86,
+        "bounds": {
+          "x": 86,
+          "y": 96,
+          "w": 212,
+          "h": 242
+        }
+      }
+    ],
+    "geometryValid": true,
+    "animationApproval": "manual-review-required"
+  },
+  "pixelEdits": false,
+  "integrated": false,
+  "battleUniformGrid": false,
+  "battleCropBoundaries": [
+    0,
+    350,
+    642,
+    950,
+    1254
+  ]
+}

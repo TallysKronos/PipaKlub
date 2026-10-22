@@ -1,0 +1,245 @@
+[
+  {
+    "file": "capturas/poke-arceus-batalha-01.jpg",
+    "title": "Arceus | Preparação e mira",
+    "category": "Combate",
+    "source": "https://legends.arceus.pokemon.com/en-us/gameplay/",
+    "observation": "A mira ocupa o centro; os atalhos ficam nas bordas.",
+    "adaptation": "Reservar o centro para o cruzamento das linhas. Indicadores de alcance precisam aparecer junto do alvo, sem competir com o cenário.",
+    "limit": "Captura oficial publicada; não é uma sessão de jogo executada nesta auditoria."
+  },
+  {
+    "file": "capturas/poke-arceus-batalha-02.jpg",
+    "title": "Arceus | Comandos de combate",
+    "category": "Combate",
+    "source": "https://legends.arceus.pokemon.com/en-us/gameplay/",
+    "observation": "Vida e escolhas de ação ocupam regiões distintas, deixando o confronto visível.",
+    "adaptation": "Linha e energia junto do retrato; ações em um conjunto compacto. Não importar os turnos: o corte do PipaKlub depende de movimento contínuo.",
+    "limit": "Captura oficial publicada; não é uma sessão de jogo executada nesta auditoria."
+  },
+  {
+    "file": "capturas/poke-arceus-batalha-03.jpg",
+    "title": "Arceus | Lista de técnicas",
+    "category": "Combate",
+    "source": "https://legends.arceus.pokemon.com/en-us/gameplay/",
+    "observation": "A técnica em foco recebe destaque e os comandos de informação e retorno ficam no rodapé.",
+    "adaptation": "Mostrar custo, recarga e condição da rebicada selecionada. A ordem de turnos é específica desta referência, sem equivalente obrigatório no nosso jogo.",
+    "limit": "Captura oficial publicada; não é uma sessão de jogo executada nesta auditoria."
+  },
+  {
+    "file": "capturas/poke-arceus-pokedex-02.jpg",
+    "title": "Arceus | Pesquisa na Pokédex",
+    "category": "Coleção",
+    "source": "https://legends.arceus.pokemon.com/en-us/gameplay/",
+    "observation": "Lista de espécies e área de pesquisa formam duas regiões estáveis.",
+    "adaptation": "A Pipa Dex pode manter os rostos de um lado e o parceiro do outro; distribuir história, técnica e drops em páginas, evitando uma ficha longa.",
+    "limit": "Captura oficial publicada; não é uma sessão de jogo executada nesta auditoria."
+  },
+  {
+    "file": "capturas/poke-arceus-pokedex-03.jpg",
+    "title": "Arceus | Progresso de pesquisa",
+    "category": "Coleção",
+    "source": "https://legends.arceus.pokemon.com/en-us/gameplay/",
+    "observation": "A conclusão da pesquisa ganha um sinal próprio na ficha.",
+    "adaptation": "Separar espécie conhecida, exemplar obtido e parceiro equipado. O contorno de foco nunca deve ser a única indicação de propriedade.",
+    "limit": "Captura oficial publicada; não é uma sessão de jogo executada nesta auditoria."
+  },
+  {
+    "file": "capturas/poke-arceus-criacao-itens.jpg",
+    "title": "Arceus | Criação de itens",
+    "category": "Itens",
+    "source": "https://legends.arceus.pokemon.com/en-us/gameplay/",
+    "observation": "Grade, descrição e materiais têm áreas próprias.",
+    "adaptation": "Mochila com categorias, quantidade, descrição e ação contextual. Para rabiolas repetidas, agrupar visualmente sem perder a identidade dos exemplares quando ela importar.",
+    "limit": "Captura oficial publicada; não é uma sessão de jogo executada nesta auditoria."
+  },
+  {
+    "file": "capturas/digi-next-order-manual-09.png",
+    "title": "Next Order | Menu Digivice",
+    "category": "Menus",
+    "source": "https://d1vtv52f4vjbmu.cloudfront.net/manuals/dwno/PS4-DWNO_manual_GBQS_WEB.pdf#page=9",
+    "observation": "O manual mostra lista de destinos e informações dos parceiros simultaneamente.",
+    "adaptation": "Manter a lista do Caderno do pipeiro, acrescentando parceiro e contexto útil sem transformar cada opção em um painel decorativo.",
+    "limit": "Página 9 do manual oficial renderizada; caixas numeradas e explicações pertencem ao manual, não ao jogo."
+  },
+  {
+    "file": "capturas/digi-next-order-manual-15.png",
+    "title": "Next Order | Guia de criaturas",
+    "category": "Coleção",
+    "source": "https://d1vtv52f4vjbmu.cloudfront.net/manuals/dwno/PS4-DWNO_manual_GBQS_WEB.pdf#page=15",
+    "observation": "A página documenta grade de criaturas e ficha separada com navegação por páginas.",
+    "adaptation": "Retratos consistentes, posição lembrada e páginas de informação. Criaturas desconhecidas precisam de uma regra de revelação própria.",
+    "limit": "Página 15 do manual oficial renderizada; exemplos internos têm resolução menor que a página."
+  },
+  {
+    "file": "capturas/digi-next-order-manual-16.png",
+    "title": "Next Order | Exploração e minimapa",
+    "category": "Exploração",
+    "source": "https://d1vtv52f4vjbmu.cloudfront.net/manuals/dwno/PS4-DWNO_manual_GBQS_WEB.pdf#page=16",
+    "observation": "A cena de exploração usa informação periférica e um minimapa com símbolos distintos.",
+    "adaptation": "No Quintal, priorizar parceiro, missão e interação próxima. Exibir minimapa somente quando o percurso justificar; nunca usar apenas cor para diferenciar NPC e objetivo.",
+    "limit": "Página 16 do manual oficial, com chamadas editoriais numeradas."
+  },
+  {
+    "file": "capturas/digi-next-order-manual-18.png",
+    "title": "Next Order | Itens e cuidado",
+    "category": "Itens",
+    "source": "https://d1vtv52f4vjbmu.cloudfront.net/manuals/dwno/PS4-DWNO_manual_GBQS_WEB.pdf#page=18",
+    "observation": "O manual apresenta categorias e seleção de um item em contexto.",
+    "adaptation": "Organizar rabiolas e consumíveis por função, com alvo e consequência explícitos antes de usar. Mecânicas de fome e sono não fazem parte desta proposta.",
+    "limit": "Página 18 do manual oficial; não inferir comportamento não demonstrado pelas imagens."
+  },
+  {
+    "file": "capturas/digi-next-order-manual-20.png",
+    "title": "Next Order | Ordens em batalha",
+    "category": "Combate",
+    "source": "https://d1vtv52f4vjbmu.cloudfront.net/manuals/dwno/PS4-DWNO_manual_GBQS_WEB.pdf#page=20",
+    "observation": "Dados persistentes e menu de ordens temporário cumprem funções diferentes.",
+    "adaptation": "No online, ações rápidas permanecem acessíveis; menus de estudo devem informar se o mundo continua rodando. Não prometer pausa global numa sala multiplayer.",
+    "limit": "Página 20 do manual oficial; o menu radial é uma referência de organização, não uma decisão de implementação."
+  },
+  {
+    "file": "capturas/digi-next-order-manual-22.png",
+    "title": "Next Order | Táticas e saída",
+    "category": "Combate",
+    "source": "https://d1vtv52f4vjbmu.cloudfront.net/manuals/dwno/PS4-DWNO_manual_GBQS_WEB.pdf#page=22",
+    "observation": "Táticas e confirmação de fuga aparecem como etapas diferentes.",
+    "adaptation": "Separar continuar, configurar rebicada e abandonar partida. A confirmação de saída precisa explicar a consequência real do modo atual.",
+    "limit": "Página 22 do manual oficial, não uma tela de resultado de batalha."
+  },
+  {
+    "file": "capturas/digi-next-order-manual-30.png",
+    "title": "Next Order | Comunicação com parceiro",
+    "category": "Diálogo",
+    "source": "https://d1vtv52f4vjbmu.cloudfront.net/manuals/dwno/PS4-DWNO_manual_GBQS_WEB.pdf#page=30",
+    "observation": "A escolha de resposta preserva a presença das criaturas no cenário.",
+    "adaptation": "Retrato, nome e mensagem com uma ação principal clara. Em escolhas narrativas, usar uma lista legível e manter o parceiro presente.",
+    "limit": "Página 30 do manual oficial; não propõe importar sistemas de punição ou relacionamento."
+  },
+  {
+    "file": "capturas/digi-time-stranger-status-e-equipamento.jpg",
+    "title": "Time Stranger | Ficha e equipamento",
+    "category": "Coleção",
+    "source": "https://www.bandainamcoent.com/news/digimon-story-time-stranger-what-you-need-to-know",
+    "observation": "A criatura tem destaque e os atributos ficam agrupados em uma região funcional.",
+    "adaptation": "Dar escala ao Pipamon e resumir linha, energia e técnica primeiro. Deixar números avançados numa página de status.",
+    "limit": "Still oficial de apresentação de sistemas, com moldura e legenda promocionais externas à interface."
+  },
+  {
+    "file": "capturas/digi-time-stranger-habilidades-agente.jpg",
+    "title": "Time Stranger | Habilidades",
+    "category": "Progressão",
+    "source": "https://www.bandainamcoent.com/news/digimon-story-time-stranger-what-you-need-to-know",
+    "observation": "Categoria, nós de habilidade e explicação têm regiões distintas.",
+    "adaptation": "Para futuras skills de linha, mostrar requisito, custo, estado e efeito da escolha antes de confirmar. Não adicionar uma árvore apenas por semelhança visual.",
+    "limit": "Still oficial de apresentação; não foi testado com controle nesta auditoria."
+  },
+  {
+    "file": "capturas/digi-time-stranger-evolucao.jpg",
+    "title": "Time Stranger | Progressão visual",
+    "category": "Progressão",
+    "source": "https://www.bandainamcoent.com/news/digimon-story-time-stranger-what-you-need-to-know",
+    "observation": "Caminhos e opções de evolução são apresentados junto da criatura.",
+    "adaptation": "Os marcos 20/30/40/45/50 podem formar uma trilha de brilho com texto e ícone. Evolução de espécie não está sendo proposta.",
+    "limit": "Still promocional; esta referência não prova que o PipaKlub possua evolução."
+  },
+  {
+    "file": "capturas/poke-za-tempo-real-1.jpg",
+    "title": "Z-A | Espaço do confronto",
+    "category": "Contexto",
+    "source": "https://legends.pokemon.com/en-us/gameplay",
+    "observation": "Dois treinadores e seus parceiros estabelecem posições no cenário.",
+    "adaptation": "Usar como estudo espacial para batalhas em movimento; avaliar distâncias com o gameplay real do PipaKlub.",
+    "limit": "Imagem oficial com apresentação VS; não mostra uma HUD completa, recargas ou comportamento de controle."
+  },
+  {
+    "file": "capturas/pipaklub-menu.png",
+    "title": "PipaKlub | Menu principal",
+    "category": "Menus",
+    "source": "PipaKlub local | HEAD 7183063 | 20/10/2026",
+    "observation": "A tipografia, o fio e a pipa de foco já criam identidade. Na conta de teste sem parceiro equipado, aparece o avatar em destaque.",
+    "adaptation": "Preservar esta direção. Quando houver parceiro, mostrá-lo com nome e nível; informar o estado vazio sem dar aparência de erro.",
+    "limit": "Captura própria em navegador; conta Ana Local e banco PGlite isolado. Teclado/mouse, sem validação de controle físico. 1280 x 720."
+  },
+  {
+    "file": "capturas/pipaklub-dex.png",
+    "title": "PipaKlub | Dex em 720p",
+    "category": "Coleção",
+    "source": "PipaKlub local | HEAD 7183063 | 20/10/2026",
+    "observation": "A grade de rostos e a criatura inteira funcionam. A ficha possui rolagem própria; a história começa abaixo da área imediatamente visível.",
+    "adaptation": "Dividir o detalhe em Visão geral / História / Técnica / Drops, mantendo nome, retrato e rodapé fixos. O scroll interno deve ser alcançável por controle.",
+    "limit": "Captura própria em navegador; conta Ana Local e banco PGlite isolado. Teclado/mouse, sem validação de controle físico. 1280 x 720."
+  },
+  {
+    "file": "capturas/pipaklub-parceiros-720.png",
+    "title": "PipaKlub | Parceiros em 720p",
+    "category": "Coleção",
+    "source": "PipaKlub local | HEAD 7183063 | 20/10/2026",
+    "observation": "Dois retratos ocupam uma coluna larga; a área de detalhe mostra só parte dos status. O parceiro ocupa uma fração pequena da vitrine.",
+    "adaptation": "Redimensionar a vitrine pelo tamanho visual da criatura, sem cortar rabiola. Resumir dados principais antes de texto longo; permitir navegar pelos detalhes sem mouse.",
+    "limit": "Captura própria em navegador; conta Ana Local e banco PGlite isolado. Teclado/mouse, sem validação de controle físico. 1280 x 720."
+  },
+  {
+    "file": "capturas/pipaklub-parceiros-1080.png",
+    "title": "PipaKlub | Parceiros em 1080p",
+    "category": "Coleção",
+    "source": "PipaKlub local | HEAD 7183063 | 20/10/2026",
+    "observation": "A mesma coleção foi capturada em 1920 x 1080 para comparação de composição.",
+    "adaptation": "Definir limites de largura e densidade para que o espaço extra melhore a leitura. Uma captura em 1080p não substitui testes de escala do sistema ou TV.",
+    "limit": "Captura própria em navegador; conta Ana Local e banco PGlite isolado. Teclado/mouse, sem validação de controle físico. 1920 x 1080."
+  },
+  {
+    "file": "capturas/pipaklub-mochila.png",
+    "title": "PipaKlub | Mochila em 720p",
+    "category": "Itens",
+    "source": "PipaKlub local | HEAD 7183063 | 20/10/2026",
+    "observation": "Cinco rabiolas ficam visíveis. Há dois cartões de Mata verde e a ação disponível leva ao invocador.",
+    "adaptation": "Acrescentar categorias e quantidade quando a coleção crescer; detalhe à direita e consequência da ação. Não criar botão Usar se essa ação não existe no fluxo.",
+    "limit": "Captura própria em navegador; conta Ana Local e banco PGlite isolado. Teclado/mouse, sem validação de controle físico. 1280 x 720."
+  },
+  {
+    "file": "capturas/pipaklub-mochila-1080.png",
+    "title": "PipaKlub | Mochila em 1080p",
+    "category": "Itens",
+    "source": "PipaKlub local | HEAD 7183063 | 20/10/2026",
+    "observation": "O painel foi observado também na segunda resolução, usando o mesmo banco de teste.",
+    "adaptation": "Validar 0, 1, 33 e muitas unidades; inventário curto não comprova que paginação, foco e desempenho funcionem com grandes coleções.",
+    "limit": "Captura própria em navegador; conta Ana Local e banco PGlite isolado. Teclado/mouse, sem validação de controle físico. 1920 x 1080."
+  },
+  {
+    "file": "capturas/pipaklub-missoes.png",
+    "title": "PipaKlub | Missões",
+    "category": "Exploração",
+    "source": "PipaKlub local | HEAD 7183063 | 20/10/2026",
+    "observation": "O painel apresenta próximo objetivo e três trilhas. Ao abrir, a árvore de acessibilidade informou foco na página, sem ação focada.",
+    "adaptation": "P1: colocar foco inicial no objetivo ou ação principal; restaurá-lo ao fechar. Evitar que o diálogo narrativo atrás dispute atenção com a missão.",
+    "limit": "Captura própria em navegador; conta Ana Local e banco PGlite isolado. Teclado/mouse, sem validação de controle físico. 1280 x 720."
+  },
+  {
+    "file": "capturas/pipaklub-abertura.png",
+    "title": "PipaKlub | Abertura narrativa",
+    "category": "Diálogo",
+    "source": "PipaKlub local | HEAD 7183063 | 20/10/2026",
+    "observation": "A transmissão fica acima da faixa de fala; Continuar tem destaque e Continuar depois permanece disponível.",
+    "adaptation": "Preservar separação entre cena e leitura. Testar falas longas, tamanho da fonte, redução de movimento e escolhas sem mouse.",
+    "limit": "Captura própria em navegador; conta Ana Local e banco PGlite isolado. Teclado/mouse, sem validação de controle físico. 1280 x 720."
+  },
+  {
+    "file": "capturas/pipaklub-combate.png",
+    "title": "PipaKlub | HUD no fim de uma rodada de treino",
+    "category": "Combate",
+    "source": "PipaKlub local | HEAD 7183063 | 20/10/2026",
+    "observation": "A captura ocorreu no fim de uma rodada: dados nas bordas, resultado no centro e ações à direita. Textos da ficha são pequenos frente à moldura.",
+    "adaptation": "Priorizar linha, energia e disponibilidade da técnica. Usar avisos centrais breves e não sobrepor o ponto de corte durante a ação. Este print não comprova alinhamento ou latência.",
+    "limit": "Captura própria em navegador; conta Ana Local e banco PGlite isolado. Teclado/mouse, sem validação de controle físico. 1280 x 720."
+  },
+  {
+    "file": "capturas/pipaklub-pausa.png",
+    "title": "PipaKlub | Pausa do treino",
+    "category": "Menus",
+    "source": "PipaKlub local | HEAD 7183063 | 20/10/2026",
+    "observation": "O rótulo Duplo toque aparece cortado na faixa de rebicadas em 1280 x 720. Continuar recebe foco visível.",
+    "adaptation": "P1: trocar a faixa por seleção paginada com setas e nome completo ou usar uma lista. Manter o foco visível ao alternar e explicar a pausa conforme o modo.",
+    "limit": "Captura própria em navegador; conta Ana Local e banco PGlite isolado. Teclado/mouse, sem validação de controle físico. 1280 x 720."
+  }
+]

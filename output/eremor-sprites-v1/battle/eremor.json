@@ -1,0 +1,574 @@
+{
+  "frames": {
+    "eremor_00": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 313
+      },
+      "contentBounds": {
+        "x": 59,
+        "y": 104,
+        "w": 246,
+        "h": 182
+      },
+      "footAnchor": {
+        "x": 182.0,
+        "y": 286
+      },
+      "pivot": {
+        "x": 0.52,
+        "y": 0.9137380191693291
+      },
+      "duration": 220,
+      "state": "idle",
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 350,
+        "h": 313
+      }
+    },
+    "eremor_01": {
+      "frame": {
+        "x": 350,
+        "y": 0,
+        "w": 292,
+        "h": 313
+      },
+      "contentBounds": {
+        "x": 28,
+        "y": 102,
+        "w": 233,
+        "h": 183
+      },
+      "footAnchor": {
+        "x": 144.5,
+        "y": 285
+      },
+      "pivot": {
+        "x": 0.4948630136986301,
+        "y": 0.9105431309904153
+      },
+      "duration": 150,
+      "state": "idle",
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 292,
+        "h": 313
+      }
+    },
+    "eremor_02": {
+      "frame": {
+        "x": 642,
+        "y": 0,
+        "w": 308,
+        "h": 313
+      },
+      "contentBounds": {
+        "x": 33,
+        "y": 102,
+        "w": 240,
+        "h": 184
+      },
+      "footAnchor": {
+        "x": 153.0,
+        "y": 286
+      },
+      "pivot": {
+        "x": 0.4967532467532468,
+        "y": 0.9137380191693291
+      },
+      "duration": 220,
+      "state": "idle",
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 308,
+        "h": 313
+      }
+    },
+    "eremor_03": {
+      "frame": {
+        "x": 950,
+        "y": 0,
+        "w": 304,
+        "h": 313
+      },
+      "contentBounds": {
+        "x": 39,
+        "y": 101,
+        "w": 235,
+        "h": 185
+      },
+      "footAnchor": {
+        "x": 156.5,
+        "y": 286
+      },
+      "pivot": {
+        "x": 0.5148026315789473,
+        "y": 0.9137380191693291
+      },
+      "duration": 220,
+      "state": "idle",
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 304,
+        "h": 313
+      }
+    },
+    "eremor_04": {
+      "frame": {
+        "x": 0,
+        "y": 313,
+        "w": 350,
+        "h": 314
+      },
+      "contentBounds": {
+        "x": 41,
+        "y": 99,
+        "w": 279,
+        "h": 175
+      },
+      "footAnchor": {
+        "x": 180.5,
+        "y": 274
+      },
+      "pivot": {
+        "x": 0.5157142857142857,
+        "y": 0.8726114649681529
+      },
+      "duration": 180,
+      "state": "flight",
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 350,
+        "h": 314
+      }
+    },
+    "eremor_05": {
+      "frame": {
+        "x": 350,
+        "y": 313,
+        "w": 292,
+        "h": 314
+      },
+      "contentBounds": {
+        "x": 42,
+        "y": 92,
+        "w": 231,
+        "h": 182
+      },
+      "footAnchor": {
+        "x": 157.5,
+        "y": 274
+      },
+      "pivot": {
+        "x": 0.5393835616438356,
+        "y": 0.8726114649681529
+      },
+      "duration": 160,
+      "state": "flight",
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 292,
+        "h": 314
+      }
+    },
+    "eremor_06": {
+      "frame": {
+        "x": 642,
+        "y": 313,
+        "w": 308,
+        "h": 314
+      },
+      "contentBounds": {
+        "x": 22,
+        "y": 97,
+        "w": 266,
+        "h": 175
+      },
+      "footAnchor": {
+        "x": 155.0,
+        "y": 272
+      },
+      "pivot": {
+        "x": 0.5032467532467533,
+        "y": 0.8662420382165605
+      },
+      "duration": 180,
+      "state": "flight",
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 308,
+        "h": 314
+      }
+    },
+    "eremor_07": {
+      "frame": {
+        "x": 950,
+        "y": 313,
+        "w": 304,
+        "h": 314
+      },
+      "contentBounds": {
+        "x": 48,
+        "y": 96,
+        "w": 236,
+        "h": 176
+      },
+      "footAnchor": {
+        "x": 166.0,
+        "y": 272
+      },
+      "pivot": {
+        "x": 0.5460526315789473,
+        "y": 0.8662420382165605
+      },
+      "duration": 160,
+      "state": "flight",
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 304,
+        "h": 314
+      }
+    },
+    "eremor_08": {
+      "frame": {
+        "x": 0,
+        "y": 627,
+        "w": 350,
+        "h": 313
+      },
+      "contentBounds": {
+        "x": 43,
+        "y": 89,
+        "w": 269,
+        "h": 182
+      },
+      "footAnchor": {
+        "x": 177.5,
+        "y": 271
+      },
+      "pivot": {
+        "x": 0.5071428571428571,
+        "y": 0.865814696485623
+      },
+      "duration": 200,
+      "state": "skill",
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 350,
+        "h": 313
+      }
+    },
+    "eremor_09": {
+      "frame": {
+        "x": 350,
+        "y": 627,
+        "w": 292,
+        "h": 313
+      },
+      "contentBounds": {
+        "x": 34,
+        "y": 52,
+        "w": 243,
+        "h": 218
+      },
+      "footAnchor": {
+        "x": 155.5,
+        "y": 270
+      },
+      "pivot": {
+        "x": 0.5325342465753424,
+        "y": 0.8626198083067093
+      },
+      "duration": 240,
+      "state": "skill",
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 292,
+        "h": 313
+      }
+    },
+    "eremor_10": {
+      "frame": {
+        "x": 642,
+        "y": 627,
+        "w": 308,
+        "h": 313
+      },
+      "contentBounds": {
+        "x": 14,
+        "y": 73,
+        "w": 272,
+        "h": 185
+      },
+      "footAnchor": {
+        "x": 150.0,
+        "y": 258
+      },
+      "pivot": {
+        "x": 0.487012987012987,
+        "y": 0.8242811501597445
+      },
+      "duration": 150,
+      "state": "skill",
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 308,
+        "h": 313
+      }
+    },
+    "eremor_11": {
+      "frame": {
+        "x": 950,
+        "y": 627,
+        "w": 304,
+        "h": 313
+      },
+      "contentBounds": {
+        "x": 36,
+        "y": 81,
+        "w": 247,
+        "h": 181
+      },
+      "footAnchor": {
+        "x": 159.5,
+        "y": 262
+      },
+      "pivot": {
+        "x": 0.524671052631579,
+        "y": 0.8370607028753994
+      },
+      "duration": 220,
+      "state": "skill",
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 304,
+        "h": 313
+      }
+    },
+    "eremor_12": {
+      "frame": {
+        "x": 0,
+        "y": 940,
+        "w": 350,
+        "h": 314
+      },
+      "contentBounds": {
+        "x": 63,
+        "y": 65,
+        "w": 251,
+        "h": 179
+      },
+      "footAnchor": {
+        "x": 188.5,
+        "y": 244
+      },
+      "pivot": {
+        "x": 0.5385714285714286,
+        "y": 0.7770700636942676
+      },
+      "duration": 160,
+      "state": "hurt",
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 350,
+        "h": 314
+      }
+    },
+    "eremor_13": {
+      "frame": {
+        "x": 350,
+        "y": 940,
+        "w": 292,
+        "h": 314
+      },
+      "contentBounds": {
+        "x": 31,
+        "y": 69,
+        "w": 238,
+        "h": 177
+      },
+      "footAnchor": {
+        "x": 150.0,
+        "y": 246
+      },
+      "pivot": {
+        "x": 0.5136986301369864,
+        "y": 0.7834394904458599
+      },
+      "duration": 240,
+      "state": "hurt",
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 292,
+        "h": 314
+      }
+    },
+    "eremor_14": {
+      "frame": {
+        "x": 642,
+        "y": 940,
+        "w": 308,
+        "h": 314
+      },
+      "contentBounds": {
+        "x": 31,
+        "y": 51,
+        "w": 253,
+        "h": 195
+      },
+      "footAnchor": {
+        "x": 157.5,
+        "y": 246
+      },
+      "pivot": {
+        "x": 0.5113636363636364,
+        "y": 0.7834394904458599
+      },
+      "duration": 400,
+      "state": "victory",
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 308,
+        "h": 314
+      }
+    },
+    "eremor_15": {
+      "frame": {
+        "x": 950,
+        "y": 940,
+        "w": 304,
+        "h": 314
+      },
+      "contentBounds": {
+        "x": 45,
+        "y": 62,
+        "w": 230,
+        "h": 184
+      },
+      "footAnchor": {
+        "x": 160.0,
+        "y": 246
+      },
+      "pivot": {
+        "x": 0.5263157894736842,
+        "y": 0.7834394904458599
+      },
+      "duration": 500,
+      "state": "victory",
+      "rotated": false,
+      "trimmed": false,
+      "sourceSize": {
+        "w": 304,
+        "h": 314
+      }
+    }
+  },
+  "animations": {
+    "idle": [
+      "eremor_00",
+      "eremor_01",
+      "eremor_02",
+      "eremor_03"
+    ],
+    "flight": [
+      "eremor_04",
+      "eremor_05",
+      "eremor_06",
+      "eremor_07"
+    ],
+    "skill": [
+      "eremor_08",
+      "eremor_09",
+      "eremor_10",
+      "eremor_11"
+    ],
+    "hurt": [
+      "eremor_12",
+      "eremor_13"
+    ],
+    "victory": [
+      "eremor_14",
+      "eremor_15"
+    ]
+  },
+  "playback": {
+    "idle": {
+      "durations": [
+        220,
+        150,
+        220,
+        220
+      ],
+      "loop": true,
+      "returnTo": null
+    },
+    "flight": {
+      "durations": [
+        180,
+        160,
+        180,
+        160
+      ],
+      "loop": true,
+      "returnTo": null
+    },
+    "skill": {
+      "durations": [
+        200,
+        240,
+        150,
+        220
+      ],
+      "loop": false,
+      "returnTo": "idle"
+    },
+    "hurt": {
+      "durations": [
+        160,
+        240
+      ],
+      "loop": false,
+      "returnTo": "idle"
+    },
+    "victory": {
+      "durations": [
+        400,
+        500
+      ],
+      "loop": true,
+      "returnTo": null
+    }
+  },
+  "meta": {
+    "image": "eremor.png",
+    "size": {
+      "w": 1254,
+      "h": 1254
+    },
+    "columns": 4,
+    "rows": 4,
+    "uniformGrid": false,
+    "referenceHeight": 218,
+    "filter": "nearest",
+    "status": "preview-only-pending-art-review",
+    "renderContract": "measured rectangles; fixed scale; footAnchor alignment; do not divide sheet width by four"
+  }
+}

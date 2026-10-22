@@ -11,7 +11,7 @@ const plazaFiles=JSON.parse(await fs.readFile(new URL('../assets/hub/praca-v1/ma
 const worldFiles=JSON.parse(await fs.readFile(new URL('../assets/world/identity-v2/manifest.json',import.meta.url),'utf8')).files.map(f=>'world/identity-v2/'+f);
 const worldKitFiles=Object.values(JSON.parse(await fs.readFile(new URL('../assets/world/morro-kit-v1/manifest.json',import.meta.url),'utf8')).sheets).map(s=>s.image);
 worldKitFiles.push(...Object.values(JSON.parse(await fs.readFile(new URL('../assets/world/quintal-kit-v1/manifest.json',import.meta.url),'utf8')).sheets).map(s=>s.image));
-worldKitFiles.push(...Object.values(JSON.parse(await fs.readFile(new URL('../assets/world/park-kit-v2/manifest.json',import.meta.url),'utf8')).sheets).map(s=>s.image));
+worldKitFiles.push(...Object.values(JSON.parse(await fs.readFile(new URL('../assets/world/park-kit-v3/manifest.json',import.meta.url),'utf8')).sheets).map(s=>s.image));
 const worldActorFiles=Object.values(JSON.parse(await fs.readFile(new URL('../assets/characters/overworld-v1/manifest.json',import.meta.url),'utf8')).characters).map(a=>a.image);
 worldActorFiles.push(...Object.values(JSON.parse(await fs.readFile(new URL('../assets/creatures/overworld-v1/manifest.json',import.meta.url),'utf8')).species).map(a=>a.image));
 const paintedWorldFiles=Object.values(JSON.parse(await fs.readFile(new URL('../assets/world/morro-plaza-v1/manifest.json',import.meta.url),'utf8')).sheets).map(s=>s.image);

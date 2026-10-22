@@ -39,10 +39,10 @@
         {
           "id": 2,
           "name": "Entrada",
-          "x": 160,
-          "y": 768,
-          "width": 128,
-          "height": 160,
+          "x": 144,
+          "y": 744,
+          "width": 160,
+          "height": 200,
           "properties": [
             {
               "name": "level",
@@ -52,7 +52,7 @@
             {
               "name": "ground_frame",
               "type": "string",
-              "value": "sidewalk"
+              "value": "dirt"
             },
             {
               "name": "safe_area",
@@ -65,9 +65,9 @@
           "id": 3,
           "name": "Passeio do jardim",
           "x": 192,
-          "y": 752,
-          "width": 464,
-          "height": 112,
+          "y": 744,
+          "width": 480,
+          "height": 144,
           "properties": [
             {
               "name": "level",
@@ -89,10 +89,10 @@
         {
           "id": 4,
           "name": "Curva dos bancos",
-          "x": 544,
-          "y": 480,
-          "width": 112,
-          "height": 320,
+          "x": 528,
+          "y": 464,
+          "width": 144,
+          "height": 368,
           "properties": [
             {
               "name": "level",
@@ -115,9 +115,9 @@
           "id": 5,
           "name": "Passeio até a clareira",
           "x": 576,
-          "y": 464,
-          "width": 768,
-          "height": 112,
+          "y": 448,
+          "width": 800,
+          "height": 144,
           "properties": [
             {
               "name": "level",
@@ -140,9 +140,9 @@
           "id": 6,
           "name": "Saída entre árvores",
           "x": 1232,
-          "y": 352,
-          "width": 112,
-          "height": 176,
+          "y": 336,
+          "width": 144,
+          "height": 224,
           "properties": [
             {
               "name": "level",
@@ -165,9 +165,9 @@
           "id": 7,
           "name": "Largo de descanso",
           "x": 272,
-          "y": 416,
-          "width": 272,
-          "height": 256,
+          "y": 432,
+          "width": 280,
+          "height": 240,
           "properties": [
             {
               "name": "level",
@@ -189,9 +189,9 @@
         {
           "id": 8,
           "name": "Acesso ao largo",
-          "x": 400,
-          "y": 608,
-          "width": 200,
+          "x": 432,
+          "y": 576,
+          "width": 168,
           "height": 96,
           "properties": [
             {
@@ -212,11 +212,61 @@
           ]
         },
         {
-          "id": 34,
+          "id": 9,
+          "name": "Recanto do banco",
+          "x": 1040,
+          "y": 528,
+          "width": 160,
+          "height": 160,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "dirt"
+            },
+            {
+              "name": "safe_area",
+              "type": "bool",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": 40,
           "name": "Habitat de capim 1",
-          "x": 730,
-          "y": 310,
-          "width": 430,
+          "x": 740,
+          "y": 324,
+          "width": 360,
+          "height": 88,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "park-tall-grass"
+            },
+            {
+              "name": "encounter_zone",
+              "type": "string",
+              "value": "park-clearing"
+            }
+          ]
+        },
+        {
+          "id": 41,
+          "name": "Lóbulo do habitat 1",
+          "x": 764,
+          "y": 300,
+          "width": 300,
           "height": 112,
           "properties": [
             {
@@ -227,7 +277,7 @@
             {
               "name": "ground_frame",
               "type": "string",
-              "value": "grass"
+              "value": "park-tall-grass"
             },
             {
               "name": "encounter_zone",
@@ -237,12 +287,12 @@
           ]
         },
         {
-          "id": 35,
-          "name": "Habitat de capim 2",
-          "x": 130,
+          "id": 42,
+          "name": "Borda do habitat 1",
+          "x": 754,
           "y": 340,
-          "width": 126,
-          "height": 150,
+          "width": 318,
+          "height": 88,
           "properties": [
             {
               "name": "level",
@@ -252,7 +302,7 @@
             {
               "name": "ground_frame",
               "type": "string",
-              "value": "grass"
+              "value": "park-tall-grass"
             },
             {
               "name": "encounter_zone",
@@ -262,12 +312,12 @@
           ]
         },
         {
-          "id": 36,
-          "name": "Habitat de capim 3",
-          "x": 1000,
-          "y": 672,
-          "width": 330,
-          "height": 144,
+          "id": 43,
+          "name": "Habitat de capim 2",
+          "x": 160,
+          "y": 364,
+          "width": 144,
+          "height": 136,
           "properties": [
             {
               "name": "level",
@@ -277,7 +327,132 @@
             {
               "name": "ground_frame",
               "type": "string",
-              "value": "grass"
+              "value": "park-tall-grass"
+            },
+            {
+              "name": "encounter_zone",
+              "type": "string",
+              "value": "park-clearing"
+            }
+          ]
+        },
+        {
+          "id": 44,
+          "name": "Lóbulo do habitat 2",
+          "x": 184,
+          "y": 340,
+          "width": 84,
+          "height": 160,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "park-tall-grass"
+            },
+            {
+              "name": "encounter_zone",
+              "type": "string",
+              "value": "park-clearing"
+            }
+          ]
+        },
+        {
+          "id": 45,
+          "name": "Borda do habitat 2",
+          "x": 174,
+          "y": 380,
+          "width": 102,
+          "height": 136,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "park-tall-grass"
+            },
+            {
+              "name": "encounter_zone",
+              "type": "string",
+              "value": "park-clearing"
+            }
+          ]
+        },
+        {
+          "id": 46,
+          "name": "Habitat de capim 3",
+          "x": 1016,
+          "y": 728,
+          "width": 300,
+          "height": 128,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "park-tall-grass"
+            },
+            {
+              "name": "encounter_zone",
+              "type": "string",
+              "value": "park-clearing"
+            }
+          ]
+        },
+        {
+          "id": 47,
+          "name": "Lóbulo do habitat 3",
+          "x": 1040,
+          "y": 704,
+          "width": 240,
+          "height": 152,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "park-tall-grass"
+            },
+            {
+              "name": "encounter_zone",
+              "type": "string",
+              "value": "park-clearing"
+            }
+          ]
+        },
+        {
+          "id": 48,
+          "name": "Borda do habitat 3",
+          "x": 1030,
+          "y": 744,
+          "width": 258,
+          "height": 128,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "park-tall-grass"
             },
             {
               "name": "encounter_zone",
@@ -294,30 +469,10 @@
       "type": "objectgroup",
       "objects": [
         {
-          "id": 14,
-          "name": "park-tree",
-          "x": 93,
-          "y": 252,
-          "width": 38,
-          "height": 28,
-          "properties": [
-            {
-              "name": "level",
-              "type": "int",
-              "value": 0
-            },
-            {
-              "name": "sort_y",
-              "type": "int",
-              "value": 280
-            }
-          ]
-        },
-        {
           "id": 15,
-          "name": "park-tree-flower",
-          "x": 341,
-          "y": 244,
+          "name": "park-tree-a",
+          "x": 29,
+          "y": 234,
           "width": 38,
           "height": 28,
           "properties": [
@@ -329,15 +484,15 @@
             {
               "name": "sort_y",
               "type": "int",
-              "value": 272
+              "value": 262
             }
           ]
         },
         {
           "id": 16,
-          "name": "park-tree",
-          "x": 631,
-          "y": 248,
+          "name": "park-tree-b",
+          "x": 383,
+          "y": 216,
           "width": 38,
           "height": 28,
           "properties": [
@@ -349,15 +504,15 @@
             {
               "name": "sort_y",
               "type": "int",
-              "value": 276
+              "value": 244
             }
           ]
         },
         {
           "id": 17,
-          "name": "park-tree",
-          "x": 929,
-          "y": 252,
+          "name": "park-tree-b",
+          "x": 631,
+          "y": 212,
           "width": 38,
           "height": 28,
           "properties": [
@@ -369,15 +524,15 @@
             {
               "name": "sort_y",
               "type": "int",
-              "value": 280
+              "value": 240
             }
           ]
         },
         {
           "id": 18,
-          "name": "park-tree-flower",
-          "x": 1211,
-          "y": 246,
+          "name": "park-tree-a",
+          "x": 791,
+          "y": 184,
           "width": 38,
           "height": 28,
           "properties": [
@@ -389,15 +544,15 @@
             {
               "name": "sort_y",
               "type": "int",
-              "value": 274
+              "value": 212
             }
           ]
         },
         {
           "id": 19,
-          "name": "park-tree",
-          "x": 1441,
-          "y": 276,
+          "name": "park-tree-b",
+          "x": 1121,
+          "y": 214,
           "width": 38,
           "height": 28,
           "properties": [
@@ -409,15 +564,15 @@
             {
               "name": "sort_y",
               "type": "int",
-              "value": 304
+              "value": 242
             }
           ]
         },
         {
           "id": 20,
-          "name": "park-tree",
-          "x": 71,
-          "y": 562,
+          "name": "park-tree-b",
+          "x": 1281,
+          "y": 238,
           "width": 38,
           "height": 28,
           "properties": [
@@ -429,15 +584,15 @@
             {
               "name": "sort_y",
               "type": "int",
-              "value": 590
+              "value": 266
             }
           ]
         },
         {
           "id": 21,
-          "name": "park-tree-flower",
-          "x": 1426,
-          "y": 642,
+          "name": "park-tree-a",
+          "x": 1457,
+          "y": 236,
           "width": 38,
           "height": 28,
           "properties": [
@@ -449,15 +604,15 @@
             {
               "name": "sort_y",
               "type": "int",
-              "value": 670
+              "value": 264
             }
           ]
         },
         {
           "id": 22,
-          "name": "park-tree",
-          "x": 41,
-          "y": 942,
+          "name": "park-tree-b",
+          "x": 23,
+          "y": 502,
           "width": 38,
           "height": 28,
           "properties": [
@@ -469,15 +624,15 @@
             {
               "name": "sort_y",
               "type": "int",
-              "value": 970
+              "value": 530
             }
           ]
         },
         {
           "id": 23,
-          "name": "park-tree",
-          "x": 821,
-          "y": 954,
+          "name": "park-tree-b",
+          "x": 59,
+          "y": 732,
           "width": 38,
           "height": 28,
           "properties": [
@@ -489,15 +644,15 @@
             {
               "name": "sort_y",
               "type": "int",
-              "value": 982
+              "value": 760
             }
           ]
         },
         {
           "id": 24,
-          "name": "park-tree-flower",
-          "x": 1101,
-          "y": 942,
+          "name": "park-tree-a",
+          "x": 13,
+          "y": 982,
           "width": 38,
           "height": 28,
           "properties": [
@@ -509,15 +664,15 @@
             {
               "name": "sort_y",
               "type": "int",
-              "value": 970
+              "value": 1010
             }
           ]
         },
         {
           "id": 25,
-          "name": "park-tree",
-          "x": 1421,
-          "y": 923,
+          "name": "park-tree-b",
+          "x": 1473,
+          "y": 486,
           "width": 38,
           "height": 28,
           "properties": [
@@ -529,15 +684,175 @@
             {
               "name": "sort_y",
               "type": "int",
-              "value": 951
+              "value": 514
             }
           ]
         },
         {
           "id": 26,
+          "name": "park-tree-b",
+          "x": 1461,
+          "y": 730,
+          "width": 38,
+          "height": 28,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 758
+            }
+          ]
+        },
+        {
+          "id": 27,
+          "name": "park-tree-a",
+          "x": 1413,
+          "y": 972,
+          "width": 38,
+          "height": 28,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 1000
+            }
+          ]
+        },
+        {
+          "id": 28,
+          "name": "park-tree-b",
+          "x": 401,
+          "y": 990,
+          "width": 38,
+          "height": 28,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 1018
+            }
+          ]
+        },
+        {
+          "id": 29,
+          "name": "park-tree-b",
+          "x": 591,
+          "y": 974,
+          "width": 38,
+          "height": 28,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 1002
+            }
+          ]
+        },
+        {
+          "id": 30,
+          "name": "park-tree-a",
+          "x": 833,
+          "y": 992,
+          "width": 38,
+          "height": 28,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 1020
+            }
+          ]
+        },
+        {
+          "id": 31,
+          "name": "park-tree-b",
+          "x": 1081,
+          "y": 980,
+          "width": 38,
+          "height": 28,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 1008
+            }
+          ]
+        },
+        {
+          "id": 32,
+          "name": "park-tree",
+          "x": 463,
+          "y": 226,
+          "width": 38,
+          "height": 28,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 254
+            }
+          ]
+        },
+        {
+          "id": 33,
           "name": "park-tree-flower",
-          "x": 895,
-          "y": 690,
+          "x": 185,
+          "y": 262,
+          "width": 38,
+          "height": 28,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 290
+            }
+          ]
+        },
+        {
+          "id": 34,
+          "name": "park-tree",
+          "x": 835,
+          "y": 752,
           "width": 42,
           "height": 30,
           "properties": [
@@ -549,15 +864,15 @@
             {
               "name": "sort_y",
               "type": "int",
-              "value": 720
+              "value": 782
             }
           ]
         },
         {
-          "id": 27,
-          "name": "park-tree",
-          "x": 254,
-          "y": 472,
+          "id": 35,
+          "name": "park-tree-flower",
+          "x": 394,
+          "y": 460,
           "width": 40,
           "height": 28,
           "properties": [
@@ -569,16 +884,16 @@
             {
               "name": "sort_y",
               "type": "int",
-              "value": 500
+              "value": 488
             }
           ]
         },
         {
-          "id": 28,
+          "id": 36,
           "name": "bench",
-          "x": 330,
+          "x": 360,
           "y": 552,
-          "width": 100,
+          "width": 96,
           "height": 22,
           "properties": [
             {
@@ -594,11 +909,11 @@
           ]
         },
         {
-          "id": 29,
+          "id": 37,
           "name": "bench",
-          "x": 1060,
-          "y": 578,
-          "width": 100,
+          "x": 1070,
+          "y": 600,
+          "width": 96,
           "height": 22,
           "properties": [
             {
@@ -609,116 +924,16 @@
             {
               "name": "sort_y",
               "type": "int",
-              "value": 600
-            }
-          ]
-        },
-        {
-          "id": 30,
-          "name": "lamp",
-          "x": 261,
-          "y": 667,
-          "width": 18,
-          "height": 18,
-          "properties": [
-            {
-              "name": "level",
-              "type": "int",
-              "value": 0
-            },
-            {
-              "name": "sort_y",
-              "type": "int",
-              "value": 685
-            }
-          ]
-        },
-        {
-          "id": 31,
-          "name": "lamp",
-          "x": 1201,
-          "y": 562,
-          "width": 18,
-          "height": 18,
-          "properties": [
-            {
-              "name": "level",
-              "type": "int",
-              "value": 0
-            },
-            {
-              "name": "sort_y",
-              "type": "int",
-              "value": 580
-            }
-          ]
-        },
-        {
-          "id": 32,
-          "name": "flowerpot",
-          "x": 134,
-          "y": 861,
-          "width": 24,
-          "height": 20,
-          "properties": [
-            {
-              "name": "level",
-              "type": "int",
-              "value": 0
-            },
-            {
-              "name": "sort_y",
-              "type": "int",
-              "value": 881
-            }
-          ]
-        },
-        {
-          "id": 33,
-          "name": "flowerpot",
-          "x": 292,
-          "y": 861,
-          "width": 24,
-          "height": 20,
-          "properties": [
-            {
-              "name": "level",
-              "type": "int",
-              "value": 0
-            },
-            {
-              "name": "sort_y",
-              "type": "int",
-              "value": 881
-            }
-          ]
-        },
-        {
-          "id": 37,
-          "name": "fence",
-          "x": 290,
-          "y": 686,
-          "width": 150,
-          "height": 18,
-          "properties": [
-            {
-              "name": "level",
-              "type": "int",
-              "value": 0
-            },
-            {
-              "name": "sort_y",
-              "type": "int",
-              "value": 704
+              "value": 622
             }
           ]
         },
         {
           "id": 38,
-          "name": "fence",
-          "x": 1025,
-          "y": 832,
-          "width": 150,
+          "name": "lamp",
+          "x": 267,
+          "y": 670,
+          "width": 18,
           "height": 18,
           "properties": [
             {
@@ -729,7 +944,27 @@
             {
               "name": "sort_y",
               "type": "int",
-              "value": 850
+              "value": 688
+            }
+          ]
+        },
+        {
+          "id": 39,
+          "name": "lamp",
+          "x": 1211,
+          "y": 608,
+          "width": 18,
+          "height": 18,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 626
             }
           ]
         }
@@ -747,7 +982,7 @@
       "type": "objectgroup",
       "objects": [
         {
-          "id": 12,
+          "id": 13,
           "name": "Placa: habitats e encontros",
           "x": 296,
           "y": 784,
@@ -767,7 +1002,7 @@
           ]
         },
         {
-          "id": 13,
+          "id": 14,
           "name": "Descansar no largo",
           "x": 344,
           "y": 576,
@@ -794,7 +1029,7 @@
       "type": "objectgroup",
       "objects": [
         {
-          "id": 9,
+          "id": 10,
           "name": "Chegada ao parque",
           "x": 192,
           "y": 784,
@@ -816,7 +1051,7 @@
       "type": "objectgroup",
       "objects": [
         {
-          "id": 10,
+          "id": 11,
           "name": "Voltar ao Jardim das Pipas",
           "x": 192,
           "y": 864,
@@ -841,7 +1076,7 @@
           ]
         },
         {
-          "id": 11,
+          "id": 12,
           "name": "Atalho para a Rua dos Ventos",
           "x": 1256,
           "y": 368,
@@ -897,12 +1132,27 @@
     {
       "name": "ground_corner_radius",
       "type": "int",
-      "value": 34
+      "value": 56
     },
     {
       "name": "terrain_tile_size",
       "type": "int",
-      "value": 256
+      "value": 384
+    },
+    {
+      "name": "terrain_repeat",
+      "type": "string",
+      "value": "mirror"
+    },
+    {
+      "name": "terrain_feather",
+      "type": "int",
+      "value": 5
+    },
+    {
+      "name": "terrain_edge_mode",
+      "type": "string",
+      "value": "none"
     }
   ]
 }

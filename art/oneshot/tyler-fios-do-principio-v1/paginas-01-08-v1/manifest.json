@@ -1,0 +1,65 @@
+{
+  "edition": "v1",
+  "pages": [
+    {
+      "page": 1,
+      "file": "pagina-01.png",
+      "width": 1024,
+      "height": 1536,
+      "sha256": "263c5aaf58cf8a96323f7898d6a47da7cce7ba6528deba63bac7ca24909f8730"
+    },
+    {
+      "page": 2,
+      "file": "pagina-02.png",
+      "width": 1024,
+      "height": 1536,
+      "sha256": "18e07d2af5f3d6510df0712c6e5354256b1f976ac747781c31ca659b12d31e76"
+    },
+    {
+      "page": 3,
+      "file": "pagina-03.png",
+      "width": 1024,
+      "height": 1536,
+      "sha256": "c381e79c2d9870f3f9c240725d580815af176096555ec99689ae14a912303ea3"
+    },
+    {
+      "page": 4,
+      "file": "pagina-04.png",
+      "width": 1024,
+      "height": 1536,
+      "sha256": "97775713ee64c33af580a24bc14de78a0dbead3f221b7c491edc0f76e4e8b4c0"
+    },
+    {
+      "page": 5,
+      "file": "pagina-05.png",
+      "width": 1024,
+      "height": 1536,
+      "sha256": "b5cc6bf9b51778f682e55f761048a76d7e0501dd10f4b009e73e6f05cbf3d963"
+    },
+    {
+      "page": 6,
+      "file": "pagina-06.png",
+      "width": 1024,
+      "height": 1536,
+      "sha256": "7d561c249ee4b360defb564871f093edb92af64ffbbe101dba4ecb810afabd81"
+    },
+    {
+      "page": 7,
+      "file": "pagina-07.png",
+      "width": 1024,
+      "height": 1536,
+      "sha256": "935457e579939c10a049cab50c3e6116983b3953f90829e6609757fe584c3dac"
+    },
+    {
+      "page": 8,
+      "file": "pagina-08.png",
+      "width": 1024,
+      "height": 1536,
+      "sha256": "1cf03ddbed64f57fb69753967d7975793ae988ab5c08e6cda11efe6e022eecf2"
+    }
+  ],
+  "tool": "image_gen integrada",
+  "reading_order": "left-to-right, top-to-bottom",
+  "pdf": "output/pdf/PipaKlub-Fios-do-Principio-Paginas-01-08-v1.pdf",
+  "status": "primeira edição ilustrada para revisão autoral"
+}

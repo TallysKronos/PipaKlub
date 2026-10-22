@@ -49,7 +49,7 @@ export function artConfig(){
  world.pilot.art=buildWorldArtPlan(world.pilot,world.kit,JSON.parse(fs.readFileSync('assets/world/morro-pilot/art.json','utf8')));
  world.paintedPilot=validateWorldPaintedImages(parseWorldMap(JSON.parse(fs.readFileSync('assets/world/morro-plaza-v1/plaza.tmj','utf8'))),world.kit.sheets);world.paintedPilot.painted=true;
  world.morroRoad=morroRoad.chapters.map(c=>{const scene=validateWorldPaintedImages(parseWorldMap(JSON.parse(fs.readFileSync('assets/'+c.map,'utf8'))),world.kit.sheets);scene.painted=true;return {...c,scene};});
- const parkKit=JSON.parse(fs.readFileSync('assets/world/park-kit-v2/manifest.json','utf8')),parkArtKit={...world.quintalKit,sheets:{...world.quintalKit.sheets,...parkKit.sheets},frames:{...world.quintalKit.frames,...parkKit.frames}};
+ const parkKit=JSON.parse(fs.readFileSync('assets/world/park-kit-v3/manifest.json','utf8')),parkArtKit={...world.quintalKit,sheets:{...world.quintalKit.sheets,...parkKit.sheets},frames:{...world.quintalKit.frames,...parkKit.frames}};
  for(const [id,sheet]of Object.entries(parkKit.sheets)){const image=sheet.image,hash=createHash('sha256').update(fs.readFileSync('assets/'+image)).digest('hex').slice(0,12);images['world-kit-'+id]={image,url:'assets/'+image+'?v='+hash};}
  for(const id of ['park-trail','park-clearing']){const scene=parseWorldMap(JSON.parse(fs.readFileSync('assets/world/park-v1/'+id+'.tmj','utf8')));scene.art=buildWorldArtPlan(scene,parkArtKit,JSON.parse(fs.readFileSync('assets/world/park-v1/'+id+'.art.json','utf8')));world.scenes[id]=scene;}
  const opening=JSON.parse(fs.readFileSync('assets/story/kael-birthday-v1/manifest.json','utf8'));

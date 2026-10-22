@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Ficha editorial; não é manifesto de runtime",
+  "franchise": "Soulmonsters",
+  "title": "Elo das Ruínas",
+  "status": "briefing",
+  "id": null,
+  "name": null,
+  "category": null,
+  "role": null,
+  "personality": null,
+  "identity": {
+    "masterReference": null,
+    "approvedBy": null,
+    "approvedAt": null,
+    "signatureFeatures": [],
+    "proportions": null,
+    "anatomicalAsymmetry": [],
+    "accessories": [],
+    "palette": [],
+    "forbiddenChanges": []
+  },
+  "creature": {
+    "baseForm": null,
+    "manifestationMethod": "linha",
+    "kiteAnatomyRequired": true,
+    "kiteAnatomyFeatures": [],
+    "lineConnectionPoint": null,
+    "appendageAnchors": []
+  },
+  "art": {
+    "direction": "Anime 2D de aventura; contorno firme; formas claras; base e uma sombra principal",
+    "use": null,
+    "pose": null,
+    "gazeTarget": null,
+    "windDirection": null,
+    "camera": null,
+    "background": null
+  },
+  "technical": {
+    "consumerManifest": null,
+    "displaySizeMeasured": null,
+    "sourceDimensions": null,
+    "framesFromConsumer": [],
+    "anchorConvention": null,
+    "timing": null,
+    "alphaRequired": null
+  },
+  "provenance": {
+    "creatorOrTool": null,
+    "sourceFile": null,
+    "references": [],
+    "rightsKnown": null
+  },
+  "review": {
+    "artApproval": null,
+    "technicalValidation": null,
+    "animationEvidence": null,
+    "inGameEvidence": null,
+    "publication": null
+  },
+  "seriesKeyword": "Elo"
+}

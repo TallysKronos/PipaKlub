@@ -1,0 +1,606 @@
+{
+  "frames": {
+    "rabbito_00": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 314
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "contentBounds": {
+        "x": 79,
+        "y": 113,
+        "w": 167,
+        "h": 161
+      },
+      "duration": 220,
+      "state": "idle"
+    },
+    "rabbito_01": {
+      "frame": {
+        "x": 314,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 314
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "contentBounds": {
+        "x": 80,
+        "y": 112,
+        "w": 166,
+        "h": 163
+      },
+      "duration": 150,
+      "state": "idle"
+    },
+    "rabbito_02": {
+      "frame": {
+        "x": 627,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 314
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "contentBounds": {
+        "x": 74,
+        "y": 112,
+        "w": 168,
+        "h": 163
+      },
+      "duration": 220,
+      "state": "idle"
+    },
+    "rabbito_03": {
+      "frame": {
+        "x": 940,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 314
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "contentBounds": {
+        "x": 77,
+        "y": 112,
+        "w": 168,
+        "h": 162
+      },
+      "duration": 220,
+      "state": "idle"
+    },
+    "rabbito_04": {
+      "frame": {
+        "x": 0,
+        "y": 314,
+        "w": 314,
+        "h": 313
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 313
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 313
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "contentBounds": {
+        "x": 74,
+        "y": 108,
+        "w": 189,
+        "h": 143
+      },
+      "duration": 130,
+      "state": "flight"
+    },
+    "rabbito_05": {
+      "frame": {
+        "x": 314,
+        "y": 314,
+        "w": 313,
+        "h": 313
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 313
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 313
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "contentBounds": {
+        "x": 75,
+        "y": 103,
+        "w": 192,
+        "h": 148
+      },
+      "duration": 110,
+      "state": "flight"
+    },
+    "rabbito_06": {
+      "frame": {
+        "x": 627,
+        "y": 314,
+        "w": 313,
+        "h": 313
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 313
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 313
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "contentBounds": {
+        "x": 64,
+        "y": 104,
+        "w": 198,
+        "h": 146
+      },
+      "duration": 130,
+      "state": "flight"
+    },
+    "rabbito_07": {
+      "frame": {
+        "x": 940,
+        "y": 314,
+        "w": 314,
+        "h": 313
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 313
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 313
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "contentBounds": {
+        "x": 65,
+        "y": 107,
+        "w": 188,
+        "h": 146
+      },
+      "duration": 110,
+      "state": "flight"
+    },
+    "rabbito_08": {
+      "frame": {
+        "x": 0,
+        "y": 627,
+        "w": 314,
+        "h": 313
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 313
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 313
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "contentBounds": {
+        "x": 74,
+        "y": 92,
+        "w": 176,
+        "h": 160
+      },
+      "duration": 160,
+      "state": "skill"
+    },
+    "rabbito_09": {
+      "frame": {
+        "x": 314,
+        "y": 627,
+        "w": 313,
+        "h": 313
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 313
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 313
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "contentBounds": {
+        "x": 82,
+        "y": 87,
+        "w": 171,
+        "h": 161
+      },
+      "duration": 180,
+      "state": "skill"
+    },
+    "rabbito_10": {
+      "frame": {
+        "x": 627,
+        "y": 627,
+        "w": 313,
+        "h": 313
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 313
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 313
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "contentBounds": {
+        "x": 63,
+        "y": 87,
+        "w": 211,
+        "h": 162
+      },
+      "duration": 110,
+      "state": "skill"
+    },
+    "rabbito_11": {
+      "frame": {
+        "x": 940,
+        "y": 627,
+        "w": 314,
+        "h": 313
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 313
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 313
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "contentBounds": {
+        "x": 79,
+        "y": 90,
+        "w": 176,
+        "h": 162
+      },
+      "duration": 180,
+      "state": "skill"
+    },
+    "rabbito_12": {
+      "frame": {
+        "x": 0,
+        "y": 940,
+        "w": 314,
+        "h": 314
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 314
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "contentBounds": {
+        "x": 74,
+        "y": 85,
+        "w": 173,
+        "h": 154
+      },
+      "duration": 150,
+      "state": "hurt"
+    },
+    "rabbito_13": {
+      "frame": {
+        "x": 314,
+        "y": 940,
+        "w": 313,
+        "h": 314
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 314
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "contentBounds": {
+        "x": 80,
+        "y": 82,
+        "w": 174,
+        "h": 157
+      },
+      "duration": 210,
+      "state": "hurt"
+    },
+    "rabbito_14": {
+      "frame": {
+        "x": 627,
+        "y": 940,
+        "w": 313,
+        "h": 314
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 313,
+        "h": 314
+      },
+      "sourceSize": {
+        "w": 313,
+        "h": 314
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "contentBounds": {
+        "x": 71,
+        "y": 73,
+        "w": 164,
+        "h": 168
+      },
+      "duration": 300,
+      "state": "victory"
+    },
+    "rabbito_15": {
+      "frame": {
+        "x": 940,
+        "y": 940,
+        "w": 314,
+        "h": 314
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 314,
+        "h": 314
+      },
+      "sourceSize": {
+        "w": 314,
+        "h": 314
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "contentBounds": {
+        "x": 80,
+        "y": 67,
+        "w": 160,
+        "h": 177
+      },
+      "duration": 420,
+      "state": "victory"
+    }
+  },
+  "animations": {
+    "idle": [
+      "rabbito_00",
+      "rabbito_01",
+      "rabbito_02",
+      "rabbito_03"
+    ],
+    "flight": [
+      "rabbito_04",
+      "rabbito_05",
+      "rabbito_06",
+      "rabbito_07"
+    ],
+    "skill": [
+      "rabbito_08",
+      "rabbito_09",
+      "rabbito_10",
+      "rabbito_11"
+    ],
+    "hurt": [
+      "rabbito_12",
+      "rabbito_13"
+    ],
+    "victory": [
+      "rabbito_14",
+      "rabbito_15"
+    ]
+  },
+  "meta": {
+    "app": "PipaKlub Soul Art",
+    "image": "rabbito.png",
+    "size": {
+      "w": 1254,
+      "h": 1254
+    },
+    "scale": "1",
+    "format": "RGBA8888",
+    "columns": 4,
+    "rows": 4,
+    "name": "Rabbito",
+    "concept": "Coelho de papel, Punhos do Vento"
+  },
+  "playback": {
+    "idle": {
+      "durations": [
+        220,
+        150,
+        220,
+        220
+      ],
+      "loop": true,
+      "returnTo": null
+    },
+    "flight": {
+      "durations": [
+        130,
+        110,
+        130,
+        110
+      ],
+      "loop": true,
+      "returnTo": null
+    },
+    "skill": {
+      "durations": [
+        160,
+        180,
+        110,
+        180
+      ],
+      "loop": false,
+      "returnTo": "idle"
+    },
+    "hurt": {
+      "durations": [
+        150,
+        210
+      ],
+      "loop": false,
+      "returnTo": "idle"
+    },
+    "victory": {
+      "durations": [
+        300,
+        420
+      ],
+      "loop": true,
+      "returnTo": null
+    }
+  }
+}

@@ -1,0 +1,15 @@
+import {packager} from '@electron/packager';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+const desktop=fileURLToPath(new URL('../',import.meta.url)),repo=path.resolve(desktop,'..'),stage=path.join(desktop,'build','stage'),out=path.join(repo,'dist','steam');
+if(path.relative(path.join(desktop,'build'),stage)!=='stage')throw Error('Unsafe staging directory');
+if(path.relative(repo,out)!==path.join('dist','steam'))throw Error('Unsafe package output');
+const source=JSON.parse(await fs.readFile(path.join(desktop,'package.json'),'utf8'));
+await fs.access(path.join(desktop,'build','client','bundle.json'));
+await fs.rm(stage,{recursive:true,force:true});await fs.mkdir(path.join(stage,'build'),{recursive:true});
+for(const file of ['main.cjs','policy.cjs','config.json'])await fs.copyFile(path.join(desktop,file),path.join(stage,file));
+await fs.cp(path.join(desktop,'build','client'),path.join(stage,'build','client'),{recursive:true});
+await fs.writeFile(path.join(stage,'package.json'),JSON.stringify({name:source.name,productName:'PipaKlub',version:source.version,description:source.description,main:'main.cjs',author:source.author},null,2));
+const result=await packager({dir:stage,out,name:'PipaKlub',executableName:'PipaKlub',platform:'win32',arch:'x64',electronVersion:source.devDependencies.electron,asar:true,prune:true,overwrite:true,appVersion:source.version,buildVersion:source.version,win32metadata:{CompanyName:'PipaKlub',FileDescription:'PipaKlub desktop preview',ProductName:'PipaKlub',InternalName:'PipaKlub'}});
+console.log('Windows build:',result.join(', '));console.log('Keep the complete directory together; PipaKlub.exe is the launch target.');

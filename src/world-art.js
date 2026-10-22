@@ -14,7 +14,7 @@ export function buildWorldArtPlan(scene,kit,layout,{audit=true}={}){
   const horizontal=binding.repeat==='x',vertical=binding.repeat==='y',length=horizontal?rect.w:vertical?rect.h:1,count=horizontal||vertical?Math.ceil(length/binding.step):1;
   for(let i=0;i<count;i++){
    const footX=binding.footX??(horizontal?rect.x+Math.min(length-binding.step/2,i*binding.step+binding.step/2):rect.x+rect.w/2),footY=binding.footY??(vertical?rect.y+Math.min(length,(i+1)*binding.step):rect.y+rect.h);
-   objects.push({kind:name==='Foreground'?'foreground':'solid',rect,level:rect.properties.level,y:rect.properties.sort_y,sprite:sprite({...binding,footX,footY})});
+   objects.push({kind:name==='Foreground'?'foreground':'solid',rect,level:rect.properties.level,y:rect.properties.sort_y,...binding.occludesActors?{occludesActors:true}:{},sprite:sprite({...binding,footX,footY})});
   }
  }
  for(const b of layout.decorations){if(!Number.isInteger(b.level)||!Number.isFinite(b.sortY))throw Error('Arte do mapa: decoração sem piso/apoio');objects.push({kind:'foreground',level:b.level,y:b.sortY,sprite:sprite(b)});}
@@ -97,16 +97,34 @@ export function validateWorldPaintedImages(scene,sheets){
 export function drawWorldArtGround(g,scene,images,uncached=false){
  if(!uncached&&typeof OffscreenCanvas!=='undefined'&&Object.keys(scene.art.kit.sheets).every(id=>images.has('world-kit-'+id))){let canvas=worldArtGroundCache.get(scene.art);if(!canvas){canvas=new OffscreenCanvas(scene.width,scene.height);drawWorldArtGround(canvas.getContext('2d'),scene,images,true);worldArtGroundCache.set(scene.art,canvas);}g.drawImage(canvas,0,0);return;}
  const kit=scene.art.kit;
- function tile(id,x,y,w,h,size=scene.tiled.properties.terrain_tile_size||128){const f=kit.frames[id],image=images.get('world-kit-'+f.sheet);if(!image){g.fillStyle=id==='grass'?'#8daa54':'#d7bf8f';g.fillRect(x,y,w,h);return;}g.save();g.beginPath();g.rect(x,y,w,h);g.clip();for(let py=Math.floor(y/size)*size;py<y+h;py+=size)for(let px=Math.floor(x/size)*size;px<x+w;px+=size)g.drawImage(image,f.x,f.y,f.w,f.h,px,py,size,size);g.restore();}
+ function tile(id,x,y,w,h,size=scene.tiled.properties.terrain_tile_size||128,target=g){
+  const f=kit.frames[id],image=images.get('world-kit-'+f.sheet);if(!image){target.fillStyle=id==='grass'?'#8daa54':'#d7bf8f';target.fillRect(x,y,w,h);return;}
+  const mirror=scene.tiled.properties.terrain_repeat==='mirror',tileH=mirror?Math.max(1,Math.round(size*f.h/f.w)):size;
+  target.save();if(mirror)target.imageSmoothingEnabled=false;target.beginPath();target.rect(x,y,w,h);target.clip();
+  for(let py=Math.floor(y/tileH)*tileH;py<y+h;py+=tileH)for(let px=Math.floor(x/size)*size;px<x+w;px+=size){
+   if(mirror){const flipX=((px/size)%2+2)%2===1,flipY=id!=='park-tall-grass'&&((py/tileH)%2+2)%2===1;target.save();target.translate(px+(flipX?size:0),py+(flipY?tileH:0));target.scale(flipX?-1:1,flipY?-1:1);target.drawImage(image,f.x,f.y,f.w,f.h,0,0,size,tileH);target.restore();}
+   else target.drawImage(image,f.x,f.y,f.w,f.h,px,py,size,size);
+  }target.restore();
+ }
  tile('grass',0,0,scene.width,scene.height);
  const radius=scene.tiled.properties.ground_corner_radius||0,groups=new Map();
  for(const r of scene.tiled.layers.Walkable){const id=r.properties.ground_frame||(r.properties.level===1?'sidewalk':'dirt'),key=id+':'+r.properties.level;if(!groups.has(key))groups.set(key,{id,rects:[]});groups.get(key).rects.push(r);}
  for(const {id,rects} of groups.values()){
-  if(radius&&id!=='grass'){g.save();worldRoundedTerrainPath(g,worldTerrainContours(rects),radius);g.clip('evenodd');tile(id,0,0,scene.width,scene.height);g.restore();}
+  if(radius&&id!=='grass'){
+   const contours=worldTerrainContours(rects),feather=scene.tiled.properties.terrain_feather||0;
+   if(feather>0&&typeof OffscreenCanvas!=='undefined'){
+    // Blend the material mask once in the ground cache, not each walking frame.
+    const material=new OffscreenCanvas(scene.width,scene.height),mask=new OffscreenCanvas(scene.width,scene.height),mg=material.getContext('2d'),ag=mask.getContext('2d');
+    tile(id,0,0,scene.width,scene.height,scene.tiled.properties.terrain_tile_size,mg);
+    ag.filter='blur('+Math.min(12,feather)+'px)';worldRoundedTerrainPath(ag,contours,radius);ag.fillStyle='#fff';ag.fill('evenodd');
+    mg.globalCompositeOperation='destination-in';mg.drawImage(mask,0,0);g.drawImage(material,0,0);
+   }else{g.save();worldRoundedTerrainPath(g,contours,radius);g.clip('evenodd');tile(id,0,0,scene.width,scene.height);g.restore();}
+  }
   else for(const r of rects)tile(id,r.x,r.y,r.w,r.h);
  }
  for(const r of scene.tiled.layers.Walkable)if(r.properties.connects_to!==undefined){const f=kit.frames.stairs,image=images.get('world-kit-'+f.sheet);if(image){const sourceW=Math.min(f.w,f.h*r.w/r.h),sourceH=sourceW*r.h/r.w;g.drawImage(image,f.x+(f.w-sourceW)/2,f.y+(f.h-sourceH)/2,sourceW,sourceH,r.x,r.y,r.w,r.h);}}
  // Stone edging follows only the OUTSIDE of the union, leaving junctions open.
+ if(scene.tiled.properties.terrain_edge_mode==='none')return;
  const walk=scene.tiled.layers.Walkable,inside=(x,y)=>walk.some(r=>x>=r.x&&x<r.x+r.w&&y>=r.y&&y<r.y+r.h);
  for(const r of walk)for(let y=r.y;y<r.y+r.h;y+=32)for(let x=r.x;x<r.x+r.w;x+=32){
   if(!inside(x-1,y+16))tile('cobblestone',x,y,8,32,64);

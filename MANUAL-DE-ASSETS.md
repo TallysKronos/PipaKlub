@@ -2,6 +2,8 @@
 
 **Versão 1.0 · 18 de outubro de 2026**
 
+**Adendo de direção · 21/10/2026:** a franquia é **Soulmonsters**, com título atual em concepção **Elo das Ruínas**. **Elo** é a palavra recorrente dos jogos, ligada ao vínculo entre humano e Soulmonster; PipaKlub é o clube do universo. Para identidade, desenho de personagens e criaturas e proposta de acabamento das novas artes, consultar [DIRECAO-DE-ARTE.md](DIRECAO-DE-ARTE.md). As regras técnicas deste manual permanecem aplicáveis. O PDF anterior não contém este adendo.
+
 **Escopo:** direção de arte, geração, edição, preparação, animação, integração e auditoria de todos os assets do jogo.
 
 **Público:** direção, artistas, animadores, designers de interface, desenvolvedores e agentes de IA.
@@ -40,9 +42,11 @@ Usar estes estados no registro de produção: **briefing**, **conceito**, **em r
 
 PipaKlub é papel, vento, vínculos e vida de bairro. Quintais, telhados de barro, linhas, carretéis, varetas, remendos e rabiolas sustentam sua identidade. Kronasta precisa parecer um lugar habitado, com hábitos e usos reconhecíveis, não uma coleção de construções decorativas sem função.
 
-As criaturas são pipas vivas. A espécie inspira sua silhueta; a construção de pipa explica sua anatomia. Uma asa pode ser vela de papel; um osso, uma vareta; uma cauda, uma rabiola. O papel não é apenas uma roupa colocada sobre um animal comum.
+Conforme a definição mais recente do universo, **a linha é o método de manifestação e todo Soulmonster deve incorporar anatomia de pipa**, seja por traços de construção, asas/velas, dobras, estrutura, nós ou rabiola. A espécie inspira a silhueta; a construção de pipa integra seu corpo. Variar a solução entre espécies, sem exigir o mesmo conjunto de peças em todas. Uma pipa apenas decorativa nas costas de um animal convencional não basta. Preservar as identidades existentes até uma substituição aprovada.
 
 ### 02.2 Acabamento de jogo
+
+**Atualização:** para novas pranchas de personagens e criaturas, a proposta de [bíblia visual](DIRECAO-DE-ARTE.md) usa anime 2D simples e sombras de cel animation. As descrições abaixo registram a família de assets anterior e continuam úteis ao preparar sprites compatíveis. Facetas de papel não devem ser aplicadas indiscriminadamente a pele, pelo ou tecido. A prancha piloto do novo acabamento ainda precisa de revisão artística.
 
 - Ilustração 2D com contorno escuro limpo, sombras em planos e bordas nítidas, entre desenho de aventura e pixel art refinada.
 - Detalhe concentrado no rosto, na silhueta e nos pontos de interesse. Evitar ruído uniforme em toda a superfície.

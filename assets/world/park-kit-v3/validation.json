@@ -1,0 +1,112 @@
+{
+  "terrain-v3.png": {
+    "size": [
+      1536,
+      1024
+    ],
+    "mode": "RGB",
+    "sha256": "4649639e840e6d759c49cf8675cbf33bda0dc57c41a8c02d0b0d2396f28cfaaa",
+    "alphaRange": null
+  },
+  "nature-v3.png": {
+    "size": [
+      1536,
+      1024
+    ],
+    "mode": "RGBA",
+    "sha256": "af611e5c2366008a7d2d428359c8605aa07fc9f8f1b7f1d5926feaf93b4d4e1e",
+    "alphaRange": [
+      0,
+      254
+    ]
+  },
+  "park-tree-a": {
+    "frame": {
+      "sheet": "park-nature-v3",
+      "x": 105,
+      "y": 20,
+      "w": 643,
+      "h": 570,
+      "anchor": {
+        "x": 0.54,
+        "y": 1
+      },
+      "layer": "object"
+    },
+    "foregroundBounds": [
+      8,
+      8,
+      635,
+      562
+    ],
+    "margin": 8,
+    "alphaThreshold": 32
+  },
+  "park-tree-b": {
+    "frame": {
+      "sheet": "park-nature-v3",
+      "x": 896,
+      "y": 13,
+      "w": 535,
+      "h": 594,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "layer": "object"
+    },
+    "foregroundBounds": [
+      8,
+      8,
+      527,
+      586
+    ],
+    "margin": 8,
+    "alphaThreshold": 32
+  },
+  "park-shrub": {
+    "frame": {
+      "sheet": "park-nature-v3",
+      "x": 128,
+      "y": 640,
+      "w": 593,
+      "h": 345,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "layer": "object"
+    },
+    "foregroundBounds": [
+      8,
+      8,
+      585,
+      337
+    ],
+    "margin": 8,
+    "alphaThreshold": 32
+  },
+  "park-flowers": {
+    "frame": {
+      "sheet": "park-nature-v3",
+      "x": 869,
+      "y": 706,
+      "w": 571,
+      "h": 271,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "layer": "object"
+    },
+    "foregroundBounds": [
+      8,
+      8,
+      563,
+      263
+    ],
+    "margin": 8,
+    "alphaThreshold": 32
+  },
+  "pixelEdits": false
+}

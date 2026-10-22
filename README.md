@@ -4,6 +4,8 @@ Jogo de cortar pipas para até 8 jogadores por sala, com simulação e placar co
 
 ## Executar
 
+Prévia Windows e preparação para Steam: veja [desktop/README.md](desktop/README.md). `npm run desktop:install` instala as ferramentas separadas; `npm run desktop:dev` abre o cliente; `npm run desktop:package` gera a pasta com `PipaKlub.exe`. A versão web e o backend continuam funcionando de forma independente.
+
 Requer Node.js 24+. A dependência `ws` fornece o transporte WebSocket no servidor.
 
 ```sh

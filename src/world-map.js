@@ -121,7 +121,7 @@ export function worldRenderQueue(scene,actors){
  else if(scene.tiled)for(const name of ['Solids','Foreground'])for(const r of scene.tiled.layers[name])entries.push({kind:name==='Solids'?'solid':'foreground',rect:r,level:r.properties.level,y:r.properties.sort_y,order:entries.length,...scene.painted&&r.properties.image_sheet?{sprite:{sheet:r.properties.image_sheet,sx:r.x,sy:r.y,sw:r.w,sh:r.h,x:r.x,y:r.y,w:r.w,h:r.h}}:{}});
  if(scene.painted)for(const image of scene.tiled.images.filter(i=>i.render==='depth'))entries.push({kind:'painted',image,level:image.level,y:image.sortY,order:entries.length});
  const player=actors.find(a=>a.id==='player'),size=scene.actorSize||64;
- for(const e of entries)if(e.kind==='foreground'&&player){const r=e.sprite||e.rect;e.opacity=e.level===(player.level??0)&&e.y>player.y&&player.x+size*.3>r.x&&player.x-size*.3<r.x+r.w&&player.y>r.y&&player.y-size<r.y+r.h?.45:1;}
+ for(const e of entries)if((e.kind==='foreground'||e.occludesActors)&&player){const r=e.sprite||e.rect;e.opacity=e.level===(player.level??0)&&e.y>player.y&&player.x+size*.3>r.x&&player.x-size*.3<r.x+r.w&&player.y>r.y&&player.y-size<r.y+r.h?.45:1;}
  for(const e of entries)if(e.kind==='painted'&&player){const r=e.image.occlusion;e.opacity=r&&e.level===(player.level??0)&&e.y>player.y&&player.x+size*.3>r.x&&player.x-size*.3<r.x+r.w&&player.y>r.y&&player.y-size<r.y+r.h?.55:1;}
  return entries.sort((a,b)=>a.level-b.level||a.y-b.y||((a.kind==='actor'?2:a.kind==='foreground'?1:0)-(b.kind==='actor'?2:b.kind==='foreground'?1:0))||a.order-b.order);
 }

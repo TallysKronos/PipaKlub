@@ -1,0 +1,482 @@
+{
+  "fileKey": "KCvJbbcDt9E35umMjjXHVz",
+  "date": "2026-10-21",
+  "pages": {
+    "guide": "0:1",
+    "system": "4:46",
+    "prototype": "4:47"
+  },
+  "screens": {
+    "title": "15:2",
+    "login": "15:23",
+    "opening": "15:58",
+    "partner": "15:73",
+    "quintal": "16:48",
+    "inventory": "17:63",
+    "dex": "17:121",
+    "bag": "18:125",
+    "missions": "18:155",
+    "map": "20:145",
+    "online": "20:175",
+    "morro": "20:208",
+    "morroClear": "20:241",
+    "stairs": "21:208",
+    "roof": "21:239",
+    "lookout": "21:270",
+    "park": "21:301",
+    "battle": "22:268",
+    "result": "22:318",
+    "final": "22:346",
+    "recovery": "24:319",
+    "loginError": "24:345",
+    "tutor": "24:372",
+    "options": "24:395",
+    "history": "27:371",
+    "dexDrop": "27:394",
+    "attackFeedback": "30:391",
+    "skillInfo": "30:408",
+    "stairsBattle": "31:416",
+    "stairsResult": "31:466",
+    "roofBattle": "31:494",
+    "roofResult": "31:544",
+    "lookoutBattle": "31:572",
+    "lookoutResult": "31:622",
+    "parkBattle": "31:650",
+    "parkResult": "31:700",
+    "onlineBattle": "31:728",
+    "onlineResult": "31:778"
+  },
+  "actions": {
+    "start": "15:8",
+    "train": "15:14",
+    "loginSubmit": "15:36",
+    "forgot": "15:42",
+    "loginBack": "15:48",
+    "openingNext": "15:67",
+    "partnerAccept": "15:82",
+    "partnerNext": "15:88",
+    "homeBack": "16:54",
+    "explore": "16:88",
+    "talkAssis": "16:79",
+    "homeNav/Mochila": "16:61",
+    "homeNav/Pipamons": "16:64",
+    "homeNav/Mapa": "16:67",
+    "homeNav/Missões": "16:70",
+    "homeNav/Opções": "16:73",
+    "inventoryBack": "17:68",
+    "inventorySwitch": "17:80",
+    "inventoryGeneral": "17:95",
+    "inventoryHistory": "17:101",
+    "inventoryBag": "17:115",
+    "dexBack": "17:126",
+    "dexSwitch": "17:138",
+    "dexGeneral": "17:153",
+    "dexHistory": "17:159",
+    "dexBag": "17:173",
+    "bagBack": "18:130",
+    "bagDex": "18:148",
+    "missionsBack": "18:160",
+    "missionsGo": "18:184",
+    "mapBack": "20:150",
+    "mapVisit": "20:160",
+    "onlineBack": "20:181",
+    "onlineCreate": "20:194",
+    "onlineJoin": "20:200",
+    "morroAct": "20:223",
+    "morroBack": "20:214",
+    "morroHome": "20:229",
+    "morroClearAct": "20:256",
+    "morroClearBack": "20:247",
+    "morroClearHome": "20:262",
+    "stairsBack": "21:214",
+    "stairsDuel": "21:223",
+    "stairsNext": "21:229",
+    "roofBack": "21:245",
+    "roofDuel": "21:254",
+    "roofNext": "21:260",
+    "lookoutBack": "21:276",
+    "lookoutDuel": "21:285",
+    "lookoutNext": "21:291",
+    "parkBack": "21:307",
+    "parkDuel": "21:316",
+    "parkNext": "21:322",
+    "battleBack": "22:274",
+    "battleAttack": "22:298",
+    "battleSkill": "22:304",
+    "battleFinish": "22:310",
+    "resultBack": "22:323",
+    "resultNext": "22:334",
+    "resultAgain": "22:340",
+    "finalOnline": "22:352",
+    "finalHome": "22:358",
+    "recoveryBack": "24:325",
+    "recoverySubmit": "24:338",
+    "loginErrorBack": "24:351",
+    "loginErrorSubmit": "24:365",
+    "tutorTrain": "24:383",
+    "tutorGo": "24:389",
+    "optionsBack": "24:400",
+    "optionsOnline": "24:417",
+    "optionsExit": "24:423",
+    "historyBack": "27:376",
+    "historyGeneral": "27:388",
+    "dexDropBack": "27:399",
+    "dexDropGeneral": "27:411",
+    "attackFeedbackBack": "30:396",
+    "attackFeedbackNext": "30:402",
+    "skillInfoBack": "30:413",
+    "skillInfoNext": "30:419",
+    "loginErrorDemo": "30:425",
+    "stairsBattleBack": "31:422",
+    "stairsBattleAttack": "31:435",
+    "stairsBattleSkill": "31:436",
+    "stairsBattleFinish": "31:437",
+    "stairsResultBack": "31:471",
+    "stairsResultNext": "31:477",
+    "stairsResultAgain": "31:478",
+    "roofBattleBack": "31:500",
+    "roofBattleAttack": "31:513",
+    "roofBattleSkill": "31:514",
+    "roofBattleFinish": "31:515",
+    "roofResultBack": "31:549",
+    "roofResultNext": "31:555",
+    "roofResultAgain": "31:556",
+    "lookoutBattleBack": "31:578",
+    "lookoutBattleAttack": "31:591",
+    "lookoutBattleSkill": "31:592",
+    "lookoutBattleFinish": "31:593",
+    "lookoutResultBack": "31:627",
+    "lookoutResultNext": "31:633",
+    "lookoutResultAgain": "31:634",
+    "parkBattleBack": "31:656",
+    "parkBattleAttack": "31:669",
+    "parkBattleSkill": "31:670",
+    "parkBattleFinish": "31:671",
+    "parkResultBack": "31:705",
+    "parkResultNext": "31:711",
+    "parkResultAgain": "31:712",
+    "onlineBattleBack": "31:734",
+    "onlineBattleAttack": "31:747",
+    "onlineBattleSkill": "31:748",
+    "onlineBattleFinish": "31:749",
+    "onlineResultBack": "31:783",
+    "onlineResultNext": "31:789",
+    "onlineResultAgain": "31:790"
+  },
+  "routes": {
+    "start": "login",
+    "train": "battle",
+    "loginSubmit": "opening",
+    "forgot": "recovery",
+    "loginBack": "title",
+    "loginErrorDemo": "loginError",
+    "openingNext": "partner",
+    "partnerAccept": "tutor",
+    "partnerNext": "quintal",
+    "homeBack": "title",
+    "explore": "morro",
+    "talkAssis": "tutor",
+    "homeNav/Mochila": "bag",
+    "homeNav/Pipamons": "inventory",
+    "homeNav/Mapa": "map",
+    "homeNav/Missões": "missions",
+    "homeNav/Opções": "options",
+    "inventoryBack": "quintal",
+    "inventorySwitch": "dex",
+    "inventoryHistory": "history",
+    "inventoryBag": "bag",
+    "dexBack": "quintal",
+    "dexSwitch": "inventory",
+    "dexHistory": "history",
+    "dexBag": "dexDrop",
+    "bagBack": "quintal",
+    "bagDex": "dex",
+    "missionsBack": "quintal",
+    "missionsGo": "morro",
+    "mapBack": "quintal",
+    "mapVisit": "morro",
+    "onlineBack": "quintal",
+    "onlineCreate": "onlineBattle",
+    "onlineJoin": "onlineBattle",
+    "morroAct": "battle",
+    "morroBack": "map",
+    "morroHome": "quintal",
+    "morroClearAct": "stairs",
+    "morroClearBack": "map",
+    "morroClearHome": "quintal",
+    "battleBack": "BACK",
+    "battleAttack": "attackFeedback",
+    "battleSkill": "skillInfo",
+    "battleFinish": "result",
+    "resultBack": "morroClear",
+    "resultNext": "morroClear",
+    "resultAgain": "online",
+    "finalOnline": "online",
+    "finalHome": "quintal",
+    "recoveryBack": "login",
+    "recoverySubmit": "login",
+    "loginErrorBack": "login",
+    "loginErrorSubmit": "login",
+    "tutorTrain": "battle",
+    "tutorGo": "quintal",
+    "optionsBack": "quintal",
+    "optionsOnline": "online",
+    "optionsExit": "title",
+    "historyBack": "BACK",
+    "historyGeneral": "BACK",
+    "dexDropBack": "BACK",
+    "dexDropGeneral": "BACK",
+    "attackFeedbackBack": "BACK",
+    "attackFeedbackNext": "quintal",
+    "skillInfoBack": "BACK",
+    "skillInfoNext": "quintal",
+    "stairsBack": "morroClear",
+    "stairsDuel": "stairsBattle",
+    "stairsNext": "stairsResult",
+    "stairsBattleBack": "BACK",
+    "stairsBattleAttack": "attackFeedback",
+    "stairsBattleSkill": "skillInfo",
+    "stairsBattleFinish": "stairsResult",
+    "stairsResultBack": "stairs",
+    "stairsResultNext": "roof",
+    "stairsResultAgain": "online",
+    "roofBack": "stairs",
+    "roofDuel": "roofBattle",
+    "roofNext": "roofResult",
+    "roofBattleBack": "BACK",
+    "roofBattleAttack": "attackFeedback",
+    "roofBattleSkill": "skillInfo",
+    "roofBattleFinish": "roofResult",
+    "roofResultBack": "roof",
+    "roofResultNext": "lookout",
+    "roofResultAgain": "online",
+    "lookoutBack": "roof",
+    "lookoutDuel": "lookoutBattle",
+    "lookoutNext": "lookoutResult",
+    "lookoutBattleBack": "BACK",
+    "lookoutBattleAttack": "attackFeedback",
+    "lookoutBattleSkill": "skillInfo",
+    "lookoutBattleFinish": "lookoutResult",
+    "lookoutResultBack": "lookout",
+    "lookoutResultNext": "park",
+    "lookoutResultAgain": "online",
+    "parkBack": "lookout",
+    "parkDuel": "parkBattle",
+    "parkNext": "parkResult",
+    "parkBattleBack": "BACK",
+    "parkBattleAttack": "attackFeedback",
+    "parkBattleSkill": "skillInfo",
+    "parkBattleFinish": "parkResult",
+    "parkResultBack": "park",
+    "parkResultNext": "final",
+    "parkResultAgain": "online",
+    "onlineBattleBack": "BACK",
+    "onlineBattleAttack": "attackFeedback",
+    "onlineBattleSkill": "skillInfo",
+    "onlineBattleFinish": "onlineResult",
+    "onlineResultBack": "online",
+    "onlineResultNext": "online",
+    "onlineResultAgain": "onlineBattle"
+  },
+  "assets": {
+    "world-quintal": {
+      "id": "7:2",
+      "hash": "1b92b3edff584bcb7c06fa3d707e84bbd30a7b82"
+    },
+    "story-bedroom": {
+      "id": "7:3",
+      "hash": "a7ef64867cc69ef5766dc0fba71f316a0ae49c77"
+    },
+    "story-downstairs": {
+      "id": "7:4",
+      "hash": "397e95bd08bbdcee7a02031dd0c8eef477b939c0"
+    },
+    "world-chegada": {
+      "id": "7:5",
+      "hash": "576316d58b7e9a04316c15eaf690503235b12d71"
+    },
+    "world-escadaria": {
+      "id": "7:6",
+      "hash": "b923cf7378462cefc74d8faac4fa3ef6f09d228e"
+    },
+    "world-laje": {
+      "id": "7:7",
+      "hash": "d2eeebb31c3a5d7ade2bcba9fbda0a10d6ed0cf0"
+    },
+    "world-mirante": {
+      "id": "7:8",
+      "hash": "9e4d528148cb0e1b1679fb0790bcf955a3da37a7"
+    },
+    "world-parque": {
+      "id": "7:9",
+      "hash": "b934fb7c219a5671cea8f526de3101b42eaadfcb"
+    },
+    "arena-morro": {
+      "id": "7:10",
+      "hash": "d54f92130e4eb92b28aa8b6de36a15e918904ac8"
+    },
+    "actor-rabbito": {
+      "id": "7:11",
+      "hash": "edc3986935c91979e807e35b5195f155ef082a92"
+    },
+    "actor-nevagume": {
+      "id": "7:12",
+      "hash": "c29d6aa09a17011eaa8bdcd4e5671160a5ad7d7e"
+    },
+    "actor-assis": {
+      "id": "7:13",
+      "hash": "66e763408a588606c8bea5d37017b9bb318ec09f"
+    },
+    "actor-kael": {
+      "id": "7:14",
+      "hash": "617839d0ba98440c780aa288294dc94dd285a69b"
+    },
+    "portrait-kael": {
+      "id": "7:15",
+      "hash": "c9d177aeee00b401f9e1d4cc639dcbe185384f27"
+    },
+    "icon-backpack": {
+      "id": "7:16",
+      "hash": "b56510b67669b34a26d149c72c270d6848c6b10f"
+    },
+    "icon-partners": {
+      "id": "7:17",
+      "hash": "cca8a7f92545953cf8a371fced0430f7e999f166"
+    },
+    "icon-map": {
+      "id": "7:18",
+      "hash": "1be13b31a3c7cd797b78253621103842479b9cc2"
+    },
+    "icon-missions": {
+      "id": "7:19",
+      "hash": "2ec73c5c6c005b5451d2aa0b3397c328396e472e"
+    },
+    "icon-settings": {
+      "id": "7:20",
+      "hash": "408739744a15e972bd5cd672133439dc08723de5"
+    },
+    "item-rabiola": {
+      "id": "7:21",
+      "hash": "c90b4f4a38aa50984eb852f3d855cc30e9f295fc"
+    },
+    "ui-button-primary": {
+      "id": "7:22",
+      "hash": "72371a30cdc53d7de329ede79dfcc558ff42909c"
+    },
+    "ui-button-secondary": {
+      "id": "7:23",
+      "hash": "a06d25303cd8438fe96430ab5cf7e6be80785608"
+    },
+    "ui-button-destructive": {
+      "id": "7:24",
+      "hash": "21074479e2037477d5b11ea3bb795afb353665e1"
+    },
+    "ui-button-disabled": {
+      "id": "7:25",
+      "hash": "ad9838b14f885c9a1f71fcbcbf8854ca577ec414"
+    },
+    "ui-window": {
+      "id": "7:26",
+      "hash": "a97b281fdce1311f2f083d49d2be1a40e0493b0c"
+    },
+    "ui-portrait-card": {
+      "id": "7:27",
+      "hash": "d3b8cad6860361fc44e9b4a8c3519fdee390c156"
+    },
+    "button-primary-right": {
+      "id": "8:2",
+      "hash": "427152529b87589b441d77486bc8953fadd127c5"
+    },
+    "button-primary-middle": {
+      "id": "8:3",
+      "hash": "3da246067a4874a8cd9d0cfb9bdf3801d0e5c91a"
+    },
+    "button-primary-left": {
+      "id": "8:4",
+      "hash": "08b45605d5bcee8d1dcaf56247f1c013cf767035"
+    },
+    "button-secondary-left": {
+      "id": "8:5",
+      "hash": "c034b1c3cd4a97e50c6a49d47048b85c8059c7f0"
+    },
+    "button-secondary-middle": {
+      "id": "8:6",
+      "hash": "b0ecc601506af68865a0c31cb3c982882a07a91d"
+    },
+    "button-secondary-right": {
+      "id": "8:7",
+      "hash": "4db5356f8a538dc5633e0942c0737b66f82715e0"
+    },
+    "button-destructive-left": {
+      "id": "8:8",
+      "hash": "2ffd19603849e788c5ceec317be7554e112bf48e"
+    },
+    "button-destructive-middle": {
+      "id": "8:9",
+      "hash": "af75bab6ff5f5c642abe064299169a1686f62c43"
+    },
+    "button-destructive-right": {
+      "id": "8:10",
+      "hash": "19692b92757b323b292841c7fd15ed5102e0a955"
+    },
+    "button-disabled-left": {
+      "id": "8:11",
+      "hash": "0e70f13ddebcac2c0fd81691b06b2b8baecb5460"
+    },
+    "button-disabled-middle": {
+      "id": "8:12",
+      "hash": "8143cf148934008c0e465caf7bab22857fc3a891"
+    },
+    "button-disabled-right": {
+      "id": "8:13",
+      "hash": "1bcc6399a35ee2c01fee09df736b76cdfb6e0069"
+    },
+    "actor-assis-chibi": {
+      "id": "25:2",
+      "hash": "611f9c818ac5d507d2e06da575d4f7a2c527f552"
+    },
+    "item-antiga": {
+      "id": "25:372",
+      "hash": "2635ef811ed26505f12b092077e86757b9c0ccf2"
+    }
+  },
+  "components": {
+    "Button/Primary": "9:2",
+    "Button/Secondary": "9:8",
+    "Button/Destructive": "9:14",
+    "Button/Disabled": "9:20",
+    "Panel": "11:2",
+    "PartnerCard": "12:12",
+    "Meter": "13:2",
+    "Field/Default": "12:2",
+    "Field/Error": "12:6"
+  },
+  "qa": {
+    "screenStates": 38,
+    "plannedRoutes": 113,
+    "missingReactions": [],
+    "invalidDestinations": [],
+    "overflows": [],
+    "startingPoints": [
+      {
+        "nodeId": "15:2",
+        "name": "PipaKlub · Demo desde o início"
+      },
+      {
+        "nodeId": "16:48",
+        "name": "PipaKlub · Explorar o clube"
+      }
+    ]
+  },
+  "browserSmoke": [
+    "Início -> Login",
+    "Login ilustrativo -> Abertura"
+  ],
+  "limitations": [
+    "Interface base 1440x900; não é especificação mobile responsiva.",
+    "Protótipo não autentica nem calcula combate, XP ou inventário.",
+    "Quintal usa arte de identidade; sincronização do mapa modular ainda pendente.",
+    "Frames ilustrativos não substituem personagens/vistas/valores reais de cada encontro.",
+    "Animação completa, controle físico e acessibilidade não homologados."
+  ]
+}

@@ -1,0 +1,204 @@
+[
+  {
+    "id": "urso-menta",
+    "approvedForGame": false,
+    "status": "needs-cleanup",
+    "size": [
+      1254,
+      1254
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "sourceSHA256": "53333f65823fa891517f477203b915021b43b03fb4ced74c33b4e935330108bf",
+    "frameChecks": [
+      {
+        "frame": 0,
+        "margin": 3,
+        "meets8pxMargin": false
+      },
+      {
+        "frame": 1,
+        "margin": 4,
+        "meets8pxMargin": false
+      },
+      {
+        "frame": 2,
+        "margin": 2,
+        "meets8pxMargin": false
+      },
+      {
+        "frame": 3,
+        "margin": 3,
+        "meets8pxMargin": false
+      },
+      {
+        "frame": 4,
+        "margin": 12,
+        "meets8pxMargin": true
+      },
+      {
+        "frame": 5,
+        "margin": 34,
+        "meets8pxMargin": true
+      },
+      {
+        "frame": 6,
+        "margin": 19,
+        "meets8pxMargin": true
+      },
+      {
+        "frame": 7,
+        "margin": 15,
+        "meets8pxMargin": true
+      },
+      {
+        "frame": 8,
+        "margin": 45,
+        "meets8pxMargin": true
+      },
+      {
+        "frame": 9,
+        "margin": 47,
+        "meets8pxMargin": true
+      },
+      {
+        "frame": 10,
+        "margin": 31,
+        "meets8pxMargin": true
+      },
+      {
+        "frame": 11,
+        "margin": 31,
+        "meets8pxMargin": true
+      },
+      {
+        "frame": 12,
+        "margin": 22,
+        "meets8pxMargin": true
+      },
+      {
+        "frame": 13,
+        "margin": 45,
+        "meets8pxMargin": true
+      },
+      {
+        "frame": 14,
+        "margin": 32,
+        "meets8pxMargin": true
+      },
+      {
+        "frame": 15,
+        "margin": 19,
+        "meets8pxMargin": true
+      }
+    ],
+    "issues": [
+      "Visible colored/white edge contamination persists after two correction attempts.",
+      "8px safe cell margins fail; do not load these draft atlases into production.",
+      "Fixed pivots and animation continuity require final review after edge cleanup."
+    ]
+  },
+  {
+    "id": "olho-origami",
+    "approvedForGame": false,
+    "status": "needs-cleanup",
+    "size": [
+      1254,
+      1254
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "sourceSHA256": "349e2d316b53ae456e326e4d25e24b384efeedb638a1e45aec377270ce264d4b",
+    "frameChecks": [
+      {
+        "frame": 0,
+        "margin": 0,
+        "meets8pxMargin": false
+      },
+      {
+        "frame": 1,
+        "margin": 0,
+        "meets8pxMargin": false
+      },
+      {
+        "frame": 2,
+        "margin": 0,
+        "meets8pxMargin": false
+      },
+      {
+        "frame": 3,
+        "margin": 0,
+        "meets8pxMargin": false
+      },
+      {
+        "frame": 4,
+        "margin": 0,
+        "meets8pxMargin": false
+      },
+      {
+        "frame": 5,
+        "margin": 0,
+        "meets8pxMargin": false
+      },
+      {
+        "frame": 6,
+        "margin": 0,
+        "meets8pxMargin": false
+      },
+      {
+        "frame": 7,
+        "margin": 0,
+        "meets8pxMargin": false
+      },
+      {
+        "frame": 8,
+        "margin": 11,
+        "meets8pxMargin": true
+      },
+      {
+        "frame": 9,
+        "margin": 15,
+        "meets8pxMargin": true
+      },
+      {
+        "frame": 10,
+        "margin": 0,
+        "meets8pxMargin": false
+      },
+      {
+        "frame": 11,
+        "margin": 0,
+        "meets8pxMargin": false
+      },
+      {
+        "frame": 12,
+        "margin": 10,
+        "meets8pxMargin": true
+      },
+      {
+        "frame": 13,
+        "margin": 9,
+        "meets8pxMargin": true
+      },
+      {
+        "frame": 14,
+        "margin": 4,
+        "meets8pxMargin": false
+      },
+      {
+        "frame": 15,
+        "margin": 8,
+        "meets8pxMargin": true
+      }
+    ],
+    "issues": [
+      "Visible colored/white edge contamination persists after two correction attempts.",
+      "8px safe cell margins fail; do not load these draft atlases into production.",
+      "Fixed pivots and animation continuity require final review after edge cleanup."
+    ]
+  }
+]

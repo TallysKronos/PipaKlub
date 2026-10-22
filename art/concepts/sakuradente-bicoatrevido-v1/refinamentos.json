@@ -1,0 +1,13 @@
+{
+  "tool": "image_gen (built-in)",
+  "prompts": {
+    "sakuradente": "Edit only the supplied Sakuradente artwork. Preserve the exact character identity, face, two saber fangs, four legs, petal pattern, color palette, paper facets, shoulder kite, bamboo and all connected tail construction. Remove ALL of the hazy pink/brown/black backdrop and ALL ambient glow around and between the character and petal tail, making every exterior gap genuinely alpha 0. Do not remove the cream paper or dark plum markings. Reframe the complete same character with substantial clean transparent margin on ALL four sides, at least 10% of canvas including top bamboo tip, left petal tail and lowest front paw. Slightly reduce the artwork uniformly to fit; preserve proportions. No floor, shadow, painted background, checkerboard pixels, lettering or new ornaments. Clean isolated RGBA production concept, crisp edges, no fuzzy aura. Do not redesign.",
+    "bicoatrevido": "Edit only the supplied Bicoatrevido artwork. Preserve the exact cheerful cheeky platypus face, ochre bill, teal paper body, backwards orange cap, two arms and two feet, spool and broad framed paddle tail. Change only framing so the ENTIRE attached strip-paper tail on the right is complete and has generous transparent margin; uniformly reduce the whole character so cap, hand, feet and complete rabiola all have at least 10% clear transparent margin from the canvas edges. Retain the same art style, pose, colors, connected anatomy and proportions. Outside the subject alpha must be 0, no haze, no ground shadow, no new objects, no text, no background. A clean fully isolated RGBA full-body concept, not a new design."
+  },
+  "thirdAttempt": "Remove the background from this illustration. Keep only the saber-tooth tiger, its bamboo kite, and its connected pink petal tail. Completely delete the diffuse pink and brown clouds and ALL glow from every gap and exterior area. Transparent cutout only, with crisp clean edges and no aura or shadow. Preserve all creature details, opaque cream paper, markings and colors. Transparent background.",
+  "selected": {
+    "sakuradente": "exec-5d521a2e-7141-4f74-b7f3-15c1b51ba580.png",
+    "bicoatrevido": "exec-41a62fa3-9cf0-4afe-b23a-4d533d624098.png"
+  },
+  "limitations": "Tigre conserva névoa colorida; conceitos ainda não são texturas finais."
+}

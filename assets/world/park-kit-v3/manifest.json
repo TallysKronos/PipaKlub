@@ -1,0 +1,168 @@
+{
+  "version": 3,
+  "style": "Botanical Brazilian park; continuous materials, grouped planting",
+  "generatedWith": "built-in image_gen",
+  "sheets": {
+    "park-nature-v2": {
+      "image": "world/park-kit-v2/park-atlas-v2.png",
+      "width": 1536,
+      "height": 1024
+    },
+    "park-terrain-v3": {
+      "image": "world/park-kit-v3/terrain-v3.png",
+      "width": 1536,
+      "height": 1024
+    },
+    "park-nature-v3": {
+      "image": "world/park-kit-v3/nature-v3.png",
+      "width": 1536,
+      "height": 1024
+    }
+  },
+  "frames": {
+    "park-tree": {
+      "sheet": "park-nature-v2",
+      "x": 96,
+      "y": 8,
+      "w": 612,
+      "h": 496,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "layer": "object"
+    },
+    "park-gazebo": {
+      "sheet": "park-nature-v2",
+      "x": 896,
+      "y": 16,
+      "w": 550,
+      "h": 496,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "layer": "object"
+    },
+    "park-tree-flower": {
+      "sheet": "park-nature-v2",
+      "x": 90,
+      "y": 514,
+      "w": 620,
+      "h": 498,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "layer": "object"
+    },
+    "park-habitat": {
+      "sheet": "park-nature-v2",
+      "x": 864,
+      "y": 624,
+      "w": 590,
+      "h": 344,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "layer": "object"
+    },
+    "grass": {
+      "sheet": "park-terrain-v3",
+      "x": 0,
+      "y": 0,
+      "w": 768,
+      "h": 512,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "layer": "ground"
+    },
+    "dirt": {
+      "sheet": "park-terrain-v3",
+      "x": 768,
+      "y": 0,
+      "w": 768,
+      "h": 512,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "layer": "ground"
+    },
+    "sidewalk": {
+      "sheet": "park-terrain-v3",
+      "x": 0,
+      "y": 512,
+      "w": 768,
+      "h": 512,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "layer": "ground"
+    },
+    "park-tall-grass": {
+      "sheet": "park-terrain-v3",
+      "x": 768,
+      "y": 512,
+      "w": 768,
+      "h": 512,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "layer": "ground"
+    },
+    "park-tree-a": {
+      "sheet": "park-nature-v3",
+      "x": 105,
+      "y": 20,
+      "w": 643,
+      "h": 570,
+      "anchor": {
+        "x": 0.54,
+        "y": 1
+      },
+      "layer": "object"
+    },
+    "park-tree-b": {
+      "sheet": "park-nature-v3",
+      "x": 896,
+      "y": 13,
+      "w": 535,
+      "h": 594,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "layer": "object"
+    },
+    "park-shrub": {
+      "sheet": "park-nature-v3",
+      "x": 128,
+      "y": 640,
+      "w": 593,
+      "h": 345,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "layer": "object"
+    },
+    "park-flowers": {
+      "sheet": "park-nature-v3",
+      "x": 869,
+      "y": 706,
+      "w": 571,
+      "h": 271,
+      "anchor": {
+        "x": 0.5,
+        "y": 1
+      },
+      "layer": "object"
+    }
+  }
+}
