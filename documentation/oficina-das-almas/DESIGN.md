@@ -4,6 +4,8 @@ Status: **proposta para aprovação**. Nada aqui está no jogo. O protótipo jog
 
 A primeira oficina local citada no épico (migração `024_soul_workshop.sql`, `src/workshop-model.js`, `src/workshop-renderer.js`) ainda não está no repositório. Esta proposta não depende dela e não toca na invocação atual. Quando ela subir, a integração segue a seção "Ordem de implementação".
 
+Revisão após a pesquisa de referências: ver [REFERENCIAS.md](REFERENCIAS.md). Ela muda o corte para uma revelação com estilete e tesourinha, adiciona a fase de reparo dos materiais e passa a recomendar cronômetro (90 s e 60 s), sem que o fim do tempo seja falha.
+
 Cada item traz uma **recomendação**. Os marcados ⚑ precisam da sua decisão antes de virar código.
 
 ## 1. Fluxo e estados da tentativa
