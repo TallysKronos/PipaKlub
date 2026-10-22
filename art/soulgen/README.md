@@ -8,6 +8,7 @@ A referência aprovada pelo usuário em 2026-10-21 é o **rig colorido com expre
 - [Modelo de brief para novas criaturas](BRIEF-RIG-COLORIDO.template.json)
 - [Exemplo aprovado e reprodução](keys/carcara/color-rig/README.md)
 - [Prévia independente do Carcará](keys/carcara/preview.html)
+- Briefs pendentes no formato colorido: [Mata verde](briefs/mata-verde.md)
 
 O exemplo é a referência do comportamento e do acabamento aprovados. Espécies novas precisam de suas próprias anatomias, cores, fontes, recortes e pivôs; não devem herdar coordenadas do Carcará por cópia.
 
