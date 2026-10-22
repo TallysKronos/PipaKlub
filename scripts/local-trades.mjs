@@ -39,6 +39,7 @@ if(!(await postgres.query("select 1 from information_schema.columns where table_
 if(!(await postgres.query("select to_regclass('public.wild_runs') installed")).rows[0].installed)await postgres.exec(fs.readFileSync('supabase/migrations/022_wild_encounters.sql','utf8'));
 if(!(await postgres.query("select to_regclass('public.pipamon_class_nodes') installed")).rows[0].installed)await postgres.exec(fs.readFileSync('supabase/migrations/023_class_constellations.sql','utf8'));
 if(!(await postgres.query("select to_regclass('public.workshop_jobs') installed")).rows[0].installed)await postgres.exec(fs.readFileSync('supabase/migrations/024_soul_workshop.sql','utf8'));
+await postgres.exec(fs.readFileSync('supabase/migrations/025_workshop_reveal.sql','utf8'));
 const players={kael:{id:'55555555-5555-4555-8555-555555555555',nickname:'Kael Local'},davi:{id:'44444444-4444-4444-8444-444444444444',nickname:'Kael Local'},ana:{id:'11111111-1111-4111-8111-111111111111',nickname:'Ana Local'},beto:{id:'22222222-2222-4222-8222-222222222222',nickname:'Beto Local'},cora:{id:'33333333-3333-4333-8333-333333333333',nickname:'Cora Local'}};
 for(const p of Object.values(players))await postgres.query('insert into auth.users values($1,$2) on conflict(id) do nothing',[p.id,{nickname:p.nickname}]);
 // Explicit workshop-only fixture: no changes to ordinary opening tests or production.

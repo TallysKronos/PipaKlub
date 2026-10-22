@@ -23,7 +23,13 @@ export function createWorkshopRenderer({bench,parts,rects,drawCreature,reduced=(
   const pts=rabbit?[[-65,-155],[28,-155],[50,8],[-48,70]]:[[0,-100],[105,0],[0,100],[-105,0]],count=stage>0?4:input.joints.length;
   const ends=rabbit?[[-25,-47],[28,-47],[-48,70],[50,8]]:pts.map((_,i)=>pts[(i+1)%4]);
   if(lastCount!==count){lastCount=count;countAt=time;}
-  if(stage<3){
+  if(stage===2&&input.reveal&&typeof drawWorkshopReveal==='function'){
+   // A marca da alma brilha sob os retalhos; a escavação cobre o desenho real da espécie.
+   g.save();g.shadowColor='#5fe0cf';g.shadowBlur=reduced()?0:18;
+   if(rabbit&&parts?.complete){piece(g,'body',0,30,148,178);piece(g,'earFar',28,-47,42,113,0,.5,.94);piece(g,'earNear',-25,-47,66,119,0,.5,.94);}
+   else{g.beginPath();pts.forEach(([a,b],i)=>i?g.lineTo(a,b):g.moveTo(a,b));g.closePath();g.fillStyle='#c9f4ec';g.fill();g.lineWidth=3;g.strokeStyle='#1b8a7a';g.stroke();}
+   g.restore();drawWorkshopReveal(g,input.reveal,time,{...input.revealView,reduced:reduced()});
+  }else if(stage<3){
    if(rabbit&&parts?.complete){g.globalAlpha=.10;piece(g,'body',0,30,148,178);piece(g,'earFar',28,-47,42,113,0,.5,.94);piece(g,'earNear',-25,-47,66,119,0,.5,.94);g.globalAlpha=1;}
    g.strokeStyle='#75685466';g.lineWidth=2;g.setLineDash([6,6]);for(let i=0;i<4;i++){g.beginPath();g.moveTo(...pts[i]);g.lineTo(...ends[i]);g.stroke();}g.setLineDash([]);
    for(let i=0;i<count;i++){const a=pts[i],b=ends[i],f=stage===0&&i===count-1&&!reduced()?ease((time-countAt)/.4):1;g.beginPath();g.moveTo(...a);g.lineTo(a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f);g.strokeStyle='#6d472b';g.lineWidth=9;g.stroke();g.strokeStyle='#e8bc75';g.lineWidth=5;g.stroke();}
@@ -50,6 +56,6 @@ export function createWorkshopRenderer({bench,parts,rects,drawCreature,reduced=(
   }
   g.restore();
   // Functional preview caption; not painted into the source image.
-  g.fillStyle='#fff8e9e8';g.fillRect(340,554,280,38);g.fillStyle='#294b53';g.font='bold 15px sans-serif';g.textAlign='center';g.fillText(stage>=5?'Um novo elo ganhou vida':stage<3?'Gabarito de montagem · quatro apoios':job.name||'Seu parceiro',480,578);
+  g.fillStyle='#fff8e9e8';g.fillRect(340,554,280,38);g.fillStyle='#294b53';g.font='bold 15px sans-serif';g.textAlign='center';g.fillText(stage>=5?'Um novo elo ganhou vida':stage===2&&input.reveal?'Revele a marca sem rasgar':stage<3?'Gabarito de montagem · quatro apoios':job.name||'Seu parceiro',480,578);
  };
 }

@@ -24,7 +24,7 @@ test('workshop migration resumes reservations, validates ordered stages and awar
   await db.query("update public.summon_tails set status='damaged' where id=$1",[damaged]);
   await db.exec("set role authenticated;set request.jwt.claim.sub='"+a+"'");
   await db.query("select public.player_summon('start',$1,null,null,null,$2)",[old,randomUUID()]);
-  await db.exec('reset role');await db.exec(fs.readFileSync('supabase/migrations/024_soul_workshop.sql','utf8'));
+  await db.exec('reset role');await db.exec(fs.readFileSync('supabase/migrations/024_soul_workshop.sql','utf8'));await db.exec(fs.readFileSync('supabase/migrations/025_workshop_reveal.sql','utf8'));
   const tail=await grant('rabbito','workshop-test');
   assert.equal((await db.query('select status from public.summon_tails where id=$1',[old])).rows[0].status,'ready');
   const auth=async id=>db.exec("reset role;set role authenticated;set request.jwt.claim.sub='"+id+"'");
@@ -41,6 +41,8 @@ test('workshop migration resumes reservations, validates ordered stages and awar
   await assert.rejects(()=>call('advance',{jobId:job.id,stage:4,payload:steps[4],requestId:randomUUID()}),/atualizada/);
   await assert.rejects(()=>call('advance',{jobId:job.id,stage:0,payload:{joints:[0,2,1,3]},requestId:randomUUID()}),/ordem/);
   let result;for(let stage=0;stage<5;stage++){
+   // 025: a etapa do papel recusa nota fora da faixa ou chave extra, sem avançar a montagem.
+   if(stage===2)for(const payload of [{cuts:[0,1,2,3],reveal:101},{cuts:[0,1,2,3],reveal:-1},{cuts:[0,1,2,3],reveal:'90'},{cuts:[0,1,2,3],reveal:90,x:1}])await assert.rejects(()=>call('advance',{jobId:job.id,stage,payload,requestId:randomUUID()}));
    const args={jobId:job.id,stage,payload:steps[stage],requestId:randomUUID()};result=await call('advance',args);
    assert.deepEqual(await call('advance',args),result,'same request replays its committed result');
    await assert.rejects(()=>call('advance',{...args,payload:{forged:true}}),/já utilizada/);
@@ -90,4 +92,21 @@ test('workshop art crops fit original sources and both web builds serve identica
   assert.deepEqual(fs.readFileSync('docs/assets/'+def.image),original);
   if(id==='parts'){const w=original.readUInt32BE(16),h=original.readUInt32BE(20);for(const r of Object.values(config.rects))assert.ok(r.length===4&&r.every(Number.isFinite)&&r[0]>=0&&r[1]>=0&&r[2]>0&&r[3]>0&&r[0]+r[2]<=w&&r[1]+r[3]<=h);}
  }
+});
+
+test('025: a nota da escavação vira a nota registrada da etapa do papel',async()=>{
+ const db=new PGlite();await db.waitReady;
+ await db.exec("create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key,raw_user_meta_data jsonb);create function auth.uid() returns uuid language sql as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;grant usage on schema public,auth to authenticated,anon,service_role;grant execute on function auth.uid() to authenticated,anon,service_role;");
+ try{
+  for(const f of fs.readdirSync('supabase/migrations').filter(f=>f.endsWith('.sql')&&f<'026').sort())await db.exec(fs.readFileSync('supabase/migrations/'+f,'utf8'));
+  const a=randomUUID();await db.query('insert into auth.users(id,raw_user_meta_data) values($1,$2)',[a,{nickname:'Reveal'}]);
+  await db.query("insert into public.player_pipamon_sightings(owner_id,model_id) values($1,'rabbito')",[a]);
+  const tail=(await db.query("select public.grant_summon_tail($1,'rabbito','event','reveal-test') id",[a])).rows[0].id;
+  await db.exec("set role authenticated;set request.jwt.claim.sub='"+a+"'");
+  const call=async(action,args)=>(await db.query('select public.player_workshop($1,$2,$3,$4,$5,$6,$7) r',[action,args.tailId||null,args.jobId||null,args.target||null,args.stage??null,args.payload||null,args.requestId||null])).rows[0].r;
+  const job=await call('start',{tailId:tail,target:'rabbito'});
+  const payloads=[{joints:[0,1,2,3]},{tension:65},{cuts:[0,1,2,3],reveal:72},{balance:50},{wind:50,tension:50}];let r;
+  for(let stage=0;stage<5;stage++)r=await call('advance',{jobId:job.id,stage,payload:payloads[stage],requestId:randomUUID()});
+  assert.equal(r.steps[2].score,72);assert.equal(r.quality,Math.round((100+100+72+100+100)/5));assert.equal(r.status,'completed');
+ }finally{await db.close();}
 });
