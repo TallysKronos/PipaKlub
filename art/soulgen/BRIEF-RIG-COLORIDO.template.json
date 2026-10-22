@@ -1,0 +1,33 @@
+{
+  "schema": "soulgen-full-color-rig-brief-v1",
+  "template": true,
+  "status": "rascunho",
+  "id": "preencher-id-da-especie",
+  "format": "full-color-cutout-rig",
+  "guidelines": "art/soulgen/DIRETRIZES-RIG-COLORIDO.md",
+  "reference": null,
+  "identity": {"species": null, "personality": null, "kiteAnatomy": [], "paletteLock": "preservar arte aprovada"},
+  "view": {"angle": null, "facing": null},
+  "coordinateSystem": {"unit": "unidade logica de montagem", "width": null, "height": null, "textureResolution": "preservar fonte original"},
+  "parts": [],
+  "partFields": ["id", "file", "sourceRect", "destinationRect", "pivot", "drawOrder", "attachment", "motionLimits"],
+  "expressions": {
+    "required": ["normal", "fierce", "hurt", "happy"],
+    "optional": ["blink"],
+    "invariants": ["dimensoes", "alpha", "silhueta", "pixels fora das janelas faciais"],
+    "registrationWindows": [],
+    "timingUnit": "seconds",
+    "windowsByClip": {}
+  },
+  "clips": [
+    {"id": "idle", "loop": true, "seconds": null},
+    {"id": "flight", "loop": true, "seconds": null},
+    {"id": "skill", "loop": false, "seconds": null, "hitTime": null},
+    {"id": "hurt", "loop": false, "seconds": null},
+    {"id": "victory", "loop": false, "seconds": null}
+  ],
+  "deliverables": ["fontes e prompts", "rig e registro facial", "acoes e tempos", "previa independente", "testes e validacao", "evidencia visual"],
+  "acceptance": ["cores originais", "juntas conectadas", "ciclos continuos", "recuperacao estavel", "expressoes sincronizadas", "sem mudanca de alpha na face", "revisao em fundos claro e escuro"],
+  "integration": "nao integrado",
+  "publication": "nao publicado"
+}

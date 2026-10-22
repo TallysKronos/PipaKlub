@@ -1,0 +1,65 @@
+{
+ "id": "carcara",
+ "name": "Carcará",
+ "canvas": 96,
+ "cell": 64,
+ "center_y": 0.4,
+ "shadowSize": 1,
+ "sizeClass": "medium",
+ "tier": 2,
+ "yaw": -32,
+ "pitch": 14,
+ "body": {
+  "half": 11,
+  "up": 12,
+  "down": 13,
+  "pyramid": 0.45
+ },
+ "wing": {
+  "length": 13,
+  "primaries": 5,
+  "secondaries": 3,
+  "sweep": 0.3
+ },
+ "tail": {
+  "segments": 10,
+  "length": 12,
+  "sway": 2.0,
+  "drift": 4
+ },
+ "colors": {
+  "ink": "#2a1610",
+  "body": "#f08a38",
+  "face": "#fbe9c6",
+  "cap": "#5a3322",
+  "wing": "#e0782f",
+  "beak": "#ffc23a"
+ },
+ "variants": {
+  "noturno": {
+   "body": "#7d78c4",
+   "wing": "#5b5fae",
+   "cap": "#25264f",
+   "face": "#dcd9f2"
+  }
+ },
+ "pose_extra": {
+  "idle": {
+   "yaw": -32
+  },
+  "flight": {
+   "yaw": -48,
+   "pitch": 18
+  },
+  "skill": {
+   "yaw": -38
+  },
+  "hurt": {
+   "yaw": -18
+  },
+  "victory": {
+   "yaw": -14,
+   "pitch": 10
+  }
+ }
+}

@@ -1,0 +1,25 @@
+{
+ "id": "carcara",
+ "name": "Carcará",
+ "status": "entregue",
+ "preferredRevision": "keys/carcara/color-rig/",
+ "revisionNote": "Revisão solicitada: arte original colorida, animação contínua e expressões registradas. A paleta de 15 cores abaixo pertence à entrega pixel art anterior, mantida como histórico.",
+ "deliver_to": "art/soulgen/keys/carcara/",
+ "reference": "assets/creatures/basicos-v2/carcara.png",
+ "view": {"angle": "3/4", "facing": "left", "pose": "repouso, asas abertas"},
+ "canvas": 96,
+ "cell": 64,
+ "sizeClass": "medium",
+ "maxColours": 15,
+ "layers": ["body.png", "wing-near.png", "wing-far.png", "tail.png"],
+ "faces": ["normal", "blink", "fierce", "hurt", "happy"],
+ "anchors": ["head", "center", "effect", "tail"],
+ "pivots": ["wing_near", "wing_far", "tail"],
+ "variants": ["noturno"],
+ "traits": ["vela em losango com varetas de bambu", "capuz escuro em V", "rosto creme", "bico em gancho amarelo-alaranjado", "olhos pequenos", "remendos costurados", "asas em três fileiras com pontas escuras", "rabiola de duas fitas com borlas"],
+ "checks": [
+  "python3 tools/soulgen/keyanim.py art/soulgen/keys/carcara art/soulgen/out",
+  "python3 tools/soulgen/keyanim.py art/soulgen/keys/carcara art/soulgen/out noturno",
+  "python3 tools/soulgen/lint.py art/soulgen/out/carcara.json art/soulgen/out/carcara-noturno.json"
+ ]
+}
