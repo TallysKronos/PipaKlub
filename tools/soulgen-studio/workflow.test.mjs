@@ -34,7 +34,7 @@ test('auto trim refuses registered faces, locked art and empty crops without par
 test('simplify keeps a dense recording within tolerance, keeps start, end and impact, and is undoable data',async()=>{
  const {simplifyClip,SIMPLIFY_TOLERANCE}=await import('./workflow.mjs');const {sample,clone,putKey,trackAt}=await import('./model.mjs');
  const fs=await import('node:fs');const {createCarcara}=await import('./carcara.mjs');
- const p=await createCarcara(async src=>{const png=fs.readFileSync(new URL('../..'+src,import.meta.url));return {width:png.readUInt32BE(16),height:png.readUInt32BE(20)};});
+ const p=await createCarcara(async src=>{const png=fs.readFileSync(new URL('../..'+src,import.meta.url));return {width:png.readUInt32BE(16),height:png.readUInt32BE(20)};});for(const q of p.parts)delete q.lag;
  // a dense hand-made style recording: 30 linear keys per second sampled from the preset
  const c=p.clips.skill,dense=clone(c);dense.frames=[];for(let i=0;i<=60;i++){const t=Math.min(c.seconds,i/30);dense.frames.push({t:Math.round(t*1000)/1000,ease:'linear',values:sample(p,'skill',t).values});}
  const q=clone(p);q.clips.skill=dense;const reference=clone(dense),r=simplifyClip(q,'skill');
