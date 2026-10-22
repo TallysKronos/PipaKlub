@@ -1,0 +1,318 @@
+<meta charset="utf-8">
+<title>Oficina das Almas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@500;700;800;900&display=swap">
+<style>
+/* Bancada de ateliê à noite: madeira escura ao redor, papel claro no centro, painel de ferramentas ao lado. Visual único (cena), não segue o tema claro/escuro. */
+:root{
+ --wood:#2b1d15;--wood-2:#3a281d;--paper:#fff2d6;--paper-2:#f1dfb9;--ink:#213d39;--ink-soft:#5b6b5f;
+ --teal:#123b40;--accent:#c14e22;--gold:#e0a63a;--ok:#3f7a52;--warn:#b5651d;--bad:#a8322a;
+ --display:'Lilita One','Trebuchet MS',sans-serif;--body:'Nunito',system-ui,sans-serif;
+ color-scheme:dark}
+html,body{height:100%}
+body{margin:0;background:var(--wood);color:var(--paper);font:500 15px/1.5 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:14px 24px;background-image:repeating-linear-gradient(90deg,#ffffff05 0 2px,transparent 2px 46px)}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance}
+header{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;margin-bottom:12px}
+header h1{font-size:30px;color:var(--paper)}
+header p{margin:0;color:#e7d6b4;max-width:62ch}
+.proto{font:800 11px var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--wood);background:var(--gold);padding:3px 8px;border-radius:3px}
+ol.steps{list-style:none;display:flex;flex-wrap:wrap;gap:6px;padding:0;margin:0 0 14px}
+ol.steps li{font:800 12px var(--body);letter-spacing:.04em;padding:5px 10px;border-radius:999px;border:1px solid #ffffff2a;color:#cdbb98}
+ol.steps li[aria-current=step]{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+ol.steps li.done{color:var(--paper);border-color:var(--ok);background:#3f7a5240}
+main{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,1fr);gap:16px;align-items:start}
+@media(max-width:860px){main{grid-template-columns:minmax(0,1fr)}}
+.bench{position:relative;background:var(--wood-2);border-radius:10px;padding:10px;box-shadow:inset 0 0 0 2px #ffffff12}
+canvas{display:block;width:100%;max-width:100%;aspect-ratio:600/440;touch-action:none;border-radius:6px;background:#4a3324;cursor:crosshair}
+.toolbelt{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+button{font:800 14px var(--body);border-radius:7px;padding:9px 14px;cursor:pointer;border:2px solid transparent;min-height:42px}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.tool{background:#ffffff10;color:var(--paper);border-color:#ffffff30}
+.tool[aria-pressed=true]{background:var(--paper);color:var(--ink);border-color:var(--gold)}
+.primary{background:var(--accent);color:#fff6e6;border-color:#8a3112}
+.primary:disabled{background:#6b4a3a;color:#cdb79c;border-color:transparent;cursor:not-allowed}
+.secondary{background:transparent;color:var(--paper);border-color:#ffffff40}
+.panel{background:var(--paper);color:var(--ink);border-radius:10px;padding:16px 16px 14px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.panel h2{font-size:24px;color:var(--teal)}
+.panel p{margin:0}
+.hint{color:var(--ink-soft);font-size:14px}
+.meter{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;font-size:13px;font-weight:800}
+.bar{height:10px;border-radius:5px;background:#21393533;overflow:hidden}.bar i{display:block;height:100%;background:var(--ok);transition:width .2s}
+.bar.danger i{background:var(--bad)}
+dl.kv{display:grid;grid-template-columns:1fr auto;gap:4px 12px;margin:0;font-size:14px}dl.kv dt{color:var(--ink-soft)}dl.kv dd{margin:0;font-weight:800;font-variant-numeric:tabular-nums;text-align:right}
+table{color:inherit;font:inherit;width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}th,td{padding:5px 6px;text-align:right;border-bottom:1px solid #2139351f}th:first-child,td:first-child{text-align:left}th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+.plus{color:var(--ok);font-weight:900}
+.chip{display:inline-block;font:800 12px var(--body);padding:2px 8px;border-radius:999px;background:#12394018;color:var(--teal)}
+.chip.rare{background:#e0a63a40;color:#7a4a0a}
+.choices{display:grid;gap:8px}
+.choice{display:flex;gap:10px;align-items:flex-start;padding:10px;border:2px solid #21393526;border-radius:8px;background:#fffaf0;cursor:pointer}
+.choice:has(input:checked){border-color:var(--teal);background:#e5efe5}
+.choice input{margin-top:4px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.warnbox{border-left:4px solid var(--warn);background:#b5651d18;padding:8px 10px;border-radius:4px;font-size:14px}
+.okbox{border-left:4px solid var(--ok);background:#3f7a5218;padding:8px 10px;border-radius:4px;font-size:14px}
+.badbox{border-left:4px solid var(--bad);background:#a8322a18;padding:8px 10px;border-radius:4px;font-size:14px}
+label.slider{display:grid;gap:4px;font-weight:800;font-size:14px}input[type=range]{width:100%;accent-color:var(--teal)}
+.keys{font-size:12px;color:var(--ink-soft)}kbd{font:800 11px var(--body);border:1px solid #21393555;border-bottom-width:2px;border-radius:4px;padding:0 5px;background:#fff}
+footer{margin-top:16px;color:#cdbb98;font-size:13px;max-width:80ch}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header>
+ <span class="proto">Protótipo · PIP-58</span>
+ <h1>Oficina das Almas</h1>
+ <p>Construa o corpo de pipa do Rabbito com as próprias mãos. A execução vira bônus no exemplar; um erro estrutural consome o lote, nunca a rabiola.</p>
+</header>
+<ol class="steps" id="steps"></ol>
+<main>
+ <section class="bench" aria-label="Bancada">
+  <canvas id="bench" width="1200" height="880" tabindex="0" aria-label="Bancada de trabalho. Use o mouse, o toque ou o teclado conforme as instruções do painel."></canvas>
+  <div class="toolbelt" id="toolbelt"></div>
+ </section>
+ <aside class="panel" id="panel" aria-live="polite"></aside>
+</main>
+<footer>Protótipo de design: regras e números são propostas para aprovação. No jogo, receitas, estoque, notas, bônus e o sorteio da aparência rara são decididos pelo servidor; o cliente só envia as ações da bancada. Os materiais aqui são de exemplo.</footer>
+
+<script type="module">
+import {MOLDS, BUDGET, DIMENSIONS, INTEGRITY, VARIANT_CHANCE, GLUE_CELL, outlineDistance, scoreCut, scoreGlue, scoreAssembly, scoreBalance, flightTilt, idealKnot, scoreLink, craftBonus, statSheet, canStart, reserve, attemptOutcome, rollVariant} from './model.mjs';
+
+const STEPS = [['prep','Preparar'],['corte','Cortar'],['colagem','Colar'],['montagem','Montar'],['equilibrio','Equilibrar'],['elo','Rabiola e elo'],['resultado','Resultado']];
+const STAT_NAMES = {speed:'Velocidade', line:'Linha', regen:'Recuperação', energy:'Energia'};
+const DIM_NAMES = {corte:'Corte', colagem:'Colagem', equilibrio:'Equilíbrio', elo:'Elo'};
+const canvas = document.getElementById('bench'), g = canvas.getContext('2d'), panel = document.getElementById('panel'), belt = document.getElementById('toolbelt');
+g.scale(2, 2);
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const S = {
+ step: 'prep', moldId: 'rabbito-tradicional', practice: false, rabiola: true,
+ stock: {papel: 3, vareta: 2, cola: 1, fioEncerado: 0},
+ light: false, strokes: [], current: null, cursor: {x: 300, y: 60}, glue: new Set(),
+ placed: {x: 390, y: 254, angle: 14}, drag: null, knot: .55, tested: false, testAt: 0,
+ taps: [], pulseStart: 0, integrity: INTEGRITY.max, damageBase: 0, scores: {}, results: {}, outcome: null, variant: null, forceVariant: false, startedAt: 0
+};
+const mold = () => MOLDS[S.moldId];
+
+// ---------- desenho ----------
+function poly(points, close = true) { g.beginPath(); points.forEach(([x, y], i) => i ? g.lineTo(x, y) : g.moveTo(x, y)); if (close) g.closePath(); }
+function sheet() { g.fillStyle = '#4a3324'; g.fillRect(0, 0, 600, 440); g.fillStyle = '#5a3f2c'; for (let y = 0; y < 440; y += 34) g.fillRect(0, y, 600, 1); g.fillStyle = '#f6ead0'; g.fillRect(120, 6, 360, 428); g.strokeStyle = '#d8c39b'; g.strokeRect(120.5, 6.5, 359, 427); }
+function lightOverlay(m) {
+ g.save(); g.setLineDash([6, 5]); g.lineWidth = 2; g.strokeStyle = '#1b8a7a'; poly(m.outline); g.stroke(); g.setLineDash([]);
+ g.fillStyle = '#1b8a7a30'; for (const [x, y, w, h] of m.tabs) g.fillRect(x, y, w, h);
+ for (const [x, y, w, h] of m.joints) { g.fillStyle = '#a8322a22'; g.fillRect(x, y, w, h); g.strokeStyle = '#a8322a'; g.lineWidth = 1; g.strokeRect(x + .5, y + .5, w - 1, h - 1); }
+ g.restore();
+}
+function cutPiece(m, dx = 0, dy = 0, angle = 0) {
+ g.save(); const cx = 300, cy = 214; g.translate(cx + dx, cy + dy); g.rotate(angle * Math.PI / 180); g.translate(-cx, -cy);
+ poly(m.outline); g.fillStyle = '#fbeac2'; g.fill(); g.lineWidth = 2; g.strokeStyle = '#7a5a36'; g.stroke();
+ g.fillStyle = '#5ec2b766'; poly([[300, 120], [380, 210], [300, 340], [220, 210]]); g.fill();
+ g.fillStyle = '#213d39'; g.beginPath(); g.arc(282, 190, 5, 0, 7); g.arc(318, 190, 5, 0, 7); g.fill();
+ g.restore();
+}
+function frame(m) { g.save(); g.strokeStyle = '#8a5a2b'; g.lineWidth = 6; g.lineCap = 'round'; g.beginPath(); g.moveTo(300, 92); g.lineTo(300, 372); g.moveTo(186, 200); g.lineTo(414, 200); g.stroke(); g.restore(); }
+function glueLayer() { g.fillStyle = '#e8f3ff88'; for (const key of S.glue) { const [x, y] = key.split(',').map(Number); g.fillRect(x * GLUE_CELL, y * GLUE_CELL, GLUE_CELL, GLUE_CELL); } }
+function strokesLayer() { g.save(); g.lineWidth = 2.5; g.lineJoin = g.lineCap = 'round'; for (const s of [...S.strokes, S.current].filter(Boolean)) { g.strokeStyle = s.inside ? '#a8322a' : '#213d39'; poly(s.points, false); g.stroke(); } g.restore(); }
+
+function draw(t = performance.now()) {
+ const m = mold(); g.clearRect(0, 0, 600, 440);
+ if (S.step === 'prep') { sheet(); lightOverlay(m); g.fillStyle = '#213d39'; g.font = '800 15px Nunito'; g.textAlign = 'center'; g.fillText('Molde ' + m.name + ' · ' + m.species, 300, 420); }
+ if (S.step === 'corte') { sheet(); if (S.light) lightOverlay(m); strokesLayer(); g.save(); g.strokeStyle = '#c14e22'; g.lineWidth = 2; g.beginPath(); g.arc(S.cursor.x, S.cursor.y, 7, 0, 7); g.stroke(); g.restore(); }
+ if (S.step === 'colagem') { g.fillStyle = '#4a3324'; g.fillRect(0, 0, 600, 440); cutPiece(m); if (S.light) lightOverlay(m); glueLayer(); }
+ if (S.step === 'montagem') { g.fillStyle = '#4a3324'; g.fillRect(0, 0, 600, 440); frame(m); g.globalAlpha = .9; cutPiece(m, S.placed.x - m.frame.x, S.placed.y - m.frame.y, S.placed.angle); g.globalAlpha = 1; if (S.light) { g.save(); g.setLineDash([6, 5]); g.strokeStyle = '#1b8a7a'; g.lineWidth = 2; poly(m.outline); g.stroke(); g.restore(); } }
+ if (S.step === 'equilibrio') drawFlight(m, t);
+ if (S.step === 'elo') drawLink(m, t);
+ if (S.step === 'resultado') drawResult(m, t);
+ requestAnimationFrame(draw);
+}
+function drawFlight(m, t) {
+ const sky = g.createLinearGradient(0, 0, 0, 440); sky.addColorStop(0, '#7fc7e6'); sky.addColorStop(1, '#d9f0f7'); g.fillStyle = sky; g.fillRect(0, 0, 600, 440);
+ const tilt = flightTilt(m, S.results.colagem, S.knot), active = S.tested && t - S.testAt < 2600, sway = active && !reduced ? Math.sin((t - S.testAt) / 180) * 6 : 0;
+ const ang = (S.tested ? Math.max(-1.6, Math.min(1.6, tilt)) * 26 : 0) + sway;
+ g.save(); g.translate(300, 190); g.rotate(ang * Math.PI / 180); g.scale(.62, .62); g.translate(-300, -214); cutPiece(m); frame(m);
+ const ky = 92 + (372 - 92) * S.knot; g.fillStyle = '#c14e22'; g.beginPath(); g.arc(300, ky, 7, 0, 7); g.fill(); g.restore();
+ g.strokeStyle = '#213d39aa'; g.lineWidth = 1.5; g.beginPath(); g.moveTo(300, 190); g.lineTo(80, 430); g.stroke();
+ g.fillStyle = '#213d39'; g.font = '800 14px Nunito'; g.textAlign = 'left'; g.fillText(S.tested ? 'Inclinação ' + Math.round(ang) + '°' : 'Teste o voo para ver a inclinação', 16, 26);
+}
+const PERIOD = 1200;
+function drawLink(m, t) {
+ g.fillStyle = '#123b40'; g.fillRect(0, 0, 600, 440); g.save(); g.translate(300, 200); g.scale(.55, .55); g.translate(-300, -214); cutPiece(m); frame(m); g.restore();
+ const phase = ((t - S.pulseStart) % PERIOD) / PERIOD, r = 30 + 90 * phase;
+ g.strokeStyle = 'rgba(224,166,58,' + (1 - phase) + ')'; g.lineWidth = 4; g.beginPath(); g.arc(300, 200, r, 0, 7); g.stroke();
+ g.strokeStyle = '#fff2d6'; g.lineWidth = 2; g.setLineDash([4, 6]); g.beginPath(); g.arc(300, 200, 120, 0, 7); g.stroke(); g.setLineDash([]);
+ g.strokeStyle = '#e0a63a'; g.lineWidth = 3; g.beginPath(); g.moveTo(300, 302); for (let i = 0; i < 6; i++) g.quadraticCurveTo(300 + (i % 2 ? 18 : -18), 316 + i * 20, 300, 330 + i * 20); g.stroke();
+ g.fillStyle = '#fff2d6'; g.font = '800 14px Nunito'; g.textAlign = 'center'; g.fillText('Puxe quando o anel dourado tocar o círculo tracejado · ' + S.taps.length + '/3', 300, 28);
+}
+function drawResult(m, t) {
+ g.fillStyle = '#123b40'; g.fillRect(0, 0, 600, 440);
+ if (S.outcome?.kind?.startsWith('falha')) { g.save(); g.translate(300, 214); g.rotate(.2); g.translate(-300, -214); g.globalAlpha = .5; cutPiece(m); g.restore(); g.fillStyle = '#fff2d6'; g.font = '28px Lilita One'; g.textAlign = 'center'; g.fillText('A armação cedeu', 300, 60); return; }
+ const glow = reduced ? .5 : .5 + .5 * Math.sin(t / 400); g.fillStyle = 'rgba(224,166,58,' + (.15 + .2 * glow) + ')'; g.beginPath(); g.arc(300, 214, 170, 0, 7); g.fill();
+ cutPiece(m); if (S.variant === 'excepcional') { g.save(); poly([[300, 70], [318, 20], [338, 18], [340, 92], [300, 120], [260, 92], [262, 18], [282, 20]]); g.fillStyle = '#5a3322'; g.fill(); g.restore(); }
+ g.fillStyle = '#fff2d6'; g.font = '28px Lilita One'; g.textAlign = 'center'; g.fillText('Rabbito despertou', 300, 410);
+}
+
+// ---------- entrada na bancada ----------
+function toLocal(e) { const r = canvas.getBoundingClientRect(); return {x: (e.clientX - r.left) * 600 / r.width, y: (e.clientY - r.top) * 440 / r.height}; }
+function addCutPoint(p) {
+ const s = S.current; const last = s.points.at(-1);
+ // Interpola para a precisão não depender da frequência de eventos do dispositivo.
+ if (last) { const d = Math.hypot(p.x - last[0], p.y - last[1]), n = Math.ceil(d / 3); for (let i = 1; i <= n; i++) s.points.push([last[0] + (p.x - last[0]) * i / n, last[1] + (p.y - last[1]) * i / n]); } else s.points.push([p.x, p.y]);
+ s.inside = s.points.some(q => outlineDistance(q, mold().outline) < -INTEGRITY.insideTolerance);
+}
+function paintGlue(p) { const R = 12; for (let x = p.x - R; x <= p.x + R; x += GLUE_CELL / 2) for (let y = p.y - R; y <= p.y + R; y += GLUE_CELL / 2) if (Math.hypot(x - p.x, y - p.y) <= R) S.glue.add(Math.floor(x / GLUE_CELL) + ',' + Math.floor(y / GLUE_CELL)); }
+canvas.addEventListener('pointerdown', e => {
+ const p = toLocal(e); canvas.setPointerCapture(e.pointerId);
+ if (S.step === 'corte') { S.current = {points: [], inside: false}; addCutPoint(p); S.cursor = p; }
+ if (S.step === 'colagem') { S.painting = true; paintGlue(p); }
+ if (S.step === 'montagem') S.drag = {x: p.x - S.placed.x, y: p.y - S.placed.y};
+ if (S.step === 'elo') pull();
+});
+canvas.addEventListener('pointermove', e => {
+ const p = toLocal(e); if (S.step === 'corte') S.cursor = p;
+ if (S.step === 'corte' && S.current) addCutPoint(p);
+ if (S.step === 'colagem' && S.painting) { paintGlue(p); renderPanelSoon(); }
+ if (S.step === 'montagem' && S.drag) { S.placed.x = p.x - S.drag.x; S.placed.y = p.y - S.drag.y; renderPanelSoon(); }
+});
+const endPointer = () => { if (S.current) { S.strokes.push(S.current); S.current = null; if (!checkFailure()) renderAll(); } if (S.painting) { S.painting = false; if (!checkFailure()) renderPanel(); } S.drag = null; };
+canvas.addEventListener('pointerup', endPointer); canvas.addEventListener('pointercancel', endPointer);
+canvas.addEventListener('wheel', e => { if (S.step !== 'montagem') return; e.preventDefault(); S.placed.angle += Math.sign(e.deltaY) * 2; renderPanel(); }, {passive: false});
+// Teclado: setas movem a ferramenta; Espaço corta/pinta/puxa enquanto pressionado; Q/E giram a peça.
+const held = new Set();
+canvas.addEventListener('keydown', e => {
+ const step = e.shiftKey ? 1 : 4, k = e.key;
+ if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(k)) e.preventDefault();
+ const move = {ArrowUp: [0, -step], ArrowDown: [0, step], ArrowLeft: [-step, 0], ArrowRight: [step, 0]}[k];
+ if (k === ' ' && !held.has(' ')) { held.add(' '); if (S.step === 'corte') { S.current = {points: [], inside: false}; addCutPoint(S.cursor); } if (S.step === 'elo') pull(); }
+ if (move && S.step === 'montagem') { S.placed.x += move[0]; S.placed.y += move[1]; renderPanel(); }
+ else if (move) { S.cursor = {x: S.cursor.x + move[0], y: S.cursor.y + move[1]}; if (S.step === 'corte' && S.current) addCutPoint(S.cursor); if (S.step === 'colagem' && held.has(' ')) { paintGlue(S.cursor); renderPanelSoon(); } }
+ if (S.step === 'colagem' && k === ' ') paintGlue(S.cursor);
+ if (S.step === 'montagem' && (k === 'q' || k === 'e')) { S.placed.angle += k === 'q' ? -2 : 2; renderPanel(); }
+});
+canvas.addEventListener('keyup', e => { if (e.key === ' ') { held.delete(' '); endPointer(); } });
+
+// ---------- etapas ----------
+function damage() { const cut = scoreCut(mold(), S.strokes.flatMap(s => s.points)).damage, glue = S.step === 'prep' || S.step === 'corte' ? 0 : scoreGlue(mold(), S.glue).damage; return S.damageBase + cut + glue; }
+function integrity() { return Math.max(0, Math.round(INTEGRITY.max - damage())); }
+function checkFailure() { const out = attemptOutcome({integrity: integrity(), practice: S.practice}); if (out) { S.outcome = out; go('resultado'); return true; } return false; }
+function pull() { if (S.taps.length >= 3) return; S.taps.push(performance.now() - S.pulseStart); renderPanel(); }
+function go(step) { S.step = step; if (step === 'elo') { S.pulseStart = performance.now(); S.taps = []; } if (step === 'equilibrio') S.tested = false; renderAll(); canvas.focus({preventScroll: true}); }
+
+function finish(dim, result) { S.results[dim] = result; S.scores[dim] = result.score; }
+function awaken() {
+ S.outcome = {kind: 'sucesso', consumed: !S.practice, rabiolaKept: false};
+ S.variant = S.forceVariant ? 'excepcional' : rollVariant(Math.random);
+ go('resultado');
+}
+function restart() { Object.assign(S, {strokes: [], current: null, glue: new Set(), placed: {x: 390, y: 254, angle: 14}, knot: .55, tested: false, taps: [], damageBase: 0, scores: {}, results: {}, outcome: null, variant: null, light: false}); go('prep'); }
+
+// ---------- painel ----------
+let soon = 0; function renderPanelSoon() { if (!soon) soon = requestAnimationFrame(() => { soon = 0; renderPanel(); }); }
+const el = (html) => { const t = document.createElement('template'); t.innerHTML = html.trim(); return t.content; };
+const pct = v => Math.round(v * 100) + '%';
+function meter(label, value, danger = false) { return `<div class="meter"><span>${label}</span><span class="bar ${danger ? 'danger' : ''}"><i style="width:${Math.max(0, Math.min(100, value))}%"></i></span><span>${Math.round(value)}</span></div>`; }
+function integrityMeter() { const v = integrity(); return meter('Integridade', v, v < 40); }
+
+function renderSteps() {
+ const idx = STEPS.findIndex(s => s[0] === S.step);
+ document.getElementById('steps').replaceChildren(...STEPS.map(([id, name], i) => { const li = document.createElement('li'); li.textContent = name; if (i === idx) li.setAttribute('aria-current', 'step'); else if (i < idx) li.className = 'done'; return li; }));
+}
+function renderBelt() {
+ const tools = {corte: 'Tesoura', colagem: 'Pincel de cola', montagem: 'Pinça'}[S.step];
+ belt.replaceChildren();
+ if (!tools) return;
+ const active = document.createElement('button'); active.className = 'tool'; active.setAttribute('aria-pressed', 'true'); active.textContent = tools; active.disabled = true;
+ const light = document.createElement('button'); light.className = 'tool'; light.setAttribute('aria-pressed', String(S.light)); light.textContent = 'Luz do molde'; light.onclick = () => { S.light = !S.light; renderBelt(); };
+ belt.append(active, light);
+ if (S.step === 'corte') { const undo = document.createElement('button'); undo.className = 'secondary'; undo.textContent = 'Desfazer último traço'; undo.disabled = !S.strokes.length; undo.onclick = () => { const s = S.strokes.pop(); const solo = scoreCut(mold(), s.points).damage; S.damageBase += solo * .5; renderAll(); }; belt.append(undo); }
+ if (S.step === 'montagem') for (const [label, d] of [['Girar ⟲', -2], ['Girar ⟳', 2]]) { const b = document.createElement('button'); b.className = 'secondary'; b.textContent = label; b.onclick = () => { S.placed.angle += d; renderPanel(); }; belt.append(b); }
+}
+
+function renderPanel() {
+ const m = mold(); let html = '';
+ if (S.step === 'prep') {
+  const check = canStart(S.stock, m, S.rabiola);
+  html = `<h2>Alma e molde</h2>
+  <div class="choices">${Object.values(MOLDS).map(x => `<label class="choice"><input type="radio" name="mold" id="mold-${x.id}" value="${x.id}" ${x.id === S.moldId ? 'checked' : ''}><span><b>${x.species} · ${x.name}</b> <span class="chip ${x.rarity === 'comum' ? '' : 'rare'}">${x.rarity}</span><br><span class="hint">Receita: ${Object.entries(x.recipe).map(([k, n]) => n + ' ' + k).join(', ')} · bônus até ${pct(BUDGET[x.rarity])}</span></span></label>`).join('')}</div>
+  <dl class="kv"><dt>Papel de seda</dt><dd>${S.stock.papel}</dd><dt>Varetas</dt><dd>${S.stock.vareta}</dd><dt>Cola</dt><dd>${S.stock.cola}</dd><dt>Fio encerado</dt><dd>${S.stock.fioEncerado}</dd><dt>Rabiola do Rabbito</dt><dd>${S.rabiola ? '1' : '0'}</dd></dl>
+  <label class="row"><input type="checkbox" id="practice" ${S.practice ? 'checked' : ''}> Treino sem consumo de materiais (não gera parceiro)</label>
+  ${check.ok ? `<div class="warnbox">${S.practice ? 'Treino: nada será consumido e nenhum parceiro nasce.' : `Ao começar, <b>${Object.entries(m.recipe).map(([k, n]) => n + ' ' + k).join(', ')}</b> ficam comprometidos. Se a armação ceder, esse lote é perdido. <b>A rabiola fica protegida</b>: ela só entra na última etapa.`}</div>` : `<div class="badbox">Faltam materiais: ${check.missing.join(', ')}. Nada foi consumido.</div>`}
+  <button class="primary" id="start" ${check.ok || S.practice ? '' : 'disabled'}>${S.practice ? 'Começar treino' : 'Comprometer materiais e começar'}</button>`;
+ }
+ if (S.step === 'corte') {
+  const r = scoreCut(m, S.strokes.flatMap(s => s.points));
+  html = `<h2>Cortar a vela</h2><p class="hint">Trace o contorno com a tesoura. As orelhas e a ponta têm o próprio recorte. Cortar para dentro da peça marca o papel e reduz a integridade. Ligue a Luz do molde para ver o contorno.</p>
+  ${meter('Contorno', r.coverage * 100)}${meter('Precisão', Math.max(0, 100 - r.meanError * 6))}${integrityMeter()}
+  <p class="keys">Arraste para cortar · <kbd>Setas</kbd> movem a tesoura · segure <kbd>Espaço</kbd> para cortar</p>
+  <button class="primary" id="next" ${r.complete ? '' : 'disabled'}>Separar a peça</button>`;
+ }
+ if (S.step === 'colagem') {
+  const r = scoreGlue(m, S.glue);
+  html = `<h2>Colar nas varetas</h2><p class="hint">Passe cola nas faixas onde as varetas encostam. Cola demais pesa a pipa; cola nas articulações das orelhas trava o movimento e enfraquece a armação.</p>
+  ${meter('Faixas cobertas', r.coverage * 100)}${meter('Excesso', Math.min(100, r.waste * 100), r.waste > .3)}${integrityMeter()}
+  ${r.jointHit ? `<div class="badbox">Cola em ${r.jointHit} ponto(s) das articulações.</div>` : ''}
+  <p class="keys">Arraste para pintar · <kbd>Setas</kbd> + <kbd>Espaço</kbd> no teclado</p>
+  <button class="primary" id="next" ${r.complete ? '' : 'disabled'}>Deixar secar e montar</button>`;
+ }
+ if (S.step === 'montagem') {
+  const r = scoreAssembly(m, S.placed);
+  html = `<h2>Montar na armação</h2><p class="hint">Use a pinça para assentar a vela sobre a cruz de varetas. Alinhe a ponta com a vareta central.</p>
+  <dl class="kv"><dt>Distância do encaixe</dt><dd>${Math.round(r.dist)} px</dd><dt>Ângulo</dt><dd>${Math.round(r.angle)}°</dd></dl>${meter('Encaixe', r.score)}
+  <p class="keys">Arraste para mover · roda do mouse, <kbd>Q</kbd>/<kbd>E</kbd> ou os botões para girar · <kbd>Setas</kbd> ajustam</p>
+  <button class="primary" id="next" ${r.complete ? '' : 'disabled'}>Fixar e testar o voo</button>`;
+ }
+ if (S.step === 'equilibrio') {
+  const tilt = flightTilt(m, S.results.colagem, S.knot), r = scoreBalance(m, S.results.colagem, S.knot);
+  const clue = !S.tested ? 'Ajuste o nó do cabresto e teste.' : Math.abs(tilt) < .15 ? 'Voo estável.' : tilt > 0 ? 'A pipa embica para a frente: suba o nó.' : 'A pipa empina e perde vento: desça o nó.';
+  html = `<h2>Testar o equilíbrio</h2><p class="hint">Cada molde e o peso da cola mudam o ponto ideal. Teste quantas vezes quiser; vale o último ajuste.</p>
+  <label class="slider" for="knot">Ponto do nó na vareta: ${Math.round(S.knot * 100)}%<input type="range" id="knot" min="10" max="75" value="${Math.round(S.knot * 100)}"></label>
+  <div class="${S.tested && Math.abs(tilt) < .15 ? 'okbox' : 'warnbox'}">${clue}</div>
+  <div class="row"><button class="secondary" id="test">Testar voo</button><button class="primary" id="next" ${S.tested && r.complete ? '' : 'disabled'}>Amarrar a rabiola</button></div>`;
+ }
+ if (S.step === 'elo') {
+  const r = scoreLink(S.taps, PERIOD);
+  html = `<h2>Rabiola e elo</h2><p class="hint">A rabiola entra por último. Puxe a linha três vezes no compasso do vento para sincronizar o elo.</p>
+  <p class="keys">Toque na bancada, clique ou <kbd>Espaço</kbd></p>
+  ${S.taps.length ? meter('Sincronia', r.score) : ''}
+  <label class="row"><input type="checkbox" id="force" ${S.forceVariant ? 'checked' : ''}> Teste: forçar a aparência excepcional</label>
+  <div class="row"><button class="secondary" id="again" ${S.taps.length ? '' : 'disabled'}>Recomeçar o compasso</button><button class="primary" id="next" ${r.complete ? '' : 'disabled'}>Despertar</button></div>`;
+ }
+ if (S.step === 'resultado') html = resultHTML(m);
+ panel.replaceChildren(el(html)); bindPanel();
+}
+function resultHTML(m) {
+ if (S.outcome.kind.startsWith('falha')) return `<h2>A armação cedeu</h2>
+  <div class="badbox">A integridade chegou a zero por cortes para dentro da peça ou cola nas articulações.</div>
+  <dl class="kv"><dt>Materiais do lote</dt><dd>${S.outcome.consumed ? 'consumidos' : 'treino · nada consumido'}</dd><dt>Rabiola</dt><dd>intacta</dd><dt>Parceiro</dt><dd>não nasceu</dd></dl>
+  <p class="hint">Uma nova tentativa exige um novo lote. Queda de conexão ou recarga não contam como falha: o jogo retoma do último estado confirmado.</p>
+  <button class="primary" id="restart">Voltar à preparação</button>`;
+ const bonus = craftBonus(m, S.scores), sheetRows = statSheet(bonus.bonus);
+ return `<h2>Rabbito despertou</h2>
+ <div class="row"><span class="chip ${m.rarity === 'comum' ? '' : 'rare'}">Molde ${m.name} · ${m.rarity}</span><span class="chip ${S.variant === 'excepcional' ? 'rare' : ''}">Aparência ${S.variant}</span>${S.practice ? '<span class="chip">Treino</span>' : ''}</div>
+ <table><thead><tr><th>Etapa</th><th>Nota</th><th>Alimenta</th></tr></thead><tbody>${Object.entries(DIMENSIONS).map(([d, s]) => `<tr><td>${DIM_NAMES[d]}</td><td>${S.scores[d] ?? 0}</td><td>${STAT_NAMES[s]} <span class="plus">+${(bonus.bonus[s] * 100).toFixed(1)}%</span></td></tr>`).join('')}</tbody></table>
+ <table><thead><tr><th>Atributo (nível 1)</th><th>Base</th><th>Oficina</th><th>Total</th></tr></thead><tbody>${Object.entries(sheetRows).map(([k, v]) => `<tr><td>${STAT_NAMES[k]}</td><td>${v.base}</td><td class="plus">+${v.craft}</td><td>${v.total}</td></tr>`).join('')}</tbody></table>
+ <p class="hint">Bônus total ${(bonus.total * 100).toFixed(1)}% de ${(bonus.budget * 100).toFixed(0)}% possíveis neste molde. Notas abaixo de 50 não dão bônus nem penalidade. Aparência sorteada uma vez (proposta: 1 em ${Math.round(1 / VARIANT_CHANCE)}), sem relação com a nota.</p>
+ <div class="okbox">${S.practice ? 'Treino concluído: nada consumido, nenhum parceiro criado.' : 'Lote e rabiola usados na mesma confirmação que cria o exemplar.'}</div>
+ <button class="primary" id="restart">Construir outro</button>`;
+}
+function bindPanel() {
+ const on = (id, ev, fn) => { const x = document.getElementById(id); if (x) x[ev] = fn; };
+ panel.querySelectorAll('input[name=mold]').forEach(r => r.onchange = () => { S.moldId = r.value; renderAll(); });
+ on('practice', 'onchange', e => { S.practice = e.target.checked; renderPanel(); });
+ on('start', 'onclick', () => { if (!S.practice) S.stock = reserve(S.stock, mold()); S.startedAt = performance.now(); go('corte'); });
+ on('knot', 'oninput', e => { S.knot = e.target.value / 100; S.tested = false; renderPanel(); });
+ on('test', 'onclick', () => { S.tested = true; S.testAt = performance.now(); renderPanel(); });
+ on('again', 'onclick', () => { S.taps = []; S.pulseStart = performance.now(); renderPanel(); });
+ on('force', 'onchange', e => { S.forceVariant = e.target.checked; });
+ on('restart', 'onclick', restart);
+ on('next', 'onclick', () => {
+  const m = mold();
+  if (S.step === 'corte') { finish('corte', scoreCut(m, S.strokes.flatMap(s => s.points))); if (!checkFailure()) go('colagem'); }
+  else if (S.step === 'colagem') { finish('colagem', scoreGlue(m, S.glue)); if (!checkFailure()) go('montagem'); }
+  else if (S.step === 'montagem') { finish('montagem', scoreAssembly(m, S.placed)); go('equilibrio'); }
+  else if (S.step === 'equilibrio') { finish('equilibrio', scoreBalance(m, S.results.colagem, S.knot)); go('elo'); }
+  else if (S.step === 'elo') { finish('elo', scoreLink(S.taps, PERIOD)); awaken(); }
+ });
+}
+function renderAll() { renderSteps(); renderBelt(); renderPanel(); }
+// Exemplo de trabalho em andamento para a primeira vista: preparação com estoque de exemplo e a Luz do molde acesa.
+renderAll(); requestAnimationFrame(draw);
+</script>
