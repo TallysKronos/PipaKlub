@@ -1,4 +1,35 @@
-import {clone,identity,sample,trackAt,CHANNELS} from './model.mjs';
+import {clone,identity,sample,trackAt,CHANNELS,matrices,point} from './model.mjs';
+
+// Opt-in art-direction constraints: warnings are review findings, not an artistic approval.
+// Anchors are measured on the PNG, separately from animation pivots.
+export function anatomyReport(project){
+ const warnings=[],notes=[],a=project.anatomy;
+ if(!a)return {warnings,notes:['Sem referências anatômicas cadastradas; proporção e encaixe exigem revisão visual.']};
+ if(a.version!==1||!Array.isArray(a.ratios)||!Array.isArray(a.behind)||!Array.isArray(a.joints))return {warnings:['Contrato de revisão anatômica inválido.'],notes};
+ const part=id=>project.parts.find(p=>p.id===id);
+ for(const r of a.ratios){
+  const p=part(r.part),relative=part(r.relativeTo),ratio=p&&relative?p.rect[2]/relative.rect[2]:NaN;
+  if(!Number.isFinite(ratio)||!Number.isFinite(r.min)||!Number.isFinite(r.max)||r.min>r.max){warnings.push('Referência de proporção inválida.');continue;}
+  if(ratio<r.min||ratio>r.max)warnings.push((r.label||r.part)+': '+ratio.toFixed(3)+' fora da referência '+r.min+'–'+r.max+'.');
+  else notes.push('OK · '+(r.label||r.part)+': '+ratio.toFixed(3)+'.');
+ }
+ for(const z of a.behind){if(!part(z.part)||!part(z.other)||part(z.part).z>=part(z.other).z)warnings.push((part(z.part)?.name||z.part)+' precisa ficar atrás de '+(part(z.other)?.name||z.other)+'.');}
+ const validAnchor=p=>Array.isArray(p)&&p.length===2&&p.every(v=>Number.isFinite(v)&&v>=0&&v<=1);
+ for(const j of a.joints){
+  const p=part(j.part),parent=part(j.parent);
+  if(!p||!parent||!validAnchor(j.anchor)||!validAnchor(j.socket)||!Number.isFinite(j.maxGap)||j.maxGap<0){warnings.push('Referência de encaixe inválida: '+j.part);continue;}
+  if(p.parent!==parent.id){warnings.push(p.name+': parentesco diferente da articulação de referência.');continue;}
+  const local=(p,uv)=>[p.rect[0]+uv[0]*p.rect[2],p.rect[1]+uv[1]*p.rect[3]];
+  let worst={gap:0};
+  for(const [id,c]of Object.entries(project.clips))for(let i=0;i<=Math.ceil(c.seconds*30);i++){
+   const t=Math.min(c.seconds,i/30),m=matrices(project,sample(project,id,t)),child=point(m[p.id],...local(p,j.anchor)),socket=point(m[parent.id],...local(parent,j.socket)),gap=Math.hypot(child.x-socket.x,child.y-socket.y);
+   if(gap>worst.gap)worst={gap,clip:id,t};
+  }
+  if(worst.gap>j.maxGap)warnings.push(p.name+': encaixe afastou '+worst.gap.toFixed(1)+' unidades em '+worst.clip+' ('+worst.t.toFixed(2)+' s); limite '+j.maxGap+'.');
+  else notes.push('OK · Encaixe '+p.name+': desvio máximo '+worst.gap.toFixed(2)+' unidades.');
+ }
+ return {warnings,notes};
+}
 
 // Editor operations stay separate from the exported animation runtime.
 export function adjacentKey(clip,time,direction){

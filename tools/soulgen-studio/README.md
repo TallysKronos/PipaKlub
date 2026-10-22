@@ -30,7 +30,13 @@ Projetos anteriores continuam compatíveis. O bloqueio é salvo junto da peça; 
 
 **Desfazer/refazer:** botões superiores ou Ctrl+Z / Ctrl+Shift+Z. As mudanças no projeto são reversíveis durante a sessão. Abrir outro projeto e recarregar podem alterar esse histórico.
 
-## Formatos
+## Eremor
+
+Em **Projeto e biblioteca → Abrir Eremor · Elo das Ruínas**, carregue o rig colorido com sete peças, cinco ações e pivôs próprios. O projeto portátil `art/soulgen/keys/eremor/eremor.soulgen.json` incorpora todos os PNGs e pode ser aberto pela ferramenta. A revisão 3 inclui expressões registradas de golpe, dano e vitória e corrige o nó atrás do braço próximo. Contrato, fontes e limites em [Eremor](../../art/soulgen/keys/eremor/README.md). A inclusão no editor não registra o boss no jogo.
+
+A revisão **rig v2** corrige proporções e encaixes e inclui referências anatômicas opcionais no projeto. O audit compara proporção, profundidade e pontos de ligação durante as ações; avisos aparecem em amarelo e não equivalem a aprovação visual. Arquivos antigos sem essas referências continuam compatíveis. Para usar a revisão mais recente, abra o preset atual ou `eremor-v3.soulgen.json`; projetos salvos anteriormente no navegador não são substituídos automaticamente. [Relatório de revisão e testes](../../art/soulgen/keys/eremor/AUDIT-V2.md).
+
+## Formatos de exportação
 
 - **Projeto JSON:** peças, fontes PNG originais incorporadas, pivôs, parentesco, ações, quadros e expressões. Pode ser reaberto no editor.
 - **Spritesheet PNG + metadados JSON:** exporte os dois com os mesmos FPS, célula e conjunto de ações. O JSON descreve células, duração, ciclos, impacto e pivô em pixels. O atlas tem fundo transparente.

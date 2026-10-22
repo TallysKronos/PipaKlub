@@ -1,0 +1,53 @@
+{
+  "windows": [
+    [
+      52,
+      50,
+      144,
+      130
+    ]
+  ],
+  "canonicalSize": [
+    347,
+    277
+  ],
+  "alphaIdentical": true,
+  "variants": {
+    "headFierce": {
+      "sourceBounds": [
+        746,
+        26,
+        1381,
+        541
+      ],
+      "changedPixels": 9673,
+      "outsideWindowChanges": 0,
+      "alphaIdentical": true,
+      "sha256": "961fa21768469861149d41de7b0f9cc3615a2bdd8d0c3526eaa48aae75a65bee"
+    },
+    "headHurt": {
+      "sourceBounds": [
+        70,
+        572,
+        707,
+        1090
+      ],
+      "changedPixels": 9683,
+      "outsideWindowChanges": 0,
+      "alphaIdentical": true,
+      "sha256": "af67496ad0ac718a8ccbf84e6a94cf4b2f061143ed109f63679e253653744ccf"
+    },
+    "headHappy": {
+      "sourceBounds": [
+        748,
+        572,
+        1383,
+        1092
+      ],
+      "changedPixels": 9698,
+      "outsideWindowChanges": 0,
+      "alphaIdentical": true,
+      "sha256": "9ee8d4b8cd1e3e589fb5b13a72bdf681d341e5fa273521cb33e4aa41cb459423"
+    }
+  }
+}

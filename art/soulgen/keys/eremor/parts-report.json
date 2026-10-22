@@ -1,0 +1,130 @@
+{
+  "source": "source/parts-clean.png",
+  "sourceSHA256": "a6c183155a4eb372deaceab70a24c311fbdccae4e49a9eab20e8d5c09f16bd2d",
+  "sourceSize": [
+    1536,
+    1024
+  ],
+  "method": "alpha>=32 connected islands + 2px original antialias; RGB unchanged",
+  "parts": {
+    "body": {
+      "sourceBounds": [
+        44,
+        23,
+        628,
+        406
+      ],
+      "size": [
+        584,
+        383
+      ],
+      "alpha": [
+        0,
+        254
+      ],
+      "sha256": "8d3c9481402da0bb24fb828a4abd58d238772e965bd45566b015d06c42b5df5e"
+    },
+    "head": {
+      "sourceBounds": [
+        651,
+        70,
+        998,
+        347
+      ],
+      "size": [
+        347,
+        277
+      ],
+      "alpha": [
+        0,
+        254
+      ],
+      "sha256": "d6c4e6da7569dc1d25392deda64d8c7353f5b501a26b75f56ed94bd2252f39b6"
+    },
+    "armNear": {
+      "sourceBounds": [
+        1070,
+        24,
+        1513,
+        422
+      ],
+      "size": [
+        443,
+        398
+      ],
+      "alpha": [
+        0,
+        254
+      ],
+      "sha256": "0413f29b9909b3b0e79278eeb760c7411425dfc617dd9905ba74f6c7d4383c22"
+    },
+    "armFar": {
+      "sourceBounds": [
+        26,
+        409,
+        408,
+        785
+      ],
+      "size": [
+        382,
+        376
+      ],
+      "alpha": [
+        0,
+        254
+      ],
+      "sha256": "f7d2e97ab9d181c6624c0cfb9d251f0d6ac13b9207822d7d3cf54858d3ae2e1b"
+    },
+    "sails": {
+      "sourceBounds": [
+        376,
+        365,
+        1144,
+        795
+      ],
+      "size": [
+        768,
+        430
+      ],
+      "alpha": [
+        0,
+        254
+      ],
+      "sha256": "e2539f7e8cc4c14a1420710a79a39b94eeb1997e59312a01e38326bb0b5526a0"
+    },
+    "tail": {
+      "sourceBounds": [
+        1076,
+        430,
+        1521,
+        821
+      ],
+      "size": [
+        445,
+        391
+      ],
+      "alpha": [
+        0,
+        254
+      ],
+      "sha256": "37006d132846f78b5ac561e34bda1f39f4e9fa765e107eed8719a0dfefd1db51"
+    },
+    "knot": {
+      "sourceBounds": [
+        62,
+        764,
+        432,
+        1001
+      ],
+      "size": [
+        370,
+        237
+      ],
+      "alpha": [
+        0,
+        254
+      ],
+      "sha256": "c9b04ebededc8051b33c8d47aea096c6184166bf3a205b47a8736df15bcf6d1f"
+    }
+  }
+}
