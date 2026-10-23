@@ -17,7 +17,7 @@ test('park landscaping keeps whole trees, accessible habitats, safe paths and th
   assert.ok(!scene.art.objects.some(o=>['trunk','canopy'].includes(o.sprite.frame)),'trees must use one complete silhouette');
   for(const place of scene.places){const [x,y]=scene.nodes[place.node];assert.ok(nav.target(actor,{x,y}).length,place.name);}
   for(const patch of scene.tiled.layers.Walkable.filter(r=>r.properties.encounter_zone)){
-   const p={x:patch.x+patch.w/2,y:patch.y+patch.h/2};assert.ok(nav.geometry.safe(p));assert.ok(nav.target(actor,p).length,'habitat reachable');
+   const center={x:patch.x+patch.w/2,y:patch.y+patch.h/2},samples=[];for(let y=patch.y+20;y<patch.y+patch.h-10;y+=20)for(let x=patch.x+20;x<patch.x+patch.w-10;x+=20)if(nav.geometry.safe({x,y}))samples.push({x,y});const p=nav.geometry.safe(center)?center:samples.sort((a,b)=>Math.hypot(a.x-center.x,a.y-center.y)-Math.hypot(b.x-center.x,b.y-center.y))[0];assert.ok(p,'habitat has safe ground around the real coreto posts');assert.ok(nav.target(actor,p).length,'habitat reachable');
    assert.ok(!scene.tiled.layers.Walkable.some(r=>r.properties.safe_area&&p.x>=r.x&&p.x<=r.x+r.w&&p.y>=r.y&&p.y<=r.y+r.h));
   }
  }

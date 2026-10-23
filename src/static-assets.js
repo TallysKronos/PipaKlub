@@ -22,7 +22,8 @@ const openingFiles=Object.values(JSON.parse(await fs.readFile(new URL('../assets
 openingFiles.push(...Object.values(JSON.parse(await fs.readFile(new URL('../assets/title/elo-das-ruinas-v1/manifest.json',import.meta.url),'utf8')).images).map(s=>s.image));
 const rigFiles=Object.values(JSON.parse(await fs.readFile(new URL('../assets/creatures/rig-v1/manifest.json',import.meta.url),'utf8')).rigs).flatMap(r=>Object.values(r.project.assets).map(a=>a.src));
 const workshopFiles=Object.values(JSON.parse(await fs.readFile(new URL("../assets/workshop/v1/manifest.json",import.meta.url),"utf8")).images).map(a=>a.image);
-const files=[...workshopFiles,...rigFiles,...openingFiles,...paintedWorldFiles,...worldKitFiles,...rivalFiles,...encounterFiles,...districtFiles,...kitFiles,...Object.values(hud.sheets).map(s=>s.image),...Object.values(manifest.atlases).map(a=>a.meta.image),...items.map(i=>i.image),'vfx/trade-celestial.png','vfx/trade-sky.png','vfx/trade-spirit-16.png',"ui/club-collection-v2.png","ui/club-trades-v2.png","ui/club-summon-v2.png","ui/club-farm-v2.png","ui/club-profile-v2.png","ui/club-history-v2.png"];
+const parkIsoFiles=Object.values(JSON.parse(await fs.readFile(new URL('../assets/world/park-isometric-v1/manifest.json',import.meta.url),'utf8')).images).map(a=>a.image);
+const files=[...parkIsoFiles,...workshopFiles,...rigFiles,...openingFiles,...paintedWorldFiles,...worldKitFiles,...rivalFiles,...encounterFiles,...districtFiles,...kitFiles,...Object.values(hud.sheets).map(s=>s.image),...Object.values(manifest.atlases).map(a=>a.meta.image),...items.map(i=>i.image),'vfx/trade-celestial.png','vfx/trade-sky.png','vfx/trade-spirit-16.png',"ui/club-collection-v2.png","ui/club-trades-v2.png","ui/club-summon-v2.png","ui/club-farm-v2.png","ui/club-profile-v2.png","ui/club-history-v2.png"];
 export function createAssetHandler(){
  const cache=new Map();
  return async request=>{

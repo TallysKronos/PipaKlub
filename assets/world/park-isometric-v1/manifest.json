@@ -1,0 +1,787 @@
+{
+  "version": 1,
+  "images": {
+    "canopy": {
+      "image": "world/park-isometric-v1/canopy.png",
+      "width": 378,
+      "height": 288
+    },
+    "trunk": {
+      "image": "world/park-isometric-v1/trunk.png",
+      "width": 265,
+      "height": 289
+    },
+    "coreto": {
+      "image": "world/park-isometric-v1/coreto.png",
+      "width": 281,
+      "height": 291
+    },
+    "bench": {
+      "image": "world/park-isometric-v1/bench.png",
+      "width": 313,
+      "height": 233
+    },
+    "shrub": {
+      "image": "world/park-isometric-v1/shrub.png",
+      "width": 280,
+      "height": 200
+    },
+    "flowers": {
+      "image": "world/park-isometric-v1/flowers.png",
+      "width": 285,
+      "height": 200
+    },
+    "planter": {
+      "image": "world/park-isometric-v1/planter.png",
+      "width": 356,
+      "height": 202
+    },
+    "sign": {
+      "image": "world/park-isometric-v1/sign.png",
+      "width": 241,
+      "height": 253
+    },
+    "fenceA": {
+      "image": "world/park-isometric-v1/fenceA.png",
+      "width": 302,
+      "height": 193
+    },
+    "fenceB": {
+      "image": "world/park-isometric-v1/fenceB.png",
+      "width": 273,
+      "height": 193
+    },
+    "lamp": {
+      "image": "world/park-isometric-v1/lamp.png",
+      "width": 74,
+      "height": 246
+    },
+    "bin": {
+      "image": "world/park-isometric-v1/bin.png",
+      "width": 119,
+      "height": 177
+    },
+    "pole": {
+      "image": "world/park-isometric-v1/pole.png",
+      "width": 162,
+      "height": 211
+    },
+    "sock": {
+      "image": "world/park-isometric-v1/sock.png",
+      "width": 301,
+      "height": 113
+    },
+    "bunting": {
+      "image": "world/park-isometric-v1/bunting.png",
+      "width": 441,
+      "height": 131
+    },
+    "kite": {
+      "image": "world/park-isometric-v1/kite.png",
+      "width": 323,
+      "height": 194
+    }
+  },
+  "rigs": {
+    "tree": {
+      "width": 300,
+      "height": 310,
+      "rootPivot": [
+        150,
+        296
+      ],
+      "assets": {
+        "canopy": {
+          "name": "canopy",
+          "src": "assets/world/park-isometric-v1/canopy.png",
+          "width": 378,
+          "height": 288
+        },
+        "trunk": {
+          "name": "trunk",
+          "src": "assets/world/park-isometric-v1/trunk.png",
+          "width": 265,
+          "height": 289
+        }
+      },
+      "parts": [
+        {
+          "id": "trunk",
+          "name": "trunk",
+          "asset": "trunk",
+          "source": [
+            0,
+            0,
+            265,
+            289
+          ],
+          "rect": [
+            91,
+            167.3132075471698,
+            118,
+            128.6867924528302
+          ],
+          "pivot": [
+            150,
+            296
+          ],
+          "z": 0,
+          "parent": null,
+          "visible": true
+        },
+        {
+          "id": "canopy",
+          "name": "canopy",
+          "asset": "canopy",
+          "source": [
+            0,
+            0,
+            378,
+            288
+          ],
+          "rect": [
+            16,
+            18,
+            268,
+            204.1904761904762
+          ],
+          "pivot": [
+            150,
+            185
+          ],
+          "z": 1,
+          "parent": null,
+          "visible": true
+        }
+      ],
+      "clips": {
+        "idle": {
+          "label": "Brisa do parque",
+          "seconds": 6,
+          "loop": true,
+          "hitTime": null,
+          "expressions": [],
+          "frames": [
+            {
+              "t": 0,
+              "ease": "spline",
+              "values": {
+                "canopy": {
+                  "rotation": 0,
+                  "x": 0,
+                  "scaleX": 1
+                },
+                "trunk": {
+                  "rotation": 0
+                }
+              }
+            },
+            {
+              "t": 1.5,
+              "ease": "spline",
+              "values": {
+                "canopy": {
+                  "rotation": 0.85,
+                  "x": 0.9,
+                  "scaleX": 1.003
+                },
+                "trunk": {
+                  "rotation": 0
+                }
+              }
+            },
+            {
+              "t": 3,
+              "ease": "spline",
+              "values": {
+                "canopy": {
+                  "rotation": 0,
+                  "x": 0,
+                  "scaleX": 1
+                },
+                "trunk": {
+                  "rotation": 0
+                }
+              }
+            },
+            {
+              "t": 4.5,
+              "ease": "spline",
+              "values": {
+                "canopy": {
+                  "rotation": -0.85,
+                  "x": -0.9,
+                  "scaleX": 1.003
+                },
+                "trunk": {
+                  "rotation": 0
+                }
+              }
+            },
+            {
+              "t": 6,
+              "ease": "spline",
+              "values": {
+                "canopy": {
+                  "rotation": 0,
+                  "x": 0,
+                  "scaleX": 1
+                },
+                "trunk": {
+                  "rotation": 0
+                }
+              }
+            }
+          ]
+        }
+      },
+      "schema": "soulgen-studio",
+      "version": 1,
+      "name": "Parque dos Ventos · tree"
+    },
+    "treeLandmark": {
+      "width": 300,
+      "height": 310,
+      "rootPivot": [
+        150,
+        296
+      ],
+      "assets": {
+        "canopy": {
+          "name": "canopy",
+          "src": "assets/world/park-isometric-v1/canopy.png",
+          "width": 378,
+          "height": 288
+        },
+        "trunk": {
+          "name": "trunk",
+          "src": "assets/world/park-isometric-v1/trunk.png",
+          "width": 265,
+          "height": 289
+        },
+        "kite": {
+          "name": "kite",
+          "src": "assets/world/park-isometric-v1/kite.png",
+          "width": 323,
+          "height": 194
+        }
+      },
+      "parts": [
+        {
+          "id": "trunk",
+          "name": "trunk",
+          "asset": "trunk",
+          "source": [
+            0,
+            0,
+            265,
+            289
+          ],
+          "rect": [
+            91,
+            167.3132075471698,
+            118,
+            128.6867924528302
+          ],
+          "pivot": [
+            150,
+            296
+          ],
+          "z": 0,
+          "parent": null,
+          "visible": true
+        },
+        {
+          "id": "canopy",
+          "name": "canopy",
+          "asset": "canopy",
+          "source": [
+            0,
+            0,
+            378,
+            288
+          ],
+          "rect": [
+            16,
+            18,
+            268,
+            204.1904761904762
+          ],
+          "pivot": [
+            150,
+            185
+          ],
+          "z": 1,
+          "parent": null,
+          "visible": true
+        },
+        {
+          "id": "kite",
+          "name": "kite",
+          "asset": "kite",
+          "source": [
+            0,
+            0,
+            323,
+            194
+          ],
+          "rect": [
+            206,
+            118,
+            48,
+            28.8297213622291
+          ],
+          "pivot": [
+            206,
+            130
+          ],
+          "z": 2,
+          "parent": "canopy",
+          "visible": true
+        }
+      ],
+      "clips": {
+        "idle": {
+          "label": "Brisa do parque",
+          "seconds": 6,
+          "loop": true,
+          "hitTime": null,
+          "expressions": [],
+          "frames": [
+            {
+              "t": 0,
+              "ease": "spline",
+              "values": {
+                "canopy": {
+                  "rotation": 0,
+                  "x": 0,
+                  "scaleX": 1
+                },
+                "trunk": {
+                  "rotation": 0
+                }
+              }
+            },
+            {
+              "t": 1.5,
+              "ease": "spline",
+              "values": {
+                "canopy": {
+                  "rotation": 0.85,
+                  "x": 0.9,
+                  "scaleX": 1.003
+                },
+                "trunk": {
+                  "rotation": 0
+                }
+              }
+            },
+            {
+              "t": 3,
+              "ease": "spline",
+              "values": {
+                "canopy": {
+                  "rotation": 0,
+                  "x": 0,
+                  "scaleX": 1
+                },
+                "trunk": {
+                  "rotation": 0
+                }
+              }
+            },
+            {
+              "t": 4.5,
+              "ease": "spline",
+              "values": {
+                "canopy": {
+                  "rotation": -0.85,
+                  "x": -0.9,
+                  "scaleX": 1.003
+                },
+                "trunk": {
+                  "rotation": 0
+                }
+              }
+            },
+            {
+              "t": 6,
+              "ease": "spline",
+              "values": {
+                "canopy": {
+                  "rotation": 0,
+                  "x": 0,
+                  "scaleX": 1
+                },
+                "trunk": {
+                  "rotation": 0
+                }
+              }
+            }
+          ]
+        }
+      },
+      "schema": "soulgen-studio",
+      "version": 1,
+      "name": "Parque dos Ventos · treeLandmark"
+    },
+    "windsock": {
+      "width": 390,
+      "height": 270,
+      "rootPivot": [
+        78,
+        254
+      ],
+      "assets": {
+        "pole": {
+          "name": "pole",
+          "src": "assets/world/park-isometric-v1/pole.png",
+          "width": 162,
+          "height": 211
+        },
+        "sock": {
+          "name": "sock",
+          "src": "assets/world/park-isometric-v1/sock.png",
+          "width": 301,
+          "height": 113
+        }
+      },
+      "parts": [
+        {
+          "id": "pole",
+          "name": "pole",
+          "asset": "pole",
+          "source": [
+            0,
+            0,
+            162,
+            211
+          ],
+          "rect": [
+            10,
+            10,
+            187.33649289099526,
+            244
+          ],
+          "pivot": [
+            78,
+            254
+          ],
+          "z": 0,
+          "parent": null,
+          "visible": true
+        },
+        {
+          "id": "sock",
+          "name": "sock",
+          "asset": "sock",
+          "source": [
+            0,
+            0,
+            301,
+            113
+          ],
+          "rect": [
+            188.33649289099526,
+            32,
+            158,
+            59.3156146179402
+          ],
+          "pivot": [
+            195.33649289099526,
+            58
+          ],
+          "z": 1,
+          "parent": null,
+          "visible": true
+        }
+      ],
+      "clips": {
+        "idle": {
+          "label": "Brisa do parque",
+          "seconds": 6,
+          "loop": true,
+          "hitTime": null,
+          "expressions": [],
+          "frames": [
+            {
+              "t": 0,
+              "ease": "spline",
+              "values": {
+                "sock": {
+                  "rotation": 0,
+                  "scaleY": 1
+                },
+                "pole": {
+                  "rotation": 0
+                }
+              }
+            },
+            {
+              "t": 1.5,
+              "ease": "spline",
+              "values": {
+                "sock": {
+                  "rotation": 2.5,
+                  "scaleY": 1.018
+                },
+                "pole": {
+                  "rotation": 0
+                }
+              }
+            },
+            {
+              "t": 3,
+              "ease": "spline",
+              "values": {
+                "sock": {
+                  "rotation": 0,
+                  "scaleY": 1
+                },
+                "pole": {
+                  "rotation": 0
+                }
+              }
+            },
+            {
+              "t": 4.5,
+              "ease": "spline",
+              "values": {
+                "sock": {
+                  "rotation": -2.5,
+                  "scaleY": 0.982
+                },
+                "pole": {
+                  "rotation": 0
+                }
+              }
+            },
+            {
+              "t": 6,
+              "ease": "spline",
+              "values": {
+                "sock": {
+                  "rotation": 0,
+                  "scaleY": 1
+                },
+                "pole": {
+                  "rotation": 0
+                }
+              }
+            }
+          ]
+        }
+      },
+      "schema": "soulgen-studio",
+      "version": 1,
+      "name": "Parque dos Ventos · windsock"
+    },
+    "bunting": {
+      "width": 320,
+      "height": 130,
+      "rootPivot": [
+        160,
+        116
+      ],
+      "assets": {
+        "bunting": {
+          "name": "bunting",
+          "src": "assets/world/park-isometric-v1/bunting.png",
+          "width": 441,
+          "height": 131
+        }
+      },
+      "parts": [
+        {
+          "id": "bunting",
+          "name": "bunting",
+          "asset": "bunting",
+          "source": [
+            0,
+            0,
+            441,
+            131
+          ],
+          "rect": [
+            10,
+            12,
+            300,
+            89.1156462585034
+          ],
+          "pivot": [
+            160,
+            12
+          ],
+          "z": 0,
+          "parent": null,
+          "visible": true
+        }
+      ],
+      "clips": {
+        "idle": {
+          "label": "Brisa do parque",
+          "seconds": 6,
+          "loop": true,
+          "hitTime": null,
+          "expressions": [],
+          "frames": [
+            {
+              "t": 0,
+              "ease": "spline",
+              "values": {
+                "bunting": {
+                  "scaleY": 1
+                }
+              }
+            },
+            {
+              "t": 1.5,
+              "ease": "spline",
+              "values": {
+                "bunting": {
+                  "scaleY": 1.035
+                }
+              }
+            },
+            {
+              "t": 3,
+              "ease": "spline",
+              "values": {
+                "bunting": {
+                  "scaleY": 1
+                }
+              }
+            },
+            {
+              "t": 4.5,
+              "ease": "spline",
+              "values": {
+                "bunting": {
+                  "scaleY": 0.965
+                }
+              }
+            },
+            {
+              "t": 6,
+              "ease": "spline",
+              "values": {
+                "bunting": {
+                  "scaleY": 1
+                }
+              }
+            }
+          ]
+        }
+      },
+      "schema": "soulgen-studio",
+      "version": 1,
+      "name": "Parque dos Ventos · bunting"
+    },
+    "kite": {
+      "width": 180,
+      "height": 150,
+      "rootPivot": [
+        57,
+        78
+      ],
+      "assets": {
+        "kite": {
+          "name": "kite",
+          "src": "assets/world/park-isometric-v1/kite.png",
+          "width": 323,
+          "height": 194
+        }
+      },
+      "parts": [
+        {
+          "id": "kite",
+          "name": "kite",
+          "asset": "kite",
+          "source": [
+            0,
+            0,
+            323,
+            194
+          ],
+          "rect": [
+            10,
+            10,
+            150,
+            90.09287925696594
+          ],
+          "pivot": [
+            57,
+            78
+          ],
+          "z": 0,
+          "parent": null,
+          "visible": true
+        }
+      ],
+      "clips": {
+        "idle": {
+          "label": "Brisa do parque",
+          "seconds": 6,
+          "loop": true,
+          "hitTime": null,
+          "expressions": [],
+          "frames": [
+            {
+              "t": 0,
+              "ease": "spline",
+              "values": {
+                "kite": {
+                  "rotation": 0,
+                  "y": 0
+                }
+              }
+            },
+            {
+              "t": 1.5,
+              "ease": "spline",
+              "values": {
+                "kite": {
+                  "rotation": 3,
+                  "y": 4
+                }
+              }
+            },
+            {
+              "t": 3,
+              "ease": "spline",
+              "values": {
+                "kite": {
+                  "rotation": 0,
+                  "y": 0
+                }
+              }
+            },
+            {
+              "t": 4.5,
+              "ease": "spline",
+              "values": {
+                "kite": {
+                  "rotation": -3,
+                  "y": -4
+                }
+              }
+            },
+            {
+              "t": 6,
+              "ease": "spline",
+              "values": {
+                "kite": {
+                  "rotation": 0,
+                  "y": 0
+                }
+              }
+            }
+          ]
+        }
+      },
+      "schema": "soulgen-studio",
+      "version": 1,
+      "name": "Parque dos Ventos · kite"
+    }
+  }
+}

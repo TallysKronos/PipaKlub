@@ -27,6 +27,14 @@ test('initial companion position joins the travelled path instead of snapping on
  worldPrimeCompanionTrail({actorSize:65},blocked);assert.equal(blocked.actor.history.length,1);
 });
 
+test('restored checkpoints with duplicate stationary history prime a separate safe companion position',()=>{
+ const state={actor:{x:100,y:100,history:[{x:100,y:100},{x:100,y:100}]},navigation:{geometry:{segment:()=>true}}};
+ worldPrimeCompanionTrail({actorSize:72},state);
+ assert.equal(state.actor.history.length,2);
+ assert.ok(Math.hypot(state.actor.history[0].x-100,state.actor.history[0].y-100)>50);
+ const before=JSON.stringify(state.actor.history);worldPrimeCompanionTrail({actorSize:72},state);assert.equal(JSON.stringify(state.actor.history),before);
+});
+
 test('each demo sheet has four authored directions, stable anchors, held idle and two locomotion frames',async()=>{
  const config=artConfig(),pack=config.courtyard.world.companions,renderer=createWorldCompanions(pack),serve=createAssetHandler();
  for(const id of ['rabbito','carcara','mata-verde','azulao','raio-de-sol','nozinho','nevagume'])assert.ok(pack.species[id],id);

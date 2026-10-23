@@ -38,5 +38,5 @@ const soulgenRigs=(()=>{
   }
   ctx.restore();return true;
  }
- return {enabled,draw};
+ return {enabled,draw,environment:{sample,render,matrices,point}};
 })();

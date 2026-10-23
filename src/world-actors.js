@@ -5,7 +5,7 @@ export function worldPartnerStart(scene,state,follower){
  return candidates.find(p=>geometry?geometry.segment(a,p):p.x>=0&&p.y>=0&&p.x<=scene.width&&p.y<=scene.height)||follower;
 }
 export function worldPrimeCompanionTrail(scene,state){
- const actor=state.actor;if(actor.history.length!==1)return;
+ const actor=state.actor;if(actor.history.some(p=>Math.hypot(p.x-actor.x,p.y-actor.y)>.01))return;actor.history=[{x:actor.x,y:actor.y}];
  const resident=worldPartnerStart(scene,state,actor.history[0]);
  if(Math.hypot(resident.x-actor.x,resident.y-actor.y)>.01)actor.history.unshift({x:resident.x,y:resident.y});
 }

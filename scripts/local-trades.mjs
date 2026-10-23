@@ -69,6 +69,14 @@ async function rpc(name,body,uid){
 }
 // Demo-only wallet seed: same operation on every restart, never used by production.
 await rpc('player_trails',{p_action:'import',p_operation:'99999999-0000-4000-8000-000000000010',p_payload:{coins:200}},players.ana.id);
+// Isolated park audit fixture; opt-in only, never loaded by production dev.mjs.
+if(process.env.LOCAL_PARK_FIXTURE==='1'){
+ const uid=players.ana.id;
+ await postgres.query("select public.grant_event_soul($1,'rabbito','local-park-audit-v1')",[uid]);
+ await postgres.query("insert into public.player_openings(owner_id,step,legacy) values($1,14,true) on conflict(owner_id) do update set step=14,legacy=true",[uid]);
+ await postgres.query("insert into public.player_journeys(owner_id,phase,lesson,starter_model) values($1,'complete',5,'rabbito') on conflict(owner_id) do update set phase='complete',lesson=5,starter_model='rabbito'",[uid]);
+ await postgres.query("update public.player_profiles set equipped_kite_id=(select id from public.player_kites where owner_id=$1 and model_id='rabbito' order by created_at limit 1) where id=$1",[uid]);
+}
 const tokens=new Map();
 const response=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json'}});
 async function localAuth(url,options={}){

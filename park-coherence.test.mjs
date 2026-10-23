@@ -21,7 +21,7 @@ test('park planting and terrain form continuous families while every destination
   assert.equal(worldTerrainContours(habitats).length,3,'overlapping authored rectangles become three continuous planting beds');
   const nav=createWorldNavigation(scene),actor=nav.create();
   for(const place of scene.places){const[x,y]=scene.nodes[place.node];assert.ok(nav.target(actor,{x,y}).length,place.name);}
-  for(const r of habitats)assert.ok(nav.target(actor,{x:r.x+r.w/2,y:r.y+r.h/2}).length);
+  for(const r of habitats){const center={x:r.x+r.w/2,y:r.y+r.h/2},samples=[];for(let y=r.y+20;y<r.y+r.h-10;y+=20)for(let x=r.x+20;x<r.x+r.w-10;x+=20)samples.push({x,y});const safe=samples.filter(p=>nav.geometry.safe(p));assert.ok(safe.length/samples.length>.7,'habitat remains mostly traversable around authored column bases');const p=nav.geometry.safe(center)?center:safe.sort((a,b)=>Math.hypot(a.x-center.x,a.y-center.y)-Math.hypot(b.x-center.x,b.y-center.y))[0];assert.ok(p&&nav.target(actor,p).length,'habitat entry reachable');}
  }
 });
 

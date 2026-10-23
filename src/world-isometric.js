@@ -1,6 +1,10 @@
 // Presentation transform only. Tiled physics and save coordinates remain orthogonal.
 export const toIso = ({x,y}) => ({x:(x-y)*.82,y:(x+y)*.41});
 export const fromIso = ({x,y}) => ({x:x/1.64+y/.82,y:y/.82-x/1.64});
+export function isometricInput(input){
+ const magnitude=Math.min(1,Math.hypot(input.x,input.y)),v=fromIso(input),length=Math.hypot(v.x,v.y);
+ return length?{x:v.x/length*magnitude,y:v.y/length*magnitude}:{x:0,y:0};
+}
 export function screenToWorld(point,camera,viewport,zoom=1){
  return fromIso({x:(point.x-viewport.width/2)/zoom+camera.x,y:(point.y-viewport.height/2)/zoom+camera.y});
 }

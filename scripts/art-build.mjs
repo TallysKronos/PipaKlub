@@ -1,3 +1,4 @@
+import {createParkIsometricScene} from '../src/park-isometric-layout.js';
 import {parseWorldMap} from '../src/world-map.js';
 import {buildWorldArtPlan,validateWorldPaintedImages} from '../src/world-art.js';
 import {hudAssets} from './hud-assets.mjs';
@@ -52,6 +53,9 @@ export function artConfig(){
  const parkKit=JSON.parse(fs.readFileSync('assets/world/park-kit-v3/manifest.json','utf8')),parkArtKit={...world.quintalKit,sheets:{...world.quintalKit.sheets,...parkKit.sheets},frames:{...world.quintalKit.frames,...parkKit.frames}};
  for(const [id,sheet]of Object.entries(parkKit.sheets)){const image=sheet.image,hash=createHash('sha256').update(fs.readFileSync('assets/'+image)).digest('hex').slice(0,12);images['world-kit-'+id]={image,url:'assets/'+image+'?v='+hash};}
  for(const id of ['park-trail','park-clearing']){const scene=parseWorldMap(JSON.parse(fs.readFileSync('assets/world/park-v1/'+id+'.tmj','utf8')));scene.art=buildWorldArtPlan(scene,parkArtKit,JSON.parse(fs.readFileSync('assets/world/park-v1/'+id+'.art.json','utf8')));world.scenes[id]=scene;}
+ world.parkIsometric=JSON.parse(fs.readFileSync('assets/world/park-isometric-v1/manifest.json','utf8'));
+ for(const [id,a]of Object.entries(world.parkIsometric.images)){const image=a.image,hash=createHash('sha256').update(fs.readFileSync('assets/'+image)).digest('hex').slice(0,12);images['park-iso-'+id]={image,url:'assets/'+image+'?v='+hash};}
+ for(const id of ['park-trail','park-clearing'])world.scenes[id]=createParkIsometricScene(JSON.parse(fs.readFileSync('assets/world/park-v1/'+id+'.tmj','utf8')),world.scenes[id].art,{production:true});
  const opening=JSON.parse(fs.readFileSync('assets/story/kael-birthday-v1/manifest.json','utf8'));
  for(const def of Object.values(opening.images))def.url='assets/'+def.image+'?v='+createHash('sha256').update(fs.readFileSync('assets/'+def.image)).digest('hex').slice(0,12);
  const courtyard={places:districtPlaces,images,plaza,world,districts:city.districts,badges:city.sheets.insignias.frames};
