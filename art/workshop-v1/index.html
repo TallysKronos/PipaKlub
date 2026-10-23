@@ -77,6 +77,15 @@ function workshopPose(stage,input,time,reduced=false){
 // Coordenadas locais da bancada (centro da criatura em 0,0), como em workshop-renderer.js.
 const REVEAL_CELL=6,REVEAL_AREA={x:-132,y:-192,w:264,h:342},REVEAL_SECONDS=90,REVEAL_COUNTDOWN=3,REVEAL_FAIL=.5,REVEAL_DONE=.9,REVEAL_LIGHTS=2;
 const REVEAL_TOOLS={estilete:{radius:24,shock:34,tear:.45,shockTear:.12},tesourinha:{radius:9,layer:.3,tear:.008}};
+// Carry the unused distance across events: subdividing the same path must not
+// change how many times the scissors touch the paper.
+function revealStrokeStart(point){return {last:{...point},remaining:4};}
+function revealStrokePoints(stroke,point){
+ if(![point?.x,point?.y].every(Number.isFinite))return [];
+ const points=[];let from=stroke.last,dx=point.x-from.x,dy=point.y-from.y,d=Math.hypot(dx,dy);
+ while(d+1e-9>=stroke.remaining){const t=Math.min(1,stroke.remaining/d),next={x:from.x+dx*t,y:from.y+dy*t};points.push(next);from=next;dx=point.x-from.x;dy=point.y-from.y;d=Math.hypot(dx,dy);stroke.remaining=4;}
+ stroke.remaining-=d;stroke.last={...point};return points;
+}
 // Papel do kit do ateliê: manteiga (equilibrado). Outros papéis entram com a economia de materiais.
 const REVEAL_PAPER={fragility:1,cover:[1.2,2.4],lightDepth:3};
 function revealRandom(seed){let s=seed>>>0||1;return ()=>(s=(s*1664525+1013904223)>>>0)/4294967296;}
@@ -202,16 +211,51 @@ const poseJob=()=>({stage,status:stage===5?'completed':'building',modelId:'rabbi
 const draw=createWorkshopRenderer({bench:images.bench,parts:images.parts,rects:config.rects,reduced:()=>$('reduced').checked});
 const loaded=Promise.all(Object.entries(config.images).map(([id,a])=>new Promise((resolve,reject)=>{const im=new Image();images[id]=im;im.onload=resolve;im.onerror=reject;im.src='/assets/'+a.image;})));
 let render;
+// Preview adapter; scoring, silhouette and stroke sampling come from the game.
+let paperOwner=null,paper=null,paperTool='estilete',paperCursor=null,paperStroke=null,paperStart=0,paperEnd=0,paperTry=0,paperStamp='';
+function previewRevealControls(){
+ if(paperOwner!==input){paperOwner=input;paper=createReveal(revealMask(images.parts,config.rects,true),++paperTry);paperTool='estilete';paperStroke=null;paperCursor=null;paperStart=clock+REVEAL_COUNTDOWN;paperEnd=paperStart+REVEAL_SECONDS;input.cuts=[];input.revealScore=null;}
+ paperStamp='';const host=$('inputs');host.replaceChildren();
+ const head=document.createElement('div');head.className='workshop-reveal-head';head.innerHTML='<b id="paperClock"></b><span>Tempo ativo · pausado com a animação e com a aba oculta</span>';host.append(head);
+ const tools=document.createElement('div');tools.className='workshop-tools';tools.setAttribute('role','group');tools.setAttribute('aria-label','Ferramentas de revelação');
+ for(const [id,label]of [['estilete','Estilete · 1'],['tesourinha','Tesourinha · 2'],['light','Luz do molde · L']]){const button=document.createElement('button');button.id='paper-'+id;button.textContent=label;button.onclick=()=>{if(id==='light')previewRevealLight();else{paperTool=id;paperStroke=null;paperStamp='';previewRevealReadout();}$('scene').focus({preventScroll:true});};tools.append(button);}host.append(tools);
+ const bars=document.createElement('div');bars.className='workshop-reveal-bars';bars.innerHTML='<div><span>Marca revelada</span><em><i id="paperShown"></i></em><b id="paperShownValue"></b></div><div data-bar="tear"><span>Rasgo · cede em 50%</span><em><i id="paperTear"></i></em><b id="paperTearValue"></b></div>';host.append(bars);
+ const help=document.createElement('p');help.textContent='Estilete retira camadas; tesourinha raspa ao arrastar. Setas movem, Espaço usa. A Luz revela a silhueta por 2,5 s e tem dois usos.';help.className='workshop-help';host.append(help);previewRevealFrame();
+}
+function previewRevealLive(){return stage===2&&paper&&playing&&!document.hidden&&clock>=paperStart&&clock<paperEnd&&!revealScore(paper).failed;}
+function previewRevealStrike(p){if(!previewRevealLive())return;revealStrike(paper,paperTool,p.x,p.y);if(paperTool==='estilete')paper.flashes.push({...p,at:clock});previewRevealFrame();}
+function previewRevealSnip(p){if(!paperStroke){paperStroke=revealStrokeStart(p);previewRevealStrike(p);}else for(const q of revealStrokePoints(paperStroke,p))previewRevealStrike(q);}
+function previewRevealLight(){if(!previewRevealLive()||!paper.lights)return;paper.lights--;paper.lightUntil=clock+2.5;paperStamp='';previewRevealFrame();}
+function previewRevealPointer(e,down){
+ if(stage!==2||!paper)return;const c=$('scene'),r=c.getBoundingClientRect();paperCursor={x:(e.clientX-r.left)*960/r.width-480,y:(e.clientY-r.top)*640/r.height-400};
+ if(e.type==='pointerdown'){if(e.button!==0)return;c.focus({preventScroll:true});c.setPointerCapture(e.pointerId);paperStroke=null;}
+ if(!down)return;if(paperTool==='tesourinha')previewRevealSnip(paperCursor);else if(e.type==='pointerdown')previewRevealStrike(paperCursor);
+}
+function previewRevealReadout(){
+ if(!paper)return;const r=revealScore(paper),left=Math.max(0,Math.ceil(paperEnd-Math.max(clock,paperStart))),stamp=[r.score,r.revealed,r.damage,left,Math.ceil(paperStart-clock),paper.lights,paperTool].join('|');if(stamp===paperStamp)return;paperStamp=stamp;
+ $('paperClock').textContent=clock<paperStart?Math.ceil(paperStart-clock)+'s':left+'s';$('paperShown').style.width=Math.round(r.revealed*100)+'%';$('paperShownValue').textContent=Math.round(r.revealed*100)+'%';$('paperTear').style.width=Math.min(100,r.damage/REVEAL_FAIL*100)+'%';$('paperTearValue').textContent=Math.round(r.damage*100)+'%';
+ for(const id of ['estilete','tesourinha']){$('paper-'+id).disabled=r.failed||!left;$('paper-'+id).setAttribute('aria-pressed',String(paperTool===id));}$('paper-light').disabled=r.failed||!left||!paper.lights;$('paper-light').textContent='Luz do molde ('+paper.lights+') · L';
+ $('next').disabled=!workshopReady(2,input);$('score').textContent=r.failed?'A folha cedeu. Use Refazer etapa.':!left?'Tempo esgotado · nota '+r.score:r.score+'% · qualidade da revelação';
+}
+function previewRevealFrame(){
+ if(!paper)return;const r=revealScore(paper);input.reveal=paper;input.revealView={tool:paperTool,cursor:paperCursor,lit:clock<paperStart||clock<paper.lightUntil};if(!r.failed&&(r.done||clock>=paperEnd)){input.cuts=[0,1,2,3];input.revealScore=r.score;}else{input.cuts=[];input.revealScore=null;}previewRevealReadout();
+}
+function previewRevealCountdown(g){if(!paper||clock>=paperStart)return;g.save();g.fillStyle='#fff8e9';g.strokeStyle='#294b53';g.lineWidth=7;g.font='bold 110px sans-serif';g.textAlign='center';g.strokeText(String(Math.ceil(paperStart-clock)),480,360);g.fillText(String(Math.ceil(paperStart-clock)),480,360);g.restore();}
+const paperCanvas=$('scene');paperCanvas.tabIndex=0;paperCanvas.addEventListener('pointerdown',e=>previewRevealPointer(e,true));paperCanvas.addEventListener('pointermove',e=>previewRevealPointer(e,e.buttons===1));
+paperCanvas.onpointerup=paperCanvas.onpointercancel=paperCanvas.onlostpointercapture=paperCanvas.onblur=()=>paperStroke=null;
+paperCanvas.addEventListener('keydown',e=>{if(stage!==2||!paper)return;const moves={ArrowUp:[0,-8],ArrowDown:[0,8],ArrowLeft:[-8,0],ArrowRight:[8,0]},move=moves[e.key];if(move||e.key===' ')e.preventDefault();if(e.key==='1'||e.key==='2'){paperTool=e.key==='1'?'estilete':'tesourinha';paperStroke=null;paperStamp='';}if(e.key.toLowerCase()==='l')previewRevealLight();const p=paperCursor||{x:0,y:-20};if(move){paperCursor={x:Math.max(REVEAL_AREA.x,Math.min(REVEAL_AREA.x+REVEAL_AREA.w,p.x+move[0])),y:Math.max(REVEAL_AREA.y,Math.min(REVEAL_AREA.y+REVEAL_AREA.h,p.y+move[1]))};if(paperStroke&&paperTool==='tesourinha')previewRevealSnip(paperCursor);}if(e.key===' '&&!e.repeat){paperCursor=p;if(paperTool==='estilete')previewRevealStrike(p);else{paperStroke=null;previewRevealSnip(p);}}previewRevealFrame();});
+paperCanvas.addEventListener('keyup',e=>{if(e.key===' ')paperStroke=null;});
+
 function update(){
  $('tabs').replaceChildren();[...WORKSHOP_STAGES.map(s=>s.name),'Despertar'].forEach((name,i)=>{const b=document.createElement('button');b.textContent=String(i+1)+' '+name;if(stage===i)b.setAttribute('aria-current','step');b.onclick=()=>{stage=i;input=workshopInput();update();};$('tabs').append(b);});
  const s=WORKSHOP_STAGES[stage];$('tool').textContent=s?.tool||'Um novo elo ganhou vida';$('title').textContent=s?.title||'Rabbito despertou.';$('hint').textContent=s?.hint||'Orelhas e rabiola acompanham o corpo sem soltar seus pontos de encaixe. A sombra permanece na bancada.';$('inputs').replaceChildren();
- if(stage===0||stage===2){const field=stage===0?'joints':'cuts';for(let i=0;i<4;i++){const b=document.createElement('button');b.textContent=(stage===0?'Encaixar vareta ':'Recortar parte ')+(i+1);b.disabled=i!==input[field].length;b.onclick=()=>{input[field].push(i);update();};$('inputs').append(b);}}
+ if(stage===2){previewRevealControls();}else if(stage===0){const field=stage===0?'joints':'cuts';for(let i=0;i<4;i++){const b=document.createElement('button');b.textContent=(stage===0?'Encaixar vareta ':'Recortar parte ')+(i+1);b.disabled=i!==input[field].length;b.onclick=()=>{input[field].push(i);update();};$('inputs').append(b);}}
  else if(stage<5){const fields=stage===1?[['tension','Tensão do nó',65]]:stage===3?[['balance','Ponto de amarração',50]]:[['wind','Direção do vento',50],['soulTension','Tensão da linha',50]];for(const [key,label,target] of fields){const row=document.createElement('label');row.className='workshop-range';const caption=document.createElement('span');caption.textContent=label+' · alvo '+target;const range=document.createElement('input');range.type='range';range.min=0;range.max=100;range.value=input[key];range.setAttribute('aria-label',label);const out=document.createElement('output');out.textContent=input[key];range.oninput=()=>{input[key]=Number(range.value);out.textContent=range.value;readout();};row.append(caption,range,out);$('inputs').append(row);}const help=document.createElement('button');help.textContent='Ajustar com o Sr. Assis';help.onclick=()=>{fields.forEach(([key,,target])=>input[key]=target);update();};$('inputs').append(help);}
  $('next').hidden=stage===5;$('next').textContent=s?.action||'';$('redo').textContent=stage===5?'Construir novamente':'Refazer etapa';readout();
 }
-function readout(){$('next').disabled=!workshopReady(stage,input);$('score').textContent=stage===0?input.joints.length+'/4 encaixes':stage===2?input.cuts.length+'/4 partes':stage===5?'O primeiro voo começa com um elo':workshopQuality(stage,input)+'% · ajuste';}
+function readout(){$('next').disabled=!workshopReady(stage,input);$('score').textContent=stage===0?input.joints.length+'/4 encaixes':stage===2?input.cuts.length+'/4 partes':stage===5?'O primeiro voo começa com um elo':workshopQuality(stage,input)+'% · ajuste';if(stage===2){paperStamp='';previewRevealReadout();}}
 $('next').onclick=()=>{if(workshopReady(stage,input)){stage++;input=workshopInput();update();}};$('redo').onclick=()=>{if(stage===5)stage=0;input=workshopInput();update();};$('pause').onclick=()=>{playing=!playing;$('pause').textContent=playing?'Pausar animação':'Reproduzir animação';last=0;};
-$('scene').onpointerdown=e=>{if(![0,2].includes(stage))return;const r=$('scene').getBoundingClientRect(),x=(e.clientX-r.left)/r.width*960-480,y=(e.clientY-r.top)/r.height*640-400,field=stage===0?'joints':'cuts',n=input[field].length,p=[[-65,-155],[28,-155],[50,8],[-48,70]][n];if(p&&Math.hypot(x-p[0],y-p[1])<30){input[field].push(n);update();}};
+$('scene').onpointerdown=e=>{if(stage!==0)return;const r=$('scene').getBoundingClientRect(),x=(e.clientX-r.left)/r.width*960-480,y=(e.clientY-r.top)/r.height*640-400,field=stage===0?'joints':'cuts',n=input[field].length,p=[[-65,-155],[28,-155],[50,8],[-48,70]][n];if(p&&Math.hypot(x-p[0],y-p[1])<30){input[field].push(n);update();}};
 document.addEventListener('visibilitychange',()=>{last=0;});
-loaded.then(()=>{render=createWorkshopRenderer({bench:images.bench,parts:images.parts,rects:config.rects,reduced:()=>$('reduced').checked});$('status').textContent='Arte carregada · mesma composição usada no jogo';function tick(t){if(!document.hidden&&playing)clock+=(last?Math.min((t-last)/1000,.05):0)*Number($('speed').value);last=document.hidden?0:t;render($('scene').getContext('2d'),poseJob(),input,clock);requestAnimationFrame(tick);}requestAnimationFrame(tick);}).catch(()=>$('status').textContent='Falha ao carregar as imagens. Recarregue a prévia.');update();
+loaded.then(()=>{render=createWorkshopRenderer({bench:images.bench,parts:images.parts,rects:config.rects,reduced:()=>$('reduced').checked});$('status').textContent='Arte carregada · mesma composição usada no jogo';function tick(t){if(!document.hidden&&playing)clock+=(last?Math.min((t-last)/1000,.05):0)*Number($('speed').value);last=document.hidden?0:t;if(stage===2)previewRevealFrame();render($('scene').getContext('2d'),poseJob(),input,clock);if(stage===2)previewRevealCountdown($('scene').getContext('2d'));requestAnimationFrame(tick);}requestAnimationFrame(tick);}).catch(()=>$('status').textContent='Falha ao carregar as imagens. Recarregue a prévia.');update();
 </script></html>

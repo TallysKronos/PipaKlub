@@ -1,5 +1,7 @@
 # Publicação da Oficina das Almas
 
+> Continuação local de 23/10/2026: a revisão atual substitui a escavação da silhueta por uma bancada neutra de fabricação. Ver [bancada v2](../../art/workshop-v2/README.md). Classes comum/incomum/rara têm gabaritos próprios, e a espécie só aparece no nascimento. O fluxo idempotente 024/025 é preservado; não há nova migração nesta revisão. Produção continua pendente de autorização/publicação coordenada. Os números e capturas abaixo descrevem as entregas históricas; a auditoria atual está no README v2.
+
 ## Pacote preparado
 
 - Migrações: `supabase/migrations/024_soul_workshop.sql` e, em seguida, `025_workshop_reveal.sql` (etapa do papel com escavação).

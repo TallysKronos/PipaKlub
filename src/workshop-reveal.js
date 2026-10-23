@@ -3,6 +3,15 @@
 // Coordenadas locais da bancada (centro da criatura em 0,0), como em workshop-renderer.js.
 export const REVEAL_CELL=6,REVEAL_AREA={x:-132,y:-192,w:264,h:342},REVEAL_SECONDS=90,REVEAL_COUNTDOWN=3,REVEAL_FAIL=.5,REVEAL_DONE=.9,REVEAL_LIGHTS=2;
 export const REVEAL_TOOLS={estilete:{radius:24,shock:34,tear:.45,shockTear:.12},tesourinha:{radius:9,layer:.3,tear:.008}};
+// Carry the unused distance across events: subdividing the same path must not
+// change how many times the scissors touch the paper.
+export function revealStrokeStart(point){return {last:{...point},remaining:4};}
+export function revealStrokePoints(stroke,point){
+ if(![point?.x,point?.y].every(Number.isFinite))return [];
+ const points=[];let from=stroke.last,dx=point.x-from.x,dy=point.y-from.y,d=Math.hypot(dx,dy);
+ while(d+1e-9>=stroke.remaining){const t=Math.min(1,stroke.remaining/d),next={x:from.x+dx*t,y:from.y+dy*t};points.push(next);from=next;dx=point.x-from.x;dy=point.y-from.y;d=Math.hypot(dx,dy);stroke.remaining=4;}
+ stroke.remaining-=d;stroke.last={...point};return points;
+}
 // Papel do kit do ateliê: manteiga (equilibrado). Outros papéis entram com a economia de materiais.
 const REVEAL_PAPER={fragility:1,cover:[1.2,2.4],lightDepth:3};
 function revealRandom(seed){let s=seed>>>0||1;return ()=>(s=(s*1664525+1013904223)>>>0)/4294967296;}

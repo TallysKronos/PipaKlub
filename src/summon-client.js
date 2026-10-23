@@ -125,7 +125,7 @@ function workshopRevealPointer(event,down){
  return true;
 }
 // Interpolada a cada 4 px: a nota não depende da frequência de eventos do aparelho.
-function workshopRevealSnip(p){const a=workshopRevealPrev;if(!a){workshopRevealStrike(p.x,p.y);workshopRevealPrev=p;return;}const n=Math.floor(Math.hypot(p.x-a.x,p.y-a.y)/4);for(let i=1;i<=n;i++)workshopRevealStrike(a.x+(p.x-a.x)*i/n,a.y+(p.y-a.y)*i/n);if(n)workshopRevealPrev=p;}
+function workshopRevealSnip(p){if(!workshopRevealPrev){workshopRevealStrike(p.x,p.y);workshopRevealPrev=revealStrokeStart(p);return;}for(const q of revealStrokePoints(workshopRevealPrev,p))workshopRevealStrike(q.x,q.y);}
 function workshopRevealLight(){if(!workshopRevealLive()||workshopReveal.lights<=0)return;workshopReveal.lights--;workshopReveal.lightUntil=workshopClock+2.5;workshopRevealControls();workshopReadout();}
 function workshopRevealTick(){
  if(!workshopRevealActive())return;
@@ -151,7 +151,7 @@ function workshopRevealControls(){
  if(!workshopReveal||workshopReveal.job!==summonRitual.id)workshopRevealBegin();const live=!workshopReveal.failed&&!workshopRevealTimer.over;$('workshopInputs').replaceChildren();
  const head=uiElement('div',undefined,'workshop-reveal-head');const clock=uiElement('b',Math.ceil(REVEAL_SECONDS)+'s');clock.id='workshopRevealClock';head.append(clock,uiElement('span','Tempo de bancada · pausa se você sair da aba'));
  const tools=uiElement('div',undefined,'workshop-tools');tools.setAttribute('role','group');tools.setAttribute('aria-label','Ferramentas');
- for(const [id,label] of [['estilete','Estilete'],['tesourinha','Tesourinha']]){const b=uiElement('button',label,'secondary');b.setAttribute('aria-pressed',String(workshopRevealTool===id));b.disabled=!live||!!workshopPending||summonBusy;b.onclick=()=>{workshopRevealTool=id;workshopRevealControls();$('workshopCanvas').focus({preventScroll:true});};tools.append(b);}
+ for(const [id,label] of [['estilete','Estilete'],['tesourinha','Tesourinha']]){const b=uiElement('button',label,'secondary');b.setAttribute('aria-pressed',String(workshopRevealTool===id));b.disabled=!live||!!workshopPending||summonBusy;b.onclick=()=>{workshopRevealTool=id;workshopRevealPrev=null;workshopRevealControls();$('workshopCanvas').focus({preventScroll:true});};tools.append(b);}
  const light=uiElement('button','Luz do molde ('+workshopReveal.lights+')','secondary');light.disabled=!live||workshopReveal.lights<=0||!!workshopPending||summonBusy;light.onclick=()=>{workshopRevealLight();$('workshopCanvas').focus({preventScroll:true});};tools.append(light);
  const bars=uiElement('div',undefined,'workshop-reveal-bars');bars.id='workshopRevealBars';bars.innerHTML='<div data-bar="shown"><span>Marca revelada</span><i></i><b>0%</b></div><div data-bar="tear"><span>Rasgo · cede em 50%</span><i></i><b>0%</b></div>';
  for(const row of bars.children){const track=document.createElement('em');track.append(row.querySelector('i'));row.insertBefore(track,row.querySelector('b'));}
@@ -163,10 +163,10 @@ $('workshopCanvas').tabIndex=0;
 $('workshopCanvas').addEventListener('keydown',event=>{
  if(!workshopRevealActive())return;const k=event.key,step=event.shiftKey?3:8,mv={ArrowUp:[0,-step],ArrowDown:[0,step],ArrowLeft:[-step,0],ArrowRight:[step,0]}[k];
  if(mv||k===' ')event.preventDefault();
- if(k==='1'||k==='2'){workshopRevealTool=k==='1'?'estilete':'tesourinha';workshopRevealControls();}
+ if(k==='1'||k==='2'){workshopRevealTool=k==='1'?'estilete':'tesourinha';workshopRevealPrev=null;workshopRevealControls();}
  if(k.toLowerCase()==='l')workshopRevealLight();
  const at=workshopRevealCursor||{x:0,y:-20};
- if(mv){workshopRevealCursor={x:at.x+mv[0],y:at.y+mv[1]};if(workshopRevealTool==='tesourinha'&&workshopRevealPrev)workshopRevealSnip(workshopRevealCursor);}
+ if(mv){workshopRevealCursor={x:Math.max(REVEAL_AREA.x,Math.min(REVEAL_AREA.x+REVEAL_AREA.w,at.x+mv[0])),y:Math.max(REVEAL_AREA.y,Math.min(REVEAL_AREA.y+REVEAL_AREA.h,at.y+mv[1]))};if(workshopRevealTool==='tesourinha'&&workshopRevealPrev)workshopRevealSnip(workshopRevealCursor);}
  if(k===' '&&!event.repeat){workshopRevealCursor=at;if(workshopRevealTool==='estilete')workshopRevealStrike(at.x,at.y);else{workshopRevealPrev=null;workshopRevealSnip(at);}}
 });
 $('workshopCanvas').addEventListener('keyup',event=>{if(event.key===' ')workshopRevealPrev=null;});
@@ -181,6 +181,7 @@ function workshopPoint(event){
 $('workshopCanvas').onpointerdown=event=>{if(event.button!==0)return;if(workshopRevealPointer(event,true))return;workshopPoint(event);};
 $('workshopCanvas').onpointermove=event=>{if(workshopRevealPointer(event,event.buttons===1&&!event.type.endsWith('down')))return;if(event.buttons===1)workshopPoint(event);};
 $('workshopCanvas').onpointerup=$('workshopCanvas').onpointercancel=()=>{workshopRevealPrev=null;};
+$('workshopCanvas').onlostpointercapture=$('workshopCanvas').onblur=()=>{workshopRevealPrev=null;};
 $('workshopConfirm').onclick=async()=>{
  if(summonBusy||!summonRitual||(!workshopPending&&!workshopReady(summonRitual.stage,workshopDraft)))return;
  workshopPending??={jobId:summonRitual.id,stage:summonRitual.stage,payload:workshopPayload(summonRitual.stage,workshopDraft),requestId:crypto.randomUUID()};

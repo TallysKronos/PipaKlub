@@ -66,12 +66,23 @@ test('workshop HTTP enforces authentication and rejects malformed stages before 
  for(const [stage,payload] of [[1,{tension:35.5}],[1,{tension:-1}],[4,{wind:50,tension:101}],[2,{cuts:[0,2,1,3]}]])assert.equal((await accounts.handle(req({action:'advance',jobId:a,requestId:b,stage,payload}))).status,400);
  assert.equal(calls,0);assert.equal((await accounts.handle(req({action:'inventory'}))).status,200);
 });
-function ui(request){
+function ui(request,modern=false){
  const {document,window}=parseHTML('<html><body><div id="accountCollection"><div id="collectionMain"><div id="inventoryList"></div></div></div></body></html>');window.HTMLElement.prototype.focus=function(){};
  const context=vm.createContext({document,crypto,console,playerAccount:{profile:{id:a}},mode:null,keys:{},requestAnimationFrame:()=>1,cancelAnimationFrame(){},refreshAccount(){},ART_CONFIG:{dex:{entries:[]}},accountRequest:async(action,body)=>{assert.equal(action,'workshop');return {workshop:await request(body)};},$:id=>document.getElementById(id),uiElement(tag,text,className){const e=document.createElement(tag);if(text)e.textContent=text;if(className)e.className=className;return e;},art:{markup:()=>'<span></span>',load:async()=>true}});
- vm.runInContext(fs.readFileSync('src/workshop-model.js','utf8').replace(/^export /gm,'')+'\n'+fs.readFileSync('src/summon-client.js','utf8'),context);return {document,run:code=>vm.runInContext(code,context)};
+ vm.runInContext(fs.readFileSync('src/workshop-model.js','utf8').replace(/^export /gm,'')+'\n'+(modern?['workshop-craft','workshop-craft-renderer','workshop-craft-controls'].map(n=>fs.readFileSync('src/'+n+'.js','utf8').replace(/^export /gm,'')).join('\n'):'')+'\n'+fs.readFileSync('src/summon-client.js','utf8')+(modern?'\n'+fs.readFileSync('src/workshop-craft-client.js','utf8'):''),context);return {document,run:code=>vm.runInContext(code,context)};
 }
 const inventory={tails:[{id:a,modelId:'rabbito',name:'Rabbito',status:'ready'}],seen:[{modelId:'rabbito',name:'Rabbito',availableTailIds:[a]}]};
+test('neutral crafting UI hides species, requires manipulation and preserves idempotent confirmations',async()=>{
+ const calls=[];let lost=true;const app=ui(async body=>{calls.push(body);if(body.action==='inventory')return inventory;if(body.action==='start')return {id:b,stage:0,status:'building',modelId:'rabbito'};if(body.action==='advance'){if(lost){lost=false;throw Error('offline');}return {id:b,stage:1,status:'building',modelId:'rabbito'};}},true);
+ await app.run('openSummoner()');app.document.querySelector('#summonSeenGrid button').onclick();assert.equal(app.document.getElementById('summonPreparation').textContent.includes('Rabbito'),false);
+ app.document.querySelector('#summonTailList button').onclick();await app.document.getElementById('summonStart').onclick();assert.equal(app.document.getElementById('workshopConfirm').disabled,true);
+ app.run("var craftLeakedKeys=0;document.addEventListener('keydown',()=>craftLeakedKeys++);var craftKey=document.createEvent('Event');craftKey.initEvent('keydown',true,true);craftKey.key='2';document.getElementById('workshopCanvas').dispatchEvent(craftKey);");
+ assert.equal(app.run('workshopCraft.tool'),'linha');assert.equal(app.run('craftLeakedKeys'),0,'craft keys do not reach overworld shortcuts');app.run("craftSelect(workshopCraft,'pinça')");
+ await app.document.getElementById('workshopConfirm').onclick();assert.equal(calls.filter(c=>c.action==='advance').length,0);
+ app.run('for(const p of craftGeometry(workshopCraft.kind).rods){craftDown(workshopCraft,{x:850,y:220});craftMove(workshopCraft,p);craftUp(workshopCraft,p);}workshopCraftController.refresh();');
+ assert.equal(app.document.getElementById('workshopConfirm').disabled,false);await app.document.getElementById('workshopConfirm').onclick();assert.equal(app.run('!!workshopPending'),true);assert.equal(app.document.getElementById('workshopRedo').disabled,true);
+ await app.document.getElementById('workshopConfirm').onclick();const sent=calls.filter(c=>c.action==='advance');assert.equal(sent.length,2);assert.equal(sent[0].requestId,sent[1].requestId);assert.equal(app.run('workshopCraft.stage'),1);assert.equal(app.run('workshopCraft.tool'),'linha');
+});
 test('construction UI preserves lost confirmations and leaving does not damage a reserved tail',async()=>{
  const calls=[];let lost=true;const app=ui(async body=>{calls.push(body);if(body.action==='inventory')return inventory;if(body.action==='start')return {id:b,stage:0,status:'building',modelId:'rabbito'};if(body.action==='advance'){if(lost){lost=false;throw Error('offline');}return {id:b,stage:1,status:'building',modelId:'rabbito'};}});
  await app.run('openSummoner()');app.document.getElementById('summonInvoke').onclick();app.document.querySelector('#summonSeenGrid button').onclick();app.document.querySelector('#summonTailList button').onclick();await app.document.getElementById('summonStart').onclick();

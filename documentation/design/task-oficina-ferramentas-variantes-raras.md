@@ -43,7 +43,7 @@ A bancada deve ocupar a área principal. Ferramentas ficam ao alcance, com instr
 | Pincel de cola | Aplicar cola nas faixas úteis de contato. | Cobertura, falta/excesso e preservação de articulações. |
 | Pinça de montagem | Pegar, girar, alinhar, assentar e fixar peças; posicionar a rabiola no final. | Encaixe, orientação e posição dos pontos de fixação. |
 
-- A geometria deve corresponder à anatomia da espécie. Orelhas de Rabbito e velas de Carcará não podem ser resolvidas por um único losango genérico.
+- Revisão de direção de 23/10/2026: a fabricação usa pipas neutras, com geometria e tolerâncias por classe. Nenhuma silhueta, nome ou paleta da espécie deve antecipar a identidade; ela aparece apenas no nascimento. A anatomia de pipa do Soulmonster vivo continua obrigatória. O piloto e os limites estão em `art/workshop-v2/README.md`.
 - Mostrar sobra de papel, corte para dentro da peça, cola e sobreposição de forma compreensível.
 - Permitir correções locais dentro das regras da tentativa, sem transformar todo erro pequeno em falha imediata.
 - Ferramentas reutilizáveis são distintas dos materiais consumíveis; não quebrá-las ou consumi-las sem uma regra adicional aprovada.
