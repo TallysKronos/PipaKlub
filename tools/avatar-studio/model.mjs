@@ -8,7 +8,26 @@ const ISO=Math.atan2(1,2)*180/Math.PI,ANGLES={se:ISO,sw:180-ISO,nw:-180+ISO,ne:-
 // (andar reto na horizontal ou na vertical da tela) mantém a direção anterior, se ela for uma das empatadas.
 export function facingIso(dx,dy,previous='se'){if(Math.hypot(dx,dy)<1e-6)return previous;const a=Math.atan2(dy,dx)*180/Math.PI,gaps=Object.entries(ANGLES).map(([d,v])=>[d,Math.abs(((a-v+540)%360)-180)]),min=Math.min(...gaps.map(g=>g[1])),tied=gaps.filter(g=>g[1]-min<1e-6).map(g=>g[0]);return tied.includes(previous)?previous:tied[0];}
 export const SPEC={cell:256,pivot:[128,224],scale:2,height:192,eyeLine:92};
-export const ACTIONS={parado:{name:'Parado',frames:4,ms:180},andar:{name:'Andar',frames:8,ms:100},correr:{name:'Correr',frames:6,ms:80}};
+// Animações por grupo. dirs = direções desenhadas (as da esquerda espelham); loop:false segura o último quadro.
+export const ACTIONS={
+ parado:{name:'Parado',group:'Essenciais',frames:4,ms:180,loop:true,dirs:['se','ne'],tip:'Respiração leve: só o tronco e a cabeça sobem 1 px.'},
+ andar:{name:'Andar',group:'Essenciais',frames:8,ms:100,loop:true,dirs:['se','ne'],tip:'Quadro 1: pé da frente tocando o chão. Ciclo fecha no 8.'},
+ correr:{name:'Correr',group:'Essenciais',frames:6,ms:80,loop:true,dirs:['se','ne'],tip:'Corpo inclinado para a frente, braços dobrados, um quadro no ar.'},
+ subir:{name:'Subir escada',group:'Casa',frames:8,ms:110,loop:true,dirs:['ne'],stairs:'up',tip:'Sobe no lugar: o pé levantado pousa um degrau acima (32 px na autoria). O jogo move o personagem degrau a degrau.'},
+ descer:{name:'Descer escada',group:'Casa',frames:8,ms:110,loop:true,dirs:['se'],stairs:'down',tip:'Desce no lugar: o pé da frente pousa um degrau abaixo, olhando para os degraus.'},
+ sentar:{name:'Sentar',group:'Casa',frames:4,ms:120,loop:false,dirs:['se','ne'],tip:'Transição em pé → sentado. O último quadro já é a pose sentada; o pé fica no pivô e o quadril desce até a altura do assento (1 célula).'},
+ sentado:{name:'Sentado',group:'Casa',frames:2,ms:420,loop:true,dirs:['se','ne'],tip:'Respiração sentado, mesma pose do último quadro de Sentar.'},
+ acordar:{name:'Acordar (cama)',group:'Casa',frames:6,ms:150,loop:false,dirs:['se'],tip:'Deitado → sentado na cama → em pé ao lado. Usado na abertura.'},
+ pegar:{name:'Pegar / tocar',group:'Casa',frames:4,ms:110,loop:false,dirs:['se','ne'],tip:'Estende a mão, toca e volta. O quadro 3 é o contato (âncora da mão no objeto).'},
+ conversar:{name:'Conversar',group:'Casa',frames:4,ms:170,loop:true,dirs:['se'],tip:'Gesto curto com uma mão, cabeça balança 1 px.'},
+ empinar:{name:'Empinar a pipa',group:'Pipa',frames:6,ms:120,loop:true,dirs:['ne','se'],tip:'Segura o carretel com as duas mãos e puxa a linha. A âncora da mão prende o carretel.'},
+ comemorar:{name:'Comemorar',group:'Pipa',frames:6,ms:100,loop:false,dirs:['se'],tip:'Pulo curto com braço para cima; os pés voltam ao pivô no fim.'},
+ lamentar:{name:'Perder',group:'Pipa',frames:4,ms:170,loop:false,dirs:['se'],tip:'Ombros caem e a cabeça abaixa. Sem lágrimas desenhadas.'}};
+// Escada da casa: 8 degraus para 4 células de altura (16 px por degrau no jogo, 32 na autoria) ao longo de 3 células.
+export const STAIRS={rise:32,depth:[24,-12]};
+// Pontos de encaixe marcados em cada quadro: as camadas se prendem a eles.
+export const ANCHORS={head:'Cabeça',torso:'Costas',hand:'Mão'};
+export function actionDirs(id){const a=ACTIONS[id],dirs={};for(const d of a?.dirs||DRAWN){dirs[d]={frames:[]};const m=Object.entries(MIRROR).find(([,src])=>src===d)?.[0];if(m)dirs[m]={mirror:d};}return dirs;}
 export const SLOTS=[
  {id:'contorno',name:'Contorno',tones:['#0b1020'],fixed:true},
  {id:'pele',name:'Pele',tones:['#9a5634','#cf8350','#f0a868','#f9c995']},
@@ -103,12 +122,13 @@ export function translate(img,dx,dy){const out=blank(img.width,img.height),{widt
 // Registro: desloca para o apoio cair no pivô, sem escalar.
 export function registerToPivot(img,pivot=SPEC.pivot){const m=metrics(img);if(!m.bounds)return {img,dy:0};const dy=pivot[1]-m.baseline;return {img:dy?translate(img,0,dy):img,dy};}
 export function over(dst,src,dx=0,dy=0){const {width:w,height:h}=dst;for(let y=0;y<src.height;y++){const ty=y+dy;if(ty<0||ty>=h)continue;for(let x=0;x<src.width;x++){const tx=x+dx;if(tx<0||tx>=w)continue;const s=(y*src.width+x)*4;if(src.data[s+3]<128)continue;const t=(ty*w+tx)*4;for(let j=0;j<3;j++)dst.data[t+j]=src.data[s+j];dst.data[t+3]=255;}}return dst;}
-const FRONT=['cabelo-tras','mochila','corpo','roupa','cabelo','acessorio'],BACK=['corpo','roupa','mochila','cabelo-tras','cabelo','acessorio'];
+// Mochila em duas peças: a bolsa fica atrás do corpo de frente e na frente de costas; as alças sempre sobre a roupa.
+const FRONT=['cabelo-tras','mochila','corpo','roupa','alcas','cabelo','acessorio','mao'],BACK=['corpo','roupa','alcas','mochila','cabelo-tras','cabelo','acessorio','mao'];
 export const ORDER={se:FRONT,sw:FRONT,ne:BACK,nw:BACK};
 // Compõe um quadro: corpo + camadas de quadro (roupa) + camadas de cabeça presas à âncora.
-export function composeFrame({base,head,torso,dir,layers=[],ramps,slots=SLOTS}){
- const out=blank(base.width,base.height),parts={corpo:[base]};
- for(const l of layers){if(!l.image)continue;const mount=l.kind==='torso'?torso:l.kind==='head'?head:null;if(l.kind==='torso'&&!mount)continue;const place=mount?[mount[0]-l.anchor[0],mount[1]-l.anchor[1]]:[0,0];(parts[l.slot]??=[]).push([l.image,...place]);}
+export function composeFrame({base,head,torso,hand,dir,layers=[],ramps,slots=SLOTS}){
+ const out=blank(base.width,base.height),parts={corpo:[base]},mounts={head,torso,hand};
+ for(const l of layers){if(!l.image)continue;const mount=l.mount||mounts[l.kind]||null;if(l.kind!=='frames'&&!mount)continue;const place=mount?[mount[0]-l.anchor[0],mount[1]-l.anchor[1]]:[0,0];(parts[l.slot]??=[]).push([l.image,...place]);}
  for(const slot of ORDER[dir]||FRONT)for(const p of parts[slot]||[]){const [img,dx,dy]=Array.isArray(p)?p:[p,0,0];over(out,img,dx,dy);}
  return ramps?recolor(out,slots,ramps):out;
 }
@@ -139,6 +159,24 @@ export function auditHeadLayer(base,head,layer){
  const share=edge?hit/edge:0;
  return share<.6?{level:'fail',rule:'Cabelo',text:`Só ${Math.round(share*100)}% da borda do cabelo encosta na cabeça: camada descolada.`,share}:{level:'ok',rule:'Cabelo',text:`Cabelo preso à cabeça (${Math.round(share*100)}% da borda).`,share};
 }
+// Costas estáveis: em vez de medir a roupa em cada quadro (que treme com o balanço dos braços), o ponto das costas segue
+// a cabeça com o deslocamento mediano da ação. Cabeça e tronco se movem juntos num personagem chibi.
+export function steadyTorso(frames,slots=SLOTS){
+ const offsets=frames.map(f=>{const t=autoTorso(f.image,slots);return f.head&&t?[t[0]-f.head[0],t[1]-f.head[1]]:null;}).filter(Boolean);if(!offsets.length)return frames.map(()=>null);
+ const med=k=>{const v=offsets.map(o=>o[k]).sort((a,b)=>a-b);return v[v.length>>1];},off=[med(0),med(1)];
+ return frames.map(f=>f.head?[f.head[0]+off[0],f.head[1]+off[1]]:null);
+}
+// Balanço: a camada usa a altura do ponto de alguns quadros antes, como uma mochila que assenta depois do passo.
+export function laggedMount(points,i,lag=0){const p=points[i];if(!p||!lag)return p;const q=points[((i-lag)%points.length+points.length)%points.length];return q?[p[0],q[1]]:p;}
+// Mochila legível: de frente precisa aparecer atrás do ombro (ou ter alças); de costas precisa cobrir boa parte das costas.
+export function auditBackpack({base,torso,bag,straps,dir}){
+ if(!bag||!torso)return null;const dx=torso[0]-bag.anchor[0],dy=torso[1]-bag.anchor[1],b=bag.image,opaque=(img,x,y)=>x>=0&&y>=0&&x<img.width&&y<img.height&&img.data[(y*img.width+x)*4+3]>=128;
+ let total=0,visible=0,x0=Infinity,x1=-1;for(let y=0;y<b.height;y++)for(let x=0;x<b.width;x++){if(!opaque(b,x,y))continue;total++;const bx=x+dx,by=y+dy;if(!opaque(base,bx,by))visible++;if(bx<x0)x0=bx;if(bx>x1)x1=bx;}
+ if(!total)return null;
+ if(dir==='se'||dir==='sw'){const share=visible/total;if(share<.08&&!straps)return {level:'warn',rule:'Mochila',text:`De frente só ${Math.round(share*100)}% da mochila aparece e não há alças: parece que ele está sem mochila. Puxe a bolsa para trás do ombro ou adicione a camada Alças.`};return {level:'ok',rule:'Mochila',text:`Mochila legível de frente (${Math.round(share*100)}% da bolsa à vista${straps?', com alças':''}).`};}
+ let bw=0;const row=Math.round(torso[1]);for(let x=0;x<base.width;x++)if(opaque(base,x,row))bw++;const ratio=bw?(x1-x0+1)/bw:1;
+ return ratio<.55?{level:'warn',rule:'Mochila',text:`De costas a mochila cobre ${Math.round(ratio*100)}% da largura das costas: parece um adesivo. O alvo é 65–85%, do ombro até acima da cintura.`}:{level:'ok',rule:'Mochila',text:`Mochila cobre ${Math.round(ratio*100)}% das costas.`};
+}
 export function auditTorsoLayer(base,torso,layer){
  if(!torso?.every(Number.isFinite))return {level:'fail',rule:'Tronco',text:'Mochila sem âncora do tronco.'};
  const b=metrics(base).bounds,m=metrics(layer.image).bounds;if(!b||!m)return {level:'fail',rule:'Tronco',text:'Corpo ou mochila vazio.'};
@@ -146,7 +184,8 @@ export function auditTorsoLayer(base,torso,layer){
  if(bottom>b.y+b.h*.78)return {level:'fail',rule:'Tronco',text:'Mochila abaixo da cintura: confira o encaixe nas costas.'};
  const dx=torso[0]-layer.anchor[0],dy=torso[1]-layer.anchor[1];let total=0,touch=0;
  for(let y=0;y<layer.image.height;y++)for(let x=0;x<layer.image.width;x++){if(layer.image.data[(y*layer.image.width+x)*4+3]<128)continue;total++;const bx=x+dx,by=y+dy;if(bx>=0&&by>=0&&bx<base.width&&by<base.height&&base.data[(by*base.width+bx)*4+3]>=128)touch++;}
- if(!total||touch/total<.3)return {level:'fail',rule:'Tronco',text:'Mochila afastada do corpo: confira o encaixe nas costas.'};
+ // De frente a bolsa aparece atrás do ombro, então a sobreposição com o corpo pode ser menor que de costas.
+ if(!total||touch/total<.3)return {level:'fail',rule:'Tronco',text:'Mochila afastada do corpo: mais de 70% dela fora do corpo. Aproxime das costas.'};
  return {level:'ok',rule:'Tronco',text:'Mochila presa ao tronco, acima da cintura.'};
 }
 export function auditFrameLayer(base,layer,scale=SPEC.scale){
@@ -157,9 +196,9 @@ export function auditFrameLayer(base,layer,scale=SPEC.scale){
 // ---------- manifesto ----------
 export function manifest(project){
  const half=v=>v.map(n=>Math.round(n/SPEC.scale)),actions={};
- for(const [id,a] of Object.entries(project.actions)){const dirs={};for(const [dir,entry] of Object.entries(a.dirs)){if(entry.mirror){if(a.dirs[entry.mirror]?.frames?.length)dirs[dir]={mirror:entry.mirror};continue;}if(!entry.frames?.length)continue;dirs[dir]=entry.frames.map((f,i)=>({image:`base/${id}-${dir}-${i}.png`,head:f.head?half(f.head):null,...(f.torso?{torso:half(f.torso)}:{})}));}
-  if(Object.keys(dirs).length)actions[id]={ms:a.ms,loop:a.loop!==false,directions:dirs};}
- const layers={};for(const l of project.layers||[])layers[l.id]={kind:l.kind,slot:l.slot,images:Object.fromEntries(Object.keys(l.images||{}).map(dir=>[dir,`camadas/${l.id}-${dir}.png`])),...(l.kind!=='frames'?{anchor:Object.fromEntries(Object.entries(l.anchors||{}).map(([k,v])=>[k,half(v)]))}:{})};
+ for(const [id,a] of Object.entries(project.actions)){const dirs={};for(const [dir,entry] of Object.entries(a.dirs)){if(entry.mirror){if(a.dirs[entry.mirror]?.frames?.length)dirs[dir]={mirror:entry.mirror};continue;}if(!entry.frames?.length)continue;dirs[dir]=entry.frames.map((f,i)=>({image:`base/${id}-${dir}-${i}.png`,head:f.head?half(f.head):null,...(f.torso?{torso:half(f.torso)}:{}),...(f.hand?{hand:half(f.hand)}:{})}));}
+  if(Object.keys(dirs).length)actions[id]={ms:a.ms,loop:(a.loop??ACTIONS[id]?.loop)!==false,directions:dirs,...(ACTIONS[id]?.stairs?{stairs:{direction:ACTIONS[id].stairs,stepPx:STAIRS.rise/SPEC.scale,stepsPerCycle:2}}:{})};}
+ const layers={};for(const l of project.layers||[])layers[l.id]={kind:l.kind,slot:l.slot,images:Object.fromEntries(Object.keys(l.images||{}).map(dir=>[dir,`camadas/${l.id}-${dir}.png`])),...(l.lag?{lag:l.lag}:{}),...(l.kind!=='frames'?{anchor:Object.fromEntries(Object.entries(l.anchors||{}).map(([k,v])=>[k,half(v)]))}:{})};
  return {name:project.name,cell:[SPEC.cell/SPEC.scale,SPEC.cell/SPEC.scale],pivot:half(SPEC.pivot),scale:1,actions,layers,palette:'paleta.json',rulesVersion:RULES};
 }
 export function paletteJson(project){return {slots:project.slots.map(s=>({id:s.id,name:s.name,tones:s.tones,fixed:!!s.fixed})),variants:VARIANTS,rulesVersion:RULES};}

@@ -12,18 +12,18 @@ Quatro, todas diagonais da grade isométrica (26,57°): SE (frente-direita) e NE
 
 ## Etapas
 
-**Abrir avatar Kael v1** abre o projeto em `art/avatar/kael-v1/kael.avatarstudio.json`: parado e andar em SE/NE, esquerdas espelhadas, cabelo e mochila independentes. As cores podem ser trocadas em Aparência. É uma entrega para revisão artística, ainda sem consumidor no jogo; consulte o README ao lado do projeto. O piloto lateral antigo continua disponível para comparação.
+**? Como funciona** explica a bancada em quatro passos. À direita, **O que falta** lista os problemas por ordem de gravidade; **Ver** leva direto à etapa, animação, direção e quadro. Embaixo, a **prévia animada em tamanho real** mostra as quatro direções sempre andando com cabelo, mochila e cores; clique numa direção para editá-la.
 
-1. **Quadros.** Escolha ação e direção na lateral. Importe PNGs de 256 × 256 (em ordem de nome) ou uma folha com células de 256; quadros soltos de outro tamanho são encaixados pelo pé, sem ampliar. **Abrir piloto do Kael** carrega o andar do teste quadro a quadro em SE, só para testar a bancada (ele foi gerado de perfil). Escolha Cabeça ou Tronco / costas no inspetor para marcar sua âncora; para a cabeça, clique no centro do crânio (setas: 1 px; vírgula e ponto trocam de quadro). **Registrar pés no pivô** desloca os quadros sem escalar. SW e NW espelham SE e NE até receberem quadros próprios.
-2. **Paleta.** As cores da arte são agrupadas e cada grupo recebe grupo e tom da paleta-chave. A sugestão considera a cor e a altura em que ela aparece na figura (cabelo no alto, tênis embaixo); confira os azuis-marinhos e os tons de pele. À direita da prévia, vermelho é pixel sem grupo.
-3. **Camadas.** Cabelo (frente e trás) e acessório seguem a cabeça; mochila segue a âncora independente do tronco. Uma imagem por direção, presa à sua âncora; clique na prévia para acertar o ponto que vai no centro do crânio. Roupa de modelo: um PNG por quadro. Ao importar, a camada é convertida para as cores-chave dos grupos permitidos (acessório nunca usa pele).
-4. **Aparência.** Troque as rampas de cada grupo e veja a aparência escolhida ao lado de sete sorteadas, para conferir se uma troca de cor vaza para outro grupo.
+1. **Desenhos.** Escolha a animação na lateral. Ela está agrupada em Essenciais, Casa (escada, sentar, acordar, pegar, conversar) e Pipa (empinar, comemorar, perder); cada uma mostra só as direções que usa. Importe PNGs de 256 × 256 ou uma folha com células de 256. Cada quadro tem três **pontos de encaixe**: cabeça (rosa), costas (laranja) e mão (verde). Arraste o ponto na imagem ou clique onde ele deve ficar; **Mover em todos os quadros desta direção** desloca o ponto no ciclo inteiro. **Pontos automáticos** mede a cabeça pelo rosto e faz as **costas seguirem a cabeça**, o que evita que a mochila trema. Nas animações de escada, a guia mostra o degrau atual e o próximo.
+2. **Cores.** Cada cor do desenho recebe um grupo (pele, cabelo, jaqueta…). A sugestão considera a cor e a altura na figura; confira os azuis-marinhos e os tons de pele. Vermelho na imagem da direita é cor sem grupo.
+3. **Peças.** Cabelo, boné, mochila (bolsa), alças, carretel (na mão) e roupa de modelo. Selecione a peça e **arraste-a na imagem**: as cópias translúcidas mostram onde ela fica nos outros quadros. Peças presas às costas ou à mão podem ter **balanço** de 1 ou 2 quadros. As direções da esquerda espelham as da direita.
+4. **Visual final.** Troque as cores de cada grupo e compare com aparências sorteadas.
 
-**Baixar guia de quadros** gera a grade da animação (chão, pivô, topo da cabeça e linha dos olhos) e **Copiar pedido desta animação** traz o texto pronto para o Codex. Envie os dois junto com a folha de modelo.
+**Baixar guia para o Codex** e **Copiar pedido para o Codex** geram a grade e o texto da animação aberta, com a dica de movimento e a regra de cabelo e mochila separados. Pedido atual da mochila e das animações novas: [art/avatar/kael-v1/PEDIDO-MOCHILA-E-ANIMACOES.md](../../art/avatar/kael-v1/PEDIDO-MOCHILA-E-ANIMACOES.md).
 
 ## Conferência
 
-Por ação e direção: tamanho da célula, pé no pivô (± 2 px na autoria), paleta (no máximo 0,5 % fora), alpha, âncora presente e sem salto maior que 6 px entre quadros vizinhos, altura estável (aviso acima de 2 %, reprovação acima de 5 %), deriva de cabelo e mochila entre quadros vizinhos (redesenho da IA), cabelo preso à cabeça e roupa dentro da silhueta. A mochila é conferida no tronco e acima da cintura, sem receber a regra de contato do cabelo.
+Por ação e direção: tamanho da célula, pé no pivô (± 2 px na autoria), paleta (no máximo 0,5 % fora), alpha, âncora presente e sem salto maior que 6 px entre quadros vizinhos, altura estável (aviso acima de 2 %, reprovação acima de 5 %), deriva de cabelo e mochila entre quadros vizinhos (redesenho da IA), cabelo preso à cabeça e roupa dentro da silhueta. A mochila é conferida no tronco e acima da cintura; de frente, precisa aparecer atrás do ombro (ou ter alças) e, de costas, cobrir 65–85 % da largura das costas.
 
 ## Exportar
 

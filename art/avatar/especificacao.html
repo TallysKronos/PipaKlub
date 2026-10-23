@@ -75,6 +75,8 @@ footer{margin-top:56px;font-size:13px;color:var(--muted)}
   <li><a href="#grade">Grade do quadro</a></li>
   <li><a href="#direcoes">Direções no isométrico</a></li>
   <li><a href="#acoes">Ações e quadros</a></li>
+  <li><a href="#encaixes">Pontos de encaixe</a></li>
+  <li><a href="#mochila">Mochila</a></li>
   <li><a href="#paleta">Paleta-chave</a></li>
   <li><a href="#cabeca">Âncora da cabeça e cabelo</a></li>
   <li><a href="#roupas">Roupas de modelo</a></li>
@@ -148,17 +150,50 @@ footer{margin-top:56px;font-size:13px;color:var(--muted)}
 </ul>
 
 <h2 id="acoes">5. Ações e quadros</h2>
+<p>Desenhadas em frente-direita (SE) e costas-direita (NE); as da esquerda saem por espelho. "Uma vez" significa que a animação segura o último quadro.</p>
 <div class="table"><table>
- <thead><tr><th>Ação</th><th>Quadros</th><th>Duração</th><th>Direções</th><th>Fase</th></tr></thead>
+ <thead><tr><th>Grupo</th><th>Ação</th><th>Quadros</th><th>Duração</th><th>Direções</th><th>Toca</th><th>O que desenhar</th></tr></thead>
  <tbody>
-  <tr><td>Parado (respiração)</td><td class="num">4</td><td class="num">180 ms</td><td>SE, NE</td><td>v1</td></tr>
-  <tr><td>Andar</td><td class="num">8</td><td class="num">100 ms</td><td>SE, NE</td><td>v1</td></tr>
-  <tr><td>Correr</td><td class="num">6</td><td class="num">80 ms</td><td>SE, NE</td><td>v2</td></tr>
-  <tr><td>Empinar a pipa (puxar linha)</td><td class="num">4</td><td class="num">120 ms</td><td>NE</td><td>v2</td></tr>
-  <tr><td>Acenar, comemorar, dano</td><td class="num">4 cada</td><td class="num">110 ms</td><td>SE</td><td>v2</td></tr>
+  <tr><td>Essenciais</td><td>Parado</td><td class="num">4</td><td class="num">180 ms</td><td>SE, NE</td><td>repete</td><td>Respiração: tronco e cabeça sobem 1 px.</td></tr>
+  <tr><td>Essenciais</td><td>Andar</td><td class="num">8</td><td class="num">100 ms</td><td>SE, NE</td><td>repete</td><td>Quadro 1: pé da frente tocando o chão.</td></tr>
+  <tr><td>Essenciais</td><td>Correr</td><td class="num">6</td><td class="num">80 ms</td><td>SE, NE</td><td>repete</td><td>Corpo inclinado, braços dobrados, um quadro no ar.</td></tr>
+  <tr><td>Casa</td><td>Subir escada</td><td class="num">8</td><td class="num">110 ms</td><td>NE</td><td>repete</td><td>No lugar; o pé levantado pousa um degrau acima (ver abaixo).</td></tr>
+  <tr><td>Casa</td><td>Descer escada</td><td class="num">8</td><td class="num">110 ms</td><td>SE</td><td>repete</td><td>No lugar; o pé da frente pousa um degrau abaixo, olhar nos degraus.</td></tr>
+  <tr><td>Casa</td><td>Sentar</td><td class="num">4</td><td class="num">120 ms</td><td>SE, NE</td><td>uma vez</td><td>Em pé → sentado; quadril desce até 1 célula de altura (o assento).</td></tr>
+  <tr><td>Casa</td><td>Sentado</td><td class="num">2</td><td class="num">420 ms</td><td>SE, NE</td><td>repete</td><td>Respiração sentado, mesma pose do fim de Sentar.</td></tr>
+  <tr><td>Casa</td><td>Acordar (cama)</td><td class="num">6</td><td class="num">150 ms</td><td>SE</td><td>uma vez</td><td>Deitado → sentado na cama → em pé ao lado. Usado na abertura.</td></tr>
+  <tr><td>Casa</td><td>Pegar / tocar</td><td class="num">4</td><td class="num">110 ms</td><td>SE, NE</td><td>uma vez</td><td>Estende a mão, toca, volta. Quadro 3 = contato.</td></tr>
+  <tr><td>Casa</td><td>Conversar</td><td class="num">4</td><td class="num">170 ms</td><td>SE</td><td>repete</td><td>Gesto curto com uma mão.</td></tr>
+  <tr><td>Pipa</td><td>Empinar a pipa</td><td class="num">6</td><td class="num">120 ms</td><td>NE, SE</td><td>repete</td><td>Carretel nas mãos, puxa a linha; ponto da mão marcado em todos os quadros.</td></tr>
+  <tr><td>Pipa</td><td>Comemorar</td><td class="num">6</td><td class="num">100 ms</td><td>SE</td><td>uma vez</td><td>Pulo curto com braço para cima; pés voltam ao pivô.</td></tr>
+  <tr><td>Pipa</td><td>Perder</td><td class="num">4</td><td class="num">170 ms</td><td>SE</td><td>uma vez</td><td>Ombros caem, cabeça abaixa.</td></tr>
  </tbody>
 </table></div>
-<p>A v1 tem <b>24 quadros desenhados</b> (2 direções × 12); as 2 direções da esquerda saem por espelho. Nomes: <code>&lt;acao&gt;-&lt;direcao&gt;-&lt;n&gt;.png</code>, por exemplo <code>andar-e-0.png</code>. O quadro 0 do andar é o contato do pé da frente com o chão; o ciclo fecha no 7 sem repetir o 0.</p>
+<p>Ordem de produção recomendada: essenciais (já há parado e andar no Kael v1) → escada e sentar (a casa usa) → acordar (abertura) → pipa. Nomes dos arquivos: <code>&lt;acao&gt;-&lt;direcao&gt;-&lt;n&gt;.png</code>, por exemplo <code>subir-ne-0.png</code>.</p>
+<h3>Escada</h3>
+<p>A escada da casa sobe 4 células de altura em 8 degraus: <b>16 px por degrau no jogo (32 px na autoria)</b>, avançando 3/8 de célula por degrau. A animação é desenhada <b>no lugar</b>: o pé de apoio fica no pivô e o pé que se move pousa no próximo degrau, que a guia da bancada mostra em marrom. Um ciclo de 8 quadros sobe 2 degraus. O jogo é que desloca o personagem, 1 degrau a cada 4 quadros, então o desenho não pode "andar" para fora da célula. Subir é de costas (NE, espelhado em NW); descer é de frente (SE, espelhado em SW).</p>
+
+<h2 id="encaixes">5b. Pontos de encaixe</h2>
+<div class="table"><table>
+ <thead><tr><th>Ponto</th><th>Onde fica</th><th>Quem marca</th><th>Prende</th></tr></thead>
+ <tbody>
+  <tr><td><span class="pend" style="color:#c2367f;border-color:#c2367f">cabeça</span></td><td>Centro do crânio, na linha dos olhos</td><td>Automático pelo rosto (ou cabelo, de costas); conferir</td><td>Cabelo, boné, chapéu</td></tr>
+  <tr><td><span class="pend" style="color:#b86a12;border-color:#b86a12">costas</span></td><td>Meio das costas, entre as escápulas</td><td><b>Segue a cabeça</b> com deslocamento fixo por direção (não treme)</td><td>Mochila e alças</td></tr>
+  <tr><td><span class="pend" style="color:#2f8a5a;border-color:#2f8a5a">mão</span></td><td>Centro da mão que segura</td><td>Marcado à mão, quadro a quadro</td><td>Carretel, objetos</td></tr>
+ </tbody>
+</table></div>
+<p>Uma peça presa às costas pode ter <b>balanço</b>: ela usa a altura do ponto de 1 ou 2 quadros antes, como uma mochila que assenta depois do passo. A mochila usa balanço de 1 quadro.</p>
+
+<h2 id="mochila">5c. Mochila</h2>
+<p>A mochila não é um adesivo nas costas: ela tem volume atrás do corpo e alças na frente. Por isso são <b>duas peças presas às costas</b>:</p>
+<div class="table"><table>
+ <thead><tr><th>Peça</th><th>Frente-direita (SE)</th><th>Costas-direita (NE)</th></tr></thead>
+ <tbody>
+  <tr><td><b>Bolsa</b></td><td>Atrás do corpo; <b>15–40 % dela aparece</b> atrás do ombro esquerdo (lado da tela), topo na altura do ombro</td><td>Na frente das costas; <b>65–85 % da largura das costas</b>, do ombro até acima da cintura</td></tr>
+  <tr><td><b>Alças</b></td><td>Sobre a roupa: duas faixas descendo dos ombros pelo peito</td><td>Sobre os ombros, entrando por baixo da bolsa</td></tr>
+ </tbody>
+</table></div>
+<p>A bancada confere as duas medidas e avisa quando a mochila "some" de frente ou vira adesivo de costas. Cores: grupos <code>mochila</code>, <code>detalhe</code> e <code>contorno</code>.</p>
 
 <h2 id="paleta">6. Paleta-chave</h2>
 <p>O corpo base e as camadas são desenhados só com as cores abaixo. Cada <b>grupo</b> é uma rampa do escuro para o claro; a troca de aparência substitui a rampa inteira, tom a tom. Qualquer outra cor é erro de conferência.</p>

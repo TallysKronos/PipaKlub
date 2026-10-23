@@ -88,3 +88,20 @@ test('quatro diagonais seguem os eixos da grade 2:1, com espelhos à esquerda',a
  assert.equal(facingIso(0,0,'nw'),'nw');assert.deepEqual(DIRS,['se','ne','nw','sw']);assert.deepEqual(DRAWN,['se','ne']);
  for(const [d,m] of Object.entries(MIRROR))assert.deepEqual(ORDER[d],ORDER[m]);
 });
+test('mochila: costas estáveis, balanço atrasado, conferência de frente e de costas',async()=>{
+ const {steadyTorso,laggedMount,auditBackpack,actionDirs,composeFrame:compose}=await import('./model.mjs');
+ const frames=[0,2,4,2].map(b=>({image:figure(b),head:autoHead(figure(b))})),t=steadyTorso(frames);
+ // O ponto das costas acompanha exatamente o balanço da cabeça.
+ assert.deepEqual(t.map((p,i)=>p[1]-frames[i].head[1]),[0,0,0,0].map(()=>t[0][1]-frames[0].head[1]));
+ assert.deepEqual(laggedMount(t,1,1),[t[1][0],t[0][1]]);assert.deepEqual(laggedMount(t,0,1),[t[0][0],t[3][1]]);assert.deepEqual(laggedMount(t,2,0),t[2]);
+ const base=figure(0),torso=[128,150],small=paint(blank(40,40),0,0,20,20,tone('mochila',1)),big=paint(blank(60,60),0,0,56,56,tone('mochila',1));
+ // De frente, uma bolsa escondida inteira atrás do corpo some; deslocada para trás do ombro, aparece.
+ assert.equal(auditBackpack({base,torso,bag:{image:small,anchor:[10,10]},dir:'se'}).level,'warn');
+ assert.equal(auditBackpack({base,torso,bag:{image:small,anchor:[10,10]},straps:true,dir:'se'}).level,'ok');
+ assert.equal(auditBackpack({base,torso,bag:{image:big,anchor:[-10,40]},dir:'se'}).level,'ok');
+ assert.equal(auditBackpack({base,torso,bag:{image:small,anchor:[10,10]},dir:'ne'}).level,'warn');
+ assert.equal(auditBackpack({base,torso,bag:{image:big,anchor:[28,28]},dir:'ne'}).level,'ok');
+ assert.deepEqual(actionDirs('subir'),{ne:{frames:[]},nw:{mirror:'ne'}});assert.deepEqual(Object.keys(actionDirs('andar')),['se','sw','ne','nw']);
+ const cup=paint(blank(10,10),0,0,10,10,tone('detalhe',1)),out=compose({base,head:[128,80],hand:[60,150],dir:'se',layers:[{kind:'hand',slot:'mao',image:cup,anchor:[5,5]}]});
+ assert.equal(out.data[(150*256+60)*4+3],255);
+});
