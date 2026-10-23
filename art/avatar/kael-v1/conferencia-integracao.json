@@ -58,9 +58,9 @@
     ],
     "sentado-se": [
       {
-        "level": "warn",
-        "rule": "Altura",
-        "text": "Quadro 1: altura varia 3,1% da mediana."
+        "level": "ok",
+        "rule": "Quadros",
+        "text": "2 quadros conferidos: pivô, paleta, altura e cabeça."
       }
     ],
     "sentado-ne": [
@@ -182,7 +182,7 @@
       "i": 0,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila legível de frente (22% da bolsa à vista, com alças).",
+      "text": "Mochila legível de frente (37% da bolsa à vista, com alças).",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -195,7 +195,7 @@
       "i": 1,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila legível de frente (29% da bolsa à vista, com alças).",
+      "text": "Mochila legível de frente (41% da bolsa à vista, com alças).",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -208,7 +208,7 @@
       "i": 2,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila legível de frente (27% da bolsa à vista, com alças).",
+      "text": "Mochila legível de frente (40% da bolsa à vista, com alças).",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -221,7 +221,7 @@
       "i": 3,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila legível de frente (28% da bolsa à vista, com alças).",
+      "text": "Mochila legível de frente (45% da bolsa à vista, com alças).",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -234,7 +234,7 @@
       "i": 4,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila legível de frente (12% da bolsa à vista, com alças).",
+      "text": "Mochila legível de frente (35% da bolsa à vista, com alças).",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -247,7 +247,7 @@
       "i": 5,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila legível de frente (28% da bolsa à vista, com alças).",
+      "text": "Mochila legível de frente (42% da bolsa à vista, com alças).",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -260,7 +260,7 @@
       "i": 6,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila legível de frente (33% da bolsa à vista, com alças).",
+      "text": "Mochila legível de frente (44% da bolsa à vista, com alças).",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -273,7 +273,7 @@
       "i": 7,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila legível de frente (27% da bolsa à vista, com alças).",
+      "text": "Mochila legível de frente (51% da bolsa à vista, com alças).",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -286,7 +286,7 @@
       "i": 0,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila cobre 60% das costas.",
+      "text": "Mochila cobre 64% das costas.",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -299,7 +299,7 @@
       "i": 1,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila cobre 61% das costas.",
+      "text": "Mochila cobre 74% das costas.",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -312,7 +312,7 @@
       "i": 2,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila cobre 77% das costas.",
+      "text": "Mochila cobre 65% das costas.",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -325,7 +325,7 @@
       "i": 3,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila cobre 63% das costas.",
+      "text": "Mochila cobre 76% das costas.",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -338,7 +338,7 @@
       "i": 4,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila cobre 58% das costas.",
+      "text": "Mochila cobre 66% das costas.",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -351,7 +351,7 @@
       "i": 5,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila cobre 59% das costas.",
+      "text": "Mochila cobre 65% das costas.",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -364,7 +364,7 @@
       "i": 6,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila cobre 75% das costas.",
+      "text": "Mochila cobre 71% das costas.",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -377,7 +377,7 @@
       "i": 7,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila cobre 61% das costas.",
+      "text": "Mochila cobre 66% das costas.",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -598,7 +598,7 @@
       "i": 0,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila legível de frente (45% da bolsa à vista, com alças).",
+      "text": "Mochila legível de frente (28% da bolsa à vista, com alças).",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -611,7 +611,7 @@
       "i": 1,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila legível de frente (18% da bolsa à vista, com alças).",
+      "text": "Mochila legível de frente (19% da bolsa à vista, com alças).",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -624,7 +624,7 @@
       "i": 2,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila legível de frente (19% da bolsa à vista, com alças).",
+      "text": "Mochila legível de frente (22% da bolsa à vista, com alças).",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -637,7 +637,7 @@
       "i": 3,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila legível de frente (40% da bolsa à vista, com alças).",
+      "text": "Mochila legível de frente (39% da bolsa à vista, com alças).",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -663,7 +663,7 @@
       "i": 1,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila cobre 85% das costas.",
+      "text": "Mochila cobre 87% das costas.",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -676,7 +676,7 @@
       "i": 2,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila cobre 80% das costas.",
+      "text": "Mochila cobre 92% das costas.",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -689,7 +689,7 @@
       "i": 3,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila cobre 69% das costas.",
+      "text": "Mochila cobre 97% das costas.",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -700,6 +700,19 @@
       "action": "sentado",
       "dir": "se",
       "i": 0,
+      "level": "ok",
+      "rule": "Mochila",
+      "text": "Mochila legível de frente (40% da bolsa à vista, com alças).",
+      "torso": {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      }
+    },
+    {
+      "action": "sentado",
+      "dir": "se",
+      "i": 1,
       "level": "ok",
       "rule": "Mochila",
       "text": "Mochila legível de frente (39% da bolsa à vista, com alças).",
@@ -711,24 +724,11 @@
     },
     {
       "action": "sentado",
-      "dir": "se",
-      "i": 1,
-      "level": "ok",
-      "rule": "Mochila",
-      "text": "Mochila legível de frente (38% da bolsa à vista, com alças).",
-      "torso": {
-        "level": "ok",
-        "rule": "Tronco",
-        "text": "Mochila presa ao tronco, acima da cintura."
-      }
-    },
-    {
-      "action": "sentado",
       "dir": "ne",
       "i": 0,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila cobre 74% das costas.",
+      "text": "Mochila cobre 95% das costas.",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -741,7 +741,7 @@
       "i": 1,
       "level": "ok",
       "rule": "Mochila",
-      "text": "Mochila cobre 71% das costas.",
+      "text": "Mochila cobre 95% das costas.",
       "torso": {
         "level": "ok",
         "rule": "Tronco",
@@ -828,8 +828,8 @@
       "i": 0,
       "level": "ok",
       "rule": "Cabelo",
-      "text": "Cabelo preso à cabeça (79% da borda).",
-      "share": 0.7884615384615384
+      "text": "Cabelo preso à cabeça (73% da borda).",
+      "share": 0.7307692307692307
     },
     {
       "action": "andar",
@@ -837,8 +837,8 @@
       "i": 1,
       "level": "ok",
       "rule": "Cabelo",
-      "text": "Cabelo preso à cabeça (78% da borda).",
-      "share": 0.7788461538461539
+      "text": "Cabelo preso à cabeça (73% da borda).",
+      "share": 0.7307692307692307
     },
     {
       "action": "andar",
@@ -846,8 +846,8 @@
       "i": 2,
       "level": "ok",
       "rule": "Cabelo",
-      "text": "Cabelo preso à cabeça (78% da borda).",
-      "share": 0.7788461538461539
+      "text": "Cabelo preso à cabeça (73% da borda).",
+      "share": 0.7307692307692307
     },
     {
       "action": "andar",
@@ -855,8 +855,8 @@
       "i": 3,
       "level": "ok",
       "rule": "Cabelo",
-      "text": "Cabelo preso à cabeça (78% da borda).",
-      "share": 0.7788461538461539
+      "text": "Cabelo preso à cabeça (73% da borda).",
+      "share": 0.7307692307692307
     },
     {
       "action": "andar",
@@ -864,8 +864,8 @@
       "i": 4,
       "level": "ok",
       "rule": "Cabelo",
-      "text": "Cabelo preso à cabeça (78% da borda).",
-      "share": 0.7788461538461539
+      "text": "Cabelo preso à cabeça (77% da borda).",
+      "share": 0.7692307692307693
     },
     {
       "action": "andar",
@@ -873,8 +873,8 @@
       "i": 5,
       "level": "ok",
       "rule": "Cabelo",
-      "text": "Cabelo preso à cabeça (78% da borda).",
-      "share": 0.7788461538461539
+      "text": "Cabelo preso à cabeça (74% da borda).",
+      "share": 0.7403846153846154
     },
     {
       "action": "andar",
@@ -891,8 +891,8 @@
       "i": 7,
       "level": "ok",
       "rule": "Cabelo",
-      "text": "Cabelo preso à cabeça (78% da borda).",
-      "share": 0.7788461538461539
+      "text": "Cabelo preso à cabeça (76% da borda).",
+      "share": 0.7596153846153846
     },
     {
       "action": "andar",
@@ -927,8 +927,8 @@
       "i": 3,
       "level": "ok",
       "rule": "Cabelo",
-      "text": "Cabelo preso à cabeça (65% da borda).",
-      "share": 0.65
+      "text": "Cabelo preso à cabeça (62% da borda).",
+      "share": 0.62
     },
     {
       "action": "andar",
@@ -936,13 +936,22 @@
       "i": 4,
       "level": "ok",
       "rule": "Cabelo",
-      "text": "Cabelo preso à cabeça (63% da borda).",
-      "share": 0.63
+      "text": "Cabelo preso à cabeça (65% da borda).",
+      "share": 0.65
     },
     {
       "action": "andar",
       "dir": "ne",
       "i": 5,
+      "level": "ok",
+      "rule": "Cabelo",
+      "text": "Cabelo preso à cabeça (65% da borda).",
+      "share": 0.65
+    },
+    {
+      "action": "andar",
+      "dir": "ne",
+      "i": 6,
       "level": "ok",
       "rule": "Cabelo",
       "text": "Cabelo preso à cabeça (64% da borda).",
@@ -951,20 +960,11 @@
     {
       "action": "andar",
       "dir": "ne",
-      "i": 6,
-      "level": "ok",
-      "rule": "Cabelo",
-      "text": "Cabelo preso à cabeça (66% da borda).",
-      "share": 0.66
-    },
-    {
-      "action": "andar",
-      "dir": "ne",
       "i": 7,
       "level": "ok",
       "rule": "Cabelo",
-      "text": "Cabelo preso à cabeça (63% da borda).",
-      "share": 0.63
+      "text": "Cabelo preso à cabeça (64% da borda).",
+      "share": 0.64
     },
     {
       "action": "subir",
@@ -1116,8 +1116,8 @@
       "i": 0,
       "level": "ok",
       "rule": "Cabelo",
-      "text": "Cabelo preso à cabeça (87% da borda).",
-      "share": 0.8653846153846154
+      "text": "Cabelo preso à cabeça (80% da borda).",
+      "share": 0.7980769230769231
     },
     {
       "action": "sentar",
@@ -1125,8 +1125,8 @@
       "i": 1,
       "level": "ok",
       "rule": "Cabelo",
-      "text": "Cabelo preso à cabeça (86% da borda).",
-      "share": 0.8557692307692307
+      "text": "Cabelo preso à cabeça (79% da borda).",
+      "share": 0.7884615384615384
     },
     {
       "action": "sentar",
@@ -1134,8 +1134,8 @@
       "i": 2,
       "level": "ok",
       "rule": "Cabelo",
-      "text": "Cabelo preso à cabeça (86% da borda).",
-      "share": 0.8557692307692307
+      "text": "Cabelo preso à cabeça (79% da borda).",
+      "share": 0.7884615384615384
     },
     {
       "action": "sentar",
@@ -1143,8 +1143,8 @@
       "i": 3,
       "level": "ok",
       "rule": "Cabelo",
-      "text": "Cabelo preso à cabeça (82% da borda).",
-      "share": 0.8173076923076923
+      "text": "Cabelo preso à cabeça (78% da borda).",
+      "share": 0.7788461538461539
     },
     {
       "action": "sentar",
@@ -1152,8 +1152,8 @@
       "i": 0,
       "level": "ok",
       "rule": "Cabelo",
-      "text": "Cabelo preso à cabeça (81% da borda).",
-      "share": 0.81
+      "text": "Cabelo preso à cabeça (67% da borda).",
+      "share": 0.67
     },
     {
       "action": "sentar",
@@ -1170,8 +1170,8 @@
       "i": 2,
       "level": "ok",
       "rule": "Cabelo",
-      "text": "Cabelo preso à cabeça (71% da borda).",
-      "share": 0.71
+      "text": "Cabelo preso à cabeça (69% da borda).",
+      "share": 0.69
     },
     {
       "action": "sentar",
@@ -1179,8 +1179,8 @@
       "i": 3,
       "level": "ok",
       "rule": "Cabelo",
-      "text": "Cabelo preso à cabeça (81% da borda).",
-      "share": 0.81
+      "text": "Cabelo preso à cabeça (69% da borda).",
+      "share": 0.69
     },
     {
       "action": "sentado",
@@ -1188,8 +1188,8 @@
       "i": 0,
       "level": "ok",
       "rule": "Cabelo",
-      "text": "Cabelo preso à cabeça (82% da borda).",
-      "share": 0.8173076923076923
+      "text": "Cabelo preso à cabeça (78% da borda).",
+      "share": 0.7788461538461539
     },
     {
       "action": "sentado",
@@ -1197,8 +1197,8 @@
       "i": 1,
       "level": "ok",
       "rule": "Cabelo",
-      "text": "Cabelo preso à cabeça (83% da borda).",
-      "share": 0.8269230769230769
+      "text": "Cabelo preso à cabeça (78% da borda).",
+      "share": 0.7788461538461539
     },
     {
       "action": "sentado",
@@ -1206,8 +1206,8 @@
       "i": 0,
       "level": "ok",
       "rule": "Cabelo",
-      "text": "Cabelo preso à cabeça (81% da borda).",
-      "share": 0.81
+      "text": "Cabelo preso à cabeça (69% da borda).",
+      "share": 0.69
     },
     {
       "action": "sentado",
@@ -1215,8 +1215,8 @@
       "i": 1,
       "level": "ok",
       "rule": "Cabelo",
-      "text": "Cabelo preso à cabeça (73% da borda).",
-      "share": 0.73
+      "text": "Cabelo preso à cabeça (69% da borda).",
+      "share": 0.69
     }
   ],
   "rows": [

@@ -1,0 +1,114 @@
+{
+  "tool": "builtin image generation, source references from this repository",
+  "shell": "native Iso Studio geometry, flat renderer",
+  "pieces": [
+    {
+      "id": "sofa",
+      "pack": "kael-home-iso-v1",
+      "source": "art/avatar/kael-v1/source/sala-flat-v2-sofa.png",
+      "box": [
+        160,
+        154
+      ],
+      "anchor": [
+        64,
+        154
+      ],
+      "normalization": "one uniform scale, bottom aligned; no column warping"
+    },
+    {
+      "id": "mesa-centro",
+      "pack": "kael-home-iso-v1",
+      "source": "art/avatar/kael-v1/source/sala-flat-v2-mesa-centro.png",
+      "box": [
+        96,
+        83
+      ],
+      "anchor": [
+        48,
+        83
+      ],
+      "normalization": "one uniform scale, bottom aligned; no column warping"
+    },
+    {
+      "id": "mesa-jantar",
+      "pack": "kael-home-iso-v1",
+      "source": "art/avatar/kael-v1/source/sala-flat-v2-mesa-jantar.png",
+      "box": [
+        160,
+        128
+      ],
+      "anchor": [
+        96,
+        128
+      ],
+      "normalization": "one uniform scale, bottom aligned; no column warping"
+    },
+    {
+      "id": "cozinha",
+      "pack": "kael-home-iso-v1",
+      "source": "art/avatar/kael-v1/source/sala-flat-v2-cozinha.png",
+      "box": [
+        160,
+        192
+      ],
+      "anchor": [
+        128,
+        192
+      ],
+      "normalization": "one uniform scale, bottom aligned; no column warping"
+    },
+    {
+      "id": "cama",
+      "pack": "kael-bedroom-iso-v4",
+      "source": "art/avatar/kael-v1/source/quarto-flat-v2-cama.png",
+      "box": [
+        192,
+        160
+      ],
+      "anchor": [
+        64,
+        160
+      ],
+      "normalization": "one uniform scale, bottom aligned; no column warping"
+    },
+    {
+      "id": "guarda-roupa",
+      "pack": "kael-bedroom-iso-v4",
+      "source": "art/avatar/kael-v1/source/quarto-flat-v2-guarda-roupa.png",
+      "box": [
+        96,
+        176
+      ],
+      "anchor": [
+        64,
+        176
+      ],
+      "normalization": "one uniform scale, bottom aligned; no column warping"
+    },
+    {
+      "id": "mesa",
+      "pack": "kael-bedroom-iso-v4",
+      "source": "art/avatar/kael-v1/source/quarto-flat-v2-mesa.png",
+      "box": [
+        160,
+        128
+      ],
+      "anchor": [
+        96,
+        128
+      ],
+      "normalization": "one uniform scale, bottom aligned; no column warping"
+    },
+    {
+      "id": "escada",
+      "pack": "kael-home-iso-v1",
+      "source": "art/avatar/kael-v1/source/escada-flat-v3.png",
+      "box": [
+        160,
+        208
+      ],
+      "normalization": "one uniform scale; eight treads; no column warping"
+    }
+  ]
+}

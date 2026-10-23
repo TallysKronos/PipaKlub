@@ -18,7 +18,14 @@ export function createBedroomIsometricRenderer(scene,images,pack,model,createCan
  poly([Q(0,V),Q(U,V),Q(U,V,-.18),Q(0,V,-.18)],'#9c6c48');poly([Q(U,0),Q(U,V),Q(U,V,-.18),Q(U,0,-.18)],'#79583e');
  poly([Q(0,0),Q(U,0),Q(U,0,5),Q(0,0,5)],'#f5e8c7');poly([Q(0,0),Q(0,V),Q(0,V,5),Q(0,0,5)],'#dfd7b6');
  for(const z of [.12,.24,4.88]){c.strokeStyle=z>4?'#fff2d6':'#ab8357';c.lineWidth=z>4?3:2;c.beginPath();c.moveTo(...Q(0,V,z));c.lineTo(...Q(0,0,z));c.lineTo(...Q(U,0,z));c.stroke();}
- if(images[prefix+'casca'])c.drawImage(images[prefix+'casca'],origin.x,origin.y);
+ // Render the editable Iso Studio shell directly: shared geometry and flat tones,
+ // without the old painted shell's grain competing with the cel-shaded furniture.
+ if(home){
+  // A handmade kite on the back wall, following its actual isometric plane.
+  const k=(u,z)=>Q(8.8+u,0,3.2+z),center=k(0,0),top=k(0,.75),right=k(.55,0),bottom=k(0,-.75),left=k(-.55,0);
+  poly([top,right,center],'#e4b35b','#294b53');poly([right,bottom,center],'#347e85','#294b53');poly([bottom,left,center],'#f0d79a','#294b53');poly([left,top,center],'#c86744','#294b53');
+  c.strokeStyle='#294b53';c.lineWidth=1;c.beginPath();c.moveTo(...bottom);for(let i=1;i<=8;i++)c.lineTo(...k(Math.sin(i*.8)*.09,-.75-i*.09));c.stroke();
+ }
  for(const p of pieces.filter(p=>p.kind==='floor'&&!p.elevation)){
   const r=BedroomIso.footprintRect(p),points=[[r.u0,r.v0],[r.u1,r.v0],[r.u1,r.v1],[r.u0,r.v1]].map(([u,v])=>{const q=Q(u,v);return [q[0]+1,q[1]+3];});poly(points,'#533e2625',null);
  }
@@ -35,10 +42,16 @@ export function createBedroomIsometricRenderer(scene,images,pack,model,createCan
   hits=[];g.imageSmoothingEnabled=false;g.drawImage(ground,gx,gy);
   const items=pieces.map(p=>({id:p.id,p,layer:p.kind==='flat'?'flat':p.kind.startsWith('wall')?'wall':null,rect:BedroomIso.footprintRect(p)}));
   for(const e of entries){const u=(e.x-layout.floor.x)/96,v=(e.y-layout.floor.y)/96;items.push({id:'actor',e,rect:{u0:u-.12,u1:u+.12,v0:v-.12,v1:v+.12}});}
-  const ordered=BedroomIso.drawOrder(items),playerIndex=ordered.findIndex(item=>item.e&&Math.abs(item.e.x-actor.x)<.01&&Math.abs(item.e.y-actor.y)<.01),playerPoint=P(actor);
+  const ordered=BedroomIso.drawOrder(items);
+  // A seated/climbing actor is supported by this prop, so it must draw over it.
+  for(const item of [...ordered])if(item.e?.avatarPose?.support){const support=ordered.find(q=>q.p?.id===item.e.avatarPose.support);if(support){ordered.splice(ordered.indexOf(item),1);ordered.splice(ordered.indexOf(support)+1,0,item);}}
+  const playerIndex=ordered.findIndex(item=>item.e&&(item.e.type==='player'||Math.abs(item.e.x-actor.x)<.01&&Math.abs(item.e.y-actor.y)<.01)),playerPoint=P(actor);
   for(const [drawIndex,item] of ordered.entries()){
-   if(item.e){const e=item.e,s=P(e);g.save();g.fillStyle='#253e4930';g.beginPath();g.ellipse(s.x,s.y,11,4,0,0,Math.PI*2);g.fill();g.restore();e.draw(s);if(e.action)hits.push({x:s.x-24,y:s.y-95,w:48,h:95,action:e.action});continue;}
-   const p=item.p,b=placed(p),im=images[prefix+p.id],occludes=p.kind==='floor'&&playerIndex>=0&&drawIndex>playerIndex&&contains({x:playerPoint.x,y:playerPoint.y-50},b);if(im){g.save();if(occludes)g.globalAlpha=.3;g.drawImage(im,b.x,b.y);g.restore();}
+   if(item.e){const e=item.e,s=P(e),pose=e.avatarPose;g.save();
+    if(pose?.clip==='stairwell'&&!home){const hole=layout.stairwell,left=P({x:hole.x,y:hole.y+hole.h}),right=P({x:hole.x+hole.w,y:hole.y}),front=P({x:hole.x+hole.w,y:hole.y+hole.h});g.beginPath();g.moveTo(left.x,-2048);g.lineTo(right.x,-2048);g.lineTo(right.x,right.y);g.lineTo(front.x,front.y);g.lineTo(left.x,left.y);g.closePath();g.clip();}
+    if(pose?.support==='sofa'&&pose.seatAmount>0){g.fillStyle='#102e3d40';g.beginPath();g.ellipse(s.x,s.y-(pose.lift||0)-27,11*pose.seatAmount,3*pose.seatAmount,0,0,Math.PI*2);g.fill();}
+    if(!pose?.support){g.fillStyle='#253e4930';g.beginPath();g.ellipse(s.x,s.y,11,4,0,0,Math.PI*2);g.fill();}e.draw(s);g.restore();if(e.action)hits.push({x:s.x-24,y:s.y-95,w:48,h:95,action:e.action});continue;}
+   const p=item.p,b=placed(p),im=images[prefix+p.id],occludes=p.kind==='floor'&&playerIndex>=0&&drawIndex>playerIndex&&!ordered[playerIndex].e.avatarPose?.clip&&ordered[playerIndex].e.avatarPose?.support!==p.id&&contains({x:playerPoint.x,y:playerPoint.y-50},b);if(im){g.save();if(occludes)g.globalAlpha=.3;g.drawImage(im,b.x,b.y);g.restore();}
    const hotspot=mapId[p.id];if(hotspot)hits.push({...b,...actionFor(hotspot)});
   }
   // Guardrail is a separate foreground support, on the opening's exposed edge.

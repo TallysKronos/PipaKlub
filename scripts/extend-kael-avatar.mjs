@@ -17,7 +17,7 @@ export async function publish(project){
 if(process.argv[1]?.replaceAll('\\','/').endsWith('/extend-kael-avatar.mjs')){
  const source=`${art}/source/mochila-duas-pecas.png`,bag=p.layers.find(l=>l.slot==='mochila');
  const straps={id:'alcas-mochila',name:'Alças da mochila',slot:'alcas',kind:'torso',mirror:true,on:true,images:{},anchors:{},frames:{}};
- for(const [i,dir,w,h,anchor] of [[0,'se',40,44,bag.anchors.se],[1,'ne',60,64,[30,42]],[2,'se',48,36,[24,12]],[3,'ne',60,22,[30,44]]]){
+ for(const [i,dir,w,h,anchor] of [[0,'se',40,44,bag.anchors.se],[1,'ne',60,64,[30,42]],[2,'se',34,34,[17,12]],[3,'ne',60,22,[30,44]]]){
   const layer=i<2?bag:straps,img=keyed(await fitted(await cell(source,4,1,i),w,h),['contorno','mochila','detalhe']);layer.images[dir]='data:image/png;base64,'+(await png(img)).toString('base64');layer.anchors[dir]=anchor;
  }
  bag.lag=1;p.layers=p.layers.filter(l=>l.slot!=='alcas');p.layers.push(straps);await publish(p);console.log('Published backpack and straps; original mounts preserved.');

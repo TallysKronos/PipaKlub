@@ -1,4 +1,32 @@
-## Integração de 23/10/2026
+## Correções da auditoria v3 · 23/10/2026
+
+Estado atual em [CORRECOES-V3.md](CORRECOES-V3.md): desembarques compartilhados, assento mais profundo, casca nativa com cores chapadas, escada redesenhada, rampa de cabelo Preto revisada e bancada com zoom/rolagem e campos em uma coluna. As fontes de caminhada v5 substituem as v4; eliminam os avisos de altura, mas a alternância anatômica ainda precisa de revisão artística. Não considerar a ausência de avisos técnicos uma aprovação final da caminhada. Suíte atual: 442/443, com a reprovação geométrica histórica da sala preservada. Sem deploy.
+
+As seções abaixo registram as versões anteriores.
+
+---
+
+## Revisão visual v2 · 23/10/2026
+
+A descida agora segue a abertura da escada e recorta o personagem na borda do piso: ele não caminha para fora da plataforma. O móvel de apoio define a ordem de desenho; a cama permanece sólida durante a descida. São 280 ms de aproximação e 3,52 s nos oito degraus.
+
+Sentar e levantar deslocam o contato gradualmente entre piso e assento. Clique no piso ou movimento solicita levantar e só libera a próxima caminhada ao terminar. A prévia também caminha até o sofá e a escada antes de iniciar a interação, sem teleporte de depuração.
+
+Os 16 desenhos de andar e os 12 de sentar/sentado foram revisados. A pose sentada tem tronco ereto e pernas à frente. As alças frontais medem 34×34 na autoria, com âncora (17,12). A fase da caminhada acompanha a distância realmente percorrida e pausa quando parado. A alternância anatômica da passada ainda merece refinamento artístico: esta revisão não a certifica como final.
+
+Sete móveis principais receberam cores mais chapadas: sofá, mesa de centro, mesa de jantar, cozinha, cama, guarda-roupa e escrivaninha. Piso, paredes, escadas e detalhes menores continuam com a arte anterior. As imagens preservam suas caixas nativas e âncoras, com escala uniforme; não houve deformação por colunas. Fontes e dimensões estão em `interiores-v2.json`.
+
+Fontes geradas com a ferramenta integrada de imagens a partir da identidade do projeto: `source/andar-{se,ne}-v4.png`, `source/sentar-{se,ne}-v2.png`, `source/sala-flat-v2.png` e `source/quarto-flat-v2.png`. A preparação técnica separa componentes conexos, normaliza escala por sequência e associa a paleta. A evidência `revisao-v2-cenario.png` mostra o assento na sala; `revisao-v2-descida.png` mostra a oclusão pela abertura.
+
+Validação: 441/442 testes aprovados, incluindo contatos, saída contínua do sofá, passos por distância e recorte restaurado após desenhar. Permanece a reprovação anterior de `home-layout.test.mjs`, que consulta o relatório geométrico histórico da sala. Build Worker, build Pages e `audit:world` concluídos. O auditor dos 52 desenhos não encontrou falhas de cabelo/mochila; o aviso sentado SE foi eliminado. Restam três avisos de altura na caminhada (2,2%, 3,5% e 2,9%). Não houve deploy nesta revisão.
+
+Reprodução da revisão atual, na raiz: `node scripts/extend-kael-avatar.mjs`, `node scripts/build-kael-home-actions.mjs`, `node scripts/polish-kael-interiors.mjs`, `node scripts/audit-kael-avatar.mjs`, `node build.mjs` e `node build-pages.mjs`. O preparador de ações usa as fontes v2 por padrão; `--legacy-source` seleciona o conjunto anterior. Prévia local: `AVATAR_REVIEW_PORT=5248` com `node tools/avatar-studio/game-review-server.mjs` (em PowerShell, defina a variável via `$env:AVATAR_REVIEW_PORT='5248'`).
+
+As seções abaixo são o histórico anterior à revisão v2, inclusive seus números de testes e limitações daquele momento.
+
+---
+
+## Integração de 23/10/2026 (anterior à revisão v2)
 
 O pacote atual contém 52 desenhos: os 24 aprovados de parado/andar e 28 novos de subir, descer, sentar e sentado. Há três peças: cabelo, bolsa e alças. As quatro direções usam SE/NE desenhadas e espelhos SW/NW; escadas têm uma orientação desenhada e seu espelho.
 

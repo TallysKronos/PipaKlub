@@ -41,7 +41,7 @@ export const SLOTS=[
  {id:'olhos',name:'Olhos',tones:['#ffffff','#2a1a10'],fixed:true}];
 export const VARIANTS={
  pele:[['Mel',null],['Claro',['#b8705a','#e3a184','#f6c6a8','#fde3cf']],['Castanho',['#5e321c','#8a4d2c','#b06d3f','#cf9161']],['Escuro',['#2e1810','#4a2818','#6b3c22','#8c5532']]],
- cabelo:[['Azul-noite',null],['Preto',['#0a0a10','#17171f','#26262f','#3a3a46']],['Castanho',['#2a160c','#4a2a16','#6e4322','#94622f']],['Cobre',['#4a1a0a','#8a3612','#c45a1c','#e8843a']]],
+ cabelo:[['Azul-noite',null],['Preto',['#10151e','#242b38','#404b5b','#667284']],['Castanho',['#2a160c','#4a2a16','#6e4322','#94622f']],['Cobre',['#4a1a0a','#8a3612','#c45a1c','#e8843a']]],
  jaqueta:[['Azul',null],['Terracota',['#6e2a16','#a8442a','#d0683f','#ec9a6c']],['Verde-mata',['#163a24','#245a36','#3a7d4c','#62a670']],['Mostarda',['#6e4c0c','#a87a16','#d4a22c','#ecc864']]],
  camiseta:[['Preta',null],['Creme',['#a89a7c','#d6c8a4','#f2e8cc']],['Branca',['#9aa4b0','#d4dbe2','#f6f8fa']]],
  calca:[['Jeans',null],['Caqui',['#6a5a3a','#958058','#bfa97c']],['Preta',['#14161c','#252830','#3a3e4a']]],

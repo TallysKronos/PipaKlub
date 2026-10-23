@@ -127,14 +127,14 @@
             ],
             "torso": [
               64,
-              77
+              76
             ]
           },
           {
             "image": "base/andar-se-1.png",
             "head": [
               64,
-              45
+              46
             ],
             "torso": [
               64,
@@ -145,33 +145,33 @@
             "image": "base/andar-se-2.png",
             "head": [
               64,
-              46
+              45
             ],
             "torso": [
               64,
-              77
+              75
             ]
           },
           {
             "image": "base/andar-se-3.png",
             "head": [
               64,
-              47
+              46
             ],
             "torso": [
               64,
-              78
+              76
             ]
           },
           {
             "image": "base/andar-se-4.png",
             "head": [
               64,
-              47
+              46
             ],
             "torso": [
               64,
-              78
+              76
             ]
           },
           {
@@ -182,18 +182,18 @@
             ],
             "torso": [
               64,
-              77
+              76
             ]
           },
           {
             "image": "base/andar-se-6.png",
             "head": [
               64,
-              47
+              46
             ],
             "torso": [
               64,
-              78
+              76
             ]
           },
           {
@@ -204,7 +204,7 @@
             ],
             "torso": [
               64,
-              77
+              76
             ]
           }
         ],
@@ -216,18 +216,18 @@
               46
             ],
             "torso": [
-              64,
-              76
+              65,
+              74
             ]
           },
           {
             "image": "base/andar-ne-1.png",
             "head": [
               64,
-              46
+              48
             ],
             "torso": [
-              64,
+              65,
               76
             ]
           },
@@ -235,66 +235,66 @@
             "image": "base/andar-ne-2.png",
             "head": [
               64,
-              47
+              46
             ],
             "torso": [
-              64,
-              77
+              65,
+              74
             ]
           },
           {
             "image": "base/andar-ne-3.png",
             "head": [
               64,
-              48
+              46
             ],
             "torso": [
-              64,
-              78
+              65,
+              74
             ]
           },
           {
             "image": "base/andar-ne-4.png",
             "head": [
               64,
-              46
+              47
             ],
             "torso": [
-              64,
-              76
+              65,
+              75
             ]
           },
           {
             "image": "base/andar-ne-5.png",
             "head": [
               64,
-              46
+              47
             ],
             "torso": [
-              64,
-              76
+              65,
+              75
             ]
           },
           {
             "image": "base/andar-ne-6.png",
             "head": [
               64,
-              46
+              47
             ],
             "torso": [
-              64,
-              76
+              65,
+              75
             ]
           },
           {
             "image": "base/andar-ne-7.png",
             "head": [
               64,
-              48
+              47
             ],
             "torso": [
-              64,
-              78
+              65,
+              75
             ]
           }
         ],
@@ -526,40 +526,40 @@
               46
             ],
             "torso": [
-              62,
-              70
+              67,
+              72
             ]
           },
           {
             "image": "base/sentar-se-1.png",
             "head": [
-              67,
-              50
+              64,
+              49
             ],
             "torso": [
-              65,
-              74
+              67,
+              75
             ]
           },
           {
             "image": "base/sentar-se-2.png",
             "head": [
-              66,
-              55
+              64,
+              53
             ],
             "torso": [
-              64,
+              67,
               79
             ]
           },
           {
             "image": "base/sentar-se-3.png",
             "head": [
-              62,
-              52
+              64,
+              50
             ],
             "torso": [
-              60,
+              67,
               76
             ]
           }
@@ -575,41 +575,41 @@
               46
             ],
             "torso": [
-              65,
-              72
+              68,
+              73
             ]
           },
           {
             "image": "base/sentar-ne-1.png",
             "head": [
-              66,
-              54
+              64,
+              47
             ],
             "torso": [
-              67,
-              80
+              68,
+              74
             ]
           },
           {
             "image": "base/sentar-ne-2.png",
             "head": [
-              66,
-              59
+              64,
+              50
             ],
             "torso": [
-              67,
-              85
+              68,
+              77
             ]
           },
           {
             "image": "base/sentar-ne-3.png",
             "head": [
-              62,
-              55
+              64,
+              53
             ],
             "torso": [
-              63,
-              81
+              68,
+              80
             ]
           }
         ],
@@ -626,23 +626,23 @@
           {
             "image": "base/sentado-se-0.png",
             "head": [
-              62,
-              52
+              64,
+              50
             ],
             "torso": [
-              60,
+              67,
               76
             ]
           },
           {
             "image": "base/sentado-se-1.png",
             "head": [
-              63,
-              54
+              64,
+              50
             ],
             "torso": [
-              61,
-              78
+              67,
+              76
             ]
           }
         ],
@@ -653,22 +653,22 @@
           {
             "image": "base/sentado-ne-0.png",
             "head": [
-              62,
-              55
+              64,
+              53
             ],
             "torso": [
-              63,
-              81
+              68,
+              80
             ]
           },
           {
             "image": "base/sentado-ne-1.png",
             "head": [
-              62,
-              54
+              64,
+              53
             ],
             "torso": [
-              63,
+              68,
               80
             ]
           }
@@ -726,7 +726,7 @@
       },
       "anchor": {
         "se": [
-          12,
+          9,
           6
         ],
         "ne": [

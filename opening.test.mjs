@@ -77,7 +77,7 @@ test('walking into the opening staircase advances without requiring an interacti
  const ui=openingUI();await ui.settle();await ui.run("playerAccount={profile:{id:'door-walker',nickname:'Kael'},inventory:[]};openingOwner='door-walker';openingState={step:11};showOpening(false)");
  ui.run("openingReplay=true;openingActor={x:528,y:786,direction:0,path:[]};openingWalkKeys.arrowdown=true;openingWalkKeys.arrowleft=true;openingStepRoom(.05);openingStepRoom(.05);");await ui.settle();
  assert.equal(ui.run('openingState.step'),11);assert.equal(ui.run('openingAvatarActivity.state.kind'),'stairs');assert.equal(ui.run('Object.keys(openingWalkKeys).length'),0);
- ui.run('for(let i=0;i<36;i++)openingStepCast(.1)');await ui.settle();assert.equal(ui.run('openingState.step'),12);assert.equal(ui.run('openingAvatarActivity'),null);
+ ui.run('for(let i=0;i<39;i++)openingStepCast(.1)');await ui.settle();assert.equal(ui.run('openingState.step'),12);assert.equal(ui.run('openingAvatarActivity'),null);
 });
 
 test('classic staging gates the gift, keeps walking on the floor and reaches both exits with a following partner',async()=>{
