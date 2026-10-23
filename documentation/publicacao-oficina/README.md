@@ -1,5 +1,13 @@
 # Publicação da Oficina das Almas
 
+## Atualização de produção — 23/10/2026
+
+O responsável autorizou explicitamente aplicar 024/025 e publicar no Render. As duas migrações foram executadas em uma transação pelo pacote [aplicar-024-025.sql](aplicar-024-025.sql), SHA-256 `3cba11a167e3190547a86315dea42dacd769ac5ba59f7c7dfacaafd880621e0c`.
+
+Verificação posterior: tabelas, função com suporte à nota do papel, permissão de authenticated e bloqueio de anon confirmados. Clientes não têm acesso direto às tabelas de montagens e recibos; a constelação antiga foi desabilitada. Contagens de preservação: 2 perfis e 65 itens na coleção antes e depois. Não havia rituais antigos ativos no momento da aplicação.
+
+O cliente é publicado a partir da `main` pelo serviço `pipaklub` no Render. Confirmar o estado **Live** do commit publicado antes de considerar o deploy concluído. [Guia para o jogador](COMO-JOGAR.md).
+
 > Continuação local de 23/10/2026: a revisão atual substitui a escavação da silhueta por uma bancada neutra de fabricação. Ver [bancada v2](../../art/workshop-v2/README.md). Classes comum/incomum/rara têm gabaritos próprios, e a espécie só aparece no nascimento. O fluxo idempotente 024/025 é preservado; não há nova migração nesta revisão. Produção continua pendente de autorização/publicação coordenada. Os números e capturas abaixo descrevem as entregas históricas; a auditoria atual está no README v2.
 
 ## Pacote preparado
