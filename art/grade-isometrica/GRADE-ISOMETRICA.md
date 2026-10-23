@@ -1,5 +1,7 @@
 # Grade isométrica do PipaKlub
 
+Versão completa (com tabelas, modelos de pedido, manifesto e critérios de reprovação): [`especificacao.html`](especificacao.html).
+
 Regra para cenários e móveis isométricos (casa e quarto do Kael, Parque dos Ventos e os próximos). Vale para quem desenha ou gera arte (GPT, Codex, artista) e para quem integra. Proposta de 23/10/2026; os itens com ⚑ precisam de aprovação.
 
 ## Por que o quarto saiu desalinhado
