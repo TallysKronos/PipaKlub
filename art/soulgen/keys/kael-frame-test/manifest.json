@@ -1,0 +1,212 @@
+{
+  "schema": "soulgen-frame-test-v1",
+  "name": "Kael · Teste quadro a quadro",
+  "direction": "east",
+  "method": "Oito poses completas raster, sem rotação ou deformação de membros.",
+  "scope": "Teste de movimento: uma roupa e um cabelo. Ainda não contém camadas de customização.",
+  "image": "/art/soulgen/keys/kael-frame-test/walk-east-atlas.png",
+  "cell": 256,
+  "columns": 4,
+  "rows": 2,
+  "anchor": [
+    128,
+    224
+  ],
+  "scale": 0.5,
+  "nativeHeight": 96,
+  "cycleMs": 800,
+  "frames": [
+    {
+      "id": "east-0",
+      "x": 0,
+      "y": 0,
+      "w": 256,
+      "h": 256,
+      "duration": 100,
+      "source": {
+        "left": 0,
+        "top": 0,
+        "width": 444,
+        "height": 465,
+        "headX": 235,
+        "floor": 448,
+        "head": 67,
+        "opaque": 53787
+      },
+      "registration": {
+        "scale": 0.5,
+        "dx": 11,
+        "dy": 0
+      },
+      "sha256": "c148b6139bac0850a67474dfe75d6bc4c5e9d2815110e368045588f2a3c5fcfe"
+    },
+    {
+      "id": "east-1",
+      "x": 256,
+      "y": 0,
+      "w": 256,
+      "h": 256,
+      "duration": 100,
+      "source": {
+        "left": 444,
+        "top": 0,
+        "width": 443,
+        "height": 465,
+        "headX": 232,
+        "floor": 447,
+        "head": 71,
+        "opaque": 53068
+      },
+      "registration": {
+        "scale": 0.5,
+        "dx": 12,
+        "dy": 0
+      },
+      "sha256": "9ea6b0bf751b7c9fd33e25321e9490f35e7461fdbc5d851c2df3a8b704319159"
+    },
+    {
+      "id": "east-2",
+      "x": 512,
+      "y": 0,
+      "w": 256,
+      "h": 256,
+      "duration": 100,
+      "source": {
+        "left": 887,
+        "top": 0,
+        "width": 444,
+        "height": 465,
+        "headX": 212,
+        "floor": 448,
+        "head": 70,
+        "opaque": 48864
+      },
+      "registration": {
+        "scale": 0.5,
+        "dx": 22,
+        "dy": 0
+      },
+      "sha256": "30fc5e883ec232e5972f1a1accadfec00cab2a79cb05999f0c773b938614a1e0"
+    },
+    {
+      "id": "east-3",
+      "x": 768,
+      "y": 0,
+      "w": 256,
+      "h": 256,
+      "duration": 100,
+      "source": {
+        "left": 1331,
+        "top": 0,
+        "width": 443,
+        "height": 465,
+        "headX": 213,
+        "floor": 448,
+        "head": 66,
+        "opaque": 53530
+      },
+      "registration": {
+        "scale": 0.5,
+        "dx": 22,
+        "dy": 0
+      },
+      "sha256": "cc01ecbcf33899ed85f10dd5be1e1f612469fa101cbdf68359a5816daf58a5d5"
+    },
+    {
+      "id": "east-4",
+      "x": 0,
+      "y": 256,
+      "w": 256,
+      "h": 256,
+      "duration": 100,
+      "source": {
+        "left": 0,
+        "top": 465,
+        "width": 444,
+        "height": 422,
+        "headX": 234,
+        "floor": 390,
+        "head": 16,
+        "opaque": 52067
+      },
+      "registration": {
+        "scale": 0.5,
+        "dx": 11,
+        "dy": 30
+      },
+      "sha256": "412fae578a9b2b97c0ee145f87d355e9841bc127f1633c4f5a553667f399dad4"
+    },
+    {
+      "id": "east-5",
+      "x": 256,
+      "y": 256,
+      "w": 256,
+      "h": 256,
+      "duration": 100,
+      "source": {
+        "left": 444,
+        "top": 465,
+        "width": 443,
+        "height": 422,
+        "headX": 231,
+        "floor": 388,
+        "head": 16,
+        "opaque": 51702
+      },
+      "registration": {
+        "scale": 0.5,
+        "dx": 13,
+        "dy": 30
+      },
+      "sha256": "ae3fb6c6c0fd0842fc7a15e10bddf25c749a992bc68931d7dc6c51698589afd1"
+    },
+    {
+      "id": "east-6",
+      "x": 512,
+      "y": 256,
+      "w": 256,
+      "h": 256,
+      "duration": 100,
+      "source": {
+        "left": 887,
+        "top": 465,
+        "width": 444,
+        "height": 422,
+        "headX": 212,
+        "floor": 388,
+        "head": 16,
+        "opaque": 49278
+      },
+      "registration": {
+        "scale": 0.5,
+        "dx": 22,
+        "dy": 31
+      },
+      "sha256": "18659e64d05cd28b42adb419338d9e130df4d38b1c5b27177586321bd5a91319"
+    },
+    {
+      "id": "east-7",
+      "x": 768,
+      "y": 256,
+      "w": 256,
+      "h": 256,
+      "duration": 100,
+      "source": {
+        "left": 1331,
+        "top": 465,
+        "width": 443,
+        "height": 422,
+        "headX": 213,
+        "floor": 390,
+        "head": 15,
+        "opaque": 51939
+      },
+      "registration": {
+        "scale": 0.5,
+        "dx": 22,
+        "dy": 29
+      },
+      "sha256": "fbc22a2dbfd5b9a049ca832a79e047372883032724660f6e3b1c65874e006df0"
+    }
+  ]
+}

@@ -71,8 +71,10 @@ test('campaign saves isolate accounts, enforce 30 + 20 capacities, reset safely 
 
 test('direct input covers floor between graph nodes and collides without tunnelling or diagonal speed gain',()=>{
  const scene=artConfig().courtyard.world.scenes.quintal,nav=createWorldNavigation(scene),actor=nav.create(),before={...actor};
- nav.move(actor,{x:1,y:1},.1);assert.ok(nav.geometry.safe(actor));assert.ok(Math.hypot(actor.x-before.x,actor.y-before.y)<=14.501);
- Object.assign(actor,{x:500,y:560});for(let i=0;i<200;i++)nav.move(actor,{x:0,y:-1},.1);assert.ok(nav.geometry.safe(actor));assert.ok(actor.y>=490&&actor.y<560,'garden wall blocks direct north movement');
+ nav.move(actor,{x:1,y:1},.1);assert.ok(nav.geometry.safe(actor));assert.ok(Math.hypot(actor.x-before.x,actor.y-before.y)<=24.001);
+ // The expanded street now reaches the porch at y=640, instead of the old
+ // garden boundary. Start on its authored floor and sweep towards that edge.
+ Object.assign(actor,{x:480,y:736});for(let i=0;i<200;i++)nav.move(actor,{x:0,y:-1},.1);assert.ok(nav.geometry.safe(actor));assert.ok(actor.y>=650&&actor.y<736,'porch boundary blocks direct north movement');
  nav.move(actor,{x:0,y:0},.1);assert.equal(actor.moving,false);
 });
 

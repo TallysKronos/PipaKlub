@@ -1,0 +1,439 @@
+{
+  "revision": 2,
+  "cell": 320,
+  "directions": [
+    "south",
+    "west",
+    "east",
+    "north"
+  ],
+  "sourceCrops": {
+    "south": {
+      "head": [
+        50,
+        45,
+        345,
+        320
+      ],
+      "spiky": [
+        395,
+        15,
+        440,
+        345
+      ],
+      "blue": [
+        840,
+        100,
+        370,
+        260
+      ],
+      "blueRight": [
+        1280,
+        70,
+        175,
+        290
+      ],
+      "blueLeft": [
+        120,
+        380,
+        170,
+        280
+      ],
+      "legRight": [
+        510,
+        380,
+        235,
+        295
+      ],
+      "legLeft": [
+        845,
+        380,
+        240,
+        295
+      ],
+      "backpack": [
+        1200,
+        400,
+        310,
+        280
+      ],
+      "curly": [
+        25,
+        675,
+        410,
+        300
+      ],
+      "clay": [
+        490,
+        690,
+        390,
+        275
+      ],
+      "clayLeft": [
+        975,
+        695,
+        165,
+        270
+      ],
+      "clayRight": [
+        1280,
+        695,
+        165,
+        270
+      ]
+    },
+    "east": {
+      "head": [
+        75,
+        65,
+        270,
+        285
+      ],
+      "spiky": [
+        410,
+        65,
+        365,
+        285
+      ],
+      "blue": [
+        865,
+        105,
+        245,
+        250
+      ],
+      "blueRight": [
+        1260,
+        95,
+        165,
+        280
+      ],
+      "blueLeft": [
+        130,
+        390,
+        170,
+        270
+      ],
+      "legRight": [
+        530,
+        405,
+        225,
+        260
+      ],
+      "legLeft": [
+        870,
+        405,
+        220,
+        260
+      ],
+      "backpack": [
+        1210,
+        400,
+        270,
+        260
+      ],
+      "curly": [
+        40,
+        680,
+        360,
+        300
+      ],
+      "clay": [
+        510,
+        680,
+        270,
+        280
+      ],
+      "clayLeft": [
+        940,
+        690,
+        170,
+        275
+      ],
+      "clayRight": [
+        1300,
+        690,
+        165,
+        275
+      ]
+    },
+    "north": {
+      "head": [
+        55,
+        45,
+        335,
+        310
+      ],
+      "spiky": [
+        415,
+        25,
+        420,
+        345
+      ],
+      "blue": [
+        860,
+        95,
+        320,
+        270
+      ],
+      "blueRight": [
+        1290,
+        80,
+        165,
+        290
+      ],
+      "blueLeft": [
+        120,
+        385,
+        170,
+        285
+      ],
+      "legRight": [
+        535,
+        385,
+        180,
+        290
+      ],
+      "legLeft": [
+        895,
+        385,
+        180,
+        290
+      ],
+      "backpack": [
+        1195,
+        405,
+        310,
+        275
+      ],
+      "curly": [
+        30,
+        695,
+        405,
+        305
+      ],
+      "clay": [
+        480,
+        685,
+        340,
+        290
+      ],
+      "clayLeft": [
+        935,
+        690,
+        165,
+        290
+      ],
+      "clayRight": [
+        1285,
+        690,
+        160,
+        290
+      ]
+    }
+  },
+  "bindArtRects": {
+    "south": {
+      "head": [
+        166,
+        108,
+        180,
+        176
+      ],
+      "hair": [
+        143,
+        43,
+        226,
+        170
+      ],
+      "body": [
+        186,
+        258,
+        140,
+        120
+      ],
+      "armLeft": [
+        174,
+        269,
+        54,
+        125
+      ],
+      "armRight": [
+        284,
+        269,
+        54,
+        125
+      ],
+      "legLeft": [
+        200,
+        354,
+        56,
+        88
+      ],
+      "legRight": [
+        256,
+        354,
+        56,
+        88
+      ],
+      "backpack": [
+        201,
+        266,
+        110,
+        105
+      ]
+    },
+    "east": {
+      "head": [
+        184,
+        100,
+        170,
+        176
+      ],
+      "hair": [
+        165,
+        40,
+        200,
+        170
+      ],
+      "body": [
+        210,
+        258,
+        122,
+        120
+      ],
+      "armLeft": [
+        228,
+        264,
+        54,
+        112
+      ],
+      "armRight": [
+        228,
+        264,
+        54,
+        112
+      ],
+      "legLeft": [
+        234,
+        354,
+        62,
+        88
+      ],
+      "legRight": [
+        234,
+        354,
+        62,
+        88
+      ],
+      "backpack": [
+        179,
+        271,
+        94,
+        100
+      ]
+    },
+    "north": {
+      "head": [
+        166,
+        108,
+        180,
+        176
+      ],
+      "hair": [
+        143,
+        35,
+        226,
+        230
+      ],
+      "body": [
+        186,
+        258,
+        140,
+        120
+      ],
+      "armLeft": [
+        174,
+        269,
+        54,
+        125
+      ],
+      "armRight": [
+        284,
+        269,
+        54,
+        125
+      ],
+      "legLeft": [
+        200,
+        354,
+        56,
+        88
+      ],
+      "legRight": [
+        256,
+        354,
+        56,
+        88
+      ],
+      "backpack": [
+        204,
+        279,
+        104,
+        98
+      ]
+    }
+  },
+  "assetSlots": {
+    "head-mel": "head",
+    "leg-left-mel": "legLeft",
+    "leg-right-mel": "legRight",
+    "body-blue-mel": "body",
+    "arm-left-blue-mel": "armLeft",
+    "arm-right-blue-mel": "armRight",
+    "body-clay-mel": "body",
+    "arm-left-clay-mel": "armLeft",
+    "arm-right-clay-mel": "armRight",
+    "head-claro": "head",
+    "leg-left-claro": "legLeft",
+    "leg-right-claro": "legRight",
+    "body-blue-claro": "body",
+    "arm-left-blue-claro": "armLeft",
+    "arm-right-blue-claro": "armRight",
+    "body-clay-claro": "body",
+    "arm-left-clay-claro": "armLeft",
+    "arm-right-clay-claro": "armRight",
+    "head-castanho": "head",
+    "leg-left-castanho": "legLeft",
+    "leg-right-castanho": "legRight",
+    "body-blue-castanho": "body",
+    "arm-left-blue-castanho": "armLeft",
+    "arm-right-blue-castanho": "armRight",
+    "body-clay-castanho": "body",
+    "arm-left-clay-castanho": "armLeft",
+    "arm-right-clay-castanho": "armRight",
+    "head-escuro": "head",
+    "leg-left-escuro": "legLeft",
+    "leg-right-escuro": "legRight",
+    "body-blue-escuro": "body",
+    "arm-left-blue-escuro": "armLeft",
+    "arm-right-blue-escuro": "armRight",
+    "body-clay-escuro": "body",
+    "arm-left-clay-escuro": "armLeft",
+    "arm-right-clay-escuro": "armRight",
+    "hair-spiky-navy": "hair",
+    "hair-spiky-brown": "hair",
+    "hair-spiky-black": "hair",
+    "hair-spiky-copper": "hair",
+    "hair-curly-navy": "hair",
+    "hair-curly-brown": "hair",
+    "hair-curly-black": "hair",
+    "hair-curly-copper": "hair",
+    "backpack": "backpack"
+  },
+  "paletteAlphaInvariant": true,
+  "validation": {
+    "ok": true,
+    "errors": [],
+    "warnings": []
+  }
+}

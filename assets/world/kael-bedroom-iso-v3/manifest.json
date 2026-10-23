@@ -1,0 +1,310 @@
+{
+  "name": "Quarto de Kael · madeira e vento",
+  "grid": {
+    "cell": [
+      64,
+      32
+    ],
+    "height": 32,
+    "scale": 1
+  },
+  "room": {
+    "cells": [
+      10,
+      8
+    ],
+    "wall": 5,
+    "image": null,
+    "origin": [
+      256,
+      160
+    ]
+  },
+  "pieces": {
+    "tapete": {
+      "image": "tapete.png",
+      "size": [
+        256,
+        128
+      ],
+      "kind": "flat",
+      "footprint": [
+        5,
+        3
+      ],
+      "height": 0,
+      "anchor": [
+        160,
+        128
+      ],
+      "cell": [
+        8,
+        6
+      ],
+      "rulesVersion": "grade-iso-1"
+    },
+    "abertura-escada": {
+      "image": "abertura-escada.png",
+      "size": [
+        160,
+        80
+      ],
+      "kind": "flat",
+      "footprint": [
+        3,
+        2
+      ],
+      "height": 0,
+      "anchor": [
+        96,
+        80
+      ],
+      "cell": [
+        3,
+        8
+      ],
+      "rulesVersion": "grade-iso-1"
+    },
+    "janela": {
+      "image": "janela.png",
+      "size": [
+        64,
+        80
+      ],
+      "kind": "wallLeft",
+      "footprint": [
+        2
+      ],
+      "height": 1.5,
+      "anchor": [
+        0,
+        80
+      ],
+      "cell": [
+        0,
+        4
+      ],
+      "elevation": 2.2,
+      "wall": "esquerda",
+      "rulesVersion": "grade-iso-1"
+    },
+    "quadros": {
+      "image": "quadros.png",
+      "size": [
+        64,
+        64
+      ],
+      "kind": "wallRight",
+      "footprint": [
+        2
+      ],
+      "height": 1,
+      "anchor": [
+        64,
+        64
+      ],
+      "cell": [
+        9.5,
+        0
+      ],
+      "elevation": 2.4,
+      "wall": "direita",
+      "rulesVersion": "grade-iso-1"
+    },
+    "cama": {
+      "image": "cama.png",
+      "size": [
+        192,
+        160
+      ],
+      "kind": "floor",
+      "footprint": [
+        2,
+        4
+      ],
+      "height": 2,
+      "anchor": [
+        64,
+        160
+      ],
+      "cell": [
+        2,
+        5
+      ],
+      "rulesVersion": "grade-iso-1"
+    },
+    "estante": {
+      "image": "estante.png",
+      "size": [
+        128,
+        106
+      ],
+      "kind": "floor",
+      "footprint": [
+        3,
+        1
+      ],
+      "height": 1.3,
+      "anchor": [
+        96,
+        106
+      ],
+      "cell": [
+        5,
+        1
+      ],
+      "rulesVersion": "grade-iso-1"
+    },
+    "tv": {
+      "image": "tv.png",
+      "size": [
+        80,
+        82
+      ],
+      "kind": "floor",
+      "footprint": [
+        1.5,
+        1
+      ],
+      "height": 1.3,
+      "anchor": [
+        48,
+        82
+      ],
+      "cell": [
+        4.5,
+        1
+      ],
+      "elevation": 1.3,
+      "rulesVersion": "grade-iso-1"
+    },
+    "guarda-roupa": {
+      "image": "guarda-roupa.png",
+      "size": [
+        96,
+        176
+      ],
+      "kind": "floor",
+      "footprint": [
+        2,
+        1
+      ],
+      "height": 4,
+      "anchor": [
+        64,
+        176
+      ],
+      "cell": [
+        7,
+        1
+      ],
+      "rulesVersion": "grade-iso-1"
+    },
+    "mesa": {
+      "image": "mesa.png",
+      "size": [
+        160,
+        128
+      ],
+      "kind": "floor",
+      "footprint": [
+        3,
+        2
+      ],
+      "height": 1.5,
+      "anchor": [
+        96,
+        128
+      ],
+      "cell": [
+        10,
+        2
+      ],
+      "rulesVersion": "grade-iso-1"
+    }
+  },
+  "images": {
+    "bedroom-tapete": {
+      "image": "world/kael-bedroom-iso-v3/tapete.png",
+      "width": 256,
+      "height": 128,
+      "pivot": [
+        0.625,
+        1
+      ]
+    },
+    "bedroom-abertura-escada": {
+      "image": "world/kael-bedroom-iso-v3/abertura-escada.png",
+      "width": 160,
+      "height": 80,
+      "pivot": [
+        0.6,
+        1
+      ]
+    },
+    "bedroom-janela": {
+      "image": "world/kael-bedroom-iso-v3/janela.png",
+      "width": 64,
+      "height": 80,
+      "pivot": [
+        0,
+        1
+      ]
+    },
+    "bedroom-quadros": {
+      "image": "world/kael-bedroom-iso-v3/quadros.png",
+      "width": 64,
+      "height": 64,
+      "pivot": [
+        1,
+        1
+      ]
+    },
+    "bedroom-cama": {
+      "image": "world/kael-bedroom-iso-v3/cama.png",
+      "width": 192,
+      "height": 160,
+      "pivot": [
+        0.3333333333333333,
+        1
+      ]
+    },
+    "bedroom-estante": {
+      "image": "world/kael-bedroom-iso-v3/estante.png",
+      "width": 128,
+      "height": 106,
+      "pivot": [
+        0.75,
+        1
+      ]
+    },
+    "bedroom-tv": {
+      "image": "world/kael-bedroom-iso-v3/tv.png",
+      "width": 80,
+      "height": 82,
+      "pivot": [
+        0.6,
+        1
+      ]
+    },
+    "bedroom-guarda-roupa": {
+      "image": "world/kael-bedroom-iso-v3/guarda-roupa.png",
+      "width": 96,
+      "height": 176,
+      "pivot": [
+        0.6666666666666666,
+        1
+      ]
+    },
+    "bedroom-mesa": {
+      "image": "world/kael-bedroom-iso-v3/mesa.png",
+      "width": 160,
+      "height": 128,
+      "pivot": [
+        0.6,
+        1
+      ]
+    }
+  },
+  "provenance": "Editable code-native SVG, measured with Iso Studio model; binary-alpha raster export."
+}

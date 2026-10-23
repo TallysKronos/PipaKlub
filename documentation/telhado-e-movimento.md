@@ -1,0 +1,9 @@
+# Telhado completo e caminhada mais ágil
+
+O usuário apontou a empena triangular exposta, que dava aparência de cobertura incompleta. As três fachadas passaram de duas para quatro águas. As faces laterais recebem telhas e acabamento nos espigões, cumeeira e beirais. A base, o pivô da porta e a pegada permanecem os mesmos. A geometria e os projetos do Iso Studio são reproduzidos por `scripts/build-village-grid-art.mjs`, usando as pinturas já existentes.
+
+Na exploração, a velocidade padrão passa de 145 para 240 unidades por segundo (+65,5%). Os quatro interiores medidos usam 360 unidades por segundo, declaradas na propriedade Tiled `walk_speed`; isso compensa a projeção mais reduzida e facilita atravessar os ambientes. A abertura usa o mesmo ritmo de 360, antes 260. Teclas, controle e rotas por clique usam o mesmo orçamento de movimento. A física mantém passos curtos, validação dos segmentos e limite de tempo por frame; o parceiro continua seguindo o histórico do jogador.
+
+Testes novos verificam quatro faces telhadas por fachada, incluindo os dois lados triangulares, velocidade real por segundo nas duas faixas, igualdade de teclas/cliques, diagonal normalizada e bloqueio por parede fina com parceiro seguro. Os limites de deslocamento dos testes antigos foram atualizados para as velocidades novas, preservando a verificação contra teletransporte e atravessamento de obstáculos.
+
+89 testes direcionados aprovados em `.local/roof-speed-tests.log`, builds Worker/Pages concluídos e captura no navegador em `documentation/evidence/roof-speed/telhado-final.png`. O passeio pela rua, entrada na casa do professor e retorno foram conferidos com o parceiro. Revisão local em `127.0.0.1:5243`, sem publicação ou alterações de progresso/coleção. A falha geométrica anterior dos móveis da sala de Kael continua registrada separadamente.

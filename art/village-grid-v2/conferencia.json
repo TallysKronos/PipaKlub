@@ -1,0 +1,723 @@
+{
+  "scene": {
+    "facades": [],
+    "professor-home": [],
+    "kite-shop": []
+  },
+  "pieces": [
+    {
+      "id": "house",
+      "footprint": [
+        7,
+        6
+      ],
+      "height": 10.5,
+      "door": [
+        3.9,
+        5.75
+      ],
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R5",
+          "text": "Âncora encostada no piso."
+        }
+      ],
+      "geometry": "projected from 64×32×32 vertices",
+      "sha256": "e4329ca0d3084489daa247a121abaecaf2f6c1ea6d378ff4cf5ca8349a9669f2"
+    },
+    {
+      "id": "professorHouse",
+      "footprint": [
+        7,
+        5
+      ],
+      "height": 7.5,
+      "door": [
+        3.9,
+        4.75
+      ],
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R5",
+          "text": "Âncora encostada no piso."
+        }
+      ],
+      "geometry": "projected from 64×32×32 vertices",
+      "sha256": "f9c1d630bf66de2a6adde10bb0a01a13d46deb6247105206fe21e7a1681ee36b"
+    },
+    {
+      "id": "shop",
+      "footprint": [
+        7,
+        5
+      ],
+      "height": 7.5,
+      "door": [
+        3.9,
+        4.75
+      ],
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R5",
+          "text": "Âncora encostada no piso."
+        }
+      ],
+      "geometry": "projected from 64×32×32 vertices",
+      "sha256": "42d7d26d57319330bd7a695007c1fb71efed58412082c82feab0e44d246149bd"
+    },
+    {
+      "id": "assis-rug",
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        }
+      ],
+      "sha256": "52a0c118d26e08091da6523e42199549e6dc0350327466feed31ed356441cabb"
+    },
+    {
+      "id": "assis-library",
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R5",
+          "text": "Âncora encostada no piso."
+        }
+      ],
+      "sha256": "c35208e76232a8d746f4280b3d2e0aedac14bd09adf950beeefeae21442f383b"
+    },
+    {
+      "id": "assis-study",
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R5",
+          "text": "Âncora encostada no piso."
+        }
+      ],
+      "sha256": "c35208e76232a8d746f4280b3d2e0aedac14bd09adf950beeefeae21442f383b"
+    },
+    {
+      "id": "assis-workbench",
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R5",
+          "text": "Âncora encostada no piso."
+        }
+      ],
+      "sha256": "8bfe501d9920ce08eac74165fa14ed6b0391f6b12ec99e3819b7c764bdad199c"
+    },
+    {
+      "id": "assis-desk",
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R5",
+          "text": "Âncora encostada no piso."
+        }
+      ],
+      "sha256": "9c160dfa1f9bb153c9365cc779425b43f338197405ebc4549fed006556552dc5"
+    },
+    {
+      "id": "assis-chest",
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R5",
+          "text": "Âncora encostada no piso."
+        }
+      ],
+      "sha256": "83bf42ecd3f5672fed85beea561ec2369d113ee3c220cd48c4e7a14a6fdb3a89"
+    },
+    {
+      "id": "assis-window",
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (base) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R5",
+          "text": "Âncora encostada no piso."
+        }
+      ],
+      "sha256": "c2bfa7fa9ccc001993069c55cd18bfad7c8d6e53383c549dd0d6e4ae664ac2b5"
+    },
+    {
+      "id": "assis-papers",
+      "verdict": "warn",
+      "items": [
+        {
+          "level": "warn",
+          "rule": "R7",
+          "text": "18% dos pixels visíveis são semitransparentes: halo ou antialias na borda."
+        },
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "warn",
+          "rule": "R3",
+          "text": "Não preenche a caixa: margem de 3 px à esquerda, 6 à direita e 6 embaixo."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (base) em 2:1."
+        },
+        {
+          "level": "warn",
+          "rule": "R5",
+          "text": "Nenhum pixel junto à âncora: a peça pode flutuar ou a base está recortada."
+        }
+      ],
+      "sha256": "b806b3569305e59ac3ef651ac22cb8eabe15830c1999f2d3a625a102973d597f"
+    },
+    {
+      "id": "assis-exit",
+      "verdict": "warn",
+      "items": [
+        {
+          "level": "warn",
+          "rule": "R7",
+          "text": "15% dos pixels visíveis são semitransparentes: halo ou antialias na borda."
+        },
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        }
+      ],
+      "sha256": "5f3304db78c37d89bf31723c98cf76fe0939748e655656c2b1987e2a4b4dfe47"
+    },
+    {
+      "id": "shop-rug",
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        }
+      ],
+      "sha256": "52a0c118d26e08091da6523e42199549e6dc0350327466feed31ed356441cabb"
+    },
+    {
+      "id": "shop-library",
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R5",
+          "text": "Âncora encostada no piso."
+        }
+      ],
+      "sha256": "b4a78b2a3c4a694ee5fccf4a39e54a6dc5e65c0ae8b0377c718643ec70973185"
+    },
+    {
+      "id": "shop-study",
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R5",
+          "text": "Âncora encostada no piso."
+        }
+      ],
+      "sha256": "b4a78b2a3c4a694ee5fccf4a39e54a6dc5e65c0ae8b0377c718643ec70973185"
+    },
+    {
+      "id": "shop-counter",
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R5",
+          "text": "Âncora encostada no piso."
+        }
+      ],
+      "sha256": "ea90dda080e63a1a8af8196aeede50da89b39536ed0f5006596341f320ef3d03"
+    },
+    {
+      "id": "shop-workbench",
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R5",
+          "text": "Âncora encostada no piso."
+        }
+      ],
+      "sha256": "8bfe501d9920ce08eac74165fa14ed6b0391f6b12ec99e3819b7c764bdad199c"
+    },
+    {
+      "id": "shop-rack",
+      "verdict": "warn",
+      "items": [
+        {
+          "level": "warn",
+          "rule": "R7",
+          "text": "19% dos pixels visíveis são semitransparentes: halo ou antialias na borda."
+        },
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R5",
+          "text": "Âncora encostada no piso."
+        }
+      ],
+      "sha256": "f48f178929d60b3962a8591da8437c72b10024272b10fce7914ff27330d0c0f9"
+    },
+    {
+      "id": "shop-chest",
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R5",
+          "text": "Âncora encostada no piso."
+        }
+      ],
+      "sha256": "83bf42ecd3f5672fed85beea561ec2369d113ee3c220cd48c4e7a14a6fdb3a89"
+    },
+    {
+      "id": "shop-window",
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (base) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R5",
+          "text": "Âncora encostada no piso."
+        }
+      ],
+      "sha256": "c2bfa7fa9ccc001993069c55cd18bfad7c8d6e53383c549dd0d6e4ae664ac2b5"
+    },
+    {
+      "id": "shop-exit",
+      "verdict": "warn",
+      "items": [
+        {
+          "level": "warn",
+          "rule": "R7",
+          "text": "15% dos pixels visíveis são semitransparentes: halo ou antialias na borda."
+        },
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        }
+      ],
+      "sha256": "5f3304db78c37d89bf31723c98cf76fe0939748e655656c2b1987e2a4b4dfe47"
+    }
+  ],
+  "notes": "Raster envelope heuristics are reported separately from exact geometry. They cannot approve or reject style; inspect the actual game."
+}

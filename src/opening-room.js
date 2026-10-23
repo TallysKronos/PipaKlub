@@ -1,8 +1,8 @@
 // Local room interaction only. No account, inventory or reward writes.
 export function createOpeningRoom(room){
- const radius=14,rects=room.walkable,blocked=room.blocked||[],speed=260;
+ const radius=14,rects=room.walkable,blocked=room.blocked||[],speed=360;
  const inside=(x,y)=>rects.some(([rx,ry,w,h])=>x>=rx&&x<=rx+w&&y>=ry&&y<=ry+h);
- const safe=p=>Number.isFinite(p?.x)&&Number.isFinite(p?.y)&&[-radius,0,radius].every(dx=>[-radius,0,radius].every(dy=>inside(p.x+dx,p.y+dy)))&&!blocked.some(([x,y,w,h])=>p.x+radius>=x&&p.x-radius<=x+w&&p.y+radius>=y&&p.y-radius<=y+h);
+ const safe=p=>Number.isFinite(p?.x)&&Number.isFinite(p?.y)&&[-radius,0,radius].every(dx=>[-radius,0,radius].every(dy=>inside(p.x+dx,p.y+dy)))&&!blocked.some(([x,y,w,h])=>p.x+radius>x&&p.x-radius<x+w&&p.y+radius>y&&p.y-radius<y+h);
  const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
  function clear(a,b){const steps=Math.ceil(distance(a,b));for(let i=0;i<=steps;i++){const t=steps?i/steps:0;if(!safe({x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t}))return false;}return true;}
  function route(from,to){

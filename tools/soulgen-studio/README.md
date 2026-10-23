@@ -1,4 +1,8 @@
-# Soulgen Studio — ateliê de criaturas
+# Soulgen Studio — ateliê de animação
+
+## Kael: avatar do jogador
+
+**Projeto e biblioteca → Abrir Kael · Avatar modular** abre oito peças ilustradas, seis ações e controles de pele, cabelo e roupa. O painel oferece 64 combinações sem alterar pivôs e animações. Projeto portátil, fontes, contrato e limites de integração em [Kael modular](../../art/soulgen/keys/kael/README.md). A revisão 2 inclui frente, costas e dois perfis no seletor Direção, com atlas de 480 quadros. A persistência de aparência no jogo ainda precisa de integração. Consulte [revisão 2 e auditoria de pixels](../../art/soulgen/keys/kael-v2/README.md).
 
 Execute `npm run studio:sprites` e abra http://127.0.0.1:5240/. A ferramenta é independente do servidor do jogo. O ateliê de tiles também oferece um atalho para ela; ambos os servidores precisam estar ligados.
 

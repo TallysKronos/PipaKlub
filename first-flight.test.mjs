@@ -34,13 +34,24 @@ test('walking enters doors automatically, latches the return portal and pauses u
  const ui=journeyUI();await ui.settle();
  ui.run("playerAccount={profile:{id:'doors',nickname:'Kael'},inventory:[]};journey={phase:'complete'};journeyOwner='doors';openingState={step:14};showCourtyard();refreshWorldHUD();");
  await ui.run('loadWorldImage(worldRuntime.id)');
- ui.run("var door=worldScene().places.find(p=>p.target==='kael-home'),point=worldState().navigation.nodes[door.node];worldState().navigation.target(worldState().actor,{x:point.x,y:point.y+40},true);worldKeys.add('arrowup');drawWorldScene($('courtyardCanvas').getContext('2d'),100,.1);drawWorldScene($('courtyardCanvas').getContext('2d'),200,.1);");
+ ui.run("var door=worldScene().places.find(p=>p.target==='kael-home'),point=worldState().navigation.nodes[door.node];worldState().navigation.target(worldState().actor,{x:point.x,y:point.y+40},true);worldKeys.add('arrowup');worldKeys.add('arrowright');drawWorldScene($('courtyardCanvas').getContext('2d'),100,.1);drawWorldScene($('courtyardCanvas').getContext('2d'),200,.1);");
  assert.equal(ui.run('worldRuntime.id'),'kael-home');await ui.run('loadWorldImage(worldRuntime.id)');
- ui.run("worldKeys.add('arrowdown');drawWorldScene($('courtyardCanvas').getContext('2d'),300,.1);");
+ ui.run("worldKeys.add('arrowdown');worldKeys.add('arrowleft');drawWorldScene($('courtyardCanvas').getContext('2d'),300,.1);");
  assert.equal(ui.run('worldRuntime.id'),'kael-home','the reciprocal spawn does not bounce straight back outside');
  ui.run("worldClearWalking();var still={x:worldState().actor.x,y:worldState().actor.y};openHomeMenu();worldKeys.add('arrowleft');drawWorldScene($('courtyardCanvas').getContext('2d'),400,.1);");
  assert.equal(ui.run('worldState().actor.x===still.x&&worldState().actor.y===still.y'),true);
  assert.equal(ui.run('worldKeys.size'),0);
+});
+
+test('returning from the park lands inside the square and a shop route does not re-enter the park',async()=>{
+ const ui=journeyUI();await ui.settle();
+ ui.run("playerAccount={profile:{id:'park-return',nickname:'Kael'},inventory:[]};journey={phase:'complete'};journeyOwner='park-return';openingState={step:14};showCourtyard();refreshWorldHUD();");
+ await ui.run('loadWorldImage(worldRuntime.id)');
+ ui.run("var parkDoor=worldScene().places.find(p=>p.target==='park-trail'),parkPoint=worldState().navigation.nodes[parkDoor.node];worldArriveAtDoor(parkDoor);");
+ assert.equal(ui.run('worldState().actor.y<parkPoint.y'),true);
+ assert.equal(ui.run('worldState().navigation.geometry.safe(worldState().actor)'),true);
+ ui.run("var shopDoor=worldScene().places.find(p=>p.target==='kite-shop');worldGo(shopDoor);for(var n=0;n<500&&worldRuntime.id==='quintal';n++){var prev={x:worldState().actor.x,y:worldState().actor.y};worldState().navigation.step(worldState().actor,.1);worldAutoEnter(prev);}");
+ assert.equal(ui.run('worldRuntime.id'),'kite-shop');
 });
 
 test('the controller stick walks the overworld instead of moving menu focus',async()=>{

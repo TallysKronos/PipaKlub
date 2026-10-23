@@ -73,7 +73,8 @@ export function parseWorldMap(map){
  }
  visit(map.layers);for(const name of required)if(!layers[name])fail('camada obrigatória ausente: '+name);
  if((map.tilesets||[]).length)fail('tilesets ainda não suportados neste contrato de blockout.');
- const properties=props(map),actorSize=properties.actor_height??64,radius=properties.foot_radius??12;
+ const properties=props(map),actorSize=properties.actor_height??64,radius=properties.foot_radius??12,walkSpeed=properties.walk_speed??240;
+ if(!Number.isFinite(walkSpeed)||walkSpeed<=0||walkSpeed>1200)fail('velocidade de caminhada inválida.');
  if(!Number.isFinite(actorSize)||actorSize<=0||!Number.isFinite(radius)||radius<=0||radius>=Math.min(map.tilewidth,map.tileheight)/2)fail('escala do ator ou raio dos pés inválido.');
  const contains=(r,x,y)=>x>=r.x&&x<=r.x+r.w&&y>=r.y&&y<=r.y+r.h;
  for(const r of layers.Walkable){if(!Number.isInteger(r.properties.level)||r.properties.level<0)fail('Walkable exige level inteiro: '+r.name);if(r.properties.connects_to!==undefined&&(!Number.isInteger(r.properties.connects_to)||r.properties.connects_to===r.properties.level||!layers.Walkable.some(s=>s.properties.level===r.properties.connects_to)))fail('conexão de nível inválida: '+r.name);}
@@ -101,7 +102,7 @@ export function parseWorldMap(map){
  if(layers.Spawns.length!==1)fail('exatamente um spawn obrigatório.');
  const spawn=nodeFor(layers.Spawns[0]),seen=new Set([spawn]),queue=[spawn],adj=nodes.map(()=>[]);for(const [a,b]of edges){adj[a].push(b);adj[b].push(a);}for(let i=0;i<queue.length;i++)for(const b of adj[queue[i]])if(!seen.has(b)){seen.add(b);queue.push(b);}
  const stages=new Set(),places=[...layers.Exits,...layers.Interactions].map(r=>{const node=nodeFor(r),stage=r.properties.stage,action=r.properties.action;if(!seen.has(node))fail('zona inacessível a partir do spawn: '+r.name);if(stage){if(stages.has(stage))fail('stage duplicado: '+stage);stages.add(stage);}if(!stage&&!action)fail('zona sem action/stage: '+r.name);return {id:'tiled-'+r.id,name:r.name,node,...stage?{stage}:{action},...(typeof r.properties.story==='string'?{story:r.properties.story}:{}),...(typeof r.properties.requires_stage==='string'?{requiresStage:r.properties.requires_stage}:{}),...(typeof r.properties.target==='string'?{target:r.properties.target}:{})};});
- return {name:properties.scene_name||properties.name||'Morro do Sol · piloto',overview:properties.overview===true,width,height,actorSize,spawn,nodes,edges,places,tiled:{layers,images,properties,levels:regions.map(r=>r.properties.level)}};
+ return {name:properties.scene_name||properties.name||'Morro do Sol · piloto',overview:properties.overview===true,width,height,actorSize,walkSpeed,spawn,nodes,edges,places,tiled:{layers,images,properties,levels:regions.map(r=>r.properties.level)}};
 }
 
 export function drawWorldBlockout(g,scene){

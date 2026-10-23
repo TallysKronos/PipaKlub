@@ -1,20 +1,23 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {serviceLayout} from './src/service-interiors.js';
 import {artConfig} from './scripts/art-build.mjs';
 import {createWorldNavigation} from './src/world-navigation.js';
-import {worldRenderQueue,drawWorldObject} from './src/world-map.js';
+import {worldRenderQueue,drawWorldObject,parseWorldMap} from './src/world-map.js';
+import {validateWorldPaintedImages} from './src/world-art.js';
 const config=artConfig(),world=config.courtyard.world;
 test('street and all three buildings form a reciprocal, reachable portal graph',()=>{
  const ids=['quintal','kael-home','kael-bedroom','kite-shop','professor-home'];
- for(const id of ids){const scene=world.scenes[id],nav=createWorldNavigation(scene),actor=nav.create();assert.ok(scene.painted,id);for(const place of scene.places){assert.ok(nav.target(actor,nav.nodes[place.node]).length,id+': '+place.name);if(place.action==='street_scene'){assert.ok(ids.includes(place.target));assert.ok(world.scenes[place.target].places.some(p=>p.action==='street_scene'&&p.target===id),id+' return');}}}
+ for(const id of ids){const scene=world.scenes[id],nav=createWorldNavigation(scene),actor=nav.create();assert.ok(scene.painted||scene.isometric,id);for(const place of scene.places){assert.ok(nav.target(actor,nav.nodes[place.node]).length,id+': '+place.name);if(place.action==='street_scene'){assert.ok(ids.includes(place.target));assert.ok(world.scenes[place.target].places.some(p=>p.action==='street_scene'&&p.target===id),id+' return');}}}
 });
 test('building roofs, beds and shop counters cannot be walked through',()=>{
- for(const [id,points]of Object.entries({quintal:[[240,240],[752,240],[1168,320],[560,400]],'kite-shop':[[752,256],[1360,512]],'professor-home':[[1104,304],[592,256]],'kael-bedroom':[[240,512],[1152,320]]})){const g=createWorldNavigation(world.scenes[id]).geometry;for(const [x,y]of points)assert.equal(g.safe({x,y}),false,id+' '+x+','+y);}
+ for(const [id,points]of Object.entries({quintal:[[240,240],[752,240],[1168,320],[560,400]],'kael-bedroom':[[240,512],[1152,320]]})){const g=createWorldNavigation(world.scenes[id]).geometry;for(const [x,y]of points)assert.equal(g.safe({x,y}),false,id+' '+x+','+y);}
+ for(const id of ['professor-home','kite-shop']){const g=createWorldNavigation(world.scenes[id]).geometry;for(const o of serviceLayout(id).objects){const [x,y,w,h]=o.footprint;assert.equal(g.safe({x:x+w/2,y:y+h/2}),false,id+' '+o.asset);}}
 });
 
-test('painted stair planter remains solid without painting a block over the illustration',()=>{
- const scene=world.scenes['kael-home'],nav=createWorldNavigation(scene);
+test('legacy painted stair planter remains solid without painting a block over the illustration',()=>{
+ const scene=validateWorldPaintedImages(parseWorldMap(JSON.parse(fs.readFileSync('assets/'+world.street.scenes['kael-home'],'utf8'))),world.street.sheets),nav=createWorldNavigation(scene);
  assert.equal(nav.geometry.safe({x:1328,y:656}),false);
  const entry=worldRenderQueue(scene,[]).find(e=>e.rect?.name==='Vaso ao lado da escada');
  assert.ok(entry);

@@ -1,0 +1,355 @@
+{
+  "generator": "builtin imagegen + deterministic crop and palette mapping",
+  "source": "art/soulgen/keys/kael/source/parts-generated.png",
+  "crops": {
+    "head": [
+      65,
+      65,
+      340,
+      310
+    ],
+    "spiky": [
+      420,
+      40,
+      420,
+      325
+    ],
+    "blue": [
+      845,
+      110,
+      310,
+      270
+    ],
+    "blueRight": [
+      1270,
+      85,
+      190,
+      295
+    ],
+    "blueLeft": [
+      125,
+      400,
+      180,
+      280
+    ],
+    "legRight": [
+      525,
+      400,
+      220,
+      285
+    ],
+    "legLeft": [
+      840,
+      400,
+      230,
+      285
+    ],
+    "backpack": [
+      1190,
+      425,
+      310,
+      260
+    ],
+    "curly": [
+      35,
+      675,
+      400,
+      310
+    ],
+    "clay": [
+      505,
+      705,
+      330,
+      275
+    ],
+    "clayLeft": [
+      935,
+      705,
+      165,
+      280
+    ],
+    "clayRight": [
+      1260,
+      705,
+      165,
+      280
+    ]
+  },
+  "images": [
+    {
+      "id": "head-mel",
+      "width": 318,
+      "height": 300,
+      "alphaPreserved": true
+    },
+    {
+      "id": "leg-left-mel",
+      "width": 206,
+      "height": 278,
+      "alphaPreserved": true
+    },
+    {
+      "id": "leg-right-mel",
+      "width": 205,
+      "height": 278,
+      "alphaPreserved": true
+    },
+    {
+      "id": "body-blue-mel",
+      "width": 291,
+      "height": 244,
+      "alphaPreserved": true
+    },
+    {
+      "id": "arm-left-blue-mel",
+      "width": 137,
+      "height": 278,
+      "alphaPreserved": true
+    },
+    {
+      "id": "arm-right-blue-mel",
+      "width": 132,
+      "height": 269,
+      "alphaPreserved": true
+    },
+    {
+      "id": "body-clay-mel",
+      "width": 311,
+      "height": 245,
+      "alphaPreserved": true
+    },
+    {
+      "id": "arm-left-clay-mel",
+      "width": 141,
+      "height": 261,
+      "alphaPreserved": true
+    },
+    {
+      "id": "arm-right-clay-mel",
+      "width": 141,
+      "height": 261,
+      "alphaPreserved": true
+    },
+    {
+      "id": "head-claro",
+      "width": 318,
+      "height": 300,
+      "alphaPreserved": true
+    },
+    {
+      "id": "leg-left-claro",
+      "width": 206,
+      "height": 278,
+      "alphaPreserved": true
+    },
+    {
+      "id": "leg-right-claro",
+      "width": 205,
+      "height": 278,
+      "alphaPreserved": true
+    },
+    {
+      "id": "body-blue-claro",
+      "width": 291,
+      "height": 244,
+      "alphaPreserved": true
+    },
+    {
+      "id": "arm-left-blue-claro",
+      "width": 137,
+      "height": 278,
+      "alphaPreserved": true
+    },
+    {
+      "id": "arm-right-blue-claro",
+      "width": 132,
+      "height": 269,
+      "alphaPreserved": true
+    },
+    {
+      "id": "body-clay-claro",
+      "width": 311,
+      "height": 245,
+      "alphaPreserved": true
+    },
+    {
+      "id": "arm-left-clay-claro",
+      "width": 141,
+      "height": 261,
+      "alphaPreserved": true
+    },
+    {
+      "id": "arm-right-clay-claro",
+      "width": 141,
+      "height": 261,
+      "alphaPreserved": true
+    },
+    {
+      "id": "head-castanho",
+      "width": 318,
+      "height": 300,
+      "alphaPreserved": true
+    },
+    {
+      "id": "leg-left-castanho",
+      "width": 206,
+      "height": 278,
+      "alphaPreserved": true
+    },
+    {
+      "id": "leg-right-castanho",
+      "width": 205,
+      "height": 278,
+      "alphaPreserved": true
+    },
+    {
+      "id": "body-blue-castanho",
+      "width": 291,
+      "height": 244,
+      "alphaPreserved": true
+    },
+    {
+      "id": "arm-left-blue-castanho",
+      "width": 137,
+      "height": 278,
+      "alphaPreserved": true
+    },
+    {
+      "id": "arm-right-blue-castanho",
+      "width": 132,
+      "height": 269,
+      "alphaPreserved": true
+    },
+    {
+      "id": "body-clay-castanho",
+      "width": 311,
+      "height": 245,
+      "alphaPreserved": true
+    },
+    {
+      "id": "arm-left-clay-castanho",
+      "width": 141,
+      "height": 261,
+      "alphaPreserved": true
+    },
+    {
+      "id": "arm-right-clay-castanho",
+      "width": 141,
+      "height": 261,
+      "alphaPreserved": true
+    },
+    {
+      "id": "head-escuro",
+      "width": 318,
+      "height": 300,
+      "alphaPreserved": true
+    },
+    {
+      "id": "leg-left-escuro",
+      "width": 206,
+      "height": 278,
+      "alphaPreserved": true
+    },
+    {
+      "id": "leg-right-escuro",
+      "width": 205,
+      "height": 278,
+      "alphaPreserved": true
+    },
+    {
+      "id": "body-blue-escuro",
+      "width": 291,
+      "height": 244,
+      "alphaPreserved": true
+    },
+    {
+      "id": "arm-left-blue-escuro",
+      "width": 137,
+      "height": 278,
+      "alphaPreserved": true
+    },
+    {
+      "id": "arm-right-blue-escuro",
+      "width": 132,
+      "height": 269,
+      "alphaPreserved": true
+    },
+    {
+      "id": "body-clay-escuro",
+      "width": 311,
+      "height": 245,
+      "alphaPreserved": true
+    },
+    {
+      "id": "arm-left-clay-escuro",
+      "width": 141,
+      "height": 261,
+      "alphaPreserved": true
+    },
+    {
+      "id": "arm-right-clay-escuro",
+      "width": 141,
+      "height": 261,
+      "alphaPreserved": true
+    },
+    {
+      "id": "hair-spiky-navy",
+      "width": 406,
+      "height": 300,
+      "alphaPreserved": true
+    },
+    {
+      "id": "hair-spiky-brown",
+      "width": 406,
+      "height": 300,
+      "alphaPreserved": true
+    },
+    {
+      "id": "hair-spiky-black",
+      "width": 406,
+      "height": 300,
+      "alphaPreserved": true
+    },
+    {
+      "id": "hair-spiky-copper",
+      "width": 406,
+      "height": 300,
+      "alphaPreserved": true
+    },
+    {
+      "id": "hair-curly-navy",
+      "width": 380,
+      "height": 274,
+      "alphaPreserved": true
+    },
+    {
+      "id": "hair-curly-brown",
+      "width": 380,
+      "height": 274,
+      "alphaPreserved": true
+    },
+    {
+      "id": "hair-curly-black",
+      "width": 380,
+      "height": 274,
+      "alphaPreserved": true
+    },
+    {
+      "id": "hair-curly-copper",
+      "width": 380,
+      "height": 274,
+      "alphaPreserved": true
+    },
+    {
+      "id": "backpack",
+      "width": 282,
+      "height": 244,
+      "alphaPreserved": true
+    }
+  ],
+  "validation": {
+    "ok": true,
+    "errors": [],
+    "warnings": []
+  }
+}

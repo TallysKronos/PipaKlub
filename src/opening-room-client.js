@@ -1,6 +1,10 @@
-const openingBedroomNavigation=createOpeningRoom(ART_CONFIG.opening.rooms.bedroom);
-const openingExitNavigation=createOpeningRoom({...ART_CONFIG.opening.rooms.bedroom,hotspots:[{id:'stairs',name:'Escada para o andar de baixo',x:780,y:855,hit:[660,775,240,160]}]});
-const openingDownstairsNavigation=createOpeningRoom({...ART_CONFIG.opening.rooms.downstairs,hotspots:[{id:'mother',name:'Conversar com a mãe',x:780,y:640,hit:[830,510,100,150]},{id:'exit',name:'Sair para a rua',x:780,y:825,hit:[660,740,240,180]}]});
+function openingProjectPoint(p){return bedroomProjectPoint(p);}
+const bedroomPlan=ART_CONFIG.opening.rooms.bedroom;
+function openingPoint(name){const p=bedroomPlan.blocking[name];return {x:p[0],y:p[1]};}
+const openingBedroomNavigation=createOpeningRoom({...bedroomPlan,hotspots:bedroomPlan.hotspots.filter(p=>p.id!=='stairs')});
+const openingExitNavigation=createOpeningRoom({...bedroomPlan,hotspots:bedroomPlan.hotspots.filter(p=>p.id==='stairs')});
+const openingHomePlan=ART_CONFIG.opening.homeLayout;
+const openingDownstairsNavigation=createOpeningRoom({...ART_CONFIG.opening.rooms.downstairs,hotspots:ART_CONFIG.opening.rooms.downstairs.hotspots.filter(h=>h.id!=='upstairs')});
 let openingRoomNavigation=openingBedroomNavigation;
 let openingWalkKeys={},openingWalkIntent=null,openingWorkbench=false,openingRoomSignature='',openingCraftAt=null,openingCraftSaving=false;
 const roomPlaces=uiElement('nav',undefined,'opening-places');roomPlaces.id='openingPlaces';roomPlaces.hidden=true;roomPlaces.setAttribute('aria-label','Lugares do quarto');
@@ -34,7 +38,7 @@ function openingWalkTo(id){
 async function openingInspect(id){
  if(!openingWalkActive())return;
  if(!openingRoomNavigation.near(openingActor,id)){openingWalkTo(id);return;}
- openingClearWalking();openingActor.direction=3;
+ openingClearWalking();const look=(openingState.step<12?bedroomPlan:openingHomePlan).hotspots.find(p=>p.id===id)?.lookAt;if(look){const d=openingProjectPoint({x:look[0]-openingActor.x,y:look[1]-openingActor.y});openingActor.direction=screenDirection(d.x,d.y);}else openingActor.direction=3;
  if(id==='stairs'||id==='exit'){await advanceOpeningScene();return;}
  if(id==='mother'){openingActor.direction=2;openingMother.direction=1;$('openingSpeech').textContent='Eu guardei aquela rabiola por tantos anos… Cuide bem dele, Kael. E volte para me contar como foi o primeiro voo.';return;}
  if(id==='tv'){$('openingSpeech').textContent='A final continua na TV. Gollia pressiona, e Jamile procura uma abertura. Um dia eu ainda vou estar naquele céu.';return;}
@@ -67,14 +71,14 @@ function paintOpeningProject(g,im,p,x,y,w,h){
 function openingStepRoom(dt){
  if(!openingWalkActive())return;const input={x:(openingWalkKeys.d||openingWalkKeys.arrowright?1:0)-(openingWalkKeys.a||openingWalkKeys.arrowleft?1:0),y:(openingWalkKeys.s||openingWalkKeys.arrowdown?1:0)-(openingWalkKeys.w||openingWalkKeys.arrowup?1:0)};
  if(typeof padState!=='undefined'&&inputDevice.startsWith('gamepad')){input.x=padState.x;input.y=padState.y;}
- if(input.x||input.y)openingWalkIntent=null;openingRoomNavigation.tick(openingActor,input,dt);openingRefreshRoomUI();
+ if(input.x||input.y)openingWalkIntent=null;openingTickActor(openingRoomNavigation,openingActor,input,dt);openingRefreshRoomUI();
  const entrance=openingRoomNavigation.hotspots.find(p=>['stairs','exit'].includes(p.id)&&Math.hypot(openingActor.x-p.x,openingActor.y-p.y)<42);
  if(entrance&&openingActor.moving){openingInspect(entrance.id);return;}
  if(openingWalkIntent&&!openingActor.path?.length){const id=openingWalkIntent;openingWalkIntent=null;if(openingRoomNavigation.near(openingActor,id))openingInspect(id);}
 }
 $('openingCanvas').addEventListener('pointerdown',e=>{
- if(!openingWalkActive()||e.button>0)return;const p=openingRoomNavigation.canvasPoint(e.currentTarget.getBoundingClientRect(),1536,1024,e.clientX,e.clientY);if(!p)return;
- const spot=openingRoomNavigation.hotspots.find(s=>{const [x,y,w,h]=s.hit;return p.x>=x&&p.x<=x+w&&p.y>=y&&p.y<=y+h;});
+ if(!openingWalkActive()||e.button>0)return;const screen=openingRoomNavigation.canvasPoint(e.currentTarget.getBoundingClientRect(),1536,1024,e.clientX,e.clientY);if(!screen||!openingIsometricView)return;const projected={x:screen.x/openingIsometricView.scale+openingIsometricView.x,y:screen.y/openingIsometricView.scale+openingIsometricView.y},p=openingVillageRenderer(openingState.step>=12).unproject(projected),hit=openingVillageRenderer(openingState.step>=12)?.pick(projected);
+ const spot=openingRoomNavigation.hotspots.find(s=>s.id===hit?.hotspot||Math.hypot(p.x-s.x,p.y-s.y)<45);
  if(spot){openingWalkTo(spot.id);return;}
  const path=openingRoomNavigation.route(openingActor,p);if(!path.length){$('openingStatus').textContent='Aqui não dá para passar. Clique no chão livre.';return;}openingActor.path=path;openingWalkIntent=null;$('openingStatus').textContent='';
 });
@@ -87,11 +91,21 @@ addEventListener('keydown',e=>{
 addEventListener('keyup',e=>{delete openingWalkKeys[e.key.toLowerCase()];});addEventListener('blur',openingClearWalking);document.addEventListener('visibilitychange',()=>{if(document.hidden)openingClearWalking();});
 function drawOpeningRoomPlaces(g){
  if(!openingRoomStep()||openingWorkbench)return;
- for(const p of openingRoomNavigation.hotspots){const near=openingRoomNavigation.near(openingActor,p.id);g.save();g.fillStyle=near?'#fff0b9':'#fff0b988';g.strokeStyle='#546e62';g.lineWidth=3;g.beginPath();if(['stairs','exit'].includes(p.id)){g.fillStyle='#55c8ef';g.strokeStyle='#20536b';g.moveTo(p.x-15,p.y-5);g.lineTo(p.x,p.y+10);g.lineTo(p.x+15,p.y-5);g.lineTo(p.x+9,p.y-11);g.lineTo(p.x,p.y-2);g.lineTo(p.x-9,p.y-11);g.closePath();}else g.ellipse(p.x,p.y+8,25,9,0,0,Math.PI*2);g.fill();g.stroke();g.restore();}
- if(openingActor.path?.length){const p=openingActor.path.at(-1);g.strokeStyle='#fff1bd';g.lineWidth=3;g.beginPath();g.arc(p.x,p.y,9,0,Math.PI*2);g.stroke();}
+ const room=openingVillageRenderer(openingState.step>=12);
+ for(const p of openingRoomNavigation.hotspots){
+  const near=openingRoomNavigation.near(openingActor,p.id),q=openingProjectPoint(p),b=room?.feature(p.id);g.save();
+  if(b&&p.id!=='stairs'){
+   const label=({tv:'TV',drawings:'Desenhos',desk:'Bancada',mother:'Mãe',exit:'Saída'})[p.id],w=label.length*10+24,x=b.x+b.w/2-w/2,y=b.y-28;
+   g.fillStyle=near?'#efc66e':'#fff0cf';g.strokeStyle='#28555a';g.lineWidth=2;g.beginPath();g.roundRect(x,y,w,25,7);g.fill();g.stroke();g.font='bold 17px Nunito,sans-serif';g.textAlign='center';g.fillStyle='#214b50';g.fillText(label,x+w/2,y+18);
+  }else{
+   g.translate(q.x,q.y);g.fillStyle='#55c8ef';g.strokeStyle='#20536b';g.lineWidth=3;g.beginPath();g.moveTo(-15,-5);g.lineTo(0,10);g.lineTo(15,-5);g.lineTo(9,-11);g.lineTo(0,-2);g.lineTo(-9,-11);g.closePath();g.fill();g.stroke();
+  }
+  g.restore();
+ }
+ if(openingActor.path?.length){const p=openingProjectPoint(openingActor.path.at(-1));g.strokeStyle='#fff1bd';g.lineWidth=3;g.beginPath();g.arc(p.x,p.y,9,0,Math.PI*2);g.stroke();}
 }
-function drawOpeningBroadcast(g,t,featured){
- const x=473,y=178,w=88,h=59,time=art.reduced?600:t,cycle=time%2400/2400;
+function drawOpeningBroadcast(g,t,featured,box={x:473,y:178,w:88,h:59}){
+ const {x,y,w,h}=box,time=art.reduced?600:t,cycle=time%2400/2400;
  g.save();g.beginPath();g.rect(x,y,w,h);g.clip();g.fillStyle='#203c58';g.fillRect(x,y,w,h);g.fillStyle='#94bac1';g.fillRect(x,y+h*.3,w,h*.7);
  const left=x+w*(.24+Math.sin(time/900)*.035),right=x+w*(.75-Math.max(0,Math.sin(time/380))*.16),ay=y+h*.69,by=y+h*.58;
  g.strokeStyle='#de9e57';g.lineWidth=.6;g.beginPath();g.moveTo(x,y+h);g.lineTo(left,ay);g.stroke();g.strokeStyle='#4776a5';g.beginPath();g.moveTo(x+w,y+h);g.lineTo(right,by);g.stroke();
@@ -103,28 +117,30 @@ function drawOpeningBroadcast(g,t,featured){
 }
 
 // All story blocking uses the same measured foot paths as player movement.
-let openingCastStep=-1,openingMother={x:780,y:855,direction:3,path:[]},openingRabbit={x:1145,y:640,direction:1,path:[]};
+let openingCastStep=-1,openingMother={...openingPoint('motherEntry'),direction:3,path:[]},openingRabbit={x:1145,y:640,direction:1,path:[]};
 function openingCastBusy(){return (openingState?.step===5&&(!!openingMother.path?.length||!!openingActor.path?.length))||(openingState?.step===8&&!!openingActor.path?.length)||(openingState?.step===9&&(!!openingActor.path?.length||(openingBirthBeat>=2&&openingRabbit.x>1102)));}
 function openingStageRoute(actor,nav,target){actor.path=nav.route(actor,target);}
 function openingPrepareCast(i){
  const previous=openingCastStep;openingCastStep=i;
  const down=i>=12,nav=down?openingDownstairsNavigation:openingBedroomNavigation;
- if(down&&previous<12){Object.assign(openingActor,{x:1130,y:620,direction:1,path:[]});Object.assign(openingMother,{x:880,y:650,direction:2,path:[]});Object.assign(openingRabbit,{x:1130,y:685,direction:1,path:[]});}
- if(i===5){Object.assign(openingMother,{x:780,y:855,direction:3,path:[]});openingStageRoute(openingMother,nav,{x:900,y:640});openingStageRoute(openingActor,nav,{x:1030,y:610});}
- if([6,7,8].includes(i)&&previous<5){Object.assign(openingMother,{x:900,y:640,direction:2,path:[]});}
- if(i===8)openingStageRoute(openingActor,nav,{x:1050,y:510});
- if(i===9){openingStageRoute(openingActor,nav,{x:990,y:640});openingStageRoute(openingMother,nav,{x:900,y:640});Object.assign(openingRabbit,{x:1145,y:640,direction:1,path:[]});}
- if([10,11].includes(i)&&previous<9){Object.assign(openingActor,{x:990,y:640,direction:2,path:[]});Object.assign(openingMother,{x:900,y:640,direction:2,path:[]});Object.assign(openingRabbit,{x:1100,y:640,direction:1,path:[]});}
+ if(down&&previous<12){const p=openingHomePlan.blocking;Object.assign(openingActor,{x:p.kaelEntry[0],y:p.kaelEntry[1],direction:1,path:[]});Object.assign(openingMother,{x:p.mother[0],y:p.mother[1],direction:2,path:[]});Object.assign(openingRabbit,{x:p.rabbitoEntry[0],y:p.rabbitoEntry[1],direction:1,path:[]});}
+ if(i===5){Object.assign(openingMother,{...openingPoint('motherEntry'),direction:3,path:[]});openingStageRoute(openingMother,nav,openingPoint('mother'));openingStageRoute(openingActor,nav,openingPoint('kaelTalk'));}
+ if([6,7,8].includes(i)&&previous<5){Object.assign(openingMother,{...openingPoint('mother'),direction:2,path:[]});}
+ if(i===8)openingStageRoute(openingActor,nav,openingPoint('kaelDesk'));
+ if(i===9){openingStageRoute(openingActor,nav,openingPoint('kaelBirth'));openingStageRoute(openingMother,nav,openingPoint('mother'));Object.assign(openingRabbit,{...openingPoint('rabbito'),direction:1,path:[]});}
+ if([10,11].includes(i)&&previous<9){Object.assign(openingActor,{...openingPoint('kaelBirth'),direction:2,path:[]});Object.assign(openingMother,{...openingPoint('mother'),direction:2,path:[]});Object.assign(openingRabbit,{...openingPoint('rabbitoNear'),direction:1,path:[]});}
 }
 function openingStepCast(dt){
  const i=openingState?.step??0,nav=i>=12?openingDownstairsNavigation:openingBedroomNavigation;
- if(openingRoomStep())openingStepRoom(dt);else nav.tick(openingActor,{},dt);
- if(i>=5)nav.tick(openingMother,{},dt);
+ if(openingRoomStep())openingStepRoom(dt);else openingTickActor(nav,openingActor,{},dt);
+ if(i>=5)openingTickActor(nav,openingMother,{},dt);
  if(i===5&&!openingMother.path?.length){openingMother.direction=2;openingActor.direction=1;}
- if(i===9){openingActor.direction=2;openingMother.direction=2;if(openingBirthBeat>=2&&!openingRabbit.path?.length&&openingRabbit.x>1102)openingStageRoute(openingRabbit,nav,{x:1100,y:640});nav.tick(openingRabbit,{},dt);}
- if(i>=11){const d=Math.hypot(openingActor.x-openingRabbit.x,openingActor.y-openingRabbit.y);if(d>110&&!openingRabbit.path?.length){const dx=openingActor.x-openingRabbit.x,dy=openingActor.y-openingRabbit.y;const target={x:openingActor.x-dx/d*70,y:openingActor.y-dy/d*70};if(nav.safe(target))openingStageRoute(openingRabbit,nav,target);}nav.tick(openingRabbit,{},dt);}
+ if(i===9){openingActor.direction=2;openingMother.direction=2;if(openingBirthBeat>=2&&!openingRabbit.path?.length&&openingRabbit.x>1102)openingStageRoute(openingRabbit,nav,{x:1100,y:640});openingTickActor(nav,openingRabbit,{},dt);}
+ if(i>=11){const d=Math.hypot(openingActor.x-openingRabbit.x,openingActor.y-openingRabbit.y);if(d>110&&!openingRabbit.path?.length){const dx=openingActor.x-openingRabbit.x,dy=openingActor.y-openingRabbit.y;const target={x:openingActor.x-dx/d*70,y:openingActor.y-dy/d*70};if(nav.safe(target))openingStageRoute(openingRabbit,nav,target);}openingTickActor(nav,openingRabbit,{},dt);}
  openingRefreshRoomUI();
 }
-function openingDrawKael(g,t){const actor=openingActor,im=openingImages.get('kael'),f=homeArt.plaza.actor.frames[(actor.direction??3)+(actor.moving&&Math.floor(t/170)%2?4:0)];if(!im||!f)return;const b=f.bounds,s=120/b.h;g.drawImage(im,f.x,f.y,f.w,f.h,actor.x-(b.x+b.w/2)*s,actor.y-(b.y+b.h)*s,f.w*s,f.h*s);}
-function openingDrawMother(g,t){const actor=openingMother;openingSprite(g,'mother',(actor.direction??0)+(actor.moving&&Math.floor(t/170)%2?4:0),actor.x,actor.y,122);}
-function openingDrawRabbit(g,t){const actor=openingRabbit;art.creature(g,0,art.reduced?0:t,actor.x-55,actor.y-110,110,{soul:'rabbito',facing:actor.direction===2?1:-1,input:actor.moving?{x:-1}:{}},openingState?.step===11&&!actor.moving);}
+function openingDrawKael(g,t,position=openingProjectPoint(openingActor)){const actor={...openingActor,...position},im=openingImages.get('kael'),f=homeArt.plaza.actor.frames[(actor.direction??3)+(actor.moving&&Math.floor(t/170)%2?4:0)];if(!im||!f)return;const b=f.bounds,s=102/b.h;g.drawImage(im,f.x,f.y,f.w,f.h,actor.x-(b.x+b.w/2)*s,actor.y-(b.y+b.h)*s,f.w*s,f.h*s);}
+function openingDrawMother(g,t,position=openingProjectPoint(openingMother)){const actor={...openingMother,...position};openingSprite(g,'mother',(actor.direction??0)+(actor.moving&&Math.floor(t/170)%2?4:0),actor.x,actor.y,104);}
+function openingDrawRabbit(g,t,position=openingProjectPoint(openingRabbit)){const actor={...openingRabbit,...position};if(worldCompanions.draw(g,homeImages,{soul:'rabbito'},actor.x,actor.y,66,{direction:actor.direction,moving:actor.moving,time:art.reduced?0:t}))return;art.creature(g,0,art.reduced?0:t,actor.x-55,actor.y-110,110,{soul:'rabbito',facing:actor.direction===2?1:-1,input:actor.moving?{x:-1}:{}},openingState?.step===11&&!actor.moving);}
+
+function openingTickActor(nav,actor,input,dt){const before={x:actor.x,y:actor.y};nav.tick(actor,isometricInput(input),dt);const d=openingProjectPoint({x:actor.x-before.x,y:actor.y-before.y});if(Math.hypot(d.x,d.y)>.01)actor.direction=screenDirection(d.x,d.y);}

@@ -1,0 +1,344 @@
+{
+  "name": "Casa de Kael · sala e cozinha",
+  "grid": {
+    "cell": [
+      64,
+      32
+    ],
+    "height": 32,
+    "scale": 1
+  },
+  "room": {
+    "cells": [
+      12,
+      9
+    ],
+    "wall": 5,
+    "image": "casca.png",
+    "origin": [
+      288,
+      160
+    ]
+  },
+  "pieces": {
+    "tapete": {
+      "image": "tapete.png",
+      "size": [
+        256,
+        128
+      ],
+      "kind": "flat",
+      "footprint": [
+        5,
+        3
+      ],
+      "height": 0,
+      "anchor": [
+        160,
+        128
+      ],
+      "cell": [
+        7.5,
+        6.5
+      ],
+      "rulesVersion": "grade-iso-1"
+    },
+    "janela": {
+      "image": "janela.png",
+      "size": [
+        64,
+        80
+      ],
+      "kind": "wallLeft",
+      "footprint": [
+        2
+      ],
+      "height": 1.5,
+      "anchor": [
+        0,
+        80
+      ],
+      "cell": [
+        0,
+        5.5
+      ],
+      "elevation": 2.5,
+      "wall": "esquerda",
+      "rulesVersion": "grade-iso-1"
+    },
+    "porta": {
+      "image": "porta.png",
+      "size": [
+        64,
+        160
+      ],
+      "kind": "wallLeft",
+      "footprint": [
+        2
+      ],
+      "height": 4,
+      "anchor": [
+        0,
+        160
+      ],
+      "cell": [
+        0,
+        8.5
+      ],
+      "wall": "esquerda",
+      "rulesVersion": "grade-iso-1"
+    },
+    "sofa": {
+      "image": "sofa.png",
+      "size": [
+        160,
+        154
+      ],
+      "kind": "floor",
+      "footprint": [
+        2,
+        3
+      ],
+      "height": 2.3,
+      "anchor": [
+        64,
+        154
+      ],
+      "cell": [
+        2,
+        6
+      ],
+      "rulesVersion": "grade-iso-1"
+    },
+    "mesa-centro": {
+      "image": "mesa-centro.png",
+      "size": [
+        96,
+        83
+      ],
+      "kind": "floor",
+      "footprint": [
+        1.5,
+        1.5
+      ],
+      "height": 1.1,
+      "anchor": [
+        48,
+        83
+      ],
+      "cell": [
+        5,
+        6
+      ],
+      "rulesVersion": "grade-iso-1"
+    },
+    "mesa-jantar": {
+      "image": "mesa-jantar.png",
+      "size": [
+        160,
+        128
+      ],
+      "kind": "floor",
+      "footprint": [
+        3,
+        2
+      ],
+      "height": 1.5,
+      "anchor": [
+        96,
+        128
+      ],
+      "cell": [
+        7,
+        3
+      ],
+      "rulesVersion": "grade-iso-1"
+    },
+    "banco-jantar": {
+      "image": "banco-jantar.png",
+      "size": [
+        112,
+        82
+      ],
+      "kind": "floor",
+      "footprint": [
+        3,
+        0.5
+      ],
+      "height": 0.8,
+      "anchor": [
+        96,
+        82
+      ],
+      "cell": [
+        7,
+        4
+      ],
+      "rulesVersion": "grade-iso-1"
+    },
+    "banco-fundo": {
+      "image": "banco-fundo.png",
+      "size": [
+        112,
+        82
+      ],
+      "kind": "floor",
+      "footprint": [
+        3,
+        0.5
+      ],
+      "height": 0.8,
+      "anchor": [
+        96,
+        82
+      ],
+      "cell": [
+        7,
+        0.5
+      ],
+      "rulesVersion": "grade-iso-1"
+    },
+    "cozinha": {
+      "image": "cozinha.png",
+      "size": [
+        160,
+        192
+      ],
+      "kind": "floor",
+      "footprint": [
+        4,
+        1
+      ],
+      "height": 3.5,
+      "anchor": [
+        128,
+        192
+      ],
+      "cell": [
+        12,
+        1
+      ],
+      "rulesVersion": "grade-iso-1"
+    },
+    "escada": {
+      "image": "escada.png",
+      "size": [
+        160,
+        208
+      ],
+      "kind": "floor",
+      "footprint": [
+        2,
+        3
+      ],
+      "height": 4,
+      "anchor": [
+        64,
+        208
+      ],
+      "cell": [
+        12,
+        8
+      ],
+      "rulesVersion": "grade-iso-1"
+    }
+  },
+  "images": {
+    "home-tapete": {
+      "image": "world/kael-home-iso-v1/tapete.png",
+      "width": 256,
+      "height": 128,
+      "pivot": [
+        0.625,
+        1
+      ]
+    },
+    "home-janela": {
+      "image": "world/kael-home-iso-v1/janela.png",
+      "width": 64,
+      "height": 80,
+      "pivot": [
+        0,
+        1
+      ]
+    },
+    "home-porta": {
+      "image": "world/kael-home-iso-v1/porta.png",
+      "width": 64,
+      "height": 160,
+      "pivot": [
+        0,
+        1
+      ]
+    },
+    "home-sofa": {
+      "image": "world/kael-home-iso-v1/sofa.png",
+      "width": 160,
+      "height": 154,
+      "pivot": [
+        0.4,
+        1
+      ]
+    },
+    "home-mesa-centro": {
+      "image": "world/kael-home-iso-v1/mesa-centro.png",
+      "width": 96,
+      "height": 83,
+      "pivot": [
+        0.5,
+        1
+      ]
+    },
+    "home-mesa-jantar": {
+      "image": "world/kael-home-iso-v1/mesa-jantar.png",
+      "width": 160,
+      "height": 128,
+      "pivot": [
+        0.6,
+        1
+      ]
+    },
+    "home-banco-jantar": {
+      "image": "world/kael-home-iso-v1/banco-jantar.png",
+      "width": 112,
+      "height": 82,
+      "pivot": [
+        0.8571428571428571,
+        1
+      ]
+    },
+    "home-banco-fundo": {
+      "image": "world/kael-home-iso-v1/banco-fundo.png",
+      "width": 112,
+      "height": 82,
+      "pivot": [
+        0.8571428571428571,
+        1
+      ]
+    },
+    "home-cozinha": {
+      "image": "world/kael-home-iso-v1/cozinha.png",
+      "width": 160,
+      "height": 192,
+      "pivot": [
+        0.8,
+        1
+      ]
+    },
+    "home-escada": {
+      "image": "world/kael-home-iso-v1/escada.png",
+      "width": 160,
+      "height": 208,
+      "pivot": [
+        0.4,
+        1
+      ]
+    },
+    "home-casca": {
+      "image": "world/kael-home-iso-v1/casca.png",
+      "width": 672,
+      "height": 496
+    }
+  },
+  "provenance": "Built-in image_gen sources; window/rug reused from original bedroom sources. Alpha crop, uniform contain resize and transparent padding only. No silhouette registration, column warp or aspect stretching. Geometry audit may reject source camera; visual approval remains separate."
+}

@@ -1,0 +1,1356 @@
+{
+  "resolution": 256,
+  "criterion": "Pelo menos 8 pixels opacos compartilhados entre manga e tronco, incluindo extremos; não substitui revisão visual.",
+  "negativeControl": {
+    "armOffset": 130,
+    "overlapPixels": 0,
+    "detected": true
+  },
+  "hashes": {
+    "art/soulgen/keys/kael-v2/parts/head-mel.png": "2025b735070b5be065c2ce0f25418232e3b1c2df54ad149e28cc7e17823a8fef",
+    "art/soulgen/keys/kael-v2/parts/leg-left-mel.png": "bcce6c24278b9b94017595a244ad6c59b6e80d1b2c167a8232e6bc12c1978aaf",
+    "art/soulgen/keys/kael-v2/parts/leg-right-mel.png": "c46044783f13a774d627198a2bb8b24cc57bb74d7533a6353920aaa90d05c0cb",
+    "art/soulgen/keys/kael-v2/parts/body-blue-mel.png": "34f3908f04cbe05c6681b86693fcba1d728ec363e4dfc1517e63a00ebfdfa58a",
+    "art/soulgen/keys/kael-v2/parts/arm-left-blue-mel.png": "411190e661b67eb881acb982dd81b96877d904b33642555d357bb0a29c902f6d",
+    "art/soulgen/keys/kael-v2/parts/arm-right-blue-mel.png": "a47b6af5e3243bf40d091fb2b18d0608e82044bb5988945c4b2b6afe17d14a25",
+    "art/soulgen/keys/kael-v2/parts/body-clay-mel.png": "77172bf49ecff22d0777907eb6d2318c4425e02185a0c0903538347e4768cf31",
+    "art/soulgen/keys/kael-v2/parts/arm-left-clay-mel.png": "61b9b017d3b767e75a306433536b02769c4f2e5ef91e498082fccb63b917ce7e",
+    "art/soulgen/keys/kael-v2/parts/arm-right-clay-mel.png": "1798534a92db0dd256f75d17971b1ea36906fe0ac855e82784a2d385f219fdbb",
+    "art/soulgen/keys/kael-v2/parts/head-claro.png": "4c2671f3d30d633716c56d3b226105aa0e6bdadbc7c3fd0c847b9e0ed8cf62c2",
+    "art/soulgen/keys/kael-v2/parts/leg-left-claro.png": "b303752fcab40fc640ad9b3a4123b801fe19e903a2fb458343bbfef5837ae7c9",
+    "art/soulgen/keys/kael-v2/parts/leg-right-claro.png": "4df5a1ee50b43a877be856830d99bba9788fc19e189e4da190071d13552351c0",
+    "art/soulgen/keys/kael-v2/parts/body-blue-claro.png": "612b71665db4d1c036274e6a4b34b2a121e7e626fdb2ef3459f347677a7ab008",
+    "art/soulgen/keys/kael-v2/parts/arm-left-blue-claro.png": "2a3c018659aa369f55ae8cd88e37af5085e77f0300bbc16c69b82113b6b322cc",
+    "art/soulgen/keys/kael-v2/parts/arm-right-blue-claro.png": "7673114e3a19215b27e08fdbbae86d55e8835eefb8f8b23afedcce074b816f5b",
+    "art/soulgen/keys/kael-v2/parts/body-clay-claro.png": "329d5ad528ec4fca31ab58af4efc0cab2757c886576b20d361ef13c0054f9c68",
+    "art/soulgen/keys/kael-v2/parts/arm-left-clay-claro.png": "56042074c478248a7fe8787e7003abaac6527f7fc9eaee0034867a8aeefe4d73",
+    "art/soulgen/keys/kael-v2/parts/arm-right-clay-claro.png": "7347805369acf61e5ce117d8809cd33b70bbbd7bec8a442ff974104906c3b948",
+    "art/soulgen/keys/kael-v2/parts/head-castanho.png": "59a07f3fe1116ff06ee5780f8c6acd7a67d24a28436e1459410fa11570c825ae",
+    "art/soulgen/keys/kael-v2/parts/leg-left-castanho.png": "c959a2eb544d07d1022330da390686d044345ca214f9244685d1d0f9a43a87a8",
+    "art/soulgen/keys/kael-v2/parts/leg-right-castanho.png": "53262dfe8b55115e7cf1bc70c923d111fe3771672fb735743856ec4d881f1e2b",
+    "art/soulgen/keys/kael-v2/parts/body-blue-castanho.png": "a80fa82d4f949a7deb6b9577ad9696f10461e826cb361ef4355a751e3881c289",
+    "art/soulgen/keys/kael-v2/parts/arm-left-blue-castanho.png": "42dc3c1ae0349a9126e0b5234f4e1cdb36c8682dc24e5125e254876380763109",
+    "art/soulgen/keys/kael-v2/parts/arm-right-blue-castanho.png": "01630ed3a2a62a4b6b5d76e6f7fb3b24b954acf9f5c7afdc2e1f527ac71763e7",
+    "art/soulgen/keys/kael-v2/parts/body-clay-castanho.png": "8b732b57b98ef82269284ceae05915f6f9a441b97398539e6d9d5da400709391",
+    "art/soulgen/keys/kael-v2/parts/arm-left-clay-castanho.png": "b2508e2d5e22f076265f8dfcbdb0a6f5035e91ad32d3ef141568d536af558753",
+    "art/soulgen/keys/kael-v2/parts/arm-right-clay-castanho.png": "492f6081d176984f16efe03eeba60607cc0855b7c61edc52842abeda5471b9a2",
+    "art/soulgen/keys/kael-v2/parts/head-escuro.png": "fc3d832642369727a76bab9cfbd601b5ad67eaf1c553e802d3f5e161844bad0d",
+    "art/soulgen/keys/kael-v2/parts/leg-left-escuro.png": "15c50d136983e9776a2039c2264419c62c254c975c48ac532423ea5cf728d72b",
+    "art/soulgen/keys/kael-v2/parts/leg-right-escuro.png": "4d3ba73ee5efd6088a172337173d1707274c8a09b2d261c0ae1fbe84a2d4a55b",
+    "art/soulgen/keys/kael-v2/parts/body-blue-escuro.png": "6bc48af286db64040692c1f18caddb3c8e9f614366273c8bddbae0df8bbc5a98",
+    "art/soulgen/keys/kael-v2/parts/arm-left-blue-escuro.png": "33113daaa3bef986ef1d8596cafd8d81a7ca312c6a10e4fdfa95b84b035f81a1",
+    "art/soulgen/keys/kael-v2/parts/arm-right-blue-escuro.png": "5555a2876871a392e9c9f2deee0f57493776878a72a70189287e5ea38174ccd3",
+    "art/soulgen/keys/kael-v2/parts/body-clay-escuro.png": "652136000f7d588fbe007d37b3c31fa3873cfbf74fe5703b1a1b5210000bd1e9",
+    "art/soulgen/keys/kael-v2/parts/arm-left-clay-escuro.png": "193598e97dac1439890d6b2c7540b22a2d44ab67c7fffaaf9ee2082487bf5461",
+    "art/soulgen/keys/kael-v2/parts/arm-right-clay-escuro.png": "0a4ad5b57032d5dafaf62100abf98534de267095d3d8a3a6c97f22fba2ec90c6",
+    "art/soulgen/keys/kael-v2/parts/hair-spiky-navy.png": "ef4277d5929f82d008c7255aebc7544488fa24ef7ff35fb8469784a6723a7ae4",
+    "art/soulgen/keys/kael-v2/parts/hair-spiky-brown.png": "a29139743b48d5de050913f8c1cdc0a7c43086e99457413c75ed8a271dd5c525",
+    "art/soulgen/keys/kael-v2/parts/hair-spiky-black.png": "933f568a8c294be0a021ef3e9f08360ec38c39c925fa2b5a4ff7474ec6d80dfb",
+    "art/soulgen/keys/kael-v2/parts/hair-spiky-copper.png": "a98a846087b0c5e845f6785421c24c07cbb6816dbf91842af6acab63156d349f",
+    "art/soulgen/keys/kael-v2/parts/hair-curly-navy.png": "a202662dc3b214c21a44fc4636b7d98fc034a018a8a149ca76f6c018e77dc548",
+    "art/soulgen/keys/kael-v2/parts/hair-curly-brown.png": "6f39f750588d53e0ff6849d2ed13a847ad14642d74a0990f75a67cbef9df5041",
+    "art/soulgen/keys/kael-v2/parts/hair-curly-black.png": "620aba1a03924c0db2ae7148b3f399385037331818e695b1d3bbeae24e8919be",
+    "art/soulgen/keys/kael-v2/parts/hair-curly-copper.png": "f346918cfb047c0bb2dfa6115b863b1169ca75559fb74eed3944eef3feaefec5",
+    "art/soulgen/keys/kael-v2/parts/backpack.png": "8983c978c151cdab63b670581d11a9d1e25d6a848e7ef0cdf0ea5e89c51f6c53",
+    "art/soulgen/keys/kael-v2/rig-data.mjs": "0de947513db97ee4bd982b8d980f5416944ec5304f3bd273fee0ae9eeb57edc5"
+  },
+  "checks": [
+    {
+      "outfit": "blue",
+      "view": "south",
+      "clip": "idle",
+      "time": 0,
+      "arm": "armLeft",
+      "overlapPixels": 759,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "south",
+      "clip": "idle",
+      "time": 0,
+      "arm": "armRight",
+      "overlapPixels": 701,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "south",
+      "clip": "walk",
+      "time": 0.18,
+      "arm": "armLeft",
+      "overlapPixels": 608,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "south",
+      "clip": "walk",
+      "time": 0.18,
+      "arm": "armRight",
+      "overlapPixels": 550,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "south",
+      "clip": "walk",
+      "time": 0.54,
+      "arm": "armLeft",
+      "overlapPixels": 919,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "south",
+      "clip": "walk",
+      "time": 0.54,
+      "arm": "armRight",
+      "overlapPixels": 869,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "south",
+      "clip": "run",
+      "time": 0.12,
+      "arm": "armLeft",
+      "overlapPixels": 491,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "south",
+      "clip": "run",
+      "time": 0.12,
+      "arm": "armRight",
+      "overlapPixels": 441,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "south",
+      "clip": "run",
+      "time": 0.36,
+      "arm": "armLeft",
+      "overlapPixels": 993,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "south",
+      "clip": "run",
+      "time": 0.36,
+      "arm": "armRight",
+      "overlapPixels": 949,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "south",
+      "clip": "wave",
+      "time": 0.7,
+      "arm": "armLeft",
+      "overlapPixels": 759,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "south",
+      "clip": "wave",
+      "time": 0.7,
+      "arm": "armRight",
+      "overlapPixels": 300,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "south",
+      "clip": "wave",
+      "time": 1.3,
+      "arm": "armLeft",
+      "overlapPixels": 759,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "south",
+      "clip": "wave",
+      "time": 1.3,
+      "arm": "armRight",
+      "overlapPixels": 300,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "south",
+      "clip": "victory",
+      "time": 0.7,
+      "arm": "armLeft",
+      "overlapPixels": 392,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "south",
+      "clip": "victory",
+      "time": 0.7,
+      "arm": "armRight",
+      "overlapPixels": 346,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "south",
+      "clip": "hurt",
+      "time": 0.14,
+      "arm": "armLeft",
+      "overlapPixels": 761,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "south",
+      "clip": "hurt",
+      "time": 0.14,
+      "arm": "armRight",
+      "overlapPixels": 702,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "west",
+      "clip": "idle",
+      "time": 0,
+      "arm": "armLeft",
+      "overlapPixels": 1101,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "west",
+      "clip": "idle",
+      "time": 0,
+      "arm": "armRight",
+      "overlapPixels": 1096,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "west",
+      "clip": "walk",
+      "time": 0.18,
+      "arm": "armLeft",
+      "overlapPixels": 1127,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "west",
+      "clip": "walk",
+      "time": 0.18,
+      "arm": "armRight",
+      "overlapPixels": 976,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "west",
+      "clip": "walk",
+      "time": 0.54,
+      "arm": "armLeft",
+      "overlapPixels": 977,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "west",
+      "clip": "walk",
+      "time": 0.54,
+      "arm": "armRight",
+      "overlapPixels": 1118,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "west",
+      "clip": "run",
+      "time": 0.12,
+      "arm": "armLeft",
+      "overlapPixels": 1127,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "west",
+      "clip": "run",
+      "time": 0.12,
+      "arm": "armRight",
+      "overlapPixels": 860,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "west",
+      "clip": "run",
+      "time": 0.36,
+      "arm": "armLeft",
+      "overlapPixels": 866,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "west",
+      "clip": "run",
+      "time": 0.36,
+      "arm": "armRight",
+      "overlapPixels": 1116,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "west",
+      "clip": "wave",
+      "time": 0.7,
+      "arm": "armLeft",
+      "overlapPixels": 1101,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "west",
+      "clip": "wave",
+      "time": 0.7,
+      "arm": "armRight",
+      "overlapPixels": 595,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "west",
+      "clip": "wave",
+      "time": 1.3,
+      "arm": "armLeft",
+      "overlapPixels": 1101,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "west",
+      "clip": "wave",
+      "time": 1.3,
+      "arm": "armRight",
+      "overlapPixels": 595,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "west",
+      "clip": "victory",
+      "time": 0.7,
+      "arm": "armLeft",
+      "overlapPixels": 1128,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "west",
+      "clip": "victory",
+      "time": 0.7,
+      "arm": "armRight",
+      "overlapPixels": 661,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "west",
+      "clip": "hurt",
+      "time": 0.14,
+      "arm": "armLeft",
+      "overlapPixels": 1106,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "west",
+      "clip": "hurt",
+      "time": 0.14,
+      "arm": "armRight",
+      "overlapPixels": 1100,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "east",
+      "clip": "idle",
+      "time": 0,
+      "arm": "armLeft",
+      "overlapPixels": 1101,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "east",
+      "clip": "idle",
+      "time": 0,
+      "arm": "armRight",
+      "overlapPixels": 1096,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "east",
+      "clip": "walk",
+      "time": 0.18,
+      "arm": "armLeft",
+      "overlapPixels": 976,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "east",
+      "clip": "walk",
+      "time": 0.18,
+      "arm": "armRight",
+      "overlapPixels": 1119,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "east",
+      "clip": "walk",
+      "time": 0.54,
+      "arm": "armLeft",
+      "overlapPixels": 1126,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "east",
+      "clip": "walk",
+      "time": 0.54,
+      "arm": "armRight",
+      "overlapPixels": 976,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "east",
+      "clip": "run",
+      "time": 0.12,
+      "arm": "armLeft",
+      "overlapPixels": 868,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "east",
+      "clip": "run",
+      "time": 0.12,
+      "arm": "armRight",
+      "overlapPixels": 1116,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "east",
+      "clip": "run",
+      "time": 0.36,
+      "arm": "armLeft",
+      "overlapPixels": 1127,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "east",
+      "clip": "run",
+      "time": 0.36,
+      "arm": "armRight",
+      "overlapPixels": 860,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "east",
+      "clip": "wave",
+      "time": 0.7,
+      "arm": "armLeft",
+      "overlapPixels": 1101,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "east",
+      "clip": "wave",
+      "time": 0.7,
+      "arm": "armRight",
+      "overlapPixels": 1033,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "east",
+      "clip": "wave",
+      "time": 1.3,
+      "arm": "armLeft",
+      "overlapPixels": 1101,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "east",
+      "clip": "wave",
+      "time": 1.3,
+      "arm": "armRight",
+      "overlapPixels": 1033,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "east",
+      "clip": "victory",
+      "time": 0.7,
+      "arm": "armLeft",
+      "overlapPixels": 681,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "east",
+      "clip": "victory",
+      "time": 0.7,
+      "arm": "armRight",
+      "overlapPixels": 1116,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "east",
+      "clip": "hurt",
+      "time": 0.14,
+      "arm": "armLeft",
+      "overlapPixels": 1106,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "east",
+      "clip": "hurt",
+      "time": 0.14,
+      "arm": "armRight",
+      "overlapPixels": 1103,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "north",
+      "clip": "idle",
+      "time": 0,
+      "arm": "armLeft",
+      "overlapPixels": 671,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "north",
+      "clip": "idle",
+      "time": 0,
+      "arm": "armRight",
+      "overlapPixels": 642,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "north",
+      "clip": "walk",
+      "time": 0.18,
+      "arm": "armLeft",
+      "overlapPixels": 533,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "north",
+      "clip": "walk",
+      "time": 0.18,
+      "arm": "armRight",
+      "overlapPixels": 500,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "north",
+      "clip": "walk",
+      "time": 0.54,
+      "arm": "armLeft",
+      "overlapPixels": 827,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "north",
+      "clip": "walk",
+      "time": 0.54,
+      "arm": "armRight",
+      "overlapPixels": 814,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "north",
+      "clip": "run",
+      "time": 0.12,
+      "arm": "armLeft",
+      "overlapPixels": 429,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "north",
+      "clip": "run",
+      "time": 0.12,
+      "arm": "armRight",
+      "overlapPixels": 406,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "north",
+      "clip": "run",
+      "time": 0.36,
+      "arm": "armLeft",
+      "overlapPixels": 933,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "north",
+      "clip": "run",
+      "time": 0.36,
+      "arm": "armRight",
+      "overlapPixels": 926,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "north",
+      "clip": "wave",
+      "time": 0.7,
+      "arm": "armLeft",
+      "overlapPixels": 671,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "north",
+      "clip": "wave",
+      "time": 0.7,
+      "arm": "armRight",
+      "overlapPixels": 302,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "north",
+      "clip": "wave",
+      "time": 1.3,
+      "arm": "armLeft",
+      "overlapPixels": 671,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "north",
+      "clip": "wave",
+      "time": 1.3,
+      "arm": "armRight",
+      "overlapPixels": 302,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "north",
+      "clip": "victory",
+      "time": 0.7,
+      "arm": "armLeft",
+      "overlapPixels": 376,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "north",
+      "clip": "victory",
+      "time": 0.7,
+      "arm": "armRight",
+      "overlapPixels": 345,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "north",
+      "clip": "hurt",
+      "time": 0.14,
+      "arm": "armLeft",
+      "overlapPixels": 675,
+      "ok": true
+    },
+    {
+      "outfit": "blue",
+      "view": "north",
+      "clip": "hurt",
+      "time": 0.14,
+      "arm": "armRight",
+      "overlapPixels": 652,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "south",
+      "clip": "idle",
+      "time": 0,
+      "arm": "armLeft",
+      "overlapPixels": 774,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "south",
+      "clip": "idle",
+      "time": 0,
+      "arm": "armRight",
+      "overlapPixels": 722,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "south",
+      "clip": "walk",
+      "time": 0.18,
+      "arm": "armLeft",
+      "overlapPixels": 640,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "south",
+      "clip": "walk",
+      "time": 0.18,
+      "arm": "armRight",
+      "overlapPixels": 586,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "south",
+      "clip": "walk",
+      "time": 0.54,
+      "arm": "armLeft",
+      "overlapPixels": 882,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "south",
+      "clip": "walk",
+      "time": 0.54,
+      "arm": "armRight",
+      "overlapPixels": 843,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "south",
+      "clip": "run",
+      "time": 0.12,
+      "arm": "armLeft",
+      "overlapPixels": 526,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "south",
+      "clip": "run",
+      "time": 0.12,
+      "arm": "armRight",
+      "overlapPixels": 477,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "south",
+      "clip": "run",
+      "time": 0.36,
+      "arm": "armLeft",
+      "overlapPixels": 923,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "south",
+      "clip": "run",
+      "time": 0.36,
+      "arm": "armRight",
+      "overlapPixels": 887,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "south",
+      "clip": "wave",
+      "time": 0.7,
+      "arm": "armLeft",
+      "overlapPixels": 774,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "south",
+      "clip": "wave",
+      "time": 0.7,
+      "arm": "armRight",
+      "overlapPixels": 294,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "south",
+      "clip": "wave",
+      "time": 1.3,
+      "arm": "armLeft",
+      "overlapPixels": 774,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "south",
+      "clip": "wave",
+      "time": 1.3,
+      "arm": "armRight",
+      "overlapPixels": 294,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "south",
+      "clip": "victory",
+      "time": 0.7,
+      "arm": "armLeft",
+      "overlapPixels": 383,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "south",
+      "clip": "victory",
+      "time": 0.7,
+      "arm": "armRight",
+      "overlapPixels": 347,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "south",
+      "clip": "hurt",
+      "time": 0.14,
+      "arm": "armLeft",
+      "overlapPixels": 775,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "south",
+      "clip": "hurt",
+      "time": 0.14,
+      "arm": "armRight",
+      "overlapPixels": 726,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "west",
+      "clip": "idle",
+      "time": 0,
+      "arm": "armLeft",
+      "overlapPixels": 1050,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "west",
+      "clip": "idle",
+      "time": 0,
+      "arm": "armRight",
+      "overlapPixels": 1021,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "west",
+      "clip": "walk",
+      "time": 0.18,
+      "arm": "armLeft",
+      "overlapPixels": 1053,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "west",
+      "clip": "walk",
+      "time": 0.18,
+      "arm": "armRight",
+      "overlapPixels": 916,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "west",
+      "clip": "walk",
+      "time": 0.54,
+      "arm": "armLeft",
+      "overlapPixels": 982,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "west",
+      "clip": "walk",
+      "time": 0.54,
+      "arm": "armRight",
+      "overlapPixels": 1054,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "west",
+      "clip": "run",
+      "time": 0.12,
+      "arm": "armLeft",
+      "overlapPixels": 1047,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "west",
+      "clip": "run",
+      "time": 0.12,
+      "arm": "armRight",
+      "overlapPixels": 820,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "west",
+      "clip": "run",
+      "time": 0.36,
+      "arm": "armLeft",
+      "overlapPixels": 891,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "west",
+      "clip": "run",
+      "time": 0.36,
+      "arm": "armRight",
+      "overlapPixels": 1050,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "west",
+      "clip": "wave",
+      "time": 0.7,
+      "arm": "armLeft",
+      "overlapPixels": 1050,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "west",
+      "clip": "wave",
+      "time": 0.7,
+      "arm": "armRight",
+      "overlapPixels": 619,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "west",
+      "clip": "wave",
+      "time": 1.3,
+      "arm": "armLeft",
+      "overlapPixels": 1050,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "west",
+      "clip": "wave",
+      "time": 1.3,
+      "arm": "armRight",
+      "overlapPixels": 619,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "west",
+      "clip": "victory",
+      "time": 0.7,
+      "arm": "armLeft",
+      "overlapPixels": 1050,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "west",
+      "clip": "victory",
+      "time": 0.7,
+      "arm": "armRight",
+      "overlapPixels": 673,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "west",
+      "clip": "hurt",
+      "time": 0.14,
+      "arm": "armLeft",
+      "overlapPixels": 1045,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "west",
+      "clip": "hurt",
+      "time": 0.14,
+      "arm": "armRight",
+      "overlapPixels": 1024,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "east",
+      "clip": "idle",
+      "time": 0,
+      "arm": "armLeft",
+      "overlapPixels": 1050,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "east",
+      "clip": "idle",
+      "time": 0,
+      "arm": "armRight",
+      "overlapPixels": 1021,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "east",
+      "clip": "walk",
+      "time": 0.18,
+      "arm": "armLeft",
+      "overlapPixels": 982,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "east",
+      "clip": "walk",
+      "time": 0.18,
+      "arm": "armRight",
+      "overlapPixels": 1056,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "east",
+      "clip": "walk",
+      "time": 0.54,
+      "arm": "armLeft",
+      "overlapPixels": 1050,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "east",
+      "clip": "walk",
+      "time": 0.54,
+      "arm": "armRight",
+      "overlapPixels": 917,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "east",
+      "clip": "run",
+      "time": 0.12,
+      "arm": "armLeft",
+      "overlapPixels": 893,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "east",
+      "clip": "run",
+      "time": 0.12,
+      "arm": "armRight",
+      "overlapPixels": 1050,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "east",
+      "clip": "run",
+      "time": 0.36,
+      "arm": "armLeft",
+      "overlapPixels": 1048,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "east",
+      "clip": "run",
+      "time": 0.36,
+      "arm": "armRight",
+      "overlapPixels": 820,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "east",
+      "clip": "wave",
+      "time": 0.7,
+      "arm": "armLeft",
+      "overlapPixels": 1050,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "east",
+      "clip": "wave",
+      "time": 0.7,
+      "arm": "armRight",
+      "overlapPixels": 1038,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "east",
+      "clip": "wave",
+      "time": 1.3,
+      "arm": "armLeft",
+      "overlapPixels": 1050,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "east",
+      "clip": "wave",
+      "time": 1.3,
+      "arm": "armRight",
+      "overlapPixels": 1038,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "east",
+      "clip": "victory",
+      "time": 0.7,
+      "arm": "armLeft",
+      "overlapPixels": 719,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "east",
+      "clip": "victory",
+      "time": 0.7,
+      "arm": "armRight",
+      "overlapPixels": 1051,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "east",
+      "clip": "hurt",
+      "time": 0.14,
+      "arm": "armLeft",
+      "overlapPixels": 1050,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "east",
+      "clip": "hurt",
+      "time": 0.14,
+      "arm": "armRight",
+      "overlapPixels": 1021,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "north",
+      "clip": "idle",
+      "time": 0,
+      "arm": "armLeft",
+      "overlapPixels": 817,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "north",
+      "clip": "idle",
+      "time": 0,
+      "arm": "armRight",
+      "overlapPixels": 883,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "north",
+      "clip": "walk",
+      "time": 0.18,
+      "arm": "armLeft",
+      "overlapPixels": 649,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "north",
+      "clip": "walk",
+      "time": 0.18,
+      "arm": "armRight",
+      "overlapPixels": 687,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "north",
+      "clip": "walk",
+      "time": 0.54,
+      "arm": "armLeft",
+      "overlapPixels": 974,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "north",
+      "clip": "walk",
+      "time": 0.54,
+      "arm": "armRight",
+      "overlapPixels": 1026,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "north",
+      "clip": "run",
+      "time": 0.12,
+      "arm": "armLeft",
+      "overlapPixels": 523,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "north",
+      "clip": "run",
+      "time": 0.12,
+      "arm": "armRight",
+      "overlapPixels": 566,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "north",
+      "clip": "run",
+      "time": 0.36,
+      "arm": "armLeft",
+      "overlapPixels": 1020,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "north",
+      "clip": "run",
+      "time": 0.36,
+      "arm": "armRight",
+      "overlapPixels": 1139,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "north",
+      "clip": "wave",
+      "time": 0.7,
+      "arm": "armLeft",
+      "overlapPixels": 817,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "north",
+      "clip": "wave",
+      "time": 0.7,
+      "arm": "armRight",
+      "overlapPixels": 342,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "north",
+      "clip": "wave",
+      "time": 1.3,
+      "arm": "armLeft",
+      "overlapPixels": 817,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "north",
+      "clip": "wave",
+      "time": 1.3,
+      "arm": "armRight",
+      "overlapPixels": 342,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "north",
+      "clip": "victory",
+      "time": 0.7,
+      "arm": "armLeft",
+      "overlapPixels": 382,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "north",
+      "clip": "victory",
+      "time": 0.7,
+      "arm": "armRight",
+      "overlapPixels": 405,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "north",
+      "clip": "hurt",
+      "time": 0.14,
+      "arm": "armLeft",
+      "overlapPixels": 821,
+      "ok": true
+    },
+    {
+      "outfit": "clay",
+      "view": "north",
+      "clip": "hurt",
+      "time": 0.14,
+      "arm": "armRight",
+      "overlapPixels": 866,
+      "ok": true
+    }
+  ],
+  "failures": []
+}

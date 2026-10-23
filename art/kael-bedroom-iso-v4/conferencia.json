@@ -1,0 +1,273 @@
+{
+  "scene": [],
+  "pieces": [
+    {
+      "id": "tapete",
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        }
+      ]
+    },
+    {
+      "id": "abertura-escada",
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        }
+      ]
+    },
+    {
+      "id": "janela",
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (base) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R5",
+          "text": "Âncora encostada no piso."
+        }
+      ]
+    },
+    {
+      "id": "quadros",
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (base) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R5",
+          "text": "Âncora encostada no piso."
+        }
+      ]
+    },
+    {
+      "id": "cama",
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R5",
+          "text": "Âncora encostada no piso."
+        }
+      ]
+    },
+    {
+      "id": "estante",
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R5",
+          "text": "Âncora encostada no piso."
+        }
+      ]
+    },
+    {
+      "id": "tv",
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R5",
+          "text": "Âncora encostada no piso."
+        }
+      ]
+    },
+    {
+      "id": "guarda-roupa",
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R5",
+          "text": "Âncora encostada no piso."
+        }
+      ]
+    },
+    {
+      "id": "mesa",
+      "verdict": "ok",
+      "items": [
+        {
+          "level": "info",
+          "rule": "R7",
+          "text": "Fonte em 1 px por pixel de arte.",
+          "block": 1
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Nenhum pixel fora da caixa."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (esquerda) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R1",
+          "text": "Aresta de baixo (direita) em 2:1."
+        },
+        {
+          "level": "ok",
+          "rule": "R5",
+          "text": "Âncora encostada no piso."
+        }
+      ]
+    }
+  ]
+}

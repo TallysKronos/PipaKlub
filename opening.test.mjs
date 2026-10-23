@@ -6,6 +6,7 @@ import {KAEL_OPENING} from './src/opening-story.js';
 import {createAssetHandler} from './src/static-assets.js';
 import vm from 'node:vm';
 import {parseHTML} from 'linkedom';
+import {artConfig} from './scripts/art-build.mjs';
 import {createOpeningRoom} from './src/opening-room.js';
 
 function openingUI(){
@@ -37,7 +38,7 @@ test('naming failure stays in the opening, retries once, and stale-account respo
 
 test('legacy replay names a local partner and leaves both saved checkpoint and inventory untouched',async()=>{
  const ui=openingUI();await ui.settle();await ui.run(`var openingCalls=0;accountRequest=async(action)=>{if(action==='opening'){openingCalls++;return {opening:{step:14,legacy:true}};}return {journey:{phase:'complete',lesson:5}}};playerAccount={profile:{id:'legacy',nickname:'Antiga',equipped_kite_id:null},inventory:[]};onCourtyardAccount()`);await ui.settle();
- await ui.run('showOpening(true)');for(let i=0;i<20&&ui.run('openingState.step')<10;i++){ui.run('for(let n=0;n<240;n++)openingStepCast(.05)');if(ui.run('openingState.step')===3){ui.run('openingActor={x:1050,y:510,direction:2,path:[]}');await ui.run("openingInspect('desk')");await ui.document.getElementById('openingBenchPlace').onclick();await ui.run('openingFinishCraft()');}else if(ui.run('openingState.step')===7){if(ui.run('openingGiftOpen'))await ui.run('nextOpening()');ui.run('openingActor={x:1050,y:510,direction:2,path:[]}');await ui.run("openingInspect('desk')");}else await ui.run('nextOpening()');}
+ await ui.run('showOpening(true)');for(let i=0;i<20&&ui.run('openingState.step')<10;i++){ui.run('for(let n=0;n<240;n++)openingStepCast(.05)');if(ui.run('openingState.step')===3){ui.run('openingActor={x:1104,y:560,direction:2,path:[]}');await ui.run("openingInspect('desk')");await ui.document.getElementById('openingBenchPlace').onclick();await ui.run('openingFinishCraft()');}else if(ui.run('openingState.step')===7){if(ui.run('openingGiftOpen'))await ui.run('nextOpening()');ui.run('openingActor={x:1104,y:560,direction:2,path:[]}');await ui.run("openingInspect('desk')");}else await ui.run('nextOpening()');}
  ui.document.getElementById('openingName').value='<Lua>';await ui.document.getElementById('openingNameForm').onsubmit({preventDefault(){}});assert.equal(ui.run('openingState.partner_name'),'<Lua>');assert.equal(ui.run('openingState.step'),11);
  assert.equal(ui.run('openingCalls'),1,'replay performs no economy writes');assert.equal(ui.run('playerAccount.inventory.length'),0);assert.match(ui.document.getElementById('openingSpeech').textContent,/<Lua>/);assert.equal(ui.document.getElementById('openingSpeech').children.length,0,'custom name uses text, never HTML');
  await ui.document.getElementById('openingPause').onclick();assert.equal(ui.run('openingState.step'),14);assert.equal(ui.document.getElementById('kaelOpening').hidden,true);
@@ -51,11 +52,11 @@ test('every film shot renders with reduced motion and measured actor feet stay o
 });
 
 test('room movement respects walls and letterboxing, clicks walk rather than teleport, and the craft is required',async()=>{
- const room=createOpeningRoom(JSON.parse(fs.readFileSync('assets/story/kael-birthday-v1/manifest.json','utf8')).rooms.bedroom);
+ const room=createOpeningRoom(artConfig().opening.rooms.bedroom);
  assert.equal(room.safe({x:220,y:500}),false,'bed is outside the walkable floor');assert.deepEqual(room.route({x:540,y:570},{x:220,y:500}),[]);
- assert.equal(room.safe({x:1130,y:500}),false,'the stool is an obstacle, not walkable floor');
- const around={x:1030,y:610,path:room.route({x:1030,y:610},{x:780,y:855})};for(let n=0;n<180;n++){room.tick(around,{},.05);assert.ok(room.safe(around));}assert.ok(Math.hypot(around.x-780,around.y-855)<2,'the narrow doorway is reached without stopping at its corner');
- const actor={x:540,y:570,path:room.route({x:540,y:570},{x:1050,y:510})};room.tick(actor,{},.05);assert.ok(actor.x>540&&actor.x<555,'reduced motion still requires real movement');for(let i=0;i<80;i++){room.tick(actor,{},.05);assert.ok(room.safe(actor));}assert.ok(room.near(actor,'desk'));
+ assert.equal(room.safe({x:1100,y:350}),false,'the workbench is an obstacle, not walkable floor');
+ const around={x:1030,y:610,path:room.route({x:1030,y:610},{x:528,y:816})};for(let n=0;n<180;n++){room.tick(around,{},.05);assert.ok(room.safe(around));}assert.ok(Math.hypot(around.x-528,around.y-816)<2,'the narrow doorway is reached without stopping at its corner');
+ const actor={x:768,y:496,path:room.route({x:768,y:496},{x:1200,y:528})};room.tick(actor,{},.05);assert.ok(actor.x>768&&actor.x<1200,'reduced motion still requires real movement');assert.ok(Math.abs(Math.hypot(actor.x-768,actor.y-496)-18)<.001,'one frame advances 360 units/second, without teleporting');for(let i=0;i<80;i++){room.tick(actor,{},.05);assert.ok(room.safe(actor));}assert.ok(room.near(actor,'desk'));
  const p=room.canvasPoint({left:0,top:0,width:1000,height:500},1536,1024,500,250);assert.deepEqual(p,{x:768,y:512});assert.equal(room.canvasPoint({left:0,top:0,width:1000,height:500},1536,1024,10,250),null);
  const ui=openingUI();await ui.settle();await ui.run(`playerAccount={profile:{id:'room',nickname:'Kael'},inventory:[]};openingOwner='room';showOpening(true)`);for(let i=0;i<3;i++)await ui.run('nextOpening()');
  await ui.run('nextOpening()');assert.equal(ui.run('openingState.step'),3,'examining TV cannot advance the project');
@@ -66,7 +67,7 @@ test('room movement respects walls and letterboxing, clicks walk rather than tel
 
 test('craft shows its placement before advancing, cancellation writes nothing, and connection failure leaves a retry',async()=>{
  const ui=openingUI();await ui.settle();await ui.run(`playerAccount={profile:{id:'craft',nickname:'Kael'},inventory:[]};openingOwner='craft';showOpening(true)`);for(let i=0;i<3;i++)await ui.run('nextOpening()');
- ui.run('art.reduced=false;openingActor={x:1050,y:510,path:[]}');await ui.run("openingInspect('desk')");ui.document.getElementById('openingBenchPlace').onclick();ui.run('drawOpeningWorkbench(400)');assert.equal(ui.run('openingState.step'),3,'cannot skip visible placement');
+ ui.run('art.reduced=false;openingActor={x:1104,y:560,path:[]}');await ui.run("openingInspect('desk')");ui.document.getElementById('openingBenchPlace').onclick();ui.run('drawOpeningWorkbench(400)');assert.equal(ui.run('openingState.step'),3,'cannot skip visible placement');
  ui.document.getElementById('openingBenchBack').onclick();ui.run('drawOpeningWorkbench(1600)');assert.equal(ui.run('openingState.step'),3,'leaving before placement does not save the craft');
  await ui.run("openingInspect('desk')");ui.run("openingReplay=false;accountRequest=async()=>{throw Error('Sem conexão')}");ui.document.getElementById('openingBenchPlace').onclick();ui.run('drawOpeningWorkbench(1000)');await ui.settle();
  assert.equal(ui.run('openingState.step'),3);assert.equal(ui.document.getElementById('openingBenchPlace').disabled,false);assert.equal(ui.document.getElementById('openingWorkbench').hidden,false);assert.equal(ui.document.getElementById('openingBenchStatus').textContent,'Sem conexão');assert.equal(ui.run('playerAccount.inventory.length'),0);
@@ -74,7 +75,7 @@ test('craft shows its placement before advancing, cancellation writes nothing, a
 
 test('walking into the opening staircase advances without requiring an interaction button',async()=>{
  const ui=openingUI();await ui.settle();await ui.run("playerAccount={profile:{id:'door-walker',nickname:'Kael'},inventory:[]};openingOwner='door-walker';openingState={step:11};showOpening(false)");
- ui.run("openingReplay=true;openingActor={x:780,y:810,direction:0,path:[]};openingWalkKeys.arrowdown=true;openingStepRoom(.05);openingStepRoom(.05);");await ui.settle();
+ ui.run("openingReplay=true;openingActor={x:528,y:786,direction:0,path:[]};openingWalkKeys.arrowdown=true;openingWalkKeys.arrowleft=true;openingStepRoom(.05);openingStepRoom(.05);");await ui.settle();
  assert.equal(ui.run('openingState.step'),12);assert.equal(ui.run('Object.keys(openingWalkKeys).length'),0);
 });
 

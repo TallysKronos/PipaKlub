@@ -1,0 +1,11 @@
+const $=id=>document.getElementById(id);
+try{
+ const m=await(await fetch('/art/soulgen/keys/kael-frame-test/manifest.json')).json(),image=new Image();image.src=m.image;await image.decode();
+ let elapsed=0,last=0,playing=true,frame=0;
+ const buttons=m.frames.map((f,i)=>{const button=document.createElement('button'),canvas=document.createElement('canvas');canvas.width=canvas.height=128;canvas.getContext('2d').drawImage(image,f.x,f.y,f.w,f.h,0,0,128,128);const img=new Image();img.src=canvas.toDataURL('image/png');img.alt='Pose '+(i+1);button.append(img,document.createTextNode(String(i+1)));button.setAttribute('aria-label','Ver quadro '+(i+1));button.onclick=()=>seek(i);$('frames').append(button);return button;});
+ function seek(index){playing=false;frame=(index+8)%8;elapsed=frame*100;last=0;$('play').textContent='Reproduzir';draw();}
+ $('play').onclick=()=>{playing=!playing;last=0;$('play').textContent=playing?'Pausar':'Reproduzir';};$('previous').onclick=()=>seek(frame-1);$('next').onclick=()=>seek(frame+1);$('ground').onchange=draw;
+ function view(canvas,height){const g=canvas.getContext('2d'),f=m.frames[frame],palette={grass:['#dce8c1','#c6d8a3'],sand:['#efdfb8','#ddc99b'],dark:['#263f4b','#3b5660']},[base,line]=palette[$('ground').value];g.fillStyle=base;g.fillRect(0,0,canvas.width,canvas.height);const scale=height/192,foot=258,x=canvas.width/2,y=foot-m.anchor[1]*scale;g.fillStyle=line;g.fillRect(0,foot+1,canvas.width,2);g.fillStyle='#172e3924';g.beginPath();g.ellipse(x,foot+2,20*scale,4*scale,0,0,Math.PI*2);g.fill();g.imageSmoothingEnabled=true;g.imageSmoothingQuality='high';g.drawImage(image,f.x,f.y,f.w,f.h,x-m.anchor[0]*scale,y,f.w*scale,f.h*scale);}
+ function draw(){view($('large'),200);view($('native'),96);$('status').textContent='Quadro '+(frame+1)+' / 8 · '+(playing?'Reproduzindo':'Pausado')+' · ciclo de 0,8 s em velocidade normal';buttons.forEach((b,i)=>b.setAttribute('aria-pressed',String(i===frame)));}
+ function tick(ms){if(last&&playing&&!document.hidden)elapsed+=Math.min(100,ms-last)*Number($('speed').value);last=ms;if(playing)frame=Math.floor(elapsed/100)%8;draw();requestAnimationFrame(tick);}requestAnimationFrame(tick);
+}catch(e){$('status').textContent='Não foi possível abrir o teste: '+e.message;}

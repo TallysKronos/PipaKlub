@@ -48,7 +48,8 @@ function validateInternal(project){
   for(const w of c.expressions||[])if(!finite(w.start)||!finite(w.end)||w.start<0||w.end>w.seconds&&w.seconds!=null||w.end>c.seconds||w.start>=w.end||typeof w.face!=='string'||w.face!=='normal'&&!parts.some(p=>p.faces?.[w.face]))fail('Janela de expressão inválida: '+id);
  }
  if(!Object.keys(project.clips||{}).length)fail('Crie ao menos uma animação.');
- for(const id of ['idle','flight','skill','hurt','victory'])if(!project.clips?.[id])warnings.push('Animação recomendada ausente: '+id);
+ const recommended=project.avatar?.kind==='kael-modular-v1'?['idle','walk','run','wave','hurt','victory']:['idle','flight','skill','hurt','victory'];
+ for(const id of recommended)if(!project.clips?.[id])warnings.push('Animação recomendada ausente: '+id);
  return {ok:!errors.length,errors:[...new Set(errors)],warnings:[...new Set(warnings)]};
 }
 export function normalizeTime(clip,time){const t=finite(time)?time:0;return clip.loop?((t%clip.seconds)+clip.seconds)%clip.seconds:Math.max(0,Math.min(t,clip.seconds));}

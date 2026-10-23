@@ -1,0 +1,279 @@
+{
+  "version": 2,
+  "grid": [
+    64,
+    32,
+    32
+  ],
+  "images": {
+    "house": {
+      "image": "world/village-grid-v2/house.png",
+      "width": 416,
+      "height": 544,
+      "pivot": [
+        0.31923076923076926,
+        0.901470588235294
+      ],
+      "sha256": "e4329ca0d3084489daa247a121abaecaf2f6c1ea6d378ff4cf5ca8349a9669f2"
+    },
+    "professorHouse": {
+      "image": "world/village-grid-v2/professorHouse.png",
+      "width": 384,
+      "height": 432,
+      "pivot": [
+        0.3458333333333334,
+        0.8759259259259259
+      ],
+      "sha256": "f9c1d630bf66de2a6adde10bb0a01a13d46deb6247105206fe21e7a1681ee36b"
+    },
+    "shop": {
+      "image": "world/village-grid-v2/shop.png",
+      "width": 384,
+      "height": 432,
+      "pivot": [
+        0.3458333333333334,
+        0.8759259259259259
+      ],
+      "sha256": "42d7d26d57319330bd7a695007c1fb71efed58412082c82feab0e44d246149bd"
+    },
+    "assis-shell": {
+      "image": "world/village-grid-v2/assis-shell.png",
+      "width": 800,
+      "height": 560,
+      "pivot": [
+        0.44,
+        1
+      ],
+      "sha256": "b0eae2d57dd8c9c0f668f744ef1ff49973267805513fb90162e4e8c25fec2237"
+    },
+    "assis-rug": {
+      "image": "world/village-grid-v2/assis-rug.png",
+      "width": 320,
+      "height": 160,
+      "pivot": [
+        0.6,
+        1
+      ],
+      "sha256": "52a0c118d26e08091da6523e42199549e6dc0350327466feed31ed356441cabb"
+    },
+    "assis-library": {
+      "image": "world/village-grid-v2/assis-library.png",
+      "width": 128,
+      "height": 176,
+      "pivot": [
+        0.75,
+        1
+      ],
+      "sha256": "c35208e76232a8d746f4280b3d2e0aedac14bd09adf950beeefeae21442f383b"
+    },
+    "assis-study": {
+      "image": "world/village-grid-v2/assis-study.png",
+      "width": 128,
+      "height": 176,
+      "pivot": [
+        0.75,
+        1
+      ],
+      "sha256": "c35208e76232a8d746f4280b3d2e0aedac14bd09adf950beeefeae21442f383b"
+    },
+    "assis-workbench": {
+      "image": "world/village-grid-v2/assis-workbench.png",
+      "width": 192,
+      "height": 147,
+      "pivot": [
+        0.6666666666666666,
+        1
+      ],
+      "sha256": "8bfe501d9920ce08eac74165fa14ed6b0391f6b12ec99e3819b7c764bdad199c"
+    },
+    "assis-desk": {
+      "image": "world/village-grid-v2/assis-desk.png",
+      "width": 160,
+      "height": 131,
+      "pivot": [
+        0.6,
+        1
+      ],
+      "sha256": "9c160dfa1f9bb153c9365cc779425b43f338197405ebc4549fed006556552dc5"
+    },
+    "assis-chest": {
+      "image": "world/village-grid-v2/assis-chest.png",
+      "width": 96,
+      "height": 86,
+      "pivot": [
+        0.6666666666666666,
+        1
+      ],
+      "sha256": "83bf42ecd3f5672fed85beea561ec2369d113ee3c220cd48c4e7a14a6fdb3a89"
+    },
+    "assis-window": {
+      "image": "world/village-grid-v2/assis-window.png",
+      "width": 96,
+      "height": 112,
+      "pivot": [
+        0,
+        1
+      ],
+      "sha256": "c2bfa7fa9ccc001993069c55cd18bfad7c8d6e53383c549dd0d6e4ae664ac2b5"
+    },
+    "assis-papers": {
+      "image": "world/village-grid-v2/assis-papers.png",
+      "width": 96,
+      "height": 93,
+      "pivot": [
+        1,
+        1
+      ],
+      "sha256": "b806b3569305e59ac3ef651ac22cb8eabe15830c1999f2d3a625a102973d597f"
+    },
+    "assis-exit": {
+      "image": "world/village-grid-v2/assis-exit.png",
+      "width": 96,
+      "height": 48,
+      "pivot": [
+        0.6666666666666666,
+        1
+      ],
+      "sha256": "5f3304db78c37d89bf31723c98cf76fe0939748e655656c2b1987e2a4b4dfe47"
+    },
+    "shop-shell": {
+      "image": "world/village-grid-v2/shop-shell.png",
+      "width": 800,
+      "height": 560,
+      "pivot": [
+        0.44,
+        1
+      ],
+      "sha256": "b0eae2d57dd8c9c0f668f744ef1ff49973267805513fb90162e4e8c25fec2237"
+    },
+    "shop-rug": {
+      "image": "world/village-grid-v2/shop-rug.png",
+      "width": 320,
+      "height": 160,
+      "pivot": [
+        0.6,
+        1
+      ],
+      "sha256": "52a0c118d26e08091da6523e42199549e6dc0350327466feed31ed356441cabb"
+    },
+    "shop-library": {
+      "image": "world/village-grid-v2/shop-library.png",
+      "width": 128,
+      "height": 176,
+      "pivot": [
+        0.75,
+        1
+      ],
+      "sha256": "b4a78b2a3c4a694ee5fccf4a39e54a6dc5e65c0ae8b0377c718643ec70973185"
+    },
+    "shop-study": {
+      "image": "world/village-grid-v2/shop-study.png",
+      "width": 128,
+      "height": 176,
+      "pivot": [
+        0.75,
+        1
+      ],
+      "sha256": "b4a78b2a3c4a694ee5fccf4a39e54a6dc5e65c0ae8b0377c718643ec70973185"
+    },
+    "shop-counter": {
+      "image": "world/village-grid-v2/shop-counter.png",
+      "width": 208,
+      "height": 162,
+      "pivot": [
+        0.7692307692307693,
+        1
+      ],
+      "sha256": "ea90dda080e63a1a8af8196aeede50da89b39536ed0f5006596341f320ef3d03"
+    },
+    "shop-workbench": {
+      "image": "world/village-grid-v2/shop-workbench.png",
+      "width": 192,
+      "height": 147,
+      "pivot": [
+        0.6666666666666666,
+        1
+      ],
+      "sha256": "8bfe501d9920ce08eac74165fa14ed6b0391f6b12ec99e3819b7c764bdad199c"
+    },
+    "shop-rack": {
+      "image": "world/village-grid-v2/shop-rack.png",
+      "width": 96,
+      "height": 170,
+      "pivot": [
+        0.6666666666666666,
+        1
+      ],
+      "sha256": "f48f178929d60b3962a8591da8437c72b10024272b10fce7914ff27330d0c0f9"
+    },
+    "shop-chest": {
+      "image": "world/village-grid-v2/shop-chest.png",
+      "width": 96,
+      "height": 86,
+      "pivot": [
+        0.6666666666666666,
+        1
+      ],
+      "sha256": "83bf42ecd3f5672fed85beea561ec2369d113ee3c220cd48c4e7a14a6fdb3a89"
+    },
+    "shop-window": {
+      "image": "world/village-grid-v2/shop-window.png",
+      "width": 96,
+      "height": 112,
+      "pivot": [
+        0,
+        1
+      ],
+      "sha256": "c2bfa7fa9ccc001993069c55cd18bfad7c8d6e53383c549dd0d6e4ae664ac2b5"
+    },
+    "shop-exit": {
+      "image": "world/village-grid-v2/shop-exit.png",
+      "width": 96,
+      "height": 48,
+      "pivot": [
+        0.6666666666666666,
+        1
+      ],
+      "sha256": "5f3304db78c37d89bf31723c98cf76fe0939748e655656c2b1987e2a4b4dfe47"
+    }
+  },
+  "facades": [
+    {
+      "id": "house",
+      "footprint": [
+        7,
+        6
+      ],
+      "height": 10.5,
+      "door": [
+        3.9,
+        5.75
+      ]
+    },
+    {
+      "id": "professorHouse",
+      "footprint": [
+        7,
+        5
+      ],
+      "height": 7.5,
+      "door": [
+        3.9,
+        4.75
+      ]
+    },
+    {
+      "id": "shop",
+      "footprint": [
+        7,
+        5
+      ],
+      "height": 7.5,
+      "door": [
+        3.9,
+        4.75
+      ]
+    }
+  ],
+  "provenance": "Built-in image_gen flat material, facade and furniture atlases. Each raster asset is baked from exact orthographic 2:1 planar geometry; no column resampling or silhouette registration. Original paintings retained in art/village-grid-v2/sources."
+}

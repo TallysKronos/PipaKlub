@@ -1,0 +1,441 @@
+{
+  "version": 1,
+  "projection": [
+    0.82,
+    0.41
+  ],
+  "images": {
+    "house": {
+      "image": "world/village-isometric-v1/house.png",
+      "width": 491,
+      "height": 527,
+      "pivot": [
+        0.37,
+        0.94
+      ],
+      "source": {
+        "atlas": "exterior",
+        "cell": [
+          0,
+          0,
+          520,
+          554
+        ],
+        "crop": [
+          31,
+          27,
+          510,
+          542
+        ]
+      }
+    },
+    "professorHouse": {
+      "image": "world/village-isometric-v1/professorHouse.png",
+      "width": 503,
+      "height": 509,
+      "pivot": [
+        0.34,
+        0.94
+      ],
+      "source": {
+        "atlas": "exterior",
+        "cell": [
+          520,
+          0,
+          1024,
+          554
+        ],
+        "crop": [
+          5,
+          45,
+          496,
+          542
+        ]
+      }
+    },
+    "shop": {
+      "image": "world/village-isometric-v1/shop.png",
+      "width": 465,
+      "height": 462,
+      "pivot": [
+        0.42,
+        0.94
+      ],
+      "source": {
+        "atlas": "exterior",
+        "cell": [
+          1024,
+          0,
+          1536,
+          554
+        ],
+        "crop": [
+          21,
+          95,
+          474,
+          545
+        ]
+      }
+    },
+    "noticeboard": {
+      "image": "world/village-isometric-v1/noticeboard.png",
+      "width": 474,
+      "height": 421,
+      "pivot": [
+        0.5,
+        0.98
+      ],
+      "source": {
+        "atlas": "exterior",
+        "cell": [
+          0,
+          558,
+          510,
+          1024
+        ],
+        "crop": [
+          48,
+          13,
+          510,
+          422
+        ]
+      }
+    },
+    "gate": {
+      "image": "world/village-isometric-v1/gate.png",
+      "width": 528,
+      "height": 337,
+      "pivot": [
+        0.5,
+        0.98
+      ],
+      "source": {
+        "atlas": "exterior",
+        "cell": [
+          510,
+          558,
+          1030,
+          1024
+        ],
+        "crop": [
+          0,
+          69,
+          516,
+          394
+        ]
+      }
+    },
+    "workbench": {
+      "image": "world/village-isometric-v1/workbench.png",
+      "width": 477,
+      "height": 362,
+      "pivot": [
+        0.5,
+        0.98
+      ],
+      "source": {
+        "atlas": "exterior",
+        "cell": [
+          1030,
+          558,
+          1536,
+          1024
+        ],
+        "crop": [
+          12,
+          51,
+          477,
+          401
+        ]
+      }
+    },
+    "bed": {
+      "image": "world/village-isometric-v1/bed.png",
+      "width": 381,
+      "height": 335,
+      "pivot": [
+        0.5,
+        0.98
+      ],
+      "source": {
+        "atlas": "interior",
+        "cell": [
+          0,
+          0,
+          390,
+          345
+        ],
+        "crop": [
+          18,
+          15,
+          387,
+          338
+        ]
+      }
+    },
+    "tv": {
+      "image": "world/village-isometric-v1/tv.png",
+      "width": 317,
+      "height": 311,
+      "pivot": [
+        0.5,
+        0.98
+      ],
+      "source": {
+        "atlas": "interior",
+        "cell": [
+          420,
+          0,
+          752,
+          336
+        ],
+        "crop": [
+          16,
+          29,
+          321,
+          328
+        ]
+      }
+    },
+    "desk": {
+      "image": "world/village-isometric-v1/desk.png",
+      "width": 383,
+      "height": 271,
+      "pivot": [
+        0.5,
+        0.98
+      ],
+      "source": {
+        "atlas": "interior",
+        "cell": [
+          768,
+          0,
+          1158,
+          340
+        ],
+        "crop": [
+          4,
+          79,
+          375,
+          338
+        ]
+      }
+    },
+    "sofa": {
+      "image": "world/village-isometric-v1/sofa.png",
+      "width": 373,
+      "height": 270,
+      "pivot": [
+        0.5,
+        0.98
+      ],
+      "source": {
+        "atlas": "interior",
+        "cell": [
+          1160,
+          0,
+          1536,
+          342
+        ],
+        "crop": [
+          5,
+          84,
+          366,
+          342
+        ]
+      }
+    },
+    "dining": {
+      "image": "world/village-isometric-v1/dining.png",
+      "width": 347,
+      "height": 229,
+      "pivot": [
+        0.5,
+        0.98
+      ],
+      "source": {
+        "atlas": "interior",
+        "cell": [
+          0,
+          390,
+          390,
+          650
+        ],
+        "crop": [
+          43,
+          26,
+          378,
+          243
+        ]
+      }
+    },
+    "kitchen": {
+      "image": "world/village-isometric-v1/kitchen.png",
+      "width": 340,
+      "height": 279,
+      "pivot": [
+        0.5,
+        0.98
+      ],
+      "source": {
+        "atlas": "interior",
+        "cell": [
+          416,
+          350,
+          755,
+          653
+        ],
+        "crop": [
+          8,
+          29,
+          336,
+          296
+        ]
+      }
+    },
+    "books": {
+      "image": "world/village-isometric-v1/books.png",
+      "width": 237,
+      "height": 359,
+      "pivot": [
+        0.5,
+        0.98
+      ],
+      "source": {
+        "atlas": "interior",
+        "cell": [
+          805,
+          338,
+          1100,
+          692
+        ],
+        "crop": [
+          46,
+          0,
+          271,
+          347
+        ]
+      }
+    },
+    "stairs": {
+      "image": "world/village-isometric-v1/stairs.png",
+      "width": 290,
+      "height": 366,
+      "pivot": [
+        0.5,
+        0.98
+      ],
+      "source": {
+        "atlas": "interior",
+        "cell": [
+          1190,
+          340,
+          1536,
+          700
+        ],
+        "crop": [
+          14,
+          0,
+          292,
+          354
+        ]
+      }
+    },
+    "window": {
+      "image": "world/village-isometric-v1/window.png",
+      "width": 357,
+      "height": 275,
+      "pivot": [
+        0.5,
+        0.98
+      ],
+      "source": {
+        "atlas": "interior",
+        "cell": [
+          0,
+          705,
+          390,
+          1000
+        ],
+        "crop": [
+          37,
+          6,
+          382,
+          269
+        ]
+      }
+    },
+    "wardrobe": {
+      "image": "world/village-isometric-v1/wardrobe.png",
+      "width": 241,
+      "height": 350,
+      "pivot": [
+        0.5,
+        0.98
+      ],
+      "source": {
+        "atlas": "interior",
+        "cell": [
+          448,
+          656,
+          710,
+          1024
+        ],
+        "crop": [
+          24,
+          2,
+          253,
+          340
+        ]
+      }
+    },
+    "counter": {
+      "image": "world/village-isometric-v1/counter.png",
+      "width": 423,
+      "height": 314,
+      "pivot": [
+        0.5,
+        0.98
+      ],
+      "source": {
+        "atlas": "interior",
+        "cell": [
+          750,
+          700,
+          1173,
+          1024
+        ],
+        "crop": [
+          5,
+          1,
+          416,
+          303
+        ]
+      }
+    },
+    "chest": {
+      "image": "world/village-isometric-v1/chest.png",
+      "width": 331,
+      "height": 256,
+      "pivot": [
+        0.5,
+        0.98
+      ],
+      "source": {
+        "atlas": "interior",
+        "cell": [
+          1180,
+          741,
+          1536,
+          1024
+        ],
+        "crop": [
+          18,
+          11,
+          337,
+          255
+        ]
+      }
+    }
+  }
+}

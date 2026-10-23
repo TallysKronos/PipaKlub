@@ -22,13 +22,13 @@ async function openingRequest(action,extra={}){
 }
 function openingSetBusy(){for(const id of ['openingNext','openingPause','openingName','openingRetry'])$(id).disabled=openingBusy;$('openingNameForm').querySelector('button').disabled=openingBusy;openingRefreshRoomUI();}
 async function loadOpeningArt(retry=false){
- const entries=Object.entries(ART_CONFIG.opening.images);const results=await Promise.all(entries.map(([key,def])=>new Promise(resolve=>{if(openingImages.has(key)&&!retry){resolve(true);return;}const im=new Image();im.onload=()=>{openingImages.set(key,im);resolve(true)};im.onerror=()=>resolve(false);im.src=def.url;})));
+ const entries=Object.entries(ART_CONFIG.opening.images).filter(([key])=>!['bedroom','downstairs','rabbito'].includes(key));const results=await Promise.all(entries.map(([key,def])=>new Promise(resolve=>{if(openingImages.has(key)&&!retry){resolve(true);return;}const im=new Image();im.onload=()=>{openingImages.set(key,im);resolve(true)};im.onerror=()=>resolve(false);im.src=def.url;})));
  await Promise.all(['rabbito',art.basic(0),art.basic(2)].map(id=>art.load(id,retry)));
- return results.every(Boolean);
+ const world=homeArt.world,extra=[...Object.keys(world.parkIsometric.images).map(id=>'park-iso-'+id),...Object.keys(world.villageIsometric.images).map(id=>'village-iso-'+id),'world-companion-rabbito'];const loaded=await Promise.all(extra.map(id=>homeLoadImage(id,retry)));return results.every(Boolean)&&loaded.every(Boolean);
 }
 async function showOpening(replay=false){
  if(!playerAccount||mode)return;openingReplay=replay;if(replay)openingState={step:0,partner_name:'Rabbito'};
- if(!openingState||openingState.step>=14)return;hideJourney();closeHomeMenu();cityScreen.hidden=true;openingScreen.hidden=false;document.body.classList.add('in-opening');courtyard.inert=true;openingLast=0;const i=openingState.step;openingActor=i===3||i<3?{x:540,y:570,direction:3,path:[]}:i===7||i===5||i===6?{x:940,y:650,direction:1,path:[]}:i>=12?{x:860,y:650,direction:0,path:[]}:{x:1050,y:510,direction:2,path:[]};renderOpening();
+ if(!openingState||openingState.step>=14)return;hideJourney();closeHomeMenu();cityScreen.hidden=true;openingScreen.hidden=false;document.body.classList.add('in-opening');courtyard.inert=true;openingLast=0;const i=openingState.step;openingActor=i===3||i<3?{...openingPoint('kaelTV'),direction:3,path:[]}:i===7||i===5||i===6?{x:940,y:650,direction:1,path:[]}:i>=12?{x:openingHomePlan.blocking.kaelEntry[0],y:openingHomePlan.blocking.kaelEntry[1],direction:1,path:[]}:{...openingPoint('kaelDesk'),direction:2,path:[]};renderOpening();
  const gate=gameLoading.start('opening','Um fio de sorte',{retry:()=>showOpening(replay),back:()=>{closeOpening();openHomeMenu();}});const epoch=openingEpoch;const okay=await loadOpeningArt();if(epoch!==openingEpoch||openingScreen.hidden){gate.cancel();return;}if(!okay){gate.fail('Não foi possível carregar a cena. Seu progresso está salvo.');$('openingStatus').textContent='Não foi possível carregar todas as artes. Sua cena está salva. Tente novamente.';$('openingRetry').hidden=false;}
  if(!okay)return;openingSince=performance.now();if(!openingFrame)openingFrame=requestAnimationFrame(drawOpening);await gate.done();
 }
@@ -56,21 +56,19 @@ addEventListener('keydown',e=>{if(openingScreen.hidden)return;if(e.key==='Tab'){
 function openingSprite(g,key,frame,x,y,height){
  const im=openingImages.get(key),def=ART_CONFIG.opening.actors[key],f=def?.frames[frame];if(!im||!f)return;const b=f.bounds,scale=height/b.h;g.drawImage(im,f.x,f.y,f.w,f.h,x-(b.x+b.w/2)*scale,y-(b.y+b.h)*scale,f.w*scale,f.h*scale);
 }
+let openingIsometricView=null;const openingVillageCache={};
+function openingVillageRenderer(down){const id=down?'kael-home':'kael-bedroom';if(openingVillageCache[id])return openingVillageCache[id];const world=homeArt.world,pack={images:{...world.parkIsometric.images,...world.villageIsometric.images},rigs:world.parkIsometric.rigs},images={};for(const key of Object.keys(pack.images)){const prefix=world.villageIsometric.images[key]?'village-iso-':'park-iso-';images[key]=homeImages.get(prefix+key);if(!images[key])return null;}return openingVillageCache[id]=createVillageIsometricRenderer({village:id,opening:true},images,pack,soulgenRigs.environment);}
 function drawOpening(t){
- openingFrame=0;if(openingScreen.hidden||!playerAccount)return;
- const i=openingState?.step??0,down=i>=12,room=down?'downstairs':'bedroom',g=$('openingCanvas').getContext('2d'),im=openingImages.get(room),dt=openingLast?Math.min(.05,(t-openingLast)/1000):0;openingLast=t;
- openingStepCast(dt);g.clearRect(0,0,1536,1024);g.save();
- const reveal=i===2?Math.min(1,Math.max(0,(t-openingSince)/1600)):i<2?0:1,blend=art.reduced?(i<2?0:1):reveal*reveal*(3-2*reveal),partner=i===9||i===10,zoom=partner?1.5:7-6*blend;
- g.translate(768,512);g.scale(zoom,zoom);g.translate(partner?-1030:-(520+248*blend),partner?-570:-(220+292*blend));if(im)g.drawImage(im,0,0,1536,1024);
- if(openingRoomStep()&&!openingGiftOpen)drawOpeningRoomPlaces(g);
- if(!down)drawOpeningBroadcast(g,t,i<3);
- // The physical project remains on the measured tabletop until the reveal.
- if(!down&&i>=3&&(i<9||(i===9&&openingBirthBeat===0))){const project=openingImages.get('project');if(project)paintOpeningProject(g,project,i>=4?1:0,1095,247,92,62);}
- const cast=[{y:openingActor.y,draw:()=>openingDrawKael(g,t)}];
- if(i>=5)cast.push({y:openingMother.y,draw:()=>openingDrawMother(g,t)});
- if(i>9||(i===9&&openingBirthBeat>0))cast.push({y:openingRabbit.y,draw:()=>openingDrawRabbit(g,t)});
- cast.sort((a,b)=>a.y-b.y).forEach(a=>a.draw());
- if(i===9&&openingBirthBeat===0){const light=g.createRadialGradient(1140,290,10,1140,290,470);light.addColorStop(0,'#fffbe7');light.addColorStop(.2,'#ffe6b1bb');light.addColorStop(1,'#fff2b600');g.fillStyle=light;g.fillRect(0,0,1536,1024);}
- if(i===9&&openingBirthBeat===1&&!art.reduced){const alpha=Math.max(0,1-(t-openingSince)/850);g.globalAlpha=alpha;g.fillStyle='#fff9dd';g.fillRect(0,0,1536,1024);g.globalAlpha=1;}
+ openingFrame=0;if(openingScreen.hidden||!playerAccount)return;const i=openingState?.step??0,down=i>=12,g=$('openingCanvas').getContext('2d'),dt=openingLast?Math.min(.05,(t-openingLast)/1000):0;openingLast=t;
+ openingStepCast(dt);g.clearRect(0,0,1536,1024);const renderer=openingVillageRenderer(down);if(!renderer){openingFrame=requestAnimationFrame(drawOpening);return;}
+ const base=renderer.camera(null,1536,1024),tv=renderer.feature('tv'),normal={x:base.x+768/base.scale,y:base.y+512/base.scale},reveal=i===2?Math.min(1,Math.max(0,(t-openingSince)/1600)):i<2?0:1,blend=art.reduced?(i<2?0:1):reveal*reveal*(3-2*reveal),partner=i===9||i===10;
+ const focus=partner?renderer.project({x:(openingActor.x+openingRabbit.x)/2,y:(openingActor.y+openingRabbit.y)/2}):!down&&tv?{x:(tv.x+tv.w/2)*(1-blend)+normal.x*blend,y:(tv.y+tv.h/2)*(1-blend)+normal.y*blend}:normal,scale=base.scale*(partner?1.25:7-6*blend);
+ openingIsometricView={x:focus.x-768/scale,y:focus.y-512/scale,scale};g.save();g.translate(768,512);g.scale(scale,scale);g.translate(-focus.x,-focus.y);
+ const cast=[{...openingActor,draw:p=>openingDrawKael(g,t,p)}];if(i>=5)cast.push({...openingMother,draw:p=>openingDrawMother(g,t,p)});if(i>9||(i===9&&openingBirthBeat>0))cast.push({...openingRabbit,draw:p=>openingDrawRabbit(g,t,p)});
+ renderer.draw(g,openingActor,cast,{dt,animate:!art.reduced});if(openingRoomStep()&&!openingGiftOpen)drawOpeningRoomPlaces(g);if(!down&&tv)drawOpeningBroadcast(g,t,i<3,tv);
+ const desk=renderer.feature('desk'),px=desk?desk.x+desk.w*.35:0,py=desk?desk.y+desk.h*.22:0;
+ if(!down&&bedroomPlan.version<3&&desk&&i>=3&&(i<9||(i===9&&openingBirthBeat===0))){const project=openingImages.get('project');if(project)paintOpeningProject(g,project,i>=4?1:0,px,py,92,62);}
+ if(i===9&&openingBirthBeat===0){const light=g.createRadialGradient(px+46,py+31,8,px+46,py+31,300);light.addColorStop(0,'#fffbe7');light.addColorStop(.2,'#ffe6b1bb');light.addColorStop(1,'#fff2b600');g.fillStyle=light;g.fillRect(px-300,py-300,700,700);}
+ if(i===9&&openingBirthBeat===1&&!art.reduced){g.globalAlpha=Math.max(0,1-(t-openingSince)/850);g.fillStyle='#fff9dd';g.fillRect(focus.x-768/scale,focus.y-512/scale,1536/scale,1024/scale);}
  g.restore();drawOpeningWorkbench(t);openingFrame=requestAnimationFrame(drawOpening);
 }

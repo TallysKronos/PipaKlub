@@ -39,3 +39,18 @@ Os detalhes contam hábitos locais: cadeira na varanda, varal discreto, remendo 
 ## Entrega artística
 
 Dois fundos sem HUD, textos, personagens, partículas ou marcadores de missão pintados. O original do quintal e o mapa atual do morro são referências de identidade; a praça recente é referência de acabamento. As gerações serão salvas em versões novas, com prompts e caminhos preservados, antes de conectar qualquer consumo no jogo.
+
+## Vila inicial isométrica — continuidade do parque
+
+Quarto, sala de Kael, Rua dos Ventos, professor e loja passam a usar peças separadas em `village-isometric-v1`, com o mesmo chão projetado do parque. Reboco creme, telhas cerâmicas, azul-petróleo e madeira quente formam uma família; a vegetação e os rigs ambientais continuam os do parque. Contornos legíveis e sombras simples prevalecem sobre texturas detalhadas.
+
+A rua acompanha o jogador. Os interiores pequenos usam paredes em corte e uma câmera que enquadra a sala para tornar móveis e saídas legíveis. A abertura tem enquadramentos próprios para TV e nascimento do parceiro. O piso segue a navegação real; a projeção visual não altera coordenadas de salvamento ou regras de história. Fontes, recortes e verificação: `art/soulgen/keys/village-isometric-v1/README.md` e `documentation/village-isometric-v1.md`.
+# Quarto de Kael: atualização de 23/10/2026
+
+Para o quarto, a entrega atual é `assets/world/kael-bedroom-iso-v4/manifest.json`, com fontes e projeto editável em `art/kael-bedroom-iso-v4/`. O Iso Studio controla pegadas, volumes, âncoras e conferência. A aparência vetorial da v3 é apenas guia geométrica: não é o acabamento aprovado do mundo. A v4 retorna a materiais ilustrados e ao traço do parque. Veja `documentation/quarto-kael-v4.md`.
+
+O piso inferior segue o mesmo acabamento, com contrato em `src/home-layout.js`, kit em `assets/world/kael-home-iso-v1/` e projeto do Iso Studio em `art/kael-home-iso-v1/`. Estar, refeições e cozinha compartilham grade, escala e renderer com o quarto; os assets finais são ilustrados e a planta mantém rotas livres entre mãe, porta e escada. Veja `documentation/sala-kael-isometrica.md`.
+
+A Rua dos Ventos usa a planta v2 em `src/street-layout.js`: rua larga, calçadas contínuas, varandas afastadas e praça aberta. A arte existente é preservada sem deformação; árvores, biruta, bandeirinhas e pipa reaproveitam rigs do parque. Piso e navegação derivam da mesma planta, com câmera que acompanha o jogador. Veja `documentation/rua-dos-ventos-v2.md`.
+
+As fachadas antigas foram substituídas por `village-grid-v2`: pinturas ortográficas sobre faces 64×32×32, bases e soleiras em 2:1, pivô na porta e escala nativa. Professor e loja usam plantas medidas de 14×11 células, no mesmo renderer por pegadas dos interiores novos. Veja `documentation/vila-grade-v2.md`; a arte desta revisão fica em `art/village-grid-v2/`, com prompts e projetos do Iso Studio.
