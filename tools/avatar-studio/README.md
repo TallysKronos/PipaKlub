@@ -8,11 +8,11 @@ Transformar a animação gerada pelo Codex num corpo base congelado, com pivô, 
 
 ## Direções
 
-Oito, com as diagonais nos eixos da grade isométrica (26,57°): S, SE, E, NE e N são desenhadas; SW, W e NW espelham SE, E e NE. `facing8(dx, dy)` em `model.mjs` escolhe a direção do sprite a partir do deslocamento na tela, para o jogo usar na integração.
+Quatro, todas diagonais da grade isométrica (26,57°): SE (frente-direita) e NE (costas-direita) são desenhadas; SW e NW são espelhos. `facingIso(dx, dy, anterior)` em `model.mjs` escolhe a direção do sprite a partir do deslocamento na tela, para o jogo usar na integração.
 
 ## Etapas
 
-1. **Quadros.** Escolha ação e direção na lateral. Importe PNGs de 256 × 256 (em ordem de nome) ou uma folha com células de 256; quadros soltos de outro tamanho são encaixados pelo pé, sem ampliar. **Abrir piloto do Kael** carrega o andar lateral do teste quadro a quadro. Marque a âncora da cabeça clicando no centro do crânio (setas: 1 px; vírgula e ponto trocam de quadro). **Registrar pés no pivô** desloca os quadros sem escalar. As três direções da esquerda (SW, W, NW) espelham SE, E e NE até receberem quadros próprios.
+1. **Quadros.** Escolha ação e direção na lateral. Importe PNGs de 256 × 256 (em ordem de nome) ou uma folha com células de 256; quadros soltos de outro tamanho são encaixados pelo pé, sem ampliar. **Abrir piloto do Kael** carrega o andar do teste quadro a quadro em SE, só para testar a bancada (ele foi gerado de perfil). Marque a âncora da cabeça clicando no centro do crânio (setas: 1 px; vírgula e ponto trocam de quadro). **Registrar pés no pivô** desloca os quadros sem escalar. SW e NW espelham SE e NE até receberem quadros próprios.
 2. **Paleta.** As cores da arte são agrupadas e cada grupo recebe grupo e tom da paleta-chave. A sugestão considera a cor e a altura em que ela aparece na figura (cabelo no alto, tênis embaixo); confira os azuis-marinhos e os tons de pele. À direita da prévia, vermelho é pixel sem grupo.
 3. **Camadas.** Cabelo (frente e trás), acessório e mochila: uma imagem por direção, presa à âncora; clique na prévia para acertar o ponto que vai no centro do crânio. Roupa de modelo: um PNG por quadro. Ao importar, a camada é convertida para as cores-chave dos grupos permitidos (acessório nunca usa pele).
 4. **Aparência.** Troque as rampas de cada grupo e veja a aparência escolhida ao lado de sete sorteadas, para conferir se uma troca de cor vaza para outro grupo.

@@ -63,9 +63,9 @@ footer{margin-top:56px;font-size:13px;color:var(--muted)}
 <div class="summary">
  <b>Resumo em cinco regras</b>
  <ol>
-  <li><b>Corpo base animado uma vez, em 8 direções.</b> Manequim desenhado quadro a quadro, numa grade fixa, com o pé sempre no mesmo ponto. As diagonais seguem os eixos da grade isométrica (26,57°). Cinco direções são desenhadas; as três da esquerda são espelhos. Depois de aprovado, o corpo é congelado.</li>
+  <li><b>Corpo base animado uma vez, em 4 diagonais.</b> Manequim desenhado quadro a quadro, numa grade fixa, com o pé sempre no mesmo ponto. As direções são as diagonais da grade isométrica (26,57°). Só duas são desenhadas, frente-direita e costas-direita; as duas da esquerda são espelhos. Depois de aprovado, o corpo é congelado.</li>
   <li><b>Cor é paleta, não desenho.</b> Pele, cabelo e roupa usam cores-chave reservadas; o jogo troca as rampas. Uma cor nova não custa arte nova.</li>
-  <li><b>Cabelo e chapéu são 5 imagens</b>, uma por direção desenhada, presas à <b>âncora da cabeça</b> marcada em cada quadro.</li>
+  <li><b>Cabelo e chapéu são 2 imagens</b>, uma por direção desenhada (as da esquerda espelham), presas à <b>âncora da cabeça</b> marcada em cada quadro.</li>
   <li><b>Roupa de modelo diferente é uma camada por quadro</b> sobre o manequim congelado. É a única parte cara; o resto vem da paleta.</li>
   <li><b>A IA gera referência e peças; a variação é montada pelo código.</b> Nunca pedir à IA a mesma animação de novo para outra roupa.</li>
  </ol>
@@ -98,17 +98,17 @@ footer{margin-top:56px;font-size:13px;color:var(--muted)}
  <tbody>
   <tr><td><b>Corpo base</b></td><td>Manequim completo: cabeça sem cabelo (crânio rente), rosto, tronco, braços, pernas, tênis e roupa padrão.</td><td>1 por quadro, por ação e direção</td><td>Só por paleta</td></tr>
   <tr><td><b>Roupa de modelo</b></td><td>Jaqueta, moletom, vestido: só os pixels da peça, por cima do corpo.</td><td>1 por quadro, para cada modelo</td><td>Modelo novo = camada nova; cor = paleta</td></tr>
-  <tr><td><b>Cabelo</b></td><td>Penteado, dividido em <i>frente</i> (sobre o rosto) e <i>trás</i> (atrás do corpo, para cabelo comprido).</td><td>5 por estilo (as 3 da esquerda espelham)</td><td>Estilo = imagem; cor = paleta</td></tr>
-  <tr><td><b>Acessório de cabeça</b></td><td>Boné, chapéu, faixa.</td><td>5 por acessório</td><td>Imagem + paleta</td></tr>
-  <tr><td><b>Mochila e costas</b></td><td>Mochila, capa.</td><td>5, ou 1 por quadro se balançar</td><td>Imagem + paleta</td></tr>
+  <tr><td><b>Cabelo</b></td><td>Penteado, dividido em <i>frente</i> (sobre o rosto) e <i>trás</i> (atrás do corpo, para cabelo comprido).</td><td>2 por estilo (as da esquerda espelham)</td><td>Estilo = imagem; cor = paleta</td></tr>
+  <tr><td><b>Acessório de cabeça</b></td><td>Boné, chapéu, faixa.</td><td>2 por acessório</td><td>Imagem + paleta</td></tr>
+  <tr><td><b>Mochila e costas</b></td><td>Mochila, capa.</td><td>2, ou 1 por quadro se balançar</td><td>Imagem + paleta</td></tr>
  </tbody>
 </table></div>
 <p><b>Ordem de desenho</b> (de trás para a frente):</p>
 <div class="table"><table>
  <thead><tr><th>Direção</th><th>Ordem</th></tr></thead>
  <tbody>
-  <tr><td>Frente e lados (S, SE, SW, E, W)</td><td class="num">cabelo-trás · mochila · corpo · roupa · cabelo-frente · acessório</td></tr>
-  <tr><td>Costas (N, NE, NW)</td><td class="num">corpo · roupa · cabelo-frente · cabelo-trás · mochila · acessório</td></tr>
+  <tr><td>Frente (SE, SW)</td><td class="num">cabelo-trás · mochila · corpo · roupa · cabelo-frente · acessório</td></tr>
+  <tr><td>Costas (NE, NW)</td><td class="num">corpo · roupa · cabelo-frente · cabelo-trás · mochila · acessório</td></tr>
  </tbody>
 </table></div>
 
@@ -127,19 +127,17 @@ footer{margin-top:56px;font-size:13px;color:var(--muted)}
 <p><b>Sem antialias contra o transparente:</b> alpha é 0 ou 255. Contorno de 2 px na autoria (1 px no jogo), na cor <code>contorno</code> da paleta.</p>
 
 <h2 id="direcoes">4. Direções no mundo isométrico</h2>
-<p>No mundo 2:1, andar ao longo de uma parede, de um móvel ou de um caminho clicado é andar na <b>diagonal da tela</b>, a 26,57°, e não a 45°. Com só 4 direções, o personagem aparece de lado enquanto desliza na diagonal. Por isso o avatar tem <b>8 direções</b>, com as diagonais exatamente nos eixos da grade:</p>
+<p>No mundo 2:1, andar ao longo de uma parede, de um móvel ou de um caminho clicado é andar na <b>diagonal da tela</b>, a 26,57°, e não a 45°. Com as 4 direções de tela usadas hoje, o personagem aparece de lado enquanto desliza na diagonal. Por isso o avatar usa as <b>4 diagonais da grade</b>, como os jogos isométricos clássicos:</p>
 <div class="table"><table>
  <thead><tr><th>Direção</th><th>Ângulo na tela</th><th>Quando aparece</th><th>Desenho</th></tr></thead>
  <tbody>
-  <tr><td>S · frente</td><td class="num">90°</td><td>descendo na tela</td><td>desenhada</td></tr>
-  <tr><td>SE · frente-direita</td><td class="num">26,57°</td><td>ao longo do eixo u da grade (o mais comum)</td><td>desenhada</td></tr>
-  <tr><td>E · direita</td><td class="num">0°</td><td>atravessando a tela na horizontal</td><td>desenhada</td></tr>
+  <tr><td>SE · frente-direita</td><td class="num">26,57°</td><td>descendo ao longo do eixo u da grade</td><td>desenhada</td></tr>
   <tr><td>NE · costas-direita</td><td class="num">−26,57°</td><td>subindo ao longo do eixo v</td><td>desenhada</td></tr>
-  <tr><td>N · costas</td><td class="num">−90°</td><td>subindo na tela</td><td>desenhada</td></tr>
-  <tr><td>SW, W, NW</td><td class="num">153,43°, 180°, −153,43°</td><td>os mesmos, para a esquerda</td><td>espelho de SE, E e NE</td></tr>
+  <tr><td>SW · frente-esquerda</td><td class="num">153,43°</td><td>descendo ao longo do eixo v</td><td>espelho de SE</td></tr>
+  <tr><td>NW · costas-esquerda</td><td class="num">−153,43°</td><td>subindo ao longo do eixo u</td><td>espelho de NE</td></tr>
  </tbody>
 </table></div>
-<p>O jogo escolhe a direção mais próxima em ângulo (função <code>facing8</code> da bancada). O limite entre E e SE fica em 13,3°, e não em 22,5°, porque as diagonais são as da grade. Uma camada assimétrica (franja de lado, bolsa de um lado só) marca <code>"mirror": false</code> e ganha os três desenhos da esquerda.</p>
+<p>O jogo escolhe a diagonal mais próxima do movimento (função <code>facingIso</code> da bancada). Andar reto na tela, na horizontal ou na vertical, fica exatamente entre duas diagonais: nesse caso o personagem <b>mantém a direção que já tinha</b>, se ela for uma das duas, e não fica alternando. Uma camada assimétrica (franja de lado, bolsa de um lado só) marca <code>"mirror": false</code> e ganha os dois desenhos da esquerda.</p>
 <h3>Outros ângulos conferidos</h3>
 <ul>
  <li><b>Câmera:</b> o personagem é desenhado com a mesma inclinação da grade, visto um pouco de cima. A base dos pés é uma elipse 2:1, como o losango do piso. Vista totalmente de frente ou de lado, sem esse "de cima", destoa dos móveis.</li>
@@ -153,14 +151,14 @@ footer{margin-top:56px;font-size:13px;color:var(--muted)}
 <div class="table"><table>
  <thead><tr><th>Ação</th><th>Quadros</th><th>Duração</th><th>Direções</th><th>Fase</th></tr></thead>
  <tbody>
-  <tr><td>Parado (respiração)</td><td class="num">4</td><td class="num">180 ms</td><td>S, SE, E, NE, N</td><td>v1</td></tr>
-  <tr><td>Andar</td><td class="num">8</td><td class="num">100 ms</td><td>S, SE, E, NE, N</td><td>v1</td></tr>
-  <tr><td>Correr</td><td class="num">6</td><td class="num">80 ms</td><td>S, SE, E, NE, N</td><td>v2</td></tr>
-  <tr><td>Empinar a pipa (puxar linha)</td><td class="num">4</td><td class="num">120 ms</td><td>N, NE</td><td>v2</td></tr>
-  <tr><td>Acenar, comemorar, dano</td><td class="num">4 cada</td><td class="num">110 ms</td><td>S, SE</td><td>v2</td></tr>
+  <tr><td>Parado (respiração)</td><td class="num">4</td><td class="num">180 ms</td><td>SE, NE</td><td>v1</td></tr>
+  <tr><td>Andar</td><td class="num">8</td><td class="num">100 ms</td><td>SE, NE</td><td>v1</td></tr>
+  <tr><td>Correr</td><td class="num">6</td><td class="num">80 ms</td><td>SE, NE</td><td>v2</td></tr>
+  <tr><td>Empinar a pipa (puxar linha)</td><td class="num">4</td><td class="num">120 ms</td><td>NE</td><td>v2</td></tr>
+  <tr><td>Acenar, comemorar, dano</td><td class="num">4 cada</td><td class="num">110 ms</td><td>SE</td><td>v2</td></tr>
  </tbody>
 </table></div>
-<p>A v1 tem <b>60 quadros desenhados</b> (5 direções × 12); as 3 direções da esquerda saem por espelho. Nomes: <code>&lt;acao&gt;-&lt;direcao&gt;-&lt;n&gt;.png</code>, por exemplo <code>andar-e-0.png</code>. O quadro 0 do andar é o contato do pé da frente com o chão; o ciclo fecha no 7 sem repetir o 0.</p>
+<p>A v1 tem <b>24 quadros desenhados</b> (2 direções × 12); as 2 direções da esquerda saem por espelho. Nomes: <code>&lt;acao&gt;-&lt;direcao&gt;-&lt;n&gt;.png</code>, por exemplo <code>andar-e-0.png</code>. O quadro 0 do andar é o contato do pé da frente com o chão; o ciclo fecha no 7 sem repetir o 0.</p>
 
 <h2 id="paleta">6. Paleta-chave</h2>
 <p>O corpo base e as camadas são desenhados só com as cores abaixo. Cada <b>grupo</b> é uma rampa do escuro para o claro; a troca de aparência substitui a rampa inteira, tom a tom. Qualquer outra cor é erro de conferência.</p>
@@ -182,9 +180,9 @@ footer{margin-top:56px;font-size:13px;color:var(--muted)}
 <p>As rampas são o ponto de partida; o Avatar Studio permite ajustá-las depois de mapear a arte real. O que não pode mudar é o <b>número de tons</b> de cada grupo, porque a troca é feita tom a tom.</p>
 
 <h2 id="cabeca">7. Âncora da cabeça e cabelo</h2>
-<p>Cada quadro do corpo base declara a <b>âncora da cabeça</b>: o centro do crânio (meio da cabeça na horizontal, na altura da linha dos olhos). Ela acompanha o balanço do passo. O cabelo e os acessórios são desenhados uma vez por direção desenhada (5) e posicionados pela âncora: o ponto do cabelo que corresponde ao centro do crânio cai exatamente nela.</p>
+<p>Cada quadro do corpo base declara a <b>âncora da cabeça</b>: o centro do crânio (meio da cabeça na horizontal, na altura da linha dos olhos). Ela acompanha o balanço do passo. O cabelo e os acessórios são desenhados uma vez por direção desenhada (2) e posicionados pela âncora: o ponto do cabelo que corresponde ao centro do crânio cai exatamente nela.</p>
 <div class="cols">
- <div class="do"><h3>Fazer</h3><ul><li>Corpo base com crânio rente, na cor do <code>cabelo</code> tom 1: qualquer penteado cobre.</li><li>Cabelo com a mesma largura de cabeça nas 5 direções.</li><li>Variação de altura da âncora entre quadros vizinhos de no máximo 2 px (1×).</li></ul></div>
+ <div class="do"><h3>Fazer</h3><ul><li>Corpo base com crânio rente, na cor do <code>cabelo</code> tom 1: qualquer penteado cobre.</li><li>Cabelo com a mesma largura de cabeça nas 2 direções.</li><li>Variação de altura da âncora entre quadros vizinhos de no máximo 2 px (1×).</li></ul></div>
  <div class="dont"><h3>Não fazer</h3><ul><li>Desenhar o penteado no corpo base: ele não poderia ser trocado.</li><li>Cabelo que se move sozinho por quadro (na v1 ele só acompanha a cabeça).</li><li>Usar cores de pele no cabelo ou de cabelo na pele.</li></ul></div>
 </div>
 
@@ -194,23 +192,23 @@ footer{margin-top:56px;font-size:13px;color:var(--muted)}
  <li>Usa apenas grupos de roupa da paleta (jaqueta, camiseta, calça, detalhe, contorno).</li>
  <li>Fica dentro da silhueta do corpo, com no máximo 3 px (1×) a mais para volume de tecido.</li>
  <li>Nenhum pixel de pele fica descoberto onde a roupa deveria cobrir; nenhum pixel do corpo aparece através dela.</li>
- <li>Começar com 2 modelos (padrão + moletom). Cada modelo novo custa 60 quadros na v1, então a variedade vem principalmente das cores.</li>
+ <li>Começar com 2 modelos (padrão + moletom). Cada modelo novo custa 24 quadros na v1, então a variedade vem principalmente das cores.</li>
 </ul>
 
 <h2 id="producao">9. Produção com o Codex</h2>
 <ol>
- <li><b>Folha de modelo.</b> Kael em S, SE, E, NE e N, em pé, visto de cima na inclinação da grade, já na paleta-chave, no tamanho 2×. É a referência de identidade de tudo. Revisada por você antes de seguir.</li>
+ <li><b>Folha de modelo.</b> Kael em frente-direita e costas-direita (mais uma vista de frente só como referência de rosto), em pé, visto de cima na inclinação da grade, já na paleta-chave, no tamanho 2×. É a referência de identidade de tudo. Revisada por você antes de seguir.</li>
  <li><b>Corpo base, uma ação e uma direção por pedido.</b> A imagem de referência é a folha de modelo mais a <b>guia de quadros</b> do Avatar Studio (células com linha do chão, pivô e linha dos olhos). O gerador entrega as poses; a limpeza vem a seguir.</li>
  <li><b>Limpeza no Avatar Studio:</b> recorte nas células, registro no pivô, mapeamento para a paleta-chave, correção de variações (o que mudou entre quadros e não é movimento é repintado igual ao quadro 0). Depois disso o corpo base é <b>congelado</b>: nunca mais é gerado.</li>
  <li><b>Âncora da cabeça</b> marcada em cada quadro (automática com conferência manual).</li>
- <li><b>Cabelos:</b> um pedido por estilo, 5 direções, sobre a cabeça do quadro 0 de cada direção.</li>
+ <li><b>Cabelos:</b> um pedido por estilo, 2 direções, sobre a cabeça do quadro 0 de cada direção.</li>
  <li><b>Roupas de modelo:</b> um pedido por quadro, com o quadro do corpo base como referência e a instrução de pintar só a peça. É o trecho que mais exige revisão.</li>
 </ol>
 <h3>Modelos de pedido</h3>
 <p><b>Corpo base</b> (troque ação, direção e número de quadros):</p>
 <blockquote>Sprite sheet de personagem para jogo 2D, estilo da imagem de referência (Kael), mesmo traço, mesma proporção e mesma roupa. <b>Andar, vista frente-direita (diagonal da grade isométrica 2:1, 26,57°), 8 quadros</b>, em uma grade de 4 colunas × 2 linhas de células de 256 × 256 px, exatamente como a guia: pés no ponto marcado de cada célula, cabeça na linha indicada, mesmo tamanho em todos os quadros. Quadro 1 = pé da frente tocando o chão; ciclo completo. <b>Cabeça com cabelo raspado rente</b>, sem penteado. Use apenas as cores da paleta anexada, sem degradê, sem brilho, sem sombra no chão. Contorno de 2 px na cor #0b1020. Fundo transparente real, sem textos.</blockquote>
 <p><b>Cabelo:</b></p>
-<blockquote>O mesmo penteado, <b>[estilo]</b>, nas 5 vistas: frente, frente-direita, direita, costas-direita e costas, para encaixar na cabeça raspada da referência: mesma largura de cabeça, sem rosto, sem corpo. Uma célula de 256 × 256 por vista, com a cabeça no mesmo lugar da guia. Só as 4 cores do grupo cabelo e o contorno #0b1020. Fundo transparente real.</blockquote>
+<blockquote>O mesmo penteado, <b>[estilo]</b>, nas 2 vistas: frente-direita e costas-direita (diagonais da grade isométrica 2:1), para encaixar na cabeça raspada da referência: mesma largura de cabeça, sem rosto, sem corpo. Uma célula de 256 × 256 por vista, com a cabeça no mesmo lugar da guia. Só as 4 cores do grupo cabelo e o contorno #0b1020. Fundo transparente real.</blockquote>
 <p><b>Roupa de modelo</b> (um quadro por pedido):</p>
 <blockquote>Pinte apenas um <b>[moletom com capuz]</b> sobre o personagem da referência, exatamente na mesma pose, mesmo tamanho e posição (célula de 256 × 256). Entregue só os pixels da roupa, com fundo transparente, sem cabeça, mãos ou pernas. Siga a silhueta do corpo, no máximo 6 px de volume a mais. Só as cores dos grupos jaqueta, camiseta, detalhe e o contorno #0b1020.</blockquote>
 
@@ -233,9 +231,9 @@ footer{margin-top:56px;font-size:13px;color:var(--muted)}
 
 <h2 id="entrega">11. Entrega e manifesto</h2>
 <pre>assets/avatar/v1/
-  base/andar-e-0.png … parado-n-3.png   corpo base indexado na paleta-chave
+  base/andar-se-0.png … parado-ne-3.png   corpo base indexado na paleta-chave
   roupas/moletom/andar-e-0.png …        camadas de roupa
-  cabelo/espetado-s.png  -se -e -ne -n  camadas de cabelo (frente e trás)
+  cabelo/espetado-se.png  -ne        camadas de cabelo (frente e trás)
   paleta.json                           grupos, rampa padrão e variações
   manifest.json                         ações, quadros, pivô, âncoras, camadas
 art/avatar/v1/
@@ -244,13 +242,13 @@ art/avatar/v1/
   "cell": [128, 128], "pivot": [64, 112], "scale": 1,
   "actions": {
     "andar": {"ms": 100, "loop": true, "directions": {
-      "e": [{"image": "base/andar-e-0.png", "head": [70, 46]}, …],
-      "se": […], "ne": […],
-      "w": {"mirror": "e"}, "sw": {"mirror": "se"}, "nw": {"mirror": "ne"}
+      "se": [{"image": "base/andar-se-0.png", "head": [70, 46]}, …],
+      "ne": […],
+      "sw": {"mirror": "se"}, "nw": {"mirror": "ne"}
     }}
   },
   "layers": {
-    "cabelo/espetado": {"kind": "head", "images": {"s": "cabelo/espetado-s.png", …}, "anchor": {"s": [32, 30], …}},
+    "cabelo/espetado": {"kind": "head", "images": {"se": "cabelo/espetado-se.png", …}, "anchor": {"se": [32, 30], …}},
     "roupa/moletom": {"kind": "frames", "dir": "roupas/moletom"}
   },
   "palette": "paleta.json", "rulesVersion": "avatar-1"
@@ -259,10 +257,10 @@ art/avatar/v1/
 
 <h2 id="decisoes">12. Integração e decisões</h2>
 <ul>
- <li><span class="pend">DECIDIR</span> <b>8 direções</b> (recomendado: 60 quadros na v1) ou só as 4 diagonais da grade (SE, SW, NE, NW: 24 quadros, mais barato, mas o personagem fica de diagonal ao andar na horizontal da tela). Hoje o jogo usa 4 direções de tela; a troca para <code>facing8</code> entra junto com o novo avatar.</li>
+ <li><b>Decidido:</b> 4 diagonais da grade (SE e NE desenhadas, SW e NW por espelho), 24 quadros na v1. Hoje o jogo usa 4 direções de tela; a troca para <code>facingIso</code> entra junto com o novo avatar.</li>
  <li><span class="pend">DECIDIR</span> Altura de 96 px (do piloto) ou 102 px (≈ 3,2 células, como na especificação da grade). A recomendação é 96: exatamente 3 células e já é o tamanho do piloto.</li>
- <li><span class="pend">DECIDIR</span> Escopo da v1: parado + andar em 5 direções desenhadas, 1 roupa de modelo extra, 3 cabelos, todas as rampas da tabela.</li>
- <li><span class="pend">DECIDIR</span> Aproveitar o andar lateral do piloto como base de E (direita) depois da limpeza (o cabelo dele vira o estilo "espetado" padrão) ou gerar de novo com cabeça raspada.</li>
+ <li><span class="pend">DECIDIR</span> Escopo da v1: parado + andar nas 2 diagonais desenhadas, 1 roupa de modelo extra, 3 cabelos, todas as rampas da tabela.</li>
+ <li>O andar do piloto do Codex é de perfil, e o perfil não existe nas 4 diagonais. Ele serve para testar a bancada; o corpo base é gerado de novo em SE e NE com a cabeça raspada, e o cabelo espetado dele vira a primeira camada de cabelo.</li>
  <li>Seleção de aparência e salvamento na conta ficam para depois da arte aprovada, validados no servidor como os outros dados do jogador.</li>
 </ul>
 <footer>Ferramenta: <code>npm run studio:avatar</code> (tools/avatar-studio). Arquivo no repositório: <code>art/avatar/especificacao.html</code>.</footer>

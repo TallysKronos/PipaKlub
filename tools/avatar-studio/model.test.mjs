@@ -40,15 +40,15 @@ test('cabelo preso pela âncora e roupa dentro da silhueta',()=>{
  assert.equal(auditHeadLayer(base,head,{image:hair,anchor:[40,140]}).level,'fail');
  const coat=paint(blank(256,256),94,110,162,186,tone('jaqueta',2));assert.equal(auditFrameLayer(base,coat).level,'ok');
  assert.equal(auditFrameLayer(base,paint(blank(256,256),0,0,60,60,tone('jaqueta',2))).level,'fail');
- const out=composeFrame({base,head,dir:'s',layers:[{kind:'head',slot:'cabelo',image:hair,anchor:[40,40]}]}),i=(head[1]-20)*256*4+head[0]*4;
+ const out=composeFrame({base,head,dir:'se',layers:[{kind:'head',slot:'cabelo',image:hair,anchor:[40,40]}]}),i=(head[1]-20)*256*4+head[0]*4;
  assert.equal(out.data[i+3],255);assert.equal(out.data[i]<<16|out.data[i+1]<<8|out.data[i+2],hexToInt(tone('cabelo',2)));
 });
 test('espelho, redução 2× e manifesto em 1×',()=>{
  const f=paint(blank(4,2),0,0,1,1,'#ff0000');assert.equal(mirror(f).data[3*4],255);
  const half=downscale(figure(0));assert.deepEqual([half.width,half.height,metrics(half).baseline],[128,128,112]);
- const m=manifest({name:'Kael',actions:{andar:{ms:100,dirs:{e:{frames:[{head:[140,90]}]},w:{mirror:'e'},n:{frames:[]}}}},layers:[{id:'espetado',kind:'head',slot:'cabelo',images:{s:1,e:1},anchors:{s:[40,40]}}]});
- assert.deepEqual(m.actions.andar.directions,{e:[{image:'base/andar-e-0.png',head:[70,45]}],w:{mirror:'e'}});
- assert.deepEqual(m.cell,[128,128]);assert.deepEqual(m.pivot,[64,112]);assert.deepEqual(m.layers.espetado.anchor,{s:[20,20]});
+ const m=manifest({name:'Kael',actions:{andar:{ms:100,dirs:{se:{frames:[{head:[140,90]}]},sw:{mirror:'se'},ne:{frames:[]}}}},layers:[{id:'espetado',kind:'head',slot:'cabelo',images:{se:1,ne:1},anchors:{se:[40,40]}}]});
+ assert.deepEqual(m.actions.andar.directions,{se:[{image:'base/andar-se-0.png',head:[70,45]}],sw:{mirror:'se'}});
+ assert.deepEqual(m.cell,[128,128]);assert.deepEqual(m.pivot,[64,112]);assert.deepEqual(m.layers.espetado.anchor,{se:[20,20]});
 });
 test('posição na figura separa cores parecidas (tênis escuro × cabelo escuro)',async()=>{
  const {clusterStats}=await import('./model.mjs');
@@ -57,13 +57,12 @@ test('posição na figura separa cores parecidas (tênis escuro × cabelo escuro
  const clusters=quantize([f],12),k=clusters.findIndex(c=>c.color===shoe);assert.ok(k>=0);
  assert.equal(suggestMapping(clusters)[k].slot,'cabelo');assert.equal(suggestMapping(clusters,SLOTS,clusterStats([f],clusters))[k].slot,'tenis');
 });
-test('oito direções seguem os eixos da grade 2:1, com espelhos à esquerda',async()=>{
- const {facing8,DIRS,DRAWN,MIRROR,ORDER}=await import('./model.mjs');
- // Andar ao longo do eixo u da grade: (+32,+16) na tela é frente-direita, não direita.
- assert.equal(facing8(32,16),'se');assert.equal(facing8(-32,16),'sw');assert.equal(facing8(32,-16),'ne');assert.equal(facing8(-32,-16),'nw');
- assert.equal(facing8(1,0),'e');assert.equal(facing8(0,1),'s');assert.equal(facing8(0,-1),'n');assert.equal(facing8(-1,0),'w');
- // Limite entre direita e frente-direita fica no meio do ângulo (13,3°), não em 22,5°.
- assert.equal(facing8(100,Math.tan(12*Math.PI/180)*100),'e');assert.equal(facing8(100,Math.tan(15*Math.PI/180)*100),'se');
- assert.equal(facing8(0,0,'ne'),'ne');assert.equal(DIRS.length,8);assert.deepEqual(DRAWN,['s','se','e','ne','n']);
+test('quatro diagonais seguem os eixos da grade 2:1, com espelhos à esquerda',async()=>{
+ const {facingIso,DIRS,DRAWN,MIRROR,ORDER}=await import('./model.mjs');
+ // Andar ao longo dos eixos da grade: (±32,±16) na tela.
+ assert.equal(facingIso(32,16),'se');assert.equal(facingIso(-32,16),'sw');assert.equal(facingIso(32,-16),'ne');assert.equal(facingIso(-32,-16),'nw');
+ // Andar reto na tela empata entre duas diagonais: mantém a anterior quando ela é uma delas.
+ assert.equal(facingIso(1,0,'ne'),'ne');assert.equal(facingIso(1,0,'se'),'se');assert.equal(facingIso(1,0,'sw'),'se');assert.equal(facingIso(0,1,'sw'),'sw');assert.equal(facingIso(0,-1,'ne'),'ne');
+ assert.equal(facingIso(0,0,'nw'),'nw');assert.deepEqual(DIRS,['se','ne','nw','sw']);assert.deepEqual(DRAWN,['se','ne']);
  for(const [d,m] of Object.entries(MIRROR))assert.deepEqual(ORDER[d],ORDER[m]);
 });

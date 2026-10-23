@@ -1,11 +1,12 @@
 // Avatar Studio: boneco de papel em camadas (art/avatar/especificacao.html). Sem DOM: imagens são {width,height,data RGBA}.
 export const RULES='avatar-1';
-// Oito direções: as diagonais seguem os eixos da grade 2:1 (26,57° na tela), não 45°. W, SW e NW são espelhos de E, SE e NE.
-export const DIRS=['s','se','e','ne','n','nw','w','sw'],DRAWN=['s','se','e','ne','n'],MIRROR={w:'e',sw:'se',nw:'ne'};
-export const DIR_NAMES={s:'Frente',se:'Frente-direita',e:'Direita',ne:'Costas-direita',n:'Costas',nw:'Costas-esquerda',w:'Esquerda',sw:'Frente-esquerda'};
-const ISO=Math.atan2(1,2)*180/Math.PI,ANGLES={e:0,se:ISO,s:90,sw:180-ISO,w:180,nw:-180+ISO,n:-90,ne:-ISO};
-// Direção do sprite a partir do deslocamento na tela (y para baixo): a mais próxima em ângulo.
-export function facing8(dx,dy,previous='s'){if(Math.hypot(dx,dy)<1e-6)return previous;const a=Math.atan2(dy,dx)*180/Math.PI;let best='s',gap=Infinity;for(const [d,v] of Object.entries(ANGLES)){const g=Math.abs(((a-v+540)%360)-180);if(g<gap){gap=g;best=d;}}return best;}
+// Quatro direções, todas diagonais da grade isométrica 2:1 (26,57° na tela). SE e NE são desenhadas; SW e NW são espelhos.
+export const DIRS=['se','ne','nw','sw'],DRAWN=['se','ne'],MIRROR={sw:'se',nw:'ne'};
+export const DIR_NAMES={se:'Frente-direita',ne:'Costas-direita',nw:'Costas-esquerda',sw:'Frente-esquerda'};
+const ISO=Math.atan2(1,2)*180/Math.PI,ANGLES={se:ISO,sw:180-ISO,nw:-180+ISO,ne:-ISO};
+// Direção do sprite a partir do deslocamento na tela (y para baixo): a diagonal mais próxima em ângulo. Em empate
+// (andar reto na horizontal ou na vertical da tela) mantém a direção anterior, se ela for uma das empatadas.
+export function facingIso(dx,dy,previous='se'){if(Math.hypot(dx,dy)<1e-6)return previous;const a=Math.atan2(dy,dx)*180/Math.PI,gaps=Object.entries(ANGLES).map(([d,v])=>[d,Math.abs(((a-v+540)%360)-180)]),min=Math.min(...gaps.map(g=>g[1])),tied=gaps.filter(g=>g[1]-min<1e-6).map(g=>g[0]);return tied.includes(previous)?previous:tied[0];}
 export const SPEC={cell:256,pivot:[128,224],scale:2,height:192,eyeLine:92};
 export const ACTIONS={parado:{name:'Parado',frames:4,ms:180},andar:{name:'Andar',frames:8,ms:100},correr:{name:'Correr',frames:6,ms:80}};
 export const SLOTS=[
@@ -97,12 +98,12 @@ export function translate(img,dx,dy){const out=blank(img.width,img.height),{widt
 export function registerToPivot(img,pivot=SPEC.pivot){const m=metrics(img);if(!m.bounds)return {img,dy:0};const dy=pivot[1]-m.baseline;return {img:dy?translate(img,0,dy):img,dy};}
 export function over(dst,src,dx=0,dy=0){const {width:w,height:h}=dst;for(let y=0;y<src.height;y++){const ty=y+dy;if(ty<0||ty>=h)continue;for(let x=0;x<src.width;x++){const tx=x+dx;if(tx<0||tx>=w)continue;const s=(y*src.width+x)*4;if(src.data[s+3]<128)continue;const t=(ty*w+tx)*4;for(let j=0;j<3;j++)dst.data[t+j]=src.data[s+j];dst.data[t+3]=255;}}return dst;}
 const FRONT=['cabelo-tras','mochila','corpo','roupa','cabelo','acessorio'],BACK=['corpo','roupa','cabelo','cabelo-tras','mochila','acessorio'];
-export const ORDER={s:FRONT,se:FRONT,sw:FRONT,e:FRONT,w:FRONT,ne:BACK,nw:BACK,n:BACK};
+export const ORDER={se:FRONT,sw:FRONT,ne:BACK,nw:BACK};
 // Compõe um quadro: corpo + camadas de quadro (roupa) + camadas de cabeça presas à âncora.
 export function composeFrame({base,head,dir,layers=[],ramps,slots=SLOTS}){
  const out=blank(base.width,base.height),parts={corpo:[base]};
  for(const l of layers){if(!l.image)continue;const place=l.kind==='head'?[head[0]-l.anchor[0],head[1]-l.anchor[1]]:[0,0];(parts[l.slot]??=[]).push([l.image,...place]);}
- for(const slot of ORDER[dir]||ORDER.s)for(const p of parts[slot]||[]){const [img,dx,dy]=Array.isArray(p)?p:[p,0,0];over(out,img,dx,dy);}
+ for(const slot of ORDER[dir]||FRONT)for(const p of parts[slot]||[]){const [img,dx,dy]=Array.isArray(p)?p:[p,0,0];over(out,img,dx,dy);}
  return ramps?recolor(out,slots,ramps):out;
 }
 // ---------- conferência ----------
