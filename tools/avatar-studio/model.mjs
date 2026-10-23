@@ -1,5 +1,11 @@
 // Avatar Studio: boneco de papel em camadas (art/avatar/especificacao.html). Sem DOM: imagens são {width,height,data RGBA}.
-export const RULES='avatar-1',DIRS=['s','e','n','w'],DIR_NAMES={s:'Frente',e:'Direita',n:'Costas',w:'Esquerda'};
+export const RULES='avatar-1';
+// Oito direções: as diagonais seguem os eixos da grade 2:1 (26,57° na tela), não 45°. W, SW e NW são espelhos de E, SE e NE.
+export const DIRS=['s','se','e','ne','n','nw','w','sw'],DRAWN=['s','se','e','ne','n'],MIRROR={w:'e',sw:'se',nw:'ne'};
+export const DIR_NAMES={s:'Frente',se:'Frente-direita',e:'Direita',ne:'Costas-direita',n:'Costas',nw:'Costas-esquerda',w:'Esquerda',sw:'Frente-esquerda'};
+const ISO=Math.atan2(1,2)*180/Math.PI,ANGLES={e:0,se:ISO,s:90,sw:180-ISO,w:180,nw:-180+ISO,n:-90,ne:-ISO};
+// Direção do sprite a partir do deslocamento na tela (y para baixo): a mais próxima em ângulo.
+export function facing8(dx,dy,previous='s'){if(Math.hypot(dx,dy)<1e-6)return previous;const a=Math.atan2(dy,dx)*180/Math.PI;let best='s',gap=Infinity;for(const [d,v] of Object.entries(ANGLES)){const g=Math.abs(((a-v+540)%360)-180);if(g<gap){gap=g;best=d;}}return best;}
 export const SPEC={cell:256,pivot:[128,224],scale:2,height:192,eyeLine:92};
 export const ACTIONS={parado:{name:'Parado',frames:4,ms:180},andar:{name:'Andar',frames:8,ms:100},correr:{name:'Correr',frames:6,ms:80}};
 export const SLOTS=[
@@ -90,7 +96,8 @@ export function translate(img,dx,dy){const out=blank(img.width,img.height),{widt
 // Registro: desloca para o apoio cair no pivô, sem escalar.
 export function registerToPivot(img,pivot=SPEC.pivot){const m=metrics(img);if(!m.bounds)return {img,dy:0};const dy=pivot[1]-m.baseline;return {img:dy?translate(img,0,dy):img,dy};}
 export function over(dst,src,dx=0,dy=0){const {width:w,height:h}=dst;for(let y=0;y<src.height;y++){const ty=y+dy;if(ty<0||ty>=h)continue;for(let x=0;x<src.width;x++){const tx=x+dx;if(tx<0||tx>=w)continue;const s=(y*src.width+x)*4;if(src.data[s+3]<128)continue;const t=(ty*w+tx)*4;for(let j=0;j<3;j++)dst.data[t+j]=src.data[s+j];dst.data[t+3]=255;}}return dst;}
-export const ORDER={s:['cabelo-tras','mochila','corpo','roupa','cabelo','acessorio'],e:['cabelo-tras','mochila','corpo','roupa','cabelo','acessorio'],w:['cabelo-tras','mochila','corpo','roupa','cabelo','acessorio'],n:['corpo','roupa','cabelo','cabelo-tras','mochila','acessorio']};
+const FRONT=['cabelo-tras','mochila','corpo','roupa','cabelo','acessorio'],BACK=['corpo','roupa','cabelo','cabelo-tras','mochila','acessorio'];
+export const ORDER={s:FRONT,se:FRONT,sw:FRONT,e:FRONT,w:FRONT,ne:BACK,nw:BACK,n:BACK};
 // Compõe um quadro: corpo + camadas de quadro (roupa) + camadas de cabeça presas à âncora.
 export function composeFrame({base,head,dir,layers=[],ramps,slots=SLOTS}){
  const out=blank(base.width,base.height),parts={corpo:[base]};

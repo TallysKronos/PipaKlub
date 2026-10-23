@@ -57,3 +57,13 @@ test('posição na figura separa cores parecidas (tênis escuro × cabelo escuro
  const clusters=quantize([f],12),k=clusters.findIndex(c=>c.color===shoe);assert.ok(k>=0);
  assert.equal(suggestMapping(clusters)[k].slot,'cabelo');assert.equal(suggestMapping(clusters,SLOTS,clusterStats([f],clusters))[k].slot,'tenis');
 });
+test('oito direções seguem os eixos da grade 2:1, com espelhos à esquerda',async()=>{
+ const {facing8,DIRS,DRAWN,MIRROR,ORDER}=await import('./model.mjs');
+ // Andar ao longo do eixo u da grade: (+32,+16) na tela é frente-direita, não direita.
+ assert.equal(facing8(32,16),'se');assert.equal(facing8(-32,16),'sw');assert.equal(facing8(32,-16),'ne');assert.equal(facing8(-32,-16),'nw');
+ assert.equal(facing8(1,0),'e');assert.equal(facing8(0,1),'s');assert.equal(facing8(0,-1),'n');assert.equal(facing8(-1,0),'w');
+ // Limite entre direita e frente-direita fica no meio do ângulo (13,3°), não em 22,5°.
+ assert.equal(facing8(100,Math.tan(12*Math.PI/180)*100),'e');assert.equal(facing8(100,Math.tan(15*Math.PI/180)*100),'se');
+ assert.equal(facing8(0,0,'ne'),'ne');assert.equal(DIRS.length,8);assert.deepEqual(DRAWN,['s','se','e','ne','n']);
+ for(const [d,m] of Object.entries(MIRROR))assert.deepEqual(ORDER[d],ORDER[m]);
+});
