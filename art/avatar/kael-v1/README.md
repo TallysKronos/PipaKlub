@@ -1,3 +1,21 @@
+## Integração de 23/10/2026
+
+O pacote atual contém 52 desenhos: os 24 aprovados de parado/andar e 28 novos de subir, descer, sentar e sentado. Há três peças: cabelo, bolsa e alças. As quatro direções usam SE/NE desenhadas e espelhos SW/NW; escadas têm uma orientação desenhada e seu espelho.
+
+O jogo consome os PNGs de runtime em assets/avatar/kael-v1, recolore por paleta e compõe as mesmas camadas do Studio. A abertura e a exploração usam esse avatar. Meu perfil permite escolher cores; a aparência fica salva neste navegador por conta, sem sincronização com o servidor. Ainda não há seleção de outros cortes de cabelo ou modelos de roupa.
+
+A mochila mantém os encaixes originais dos 24 quadros e atraso de um quadro, limitado a 2 pixels de runtime para não descolar durante transições. A bolsa NE mede 60×64 na autoria. As alças SE ficam abaixo do rosto. A subida/descida dura 3,52 s: oito degraus de 16 px no runtime, quatro quadros por degrau. Sentar toca uma vez e passa ao loop sentado; mover-se ou escolher Levantar encerra o assento. O sofá usa altura de assento e ponto de contato próprios.
+
+Verificação: conferencia-integracao.json inspeciona todos os 52 quadros, incluindo cabelo e mochila; os GIFs por ação permitem conferir movimento. A pose sentada SE ainda apresenta aviso de 3,1% de variação de altura; não há reprovação de pivô, paleta, cabelo ou mochila. A prévia usa o renderizador real da sala/quarto, sem conta ou banco: npm run review:avatar (porta 5247). A evidência revisao-no-cenario.png registra o assento alinhado e duas cores alteradas na interface.
+
+Reprodução incremental: node scripts/extend-kael-avatar.mjs; node scripts/build-kael-home-actions.mjs; node scripts/audit-kael-avatar.mjs. Esses scripts preservam os desenhos e encaixes antigos. Não execute o builder v1 antigo para atualizar este pacote.
+
+Validação de código: build Worker e build Pages concluídos; audit:world aprovado. Suíte completa: 437/438 aprovados, com a reprovação já existente em home-layout.test.mjs (geometria dos móveis / relatório Iso Studio). Após o ajuste final de levantar por teclado/clique, os 10 testes da abertura passaram novamente. Não foi feito deploy no Render nesta entrega.
+
+As notas abaixo descrevem a entrega anterior de 24 quadros, antes desta integração.
+
+---
+
 # Kael v1 · Avatar Studio
 
 Projeto editável: `kael.avatarstudio.json`. Abra a bancada com `npm run studio:avatar` e clique em **Abrir avatar Kael v1**. O projeto incorpora os PNGs, não depende de caminhos do computador de quem criou.

@@ -26,9 +26,9 @@ export function createBedroomIsometricRenderer(scene,images,pack,model,createCan
  // Erase this exact footprint: transparent hole, then dark descending steps.
  if(!home){c.save();c.globalCompositeOperation='destination-out';poly([Q(0,6),Q(3,6),Q(3,8),Q(0,8)],'#000',null);c.restore();}
  let hits=[];
- const mapId=home?{porta:'exit',escada:'upstairs'}:{mesa:'desk',tv:'tv',quadros:'drawings','abertura-escada':'stairs'};
- const actionFor=id=>home?{hotspot:id,action:id==='mother'?'pilot_story':'street_scene',target:id==='exit'?'quintal':id==='upstairs'?'kael-bedroom':undefined}:{hotspot:id,action:id==='desk'?'pilot_story':id==='stairs'?'street_scene':null,target:id==='stairs'?'kael-home':null};
- const labels=home?{mother:'Mãe',exit:'Saída'}:{tv:'TV',drawings:'Desenhos',desk:'Bancada'};
+ const mapId=home?{porta:'exit',escada:'upstairs',sofa:'seat'}:{mesa:'desk',tv:'tv',quadros:'drawings','abertura-escada':'stairs'};
+ const actionFor=id=>home?{hotspot:id,action:id==='seat'?'avatarSeat':id==='mother'?'pilot_story':'street_scene',target:id==='exit'?'quintal':id==='upstairs'?'kael-bedroom':undefined}:{hotspot:id,action:id==='desk'?'pilot_story':id==='stairs'?'street_scene':null,target:id==='stairs'?'kael-home':null};
+ const labels=home?{mother:'Mãe',exit:'Saída',seat:'Sentar'}:{tv:'TV',drawings:'Desenhos',desk:'Bancada'};
  const feature=name=>{if(home&&name==='mother'){const [x,y]=layout.blocking.mother,s=P({x,y});return {x:s.x-24,y:s.y-104,w:48,h:104};}const p=pieces.find(p=>mapId[p.id]===name);if(!p)return null;const b=placed(p);return name==='tv'?{x:b.x+7,y:b.y+23,w:33,h:30}:b;};
  const contains=(p,b)=>p.x>=b.x&&p.x<=b.x+b.w&&p.y>=b.y&&p.y<=b.y+b.h;
  function draw(g,actor,entries,{entrances=[],decorations=[]}={}){

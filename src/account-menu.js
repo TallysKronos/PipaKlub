@@ -7,6 +7,7 @@ clubRoot.prepend(clubBack,clubHome);
 function clubPage(id){const node=uiElement('section',undefined,'club-page');node.id='club-'+id;node.hidden=true;clubPages.set(id,node);clubRoot.append(node);return node;}
 const collectionPage=clubPage('collection');collectionPage.append($('collectionMain'),$('kiteStory'));
 const profilePage=clubPage('profile');profilePage.append(document.querySelector('.account-summary'),$('nicknameForm'),$('logoutAccount'));
+const avatarAppearancePanel=mountAvatarAppearance(profilePage,gameAvatar,()=>playerAccount?.profile?.id);
 const eventsPage=clubPage('events'),events=$('eventSoulsList');
 eventsPage.append(events.previousElementSibling.previousElementSibling,events.previousElementSibling,events);
 const duelsPage=clubPage('history'),duels=$('recentMatches');duelsPage.append(duels.previousElementSibling,duels);
@@ -25,6 +26,7 @@ function syncClubMenu(){
  if(!playerAccount)return;
  $('accountTitle').textContent=clubTitles[accountPage];clubHome.hidden=accountPage!=='home';clubBack.hidden=accountPage==='home';
  for(const [id,node] of clubPages)node.hidden=id!==accountPage;
+ if(accountPage==='profile')avatarAppearancePanel.refresh();
 }
 function navigateClub(page){
  if(!playerAccount){openAccount();return;}

@@ -133,7 +133,7 @@ export function composeFrame({base,head,torso,hand,dir,layers=[],ramps,slots=SLO
  return ramps?recolor(out,slots,ramps):out;
 }
 // ---------- conferência ----------
-export function auditFrames(frames,{pivot=SPEC.pivot,scale=SPEC.scale,cell=SPEC.cell,slots=SLOTS}={}){
+export function auditFrames(frames,{pivot=SPEC.pivot,scale=SPEC.scale,cell=SPEC.cell,slots=SLOTS,action='parado'}={}){
  const items=[],per=frames.map(f=>({...metrics(f.image,slots),head:f.head})),bad=(level,rule,text)=>items.push({level,rule,text});
  frames.forEach((f,i)=>{const m=per[i],n=`Quadro ${i}`;
   if(f.image.width!==cell||f.image.height!==cell)bad('fail','Grade',`${n}: ${f.image.width}×${f.image.height}; a célula é ${cell}×${cell}.`);
@@ -144,9 +144,9 @@ export function auditFrames(frames,{pivot=SPEC.pivot,scale=SPEC.scale,cell=SPEC.
   if(!f.head)bad('fail','Cabeça',`${n}: sem âncora da cabeça.`);
  });
  const heights=per.filter(m=>m.bounds).map(m=>m.bounds.h).sort((a,b)=>a-b),med=heights[heights.length>>1];
- per.forEach((m,i)=>{if(!m.bounds)return;const v=Math.abs(m.bounds.h-med)/med*100;if(v>5)bad('fail','Altura',`Quadro ${i}: altura ${m.bounds.h} px, ${v.toFixed(0)}% diferente da mediana (${med}).`);else if(v>2)bad('warn','Altura',`Quadro ${i}: altura varia ${v.toFixed(1).replace('.',',')}% da mediana.`);});
- for(let i=0;i<frames.length;i++){const a=per[i],b=per[(i+1)%frames.length];if(frames.length<2)break;
-  if(a.head&&b.head){const jump=Math.hypot(a.head[0]-b.head[0],a.head[1]-b.head[1]);if(jump>3*scale)bad('fail','Cabeça',`Âncora salta ${jump.toFixed(0)} px do quadro ${i} para o ${(i+1)%frames.length}.`);}
+ per.forEach((m,i)=>{if(!m.bounds||['sentar','acordar','pegar','comemorar','lamentar'].includes(action))return;const v=Math.abs(m.bounds.h-med)/med*100;if(v>5)bad('fail','Altura',`Quadro ${i}: altura ${m.bounds.h} px, ${v.toFixed(0)}% diferente da mediana (${med}).`);else if(v>2)bad('warn','Altura',`Quadro ${i}: altura varia ${v.toFixed(1).replace('.',',')}% da mediana.`);});
+ for(let i=0;i<frames.length;i++){const a=per[i],b=per[(i+1)%frames.length];if(frames.length<2||(ACTIONS[action]?.loop===false&&i===frames.length-1))break;
+  if(a.head&&b.head){const jump=Math.hypot(a.head[0]-b.head[0],a.head[1]-b.head[1]);if(jump>(action==='sentar'?16:3)*scale)bad('fail','Cabeça',`Âncora salta ${jump.toFixed(0)} px do quadro ${i} para o ${(i+1)%frames.length}.`);}
   for(const slot of ['cabelo','mochila']){const x=a.bySlot[slot]||0,y=b.bySlot[slot]||0;if(Math.max(x,y)>80&&Math.abs(x-y)/Math.max(x,y)>.12)bad('warn','Deriva',`${slot==='cabelo'?'Cabelo':'Mochila'} muda ${Math.round(Math.abs(x-y)/Math.max(x,y)*100)}% entre os quadros ${i} e ${(i+1)%frames.length}: redesenho da IA, não movimento.`);}}
  if(!items.some(i=>i.level!=='ok'))items.push({level:'ok',rule:'Quadros',text:`${frames.length} quadros conferidos: pivô, paleta, altura e cabeça.`});
  return {items,metrics:per};
@@ -167,7 +167,7 @@ export function steadyTorso(frames,slots=SLOTS){
  return frames.map(f=>f.head?[f.head[0]+off[0],f.head[1]+off[1]]:null);
 }
 // Balanço: a camada usa a altura do ponto de alguns quadros antes, como uma mochila que assenta depois do passo.
-export function laggedMount(points,i,lag=0){const p=points[i];if(!p||!lag)return p;const q=points[((i-lag)%points.length+points.length)%points.length];return q?[p[0],q[1]]:p;}
+export function laggedMount(points,i,lag=0,loop=true){const p=points[i];if(!p||!lag)return p;const q=points[loop?((i-lag)%points.length+points.length)%points.length:Math.max(0,i-lag)];return q?[p[0],Math.max(p[1]-(loop?4:2),Math.min(p[1]+(loop?4:2),q[1]))]:p;}
 // Mochila legível: de frente precisa aparecer atrás do ombro (ou ter alças); de costas precisa cobrir boa parte das costas.
 export function auditBackpack({base,torso,bag,straps,dir}){
  if(!bag||!torso)return null;const dx=torso[0]-bag.anchor[0],dy=torso[1]-bag.anchor[1],b=bag.image,opaque=(img,x,y)=>x>=0&&y>=0&&x<img.width&&y<img.height&&img.data[(y*img.width+x)*4+3]>=128;

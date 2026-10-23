@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+import {avatarConfig} from '../scripts/avatar-build.mjs';
 import {createHash} from 'node:crypto';
 const manifest=JSON.parse(await fs.readFile(new URL('../assets/atlas.json',import.meta.url),'utf8'));
 const items=JSON.parse(await fs.readFile(new URL('../assets/pipa-items.json',import.meta.url),'utf8')).items;
@@ -27,9 +28,9 @@ const villageIsoFiles=Object.values(JSON.parse(await fs.readFile(new URL('../ass
 villageIsoFiles.push(...Object.values(JSON.parse(await fs.readFile(new URL('../assets/world/kael-bedroom-iso-v4/manifest.json',import.meta.url),'utf8')).images).map(a=>a.image));
 villageIsoFiles.push(...Object.values(JSON.parse(await fs.readFile(new URL('../assets/world/kael-home-iso-v1/manifest.json',import.meta.url),'utf8')).images).map(a=>a.image));
 villageIsoFiles.push(...Object.values(JSON.parse(await fs.readFile(new URL('../assets/world/village-grid-v2/manifest.json',import.meta.url),'utf8')).images).map(a=>a.image));
-const files=[...villageIsoFiles,...parkIsoFiles,...workshopFiles,...rigFiles,...openingFiles,...paintedWorldFiles,...worldKitFiles,...rivalFiles,...encounterFiles,...districtFiles,...kitFiles,...Object.values(hud.sheets).map(s=>s.image),...Object.values(manifest.atlases).map(a=>a.meta.image),...items.map(i=>i.image),'vfx/trade-celestial.png','vfx/trade-sky.png','vfx/trade-spirit-16.png',"ui/club-collection-v2.png","ui/club-trades-v2.png","ui/club-summon-v2.png","ui/club-farm-v2.png","ui/club-profile-v2.png","ui/club-history-v2.png"];
+const files=[...Object.values(avatarConfig().images).map(u=>u.slice(7).split('?')[0]),...villageIsoFiles,...parkIsoFiles,...workshopFiles,...rigFiles,...openingFiles,...paintedWorldFiles,...worldKitFiles,...rivalFiles,...encounterFiles,...districtFiles,...kitFiles,...Object.values(hud.sheets).map(s=>s.image),...Object.values(manifest.atlases).map(a=>a.meta.image),...items.map(i=>i.image),'vfx/trade-celestial.png','vfx/trade-sky.png','vfx/trade-spirit-16.png',"ui/club-collection-v2.png","ui/club-trades-v2.png","ui/club-summon-v2.png","ui/club-farm-v2.png","ui/club-profile-v2.png","ui/club-history-v2.png"];
 export function createAssetHandler(){
- const cache=new Map();
+const cache=new Map();
  return async request=>{
   const url=new URL(request.url);if(!url.pathname.startsWith('/assets/'))return null;
   const file=url.pathname.slice(8);if(!files.includes(file)&&!plazaFiles.includes(file)&&!worldFiles.includes(file)&&!worldActorFiles.includes(file)&&!['backgrounds/quintal-clube-v1.png','packs/cidade-v1/mapa.png','packs/cidade-v1/insignias.png'].includes(file))return new Response('Asset not found',{status:404});

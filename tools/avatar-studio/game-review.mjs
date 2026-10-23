@@ -1,0 +1,19 @@
+import * as model from './model.mjs';
+import {createAvatarPlayer,mountAvatarAppearance} from '../../src/avatar-player.js';
+import {createAvatarActivity} from '../../src/avatar-activity.js';
+import {createBedroomIsometricRenderer} from '../../src/bedroom-isometric.js';
+import {createWorldNavigation} from '../../src/world-navigation.js';
+const $=id=>document.getElementById(id),config=await(await fetch('/config.json')).json(),avatar=createAvatarPlayer(config.avatar,model),pack=config.world.villageIsometric,images={};
+await Promise.all([avatar.load(),...Object.entries(pack.images).filter(([id])=>id.startsWith('home-')||id.startsWith('bedroom-')).map(async([id,a])=>{const im=new Image();await new Promise((resolve,reject)=>{im.onload=resolve;im.onerror=reject;im.src='/assets/'+a.image;});images[id]=im;})]);
+const panel=mountAvatarAppearance($('appearance'),avatar,()=> 'revisao-local');panel.refresh();
+let id='kael-home',renderer,nav,actor,activity=null,camera=null,previous=performance.now(),clock=0;const keys=new Set();
+function room(next){id=next;activity=null;nav=createWorldNavigation(config.world.scenes[id]);actor=nav.create();if(id==='kael-home')Object.assign(actor,{x:1000,y:1000});renderer=createBedroomIsometricRenderer(config.world.scenes[id],images,pack,model);$('roomSwitch').textContent=id==='kael-home'?'Ver quarto':'Ver sala';$('stairs').textContent=id==='kael-home'?'Subir escada':'Descer escada';$('seat').disabled=id!=='kael-home';$('status').textContent=id==='kael-home'?'Casa de Kael · sala e cozinha':'Quarto de Kael';}
+room(id);
+$('roomSwitch').onclick=()=>room(id==='kael-home'?'kael-bedroom':'kael-home');
+$('stairs').onclick=()=>{if(activity?.state.kind==='stairs')return;actor.path=[];const up=id==='kael-home';Object.assign(actor,up?{x:1424,y:1104}:{x:528,y:816});activity=createAvatarActivity({kind:'stairs',start:{...actor},dir:up?'ne':'sw',onComplete:()=>room(up?'kael-bedroom':'kael-home')});};
+$('seat').onclick=()=>{if(activity?.state.kind==='seat'){activity=null;$('seat').textContent='Sentar no sofá';return;}actor.path=[];Object.assign(actor,{x:656,y:912});activity=createAvatarActivity({kind:'seat',start:actor,seat:{x:550,y:812,lift:24},dir:'se'});$('seat').textContent='Levantar';};
+const canvas=$('room'),g=canvas.getContext('2d');canvas.onclick=e=>{if(activity?.state.kind==='stairs')return;activity=null;const r=canvas.getBoundingClientRect(),p=renderer.unproject({x:(e.clientX-r.left)*canvas.width/r.width/camera.scale+camera.x,y:(e.clientY-r.top)*canvas.height/r.height/camera.scale+camera.y});nav.target(actor,p);canvas.focus();};
+canvas.onkeydown=e=>{if(['w','a','s','d','arrowleft','arrowright','arrowup','arrowdown'].includes(e.key.toLowerCase())){keys.add(e.key.toLowerCase());e.preventDefault();}};canvas.onkeyup=e=>keys.delete(e.key.toLowerCase());canvas.onblur=()=>keys.clear();
+function tick(t){const dt=Math.min(.1,(t-previous)/1000);previous=t;clock+=dt*1000;const x=(keys.has('d')||keys.has('arrowright')?1:0)-(keys.has('a')||keys.has('arrowleft')?1:0),y=(keys.has('s')||keys.has('arrowdown')?1:0)-(keys.has('w')||keys.has('arrowup')?1:0),before={...actor};if(activity?.state.kind==='seat'&&(x||y))activity=null;if(activity)activity.tick(dt);else if(x||y){const input=renderer.unproject({x,y});nav.move(actor,input,dt);}else nav.step(actor,dt);
+ const delta=renderer.project({x:actor.x-before.x,y:actor.y-before.y});actor.avatarDir=model.facingIso(delta.x,delta.y,actor.avatarDir||'se');const pose=activity?.pose(),position=pose||actor;camera=renderer.camera(actor,canvas.width,canvas.height);g.clearRect(0,0,canvas.width,canvas.height);g.save();g.scale(camera.scale,camera.scale);g.translate(-camera.x,-camera.y);renderer.draw(g,actor,[{...position,draw:p=>avatar.draw(g,{x:p.x,y:p.y-(pose?.lift||0),height:102,dir:pose?.dir||actor.avatarDir,action:pose?.action||(actor.moving?'andar':'parado'),time:pose?.time??clock})}]);g.restore();requestAnimationFrame(tick);}
+requestAnimationFrame(tick);

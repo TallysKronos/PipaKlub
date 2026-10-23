@@ -305,6 +305,378 @@
           "mirror": "ne"
         }
       }
+    },
+    "subir": {
+      "ms": 110,
+      "loop": true,
+      "directions": {
+        "ne": [
+          {
+            "image": "base/subir-ne-0.png",
+            "head": [
+              65,
+              46
+            ],
+            "torso": [
+              64,
+              75
+            ]
+          },
+          {
+            "image": "base/subir-ne-1.png",
+            "head": [
+              65,
+              46
+            ],
+            "torso": [
+              64,
+              75
+            ]
+          },
+          {
+            "image": "base/subir-ne-2.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              63,
+              75
+            ]
+          },
+          {
+            "image": "base/subir-ne-3.png",
+            "head": [
+              66,
+              47
+            ],
+            "torso": [
+              65,
+              76
+            ]
+          },
+          {
+            "image": "base/subir-ne-4.png",
+            "head": [
+              65,
+              46
+            ],
+            "torso": [
+              64,
+              75
+            ]
+          },
+          {
+            "image": "base/subir-ne-5.png",
+            "head": [
+              65,
+              45
+            ],
+            "torso": [
+              64,
+              74
+            ]
+          },
+          {
+            "image": "base/subir-ne-6.png",
+            "head": [
+              64,
+              45
+            ],
+            "torso": [
+              63,
+              74
+            ]
+          },
+          {
+            "image": "base/subir-ne-7.png",
+            "head": [
+              65,
+              46
+            ],
+            "torso": [
+              64,
+              75
+            ]
+          }
+        ],
+        "nw": {
+          "mirror": "ne"
+        }
+      },
+      "stairs": {
+        "direction": "up",
+        "stepPx": 16,
+        "stepsPerCycle": 2
+      }
+    },
+    "descer": {
+      "ms": 110,
+      "loop": true,
+      "directions": {
+        "se": [
+          {
+            "image": "base/descer-se-0.png",
+            "head": [
+              67,
+              46
+            ],
+            "torso": [
+              62,
+              76
+            ]
+          },
+          {
+            "image": "base/descer-se-1.png",
+            "head": [
+              67,
+              46
+            ],
+            "torso": [
+              62,
+              76
+            ]
+          },
+          {
+            "image": "base/descer-se-2.png",
+            "head": [
+              67,
+              46
+            ],
+            "torso": [
+              62,
+              76
+            ]
+          },
+          {
+            "image": "base/descer-se-3.png",
+            "head": [
+              67,
+              47
+            ],
+            "torso": [
+              62,
+              77
+            ]
+          },
+          {
+            "image": "base/descer-se-4.png",
+            "head": [
+              66,
+              46
+            ],
+            "torso": [
+              61,
+              76
+            ]
+          },
+          {
+            "image": "base/descer-se-5.png",
+            "head": [
+              66,
+              46
+            ],
+            "torso": [
+              61,
+              76
+            ]
+          },
+          {
+            "image": "base/descer-se-6.png",
+            "head": [
+              66,
+              47
+            ],
+            "torso": [
+              61,
+              77
+            ]
+          },
+          {
+            "image": "base/descer-se-7.png",
+            "head": [
+              66,
+              47
+            ],
+            "torso": [
+              61,
+              77
+            ]
+          }
+        ],
+        "sw": {
+          "mirror": "se"
+        }
+      },
+      "stairs": {
+        "direction": "down",
+        "stepPx": 16,
+        "stepsPerCycle": 2
+      }
+    },
+    "sentar": {
+      "ms": 120,
+      "loop": false,
+      "directions": {
+        "se": [
+          {
+            "image": "base/sentar-se-0.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              62,
+              70
+            ]
+          },
+          {
+            "image": "base/sentar-se-1.png",
+            "head": [
+              67,
+              50
+            ],
+            "torso": [
+              65,
+              74
+            ]
+          },
+          {
+            "image": "base/sentar-se-2.png",
+            "head": [
+              66,
+              55
+            ],
+            "torso": [
+              64,
+              79
+            ]
+          },
+          {
+            "image": "base/sentar-se-3.png",
+            "head": [
+              62,
+              52
+            ],
+            "torso": [
+              60,
+              76
+            ]
+          }
+        ],
+        "sw": {
+          "mirror": "se"
+        },
+        "ne": [
+          {
+            "image": "base/sentar-ne-0.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              65,
+              72
+            ]
+          },
+          {
+            "image": "base/sentar-ne-1.png",
+            "head": [
+              66,
+              54
+            ],
+            "torso": [
+              67,
+              80
+            ]
+          },
+          {
+            "image": "base/sentar-ne-2.png",
+            "head": [
+              66,
+              59
+            ],
+            "torso": [
+              67,
+              85
+            ]
+          },
+          {
+            "image": "base/sentar-ne-3.png",
+            "head": [
+              62,
+              55
+            ],
+            "torso": [
+              63,
+              81
+            ]
+          }
+        ],
+        "nw": {
+          "mirror": "ne"
+        }
+      }
+    },
+    "sentado": {
+      "ms": 420,
+      "loop": true,
+      "directions": {
+        "se": [
+          {
+            "image": "base/sentado-se-0.png",
+            "head": [
+              62,
+              52
+            ],
+            "torso": [
+              60,
+              76
+            ]
+          },
+          {
+            "image": "base/sentado-se-1.png",
+            "head": [
+              63,
+              54
+            ],
+            "torso": [
+              61,
+              78
+            ]
+          }
+        ],
+        "sw": {
+          "mirror": "se"
+        },
+        "ne": [
+          {
+            "image": "base/sentado-ne-0.png",
+            "head": [
+              62,
+              55
+            ],
+            "torso": [
+              63,
+              81
+            ]
+          },
+          {
+            "image": "base/sentado-ne-1.png",
+            "head": [
+              62,
+              54
+            ],
+            "torso": [
+              63,
+              80
+            ]
+          }
+        ],
+        "nw": {
+          "mirror": "ne"
+        }
+      }
     }
   },
   "layers": {
@@ -333,21 +705,37 @@
         "se": "camadas/mochila-pipa-se.png",
         "ne": "camadas/mochila-pipa-ne.png"
       },
+      "lag": 1,
       "anchor": {
         "se": [
           25,
           8
         ],
         "ne": [
-          10,
-          11
+          15,
+          21
         ]
+      }
+    },
+    "alcas-mochila": {
+      "kind": "torso",
+      "slot": "alcas",
+      "images": {
+        "se": "camadas/alcas-mochila-se.png",
+        "ne": "camadas/alcas-mochila-ne.png"
       },
-      "lag": 1
+      "anchor": {
+        "se": [
+          12,
+          6
+        ],
+        "ne": [
+          15,
+          22
+        ]
+      }
     }
   },
   "palette": "paleta.json",
-  "rulesVersion": "avatar-1",
-  "reviewStatus": "artistic-review",
-  "productionReady": false
+  "rulesVersion": "avatar-1"
 }

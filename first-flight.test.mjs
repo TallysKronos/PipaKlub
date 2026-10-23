@@ -225,7 +225,9 @@ test('street doors preserve the account and provide repeatable entry, upstairs a
  const ui=journeyUI();await ui.settle();
  ui.run(`playerAccount={profile:{id:'resident',nickname:'Kael',equipped_kite_id:'r'},inventory:[{id:'r',model:{color:0,name:'Rabbito'}}]};journey={phase:'complete'};journeyOwner='resident';openingState={step:14,partner_id:'r'};showCourtyard();refreshWorldHUD();var streetWrites=0;accountRequest=async()=>{streetWrites++;throw Error('Map visits must not write progress')};var residentBefore=JSON.stringify(playerAccount);`);
  for(const target of ['kael-home','kael-bedroom','kael-home','quintal','kite-shop','quintal','professor-home','quintal']){
-  ui.run(`var portal=worldScene().places.find(p=>p.action==='street_scene'&&p.target===${JSON.stringify(target)});worldState().navigation.target(worldState().actor,worldState().navigation.nodes[portal.node],true);updateWorldContext();interactWorld();`);await ui.settle();assert.equal(ui.run('worldRuntime.id'),target);assert.ok(ui.run('worldRuntime.near?.action===\"street_scene\"'),'reciprocal door is immediately available');
+  ui.run(`var portal=worldScene().places.find(p=>p.action==='street_scene'&&p.target===${JSON.stringify(target)});worldState().navigation.target(worldState().actor,worldState().navigation.nodes[portal.node],true);updateWorldContext();interactWorld();`);
+  if(ui.run("worldState().avatarActivity?.state.kind==='stairs'")){assert.notEqual(ui.run('worldRuntime.id'),target,'stairs finish before arrival');ui.run('var stairActivity=worldState().avatarActivity;for(let i=0;i<36;i++)stairActivity.tick(.1)');}
+  await ui.settle();assert.equal(ui.run('worldRuntime.id'),target);assert.ok(ui.run('worldRuntime.near?.action===\"street_scene\"'),'reciprocal door is immediately available');
  }
  assert.equal(ui.run('streetWrites'),0);assert.equal(ui.run('JSON.stringify(playerAccount)===residentBefore'),true);assert.equal(ui.run('openingState.step'),14);
 });

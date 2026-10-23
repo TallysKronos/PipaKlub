@@ -31,7 +31,7 @@ const kindOf=l=>l.kind||PIECES[l.slot]?.kind||'head';
 // Imagem e ponto de encaixe de uma peça numa direção; as esquerdas espelham as direitas.
 function layerView(l,dir){const m=MIRROR[dir],own=l.images?.[dir],src=own||(m&&l.mirror!==false?l.images?.[m]:null);if(!src||!raw.get(src))return null;const img=own?raw.get(own):mirror(raw.get(src)),a=own?l.anchors?.[dir]:l.anchors?.[m]&&[img.width-1-l.anchors[m][0],l.anchors[m][1]];return a?{image:img,anchor:a,mirrored:!own}:null;}
 function layersFor(dir,action,i){const frames=framesOf(action,dir);return state.project.layers.filter(l=>l.on!==false).map(l=>{const kind=kindOf(l);
- if(kind!=='frames'){const v=layerView(l,dir);if(!v)return null;const points=frames.map(f=>f[kind]||(kind==='torso'?autoTorso(baseImage(f),state.project.slots):null));const mount=laggedMount(points,i,l.lag||0);return mount?{kind,slot:l.slot,image:v.image,anchor:v.anchor,mount}:null;}
+ if(kind!=='frames'){const v=layerView(l,dir);if(!v)return null;const points=frames.map(f=>f[kind]||(kind==='torso'?autoTorso(baseImage(f),state.project.slots):null));const mount=laggedMount(points,i,l.lag||0,ACTIONS[action]?.loop!==false);return mount?{kind,slot:l.slot,image:v.image,anchor:v.anchor,mount}:null;}
  const m=MIRROR[dir],own=l.frames?.[action]?.[dir],list=own||(m&&l.frames?.[action]?.[m]),src=list?.[i];if(!src||!raw.get(src))return null;return {kind:'frames',slot:l.slot,image:own?raw.get(src):mirror(raw.get(src))};}).filter(Boolean);}
 function composed(action,dir,i,ramps,rampKey=JSON.stringify(state.project.appearance)){const key=`${action}|${dir}|${i}|${rampKey}`;if(composedCache.has(key))return composedCache.get(key);const f=framesOf(action,dir)[i];if(!f)return null;const base=baseImage(f);if(!base)return null;
  const out=composeFrame({base,head:f.head||[C/2,SPEC.eyeLine],torso:f.torso,hand:f.hand,dir,layers:layersFor(dir,action,i),ramps:ramps||appearanceRamps(state.project.slots,state.project.appearance),slots:state.project.slots});composedCache.set(key,out);return out;}
@@ -113,10 +113,10 @@ function liveLoop(){liveTick++;drawLive();setTimeout(liveLoop,state.project.acti
 // ---------- o que falta ----------
 const verdict=items=>items.some(i=>i.level==='fail')?'fail':items.some(i=>i.level==='warn')?'warn':'ok';
 function auditOf(action,dir){const key=`${action}|${dir}`;if(auditCache.has(key))return auditCache.get(key);
- const fr=framesOf(action,dir),frames=fr.map(f=>({image:baseImage(f),head:f.head})).filter(f=>f.image),out=auditFrames(frames,{slots:state.project.slots});
+ const fr=framesOf(action,dir),frames=fr.map(f=>({image:baseImage(f),head:f.head})).filter(f=>f.image),out=auditFrames(frames,{slots:state.project.slots,action});
  if(frames.length&&!state.project.mapping.clusters.length&&out.metrics.some(m=>m.off))out.items.unshift({level:'fail',rule:'Paleta',text:'Cores ainda não separadas por grupo.'});
  const want=ACTIONS[action].frames;if(frames.length&&frames.length!==want)out.items.push({level:'warn',rule:'Quadros',text:`${frames.length} quadros; a animação pede ${want}.`});
- const f=fr[0];if(f){const base=baseImage(f),layers=layersFor(dir,action,0);
+ for(const [i,f] of fr.entries()){const base=baseImage(f),layers=layersFor(dir,action,i);
   for(const l of state.project.layers.filter(x=>x.on!==false)){const live=layers.find(x=>x.slot===l.slot);if(!live)continue;let check;
    if(live.kind==='torso'&&l.slot==='mochila')check=auditTorsoLayer(base,live.mount,live);else if(live.kind==='head')check=auditHeadLayer(base,live.mount,live);else if(live.kind==='frames')check=auditFrameLayer(base,live.image);else continue;out.items.push({...check,text:`${l.name}: ${check.text}`});}
   const bag=layers.find(x=>x.slot==='mochila'),pack=bag&&auditBackpack({base,torso:bag.mount,bag,straps:layers.some(x=>x.slot==='alcas'),dir});if(pack)out.items.push(pack);
