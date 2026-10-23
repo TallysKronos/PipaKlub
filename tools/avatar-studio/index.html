@@ -1,0 +1,20 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Avatar Studio · Boneco de papel</title><link rel="icon" href="data:,"><link rel="stylesheet" href="studio.css"></head><body data-step="frames">
+<header><div class="brand"><span aria-hidden="true">◐</span><div><h1>Avatar Studio</h1><small>BONECO DE PAPEL · LOCAL</small></div></div><label class="project-label">Personagem<input id="projectName" maxlength="80"></label><div class="header-actions"><span id="summary" role="status"></span><button id="open">Abrir</button><button id="save">Salvar projeto</button><button id="export" class="primary">Exportar pacote .zip</button></div></header>
+<nav class="steps" aria-label="Etapas"><button data-step="frames"><b>01</b><span>Quadros<small>Pivô e cabeça</small></span></button><button data-step="palette"><b>02</b><span>Paleta<small>Cores-chave</small></span></button><button data-step="layers"><b>03</b><span>Camadas<small>Cabelo e roupa</small></span></button><button data-step="look"><b>04</b><span>Aparência<small>Conferir e exportar</small></span></button></nav>
+<main>
+<aside class="library">
+ <div class="panel-heading"><h2>Animações</h2></div>
+ <div id="actionTree" class="tree" aria-label="Ações e direções"></div>
+ <div class="stack"><button id="preset" title="Andar lateral do teste quadro a quadro do Codex">Abrir piloto do Kael</button><button id="importFrames">Importar quadros</button><button id="guide">Baixar guia de quadros</button><button id="promptCopy">Copiar pedido desta animação</button></div>
+ <p class="muted">PNGs de 256 × 256 (um por quadro, em ordem de nome) ou uma folha com células de 256. Pés no pivô, cabeça na linha dos olhos.</p>
+</aside>
+<section class="workspace">
+ <div class="workspace-top"><div><h2 id="stageTitle"></h2><small id="stageSub"></small></div><div class="row"><button id="play" aria-pressed="false">▶ Reproduzir</button><label class="inline frames-only"><input id="onion" type="checkbox" checked> Quadro anterior</label><label class="inline frames-only"><input id="guides" type="checkbox" checked> Guias</label></div></div>
+ <div class="viewport" id="viewport"><canvas id="stage"></canvas></div>
+ <div id="strip" class="strip" aria-label="Quadros"></div>
+</section>
+<aside class="inspector"><span class="eyebrow" id="inspEyebrow">QUADRO</span><h2 id="inspTitle"></h2><div id="inspector"></div><h3>Conferência</h3><ul id="audit" class="audit"></ul></aside>
+</main>
+<footer id="message" role="status">Preparando a bancada…</footer>
+<input id="fileFrames" type="file" accept="image/png" multiple hidden><input id="fileLayer" type="file" accept="image/png" hidden><input id="fileProject" type="file" accept="application/json,.json" hidden>
+<script type="module" src="studio.mjs"></script></body></html>

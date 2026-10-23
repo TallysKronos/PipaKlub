@@ -1,0 +1,245 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Avatar em Camadas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Especificação técnica de leitura longa: coluna de texto central, figuras na largura toda, tabelas roláveis; grade rosa é a cor-assinatura. */
+:root{
+ --bg:#f3f5f2;--paper:#ffffff;--fg:#1d2b2a;--muted:#55645f;--line:#d5ddd8;
+ --teal:#1f5f63;--grid:#2a7fc0;--warn:#a35b12;--bad:#b0302a;--ok:#2f7a4f;--chip:#e6efec;
+ --display:'Archivo',system-ui,sans-serif;--body:'IBM Plex Sans',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121a19;--paper:#18221f;--fg:#e6ece8;--muted:#9fb0aa;--line:#2c3a36;--teal:#7cc5c4;--grid:#7cc5f0;--warn:#e0a35a;--bad:#ef7d74;--ok:#7fca9c;--chip:#20302c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121a19;--paper:#18221f;--fg:#e6ece8;--muted:#9fb0aa;--line:#2c3a36;--teal:#7cc5c4;--grid:#7cc5f0;--warn:#e0a35a;--bad:#ef7d74;--ok:#7fca9c;--chip:#20302c;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.65 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+main{max-width:860px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);line-height:1.2;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,5vw,44px);font-weight:800;letter-spacing:-.01em}
+h2{font-size:24px;font-weight:800;margin-top:56px;padding-top:14px;border-top:3px solid var(--grid)}
+h3{font-size:18px;font-weight:700;margin-top:28px}
+p,li{max-width:68ch}
+a{color:var(--teal)}
+code,kbd{font-family:var(--mono);font-size:.88em;background:var(--chip);padding:1px 5px;border-radius:4px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 16px;color:var(--muted);font-size:14px;margin:10px 0 18px}
+.eyebrow{font:600 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--grid)}
+.lede{font-size:18px}
+.summary{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:20px 0}
+.summary ol{margin:8px 0 0;padding-left:22px}
+.toc{columns:2 240px;margin:14px 0 0;padding-left:20px;font-size:15px}
+figure{margin:20px 0}
+figure img{display:block;width:100%;height:auto;border-radius:8px;border:1px solid var(--line);background:#fff}
+figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+.table{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:8px;background:var(--paper)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:560px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--chip)}
+tr:last-child td{border-bottom:0}
+td.num{font-variant-numeric:tabular-nums;font-family:var(--mono);white-space:nowrap}
+.rule{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;margin:22px 0;padding:16px 18px;background:var(--paper);border:1px solid var(--line);border-radius:10px}
+.rule .id{font:700 15px var(--mono);color:var(--grid);grid-row:span 3}
+.rule h3{margin:0;font-size:17px}
+.rule p{margin:4px 0}
+.check{font-size:14px;color:var(--muted)}
+.check b{color:var(--fg)}
+.pend{display:inline-block;font:600 11px var(--mono);letter-spacing:.06em;color:var(--warn);border:1px solid var(--warn);border-radius:4px;padding:0 5px;margin-left:6px;vertical-align:2px}
+pre{font:13.5px/1.55 var(--mono);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:14px 16px;overflow-x:auto;white-space:pre}
+blockquote{margin:14px 0;padding:12px 16px;border-left:4px solid var(--teal);background:var(--paper);border-radius:0 8px 8px 0;font-size:15px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.cols>div{min-width:0}
+.do,.dont{padding:14px 16px;border-radius:10px;border:1px solid var(--line);background:var(--paper)}
+.do h3,.dont h3{margin-top:0;font-size:15px}
+.do h3{color:var(--ok)}.dont h3{color:var(--bad)}
+.do ul,.dont ul{margin:6px 0 0;padding-left:18px;font-size:15px}
+.diagram{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px;overflow-x:auto}
+.diagram canvas{display:block;max-width:100%;height:auto;image-rendering:pixelated}
+footer{margin-top:56px;font-size:13px;color:var(--muted)}
+</style></head><body>
+<main>
+<div class="eyebrow">PipaKlub · Especificação de arte · avatar v1</div>
+<h1>Avatar animável e customizável</h1>
+<div class="meta"><span>23/10/2026</span><span>Para: Codex, artista e quem integra o jogador</span><span>Status: proposta, itens <span class="pend">DECIDIR</span> aguardam aprovação</span></div>
+
+<p class="lede">Como produzir o Kael e qualquer outro jogador de modo que ele ande bem, fique igual em todos os quadros e aceite cabelo, pele e roupa diferentes sem refazer a animação. O método é o boneco de papel em camadas, usado em Stardew Valley, Habbo e no sprite universal LPC.</p>
+
+<div class="summary">
+ <b>Resumo em cinco regras</b>
+ <ol>
+  <li><b>Corpo base animado uma vez.</b> Manequim desenhado quadro a quadro, numa grade fixa, com o pé sempre no mesmo ponto. Depois de aprovado, ele é congelado.</li>
+  <li><b>Cor é paleta, não desenho.</b> Pele, cabelo e roupa usam cores-chave reservadas; o jogo troca as rampas. Uma cor nova não custa arte nova.</li>
+  <li><b>Cabelo e chapéu são 4 imagens</b>, uma por direção, presas à <b>âncora da cabeça</b> marcada em cada quadro.</li>
+  <li><b>Roupa de modelo diferente é uma camada por quadro</b> sobre o manequim congelado. É a única parte cara; o resto vem da paleta.</li>
+  <li><b>A IA gera referência e peças; a variação é montada pelo código.</b> Nunca pedir à IA a mesma animação de novo para outra roupa.</li>
+ </ol>
+ <ol class="toc">
+  <li><a href="#diagnostico">Por que as tentativas falharam</a></li>
+  <li><a href="#camadas">Camadas</a></li>
+  <li><a href="#grade">Grade do quadro</a></li>
+  <li><a href="#acoes">Ações e quadros</a></li>
+  <li><a href="#paleta">Paleta-chave</a></li>
+  <li><a href="#cabeca">Âncora da cabeça e cabelo</a></li>
+  <li><a href="#roupas">Roupas de modelo</a></li>
+  <li><a href="#producao">Produção com o Codex</a></li>
+  <li><a href="#conferencia">Conferência</a></li>
+  <li><a href="#entrega">Entrega e manifesto</a></li>
+  <li><a href="#decisoes">Integração e decisões</a></li>
+ </ol>
+</div>
+
+<h2 id="diagnostico">1. Por que as tentativas falharam</h2>
+<div class="cols">
+ <figure><img src="tentativa-rig.png" alt="Kael montado com peças recortadas em quatro direções, duas aparências" width="1024" height="512"><figcaption><b>Rig recortado</b> (<code>kael-v2</code>): 64 combinações e 4 direções, mas o movimento vem de girar peças. Braços sem cotovelo, perna curta e corpo sem peso: lê como marionete.</figcaption></figure>
+ <figure><img src="tentativa-quadros.png" alt="Oito quadros da caminhada lateral do Kael gerados por IA" width="1024" height="512"><figcaption><b>Quadro a quadro</b> (<code>kael-frame-test</code>): passada boa, joelho e cotovelo desenhados. Mas cabelo, mochila e contorno mudam de um quadro para o outro, e não há como trocar roupa sem gerar tudo de novo.</figcaption></figure>
+</div>
+<p>As duas falham pelo mesmo motivo de fundo: pedem ao gerador de imagem a única coisa que ele não faz, <b>repetir o mesmo desenho, idêntico, dezenas de vezes</b>. Num personagem chibi de 96 px também não existe articulação suficiente para animar girando recortes. A saída é dividir o trabalho: o movimento é desenhado uma vez, a identidade (pele, cabelo, roupa) é trocada por paleta e por camadas presas a pontos fixos.</p>
+
+<h2 id="camadas">2. Camadas</h2>
+<div class="table"><table>
+ <thead><tr><th>Camada</th><th>O que é</th><th>Quantos desenhos</th><th>Como varia</th></tr></thead>
+ <tbody>
+  <tr><td><b>Corpo base</b></td><td>Manequim completo: cabeça sem cabelo (crânio rente), rosto, tronco, braços, pernas, tênis e roupa padrão.</td><td>1 por quadro, por ação e direção</td><td>Só por paleta</td></tr>
+  <tr><td><b>Roupa de modelo</b></td><td>Jaqueta, moletom, vestido: só os pixels da peça, por cima do corpo.</td><td>1 por quadro, para cada modelo</td><td>Modelo novo = camada nova; cor = paleta</td></tr>
+  <tr><td><b>Cabelo</b></td><td>Penteado, dividido em <i>frente</i> (sobre o rosto) e <i>trás</i> (atrás do corpo, para cabelo comprido).</td><td>4 por estilo, uma por direção</td><td>Estilo = imagem; cor = paleta</td></tr>
+  <tr><td><b>Acessório de cabeça</b></td><td>Boné, chapéu, faixa.</td><td>4 por acessório</td><td>Imagem + paleta</td></tr>
+  <tr><td><b>Mochila e costas</b></td><td>Mochila, capa.</td><td>4, ou 1 por quadro se balançar</td><td>Imagem + paleta</td></tr>
+ </tbody>
+</table></div>
+<p><b>Ordem de desenho</b> (de trás para a frente):</p>
+<div class="table"><table>
+ <thead><tr><th>Direção</th><th>Ordem</th></tr></thead>
+ <tbody>
+  <tr><td>Frente (S)</td><td class="num">cabelo-trás · mochila · corpo · roupa · cabelo-frente · acessório</td></tr>
+  <tr><td>Lados (E, W)</td><td class="num">cabelo-trás · mochila · corpo · roupa · cabelo-frente · acessório</td></tr>
+  <tr><td>Costas (N)</td><td class="num">corpo · roupa · cabelo-frente · cabelo-trás · mochila · acessório</td></tr>
+ </tbody>
+</table></div>
+
+<h2 id="grade">3. Grade do quadro</h2>
+<div class="table"><table>
+ <thead><tr><th>Medida</th><th>Autoria (2×)</th><th>Jogo (1×)</th></tr></thead>
+ <tbody>
+  <tr><td>Célula do quadro</td><td class="num">256 × 256 px</td><td class="num">128 × 128 px</td></tr>
+  <tr><td>Pivô (centro entre os pés, no chão)</td><td class="num">(128, 224)</td><td class="num">(64, 112)</td></tr>
+  <tr><td>Altura do personagem em pé <span class="pend">DECIDIR</span></td><td class="num">192 px ± 4</td><td class="num">96 px ± 2</td></tr>
+  <tr><td>Linha dos olhos (frente)</td><td class="num">y ≈ 92</td><td class="num">y ≈ 46</td></tr>
+  <tr><td>Margem livre em volta</td><td class="num">≥ 8 px</td><td class="num">≥ 4 px</td></tr>
+ </tbody>
+</table></div>
+<p>São as medidas do piloto quadro a quadro do Codex, para aproveitar o que já existe. A redução de 2× para 1× é exata (fator inteiro) e o pixel de arte vale 2 px na autoria. Direções: <b>S</b> (frente), <b>E</b> (direita), <b>N</b> (costas) e <b>W</b> (esquerda). W pode ser o espelho de E enquanto nenhuma camada for assimétrica (franja de lado, bolsa de um lado só); a camada assimétrica marca <code>"mirror": false</code> e ganha desenho próprio.</p>
+<p><b>Sem antialias contra o transparente:</b> alpha é 0 ou 255. Contorno de 2 px na autoria (1 px no jogo), na cor <code>contorno</code> da paleta.</p>
+
+<h2 id="acoes">4. Ações e quadros</h2>
+<div class="table"><table>
+ <thead><tr><th>Ação</th><th>Quadros</th><th>Duração</th><th>Direções</th><th>Fase</th></tr></thead>
+ <tbody>
+  <tr><td>Parado (respiração)</td><td class="num">4</td><td class="num">180 ms</td><td>S, E, N (W espelho)</td><td>v1</td></tr>
+  <tr><td>Andar</td><td class="num">8</td><td class="num">100 ms</td><td>S, E, N (W espelho)</td><td>v1</td></tr>
+  <tr><td>Correr</td><td class="num">6</td><td class="num">80 ms</td><td>S, E, N</td><td>v2</td></tr>
+  <tr><td>Empinar a pipa (puxar linha)</td><td class="num">4</td><td class="num">120 ms</td><td>N</td><td>v2</td></tr>
+  <tr><td>Acenar, comemorar, dano</td><td class="num">4 cada</td><td class="num">110 ms</td><td>S</td><td>v2</td></tr>
+ </tbody>
+</table></div>
+<p>A v1 tem <b>36 quadros desenhados</b> (3 direções × 12). Nomes: <code>&lt;acao&gt;-&lt;direcao&gt;-&lt;n&gt;.png</code>, por exemplo <code>andar-e-0.png</code>. O quadro 0 do andar é o contato do pé da frente com o chão; o ciclo fecha no 7 sem repetir o 0.</p>
+
+<h2 id="paleta">5. Paleta-chave</h2>
+<p>O corpo base e as camadas são desenhados só com as cores abaixo. Cada <b>grupo</b> é uma rampa do escuro para o claro; a troca de aparência substitui a rampa inteira, tom a tom. Qualquer outra cor é erro de conferência.</p>
+<div class="table"><table>
+ <thead><tr><th>Grupo</th><th>Tons</th><th>Rampa padrão (Kael)</th><th>Variações iniciais</th></tr></thead>
+ <tbody>
+  <tr><td>contorno</td><td class="num">1</td><td class="num">#0b1020</td><td>fixo</td></tr>
+  <tr><td>pele</td><td class="num">4</td><td class="num">#9a5634 #cf8350 #f0a868 #f9c995</td><td>claro, mel, castanho, escuro</td></tr>
+  <tr><td>cabelo</td><td class="num">4</td><td class="num">#121838 #1e2a5e #2f4590 #4d6cbc</td><td>azul-noite, preto, castanho, cobre</td></tr>
+  <tr><td>jaqueta</td><td class="num">4</td><td class="num">#0e346e #13499a #2a6cc0 #5d95da</td><td>azul, terracota, verde-mata, mostarda</td></tr>
+  <tr><td>camiseta</td><td class="num">3</td><td class="num">#141a24 #252d3b #3c4757</td><td>preta, creme, branca</td></tr>
+  <tr><td>calça</td><td class="num">3</td><td class="num">#3e5677 #5f7fa5 #8ba7c6</td><td>jeans, caqui, preta</td></tr>
+  <tr><td>tênis</td><td class="num">3</td><td class="num">#1b2030 #2d354a #47516b</td><td>marinho, branco, vermelho</td></tr>
+  <tr><td>detalhe</td><td class="num">2</td><td class="num">#b67a1f #e8b24c</td><td>latão, prata</td></tr>
+  <tr><td>mochila</td><td class="num">3</td><td class="num">#272c42 #3b435e #57617e</td><td>marinho, terracota, verde</td></tr>
+  <tr><td>olhos</td><td class="num">2</td><td class="num">#ffffff #2a1a10</td><td>fixo (cor da íris pode virar grupo na v2)</td></tr>
+ </tbody>
+</table></div>
+<p>As rampas são o ponto de partida; o Avatar Studio permite ajustá-las depois de mapear a arte real. O que não pode mudar é o <b>número de tons</b> de cada grupo, porque a troca é feita tom a tom.</p>
+
+<h2 id="cabeca">6. Âncora da cabeça e cabelo</h2>
+<p>Cada quadro do corpo base declara a <b>âncora da cabeça</b>: o centro do crânio (meio da cabeça na horizontal, na altura da linha dos olhos). Ela acompanha o balanço do passo. O cabelo e os acessórios são desenhados uma vez por direção e posicionados pela âncora: o ponto do cabelo que corresponde ao centro do crânio cai exatamente nela.</p>
+<div class="cols">
+ <div class="do"><h3>Fazer</h3><ul><li>Corpo base com crânio rente, na cor do <code>cabelo</code> tom 1: qualquer penteado cobre.</li><li>Cabelo com a mesma largura de cabeça nas 4 direções.</li><li>Variação de altura da âncora entre quadros vizinhos de no máximo 2 px (1×).</li></ul></div>
+ <div class="dont"><h3>Não fazer</h3><ul><li>Desenhar o penteado no corpo base: ele não poderia ser trocado.</li><li>Cabelo que se move sozinho por quadro (na v1 ele só acompanha a cabeça).</li><li>Usar cores de pele no cabelo ou de cabelo na pele.</li></ul></div>
+</div>
+
+<h2 id="roupas">7. Roupas de modelo</h2>
+<p>A roupa padrão já faz parte do corpo base (jaqueta aberta, camiseta, bermuda jeans, tênis). Um <b>modelo diferente</b> é uma camada do mesmo tamanho do quadro, com só os pixels da peça, desenhada <b>por cima do corpo base congelado</b>, quadro a quadro. Regras:</p>
+<ul>
+ <li>Usa apenas grupos de roupa da paleta (jaqueta, camiseta, calça, detalhe, contorno).</li>
+ <li>Fica dentro da silhueta do corpo, com no máximo 3 px (1×) a mais para volume de tecido.</li>
+ <li>Nenhum pixel de pele fica descoberto onde a roupa deveria cobrir; nenhum pixel do corpo aparece através dela.</li>
+ <li>Começar com 2 modelos (padrão + moletom). Cada modelo novo custa 36 quadros na v1, então a variedade vem principalmente das cores.</li>
+</ul>
+
+<h2 id="producao">8. Produção com o Codex</h2>
+<ol>
+ <li><b>Folha de modelo.</b> Kael em S, E e N, em pé, já na paleta-chave, no tamanho 2×. É a referência de identidade de tudo. Revisada por você antes de seguir.</li>
+ <li><b>Corpo base, uma ação e uma direção por pedido.</b> A imagem de referência é a folha de modelo mais a <b>guia de quadros</b> do Avatar Studio (células com linha do chão, pivô e linha dos olhos). O gerador entrega as poses; a limpeza vem a seguir.</li>
+ <li><b>Limpeza no Avatar Studio:</b> recorte nas células, registro no pivô, mapeamento para a paleta-chave, correção de variações (o que mudou entre quadros e não é movimento é repintado igual ao quadro 0). Depois disso o corpo base é <b>congelado</b>: nunca mais é gerado.</li>
+ <li><b>Âncora da cabeça</b> marcada em cada quadro (automática com conferência manual).</li>
+ <li><b>Cabelos:</b> um pedido por estilo, 4 direções, sobre a cabeça do quadro 0 de cada direção.</li>
+ <li><b>Roupas de modelo:</b> um pedido por quadro, com o quadro do corpo base como referência e a instrução de pintar só a peça. É o trecho que mais exige revisão.</li>
+</ol>
+<h3>Modelos de pedido</h3>
+<p><b>Corpo base</b> (troque ação, direção e número de quadros):</p>
+<blockquote>Sprite sheet de personagem para jogo 2D, estilo da imagem de referência (Kael), mesmo traço, mesma proporção e mesma roupa. <b>Andar, vista lateral para a direita, 8 quadros</b>, em uma grade de 4 colunas × 2 linhas de células de 256 × 256 px, exatamente como a guia: pés no ponto marcado de cada célula, cabeça na linha indicada, mesmo tamanho em todos os quadros. Quadro 1 = pé da frente tocando o chão; ciclo completo. <b>Cabeça com cabelo raspado rente</b>, sem penteado. Use apenas as cores da paleta anexada, sem degradê, sem brilho, sem sombra no chão. Contorno de 2 px na cor #0b1020. Fundo transparente real, sem textos.</blockquote>
+<p><b>Cabelo:</b></p>
+<blockquote>Quatro penteados iguais, <b>[estilo]</b>, nas vistas frente, direita e costas, para encaixar na cabeça raspada da referência: mesma largura de cabeça, sem rosto, sem corpo. Uma célula de 256 × 256 por vista, com a cabeça no mesmo lugar da guia. Só as 4 cores do grupo cabelo e o contorno #0b1020. Fundo transparente real.</blockquote>
+<p><b>Roupa de modelo</b> (um quadro por pedido):</p>
+<blockquote>Pinte apenas um <b>[moletom com capuz]</b> sobre o personagem da referência, exatamente na mesma pose, mesmo tamanho e posição (célula de 256 × 256). Entregue só os pixels da roupa, com fundo transparente, sem cabeça, mãos ou pernas. Siga a silhueta do corpo, no máximo 6 px de volume a mais. Só as cores dos grupos jaqueta, camiseta, detalhe e o contorno #0b1020.</blockquote>
+
+<h2 id="conferencia">9. Conferência</h2>
+<p>O Avatar Studio aplica estas verificações a cada quadro e camada. Uma reprovação impede considerar a peça pronta.</p>
+<div class="table"><table>
+ <thead><tr><th>Verificação</th><th>Reprova quando</th></tr></thead>
+ <tbody>
+  <tr><td>Tamanho da célula</td><td>diferente de 256 × 256 (2×) ou 128 × 128 (1×)</td></tr>
+  <tr><td>Pé no pivô</td><td>linha de apoio fora de y = pivô ± 1 px</td></tr>
+  <tr><td>Altura do personagem</td><td>variação maior que 2 % entre quadros da mesma ação</td></tr>
+  <tr><td>Paleta</td><td>mais de 0,5 % dos pixels fora da paleta-chave</td></tr>
+  <tr><td>Alpha</td><td>pixels semitransparentes (antialias ou halo)</td></tr>
+  <tr><td>Âncora da cabeça</td><td>quadro sem âncora, ou salto maior que 3 px (1×) entre quadros vizinhos</td></tr>
+  <tr><td>Cabelo preso</td><td>menos de 60 % da borda de baixo do cabelo sobre a cabeça do corpo</td></tr>
+  <tr><td>Roupa na silhueta</td><td>pixels da roupa a mais de 3 px (1×) fora do corpo</td></tr>
+  <tr><td>Deriva entre quadros</td><td>aviso quando a área de cabelo ou de mochila muda mais de 12 % entre quadros vizinhos (sinal de redesenho da IA)</td></tr>
+ </tbody>
+</table></div>
+
+<h2 id="entrega">10. Entrega e manifesto</h2>
+<pre>assets/avatar/v1/
+  base/andar-e-0.png … parado-n-3.png   corpo base indexado na paleta-chave
+  roupas/moletom/andar-e-0.png …        camadas de roupa
+  cabelo/espetado-s.png  -e  -n         camadas de cabelo (frente e trás)
+  paleta.json                           grupos, rampa padrão e variações
+  manifest.json                         ações, quadros, pivô, âncoras, camadas
+art/avatar/v1/
+  fontes/  prompts.json  conferencia.json  avatar.avatarstudio.json</pre>
+<pre>{
+  "cell": [128, 128], "pivot": [64, 112], "scale": 1,
+  "actions": {
+    "andar": {"ms": 100, "loop": true, "directions": {
+      "e": [{"image": "base/andar-e-0.png", "head": [70, 46]}, …],
+      "w": {"mirror": "e"}
+    }}
+  },
+  "layers": {
+    "cabelo/espetado": {"kind": "head", "images": {"s": "cabelo/espetado-s.png", …}, "anchor": {"s": [32, 30], …}},
+    "roupa/moletom": {"kind": "frames", "dir": "roupas/moletom"}
+  },
+  "palette": "paleta.json", "rulesVersion": "avatar-1"
+}</pre>
+<p>No jogo, a aparência escolhida é composta <b>uma vez</b> numa folha de sprites em memória (troca de rampas + camadas), e a animação usa essa folha como hoje. Custo de desempenho zero durante a partida.</p>
+
+<h2 id="decisoes">11. Integração e decisões</h2>
+<ul>
+ <li><span class="pend">DECIDIR</span> Altura de 96 px (do piloto) ou 102 px (≈ 3,2 células, como na especificação da grade). A recomendação é 96: exatamente 3 células e já é o tamanho do piloto.</li>
+ <li><span class="pend">DECIDIR</span> Escopo da v1: parado + andar em 3 direções, 1 roupa de modelo extra, 3 cabelos, todas as rampas da tabela.</li>
+ <li><span class="pend">DECIDIR</span> Aproveitar o andar lateral do piloto como base de E depois da limpeza (o cabelo dele vira o estilo "espetado" padrão) ou gerar de novo com cabeça raspada.</li>
+ <li>Seleção de aparência e salvamento na conta ficam para depois da arte aprovada, validados no servidor como os outros dados do jogador.</li>
+</ul>
+<footer>Ferramenta: <code>npm run studio:avatar</code> (tools/avatar-studio). Arquivo no repositório: <code>art/avatar/especificacao.html</code>.</footer>
+</main>
+</body></html>
