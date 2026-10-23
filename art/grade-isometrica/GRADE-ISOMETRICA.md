@@ -67,6 +67,10 @@ Se ainda quiser uma imagem única: mande a `chapa-guia.png` como referência de 
 
 As colisões continuam no mapa ortogonal do Tiled, como hoje. A grade de arte só define onde e como cada peça é desenhada.
 
+## Ferramenta
+
+O [Iso Studio](../../tools/iso-studio/README.md) (`npm run studio:iso`) gera a caixa de referência e o pedido de cada peça, encaixa o PNG gerado, confere as regras automaticamente e exporta a entrega com o manifesto.
+
 ## Fontes
 
 - Razão 2:1 e tamanhos de tile: [Slynyrd, Pixelblog 41](https://slynyrd.com/blog/2022/11/28/pixelblog-41-isometric-pixel-art), [Sprite-AI](https://www.sprite-ai.art/guides/isometric-pixel-art), [Construct](https://www.construct.net/en/tutorials/creating-isometric-pixel-art-355/page-6), [Clip Studio, quarto isométrico em pixel art](https://tips.clip-studio.com/fr-fr/articles/4969?org=1).

@@ -1,0 +1,36 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Iso Studio · Bancada de grade</title><link rel="icon" href="data:,"><link rel="stylesheet" href="studio.css"></head><body data-view="piece">
+<header><div class="brand"><span aria-hidden="true">◈</span><div><h1>Iso Studio</h1><small>BANCADA DE GRADE 2:1 · LOCAL</small></div></div><label class="project-label">Cenário<input id="projectName" maxlength="80"></label><div class="header-actions"><span id="summary" role="status"></span><button id="undo" aria-label="Desfazer" title="Ctrl+Z">↶</button><button id="redo" aria-label="Refazer" title="Ctrl+Shift+Z">↷</button><button id="open">Abrir</button><button id="save">Salvar projeto</button><button id="export" class="primary">Exportar entrega .zip</button></div></header>
+<main>
+<aside class="library">
+ <section><div class="panel-heading"><h2>Cômodo</h2><button id="preset" title="Quarto 10×8 com as caixas da especificação">Quarto do Kael</button></div>
+  <div class="grid3"><label>Células u<input id="roomU" type="number" min="1" max="40" step="1"></label><label>Células v<input id="roomV" type="number" min="1" max="40" step="1"></label><label>Parede<input id="roomWall" type="number" min="0" max="12" step="0.5"></label></div>
+  <div class="row"><button id="shellImport">Importar casca</button><button id="shellClear">Remover</button><button id="shellReference" title="Piso e paredes vazios na grade, para pedir a casca">Referência da casca</button></div><p id="shellInfo" class="muted"></p></section>
+ <section class="pieces"><div class="panel-heading"><h2>Peças</h2><button id="addPiece">+ Peça</button></div><p class="muted">Arraste PNGs para cá: cada arquivo vira uma peça.</p><ol id="pieceList" aria-label="Peças do cenário"></ol></section>
+ <section id="sceneIssues" aria-live="polite"></section>
+</aside>
+<section class="workspace">
+ <div class="workspace-top"><div class="tabs" role="tablist"><button id="viewPiece" role="tab">Encaixar peça</button><button id="viewScene" role="tab">Montar cena</button></div>
+  <div class="row"><label class="inline"><input id="showGrid" type="checkbox" checked> Grade</label><label class="inline"><input id="showBoxes" type="checkbox" checked> Caixas</label><label class="inline scene-only"><input id="showKael" type="checkbox" checked> Kael</label><label class="inline piece-only"><input id="showOverflow" type="checkbox" checked> Fora da caixa</label><button id="zoomOut" aria-label="Diminuir zoom">−</button><span id="zoomLabel"></span><button id="zoomIn" aria-label="Aumentar zoom">+</button></div></div>
+ <div class="viewport" id="viewport" tabindex="0" aria-label="Área de trabalho: arraste para mover, setas para ajustar"><canvas id="stage"></canvas><div id="dropHint" hidden>Solte o PNG para usar nesta peça</div></div>
+ <p id="hint" class="hint"></p>
+</section>
+<aside class="inspector"><span class="eyebrow">PEÇA</span><h2 id="pieceTitle">Nenhuma peça</h2>
+ <div id="pieceForm" hidden>
+  <label>Nome<input id="pName" maxlength="80"></label><label>Arquivo (id)<input id="pId" maxlength="60" pattern="[a-z0-9-]+"></label>
+  <label>Tipo<select id="pKind"></select></label>
+  <div class="grid3"><label id="lFu">Pegada u<input id="pFu" type="number" min="0.25" max="40" step="0.5"></label><label id="lFv">Pegada v<input id="pFv" type="number" min="0.25" max="40" step="0.5"></label><label id="lH">Altura<input id="pH" type="number" min="0" max="20" step="0.1"></label></div>
+  <div class="grid3"><label id="lCu">Âncora u<input id="pCu" type="number" step="0.5"></label><label id="lCv">Âncora v<input id="pCv" type="number" step="0.5"></label><label>Elevação<input id="pE" type="number" min="0" max="20" step="0.1"></label></div>
+  <p id="boxInfo" class="box-info"></p>
+  <div class="row"><button id="imgImport" class="primary">Importar PNG</button><button id="imgClear">Tirar imagem</button></div>
+  <div class="fit" id="fitPanel"><div class="row"><label class="grow">Redução da fonte<select id="pScale"></select></label><button id="autoFit">Encaixar automático</button></div>
+   <div class="nudge" aria-label="Mover a imagem 1 px"><button data-nudge="0,-1">▲</button><button data-nudge="-1,0">◀</button><span id="offsetLabel"></span><button data-nudge="1,0">▶</button><button data-nudge="0,1">▼</button></div></div>
+  <h3>Conferência</h3><ul id="audit" class="audit"></ul>
+  <h3>Pedir ao GPT ou Codex</h3><div class="row"><button id="refDownload">Baixar caixa de referência</button><button id="promptCopy">Copiar pedido</button></div>
+  <div class="row"><button id="pngDownload">Baixar PNG ajustado</button><button id="pieceDelete" class="danger">Excluir peça</button></div>
+ </div>
+ <p id="emptyInspector" class="muted">Selecione ou crie uma peça. Comece por <b>Quarto do Kael</b> para ter as caixas da especificação.</p>
+</aside>
+</main>
+<footer id="message" role="status">Preparando a bancada…</footer>
+<input id="fileImage" type="file" accept="image/png" multiple hidden><input id="fileShell" type="file" accept="image/png" hidden><input id="fileProject" type="file" accept="application/json,.json" hidden>
+<script type="module" src="studio.mjs"></script></body></html>
