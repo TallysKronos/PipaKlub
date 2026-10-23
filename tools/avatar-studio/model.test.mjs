@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {SLOTS,SPEC,VARIANTS,blank,hexToInt,keyIndex,quantize,suggestMapping,applyMapping,appearanceRamps,recolor,metrics,autoHead,registerToPivot,mirror,composeFrame,auditFrames,auditHeadLayer,auditFrameLayer,manifest,downscale,translate} from './model.mjs';
+import {SLOTS,SPEC,VARIANTS,blank,hexToInt,keyIndex,quantize,suggestMapping,applyMapping,appearanceRamps,recolor,metrics,autoHead,autoTorso,registerToPivot,mirror,composeFrame,auditFrames,auditHeadLayer,auditTorsoLayer,auditFrameLayer,manifest,downscale,translate} from './model.mjs';
 const tone=(slot,i)=>SLOTS.find(s=>s.id===slot).tones[i];
 function paint(img,x0,y0,x1,y1,hex,shape='rect'){const c=hexToInt(hex),cx=(x0+x1)/2,cy=(y0+y1)/2,rx=(x1-x0)/2,ry=(y1-y0)/2;for(let y=y0;y<y1;y++)for(let x=x0;x<x1;x++){if(shape==='oval'&&((x+.5-cx)/rx)**2+((y+.5-cy)/ry)**2>1)continue;const i=(y*img.width+x)*4;img.data[i]=c>>16;img.data[i+1]=c>>8&255;img.data[i+2]=c&255;img.data[i+3]=255;}return img;}
 // Boneco simples na paleta-chave, com balanço de cabeça "bob" e pés no pivô (y=224).
@@ -56,6 +56,28 @@ test('posição na figura separa cores parecidas (tênis escuro × cabelo escuro
  const f=figure(0),shoe=hexToInt('#141a3a');for(let y=214;y<224;y++)for(let x=100;x<156;x++){const i=(y*256+x)*4;if(f.data[i+3]){f.data[i]=shoe>>16;f.data[i+1]=shoe>>8&255;f.data[i+2]=shoe&255;}}
  const clusters=quantize([f],12),k=clusters.findIndex(c=>c.color===shoe);assert.ok(k>=0);
  assert.equal(suggestMapping(clusters)[k].slot,'cabelo');assert.equal(suggestMapping(clusters,SLOTS,clusterStats([f],clusters))[k].slot,'tenis');
+});
+
+test('exportação não anuncia ações nem espelhos sem quadros de origem',()=>{
+ const m=manifest({name:'Kael',actions:{correr:{ms:80,dirs:{se:{frames:[]},ne:{frames:[]},sw:{mirror:'se'},nw:{mirror:'ne'}}}},layers:[]});
+ assert.deepEqual(m.actions,{});
+});
+
+test('mochila acompanha o tronco sem acompanhar a cabeça e cabelo cobre sua borda',()=>{
+ const base=figure(0,{hair:false}),torso=autoTorso(base),bag=paint(blank(30,36),0,0,30,36,tone('mochila',1));
+ assert.ok(torso[1]>130&&torso[1]<170);const layer={kind:'torso',slot:'mochila',image:bag,anchor:[15,18]};
+ const a=composeFrame({base,head:[128,80],torso,dir:'ne',layers:[layer]}),b=composeFrame({base,head:[128,90],torso,dir:'ne',layers:[layer]});
+ assert.deepEqual(a.data,b.data,'head bob cannot move the backpack');
+ assert.equal(auditTorsoLayer(base,torso,layer).level,'ok');
+ assert.equal(auditTorsoLayer(base,torso,{...layer,anchor:[15,-40]}).level,'fail','backpack below the waist');
+ assert.equal(auditTorsoLayer(base,torso,{...layer,anchor:[200,18]}).level,'fail','floating backpack');
+ const hair=paint(blank(30,36),0,0,30,36,tone('cabelo',1)),out=composeFrame({base,head:torso,torso,dir:'ne',layers:[layer,{kind:'head',slot:'cabelo',image:hair,anchor:[15,18]}]});
+ const p=((torso[1])*256+torso[0])*4;assert.equal(out.data[p]<<16|out.data[p+1]<<8|out.data[p+2],hexToInt(tone('cabelo',1)));
+});
+
+test('pacote preserva o ponto do tronco e o tipo de encaixe da mochila em 1×',()=>{
+ const m=manifest({name:'Kael',actions:{andar:{ms:100,dirs:{ne:{frames:[{head:[128,92],torso:[130,152]}]}}}},layers:[{id:'bag',kind:'torso',slot:'mochila',images:{ne:1},anchors:{ne:[20,22]}}]});
+ assert.deepEqual(m.actions.andar.directions.ne[0].torso,[65,76]);assert.equal(m.layers.bag.kind,'torso');assert.deepEqual(m.layers.bag.anchor.ne,[10,11]);
 });
 test('quatro diagonais seguem os eixos da grade 2:1, com espelhos à esquerda',async()=>{
  const {facingIso,DIRS,DRAWN,MIRROR,ORDER}=await import('./model.mjs');

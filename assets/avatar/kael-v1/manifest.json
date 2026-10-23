@@ -1,0 +1,352 @@
+{
+  "name": "Kael v1",
+  "cell": [
+    128,
+    128
+  ],
+  "pivot": [
+    64,
+    112
+  ],
+  "scale": 1,
+  "actions": {
+    "parado": {
+      "ms": 180,
+      "loop": true,
+      "directions": {
+        "se": [
+          {
+            "image": "base/parado-se-0.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              78
+            ]
+          },
+          {
+            "image": "base/parado-se-1.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              78
+            ]
+          },
+          {
+            "image": "base/parado-se-2.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              78
+            ]
+          },
+          {
+            "image": "base/parado-se-3.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              78
+            ]
+          }
+        ],
+        "ne": [
+          {
+            "image": "base/parado-ne-0.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              65,
+              76
+            ]
+          },
+          {
+            "image": "base/parado-ne-1.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              65,
+              77
+            ]
+          },
+          {
+            "image": "base/parado-ne-2.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              76
+            ]
+          },
+          {
+            "image": "base/parado-ne-3.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              65,
+              76
+            ]
+          }
+        ],
+        "sw": {
+          "mirror": "se"
+        },
+        "nw": {
+          "mirror": "ne"
+        }
+      }
+    },
+    "andar": {
+      "ms": 100,
+      "loop": true,
+      "directions": {
+        "se": [
+          {
+            "image": "base/andar-se-0.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              77
+            ]
+          },
+          {
+            "image": "base/andar-se-1.png",
+            "head": [
+              64,
+              45
+            ],
+            "torso": [
+              65,
+              77
+            ]
+          },
+          {
+            "image": "base/andar-se-2.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              63,
+              77
+            ]
+          },
+          {
+            "image": "base/andar-se-3.png",
+            "head": [
+              64,
+              47
+            ],
+            "torso": [
+              64,
+              78
+            ]
+          },
+          {
+            "image": "base/andar-se-4.png",
+            "head": [
+              64,
+              47
+            ],
+            "torso": [
+              63,
+              78
+            ]
+          },
+          {
+            "image": "base/andar-se-5.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              77
+            ]
+          },
+          {
+            "image": "base/andar-se-6.png",
+            "head": [
+              64,
+              47
+            ],
+            "torso": [
+              64,
+              77
+            ]
+          },
+          {
+            "image": "base/andar-se-7.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              78
+            ]
+          }
+        ],
+        "ne": [
+          {
+            "image": "base/andar-ne-0.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              76
+            ]
+          },
+          {
+            "image": "base/andar-ne-1.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              76
+            ]
+          },
+          {
+            "image": "base/andar-ne-2.png",
+            "head": [
+              64,
+              47
+            ],
+            "torso": [
+              63,
+              76
+            ]
+          },
+          {
+            "image": "base/andar-ne-3.png",
+            "head": [
+              64,
+              48
+            ],
+            "torso": [
+              64,
+              77
+            ]
+          },
+          {
+            "image": "base/andar-ne-4.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              76
+            ]
+          },
+          {
+            "image": "base/andar-ne-5.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              76
+            ]
+          },
+          {
+            "image": "base/andar-ne-6.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              76
+            ]
+          },
+          {
+            "image": "base/andar-ne-7.png",
+            "head": [
+              64,
+              48
+            ],
+            "torso": [
+              64,
+              77
+            ]
+          }
+        ],
+        "sw": {
+          "mirror": "se"
+        },
+        "nw": {
+          "mirror": "ne"
+        }
+      }
+    }
+  },
+  "layers": {
+    "cabelo-kael": {
+      "kind": "head",
+      "slot": "cabelo",
+      "images": {
+        "se": "camadas/cabelo-kael-se.png",
+        "ne": "camadas/cabelo-kael-ne.png"
+      },
+      "anchor": {
+        "se": [
+          26,
+          30
+        ],
+        "ne": [
+          25,
+          28
+        ]
+      }
+    },
+    "mochila-pipa": {
+      "kind": "torso",
+      "slot": "mochila",
+      "images": {
+        "se": "camadas/mochila-pipa-se.png",
+        "ne": "camadas/mochila-pipa-ne.png"
+      },
+      "anchor": {
+        "se": [
+          17,
+          10
+        ],
+        "ne": [
+          10,
+          11
+        ]
+      }
+    }
+  },
+  "palette": "paleta.json",
+  "rulesVersion": "avatar-1",
+  "reviewStatus": "artistic-review",
+  "productionReady": false
+}

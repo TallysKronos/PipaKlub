@@ -1,0 +1,977 @@
+{
+  "status": "revisao-artistica",
+  "registration": {
+    "se": {
+      "idleScale": 0.5958904109589042,
+      "walkScale": 0.5819397993311036,
+      "bodyHeight": 174,
+      "composedTargetHeight": 192,
+      "headRegistration": "skull silhouette, integer runtime pixel grid"
+    },
+    "ne": {
+      "idleScale": 0.6373626373626373,
+      "walkScale": 0.6214285714285714,
+      "bodyHeight": 174,
+      "composedTargetHeight": 192,
+      "headRegistration": "skull silhouette, integer runtime pixel grid"
+    }
+  },
+  "actions": {
+    "parado-se": {
+      "items": [
+        {
+          "level": "ok",
+          "rule": "Quadros",
+          "text": "4 quadros conferidos: pivô, paleta, altura e cabeça."
+        }
+      ],
+      "metrics": [
+        {
+          "bounds": {
+            "x": 84,
+            "y": 50,
+            "w": 89,
+            "h": 174
+          },
+          "baseline": 224,
+          "area": 12548,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "olhos": 320,
+            "contorno": 2985,
+            "pele": 5599,
+            "jaqueta": 1188,
+            "camiseta": 568,
+            "calca": 830,
+            "detalhe": 524,
+            "tenis": 534
+          },
+          "head": [
+            128,
+            92
+          ]
+        },
+        {
+          "bounds": {
+            "x": 84,
+            "y": 50,
+            "w": 89,
+            "h": 174
+          },
+          "baseline": 224,
+          "area": 12539,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "olhos": 318,
+            "contorno": 2984,
+            "pele": 5602,
+            "jaqueta": 1192,
+            "camiseta": 559,
+            "calca": 834,
+            "detalhe": 543,
+            "tenis": 507
+          },
+          "head": [
+            128,
+            92
+          ]
+        },
+        {
+          "bounds": {
+            "x": 84,
+            "y": 50,
+            "w": 89,
+            "h": 174
+          },
+          "baseline": 224,
+          "area": 12545,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "olhos": 323,
+            "contorno": 3044,
+            "pele": 5571,
+            "jaqueta": 1175,
+            "camiseta": 561,
+            "calca": 826,
+            "detalhe": 528,
+            "tenis": 517
+          },
+          "head": [
+            128,
+            92
+          ]
+        },
+        {
+          "bounds": {
+            "x": 84,
+            "y": 50,
+            "w": 89,
+            "h": 174
+          },
+          "baseline": 224,
+          "area": 12540,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "olhos": 328,
+            "contorno": 3032,
+            "pele": 5568,
+            "jaqueta": 1174,
+            "camiseta": 543,
+            "calca": 832,
+            "detalhe": 523,
+            "tenis": 540
+          },
+          "head": [
+            128,
+            92
+          ]
+        }
+      ]
+    },
+    "parado-ne": {
+      "items": [
+        {
+          "level": "ok",
+          "rule": "Quadros",
+          "text": "4 quadros conferidos: pivô, paleta, altura e cabeça."
+        }
+      ],
+      "metrics": [
+        {
+          "bounds": {
+            "x": 85,
+            "y": 50,
+            "w": 91,
+            "h": 174
+          },
+          "baseline": 224,
+          "area": 12244,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "olhos": 114,
+            "contorno": 2968,
+            "pele": 5142,
+            "jaqueta": 2061,
+            "camiseta": 106,
+            "calca": 652,
+            "detalhe": 496,
+            "tenis": 705
+          },
+          "head": [
+            128,
+            92
+          ]
+        },
+        {
+          "bounds": {
+            "x": 85,
+            "y": 51,
+            "w": 91,
+            "h": 173
+          },
+          "baseline": 224,
+          "area": 12248,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "olhos": 116,
+            "contorno": 2899,
+            "pele": 5163,
+            "jaqueta": 2040,
+            "camiseta": 105,
+            "calca": 669,
+            "detalhe": 505,
+            "tenis": 751
+          },
+          "head": [
+            128,
+            92
+          ]
+        },
+        {
+          "bounds": {
+            "x": 84,
+            "y": 50,
+            "w": 91,
+            "h": 174
+          },
+          "baseline": 224,
+          "area": 12148,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "olhos": 128,
+            "contorno": 2872,
+            "pele": 5119,
+            "jaqueta": 2081,
+            "camiseta": 101,
+            "calca": 643,
+            "detalhe": 478,
+            "tenis": 726
+          },
+          "head": [
+            128,
+            92
+          ]
+        },
+        {
+          "bounds": {
+            "x": 84,
+            "y": 50,
+            "w": 92,
+            "h": 174
+          },
+          "baseline": 224,
+          "area": 12276,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "contorno": 2919,
+            "olhos": 121,
+            "pele": 5162,
+            "jaqueta": 2086,
+            "camiseta": 126,
+            "calca": 657,
+            "detalhe": 477,
+            "tenis": 728
+          },
+          "head": [
+            128,
+            92
+          ]
+        }
+      ]
+    },
+    "andar-se": {
+      "items": [
+        {
+          "level": "ok",
+          "rule": "Quadros",
+          "text": "8 quadros conferidos: pivô, paleta, altura e cabeça."
+        }
+      ],
+      "metrics": [
+        {
+          "bounds": {
+            "x": 81,
+            "y": 50,
+            "w": 93,
+            "h": 174
+          },
+          "baseline": 224,
+          "area": 11941,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "olhos": 342,
+            "contorno": 3005,
+            "pele": 5368,
+            "jaqueta": 1153,
+            "camiseta": 610,
+            "calca": 544,
+            "detalhe": 341,
+            "tenis": 578
+          },
+          "head": [
+            128,
+            92
+          ]
+        },
+        {
+          "bounds": {
+            "x": 83,
+            "y": 49,
+            "w": 93,
+            "h": 175
+          },
+          "baseline": 224,
+          "area": 11701,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "olhos": 287,
+            "contorno": 3006,
+            "pele": 5399,
+            "jaqueta": 1143,
+            "camiseta": 628,
+            "calca": 358,
+            "detalhe": 330,
+            "tenis": 550
+          },
+          "head": [
+            128,
+            90
+          ]
+        },
+        {
+          "bounds": {
+            "x": 84,
+            "y": 51,
+            "w": 86,
+            "h": 173
+          },
+          "baseline": 224,
+          "area": 10990,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "olhos": 360,
+            "contorno": 2685,
+            "pele": 5188,
+            "jaqueta": 1128,
+            "camiseta": 622,
+            "calca": 370,
+            "detalhe": 230,
+            "tenis": 407
+          },
+          "head": [
+            128,
+            92
+          ]
+        },
+        {
+          "bounds": {
+            "x": 83,
+            "y": 52,
+            "w": 93,
+            "h": 172
+          },
+          "baseline": 224,
+          "area": 11720,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "olhos": 322,
+            "contorno": 2984,
+            "pele": 5368,
+            "jaqueta": 1175,
+            "camiseta": 589,
+            "calca": 352,
+            "detalhe": 316,
+            "tenis": 614
+          },
+          "head": [
+            128,
+            94
+          ]
+        },
+        {
+          "bounds": {
+            "x": 78,
+            "y": 52,
+            "w": 97,
+            "h": 172
+          },
+          "baseline": 224,
+          "area": 12173,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "olhos": 327,
+            "contorno": 3033,
+            "pele": 5275,
+            "jaqueta": 1220,
+            "camiseta": 649,
+            "calca": 625,
+            "detalhe": 378,
+            "tenis": 666
+          },
+          "head": [
+            128,
+            94
+          ]
+        },
+        {
+          "bounds": {
+            "x": 81,
+            "y": 51,
+            "w": 94,
+            "h": 173
+          },
+          "baseline": 224,
+          "area": 11468,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "olhos": 301,
+            "contorno": 2966,
+            "pele": 5341,
+            "jaqueta": 1078,
+            "camiseta": 613,
+            "calca": 343,
+            "detalhe": 326,
+            "tenis": 500
+          },
+          "head": [
+            128,
+            92
+          ]
+        },
+        {
+          "bounds": {
+            "x": 86,
+            "y": 52,
+            "w": 84,
+            "h": 172
+          },
+          "baseline": 224,
+          "area": 10527,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "contorno": 2509,
+            "olhos": 302,
+            "pele": 5100,
+            "jaqueta": 1109,
+            "camiseta": 600,
+            "calca": 315,
+            "detalhe": 238,
+            "tenis": 354
+          },
+          "head": [
+            128,
+            94
+          ]
+        },
+        {
+          "bounds": {
+            "x": 80,
+            "y": 51,
+            "w": 97,
+            "h": 173
+          },
+          "baseline": 224,
+          "area": 11940,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "olhos": 323,
+            "contorno": 3061,
+            "pele": 5366,
+            "jaqueta": 1158,
+            "camiseta": 665,
+            "calca": 372,
+            "detalhe": 346,
+            "tenis": 649
+          },
+          "head": [
+            128,
+            92
+          ]
+        }
+      ]
+    },
+    "andar-ne": {
+      "items": [
+        {
+          "level": "ok",
+          "rule": "Quadros",
+          "text": "8 quadros conferidos: pivô, paleta, altura e cabeça."
+        }
+      ],
+      "metrics": [
+        {
+          "bounds": {
+            "x": 76,
+            "y": 50,
+            "w": 101,
+            "h": 174
+          },
+          "baseline": 224,
+          "area": 11469,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "contorno": 3114,
+            "olhos": 117,
+            "pele": 5098,
+            "jaqueta": 1850,
+            "camiseta": 166,
+            "calca": 371,
+            "detalhe": 343,
+            "tenis": 410
+          },
+          "head": [
+            128,
+            92
+          ]
+        },
+        {
+          "bounds": {
+            "x": 78,
+            "y": 51,
+            "w": 100,
+            "h": 173
+          },
+          "baseline": 224,
+          "area": 11294,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "contorno": 3042,
+            "olhos": 116,
+            "pele": 5013,
+            "jaqueta": 1823,
+            "camiseta": 173,
+            "calca": 336,
+            "detalhe": 316,
+            "tenis": 475
+          },
+          "head": [
+            128,
+            92
+          ]
+        },
+        {
+          "bounds": {
+            "x": 84,
+            "y": 52,
+            "w": 86,
+            "h": 172
+          },
+          "baseline": 224,
+          "area": 10877,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "contorno": 2648,
+            "olhos": 134,
+            "pele": 4940,
+            "jaqueta": 1701,
+            "camiseta": 173,
+            "calca": 458,
+            "detalhe": 304,
+            "tenis": 519
+          },
+          "head": [
+            128,
+            94
+          ]
+        },
+        {
+          "bounds": {
+            "x": 79,
+            "y": 54,
+            "w": 100,
+            "h": 170
+          },
+          "baseline": 224,
+          "area": 11760,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "olhos": 129,
+            "contorno": 3099,
+            "pele": 5170,
+            "jaqueta": 1934,
+            "camiseta": 87,
+            "calca": 430,
+            "detalhe": 443,
+            "tenis": 468
+          },
+          "head": [
+            128,
+            96
+          ]
+        },
+        {
+          "bounds": {
+            "x": 76,
+            "y": 51,
+            "w": 104,
+            "h": 173
+          },
+          "baseline": 224,
+          "area": 11985,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "olhos": 122,
+            "contorno": 3371,
+            "pele": 5231,
+            "jaqueta": 1822,
+            "camiseta": 169,
+            "calca": 408,
+            "detalhe": 397,
+            "tenis": 465
+          },
+          "head": [
+            128,
+            92
+          ]
+        },
+        {
+          "bounds": {
+            "x": 77,
+            "y": 51,
+            "w": 103,
+            "h": 173
+          },
+          "baseline": 224,
+          "area": 11644,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "olhos": 124,
+            "contorno": 3122,
+            "pele": 5200,
+            "jaqueta": 1816,
+            "camiseta": 174,
+            "calca": 374,
+            "detalhe": 363,
+            "tenis": 471
+          },
+          "head": [
+            128,
+            92
+          ]
+        },
+        {
+          "bounds": {
+            "x": 85,
+            "y": 51,
+            "w": 87,
+            "h": 173
+          },
+          "baseline": 224,
+          "area": 10977,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "contorno": 2647,
+            "olhos": 124,
+            "pele": 5054,
+            "jaqueta": 1704,
+            "camiseta": 171,
+            "calca": 458,
+            "tenis": 516,
+            "detalhe": 303
+          },
+          "head": [
+            128,
+            92
+          ]
+        },
+        {
+          "bounds": {
+            "x": 77,
+            "y": 54,
+            "w": 103,
+            "h": 170
+          },
+          "baseline": 224,
+          "area": 11768,
+          "off": 0,
+          "semi": 0,
+          "bySlot": {
+            "contorno": 3168,
+            "olhos": 103,
+            "pele": 5245,
+            "jaqueta": 1798,
+            "camiseta": 167,
+            "calca": 401,
+            "detalhe": 426,
+            "tenis": 460
+          },
+          "head": [
+            128,
+            96
+          ]
+        }
+      ]
+    }
+  },
+  "hair": {
+    "parado-se": [
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (83% da borda).",
+        "share": 0.8269230769230769
+      },
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (84% da borda).",
+        "share": 0.8365384615384616
+      },
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (83% da borda).",
+        "share": 0.8269230769230769
+      },
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (84% da borda).",
+        "share": 0.8365384615384616
+      }
+    ],
+    "parado-ne": [
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (64% da borda).",
+        "share": 0.64
+      },
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (64% da borda).",
+        "share": 0.64
+      },
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (65% da borda).",
+        "share": 0.65
+      },
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (64% da borda).",
+        "share": 0.64
+      }
+    ],
+    "andar-se": [
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (79% da borda).",
+        "share": 0.7884615384615384
+      },
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (78% da borda).",
+        "share": 0.7788461538461539
+      },
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (78% da borda).",
+        "share": 0.7788461538461539
+      },
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (78% da borda).",
+        "share": 0.7788461538461539
+      },
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (78% da borda).",
+        "share": 0.7788461538461539
+      },
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (78% da borda).",
+        "share": 0.7788461538461539
+      },
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (77% da borda).",
+        "share": 0.7692307692307693
+      },
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (78% da borda).",
+        "share": 0.7788461538461539
+      }
+    ],
+    "andar-ne": [
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (63% da borda).",
+        "share": 0.63
+      },
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (64% da borda).",
+        "share": 0.64
+      },
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (63% da borda).",
+        "share": 0.63
+      },
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (65% da borda).",
+        "share": 0.65
+      },
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (63% da borda).",
+        "share": 0.63
+      },
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (64% da borda).",
+        "share": 0.64
+      },
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (66% da borda).",
+        "share": 0.66
+      },
+      {
+        "level": "ok",
+        "rule": "Cabelo",
+        "text": "Cabelo preso à cabeça (63% da borda).",
+        "share": 0.63
+      }
+    ]
+  },
+  "backpack": {
+    "parado-se": [
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      },
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      },
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      },
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      }
+    ],
+    "parado-ne": [
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      },
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      },
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      },
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      }
+    ],
+    "andar-se": [
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      },
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      },
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      },
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      },
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      },
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      },
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      },
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      }
+    ],
+    "andar-ne": [
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      },
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      },
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      },
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      },
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      },
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      },
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      },
+      {
+        "level": "ok",
+        "rule": "Tronco",
+        "text": "Mochila presa ao tronco, acima da cintura."
+      }
+    ]
+  },
+  "limitations": [
+    "Corrida não produzida nesta v1.",
+    "Integração no jogo pendente de revisão visual."
+  ]
+}

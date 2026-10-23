@@ -3,9 +3,10 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=fileURLToPath(new URL('../../',import.meta.url)),app=fileURLToPath(new URL('./',import.meta.url));
-const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.png':'image/png'};
+const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.png':'image/png','.json':'application/json; charset=utf-8'};
 // Bancada + o zip do Iso Studio + os quadros do piloto do Kael. Nada mais é servido.
 const routes=new Map([['/',path.join(app,'index.html')],...['index.html','studio.css','studio.mjs','model.mjs'].map(f=>['/'+f,path.join(app,f)]),['/iso-studio/model.mjs',path.join(root,'tools/iso-studio/model.mjs')],
+ ['/art/avatar/kael-v1/kael.avatarstudio.json',path.join(root,'art/avatar/kael-v1/kael.avatarstudio.json')],
  ...Array.from({length:8},(_,i)=>[`/art/soulgen/keys/kael-frame-test/frames/east-${i}.png`,path.join(root,`art/soulgen/keys/kael-frame-test/frames/east-${i}.png`)])]);
 export async function serve(req,res){
  const headers={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Content-Security-Policy':"default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'"};

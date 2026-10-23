@@ -92,17 +92,23 @@ export function autoHead(img,slots=SLOTS){
   if(n>40)return [Math.round(sx/n),Math.round(sy/n)];}
  return [Math.round(m.bounds.x+m.bounds.w/2),Math.round(m.bounds.y+m.bounds.h*.22)];
 }
+// Centre of the chest/back, measured from clothing rather than the head bob.
+export function autoTorso(img,slots=SLOTS){
+ const m=metrics(img,slots);if(!m.bounds)return null;const b=m.bounds,keys=keyIndex(slots),cx=b.x+b.w/2;let sx=0,sy=0,n=0;
+ for(let y=Math.round(b.y+b.h*.49);y<Math.round(b.y+b.h*.73);y++)for(let x=Math.max(0,Math.round(cx-b.h*.13));x<Math.min(img.width,Math.round(cx+b.h*.13));x++){const i=(y*img.width+x)*4;if(img.data[i+3]<128)continue;const k=keys.get(img.data[i]<<16|img.data[i+1]<<8|img.data[i+2]);if(k&&['jaqueta','camiseta'].includes(k.slot)){sx+=x;sy+=y;n++;}}
+ return n?[Math.round(sx/n),Math.round(sy/n)]:[Math.round(cx),Math.round(b.y+b.h*.61)];
+}
 export function mirror(img){const out=blank(img.width,img.height),{width:w,height:h,data:d}=img;for(let y=0;y<h;y++)for(let x=0;x<w;x++){const a=(y*w+x)*4,b=(y*w+(w-1-x))*4;for(let j=0;j<4;j++)out.data[b+j]=d[a+j];}return out;}
 export function translate(img,dx,dy){const out=blank(img.width,img.height),{width:w,height:h,data:d}=img;for(let y=0;y<h;y++){const sy=y-dy;if(sy<0||sy>=h)continue;for(let x=0;x<w;x++){const sx=x-dx;if(sx<0||sx>=w)continue;const a=(sy*w+sx)*4,b=(y*w+x)*4;for(let j=0;j<4;j++)out.data[b+j]=d[a+j];}}return out;}
 // Registro: desloca para o apoio cair no pivô, sem escalar.
 export function registerToPivot(img,pivot=SPEC.pivot){const m=metrics(img);if(!m.bounds)return {img,dy:0};const dy=pivot[1]-m.baseline;return {img:dy?translate(img,0,dy):img,dy};}
 export function over(dst,src,dx=0,dy=0){const {width:w,height:h}=dst;for(let y=0;y<src.height;y++){const ty=y+dy;if(ty<0||ty>=h)continue;for(let x=0;x<src.width;x++){const tx=x+dx;if(tx<0||tx>=w)continue;const s=(y*src.width+x)*4;if(src.data[s+3]<128)continue;const t=(ty*w+tx)*4;for(let j=0;j<3;j++)dst.data[t+j]=src.data[s+j];dst.data[t+3]=255;}}return dst;}
-const FRONT=['cabelo-tras','mochila','corpo','roupa','cabelo','acessorio'],BACK=['corpo','roupa','cabelo','cabelo-tras','mochila','acessorio'];
+const FRONT=['cabelo-tras','mochila','corpo','roupa','cabelo','acessorio'],BACK=['corpo','roupa','mochila','cabelo-tras','cabelo','acessorio'];
 export const ORDER={se:FRONT,sw:FRONT,ne:BACK,nw:BACK};
 // Compõe um quadro: corpo + camadas de quadro (roupa) + camadas de cabeça presas à âncora.
-export function composeFrame({base,head,dir,layers=[],ramps,slots=SLOTS}){
+export function composeFrame({base,head,torso,dir,layers=[],ramps,slots=SLOTS}){
  const out=blank(base.width,base.height),parts={corpo:[base]};
- for(const l of layers){if(!l.image)continue;const place=l.kind==='head'?[head[0]-l.anchor[0],head[1]-l.anchor[1]]:[0,0];(parts[l.slot]??=[]).push([l.image,...place]);}
+ for(const l of layers){if(!l.image)continue;const mount=l.kind==='torso'?torso:l.kind==='head'?head:null;if(l.kind==='torso'&&!mount)continue;const place=mount?[mount[0]-l.anchor[0],mount[1]-l.anchor[1]]:[0,0];(parts[l.slot]??=[]).push([l.image,...place]);}
  for(const slot of ORDER[dir]||FRONT)for(const p of parts[slot]||[]){const [img,dx,dy]=Array.isArray(p)?p:[p,0,0];over(out,img,dx,dy);}
  return ramps?recolor(out,slots,ramps):out;
 }
@@ -133,6 +139,16 @@ export function auditHeadLayer(base,head,layer){
  const share=edge?hit/edge:0;
  return share<.6?{level:'fail',rule:'Cabelo',text:`Só ${Math.round(share*100)}% da borda do cabelo encosta na cabeça: camada descolada.`,share}:{level:'ok',rule:'Cabelo',text:`Cabelo preso à cabeça (${Math.round(share*100)}% da borda).`,share};
 }
+export function auditTorsoLayer(base,torso,layer){
+ if(!torso?.every(Number.isFinite))return {level:'fail',rule:'Tronco',text:'Mochila sem âncora do tronco.'};
+ const b=metrics(base).bounds,m=metrics(layer.image).bounds;if(!b||!m)return {level:'fail',rule:'Tronco',text:'Corpo ou mochila vazio.'};
+ const bottom=torso[1]-layer.anchor[1]+m.y+m.h;
+ if(bottom>b.y+b.h*.78)return {level:'fail',rule:'Tronco',text:'Mochila abaixo da cintura: confira o encaixe nas costas.'};
+ const dx=torso[0]-layer.anchor[0],dy=torso[1]-layer.anchor[1];let total=0,touch=0;
+ for(let y=0;y<layer.image.height;y++)for(let x=0;x<layer.image.width;x++){if(layer.image.data[(y*layer.image.width+x)*4+3]<128)continue;total++;const bx=x+dx,by=y+dy;if(bx>=0&&by>=0&&bx<base.width&&by<base.height&&base.data[(by*base.width+bx)*4+3]>=128)touch++;}
+ if(!total||touch/total<.3)return {level:'fail',rule:'Tronco',text:'Mochila afastada do corpo: confira o encaixe nas costas.'};
+ return {level:'ok',rule:'Tronco',text:'Mochila presa ao tronco, acima da cintura.'};
+}
 export function auditFrameLayer(base,layer,scale=SPEC.scale){
  const r=3*scale,{width:w,height:h,data:d}=layer,inBase=(x,y)=>{for(let yy=Math.max(0,y-r);yy<=Math.min(h-1,y+r);yy++)for(let xx=Math.max(0,x-r);xx<=Math.min(w-1,x+r);xx++)if(base.data[(yy*w+xx)*4+3]>=128)return true;return false;};
  let out=0,total=0;for(let y=0;y<h;y++)for(let x=0;x<w;x++)if(d[(y*w+x)*4+3]>=128){total++;if(!inBase(x,y))out++;}
@@ -141,9 +157,9 @@ export function auditFrameLayer(base,layer,scale=SPEC.scale){
 // ---------- manifesto ----------
 export function manifest(project){
  const half=v=>v.map(n=>Math.round(n/SPEC.scale)),actions={};
- for(const [id,a] of Object.entries(project.actions)){const dirs={};for(const [dir,entry] of Object.entries(a.dirs)){if(entry.mirror){dirs[dir]={mirror:entry.mirror};continue;}if(!entry.frames?.length)continue;dirs[dir]=entry.frames.map((f,i)=>({image:`base/${id}-${dir}-${i}.png`,head:f.head?half(f.head):null}));}
+ for(const [id,a] of Object.entries(project.actions)){const dirs={};for(const [dir,entry] of Object.entries(a.dirs)){if(entry.mirror){if(a.dirs[entry.mirror]?.frames?.length)dirs[dir]={mirror:entry.mirror};continue;}if(!entry.frames?.length)continue;dirs[dir]=entry.frames.map((f,i)=>({image:`base/${id}-${dir}-${i}.png`,head:f.head?half(f.head):null,...(f.torso?{torso:half(f.torso)}:{})}));}
   if(Object.keys(dirs).length)actions[id]={ms:a.ms,loop:a.loop!==false,directions:dirs};}
- const layers={};for(const l of project.layers||[])layers[l.id]={kind:l.kind,slot:l.slot,images:Object.fromEntries(Object.keys(l.images||{}).map(dir=>[dir,`camadas/${l.id}-${dir}.png`])),...(l.kind==='head'?{anchor:Object.fromEntries(Object.entries(l.anchors||{}).map(([k,v])=>[k,half(v)]))}:{})};
+ const layers={};for(const l of project.layers||[])layers[l.id]={kind:l.kind,slot:l.slot,images:Object.fromEntries(Object.keys(l.images||{}).map(dir=>[dir,`camadas/${l.id}-${dir}.png`])),...(l.kind!=='frames'?{anchor:Object.fromEntries(Object.entries(l.anchors||{}).map(([k,v])=>[k,half(v)]))}:{})};
  return {name:project.name,cell:[SPEC.cell/SPEC.scale,SPEC.cell/SPEC.scale],pivot:half(SPEC.pivot),scale:1,actions,layers,palette:'paleta.json',rulesVersion:RULES};
 }
 export function paletteJson(project){return {slots:project.slots.map(s=>({id:s.id,name:s.name,tones:s.tones,fixed:!!s.fixed})),variants:VARIANTS,rulesVersion:RULES};}
