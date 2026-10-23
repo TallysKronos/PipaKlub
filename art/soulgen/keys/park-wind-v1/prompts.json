@@ -1,0 +1,16 @@
+{
+  "tool": "image_gen integrado",
+  "date": "2026-10-22",
+  "atlas": {
+    "source": "source-atlas.png",
+    "transparency": true,
+    "brief": "Original Brazilian fantasy kite-creature RPG environment atlas, nine separated modules in 3x3 layout. Elevated orthographic three-quarter 2:1 ground directions; thin petrol outlines, warm upper-left sunlight, broad cel-shaded planes. Terracotta, cream, petrol, gold, warm greens. Row 1 detached canopy, matching trunk, smaller complete tree. Row 2 hexagonal open coreto, wood/petrol bench, flowering shrub. Row 3 bare windsock mast, separate striped windsock fabric, separate seven-flag bunting. No text, UI or scenery; transparent background.",
+    "reference_role": "As três imagens do usuário orientam vista elevada, volumes e coerência da cena. Objetos originais descritos no prompt, sem extração dos screenshots."
+  },
+  "canopy_edit": {
+    "source": "source-canopy-plain.png",
+    "input": "canopy.png do primeiro recorte do atlas",
+    "transparency": true,
+    "brief": "Remove all three golden kite ornaments and their ribbons, replacing them with matching green leaf masses. Preserve canopy silhouette, lime/petrol-green layered leaves, outlines, upper-left lighting and elevated three-quarter view. Detached ordinary tree canopy, no trunk, additional objects or background. Transparent output."
+  }
+}

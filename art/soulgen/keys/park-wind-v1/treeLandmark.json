@@ -1,0 +1,156 @@
+{
+  "width": 300,
+  "height": 310,
+  "rootPivot": [
+    150,
+    296
+  ],
+  "assets": {
+    "trunk": {
+      "name": "trunk",
+      "src": "/art/soulgen/keys/park-wind-v1/trunk.png",
+      "width": 322,
+      "height": 344
+    },
+    "canopyLandmark": {
+      "name": "canopyLandmark",
+      "src": "/art/soulgen/keys/park-wind-v1/canopyLandmark.png",
+      "width": 458,
+      "height": 331
+    }
+  },
+  "parts": [
+    {
+      "id": "trunk",
+      "name": "trunk",
+      "asset": "trunk",
+      "source": [
+        0,
+        0,
+        322,
+        344
+      ],
+      "rect": [
+        91,
+        170,
+        118,
+        126.06211180124224
+      ],
+      "pivot": [
+        150,
+        296
+      ],
+      "z": 0,
+      "parent": null,
+      "visible": true
+    },
+    {
+      "id": "canopy",
+      "name": "canopy",
+      "asset": "canopyLandmark",
+      "source": [
+        0,
+        0,
+        458,
+        331
+      ],
+      "rect": [
+        16,
+        18,
+        268,
+        193.68558951965065
+      ],
+      "pivot": [
+        150,
+        185
+      ],
+      "z": 1,
+      "parent": null,
+      "visible": true
+    }
+  ],
+  "clips": {
+    "idle": {
+      "label": "Brisa do parque",
+      "seconds": 6,
+      "loop": true,
+      "hitTime": null,
+      "expressions": [],
+      "frames": [
+        {
+          "t": 0,
+          "ease": "spline",
+          "values": {
+            "canopy": {
+              "rotation": 0,
+              "x": 0,
+              "scaleX": 1
+            },
+            "trunk": {
+              "rotation": 0
+            }
+          }
+        },
+        {
+          "t": 1.5,
+          "ease": "spline",
+          "values": {
+            "canopy": {
+              "rotation": 0.85,
+              "x": 0.9,
+              "scaleX": 1.003
+            },
+            "trunk": {
+              "rotation": 0
+            }
+          }
+        },
+        {
+          "t": 3,
+          "ease": "spline",
+          "values": {
+            "canopy": {
+              "rotation": 0,
+              "x": 0,
+              "scaleX": 1
+            },
+            "trunk": {
+              "rotation": 0
+            }
+          }
+        },
+        {
+          "t": 4.5,
+          "ease": "spline",
+          "values": {
+            "canopy": {
+              "rotation": -0.85,
+              "x": -0.9,
+              "scaleX": 1.003
+            },
+            "trunk": {
+              "rotation": 0
+            }
+          }
+        },
+        {
+          "t": 6,
+          "ease": "spline",
+          "values": {
+            "canopy": {
+              "rotation": 0,
+              "x": 0,
+              "scaleX": 1
+            },
+            "trunk": {
+              "rotation": 0
+            }
+          }
+        }
+      ]
+    }
+  },
+  "schema": "soulgen-studio",
+  "version": 1,
+  "name": "Parque dos Ventos · treeLandmark"
+}

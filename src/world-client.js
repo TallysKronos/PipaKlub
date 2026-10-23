@@ -14,6 +14,10 @@ if(worldMapMode==='blockout'&&homeArt.world?.pilot)worldScenes.morro=homeArt.wor
 const parkStreet=worldScenes.quintal,parkAnchor=parkStreet.places.find(p=>p.action==='farm');if(parkAnchor)Object.assign(parkAnchor,{name:'Parque dos Ventos · exploração',action:'street_scene',target:'park-trail'});
 for(const [id,scene]of Object.entries(worldScenes)){const navigation=createWorldNavigation(scene);worldRuntime.states[id]={navigation,actor:navigation.create()};}
 const worldKeys=new Set();
+function worldGrass(state,scene){
+ if(!state.tallGrass){const habitats=(scene.tiled?.layers.Walkable||[]).filter(r=>r.properties.encounter_zone);state.tallGrass=createTallGrass(habitats,{project:p=>({x:p.x,y:p.y})});state.grassWind=0;}
+ return state.tallGrass;
+}
 function worldWalkActive(){return !!playerAccount&&!gameLoading.active&&!mode&&!courtyard.hidden&&!courtyard.inert&&!worldRuntime.loading&&!worldRuntime.error&&!document.body.classList.contains('in-opening')&&gameMenu.hidden&&cityScreen.hidden&&$('journeyDialog').hidden&&$('partnerChoice').hidden&&!$('worldDiscovery')?.open&&!document.querySelector('dialog[open]');}
 function worldClearWalking(){worldKeys.clear();if(typeof padState!=='undefined')padState.x=padState.y=0;}
 function worldInput(){const x=(worldKeys.has('d')||worldKeys.has('arrowright')?1:0)-(worldKeys.has('a')||worldKeys.has('arrowleft')?1:0),y=(worldKeys.has('s')||worldKeys.has('arrowdown')?1:0)-(worldKeys.has('w')||worldKeys.has('arrowup')?1:0);if(x||y)return {x,y};return typeof padState!=='undefined'&&inputDevice.startsWith('gamepad')?{x:padState.x,y:padState.y}:{x:0,y:0};}
@@ -43,7 +47,7 @@ function worldScene(){return worldScenes[worldRuntime.id];}
 function worldPlaceLabel(place){if(worldRoadChapter()&&['road_next','road_gate'].includes(place.action))return place.name+' · '+worldRoadGateLabel(worldRoadChapter(),worldRoadGateState());if(!place.stage)return place.name;const st=trails.stage(place.stage),open=trails.unlocked(trailProgress,place.stage);const who=!st?place.name:st.boss&&!open?'Encontro final':st.foes.map(f=>f.name).join(' e ');return who+(open?(trailProgress.stars[place.stage]?' · vencido':''):' · bloqueado');}
 function refreshWorldHUD(){
  if(!$('worldPlace')||!playerAccount)return;
- if(worldRuntime.owner!==playerAccount.profile.id){worldRuntime.owner=playerAccount.profile.id;worldRuntime.id='quintal';for(const state of Object.values(worldRuntime.states))state.actor=state.navigation.create();worldRuntime.camera=null;worldRuntime.near=null;worldRuntime.error='';worldRuntime.loading=!homeImages.has('world-kit-street-quintal');renderWorldDestinations();}
+ if(worldRuntime.owner!==playerAccount.profile.id){worldRuntime.owner=playerAccount.profile.id;worldRuntime.id='quintal';for(const state of Object.values(worldRuntime.states)){state.actor=state.navigation.create();state.tallGrass?.reset();}worldRuntime.camera=null;worldRuntime.near=null;worldRuntime.error='';worldRuntime.loading=!homeImages.has('world-kit-street-quintal');renderWorldDestinations();}
  courtyard.classList.toggle('world-painted',!!worldScene().painted);$('worldName').textContent=worldScene().name;courtyard.setAttribute('aria-label',worldScene().name);updateWorldContext();
 }
 function renderWorldDestinations(){
@@ -78,7 +82,7 @@ function openWorld(id,{arrival}={}){
  if(!worldScenes[id]||mode||!requireClubAccount('a exploração'))return;if(id.startsWith('park-')&&!['city','complete'].includes(journey?.phase)){toast('Conclua o primeiro voo com o professor antes de explorar o parque.');return;}
  if(worldRoadChapter(id)&&!worldRoad.canEnter(id,worldRoadProgress())){toast(worldRoadProgress()?'Vença o encontro anterior para abrir esta área.':'Aguarde a confirmação do progresso na conta.');return;}
  if((id==='morro'||worldRoadChapter(id))&&journey?.phase!=='complete'){homeActions.city();return;}
- hideJourney();closeHomeMenu();cityScreen.hidden=true;skyExperiment.hidden=true;closeTrails();cityBriefOpen=false;if(worldState()){worldState().actor.path=[];worldState().actor.moving=false;}worldRuntime.id=id;worldRuntime.portalLatch=null;worldClearWalking();worldRuntime.missionKey=null;worldRuntime.camera=null;worldRuntime.near=null;worldRuntime.error='';worldRuntime.loading=false;worldSyncRoadGate();if(arrival){const state=worldState();state.actor=state.navigation.create();if(arrival==='north'){const exit=worldScene().places.find(p=>p.action==='road_next');if(exit)state.navigation.target(state.actor,state.navigation.nodes[exit.node],true);}}showCourtyard();renderWorldDestinations();refreshWorldHUD();loadWorldImage(id);if(id==='morro'||worldRoadChapter(id))loadWorldRivals();if(id==='professor-home')loadWorldActors(['Sr. Assis']);if(id==='kael-home')loadWorldActors(['Mãe']);$('courtyardCanvas').setAttribute('tabindex','-1');$('courtyardCanvas').focus({preventScroll:true});
+ hideJourney();closeHomeMenu();cityScreen.hidden=true;skyExperiment.hidden=true;closeTrails();cityBriefOpen=false;if(worldState()){worldState().actor.path=[];worldState().actor.moving=false;}worldRuntime.id=id;worldState().tallGrass?.reset();worldRuntime.portalLatch=null;worldClearWalking();worldRuntime.missionKey=null;worldRuntime.camera=null;worldRuntime.near=null;worldRuntime.error='';worldRuntime.loading=false;worldSyncRoadGate();if(arrival){const state=worldState();state.actor=state.navigation.create();if(arrival==='north'){const exit=worldScene().places.find(p=>p.action==='road_next');if(exit)state.navigation.target(state.actor,state.navigation.nodes[exit.node],true);}}showCourtyard();renderWorldDestinations();refreshWorldHUD();loadWorldImage(id);if(id==='morro'||worldRoadChapter(id))loadWorldRivals();if(id==='professor-home')loadWorldActors(['Sr. Assis']);if(id==='kael-home')loadWorldActors(['Mãe']);$('courtyardCanvas').setAttribute('tabindex','-1');$('courtyardCanvas').focus({preventScroll:true});
 }
 function worldGo(place){
  const state=worldState();if(!state||!place)return;if(worldRoadChapter()&&place.action==='road_next'&&!['open','complete'].includes(worldRoadGateState().state)){const gate=worldScene().places.find(p=>p.action==='road_gate');if(gate)worldGo(gate);toast(worldRoadGateLabel(worldRoadChapter(),worldRoadGateState()));return;}worldWalkTo(state.navigation.nodes[place.node]);worldRuntime.near=null;updateWorldContext();
@@ -134,7 +138,10 @@ function drawWorldScene(g,time,dt){
   if(worldCompanions.get({soul:'nozinho'})&&!homeImages.has('world-companion-nozinho'))loadWorldCompanionImage('nozinho');
   actors.push({x:nx,y:ny,level:state.navigation.geometry?.level({x:nx,y:ny})??0,draw:()=>{worldShadow(g,nx,ny,10);if(!worldCompanions.draw(g,homeImages,{soul:'nozinho'},nx,ny,scene.actorSize*.44,{direction:worldActors.facing(nx,ny,state.actor),time})){const seq=art.atlases.nozinho?.animations?.idle;if(seq)art.draw(g,'nozinho',seq[moving?Math.floor(time/180)%seq.length:0],nx-19,ny-38,38,38,true)}}});
  }
- for(const entry of worldRenderQueue(scene,actors)){if(entry.kind==='actor')entry.draw();else drawWorldObject(g,entry,homeImages);}g.restore();updateWorldContext();
+ const grass=worldGrass(state,scene);
+ if(walkEnabled){grass.update(dt,state.actor,equipped?resident:null,{reduced:art.reduced});if(moving)state.grassWind+=Math.min(dt,.1);}
+ for(const tuft of grass.tufts)actors.push({x:tuft.x,y:tuft.y,level:state.navigation.geometry?.level(tuft)??0,draw:()=>drawTallGrass(g,tuft,{project:p=>p,wind:state.grassWind,paused:!moving})});
+ for(const entry of worldRenderQueue(scene,actors)){if(entry.kind==='actor')entry.draw();else drawWorldObject(g,entry,homeImages);}drawTallGrassParticles(g,grass.particles);g.restore();updateWorldContext();
 }
 function refreshWorldOwner(){if(worldRuntime.owner!==playerAccount?.profile.id)refreshWorldHUD();}
 addEventListener('keydown',event=>{const key=event.key.toLowerCase();if(!['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright'].includes(key)||!worldWalkActive()||event.ctrlKey||event.metaKey||event.altKey||['INPUT','TEXTAREA','SELECT'].includes(event.target?.tagName))return;event.preventDefault();worldKeys.add(key);});

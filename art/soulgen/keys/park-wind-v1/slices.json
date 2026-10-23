@@ -1,0 +1,132 @@
+{
+  "canopyLandmark": {
+    "name": "canopyLandmark",
+    "src": "/art/soulgen/keys/park-wind-v1/canopyLandmark.png",
+    "width": 458,
+    "height": 331,
+    "sourceCell": [
+      0,
+      0,
+      512,
+      330
+    ],
+    "alphaMin": 0
+  },
+  "canopy": {
+    "name": "canopy",
+    "src": "/art/soulgen/keys/park-wind-v1/canopy.png",
+    "width": 458,
+    "height": 331,
+    "sourceCell": [
+      0,
+      0,
+      512,
+      330
+    ],
+    "alphaMin": 0
+  },
+  "trunk": {
+    "name": "trunk",
+    "src": "/art/soulgen/keys/park-wind-v1/trunk.png",
+    "width": 322,
+    "height": 344,
+    "sourceCell": [
+      512,
+      0,
+      1024,
+      385
+    ],
+    "alphaMin": 0
+  },
+  "treeSmall": {
+    "name": "treeSmall",
+    "src": "/art/soulgen/keys/park-wind-v1/treeSmall.png",
+    "width": 363,
+    "height": 385,
+    "sourceCell": [
+      1024,
+      0,
+      1536,
+      390
+    ],
+    "alphaMin": 0
+  },
+  "coreto": {
+    "name": "coreto",
+    "src": "/art/soulgen/keys/park-wind-v1/coreto.png",
+    "width": 371,
+    "height": 375,
+    "sourceCell": [
+      0,
+      330,
+      512,
+      705
+    ],
+    "alphaMin": 0
+  },
+  "bench": {
+    "name": "bench",
+    "src": "/art/soulgen/keys/park-wind-v1/bench.png",
+    "width": 326,
+    "height": 284,
+    "sourceCell": [
+      512,
+      390,
+      1024,
+      725
+    ],
+    "alphaMin": 0
+  },
+  "flowers": {
+    "name": "flowers",
+    "src": "/art/soulgen/keys/park-wind-v1/flowers.png",
+    "width": 389,
+    "height": 273,
+    "sourceCell": [
+      1024,
+      390,
+      1536,
+      725
+    ],
+    "alphaMin": 0
+  },
+  "pole": {
+    "name": "pole",
+    "src": "/art/soulgen/keys/park-wind-v1/pole.png",
+    "width": 199,
+    "height": 317,
+    "sourceCell": [
+      0,
+      705,
+      512,
+      1024
+    ],
+    "alphaMin": 0
+  },
+  "sock": {
+    "name": "sock",
+    "src": "/art/soulgen/keys/park-wind-v1/sock.png",
+    "width": 421,
+    "height": 149,
+    "sourceCell": [
+      512,
+      745,
+      1024,
+      1024
+    ],
+    "alphaMin": 0
+  },
+  "bunting": {
+    "name": "bunting",
+    "src": "/art/soulgen/keys/park-wind-v1/bunting.png",
+    "width": 480,
+    "height": 140,
+    "sourceCell": [
+      1024,
+      745,
+      1536,
+      1024
+    ],
+    "alphaMin": 0
+  }
+}

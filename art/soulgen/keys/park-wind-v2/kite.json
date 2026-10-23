@@ -1,0 +1,106 @@
+{
+  "width": 180,
+  "height": 150,
+  "rootPivot": [
+    57,
+    78
+  ],
+  "assets": {
+    "kite": {
+      "name": "kite",
+      "src": "/art/soulgen/keys/park-wind-v2/kite.png",
+      "width": 323,
+      "height": 194
+    }
+  },
+  "parts": [
+    {
+      "id": "kite",
+      "name": "kite",
+      "asset": "kite",
+      "source": [
+        0,
+        0,
+        323,
+        194
+      ],
+      "rect": [
+        10,
+        10,
+        150,
+        90.09287925696594
+      ],
+      "pivot": [
+        57,
+        78
+      ],
+      "z": 0,
+      "parent": null,
+      "visible": true
+    }
+  ],
+  "clips": {
+    "idle": {
+      "label": "Brisa do parque",
+      "seconds": 6,
+      "loop": true,
+      "hitTime": null,
+      "expressions": [],
+      "frames": [
+        {
+          "t": 0,
+          "ease": "spline",
+          "values": {
+            "kite": {
+              "rotation": 0,
+              "y": 0
+            }
+          }
+        },
+        {
+          "t": 1.5,
+          "ease": "spline",
+          "values": {
+            "kite": {
+              "rotation": 3,
+              "y": 4
+            }
+          }
+        },
+        {
+          "t": 3,
+          "ease": "spline",
+          "values": {
+            "kite": {
+              "rotation": 0,
+              "y": 0
+            }
+          }
+        },
+        {
+          "t": 4.5,
+          "ease": "spline",
+          "values": {
+            "kite": {
+              "rotation": -3,
+              "y": -4
+            }
+          }
+        },
+        {
+          "t": 6,
+          "ease": "spline",
+          "values": {
+            "kite": {
+              "rotation": 0,
+              "y": 0
+            }
+          }
+        }
+      ]
+    }
+  },
+  "schema": "soulgen-studio",
+  "version": 1,
+  "name": "Parque dos Ventos · kite"
+}

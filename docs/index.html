@@ -5711,6 +5711,64 @@ function createNeighborhoodRoad(chapters){
  return {chapters,index,canEnter,gate,cleared};
 }
 
+
+
+// Cosmetic only: habitat rectangles and navigation remain owned by the map.
+function createTallGrass(regions,{seed=157,maxParticles=72,project=({x,y})=>({x:(x-y)*.82,y:(x+y)*.41})}={}){
+ let state=seed>>>0,previous=null,distance=0;
+ const random=()=>((state=(state*1664525+1013904223)>>>0)/4294967296);
+ const contains=p=>regions.some(r=>p.x>=r.x&&p.x<r.x+r.w&&p.y>=r.y&&p.y<r.y+r.h);
+ const cells=new Map(),seen=new Set(),particles=[];
+ for(const r of regions)for(let y=Math.ceil(r.y/22)*22;y<r.y+r.h;y+=22)for(let x=Math.ceil(r.x/22)*22;x<r.x+r.w;x+=22){
+  const key=x+','+y;if(seen.has(key))continue;seen.add(key);
+  const p={x:x+(random()-.5)*10,y:y+(random()-.5)*10};
+  if(contains(p))cells.set(key,{...p,type:'grass',h:29+random()*15,tint:Math.floor(random()*3),phase:random()*6.28,bend:0});
+ }
+ const tufts=[...cells.values()];
+ function reset(){previous=null;distance=0;particles.length=0;for(const b of tufts)b.bend=0;}
+ function update(dt,actor,companion=null,{reduced=false}={}){
+  dt=Math.max(0,Math.min(dt,.1));
+  if(reduced)particles.length=0;
+  for(let i=particles.length-1;i>=0;i--){const p=particles[i];p.age+=dt;if(p.age>=p.life){particles.splice(i,1);continue;}p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=64*dt;p.rotation+=p.spin*dt;}
+  for(const b of tufts){const p=project(b);let target=0;
+   for(const a of [actor,companion])if(a){const q=project(a),dx=p.x-q.x,dy=p.y-q.y,d=Math.hypot(dx,dy*1.6);if(d<32){const bend=(dx<0?-1:1)*(1-d/32);if(Math.abs(bend)>Math.abs(target))target=bend;}}
+   b.bend=reduced?target:b.bend+(target-b.bend)*(1-Math.exp(-dt*(target?18:5)));
+  }
+  if(previous){const travel=Math.hypot(actor.x-previous.x,actor.y-previous.y);
+   // Sample the walked segment, avoiding bursts on loads/teleports and patch seams.
+   if(travel>0&&travel<48&&!reduced){const steps=Math.ceil(travel/4);for(let i=1;i<=steps;i++){
+    const p={x:previous.x+(actor.x-previous.x)*i/steps,y:previous.y+(actor.y-previous.y)*i/steps};
+    if(!contains(p)){distance=0;continue;}distance+=travel/steps;
+    if(distance<13)continue;distance%=13;const q=project(p);
+    for(let n=0;n<3&&particles.length<maxParticles;n++)particles.push({x:q.x+(random()-.5)*18,y:q.y-6,age:0,life:.65+random()*.4,vx:(random()-.5)*48,vy:-34-random()*27,rotation:random()*6.28,spin:(random()-.5)*8,size:3+random()*2,tint:Math.floor(random()*3)});
+   }}else if(travel>=48)distance=0;
+  }
+  previous={x:actor.x,y:actor.y};
+ }
+ return {tufts,particles,contains,update,reset};
+}
+
+function drawTallGrass(g,b,{project,wind=0,paused=false}){
+ const p=project(b),sway=paused?0:Math.sin(wind*1.7+b.phase)*2.2;
+ const colors=['#689b45','#83b351','#a5c86a'];
+ g.save();g.translate(p.x,p.y);g.lineJoin='round';
+ g.fillStyle='#355b3a26';g.beginPath();g.ellipse(0,0,13,4,0,0,7);g.fill();
+ for(const [i,spread]of [-1,-.5,0,.5,1].entries()){
+  const h=b.h*(i===2?1:.65+Math.abs(spread)*.14),root=spread*7;
+  const tip=spread*12+sway+b.bend*24,top=-h*(1-Math.abs(b.bend)*.54);
+  g.fillStyle=colors[(b.tint+i)%3];g.strokeStyle='#547e3d';g.lineWidth=.65;
+  g.beginPath();g.moveTo(root-4,1);g.quadraticCurveTo(root-11+tip*.22,-h*.45,tip,top);
+  g.quadraticCurveTo(root+11+tip*.35,-h*.4,root+3,1);g.closePath();g.fill();g.stroke();
+  g.strokeStyle='#c3dd8525';g.lineWidth=1;g.beginPath();g.moveTo(root,0);g.quadraticCurveTo(root+tip*.3,-h*.4,tip,top+5);g.stroke();
+ }
+ g.restore();
+}
+function drawTallGrassParticles(g,particles){for(const p of particles){
+ g.save();g.translate(p.x,p.y);g.rotate(p.rotation);g.globalAlpha=Math.min(1,(p.life-p.age)/.25);
+ g.fillStyle=['#c8df89','#a4cb67','#e0e7a0'][p.tint];g.strokeStyle='#638c49';g.lineWidth=.8;
+ g.beginPath();g.moveTo(-p.size,0);g.quadraticCurveTo(0,-p.size,p.size,0);g.quadraticCurveTo(0,p.size,-p.size,0);g.fill();g.stroke();g.restore();
+}}
+
 function worldMissionContext(next){const c=worldRoadChapter();if(c)next=trails.stage(c.stage);return {worldId:worldIsMorro()?'morro':worldRuntime.id,roadCleared:['open','complete'].includes(worldRoadGateState()?.state),roadFinal:worldRoadGateState()?.state==='complete',nearStage:worldRuntime.near?.stage,rivals:next?.foes.map(f=>f.name).join(' e '),place:next&&ART_CONFIG.courtyard.places[trails.trails[next.trailIndex].id]?.places[next.index]?.[0]};}
 const worldActors=createWorldActors(homeArt.world?.actors);
 const worldCompanions=createWorldCompanions(homeArt.world?.companions);
@@ -5757,6 +5815,10 @@ function worldRoadInteract(place){
 const parkStreet=worldScenes.quintal,parkAnchor=parkStreet.places.find(p=>p.action==='farm');if(parkAnchor)Object.assign(parkAnchor,{name:'Parque dos Ventos · exploração',action:'street_scene',target:'park-trail'});
 for(const [id,scene]of Object.entries(worldScenes)){const navigation=createWorldNavigation(scene);worldRuntime.states[id]={navigation,actor:navigation.create()};}
 const worldKeys=new Set();
+function worldGrass(state,scene){
+ if(!state.tallGrass){const habitats=(scene.tiled?.layers.Walkable||[]).filter(r=>r.properties.encounter_zone);state.tallGrass=createTallGrass(habitats,{project:p=>({x:p.x,y:p.y})});state.grassWind=0;}
+ return state.tallGrass;
+}
 function worldWalkActive(){return !!playerAccount&&!gameLoading.active&&!mode&&!courtyard.hidden&&!courtyard.inert&&!worldRuntime.loading&&!worldRuntime.error&&!document.body.classList.contains('in-opening')&&gameMenu.hidden&&cityScreen.hidden&&$('journeyDialog').hidden&&$('partnerChoice').hidden&&!$('worldDiscovery')?.open&&!document.querySelector('dialog[open]');}
 function worldClearWalking(){worldKeys.clear();if(typeof padState!=='undefined')padState.x=padState.y=0;}
 function worldInput(){const x=(worldKeys.has('d')||worldKeys.has('arrowright')?1:0)-(worldKeys.has('a')||worldKeys.has('arrowleft')?1:0),y=(worldKeys.has('s')||worldKeys.has('arrowdown')?1:0)-(worldKeys.has('w')||worldKeys.has('arrowup')?1:0);if(x||y)return {x,y};return typeof padState!=='undefined'&&inputDevice.startsWith('gamepad')?{x:padState.x,y:padState.y}:{x:0,y:0};}
@@ -5786,7 +5848,7 @@ function worldScene(){return worldScenes[worldRuntime.id];}
 function worldPlaceLabel(place){if(worldRoadChapter()&&['road_next','road_gate'].includes(place.action))return place.name+' · '+worldRoadGateLabel(worldRoadChapter(),worldRoadGateState());if(!place.stage)return place.name;const st=trails.stage(place.stage),open=trails.unlocked(trailProgress,place.stage);const who=!st?place.name:st.boss&&!open?'Encontro final':st.foes.map(f=>f.name).join(' e ');return who+(open?(trailProgress.stars[place.stage]?' · vencido':''):' · bloqueado');}
 function refreshWorldHUD(){
  if(!$('worldPlace')||!playerAccount)return;
- if(worldRuntime.owner!==playerAccount.profile.id){worldRuntime.owner=playerAccount.profile.id;worldRuntime.id='quintal';for(const state of Object.values(worldRuntime.states))state.actor=state.navigation.create();worldRuntime.camera=null;worldRuntime.near=null;worldRuntime.error='';worldRuntime.loading=!homeImages.has('world-kit-street-quintal');renderWorldDestinations();}
+ if(worldRuntime.owner!==playerAccount.profile.id){worldRuntime.owner=playerAccount.profile.id;worldRuntime.id='quintal';for(const state of Object.values(worldRuntime.states)){state.actor=state.navigation.create();state.tallGrass?.reset();}worldRuntime.camera=null;worldRuntime.near=null;worldRuntime.error='';worldRuntime.loading=!homeImages.has('world-kit-street-quintal');renderWorldDestinations();}
  courtyard.classList.toggle('world-painted',!!worldScene().painted);$('worldName').textContent=worldScene().name;courtyard.setAttribute('aria-label',worldScene().name);updateWorldContext();
 }
 function renderWorldDestinations(){
@@ -5821,7 +5883,7 @@ function openWorld(id,{arrival}={}){
  if(!worldScenes[id]||mode||!requireClubAccount('a exploração'))return;if(id.startsWith('park-')&&!['city','complete'].includes(journey?.phase)){toast('Conclua o primeiro voo com o professor antes de explorar o parque.');return;}
  if(worldRoadChapter(id)&&!worldRoad.canEnter(id,worldRoadProgress())){toast(worldRoadProgress()?'Vença o encontro anterior para abrir esta área.':'Aguarde a confirmação do progresso na conta.');return;}
  if((id==='morro'||worldRoadChapter(id))&&journey?.phase!=='complete'){homeActions.city();return;}
- hideJourney();closeHomeMenu();cityScreen.hidden=true;skyExperiment.hidden=true;closeTrails();cityBriefOpen=false;if(worldState()){worldState().actor.path=[];worldState().actor.moving=false;}worldRuntime.id=id;worldRuntime.portalLatch=null;worldClearWalking();worldRuntime.missionKey=null;worldRuntime.camera=null;worldRuntime.near=null;worldRuntime.error='';worldRuntime.loading=false;worldSyncRoadGate();if(arrival){const state=worldState();state.actor=state.navigation.create();if(arrival==='north'){const exit=worldScene().places.find(p=>p.action==='road_next');if(exit)state.navigation.target(state.actor,state.navigation.nodes[exit.node],true);}}showCourtyard();renderWorldDestinations();refreshWorldHUD();loadWorldImage(id);if(id==='morro'||worldRoadChapter(id))loadWorldRivals();if(id==='professor-home')loadWorldActors(['Sr. Assis']);if(id==='kael-home')loadWorldActors(['Mãe']);$('courtyardCanvas').setAttribute('tabindex','-1');$('courtyardCanvas').focus({preventScroll:true});
+ hideJourney();closeHomeMenu();cityScreen.hidden=true;skyExperiment.hidden=true;closeTrails();cityBriefOpen=false;if(worldState()){worldState().actor.path=[];worldState().actor.moving=false;}worldRuntime.id=id;worldState().tallGrass?.reset();worldRuntime.portalLatch=null;worldClearWalking();worldRuntime.missionKey=null;worldRuntime.camera=null;worldRuntime.near=null;worldRuntime.error='';worldRuntime.loading=false;worldSyncRoadGate();if(arrival){const state=worldState();state.actor=state.navigation.create();if(arrival==='north'){const exit=worldScene().places.find(p=>p.action==='road_next');if(exit)state.navigation.target(state.actor,state.navigation.nodes[exit.node],true);}}showCourtyard();renderWorldDestinations();refreshWorldHUD();loadWorldImage(id);if(id==='morro'||worldRoadChapter(id))loadWorldRivals();if(id==='professor-home')loadWorldActors(['Sr. Assis']);if(id==='kael-home')loadWorldActors(['Mãe']);$('courtyardCanvas').setAttribute('tabindex','-1');$('courtyardCanvas').focus({preventScroll:true});
 }
 function worldGo(place){
  const state=worldState();if(!state||!place)return;if(worldRoadChapter()&&place.action==='road_next'&&!['open','complete'].includes(worldRoadGateState().state)){const gate=worldScene().places.find(p=>p.action==='road_gate');if(gate)worldGo(gate);toast(worldRoadGateLabel(worldRoadChapter(),worldRoadGateState()));return;}worldWalkTo(state.navigation.nodes[place.node]);worldRuntime.near=null;updateWorldContext();
@@ -5877,7 +5939,10 @@ function drawWorldScene(g,time,dt){
   if(worldCompanions.get({soul:'nozinho'})&&!homeImages.has('world-companion-nozinho'))loadWorldCompanionImage('nozinho');
   actors.push({x:nx,y:ny,level:state.navigation.geometry?.level({x:nx,y:ny})??0,draw:()=>{worldShadow(g,nx,ny,10);if(!worldCompanions.draw(g,homeImages,{soul:'nozinho'},nx,ny,scene.actorSize*.44,{direction:worldActors.facing(nx,ny,state.actor),time})){const seq=art.atlases.nozinho?.animations?.idle;if(seq)art.draw(g,'nozinho',seq[moving?Math.floor(time/180)%seq.length:0],nx-19,ny-38,38,38,true)}}});
  }
- for(const entry of worldRenderQueue(scene,actors)){if(entry.kind==='actor')entry.draw();else drawWorldObject(g,entry,homeImages);}g.restore();updateWorldContext();
+ const grass=worldGrass(state,scene);
+ if(walkEnabled){grass.update(dt,state.actor,equipped?resident:null,{reduced:art.reduced});if(moving)state.grassWind+=Math.min(dt,.1);}
+ for(const tuft of grass.tufts)actors.push({x:tuft.x,y:tuft.y,level:state.navigation.geometry?.level(tuft)??0,draw:()=>drawTallGrass(g,tuft,{project:p=>p,wind:state.grassWind,paused:!moving})});
+ for(const entry of worldRenderQueue(scene,actors)){if(entry.kind==='actor')entry.draw();else drawWorldObject(g,entry,homeImages);}drawTallGrassParticles(g,grass.particles);g.restore();updateWorldContext();
 }
 function refreshWorldOwner(){if(worldRuntime.owner!==playerAccount?.profile.id)refreshWorldHUD();}
 addEventListener('keydown',event=>{const key=event.key.toLowerCase();if(!['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright'].includes(key)||!worldWalkActive()||event.ctrlKey||event.metaKey||event.altKey||['INPUT','TEXTAREA','SELECT'].includes(event.target?.tagName))return;event.preventDefault();worldKeys.add(key);});

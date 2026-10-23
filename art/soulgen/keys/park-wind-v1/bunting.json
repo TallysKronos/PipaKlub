@@ -1,0 +1,101 @@
+{
+  "width": 320,
+  "height": 130,
+  "rootPivot": [
+    160,
+    116
+  ],
+  "assets": {
+    "bunting": {
+      "name": "bunting",
+      "src": "/art/soulgen/keys/park-wind-v1/bunting.png",
+      "width": 480,
+      "height": 140
+    }
+  },
+  "parts": [
+    {
+      "id": "bunting",
+      "name": "bunting",
+      "asset": "bunting",
+      "source": [
+        0,
+        0,
+        480,
+        140
+      ],
+      "rect": [
+        10,
+        12,
+        300,
+        87.5
+      ],
+      "pivot": [
+        160,
+        12
+      ],
+      "z": 0,
+      "parent": null,
+      "visible": true
+    }
+  ],
+  "clips": {
+    "idle": {
+      "label": "Brisa do parque",
+      "seconds": 6,
+      "loop": true,
+      "hitTime": null,
+      "expressions": [],
+      "frames": [
+        {
+          "t": 0,
+          "ease": "spline",
+          "values": {
+            "bunting": {
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 1.5,
+          "ease": "spline",
+          "values": {
+            "bunting": {
+              "scaleY": 1.035
+            }
+          }
+        },
+        {
+          "t": 3,
+          "ease": "spline",
+          "values": {
+            "bunting": {
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 4.5,
+          "ease": "spline",
+          "values": {
+            "bunting": {
+              "scaleY": 0.965
+            }
+          }
+        },
+        {
+          "t": 6,
+          "ease": "spline",
+          "values": {
+            "bunting": {
+              "scaleY": 1
+            }
+          }
+        }
+      ]
+    }
+  },
+  "schema": "soulgen-studio",
+  "version": 1,
+  "name": "Parque dos Ventos · bunting"
+}

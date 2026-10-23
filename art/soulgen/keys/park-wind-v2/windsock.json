@@ -1,0 +1,151 @@
+{
+  "width": 390,
+  "height": 270,
+  "rootPivot": [
+    78,
+    254
+  ],
+  "assets": {
+    "pole": {
+      "name": "pole",
+      "src": "/art/soulgen/keys/park-wind-v2/pole.png",
+      "width": 162,
+      "height": 211
+    },
+    "sock": {
+      "name": "sock",
+      "src": "/art/soulgen/keys/park-wind-v2/sock.png",
+      "width": 301,
+      "height": 113
+    }
+  },
+  "parts": [
+    {
+      "id": "pole",
+      "name": "pole",
+      "asset": "pole",
+      "source": [
+        0,
+        0,
+        162,
+        211
+      ],
+      "rect": [
+        10,
+        10,
+        187.33649289099526,
+        244
+      ],
+      "pivot": [
+        78,
+        254
+      ],
+      "z": 0,
+      "parent": null,
+      "visible": true
+    },
+    {
+      "id": "sock",
+      "name": "sock",
+      "asset": "sock",
+      "source": [
+        0,
+        0,
+        301,
+        113
+      ],
+      "rect": [
+        188.33649289099526,
+        32,
+        158,
+        59.3156146179402
+      ],
+      "pivot": [
+        195.33649289099526,
+        58
+      ],
+      "z": 1,
+      "parent": null,
+      "visible": true
+    }
+  ],
+  "clips": {
+    "idle": {
+      "label": "Brisa do parque",
+      "seconds": 6,
+      "loop": true,
+      "hitTime": null,
+      "expressions": [],
+      "frames": [
+        {
+          "t": 0,
+          "ease": "spline",
+          "values": {
+            "sock": {
+              "rotation": 0,
+              "scaleY": 1
+            },
+            "pole": {
+              "rotation": 0
+            }
+          }
+        },
+        {
+          "t": 1.5,
+          "ease": "spline",
+          "values": {
+            "sock": {
+              "rotation": 2.5,
+              "scaleY": 1.018
+            },
+            "pole": {
+              "rotation": 0
+            }
+          }
+        },
+        {
+          "t": 3,
+          "ease": "spline",
+          "values": {
+            "sock": {
+              "rotation": 0,
+              "scaleY": 1
+            },
+            "pole": {
+              "rotation": 0
+            }
+          }
+        },
+        {
+          "t": 4.5,
+          "ease": "spline",
+          "values": {
+            "sock": {
+              "rotation": -2.5,
+              "scaleY": 0.982
+            },
+            "pole": {
+              "rotation": 0
+            }
+          }
+        },
+        {
+          "t": 6,
+          "ease": "spline",
+          "values": {
+            "sock": {
+              "rotation": 0,
+              "scaleY": 1
+            },
+            "pole": {
+              "rotation": 0
+            }
+          }
+        }
+      ]
+    }
+  },
+  "schema": "soulgen-studio",
+  "version": 1,
+  "name": "Parque dos Ventos · windsock"
+}
