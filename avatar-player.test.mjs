@@ -6,6 +6,11 @@ import {createAvatarPlayer,avatarFrameIndex,validAvatarAppearance} from './src/a
 import {createAvatarActivity,createHomeStairActivity,createHomeSeatActivity,advanceAvatarWalk,AVATAR_HOME_CONTACTS,homeStairLanding} from './src/avatar-activity.js';
 import * as model from './tools/avatar-studio/model.mjs';
 import {read} from './scripts/extend-kael-avatar.mjs';
+test('manual Avatar Studio import retains user drawings, layer anchors and the runtime scale conversion',async()=>{
+ const note=JSON.parse(await fs.readFile('art/avatar/kael-v1/ajuste-manual-importacao.json','utf8')),source=JSON.parse(await fs.readFile('art/avatar/kael-v1/'+note.source,'utf8')),project=JSON.parse(await fs.readFile('art/avatar/kael-v1/kael.avatarstudio.json','utf8')),runtime=JSON.parse(await fs.readFile('assets/avatar/kael-v1/manifest.json','utf8'));
+ assert.deepEqual(project.actions,source.actions);assert.deepEqual(project.layers,source.layers);
+ for(const layer of source.layers)for(const [dir,anchor]of Object.entries(layer.anchors||{}))assert.deepEqual(runtime.layers[layer.id].anchor[dir],anchor.map(n=>Math.round(n/2)));
+});
 test('avatar timeline loops walking, clamps sit-down and resolves all four directions',()=>{
  assert.equal(avatarFrameIndex({length:8,ms:100,loop:true},850),0);assert.equal(avatarFrameIndex({length:4,ms:120,loop:false},5000),3);assert.equal(avatarFrameIndex({length:0},10),-1);
  const a=createAvatarPlayer(avatarConfig(),model,{storage:null});for(const dir of model.DIRS){assert.ok(a.sequence('andar',dir));assert.ok(a.sequence('sentado',dir));}assert.equal(a.sequence('correr','se'),null);
@@ -45,7 +50,7 @@ test('descending renderer clips the actor at the stair opening without fading th
 test('all 52 drawings have opaque keyed pixels, fixed foot pivot, attached hair and readable bag',async()=>{
  const p=JSON.parse(await fs.readFile('art/avatar/kael-v1/kael.avatarstudio.json','utf8'));let count=0;
  for(const [action,a]of Object.entries(p.actions))for(const [dir,d]of Object.entries(a.dirs)){if(!d.frames?.length)continue;const hair=p.layers.find(l=>l.slot==='cabelo'),bag=p.layers.find(l=>l.slot==='mochila'),layer=async l=>({image:await read(Buffer.from(l.images[dir].split(',')[1],'base64')),anchor:l.anchors[dir]}),hl=await layer(hair),bl=await layer(bag);
-  for(const [i,f]of d.frames.entries()){const base=await read(Buffer.from(f.src.split(',')[1],'base64')),m=model.metrics(base),torso=model.laggedMount(d.frames.map(v=>v.torso),i,1,a.loop!==false);assert.equal(m.baseline,224);assert.equal(m.off,0);assert.equal(m.semi,0);assert.equal(model.auditHeadLayer(base,f.head,hl).level,'ok');assert.equal(model.auditTorsoLayer(base,torso,bl).level,'ok',`${action}/${dir}/${i}`);assert.equal(model.auditBackpack({base,torso,bag:bl,straps:true,dir}).level,'ok');count++;}
+  for(const [i,f]of d.frames.entries()){const base=await read(Buffer.from(f.src.split(',')[1],'base64')),m=model.metrics(base),torso=model.laggedMount(d.frames.map(v=>v.torso),i,1,a.loop!==false);assert.equal(m.baseline,224);assert.equal(m.off,0);assert.equal(m.semi,0);assert.equal(model.auditHeadLayer(base,f.head,hl).level,'ok');assert.equal(model.auditTorsoLayer(base,torso,bl).level,'ok',`${action}/${dir}/${i}`);assert.equal(model.auditBackpack({base,torso,bag:bl,straps:p.layers.some(l=>l.slot==='alcas'&&l.images[dir]),dir}).level,'ok');count++;}
  }assert.equal(count,52);
  for(const dir of ['se','ne'])assert.equal(p.actions.sentar.dirs[dir].frames[3].src,p.actions.sentado.dirs[dir].frames[0].src);
 });

@@ -1,0 +1,50 @@
+{
+  "source": "source/kael-ajuste-manual-2026-10-23.avatarstudio.json",
+  "sha256": "6ea3e494c6596e9798728e7f0f1aba8bca7fb90050e0daf9ff79418986563e0f",
+  "author": "user",
+  "anchorsPreserved": true,
+  "layers": [
+    {
+      "id": "cabelo-kael",
+      "anchors": {
+        "se": [
+          52,
+          60
+        ],
+        "ne": [
+          50,
+          56
+        ]
+      },
+      "lag": 0
+    },
+    {
+      "id": "mochila-pipa",
+      "anchors": {
+        "se": [
+          46,
+          38
+        ],
+        "ne": [
+          46,
+          34
+        ]
+      },
+      "lag": 1
+    },
+    {
+      "id": "alcas-mochila",
+      "anchors": {
+        "ne": [
+          39,
+          31
+        ],
+        "se": [
+          6,
+          23
+        ]
+      },
+      "lag": 0
+    }
+  ]
+}

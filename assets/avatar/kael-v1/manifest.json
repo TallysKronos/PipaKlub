@@ -1,5 +1,5 @@
 {
-  "name": "Kael v1",
+  "name": "Kael - ajuste manual da alca frontal",
   "cell": [
     128,
     128
@@ -60,6 +60,9 @@
             ]
           }
         ],
+        "sw": {
+          "mirror": "se"
+        },
         "ne": [
           {
             "image": "base/parado-ne-0.png",
@@ -106,9 +109,6 @@
             ]
           }
         ],
-        "sw": {
-          "mirror": "se"
-        },
         "nw": {
           "mirror": "ne"
         }
@@ -208,6 +208,9 @@
             ]
           }
         ],
+        "sw": {
+          "mirror": "se"
+        },
         "ne": [
           {
             "image": "base/andar-ne-0.png",
@@ -298,9 +301,6 @@
             ]
           }
         ],
-        "sw": {
-          "mirror": "se"
-        },
         "nw": {
           "mirror": "ne"
         }
@@ -708,12 +708,12 @@
       "lag": 1,
       "anchor": {
         "se": [
-          25,
-          8
+          23,
+          19
         ],
         "ne": [
-          15,
-          21
+          23,
+          17
         ]
       }
     },
@@ -721,17 +721,17 @@
       "kind": "torso",
       "slot": "alcas",
       "images": {
-        "se": "camadas/alcas-mochila-se.png",
-        "ne": "camadas/alcas-mochila-ne.png"
+        "ne": "camadas/alcas-mochila-ne.png",
+        "se": "camadas/alcas-mochila-se.png"
       },
       "anchor": {
-        "se": [
-          9,
-          6
-        ],
         "ne": [
-          15,
-          22
+          20,
+          16
+        ],
+        "se": [
+          3,
+          12
         ]
       }
     }

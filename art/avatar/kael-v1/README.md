@@ -1,3 +1,19 @@
+## Encaixes manuais do usuário · 23/10/2026
+
+O projeto recebido `kael-ajuste-manual-da-alca-frontal.avatarstudio (1).json` foi integrado integralmente, com uma cópia original em `source/kael-ajuste-manual-2026-10-23.avatarstudio.json`. Não houve redesenho ou mudança dos 52 quadros. Os pontos da bolsa são SE (46,38) e NE (46,34); os das alças são SE (6,23) e NE (39,31), na escala de autoria. A alça frontal volta a existir com o encaixe escolhido pelo usuário. A exportação mantém a conversão normal 2:1 para o runtime. Hash e proveniência estão em `ajuste-manual-importacao.json`.
+
+O comando `node scripts/extend-kael-avatar.mjs` agora publica o projeto atual, preservando camadas e âncoras manuais. O caminho antigo de reconstrução das peças só roda com a opção explícita `--regenerate-backpack`, que pode sobrescrever encaixes e não deve ser usado na rotina de integração de ajustes humanos.
+
+A auditoria registra uma reprovação de altura da bolsa em cada um dos dois quadros `sentado/ne`: a borda inferior ultrapassa a referência proporcional de cintura em aproximadamente 1,42 px de autoria (menos de 1 px de runtime). As posições do usuário foram mantidas. Cabelo, paleta, pivô dos pés e os outros encaixes passaram; isso não representa aprovação técnica integral dos 52 quadros. A inspeção em movimento e os resultados dos testes são documentados separadamente; não relaxar as asserções para encobrir essa ressalva. Esta integração é local, posterior à remoção experimental registrada abaixo.
+
+Conferência local: 11 de 12 testes específicos passaram; a única reprovação é a regra acima, em `avatar-player.test.mjs`. O teste de importação confirma desenhos e âncoras iguais ao arquivo recebido e a conversão correta do manifesto. A caminhada nas quatro direções foi inspecionada na bancada que usa o renderizador do jogo; evidência em `ajuste-manual-no-jogo.png`. Builds Worker e Pages concluídos. Não houve push ou publicação no Render nesta integração.
+
+## Remoção da alça frontal · 23/10/2026 (histórico, substituído pelo ajuste manual)
+
+A camada de alças deixou de fornecer imagem para SE e seu espelho SW. Ela parecia uma peça deslocada sobre o peito na escala do jogo. A bolsa continua atrás do corpo nas vistas de frente e visível nas costas em NE/NW; as alças posteriores foram preservadas. A mudança vale para todas as ações e cores, pelo projeto portátil e pelo manifesto de runtime, sem alterar roupa ou preferências salvas. O preparador `extend-kael-avatar.mjs` preserva essa decisão nas próximas exportações. Os PNGs frontais sem uso foram retirados da autoria, runtime e Pages.
+
+Verificação: os 11 testes específicos de avatar e os 52 quadros do auditor passaram; a conferência da mochila usa agora a presença real de alças por direção, em vez de presumir que existem. Builds Worker e Pages atualizados. Esta seção registra a alteração local posterior ao deploy bf7a780.
+
 ## Correções da auditoria v3 · 23/10/2026
 
 Estado atual em [CORRECOES-V3.md](CORRECOES-V3.md): desembarques compartilhados, assento mais profundo, casca nativa com cores chapadas, escada redesenhada, rampa de cabelo Preto revisada e bancada com zoom/rolagem e campos em uma coluna. As fontes de caminhada v5 substituem as v4; eliminam os avisos de altura, mas a alternância anatômica ainda precisa de revisão artística. Não considerar a ausência de avisos técnicos uma aprovação final da caminhada. Suíte atual: 442/443, com a reprovação geométrica histórica da sala preservada. Sem deploy.
