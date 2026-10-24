@@ -2,6 +2,8 @@
 
 Referência aprovada pelo usuário em 2026-10-21: Carcará, em `keys/carcara/color-rig/`. Este documento registra a direção aprovada para repetir o processo em outras criaturas. O exemplo foi revisado em prévia local; ainda não representa integração ao jogo.
 
+**Revisão de arte de 24/10/2026:** leia primeiro [Direção de arte — padrão Carcará](DIRECAO-ARTE-CARCARA.md). O Carcará governa também olhos discretos, anatomia de espécie, papel facetado e remendos. Os rigs do lote `basic-color-v1` têm verificação técnica, mas precisam de revisão artística; seus olhos grandes e acabamento polido não definem o estilo aprovado. As regras de animação abaixo continuam válidas.
+
 ## 1. Identidade e acabamento
 
 - Preserve o desenho aprovado, a paleta original, os detalhes de papel e o volume da ilustração. Não reduzir as cores ou substituir a arte por um placeholder procedural para facilitar animação.

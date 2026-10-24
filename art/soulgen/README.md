@@ -2,13 +2,15 @@
 
 ## Diretriz atual aprovada
 
+**Atualização de 24/10/2026:** [Direção de arte baseada no Carcará](DIRECAO-ARTE-CARCARA.md). Olhos pequenos e escuros, bico quando a espécie for ave, papel facetado e remendos artesanais. O lote v1 ficou como histórico da tentativa. A [revisão v2](keys/basic-color-v2/README.md) foi regenerada nessa direção, com conceitos e rigs editáveis para revisão final.
+
 A referência aprovada pelo usuário em 2026-10-21 é o **rig colorido com expressões registradas do Carcará**. Preserve a arte original em cores e detalhes, articule as partes por pivôs fixos e sincronize olhos/sobrancelhas com golpe, dano e vitória. Não converta automaticamente esse modelo em pixel art ou em uma variante monocromática.
 
 - [Diretrizes completas de criação, animação e revisão](DIRETRIZES-RIG-COLORIDO.md)
 - [Modelo de brief para novas criaturas](BRIEF-RIG-COLORIDO.template.json)
 - [Exemplo aprovado e reprodução](keys/carcara/color-rig/README.md)
 - [Prévia independente do Carcará](keys/carcara/preview.html)
-- Briefs pendentes no formato colorido: [Mata verde](briefs/mata-verde.md)
+- Novo lote colorido editável: [Mata verde, Azulão, Raio de sol e Rabbito v2](keys/basic-color-v2/README.md)
 
 O exemplo é a referência do comportamento e do acabamento aprovados. Espécies novas precisam de suas próprias anatomias, cores, fontes, recortes e pivôs; não devem herdar coordenadas do Carcará por cópia.
 

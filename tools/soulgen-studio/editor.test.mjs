@@ -6,6 +6,7 @@ import {parseHTML} from 'linkedom';
 import * as model from './model.mjs';
 import * as workflow from './workflow.mjs';
 import {blankProject,createCarcara} from './carcara.mjs';
+import {BASIC_CREATURES} from './basics.mjs';
 
 async function editor(){
  const p=blankProject();p.assets.art={src:'data:image/png;base64,AAAA',width:4,height:4};p.parts=[{id:'body',name:'Corpo',asset:'art',source:[0,0,4,4],rect:[20,20,30,30],pivot:[35,35],z:0,parent:null,visible:true}];
@@ -14,7 +15,7 @@ async function editor(){
  const contexts=new WeakMap();window.HTMLCanvasElement.prototype.getContext=function(){if(!contexts.has(this)){const noop=()=>{};contexts.set(this,{canvas:this,clearRect:noop,save:noop,restore:noop,translate:noop,scale:noop,transform:noop,drawImage:noop,strokeRect:noop,setLineDash:noop,beginPath:noop,arc:noop,fill:noop,moveTo:noop,lineTo:noop,stroke:noop,getImageData:()=>({data:new Uint8ClampedArray(64)})});}return contexts.get(this);};
  for(const id of ['viewport','stage','source','timelineTrack'])document.getElementById(id).getBoundingClientRect=()=>({width:640,height:400,left:0,top:0});
  for(const dialog of document.querySelectorAll('dialog')){dialog.showModal=()=>{dialog.open=true;dialog.setAttribute('open','');};dialog.close=()=>{dialog.open=false;dialog.removeAttribute('open');dialog.onclose?.();};}
- const listeners=new Map(),context=vm.createContext({...model,...workflow,blankProject,createCarcara,createEremor:async()=>({...model.clone(p),name:"Eremor · Elo das Ruínas"}),document,console,URL,Blob,FileReader:class{},Image:class{width=4;height=4;naturalWidth=4;naturalHeight=4;async decode(){}},localStorage:{getItem(key){return key==='soulgen-studio-project-v1'?JSON.stringify(p):null;},setItem(){}},requestAnimationFrame(){},setTimeout(){return 1;},clearTimeout(){},addEventListener(name,fn){listeners.set(name,fn);},confirm(){throw Error('Unexpected blocking confirmation');},location:{reload(){}}});
+ const listeners=new Map(),context=vm.createContext({...model,...workflow,blankProject,createCarcara,BASIC_CREATURES,URLSearchParams,createBasic:async id=>({...model.clone(p),name:BASIC_CREATURES[id],creatureId:id}),createEremor:async()=>({...model.clone(p),name:"Eremor · Elo das Ruínas"}),document,console,URL,Blob,FileReader:class{},Image:class{width=4;height=4;naturalWidth=4;naturalHeight=4;async decode(){}},localStorage:{getItem(key){return key==='soulgen-studio-project-v1'?JSON.stringify(p):null;},setItem(){}},requestAnimationFrame(){},setTimeout(){return 1;},clearTimeout(){},addEventListener(name,fn){listeners.set(name,fn);},confirm(){throw Error('Unexpected blocking confirmation');},location:{reload(){}}});
  let source=fs.readFileSync(new URL('./studio.mjs',import.meta.url),'utf8').replace(/^import .*;\r?\n/gm,'');
  const api=await vm.runInContext('(async()=>{'+source+';return {project:()=>project,pose:()=>poseNow(),isDraft:()=>!!draft};})()',context);
  return {document,api,listeners,$:id=>document.getElementById(id)};

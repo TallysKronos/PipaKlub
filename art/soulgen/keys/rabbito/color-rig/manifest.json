@@ -1,0 +1,387 @@
+{
+  "schema": "soulgen-color-cutout-delivery-v1",
+  "id": "rabbito",
+  "name": "Rabbito",
+  "status": "ready-for-art-review",
+  "tool": "image_gen.imagegen",
+  "source": "source.png",
+  "reference": "assets/story/kael-birthday-v1/rabbito.png",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "alpha": "RGBA; transparência real",
+  "filter": "Canvas smoothing high; fonte sem redução prévia",
+  "parts": [
+    {
+      "id": "tail",
+      "name": "Rabiola",
+      "asset": "tail",
+      "source": [
+        0,
+        0,
+        353,
+        203
+      ],
+      "rect": [
+        33,
+        116,
+        47,
+        27
+      ],
+      "pivot": [
+        77,
+        127
+      ],
+      "z": 0,
+      "parent": "body",
+      "lag": 0.1,
+      "visible": true
+    },
+    {
+      "id": "earFar",
+      "name": "Orelha distante",
+      "asset": "earFar",
+      "source": [
+        0,
+        0,
+        194,
+        436
+      ],
+      "rect": [
+        94,
+        9,
+        28,
+        70
+      ],
+      "pivot": [
+        108,
+        76
+      ],
+      "z": 1,
+      "parent": "head",
+      "lag": 0.03,
+      "visible": true
+    },
+    {
+      "id": "earNear",
+      "name": "Orelha próxima",
+      "asset": "earNear",
+      "source": [
+        0,
+        0,
+        357,
+        427
+      ],
+      "rect": [
+        45,
+        10,
+        55,
+        66
+      ],
+      "pivot": [
+        91,
+        73
+      ],
+      "z": 2,
+      "parent": "head",
+      "lag": 0.04,
+      "visible": true
+    },
+    {
+      "id": "armFar",
+      "name": "Braço distante",
+      "asset": "armFar",
+      "source": [
+        0,
+        0,
+        134,
+        149
+      ],
+      "rect": [
+        100,
+        104,
+        18,
+        24
+      ],
+      "pivot": [
+        106,
+        109
+      ],
+      "z": 3,
+      "parent": "body",
+      "lag": 0.02,
+      "visible": true
+    },
+    {
+      "id": "body",
+      "name": "Corpo de papel",
+      "asset": "body",
+      "source": [
+        0,
+        0,
+        289,
+        254
+      ],
+      "rect": [
+        62,
+        99,
+        50,
+        44
+      ],
+      "pivot": [
+        86,
+        108
+      ],
+      "z": 4,
+      "parent": null,
+      "lag": 0,
+      "visible": true
+    },
+    {
+      "id": "head",
+      "name": "Cabeça e expressões",
+      "asset": "head",
+      "source": [
+        0,
+        0,
+        306,
+        254
+      ],
+      "rect": [
+        54,
+        63,
+        66,
+        55
+      ],
+      "pivot": [
+        87,
+        108
+      ],
+      "z": 5,
+      "parent": null,
+      "lag": 0,
+      "visible": true,
+      "faces": {
+        "fierce": {
+          "asset": "fierce",
+          "source": [
+            0,
+            0,
+            306,
+            254
+          ]
+        },
+        "hurt": {
+          "asset": "hurt",
+          "source": [
+            0,
+            0,
+            306,
+            254
+          ]
+        },
+        "happy": {
+          "asset": "happy",
+          "source": [
+            0,
+            0,
+            306,
+            254
+          ]
+        }
+      },
+      "faceWindows": [
+        [
+          113,
+          86,
+          169,
+          135
+        ]
+      ]
+    },
+    {
+      "id": "armNear",
+      "name": "Braço próximo",
+      "asset": "armNear",
+      "source": [
+        0,
+        0,
+        153,
+        150
+      ],
+      "rect": [
+        61,
+        108,
+        20,
+        23
+      ],
+      "pivot": [
+        68,
+        112
+      ],
+      "z": 6,
+      "parent": "body",
+      "lag": 0.02,
+      "visible": true
+    }
+  ],
+  "anatomy": {
+    "version": 1,
+    "ratios": [
+      {
+        "part": "head",
+        "relativeTo": "body",
+        "min": 1.2,
+        "max": 1.4,
+        "label": "Cabeça / torso"
+      },
+      {
+        "part": "earNear",
+        "relativeTo": "head",
+        "min": 0.75,
+        "max": 0.9,
+        "label": "Vela da orelha / cabeça"
+      }
+    ],
+    "behind": [
+      {
+        "part": "tail",
+        "other": "body"
+      },
+      {
+        "part": "earNear",
+        "other": "head"
+      },
+      {
+        "part": "earFar",
+        "other": "head"
+      },
+      {
+        "part": "armFar",
+        "other": "body"
+      }
+    ],
+    "joints": [
+      {
+        "part": "earNear",
+        "parent": "head",
+        "anchor": [
+          0.84,
+          0.96
+        ],
+        "socket": [
+          0.5606060606060606,
+          0.18181818181818182
+        ],
+        "maxGap": 3.5
+      },
+      {
+        "part": "earFar",
+        "parent": "head",
+        "anchor": [
+          0.5,
+          0.96
+        ],
+        "socket": [
+          0.8181818181818182,
+          0.23636363636363636
+        ],
+        "maxGap": 3.5
+      },
+      {
+        "part": "armNear",
+        "parent": "body",
+        "anchor": [
+          0.35,
+          0.17
+        ],
+        "socket": [
+          0.12,
+          0.29545454545454547
+        ],
+        "maxGap": 3.5
+      },
+      {
+        "part": "armFar",
+        "parent": "body",
+        "anchor": [
+          0.33,
+          0.21
+        ],
+        "socket": [
+          0.88,
+          0.22727272727272727
+        ],
+        "maxGap": 3.5
+      },
+      {
+        "part": "tail",
+        "parent": "body",
+        "anchor": [
+          0.94,
+          0.41
+        ],
+        "socket": [
+          0.3,
+          0.6363636363636364
+        ],
+        "maxGap": 3.5
+      }
+    ]
+  },
+  "clips": {
+    "idle": {
+      "seconds": 3.2,
+      "loop": true,
+      "hitTime": null,
+      "expressions": []
+    },
+    "flight": {
+      "seconds": 1.15,
+      "loop": true,
+      "hitTime": null,
+      "expressions": []
+    },
+    "skill": {
+      "seconds": 1.8,
+      "loop": false,
+      "hitTime": 0.68,
+      "expressions": [
+        {
+          "start": 0.24,
+          "end": 1.25,
+          "face": "fierce"
+        }
+      ]
+    },
+    "hurt": {
+      "seconds": 1.2,
+      "loop": false,
+      "hitTime": null,
+      "expressions": [
+        {
+          "start": 0.03,
+          "end": 0.7,
+          "face": "hurt"
+        }
+      ]
+    },
+    "victory": {
+      "seconds": 2.6,
+      "loop": false,
+      "hitTime": null,
+      "expressions": [
+        {
+          "start": 0.28,
+          "end": 2.05,
+          "face": "happy"
+        }
+      ]
+    }
+  },
+  "prompts": "../../basic-color-v1/prompts.json",
+  "runtime": "Soulgen Studio model.mjs",
+  "gameIntegration": false,
+  "productionPublished": false
+}

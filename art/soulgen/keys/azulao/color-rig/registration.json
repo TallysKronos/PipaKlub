@@ -1,0 +1,95 @@
+{
+  "sourceSize": [
+    1254,
+    1254
+  ],
+  "sourceRects": {
+    "body": [
+      90,
+      82,
+      292,
+      350
+    ],
+    "wingNear": [
+      495,
+      176,
+      250,
+      189
+    ],
+    "wingFar": [
+      896,
+      176,
+      251,
+      190
+    ],
+    "tail": [
+      59,
+      520,
+      290,
+      296
+    ],
+    "fierce": [
+      483,
+      490,
+      291,
+      350
+    ],
+    "hurt": [
+      897,
+      490,
+      291,
+      350
+    ],
+    "happy": [
+      90,
+      873,
+      292,
+      347
+    ]
+  },
+  "facialPart": "body",
+  "faceWindow": [
+    67,
+    126,
+    167,
+    102
+  ],
+  "expressions": {
+    "fierce": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 15513,
+      "sha256": "52281bad27b901fc43e27a57e13fb29b9202f92833f08ce2e64d2118c0fe09e0"
+    },
+    "hurt": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 15742,
+      "sha256": "8becdaa2e0ada9e08d8b7cb6bc4132a800b50ec77bfdc177b02d15019f1abe6d"
+    },
+    "happy": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 15696,
+      "sha256": "f74e0189d4301e7a0cb41ee77709838979fbdee970028dea3ebddf0065189437"
+    }
+  },
+  "sizes": {
+    "body": [
+      292,
+      350
+    ],
+    "wingNear": [
+      250,
+      189
+    ],
+    "wingFar": [
+      251,
+      190
+    ],
+    "tail": [
+      290,
+      296
+    ]
+  }
+}

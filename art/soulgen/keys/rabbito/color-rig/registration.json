@@ -1,0 +1,125 @@
+{
+  "sourceSize": [
+    1254,
+    1254
+  ],
+  "sourceRects": {
+    "body": [
+      33,
+      271,
+      289,
+      254
+    ],
+    "head": [
+      350,
+      283,
+      306,
+      254
+    ],
+    "earNear": [
+      647,
+      86,
+      357,
+      427
+    ],
+    "earFar": [
+      1009,
+      73,
+      194,
+      436
+    ],
+    "armFar": [
+      65,
+      686,
+      134,
+      149
+    ],
+    "armNear": [
+      376,
+      685,
+      153,
+      150
+    ],
+    "tail": [
+      617,
+      650,
+      353,
+      203
+    ],
+    "fierce": [
+      29,
+      949,
+      295,
+      240
+    ],
+    "hurt": [
+      341,
+      950,
+      291,
+      237
+    ],
+    "happy": [
+      622,
+      947,
+      318,
+      242
+    ]
+  },
+  "facialPart": "head",
+  "faceWindow": [
+    113,
+    86,
+    169,
+    135
+  ],
+  "expressions": {
+    "fierce": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 20844,
+      "sha256": "4c1cfe79ac797ed3a65da18fc63ac7c1cea2d31e1a266f5403a1c39bef580f34"
+    },
+    "hurt": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 20981,
+      "sha256": "4f941c82f277cfe36e098dd67ea872cdc1b599a8f8a4e4a2dca0ba247698cbb8"
+    },
+    "happy": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 20825,
+      "sha256": "554c60f5d1c6477421804b415aaed31e5c9c4c6d5ade8ad7da48e332efd9331d"
+    }
+  },
+  "sizes": {
+    "body": [
+      289,
+      254
+    ],
+    "head": [
+      306,
+      254
+    ],
+    "earNear": [
+      357,
+      427
+    ],
+    "earFar": [
+      194,
+      436
+    ],
+    "armFar": [
+      134,
+      149
+    ],
+    "armNear": [
+      153,
+      150
+    ],
+    "tail": [
+      353,
+      203
+    ]
+  }
+}

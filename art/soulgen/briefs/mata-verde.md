@@ -1,5 +1,7 @@
 # Brief · Mata verde (rig colorido)
 
+**Atualização de 24/10/2026: revisão artística necessária.** Seguir [Direção de arte — padrão Carcará](../DIRECAO-ARTE-CARCARA.md). A tentativa em `keys/mata-verde/color-rig/` tem montagem técnica, mas olhos grandes e acabamento limpo precisam de revisão. A fonte anterior preserva identidade vegetal e paleta; seu rosto e suas proporções não têm prioridade sobre a direção atual. Usar olhos escuros menores, papel facetado e remendos costurados, sem transformar a criatura em ave. O texto abaixo descreve o brief original.
+
 **Status:** pendente · **Formato:** rig colorido em recortes, igual ao Carcará aprovado · **Entrega:** `art/soulgen/keys/mata-verde/` · **Dados:** [`mata-verde.json`](mata-verde.json)
 
 Siga [`DIRETRIZES-RIG-COLORIDO.md`](../DIRETRIZES-RIG-COLORIDO.md) e use o Carcará em `keys/carcara/color-rig/` como exemplo de acabamento, registro facial e prévia. Não copie coordenadas, pivôs ou tempos do Carcará: a anatomia é outra.

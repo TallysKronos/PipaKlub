@@ -1,0 +1,123 @@
+{
+  "schema": "soulgen-user-hierarchy-v1",
+  "source": "user-hierarchy-original.soulgen.json",
+  "sha256": "8e31182f11a5b4e73e0e151467acf97567b52fdbd90883df5aa22b1119eb31dd",
+  "author": "user",
+  "baseArtRevision": 2,
+  "rigRevision": 1,
+  "frame": {
+    "translate": [
+      0,
+      12
+    ],
+    "width": 160,
+    "height": 176
+  },
+  "parts": [
+    {
+      "id": "tail",
+      "parent": "body",
+      "z": 0,
+      "rect": [
+        13,
+        95,
+        65,
+        38.5
+      ],
+      "pivot": [
+        77,
+        127
+      ]
+    },
+    {
+      "id": "earFar",
+      "parent": "head",
+      "z": 1,
+      "rect": [
+        86.29745946636025,
+        -2.1705604493808295,
+        31,
+        74.5
+      ],
+      "pivot": [
+        105.29745946636025,
+        68.82943955061917
+      ]
+    },
+    {
+      "id": "earNear",
+      "parent": "head",
+      "z": 2,
+      "rect": [
+        32.85075960679178,
+        3.957359887654789,
+        53,
+        76
+      ],
+      "pivot": [
+        80.85075960679178,
+        76.95735988765479
+      ]
+    },
+    {
+      "id": "armFar",
+      "parent": "body",
+      "z": 3,
+      "rect": [
+        103,
+        107,
+        16,
+        20
+      ],
+      "pivot": [
+        109.5,
+        109.5
+      ]
+    },
+    {
+      "id": "body",
+      "parent": null,
+      "z": 5,
+      "rect": [
+        65,
+        100,
+        53,
+        46.5
+      ],
+      "pivot": [
+        80,
+        65
+      ]
+    },
+    {
+      "id": "head",
+      "parent": null,
+      "z": 4,
+      "rect": [
+        60.55330014043149,
+        57.87207966296438,
+        60,
+        51
+      ],
+      "pivot": [
+        90.55330014043149,
+        102.87207966296438
+      ]
+    },
+    {
+      "id": "armNear",
+      "parent": "body",
+      "z": 6,
+      "rect": [
+        63,
+        110,
+        23,
+        22
+      ],
+      "pivot": [
+        74.5,
+        112.6
+      ]
+    }
+  ]
+}

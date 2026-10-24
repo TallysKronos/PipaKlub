@@ -5,6 +5,16 @@
   "id": "preencher-id-da-especie",
   "format": "full-color-cutout-rig",
   "guidelines": "art/soulgen/DIRETRIZES-RIG-COLORIDO.md",
+  "artDirection": {
+    "guideline": "art/soulgen/DIRECAO-ARTE-CARCARA.md",
+    "styleReference": "art/soulgen/keys/carcara/source/layers-generated.png",
+    "referenceRoles": "Carcará governa desenho e material; fonte da espécie governa identidade adaptada à direção atual",
+    "eyes": "pequenos, escuros e gráficos; expressão por sobrancelhas e postura",
+    "beak": "obrigatório quando a espécie for ave; desenho próprio de papel dobrado",
+    "patches": "remendos de papel com costura, perspectiva e localização próprias",
+    "reject": ["íris enormes brilhantes", "acabamento plástico ou pelúcia", "ausência de construção de pipa"],
+    "reviewBeforeRig": "comparar pose completa com Carcará na mesma escala antes de recortar"
+  },
   "reference": null,
   "identity": {"species": null, "personality": null, "kiteAnatomy": [], "paletteLock": "preservar arte aprovada"},
   "view": {"angle": null, "facing": null},

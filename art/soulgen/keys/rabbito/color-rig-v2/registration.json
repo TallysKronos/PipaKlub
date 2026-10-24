@@ -1,0 +1,136 @@
+{
+  "sourceSize": [
+    1254,
+    1254
+  ],
+  "sourceRects": {
+    "body": [
+      46,
+      214,
+      356,
+      313
+    ],
+    "head": [
+      401,
+      254,
+      318,
+      270
+    ],
+    "earNear": [
+      672,
+      61,
+      327,
+      471
+    ],
+    "earFar": [
+      1033,
+      50,
+      203,
+      488
+    ],
+    "armFar": [
+      74,
+      630,
+      209,
+      201
+    ],
+    "armNear": [
+      402,
+      646,
+      148,
+      185
+    ],
+    "tail": [
+      635,
+      572,
+      438,
+      259
+    ],
+    "fierce": [
+      31,
+      920,
+      318,
+      268
+    ],
+    "hurt": [
+      445,
+      922,
+      323,
+      266
+    ],
+    "happy": [
+      874,
+      923,
+      319,
+      265
+    ]
+  },
+  "facialPart": "head",
+  "faceWindows": [
+    [
+      127,
+      78,
+      80,
+      98
+    ],
+    [
+      248,
+      76,
+      54,
+      100
+    ]
+  ],
+  "expressions": {
+    "fierce": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "beak_or_nose_identical": true,
+      "changed_pixels": 11730,
+      "sha256": "1b360f9c878745914145ab4f09fd35a7b3f54e2a5347625646abcb01e0bab50f"
+    },
+    "hurt": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "beak_or_nose_identical": true,
+      "changed_pixels": 11832,
+      "sha256": "42297696ac150dfd2b1f920e33dbd857d44b7b90fe91f0f7dbbd196e154a2a50"
+    },
+    "happy": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "beak_or_nose_identical": true,
+      "changed_pixels": 11822,
+      "sha256": "3923bb73b472cb517147ddcbd86385f0a9038080237d0611be67b6be533a1abd"
+    }
+  },
+  "sizes": {
+    "body": [
+      356,
+      313
+    ],
+    "head": [
+      318,
+      270
+    ],
+    "earNear": [
+      327,
+      471
+    ],
+    "earFar": [
+      203,
+      488
+    ],
+    "armFar": [
+      209,
+      201
+    ],
+    "armNear": [
+      148,
+      185
+    ],
+    "tail": [
+      438,
+      259
+    ]
+  }
+}

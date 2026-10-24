@@ -1,0 +1,271 @@
+{
+  "schema": "soulgen-color-cutout-delivery-v1",
+  "id": "azulao",
+  "name": "Azulão",
+  "status": "ready-for-art-review",
+  "tool": "image_gen.imagegen",
+  "source": "source.png",
+  "reference": "assets/creatures/basicos-v2/azulao.png",
+  "dimensions": [
+    1254,
+    1254
+  ],
+  "alpha": "RGBA; transparência real",
+  "filter": "Canvas smoothing high; fonte sem redução prévia",
+  "parts": [
+    {
+      "id": "tail",
+      "name": "Rabiola",
+      "asset": "tail",
+      "source": [
+        0,
+        0,
+        290,
+        296
+      ],
+      "rect": [
+        42,
+        87,
+        42,
+        43
+      ],
+      "pivot": [
+        78,
+        91
+      ],
+      "z": 0,
+      "parent": "body",
+      "lag": 0.1,
+      "visible": true
+    },
+    {
+      "id": "wingFar",
+      "name": "Asa distante",
+      "asset": "wingFar",
+      "source": [
+        0,
+        0,
+        251,
+        190
+      ],
+      "rect": [
+        97,
+        44,
+        42,
+        32
+      ],
+      "pivot": [
+        101,
+        66
+      ],
+      "z": 1,
+      "parent": "body",
+      "lag": 0.04,
+      "visible": true
+    },
+    {
+      "id": "body",
+      "name": "Corpo de papel",
+      "asset": "body",
+      "source": [
+        0,
+        0,
+        292,
+        350
+      ],
+      "rect": [
+        54,
+        26,
+        53,
+        64
+      ],
+      "pivot": [
+        80,
+        65
+      ],
+      "z": 2,
+      "parent": null,
+      "lag": 0,
+      "visible": true,
+      "faces": {
+        "fierce": {
+          "asset": "fierce",
+          "source": [
+            0,
+            0,
+            292,
+            350
+          ]
+        },
+        "hurt": {
+          "asset": "hurt",
+          "source": [
+            0,
+            0,
+            292,
+            350
+          ]
+        },
+        "happy": {
+          "asset": "happy",
+          "source": [
+            0,
+            0,
+            292,
+            350
+          ]
+        }
+      },
+      "faceWindows": [
+        [
+          67,
+          126,
+          167,
+          102
+        ]
+      ]
+    },
+    {
+      "id": "wingNear",
+      "name": "Asa próxima",
+      "asset": "wingNear",
+      "source": [
+        0,
+        0,
+        250,
+        189
+      ],
+      "rect": [
+        23,
+        44,
+        42,
+        32
+      ],
+      "pivot": [
+        61,
+        66
+      ],
+      "z": 3,
+      "parent": "body",
+      "lag": 0,
+      "visible": true
+    }
+  ],
+  "anatomy": {
+    "version": 1,
+    "ratios": [
+      {
+        "part": "wingNear",
+        "relativeTo": "body",
+        "min": 0.7,
+        "max": 1,
+        "label": "Asa / vela central"
+      }
+    ],
+    "behind": [
+      {
+        "part": "tail",
+        "other": "body"
+      },
+      {
+        "part": "wingFar",
+        "other": "body"
+      }
+    ],
+    "joints": [
+      {
+        "part": "wingNear",
+        "parent": "body",
+        "anchor": [
+          0.9,
+          0.66
+        ],
+        "socket": [
+          0.1320754716981132,
+          0.625
+        ],
+        "maxGap": 3.5
+      },
+      {
+        "part": "wingFar",
+        "parent": "body",
+        "anchor": [
+          0.1,
+          0.66
+        ],
+        "socket": [
+          0.8867924528301887,
+          0.625
+        ],
+        "maxGap": 3.5
+      },
+      {
+        "part": "tail",
+        "parent": "body",
+        "anchor": [
+          0.86,
+          0.09
+        ],
+        "socket": [
+          0.4528301886792453,
+          1
+        ],
+        "maxGap": 3.5
+      }
+    ]
+  },
+  "clips": {
+    "idle": {
+      "seconds": 3.6,
+      "loop": true,
+      "hitTime": null,
+      "expressions": []
+    },
+    "flight": {
+      "seconds": 1.8,
+      "loop": true,
+      "hitTime": null,
+      "expressions": []
+    },
+    "skill": {
+      "seconds": 1.8,
+      "loop": false,
+      "hitTime": 0.68,
+      "expressions": [
+        {
+          "start": 0.24,
+          "end": 1.25,
+          "face": "fierce"
+        }
+      ]
+    },
+    "hurt": {
+      "seconds": 1.2,
+      "loop": false,
+      "hitTime": null,
+      "expressions": [
+        {
+          "start": 0.03,
+          "end": 0.7,
+          "face": "hurt"
+        }
+      ]
+    },
+    "victory": {
+      "seconds": 2.6,
+      "loop": false,
+      "hitTime": null,
+      "expressions": [
+        {
+          "start": 0.28,
+          "end": 2.05,
+          "face": "happy"
+        }
+      ]
+    }
+  },
+  "prompts": "../../basic-color-v1/prompts.json",
+  "runtime": "Soulgen Studio model.mjs",
+  "gameIntegration": false,
+  "productionPublished": false
+}
