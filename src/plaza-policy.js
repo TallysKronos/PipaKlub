@@ -14,6 +14,7 @@ export function createPlazaPolicy(){
  function mission(phase,next,trail,context={}){
   if(phase==='arrival'||phase==='choose')return {title:'Seu primeiro parceiro',body:'Visite a casa do Sr. Assis e escolha quem vai voar com você.',action:'professor'};
   if(phase==='practice')return {title:'Seu primeiro voo',body:'Visite a casa do Sr. Assis para aprender a rebicar com ele e Nozinho.',action:'professor'};
+  if(phase==='city'&&context.starterTutorial?.required)return {title:context.starterTutorial.modelId?'Monte sua primeira pipa':'Escolha sua rabiola',body:'Converse com o Sr. Assis para concluir seu primeiro elo na Oficina das Almas.',action:'professor'};
   if(phase==='city')return {title:'Um mundo para explorar',body:'Visite a cidade e conheça seu primeiro bairro.',action:'city'};
   if(context.demo&&context.complete)return {title:'Demo concluída',body:'Você conquistou o Morro do Sol! Conheça seu novo parceiro, revisite o bairro ou jogue online com seus amigos.',action:'demo',stage:null};
   if(context.roadCleared)return {title:context.roadFinal?'Bairro conquistado':'Caminho liberado',body:context.roadFinal?'Você venceu o campeão. Siga pela saída para explorar a cidade.':'A vitória foi confirmada. Suba e siga para a próxima área do Morro.',action:'worldAdvance',stage:null};

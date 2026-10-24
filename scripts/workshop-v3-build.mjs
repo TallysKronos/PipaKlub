@@ -3,7 +3,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {hudAssets,hudSpriteCSS} from './hud-assets.mjs';
 const root=fileURLToPath(new URL('../',import.meta.url));
-export const workshopFiles=['index.html','game.mjs','model.mjs','protocol.mjs','live-client.mjs','look.mjs','hand.mjs','style.css','mesa.jpg','rabbito.png','assis.png'];
+export const workshopFiles=['index.html','game.mjs','model.mjs','protocol.mjs','live-client.mjs','look.mjs','hand.mjs','style.css','atelier-v1.png','mesa.jpg','rabbito.png','assis.png'];
 export const workshopMime={'.html':'text/html; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.jpg':'image/jpeg','.png':'image/png'};
 export function workshopFile(name){
  if(workshopFiles.includes(name))return fs.readFileSync(path.join(root,'tools/oficina-v3',name));

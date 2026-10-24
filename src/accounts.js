@@ -171,12 +171,13 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
     return json({opening,...(opening.partner_id?{account:await accountFor(who)}:{}),...(opening.step===14?{journey:await rpc('player_journey',{p_action:'read',p_model:null,p_lesson:null},who.access)}:{})},200,who.setCookies);
    }
    if(action==='journey'){
-    if(!['read','welcome','choose','advance','skip','finish'].includes(b.action))throw new AccountError('Primeiro voo: ação inválida.');
+    if(!['read','welcome','choose','advance','skip','finish','starter-choose','starter-finish'].includes(b.action))throw new AccountError('Primeiro voo: ação inválida.');
     if(b.modelId!=null&&!['basica','mata','azulao','raio'].includes(b.modelId))throw new AccountError('Primeiro voo: parceiro inválido.');
     if(b.lesson!=null&&(!Number.isInteger(b.lesson)||b.lesson<0||b.lesson>5))throw new AccountError('Primeiro voo: etapa inválida.');
     checkPending(who.id);
-    const journey=await rpc('player_journey',{p_action:b.action,p_model:b.modelId??null,p_lesson:b.lesson??null},who.access);
-    return json({journey,...(b.action==='choose'?{account:await accountFor(who)}:{})},200,who.setCookies);
+    if(b.action.startsWith('starter-'))await rpc('player_starter_tutorial',{p_action:b.action==='starter-choose'?'choose':'finish',p_model:b.modelId??null},who.access);
+    const journey=await rpc('player_journey',{p_action:b.action.startsWith('starter-')?'read':b.action,p_model:b.modelId??null,p_lesson:b.lesson??null},who.access);
+    return json({journey,...(['choose','starter-finish'].includes(b.action)?{account:await accountFor(who)}:{})},200,who.setCookies);
    }
    if(action==='daily')return json({daily:await rpc('player_daily',{},who.access)},200,who.setCookies);
    if(action==='lines'){

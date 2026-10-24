@@ -16,7 +16,7 @@ const cutAt=(r,p,dt)=>command(['cut',p.x,p.y,dt],()=>corecutAt(r,p,dt));
 const holdSoul=r=>command(['soul'],()=>coreholdSoul(r));
 const releaseSoul=r=>command(['soul-up'],()=>corereleaseSoul(r));
 const restock=r=>command(['restock'],()=>corerestock(r));
-function reset(saved=null){if(live&&!saved?.step)return;run=saved?.step?saved:createRun($('kind').value,{artesao:$('artesao').checked,seed:crypto.getRandomValues(new Uint32Array(1))[0]});ui={pointer:{x:CENTER.x,y:CENTER.y},down:false,drag:null,cutLast:null,tears:[],pops:[],idle:0,t:0,anim:0,control:0,keys:{},seen:{},knob:false,grip:0};$('result').hidden=true;$('blocked').hidden=true;hud();tip();}
+function reset(saved=null){if(live&&!saved?.step)return;run=saved?.step?saved:createRun($('kind').value,{artesao:$('artesao').checked,seed:crypto.getRandomValues(new Uint32Array(1))[0]});ui={pointer:{x:CENTER.x,y:CENTER.y},down:false,drag:null,cutLast:null,tears:[],pops:[],idle:0,t:0,anim:0,control:0,keys:{},seen:{},knob:false,grip:0};$('result').hidden=true;document.body.classList.remove('has-result');delete document.body.dataset.outcome;$('resultContinue').hidden=true;$('blocked').hidden=true;hud();tip();}
 // ---------- HUD ----------
 function hud(){
  const c=CLASSES[run.kind];let count='';
@@ -123,12 +123,18 @@ function ghost(){if(ui.idle<4||ui.down||run.blocked||run.outcome||!$('tip').hidd
 function tool(){if(run.outcome||run.blocked)return;g.save();g.translate(ui.pointer.x,ui.pointer.y);drawCraftTool(g,STAGES[run.stage]?.tool,ui.down,ui.t,ui.grip);g.restore();}
 
 function pops(dt){g.textAlign='center';for(const p of ui.pops){p.life-=dt;p.y-=24*dt;g.globalAlpha=Math.max(0,Math.min(1,p.life*1.6));g.font='800 18px system-ui';g.lineWidth=4;g.strokeStyle='#0b1f20';g.strokeText(p.text,p.x,p.y);g.fillStyle=p.color;g.fillText(p.text,p.x,p.y);}g.globalAlpha=1;g.textAlign='start';ui.pops=ui.pops.filter(p=>p.life>0);}
-function finish(){if(live&&!run.outcome?.confirmed){$('result').hidden=false;$('resultTitle').textContent='Confirmando nascimento…';$('resultArt').replaceChildren();$('resultStars').textContent='';$('resultMsg').textContent='Aguardando o servidor. Seu parceiro só será concedido uma vez.';$('resultList').replaceChildren();$('again').hidden=true;void live.flush();return;}const o=run.outcome;$('result').hidden=false;const names=['Armação','Nós','Papel','Voo'];
+function finish(){document.body.classList.add('has-result');if(live&&!run.outcome?.confirmed){$('result').hidden=false;$('resultTitle').textContent='Confirmando nascimento…';$('resultArt').replaceChildren();$('resultStars').textContent='';$('resultMsg').textContent='Aguardando o servidor. Seu parceiro só será concedido uma vez.';$('resultList').replaceChildren();$('resultBonus').hidden=true;$('resultContinue').hidden=true;$('resultSaved').textContent='';$('again').hidden=true;void live.flush();return;}const o=run.outcome;$('result').hidden=false;const names=['Armação','Nós','Papel','Voo'];
  $('resultTitle').textContent=o.type==='broken'?'O elo partiu':o.variant?(resultJob?.name||'Rabbito')+' · variante rara!':(resultJob?.name||'Rabbito')+' nasceu!';
  $('resultArt').innerHTML=o.type==='broken'?'<p style="font-size:56px;margin:0">💔</p>':`<img src="rabbito.png" alt="Rabbito" class="${o.variant?'variant':''}">`;
- if(resultJob?.creature&&o.type!=='broken'){const {image,frame}=resultJob.creature,portrait=document.createElement('canvas');portrait.width=200;portrait.height=150;portrait.style.width='200px';portrait.style.height='150px';const source=new Image();source.onload=()=>{const ctx=portrait.getContext('2d');if(o.variant)ctx.filter='hue-rotate(160deg) saturate(1.5)';const scale=Math.min(200/frame.w,150/frame.h);ctx.drawImage(source,frame.x,frame.y,frame.w,frame.h,(200-frame.w*scale)/2,(150-frame.h*scale)/2,frame.w*scale,frame.h*scale);};source.src=image;portrait.setAttribute('aria-label',resultJob.name);$('resultArt').replaceChildren(portrait);}
- $('resultStars').textContent='★'.repeat(o.stars)+'☆'.repeat(5-o.stars);$('resultMsg').textContent=o.msg+(o.craftBonus?` Montagem: ${o.craftBonus.seconds.toFixed(1)} s · ${o.craftBonus.errors} erro(s).`:'');
- $('resultList').innerHTML=names.map((n,i)=>`<li><span>${n}</span><b>${gradeLabel(run.grades[i]||0)}</b></li>`).join('')+`<li><span>Materiais perdidos</span><b>${run.log.length?run.log.map(l=>l.lost==='linha'?'1 linha':'1 folha').join(' · '):'nenhum'}</b></li><li><span>Despertar</span><b>${o.type==='broken'?'Excesso':o.shine?'Elo firme':'Seguro'}</b></li>`+(o.craftBonus?`<li><span>Montagem · precisão e tempo</span><b>+${o.craftBonus.assemblyPercent}%</b></li><li><span>Elo firme</span><b>+${o.craftBonus.eloPercent}%</b></li><li><span>Bônus de atributos</span><b>+${o.craftBonus.totalPercent}%</b></li>`:'');$('again').hidden=!!live;hud();if(live)parent.postMessage({type:'oficina-v3:saved',jobId,completed:o.type==='born'},location.origin);}
+ if(resultJob?.creature&&o.type!=='broken'){const {image,frame}=resultJob.creature,portrait=document.createElement('canvas');portrait.width=400;portrait.height=300;portrait.style.width='400px';portrait.style.height='300px';const source=new Image();source.onload=()=>{const ctx=portrait.getContext('2d');if(o.variant)ctx.filter='hue-rotate(160deg) saturate(1.5)';const scale=Math.min(400/frame.w,300/frame.h);ctx.drawImage(source,frame.x,frame.y,frame.w,frame.h,(400-frame.w*scale)/2,(300-frame.h*scale)/2,frame.w*scale,frame.h*scale);};source.src=image;portrait.setAttribute('role','img');portrait.setAttribute('aria-label',resultJob.name);$('resultArt').replaceChildren(portrait);}
+ $('resultStars').textContent='★'.repeat(o.stars)+'☆'.repeat(5-o.stars);$('resultStars').setAttribute('aria-label',o.stars+' de 5 estrelas de acabamento');$('resultMsg').textContent=o.msg+(o.craftBonus?` Montagem: ${o.craftBonus.seconds.toFixed(1)} s · ${o.craftBonus.errors} erro(s).`:'');
+ $('resultList').innerHTML=names.map((n,i)=>`<li><span>${n}</span><b>${gradeLabel(run.grades[i]||0)}</b></li>`).join('')+`<li><span>Materiais perdidos</span><b>${run.log.length?run.log.map(l=>l.lost==='linha'?'1 linha':'1 folha').join(' · '):'nenhum'}</b></li><li><span>Despertar</span><b>${o.type==='broken'?'Excesso':o.shine?'Elo firme':'Seguro'}</b></li>`+(o.craftBonus?`<li><span>Montagem · precisão e tempo</span><b>+${o.craftBonus.assemblyPercent}%</b></li><li><span>Elo firme</span><b>+${o.craftBonus.eloPercent}%</b></li><li><span>Bônus de atributos</span><b>+${o.craftBonus.totalPercent}%</b></li>`:'');$('again').hidden=!!live;$('resultContinue').hidden=!live;
+ $('resultBonus').hidden=!o.craftBonus||o.type==='broken';
+ if(o.craftBonus)$('resultBonus').innerHTML=`<strong>+${o.craftBonus.totalPercent.toLocaleString('pt-BR')}%</strong><span>Bônus de atributos<small>Precisão, tempo e força do elo</small></span>`;
+ $('resultSaved').textContent=live?(o.type==='born'?'Seu parceiro já está salvo na coleção.':'A rabiola está preservada. Restaure-a na Oficina para tentar novamente.'):'Bancada de prática · nenhum parceiro será adicionado à conta.';
+ $('resultContinue').querySelector('.button-content').textContent=o.type==='born'?'Continuar aventura':'Voltar à Oficina';
+ document.body.dataset.outcome=o.type;
+ hud();$('resultContinue').hidden?$('again').focus({preventScroll:true}):$('resultContinue').focus({preventScroll:true});if(live)parent.postMessage({type:'oficina-v3:saved',jobId,completed:o.type==='born'},location.origin);}
 function loop(now){const dt=Math.min(.05,(now-last)/1000);last=now;ui.t+=dt;ui.idle+=dt;
  ui.grip+=(Number(ui.down&&ui.drag==='rod')-ui.grip)*(1-Math.exp(-dt*22));
  if(ui.anim>0)ui.anim-=dt;
@@ -145,10 +151,11 @@ function loop(now){const dt=Math.min(.05,(now-last)/1000);last=now;ui.t+=dt;ui.i
  }
  g.clearRect(0,0,960,640);background();
  [drawStage0,drawStage1,drawStage2,drawStage3,drawStage4,drawStage4][run.stage]();ghost();pops(dt);tool();requestAnimationFrame(loop);}
+$('resultContinue').onclick=()=>$('liveExit').click();
 $('restart').onclick=reset;$('again').onclick=reset;$('kind').onchange=reset;$('artesao').onchange=reset;$('restock').onclick=()=>{restock(run);ui.tears=[];hud();};
 installWorkshopLook();reset();requestAnimationFrame(loop);cv.focus();
 if(jobId){
- document.body.classList.add('live-mode');$('kind').disabled=true;$('artesao').disabled=true;$('restart').hidden=true;document.querySelector('.class-picker').hidden=true;document.querySelector('.toggle').hidden=true;$('liveExit').hidden=false;$('liveSave').hidden=false;
+ document.body.classList.add('live-mode');$('liveExit').setAttribute('aria-label','Sair da bancada com o progresso salvo');$('liveExit').title='Sair da bancada';$('kind').disabled=true;$('artesao').disabled=true;$('restart').hidden=true;document.querySelector('.class-picker').hidden=true;document.querySelector('.toggle').hidden=true;$('liveExit').hidden=false;$('liveSave').hidden=false;
  $('restock').querySelector('.button-content').textContent='Receber kit do ateliê';$('blocked').querySelector('p').textContent='O Sr. Assis fornece outro kit de linha e papel gratuitamente nesta versão. A qualidade considera o tempo e os erros da montagem inteira.';
  $('liveSave').onclick=()=>live?.flush();
  $('liveExit').onclick=async()=>{if(!live){location.href='/';return;}await live.flush();if(live.dirty&&!live.failed){$('saveStatus').textContent='Aguarde o salvamento ou use Salvar novamente antes de sair.';return;}if(parent!==window)parent.postMessage({type:'oficina-v3:close',jobId},location.origin);else location.href='/';};
@@ -156,3 +163,8 @@ if(jobId){
 }
 // Depuração e testes de navegador: leitura do estado atual.
 window.oficina={get run(){return run;}};
+
+// The exit uses the same save/close path as the visible control.
+addEventListener('keydown',event=>{
+ if(event.key==='Escape'&&live){event.preventDefault();$('liveExit').click();}
+});

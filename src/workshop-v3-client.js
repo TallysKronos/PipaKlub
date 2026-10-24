@@ -1,5 +1,5 @@
 // The authenticated game opens the same approved canvas; the server owns its state and rewards.
-let workshopV3Frame=null,workshopV3Closing=false;
+let workshopV3Frame=null,workshopV3Closing=false,starterBirthSave=null;
 const legacyWorkshopRender=renderWorkshop;
 renderWorkshop=function(){
  if(workshopV3Closing){showSummonStage('npc');return;}
@@ -12,10 +12,34 @@ renderWorkshop=function(){
 globalThis.addEventListener?.('message',async event=>{
  if(event.origin!==location.origin||event.source!==workshopV3Frame?.contentWindow||event.data?.jobId!==workshopV3Frame.dataset.job)return;
  if(event.data.type==='oficina-v3:saved'){
-  try{const d=await accountRequest('session');playerAccount=d.account;reflectAccount();}catch{toast('Parceiro salvo. Reabra a coleção para atualizar.');}
+  const owner=journeyOwner,epoch=journeyEpoch,jobId=event.data.jobId;
+  starterBirthSave=(async()=>{
+   try{
+    const d=await accountRequest('session');if(owner!==journeyOwner||epoch!==journeyEpoch)return false;
+    playerAccount=d.account;reflectAccount();
+    if(event.data.completed&&journey?.starterTutorial?.required&&journey.starterTutorial.jobId===jobId){
+     return !!await saveJourney('starter-finish');
+    }
+   }catch{toast('Parceiro salvo. Reabra a coleção para atualizar.');}
+   return false;
+  })();
  }
  if(event.data.type==='oficina-v3:close'){
-  workshopV3Frame.remove();workshopV3Frame=null;accountModal.inert=false;workshopV3Closing=true;try{await loadSummonTails();}finally{workshopV3Closing=false;summonRitual=null;showSummonStage('npc');}
+  const owner=journeyOwner,epoch=journeyEpoch,wasTutorial=journey?.starterTutorial?.jobId===event.data.jobId;
+  workshopV3Frame.remove();workshopV3Frame=null;accountModal.inert=false;workshopV3Closing=true;
+  try{
+   if(starterBirthSave)await starterBirthSave;
+   if(owner!==journeyOwner||epoch!==journeyEpoch)return;
+   // The persisted birth also reconciles if the result message was interrupted.
+   if(wasTutorial)await saveJourney('read');
+   await loadSummonTails();
+  }finally{
+   starterBirthSave=null;workshopV3Closing=false;
+   if(owner===journeyOwner&&epoch===journeyEpoch){
+    summonRitual=null;showSummonStage('npc');
+    if(wasTutorial){leaveSummoner();closeAccount();showCourtyard();if(journey?.phase==='complete')starterTutorialCompleteDialogue();else renderStarterTutorial();}
+   }
+  }
  }
 });
 const legacyWorkshopCall=workshopCall;

@@ -62,7 +62,30 @@ body.in-opening #commandBar{display:none!important}
 #kaelOpening .opening-naming-scene .opening-name input{width:100%;min-width:0;box-sizing:border-box;font-size:22px;padding:14px;background:#fffaf0}
 #kaelOpening .opening-naming-scene .opening-name button{min-height:52px}
 #kaelOpening #openingNameStatus{font-size:14px;color:#9d342c;margin:12px 0 0;min-height:0}
+/* Correções 7/8: a fixed overlay cannot shrink or shake the scene behind it. */
+#kaelOpening{--opening-dialog-height:210px;display:block;background:#000}
+#kaelOpening[hidden]{display:none}
+#kaelOpening .opening-stage{position:absolute;inset:0;width:100%;height:100%;background:#000!important}
+#kaelOpening .opening-heading{display:none!important}
+#kaelOpening #openingCanvas{position:absolute;inset:0;width:100%;height:100%;object-fit:fill}
+#kaelOpening>.opening-dialog{position:absolute;inset:auto auto 20px 50%;transform:translateX(-50%);box-sizing:border-box;width:min(1080px,94vw);height:var(--opening-dialog-height);min-height:var(--opening-dialog-height);max-height:var(--opening-dialog-height);margin:0!important;padding:14px 22px!important;border:3px solid #816442;border-radius:12px;box-shadow:0 8px 26px #0006;z-index:7;display:grid!important;grid-template-columns:96px minmax(0,1fr)!important;grid-template-rows:24px minmax(0,1fr) 22px 40px!important;column-gap:18px;row-gap:3px;overflow:hidden}
+#kaelOpening>.opening-dialog .pilot-face{grid-column:1!important;grid-row:1/-1!important;width:88px;height:88px;align-self:center;margin:0}
+#kaelOpening #openingSpeaker{grid-column:2!important;grid-row:1!important;max-width:100%;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#kaelOpening #openingSpeech{grid-column:2!important;grid-row:2!important;overflow:auto;min-height:0!important;max-height:100%;margin:0!important;font-size:17px!important;line-height:1.4!important;overscroll-behavior:contain}
+#kaelOpening #openingStatus{grid-column:2!important;grid-row:3!important;min-height:0!important;height:22px;overflow:auto;margin:0;font-size:12px;line-height:20px}
+#kaelOpening #openingPlaces{display:none!important}
+#kaelOpening>.opening-dialog .opening-actions{grid-column:2!important;grid-row:4!important;min-width:0;height:40px;display:flex!important;flex-wrap:nowrap!important;gap:12px!important;margin:0;align-items:center}
+#kaelOpening #openingHint{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px}
+#kaelOpening #openingNext{flex:none;max-width:55%;white-space:nowrap}
+#kaelOpening .opening-help{position:absolute!important;top:auto!important;bottom:calc(var(--opening-dialog-height) + 56px)!important;right:24px;left:auto;width:auto!important;max-width:220px;height:44px!important;min-height:44px!important;max-height:44px!important;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;z-index:8}
+#kaelOpening .opening-help[hidden]{display:none!important}
+#kaelOpening .opening-broadcast-controls{bottom:calc(var(--opening-dialog-height) + 56px)}
 @media(max-width:700px){
+ #kaelOpening{--opening-dialog-height:230px}
+ #kaelOpening>.opening-dialog{bottom:12px;width:96vw;padding:12px!important;grid-template-columns:58px minmax(0,1fr)!important;column-gap:10px}
+ #kaelOpening>.opening-dialog .pilot-face{width:52px;height:52px;border-width:2px}
+ #kaelOpening #openingSpeech{font-size:14px!important}
+ #kaelOpening #openingHint{font-size:10px}
  #kaelOpening .opening-naming-scene{grid-template-columns:1fr}
  #kaelOpening .opening-birth-art{padding:28px 24px 12px}
  #kaelOpening .opening-birth-art canvas{width:min(62vw,260px)}
@@ -70,9 +93,10 @@ body.in-opening #commandBar{display:none!important}
  #kaelOpening .opening-birth-record{margin:8px 20px 28px;padding:24px}
  #kaelOpening .opening-birth-record h2{font-size:36px;margin:10px 0}
  #kaelOpening #openingBirthStats{margin:14px 0 20px;gap:10px}
- #kaelOpening .opening-broadcast-controls{bottom:14px;gap:8px}
+ #kaelOpening .opening-broadcast-controls{bottom:calc(var(--opening-dialog-height) + 40px);gap:8px}
  #kaelOpening .opening-broadcast-controls button{padding:9px 12px;font-size:12px;white-space:normal}
  #kaelOpening .opening-bench-card h2{font-size:19px;top:10px}
  #kaelOpening .opening-bench-card>p:first-of-type{top:48px;font-size:13px}
 }
+@media(max-height:540px){#kaelOpening{--opening-dialog-height:142px}#kaelOpening>.opening-dialog{bottom:8px;padding:8px 16px!important;grid-template-rows:20px minmax(0,1fr) 16px 32px!important}#kaelOpening #openingSpeech{font-size:13px!important}#kaelOpening>.opening-dialog .pilot-face{width:64px;height:64px}#kaelOpening #openingStatus{height:16px;font-size:10px;line-height:16px}}
 

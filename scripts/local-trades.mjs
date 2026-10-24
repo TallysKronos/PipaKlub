@@ -41,6 +41,7 @@ if(!(await postgres.query("select to_regclass('public.wild_runs') installed")).r
 if(!(await postgres.query("select to_regclass('public.pipamon_class_nodes') installed")).rows[0].installed)await postgres.exec(fs.readFileSync('supabase/migrations/023_class_constellations.sql','utf8'));
 if(!(await postgres.query("select to_regclass('public.workshop_jobs') installed")).rows[0].installed)await postgres.exec(fs.readFileSync('supabase/migrations/024_soul_workshop.sql','utf8'));
 if(!(await postgres.query("select to_regclass('public.workshop_v3_runs') installed")).rows[0].installed){await postgres.exec(fs.readFileSync('supabase/migrations/025_workshop_reveal.sql','utf8'));await postgres.exec(fs.readFileSync('supabase/migrations/026_workshop_v3.sql','utf8'));}
+if(!(await postgres.query("select to_regclass('public.starter_tutorials') installed")).rows[0].installed)await postgres.exec(fs.readFileSync('supabase/migrations/027_starter_tutorial.sql','utf8'));
 const players={kael:{id:'55555555-5555-4555-8555-555555555555',nickname:'Kael Local'},davi:{id:'44444444-4444-4444-8444-444444444444',nickname:'Kael Local'},ana:{id:'11111111-1111-4111-8111-111111111111',nickname:'Ana Local'},beto:{id:'22222222-2222-4222-8222-222222222222',nickname:'Beto Local'},cora:{id:'33333333-3333-4333-8333-333333333333',nickname:'Cora Local'}};
 for(const p of Object.values(players))await postgres.query('insert into auth.users values($1,$2) on conflict(id) do nothing',[p.id,{nickname:p.nickname}]);
 // Explicit workshop-only fixture: no changes to ordinary opening tests or production.
@@ -58,7 +59,7 @@ await postgres.query("insert into public.player_pipamon_sightings(owner_id,model
 // Demo sightings include two creatures without a tail, to exercise locked cards.
 for(const p of [players.ana,players.beto])await postgres.query("insert into public.player_pipamon_sightings(owner_id,model_id) select $1,id from public.kite_models where id in ('marulume','alvaneve','hiponilo') on conflict do nothing",[p.id]);
 if(!(await postgres.query("select to_regclass('public.pipamon_class_nodes') installed")).rows[0].installed)await postgres.exec(fs.readFileSync('supabase/migrations/023_class_constellations.sql','utf8'));
-const operations={player_workshop:['p_action','p_tail','p_job','p_target','p_stage','p_payload','p_request'],player_classes:['p_kite','p_node','p_version'],player_abandon_wild:['p_match'],player_wild:['p_match'],player_specialization:['p_kite','p_class','p_upgrade','p_version'],player_campaign:['p_action','p_revision','p_checkpoint','p_keep','p_seen','p_confirmation'],player_opening:['p_action','p_step','p_name'],player_journey:['p_action','p_model','p_lesson'],get_player_trail_result:['p_match'],player_daily:[],player_lines:['p_action','p_style','p_operation'],player_trails:['p_action','p_operation','p_payload'],get_player_account:[],get_player_recent_matches:[],get_player_match_result:['p_match'],get_kite_history:['p_kite'],equip_player_kite:['p_kite'],update_player_name:['p_nickname'],player_trade:['p_action','p_code','p_kite','p_revision'],player_summon:['p_action','p_tail','p_ritual','p_path','p_request','p_session','p_target'],record_player_sighting:['p_model']};
+const operations={player_starter_tutorial:['p_action','p_model'],player_workshop:['p_action','p_tail','p_job','p_target','p_stage','p_payload','p_request'],player_classes:['p_kite','p_node','p_version'],player_abandon_wild:['p_match'],player_wild:['p_match'],player_specialization:['p_kite','p_class','p_upgrade','p_version'],player_campaign:['p_action','p_revision','p_checkpoint','p_keep','p_seen','p_confirmation'],player_opening:['p_action','p_step','p_name'],player_journey:['p_action','p_model','p_lesson'],get_player_trail_result:['p_match'],player_daily:[],player_lines:['p_action','p_style','p_operation'],player_trails:['p_action','p_operation','p_payload'],get_player_account:[],get_player_recent_matches:[],get_player_match_result:['p_match'],get_kite_history:['p_kite'],equip_player_kite:['p_kite'],update_player_name:['p_nickname'],player_trade:['p_action','p_code','p_kite','p_revision'],player_summon:['p_action','p_tail','p_ritual','p_path','p_request','p_session','p_target'],record_player_sighting:['p_model']};
 const serverOperations={server_workshop_v3:['p_user','p_action','p_job','p_tail','p_target','p_revision','p_request','p_state','p_result'],register_wild_run:['p_user','p_match','p_zone'],settle_wild_run:['p_user','p_match','p_outcome'],register_trail_run:['p_user','p_match','p_stage'],settle_trail_run:['p_user','p_match','p_stage','p_won','p_rounds_lost'],settle_daily_challenge:['p_user','p_match','p_day'],reserve_player_match:['p_user','p_match','p_code','p_mode'],release_player_match:['p_user','p_match'],settle_player_cut:['p_event','p_match','p_winner','p_loser','p_kite'],finish_player_match:['p_match']};
 async function rpc(name,body,uid){
  const args=Object.hasOwn(uid?operations:serverOperations,name)&&(uid?operations:serverOperations)[name];
@@ -70,6 +71,12 @@ async function rpc(name,body,uid){
  });
 }
 // Demo-only wallet seed: same operation on every restart, never used by production.
+// Optional review entry for the owner: Davi starts at the birth; Kael stays at the beginning.
+// Does not rewind either player's existing progress, and never runs in production dev.mjs.
+if(process.env.LOCAL_OPENING_REVIEW==='1'){
+ await rpc('player_opening',{p_action:'read',p_step:null,p_name:null},players.davi.id);
+ await postgres.query("update public.player_openings set step=9,tail_state='attached' where owner_id=$1 and step=0 and partner_id is null",[players.davi.id]);
+}
 await rpc('player_trails',{p_action:'import',p_operation:'99999999-0000-4000-8000-000000000010',p_payload:{coins:200}},players.ana.id);
 // Isolated park audit fixture; opt-in only, never loaded by production dev.mjs.
 if(process.env.LOCAL_PARK_FIXTURE==='1'){

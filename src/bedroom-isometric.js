@@ -36,9 +36,9 @@ export function createBedroomIsometricRenderer(scene,images,pack,model,createCan
  const mapId=home?{porta:'exit',escada:'upstairs',sofa:'seat'}:{mesa:'desk',tv:'tv',quadros:'drawings','abertura-escada':'stairs'};
  const actionFor=id=>home?{hotspot:id,action:id==='seat'?'avatarSeat':id==='mother'?'pilot_story':'street_scene',target:id==='exit'?'quintal':id==='upstairs'?'kael-bedroom':undefined}:{hotspot:id,action:id==='desk'?'pilot_story':id==='stairs'?'street_scene':null,target:id==='stairs'?'kael-home':null};
  const labels=home?{mother:'Mãe',exit:'Saída',seat:'Sentar'}:{tv:'TV',drawings:'Desenhos',desk:'Bancada'};
- const feature=name=>{if(home&&name==='mother'){const [x,y]=layout.blocking.mother,s=P({x,y});return {x:s.x-24,y:s.y-104,w:48,h:104};}const p=pieces.find(p=>mapId[p.id]===name);if(!p)return null;const b=placed(p);return name==='tv'?{x:b.x+7,y:b.y+23,w:33,h:30}:b;};
+ const feature=name=>{if(home&&name==='mother'){const [x,y]=layout.blocking.mother,s=P({x,y});return {x:s.x-24,y:s.y-104,w:48,h:104};}const p=pieces.find(p=>mapId[p.id]===name);if(!p)return null;const b=placed(p);return name==='tv'?{x:b.x+7,y:b.y+29,w:26,h:35,screen:[{x:b.x+7,y:b.y+29},{x:b.x+33,y:b.y+42},{x:b.x+33,y:b.y+64},{x:b.x+7,y:b.y+51}]}:b;};
  const contains=(p,b)=>p.x>=b.x&&p.x<=b.x+b.w&&p.y>=b.y&&p.y<=b.y+b.h;
- function draw(g,actor,entries,{entrances=[],decorations=[]}={}){
+ function draw(g,actor,entries,{entrances=[],decorations=[],propOverlays={}}={}){
   hits=[];g.imageSmoothingEnabled=false;g.drawImage(ground,gx,gy);
   const items=pieces.map(p=>({id:p.id,p,layer:p.kind==='flat'?'flat':p.kind.startsWith('wall')?'wall':null,rect:BedroomIso.footprintRect(p)}));
   for(const e of entries){const u=(e.x-layout.floor.x)/96,v=(e.y-layout.floor.y)/96;items.push({id:'actor',e,rect:{u0:u-.12,u1:u+.12,v0:v-.12,v1:v+.12}});}
@@ -51,7 +51,7 @@ export function createBedroomIsometricRenderer(scene,images,pack,model,createCan
     if(pose?.clip==='stairwell'&&!home){const hole=layout.stairwell,left=P({x:hole.x,y:hole.y+hole.h}),right=P({x:hole.x+hole.w,y:hole.y}),front=P({x:hole.x+hole.w,y:hole.y+hole.h});g.beginPath();g.moveTo(left.x,-2048);g.lineTo(right.x,-2048);g.lineTo(right.x,right.y);g.lineTo(front.x,front.y);g.lineTo(left.x,left.y);g.closePath();g.clip();}
     if(pose?.support==='sofa'&&pose.seatAmount>0){g.fillStyle='#102e3d40';g.beginPath();g.ellipse(s.x,s.y-(pose.lift||0)-27,11*pose.seatAmount,3*pose.seatAmount,0,0,Math.PI*2);g.fill();}
     if(!pose?.support){g.fillStyle='#253e4930';g.beginPath();g.ellipse(s.x,s.y,11,4,0,0,Math.PI*2);g.fill();}e.draw(s);g.restore();if(e.action)hits.push({x:s.x-24,y:s.y-95,w:48,h:95,action:e.action});continue;}
-   const p=item.p,b=placed(p),im=images[prefix+p.id],occludes=p.kind==='floor'&&playerIndex>=0&&drawIndex>playerIndex&&!ordered[playerIndex].e.avatarPose?.clip&&ordered[playerIndex].e.avatarPose?.support!==p.id&&contains({x:playerPoint.x,y:playerPoint.y-50},b);if(im){g.save();if(occludes)g.globalAlpha=.3;g.drawImage(im,b.x,b.y);g.restore();}
+   const p=item.p,b=placed(p),im=images[prefix+p.id],occludes=p.kind==='floor'&&playerIndex>=0&&drawIndex>playerIndex&&!ordered[playerIndex].e.avatarPose?.clip&&ordered[playerIndex].e.avatarPose?.support!==p.id&&contains({x:playerPoint.x,y:playerPoint.y-50},b);if(im){g.save();if(occludes)g.globalAlpha=.3;g.drawImage(im,b.x,b.y);propOverlays[p.id]?.(g,b);g.restore();}
    const hotspot=mapId[p.id];if(hotspot)hits.push({...b,...actionFor(hotspot)});
   }
   // Guardrail is a separate foreground support, on the opening's exposed edge.

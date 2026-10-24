@@ -4,7 +4,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {hudAssets,hudSpriteCSS} from '../../scripts/hud-assets.mjs';
 const app=fileURLToPath(new URL('./',import.meta.url)),repo=fileURLToPath(new URL('../../',import.meta.url));
-const files=new Map(['index.html','tools.html','tools-preview.mjs','game.mjs','model.mjs','look.mjs','protocol.mjs','live-client.mjs','hand.mjs','style.css','mesa.jpg','rabbito.png','assis.png'].map(f=>[f,path.join(app,f)]));
+const files=new Map(['index.html','tools.html','tools-preview.mjs','game.mjs','model.mjs','look.mjs','protocol.mjs','live-client.mjs','hand.mjs','style.css','atelier-v1.png','mesa.jpg','rabbito.png','assis.png'].map(f=>[f,path.join(app,f)]));
 files.set('hud-skin.mjs',path.join(repo,'src/hud-skin.js'));
 for(const sheet of ['panels','icons'])files.set('ui/'+sheet+'.png',path.join(repo,'assets/ui/hud-papel-bambu-v1/'+sheet+'.png'));
 const hudStyle=hudSpriteCSS().replaceAll('assets/ui/hud-papel-bambu-v1/','/ui/'),hudAtlas=JSON.stringify(hudAssets());

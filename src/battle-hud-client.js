@@ -32,7 +32,7 @@ let battleArtRequested=false;
 function ensureBattleArt(){if(battleArtRequested)return;battleArtRequested=true;document.body.classList.add('hud-art-loading');let loaded=0;const sheets=Object.values(ART_CONFIG.hud.sheets);for(const sheet of sheets){const image=new Image();image.onload=()=>{if(++loaded===sheets.length){document.body.dataset.hudArtReady='true';document.body.classList.remove('hud-art-loading');}};image.onerror=()=>{document.body.classList.remove('hud-art-loading');document.body.classList.add('hud-art-unavailable');};image.src=sheet.url;}}
 function updateBattleHUD(p){
  if(!mode||!p)return;
- ensureBattleArt();
+ ensureBattleArt();updateCinematicBattle(p);
  const entry=ART_CONFIG.dex.entries.find(e=>p.soul?e.id===p.soul:e.atlas===art.basic(p.color));
  const equipped=typeof playerAccount!=='undefined'?playerAccount?.inventory?.find(k=>k.id===playerAccount.profile?.equipped_kite_id):null;
  const nickname=p.partnerName||(equipped&&(equipped.model?.soul||null)===(p.soul||null)&&equipped.model?.color===p.color?equipped.personal_name:null);

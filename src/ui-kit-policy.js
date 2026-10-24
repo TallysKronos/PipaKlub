@@ -3,5 +3,5 @@ export const uiKitSurfaces={
   "speech": ".journey-dialog,.flight-coach,.school-coach,.rpg-box,.school-tour-card,.consent-bar",
 
   "tooltip": "#toast",
-  "portrait-card": ".partner-option,.summon-seen-card,.summon-tail,.line-shop-card"
+  "portrait-card": ".partner-option:not(.starter-card),.summon-seen-card,.summon-tail,.line-shop-card"
 };

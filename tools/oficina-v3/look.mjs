@@ -20,17 +20,19 @@ const stageIcons=['frame','knot','paper','wind','soul'];let lastStamp='';
 export function renderWorkshopHud(run,stages,classes,count){
  const c=classes[run.kind],s=stages[run.stage],m=run.materials,stamp=[run.stage,run.kind,run.artesao,count,m.linha,m.folha,!!run.outcome].join('|');
  if(stamp===lastStamp)return;lastStamp=stamp;document.body.dataset.stage=s?.id||'resultado';document.body.dataset.kind=run.kind;
- $('steps').innerHTML=stages.map((step,i)=>`<span class="${i===run.stage?'now':i<run.stage?'done':''}" ${i===run.stage?'aria-current="step"':''}><i>${i<run.stage?icon('check'):i+1}</i><b>${step.name}</b></span>`).join('');
+ const completed=Math.min(run.stage,stages.length),progress=completed/stages.length*100;
+ $('steps').innerHTML=`<span class="craft-seal"><svg viewBox="0 0 48 48" aria-hidden="true"><circle class="seal-track" cx="24" cy="24" r="20"/><circle class="seal-fill" cx="24" cy="24" r="20" pathLength="100" stroke-dasharray="100" stroke-dashoffset="${100-progress}"/></svg>${icon(stageIcons[run.stage]||'check')}</span><span><small>FEITO À MÃO</small><b>${s?.name||'Um novo elo'}</b></span>`;
+ $('steps').setAttribute('aria-label',(s?.name||'Montagem concluída')+' · '+completed+' de '+stages.length+' cuidados concluídos');
  $('mats').innerHTML=[['linha','spool','Linha',m.linha],['folha','paper','Papel',m.folha]].map(([id,glyph,label,n])=>`<div class="stock ${n<=1?'low':''}" role="status" aria-label="${label}: ${n}">${icon(glyph)}<span>${label}<b>${n.toString().padStart(2,'0')}</b></span>${n<=1?'<i aria-hidden="true">!</i>':''}</div>`).join('');
  $('bubble').hidden=!s;
- if(s)$('bubble').innerHTML=`<span class="gesture-icon">${icon(stageIcons[run.stage])}</span><span class="gesture-copy"><small>ETAPA ${run.stage+1} · ${c.label}${run.artesao?' · artesão':''}</small><strong>${s.verb}</strong></span>${count?`<b class="gesture-count">${count}</b>`:icon('soul','gesture-spark')}`;
+ if(s)$('bubble').innerHTML=`<span class="gesture-icon">${icon(stageIcons[run.stage])}</span><span class="gesture-copy"><small>${c.label} · ${s.name}${run.artesao?' · artesão':''}</small><strong>${s.verb}</strong></span>${count?`<b class="gesture-count">${count}</b>`:icon('soul','gesture-spark')}`;
  $('gestureLabel').innerHTML=icon(stageIcons[run.stage]||'soul')+'<span>'+(['Pegue com a mão','Linha em mãos','Tesoura em mãos','Controle o cabresto','A alma está pronta'][run.stage]||'Um novo elo')+'</span>';
  $('legend').textContent=['Arraste para encaixar · Espaço também encaixa','Segure e solte no verde · Espaço também segura','Arraste a tesoura pelo contorno','Arraste contra a rajada · ← → também controlam','Segure e escolha quando soltar · Espaço também segura'][run.stage]||'Feito por você, desperto por um elo.';
 }
 export function installWorkshopLook(){
  $('brandMark').innerHTML=icon('kite');$('restartIcon').innerHTML=icon('restart');
  const main=$('main'),bench=$('bench');
- const fit=()=>{const inset=matchMedia('(max-width:600px)').matches?10:18,w=Math.max(1,Math.min(main.clientWidth-inset*2,(main.clientHeight-inset*2)*1.5));bench.style.width=w+'px';bench.style.height=w/1.5+'px';bench.style.setProperty('--board-scale',w/960);};
+ const fit=()=>{const narrow=matchMedia('(max-width:600px)').matches,inset=narrow?10:Math.min(90,main.clientWidth*.06),reserve=narrow?204:150,w=Math.max(1,Math.min(main.clientWidth-inset*2,(main.clientHeight-reserve)*1.5));bench.style.width=w+'px';bench.style.height=w/1.5+'px';bench.style.setProperty('--board-scale',w/960);};
  new ResizeObserver(fit).observe(main);fit();
  fetch('hud.json').then(r=>{if(!r.ok)throw Error();return r.json();}).then(atlas=>{
   for(const button of document.querySelectorAll('[data-painted]')){

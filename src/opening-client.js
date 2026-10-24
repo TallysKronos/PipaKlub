@@ -68,15 +68,16 @@ let openingIsometricView=null;const openingVillageCache={};
 function openingVillageRenderer(down){const id=down?'kael-home':'kael-bedroom';if(openingVillageCache[id])return openingVillageCache[id];const world=homeArt.world,pack={images:{...world.parkIsometric.images,...world.villageIsometric.images},rigs:world.parkIsometric.rigs},images={};for(const key of Object.keys(pack.images)){const prefix=world.villageIsometric.images[key]?'village-iso-':'park-iso-';images[key]=homeImages.get(prefix+key);if(!images[key])return null;}return openingVillageCache[id]=createVillageIsometricRenderer({village:id,opening:true},images,pack,soulgenRigs.environment);}
 function drawOpening(t){
  openingFrame=0;if(openingScreen.hidden||!playerAccount)return;const i=openingState?.step??0,down=i>=12,g=$('openingCanvas').getContext('2d'),dt=openingLast?Math.min(.05,(t-openingLast)/1000):0;openingLast=t;
- openingStepCast(dt);g.clearRect(0,0,1536,1024);const renderer=openingVillageRenderer(down);if(!renderer){openingFrame=requestAnimationFrame(drawOpening);return;}
- const base=renderer.camera(null,1536,1024),tv=renderer.feature('tv'),normal={x:base.x+768/base.scale,y:base.y+512/base.scale},reveal=i===2?Math.min(1,Math.max(0,(t-openingSince)/1600)):i<2?0:1,blend=art.reduced?(i<2?0:1):reveal*reveal*(3-2*reveal),partner=i===9||i===10;
+ const W=g.canvas.width,H=g.canvas.height,viewH=Math.max(120,H-openingSceneMetrics.reserve),cx=W/2,cy=viewH/2;
+ openingStepCast(dt);g.clearRect(0,0,W,H);const renderer=openingVillageRenderer(down);if(!renderer){openingFrame=requestAnimationFrame(drawOpening);return;}
+ const base=renderer.camera(null,W,viewH),tv=renderer.feature('tv'),normal={x:base.x+cx/base.scale,y:base.y+cy/base.scale},partner=i===9||i===10;
  const focus=partner?renderer.project({x:(openingActor.x+openingRabbit.x)/2,y:(openingActor.y+openingRabbit.y)/2}):normal,scale=base.scale*(partner?1.15:1);
- openingIsometricView={x:focus.x-768/scale,y:focus.y-512/scale,scale};g.save();g.translate(768,512);g.scale(scale,scale);g.translate(-focus.x,-focus.y);
+ openingIsometricView={x:focus.x-cx/scale,y:focus.y-cy/scale,scale};g.save();g.translate(cx,cy);g.scale(scale,scale);g.translate(-focus.x,-focus.y);
  const pose=openingAvatarActivity?.pose(),cast=[{...openingActor,type:'player',avatarPose:pose,...(pose?{x:pose.x,y:pose.y}:{}),draw:p=>openingDrawKael(g,t,p)}];if(i>=5&&(i<8||down||openingMother.path?.length))cast.push({...openingMother,draw:p=>openingDrawMother(g,t,p)});if(i>9||(i===9&&openingBirthBeat>0))cast.push({...openingRabbit,draw:p=>openingDrawRabbit(g,t,p)});
- renderer.draw(g,openingActor,cast,{dt,animate:!art.reduced});if(openingRoomStep()&&!openingGiftOpen)drawOpeningRoomPlaces(g);if(!down&&tv)drawOpeningBroadcast(g,t,i<3,tv);
+ renderer.draw(g,openingActor,cast,{dt,animate:!art.reduced,propOverlays:!down&&tv?{tv:ctx=>drawOpeningBroadcast(ctx,t,i<3,tv)}:{}});if(openingRoomStep()&&!openingGiftOpen)drawOpeningRoomPlaces(g);
  const desk=renderer.feature('desk'),px=desk?desk.x+desk.w*.35:0,py=desk?desk.y+desk.h*.22:0;
  if(!down&&bedroomPlan.version<3&&desk&&i>=3&&(i<9||(i===9&&openingBirthBeat===0))){const project=openingImages.get('project');if(project)paintOpeningProject(g,project,i>=4?1:0,px,py,92,62);}
  if(i===9&&openingBirthBeat===0){const light=g.createRadialGradient(px+46,py+31,8,px+46,py+31,300);light.addColorStop(0,'#fffbe7');light.addColorStop(.2,'#ffe6b1bb');light.addColorStop(1,'#fff2b600');g.fillStyle=light;g.fillRect(px-300,py-300,700,700);}
- if(i===9&&openingBirthBeat===1&&!art.reduced){g.globalAlpha=Math.max(0,1-(t-openingSince)/850);g.fillStyle='#fff9dd';g.fillRect(focus.x-768/scale,focus.y-512/scale,1536/scale,1024/scale);}
+ if(i===9&&openingBirthBeat===1&&!art.reduced){g.globalAlpha=Math.max(0,1-(t-openingSince)/850);g.fillStyle='#fff9dd';g.fillRect(focus.x-cx/scale,focus.y-cy/scale,W/scale,H/scale);}
  g.restore();openingImmersiveTick(t);drawOpeningWorkbench(t);openingFrame=requestAnimationFrame(drawOpening);
 }

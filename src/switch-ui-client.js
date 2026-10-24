@@ -17,7 +17,7 @@ addEventListener('pointerdown',e=>setInputDevice(e.pointerType==='touch'?'touch'
 for(const [name,url] of Object.entries(ART_CONFIG.kit?.components||{}))document.documentElement.style.setProperty('--kit-'+name,'url("'+url+'")');
 
 // Which layer owns the controller right now.
-function battleLive(){return !!(mode&&state&&!showResult&&!pausedAt&&!skyActive&&$('pauseSheet').hidden&&$('modal').style.display!=='flex'&&!document.querySelector('.sheet:not([hidden])'));}
+function battleLive(){return !!(mode&&state&&!(firstFlightRun&&(flightTalking||firstFlightRun.complete))&&!showResult&&!pausedAt&&!skyActive&&$('pauseSheet').hidden&&$('modal').style.display!=='flex'&&!document.querySelector('.sheet:not([hidden])'));}
 function visibleRect(el){const r=el.getBoundingClientRect();return r.width>1&&r.height>1&&r.bottom>0&&r.right>0&&r.top<innerHeight&&r.left<innerWidth?r:null;}
 // Focusable, visible and not covered by another layer (dialogs, sheets and menus are tested by hit point).
 function focusTargets(){
@@ -167,8 +167,12 @@ function fanButton(action,label,icon,glyphs){
  b.querySelector('.fan-label').textContent=label;return b;
 }
 const fanDodge=fanButton('dodge','Esquiva','battle-dodge',['dodge']),fanLine=fanButton('maneuver','Rebicada','battle-maneuver',['maneuver']),fanSkill=fanButton('skill','Habilidade','battle-skill',['skill','skillRight']);
-fan.append(fanDodge,fanLine,fanSkill);$('hud').append(fan);
+const fanAttack=fanButton('attack','Atacar','battle-maneuver',['attack']);
+fan.append(fanAttack,fanDodge,fanLine,fanSkill);$('hud').append(fan);
 const holdPointer=(b,down,up)=>{b.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();down();try{b.setPointerCapture(e.pointerId);}catch{}});if(up)for(const ev of ['pointerup','pointercancel','lostpointercapture'])b.addEventListener(ev,up);b.addEventListener('click',e=>{if(e.detail===0)down();});};
+fanAttack.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();keys[' ']=true;try{fanAttack.setPointerCapture(e.pointerId);}catch{}});
+for(const event of ['pointerup','pointercancel','lostpointercapture'])fanAttack.addEventListener(event,()=>{keys[' ']=false;});
+fanAttack.addEventListener('click',e=>{if(e.detail===0)attackUntil=Date.now()+220;});
 holdPointer(fanDodge,()=>queueDodge());
 holdPointer(fanLine,()=>normalLineStart(),()=>resetNormalLine());
 // The partner skill goes where the kite is heading; a still kite uses the right.
@@ -177,10 +181,13 @@ function setRing(b,remaining,total,blocked){b.style.setProperty('--fan-cooldown'
 function updateFan(){
  const p=mode&&ownKite();fan.hidden=!p||showResult;if(fan.hidden)return;
  const blocked=!!(p.respawn||pausedAt||state.phase&&state.phase!=='live'),d=normalLineChoice();
+ setRing(fanAttack,p.attackCooldown||0,.65,blocked||p.energy<12);
  setRing(fanDodge,p.dodgeCooldown||0,eng.DODGE.cooldown,blocked||p.energy<eng.DODGE.cost);
  setRing(fanLine,p.lineMove?d.cooldown:p.lineCooldown||0,d.cooldown,blocked||(!p.lineMove&&p.energy<d.cost));
  setRing(fanSkill,p.skillCooldown||0,7,blocked||p.energy<25);
  fanLine.querySelector('.fan-label').textContent=d.name+' '+(normalLineSide<0?'←':'→');
+ for(const [b,cost]of [[fanAttack,12],[fanDodge,eng.DODGE.cost],[fanLine,d.cost],[fanSkill,25]]){let note=b.querySelector('.duel-action-cost');if(!note){note=document.createElement('small');note.className='duel-action-cost';b.append(note);}note.textContent=cost+' energia';}
+ fanSkill.querySelector('.fan-label').textContent=eng.type(p).skill;
  fanLine.classList.toggle('is-held',normalLineHeld);
 }
 setInterval(updateFan,100);

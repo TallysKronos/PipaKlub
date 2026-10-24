@@ -112,10 +112,11 @@ function pilotDialogue(box,{portrait,name,next,back}){
   const draw=()=>{if(!box.hidden&&!p.dataset.drawn){p.dataset.drawn='true';portrait(p);}};new MutationObserver(draw).observe(box,{attributes:true,attributeFilter:['hidden']});draw();}
  if(name){const n=box.querySelector(name);n?.classList.add('pilot-nameplate');}
  const keep=(button,command)=>{if(!button)return;button.classList.add('pilot-advance');const add=()=>{if(!button.querySelector('.kit-glyph'))button.prepend(glyphImage(command));if(command==='confirm'&&!button.querySelector('.pilot-kite-mini'))button.append(pilotKite('pilot-kite-mini'));};add();new MutationObserver(add).observe(button,{childList:true});};
- keep(box.querySelector(next),'confirm');keep(box.querySelector(back),'back');
+ if(next)keep(box.querySelector(next),'confirm');if(back)keep(box.querySelector(back),'back');
 }
 const assisPortrait=c=>art.load('sr-assis-expressions').then(()=>{const g=c.getContext('2d');if(!g)return;g.clearRect(0,0,c.width,c.height);art.draw(g,'sr-assis-expressions','speaking',0,0,c.width,c.height,true);});
 pilotDialogue($('journeyDialog'),{portrait:assisPortrait,name:'.eyebrow',next:'#journeyContinue',back:'#journeyLater'});
+pilotDialogue($('flightCoach'),{portrait:assisPortrait,name:'.eyebrow',next:'#flightNext'});
 if($('kaelOpening'))pilotDialogue(document.querySelector('#kaelOpening .opening-dialog'),{name:'#openingSpeaker',next:'#openingNext',back:'#openingPause'});
 // Kael and his mother get their own faces when they speak in the opening.
 if($('openingSpeaker')){

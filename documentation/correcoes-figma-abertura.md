@@ -27,3 +27,10 @@ No mundo, preservados o salvamento por mudança de lugar e a verificação de al
 - A primeira bancada reutiliza a ilustração física do projeto e o fundo existentes. Não foram geradas novas ilustrações nesta correção.
 - **Nenhum teste automatizado ou sessão de teste de gameplay foi executado**, por instrução expressa do usuário. Houve leitura das imagens/descrições, revisão estática, conferência de sintaxe e geração dos builds.
 - Após a revisão local, o responsável autorizou subir esta entrega para o Git e o Render. A publicação não requer migração nem alteração no banco de produção. Os testes continuam não executados, conforme a orientação recebida.
+
+## Segunda rodada: correções 7 e 8
+
+- [7 · 87:685](https://www.figma.com/design/KCvJbbcDt9E35umMjjXHVz/PipaKlub?node-id=87-685): direção numérica e direção do Avatar Studio agora acompanham a posição projetada do Rabbito durante o nascimento. Após a nomeação, Kael olha para o parceiro quando está parado; ao caminhar, o controle mantém a direção de movimento. A TV usa os quatro pontos da tela no PNG nativo 80×82, com transformação afim e clip no plano inclinado. A transmissão é desenhada junto da própria TV, dentro da ordem de profundidade, antes de personagens que a encobrem.
+- [8 · 87:691](https://www.figma.com/design/KCvJbbcDt9E35umMjjXHVz/PipaKlub?node-id=87-691): palco em tela inteira sobre preto, título superior oculto, diálogo flutuante central inferior com altura fixa por breakpoint e áreas reservadas para nome, fala, status e ações. Conteúdo longo rola dentro da área de fala; não reduz o canvas. O buffer e a câmera respondem só ao tamanho do palco, com espaço reservado para o diálogo. A dica deixa de herdar `top:0!important` do botão global, que a esticava como um pergaminho vertical.
+
+Execução local solicitada, em banco isolado. `LOCAL_OPENING_REVIEW=1` permite entrar por `/local/davi` diretamente no nascimento, sem retroceder progresso já existente. `/local/kael` mantém a abertura normal. Nenhum teste automatizado executado, nenhuma publicação ou mudança no banco de produção nesta rodada.
