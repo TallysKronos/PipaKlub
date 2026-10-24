@@ -3196,6 +3196,7 @@ updateBattleHUD(p);
 if(!left&&!showResult){showResult=true;resetFx();showMatchResult(state,ranking);}}
 function escapeHTML(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
 // Cookie sessions stay HttpOnly. The recovery-link token is kept only in memory until submission or cancellation.
+let guestsEnabled=false;
 let playerAccount=null,accountsEnabled=false,accountTab='login',accountSaving=false,rewardRefreshTimer;
 let accountConnection='checking',accountConfigPending=null,accountRetryTimer=null,accountRetryCount=0;
 const accountConnectionMessages={checking:'Conectando ao serviço de contas…',offline:'Não foi possível conectar ao serviço de contas. Vamos tentar novamente; você também pode usar o botão abaixo.',disabled:'O login está temporariamente indisponível no servidor. Tente conectar novamente em instantes.',static:'O login está disponível no endereço oficial do jogo. Abra o PipaKlub online para entrar na sua conta.'};
@@ -3226,7 +3227,7 @@ async function accountRequest(action,body){
 }
 function reflectAccount(){
  const guest=!!playerAccount?.guest;$('accountButton').textContent=guest?'Visitante':playerAccount?'Minha conta':'Entrar';
- $('ruinsGuest').hidden=!!playerAccount||accountConnection==='static'||accountConnection==='disabled';$('guestSave').hidden=!guest;
+ $('ruinsGuest').hidden=!guestsEnabled||!!playerAccount||accountConnection==='static'||accountConnection==='disabled';$('guestSave').hidden=!guest;
  for(const el of document.querySelectorAll('[data-members-only]'))el.hidden=!playerAccount;
  $('lobby').classList.toggle('guest-menu',!playerAccount);
  $('dailyButton').textContent='✦ Céu do dia';
@@ -3252,7 +3253,7 @@ function renderAccountDialog(){
  passwordRecovery.hidden=!accountRecoveryMode;forgotPassword.hidden=!!playerAccount||accountTab!=='login';
  if(accountRecoveryMode){const resetting=accountRecoveryMode==='reset';$('accountAuth').hidden=true;$('accountCollection').hidden=true;$('accountTitle').textContent=resetting?'Escolha sua nova senha':'Recupere sua conta';$('recoveryHelp').textContent=resetting?'Escolha uma senha exclusiva para jogar. Nunca envie sua senha pelo chat.':'Enviaremos um link ao e-mail da sua conta. Se o link expirar, você pode solicitar outro.';for(const id of ['recoveryEmail','recoveryEmailLabel'])$(id).hidden=resetting;$('recoveryEmail').required=!resetting;for(const id of ['recoveryPassword','recoveryPasswordLabel','recoveryConfirm','recoveryConfirmLabel'])$(id).hidden=!resetting;$('recoveryPassword').required=$('recoveryConfirm').required=resetting;$('recoverySubmit').textContent=resetting?'Salvar nova senha':'Enviar link de recuperação';return;}
  const logged=!!playerAccount;$('accountAuth').hidden=logged;$('accountCollection').hidden=!logged;
- $('guestEntry').hidden=logged||!accountsEnabled;
+ $('guestEntry').hidden=logged||!accountsEnabled||!guestsEnabled;
  $('accountTitle').textContent=logged?(playerAccount.guest?'Jogando sem conta.':'Sua coleção, sua história.'):accountTab==='signup'?'Seu lugar no céu.':'De volta ao céu.';
  $('signupFields').hidden=accountTab!=='signup';$('accountPassword').autocomplete=accountTab==='signup'?'new-password':'current-password';
  $('submitAccount').textContent=accountTab==='signup'?'Criar minha conta':'Entrar';$('switchAccount').textContent=accountTab==='signup'?'Já tenho uma conta':'Ainda não tenho conta';
@@ -3316,7 +3317,7 @@ async function initializeAccounts(){
  if(accountConfigPending)return accountConfigPending;
  clearTimeout(accountRetryTimer);accountRetryTimer=null;accountConnection='checking';if(accountModal.style.display==='flex')renderAccountDialog();
  accountConfigPending=(async()=>{
-  try{const config=await accountRequest('config');accountsEnabled=config.enabled===true;accountConnection=accountsEnabled?'ready':'disabled';if(accountsEnabled){accountRetryCount=0;await refreshAccount();}}
+  try{const config=await accountRequest('config');accountsEnabled=config.enabled===true;guestsEnabled=config.features?.guest===true;accountConnection=accountsEnabled?'ready':'disabled';if(accountsEnabled){accountRetryCount=0;await refreshAccount();}}
   catch{accountConnection='offline';if(accountRetryCount<3){const delay=3000*2**accountRetryCount++;accountRetryTimer=setTimeout(()=>{accountRetryTimer=null;return initializeAccounts();},delay);}}
   finally{reflectAccount();bootLoading.done();}
   return accountsEnabled;

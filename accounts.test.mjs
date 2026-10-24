@@ -183,7 +183,7 @@ test('auth returns HttpOnly cookies, never exposes keys, and rejects foreign ori
  const fetcher=async(url,options)=>{calls.push({url,options});return new Response(JSON.stringify(url.includes('/token')?session:url.endsWith('/auth/v1/user')?session.user:{profile:{id:userA,nickname:'Ana',xp:0,cuts:0},inventory:[]}));};
  const databaseCalls=[],gameDatabase={async rpc(name,body){databaseCalls.push({name,body});return {accountId:userA};}};
  const accounts=createAccounts(env,{fetcher,gameDatabase});
- const config=await accounts.handle(new Request('https://game.test/account/config'));assert.deepEqual(await config.json(),{enabled:true,features:{inventory:true,xp:true,capture:true}});
+ const config=await accounts.handle(new Request('https://game.test/account/config'));assert.deepEqual(await config.json(),{enabled:true,features:{inventory:true,xp:true,capture:true,guest:false}});
  const login=await accounts.handle(new Request('https://game.test/account/login',{method:'POST',headers:{'Content-Type':'application/json',Origin:'https://game.test'},body:JSON.stringify({email:'ana@example.com',password:'safe-password'})}));
  assert.equal(login.status,200);const cookies=login.headers.getSetCookie();assert.equal(cookies.length,2);assert.ok(cookies.every(c=>c.includes('HttpOnly')&&c.includes('Secure')&&c.includes('__Host-')));
  const body=await login.text();assert.ok(!body.includes('access-secret'));assert.ok(!body.includes('private-secret'));
@@ -264,8 +264,15 @@ test('reading an ended HTTP-only match queues its finalization and waits for cut
  }finally{rewards.stop();db.close();}
 });
 
+test('visitantes desativados não criam usuários no provedor',async()=>{
+ const accounts=createAccounts({SUPABASE_URL:'https://provider.test',SUPABASE_PUBLISHABLE_KEY:'public'},{gameDatabase:{},fetcher:async()=>{throw Error('provider must not be called');}});
+ const config=await accounts.handle(new Request('https://game.test/account/config'));assert.equal((await config.json()).features.guest,false);
+ const result=await accounts.handle(new Request('https://game.test/account/guest',{method:'POST',headers:{'Content-Type':'application/json',Origin:'https://game.test'},body:'{}'}));
+ assert.equal(result.status,503);assert.match((await result.json()).error,/desativado/);
+});
+
 test('jogar sem conta: cria jogador anônimo, salva com e-mail e bloqueia trocas',async()=>{
- const env={SUPABASE_URL:'https://project.supabase.co',SUPABASE_PUBLISHABLE_KEY:'public-key'},calls=[];let disabled=false;
+ const env={GUEST_PLAY_ENABLED:'1',SUPABASE_URL:'https://project.supabase.co',SUPABASE_PUBLISHABLE_KEY:'public-key'},calls=[];let disabled=false;
  const session={access_token:'guest-access',refresh_token:'guest-refresh',expires_in:3600,user:{id:userA,is_anonymous:true}};
  const fetcher=async(url,options)=>{calls.push({url,options});
   if(url.endsWith('/auth/v1/signup'))return disabled?new Response(JSON.stringify({code:422,error_code:'anonymous_provider_disabled',msg:'Anonymous sign-ins are disabled'}),{status:422}):new Response(JSON.stringify(session));

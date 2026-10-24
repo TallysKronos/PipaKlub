@@ -23,3 +23,13 @@ O menu inicial ganhou **Jogar sem conta**, logo abaixo de "Entrar na aventura". 
 ## Teste local
 
 `node scripts/local-trades.mjs` emula o login anônimo (porta 5194). Na tela inicial, **Jogar sem conta** entra direto na abertura do Kael. Testes: `node --test accounts.test.mjs`.
+
+## Publicação de 24/10/2026
+
+Por decisão do responsável, esta release mantém visitantes **desativados** em produção. O Supabase continua com login anônimo desligado. Sem `GUEST_PLAY_ENABLED=1` no servidor, `/account/config` informa `features.guest=false`, o cliente oculta os botões e `/account/guest` recusa novas sessões antes de acessar o provedor. Contas existentes continuam funcionando.
+
+Para ativar futuramente, serão necessárias autorização para ligar o login anônimo no Supabase e a variável `GUEST_PLAY_ENABLED=1` no Render. O adaptador local habilita o recurso somente no banco isolado para testes.
+
+Os novos starters e a hierarquia manual do Rabbito estão no Soulgen Studio e no Git; seus rigs ainda não substituem os atlas de combate/overworld do jogo.
+
+Validação da integração: ambos os builds concluídos; 89 testes focados passaram e entrada visitante local retomou a mesma fala da campanha após recarregar. A suíte completa em sequência executou 487 testes: 485 passaram e permaneceram as duas falhas anteriores dos relatórios visuais (`avatar-player.test.mjs` e `home-layout.test.mjs`). Após adicionar a trava de publicação, os 15 testes de contas passaram, incluindo a recusa de novos visitantes sem chamar o provedor. Nenhum dado de produção foi migrado ou reiniciado nesta release.

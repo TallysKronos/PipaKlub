@@ -104,7 +104,7 @@ async function localAuth(url,options={}){
 const sqlite=new DatabaseSync(demoDirectory+'/rooms.db');
 sqlite.exec('PRAGMA journal_mode=WAL;CREATE TABLE IF NOT EXISTS pipa_rooms (code TEXT PRIMARY KEY,state TEXT NOT NULL,rev INTEGER NOT NULL DEFAULT 0,updated INTEGER NOT NULL)');
 const DB={prepare(sql){let values=[];return {bind(...v){values=v;return this;},async run(){const r=sqlite.prepare(sql).run(...values);return {meta:{changes:Number(r.changes)}};},async first(){return sqlite.prepare(sql).get(...values);}};}};
-const accounts=createAccounts({SUPABASE_URL:'http://local-auth.invalid',SUPABASE_PUBLISHABLE_KEY:'local-only'},{fetcher:localAuth,db:sqlite,gameDatabase:{rpc:(name,body)=>rpc(name,body)},matchProgress:id=>progression.status(id)});
+const accounts=createAccounts({GUEST_PLAY_ENABLED:'1',SUPABASE_URL:'http://local-auth.invalid',SUPABASE_PUBLISHABLE_KEY:'local-only'},{fetcher:localAuth,db:sqlite,gameDatabase:{rpc:(name,body)=>rpc(name,body)},matchProgress:id=>progression.status(id)});
 const progression=createProgression(sqlite,accounts),serveAsset=createAssetHandler();
 const {default:worker}=await import('../worker/index.js');
 const server=http.createServer(async(req,res)=>{

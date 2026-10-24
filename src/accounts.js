@@ -85,7 +85,7 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
   try{
    if(request.headers.get('origin')&&request.headers.get('origin')!==new URL(request.url).origin)throw new AccountError('Origem inválida.',403);
    const action=path.slice('/account/'.length);
-   if(action==='config'&&request.method==='GET')return json({enabled,features:{inventory:enabled,xp:enabled,capture:enabled}});
+   if(action==='config'&&request.method==='GET')return json({enabled,features:{inventory:enabled,xp:enabled,capture:enabled,guest:enabled&&env.GUEST_PLAY_ENABLED==='1'}});
    if(!enabled)throw new AccountError('Contas ainda não estão conectadas. Você pode jogar como visitante.',503);
    if(action==='session'&&request.method==='GET'){const who=await identity(request,true);if(!who)return json({account:null},200,makeCookies(request,null));return json({account:await accountFor(who)},200,who.setCookies);}
    if(action==='history'&&request.method==='GET'){const who=await identity(request,true);if(!who)throw new AccountError('Entre na sua conta para continuar.',401);return json({matches:await rpc('get_player_recent_matches',{},who.access)},200,who.setCookies);}
@@ -121,6 +121,7 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
    }
    // Jogar sem conta: usuário anônimo do Supabase. O gatilho de cadastro cria o perfil e a coleção como para qualquer jogador.
    if(action==='guest'){
+    if(env.GUEST_PLAY_ENABLED!=='1')throw new AccountError('O modo sem conta está temporariamente desativado.',503);
     rateLimit(request,'guest',4);
     const s=await remote('/auth/v1/signup',{method:'POST',op:'guest',body:{data:{nickname:'Visitante '+(1000+Math.floor(Math.random()*9000)),guest:true}}});
     if(!s?.access_token||!s.user?.id)throw new AccountError('O modo sem conta ainda não foi ativado no servidor. Código CONTA-VISITANTE.',503);
