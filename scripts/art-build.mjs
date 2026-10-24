@@ -87,6 +87,7 @@ export function artConfig(){
  const guardian=JSON.parse(fs.readFileSync('assets/ui/guardian-veredas-v1/manifest.json','utf8'));for(const asset of Object.values(guardian.images))asset.url='assets/'+asset.image+'?v='+createHash('sha256').update(fs.readFileSync('assets/'+asset.image)).digest('hex').slice(0,12);
  const battleResults=JSON.parse(fs.readFileSync('assets/ui/battle-results-v1/manifest.json','utf8'));for(const asset of Object.values(battleResults.images))asset.url='assets/'+asset.image+'?v='+createHash('sha256').update(fs.readFileSync('assets/'+asset.image)).digest('hex').slice(0,12);
  const dialogue=JSON.parse(fs.readFileSync('assets/ui/dialogue-v1/manifest.json','utf8'));for(const asset of Object.values(dialogue.images))asset.url='assets/'+asset.image+'?v='+createHash('sha256').update(fs.readFileSync('assets/'+asset.image)).digest('hex').slice(0,12);
+ opening.images.announcer={...dialogue.images.announcer};
  return {dialogue,battleResults,guardian,avatar:avatarConfig(),workshop,opening,atlases,intro,dex,items,menu,designs,portraits,courtyard,hud:hudAssets(),kit:kitAssets(),rigs};
 }
 // Papel e Bambu kit: PNG bases and battle icons are served as files; the small glyph SVGs ride inline.

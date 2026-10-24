@@ -3,6 +3,17 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {PGlite} from '@electric-sql/pglite';
 import {KAEL_OPENING} from './src/opening-story.js';
+
+test('opening keeps free walking silent, gives inspected thoughts to Kael and shares the new announcer portrait',async()=>{
+ const ui=openingUI();await ui.settle();
+ ui.run(`playerAccount={profile:{id:'quiet-opening',nickname:'Kael'},inventory:[]};openingOwner='quiet-opening';openingScreen.hidden=false;`);
+ for(const step of [3,11,13]){ui.run(`openingState={step:${step}};renderOpening();openingGiftOpen=false;openingMother.path=[];openingRoomSignature='';openingRefreshRoomUI();`);assert.equal(ui.document.getElementById('openingSpeaker').textContent,'');assert.equal(ui.document.getElementById('openingSpeech').textContent,'');assert.equal(ui.run('openingState.step'),step);}
+ ui.run(`openingState={step:3};renderOpening();openingMother.path=[];openingGiftOpen=false;var drawingsSpot=openingRoomNavigation.hotspots.find(p=>p.id==='drawings');openingActor={...drawingsSpot,direction:0,path:[]};`);
+ await ui.run(`openingInspect('drawings')`);assert.equal(ui.document.getElementById('openingSpeaker').textContent,'Kael');assert.match(ui.document.getElementById('openingSpeech').textContent,/orelhas/);assert.equal(ui.run('openingWalkActive()'),false);
+ await ui.run('nextOpening()');assert.equal(ui.run('openingState.step'),3);assert.equal(ui.document.getElementById('openingSpeech').textContent,'');
+ assert.equal(ui.run(`dialoguePortraitURL('Locutor · Pipa TV')`),ui.run('ART_CONFIG.opening.images.announcer.url'));assert.match(ui.run('ART_CONFIG.opening.images.announcer.url'),/dialogue-v1\/announcer/);
+ assert.equal(KAEL_OPENING.length,14);assert.ok(KAEL_OPENING[13].silent);assert.doesNotMatch(KAEL_OPENING.map(s=>s.text).join(' '),/Vou avisar|porta ao sul|fica ao sul/);
+});
 import {createAssetHandler} from './src/static-assets.js';
 import vm from 'node:vm';
 import {parseHTML} from 'linkedom';
@@ -40,13 +51,13 @@ test('legacy replay names a local partner and leaves both saved checkpoint and i
  const ui=openingUI();await ui.settle();await ui.run(`var openingCalls=0;accountRequest=async(action)=>{if(action==='opening'){openingCalls++;return {opening:{step:14,legacy:true}};}return {journey:{phase:'complete',lesson:5}}};playerAccount={profile:{id:'legacy',nickname:'Antiga',equipped_kite_id:null},inventory:[]};onCourtyardAccount()`);await ui.settle();
  await ui.run('showOpening(true)');for(let i=0;i<20&&ui.run('openingState.step')<10;i++){ui.run('for(let n=0;n<240;n++)openingStepCast(.05)');if(ui.run('openingState.step')===3){ui.run('openingActor={x:1104,y:560,direction:2,path:[]}');await ui.run("openingInspect('desk')");await ui.document.getElementById('openingBenchPlace').onclick();await ui.run('openingFinishCraft()');}else if(ui.run('openingState.step')===7){if(ui.run('openingGiftOpen'))await ui.run('nextOpening()');ui.run('openingActor={x:1104,y:560,direction:2,path:[]}');await ui.run("openingInspect('desk')");}else await ui.run('nextOpening()');}
  ui.document.getElementById('openingName').value='<Lua>';await ui.document.getElementById('openingNameForm').onsubmit({preventDefault(){}});assert.equal(ui.run('openingState.partner_name'),'<Lua>');assert.equal(ui.run('openingState.step'),11);
- assert.equal(ui.run('openingCalls'),1,'replay performs no economy writes');assert.equal(ui.run('playerAccount.inventory.length'),0);assert.match(ui.document.getElementById('openingSpeech').textContent,/<Lua>/);assert.equal(ui.document.getElementById('openingSpeech').children.length,0,'custom name uses text, never HTML');
+ assert.equal(ui.run('openingCalls'),1,'replay performs no economy writes');assert.equal(ui.run('playerAccount.inventory.length'),0);assert.equal(ui.document.getElementById('openingSpeech').textContent,'');assert.equal(ui.document.getElementById('openingSpeech').children.length,0,'custom name uses text, never HTML');
  await ui.document.getElementById('openingPause').onclick();assert.equal(ui.run('openingState.step'),14);assert.equal(ui.document.getElementById('kaelOpening').hidden,true);
 });
 
 test('every film shot renders with reduced motion and measured actor feet stay on the configured room floor',async()=>{
  const ui=openingUI();await ui.settle();await ui.run(`playerAccount={profile:{id:'film',nickname:'Kael'},inventory:[]};openingOwner='film';openingState={step:0};showOpening(false)`);await ui.settle();
- for(let step=0;step<14;step++){ui.run('openingState.step='+step+';renderOpening();drawOpening(1500)');assert.equal(ui.document.getElementById('openingSpeaker').textContent,step===3?'Termine seu projeto':step===7?'Presente de aniversário':step===11?'Seu parceiro vai com você':step===13?'Seu primeiro passeio juntos':step===9?'Kael':KAEL_OPENING[step].speaker);}
+ for(let step=0;step<14;step++){ui.run('openingState.step='+step+';renderOpening();drawOpening(1500)');assert.equal(ui.document.getElementById('openingSpeaker').textContent,[3,7,11,13].includes(step)?'':step===9?'Kael':KAEL_OPENING[step].speaker);}
  const config=JSON.parse(fs.readFileSync('assets/story/kael-birthday-v1/manifest.json','utf8'));
  for(const room of Object.values(config.rooms))for(const point of Object.values(room.blocking))assert.ok(room.walkable.some(([x,y,w,h])=>point[0]>=x&&point[0]<=x+w&&point[1]>=y&&point[1]<=y+h));
 });
@@ -60,6 +71,7 @@ test('room movement respects walls and letterboxing, clicks walk rather than tel
  const p=room.canvasPoint({left:0,top:0,width:1000,height:500},1536,1024,500,250);assert.deepEqual(p,{x:768,y:512});assert.equal(room.canvasPoint({left:0,top:0,width:1000,height:500},1536,1024,10,250),null);
  const ui=openingUI();await ui.settle();await ui.run(`playerAccount={profile:{id:'room',nickname:'Kael'},inventory:[]};openingOwner='room';showOpening(true)`);for(let i=0;i<3;i++)await ui.run('nextOpening()');
  await ui.run('nextOpening()');assert.equal(ui.run('openingState.step'),3,'examining TV cannot advance the project');
+ assert.equal(ui.document.getElementById('openingSpeaker').textContent,'Kael');await ui.run('nextOpening()');assert.equal(ui.run('openingState.step'),3,'closing the thought returns to free walking');
  ui.document.getElementById('openingName').value='Too early';await ui.document.getElementById('openingNameForm').onsubmit({preventDefault(){}});assert.equal(ui.run('openingState.step'),3);
  ui.run("openingWalkTo('desk');for(let i=0;i<100;i++)openingStepRoom(.05)");assert.equal(ui.document.getElementById('openingWorkbench').hidden,false);assert.equal(ui.run('openingState.step'),3);
  await ui.document.getElementById('openingBenchPlace').onclick();await ui.run('openingFinishCraft()');assert.equal(ui.run('openingState.step'),4);assert.equal(ui.document.getElementById('openingWorkbench').hidden,true);assert.match(ui.document.getElementById('openingSpeech').textContent,/corpo de papel/);

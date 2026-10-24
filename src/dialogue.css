@@ -1,4 +1,10 @@
 /* Illustrated RPG dialogue: portrait and fixed corners never stretch with copy. */
+/* Free walking uses only a contextual control, never an unattributed speech box. */
+body .opening-dialog.rpg-dialogue.rpg-guidance{left:auto!important;right:24px!important;bottom:20px!important;width:auto!important;max-width:85vw!important;min-height:0!important;padding:0!important}
+body .opening-dialog.rpg-guidance::before,body .opening-dialog.rpg-guidance #openingSpeech,body .opening-dialog.rpg-guidance #openingSpeaker,body .rpg-dialogue #openingSpeaker:empty{display:none!important}
+body .opening-dialog.rpg-guidance #openingHint{color:#e6ddc9!important}
+body .opening-dialog.rpg-guidance #openingNext{background:#174a50!important;color:#fff1cf!important;border:1px solid #ba965b!important;padding:8px 14px!important;border-radius:5px!important}
+body .opening-dialog.rpg-guidance #openingNext:disabled{display:none!important}
 body.ui-kit-ready .rpg-dialogue.rpg-dialogue{border-image:none!important;border:0!important;background:none!important;box-shadow:none!important}
 body .rpg-dialogue.rpg-dialogue{overflow:visible!important;max-height:none!important}
 body.ui-kit-ready .rpg-dialogue .journey-actions>button{border-image:none!important;border:0!important}

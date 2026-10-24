@@ -3,7 +3,7 @@ const dialogueArt=ART_CONFIG.dialogue,dialoguePortraitLoads=new Map();
 let motherConversationVersion=0,openingMotherTalking=false;
 function dialoguePortraitURL(speaker){
  const key=dialogueArt.speakers[speaker];if(key)return dialogueArt.images[key].url;
- if(speaker.startsWith('Locutor'))return ART_CONFIG.opening.images.announcer.url;
+ if(speaker.startsWith('Locutor'))return dialogueArt.images.announcer.url;
  return ART_CONFIG.designs.rivals[speaker]?.url||null;
 }
 function loadDialoguePortrait(url){if(!url)return Promise.resolve(false);if(!dialoguePortraitLoads.has(url))dialoguePortraitLoads.set(url,new Promise(resolve=>{const image=new Image();image.onload=()=>resolve(true);image.onerror=()=>{dialoguePortraitLoads.delete(url);resolve(false);};image.src=url;}));return dialoguePortraitLoads.get(url);}
@@ -49,9 +49,10 @@ function openMotherConversation(text='Meu filho… você acabou de dar vida ao s
  actions.prepend($('journeyContinue'),collection);$('journeyLater').textContent='Vou sair para explorar a cidade.';
  $('journeyLater').onclick=()=>{hideJourney();$('courtyardCanvas').focus({preventScroll:true});};syncJourneyDialogue();$('journeyContinue').focus({preventScroll:true});
 }
-function openOpeningMotherConversation(){
- openingMotherTalking=true;openingClearWalking();$('openingSpeaker').textContent='Mãe';$('openingSpeech').textContent='Eu guardei aquela rabiola por tantos anos… Cuide bem dele, Kael. E volte para me contar como foi o primeiro voo.';$('openingNext').hidden=false;$('openingNext').disabled=false;$('openingNext').textContent='Continuar';syncOpeningDialogue();$('openingNext').focus({preventScroll:true});
+function openOpeningDialogue(speaker,text){
+ openingMotherTalking=true;openingClearWalking();$('openingSpeaker').textContent=speaker;$('openingSpeech').textContent=text;$('openingNext').hidden=false;$('openingNext').disabled=false;$('openingNext').textContent='Continuar';syncOpeningDialogue();$('openingNext').focus({preventScroll:true});
 }
+function openOpeningMotherConversation(){openOpeningDialogue('Mãe','Eu guardei aquela rabiola por tantos anos… Cuide bem dele, Kael.');}
 const beforeIllustratedOpeningNext=nextOpening;nextOpening=async function(...args){if(openingMotherTalking){openingMotherTalking=false;openingRoomSignature='';openingRefreshRoomUI();syncOpeningDialogue();$('openingCanvas').focus?.({preventScroll:true});return;}return beforeIllustratedOpeningNext(...args);};$('openingNext').onclick=nextOpening;
 const beforeIllustratedOpeningReset=openingResetRoom;openingResetRoom=function(...args){openingMotherTalking=false;return beforeIllustratedOpeningReset(...args);};
 addEventListener('keydown',event=>{

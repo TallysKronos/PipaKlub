@@ -24,12 +24,19 @@
       "width": 1600,
       "height": 304,
       "alpha": true
+    },
+    "announcer": {
+      "image": "ui/dialogue-v1/announcer.png",
+      "width": 725,
+      "height": 1200,
+      "alpha": true
     }
   },
   "speakers": {
     "Mãe": "mother",
     "Kael": "kael",
-    "Sr. Assis": "assis"
+    "Sr. Assis": "assis",
+    "Locutor · Pipa TV": "announcer"
   },
   "panelSlices": [
     96,

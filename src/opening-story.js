@@ -10,8 +10,8 @@ export const KAEL_OPENING=[
  {speaker:'Kael',text:'Uma Rabiola Antiga… Obrigado, mãe! Espera… Vou levar ela até a mesa. E se eu colocar no Rabbito?',shot:'gift'},
  {speaker:'Kael',text:'Eu sei que não é assim que funciona. Mas… vamos tentar?',shot:'attach'},
  {speaker:'Kael',text:'O vento está saindo da mesa… Rabbito?! Você está vivo!',shot:'birth'},
- {speaker:'Seu primeiro parceiro',text:'Ele para ao seu lado e olha para você. Como você quer chamar seu parceiro?',shot:'name'},
- {speaker:'Kael',text:'Agora somos uma dupla. Vamos mostrar ao Sr. Assis que você consegue voar! A escada fica na porta ao sul.',shot:'partner'},
+ {speaker:'',text:'',shot:'name',silent:true},
+ {speaker:'',text:'',shot:'partner',silent:true},
  {speaker:'Mãe',text:'Meu filho… você acabou de dar vida ao seu próprio desenho. Ainda nem acredito!',shot:'downstairs'},
- {speaker:'Mãe',text:'Vou avisar o Sr. Assis sobre o que aconteceu. Ele vai ajudar vocês no primeiro voo. A saída para a Rua dos Ventos fica ao sul. Vão juntos e com cuidado, está bem?',shot:'downstairs'}
+ {speaker:'',text:'',shot:'downstairs',silent:true}
 ];

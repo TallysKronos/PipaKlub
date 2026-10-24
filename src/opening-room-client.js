@@ -21,9 +21,9 @@ function openingCloseBench(){openingCraftAt=null;openingCraftSaving=false;openin
 function openingResetRoom(){openingAvatarActivity=null;openingCraftAt=null;openingCraftSaving=false;openingClearWalking();openingRoomNavigation=openingState?.step===13?openingDownstairsNavigation:openingState?.step===11?openingExitNavigation:openingBedroomNavigation;openingWorkbench=false;bench.hidden=true;roomPlaces.hidden=true;openingRoomSignature='';}
 function openingNearestSpot(){return openingRoomNavigation.hotspots.filter(p=>openingRoomNavigation.near(openingActor,p.id)).sort((a,b)=>Math.hypot(a.x-openingActor.x,a.y-openingActor.y)-Math.hypot(b.x-openingActor.x,b.y-openingActor.y))[0];}
 function openingRefreshRoomUI(){
- roomPlaces.hidden=!openingHintsShown||!openingRoomStep()||openingGiftOpen;if(openingGiftOpen){$('openingSpeaker').textContent='Presente de aniversário';$('openingNext').textContent='Avançar';$('openingNext').disabled=openingBusy;$('openingHint').textContent='Avançar · guardar o presente';return;}if(!openingRoomStep()){$('openingNext').disabled=openingBusy||openingCastBusy();return;}
+ roomPlaces.hidden=!openingHintsShown||!openingRoomStep()||openingGiftOpen;if(openingGiftOpen){$('openingSpeaker').textContent='';$('openingSpeech').textContent='';$('openingNext').textContent='Avançar';$('openingNext').disabled=openingBusy;$('openingHint').textContent='Avançar · guardar o presente';return;}if(!openingRoomStep()){$('openingNext').disabled=openingBusy||openingCastBusy();return;}if(openingMotherTalking)return;
  const near=openingNearestSpot(),signature=[openingState.step,near?.id,openingBusy,openingWorkbench,openingAvatarActivity?.state.phase,typeof inputDevice==='string'?inputDevice:'keyboard'].join('|');if(signature===openingRoomSignature)return;openingRoomSignature=signature;
- $('openingSpeaker').textContent=openingState.step===11?'Seu parceiro vai com você':openingState.step===13?'Seu primeiro passeio juntos':openingState.step===3?'Termine seu projeto':'Uma ideia inesperada';
+ $('openingSpeaker').textContent='';$('openingSpeech').textContent='';
  $('openingHint').textContent=typeof inputDevice==='string'&&inputDevice.startsWith('gamepad')?'Analógico · A interage · B pausa':typeof inputDevice==='string'&&inputDevice==='touch'?'Toque no chão para andar · toque nos destaques para interagir':'Setas / WASD / clique para andar · E interage';
  $('openingNext').textContent=near?.id==='stairs'?'Descer a escada · E':near?.id==='exit'?'Sair para a rua · E':near?.id==='mother'?'Conversar · E':near?.id==='desk'?(openingState.step===3?'Montar Rabbito':'Ver projeto'):near?'Examinar · E':'Aproxime-se';
  $('openingNext').disabled=openingBusy||openingWorkbench||!near||openingAvatarActivity?.state.kind==='stairs';if(openingAvatarActivity?.state.kind==='seat'){$('openingNext').textContent='Levantar · E';$('openingNext').disabled=false;}
@@ -44,8 +44,8 @@ async function openingInspect(id){
  if(id==='stairs'){openingAvatarActivity=createHomeStairActivity('kael-bedroom',openingActor,()=>{openingAvatarActivity=null;advanceOpeningScene();});return;}
  if(id==='exit'){await advanceOpeningScene();return;}
  if(id==='mother'){openingActor.direction=2;openingMother.direction=1;openOpeningMotherConversation();return;}
- if(id==='tv'){$('openingSpeech').textContent='A final continua na TV. Gollia pressiona, e Jamile procura uma abertura. Um dia eu ainda vou estar naquele céu.';return;}
- if(id==='drawings'){$('openingSpeech').textContent='Tantas orelhas diferentes… Esta foi a versão que eu mais gostei. Não quero copiar um Pipamon que já existe. Quero terminar o meu.';return;}
+ if(id==='tv'){openOpeningDialogue('Kael','Um dia eu ainda vou estar naquele céu.');return;}
+ if(id==='drawings'){openOpeningDialogue('Kael','Tantas orelhas diferentes… Esta foi a versão que eu mais gostei.');return;}
  if(id==='desk'){
   if(openingState.step===7){await advanceOpeningScene();return;}
   openingWorkbench=true;bench.hidden=false;openingRoomSignature='';openingRefreshRoomUI();drawOpeningWorkbench(performance.now());$('openingBenchStatus').textContent='';$('openingBenchPlace').disabled=false;$('openingBenchPlace').focus({preventScroll:true});

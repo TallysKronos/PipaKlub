@@ -1,0 +1,10 @@
+{
+  "source": "Built-in image_gen",
+  "prompt": "Use case: identity-preserve. Create ONE production dialogue portrait cutout for PipaKlub / Soulmonsters. Image 1 is the existing announcer's IDENTITY reference; Image 2 is the approved professor dialogue portrait and is the exact STYLE and FRAMING target. Reillustrate the SAME adult Brazilian sports announcer as a head-to-upper-thigh portrait, rather than an oversized floating chest portrait. Match professor's polished hand-drawn anime RPG key art: refined warm dark outlines, soft painterly cel shading, expressive eyes, grounded anatomy, clear layered clothing, consistent detail and head/body proportions. Preserve medium dark warm brown skin, short curly black hair with a distinctive cream blond forelock, brown eyes, friendly energetic live-sports commentary expression, cream headset with dark teal pads and boom microphone, teal sports blazer with small orange kite lapel badge, open cream collared shirt. Show waist and upper thighs in dark trousers; head about 1/5 of visible body height like professor; no huge head. Natural relaxed three-quarter pose slightly facing RIGHT; one hand lightly holding small blank cue cards at waist, other making a modest expressive gesture. Single full isolated cutout with entire head, hair, headset and hands visible, generous margins. GENUINE TRANSPARENT BACKGROUND; no scenery, UI, frames, labels, text, watermark, extra people or glow. Match the portrait family, do not copy professor's identity or outfit. Not pixel art, not chibi, not photorealistic.",
+  "refs": [
+    "assets/story/kael-birthday-v1/announcer-v1.png",
+    "assets/ui/dialogue-v1/assis.png"
+  ],
+  "normalization": "Alpha bounds crop and proportional downsample to 1200px height; transparent RGBA.",
+  "review": "Matches existing announcer identity with the approved dialogue portrait framing and style."
+}
