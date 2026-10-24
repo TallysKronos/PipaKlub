@@ -1,0 +1,79 @@
+{
+  "version": 2,
+  "kind": "soulgen-baked-atlases",
+  "fps": 12,
+  "cell": 256,
+  "species": {
+    "carcara": {
+      "source": "art/soulgen/keys/carcara/color-rig/rig.mjs",
+      "sourceHash": "9d0c2359785bbc4504dbbf64415459ee10c21b7738f0e7e7a5f68cd980300774",
+      "rigRevision": 0,
+      "atlas": "basic-carcara",
+      "image": "creatures/starters-soulgen-v2/carcara.png",
+      "overworld": "creatures/starters-soulgen-v2/carcara-overworld.png",
+      "logicalSize": [
+        96,
+        96
+      ],
+      "renderScale": 2.4,
+      "frames": 124
+    },
+    "mata-verde": {
+      "source": "art/soulgen/keys/mata-verde/color-rig-v2/mata-verde.soulgen.json",
+      "sourceHash": "79546a0f653c5457e76ad1f2bf843cd4ed2d37beb0d320baea107c03973c7da5",
+      "rigRevision": 0,
+      "atlas": "basic-mata-verde",
+      "image": "creatures/starters-soulgen-v2/mata-verde.png",
+      "overworld": "creatures/starters-soulgen-v2/mata-verde-overworld.png",
+      "logicalSize": [
+        160,
+        160
+      ],
+      "renderScale": 1.4400000000000002,
+      "frames": 132
+    },
+    "azulao": {
+      "source": "art/soulgen/keys/azulao/color-rig-v2/azulao.soulgen.json",
+      "sourceHash": "dfa5102bdbeddeefdec593f40e116cbec9fe60e1216ad2ef0e1c203b8522d7e0",
+      "rigRevision": 0,
+      "atlas": "basic-azulao",
+      "image": "creatures/starters-soulgen-v2/azulao.png",
+      "overworld": "creatures/starters-soulgen-v2/azulao-overworld.png",
+      "logicalSize": [
+        160,
+        160
+      ],
+      "renderScale": 1.4400000000000002,
+      "frames": 138
+    },
+    "raio-de-sol": {
+      "source": "art/soulgen/keys/raio-de-sol/color-rig-v2/raio-de-sol.soulgen.json",
+      "sourceHash": "2be47304478481f70ab99d862f1c21edde2ad4add90622c6686a2712cf4d9b54",
+      "rigRevision": 0,
+      "atlas": "basic-raio-de-sol",
+      "image": "creatures/starters-soulgen-v2/raio-de-sol.png",
+      "overworld": "creatures/starters-soulgen-v2/raio-de-sol-overworld.png",
+      "logicalSize": [
+        160,
+        160
+      ],
+      "renderScale": 1.4400000000000002,
+      "frames": 127
+    },
+    "rabbito": {
+      "source": "art/soulgen/keys/rabbito/color-rig-v2/rabbito.soulgen.json",
+      "sourceHash": "a1713672519ce02bd498585db940dc341d1410c290a4c8894d06e2a047e74930",
+      "rigRevision": 1,
+      "atlas": "rabbito",
+      "image": "creatures/starters-soulgen-v2/rabbito.png",
+      "overworld": "creatures/starters-soulgen-v2/rabbito-overworld.png",
+      "logicalSize": [
+        160,
+        176
+      ],
+      "renderScale": 1.309090909090909,
+      "frames": 125
+    }
+  },
+  "overworldView": "Approved three-quarter view, mirrored for west/east. South/north retain that same authored view; no invented rear anatomy."
+}

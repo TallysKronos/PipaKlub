@@ -24,7 +24,7 @@ O menu inicial ganhou **Jogar sem conta**, logo abaixo de "Entrar na aventura". 
 
 `node scripts/local-trades.mjs` emula o login anônimo (porta 5194). Na tela inicial, **Jogar sem conta** entra direto na abertura do Kael. Testes: `node --test accounts.test.mjs`.
 
-## Publicação de 24/10/2026
+## Publicação anterior de 24/10/2026 — visitantes desativados
 
 Por decisão do responsável, esta release mantém visitantes **desativados** em produção. O Supabase continua com login anônimo desligado. Sem `GUEST_PLAY_ENABLED=1` no servidor, `/account/config` informa `features.guest=false`, o cliente oculta os botões e `/account/guest` recusa novas sessões antes de acessar o provedor. Contas existentes continuam funcionando.
 
@@ -33,3 +33,13 @@ Para ativar futuramente, serão necessárias autorização para ligar o login an
 Os novos starters e a hierarquia manual do Rabbito estão no Soulgen Studio e no Git; seus rigs ainda não substituem os atlas de combate/overworld do jogo.
 
 Validação da integração: ambos os builds concluídos; 89 testes focados passaram e entrada visitante local retomou a mesma fala da campanha após recarregar. A suíte completa em sequência executou 487 testes: 485 passaram e permaneceram as duas falhas anteriores dos relatórios visuais (`avatar-player.test.mjs` e `home-layout.test.mjs`). Após adicionar a trava de publicação, os 15 testes de contas passaram, incluindo a recusa de novos visitantes sem chamar o provedor. Nenhum dado de produção foi migrado ou reiniciado nesta release.
+
+## Atualização seguinte — visitantes e starters ativados
+
+O responsável reverteu a escolha anterior e autorizou login de visitante e substituição dos modelos antigos no jogo. Login anônimo habilitado no Supabase; `GUEST_PLAY_ENABLED=1` preparado no Render e registrado em `render.yaml`. Mantidos isolamento por jogador, bloqueio de trocas e limite de criação existente. Nenhuma migração de banco adicional.
+
+Os atlas de Carcará, Mata verde, Azulão, Raio de sol e Rabbito agora vêm dos rigs aprovados. Os mesmos IDs de catálogo atendem combate, coleção, Dex, fazenda e nascimento. O acompanhamento/abertura usa atlas próprios de 128 px, com apoio fixo e animações de repouso/voo. O Rabbito preserva a revisão manual de hierarquia 1. As vistas de acompanhamento usam o desenho original em três quartos e espelhamento lateral; não há novo desenho de costas.
+
+Exportação: `tools/soulgen-studio/export-starters.mjs`, com `@napi-rs/canvas` instalado ou `SOULGEN_CANVAS_MODULE` apontando para sua instalação. Saída em `assets/creatures/starters-soulgen-v2/`; os PNGs exportados são versionados e não exigem Canvas nativo no Render. Fontes e atlas antigos permanecem nos arquivos históricos, mas os manifestos de runtime apontam para a nova família.
+
+Por instrução expressa do responsável, **não foram executados testes nesta atualização**. Apenas exportação, leitura dos consumidores, geração dos dois builds e acompanhamento da publicação. Resultados de testes no bloco anterior pertencem à release anterior e não validam esta mudança visual.

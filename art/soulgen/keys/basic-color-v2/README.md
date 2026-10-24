@@ -40,7 +40,7 @@ node --test tools/soulgen-studio/*.test.mjs
 
 ## Limites
 
-Esta é uma entrega de arte e projetos animáveis para revisão final do responsável. Não altera espécie/modelo no banco, raridade, bônus, coleção ou atributos. Os atlas usados pelo combate e overworld permanecem como antes; os rigs v2 ainda não foram publicados no Render nem enviados ao Git remoto. Esta vista não é uma folha de quatro direções do overworld.
+Esta entrega de arte e projetos animáveis foi autorizada para substituir os atlas do jogo em 24/10/2026. Não altera espécie/modelo no banco, raridade, bônus, coleção ou atributos. A integração usa `tools/soulgen-studio/export-starters.mjs` e `assets/creatures/starters-soulgen-v2/`; preserva a hierarquia manual do Rabbito. Esta vista não é uma folha de quatro direções do overworld: o acompanhamento usa três quartos com espelhamento lateral, sem um desenho novo de costas. Nenhum teste executado nesta atualização, conforme solicitação do responsável.
 
 ## Hierarquia do Rabbito editada pelo responsável
 

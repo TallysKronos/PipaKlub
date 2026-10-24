@@ -46,7 +46,7 @@ export function createWorldCompanions(config={}){
  function frame(model,direction=0,moving=false,time=0){
   const actor=get(model);if(!actor)return null;
   const d=Number.isInteger(direction)&&direction>=0&&direction<4?direction:0;
-  const sequence=actor.animations[moving?'move':'idle'][d],index=sequence[Math.floor(Math.max(0,time)/(actor.frameMs||180))%sequence.length];
+  const sequence=actor.animations[moving?'move':'idle'][d],index=sequence[Math.floor(Math.max(0,time)/((!moving&&actor.idleFrameMs)||actor.frameMs||180))%sequence.length];
   return {actor,frame:actor.frames[index],index};
  }
  function draw(g,images,model,x,y,height,options={}){

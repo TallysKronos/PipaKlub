@@ -76,6 +76,6 @@ Os testes cobrem fidelidade do preset, composição hierárquica, amostragem, hi
 
 ## Básicos e Rabbito — rigs coloridos
 
-A biblioteca agora abre Mata verde, Azulão, Raio de sol e Rabbito, com cinco ações, expressões registradas e contratos de proporção/encaixe. Compare em `/basics-review.html` ou abra `/?preset=rabbito` (também mata-verde, azulao e raio-de-sol). Fontes, projetos portáteis e método em [lote de papel artesanal v2](../../art/soulgen/keys/basic-color-v2/README.md). Ainda não substituem os atlas de combate/overworld do jogo.
+A biblioteca agora abre Mata verde, Azulão, Raio de sol e Rabbito, com cinco ações, expressões registradas e contratos de proporção/encaixe. Compare em `/basics-review.html` ou abra `/?preset=rabbito` (também mata-verde, azulao e raio-de-sol). Fontes, projetos portáteis e método em [lote de papel artesanal v2](../../art/soulgen/keys/basic-color-v2/README.md). A integração autorizada gera atlas de combate/coleção e acompanhamento com `export-starters.mjs`, usando a hierarquia manual salva do Rabbito. Editar no Studio não atualiza o jogo automaticamente: reexporte e gere os builds.
 
 A revisão v2 usa o Carcará como referência de desenho: olhos pequenos/escuros, remendos costurados e papel facetado. Os presets abrem a nova geometria; projetos v1 e fontes anteriores continuam preservados.

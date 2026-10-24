@@ -11,3 +11,5 @@ services:
         value: 24.15.0
       - key: NODE_ENV
         value: production
+      - key: GUEST_PLAY_ENABLED
+        value: "1"
