@@ -20,6 +20,7 @@ function showOnlineTrailResult(s,ranking,mine){
    acceptTrailSnapshot(data.trails,owner);const root=$('trailOnlineReward'),r=data.trails.result;root.replaceChildren();
    root.append(uiElement('p',data.status==='saved'?'✓ Resultado salvo na sua conta.':data.status==='abandoned'?'Partida encerrada sem resultado confirmado.':'Salvando suas conquistas… Você pode voltar ao menu; o servidor continuará tentando.','save-status'));
    if(r){
+    renderBattleResultProgress({tamerXp:r.tamerXp??null,partnerXp:r.pipamonXp??null});
     const stars=uiElement('div','★'.repeat(r.stars)+'☆'.repeat(3-r.stars),'result-stars');stars.setAttribute('aria-label',r.stars+' de 3 estrelas');root.append(stars);
     root.append(uiElement('p',r.won?'+'+r.coins+' moedas confirmadas'+(r.firstClear?' · bônus da primeira vitória incluído':''):'Tente novamente: o progresso anterior continua na conta.','coin-gain'));
     if(r.drop){const item=ART_CONFIG.items.find(i=>i.id===r.drop),card=uiElement('div',undefined,'drop-reward');if(item){const image=document.createElement('img');image.src=item.url;image.alt=item.name;card.append(image,uiElement('b',item.name+' · recebida na conta'));}root.append(card);}

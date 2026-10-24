@@ -15,7 +15,7 @@ const bench=uiElement('section',undefined,'opening-workbench');bench.id='opening
 bench.innerHTML='<div class="opening-bench-card"><h2 id="openingBenchTitle">Uma ideia feita de papel</h2><p>O corpo de papel já está pronto. Falta encaixar a última vareta na armação.</p><canvas id="openingProjectArt" width="1536" height="1024" role="img" aria-label="Projeto físico do Rabbito, feito de papel e bambu, ainda sem rabiola"></canvas><div><button type="button" class="secondary" id="openingBenchBack">Olhar o quarto</button><button type="button" class="primary" id="openingBenchPlace">Encaixar a última vareta</button></div><p id="openingBenchStatus" role="status"></p></div>';
 openingScreen.querySelector('.opening-stage').append(bench);
 function openingRoomStep(){return [3,7,11,13].includes(openingState?.step);}
-function openingWalkActive(){return !gameLoading.active&&!openingScreen.hidden&&openingRoomStep()&&!openingWorkbench&&!openingBusy&&!openingGiftOpen&&!openingMother.path?.length&&openingAvatarActivity?.state.kind!=='stairs';}
+function openingWalkActive(){return !(typeof openingMotherTalking!=='undefined'&&openingMotherTalking)&&!gameLoading.active&&!openingScreen.hidden&&openingRoomStep()&&!openingWorkbench&&!openingBusy&&!openingGiftOpen&&!openingMother.path?.length&&openingAvatarActivity?.state.kind!=='stairs';}
 function openingClearWalking(){openingWalkKeys={};openingWalkIntent=null;openingActor.path=[];openingActor.moving=false;}
 function openingCloseBench(){openingCraftAt=null;openingCraftSaving=false;openingWorkbench=false;openingRod.grabbed=false;openingRod.pointer=null;bench.hidden=true;openingRoomSignature='';openingRefreshRoomUI();}
 function openingResetRoom(){openingAvatarActivity=null;openingCraftAt=null;openingCraftSaving=false;openingClearWalking();openingRoomNavigation=openingState?.step===13?openingDownstairsNavigation:openingState?.step===11?openingExitNavigation:openingBedroomNavigation;openingWorkbench=false;bench.hidden=true;roomPlaces.hidden=true;openingRoomSignature='';}
@@ -43,7 +43,7 @@ async function openingInspect(id){
  if(id==='seat'){openingAvatarActivity=createHomeSeatActivity(openingActor,p=>{Object.assign(openingActor,p);openingAvatarActivity=null;openingRoomSignature='';openingRefreshRoomUI();});return;}
  if(id==='stairs'){openingAvatarActivity=createHomeStairActivity('kael-bedroom',openingActor,()=>{openingAvatarActivity=null;advanceOpeningScene();});return;}
  if(id==='exit'){await advanceOpeningScene();return;}
- if(id==='mother'){openingActor.direction=2;openingMother.direction=1;$('openingSpeech').textContent='Eu guardei aquela rabiola por tantos anos… Cuide bem dele, Kael. E volte para me contar como foi o primeiro voo.';return;}
+ if(id==='mother'){openingActor.direction=2;openingMother.direction=1;openOpeningMotherConversation();return;}
  if(id==='tv'){$('openingSpeech').textContent='A final continua na TV. Gollia pressiona, e Jamile procura uma abertura. Um dia eu ainda vou estar naquele céu.';return;}
  if(id==='drawings'){$('openingSpeech').textContent='Tantas orelhas diferentes… Esta foi a versão que eu mais gostei. Não quero copiar um Pipamon que já existe. Quero terminar o meu.';return;}
  if(id==='desk'){

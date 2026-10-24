@@ -1,0 +1,55 @@
+/* Guardian-specific art: fixed illustrated corners, stretchable quiet center. */
+.guardian-hud{left:34%;right:76px;top:16px;min-height:122px;box-sizing:border-box;padding:20px 32px 16px 102px;border:solid transparent;border-width:18px 34px;border-image:var(--guardian-frame) 116 210 116 210 fill / 24px 44px / 9px stretch;background:none;box-shadow:none;border-radius:0;color:#fff1d6;filter:drop-shadow(0 5px 10px #080e17a0)}
+.guardian-crest{position:absolute;left:-46px;top:-9px;width:112px;height:112px;object-fit:contain;filter:drop-shadow(0 4px 5px #000a)}
+.guardian-heading{grid-template-columns:minmax(0,1fr) auto;gap:1px 12px}
+.guardian-heading span{font-size:10px;letter-spacing:1.5px;color:#ffc878}
+.guardian-heading b{font-size:32px;line-height:1.05;color:#fff0cf;text-shadow:2px 2px 0 #9b302a}
+.guardian-heading small{font-size:9px;letter-spacing:1px;color:#f3a67c;text-align:right}
+.guardian-vital{margin-top:8px;gap:12px}
+.guardian-vital [role=meter]{height:17px;border:1px solid #f28e59;background:#280f13;box-shadow:inset 0 2px 4px #000b;border-radius:3px}
+.guardian-vital i{background:linear-gradient(#ff9b56,#df4337 55%,#a5222c);box-shadow:0 0 12px #ef583b80}
+.guardian-vital em{background:repeating-linear-gradient(90deg,transparent 0,transparent calc(20% - 2px),#260c13b0 calc(20% - 2px),#260c13b0 20%)}
+.guardian-vital strong{font-size:12px;color:#ffe8c7}
+.guardian-hud p{font-size:12px;line-height:1.2;min-height:15px;margin-top:7px;color:#e7ccaa}
+.guardian-hud[data-intent="charge"] p{color:#ffb782;font-weight:900}
+.guardian-hud[data-intent="opening"] p{color:#aeecc9;font-weight:900}
+.guardian-hud[data-phase="2"] .guardian-heading b{color:#ffb28d}
+.guardian-hud[data-phase="2"] .guardian-vital i{background:linear-gradient(#ffb964,#ef593e 42%,#ba2237)}
+body.pilot-ui.in-match.guardian-battle .hud .hud-clock{top:168px;right:76px;border-color:#b65337;color:#ffe6bd}
+.guardian-intro{isolation:isolate;top:45%;width:min(920px,88%);box-sizing:border-box;padding:30px 70px;border:solid transparent;border-width:28px 54px;border-image:var(--guardian-frame) 116 210 116 210 fill / 36px 66px / 14px stretch;background:none;box-shadow:none;animation:guardian-signal-in .45s cubic-bezier(.18,.78,.18,1) both;filter:drop-shadow(0 12px 24px #100a13b3)}
+.guardian-alert-copy{position:relative;z-index:2}
+.guardian-risk{display:flex;align-items:center;justify-content:center;gap:8px;font:900 11px Nunito,sans-serif;letter-spacing:3px;color:#f1b951;margin-bottom:12px}
+.guardian-risk>span{display:grid;place-items:center;width:23px;height:23px;box-sizing:border-box;border:2px solid #f1b951;transform:rotate(45deg);font-size:17px;line-height:1;color:#f1b951}
+.guardian-risk>span>i{font-style:normal;transform:rotate(-45deg)}
+.guardian-intro .guardian-alert-copy>span{font:800 10px Nunito,sans-serif;letter-spacing:5px;color:#dcc8a3}
+.guardian-intro h2{font:clamp(42px,6.7vw,86px)/1.06 'Lilita One',serif;text-transform:uppercase;letter-spacing:1px;margin:5px 0;color:#ffd16d;text-shadow:0 3px 0 #a13f25,0 6px 20px #c2351e33}
+.guardian-intro p{font:900 clamp(14px,1.6vw,21px) Nunito,sans-serif;color:#ffad83;text-transform:uppercase;letter-spacing:2px;margin:3px 0 12px}
+.guardian-intro small{font:700 13px Nunito,sans-serif;color:#e4d3b7}
+.guardian-warning-tape{position:absolute;z-index:-1;left:-8%;width:116%;height:15px;background:repeating-linear-gradient(125deg,#e6ad3f 0 20px,#231b1a 20px 40px);box-shadow:0 0 0 2px #160c10,0 0 14px #e8572a40;animation:guardian-tape-drift 2.4s linear both;opacity:.8;pointer-events:none}
+.guardian-tape-top{top:-4px;transform:rotate(-2deg)}
+.guardian-tape-bottom{bottom:-4px;transform:rotate(1deg);animation-direction:reverse}
+.guardian-intro[data-stage="leave"]{animation:guardian-signal-out .5s ease-in both}
+@keyframes guardian-signal-in{from{opacity:0;transform:translate(-58%,-50%) scale(.96)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+@keyframes guardian-signal-out{from{opacity:1;transform:translate(-50%,-50%)}to{opacity:0;transform:translate(-42%,-50%)}}
+@keyframes guardian-tape-drift{from{background-position:0 0}to{background-position:80px 0}}
+.guardian-intro[data-motion="still"],.guardian-intro[data-motion="still"] .guardian-warning-tape{animation:none!important}
+@media(max-width:900px){
+ .guardian-hud{left:36%;right:65px;padding:15px 16px 12px 68px;border-width:16px 25px;min-height:118px}
+ .guardian-crest{width:86px;height:100px;left:-38px;top:-3px}
+ .guardian-heading b{font-size:27px}.guardian-heading small{display:none}.guardian-heading span{font-size:9px;letter-spacing:.8px}
+ .guardian-hud p{font-size:11px}.guardian-vital strong{font-size:10px}
+ body.pilot-ui.in-match.guardian-battle .hud .hud-clock{right:65px;top:160px}
+ .guardian-intro{width:90%;padding:24px 35px;border-width:24px 36px}
+}
+@media(max-width:600px){
+ body.in-match.guardian-battle .game-side{top:16px;right:12px}
+ .guardian-hud{top:83px;left:12px;right:12px;min-height:116px;padding:12px 14px 10px 65px;border-width:12px 22px;border-image-width:22px 35px}
+ .guardian-crest{left:-24px;top:-4px;width:82px;height:94px}
+ .guardian-heading{grid-template-columns:1fr}.guardian-heading span{grid-column:1;font-size:8px;letter-spacing:.6px}.guardian-heading b{text-align:left;font-size:25px}
+ .guardian-hud p{font-size:10px}.guardian-vital{margin-top:5px;gap:8px}.guardian-vital [role=meter]{height:13px}
+ body.pilot-ui.in-match.guardian-battle .hud .hud-clock{top:215px;right:12px;height:38px}
+ .guardian-intro{top:47%;padding:20px 10px;border-width:22px 30px;border-image-width:28px 36px;width:92%}
+ .guardian-intro h2{font-size:clamp(30px,8.8vw,48px);letter-spacing:0}.guardian-intro p{font-size:12px;letter-spacing:1px}.guardian-intro small{font-size:11px}.guardian-risk{font-size:9px;letter-spacing:2px;margin-bottom:8px}.guardian-warning-tape{height:10px}
+}
+@media(max-height:500px) and (min-width:601px){.guardian-hud{top:8px;min-height:94px;padding-block:10px}.guardian-heading b{font-size:24px}.guardian-hud p{font-size:10px;margin-top:4px}.guardian-crest{height:82px;width:82px}.guardian-intro{padding-block:12px}.guardian-intro h2{font-size:42px}.guardian-risk{margin-bottom:5px}.guardian-intro p{margin-bottom:5px}body.pilot-ui.in-match.guardian-battle .hud .hud-clock{top:124px}}
+@media(prefers-reduced-motion:reduce){.guardian-intro,.guardian-warning-tape{animation:none!important}.guardian-vital i{transition:none}}

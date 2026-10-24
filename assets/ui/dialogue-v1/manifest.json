@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "images": {
+    "mother": {
+      "image": "ui/dialogue-v1/mother.png",
+      "width": 800,
+      "height": 1200,
+      "alpha": true
+    },
+    "kael": {
+      "image": "ui/dialogue-v1/kael.png",
+      "width": 799,
+      "height": 1200,
+      "alpha": true
+    },
+    "assis": {
+      "image": "ui/dialogue-v1/assis.png",
+      "width": 753,
+      "height": 1200,
+      "alpha": true
+    },
+    "frame": {
+      "image": "ui/dialogue-v1/frame.png",
+      "width": 1600,
+      "height": 304,
+      "alpha": true
+    }
+  },
+  "speakers": {
+    "Mãe": "mother",
+    "Kael": "kael",
+    "Sr. Assis": "assis"
+  },
+  "panelSlices": [
+    96,
+    160,
+    96,
+    160
+  ],
+  "source": "Built-in image_gen"
+}

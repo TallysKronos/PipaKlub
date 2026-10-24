@@ -1,0 +1,40 @@
+{
+  "source": "Built-in image_gen",
+  "reference": "User dialogue mockup, codex-clipboard-08fa4dd6-0d9f-4d48-8257-78663bb52b5e.png",
+  "prompts": [
+    {
+      "name": "mother",
+      "prompt": "Use case: identity-preserve. Production dialogue portrait cutout for PipaKlub/Soulmonsters, not a screenshot. Hand-drawn anime RPG dialogue key art with expressive large eyes, fine warm dark outlines, painterly cel shading, clean readable face; match the supplied user mockup's dialogue illustration style. Single character, head to upper thigh, three-quarter facing slightly RIGHT, natural relaxed arms, centered, complete top of head and hair with generous margin. Genuine transparent background. No scenery, no panel, no lettering, no UI, no other characters. Detailed illustration rather than tiny chibi/pixel overworld sprite, but preserve identity and age from supplied reference. Character: Kael's MOTHER from the first user mockup: warm young adult mother with navy blue hair in loose messy bun, a couple of face-framing locks, warm brown eyes, medium warm skin, teal collared rolled-sleeve shirt and coral red apron tied at waist, small stitched golden kite emblem on apron. Gentle proud loving smile, one hand at hip, same proportions and outfit as the large mother in user mockup. Subject isolated alone. Use user mockup for EXACT identity/pose/illustration style, overworld sheet only for identity consistency.",
+      "refs": [
+        "C:\\Users\\User1\\AppData\\Local\\Temp\\codex-clipboard-08fa4dd6-0d9f-4d48-8257-78663bb52b5e.png",
+        "C:\\Users\\User1\\Documents\\Codex\\2026-10-24\\que\\PipaKlub\\assets\\story\\kael-birthday-v1\\mother-overworld-v2.png"
+      ]
+    },
+    {
+      "name": "kael",
+      "prompt": "Use case: identity-preserve. Production dialogue portrait cutout for PipaKlub/Soulmonsters, not a screenshot. Hand-drawn anime RPG dialogue key art with expressive large eyes, fine warm dark outlines, painterly cel shading, clean readable face; match the supplied user mockup's dialogue illustration style. Single character, head to upper thigh, three-quarter facing slightly RIGHT, natural relaxed arms, centered, complete top of head and hair with generous margin. Genuine transparent background. No scenery, no panel, no lettering, no UI, no other characters. Detailed illustration rather than tiny chibi/pixel overworld sprite, but preserve identity and age from supplied reference. Character: Kael, child/young preteen boy, youthful round face, spiky navy blue hair, warm brown eyes, medium warm skin; royal navy blue open hooded jacket over dark shirt with a turquoise collar accent, small tan-gold kite emblem, backpack straps gold/tan. Friendly curious determined smile, one hand holding backpack strap. Preserve the boy in supplied sheet, translated to the detailed half-body dialogue illustration style of the mother's user mockup. Still a CHILD, never adult or teenager. NO new costume or accessories.",
+      "refs": [
+        "C:\\Users\\User1\\Documents\\Codex\\2026-10-24\\que\\PipaKlub\\assets\\hub\\praca-v1\\kael.png",
+        "C:\\Users\\User1\\AppData\\Local\\Temp\\codex-clipboard-08fa4dd6-0d9f-4d48-8257-78663bb52b5e.png"
+      ]
+    },
+    {
+      "name": "assis",
+      "prompt": "Use case: identity-preserve. Production dialogue portrait cutout for PipaKlub/Soulmonsters, not a screenshot. Hand-drawn anime RPG dialogue key art with expressive large eyes, fine warm dark outlines, painterly cel shading, clean readable face; match the supplied user mockup's dialogue illustration style. Single character, head to upper thigh, three-quarter facing slightly RIGHT, natural relaxed arms, centered, complete top of head and hair with generous margin. Genuine transparent background. No scenery, no panel, no lettering, no UI, no other characters. Detailed illustration rather than tiny chibi/pixel overworld sprite, but preserve identity and age from supplied reference. Character: Sr. Assis, warm middle-aged male professor from sheet: short navy-dark hair with GRAY TEMPLES, goggles with round amber/brass rims resting on top of head (not over eyes), brown eyes, clean shaven, white open laboratory coat over blue collared polo, tan trousers, ID badge. Friendly reassuring mentor smile, one open palm in explanatory gesture near waist. Match supplied man's exact identity, translated to detailed dialogue half-body key art matching the mother's mockup. No beard, no old wizard costume, no altered goggles.",
+      "refs": [
+        "C:\\Users\\User1\\Documents\\Codex\\2026-10-24\\que\\PipaKlub\\assets\\characters\\sr-assis\\poses.png",
+        "C:\\Users\\User1\\AppData\\Local\\Temp\\codex-clipboard-08fa4dd6-0d9f-4d48-8257-78663bb52b5e.png"
+      ]
+    },
+    {
+      "name": "frame",
+      "prompt": "Use case: precise-object-edit. Create just ONE blank speech box game UI asset from the bottom dialogue panel of the attached reference. Wide horizontal 5:1 cream parchment rectangle, thin layered dark teal and warm golden bamboo edging, beveled small corner gold fittings, modest green leaves at bottom-left and tiny leaves at top-right exactly in the visual language of the supplied mockup. The middle is empty pale warm paper for runtime text. Flat straight side borders; decorative corners within outer 12% only for 9-slice scaling. Very restrained texture. NO nameplate attached, NO characters, NO text, NO letters, NO symbols inside, NO kite inside, NO scene, NO second panel. Isolated complete panel on genuine transparent background with margins. Same refined hand-illustrated gold-teal-cream style as supplied bottom box. Front facing no perspective, no heavy drop shadow.",
+      "refs": [
+        "C:\\Users\\User1\\AppData\\Local\\Temp\\codex-clipboard-08fa4dd6-0d9f-4d48-8257-78663bb52b5e.png"
+      ]
+    }
+  ],
+  "normalization": "RGBA preserved. Portraits alpha-cropped and proportionally downsampled to 1200px height. Frame cropped to alpha >16 bounding box to remove near-transparent outer halo, preserving original alpha within crop, proportionally downsampled to 1600px width. No repainting.",
+  "integration": "Dialogue registry; shared journey, opening and first-flight surfaces. Existing rival/announcer art reused when appropriate. Mother choices use real actions.",
+  "review": "Reviewed in browser: mother, Kael and Sr. Assis at 1280x720; mother at 390x844 and 844x390. Mother interaction was opened through scene walking in the audit runtime; keyboard Up wraps selection and Enter returns to exploration. Emulated browser viewports, not physical devices. Opening conversation dismissal and story-step preservation verified by integration test."
+}

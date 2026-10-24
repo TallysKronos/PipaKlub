@@ -5,6 +5,17 @@ function auditBoot(input){
  for(let n=0;n<8;n++){const p=eng.player(n?('Pipeiro nome longo '+n):name,n%4,'audit-'+n,now);eng.admit(s,p,now);Object.assign(p,{x:180+n*85,y:220+(n%2)*80,rounds:n%3,respawn:0});}
  const p=s.players[0];if(scenario==='cooldown')Object.assign(p,{lineCooldown:4.2,skillCooldown:6.4,dodgeCooldown:1.6,hp:28});if(scenario==='energy')p.energy=5;if(scenario==='cut')Object.assign(p,{hp:0,respawn:now+3000});if(scenario==='charge'||scenario==='moving')eng.move(p,{lineNonce:1,lineId:'puxao',lineHeld:scenario==='charge'},.1);
  enter(s,p.id,'audit');serverNow=()=>now;updateHud(now);updateNormalLineHUD();document.querySelector('[data-hud-tab="'+tab+'"]')?.click();if(scenario==='side-left')$('normalLineSide').click();if(scenario==='focus')$('normalLineUse').focus();if(scenario==='pause')openPause();if(scenario==='missing-assets')document.body.classList.add('hud-art-unavailable');
+ if(scenario.startsWith('result-')){
+  s.players=s.players.slice(0,2);p.soul='rabbito';p.name='Kael · demonstração';p.rounds=scenario==='result-victory'?s.roundsToWin:0;s.players[1].rounds=p.rounds?0:s.roundsToWin;
+  s.phase='intermission';showResult=true;playerAccount={profile:{id:'audit',nickname:p.name,xp:20,equipped_kite_id:'audit-kite'},inventory:[{id:'audit-kite',pipamon_xp:60,model:{name:'Rabbito',soul:'rabbito'}}]};
+  modal('Resultado de demonstração','<p>Prévia visual · valores ilustrativos, sem recompensas ou alterações de conta.</p><div class="wild-tail"><b>Rabiola de Carcará · ×1</b><p>Item ilustrativo para conferir o espaço do card.</p></div>','Continuar','Prévia dos banners');
+  presentBattleResult({...s,resultOutcome:scenario==='result-fled'?'fled':undefined},p.rounds?[p,s.players[1]]:[s.players[1],p],p);
+  renderBattleResultProgress({tamerXp:scenario==='result-victory'?30:5,partnerXp:scenario==='result-victory'?60:2});
+ }
+ if(scenario.startsWith('dialogue-')){
+  mode=null;state=null;document.body.classList.remove('in-match','cinematic-battle','guardian-battle');$('gameSide').style.display='none';$('hud').style.display='none';playerAccount={profile:{id:'dialogue-audit',nickname:'Kael',level:2,xp:30,equipped_kite_id:'dialogue-rabbit'},inventory:[{id:'dialogue-rabbit',model_id:'rabbito',pipamon_xp:0,model:{name:'Rabbito',color:0,soul:'rabbito'}}]};journey={phase:'complete'};openingState={step:14};worldRuntime.owner='dialogue-audit';
+  openWorld('kael-home');loadWorldImage('kael-home').then(()=>{if(scenario==='dialogue-mother')openMotherConversation();else dialogue('Conversa de demonstração',scenario==='dialogue-kael'?'Eu preciso ver o professor primeiro. Ele vai nos ajudar a encontrar o vento!':'Cada fio guarda uma história, Kael. Vamos descobrir juntos como seu parceiro encontra o vento.','Continuar',hideJourney,{speaker:scenario==='dialogue-kael'?'Kael':'Sr. Assis'});});
+ }
  function visible(e){const s=getComputedStyle(e),r=e.getBoundingClientRect();return s.display!=='none'&&s.visibility!=='hidden'&&r.width>1&&r.height>1&&!e.closest('.sr')&&!!e.getClientRects().length;}
  function box(e){const r=e.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height};}
  function contains(a,b){return b.x>=a.x-1&&b.y>=a.y-1&&b.x+b.w<=a.x+a.w+1&&b.y+b.h<=a.y+a.h+1;}

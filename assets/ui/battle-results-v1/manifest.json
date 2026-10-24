@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "images": {
+    "victory": {
+      "image": "ui/battle-results-v1/victory.png",
+      "width": 1200,
+      "height": 213,
+      "alpha": true,
+      "slice": 324
+    },
+    "defeat": {
+      "image": "ui/battle-results-v1/defeat.png",
+      "width": 1200,
+      "height": 228,
+      "alpha": true,
+      "slice": 324
+    }
+  },
+  "source": "Built-in image_gen",
+  "text": "DOM, separate from ribbon decoration"
+}

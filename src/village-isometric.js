@@ -28,7 +28,7 @@ export function createVillageIsometricRenderer(scene,images,pack,model,createCan
  if(street){paintStreetGround(c);
  }else{
   const f=bedroom?BEDROOM_LAYOUT.floor:null,x=f?.x??(opening?350:180),y=f?.y??(opening?330:220),w=f?.w??(opening?1050:1300),h=f?.h??(opening?600:740),wall=bedroom?BEDROOM_LAYOUT.wallHeight:180;
-  c.fillStyle='#486960';c.fillRect(-600,-600,2800,2300);
+  c.fillStyle='#0b1118';c.fillRect(-600,-600,2800,2300);
   shape([[x,y+h],[x+w,y+h],[x+w,y+h+14],[x,y+h+14]],'#987049');
   shape([[x,y],[x+w,y],[x+w,y+h],[x,y+h]],'#d6a365');
   c.save();c.beginPath();c.rect(x,y,w,h);c.clip();c.strokeStyle='#bc8b53';c.lineWidth=1.4;for(let v=y;v<y+h;v+=42){c.beginPath();c.moveTo(x,v);c.lineTo(x+w,v);c.stroke();for(let u=x+(Math.round(v/42)%2)*100;u<x+w;u+=200){c.beginPath();c.moveTo(u,v);c.lineTo(u,v+42);c.stroke();}}c.restore();

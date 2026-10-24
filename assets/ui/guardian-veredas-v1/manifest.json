@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "images": {
+    "frame": {
+      "image": "ui/guardian-veredas-v1/frame.png",
+      "width": 1536,
+      "height": 499,
+      "alpha": true,
+      "slices": [
+        116,
+        210,
+        116,
+        210
+      ]
+    },
+    "crest": {
+      "image": "ui/guardian-veredas-v1/crest.png",
+      "width": 512,
+      "height": 514,
+      "alpha": true
+    }
+  },
+  "intro": {
+    "durationMs": 3400,
+    "exitBeforeCombatMs": 3200,
+    "reducedMotion": "static"
+  },
+  "source": "Built-in image_gen",
+  "review": "Reviewed in live local boss encounter at 1280x720, 390x844 and 844x390. Entry/hold and hidden-before-live visually observed; reduced-motion and phase-2 cues verified by automated tests."
+}

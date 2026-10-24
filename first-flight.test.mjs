@@ -9,6 +9,39 @@ import {createAssetHandler} from './src/static-assets.js';
 import vm from 'node:vm';
 import {parseHTML} from 'linkedom';
 
+test('illustrated dialogue uses the right speaker, real choices and opening conversation dismissal',async()=>{
+ const ui=journeyUI();await ui.settle();
+ ui.run(`playerAccount={profile:{id:'dialogue-owner',nickname:'Kael'},inventory:[]};journey={phase:'complete'};var collectionVisits=0;homeActions.collection=()=>collectionVisits++;openMotherConversation();`);await ui.settle();
+ const box=ui.document.getElementById('journeyDialog');assert.equal(box.dataset.rpgSpeaker,'Mãe');assert.equal(box.querySelectorAll('.journey-actions button').length,3);assert.equal(box.querySelector('.rpg-dialogue-portrait').hidden,false);assert.match(box.querySelector('.rpg-dialogue-portrait').getAttribute('src'),/dialogue-v1\/mother/);
+ assert.equal(ui.run('worldWalkActive()'),false);
+ ui.document.getElementById('journeyContinue').onclick();assert.match(ui.document.getElementById('journeySpeech').textContent,/Explorem a cidade/);
+ box.querySelector('[data-mother-collection]').onclick();assert.equal(ui.run('collectionVisits'),1);assert.equal(box.hidden,true);
+ ui.run(`dialogue('Lembrete','eu preciso ver o professor primeiro','Continuar',hideJourney,{speaker:'Kael'});`);await ui.settle();assert.equal(box.querySelector('[data-mother-collection]'),null);assert.match(box.querySelector('.rpg-dialogue-portrait').getAttribute('src'),/dialogue-v1\/kael/);
+ ui.run(`openingState={step:13};openingScreen.hidden=false;openOpeningMotherConversation();`);await ui.settle();assert.equal(ui.run('openingWalkActive()'),false);assert.equal(ui.document.getElementById('openingSpeaker').textContent,'Mãe');
+ await ui.run('nextOpening()');assert.equal(ui.run('openingMotherTalking'),false);assert.equal(ui.run('openingState.step'),13,'closing a conversation never skips the story checkpoint');
+});
+
+test('shared battle results cover modes, preserve actions and clear on another dialog',async()=>{
+ const ui=journeyUI();await ui.settle();
+ ui.run(`track=()=>{};accountRequest=()=>new Promise(()=>{});var resultMe={id:'result-me',name:'Kael',color:0,soul:'rabbito',rounds:1,score:100,cuts:1,hp:100},resultFoe={id:'result-foe',name:'Rival',color:1,rounds:0,score:0};me=resultMe.id;playerAccount={profile:{id:'result-owner',nickname:'Kael',xp:22,equipped_kite_id:'result-kite'},inventory:[{id:'result-kite',pipamon_xp:0,model:{name:'Rabbito',soul:'rabbito'}}]};`);
+ for(const [kind,extra]of [['practice',''],['online',''],['wild',",wild:{zone:'park-trail'}"],['boss',",wild:{zone:'park-veredas'},boss:true"],['trail',",trail:'morro-1'"],['daily',",daily:{name:'Dia de teste',description:'Ventos',weather:'clear'}"]]){
+  ui.run(`mode='${kind==='practice'?'practice':'online'}';showResult=true;state={id:'result-${kind}',mode:'rounds',roundsToWin:1,players:[resultMe,resultFoe],round:1${extra}};showMatchResult(state,[resultMe,resultFoe]);`);
+  assert.equal(ui.document.getElementById('modal').dataset.outcome,'victory',kind);
+  assert.equal(ui.document.querySelectorAll('.battle-result-ribbon').length,1);
+  assert.ok(ui.document.getElementById('dialogAction').onclick,kind);
+ }
+ ui.run(`renderBattleResultProgress({tamerXp:5,partnerXp:6});`);
+ assert.match(ui.document.querySelector('.battle-result-progress').textContent,/Nv. 1 → 2/);
+ assert.equal(ui.run('playerAccount.profile.xp'),22,'presentation never grants XP');
+ ui.run(`mode='practice';resultMe.rounds=0;resultFoe.rounds=1;state={id:'result-loss',mode:'rounds',roundsToWin:1,players:[resultMe,resultFoe]};showMatchResult(state,[resultFoe,resultMe]);`);
+ assert.equal(ui.document.getElementById('modal').dataset.outcome,'defeat');
+ ui.run(`presentBattleResult({...state,id:'result-fled',resultOutcome:'fled'},[],resultMe);`);
+ assert.equal(ui.document.getElementById('modal').dataset.outcome,'fled');
+ ui.run(`modal('Outro assunto','<p>Menu</p>');`);
+ assert.equal(ui.document.getElementById('modal').classList.contains('battle-result'),false);
+ assert.equal(ui.document.querySelector('.battle-result-hero'),null);
+});
+
 test('autosave shows pending confirmation, preserves bank drafts and skips disabled or loading scenes',async()=>{
  const ui=journeyUI();await ui.settle();
  ui.run("playerAccount={profile:{id:'autosaver',nickname:'Kael'},inventory:[]};journey={phase:'complete'};journeyOwner='autosaver';openingState={step:14};showCourtyard();refreshWorldHUD();");await ui.run('loadWorldImage(worldRuntime.id)');
@@ -97,6 +130,18 @@ test('CRT defaults on, is configurable in both menus and persists off and on acr
   for(const button of buttons){assert.match(button.textContent,/desligado/);assert.equal(button.getAttribute('aria-pressed'),'false');}
   ui.run('homeActions.crt()');assert.equal(memory.get('pipaCRT'),'on');ui=journeyUI(search,storage);await ui.settle();assert.equal(ui.run('crtEnabled'),true);
  }
+});
+
+test('boss HUD exposes real health, reduced-motion warning and clears on normal encounters',async()=>{
+ const ui=journeyUI();await ui.settle();
+ ui.run("state=eng.create(0,{mode:'rounds'});var guardianMe=eng.player('Kael',0,'guardian-me',0),guardianBoss=eng.player('Lacertubo',1,'guardian-boss',0);guardianBoss.bot=true;guardianBoss.bossId='lacertubo';guardianBoss.hp=190;state.players=[guardianMe,guardianBoss];state.boss={id:'lacertubo'};state.phase='countdown';state.last=0;state.phaseUntil=6600;mode='practice';me='guardian-me';renderPlayers=null;updateCinematicBattle(guardianMe)");
+ assert.equal(ui.run('guardianIntro.hidden'),false);assert.equal(ui.run('guardianIntro.dataset.motion'),'still');
+ assert.equal(ui.document.querySelector('.guardian-vital [role=meter]').getAttribute('aria-valuemax'),'190');
+ assert.equal(ui.document.querySelector('.guardian-vital strong').textContent,'190 / 190');
+ ui.run('state.last=3500;updateCinematicBattle(guardianMe)');assert.equal(ui.run('guardianIntro.hidden'),true);
+ ui.run('state.phase="live";guardianBoss.hp=95;guardianBoss.bossPhase=2;guardianBoss.bossRecovery=1;updateCinematicBattle(guardianMe)');
+ assert.equal(ui.run('guardianHud.dataset.intent'),'opening');assert.equal(ui.document.querySelector('.guardian-vital [role=meter]').getAttribute('aria-valuenow'),'95');
+ ui.run('delete state.boss;updateCinematicBattle(guardianMe)');assert.equal(ui.run('guardianHud.hidden'),true);assert.equal(ui.document.body.classList.contains('guardian-battle'),false);
 });
 
 function journeyUI(search='',storage={getItem(){return null},setItem(){}}){
