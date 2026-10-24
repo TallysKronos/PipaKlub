@@ -105,10 +105,14 @@ function drawProp(o){
   queue.sort((a,b)=>(coretoCutaway(a)?playerDepth-1:a.depth)-(coretoCutaway(b)?playerDepth-1:b.depth));
   for(const o of queue){if(o.draw){const p=toIso(o);o.draw(p);}else if(o.type==='grass')drawTallGrass(g,o,{project:toIso,wind,paused});else drawProp(o);}
   for(const o of entries.filter(e=>e.overlay)){const p=toIso(o);o.draw(p);if(o.type==='npc')hitAreas.push({x:p.x-25,y:p.y-80,w:50,h:80,id:'assis',depth:p.y+1});}
-  for(const e of entrances){const p=toIso(e);g.save();g.translate(p.x-e.x,p.y-e.y);e.draw();g.restore();}
+  for(const e of entrances){const p=toIso(e);g.save();g.translate(p.x-e.x,p.y-e.y);e.draw();g.restore();
+   // Markers sit above the floor anchor. A click on the blue arrow must target
+   // the authored portal, not an unprojected point a few pixels short of it.
+   hitAreas.push({x:p.x-28,y:p.y-42,w:56,h:60,id:e.id,action:e.action,target:e.target,depth:p.y+10000});
+  }
   drawTallGrassParticles(g,grass.particles);
  }
- function pick(p){return hitAreas.filter(a=>hitsBox(p,a)).sort((a,b)=>b.depth-a.depth)[0]?.id||null;}
+ function pick(p){const hit=hitAreas.filter(a=>hitsBox(p,a)).sort((a,b)=>b.depth-a.depth)[0];return hit?.action?{id:hit.id,action:hit.action,target:hit.target}:hit?.id||null;}
  function reset(){grass.reset();}
  return {draw,camera,pick,reset,props,grass,mapImage:board,project:toIso,unproject:fromIso};
 }
