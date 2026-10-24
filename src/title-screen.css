@@ -41,6 +41,7 @@
 .ruins-menu #lobby button{position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;min-height:44px;padding:9px 12px!important;background:transparent!important;border:0!important;border-bottom:1px solid #b6cebf20!important;border-radius:0!important;box-shadow:none!important;color:#d1ded4!important;font:700 15px/1.4 Nunito,sans-serif!important;text-align:left;letter-spacing:.02em!important;transform:none!important;text-shadow:0 2px 5px #081820}
 .ruins-menu #lobby button[hidden]{display:none!important}.ruins-menu #lobby button>.hud-art{display:none!important}
 .ruins-menu #lobby #ruinsContinue{color:#f5e7c8!important;font-size:23px!important;padding:10px 12px!important;border-bottom:1px solid #d4ba7e90!important}
+.ruins-menu #lobby #ruinsGuest{color:#f0d58c!important;font-size:17px!important;font-weight:800!important;padding:8px 12px!important;margin-top:6px;border-bottom:1px solid #d4ba7e60!important}
 .ruins-menu #lobby button:hover,.ruins-menu #lobby button:focus-visible{background:#a5c5b91a!important;color:#ffdc91!important;outline:2px solid #d4ba7e;outline-offset:3px}
 .ruins-menu-note{font:600 11px/1.6 Nunito,sans-serif;color:#adbfba;margin:9px 12px 0}
 body:not(.game-shell):not(.in-match) .arena>.topbar{display:none}
