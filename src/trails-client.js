@@ -19,11 +19,13 @@ for(const child of [...document.querySelector('.stage-card').children])if(child.
 document.querySelector('.stage-card').prepend(stageDetails);
 const starText=n=>'★'.repeat(n)+'☆'.repeat(3-n);
 function firstOpenStage(){return trails.stages.find(s=>trails.unlocked(trailProgress,s.id)&&!trailProgress.stars[s.id])||trails.stages.filter(s=>trails.available(s.id)).at(-1);}
-function openDemoFinale(){
+async function openDemoFinale(){
  if(!trails.demo||!trails.completed(trailProgress))return;
+ if(playerAccount){const owner=playerAccount.profile.id;try{const d=await accountRequest('wild',{});if(owner!==playerAccount?.profile.id)return;guardianDefeated=!!d.wild.guardianDefeated;}catch{toast('Não foi possível conferir a segunda rota. Tente novamente.');return;}}
  closeTrails();closeModal();if(mode)leave();hideJourney();closeHomeMenu();
+ if(!guardianDefeated){modal('O Morro do Sol conhece seu nome','<section class="demo-finale"><div class="eyebrow">Primeira rota concluída</div><p>Você venceu os cinco encontros do Morro do Sol. Agora há outro caminho além da cidade.</p><p>Atravesse o Jardim das Pipas e a Clareira do Papel. Nas Veredas do Encanamento, um guardião de papel e PVC protege o pátio. Prepare seu parceiro: nível 15 recomendado.</p></section>','Explorar o parque','A jornada continua');$('dialogAction').onclick=()=>{closeModal();openWorld('park-trail');};return;}
  modal('O Morro do Sol conhece seu nome',
-  '<section class="demo-finale"><div class="eyebrow">História da demo concluída</div><p>Você deu vida ao seu primeiro parceiro e venceu os cinco encontros do Morro do Sol. Obrigado por jogar a demo de Soulmonsters!</p><p>Seu progresso, seus parceiros e suas recompensas continuam na conta. Os próximos bairros chegam na versão completa.</p><div class="demo-final-actions"><button id="demoOnline" class="primary">Jogar com amigos</button><button id="demoSummon" class="secondary">Visitar o invocador</button><button id="demoRevisit" class="secondary">Revisitar o Morro do Sol</button></div></section>',
+  '<section class="demo-finale"><div class="eyebrow">As duas rotas da demo concluídas</div><p>Você deu vida ao seu primeiro parceiro, venceu os cinco encontros do Morro do Sol e atravessou as Veredas para enfrentar Lacertubo. Obrigado por jogar a demo de Soulmonsters!</p><p>Seu progresso, seus parceiros e suas recompensas continuam na conta. Os próximos bairros chegam na versão completa.</p><div class="demo-final-actions"><button id="demoOnline" class="primary">Jogar com amigos</button><button id="demoSummon" class="secondary">Visitar a Oficina</button><button id="demoRevisit" class="secondary">Revisitar o Morro do Sol</button></div></section>',
   'Continuar explorando','Soulmonsters · Demo');
  $('dialogAction').className='secondary';$('demoOnline').onclick=()=>{closeModal();homeActions.friends();};$('demoSummon').onclick=()=>{closeModal();homeActions.summon();};$('demoRevisit').onclick=()=>{closeModal();openWorld('morro');};$('demoOnline').focus({preventScroll:true});
 }

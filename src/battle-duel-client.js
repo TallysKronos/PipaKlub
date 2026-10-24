@@ -9,6 +9,10 @@ for(const side of ['you','rival']){
  duelHud.append(identity,partner);
 }
 $('hud').append(duelHud);
+const guardianHud=document.createElement('section');guardianHud.className='guardian-hud';guardianHud.hidden=true;guardianHud.setAttribute('aria-label','Batalha de chefe');
+guardianHud.innerHTML='<div class="guardian-heading"><span>GUARDIÃO DAS VEREDAS · NV. 15</span><b>Lacertubo</b><small>O guardião dos canos</small></div><div class="guardian-vital"><div role="meter" aria-label="Integridade do guardião" aria-valuemin="0" aria-valuemax="100"><i></i><em></em></div><strong></strong></div><p role="status" aria-live="polite"></p>';
+$('hud').append(guardianHud);
+const guardianIntro=document.createElement('aside');guardianIntro.className='guardian-intro';guardianIntro.hidden=true;guardianIntro.setAttribute('aria-label','O guardião despertou');guardianIntro.innerHTML='<span>ALÉM DA CIDADE</span><h2>Lacertubo</h2><p>O guardião dos canos</p><small>Leia o vento. Espere a abertura.</small>';document.querySelector('.arena').append(guardianIntro);
 const duelLoads=new Set();let duelPaintAt=0;
 function duelActorName(p){return p.soul==='nozinho'?'Sr. Assis':worldActors.get(p.name)?.name||null;}
 function duelLoadActor(p){const name=duelActorName(p);if(name&&!duelLoads.has(name)){duelLoads.add(name);loadWorldActors([name]).catch(()=>{duelLoads.delete(name);});}}
@@ -36,8 +40,9 @@ function drawBattlePipeiros(time){
  }
 }
 function updateCinematicBattle(p){
- const active=cinematicBattleActive();document.body.classList.toggle('cinematic-battle',active);duelHud.hidden=!active;if(!active)return;
+ const active=cinematicBattleActive(),boss=active&&!!state.boss;document.body.classList.toggle('cinematic-battle',active);document.body.classList.toggle('guardian-battle',boss);duelHud.hidden=!active;guardianHud.hidden=!boss;guardianIntro.hidden=!boss||state.phase!=='countdown'||state.phaseUntil-state.last<3200;if(!active)return;
  const players=renderPlayers||state.players,rival=players.find(q=>q.id!==me);if(!rival)return;
+ if(boss){guardianIntro.style.animation=reduceMotion?'none':'';const hp=Math.max(0,Math.min(100,rival.hp/eng.pipamonStats(rival).line*100)),bar=guardianHud.querySelector('[role=meter]'),status=guardianHud.querySelector('p');bar.setAttribute('aria-valuenow',String(Math.round(hp)));bar.querySelector('i').style.width=hp+'%';guardianHud.querySelector('strong').textContent=Math.ceil(rival.hp)+' / '+eng.pipamonStats(rival).line;guardianHud.dataset.phase=String(rival.bossPhase||1);const text=state.phase==='countdown'?'O guardião desperta…':state.phase==='intermission'?'O vento se aquieta.':rival.bossTelegraph>0?'A armação está tensionando…':rival.bossRecovery>0?'Armação aberta · contra-ataque!':rival.bossPhase===2?'Fase 2 · o vento se intensificou':'Fase 1 · observe a vela';if(status.textContent!==text)status.textContent=text;}
  const now=performance.now(),paint=now-duelPaintAt>90;if(paint)duelPaintAt=now;
  for(const [side,q]of [['you',p],['rival',rival]]){
   duelLoadActor(q);const head=duelHud.querySelector('.duel-pipeiro.duel-'+side),panel=duelHud.querySelector('.duel-partner.duel-'+side),entry=ART_CONFIG.dex.entries.find(e=>q.soul?e.id===q.soul:e.atlas===art.basic(q.color));
@@ -50,4 +55,8 @@ function updateCinematicBattle(p){
   if(side==='you'){const energy=Math.max(0,Math.min(100,q.energy/stats.energy*100)),bar=panel.querySelector('.duel-energy [role=meter]');bar.setAttribute('aria-valuenow',String(Math.round(energy)));bar.querySelector('i').style.width=energy+'%';write(panel.querySelector('.duel-energy strong'),Math.round(energy)+'%');}
   if(paint){const face=head.querySelector('canvas'),g=face.getContext('2d');g.clearRect(0,0,120,120);duelHuman(g,q,60,177,187,now,true);const thumb=panel.querySelector('canvas'),cg=thumb.getContext('2d');cg.clearRect(0,0,96,96);art.creature(cg,q.color,now,0,0,96,{...q,animate:!reduceMotion});}
  }
+}
+function drawGuardianBattle(time){
+ if(!state?.boss)return;const p=(renderPlayers||state.players).find(q=>q.bossId);if(!p)return;
+ if(p.bossTelegraph>0){ctx.save();ctx.strokeStyle='#f2a144';ctx.lineWidth=4;ctx.beginPath();ctx.arc(p.x,p.y,70,-Math.PI/2,-Math.PI/2+Math.PI*2*p.bossTelegraph);ctx.stroke();ctx.setLineDash([9,8]);ctx.lineWidth=2;ctx.beginPath();const l=eng.line(p);ctx.moveTo(l.a.x,l.a.y);ctx.lineTo(l.b.x,l.b.y);ctx.stroke();ctx.restore();}
 }

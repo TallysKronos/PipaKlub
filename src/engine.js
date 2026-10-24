@@ -12,7 +12,9 @@ export function createEngine() {
     function progress(value){const xp=clamp(Math.trunc(Number.isFinite(Number(value))?Number(value):0),0,maxXp);let l=1;while(l<maxLevel&&xp>=xpForLevel(l+1))l++;const start=xpForLevel(l),next=l===maxLevel?null:xpForLevel(l+1);return {xp,level:l,maxLevel,maxXp,start,next,into:xp-start,needed:next===null?0:next-start,percent:next===null?100:(xp-start)/(next-start)*100,tier:tiers.find(t=>l>=t.min)||null,stats:stats(l)};}
     return {maxLevel,maxXp,xpForLevel,level,stats,progress,tiers,tier:value=>tiers.find(t=>level(value)>=t.min)||null};
   })();
-  const pipamonStats=p=>pipamons.stats(p.pipamonLevel,p.pipamonClass,p.classRank,p.craftBonus);
+  // Only server-created bots receive this role. Inputs cannot set stats or roles.
+  const bossStats=Object.freeze({line:190,energy:125,attack:1.18,defense:1.05,speed:157,regen:19});
+  const pipamonStats=p=>p.bot&&p.bossId==='lacertubo'?bossStats:pipamons.stats(p.pipamonLevel,p.pipamonClass,p.classRank,p.craftBonus);
   function daily(now=Date.now()){
     const day=Math.floor(now/86400000),weather=['wind','wax','rain','fog'][((day%4)+4)%4];
     const details={wind:['Ventania','Rajadas três vezes mais fortes. Antecipe a direção da pipa.'],wax:['Linha encerada','Os acertos desgastam 25% mais a linha dos dois jogadores.'],rain:['Garoa','A energia dos dois jogadores recupera 30% mais devagar.'],fog:['Neblina','O cenário fica encoberto; pipas e miras continuam visíveis.']}[weather];
@@ -79,11 +81,11 @@ export function createEngine() {
   // The seat also fixes the player number (P1..P8) shown with the player's colour.
   function seat(s,p){if(!Number.isFinite(p.anchorX))p.anchorX=ANCHORS.find(x=>!s.players.some(q=>q!==p&&q.anchorX===x))??500;if(!Number.isInteger(p.slot)){const i=ANCHORS.indexOf(p.anchorX);p.slot=i>=0?i:s.players.indexOf(p)%8;}return p;}
   function reset(p){Object.assign(p,{hp:pipamonStats(p).line,energy:pipamonStats(p).energy,respawn:0,skillTime:0,skillCooldown:0,attackCooldown:0,lineMove:null,lineStrike:null,lineCooldown:0,shield:0,hitFlash:0,flash:0,botFocus:-.4,attack:false,x:clamp(500+(p.anchorX-500)*.8,55,945),y:290});}
-  function startRound(s,now){s.phase='countdown';s.phaseUntil=now+COUNTDOWN;if(s.mode==='rounds')s.round=(s.round||0)+1;for(const p of s.players)reset(p);}
+  function startRound(s,now){s.phase='countdown';s.phaseUntil=now+(s.boss?6600:COUNTDOWN);if(s.mode==='rounds')s.round=(s.round||0)+1;for(const p of s.players){reset(p);if(p.bossId){p.bossCharge=0;p.bossRecovery=0;p.bossPhase=1;p.bossTelegraph=0;p.facing=-1;}}}
   function finishRound(s,now){
     const alive=s.players.filter(p=>!p.respawn).sort((a,b)=>b.hp-a.hp);
     // Last kite standing wins; on timeout the healthiest line wins, a tie is a draw.
-    const winner=alive.length===1||(alive.length>1&&alive[0].hp>alive[1].hp)?alive[0]:null;
+    const winner=s.boss&&alive.length>1?alive.find(p=>p.bossId):alive.length===1||(alive.length>1&&alive[0].hp>alive[1].hp)?alive[0]:null;
     if(winner)winner.rounds=(winner.rounds||0)+1;
     s.events.unshift({kind:'round',round:s.round,text:winner?winner.name+' venceu a rodada '+s.round:'Rodada '+s.round+' empatada',at:now,id:s.id+':r'+s.round,winnerId:winner?.id});s.events=s.events.slice(0,4);
     for(const p of s.players){p.lineMove=null;p.lineStrike=null;p.strike=false;}
@@ -92,7 +94,7 @@ export function createEngine() {
   }
   function advance(s,now){
     if(s.phase==='waiting'){if(s.quick){if(s.players.length>=s.quick.size||now>=s.quick.fillAt){fillBots(s,now);startRound(s,now);}}else if(s.players.length>=2)startRound(s,now);}
-    else if(s.phase==='countdown'){if(now>=s.phaseUntil){s.phase='live';if(s.mode==='time'){s.end=now+MATCH;s.phaseUntil=s.end;}else{s.phaseUntil=now+ROUND;if(s.round===1)s.end=now+12*60000;}}}
+    else if(s.phase==='countdown'){if(now>=s.phaseUntil){s.phase='live';if(s.mode==='time'){s.end=now+MATCH;s.phaseUntil=s.end;}else{s.phaseUntil=now+(s.boss?120000:ROUND);if(s.round===1)s.end=now+12*60000;}}}
     else if(s.phase==='intermission'){if(now>=s.phaseUntil)startRound(s,now);}
     else if(s.phase==='live'&&s.mode==='rounds'){if(s.players.length<2){s.phase='waiting';for(const p of s.players)reset(p);}else if(now>=s.phaseUntil)finishRound(s,now);}
   }
@@ -182,6 +184,22 @@ export function createEngine() {
     if(b.sweep&&c?.valid){const a=line(p).a,dx=p.x-a.x,dy=p.y-a.y,d=Math.hypot(dx,dy)||1,dir=Math.sin(s.last/260+(p.slot||0))>0?1:-1;return {x:dx/d*.8*dir,y:dy/d*.8*dir,cut:pull,skill};}
     return {x:clamp((x-p.x)/80,-b.speed,b.speed),y:clamp((y-p.y)/80,-b.speed,b.speed),cut:pull,skill};
   }
+  function bossInput(s,p,dt){
+    const phase=p.hp<=bossStats.line*.55?2:1;
+    if(phase!==p.bossPhase){p.bossPhase=phase;p.bossCharge=0;p.bossRecovery=1.8;p.bossTelegraph=0;p.bossRoar=1.8;}
+    p.bossRoar=Math.max(0,(p.bossRoar||0)-dt);
+    p.ai={level:phase===2?7:6,style:'patient'};
+    const input=botInput(s,p,dt);input.cut=false;input.skill=0;input.dodge=false;
+    if(p.bossRecovery>0){p.bossRecovery=Math.max(0,p.bossRecovery-dt);p.bossTelegraph=0;return {...input,x:input.x*.25,y:input.y*.25};}
+    const target=s.players.find(q=>!q.bot&&!q.respawn),contactNow=target&&contact(p,target);
+    const duration=phase===2?.8:1.15;
+    if(p.bossCharge>0||contactNow?.valid){p.bossCharge=(p.bossCharge||0)+dt;p.bossTelegraph=Math.min(1,p.bossCharge/duration);
+      // Lock the last part of the wind-up, so the announced strike can be dodged.
+      if(p.bossTelegraph>.6){input.x=0;input.y=0;}
+      if(p.bossCharge>=duration){input.cut=true;p.bossCharge=0;p.bossTelegraph=0;p.bossRecovery=phase===2?1.15:1.5;}
+    }else p.bossTelegraph=0;
+    return input;
+  }
   // Only the authenticated owner of a private campaign room can freeze its simulation.
   function setSoloPause(s,p,paused,now){
     if(!(s.trail||s.wild)||!p?.accountId||p.accountId!==(s.trailOwner||s.wildOwner)||s.players.some(q=>!q.bot&&q.id!==p.id)||now>=s.end)return false;
@@ -190,7 +208,7 @@ export function createEngine() {
   function step(s,now) {
     s._pendingCuts=[];
     if(s.soloPaused&&(s.trail||s.wild)){
-      const owner=s.players.find(p=>!p.bot&&p.accountId===s.trailOwner&&now-p.seen<60000);
+      const owner=s.players.find(p=>!p.bot&&p.accountId===(s.trailOwner||s.wildOwner)&&now-p.seen<60000);
       if(owner){const elapsed=Math.max(0,now-s.last);s.end+=elapsed;if(s.phaseUntil)s.phaseUntil+=elapsed;for(const p of s.players)if(p.respawn)p.respawn+=elapsed;for(const event of s.events)event.at+=elapsed;s.last=now;return s;}
       s.soloPaused=false;
     }
@@ -205,7 +223,7 @@ export function createEngine() {
     for(const p of s.players){
       if(s.phase==='intermission'){p.strike=false;p.lineStrike=null;p.lineMove=null;continue;}
       if(p.respawn){if(rounds||now<p.respawn)continue;p.respawn=0;p.hp=pipamonStats(p).line;p.energy=pipamonStats(p).energy;p.skillTime=0;p.lineMove=null;p.lineStrike=null;p.lineCooldown=Math.max(2,p.lineCooldown||0);p.attackCooldown=.65;p.skillCooldown=Math.max(2,p.skillCooldown||0);p.x=160+Math.random()*680;p.y=160+Math.random()*220;p.shield=SHIELD;p.botFocus=0;}
-      if(p.bot)p.input=botInput(s,p,dt);
+      if(p.bot)p.input=p.bossId&&live?bossInput(s,p,dt):botInput(s,p,dt);
       if(live)move(p,p.input,dt,s.wind,s.daily?.weather);else{const held=p.input;p.lineSeen=Math.max(p.lineSeen||0,held?.lineNonce||0);move(p,{...held,cut:false,skill:0,lineNonce:0},dt,s.wind,s.daily?.weather);p.input=held;}
     }
     // Resolve simultaneous strikes together, independent of who created the room.
@@ -221,6 +239,8 @@ export function createEngine() {
       if(t.q.color===2&&t.q.skillTime>0&&!breakGuard)damage*=.4;
       if(s.daily?.weather==='wax')damage*=1.25;
       damage*=pipamonStats(p).attack/pipamonStats(t.q).defense;
+      if(p.bossId&&p.bossPhase===2)damage*=1.12;
+      if(t.q.bossId&&t.q.bossRecovery>0)damage*=1.2;
       if(maneuver)p.flash=.16;hits.push({p,q:t.q,damage,c:t.c,cut,breakGuard});p.hits=(p.hits||0)+1;
     }
     for(const h of hits){h.q.hp=Math.max(0,h.q.hp-h.damage);h.q.hitFlash=.25;if(h.breakGuard)h.q.skillTime=0;if(h.q.lineMove?.id==='laco'){h.q.lineMove=null;h.q.lineStrike=null;}h.q.lastHit={x:h.c.x,y:h.c.y,damage:Math.round(h.damage),crit:h.cut.crit,clean:h.cut.clean,moving:h.cut.moving,breakGuard:h.breakGuard};}

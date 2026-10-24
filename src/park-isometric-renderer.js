@@ -38,8 +38,15 @@ function buildProps(){
   if(!type)continue;if(type==='bench'&&Math.abs(b.x-408)<2){b.x=420;b.y=690;}
   out.push({...b,type,action:type==='sign'?'map':type==='coreto'?'assis':type==='bench'?(b.x<800?'rest':'rest-east'):null,rig:frame==='park-tree'?'treeLandmark':type,w:type==='tree'?Math.max(205,s.w):type==='coreto'?260:type==='bench'?126:type==='windsock'?215:Math.min(95,s.w),level:o.level||0});
  }
- for(const p of parkFixtures)out.push({...p,action:p.type==='sign'?'map':null,level:0});
- out.push({x:1220,y:626,type:'kite',rig:'kite',w:130,lift:325,level:0});
+ if(!scene.tiled.properties.boss_maze){
+  for(const p of parkFixtures)out.push({...p,action:p.type==='sign'?'map':null,level:0});
+  out.push({x:1220,y:626,type:'kite',rig:'kite',w:130,lift:325,level:0});
+ }else{
+  // Dense illustrated hedge runs: same footprint as the blocking rectangles.
+  for(const r of scene.tiled.layers.Solids){const n=Math.ceil(r.w/64),m=Math.ceil(r.h/52);for(let i=0;i<n;i++)for(let j=0;j<m;j++)out.push({x:r.x+(i+.5)*r.w/n,y:r.y+(j+1)*r.h/m,type:'shrub',w:88,level:0});}
+  out.push({x:336,y:812,type:'sign',action:'map',w:100,level:0},{x:1120,y:260,type:'windsock',rig:'windsock',w:180,level:0});
+  for(const [a,b]of [[{x:496,y:730},{x:1080,y:730}],[{x:1100,y:228},{x:1392,y:228}]])out.push({type:'pipe',a,b,x:(a.x+b.x)/2,y:(a.y+b.y)/2,w:100,level:0});
+ }
  // Planting beds follow the border and group around existing trees, leaving paths clear.
  for(let x=140;x<1440;x+=150)out.push({x,y:190,type:'shrub',w:94,level:0});
  for(let x=360;x<1390;x+=170)out.push({x,y:954,type:'shrub',w:90,level:0});
@@ -61,13 +68,15 @@ function buildBoard(){
  board=createCanvas();board.width=146;board.height=94;const c=board.getContext('2d');c.fillStyle='#97b96b';c.fillRect(0,0,146,94);c.scale(146/1536,94/1024);
  for(const r of scene.tiled.layers.Walkable.filter(r=>['dirt','sidewalk'].includes(r.properties.ground_frame))){c.fillStyle=r.properties.ground_frame==='dirt'?'#f6dca2':'#f7edcf';c.fillRect(r.x,r.y,r.w,r.h);}
  for(const o of props.filter(o=>o.type==='tree'&&!o.scenery)){c.fillStyle='#326b52';c.beginPath();c.ellipse(o.x,o.y,39,42,0,0,Math.PI*2);c.fill();}
- c.fillStyle='#df8759';c.beginPath();c.moveTo(414,423);c.lineTo(490,488);c.lineTo(414,553);c.lineTo(338,488);c.closePath();c.fill();
+ if(scene.tiled.properties.boss_maze){for(const r of scene.tiled.layers.Solids){c.fillStyle='#326b52';c.fillRect(r.x,r.y,r.w,r.h);}c.fillStyle='#c86a37';c.beginPath();c.arc(1264,288,48,0,Math.PI*2);c.fill();}
+ else{c.fillStyle='#df8759';c.beginPath();c.moveTo(414,423);c.lineTo(490,488);c.lineTo(414,553);c.lineTo(338,488);c.closePath();c.fill();}
  c.fillStyle='#205e62';c.beginPath();c.arc(224,816,25,0,Math.PI*2);c.fill();
 }
 function propBox(o){const p=toIso(o),rig=rigs[o.rig||o.type],im=images[o.type];if(rig){const k=o.w/rig.width;return {x:p.x-rig.rootPivot[0]*k,y:p.y-rig.rootPivot[1]*k-(o.lift||0),w:o.w,h:rig.height*k};}return {x:p.x-o.w/2,y:p.y-o.w*im.height/im.width,w:o.w,h:o.w*im.height/im.width};}
 function coretoCutaway(o){if(o.type!=='coreto')return false;const b=propBox(o);return hitsBox(toIso(actor),{x:b.x+10,y:b.y+o.w*.48,w:b.w-20,h:b.h-o.w*.48+15});}
 function drawProp(o){
  if(o.type==='fence'){g.save();drawFence(o);g.restore();return;}
+ if(o.type==='pipe'){const a=toIso(o.a),b=toIso(o.b);g.save();g.lineCap='round';g.lineWidth=14;g.strokeStyle='#35534d';g.beginPath();g.moveTo(a.x,a.y-16);g.lineTo(b.x,b.y-16);g.stroke();g.lineWidth=10;g.strokeStyle='#e9dcb4';g.stroke();g.lineWidth=3;g.strokeStyle='#fff0ca';g.beginPath();g.moveTo(a.x,a.y-19);g.lineTo(b.x,b.y-19);g.stroke();const n=Math.ceil(Math.hypot(b.x-a.x,b.y-a.y)/90);for(let i=0;i<=n;i++){const t=i/n,x=a.x+(b.x-a.x)*t,y=a.y+(b.y-a.y)*t-16;g.strokeStyle='#c4773e';g.lineWidth=3;g.beginPath();g.moveTo(x-2,y-7);g.lineTo(x+2,y+7);g.stroke();}g.restore();return;}
  const p=toIso(o),rig=rigs[o.rig||o.type];g.save();
  const player=toIso(actor),box=propBox(o);
  if(o.type!=='coreto'&&propOccludesActor(box,player,p.y))g.globalAlpha=.3;

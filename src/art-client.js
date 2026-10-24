@@ -2,6 +2,7 @@ export function createArtAssets(config){
  const images=new Map(),loading=new Map(),atlases=config.atlases;
  const creatureNames=['carcara','mata-verde','azulao','raio-de-sol'];
  const specials=config.dex.entries.filter(e=>['event','story'].includes(e.group)&&atlases[e.atlas]).map(e=>({id:e.id,name:e.name,color:e.color,legend:e.title,collection:e.collection,rarity:e.rarity||'especial'}));
+ if(atlases.lacertubo)specials.push({id:'lacertubo',name:'Lacertubo',color:2,legend:'Guardião dos canos',rarity:'boss'});
  const special=id=>specials.find(s=>s.id===id);
  const reduced=typeof matchMedia==='function'&&matchMedia('(prefers-reduced-motion:reduce)').matches;
  function load(name,retry=false){
@@ -41,8 +42,9 @@ export function createArtAssets(config){
   if(asset&&atlases[asset]){
    const a=atlases[asset];if(!images.has(asset))load(asset);
    const hurt=player.hitFlash>0,skill=player.skillCooldown>6.37;
-   const state=victory?'victory':hurt?'hurt':skill?'skill':Math.hypot(player.input?.x||0,player.input?.y||0)>.1?'flight':'idle';
-   const elapsed=victory?time:hurt?250-player.hitFlash*1000:skill?7000-player.skillCooldown*1000:time;
+   const intro=asset==='lacertubo'&&player.bossIntroTime!=null,roar=asset==='lacertubo'&&player.bossRoar>0,windup=asset==='lacertubo'&&player.bossTelegraph>0,impact=asset==='lacertubo'&&player.flash>0;
+   const state=intro||roar?'intro':victory?'victory':hurt?'hurt':windup||impact||skill?'skill':Math.hypot(player.input?.x||0,player.input?.y||0)>.1?'flight':'idle';
+   const elapsed=intro?player.bossIntroTime:roar?1100+(1.8-player.bossRoar)*700:windup?player.bossTelegraph*650:impact?750+(.16-player.flash)*2000:victory?time:hurt?250-player.hitFlash*1000:skill?7000-player.skillCooldown*1000:time;
    const seq=a.animations[state],durations=a.playback[state].durations,total=durations.reduce((sum,d)=>sum+d,0);
    let at=a.playback[state].loop?Math.max(0,elapsed)%total:Math.min(total-1,Math.max(0,elapsed)),index=0;
    while(index<seq.length-1&&at>=durations[index])at-=durations[index++];

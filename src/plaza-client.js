@@ -1,8 +1,10 @@
 function currentPlazaMission(){
+ if(typeof worldRuntime!=='undefined'&&worldRuntime.id==='park-veredas')return {title:guardianDefeated?'Guardião vencido':'O guardião além da cidade',body:guardianDefeated?'Lacertubo reconheceu seu elo. Você pode desafiá-lo novamente ou retornar à cidade.':'Atravesse as Veredas até o pátio do Lacertubo. Parceiro nível 15 recomendado.',action:'parkBossGuide',stage:null};
+ if(typeof worldRuntime!=='undefined'&&worldRuntime.id==='park-clearing')return {title:'Do capim às Veredas',body:'Treine nos habitats ou siga pelo caminho nordeste até as Veredas do Encanamento.',action:'parkBossGuide',stage:null};
  if(typeof worldRuntime!=='undefined'&&worldRuntime.id?.startsWith('park-'))return {title:'Habitats do parque',body:'Procure Pipamons no capim alto. A trilha de terra é segura.',action:'wildGuide',stage:null};
  const next=trails.stages.find(stage=>trails.unlocked(trailProgress,stage.id)&&!trailProgress.stars[stage.id]),trail=next&&trails.trails[next.trailIndex];
  const context=typeof worldMissionContext==='function'?worldMissionContext(next):{};
- return plazaPolicy.mission(journeyLoading?'arrival':journey?.phase,next,trail,{...context,starterTutorial:journey?.starterTutorial,demo:trails.demo,complete:journey?.phase==='complete'&&!next});
+ return plazaPolicy.mission(journeyLoading?'arrival':journey?.phase,next,trail,{...context,guardianDefeated,starterTutorial:journey?.starterTutorial,demo:trails.demo,complete:journey?.phase==='complete'&&!next});
 }
 function updatePlazaMission(){if(!$('plazaMissionTitle'))return;const m=currentPlazaMission();$('homeObjective').textContent=journeyLoading?'Preparando sua chegada ao clube…':m.body;$('plazaMissionTitle').textContent=m.title;}
 // Scenic home: artwork, actors and HUD are independent layers. No simulated balances.

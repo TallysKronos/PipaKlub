@@ -74,7 +74,7 @@ async function openQuickRoom(env,now){
   return s.phase==='waiting'||(s.phase!=='live'&&s.players.some(p=>p.bot))?code:null;
 }
 async function createRoom(request,env,b,now,daily=false,trailId=null,wildZone=null){
-  if(wildZone!==null&&!['park-trail','park-clearing'].includes(wildZone))throw Object.assign(Error('Exploração: área inválida.'),{status:400});
+  if(wildZone!==null&&!['park-trail','park-clearing','park-veredas'].includes(wildZone))throw Object.assign(Error('Exploração: área inválida.'),{status:400});
   const stage=trailId!==null?serverTrails.stage(trailId):null;if(trailId!==null&&!stage)throw Object.assign(Error('Etapa inválida.'),{status:400});
   if(stage&&!serverTrails.available(stage.id))throw Object.assign(Error('Este bairro chega na versão completa. A demo inclui o Morro do Sol e as partidas online.'),{status:403});
   const code=crypto.randomUUID().replaceAll('-','').slice(0,6).toUpperCase(),token=crypto.randomUUID(),s=engine.create(now,{mode:b.mode,quick:b.quick,roundsToWin:wildZone?1:stage?stage.rounds:daily?2:3});
@@ -87,7 +87,9 @@ async function createRoom(request,env,b,now,daily=false,trailId=null,wildZone=nu
   if(wildZone){try{s.wild=await env.ACCOUNTS.registerWild(account.accountId,s.id,wildZone);s.wildOwner=account.accountId;}catch(e){await releaseAccount(env,account,s);throw e;}}
   const p=engine.player(account?.name||b.name,account?.color??b.color,crypto.randomUUID(),now);p.key=token;if(account)Object.assign(p,account);engine.admit(s,p,now);
   if(stage){const level=serverTrails.aiLevel(stage,serverTrails.sanitize(trailData.progress));for(const [i,f] of stage.foes.entries()){const bot=engine.player(f.name,f.color,'trail-bot-'+i,now);bot.bot=true;bot.ai={level,style:serverTrails.story(stage.id)?.styles[i]};if(f.soul)bot.soul=f.soul;engine.admit(s,bot,now);}}
-  if(wildZone){const bot=engine.player(s.wild.name,s.wild.color,'wild-bot',now);bot.bot=true;bot.ai={level:1};bot.soul=s.wild.soul;bot.pipamonLevel=s.wild.level;engine.admit(s,bot,now);}
+  if(wildZone){const bot=engine.player(s.wild.name,s.wild.color,'wild-bot',now);bot.bot=true;bot.ai={level:s.wild.boss?6:1};bot.soul=s.wild.soul;bot.pipamonLevel=s.wild.level;
+    if(s.wild.boss){s.boss={id:'lacertubo',name:'Lacertubo',title:'O guardião dos canos',recommendedLevel:15};bot.bossId='lacertubo';bot.partnerName='Lacertubo';bot.facing=-1;}
+    engine.admit(s,bot,now);}
   if(daily){const bot=engine.player('Guardião do céu',0,'bot-'+crypto.randomUUID(),now);bot.bot=true;bot.ai={level:4};engine.admit(s,bot,now);}
   try{await env.DB.prepare('INSERT INTO pipa_rooms (code,state,updated) VALUES (?,?,?)').bind(code,JSON.stringify(s),now).run();}catch(e){if(s.wild)await env.ACCOUNTS.settleWild({userId:account.accountId,matchId:s.id,outcome:'abandoned'});await releaseAccount(env,account,s);throw e;}
   if(s.quick)await env.DB.prepare('INSERT INTO pipa_rooms (code,state,updated) VALUES (?,?,?) ON CONFLICT(code) DO UPDATE SET state=excluded.state, updated=excluded.updated').bind(QUICK_POINTER,JSON.stringify({code}),now).run();

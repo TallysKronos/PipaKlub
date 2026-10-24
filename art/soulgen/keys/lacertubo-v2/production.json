@@ -1,0 +1,17 @@
+{
+  "name": "Lacertubo · estudo B",
+  "tool": "image_gen built-in",
+  "prompt": "Create an ALTERNATIVE revised six-part cutout puppet atlas of this SAME Lacertubo paper kite lizard boss. This is an edit of the attached atlas, preserve the EXACT 1536x1024 layout and the bounding position and size of each of the SIX parts so the existing skeleton can reuse the crops. Keep upper-middle head, upper-right tail and lower-right sail essentially identical in identity and placement. Main revision: the TOP LEFT TORSO must be a coherent angular living-paper lizard chest/abdomen, NO open hollow pipe mouths sticking sideways out of its shoulders or hips; replace the big left/right exposed round sockets with continuous faceted teal and ochre folded PAPER panels and stitched repair patches. The cream PVC spine along the top may remain as structural support; neck and tail connect behind overlapping paper collars. Bottom-left front leg and bottom-middle rear leg: remove the large round hollow open pipe mouths at the TOP of each leg. Instead draw CLOSED rounded polygonal paper shoulder/hip caps, teal paper overlapping the internal PVC, designed to tuck UNDER the torso. PVC should ONLY be exposed at the functional elbow and knee and small ankle joints, solid cream short pipe segments with orange twine tying them to paper, NO circular dark holes facing the viewer. Keep the three claws, leg bend, existing silhouette and overall sizing. The material rule: PVC supports internally, paper gives outer form, twine holds the structure together. Refined crisp dark-inked 2D flat faceted game art matching Carcara, small eyes, paper kite repair patches, no watercolor or plastic 3D. All SIX pieces separated by clear gutters, TRUE TRANSPARENT alpha background with NO glow, no ground shadows, no labels and no other pieces. Keep generous dark outlines and opaque overlap areas for animation. No assembled character in this sheet.",
+  "reference": "art/soulgen/keys/lacertubo/source/parts-v1.png",
+  "userAssemblySource": "C:/Users/user/Downloads/lacertubo-guardiao-dos-canos.soulgen.json",
+  "preservedAssembly": "art/soulgen/keys/lacertubo/user-adjustment/user-saved.soulgen.json",
+  "changes": [
+    "No hollow pipe sockets at shoulders or hips",
+    "Leg roots behind torso paper panels",
+    "PVC visible at elbows and knees",
+    "Dorsal sail reduced 18% around its insertion pivot"
+  ],
+  "scope": "Separate Soulgen authoring study; not installed in the game",
+  "preview": "http://127.0.0.1:5261/lacertubo-compare.html",
+  "editor": "http://127.0.0.1:5261/?preset=lacertubo-v2"
+}

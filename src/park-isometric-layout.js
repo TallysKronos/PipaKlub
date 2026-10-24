@@ -11,6 +11,10 @@ export const parkFixtures=[
 ];
 export function createParkIsometricScene(map,art,{production=false}={}){
  const draft=structuredClone(map),solids=draft.layers.find(l=>l.name==='Solids'),hasCoreto=solids.objects.some(o=>o.name==='park-gazebo');
+ if(production&&draft.properties.some(p=>p.name==='scene_id'&&p.value==='park-clearing')){
+  const exit=draft.layers.find(l=>l.name==='Exits').objects.find(o=>o.properties?.some(p=>p.name==='target'&&p.value==='quintal'));
+  if(exit){exit.name='Além da cidade · Veredas do Encanamento';exit.properties.find(p=>p.name==='target').value='park-veredas';}
+ }
  // Open the illustrated staircase. Small post bases replace the former full block.
  solids.objects=solids.objects.filter(o=>o.name!=='park-gazebo');
  const bench=solids.objects.find(o=>o.name==='bench'&&Math.abs(o.x+o.width/2-408)<2);

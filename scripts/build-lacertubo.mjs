@@ -1,0 +1,43 @@
+// Authoring/export, not a test runner. Uses the same Soulgen sampler as the editor.
+import fs from 'node:fs';
+import path from 'node:path';
+import {pathToFileURL} from 'node:url';
+import {identity,validate,exportPlan,render,sample} from '../tools/soulgen-studio/model.mjs';
+const canvasModule=process.env.SOULGEN_CANVAS_MODULE||'C:/Users/user/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js';
+const {createCanvas,loadImage}=await import(pathToFileURL(canvasModule));
+const root='art/soulgen/keys/lacertubo',out=root+'/color-rig-v2';fs.mkdirSync(out,{recursive:true});
+const src='/art/soulgen/keys/lacertubo/source/parts-v1.png',image=await loadImage('.'+src),faceSrc='/art/soulgen/keys/lacertubo/source/expressions-v1.png',faces=await loadImage('.'+faceSrc);
+const p={schema:'soulgen-studio',version:1,creatureId:'lacertubo',artRevision:2,rigRevision:1,name:'Lacertubo · Guardião dos canos',width:180,height:140,rootPivot:[86,76],brief:{species:'Lagarto + pipa + tubos de PVC',personality:'Territorial, atento, pesado',kiteAnatomy:'Papel facetado remendado; cotovelos de PVC; nós laranja; vela dorsal e cauda de bandeirolas.',view:'Três quartos, voltado à esquerda',notes:'Chefe das Veredas. Quatro patas; juntas sobrepostas e parentesco no tronco. Design original do PipaKlub.'},assets:{parts:{name:'Peças originais',src,width:image.width,height:image.height}},parts:[],clips:{}};
+const source={body:[16,60,560,432],head:[584,190,444,232],tail:[1040,28,480,456],front:[126,524,334,480],rear:[600,524,346,480],sail:[1038,508,482,494]};
+const part=(id,name,sourceId,rect,pivot,z,parent='body',lag=0)=>p.parts.push({id,name,asset:'parts',source:source[sourceId],rect,pivot,z,parent,lag,visible:true});
+part('frontFar','Pata dianteira distante','front',[53,67,29,44],[60,77],0);
+part('rearFar','Pata traseira distante','rear',[102,69,29,44],[108,78],1);
+part('tail','Rabiola de PVC','tail',[110,31,62,59],[114,62],2,'body',.10);
+part('sail','Vela dorsal','sail',[65,9,56,58],[84,63],3,'body',.04);
+part('body','Tronco de papel','body',[49,42,74,57],[86,73],4,null);
+part('head','Cabeça e colar de PVC','head',[7,40,63,33],[65,57],5,'body',.02);
+part('frontNear','Pata dianteira próxima','front',[42,72,35,50],[50,82],6);
+part('rearNear','Pata traseira próxima','rear',[94,76,36,50],[103,86],7);
+p.assets.expressions={name:'Rugido e dor',src:faceSrc,width:faces.width,height:faces.height};
+p.parts.find(q=>q.id==='head').faces={fierce:{asset:'expressions',source:[40,94,1007,528]},hurt:{asset:'expressions',source:[1123,101,1014,520]}};
+const pose=(root={},parts={})=>Object.fromEntries([['root',{...identity(),...root}],...p.parts.map(q=>[q.id,{...identity(),...(parts[q.id]||{})}])]);
+const frame=(t,root,parts)=>({t,ease:'spline',values:pose(root,parts)});
+const clip=(seconds,loop,frames,hitTime)=>({seconds,loop,frames,...hitTime!=null?{hitTime}:{}});
+p.clips.idle=clip(2.4,true,[frame(0),frame(.6,{y:-1.2},{head:{rotation:-2},tail:{rotation:5},sail:{rotation:2}}),frame(1.2,{}, {head:{rotation:1},tail:{rotation:-4},sail:{rotation:-2}}),frame(1.8,{y:1},{head:{rotation:2},tail:{rotation:3}}),frame(2.4)]);
+p.clips.flight=clip(.9,true,[frame(0),frame(.225,{y:-3,rotation:-1},{frontNear:{rotation:12},rearNear:{rotation:-11},frontFar:{rotation:-12},rearFar:{rotation:10},tail:{rotation:7},sail:{rotation:3}}),frame(.45),frame(.675,{y:1,rotation:1},{frontNear:{rotation:-12},rearNear:{rotation:10},frontFar:{rotation:12},rearFar:{rotation:-10},tail:{rotation:-7},sail:{rotation:-3}}),frame(.9)]);
+p.clips.skill=clip(1.2,false,[frame(0),frame(.45,{x:4,y:3,rotation:3},{head:{rotation:7},tail:{rotation:-12},sail:{rotation:8}}),frame(.75,{x:-8,y:-4,rotation:-4},{head:{rotation:-12},tail:{rotation:14},frontNear:{rotation:-14},sail:{rotation:-8}}),frame(1.2)],.75);
+p.clips.hurt=clip(.4,false,[frame(0),frame(.1,{x:5,y:2,rotation:4},{head:{rotation:8},sail:{rotation:9},tail:{rotation:-9}}),frame(.25,{x:-2},{head:{rotation:-3}}),frame(.4)]);
+p.clips.victory=clip(1.8,false,[frame(0),frame(.4,{y:-6,rotation:-3},{head:{rotation:-10},sail:{rotation:-9},frontNear:{rotation:-18},tail:{rotation:12}}),frame(.9,{y:-3},{head:{rotation:-6},tail:{rotation:-8}}),frame(1.8)]);
+p.clips.intro=clip(3.4,false,[frame(0,{x:26,y:12,scaleX:.8,scaleY:.8},{head:{rotation:13},sail:{rotation:18}}),frame(.9,{x:8,y:5},{head:{rotation:6},tail:{rotation:-16}}),frame(1.6,{y:-5,rotation:-3},{head:{rotation:-15},sail:{rotation:-12},frontNear:{rotation:-17},tail:{rotation:14}}),frame(2.4,{y:2},{head:{rotation:4},tail:{rotation:-9}}),frame(3.4)]);
+p.clips.intro.expressions=[{start:1.1,end:2.5,face:'fierce'}];p.clips.skill.expressions=[{start:.4,end:.95,face:'fierce'}];p.clips.hurt.expressions=[{start:0,end:.35,face:'hurt'}];
+const report=validate(p);if(!report.ok)throw Error(report.errors.join('\n'));
+fs.writeFileSync(out+'/lacertubo.soulgen.json',JSON.stringify(p,null,2)+'\n');
+const plan=exportPlan(p,{fps:12,cell:256,columns:8}),sheet=createCanvas(plan.width,plan.height),ctx=sheet.getContext('2d'),frames={},playback={},animations={};
+for(const f of plan.frames){const tile=createCanvas(256,256);render(tile.getContext('2d'),p,{parts:image,expressions:faces},sample(p,f.clip,f.time),{scale:plan.renderScale,facing:-1});ctx.drawImage(tile,f.x,f.y);frames[f.name]={frame:{x:f.x,y:f.y,w:256,h:256},duration:f.duration};}
+for(const [id,a]of Object.entries(plan.animations)){animations[id]=a.frames;playback[id]={loop:a.loop,durations:a.frames.map(()=>1000/12)};}
+const imagePath='creatures/lacertubo-v1/lacertubo.png';fs.mkdirSync('assets/creatures/lacertubo-v1',{recursive:true});fs.writeFileSync('assets/'+imagePath,sheet.toBuffer('image/png'));
+const portrait=createCanvas(640,480);render(portrait.getContext('2d'),p,{parts:image,expressions:faces},sample(p,'idle',.6),{scale:3.3});fs.writeFileSync('assets/creatures/lacertubo-v1/portrait.png',portrait.toBuffer('image/png'));
+const atlas=JSON.parse(fs.readFileSync('assets/atlas.json'));atlas.atlases.lacertubo={frames,animations,playback,meta:{image:imagePath,size:{w:plan.width,h:plan.height},viewport:{x:0,y:0,w:256,h:256},format:'RGBA8888',source:'Soulgen Studio',artRevision:1,rigRevision:1}};fs.writeFileSync('assets/atlas.json',JSON.stringify(atlas,null,2)+'\n');
+const review=createCanvas(1000,320),g=review.getContext('2d');g.fillStyle='#e7ead2';g.fillRect(0,0,1000,320);for(const [i,id]of ['idle','flight','skill','intro'].entries()){g.fillStyle='#20424a';g.font='18px sans-serif';g.fillText(id,20+i*250,28);render(g,p,{parts:image,expressions:faces},sample(p,id,id==='intro'?1.6:.65),{clear:false,scale:1.3,offsetX:-375+i*250,offsetY:10});}fs.writeFileSync(out+'/assembly-review.png',review.toBuffer('image/png'));
+fs.writeFileSync(out+'/export.json',JSON.stringify({project:out+'/lacertubo.soulgen.json',source:src,atlas:imagePath,report,plan},null,2)+'\n');
+console.log('Lacertubo exportado: '+plan.frames.length+' quadros · 6 ações · 8 peças.');
