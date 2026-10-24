@@ -23,10 +23,6 @@ body.in-opening #commandBar{display:none!important}
 #kaelOpening .opening-replay-exit{position:absolute;right:20px;top:18px;z-index:8;font-size:13px;padding:8px 16px}
 #kaelOpening .opening-replay-exit[hidden]{display:none!important}
 #kaelOpening .opening-help{position:absolute;right:24px;bottom:20px;z-index:2;padding:10px 18px;font-size:14px}
-#kaelOpening .opening-help[hidden],#kaelOpening .opening-broadcast-controls[hidden],#kaelOpening .opening-naming-scene[hidden]{display:none!important}
-#kaelOpening .opening-broadcast-controls{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);display:flex;gap:12px;max-width:90%;z-index:2}
-#kaelOpening .opening-broadcast-controls button{background:#fff0d5;color:#244f52;border:2px solid #244f52;padding:12px 24px;white-space:nowrap}
-#kaelOpening .opening-broadcast-controls button[aria-pressed=true]{background:#e8ba69;box-shadow:0 4px 0 #244f52}
 #kaelOpening.broadcast-moment .opening-heading{display:none}
 #kaelOpening .opening-workbench{inset:0;background:#bc8b4d;z-index:5;display:block}
 #kaelOpening .opening-workbench[hidden]{display:none}
@@ -79,7 +75,6 @@ body.in-opening #commandBar{display:none!important}
 #kaelOpening #openingNext{flex:none;max-width:55%;white-space:nowrap}
 #kaelOpening .opening-help{position:absolute!important;top:auto!important;bottom:calc(var(--opening-dialog-height) + 56px)!important;right:24px;left:auto;width:auto!important;max-width:220px;height:44px!important;min-height:44px!important;max-height:44px!important;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;z-index:8}
 #kaelOpening .opening-help[hidden]{display:none!important}
-#kaelOpening .opening-broadcast-controls{bottom:calc(var(--opening-dialog-height) + 56px)}
 @media(max-width:700px){
  #kaelOpening{--opening-dialog-height:230px}
  #kaelOpening>.opening-dialog{bottom:12px;width:96vw;padding:12px!important;grid-template-columns:58px minmax(0,1fr)!important;column-gap:10px}
@@ -93,10 +88,17 @@ body.in-opening #commandBar{display:none!important}
  #kaelOpening .opening-birth-record{margin:8px 20px 28px;padding:24px}
  #kaelOpening .opening-birth-record h2{font-size:36px;margin:10px 0}
  #kaelOpening #openingBirthStats{margin:14px 0 20px;gap:10px}
- #kaelOpening .opening-broadcast-controls{bottom:calc(var(--opening-dialog-height) + 40px);gap:8px}
- #kaelOpening .opening-broadcast-controls button{padding:9px 12px;font-size:12px;white-space:normal}
  #kaelOpening .opening-bench-card h2{font-size:19px;top:10px}
  #kaelOpening .opening-bench-card>p:first-of-type{top:48px;font-size:13px}
 }
 @media(max-height:540px){#kaelOpening{--opening-dialog-height:142px}#kaelOpening>.opening-dialog{bottom:8px;padding:8px 16px!important;grid-template-rows:20px minmax(0,1fr) 16px 32px!important}#kaelOpening #openingSpeech{font-size:13px!important}#kaelOpening>.opening-dialog .pilot-face{width:64px;height:64px}#kaelOpening #openingStatus{height:16px;font-size:10px;line-height:16px}}
 
+
+/* CRT remains confined to the broadcast; dialogue and later rooms stay crisp. */
+#kaelOpening.broadcast-moment>.opening-dialog{grid-template-columns:132px minmax(0,1fr)!important;column-gap:20px}
+#kaelOpening>.opening-dialog .pilot-face.broadcast-announcer{width:132px;height:148px;object-fit:contain;border:0;border-radius:0;background:transparent;filter:drop-shadow(0 3px 0 #244f5222)}
+@media(max-width:700px){
+ #kaelOpening.broadcast-moment>.opening-dialog{grid-template-columns:78px minmax(0,1fr)!important;column-gap:10px}
+ #kaelOpening>.opening-dialog .pilot-face.broadcast-announcer{width:78px;height:100px}
+}
+#kaelOpening .opening-help[hidden],#kaelOpening .opening-naming-scene[hidden]{display:none!important}

@@ -1,0 +1,19 @@
+{
+  "tool": "Built-in image_gen",
+  "prompt": "Create one production game dialogue portrait sprite, transparent RGBA background. Original Pipamon universe sports television commentator, friendly energetic Brazilian man around 38, warm brown skin, short dark curly hair with a small cream streak, expressive eyebrows, clean-shaven, teal sports broadcast jacket with cream collar and small orange kite-shaped lapel pin, chunky vintage over-ear headset with microphone at mouth, holding a small stack of broadcast notes in one hand. Bust portrait from mid chest up, three-quarter facing to viewer right toward dialogue text, speaking excitedly with a warm open smile. Crisp dark outlines, simple cel-shaded color planes, polished retro adventure game illustration with restrained pixel-art-like clusters and sharp edges. Teal, warm cream, burnt orange palette. Proportioned adult not chibi, readable face at 110px tall. Single character, centered with 8 percent transparent padding, full hair and headset visible. No text, no logo, no frame, no scenery, no floor shadow. Intended as a static speaking portrait, not a spritesheet.",
+  "image": "announcer-v1.png",
+  "width": 1312,
+  "height": 1199,
+  "mode": "RGBA",
+  "alphaMin": 0,
+  "alphaMax": 255,
+  "transparentPixels": 747753,
+  "frames": 1,
+  "duration": null,
+  "pivot": null,
+  "usage": "Static dialogue portrait for first two TV broadcast lines",
+  "identity": "Adult sports commentator, dark curls with cream streak, brown skin, teal jacket, cream collar, orange kite pin, headset microphone",
+  "review": "Inspected generated PNG and integrated desktop browser view at 1253 × 895; no animation claimed. Pending user visual approval.",
+  "channel": "Provisional original Pipa TV branding rendered in Canvas",
+  "reference": "https://www.ligrsystems.com/blog/football-scoreboard"
+}

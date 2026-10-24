@@ -33,8 +33,19 @@ function worldArriveAtDoor(place){
  const inward=[preferred,...vectors].map(([x,y])=>({x:p.x+x,y:p.y+y})).find(q=>!s.navigation.geometry||s.navigation.geometry.segment(p,q));
  if(inward)s.navigation.target(s.actor,inward,true);s.actor.direction=[3,2,1,0][heading];worldRuntime.portalLatch=place.id;
 }
+function worldProfessorReminder(previous){
+ if(worldRuntime.id!=='quintal'||!journey||!['arrival','choose','practice'].includes(journey.phase)||openingState?.step<14)return false;
+ const state=worldState(),door=worldScene().places.find(p=>p.target==='professor-home'),point=door&&state.navigation.nodes[door.node];
+ if(!point||state.actor.x<=point.x+224||state.actor.x<=previous.x)return false;
+ // Stop both direct input and click routes before any farther portal can fire.
+ Object.assign(state.actor,previous);state.actor.path=[];state.actor.moving=false;state.parkPending=null;
+ state.actor.history=state.actor.history.filter(p=>p.x<=point.x+224);worldClearWalking();
+ dialogue('Kael','eu preciso ver o professor primeiro','Continuar',()=>{hideJourney();$('courtyardCanvas').focus({preventScroll:true});},{speaker:'Kael'});
+ return true;
+}
 function worldAutoEnter(previous){
  if(!worldWalkActive()||worldState().avatarActivity||!worldState().actor.moving)return;const state=worldState(),scene=worldScene(),actor=state.actor;
+ if(worldProfessorReminder(previous))return;
  if(worldRuntime.portalLatch){const latched=scene.places.find(p=>p.id===worldRuntime.portalLatch);if(!latched||state.navigation.distance(actor,state.navigation.nodes[latched.node])>45)worldRuntime.portalLatch=null;}
  const portal=scene.places.find(p=>worldIsEntrance(p)&&p.id!==worldRuntime.portalLatch&&state.navigation.distance(actor,state.navigation.nodes[p.node])<=22&&state.navigation.distance(actor,state.navigation.nodes[p.node])<state.navigation.distance(previous,state.navigation.nodes[p.node])-.001);
  if(!portal)return;if(portal.action==='road_next'&&!['open','complete'].includes(worldRoadGateState()?.state))return;

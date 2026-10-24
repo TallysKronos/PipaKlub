@@ -64,12 +64,47 @@ test('the controller stick walks the overworld instead of moving menu focus',asy
  assert.equal(ui.run('worldState().actor.x'),ui.run('afterPad'));
 });
 
-function journeyUI(search=''){
+test('Kael stops past the professor house for direct and click movement until the first flight is done',async()=>{
+ for(const input of ['direct','click']){
+  const ui=journeyUI();await ui.settle();
+  ui.run("playerAccount={profile:{id:'professor-reminder',nickname:'Kael'},inventory:[]};journey={phase:'practice'};journeyOwner='professor-reminder';openingState={step:14};showCourtyard();refreshWorldHUD();");
+  await ui.run('loadWorldImage(worldRuntime.id)');
+  ui.run("var professor=worldScene().places.find(p=>p.target==='professor-home'),limit=worldState().navigation.nodes[professor.node].x+224;worldState().navigation.target(worldState().actor,{x:limit-12,y:1000},true);");
+  if(input==='click')ui.run('worldWalkTo({x:limit+200,y:1000})');
+  for(let n=0;n<10&&ui.document.getElementById('journeyDialog').hidden;n++)ui.run("var beforeReminder={x:worldState().actor.x,y:worldState().actor.y};"+(input==='direct'?"worldState().navigation.move(worldState().actor,{x:1,y:0},.1);":"worldState().navigation.step(worldState().actor,.1);")+"worldAutoEnter(beforeReminder);");
+  assert.equal(ui.document.getElementById('journeyDialog').hidden,false,input);
+  assert.equal(ui.document.getElementById('journeySpeech').textContent,'eu preciso ver o professor primeiro');
+  assert.equal(ui.document.getElementById('journeyDialog').dataset.speaker,'Kael');
+  assert.ok(ui.run('worldState().actor.x<=limit'));assert.equal(ui.run('worldState().actor.path.length'),0);assert.equal(ui.run('worldWalkActive()'),false);
+  ui.document.getElementById('journeyContinue').onclick();assert.equal(ui.run('worldWalkActive()'),true);
+  ui.run("journey.phase='city';worldWalkTo({x:limit+200,y:1000});for(var n=0;n<30;n++){var previous={x:worldState().actor.x,y:worldState().actor.y};worldState().navigation.step(worldState().actor,.1);worldAutoEnter(previous);}");
+  assert.ok(ui.run('worldState().actor.x>limit'));assert.equal(ui.document.getElementById('journeyDialog').hidden,true);
+  ui.run("dialogue('Vamos voar juntos?','Uma fala do professor','Continuar',hideJourney)");assert.equal(ui.document.getElementById('journeyDialog').dataset.speaker,'Sr. Assis');assert.equal(ui.document.querySelector('.journey-kael-portrait').hidden,true);
+ }
+});
+
+test('CRT defaults on, is configurable in both menus and persists off and on across reloads',async()=>{
+ const memory=new Map(),storage={getItem:key=>memory.get(key)??null,setItem:(key,value)=>memory.set(key,value)};
+ for(const search of ['','?classico']){
+  memory.clear();let ui=journeyUI(search,storage);await ui.settle();
+  assert.equal(ui.run('crtEnabled'),true);assert.equal(ui.document.body.classList.contains('crt-enabled'),true);
+  ui.run("renderHomeMenu('optionsGroup')");
+  let buttons=ui.document.querySelectorAll('[data-destination="crt"]');assert.ok(buttons.length);
+  for(const button of buttons){assert.match(button.textContent,/ligado/);assert.equal(button.getAttribute('aria-pressed'),'true');}
+  ui.run('homeActions.crt()');assert.equal(memory.get('pipaCRT'),'off');assert.equal(ui.document.body.classList.contains('crt-enabled'),false);
+  ui=journeyUI(search,storage);await ui.settle();assert.equal(ui.run('crtEnabled'),false);
+  ui.run("renderHomeMenu('optionsGroup')");buttons=ui.document.querySelectorAll('[data-destination="crt"]');
+  for(const button of buttons){assert.match(button.textContent,/desligado/);assert.equal(button.getAttribute('aria-pressed'),'false');}
+  ui.run('homeActions.crt()');assert.equal(memory.get('pipaCRT'),'on');ui=journeyUI(search,storage);await ui.settle();assert.equal(ui.run('crtEnabled'),true);
+ }
+});
+
+function journeyUI(search='',storage={getItem(){return null},setItem(){}}){
  const html=fs.readFileSync('docs/index.html','utf8'),{document}=parseHTML(html),listeners=new Map();
  const canvasPrototype=Object.getPrototypeOf(document.createElement('canvas'));
  canvasPrototype.getContext=()=>new Proxy({imageSmoothingEnabled:true},{get:(o,k)=>k in o?o[k]:()=>{},set:(o,k,v)=>(o[k]=v,true)});
  for(const select of document.querySelectorAll('select')){let value;Object.defineProperty(select,'value',{get(){return value??this.querySelector('option')?.value??''},set(v){value=v}})}
- const context=vm.createContext({document,console,Date,Intl,crypto,URLSearchParams,AbortController,performance:{now:()=>0},location:{search,hash:'',pathname:'/',protocol:'http:',host:'test'},history:{replaceState(){}},localStorage:{getItem(){return null},setItem(){}},matchMedia:()=>({matches:true}),ResizeObserver:class{observe(){}},MutationObserver:class{observe(){}},requestAnimationFrame(){},cancelAnimationFrame(){},setInterval(){},clearInterval(){},setTimeout(){return 1},clearTimeout(){},fetch:async()=>({ok:true,json:async()=>({enabled:false})}),Image:class{width=1536;height=864;set src(v){queueMicrotask(()=>this.onload?.())}},addEventListener(name,fn){if(!listeners.has(name))listeners.set(name,[]);listeners.get(name).push(fn)}});
+ const context=vm.createContext({document,console,Date,Intl,crypto,URLSearchParams,AbortController,performance:{now:()=>0},location:{search,hash:'',pathname:'/',protocol:'http:',host:'test'},history:{replaceState(){}},localStorage:storage,matchMedia:()=>({matches:true}),ResizeObserver:class{observe(){}},MutationObserver:class{observe(){}},requestAnimationFrame(){},cancelAnimationFrame(){},setInterval(){},clearInterval(){},setTimeout(){return 1},clearTimeout(){},fetch:async()=>({ok:true,json:async()=>({enabled:false})}),Image:class{width=1536;height=864;set src(v){queueMicrotask(()=>this.onload?.())}},addEventListener(name,fn){if(!listeners.has(name))listeners.set(name,[]);listeners.get(name).push(fn)}});
  vm.runInContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],context);
  return {document,run:code=>vm.runInContext(code,context),settle:()=>new Promise(r=>setImmediate(r))};
 }

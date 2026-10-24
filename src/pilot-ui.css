@@ -43,6 +43,7 @@ button.pilot-command:hover{color:#ffd65a}
 .pilot-ui .pilot-dialogue>*{grid-column:2}
 .pilot-ui .pilot-dialogue .pilot-portrait,.pilot-ui .pilot-dialogue .pilot-face{grid-area:face;grid-column:1;width:132px;height:132px;align-self:center;border-radius:50%;border:4px solid #213d39;background:#f6e3b8;object-fit:cover}
 .pilot-ui .pilot-dialogue .pilot-face[hidden]{display:none}
+.pilot-ui #journeyDialog[data-speaker="Kael"] .pilot-portrait{display:none}
 .pilot-ui .pilot-dialogue .pilot-nameplate{justify-self:start;display:inline-block;margin:0 0 6px;padding:4px 14px 4px 12px;border-radius:4px 14px 14px 4px;background:#14534f;color:#fff0cd!important;font:400 17px/1.2 'Lilita One',sans-serif!important;letter-spacing:.02em;text-transform:none;box-shadow:0 2px 0 #0b2422;position:relative}
 .pilot-ui .pilot-dialogue .pilot-nameplate::before{content:'';position:absolute;left:-14px;top:50%;width:14px;height:2px;background:#213d39}
 .pilot-ui .pilot-dialogue h2{margin:0 0 4px}

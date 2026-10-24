@@ -570,6 +570,10 @@ body.light-mode .ritual-board-portal{animation:none}body.light-mode .ritual-reve
 /* UI_KIT_STYLE */
 /* PILOT_UI_STYLE */
 /* TITLE_SCREEN_STYLE */
+
+/* One static, noninteractive CRT layer, including top-layer dialogs. */
+body.crt-enabled{--crt-glass:repeating-linear-gradient(0deg,#081b2910 0 1px,transparent 1px 4px),repeating-linear-gradient(90deg,#f6615804 0 1px,#63c4b104 1px 2px,#6486e704 2px 3px),radial-gradient(ellipse at center,transparent 48%,#06122324 100%)}
+body.crt-enabled:not(:has(dialog[open]))::after,body.crt-enabled dialog[open]::after{content:"";position:fixed;inset:0;z-index:2147483647;pointer-events:none;background:var(--crt-glass)}
 </style></head>
 <body>
 <div id="game">
@@ -776,6 +780,10 @@ $('pauseButton').onclick=openPause;$('pauseLeave').onclick=()=>{closeSheet();$('
 $('roomChip').onclick=()=>$('copy').onclick();
 addEventListener('keydown',e=>{if(e.key!=='Escape')return;if(closeSheet()){e.preventDefault();return;}if(mode&&!showResult&&$('modal').style.display!=='flex'&&!document.querySelector('.overlay[style*="flex"]')){e.preventDefault();openPause();}});
 const canvas=$('sky');let ctx=canvas.getContext('2d',{alpha:false}),background=null,backgroundScene=null;
+const CRT_PREFERENCE='pipaCRT';
+let crtEnabled=true;try{crtEnabled=localStorage.getItem(CRT_PREFERENCE)!=='off';}catch{}
+document.body.classList.toggle('crt-enabled',crtEnabled);
+function setCRT(enabled){crtEnabled=!!enabled;document.body.classList.toggle('crt-enabled',crtEnabled);try{localStorage.setItem(CRT_PREFERENCE,crtEnabled?'on':'off');}catch{}toast('Filtro de TV (CRT) '+(crtEnabled?'ativado':'desativado'));}
 const qualityPreference=localStorage.getItem('pipaQuality');
 let lightMode=qualityPreference==='light'||(!qualityPreference&&(matchMedia('(pointer:coarse)').matches||matchMedia('(prefers-reduced-motion:reduce)').matches)),allowAutoQuality=qualityPreference!=='full';
 const frameHealth=createFrameHealth(),labelWidths=new Map();

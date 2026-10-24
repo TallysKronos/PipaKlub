@@ -154,14 +154,11 @@ function openingDrawMother(g,t,position=openingProjectPoint(openingMother)){cons
 function openingDrawRabbit(g,t,position=openingProjectPoint(openingRabbit)){const actor={...openingRabbit,...position};if(worldCompanions.draw(g,homeImages,{soul:'rabbito'},actor.x,actor.y,66,{direction:actor.direction,moving:actor.moving,time:art.reduced?0:t}))return;art.creature(g,0,art.reduced?0:t,actor.x-55,actor.y-110,110,{soul:'rabbito',facing:actor.direction===2?1:-1,input:actor.moving?{x:-1}:{}},openingState?.step===11&&!actor.moving);}
 
 // Figma Melhorias 85:674–679: discovery first; the stage owns the camera.
-let openingHintsShown=false,openingHintSince=0,openingBroadcastSide=0,openingImpactAt=null,openingMotherArrivedAt=null;
+let openingHintsShown=false,openingHintSince=0,openingImpactAt=null,openingMotherArrivedAt=null;
 const openingRod={x:1180,y:550,grabbed:false,pointer:null};
 const openingHelp=uiElement('button','Preciso de uma dica','secondary opening-help');openingHelp.type='button';openingHelp.hidden=true;openingHelp.setAttribute('aria-pressed','false');openingScreen.querySelector('.opening-stage').append(openingHelp);
 const openingReplayExit=uiElement('button','Sair da reprise','secondary opening-replay-exit');openingReplayExit.type='button';openingReplayExit.hidden=true;openingScreen.querySelector('.opening-stage').append(openingReplayExit);openingReplayExit.onclick=async()=>{if(!openingReplay||openingBusy)return;closeOpening();openingReplay=false;await loadJourney();};
 openingHelp.onclick=()=>{openingHintsShown=!openingHintsShown;openingHelp.setAttribute('aria-pressed',String(openingHintsShown));openingHelp.textContent=openingHintsShown?'Ocultar dicas':'Preciso de uma dica';openingRoomSignature='';openingRefreshRoomUI();};
-const openingBroadcastControls=uiElement('div',undefined,'opening-broadcast-controls');openingBroadcastControls.hidden=true;openingBroadcastControls.setAttribute('aria-label','Acompanhar a final regional');
-for(const [side,label]of [[0,'Acompanhar Jamile'],[1,'Acompanhar Gollia']]){const b=uiElement('button',label,'secondary');b.type='button';b.setAttribute('aria-pressed',String(side===0));b.onclick=()=>{openingBroadcastSide=side;for(const [n,button]of [...openingBroadcastControls.children].entries())button.setAttribute('aria-pressed',String(n===side));};openingBroadcastControls.append(b);}
-openingScreen.querySelector('.opening-stage').append(openingBroadcastControls);
 const openingNameScene=uiElement('section',undefined,'opening-naming-scene');openingNameScene.hidden=true;openingNameScene.setAttribute('aria-labelledby','openingBirthTitle');
 openingNameScene.innerHTML='<div class="opening-birth-art"><span>UM ELO ACABA DE NASCER</span><canvas id="openingPartnerPortrait" width="640" height="640" role="img" aria-label="Seu novo parceiro Rabbito animado"></canvas><small>Papel, vento e uma história só de vocês.</small></div><div class="opening-birth-record"><small>SEU PRIMEIRO SOULMONSTER</small><h2 id="openingBirthTitle">Rabbito</h2><p>Do seu desenho, nasceu um parceiro.<br>Como ele vai se chamar?</p><dl id="openingBirthStats"></dl><div id="openingNameSlot"></div><p id="openingNameStatus" role="status"></p></div>';
 openingScreen.querySelector('.opening-stage').append(openingNameScene);$('openingNameSlot').append($('openingNameForm'));
@@ -172,7 +169,7 @@ const openingSceneMetrics={reserve:250};
 new ResizeObserver(()=>{const r=openingBenchScene.getBoundingClientRect();if(r.width<1||r.height<1)return;const canvas=$('openingCanvas'),h=Math.max(1,Math.round(1536*r.height/r.width));if(canvas.width!==1536)canvas.width=1536;if(canvas.height!==h)canvas.height=h;const dialogHeight=parseFloat(getComputedStyle(openingScreen).getPropertyValue('--opening-dialog-height'))||210;openingSceneMetrics.reserve=(dialogHeight+48)*1536/r.width;}).observe(openingBenchScene);
 function openingImmersiveScene(i){
  openingHintsShown=false;openingHintSince=performance.now();openingImpactAt=null;openingMotherArrivedAt=null;openingHelp.hidden=true;openingHelp.textContent='Preciso de uma dica';openingHelp.setAttribute('aria-pressed','false');
- openingBroadcastControls.hidden=i>1;openingNameScene.hidden=i!==10;openingReplayExit.hidden=!openingReplay;openingScreen.classList.toggle('broadcast-moment',i<2);openingRod.grabbed=false;openingRod.pointer=null;openingRod.x=1180;openingRod.y=550;
+ openingNameScene.hidden=i!==10;openingReplayExit.hidden=!openingReplay;openingScreen.classList.toggle('broadcast-moment',i<2);$('openingCanvas').setAttribute('aria-label',i<2?'TV de tubo: final regional, Jamile e Carcará contra Gollia e Azulão, pela Pipa TV':'Kael em sua casa');openingRod.grabbed=false;openingRod.pointer=null;openingRod.x=1180;openingRod.y=550;
  if(i===10){const stats=eng.pipamons.stats(1);$('openingBirthStats').replaceChildren();for(const [label,value]of [['Nível','1'],['Origem','Rabiola Antiga'],['Linha',Math.round(stats.line)],['Energia',Math.round(stats.energy)],['Velocidade',Math.round(stats.speed)],['Elo','Primeiro parceiro']]){const div=document.createElement('div'),dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;div.append(dt,dd);$('openingBirthStats').append(div);}}
 }
 function openingImmersiveTick(t){
@@ -181,16 +178,33 @@ function openingImmersiveTick(t){
  if(openingState?.step<2)drawOpeningRegionalFinal($('openingCanvas').getContext('2d'),t);
  if(openingState?.step===10){const g=$('openingPartnerPortrait').getContext('2d');g.clearRect(0,0,640,640);art.creature(g,0,t,50,40,540,{soul:'rabbito',animate:!art.reduced});$('openingNameStatus').textContent=$('openingStatus').textContent;}
 }
-function drawOpeningRegionalFinal(g,t){
- const w=1536,h=1024,time=art.reduced?1200:t,cycle=time%4200/4200,press=Math.max(0,Math.sin(cycle*Math.PI*2)),focus=openingBroadcastSide;
- g.save();g.fillStyle='#000';g.fillRect(0,0,g.canvas.width,g.canvas.height);const k=Math.min(g.canvas.width/w,Math.max(120,g.canvas.height-openingSceneMetrics.reserve)/h);g.translate((g.canvas.width-w*k)/2,0);g.scale(k,k);g.fillStyle='#8bbdc5';g.fillRect(0,0,w,h);art.background(g,ART_CONFIG.designs.scenes.morro,0,0,w,h);
- g.fillStyle='#123d4d55';g.fillRect(0,0,w,h);g.fillStyle='#fff3d4';g.fillRect(70,80,1396,106);g.fillStyle='#244f52';g.font='bold 26px Nunito,sans-serif';g.textAlign='left';g.fillText('FINAL REGIONAL',110,124);g.font='22px Nunito,sans-serif';g.fillText('Jamile  /  Carcará',110,162);g.textAlign='right';g.fillText('Gollia  /  Azulão',1426,162);g.fillStyle='#b94f39';g.font='bold 20px Nunito,sans-serif';g.fillText('● AO VIVO',1426,121);
+// Reuse a 640 × 480 broadcast buffer: fine pixels without animated noise or flicker.
+const openingTVBuffer=document.createElement('canvas');openingTVBuffer.width=640;openingTVBuffer.height=480;
+function drawOpeningRegionalFinal(target,t){
+ const bufferWidth=crtEnabled?640:1536,bufferHeight=crtEnabled?480:1152;if(openingTVBuffer.width!==bufferWidth||openingTVBuffer.height!==bufferHeight){openingTVBuffer.width=bufferWidth;openingTVBuffer.height=bufferHeight;}
+ const g=openingTVBuffer.getContext('2d'),w=1536,h=1152,time=art.reduced?1200:t,cycle=time%4200/4200,press=Math.max(0,Math.sin(cycle*Math.PI*2));
+ g.save();g.scale(openingTVBuffer.width/w,openingTVBuffer.height/h);g.fillStyle='#8bbdc5';g.fillRect(0,0,w,h);art.background(g,ART_CONFIG.designs.scenes.morro,0,0,w,h);
+ g.fillStyle='#123d4d22';g.fillRect(0,0,w,h);
  const a={x:440+Math.sin(time/950)*55,y:530+Math.cos(time/750)*28},b={x:1090-press*180,y:480+Math.sin(time/850)*30};
- g.strokeStyle='#e8ba69';g.lineWidth=4;g.beginPath();g.moveTo(150,960);g.quadraticCurveTo(380,760,a.x,a.y);g.stroke();g.strokeStyle='#c3dfdf';g.beginPath();g.moveTo(1380,960);g.quadraticCurveTo(1180,700,b.x,b.y);g.stroke();
+ g.strokeStyle='#e8ba69';g.lineWidth=4;g.beginPath();g.moveTo(150,1100);g.quadraticCurveTo(380,760,a.x,a.y);g.stroke();g.strokeStyle='#c3dfdf';g.beginPath();g.moveTo(1380,1100);g.quadraticCurveTo(1180,700,b.x,b.y);g.stroke();
  art.creature(g,0,time,a.x-190,a.y-180,380,{id:'opening-jamile',facing:1,input:{x:.5},hitFlash:press>.8?.15:0});art.creature(g,2,time,b.x-190,b.y-180,380,{id:'opening-gollia',facing:-1,input:{x:-1},skillCooldown:press>.7?6.7:0});
  if(press>.8&&!art.reduced){g.strokeStyle='#fff6bb';g.lineWidth=6;g.beginPath();g.moveTo(a.x+110,a.y);g.lineTo(b.x-100,b.y);g.stroke();}
- g.fillStyle='#153b43dd';g.beginPath();g.roundRect(focus?850:220,760,460,92,18);g.fill();g.fillStyle='#fff1cf';g.font='bold 25px Nunito,sans-serif';g.textAlign='center';g.fillText(focus?'Gollia pressiona pelas laterais':'Jamile procura uma abertura',focus?1080:450,816);g.restore();
+ // Editorial scorebug for this scripted final; it never changes player match state.
+ g.textAlign='left';g.fillStyle='#102d35f2';g.fillRect(66,62,830,168);g.fillStyle='#edc979';g.fillRect(66,62,830,34);g.fillStyle='#17383e';g.font='bold 20px Nunito,sans-serif';g.fillText('LIGA PIPAMON  /  FINAL REGIONAL',88,86);
+ g.fillStyle='#fff7df';g.font='bold 27px Nunito,sans-serif';g.fillText('JAMILE',90,140);g.fillText('GOLLIA',485,140);g.font='18px Nunito,sans-serif';g.fillStyle='#c6d7d4';g.fillText('CARCARÁ',90,172);g.fillText('AZULÃO',485,172);
+ g.fillStyle='#fff3d3';g.font='bold 32px Nunito,sans-serif';g.fillText('1',333,145);g.fillStyle='#edc979';g.font='22px Nunito,sans-serif';g.fillText('×',389,142);g.fillStyle='#fff3d3';g.font='bold 32px Nunito,sans-serif';g.fillText('1',440,145);
+ g.fillStyle='#284850';g.fillRect(90,190,265,7);g.fillRect(485,190,265,7);g.fillStyle='#eeb46a';g.fillRect(90,190,265*(.67-press*.09),7);g.fillStyle='#7ad4df';g.fillRect(485,190,265*.88,7);g.fillStyle='#edc979';g.font='bold 17px Nunito,sans-serif';g.fillText('3ª',800,141);g.font='14px Nunito,sans-serif';g.fillText('RODADA',782,166);
+ g.fillStyle='#102d35e8';g.fillRect(1166,62,304,50);g.fillStyle='#f17e5d';g.beginPath();g.arc(1190,87,7,0,Math.PI*2);g.fill();g.fillStyle='#fff5dc';g.font='bold 22px Nunito,sans-serif';g.fillText('AO VIVO',1210,95);
+ // Original channel watermark, lighter than the match graphic.
+ g.save();g.translate(1210,1000);g.globalAlpha=.9;g.shadowColor='#102d35';g.shadowBlur=5;g.shadowOffsetY=2;g.strokeStyle='#fff9e6';g.fillStyle='#fff9e6';g.lineWidth=4;g.beginPath();g.moveTo(20,-35);g.lineTo(42,-10);g.lineTo(20,17);g.lineTo(0,-10);g.closePath();g.stroke();g.beginPath();g.moveTo(20,17);g.bezierCurveTo(38,31,4,33,22,48);g.stroke();g.font='900 35px Nunito,sans-serif';g.fillText('PIPA',54,-1);g.fillStyle='#f0cb7e';g.font='bold 25px Nunito,sans-serif';g.fillText('TV',151,-1);g.fillStyle='#fff9e6';g.font='bold 15px Nunito,sans-serif';g.fillText('E S P O R T E S',57,24);g.restore();g.restore();
+ const frameW=1620,frameH=1260,available=Math.max(120,target.canvas.height-openingSceneMetrics.reserve),k=Math.min((target.canvas.width-32)/frameW,(available-16)/frameH);
+ target.save();target.fillStyle='#000';target.fillRect(0,0,target.canvas.width,target.canvas.height);target.translate((target.canvas.width-frameW*k)/2,Math.max(8,(available-frameH*k)/2));target.scale(k,k);
+ target.fillStyle='#2e3434';target.strokeStyle='#555b58';target.lineWidth=5;target.beginPath();target.roundRect(0,0,frameW,frameH,65);target.fill();target.stroke();target.fillStyle='#111a1b';target.beginPath();target.roundRect(24,24,1572,1196,50);target.fill();
+ target.save();target.beginPath();target.roundRect(42,42,w,h,80);target.clip();target.imageSmoothingEnabled=!crtEnabled;target.drawImage(openingTVBuffer,42,42,w,h);target.translate(42,42);
+ target.strokeStyle='#d4eddf18';target.lineWidth=14;target.beginPath();target.roundRect(8,8,w-16,h-16,76);target.stroke();target.restore();
+ target.fillStyle='#a2aaa1';target.font='bold 16px Nunito,sans-serif';target.textAlign='left';target.fillText('P I P A V I S Ã O',72,1232);target.fillStyle='#86c39b';target.beginPath();target.arc(1525,1227,5,0,Math.PI*2);target.fill();target.restore();
 }
+
 function openingBenchPoint(e){const r=$('openingProjectArt').getBoundingClientRect(),s=Math.min(r.width/1536,r.height/1024),x=(e.clientX-r.left-(r.width-1536*s)/2)/s,y=(e.clientY-r.top-(r.height-1024*s)/2)/s;return {x,y};}
 function openingReleaseRod(){
  if(!openingRod.grabbed)return;openingRod.grabbed=false;openingRod.pointer=null;

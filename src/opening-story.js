@@ -1,7 +1,7 @@
 // Narrative presentation only. Inventory and checkpoints belong to player_opening.
 export const KAEL_OPENING=[
- {speaker:'Transmissão · Final regional',text:'A campeã Jamile está sob pressão! Gollia, o jovem destaque desta temporada, está tomando conta do céu!',shot:'tv'},
- {speaker:'Transmissão · Final regional',text:'Jamile tenta recuperar espaço… mas Gollia não dá descanso! Que final estamos acompanhando!',shot:'tv'},
+ {speaker:'Locutor · Pipa TV',text:'A campeã Jamile está sob pressão! Gollia, o jovem destaque desta temporada, está tomando conta do céu!',shot:'tv'},
+ {speaker:'Locutor · Pipa TV',text:'Jamile tenta recuperar espaço… mas Gollia não dá descanso! Que final estamos acompanhando!',shot:'tv'},
  {speaker:'Kael',text:'Esse ano eu vou participar da liga regional. Pode apostar!',shot:'tv'},
  {speaker:'Kael',text:'Meu projeto está na mesa. Ainda falta uma vareta para terminar sua armação… Vamos lá, Rabbito. Quero ver você pronto.',shot:'desk'},
  {speaker:'Kael',text:'Pronto! O corpo de papel ficou do jeitinho que imaginei. Só falta a rabiola. Mas não dá para invocar um Pipamon sem a rabiola específica dele… Como vou conseguir a sua, se você saiu da minha cabeça?',shot:'desk'},

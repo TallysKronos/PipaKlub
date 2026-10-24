@@ -95,7 +95,9 @@ async function saveJourney(action,body={}){
 }
 function setJourneyBusy(busy){for(const id of ['journeyContinue','partnerConfirm','partnerBack','flightNext','flightSkip'])$(id).disabled=busy;}
 function hideJourney(){courtyard.classList.remove('starter-selecting');$('journeyDialog').hidden=true;$('partnerChoice').hidden=true;$('homeDestinations').inert=false;}
-function dialogue(title,text,action,fn,{later=false}={}){
+function dialogue(title,text,action,fn,{later=false,speaker='Sr. Assis'}={}){
+ const box=$('journeyDialog');box.dataset.speaker=speaker;box.querySelector('.eyebrow').textContent=speaker;
+ let face=box.querySelector('.journey-kael-portrait');if(speaker==='Kael'&&!face){face=document.createElement('img');face.className='pilot-face journey-kael-portrait';face.alt='Kael';face.src=plazaURL('avatar.png');box.prepend(face);}if(face)face.hidden=speaker!=='Kael';
  hideJourney();$('journeyTitle').textContent=title;$('journeySpeech').textContent=text;$('journeyStatus').textContent='';$('journeyContinue').textContent=action;$('journeyContinue').onclick=fn;$('journeyDialog').hidden=false;$('journeyLater').textContent='Continuar explorando';$('journeyLater').hidden=!later;$('journeyLater').onclick=hideJourney;$('homeDestinations').inert=!later;$('journeyContinue').focus({preventScroll:true});
 }
 function renderJourney(){
@@ -237,7 +239,7 @@ const homeActions={
  // Trilhas open straight from the menu once the first flight is done; before that the city flow guides the player.
  trails:()=>{if(!journey||journey.phase!=='complete'){openCity();return;}hideJourney();closeHomeMenu();openTrails()},professor:()=>{if(homeArt.world?.street&&worldRuntime.id!=='professor-home'){openWorld('professor-home');}hideJourney();if(journey?.phase!=='complete')renderJourney();else dialogue('Sempre há um novo vento','Podemos repetir seu primeiro voo, praticar técnicas avançadas ou apenas cuidar dos seus parceiros.','Repetir o primeiro voo',()=>{homeReplay=true;renderJourney()},{later:true})},
  school:()=>{hideJourney();closeHomeMenu();openSchool()},practice:()=>{hideJourney();closeHomeMenu();$('practice').click()},friends:()=>{hideJourney();closeHomeMenu();openSheet('friendsSheet')},quick:()=>{hideJourney();closeHomeMenu();$('quickButton').click()},daily:()=>{hideJourney();closeHomeMenu();$('dailyButton').click()},dex:()=>{hideJourney();closeHomeMenu();openDex()},shop:()=>{hideJourney();closeHomeMenu();openClubDestination('lines').then(loadLineShop)},
- sound:()=>{$('sound').click();closeHomeMenu()},quality:()=>{$('quality').click();closeHomeMenu()},fullscreen:()=>{$('fullscreen').click();closeHomeMenu()},privacy:()=>{closeHomeMenu();if(CLARITY_ID)openConsent()},rules:()=>{closeHomeMenu();showRules()},reload:()=>{loadHomeArt(true);closeHomeMenu()},logout:async()=>{if(mode)return;try{await accountRequest('logout',{});playerAccount=null;reflectAccount();closeHomeMenu();}catch(e){toast(e.message)}},close:()=>closeHomeMenu()
+ crt:()=>{setCRT(!crtEnabled);closeHomeMenu()},sound:()=>{$('sound').click();closeHomeMenu()},quality:()=>{$('quality').click();closeHomeMenu()},fullscreen:()=>{$('fullscreen').click();closeHomeMenu()},privacy:()=>{closeHomeMenu();if(CLARITY_ID)openConsent()},rules:()=>{closeHomeMenu();showRules()},reload:()=>{loadHomeArt(true);closeHomeMenu()},logout:async()=>{if(mode)return;try{await accountRequest('logout',{});playerAccount=null;reflectAccount();closeHomeMenu();}catch(e){toast(e.message)}},close:()=>closeHomeMenu()
 };
 for(const b of courtyard.querySelectorAll('[data-home-action]'))b.onclick=()=>homeActions[b.dataset.homeAction]();
 const homeMenuGroups={
@@ -246,14 +248,14 @@ const homeMenuGroups={
  playGroup:[['root','← Voltar'],['explorationGroup','Exploração e campanha'],['quick','Partida rápida'],['daily','Céu do dia'],['friends','Jogar com amigos'],['practice','Treino livre'],...(new URLSearchParams(location.search).has('lab')?[['lab','Laboratório · Duelo nas Alturas']]:[])],
  explorationGroup:[['playGroup','← Voltar'],['park','Parque dos Ventos'],['wildResume','Retomar encontro selvagem'],['trails','Trilhas da cidade']],
  clubGroup:[['root','← Voltar'],['farm','Fazenda dos parceiros'],['summon','Oficina das Almas'],['trades','Trocas por convite'],['shop','Banca de linhas'],['history','Meus duelos'],['events','Souls de evento'],['profile','Meu perfil'],['professor','Meu primeiro voo'],['story','Rever a abertura']],
- optionsGroup:[['root','← Voltar'],['save','Save e bancos'],['autosave','Salvamento automático'],['sound','Som'],['quality','Qualidade da imagem'],['fullscreen','Tela cheia'],...(CLARITY_ID?[['privacy','Privacidade']]:[]),['feedback','Enviar feedback da demo'],['rules','Regras'],['reload','Recarregar cenário'],['logout','Sair da conta']]
+ optionsGroup:[['root','← Voltar'],['save','Save e bancos'],['autosave','Salvamento automático'],['sound','Som'],['quality','Qualidade da imagem'],['crt','Filtro de TV (CRT)'],['fullscreen','Tela cheia'],...(CLARITY_ID?[['privacy','Privacidade']]:[]),['feedback','Enviar feedback da demo'],['rules','Regras'],['reload','Recarregar cenário'],['logout','Sair da conta']]
 };
 let homeMenuGroup='root';
 function renderHomeMenu(group='root'){
  homeMenuGroup=group;$('homeMenuTitle').textContent={root:'Rua dos Ventos',playGroup:'Jogar',explorationGroup:'Exploração e campanha',clubGroup:'Vida no clube',optionsGroup:'Opções'}[group];
  const open=id=>{if(homeMenuGroups[id])renderHomeMenu(id);else{closeHomeMenu();homeActions[id]()}};
  $('homeMenuLinks').className=group==='root'?'home-tiles':'home-list';
- $('homeMenuLinks').replaceChildren(...homeMenuGroups[group].map(([id,label,icon])=>{if(id==='autosave')label='Salvamento automático: '+(campaignData?.autosave_enabled===false?'desligado':'ligado');const b=uiElement('button',icon?undefined:label);b.type='button';b.dataset.destination=id;if(icon){b.className='home-tile';const img=document.createElement('img');img.alt='';img.src=ART_CONFIG.kit?.icons?.[icon]||'';b.append(img,uiElement('strong',label));}b.onclick=()=>open(id);return b}));
+ $('homeMenuLinks').replaceChildren(...homeMenuGroups[group].map(([id,label,icon])=>{if(id==='crt')label='Filtro de TV (CRT): '+(crtEnabled?'ligado':'desligado');if(id==='autosave')label='Salvamento automático: '+(campaignData?.autosave_enabled===false?'desligado':'ligado');const b=uiElement('button',icon?undefined:label);b.type='button';b.dataset.destination=id;if(id==='crt')b.setAttribute('aria-pressed',String(crtEnabled));if(icon){b.className='home-tile';const img=document.createElement('img');img.alt='';img.src=ART_CONFIG.kit?.icons?.[icon]||'';b.append(img,uiElement('strong',label));}b.onclick=()=>open(id);return b}));
  if(group==='root'){const close=uiElement('button','Voltar ao passeio','home-menu-close');close.type='button';close.onclick=closeHomeMenu;$('homeMenuLinks').append(close);}
  $('homeMenuLinks').querySelector('button').focus();
 }

@@ -23,7 +23,7 @@ const PILOT_NOTES={
  friends:'Crie uma sala e mande o código para a turma.',practice:'Voo livre contra bots, sem recompensa.',lab:'Experimento em teste.',
  summon:'Construa o corpo do parceiro e una sua rabiola.',trades:'Troque pipas com um amigo, com confirmação dos dois lados.',shop:'Linhas novas para o seu voo, compradas com moedas.',
  history:'Seus últimos duelos e resultados.',events:'Almas especiais de evento.',profile:'Seu nome, nível e conquistas.',professor:'Repetir o primeiro voo com o Sr. Assis.',story:'Rever a abertura sem perder o progresso.',
- sound:'Ligar ou desligar o som.',quality:'Modo leve para aparelhos mais simples.',fullscreen:'Ocupar a tela inteira.',privacy:'Escolher se o jogo pode medir o uso.',rules:'Como o corte, a esquiva e a energia funcionam.',
+ crt:'Textura suave de TV de tubo, com linhas e vinheta. Você pode desligar a qualquer momento.',sound:'Ligar ou desligar o som.',quality:'Modo leve para aparelhos mais simples.',fullscreen:'Ocupar a tela inteira.',privacy:'Escolher se o jogo pode medir o uso.',rules:'Como o corte, a esquiva e a energia funcionam.',
  reload:'Recarregar as imagens do cenário.',logout:'Sair desta conta neste aparelho.'
 };
 const PILOT_ROOT=[['playGroup','Jogar'],['collection','Parceiros'],['dex','Pipa Dex'],['backpack','Mochila'],['missions','Missões'],['city','Mapa da cidade'],['clubGroup','Clube'],['school','Escola do Sr. Assis'],['optionsGroup','Opções']];
@@ -59,7 +59,7 @@ function pilotFooter(){
 function pilotRenderMenu(group,focusId){
  pilotGroup=group;setText('pilotMenuTitle',PILOT_TITLES[group]||'Menu');setText('pilotCrumb',group==='root'?(document.getElementById('worldName')?.textContent.trim()||'Rua dos Ventos'):'Caderno do pipeiro ›');
  const list=$('pilotMenuList');list.replaceChildren(...pilotItems(group).map(([id,label])=>{
-  const b=document.createElement('button');b.type='button';b.className='pilot-option'+(homeMenuGroups[id]?' has-sub':'');b.dataset.destination=id;b.textContent=id==='autosave'?'Salvamento automático: '+(campaignData?.autosave_enabled===false?'desligado':'ligado'):label;if(id==='autosave')b.setAttribute('aria-pressed',String(campaignData?.autosave_enabled!==false));
+  const b=document.createElement('button');b.type='button';b.className='pilot-option'+(homeMenuGroups[id]?' has-sub':'');b.dataset.destination=id;b.textContent=id==='crt'?'Filtro de TV (CRT): '+(crtEnabled?'ligado':'desligado'):id==='autosave'?'Salvamento automático: '+(campaignData?.autosave_enabled===false?'desligado':'ligado'):label;if(id==='crt')b.setAttribute('aria-pressed',String(crtEnabled));if(id==='autosave')b.setAttribute('aria-pressed',String(campaignData?.autosave_enabled!==false));
   b.onclick=()=>pilotOpen(id);b.onmouseenter=()=>b.focus({preventScroll:true});b.onfocus=()=>pilotFocus(b);return b;}));
  pilotFooter();
  const target=list.querySelector('[data-destination="'+focusId+'"]')||list.querySelector('button');target?.focus({preventScroll:true});
@@ -121,7 +121,7 @@ if($('kaelOpening'))pilotDialogue(document.querySelector('#kaelOpening .opening-
 // Kael and his mother get their own faces when they speak in the opening.
 if($('openingSpeaker')){
  const face=document.createElement('img');face.className='pilot-face';face.alt='';document.querySelector('#kaelOpening .opening-dialog').prepend(face);
- const sync=()=>{const who=$('openingSpeaker').textContent.trim();const url=who==='Kael'&&typeof plazaURL==='function'?plazaURL('avatar.png'):'';face.hidden=!url;if(url&&face.src!==url)face.src=url;};
+ const sync=()=>{const who=$('openingSpeaker').textContent.trim();const announcer=who.startsWith('Locutor');const url=announcer?ART_CONFIG.opening.images.announcer.url:who==='Kael'&&typeof plazaURL==='function'?plazaURL('avatar.png'):'';face.classList.toggle('broadcast-announcer',announcer);face.alt=announcer?'Locutor da Pipa TV, com headset e microfone':'';face.hidden=!url;if(url&&face.src!==url)face.src=url;};
  new MutationObserver(sync).observe($('openingSpeaker'),{childList:true,characterData:true,subtree:true});sync();
 }
 

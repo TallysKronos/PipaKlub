@@ -141,3 +141,13 @@ test('opening keeps the requested story beats and publishes measured, separately
  assert.equal(m.images.bedroom.alpha,false);assert.equal(m.images.mother.alpha,true);assert.equal(m.rooms.downstairs.exit.target,'quintal');
  assert.equal(m.actors.mother.frames.length,8);assert.match(m.images.mother.image,/mother-overworld-v2/);
 });
+
+test('broadcast advances from the commentator to Kael without spectator controls or leaking the TV treatment',async()=>{
+ const ui=openingUI();await ui.settle();ui.run("playerAccount={profile:{id:'broadcast',nickname:'Kael'},inventory:[]};openingOwner='broadcast';openingScreen.hidden=false;openingReplay=true;openingState={step:0};renderOpening()");
+ assert.equal(ui.document.querySelector('.opening-broadcast-controls'),null);
+ assert.match(ui.document.getElementById('openingCanvas').getAttribute('aria-label'),/TV de tubo/);
+ assert.equal(ui.document.getElementById('openingSpeaker').textContent,'Locutor · Pipa TV');
+ await ui.run('nextOpening()');assert.equal(ui.run('openingState.step'),1);assert.equal(ui.document.getElementById('kaelOpening').classList.contains('broadcast-moment'),true);
+ await ui.run('nextOpening()');assert.equal(ui.run('openingState.step'),2);assert.equal(ui.document.getElementById('openingSpeaker').textContent,'Kael');assert.equal(ui.document.getElementById('kaelOpening').classList.contains('broadcast-moment'),false);assert.equal(ui.document.getElementById('openingCanvas').getAttribute('aria-label'),'Kael em sua casa');
+ assert.equal(ui.run('playerAccount.inventory.length'),0);
+});
