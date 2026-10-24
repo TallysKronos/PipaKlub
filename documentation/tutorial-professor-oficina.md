@@ -42,3 +42,10 @@ A mudança é de apresentação. Não altera o modelo, as janelas de acerto, o c
 ### Limite da ilustração do nascimento
 
 A área `resultArt` tem altura reservada, não encolhe dentro da coluna do resultado e contém sua própria pintura. A imagem de prática e o Canvas autenticado ficam posicionados dentro dessa área, com margem e `object-fit: contain`, sem contribuir com seu tamanho natural para o fluxo. Assim, o desenho não passa sobre nome, bônus, detalhes ou botões. A correção foi compilada nos dois destinos; sem testes executados.
+
+
+## Publicação autorizada — 24/10/2026
+
+A migração 027 foi aplicada ao Supabase de produção com autorização específica do responsável nesta conversa. SHA-256 do arquivo: `d1fc2b0dc284a3a3d9359bd6d14305021e0fc7a5aa2c0e17765f8c4b16cff9cb`.
+
+Conferência antes/depois: **5 perfis, 68 parceiros, 1 montagem**, sem alteração. Tabela e RLS presentes; RPC permitida a authenticated, negada a anon, escrita direta negada e função legada interna sem execução direta por authenticated. As seis verificações retornaram true. A publicação do servidor deve ser conferida no Render para o SHA desta entrega; esta anotação comprova a etapa do banco, não o estado Live.
