@@ -93,6 +93,13 @@ function pollPads(){
  const move=switchNav.stick(pad.axes[0]||0,pad.axes[1]||0),any=pad.buttons.some(b=>b.pressed)||Math.hypot(move.x,move.y)>.3;
  if(any)setInputDevice(switchNav.padKind(pad.id)==='ps'?'gamepad-ps':'gamepad-xbox');
  if(!inputDevice.startsWith('gamepad')){for(let i=0;i<pad.buttons.length;i++)padPrev[i]=down(i);return;}
+ if(typeof openingWorkbench!=='undefined'&&openingWorkbench&&!openingScreen.hidden){
+  padState.active=false;
+  if(openingRod.grabbed){openingRod.x=Math.max(120,Math.min(1400,openingRod.x+move.x*14));openingRod.y=Math.max(120,Math.min(900,openingRod.y+move.y*14));}
+  if(pressed(B.a)){if(openingRod.grabbed)openingReleaseRod();else $('openingBenchPlace').click();}
+  if(pressed(B.b)&&openingCraftAt===null)openingCloseBench();
+  for(let i=0;i<pad.buttons.length;i++)padPrev[i]=down(i);return;
+ }
  if(typeof openingWalkActive==='function'&&openingWalkActive()){
   padState.active=false;padState.x=move.x+(down(B.right)?1:0)-(down(B.left)?1:0);padState.y=move.y+(down(B.down)?1:0)-(down(B.up)?1:0);padState.cut=false;padState.skill=0;
   if(pressed(B.a)){const spot=openingNearestSpot();if(spot)openingInspect(spot.id);}

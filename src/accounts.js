@@ -155,11 +155,19 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
     return json({campaign,account:await accountFor(who),...(b.action==='reset'?{opening:await rpc('player_opening',{p_action:'read',p_step:null,p_name:null},who.access),journey:await rpc('player_journey',{p_action:'read',p_model:null,p_lesson:null},who.access),trails:await rpc('player_trails',{p_action:'read',p_operation:null,p_payload:{}},who.access)}:{})},200,who.setCookies);
    }
    if(action==='opening'){
-    if(!['read','advance','name'].includes(b.action))throw new AccountError('Abertura: ação inválida.');
+    if(!['read','advance','name','checkpoint'].includes(b.action))throw new AccountError('Abertura: ação inválida.');
     if(b.step!=null&&(!Number.isInteger(b.step)||b.step<0||b.step>14))throw new AccountError('Abertura: cena inválida.');
     if(b.name!=null&&(typeof b.name!=='string'||[...b.name].length>24||/[\u0000-\u001f\u007f]/.test(b.name)))throw new AccountError('Nome do parceiro inválido.');
     checkPending(who.id);
-    const opening=await rpc('player_opening',{p_action:b.action,p_step:b.step??null,p_name:b.name??null},who.access);
+    let opening;
+    if(b.action==='checkpoint'){
+     if(![3,4,5,7,9,10,12,14].includes(b.target))throw new AccountError('Abertura: marco inválido.');
+     opening=await rpc('player_opening',{p_action:'read',p_step:null,p_name:null},who.access);
+     if(b.target>10&&opening.step<11)throw new AccountError('Conclua o nascimento e confirme o nome primeiro.');
+     // Existing owner-scoped transitions keep tail grants and naming authoritative.
+     // Retrying a completed event returns its current state without replaying grants.
+     while(opening.step<b.target)opening=await rpc('player_opening',{p_action:'advance',p_step:opening.step,p_name:null},who.access);
+    }else opening=await rpc('player_opening',{p_action:b.action,p_step:b.step??null,p_name:b.name??null},who.access);
     return json({opening,...(opening.partner_id?{account:await accountFor(who)}:{}),...(opening.step===14?{journey:await rpc('player_journey',{p_action:'read',p_model:null,p_lesson:null},who.access)}:{})},200,who.setCookies);
    }
    if(action==='journey'){

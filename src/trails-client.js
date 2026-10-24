@@ -122,7 +122,7 @@ async function startStage(id){
  if(busy||!requireClubAccount('as Trilhas'))return;
  const st=trails.stage(id);if(!st||!trails.unlocked(trailProgress,id))return;
  busy=true;$('trailStart').disabled=true;
- try{const d=await request('trail',{...profile(),stage:id});closeTrails();token=d.token;trailStage=id;enter(d.state,d.me,'online',d.code);$('roomChip').hidden=true;$('copy').style.display='none';$('roomBox').style.display='none';setText('liveLabel',st.name);track('trail_start',{trail_stage:id});}
+ try{if(st.boss&&typeof campaignAutosave==='function'&&!await campaignAutosave({beforeBattle:true})){toast('Não foi possível confirmar o checkpoint. Tente iniciar o duelo novamente.');return;}const d=await request('trail',{...profile(),stage:id});closeTrails();token=d.token;trailStage=id;enter(d.state,d.me,'online',d.code);$('roomChip').hidden=true;$('copy').style.display='none';$('roomBox').style.display='none';setText('liveLabel',st.name);track('trail_start',{trail_stage:id});}
  catch(e){toast(e.name==='AbortError'?'A conexão demorou. Tente novamente.':e.message);}
  finally{busy=false;if(!$('trails').hidden)renderStage();}
 }

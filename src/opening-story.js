@@ -9,7 +9,7 @@ export const KAEL_OPENING=[
  {speaker:'Mãe',text:'Esta rabiola era minha quando eu era criança. Guardei por muito tempo. Agora é sua… para dar sorte.',shot:'gift'},
  {speaker:'Kael',text:'Uma Rabiola Antiga… Obrigado, mãe! Espera… Vou levar ela até a mesa. E se eu colocar no Rabbito?',shot:'gift'},
  {speaker:'Kael',text:'Eu sei que não é assim que funciona. Mas… vamos tentar?',shot:'attach'},
- {speaker:'Kael',text:'Mãe… você está vendo isso?! A luz… Rabbito?! Você está vivo!',shot:'birth'},
+ {speaker:'Kael',text:'O vento está saindo da mesa… Rabbito?! Você está vivo!',shot:'birth'},
  {speaker:'Seu primeiro parceiro',text:'Ele para ao seu lado e olha para você. Como você quer chamar seu parceiro?',shot:'name'},
  {speaker:'Kael',text:'Agora somos uma dupla. Vamos mostrar ao Sr. Assis que você consegue voar! A escada fica na porta ao sul.',shot:'partner'},
  {speaker:'Mãe',text:'Meu filho… você acabou de dar vida ao seu próprio desenho. Ainda nem acredito!',shot:'downstairs'},

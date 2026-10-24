@@ -752,6 +752,64 @@ body.in-opening #commandBar{display:none!important}
 .kael-opening .opening-gift{position:absolute;inset:0;top:0;left:0;transform:none;border:0;border-radius:0;background:#12202bc9;color:#fff3d6;padding:0;box-shadow:none;display:grid;place-items:center;z-index:4;pointer-events:none}.kael-opening .opening-gift[hidden]{display:none}.opening-item-reveal{display:grid;justify-items:center;gap:12px;padding:30px;text-align:center;max-width:90%}.opening-item-reveal img{display:block;width:clamp(100px,18vh,190px);height:clamp(100px,18vh,190px);object-fit:contain;filter:drop-shadow(0 0 20px #ffe2a155)}.opening-item-reveal strong{font-size:clamp(20px,2.2vw,30px);color:#fff0bd}.opening-item-reveal small{font-size:16px}.opening-gift:not([hidden]) .opening-item-reveal{animation:opening-item-arrive .3s ease-out}@keyframes opening-item-arrive{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @media(prefers-reduced-motion:reduce){.opening-gift:not([hidden]) .opening-item-reveal{animation:none}}
 
+/* Figma / Melhorias: the scene, not a floating card, owns each interaction. */
+#kaelOpening #openingPause{display:none!important}
+#kaelOpening .opening-replay-exit{position:absolute;right:20px;top:18px;z-index:8;font-size:13px;padding:8px 16px}
+#kaelOpening .opening-replay-exit[hidden]{display:none!important}
+#kaelOpening .opening-help{position:absolute;right:24px;bottom:20px;z-index:2;padding:10px 18px;font-size:14px}
+#kaelOpening .opening-help[hidden],#kaelOpening .opening-broadcast-controls[hidden],#kaelOpening .opening-naming-scene[hidden]{display:none!important}
+#kaelOpening .opening-broadcast-controls{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);display:flex;gap:12px;max-width:90%;z-index:2}
+#kaelOpening .opening-broadcast-controls button{background:#fff0d5;color:#244f52;border:2px solid #244f52;padding:12px 24px;white-space:nowrap}
+#kaelOpening .opening-broadcast-controls button[aria-pressed=true]{background:#e8ba69;box-shadow:0 4px 0 #244f52}
+#kaelOpening.broadcast-moment .opening-heading{display:none}
+#kaelOpening .opening-workbench{inset:0;background:#bc8b4d;z-index:5;display:block}
+#kaelOpening .opening-workbench[hidden]{display:none}
+#kaelOpening .opening-bench-card{position:relative;display:block;width:100%;height:100%;max-height:none;padding:0;overflow:hidden;border:0;border-radius:0;background:transparent;box-shadow:none}
+#kaelOpening .opening-bench-card canvas{position:absolute;inset:0;width:100%;height:100%;max-height:none;border-radius:0;background:transparent;cursor:grab;touch-action:none}
+#kaelOpening .opening-bench-card canvas:active{cursor:grabbing}
+#kaelOpening .opening-bench-card h2,#kaelOpening .opening-bench-card>p:first-of-type{position:absolute;left:4%;z-index:2;pointer-events:none;color:#fff4dc;text-shadow:0 2px 4px #203b35;background:#173e3ce8;padding:8px 16px;border-radius:6px}
+#kaelOpening .opening-bench-card h2{top:18px;margin:0;font-size:24px}
+#kaelOpening .opening-bench-card>p:first-of-type{top:69px;max-width:80%;font-size:15px}
+#kaelOpening .opening-bench-card>div{position:absolute;inset:auto 4% 28px;z-index:2;display:flex;justify-content:space-between;pointer-events:none}
+#kaelOpening .opening-bench-card>div button{pointer-events:auto}
+#kaelOpening #openingBenchStatus{position:absolute;left:50%;bottom:88px;transform:translateX(-50%);color:#fff5d9;background:#173e3ce8;border-radius:6px;font-size:15px;max-width:70%;padding:8px 16px;text-align:center;z-index:2;pointer-events:none}
+#kaelOpening #openingBenchStatus:empty{display:none}
+#kaelOpening:has(.at-workbench)>.opening-dialog{display:none!important}
+#kaelOpening.naming-partner{display:block}
+#kaelOpening.naming-partner .opening-stage{height:100%}
+#kaelOpening.naming-partner>.opening-dialog,#kaelOpening.naming-partner .opening-heading{display:none!important}
+#kaelOpening .opening-naming-scene{position:absolute;inset:0;z-index:6;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(320px,1fr);background:radial-gradient(ellipse at 26% 50%,#36786f,#153e3b 64%);color:#fff2d2;overflow:auto}
+#kaelOpening .opening-birth-art{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6vh 4vw;min-width:0}
+#kaelOpening .opening-birth-art>span{font-size:14px;font-weight:900;letter-spacing:.18em;color:#ebc47e;text-align:center}
+#kaelOpening .opening-birth-art canvas{width:min(100%,520px);height:auto;aspect-ratio:1;object-fit:contain;background:radial-gradient(circle,#fff4d915,transparent 65%);filter:drop-shadow(0 16px 10px #071e2344)}
+#kaelOpening .opening-birth-art>small{font-size:16px;text-align:center}
+#kaelOpening .opening-birth-record{align-self:center;background:#fff2d6;color:#244c48;margin:5vh 5vw 5vh 0;padding:clamp(24px,4vw,58px);border:2px solid #ddb971;border-radius:5px 32px 5px 32px;box-shadow:0 12px 0 #0d29283b}
+#kaelOpening .opening-birth-record>small{font-size:12px;letter-spacing:.12em;font-weight:900;color:#8e5b32}
+#kaelOpening .opening-birth-record h2{font:400 clamp(32px,4vw,60px)/1.1 'Lilita One',sans-serif;margin:14px 0}
+#kaelOpening .opening-birth-record p{font-size:16px;line-height:1.6;margin:0 0 20px}
+#kaelOpening #openingBirthStats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0 28px}
+#kaelOpening #openingBirthStats div{border-bottom:1px solid #bda87e;padding-bottom:10px}
+#kaelOpening #openingBirthStats dt{font-size:12px;color:#6a7060}
+#kaelOpening #openingBirthStats dd{margin:3px 0 0;font-size:18px;font-weight:900}
+#kaelOpening .opening-naming-scene .opening-name{display:flex;flex-direction:column;align-items:stretch;gap:12px}
+#kaelOpening .opening-naming-scene .opening-name label{font-size:13px;font-weight:900}
+#kaelOpening .opening-naming-scene .opening-name input{width:100%;min-width:0;box-sizing:border-box;font-size:22px;padding:14px;background:#fffaf0}
+#kaelOpening .opening-naming-scene .opening-name button{min-height:52px}
+#kaelOpening #openingNameStatus{font-size:14px;color:#9d342c;margin:12px 0 0;min-height:0}
+@media(max-width:700px){
+ #kaelOpening .opening-naming-scene{grid-template-columns:1fr}
+ #kaelOpening .opening-birth-art{padding:28px 24px 12px}
+ #kaelOpening .opening-birth-art canvas{width:min(62vw,260px)}
+ #kaelOpening .opening-birth-art>small{display:none}
+ #kaelOpening .opening-birth-record{margin:8px 20px 28px;padding:24px}
+ #kaelOpening .opening-birth-record h2{font-size:36px;margin:10px 0}
+ #kaelOpening #openingBirthStats{margin:14px 0 20px;gap:10px}
+ #kaelOpening .opening-broadcast-controls{bottom:14px;gap:8px}
+ #kaelOpening .opening-broadcast-controls button{padding:9px 12px;font-size:12px;white-space:normal}
+ #kaelOpening .opening-bench-card h2{font-size:19px;top:10px}
+ #kaelOpening .opening-bench-card>p:first-of-type{top:48px;font-size:13px}
+}
+
 
 /* Field notebook and collection share one visual language and real HUD skins. */
 .menu-skinned{isolation:isolate!important;position:relative;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}
@@ -4891,7 +4949,7 @@ async function startStage(id){
  if(busy||!requireClubAccount('as Trilhas'))return;
  const st=trails.stage(id);if(!st||!trails.unlocked(trailProgress,id))return;
  busy=true;$('trailStart').disabled=true;
- try{const d=await request('trail',{...profile(),stage:id});closeTrails();token=d.token;trailStage=id;enter(d.state,d.me,'online',d.code);$('roomChip').hidden=true;$('copy').style.display='none';$('roomBox').style.display='none';setText('liveLabel',st.name);track('trail_start',{trail_stage:id});}
+ try{if(st.boss&&typeof campaignAutosave==='function'&&!await campaignAutosave({beforeBattle:true})){toast('Não foi possível confirmar o checkpoint. Tente iniciar o duelo novamente.');return;}const d=await request('trail',{...profile(),stage:id});closeTrails();token=d.token;trailStage=id;enter(d.state,d.me,'online',d.code);$('roomChip').hidden=true;$('copy').style.display='none';$('roomBox').style.display='none';setText('liveLabel',st.name);track('trail_start',{trail_stage:id});}
  catch(e){toast(e.name==='AbortError'?'A conexão demorou. Tente novamente.':e.message);}
  finally{busy=false;if(!$('trails').hidden)renderStage();}
 }
@@ -5789,7 +5847,7 @@ const KAEL_OPENING=[
  {speaker:'Mãe',text:'Esta rabiola era minha quando eu era criança. Guardei por muito tempo. Agora é sua… para dar sorte.',shot:'gift'},
  {speaker:'Kael',text:'Uma Rabiola Antiga… Obrigado, mãe! Espera… Vou levar ela até a mesa. E se eu colocar no Rabbito?',shot:'gift'},
  {speaker:'Kael',text:'Eu sei que não é assim que funciona. Mas… vamos tentar?',shot:'attach'},
- {speaker:'Kael',text:'Mãe… você está vendo isso?! A luz… Rabbito?! Você está vivo!',shot:'birth'},
+ {speaker:'Kael',text:'O vento está saindo da mesa… Rabbito?! Você está vivo!',shot:'birth'},
  {speaker:'Seu primeiro parceiro',text:'Ele para ao seu lado e olha para você. Como você quer chamar seu parceiro?',shot:'name'},
  {speaker:'Kael',text:'Agora somos uma dupla. Vamos mostrar ao Sr. Assis que você consegue voar! A escada fica na porta ao sul.',shot:'partner'},
  {speaker:'Mãe',text:'Meu filho… você acabou de dar vida ao seu próprio desenho. Ainda nem acredito!',shot:'downstairs'},
@@ -5798,7 +5856,7 @@ const KAEL_OPENING=[
 
 let openingState=null,openingOwner=null,openingEpoch=0,openingBusy=false,openingReplay=false,openingFrame=0,openingSince=0,openingLast=0,openingActor={x:540,y:570};
 let openingBirthBeat=0,openingGiftOpen=false;
-const openingBirthMoments=[{speaker:'Kael',text:'A Rabiola Antiga… a luz está vindo da mesa!',action:'Observar'},{speaker:'Kael',text:'Rabbito?! Mãe… meu desenho ganhou vida!',action:'Aguardar Rabbito'},{speaker:'Mãe',text:'Olha… ele está vindo até você. Acho que ele já sabe quem é o seu parceiro.',action:'Conhecer meu parceiro'}];
+const openingBirthMoments=[{speaker:'Kael',text:'A Rabiola Antiga… a luz está vindo da mesa!'},{speaker:'Kael',text:'Uau! O vento me jogou no chão… Rabbito?! Meu desenho ganhou vida!'},{speaker:'Kael',text:'Você veio até mim… Então é você. Meu primeiro parceiro.'}];
 const openingImages=new Map();
 const openingScreen=document.createElement('section');openingScreen.id='kaelOpening';openingScreen.className='kael-opening';openingScreen.hidden=true;openingScreen.setAttribute('role','dialog');openingScreen.setAttribute('aria-modal','true');openingScreen.setAttribute('aria-labelledby','openingChapter');
 openingScreen.innerHTML='<div class="opening-stage"><canvas id="openingCanvas" width="1536" height="1024" aria-label="Kael em sua casa"></canvas><h1 class="opening-heading" id="openingChapter">Soulmonsters · Um fio de sorte</h1><div class="opening-gift" id="openingGift" hidden role="status"><div class="opening-item-reveal"><img id="openingGiftArt" alt="Rabiola Antiga"><strong>Você recebeu Rabiola Antiga!</strong><small>Uma lembrança da infância da sua mãe</small></div></div></div><div class="opening-dialog"><strong id="openingSpeaker"></strong><p id="openingSpeech" aria-live="polite"></p><form id="openingNameForm" class="opening-name" hidden><label for="openingName">Nome do parceiro</label><input id="openingName" type="text" maxlength="24" placeholder="Rabbito" autocomplete="off"><button class="primary" type="submit">Confirmar nome</button></form><div id="openingStatus" class="opening-status" role="status"></div><div class="opening-actions"><button id="openingPause" class="opening-pause secondary" type="button">Continuar depois</button><small id="openingHint">Enter para continuar · Esc para retomar depois</small><button type="button" class="secondary" id="openingRetry" hidden>Recarregar cena</button><button class="opening-next primary" id="openingNext" type="button">Continuar</button></div></div>';
@@ -5821,13 +5879,13 @@ const bench=uiElement('section',undefined,'opening-workbench');bench.id='opening
 bench.innerHTML='<div class="opening-bench-card"><h2 id="openingBenchTitle">Uma ideia feita de papel</h2><p>O corpo de papel já está pronto. Falta encaixar a última vareta na armação.</p><canvas id="openingProjectArt" width="1536" height="1024" role="img" aria-label="Projeto físico do Rabbito, feito de papel e bambu, ainda sem rabiola"></canvas><div><button type="button" class="secondary" id="openingBenchBack">Olhar o quarto</button><button type="button" class="primary" id="openingBenchPlace">Encaixar a última vareta</button></div><p id="openingBenchStatus" role="status"></p></div>';
 openingScreen.querySelector('.opening-stage').append(bench);
 function openingRoomStep(){return [3,7,11,13].includes(openingState?.step);}
-function openingWalkActive(){return !gameLoading.active&&!openingScreen.hidden&&openingRoomStep()&&!openingWorkbench&&!openingBusy&&!openingGiftOpen&&openingAvatarActivity?.state.kind!=='stairs';}
+function openingWalkActive(){return !gameLoading.active&&!openingScreen.hidden&&openingRoomStep()&&!openingWorkbench&&!openingBusy&&!openingGiftOpen&&!openingMother.path?.length&&openingAvatarActivity?.state.kind!=='stairs';}
 function openingClearWalking(){openingWalkKeys={};openingWalkIntent=null;openingActor.path=[];openingActor.moving=false;}
-function openingCloseBench(){openingCraftAt=null;openingCraftSaving=false;openingWorkbench=false;bench.hidden=true;openingRoomSignature='';openingRefreshRoomUI();}
+function openingCloseBench(){openingCraftAt=null;openingCraftSaving=false;openingWorkbench=false;openingRod.grabbed=false;openingRod.pointer=null;bench.hidden=true;openingRoomSignature='';openingRefreshRoomUI();}
 function openingResetRoom(){openingAvatarActivity=null;openingCraftAt=null;openingCraftSaving=false;openingClearWalking();openingRoomNavigation=openingState?.step===13?openingDownstairsNavigation:openingState?.step===11?openingExitNavigation:openingBedroomNavigation;openingWorkbench=false;bench.hidden=true;roomPlaces.hidden=true;openingRoomSignature='';}
 function openingNearestSpot(){return openingRoomNavigation.hotspots.filter(p=>openingRoomNavigation.near(openingActor,p.id)).sort((a,b)=>Math.hypot(a.x-openingActor.x,a.y-openingActor.y)-Math.hypot(b.x-openingActor.x,b.y-openingActor.y))[0];}
 function openingRefreshRoomUI(){
- roomPlaces.hidden=!openingRoomStep()||openingGiftOpen;if(openingGiftOpen){$('openingSpeaker').textContent='Presente de aniversário';$('openingNext').textContent='Guardar Rabiola Antiga';$('openingNext').disabled=openingBusy;$('openingHint').textContent='Confirmar para guardar o presente';return;}if(!openingRoomStep()){$('openingNext').disabled=openingBusy||openingCastBusy();return;}
+ roomPlaces.hidden=!openingHintsShown||!openingRoomStep()||openingGiftOpen;if(openingGiftOpen){$('openingSpeaker').textContent='Presente de aniversário';$('openingNext').textContent='Avançar';$('openingNext').disabled=openingBusy;$('openingHint').textContent='Avançar · guardar o presente';return;}if(!openingRoomStep()){$('openingNext').disabled=openingBusy||openingCastBusy();return;}
  const near=openingNearestSpot(),signature=[openingState.step,near?.id,openingBusy,openingWorkbench,openingAvatarActivity?.state.phase,typeof inputDevice==='string'?inputDevice:'keyboard'].join('|');if(signature===openingRoomSignature)return;openingRoomSignature=signature;
  $('openingSpeaker').textContent=openingState.step===11?'Seu parceiro vai com você':openingState.step===13?'Seu primeiro passeio juntos':openingState.step===3?'Termine seu projeto':'Uma ideia inesperada';
  $('openingHint').textContent=typeof inputDevice==='string'&&inputDevice.startsWith('gamepad')?'Analógico · A interage · B pausa':typeof inputDevice==='string'&&inputDevice==='touch'?'Toque no chão para andar · toque nos destaques para interagir':'Setas / WASD / clique para andar · E interage';
@@ -5860,7 +5918,7 @@ async function openingInspect(id){
 $('openingBenchBack').onclick=()=>{openingCloseBench();$('openingNext').focus({preventScroll:true});};
 $('openingBenchPlace').onclick=()=>{
  if(openingBusy||openingCraftAt!==null||!openingWorkbench||openingState?.step!==3)return;
- openingCraftAt=performance.now();$('openingBenchPlace').disabled=true;$('openingBenchStatus').textContent='Encaixando a vareta…';
+ openingRod.grabbed=true;openingRod.x=1180;openingRod.y=550;$('openingBenchStatus').textContent='Vareta na mão. Use as setas para levar ao encaixe e Enter para soltar.';$('openingProjectArt').focus();
 };
 async function openingFinishCraft(){
  if(openingCraftSaving||!openingWorkbench||openingState?.step!==3)return;
@@ -5869,10 +5927,7 @@ async function openingFinishCraft(){
  $('openingBenchBack').disabled=false;
 }
 function drawOpeningWorkbench(t){
- if(!openingWorkbench)return;const im=openingImages.get('project'),g=$('openingProjectArt').getContext('2d');if(!im||!g)return;g.clearRect(0,0,1536,1024);
- const p=openingCraftAt===null?0:art.reduced?1:Math.min(1,Math.max(0,(t-openingCraftAt)/950)),ease=p*p*(3-2*p);
- paintOpeningProject(g,im,ease,0,0,1536,1024);
- if(openingCraftAt!==null&&p===1&&!openingCraftSaving)openingFinishCraft();
+ if(openingWorkbench)drawOpeningFirstPersonBench(t);
 }
 function paintOpeningProject(g,im,p,x,y,w,h){
  g.save();g.translate(x,y);g.scale(w/1536,h/1024);g.drawImage(im,0,0,1070,1024,0,0,1070,1024);g.save();g.translate(1303+(580-1303)*p,650);g.rotate(.65*p);g.scale(1+.6*p,1+.6*p);g.drawImage(im,1070,450,466,400,-233,-200,466,400);g.restore();g.restore();
@@ -5900,13 +5955,12 @@ addEventListener('keydown',e=>{
 },true);
 addEventListener('keyup',e=>{delete openingWalkKeys[e.key.toLowerCase()];});addEventListener('blur',openingClearWalking);document.addEventListener('visibilitychange',()=>{if(document.hidden)openingClearWalking();});
 function drawOpeningRoomPlaces(g){
- if(!openingRoomStep()||openingWorkbench)return;
+ if(!openingHintsShown||!openingRoomStep()||openingWorkbench)return;
  const room=openingVillageRenderer(openingState.step>=12);
  for(const p of openingRoomNavigation.hotspots){
   const near=openingRoomNavigation.near(openingActor,p.id),q=openingProjectPoint(p),b=room?.feature(p.id);g.save();
   if(b&&p.id!=='stairs'){
-   const label=({tv:'TV',drawings:'Desenhos',desk:'Bancada',mother:'Mãe',exit:'Saída',seat:'Sentar'})[p.id],w=label.length*10+24,x=b.x+b.w/2-w/2,y=b.y-28;
-   g.fillStyle=near?'#efc66e':'#fff0cf';g.strokeStyle='#28555a';g.lineWidth=2;g.beginPath();g.roundRect(x,y,w,25,7);g.fill();g.stroke();g.font='bold 17px Nunito,sans-serif';g.textAlign='center';g.fillStyle='#214b50';g.fillText(label,x+w/2,y+18);
+   const x=b.x+b.w/2,y=b.y-22;g.fillStyle=near?'#efc66e':'#fff0cf';g.strokeStyle='#28555a';g.lineWidth=2;g.beginPath();g.moveTo(x-9,y-10);g.lineTo(x+9,y-10);g.lineTo(x,y+3);g.closePath();g.fill();g.stroke();
   }else{
    g.translate(q.x,q.y);g.fillStyle='#55c8ef';g.strokeStyle='#20536b';g.lineWidth=3;g.beginPath();g.moveTo(-15,-5);g.lineTo(0,10);g.lineTo(15,-5);g.lineTo(9,-11);g.lineTo(0,-2);g.lineTo(-9,-11);g.closePath();g.fill();g.stroke();
   }
@@ -5928,16 +5982,17 @@ function drawOpeningBroadcast(g,t,featured,box={x:473,y:178,w:88,h:59}){
 
 // All story blocking uses the same measured foot paths as player movement.
 let openingCastStep=-1,openingMother={...openingPoint('motherEntry'),direction:3,path:[]},openingRabbit={x:1145,y:640,direction:1,path:[]};
-function openingCastBusy(){return (openingState?.step===5&&(!!openingMother.path?.length||!!openingActor.path?.length))||(openingState?.step===8&&!!openingActor.path?.length)||(openingState?.step===9&&(!!openingActor.path?.length||(openingBirthBeat>=2&&openingRabbit.x>1102)));}
+function openingCastBusy(){return (openingState?.step===5&&!!openingMother.path?.length)||(openingState?.step===8&&!!openingActor.path?.length);}
 function openingStageRoute(actor,nav,target){actor.path=nav.route(actor,target);}
 function openingPrepareCast(i){
  const previous=openingCastStep;openingCastStep=i;
  const down=i>=12,nav=down?openingDownstairsNavigation:openingBedroomNavigation;
  if(down&&previous<12){const p=openingHomePlan.blocking;Object.assign(openingActor,{x:p.kaelEntry[0],y:p.kaelEntry[1],direction:1,path:[]});Object.assign(openingMother,{x:p.mother[0],y:p.mother[1],direction:2,path:[]});Object.assign(openingRabbit,{x:p.rabbitoEntry[0],y:p.rabbitoEntry[1],direction:1,path:[]});}
- if(i===5){Object.assign(openingMother,{...openingPoint('motherEntry'),direction:3,path:[]});openingStageRoute(openingMother,nav,openingPoint('mother'));openingStageRoute(openingActor,nav,openingPoint('kaelTalk'));}
+ if(i===5){Object.assign(openingActor,{...openingPoint('kaelDesk'),direction:3,path:[]});Object.assign(openingMother,{...openingPoint('motherEntry'),direction:3,path:[]});openingStageRoute(openingMother,nav,openingPoint('mother'));}
  if([6,7,8].includes(i)&&previous<5){Object.assign(openingMother,{...openingPoint('mother'),direction:2,path:[]});}
+ if(i===7){if(previous<5)Object.assign(openingMother,{...openingPoint('mother'),direction:2,path:[]});if(!openingGiftOpen)openingStageRoute(openingMother,nav,openingPoint('motherEntry'));}
  if(i===8)openingStageRoute(openingActor,nav,openingPoint('kaelDesk'));
- if(i===9){openingStageRoute(openingActor,nav,openingPoint('kaelBirth'));openingStageRoute(openingMother,nav,openingPoint('mother'));Object.assign(openingRabbit,{...openingPoint('rabbito'),direction:1,path:[]});}
+ if(i===9){openingStageRoute(openingActor,nav,openingPoint('kaelBirth'));openingMother.path=[];Object.assign(openingRabbit,{...openingPoint('rabbito'),direction:1,path:[]});}
  if([10,11].includes(i)&&previous<9){Object.assign(openingActor,{...openingPoint('kaelBirth'),direction:2,path:[]});Object.assign(openingMother,{...openingPoint('mother'),direction:2,path:[]});Object.assign(openingRabbit,{...openingPoint('rabbitoNear'),direction:1,path:[]});}
 }
 function openingStepCast(dt){if(openingAvatarActivity){const activity=openingAvatarActivity;if(activity.state.kind==='seat'&&Object.values(openingWalkKeys).some(Boolean))activity.leave();activity.tick(dt);openingRefreshRoomUI();return;}
@@ -5945,14 +6000,97 @@ function openingStepCast(dt){if(openingAvatarActivity){const activity=openingAva
  const i=openingState?.step??0,nav=i>=12?openingDownstairsNavigation:openingBedroomNavigation;
  if(openingRoomStep())openingStepRoom(dt);else openingTickActor(nav,openingActor,{},dt);
  if(i>=5)openingTickActor(nav,openingMother,{},dt);
- if(i===5&&!openingMother.path?.length){openingMother.direction=2;openingActor.direction=1;}
- if(i===9){openingActor.direction=2;openingMother.direction=2;if(openingBirthBeat>=2&&!openingRabbit.path?.length&&openingRabbit.x>1102)openingStageRoute(openingRabbit,nav,{x:1100,y:640});openingTickActor(nav,openingRabbit,{},dt);}
+ if(i===5&&!openingMother.path?.length){if(openingMotherArrivedAt===null)openingMotherArrivedAt=performance.now();openingMother.direction=2;openingActor.direction=1;const d=openingProjectPoint({x:openingMother.x-openingActor.x,y:openingMother.y-openingActor.y});openingActor.avatarDir=avatarModel.facingIso(d.x,d.y,openingActor.avatarDir);}
+ if(i===9){openingActor.direction=2;if(openingBirthBeat>=1&&!openingRabbit.path?.length&&openingRabbit.x>1102)openingStageRoute(openingRabbit,nav,{x:1100,y:640});openingTickActor(nav,openingRabbit,{},dt);}
  if(i>=11){const d=Math.hypot(openingActor.x-openingRabbit.x,openingActor.y-openingRabbit.y);if(d>110&&!openingRabbit.path?.length){const dx=openingActor.x-openingRabbit.x,dy=openingActor.y-openingRabbit.y;const target={x:openingActor.x-dx/d*70,y:openingActor.y-dy/d*70};if(nav.safe(target))openingStageRoute(openingRabbit,nav,target);}openingTickActor(nav,openingRabbit,{},dt);}
  openingRefreshRoomUI();
 }
-function openingDrawKael(g,t,position=openingProjectPoint(openingActor)){gameAvatar.setOwner(playerAccount?.profile?.id);const pose=openingAvatarActivity?.pose();if(gameAvatar.draw(g,{...position,y:position.y-(pose?.lift||0),height:102,action:pose?.action||(openingActor.moving?'andar':'parado'),dir:pose?.dir||openingActor.avatarDir||'se',time:pose?.time??(openingActor.moving?openingActor.avatarWalkTime??t:t)}))return;const actor={...openingActor,...position},im=openingImages.get('kael'),f=homeArt.plaza.actor.frames[(actor.direction??3)+(actor.moving&&Math.floor(t/170)%2?4:0)];if(!im||!f)return;const b=f.bounds,s=102/b.h;g.drawImage(im,f.x,f.y,f.w,f.h,actor.x-(b.x+b.w/2)*s,actor.y-(b.y+b.h)*s,f.w*s,f.h*s);}
+function openingDrawStandingKael(g,t,position=openingProjectPoint(openingActor)){gameAvatar.setOwner(playerAccount?.profile?.id);const pose=openingAvatarActivity?.pose();if(gameAvatar.draw(g,{...position,y:position.y-(pose?.lift||0),height:102,action:pose?.action||(openingActor.moving?'andar':'parado'),dir:pose?.dir||openingActor.avatarDir||'se',time:pose?.time??(openingActor.moving?openingActor.avatarWalkTime??t:t)}))return;const actor={...openingActor,...position},im=openingImages.get('kael'),f=homeArt.plaza.actor.frames[(actor.direction??3)+(actor.moving&&Math.floor(t/170)%2?4:0)];if(!im||!f)return;const b=f.bounds,s=102/b.h;g.drawImage(im,f.x,f.y,f.w,f.h,actor.x-(b.x+b.w/2)*s,actor.y-(b.y+b.h)*s,f.w*s,f.h*s);}
+function openingDrawKael(g,t,position=openingProjectPoint(openingActor)){
+ if(openingState?.step===5&&openingMotherArrivedAt!==null&&!art.reduced){const q=(t-openingMotherArrivedAt)/350;if(q>=0&&q<1){openingDrawStandingKael(g,t,{x:position.x,y:position.y-Math.sin(q*Math.PI)*8});return;}}
+ const dt=openingImpactAt===null?-1:t-openingImpactAt,fall=dt<0?0:dt<300?dt/300:dt<950?1:Math.max(0,1-(dt-950)/600);
+ if(openingState?.step!==9||art.reduced||!fall){openingDrawStandingKael(g,t,position);return;}
+ const eased=fall*fall*(3-2*fall);g.save();g.translate(position.x-28*eased,position.y+8*eased);g.rotate(-1.05*eased);openingDrawStandingKael(g,t,{x:0,y:0});g.restore();
+}
 function openingDrawMother(g,t,position=openingProjectPoint(openingMother)){const actor={...openingMother,...position};openingSprite(g,'mother',(actor.direction??0)+(actor.moving&&Math.floor(t/170)%2?4:0),actor.x,actor.y,104);}
 function openingDrawRabbit(g,t,position=openingProjectPoint(openingRabbit)){const actor={...openingRabbit,...position};if(worldCompanions.draw(g,homeImages,{soul:'rabbito'},actor.x,actor.y,66,{direction:actor.direction,moving:actor.moving,time:art.reduced?0:t}))return;art.creature(g,0,art.reduced?0:t,actor.x-55,actor.y-110,110,{soul:'rabbito',facing:actor.direction===2?1:-1,input:actor.moving?{x:-1}:{}},openingState?.step===11&&!actor.moving);}
+
+// Figma Melhorias 85:674–679: discovery first; the stage owns the camera.
+let openingHintsShown=false,openingHintSince=0,openingBroadcastSide=0,openingImpactAt=null,openingMotherArrivedAt=null;
+const openingRod={x:1180,y:550,grabbed:false,pointer:null};
+const openingHelp=uiElement('button','Preciso de uma dica','secondary opening-help');openingHelp.type='button';openingHelp.hidden=true;openingHelp.setAttribute('aria-pressed','false');openingScreen.querySelector('.opening-stage').append(openingHelp);
+const openingReplayExit=uiElement('button','Sair da reprise','secondary opening-replay-exit');openingReplayExit.type='button';openingReplayExit.hidden=true;openingScreen.querySelector('.opening-stage').append(openingReplayExit);openingReplayExit.onclick=async()=>{if(!openingReplay||openingBusy)return;closeOpening();openingReplay=false;await loadJourney();};
+openingHelp.onclick=()=>{openingHintsShown=!openingHintsShown;openingHelp.setAttribute('aria-pressed',String(openingHintsShown));openingHelp.textContent=openingHintsShown?'Ocultar dicas':'Preciso de uma dica';openingRoomSignature='';openingRefreshRoomUI();};
+const openingBroadcastControls=uiElement('div',undefined,'opening-broadcast-controls');openingBroadcastControls.hidden=true;openingBroadcastControls.setAttribute('aria-label','Acompanhar a final regional');
+for(const [side,label]of [[0,'Acompanhar Jamile'],[1,'Acompanhar Gollia']]){const b=uiElement('button',label,'secondary');b.type='button';b.setAttribute('aria-pressed',String(side===0));b.onclick=()=>{openingBroadcastSide=side;for(const [n,button]of [...openingBroadcastControls.children].entries())button.setAttribute('aria-pressed',String(n===side));};openingBroadcastControls.append(b);}
+openingScreen.querySelector('.opening-stage').append(openingBroadcastControls);
+const openingNameScene=uiElement('section',undefined,'opening-naming-scene');openingNameScene.hidden=true;openingNameScene.setAttribute('aria-labelledby','openingBirthTitle');
+openingNameScene.innerHTML='<div class="opening-birth-art"><span>UM ELO ACABA DE NASCER</span><canvas id="openingPartnerPortrait" width="640" height="640" role="img" aria-label="Seu novo parceiro Rabbito animado"></canvas><small>Papel, vento e uma história só de vocês.</small></div><div class="opening-birth-record"><small>SEU PRIMEIRO SOULMONSTER</small><h2 id="openingBirthTitle">Rabbito</h2><p>Do seu desenho, nasceu um parceiro.<br>Como ele vai se chamar?</p><dl id="openingBirthStats"></dl><div id="openingNameSlot"></div><p id="openingNameStatus" role="status"></p></div>';
+openingScreen.querySelector('.opening-stage').append(openingNameScene);$('openingNameSlot').append($('openingNameForm'));
+bench.querySelector('h2').textContent='Sua primeira criação';bench.querySelector('p').textContent='Pegue a vareta e leve até o encaixe na armação.';$('openingProjectArt').tabIndex=0;$('openingProjectArt').setAttribute('aria-label','Bancada em primeira pessoa. Pegue a vareta com o botão ou arraste; setas movem e Enter encaixa.');
+const openingBenchScene=openingScreen.querySelector('.opening-stage');
+function openingImmersiveScene(i){
+ openingHintsShown=false;openingHintSince=performance.now();openingImpactAt=null;openingMotherArrivedAt=null;openingHelp.hidden=true;openingHelp.textContent='Preciso de uma dica';openingHelp.setAttribute('aria-pressed','false');
+ openingBroadcastControls.hidden=i>1;openingNameScene.hidden=i!==10;openingReplayExit.hidden=!openingReplay;openingScreen.classList.toggle('broadcast-moment',i<2);openingRod.grabbed=false;openingRod.pointer=null;openingRod.x=1180;openingRod.y=550;
+ if(i===10){const stats=eng.pipamons.stats(1);$('openingBirthStats').replaceChildren();for(const [label,value]of [['Nível','1'],['Origem','Rabiola Antiga'],['Linha',Math.round(stats.line)],['Energia',Math.round(stats.energy)],['Velocidade',Math.round(stats.speed)],['Elo','Primeiro parceiro']]){const div=document.createElement('div'),dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;div.append(dt,dd);$('openingBirthStats').append(div);}}
+}
+function openingImmersiveTick(t){
+ openingHelp.hidden=!openingRoomStep()||openingWorkbench||openingGiftOpen||t-openingHintSince<18000;
+ openingBenchScene.classList.toggle('at-workbench',openingWorkbench);
+ if(openingState?.step<2)drawOpeningRegionalFinal($('openingCanvas').getContext('2d'),t);
+ if(openingState?.step===10){const g=$('openingPartnerPortrait').getContext('2d');g.clearRect(0,0,640,640);art.creature(g,0,t,50,40,540,{soul:'rabbito',animate:!art.reduced});$('openingNameStatus').textContent=$('openingStatus').textContent;}
+}
+function drawOpeningRegionalFinal(g,t){
+ const w=1536,h=1024,time=art.reduced?1200:t,cycle=time%4200/4200,press=Math.max(0,Math.sin(cycle*Math.PI*2)),focus=openingBroadcastSide;
+ g.save();g.fillStyle='#8bbdc5';g.fillRect(0,0,w,h);art.background(g,ART_CONFIG.designs.scenes.morro,0,0,w,h);
+ g.fillStyle='#123d4d55';g.fillRect(0,0,w,h);g.fillStyle='#fff3d4';g.fillRect(70,80,1396,106);g.fillStyle='#244f52';g.font='bold 26px Nunito,sans-serif';g.textAlign='left';g.fillText('FINAL REGIONAL',110,124);g.font='22px Nunito,sans-serif';g.fillText('Jamile  /  Carcará',110,162);g.textAlign='right';g.fillText('Gollia  /  Azulão',1426,162);g.fillStyle='#b94f39';g.font='bold 20px Nunito,sans-serif';g.fillText('● AO VIVO',1426,121);
+ const a={x:440+Math.sin(time/950)*55,y:530+Math.cos(time/750)*28},b={x:1090-press*180,y:480+Math.sin(time/850)*30};
+ g.strokeStyle='#e8ba69';g.lineWidth=4;g.beginPath();g.moveTo(150,960);g.quadraticCurveTo(380,760,a.x,a.y);g.stroke();g.strokeStyle='#c3dfdf';g.beginPath();g.moveTo(1380,960);g.quadraticCurveTo(1180,700,b.x,b.y);g.stroke();
+ art.creature(g,0,time,a.x-190,a.y-180,380,{id:'opening-jamile',facing:1,input:{x:.5},hitFlash:press>.8?.15:0});art.creature(g,2,time,b.x-190,b.y-180,380,{id:'opening-gollia',facing:-1,input:{x:-1},skillCooldown:press>.7?6.7:0});
+ if(press>.8&&!art.reduced){g.strokeStyle='#fff6bb';g.lineWidth=6;g.beginPath();g.moveTo(a.x+110,a.y);g.lineTo(b.x-100,b.y);g.stroke();}
+ g.fillStyle='#153b43dd';g.beginPath();g.roundRect(focus?850:220,760,460,92,18);g.fill();g.fillStyle='#fff1cf';g.font='bold 25px Nunito,sans-serif';g.textAlign='center';g.fillText(focus?'Gollia pressiona pelas laterais':'Jamile procura uma abertura',focus?1080:450,816);g.restore();
+}
+function openingBenchPoint(e){const r=$('openingProjectArt').getBoundingClientRect(),s=Math.min(r.width/1536,r.height/1024),x=(e.clientX-r.left-(r.width-1536*s)/2)/s,y=(e.clientY-r.top-(r.height-1024*s)/2)/s;return {x,y};}
+function openingReleaseRod(){
+ if(!openingRod.grabbed)return;openingRod.grabbed=false;openingRod.pointer=null;
+ if(Math.hypot(openingRod.x-620,openingRod.y-538)<105){openingCraftAt=performance.now();$('openingBenchPlace').disabled=true;$('openingBenchStatus').textContent='A armação está firme.';}
+ else{openingRod.x=1180;openingRod.y=550;$('openingBenchStatus').textContent='Tente aproximar a vareta da linha clara no corpo da pipa.';}
+}
+const openingBenchCanvas=$('openingProjectArt');
+openingBenchCanvas.addEventListener('pointerdown',e=>{if(!openingWorkbench||openingBusy||openingCraftAt!==null||e.button>0)return;const p=openingBenchPoint(e);if(Math.hypot(p.x-openingRod.x,p.y-openingRod.y)>145)return;e.preventDefault();openingRod.grabbed=true;openingRod.pointer=e.pointerId;openingBenchCanvas.setPointerCapture(e.pointerId);Object.assign(openingRod,p);});
+openingBenchCanvas.addEventListener('pointermove',e=>{if(openingRod.grabbed&&openingRod.pointer===e.pointerId)Object.assign(openingRod,openingBenchPoint(e));});
+openingBenchCanvas.addEventListener('pointerup',e=>{if(openingRod.pointer===e.pointerId)openingReleaseRod();});
+openingBenchCanvas.addEventListener('pointercancel',()=>{openingRod.grabbed=false;openingRod.pointer=null;openingRod.x=1180;openingRod.y=550;});
+openingBenchCanvas.addEventListener('keydown',e=>{if(!openingWorkbench||!openingRod.grabbed)return;const move={ArrowLeft:[-28,0],ArrowRight:[28,0],ArrowUp:[0,-28],ArrowDown:[0,28]}[e.key];if(move){e.preventDefault();openingRod.x=Math.max(120,Math.min(1400,openingRod.x+move[0]));openingRod.y=Math.max(120,Math.min(900,openingRod.y+move[1]));}if(e.key==='Enter'||e.key===' '){e.preventDefault();openingReleaseRod();}});
+function drawOpeningFirstPersonBench(t){
+ const im=openingImages.get('project'),g=openingBenchCanvas.getContext('2d');if(!im||!g)return;g.clearRect(0,0,1536,1024);
+ const bg=openingImages.get('first-person-bench');if(bg)g.drawImage(bg,0,0,1536,1024);else{g.fillStyle='#bc8b4d';g.fillRect(0,0,1536,1024);}
+ g.fillStyle='#fff0d5';g.shadowColor='#173d3a55';g.shadowBlur=25;g.beginPath();g.roundRect(190,90,770,825,16);g.fill();g.shadowBlur=0;
+ g.drawImage(im,0,0,1070,1024,255,128,1070*.63,1024*.63);
+ const p=openingCraftAt===null?0:art.reduced?1:Math.min(1,(t-openingCraftAt)/650),ease=p*p*(3-2*p),x=openingRod.x+(620-openingRod.x)*ease,y=openingRod.y+(538-openingRod.y)*ease;
+ if(openingCraftAt===null){g.save();g.globalAlpha=.45;g.strokeStyle='#fff5cf';g.lineWidth=10;g.setLineDash([12,10]);g.beginPath();g.moveTo(570,500);g.lineTo(670,576);g.stroke();g.restore();}
+ g.save();g.translate(x,y);g.rotate(.65*(openingCraftAt!==null?ease:(openingRod.grabbed ? .6 : 0)));g.drawImage(im,1070,450,466,400,-105,-90,210,180);g.restore();
+ if(openingRod.grabbed){g.save();g.translate(openingRod.x+18,openingRod.y+26);g.scale(1.4,1.4);drawCraftHand(g,1);g.restore();}
+ if(openingCraftAt!==null&&p===1&&!openingCraftSaving)openingFinishCraft();
+}
+// Original 2D glove. The reference informs only the open / grip gestures.
+function drawCraftHand(g,grip=0){
+ const k=Math.max(0,Math.min(1,grip)),ease=k*k*(3-2*k);
+ g.save();g.lineCap='round';g.lineJoin='round';g.strokeStyle='#214b4b';g.lineWidth=2.2;
+ // Four fingers curl toward the palm, with their knuckles still readable.
+ const fingers=[[-13,23],[-4,33],[5,29],[13,20]];
+ for(const [x,length] of fingers){const top=-length*(1-ease)-4*ease;
+  g.beginPath();g.moveTo(x-4,9);g.lineTo(x-4,top+4);g.quadraticCurveTo(x-4,top-3,x+1,top-3);g.quadraticCurveTo(x+5,top-3,x+5,top+4);g.lineTo(x+5,12);g.closePath();g.fillStyle='#fff2cd';g.fill();g.stroke();
+ }
+ // Palm covers finger roots, keeping the silhouette joined throughout the curl.
+ g.beginPath();g.moveTo(-17,1);g.quadraticCurveTo(-20,13,-11,24);g.quadraticCurveTo(0,30,14,22);g.quadraticCurveTo(20,11,17,0);g.fillStyle='#fff2cd';g.fill();g.stroke();
+ // Thumb moves from an open side reach to a fold across the grip.
+ g.beginPath();g.moveTo(-12,19);g.quadraticCurveTo(-23+ease*8,16-ease*8,-27+ease*24,4+ease*2);g.quadraticCurveTo(-28+ease*25,-3+ease*5,-23+ease*24,-2+ease*3);g.lineTo(-13+ease*18,10-ease*5);g.quadraticCurveTo(-6,10,-9,18);g.fillStyle='#f3ddb1';g.fill();g.stroke();
+ g.strokeStyle='#d1b987';g.lineWidth=1.2;g.beginPath();g.moveTo(-5,18);g.quadraticCurveTo(1,21,8,16);g.stroke();
+ // Teal cuff and gold seam tie the cursor to the workshop's palette.
+ g.fillStyle='#438d82';g.strokeStyle='#214b4b';g.lineWidth=2.2;g.beginPath();g.roundRect(-12,24,27,9,3);g.fill();g.stroke();g.strokeStyle='#e2ba68';g.lineWidth=1.3;g.beginPath();g.moveTo(-8,28);g.lineTo(11,28);g.stroke();
+ g.restore();
+}
 
 function openingTickActor(nav,actor,input,dt){const before={x:actor.x,y:actor.y};nav.tick(actor,isometricInput(input),dt);advanceAvatarWalk(actor,actor.x-before.x,actor.y-before.y);const d=openingProjectPoint({x:actor.x-before.x,y:actor.y-before.y});if(Math.hypot(d.x,d.y)>.01){actor.direction=screenDirection(d.x,d.y);actor.avatarDir=avatarModel.facingIso(d.x,d.y,actor.avatarDir);}}
 
@@ -5964,13 +6102,15 @@ async function readOpening(){
  if(epoch===openingEpoch&&owner===playerAccount?.profile?.id){openingState=d.opening;if(d.account){playerAccount=d.account;reflectAccount();}}
 }
 async function openingRequest(action,extra={}){
- if(openingBusy||!openingOwner)return false;const epoch=openingEpoch,owner=openingOwner;openingBusy=true;openingSetBusy();$('openingStatus').textContent='Salvando…';
+ if(openingBusy||!openingOwner)return false;const epoch=openingEpoch,owner=openingOwner;openingBusy=true;openingSetBusy();$('openingStatus').textContent='';const savingNotice=setTimeout(()=>{if(epoch===openingEpoch&&openingBusy)$('openingStatus').textContent='Guardando este momento…';},800);
  try{const d=await accountRequest('opening',{action,step:openingState?.step,...extra});if(epoch!==openingEpoch||owner!==playerAccount?.profile?.id)return false;openingState=d.opening;if(d.account){playerAccount=d.account;reflectAccount();}if(d.journey)journey=d.journey;$('openingStatus').textContent='';return true;}
  catch(e){if(epoch===openingEpoch){$('openingStatus').textContent=e.message;$('openingRetry').hidden=false;}return false;}
- finally{if(epoch===openingEpoch){openingBusy=false;openingSetBusy();}}
+ finally{clearTimeout(savingNotice);if(epoch===openingEpoch){openingBusy=false;openingSetBusy();}}
 }
-function openingSetBusy(){for(const id of ['openingNext','openingPause','openingName','openingRetry'])$(id).disabled=openingBusy;$('openingNameForm').querySelector('button').disabled=openingBusy;openingRefreshRoomUI();}
+function openingSetBusy(){for(const id of ['openingNext','openingName','openingRetry'])$(id).disabled=openingBusy;$('openingPause').disabled=true;$('openingNameForm').querySelector('button').disabled=openingBusy;openingRefreshRoomUI();}
 async function loadOpeningArt(retry=false){gameAvatar.load(retry);
+ await art.load(ART_CONFIG.designs.scenes.morro,retry);
+ if(!openingImages.has('first-person-bench')||retry)await new Promise(resolve=>{const im=new Image();im.onload=()=>{openingImages.set('first-person-bench',im);resolve();};im.onerror=resolve;im.src=ART_CONFIG.workshop.images.craftBench.url;});
  const entries=Object.entries(ART_CONFIG.opening.images).filter(([key])=>!['bedroom','downstairs','rabbito'].includes(key));const results=await Promise.all(entries.map(([key,def])=>new Promise(resolve=>{if(openingImages.has(key)&&!retry){resolve(true);return;}const im=new Image();im.onload=()=>{openingImages.set(key,im);resolve(true)};im.onerror=()=>resolve(false);im.src=def.url;})));
  await Promise.all(['rabbito',art.basic(0),art.basic(2)].map(id=>art.load(id,retry)));
  const world=homeArt.world,extra=[...Object.keys(world.parkIsometric.images).map(id=>'park-iso-'+id),...Object.keys(world.villageIsometric.images).map(id=>'village-iso-'+id),'world-companion-rabbito'];const loaded=await Promise.all(extra.map(id=>homeLoadImage(id,retry)));return results.every(Boolean)&&loaded.every(Boolean);
@@ -5986,22 +6126,28 @@ function renderOpening(){
  const i=openingState?.step??0,s=KAEL_OPENING[i];if(!s){closeOpening();return;}
  openingResetRoom();openingBirthBeat=0;openingGiftOpen=i===7&&!openingGiftWasSeen();openingPrepareCast(i);openingScreen.classList.toggle('partner-moment',i>=9&&i<=10);openingScreen.classList.toggle('naming-partner',i===10);openingScreen.classList.toggle('room-playable',openingRoomStep());openingSince=performance.now();$('openingSpeaker').textContent=s.speaker;$('openingSpeech').textContent=i===11?(openingState.partner_name||'Rabbito')+'… '+s.text:s.text;
  $('openingGift').hidden=!openingGiftOpen;$('openingGiftArt').src=ART_CONFIG.opening.images.tail.url;$('openingNameForm').hidden=i!==10;$('openingNext').hidden=i===10;$('openingNext').textContent=i===13?'Ir para a rua':i===11?'Caminhar até a escada':i===8?'Colocar Rabiola Antiga':'Continuar';$('openingRetry').hidden=true;$('openingStatus').textContent='';
- $('openingPause').textContent=openingReplay?'Sair da reprise':'Continuar depois';$('openingHint').textContent=openingReplay?'Reprise · não altera sua coleção':typeof inputDevice==='string'&&inputDevice==='touch'?'Toque em Continuar para seguir':'Enter para continuar · Esc para retomar depois';
+ $('openingPause').hidden=true;$('openingHint').textContent=openingReplay?'Reprise · não altera sua coleção':typeof inputDevice==='string'&&inputDevice==='touch'?'Toque em Avançar para seguir':'Enter · Avançar';
+ $('openingNext').textContent='Avançar';openingImmersiveScene(i);
  if(i===9)openingRenderBirth();openingSetBusy();if(i===10){$('openingName').value='';$('openingName').focus({preventScroll:true});}else $('openingNext').focus({preventScroll:true});
 }
 async function advanceOpeningScene(){
  if(openingBusy||openingScreen.hidden||openingState?.step===10)return;
  if(openingReplay){openingState.step++;if(openingState.step>=14){closeOpening();await loadJourney();return;}}
- else if(!await openingRequest('advance'))return;
+ else{const target=openingState.step+1;if([3,4,5,7,9,10,12,14].includes(target)){if(!await openingRequest('checkpoint',{target}))return;}else openingState={...openingState,step:target};}
  if(openingState.step>=14){closeOpening();await loadJourney();return;}renderOpening();
 }
-function openingRenderBirth(){const beat=openingBirthMoments[openingBirthBeat];$('openingSpeaker').textContent=beat.speaker;$('openingSpeech').textContent=beat.text;$('openingNext').textContent=beat.action;openingSince=performance.now();}
-async function nextOpening(){if(openingAvatarActivity?.state.kind==='seat'){openingAvatarActivity.leave();return;}if(openingBusy||openingCastBusy())return;if(openingGiftOpen){if(!openingReplay){try{localStorage.setItem('pipaGiftSeenV1:'+openingOwner,'yes');}catch{}}openingGiftOpen=false;$('openingGift').hidden=true;openingRoomSignature='';openingRefreshRoomUI();return;}if(openingState?.step===9&&openingBirthBeat<openingBirthMoments.length-1){openingBirthBeat++;openingRenderBirth();return;}if(openingRoomStep()){const spot=openingNearestSpot();if(spot)await openingInspect(spot.id);return;}return advanceOpeningScene();}
+function openingRenderBirth(){const beat=openingBirthMoments[openingBirthBeat];$('openingSpeaker').textContent=beat.speaker;$('openingSpeech').textContent=beat.text;$('openingNext').textContent='Avançar';openingSince=performance.now();if(openingBirthBeat===1&&openingImpactAt===null)openingImpactAt=openingSince;}
+async function nextOpening(){
+ if(openingAvatarActivity?.state.kind==='seat'){openingAvatarActivity.leave();return;}if(openingBusy||openingCastBusy())return;
+ if(openingGiftOpen){if(!openingReplay){try{localStorage.setItem('pipaGiftSeenV1:'+openingOwner,'yes');}catch{}}openingGiftOpen=false;$('openingGift').hidden=true;openingStageRoute(openingMother,openingBedroomNavigation,openingPoint('motherEntry'));openingRoomSignature='';openingRefreshRoomUI();return;}
+ if(openingState?.step===9&&openingBirthBeat<openingBirthMoments.length-1){openingBirthBeat++;openingRenderBirth();return;}
+ if(openingRoomStep()){const spot=openingNearestSpot();if(spot)await openingInspect(spot.id);return;}return advanceOpeningScene();
+}
 $('openingNext').onclick=nextOpening;
 $('openingNameForm').onsubmit=async e=>{e.preventDefault();if(openingBusy||openingState?.step!==10||openingScreen.hidden)return;const name=$('openingName').value.trim()||'Rabbito';if([...name].length>24||/[\u0000-\u001f\u007f]/.test(name)){$('openingStatus').textContent='Use até 24 caracteres, sem quebras de linha.';return;}if(openingReplay){openingState.partner_name=name;openingState.step=11;}else if(!await openingRequest('name',{name}))return;renderOpening();};
-$('openingPause').onclick=async()=>{if(openingBusy)return;const replay=openingReplay;closeOpening();if(replay){openingReplay=false;await loadJourney();}else dialogue('Um fio de sorte','Seu lugar na história está salvo. Continue quando estiver pronto.','Continuar a história',()=>showOpening(false));};
+$('openingPause').onclick=()=>{};
 $('openingRetry').onclick=async()=>{if(openingBusy)return;if(openingReplay){await showOpening(true);return;}const epoch=openingEpoch;try{await readOpening();if(epoch!==openingEpoch)return;await showOpening(false);}catch(e){$('openingStatus').textContent=e.message;}};
-addEventListener('keydown',e=>{if(openingScreen.hidden)return;if(e.key==='Tab'){const list=[...openingScreen.querySelectorAll('button,input')].filter(el=>!el.disabled&&!el.closest('[hidden]')),first=list[0],last=list.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}if(e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();$('openingPause').click();}else if(e.key==='Enter'&&e.target.tagName!=='INPUT'&&e.target.tagName!=='BUTTON'){e.preventDefault();e.stopImmediatePropagation();nextOpening();}},true);
+addEventListener('keydown',e=>{if(openingScreen.hidden)return;if(openingWorkbench&&e.target===$('openingProjectArt')&&['Enter',' ','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))return;if(e.key==='Tab'){const list=[...openingScreen.querySelectorAll('button,input,canvas[tabindex]')].filter(el=>!el.disabled&&!el.closest('[hidden]')&&el.offsetParent!==null),first=list[0],last=list.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}}if(e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();}else if(e.key==='Enter'&&!e.repeat&&e.target.tagName!=='INPUT'&&e.target.tagName!=='BUTTON'){e.preventDefault();e.stopImmediatePropagation();nextOpening();}},true);
 function openingSprite(g,key,frame,x,y,height){
  const im=openingImages.get(key),def=ART_CONFIG.opening.actors[key],f=def?.frames[frame];if(!im||!f)return;const b=f.bounds,scale=height/b.h;g.drawImage(im,f.x,f.y,f.w,f.h,x-(b.x+b.w/2)*scale,y-(b.y+b.h)*scale,f.w*scale,f.h*scale);
 }
@@ -6011,15 +6157,15 @@ function drawOpening(t){
  openingFrame=0;if(openingScreen.hidden||!playerAccount)return;const i=openingState?.step??0,down=i>=12,g=$('openingCanvas').getContext('2d'),dt=openingLast?Math.min(.05,(t-openingLast)/1000):0;openingLast=t;
  openingStepCast(dt);g.clearRect(0,0,1536,1024);const renderer=openingVillageRenderer(down);if(!renderer){openingFrame=requestAnimationFrame(drawOpening);return;}
  const base=renderer.camera(null,1536,1024),tv=renderer.feature('tv'),normal={x:base.x+768/base.scale,y:base.y+512/base.scale},reveal=i===2?Math.min(1,Math.max(0,(t-openingSince)/1600)):i<2?0:1,blend=art.reduced?(i<2?0:1):reveal*reveal*(3-2*reveal),partner=i===9||i===10;
- const focus=partner?renderer.project({x:(openingActor.x+openingRabbit.x)/2,y:(openingActor.y+openingRabbit.y)/2}):!down&&tv?{x:(tv.x+tv.w/2)*(1-blend)+normal.x*blend,y:(tv.y+tv.h/2)*(1-blend)+normal.y*blend}:normal,scale=base.scale*(partner?1.25:7-6*blend);
+ const focus=partner?renderer.project({x:(openingActor.x+openingRabbit.x)/2,y:(openingActor.y+openingRabbit.y)/2}):normal,scale=base.scale*(partner?1.15:1);
  openingIsometricView={x:focus.x-768/scale,y:focus.y-512/scale,scale};g.save();g.translate(768,512);g.scale(scale,scale);g.translate(-focus.x,-focus.y);
- const pose=openingAvatarActivity?.pose(),cast=[{...openingActor,type:'player',avatarPose:pose,...(pose?{x:pose.x,y:pose.y}:{}),draw:p=>openingDrawKael(g,t,p)}];if(i>=5)cast.push({...openingMother,draw:p=>openingDrawMother(g,t,p)});if(i>9||(i===9&&openingBirthBeat>0))cast.push({...openingRabbit,draw:p=>openingDrawRabbit(g,t,p)});
+ const pose=openingAvatarActivity?.pose(),cast=[{...openingActor,type:'player',avatarPose:pose,...(pose?{x:pose.x,y:pose.y}:{}),draw:p=>openingDrawKael(g,t,p)}];if(i>=5&&(i<8||down||openingMother.path?.length))cast.push({...openingMother,draw:p=>openingDrawMother(g,t,p)});if(i>9||(i===9&&openingBirthBeat>0))cast.push({...openingRabbit,draw:p=>openingDrawRabbit(g,t,p)});
  renderer.draw(g,openingActor,cast,{dt,animate:!art.reduced});if(openingRoomStep()&&!openingGiftOpen)drawOpeningRoomPlaces(g);if(!down&&tv)drawOpeningBroadcast(g,t,i<3,tv);
  const desk=renderer.feature('desk'),px=desk?desk.x+desk.w*.35:0,py=desk?desk.y+desk.h*.22:0;
  if(!down&&bedroomPlan.version<3&&desk&&i>=3&&(i<9||(i===9&&openingBirthBeat===0))){const project=openingImages.get('project');if(project)paintOpeningProject(g,project,i>=4?1:0,px,py,92,62);}
  if(i===9&&openingBirthBeat===0){const light=g.createRadialGradient(px+46,py+31,8,px+46,py+31,300);light.addColorStop(0,'#fffbe7');light.addColorStop(.2,'#ffe6b1bb');light.addColorStop(1,'#fff2b600');g.fillStyle=light;g.fillRect(px-300,py-300,700,700);}
  if(i===9&&openingBirthBeat===1&&!art.reduced){g.globalAlpha=Math.max(0,1-(t-openingSince)/850);g.fillStyle='#fff9dd';g.fillRect(focus.x-768/scale,focus.y-512/scale,1536/scale,1024/scale);}
- g.restore();drawOpeningWorkbench(t);openingFrame=requestAnimationFrame(drawOpening);
+ g.restore();openingImmersiveTick(t);drawOpeningWorkbench(t);openingFrame=requestAnimationFrame(drawOpening);
 }
 
 onCourtyardAccount();
@@ -7613,12 +7759,13 @@ let autosaveTimer=null,autosaveLast='',autosavePending=false;
 const autosaveIndicator=document.createElement('div');autosaveIndicator.id='autosaveIndicator';autosaveIndicator.hidden=true;autosaveIndicator.setAttribute('role','status');autosaveIndicator.setAttribute('aria-live','polite');document.body.append(autosaveIndicator);
 function autosaveStatus(text,saving=false){autosaveIndicator.textContent=text;autosaveIndicator.hidden=false;autosaveIndicator.classList.toggle('saving',saving);}
 function campaignScheduleAutosave(){clearTimeout(autosaveTimer);autosaveTimer=setTimeout(campaignAutosave,1500);}
-async function campaignAutosave(){
- if(autosavePending||campaignBusy||!campaignData||campaignData.autosave_enabled===false||!playerAccount||mode||openingState?.step<14||gameLoading.active||!worldWalkActive()||worldState().actor.moving)return;
- const checkpoint=campaignCheckpoint(),signature=JSON.stringify(checkpoint);if(signature===autosaveLast)return;
+async function campaignAutosave({beforeBattle=false}={}){
+ if(!campaignData||campaignData.autosave_enabled===false)return true;
+ if(autosavePending||campaignBusy||!playerAccount||mode||openingState?.step<14||gameLoading.active||(!beforeBattle&&(!worldWalkActive()||worldState().actor.moving)))return false;
+ const checkpoint=campaignCheckpoint(),signature=JSON.stringify(checkpoint);if(signature===autosaveLast)return true;
  const owner=playerAccount.profile.id,epoch=campaignEpoch;autosavePending=true;campaignBusy=true;autosaveStatus('◌ Salvando…',true);
- try{const d=await accountRequest('campaign',{action:'autosave',revision:campaignData.revision,checkpoint});if(!campaignSame(owner,epoch))return;campaignData=d.campaign;autosaveLast=signature;autosaveStatus('✓ Salvo · slot 0');}
- catch(e){if(campaignSame(owner,epoch)){autosaveStatus('! Não foi possível salvar automaticamente');try{const d=await accountRequest('campaign',{action:'read'});if(campaignSame(owner,epoch))campaignData=d.campaign;}catch{}}}
+ try{const d=await accountRequest('campaign',{action:'autosave',revision:campaignData.revision,checkpoint});if(!campaignSame(owner,epoch))return false;campaignData=d.campaign;autosaveLast=signature;autosaveStatus('✓ Progresso salvo');return true;}
+ catch(e){if(campaignSame(owner,epoch)){autosaveStatus('! Não foi possível salvar automaticamente');try{const d=await accountRequest('campaign',{action:'read'});if(campaignSame(owner,epoch))campaignData=d.campaign;}catch{}}return false;}
  finally{autosavePending=false;if(campaignSame(owner,epoch)){campaignBusy=false;setTimeout(()=>{if(!autosavePending)autosaveIndicator.hidden=true;},2400);}}
 }
 homeActions.autosave=async()=>{
@@ -8078,6 +8225,13 @@ function pollPads(){
  const move=switchNav.stick(pad.axes[0]||0,pad.axes[1]||0),any=pad.buttons.some(b=>b.pressed)||Math.hypot(move.x,move.y)>.3;
  if(any)setInputDevice(switchNav.padKind(pad.id)==='ps'?'gamepad-ps':'gamepad-xbox');
  if(!inputDevice.startsWith('gamepad')){for(let i=0;i<pad.buttons.length;i++)padPrev[i]=down(i);return;}
+ if(typeof openingWorkbench!=='undefined'&&openingWorkbench&&!openingScreen.hidden){
+  padState.active=false;
+  if(openingRod.grabbed){openingRod.x=Math.max(120,Math.min(1400,openingRod.x+move.x*14));openingRod.y=Math.max(120,Math.min(900,openingRod.y+move.y*14));}
+  if(pressed(B.a)){if(openingRod.grabbed)openingReleaseRod();else $('openingBenchPlace').click();}
+  if(pressed(B.b)&&openingCraftAt===null)openingCloseBench();
+  for(let i=0;i<pad.buttons.length;i++)padPrev[i]=down(i);return;
+ }
  if(typeof openingWalkActive==='function'&&openingWalkActive()){
   padState.active=false;padState.x=move.x+(down(B.right)?1:0)-(down(B.left)?1:0);padState.y=move.y+(down(B.down)?1:0)-(down(B.up)?1:0);padState.cut=false;padState.skill=0;
   if(pressed(B.a)){const spot=openingNearestSpot();if(spot)openingInspect(spot.id);}

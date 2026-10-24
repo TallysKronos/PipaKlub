@@ -58,12 +58,13 @@ let autosaveTimer=null,autosaveLast='',autosavePending=false;
 const autosaveIndicator=document.createElement('div');autosaveIndicator.id='autosaveIndicator';autosaveIndicator.hidden=true;autosaveIndicator.setAttribute('role','status');autosaveIndicator.setAttribute('aria-live','polite');document.body.append(autosaveIndicator);
 function autosaveStatus(text,saving=false){autosaveIndicator.textContent=text;autosaveIndicator.hidden=false;autosaveIndicator.classList.toggle('saving',saving);}
 function campaignScheduleAutosave(){clearTimeout(autosaveTimer);autosaveTimer=setTimeout(campaignAutosave,1500);}
-async function campaignAutosave(){
- if(autosavePending||campaignBusy||!campaignData||campaignData.autosave_enabled===false||!playerAccount||mode||openingState?.step<14||gameLoading.active||!worldWalkActive()||worldState().actor.moving)return;
- const checkpoint=campaignCheckpoint(),signature=JSON.stringify(checkpoint);if(signature===autosaveLast)return;
+async function campaignAutosave({beforeBattle=false}={}){
+ if(!campaignData||campaignData.autosave_enabled===false)return true;
+ if(autosavePending||campaignBusy||!playerAccount||mode||openingState?.step<14||gameLoading.active||(!beforeBattle&&(!worldWalkActive()||worldState().actor.moving)))return false;
+ const checkpoint=campaignCheckpoint(),signature=JSON.stringify(checkpoint);if(signature===autosaveLast)return true;
  const owner=playerAccount.profile.id,epoch=campaignEpoch;autosavePending=true;campaignBusy=true;autosaveStatus('◌ Salvando…',true);
- try{const d=await accountRequest('campaign',{action:'autosave',revision:campaignData.revision,checkpoint});if(!campaignSame(owner,epoch))return;campaignData=d.campaign;autosaveLast=signature;autosaveStatus('✓ Salvo · slot 0');}
- catch(e){if(campaignSame(owner,epoch)){autosaveStatus('! Não foi possível salvar automaticamente');try{const d=await accountRequest('campaign',{action:'read'});if(campaignSame(owner,epoch))campaignData=d.campaign;}catch{}}}
+ try{const d=await accountRequest('campaign',{action:'autosave',revision:campaignData.revision,checkpoint});if(!campaignSame(owner,epoch))return false;campaignData=d.campaign;autosaveLast=signature;autosaveStatus('✓ Progresso salvo');return true;}
+ catch(e){if(campaignSame(owner,epoch)){autosaveStatus('! Não foi possível salvar automaticamente');try{const d=await accountRequest('campaign',{action:'read'});if(campaignSame(owner,epoch))campaignData=d.campaign;}catch{}}return false;}
  finally{autosavePending=false;if(campaignSame(owner,epoch)){campaignBusy=false;setTimeout(()=>{if(!autosavePending)autosaveIndicator.hidden=true;},2400);}}
 }
 homeActions.autosave=async()=>{
