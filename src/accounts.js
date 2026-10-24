@@ -1,4 +1,5 @@
 // Supabase credentials stay on the server. Browser sessions use HttpOnly cookies.
+import {workshopV3} from './workshop-v3-service.js';
 import {createEngine} from './engine.js';
 import {validWorkshopPayload} from './workshop-model.js';
 const progressionEngine=createEngine(),pipamonProgression=progressionEngine.pipamons;
@@ -39,7 +40,7 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
   if(!admin)return remote('/rest/v1/rpc/'+name,{method:'POST',body,token});
   try{return await gameDatabase.rpc(name,body);}catch(e){
    const message=String(e.message||'');
-   if(e.code==='P0001'&&/Exploração:|Classes:|Depósito:|Save:|Trilhas:|Troca:|Saia da partida|outra partida|colecionável|coleção|caracteres|Partida encerrada/.test(message))throw new AccountError(message,409);
+   if(e.code==='P0001'&&/Oficina:|Exploração:|Classes:|Depósito:|Save:|Trilhas:|Troca:|Saia da partida|outra partida|colecionável|coleção|caracteres|Partida encerrada/.test(message))throw new AccountError(message,409);
    throw new AccountError('O banco do jogo não respondeu. Aguarde e tente novamente.',503);
   }
  }
@@ -69,7 +70,7 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
    if(!pending&&(!p||Date.now()-p.seen>15000||Date.now()>=s.end)){await rpc('release_player_match',{p_user:who.id,p_match:data.profile.active_match},null,true);data=await rpc('get_player_account',{},who.access);}
   }
   const legacy=data.profile.tamer_xp==null,xp=Number(legacy?data.profile.xp:data.profile.tamer_xp)||0,tamer=progressionEngine.tamers.progress(xp),level=legacy?Math.min(100,1+Math.floor(Math.sqrt(xp/100))):tamer.level;
-  return {...data,inventory:(data.inventory||[]).map(k=>({...k,progression:{...pipamonProgression.progress(k.pipamon_xp),stats:pipamonProgression.stats(pipamonProgression.progress(k.pipamon_xp).level,k.pipamon_class,k.class_rank)}})),profile:{...data.profile,xp,level,max_level:100,level_base_xp:legacy?(level-1)**2*100:tamer.start,next_level_xp:level===100?null:legacy?level*level*100:tamer.next}};
+  return {...data,inventory:(data.inventory||[]).map(k=>({...k,progression:{...pipamonProgression.progress(k.pipamon_xp),stats:pipamonProgression.stats(pipamonProgression.progress(k.pipamon_xp).level,k.pipamon_class,k.class_rank,k.craft_bonus)}})),profile:{...data.profile,xp,level,max_level:100,level_base_xp:legacy?(level-1)**2*100:tamer.start,next_level_xp:level===100?null:legacy?level*level*100:tamer.next}};
  }
  function rateLimit(request,action,max=12){
   const ip=(request.headers.get('x-forwarded-for')||'local').split(',')[0],id=action+':'+ip,now=Date.now();
@@ -87,7 +88,7 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
    if(action==='session'&&request.method==='GET'){const who=await identity(request,true);if(!who)return json({account:null},200,makeCookies(request,null));return json({account:await accountFor(who)},200,who.setCookies);}
    if(action==='history'&&request.method==='GET'){const who=await identity(request,true);if(!who)throw new AccountError('Entre na sua conta para continuar.',401);return json({matches:await rpc('get_player_recent_matches',{},who.access)},200,who.setCookies);}
    if(request.method!=='POST'||!request.headers.get('content-type')?.includes('application/json'))throw new AccountError('Pedido inválido.',405);
-   const raw=await request.text();if(raw.length>4096)throw new AccountError('Pedido muito grande.',413);let b;try{b=JSON.parse(raw);}catch{throw new AccountError('Pedido inválido.');}
+   const raw=await request.text();if(raw.length>(action==='workshop-v3'?180000:4096))throw new AccountError('Pedido muito grande.',413);let b;try{b=JSON.parse(raw);}catch{throw new AccountError('Pedido inválido.');}
    if(action==='recover'){
     rateLimit(request,'recover',5);const email=String(b.email||'').trim();
     if(email.length>254||!/^\S+@\S+\.\S+$/.test(email))throw new AccountError('Informe um e-mail válido.');
@@ -182,6 +183,11 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
    if(action==='sighting'){
     if(typeof b.modelId!=='string'||!/^[a-z0-9-]{1,80}$/.test(b.modelId))throw new AccountError('Pipamon inválido.');
     await rpc('record_player_sighting',{p_model:b.modelId},who.access);return json({ok:true},200,who.setCookies);
+   }
+   if(action==='workshop-v3'){
+    checkPending(who.id);rateLimit(request,'workshop-v3-'+who.id,120);
+    try{return json({workshop:await workshopV3(who.id,b,args=>rpc('server_workshop_v3',args,null,true))},200,who.setCookies);}
+    catch(error){if(error instanceof AccountError)throw error;throw new AccountError(String(error.message||'Oficina: montagem inválida.'),400);}
    }
    if(action==='workshop'){
     if(!['inventory','start','advance','restore'].includes(b.action))throw new AccountError('Ação de oficina inválida.');

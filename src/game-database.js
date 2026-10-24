@@ -2,6 +2,7 @@ import pg from 'pg';
 
 // The DB login can execute only the listed game functions, with no direct table access.
 const operations=Object.freeze({
+ server_workshop_v3:['p_user','p_action','p_job','p_tail','p_target','p_revision','p_request','p_state','p_result'],
  reserve_player_match:['p_user','p_match','p_code','p_mode'],
  release_player_match:['p_user','p_match'],
  settle_player_cut:['p_event','p_match','p_winner','p_loser','p_kite'],

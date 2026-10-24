@@ -924,6 +924,8 @@ body.in-opening #commandBar{display:none!important}
 @media(max-width:860px){.craft-mode.is-building .workshop-scene{width:min(100%,calc((100dvh - 154px)*1.5))!important}.craft-tool{min-height:34px!important;font-size:10px!important;padding:4px!important;gap:3px}.craft-tool svg{width:21px;height:21px}.craft-tool kbd{display:none}.craft-tools{gap:4px;padding:5px}.craft-mode.is-building .workshop-hud .workshop-steps{justify-content:flex-start}.craft-mode.is-building .workshop-controls{gap:3px 7px;padding:7px 12px}.craft-mode.is-building .workshop-controls h3{font-size:14px}.craft-mode.is-building #workshopHint{font-size:11px}.craft-mode.is-building #workshopRedo{font-size:10px;padding:6px}.craft-mode.is-building #workshopConfirm{font-size:11px;padding:6px 10px}.craft-key-help{font-size:9px}.craft-class{font-size:10px;padding:5px 8px}}
 @media(max-width:600px) and (orientation:portrait){.craft-mode.is-building #workshopBuild{grid-template-rows:50px minmax(0,1fr) 140px}.craft-mode.is-building .workshop-scene{width:100%!important;overflow:visible}.craft-mode.is-building .craft-tools{top:auto;bottom:-70px;left:2%;width:96%;display:grid;grid-template-columns:repeat(6,1fr);padding:5px;gap:4px}.craft-tool{flex-direction:column;min-height:53px!important;justify-content:center}.craft-tool svg{height:23px;width:23px}.craft-mode.is-building .workshop-controls{grid-template-columns:1fr auto;grid-template-rows:auto auto auto}.craft-mode.is-building .workshop-controls h3,.craft-mode.is-building #workshopHint{grid-column:1/-1}.craft-mode.is-building #workshopConfirm{grid-row:3;grid-column:2}.craft-mode.is-building #workshopRedo{grid-row:3;grid-column:1;justify-self:start}.craft-key-help{display:none}.craft-mode.is-building #summonReveal:not([hidden]){left:4%;right:4%;bottom:150px}.craft-mode.is-building #summonMessage{left:4%;right:4%;bottom:145px}.craft-class{font-size:9px;left:24%;top:2%}.craft-mode.is-building .workshop-motion{font-size:9px!important;min-height:24px!important;padding:2px 5px!important}.craft-pause{min-height:25px!important;font-size:9px}}
 
+.workshop-v3-frame{position:fixed;inset:0;width:100vw;height:100dvh;border:0;z-index:10000;background:#123735}
+
 /* Ink, brass and living paper: the battle instruments share one visual language. */
 :root{--battle-ink:#142f39;--battle-panel:#142f39f5;--battle-edge:#78958b;--battle-text:#fff1d0;--battle-muted:#b7cbc3;--battle-gold:#edc77b;--battle-green:#8bd7a6;--battle-energy:#82c9e3;--battle-danger:#ff9c85;--battle-shadow:0 8px 24px #132f3933}
 .hud .panel{background:var(--battle-panel);color:var(--battle-text);border:1px solid var(--battle-edge);border-radius:12px;box-shadow:inset 0 1px #ffffff12,var(--battle-shadow)}
@@ -1988,11 +1990,11 @@ function createEngine() {
     const tiers=[{id:'aura',name:'Aura',min:50,color:'#edb7ff'},{id:'diamond',name:'Diamante',min:45,color:'#8be5ff'},{id:'platinum',name:'Platina',min:40,color:'#b8f4de'},{id:'gold',name:'Ouro',min:30,color:'#ffd46a'},{id:'silver',name:'Prata',min:20,color:'#dce5f5'}];
     const level=value=>clamp(Math.trunc(Number.isFinite(Number(value))?Number(value):1),1,maxLevel);
     const statCache=new Map();
-    function stats(value,specialization=null,rank=0){const l=level(value),r=classes[specialization]?clamp(Math.trunc(rank)||0,0,3):0,key=l+':'+specialization+':'+r;if(statCache.has(key))return statCache.get(key);const f=(l-1)/49,s={line:Math.round(100+20*f),energy:Math.round(100+15*f),attack:1+.12*f,defense:1+.10*f,speed:165*(1+.08*f),regen:18*(1+.10*f)};if(r&&specialization==='velocista'){s.speed*=1+.08*r;s.line=Math.round(s.line*.95);s.regen*=1+.04*r;}if(r&&specialization==='condutor'){s.attack*=1+.04*r;s.regen*=1+.08*r;s.speed*=.95;}if(r&&specialization==='rabbitknight'){s.attack*=1.15;s.defense*=1.08;s.speed*=.92;s.regen*=.95;}Object.freeze(s);statCache.set(key,s);return s;}
+    function stats(value,specialization=null,rank=0,craftBonus=0){const l=level(value),r=classes[specialization]?clamp(Math.trunc(rank)||0,0,3):0,bonus=clamp(Number(craftBonus)||0,0,12),key=l+':'+specialization+':'+r+':'+bonus;if(statCache.has(key))return statCache.get(key);const f=(l-1)/49,s={line:Math.round(100+20*f),energy:Math.round(100+15*f),attack:1+.12*f,defense:1+.10*f,speed:165*(1+.08*f),regen:18*(1+.10*f)};if(r&&specialization==='velocista'){s.speed*=1+.08*r;s.line=Math.round(s.line*.95);s.regen*=1+.04*r;}if(r&&specialization==='condutor'){s.attack*=1+.04*r;s.regen*=1+.08*r;s.speed*=.95;}if(r&&specialization==='rabbitknight'){s.attack*=1.15;s.defense*=1.08;s.speed*=.92;s.regen*=.95;}if(bonus)for(const stat of Object.keys(s))s[stat]=Math.round(s[stat]*(1+bonus/100)*1e6)/1e6;Object.freeze(s);statCache.set(key,s);return s;}
     function progress(value){const xp=clamp(Math.trunc(Number.isFinite(Number(value))?Number(value):0),0,maxXp);let l=1;while(l<maxLevel&&xp>=xpForLevel(l+1))l++;const start=xpForLevel(l),next=l===maxLevel?null:xpForLevel(l+1);return {xp,level:l,maxLevel,maxXp,start,next,into:xp-start,needed:next===null?0:next-start,percent:next===null?100:(xp-start)/(next-start)*100,tier:tiers.find(t=>l>=t.min)||null,stats:stats(l)};}
     return {maxLevel,maxXp,xpForLevel,level,stats,progress,tiers,tier:value=>tiers.find(t=>level(value)>=t.min)||null};
   })();
-  const pipamonStats=p=>pipamons.stats(p.pipamonLevel,p.pipamonClass,p.classRank);
+  const pipamonStats=p=>pipamons.stats(p.pipamonLevel,p.pipamonClass,p.classRank,p.craftBonus);
   function daily(now=Date.now()){
     const day=Math.floor(now/86400000),weather=['wind','wax','rain','fog'][((day%4)+4)%4];
     const details={wind:['Ventania','Rajadas três vezes mais fortes. Antecipe a direção da pipa.'],wax:['Linha encerada','Os acertos desgastam 25% mais a linha dos dois jogadores.'],rain:['Garoa','A energia dos dois jogadores recupera 30% mais devagar.'],fog:['Neblina','O cenário fica encoberto; pipas e miras continuam visíveis.']}[weather];
@@ -2209,7 +2211,7 @@ function createEngine() {
       const p=winner.p;q.respawn=rounds?now:now+3000;q.attack=false;q.lineMove=null;q.lineStrike=null;p.score+=100;p.cuts++;
       const cut={text:p.name+' cortou '+q.name,at:now,id:s.id+':'+(++s.cutSequence),winnerId:p.id,loserId:q.id,matchId:s.id,winnerAccountId:p.accountId,loserAccountId:q.accountId,kiteId:q.kiteId,capture:s.rules==='capture'&&!q.kitePermanent};
       s.events.unshift(cut);s._pendingCuts.push(cut);s.events=s.events.slice(0,4);
-      if(s.rules==='capture'&&q.accountId&&q.basicKiteId){q.kiteId=q.basicKiteId;q.kitePermanent=true;q.color=q.basicColor??0;q.soul=q.basicSoul||null;q.partnerName=q.basicPartnerName||null;q.pipamonLevel=pipamons.level(q.basicPipamonLevel);q.pipamonClass=q.basicPipamonClass||null;q.classRank=q.basicClassRank||0;q.skillTime=0;}
+      if(s.rules==='capture'&&q.accountId&&q.basicKiteId){q.kiteId=q.basicKiteId;q.kitePermanent=true;q.color=q.basicColor??0;q.soul=q.basicSoul||null;q.partnerName=q.basicPartnerName||null;q.pipamonLevel=pipamons.level(q.basicPipamonLevel);q.pipamonClass=q.basicPipamonClass||null;q.classRank=q.basicClassRank||0;q.craftBonus=q.basicCraftBonus||0;q.soulVariant=!!q.basicSoulVariant;q.skillTime=0;}
     }
     if(rounds&&s.phase==='live'&&s.players.filter(p=>!p.respawn).length<=1)finishRound(s,now);
     return s;
@@ -4137,6 +4139,36 @@ prepareSummon=function(p){
  $('summonTailList').replaceChildren(...summonData.tails.filter(t=>t.status==='ready'&&candidates.some(c=>c.availableTailIds.includes(t.id))).map((t,i)=>{const card=uiElement('article',undefined,'summon-tail'),button=uiElement('button','Selecionar alma selada '+(i+1),'secondary');button.onclick=()=>{summonTail=t;summonTarget=candidates.find(c=>c.availableTailIds.includes(t.id));$('summonStart').disabled=false;$('summonSelectedTail').textContent='Alma selada selecionada. A rabiola entra por último.';for(const c of $('summonTailList').children)c.classList.toggle('selected',c===card);};card.innerHTML=craftNeutral;card.append(button);return card;}));
  $('summonSelectedTail').textContent='Selecione uma alma selada compatível.';
 };
+
+// The authenticated game opens the same approved canvas; the server owns its state and rewards.
+let workshopV3Frame=null,workshopV3Closing=false;
+const legacyWorkshopRender=renderWorkshop;
+renderWorkshop=function(){
+ if(workshopV3Closing){showSummonStage('npc');return;}
+ if(!summonRitual?.v3){legacyWorkshopRender();return;}
+ if(workshopFrame)cancelAnimationFrame(workshopFrame);workshopFrame=0;workshopDraw=null;showSummonStage('build');
+ if(workshopV3Frame?.dataset.job===summonRitual.id)return;
+ workshopV3Frame?.remove();workshopV3Frame=document.createElement('iframe');workshopV3Frame.title='Oficina das Almas — montagem salva na conta';workshopV3Frame.dataset.job=summonRitual.id;
+ workshopV3Frame.src='/oficina-v3/?job='+encodeURIComponent(summonRitual.id);workshopV3Frame.className='workshop-v3-frame';document.body.append(workshopV3Frame);accountModal.inert=true;
+};
+globalThis.addEventListener?.('message',async event=>{
+ if(event.origin!==location.origin||event.source!==workshopV3Frame?.contentWindow||event.data?.jobId!==workshopV3Frame.dataset.job)return;
+ if(event.data.type==='oficina-v3:saved'){
+  try{const d=await accountRequest('session');playerAccount=d.account;reflectAccount();}catch{toast('Parceiro salvo. Reabra a coleção para atualizar.');}
+ }
+ if(event.data.type==='oficina-v3:close'){
+  workshopV3Frame.remove();workshopV3Frame=null;accountModal.inert=false;workshopV3Closing=true;try{await loadSummonTails();}finally{workshopV3Closing=false;summonRitual=null;showSummonStage('npc');}
+ }
+});
+const legacyWorkshopCall=workshopCall;
+workshopCall=async function(action,extra={}){
+ if(action==='start'){const result=(await accountRequest('workshop-v3',{action,...extra})).workshop;return {...result,v3:true};}
+ return legacyWorkshopCall(action,extra);
+};
+
+const v3LegacyLoad=workshopLoadArt;workshopLoadArt=async function(...args){if(!summonRitual?.v3)return v3LegacyLoad(...args);};
+
+const v3CatalogRender=renderSummonCatalog;renderSummonCatalog=function(){v3CatalogRender();const cards=$('summonSeenGrid').children;const labels=['Diamante · 4 apoios','Pentágono · 5 apoios','Estrela de vento · 6 apoios'];for(let i=0;i<Math.min(3,cards.length);i++){const label=cards[i].querySelectorAll('small')[0];if(label)label.textContent=labels[i];}};
 
 // Keep account features on separate screens without recreating their live state.
 let accountPage='home';
@@ -7798,7 +7830,7 @@ function stopInventoryPreview(){if(inventoryPreviewFrame)cancelAnimationFrame(in
 function drawInventoryPreview(){
  if(!inventoryPreviewEntry)return;const e=inventoryPreviewEntry,a=art.atlases[e.atlas],seq=a.animations[e.sequence||'idle'],durations=seq.map(k=>a.frames[k].duration||190),total=durations.reduce((n,d)=>n+d,0);
  let time=inventoryPreviewElapsed%total,index=0;while(index<seq.length-1&&time>=durations[index])time-=durations[index++];
- const canvas=$('inventoryCanvas'),ctx=canvas.getContext('2d');if(!ctx)return;ctx.clearRect(0,0,canvas.width,canvas.height);drawPipamonGlow(ctx,pipamonProgress(inventoryPreviewKite).level,inventoryPreviewElapsed,canvas.width/2,canvas.height/2,canvas.width*.32,false,art.reduced);art.draw(ctx,e.atlas,seq[index],40,0,canvas.width-80,canvas.height);
+ const canvas=$('inventoryCanvas'),ctx=canvas.getContext('2d');if(!ctx)return;ctx.clearRect(0,0,canvas.width,canvas.height);drawPipamonGlow(ctx,pipamonProgress(inventoryPreviewKite).level,inventoryPreviewElapsed,canvas.width/2,canvas.height/2,canvas.width*.32,false,art.reduced);ctx.save();if(inventoryPreviewKite?.soul_variant)ctx.filter='hue-rotate(160deg) saturate(1.5)';art.draw(ctx,e.atlas,seq[index],40,0,canvas.width-80,canvas.height);ctx.restore();
 }
 function tickInventoryPreview(t){inventoryPreviewFrame=0;if(!inventoryVisible())return;if(inventoryPreviewLast)inventoryPreviewElapsed+=Math.min(100,t-inventoryPreviewLast);inventoryPreviewLast=t;drawInventoryPreview();inventoryPreviewFrame=requestAnimationFrame(tickInventoryPreview);}
 function resumeInventoryPreview(){stopInventoryPreview();if(inventoryVisible()&&!art.reduced&&inventoryPreviewEntry)inventoryPreviewFrame=requestAnimationFrame(tickInventoryPreview);}
@@ -7872,11 +7904,12 @@ function drawPipamonGlow(context,level,time,x,y,radius=48,light=false,reduced=fa
  }
  context.restore();
 }
-function pipamonProgress(kite){const p=eng.pipamons.progress(kite?.pipamon_xp);return {...p,stats:eng.pipamons.stats(p.level,kite?.pipamon_class,kite?.class_rank)};}
+function pipamonProgress(kite){const p=eng.pipamons.progress(kite?.pipamon_xp);return {...p,stats:eng.pipamons.stats(p.level,kite?.pipamon_class,kite?.class_rank,kite?.craft_bonus)};}
 function renderPipamonProgress(kite){
  const root=$('inventoryProgress');if(!root)return;
  const p=pipamonProgress(kite),tier=p.tier;root.replaceChildren();root.dataset.tier=tier?.id||'none';
  const heading=uiElement('div',undefined,'pipamon-progress-heading');heading.append(uiElement('h4','Nível '+p.level+' / 50'),uiElement('span',tier?'✦ '+tier.name:'Em formação','pipamon-tier'));root.append(heading);if(kite.pipamon_class){const c=eng.classes[kite.pipamon_class];root.append(uiElement('p',c?(kite.class_rank===3?c.final:kite.class_rank===2?c.advanced:c.name):kite.pipamon_class,'class-badge'));}
+ if(kite?.craft_bonus)root.append(uiElement('p','Oficina: +'+kite.craft_bonus+'% de atributos','class-badge'));if(kite?.soul_variant)root.append(uiElement('p','✦ Variante rara','class-badge'));
  const meter=uiElement('div',undefined,'pipamon-xp-track');meter.setAttribute('role','progressbar');meter.setAttribute('aria-label','XP deste Pipamon');meter.setAttribute('aria-valuemin','0');meter.setAttribute('aria-valuemax','100');meter.setAttribute('aria-valuenow',String(Math.floor(p.percent)));meter.setAttribute('aria-valuetext',p.next===null?'Nível máximo':p.into+' de '+p.needed+' XP para o próximo nível');
  const fill=uiElement('span');fill.style.width=p.percent+'%';meter.append(fill);root.append(meter,uiElement('p',p.next===null?'Nível máximo · Aura desbloqueada':p.into+' / '+p.needed+' XP · faltam '+(p.next-p.xp)+' para o nível '+(p.level+1),'pipamon-xp-caption'));
  const stats=uiElement('dl',undefined,'pipamon-stats'),s=p.stats;

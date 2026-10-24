@@ -8,11 +8,11 @@ export function createEngine() {
     const tiers=[{id:'aura',name:'Aura',min:50,color:'#edb7ff'},{id:'diamond',name:'Diamante',min:45,color:'#8be5ff'},{id:'platinum',name:'Platina',min:40,color:'#b8f4de'},{id:'gold',name:'Ouro',min:30,color:'#ffd46a'},{id:'silver',name:'Prata',min:20,color:'#dce5f5'}];
     const level=value=>clamp(Math.trunc(Number.isFinite(Number(value))?Number(value):1),1,maxLevel);
     const statCache=new Map();
-    function stats(value,specialization=null,rank=0){const l=level(value),r=classes[specialization]?clamp(Math.trunc(rank)||0,0,3):0,key=l+':'+specialization+':'+r;if(statCache.has(key))return statCache.get(key);const f=(l-1)/49,s={line:Math.round(100+20*f),energy:Math.round(100+15*f),attack:1+.12*f,defense:1+.10*f,speed:165*(1+.08*f),regen:18*(1+.10*f)};if(r&&specialization==='velocista'){s.speed*=1+.08*r;s.line=Math.round(s.line*.95);s.regen*=1+.04*r;}if(r&&specialization==='condutor'){s.attack*=1+.04*r;s.regen*=1+.08*r;s.speed*=.95;}if(r&&specialization==='rabbitknight'){s.attack*=1.15;s.defense*=1.08;s.speed*=.92;s.regen*=.95;}Object.freeze(s);statCache.set(key,s);return s;}
+    function stats(value,specialization=null,rank=0,craftBonus=0){const l=level(value),r=classes[specialization]?clamp(Math.trunc(rank)||0,0,3):0,bonus=clamp(Number(craftBonus)||0,0,12),key=l+':'+specialization+':'+r+':'+bonus;if(statCache.has(key))return statCache.get(key);const f=(l-1)/49,s={line:Math.round(100+20*f),energy:Math.round(100+15*f),attack:1+.12*f,defense:1+.10*f,speed:165*(1+.08*f),regen:18*(1+.10*f)};if(r&&specialization==='velocista'){s.speed*=1+.08*r;s.line=Math.round(s.line*.95);s.regen*=1+.04*r;}if(r&&specialization==='condutor'){s.attack*=1+.04*r;s.regen*=1+.08*r;s.speed*=.95;}if(r&&specialization==='rabbitknight'){s.attack*=1.15;s.defense*=1.08;s.speed*=.92;s.regen*=.95;}if(bonus)for(const stat of Object.keys(s))s[stat]=Math.round(s[stat]*(1+bonus/100)*1e6)/1e6;Object.freeze(s);statCache.set(key,s);return s;}
     function progress(value){const xp=clamp(Math.trunc(Number.isFinite(Number(value))?Number(value):0),0,maxXp);let l=1;while(l<maxLevel&&xp>=xpForLevel(l+1))l++;const start=xpForLevel(l),next=l===maxLevel?null:xpForLevel(l+1);return {xp,level:l,maxLevel,maxXp,start,next,into:xp-start,needed:next===null?0:next-start,percent:next===null?100:(xp-start)/(next-start)*100,tier:tiers.find(t=>l>=t.min)||null,stats:stats(l)};}
     return {maxLevel,maxXp,xpForLevel,level,stats,progress,tiers,tier:value=>tiers.find(t=>level(value)>=t.min)||null};
   })();
-  const pipamonStats=p=>pipamons.stats(p.pipamonLevel,p.pipamonClass,p.classRank);
+  const pipamonStats=p=>pipamons.stats(p.pipamonLevel,p.pipamonClass,p.classRank,p.craftBonus);
   function daily(now=Date.now()){
     const day=Math.floor(now/86400000),weather=['wind','wax','rain','fog'][((day%4)+4)%4];
     const details={wind:['Ventania','Rajadas três vezes mais fortes. Antecipe a direção da pipa.'],wax:['Linha encerada','Os acertos desgastam 25% mais a linha dos dois jogadores.'],rain:['Garoa','A energia dos dois jogadores recupera 30% mais devagar.'],fog:['Neblina','O cenário fica encoberto; pipas e miras continuam visíveis.']}[weather];
@@ -229,7 +229,7 @@ export function createEngine() {
       const p=winner.p;q.respawn=rounds?now:now+3000;q.attack=false;q.lineMove=null;q.lineStrike=null;p.score+=100;p.cuts++;
       const cut={text:p.name+' cortou '+q.name,at:now,id:s.id+':'+(++s.cutSequence),winnerId:p.id,loserId:q.id,matchId:s.id,winnerAccountId:p.accountId,loserAccountId:q.accountId,kiteId:q.kiteId,capture:s.rules==='capture'&&!q.kitePermanent};
       s.events.unshift(cut);s._pendingCuts.push(cut);s.events=s.events.slice(0,4);
-      if(s.rules==='capture'&&q.accountId&&q.basicKiteId){q.kiteId=q.basicKiteId;q.kitePermanent=true;q.color=q.basicColor??0;q.soul=q.basicSoul||null;q.partnerName=q.basicPartnerName||null;q.pipamonLevel=pipamons.level(q.basicPipamonLevel);q.pipamonClass=q.basicPipamonClass||null;q.classRank=q.basicClassRank||0;q.skillTime=0;}
+      if(s.rules==='capture'&&q.accountId&&q.basicKiteId){q.kiteId=q.basicKiteId;q.kitePermanent=true;q.color=q.basicColor??0;q.soul=q.basicSoul||null;q.partnerName=q.basicPartnerName||null;q.pipamonLevel=pipamons.level(q.basicPipamonLevel);q.pipamonClass=q.basicPipamonClass||null;q.classRank=q.basicClassRank||0;q.craftBonus=q.basicCraftBonus||0;q.soulVariant=!!q.basicSoulVariant;q.skillTime=0;}
     }
     if(rounds&&s.phase==='live'&&s.players.filter(p=>!p.respawn).length<=1)finishRound(s,now);
     return s;

@@ -1,44 +1,16 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Oficina das Almas v3</title><link rel="icon" href="data:,">
-<style>
-/* Protótipo de jogabilidade: a mesa ocupa a tela; instrução e materiais ficam sobre ela. Cores do skin Papel e Bambu. */
-:root{--bg:#0f2a2c;--panel:#173b3d;--cream:#f7ead0;--ink:#1d2b2a;--teal:#2f7f7a;--gold:#f0bd52;--coral:#e66b4f;--ok:#4fbf7d;--bad:#e2564a;--muted:#a9c3bf}
-*{box-sizing:border-box}html,body{height:100%;margin:0}
-body{background:var(--bg);color:var(--cream);font:15px/1.4 system-ui,sans-serif;display:flex;flex-direction:column;overflow:hidden;-webkit-user-select:none;user-select:none}
-header{display:flex;align-items:center;gap:10px;padding:8px 12px;padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right));background:var(--panel);flex-wrap:wrap}
-h1{font-size:16px;margin:0;letter-spacing:.2px}
-.steps{display:flex;gap:4px;flex:1;justify-content:center;min-width:0}
-.steps span{font:700 12px system-ui;padding:5px 9px;border-radius:99px;background:#0f2a2c;color:var(--muted);white-space:nowrap}
-.steps span.now{background:var(--gold);color:var(--ink)}.steps span.done{background:#25524f;color:var(--cream)}
-.mats{display:flex;gap:6px}.mats b{background:#0f2a2c;border-radius:8px;padding:4px 8px;font-size:13px}.mats b.low{background:#5a2420}
-select,button{font:inherit;border-radius:9px;border:2px solid #0b1f20;background:var(--cream);color:var(--ink);padding:6px 10px;cursor:pointer}
-button.primary{background:var(--gold);font-weight:800}
-label.toggle{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--muted)}
-main{flex:1;position:relative;min-height:0;display:grid;place-items:center;padding:6px}
-canvas{display:block;max-width:100%;max-height:100%;touch-action:none;border-radius:14px;box-shadow:0 10px 40px #0008;cursor:none}
-#bubble{position:absolute;top:14px;left:50%;transform:translateX(-50%);background:var(--cream);color:var(--ink);border-radius:14px;padding:8px 16px;font-weight:700;font-size:clamp(14px,2.2vw,19px);box-shadow:0 4px 0 #0b1f20;max-width:min(92%,640px);text-align:center;pointer-events:none}
-#bubble small{display:block;font-weight:500;font-size:13px;color:#4b5b58}
-#tip{position:absolute;left:12px;bottom:12px;max-width:min(420px,92%);background:#fffaf0;color:var(--ink);border-radius:14px;padding:10px 14px 10px 62px;box-shadow:0 4px 0 #0b1f20;font-size:14px}
-#tip::before{content:"Sr. Assis";position:absolute;left:10px;top:10px;width:42px;height:42px;border-radius:50%;background:var(--teal);color:#fff;font:700 9px system-ui;display:grid;place-items:center;text-align:center}
-#tip button{margin-top:6px;padding:3px 10px;font-size:13px}
-.overlay{position:absolute;inset:0;display:grid;place-items:center;background:#0009;padding:16px}
-.card{background:var(--cream);color:var(--ink);border-radius:18px;padding:18px 22px;max-width:420px;width:100%;text-align:center;box-shadow:0 6px 0 #0b1f20}
-.card h2{margin:4px 0 6px}.card img{height:170px;image-rendering:auto}.card img.variant{filter:hue-rotate(160deg) saturate(1.5) drop-shadow(0 0 14px gold)}
-.stars{font-size:28px;color:#d49a16;letter-spacing:2px}
-.card ul{list-style:none;padding:0;margin:10px 0;text-align:left;font-size:14px}.card li{display:flex;justify-content:space-between;border-bottom:1px solid #e3d3b0;padding:4px 0}
-.card .row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}
-[hidden]{display:none!important}
-@media (max-width:640px){h1{display:none}.steps span:not(.now){display:none}header{gap:6px}label.toggle{font-size:12px}}
-#rotate{position:absolute;bottom:12px;right:12px;background:var(--gold);color:var(--ink);border-radius:12px;padding:8px 12px;font-weight:700;font-size:13px;display:none;box-shadow:0 3px 0 #0b1f20}
-@media (orientation:portrait) and (max-width:700px){#rotate{display:block}}
-</style></head><body>
-<header><h1>Oficina das Almas · protótipo v3</h1><div class="steps" id="steps"></div><div class="mats" id="mats"></div>
- <select id="kind" aria-label="Classe da pipa"><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="raro">Raro</option></select>
- <label class="toggle" title="Esconde as guias e soma bônus de nota"><input type="checkbox" id="artesao"> Modo artesão</label><button id="restart">Recomeçar</button></header>
-<main id="main"><canvas id="board" width="960" height="640" tabindex="0" aria-label="Mesa da oficina"></canvas>
- <div id="bubble" role="status"></div>
- <div id="rotate">↻ Vire o celular para a mesa ficar maior</div>
- <div id="tip" hidden><span id="tipText"></span><br><button id="tipOk">Entendi</button></div>
- <div id="blocked" class="overlay" hidden><div class="card"><h2 id="blockedTitle">Acabou a linha</h2><p>Sem material a montagem fica parada. No jogo, você traria mais da exploração. A rabiola continua guardada.</p><div class="row"><button class="primary" id="restock">Buscar materiais (simulação)</button></div></div></div>
- <div id="result" class="overlay" hidden><div class="card"><div id="resultArt"></div><h2 id="resultTitle"></h2><div class="stars" id="resultStars"></div><p id="resultMsg"></p><ul id="resultList"></ul><div class="row"><button class="primary" id="again">Montar de novo</button></div></div></div>
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#173e3d"><title>Oficina das Almas · Soulmonsters</title><link rel="icon" href="data:,"><link rel="stylesheet" href="hud.css"><link rel="stylesheet" href="style.css"></head>
+<body>
+<header class="workshop-header">
+ <div class="header-main"><div class="brand"><span id="brandMark" aria-hidden="true"></span><div><span class="eyebrow">SOULMONSTERS · ELO DAS RUÍNAS</span><h1>Oficina das Almas</h1></div></div>
+ <div class="mats" id="mats" aria-label="Materiais disponíveis"></div>
+ <div class="setup"><label class="class-picker"><span>GABARITO</span><select id="kind" aria-label="Classe da pipa"><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="raro">Raro</option></select></label><label class="toggle" title="Esconde as guias e soma bônus de nota"><input type="checkbox" id="artesao"><span>Modo artesão<small>sem guias</small></span></label><button hidden id="liveExit" class="painted compact" data-painted="compact"><span class="button-content">Sair da bancada</span></button><button id="restart" class="painted compact" data-painted="compact"><span class="button-content"><span id="restartIcon" aria-hidden="true"></span>Recomeçar</span></button></div></div>
+ <nav class="steps" id="steps" aria-label="Etapas da montagem"></nav>
+</header>
+<main id="main"><div id="bench"><canvas id="board" width="960" height="640" tabindex="0" aria-label="Mesa da oficina: arraste varetas, segure e solte os nós, recorte o papel e equilibre o voo"></canvas><div id="bubble" role="status" aria-live="polite"></div><span id="gestureLabel" class="tool-label"></span></div>
+ <aside id="tip" hidden aria-label="Dica do Sr. Assis"><div class="mentor-portrait"><img src="assis.png" alt="Sr. Assis" width="322" height="383"></div><div class="mentor-copy"><div class="mentor-name">Sr. Assis <span>ARTESÃO DE ELOS</span></div><p id="tipText"></p><button id="tipOk" class="painted compact" data-painted="compact"><span class="button-content">Entendi</span></button></div></aside>
+ <div id="blocked" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="blockedTitle"><div class="card"><span class="eyebrow">UM POUCO MAIS DE CUIDADO</span><h2 id="blockedTitle">Acabou a linha</h2><p>Sem material a montagem fica parada. No jogo, você traria mais da exploração. A rabiola continua guardada.</p><div class="row"><button class="primary painted" data-painted="normal" id="restock"><span class="button-content">Buscar materiais (simulação)</span></button></div></div></div>
+ <div id="result" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="resultTitle"><div class="card result-card"><span class="eyebrow">DA SUA MÃO, UM NOVO ELO</span><div id="resultArt"></div><h2 id="resultTitle"></h2><div class="stars" id="resultStars" aria-label="Qualidade da montagem"></div><p id="resultMsg"></p><ul id="resultList"></ul><div class="row"><button class="primary painted" data-painted="normal" id="again"><span class="button-content">Montar de novo</span></button></div></div></div>
 </main>
+<footer class="workshop-footer"><span id="legend">Arraste para encaixar</span><button hidden id="liveSave" type="button">Salvar novamente</button><span id="saveStatus" role="status" class="practice-label">Bancada de prática · materiais simulados</span><span id="rotate">↻ Na horizontal, você tem mais espaço para criar</span></footer>
 <script type="module" src="game.mjs"></script></body></html>

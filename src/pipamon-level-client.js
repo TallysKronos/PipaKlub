@@ -11,11 +11,12 @@ function drawPipamonGlow(context,level,time,x,y,radius=48,light=false,reduced=fa
  }
  context.restore();
 }
-function pipamonProgress(kite){const p=eng.pipamons.progress(kite?.pipamon_xp);return {...p,stats:eng.pipamons.stats(p.level,kite?.pipamon_class,kite?.class_rank)};}
+function pipamonProgress(kite){const p=eng.pipamons.progress(kite?.pipamon_xp);return {...p,stats:eng.pipamons.stats(p.level,kite?.pipamon_class,kite?.class_rank,kite?.craft_bonus)};}
 function renderPipamonProgress(kite){
  const root=$('inventoryProgress');if(!root)return;
  const p=pipamonProgress(kite),tier=p.tier;root.replaceChildren();root.dataset.tier=tier?.id||'none';
  const heading=uiElement('div',undefined,'pipamon-progress-heading');heading.append(uiElement('h4','Nível '+p.level+' / 50'),uiElement('span',tier?'✦ '+tier.name:'Em formação','pipamon-tier'));root.append(heading);if(kite.pipamon_class){const c=eng.classes[kite.pipamon_class];root.append(uiElement('p',c?(kite.class_rank===3?c.final:kite.class_rank===2?c.advanced:c.name):kite.pipamon_class,'class-badge'));}
+ if(kite?.craft_bonus)root.append(uiElement('p','Oficina: +'+kite.craft_bonus+'% de atributos','class-badge'));if(kite?.soul_variant)root.append(uiElement('p','✦ Variante rara','class-badge'));
  const meter=uiElement('div',undefined,'pipamon-xp-track');meter.setAttribute('role','progressbar');meter.setAttribute('aria-label','XP deste Pipamon');meter.setAttribute('aria-valuemin','0');meter.setAttribute('aria-valuemax','100');meter.setAttribute('aria-valuenow',String(Math.floor(p.percent)));meter.setAttribute('aria-valuetext',p.next===null?'Nível máximo':p.into+' de '+p.needed+' XP para o próximo nível');
  const fill=uiElement('span');fill.style.width=p.percent+'%';meter.append(fill);root.append(meter,uiElement('p',p.next===null?'Nível máximo · Aura desbloqueada':p.into+' / '+p.needed+' XP · faltam '+(p.next-p.xp)+' para o nível '+(p.level+1),'pipamon-xp-caption'));
  const stats=uiElement('dl',undefined,'pipamon-stats'),s=p.stats;

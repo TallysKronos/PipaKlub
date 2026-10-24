@@ -16,7 +16,7 @@ function stopInventoryPreview(){if(inventoryPreviewFrame)cancelAnimationFrame(in
 function drawInventoryPreview(){
  if(!inventoryPreviewEntry)return;const e=inventoryPreviewEntry,a=art.atlases[e.atlas],seq=a.animations[e.sequence||'idle'],durations=seq.map(k=>a.frames[k].duration||190),total=durations.reduce((n,d)=>n+d,0);
  let time=inventoryPreviewElapsed%total,index=0;while(index<seq.length-1&&time>=durations[index])time-=durations[index++];
- const canvas=$('inventoryCanvas'),ctx=canvas.getContext('2d');if(!ctx)return;ctx.clearRect(0,0,canvas.width,canvas.height);drawPipamonGlow(ctx,pipamonProgress(inventoryPreviewKite).level,inventoryPreviewElapsed,canvas.width/2,canvas.height/2,canvas.width*.32,false,art.reduced);art.draw(ctx,e.atlas,seq[index],40,0,canvas.width-80,canvas.height);
+ const canvas=$('inventoryCanvas'),ctx=canvas.getContext('2d');if(!ctx)return;ctx.clearRect(0,0,canvas.width,canvas.height);drawPipamonGlow(ctx,pipamonProgress(inventoryPreviewKite).level,inventoryPreviewElapsed,canvas.width/2,canvas.height/2,canvas.width*.32,false,art.reduced);ctx.save();if(inventoryPreviewKite?.soul_variant)ctx.filter='hue-rotate(160deg) saturate(1.5)';art.draw(ctx,e.atlas,seq[index],40,0,canvas.width-80,canvas.height);ctx.restore();
 }
 function tickInventoryPreview(t){inventoryPreviewFrame=0;if(!inventoryVisible())return;if(inventoryPreviewLast)inventoryPreviewElapsed+=Math.min(100,t-inventoryPreviewLast);inventoryPreviewLast=t;drawInventoryPreview();inventoryPreviewFrame=requestAnimationFrame(tickInventoryPreview);}
 function resumeInventoryPreview(){stopInventoryPreview();if(inventoryVisible()&&!art.reduced&&inventoryPreviewEntry)inventoryPreviewFrame=requestAnimationFrame(tickInventoryPreview);}
