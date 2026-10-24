@@ -79,17 +79,20 @@ if(process.env.LOCAL_PARK_FIXTURE==='1'){
  await postgres.query("insert into public.player_journeys(owner_id,phase,lesson,starter_model) values($1,'complete',5,'rabbito') on conflict(owner_id) do update set phase='complete',lesson=5,starter_model='rabbito'",[uid]);
  await postgres.query("update public.player_profiles set equipped_kite_id=(select id from public.player_kites where owner_id=$1 and model_id='rabbito' order by created_at limit 1) where id=$1",[uid]);
 }
-const tokens=new Map();
+const tokens=new Map(),guests=new Set();
+const userOf=id=>({id,...(guests.has(id)?{is_anonymous:true}:{})});
 const response=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json'}});
 async function localAuth(url,options={}){
  const path=new URL(url).pathname,body=options.body?JSON.parse(options.body):{},token=options.headers?.Authorization?.replace(/^Bearer /,'');
  if(path==='/auth/v1/token'){
   const username=body.email?.split('@')[0],player=players[username];
-  if(body.refresh_token&&tokens.has(body.refresh_token))return response({access_token:body.refresh_token,refresh_token:body.refresh_token,expires_in:86400,user:{id:tokens.get(body.refresh_token)}});
+  if(body.refresh_token&&tokens.has(body.refresh_token))return response({access_token:body.refresh_token,refresh_token:body.refresh_token,expires_in:86400,user:userOf(tokens.get(body.refresh_token))});
   if(!player||body.email!==username+'@local.test'||body.password!=='TesteLocal123!')return response({error_code:'invalid_credentials'},401);
   const access=randomUUID();tokens.set(access,player.id);return response({access_token:access,refresh_token:access,expires_in:86400,user:{id:player.id}});
  }
- if(path==='/auth/v1/user')return tokens.has(token)?response({id:tokens.get(token)}):response({},401);
+ // Jogar sem conta: emula o login anônimo do Supabase (o gatilho real cria o perfil).
+ if(path==='/auth/v1/signup'&&!body.email){const id=randomUUID(),access=randomUUID();guests.add(id);await postgres.query('insert into auth.users values($1,$2)',[id,body.data||{}]);tokens.set(access,id);return response({access_token:access,refresh_token:access,expires_in:86400,user:userOf(id)});}
+ if(path==='/auth/v1/user'){if(!tokens.has(token))return response({},401);if(options.method==='PUT')return response({...userOf(tokens.get(token)),new_email:body.email});return response(userOf(tokens.get(token)));}
  if(path==='/auth/v1/logout'){tokens.delete(token);return response({});}
  if(path.startsWith('/rest/v1/rpc/')){
   if(!tokens.has(token))return response({},401);

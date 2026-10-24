@@ -263,3 +263,24 @@ test('reading an ended HTTP-only match queues its finalization and waits for cut
   assert.deepEqual(calls,['finished']);assert.deepEqual(rewards.status(match),{found:true,finished:true,pending:false});
  }finally{rewards.stop();db.close();}
 });
+
+test('jogar sem conta: cria jogador anônimo, salva com e-mail e bloqueia trocas',async()=>{
+ const env={SUPABASE_URL:'https://project.supabase.co',SUPABASE_PUBLISHABLE_KEY:'public-key'},calls=[];let disabled=false;
+ const session={access_token:'guest-access',refresh_token:'guest-refresh',expires_in:3600,user:{id:userA,is_anonymous:true}};
+ const fetcher=async(url,options)=>{calls.push({url,options});
+  if(url.endsWith('/auth/v1/signup'))return disabled?new Response(JSON.stringify({code:422,error_code:'anonymous_provider_disabled',msg:'Anonymous sign-ins are disabled'}),{status:422}):new Response(JSON.stringify(session));
+  if(url.endsWith('/auth/v1/user'))return new Response(JSON.stringify(options.method==='PUT'?{...session.user,new_email:JSON.parse(options.body).email}:session.user));
+  return new Response(JSON.stringify({profile:{id:userA,nickname:'Visitante 1234',xp:0,cuts:0,level:1},inventory:[]}));};
+ const accounts=createAccounts(env,{fetcher,gameDatabase:{async rpc(){return {};}}}),post=(action,body,cookie)=>accounts.handle(new Request('https://game.test/account/'+action,{method:'POST',headers:{'Content-Type':'application/json',Origin:'https://game.test',...(cookie?{cookie}:{})},body:JSON.stringify(body)}));
+ const guest=await post('guest',{});assert.equal(guest.status,200);const g=await guest.json();assert.equal(g.account.guest,true);assert.match(g.account.profile.nickname,/^Visitante/);
+ assert.ok(guest.headers.getSetCookie().every(c=>c.includes('HttpOnly')));const signup=calls.find(c=>c.url.endsWith('/auth/v1/signup'));assert.equal(JSON.parse(signup.options.body).email,undefined);assert.equal(JSON.parse(signup.options.body).data.guest,true);
+ const cookie='__Host-pipa_access=guest-access';
+ const session2=await accounts.handle(new Request('https://game.test/account/session',{headers:{cookie}}));assert.equal((await session2.json()).account.guest,true);
+ const save=await post('guest-save',{email:'novo@example.com'},cookie);assert.equal(save.status,200);assert.match((await save.json()).message,/novo@example\.com/);
+ const put=calls.find(c=>c.options?.method==='PUT');assert.deepEqual(JSON.parse(put.options.body),{email:'novo@example.com'});assert.equal(put.options.headers.Authorization,'Bearer guest-access');
+ assert.equal((await post('guest-save',{email:'x'},cookie)).status,400);
+ const trade=await post('trade',{action:'open'},cookie);assert.equal(trade.status,403);assert.match((await trade.json()).error,/Trocas exigem/);
+ disabled=true;const off=await accounts.handle(new Request('https://game.test/account/guest',{method:'POST',headers:{'Content-Type':'application/json',Origin:'https://game.test','x-forwarded-for':'10.0.0.9'},body:'{}'}));assert.equal(off.status,503);assert.match((await off.json()).error,/CONTA-VISITANTE/);
+ for(let i=0;i<4;i++)await accounts.handle(new Request('https://game.test/account/guest',{method:'POST',headers:{'Content-Type':'application/json','x-forwarded-for':'10.0.0.7'},body:'{}'}));
+ assert.equal((await accounts.handle(new Request('https://game.test/account/guest',{method:'POST',headers:{'Content-Type':'application/json','x-forwarded-for':'10.0.0.7'},body:'{}'}))).status,429);
+});

@@ -10,7 +10,7 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
  const url=(env.SUPABASE_URL||'').replace(/\/$/,''),key=env.SUPABASE_PUBLISHABLE_KEY||env.SUPABASE_ANON_KEY||'';
  const enabled=!!(url&&key&&gameDatabase),sessions=new Map(),limits=new Map();
  const json=(data,status=200,cookies=[])=>{const headers=new Headers({'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});for(const c of cookies)headers.append('Set-Cookie',c);return new Response(JSON.stringify(data),{status,headers});};
- async function remote(path,{method='GET',body,token}={}){
+ async function remote(path,{method='GET',body,token,op}={}){
   if(!enabled)throw new AccountError('Contas ainda não estão conectadas. Você pode jogar como visitante.',503);
   const headers={apikey:key,'Content-Type':'application/json'};
   if(token)headers.Authorization='Bearer '+token;
@@ -18,14 +18,16 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
   const text=await r.text();let data;try{data=text?JSON.parse(text):null;}catch{data=null;}
   if(!r.ok){
    const message=data?.message||data?.msg||data?.error_description||'';
-   const operation=path.startsWith('/rest/')?'profile':path.includes('grant_type=password')?'login':path.includes('grant_type=refresh_token')?'refresh':path.startsWith('/auth/v1/recover')?'recover':path.startsWith('/auth/v1/user')?(method==='PUT'?'reset':'session'):'auth';
-   const rawCode=data?.error_code||data?.code||'',providerCode=/^(?:PGRST\d{3}|42501|42883|invalid_credentials|email_not_confirmed|bad_jwt|session_not_found|refresh_token_not_found|refresh_token_already_used|over_email_send_rate_limit|email_address_not_authorized)$/.test(rawCode)?rawCode:'unclassified';
+   const operation=op||(path.startsWith('/rest/')?'profile':path.includes('grant_type=password')?'login':path.includes('grant_type=refresh_token')?'refresh':path.startsWith('/auth/v1/recover')?'recover':path.startsWith('/auth/v1/user')?(method==='PUT'?'reset':'session'):'auth');
+   const rawCode=data?.error_code||data?.code||'',providerCode=/^(?:PGRST\d{3}|42501|42883|invalid_credentials|email_not_confirmed|anonymous_provider_disabled|email_exists|bad_jwt|session_not_found|refresh_token_not_found|refresh_token_already_used|over_email_send_rate_limit|email_address_not_authorized)$/.test(rawCode)?rawCode:'unclassified';
    const keyRejected=/invalid api key|no api key|invalid apikey|api key.*(?:invalid|missing)/i.test(message);
    // Diagnostics contain only a fixed operation, status and allowlisted code. Never log provider bodies, credentials, tokens or identities.
    diagnostics({operation,status:r.status,code:providerCode,keyRejected});
    if(keyRejected)throw new AccountError('A conexão do jogo com o serviço de contas precisa ser corrigida. Código CONTA-CONEXAO.',503);
    if(operation==='profile'&&(r.status===401||r.status===403))throw new AccountError('O serviço de perfil recusou o acesso à sua conta. Código CONTA-PERFIL. Não é necessário trocar sua senha novamente.',503);
    if(data?.error_code==='invalid_credentials')throw new AccountError('E-mail ou senha inválidos.',401);
+   if(data?.error_code==='anonymous_provider_disabled'||operation==='guest'&&r.status===422)throw new AccountError('O modo sem conta ainda não foi ativado no servidor. Código CONTA-VISITANTE.',503);
+   if(data?.error_code==='email_exists'||operation==='guest-save'&&/already|registered|exists/i.test(message))throw new AccountError('Este e-mail já tem uma conta. Entre com ele; o progresso de visitante continua separado neste aparelho.',409);
    if(r.status===401){if(operation==='login')throw new AccountError('O serviço de autenticação recusou a conexão do jogo. Código CONTA-AUTH.',503);throw new AccountError(operation==='reset'?'O link de recuperação é inválido ou expirou. Solicite um novo link.':'Sua sessão expirou. Entre novamente.',401);}
    if(r.status===429)throw new AccountError('Muitas tentativas. Aguarde um pouco e tente novamente.',429);
    if(data?.error_code==='email_not_confirmed')throw new AccountError('Confirme seu e-mail antes de entrar.',403);
@@ -58,10 +60,10 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
   if(access){try{user=await remote('/auth/v1/user',{token:access});}catch(e){if(e.status!==401)throw e;}}
   if(!user&&refresh&&renewal){try{const s=await remote('/auth/v1/token?grant_type=refresh_token',{method:'POST',body:{refresh_token:renewal}});access=s.access_token;user=s.user;setCookies=makeCookies(request,s);}catch(e){if(e.status===401)return null;throw e;}}
   if(!user?.id||!UUID.test(user.id))return null;
-  if(sessions.size>1000)sessions.clear();const result={id:user.id,access,until:Date.now()+30000};sessions.set(access,result);return {...result,setCookies};
+  if(sessions.size>1000)sessions.clear();const result={id:user.id,access,anonymous:user.is_anonymous===true,until:Date.now()+30000};sessions.set(access,result);return {...result,setCookies};
  }
  async function accountFor(who){
-  let data=await rpc('get_player_account',{},who.access);
+  let data=await rpc('get_player_account',{},who.access);if(who.anonymous)data={...data,guest:true};
   // A restart of the free game server must not leave equipment locked for six minutes.
   if(db&&data.profile?.active_match){
    const row=db.prepare('SELECT state FROM pipa_rooms WHERE state LIKE ?').get('%'+data.profile.active_match+'%');
@@ -116,6 +118,13 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
      // The password change already happened; do not report it as a failed change or encourage another reset.
      return json({ok:true,passwordUpdated:true,account:null,loginEmail:updated.email,message:'Senha atualizada, mas não foi possível concluir a entrada automática. Código CONTA-POS-RECUPERACAO. '+(e instanceof AccountError?e.message:'Tente entrar novamente.')},200,makeCookies(request,null));
     }
+   }
+   // Jogar sem conta: usuário anônimo do Supabase. O gatilho de cadastro cria o perfil e a coleção como para qualquer jogador.
+   if(action==='guest'){
+    rateLimit(request,'guest',4);
+    const s=await remote('/auth/v1/signup',{method:'POST',op:'guest',body:{data:{nickname:'Visitante '+(1000+Math.floor(Math.random()*9000)),guest:true}}});
+    if(!s?.access_token||!s.user?.id)throw new AccountError('O modo sem conta ainda não foi ativado no servidor. Código CONTA-VISITANTE.',503);
+    return json({account:await accountFor({id:s.user.id,access:s.access_token,anonymous:true})},200,makeCookies(request,s));
    }
    if(action==='login'||action==='signup'){
     rateLimit(request,action);
@@ -201,7 +210,14 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
    if(action==='summon'){
     return json({error:'O ritual de constelação foi substituído pela Oficina das Almas. Recarregue o jogo para construir seu parceiro.'},410,who.setCookies);
    }
+   if(action==='guest-save'){
+    if(!who.anonymous)throw new AccountError('Esta conta já tem e-mail.',409);rateLimit(request,'guest-save',5);
+    const email=String(b.email||'').trim();if(email.length>254||!/^\S+@\S+\.\S+$/.test(email))throw new AccountError('Informe um e-mail válido.');
+    await remote('/auth/v1/user',{method:'PUT',op:'guest-save',token:who.access,body:{email}});
+    return json({ok:true,message:'Enviamos um link para '+email+'. Confirme o e-mail e depois use "Esqueci minha senha" para criar sua senha. Seu progresso continua nesta conta.'},200,who.setCookies);
+   }
    if(action==='trade'){
+    if(who.anonymous)throw new AccountError('Trocas exigem uma conta com e-mail. Salve seu progresso em Minha conta para trocar.',403);
     if(!['create','join','read','offer','confirm','cancel','history'].includes(b.action))throw new AccountError('Ação de troca inválida.');
     if(b.code!=null&&!/^[A-Z0-9]{12}$/i.test(String(b.code)))throw new AccountError('Código de convite inválido.');
     if(b.kiteId!=null&&!UUID.test(String(b.kiteId)))throw new AccountError('Pipa inválida.');

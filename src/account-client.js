@@ -28,15 +28,16 @@ async function accountRequest(action,body){
  try{const r=await fetch('/account/'+action,{method:body===undefined?'GET':'POST',headers:body===undefined?{}:{'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body),signal:controller.signal});const d=await r.json();if(!r.ok)throw Object.assign(Error(d.error||'Não foi possível acessar sua conta.'),{status:r.status});return d;}finally{clearTimeout(timeout);}
 }
 function reflectAccount(){
- $('accountButton').textContent=playerAccount?'Minha conta':'Entrar';
+ const guest=!!playerAccount?.guest;$('accountButton').textContent=guest?'Visitante':playerAccount?'Minha conta':'Entrar';
+ $('ruinsGuest').hidden=!!playerAccount||accountConnection==='static'||accountConnection==='disabled';$('guestSave').hidden=!guest;
  for(const el of document.querySelectorAll('[data-members-only]'))el.hidden=!playerAccount;
  $('lobby').classList.toggle('guest-menu',!playerAccount);
  $('dailyButton').textContent='✦ Céu do dia';
  $('trailsButton').textContent=playerAccount?'⚔ Trilhas':'🔒 Trilhas';$('dexButton').textContent=playerAccount?'Pipa Dex':'🔒 Pipa Dex';document.querySelector('.coin-chip').hidden=!playerAccount;
  $('matchFormat').disabled=!playerAccount;$('roomRules').disabled=!playerAccount;
  if(!playerAccount){$('matchFormat').value='rounds';$('roomRules').value='casual';}
- $('profileSummary').textContent=playerAccount?playerAccount.profile.nickname+' · Nível '+playerAccount.profile.level:'Jogue como visitante';
- $('accountHint').textContent=playerAccount?'Seu progresso e suas pipas ficam na sua conta.':'Entre para guardar pipas e ganhar XP nas disputas.';
+ $('profileSummary').textContent=playerAccount?playerAccount.profile.nickname+(guest?' · sem conta':' · Nível '+playerAccount.profile.level):'Jogue como visitante';
+ $('accountHint').textContent=guest?'Jogando sem conta: o progresso fica neste aparelho. Salve com um e-mail em Visitante.':playerAccount?'Seu progresso e suas pipas ficam na sua conta.':'Entre para guardar pipas e ganhar XP nas disputas.';
  $('roomRules').querySelector('[value="capture"]').disabled=!playerAccount;
  if(!playerAccount&&$('roomRules').value==='capture')$('roomRules').value='casual';
  if(playerAccount){const p=playerAccount.profile,k=playerAccount.inventory.find(k=>k.id===p.equipped_kite_id);$('name').value=p.nickname;$('name').readOnly=true;if(k){selected=k.model.color;choices();const chosen=$('kites').querySelector('[data-color="'+selected+'"]');if(chosen){chosen.innerHTML=art.markup(selected,k.model.soul);chosen.setAttribute('aria-label',(k.personal_name||k.model.name)+' · equipada');}$('selectionName').textContent=(k.personal_name||k.model.name)+' · '+eng.type({color:k.model.color}).name+' · equipada';}}
@@ -54,7 +55,8 @@ function renderAccountDialog(){
  passwordRecovery.hidden=!accountRecoveryMode;forgotPassword.hidden=!!playerAccount||accountTab!=='login';
  if(accountRecoveryMode){const resetting=accountRecoveryMode==='reset';$('accountAuth').hidden=true;$('accountCollection').hidden=true;$('accountTitle').textContent=resetting?'Escolha sua nova senha':'Recupere sua conta';$('recoveryHelp').textContent=resetting?'Escolha uma senha exclusiva para jogar. Nunca envie sua senha pelo chat.':'Enviaremos um link ao e-mail da sua conta. Se o link expirar, você pode solicitar outro.';for(const id of ['recoveryEmail','recoveryEmailLabel'])$(id).hidden=resetting;$('recoveryEmail').required=!resetting;for(const id of ['recoveryPassword','recoveryPasswordLabel','recoveryConfirm','recoveryConfirmLabel'])$(id).hidden=!resetting;$('recoveryPassword').required=$('recoveryConfirm').required=resetting;$('recoverySubmit').textContent=resetting?'Salvar nova senha':'Enviar link de recuperação';return;}
  const logged=!!playerAccount;$('accountAuth').hidden=logged;$('accountCollection').hidden=!logged;
- $('accountTitle').textContent=logged?'Sua coleção, sua história.':accountTab==='signup'?'Seu lugar no céu.':'De volta ao céu.';
+ $('guestEntry').hidden=logged||!accountsEnabled;
+ $('accountTitle').textContent=logged?(playerAccount.guest?'Jogando sem conta.':'Sua coleção, sua história.'):accountTab==='signup'?'Seu lugar no céu.':'De volta ao céu.';
  $('signupFields').hidden=accountTab!=='signup';$('accountPassword').autocomplete=accountTab==='signup'?'new-password':'current-password';
  $('submitAccount').textContent=accountTab==='signup'?'Criar minha conta':'Entrar';$('switchAccount').textContent=accountTab==='signup'?'Já tenho uma conta':'Ainda não tenho conta';
  $('submitAccount').disabled=!accountsEnabled||accountSaving;
@@ -94,7 +96,18 @@ $('accountForm').onsubmit=async e=>{
  finally{accountSaving=false;renderAccountDialog();}
 };
 $('nicknameForm').onsubmit=async e=>{e.preventDefault();try{const d=await accountRequest('profile',{nickname:$('accountNickname').value});playerAccount=d.account;reflectAccount();$('accountMessage').textContent='Apelido atualizado.';}catch(e){$('accountMessage').textContent=e.message;}};
-$('logoutAccount').onclick=async()=>{if(mode)return;try{await accountRequest('logout',{});playerAccount=null;reflectAccount();$('accountMessage').textContent='Você saiu da conta.';}catch(e){$('accountMessage').textContent=e.message;}};
+$('logoutAccount').onclick=async()=>{if(mode)return;if(playerAccount?.guest&&!confirm('Sair do modo visitante apaga o acesso a este progresso neste aparelho. Salve com um e-mail antes se quiser continuar depois. Sair mesmo assim?'))return;try{await accountRequest('logout',{});playerAccount=null;reflectAccount();$('accountMessage').textContent='Você saiu da conta.';}catch(e){$('accountMessage').textContent=e.message;}};
+// Jogar sem conta: o servidor cria um jogador anônimo; o restante do jogo funciona igual.
+async function startGuest(){
+ if(accountSaving)return;if(!accountsEnabled&&!(await initializeAccounts())){toast('O jogo ainda não conectou ao servidor. Tente de novo em instantes.');return;}
+ accountSaving=true;$('ruinsGuest').disabled=true;$('guestAccount').disabled=true;$('accountMessage').textContent='Preparando sua aventura…';
+ try{const d=await accountRequest('guest',{});playerAccount=d.account;reflectAccount();if(accountModal.style.display==='flex')closeAccount();toast('Você está jogando sem conta. Salve seu progresso com um e-mail quando quiser.');}
+ catch(e){$('accountMessage').textContent=e.message;toast(e.message);}
+ finally{accountSaving=false;$('ruinsGuest').disabled=false;$('guestAccount').disabled=false;if(accountModal.style.display==='flex')renderAccountDialog();}
+}
+$('ruinsGuest').onclick=startGuest;$('guestAccount').onclick=startGuest;
+$('guestSaveForm').onsubmit=async e=>{e.preventDefault();if(accountSaving)return;accountSaving=true;$('accountMessage').textContent='Enviando o link…';
+ try{const d=await accountRequest('guest-save',{email:$('guestEmail').value});$('accountMessage').textContent=d.message;}catch(err){$('accountMessage').textContent=err.message;}finally{accountSaving=false;}};
 $('roomRules').onchange=()=>$('rulesDescription').textContent=$('roomRules').value==='capture'?'Vale pipa: ao ser cortado, você perde a pipa equipada para o adversário.':'Casual: suas pipas ficam protegidas. Cortes entre contas rendem XP.';
 addEventListener('keydown',e=>{
  if(accountModal.style.display!=='flex')return;
