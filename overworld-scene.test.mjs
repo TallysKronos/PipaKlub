@@ -33,3 +33,13 @@ test('o conversor recusa o que o jogo ainda não desenha',()=>{
  const side=pilot();side.layers.find(l=>l.name==='altura').data[8*36+13]=22;
  assert.throws(()=>overworldScene(side,sets,{id:'x'}),/rampa u- /);
 });
+test('o chão de baixo é pintado antes do barranco, e o topo depois',async()=>{
+ const {createVeredasRegionRenderer}=await import('./src/veredas-region-renderer.js'),{toIso}=await import('./src/world-isometric.js');
+ const scene=overworldScene(pilot(),sets,{id:'veredas-piloto'}),fills=[];let start=null;
+ const ctx=new Proxy({},{get:(o,k)=>k==='moveTo'?(x,y)=>{start=[Math.round(x),Math.round(y)];}:k==='fill'?()=>fills.push({style:o.fillStyle,start}):k in o?o[k]:()=>{},set:(o,k,v)=>(o[k]=v,true)});
+ createVeredasRegionRenderer(scene,{},{rigs:{}},{},()=>({width:1,height:1,getContext:()=>ctx}));
+ const key=(r,h)=>{const q=toIso({x:r.x,y:r.y});return [Math.round(q.x),Math.round(q.y-h)].join();},grass=scene.tiled.layers.Walkable.filter(r=>r.properties.ground_frame==='grass');
+ const at=(style,keys)=>fills.map((f,i)=>f.style===style&&(!keys||keys.has(String(f.start)))?i:-1).filter(i=>i>=0);
+ const low=at('#a9c574',new Set(grass.filter(r=>!r.properties.elevation).map(r=>key(r,0)))),high=at('#a9c574',new Set(grass.filter(r=>r.properties.elevation).map(r=>key(r,96)))),cliff=at('#a57b4c');
+ assert.ok(low.length&&high.length&&cliff.length);assert.ok(Math.max(...low)<Math.min(...cliff),'chão de baixo cobre o barranco');assert.ok(Math.max(...cliff)<Math.min(...high));
+});
