@@ -1,0 +1,59 @@
+{
+  "id": "capimansa",
+  "name": "Capimansa",
+  "group": "Almas dos Biomas",
+  "status": "pendente-conversao",
+  "title": "Companheira das Águas Calmas",
+  "habitat": "Almas dos Biomas · correntes do mundo almático",
+  "reference": "assets/creatures/colecoes/capimansa.png",
+  "atlasId": "capimansa",
+  "frame": {
+    "frame": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "sourceSize": {
+      "w": 314,
+      "h": 314
+    },
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "contentBounds": {
+      "x": 63,
+      "y": 103,
+      "w": 202,
+      "h": 149
+    },
+    "duration": 220,
+    "state": "idle"
+  },
+  "viewport": {
+    "x": 48,
+    "y": 39,
+    "w": 224,
+    "h": 215
+  },
+  "source": null,
+  "runtimeSource": null,
+  "rig": null,
+  "integratedSoulgen": false,
+  "remaining": [
+    "Revisar conceito no padrão Carcará",
+    "Produzir peças e expressões registradas",
+    "Montar pivôs e hierarquia no Soulgen",
+    "Criar/revisar as cinco ações",
+    "Validar e exportar antes de integrar ao jogo"
+  ]
+}

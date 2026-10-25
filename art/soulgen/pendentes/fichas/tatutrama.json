@@ -1,0 +1,59 @@
+{
+  "id": "tatutrama",
+  "name": "Tatutrama",
+  "group": "Almas dos Biomas",
+  "status": "pendente-conversao",
+  "title": "Guardião das Dobras Antigas",
+  "habitat": "Almas dos Biomas · correntes do mundo almático",
+  "reference": "assets/creatures/colecoes/tatutrama.png",
+  "atlasId": "tatutrama",
+  "frame": {
+    "frame": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "sourceSize": {
+      "w": 314,
+      "h": 314
+    },
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "contentBounds": {
+      "x": 74,
+      "y": 129,
+      "w": 197,
+      "h": 129
+    },
+    "duration": 220,
+    "state": "idle"
+  },
+  "viewport": {
+    "x": 53,
+    "y": 45,
+    "w": 232,
+    "h": 220
+  },
+  "source": null,
+  "runtimeSource": null,
+  "rig": null,
+  "integratedSoulgen": false,
+  "remaining": [
+    "Revisar conceito no padrão Carcará",
+    "Produzir peças e expressões registradas",
+    "Montar pivôs e hierarquia no Soulgen",
+    "Criar/revisar as cinco ações",
+    "Validar e exportar antes de integrar ao jogo"
+  ]
+}

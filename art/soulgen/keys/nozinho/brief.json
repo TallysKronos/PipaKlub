@@ -1,0 +1,11 @@
+{
+  "id":"nozinho", "name":"Nozinho", "artRevision":2,
+  "status":"em producao; revisao visual do autor pendente",
+  "identity":"Criatura de nos de linha de pipa, rosto turquesa, dois lacos superiores, dois bracos de corda com punhos de no e duas pernas desfiadas.",
+  "view":"Tres quartos voltado para a direita; preservar assimetria entre face proxima e distante, sem converter para frontal.",
+  "styleReference":"art/soulgen/keys/carcara/color-rig/body-reference.png",
+  "identityReference":"assets/creatures/nozinho/sprites.png",
+  "parts":["body","armFar","armNear","legFar","legNear"],
+  "actions":["idle","flight","skill","hurt","victory"],
+  "constraints":["Olhos pequenos e escuros, sem grandes areas brancas ou brilho","Formas e sombras em planos artesanais, sem volume de pelucia ou 3D","Sem asas, cauda extra, bico ou pipa decorativa","Expressoes registradas no mesmo corpo canonico","Arte antiga do jogo preservada nesta etapa; configurar apenas Soulgen"]
+}

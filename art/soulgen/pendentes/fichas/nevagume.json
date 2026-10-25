@@ -1,0 +1,59 @@
+{
+  "id": "nevagume",
+  "name": "Nevagume",
+  "group": "Guardiões dos Quatro Ventos",
+  "status": "pendente-conversao",
+  "title": "A costura da coragem",
+  "habitat": "Guardiões dos Quatro Ventos · correntes do mundo almático",
+  "reference": "assets/creatures/colecoes/nevagume.png",
+  "atlasId": "nevagume",
+  "frame": {
+    "frame": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "sourceSize": {
+      "w": 314,
+      "h": 314
+    },
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "contentBounds": {
+      "x": 72,
+      "y": 98,
+      "w": 183,
+      "h": 168
+    },
+    "duration": 220,
+    "state": "idle"
+  },
+  "viewport": {
+    "x": 60,
+    "y": 67,
+    "w": 234,
+    "h": 205
+  },
+  "source": null,
+  "runtimeSource": null,
+  "rig": null,
+  "integratedSoulgen": false,
+  "remaining": [
+    "Revisar conceito no padrão Carcará",
+    "Produzir peças e expressões registradas",
+    "Montar pivôs e hierarquia no Soulgen",
+    "Criar/revisar as cinco ações",
+    "Validar e exportar antes de integrar ao jogo"
+  ]
+}

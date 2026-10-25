@@ -1,5 +1,9 @@
 # Soulgen Studio — ateliê de animação
 
+## Nozinho artesanal em três quartos
+
+Abra `/?preset=nozinho` ou **Projeto e biblioteca → Abrir Nozinho · três quartos**. Corpo e quatro membros articulados, cinco ações e expressões registradas. O preset tem recuperação própria quando aberto pelo endereço direto. Projeto portátil, imagens e limites em [Nozinho](../../art/soulgen/keys/nozinho/README.md). Configurado para revisão; ainda não substitui o atlas antigo do jogo.
+
 ## Kael: avatar do jogador
 
 **Projeto e biblioteca → Abrir Kael · Avatar modular** abre oito peças ilustradas, seis ações e controles de pele, cabelo e roupa. O painel oferece 64 combinações sem alterar pivôs e animações. Projeto portátil, fontes, contrato e limites de integração em [Kael modular](../../art/soulgen/keys/kael/README.md). A revisão 2 inclui frente, costas e dois perfis no seletor Direção, com atlas de 480 quadros. A persistência de aparência no jogo ainda precisa de integração. Consulte [revisão 2 e auditoria de pixels](../../art/soulgen/keys/kael-v2/README.md).
@@ -79,3 +83,5 @@ Os testes cobrem fidelidade do preset, composição hierárquica, amostragem, hi
 A biblioteca agora abre Mata verde, Azulão, Raio de sol e Rabbito, com cinco ações, expressões registradas e contratos de proporção/encaixe. Compare em `/basics-review.html` ou abra `/?preset=rabbito` (também mata-verde, azulao e raio-de-sol). Fontes, projetos portáteis e método em [lote de papel artesanal v2](../../art/soulgen/keys/basic-color-v2/README.md). A integração autorizada gera atlas de combate/coleção e acompanhamento com `export-starters.mjs`, usando a hierarquia manual salva do Rabbito. Editar no Studio não atualiza o jogo automaticamente: reexporte e gere os builds.
 
 A revisão v2 usa o Carcará como referência de desenho: olhos pequenos/escuros, remendos costurados e papel facetado. Os presets abrem a nova geometria; projetos v1 e fontes anteriores continuam preservados.
+
+Guaravento: `/?preset=guaravento`, oito peças, cinco ações e recuperação isolada. Não altera o atlas do jogo.

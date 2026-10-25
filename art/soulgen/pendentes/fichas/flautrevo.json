@@ -1,0 +1,54 @@
+{
+  "id": "flautrevo",
+  "name": "Flautrevo",
+  "group": "Especiais",
+  "status": "pendente-conversao",
+  "title": "O flautista dos ventos perdidos",
+  "habitat": "Campanários e becos ao anoitecer",
+  "reference": "assets/creatures/especiais/flautrevo.png",
+  "atlasId": "flautrevo",
+  "frame": {
+    "frame": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "sourceSize": {
+      "w": 314,
+      "h": 314
+    },
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "contentBounds": {
+      "x": 52,
+      "y": 72,
+      "w": 222,
+      "h": 219
+    },
+    "duration": 220,
+    "state": "idle"
+  },
+  "viewport": null,
+  "source": null,
+  "runtimeSource": null,
+  "rig": null,
+  "integratedSoulgen": false,
+  "remaining": [
+    "Revisar conceito no padrão Carcará",
+    "Produzir peças e expressões registradas",
+    "Montar pivôs e hierarquia no Soulgen",
+    "Criar/revisar as cinco ações",
+    "Validar e exportar antes de integrar ao jogo"
+  ]
+}

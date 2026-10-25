@@ -1,0 +1,59 @@
+{
+  "id": "rexal",
+  "name": "Rexal",
+  "group": "Ventos Antigos",
+  "status": "pendente-conversao",
+  "title": "Tiranossauro das Rajadas",
+  "habitat": "Ventos Antigos · correntes do mundo almático",
+  "reference": "assets/creatures/colecoes/rexal.png",
+  "atlasId": "rexal",
+  "frame": {
+    "frame": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "sourceSize": {
+      "w": 314,
+      "h": 314
+    },
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "contentBounds": {
+      "x": 64,
+      "y": 106,
+      "w": 183,
+      "h": 169
+    },
+    "duration": 220,
+    "state": "idle"
+  },
+  "viewport": {
+    "x": 40,
+    "y": 66,
+    "w": 245,
+    "h": 211
+  },
+  "source": null,
+  "runtimeSource": null,
+  "rig": null,
+  "integratedSoulgen": false,
+  "remaining": [
+    "Revisar conceito no padrão Carcará",
+    "Produzir peças e expressões registradas",
+    "Montar pivôs e hierarquia no Soulgen",
+    "Criar/revisar as cinco ações",
+    "Validar e exportar antes de integrar ao jogo"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "id": "alvaneve",
+  "name": "Alvaneve",
+  "group": "Especiais",
+  "status": "pendente-conversao",
+  "title": "O inverno que aprendeu a confiar",
+  "habitat": "Céus frios e lagos de vidro",
+  "reference": "assets/creatures/especiais/alvaneve.png",
+  "atlasId": "alvaneve",
+  "frame": {
+    "frame": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "sourceSize": {
+      "w": 314,
+      "h": 314
+    },
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "contentBounds": {
+      "x": 66,
+      "y": 64,
+      "w": 223,
+      "h": 246
+    },
+    "duration": 220,
+    "state": "idle"
+  },
+  "viewport": null,
+  "source": null,
+  "runtimeSource": null,
+  "rig": null,
+  "integratedSoulgen": false,
+  "remaining": [
+    "Revisar conceito no padrão Carcará",
+    "Produzir peças e expressões registradas",
+    "Montar pivôs e hierarquia no Soulgen",
+    "Criar/revisar as cinco ações",
+    "Validar e exportar antes de integrar ao jogo"
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "id": "stegaru",
+  "name": "Stegaru",
+  "group": "Ventos Antigos",
+  "status": "pendente-conversao",
+  "title": "Jardim de Varetas",
+  "habitat": "Ventos Antigos · correntes do mundo almático",
+  "reference": "assets/creatures/colecoes/stegaru.png",
+  "atlasId": "stegaru",
+  "frame": {
+    "frame": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "sourceSize": {
+      "w": 314,
+      "h": 314
+    },
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "contentBounds": {
+      "x": 59,
+      "y": 125,
+      "w": 198,
+      "h": 147
+    },
+    "duration": 220,
+    "state": "idle"
+  },
+  "viewport": {
+    "x": 39,
+    "y": 90,
+    "w": 233,
+    "h": 210
+  },
+  "source": null,
+  "runtimeSource": null,
+  "rig": null,
+  "integratedSoulgen": false,
+  "remaining": [
+    "Revisar conceito no padrão Carcará",
+    "Produzir peças e expressões registradas",
+    "Montar pivôs e hierarquia no Soulgen",
+    "Criar/revisar as cinco ações",
+    "Validar e exportar antes de integrar ao jogo"
+  ]
+}

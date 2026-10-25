@@ -1,0 +1,59 @@
+{
+  "id": "jarabrasa",
+  "name": "Jarabrasa",
+  "group": "Rios e lendas",
+  "status": "pendente-conversao",
+  "title": "Sentinela das brasas da mata",
+  "habitat": "Rios e lendas · correntes do mundo almático",
+  "reference": "assets/creatures/colecoes/jarabrasa.png",
+  "atlasId": "jarabrasa",
+  "frame": {
+    "frame": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "sourceSize": {
+      "w": 314,
+      "h": 314
+    },
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "contentBounds": {
+      "x": 44,
+      "y": 63,
+      "w": 245,
+      "h": 219
+    },
+    "duration": 220,
+    "state": "idle"
+  },
+  "viewport": {
+    "x": 27,
+    "y": 52,
+    "w": 275,
+    "h": 234
+  },
+  "source": null,
+  "runtimeSource": null,
+  "rig": null,
+  "integratedSoulgen": false,
+  "remaining": [
+    "Revisar conceito no padrão Carcará",
+    "Produzir peças e expressões registradas",
+    "Montar pivôs e hierarquia no Soulgen",
+    "Criar/revisar as cinco ações",
+    "Validar e exportar antes de integrar ao jogo"
+  ]
+}

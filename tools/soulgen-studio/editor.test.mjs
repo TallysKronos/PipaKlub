@@ -17,7 +17,7 @@ async function editor(){
  for(const dialog of document.querySelectorAll('dialog')){dialog.showModal=()=>{dialog.open=true;dialog.setAttribute('open','');};dialog.close=()=>{dialog.open=false;dialog.removeAttribute('open');dialog.onclose?.();};}
  const listeners=new Map(),context=vm.createContext({...model,...workflow,blankProject,createCarcara,BASIC_CREATURES,URLSearchParams,createBasic:async id=>({...model.clone(p),name:BASIC_CREATURES[id],creatureId:id}),createEremor:async()=>({...model.clone(p),name:"Eremor · Elo das Ruínas"}),document,console,URL,Blob,FileReader:class{},Image:class{width=4;height=4;naturalWidth=4;naturalHeight=4;async decode(){}},localStorage:{getItem(key){return key==='soulgen-studio-project-v1'?JSON.stringify(p):null;},setItem(){}},requestAnimationFrame(){},setTimeout(){return 1;},clearTimeout(){},addEventListener(name,fn){listeners.set(name,fn);},confirm(){throw Error('Unexpected blocking confirmation');},location:{reload(){}}});
  let source=fs.readFileSync(new URL('./studio.mjs',import.meta.url),'utf8').replace(/^import .*;\r?\n/gm,'');
- const api=await vm.runInContext('(async()=>{'+source+';return {project:()=>project,pose:()=>poseNow(),isDraft:()=>!!draft};})()',context);
+ const api=await vm.runInContext('(async()=>{'+source+';return {project:()=>project,pose:()=>poseNow(),isDraft:()=>!!draft,pick:(at)=>({selected:containsPart(currentPart(),at),opaque:project.parts.filter(p=>opaquePart(p,at)).map(p=>p.id)})};})()',context);
  return {document,api,listeners,$:id=>document.getElementById(id)};
 }
 test('workflow changes expose the right controls and an unrecorded pose blocks leaving without modal or data loss',async()=>{
@@ -62,4 +62,30 @@ test('audit surfaces anatomical warnings and does not show a green approval for 
  e.$('validate').onclick();assert.equal(e.$('auditResult').dataset.state,'warning');
  assert.match(e.$('audit').textContent,/Cabeça \/ tronco/);assert.match(e.$('auditResult').textContent,/aviso/);
  p.parts[1].rect[2]=12;e.$('validate').onclick();assert.equal(e.$('auditResult').dataset.state,'ok');
+});
+
+
+test('selected rear piece remains draggable underneath foreground pieces; transparent pixels do not capture selection',async()=>{
+ const e=await editor(),p=e.api.project();
+ p.parts.push({...model.clone(p.parts[0]),id:'cover',name:'Frente',z:10});
+ const pick=e.api.pick({x:30,y:30});assert.equal(pick.selected,true);assert.deepEqual(Array.from(pick.opaque),[]);
+ e.$('stage').setPointerCapture=()=>{};
+ // The canvas is 640x400; default project is 96x96, scale is 3.5.
+ const scale=Math.min(640/p.width,400/p.height)*.84*Number(e.$('zoom').value);
+ const event=(x,y)=>({clientX:320+(x-p.width/2)*scale,clientY:200+(y-p.height/2)*scale,pointerId:1});
+ e.$('stage').onpointerdown(event(30,30));e.$('stage').onpointermove(event(34,32));e.$('stage').onpointerup();
+ assert.ok(Math.abs(p.parts[0].rect[0]-24)<1e-8);assert.ok(Math.abs(p.parts[0].rect[1]-22)<1e-8);assert.equal(p.parts[1].rect[0],20);
+});
+
+
+test('layer controls cross tied depths instead of getting stuck and preserve anatomy parenting',async()=>{
+ const e=await editor(),p=e.api.project();
+ p.parts.push({...model.clone(p.parts[0]),id:'hindNear',name:'Perna próxima',z:0,parent:'body'}, {...model.clone(p.parts[0]),id:'hindFar',name:'Perna distante',z:0,parent:'body'});
+ e.$('partSearch').oninput();
+ e.$('partList').querySelector('[data-part="hindFar"]').onclick();
+ e.$('layerBack').onclick();e.$('layerBack').onclick();
+ const parts=e.api.project().parts,leg=parts.find(p=>p.id==='hindFar');
+ assert.ok(leg.z<parts.find(p=>p.id==='body').z);assert.equal(leg.parent,'body');assert.equal(new Set(parts.map(p=>p.z)).size,3);
+ e.$('layerFront').onclick();e.$('layerFront').onclick();assert.ok(leg.z>parts.find(p=>p.id==='body').z);
+ await e.$('undo').onclick();assert.ok(e.api.project().parts.find(p=>p.id==='hindFar').z<2);
 });

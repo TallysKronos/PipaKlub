@@ -1,0 +1,59 @@
+{
+  "id": "caimbira-memoria",
+  "name": "Caimbira",
+  "group": "Memórias do Vento",
+  "status": "pendente-conversao",
+  "title": "Vigia das Marés Esquecidas",
+  "habitat": "Memórias do Vento · correntes do mundo almático",
+  "reference": "assets/creatures/colecoes/caimbira-memoria.png",
+  "atlasId": "caimbira-memoria",
+  "frame": {
+    "frame": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "sourceSize": {
+      "w": 314,
+      "h": 314
+    },
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "contentBounds": {
+      "x": 62,
+      "y": 119,
+      "w": 208,
+      "h": 156
+    },
+    "duration": 220,
+    "state": "idle"
+  },
+  "viewport": {
+    "x": 52,
+    "y": 46,
+    "w": 230,
+    "h": 240
+  },
+  "source": null,
+  "runtimeSource": null,
+  "rig": null,
+  "integratedSoulgen": false,
+  "remaining": [
+    "Revisar conceito no padrão Carcará",
+    "Produzir peças e expressões registradas",
+    "Montar pivôs e hierarquia no Soulgen",
+    "Criar/revisar as cinco ações",
+    "Validar e exportar antes de integrar ao jogo"
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "id": "guaravento",
+  "name": "Guaravento",
+  "group": "Almas dos Biomas",
+  "status": "rig-existente",
+  "title": "Vigia das Rajadas",
+  "habitat": "Almas dos Biomas · correntes do mundo almático",
+  "reference": "assets/creatures/colecoes/guaravento.png",
+  "atlasId": "guaravento",
+  "frame": {
+    "frame": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "sourceSize": {
+      "w": 314,
+      "h": 314
+    },
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "contentBounds": {
+      "x": 52,
+      "y": 96,
+      "w": 179,
+      "h": 171
+    },
+    "duration": 220,
+    "state": "idle"
+  },
+  "viewport": {
+    "x": 34,
+    "y": 40,
+    "w": 263,
+    "h": 234
+  },
+  "source": "art/soulgen/keys/guaravento/color-rig-v2/guaravento.soulgen.json",
+  "runtimeSource": null,
+  "rig": {
+    "source": "art/soulgen/keys/guaravento/color-rig-v2/guaravento.soulgen.json",
+    "ok": true,
+    "errors": [],
+    "warnings": [],
+    "parts": 8,
+    "actions": [
+      "idle",
+      "flight",
+      "skill",
+      "hurt",
+      "victory"
+    ],
+    "assets": 11
+  },
+  "integratedSoulgen": false,
+  "remaining": [
+    "Revisar visual e animações no Soulgen",
+    "Exportar e integrar ao atlas do jogo após revisão"
+  ]
+}

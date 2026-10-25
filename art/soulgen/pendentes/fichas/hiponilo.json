@@ -1,0 +1,59 @@
+{
+  "id": "hiponilo",
+  "name": "Hiponilo",
+  "group": "Rios e lendas",
+  "status": "pendente-conversao",
+  "title": "Guardião do rio sagrado",
+  "habitat": "Rios e lendas · correntes do mundo almático",
+  "reference": "assets/creatures/colecoes/hiponilo.png",
+  "atlasId": "hiponilo",
+  "frame": {
+    "frame": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "sourceSize": {
+      "w": 314,
+      "h": 314
+    },
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "contentBounds": {
+      "x": 42,
+      "y": 88,
+      "w": 233,
+      "h": 195
+    },
+    "duration": 220,
+    "state": "idle"
+  },
+  "viewport": {
+    "x": 25,
+    "y": 50,
+    "w": 269,
+    "h": 235
+  },
+  "source": null,
+  "runtimeSource": null,
+  "rig": null,
+  "integratedSoulgen": false,
+  "remaining": [
+    "Revisar conceito no padrão Carcará",
+    "Produzir peças e expressões registradas",
+    "Montar pivôs e hierarquia no Soulgen",
+    "Criar/revisar as cinco ações",
+    "Validar e exportar antes de integrar ao jogo"
+  ]
+}

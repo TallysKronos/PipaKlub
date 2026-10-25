@@ -1,0 +1,59 @@
+{
+  "id": "tricerafan",
+  "name": "Tricerafan",
+  "group": "Ventos Antigos",
+  "status": "pendente-conversao",
+  "title": "Guardião do Leque Celeste",
+  "habitat": "Ventos Antigos · correntes do mundo almático",
+  "reference": "assets/creatures/colecoes/tricerafan.png",
+  "atlasId": "tricerafan",
+  "frame": {
+    "frame": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "sourceSize": {
+      "w": 314,
+      "h": 314
+    },
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "contentBounds": {
+      "x": 66,
+      "y": 105,
+      "w": 168,
+      "h": 154
+    },
+    "duration": 220,
+    "state": "idle"
+  },
+  "viewport": {
+    "x": 60,
+    "y": 84,
+    "w": 200,
+    "h": 178
+  },
+  "source": null,
+  "runtimeSource": null,
+  "rig": null,
+  "integratedSoulgen": false,
+  "remaining": [
+    "Revisar conceito no padrão Carcará",
+    "Produzir peças e expressões registradas",
+    "Montar pivôs e hierarquia no Soulgen",
+    "Criar/revisar as cinco ações",
+    "Validar e exportar antes de integrar ao jogo"
+  ]
+}

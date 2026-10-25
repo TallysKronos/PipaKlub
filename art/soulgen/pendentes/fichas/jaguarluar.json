@@ -1,0 +1,59 @@
+{
+  "id": "jaguarluar",
+  "name": "Jaguarluar",
+  "group": "Rios e lendas",
+  "status": "pendente-conversao",
+  "title": "A sombra da lua cheia",
+  "habitat": "Rios e lendas · correntes do mundo almático",
+  "reference": "assets/creatures/colecoes/jaguarluar.png",
+  "atlasId": "jaguarluar",
+  "frame": {
+    "frame": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "sourceSize": {
+      "w": 314,
+      "h": 314
+    },
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "contentBounds": {
+      "x": 93,
+      "y": 124,
+      "w": 157,
+      "h": 144
+    },
+    "duration": 220,
+    "state": "idle"
+  },
+  "viewport": {
+    "x": 73,
+    "y": 66,
+    "w": 209,
+    "h": 204
+  },
+  "source": null,
+  "runtimeSource": null,
+  "rig": null,
+  "integratedSoulgen": false,
+  "remaining": [
+    "Revisar conceito no padrão Carcará",
+    "Produzir peças e expressões registradas",
+    "Montar pivôs e hierarquia no Soulgen",
+    "Criar/revisar as cinco ações",
+    "Validar e exportar antes de integrar ao jogo"
+  ]
+}

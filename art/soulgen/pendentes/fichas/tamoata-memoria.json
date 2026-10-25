@@ -1,0 +1,59 @@
+{
+  "id": "tamoata-memoria",
+  "name": "Tamoatá",
+  "group": "Memórias do Vento",
+  "status": "pendente-conversao",
+  "title": "Tecelão dos Caminhos",
+  "habitat": "Memórias do Vento · correntes do mundo almático",
+  "reference": "assets/creatures/colecoes/tamoata-memoria.png",
+  "atlasId": "tamoata-memoria",
+  "frame": {
+    "frame": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "sourceSize": {
+      "w": 314,
+      "h": 314
+    },
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "contentBounds": {
+      "x": 67,
+      "y": 124,
+      "w": 221,
+      "h": 148
+    },
+    "duration": 220,
+    "state": "idle"
+  },
+  "viewport": {
+    "x": 37,
+    "y": 37,
+    "w": 269,
+    "h": 238
+  },
+  "source": null,
+  "runtimeSource": null,
+  "rig": null,
+  "integratedSoulgen": false,
+  "remaining": [
+    "Revisar conceito no padrão Carcará",
+    "Produzir peças e expressões registradas",
+    "Montar pivôs e hierarquia no Soulgen",
+    "Criar/revisar as cinco ações",
+    "Validar e exportar antes de integrar ao jogo"
+  ]
+}

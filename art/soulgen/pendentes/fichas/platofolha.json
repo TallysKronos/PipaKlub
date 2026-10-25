@@ -1,0 +1,59 @@
+{
+  "id": "platofolha",
+  "name": "Platofolha",
+  "group": "Ecos Antigos",
+  "status": "pendente-conversao",
+  "title": "Guardião das Copas de Papel",
+  "habitat": "Ecos Antigos · correntes do mundo almático",
+  "reference": "assets/creatures/colecoes/platofolha.png",
+  "atlasId": "platofolha",
+  "frame": {
+    "frame": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "sourceSize": {
+      "w": 314,
+      "h": 314
+    },
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "contentBounds": {
+      "x": 65,
+      "y": 97,
+      "w": 173,
+      "h": 177
+    },
+    "duration": 220,
+    "state": "idle"
+  },
+  "viewport": {
+    "x": 53,
+    "y": 37,
+    "w": 216,
+    "h": 239
+  },
+  "source": null,
+  "runtimeSource": null,
+  "rig": null,
+  "integratedSoulgen": false,
+  "remaining": [
+    "Revisar conceito no padrão Carcará",
+    "Produzir peças e expressões registradas",
+    "Montar pivôs e hierarquia no Soulgen",
+    "Criar/revisar as cinco ações",
+    "Validar e exportar antes de integrar ao jogo"
+  ]
+}

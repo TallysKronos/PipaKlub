@@ -1,0 +1,54 @@
+{
+  "id": "trinca-brasas",
+  "name": "Trinca-brasas",
+  "group": "Especiais",
+  "status": "pendente-conversao",
+  "title": "Três guardiões, um coração",
+  "habitat": "Fornos antigos e portões esquecidos",
+  "reference": "assets/creatures/especiais/trinca-brasas.png",
+  "atlasId": "trinca-brasas",
+  "frame": {
+    "frame": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x": 0,
+      "y": 0,
+      "w": 314,
+      "h": 314
+    },
+    "sourceSize": {
+      "w": 314,
+      "h": 314
+    },
+    "pivot": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "contentBounds": {
+      "x": 59,
+      "y": 91,
+      "w": 207,
+      "h": 169
+    },
+    "duration": 220,
+    "state": "idle"
+  },
+  "viewport": null,
+  "source": null,
+  "runtimeSource": null,
+  "rig": null,
+  "integratedSoulgen": false,
+  "remaining": [
+    "Revisar conceito no padrão Carcará",
+    "Produzir peças e expressões registradas",
+    "Montar pivôs e hierarquia no Soulgen",
+    "Criar/revisar as cinco ações",
+    "Validar e exportar antes de integrar ao jogo"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "structure": {
+    "ok": true,
+    "errors": [],
+    "warnings": []
+  },
+  "anatomy": {
+    "warnings": [],
+    "notes": [
+      "OK · armFar / nó central: 0.298.",
+      "OK · legFar / nó central: 0.255.",
+      "OK · legNear / nó central: 0.319.",
+      "OK · armNear / nó central: 0.447.",
+      "OK · Encaixe Braço distante: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Ponta de linha distante: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Ponta de linha próxima: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Braço próximo: desvio máximo 0.00 unidades."
+    ]
+  },
+  "alpha": {
+    "fierce": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 16199,
+      "source_face_bounds": [
+        162,
+        159,
+        322,
+        302
+      ]
+    },
+    "hurt": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 16291,
+      "source_face_bounds": [
+        163,
+        158,
+        322,
+        302
+      ]
+    },
+    "happy": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 16236,
+      "source_face_bounds": [
+        162,
+        159,
+        323,
+        303
+      ]
+    }
+  },
+  "atlas": {
+    "frames": 113,
+    "size": [
+      2048,
+      3840
+    ],
+    "fps": 12,
+    "borderPixels": 0
+  },
+  "note": "Structural checks and selected rendered poses do not equal author approval or gameplay integration."
+}
