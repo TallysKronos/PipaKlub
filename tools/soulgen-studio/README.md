@@ -87,3 +87,5 @@ A revisão v2 usa o Carcará como referência de desenho: olhos pequenos/escuros
 Guaravento: `/?preset=guaravento`, oito peças, cinco ações e recuperação isolada. Não altera o atlas do jogo.
 
 Micofolha: `/?preset=micofolha`, oito peças em três quartos e cinco ações, recuperação isolada. Fontes e roteiro reproduzível em `art/soulgen/keys/micofolha/`.
+
+Capimansa: `/?preset=capimansa`, oito peças com profundidades distintas, cinco ações e recuperação isolada.

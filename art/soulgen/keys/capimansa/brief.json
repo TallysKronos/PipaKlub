@@ -1,0 +1,26 @@
+{
+  "id": "capimansa",
+  "name": "Capimansa",
+  "status": "aprovado-pelo-autor; ajustes importados",
+  "view": "obliqua para a direita; focinho frontal visivel",
+  "identityReference": "assets/creatures/colecoes/capimansa.png",
+  "styleReference": "art/soulgen/keys/carcara/color-rig/body-reference.png",
+  "parts": [
+    "body",
+    "head",
+    "sail",
+    "tail",
+    "frontNear",
+    "frontFar",
+    "hindNear",
+    "hindFar"
+  ],
+  "actions": [
+    "idle",
+    "flight",
+    "skill",
+    "hurt",
+    "victory"
+  ],
+  "gameIntegrated": false
+}
