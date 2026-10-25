@@ -123,3 +123,13 @@ Rexal: `http://127.0.0.1:5240/?preset=rexal` — oito peças proporcionais, vela
 Tricerafan: `http://127.0.0.1:5240/?preset=tricerafan` — oito peças, três chifres e leque independente.
 
 Stegaru: `http://127.0.0.1:5240/?preset=stegaru` — oito peças, placas dorsais de pipa e cinco ações.
+
+Yaguarú: `http://127.0.0.1:5240/?preset=yaguaru-memoria` — oito peças e cinco ações; Memórias do Vento.
+
+## Retocar imagem
+
+Selecione uma peça e use **Retocar imagem**, ao lado de Bloquear/Isolar no inspector. O editor abre o recorte da peça com pincel, borracha, conta-gotas, tamanho, opacidade, zoom, fundo quadriculado claro/escuro e desfazer/refazer por traço. B/E/I escolhem ferramentas; Espaço + arrastar ou botão do meio navega na imagem. Cada expressão é selecionada e editada separadamente.
+
+Aplicar cria uma fonte PNG própria e embutida só para aquela peça/expressão, preservando retângulo, pivô, transformações e animações. Outras peças que usavam o mesmo atlas não mudam. Restaurar original recupera a fonte anterior mesmo depois de salvar/importar o projeto. O histórico geral permite desfazer a aplicação inteira. Use Salvar projeto para baixar a cópia portátil com os retoques. Não escreve nos PNGs do repositório.
+
+Limites: até 16 milhões de pixels por recorte, histórico local de traços limitado por memória. Não inclui balde, seleção, camadas de pintura ou aplicação automática às outras expressões nesta versão. Verificações: testes DOM com canvas real para pincel/borracha/conta-gotas/undo/redo e exportação PNG; testes de isolamento de fonte compartilhada e restauração. Inspeção visual pelo usuário permanece necessária.
