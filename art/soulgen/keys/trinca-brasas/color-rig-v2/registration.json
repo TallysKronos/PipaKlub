@@ -1,0 +1,168 @@
+{
+  "source_size": [
+    1254,
+    1254
+  ],
+  "sha256": "9437e6d260ef4457fa7fc7d65bd5ba98f0cecf042449fd38aa68e12e1605bc33",
+  "crops": {
+    "body": [
+      31,
+      94,
+      315,
+      220
+    ],
+    "headCenter": [
+      378,
+      24,
+      247,
+      287
+    ],
+    "headFar": [
+      685,
+      56,
+      245,
+      257
+    ],
+    "headNear": [
+      994,
+      54,
+      238,
+      259
+    ],
+    "frontNear": [
+      49,
+      359,
+      224,
+      232
+    ],
+    "frontFar": [
+      437,
+      415,
+      168,
+      176
+    ],
+    "hindNear": [
+      722,
+      368,
+      212,
+      224
+    ],
+    "hindFar": [
+      1035,
+      415,
+      181,
+      171
+    ],
+    "tail": [
+      27,
+      613,
+      317,
+      342
+    ],
+    "centerFierce": [
+      375,
+      656,
+      250,
+      280
+    ],
+    "farFierce": [
+      686,
+      680,
+      244,
+      256
+    ],
+    "nearFierce": [
+      994,
+      671,
+      240,
+      265
+    ],
+    "centerHurt": [
+      63,
+      966,
+      250,
+      281
+    ],
+    "centerHappy": [
+      372,
+      963,
+      250,
+      283
+    ],
+    "farHappy": [
+      684,
+      994,
+      246,
+      253
+    ],
+    "nearHappy": [
+      995,
+      989,
+      240,
+      257
+    ]
+  },
+  "windows": {
+    "headCenter": [
+      [
+        74,
+        126,
+        136,
+        63
+      ]
+    ],
+    "headFar": [
+      [
+        74,
+        113,
+        134,
+        57
+      ]
+    ],
+    "headNear": [
+      [
+        71,
+        114,
+        131,
+        57
+      ]
+    ]
+  },
+  "expressions": {
+    "headCenterFierce": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 9041
+    },
+    "headCenterHurt": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 9084
+    },
+    "headCenterHappy": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 9086
+    },
+    "headFarFierce": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 8076
+    },
+    "headFarHappy": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 8164
+    },
+    "headNearFierce": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 8046
+    },
+    "headNearHappy": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 7978
+    }
+  }
+}

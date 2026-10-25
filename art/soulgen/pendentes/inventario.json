@@ -4,8 +4,8 @@
   "criteria": "Conversão = projeto editável Soulgen com fontes PNG e cinco ações. Atlas antigo ou conceito isolado não contam. Validação estrutural não equivale a aprovação artística.",
   "counts": {
     "catalog": 36,
-    "pending": 24,
-    "withRig": 12,
+    "pending": 23,
+    "withRig": 13,
     "rigOutsideCatalog": 1,
     "unapprovedConceptsOutsideCatalog": 2
   },
@@ -311,7 +311,7 @@
       "id": "trinca-brasas",
       "name": "Trinca-brasas",
       "group": "Especiais",
-      "status": "pendente-conversao",
+      "status": "rig-existente",
       "title": "Três guardiões, um coração",
       "habitat": "Fornos antigos e portões esquecidos",
       "reference": "assets/creatures/especiais/trinca-brasas.png",
@@ -349,16 +349,27 @@
         "state": "idle"
       },
       "viewport": null,
-      "source": null,
+      "source": "art/soulgen/keys/trinca-brasas/color-rig-v2/trinca-brasas.soulgen.json",
       "runtimeSource": null,
-      "rig": null,
+      "rig": {
+        "source": "art/soulgen/keys/trinca-brasas/color-rig-v2/trinca-brasas.soulgen.json",
+        "ok": true,
+        "errors": [],
+        "warnings": [],
+        "parts": 9,
+        "actions": [
+          "idle",
+          "flight",
+          "skill",
+          "hurt",
+          "victory"
+        ],
+        "assets": 16
+      },
       "integratedSoulgen": false,
       "remaining": [
-        "Revisar conceito no padrão Carcará",
-        "Produzir peças e expressões registradas",
-        "Montar pivôs e hierarquia no Soulgen",
-        "Criar/revisar as cinco ações",
-        "Validar e exportar antes de integrar ao jogo"
+        "Revisar visual e animações no Soulgen",
+        "Exportar e integrar ao atlas do jogo após revisão"
       ]
     },
     {

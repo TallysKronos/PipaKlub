@@ -1,0 +1,58 @@
+{
+  "structure": {
+    "ok": true,
+    "errors": [],
+    "warnings": []
+  },
+  "anatomy": {
+    "warnings": [],
+    "notes": []
+  },
+  "expressions": {
+    "headCenterFierce": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 9041
+    },
+    "headCenterHurt": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 9084
+    },
+    "headCenterHappy": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 9086
+    },
+    "headFarFierce": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 8076
+    },
+    "headFarHappy": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 8164
+    },
+    "headNearFierce": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 8046
+    },
+    "headNearHappy": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 7978
+    }
+  },
+  "atlas": {
+    "frames": 116,
+    "size": [
+      2048,
+      3840
+    ],
+    "fps": 12,
+    "borderPixels": 0
+  },
+  "note": "Technical validation and rendered pose review; not author approval or game integration."
+}

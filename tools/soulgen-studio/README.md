@@ -97,3 +97,5 @@ Tatutrama: `/?preset=tatutrama`, sete peças, cinco ações e recuperação isol
 Selecione um elemento e use “Transformar esta peça” no inspetor: tamanho percentual proporcional, giro em graus, atalhos de tamanho/giro e inversão horizontal/vertical. Atua somente na arte dessa peça, ao redor do pivô, em todas as animações. Filhos e canais de animação não são alterados. Desfazer e Salvar projeto preservam os ajustes em artTransform. “Restaurar” retorna à transformação visual original. Peças bloqueadas desativam esses controles.
 
 Flautrevo: `/?preset=flautrevo`, quatro peças, cinco ações, recuperação isolada e transformações por elemento.
+
+Trinca-brasas: `/?preset=trinca-brasas`, nove peças, três cabeças articuladas e cinco ações. Recuperação isolada.
