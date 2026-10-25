@@ -10,6 +10,7 @@ import {serveWorkshopV3} from '../src/workshop-v3-assets.js';
 import {createAssetHandler} from '../src/static-assets.js';
 import {attachRealtime} from '../src/realtime.js';
 import {localSessionCookies} from './local-session-cookies.mjs';
+import {skipLocalOpening} from './local-skip-opening.mjs';
 
 const port=Number(process.env.LOCAL_TRADE_PORT||5194);
 const localCookies=localSessionCookies(port);
@@ -125,13 +126,21 @@ const server=http.createServer(async(req,res)=>{
   let request=new Request(origin+req.url,{method:req.method,headers:requestHeaders,...(chunks.length?{body:Buffer.concat(chunks)}:{})});
   let r;
   const demo=/^\/local\/(ana|beto|cora|davi|kael)$/.exec(new URL(request.url).pathname);
-  if(demo){
+  if(new URL(request.url).pathname==='/local/skip-opening'){
+   if(req.method!=='POST'||request.headers.get('origin')!==origin){r=new Response('Use o botão Pular início no teste local.',{status:403});}
+   else{
+    const session=await accounts.handle(new Request(origin+'/account/session',{headers:requestHeaders})),data=await session.json(),owner=data.account?.profile?.id;
+    if(!owner)r=new Response('Entre como visitante ou em uma conta de teste antes de pular o início.',{status:401});
+    else try{const form=new URLSearchParams(Buffer.concat(chunks).toString());await skipLocalOpening(postgres,owner,form.get('model')||'basica');const headers=new Headers({Location:'/'});for(const cookie of session.headers.getSetCookie())headers.append('Set-Cookie',cookie);r=new Response(null,{status:303,headers});}
+    catch(e){r=new Response(e.message,{status:409,headers:{'Content-Type':'text/plain;charset=utf-8'}});}
+   }
+  }else if(demo){
    const login=await accounts.handle(new Request(origin+'/account/login',{method:'POST',headers:{'Content-Type':'application/json',Origin:origin},body:JSON.stringify({email:demo[1]+'@local.test',password:'TesteLocal123!'})}));
    const headers=new Headers({Location:'/'});for(const cookie of login.headers.getSetCookie())headers.append('Set-Cookie',cookie);
    r=login.ok?new Response(null,{status:303,headers}):login;
   }else r=await serveWorkshopV3(request)||await serveAsset(request)||await accounts.handle(request)||await worker.fetch(request,{DB,ACCOUNTS:accounts,PROGRESSION:progression});
   if(new URL(request.url).pathname==='/'&&r.headers.get('content-type')?.includes('text/html')){
-   const html=(await r.text()).replace('<body>','<body><div style="background:#ffe9a8;padding:10px;text-align:center;font:14px sans-serif">TESTE LOCAL · Banco isolado · Sem dados de produção · Contas de teste</div>');
+   const html=(await r.text()).replace('<body>','<body><div style="background:#ffe9a8;padding:10px;text-align:center;font:14px sans-serif;position:relative;z-index:100001">TESTE LOCAL · Banco isolado · Sem dados de produção<form action="/local/skip-opening" method="post" style="display:inline-flex;gap:8px;align-items:center;flex-wrap:wrap;margin-left:12px"><label>Primeira pipa <select name="model" aria-label="Pipa para o atalho de teste"><option value="basica">Carcará</option><option value="mata">Mata Verde</option><option value="azulao">Azulão</option><option value="raio">Raio de Sol</option></select></label><button type="submit">Pular início · teste</button><small>Após a montagem com o professor · entre primeiro</small></form></div>');
    r=new Response(html,{status:r.status,headers:r.headers});
   }
   const headers=Object.fromEntries(r.headers),cookies=r.headers.getSetCookie().map(localCookies.outgoing);if(cookies.length)headers['set-cookie']=cookies;
