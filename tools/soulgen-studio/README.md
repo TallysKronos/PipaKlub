@@ -89,3 +89,9 @@ Guaravento: `/?preset=guaravento`, oito peças, cinco ações e recuperação is
 Micofolha: `/?preset=micofolha`, oito peças em três quartos e cinco ações, recuperação isolada. Fontes e roteiro reproduzível em `art/soulgen/keys/micofolha/`.
 
 Capimansa: `/?preset=capimansa`, oito peças com profundidades distintas, cinco ações e recuperação isolada.
+
+Tatutrama: `/?preset=tatutrama`, sete peças, cinco ações e recuperação isolada. Carapaça e corpo em uma peça, sem vela extra.
+
+## Transformar uma peça
+
+Selecione um elemento e use “Transformar esta peça” no inspetor: tamanho percentual proporcional, giro em graus, atalhos de tamanho/giro e inversão horizontal/vertical. Atua somente na arte dessa peça, ao redor do pivô, em todas as animações. Filhos e canais de animação não são alterados. Desfazer e Salvar projeto preservam os ajustes em artTransform. “Restaurar” retorna à transformação visual original. Peças bloqueadas desativam esses controles.

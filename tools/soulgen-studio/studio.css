@@ -19,3 +19,5 @@ body:not([data-phase=assembly]) #assemblyHelpers{display:none}body[data-phase=as
 #commandDialog{width:min(420px,90vw);padding:24px;background:#182a34;border-color:#45675f;border-radius:12px}#commandDialog h2{font-size:21px;margin:10px 0}#commandDialog p{color:var(--muted);font-size:12px;line-height:1.7}#commandDialog .row{margin:22px 0 0}#commandField[hidden]{display:none}#commandInput{margin-top:6px}
 
 #auditResult[data-state=warning]{color:var(--gold,#f5c76a);background:#3a3020;border-color:#8b7041}
+
+.part-transform{padding:12px;border:1px solid #638877;border-radius:10px;margin:12px 0;background:#15332b}.part-transform .row{display:flex;flex-wrap:wrap;gap:6px}.part-transform h3{margin-top:0}.part-transform button[aria-pressed="true"]{outline:2px solid #f5c76a}

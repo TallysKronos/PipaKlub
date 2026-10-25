@@ -89,3 +89,17 @@ test('layer controls cross tied depths instead of getting stuck and preserve ana
  e.$('layerFront').onclick();e.$('layerFront').onclick();assert.ok(leg.z>parts.find(p=>p.id==='body').z);
  await e.$('undo').onclick();assert.ok(e.api.project().parts.find(p=>p.id==='hindFar').z<2);
 });
+
+
+test('per-piece size rotation and both flips preserve pivots, other parts and saved animation channels',async()=>{
+ const e=await editor(),p=e.api.project(),pivot=JSON.stringify(p.parts[0].pivot),clips=JSON.stringify(p.clips);
+ p.parts.push({...model.clone(p.parts[0]),id:'leg',name:'Pata',z:1});
+ const click=label=>{const b=[...e.$('inspector').querySelectorAll('button')].find(b=>b.textContent===label);assert.ok(b,label);b.onclick();};
+ click('+ Tamanho');click('↷ 15°');click('↔ Inverter horizontal');click('↕ Inverter vertical');
+ assert.equal(p.parts[0].artTransform.scale,1.1);assert.equal(p.parts[0].artTransform.rotation,15);assert.equal(p.parts[0].artTransform.flipX,true);assert.equal(p.parts[0].artTransform.flipY,true);
+ assert.equal(p.parts[1].artTransform,undefined);assert.equal(JSON.stringify(p.parts[0].pivot),pivot);assert.equal(JSON.stringify(p.clips),clips);assert.equal(model.validate(p).ok,true);
+ const center=model.point(model.artworkMatrix(p.parts[0]),...p.parts[0].pivot);assert.ok(Math.abs(center.x-35)<1e-8&&Math.abs(center.y-35)<1e-8);
+ const original={x:22,y:28},world=model.point(model.artworkMatrix(p.parts[0]),original.x,original.y),back=model.artworkPoint(p.parts[0],world);assert.ok(Math.abs(back.x-original.x)<1e-8&&Math.abs(back.y-original.y)<1e-8);
+ await e.$('undo').onclick();assert.equal(e.api.project().parts[0].artTransform.flipY,false);
+ click('Restaurar tamanho, giro e inversões');assert.equal(e.api.project().parts[0].artTransform.scale,1);assert.equal(e.api.project().parts[0].artTransform.rotation,0);
+});

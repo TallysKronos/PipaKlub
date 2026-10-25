@@ -1,6 +1,6 @@
 # Fila de conversão para Soulgen
 
-Auditoria local de 25/10/2026: **26 dos 36 Pipamons da Dex ainda sem conversão**, 10 com rig existente. Eremor tem rig fora da Dex. Dois conceitos adicionais continuam sem rig e sem aprovação visual.
+Auditoria local de 25/10/2026: **25 dos 36 Pipamons da Dex ainda sem conversão**, 11 com rig existente. Eremor tem rig fora da Dex. Dois conceitos adicionais continuam sem rig e sem aprovação visual.
 
 ## Critério
 
@@ -39,10 +39,6 @@ Não foi alterado nenhum PNG, rig, atlas, catálogo ou arquivo do Godot. As fich
 - **Pteralis** — [ficha](fichas/pteralis.json) · [arte atual](../../../assets/creatures/colecoes/pteralis.png)
 - **Stegaru** — [ficha](fichas/stegaru.json) · [arte atual](../../../assets/creatures/colecoes/stegaru.png)
 
-### Almas dos Biomas (1)
-
-- **Tatutrama** — [ficha](fichas/tatutrama.json) · [arte atual](../../../assets/creatures/colecoes/tatutrama.png)
-
 ### Memórias do Vento (4)
 
 - **Yaguarú** — [ficha](fichas/yaguaru-memoria.json) · [arte atual](../../../assets/creatures/colecoes/yaguaru-memoria.png)
@@ -66,6 +62,7 @@ Não foi alterado nenhum PNG, rig, atlas, catálogo ou arquivo do Godot. As fich
 - **Guaravento** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/guaravento/color-rig-v2/guaravento.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Micofolha** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/micofolha/color-rig-v2/micofolha.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Capimansa** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/capimansa/color-rig-v2/capimansa.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
+- **Tatutrama** — 7 peças; 5 ações; fonte do projeto: `art/soulgen/keys/tatutrama/color-rig-v2/tatutrama.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Nozinho** — 5 peças; 5 ações; fonte do projeto: `art/soulgen/keys/nozinho/color-rig-v2/nozinho.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Rabbito** — 7 peças; 5 ações; fonte do projeto: `art/soulgen/keys/rabbito/color-rig-v2/rabbito.soulgen.json`. Atlas Soulgen integrado.
 - **Lacertubo** — 8 peças; 6 ações; fonte do projeto: `art/soulgen/keys/lacertubo-v2/color-rig-v2/lacertubo-v2.soulgen.json`. Atlas Soulgen integrado.

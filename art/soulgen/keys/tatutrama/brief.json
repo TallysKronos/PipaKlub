@@ -1,0 +1,24 @@
+{
+  "id": "tatutrama",
+  "name": "Tatutrama",
+  "status": "aprovado-pelo-autor; ajustes importados",
+  "identityReference": "assets/creatures/colecoes/tatutrama.png",
+  "styleReference": "art/soulgen/keys/carcara/color-rig/body-reference.png",
+  "parts": [
+    "body",
+    "head",
+    "tail",
+    "frontNear",
+    "frontFar",
+    "hindNear",
+    "hindFar"
+  ],
+  "actions": [
+    "idle",
+    "flight",
+    "skill",
+    "hurt",
+    "victory"
+  ],
+  "gameIntegrated": false
+}

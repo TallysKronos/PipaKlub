@@ -4,8 +4,8 @@
   "criteria": "Conversão = projeto editável Soulgen com fontes PNG e cinco ações. Atlas antigo ou conceito isolado não contam. Validação estrutural não equivale a aprovação artística.",
   "counts": {
     "catalog": 36,
-    "pending": 26,
-    "withRig": 10,
+    "pending": 25,
+    "withRig": 11,
     "rigOutsideCatalog": 1,
     "unapprovedConceptsOutsideCatalog": 2
   },
@@ -1380,7 +1380,7 @@
       "id": "tatutrama",
       "name": "Tatutrama",
       "group": "Almas dos Biomas",
-      "status": "pendente-conversao",
+      "status": "rig-existente",
       "title": "Guardião das Dobras Antigas",
       "habitat": "Almas dos Biomas · correntes do mundo almático",
       "reference": "assets/creatures/colecoes/tatutrama.png",
@@ -1423,16 +1423,27 @@
         "w": 232,
         "h": 220
       },
-      "source": null,
+      "source": "art/soulgen/keys/tatutrama/color-rig-v2/tatutrama.soulgen.json",
       "runtimeSource": null,
-      "rig": null,
+      "rig": {
+        "source": "art/soulgen/keys/tatutrama/color-rig-v2/tatutrama.soulgen.json",
+        "ok": true,
+        "errors": [],
+        "warnings": [],
+        "parts": 7,
+        "actions": [
+          "idle",
+          "flight",
+          "skill",
+          "hurt",
+          "victory"
+        ],
+        "assets": 10
+      },
       "integratedSoulgen": false,
       "remaining": [
-        "Revisar conceito no padrão Carcará",
-        "Produzir peças e expressões registradas",
-        "Montar pivôs e hierarquia no Soulgen",
-        "Criar/revisar as cinco ações",
-        "Validar e exportar antes de integrar ao jogo"
+        "Revisar visual e animações no Soulgen",
+        "Exportar e integrar ao atlas do jogo após revisão"
       ]
     },
     {

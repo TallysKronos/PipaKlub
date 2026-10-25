@@ -28,6 +28,7 @@ function validateInternal(project){
   if(!Array.isArray(s)||s.length!==4||!s.every(finite)||s[0]<0||s[1]<0||s[2]<=0||s[3]<=0||a&&(s[0]+s[2]>a.width||s[1]+s[3]>a.height))fail('Recorte fora da fonte: '+p.id);
   if(!Array.isArray(p.rect)||p.rect.length!==4||!p.rect.every(finite)||p.rect[2]<=0||p.rect[3]<=0)fail('Tamanho/posição inválidos: '+p.id);
   if(!Array.isArray(p.pivot)||p.pivot.length!==2||!p.pivot.every(finite)||!finite(p.z))fail('Pivô/profundidade inválidos: '+p.id);
+  if(p.artTransform&&(!finite(p.artTransform.rotation)||!finite(p.artTransform.scale)||p.artTransform.scale<.1||p.artTransform.scale>5||typeof p.artTransform.flipX!=='boolean'||typeof p.artTransform.flipY!=='boolean'))fail('Transformação visual inválida: '+p.id);
   if(p.lag!=null&&(!finite(p.lag)||p.lag<0||p.lag>1))fail('Atraso deve ficar entre 0 e 1 s: '+p.id);
   for(const w of p.faceWindows||[])if(!Array.isArray(w)||w.length!==4||!w.every(finite)||w[0]<0||w[1]<0||w[2]<=0||w[3]<=0||w[0]+w[2]>p.source[2]||w[1]+w[3]>p.source[3])fail('Janela facial fora do recorte: '+p.id);
   for(const [face,ref]of Object.entries(p.faces||{}))if(!safeId(face)||!project.assets?.[ref.asset]||!Array.isArray(ref.source)||ref.source.length!==4||!ref.source.every(finite)||ref.source[0]<0||ref.source[1]<0||ref.source[2]<=0||ref.source[3]<=0||ref.source[0]+ref.source[2]>project.assets[ref.asset].width||ref.source[1]+ref.source[3]>project.assets[ref.asset].height)fail('Expressão inválida: '+p.id+'/'+face);
@@ -76,11 +77,13 @@ export function putKey(project,clipId,time,values,ease='smooth'){
 export function multiply(a,b){return [a[0]*b[0]+a[2]*b[1],a[1]*b[0]+a[3]*b[1],a[0]*b[2]+a[2]*b[3],a[1]*b[2]+a[3]*b[3],a[0]*b[4]+a[2]*b[5]+a[4],a[1]*b[4]+a[3]*b[5]+a[5]];}
 export function point(m,x,y){return {x:m[0]*x+m[2]*y+m[4],y:m[1]*x+m[3]*y+m[5]};}
 export function transform(v,pivot){const a=v.rotation*Math.PI/180,cos=Math.cos(a),sin=Math.sin(a),[px,py]=pivot,m=[cos*v.scaleX,sin*v.scaleX,-sin*v.scaleY,cos*v.scaleY,0,0];m[4]=px+v.x-m[0]*px-m[2]*py;m[5]=py+v.y-m[1]*px-m[3]*py;return m;}
+export function artworkMatrix(p){const a=p.artTransform||{rotation:0,scale:1,flipX:false,flipY:false};return transform({x:0,y:0,rotation:a.rotation,scaleX:a.scale*(a.flipX?-1:1),scaleY:a.scale*(a.flipY?-1:1)},p.pivot);}
+export function artworkPoint(p,at){const m=artworkMatrix(p),det=m[0]*m[3]-m[1]*m[2],x=at.x-m[4],y=at.y-m[5];return {x:(m[3]*x-m[2]*y)/det,y:(-m[1]*x+m[0]*y)/det};}
 export function matrices(project,pose){const root=transform(pose.values.root||identity(),project.rootPivot),result={};function build(p){if(result[p.id])return result[p.id];const parent=p.parent?build(project.parts.find(q=>q.id===p.parent)):root;return result[p.id]=multiply(parent,transform(pose.values[p.id]||identity(),p.pivot));}for(const p of project.parts)build(p);return result;}
 export function render(ctx,project,images,pose,{clear=true,scale,offsetX=0,offsetY=0,facing=1}={}){
  if(clear)ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);const s=scale??Math.min(ctx.canvas.width/project.width,ctx.canvas.height/project.height),m=matrices(project,pose);
  ctx.save();ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.translate(ctx.canvas.width/2+offsetX,ctx.canvas.height/2+offsetY);ctx.scale(s*facing,s);ctx.translate(-project.width/2,-project.height/2);
- for(const p of [...project.parts].sort((a,b)=>a.z-b.z)){if(p.visible===false)continue;const face=p.faces?.[pose.face],asset=face?.asset||p.asset,source=face?.source||p.source,image=images[asset];if(!image)continue;ctx.save();ctx.transform(...m[p.id]);ctx.drawImage(image,...source,...p.rect);ctx.restore();}ctx.restore();return m;
+ for(const p of [...project.parts].sort((a,b)=>a.z-b.z)){if(p.visible===false)continue;const face=p.faces?.[pose.face],asset=face?.asset||p.asset,source=face?.source||p.source,image=images[asset];if(!image)continue;ctx.save();ctx.transform(...m[p.id]);ctx.transform(...artworkMatrix(p));ctx.drawImage(image,...source,...p.rect);ctx.restore();}ctx.restore();return m;
 }
 export function exportPlan(project,{fps=12,cell=256,columns=8,clipIds=Object.keys(project.clips)}={}){
  const check=validate(project);if(!check.ok)throw Error(check.errors.join('\n'));if(!Number.isInteger(fps)||fps<1||fps>60||![128,256,512].includes(cell)||!Number.isInteger(columns)||columns<1||columns>16)throw Error('Configuração de exportação inválida.');

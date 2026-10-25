@@ -1,0 +1,3757 @@
+{
+  "schema": "soulgen-studio",
+  "version": 1,
+  "name": "Tatutrama · Guardião das Dobras Antigas",
+  "creatureId": "tatutrama",
+  "artRevision": 2,
+  "rigRevision": 2,
+  "width": 248,
+  "height": 224,
+  "rootPivot": [
+    130,
+    141
+  ],
+  "brief": {
+    "species": "Tatutrama",
+    "personality": "Guardião firme e atento, próximo ao chão",
+    "view": "Três quartos voltado para a direita",
+    "kiteAnatomy": "Tatu de papel: carapaça vermelha, creme e carvão com armação de bambu, focinho afilado, quatro patas curtas com garras e rabiola enrolada",
+    "reference": "assets/creatures/colecoes/tatutrama.png",
+    "styleReference": "art/soulgen/keys/carcara/color-rig/body-reference.png",
+    "notes": "Carapaça e corpo formam uma única peça estrutural. Sem vela extra sobre o dorso. Atlas do jogo preservado."
+  },
+  "assets": {
+    "body": {
+      "src": "/art/soulgen/keys/tatutrama/color-rig-v2/body.png",
+      "width": 450,
+      "height": 370,
+      "name": "body"
+    },
+    "head": {
+      "src": "/art/soulgen/keys/tatutrama/color-rig-v2/head.png",
+      "width": 326,
+      "height": 294,
+      "name": "head"
+    },
+    "tail": {
+      "src": "/art/soulgen/keys/tatutrama/color-rig-v2/tail.png",
+      "width": 242,
+      "height": 346,
+      "name": "tail"
+    },
+    "frontNear": {
+      "src": "/art/soulgen/keys/tatutrama/color-rig-v2/frontNear.png",
+      "width": 240,
+      "height": 257,
+      "name": "frontNear"
+    },
+    "frontFar": {
+      "src": "/art/soulgen/keys/tatutrama/color-rig-v2/frontFar.png",
+      "width": 194,
+      "height": 182,
+      "name": "frontFar"
+    },
+    "hindNear": {
+      "src": "/art/soulgen/keys/tatutrama/color-rig-v2/hindNear.png",
+      "width": 227,
+      "height": 253,
+      "name": "hindNear"
+    },
+    "hindFar": {
+      "src": "/art/soulgen/keys/tatutrama/color-rig-v2/hindFar.png",
+      "width": 187,
+      "height": 206,
+      "name": "hindFar"
+    },
+    "fierce": {
+      "src": "/art/soulgen/keys/tatutrama/color-rig-v2/head-fierce.png",
+      "width": 326,
+      "height": 294,
+      "name": "fierce"
+    },
+    "hurt": {
+      "src": "/art/soulgen/keys/tatutrama/color-rig-v2/head-hurt.png",
+      "width": 326,
+      "height": 294,
+      "name": "hurt"
+    },
+    "happy": {
+      "src": "/art/soulgen/keys/tatutrama/color-rig-v2/head-happy.png",
+      "width": 326,
+      "height": 294,
+      "name": "happy"
+    }
+  },
+  "parts": [
+    {
+      "id": "body",
+      "name": "Carapaça e trama de bambu",
+      "asset": "body",
+      "source": [
+        0,
+        0,
+        450,
+        370
+      ],
+      "rect": [
+        82,
+        91,
+        99,
+        80
+      ],
+      "pivot": [
+        130,
+        141
+      ],
+      "z": 5,
+      "parent": null,
+      "visible": true
+    },
+    {
+      "id": "head",
+      "name": "Cabeça e focinho",
+      "asset": "head",
+      "source": [
+        0,
+        0,
+        326,
+        294
+      ],
+      "rect": [
+        154.8552380952381,
+        111.8,
+        57.65986394557823,
+        52
+      ],
+      "pivot": [
+        171,
+        143
+      ],
+      "z": 6,
+      "parent": "body",
+      "visible": true,
+      "lag": 0,
+      "faceWindows": [
+        [
+          186,
+          150,
+          85,
+          76
+        ]
+      ],
+      "faces": {
+        "fierce": {
+          "asset": "fierce",
+          "source": [
+            0,
+            0,
+            326,
+            294
+          ]
+        },
+        "hurt": {
+          "asset": "hurt",
+          "source": [
+            0,
+            0,
+            326,
+            294
+          ]
+        },
+        "happy": {
+          "asset": "happy",
+          "source": [
+            0,
+            0,
+            326,
+            294
+          ]
+        }
+      }
+    },
+    {
+      "id": "tail",
+      "name": "Rabiola segmentada",
+      "asset": "tail",
+      "source": [
+        0,
+        0,
+        242,
+        346
+      ],
+      "rect": [
+        43.6842774566474,
+        73.01,
+        53.85549132947977,
+        77
+      ],
+      "pivot": [
+        90,
+        140
+      ],
+      "z": 0,
+      "parent": "body",
+      "visible": true,
+      "lag": 0.035
+    },
+    {
+      "id": "frontNear",
+      "name": "Pata dianteira próxima",
+      "asset": "frontNear",
+      "source": [
+        0,
+        0,
+        240,
+        257
+      ],
+      "rect": [
+        144.2199735854336,
+        150.59993906154784,
+        32.68482490272373,
+        35
+      ],
+      "pivot": [
+        153.37172455819623,
+        154.09993906154784
+      ],
+      "z": 4,
+      "parent": "body",
+      "visible": true,
+      "lag": 0.01
+    },
+    {
+      "id": "frontFar",
+      "name": "Pata dianteira distante",
+      "asset": "frontFar",
+      "source": [
+        0,
+        0,
+        194,
+        182
+      ],
+      "rect": [
+        163.22578540289695,
+        145.17495429616088,
+        30.912087912087912,
+        29
+      ],
+      "pivot": [
+        171.88117001828155,
+        148.07495429616088
+      ],
+      "z": 2,
+      "parent": "body",
+      "visible": true,
+      "lag": 0.018
+    },
+    {
+      "id": "hindNear",
+      "name": "Pata traseira próxima",
+      "asset": "hindNear",
+      "source": [
+        0,
+        0,
+        227,
+        253
+      ],
+      "rect": [
+        63.969261609016016,
+        150.11243144424134,
+        31.40316205533597,
+        35
+      ],
+      "pivot": [
+        87.52163315051799,
+        153.61243144424134
+      ],
+      "z": 3,
+      "parent": "body",
+      "visible": true,
+      "lag": 0.012,
+      "artTransform": {
+        "rotation": 0,
+        "scale": 1,
+        "flipX": true,
+        "flipY": false
+      }
+    },
+    {
+      "id": "hindFar",
+      "name": "Pata traseira distante",
+      "asset": "hindFar",
+      "source": [
+        0,
+        0,
+        187,
+        206
+      ],
+      "rect": [
+        115.41830697597368,
+        153.66252285191956,
+        25.41747572815534,
+        28
+      ],
+      "pivot": [
+        134.48141377209018,
+        156.46252285191957
+      ],
+      "z": 1,
+      "parent": "body",
+      "visible": true,
+      "lag": 0.025
+    }
+  ],
+  "clips": {
+    "idle": {
+      "label": "Vigia das dobras",
+      "seconds": 2.4,
+      "loop": true,
+      "frames": [
+        {
+          "t": 0,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.15,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": -0.22961005941905385,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0.5740251485476346,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 1.0715136106222514,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.3,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": -0.42426406871192845,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 1.0606601717798212,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 1.9798989873223327,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.44999999999999996,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": -0.5543277195067721,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 1.38581929876693,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 2.5868626910316026,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.6,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": -0.6,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 1.5,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 2.8,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.75,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": -0.5543277195067721,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 1.38581929876693,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 2.5868626910316026,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.8999999999999999,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": -0.4242640687119285,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 1.0606601717798214,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 1.9798989873223332,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 1.05,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": -0.22961005941905394,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0.5740251485476349,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 1.0715136106222516,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 1.2,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": -7.347880794884119e-17,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 1.8369701987210297e-16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 3.429011037612589e-16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 1.3499999999999999,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0.2296100594190538,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": -0.5740251485476345,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": -1.071513610622251,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 1.5,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0.42426406871192845,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": -1.0606601717798212,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": -1.9798989873223327,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 1.65,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0.5543277195067718,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": -1.3858192987669298,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": -2.586862691031602,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 1.7999999999999998,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0.6,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": -1.5,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": -2.8,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 1.95,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0.554327719506772,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": -1.38581929876693,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": -2.5868626910316026,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 2.1,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0.4242640687119286,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": -1.0606601717798214,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": -1.9798989873223334,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 2.25,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0.2296100594190542,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": -0.5740251485476355,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": -1.071513610622253,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 2.4,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        }
+      ],
+      "expressions": []
+    },
+    "flight": {
+      "label": "Impulso rente ao chão",
+      "seconds": 1.2,
+      "loop": true,
+      "frames": [
+        {
+          "t": 0,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.075,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": -0.6888301782571616,
+              "rotation": 0.4974884620746167,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": -0.3826834323650898,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 1.913417161825449,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 2.6787840265556286,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": -2.2961005941905386,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": -1.913417161825449,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 1.913417161825449,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.15,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": -1.2727922061357855,
+              "rotation": 0.9192388155425117,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": -0.7071067811865475,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 3.5355339059327373,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 4.949747468305832,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": -4.242640687119285,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": -3.5355339059327373,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 3.5355339059327373,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.22499999999999998,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": -1.662983158520316,
+              "rotation": 1.2010433922646728,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": -0.9238795325112867,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 4.619397662556434,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 6.467156727579007,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": -5.54327719506772,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": -4.619397662556434,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 4.619397662556434,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.3,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": -1.8,
+              "rotation": 1.3,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": -1,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 5,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 7,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": -6,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": -5,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 5,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.375,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": -1.662983158520316,
+              "rotation": 1.2010433922646728,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": -0.9238795325112867,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 4.619397662556434,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 6.467156727579007,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": -5.54327719506772,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": -4.619397662556434,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 4.619397662556434,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.44999999999999996,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": -1.2727922061357857,
+              "rotation": 0.9192388155425119,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": -0.7071067811865476,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 3.5355339059327378,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 4.949747468305833,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": -4.242640687119286,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": -3.5355339059327378,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 3.5355339059327378,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.525,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": -0.6888301782571619,
+              "rotation": 0.4974884620746169,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": -0.3826834323650899,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 1.9134171618254494,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 2.678784026555629,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": -2.2961005941905395,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": -1.9134171618254494,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 1.9134171618254494,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.6,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": -2.2043642384652358e-16,
+              "rotation": 1.5920408388915593e-16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": -1.2246467991473532e-16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 6.123233995736766e-16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 8.572527594031472e-16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": -7.347880794884119e-16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": -6.123233995736766e-16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 6.123233995736766e-16,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.6749999999999999,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0.6888301782571614,
+              "rotation": -0.4974884620746166,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0.38268343236508967,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": -1.9134171618254483,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": -2.6787840265556278,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 2.296100594190538,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 1.9134171618254483,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": -1.9134171618254483,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.75,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 1.2727922061357855,
+              "rotation": -0.9192388155425117,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0.7071067811865475,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": -3.5355339059327373,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": -4.949747468305832,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 4.242640687119285,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 3.5355339059327373,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": -3.5355339059327373,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.825,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 1.6629831585203159,
+              "rotation": -1.2010433922646726,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0.9238795325112865,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": -4.619397662556432,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": -6.467156727579006,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 5.543277195067719,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 4.619397662556432,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": -4.619397662556432,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.8999999999999999,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 1.8,
+              "rotation": -1.3,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 1,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": -5,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": -7,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 6,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 5,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": -5,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.975,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 1.6629831585203159,
+              "rotation": -1.2010433922646726,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0.9238795325112866,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": -4.619397662556433,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": -6.467156727579006,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 5.54327719506772,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 4.619397662556433,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": -4.619397662556433,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 1.05,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 1.272792206135786,
+              "rotation": -0.919238815542512,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0.7071067811865477,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": -3.5355339059327386,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": -4.949747468305834,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 4.242640687119286,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 3.5355339059327386,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": -3.5355339059327386,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 1.125,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0.6888301782571628,
+              "rotation": -0.49748846207461755,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0.3826834323650904,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": -1.913417161825452,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": -2.6787840265556326,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 2.296100594190542,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 1.913417161825452,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": -1.913417161825452,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 1.2,
+          "ease": "spline",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        }
+      ],
+      "expressions": []
+    },
+    "skill": {
+      "label": "Investida da trama",
+      "seconds": 1.8,
+      "loop": false,
+      "hitTime": 0.66,
+      "frames": [
+        {
+          "t": 0,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.26,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": -3,
+              "y": 2,
+              "rotation": 2,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 6,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 5,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": -6,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.48,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": -5,
+              "y": 4,
+              "rotation": 3,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 10,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 8,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": -9,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 5,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.66,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 9,
+              "y": 1,
+              "rotation": -3,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 3,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": -9,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": -12,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 8,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 9,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.95,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 3,
+              "y": 1,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 2,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": -3,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 1.4,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 1.8,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        }
+      ],
+      "expressions": [
+        {
+          "start": 0.18,
+          "end": 1.08,
+          "face": "fierce"
+        }
+      ]
+    },
+    "hurt": {
+      "label": "Recolher sob a carapaça",
+      "seconds": 1.2,
+      "loop": false,
+      "frames": [
+        {
+          "t": 0,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.12,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": -4,
+              "y": 3,
+              "rotation": 3,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 12,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 9,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 9,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": -6,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.36,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": -1,
+              "y": 1,
+              "rotation": -1,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 5,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": -3,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.8,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 1.2,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        }
+      ],
+      "expressions": [
+        {
+          "start": 0.03,
+          "end": 0.65,
+          "face": "hurt"
+        }
+      ]
+    },
+    "victory": {
+      "label": "Orgulho do guardião",
+      "seconds": 2.6,
+      "loop": false,
+      "frames": [
+        {
+          "t": 0,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.3,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": -1,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": -7,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": -6,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.8,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": -3,
+              "rotation": -2,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": -12,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": -11,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": -10,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 1.3,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": -1,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": -7,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 5,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 1.8,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": -3,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": -3,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 2.2,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 2.6,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "body": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "head": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "tail": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "frontFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindNear": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "hindFar": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        }
+      ],
+      "expressions": [
+        {
+          "start": 0.25,
+          "end": 1.95,
+          "face": "happy"
+        }
+      ]
+    }
+  },
+  "anatomy": {
+    "version": 1,
+    "joints": [
+      {
+        "part": "head",
+        "parent": "body",
+        "anchor": [
+          0.28,
+          0.6000000000000001
+        ],
+        "socket": [
+          0.898989898989899,
+          0.65
+        ],
+        "maxGap": 0.05
+      },
+      {
+        "part": "tail",
+        "parent": "body",
+        "anchor": [
+          0.86,
+          0.8699999999999999
+        ],
+        "socket": [
+          0.08080808080808081,
+          0.6125
+        ],
+        "maxGap": 0.05
+      },
+      {
+        "part": "frontNear",
+        "parent": "body",
+        "anchor": [
+          0.2799999999999999,
+          0.1
+        ],
+        "socket": [
+          0.7209265106888508,
+          0.7887492382693481
+        ],
+        "maxGap": 0.05
+      },
+      {
+        "part": "frontFar",
+        "parent": "body",
+        "anchor": [
+          0.2799999999999997,
+          0.1000000000000002
+        ],
+        "socket": [
+          0.9078906062452682,
+          0.713436928702011
+        ],
+        "maxGap": 0.05
+      },
+      {
+        "part": "hindNear",
+        "parent": "body",
+        "anchor": [
+          0.7499999999999998,
+          0.1
+        ],
+        "socket": [
+          0.055774072227454397,
+          0.7826553930530167
+        ],
+        "maxGap": 0.05
+      },
+      {
+        "part": "hindFar",
+        "parent": "body",
+        "anchor": [
+          0.7499999999999999,
+          0.10000000000000041
+        ],
+        "socket": [
+          0.5301152906271736,
+          0.8182815356489946
+        ],
+        "maxGap": 0.05
+      }
+    ],
+    "ratios": [],
+    "behind": [
+      {
+        "part": "tail",
+        "other": "body"
+      },
+      {
+        "part": "frontNear",
+        "other": "body"
+      },
+      {
+        "part": "frontFar",
+        "other": "body"
+      },
+      {
+        "part": "hindNear",
+        "other": "body"
+      },
+      {
+        "part": "hindFar",
+        "other": "body"
+      }
+    ]
+  }
+}
