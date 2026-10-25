@@ -2,7 +2,7 @@
   "id": "alvaneve",
   "name": "Alvaneve",
   "group": "Especiais",
-  "status": "pendente-conversao",
+  "status": "rig-existente",
   "title": "O inverno que aprendeu a confiar",
   "habitat": "Céus frios e lagos de vidro",
   "reference": "assets/creatures/especiais/alvaneve.png",
@@ -40,15 +40,26 @@
     "state": "idle"
   },
   "viewport": null,
-  "source": null,
+  "source": "art/soulgen/keys/alvaneve/color-rig-v2/alvaneve.soulgen.json",
   "runtimeSource": null,
-  "rig": null,
+  "rig": {
+    "source": "art/soulgen/keys/alvaneve/color-rig-v2/alvaneve.soulgen.json",
+    "ok": true,
+    "errors": [],
+    "warnings": [],
+    "parts": 9,
+    "actions": [
+      "idle",
+      "flight",
+      "skill",
+      "hurt",
+      "victory"
+    ],
+    "assets": 14
+  },
   "integratedSoulgen": false,
   "remaining": [
-    "Revisar conceito no padrão Carcará",
-    "Produzir peças e expressões registradas",
-    "Montar pivôs e hierarquia no Soulgen",
-    "Criar/revisar as cinco ações",
-    "Validar e exportar antes de integrar ao jogo"
+    "Revisar visual e animações no Soulgen",
+    "Exportar e integrar ao atlas do jogo após revisão"
   ]
 }

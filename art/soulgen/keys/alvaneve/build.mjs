@@ -1,0 +1,36 @@
+import fs from 'node:fs';
+import {fileURLToPath} from 'node:url';
+import {identity} from '../../../../tools/soulgen-studio/model.mjs';
+import {exportReview} from '../../../../tools/soulgen-studio/export-review.mjs';
+const directory=fileURLToPath(new URL('./color-rig-v2/',import.meta.url));
+const registration=JSON.parse(fs.readFileSync(directory+'registration.json'));
+const project={schema:'soulgen-studio',version:1,name:'Alvaneve · O Inverno que Aprendeu a Confiar',creatureId:'alvaneve',artRevision:2,rigRevision:3,preserveSourceAspect:true,width:272,height:256,rootPivot:[140,137],brief:{species:'Alvaneve',view:'Três quartos para a direita',kiteAnatomy:'Dragão de papel branco, sombras ciano e lavanda, asas de pipa e rabiola com folhas de gelo',reference:'assets/creatures/colecoes/alvaneve.png',notes:'Acabamento artesanal do Carcará; atlas do jogo preservado.'},assets:{},parts:[],clips:{}};
+for(const id of ['body','head','wingNear','wingFar','tail','frontNear','frontFar','hindNear','hindFar','fierce','hurt','happy']){const file=['fierce','hurt','happy'].includes(id)?'head-'+id+'.png':id+'.png',b=fs.readFileSync(directory+file);project.assets[id]={src:'/art/soulgen/keys/alvaneve/color-rig-v2/'+file,width:b.readUInt32BE(16),height:b.readUInt32BE(20),name:id};}
+const a=project.assets.body,bodyHeight=62,bodyWidth=bodyHeight*a.width/a.height,body={id:'body',name:'Tronco de papel',asset:'body',source:[0,0,a.width,a.height],rect:[140-bodyWidth/2,111,bodyWidth,bodyHeight],pivot:[140,142],z:6,parent:null,visible:true};project.parts.push(body);
+const specs=[['head','Cabeça e chifres',[151,116],[.46,.82],62,8,0],['wingNear','Asa próxima',[159,129],[.12,.16],71,5,.015],['wingFar','Asa distante',[123,126],[.88,.16],64,1,.025],['tail','Rabiola de gelo',[119,154],[.88,.08],67,0,.04],['frontNear','Pata dianteira próxima',[151,163],[.25,.10],31,7,.01],['frontFar','Pata dianteira distante',[165,157],[.25,.10],27,3,.02],['hindNear','Pata traseira próxima',[122,160],[.75,.10],31,4,.015],['hindFar','Pata traseira distante',[134,155],[.75,.10],26,2,.025]];
+const joints=[];
+for(const [id,name,pivot,anchor,height,z,lag]of specs){const a=project.assets[id],size=[height*a.width/a.height,height],part={id,name,asset:id,source:[0,0,a.width,a.height],rect:[pivot[0]-anchor[0]*size[0],pivot[1]-anchor[1]*size[1],...size],pivot,z,parent:'body',visible:true,lag};if(id==='head'){part.faceWindows=registration.windows;part.faces=Object.fromEntries(['fierce','hurt','happy'].map(face=>[face,{asset:face,source:[0,0,a.width,a.height]}]));}project.parts.push(part);joints.push({part:id,parent:'body',anchor,socket:[(pivot[0]-body.rect[0])/body.rect[2],(pivot[1]-body.rect[1])/body.rect[3]],maxGap:.05});}
+project.anatomy={version:1,joints,ratios:[],behind:['wingNear','wingFar','tail','frontFar','hindNear','hindFar'].map(part=>({part,other:'body'}))};
+const frame=(t,changes={},ease='smooth')=>({t,ease,values:Object.fromEntries(['root',...project.parts.map(p=>p.id)].map(id=>[id,{...identity(),...changes[id]}]))});
+function cycle(id,label,seconds,fn){const frames=Array.from({length:13},(_,i)=>frame(i*seconds/12,fn(Math.PI*2*i/12),'spline'));frames.at(-1).values=structuredClone(frames[0].values);project.clips[id]={label,seconds,loop:true,frames,expressions:[]};}
+cycle('idle','Brisa do inverno',2.4,t=>({root:{y:-.7*Math.sin(t)},head:{rotation:1.2*Math.sin(t)},wingNear:{rotation:1.6*Math.sin(t)},tail:{rotation:3*Math.sin(t)}}));
+cycle('flight','Voo cristalino',1.2,t=>({root:{y:-2*Math.sin(t),rotation:1.5*Math.sin(t)},head:{rotation:-Math.sin(t)},frontNear:{rotation:7*Math.sin(t)},frontFar:{rotation:-6*Math.sin(t)},hindNear:{rotation:-5*Math.sin(t)},hindFar:{rotation:5*Math.sin(t)},wingNear:{rotation:15*Math.sin(t)},tail:{rotation:6*Math.sin(t)}}));
+project.clips.skill={label:'Sopro frio',seconds:1.8,loop:false,hitTime:.68,frames:[frame(0),frame(.3,{root:{x:-4,y:2,rotation:-3},head:{rotation:-3},frontNear:{rotation:-8},tail:{rotation:6}}),frame(.5,{root:{x:-5,y:3,rotation:-4},wingNear:{rotation:-4}}),frame(.68,{root:{x:8,y:-2,rotation:4},head:{rotation:3},frontNear:{rotation:-12},frontFar:{rotation:7},tail:{rotation:-8},wingNear:{rotation:4}}),frame(1,{root:{x:2,rotation:1},head:{rotation:1}}),frame(1.4),frame(1.8)],expressions:[{start:.25,end:1.1,face:'fierce'}]};
+project.clips.hurt={label:'Recuo',seconds:1.2,loop:false,frames:[frame(0),frame(.12,{root:{x:-6,rotation:-5},head:{rotation:-3},tail:{rotation:7},wingNear:{rotation:-3}}),frame(.4,{root:{x:-2,rotation:2}}),frame(.8),frame(1.2)],expressions:[{start:.03,end:.65,face:'hurt'}]};
+project.clips.victory={label:'Confiança conquistada',seconds:2.6,loop:false,frames:[frame(0),frame(.3,{root:{y:-1},head:{rotation:-4},frontNear:{rotation:-14},tail:{rotation:8}}),frame(.8,{root:{y:-2},head:{rotation:-5},frontNear:{rotation:-20},tail:{rotation:12},wingNear:{rotation:2}}),frame(1.4,{head:{rotation:-3},frontNear:{rotation:-10},tail:{rotation:5}}),frame(2.2),frame(2.6)],expressions:[{start:.25,end:1.9,face:'happy'}]};
+for(const c of Object.values(project.clips))for(const f of c.frames)f.values.wingFar={...identity(),rotation:-(f.values.wingNear?.rotation||0)};
+// Keep the author's upper body, wing rotations, tail and duplicated hands.
+const authored=JSON.parse(fs.readFileSync(new URL('./author-layout.json',import.meta.url)));
+project.parts=structuredClone(authored.parts);project.clips=structuredClone(authored.clips);project.rootPivot=authored.rootPivot;
+for(const id of ['thighNear','thighFar']){const b=fs.readFileSync(directory+id+'.png');project.assets[id]={src:'/art/soulgen/keys/alvaneve/color-rig-v2/'+id+'.png',width:b.readUInt32BE(16),height:b.readUInt32BE(20),name:id};}
+project.parts=project.parts.filter(p=>!['frontFar','hindNear'].includes(p.id));
+for(const [id,asset,name,pivot,height,z]of [['hindNear','thighNear','Perna próxima · coxa e pé',[149,163],44,5],['hindFar','thighFar','Perna distante · coxa e pé',[128,161],40,2]]){const a=project.assets[asset],w=height*a.width/a.height;project.parts.push({id,name,asset,source:[0,0,a.width,a.height],rect:[pivot[0]-.5*w,pivot[1]-.1*height,w,height],pivot,z,parent:'body',visible:true,lag:.015});}
+project.parts.find(p=>p.id==='frontNear').name='Mão próxima';project.parts.find(p=>p.id==='frontNear-copy').name='Mão distante';
+for(const [id,c]of Object.entries(project.clips))for(const f of c.frames){delete f.values.frontFar;const hand=f.values.frontNear||identity();f.values['frontNear-copy']={...identity(),rotation:-hand.rotation};f.values.hindFar={...identity(),rotation:-(f.values.hindNear?.rotation||0)*.75};}
+// The original flight hands barely moved: add a relaxed paired sway, not wing flapping.
+for(const f of project.clips.flight.frames){const t=f.t/project.clips.flight.seconds*Math.PI*2;f.values.frontNear={...identity(),rotation:9*Math.sin(t)};f.values['frontNear-copy']={...identity(),rotation:-9*Math.sin(t)};}
+for(const c of Object.values(project.clips))if(c.loop)c.frames.at(-1).values=structuredClone(c.frames[0].values);
+project.anatomy={version:1,ratios:[],behind:[],joints:[]};
+const approved=JSON.parse(fs.readFileSync(new URL('./approved-layout.json',import.meta.url)));
+project.parts=approved.parts;project.clips=approved.clips;project.rootPivot=approved.rootPivot;
+await exportReview(project,directory,{registration});

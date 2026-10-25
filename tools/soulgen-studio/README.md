@@ -99,3 +99,5 @@ Selecione um elemento e use “Transformar esta peça” no inspetor: tamanho pe
 Flautrevo: `/?preset=flautrevo`, quatro peças, cinco ações, recuperação isolada e transformações por elemento.
 
 Trinca-brasas: `/?preset=trinca-brasas`, nove peças, três cabeças articuladas e cinco ações. Recuperação isolada.
+
+Alvaneve: `/?preset=alvaneve`, nove peças e cinco ações. Montagem preserva a proporção original de todos os recortes; preserveSourceAspect faz o exportador rejeitar esticamento.

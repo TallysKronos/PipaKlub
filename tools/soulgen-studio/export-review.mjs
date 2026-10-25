@@ -8,6 +8,7 @@ import {anatomyReport} from './workflow.mjs';
 export async function exportReview(project,directory,{registration}={}){
  const write=(file,data)=>fs.writeFileSync(path.join(directory,file),JSON.stringify(data,null,2)+'\n');
  const check=validate(project),anatomy=anatomyReport(project);
+ if(project.preserveSourceAspect)for(const p of project.parts){const ratio=p.rect[2]/p.rect[3]/(p.source[2]/p.source[3]);if(Math.abs(ratio-1)>.001)throw Error('A peça foi esticada na montagem: '+p.id);}
  if(!check.ok||check.warnings.length||anatomy.warnings.length)throw Error(JSON.stringify({check,anatomy}));
  write(project.creatureId+'.soulgen.json',project);
  const portable=structuredClone(project);
