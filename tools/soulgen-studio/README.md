@@ -159,3 +159,5 @@ Testes com pixels reais verificam variação de espessura por pressão, transpar
 A **Paleta da criatura** extrai até 20 amostras predominantes das fontes usadas nas peças, desconsiderando pixels transparentes. Clique numa amostra para usar a cor. **Guardar cor** adiciona a cor atual; até 24 amostras ficam no projeto ao aplicar e são incluídas em Salvar projeto. As amostras retornam ao reabrir o editor.
 
 Verificação adicional com canvas real: pintura pela montagem com rotação e inversão, alpha preservado pixel a pixel, paleta exportada e cores transparentes ignoradas. A conferência visual no navegador segue a cargo da revisão do usuário.
+
+Araruna · Asa das Lembranças: seis peças proporcionais e cinco ações, disponível em `/?preset=araruna-memoria`.

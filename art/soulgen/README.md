@@ -122,3 +122,5 @@ Nova entrega: [Pteralis](keys/pteralis/README.md), seis peças e cinco ações e
 Nova entrega: [Stegaru](keys/stegaru/README.md), oito peças e cinco ações em `/?preset=stegaru`.
 
 Nova entrega: [Yaguarú](keys/yaguaru-memoria/README.md), oito peças e cinco ações em `/?preset=yaguaru-memoria`.
+
+Araruna · Asa das Lembranças: seis peças proporcionais e cinco ações, disponível em `/?preset=araruna-memoria`.
