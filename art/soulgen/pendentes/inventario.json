@@ -4,8 +4,8 @@
   "criteria": "Conversão = projeto editável Soulgen com fontes PNG e cinco ações. Atlas antigo ou conceito isolado não contam. Validação estrutural não equivale a aprovação artística.",
   "counts": {
     "catalog": 36,
-    "pending": 9,
-    "withRig": 27,
+    "pending": 8,
+    "withRig": 28,
     "rigOutsideCatalog": 1,
     "unapprovedConceptsOutsideCatalog": 2
   },
@@ -1484,7 +1484,7 @@
       "id": "yaguaru-memoria",
       "name": "Yaguarú",
       "group": "Memórias do Vento",
-      "status": "pendente-conversao",
+      "status": "rig-existente",
       "title": "Guardião dos Nós Antigos",
       "habitat": "Memórias do Vento · correntes do mundo almático",
       "reference": "assets/creatures/colecoes/yaguaru-memoria.png",
@@ -1527,16 +1527,27 @@
         "w": 265,
         "h": 240
       },
-      "source": null,
+      "source": "art/soulgen/keys/yaguaru-memoria/color-rig-v2/yaguaru-memoria.soulgen.json",
       "runtimeSource": null,
-      "rig": null,
+      "rig": {
+        "source": "art/soulgen/keys/yaguaru-memoria/color-rig-v2/yaguaru-memoria.soulgen.json",
+        "ok": true,
+        "errors": [],
+        "warnings": [],
+        "parts": 8,
+        "actions": [
+          "idle",
+          "flight",
+          "skill",
+          "hurt",
+          "victory"
+        ],
+        "assets": 12
+      },
       "integratedSoulgen": false,
       "remaining": [
-        "Revisar conceito no padrão Carcará",
-        "Produzir peças e expressões registradas",
-        "Montar pivôs e hierarquia no Soulgen",
-        "Criar/revisar as cinco ações",
-        "Validar e exportar antes de integrar ao jogo"
+        "Revisar visual e animações no Soulgen",
+        "Exportar e integrar ao atlas do jogo após revisão"
       ]
     },
     {
