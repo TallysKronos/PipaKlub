@@ -4,7 +4,7 @@
 
 Primeira entrega da fila: [Nozinho em três quartos](keys/nozinho/README.md), com cinco peças e cinco ações, configurado no Studio em `/?preset=nozinho`. Aguardando revisão do autor antes de exportar para o jogo.
 
-[Inventário e fila de produção](pendentes/README.md): 17 dos 36 Pipamons da Dex ainda sem rig Soulgen; dezenove com rig existente. Nozinho está configurado no Studio e aguarda revisão antes da integração ao jogo. Eremor possui projeto fora da Dex, e dois conceitos adicionais aguardam revisão de direção. Inclui galeria das referências atuais e fichas por espécie. Auditoria local de 25/10/2026; não equivale a aprovação visual nem altera os assets do jogo.
+[Inventário e fila de produção](pendentes/README.md): 16 dos 36 Pipamons da Dex ainda sem rig Soulgen; vinte com rig existente. Nozinho está configurado no Studio e aguarda revisão antes da integração ao jogo. Eremor possui projeto fora da Dex, e dois conceitos adicionais aguardam revisão de direção. Inclui galeria das referências atuais e fichas por espécie. Auditoria local de 25/10/2026; não equivale a aprovação visual nem altera os assets do jogo.
 
 Nova entrega: [Guaravento](keys/guaravento/README.md), oito peças e cinco ações em `/?preset=guaravento`.
 
@@ -104,3 +104,5 @@ Reprova: mais de 15 cores; alfa semitransparente; cor fora da paleta; quadros �
 O que sai em `out/` não entra no jogo automaticamente. A integração ao atlas do jogo é um passo separado, depois da aprovação visual.
 
 Próximo passo opcional: com o Codex instalado no Linear, cada brief vira uma issue delegada ao Codex, e a revisão do gerador volta como comentário na issue.
+
+Nova entrega: [Azulongo](keys/azulongo/README.md), cabeça chibi e cinco peças proporcionais em `/?preset=azulongo`.
