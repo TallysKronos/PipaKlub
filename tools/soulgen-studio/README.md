@@ -113,3 +113,5 @@ Jarabrasa: `/?preset=jarabrasa`, quatro peças proporcionais, cinco ações e re
 Jaguarluar: `/?preset=jaguarluar`, oito peças proporcionais e cinco ações. Faces registradas da cabeça canônica. Recuperação isolada.
 
 Azulongo: `http://127.0.0.1:5240/?preset=azulongo` — cabeça chibi, cinco peças articuladas e cinco ações. Cache separado; projeto portátil e revisão em `art/soulgen/keys/azulongo/color-rig-v2/`.
+
+Umbrocasco: `http://127.0.0.1:5240/?preset=umbrocasco` — sete peças e cinco ações; casco de filtro dos sonhos e serpente.

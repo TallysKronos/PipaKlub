@@ -1,0 +1,104 @@
+{
+  "source_size": [
+    1254,
+    1254
+  ],
+  "head_source_size": [
+    1254,
+    1254
+  ],
+  "sha256": "4a3fa983518e0fbd055d7b43ec8b16c480e487bc5e8346e8f375687bed7ec05d",
+  "crops": {
+    "body": [
+      26,
+      42,
+      419,
+      403
+    ],
+    "head": [
+      528,
+      160,
+      371,
+      246
+    ],
+    "frontNear": [
+      966,
+      108,
+      262,
+      309
+    ],
+    "frontFar": [
+      45,
+      566,
+      298,
+      283
+    ],
+    "hindNear": [
+      512,
+      556,
+      272,
+      293
+    ],
+    "tail": [
+      882,
+      516,
+      353,
+      333
+    ],
+    "fierce": [
+      36,
+      951,
+      366,
+      249
+    ],
+    "hurt": [
+      456,
+      951,
+      368,
+      249
+    ],
+    "happy": [
+      847,
+      951,
+      371,
+      249
+    ],
+    "hindFar": [
+      512,
+      556,
+      272,
+      293
+    ]
+  },
+  "windows": [
+    [
+      215,
+      69,
+      82,
+      69
+    ],
+    [
+      326,
+      71,
+      33,
+      62
+    ]
+  ],
+  "expressions": {
+    "fierce": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 8283
+    },
+    "hurt": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 8450
+    },
+    "happy": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 8437
+    }
+  }
+}

@@ -2,7 +2,7 @@
   "id": "umbrocasco",
   "name": "Umbrocasco",
   "group": "Guardiões dos Quatro Ventos",
-  "status": "pendente-conversao",
+  "status": "rig-existente",
   "title": "A memória do vento",
   "habitat": "Guardiões dos Quatro Ventos · correntes do mundo almático",
   "reference": "assets/creatures/colecoes/umbrocasco.png",
@@ -45,15 +45,26 @@
     "w": 219,
     "h": 188
   },
-  "source": null,
+  "source": "art/soulgen/keys/umbrocasco/color-rig-v2/umbrocasco.soulgen.json",
   "runtimeSource": null,
-  "rig": null,
+  "rig": {
+    "source": "art/soulgen/keys/umbrocasco/color-rig-v2/umbrocasco.soulgen.json",
+    "ok": true,
+    "errors": [],
+    "warnings": [],
+    "parts": 7,
+    "actions": [
+      "idle",
+      "flight",
+      "skill",
+      "hurt",
+      "victory"
+    ],
+    "assets": 10
+  },
   "integratedSoulgen": false,
   "remaining": [
-    "Revisar conceito no padrão Carcará",
-    "Produzir peças e expressões registradas",
-    "Montar pivôs e hierarquia no Soulgen",
-    "Criar/revisar as cinco ações",
-    "Validar e exportar antes de integrar ao jogo"
+    "Revisar visual e animações no Soulgen",
+    "Exportar e integrar ao atlas do jogo após revisão"
   ]
 }
