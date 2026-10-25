@@ -1,6 +1,6 @@
 # Fila de conversão para Soulgen
 
-Auditoria local de 25/10/2026: **7 dos 36 Pipamons da Dex ainda sem conversão**, 29 com rig existente. Eremor tem rig fora da Dex. Dois conceitos adicionais continuam sem rig e sem aprovação visual.
+Auditoria local de 25/10/2026: **6 dos 36 Pipamons da Dex ainda sem conversão**, 30 com rig existente. Eremor tem rig fora da Dex. Dois conceitos adicionais continuam sem rig e sem aprovação visual.
 
 ## Critério
 
@@ -10,9 +10,8 @@ Não foi alterado nenhum PNG, rig, atlas, catálogo ou arquivo do Godot. As fich
 
 ## Ainda não convertidos
 
-### Memórias do Vento (2)
+### Memórias do Vento (1)
 
-- **Caimbira** — [ficha](fichas/caimbira-memoria.json) · [arte atual](../../../assets/creatures/colecoes/caimbira-memoria.png)
 - **Tamoatá** — [ficha](fichas/tamoata-memoria.json) · [arte atual](../../../assets/creatures/colecoes/tamoata-memoria.png)
 
 ### Ecos Antigos (4)
@@ -54,6 +53,7 @@ Não foi alterado nenhum PNG, rig, atlas, catálogo ou arquivo do Godot. As fich
 - **Tatutrama** — 7 peças; 5 ações; fonte do projeto: `art/soulgen/keys/tatutrama/color-rig-v2/tatutrama.soulgen.json`. Atlas Soulgen integrado.
 - **Yaguarú** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/yaguaru-memoria/color-rig-v2/yaguaru-memoria.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Araruna** — 6 peças; 5 ações; fonte do projeto: `art/soulgen/keys/araruna-memoria/color-rig-v2/araruna-memoria.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
+- **Caimbira** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/caimbira-memoria/color-rig-v2/caimbira-memoria.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Nozinho** — 5 peças; 5 ações; fonte do projeto: `art/soulgen/keys/nozinho/color-rig-v2/nozinho.soulgen.json`. Atlas Soulgen integrado.
 - **Rabbito** — 7 peças; 5 ações; fonte do projeto: `art/soulgen/keys/rabbito/color-rig-v2/rabbito.soulgen.json`. Atlas Soulgen integrado.
 - **Lacertubo** — 8 peças; 6 ações; fonte do projeto: `art/soulgen/keys/lacertubo-v2/color-rig-v2/lacertubo-v2.soulgen.json`. Atlas Soulgen integrado.

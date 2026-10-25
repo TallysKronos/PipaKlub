@@ -124,3 +124,5 @@ Nova entrega: [Stegaru](keys/stegaru/README.md), oito peças e cinco ações em 
 Nova entrega: [Yaguarú](keys/yaguaru-memoria/README.md), oito peças e cinco ações em `/?preset=yaguaru-memoria`.
 
 Araruna · Asa das Lembranças: seis peças proporcionais e cinco ações, disponível em `/?preset=araruna-memoria`.
+
+Caimbira · Vigia das Marés Esquecidas: oito peças proporcionais e cinco ações, disponível em `/?preset=caimbira-memoria`.
