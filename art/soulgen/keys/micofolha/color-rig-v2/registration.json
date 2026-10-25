@@ -1,0 +1,103 @@
+{
+  "source_size": [
+    1087,
+    1447
+  ],
+  "sha256": "daf309130742653ef3e32f1958bd512bc1e730488ae0f4918dd6156db788fd27",
+  "crops": {
+    "body": [
+      41,
+      205,
+      274,
+      229
+    ],
+    "head": [
+      352,
+      174,
+      293,
+      268
+    ],
+    "sail": [
+      682,
+      18,
+      387,
+      430
+    ],
+    "armNear": [
+      58,
+      497,
+      280,
+      259
+    ],
+    "armFar": [
+      422,
+      511,
+      180,
+      192
+    ],
+    "tail": [
+      723,
+      465,
+      341,
+      367
+    ],
+    "legNear": [
+      138,
+      836,
+      185,
+      243
+    ],
+    "legFar": [
+      453,
+      862,
+      155,
+      180
+    ],
+    "fierce": [
+      746,
+      839,
+      310,
+      287
+    ],
+    "hurt": [
+      35,
+      1137,
+      313,
+      289
+    ],
+    "happy": [
+      408,
+      1133,
+      311,
+      287
+    ]
+  },
+  "windows": [
+    [
+      144,
+      94,
+      108,
+      53
+    ]
+  ],
+  "expressions": {
+    "fierce": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 6199,
+      "nose_muzzle_ears_preserved": true
+    },
+    "hurt": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 6185,
+      "nose_muzzle_ears_preserved": true
+    },
+    "happy": {
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 6165,
+      "nose_muzzle_ears_preserved": true
+    }
+  }
+}

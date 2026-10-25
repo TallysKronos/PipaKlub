@@ -85,3 +85,5 @@ A biblioteca agora abre Mata verde, Azulão, Raio de sol e Rabbito, com cinco a�
 A revisão v2 usa o Carcará como referência de desenho: olhos pequenos/escuros, remendos costurados e papel facetado. Os presets abrem a nova geometria; projetos v1 e fontes anteriores continuam preservados.
 
 Guaravento: `/?preset=guaravento`, oito peças, cinco ações e recuperação isolada. Não altera o atlas do jogo.
+
+Micofolha: `/?preset=micofolha`, oito peças em três quartos e cinco ações, recuperação isolada. Fontes e roteiro reproduzível em `art/soulgen/keys/micofolha/`.

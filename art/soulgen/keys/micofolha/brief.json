@@ -1,0 +1,26 @@
+{
+  "id": "micofolha",
+  "name": "Micofolha",
+  "status": "aprovado-pelo-autor; ajustes importados",
+  "view": "tres quartos para a direita",
+  "identityReference": "assets/creatures/colecoes/micofolha.png",
+  "styleReference": "art/soulgen/keys/carcara/color-rig/body-reference.png",
+  "parts": [
+    "body",
+    "head",
+    "sail",
+    "tail",
+    "armNear",
+    "armFar",
+    "legNear",
+    "legFar"
+  ],
+  "actions": [
+    "idle",
+    "flight",
+    "skill",
+    "hurt",
+    "victory"
+  ],
+  "gameIntegrated": false
+}
