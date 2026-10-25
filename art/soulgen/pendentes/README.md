@@ -1,6 +1,6 @@
 # Fila de conversão para Soulgen
 
-Auditoria local de 25/10/2026: **20 dos 36 Pipamons da Dex ainda sem conversão**, 16 com rig existente. Eremor tem rig fora da Dex. Dois conceitos adicionais continuam sem rig e sem aprovação visual.
+Auditoria local de 25/10/2026: **19 dos 36 Pipamons da Dex ainda sem conversão**, 17 com rig existente. Eremor tem rig fora da Dex. Dois conceitos adicionais continuam sem rig e sem aprovação visual.
 
 ## Critério
 
@@ -10,9 +10,8 @@ Não foi alterado nenhum PNG, rig, atlas, catálogo ou arquivo do Godot. As fich
 
 ## Ainda não convertidos
 
-### Rios e lendas (3)
+### Rios e lendas (2)
 
-- **Marulume** — [ficha](fichas/marulume.json) · [arte atual](../../../assets/creatures/colecoes/marulume.png)
 - **Jarabrasa** — [ficha](fichas/jarabrasa.json) · [arte atual](../../../assets/creatures/colecoes/jarabrasa.png)
 - **Jaguarluar** — [ficha](fichas/jaguarluar.json) · [arte atual](../../../assets/creatures/colecoes/jaguarluar.png)
 
@@ -59,6 +58,7 @@ Não foi alterado nenhum PNG, rig, atlas, catálogo ou arquivo do Godot. As fich
 - **Alvaneve** — 9 peças; 5 ações; fonte do projeto: `art/soulgen/keys/alvaneve/color-rig-v2/alvaneve.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Chaspiral** — 6 peças; 5 ações; fonte do projeto: `art/soulgen/keys/chaspiral/color-rig-v2/chaspiral.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Hiponilo** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/hiponilo/color-rig-v2/hiponilo.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
+- **Marulume** — 4 peças; 5 ações; fonte do projeto: `art/soulgen/keys/marulume/color-rig-v2/marulume.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Guaravento** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/guaravento/color-rig-v2/guaravento.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Micofolha** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/micofolha/color-rig-v2/micofolha.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Capimansa** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/capimansa/color-rig-v2/capimansa.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.

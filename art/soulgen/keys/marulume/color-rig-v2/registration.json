@@ -1,0 +1,85 @@
+{
+  "source_size": [
+    1254,
+    1254
+  ],
+  "sha256": "89651f4a56d2fdc03314c65136d211ced5225fdc179acf53a38aa8a4e60f69af",
+  "crops": {
+    "body": [
+      95,
+      55,
+      340,
+      401
+    ],
+    "wingNear": [
+      538,
+      194,
+      284,
+      198
+    ],
+    "wingFar": [
+      951,
+      208,
+      201,
+      176
+    ],
+    "tail": [
+      47,
+      497,
+      375,
+      355
+    ],
+    "fierce": [
+      490,
+      478,
+      337,
+      390
+    ],
+    "hurt": [
+      890,
+      477,
+      334,
+      391
+    ],
+    "happy": [
+      92,
+      881,
+      332,
+      358
+    ]
+  },
+  "windows": [
+    [
+      169,
+      109,
+      69,
+      71
+    ],
+    [
+      275,
+      122,
+      42,
+      54
+    ]
+  ],
+  "expressions": {
+    "fierce": {
+      "source": "expressions-source-v2.png",
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 7328
+    },
+    "hurt": {
+      "source": "expressions-source-v2.png",
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 7236
+    },
+    "happy": {
+      "source": "expressions-source-v2.png",
+      "alpha_identical": true,
+      "outside_face_identical": true,
+      "changed_pixels": 7247
+    }
+  }
+}

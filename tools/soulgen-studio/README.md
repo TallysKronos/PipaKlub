@@ -105,3 +105,5 @@ Alvaneve: `/?preset=alvaneve`, nove peças e cinco ações. Montagem preserva a 
 Chaspiral: `/?preset=chaspiral`, seis peças proporcionais, cinco ações e ambos os braços animados. Recuperação isolada.
 
 Hiponilo: `/?preset=hiponilo`, oito peças proporcionais e cinco ações. Recuperação isolada.
+
+Marulume: `/?preset=marulume`, quatro peças proporcionais, cinco ações de nado e recuperação isolada.
