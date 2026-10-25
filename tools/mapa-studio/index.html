@@ -1,0 +1,11 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mapa Studio · overworld</title><link rel="icon" href="data:,"><link rel="stylesheet" href="studio.css"></head><body>
+<header><div class="brand"><span aria-hidden="true">◇</span><div><h1>Mapa Studio</h1><small>OVERWORLD · RASCUNHO JOGÁVEL</small></div></div><div class="title"><b id="mapName">Carregando…</b><small id="mapInfo"></small></div>
+ <div class="actions"><select id="mapPick" aria-label="Mapa do repositório"></select><button id="reload" title="Depois de salvar no Tiled">↻ Recarregar mapa</button><button id="open">Abrir .tmj</button><button id="refPlain" class="primary">Baixar referência para o Codex</button><button id="refLabels">Com legendas</button></div></header>
+<main><section class="stage"><canvas id="view" tabindex="0" aria-label="Mapa: clique no chão para andar"></canvas>
+ <div class="hud"><label><input type="checkbox" id="grid" checked> Grade</label><label><input type="checkbox" id="block"> Bloqueios</label><label><input type="checkbox" id="labels" checked> Nomes</label><span id="pos"></span></div>
+ <p class="hint">Clique no chão para o Kael andar. Arraste com o botão direito (ou Espaço + arrastar) para mover a câmera; roda do mouse aproxima. Setas: ↑ fundo-direita · → frente-direita · ↓ frente-esquerda · ← fundo-esquerda.</p></section>
+<aside><h2>Conferência</h2><ul id="audit" class="audit"></ul>
+ <h2>Legenda</h2><ul id="legend" class="legend"></ul>
+ <h2>Como editar</h2><ol class="howto"><li>Abra <code>art/overworld/mapas/veredas-piloto.tmj</code> no Tiled.</li><li>Pinte o chão na camada <b>chao</b>, níveis e rampas na <b>altura</b>, árvores e baús em <b>pecas</b>, entrada, NPC e saídas em <b>eventos</b>.</li><li>Salve e clique em <b>Recarregar mapa</b>.</li></ol></aside></main>
+<footer id="message" role="status"></footer><input id="fileMap" type="file" accept=".tmj,.json,.tsj" multiple hidden>
+<script type="module" src="studio.mjs"></script></body></html>
