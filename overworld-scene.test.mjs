@@ -43,3 +43,13 @@ test('o chão de baixo é pintado antes do barranco, e o topo depois',async()=>{
  const low=at('#a9c574',new Set(grass.filter(r=>!r.properties.elevation).map(r=>key(r,0)))),high=at('#a9c574',new Set(grass.filter(r=>r.properties.elevation).map(r=>key(r,96)))),cliff=at('#a57b4c');
  assert.ok(low.length&&high.length&&cliff.length);assert.ok(Math.max(...low)<Math.min(...cliff),'chão de baixo cobre o barranco');assert.ok(Math.max(...cliff)<Math.min(...high));
 });
+test('árvore no chão atrás do mirante é pintada antes do patamar, que a cobre',async()=>{
+ const {createVeredasRegionRenderer}=await import('./src/veredas-region-renderer.js');
+ const scene=overworldScene(pilot(),sets,{id:'veredas-piloto'}),log=[],canvases=[];
+ const ctx=()=>new Proxy({canvas:{width:1280,height:800}},{get:(o,k)=>k==='drawImage'?im=>log.push(canvases.indexOf(im)):k in o?o[k]:()=>{},set:(o,k,v)=>(o[k]=v,true)});
+ const model={sample:()=>({}),render:(g,rig,images,pose,o)=>log.push('tree:'+Math.round(o.offsetX))};
+ const r=createVeredasRegionRenderer(scene,{},{rigs:{tree:{width:200,height:240,rootPivot:[100,240]}}},model,()=>{const cv={width:1,height:1,getContext:ctx};canvases.push(cv);return cv;});
+ const g=ctx();r.draw(g,{x:3*64+32,y:28*64+32,path:[]},[],{animate:false,active:false});
+ const upper=log.indexOf(1),tree=(u,v)=>{const p=r.project({x:(u+.5)*64,y:(v+.5)*64+8});return log.indexOf('tree:'+Math.round(p.x-640));};
+ assert.ok(upper>0,'camada elevada desenhada');assert.ok(tree(1,9)>=0&&tree(1,9)<upper,'árvore de trás por cima do patamar');assert.ok(tree(11,13)>upper,'árvore da frente atrás do patamar');
+});
