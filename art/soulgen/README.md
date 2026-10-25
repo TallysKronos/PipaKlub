@@ -126,3 +126,5 @@ Nova entrega: [Yaguarú](keys/yaguaru-memoria/README.md), oito peças e cinco a�
 Araruna · Asa das Lembranças: seis peças proporcionais e cinco ações, disponível em `/?preset=araruna-memoria`.
 
 Caimbira · Vigia das Marés Esquecidas: oito peças proporcionais e cinco ações, disponível em `/?preset=caimbira-memoria`.
+
+Tamoatá · Tecelão dos Caminhos: oito peças proporcionais e cinco ações, disponível em `/?preset=tamoata-memoria`.

@@ -163,3 +163,5 @@ Verificação adicional com canvas real: pintura pela montagem com rotação e i
 Araruna · Asa das Lembranças: seis peças proporcionais e cinco ações, disponível em `/?preset=araruna-memoria`.
 
 Caimbira · Vigia das Marés Esquecidas: oito peças proporcionais e cinco ações, disponível em `/?preset=caimbira-memoria`.
+
+Tamoatá · Tecelão dos Caminhos: oito peças proporcionais e cinco ações, disponível em `/?preset=tamoata-memoria`.
