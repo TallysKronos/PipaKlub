@@ -5,43 +5,31 @@
   "status": "rig-existente",
   "title": "O inverno que aprendeu a confiar",
   "habitat": "Céus frios e lagos de vidro",
-  "reference": "assets/creatures/especiais/alvaneve.png",
+  "reference": "assets/creatures/remakes-soulgen-v2/alvaneve.png",
   "atlasId": "alvaneve",
   "frame": {
     "frame": {
       "x": 0,
       "y": 0,
-      "w": 314,
-      "h": 314
+      "w": 256,
+      "h": 256
     },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": {
-      "x": 0,
-      "y": 0,
-      "w": 314,
-      "h": 314
-    },
-    "sourceSize": {
-      "w": 314,
-      "h": 314
-    },
-    "pivot": {
-      "x": 0.5,
-      "y": 0.5
-    },
+    "duration": 83.33333333333333,
     "contentBounds": {
-      "x": 66,
-      "y": 64,
-      "w": 223,
-      "h": 246
-    },
-    "duration": 220,
-    "state": "idle"
+      "x": 25,
+      "y": 21,
+      "w": 203,
+      "h": 214
+    }
   },
-  "viewport": null,
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256
+  },
   "source": "art/soulgen/keys/alvaneve/color-rig-v2/alvaneve.soulgen.json",
-  "runtimeSource": null,
+  "runtimeSource": "art/soulgen/keys/alvaneve/color-rig-v2/alvaneve.soulgen.json",
   "rig": {
     "source": "art/soulgen/keys/alvaneve/color-rig-v2/alvaneve.soulgen.json",
     "ok": true,
@@ -57,9 +45,8 @@
     ],
     "assets": 14
   },
-  "integratedSoulgen": false,
+  "integratedSoulgen": true,
   "remaining": [
-    "Revisar visual e animações no Soulgen",
-    "Exportar e integrar ao atlas do jogo após revisão"
+    "Revisão visual e de animação conforme a direção atual; este inventário não aprova arte."
   ]
 }

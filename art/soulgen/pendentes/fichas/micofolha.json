@@ -5,48 +5,31 @@
   "status": "rig-existente",
   "title": "Mensageiro das Copas",
   "habitat": "Almas dos Biomas · correntes do mundo almático",
-  "reference": "assets/creatures/colecoes/micofolha.png",
+  "reference": "assets/creatures/remakes-soulgen-v2/micofolha.png",
   "atlasId": "micofolha",
   "frame": {
     "frame": {
       "x": 0,
       "y": 0,
-      "w": 314,
-      "h": 314
+      "w": 256,
+      "h": 256
     },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": {
-      "x": 0,
-      "y": 0,
-      "w": 314,
-      "h": 314
-    },
-    "sourceSize": {
-      "w": 314,
-      "h": 314
-    },
-    "pivot": {
-      "x": 0.5,
-      "y": 0.5
-    },
+    "duration": 83.33333333333333,
     "contentBounds": {
-      "x": 84,
-      "y": 100,
-      "w": 158,
-      "h": 161
-    },
-    "duration": 220,
-    "state": "idle"
+      "x": 50,
+      "y": 33,
+      "w": 151,
+      "h": 200
+    }
   },
   "viewport": {
-    "x": 62,
-    "y": 29,
-    "w": 233,
-    "h": 235
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256
   },
   "source": "art/soulgen/keys/micofolha/color-rig-v2/micofolha.soulgen.json",
-  "runtimeSource": null,
+  "runtimeSource": "art/soulgen/keys/micofolha/color-rig-v2/micofolha.soulgen.json",
   "rig": {
     "source": "art/soulgen/keys/micofolha/color-rig-v2/micofolha.soulgen.json",
     "ok": true,
@@ -62,9 +45,8 @@
     ],
     "assets": 11
   },
-  "integratedSoulgen": false,
+  "integratedSoulgen": true,
   "remaining": [
-    "Revisar visual e animações no Soulgen",
-    "Exportar e integrar ao atlas do jogo após revisão"
+    "Revisão visual e de animação conforme a direção atual; este inventário não aprova arte."
   ]
 }

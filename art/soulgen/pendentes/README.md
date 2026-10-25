@@ -1,6 +1,6 @@
 # Fila de conversão para Soulgen
 
-Auditoria local de 25/10/2026: **13 dos 36 Pipamons da Dex ainda sem conversão**, 23 com rig existente. Eremor tem rig fora da Dex. Dois conceitos adicionais continuam sem rig e sem aprovação visual.
+Auditoria local de 25/10/2026: **9 dos 36 Pipamons da Dex ainda sem conversão**, 27 com rig existente. Eremor tem rig fora da Dex. Dois conceitos adicionais continuam sem rig e sem aprovação visual.
 
 ## Critério
 
@@ -9,13 +9,6 @@ Conversão = projeto editável Soulgen com fontes PNG e cinco ações. Atlas ant
 Não foi alterado nenhum PNG, rig, atlas, catálogo ou arquivo do Godot. As fichas apontam para as referências existentes; não duplicam nem movem as artes.
 
 ## Ainda não convertidos
-
-### Ventos Antigos (4)
-
-- **Rexal** — [ficha](fichas/rexal.json) · [arte atual](../../../assets/creatures/colecoes/rexal.png)
-- **Tricerafan** — [ficha](fichas/tricerafan.json) · [arte atual](../../../assets/creatures/colecoes/tricerafan.png)
-- **Pteralis** — [ficha](fichas/pteralis.json) · [arte atual](../../../assets/creatures/colecoes/pteralis.png)
-- **Stegaru** — [ficha](fichas/stegaru.json) · [arte atual](../../../assets/creatures/colecoes/stegaru.png)
 
 ### Memórias do Vento (4)
 
@@ -41,11 +34,11 @@ Não foi alterado nenhum PNG, rig, atlas, catálogo ou arquivo do Godot. As fich
 - **Mata verde** — 4 peças; 5 ações; fonte do projeto: `art/soulgen/keys/mata-verde/color-rig-v2/mata-verde.soulgen.json`. Atlas Soulgen integrado.
 - **Azulão** — 4 peças; 5 ações; fonte do projeto: `art/soulgen/keys/azulao/color-rig-v2/azulao.soulgen.json`. Atlas Soulgen integrado.
 - **Raio de sol** — 4 peças; 5 ações; fonte do projeto: `art/soulgen/keys/raio-de-sol/color-rig-v2/raio-de-sol.soulgen.json`. Atlas Soulgen integrado.
-- **Flautrevo** — 4 peças; 5 ações; fonte do projeto: `art/soulgen/keys/flautrevo/color-rig-v2/flautrevo.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
-- **Trinca-brasas** — 9 peças; 5 ações; fonte do projeto: `art/soulgen/keys/trinca-brasas/color-rig-v2/trinca-brasas.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
-- **Alvaneve** — 9 peças; 5 ações; fonte do projeto: `art/soulgen/keys/alvaneve/color-rig-v2/alvaneve.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
-- **Chaspiral** — 6 peças; 5 ações; fonte do projeto: `art/soulgen/keys/chaspiral/color-rig-v2/chaspiral.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
-- **Hiponilo** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/hiponilo/color-rig-v2/hiponilo.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
+- **Flautrevo** — 4 peças; 5 ações; fonte do projeto: `art/soulgen/keys/flautrevo/color-rig-v2/flautrevo.soulgen.json`. Atlas Soulgen integrado.
+- **Trinca-brasas** — 9 peças; 5 ações; fonte do projeto: `art/soulgen/keys/trinca-brasas/color-rig-v2/trinca-brasas.soulgen.json`. Atlas Soulgen integrado.
+- **Alvaneve** — 9 peças; 5 ações; fonte do projeto: `art/soulgen/keys/alvaneve/color-rig-v2/alvaneve.soulgen.json`. Atlas Soulgen integrado.
+- **Chaspiral** — 6 peças; 5 ações; fonte do projeto: `art/soulgen/keys/chaspiral/color-rig-v2/chaspiral.soulgen.json`. Atlas Soulgen integrado.
+- **Hiponilo** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/hiponilo/color-rig-v2/hiponilo.soulgen.json`. Atlas Soulgen integrado.
 - **Marulume** — 4 peças; 5 ações; fonte do projeto: `art/soulgen/keys/marulume/color-rig-v2/marulume.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Jarabrasa** — 4 peças; 5 ações; fonte do projeto: `art/soulgen/keys/jarabrasa/color-rig-v2/jarabrasa.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Jaguarluar** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/jaguarluar/color-rig-v2/jaguarluar.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
@@ -53,11 +46,15 @@ Não foi alterado nenhum PNG, rig, atlas, catálogo ou arquivo do Godot. As fich
 - **Auriflama** — 6 peças; 5 ações; fonte do projeto: `art/soulgen/keys/auriflama/color-rig-v2/auriflama.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Umbrocasco** — 7 peças; 5 ações; fonte do projeto: `art/soulgen/keys/umbrocasco/color-rig-v2/umbrocasco.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Nevagume** — 7 peças; 5 ações; fonte do projeto: `art/soulgen/keys/nevagume/color-rig-v2/nevagume.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
-- **Guaravento** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/guaravento/color-rig-v2/guaravento.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
-- **Micofolha** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/micofolha/color-rig-v2/micofolha.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
-- **Capimansa** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/capimansa/color-rig-v2/capimansa.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
-- **Tatutrama** — 7 peças; 5 ações; fonte do projeto: `art/soulgen/keys/tatutrama/color-rig-v2/tatutrama.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
-- **Nozinho** — 5 peças; 5 ações; fonte do projeto: `art/soulgen/keys/nozinho/color-rig-v2/nozinho.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
+- **Rexal** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/rexal/color-rig-v2/rexal.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
+- **Tricerafan** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/tricerafan/color-rig-v2/tricerafan.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
+- **Pteralis** — 6 peças; 5 ações; fonte do projeto: `art/soulgen/keys/pteralis/color-rig-v2/pteralis.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
+- **Stegaru** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/stegaru/color-rig-v2/stegaru.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
+- **Guaravento** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/guaravento/color-rig-v2/guaravento.soulgen.json`. Atlas Soulgen integrado.
+- **Micofolha** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/micofolha/color-rig-v2/micofolha.soulgen.json`. Atlas Soulgen integrado.
+- **Capimansa** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/capimansa/color-rig-v2/capimansa.soulgen.json`. Atlas Soulgen integrado.
+- **Tatutrama** — 7 peças; 5 ações; fonte do projeto: `art/soulgen/keys/tatutrama/color-rig-v2/tatutrama.soulgen.json`. Atlas Soulgen integrado.
+- **Nozinho** — 5 peças; 5 ações; fonte do projeto: `art/soulgen/keys/nozinho/color-rig-v2/nozinho.soulgen.json`. Atlas Soulgen integrado.
 - **Rabbito** — 7 peças; 5 ações; fonte do projeto: `art/soulgen/keys/rabbito/color-rig-v2/rabbito.soulgen.json`. Atlas Soulgen integrado.
 - **Lacertubo** — 8 peças; 6 ações; fonte do projeto: `art/soulgen/keys/lacertubo-v2/color-rig-v2/lacertubo-v2.soulgen.json`. Atlas Soulgen integrado.
 

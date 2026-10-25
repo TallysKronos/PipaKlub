@@ -5,48 +5,31 @@
   "status": "rig-existente",
   "title": "Guardião das Dobras Antigas",
   "habitat": "Almas dos Biomas · correntes do mundo almático",
-  "reference": "assets/creatures/colecoes/tatutrama.png",
+  "reference": "assets/creatures/remakes-soulgen-v2/tatutrama.png",
   "atlasId": "tatutrama",
   "frame": {
     "frame": {
       "x": 0,
       "y": 0,
-      "w": 314,
-      "h": 314
+      "w": 256,
+      "h": 256
     },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": {
-      "x": 0,
-      "y": 0,
-      "w": 314,
-      "h": 314
-    },
-    "sourceSize": {
-      "w": 314,
-      "h": 314
-    },
-    "pivot": {
-      "x": 0.5,
-      "y": 0.5
-    },
+    "duration": 83.33333333333333,
     "contentBounds": {
-      "x": 74,
-      "y": 129,
-      "w": 197,
-      "h": 129
-    },
-    "duration": 220,
-    "state": "idle"
+      "x": 24,
+      "y": 59,
+      "w": 207,
+      "h": 137
+    }
   },
   "viewport": {
-    "x": 53,
-    "y": 45,
-    "w": 232,
-    "h": 220
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256
   },
   "source": "art/soulgen/keys/tatutrama/color-rig-v2/tatutrama.soulgen.json",
-  "runtimeSource": null,
+  "runtimeSource": "art/soulgen/keys/tatutrama/color-rig-v2/tatutrama.soulgen.json",
   "rig": {
     "source": "art/soulgen/keys/tatutrama/color-rig-v2/tatutrama.soulgen.json",
     "ok": true,
@@ -62,9 +45,8 @@
     ],
     "assets": 10
   },
-  "integratedSoulgen": false,
+  "integratedSoulgen": true,
   "remaining": [
-    "Revisar visual e animações no Soulgen",
-    "Exportar e integrar ao atlas do jogo após revisão"
+    "Revisão visual e de animação conforme a direção atual; este inventário não aprova arte."
   ]
 }
