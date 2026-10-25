@@ -20,7 +20,7 @@ test('a planta piloto vira cena do jogo com escada, ponte, água e saídas',()=>
 });
 test('o baú do mirante só é alcançado pela rampa, e a Nina pela ponte',()=>{
  const scene=overworldScene(pilot(),sets,{id:'veredas-piloto'}),levels=scene.tiled.levels,walk=scene.tiled.layers.Walkable;
- const chest=scene.places.find(p=>p.name==='Baú do mirante'),path=route(scene,chest.node);assert.ok(path,'baú inalcançável');assert.equal(levels[chest.node],1);
+ const chest=scene.places.find(p=>p.name==='Baú do mirante'),path=route(scene,chest.node);assert.ok(path,'baú inalcançável');assert.equal(levels[chest.node],1);assert.equal(chest.interactionLabel,'Abrir baú');
  const inStair=n=>{const [x,y]=scene.nodes[n];return walk.some(r=>r.properties.connects_to===1&&x>=r.x&&x<=r.x+r.w&&y>=r.y&&y<=r.y+r.h);};assert.ok(path.some(inStair),'caminho sem a rampa');
  const nina=scene.places.find(p=>p.name==='Nina'),onBridge=n=>{const [x,y]=scene.nodes[n];return walk.some(r=>r.properties.ground_frame==='bridge'&&x>=r.x&&x<=r.x+r.w&&y>=r.y&&y<=r.y+r.h);};assert.ok(route(scene,nina.node).some(onBridge),'caminho sem a ponte');
  // Baú e Nina ocupam a célula: o jogador fala de uma vizinha, sem pisar em cima.

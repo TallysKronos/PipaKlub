@@ -12,7 +12,11 @@ const worldScenes=homeArt.world?.scenes||{},worldRuntime={id:'quintal',owner:nul
 const worldMapMode=new URLSearchParams(location.search).get('overworld');
 if(worldMapMode==='blockout'&&homeArt.world?.pilot)worldScenes.morro=homeArt.world.pilot;
 // ?overworld=<mapa>: a entrada das Veredas na Clareira leva à planta do overworld em revisão.
-if(homeArt.world?.overworld?.[worldMapMode]&&!worldScenes[worldMapMode]){worldScenes[worldMapMode]=homeArt.world.overworld[worldMapMode];const door=worldScenes['park-clearing']?.places.find(p=>p.target==='park-veredas');if(door)door.target=worldMapMode;}
+if(homeArt.world?.overworld?.[worldMapMode]&&!worldScenes[worldMapMode]){
+ worldScenes[worldMapMode]=homeArt.world.overworld[worldMapMode];const door=worldScenes['park-clearing']?.places.find(p=>p.target==='park-veredas');if(door)door.target=worldMapMode;
+ homeMenuGroups.explorationGroup.splice(2,0,['overworldPreview','Mapa piloto']);
+ homeActions.overworldPreview=()=>{hideJourney();closeHomeMenu();openWorld(worldMapMode,{arrival:'door'});toast('Mapa piloto · prévia sem recompensas ou salvamento.');};
+}
 /* WORLD_ROAD_CLIENT */
 const parkStreet=worldScenes.quintal,parkAnchor=parkStreet.places.find(p=>p.action==='farm');if(parkAnchor)Object.assign(parkAnchor,{name:'Parque dos Ventos · exploração',action:'street_scene',target:'park-trail'});
 for(const [id,scene]of Object.entries(worldScenes)){const navigation=createWorldNavigation(scene);worldRuntime.states[id]={navigation,actor:navigation.create()};}
@@ -81,6 +85,7 @@ function updateWorldMinimap(){
 }
 function worldInteractionLabel(place){
  let action=place?.action==='veredasChest'?'Abrir baú':place?.action==='veredasTail'?'Recolher rabiola':place?.action==='parkBoss'?'Desafiar':place?.stage?'Ver desafio':place?.target==='park-veredas'?'Entrar nas Veredas':place&&worldIsEntrance(place)?'Entrar':place?.action==='parkMap'?'Ler placa':place?.action==='wildRest'||place?.action==='avatarSeat'?'Descansar':['pilot_story','professor','wildGuide','veredasNina'].includes(place?.action)?'Conversar':'Examinar';
+ action=place?.interactionLabel||action;
  const device=typeof inputDevice==='string'?inputDevice:'keyboard';return action+(device==='touch'?'':device.startsWith('gamepad')?' · A':' · E');
 }
 function updateWorldContext(){
@@ -99,6 +104,7 @@ async function loadWorldImage(id,retry=false){gameAvatar.load(retry);
  const tasks=scene.isometric?[]:scene.tiled?[...new Set(scene.painted?scene.tiled.images.map(i=>i.sheet):Object.keys(scene.art?.kit.sheets||homeArt.world.kit.sheets)),...(worldRoadChapter(id)?[homeArt.world.kit.frames.fence.sheet]:[])].map(sheet=>()=>homeLoadImage('world-kit-'+sheet,retry)):[()=>homeLoadImage('world-'+id,retry)];
  tasks.push(()=>homeLoadImage('plaza-kael',retry));
  if(id==='park-veredas')tasks.push(()=>art.load('lacertubo',retry),()=>art.load(art.basic(0),retry),()=>loadWorldActors(['Nina'],retry).then(a=>a.every(Boolean)),()=>homeLoadImage('quest-nina-tail',retry),()=>loadVeredasLoot());
+ if(scene.overworld?.npcs?.length)tasks.push(()=>loadWorldActors([...new Set(scene.overworld.npcs.map(n=>n.name))].filter(name=>worldActors.get(name)),retry).then(a=>a.every(Boolean)));
  if(scene.isometric){for(const id of Object.keys(homeArt.world.parkIsometric.images))tasks.push(()=>homeLoadImage('park-iso-'+id,retry));if(scene.village)for(const id of Object.keys(homeArt.world.villageIsometric.images))tasks.push(()=>homeLoadImage('village-iso-'+id,retry));if(!scene.village)tasks.push(()=>loadWorldActors(['Sr. Assis'],retry).then(a=>a.every(Boolean)));if(scene.overworld?.npcs.length)tasks.push(()=>loadWorldActors(scene.overworld.npcs.map(n=>n.name),retry).then(()=>true));}
  if(id==='kael-home')tasks.push(()=>loadWorldActors(['Mãe'],retry).then(a=>a.every(Boolean)));
  if(id==='professor-home'){tasks.push(()=>loadWorldActors(['Sr. Assis'],retry).then(a=>a.every(Boolean)));if(homeArt.images['world-companion-nozinho'])tasks.push(()=>loadWorldCompanionImage('nozinho',retry));}

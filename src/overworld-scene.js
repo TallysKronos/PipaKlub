@@ -47,5 +47,6 @@ export function overworldScene(raw,tilesets,{id,cell=OVERWORLD_CELL,levelPx=OVER
  const map={type:'map',version:'1.10',orientation:'orthogonal',renderorder:'right-down',width:m.w*cell/32,height:m.h*cell/32,tilewidth:32,tileheight:32,infinite:false,tilesets:[],layers,
   properties:props({scene_name:name,scene_id:id,veredas_region:true,prefer_safe_paths:true,actor_height:72,foot_radius:10,walk_speed:300,ground_corner_radius:32})};
  const scene=parseWorldMap(map);scene.isometric=true;scene.art={objects:[]};
+ for(const place of scene.places)if(place.action==='pilot_story'&&chests.some(chest=>chest.name===place.name))place.interactionLabel='Abrir baú';
  scene.veredas={chests,water,sectors:[],decor,borderTrees:false,backRim:true};scene.overworld={id,cell,npcs};return scene;
 }

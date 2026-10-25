@@ -14,3 +14,5 @@ node --test tools/mapa-studio/model.test.mjs tools/mapa-studio/server.test.mjs
 - **Conferência**: clique num item para ver a célula piscando no mapa.
 - **Baixar referência para o Codex**: PNG 2× sem textos, sem grade e sem eventos, para pintar por cima. **Com legendas**: grade, nomes e coordenadas, para conversar sobre a planta.
 - O servidor só lê arquivos: nada é gravado no repositório.
+
+No jogo, abra `/?overworld=veredas-piloto` e use **Jogar → Exploração e campanha → Mapa piloto** para iniciar a conferência na entrada. A passagem das Veredas na Clareira também leva ao piloto com esse parâmetro. Sem o parâmetro, o atalho não aparece. A prévia não concede recompensas nem salva posição de campanha.
