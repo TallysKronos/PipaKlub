@@ -1,6 +1,6 @@
 # Fila de conversão para Soulgen
 
-Auditoria local de 25/10/2026: **5 dos 36 Pipamons da Dex ainda sem conversão**, 31 com rig existente. Eremor tem rig fora da Dex. Dois conceitos adicionais continuam sem rig e sem aprovação visual.
+Auditoria local de 25/10/2026: **4 dos 36 Pipamons da Dex ainda sem conversão**, 32 com rig existente. Eremor tem rig fora da Dex. Dois conceitos adicionais continuam sem rig e sem aprovação visual.
 
 ## Critério
 
@@ -10,9 +10,8 @@ Não foi alterado nenhum PNG, rig, atlas, catálogo ou arquivo do Godot. As fich
 
 ## Ainda não convertidos
 
-### Ecos Antigos (4)
+### Ecos Antigos (3)
 
-- **Herravento** — [ficha](fichas/herravento.json) · [arte atual](../../../assets/creatures/colecoes/herravento.png)
 - **Platofolha** — [ficha](fichas/platofolha.json) · [arte atual](../../../assets/creatures/colecoes/platofolha.png)
 - **Celofita** — [ficha](fichas/celofita.json) · [arte atual](../../../assets/creatures/colecoes/celofita.png)
 - **Riovela** — [ficha](fichas/riovela.json) · [arte atual](../../../assets/creatures/colecoes/riovela.png)
@@ -51,6 +50,7 @@ Não foi alterado nenhum PNG, rig, atlas, catálogo ou arquivo do Godot. As fich
 - **Araruna** — 6 peças; 5 ações; fonte do projeto: `art/soulgen/keys/araruna-memoria/color-rig-v2/araruna-memoria.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Caimbira** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/caimbira-memoria/color-rig-v2/caimbira-memoria.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Tamoatá** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/tamoata-memoria/color-rig-v2/tamoata-memoria.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
+- **Herravento** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/herravento/color-rig-v2/herravento.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Nozinho** — 5 peças; 5 ações; fonte do projeto: `art/soulgen/keys/nozinho/color-rig-v2/nozinho.soulgen.json`. Atlas Soulgen integrado.
 - **Rabbito** — 7 peças; 5 ações; fonte do projeto: `art/soulgen/keys/rabbito/color-rig-v2/rabbito.soulgen.json`. Atlas Soulgen integrado.
 - **Lacertubo** — 8 peças; 6 ações; fonte do projeto: `art/soulgen/keys/lacertubo-v2/color-rig-v2/lacertubo-v2.soulgen.json`. Atlas Soulgen integrado.

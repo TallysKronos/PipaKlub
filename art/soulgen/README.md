@@ -128,3 +128,5 @@ Araruna · Asa das Lembranças: seis peças proporcionais e cinco ações, dispo
 Caimbira · Vigia das Marés Esquecidas: oito peças proporcionais e cinco ações, disponível em `/?preset=caimbira-memoria`.
 
 Tamoatá · Tecelão dos Caminhos: oito peças proporcionais e cinco ações, disponível em `/?preset=tamoata-memoria`.
+
+Herravento · Caçador das Rajadas: oito peças proporcionais e cinco ações em `/?preset=herravento`.
