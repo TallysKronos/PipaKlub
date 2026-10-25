@@ -109,3 +109,5 @@ Hiponilo: `/?preset=hiponilo`, oito peças proporcionais e cinco ações. Recupe
 Marulume: `/?preset=marulume`, quatro peças proporcionais, cinco ações de nado e recuperação isolada.
 
 Jarabrasa: `/?preset=jarabrasa`, quatro peças proporcionais, cinco ações e recuperação isolada.
+
+Jaguarluar: `/?preset=jaguarluar`, oito peças proporcionais e cinco ações. Faces registradas da cabeça canônica. Recuperação isolada.

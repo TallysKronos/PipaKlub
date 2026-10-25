@@ -4,8 +4,8 @@
   "criteria": "Conversão = projeto editável Soulgen com fontes PNG e cinco ações. Atlas antigo ou conceito isolado não contam. Validação estrutural não equivale a aprovação artística.",
   "counts": {
     "catalog": 36,
-    "pending": 18,
-    "withRig": 18,
+    "pending": 17,
+    "withRig": 19,
     "rigOutsideCatalog": 1,
     "unapprovedConceptsOutsideCatalog": 2
   },
@@ -716,7 +716,7 @@
       "id": "jaguarluar",
       "name": "Jaguarluar",
       "group": "Rios e lendas",
-      "status": "pendente-conversao",
+      "status": "rig-existente",
       "title": "A sombra da lua cheia",
       "habitat": "Rios e lendas · correntes do mundo almático",
       "reference": "assets/creatures/colecoes/jaguarluar.png",
@@ -759,16 +759,27 @@
         "w": 209,
         "h": 204
       },
-      "source": null,
+      "source": "art/soulgen/keys/jaguarluar/color-rig-v2/jaguarluar.soulgen.json",
       "runtimeSource": null,
-      "rig": null,
+      "rig": {
+        "source": "art/soulgen/keys/jaguarluar/color-rig-v2/jaguarluar.soulgen.json",
+        "ok": true,
+        "errors": [],
+        "warnings": [],
+        "parts": 8,
+        "actions": [
+          "idle",
+          "flight",
+          "skill",
+          "hurt",
+          "victory"
+        ],
+        "assets": 11
+      },
       "integratedSoulgen": false,
       "remaining": [
-        "Revisar conceito no padrão Carcará",
-        "Produzir peças e expressões registradas",
-        "Montar pivôs e hierarquia no Soulgen",
-        "Criar/revisar as cinco ações",
-        "Validar e exportar antes de integrar ao jogo"
+        "Revisar visual e animações no Soulgen",
+        "Exportar e integrar ao atlas do jogo após revisão"
       ]
     },
     {
