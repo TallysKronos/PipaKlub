@@ -1,7 +1,7 @@
 // Uses the existing account/session and idempotent workshop API. No parallel economy.
 let workshopCraft=null,workshopCraftKey='',workshopCraftController=null,workshopCraftSaved='';
 const craftClassicLoad=workshopLoadArt,craftClassicConfirm=$('workshopConfirm').onclick;
-const craftNeutral='<div class="craft-neutral"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 90 45 50 91 10 45Z"/><path d="M50 5v86M10 45h80" fill="none"/><text x="50" y="57" text-anchor="middle" fill="#315959" stroke="none" font-size="30">?</text></svg><span>Alma selada</span></div>';
+const craftNeutral='<div class="craft-neutral"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 90 45 50 91 10 45Z"/><path d="M50 5v86M10 45h80" fill="none"/><text x="50" y="57" text-anchor="middle" fill="#315959" stroke="none" font-size="30">?</text></svg><span>Rabiola</span></div>';
 function workshopCraftClass(job){const model=job.modelId||job.targetModelId,entry=ART_CONFIG.dex.entries.find(e=>e.model===model);return craftClass(job.classKey||workshopAssets?.craftClasses?.[model]||entry?.rarity);}
 function workshopCraftPersist(){
  if(!workshopCraft||!summonRitual)return;const save={};for(const key of ['version','kind','stage','rods','knots','cut','glue','seated','damage','grade','balance','tested','tail','synced'])save[key]=workshopCraft[key];
@@ -41,12 +41,12 @@ for(const key of ['onpointerdown','onpointermove','onpointerup','onpointercancel
 renderSummonCatalog=function(){
  $('summonSeenGrid').replaceChildren(...Object.entries(CRAFT_CLASSES).map(([classKey,cfg])=>{
   const candidates=summonData.seen.filter(p=>workshopCraftClass(p)===classKey),tailIds=new Set(candidates.flatMap(p=>p.availableTailIds||[])),count=summonData.tails.filter(t=>t.status==='ready'&&tailIds.has(t.id)).length;
-  const card=uiElement('button',undefined,'summon-seen-card '+(count?'available':'locked'));card.type='button';card.disabled=!count;card.innerHTML=craftNeutral;card.append(uiElement('b','Gabarito '+cfg.label),uiElement('small',cfg.shape+' · '+cfg.sides+' apoios'),uiElement('small',count?count+' alma(s) selada(s) disponível(is)':'Encontre uma alma desta classe na exploração'));card.onclick=()=>prepareSummon({classKey,candidates});return card;
+  const card=uiElement('button',undefined,'summon-seen-card '+(count?'available':'locked'));card.type='button';card.disabled=!count;card.innerHTML=craftNeutral;card.append(uiElement('b','Gabarito '+cfg.label),uiElement('small',cfg.shape+' · '+cfg.sides+' apoios'),uiElement('small',count?count+' rabiola(s) disponível(is)':'Encontre uma alma desta classe na exploração'));card.onclick=()=>prepareSummon({classKey,candidates});return card;
  }));
  $('summonCatalog').querySelector('h3').textContent='Qual gabarito vamos construir?';
 };
 prepareSummon=function(p){
  summonTarget=null;summonTail=null;showSummonStage('preparation');$('summonStart').disabled=true;const kind=workshopCraftClass(p),candidates=p.candidates||[p];$('summonChosenPipamon').innerHTML=craftNeutral;$('summonChosenPipamon').append(uiElement('h3','Gabarito '+CRAFT_CLASSES[kind].label),uiElement('small','A forma viva será revelada apenas ao despertar.'));
- $('summonTailList').replaceChildren(...summonData.tails.filter(t=>t.status==='ready'&&candidates.some(c=>c.availableTailIds.includes(t.id))).map((t,i)=>{const card=uiElement('article',undefined,'summon-tail'),button=uiElement('button','Selecionar alma selada '+(i+1),'secondary');button.onclick=()=>{summonTail=t;summonTarget=candidates.find(c=>c.availableTailIds.includes(t.id));$('summonStart').disabled=false;$('summonSelectedTail').textContent='Alma selada selecionada. A rabiola entra por último.';for(const c of $('summonTailList').children)c.classList.toggle('selected',c===card);};card.innerHTML=craftNeutral;card.append(button);return card;}));
- $('summonSelectedTail').textContent='Selecione uma alma selada compatível.';
+ $('summonTailList').replaceChildren(...summonData.tails.filter(t=>t.status==='ready'&&candidates.some(c=>c.availableTailIds.includes(t.id))).map((t,i)=>{const card=uiElement('article',undefined,'summon-tail'),button=uiElement('button','Selecionar rabiola '+(i+1),'secondary');button.onclick=()=>{summonTail=t;summonTarget=candidates.find(c=>c.availableTailIds.includes(t.id));$('summonStart').disabled=false;$('summonSelectedTail').textContent='Rabiola selecionada. A rabiola entra por último.';for(const c of $('summonTailList').children)c.classList.toggle('selected',c===card);};card.innerHTML=craftNeutral;card.append(button);return card;}));
+ $('summonSelectedTail').textContent='Selecione uma rabiola compatível.';
 };

@@ -13,7 +13,7 @@ export function createEngine() {
     return {maxLevel,maxXp,xpForLevel,level,stats,progress,tiers,tier:value=>tiers.find(t=>level(value)>=t.min)||null};
   })();
   // Only server-created bots receive this role. Inputs cannot set stats or roles.
-  const bossStats=Object.freeze({line:190,energy:125,attack:1.18,defense:1.05,speed:157,regen:19});
+  const bossStats=Object.freeze({line:250,energy:125,attack:1.18,defense:1.05,speed:157,regen:19});
   const pipamonStats=p=>p.bot&&p.bossId==='lacertubo'?bossStats:pipamons.stats(p.pipamonLevel,p.pipamonClass,p.classRank,p.craftBonus);
   function daily(now=Date.now()){
     const day=Math.floor(now/86400000),weather=['wind','wax','rain','fog'][((day%4)+4)%4];
@@ -36,7 +36,7 @@ export function createEngine() {
     {id:'folha',name:'Folha solta',cost:20,cooldown:3.5,duration:1.1,description:'Ceda linha e reposicione. Sem dano ou invulnerabilidade.'},
     {id:'duplo',name:'Duplo toque',cost:30,cooldown:4.5,duration:1.1,description:'Dois pulsos: o segundo desfaz uma Linha firme ativa.'}
   ];
-  function sanitizeInput(i={}) {const out={x:Number.isFinite(i?.x)?clamp(i.x,-1,1):0,y:Number.isFinite(i?.y)?clamp(i.y,-1,1):0,cut:!!i?.cut,skill:i?.skill===-1?-1:i?.skill===1?1:0,dodge:!!i?.dodge};if(Number.isSafeInteger(i?.lineNonce)&&i.lineNonce>0&&i.lineNonce<=2147483647){out.lineNonce=i.lineNonce;out.lineId=lineSkills.some(s=>s.id===i.lineId)?i.lineId:'';out.lineHeld=i.lineHeld===true;out.lineSide=i.lineSide===-1?-1:1;}return out;}
+  function sanitizeInput(i={}) {const out={x:Number.isFinite(i?.x)?clamp(i.x,-1,1):0,y:Number.isFinite(i?.y)?clamp(i.y,-1,1):0,cut:!!i?.cut,skill:i?.skill===-1?-1:i?.skill===1?1:0,dodge:!!i?.dodge,guard:!!i?.guard,signature:!!i?.signature};if(Number.isSafeInteger(i?.lineNonce)&&i.lineNonce>0&&i.lineNonce<=2147483647){out.lineNonce=i.lineNonce;out.lineId=lineSkills.some(s=>s.id===i.lineId)?i.lineId:'';out.lineHeld=i.lineHeld===true;out.lineSide=i.lineSide===-1?-1:1;}return out;}
   function lineMotion(k,t){
     t=clamp(t,0,1);const d=k.side;
     if(k.id==='puxao')return {x:0,y:t<.42?110*Math.sin(t/.42*Math.PI/2):110*Math.cos((t-.42)/.58*Math.PI/2)};
@@ -61,7 +61,7 @@ export function createEngine() {
   }
   // Dodge: a short burst during which strikes slide off. Dodging the instant a rival pulls is a
   // perfect dodge: the energy comes back and the next hit within COUNTER seconds is critical.
-  const DODGE={cost:18,cooldown:2.2,time:.28,speed:3.2},COUNTER=2;
+  const DODGE={cost:18,cooldown:2.2,time:.28,speed:3.2},COUNTER=2,GUARD={time:.5,cooldown:20};
   // Cut quality: open angle (clean), moving kite (relada), golden centre; all three together is critical.
   function cutDamage(p,c){
     const clean=c.angle>=.85,shallow=c.angle<.45,moving=Math.hypot(p.vx||0,p.vy||0)>=110,crit=(c.perfect&&clean&&moving)||p.counter>0;
@@ -75,12 +75,12 @@ export function createEngine() {
   function create(now=Date.now(),opts) {const s={id:crypto.randomUUID(),rules:'casual',cutSequence:0,players:[],last:now,end:now+MATCH,events:[],wind:0};if(opts){s.mode=opts.mode==='time'?'time':'rounds';s.phase='waiting';s.round=0;s.roundsToWin=clamp(Math.trunc(opts.roundsToWin)||ROUNDS_TO_WIN,1,5);s.end=now+3600000;if(opts.quick)s.quick={fillAt:now+QUICK.wait,size:QUICK.size,level:QUICK.level};}return s;}
   function fillBots(s,now){const used=new Set(s.players.map(p=>p.name));let n=0;while(s.players.length<s.quick.size){const name=BOT_NAMES.find(x=>!used.has(x))||'Pipeiro '+(++n);used.add(name);const b=player(name,Math.floor(Math.random()*4),'bot-'+crypto.randomUUID(),now);b.bot=true;b.ai={level:s.quick.level};admit(s,b,now);}}
   // A player joining mid-round in rounds mode watches until the next round starts.
-  function admit(s,p,now){seat(s,p);p.pipamonLevel=pipamons.level(p.pipamonLevel);p.hp=pipamonStats(p).line;p.energy=pipamonStats(p).energy;p.shield=SHIELD;if(s.mode==='rounds'&&(s.phase==='live'||s.phase==='intermission'))p.respawn=now;s.players.push(p);return p;}
-  function visible(s){const {_pendingCuts,dailyResult,trailResult,trailOwner,wildResult,wildOwner,...publicState}=s;return {...publicState,players:s.players.map(({key,accountId,kiteId,basicKiteId,strike,lineStrike,...p})=>p),events:s.events.map(({id,text,at,capture,winnerId,loserId,kind,round})=>({id,text,at,capture,winnerId,loserId,kind,round}))};}
+  function admit(s,p,now){seat(s,p);p.pipamonLevel=pipamons.level(p.pipamonLevel);p.hp=pipamonStats(p).line;p.hullMax=pipamonStats(p).line;p.hull=p.hullMax*(p.conditionHull??100)/100;p.wearLine=p.conditionLine??100;p.energy=pipamonStats(p).energy;p.shield=SHIELD;if(s.mode==='rounds'&&(s.phase==='live'||s.phase==='intermission'))p.respawn=now;s.players.push(p);return p;}
+  function visible(s){const {_pendingCuts,dailyResult,trailResult,trailOwner,wildResult,wildOwner,departedCare,impactPairs,...publicState}=s;return {...publicState,players:s.players.map(({key,accountId,kiteId,basicKiteId,strike,lineStrike,...p})=>p),events:s.events.map(({id,text,at,capture,winnerId,loserId,kind,round})=>({id,text,at,capture,winnerId,loserId,kind,round}))};}
   // Fixed anchors and straight segments are also used by the renderer. Fractions run ground -> kite.
   // The seat also fixes the player number (P1..P8) shown with the player's colour.
   function seat(s,p){if(!Number.isFinite(p.anchorX))p.anchorX=ANCHORS.find(x=>!s.players.some(q=>q!==p&&q.anchorX===x))??500;if(!Number.isInteger(p.slot)){const i=ANCHORS.indexOf(p.anchorX);p.slot=i>=0?i:s.players.indexOf(p)%8;}return p;}
-  function reset(p){Object.assign(p,{hp:pipamonStats(p).line,energy:pipamonStats(p).energy,respawn:0,skillTime:0,skillCooldown:0,attackCooldown:0,lineMove:null,lineStrike:null,lineCooldown:0,shield:0,hitFlash:0,flash:0,botFocus:-.4,attack:false,x:clamp(500+(p.anchorX-500)*.8,55,945),y:290});}
+  function reset(p){const first=!p.combatStarted;p.combatStarted=true;p.hullMax=pipamonStats(p).line;p.hull??=p.hullMax*(p.conditionHull??100)/100;Object.assign(p,{signatureWindup:0,signatureBurst:0,guardTime:0,hp:pipamonStats(p).line*(first?(p.conditionLine??100)/100:1),energy:pipamonStats(p).energy,respawn:0,skillTime:0,skillCooldown:0,attackCooldown:0,lineMove:null,lineStrike:null,lineCooldown:0,shield:0,hitFlash:0,flash:0,botFocus:-.4,attack:false,x:clamp(500+(p.anchorX-500)*.8,55,945),y:290});}
   function startRound(s,now){s.phase='countdown';s.phaseUntil=now+(s.boss?6600:COUNTDOWN);if(s.mode==='rounds')s.round=(s.round||0)+1;for(const p of s.players){reset(p);if(p.bossId){p.bossCharge=0;p.bossRecovery=0;p.bossPhase=1;p.bossTelegraph=0;p.facing=-1;}}}
   function finishRound(s,now){
     const alive=s.players.filter(p=>!p.respawn).sort((a,b)=>b.hp-a.hp);
@@ -90,6 +90,7 @@ export function createEngine() {
     s.events.unshift({kind:'round',round:s.round,text:winner?winner.name+' venceu a rodada '+s.round:'Rodada '+s.round+' empatada',at:now,id:s.id+':r'+s.round,winnerId:winner?.id});s.events=s.events.slice(0,4);
     for(const p of s.players){p.lineMove=null;p.lineStrike=null;p.strike=false;}
     s.phase='intermission';s.phaseUntil=now+INTERMISSION;
+    if(!winner&&!alive.length&&s.players.some(p=>p.hull<=0)){s.end=now+INTERMISSION;if(s.wild)s.wildResult={userId:s.wildOwner,matchId:s.id,outcome:'lost'};if(s.trail)s.trailResult={userId:s.trailOwner,stage:s.trail,won:false,roundsLost:s.roundsToWin};}
     if(winner&&winner.rounds>=s.roundsToWin){s.end=now+INTERMISSION;if(s.wild){const own=s.players.find(p=>p.accountId===s.wildOwner);if(own)s.wildResult={userId:s.wildOwner,matchId:s.id,outcome:winner.id===own.id?'won':'lost'};}if(s.daily)s.dailyResult={winnerId:winner.id,accountId:winner.accountId||null};if(s.trail){const owner=s.players.find(p=>p.accountId===s.trailOwner);if(owner)s.trailResult={userId:s.trailOwner,stage:s.trail,won:winner.id===owner.id,roundsLost:s.players.filter(p=>p.id!==owner.id).reduce((n,p)=>n+(p.rounds||0),0)};}}
   }
   function advance(s,now){
@@ -99,6 +100,32 @@ export function createEngine() {
     else if(s.phase==='live'&&s.mode==='rounds'){if(s.players.length<2){s.phase='waiting';for(const p of s.players)reset(p);}else if(now>=s.phaseUntil)finishRound(s,now);}
   }
   function line(p){return {a:{x:Number.isFinite(p.anchorX)?p.anchorX:110+(p.color*219)%800,y:585},b:{x:p.x,y:p.y}};}
+  // The same close-range gate is used by the authoritative attack and the HUD.
+  const SIGNATURES={rabbito:{id:'rabbito',name:'Pulo do Elo',windup:1.4,cooldown:24,cost:40,damage:38,radius:85},nozinho:{id:'nozinho',name:'Nó de Vendaval',windup:1.65,cooldown:22,cost:35,damage:32,radius:78},lacertubo:{id:'lacertubo',name:'Ruptura dos Canos',windup:1.5,cooldown:20,cost:0,damage:44,radius:95}};
+  function signature(p){return p.bossId==='lacertubo'?SIGNATURES.lacertubo:['rabbito','nozinho'].includes(p.soul)?SIGNATURES[p.soul]:null;}
+  function signatureTarget(s,p){return s.players.filter(q=>q.id!==p.id&&!q.respawn&&!(q.shield>0)&&Math.hypot(q.x-p.x,q.y-p.y)<=440).sort((a,b)=>Math.hypot(a.x-p.x,a.y-p.y)-Math.hypot(b.x-p.x,b.y-p.y)||a.id.localeCompare(b.id))[0];}
+  function signatureStep(s,p,dt,live){
+    p.signatureBurst=Math.max(0,(p.signatureBurst||0)-dt);const def=signature(p);if(!def||!live||p.respawn)return null;
+    p.signatureCooldown=Math.max(0,(p.signatureCooldown??(p.bossId?6:0))-dt);
+    if(p.signatureWindup>0){
+      p.signatureWindup=Math.max(0,p.signatureWindup-dt);if(p.signatureWindup>0)return null;
+      p.signatureBurst=.45;p.signatureResolved=(p.signatureResolved||0)+1;p.signatureOutcome='miss';p.attackCooldown=Math.max(.65,p.attackCooldown||0);if(p.bossId)p.bossRecovery=2.2;const target=s.players.find(q=>q.id===p.signatureTarget);
+      if(!target||target.respawn||target.shield>0||Math.hypot(target.x-p.signatureAim.x,target.y-p.signatureAim.y)>def.radius){p.aim='miss';return null;}
+      if(target.guardTime>0){target.guardFlash=.35;target.blocks=(target.blocks||0)+1;p.aim=p.signatureOutcome='blocked';return null;}
+      if(target.evade>0){target.perfectDodges=(target.perfectDodges||0)+1;target.counter=COUNTER;p.aim=p.signatureOutcome='dodged';return null;}
+      p.aim=p.signatureOutcome='hit';p.hits=(p.hits||0)+1;p.signatureHits=(p.signatureHits||0)+1;return {p,q:target,signature:true,damage:def.damage*pipamonStats(p).attack/pipamonStats(target).defense,body:true,c:{x:target.x,y:target.y},cut:{crit:false,moving:true}};
+    }
+    const held=!!p.input?.signature,wants=p.bossId||held&&!p.signatureHeld;p.signatureHeld=held;
+    if(!wants||p.signatureCooldown>0||p.energy<def.cost||p.guardTime>0||p.evade>0||p.lineMove)return null;
+    const target=signatureTarget(s,p);if(!target)return null;
+    p.energy-=def.cost;p.signatureCooldown=def.cooldown;p.signatureWindup=def.windup;p.signatureCount=(p.signatureCount||0)+1;p.signatureTarget=target.id;p.signatureAim={x:target.x,y:target.y};p.strike=false;p.lineStrike=null;p.bossCharge=0;p.bossTelegraph=0;if(p.bossId)p.bossRecovery=0;return null;
+  }
+  function bodyContact(p,q){
+    // Conservative radii inside the 96px normal / larger guardian artwork.
+    const reach=(p.bossId?42:24)+(q.bossId?42:24);
+    if(p.id===q.id||p.respawn||q.respawn||q.shield>0||Math.hypot(q.x-p.x,q.y-p.y)>reach)return null;
+    return {x:q.x,y:q.y,angle:1,perfect:false,valid:true};
+  }
   function contact(p,q){
     if(p.id===q.id||p.respawn||q.respawn)return null;
     const l=line(p),m=line(q),r={x:l.b.x-l.a.x,y:l.b.y-l.a.y},v={x:m.b.x-m.a.x,y:m.b.y-m.a.y};
@@ -112,22 +139,22 @@ export function createEngine() {
   }
   function move(p,input,dt,wind=0,weather){
     p.strike=false;p.lineStrike=null;if(p.respawn)return;
-    dt=clamp(Number(dt)||0,0,.25);const i=sanitizeInput(input);
+    dt=clamp(Number(dt)||0,0,.25);const i=sanitizeInput(input);if(p.signatureWindup>0){i.cut=false;i.skill=0;i.dodge=false;i.guard=false;i.lineNonce=0;i.x*=.2;i.y*=.2;}
     // Persist visual direction through idle/vertical movement and network snapshots.
     if(Math.abs(i.x)>.05)p.facing=i.x<0?-1:1;
     else if(p.facing!==-1&&p.facing!==1)p.facing=1;
     p.attackCooldown=Math.max(0,(p.attackCooldown||0)-dt);
     p.skillCooldown=Math.max(0,(p.skillCooldown||0)-dt);
-    p.skillTime=Math.max(0,(p.skillTime||0)-dt);
+    p.skillTime=Math.max(0,(p.skillTime||0)-dt);p.guardTime=Math.max(0,(p.guardTime||0)-dt);p.guardCooldown=Math.max(0,(p.guardCooldown||0)-dt);p.guardFlash=Math.max(0,(p.guardFlash||0)-dt);if(i.guard&&!p.guardHeld&&!p.lineMove&&!(p.evade>0)&&p.guardCooldown<=0){p.guardTime=GUARD.time;p.guardCooldown=GUARD.cooldown;}p.guardHeld=i.guard;
     p.lineCooldown=Math.max(0,(p.lineCooldown||0)-dt);
     p.flash=Math.max(0,(p.flash||0)-dt);p.hitFlash=Math.max(0,(p.hitFlash||0)-dt);p.shield=Math.max(0,(p.shield||0)-dt);
     p.evade=Math.max(0,(p.evade||0)-dt);p.dodgeCooldown=Math.max(0,(p.dodgeCooldown||0)-dt);p.counter=Math.max(0,(p.counter||0)-dt);
-    if(i.dodge&&!p.lineMove&&p.dodgeCooldown<=0&&p.energy>=DODGE.cost){const d=Math.hypot(i.x,i.y);p.energy-=DODGE.cost;p.dodgeCooldown=DODGE.cooldown;p.evade=DODGE.time;p.dodgeDir=d>.1?{x:i.x/d,y:i.y/d}:{x:0,y:-1};p.dodges=(p.dodges||0)+1;}
-    if(i.skill&&!p.lineMove&&p.skillCooldown<=0&&p.energy>=25){
+    if(i.dodge&&!(p.guardTime>0)&&!p.lineMove&&p.dodgeCooldown<=0&&p.energy>=DODGE.cost){const d=Math.hypot(i.x,i.y);p.energy-=DODGE.cost;p.dodgeCooldown=DODGE.cooldown;p.evade=DODGE.time;p.dodgeDir=d>.1?{x:i.x/d,y:i.y/d}:{x:0,y:-1};p.dodges=(p.dodges||0)+1;}
+    if(i.skill&&!(p.guardTime>0)&&!p.lineMove&&p.skillCooldown<=0&&p.energy>=25){
       p.energy-=25;p.skillCooldown=7;p.skillTime=type(p).duration;p.skillCount=(p.skillCount||0)+1;
       if(p.color===1){p.x=clamp(p.x+i.skill*96,55,945);p.dashDirection=i.skill;p.facing=i.skill;}
     }
-    const m=Math.max(1,Math.hypot(i.x,i.y)),ox=p.x,oy=p.y;
+    const m=Math.max(1,Math.hypot(i.x,i.y)),ox=p.x,oy=p.y;if(p.guardTime>0){i.x*=.4;i.y*=.4;i.cut=false;i.lineNonce=0;}
     if(p.evade>0&&p.dodgeDir){p.x=clamp(p.x+(p.dodgeDir.x*165*DODGE.speed+wind)*dt,55,945);p.y=clamp(p.y+p.dodgeDir.y*165*DODGE.speed*dt,70,480);}
     else if(!p.lineMove||p.lineMove.phase==='charge'){p.x=clamp(p.x+(i.x/m*pipamonStats(p).speed+wind)*dt,55,945);p.y=clamp(p.y+i.y/m*pipamonStats(p).speed*dt,70,480);}
     moveLine(p,i,dt);
@@ -185,9 +212,10 @@ export function createEngine() {
     return {x:clamp((x-p.x)/80,-b.speed,b.speed),y:clamp((y-p.y)/80,-b.speed,b.speed),cut:pull,skill};
   }
   function bossInput(s,p,dt){
-    const phase=p.hp<=bossStats.line*.55?2:1;
+    const phase=Math.min(p.hp,p.hull??p.hp)<=bossStats.line*.55?2:1;
     if(phase!==p.bossPhase){p.bossPhase=phase;p.bossCharge=0;p.bossRecovery=1.8;p.bossTelegraph=0;p.bossRoar=1.8;}
     p.bossRoar=Math.max(0,(p.bossRoar||0)-dt);
+    if(p.signatureWindup>0){p.bossTelegraph=0;return {x:0,y:0,cut:false,skill:0};}
     p.ai={level:phase===2?7:6,style:'patient'};
     const input=botInput(s,p,dt);input.cut=false;input.skill=0;input.dodge=false;
     if(p.bossRecovery>0){p.bossRecovery=Math.max(0,p.bossRecovery-dt);p.bossTelegraph=0;return {...input,x:input.x*.25,y:input.y*.25};}
@@ -222,17 +250,21 @@ export function createEngine() {
     const live=!s.phase||s.phase==='live',rounds=s.mode==='rounds';
     for(const p of s.players){
       if(s.phase==='intermission'){p.strike=false;p.lineStrike=null;p.lineMove=null;continue;}
-      if(p.respawn){if(rounds||now<p.respawn)continue;p.respawn=0;p.hp=pipamonStats(p).line;p.energy=pipamonStats(p).energy;p.skillTime=0;p.lineMove=null;p.lineStrike=null;p.lineCooldown=Math.max(2,p.lineCooldown||0);p.attackCooldown=.65;p.skillCooldown=Math.max(2,p.skillCooldown||0);p.x=160+Math.random()*680;p.y=160+Math.random()*220;p.shield=SHIELD;p.botFocus=0;}
-      if(p.bot)p.input=p.bossId&&live?bossInput(s,p,dt):botInput(s,p,dt);
-      if(live)move(p,p.input,dt,s.wind,s.daily?.weather);else{const held=p.input;p.lineSeen=Math.max(p.lineSeen||0,held?.lineNonce||0);move(p,{...held,cut:false,skill:0,lineNonce:0},dt,s.wind,s.daily?.weather);p.input=held;}
+      if(p.respawn){if(rounds||now<p.respawn)continue;p.respawn=0;p.hull=pipamonStats(p).line;p.hp=pipamonStats(p).line;p.energy=pipamonStats(p).energy;p.skillTime=0;p.lineMove=null;p.lineStrike=null;p.lineCooldown=Math.max(2,p.lineCooldown||0);p.attackCooldown=.65;p.skillCooldown=Math.max(2,p.skillCooldown||0);p.x=160+Math.random()*680;p.y=160+Math.random()*220;p.shield=SHIELD;p.botFocus=0;}
+      if(p.bot)p.input=p.bossId?(live?bossInput(s,p,dt):{}):botInput(s,p,dt);
+      if(live)move(p,p.input,dt,s.wind,s.daily?.weather);else{const held=p.input;p.lineSeen=Math.max(p.lineSeen||0,held?.lineNonce||0);move(p,{...held,cut:false,skill:0,guard:false,signature:false,lineNonce:0},dt,s.wind,s.daily?.weather);p.input=held;}
     }
     // Resolve simultaneous strikes together, independent of who created the room.
     const hits=[];
+    for(const p of s.players){const hit=signatureStep(s,p,dt,live);if(hit)hits.push(hit);}
     for(const p of s.players){if((!p.strike&&!p.lineStrike)||p.respawn)continue;
+      // One attack hits one target: nearby body first, otherwise the crossed line.
+      // Overlap alone never deals damage, regardless of approach speed.
+      const nearby=live&&p.strike?s.players.map(q=>({q,c:bodyContact(p,q)})).filter(t=>t.c).sort((a,b)=>Math.hypot(a.q.x-p.x,a.q.y-p.y)-Math.hypot(b.q.x-p.x,b.q.y-p.y)||a.q.id.localeCompare(b.q.id))[0]:null;
       const targets=s.players.map(q=>({q,c:contact(p,q)})).filter(t=>t.c?.valid).sort((a,b)=>Math.abs(a.c.enemy-.6)-Math.abs(b.c.enemy-.6)||a.q.id.localeCompare(b.q.id));
-      const t=targets[0];p.aim=t?'hit':'miss';if(!t)continue;
-      const maneuver=p.lineStrike;if(maneuver&&p.lineMove&&!p.lineMove.hits.includes(maneuver.slot))p.lineMove.hits.push(maneuver.slot);
-      if(t.q.evade>0){p.aim='dodged';t.q.perfectDodges=(t.q.perfectDodges||0)+1;t.q.energy=clamp(t.q.energy+DODGE.cost,0,pipamonStats(t.q).energy);t.q.counter=COUNTER;continue;}
+      const t=nearby||targets[0],body=!!nearby;p.aim=t?'hit':'miss';if(!t)continue;
+      const maneuver=nearby?null:p.lineStrike;if(maneuver&&p.lineMove&&!p.lineMove.hits.includes(maneuver.slot))p.lineMove.hits.push(maneuver.slot);
+      if(body&&t.q.guardTime>0){p.aim='blocked';t.q.guardFlash=.35;t.q.blocks=(t.q.blocks||0)+1;continue;}if(t.q.evade>0){p.aim='dodged';t.q.perfectDodges=(t.q.perfectDodges||0)+1;t.q.energy=clamp(t.q.energy+DODGE.cost,0,pipamonStats(t.q).energy);t.q.counter=COUNTER;continue;}
       const cut=maneuver?{damage:maneuver.damage,crit:!!maneuver.crit,clean:t.c.angle>=.85,moving:true,shallow:t.c.angle<.45}:cutDamage(p,t.c);let damage=cut.damage;if(cut.crit){p.crits=(p.crits||0)+1;p.counter=0;}
       if(!maneuver&&p.color===0&&p.skillTime>0){damage+=8;p.skillTime=0;}
       const breakGuard=!!maneuver?.breakGuard&&t.q.color===2&&t.q.skillTime>0;
@@ -240,20 +272,22 @@ export function createEngine() {
       if(s.daily?.weather==='wax')damage*=1.25;
       damage*=pipamonStats(p).attack/pipamonStats(t.q).defense;
       if(p.bossId&&p.bossPhase===2)damage*=1.12;
-      if(t.q.bossId&&t.q.bossRecovery>0)damage*=1.2;
-      if(maneuver)p.flash=.16;hits.push({p,q:t.q,damage,c:t.c,cut,breakGuard});p.hits=(p.hits||0)+1;
+      const armored=!!t.q.bossId&&!(t.q.bossRecovery>0);
+      if(t.q.bossId)damage*=armored ? .18 : 1.2;
+      if(maneuver)p.flash=.16;hits.push({p,q:t.q,damage,c:t.c,cut,breakGuard,body,armored});p.hits=(p.hits||0)+1;
     }
-    for(const h of hits){h.q.hp=Math.max(0,h.q.hp-h.damage);h.q.hitFlash=.25;if(h.breakGuard)h.q.skillTime=0;if(h.q.lineMove?.id==='laco'){h.q.lineMove=null;h.q.lineStrike=null;}h.q.lastHit={x:h.c.x,y:h.c.y,damage:Math.round(h.damage),crit:h.cut.crit,clean:h.cut.clean,moving:h.cut.moving,breakGuard:h.breakGuard};}
-    for(const q of s.players){if(q.hp>0||q.respawn)continue;
+    for(const h of hits){if(h.body)h.q.hull=Math.max(0,(h.q.hull??pipamonStats(h.q).line)-h.damage);else h.q.hp=Math.max(0,h.q.hp-h.damage);h.q.hitFlash=.25;if(h.breakGuard)h.q.skillTime=0;if(h.q.lineMove?.id==='laco'){h.q.lineMove=null;h.q.lineStrike=null;}h.q.lastHit={x:h.c.x,y:h.c.y,damage:Math.round(h.damage),body:!!h.body,signature:!!h.signature,armored:!!h.armored,crit:h.cut.crit,clean:h.cut.clean,moving:h.cut.moving,breakGuard:h.breakGuard};}
+    for(const q of s.players){if((q.hp>0&&(q.hull??100)>0)||q.respawn)continue;
       const winner=hits.filter(h=>h.q===q).sort((a,b)=>b.damage-a.damage||a.p.id.localeCompare(b.p.id))[0];if(!winner)continue;
-      const p=winner.p;q.respawn=rounds?now:now+3000;q.attack=false;q.lineMove=null;q.lineStrike=null;p.score+=100;p.cuts++;
-      const cut={text:p.name+' cortou '+q.name,at:now,id:s.id+':'+(++s.cutSequence),winnerId:p.id,loserId:q.id,matchId:s.id,winnerAccountId:p.accountId,loserAccountId:q.accountId,kiteId:q.kiteId,capture:s.rules==='capture'&&!q.kitePermanent};
+      const p=winner.p;if(q.hull<=0){q.breakReason='hull';if(rounds)p.rounds=Math.max(p.rounds||0,s.roundsToWin-1);}q.respawn=rounds?now:now+3000;q.attack=false;q.lineMove=null;q.lineStrike=null;p.score+=100;p.cuts++;
+      const cut={text:p.name+(q.hull<=0?' quebrou a armação de ':' cortou ')+q.name,broken:q.hull<=0,at:now,id:s.id+':'+(++s.cutSequence),winnerId:p.id,loserId:q.id,matchId:s.id,winnerAccountId:p.accountId,loserAccountId:q.accountId,kiteId:q.kiteId,capture:s.rules==='capture'&&(q.hull??100)>0&&!q.kitePermanent};
       s.events.unshift(cut);s._pendingCuts.push(cut);s.events=s.events.slice(0,4);
-      if(s.rules==='capture'&&q.accountId&&q.basicKiteId){q.kiteId=q.basicKiteId;q.kitePermanent=true;q.color=q.basicColor??0;q.soul=q.basicSoul||null;q.partnerName=q.basicPartnerName||null;q.pipamonLevel=pipamons.level(q.basicPipamonLevel);q.pipamonClass=q.basicPipamonClass||null;q.classRank=q.basicClassRank||0;q.craftBonus=q.basicCraftBonus||0;q.soulVariant=!!q.basicSoulVariant;q.skillTime=0;}
+      if(s.rules==='capture'&&(q.hull??100)>0&&q.accountId&&q.basicKiteId){q.kiteId=q.basicKiteId;q.kitePermanent=true;q.color=q.basicColor??0;q.soul=q.basicSoul||null;q.partnerName=q.basicPartnerName||null;q.pipamonLevel=pipamons.level(q.basicPipamonLevel);q.pipamonClass=q.basicPipamonClass||null;q.classRank=q.basicClassRank||0;q.craftBonus=q.basicCraftBonus||0;q.soulVariant=!!q.basicSoulVariant;q.skillTime=0;}
     }
+    if(s.conditionPersistent)for(const p of s.players)if(!p.bot)p.wearLine=Math.min(p.wearLine??100,clamp(p.hp/pipamonStats(p).line*100,0,100));
     if(rounds&&s.phase==='live'&&s.players.filter(p=>!p.respawn).length<=1)finishRound(s,now);
     return s;
   }
   function practiceStep(s,id,input,now){const p=s.players.find(p=>p.id===id);if(p){p.input=sanitizeInput(input);p.seen=now;}return step(s,now);}
-  return {setSoloPause,tamers,classes,pipamons,pipamonStats,daily,QUICK,fillBots,SHIELD,DODGE,COUNTER,cutDamage,brain,create,admit,player,step,move,visible,practiceStep,line,contact,types,type,sanitizeInput,seat,lineSkills,lineMotion,lineWindow};
+  return {setSoloPause,tamers,classes,pipamons,pipamonStats,daily,QUICK,fillBots,SHIELD,DODGE,GUARD,COUNTER,cutDamage,brain,create,admit,player,step,move,visible,practiceStep,line,contact,bodyContact,signature,signatureTarget,types,type,sanitizeInput,seat,lineSkills,lineMotion,lineWindow};
 }

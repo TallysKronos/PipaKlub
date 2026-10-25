@@ -1,7 +1,7 @@
 export function createNetworkView(engine){
   let history=[],own=null,authority=null,ownId=null,receivedAt=0,halfLag=0;
   const clone=p=>({...p,lineMove:p.lineMove?{...p.lineMove,origin:{...p.lineMove.origin},forward:{...p.lineMove.forward},hits:[...p.lineMove.hits]}:null});
-  const same=(a={},b={})=>a.x===b.x&&a.y===b.y&&!!a.cut===!!b.cut&&(a.skill||0)===(b.skill||0)&&!!a.dodge===!!b.dodge&&(a.lineNonce||0)===(b.lineNonce||0)&&!!a.lineHeld===!!b.lineHeld&&a.lineId===b.lineId&&a.lineSide===b.lineSide;
+  const same=(a={},b={})=>a.x===b.x&&a.y===b.y&&!!a.cut===!!b.cut&&(a.skill||0)===(b.skill||0)&&!!a.dodge===!!b.dodge&&!!a.guard===!!b.guard&&!!a.signature===!!b.signature&&(a.lineNonce||0)===(b.lineNonce||0)&&!!a.lineHeld===!!b.lineHeld&&a.lineId===b.lineId&&a.lineSide===b.lineSide;
   function reset(){history=[];own=null;authority=null;ownId=null;receivedAt=0;}
   function receive(state,id,now,rtt=0){
     const p=state.players.find(p=>p.id===id);ownId=id;

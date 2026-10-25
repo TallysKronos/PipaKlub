@@ -1,0 +1,21 @@
+.duel-hull{display:grid;grid-template-columns:52px minmax(35px,1fr) 34px;align-items:center;gap:7px;font:700 11px/1.4 Nunito,sans-serif;margin-top:3px;color:#ffe4b2}
+.duel-hull [role=meter]{height:7px;border-radius:4px;background:#172f37;border:1px solid #92764a;overflow:hidden}
+.duel-hull i{display:block;height:100%;background:linear-gradient(90deg,#e0a657,#ffe0a1);transition:width .12s}
+.duel-hull strong{text-align:right;font-size:10px}.duel-hull[data-danger=true] i{background:#f27a56}
+.guardian-line-label{display:block;font:800 9px Nunito,sans-serif;letter-spacing:.12em;color:#f6c589;margin-top:5px}.guardian-hud .guardian-vital{margin-top:2px}.guardian-hull{grid-template-columns:60px 1fr 38px;margin-top:7px;min-width:0}
+.fan-guard-icon{width:65%;height:65%;position:relative;z-index:1}.guard-key{padding:2px 5px;background:#183e48;color:#fff0cd;border:1px solid #bd9b52;border-radius:5px;font:800 12px Nunito,sans-serif}
+.fan-guard{left:108px;bottom:164px}.fan-guard .fan-base{background-image:var(--kit-action-teal)}
+.kite-condition{font:700 13px/1.6 Nunito,sans-serif;color:#dfc695;margin:12px 0}.kite-condition[data-broken=true]{color:#ffba91}
+.care-body-status{position:absolute;left:18px;top:145px;padding:6px 10px;border:1px solid #b5955e;border-radius:8px;color:#ffe4b2;background:#102c3be8;font:700 12px Nunito,sans-serif}.care-body-status[hidden]{display:none}.battle-condition-result{color:#754721;background:#e3cb9433;padding:10px;border-left:3px solid #af793c;font-weight:700}
+.in-school .school-coach{left:auto;right:18px;top:150px;bottom:auto;width:290px;max-height:calc(100dvh - 340px);overflow:auto;border-color:#b39359;background:#fff2d9ed;z-index:44}
+.in-school .school-coach b{font-size:19px}.in-school .school-coach p{font-size:12px;line-height:1.45}.in-school .school-controls{display:flex;flex-direction:column}.in-school .school-controls button{width:100%!important;min-width:0!important;flex:none!important;white-space:normal}
+.in-school.guardian-battle .school-coach{top:225px;max-height:calc(100dvh - 365px)}
+@media(max-height:550px){.in-school .school-coach{top:85px;width:240px;max-height:calc(100dvh - 180px)}}
+@media(max-width:600px) and (min-height:551px){.in-school .school-coach{right:8px;top:130px;width:210px;max-height:calc(100dvh - 390px)}}
+.cinematic-battle .fan-guard{position:relative;left:auto;bottom:auto}
+body.in-match.cinematic-battle .action-fan{grid-template-columns:repeat(5,minmax(0,1fr));width:min(520px,calc(100vw - 40px))}
+.cinematic-battle .duel-partner{min-height:96px}
+@media(max-width:600px){.duel-hull{grid-template-columns:43px minmax(20px,1fr) 28px;font-size:10px;gap:3px}body.in-match.cinematic-battle .action-fan{width:calc(100vw - 16px)}}
+
+@media(max-width:900px) and (min-width:601px){body.in-match.cinematic-battle .action-fan{width:450px}}
+@media(max-height:500px) and (min-width:601px){body.in-match.cinematic-battle .action-fan{width:410px}.cinematic-battle .duel-partner{min-height:80px}.fan-guard-icon{max-height:30px}}

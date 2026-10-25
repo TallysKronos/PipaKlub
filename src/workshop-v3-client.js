@@ -37,7 +37,8 @@ globalThis.addEventListener?.('message',async event=>{
    starterBirthSave=null;workshopV3Closing=false;
    if(owner===journeyOwner&&epoch===journeyEpoch){
     summonRitual=null;showSummonStage('npc');
-    if(wasTutorial){leaveSummoner();closeAccount();showCourtyard();if(journey?.phase==='complete')starterTutorialCompleteDialogue();else renderStarterTutorial();}
+    if(wasTutorial){pilotReturn=null;leaveSummoner();closeAccount();closeHomeMenu();showCourtyard();if(journey?.phase==='complete')starterTutorialCompleteDialogue();else renderStarterTutorial();}
+    else if(event.data.cancelled){summonData.active=null;summonTarget=null;summonTail=null;leaveSummoner();closeAccount();showCourtyard();}
    }
   }
  }

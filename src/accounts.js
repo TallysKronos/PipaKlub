@@ -2,6 +2,8 @@
 import {workshopV3} from './workshop-v3-service.js';
 import {createEngine} from './engine.js';
 import {validWorkshopPayload} from './workshop-model.js';
+import fs from 'node:fs';
+const publicModelNames=new Map(JSON.parse(fs.readFileSync(new URL('../assets/pipa-dex.json',import.meta.url),'utf8')).entries.map(e=>[e.model,e.name]));
 const progressionEngine=createEngine(),pipamonProgression=progressionEngine.pipamons;
 const UUID=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export class AccountError extends Error{constructor(message,status=400){super(message);this.status=status;}}
@@ -32,7 +34,7 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
    if(r.status===429)throw new AccountError('Muitas tentativas. Aguarde um pouco e tente novamente.',429);
    if(data?.error_code==='email_not_confirmed')throw new AccountError('Confirme seu e-mail antes de entrar.',403);
    if(data?.code?.startsWith('PGRST')||data?.code==='42883')throw new AccountError('O banco de contas ainda precisa ser configurado.',503);
-   if(message.startsWith('Oficina:'))throw new AccountError(message,409);
+   if(message.startsWith('Sua pipa precisa')||message.startsWith('Termine o encontro')||message.startsWith('Oficina:'))throw new AccountError(message,409);
    if(message.startsWith('Classes:')||message.startsWith('Exploração:')||message.startsWith('Progressão:')||message.startsWith('Save:')||message.startsWith('Save alterado')||message.startsWith('Depósito:')||message.startsWith('Digite EXCLUIR')||message.startsWith('Encerre sua troca')||message.startsWith('Conclua sua invocação')||message.startsWith('Conclua o primeiro voo')||message.startsWith('Sua coleção mudou')||message.startsWith('Primeiro voo:')||message.startsWith('Linhas:')||message.startsWith('Trilhas:')||message.startsWith('Invocação:')||message.startsWith('Troca:')||message.includes('Saia da partida')||message.includes('outra partida')||message.includes('colecionável')||message.includes('coleção')||message.includes('caracteres'))throw new AccountError(message,409);
    if(data?.error_code==='over_email_send_rate_limit'||data?.error_code==='email_address_not_authorized')throw new AccountError('O envio de confirmação está indisponível. O administrador precisa configurar o e-mail do jogo.',503);
    throw new AccountError(r.status>=500?'O serviço de contas está indisponível. Tente novamente.':'Não foi possível concluir. Confira os dados e tente novamente.',r.status>=500?503:400);
@@ -42,11 +44,11 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
   if(!admin)return remote('/rest/v1/rpc/'+name,{method:'POST',body,token});
   try{return await gameDatabase.rpc(name,body);}catch(e){
    const message=String(e.message||'');
-   if(e.code==='P0001'&&/Oficina:|Exploração:|Classes:|Depósito:|Save:|Trilhas:|Troca:|Saia da partida|outra partida|colecionável|coleção|caracteres|Partida encerrada/.test(message))throw new AccountError(message,409);
+   if(e.code==='P0001'&&/Sua pipa precisa|Termine o encontro|Oficina:|Exploração:|Classes:|Depósito:|Save:|Trilhas:|Troca:|Saia da partida|outra partida|colecionável|coleção|caracteres|Partida encerrada/.test(message))throw new AccountError(message,409);
    throw new AccountError('O banco do jogo não respondeu. Aguarde e tente novamente.',503);
   }
  }
- function checkPending(user){if(db&&db.prepare("SELECT 1 FROM pipa_rewards WHERE json_extract(payload,'$.type')='cut' AND json_extract(payload,'$.loserAccountId')=? LIMIT 1").get(user))throw new AccountError('O resultado da sua última disputa está sendo salvo. Aguarde alguns segundos.',409);}
+ function checkPending(user){if(db&&db.prepare("SELECT 1 FROM pipa_rewards WHERE ((json_extract(payload,'$.type')='cut' AND json_extract(payload,'$.loserAccountId')=?) OR (json_extract(payload,'$.type')='care' AND json_extract(payload,'$.userId')=?)) LIMIT 1").get(user,user))throw new AccountError('O resultado da sua última disputa está sendo salvo. Aguarde alguns segundos.',409);}
  function makeCookies(request,session){
   const secure=new URL(request.url).protocol==='https:',prefix=secure?'__Host-':'',flags='; Path=/; HttpOnly; SameSite=Lax'+(secure?'; Secure':'');
   return [prefix+'pipa_access='+(session?.access_token||'')+'; Max-Age='+(session?Math.max(60,Math.min(session.expires_in||3600,86400)):0)+flags,prefix+'pipa_refresh='+(session?.refresh_token||'')+'; Max-Age='+(session?604800:0)+flags];
@@ -71,6 +73,7 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
    const pending=db.prepare("SELECT 1 FROM pipa_rewards WHERE json_extract(payload,'$.matchId')=? LIMIT 1").get(data.profile.active_match);
    if(!pending&&(!p||Date.now()-p.seen>15000||Date.now()>=s.end)){await rpc('release_player_match',{p_user:who.id,p_match:data.profile.active_match},null,true);data=await rpc('get_player_account',{},who.access);}
   }
+  const care=await rpc('player_kite_care',{p_action:'read'},who.access);data.inventory=(data.inventory||[]).map(k=>({...k,model:{...k.model,name:publicModelNames.get(k.model_id)||k.model.name},condition:care[k.id]||{line:100,hull:100}}));
   const legacy=data.profile.tamer_xp==null,xp=Number(legacy?data.profile.xp:data.profile.tamer_xp)||0,tamer=progressionEngine.tamers.progress(xp),level=legacy?Math.min(100,1+Math.floor(Math.sqrt(xp/100))):tamer.level;
   return {...data,inventory:(data.inventory||[]).map(k=>({...k,progression:{...pipamonProgression.progress(k.pipamon_xp),stats:pipamonProgression.stats(pipamonProgression.progress(k.pipamon_xp).level,k.pipamon_class,k.class_rank,k.craft_bonus)}})),profile:{...data.profile,xp,level,max_level:100,level_base_xp:legacy?(level-1)**2*100:tamer.start,next_level_xp:level===100?null:legacy?level*level*100:tamer.next}};
  }
@@ -200,12 +203,18 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
     if(b.action!=='read')rateLimit(request,'trails-'+who.id,120);
     return json({trails:await rpc('player_trails',{p_action:b.action,p_operation:b.operationId||null,p_payload:payload},who.access)},200,who.setCookies);
    }
+   if(action==='kite-care'){
+    if(!['read','repair'].includes(b.action))throw new AccountError('Cuidado inválido.');checkPending(who.id);rateLimit(request,'kite-care-'+who.id,30);
+    await rpc('player_kite_care',{p_action:b.action},who.access);return json({account:await accountFor(who)},200,who.setCookies);
+   }
    if(action==='sighting'){
     if(typeof b.modelId!=='string'||!/^[a-z0-9-]{1,80}$/.test(b.modelId))throw new AccountError('Pipamon inválido.');
     await rpc('record_player_sighting',{p_model:b.modelId},who.access);return json({ok:true},200,who.setCookies);
    }
    if(action==='workshop-v3'){
-    checkPending(who.id);rateLimit(request,'workshop-v3-'+who.id,120);
+    checkPending(who.id);if(!['read','save','start','cancel'].includes(b.action))throw new AccountError('Oficina: ação inválida.');
+    // Autosaves happen every three seconds. They must not consume the start/read budget.
+    rateLimit(request,'workshop-v3-'+b.action+'-'+who.id,({read:120,save:600,start:20,cancel:12})[b.action]);
     try{return json({workshop:await workshopV3(who.id,b,args=>rpc('server_workshop_v3',args,null,true))},200,who.setCookies);}
     catch(error){if(error instanceof AccountError)throw error;throw new AccountError(String(error.message||'Oficina: montagem inválida.'),400);}
    }
@@ -259,7 +268,7 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
   if(!who){if(s.rules==='capture')throw new AccountError('Entre na sua conta para jogar Vale pipa.',401);return null;}
   checkPending(who.id);
   if(s.players.some(p=>p.accountId===who.id))throw new AccountError('Você já entrou nesta sala.',409);
-  return rpc('reserve_player_match',{p_user:who.id,p_match:s.id,p_code:s.code,p_mode:s.rules},null,true);
+  return rpc('reserve_player_match',{p_user:who.id,p_match:s.id,p_code:s.code,p_mode:s.conditionPersistent?'adventure':s.rules},null,true);
  }
  const release=(user,match)=>enabled&&UUID.test(user||'')?rpc('release_player_match',{p_user:user,p_match:match},null,true):Promise.resolve();
  const settle=e=>rpc('settle_player_cut',{p_event:e.id,p_match:e.matchId,p_winner:e.winnerAccountId,p_loser:e.loserAccountId,p_kite:e.kiteId||null},null,true);
@@ -268,5 +277,6 @@ export function createAccounts(env,{fetcher=fetch,db=null,gameDatabase=null,matc
   const registerTrail=(user,match,stage)=>rpc('register_trail_run',{p_user:user,p_match:match,p_stage:stage},null,true);
   const settleTrail=e=>rpc('settle_trail_run',{p_user:e.userId,p_match:e.matchId,p_stage:e.stage,p_won:e.won,p_rounds_lost:e.roundsLost},null,true);
   const registerWild=(user,match,zone)=>rpc('register_wild_run',{p_user:user,p_match:match,p_zone:zone},null,true),settleWild=e=>rpc('settle_wild_run',{p_user:e.userId,p_match:e.matchId,p_outcome:e.outcome},null,true);
-  return {enabled,handle,registerWild,settleWild,preparePlayer,release,settle,finish,settleDaily,registerTrail,settleTrail};
+  const settleCare=e=>rpc('server_kite_wear',{p_user:e.userId,p_kite:e.kiteId,p_match:e.matchId,p_line:e.line,p_hull:e.hull},null,true);
+  return {enabled,handle,registerWild,settleWild,preparePlayer,release,settle,finish,settleDaily,registerTrail,settleTrail,settleCare};
 }

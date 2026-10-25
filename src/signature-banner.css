@@ -1,0 +1,22 @@
+.signature-banner{--signature-ink:#052939;--signature-accent:#55e5e1;position:fixed;z-index:72;left:0;right:0;top:23%;height:clamp(155px,26vh,285px);pointer-events:none;filter:drop-shadow(0 8px 0 #031b2870);transform:rotate(-5deg)}
+.signature-banner[hidden]{display:none!important}.signature-banner[data-tone=amber]{--signature-accent:#ffb13b}
+.signature-cut{height:100%;position:relative;isolation:isolate;overflow:hidden;background:#e6bd64;clip-path:polygon(0 8%,9% 10%,16% 2%,35% 7%,47% 1%,64% 6%,83% 0,100% 7%,100% 88%,88% 93%,72% 91%,54% 100%,35% 94%,17% 99%,0 91%)}
+.signature-cut:before{content:'';position:absolute;inset:5px 0;background:linear-gradient(105deg,#06465a,var(--signature-ink) 62%,#041b2c);z-index:-1;clip-path:inherit}
+.signature-picture{position:absolute;inset:0 35% 0 0;overflow:hidden;mask-image:linear-gradient(90deg,#000 0 65%,transparent 100%);-webkit-mask-image:linear-gradient(90deg,#000 0 65%,transparent 100%)}
+.signature-picture img{height:100%;width:100%;object-fit:cover;transform:scale(1.08);filter:saturate(1.08)}
+.signature-grain{position:absolute;inset:0;background:repeating-linear-gradient(169deg,transparent 0 22px,#8ee5e70a 22px 24px,transparent 24px 52px);mix-blend-mode:screen}
+.signature-copy{position:absolute;left:51%;right:4%;top:50%;transform:translateY(-50%);color:#fff3d4;text-shadow:0 3px 0 #02131c;line-height:1.02}
+.signature-copy small{display:block;color:var(--signature-accent);font:900 clamp(8px,1vw,12px) Nunito,system-ui,sans-serif;letter-spacing:.22em;margin-bottom:8px}
+.signature-mon{font:800 clamp(12px,1.5vw,20px) Nunito,system-ui,sans-serif;letter-spacing:.15em;text-transform:uppercase;display:block;margin-bottom:7px}
+.signature-copy strong{display:block;font:900 italic clamp(24px,4.3vw,66px)/.97 Nunito,system-ui,sans-serif;letter-spacing:-.045em;text-transform:uppercase;max-width:100%;overflow-wrap:normal}
+.signature-copy p{font:700 clamp(10px,1.1vw,15px) Nunito,system-ui,sans-serif;color:#d5f3ec;margin:12px 0 0;line-height:1.2}
+.signature-diamond{position:absolute;right:2%;top:12%;color:var(--signature-accent);font-size:22px}
+.signature-enter{animation:signature-arrive .82s cubic-bezier(.16,.8,.2,1) both}.signature-enter .signature-picture img{animation:signature-portrait .82s ease-out both}
+.signature-banner[data-preview=true]{animation:signature-preview-in .3s ease-out both}@keyframes signature-preview-in{from{opacity:0;transform:translateX(-5%) rotate(-5deg)}to{opacity:1;transform:rotate(-5deg)}}
+@keyframes signature-arrive{0%{opacity:0;transform:translateX(-105%) rotate(-5deg)}17%,85%{opacity:1;transform:translateX(0) rotate(-5deg)}100%{opacity:0;transform:translateX(12%) rotate(-5deg)}}
+@keyframes signature-portrait{from{transform:scale(1.19) translateX(-3%)}to{transform:scale(1.08)}}
+.signature-button{position:fixed;bottom:142px;left:420px;z-index:46;padding:9px 15px;background:#123747;color:#ffdd87;border:2px solid #be9651;border-radius:8px;font:900 12px Nunito,system-ui,sans-serif;box-shadow:inset 0 0 0 2px #38575a}
+.signature-button[hidden]{display:none}.signature-button[aria-disabled=true]{filter:saturate(.3);color:#c4c8bc}.signature-button:focus-visible{outline:3px solid #ffe7a1;outline-offset:3px}
+@media(max-width:700px){.signature-banner{top:26%;height:175px}.signature-picture{right:32%}.signature-copy{left:48%;right:4%}.signature-copy strong{font-size:clamp(21px,5vw,32px)}.signature-copy small{letter-spacing:.08em;font-size:8px}.signature-copy p{font-size:9px}.signature-button{bottom:224px;left:12px;font-size:11px}}
+@media(max-height:500px) and (min-width:701px){.signature-banner{top:24%;height:145px}.signature-copy strong{font-size:38px}.signature-button{bottom:105px;left:325px}}
+@media(prefers-reduced-motion:reduce){.signature-enter,.signature-enter .signature-picture img{animation:none}.signature-banner{transform:none}}

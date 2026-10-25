@@ -1,5 +1,7 @@
 # Nina — primeira missão das Veredas
 
+Atualização 25/10/2026: o retrato continua em uso. A ilustração overworld desta pasta é legada; o mapa agora usa o atlas dedicado `../nina-overworld-v2/manifest.json`, com quatro direções e apoio dos pés normalizado.
+
 Nova aprendiz de construção de pipas. Pele morena, cabelo cacheado preso, faixa verde-petróleo, camisa amarela, bolsa de papel e varetas. O Carcará dela perdeu o duelo contra Lacertubo; sua rabiola ficou no pátio.
 
 ## Arte e contratos

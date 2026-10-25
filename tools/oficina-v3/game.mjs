@@ -6,7 +6,7 @@ const $=id=>document.getElementById(id),cv=$('board'),g=cv.getContext('2d');
 const PAPER={comum:'#e66b4f',incomum:'#2f9c96',raro:'#e8b23f'};
 const TIPS=['Cada vareta vai do centro até uma ponta. Arraste do leque até o círculo pontilhado e solte.','Segure em cima do nó. A faixa verde é pequena e muda a cada tentativa. Observe o anel e solte no verde; depois dela, a linha arrebenta.','Recorte pelo pontilhado, sem entrar na vela. Pode fazer em vários trechos.','O vento avisa antes: a seta mostra de onde vem a rajada. Arraste o cabresto para o lado contrário.','Agora é com você. Solte no Seguro para garantir. A variante rara é uma surpresa: chance de 1 em 459 nascimentos, independente da nota ou do momento de soltar. Elo firme vale +4% de atributos, mas a janela é muito estreita. Excesso parte o elo.'];
 const mesa=new Image();mesa.src='mesa.jpg';const rabbito=new Image();rabbito.src='rabbito.png';
-let run,ui,last=performance.now(),live=null,resultJob=null,booting=!!new URLSearchParams(location.search).get('job');
+let run,ui,last=performance.now(),live=null,resultJob=null,exitPrompt=false,exitBusy=false,booting=!!new URLSearchParams(location.search).get('job');
 const jobId=new URLSearchParams(location.search).get('job');
 function command(event,fallback){if(!live)return fallback();live.record(event);return dispatch(run,event);}
 const placeRod=(r,p,a)=>command(['rod',p.x,p.y],()=>coreplaceRod(r,p,a));
@@ -23,7 +23,10 @@ function hud(){
  if(run.stage===0)count=run.step.placed.length+'/'+c.rods;if(run.stage===1)count=run.step.tied.length+'/'+c.rods;if(run.stage===2)count=Math.round(cutProgress(run)*100)+'%';if(run.stage===3)count=Math.max(0,FLIGHT_TIME-run.step.t).toFixed(0)+' s';
  renderWorkshopHud(run,STAGES,CLASSES,count);
  $('blocked').hidden=!run.blocked;if(run.blocked)$('blockedTitle').textContent=run.blocked==='linha'?'Acabou a linha':'Acabou o papel';
+ updateWakeGesture();
 }
+function updateWakeGesture(){const button=$('wakeGesture');button.hidden=run.stage!==4||!!run.outcome||booting||exitPrompt||!$('tip').hidden;if(button.hidden)return;const holding=!!run.step.holding,f=run.step.fill||0;button.setAttribute('aria-pressed',String(holding));const text=!holding?'Firmar o elo':f<SOUL_ZONES.weak?'Soltar · elo fraco':f<SOUL_ZONES.safe?'Soltar · Seguro':f<SOUL_ZONES.shine?'Soltar · Elo firme':'Soltar · excesso';if(button.textContent!==text)button.textContent=text;}
+$('wakeGesture').onclick=()=>{if(booting||exitPrompt||run.stage!==4||run.outcome)return;ui.idle=0;ui.seen[4]=true;$('tip').hidden=true;if(run.step.holding){ui.down=false;const result=releaseSoul(run);report(result,{x:CENTER.x,y:CENTER.y});if(run.outcome)finish();}else{holdSoul(run);ui.down=true;}updateWakeGesture();};
 
 function tip(){const i=run.stage;if(i>4||ui.seen[i]){$('tip').hidden=true;return;}$('tipText').textContent=TIPS[i]+(i===0&&CLASSES[run.kind].wobble?' Nesta classe a vareta balança: solte quando ela brilhar alinhada.':'');$('tip').hidden=false;}
 $('tipOk').onclick=()=>{ui.seen[run.stage]=true;$('tip').hidden=true;cv.focus();};
@@ -135,11 +138,11 @@ function finish(){document.body.classList.add('has-result');if(live&&!run.outcom
  $('resultContinue').querySelector('.button-content').textContent=o.type==='born'?'Continuar aventura':'Voltar à Oficina';
  document.body.dataset.outcome=o.type;
  hud();$('resultContinue').hidden?$('again').focus({preventScroll:true}):$('resultContinue').focus({preventScroll:true});if(live)parent.postMessage({type:'oficina-v3:saved',jobId,completed:o.type==='born'},location.origin);}
-function loop(now){const dt=Math.min(.05,(now-last)/1000);last=now;ui.t+=dt;ui.idle+=dt;
+function loop(now){const dt=Math.min(.05,(now-last)/1000);last=now;ui.t+=dt;ui.idle+=dt;updateWakeGesture();
  ui.grip+=(Number(ui.down&&ui.drag==='rod')-ui.grip)*(1-Math.exp(-dt*22));
  if(ui.anim>0)ui.anim-=dt;
  if(live)live.tick(now);
- if(!booting&&!run.blocked&&!run.outcome&&!document.hidden&&$('tip').hidden&&ui.anim<=0){
+ if(!exitPrompt&&!booting&&!run.blocked&&!run.outcome&&!document.hidden&&$('tip').hidden&&ui.anim<=0){
   if(live){const key=(ui.keys.ArrowRight?1:0)-(ui.keys.ArrowLeft?1:0),event=['t',Math.max(.000001,dt),key||ui.control];live.record(event);const r=dispatch(run,event);if(r){report(r);if(run.outcome)finish();}}
   else{
    tickCraft(run,dt);
@@ -155,10 +158,20 @@ $('resultContinue').onclick=()=>$('liveExit').click();
 $('restart').onclick=reset;$('again').onclick=reset;$('kind').onchange=reset;$('artesao').onchange=reset;$('restock').onclick=()=>{restock(run);ui.tears=[];hud();};
 installWorkshopLook();reset();requestAnimationFrame(loop);cv.focus();
 if(jobId){
- document.body.classList.add('live-mode');$('liveExit').setAttribute('aria-label','Sair da bancada com o progresso salvo');$('liveExit').title='Sair da bancada';$('kind').disabled=true;$('artesao').disabled=true;$('restart').hidden=true;document.querySelector('.class-picker').hidden=true;document.querySelector('.toggle').hidden=true;$('liveExit').hidden=false;$('liveSave').hidden=false;
+ document.body.classList.add('live-mode');$('liveExit').setAttribute('aria-label','Sair da Oficina');$('liveExit').title='Sair da Oficina';$('kind').disabled=true;$('artesao').disabled=true;$('restart').hidden=true;document.querySelector('.class-picker').hidden=true;document.querySelector('.toggle').hidden=true;$('liveExit').hidden=false;$('liveSave').hidden=false;
  $('restock').querySelector('.button-content').textContent='Receber kit do ateliê';$('blocked').querySelector('p').textContent='O Sr. Assis fornece outro kit de linha e papel gratuitamente nesta versão. A qualidade considera o tempo e os erros da montagem inteira.';
  $('liveSave').onclick=()=>live?.flush();
- $('liveExit').onclick=async()=>{if(!live){location.href='/';return;}await live.flush();if(live.dirty&&!live.failed){$('saveStatus').textContent='Aguarde o salvamento ou use Salvar novamente antes de sair.';return;}if(parent!==window)parent.postMessage({type:'oficina-v3:close',jobId},location.origin);else location.href='/';};
+ const leave=cancelled=>{if(parent!==window)parent.postMessage({type:'oficina-v3:close',jobId,cancelled},location.origin);else location.href='/';};
+ $('liveExit').onclick=async()=>{
+  if(!live){$('saveStatus').textContent='Aguarde carregar a montagem antes de sair.';return;}
+  if(run.outcome){await live.flush();if(live.dirty||live.failed){$('saveStatus').textContent='Confirme o resultado em Salvar novamente antes de sair.';return;}leave(false);return;}
+  if(exitBusy||$('exitConfirm').open)return;
+  exitPrompt=true;ui.down=false;ui.drag=null;ui.keys={};ui.control=0;live.record(['cancel']);dispatch(run,['cancel']);
+  $('exitError').textContent='';$('exitConfirm').showModal();$('exitStay').focus();
+ };
+ const stay=()=>{if(exitBusy)return;$('exitConfirm').close();exitPrompt=false;last=performance.now();cv.focus();};
+ $('exitStay').onclick=stay;$('exitConfirm').addEventListener('cancel',event=>{event.preventDefault();stay();});
+ $('exitYes').onclick=async()=>{if(exitBusy)return;exitBusy=true;$('exitYes').disabled=true;$('exitStay').disabled=true;$('exitError').textContent='Cancelando montagem…';try{const result=await live.cancel();$('exitConfirm').close();leave(result.status==='cancelled');}catch(error){$('exitError').textContent='Não foi possível cancelar. '+error.message+' Sua montagem continua aberta.';}finally{exitBusy=false;$('exitYes').disabled=false;$('exitStay').disabled=false;}};
  createLiveSession(jobId,text=>{$('saveStatus').textContent=text;},job=>{resultJob=job;run.outcome=job.state.outcome;run.stage=5;finish();}).then(session=>{live=session;resultJob=session.job;$('kind').value=live.run.kind;reset(live.run);booting=false;if(run.outcome)finish();else{live.record(['cancel']);dispatch(run,['cancel']);}$('saveStatus').textContent='Montagem salva na conta';}).catch(error=>{$('saveStatus').textContent=error.message;$('bubble').textContent='Não foi possível retomar. Use Sair da bancada e tente novamente.';});
 }
 // Depuração e testes de navegador: leitura do estado atual.
@@ -166,5 +179,5 @@ window.oficina={get run(){return run;}};
 
 // The exit uses the same save/close path as the visible control.
 addEventListener('keydown',event=>{
- if(event.key==='Escape'&&live){event.preventDefault();$('liveExit').click();}
+ if(event.key==='Escape'&&live&&!$('exitConfirm').open){event.preventDefault();$('liveExit').click();}
 });

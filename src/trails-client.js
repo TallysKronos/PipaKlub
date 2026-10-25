@@ -96,14 +96,14 @@ function chooseEncounterPartner(id){
  const owner=playerAccount?.profile.id;if(!owner||mode||busy||accountSaving||!trails.unlocked(trailProgress,id))return;
  const returnFocus=modalReturnFocus;modal('Seu parceiro para este duelo','<p>Escolha um parceiro da sua coleção. Você voltará para este mesmo encontro.</p><div id="encounterPartnerList" class="encounter-partner-list"></div><p id="encounterPartnerStatus" role="status"></p>','Voltar ao desafio','Preparar o voo');
  const root=$('encounterPartnerList');$('modal').classList.add('encounter-preview');modalReturnFocus=returnFocus;
- for(const kite of playerAccount.inventory){const b=uiElement('button',undefined,'encounter-partner');b.innerHTML='<span class="foe-art">'+art.markup(kite.model.color,kite.model.soul)+'</span><b>'+escapeHTML(kite.personal_name||kite.model.name)+'</b><small>'+(kite.id===playerAccount.profile.equipped_kite_id?'Equipado':'Escolher')+'</small>';b.setAttribute('aria-pressed',String(kite.id===playerAccount.profile.equipped_kite_id));b.onclick=async()=>{
+ for(const kite of playerAccount.inventory){const b=uiElement('button',undefined,'encounter-partner');b.innerHTML='<span class="foe-art">'+art.markup(kite.model.color,kite.model.soul)+'</span><b>'+escapeHTML(kite.personal_name||kite.model.name)+'</b><small>'+(kite.id===playerAccount.profile.equipped_kite_id?'Equipado':'Escolher')+'</small>';b.setAttribute('aria-pressed',String(kite.id===playerAccount.profile.equipped_kite_id));b.dataset.careBroken=String(kiteBroken(kite));b.disabled=kiteBroken(kite);if(b.disabled)b.querySelector('small').textContent='Precisa de reparo';b.onclick=async()=>{
   if(accountSaving||playerAccount?.profile.id!==owner)return;if(kite.id===playerAccount.profile.equipped_kite_id){presentStage(id);return;}
   accountSaving=true;for(const item of root.querySelectorAll('button'))item.disabled=true;setText('encounterPartnerStatus','Preparando seu parceiro…');
   try{const d=await accountRequest('equip',{kiteId:kite.id});if(playerAccount?.profile.id!==owner)return;playerAccount=d.account;reflectAccount();if($('encounterPartnerList')===root&&$('modal').style.display==='flex')presentStage(id);}
   catch(e){if($('encounterPartnerList')===root)setText('encounterPartnerStatus',e.message);}
-  finally{accountSaving=false;if($('encounterPartnerList')===root)for(const item of root.querySelectorAll('button'))item.disabled=false;}
+  finally{accountSaving=false;if($('encounterPartnerList')===root)for(const item of root.querySelectorAll('button'))item.disabled=item.dataset.careBroken==='true';}
  };root.append(b);}
- $('dialogAction').onclick=()=>presentStage(id);root.querySelector('button')?.focus({preventScroll:true});
+ $('dialogAction').onclick=()=>presentStage(id);root.querySelector('button:not(:disabled)')?.focus({preventScroll:true});
 }
 function presentStage(id){
  const st=trails.stage(id);if(busy||mode||!st||!requireClubAccount('os encontros do bairro')||!trails.unlocked(trailProgress,id))return;

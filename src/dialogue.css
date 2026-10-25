@@ -1,5 +1,14 @@
 /* Illustrated RPG dialogue: portrait and fixed corners never stretch with copy. */
 /* Free walking uses only a contextual control, never an unattributed speech box. */
+/* An active lesson reserves the upper-left corner; the battle controls stay below. */
+body.pilot-ui.in-first-flight #flightCoach.rpg-dialogue.is-exercising{left:18px!important;right:auto!important;top:max(126px,calc(env(safe-area-inset-top) + 106px))!important;bottom:auto!important;width:min(260px,calc(100vw - 36px))!important;min-height:0!important;max-height:calc(100dvh - 360px)!important;overflow:auto!important;padding:22px 25px 16px!important;transform:none!important;pointer-events:none}
+body.pilot-ui.in-first-flight #flightCoach.rpg-dialogue.is-exercising::before{border-width:14px 20px;border-image-width:16px 22px}
+body.pilot-ui.in-first-flight #flightCoach.rpg-dialogue.is-exercising>.pilot-nameplate,body.pilot-ui.in-first-flight #flightCoach.rpg-dialogue.is-exercising>.eyebrow{position:static!important;display:block!important;clip-path:none;background:none!important;border:0!important;box-shadow:none!important;min-width:0;padding:0!important;margin:0 0 5px!important;text-align:left;font-size:14px!important;color:#195654!important}
+body.pilot-ui.in-first-flight #flightCoach.rpg-dialogue.is-exercising h2{font-size:15px!important;margin:0 0 5px!important}
+body.pilot-ui.in-first-flight #flightCoach.rpg-dialogue.is-exercising #flightHint{font-size:14px!important;line-height:1.4!important;max-height:none!important}
+body.pilot-ui.in-first-flight #flightCoach.rpg-dialogue.is-exercising .rpg-dialogue-portrait,body.pilot-ui.in-first-flight #flightCoach.rpg-dialogue.is-exercising .journey-actions{display:none!important}
+@media(max-width:650px){body.pilot-ui.in-first-flight #flightCoach.rpg-dialogue.is-exercising{left:8px!important;top:104px!important;width:calc(100vw - 16px)!important;max-height:150px!important;padding:18px 22px 12px!important}body.pilot-ui.in-first-flight #flightCoach.rpg-dialogue.is-exercising #flightHint{font-size:12px!important}}
+@media(max-height:500px) and (min-width:651px){body.pilot-ui.in-first-flight #flightCoach.rpg-dialogue.is-exercising{top:78px!important;left:auto!important;right:12px!important;width:min(300px,40vw)!important;max-height:calc(100dvh - 208px)!important;padding:15px 20px 12px!important}body.pilot-ui.in-first-flight #flightCoach.rpg-dialogue.is-exercising #flightHint{font-size:12px!important}}
 body .opening-dialog.rpg-dialogue.rpg-guidance{left:auto!important;right:24px!important;bottom:20px!important;width:auto!important;max-width:85vw!important;min-height:0!important;padding:0!important}
 body .opening-dialog.rpg-guidance::before,body .opening-dialog.rpg-guidance #openingSpeech,body .opening-dialog.rpg-guidance #openingSpeaker,body .rpg-dialogue #openingSpeaker:empty{display:none!important}
 body .opening-dialog.rpg-guidance #openingHint{color:#e6ddc9!important}

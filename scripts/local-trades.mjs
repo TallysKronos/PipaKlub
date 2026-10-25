@@ -1,5 +1,7 @@
 // Explicit opt-in demo. Production dev.mjs never imports this authentication adapter.
 import http from 'node:http';
+import {signaturePreview} from './signature-preview.mjs';
+import {combatReviewControls} from './combat-review-controls.mjs';
 import fs from 'node:fs';
 import {randomUUID} from 'node:crypto';
 import {DatabaseSync} from 'node:sqlite';
@@ -45,6 +47,8 @@ if(!(await postgres.query("select to_regclass('public.workshop_v3_runs') install
 if(!(await postgres.query("select to_regclass('public.starter_tutorials') installed")).rows[0].installed)await postgres.exec(fs.readFileSync('supabase/migrations/027_starter_tutorial.sql','utf8'));
 if(!(await postgres.query("select to_regprocedure('public.register_wild_before_guardian(uuid,uuid,text)') installed")).rows[0].installed)await postgres.exec(fs.readFileSync('supabase/migrations/028_park_guardian.sql','utf8'));
 if(!(await postgres.query("select to_regclass('public.veredas_chest_claims') installed")).rows[0].installed)await postgres.exec(fs.readFileSync('supabase/migrations/029_veredas_exploration.sql','utf8'));
+if(!(await postgres.query("select to_regprocedure('public.server_workshop_v3_before_cancel(uuid,text,uuid,uuid,text,bigint,uuid,jsonb,jsonb)') installed")).rows[0].installed)await postgres.exec(fs.readFileSync('supabase/migrations/030_workshop_cancel.sql','utf8'));
+if(!(await postgres.query("select to_regclass('public.kite_conditions') installed")).rows[0].installed)await postgres.exec(fs.readFileSync('supabase/migrations/031_kite_condition.sql','utf8'));
 const players={kael:{id:'55555555-5555-4555-8555-555555555555',nickname:'Kael Local'},davi:{id:'44444444-4444-4444-8444-444444444444',nickname:'Kael Local'},ana:{id:'11111111-1111-4111-8111-111111111111',nickname:'Ana Local'},beto:{id:'22222222-2222-4222-8222-222222222222',nickname:'Beto Local'},cora:{id:'33333333-3333-4333-8333-333333333333',nickname:'Cora Local'}};
 for(const p of Object.values(players))await postgres.query('insert into auth.users values($1,$2) on conflict(id) do nothing',[p.id,{nickname:p.nickname}]);
 // Explicit workshop-only fixture: no changes to ordinary opening tests or production.
@@ -62,8 +66,8 @@ await postgres.query("insert into public.player_pipamon_sightings(owner_id,model
 // Demo sightings include two creatures without a tail, to exercise locked cards.
 for(const p of [players.ana,players.beto])await postgres.query("insert into public.player_pipamon_sightings(owner_id,model_id) select $1,id from public.kite_models where id in ('marulume','alvaneve','hiponilo') on conflict do nothing",[p.id]);
 if(!(await postgres.query("select to_regclass('public.pipamon_class_nodes') installed")).rows[0].installed)await postgres.exec(fs.readFileSync('supabase/migrations/023_class_constellations.sql','utf8'));
-const operations={player_veredas:['p_chest'],player_starter_tutorial:['p_action','p_model'],player_workshop:['p_action','p_tail','p_job','p_target','p_stage','p_payload','p_request'],player_classes:['p_kite','p_node','p_version'],player_abandon_wild:['p_match'],player_wild:['p_match'],player_specialization:['p_kite','p_class','p_upgrade','p_version'],player_campaign:['p_action','p_revision','p_checkpoint','p_keep','p_seen','p_confirmation'],player_opening:['p_action','p_step','p_name'],player_journey:['p_action','p_model','p_lesson'],get_player_trail_result:['p_match'],player_daily:[],player_lines:['p_action','p_style','p_operation'],player_trails:['p_action','p_operation','p_payload'],get_player_account:[],get_player_recent_matches:[],get_player_match_result:['p_match'],get_kite_history:['p_kite'],equip_player_kite:['p_kite'],update_player_name:['p_nickname'],player_trade:['p_action','p_code','p_kite','p_revision'],player_summon:['p_action','p_tail','p_ritual','p_path','p_request','p_session','p_target'],record_player_sighting:['p_model']};
-const serverOperations={server_workshop_v3:['p_user','p_action','p_job','p_tail','p_target','p_revision','p_request','p_state','p_result'],register_wild_run:['p_user','p_match','p_zone'],settle_wild_run:['p_user','p_match','p_outcome'],register_trail_run:['p_user','p_match','p_stage'],settle_trail_run:['p_user','p_match','p_stage','p_won','p_rounds_lost'],settle_daily_challenge:['p_user','p_match','p_day'],reserve_player_match:['p_user','p_match','p_code','p_mode'],release_player_match:['p_user','p_match'],settle_player_cut:['p_event','p_match','p_winner','p_loser','p_kite'],finish_player_match:['p_match']};
+const operations={player_kite_care:['p_action'],player_veredas:['p_chest'],player_starter_tutorial:['p_action','p_model'],player_workshop:['p_action','p_tail','p_job','p_target','p_stage','p_payload','p_request'],player_classes:['p_kite','p_node','p_version'],player_abandon_wild:['p_match'],player_wild:['p_match'],player_specialization:['p_kite','p_class','p_upgrade','p_version'],player_campaign:['p_action','p_revision','p_checkpoint','p_keep','p_seen','p_confirmation'],player_opening:['p_action','p_step','p_name'],player_journey:['p_action','p_model','p_lesson'],get_player_trail_result:['p_match'],player_daily:[],player_lines:['p_action','p_style','p_operation'],player_trails:['p_action','p_operation','p_payload'],get_player_account:[],get_player_recent_matches:[],get_player_match_result:['p_match'],get_kite_history:['p_kite'],equip_player_kite:['p_kite'],update_player_name:['p_nickname'],player_trade:['p_action','p_code','p_kite','p_revision'],player_summon:['p_action','p_tail','p_ritual','p_path','p_request','p_session','p_target'],record_player_sighting:['p_model']};
+const serverOperations={server_kite_wear:['p_user','p_kite','p_match','p_line','p_hull'],server_workshop_v3:['p_user','p_action','p_job','p_tail','p_target','p_revision','p_request','p_state','p_result'],register_wild_run:['p_user','p_match','p_zone'],settle_wild_run:['p_user','p_match','p_outcome'],register_trail_run:['p_user','p_match','p_stage'],settle_trail_run:['p_user','p_match','p_stage','p_won','p_rounds_lost'],settle_daily_challenge:['p_user','p_match','p_day'],reserve_player_match:['p_user','p_match','p_code','p_mode'],release_player_match:['p_user','p_match'],settle_player_cut:['p_event','p_match','p_winner','p_loser','p_kite'],finish_player_match:['p_match']};
 async function rpc(name,body,uid){
  const args=Object.hasOwn(uid?operations:serverOperations,name)&&(uid?operations:serverOperations)[name];
  if(!args)throw Error('RPC local não permitida.');
@@ -89,7 +93,10 @@ if(process.env.LOCAL_PARK_FIXTURE==='1'){
  await postgres.query("insert into public.player_journeys(owner_id,phase,lesson,starter_model) values($1,'complete',5,'rabbito') on conflict(owner_id) do update set phase='complete',lesson=5,starter_model='rabbito'",[uid]);
  await postgres.query("update public.player_profiles set equipped_kite_id=(select id from public.player_kites where owner_id=$1 and model_id='rabbito' order by created_at limit 1) where id=$1",[uid]);
 }
-const tokens=new Map(),guests=new Set();
+// Keep this isolated review login through hot restarts; never imported by production.
+const localSessionsFile=demoDirectory+'/sessions.json';let savedSessions={};try{savedSessions=JSON.parse(fs.readFileSync(localSessionsFile,'utf8'));}catch{}
+const tokens=new Map(Array.isArray(savedSessions.tokens)?savedSessions.tokens:[]),guests=new Set(Array.isArray(savedSessions.guests)?savedSessions.guests:[]);
+const saveLocalSessions=()=>{fs.writeFileSync(localSessionsFile+'.tmp',JSON.stringify({tokens:[...tokens],guests:[...guests]}));fs.renameSync(localSessionsFile+'.tmp',localSessionsFile);};
 const userOf=id=>({id,...(guests.has(id)?{is_anonymous:true}:{})});
 const response=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json'}});
 async function localAuth(url,options={}){
@@ -98,12 +105,12 @@ async function localAuth(url,options={}){
   const username=body.email?.split('@')[0],player=players[username];
   if(body.refresh_token&&tokens.has(body.refresh_token))return response({access_token:body.refresh_token,refresh_token:body.refresh_token,expires_in:86400,user:userOf(tokens.get(body.refresh_token))});
   if(!player||body.email!==username+'@local.test'||body.password!=='TesteLocal123!')return response({error_code:'invalid_credentials'},401);
-  const access=randomUUID();tokens.set(access,player.id);return response({access_token:access,refresh_token:access,expires_in:86400,user:{id:player.id}});
+  const access=randomUUID();tokens.set(access,player.id);saveLocalSessions();return response({access_token:access,refresh_token:access,expires_in:86400,user:{id:player.id}});
  }
  // Jogar sem conta: emula o login anônimo do Supabase (o gatilho real cria o perfil).
- if(path==='/auth/v1/signup'&&!body.email){const id=randomUUID(),access=randomUUID();guests.add(id);await postgres.query('insert into auth.users values($1,$2)',[id,body.data||{}]);tokens.set(access,id);return response({access_token:access,refresh_token:access,expires_in:86400,user:userOf(id)});}
+ if(path==='/auth/v1/signup'&&!body.email){const id=randomUUID(),access=randomUUID();guests.add(id);await postgres.query('insert into auth.users values($1,$2)',[id,body.data||{}]);tokens.set(access,id);saveLocalSessions();return response({access_token:access,refresh_token:access,expires_in:86400,user:userOf(id)});}
  if(path==='/auth/v1/user'){if(!tokens.has(token))return response({},401);if(options.method==='PUT')return response({...userOf(tokens.get(token)),new_email:body.email});return response(userOf(tokens.get(token)));}
- if(path==='/auth/v1/logout'){tokens.delete(token);return response({});}
+ if(path==='/auth/v1/logout'){tokens.delete(token);saveLocalSessions();return response({});}
  if(path.startsWith('/rest/v1/rpc/')){
   if(!tokens.has(token))return response({},401);
   try{return response(await rpc(path.slice('/rest/v1/rpc/'.length),body,tokens.get(token)));}
@@ -126,7 +133,8 @@ const server=http.createServer(async(req,res)=>{
   let request=new Request(origin+req.url,{method:req.method,headers:requestHeaders,...(chunks.length?{body:Buffer.concat(chunks)}:{})});
   let r;
   const demo=/^\/local\/(ana|beto|cora|davi|kael)$/.exec(new URL(request.url).pathname);
-  if(new URL(request.url).pathname==='/local/skip-opening'){
+  if(new URL(request.url).pathname==='/local/signatures'){r=new Response(signaturePreview(),{headers:{'Content-Type':'text/html;charset=utf-8'}});}
+  else if(new URL(request.url).pathname==='/local/skip-opening'){
    if(req.method!=='POST'||request.headers.get('origin')!==origin){r=new Response('Use o botão Pular início no teste local.',{status:403});}
    else{
     const session=await accounts.handle(new Request(origin+'/account/session',{headers:requestHeaders})),data=await session.json(),owner=data.account?.profile?.id;
@@ -140,8 +148,8 @@ const server=http.createServer(async(req,res)=>{
    r=login.ok?new Response(null,{status:303,headers}):login;
   }else r=await serveWorkshopV3(request)||await serveAsset(request)||await accounts.handle(request)||await worker.fetch(request,{DB,ACCOUNTS:accounts,PROGRESSION:progression});
   if(new URL(request.url).pathname==='/'&&r.headers.get('content-type')?.includes('text/html')){
-   const html=(await r.text()).replace('<body>','<body><div style="background:#ffe9a8;padding:10px;text-align:center;font:14px sans-serif;position:relative;z-index:100001">TESTE LOCAL · Banco isolado · Sem dados de produção<form action="/local/skip-opening" method="post" style="display:inline-flex;gap:8px;align-items:center;flex-wrap:wrap;margin-left:12px"><label>Primeira pipa <select name="model" aria-label="Pipa para o atalho de teste"><option value="basica">Carcará</option><option value="mata">Mata Verde</option><option value="azulao">Azulão</option><option value="raio">Raio de Sol</option></select></label><button type="submit">Pular início · teste</button><small>Após a montagem com o professor · entre primeiro</small></form></div>');
-   r=new Response(html,{status:r.status,headers:r.headers});
+   const html=(await r.text()).replace('<body>','<body><div id="localDemoBar" style="background:#ffe9a8;padding:10px;text-align:center;font:14px sans-serif;position:fixed;bottom:0;right:0;max-width:100vw;z-index:100001"><details><summary>Ambiente local · atalhos</summary>Banco isolado · Sem dados de produção<form action="/local/skip-opening" method="post" style="display:inline-flex;gap:8px;align-items:center;flex-wrap:wrap;margin-left:12px"><label>Primeira pipa <select name="model" aria-label="Pipa para o atalho de teste"><option value="basica">Carcará</option><option value="mata">Mata Verde</option><option value="azulao">Azulão</option><option value="raio">Raio de Sol</option></select></label><button type="submit">Pular início · teste</button><small>Após a montagem com o professor · entre primeiro</small></form></details></div>');
+   r=new Response(process.env.LOCAL_COMBAT_REVIEW==='1'?html.replace('</body>',combatReviewControls()+'</body>'):html,{status:r.status,headers:r.headers});
   }
   const headers=Object.fromEntries(r.headers),cookies=r.headers.getSetCookie().map(localCookies.outgoing);if(cookies.length)headers['set-cookie']=cookies;
   res.writeHead(r.status,headers);res.end(Buffer.from(await r.arrayBuffer()));

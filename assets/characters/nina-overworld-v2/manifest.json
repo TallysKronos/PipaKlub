@@ -1,0 +1,158 @@
+{
+  "name": "Nina",
+  "image": "characters/nina-overworld-v2/overworld.png",
+  "referenceHeight": 144,
+  "directions": [
+    "south",
+    "west",
+    "east",
+    "north"
+  ],
+  "frames": [
+    {
+      "x": 0,
+      "y": 0,
+      "w": 192,
+      "h": 192,
+      "bounds": {
+        "x": 13,
+        "y": 36,
+        "w": 167,
+        "h": 144
+      },
+      "footAnchor": {
+        "x": 96,
+        "y": 180
+      },
+      "direction": "south",
+      "pose": "idle"
+    },
+    {
+      "x": 192,
+      "y": 0,
+      "w": 192,
+      "h": 192,
+      "bounds": {
+        "x": 14,
+        "y": 36,
+        "w": 165,
+        "h": 144
+      },
+      "footAnchor": {
+        "x": 96,
+        "y": 180
+      },
+      "direction": "west",
+      "pose": "idle"
+    },
+    {
+      "x": 384,
+      "y": 0,
+      "w": 192,
+      "h": 192,
+      "bounds": {
+        "x": 14,
+        "y": 36,
+        "w": 165,
+        "h": 144
+      },
+      "footAnchor": {
+        "x": 96,
+        "y": 180
+      },
+      "direction": "east",
+      "pose": "idle"
+    },
+    {
+      "x": 576,
+      "y": 0,
+      "w": 192,
+      "h": 192,
+      "bounds": {
+        "x": 13,
+        "y": 36,
+        "w": 167,
+        "h": 144
+      },
+      "footAnchor": {
+        "x": 96,
+        "y": 180
+      },
+      "direction": "north",
+      "pose": "idle"
+    },
+    {
+      "x": 0,
+      "y": 192,
+      "w": 192,
+      "h": 192,
+      "bounds": {
+        "x": 10,
+        "y": 36,
+        "w": 172,
+        "h": 144
+      },
+      "footAnchor": {
+        "x": 96,
+        "y": 180
+      },
+      "direction": "south",
+      "pose": "walk"
+    },
+    {
+      "x": 192,
+      "y": 192,
+      "w": 192,
+      "h": 192,
+      "bounds": {
+        "x": 16,
+        "y": 36,
+        "w": 160,
+        "h": 144
+      },
+      "footAnchor": {
+        "x": 96,
+        "y": 180
+      },
+      "direction": "west",
+      "pose": "walk"
+    },
+    {
+      "x": 384,
+      "y": 192,
+      "w": 192,
+      "h": 192,
+      "bounds": {
+        "x": 16,
+        "y": 36,
+        "w": 160,
+        "h": 144
+      },
+      "footAnchor": {
+        "x": 96,
+        "y": 180
+      },
+      "direction": "east",
+      "pose": "walk"
+    },
+    {
+      "x": 576,
+      "y": 192,
+      "w": 192,
+      "h": 192,
+      "bounds": {
+        "x": 11,
+        "y": 36,
+        "w": 171,
+        "h": 144
+      },
+      "footAnchor": {
+        "x": 96,
+        "y": 180
+      },
+      "direction": "north",
+      "pose": "walk"
+    }
+  ],
+  "presentation": "Dedicated chibi overworld sheet: four idle directions and four walking poses. No portrait reuse."
+}

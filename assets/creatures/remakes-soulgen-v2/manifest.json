@@ -1,0 +1,317 @@
+{
+  "version": 1,
+  "kind": "soulgen-baked-remakes",
+  "fps": 12,
+  "cell": 256,
+  "species": {
+    "nozinho": {
+      "source": "art/soulgen/keys/nozinho/color-rig-v2/nozinho.soulgen.json",
+      "sourceHash": "ece233426bbbe297d89bd3aec27184449f5f18e51b212ab72d125db2d5b42e1e",
+      "sourceHashes": {
+        "body": "6c2ddc7173a6f2b00bc617a8f1cefb0a0a3f82d9dfc2ba7476459ca662482a27",
+        "armNear": "8a7e6df7160066da264d5067f9ed345129d016527c68a31956fe8d46a0c5e3c1",
+        "armFar": "c900222faa27bff1588c2b3440cc53ed26257fb1f1c25c7f816004cfc89ffca7",
+        "legNear": "cc48893d03afc60eb35b5f1a59007578fe85f4c0cac492769cdd364263690ba2",
+        "legFar": "7ebc5a9ce6b3ff445217f66ef2eac43e7ee85f848fa27da15d8f2fbf83a88ccb",
+        "fierce": "20b98d0f8067c763f22aafdf20a11d2409beffd0353161b9e6c8193cf284ebac",
+        "hurt": "3baef5a67ec5f617a0b48267c1a7997784e485279cbe064cebf13c02c2aff755",
+        "happy": "684dc064310f0db88cc98d3c4f948f432fa08548c581a2c39e4d4d6e2a79e81a"
+      },
+      "rigRevision": 1,
+      "atlas": "nozinho",
+      "image": "creatures/remakes-soulgen-v2/nozinho.png",
+      "overworld": "creatures/remakes-soulgen-v2/nozinho-overworld.png",
+      "logicalSize": [
+        168,
+        176
+      ],
+      "framing": {
+        "scale": 1.5280414507772022,
+        "offsetX": -0.5836269430051814,
+        "offsetY": 7.587150259067358
+      },
+      "frames": 113
+    },
+    "guaravento": {
+      "source": "art/soulgen/keys/guaravento/color-rig-v2/guaravento.soulgen.json",
+      "sourceHash": "e039928e406c76b83469e52bb43bb7b9b693025960adfb339a670dd860576503",
+      "sourceHashes": {
+        "body": "da1854eb4a7334e4a52961cbd5c1251d558ffa3d434b875ffca7ba352e96484c",
+        "head": "68a30ba77b4062feb2af1da6278622ac86282bf56170e68610c711a072a29f06",
+        "sail": "89f3e4a81e2e2d8e1fb58223bd9cc5f3d787655b0163e2e4517e908e16a9d4db",
+        "tail": "219759e8e38bd9069b7315ea1698acf932c59f8f27e231dde1325f5e50396e7d",
+        "frontNear": "d680590e5b3c4c03f78790dbd71972abfe5b45198a73b573ee3409b662860e73",
+        "frontFar": "95bde5fe6d6c91b79271b484ef361c23aabbaf8d44310bf42c8c599aae04a4a8",
+        "hindNear": "7b43422a87aa7f35d2d10f57ac06bb0947462862f588011c85028535d3b02da3",
+        "hindFar": "6cdd5a0fe2e5540a7f14fe706d8d9e4ad4b8fa01ee75fdaf86f9ab55a6b7e064",
+        "fierce": "f379f7691c9c6b78f40f5fadec1c6d9a01e440dd6f0ad33a75ad1e786f5a922f",
+        "hurt": "17bba023388ec6f40e9a6588cd9c83b91ff10a40ced7c483d682d1d18cc29925",
+        "happy": "985f12a0956c81d4bb02fb97f4657a246d331f8bcfb6797785de929ac21075a2"
+      },
+      "rigRevision": 1,
+      "atlas": "guaravento",
+      "image": "creatures/remakes-soulgen-v2/guaravento.png",
+      "overworld": "creatures/remakes-soulgen-v2/guaravento-overworld.png",
+      "logicalSize": [
+        280,
+        256
+      ],
+      "framing": {
+        "scale": 1.0473065375302664,
+        "offsetX": 4.454689265536723,
+        "offsetY": 0
+      },
+      "frames": 116
+    },
+    "micofolha": {
+      "source": "art/soulgen/keys/micofolha/color-rig-v2/micofolha.soulgen.json",
+      "sourceHash": "849796522306d7ced61be46e053a1daf93dd03f756b1049ba3d94e7a402ce631",
+      "sourceHashes": {
+        "body": "c8b2b4250e805396e92a65216715f82fb0e81fb40f06ace8cc3790ab239c0fac",
+        "head": "c77b1e46656459a31f549a8a97189d21b01699bf6af657402de53fb1c9fc55db",
+        "sail": "a588d7e044502fbea30e296925bd724526a74c83e5087343453380edf1df7273",
+        "tail": "3c8881e83a704b6f4afa4c6bcda7629fb34768123917cf9bdd48a2b252fadb25",
+        "armNear": "5903ad2a7aec27676673d07aa795e8ce16f0934ad8125f4a263192078e6034f2",
+        "armFar": "63c27f81c0a9ece1222afdfa05c9b65a283b3da66f510f7671523a14e625549f",
+        "legNear": "67b57d6d703b6f0c032ea65377cf4052ddcc602a7e98aec4e1027d1a1bbe8563",
+        "legFar": "231c0a8380c3e364f8b42a25f93dd503ab737487a134b37de525ef80eae0be08",
+        "fierce": "5b617f6f960006a87a945d270a33220e8501f42768e89aedd736c3a17b29d932",
+        "hurt": "39668f2ff305c927023fe4255b66dcfddd892c9dd78bcf967b545520fbb9e0ba",
+        "happy": "4a59f8500a55e9e252af0d7dc1a7f9fd621b85e17fe7486bfc68ae51545249e6"
+      },
+      "rigRevision": 2,
+      "atlas": "micofolha",
+      "image": "creatures/remakes-soulgen-v2/micofolha.png",
+      "overworld": "creatures/remakes-soulgen-v2/micofolha-overworld.png",
+      "logicalSize": [
+        224,
+        224
+      ],
+      "framing": {
+        "scale": 1.2325349544072948,
+        "offsetX": 13.181276595744682,
+        "offsetY": -4.7931914893617025
+      },
+      "frames": 116
+    },
+    "capimansa": {
+      "source": "art/soulgen/keys/capimansa/color-rig-v2/capimansa.soulgen.json",
+      "sourceHash": "7d6116cb842d5d3c76d137117efb24b1d64d885fa069bfe04e83be15b51c36b0",
+      "sourceHashes": {
+        "body": "70128267267d82d5ec3d46a3150d881844f574df0c4834c63a1cdab44eafc62c",
+        "head": "45b80cded7bb1e9661ff3c27ce7728bc9d35b400cbd85d862d2c0971aa941382",
+        "sail": "de089a67044982026cfbe55e99a969eb27bafd7334ee60254fa2a60d91cba186",
+        "tail": "93cc1ddd0b9d1aeed0fe8a1d569dcbfc3fa98126a74c03b9d893f871c47cdb4b",
+        "frontNear": "62c0a329eea574fffbd77ef2fa191b71b94a952933eb1d1f7e7adca8bcbcbf1e",
+        "frontFar": "b1b2e6612d282e4572663e57397552cf6d1f85ad718fa7f60b1700890368bb3d",
+        "hindNear": "ebd23e4e526e69db4818d50d2d77d354b8d7edca47fc9467b7fce9ee04bf7df7",
+        "hindFar": "e315058ea59f949b33446d62d4fd6ed499a374e809522ee96fb5b08d4bd4a292",
+        "fierce": "c0653d79719cd1e544db48cef375825037fb70eb740b1f4d23922e75eec37a03",
+        "hurt": "43d411a4e5676a3732fe9df58c726ad46bb6a51fe0eab05605348788e729ab85",
+        "happy": "3263a35583e25a8852072a586eacd313d46fb18b43d5682c91bc03b105cdeee7"
+      },
+      "rigRevision": 2,
+      "atlas": "capimansa",
+      "image": "creatures/remakes-soulgen-v2/capimansa.png",
+      "overworld": "creatures/remakes-soulgen-v2/capimansa-overworld.png",
+      "logicalSize": [
+        240,
+        224
+      ],
+      "framing": {
+        "scale": 1.3028240963855422,
+        "offsetX": 5.428433734939759,
+        "offsetY": -31.892048192771085
+      },
+      "frames": 116
+    },
+    "tatutrama": {
+      "source": "art/soulgen/keys/tatutrama/color-rig-v2/tatutrama.soulgen.json",
+      "sourceHash": "6f757faacbcdd372e6fc96a0d558b3943a2efe84e12e8d51915b2240b64a4873",
+      "sourceHashes": {
+        "body": "ee027166c4b30188741cb964e4bb8ec7085349c2559f19410280cb8f83e12cd5",
+        "head": "ba23011e78fbf124618a64d8b84e3e0390883e1d8c4199065df988dddaf42de3",
+        "tail": "d32e0ec2103bc58d766a9c750c2215af5710ca8fca14a7dad31edc52c456e464",
+        "frontNear": "161b0b179161462453461c647b3a993555f77a16817398bf96189ed8a74d759e",
+        "frontFar": "091d8741b0263404835144ededade5705f903e22060bd7b6d609d9af24765d56",
+        "hindNear": "92a6c77cc37eb7c56dab3426f46d16ed699abaae45d0c0ed61e048177b9433b4",
+        "hindFar": "7eb3a6a0305646c8439b6602f53b8cdc2f0082fe48e320745c86df0b90cb68b7",
+        "fierce": "49cf69efd2d06ce1310ba9ae7d6a5f4109101ddf11d938eed98b8978c9a2e658",
+        "hurt": "a38ac1a9b67fab36b5fc4fac4798ab3be8611e962b5402b8813f0ca370ac797b",
+        "happy": "7bf59e3c2601ae30503b7ce5180bbea2145da53d0dc1b07de598ac9098bd196b"
+      },
+      "rigRevision": 2,
+      "atlas": "tatutrama",
+      "image": "creatures/remakes-soulgen-v2/tatutrama.png",
+      "overworld": "creatures/remakes-soulgen-v2/tatutrama-overworld.png",
+      "logicalSize": [
+        248,
+        224
+      ],
+      "framing": {
+        "scale": 1.2168162040510129,
+        "offsetX": -5.239069767441861,
+        "offsetY": -21.611162790697676
+      },
+      "frames": 116
+    },
+    "flautrevo": {
+      "source": "art/soulgen/keys/flautrevo/color-rig-v2/flautrevo.soulgen.json",
+      "sourceHash": "f789f79c44287afb96a1256c377e52e7d3de1d9bcf76c33bdbde287f44013f6f",
+      "sourceHashes": {
+        "body": "da5246600cc1d947906c6f2346bae4fe93cda321ecfbe0862549d39bfe7cb35c",
+        "wingNear": "dd7a3404dde352838fa5c996c21cc38e013963ff5bb6361f5c8a82fd2eef9d0a",
+        "wingFar": "7bfb3cc670c1b9c22eb20213f7f302c22e61d3ba5cde29fd4b799f1d0b0c96a4",
+        "tail": "d2af2b01097c3f9ee3402049c964eb2ae333891138f4227d1481ad6ae2676801",
+        "fierce": "40deb42dde55bbf2ec7fc0b571f956d79ff78625290c66d23a9cecd4fa21a942",
+        "hurt": "816a32b8296d95633492c6122663fd89150e3593a549b7e20030ecf2611c7d76",
+        "happy": "ad5706de7d9272cc7d681c890eed527a00d5132b95e31c25b110cf43cd1c6a41"
+      },
+      "rigRevision": 3,
+      "atlas": "flautrevo",
+      "image": "creatures/remakes-soulgen-v2/flautrevo.png",
+      "overworld": "creatures/remakes-soulgen-v2/flautrevo-overworld.png",
+      "logicalSize": [
+        256,
+        240
+      ],
+      "framing": {
+        "scale": 1.299692307692308,
+        "offsetX": 1.4441025641025642,
+        "offsetY": -6.498461538461539
+      },
+      "frames": 116
+    },
+    "trinca-brasas": {
+      "source": "art/soulgen/keys/trinca-brasas/color-rig-v2/trinca-brasas.soulgen.json",
+      "sourceHash": "007bc9954f9ef689f77800564f74e33e4ba9ef646ee1c04c361e54807d35fb2d",
+      "sourceHashes": {
+        "body": "cdc5b69fea7fdb9c93e8087ea193df3ac32ca5fb21078210b4f97cf13896a1d7",
+        "headCenter": "eebcbfc3892a4516746adbd03a640ada3632f34d6212e7fd16da0665f487cc79",
+        "headFar": "c392e46d79623d84463d366d5231c4c10d9c75338f5953a3e90d81c62c32d574",
+        "headNear": "a6a329d30ff288eccfdd1cabdf0c61497ac6c8effd9e736f1e27de06345d4640",
+        "frontNear": "9966adf9e39a5ed9deaec4130e0b9f7d95fcf8dde59d0b39583017278bdba2fa",
+        "frontFar": "f17010ebed954e4a0c4f5373d032f7ae3534faa4c6e8716d6c5c4719cd7f0af6",
+        "hindNear": "4ba6afe9f44b0f51e594d5aa00834c0b8c376ff3d8531ded7ede28a408c04610",
+        "hindFar": "99e81938e4c41cdebe391b9d86c30606296821d26772f05666cc955b928aedba",
+        "tail": "8a678815799c000437343e5f4a49b3a9c1c813707c68d33a3926790f47346eee",
+        "headCenterFierce": "721b8a9b6bbe14d1fcccf43548b25cdad6e56dfe31317519261ec1f16cfbc97c",
+        "headFarFierce": "8ee674025604c660a91c6751e4a08fc11209d8b263e9d564ad5da14a75db8394",
+        "headNearFierce": "97508b48092dc6ea9d9beefe07893d487467166ffa5d329833d07899e6dcf3d1",
+        "headCenterHurt": "b7a155b985c1b07037a0f8024dc0658de19214d86e4c6aa5b81300c708a04e55",
+        "headCenterHappy": "71c4920b9e7956899ed69e6101b132d98b0223ecbb424cd1581bc5cb3ff97f8c",
+        "headFarHappy": "32bd960768f96a830fbf489852f18b90013d54bfafe5b6edc3926106e7c3be50",
+        "headNearHappy": "73d514bae4e8c3eb8c1df0ee0d5399fa73dd36959669a5a1b3ee9075bdc2972f"
+      },
+      "rigRevision": 3,
+      "atlas": "trinca-brasas",
+      "image": "creatures/remakes-soulgen-v2/trinca-brasas.png",
+      "overworld": "creatures/remakes-soulgen-v2/trinca-brasas-overworld.png",
+      "logicalSize": [
+        272,
+        240
+      ],
+      "framing": {
+        "scale": 1.5514261119081778,
+        "offsetX": -0.9157723577235772,
+        "offsetY": 32.052032520325206
+      },
+      "frames": 116
+    },
+    "alvaneve": {
+      "source": "art/soulgen/keys/alvaneve/color-rig-v2/alvaneve.soulgen.json",
+      "sourceHash": "1c39c5920df064054921a4f4b886541527f006ef145ebb4c9ae08b094a29b687",
+      "sourceHashes": {
+        "body": "b1313d7498de427c8cd0de3f7227817db0db8f6cdf784d8752c3f9c0e3527479",
+        "head": "3851cb9db2c34988064a4b2b5e08ae374d56a7ac87e9b62f1ac2254f40825b5c",
+        "wingNear": "73ed76b02e38598dc8225a5e5dab145ae844a03cdac2ab6dac9d3eddb25be486",
+        "wingFar": "12b15f321d00df561a2a31d869c3bdb4fc1ee1dc159195fdb171af546c2d8aa2",
+        "tail": "d51c257b6c7d6cfc0579d7c1202d0fff8ffbd58ad97e654d3a4172e34a2b7316",
+        "frontNear": "77a2d68460898f6e7ada351f7931cbb643f0cff70e455abf755561badee72499",
+        "frontFar": "da38994373317f689c8dfca71225b480c205ad804d80ab8dc88036040b626ef2",
+        "hindNear": "09e7a667be93e0a0a0fd5649068039650677af7813daf90625683b45ad0cc5b7",
+        "hindFar": "5163ba232d110eab52d96f9618a5a8adf6ce9acfa8c0c4977fe0f8573882312c",
+        "fierce": "67d76c707c378cda5295e197f1e4f142adef6a0abcfce8c78b096c8ee0d92eba",
+        "hurt": "b3a8aa415e6e847c65687c72be518a298f04fa9a537dd6a0158d0f36a20457d1",
+        "happy": "d922f6224cc30f74f40e5fd60675692bc561c49ec53dac5e914edb532b90e0be",
+        "thighNear": "83935bd57807e0e2c0cd47da987f68ae0be4723e9c387e7e5fbe7dab37ca962b",
+        "thighFar": "4cace6fe7c3c1f2bfb1fb9bc73145be10ddece8d6ef09d8257d3603290ac456d"
+      },
+      "rigRevision": 3,
+      "atlas": "alvaneve",
+      "image": "creatures/remakes-soulgen-v2/alvaneve.png",
+      "overworld": "creatures/remakes-soulgen-v2/alvaneve-overworld.png",
+      "logicalSize": [
+        272,
+        256
+      ],
+      "framing": {
+        "scale": 1.3344434389140272,
+        "offsetX": -8.664615384615384,
+        "offsetY": -28.356923076923078
+      },
+      "frames": 116
+    },
+    "chaspiral": {
+      "source": "art/soulgen/keys/chaspiral/color-rig-v2/chaspiral.soulgen.json",
+      "sourceHash": "802dc0e3931300a5d4624640172d9ae7e6b2c1ef09d1f5b7c65e333dcfc0faaf",
+      "sourceHashes": {
+        "body": "89d2ffe1c7aff101858a71d3e6ab7f1e0f5972d7731018c2fc1057f4b6f3ea0d",
+        "wingNear": "1accc6b60c055588aa4e4a58eacc5296f6d9849b80317ec5166bb383c27ee563",
+        "wingFar": "4d1ece344d29df403d438f981aa7e06d78416973eda37d29bf1ddd0ba949102b",
+        "armNear": "57c816002dcfe5e072614287d06c00fc8e3974e60ce66f5ce3c6d784348f7486",
+        "armFar": "16026f7b2bc61a6bd77cd7456ea9629c5a626724136321ec91d7828b6328b405",
+        "tail": "66ec8762e6f8ac16ee6913a2243b068a16dd4886e1078a657c522a07cdce0f67",
+        "fierce": "c656b510e492a4e66ccfe48e5e31e922d72a5da446c029785794d0c20aba6243",
+        "hurt": "8bd7032dc70255a0d3b7fd77b7f09537a19aa1130b6fe3265877d419ffeea95e",
+        "happy": "f03a5aaf845a5471fe66c9223b2961e3f517f2e95e2a14e2446249c910d371ff"
+      },
+      "rigRevision": 3,
+      "atlas": "chaspiral",
+      "image": "creatures/remakes-soulgen-v2/chaspiral.png",
+      "overworld": "creatures/remakes-soulgen-v2/chaspiral-overworld.png",
+      "logicalSize": [
+        256,
+        240
+      ],
+      "framing": {
+        "scale": 1.360751677852349,
+        "offsetX": -24.94711409395973,
+        "offsetY": 6.803758389261745
+      },
+      "frames": 116
+    },
+    "hiponilo": {
+      "source": "art/soulgen/keys/hiponilo/color-rig-v2/hiponilo.soulgen.json",
+      "sourceHash": "3b1adb0118a4a5e14b61b32a03cc569931c054fa0f058f4be78b08bb288d0c3c",
+      "sourceHashes": {
+        "body": "ca8cc629b0977aa60315c834fad16e4ea4d4798e2425e83a8186a0806ad1ea81",
+        "head": "2e31ec3ff20bec2bde552b056c879b2baccdcbe143c47a9b49b8afc2cfac6bfb",
+        "sail": "0ae0f718300ebcdd3e69d18ecbbbe3de525df66ad85f08014099025eeb968a08",
+        "tail": "7b215909043dd43f41ed63b2dc435c005c0816294992de76545dcb97efc00297",
+        "frontNear": "46cafa1edc1b97be1267cd101b281d0174ba1d251138d6046d076d805ba261f1",
+        "frontFar": "7c2f4afa847dba948d70e572a1d833ee4f8d172b29e0ab2fd8d7919b0ea6149f",
+        "hindNear": "384973b1ba6ae9aa37b2db8fec50b35c1d182228792e044b9b7229de0772246a",
+        "hindFar": "49158f78622d05b72f647565ff1e52cc076781b93b42bc6d7702b8ae9ac8f63e",
+        "fierce": "cc1ea6567d7a8b90b3ccb2a58b4bdcbda3b326cd8dfc337bd7fdd7a2fe547edc",
+        "hurt": "bdf785c1a3cc4e6d7f6df07fdea4098b7325dedb51a84b8ceac208fb3542eacd",
+        "happy": "d7a1dc79ac58e9011a2632e3e5d3d26986af91b5e3044f25d0a78b7339f195de"
+      },
+      "rigRevision": 2,
+      "atlas": "hiponilo",
+      "image": "creatures/remakes-soulgen-v2/hiponilo.png",
+      "overworld": "creatures/remakes-soulgen-v2/hiponilo-overworld.png",
+      "logicalSize": [
+        272,
+        240
+      ],
+      "framing": {
+        "scale": 1.3344434389140272,
+        "offsetX": 24.41846153846154,
+        "offsetY": -15.753846153846155
+      },
+      "frames": 116
+    }
+  },
+  "overworldView": "Approved three-quarter view mirrored west/east; no invented rear anatomy."
+}

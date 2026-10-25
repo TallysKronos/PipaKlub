@@ -27,7 +27,7 @@ gameMenu.innerHTML='<div class="game-menu-panel"><h2 id="homeMenuTitle">Rua dos 
 const cityScreen=document.createElement('section');cityScreen.id='cityScreen';cityScreen.className='city-screen';cityScreen.hidden=true;cityScreen.setAttribute('aria-label','Mapa da cidade');
 cityScreen.innerHTML='<div class="city-stage"><div class="city-world" id="cityWorld"></div></div><div class="home-hud"><div class="home-identity"><b>A cidade dos ventos</b><small>Encontre seu próximo desafio.</small></div><button class="home-command" id="cityBack">Voltar ao passeio · Esc</button></div><section class="city-brief" aria-live="polite"><canvas id="cityBadge" width="90" height="100" aria-label="Insígnia do bairro"></canvas><div class="eyebrow" id="cityChapter"></div><h2 id="cityName"></h2><p id="cityDescription"></p><p id="cityRecord"></p><div class="journey-actions"><button id="cityExplore">Entrar no bairro</button></div></section>';document.body.append(cityScreen);
 const flightCoach=document.createElement('section');flightCoach.className='flight-coach';flightCoach.id='flightCoach';flightCoach.hidden=true;flightCoach.setAttribute('aria-label','Treino com o Nozinho');
-flightCoach.innerHTML='<div class="eyebrow" id="flightStep"></div><h2 id="flightTitle"></h2><p id="flightHint"></p><p class="journey-status" id="flightStatus" role="status"></p><div class="journey-actions"><button class="secondary" id="flightExit">Voltar ao passeio</button><button class="secondary" id="flightSkip">Pular treino</button><button class="primary" id="flightNext" hidden>Continuar</button></div>';document.body.append(flightCoach);
+flightCoach.innerHTML='<div class="eyebrow" id="flightStep"></div><h2 id="flightTitle"></h2><p id="flightHint"></p><p class="journey-status" id="flightCoachStatus" role="status"></p><div class="journey-actions"><button class="secondary" id="flightExit">Voltar ao passeio</button><button class="secondary" id="flightSkip">Pular treino</button><button class="primary" id="flightNext" hidden>Continuar</button></div>';document.body.append(flightCoach);
 for(const destination of courtyard.querySelectorAll('.scene-destination')){destination.style.setProperty('--destination-x',destination.style.left);destination.style.setProperty('--destination-y',destination.style.top);destination.setAttribute('aria-label',destination.textContent.trim());}
 let homeMotionPaused=art.reduced;
 function homeLoadImage(key,retry=false){
@@ -90,7 +90,7 @@ async function loadJourney(){
 async function saveJourney(action,body={}){
  if(journeyBusy||!journeyOwner)return null;const epoch=journeyEpoch,owner=journeyOwner;journeyBusy=true;setJourneyBusy(true);
  try{const d=await accountRequest('journey',{action,...body});if(epoch!==journeyEpoch||owner!==playerAccount?.profile?.id)return null;journey=d.journey;journeyError='';if(d.account){playerAccount=d.account;reflectAccount();}updateHomeIdentity();return d;}
- catch(e){if(epoch===journeyEpoch){journeyError=e.message;for(const id of ['journeyStatus','partnerStatus','flightStatus'])$(id).textContent=e.message;}return null;}
+ catch(e){if(epoch===journeyEpoch){journeyError=e.message;for(const id of ['journeyStatus','partnerStatus','flightCoachStatus'])$(id).textContent=e.message;}return null;}
  finally{if(epoch===journeyEpoch){journeyBusy=false;setJourneyBusy(false);}}
 }
 function setJourneyBusy(busy){for(const id of ['journeyContinue','partnerConfirm','partnerBack','flightNext','flightSkip'])$(id).disabled=busy;}
@@ -169,6 +169,7 @@ function chooseStarterTail(){
 async function openStarterWorkshop(){
  const owner=journeyOwner,epoch=journeyEpoch,tutorial=journey?.starterTutorial;if(!tutorial?.tailId||mode)return;
  try{
+  if(tutorial.jobStatus==='cancelled'){await openClubDestination('summon');return;}
   await openClubDestination('collection');if(owner!==journeyOwner||epoch!==journeyEpoch)return;
   await openSummoner();if(owner!==journeyOwner||epoch!==journeyEpoch||!summonOpen)return;
   if(summonData.active&&summonData.active.tailId!==tutorial.tailId)throw new Error('Retome sua montagem em andamento antes de abrir a pipa do tutorial.');
@@ -180,7 +181,7 @@ async function openStarterWorkshop(){
  }catch(e){if(owner===journeyOwner&&epoch===journeyEpoch){$('summonMessage').textContent=e.message;toast(e.message);}}
 }
 function starterTutorialCompleteDialogue(){
- dialogue('Seu primeiro elo está pronto','Você aprendeu a voar e construiu seu próprio parceiro. Ele já está na sua coleção! Nosso primeiro treino termina aqui. Quando quiser, explore a rua e procure novos desafios.','Avançar',hideJourney);
+ dialogue('Seu primeiro elo está pronto','Você aprendeu a voar e construiu seu próprio parceiro. Ele já está na sua coleção! Antes do guardião, volte à minha Escola para treinar ataque na armação, guarda e o especial do Rabbito. As lições e a revanche de treino não desgastam sua coleção.','Avançar',hideJourney);
 }
 function startFirstFlight(){
  if(mode||!playerAccount||journeyLoading||journeyBusy)return;hideJourney();closeHomeMenu();
@@ -191,19 +192,20 @@ function firstFlightInstruction(index){
  const device=typeof inputDevice==='string'?inputDevice:'keyboard';
  if(index===3){
   const r=firstFlightRun,p=r?.state.players[0]||{color:selected},pad=device.startsWith('gamepad'),ps=device==='gamepad-ps',touch=device==='touch',action=r?.exercise||'skill';
+  if(action==='guard')return 'Nozinho vai usar Nó de Vendaval, seu golpe de assinatura. Fique no círculo e espere o aviso “Guarda agora!”. '+(pad?'Use '+(ps?'L2':'LT'):touch?'Toque em Guarda':'Pressione G ou toque em Guarda')+' perto do impacto. A proteção dura 0,5 s. Aqui você pode tentar de novo sem perdas; no duelo, a recarga é de 20 s.';
   if(action==='dodge')return 'Esquiva: '+(pad?'pressione '+(ps?'○':'B'):touch?'toque no botão Esquiva':'pressione Shift ou use o botão Esquiva')+'. Você avança um pouco e evita ataques durante o desvio. Não é a habilidade do parceiro.';
   if(action==='line')return 'Rebicada da linha: segure e solte '+(pad?(ps?'□':'X'):touch?'o botão Rebicada':'R ou o botão Rebicada')+'. Observe a trajetória até a manobra terminar. Ela usa energia e tem sua própria recarga; não substitui o ataque.';
   return 'Habilidade do parceiro · '+eng.type(p).skill+': '+eng.type(p).description+' '+(pad?'Use '+(ps?'L1 ou R1':'LB ou RB'):touch?'Use o botão Habilidade':'Use Q / E ou o botão Habilidade')+'. '+(p.color===1?'Observe o avanço lateral.':p.color===2?'Ative a proteção e deixe Nozinho acertar uma vez.':'Ative e acerte Nozinho enquanto o efeito está ativo.');
  }
- if(device.startsWith('gamepad')){const attack=device==='gamepad-ps'?'✕':'A',skill=device==='gamepad-ps'?'L1 ou R1':'LB ou RB';return ['Use o analógico esquerdo para levar seu parceiro até o círculo.','Chegue ao círculo. Quando a mira ficar verde, pressione '+attack+' para atacar.','Solte '+attack+' para recuperar energia. Você pode continuar voando.','Pressione '+skill+' para experimentar a habilidade do seu parceiro.','Cruze as linhas e pressione '+attack+' para atacar. Nozinho está só treinando.'][index];}
- if(device==='touch')return ['Arraste no céu até o círculo.','Chegue ao círculo e toque no céu para atacar quando a mira ficar verde.','Pare de atacar para recuperar energia. Você pode continuar voando.','Deslize rapidamente para um lado para experimentar a habilidade.','Cruze as linhas e toque para atacar. Nozinho está só treinando.'][index];
+ if(device.startsWith('gamepad')){const attack=device==='gamepad-ps'?'✕':'A',skill=device==='gamepad-ps'?'L1 ou R1':'LB ou RB';return ['Use o analógico esquerdo para levar seu parceiro até o círculo.','Chegue ao círculo. Quando a mira ficar verde, pressione '+attack+' para atacar.','A barra azul é sua energia. Solte '+attack+' e espere chegar a 90%. A recuperação é automática: pode continuar voando, mas evite habilidades enquanto recarrega.','Pressione '+skill+' para experimentar a habilidade do seu parceiro.','Cruze as linhas e pressione '+attack+' para atacar. Nozinho está só treinando.'][index];}
+ if(device==='touch')return ['Arraste no céu até o círculo.','Chegue ao círculo e toque no céu para atacar quando a mira ficar verde.','A barra azul é sua energia. Pare de atacar e espere chegar a 90%. A recuperação é automática: pode continuar voando, mas evite habilidades enquanto recarrega.','Deslize rapidamente para um lado para experimentar a habilidade.','Cruze as linhas e toque para atacar. Nozinho está só treinando.'][index];
  return firstFlight.lessons[index].hint;
 }
 function refreshFirstFlightInstruction(){if(firstFlightRun&&!firstFlightRun.complete)$('flightHint').textContent=firstFlightInstruction(firstFlightRun.index);}
 function renderFlightCoach(){
  if(!firstFlightRun)return;const r=firstFlightRun,l=firstFlight.lessons[r.index];
  $('flightStep').textContent='Sr. Assis';$('flightTitle').textContent=l.title;
- $('flightHint').textContent=r.complete?l.success:firstFlightInstruction(r.index);$('flightStatus').textContent='';
+ $('flightHint').textContent=r.complete?l.success:firstFlightInstruction(r.index);$('flightCoachStatus').textContent='';
  $('flightNext').hidden=!r.complete&&!flightTalking;$('flightNext').textContent='Avançar';
  $('flightSkip').hidden=true;$('flightExit').hidden=true;
  flightCoach.classList.toggle('is-exercising',!flightTalking&&!r.complete);document.body.classList.toggle('first-flight-speaking',flightTalking||r.complete);
@@ -211,6 +213,10 @@ function renderFlightCoach(){
 function stepFirstFlight(now){
  const r=firstFlightRun;if(!r||flightTalking)return;const exercise=r.exercise;
  firstFlight.tick(r,input(),now);
+ if(!r.complete&&(r.index===2||r.index===3&&r.exercise==='guard')){
+  const q=r.state.players[1],status=r.index===2?'Energia: '+Math.floor(r.state.players[0].energy)+'% / 90%':q.signatureWindup>0?(q.signatureWindup<=.45?'Guarda agora!':'Prepare-se… o laço está fechando.'):'Aguarde o próximo laço. Você pode tentar de novo.';
+  if($('flightCoachStatus').textContent!==status)$('flightCoachStatus').textContent=status;
+ }
  if(exercise!==r.exercise){keys={};resetPointer();flightTalking=true;renderFlightCoach();$('flightNext').focus({preventScroll:true});}
  if(r.complete&&!flightSaved){flightSaved=true;keys={};resetPointer();renderFlightCoach();$('flightNext').focus({preventScroll:true});}
 }

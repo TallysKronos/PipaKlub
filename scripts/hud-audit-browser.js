@@ -6,6 +6,10 @@ function auditBoot(input){
  const p=s.players[0];if(scenario==='cooldown')Object.assign(p,{lineCooldown:4.2,skillCooldown:6.4,dodgeCooldown:1.6,hp:28});if(scenario==='energy')p.energy=5;if(scenario==='cut')Object.assign(p,{hp:0,respawn:now+3000});if(scenario==='charge'||scenario==='moving')eng.move(p,{lineNonce:1,lineId:'puxao',lineHeld:scenario==='charge'},.1);
  if(scenario.startsWith('boss-')){s.players=s.players.slice(0,2);s.boss=true;s.wild={zone:'park-veredas'};p.soul='rabbito';Object.assign(s.players[1],{soul:'lacertubo',bot:true,bossId:'lacertubo',hp:150,bossPhase:2,bossTelegraph:scenario==='boss-charge'?2:0,bossRecovery:scenario==='boss-opening'?2:0});}
  enter(s,p.id,'audit');serverNow=()=>now;updateHud(now);updateNormalLineHUD();updateFan();document.querySelector('[data-hud-tab="'+tab+'"]')?.click();if(scenario==='side-left')$('normalLineSide').click();if(scenario==='focus')$('normalLineUse').focus();if(scenario==='pause')openPause();if(scenario==='missing-assets')document.body.classList.add('hud-art-unavailable');
+ if(scenario==='tutorial-active'){
+  firstFlightRun=firstFlight.create({lesson:3,soul:'rabbito',name:'Kael · demonstração'},now);
+  flightTalking=false;flightSaved=false;enter(firstFlightRun.state,'you','practice');document.body.classList.add('in-first-flight');flightCoach.hidden=false;renderFlightCoach();art.load('nozinho');updateHud(now);updateFan();
+ }
  if(scenario.startsWith('result-')){
   s.players=s.players.slice(0,2);p.soul='rabbito';p.name='Kael · demonstração';p.rounds=scenario==='result-victory'?s.roundsToWin:0;s.players[1].rounds=p.rounds?0:s.roundsToWin;
   if(scenario==='result-draw'){s.mode='timed';p.score=s.players[1].score=100;}s.phase='intermission';showResult=true;playerAccount={profile:{id:'audit',nickname:p.name,xp:20,equipped_kite_id:'audit-kite'},inventory:[{id:'audit-kite',pipamon_xp:60,model:{name:'Rabbito',soul:'rabbito'}}]};

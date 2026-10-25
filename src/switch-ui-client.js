@@ -115,10 +115,12 @@ function pollPads(){
  if(live){
   padState.x=move.x;padState.y=move.y;padState.cut=down(B.a);padState.skill=down(B.lb)?-1:down(B.rb)?1:0;
   if(pressed(B.b))queueDodge();
+  if(pressed(6))queueGuard();
+  if(pressed(7))queueSignature();
   const x=down(B.x);if(x&&!padPrev[B.x])normalLineStart();if(!x&&padPrev[B.x])resetNormalLine();padPrev[B.x]=x;
   if(pressed(B.y))$('normalLineSide').click();
   if(pressed(B.start))startPressed();
-  for(const i of [B.a,B.lb,B.rb,B.view,B.up,B.down,B.left,B.right])padPrev[i]=down(i);
+  for(const i of [B.a,6,7,B.lb,B.rb,B.view,B.up,B.down,B.left,B.right])padPrev[i]=down(i);
   return;
  }
  padState.x=padState.y=0;padState.cut=false;padState.skill=0;
@@ -180,7 +182,8 @@ holdPointer(fanSkill,()=>{const i=input();queueSkill((i.x||0)<-.1?'q':'e');});
 function setRing(b,remaining,total,blocked){b.style.setProperty('--fan-cooldown',String(333*Math.max(0,Math.min(1,total?remaining/total:0))));b.classList.toggle('is-cooling',remaining>0);b.classList.toggle('is-blocked',!!blocked);}
 function updateFan(){
  const p=mode&&ownKite();fan.hidden=!p||showResult;if(fan.hidden)return;
- const blocked=!!(p.respawn||pausedAt||state.phase&&state.phase!=='live'),d=normalLineChoice();
+ const blocked=!!(p.respawn||pausedAt||p.signatureWindup>0||state.phase&&state.phase!=='live'),d=normalLineChoice();
+ updateGuardButton(p,blocked);
  setRing(fanAttack,p.attackCooldown||0,.65,blocked||p.energy<12);
  setRing(fanDodge,p.dodgeCooldown||0,eng.DODGE.cooldown,blocked||p.energy<eng.DODGE.cost);
  setRing(fanLine,p.lineMove?d.cooldown:p.lineCooldown||0,d.cooldown,blocked||(!p.lineMove&&p.energy<d.cost));
@@ -190,7 +193,7 @@ function updateFan(){
  for(const [b,cost,remaining]of [[fanAttack,12,p.attackCooldown||0],[fanDodge,eng.DODGE.cost,p.dodgeCooldown||0],[fanLine,d.cost,p.lineCooldown||0],[fanSkill,25,p.skillCooldown||0]]){
   let note=b.querySelector('.duel-action-cost');if(!note){note=document.createElement('small');note.className='duel-action-cost';b.append(note);}
   const unavailable=blocked||remaining>0||p.energy<cost;
-  note.textContent=p.respawn?'Linha cortada':pausedAt?'Pausado':blocked?'Aguarde':remaining>0?Math.ceil(remaining)+' s':p.energy<cost?'Sem energia':cost+' energia';
+  note.textContent=p.respawn?(p.breakReason==='hull'?'Armação quebrada':'Linha cortada'):pausedAt?'Pausado':blocked?'Aguarde':remaining>0?Math.ceil(remaining)+' s':p.energy<cost?'Sem energia':cost+' energia';
   b.setAttribute('aria-disabled',String(unavailable));b.setAttribute('aria-label',b.querySelector('.fan-label').textContent+' · '+note.textContent);
  }
  fanLine.classList.toggle('is-held',normalLineHeld);

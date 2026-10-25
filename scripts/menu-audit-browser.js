@@ -12,6 +12,12 @@ function menuAuditBoot(screen){
  else if(screen==='dex'){$('accountModal').style.display='none';openDex();}
  else if(screen.startsWith('bag-')){$('accountModal').style.display='none';journey={phase:'complete'};showCourtyard();if(screen==='bag-error'){const request=accountRequest;accountRequest=async(action,...args)=>{if(action==='workshop')throw Error('Não foi possível carregar a mochila.');return request(action,...args);};}openPlazaBag();}
  else if(screen==='inventory')navigateClub('collection');
+ else if(screen==='workshop-stock'){
+  const choices=entries.filter(e=>workshopCraftClass({modelId:e.model})==='common');
+  const tails=choices.flatMap((e,i)=>Array.from({length:i%4+1},(_,n)=>({id:'preview-tail-'+i+'-'+n,modelId:e.model,name:e.name,status:'ready'})));
+  accountRequest=async()=>({account:playerAccount,workshop:{tails,seen:choices.map(e=>({modelId:e.model,name:e.name,availableTailIds:tails.filter(t=>t.modelId===e.model).map(t=>t.id)})),active:null,latest:null}});
+  navigateClub('summon').then(()=>prepareSummon({classKey:'common',candidates:summonData.seen}));
+ }
  else if(screen==='club')navigateClub('home');
  else if(screen==='profile')navigateClub('profile');
  else if(screen==='friends'){$('accountModal').style.display='none';openSheet('friendsSheet');}
@@ -38,7 +44,7 @@ function menuAuditBoot(screen){
    for(const button of document.querySelectorAll('.plaza-rail button,.plaza-profile,.plaza-menu,.plaza-mission button,.plaza-destination button,.plaza-footer button,.world-controls button,.world-controls select'))if(visible(button)){const r=button.getBoundingClientRect();if(r.width<44||r.height<44)errors.push({kind:'plaza-target',element:button.id});}
   }
   for(const dialog of dialogs){const r=dialog.getBoundingClientRect();if(r.x<-1||r.y<-1||r.right>W+1||r.bottom>H+1)errors.push({kind:'dialog-viewport',element:dialog.className,box:{x:r.x,y:r.y,w:r.width,h:r.height}});
-   for(const e of dialog.querySelectorAll('input,select,button,canvas')){if(!visible(e)||e.closest('.inventory-list,.dex-list'))continue;const b=e.getBoundingClientRect();if(b.x<r.x-1||b.right>r.right+1)errors.push({kind:'horizontal-overflow',element:e.id||e.className});}
+   for(const e of dialog.querySelectorAll('input,select,button,canvas')){if(!visible(e)||e.closest('.inventory-list,.dex-list,#summonTailList'))continue;const b=e.getBoundingClientRect();if(b.x<r.x-1||b.right>r.right+1)errors.push({kind:'horizontal-overflow',element:e.id||e.className});}
   }
   for(const e of document.querySelectorAll('.collection-stage canvas,.dex-stage canvas'))if(visible(e)){const r=e.getBoundingClientRect(),p=e.parentElement.getBoundingClientRect();if(r.y<p.y-1||r.bottom>p.bottom+1)errors.push({kind:'sprite-clipped',element:e.id});}
   for(const selector of ['.dex-list','.dex-details','.collection-browser','.inventory-details']){const e=document.querySelector(selector);if(e&&visible(e)&&e.getBoundingClientRect().height<65)errors.push({kind:'collapsed-pane',element:selector});}

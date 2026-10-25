@@ -35,7 +35,7 @@ function startSchoolLesson(index){
  if(mode&& !schoolRun)return;
  if(schoolRun){schoolRun=null;leave();}
  closeSchool();closeSchoolTour(false);trailStage=null;
- schoolRun=school.create(index,Date.now());enter(schoolRun.state,'you','practice');
+ schoolRun=school.create(index,Date.now());for(const p of schoolRun.state.players)art.load(p.soul||art.basic(p.color));enter(schoolRun.state,'you','practice');
  schoolCoach.hidden=false;document.body.classList.add('in-school');schoolLastNotice='';
  const lesson=school.lessons[index];$('schoolNumber').textContent='Escola · lição '+(index+1)+' de '+school.lessons.length;
  $('schoolLessonName').textContent=lesson.name;$('schoolHint').textContent=lesson.hint;$('schoolNotice').textContent='';$('schoolNext').disabled=true;
@@ -45,7 +45,7 @@ function startSchoolLesson(index){
 }
 function stepSchool(now){
  if(!schoolRun)return;school.tick(schoolRun,input(),now);
- const lesson=school.lessons[schoolRun.index],notice=schoolRun.complete?lesson.success:schoolRun.warning||(schoolRun.index===5?'Solte o ataque e acompanhe sua energia subir até 90%.':'Busque o círculo verde para preparar o cruzamento.');
+ const lesson=school.lessons[schoolRun.index],notice=schoolRun.complete?lesson.success:schoolRun.warning||(schoolRun.index>=6?'':schoolRun.index===5?'Solte o ataque e acompanhe sua energia subir até 90%.':'Busque o círculo verde para preparar o cruzamento.');
  if(notice!==schoolLastNotice){schoolLastNotice=notice;$('schoolNotice').textContent=notice;}
  if(schoolRun.complete&&!schoolRun.saved){
   schoolRun.saved=true;if(!schoolDone.includes(lesson.id)){schoolDone.push(lesson.id);try{localStorage.setItem(SCHOOL_KEY,JSON.stringify(schoolDone));}catch{}}
@@ -57,6 +57,13 @@ function drawSchoolGuide(){
  const {x,y}=schoolRun.target;ctx.save();ctx.strokeStyle='#26704b';ctx.fillStyle='#ffffffb0';ctx.lineWidth=3;ctx.setLineDash([5,5]);ctx.beginPath();ctx.arc(x,y,30,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#183e38';ctx.font='800 17px Nunito,sans-serif';ctx.textAlign='center';ctx.fillText('Mire aqui',x,y-42);ctx.restore();
 }
 function exitSchoolLesson(){schoolRun=null;schoolCoach.hidden=true;document.body.classList.remove('in-school');}
+const schoolMatchResult=showMatchResult;
+showMatchResult=function(s,ranking=[]){
+ if(!s.school||schoolRun?.index!==9)return schoolMatchResult(s,ranking);
+ const won=(s.players.find(p=>p.id===me)?.rounds||0)>=1;schoolCoach.hidden=true;
+ modal(won?'Treino vencido!':'Vamos tentar de novo','<p>Rabbito nível 15 contra Lacertubo. Este treino não altera a coleção, o XP ou a vitória da campanha.</p><p>'+(won?'Você encontrou as aberturas do guardião.':'Observe o círculo da assinatura, defenda perto do impacto e ataque enquanto o guardião se recupera.')+'</p><button id="guardianPracticeRetry" class="primary">Repetir o treino</button>','Voltar à escola','Escola do Sr. Assis');
+ $('guardianPracticeRetry').onclick=()=>{closeModal();startSchoolLesson(9);};$('dialogAction').onclick=()=>{closeModal();leave();openSchool();};
+};
 const schoolOriginalLeave=leave;
 leave=function(){exitSchoolLesson();schoolOriginalLeave();};
 function goSchoolMorro(){if(schoolRun)leave();closeSchool();closeSchoolTour(false);trailPick=trails.stages[0].id;openTrails();}

@@ -1,0 +1,19 @@
+{
+  "source": "art/characters/nina-overworld-v2/source.png",
+  "tool": "image_gen built-in",
+  "date": "2026-10-25",
+  "identityReference": "assets/characters/nina-v1/portrait.png",
+  "styleReference": "assets/characters/overworld-v1/sr-assis.png",
+  "sourceSize": [
+    1774,
+    887
+  ],
+  "atlasSize": [
+    768,
+    384
+  ],
+  "cell": 192,
+  "referenceHeight": 144,
+  "frames": 8,
+  "notes": "Alpha preserved. Measured opaque bounds per generated cell; shared height and foot baseline. Portrait and legacy illustration untouched."
+}

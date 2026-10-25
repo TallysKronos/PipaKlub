@@ -24,11 +24,6 @@ export function createArtAssets(config){
   context.drawImage(image,f.x+sx,f.y+sy,sw,sh,x+(width-w)/2,y+(height-h)/2,sw*scale,sh*scale);context.imageSmoothingEnabled=smoothing;return true;
  }
  function creature(context,color,time,x=-56,y=-44,size=112,player={},victory=false){
-  if(player.soul==='nozinho'){
-   if(!images.has('nozinho'))load('nozinho');
-   const seq=atlases.nozinho.animations[victory?'happy':player.hitFlash>0?'hurt':player.skillCooldown>6.37?'skill':'idle'];
-   return draw(context,'nozinho',seq[reduced?0:Math.floor(time/170)%seq.length],x,y,size,size,true);
-  }
   const left=player.facing===-1||(player.facing!==1&&player.input?.x<-.05);
   if(!left)return drawCreature(context,color,time,x,y,size,player,victory);
   context.save();
@@ -38,16 +33,17 @@ export function createArtAssets(config){
  function drawCreature(context,color,time,x=-56,y=-44,size=112,player={},victory=false){
   if(player.soul==='rabbito'&&player.classRank>0&&['velocista','condutor'].includes(player.pipamonClass)){context.save();context.globalAlpha=.65;context.strokeStyle=player.pipamonClass==='velocista'?'#75e2ed':'#f7d175';context.lineWidth=Math.max(2,size*.025);const phase=reduced?0:time/700;for(let i=0;i<player.classRank+1;i++){context.beginPath();if(player.pipamonClass==='velocista'){const yy=y+size*(.35+i*.16);context.moveTo(x-size*.12,yy);context.quadraticCurveTo(x+size*.2,yy+Math.sin(phase+i)*size*.08,x+size*.4,yy);}else context.ellipse(x+size*.5,y+size*.6,size*(.42+i*.08),size*.16,Math.sin(phase)*.15,0,Math.PI*2);context.stroke();}context.restore();}
   const frozen=reduced&&player.animate!==true;
-  const asset=special(player.soul)?player.soul:config.designs?.basics?.[color];
+  const asset=player.soul==='nozinho'?'nozinho':special(player.soul)?player.soul:config.designs?.basics?.[color];
   if(asset&&atlases[asset]){
    const a=atlases[asset];if(!images.has(asset))load(asset);
-   const hurt=player.hitFlash>0,skill=player.skillCooldown>6.37;
+   const hurt=player.hitFlash>0,signature=asset==='nozinho'&&(player.signatureWindup>0||player.signatureBurst>0),skill=player.skillCooldown>6.37;
    const intro=asset==='lacertubo'&&player.bossIntroTime!=null,roar=asset==='lacertubo'&&player.bossRoar>0,windup=asset==='lacertubo'&&player.bossTelegraph>0,impact=asset==='lacertubo'&&player.flash>0;
    const resultState=player.resultPose==='defeat'?(a.animations.defeat?'defeat':'hurt'):player.resultPose==='victory'?'victory':null;
-   const state=resultState||(intro||roar?'intro':victory?'victory':hurt?'hurt':windup||impact||skill?'skill':Math.hypot(player.input?.x||0,player.input?.y||0)>.1?'flight':'idle');
+   const state=resultState||(intro||roar?'intro':victory?'victory':hurt?'hurt':windup||impact||skill||signature?'skill':Math.hypot(player.input?.x||0,player.input?.y||0)>.1?'flight':'idle');
    const elapsed=resultState?player.resultTime||0:intro?player.bossIntroTime:roar?1100+(1.8-player.bossRoar)*700:windup?player.bossTelegraph*650:impact?750+(.16-player.flash)*2000:victory?time:hurt?250-player.hitFlash*1000:skill?7000-player.skillCooldown*1000:time;
    const seq=a.animations[state],durations=a.playback[state].durations,total=durations.reduce((sum,d)=>sum+d,0);
-   let at=a.playback[state].loop?Math.max(0,elapsed)%total:Math.min(total-1,Math.max(0,elapsed)),index=0;
+   const actionTime=signature?(a.playback.skill.hitTime||.7)*1000*(player.signatureWindup>0?1-Math.min(1,player.signatureWindup/1.65):1)+Math.max(0,.45-(player.signatureBurst||.45))*1000:elapsed;
+   let at=a.playback[state].loop?Math.max(0,actionTime)%total:Math.min(total-1,Math.max(0,actionTime)),index=0;
    while(index<seq.length-1&&at>=durations[index])at-=durations[index++];
    const padding=special(player.soul)?8:0;
    if(draw(context,asset,seq[frozen?0:index],x-padding,y-padding,size+padding*2,size+padding*2))return true;

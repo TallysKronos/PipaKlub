@@ -12,6 +12,7 @@
 .guardian-vital strong{font-size:12px;color:#ffe8c7}
 .guardian-hud p{font-size:12px;line-height:1.2;min-height:15px;margin-top:7px;color:#e7ccaa}
 .guardian-hud[data-intent="charge"] p{color:#ffb782;font-weight:900}
+.guardian-hud[data-intent="strike"] p{color:#ffe6a0;font-weight:900;text-shadow:0 0 8px #f34e36}
 .guardian-hud[data-intent="opening"] p{color:#aeecc9;font-weight:900}
 .guardian-hud[data-phase="2"] .guardian-heading b{color:#ffb28d}
 .guardian-hud[data-phase="2"] .guardian-vital i{background:linear-gradient(#ffb964,#ef593e 42%,#ba2237)}

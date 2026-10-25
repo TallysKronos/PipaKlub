@@ -14,6 +14,7 @@ const worldKitFiles=Object.values(JSON.parse(await fs.readFile(new URL('../asset
 worldKitFiles.push(...Object.values(JSON.parse(await fs.readFile(new URL('../assets/world/quintal-kit-v1/manifest.json',import.meta.url),'utf8')).sheets).map(s=>s.image));
 worldKitFiles.push(...Object.values(JSON.parse(await fs.readFile(new URL('../assets/world/park-kit-v3/manifest.json',import.meta.url),'utf8')).sheets).map(s=>s.image));
 const worldActorFiles=Object.values(JSON.parse(await fs.readFile(new URL('../assets/characters/overworld-v1/manifest.json',import.meta.url),'utf8')).characters).map(a=>a.image);
+worldActorFiles.push(JSON.parse(await fs.readFile(new URL('../assets/characters/nina-overworld-v2/manifest.json',import.meta.url),'utf8')).image);
 worldActorFiles.push(...Object.values(JSON.parse(await fs.readFile(new URL('../assets/creatures/overworld-v1/manifest.json',import.meta.url),'utf8')).species).map(a=>a.image));
 const paintedWorldFiles=Object.values(JSON.parse(await fs.readFile(new URL('../assets/world/morro-plaza-v1/manifest.json',import.meta.url),'utf8')).sheets).map(s=>s.image);
 paintedWorldFiles.push(...Object.values(JSON.parse(await fs.readFile(new URL('../assets/world/morro-road-v1/manifest.json',import.meta.url),'utf8')).sheets).map(s=>s.image));
@@ -31,7 +32,8 @@ villageIsoFiles.push(...Object.values(JSON.parse(await fs.readFile(new URL('../a
 const guardianFiles=Object.values(JSON.parse(await fs.readFile(new URL('../assets/ui/guardian-veredas-v1/manifest.json',import.meta.url),'utf8')).images).map(a=>a.image);
 const resultFiles=Object.values(JSON.parse(await fs.readFile(new URL('../assets/ui/battle-results-v1/manifest.json',import.meta.url),'utf8')).images).map(a=>a.image);
 const dialogueFiles=Object.values(JSON.parse(await fs.readFile(new URL('../assets/ui/dialogue-v1/manifest.json',import.meta.url),'utf8')).images).map(a=>a.image);
-const files=['characters/nina-v1/overworld.png',...dialogueFiles,...resultFiles,...guardianFiles,...Object.values(avatarConfig().images).map(u=>u.slice(7).split('?')[0]),...villageIsoFiles,...parkIsoFiles,...workshopFiles,...rigFiles,...openingFiles,...paintedWorldFiles,...worldKitFiles,...rivalFiles,...encounterFiles,...districtFiles,...kitFiles,...Object.values(hud.sheets).map(s=>s.image),...Object.values(manifest.atlases).map(a=>a.meta.image),...items.map(i=>i.image),'vfx/trade-celestial.png','vfx/trade-sky.png','vfx/trade-spirit-16.png',"ui/club-collection-v2.png","ui/club-trades-v2.png","ui/club-summon-v2.png","ui/club-farm-v2.png","ui/club-profile-v2.png","ui/club-history-v2.png"];
+const signatureFiles=Object.values(JSON.parse(await fs.readFile(new URL('../assets/ui/signatures-v1/manifest.json',import.meta.url),'utf8')).images).map(a=>a.image);
+const files=[...signatureFiles,'characters/nina-v1/overworld.png',...dialogueFiles,...resultFiles,...guardianFiles,...Object.values(avatarConfig().images).map(u=>u.slice(7).split('?')[0]),...villageIsoFiles,...parkIsoFiles,...workshopFiles,...rigFiles,...openingFiles,...paintedWorldFiles,...worldKitFiles,...rivalFiles,...encounterFiles,...districtFiles,...kitFiles,...Object.values(hud.sheets).map(s=>s.image),...Object.values(manifest.atlases).map(a=>a.meta.image),...items.map(i=>i.image),'vfx/trade-celestial.png','vfx/trade-sky.png','vfx/trade-spirit-16.png',"ui/club-collection-v2.png","ui/club-trades-v2.png","ui/club-summon-v2.png","ui/club-farm-v2.png","ui/club-profile-v2.png","ui/club-history-v2.png"];
 export function createAssetHandler(){
 const cache=new Map();
  return async request=>{

@@ -56,7 +56,7 @@ async function api(request,env){
     else if(action==='pause'){if(typeof b.paused!=='boolean'||!engine.setSoloPause(s,p,b.paused,now))return json({error:'A pausa é exclusiva da sua campanha solo.'},403);}
     else if(action==='sync'){p.input=engine.sanitizeInput(b.input);p.seen=now;}
     else if(action==='flee'){if(!s.wild||p.accountId!==s.wildOwner)return json({error:'A fuga é exclusiva de encontros selvagens.'},403);if(!s.wildResult)s.wildResult={userId:p.accountId,matchId:s.id,outcome:'fled'};s.end=Math.min(s.end,now);s.last=Math.max(s.last,s.end);p.input={};}
-    else if(action==='leave'){if(s.wild&&!s.wildResult){s.wildResult={userId:p.accountId,matchId:s.id,outcome:'abandoned'};s.end=Math.min(s.end,now);s.last=Math.max(s.last,s.end);}s.players=s.players.filter(q=>q.key!==token);if(s.trail){s.end=Math.min(s.end,now);s.last=Math.max(s.last,s.end);}}
+    else if(action==='leave'){if(s.wild&&!s.wildResult){s.wildResult={userId:p.accountId,matchId:s.id,outcome:'abandoned'};s.end=Math.min(s.end,now);s.last=Math.max(s.last,s.end);}if(s.conditionPersistent){s.departedCare=s.departedCare||[];s.departedCare.push({...p});}s.players=s.players.filter(q=>q.key!==token);if(s.trail){s.end=Math.min(s.end,now);s.last=Math.max(s.last,s.end);}}
     else if(action!=='join')return json({error:'Ação inválida.'},400);
     const res=await env.DB.prepare('UPDATE pipa_rooms SET state = ?, rev = rev + 1, updated = ? WHERE code = ? AND rev = ?').bind(JSON.stringify(s),now,code,row.rev).run();
     if(res.meta.changes){env.PROGRESSION?.observe(s);if(action==='leave'&&p.accountId){if(env.PROGRESSION)env.PROGRESSION.release(p.accountId,s.id);else await env.ACCOUNTS?.release(p.accountId,s.id);}return json({code,token,me:p.id,state:visible(s)});}
@@ -79,7 +79,7 @@ async function createRoom(request,env,b,now,daily=false,trailId=null,wildZone=nu
   if(stage&&!serverTrails.available(stage.id))throw Object.assign(Error('Este bairro chega na versão completa. A demo inclui o Morro do Sol e as partidas online.'),{status:403});
   const code=crypto.randomUUID().replaceAll('-','').slice(0,6).toUpperCase(),token=crypto.randomUUID(),s=engine.create(now,{mode:b.mode,quick:b.quick,roundsToWin:wildZone?1:stage?stage.rounds:daily?2:3});
   if(daily)s.daily=engine.daily(now);if(stage)s.trail=stage.id;
-  s.code=code;s.rules=b.rules==='capture'?'capture':'casual';
+  s.code=code;s.rules=b.rules==='capture'?'capture':'casual';s.conditionPersistent=!!(stage||wildZone);
   if(s.rules==='capture'&&!env.ACCOUNTS?.enabled)throw Object.assign(Error('Vale pipa precisa de contas conectadas ao banco.'),{status:503});
   const account=env.ACCOUNTS?await env.ACCOUNTS.preparePlayer(request,s):null;
   if(!account&&(stage||daily||wildZone||s.quick||s.rules!=='casual'||s.mode!=='rounds'))throw Object.assign(Error('Entre na conta para criar modalidades especiais. Visitantes podem convidar para a partida padrão.'),{status:401});
