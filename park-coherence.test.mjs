@@ -5,6 +5,25 @@ import {drawWorldArtGround,worldTerrainContours,auditWorldStructure} from './src
 import {worldRenderQueue} from './src/world-map.js';
 import {createWorldNavigation} from './src/world-navigation.js';
 
+test('garden circuit offers two safe branches, reachable searches and a return without compulsory grass',()=>{
+ const garden=artConfig().courtyard.world.scenes['park-trail'],clearing=artConfig().courtyard.world.scenes['park-clearing'];
+ const nav=createWorldNavigation(garden),walk=garden.tiled.layers.Walkable;
+ const contains=(r,p)=>p.x>=r.x&&p.x<=r.x+r.w&&p.y>=r.y&&p.y<=r.y+r.h;
+ const safeTrail=p=>walk.some(r=>r.properties.safe_area&&contains(r,p));
+ const branches=[[[592,816],[592,528],[1136,528]],[[592,816],[1136,816],[1136,528]]];
+ for(const branch of branches){const actor=nav.create();nav.target(actor,{x:branch[0][0],y:branch[0][1]},true);
+  for(const [x,y]of [...branch.slice(1),[1296,400],...branch.toReversed()]){
+   assert.ok(nav.target(actor,{x,y}).length,'branch destination reachable');let steps=0;
+   while(actor.path.length&&steps++<2000){nav.step(actor,.05);assert.ok(nav.geometry.safe(actor),'Kael stays clear of trunks');assert.ok(nav.geometry.safe(nav.follower(actor)),'partner stays on walkable ground');assert.ok(safeTrail(actor),'branch can be walked without entering a search patch');}
+   assert.ok(Math.hypot(actor.x-x,actor.y-y)<.1);
+  }
+ }
+ const habitats=walk.filter(r=>r.properties.habitat_id);
+ assert.deepEqual([...new Set(habitats.map(r=>r.properties.habitat_id))].sort(),['jardim-campo','jardim-encosta','jardim-recanto']);
+ for(const id of new Set(habitats.map(r=>r.properties.habitat_id))){const patch=habitats.find(r=>r.properties.habitat_id===id),point=nav.nodes.filter(p=>contains(patch,p)).sort((a,b)=>Math.hypot(a.x-patch.x-patch.w/2,a.y-patch.y-patch.h/2)-Math.hypot(b.x-patch.x-patch.w/2,b.y-patch.y-patch.h/2))[0],actor=nav.create();assert.ok(point&&nav.target(actor,point).length,id);}
+ assert.notDeepEqual(walk.filter(r=>r.properties.safe_area).map(r=>[r.x,r.y,r.w,r.h]),clearing.tiled.layers.Walkable.filter(r=>r.properties.safe_area).map(r=>[r.x,r.y,r.w,r.h]));
+});
+
 test('park planting and terrain form continuous families while every destination and habitat remains reachable',()=>{
  const config=artConfig().courtyard.world;
  for(const id of ['park-trail','park-clearing']){

@@ -80,6 +80,35 @@
       "image": "world/park-isometric-v1/kite.png",
       "width": 323,
       "height": 194
+    },
+    "chest": {
+      "image": "world/village-isometric-v1/chest.png",
+      "width": 331,
+      "height": 256,
+      "pivot": [
+        0.5,
+        0.98
+      ],
+      "source": {
+        "atlas": "interior",
+        "cell": [
+          1180,
+          741,
+          1536,
+          1024
+        ],
+        "crop": [
+          18,
+          11,
+          337,
+          255
+        ]
+      }
+    },
+    "terrain": {
+      "image": "world/park-isometric-v1/veredas-terrain-v1.png",
+      "width": 1254,
+      "height": 1254
     }
   },
   "rigs": {

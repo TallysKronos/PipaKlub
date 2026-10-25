@@ -6,8 +6,8 @@ import {artConfig} from './scripts/art-build.mjs';
 import {createAssetHandler} from './src/static-assets.js';
 
 const config=artConfig(),actors=config.courtyard.world.actors;
-test('all seven overworld sheets have valid measured cells and are served and packaged with hashed URLs',async()=>{
- assert.deepEqual(Object.values(actors.characters).map(a=>a.name),['Sr. Assis','Zeca','Bia','Juninho','Lia','Tião','Mãe']);
+test('all overworld character images have valid measured cells and are served and packaged with hashed URLs',async()=>{
+ assert.deepEqual(Object.values(actors.characters).map(a=>a.name),['Sr. Assis','Zeca','Bia','Juninho','Lia','Tião','Nina','Mãe']);
  const serve=createAssetHandler();
  for(const [id,a]of Object.entries(actors.characters)){
   const png=fs.readFileSync('assets/'+a.image),w=png.readUInt32BE(16),h=png.readUInt32BE(20);

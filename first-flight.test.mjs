@@ -9,16 +9,85 @@ import {createAssetHandler} from './src/static-assets.js';
 import vm from 'node:vm';
 import {parseHTML} from 'linkedom';
 
+test('overworld hides undiscovered destinations and shows interaction only at a reachable place',async()=>{
+ const memory=new Map(),ui=journeyUI('',{getItem:k=>memory.get(k)||null,setItem:(k,v)=>memory.set(k,v)});await ui.settle();
+ ui.run(`playerAccount={profile:{id:'map-owner',nickname:'Kael'},inventory:[]};journey={phase:'complete'};openingState={step:14};refreshWorldHUD();openWorld('park-trail');`);await ui.settle();
+ assert.equal(ui.document.getElementById('worldDestination'),null);
+ ui.run(`worldRuntime.loading=false;Object.assign(worldState().actor,{x:760,y:850});updateWorldContext();`);
+ assert.equal(ui.document.getElementById('worldInteract').hidden,true);
+ assert.equal(ui.document.getElementById('worldContext').hidden,true);
+ ui.run(`var mapPlace=worldScene().places.find(p=>p.action==='parkMap');Object.assign(worldState().actor,worldState().navigation.nodes[mapPlace.node]);updateWorldContext();`);
+ assert.equal(ui.document.getElementById('worldInteract').hidden,false);
+ assert.equal(ui.document.getElementById('worldContext').hidden,false);
+ assert.match(ui.document.getElementById('worldInteract').textContent,/Ler placa/);
+ ui.run(`inputDevice='touch';updateWorldContext()`);assert.equal(ui.document.getElementById('worldInteract').textContent,'Ler placa');
+ ui.run(`inputDevice='gamepad-xbox';updateWorldContext()`);assert.equal(ui.document.getElementById('worldInteract').textContent,'Ler placa · A');
+ assert.equal(ui.run('worldState().minimap.snapshot().places.includes(mapPlace.id)'),true);
+ const toggle=ui.document.getElementById('worldMinimapToggle');toggle.onclick();assert.equal(toggle.getAttribute('aria-expanded'),'false');toggle.onclick();assert.equal(toggle.getAttribute('aria-expanded'),'true');
+ ui.run('flushWorldMinimaps()');assert.ok(ui.run(`JSON.parse(localStorage.getItem('pipaExplorationV1:map-owner:park-trail')).cells.length`)>0);
+ ui.run(`worldRuntime.error='O cenário não carregou.';updateWorldContext()`);assert.equal(ui.document.getElementById('worldInteract').textContent,'Tentar carregar');assert.equal(ui.document.getElementById('worldInteract').hidden,false);
+ ui.run(`worldRuntime.error='';worldState().actor.path=[{x:900,y:800}];homeActions.parkMap=()=>{};interactWorld()`);assert.equal(ui.run('worldState().actor.path.length'),0,'opening an interaction stops the previous click route');
+});
+
+test('safe paths clear encounter buildup and the guardian requires explicit confirmation',async()=>{
+ const ui=journeyUI();await ui.settle();
+ ui.run(`playerAccount={profile:{id:'pacing-review',nickname:'Kael',equipped_kite_id:'rabbit'},inventory:[{id:'rabbit',model_id:'rabbito',pipamon_xp:0,model:{name:'Rabbito',color:0,soul:'rabbito'}}]};journey={phase:'complete'};openingState={step:14};refreshWorldHUD();openWorld('park-trail');`);await ui.settle();
+ ui.run(`worldRuntime.loading=false;worldWalkActive=()=>true;wildGrace=0;wildDistance=1800;var safePatch=worldScene().tiled.layers.Walkable.find(r=>r.properties.safe_area);Object.assign(worldState().actor,{x:safePatch.x+safePatch.w/2,y:safePatch.y+safePatch.h/2});stepWildExploration({x:worldState().actor.x-1,y:worldState().actor.y},0);`);
+ assert.equal(ui.run('wildDistance'),0);
+ ui.run(`openWorld('park-veredas');veredasRemember('met');veredasRemember('accepted');var bossStarts=0;startWildEncounter=()=>bossStarts++;homeActions.parkBoss();`);
+ assert.equal(ui.run('bossStarts'),0);assert.equal(ui.document.getElementById('journeyDialog').dataset.speaker,'Kael');
+ assert.match(ui.document.getElementById('journeyStatus').textContent,/Recomendado Nv. 15/);
+ ui.document.getElementById('journeyLater').onclick();assert.equal(ui.run('bossStarts'),0);assert.equal(ui.document.getElementById('journeyDialog').hidden,true);
+ ui.run('homeActions.parkBoss()');ui.document.getElementById('journeyContinue').onclick();assert.equal(ui.run('bossStarts'),1);
+});
+
+test('Nina quest accepts, spawns its item only after the boss and completes on handover',async()=>{
+ const memory=new Map(),ui=journeyUI('',{getItem:k=>memory.get(k)||null,setItem:(k,v)=>memory.set(k,v)});await ui.settle();
+ ui.run(`playerAccount={profile:{id:'rescue-review',nickname:'Kael',equipped_kite_id:'rabbit'},inventory:[{id:'rabbit',model_id:'rabbito',pipamon_xp:0,model:{name:'Rabbito',color:0,soul:'rabbito'}}]};journey={phase:'complete'};openingState={step:14};refreshWorldHUD();openWorld('park-veredas');`);await ui.settle();
+ ui.run('stepVeredasStory()');assert.equal(ui.document.getElementById('journeyDialog').dataset.speaker,'Nina');ui.document.getElementById('journeyContinue').onclick();assert.equal(ui.document.getElementById('journeyDialog').dataset.speaker,'Kael');ui.document.getElementById('journeyContinue').onclick();assert.equal(ui.run('veredasSeen().has("heard")'),true);
+ ui.run('stepVeredasStory()');assert.equal(ui.document.getElementById('journeyDialog').hidden,true);
+ ui.run('homeActions.veredasTail()');assert.equal(ui.run('veredasSeen().has("tail")'),false);
+ ui.run('homeActions.veredasNina()');for(let i=0;i<3;i++)ui.document.getElementById('journeyContinue').onclick();assert.equal(ui.run('veredasSeen().has("met")'),true);assert.equal(ui.run('veredasSeen().has("accepted")'),false);
+ ui.document.getElementById('journeyLater').onclick();assert.equal(ui.run('veredasSeen().has("accepted")'),false);
+ ui.run('homeActions.veredasNina()');ui.document.getElementById('journeyContinue').onclick();assert.equal(ui.run('veredasSeen().has("accepted")'),true);
+ assert.match(ui.run('veredasQuestObjective()'),/Recupere/);assert.equal(ui.run('veredasSeen().has("returned")'),false);
+ ui.run('homeActions.veredasTail()');assert.equal(ui.run('veredasSeen().has("tail")'),false,'no quest item without a confirmed guardian win');
+ ui.run('guardianDefeated=true;syncVeredasNina();homeActions.veredasTail()');ui.document.getElementById('journeyContinue').onclick();assert.equal(ui.run('veredasSeen().has("tail")'),true);assert.match(ui.run('veredasQuestObjective()'),/Devolva/);
+ ui.run('homeActions.veredasNina()');ui.document.getElementById('journeyContinue').onclick();for(let i=0;i<3;i++)ui.document.getElementById('journeyContinue').onclick();assert.equal(ui.run('veredasSeen().has("returned")'),true);assert.equal(ui.run('veredasQuestObjective()'),'');assert.equal(ui.run('playerAccount.inventory.length'),1,'quest tail is not granted as a collectible or currency');
+ ui.run('homeActions.veredasTail()');assert.equal(ui.run('playerAccount.inventory.length'),1);assert.ok(memory.has('pipaVeredasStoryV1:rescue-review'));
+});
+
+test('collection previews compare with the equipped partner and an empty search disables equipment',async()=>{
+ const ui=journeyUI();await ui.settle();ui.run(`accountsEnabled=true;accountConnection='ready';accountSaving=false;playerAccount={profile:{id:'collection-review',nickname:'Kael',xp:0,equipped_kite_id:'a'},inventory:[{id:'a',model_id:'carcara',pipamon_xp:0,permanent:true,model:{name:'Carcará',color:0,acquisition:'starter'}},{id:'b',model_id:'mata-verde',pipamon_xp:100,permanent:true,model:{name:'Mata verde',color:1,acquisition:'starter'}}]};accountPage='collection';accountModal.style.display='flex';renderAccountDialog();Object.defineProperty($('inventoryFilter'),'value',{value:'all',writable:true,configurable:true});renderInventory();var equipRequests=0;accountRequest=async()=>{equipRequests++;return {account:playerAccount}};`);await ui.settle();
+ const card=ui.document.querySelector('[data-kite-id="b"]');assert.ok(card);const {Event}=ui.document.defaultView;
+ for(let n=0;n<2;n++){const event=new Event('click',{bubbles:true});Object.defineProperty(event,'detail',{value:0});card.dispatchEvent(event);}await ui.settle();assert.equal(ui.run('equipRequests'),0,'confirming the preview does not equip implicitly');
+ assert.match(ui.document.getElementById('pilotPartnerSummary').textContent,/Comparado a Carcará em uso/);
+ ui.document.getElementById('inventorySearch').value='nenhum parceiro com este nome';ui.run('renderInventory()');assert.equal(ui.document.getElementById('inventoryDetails').hidden,true);assert.equal(ui.document.getElementById('inventoryEquip').disabled,true);
+});
+
 test('illustrated dialogue uses the right speaker, real choices and opening conversation dismissal',async()=>{
  const ui=journeyUI();await ui.settle();
  ui.run(`playerAccount={profile:{id:'dialogue-owner',nickname:'Kael'},inventory:[]};journey={phase:'complete'};var collectionVisits=0;homeActions.collection=()=>collectionVisits++;openMotherConversation();`);await ui.settle();
  const box=ui.document.getElementById('journeyDialog');assert.equal(box.dataset.rpgSpeaker,'Mãe');assert.equal(box.querySelectorAll('.journey-actions button').length,3);assert.equal(box.querySelector('.rpg-dialogue-portrait').hidden,false);assert.match(box.querySelector('.rpg-dialogue-portrait').getAttribute('src'),/dialogue-v1\/mother/);
  assert.equal(ui.run('worldWalkActive()'),false);
- ui.document.getElementById('journeyContinue').onclick();assert.match(ui.document.getElementById('journeySpeech').textContent,/Explorem a cidade/);
+ ui.document.getElementById('journeyContinue').onclick();assert.match(ui.document.getElementById('journeySpeech').textContent,/guardei aquela rabiola/);assert.equal(ui.document.getElementById('journeyContinue').hidden,true,'the same question is not offered twice in one conversation');
  box.querySelector('[data-mother-collection]').onclick();assert.equal(ui.run('collectionVisits'),1);assert.equal(box.hidden,true);
  ui.run(`dialogue('Lembrete','eu preciso ver o professor primeiro','Continuar',hideJourney,{speaker:'Kael'});`);await ui.settle();assert.equal(box.querySelector('[data-mother-collection]'),null);assert.match(box.querySelector('.rpg-dialogue-portrait').getAttribute('src'),/dialogue-v1\/kael/);
  ui.run(`openingState={step:13};openingScreen.hidden=false;openOpeningMotherConversation();`);await ui.settle();assert.equal(ui.run('openingWalkActive()'),false);assert.equal(ui.document.getElementById('openingSpeaker').textContent,'Mãe');
  await ui.run('nextOpening()');assert.equal(ui.run('openingMotherTalking'),false);assert.equal(ui.run('openingState.step'),13,'closing a conversation never skips the story checkpoint');
+});
+
+test('Escape dismisses optional conversation without opening the menu or advancing a mandatory line',async()=>{
+ const ui=journeyUI();await ui.settle();ui.run(`playerAccount={profile:{id:'escape-dialogue',nickname:'Kael'},inventory:[]};journey={phase:'complete'};openingState={step:14};showCourtyard();openMotherConversation();`);await ui.settle();
+ const box=ui.document.getElementById('journeyDialog');const event=ui.key('Escape',ui.document.getElementById('journeyLater'));assert.equal(event.defaultPrevented,true);assert.equal(box.hidden,true);assert.equal(ui.document.getElementById('gameMenu').hidden,true);
+ ui.run(`var mandatoryAdvances=0;dialogue('Primeiro voo','Vamos sentir o vento.','Continuar',()=>mandatoryAdvances++);`);ui.key('Escape',ui.document.getElementById('journeyContinue'));assert.equal(box.hidden,false);assert.equal(ui.run('mandatoryAdvances'),0);assert.equal(ui.document.getElementById('gameMenu').hidden,true);
+});
+
+test('battle actions explain cooldown and low energy without accepting unavailable clicks',async()=>{
+ const ui=journeyUI();await ui.settle();ui.run(`state=eng.create(0,{mode:'rounds'});var actionMe=eng.player('Kael',0,'action-me',0);eng.admit(state,actionMe,0);me=actionMe.id;mode='practice';state.phase='live';actionMe.respawn=0;actionMe.energy=5;actionMe.skillCooldown=3;updateFan();`);
+ const attack=ui.document.querySelector('.fan-attack'),skill=ui.document.querySelector('.fan-skill');assert.match(attack.getAttribute('aria-label'),/Sem energia/);assert.equal(attack.getAttribute('aria-disabled'),'true');assert.match(skill.getAttribute('aria-label'),/3 s/);
+ const {Event}=ui.document.defaultView,event=new Event('click',{bubbles:true});Object.defineProperty(event,'detail',{value:0});attack.dispatchEvent(event);assert.equal(ui.run('attackUntil'),0);
+ ui.run('actionMe.energy=100;actionMe.skillCooldown=0;updateFan()');assert.equal(attack.getAttribute('aria-disabled'),'false');assert.match(attack.getAttribute('aria-label'),/12 energia/);
 });
 
 test('shared battle results cover modes, preserve actions and clear on another dialog',async()=>{
@@ -32,7 +101,8 @@ test('shared battle results cover modes, preserve actions and clear on another d
  }
  ui.run(`renderBattleResultProgress({tamerXp:5,partnerXp:6});`);
  assert.match(ui.document.querySelector('.battle-result-progress').textContent,/Nv. 1 → 2/);
- assert.equal(ui.run('playerAccount.profile.xp'),22,'presentation never grants XP');
+ assert.equal(ui.run('playerAccount.profile.xp'),22,'presentation never grants XP');assert.match(ui.document.querySelector('.battle-result-xp-total').textContent,/\d+ \/ \d+ XP/);
+ ui.run(`mode='practice';resultMe.score=resultFoe.score=100;state={id:'result-draw',mode:'timed',players:[resultMe,resultFoe]};showMatchResult(state,[resultMe,resultFoe]);`);assert.equal(ui.document.getElementById('modal').dataset.outcome,'draw');assert.match(ui.document.querySelector('.battle-result-tip').textContent,/Duelo equilibrado/);
  ui.run(`mode='practice';resultMe.rounds=0;resultFoe.rounds=1;state={id:'result-loss',mode:'rounds',roundsToWin:1,players:[resultMe,resultFoe]};showMatchResult(state,[resultFoe,resultMe]);`);
  assert.equal(ui.document.getElementById('modal').dataset.outcome,'defeat');
  ui.run(`presentBattleResult({...state,id:'result-fled',resultOutcome:'fled'},[],resultMe);`);
@@ -149,9 +219,9 @@ function journeyUI(search='',storage={getItem(){return null},setItem(){}}){
  const canvasPrototype=Object.getPrototypeOf(document.createElement('canvas'));
  canvasPrototype.getContext=()=>new Proxy({imageSmoothingEnabled:true},{get:(o,k)=>k in o?o[k]:()=>{},set:(o,k,v)=>(o[k]=v,true)});
  for(const select of document.querySelectorAll('select')){let value;Object.defineProperty(select,'value',{get(){return value??this.querySelector('option')?.value??''},set(v){value=v}})}
- const context=vm.createContext({document,console,Date,Intl,crypto,URLSearchParams,AbortController,performance:{now:()=>0},location:{search,hash:'',pathname:'/',protocol:'http:',host:'test'},history:{replaceState(){}},localStorage:storage,matchMedia:()=>({matches:true}),ResizeObserver:class{observe(){}},MutationObserver:class{observe(){}},requestAnimationFrame(){},cancelAnimationFrame(){},setInterval(){},clearInterval(){},setTimeout(){return 1},clearTimeout(){},fetch:async()=>({ok:true,json:async()=>({enabled:false})}),Image:class{width=1536;height=864;set src(v){queueMicrotask(()=>this.onload?.())}},addEventListener(name,fn){if(!listeners.has(name))listeners.set(name,[]);listeners.get(name).push(fn)}});
+ const context=vm.createContext({document,console,Date,Intl,crypto,URLSearchParams,AbortController,performance:{now:()=>0},location:{search,hash:'',pathname:'/',protocol:'http:',host:'test'},history:{replaceState(){}},localStorage:storage,matchMedia:()=>({matches:true}),ResizeObserver:class{observe(){}},MutationObserver:class{observe(){}},requestAnimationFrame(){},cancelAnimationFrame(){},setInterval(){},clearInterval(){},setTimeout(){return 1},clearTimeout(){},fetch:async()=>({ok:true,json:async()=>({enabled:false})}),Image:class{width=1536;height=864;set src(v){queueMicrotask(()=>this.onload?.())}},addEventListener(name,fn,capture=false){if(!listeners.has(name))listeners.set(name,[]);listeners.get(name).push({fn,capture:!!capture})}});
  vm.runInContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],context);
- return {document,run:code=>vm.runInContext(code,context),settle:()=>new Promise(r=>setImmediate(r))};
+ return {document,key:(key,target=document.body)=>{const e={key,target,preventDefault(){this.defaultPrevented=true},stopImmediatePropagation(){this.stopped=true}};for(const {fn}of [...(listeners.get('keydown')||[])].sort((a,b)=>Number(b.capture)-Number(a.capture))){fn(e);if(e.stopped)break;}return e;},run:code=>vm.runInContext(code,context),settle:()=>new Promise(r=>setImmediate(r))};
 }
 
 test('late journey responses cannot open or overwrite another account, and the saved practice checkpoint resumes',async()=>{

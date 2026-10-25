@@ -107,7 +107,7 @@ function renderJourney(){
  else if(journey?.phase==='choose')choosePartner();
  else if(journey?.phase==='practice')dialogue('Vamos voar juntos?',openingState?.partner_id?'Então este é o seu desenho? Nunca vi um nascimento assim. '+(openingState.partner_name||'Rabbito')+' parece confiar em você. Vamos descobrir juntos como ele encontra o vento? Nozinho vai ajudar, sem perdas nem consumo de itens.':'Seu parceiro está com você. Nozinho vai ajudar a praticar movimento, rebique, energia e habilidade. Aqui não há perdas nem consumo de itens.','Avançar',()=>startFirstFlight());
  else if(journey?.phase==='city'&&journey.starterTutorial?.required)renderStarterTutorial();
- else if(journey?.phase==='city')dialogue('Um corte, uma nova história','Nozinho está bem! Seus parceiros esperam por você na rua. Quando quiser um novo desafio, siga pela rua e conheça o Morro do Sol.','Explorar a cidade',openCity,{later:true});
+ else if(journey?.phase==='city')dialogue('Um corte, uma nova história','Nozinho está bem! Vocês já estão se entendendo. Quero ver até onde essa parceria vai chegar.','Explorar a cidade',openCity,{later:true});
  else hideJourney();
 }
 const starterPresentation=[
@@ -281,7 +281,9 @@ const courtyardOriginalEnter=enter;enter=function(...args){cityBriefOpen=false;c
 const courtyardOriginalLeave=leave;leave=function(...args){firstFlightRun=null;flightCoach.hidden=true;document.body.classList.remove('in-first-flight','first-flight-speaking');homeInvitationHandled=true;const value=courtyardOriginalLeave(...args);showCourtyard();return value};
 const courtyardCloseAccount=closeAccount;closeAccount=function(){courtyardCloseAccount();syncHomeInert();if(!courtyard.hidden)$('homeMenuButton').focus()};$('closeAccount').onclick=closeAccount;clubBack.textContent='← Voltar ao passeio';clubBack.onclick=closeAccount;clubBack.classList.add('same-as-close');
 addEventListener('keydown',e=>{
+ if(e.defaultPrevented||e.target.closest?.('#journeyDialog'))return;
  if(!playerAccount||mode)return;const panel=!gameMenu.hidden?gameMenu:!cityScreen.hidden?cityScreen:!$('partnerChoice').hidden?$('partnerChoice'):!$('journeyDialog').hidden?$('journeyDialog'):null;
+ if(e.key==='Escape'&&document.querySelector('dialog[open]'))return;
  if(e.key==='Escape'){
   if(!gameMenu.hidden){e.preventDefault();e.stopImmediatePropagation();if(homeMenuGroup!=='root')renderHomeMenu(homeMenuGroup==='explorationGroup'?'playGroup':'root');else closeHomeMenu();return;}
   if(!cityScreen.hidden){e.preventDefault();e.stopImmediatePropagation();$('cityBack').click();return;}

@@ -4,6 +4,9 @@ export function createWorldNavigation(scene){
  const speed=Number.isFinite(scene.walkSpeed)&&scene.walkSpeed>0?scene.walkSpeed:240;
  const geometry=scene.tiled?createWorldGeometry(scene.tiled):null;
  const nodes=scene.nodes.map(([x,y])=>({x,y})),distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+ const safeAreas=scene.tiled?.properties.prefer_safe_paths?scene.tiled.layers.Walkable.filter(r=>r.properties.safe_area):[];
+ const onSafeTrail=p=>safeAreas.some(r=>p.x>=r.x&&p.x<=r.x+r.w&&p.y>=r.y&&p.y<=r.y+r.h);
+ const safeNodes=nodes.map(onSafeTrail);
  const adjacency=nodes.map(()=>[]);for(const [a,b]of scene.edges){const cost=distance(nodes[a],nodes[b]);adjacency[a].push([b,cost]);adjacency[b].push([a,cost]);}
  function project(p){
   if(!Number.isFinite(p?.x)||!Number.isFinite(p?.y))p=nodes[scene.spawn];
@@ -11,18 +14,19 @@ export function createWorldNavigation(scene){
   for(const [a,b]of scene.edges){const s=nodes[a],e=nodes[b],dx=e.x-s.x,dy=e.y-s.y,t=Math.max(0,Math.min(1,((p.x-s.x)*dx+(p.y-s.y)*dy)/(dx*dx+dy*dy))),point={x:s.x+t*dx,y:s.y+t*dy},d=distance(p,point);if(!best||d<best.distance)best={point,edge:[a,b],distance:d};}
   return best;
  }
- function shortest(start,end){
+ function shortest(start,end,preferSafe=false){
   const costs=nodes.map(()=>Infinity),previous=[],heap=[];costs[start]=0;
   function push(id,cost){const entry={id,cost};heap.push(entry);let i=heap.length-1;while(i){const p=(i-1)>>1;if(heap[p].cost<=cost)break;heap[i]=heap[p];i=p;}heap[i]=entry;}
   function pop(){const first=heap[0],last=heap.pop();if(heap.length){let i=0;while(i*2+1<heap.length){let c=i*2+1;if(c+1<heap.length&&heap[c+1].cost<heap[c].cost)c++;if(last.cost<=heap[c].cost)break;heap[i]=heap[c];i=c;}heap[i]=last;}return first;}
-  push(start,0);while(heap.length){const {id:a,cost}=pop();if(cost!==costs[a])continue;if(a===end)break;for(const [b,weight]of adjacency[a]){const d=cost+weight;if(d<costs[b]){costs[b]=d;previous[b]=a;push(b,d);}}}
+  push(start,0);while(heap.length){const {id:a,cost}=pop();if(cost!==costs[a])continue;if(a===end)break;for(const [b,weight]of adjacency[a]){const d=cost+weight*(preferSafe&&(!safeNodes[a]||!safeNodes[b])?4:1);if(d<costs[b]){costs[b]=d;previous[b]=a;push(b,d);}}}
   if(!Number.isFinite(costs[end]))return null;
   const path=[end];while(path[0]!==start){const p=previous[path[0]];if(p===undefined)return null;path.unshift(p);}return {cost:costs[end],points:path.map(i=>nodes[i])};
  }
  function route(from,to){
   const a=project(from),b=project(to);if(!a||!b)return [];
   if(a.edge[0]===b.edge[0]&&a.edge[1]===b.edge[1])return [a.point,b.point];
-  let best=null;for(const start of a.edge)for(const end of b.edge){const path=shortest(start,end);if(!path)continue;const cost=distance(a.point,nodes[start])+path.cost+distance(nodes[end],b.point);if(!best||cost<best.cost)best={cost,points:[a.point,...path.points,b.point]};}
+  const preferSafe=onSafeTrail(from)&&onSafeTrail(to);
+  let best=null;for(const start of a.edge)for(const end of b.edge){const path=shortest(start,end,preferSafe);if(!path)continue;const cost=distance(a.point,nodes[start])+path.cost+distance(nodes[end],b.point);if(!best||cost<best.cost)best={cost,points:[a.point,...path.points,b.point]};}
   return (best?.points||[]).filter((p,i,all)=>!i||distance(p,all[i-1])>.01).map(p=>({...p}));
  }
  function create(){const p=nodes[scene.spawn];return {...p,level:geometry?.level(p)??0,direction:0,path:[],history:[{...p}],moving:false};}

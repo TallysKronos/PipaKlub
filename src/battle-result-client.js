@@ -20,10 +20,10 @@ function presentBattleResult(s,ranking=[],mine=s.players?.find(p=>p.id===me)){
  ribbon.setAttribute('aria-hidden','true');ribbon.append(title);const ribbonAsset=ART_CONFIG.battleResults.images[won&&!fled&&!tie?'victory':'defeat'];
  ribbon.style.setProperty('--result-ribbon','url("'+ribbonAsset.url+'")');ribbon.style.setProperty('--result-slice',String(ribbonAsset.slice));
  const previousTitle=$('dialogTitle').textContent;$('dialogTitle').textContent=title.textContent;
- hero.setAttribute('aria-label',won?'Seu pipeiro e parceiro comemoram.':'Seu pipeiro e parceiro recuperam o fôlego.');
- $('dialogEyebrow').before(hero,ribbon);$('dialogEyebrow').textContent=s.wild?'Parque dos Ventos':s.daily?'Céu do dia':s.trail?trails.stage(s.trail).name:'Resultado do duelo';
+ hero.setAttribute('aria-label',outcome==='victory'?'Seu pipeiro e parceiro comemoram.':outcome==='defeat'?'Seu pipeiro e parceiro recuperam o fôlego.':'Seu pipeiro e parceiro estão prontos para voltar.');
+ $('dialogEyebrow').before(hero,ribbon);$('dialogEyebrow').textContent=s.wild?(worldScenes[s.wild.zone]?.name||'Parque dos Ventos'):s.daily?'Céu do dia':s.trail?trails.stage(s.trail).name:'Resultado do duelo';
  const progress=uiElement('div',undefined,'battle-result-progress');progress.setAttribute('aria-live','polite');$('dialogBody').prepend(progress);
- if(!won){const tip=uiElement('div',undefined,'battle-result-tip');tip.append(uiElement('b',fled?'Parceiro protegido':'Uma nova chance'),uiElement('p',fled?'Você pode se preparar e voltar quando quiser.':'Observe o ataque do rival, esquive e aproveite a abertura.'));$('dialogBody').append(tip);}
+ if(outcome!=='victory'){const tip=uiElement('div',undefined,'battle-result-tip');tip.append(uiElement('b',fled?'Parceiro protegido':outcome==='draw'?'Duelo equilibrado':'Uma nova chance'),uiElement('p',fled?'Você pode se preparar e voltar quando quiser.':outcome==='draw'?'O duelo terminou empatado. Que tal tentar mais uma vez?':'Observe o ataque do rival, esquive e aproveite a abertura.'));$('dialogBody').append(tip);}
  battleResultView={match:s.id,generation,before:oldAccount,mine:{...mine},progress,outcome,previousTitle};
  if(typeof gameAvatar!=='undefined'){gameAvatar.setOwner(playerAccount?.profile?.id);gameAvatar.load();}artLoadResultPartner(mine);
  const started=performance.now(),g=canvas.getContext('2d');if(!g)return;
@@ -53,7 +53,7 @@ function renderBattleResultProgress({tamerXp=0,partnerXp=0,account=null}={}){
   const item=uiElement('div',undefined,'battle-result-xp'),portrait=document.createElement('canvas');portrait.width=72;portrait.height=72;portrait.setAttribute('aria-hidden','true');
   const text=uiElement('div',undefined,'battle-result-xp-copy'),heading=uiElement('div');heading.append(uiElement('b',row.name),uiElement('strong','+ '+(row.xp||0)+' XP'));
   const level=uiElement('small','Nv. '+row.from.level+(row.to.level>row.from.level?' → '+row.to.level:'')),meter=uiElement('div',undefined,'battle-result-xp-meter');meter.setAttribute('role','progressbar');meter.setAttribute('aria-label','Experiência de '+row.name);meter.setAttribute('aria-valuemin','0');meter.setAttribute('aria-valuemax','100');meter.setAttribute('aria-valuenow',String(Math.floor(row.to.percent)));
-  const fill=uiElement('i');fill.style.width=row.to.percent+'%';meter.append(fill);text.append(heading,level,meter);item.append(portrait,text);root.append(item);
+  const fill=uiElement('i');fill.style.width=row.to.percent+'%';meter.append(fill);const amount=row.to.next===null?'Nível máximo':(row.to.xp-row.to.start)+' / '+(row.to.next-row.to.start)+' XP';meter.setAttribute('aria-valuetext',amount+' · nível '+row.to.level);text.append(heading,level,meter,uiElement('small',amount,'battle-result-xp-total'));item.append(portrait,text);root.append(item);
   const g=portrait.getContext('2d');if(g)Promise.all([gameAvatar.load(),artLoadResultPartner(mine)]).then(()=>{if(view!==battleResultView||!portrait.isConnected)return;g.clearRect(0,0,72,72);if(row.human)gameAvatar.draw(g,{x:36,y:94,height:96,dir:'se',action:'parado',time:0});else art.creature(g,mine.color,0,4,4,64,{...mine,input:{x:0,y:0},hitFlash:0},false);});
  }
 }

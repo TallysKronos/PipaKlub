@@ -1,724 +1,742 @@
 {
- "entries": [
-  {
-   "id": "carcara",
-   "model": "basica",
-   "name": "Carcará",
-   "title": "O primeiro voo",
-   "color": 0,
-   "group": "common",
-   "atlas": "basic-carcara",
-   "habitat": "Telhados e correntes quentes",
-   "story": [
-    "Antes de ter nome, Carcará era uma pipa remendada esquecida sobre um telhado. Um menino amarrou nela a linha que havia pertencido ao avô e prometeu fazê-la voar outra vez. A promessa acordou uma pequena alma no papel.",
-    "Desde então, Carcará procura quem está aprendendo. Ele espera a rajada certa, estica as asas e ensina que um bom corte começa na calma. Seus remendos não são defeitos: cada um guarda a lembrança de alguém que tentou de novo."
-   ],
-   "note": "Não confunda simplicidade com fraqueza. Carcará conhece o vento melhor do que muita lenda.",
-   "obtain": "Recebida ao criar sua conta. Sua pipa básica é permanente.",
-   "items": [
-    "rabiola-carcara"
-   ]
-  },
-  {
-   "id": "mata-verde",
-   "model": "mata",
-   "name": "Mata verde",
-   "title": "A folha que não quis cair",
-   "color": 1,
-   "group": "common",
-   "atlas": "basic-mata-verde",
-   "habitat": "Copas de árvores e quintais",
-   "story": [
-    "Uma folha ficou presa na armação de uma pipa durante uma ventania. Em vez de cair, ela se enrolou na linha e aprendeu a dançar entre os galhos. Na manhã seguinte, havia olhos curiosos onde antes só existia papel verde.",
-    "Mata verde não segue caminhos retos. Ela muda de lado num sopro e adora escapar por espaços que parecem pequenos demais. Dizem que as árvores inclinam os ramos para vê-la passar; ela jura que é apenas coincidência."
-   ],
-   "note": "Observe o intervalo entre as rajadas. É ali que ela encontra a saída.",
-   "obtain": "Recebida no inventário inicial ou conquistada em Vale pipa.",
-   "items": [
-    "rabiola-mata-verde"
-   ]
-  },
-  {
-   "id": "azulao",
-   "model": "azulao",
-   "name": "Azulão",
-   "title": "Guardião da chuva mansa",
-   "color": 2,
-   "group": "common",
-   "atlas": "basic-azulao",
-   "habitat": "Nuvens baixas depois da chuva",
-   "story": [
-    "Azulão nasceu de uma pipa que alguém se recusou a abandonar quando a chuva chegou. A linha encharcada resistiu até o último amigo encontrar abrigo. Quando o céu abriu, o papel azul respirou pela primeira vez.",
-    "Seu jeito tranquilo esconde uma teimosia enorme. Azulão firma a linha para proteger quem voa ao seu lado e não gosta de empurrar adversários desprevenidos. Depois de um duelo, costuma sacudir das asas uma última gota de chuva."
-   ],
-   "note": "A força dele está em saber quando resistir, e não em puxar o tempo todo.",
-   "obtain": "Recebida no inventário inicial ou conquistada em Vale pipa.",
-   "items": [
-    "rabiola-azulao"
-   ]
-  },
-  {
-   "id": "raio-de-sol",
-   "model": "raio",
-   "name": "Raio de sol",
-   "title": "Colecionador de amanheceres",
-   "color": 3,
-   "group": "common",
-   "atlas": "basic-raio-de-sol",
-   "habitat": "Praças ao nascer do sol",
-   "story": [
-    "O primeiro raio de uma manhã de inverno encontrou uma pipa dourada pendurada na janela. A luz ficou presa entre suas varetas e, quando o dono abriu os olhos, ela já observava o céu com uma expressão muito séria.",
-    "Raio de sol estuda cada cruzamento como se lesse um mapa. Não é o mais apressado da turma, mas percebe aberturas que passam despercebidas. Seu passatempo favorito é contar quantas cores cabem no céu antes do café da manhã."
-   ],
-   "note": "Ele não adivinha o próximo movimento. Ele presta atenção.",
-   "obtain": "Recebida no inventário inicial ou conquistada em Vale pipa.",
-   "items": [
-    "rabiola-raio-de-sol"
-   ]
-  },
-  {
-   "id": "flautrevo",
-   "model": "flautrevo",
-   "name": "Flautrevo",
-   "title": "O flautista dos ventos perdidos",
-   "color": 3,
-   "group": "event",
-   "atlas": "flautrevo",
-   "habitat": "Campanários e becos ao anoitecer",
-   "legend": "Inspirado no Flautista de Hamelin",
-   "story": [
-    "Quando a última nota do flautista de Hamelin desapareceu, um eco se refugiou numa pipa abandonada no campanário. O papel virou asas de morcego, as varetas ganharam furos de flauta e os sininhos começaram a tocar sozinhos. Assim despertou Flautrevo.",
-    "Ele recolhe assobios esquecidos e os transforma em trilhas de vento. Uma orelha ouve o que acontece; a outra, enrolada, escuta o que quase aconteceu. Durante um duelo, seus acordes revelam cruzamentos que os outros ainda não perceberam."
-   ],
-   "note": "Nunca assobie a mesma melodia três vezes perto dele. A quarta nota será dele.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-flautrevo"
-   ]
-  },
-  {
-   "id": "trinca-brasas",
-   "model": "trinca-brasas",
-   "name": "Trinca-brasas",
-   "title": "Três guardiões, um coração",
-   "color": 2,
-   "group": "event",
-   "atlas": "trinca-brasas",
-   "habitat": "Fornos antigos e portões esquecidos",
-   "legend": "Inspirado em Cérbero",
-   "story": [
-    "Um artesão fez três pedidos ao apagar seu forno: companhia, coragem e um lar protegido. As cinzas se juntaram ao papel de uma pipa e cada pedido ganhou uma cabeça. O pequeno guardião saiu carregando três chaves que não abrem nenhuma porta conhecida.",
-    "Uma cabeça rosna, outra desconfia e a terceira só quer carinho. As três concordam em proteger o coração turquesa que mantém suas brasas vivas. Quando firmam a linha juntas, o vento parece bater num portão fechado. Por trás dos dentes de carvão há um amigo fiel."
-   ],
-   "note": "Não ofereça três petiscos diferentes. Já perdi uma tarde inteira mediando essa discussão.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-trinca-brasas"
-   ]
-  },
-  {
-   "id": "alvaneve",
-   "model": "alvaneve",
-   "name": "Alvaneve",
-   "title": "O inverno que aprendeu a confiar",
-   "color": 0,
-   "group": "event",
-   "atlas": "alvaneve",
-   "habitat": "Céus frios e lagos de vidro",
-   "legend": "Inspirado na Rainha da Neve",
-   "story": [
-    "Um fragmento do espelho da Rainha da Neve caiu sobre uma pipa branca. O frio tentou transformá-la em algo incapaz de sentir, mas um ponto de costura dourada segurou o papel junto ao peito. Daquela resistência nasceu um dragão de asas de marfim.",
-    "Alvaneve é reservado, atento e muito cuidadoso com suas caudas de cristal. Sua precisão vem da paciência: ele espera até que o reflexo da linha inimiga fique imóvel em seus olhos. A costura dourada lembra que até um coração de inverno pode ser reparado."
-   ],
-   "note": "Ele só deixa alguém tocar na costura depois de confiar nessa pessoa. Respeite o tempo dele.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-alvaneve"
-   ]
-  },
-  {
-   "id": "chaspiral",
-   "model": "chaspiral",
-   "name": "Chaspiral",
-   "title": "Atrasada para o próximo segundo",
-   "color": 1,
-   "group": "event",
-   "atlas": "chaspiral",
-   "habitat": "Mesas de chá e jardins sem horário",
-   "legend": "Inspirada no chá de Alice no País das Maravilhas",
-   "story": [
-    "Numa festa de chá que nunca terminava, uma colher caiu dentro de uma xícara rachada. A bagunça acordou a alma de uma pipa que decorava a mesa. Ela pegou a xícara como chapéu, a colher como varinha e saiu voando antes que alguém perguntasse seu nome.",
-    "Chaspiral conversa com os próprios sininhos e sempre pede licença depois de passar. Suas asas não concordam sobre a direção, por isso seus desvios parecem impossíveis. Ela chama cada dash de um atalho para o próximo segundo e insiste que nunca se atrasou na vida."
-   ],
-   "note": "Não tente acertar o relógio dela. O ponteiro dos minutos morde.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-chaspiral"
-   ]
-  },
-  {
-   "id": "hiponilo",
-   "model": "hiponilo",
-   "name": "Hiponilo",
-   "title": "Guardião do rio sagrado",
-   "color": 2,
-   "group": "event",
-   "atlas": "hiponilo",
-   "collection": "Rios e lendas",
-   "rarity": "especial",
-   "habitat": "Rios e lendas · correntes do mundo almático",
-   "legend": "Rio sagrado fictício; fantasia original, sem atribuição a uma tradição histórica.",
-   "story": [
-    "Uma pipa violeta carregou os desejos de uma vila até um rio esquecido. Quando a última dobra tocou a água, Hiponilo despertou para guardar aquelas promessas. Seu dorso é uma vela de papel, e a rabiola guarda a memória da correnteza."
-   ],
-   "note": "Cada dobra guarda um caminho. Observe como ela escuta o vento.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-hiponilo"
-   ]
-  },
-  {
-   "id": "marulume",
-   "model": "marulume",
-   "name": "Marulume",
-   "title": "Mensageiro de Atlântida",
-   "color": 1,
-   "group": "event",
-   "atlas": "marulume",
-   "collection": "Rios e lendas",
-   "rarity": "especial",
-   "habitat": "Rios e lendas · correntes do mundo almático",
-   "legend": "Atlântida, cidade lendária; interpretação fantástica original.",
-   "story": [
-    "Uma carta de Atlântida chegou à superfície dentro de uma pipa azul. Ninguém soube ler a mensagem, mas a alegria de quem a encontrou deu vida ao papel. Marulume agora atravessa o céu como quem nada, levando recados para amigos separados pela distância."
-   ],
-   "note": "Cada dobra guarda um caminho. Observe como ela escuta o vento.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-marulume"
-   ]
-  },
-  {
-   "id": "jarabrasa",
-   "model": "jarabrasa",
-   "name": "Jarabrasa",
-   "title": "Sentinela das brasas da mata",
-   "color": 0,
-   "group": "event",
-   "atlas": "jarabrasa",
-   "collection": "Rios e lendas",
-   "rarity": "especial",
-   "habitat": "Rios e lendas · correntes do mundo almático",
-   "legend": "Livre inspiração no Boitatá; Jarabrasa é uma criatura original do Pipa Club.",
-   "story": [
-    "Durante uma noite de histórias sobre o Boitatá, uma criança dobrou uma jararaca com o papel vermelho de sua pipa. O vento atravessou as varetas, e os olhos dourados se abriram. Jarabrasa vigia as trilhas da mata; suas chamas são fitas de papel que nunca queimam as folhas."
-   ],
-   "note": "Cada dobra guarda um caminho. Observe como ela escuta o vento.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-jarabrasa"
-   ]
-  },
-  {
-   "id": "jaguarluar",
-   "model": "jaguarluar",
-   "name": "Jaguarluar",
-   "title": "A sombra da lua cheia",
-   "color": 1,
-   "group": "event",
-   "atlas": "jaguarluar",
-   "collection": "Rios e lendas",
-   "rarity": "especial",
-   "habitat": "Rios e lendas · correntes do mundo almático",
-   "legend": "Conto original da onça sob a lua cheia, sem atribuição a uma lenda tradicional específica.",
-   "story": [
-    "Uma pipa dourada ficou presa na copa mais alta da floresta. A lua cheia desenhou rosetas sobre seu papel, enquanto as folhas lhe emprestavam uma vela verde. Jaguarluar saltou do galho antes do amanhecer e passou a guiar quem se perde olhando apenas para o chão."
-   ],
-   "note": "Cada dobra guarda um caminho. Observe como ela escuta o vento.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-jaguarluar"
-   ]
-  },
-  {
-   "id": "azulongo",
-   "model": "azulongo",
-   "name": "Azulongo",
-   "title": "O fio das marés",
-   "color": 3,
-   "group": "event",
-   "atlas": "azulongo",
-   "collection": "Guardiões dos Quatro Ventos",
-   "rarity": "especial",
-   "habitat": "Guardiões dos Quatro Ventos · correntes do mundo almático",
-   "legend": "Uma história original do Pipa Club",
-   "story": [
-    "Um mapa do céu foi dobrado tantas vezes que suas linhas se tornaram varetas e seus caminhos, um corpo azul. Quando o vento tentou abrir o mapa, Azulongo preferiu acompanhar a corrente e descobrir o mundo por conta própria.",
-    "Ele passa de telhado em telhado lendo as linhas que ninguém vê. O pequeno selo no peito guarda o nome do primeiro pipeiro que confiou nele; seus bigodes de corda se agitam sempre que reconhece uma promessa."
-   ],
-   "note": "Se os bigodes dele apontarem para lados opostos, não é indecisão. Ele está ouvindo dois ventos.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-azulongo"
-   ]
-  },
-  {
-   "id": "auriflama",
-   "model": "auriflama",
-   "name": "Auriflama",
-   "title": "A centelha que volta",
-   "color": 1,
-   "group": "event",
-   "atlas": "auriflama",
-   "collection": "Guardiões dos Quatro Ventos",
-   "rarity": "especial",
-   "habitat": "Guardiões dos Quatro Ventos · correntes do mundo almático",
-   "legend": "Uma história original do Pipa Club",
-   "story": [
-    "Uma pipa vermelha perdeu o voo antes de alcançar o sol. Seu dono recolheu os pedaços e refez cada pena com um papel diferente. Quando amarrou a última rabiola, Auriflama abriu as asas pela primeira vez.",
-    "Suas penas parecem fogo, mas são dobras de papel que guardam o calor daquele cuidado. Ela retorna ao céu depois de cada queda e costuma acompanhar quem precisa de coragem para tentar outra vez."
-   ],
-   "note": "As penas não queimam. O que esquenta é a vontade que ela tem de levantar os outros.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-auriflama"
-   ]
-  },
-  {
-   "id": "umbrocasco",
-   "model": "umbrocasco",
-   "name": "Umbrocasco",
-   "title": "A memória do vento",
-   "color": 2,
-   "group": "event",
-   "atlas": "umbrocasco",
-   "collection": "Guardiões dos Quatro Ventos",
-   "rarity": "especial",
-   "habitat": "Guardiões dos Quatro Ventos · correntes do mundo almático",
-   "legend": "Uma história original do Pipa Club",
-   "story": [
-    "Durante anos, uma armação de pipa ficou guardada no fundo de um baú. Cada família que abria a tampa acrescentava um nó para lembrar de alguém. O papel escuro que envolveu a armação terminou abrigando uma alma de passos tranquilos.",
-    "Umbrocasco leva essas lembranças sob as placas do casco. Não voa com pressa: ele espera a rajada passar, observa o que ficou e encontra um caminho firme. A longa cauda de corda registra mais um nó a cada amizade."
-   ],
-   "note": "Passei meses tentando descobrir a idade dele. Ele me respondeu que eu estava contando a coisa errada.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-umbrocasco"
-   ]
-  },
-  {
-   "id": "nevagume",
-   "model": "nevagume",
-   "name": "Nevagume",
-   "title": "A costura da coragem",
-   "color": 0,
-   "group": "event",
-   "atlas": "nevagume",
-   "collection": "Guardiões dos Quatro Ventos",
-   "rarity": "especial",
-   "habitat": "Guardiões dos Quatro Ventos · correntes do mundo almático",
-   "legend": "Uma história original do Pipa Club",
-   "story": [
-    "Uma pipa branca foi rasgada ao tentar soltar outra que havia ficado presa. Quem a encontrou costurou o peito com fio prateado e desenhou listras sobre o papel para acompanhar as marcas do reparo. Naquela noite, Nevagume despertou.",
-    "Ele não esconde a costura nem a troca por ornamentos. Gosta de ocupar a frente da turma quando o vento aperta, mas deixa que cada amigo escolha o próprio caminho. O pequeno nó coral na pata lembra de quem voltou para buscá-lo."
-   ],
-   "note": "Coragem, para ele, é voltar com todos. A costura me parece uma boa definição disso.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-nevagume"
-   ]
-  },
-  {
-   "id": "rexal",
-   "model": "rexal",
-   "name": "Rexal",
-   "title": "Tiranossauro das Rajadas",
-   "color": 0,
-   "group": "event",
-   "atlas": "rexal",
-   "collection": "Ventos Antigos",
-   "rarity": "especial",
-   "habitat": "Ventos Antigos · correntes do mundo almático",
-   "legend": "Fantasia original do PipaKlub, adaptada da referência fornecida pelo usuário.",
-   "story": [
-    "Nasceu de uma pipa remendada que resistiu a uma ventania. Desde então, guia as almáticas pequenas de volta para casa."
-   ],
-   "note": "Ele ruge antes de pensar, mas nunca abandona um amigo.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-rexal"
-   ]
-  },
-  {
-   "id": "tricerafan",
-   "model": "tricerafan",
-   "name": "Tricerafan",
-   "title": "Guardião do Leque Celeste",
-   "color": 2,
-   "group": "event",
-   "atlas": "tricerafan",
-   "collection": "Ventos Antigos",
-   "rarity": "especial",
-   "habitat": "Ventos Antigos · correntes do mundo almático",
-   "legend": "Fantasia original do PipaKlub, adaptada da referência fornecida pelo usuário.",
-   "story": [
-    "Despertou quando três varetas partidas foram amarradas em uma única armação. Aprendeu que a força de um nó está em manter os outros unidos."
-   ],
-   "note": "Se ele parou na sua frente, provavelmente está protegendo você.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-tricerafan"
-   ]
-  },
-  {
-   "id": "pteralis",
-   "model": "pteralis",
-   "name": "Pteralis",
-   "title": "Explorador das Correntes",
-   "color": 1,
-   "group": "event",
-   "atlas": "pteralis",
-   "collection": "Ventos Antigos",
-   "rarity": "especial",
-   "habitat": "Ventos Antigos · correntes do mundo almático",
-   "legend": "Fantasia original do PipaKlub, adaptada da referência fornecida pelo usuário.",
-   "story": [
-    "Uma dobra esquecida em um mapa virou sua primeira asa. Hoje, Pteralis procura caminhos que ainda não foram marcados por nenhuma linha."
-   ],
-   "note": "Sempre volta com uma descoberta e uma desculpa para ter se atrasado.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-pteralis"
-   ]
-  },
-  {
-   "id": "stegaru",
-   "model": "stegaru",
-   "name": "Stegaru",
-   "title": "Jardim de Varetas",
-   "color": 2,
-   "group": "event",
-   "atlas": "stegaru",
-   "collection": "Ventos Antigos",
-   "rarity": "especial",
-   "habitat": "Ventos Antigos · correntes do mundo almático",
-   "legend": "Fantasia original do PipaKlub, adaptada da referência fornecida pelo usuário.",
-   "story": [
-    "Surgiu de um conjunto de pipas recolhidas depois de uma festa. Cada placa guarda uma lembrança diferente, e todas seguem o mesmo vento."
-   ],
-   "note": "Devagar também é um jeito excelente de chegar longe.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-stegaru"
-   ]
-  },
-  {
-   "id": "guaravento",
-   "model": "guaravento",
-   "name": "Guaravento",
-   "title": "Vigia das Rajadas",
-   "color": 3,
-   "group": "event",
-   "atlas": "guaravento",
-   "collection": "Almas dos Biomas",
-   "rarity": "especial",
-   "habitat": "Almas dos Biomas · correntes do mundo almático",
-   "legend": "Referência dos artistas fornecida pelo usuário; história ficcional original.",
-   "story": [
-    "Suas orelhas de papel percebem a vibração da linha antes de cada rajada. Surgiu de uma pipa esquecida sob o céu alaranjado do entardecer."
-   ],
-   "note": "Ele escuta o vento antes de nós.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-guaravento"
-   ]
-  },
-  {
-   "id": "micofolha",
-   "model": "micofolha",
-   "name": "Micofolha",
-   "title": "Mensageiro das Copas",
-   "color": 1,
-   "group": "event",
-   "atlas": "micofolha",
-   "collection": "Almas dos Biomas",
-   "rarity": "especial",
-   "habitat": "Almas dos Biomas · correntes do mundo almático",
-   "legend": "Referência dos artistas fornecida pelo usuário; história ficcional original.",
-   "story": [
-    "Nasceu entre dobraduras de uma oficina junto à mata. Leva recados amarrados na rabiola, mas sempre encontra uma aventura pelo caminho."
-   ],
-   "note": "O recado chega. A pontualidade ainda estamos ensinando.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-micofolha"
-   ]
-  },
-  {
-   "id": "capimansa",
-   "model": "capimansa",
-   "name": "Capimansa",
-   "title": "Companheira das Águas Calmas",
-   "color": 2,
-   "group": "event",
-   "atlas": "capimansa",
-   "collection": "Almas dos Biomas",
-   "rarity": "especial",
-   "habitat": "Almas dos Biomas · correntes do mundo almático",
-   "legend": "Referência dos artistas fornecida pelo usuário; história ficcional original.",
-   "story": [
-    "Foi feita com os retalhos que uma turma guardou depois de uma festa. Cada nó de sua vela recorda uma amizade, e ela gosta de manter o grupo por perto."
-   ],
-   "note": "Até o vento desacelera perto dela.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-capimansa"
-   ]
-  },
-  {
-   "id": "tatutrama",
-   "model": "tatutrama",
-   "name": "Tatutrama",
-   "title": "Guardião das Dobras Antigas",
-   "color": 2,
-   "group": "event",
-   "atlas": "tatutrama",
-   "collection": "Almas dos Biomas",
-   "rarity": "especial",
-   "habitat": "Almas dos Biomas · correntes do mundo almático",
-   "legend": "Referência dos artistas fornecida pelo usuário; história ficcional original.",
-   "story": [
-    "Despertou quando um aprendiz reuniu pequenos losangos em uma carapaça articulada. Guarda linhas antigas entre suas placas e procura histórias que o tempo escondeu."
-   ],
-   "note": "Ele encontra o que a pressa deixa passar.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-tatutrama"
-   ]
-  },
-  {
-   "id": "yaguaru-memoria",
-   "model": "yaguaru-memoria",
-   "name": "Yaguarú",
-   "title": "Guardião dos Nós Antigos",
-   "color": 0,
-   "group": "event",
-   "atlas": "yaguaru-memoria",
-   "collection": "Memórias do Vento",
-   "rarity": "rara",
-   "habitat": "Memórias do Vento · correntes do mundo almático",
-   "legend": "Uma história original do Pipa Club",
-   "story": [
-    "Uma pipa de onça ficou guardada por tantas gerações que seus remendos passaram a lembrar cada mão que os costurou. Yaguarú desperta quando uma linha antiga volta a sentir o vento."
-   ],
-   "note": "As marcas não contam os anos. Contam quem cuidou dele.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-yaguaru-memoria"
-   ]
-  },
-  {
-   "id": "araruna-memoria",
-   "model": "araruna-memoria",
-   "name": "Araruna",
-   "title": "Asa das Lembranças",
-   "color": 1,
-   "group": "event",
-   "atlas": "araruna-memoria",
-   "collection": "Memórias do Vento",
-   "rarity": "rara",
-   "habitat": "Memórias do Vento · correntes do mundo almático",
-   "legend": "Uma história original do Pipa Club",
-   "story": [
-    "Araruna recolheu as cores de pipas que já tinham perdido suas linhas. Suas faixas preservam esses retalhos, e cada voo reúne lembranças em uma nova combinação."
-   ],
-   "note": "Ela nunca esquece uma cor que já viu.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-araruna-memoria"
-   ]
-  },
-  {
-   "id": "caimbira-memoria",
-   "model": "caimbira-memoria",
-   "name": "Caimbira",
-   "title": "Vigia das Marés Esquecidas",
-   "color": 2,
-   "group": "event",
-   "atlas": "caimbira-memoria",
-   "collection": "Memórias do Vento",
-   "rarity": "rara",
-   "habitat": "Memórias do Vento · correntes do mundo almático",
-   "legend": "Uma história original do Pipa Club",
-   "story": [
-    "Caimbira foi dobrado com papéis que registravam as cheias de um rio imaginário. Entre suas placas correm desenhos de antigas correntes; as faixas mantêm essas memórias unidas."
-   ],
-   "note": "Parece parado, mas está ouvindo uma história comprida.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-caimbira-memoria"
-   ]
-  },
-  {
-   "id": "tamoata-memoria",
-   "model": "tamoata-memoria",
-   "name": "Tamoatá",
-   "title": "Tecelão dos Caminhos",
-   "color": 3,
-   "group": "event",
-   "atlas": "tamoata-memoria",
-   "collection": "Memórias do Vento",
-   "rarity": "rara",
-   "habitat": "Memórias do Vento · correntes do mundo almático",
-   "legend": "Uma história original do Pipa Club",
-   "story": [
-    "Tamoatá nasceu de um caderno de moldes que alguém julgava perdido. Com seu focinho de papel, encontra as dobras que ligam caminhos esquecidos; sua cauda guarda cada descoberta."
-   ],
-   "note": "Se uma história tem ponta solta, ele acaba encontrando.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-tamoata-memoria"
-   ]
-  },
-  {
-   "id": "herravento",
-   "model": "herravento",
-   "name": "Herravento",
-   "title": "Caçador das Rajadas",
-   "color": 0,
-   "group": "event",
-   "atlas": "herravento",
-   "collection": "Ecos Antigos",
-   "rarity": "especial",
-   "habitat": "Ecos Antigos · correntes do mundo almático",
-   "legend": "Uma história original do Pipa Club",
-   "story": [
-    "Herravento nasceu de um molde antigo que ninguém conseguia fazer voar. Um aprendiz alongou suas varetas, reforçou os nós e descobriu que aquela alma preferia correr antes de subir."
-   ],
-   "note": "Dê espaço para a arrancada. Ele gosta de ganhar o céu com impulso.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-herravento"
-   ]
-  },
-  {
-   "id": "platofolha",
-   "model": "platofolha",
-   "name": "Platofolha",
-   "title": "Guardião das Copas de Papel",
-   "color": 2,
-   "group": "event",
-   "atlas": "platofolha",
-   "collection": "Ecos Antigos",
-   "rarity": "especial",
-   "habitat": "Ecos Antigos · correntes do mundo almático",
-   "legend": "Uma história original do Pipa Club",
-   "story": [
-    "Platofolha despertou de uma pipa montada com retalhos verdes e ocres. Seu pescoço acompanha as correntes acima das outras almáticas, procurando caminhos tranquilos para o grupo."
-   ],
-   "note": "Enxerga longe, mas nunca esquece quem ficou lá embaixo.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-platofolha"
-   ]
-  },
-  {
-   "id": "celofita",
-   "model": "celofita",
-   "name": "Celofita",
-   "title": "Corredor do Horizonte",
-   "color": 1,
-   "group": "event",
-   "atlas": "celofita",
-   "collection": "Ecos Antigos",
-   "rarity": "especial",
-   "habitat": "Ecos Antigos · correntes do mundo almático",
-   "legend": "Uma história original do Pipa Club",
-   "story": [
-    "Celofita surgiu quando uma linha embaraçada foi desfeita com paciência. Desde então, transforma cada curva do vento em uma trilha nova e volta correndo para contar o que encontrou."
-   ],
-   "note": "Se você piscou e ele sumiu, procure na próxima corrente.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-celofita"
-   ]
-  },
-  {
-   "id": "riovela",
-   "model": "riovela",
-   "name": "Riovela",
-   "title": "Navegante das Correntes Antigas",
-   "color": 3,
-   "group": "event",
-   "atlas": "riovela",
-   "collection": "Ecos Antigos",
-   "rarity": "especial",
-   "habitat": "Ecos Antigos · correntes do mundo almático",
-   "legend": "Uma história original do Pipa Club",
-   "story": [
-    "Riovela foi dobrado com mapas de um rio imaginário. As curvas desenhadas em seu corpo guiam suas nadadeiras pelo ar como se cada rajada fosse uma corrente de água."
-   ],
-   "note": "Para ele, céu e rio são dois jeitos de seguir viagem.",
-   "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
-   "items": [
-    "rabiola-riovela"
-   ]
-  },
-  {
-   "id": "javali-biscoito",
-   "model": "javali-biscoito",
-   "name": "Javali de Biscoito",
-   "title": "Nome provisório",
-   "color": 1,
-   "group": "event",
-   "atlas": "javali-biscoito",
-   "rarity": "especial",
-   "habitat": "Em definição",
-   "legend": "Personagem original — arte enviada pelo criador",
-   "story": [
-    "Um novo Pipamon de aparência de javali, com pipa e efeitos de biscoitos e poeira. Nome e história ainda serão definidos."
-   ],
-   "note": "Folha original preservada com os 16 quadros e todos os efeitos.",
-   "obtain": "Receba sua rabiola em evento e leve ao Sr. Assis. Após conhecer este Pipamon, desenhe seu feitiço em espiral para invocá-lo. Soul vinculada à conta; uma por jogador.",
-   "items": [
-    "rabiola-javali-biscoito"
-   ]
-  },
-  {
-   "id": "nozinho",
-   "name": "Nozinho",
-   "title": "O laço entre dois mundos",
-   "color": 0,
-   "group": "companion",
-   "atlas": "nozinho",
-   "habitat": "O laboratório do Sr. Assis",
-   "story": [
-    "Ao recuperar uma pipa perdida, Assis fez um nó tão cuidadoso que a linha pareceu agradecer. O pequeno laço ganhou olhos, se soltou do carretel e decidiu acompanhar o pesquisador. Nozinho foi a primeira almática que ficou tempo suficiente para ser estudada.",
-    "Ele ajuda a desembaraçar linhas, recebe novos pipeiros e reconhece quando alguém está prestes a desistir. Para Nozinho, cada encontro deixa um fio invisível. Sua maior habilidade é manter esses fios unidos, mesmo quando os amigos estão longe."
-   ],
-   "note": "Ele insiste que foi ele quem me encontrou. Depois de tantos anos, acho que tem razão.",
-   "obtain": "Companheiro do Sr. Assis. Faz parte da introdução; não é uma pipa equipável.",
-   "items": [
-    "rabiola-nozinho"
-   ]
-  },
-  {
-   "id": "rabbito",
-   "model": "rabbito",
-   "name": "Rabbito",
-   "title": "Um fio de sorte",
-   "color": 0,
-   "group": "story",
-   "collection": "Parceiro da história",
-   "rarity": "especial",
-   "atlas": "rabbito",
-   "habitat": "A casa de Kael",
-   "story": [
-    "Desenhado por Kael, Rabbito ganhou vida quando recebeu a Rabiola Antiga que sua mãe guardava desde criança."
-   ],
-   "note": "Um parceiro inventado. Uma rabiola cheia de lembranças.",
-   "obtain": "Nasce na abertura da história. Vinculado à sua conta.",
-   "items": []
-  }
- ]
+  "entries": [
+    {
+      "id": "carcara",
+      "model": "basica",
+      "name": "Carcará",
+      "title": "O primeiro voo",
+      "color": 0,
+      "group": "common",
+      "atlas": "basic-carcara",
+      "habitat": "Telhados e correntes quentes",
+      "story": [
+        "Antes de ter nome, Carcará era uma pipa remendada esquecida sobre um telhado. Um menino amarrou nela a linha que havia pertencido ao avô e prometeu fazê-la voar outra vez. A promessa acordou uma pequena alma no papel.",
+        "Desde então, Carcará procura quem está aprendendo. Ele espera a rajada certa, estica as asas e ensina que um bom corte começa na calma. Seus remendos não são defeitos: cada um guarda a lembrança de alguém que tentou de novo."
+      ],
+      "note": "Não confunda simplicidade com fraqueza. Carcará conhece o vento melhor do que muita lenda.",
+      "obtain": "Recebida ao criar sua conta. Sua pipa básica é permanente.",
+      "items": [
+        "rabiola-carcara"
+      ]
+    },
+    {
+      "id": "mata-verde",
+      "model": "mata",
+      "name": "Mata verde",
+      "title": "A folha que não quis cair",
+      "color": 1,
+      "group": "common",
+      "atlas": "basic-mata-verde",
+      "habitat": "Copas de árvores e quintais",
+      "story": [
+        "Uma folha ficou presa na armação de uma pipa durante uma ventania. Em vez de cair, ela se enrolou na linha e aprendeu a dançar entre os galhos. Na manhã seguinte, havia olhos curiosos onde antes só existia papel verde.",
+        "Mata verde não segue caminhos retos. Ela muda de lado num sopro e adora escapar por espaços que parecem pequenos demais. Dizem que as árvores inclinam os ramos para vê-la passar; ela jura que é apenas coincidência."
+      ],
+      "note": "Observe o intervalo entre as rajadas. É ali que ela encontra a saída.",
+      "obtain": "Recebida no inventário inicial ou conquistada em Vale pipa.",
+      "items": [
+        "rabiola-mata-verde"
+      ]
+    },
+    {
+      "id": "azulao",
+      "model": "azulao",
+      "name": "Azulão",
+      "title": "Guardião da chuva mansa",
+      "color": 2,
+      "group": "common",
+      "atlas": "basic-azulao",
+      "habitat": "Nuvens baixas depois da chuva",
+      "story": [
+        "Azulão nasceu de uma pipa que alguém se recusou a abandonar quando a chuva chegou. A linha encharcada resistiu até o último amigo encontrar abrigo. Quando o céu abriu, o papel azul respirou pela primeira vez.",
+        "Seu jeito tranquilo esconde uma teimosia enorme. Azulão firma a linha para proteger quem voa ao seu lado e não gosta de empurrar adversários desprevenidos. Depois de um duelo, costuma sacudir das asas uma última gota de chuva."
+      ],
+      "note": "A força dele está em saber quando resistir, e não em puxar o tempo todo.",
+      "obtain": "Recebida no inventário inicial ou conquistada em Vale pipa.",
+      "items": [
+        "rabiola-azulao"
+      ]
+    },
+    {
+      "id": "raio-de-sol",
+      "model": "raio",
+      "name": "Raio de sol",
+      "title": "Colecionador de amanheceres",
+      "color": 3,
+      "group": "common",
+      "atlas": "basic-raio-de-sol",
+      "habitat": "Praças ao nascer do sol",
+      "story": [
+        "O primeiro raio de uma manhã de inverno encontrou uma pipa dourada pendurada na janela. A luz ficou presa entre suas varetas e, quando o dono abriu os olhos, ela já observava o céu com uma expressão muito séria.",
+        "Raio de sol estuda cada cruzamento como se lesse um mapa. Não é o mais apressado da turma, mas percebe aberturas que passam despercebidas. Seu passatempo favorito é contar quantas cores cabem no céu antes do café da manhã."
+      ],
+      "note": "Ele não adivinha o próximo movimento. Ele presta atenção.",
+      "obtain": "Recebida no inventário inicial ou conquistada em Vale pipa.",
+      "items": [
+        "rabiola-raio-de-sol"
+      ]
+    },
+    {
+      "id": "flautrevo",
+      "model": "flautrevo",
+      "name": "Flautrevo",
+      "title": "O flautista dos ventos perdidos",
+      "color": 3,
+      "group": "event",
+      "atlas": "flautrevo",
+      "habitat": "Campanários e becos ao anoitecer",
+      "legend": "Inspirado no Flautista de Hamelin",
+      "story": [
+        "Quando a última nota do flautista de Hamelin desapareceu, um eco se refugiou numa pipa abandonada no campanário. O papel virou asas de morcego, as varetas ganharam furos de flauta e os sininhos começaram a tocar sozinhos. Assim despertou Flautrevo.",
+        "Ele recolhe assobios esquecidos e os transforma em trilhas de vento. Uma orelha ouve o que acontece; a outra, enrolada, escuta o que quase aconteceu. Durante um duelo, seus acordes revelam cruzamentos que os outros ainda não perceberam."
+      ],
+      "note": "Nunca assobie a mesma melodia três vezes perto dele. A quarta nota será dele.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-flautrevo"
+      ]
+    },
+    {
+      "id": "trinca-brasas",
+      "model": "trinca-brasas",
+      "name": "Trinca-brasas",
+      "title": "Três guardiões, um coração",
+      "color": 2,
+      "group": "event",
+      "atlas": "trinca-brasas",
+      "habitat": "Fornos antigos e portões esquecidos",
+      "legend": "Inspirado em Cérbero",
+      "story": [
+        "Um artesão fez três pedidos ao apagar seu forno: companhia, coragem e um lar protegido. As cinzas se juntaram ao papel de uma pipa e cada pedido ganhou uma cabeça. O pequeno guardião saiu carregando três chaves que não abrem nenhuma porta conhecida.",
+        "Uma cabeça rosna, outra desconfia e a terceira só quer carinho. As três concordam em proteger o coração turquesa que mantém suas brasas vivas. Quando firmam a linha juntas, o vento parece bater num portão fechado. Por trás dos dentes de carvão há um amigo fiel."
+      ],
+      "note": "Não ofereça três petiscos diferentes. Já perdi uma tarde inteira mediando essa discussão.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-trinca-brasas"
+      ]
+    },
+    {
+      "id": "alvaneve",
+      "model": "alvaneve",
+      "name": "Alvaneve",
+      "title": "O inverno que aprendeu a confiar",
+      "color": 0,
+      "group": "event",
+      "atlas": "alvaneve",
+      "habitat": "Céus frios e lagos de vidro",
+      "legend": "Inspirado na Rainha da Neve",
+      "story": [
+        "Um fragmento do espelho da Rainha da Neve caiu sobre uma pipa branca. O frio tentou transformá-la em algo incapaz de sentir, mas um ponto de costura dourada segurou o papel junto ao peito. Daquela resistência nasceu um dragão de asas de marfim.",
+        "Alvaneve é reservado, atento e muito cuidadoso com suas caudas de cristal. Sua precisão vem da paciência: ele espera até que o reflexo da linha inimiga fique imóvel em seus olhos. A costura dourada lembra que até um coração de inverno pode ser reparado."
+      ],
+      "note": "Ele só deixa alguém tocar na costura depois de confiar nessa pessoa. Respeite o tempo dele.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-alvaneve"
+      ]
+    },
+    {
+      "id": "chaspiral",
+      "model": "chaspiral",
+      "name": "Chaspiral",
+      "title": "Atrasada para o próximo segundo",
+      "color": 1,
+      "group": "event",
+      "atlas": "chaspiral",
+      "habitat": "Mesas de chá e jardins sem horário",
+      "legend": "Inspirada no chá de Alice no País das Maravilhas",
+      "story": [
+        "Numa festa de chá que nunca terminava, uma colher caiu dentro de uma xícara rachada. A bagunça acordou a alma de uma pipa que decorava a mesa. Ela pegou a xícara como chapéu, a colher como varinha e saiu voando antes que alguém perguntasse seu nome.",
+        "Chaspiral conversa com os próprios sininhos e sempre pede licença depois de passar. Suas asas não concordam sobre a direção, por isso seus desvios parecem impossíveis. Ela chama cada dash de um atalho para o próximo segundo e insiste que nunca se atrasou na vida."
+      ],
+      "note": "Não tente acertar o relógio dela. O ponteiro dos minutos morde.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-chaspiral"
+      ]
+    },
+    {
+      "id": "hiponilo",
+      "model": "hiponilo",
+      "name": "Hiponilo",
+      "title": "Guardião do rio sagrado",
+      "color": 2,
+      "group": "event",
+      "atlas": "hiponilo",
+      "collection": "Rios e lendas",
+      "rarity": "especial",
+      "habitat": "Rios e lendas · correntes do mundo almático",
+      "legend": "Rio sagrado fictício; fantasia original, sem atribuição a uma tradição histórica.",
+      "story": [
+        "Uma pipa violeta carregou os desejos de uma vila até um rio esquecido. Quando a última dobra tocou a água, Hiponilo despertou para guardar aquelas promessas. Seu dorso é uma vela de papel, e a rabiola guarda a memória da correnteza."
+      ],
+      "note": "Cada dobra guarda um caminho. Observe como ela escuta o vento.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-hiponilo"
+      ]
+    },
+    {
+      "id": "marulume",
+      "model": "marulume",
+      "name": "Marulume",
+      "title": "Mensageiro de Atlântida",
+      "color": 1,
+      "group": "event",
+      "atlas": "marulume",
+      "collection": "Rios e lendas",
+      "rarity": "especial",
+      "habitat": "Rios e lendas · correntes do mundo almático",
+      "legend": "Atlântida, cidade lendária; interpretação fantástica original.",
+      "story": [
+        "Uma carta de Atlântida chegou à superfície dentro de uma pipa azul. Ninguém soube ler a mensagem, mas a alegria de quem a encontrou deu vida ao papel. Marulume agora atravessa o céu como quem nada, levando recados para amigos separados pela distância."
+      ],
+      "note": "Cada dobra guarda um caminho. Observe como ela escuta o vento.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-marulume"
+      ]
+    },
+    {
+      "id": "jarabrasa",
+      "model": "jarabrasa",
+      "name": "Jarabrasa",
+      "title": "Sentinela das brasas da mata",
+      "color": 0,
+      "group": "event",
+      "atlas": "jarabrasa",
+      "collection": "Rios e lendas",
+      "rarity": "especial",
+      "habitat": "Rios e lendas · correntes do mundo almático",
+      "legend": "Livre inspiração no Boitatá; Jarabrasa é uma criatura original do Pipa Club.",
+      "story": [
+        "Durante uma noite de histórias sobre o Boitatá, uma criança dobrou uma jararaca com o papel vermelho de sua pipa. O vento atravessou as varetas, e os olhos dourados se abriram. Jarabrasa vigia as trilhas da mata; suas chamas são fitas de papel que nunca queimam as folhas."
+      ],
+      "note": "Cada dobra guarda um caminho. Observe como ela escuta o vento.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-jarabrasa"
+      ]
+    },
+    {
+      "id": "jaguarluar",
+      "model": "jaguarluar",
+      "name": "Jaguarluar",
+      "title": "A sombra da lua cheia",
+      "color": 1,
+      "group": "event",
+      "atlas": "jaguarluar",
+      "collection": "Rios e lendas",
+      "rarity": "especial",
+      "habitat": "Rios e lendas · correntes do mundo almático",
+      "legend": "Conto original da onça sob a lua cheia, sem atribuição a uma lenda tradicional específica.",
+      "story": [
+        "Uma pipa dourada ficou presa na copa mais alta da floresta. A lua cheia desenhou rosetas sobre seu papel, enquanto as folhas lhe emprestavam uma vela verde. Jaguarluar saltou do galho antes do amanhecer e passou a guiar quem se perde olhando apenas para o chão."
+      ],
+      "note": "Cada dobra guarda um caminho. Observe como ela escuta o vento.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-jaguarluar"
+      ]
+    },
+    {
+      "id": "azulongo",
+      "model": "azulongo",
+      "name": "Azulongo",
+      "title": "O fio das marés",
+      "color": 3,
+      "group": "event",
+      "atlas": "azulongo",
+      "collection": "Guardiões dos Quatro Ventos",
+      "rarity": "especial",
+      "habitat": "Guardiões dos Quatro Ventos · correntes do mundo almático",
+      "legend": "Uma história original do Pipa Club",
+      "story": [
+        "Um mapa do céu foi dobrado tantas vezes que suas linhas se tornaram varetas e seus caminhos, um corpo azul. Quando o vento tentou abrir o mapa, Azulongo preferiu acompanhar a corrente e descobrir o mundo por conta própria.",
+        "Ele passa de telhado em telhado lendo as linhas que ninguém vê. O pequeno selo no peito guarda o nome do primeiro pipeiro que confiou nele; seus bigodes de corda se agitam sempre que reconhece uma promessa."
+      ],
+      "note": "Se os bigodes dele apontarem para lados opostos, não é indecisão. Ele está ouvindo dois ventos.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-azulongo"
+      ]
+    },
+    {
+      "id": "auriflama",
+      "model": "auriflama",
+      "name": "Auriflama",
+      "title": "A centelha que volta",
+      "color": 1,
+      "group": "event",
+      "atlas": "auriflama",
+      "collection": "Guardiões dos Quatro Ventos",
+      "rarity": "especial",
+      "habitat": "Guardiões dos Quatro Ventos · correntes do mundo almático",
+      "legend": "Uma história original do Pipa Club",
+      "story": [
+        "Uma pipa vermelha perdeu o voo antes de alcançar o sol. Seu dono recolheu os pedaços e refez cada pena com um papel diferente. Quando amarrou a última rabiola, Auriflama abriu as asas pela primeira vez.",
+        "Suas penas parecem fogo, mas são dobras de papel que guardam o calor daquele cuidado. Ela retorna ao céu depois de cada queda e costuma acompanhar quem precisa de coragem para tentar outra vez."
+      ],
+      "note": "As penas não queimam. O que esquenta é a vontade que ela tem de levantar os outros.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-auriflama"
+      ]
+    },
+    {
+      "id": "umbrocasco",
+      "model": "umbrocasco",
+      "name": "Umbrocasco",
+      "title": "A memória do vento",
+      "color": 2,
+      "group": "event",
+      "atlas": "umbrocasco",
+      "collection": "Guardiões dos Quatro Ventos",
+      "rarity": "especial",
+      "habitat": "Guardiões dos Quatro Ventos · correntes do mundo almático",
+      "legend": "Uma história original do Pipa Club",
+      "story": [
+        "Durante anos, uma armação de pipa ficou guardada no fundo de um baú. Cada família que abria a tampa acrescentava um nó para lembrar de alguém. O papel escuro que envolveu a armação terminou abrigando uma alma de passos tranquilos.",
+        "Umbrocasco leva essas lembranças sob as placas do casco. Não voa com pressa: ele espera a rajada passar, observa o que ficou e encontra um caminho firme. A longa cauda de corda registra mais um nó a cada amizade."
+      ],
+      "note": "Passei meses tentando descobrir a idade dele. Ele me respondeu que eu estava contando a coisa errada.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-umbrocasco"
+      ]
+    },
+    {
+      "id": "nevagume",
+      "model": "nevagume",
+      "name": "Nevagume",
+      "title": "A costura da coragem",
+      "color": 0,
+      "group": "event",
+      "atlas": "nevagume",
+      "collection": "Guardiões dos Quatro Ventos",
+      "rarity": "especial",
+      "habitat": "Guardiões dos Quatro Ventos · correntes do mundo almático",
+      "legend": "Uma história original do Pipa Club",
+      "story": [
+        "Uma pipa branca foi rasgada ao tentar soltar outra que havia ficado presa. Quem a encontrou costurou o peito com fio prateado e desenhou listras sobre o papel para acompanhar as marcas do reparo. Naquela noite, Nevagume despertou.",
+        "Ele não esconde a costura nem a troca por ornamentos. Gosta de ocupar a frente da turma quando o vento aperta, mas deixa que cada amigo escolha o próprio caminho. O pequeno nó coral na pata lembra de quem voltou para buscá-lo."
+      ],
+      "note": "Coragem, para ele, é voltar com todos. A costura me parece uma boa definição disso.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-nevagume"
+      ]
+    },
+    {
+      "id": "rexal",
+      "model": "rexal",
+      "name": "Rexal",
+      "title": "Tiranossauro das Rajadas",
+      "color": 0,
+      "group": "event",
+      "atlas": "rexal",
+      "collection": "Ventos Antigos",
+      "rarity": "especial",
+      "habitat": "Ventos Antigos · correntes do mundo almático",
+      "legend": "Fantasia original do PipaKlub, adaptada da referência fornecida pelo usuário.",
+      "story": [
+        "Nasceu de uma pipa remendada que resistiu a uma ventania. Desde então, guia as almáticas pequenas de volta para casa."
+      ],
+      "note": "Ele ruge antes de pensar, mas nunca abandona um amigo.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-rexal"
+      ]
+    },
+    {
+      "id": "tricerafan",
+      "model": "tricerafan",
+      "name": "Tricerafan",
+      "title": "Guardião do Leque Celeste",
+      "color": 2,
+      "group": "event",
+      "atlas": "tricerafan",
+      "collection": "Ventos Antigos",
+      "rarity": "especial",
+      "habitat": "Ventos Antigos · correntes do mundo almático",
+      "legend": "Fantasia original do PipaKlub, adaptada da referência fornecida pelo usuário.",
+      "story": [
+        "Despertou quando três varetas partidas foram amarradas em uma única armação. Aprendeu que a força de um nó está em manter os outros unidos."
+      ],
+      "note": "Se ele parou na sua frente, provavelmente está protegendo você.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-tricerafan"
+      ]
+    },
+    {
+      "id": "pteralis",
+      "model": "pteralis",
+      "name": "Pteralis",
+      "title": "Explorador das Correntes",
+      "color": 1,
+      "group": "event",
+      "atlas": "pteralis",
+      "collection": "Ventos Antigos",
+      "rarity": "especial",
+      "habitat": "Ventos Antigos · correntes do mundo almático",
+      "legend": "Fantasia original do PipaKlub, adaptada da referência fornecida pelo usuário.",
+      "story": [
+        "Uma dobra esquecida em um mapa virou sua primeira asa. Hoje, Pteralis procura caminhos que ainda não foram marcados por nenhuma linha."
+      ],
+      "note": "Sempre volta com uma descoberta e uma desculpa para ter se atrasado.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-pteralis"
+      ]
+    },
+    {
+      "id": "stegaru",
+      "model": "stegaru",
+      "name": "Stegaru",
+      "title": "Jardim de Varetas",
+      "color": 2,
+      "group": "event",
+      "atlas": "stegaru",
+      "collection": "Ventos Antigos",
+      "rarity": "especial",
+      "habitat": "Ventos Antigos · correntes do mundo almático",
+      "legend": "Fantasia original do PipaKlub, adaptada da referência fornecida pelo usuário.",
+      "story": [
+        "Surgiu de um conjunto de pipas recolhidas depois de uma festa. Cada placa guarda uma lembrança diferente, e todas seguem o mesmo vento."
+      ],
+      "note": "Devagar também é um jeito excelente de chegar longe.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-stegaru"
+      ]
+    },
+    {
+      "id": "guaravento",
+      "model": "guaravento",
+      "name": "Guaravento",
+      "title": "Vigia das Rajadas",
+      "color": 3,
+      "group": "event",
+      "atlas": "guaravento",
+      "collection": "Almas dos Biomas",
+      "rarity": "especial",
+      "habitat": "Almas dos Biomas · correntes do mundo almático",
+      "legend": "Referência dos artistas fornecida pelo usuário; história ficcional original.",
+      "story": [
+        "Suas orelhas de papel percebem a vibração da linha antes de cada rajada. Surgiu de uma pipa esquecida sob o céu alaranjado do entardecer."
+      ],
+      "note": "Ele escuta o vento antes de nós.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-guaravento"
+      ]
+    },
+    {
+      "id": "micofolha",
+      "model": "micofolha",
+      "name": "Micofolha",
+      "title": "Mensageiro das Copas",
+      "color": 1,
+      "group": "event",
+      "atlas": "micofolha",
+      "collection": "Almas dos Biomas",
+      "rarity": "especial",
+      "habitat": "Almas dos Biomas · correntes do mundo almático",
+      "legend": "Referência dos artistas fornecida pelo usuário; história ficcional original.",
+      "story": [
+        "Nasceu entre dobraduras de uma oficina junto à mata. Leva recados amarrados na rabiola, mas sempre encontra uma aventura pelo caminho."
+      ],
+      "note": "O recado chega. A pontualidade ainda estamos ensinando.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-micofolha"
+      ]
+    },
+    {
+      "id": "capimansa",
+      "model": "capimansa",
+      "name": "Capimansa",
+      "title": "Companheira das Águas Calmas",
+      "color": 2,
+      "group": "event",
+      "atlas": "capimansa",
+      "collection": "Almas dos Biomas",
+      "rarity": "especial",
+      "habitat": "Almas dos Biomas · correntes do mundo almático",
+      "legend": "Referência dos artistas fornecida pelo usuário; história ficcional original.",
+      "story": [
+        "Foi feita com os retalhos que uma turma guardou depois de uma festa. Cada nó de sua vela recorda uma amizade, e ela gosta de manter o grupo por perto."
+      ],
+      "note": "Até o vento desacelera perto dela.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-capimansa"
+      ]
+    },
+    {
+      "id": "tatutrama",
+      "model": "tatutrama",
+      "name": "Tatutrama",
+      "title": "Guardião das Dobras Antigas",
+      "color": 2,
+      "group": "event",
+      "atlas": "tatutrama",
+      "collection": "Almas dos Biomas",
+      "rarity": "especial",
+      "habitat": "Almas dos Biomas · correntes do mundo almático",
+      "legend": "Referência dos artistas fornecida pelo usuário; história ficcional original.",
+      "story": [
+        "Despertou quando um aprendiz reuniu pequenos losangos em uma carapaça articulada. Guarda linhas antigas entre suas placas e procura histórias que o tempo escondeu."
+      ],
+      "note": "Ele encontra o que a pressa deixa passar.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-tatutrama"
+      ]
+    },
+    {
+      "id": "yaguaru-memoria",
+      "model": "yaguaru-memoria",
+      "name": "Yaguarú",
+      "title": "Guardião dos Nós Antigos",
+      "color": 0,
+      "group": "event",
+      "atlas": "yaguaru-memoria",
+      "collection": "Memórias do Vento",
+      "rarity": "rara",
+      "habitat": "Memórias do Vento · correntes do mundo almático",
+      "legend": "Uma história original do Pipa Club",
+      "story": [
+        "Uma pipa de onça ficou guardada por tantas gerações que seus remendos passaram a lembrar cada mão que os costurou. Yaguarú desperta quando uma linha antiga volta a sentir o vento."
+      ],
+      "note": "As marcas não contam os anos. Contam quem cuidou dele.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-yaguaru-memoria"
+      ]
+    },
+    {
+      "id": "araruna-memoria",
+      "model": "araruna-memoria",
+      "name": "Araruna",
+      "title": "Asa das Lembranças",
+      "color": 1,
+      "group": "event",
+      "atlas": "araruna-memoria",
+      "collection": "Memórias do Vento",
+      "rarity": "rara",
+      "habitat": "Memórias do Vento · correntes do mundo almático",
+      "legend": "Uma história original do Pipa Club",
+      "story": [
+        "Araruna recolheu as cores de pipas que já tinham perdido suas linhas. Suas faixas preservam esses retalhos, e cada voo reúne lembranças em uma nova combinação."
+      ],
+      "note": "Ela nunca esquece uma cor que já viu.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-araruna-memoria"
+      ]
+    },
+    {
+      "id": "caimbira-memoria",
+      "model": "caimbira-memoria",
+      "name": "Caimbira",
+      "title": "Vigia das Marés Esquecidas",
+      "color": 2,
+      "group": "event",
+      "atlas": "caimbira-memoria",
+      "collection": "Memórias do Vento",
+      "rarity": "rara",
+      "habitat": "Memórias do Vento · correntes do mundo almático",
+      "legend": "Uma história original do Pipa Club",
+      "story": [
+        "Caimbira foi dobrado com papéis que registravam as cheias de um rio imaginário. Entre suas placas correm desenhos de antigas correntes; as faixas mantêm essas memórias unidas."
+      ],
+      "note": "Parece parado, mas está ouvindo uma história comprida.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-caimbira-memoria"
+      ]
+    },
+    {
+      "id": "tamoata-memoria",
+      "model": "tamoata-memoria",
+      "name": "Tamoatá",
+      "title": "Tecelão dos Caminhos",
+      "color": 3,
+      "group": "event",
+      "atlas": "tamoata-memoria",
+      "collection": "Memórias do Vento",
+      "rarity": "rara",
+      "habitat": "Memórias do Vento · correntes do mundo almático",
+      "legend": "Uma história original do Pipa Club",
+      "story": [
+        "Tamoatá nasceu de um caderno de moldes que alguém julgava perdido. Com seu focinho de papel, encontra as dobras que ligam caminhos esquecidos; sua cauda guarda cada descoberta."
+      ],
+      "note": "Se uma história tem ponta solta, ele acaba encontrando.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-tamoata-memoria"
+      ]
+    },
+    {
+      "id": "herravento",
+      "model": "herravento",
+      "name": "Herravento",
+      "title": "Caçador das Rajadas",
+      "color": 0,
+      "group": "event",
+      "atlas": "herravento",
+      "collection": "Ecos Antigos",
+      "rarity": "especial",
+      "habitat": "Ecos Antigos · correntes do mundo almático",
+      "legend": "Uma história original do Pipa Club",
+      "story": [
+        "Herravento nasceu de um molde antigo que ninguém conseguia fazer voar. Um aprendiz alongou suas varetas, reforçou os nós e descobriu que aquela alma preferia correr antes de subir."
+      ],
+      "note": "Dê espaço para a arrancada. Ele gosta de ganhar o céu com impulso.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-herravento"
+      ]
+    },
+    {
+      "id": "platofolha",
+      "model": "platofolha",
+      "name": "Platofolha",
+      "title": "Guardião das Copas de Papel",
+      "color": 2,
+      "group": "event",
+      "atlas": "platofolha",
+      "collection": "Ecos Antigos",
+      "rarity": "especial",
+      "habitat": "Ecos Antigos · correntes do mundo almático",
+      "legend": "Uma história original do Pipa Club",
+      "story": [
+        "Platofolha despertou de uma pipa montada com retalhos verdes e ocres. Seu pescoço acompanha as correntes acima das outras almáticas, procurando caminhos tranquilos para o grupo."
+      ],
+      "note": "Enxerga longe, mas nunca esquece quem ficou lá embaixo.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-platofolha"
+      ]
+    },
+    {
+      "id": "celofita",
+      "model": "celofita",
+      "name": "Celofita",
+      "title": "Corredor do Horizonte",
+      "color": 1,
+      "group": "event",
+      "atlas": "celofita",
+      "collection": "Ecos Antigos",
+      "rarity": "especial",
+      "habitat": "Ecos Antigos · correntes do mundo almático",
+      "legend": "Uma história original do Pipa Club",
+      "story": [
+        "Celofita surgiu quando uma linha embaraçada foi desfeita com paciência. Desde então, transforma cada curva do vento em uma trilha nova e volta correndo para contar o que encontrou."
+      ],
+      "note": "Se você piscou e ele sumiu, procure na próxima corrente.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-celofita"
+      ]
+    },
+    {
+      "id": "riovela",
+      "model": "riovela",
+      "name": "Riovela",
+      "title": "Navegante das Correntes Antigas",
+      "color": 3,
+      "group": "event",
+      "atlas": "riovela",
+      "collection": "Ecos Antigos",
+      "rarity": "especial",
+      "habitat": "Ecos Antigos · correntes do mundo almático",
+      "legend": "Uma história original do Pipa Club",
+      "story": [
+        "Riovela foi dobrado com mapas de um rio imaginário. As curvas desenhadas em seu corpo guiam suas nadadeiras pelo ar como se cada rajada fosse uma corrente de água."
+      ],
+      "note": "Para ele, céu e rio são dois jeitos de seguir viagem.",
+      "obtain": "Recompensa exclusiva de eventos. Vinculada à conta; uso no casual e no treino.",
+      "items": [
+        "rabiola-riovela"
+      ]
+    },
+    {
+      "id": "javali-biscoito",
+      "model": "javali-biscoito",
+      "name": "Javali de Biscoito",
+      "title": "Nome provisório",
+      "color": 1,
+      "group": "event",
+      "atlas": "javali-biscoito",
+      "rarity": "especial",
+      "habitat": "Em definição",
+      "legend": "Personagem original — arte enviada pelo criador",
+      "story": [
+        "Um novo Pipamon de aparência de javali, com pipa e efeitos de biscoitos e poeira. Nome e história ainda serão definidos."
+      ],
+      "note": "Folha original preservada com os 16 quadros e todos os efeitos.",
+      "obtain": "Receba sua rabiola em evento e leve ao Sr. Assis. Após conhecer este Pipamon, desenhe seu feitiço em espiral para invocá-lo. Soul vinculada à conta; uma por jogador.",
+      "items": [
+        "rabiola-javali-biscoito"
+      ]
+    },
+    {
+      "id": "nozinho",
+      "name": "Nozinho",
+      "title": "O laço entre dois mundos",
+      "color": 0,
+      "group": "companion",
+      "atlas": "nozinho",
+      "habitat": "O laboratório do Sr. Assis",
+      "story": [
+        "Ao recuperar uma pipa perdida, Assis fez um nó tão cuidadoso que a linha pareceu agradecer. O pequeno laço ganhou olhos, se soltou do carretel e decidiu acompanhar o pesquisador. Nozinho foi a primeira almática que ficou tempo suficiente para ser estudada.",
+        "Ele ajuda a desembaraçar linhas, recebe novos pipeiros e reconhece quando alguém está prestes a desistir. Para Nozinho, cada encontro deixa um fio invisível. Sua maior habilidade é manter esses fios unidos, mesmo quando os amigos estão longe."
+      ],
+      "note": "Ele insiste que foi ele quem me encontrou. Depois de tantos anos, acho que tem razão.",
+      "obtain": "Companheiro do Sr. Assis. Faz parte da introdução; não é uma pipa equipável.",
+      "items": [
+        "rabiola-nozinho"
+      ]
+    },
+    {
+      "id": "rabbito",
+      "model": "rabbito",
+      "name": "Rabbito",
+      "title": "Um fio de sorte",
+      "color": 0,
+      "group": "story",
+      "collection": "Parceiro da história",
+      "rarity": "especial",
+      "atlas": "rabbito",
+      "habitat": "A casa de Kael",
+      "story": [
+        "Desenhado por Kael, Rabbito ganhou vida quando recebeu a Rabiola Antiga que sua mãe guardava desde criança."
+      ],
+      "note": "Um parceiro inventado. Uma rabiola cheia de lembranças.",
+      "obtain": "Nasce na abertura da história. Vinculado à sua conta.",
+      "items": []
+    },
+    {
+      "id": "lacertubo",
+      "model": "lacertubo",
+      "name": "Lacertubo",
+      "title": "O guardião dos canos",
+      "color": 2,
+      "group": "story",
+      "atlas": "lacertubo",
+      "habitat": "Veredas do Encanamento",
+      "story": [
+        "Entre tubos antigos e papel esquecido, Lacertubo aprendeu a ouvir o vento antes de qualquer intruso. Sua vela se arma quando pressente perigo."
+      ],
+      "note": "Observe a vela e espere a abertura.",
+      "obtain": "Rabiola garantida na primeira vitória contra o guardião das Veredas.",
+      "items": [
+        "rabiola-lacertubo"
+      ]
+    }
+  ]
 }

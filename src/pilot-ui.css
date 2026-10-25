@@ -232,6 +232,32 @@ body.pilot-ui .dex-card{padding:24px 32px 84px!important}
 @media(max-height:520px){.pilot-ui .pilot-pause{padding-bottom:72px!important}.pilot-ui .pilot-line-picker{margin-top:4px}.pilot-ui .pilot-line-info{min-height:0}.pilot-ui.in-match .hud .hud-player{height:136px}.pilot-ui.in-match .hud .hud-board{height:190px}.pilot-ui .pilot-detail-tabs button{min-height:36px}}
 
 /* Assis teaches in the same speech balloon as exploration. The arena stays visible. */
+/* Collection commands take their own row; reading never runs underneath them. */
+.pilot-ui #club-collection #collectionCount{display:none}
+.pilot-ui .collection-search:has(.pilot-search),.pilot-ui .dex-search-row:has(.pilot-search){grid-template-columns:minmax(0,1fr)}
+.pilot-ui .pilot-summary-compare{padding:10px;border-left:3px solid #b99b57;background:#e6d9b855;font-size:14px!important;line-height:1.5!important}
+.pilot-ui .account-card:has(#club-collection:not([hidden])){padding-bottom:22px!important}
+.pilot-ui .account-card:has(#club-collection:not([hidden])) .pilot-inventory-footer{position:static;flex:none;margin:8px 10px 0;padding:8px 0 0;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.pilot-ui .pilot-inventory-footer .pilot-command:disabled{opacity:.55;cursor:default}
+@media(max-height:520px) and (min-width:601px){
+ .pilot-ui .account-card[data-club-page=collection] .account-scroll{display:block!important;overflow:auto!important}
+ .pilot-ui .account-card[data-club-page=collection] #accountCollection{display:block}
+ .pilot-ui #club-collection .collection-layout{height:420px;min-height:420px;max-height:420px;overflow:visible;flex:none}
+ .pilot-ui #inventoryDetails{height:420px;min-height:0;max-height:420px}
+}
+@media(max-width:600px){
+ .pilot-ui .account-card[data-club-page=collection] .account-scroll{display:block!important;overflow:auto!important}
+ .pilot-ui .account-card[data-club-page=collection] #accountCollection{display:block}
+ .pilot-ui #club-collection:not([hidden]) .collection-layout{display:flex;flex-direction:column;overflow:visible;gap:14px}
+ .pilot-ui #club-collection .collection-browser{flex:none;overflow:visible}
+ .pilot-ui #inventoryList{min-height:118px;max-height:130px;flex:none;overflow-x:auto;overflow-y:hidden;padding:5px 6px 10px}
+ .pilot-ui #inventoryList .inventory-card{flex:0 0 90px;height:108px;min-height:108px}
+ .pilot-ui #inventoryDetails{overflow:visible!important;min-height:0;flex:none;grid-template-rows:auto 170px auto auto}
+ .pilot-ui #inventoryDetails .pilot-detail-body{overflow:visible;min-height:0}
+ .pilot-ui #inventoryDetails .pilot-detail-page{overflow:visible;min-height:0}
+ .pilot-ui .account-card:has(#club-collection:not([hidden])) .pilot-inventory-footer{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;margin:8px 4px 0}
+ .pilot-ui .pilot-inventory-footer .pilot-command{justify-content:center;min-width:0;font-size:12px;min-height:44px}
+}
 body.pilot-ui.ui-kit-ready .flight-coach{left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translateX(-50%);width:min(900px,calc(100vw - 36px));max-height:45dvh;overflow:auto;padding:18px 24px;background:#fff4d9;border:3px solid #28483f;border-radius:10px 24px 10px 24px;box-shadow:0 5px 0 #173b3d70;color:#253e38}
 body.pilot-ui.ui-kit-ready .flight-coach h2,body.pilot-ui.ui-kit-ready .flight-coach p{color:#253e38!important}
 body.pilot-ui.ui-kit-ready .flight-coach h2{font-size:22px}
@@ -308,6 +334,7 @@ body.ui-kit-ready .starter-selecting #partnerStatus:empty{display:none}
 @media(prefers-reduced-motion:reduce){.starter-selecting .courtyard-stage,body.ui-kit-ready .starter-selecting button.starter-card{transition:none}body.ui-kit-ready .starter-selecting button.starter-card[aria-pressed=true]{transform:none}}
 /* Dueling scene: identities above, partner line/energy below, only your own actions. */
 .fan-attack{display:none}.duel-action-cost{display:none}
+body.in-match:not(.cinematic-battle) .fan-action[aria-disabled=true] .duel-action-cost{display:block;position:absolute;z-index:4;top:38%;left:50%;transform:translateX(-50%);padding:3px 6px;border-radius:5px;background:#15363cef;color:#fff0cd;font:800 12px/1.2 Nunito,sans-serif;white-space:nowrap}
 .duel-hud[hidden]{display:none!important}.duel-hud{position:absolute;inset:0;pointer-events:none;font-family:Nunito,sans-serif;color:#fff0d0;z-index:6}
 .duel-pipeiro{position:absolute;top:18px;left:22px;width:300px;display:flex;align-items:center;gap:11px;padding:7px 18px 7px 6px;min-height:80px;border:2px solid #b39359;background:#102c3bf2;border-radius:9px 22px 9px 22px;box-shadow:inset 0 0 0 2px #294c55,0 4px 0 #071d2980}
 .duel-pipeiro>canvas{width:67px;height:67px;object-fit:contain;border:1px solid #b99a62;background:#294c55;border-radius:9px 18px;flex:none;image-rendering:pixelated}.duel-pipeiro>div{min-width:0;flex:1}.duel-pipeiro b{display:block;font-size:19px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:#fff1d3}.duel-pipeiro small{font-size:11px;color:#cedfd8}.duel-wins{display:block;margin-top:4px;font-size:10px;color:#dfbf81}
@@ -342,6 +369,20 @@ body.in-first-flight.cinematic-battle .flight-coach.is-exercising{top:126px;bott
 body.cinematic-battle .duel-hud canvas{position:static;inset:auto;cursor:default;touch-action:auto;align-self:center}
 body.in-match.cinematic-battle .hud .round-info{position:static;inset:auto;transform:none;margin:0;padding:0;background:none;border:0;border-radius:0;max-width:100%;white-space:normal;text-align:center;line-height:1.2}
 body.in-match.cinematic-battle .hud .timer{position:static;inset:auto;transform:none;margin:0;padding:0}
+/* Time and round are a stack inside the frame, never positioned independently. */
+body.pilot-ui.in-match:not(.cinematic-battle) .hud .hud-clock .timer{position:static;inset:auto;transform:none;min-height:0;margin:0;padding:0;font-size:22px;line-height:24px;flex:none}
+body.pilot-ui.in-match:not(.cinematic-battle) .hud .hud-clock .round-info{position:static;inset:auto;transform:none;margin:0;padding:0;background:none;color:#273d35!important;width:auto;font-size:10px;line-height:12px;white-space:normal;flex:none}
+body.pilot-ui.in-match.cinematic-battle .hud .hud-clock>.hud-panel-content{inset:6px;gap:2px}
+body.pilot-ui.in-match.cinematic-battle .hud .hud-clock .timer{line-height:22px;min-height:0;flex:none}
+body.pilot-ui.in-match.cinematic-battle .hud .hud-clock .round-info{font-size:10px;line-height:12px;flex:none}
+@media(max-width:600px){body.pilot-ui.in-match.cinematic-battle .hud .hud-clock{height:58px}}
+@media(max-width:700px) and (min-height:501px){
+ body.pilot-ui.in-match:not(.cinematic-battle) .hud .hud-player{width:calc(100% - 132px)}
+ body.pilot-ui.in-match:not(.cinematic-battle) .hud .hud-player .bar-row b{font-size:11px;width:34px}
+ body.pilot-ui.in-match:not(.cinematic-battle) .hud .hud-board{width:auto;height:76px;left:8px;right:60px}
+ body.pilot-ui.in-match:not(.cinematic-battle) .hud .hud-clock .round-info{font-size:9px;line-height:11px;white-space:nowrap}
+}
+@media(max-width:600px){body.in-match.cinematic-battle .wild-flee{left:auto;right:8px;bottom:125px;width:min(160px,43vw);min-height:44px;padding:8px 10px;box-sizing:border-box}}
 
 .guardian-hud[hidden],.guardian-intro[hidden]{display:none!important}
 .guardian-hud{position:absolute;z-index:7;top:18px;left:36%;right:82px;padding:11px 22px 8px;background:#102f36f5;border:2px solid #c49a58;border-radius:6px 24px;color:#fff0ce;box-shadow:inset 0 0 0 3px #31545a,0 5px 0 #071f2880;pointer-events:none;font-family:Nunito,sans-serif}

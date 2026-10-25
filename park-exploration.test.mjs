@@ -4,6 +4,21 @@ import fs from 'node:fs';
 import {newParkProgress,parkTransition,fiberIds,encodeParkSave,decodeParkSave,nearestParkAction,parkActions,propOccludesActor} from './src/park-exploration.js';
 import {createParkIsometricScene} from './src/park-isometric-layout.js';
 import {createWorldNavigation} from './src/world-navigation.js';
+import {createParkBossScene} from './src/park-boss-layout.js';
+test('expanded Veredas connects both bridges, two ridge stairs and an optional elevated lookout',()=>{
+ const scene=createParkBossScene(),nav=createWorldNavigation(scene),walk=scene.tiled.layers.Walkable;
+ assert.equal(scene.width,3200);assert.equal(scene.veredas.chests.length,5);
+ const paths=[[[224,816],[960,816],[960,960],[1408,960],[1744,960],[1744,608],[1744,400],[2496,400],[2640,336],[2944,352]],[[224,816],[960,816],[960,1536],[1408,1536],[2448,1536],[2448,608],[2448,400],[2640,336],[2944,352]],[[224,816],[784,816],[784,608],[784,400],[416,432]]];
+ for(const path of paths){const a=nav.create();for(const [x,y]of [...path,...path.toReversed()]){assert.ok(nav.target(a,{x,y}).length,x+','+y);let steps=0;while(a.path.length&&steps++<4000){nav.step(a,.05);assert.ok(nav.geometry.safe(a));assert.ok(nav.geometry.safe(nav.follower(a)));assert.ok(!walk.some(r=>r.properties.encounter_zone&&a.x>=r.x&&a.x<=r.x+r.w&&a.y>=r.y&&a.y<=r.y+r.h),'search grass is optional');}assert.ok(Math.hypot(a.x-x,a.y-y)<.1);}}
+ assert.equal(nav.geometry.level({x:416,y:384}),1);assert.equal(nav.geometry.safe({x:1184,y:1216}),false,'canal has no invisible floor');
+ assert.equal(nav.geometry.segment({x:416,y:704},{x:416,y:496}),false,'cliff cannot be climbed without stairs');
+ for(const action of ['veredasTrace','veredasPipes','veredasNina','veredasChest'])assert.ok(scene.places.some(p=>p.action===action));
+});
+test('guardian courtyard offers a safe rest and every interaction has a walkable return route',()=>{
+ const scene=createParkBossScene(),nav=createWorldNavigation(scene),actor=nav.create(),spawn={...actor};
+ assert.ok(scene.places.some(p=>p.action==='wildRest'));
+ for(const place of scene.places){const point=nav.nodes[place.node];assert.ok(nav.target(actor,point).length,place.name);let steps=0;while(actor.path.length&&steps++<4000)nav.step(actor,.05);assert.ok(Math.hypot(actor.x-point.x,actor.y-point.y)<.1,place.name);assert.ok(nav.target(actor,spawn).length,'return from '+place.name);while(actor.path.length&&steps++<8000)nav.step(actor,.05);assert.ok(Math.hypot(actor.x-spawn.x,actor.y-spawn.y)<.1);}
+});
 test('task requires acceptance, unique explicit collections and complete return before one reward',()=>{
  let p=newParkProgress();assert.deepEqual(parkTransition(p,'collect',fiberIds[0]),p);assert.equal(parkTransition(p,'reward').rewarded,false);
  p=parkTransition(p,'accept');for(const id of fiberIds){const before=structuredClone(p);p=parkTransition(p,'collect',id);assert.equal(before.collected.includes(id),false);assert.deepEqual(parkTransition(p,'collect',id),p);}

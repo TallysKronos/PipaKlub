@@ -10,7 +10,7 @@ function loadDialoguePortrait(url){if(!url)return Promise.resolve(false);if(!dia
 function emphasizeDialogueCopy(box){
  const copy=box.querySelector('#journeySpeech,#openingSpeech'),phrase='seu próprio desenho';if(!copy||copy.querySelector('strong')||!copy.textContent.includes(phrase))return;
  const [prefix,suffix]=copy.textContent.split(phrase),strong=uiElement('strong',phrase);copy.replaceChildren();
- if(prefix.startsWith('Meu filho')&&prefix.endsWith('ao '))copy.append(prefix.slice(0,-3),document.createElement('br'),'ao ');else copy.append(prefix);
+ copy.append(prefix);
  copy.append(strong,suffix);
 }
 function decorateRPGDialogue(box,{speaker,opening=false,coach=false}={}){
@@ -33,21 +33,23 @@ function decorateRPGDialogue(box,{speaker,opening=false,coach=false}={}){
  box.addEventListener('pointerover',e=>{const b=e.target.closest('button');if(box.classList.contains('rpg-choices')&&b&&!b.disabled&&!b.hidden&&document.activeElement!==b)b.focus({preventScroll:true});});
  sync();return sync;
 }
+$('journeyDialog').setAttribute('role','dialog');$('journeyDialog').setAttribute('aria-modal','true');$('journeySpeech').tabIndex=0;
 const syncJourneyDialogue=decorateRPGDialogue($('journeyDialog'),{speaker:()=>$('journeyDialog').dataset.speaker||'Sr. Assis'});
 decorateRPGDialogue($('flightCoach'),{speaker:'Sr. Assis',coach:true});
 const syncOpeningDialogue=decorateRPGDialogue(document.querySelector('#kaelOpening .opening-dialog'),{speaker:()=>$('openingSpeaker').textContent.trim(),opening:true});
 const beforeIllustratedDialogue=dialogue;dialogue=function(...args){
- motherConversationVersion++;$('journeyDialog').querySelector('[data-mother-collection]')?.remove();
+ motherConversationVersion++;$('journeyContinue').hidden=false;$('journeyDialog').dataset.dismissible='false';$('journeyDialog').querySelector('[data-mother-collection]')?.remove();
  const value=beforeIllustratedDialogue(...args);syncJourneyDialogue();return value;
 };
-function motherMission(){return journey?.phase==='complete'?'Vocês já encontraram o vento juntos! Explorem a cidade, conheçam os outros pipeiros e voltem para me contar as novidades.':'Leve seu parceiro para conhecer o Sr. Assis. Ele vai ajudar vocês no primeiro voo. A casa dele fica logo adiante, na Rua dos Ventos.';}
-function openMotherConversation(text='Meu filho… você acabou de dar vida ao seu próprio desenho. Ainda nem acredito!'){
+function motherMemory(){return 'Eu guardei aquela rabiola por tantos anos… Fico feliz que ela tenha encontrado o seu lugar.';}
+function openMotherConversation(text='Meu filho… você acabou de dar vida ao seu próprio desenho. Ainda nem acredito!',remembered=false){
  if(mode||!playerAccount)return;worldClearWalking();const actor=worldState()?.actor;if(actor){actor.path=[];actor.moving=false;}
- dialogue('Conversar com a mãe',text,'O que você quer que eu faça agora?',()=>openMotherConversation(motherMission()),{speaker:'Mãe',later:true});
- const version=motherConversationVersion,actions=$('journeyDialog').querySelector('.journey-actions'),collection=uiElement('button','Quero mostrar meus Pipamons!','secondary');
+ dialogue('Conversar com a mãe',text,'Sobre a Rabiola Antiga…',()=>openMotherConversation(motherMemory(),true),{speaker:'Mãe',later:true});
+ $('journeyDialog').dataset.dismissible='true';$('journeyContinue').hidden=remembered;
+ const version=motherConversationVersion,actions=$('journeyDialog').querySelector('.journey-actions'),collection=uiElement('button','Quero mostrar meus Pipamons.','secondary');
  collection.type='button';collection.dataset.motherCollection='';collection.onclick=()=>{if(version!==motherConversationVersion)return;hideJourney();homeActions.collection();};
- actions.prepend($('journeyContinue'),collection);$('journeyLater').textContent='Vou sair para explorar a cidade.';
- $('journeyLater').onclick=()=>{hideJourney();$('courtyardCanvas').focus({preventScroll:true});};syncJourneyDialogue();$('journeyContinue').focus({preventScroll:true});
+ actions.prepend($('journeyContinue'),collection);$('journeyLater').textContent='Até mais, mãe.';
+ $('journeyLater').onclick=()=>{hideJourney();$('courtyardCanvas').focus({preventScroll:true});};syncJourneyDialogue();(remembered?collection:$('journeyContinue')).focus({preventScroll:true});
 }
 function openOpeningDialogue(speaker,text){
  openingMotherTalking=true;openingClearWalking();$('openingSpeaker').textContent=speaker;$('openingSpeech').textContent=text;$('openingNext').hidden=false;$('openingNext').disabled=false;$('openingNext').textContent='Continuar';syncOpeningDialogue();$('openingNext').focus({preventScroll:true});
@@ -58,6 +60,12 @@ const beforeIllustratedOpeningReset=openingResetRoom;openingResetRoom=function(.
 addEventListener('keydown',event=>{
  const box=$('journeyDialog');if(box.hidden||!box.classList.contains('rpg-dialogue')||event.ctrlKey||event.altKey||event.metaKey||event.target.closest?.('input,textarea,select'))return;
  const choices=[...box.querySelectorAll('.journey-actions button')].filter(b=>!b.hidden&&!b.disabled);
- if(['ArrowUp','ArrowDown'].includes(event.key)&&choices.length){event.preventDefault();event.stopImmediatePropagation();const i=choices.indexOf(document.activeElement),step=event.key==='ArrowDown'?1:-1;choices[(i<0?0:(i+step+choices.length)%choices.length)].focus({preventScroll:true});}
- if(event.key==='Enter'&&event.target.tagName!=='BUTTON'&&!event.repeat){event.preventDefault();event.stopImmediatePropagation();choices[0]?.click();}
+ if(event.key==='Enter'&&event.repeat){event.preventDefault();event.stopImmediatePropagation();return;}
+ const copy=$('journeySpeech');
+ if(event.key==='Tab'&&choices.length){const focusables=copy.scrollHeight>copy.clientHeight+1?[copy,...choices]:choices,first=focusables[0],last=focusables.at(-1);if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus({preventScroll:true});}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus({preventScroll:true});}event.stopImmediatePropagation();return;}
+ if(event.key==='Escape'){
+  event.preventDefault();event.stopImmediatePropagation();if(box.dataset.dismissible==='true'||!$('journeyLater').hidden&&$('journeyLater').onclick===hideJourney){hideJourney();$('courtyardCanvas').focus({preventScroll:true});}return;
+ }
+ if(['ArrowUp','ArrowDown'].includes(event.key)&&choices.length&&event.target!==copy){event.preventDefault();event.stopImmediatePropagation();const i=choices.indexOf(document.activeElement),step=event.key==='ArrowDown'?1:-1;choices[(i<0?(step>0?0:choices.length-1):(i+step+choices.length)%choices.length)].focus({preventScroll:true});}
+ if(event.key==='Enter'&&event.target.tagName!=='BUTTON'&&event.target!==copy){event.preventDefault();event.stopImmediatePropagation();choices[0]?.click();}
 },true);

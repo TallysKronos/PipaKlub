@@ -13,7 +13,7 @@ function worldSyncRoadGate(){
  if(!gate)return;const existing=solids.findIndex(r=>r.properties.dynamic_road_gate);
  if(closed&&existing<0)solids.push({...gate,id:-100,properties:{...gate.properties,hidden:true,dynamic_road_gate:true}});
  if(!closed&&existing>=0)solids.splice(existing,1);
- const state=worldState();state.roadGateClosed=closed;state.roadGate=gate;if(state.roadGateSignature!==status.state){state.roadGateSignature=status.state;worldRuntime.missionKey=null;if($('worldDestination'))renderWorldDestinations();}
+ const state=worldState();state.roadGateClosed=closed;state.roadGate=gate;if(state.roadGateSignature!==status.state){state.roadGateSignature=status.state;worldRuntime.missionKey=null;}
 }
 function drawWorldRoadGate(g){
  const state=worldState(),r=state.roadGate;if(!state.roadGateClosed||!r)return;

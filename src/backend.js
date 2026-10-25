@@ -74,7 +74,7 @@ async function openQuickRoom(env,now){
   return s.phase==='waiting'||(s.phase!=='live'&&s.players.some(p=>p.bot))?code:null;
 }
 async function createRoom(request,env,b,now,daily=false,trailId=null,wildZone=null){
-  if(wildZone!==null&&!['park-trail','park-clearing','park-veredas'].includes(wildZone))throw Object.assign(Error('Exploração: área inválida.'),{status:400});
+  if(wildZone!==null&&!['park-trail','park-clearing','park-veredas','park-veredas-wild'].includes(wildZone))throw Object.assign(Error('Exploração: área inválida.'),{status:400});
   const stage=trailId!==null?serverTrails.stage(trailId):null;if(trailId!==null&&!stage)throw Object.assign(Error('Etapa inválida.'),{status:400});
   if(stage&&!serverTrails.available(stage.id))throw Object.assign(Error('Este bairro chega na versão completa. A demo inclui o Morro do Sol e as partidas online.'),{status:403});
   const code=crypto.randomUUID().replaceAll('-','').slice(0,6).toUpperCase(),token=crypto.randomUUID(),s=engine.create(now,{mode:b.mode,quick:b.quick,roundsToWin:wildZone?1:stage?stage.rounds:daily?2:3});

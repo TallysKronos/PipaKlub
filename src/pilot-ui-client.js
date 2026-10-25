@@ -127,13 +127,13 @@ if($('openingSpeaker')){
 
 // ---------------------------------------------------------------- collection and Dex
 // Filters become tabs (LB/RB, Q/E); search is an optional command; details follow the focus;
-// confirming on the focused, already-selected card is the explicit "equip".
+// the footer is the explicit equip action.
 function pilotTabs(select,host){
  if(!select||select.dataset.pilot)return;select.dataset.pilot='true';
  const bar=document.createElement('div');bar.className='pilot-tabs';bar.setAttribute('role','tablist');
  const sync=()=>{for(const t of bar.querySelectorAll('[role=tab]')){const on=t.dataset.value===select.value;t.setAttribute('aria-selected',String(on));if(on)t.scrollIntoView?.({block:'nearest',inline:'nearest'});}};
  for(const o of select.options){const t=document.createElement('button');t.type='button';t.setAttribute('role','tab');t.dataset.value=o.value;t.textContent=o.textContent;t.onclick=()=>{select.value=o.value;select.dispatchEvent(new Event('change',{bubbles:true}));sync();};bar.append(t);}
- host.before(bar);select.closest('label,div')?.classList.add('pilot-hidden-control');sync();select.addEventListener('change',sync);bar.sync=sync;
+ host.before(bar);const label=select.closest('label');if(label)label.classList.add('pilot-hidden-control');else{select.classList.add('pilot-hidden-control');select.parentElement.querySelector('label[for="'+select.id+'"]')?.classList.add('pilot-hidden-control');}sync();select.addEventListener('change',sync);bar.sync=sync;
  return bar;
 }
 function pilotStep(bar,step){const tabs=[...bar.querySelectorAll('[role=tab]')],i=tabs.findIndex(t=>t.getAttribute('aria-selected')==='true'),n=tabs[(Math.max(0,i)+step+tabs.length)%tabs.length];n.click();}
@@ -144,10 +144,11 @@ function pilotSearch(input,label){
 function pilotCollectionFooter(host,items){const f=document.createElement('footer');f.className='pilot-footer pilot-footer-inline';f.append(...items.map(([c,l,fn])=>pilotCommand(c,l,fn)));host.append(f);return f;}
 let invTabs=null,dexTabs=null,invSearch=null,dexSearch=null,invPages=null,dexPages=null;
 function pilotWireCollection(){
- if(!invTabs&&$('inventoryFilter')&&$('inventoryList')){invTabs=pilotTabs($('inventoryFilter'),$('inventoryList'));invSearch=pilotSearch($('inventorySearch'));pilotCollectionFooter($('inventoryList').closest('.account-card')||$('inventoryList').parentElement,[['confirm','Equipar',()=>$('inventoryEquip')?.click()],['actionX','Histórico',()=>$('inventoryHistory')?.click()],['actionY','Buscar',()=>invSearch?.()],['tabLeft','',()=>invPages?.step(-1)],['tabRight','Ficha',()=>invPages?.step(1)],['back','Voltar',()=>closeAccount()]]).classList.add('pilot-inventory-footer');
+ if(!invTabs&&$('inventoryFilter')&&$('inventoryList')){invTabs=pilotTabs($('inventoryFilter'),$('inventoryList'));invSearch=pilotSearch($('inventorySearch'));pilotCollectionFooter($('inventoryList').closest('.account-card')||$('inventoryList').parentElement,[['confirm','Equipar',()=>$('inventoryEquip')?.click()],['actionX','Histórico',()=>$('inventoryHistory')?.click()],['actionY','Buscar',()=>invSearch?.()],['tabLeft','Anterior',()=>invPages?.step(-1)],['tabRight','Próxima',()=>invPages?.step(1)],['back','Voltar',()=>closeAccount()]]).classList.add('pilot-inventory-footer');
   // The footer mirrors the real equip button: same label, same disabled state.
   const equip=$('inventoryEquip'),cmd=document.querySelector('.pilot-inventory-footer .pilot-command');
-  if(equip&&cmd){const sync=()=>{cmd.disabled=equip.disabled;cmd.lastChild.textContent=equip.disabled&&/equipada/i.test(equip.textContent)?'Equipada':'Equipar';};new MutationObserver(sync).observe(equip,{attributes:true,childList:true,characterData:true,subtree:true});sync();}}
+  if(equip&&cmd){cmd.id='inventoryEquipCommand';const footer=cmd.closest('footer'),commands=[...footer.querySelectorAll('.pilot-command')];const sync=()=>{const empty=$('inventoryDetails').hidden;cmd.disabled=empty||equip.disabled;cmd.lastChild.textContent=empty?'Selecionar':equip.disabled&&/equipada/i.test(equip.textContent)?'Em uso':'Equipar';for(const i of [1,3,4])if(commands[i])commands[i].disabled=empty;};new MutationObserver(sync).observe(equip,{attributes:true,childList:true,characterData:true,subtree:true});new MutationObserver(sync).observe($('inventoryDetails'),{attributes:true,attributeFilter:['hidden']});sync();}}
+
  if(!dexTabs&&$('dexFilter')&&$('dexList')){dexTabs=pilotTabs($('dexFilter'),$('dexList'));dexSearch=pilotSearch($('dexSearch'));}
 }
 pilotWireCollection();new MutationObserver(pilotWireCollection).observe(document.body,{childList:true,subtree:true});
@@ -188,6 +189,9 @@ pilotWireCollection();new MutationObserver(pilotWireCollection).observe(document
   const stats=uiElement('dl',undefined,'pilot-summary-stats');
   for(const [name,value]of [['Linha',p.stats.line],['Energia',p.stats.energy]]){const item=uiElement('div');item.append(uiElement('dt',name),uiElement('dd',String(value)));stats.append(item);}
   summary.append(stats,uiElement('p',p.next===null?'Nível máximo':p.into+' / '+p.needed+' XP para o próximo nível','pilot-summary-xp'));
+  const equipped=playerAccount.inventory.find(k=>k.id===playerAccount.profile.equipped_kite_id);
+  if(equipped&&equipped.id!==kite.id){const current=pipamonProgress(equipped),delta=n=>(n>0?'+':'')+n;summary.append(uiElement('p','Comparado a '+(equipped.personal_name||equipped.model.name)+' em uso: linha '+delta(p.stats.line-current.stats.line)+' · energia '+delta(p.stats.energy-current.stats.energy)+'.','pilot-summary-compare'));}
+
   const skill=uiElement('div',undefined,'pilot-summary-skill');skill.append(uiElement('b',$('inventorySkill').textContent),uiElement('p',$('inventorySkillDescription').textContent));summary.append(skill);
   return pending;
  };
@@ -205,10 +209,9 @@ function pilotLandOnCard(list,selector){
  (list.querySelector(selector+'[aria-pressed=true]')||list.querySelector(selector))?.focus({preventScroll:true});
 }
 for(const [id,sel] of [['inventoryList','.inventory-card'],['dexList','button']]){const list=$(id);if(list)new MutationObserver(()=>setTimeout(()=>pilotLandOnCard(list,sel),0)).observe(list,{childList:true});}
-// Details follow the focus; a confirm on the card that is already shown equips it.
+// Browsing selects a preview. Equipping always uses the explicit action.
 document.addEventListener('focusin',e=>{const card=e.target.closest?.('#inventoryList .inventory-card,#dexList button');if(card&&card.getAttribute('aria-pressed')!=='true')card.click();});
-document.addEventListener('click',e=>{const card=e.target.closest?.('#inventoryList .inventory-card');if(!card||e.detail!==0)return;if(card.dataset.pilotShown==='true'){const equip=$('inventoryEquip');if(equip&&!equip.disabled){e.stopPropagation();equip.click();}}card.dataset.pilotShown='true';},true);
-document.addEventListener('focusout',e=>{const card=e.target.closest?.('#inventoryList .inventory-card');if(card)delete card.dataset.pilotShown;});
+
 addEventListener('keydown',e=>{
  if(/INPUT|TEXTAREA|SELECT/.test(e.target?.tagName||''))return;const key=e.key.toLowerCase();
  const inv=$('inventoryList')?.offsetParent?invTabs:null,dex=$('dexList')?.offsetParent?dexTabs:null,bar=inv||dex;if(!bar)return;

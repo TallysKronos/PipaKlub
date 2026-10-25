@@ -83,8 +83,7 @@ function openPlazaMissions(){
  const button=uiElement('button',m.action==='demo'?'Ver conclusão da demo':m.action==='professor'?'Falar com o Sr. Assis':'Abrir mapa da cidade','primary');button.onclick=()=>{closeModal();homeActions[m.action]()};body.append(button);
  modalReturnFocus=origin;button.focus({preventScroll:true});
 }
-async function openPlazaBag(){
- const origin=document.activeElement;
+async function openPlazaBag(origin=document.activeElement){
  modal('Sua mochila','<p id="plazaBagStatus" role="status">Buscando suas rabiolas…</p><div id="plazaBagItems" class="plaza-bag-items"></div>','Voltar ao passeio','Itens da conta');
  const container=$('plazaBagItems'),status=$('plazaBagStatus'),owner=playerAccount?.profile.id;
  modalReturnFocus=origin;$('dialogAction').focus({preventScroll:true});
@@ -95,6 +94,6 @@ async function openPlazaBag(){
   const groups=new Map();for(const tail of tails){const key=tail.modelId+':'+tail.status;if(!groups.has(key))groups.set(key,{tail,count:0});groups.get(key).count++;}
   for(const {tail,count}of groups.values()){const card=uiElement('article',undefined,'plaza-bag-item');card.append(summonTailArt(tail.modelId),uiElement('b','Rabiola de '+summonDisplayName(tail)),uiElement('span','×'+count,'plaza-bag-quantity'),uiElement('small',tail.status==='ready'?'Pronta para montagem':'Danificada'));container.append(card);}
   const go=uiElement('button','Visitar o artesão','primary');go.onclick=()=>{closeModal();homeActions.summon()};container.after(go);
- }catch(e){if(owner!==playerAccount?.profile.id||$('plazaBagItems')!==container)return;status.textContent=e.message||'Não foi possível carregar a mochila.';const retry=uiElement('button','Tentar novamente','secondary');retry.onclick=openPlazaBag;container.append(retry);}
+ }catch(e){if(owner!==playerAccount?.profile.id||$('plazaBagItems')!==container)return;status.textContent=e.message||'Não foi possível carregar a mochila.';const retry=uiElement('button','Tentar novamente','secondary');retry.onclick=()=>openPlazaBag(origin);container.append(retry);}
 }
 initPlaza();

@@ -4,7 +4,7 @@ const portraitObserver=typeof IntersectionObserver==='function'?new Intersection
 function pipamonPortrait(entry){
  const node=uiElement('span',undefined,'pipamon-portrait');node.setAttribute('aria-hidden','true');
  if(!entry)return node;
- const a=art.atlases[entry.atlas],f=a.frames[a.animations[entry.sequence||'idle'][0]].frame,[x,y,size]=ART_CONFIG.portraits[entry.id].crop,W=a.meta.size.w,H=a.meta.size.h;
+ const a=art.atlases[entry.atlas],f=a.frames[a.animations[entry.sequence||'idle'][0]].frame,[x,y,size]=(ART_CONFIG.portraits[entry.id]?.crop||[0,0,Math.min(f.w,f.h)]),W=a.meta.size.w,H=a.meta.size.h;
  node.dataset.portrait=entry.id;node.dataset.portraitUrl=a.meta.url;
  node.style.backgroundSize=W/size*100+'% '+H/size*100+'%';node.style.backgroundPosition=(f.x+x)/(W-size)*100+'% '+(f.y+y)/(H-size)*100+'%';
  if(portraitObserver)portraitObserver.observe(node);else node.style.backgroundImage='url("'+a.meta.url+'")';return node;
@@ -30,7 +30,7 @@ async function selectInventory(kite){
  $('inventoryLore').replaceChildren(...(e?.story||[]).map(text=>uiElement('p',text)));
  $('inventoryCaptures').textContent=(kite.capture_count||0)+' transferências em Vale pipa · não conta vitórias da história';$('inventoryHabitat').textContent=e?.habitat||'Céus de Kronasta';
  const equip=$('inventoryEquip');equip.textContent=equipped?'Já está equipada':'Equipar Pipamon';equip.disabled=accountSaving||equipped||!!mode;
- equip.onclick=()=>equipInventory(kite);$('inventoryHistory').onclick=()=>{stopInventoryPreview();openKiteStory(kite);};
+ equip.onclick=()=>equipInventory(kite);$('inventoryHistory').disabled=false;$('inventoryHistory').onclick=()=>{stopInventoryPreview();openKiteStory(kite);};
  $('inventoryCanvas').setAttribute('aria-label',(kite.personal_name||kite.model.name)+' — corpo inteiro animado');
  const version=++inventoryPreviewVersion;$('inventoryLoad').textContent='Carregando seu parceiro…';drawInventoryPreview();
  const loaded=e&&await art.load(e.atlas);if(version!==inventoryPreviewVersion)return;
@@ -42,7 +42,7 @@ function renderInventory(){
  const items=playerAccount.inventory.filter(k=>normalize((k.personal_name||'')+' '+k.model.name).includes(q)&&(filter==='all'||filter==='story'&&k.model_id==='rabbito'||filter==='event'&&k.model.acquisition==='event'&&k.model_id!=='rabbito'||filter==='equipped'&&k.id===p.equipped_kite_id));
  releasePipamonPortraits($('inventoryList'));$('inventoryList').replaceChildren(...items.map(k=>{const card=uiElement('button',undefined,'inventory-card portrait-card'+(k.id===p.equipped_kite_id?' equipped':''));card.type='button';card.dataset.kiteId=k.id;card.setAttribute('aria-pressed',String(k.id===inventorySelection));card.setAttribute('aria-label',(k.personal_name||k.model.name)+(k.id===p.equipped_kite_id?' · equipada':''));card.append(pipamonPortrait(inventoryDexEntry(k)),uiElement('b',k.personal_name||k.model.name),uiElement('small','Nv. '+pipamonProgress(k).level+' · '+(k.id===p.equipped_kite_id?'Equipada · ':'')+(k.model_id==='rabbito'?'Parceiro da história':k.model.acquisition==='event'?'Especial de evento':k.permanent?'Permanente':'Colecionável')));card.onclick=()=>selectInventory(k);return card;}));
  $('inventoryEmpty').hidden=items.length>0;$('inventoryResults').textContent=items.length+' de '+playerAccount.inventory.length+' Pipamons';
- if(items.length)selectInventory(items.find(k=>k.id===inventorySelection)||items.find(k=>k.id===p.equipped_kite_id)||items[0]);else{$('inventoryDetails').hidden=true;inventoryPreviewVersion++;stopInventoryPreview();}
+ if(items.length)selectInventory(items.find(k=>k.id===inventorySelection)||items.find(k=>k.id===p.equipped_kite_id)||items[0]);else{$('inventoryDetails').hidden=true;$('inventoryEquip').disabled=true;$('inventoryHistory').disabled=true;inventoryPreviewVersion++;stopInventoryPreview();}
 }
 function menuSkinPanel(panel){
  if(panel.dataset.menuSkinned)return;panel.dataset.menuSkinned='true';panel.classList.add('menu-skinned');

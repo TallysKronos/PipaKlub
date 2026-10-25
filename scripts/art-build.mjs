@@ -36,6 +36,7 @@ export function artConfig(){
  for(const file of plaza.files){const image='hub/praca-v1/'+file,hash=createHash('sha256').update(fs.readFileSync(path.join('assets',image))).digest('hex').slice(0,12);images['plaza-'+file.replace('.png','')]={image,url:'assets/'+image+'?v='+hash};}
  const world=JSON.parse(fs.readFileSync('assets/world/identity-v2/manifest.json','utf8'));
  world.actors=JSON.parse(fs.readFileSync('assets/characters/overworld-v1/manifest.json','utf8'));
+ world.actors.characters.nina=JSON.parse(fs.readFileSync('assets/characters/nina-v1/manifest.json','utf8'));
  world.companions=JSON.parse(fs.readFileSync('assets/creatures/overworld-v1/manifest.json','utf8'));
  for(const [id,actor]of Object.entries(world.companions.species)){const image=actor.image,hash=createHash('sha256').update(fs.readFileSync(path.join('assets',image))).digest('hex').slice(0,12);images['world-companion-'+id]={image,url:'assets/'+image+'?v='+hash};}
  const mom=JSON.parse(fs.readFileSync('assets/story/kael-birthday-v1/manifest.json','utf8'));world.actors.characters.mother={name:'Mãe',image:mom.images.mother.image,frames:mom.actors.mother.frames.map(f=>({...f,footAnchor:{x:f.bounds.x+f.bounds.w/2,y:f.bounds.y+f.bounds.h}})),referenceHeight:Math.max(...mom.actors.mother.frames.map(f=>f.bounds.h))};

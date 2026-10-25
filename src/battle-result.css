@@ -19,6 +19,8 @@
 #modal.battle-result #dialogAction{min-height:48px;margin-top:12px;width:100%}
 #modal.battle-result .dialog-footer #dialogAction{margin-top:0;width:auto}
 .battle-result-progress:empty{display:none}.battle-result-xp{display:grid;grid-template-columns:58px minmax(0,1fr);gap:14px;padding:10px 0;border-bottom:1px solid #b58c4a44;align-items:center}
+.battle-result-xp .battle-result-xp-total{text-align:right;margin:4px 0 0;font-variant-numeric:tabular-nums}
+body:has(#modal.battle-result) .hud,body:has(#modal.battle-result) .game-side,body:has(#modal.battle-result) #combatReadout{visibility:hidden;pointer-events:none}
 .battle-result-xp canvas{width:58px;height:58px;background:#254653;border:1px solid #bda673;border-radius:7px;image-rendering:pixelated}
 .battle-result-xp-copy>div:first-child{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}.battle-result-xp b{font:900 15px Nunito,sans-serif}.battle-result-xp strong{font:900 17px Nunito,sans-serif;color:#087d65}.battle-result-xp small{display:block;font:700 12px Nunito,sans-serif;margin:2px 0 5px}.battle-result-xp-meter{height:11px;background:#bcae9380;border:1px solid #947844;border-radius:4px;overflow:hidden}.battle-result-xp-meter i{display:block;height:100%;background:linear-gradient(#9fe2b1,#39a988);transition:width .7s ease}.battle-result-xp:nth-child(2) .battle-result-xp-meter i{background:linear-gradient(#a4dfe8,#43a9cc)}
 .battle-result-tip{margin:16px 0 4px;padding:12px 16px;border:1px solid #b88c57;border-radius:8px;background:#eed5ab88}.battle-result-tip b{font:900 13px Nunito,sans-serif;text-transform:uppercase}.battle-result-tip p{font-size:13px!important;line-height:1.5!important;margin:4px 0 0}

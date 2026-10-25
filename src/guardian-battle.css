@@ -47,7 +47,7 @@ body.pilot-ui.in-match.guardian-battle .hud .hud-clock{top:168px;right:76px;bord
  .guardian-crest{left:-24px;top:-4px;width:82px;height:94px}
  .guardian-heading{grid-template-columns:1fr}.guardian-heading span{grid-column:1;font-size:8px;letter-spacing:.6px}.guardian-heading b{text-align:left;font-size:25px}
  .guardian-hud p{font-size:10px}.guardian-vital{margin-top:5px;gap:8px}.guardian-vital [role=meter]{height:13px}
- body.pilot-ui.in-match.guardian-battle .hud .hud-clock{top:215px;right:12px;height:38px}
+ body.pilot-ui.in-match.guardian-battle .hud .hud-clock{top:215px;right:12px;height:58px}
  .guardian-intro{top:47%;padding:20px 10px;border-width:22px 30px;border-image-width:28px 36px;width:92%}
  .guardian-intro h2{font-size:clamp(30px,8.8vw,48px);letter-spacing:0}.guardian-intro p{font-size:12px;letter-spacing:1px}.guardian-intro small{font-size:11px}.guardian-risk{font-size:9px;letter-spacing:2px;margin-bottom:8px}.guardian-warning-tape{height:10px}
 }

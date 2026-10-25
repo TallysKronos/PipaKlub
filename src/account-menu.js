@@ -14,8 +14,8 @@ const duelsPage=clubPage('history'),duels=$('recentMatches');duelsPage.append(du
 clubPage('trades').append(tradePanel);
 summonEntry.hidden=true;clubPage('summon').append(summonEntry,summonRoom);
 const farmPage=clubPage('farm');
-const clubTitles={home:'Seu cantinho no clube',collection:'Minhas pipas',trades:'Trocas por convite',summon:'Oficina das Almas',farm:'Fazenda de Pipamons',profile:'Meu perfil',history:'Meus duelos',events:'Souls de evento'};
-const clubEntries=[['collection','Minhas pipas','Equipe e conheça sua coleção.',0],['trades','Trocas','Uma pipa, um novo encontro.',1],['summon','Oficina das Almas','Encontre o Sr. Assis.',2],['farm','Fazenda de Pipamons','Veja sua coleção passeando.',3],['profile','Meu perfil','Nome e progresso no clube.',4],['history','Meus duelos','Relembre suas partidas.',5]];
+const clubTitles={home:'Seu cantinho no clube',collection:'Meus Pipamons',trades:'Trocas por convite',summon:'Oficina das Almas',farm:'Fazenda de Pipamons',profile:'Meu perfil',history:'Meus duelos',events:'Souls de evento'};
+const clubEntries=[['collection','Meus Pipamons','Equipe e conheça sua coleção.',0],['trades','Trocas','Uma pipa, um novo encontro.',1],['summon','Oficina das Almas','Encontre o Sr. Assis.',2],['farm','Fazenda de Pipamons','Veja sua coleção passeando.',3],['profile','Meu perfil','Nome e progresso no clube.',4],['history','Meus duelos','Relembre suas partidas.',5]];
 for(const [id,title,description,index] of clubEntries){
  const button=uiElement('button',undefined,'club-tile');button.type='button';button.dataset.page=id;
  const illustration=uiElement('span',undefined,'club-tile-art');illustration.setAttribute('aria-hidden','true');illustration.style.backgroundImage=`url("${ART_CONFIG.menu[id].url}")`;

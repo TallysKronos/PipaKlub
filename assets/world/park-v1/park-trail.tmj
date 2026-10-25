@@ -238,7 +238,7 @@
         },
         {
           "id": 40,
-          "name": "Habitat de capim 1",
+          "name": "Capim da encosta",
           "x": 742,
           "y": 324,
           "width": 350,
@@ -258,12 +258,17 @@
               "name": "encounter_zone",
               "type": "string",
               "value": "park-trail"
+            },
+            {
+              "name": "habitat_id",
+              "type": "string",
+              "value": "jardim-encosta"
             }
           ]
         },
         {
           "id": 41,
-          "name": "Lóbulo do habitat 1",
+          "name": "Lobulo da encosta",
           "x": 766,
           "y": 300,
           "width": 290,
@@ -283,12 +288,17 @@
               "name": "encounter_zone",
               "type": "string",
               "value": "park-trail"
+            },
+            {
+              "name": "habitat_id",
+              "type": "string",
+              "value": "jardim-encosta"
             }
           ]
         },
         {
           "id": 42,
-          "name": "Borda do habitat 1",
+          "name": "Borda da encosta",
           "x": 756,
           "y": 340,
           "width": 308,
@@ -308,12 +318,17 @@
               "name": "encounter_zone",
               "type": "string",
               "value": "park-trail"
+            },
+            {
+              "name": "habitat_id",
+              "type": "string",
+              "value": "jardim-encosta"
             }
           ]
         },
         {
           "id": 43,
-          "name": "Habitat de capim 2",
+          "name": "Capim do recanto arborizado",
           "x": 160,
           "y": 364,
           "width": 144,
@@ -333,12 +348,17 @@
               "name": "encounter_zone",
               "type": "string",
               "value": "park-trail"
+            },
+            {
+              "name": "habitat_id",
+              "type": "string",
+              "value": "jardim-recanto"
             }
           ]
         },
         {
           "id": 44,
-          "name": "Lóbulo do habitat 2",
+          "name": "Lobulo do recanto",
           "x": 184,
           "y": 340,
           "width": 84,
@@ -358,12 +378,17 @@
               "name": "encounter_zone",
               "type": "string",
               "value": "park-trail"
+            },
+            {
+              "name": "habitat_id",
+              "type": "string",
+              "value": "jardim-recanto"
             }
           ]
         },
         {
           "id": 45,
-          "name": "Borda do habitat 2",
+          "name": "Borda do recanto",
           "x": 174,
           "y": 380,
           "width": 102,
@@ -383,16 +408,21 @@
               "name": "encounter_zone",
               "type": "string",
               "value": "park-trail"
+            },
+            {
+              "name": "habitat_id",
+              "type": "string",
+              "value": "jardim-recanto"
             }
           ]
         },
         {
           "id": 46,
-          "name": "Habitat de capim 3",
-          "x": 1032,
-          "y": 728,
-          "width": 284,
-          "height": 128,
+          "name": "Capim do campo aberto",
+          "x": 752,
+          "y": 664,
+          "width": 264,
+          "height": 72,
           "properties": [
             {
               "name": "level",
@@ -408,16 +438,21 @@
               "name": "encounter_zone",
               "type": "string",
               "value": "park-trail"
+            },
+            {
+              "name": "habitat_id",
+              "type": "string",
+              "value": "jardim-campo"
             }
           ]
         },
         {
           "id": 47,
-          "name": "Lóbulo do habitat 3",
-          "x": 1056,
-          "y": 704,
-          "width": 224,
-          "height": 152,
+          "name": "Lobulo do campo",
+          "x": 776,
+          "y": 640,
+          "width": 204,
+          "height": 96,
           "properties": [
             {
               "name": "level",
@@ -433,16 +468,21 @@
               "name": "encounter_zone",
               "type": "string",
               "value": "park-trail"
+            },
+            {
+              "name": "habitat_id",
+              "type": "string",
+              "value": "jardim-campo"
             }
           ]
         },
         {
           "id": 48,
-          "name": "Borda do habitat 3",
-          "x": 1046,
-          "y": 744,
-          "width": 242,
-          "height": 128,
+          "name": "Borda do campo",
+          "x": 766,
+          "y": 680,
+          "width": 222,
+          "height": 72,
           "properties": [
             {
               "name": "level",
@@ -458,6 +498,67 @@
               "name": "encounter_zone",
               "type": "string",
               "value": "park-trail"
+            },
+            {
+              "name": "habitat_id",
+              "type": "string",
+              "value": "jardim-campo"
+            }
+          ]
+        },
+        {
+          "id": 49,
+          "name": "Volta pelo campo aberto",
+          "type": "",
+          "x": 592,
+          "y": 768,
+          "width": 624,
+          "height": 112,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "dirt"
+            },
+            {
+              "name": "safe_area",
+              "type": "bool",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": 50,
+          "name": "Ramo leste do circuito",
+          "type": "",
+          "x": 1088,
+          "y": 520,
+          "width": 128,
+          "height": 304,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "ground_frame",
+              "type": "string",
+              "value": "dirt"
+            },
+            {
+              "name": "safe_area",
+              "type": "bool",
+              "value": true
             }
           ]
         }
@@ -967,6 +1068,75 @@
               "value": 626
             }
           ]
+        },
+        {
+          "id": 51,
+          "name": "park-tree-b",
+          "type": "",
+          "x": 721,
+          "y": 592,
+          "width": 38,
+          "height": 28,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 620
+            }
+          ]
+        },
+        {
+          "id": 52,
+          "name": "park-tree-b",
+          "type": "",
+          "x": 893,
+          "y": 586,
+          "width": 38,
+          "height": 28,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 614
+            }
+          ]
+        },
+        {
+          "id": 53,
+          "name": "park-tree-b",
+          "type": "",
+          "x": 989,
+          "y": 592,
+          "width": 38,
+          "height": 28,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "level",
+              "type": "int",
+              "value": 0
+            },
+            {
+              "name": "sort_y",
+              "type": "int",
+              "value": 620
+            }
+          ]
         }
       ]
     },
@@ -1153,6 +1323,17 @@
       "name": "terrain_edge_mode",
       "type": "string",
       "value": "none"
+    },
+    {
+      "name": "exploration_layout",
+      "type": "string",
+      "value": "garden-circuit-v1"
+    },
+    {
+      "name": "prefer_safe_paths",
+      "type": "bool",
+      "value": true
     }
-  ]
+  ],
+  "nextobjectid": 54
 }

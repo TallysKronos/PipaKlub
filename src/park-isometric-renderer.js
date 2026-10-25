@@ -1,3 +1,4 @@
+import {createVeredasRegionRenderer} from './veredas-region-renderer.js';
 import {toIso,fromIso,depthOrder} from './world-isometric.js';
 import {worldTerrainContours} from './world-art.js';
 import {parkFixtures,parkFenceRuns} from './park-isometric-layout.js';
@@ -5,6 +6,7 @@ import {createTallGrass} from './world-tall-grass.js';
 import {drawTallGrass,drawTallGrassParticles} from './world-tall-grass-renderer.js';
 // The approved park illustration, rendered over the canonical orthogonal physics.
 export function createParkIsometricRenderer(scene,images,pack,model,createCanvas=()=>document.createElement('canvas')){
+ if(scene.tiled.properties.veredas_region)return createVeredasRegionRenderer(scene,images,pack,model,createCanvas);
  const {sample,render,matrices,point}=model,rigs=pack.rigs;
  let g,actor,ground,board,props,grass,wind=0,paused=false,hitAreas=[];
  const hitsBox=(p,b)=>p.x>=b.x&&p.x<=b.x+b.w&&p.y>=b.y&&p.y<=b.y+b.h;
@@ -26,7 +28,7 @@ function groundPaint(){
   else for(let i=0;i<220;i++){c.fillStyle='#d6ac68';c.fillRect(rand()*1536,rand()*1024,3,2);}
   c.restore();
  }
- // Habitat contours remain in the same place as the original game.
+ // Habitat contours follow the authored search patches, including redesigned routes.
  const habitats=walk.filter(r=>r.properties.encounter_zone);path(worldTerrainContours(habitats),28);c.fillStyle='#6e984e';c.fill();c.save();c.clip();
  c.restore();
  grass=createTallGrass(habitats);
@@ -43,9 +45,11 @@ function buildProps(){
   out.push({x:1220,y:626,type:'kite',rig:'kite',w:130,lift:325,level:0});
  }else{
   // Dense illustrated hedge runs: same footprint as the blocking rectangles.
-  for(const r of scene.tiled.layers.Solids){const n=Math.ceil(r.w/64),m=Math.ceil(r.h/52);for(let i=0;i<n;i++)for(let j=0;j<m;j++)out.push({x:r.x+(i+.5)*r.w/n,y:r.y+(j+1)*r.h/m,type:'shrub',w:88,level:0});}
-  out.push({x:336,y:812,type:'sign',action:'map',w:100,level:0},{x:1120,y:260,type:'windsock',rig:'windsock',w:180,level:0});
+  for(const r of scene.tiled.layers.Solids.filter(r=>r.name.startsWith('maze-hedge'))){const n=Math.ceil(r.w/64),m=Math.ceil(r.h/52);for(let i=0;i<n;i++)for(let j=0;j<m;j++)out.push({x:r.x+(i+.5)*r.w/n,y:r.y+(j+1)*r.h/m,type:'shrub',w:88,level:0});}
+  out.push({x:336,y:812,type:'sign',action:'map',w:100,level:0},{x:1120,y:260,type:'windsock',rig:'windsock',w:180,level:0},{x:1104,y:320,type:'bench',action:'rest',w:126,level:0});
   for(const [a,b]of [[{x:496,y:730},{x:1080,y:730}],[{x:1100,y:228},{x:1392,y:228}]])out.push({type:'pipe',a,b,x:(a.x+b.x)/2,y:(a.y+b.y)/2,w:100,level:0});
+  out.push({x:312,y:680,type:'kite',rig:'kite',w:62,lift:20,action:'veredasTrace',level:0});
+  for(const [a,b]of [[{x:712,y:480},{x:760,y:480}],[{x:1072,y:368},{x:1072,y:416}]])out.push({type:'pipe',a,b,x:(a.x+b.x)/2,y:(a.y+b.y)/2,w:100,level:0});
  }
  // Planting beds follow the border and group around existing trees, leaving paths clear.
  for(let x=140;x<1440;x+=150)out.push({x,y:190,type:'shrub',w:94,level:0});
@@ -103,7 +107,7 @@ function drawProp(o){
   if(actor.path?.length){g.save();plane(g);g.strokeStyle='#fff5ce99';g.lineWidth=3;g.setLineDash([5,10]);g.beginPath();g.moveTo(actor.x,actor.y);for(const p of actor.path)g.lineTo(p.x,p.y);g.stroke();g.restore();}
   const queue=depthOrder([...props,...grass.tufts,...entries.filter(e=>!e.overlay)]);const playerDepth=toIso(actor).y;
   queue.sort((a,b)=>(coretoCutaway(a)?playerDepth-1:a.depth)-(coretoCutaway(b)?playerDepth-1:b.depth));
-  for(const o of queue){if(o.draw){const p=toIso(o);o.draw(p);}else if(o.type==='grass')drawTallGrass(g,o,{project:toIso,wind,paused});else drawProp(o);}
+  for(const o of queue){if(o.draw){const p=toIso(o);o.draw(p);if(o.action){const w=o.type==='guardian'?140:56,h=o.type==='guardian'?150:90;hitAreas.push({x:p.x-w/2,y:p.y-h,w,h,id:o.action,action:o.action,depth:p.y+1});}}else if(o.type==='grass')drawTallGrass(g,o,{project:toIso,wind,paused});else drawProp(o);}
   for(const o of entries.filter(e=>e.overlay)){const p=toIso(o);o.draw(p);if(o.type==='npc')hitAreas.push({x:p.x-25,y:p.y-80,w:50,h:80,id:'assis',depth:p.y+1});}
   for(const e of entrances){const p=toIso(e);g.save();g.translate(p.x-e.x,p.y-e.y);e.draw();g.restore();
    // Markers sit above the floor anchor. A click on the blue arrow must target

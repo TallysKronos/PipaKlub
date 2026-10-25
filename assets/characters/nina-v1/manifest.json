@@ -1,0 +1,136 @@
+{
+  "name": "Nina",
+  "image": "characters/nina-v1/overworld.png",
+  "referenceHeight": 1441,
+  "frames": [
+    {
+      "x": 0,
+      "y": 0,
+      "w": 1024,
+      "h": 1536,
+      "bounds": {
+        "x": 57,
+        "y": 71,
+        "w": 915,
+        "h": 1441
+      },
+      "footAnchor": {
+        "x": 530,
+        "y": 1480
+      }
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "w": 1024,
+      "h": 1536,
+      "bounds": {
+        "x": 57,
+        "y": 71,
+        "w": 915,
+        "h": 1441
+      },
+      "footAnchor": {
+        "x": 530,
+        "y": 1480
+      }
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "w": 1024,
+      "h": 1536,
+      "bounds": {
+        "x": 57,
+        "y": 71,
+        "w": 915,
+        "h": 1441
+      },
+      "footAnchor": {
+        "x": 530,
+        "y": 1480
+      }
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "w": 1024,
+      "h": 1536,
+      "bounds": {
+        "x": 57,
+        "y": 71,
+        "w": 915,
+        "h": 1441
+      },
+      "footAnchor": {
+        "x": 530,
+        "y": 1480
+      }
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "w": 1024,
+      "h": 1536,
+      "bounds": {
+        "x": 57,
+        "y": 71,
+        "w": 915,
+        "h": 1441
+      },
+      "footAnchor": {
+        "x": 530,
+        "y": 1480
+      }
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "w": 1024,
+      "h": 1536,
+      "bounds": {
+        "x": 57,
+        "y": 71,
+        "w": 915,
+        "h": 1441
+      },
+      "footAnchor": {
+        "x": 530,
+        "y": 1480
+      }
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "w": 1024,
+      "h": 1536,
+      "bounds": {
+        "x": 57,
+        "y": 71,
+        "w": 915,
+        "h": 1441
+      },
+      "footAnchor": {
+        "x": 530,
+        "y": 1480
+      }
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "w": 1024,
+      "h": 1536,
+      "bounds": {
+        "x": 57,
+        "y": 71,
+        "w": 915,
+        "h": 1441
+      },
+      "footAnchor": {
+        "x": 530,
+        "y": 1480
+      }
+    }
+  ],
+  "presentation": "single stationary idle pose; directional slots reuse the same drawing; no walking animation"
+}
