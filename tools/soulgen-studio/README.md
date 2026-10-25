@@ -133,3 +133,29 @@ Selecione uma peça e use **Retocar imagem**, ao lado de Bloquear/Isolar no insp
 Aplicar cria uma fonte PNG própria e embutida só para aquela peça/expressão, preservando retângulo, pivô, transformações e animações. Outras peças que usavam o mesmo atlas não mudam. Restaurar original recupera a fonte anterior mesmo depois de salvar/importar o projeto. O histórico geral permite desfazer a aplicação inteira. Use Salvar projeto para baixar a cópia portátil com os retoques. Não escreve nos PNGs do repositório.
 
 Limites: até 16 milhões de pixels por recorte, histórico local de traços limitado por memória. Não inclui balde, seleção, camadas de pintura ou aplicação automática às outras expressões nesta versão. Verificações: testes DOM com canvas real para pincel/borracha/conta-gotas/undo/redo e exportação PNG; testes de isolamento de fonte compartilhada e restauração. Inspeção visual pelo usuário permanece necessária.
+
+### Ferramentas de retoque · revisão de usabilidade
+
+Pincel, borracha e conta-gotas usam botões SVG com identificação acessível, tooltip e estado selecionado. O cursor mostra o diâmetro real da ponta em pixels, proporcional ao zoom; borracha tem borda tracejada e ponta pixel usa quadrado. A marca de tamanho não faz parte do PNG exportado.
+
+Tipos de traço: **Redondo** para contornos, **Suave** com borda gradual, **Pixel** quadrado sem suavização e **Linha reta** com prévia ao arrastar (um único traço no histórico). A estabilização ajustável reduz tremores e completa o traço até o ponto de soltura. [ e ] diminuem/aumentam o tamanho. B/E/I alternam as ferramentas.
+
+Verificações com canvas real: borda gradual do pincel suave, pixel sem alpha nas vizinhanças, substituição da prévia da linha sem rastros, desfazer/refazer, exportação PNG sem cursor e medida do cursor após mudança de escala. Não substituem avaliação de usabilidade pelo usuário.
+
+### Montagem de referência e pincéis de ilustração
+
+O check **Ver todas as peças** abre uma prévia ao lado da área de retoque: peça selecionada a 100%, demais peças com opacidade ajustável (5–65%). Ela acompanha as alterações na imagem e a expressão selecionada, sem gravar as outras peças no PNG. Preserva retângulo, pivô, hierarquia e transformação de arte, inclusive inversões.
+
+Estabilização ampliada a 98%, com 60% inicial. **Nanquim/mangá** varia espessura pela pressão de caneta ou velocidade de movimento do mouse; há check para usar pressão. **Criaturas clássicas/cel** usa borda firme e tinta opaca para pintura por áreas. **Aquarela/papel** usa lavagens translúcidas e granulação determinística, acumulando cor nas passadas. São ferramentas de traço e acabamento, sem geração automática de desenhos ou simulação física de pigmentos.
+
+Testes com pixels reais verificam variação de espessura por pressão, transparência da aquarela, intensidade da estabilização e prévia com camadas esmaecidas sem alterar o projeto.
+
+### Pintar na montagem, trava de transparência e paleta
+
+**Pintar na montagem** transforma a prévia em área de pintura: o cursor é convertido para os pixels da peça selecionada levando em conta retângulo, escala, rotação e inversões. Outras partes ficam esmaecidas e protegidas; exportar continua gerando apenas o recorte da peça. Zoom e navegação por Espaço + arrastar funcionam nessa área.
+
+**Travar transparência** mantém o alpha existente, inclusive bordas parcialmente transparentes, ao recolorir. A borracha fica indisponível enquanto a trava está ativa. A trava não cria uma seleção nova e não permite ampliar a silhueta.
+
+A **Paleta da criatura** extrai até 20 amostras predominantes das fontes usadas nas peças, desconsiderando pixels transparentes. Clique numa amostra para usar a cor. **Guardar cor** adiciona a cor atual; até 24 amostras ficam no projeto ao aplicar e são incluídas em Salvar projeto. As amostras retornam ao reabrir o editor.
+
+Verificação adicional com canvas real: pintura pela montagem com rotação e inversão, alpha preservado pixel a pixel, paleta exportada e cores transparentes ignoradas. A conferência visual no navegador segue a cargo da revisão do usuário.
