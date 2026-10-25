@@ -101,3 +101,5 @@ Flautrevo: `/?preset=flautrevo`, quatro peças, cinco ações, recuperação iso
 Trinca-brasas: `/?preset=trinca-brasas`, nove peças, três cabeças articuladas e cinco ações. Recuperação isolada.
 
 Alvaneve: `/?preset=alvaneve`, nove peças e cinco ações. Montagem preserva a proporção original de todos os recortes; preserveSourceAspect faz o exportador rejeitar esticamento.
+
+Chaspiral: `/?preset=chaspiral`, seis peças proporcionais, cinco ações e ambos os braços animados. Recuperação isolada.

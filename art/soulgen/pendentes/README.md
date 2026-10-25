@@ -1,6 +1,6 @@
 # Fila de conversão para Soulgen
 
-Auditoria local de 25/10/2026: **22 dos 36 Pipamons da Dex ainda sem conversão**, 14 com rig existente. Eremor tem rig fora da Dex. Dois conceitos adicionais continuam sem rig e sem aprovação visual.
+Auditoria local de 25/10/2026: **21 dos 36 Pipamons da Dex ainda sem conversão**, 15 com rig existente. Eremor tem rig fora da Dex. Dois conceitos adicionais continuam sem rig e sem aprovação visual.
 
 ## Critério
 
@@ -9,11 +9,6 @@ Conversão = projeto editável Soulgen com fontes PNG e cinco ações. Atlas ant
 Não foi alterado nenhum PNG, rig, atlas, catálogo ou arquivo do Godot. As fichas apontam para as referências existentes; não duplicam nem movem as artes.
 
 ## Ainda não convertidos
-
-### Especiais (2)
-
-- **Chaspiral** — [ficha](fichas/chaspiral.json) · [arte atual](../../../assets/creatures/especiais/chaspiral.png)
-- **Javali de Biscoito** — [ficha](fichas/javali-biscoito.json) · [arte atual](../../../assets/creatures/colecoes/javali-biscoito-v1.png)
 
 ### Rios e lendas (4)
 
@@ -50,6 +45,10 @@ Não foi alterado nenhum PNG, rig, atlas, catálogo ou arquivo do Godot. As fich
 - **Celofita** — [ficha](fichas/celofita.json) · [arte atual](../../../assets/creatures/colecoes/celofita.png)
 - **Riovela** — [ficha](fichas/riovela.json) · [arte atual](../../../assets/creatures/colecoes/riovela.png)
 
+### Especiais (1)
+
+- **Javali de Biscoito** — [ficha](fichas/javali-biscoito.json) · [arte atual](../../../assets/creatures/colecoes/javali-biscoito-v1.png)
+
 ## Com rig existente
 
 - **Carcará** — 4 peças; 5 ações; fonte do projeto: `art/soulgen/keys/carcara/color-rig/rig.mjs`. Atlas Soulgen integrado.
@@ -59,6 +58,7 @@ Não foi alterado nenhum PNG, rig, atlas, catálogo ou arquivo do Godot. As fich
 - **Flautrevo** — 4 peças; 5 ações; fonte do projeto: `art/soulgen/keys/flautrevo/color-rig-v2/flautrevo.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Trinca-brasas** — 9 peças; 5 ações; fonte do projeto: `art/soulgen/keys/trinca-brasas/color-rig-v2/trinca-brasas.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Alvaneve** — 9 peças; 5 ações; fonte do projeto: `art/soulgen/keys/alvaneve/color-rig-v2/alvaneve.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
+- **Chaspiral** — 6 peças; 5 ações; fonte do projeto: `art/soulgen/keys/chaspiral/color-rig-v2/chaspiral.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Guaravento** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/guaravento/color-rig-v2/guaravento.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Micofolha** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/micofolha/color-rig-v2/micofolha.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Capimansa** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/capimansa/color-rig-v2/capimansa.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
