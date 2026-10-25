@@ -5,48 +5,31 @@
   "status": "rig-existente",
   "title": "Companheira das Águas Calmas",
   "habitat": "Almas dos Biomas · correntes do mundo almático",
-  "reference": "assets/creatures/colecoes/capimansa.png",
+  "reference": "assets/creatures/remakes-soulgen-v2/capimansa.png",
   "atlasId": "capimansa",
   "frame": {
     "frame": {
       "x": 0,
       "y": 0,
-      "w": 314,
-      "h": 314
+      "w": 256,
+      "h": 256
     },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": {
-      "x": 0,
-      "y": 0,
-      "w": 314,
-      "h": 314
-    },
-    "sourceSize": {
-      "w": 314,
-      "h": 314
-    },
-    "pivot": {
-      "x": 0.5,
-      "y": 0.5
-    },
+    "duration": 83.33333333333333,
     "contentBounds": {
-      "x": 63,
-      "y": 103,
-      "w": 202,
-      "h": 149
-    },
-    "duration": 220,
-    "state": "idle"
+      "x": 23,
+      "y": 66,
+      "w": 207,
+      "h": 126
+    }
   },
   "viewport": {
-    "x": 48,
-    "y": 39,
-    "w": 224,
-    "h": 215
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256
   },
   "source": "art/soulgen/keys/capimansa/color-rig-v2/capimansa.soulgen.json",
-  "runtimeSource": null,
+  "runtimeSource": "art/soulgen/keys/capimansa/color-rig-v2/capimansa.soulgen.json",
   "rig": {
     "source": "art/soulgen/keys/capimansa/color-rig-v2/capimansa.soulgen.json",
     "ok": true,
@@ -62,9 +45,8 @@
     ],
     "assets": 11
   },
-  "integratedSoulgen": false,
+  "integratedSoulgen": true,
   "remaining": [
-    "Revisar visual e animações no Soulgen",
-    "Exportar e integrar ao atlas do jogo após revisão"
+    "Revisão visual e de animação conforme a direção atual; este inventário não aprova arte."
   ]
 }

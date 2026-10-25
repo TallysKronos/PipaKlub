@@ -4,8 +4,8 @@
   "criteria": "Conversão = projeto editável Soulgen com fontes PNG e cinco ações. Atlas antigo ou conceito isolado não contam. Validação estrutural não equivale a aprovação artística.",
   "counts": {
     "catalog": 36,
-    "pending": 11,
-    "withRig": 25,
+    "pending": 10,
+    "withRig": 26,
     "rigOutsideCatalog": 1,
     "unapprovedConceptsOutsideCatalog": 2
   },
@@ -249,43 +249,31 @@
       "status": "rig-existente",
       "title": "O flautista dos ventos perdidos",
       "habitat": "Campanários e becos ao anoitecer",
-      "reference": "assets/creatures/especiais/flautrevo.png",
+      "reference": "assets/creatures/remakes-soulgen-v2/flautrevo.png",
       "atlasId": "flautrevo",
       "frame": {
         "frame": {
           "x": 0,
           "y": 0,
-          "w": 314,
-          "h": 314
+          "w": 256,
+          "h": 256
         },
-        "rotated": false,
-        "trimmed": false,
-        "spriteSourceSize": {
-          "x": 0,
-          "y": 0,
-          "w": 314,
-          "h": 314
-        },
-        "sourceSize": {
-          "w": 314,
-          "h": 314
-        },
-        "pivot": {
-          "x": 0.5,
-          "y": 0.5
-        },
+        "duration": 83.33333333333333,
         "contentBounds": {
-          "x": 52,
-          "y": 72,
-          "w": 222,
-          "h": 219
-        },
-        "duration": 220,
-        "state": "idle"
+          "x": 40,
+          "y": 37,
+          "w": 185,
+          "h": 183
+        }
       },
-      "viewport": null,
+      "viewport": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
       "source": "art/soulgen/keys/flautrevo/color-rig-v2/flautrevo.soulgen.json",
-      "runtimeSource": null,
+      "runtimeSource": "art/soulgen/keys/flautrevo/color-rig-v2/flautrevo.soulgen.json",
       "rig": {
         "source": "art/soulgen/keys/flautrevo/color-rig-v2/flautrevo.soulgen.json",
         "ok": true,
@@ -301,10 +289,9 @@
         ],
         "assets": 7
       },
-      "integratedSoulgen": false,
+      "integratedSoulgen": true,
       "remaining": [
-        "Revisar visual e animações no Soulgen",
-        "Exportar e integrar ao atlas do jogo após revisão"
+        "Revisão visual e de animação conforme a direção atual; este inventário não aprova arte."
       ]
     },
     {
@@ -314,43 +301,31 @@
       "status": "rig-existente",
       "title": "Três guardiões, um coração",
       "habitat": "Fornos antigos e portões esquecidos",
-      "reference": "assets/creatures/especiais/trinca-brasas.png",
+      "reference": "assets/creatures/remakes-soulgen-v2/trinca-brasas.png",
       "atlasId": "trinca-brasas",
       "frame": {
         "frame": {
           "x": 0,
           "y": 0,
-          "w": 314,
-          "h": 314
+          "w": 256,
+          "h": 256
         },
-        "rotated": false,
-        "trimmed": false,
-        "spriteSourceSize": {
-          "x": 0,
-          "y": 0,
-          "w": 314,
-          "h": 314
-        },
-        "sourceSize": {
-          "w": 314,
-          "h": 314
-        },
-        "pivot": {
-          "x": 0.5,
-          "y": 0.5
-        },
+        "duration": 83.33333333333333,
         "contentBounds": {
-          "x": 59,
-          "y": 91,
-          "w": 207,
-          "h": 169
-        },
-        "duration": 220,
-        "state": "idle"
+          "x": 49,
+          "y": 36,
+          "w": 157,
+          "h": 199
+        }
       },
-      "viewport": null,
+      "viewport": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
       "source": "art/soulgen/keys/trinca-brasas/color-rig-v2/trinca-brasas.soulgen.json",
-      "runtimeSource": null,
+      "runtimeSource": "art/soulgen/keys/trinca-brasas/color-rig-v2/trinca-brasas.soulgen.json",
       "rig": {
         "source": "art/soulgen/keys/trinca-brasas/color-rig-v2/trinca-brasas.soulgen.json",
         "ok": true,
@@ -366,10 +341,9 @@
         ],
         "assets": 16
       },
-      "integratedSoulgen": false,
+      "integratedSoulgen": true,
       "remaining": [
-        "Revisar visual e animações no Soulgen",
-        "Exportar e integrar ao atlas do jogo após revisão"
+        "Revisão visual e de animação conforme a direção atual; este inventário não aprova arte."
       ]
     },
     {
@@ -379,43 +353,31 @@
       "status": "rig-existente",
       "title": "O inverno que aprendeu a confiar",
       "habitat": "Céus frios e lagos de vidro",
-      "reference": "assets/creatures/especiais/alvaneve.png",
+      "reference": "assets/creatures/remakes-soulgen-v2/alvaneve.png",
       "atlasId": "alvaneve",
       "frame": {
         "frame": {
           "x": 0,
           "y": 0,
-          "w": 314,
-          "h": 314
+          "w": 256,
+          "h": 256
         },
-        "rotated": false,
-        "trimmed": false,
-        "spriteSourceSize": {
-          "x": 0,
-          "y": 0,
-          "w": 314,
-          "h": 314
-        },
-        "sourceSize": {
-          "w": 314,
-          "h": 314
-        },
-        "pivot": {
-          "x": 0.5,
-          "y": 0.5
-        },
+        "duration": 83.33333333333333,
         "contentBounds": {
-          "x": 66,
-          "y": 64,
-          "w": 223,
-          "h": 246
-        },
-        "duration": 220,
-        "state": "idle"
+          "x": 25,
+          "y": 21,
+          "w": 203,
+          "h": 214
+        }
       },
-      "viewport": null,
+      "viewport": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
       "source": "art/soulgen/keys/alvaneve/color-rig-v2/alvaneve.soulgen.json",
-      "runtimeSource": null,
+      "runtimeSource": "art/soulgen/keys/alvaneve/color-rig-v2/alvaneve.soulgen.json",
       "rig": {
         "source": "art/soulgen/keys/alvaneve/color-rig-v2/alvaneve.soulgen.json",
         "ok": true,
@@ -431,10 +393,9 @@
         ],
         "assets": 14
       },
-      "integratedSoulgen": false,
+      "integratedSoulgen": true,
       "remaining": [
-        "Revisar visual e animações no Soulgen",
-        "Exportar e integrar ao atlas do jogo após revisão"
+        "Revisão visual e de animação conforme a direção atual; este inventário não aprova arte."
       ]
     },
     {
@@ -444,43 +405,31 @@
       "status": "rig-existente",
       "title": "Atrasada para o próximo segundo",
       "habitat": "Mesas de chá e jardins sem horário",
-      "reference": "assets/creatures/especiais/chaspiral.png",
+      "reference": "assets/creatures/remakes-soulgen-v2/chaspiral.png",
       "atlasId": "chaspiral",
       "frame": {
         "frame": {
           "x": 0,
           "y": 0,
-          "w": 314,
-          "h": 314
+          "w": 256,
+          "h": 256
         },
-        "rotated": false,
-        "trimmed": false,
-        "spriteSourceSize": {
-          "x": 0,
-          "y": 0,
-          "w": 314,
-          "h": 314
-        },
-        "sourceSize": {
-          "w": 314,
-          "h": 314
-        },
-        "pivot": {
-          "x": 0.5,
-          "y": 0.5
-        },
+        "duration": 83.33333333333333,
         "contentBounds": {
-          "x": 69,
-          "y": 85,
-          "w": 187,
-          "h": 173
-        },
-        "duration": 220,
-        "state": "idle"
+          "x": 25,
+          "y": 26,
+          "w": 195,
+          "h": 206
+        }
       },
-      "viewport": null,
+      "viewport": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
       "source": "art/soulgen/keys/chaspiral/color-rig-v2/chaspiral.soulgen.json",
-      "runtimeSource": null,
+      "runtimeSource": "art/soulgen/keys/chaspiral/color-rig-v2/chaspiral.soulgen.json",
       "rig": {
         "source": "art/soulgen/keys/chaspiral/color-rig-v2/chaspiral.soulgen.json",
         "ok": true,
@@ -496,10 +445,9 @@
         ],
         "assets": 9
       },
-      "integratedSoulgen": false,
+      "integratedSoulgen": true,
       "remaining": [
-        "Revisar visual e animações no Soulgen",
-        "Exportar e integrar ao atlas do jogo após revisão"
+        "Revisão visual e de animação conforme a direção atual; este inventário não aprova arte."
       ]
     },
     {
@@ -509,48 +457,31 @@
       "status": "rig-existente",
       "title": "Guardião do rio sagrado",
       "habitat": "Rios e lendas · correntes do mundo almático",
-      "reference": "assets/creatures/colecoes/hiponilo.png",
+      "reference": "assets/creatures/remakes-soulgen-v2/hiponilo.png",
       "atlasId": "hiponilo",
       "frame": {
         "frame": {
           "x": 0,
           "y": 0,
-          "w": 314,
-          "h": 314
+          "w": 256,
+          "h": 256
         },
-        "rotated": false,
-        "trimmed": false,
-        "spriteSourceSize": {
-          "x": 0,
-          "y": 0,
-          "w": 314,
-          "h": 314
-        },
-        "sourceSize": {
-          "w": 314,
-          "h": 314
-        },
-        "pivot": {
-          "x": 0.5,
-          "y": 0.5
-        },
+        "duration": 83.33333333333333,
         "contentBounds": {
-          "x": 42,
-          "y": 88,
-          "w": 233,
-          "h": 195
-        },
-        "duration": 220,
-        "state": "idle"
+          "x": 23,
+          "y": 61,
+          "w": 209,
+          "h": 132
+        }
       },
       "viewport": {
-        "x": 25,
-        "y": 50,
-        "w": 269,
-        "h": 235
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
       },
       "source": "art/soulgen/keys/hiponilo/color-rig-v2/hiponilo.soulgen.json",
-      "runtimeSource": null,
+      "runtimeSource": "art/soulgen/keys/hiponilo/color-rig-v2/hiponilo.soulgen.json",
       "rig": {
         "source": "art/soulgen/keys/hiponilo/color-rig-v2/hiponilo.soulgen.json",
         "ok": true,
@@ -566,10 +497,9 @@
         ],
         "assets": 11
       },
-      "integratedSoulgen": false,
+      "integratedSoulgen": true,
       "remaining": [
-        "Revisar visual e animações no Soulgen",
-        "Exportar e integrar ao atlas do jogo após revisão"
+        "Revisão visual e de animação conforme a direção atual; este inventário não aprova arte."
       ]
     },
     {
@@ -1206,7 +1136,7 @@
       "id": "pteralis",
       "name": "Pteralis",
       "group": "Ventos Antigos",
-      "status": "pendente-conversao",
+      "status": "rig-existente",
       "title": "Explorador das Correntes",
       "habitat": "Ventos Antigos · correntes do mundo almático",
       "reference": "assets/creatures/colecoes/pteralis.png",
@@ -1249,16 +1179,27 @@
         "w": 203,
         "h": 196
       },
-      "source": null,
+      "source": "art/soulgen/keys/pteralis/color-rig-v2/pteralis.soulgen.json",
       "runtimeSource": null,
-      "rig": null,
+      "rig": {
+        "source": "art/soulgen/keys/pteralis/color-rig-v2/pteralis.soulgen.json",
+        "ok": true,
+        "errors": [],
+        "warnings": [],
+        "parts": 6,
+        "actions": [
+          "idle",
+          "flight",
+          "skill",
+          "hurt",
+          "victory"
+        ],
+        "assets": 9
+      },
       "integratedSoulgen": false,
       "remaining": [
-        "Revisar conceito no padrão Carcará",
-        "Produzir peças e expressões registradas",
-        "Montar pivôs e hierarquia no Soulgen",
-        "Criar/revisar as cinco ações",
-        "Validar e exportar antes de integrar ao jogo"
+        "Revisar visual e animações no Soulgen",
+        "Exportar e integrar ao atlas do jogo após revisão"
       ]
     },
     {
@@ -1327,48 +1268,31 @@
       "status": "rig-existente",
       "title": "Vigia das Rajadas",
       "habitat": "Almas dos Biomas · correntes do mundo almático",
-      "reference": "assets/creatures/colecoes/guaravento.png",
+      "reference": "assets/creatures/remakes-soulgen-v2/guaravento.png",
       "atlasId": "guaravento",
       "frame": {
         "frame": {
           "x": 0,
           "y": 0,
-          "w": 314,
-          "h": 314
+          "w": 256,
+          "h": 256
         },
-        "rotated": false,
-        "trimmed": false,
-        "spriteSourceSize": {
-          "x": 0,
-          "y": 0,
-          "w": 314,
-          "h": 314
-        },
-        "sourceSize": {
-          "w": 314,
-          "h": 314
-        },
-        "pivot": {
-          "x": 0.5,
-          "y": 0.5
-        },
+        "duration": 83.33333333333333,
         "contentBounds": {
-          "x": 52,
-          "y": 96,
-          "w": 179,
-          "h": 171
-        },
-        "duration": 220,
-        "state": "idle"
+          "x": 25,
+          "y": 29,
+          "w": 204,
+          "h": 193
+        }
       },
       "viewport": {
-        "x": 34,
-        "y": 40,
-        "w": 263,
-        "h": 234
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
       },
       "source": "art/soulgen/keys/guaravento/color-rig-v2/guaravento.soulgen.json",
-      "runtimeSource": null,
+      "runtimeSource": "art/soulgen/keys/guaravento/color-rig-v2/guaravento.soulgen.json",
       "rig": {
         "source": "art/soulgen/keys/guaravento/color-rig-v2/guaravento.soulgen.json",
         "ok": true,
@@ -1384,10 +1308,9 @@
         ],
         "assets": 11
       },
-      "integratedSoulgen": false,
+      "integratedSoulgen": true,
       "remaining": [
-        "Revisar visual e animações no Soulgen",
-        "Exportar e integrar ao atlas do jogo após revisão"
+        "Revisão visual e de animação conforme a direção atual; este inventário não aprova arte."
       ]
     },
     {
@@ -1397,48 +1320,31 @@
       "status": "rig-existente",
       "title": "Mensageiro das Copas",
       "habitat": "Almas dos Biomas · correntes do mundo almático",
-      "reference": "assets/creatures/colecoes/micofolha.png",
+      "reference": "assets/creatures/remakes-soulgen-v2/micofolha.png",
       "atlasId": "micofolha",
       "frame": {
         "frame": {
           "x": 0,
           "y": 0,
-          "w": 314,
-          "h": 314
+          "w": 256,
+          "h": 256
         },
-        "rotated": false,
-        "trimmed": false,
-        "spriteSourceSize": {
-          "x": 0,
-          "y": 0,
-          "w": 314,
-          "h": 314
-        },
-        "sourceSize": {
-          "w": 314,
-          "h": 314
-        },
-        "pivot": {
-          "x": 0.5,
-          "y": 0.5
-        },
+        "duration": 83.33333333333333,
         "contentBounds": {
-          "x": 84,
-          "y": 100,
-          "w": 158,
-          "h": 161
-        },
-        "duration": 220,
-        "state": "idle"
+          "x": 50,
+          "y": 33,
+          "w": 151,
+          "h": 200
+        }
       },
       "viewport": {
-        "x": 62,
-        "y": 29,
-        "w": 233,
-        "h": 235
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
       },
       "source": "art/soulgen/keys/micofolha/color-rig-v2/micofolha.soulgen.json",
-      "runtimeSource": null,
+      "runtimeSource": "art/soulgen/keys/micofolha/color-rig-v2/micofolha.soulgen.json",
       "rig": {
         "source": "art/soulgen/keys/micofolha/color-rig-v2/micofolha.soulgen.json",
         "ok": true,
@@ -1454,10 +1360,9 @@
         ],
         "assets": 11
       },
-      "integratedSoulgen": false,
+      "integratedSoulgen": true,
       "remaining": [
-        "Revisar visual e animações no Soulgen",
-        "Exportar e integrar ao atlas do jogo após revisão"
+        "Revisão visual e de animação conforme a direção atual; este inventário não aprova arte."
       ]
     },
     {
@@ -1467,48 +1372,31 @@
       "status": "rig-existente",
       "title": "Companheira das Águas Calmas",
       "habitat": "Almas dos Biomas · correntes do mundo almático",
-      "reference": "assets/creatures/colecoes/capimansa.png",
+      "reference": "assets/creatures/remakes-soulgen-v2/capimansa.png",
       "atlasId": "capimansa",
       "frame": {
         "frame": {
           "x": 0,
           "y": 0,
-          "w": 314,
-          "h": 314
+          "w": 256,
+          "h": 256
         },
-        "rotated": false,
-        "trimmed": false,
-        "spriteSourceSize": {
-          "x": 0,
-          "y": 0,
-          "w": 314,
-          "h": 314
-        },
-        "sourceSize": {
-          "w": 314,
-          "h": 314
-        },
-        "pivot": {
-          "x": 0.5,
-          "y": 0.5
-        },
+        "duration": 83.33333333333333,
         "contentBounds": {
-          "x": 63,
-          "y": 103,
-          "w": 202,
-          "h": 149
-        },
-        "duration": 220,
-        "state": "idle"
+          "x": 23,
+          "y": 66,
+          "w": 207,
+          "h": 126
+        }
       },
       "viewport": {
-        "x": 48,
-        "y": 39,
-        "w": 224,
-        "h": 215
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
       },
       "source": "art/soulgen/keys/capimansa/color-rig-v2/capimansa.soulgen.json",
-      "runtimeSource": null,
+      "runtimeSource": "art/soulgen/keys/capimansa/color-rig-v2/capimansa.soulgen.json",
       "rig": {
         "source": "art/soulgen/keys/capimansa/color-rig-v2/capimansa.soulgen.json",
         "ok": true,
@@ -1524,10 +1412,9 @@
         ],
         "assets": 11
       },
-      "integratedSoulgen": false,
+      "integratedSoulgen": true,
       "remaining": [
-        "Revisar visual e animações no Soulgen",
-        "Exportar e integrar ao atlas do jogo após revisão"
+        "Revisão visual e de animação conforme a direção atual; este inventário não aprova arte."
       ]
     },
     {
@@ -1537,48 +1424,31 @@
       "status": "rig-existente",
       "title": "Guardião das Dobras Antigas",
       "habitat": "Almas dos Biomas · correntes do mundo almático",
-      "reference": "assets/creatures/colecoes/tatutrama.png",
+      "reference": "assets/creatures/remakes-soulgen-v2/tatutrama.png",
       "atlasId": "tatutrama",
       "frame": {
         "frame": {
           "x": 0,
           "y": 0,
-          "w": 314,
-          "h": 314
+          "w": 256,
+          "h": 256
         },
-        "rotated": false,
-        "trimmed": false,
-        "spriteSourceSize": {
-          "x": 0,
-          "y": 0,
-          "w": 314,
-          "h": 314
-        },
-        "sourceSize": {
-          "w": 314,
-          "h": 314
-        },
-        "pivot": {
-          "x": 0.5,
-          "y": 0.5
-        },
+        "duration": 83.33333333333333,
         "contentBounds": {
-          "x": 74,
-          "y": 129,
-          "w": 197,
-          "h": 129
-        },
-        "duration": 220,
-        "state": "idle"
+          "x": 24,
+          "y": 59,
+          "w": 207,
+          "h": 137
+        }
       },
       "viewport": {
-        "x": 53,
-        "y": 45,
-        "w": 232,
-        "h": 220
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
       },
       "source": "art/soulgen/keys/tatutrama/color-rig-v2/tatutrama.soulgen.json",
-      "runtimeSource": null,
+      "runtimeSource": "art/soulgen/keys/tatutrama/color-rig-v2/tatutrama.soulgen.json",
       "rig": {
         "source": "art/soulgen/keys/tatutrama/color-rig-v2/tatutrama.soulgen.json",
         "ok": true,
@@ -1594,10 +1464,9 @@
         ],
         "assets": 10
       },
-      "integratedSoulgen": false,
+      "integratedSoulgen": true,
       "remaining": [
-        "Revisar visual e animações no Soulgen",
-        "Exportar e integrar ao atlas do jogo após revisão"
+        "Revisão visual e de animação conforme a direção atual; este inventário não aprova arte."
       ]
     },
     {
@@ -2136,41 +2005,31 @@
       "status": "rig-existente",
       "title": "O laço entre dois mundos",
       "habitat": "O laboratório do Sr. Assis",
-      "reference": "assets/creatures/nozinho/sprites.png",
+      "reference": "assets/creatures/remakes-soulgen-v2/nozinho.png",
       "atlasId": "nozinho",
       "frame": {
         "frame": {
           "x": 0,
           "y": 0,
-          "w": 314,
-          "h": 314
+          "w": 256,
+          "h": 256
         },
-        "rotated": false,
-        "trimmed": false,
-        "spriteSourceSize": {
-          "x": 0,
-          "y": 0,
-          "w": 314,
-          "h": 314
-        },
-        "sourceSize": {
-          "w": 314,
-          "h": 314
-        },
-        "pivot": {
-          "x": 0.5,
-          "y": 0.5
-        },
+        "duration": 83.33333333333333,
         "contentBounds": {
-          "x": 90,
-          "y": 87,
-          "w": 160,
-          "h": 183
+          "x": 20,
+          "y": 39,
+          "w": 213,
+          "h": 189
         }
       },
-      "viewport": null,
+      "viewport": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
       "source": "art/soulgen/keys/nozinho/color-rig-v2/nozinho.soulgen.json",
-      "runtimeSource": null,
+      "runtimeSource": "art/soulgen/keys/nozinho/color-rig-v2/nozinho.soulgen.json",
       "rig": {
         "source": "art/soulgen/keys/nozinho/color-rig-v2/nozinho.soulgen.json",
         "ok": true,
@@ -2186,10 +2045,9 @@
         ],
         "assets": 8
       },
-      "integratedSoulgen": false,
+      "integratedSoulgen": true,
       "remaining": [
-        "Revisar visual e animações no Soulgen",
-        "Exportar e integrar ao atlas do jogo após revisão"
+        "Revisão visual e de animação conforme a direção atual; este inventário não aprova arte."
       ]
     },
     {

@@ -5,41 +5,31 @@
   "status": "rig-existente",
   "title": "O laço entre dois mundos",
   "habitat": "O laboratório do Sr. Assis",
-  "reference": "assets/creatures/nozinho/sprites.png",
+  "reference": "assets/creatures/remakes-soulgen-v2/nozinho.png",
   "atlasId": "nozinho",
   "frame": {
     "frame": {
       "x": 0,
       "y": 0,
-      "w": 314,
-      "h": 314
+      "w": 256,
+      "h": 256
     },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": {
-      "x": 0,
-      "y": 0,
-      "w": 314,
-      "h": 314
-    },
-    "sourceSize": {
-      "w": 314,
-      "h": 314
-    },
-    "pivot": {
-      "x": 0.5,
-      "y": 0.5
-    },
+    "duration": 83.33333333333333,
     "contentBounds": {
-      "x": 90,
-      "y": 87,
-      "w": 160,
-      "h": 183
+      "x": 20,
+      "y": 39,
+      "w": 213,
+      "h": 189
     }
   },
-  "viewport": null,
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256
+  },
   "source": "art/soulgen/keys/nozinho/color-rig-v2/nozinho.soulgen.json",
-  "runtimeSource": null,
+  "runtimeSource": "art/soulgen/keys/nozinho/color-rig-v2/nozinho.soulgen.json",
   "rig": {
     "source": "art/soulgen/keys/nozinho/color-rig-v2/nozinho.soulgen.json",
     "ok": true,
@@ -55,9 +45,8 @@
     ],
     "assets": 8
   },
-  "integratedSoulgen": false,
+  "integratedSoulgen": true,
   "remaining": [
-    "Revisar visual e animações no Soulgen",
-    "Exportar e integrar ao atlas do jogo após revisão"
+    "Revisão visual e de animação conforme a direção atual; este inventário não aprova arte."
   ]
 }

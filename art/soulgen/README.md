@@ -4,7 +4,7 @@
 
 Primeira entrega da fila: [Nozinho em três quartos](keys/nozinho/README.md), com cinco peças e cinco ações, configurado no Studio em `/?preset=nozinho`. Aguardando revisão do autor antes de exportar para o jogo.
 
-[Inventário e fila de produção](pendentes/README.md): 11 dos 36 Pipamons da Dex ainda sem rig Soulgen; vinte e cinco com rig existente. Nozinho está configurado no Studio e aguarda revisão antes da integração ao jogo. Eremor possui projeto fora da Dex, e dois conceitos adicionais aguardam revisão de direção. Inclui galeria das referências atuais e fichas por espécie. Auditoria local de 25/10/2026; não equivale a aprovação visual nem altera os assets do jogo.
+[Inventário e fila de produção](pendentes/README.md): 10 dos 36 Pipamons da Dex ainda sem rig Soulgen; vinte e seis com rig existente. Nozinho está configurado no Studio e aguarda revisão antes da integração ao jogo. Eremor possui projeto fora da Dex, e dois conceitos adicionais aguardam revisão de direção. Inclui galeria das referências atuais e fichas por espécie. Auditoria local de 25/10/2026; não equivale a aprovação visual nem altera os assets do jogo.
 
 Nova entrega: [Guaravento](keys/guaravento/README.md), oito peças e cinco ações em `/?preset=guaravento`.
 
@@ -116,3 +116,5 @@ Nova entrega: [Nevagume](keys/nevagume/README.md), tigre branco com filtro dos s
 Nova entrega: [Rexal](keys/rexal/README.md), oito peças e cinco ações em `/?preset=rexal`.
 
 Nova entrega: [Tricerafan](keys/tricerafan/README.md), oito peças e cinco ações em `/?preset=tricerafan`.
+
+Nova entrega: [Pteralis](keys/pteralis/README.md), seis peças e cinco ações em `/?preset=pteralis`.

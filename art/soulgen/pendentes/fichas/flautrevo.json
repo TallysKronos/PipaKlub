@@ -5,43 +5,31 @@
   "status": "rig-existente",
   "title": "O flautista dos ventos perdidos",
   "habitat": "Campanários e becos ao anoitecer",
-  "reference": "assets/creatures/especiais/flautrevo.png",
+  "reference": "assets/creatures/remakes-soulgen-v2/flautrevo.png",
   "atlasId": "flautrevo",
   "frame": {
     "frame": {
       "x": 0,
       "y": 0,
-      "w": 314,
-      "h": 314
+      "w": 256,
+      "h": 256
     },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": {
-      "x": 0,
-      "y": 0,
-      "w": 314,
-      "h": 314
-    },
-    "sourceSize": {
-      "w": 314,
-      "h": 314
-    },
-    "pivot": {
-      "x": 0.5,
-      "y": 0.5
-    },
+    "duration": 83.33333333333333,
     "contentBounds": {
-      "x": 52,
-      "y": 72,
-      "w": 222,
-      "h": 219
-    },
-    "duration": 220,
-    "state": "idle"
+      "x": 40,
+      "y": 37,
+      "w": 185,
+      "h": 183
+    }
   },
-  "viewport": null,
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256
+  },
   "source": "art/soulgen/keys/flautrevo/color-rig-v2/flautrevo.soulgen.json",
-  "runtimeSource": null,
+  "runtimeSource": "art/soulgen/keys/flautrevo/color-rig-v2/flautrevo.soulgen.json",
   "rig": {
     "source": "art/soulgen/keys/flautrevo/color-rig-v2/flautrevo.soulgen.json",
     "ok": true,
@@ -57,9 +45,8 @@
     ],
     "assets": 7
   },
-  "integratedSoulgen": false,
+  "integratedSoulgen": true,
   "remaining": [
-    "Revisar visual e animações no Soulgen",
-    "Exportar e integrar ao atlas do jogo após revisão"
+    "Revisão visual e de animação conforme a direção atual; este inventário não aprova arte."
   ]
 }
