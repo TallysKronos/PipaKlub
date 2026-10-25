@@ -4,8 +4,8 @@
   "criteria": "Conversão = projeto editável Soulgen com fontes PNG e cinco ações. Atlas antigo ou conceito isolado não contam. Validação estrutural não equivale a aprovação artística.",
   "counts": {
     "catalog": 36,
-    "pending": 25,
-    "withRig": 11,
+    "pending": 24,
+    "withRig": 12,
     "rigOutsideCatalog": 1,
     "unapprovedConceptsOutsideCatalog": 2
   },
@@ -246,7 +246,7 @@
       "id": "flautrevo",
       "name": "Flautrevo",
       "group": "Especiais",
-      "status": "pendente-conversao",
+      "status": "rig-existente",
       "title": "O flautista dos ventos perdidos",
       "habitat": "Campanários e becos ao anoitecer",
       "reference": "assets/creatures/especiais/flautrevo.png",
@@ -284,16 +284,27 @@
         "state": "idle"
       },
       "viewport": null,
-      "source": null,
+      "source": "art/soulgen/keys/flautrevo/color-rig-v2/flautrevo.soulgen.json",
       "runtimeSource": null,
-      "rig": null,
+      "rig": {
+        "source": "art/soulgen/keys/flautrevo/color-rig-v2/flautrevo.soulgen.json",
+        "ok": true,
+        "errors": [],
+        "warnings": [],
+        "parts": 4,
+        "actions": [
+          "idle",
+          "flight",
+          "skill",
+          "hurt",
+          "victory"
+        ],
+        "assets": 7
+      },
       "integratedSoulgen": false,
       "remaining": [
-        "Revisar conceito no padrão Carcará",
-        "Produzir peças e expressões registradas",
-        "Montar pivôs e hierarquia no Soulgen",
-        "Criar/revisar as cinco ações",
-        "Validar e exportar antes de integrar ao jogo"
+        "Revisar visual e animações no Soulgen",
+        "Exportar e integrar ao atlas do jogo após revisão"
       ]
     },
     {

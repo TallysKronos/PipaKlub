@@ -1,0 +1,165 @@
+{
+  "sourceFilename": "flautrevo-flautista-dos-ventos-perdidos.soulgen (1).json",
+  "sourceSha256": "017e2bc00d816c662065ec3acecadbe77c9a21562b67cfd6c6086bb443afa47a",
+  "parts": [
+    {
+      "id": "body",
+      "name": "Corpo, rosto e orelhas",
+      "asset": "body",
+      "source": [
+        0,
+        0,
+        308,
+        378
+      ],
+      "rect": [
+        105.13058239749282,
+        55.58056933925306,
+        64,
+        90.8
+      ],
+      "pivot": [
+        137.13058239749282,
+        132.58056933925306
+      ],
+      "z": 3,
+      "parent": null,
+      "visible": true,
+      "faceWindows": [
+        [
+          89,
+          147,
+          117,
+          65
+        ]
+      ],
+      "faces": {
+        "fierce": {
+          "asset": "fierce",
+          "source": [
+            0,
+            0,
+            308,
+            378
+          ]
+        },
+        "hurt": {
+          "asset": "hurt",
+          "source": [
+            0,
+            0,
+            308,
+            378
+          ]
+        },
+        "happy": {
+          "asset": "happy",
+          "source": [
+            0,
+            0,
+            308,
+            378
+          ]
+        }
+      },
+      "artTransform": {
+        "rotation": 0,
+        "scale": 1,
+        "flipX": false,
+        "flipY": false
+      }
+    },
+    {
+      "id": "wingNear",
+      "name": "Asa pr\u00f3xima e flauta",
+      "asset": "wingNear",
+      "source": [
+        0,
+        0,
+        399,
+        382
+      ],
+      "rect": [
+        135.32770575615407,
+        111.43591015931054,
+        73.1151832460733,
+        70
+      ],
+      "pivot": [
+        164.5737790545834,
+        127.53591015931053
+      ],
+      "z": 1,
+      "parent": "body",
+      "visible": true,
+      "lag": 0.015,
+      "artTransform": {
+        "rotation": 0,
+        "scale": 0.8264462809917354,
+        "flipX": false,
+        "flipY": false
+      }
+    },
+    {
+      "id": "tail",
+      "name": "Rabiola e sino",
+      "asset": "tail",
+      "source": [
+        0,
+        0,
+        281,
+        288
+      ],
+      "rect": [
+        76.67902901105597,
+        135.32039697048836,
+        58.541666666666664,
+        60
+      ],
+      "pivot": [
+        129.95194567772265,
+        140.12039697048837
+      ],
+      "z": 0,
+      "parent": "body",
+      "visible": true,
+      "lag": 0.04
+    },
+    {
+      "id": "wingNear-copy",
+      "name": "Asa distante e flauta",
+      "asset": "wingNear",
+      "source": [
+        0,
+        0,
+        399,
+        382
+      ],
+      "rect": [
+        69.77194707242467,
+        109.86892138939672,
+        73.1151832460733,
+        70
+      ],
+      "pivot": [
+        99.018020370854,
+        125.96892138939671
+      ],
+      "z": 2,
+      "parent": "body",
+      "visible": true,
+      "lag": 0.015,
+      "locked": false,
+      "artTransform": {
+        "rotation": 0,
+        "scale": 0.9090909090909091,
+        "flipX": true,
+        "flipY": false
+      }
+    }
+  ],
+  "rootPivot": [
+    134,
+    115
+  ]
+}
