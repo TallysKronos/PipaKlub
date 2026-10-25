@@ -11,3 +11,7 @@ Aplicar, mediante autorização específica, `supabase/migrations/029_veredas_ex
 Conferir a existência da tabela/funções e suas permissões após a aplicação, publicar o cliente com a mensagem corrigida e aguardar o commit correspondente ficar Live no Render.
 
 Nenhuma alteração no banco de produção foi executada durante o diagnóstico. A liberação depende da autorização para a 029. O piloto funciona localmente porque seu servidor instala automaticamente todas as migrações, incluindo a 029; isso não comprovava sua instalação em produção.
+
+## Aplicação autorizada
+
+Após a confirmação “publique”, a migração 029 foi aplicada ao Supabase de produção em sua transação original. A consulta posterior confirmou a função instalada, RLS da tabela ativo, chamada concedida a `authenticated`, chamada negada a `anon`, acesso direto à tabela negado ao jogador e registro de encontro permitido a `pipa_server`. Builds Worker e Pages concluídos; sem nova suíte automatizada nesta publicação. A atualização independente do Soulgen que entrou na main foi preservada no merge.
