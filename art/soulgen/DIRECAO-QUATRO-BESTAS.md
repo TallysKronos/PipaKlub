@@ -11,3 +11,7 @@ Preservar a identidade de cada besta, vista em três quartos, olhos pequenos e g
 - Umbrocasco e Nevagume: aplicar o mesmo princípio na conversão, definindo paleta e motivo central a partir das respectivas referências originais.
 
 Estado: Azulongo e Auriflama montados no Soulgen para revisão do autor; os outros dois permanecem na fila. Fontes e prompts ImageGen junto dos rigs. Nenhum atlas do jogo alterado.
+
+Atualização: Umbrocasco aprovado pelo autor; Nevagume montado para revisão com aro branco/lilás, trama dourada e pequeno losango lilás central. As quatro bestas possuem versão em filtro dos sonhos no Soulgen.
+
+Nevagume aprovado pelo autor e incorporado do projeto exportado; quatro guardiões revisados pelo autor.

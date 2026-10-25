@@ -1,6 +1,6 @@
 # Fila de conversão para Soulgen
 
-Auditoria local de 25/10/2026: **14 dos 36 Pipamons da Dex ainda sem conversão**, 22 com rig existente. Eremor tem rig fora da Dex. Dois conceitos adicionais continuam sem rig e sem aprovação visual.
+Auditoria local de 25/10/2026: **13 dos 36 Pipamons da Dex ainda sem conversão**, 23 com rig existente. Eremor tem rig fora da Dex. Dois conceitos adicionais continuam sem rig e sem aprovação visual.
 
 ## Critério
 
@@ -9,10 +9,6 @@ Conversão = projeto editável Soulgen com fontes PNG e cinco ações. Atlas ant
 Não foi alterado nenhum PNG, rig, atlas, catálogo ou arquivo do Godot. As fichas apontam para as referências existentes; não duplicam nem movem as artes.
 
 ## Ainda não convertidos
-
-### Guardiões dos Quatro Ventos (1)
-
-- **Nevagume** — [ficha](fichas/nevagume.json) · [arte atual](../../../assets/creatures/colecoes/nevagume.png)
 
 ### Ventos Antigos (4)
 
@@ -56,6 +52,7 @@ Não foi alterado nenhum PNG, rig, atlas, catálogo ou arquivo do Godot. As fich
 - **Azulongo** — 7 peças; 5 ações; fonte do projeto: `art/soulgen/keys/azulongo/color-rig-v2/azulongo.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Auriflama** — 6 peças; 5 ações; fonte do projeto: `art/soulgen/keys/auriflama/color-rig-v2/auriflama.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Umbrocasco** — 7 peças; 5 ações; fonte do projeto: `art/soulgen/keys/umbrocasco/color-rig-v2/umbrocasco.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
+- **Nevagume** — 7 peças; 5 ações; fonte do projeto: `art/soulgen/keys/nevagume/color-rig-v2/nevagume.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Guaravento** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/guaravento/color-rig-v2/guaravento.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Micofolha** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/micofolha/color-rig-v2/micofolha.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Capimansa** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/capimansa/color-rig-v2/capimansa.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.

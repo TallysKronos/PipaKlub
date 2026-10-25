@@ -1,0 +1,5 @@
+Source: built-in image_gen, edit of art/godot/veredas-target-v1/full-region-flat-v3.png, user-approved visual target.
+Purpose: clean background for first illustrated playable slice. No character/chest baked into plate.
+Prompt: Edit this approved map into a clean game background plate. REMOVE ONLY the boy and rabbit at bottom-left, girl by upper bridge, lizard boss upper-right, and all five blue treasure chests. Reconstruct the ground behind each removed object seamlessly. Preserve EVERYTHING ELSE pixel-aligned as closely as possible: same exact camera, framing, dimensions 1536x1024, paths, tree silhouettes, rocks, river, bridges, cliff positions, ramps and pipes. Do not redesign or add elements. Maintain flat 2D outlined cartoon colors with minimal shading. No people, creatures, chests, text or UI. Critical: unchanged layout is needed for navigation polygons aligned to this image.
+Output original preserved under Codex generated_images. Imported copy: veredas-clean.png.
+Status: prototype, not a finished modular tileset. Water and foreground art remain baked; selected tree foreground masks are runtime polygons sampling the same unmodified plate.

@@ -115,3 +115,5 @@ Jaguarluar: `/?preset=jaguarluar`, oito peças proporcionais e cinco ações. Fa
 Azulongo: `http://127.0.0.1:5240/?preset=azulongo` — cabeça chibi, cinco peças articuladas e cinco ações. Cache separado; projeto portátil e revisão em `art/soulgen/keys/azulongo/color-rig-v2/`.
 
 Umbrocasco: `http://127.0.0.1:5240/?preset=umbrocasco` — sete peças e cinco ações; casco de filtro dos sonhos e serpente.
+
+Nevagume: `http://127.0.0.1:5240/?preset=nevagume` — sete peças editáveis, cinco ações e filtro dos sonhos.

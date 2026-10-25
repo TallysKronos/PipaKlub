@@ -1,0 +1,741 @@
+{
+  "name": "Kael - ajuste manual da alca frontal",
+  "cell": [
+    128,
+    128
+  ],
+  "pivot": [
+    64,
+    112
+  ],
+  "scale": 1,
+  "actions": {
+    "parado": {
+      "ms": 180,
+      "loop": true,
+      "directions": {
+        "se": [
+          {
+            "image": "base/parado-se-0.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              78
+            ]
+          },
+          {
+            "image": "base/parado-se-1.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              78
+            ]
+          },
+          {
+            "image": "base/parado-se-2.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              78
+            ]
+          },
+          {
+            "image": "base/parado-se-3.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              78
+            ]
+          }
+        ],
+        "sw": {
+          "mirror": "se"
+        },
+        "ne": [
+          {
+            "image": "base/parado-ne-0.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              65,
+              76
+            ]
+          },
+          {
+            "image": "base/parado-ne-1.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              65,
+              76
+            ]
+          },
+          {
+            "image": "base/parado-ne-2.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              65,
+              76
+            ]
+          },
+          {
+            "image": "base/parado-ne-3.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              65,
+              76
+            ]
+          }
+        ],
+        "nw": {
+          "mirror": "ne"
+        }
+      }
+    },
+    "andar": {
+      "ms": 100,
+      "loop": true,
+      "directions": {
+        "se": [
+          {
+            "image": "base/andar-se-0.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              76
+            ]
+          },
+          {
+            "image": "base/andar-se-1.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              76
+            ]
+          },
+          {
+            "image": "base/andar-se-2.png",
+            "head": [
+              64,
+              45
+            ],
+            "torso": [
+              64,
+              75
+            ]
+          },
+          {
+            "image": "base/andar-se-3.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              76
+            ]
+          },
+          {
+            "image": "base/andar-se-4.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              76
+            ]
+          },
+          {
+            "image": "base/andar-se-5.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              76
+            ]
+          },
+          {
+            "image": "base/andar-se-6.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              76
+            ]
+          },
+          {
+            "image": "base/andar-se-7.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              64,
+              76
+            ]
+          }
+        ],
+        "sw": {
+          "mirror": "se"
+        },
+        "ne": [
+          {
+            "image": "base/andar-ne-0.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              65,
+              74
+            ]
+          },
+          {
+            "image": "base/andar-ne-1.png",
+            "head": [
+              64,
+              48
+            ],
+            "torso": [
+              65,
+              76
+            ]
+          },
+          {
+            "image": "base/andar-ne-2.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              65,
+              74
+            ]
+          },
+          {
+            "image": "base/andar-ne-3.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              65,
+              74
+            ]
+          },
+          {
+            "image": "base/andar-ne-4.png",
+            "head": [
+              64,
+              47
+            ],
+            "torso": [
+              65,
+              75
+            ]
+          },
+          {
+            "image": "base/andar-ne-5.png",
+            "head": [
+              64,
+              47
+            ],
+            "torso": [
+              65,
+              75
+            ]
+          },
+          {
+            "image": "base/andar-ne-6.png",
+            "head": [
+              64,
+              47
+            ],
+            "torso": [
+              65,
+              75
+            ]
+          },
+          {
+            "image": "base/andar-ne-7.png",
+            "head": [
+              64,
+              47
+            ],
+            "torso": [
+              65,
+              75
+            ]
+          }
+        ],
+        "nw": {
+          "mirror": "ne"
+        }
+      }
+    },
+    "subir": {
+      "ms": 110,
+      "loop": true,
+      "directions": {
+        "ne": [
+          {
+            "image": "base/subir-ne-0.png",
+            "head": [
+              65,
+              46
+            ],
+            "torso": [
+              64,
+              75
+            ]
+          },
+          {
+            "image": "base/subir-ne-1.png",
+            "head": [
+              65,
+              46
+            ],
+            "torso": [
+              64,
+              75
+            ]
+          },
+          {
+            "image": "base/subir-ne-2.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              63,
+              75
+            ]
+          },
+          {
+            "image": "base/subir-ne-3.png",
+            "head": [
+              66,
+              47
+            ],
+            "torso": [
+              65,
+              76
+            ]
+          },
+          {
+            "image": "base/subir-ne-4.png",
+            "head": [
+              65,
+              46
+            ],
+            "torso": [
+              64,
+              75
+            ]
+          },
+          {
+            "image": "base/subir-ne-5.png",
+            "head": [
+              65,
+              45
+            ],
+            "torso": [
+              64,
+              74
+            ]
+          },
+          {
+            "image": "base/subir-ne-6.png",
+            "head": [
+              64,
+              45
+            ],
+            "torso": [
+              63,
+              74
+            ]
+          },
+          {
+            "image": "base/subir-ne-7.png",
+            "head": [
+              65,
+              46
+            ],
+            "torso": [
+              64,
+              75
+            ]
+          }
+        ],
+        "nw": {
+          "mirror": "ne"
+        }
+      },
+      "stairs": {
+        "direction": "up",
+        "stepPx": 16,
+        "stepsPerCycle": 2
+      }
+    },
+    "descer": {
+      "ms": 110,
+      "loop": true,
+      "directions": {
+        "se": [
+          {
+            "image": "base/descer-se-0.png",
+            "head": [
+              67,
+              46
+            ],
+            "torso": [
+              62,
+              76
+            ]
+          },
+          {
+            "image": "base/descer-se-1.png",
+            "head": [
+              67,
+              46
+            ],
+            "torso": [
+              62,
+              76
+            ]
+          },
+          {
+            "image": "base/descer-se-2.png",
+            "head": [
+              67,
+              46
+            ],
+            "torso": [
+              62,
+              76
+            ]
+          },
+          {
+            "image": "base/descer-se-3.png",
+            "head": [
+              67,
+              47
+            ],
+            "torso": [
+              62,
+              77
+            ]
+          },
+          {
+            "image": "base/descer-se-4.png",
+            "head": [
+              66,
+              46
+            ],
+            "torso": [
+              61,
+              76
+            ]
+          },
+          {
+            "image": "base/descer-se-5.png",
+            "head": [
+              66,
+              46
+            ],
+            "torso": [
+              61,
+              76
+            ]
+          },
+          {
+            "image": "base/descer-se-6.png",
+            "head": [
+              66,
+              47
+            ],
+            "torso": [
+              61,
+              77
+            ]
+          },
+          {
+            "image": "base/descer-se-7.png",
+            "head": [
+              66,
+              47
+            ],
+            "torso": [
+              61,
+              77
+            ]
+          }
+        ],
+        "sw": {
+          "mirror": "se"
+        }
+      },
+      "stairs": {
+        "direction": "down",
+        "stepPx": 16,
+        "stepsPerCycle": 2
+      }
+    },
+    "sentar": {
+      "ms": 120,
+      "loop": false,
+      "directions": {
+        "se": [
+          {
+            "image": "base/sentar-se-0.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              67,
+              72
+            ]
+          },
+          {
+            "image": "base/sentar-se-1.png",
+            "head": [
+              64,
+              49
+            ],
+            "torso": [
+              67,
+              75
+            ]
+          },
+          {
+            "image": "base/sentar-se-2.png",
+            "head": [
+              64,
+              53
+            ],
+            "torso": [
+              67,
+              79
+            ]
+          },
+          {
+            "image": "base/sentar-se-3.png",
+            "head": [
+              64,
+              50
+            ],
+            "torso": [
+              67,
+              76
+            ]
+          }
+        ],
+        "sw": {
+          "mirror": "se"
+        },
+        "ne": [
+          {
+            "image": "base/sentar-ne-0.png",
+            "head": [
+              64,
+              46
+            ],
+            "torso": [
+              68,
+              73
+            ]
+          },
+          {
+            "image": "base/sentar-ne-1.png",
+            "head": [
+              64,
+              47
+            ],
+            "torso": [
+              68,
+              74
+            ]
+          },
+          {
+            "image": "base/sentar-ne-2.png",
+            "head": [
+              64,
+              50
+            ],
+            "torso": [
+              68,
+              77
+            ]
+          },
+          {
+            "image": "base/sentar-ne-3.png",
+            "head": [
+              64,
+              53
+            ],
+            "torso": [
+              68,
+              80
+            ]
+          }
+        ],
+        "nw": {
+          "mirror": "ne"
+        }
+      }
+    },
+    "sentado": {
+      "ms": 420,
+      "loop": true,
+      "directions": {
+        "se": [
+          {
+            "image": "base/sentado-se-0.png",
+            "head": [
+              64,
+              50
+            ],
+            "torso": [
+              67,
+              76
+            ]
+          },
+          {
+            "image": "base/sentado-se-1.png",
+            "head": [
+              64,
+              50
+            ],
+            "torso": [
+              67,
+              76
+            ]
+          }
+        ],
+        "sw": {
+          "mirror": "se"
+        },
+        "ne": [
+          {
+            "image": "base/sentado-ne-0.png",
+            "head": [
+              64,
+              53
+            ],
+            "torso": [
+              68,
+              80
+            ]
+          },
+          {
+            "image": "base/sentado-ne-1.png",
+            "head": [
+              64,
+              53
+            ],
+            "torso": [
+              68,
+              80
+            ]
+          }
+        ],
+        "nw": {
+          "mirror": "ne"
+        }
+      }
+    }
+  },
+  "layers": {
+    "cabelo-kael": {
+      "kind": "head",
+      "slot": "cabelo",
+      "images": {
+        "se": "camadas/cabelo-kael-se.png",
+        "ne": "camadas/cabelo-kael-ne.png"
+      },
+      "anchor": {
+        "se": [
+          26,
+          30
+        ],
+        "ne": [
+          25,
+          28
+        ]
+      }
+    },
+    "mochila-pipa": {
+      "kind": "torso",
+      "slot": "mochila",
+      "images": {
+        "se": "camadas/mochila-pipa-se.png",
+        "ne": "camadas/mochila-pipa-ne.png"
+      },
+      "lag": 1,
+      "anchor": {
+        "se": [
+          23,
+          19
+        ],
+        "ne": [
+          23,
+          17
+        ]
+      }
+    },
+    "alcas-mochila": {
+      "kind": "torso",
+      "slot": "alcas",
+      "images": {
+        "ne": "camadas/alcas-mochila-ne.png",
+        "se": "camadas/alcas-mochila-se.png"
+      },
+      "anchor": {
+        "ne": [
+          20,
+          16
+        ],
+        "se": [
+          3,
+          12
+        ]
+      }
+    }
+  },
+  "palette": "paleta.json",
+  "rulesVersion": "avatar-1"
+}
