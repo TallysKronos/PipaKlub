@@ -1,6 +1,6 @@
 # Fila de conversão para Soulgen
 
-Auditoria local de 25/10/2026: **13 dos 36 Pipamons da Dex ainda sem conversão**, 23 com rig existente. Eremor tem rig fora da Dex. Dois conceitos adicionais continuam sem rig e sem aprovação visual.
+Auditoria local de 25/10/2026: **11 dos 36 Pipamons da Dex ainda sem conversão**, 25 com rig existente. Eremor tem rig fora da Dex. Dois conceitos adicionais continuam sem rig e sem aprovação visual.
 
 ## Critério
 
@@ -10,10 +10,8 @@ Não foi alterado nenhum PNG, rig, atlas, catálogo ou arquivo do Godot. As fich
 
 ## Ainda não convertidos
 
-### Ventos Antigos (4)
+### Ventos Antigos (2)
 
-- **Rexal** — [ficha](fichas/rexal.json) · [arte atual](../../../assets/creatures/colecoes/rexal.png)
-- **Tricerafan** — [ficha](fichas/tricerafan.json) · [arte atual](../../../assets/creatures/colecoes/tricerafan.png)
 - **Pteralis** — [ficha](fichas/pteralis.json) · [arte atual](../../../assets/creatures/colecoes/pteralis.png)
 - **Stegaru** — [ficha](fichas/stegaru.json) · [arte atual](../../../assets/creatures/colecoes/stegaru.png)
 
@@ -53,6 +51,8 @@ Não foi alterado nenhum PNG, rig, atlas, catálogo ou arquivo do Godot. As fich
 - **Auriflama** — 6 peças; 5 ações; fonte do projeto: `art/soulgen/keys/auriflama/color-rig-v2/auriflama.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Umbrocasco** — 7 peças; 5 ações; fonte do projeto: `art/soulgen/keys/umbrocasco/color-rig-v2/umbrocasco.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Nevagume** — 7 peças; 5 ações; fonte do projeto: `art/soulgen/keys/nevagume/color-rig-v2/nevagume.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
+- **Rexal** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/rexal/color-rig-v2/rexal.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
+- **Tricerafan** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/tricerafan/color-rig-v2/tricerafan.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Guaravento** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/guaravento/color-rig-v2/guaravento.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Micofolha** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/micofolha/color-rig-v2/micofolha.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Capimansa** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/capimansa/color-rig-v2/capimansa.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.

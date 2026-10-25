@@ -148,3 +148,9 @@ O rig aprovado usa a engine própria JavaScript/Canvas 2D. Não exige troca de m
 O rig de recortes preserva uma vista. Virar completamente, mudar a perspectiva ou expor uma parte escondida exige desenho adicional; não esticar a vista existente para fingir outra anatomia. Penas individuais, deformações segmentadas e física de várias fitas são extensões possíveis, não funcionalidades já entregues.
 
 O exemplo aprovado é uma prévia animada em cores. Não é ainda um atlas substituto integrado no combate. O linter de 15 cores continua útil somente para o formato pixel art anterior. Publicação no Git não significa deploy ou integração automática.
+
+## Junções de papel, sem encaixes de brinquedo
+
+Não gerar bocas de tubo, cavidades pretas, aros de corte, tampas circulares ou pinos nas raízes móveis. Uma raiz fechada é uma continuação sólida do papel e deve entrar sob a peça vizinha com folga para a amplitude da animação. Não é a tampa de um cilindro. Nós de corda participam da estrutura da pipa, não substituem articulações.
+
+Revisar as fontes isoladas e a montagem sobre fundos claros e escuros. Pivôs coincidentes e atlas sem cortes não provam que a anatomia está unida: cavidades podem estar pintadas na própria arte. Checar pescoço, raiz da cauda e topo de cada membro em todas as ações. Não esconder defeitos com remendos decorativos; corrigir a fonte e a sobreposição.
