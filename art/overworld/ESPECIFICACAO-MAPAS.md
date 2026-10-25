@@ -66,9 +66,9 @@ O material é só **revestimento**: ele não decide se há barranco. Quem decide
 
 | tipo | propriedades | regra |
 | --- | --- | --- |
-| `entrada` | — | **obrigatório**, exatamente onde o jogador aparece; precisa ser chão andável |
-| `npc` | `fala` | precisa ser alcançável (na célula ou numa vizinha) |
-| `saida` | `destino` (id da área), `chegada` (opcional) | precisa ser alcançável |
+| `entrada` | `destino` (opcional: a área para onde a entrada leva de volta) | **obrigatório**, exatamente onde o jogador aparece; precisa ser chão andável |
+| `npc` | `fala`, `texto` (o que aparece ao conversar) | precisa ser alcançável (na célula ou numa vizinha) |
+| `saida` | `destino` (id da cena do jogo, ex.: `park-veredas`) | precisa ser alcançável |
 | outros | livres | também precisam ser alcançáveis |
 
 ## 4. Desníveis, rampas e pontes
@@ -160,16 +160,35 @@ Entregue em art/overworld/kits/<bioma>/ com um kit.json listando arquivo, tipo, 
 Não pinte o mapa inteiro como uma imagem só: o jogo precisa das peças.
 ```
 
-## 8. Integração com o jogo (próximo passo técnico)
+## 8. Integração com o jogo
 
-O jogo hoje usa física ortogonal (retângulos `Walkable` com `level` e `elevation`) e projeta na tela com `toIso` (`src/world-isometric.js`). A proposta é **não trocar a física**:
+O jogo usa física ortogonal (retângulos `Walkable` com `level` e `elevation`) e projeta na tela com `toIso` (`src/world-isometric.js`). A física **não muda**: o conversor `src/overworld-scene.js` traduz a planta no build (`scripts/art-build.mjs`), e o desenho usa o mesmo renderer das Veredas.
 
-1. Escrever o conversor `overworld-1 → cena`. Cada célula `(u,v)` vira um quadrado ortogonal de `CELULA_JOGO` px. Células vizinhas de mesmo nível e material são agrupadas em retângulos `Walkable` com `level = nível` e `elevation = nível × 96`, o padrão atual das Veredas. Água e rocha ficam fora. As rampas ganham um retângulo com `ramp` e direção. As peças viram fixtures com colisão na pegada. Os eventos viram objetos de interação, saída e NPC.
-2. O renderer de terreno passa a ler o kit do bioma: autotile do chão por cantos, barrancos pelas mesmas faces do `cliffs()` de `tools/mapa-studio/model.mjs` (o mesmo módulo que a bancada usa) e peças ordenadas por profundidade.
-3. Testes do conversor: o piloto vira cena; Kael vai da entrada ao baú do mirante pela rampa e à Nina pela ponte, nos dois sentidos.
-4. Só então refazer a Rua inicial e o trecho real das Veredas nesse formato, área por área, comparando screenshots com a versão atual.
+**Como ver no jogo:** abra o jogo com `?overworld=veredas-piloto` (o nome do arquivo em `art/overworld/mapas/`). Na Clareira do Papel, a entrada das Veredas passa a levar para a planta; a saída norte da planta vai para as Veredas de verdade e a entrada volta para a Clareira. Sem o parâmetro, nada muda para os jogadores.
 
-`CELULA_JOGO` (proposta: 48) e a escala da arte na tela precisam ser decididos numa prova com o kit real. Essa é a primeira tarefa da integração.
+| planta | cena do jogo |
+| --- | --- |
+| 1 célula | quadrado de **64 px** ortogonais (2×2 nós de navegação de 32 px) |
+| nível 1 | `level: 1`, `elevation: 96` (o padrão das Veredas) |
+| células iguais vizinhas | um retângulo `Walkable` (junta na linha e depois desce) |
+| grama · terra · mato · ponte · piso/calçada/asfalto | `grass` · `dirt` · `park-tall-grass` (com `encounter_zone`) · `bridge` · `sidewalk` |
+| água e rocha | fora do `Walkable`; a água (com o vão sob a ponte) vira o rio desenhado |
+| rampa | escada `stairs` com `connects_to` e `rise_to` |
+| árvore · pedra · baú · banco, placa, flores, poste, lixeira, vaso | árvore do parque · arbusto (até ganhar arte de pedra) · baú · a peça de mesmo nome do pacote do parque |
+| baú e NPC | ocupam a célula; a conversa é feita de uma célula da frente |
+| `entrada`, `saida`, `npc`, peça com `interacao` | `Spawns`, `Exits` (`street_scene`), `Interactions` (`pilot_story` com o `texto`) |
+
+O conversor recusa, com mensagem, o que o renderer atual ainda não desenha:
+- rampa que não seja `v-` saindo do nível 0;
+- nível 2 ou 3;
+- ponte que cruza em `v`.
+
+Baús de planta não dão recompensa e o mato alto não dispara encontros: as duas coisas ficam reservadas às cenas oficiais até a planta ser aprovada.
+
+**Próximos passos:**
+1. Kit do bioma (pedido B): o renderer passa a ler o autotile do chão e as peças do kit em vez das texturas fixas das Veredas.
+2. Liberar no renderer rampas nas 4 direções, níveis 2–3 e pontes em `v`, com os testes de regressão de `veredas-renderer.test.mjs`.
+3. Refazer a Rua inicial e o trecho real das Veredas nesse formato, área por área, comparando screenshots com a versão atual.
 
 ## 9. Arquivos
 
@@ -177,3 +196,4 @@ O jogo hoje usa física ortogonal (retângulos `Walkable` com `level` e `elevati
 - `tools/mapa-studio/`: a bancada (`npm run studio:mapa`, porta 5244) e os testes.
 - `art/overworld/tiles/rascunho.tsj/.png`: tileset de planta.
 - `art/overworld/mapas/veredas-piloto.tmj`: trecho piloto (ponte, rampa, mirante, Nina, 2 baús, saída).
+- `src/overworld-scene.js` e `overworld-scene.test.mjs`: conversor da planta para a cena do jogo e os testes (rampa, ponte, acessos).

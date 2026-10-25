@@ -77,10 +77,11 @@ export function createVeredasRegionRenderer(scene,images,pack,model,createCanvas
  const grass=createTallGrass(walk.filter(r=>r.properties.ground_frame==='park-tall-grass'),{project});
  const props=solids.filter(r=>r.properties.world_prop==='tree').map((r,i)=>({x:r.x+r.w/2,y:r.y+r.h,type:'tree',w:200+i%3*18}));
  // Borders and landmarks use approved whole-tree, flower and windsock art.
- for(const r of base){for(let x=r.x+60;x<r.x+r.w;x+=224){const y=r.y+32;if(!props.some(p=>Math.hypot(p.x-x,p.y-y)<136))props.push({x,y,type:'tree',w:190,scenery:true});}}
- props.push({x:384,y:784,type:'sign',action:'parkMap',w:100},{x:1480,y:960,type:'windsock',w:190},{x:2800,y:232,type:'windsock',w:170},{x:2800,y:256,type:'bench',action:'wildRest',w:126},{x:576,y:1216,type:'kite',action:'veredasTrace',w:74,lift:32});
- for(const [x,y]of [[256,448],[608,448],[1056,1216],[1312,1440],[1888,480],[2528,480],[2656,1600]])props.push({x,y,type:'flowers',w:58});
- for(const chest of scene.veredas.chests)props.push({...chest,type:'chest',action:'veredasChest',target:chest.id,w:90});
+ if(scene.veredas.borderTrees!==false)for(const r of base){for(let x=r.x+60;x<r.x+r.w;x+=224){const y=r.y+32;if(!props.some(p=>Math.hypot(p.x-x,p.y-y)<136))props.push({x,y,type:'tree',w:190,scenery:true});}}
+ // Mapas do overworld trazem a própria decoração; sem ela, valem os marcos das Veredas.
+ if(scene.veredas.decor)props.push(...scene.veredas.decor);else{props.push({x:384,y:784,type:'sign',action:'parkMap',w:100},{x:1480,y:960,type:'windsock',w:190},{x:2800,y:232,type:'windsock',w:170},{x:2800,y:256,type:'bench',action:'wildRest',w:126},{x:576,y:1216,type:'kite',action:'veredasTrace',w:74,lift:32});
+ for(const [x,y]of [[256,448],[608,448],[1056,1216],[1312,1440],[1888,480],[2528,480],[2656,1600]])props.push({x,y,type:'flowers',w:58});}
+ for(const chest of scene.veredas.chests)props.push({...chest,type:'chest',action:chest.action||'veredasChest',target:chest.id,w:90});
  const board=createCanvas();board.width=146;board.height=94;const bc=board.getContext('2d');bc.fillStyle='#365e50';bc.fillRect(0,0,146,94);for(const r of walk){bc.fillStyle=r.properties.ground_frame==='park-tall-grass'?'#548252':r.properties.level?'#e0cb8e':'#b0c77e';bc.fillRect(r.x/scene.width*146,r.y/scene.height*94,r.w/scene.width*146,r.h/scene.height*94);}
  let g,actor,hitAreas=[],wind=0;
  function propBox(o){const p=project(o),rig=rigs[o.type],im=images[o.type],h=rig?rig.height*o.w/rig.width:im?o.w*im.height/im.width:o.w;return {x:p.x-o.w/2,y:p.y-h-(o.lift||0),w:o.w,h};}

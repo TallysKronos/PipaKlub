@@ -25,11 +25,11 @@ set(altura,8,11,GID['v-']);set(altura,9,11,GID['v-']);set(chao,8,11,GID.terra);s
 rect(chao,GID.piso,25,16,30,19);
 const objects=[];let next=1;
 const obj=(layer,name,type,u,v,properties={})=>objects.push({layer,o:{id:next++,name,type,x:(u+.5)*32,y:(v+.5)*32,point:true,width:0,height:0,rotation:0,visible:true,properties:Object.entries(properties).map(([name,value])=>({name,type:typeof value==='boolean'?'bool':typeof value==='number'?'int':'string',value}))}});
-obj('eventos','Entrada das Veredas','entrada',3,28);
-obj('eventos','Nina','npc',27,17,{fala:'nina-ponte'});
-obj('eventos','Rumo ao pátio dos canos','saida',33,3,{destino:'patio-canos'});
-obj('pecas','Baú do mirante','peca',5,6,{asset:'bau',interacao:'abrir'});
-obj('pecas','Baú da margem','peca',23,26,{asset:'bau',interacao:'abrir'});
+obj('eventos','Entrada das Veredas','entrada',3,28,{destino:'park-clearing'});
+obj('eventos','Nina','npc',27,17,{fala:'nina-ponte',texto:'Atravessou a ponte? O mirante do outro lado tem um baú. A rampa fica perto do mato alto.'});
+obj('eventos','Rumo às Veredas do Encanamento','saida',33,3,{destino:'park-veredas'});
+obj('pecas','Baú do mirante','peca',5,6,{asset:'bau',interacao:'abrir',texto:'Neste trecho de teste, os baús ainda não dão recompensas.'});
+obj('pecas','Baú da margem','peca',23,26,{asset:'bau',interacao:'abrir',texto:'Neste trecho de teste, os baús ainda não dão recompensas.'});
 // Árvores e pedras: enquadram as trilhas sem cobrir as ligações.
 const trees=[[1,22],[6,24],[11,26],[13,16],[11,13],[1,9],[14,6],[2,1],[10,1],[24,4],[23,10],[31,10],[34,14],[33,19],[24,24],[27,28],[34,29],[13,24],[13,1],[34,8]];
 for(const [u,v] of trees)obj('pecas','Árvore','peca',u,v,{asset:'arvore'});

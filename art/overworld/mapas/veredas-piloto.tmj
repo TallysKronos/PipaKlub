@@ -2245,6 +2245,11 @@
        "name": "interacao",
        "type": "string",
        "value": "abrir"
+      },
+      {
+       "name": "texto",
+       "type": "string",
+       "value": "Neste trecho de teste, os baús ainda não dão recompensas."
       }
      ]
     },
@@ -2269,6 +2274,11 @@
        "name": "interacao",
        "type": "string",
        "value": "abrir"
+      },
+      {
+       "name": "texto",
+       "type": "string",
+       "value": "Neste trecho de teste, os baús ainda não dão recompensas."
       }
      ]
     },
@@ -2751,7 +2761,13 @@
      "height": 0,
      "rotation": 0,
      "visible": true,
-     "properties": []
+     "properties": [
+      {
+       "name": "destino",
+       "type": "string",
+       "value": "park-clearing"
+      }
+     ]
     },
     {
      "id": 2,
@@ -2769,12 +2785,17 @@
        "name": "fala",
        "type": "string",
        "value": "nina-ponte"
+      },
+      {
+       "name": "texto",
+       "type": "string",
+       "value": "Atravessou a ponte? O mirante do outro lado tem um baú. A rampa fica perto do mato alto."
       }
      ]
     },
     {
      "id": 3,
-     "name": "Rumo ao pátio dos canos",
+     "name": "Rumo às Veredas do Encanamento",
      "type": "saida",
      "x": 1072,
      "y": 112,
@@ -2787,7 +2808,7 @@
       {
        "name": "destino",
        "type": "string",
-       "value": "patio-canos"
+       "value": "park-veredas"
       }
      ]
     }
