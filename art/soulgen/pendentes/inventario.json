@@ -4,8 +4,8 @@
   "criteria": "Conversão = projeto editável Soulgen com fontes PNG e cinco ações. Atlas antigo ou conceito isolado não contam. Validação estrutural não equivale a aprovação artística.",
   "counts": {
     "catalog": 36,
-    "pending": 20,
-    "withRig": 16,
+    "pending": 13,
+    "withRig": 23,
     "rigOutsideCatalog": 1,
     "unapprovedConceptsOutsideCatalog": 2
   },
@@ -576,7 +576,7 @@
       "id": "marulume",
       "name": "Marulume",
       "group": "Rios e lendas",
-      "status": "pendente-conversao",
+      "status": "rig-existente",
       "title": "Mensageiro de Atlântida",
       "habitat": "Rios e lendas · correntes do mundo almático",
       "reference": "assets/creatures/colecoes/marulume.png",
@@ -619,23 +619,34 @@
         "w": 207,
         "h": 204
       },
-      "source": null,
+      "source": "art/soulgen/keys/marulume/color-rig-v2/marulume.soulgen.json",
       "runtimeSource": null,
-      "rig": null,
+      "rig": {
+        "source": "art/soulgen/keys/marulume/color-rig-v2/marulume.soulgen.json",
+        "ok": true,
+        "errors": [],
+        "warnings": [],
+        "parts": 4,
+        "actions": [
+          "idle",
+          "flight",
+          "skill",
+          "hurt",
+          "victory"
+        ],
+        "assets": 7
+      },
       "integratedSoulgen": false,
       "remaining": [
-        "Revisar conceito no padrão Carcará",
-        "Produzir peças e expressões registradas",
-        "Montar pivôs e hierarquia no Soulgen",
-        "Criar/revisar as cinco ações",
-        "Validar e exportar antes de integrar ao jogo"
+        "Revisar visual e animações no Soulgen",
+        "Exportar e integrar ao atlas do jogo após revisão"
       ]
     },
     {
       "id": "jarabrasa",
       "name": "Jarabrasa",
       "group": "Rios e lendas",
-      "status": "pendente-conversao",
+      "status": "rig-existente",
       "title": "Sentinela das brasas da mata",
       "habitat": "Rios e lendas · correntes do mundo almático",
       "reference": "assets/creatures/colecoes/jarabrasa.png",
@@ -678,23 +689,34 @@
         "w": 275,
         "h": 234
       },
-      "source": null,
+      "source": "art/soulgen/keys/jarabrasa/color-rig-v2/jarabrasa.soulgen.json",
       "runtimeSource": null,
-      "rig": null,
+      "rig": {
+        "source": "art/soulgen/keys/jarabrasa/color-rig-v2/jarabrasa.soulgen.json",
+        "ok": true,
+        "errors": [],
+        "warnings": [],
+        "parts": 4,
+        "actions": [
+          "idle",
+          "flight",
+          "skill",
+          "hurt",
+          "victory"
+        ],
+        "assets": 7
+      },
       "integratedSoulgen": false,
       "remaining": [
-        "Revisar conceito no padrão Carcará",
-        "Produzir peças e expressões registradas",
-        "Montar pivôs e hierarquia no Soulgen",
-        "Criar/revisar as cinco ações",
-        "Validar e exportar antes de integrar ao jogo"
+        "Revisar visual e animações no Soulgen",
+        "Exportar e integrar ao atlas do jogo após revisão"
       ]
     },
     {
       "id": "jaguarluar",
       "name": "Jaguarluar",
       "group": "Rios e lendas",
-      "status": "pendente-conversao",
+      "status": "rig-existente",
       "title": "A sombra da lua cheia",
       "habitat": "Rios e lendas · correntes do mundo almático",
       "reference": "assets/creatures/colecoes/jaguarluar.png",
@@ -737,23 +759,34 @@
         "w": 209,
         "h": 204
       },
-      "source": null,
+      "source": "art/soulgen/keys/jaguarluar/color-rig-v2/jaguarluar.soulgen.json",
       "runtimeSource": null,
-      "rig": null,
+      "rig": {
+        "source": "art/soulgen/keys/jaguarluar/color-rig-v2/jaguarluar.soulgen.json",
+        "ok": true,
+        "errors": [],
+        "warnings": [],
+        "parts": 8,
+        "actions": [
+          "idle",
+          "flight",
+          "skill",
+          "hurt",
+          "victory"
+        ],
+        "assets": 11
+      },
       "integratedSoulgen": false,
       "remaining": [
-        "Revisar conceito no padrão Carcará",
-        "Produzir peças e expressões registradas",
-        "Montar pivôs e hierarquia no Soulgen",
-        "Criar/revisar as cinco ações",
-        "Validar e exportar antes de integrar ao jogo"
+        "Revisar visual e animações no Soulgen",
+        "Exportar e integrar ao atlas do jogo após revisão"
       ]
     },
     {
       "id": "azulongo",
       "name": "Azulongo",
       "group": "Guardiões dos Quatro Ventos",
-      "status": "pendente-conversao",
+      "status": "rig-existente",
       "title": "O fio das marés",
       "habitat": "Guardiões dos Quatro Ventos · correntes do mundo almático",
       "reference": "assets/creatures/colecoes/azulongo.png",
@@ -796,23 +829,34 @@
         "w": 231,
         "h": 225
       },
-      "source": null,
+      "source": "art/soulgen/keys/azulongo/color-rig-v2/azulongo.soulgen.json",
       "runtimeSource": null,
-      "rig": null,
+      "rig": {
+        "source": "art/soulgen/keys/azulongo/color-rig-v2/azulongo.soulgen.json",
+        "ok": true,
+        "errors": [],
+        "warnings": [],
+        "parts": 7,
+        "actions": [
+          "idle",
+          "flight",
+          "skill",
+          "hurt",
+          "victory"
+        ],
+        "assets": 8
+      },
       "integratedSoulgen": false,
       "remaining": [
-        "Revisar conceito no padrão Carcará",
-        "Produzir peças e expressões registradas",
-        "Montar pivôs e hierarquia no Soulgen",
-        "Criar/revisar as cinco ações",
-        "Validar e exportar antes de integrar ao jogo"
+        "Revisar visual e animações no Soulgen",
+        "Exportar e integrar ao atlas do jogo após revisão"
       ]
     },
     {
       "id": "auriflama",
       "name": "Auriflama",
       "group": "Guardiões dos Quatro Ventos",
-      "status": "pendente-conversao",
+      "status": "rig-existente",
       "title": "A centelha que volta",
       "habitat": "Guardiões dos Quatro Ventos · correntes do mundo almático",
       "reference": "assets/creatures/colecoes/auriflama.png",
@@ -855,23 +899,34 @@
         "w": 229,
         "h": 220
       },
-      "source": null,
+      "source": "art/soulgen/keys/auriflama/color-rig-v2/auriflama.soulgen.json",
       "runtimeSource": null,
-      "rig": null,
+      "rig": {
+        "source": "art/soulgen/keys/auriflama/color-rig-v2/auriflama.soulgen.json",
+        "ok": true,
+        "errors": [],
+        "warnings": [],
+        "parts": 6,
+        "actions": [
+          "idle",
+          "flight",
+          "skill",
+          "hurt",
+          "victory"
+        ],
+        "assets": 9
+      },
       "integratedSoulgen": false,
       "remaining": [
-        "Revisar conceito no padrão Carcará",
-        "Produzir peças e expressões registradas",
-        "Montar pivôs e hierarquia no Soulgen",
-        "Criar/revisar as cinco ações",
-        "Validar e exportar antes de integrar ao jogo"
+        "Revisar visual e animações no Soulgen",
+        "Exportar e integrar ao atlas do jogo após revisão"
       ]
     },
     {
       "id": "umbrocasco",
       "name": "Umbrocasco",
       "group": "Guardiões dos Quatro Ventos",
-      "status": "pendente-conversao",
+      "status": "rig-existente",
       "title": "A memória do vento",
       "habitat": "Guardiões dos Quatro Ventos · correntes do mundo almático",
       "reference": "assets/creatures/colecoes/umbrocasco.png",
@@ -914,23 +969,34 @@
         "w": 219,
         "h": 188
       },
-      "source": null,
+      "source": "art/soulgen/keys/umbrocasco/color-rig-v2/umbrocasco.soulgen.json",
       "runtimeSource": null,
-      "rig": null,
+      "rig": {
+        "source": "art/soulgen/keys/umbrocasco/color-rig-v2/umbrocasco.soulgen.json",
+        "ok": true,
+        "errors": [],
+        "warnings": [],
+        "parts": 7,
+        "actions": [
+          "idle",
+          "flight",
+          "skill",
+          "hurt",
+          "victory"
+        ],
+        "assets": 10
+      },
       "integratedSoulgen": false,
       "remaining": [
-        "Revisar conceito no padrão Carcará",
-        "Produzir peças e expressões registradas",
-        "Montar pivôs e hierarquia no Soulgen",
-        "Criar/revisar as cinco ações",
-        "Validar e exportar antes de integrar ao jogo"
+        "Revisar visual e animações no Soulgen",
+        "Exportar e integrar ao atlas do jogo após revisão"
       ]
     },
     {
       "id": "nevagume",
       "name": "Nevagume",
       "group": "Guardiões dos Quatro Ventos",
-      "status": "pendente-conversao",
+      "status": "rig-existente",
       "title": "A costura da coragem",
       "habitat": "Guardiões dos Quatro Ventos · correntes do mundo almático",
       "reference": "assets/creatures/colecoes/nevagume.png",
@@ -973,16 +1039,27 @@
         "w": 234,
         "h": 205
       },
-      "source": null,
+      "source": "art/soulgen/keys/nevagume/color-rig-v2/nevagume.soulgen.json",
       "runtimeSource": null,
-      "rig": null,
+      "rig": {
+        "source": "art/soulgen/keys/nevagume/color-rig-v2/nevagume.soulgen.json",
+        "ok": true,
+        "errors": [],
+        "warnings": [],
+        "parts": 7,
+        "actions": [
+          "idle",
+          "flight",
+          "skill",
+          "hurt",
+          "victory"
+        ],
+        "assets": 10
+      },
       "integratedSoulgen": false,
       "remaining": [
-        "Revisar conceito no padrão Carcará",
-        "Produzir peças e expressões registradas",
-        "Montar pivôs e hierarquia no Soulgen",
-        "Criar/revisar as cinco ações",
-        "Validar e exportar antes de integrar ao jogo"
+        "Revisar visual e animações no Soulgen",
+        "Exportar e integrar ao atlas do jogo após revisão"
       ]
     },
     {

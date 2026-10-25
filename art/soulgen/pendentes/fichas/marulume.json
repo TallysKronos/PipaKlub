@@ -2,7 +2,7 @@
   "id": "marulume",
   "name": "Marulume",
   "group": "Rios e lendas",
-  "status": "pendente-conversao",
+  "status": "rig-existente",
   "title": "Mensageiro de Atlântida",
   "habitat": "Rios e lendas · correntes do mundo almático",
   "reference": "assets/creatures/colecoes/marulume.png",
@@ -45,15 +45,26 @@
     "w": 207,
     "h": 204
   },
-  "source": null,
+  "source": "art/soulgen/keys/marulume/color-rig-v2/marulume.soulgen.json",
   "runtimeSource": null,
-  "rig": null,
+  "rig": {
+    "source": "art/soulgen/keys/marulume/color-rig-v2/marulume.soulgen.json",
+    "ok": true,
+    "errors": [],
+    "warnings": [],
+    "parts": 4,
+    "actions": [
+      "idle",
+      "flight",
+      "skill",
+      "hurt",
+      "victory"
+    ],
+    "assets": 7
+  },
   "integratedSoulgen": false,
   "remaining": [
-    "Revisar conceito no padrão Carcará",
-    "Produzir peças e expressões registradas",
-    "Montar pivôs e hierarquia no Soulgen",
-    "Criar/revisar as cinco ações",
-    "Validar e exportar antes de integrar ao jogo"
+    "Revisar visual e animações no Soulgen",
+    "Exportar e integrar ao atlas do jogo após revisão"
   ]
 }

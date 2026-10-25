@@ -2,7 +2,7 @@
   "id": "jarabrasa",
   "name": "Jarabrasa",
   "group": "Rios e lendas",
-  "status": "pendente-conversao",
+  "status": "rig-existente",
   "title": "Sentinela das brasas da mata",
   "habitat": "Rios e lendas · correntes do mundo almático",
   "reference": "assets/creatures/colecoes/jarabrasa.png",
@@ -45,15 +45,26 @@
     "w": 275,
     "h": 234
   },
-  "source": null,
+  "source": "art/soulgen/keys/jarabrasa/color-rig-v2/jarabrasa.soulgen.json",
   "runtimeSource": null,
-  "rig": null,
+  "rig": {
+    "source": "art/soulgen/keys/jarabrasa/color-rig-v2/jarabrasa.soulgen.json",
+    "ok": true,
+    "errors": [],
+    "warnings": [],
+    "parts": 4,
+    "actions": [
+      "idle",
+      "flight",
+      "skill",
+      "hurt",
+      "victory"
+    ],
+    "assets": 7
+  },
   "integratedSoulgen": false,
   "remaining": [
-    "Revisar conceito no padrão Carcará",
-    "Produzir peças e expressões registradas",
-    "Montar pivôs e hierarquia no Soulgen",
-    "Criar/revisar as cinco ações",
-    "Validar e exportar antes de integrar ao jogo"
+    "Revisar visual e animações no Soulgen",
+    "Exportar e integrar ao atlas do jogo após revisão"
   ]
 }
