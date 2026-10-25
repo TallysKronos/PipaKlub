@@ -107,3 +107,5 @@ Chaspiral: `/?preset=chaspiral`, seis peças proporcionais, cinco ações e ambo
 Hiponilo: `/?preset=hiponilo`, oito peças proporcionais e cinco ações. Recuperação isolada.
 
 Marulume: `/?preset=marulume`, quatro peças proporcionais, cinco ações de nado e recuperação isolada.
+
+Jarabrasa: `/?preset=jarabrasa`, quatro peças proporcionais, cinco ações e recuperação isolada.
