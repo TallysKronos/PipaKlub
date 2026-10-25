@@ -121,3 +121,5 @@ Nevagume: `http://127.0.0.1:5240/?preset=nevagume` — sete peças editáveis, c
 Rexal: `http://127.0.0.1:5240/?preset=rexal` — oito peças proporcionais, vela de bambu e cinco ações.
 
 Tricerafan: `http://127.0.0.1:5240/?preset=tricerafan` — oito peças, três chifres e leque independente.
+
+Stegaru: `http://127.0.0.1:5240/?preset=stegaru` — oito peças, placas dorsais de pipa e cinco ações.

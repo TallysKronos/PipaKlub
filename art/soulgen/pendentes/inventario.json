@@ -4,8 +4,8 @@
   "criteria": "Conversão = projeto editável Soulgen com fontes PNG e cinco ações. Atlas antigo ou conceito isolado não contam. Validação estrutural não equivale a aprovação artística.",
   "counts": {
     "catalog": 36,
-    "pending": 10,
-    "withRig": 26,
+    "pending": 9,
+    "withRig": 27,
     "rigOutsideCatalog": 1,
     "unapprovedConceptsOutsideCatalog": 2
   },
@@ -1206,7 +1206,7 @@
       "id": "stegaru",
       "name": "Stegaru",
       "group": "Ventos Antigos",
-      "status": "pendente-conversao",
+      "status": "rig-existente",
       "title": "Jardim de Varetas",
       "habitat": "Ventos Antigos · correntes do mundo almático",
       "reference": "assets/creatures/colecoes/stegaru.png",
@@ -1249,16 +1249,27 @@
         "w": 233,
         "h": 210
       },
-      "source": null,
+      "source": "art/soulgen/keys/stegaru/color-rig-v2/stegaru.soulgen.json",
       "runtimeSource": null,
-      "rig": null,
+      "rig": {
+        "source": "art/soulgen/keys/stegaru/color-rig-v2/stegaru.soulgen.json",
+        "ok": true,
+        "errors": [],
+        "warnings": [],
+        "parts": 8,
+        "actions": [
+          "idle",
+          "flight",
+          "skill",
+          "hurt",
+          "victory"
+        ],
+        "assets": 11
+      },
       "integratedSoulgen": false,
       "remaining": [
-        "Revisar conceito no padrão Carcará",
-        "Produzir peças e expressões registradas",
-        "Montar pivôs e hierarquia no Soulgen",
-        "Criar/revisar as cinco ações",
-        "Validar e exportar antes de integrar ao jogo"
+        "Revisar visual e animações no Soulgen",
+        "Exportar e integrar ao atlas do jogo após revisão"
       ]
     },
     {

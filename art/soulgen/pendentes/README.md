@@ -1,6 +1,6 @@
 # Fila de conversão para Soulgen
 
-Auditoria local de 25/10/2026: **10 dos 36 Pipamons da Dex ainda sem conversão**, 26 com rig existente. Eremor tem rig fora da Dex. Dois conceitos adicionais continuam sem rig e sem aprovação visual.
+Auditoria local de 25/10/2026: **9 dos 36 Pipamons da Dex ainda sem conversão**, 27 com rig existente. Eremor tem rig fora da Dex. Dois conceitos adicionais continuam sem rig e sem aprovação visual.
 
 ## Critério
 
@@ -9,10 +9,6 @@ Conversão = projeto editável Soulgen com fontes PNG e cinco ações. Atlas ant
 Não foi alterado nenhum PNG, rig, atlas, catálogo ou arquivo do Godot. As fichas apontam para as referências existentes; não duplicam nem movem as artes.
 
 ## Ainda não convertidos
-
-### Ventos Antigos (1)
-
-- **Stegaru** — [ficha](fichas/stegaru.json) · [arte atual](../../../assets/creatures/colecoes/stegaru.png)
 
 ### Memórias do Vento (4)
 
@@ -53,6 +49,7 @@ Não foi alterado nenhum PNG, rig, atlas, catálogo ou arquivo do Godot. As fich
 - **Rexal** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/rexal/color-rig-v2/rexal.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Tricerafan** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/tricerafan/color-rig-v2/tricerafan.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Pteralis** — 6 peças; 5 ações; fonte do projeto: `art/soulgen/keys/pteralis/color-rig-v2/pteralis.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
+- **Stegaru** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/stegaru/color-rig-v2/stegaru.soulgen.json`. Configurado no Studio; atlas do jogo ainda antigo.
 - **Guaravento** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/guaravento/color-rig-v2/guaravento.soulgen.json`. Atlas Soulgen integrado.
 - **Micofolha** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/micofolha/color-rig-v2/micofolha.soulgen.json`. Atlas Soulgen integrado.
 - **Capimansa** — 8 peças; 5 ações; fonte do projeto: `art/soulgen/keys/capimansa/color-rig-v2/capimansa.soulgen.json`. Atlas Soulgen integrado.
