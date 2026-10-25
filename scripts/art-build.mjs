@@ -2,6 +2,7 @@ import {copyWorkshopV3} from './workshop-v3-build.mjs';
 import {avatarConfig,avatarSource} from './avatar-build.mjs';
 import {createParkIsometricScene} from '../src/park-isometric-layout.js';
 import {createParkBossScene} from '../src/park-boss-layout.js';
+import {overworldScene} from '../src/overworld-scene.js';
 import {BEDROOM_LAYOUT,bedroomRoom,bedroomMap} from '../src/bedroom-layout.js';
 import {HOME_LAYOUT,homeRoom,homeMap} from '../src/home-layout.js';
 import {streetMap} from '../src/street-layout.js';
@@ -65,6 +66,8 @@ export function artConfig(){
  for(const [id,a]of Object.entries(world.parkIsometric.images)){const image=a.image,hash=createHash('sha256').update(fs.readFileSync('assets/'+image)).digest('hex').slice(0,12);images['park-iso-'+id]={image,url:'assets/'+image+'?v='+hash};}
  for(const id of ['park-trail','park-clearing'])world.scenes[id]=createParkIsometricScene(JSON.parse(fs.readFileSync('assets/world/park-v1/'+id+'.tmj','utf8')),world.scenes[id].art,{production:true});
  world.scenes['park-veredas']=createParkBossScene();
+ // Plantas do overworld (art/overworld/mapas): só entram no jogo com ?overworld=<mapa>, para revisão.
+ {const dir='art/overworld/',sets=Object.fromEntries(fs.readdirSync(dir+'tiles').filter(f=>f.endsWith('.tsj')).map(f=>[f,JSON.parse(fs.readFileSync(dir+'tiles/'+f,'utf8'))]));world.overworld=Object.fromEntries(fs.readdirSync(dir+'mapas').filter(f=>f.endsWith('.tmj')).sort().map(f=>{const id=f.slice(0,-4);return [id,overworldScene(JSON.parse(fs.readFileSync(dir+'mapas/'+f,'utf8')),sets,{id})];}));}
  world.villageIsometric=JSON.parse(fs.readFileSync('assets/world/village-isometric-v1/manifest.json','utf8'));
  Object.assign(world.villageIsometric.images,JSON.parse(fs.readFileSync('assets/world/kael-bedroom-iso-v4/manifest.json','utf8')).images);
  Object.assign(world.villageIsometric.images,JSON.parse(fs.readFileSync('assets/world/kael-home-iso-v1/manifest.json','utf8')).images);

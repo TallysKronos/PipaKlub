@@ -1,0 +1,26 @@
+/* Mesma família visual das bancadas de arte; dourado como cor-assinatura. */
+:root{color-scheme:dark;--bg:#111d29;--panel:#1b2d3c;--panel2:#172938;--line:#37505c;--ink:#f5eddd;--muted:#afc0c6;--gold:#f0bd52;--ok:#7fd49e;--warn:#efbd62;--bad:#ff7a73}
+*{box-sizing:border-box}html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,sans-serif;display:grid;grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden}
+button{font:inherit;border:1px solid #506575;background:#293f4e;color:var(--ink);border-radius:7px;padding:7px 11px;cursor:pointer}button:hover{background:#365365}button.primary{background:var(--gold);border-color:var(--gold);color:#253440;font-weight:800}
+button:focus-visible,canvas:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+header{display:flex;align-items:center;gap:18px;padding:10px 16px;background:var(--panel2);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.brand{display:flex;gap:10px;align-items:center}.brand>span{font-size:34px;color:var(--gold)}h1{margin:0;font-size:20px}.brand small{font-size:9px;letter-spacing:.14em;color:var(--muted)}
+.title{display:flex;flex-direction:column}.title small{color:var(--muted);font-size:12px}.actions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+main{display:grid;grid-template-columns:minmax(0,1fr) 330px;min-height:0}
+.stage{position:relative;min-width:0;min-height:0;background:#0c161e}
+canvas{display:block;width:100%;height:100%;cursor:crosshair;touch-action:none}
+.hud{position:absolute;left:12px;top:10px;display:flex;gap:14px;align-items:center;background:#0c161ecc;padding:6px 10px;border-radius:8px;font-size:13px}
+.hud label{display:flex;gap:5px;align-items:center}.hud input{accent-color:var(--gold)}#pos{color:var(--muted);font:12px ui-monospace,monospace}
+.hint{position:absolute;left:12px;bottom:8px;right:12px;margin:0;font-size:12px;color:var(--muted);background:#0c161ecc;padding:5px 9px;border-radius:7px}
+aside{background:var(--panel);border-left:1px solid var(--line);overflow:auto;padding:14px}
+h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:14px 0 8px}h2:first-child{margin-top:0}
+.audit,.legend{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}
+.audit li{display:grid;grid-template-columns:60px minmax(0,1fr);gap:6px;font-size:12.5px;padding:6px 8px;border-radius:6px;background:#132532;border-left:3px solid #5d707a;cursor:pointer}
+.audit li b{font:600 10px ui-monospace,monospace;color:var(--muted)}
+.audit li[data-level=ok]{border-color:var(--ok);cursor:default}.audit li[data-level=warn]{border-color:var(--warn)}.audit li[data-level=fail]{border-color:var(--bad);background:#3a1f24}
+.legend li{display:flex;gap:8px;align-items:center;font-size:13px}.legend i{width:16px;height:16px;border-radius:4px;border:1px solid #0006;flex:none}
+.howto{margin:0;padding-left:18px;font-size:13px;color:var(--muted)}.howto li{margin-bottom:6px}code{font:12px ui-monospace,monospace;color:var(--ink)}
+footer{padding:7px 16px;border-top:1px solid var(--line);background:var(--panel2);font-size:13px;color:var(--muted)}
+@media (max-width:860px){main{grid-template-columns:1fr;grid-template-rows:60vh auto}body{overflow:auto;display:block}aside{border-left:0}}
+select{font:inherit;background:#293f4e;color:var(--ink);border:1px solid #506575;border-radius:7px;padding:7px 9px}

@@ -60,6 +60,8 @@ function autosaveStatus(text,saving=false){autosaveIndicator.textContent=text;au
 function campaignScheduleAutosave(){clearTimeout(autosaveTimer);autosaveTimer=setTimeout(campaignAutosave,1500);}
 async function campaignAutosave({beforeBattle=false}={}){
  if(!campaignData||campaignData.autosave_enabled===false)return true;
+ // Plantas do overworld (?overworld=) são prévias: o servidor só aceita salvar nos mapas oficiais.
+ if(typeof worldScene==='function'&&worldScene()?.overworld)return true;
  if(autosavePending||campaignBusy||!playerAccount||mode||openingState?.step<14||gameLoading.active||(!beforeBattle&&(!worldWalkActive()||worldState().actor.moving)))return false;
  const checkpoint=campaignCheckpoint(),signature=JSON.stringify(checkpoint);if(signature===autosaveLast)return true;
  const owner=playerAccount.profile.id,epoch=campaignEpoch;autosavePending=true;campaignBusy=true;autosaveStatus('◌ Salvando…',true);
