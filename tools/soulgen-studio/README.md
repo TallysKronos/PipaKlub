@@ -103,3 +103,5 @@ Trinca-brasas: `/?preset=trinca-brasas`, nove peças, três cabeças articuladas
 Alvaneve: `/?preset=alvaneve`, nove peças e cinco ações. Montagem preserva a proporção original de todos os recortes; preserveSourceAspect faz o exportador rejeitar esticamento.
 
 Chaspiral: `/?preset=chaspiral`, seis peças proporcionais, cinco ações e ambos os braços animados. Recuperação isolada.
+
+Hiponilo: `/?preset=hiponilo`, oito peças proporcionais e cinco ações. Recuperação isolada.
