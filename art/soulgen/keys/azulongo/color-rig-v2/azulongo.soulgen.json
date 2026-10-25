@@ -4,7 +4,7 @@
   "name": "Azulongo · O Fio das Marés",
   "creatureId": "azulongo",
   "artRevision": 2,
-  "rigRevision": 3,
+  "rigRevision": 5,
   "preserveSourceAspect": false,
   "width": 304,
   "height": 304,
@@ -23,9 +23,9 @@
   },
   "assets": {
     "body": {
-      "src": "/art/soulgen/keys/azulongo/color-rig-v2/body.png",
-      "width": 686,
-      "height": 633,
+      "src": "/art/soulgen/keys/azulongo/color-rig-v2/body-dreamcatcher.png",
+      "width": 1080,
+      "height": 1010,
       "name": "body"
     },
     "head": {
@@ -74,27 +74,33 @@
   "parts": [
     {
       "id": "body",
-      "name": "Corpo e armação de bambu",
+      "name": "Aro das marés e trama dos sonhos",
       "asset": "body",
       "source": [
         0,
         0,
-        686,
-        633
+        1080,
+        1010
       ],
       "rect": [
-        80.64612954186414,
-        100,
-        112.70774091627172,
+        83.30378025715966,
+        89.41412030991552,
+        111.20792079207921,
         104
       ],
       "pivot": [
-        137,
-        143
+        138.157830591103,
+        132.41412030991552
       ],
-      "z": 3,
+      "z": 5,
       "parent": null,
-      "visible": true
+      "visible": true,
+      "artTransform": {
+        "rotation": -30,
+        "scale": 1,
+        "flipX": false,
+        "flipY": false
+      }
     },
     {
       "id": "head",
@@ -107,16 +113,16 @@
         566
       ],
       "rect": [
-        112.37254465871851,
-        51.848524418908326,
+        111.21471406761555,
+        9.505005658570568,
         109.89399293286219,
         100
       ],
       "pivot": [
-        164.02272133716374,
-        136.8485244189083
+        162.86489074606078,
+        94.50500565857055
       ],
-      "z": 5,
+      "z": 6,
       "parent": "body",
       "visible": true,
       "lag": 0,
@@ -164,7 +170,7 @@
         }
       },
       "artTransform": {
-        "rotation": 0,
+        "rotation": 15,
         "scale": 1,
         "flipX": false,
         "flipY": false
@@ -181,16 +187,16 @@
         392
       ],
       "rect": [
-        179.06634021067296,
-        132.89088534865502,
+        183.6976625750849,
+        111.05750848785581,
         34.464285714285715,
         35
       ],
       "pivot": [
-        183.20205449638726,
-        137.090885348655
+        187.8333768607992,
+        115.2575084878558
       ],
-      "z": 2,
+      "z": 3,
       "parent": "body",
       "visible": true,
       "lag": 0.015
@@ -206,14 +212,14 @@
         420
       ],
       "rect": [
-        103.66228571428572,
-        140.52,
+        88.94129677026204,
+        163.6766118220597,
         28.792857142857144,
         29
       ],
       "pivot": [
-        129,
-        144
+        114.27901105597633,
+        167.1566118220597
       ],
       "z": 1,
       "parent": "body",
@@ -231,19 +237,25 @@
         421
       ],
       "rect": [
-        57.523040380047505,
-        186.52,
+        80.84505657226478,
+        172.62603290676415,
         77.8147268408551,
         56
       ],
       "pivot": [
-        126,
-        191
+        149.3220161922173,
+        177.10603290676414
       ],
       "z": 0,
       "parent": "body",
       "visible": true,
-      "lag": 0.04
+      "lag": 0.04,
+      "artTransform": {
+        "rotation": -30,
+        "scale": 1,
+        "flipX": false,
+        "flipY": false
+      }
     },
     {
       "id": "armNear-copy",
@@ -256,19 +268,51 @@
         392
       ],
       "rect": [
-        149.31627491947418,
-        136.19897275180642,
+        130.12936798119614,
+        98.4867763558806,
         34.464285714285715,
         35
       ],
       "pivot": [
-        153.45198920518848,
-        140.3989727518064
+        134.26508226691044,
+        102.68677635588058
+      ],
+      "z": 2,
+      "parent": "body",
+      "visible": true,
+      "lag": 0.015,
+      "locked": false,
+      "artTransform": {
+        "rotation": 75,
+        "scale": 1,
+        "flipX": true,
+        "flipY": false
+      }
+    },
+    {
+      "id": "armFar-copy",
+      "name": "Braço distante · cópia",
+      "asset": "armFar",
+      "source": [
+        0,
+        0,
+        417,
+        420
+      ],
+      "rect": [
+        147.02095203273268,
+        173.60087403151385,
+        28.792857142857144,
+        29
+      ],
+      "pivot": [
+        172.35866631844695,
+        177.08087403151384
       ],
       "z": 4,
       "parent": "body",
       "visible": true,
-      "lag": 0.015,
+      "lag": 0.025,
       "locked": false,
       "artTransform": {
         "rotation": 0,

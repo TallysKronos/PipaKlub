@@ -2,7 +2,7 @@
   "id": "auriflama",
   "name": "Auriflama",
   "group": "Guardiões dos Quatro Ventos",
-  "status": "pendente-conversao",
+  "status": "rig-existente",
   "title": "A centelha que volta",
   "habitat": "Guardiões dos Quatro Ventos · correntes do mundo almático",
   "reference": "assets/creatures/colecoes/auriflama.png",
@@ -45,15 +45,26 @@
     "w": 229,
     "h": 220
   },
-  "source": null,
+  "source": "art/soulgen/keys/auriflama/color-rig-v2/auriflama.soulgen.json",
   "runtimeSource": null,
-  "rig": null,
+  "rig": {
+    "source": "art/soulgen/keys/auriflama/color-rig-v2/auriflama.soulgen.json",
+    "ok": true,
+    "errors": [],
+    "warnings": [],
+    "parts": 6,
+    "actions": [
+      "idle",
+      "flight",
+      "skill",
+      "hurt",
+      "victory"
+    ],
+    "assets": 9
+  },
   "integratedSoulgen": false,
   "remaining": [
-    "Revisar conceito no padrão Carcará",
-    "Produzir peças e expressões registradas",
-    "Montar pivôs e hierarquia no Soulgen",
-    "Criar/revisar as cinco ações",
-    "Validar e exportar antes de integrar ao jogo"
+    "Revisar visual e animações no Soulgen",
+    "Exportar e integrar ao atlas do jogo após revisão"
   ]
 }

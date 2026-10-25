@@ -10,3 +10,5 @@ Execute prepare.py e build.mjs para reproduzir os recortes e a montagem. Projeto
 `nRevisão 2: corpo, braços e rabiola regenerados a partir da cabeça chibi aprovada, com volumes compactos, contorno forte e planos de papel simplificados. Fonte: color-rig-v2/body-chibi-source.png; prompt adjacente. Cabeça preservada. Cache do preset atualizado para revisão 2.
 
 Versão aprovada pelo autor importada do arquivo azulongo-o-fio-das-mares.soulgen (1).json. Seis peças; poses, profundidade, transformações e animações preservadas exatamente. Revisão 3.
+
+Revisão 4: corpo central substituído pelo aro das marés com trama vazada de filtro dos sonhos. Cabeça, demais peças e clipes do autor preservados. Nova direção em ../../DIRECAO-QUATRO-BESTAS.md.
