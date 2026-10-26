@@ -143,6 +143,7 @@ func _ready() -> void:
 	prompt_panel.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	prompt_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	prompt_panel.add_child(hint)
+	Hud.interaction_glyph(prompt_panel)
 	column.add_child(prompt_panel)
 	threshold = randf_range(240, 480)
 	_refresh()
@@ -193,7 +194,7 @@ func _physics_process(delta: float) -> void:
 		if player.distance_to(Vector2(place.point[0], place.point[1])) < 90: near = place.id
 	hint.text = "Analógico · Mover" if Controls.gamepad else "Setas · Mover"
 	for place in data.places:
-		if place.id == near: hint.text = Controls.prompt("interact") + " · " + place.name
+		if place.id == near: hint.text = place.name
 	hint.get_parent().visible = not near.is_empty()
 	var moved := before.distance_to(player)
 	distance += moved

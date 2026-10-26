@@ -92,6 +92,7 @@ func _ready() -> void:
 		art.cost = entry[4]
 		command.add_child(art)
 		var action_id: String = {"attackCooldown": "cut", "skillCooldown": "skill", "dodgeCooldown": "dodge", "lineCooldown": "line", "guardCooldown": "guard", "signatureCooldown": "signature"}[entry[3]]
+		art.action_id = action_id
 		art.mouse_entered.connect(func(): selected_action = action_id)
 		art.focus_entered.connect(func(): selected_action = action_id)
 		art.tooltip_text = ACTION_COPY[action_id]

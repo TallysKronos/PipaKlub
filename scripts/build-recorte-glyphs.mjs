@@ -23,7 +23,7 @@ for(const [family,folder] of Object.entries(families)){
   const content=original.replace(/<\/?svg[^>]*>/g,'').replace(/<defs\s*\/>/g,'').replace(/#FFFFFF/gi,t.nanquim).replace(/#000000/gi,t.papel);
   // A paper keycap keeps the original CC0 symbol legible on sky and ink alike.
   const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><rect x="3" y="3" width="58" height="58" rx="9" fill="${t.papel}" stroke="${t.nanquim}" stroke-width="3"/>${content}</svg>\n`;
-  await fs.writeFile(path.join(out,family,id+'.svg'),svg);
+  await fs.writeFile(path.join(out,family,id+'.svg'),svg.split(/\r?\n/).map(line=>line.trimEnd()).join('\n'));
   assets.push({family,id,file:family+'/'+id+'.svg',source:folder+'/Vector/'+name+'.svg',sourceSha256:crypto.createHash('sha256').update(original).digest('hex')});
  }
 }

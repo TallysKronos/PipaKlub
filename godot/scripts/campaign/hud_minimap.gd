@@ -43,4 +43,5 @@ func _draw() -> void:
 	draw_colored_polygon(PackedVector2Array([center + Vector2(0, -9), center + Vector2(7, 7), center + Vector2(0, 3), center + Vector2(-7, 7)]), Hud.CYAN)
 	draw_string(Hud.font(true), Vector2(center.x - 5, 20), "N", HORIZONTAL_ALIGNMENT_LEFT, -1, 16, Hud.CORAL)
 	draw_style_box(Hud.flat_panel(), Rect2(0, 164, size.x, 28))
-	draw_string(Hud.font(true), Vector2(15, 184), "▲ Você · caminhos", HORIZONTAL_ALIGNMENT_LEFT, size.x - 24, 16, Hud.PAPER)
+	draw_texture_rect(Hud.icon("localizacao"),Rect2(8,168,20,20),false)
+	draw_string(Hud.font(true), Vector2(34, 184), "Você · caminhos", HORIZONTAL_ALIGNMENT_LEFT, size.x - 40, 16, Hud.PAPER)

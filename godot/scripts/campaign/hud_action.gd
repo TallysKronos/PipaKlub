@@ -8,6 +8,8 @@ const Hud = preload("res://scripts/campaign/hud.gd")
 signal held_changed(held: bool)
 var icon_id := "attack"
 var key_text := ""
+var action_id := "cut"
+const Controls = preload("res://scripts/campaign/controls.gd")
 var cooldown := 0.0
 var cost := 0
 var enough_energy := true
@@ -50,11 +52,15 @@ func _draw() -> void:
 	draw_string(Tokens.label(), Vector2((size.x - text_width) / 2, 88), caption, HORIZONTAL_ALIGNMENT_LEFT, -1, 24, Ink.BLACK)
 	var cost_box := Rect2(size.x / 2 - 39, 96, 78, 26)
 	Ink.plate(self, cost_box, Ink.BLACK, Ink.BLACK, 6)
-	draw_colored_polygon(PackedVector2Array([Vector2(cost_box.position.x + 20, 100), Vector2(cost_box.position.x + 12, 112), Vector2(cost_box.position.x + 19, 111), Vector2(cost_box.position.x + 16, 121), Vector2(cost_box.position.x + 28, 107), Vector2(cost_box.position.x + 20, 108)]), Tokens.CEU)
+	draw_texture_rect(Hud.icon("energy"),Rect2(cost_box.position.x+8,98,24,24),false)
 	draw_string(Hud.font(true), Vector2(cost_box.position.x + 35, 117), str(cost), HORIZONTAL_ALIGNMENT_LEFT, -1, 23, Ink.WHITE)
-	var key_width := maxf(30, Hud.font(true).get_string_size(key_text, HORIZONTAL_ALIGNMENT_LEFT, -1, 16).x + 16)
-	Ink.plate(self, Rect2(size.x - key_width - 7, 0, key_width, 25), Ink.WHITE, Ink.BLACK, 4)
-	draw_string(Hud.font(true), Vector2(size.x - key_width + 1, 18), key_text, HORIZONTAL_ALIGNMENT_LEFT, -1, 16, Ink.BLACK)
+	var glyph := Controls.glyph(action_id)
+	if glyph != null:
+		draw_texture_rect(glyph,Rect2(size.x-42,-3,38,38),false)
+	else:
+		var key_width := maxf(30,Hud.font(true).get_string_size(key_text,HORIZONTAL_ALIGNMENT_LEFT,-1,16).x+16)
+		Ink.plate(self,Rect2(size.x-key_width-7,0,key_width,25),Ink.WHITE,Ink.BLACK,4)
+		draw_string(Hud.font(true),Vector2(size.x-key_width+1,18),key_text,HORIZONTAL_ALIGNMENT_LEFT,-1,16,Ink.BLACK)
 	if cooldown > 0 or not enough_energy or not lock_reason.is_empty():
 		var state_box := Rect2(11, 52, size.x - 27, 22)
 		Ink.plate(self, state_box, Ink.BLACK, Ink.BLACK, 6)

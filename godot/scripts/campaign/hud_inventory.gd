@@ -87,7 +87,7 @@ func populate(filter: String) -> void:
 func select_item(id: String) -> void:
 	for child in list.get_children():
 		if child is Button: child.set_pressed_no_signal(child.get_meta("item_id", "") == id)
-	item_art.texture = Hud.item_icon(id)
+	item_art.texture = Hud.item_art(id)
 	item_name.text = NAMES.get(id, id.replace("-", " ").capitalize()) if not id.is_empty() else "Nada por aqui"
 	quantity.text = ("MISSÃO · " if category(id) == "Missão" else "") + "%d na mochila" % inventory.get(id, 0) if not id.is_empty() else ""
 	description.text = "Esta categoria ainda está vazia." if id.is_empty() else "Nina está esperando por esta rabiola. Entregue-a pessoalmente." if id == "quest-nina-tail" else "Leve ao ateliê do Sr. Assis para trabalhar nesta rabiola." if category(id) == "Rabiolas" else "Material guardado para sua jornada."

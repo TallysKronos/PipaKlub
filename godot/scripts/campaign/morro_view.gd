@@ -200,6 +200,7 @@ func _ready() -> void:
 	prompt_panel.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	prompt_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	prompt_panel.add_child(hint)
+	Hud.interaction_glyph(prompt_panel)
 	column.add_child(prompt_panel)
 	_refresh()
 	camera.reset_smoothing()
@@ -276,7 +277,7 @@ func _physics_process(delta: float) -> void:
 	hint.get_parent().visible = not near.is_empty()
 	for place in data.places:
 		if place.id == near:
-			hint.text = Controls.prompt("interact") + " · " + ("Conversar com " + " e ".join(Rules.stage(data.stage).foes.map(func(f): return f.name)) if place.has("stage") else place.name)
+			hint.text = "Conversar com " + " e ".join(Rules.stage(data.stage).foes.map(func(f): return f.name)) if place.has("stage") else place.name
 	distance += before.distance_to(player)
 	if distance >= 250:
 		distance = 0

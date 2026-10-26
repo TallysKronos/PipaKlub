@@ -20,8 +20,7 @@ static func brush(index: int) -> Texture2D:
 			brushes.append(cut)
 	return brushes[index % 4]
 static func icon(id: String) -> Texture2D:
-	if not icons.has(id): icons[id] = load(ROOT + "icon-" + id + ".svg")
-	return icons[id]
+	return Hud.icon({"line":"guarda","energy":"foco","team":"pulo-do-elo"}.get(id,id))
 static func shape(rect: Rect2, cut: float = 16) -> PackedVector2Array:
 	return PackedVector2Array([rect.position + Vector2(cut, 4), Vector2(rect.end.x, rect.position.y), rect.end - Vector2(cut, 0), Vector2(rect.position.x, rect.end.y - 3)])
 static func plate(canvas: CanvasItem, rect: Rect2, fill: Color, stroke: Color = BLACK, cut: float = 16) -> void:

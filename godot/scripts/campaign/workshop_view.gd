@@ -62,26 +62,34 @@ func _ready() -> void:
 		if not storage_blocked:
 			paused = false
 			resume_button.hide())
-	actions.add_child(resume_button)
+	_add_action(actions,resume_button)
 	restock_button = Button.new()
 	restock_button.text = "Buscar materiais"
 	restock_button.visible = false
 	restock_button.pressed.connect(_restock)
-	actions.add_child(restock_button)
+	_add_action(actions,restock_button)
 	pause_button = Button.new()
 	pause_button.text = "Pausar"
 	pause_button.pressed.connect(_pause)
-	actions.add_child(pause_button)
+	_add_action(actions,pause_button)
 	var back := Button.new()
 	back.text = "Sair da bancada"
 	back.pressed.connect(func(): _pause(); leave_requested.emit())
-	actions.add_child(back)
+	_add_action(actions,back)
 	for button in [resume_button, restock_button, pause_button, back]:
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.custom_minimum_size.y = 56
 	Hud.secondary_button(back)
 	Hud.secondary_button(pause_button)
 	Hud.fit_footer(bottom_panel, bottom, 110)
+
+func _add_action(parent: HBoxContainer, button: Button) -> void:
+	var space := Hud.focus_space(parent)
+	space.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	space.visible = button.visible
+	space.add_child(button)
+	# Hidden actions must not leave empty columns in paused/blocked states.
+	button.visibility_changed.connect(func(): space.visible = button.visible)
 
 func _scale() -> float:
 	return minf(size.x / 960, maxf(200, bottom_panel.position.y - 8) / 640) if is_instance_valid(bottom_panel) else minf(size.x / 960, size.y * .7 / 640)
@@ -220,7 +228,8 @@ func _draw() -> void:
 		for gust in model.run.step.gusts:
 			if gust.t > model.run.step.t and gust.t - model.run.step.t <= Workshop.CLASSES[model.run.kind].tell:
 				draw_style_box(Hud.panel("paper"), Rect2(355, 73, 300, 58))
-				draw_string(Hud.font(), Vector2(390, 110), "Rajada →" if gust.dir > 0 else "← Rajada", HORIZONTAL_ALIGNMENT_LEFT, -1, 28, Hud.INK)
+				draw_string(Hud.font(), Vector2(385, 110), "Rajada", HORIZONTAL_ALIGNMENT_LEFT, -1, 28, Hud.INK)
+				draw_texture_rect(Hud.icon("seta-direita" if gust.dir > 0 else "seta-esquerda"),Rect2(540,84,36,36),false)
 				break
 	elif model.run.stage == 4:
 		draw_circle(Workshop.CENTER, 84, Tokens.TINTA_2)

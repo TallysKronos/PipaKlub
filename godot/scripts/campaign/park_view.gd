@@ -152,6 +152,7 @@ func _build_ui() -> void:
 	prompt_panel.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	prompt_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	prompt_panel.add_child(hint)
+	Hud.interaction_glyph(prompt_panel)
 	column.add_child(prompt_panel)
 
 func _physics_process(delta: float) -> void:
@@ -161,7 +162,7 @@ func _physics_process(delta: float) -> void:
 		guardian.region_rect = Rect2(frame.x, frame.y, frame.w, frame.h)
 		tail.modulate = Tokens.alpha(Tokens.SOL, .65 + .35 * sin(clock * 4))
 	if paused: return
-	hint.text = Controls.prompt("interact") + " · " + _near_action().get("label", "") if not _near_action().is_empty() else ("Analógico · Mover" if Controls.gamepad else "Setas · Clique para caminhar") + " · %s mapa" % Controls.prompt("map")
+	hint.text = _near_action().get("label", "") if not _near_action().is_empty() else ("Analógico · Mover" if Controls.gamepad else "Setas · Clique para caminhar") + " · %s mapa" % Controls.prompt("map")
 	hint.get_parent().visible = not _near_action().is_empty()
 	var moved := last_point.distance_to(player)
 	autosave_distance += moved
