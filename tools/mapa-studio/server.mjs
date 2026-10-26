@@ -11,6 +11,23 @@ export async function serve(req,res){
  const end=(code,message)=>{res.writeHead(code,headers);res.end(message);};
  const send=(file,data)=>{res.writeHead(200,{...headers,'Content-Type':types[path.extname(file)]});res.end(req.method==='HEAD'?undefined:data);};
  try{
+  // Explicit local review mode: save only generated PNG references to a fixed
+  // workspace directory. Normal Studio remains read-only.
+  if(process.env.MAPA_STUDIO_EXPORT==='1'&&req.method==='POST'&&req.url==='/export-reference'){
+   const expected=`http://${req.headers.host}`;
+   if(req.headers.origin!==expected||req.headers['content-type']!=='image/png')return end(403,'Origem ou formato inválido.');
+   const name=String(req.headers['x-export-name']||'');
+   const match=name.match(/^([a-z0-9-]+)-(referencia|legendas)\.png$/);
+   if(!match)return end(400,'Nome inválido.');
+   await fs.access(path.join(art,'mapas',match[1]+'.tmj'));
+   const chunks=[];let length=0;
+   for await(const chunk of req){length+=chunk.length;if(length>16*1024*1024)return end(413,'Arquivo grande demais.');chunks.push(chunk);}
+   const png=Buffer.concat(chunks);
+   if(png.subarray(0,8).toString('hex')!=='89504e470d0a1a0a')return end(400,'PNG inválido.');
+   const target=path.resolve(app,'../../documentation/overworld/pip81/references');
+   await fs.mkdir(target,{recursive:true});await fs.writeFile(path.join(target,name),png);
+   return send('result.json',JSON.stringify({saved:name}));
+  }
   if(!['GET','HEAD'].includes(req.method))return end(405,'Somente leitura. Edite e salve os mapas no Tiled.');
   const p=decodeURIComponent(new URL(req.url,'http://localhost').pathname);
   if(p==='/mapas/'){const list=(await fs.readdir(path.join(art,'mapas'))).filter(f=>f.endsWith('.tmj')).map(f=>f.slice(0,-4)).sort();return send('x.json',JSON.stringify(list));}

@@ -2985,7 +2985,7 @@
    "objects": [
     {
      "id": 1,
-     "name": "house",
+     "name": "Casa de Kael",
      "type": "peca",
      "x": 176,
      "y": 208,
@@ -3004,12 +3004,27 @@
        "name": "pegada",
        "type": "string",
        "value": "4x4"
+      },
+      {
+       "name": "porta_u",
+       "type": "int",
+       "value": 7
+      },
+      {
+       "name": "porta_v",
+       "type": "int",
+       "value": 10
+      },
+      {
+       "name": "frente",
+       "type": "string",
+       "value": "v+"
       }
      ]
     },
     {
      "id": 2,
-     "name": "professorHouse",
+     "name": "Casa do Sr. Assis",
      "type": "peca",
      "x": 624,
      "y": 240,
@@ -3028,12 +3043,27 @@
        "name": "pegada",
        "type": "string",
        "value": "4x3"
+      },
+      {
+       "name": "porta_u",
+       "type": "int",
+       "value": 21
+      },
+      {
+       "name": "porta_v",
+       "type": "int",
+       "value": 10
+      },
+      {
+       "name": "frente",
+       "type": "string",
+       "value": "v+"
       }
      ]
     },
     {
      "id": 3,
-     "name": "shop",
+     "name": "Loja de pipas",
      "type": "peca",
      "x": 1040,
      "y": 240,
@@ -3052,6 +3082,21 @@
        "name": "pegada",
        "type": "string",
        "value": "4x3"
+      },
+      {
+       "name": "porta_u",
+       "type": "int",
+       "value": 35
+      },
+      {
+       "name": "porta_v",
+       "type": "int",
+       "value": 10
+      },
+      {
+       "name": "frente",
+       "type": "string",
+       "value": "v+"
       }
      ]
     },
@@ -3328,8 +3373,158 @@
      ]
     }
    ]
+  },
+  {
+   "id": 5,
+   "name": "zonas",
+   "type": "objectgroup",
+   "opacity": 1,
+   "visible": true,
+   "x": 0,
+   "y": 0,
+   "draworder": "topdown",
+   "objects": [
+    {
+     "id": 18,
+     "name": "Fundos residenciais",
+     "type": "zona-visual",
+     "x": 0,
+     "y": 0,
+     "width": 1408,
+     "height": 192,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "uso",
+       "type": "string",
+       "value": "fundo-de-casa"
+      },
+      {
+       "name": "colisao",
+       "type": "string",
+       "value": "camadas chao e pecas; zona apenas orienta a arte"
+      }
+     ]
+    },
+    {
+     "id": 19,
+     "name": "Quintal de Kael",
+     "type": "zona-visual",
+     "x": 64,
+     "y": 192,
+     "width": 320,
+     "height": 128,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "uso",
+       "type": "string",
+       "value": "quintal"
+      },
+      {
+       "name": "colisao",
+       "type": "string",
+       "value": "camadas chao e pecas; zona apenas orienta a arte"
+      }
+     ]
+    },
+    {
+     "id": 20,
+     "name": "Quintal do Sr. Assis",
+     "type": "zona-visual",
+     "x": 512,
+     "y": 192,
+     "width": 320,
+     "height": 128,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "uso",
+       "type": "string",
+       "value": "quintal"
+      },
+      {
+       "name": "colisao",
+       "type": "string",
+       "value": "camadas chao e pecas; zona apenas orienta a arte"
+      }
+     ]
+    },
+    {
+     "id": 21,
+     "name": "Jardim da loja",
+     "type": "zona-visual",
+     "x": 928,
+     "y": 192,
+     "width": 352,
+     "height": 128,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "uso",
+       "type": "string",
+       "value": "jardim"
+      },
+      {
+       "name": "colisao",
+       "type": "string",
+       "value": "camadas chao e pecas; zona apenas orienta a arte"
+      }
+     ]
+    },
+    {
+     "id": 22,
+     "name": "Praça e serviços",
+     "type": "zona-visual",
+     "x": 448,
+     "y": 704,
+     "width": 416,
+     "height": 160,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "uso",
+       "type": "string",
+       "value": "praca"
+      },
+      {
+       "name": "colisao",
+       "type": "string",
+       "value": "camadas chao e pecas; zona apenas orienta a arte"
+      }
+     ]
+    },
+    {
+     "id": 23,
+     "name": "Trilha para o parque",
+     "type": "zona-visual",
+     "x": 832,
+     "y": 864,
+     "width": 128,
+     "height": 128,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "uso",
+       "type": "string",
+       "value": "saida-parque"
+      },
+      {
+       "name": "colisao",
+       "type": "string",
+       "value": "camadas chao e pecas; zona apenas orienta a arte"
+      }
+     ]
+    }
+   ]
   }
  ],
- "nextlayerid": 5,
- "nextobjectid": 18
+ "nextlayerid": 6,
+ "nextobjectid": 24
 }

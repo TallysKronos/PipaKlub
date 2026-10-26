@@ -167,8 +167,8 @@ Regras de desenho, grade (64×32, 1 nível = 64 px de parede) e pedidos A (conce
 - muro-quintal (v+) ×76
 - muro-quintal (u+) ×54
 - muro-quintal (v-) ×48
-- casa-morro (telha) 3x3 ×31
-- casa-morro (laje) 3x3 ×28
+- casa-morro (telha) 3x3 ×30
+- casa-morro (laje) 3x3 ×27
 - casa-morro (muro-chapisco) 3x3 ×25
 - muro-quintal (u-) ×25
 - arvore-grande 2x2 ×2
@@ -189,6 +189,8 @@ Regras de desenho, grade (64×32, 1 nível = 64 px de parede) e pedidos A (conce
 - Chão: grama 148, bosque 120, terra 72, mato 31, piso 13
 - Peças: arvore (a) ×6, arvore (b) ×13, arvore (florida) ×2, banco 2x1 ×2, poste ×4, placa-mapa 2x1 ×1, vaso ×2, lixeira ×2
 - Eventos: saida: Voltar ao Jardim das Pipas → park-trail · saida: Além da cidade · Veredas do Encanamento → park-veredas · interacao: Placa: habitats e encontros · interacao: Descansar no largo · interacao: Descansar no banco leste · interacao: Mapa do Parque dos Ventos
+- Zoneamento visual (sem alterar colisões): não se aplica
+- Portas vinculadas às fachadas: não se aplica
 - Referência para o conceito: abra no Mapa Studio e use **Baixar referência para o Codex**.
 
 ### Parque dos Ventos · Jardim das Pipas — `jardim-das-pipas.tmj`
@@ -197,6 +199,8 @@ Regras de desenho, grade (64×32, 1 nível = 64 px de parede) e pedidos A (conce
 - Chão: grama 136, bosque 120, terra 90, mato 25, piso 13
 - Peças: coreto 4x4 ×1, arvore (a) ×6, arvore (b) ×15, arvore (florida) ×2, banco 2x1 ×2, poste ×4, placa-mapa 2x1 ×1, vaso ×2, lixeira ×2
 - Eventos: saida: Voltar à Rua dos Ventos → quintal · saida: Seguir para a Clareira → park-clearing · npc: Sr. Assis · encontros selvagens · interacao: Descansar no largo · interacao: Descansar no banco leste · interacao: Mapa do Parque dos Ventos
+- Zoneamento visual (sem alterar colisões): não se aplica
+- Portas vinculadas às fachadas: não se aplica
 - Referência para o conceito: abra no Mapa Studio e use **Baixar referência para o Codex**.
 
 ### Morro do Sol · Escadaria da Sombra — `morro-escadaria-da-sombra.tmj`
@@ -205,6 +209,8 @@ Regras de desenho, grade (64×32, 1 nível = 64 px de parede) e pedidos A (conce
 - Chão: construcao 302, calcada 82
 - Peças: arvore-grande 2x2 ×1, varal 2x2 ×1, casa-morro (telha) 3x3 ×6, casa-morro (laje) 3x3 ×3, casa-morro (muro-chapisco) 3x3 ×9, muro-quintal (v+) ×14, muro-quintal (u+) ×12, muro-quintal (v-) ×10, muro-quintal (u-) ×5
 - Eventos: saida: Voltar para a Praça da Chegada → morro · saida: Seguir para a Laje dos Ventos → morro-area-3 · npc: Encontro do bairro · interacao: Passagem para a próxima área
+- Zoneamento visual (sem alterar colisões): não se aplica
+- Portas vinculadas às fachadas: não se aplica
 - Referência para o conceito: abra no Mapa Studio e use **Baixar referência para o Codex**.
 
 ### Morro do Sol · Laje dos Ventos — `morro-laje-dos-ventos.tmj`
@@ -213,22 +219,28 @@ Regras de desenho, grade (64×32, 1 nível = 64 px de parede) e pedidos A (conce
 - Chão: construcao 284, piso 100
 - Peças: varal 2x2 ×1, banca-pipas 2x2 ×1, casa-morro (telha) 3x3 ×6, casa-morro (laje) 3x3 ×10, casa-morro (muro-chapisco) 3x3 ×2, muro-quintal (v+) ×18, muro-quintal (v-) ×10, muro-quintal (u+) ×12, muro-quintal (u-) ×4
 - Eventos: saida: Voltar para a Escadaria da Sombra → morro-area-2 · saida: Seguir para o Mirante da Caixa-d’água → morro-area-4 · npc: Encontro do bairro · interacao: Passagem para a próxima área
+- Zoneamento visual (sem alterar colisões): não se aplica
+- Portas vinculadas às fachadas: não se aplica
 - Referência para o conceito: abra no Mapa Studio e use **Baixar referência para o Codex**.
 
 ### Morro do Sol · Mirante da Caixa-d’água — `morro-mirante-da-caixa-dagua.tmj`
 
 - Cena do jogo: `morro-area-4` · 24×16 células · níveis 0–1 · conferência OK
 - Chão: construcao 308, calcada 76
-- Peças: caixa-dagua 2x2 ×1, mirante-guarda-corpo 2x2 ×1, casa-morro (telha) 3x3 ×8, casa-morro (laje) 3x3 ×6, casa-morro (muro-chapisco) 3x3 ×6, muro-quintal (v+) ×16, muro-quintal (v-) ×10, muro-quintal (u+) ×11, muro-quintal (u-) ×5
+- Peças: caixa-dagua 2x2 ×1, mirante-guarda-corpo 2x2 ×1, casa-morro (telha) 3x3 ×7, casa-morro (laje) 3x3 ×6, casa-morro (muro-chapisco) 3x3 ×6, muro-quintal (v+) ×16, muro-quintal (v-) ×10, muro-quintal (u+) ×11, muro-quintal (u-) ×5
 - Eventos: saida: Voltar para a Laje dos Ventos → morro-area-3 · saida: Seguir para o Parque dos Ventos → morro-area-5 · npc: Encontro do bairro · interacao: Passagem para a próxima área
+- Zoneamento visual (sem alterar colisões): não se aplica
+- Portas vinculadas às fachadas: não se aplica
 - Referência para o conceito: abra no Mapa Studio e use **Baixar referência para o Codex**.
 
 ### Morro do Sol · Parque dos Ventos — `morro-parque-dos-ventos.tmj`
 
 - Cena do jogo: `morro-area-5` · 24×16 células · níveis 0–0 · conferência OK
 - Chão: construcao 272, grama 112
-- Peças: arvore-grande 2x2 ×1, toldo-bandeirolas 2x2 ×1, casa-morro (telha) 3x3 ×5, casa-morro (laje) 3x3 ×5, casa-morro (muro-chapisco) 3x3 ×4, muro-quintal (v+) ×11, muro-quintal (u+) ×13, muro-quintal (v-) ×8, muro-quintal (u-) ×5
+- Peças: arvore-grande 2x2 ×1, toldo-bandeirolas 2x2 ×1, casa-morro (telha) 3x3 ×5, casa-morro (laje) 3x3 ×4, casa-morro (muro-chapisco) 3x3 ×4, muro-quintal (v+) ×11, muro-quintal (u+) ×13, muro-quintal (v-) ×8, muro-quintal (u-) ×5
 - Eventos: saida: Voltar para o Mirante da Caixa-d’água → morro-area-4 · saida: Sair para a cidade → cidade · npc: Encontro do bairro · interacao: Passagem para a próxima área
+- Zoneamento visual (sem alterar colisões): não se aplica
+- Portas vinculadas às fachadas: não se aplica
 - Referência para o conceito: abra no Mapa Studio e use **Baixar referência para o Codex**.
 
 ### Morro do Sol · Praça da Chegada — `morro-praca-da-chegada.tmj`
@@ -237,6 +249,8 @@ Regras de desenho, grade (64×32, 1 nível = 64 px de parede) e pedidos A (conce
 - Chão: construcao 267, calcada 117
 - Peças: portao 4x1 ×1, mesa-artesao 2x2 ×1, arvore (tronco-largo) ×1, banca-pipas 2x2 ×1, caixa-dagua 2x2 ×1, casa-morro (telha) 3x3 ×6, casa-morro (laje) 3x3 ×4, casa-morro (muro-chapisco) 3x3 ×4, muro-quintal (v+) ×17, muro-quintal (u-) ×6, muro-quintal (v-) ×10, muro-quintal (u+) ×6
 - Eventos: saida: Voltar à Rua dos Ventos → quintal · saida: Seguir para a Escadaria da Sombra → morro-area-2 · npc: Zeca · interacao: Oficina de pipas · interacao: Subir a escadaria
+- Zoneamento visual (sem alterar colisões): não se aplica
+- Portas vinculadas às fachadas: não se aplica
 - Referência para o conceito: abra no Mapa Studio e use **Baixar referência para o Codex**.
 
 ### Rua dos Ventos — `rua-dos-ventos.tmj`
@@ -245,6 +259,8 @@ Regras de desenho, grade (64×32, 1 nível = 64 px de parede) e pedidos A (conce
 - Chão: canteiro 847, calcada 349, asfalto 200, construcao 40, terra 16
 - Peças: casa-kael 4x4 ×1, casa-assis 4x3 ×1, loja-pipas 4x3 ×1, mural ×1, bancada-rua ×1, banco ×3
 - Eventos: saida: Casa de Kael → kael-home · saida: Casa do Sr. Assis → professor-home · saida: Loja de pipas → kite-shop · saida: Explorar a cidade → cidade · interacao: Mural · amigos · interacao: Mural · trocas · interacao: Seus parceiros · interacao: Parque dos Ventos · exploração
+- Zoneamento visual (sem alterar colisões): Fundos residenciais (fundo-de-casa) · Quintal de Kael (quintal) · Quintal do Sr. Assis (quintal) · Jardim da loja (jardim) · Praça e serviços (praca) · Trilha para o parque (saida-parque)
+- Portas vinculadas às fachadas: Casa de Kael: (7,10), frente v+ · Casa do Sr. Assis: (21,10), frente v+ · Loja de pipas: (35,10), frente v+
 - Referência para o conceito: abra no Mapa Studio e use **Baixar referência para o Codex**.
 
 ### Veredas do Encanamento — `veredas-do-encanamento.tmj`
@@ -253,11 +269,13 @@ Regras de desenho, grade (64×32, 1 nível = 64 px de parede) e pedidos A (conce
 - Chão: bosque 676, grama 493, terra 241, mato 78, piso 63, agua 37, ponte 12
 - Peças: arvore (b) ×16, bau ×5, placa-mapa ×1, biruta ×2, banco ×1, pipa-presa ×1, flores ×7
 - Eventos: saida: Voltar à Clareira do Papel → park-clearing · npc: Lacertubo · guardião dos canos · interacao: Banco do pátio · interacao: Sinais no bosque · interacao: Mapa das Veredas · interacao: Papel rasgado entre as folhas · interacao: Canos marcados · interacao: Rabiola do Carcará de Nina · npc: Nina
+- Zoneamento visual (sem alterar colisões): não se aplica
+- Portas vinculadas às fachadas: não se aplica
 - Referência para o conceito: abra no Mapa Studio e use **Baixar referência para o Codex**.
 
 ## Pendências conhecidas das plantas importadas
 
-- **Morro do Sol (5 áreas):** no jogo atual o Morro é um corredor andável sobre uma ilustração pintada. A planta traz só o chão andável, a encosta (nível 1) e o resto como `construcao`. Antes do conceito, **vestir a planta** no Tiled com as peças do bairro (casas, lajes, muros, escadarias, caixa-d'água, varais, postes) usando a arte pintada atual como referência de conteúdo.
-- **Rua dos Ventos:** gramados fora da calçada estão como `canteiro` (bloqueio). Decidir quais viram quintal, muro ou jardim.
-- **Escadas:** a planta marca só a última fileira como rampa; o resto é o caminho de acesso. No jogo a subida é gradual.
+- **Morro do Sol (5 áreas):** as plantas já contêm casas, marcos e traçados distintos. A PIP-81 aproxima varal, guarda-corpo e árvore grande dos espaços que identificam; a campanha antiga ainda não foi substituída pela prévia PIP-88.
+- **Rua dos Ventos:** o material `canteiro` continua bloqueado. A camada `zonas` diferencia quintais, jardim da loja, fundos, praça e trilha; coordenadas das portas estão nas propriedades das casas. A PIP-84 produz a arte desses espaços.
+- **Escadas:** somente a fileira marcada como rampa sobe um nível; o corredor restante é acesso plano. Escadaria com desenvolvimento maior exige mudar planta, altura e navegação em conjunto, sem esticar só o desenho.
 - Interiores (quarto, sala, ateliê, loja) seguem no Iso Studio e não entram aqui.

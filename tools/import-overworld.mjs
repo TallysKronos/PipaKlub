@@ -27,7 +27,7 @@ export function compile(raw,id){
  };
  const cells=m.cells.map((c,i)=>{const u=i%m.w,v=Math.floor(i/m.w);return {...c,corners:[vertex(u,v),vertex(u+1,v),vertex(u+1,v+1),vertex(u,v+1)]};});
  const p=props(raw);
- return {schema:'overworld-godot-1',id,name:m.name,scene:p.cena_jogo||id,biome:p.bioma||'veredas',grid:[64,32],levelPx:64,w:m.w,h:m.h,cells,pieces:m.pieces,events:m.events,spawn:m.spawn,cliffs:cliffs(m),audit:issues,oracle:{walkable:allowed,edges,heightProbes},source:{file:`art/overworld/mapas/${id}.tmj`,sha256:crypto.createHash('sha256').update(JSON.stringify(raw)).digest('hex')}};
+ return {schema:'overworld-godot-1',id,name:m.name,scene:p.cena_jogo||id,biome:p.bioma||'veredas',grid:[64,32],levelPx:64,w:m.w,h:m.h,cells,pieces:m.pieces,events:m.events,spawn:m.spawn,zones:m.zones,cliffs:cliffs(m),audit:issues,oracle:{walkable:allowed,edges,heightProbes},source:{file:`art/overworld/mapas/${id}.tmj`,sha256:crypto.createHash('sha256').update(JSON.stringify(raw)).digest('hex')}};
 }
 export function build(){
  const index={schema:'overworld-index-1',areas:[],scenes:{},campaignReplacement:false};

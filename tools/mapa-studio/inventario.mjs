@@ -16,7 +16,7 @@ const areas=fs.readdirSync(dir).filter(f=>f.endsWith('.tmj')&&!f.startsWith('ver
  for(const e of m.events)if(e.type!=='entrada')events.push(`${e.type}: ${e.name}${e.props.destino?' → '+e.props.destino:''}`);
  const cl=cliffs(m),faces={};for(const c of cl){const k=`${c.top-c.bottom} nível · face ${c.side==='u'?'sudeste':'sudoeste'}`;faces[k]=(faces[k]||0)+1;}
  const bridges=m.cells.filter(c=>c.material==='ponte').length;
- return {id:f.slice(0,-4),name:m.name,bioma:prop(raw,'bioma')||'?',cena:prop(raw,'cena_jogo')||'',w:m.w,h:m.h,verdict:verdict(audit(m)),mats,pairs,assets,ramps,faces,bridges,events,maxLevel:Math.max(...m.cells.map(c=>c.level))};});
+ return {id:f.slice(0,-4),name:m.name,bioma:prop(raw,'bioma')||'?',cena:prop(raw,'cena_jogo')||'',w:m.w,h:m.h,verdict:verdict(audit(m)),mats,pairs,assets,ramps,faces,bridges,events,zones:m.zones,doors:m.pieces.filter(p=>p.props.porta_u!=null).map(p=>`${p.name}: (${p.props.porta_u},${p.props.porta_v}), frente ${p.props.frente}`),maxLevel:Math.max(...m.cells.map(c=>c.level))};});
 const sum=(list,key)=>{const out=new Map();for(const a of list)for(const [k,v] of a[key])out.set(k,(out.get(k)||0)+v);return [...out].sort((a,b)=>b[1]-a[1]);};
 let md=`# Inventário para o Codex — mapas do overworld
 
@@ -67,14 +67,16 @@ for(const a of areas)md+=`
 - Chão: ${[...a.mats].sort((x,y)=>y[1]-x[1]).map(([k,v])=>`${k} ${v}`).join(', ')}
 - Peças: ${[...a.assets].map(([k,v])=>`${k} ×${v}`).join(', ')||'nenhuma'}
 - Eventos: ${a.events.join(' · ')||'nenhum'}
+- Zoneamento visual (sem alterar colisões): ${a.zones.map(z=>`${z.name} (${z.props.uso})`).join(' · ')||'não se aplica'}
+- Portas vinculadas às fachadas: ${a.doors.join(' · ')||'não se aplica'}
 - Referência para o conceito: abra no Mapa Studio e use **Baixar referência para o Codex**.
 `;
 md+=`
 ## Pendências conhecidas das plantas importadas
 
-- **Morro do Sol (5 áreas):** no jogo atual o Morro é um corredor andável sobre uma ilustração pintada. A planta traz só o chão andável, a encosta (nível 1) e o resto como \`construcao\`. Antes do conceito, **vestir a planta** no Tiled com as peças do bairro (casas, lajes, muros, escadarias, caixa-d'água, varais, postes) usando a arte pintada atual como referência de conteúdo.
-- **Rua dos Ventos:** gramados fora da calçada estão como \`canteiro\` (bloqueio). Decidir quais viram quintal, muro ou jardim.
-- **Escadas:** a planta marca só a última fileira como rampa; o resto é o caminho de acesso. No jogo a subida é gradual.
+- **Morro do Sol (5 áreas):** as plantas já contêm casas, marcos e traçados distintos. A PIP-81 aproxima varal, guarda-corpo e árvore grande dos espaços que identificam; a campanha antiga ainda não foi substituída pela prévia PIP-88.
+- **Rua dos Ventos:** o material \`canteiro\` continua bloqueado. A camada \`zonas\` diferencia quintais, jardim da loja, fundos, praça e trilha; coordenadas das portas estão nas propriedades das casas. A PIP-84 produz a arte desses espaços.
+- **Escadas:** somente a fileira marcada como rampa sobe um nível; o corredor restante é acesso plano. Escadaria com desenvolvimento maior exige mudar planta, altura e navegação em conjunto, sem esticar só o desenho.
 - Interiores (quarto, sala, ateliê, loja) seguem no Iso Studio e não entram aqui.
 `;
 fs.writeFileSync(root+'art/overworld/INVENTARIO-CODEX.md',md);

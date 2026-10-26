@@ -851,7 +851,7 @@
           "id": 1,
           "name": "arvore grande",
           "type": "peca",
-          "x": 144,
+          "x": 208,
           "y": 144,
           "point": true,
           "width": 0,
@@ -1265,45 +1265,6 @@
               "name": "variante",
               "type": "string",
               "value": "telha"
-            },
-            {
-              "name": "pegada",
-              "type": "string",
-              "value": "3x3"
-            },
-            {
-              "name": "bloqueia",
-              "type": "bool",
-              "value": true
-            },
-            {
-              "name": "origem",
-              "type": "string",
-              "value": "PIP-87 vestir lote bloqueado"
-            }
-          ]
-        },
-        {
-          "id": 20,
-          "name": "Casa de fundo",
-          "type": "peca",
-          "x": 208,
-          "y": 112,
-          "point": true,
-          "width": 0,
-          "height": 0,
-          "rotation": 0,
-          "visible": true,
-          "properties": [
-            {
-              "name": "asset",
-              "type": "string",
-              "value": "casa-morro"
-            },
-            {
-              "name": "variante",
-              "type": "string",
-              "value": "laje"
             },
             {
               "name": "pegada",

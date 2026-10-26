@@ -1,0 +1,45 @@
+{
+  "destination": "Linear PipaKlub workspace",
+  "authorization": "Explicit user approval for 18 map images",
+  "verification": "Images visible in issue description; counts 2, 4, 2, 10",
+  "tasks": {
+    "PIP-84": {
+      "files": [
+        "rua-dos-ventos-referencia.png",
+        "rua-dos-ventos-legendas.png"
+      ],
+      "capture": "linear-pip84.png"
+    },
+    "PIP-85": {
+      "files": [
+        "jardim-das-pipas-referencia.png",
+        "jardim-das-pipas-legendas.png",
+        "clareira-do-papel-referencia.png",
+        "clareira-do-papel-legendas.png"
+      ],
+      "capture": "linear-pip85.png"
+    },
+    "PIP-86": {
+      "files": [
+        "veredas-do-encanamento-referencia.png",
+        "veredas-do-encanamento-legendas.png"
+      ],
+      "capture": "linear-pip86.png"
+    },
+    "PIP-87": {
+      "files": [
+        "morro-praca-da-chegada-referencia.png",
+        "morro-praca-da-chegada-legendas.png",
+        "morro-escadaria-da-sombra-referencia.png",
+        "morro-escadaria-da-sombra-legendas.png",
+        "morro-laje-dos-ventos-referencia.png",
+        "morro-laje-dos-ventos-legendas.png",
+        "morro-mirante-da-caixa-dagua-referencia.png",
+        "morro-mirante-da-caixa-dagua-legendas.png",
+        "morro-parque-dos-ventos-referencia.png",
+        "morro-parque-dos-ventos-legendas.png"
+      ],
+      "capture": "linear-pip87.png"
+    }
+  }
+}

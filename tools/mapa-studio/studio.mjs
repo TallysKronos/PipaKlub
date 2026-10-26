@@ -84,6 +84,11 @@ function drawScene(g,o){const m=S.m;if(!m)return;const rows=Array.from({length:m
  eachCell(m,(u,v,k)=>{flush(k);const c=at(m,u,v);if(!c.material){if(o.grid)poly(g,topQuad(c,u,v),null,'rgba(255,255,255,.08)');return;}drawFaces(g,m,c,u,v,o);drawTop(g,c,u,v,o);
   if(o.path&&S.path.some(p=>p.u===u&&p.v===v)){const [x,y]=P(u+.5,v+.5,hIn(c,u,v,u+.5,v+.5));g.fillStyle='rgba(255,255,255,.7)';g.beginPath();g.arc(x,y,3,0,Math.PI*2);g.fill();}});
  flush(rows.length);
+ if(o.labels)for(const zone of m.zones||[]){
+  const q=[[zone.u,zone.v],[zone.u+zone.fu,zone.v],[zone.u+zone.fu,zone.v+zone.fv],[zone.u,zone.v+zone.fv]].map(([u,v])=>P(u,v,0));
+  g.save();g.setLineDash([6,5]);poly(g,q,null,'#f0bd52',1.5);g.restore();
+  const [x,y]=P(zone.u+zone.fu*.5,zone.v+zone.fv*.5,0);label(g,zone.name,x,y,o,'#f0bd52');
+ }
  for(const [cell,col] of [[o.hover,'#f0bd52'],[o.flash,'#ff7a73']])if(cell){const c=at(m,cell.u,cell.v);if(c)poly(g,topQuad(c,cell.u,cell.v),null,col,2.5);}
  if(o.coords){g.font='600 11px ui-monospace,monospace';g.fillStyle='rgba(255,246,226,.75)';g.textAlign='center';g.textBaseline='middle';
   for(let u=0;u<m.w;u+=5){const [x,y]=P(u+.5,-.6,0);g.fillText('u'+u,x,y);}for(let v=0;v<m.h;v+=5){const [x,y]=P(-.6,v+.5,0);g.fillText('v'+v,x,y);}}}
@@ -109,11 +114,16 @@ function renderAudit(){const ul=$('audit');ul.replaceChildren(...S.items.map(i=>
 function renderLegend(){const li=(color,text)=>{const el=document.createElement('li'),i=document.createElement('i');i.style.background=color;el.append(i,text);return el;};
  $('legend').replaceChildren(...Object.values(MATERIALS).map(m=>li(m.color,m.name+(m.walk?'':' — bloqueia'))),li('#8b6a48','Barranco (sai da camada altura)'),li('#7fd49e','Entrada'),li('#ff9f5a','NPC'),li('#f0bd52','Saída / baú'));}
 // ---------- exportar referência ----------
-function exportPNG(withLabels){if(!S.m)return;const b=bounds(S.m),scale=withLabels?1.5:2,c=document.createElement('canvas');c.width=Math.ceil((b.x1-b.x0)*scale);c.height=Math.ceil((b.y1-b.y0)*scale);
+function exportPNG(withLabels){if(!S.m)return;const exportName=S.name,b=bounds(S.m),scale=withLabels?1.5:2,c=document.createElement('canvas');c.width=Math.ceil((b.x1-b.x0)*scale);c.height=Math.ceil((b.y1-b.y0)*scale);
  const g=c.getContext('2d');g.fillStyle=withLabels?'#0c161e':'#1b2a33';g.fillRect(0,0,c.width,c.height);g.setTransform(scale,0,0,scale,-b.x0*scale,-b.y0*scale);
  drawScene(g,{grid:withLabels,labels:withLabels,block:false,events:withLabels,kael:false,coords:withLabels,z:1});
- c.toBlob(blob=>{if(!blob)return say('O navegador não gerou a imagem.',true);const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`${S.name}-${withLabels?'legendas':'referencia'}.png`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),4000);
-  say(`${a.download}: ${c.width}×${c.height}px${withLabels?'':' — sem textos, para o Codex pintar por cima'}.`);},'image/png');}
+ c.toBlob(async blob=>{if(!blob)return say('O navegador não gerou a imagem.',true);const previous=$('lastExport');if(previous){URL.revokeObjectURL(previous.href);previous.remove();}
+  const a=document.createElement('a');a.id='lastExport';a.href=URL.createObjectURL(blob);a.download=`${exportName}-${withLabels?'legendas':'referencia'}.png`;
+  say(`${a.download}: ${c.width}×${c.height}px${withLabels?'':' — sem textos, para o Codex pintar por cima'}. `);
+  a.textContent='Salvar PNG';a.style.color='inherit';$('message').append(a);
+  if(!embed&&new URLSearchParams(location.search).get('salvar')==='1'){
+   try{const result=await fetch('/export-reference',{method:'POST',headers:{'Content-Type':'image/png','X-Export-Name':a.download},body:blob});if(!result.ok)throw Error('HTTP '+result.status);say(`Salvo no projeto: ${(await result.json()).saved} · ${c.width}×${c.height}px`);$('message').append(a);}catch(e){say(`Não foi possível salvar no projeto: ${e.message}. Use Salvar PNG.`,true);$('message').append(a);}
+  }else a.click();},'image/png');}
 // ---------- eventos ----------
 for(const id of Object.keys(show)){$(id).checked=show[id];$(id).onchange=e=>{show[id]=e.target.checked;};}
 $('open').onclick=()=>$('fileMap').click();$('fileMap').onchange=e=>{if(e.target.files.length)loadFiles(e.target.files);e.target.value='';};

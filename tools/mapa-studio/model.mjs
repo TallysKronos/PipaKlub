@@ -31,7 +31,8 @@ export function parseTiled(map,tilesets={}){
  const pieces=objects('pecas').map(o=>{const p=props(o.properties),[fu,fv]=String(p.pegada||'1x1').split('x').map(Number),{u,v}=cellOf(o);return {id:o.id,name:o.name||p.asset,asset:p.asset||o.name,u,v,fu:fu||1,fv:fv||1,blocks:p.bloqueia!==false,interact:p.interacao||null,props:p};});
  const events=objects('eventos').map(o=>{const p=props(o.properties),{u,v}=cellOf(o);return {id:o.id,type:o.type||o.class||p.tipo||'evento',name:o.name||'',u,v,props:p};});
  const spawn=events.find(e=>e.type==='entrada');
- return {name:props(map.properties).nome||'Mapa',w:W,h:H,cells,pieces,events,spawn};
+ const zones=objects('zonas').map(o=>({name:o.name,u:o.x/CELL.h,v:o.y/CELL.h,fu:o.width/CELL.h,fv:o.height/CELL.h,props:props(o.properties)}));
+ return {name:props(map.properties).nome||'Mapa',w:W,h:H,cells,pieces,events,spawn,zones};
 }
 // ---------- movimento ----------
 export const at=(m,u,v)=>u>=0&&v>=0&&u<m.w&&v<m.h?m.cells[v*m.w+u]:null;
@@ -64,6 +65,14 @@ export function cliffs(m){const out=[];for(let v=0;v<m.h;v++)for(let u=0;u<m.w;u
  for(const [du,dv,side] of [[1,0,'u'],[0,1,'v']]){const n=at(m,u+du,v+dv),low=n?n.level:0;if(low>=c.level)continue;if(n?.ramp&&RAMP_DIRS[n.ramp][0]===-du&&RAMP_DIRS[n.ramp][1]===-dv&&n.level===c.level-1)continue;out.push({u,v,side,top:c.level,bottom:low});}}return out;}
 // ---------- conferência ----------
 export function audit(m){const items=[],solid=blockedByPiece(m),add=(level,rule,text,cell)=>items.push({level,rule,text,cell});
+ // Separate solid props cannot occupy the same footprint. Non-blocking edge
+ // ornaments (e.g. two perpendicular fence faces) may intentionally meet.
+ const occupied=new Map(),collisions=new Set();
+ for(const p of m.pieces.filter(p=>p.blocks))for(let dv=0;dv<p.fv;dv++)for(let du=0;du<p.fu;du++){
+  const u=p.u+du,v=p.v+dv,k=v*m.w+u,other=occupied.get(k);
+  if(other){const pair=[other.id,p.id].sort((a,b)=>a-b).join(':');if(!collisions.has(pair)){collisions.add(pair);add('fail','Sobreposição',`${other.name} e ${p.name} ocupam a mesma célula (${u},${v}).`,{u,v});}}
+  else occupied.set(k,p);
+ }
  for(const [i,c] of m.cells.entries())if(c.material&&!MATERIALS[c.material])add('fail','Material',`Material desconhecido "${c.material}".`,{u:i%m.w,v:Math.floor(i/m.w)});
  const empty=m.cells.filter(c=>!c.material).length;if(empty)add('warn','Chão',`${empty} células sem chão: aparecem como vazio.`);
  if(!m.spawn)add('fail','Entrada','Falta o evento "entrada" (onde o jogador aparece).');else if(!walkable(m,m.spawn.u,m.spawn.v,solid))add('fail','Entrada','A entrada está numa célula onde não se anda.',m.spawn);
