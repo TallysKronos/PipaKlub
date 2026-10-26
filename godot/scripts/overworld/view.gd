@@ -34,7 +34,10 @@ var hidden_pieces: Dictionary = {}
 var occluders: Array[Node2D] = []
 const MAX_HOUSES := 6
 const MIN_HOUSES := 4
-const YARD_TINT := Color(.78, .86, .76)
+# Yards are the lawn under a soft shade. The shade is interpolated per vertex
+# from the four cells around it, so the change never follows the cell grid.
+const YARD_SHADE := Color(.10, .20, .10)
+const YARD_SHADE_ALPHA := .30
 var stairs_drawn: Dictionary = {}
 var opened: Dictionary = {}
 var nearby: Dictionary = {}
@@ -130,6 +133,9 @@ func _build_context() -> void:
 	var floor_plane := Polygon2D.new()
 	floor_plane.z_index=-100
 	floor_plane.color=Color(str(recipe.get("color","476643")))
+	if _soft_yards():
+		# Outside the map reads as the same shaded yard, so the map edge disappears.
+		floor_plane.color=_average_color(kits[1].root + kits[1].materials.grama.variants[0]).lerp(Color(YARD_SHADE,1),YARD_SHADE_ALPHA)
 	floor_plane.polygon=PackedVector2Array([model.project(Vector2(-radius,-radius),false),model.project(Vector2(model.data.w+radius,-radius),false),model.project(Vector2(model.data.w+radius,model.data.h+radius),false),model.project(Vector2(-radius,model.data.h+radius),false)])
 	context.add_child(floor_plane)
 	if recipe.is_empty() or not art_preview:return
@@ -165,6 +171,7 @@ func _build_tiles() -> void:
 	for cell in model.data.cells: levels[int(cell.level)] = true
 	hidden_pieces = _compose_houses()
 	lots = _occupied_lots()
+	if _soft_yards(): _build_lawn_base()
 	for level in levels:
 		var tiles := TileSet.new()
 		tiles.tile_size = Vector2i(64, 32)
@@ -194,9 +201,9 @@ func _build_tiles() -> void:
 				if not _draw_kit_stairs(at, cell): _draw_ramp(at, cell)
 			elif cell.material == "ponte":
 				_draw_bridge(at, cell)
-			elif art_preview and kits.size()>1 and cell.material == "construcao" and kits[1].materials.has("grama") and lots.get(model.key(at), "muro-quintal") == "muro-quintal":
+			elif _soft_yards() and cell.material == "construcao":
 				# A blocked lot without a house reads as a yard, not as bare brick.
-				_draw_art_floor(at, {"material":"grama","level":cell.level,"corners":["grama","grama","grama","grama"],"tint":YARD_TINT})
+				_draw_art_floor(at, {"material":"grama","level":cell.level,"corners":["grama","grama","grama","grama"]})
 			elif art_preview and kits.size()>1 and kits[1].materials.has(cell.material):
 				_draw_art_floor(at, cell)
 			else: layer.set_cell(at, 0, Vector2i((at.x * 7 + at.y * 13) % 4, int(ids.get(cell.material, 0))))
@@ -233,9 +240,8 @@ func _draw_art_floor(at: Vector2i, cell: Dictionary) -> void:
 	var sprite := Sprite2D.new()
 	sprite.texture = load(kit.root + file)
 	sprite.position.y = -float(cell.level) * 64
-	# A darker yard keeps the walkable lawn readable where both are grass.
-	if cell.has("tint"): sprite.modulate = cell.tint
 	root.add_child(sprite)
+	if cell.material == "grama" and _soft_yards(): root.add_child(_yard_shade(at, float(cell.level)))
 	# Canonical shared vertices, including three-material junctions. A corner
 	# samples the existing pair atlas only inside its own quadrant; unrelated
 	# corners of that texture never overwrite the third material.
@@ -310,6 +316,74 @@ func _face_touches_path(face: Dictionary) -> bool:
 	var upper := Vector2i(int(face.u), int(face.v))
 	var lower := upper + (Vector2i(1,0) if face.side == "u" else Vector2i(0,1))
 	return model.walkable(upper) or model.walkable(lower)
+
+func _soft_yards() -> bool:
+	return art_preview and model.data.biome == "morro" and kits.size()>1 and kits[1].materials.has("grama")
+
+func _average_color(path: String) -> Color:
+	var image := (load(path) as Texture2D).get_image()
+	var sum := Color(0,0,0,0)
+	var count := 0
+	for y in image.get_height():
+		for x in image.get_width():
+			var c := image.get_pixel(x,y)
+			if c.a < .9: continue
+			sum += c
+			count += 1
+	return Color(sum.r/count, sum.g/count, sum.b/count) if count > 0 else Color("7fb85a")
+
+func _yardness(cell: Vector2i, level: int) -> float:
+	# 1 for a yard (blocked lot) or outside the map, 0 for the walkable lawn.
+	var c := model.cell_at(cell)
+	if c.is_empty(): return 1.0
+	if int(c.level) != level: return 1.0 if not model.walkable(cell) else 0.0
+	return 0.0 if model.walkable(cell) else 1.0
+
+func _build_lawn_base() -> void:
+	# Pixel-art diamonds leave hairline gaps where they meet. A continuous base
+	# in the same shaded lawn colour sits under the ground floor, so the gaps
+	# show the right colour instead of drawing the cell grid.
+	var lawn := _average_color(kits[1].root + kits[1].materials.grama.variants[0])
+	var base := Node2D.new()
+	base.name = "BaseGramado"
+	base.z_index = -99
+	actors.add_child(base)
+	var ring := 8
+	var grass: Array = kits[1].materials.grama.variants
+	for v in range(-ring, int(model.data.h)+ring):
+		for u in range(-ring, int(model.data.w)+ring):
+			var at := Vector2i(u,v)
+			var inside := not model.cell_at(at).is_empty()
+			if inside and int(model.cell_at(at).level) != 0: continue
+			if not inside:
+				# The lawn texture runs past the map edge, so the edge has no seam.
+				var tile := Sprite2D.new()
+				tile.texture = load(kits[1].root + grass[posmod(u*7+v*13,4)])
+				tile.position = model.project(Vector2(at)+Vector2(.5,.5), false)
+				base.add_child(tile)
+			var shade := _yard_shade(at, 0.0)
+			if inside:
+				var colors := PackedColorArray()
+				for c in shade.vertex_colors: colors.append(lawn.lerp(Color(c, 1.0), c.a))
+				shade.vertex_colors = colors
+			shade.position = model.project(Vector2(at)+Vector2(.5,.5), false)
+			base.add_child(shade)
+
+func _yard_shade(at: Vector2i, level: float) -> Polygon2D:
+	# Each diamond vertex averages the four cells that share it; Godot blends the
+	# vertex colours across the cell, which turns the stair-step edge into a gradient.
+	var corners := [Vector2i(0,0), Vector2i(1,0), Vector2i(1,1), Vector2i(0,1)]
+	var colors := PackedColorArray()
+	for corner in corners:
+		var vertex: Vector2i = at + corner
+		var amount := 0.0
+		for d in [Vector2i(-1,-1), Vector2i(0,-1), Vector2i(-1,0), Vector2i(0,0)]: amount += _yardness(vertex + d, int(level))
+		colors.append(Color(YARD_SHADE, YARD_SHADE_ALPHA * amount / 4.0))
+	var shade := Polygon2D.new()
+	shade.polygon = PackedVector2Array([Vector2(0,-16), Vector2(32,0), Vector2(0,16), Vector2(-32,0)])
+	shade.vertex_colors = colors
+	shade.position.y = -level * 64
+	return shade
 
 func _occupied_lots() -> Dictionary:
 	# Cells under a piece footprint, by asset. Bare lots and low yard walls stand on grass.
