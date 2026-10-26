@@ -43,7 +43,7 @@ func _ready() -> void:
 	bottom_panel.offset_left = 24
 	bottom_panel.offset_right = -24
 	bottom_panel.offset_bottom = -16
-	bottom_panel.add_theme_stylebox_override("panel", Hud.panel())
+	bottom_panel.theme_type_variation = "PanelContainer"
 	add_child(bottom_panel)
 	var bottom := VBoxContainer.new()
 	bottom_panel.add_child(bottom)

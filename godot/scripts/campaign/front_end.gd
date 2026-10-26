@@ -71,13 +71,13 @@ func _ready() -> void:
 	exploration = Exploration.new(session)
 	encounters = Encounters.new(session)
 	morro = Morro.new(session)
-	theme = Hud.make_theme()
+	Hud.Recorte.install(self, preferences.reduced_motion)
 	resized.connect(_layout_stage)
 	_menu()
 
 func _clear(route: String = "") -> void:
 	for child in get_children():
-		if child != session and child != crt_layer:
+		if child != session and child != crt_layer and child.name != "RecorteUX":
 			remove_child(child)
 			child.queue_free()
 	stage = null
@@ -155,7 +155,7 @@ func _menu() -> void:
 	page.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	page.add_theme_constant_override("separation", 18)
 	scroll.add_child(page)
-	_label("CAMPANHA  /  SEU PRÓXIMO VENTO", page, 18).add_theme_color_override("font_color", Hud.CYAN)
+	_label("CAMPANHA  /  SEU PRÓXIMO VENTO", page, 18).theme_type_variation = "RecorteAccentText"
 	_label("PipaKlub", page, 56)
 	_label("Um fio de sorte", page, 24)
 	status = _label("Escolha sua jornada. Seu progresso fica neste computador.", page)
@@ -178,13 +178,13 @@ func _menu() -> void:
 		elif result.status != "missing":
 			text = "Jornada %d · %s" % [i, _error(result.status)]
 		var card := PanelContainer.new()
-		card.add_theme_stylebox_override("panel", Hud.panel("paper"))
+		card.theme_type_variation = "RecortePaperPanel"
 		Hud.decorate(card, i % 2, Vector2(90, 60))
 		card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var column := VBoxContainer.new()
 		card.add_child(column)
 		slots.add_child(card)
-		_label("JORNADA  %02d" % i, column, 18).add_theme_color_override("font_color", Hud.INK)
+		_label("JORNADA  %02d" % i, column, 18).theme_type_variation = "RecortePaperText"
 		var art := TextureRect.new()
 		art.texture = load("res://assets/campaign/portrait-kael.png") if result.status == "ok" else Hud.icon("puxao")
 		art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
@@ -192,10 +192,9 @@ func _menu() -> void:
 		art.custom_minimum_size = Vector2(96, 112)
 		column.add_child(art)
 		var detail := "Um novo começo" if result.status == "missing" else str(result.data.player.name) if result.status == "ok" else "Jornada indisponível"
-		_label(detail, column, 24).add_theme_color_override("font_color", Hud.INK)
+		_label(detail, column, 24).theme_type_variation = "RecortePaperText"
 		var button := _button(text, column, _choose.bind(slot_id, result.status == "missing"))
-		button.add_theme_stylebox_override("normal", Hud.panel())
-		button.add_theme_color_override("font_color", Hud.PAPER)
+		Hud.secondary_button(button)
 		button.disabled = result.status not in ["missing", "ok"]
 		if not is_instance_valid(first) and not button.disabled:
 			first = button
@@ -304,10 +303,7 @@ func _show_opening() -> void:
 	panel.offset_right = -40
 	panel.offset_top = -12
 	panel.offset_bottom = -20
-	var box := Hud.panel()
-	box.content_margin_top = 22
-	box.content_margin_bottom = 20
-	panel.add_theme_stylebox_override("panel", box)
+	panel.theme_type_variation = "RecorteDialoguePanel"
 	add_child(panel)
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 20)
@@ -324,10 +320,7 @@ func _show_opening() -> void:
 	var nameplate := PanelContainer.new()
 	nameplate.position = Vector2(22, -34)
 	nameplate.custom_minimum_size = Vector2(maxf(180, Hud.font().get_string_size(speaker, HORIZONTAL_ALIGNMENT_LEFT, -1, 24).x + 48), 48)
-	var name_style := Hud.panel("paper")
-	name_style.content_margin_top = 6
-	name_style.content_margin_bottom = 6
-	nameplate.add_theme_stylebox_override("panel", name_style)
+	nameplate.theme_type_variation = "RecorteNamePanel"
 	nameplate.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var plate_holder := Node2D.new()
 	panel.add_child(plate_holder)
@@ -335,11 +328,11 @@ func _show_opening() -> void:
 	var heading := _label(speaker, nameplate, 24)
 	heading.autowrap_mode = TextServer.AUTOWRAP_OFF
 	nameplate.visible = not speaker.is_empty()
-	heading.add_theme_color_override("font_color", Hud.INK)
+	heading.theme_type_variation = "RecortePaperText"
 	speech = _label(story.text, page, 22)
-	speech.add_theme_color_override("font_color", Hud.PAPER)
+	speech.theme_type_variation = "Label"
 	status = _label("", page, 16)
-	status.add_theme_color_override("font_color", Hud.MUTED)
+	status.theme_type_variation = "RecorteMutedText"
 	status.visible = current_step in [3, 11, 13]
 	if current_step in [3, 11, 13]:
 		speech.text = ""
@@ -457,7 +450,7 @@ func _show_world() -> void:
 	overlay.add_child(gap)
 	var prompt := PanelContainer.new()
 	prompt.set_meta("contextual", true)
-	prompt.add_theme_stylebox_override("panel", Hud.panel())
+	prompt.theme_type_variation = "PanelContainer"
 	prompt.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	prompt.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	overlay.add_child(prompt)
@@ -562,7 +555,7 @@ func _show_starter() -> void:
 			var chosen: String = model_id
 			var card := PanelContainer.new()
 			card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-			card.add_theme_stylebox_override("panel", Hud.panel())
+			card.theme_type_variation = "PanelContainer"
 			grid.add_child(card)
 			var row := HBoxContainer.new()
 			card.add_child(row)
@@ -648,10 +641,7 @@ func _broadcast() -> void:
 	var score := PanelContainer.new()
 	score.position = Vector2(24, 12)
 	score.size = Vector2(620, 84)
-	var score_style := Hud.panel()
-	score_style.content_margin_top = 8
-	score_style.content_margin_bottom = 10
-	score.add_theme_stylebox_override("panel", score_style)
+	score.theme_type_variation = "RecorteBroadcastPanel"
 	stage.add_child(score)
 	var lines := VBoxContainer.new()
 	lines.add_theme_constant_override("separation", 2)
@@ -661,7 +651,7 @@ func _broadcast() -> void:
 	var station := PanelContainer.new()
 	station.position = Vector2(760, 544)
 	station.size = Vector2(160, 64)
-	station.add_theme_stylebox_override("panel", Hud.panel())
+	station.theme_type_variation = "PanelContainer"
 	stage.add_child(station)
 	_label("PIPA TV", station, 24)
 
@@ -904,7 +894,7 @@ func _show_collection() -> void:
 	scroll.add_child(list)
 	for partner in player.partners:
 		var card := PanelContainer.new()
-		card.add_theme_stylebox_override("panel", Hud.panel())
+		card.theme_type_variation = "PanelContainer"
 		list.add_child(card)
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation", 20)
@@ -988,6 +978,8 @@ func _show_tail_workshop() -> void:
 	_button("Voltar", page, _show_saved)
 
 func _apply_preferences() -> void:
+	var recorte := get_node_or_null("RecorteUX")
+	if recorte != null: recorte.set_reduced_motion(preferences.reduced_motion)
 	crt_layer.visible = preferences.crt
 	if DisplayServer.get_name() != "headless":
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if preferences.fullscreen else DisplayServer.WINDOW_MODE_WINDOWED)

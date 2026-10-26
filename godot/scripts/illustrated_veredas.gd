@@ -1,4 +1,5 @@
 extends Node2D
+const Recorte = preload("res://scripts/campaign/recorte_theme.gd")
 const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 ## Pixel coordinates refer directly to the approved 1536x1024 clean plate.
 ## Separate experimental slice: no connection to the JS game's save/economy.
@@ -328,17 +329,11 @@ func _build_ui() -> void:
 	spacer.size_flags_vertical=Control.SIZE_EXPAND_FILL
 	layout.add_child(spacer)
 	modal=PanelContainer.new()
-	var style:=StyleBoxFlat.new()
-	style.bg_color=Tokens.PAPEL
-	style.border_color=Tokens.NANQUIM
-	style.set_border_width_all(3)
-	style.content_margin_left=24
-	style.content_margin_top=16
-	style.content_margin_bottom=16
-	modal.add_theme_stylebox_override("panel",style)
+	modal.theme = Recorte.shared()
+	modal.theme_type_variation = "RecortePaperPanel"
 	layout.add_child(modal)
 	speech=Label.new()
-	speech.add_theme_color_override("font_color",Tokens.TINTA)
+	speech.theme_type_variation = "RecortePaperText"
 	speech.add_theme_font_size_override("font_size",22)
 	modal.add_child(speech)
 	modal.hide()

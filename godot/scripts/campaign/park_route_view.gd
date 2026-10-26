@@ -139,7 +139,7 @@ func _ready() -> void:
 	hint = Label.new()
 	hint.add_theme_font_size_override("font_size", 20)
 	var prompt_panel := PanelContainer.new()
-	prompt_panel.add_theme_stylebox_override("panel", Hud.panel())
+	prompt_panel.theme_type_variation = "PanelContainer"
 	prompt_panel.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	prompt_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	prompt_panel.add_child(hint)

@@ -4,7 +4,7 @@
 
 ## Revisão
 
-Abra `components/demo_kit.tscn` no Godot. A cena não usa campanha, rede ou saves. A prancha mostra todas as famílias, a dupla cheio/contorno e os textos dos adesivos como Labels. **INSPECIONAR 9-PATCH** abre larguras de 200, 400, 800 e 1600 px; o seletor percorre as nove molduras/balões e três pinceladas. A última linha usa a fonte 2× com cantos de mesmo tamanho lógico. **OUTRO RESPINGO** apresenta a sequência com semente 63.
+Abra `components/ink_catalog.tscn` no Godot para a prancha de arte da PIP-63. A cena não usa campanha, rede ou saves. A prancha mostra todas as famílias, a dupla cheio/contorno e os textos dos adesivos como Labels. **INSPECIONAR 9-PATCH** abre larguras de 200, 400, 800 e 1600 px; o seletor percorre as nove molduras/balões e três pinceladas. A última linha usa a fonte 2× com cantos de mesmo tamanho lógico. **OUTRO RESPINGO** apresenta a sequência com semente 63. A PIP-64 passa a usar `components/demo_kit.tscn` para os componentes interativos e shaders; o catálogo original foi preservado.
 
 Prancha nativa: `mockups/kit-tinta.png`. Ainda requer aprovação visual do responsável; não considerar o kit aprovado só por importar sem erros.
 

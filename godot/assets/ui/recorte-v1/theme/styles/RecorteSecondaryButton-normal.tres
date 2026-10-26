@@ -1,0 +1,12 @@
+[gd_resource type="StyleBoxFlat" format=3]
+
+[resource]
+resource_name = "RecorteSecondaryButton-normal"
+content_margin_left = 22.0
+content_margin_top = 12.0
+content_margin_right = 22.0
+content_margin_bottom = 12.0
+bg_color = Color(0.13333334, 0.1882353, 0.24705882, 1)
+skew = Vector2(0.21, 0)
+shadow_color = Color(0.043137256, 0.0627451, 0.09019608, 0.9)
+shadow_offset = Vector2(6, 6)

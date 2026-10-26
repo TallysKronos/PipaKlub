@@ -93,7 +93,7 @@ func _build_ui() -> void:
 	column.add_child(row)
 	var title := Label.new()
 	title.add_theme_font_size_override("font_size", 24)
-	title.add_theme_color_override("font_shadow_color", Tokens.NANQUIM)
+	title.theme_type_variation = "RecorteWorldText"
 	title.add_theme_constant_override("shadow_offset_x", 2)
 	title.add_theme_constant_override("shadow_offset_y", 2)
 	title.text = "Veredas do Encantamento"
@@ -124,7 +124,7 @@ func _build_ui() -> void:
 	objective.add_theme_font_size_override("font_size", 18)
 	objective.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	var mission := PanelContainer.new()
-	mission.add_theme_stylebox_override("panel", Hud.panel())
+	mission.theme_type_variation = "PanelContainer"
 	mission.custom_minimum_size.x = 320
 	mission.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	mission.add_child(objective)
@@ -148,7 +148,7 @@ func _build_ui() -> void:
 	modal.add_child(speech)
 	hint = Label.new()
 	var prompt_panel := PanelContainer.new()
-	prompt_panel.add_theme_stylebox_override("panel", Hud.panel())
+	prompt_panel.theme_type_variation = "PanelContainer"
 	prompt_panel.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	prompt_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	prompt_panel.add_child(hint)

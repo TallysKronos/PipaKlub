@@ -76,13 +76,8 @@ static func status(canvas: CanvasItem, rect: Rect2, title: String, subtitle: Str
 		var point := rect.position + Vector2(12 + i * 13, rect.size.y - 6)
 		canvas.draw_line(point, point + Vector2(15, -9), BLACK, 3, true)
 
-static func strip(paper: bool = false) -> StyleBoxTexture:
-	var style := Hud.sliced_panel(load(ROOT + ("strip-paper.svg" if paper else "strip-dark.svg")), Vector4(28, 12, 28, 12))
-	style.content_margin_left = 28
-	style.content_margin_right = 28
-	style.content_margin_top = 12
-	style.content_margin_bottom = 12
-	return style
+static func strip(paper: bool = false) -> StyleBoxFlat:
+	return Hud.make_theme().get_stylebox("panel", "RecortePaperPanel" if paper else "RecorteBattlePanel")
 static func live_sprite(canvas: CanvasItem, texture: Texture2D, id: String, frame: Dictionary, center: Vector2, extent: float, tint: Color = Tokens.UNTINTED, projection: Vector2 = Vector2.ONE) -> void:
 	if sprite_bounds.is_empty(): sprite_bounds = JSON.parse_string(FileAccess.get_file_as_string(ROOT + "sprite-bounds.json"))
 	var bounds: Array = sprite_bounds[id]

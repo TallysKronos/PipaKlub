@@ -40,7 +40,7 @@ func _ready() -> void:
 	panel.offset_left = 20
 	panel.offset_right = -20
 	panel.offset_bottom = -12
-	panel.add_theme_stylebox_override("panel", Hud.panel())
+	panel.theme_type_variation = "PanelContainer"
 	add_child(panel)
 	var scroll := ScrollContainer.new()
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED

@@ -38,7 +38,7 @@ func run_checks() -> void:
 	var normal := Hud.button_style()
 	for state in ["hover", "pressed", "disabled"]:
 		check(Hud.button_style(state).get_minimum_size() == normal.get_minimum_size(), "state does not move layout: " + state)
-		check(Hud.button_style(state).texture_margin_right == normal.texture_margin_right, "state keeps fixed artwork caps: " + state)
+		check(Hud.button_style(state).content_margin_right == normal.content_margin_right, "state keeps Theme content insets: " + state)
 	var front := Front.new()
 	front.session._store = Store.new("user://hud-checks-" + State.new_id())
 	root.add_child(front)
@@ -55,7 +55,7 @@ func run_checks() -> void:
 		check(pin.size == Vector2(20, 28), "detached pin keeps exact size " + str(extent))
 		check(pin.get_parent().position == Vector2(card.size.x - 26, -8), "pin stays anchored to frame, not text")
 		check(pin.mouse_filter == Control.MOUSE_FILTER_IGNORE, "ornament cannot intercept input")
-		check(card.get_theme_stylebox("panel").texture_margin_right == 24, "fixed 24px illustrated corner " + str(extent))
+		check(card.get_theme_stylebox("panel") is StyleBoxFlat and card.get_theme_stylebox("panel").skew == Vector2(.21,0), "Theme owns panel geometry; ink corners are a separate decoration " + str(extent))
 		card.free()
 	for viewport_size in [Vector2i(1280, 720), Vector2i(1024, 768), Vector2i(1920, 1080)]:
 		root.size = viewport_size

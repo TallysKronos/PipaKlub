@@ -101,7 +101,7 @@ func _ready() -> void:
 		name_label.size.x = 160 if data.npcs.size() == 2 else 90
 		name_label.visible = data.npcs.size() != 2 or npc.name == "Juninho"
 		name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		name_label.add_theme_color_override("font_outline_color", Tokens.NANQUIM)
+		name_label.theme_type_variation = "RecorteWorldText"
 		name_label.add_theme_constant_override("outline_size", 4)
 		var label_root := Node2D.new()
 		label_root.position = sprite.position
@@ -179,10 +179,10 @@ func _ready() -> void:
 		row.add_child(button)
 	goal = Label.new()
 	goal.text = "Passagem liberada" if not gate_closed else "Explore o bairro e converse com os pipeiros."
-	goal.add_theme_color_override("font_outline_color", Tokens.NANQUIM)
+	goal.theme_type_variation = "RecorteWorldText"
 	goal.add_theme_constant_override("outline_size", 0)
 	var objective_panel := PanelContainer.new()
-	objective_panel.add_theme_stylebox_override("panel", Hud.panel())
+	objective_panel.theme_type_variation = "PanelContainer"
 	objective_panel.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	objective_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	objective_panel.add_child(goal)
@@ -193,10 +193,10 @@ func _ready() -> void:
 	gap.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	column.add_child(gap)
 	hint = Label.new()
-	hint.add_theme_color_override("font_outline_color", Tokens.NANQUIM)
+	hint.theme_type_variation = "RecorteWorldText"
 	hint.add_theme_constant_override("outline_size", 0)
 	var prompt_panel := PanelContainer.new()
-	prompt_panel.add_theme_stylebox_override("panel", Hud.panel())
+	prompt_panel.theme_type_variation = "PanelContainer"
 	prompt_panel.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	prompt_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	prompt_panel.add_child(hint)

@@ -40,7 +40,7 @@ func _ready() -> void:
 	card.anchor_right = .93
 	card.anchor_top = .24
 	card.anchor_bottom = .69
-	card.add_theme_stylebox_override("panel", Hud.panel("paper"))
+	card.theme_type_variation = "RecortePaperPanel"
 	add_child(card)
 	Hud.decorate(card, 0, Vector2(170, 113))
 	var details := VBoxContainer.new()
@@ -56,7 +56,7 @@ func _ready() -> void:
 		var label := Label.new()
 		label.text = text
 		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		label.add_theme_color_override("font_color", Hud.INK)
+		label.theme_type_variation = "RecortePaperText"
 		details.add_child(label)
 	Hud.focus_later(first)
 func _draw() -> void:

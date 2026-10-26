@@ -65,9 +65,7 @@ func _ready() -> void:
 	bottom_panel.offset_left = 24
 	bottom_panel.offset_right = -24
 	bottom_panel.offset_bottom = -12
-	var footer_skin := StyleBoxEmpty.new()
-	footer_skin.set_content_margin_all(0)
-	bottom_panel.add_theme_stylebox_override("panel", footer_skin)
+	bottom_panel.theme_type_variation = "RecorteEmptyPanel"
 	add_child(bottom_panel)
 	var scroll := ScrollContainer.new()
 	scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
@@ -114,7 +112,7 @@ func _ready() -> void:
 	controls.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var description_panel := PanelContainer.new()
 	description_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	description_panel.add_theme_stylebox_override("panel", Ink.strip())
+	description_panel.theme_type_variation = "RecorteBattlePanel"
 	status_row.add_child(description_panel)
 	description_panel.add_child(controls)
 	resume_button = Button.new()
@@ -128,11 +126,8 @@ func _ready() -> void:
 		pointer_tapped.clear()
 		if not paused: resume_button.release_focus()
 		resume_button.text = "Retomar" if paused else "Pausar")
+	resume_button.theme_type_variation = "RecorteSecondaryButton"
 	resume_button.custom_minimum_size.x = 150
-	resume_button.add_theme_stylebox_override("normal", Ink.strip())
-	resume_button.add_theme_stylebox_override("hover", Ink.strip(true))
-	resume_button.add_theme_stylebox_override("focus", Ink.strip(true))
-	resume_button.add_theme_color_override("font_color", Ink.WHITE)
 	status_row.add_child(resume_button)
 	resume_button.custom_minimum_size.y = 40
 	finish_button = Button.new()
@@ -183,7 +178,7 @@ func _physics_process(delta: float) -> void:
 		command.tile.enough_energy = model.p.energy >= command.cost
 		command.tile.queue_redraw()
 		command.node.modulate = Tokens.UNTINTED
-		command.label.add_theme_color_override("font_color", Hud.MUTED if cooldown > 0 or model.p.energy < command.cost else Hud.PAPER)
+		command.label.theme_type_variation = "RecorteMutedText" if cooldown > 0 or model.p.energy < command.cost else "Label"
 	resume_button.visible = model.outcome.is_empty() or blocked
 	resume_button.text = "Tentar salvar novamente" if blocked else "Retomar" if paused else "Pausar"
 	actions.visible = model.outcome.is_empty() and paused

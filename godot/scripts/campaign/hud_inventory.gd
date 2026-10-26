@@ -19,7 +19,7 @@ func _ready() -> void:
 		tab.button_group = tab_group
 		tab.button_pressed = category == "Tudo"
 		Hud.secondary_button(tab)
-		tab.add_theme_stylebox_override("pressed", Hud.button_style("hover"))
+		tab.theme_type_variation = "RecorteTabButton"
 		tab.custom_minimum_size = Vector2(125, 48)
 		tabs.add_child(tab)
 		tab.pressed.connect(func(): populate(category))
@@ -37,7 +37,7 @@ func _ready() -> void:
 	scroll.add_child(list)
 	var detail := PanelContainer.new()
 	detail.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	detail.add_theme_stylebox_override("panel", Hud.panel("paper"))
+	detail.theme_type_variation = "RecortePaperPanel"
 	row.add_child(detail)
 	var column := VBoxContainer.new()
 	detail.add_child(column)
@@ -53,7 +53,7 @@ func _ready() -> void:
 	description = Label.new()
 	for label in [item_name, quantity, description]:
 		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		label.add_theme_color_override("font_color", Hud.INK)
+		label.theme_type_variation = "RecortePaperText"
 		column.add_child(label)
 	populate("Tudo")
 func category(id: String) -> String:
@@ -79,8 +79,7 @@ func populate(filter: String) -> void:
 		Hud.secondary_button(button)
 		button.set_meta("item_id", id)
 		button.toggle_mode = true
-		button.add_theme_stylebox_override("pressed", Hud.button_style("focus"))
-		button.add_theme_color_override("font_pressed_color", Hud.INK)
+		button.theme_type_variation = "RecorteListButton"
 		button.pressed.connect(func(): select_item(id))
 		button.focus_entered.connect(func(): select_item(id))
 		list.add_child(button)
