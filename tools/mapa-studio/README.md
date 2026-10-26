@@ -5,6 +5,8 @@ Bancada local para as plantas do overworld feitas no Tiled. As regras completas 
 ```
 npm run studio:mapa      # http://127.0.0.1:5244  (MAPA_STUDIO_PORT muda a porta)
 npm run mapa:piloto      # gera de novo art/overworld/mapas/veredas-piloto.tmj (sobrescreve)
+node tools/mapa-studio/importar-areas.mjs [id]   # importa as áreas do jogo como plantas (sobrescreve os .tmj)
+node tools/mapa-studio/inventario.mjs            # gera art/overworld/INVENTARIO-CODEX.md a partir das plantas
 node --test tools/mapa-studio/model.test.mjs tools/mapa-studio/server.test.mjs
 ```
 

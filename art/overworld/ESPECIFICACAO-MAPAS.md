@@ -50,6 +50,9 @@ O objeto fica na célula onde o ponto cai. No Tiled isométrico, `x` e `y` do ob
 | `piso` | sim | pedra, pátio, praça |
 | `calcada` | sim | calçada da Rua inicial |
 | `asfalto` | sim | rua (o carro é um evento, não o chão) |
+| `bosque` | **não** | mata fechada que contorna parques e veredas |
+| `construcao` | **não** | casas, muros e contenções que não são peça (Morro, fundos da rua) |
+| `canteiro` | **não** | gramado ou jardim cercado onde não se pisa |
 
 O material é só **revestimento**: ele não decide se há barranco. Quem decide é a camada `altura`.
 
@@ -190,7 +193,11 @@ Baús de planta não dão recompensa e o mato alto não dispara encontros: as du
 2. Liberar no renderer rampas nas 4 direções, níveis 2–3 e pontes em `v`, com os testes de regressão de `veredas-renderer.test.mjs`.
 3. Refazer a Rua inicial e o trecho real das Veredas nesse formato, área por área, comparando screenshots com a versão atual.
 
-## 9. Arquivos
+## 9. Áreas existentes
+
+Todas as áreas externas do jogo já têm planta em `art/overworld/mapas/`, importadas da geometria real por `tools/mapa-studio/importar-areas.mjs`: Rua dos Ventos, Jardim das Pipas, Clareira do Papel, Veredas do Encanamento e as cinco áreas do Morro do Sol. O que o Codex precisa desenhar, por bioma e por área, está em [INVENTARIO-CODEX.md](INVENTARIO-CODEX.md), que é gerado de novo com `node tools/mapa-studio/inventario.mjs` depois de cada ajuste no Tiled.
+
+## 10. Arquivos
 
 - `tools/mapa-studio/model.mjs`: leitura do Tiled, movimento, alturas, barrancos e conferência. Sem DOM; serve à bancada, aos testes e, depois, ao jogo.
 - `tools/mapa-studio/`: a bancada (`npm run studio:mapa`, porta 5244) e os testes.

@@ -5,7 +5,8 @@ export const CELL={w:64,h:32},LEVEL_PX=64,RULES='overworld-1';
 export const MATERIALS={
  grama:{name:'Grama',color:'#7fb85a',walk:true},terra:{name:'Terra (trilha)',color:'#d9a24b',walk:true},mato:{name:'Mato alto (encontros)',color:'#3f8f3a',walk:true,encounter:true},
  agua:{name:'Água',color:'#3aa7c4',walk:false},rocha:{name:'Rocha (bloqueio)',color:'#8d8478',walk:false},ponte:{name:'Ponte',color:'#a8743d',walk:true,bridge:true},
- piso:{name:'Piso de pedra',color:'#b9ab90',walk:true},calcada:{name:'Calçada',color:'#cfc8ba',walk:true},asfalto:{name:'Asfalto',color:'#5b6066',walk:true}};
+ piso:{name:'Piso de pedra',color:'#b9ab90',walk:true},calcada:{name:'Calçada',color:'#cfc8ba',walk:true},asfalto:{name:'Asfalto',color:'#5b6066',walk:true},
+ bosque:{name:'Mata fechada (bloqueio)',color:'#2f5d34',walk:false},construcao:{name:'Construção / muro (bloqueio)',color:'#a0705a',walk:false},canteiro:{name:'Canteiro / gramado (bloqueio)',color:'#93b86a',walk:false}};
 // Rampa: a seta aponta para onde sobe. u = coluna do Tiled (desce para a direita na tela), v = linha (desce para a esquerda).
 export const RAMP_DIRS={'u+':[1,0],'u-':[-1,0],'v+':[0,1],'v-':[0,-1]};
 const DIR4=[[1,0],[-1,0],[0,1],[0,-1]];

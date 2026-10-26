@@ -41,8 +41,8 @@ export function overworldScene(raw,tilesets,{id,cell=OVERWORLD_CELL,levelPx=OVER
   if(p.interact)add('Interactions',p.name,around(p.u,p.v,p.fu,p.fv),{level,action:p.props.acao||'pilot_story',story:p.props.texto||`${p.name}: nada aqui por enquanto.`});}
  for(const e of m.events){const level=at(m,e.u,e.v)?.level||0,r=R(e.u,e.v);
   if(e.type==='entrada'){add('Spawns',e.name||'Entrada',r);if(e.props.destino)add('Exits',`Voltar · ${e.name||e.props.destino}`,r,{action:'street_scene',target:e.props.destino});}
-  else if(e.type==='saida'){if(!e.props.destino)fail(`a saída "${e.name}" não tem destino.`);add('Exits',e.name||'Saída',r,{level,action:'street_scene',target:e.props.destino});}
-  else{if(e.type==='npc'){const c=center(e.u,e.v);add('Solids',e.name,{x:c.x-14,y:c.y-10,width:28,height:20},{level,sort_y:c.y});}add('Interactions',e.name||e.type,e.type==='npc'?around(e.u,e.v):r,{level,action:e.props.acao||'pilot_story',story:e.props.texto||`${e.name||e.type}.`});if(e.type==='npc')npcs.push({name:e.name,...center(e.u,e.v)});}}
+  else if(e.type==='saida'){if(!e.props.destino)fail(`a saída "${e.name}" não tem destino.`);add('Exits',e.name||'Saída',around(e.u,e.v),{level,action:'street_scene',target:e.props.destino});}
+  else{if(e.type==='npc'){const c=center(e.u,e.v);add('Solids',e.name,{x:c.x-14,y:c.y-10,width:28,height:20},{level,sort_y:c.y});}add('Interactions',e.name||e.type,around(e.u,e.v),{level,action:e.props.acao||'pilot_story',story:e.props.texto||`${e.name||e.type}.`});if(e.type==='npc')npcs.push({name:e.name,...center(e.u,e.v)});}}
  const name=m.name;
  const map={type:'map',version:'1.10',orientation:'orthogonal',renderorder:'right-down',width:m.w*cell/32,height:m.h*cell/32,tilewidth:32,tileheight:32,infinite:false,tilesets:[],layers,
   properties:props({scene_name:name,scene_id:id,veredas_region:true,prefer_safe_paths:true,actor_height:72,foot_radius:10,walk_speed:300,ground_corner_radius:32})};

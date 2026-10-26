@@ -67,7 +67,9 @@ export function artConfig(){
  for(const id of ['park-trail','park-clearing'])world.scenes[id]=createParkIsometricScene(JSON.parse(fs.readFileSync('assets/world/park-v1/'+id+'.tmj','utf8')),world.scenes[id].art,{production:true});
  world.scenes['park-veredas']=createParkBossScene();
  // Plantas do overworld (art/overworld/mapas): só entram no jogo com ?overworld=<mapa>, para revisão.
- {const dir='art/overworld/',sets=Object.fromEntries(fs.readdirSync(dir+'tiles').filter(f=>f.endsWith('.tsj')).map(f=>[f,JSON.parse(fs.readFileSync(dir+'tiles/'+f,'utf8'))]));world.overworld=Object.fromEntries(fs.readdirSync(dir+'mapas').filter(f=>f.endsWith('.tmj')).sort().map(f=>{const id=f.slice(0,-4);return [id,overworldScene(JSON.parse(fs.readFileSync(dir+'mapas/'+f,'utf8')),sets,{id})];}));}
+ {const dir='art/overworld/',sets=Object.fromEntries(fs.readdirSync(dir+'tiles').filter(f=>f.endsWith('.tsj')).map(f=>[f,JSON.parse(fs.readFileSync(dir+'tiles/'+f,'utf8'))]));world.overworld=Object.fromEntries(fs.readdirSync(dir+'mapas').filter(f=>f.endsWith('.tmj')).sort().flatMap(f=>{const id=f.slice(0,-4);
+  // Plantas que o renderer das Veredas ainda não desenha (outros biomas, rampas em outras direções) ficam fora da prévia, sem quebrar o build.
+  try{return [[id,overworldScene(JSON.parse(fs.readFileSync(dir+'mapas/'+f,'utf8')),sets,{id})]];}catch(e){if(process.env.OVERWORLD_VERBOSE)console.warn('overworld: '+id+' fora da prévia: '+e.message);return [];}}));}
  world.villageIsometric=JSON.parse(fs.readFileSync('assets/world/village-isometric-v1/manifest.json','utf8'));
  Object.assign(world.villageIsometric.images,JSON.parse(fs.readFileSync('assets/world/kael-bedroom-iso-v4/manifest.json','utf8')).images);
  Object.assign(world.villageIsometric.images,JSON.parse(fs.readFileSync('assets/world/kael-home-iso-v1/manifest.json','utf8')).images);
