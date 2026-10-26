@@ -30,6 +30,11 @@ var kits: Array[Dictionary] = []
 var kit_library: Dictionary = {}
 var terrain_layers: Array[TileMapLayer] = []
 var lots: Dictionary = {}
+var hidden_pieces: Dictionary = {}
+var occluders: Array[Node2D] = []
+const MAX_HOUSES := 6
+const MIN_HOUSES := 4
+const YARD_TINT := Color(.78, .86, .76)
 var stairs_drawn: Dictionary = {}
 var opened: Dictionary = {}
 var nearby: Dictionary = {}
@@ -64,6 +69,7 @@ func load_area(id: String) -> void:
 		if is_instance_valid(node): remove_child(node); node.queue_free()
 	terrain_layers.clear()
 	stairs_drawn.clear()
+	occluders.clear()
 	model.setup(JSON.parse_string(FileAccess.get_file_as_string(source)))
 	kits.assign([kit_library.comum])
 	if kit_library.has(model.data.biome): kits.append(kit_library[model.data.biome])
@@ -157,6 +163,7 @@ func _build_tiles() -> void:
 	var ids: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/overworld/rascunho-atlas.json"))
 	var levels: Dictionary = {}
 	for cell in model.data.cells: levels[int(cell.level)] = true
+	hidden_pieces = _compose_houses()
 	lots = _occupied_lots()
 	for level in levels:
 		var tiles := TileSet.new()
@@ -189,7 +196,7 @@ func _build_tiles() -> void:
 				_draw_bridge(at, cell)
 			elif art_preview and kits.size()>1 and cell.material == "construcao" and kits[1].materials.has("grama") and lots.get(model.key(at), "muro-quintal") == "muro-quintal":
 				# A blocked lot without a house reads as a yard, not as bare brick.
-				_draw_art_floor(at, {"material":"grama","level":cell.level,"corners":["grama","grama","grama","grama"]})
+				_draw_art_floor(at, {"material":"grama","level":cell.level,"corners":["grama","grama","grama","grama"],"tint":YARD_TINT})
 			elif art_preview and kits.size()>1 and kits[1].materials.has(cell.material):
 				_draw_art_floor(at, cell)
 			else: layer.set_cell(at, 0, Vector2i((at.x * 7 + at.y * 13) % 4, int(ids.get(cell.material, 0))))
@@ -226,6 +233,8 @@ func _draw_art_floor(at: Vector2i, cell: Dictionary) -> void:
 	var sprite := Sprite2D.new()
 	sprite.texture = load(kit.root + file)
 	sprite.position.y = -float(cell.level) * 64
+	# A darker yard keeps the walkable lawn readable where both are grass.
+	if cell.has("tint"): sprite.modulate = cell.tint
 	root.add_child(sprite)
 	# Canonical shared vertices, including three-material junctions. A corner
 	# samples the existing pair atlas only inside its own quadrant; unrelated
@@ -306,6 +315,7 @@ func _occupied_lots() -> Dictionary:
 	# Cells under a piece footprint, by asset. Bare lots and low yard walls stand on grass.
 	var taken := {}
 	for piece in model.data.pieces:
+		if hidden_pieces.has(str(piece.id)): continue
 		for du in int(piece.fu):
 			for dv in int(piece.fv): taken[model.key(Vector2i(int(piece.u)+du,int(piece.v)+dv))] = str(piece.asset)
 	return taken
@@ -341,6 +351,65 @@ func _draw_kit_stairs(at: Vector2i, cell: Dictionary) -> bool:
 	stairs_drawn[model.key(partner)] = true
 	return true
 
+func _touches_path(u: int, v: int, fu: int, fv: int, reach: int = 1) -> bool:
+	for y in range(v-reach, v+fv+reach):
+		for x in range(u-reach, u+fu+reach):
+			if model.walkable(Vector2i(x,y)): return true
+	return false
+
+func _hides_path(u: int, v: int, fu: int, fv: int) -> bool:
+	# Tall art covers the cells drawn above it on screen: smaller u+v, about the
+	# same screen column. Anything walkable there would be hidden behind it.
+	var front := u+fu+v+fv
+	for y in range(v-8, v+fv):
+		for x in range(u-8, u+fu):
+			if front-(x+y) > 9 or front-(x+y) < 2: continue
+			if absi((x-y)-(u-v+(fu-fv)/2)) > 3: continue
+			if model.walkable(Vector2i(x,y)): return true
+	return false
+
+func _next_to_house(u: int, v: int) -> bool:
+	# Pots and flowers gather by the doors instead of dotting the whole lot.
+	for d in [Vector2i(1,0),Vector2i(-1,0),Vector2i(0,1),Vector2i(0,-1)]:
+		if lots.get(model.key(Vector2i(u,v)+d), "") == "casa-morro": return true
+	return false
+
+func _compose_houses() -> Dictionary:
+	# Composition pass (visual only, the map keeps its blocked lots): a few houses
+	# facing the path with breathing room between them; the rest of the lot turns
+	# into yard and tree mass. Hand-placed houses win over generated filler.
+	var hidden := {}
+	if not art_preview or model.data.biome != "morro": return hidden
+	var houses: Array = []
+	for piece in model.data.pieces:
+		if piece.asset == "casa-morro": houses.append(piece)
+	houses.sort_custom(func(a, b):
+		var ga := str(a.props.get("origem","")).begins_with("PIP-87")
+		var gb := str(b.props.get("origem","")).begins_with("PIP-87")
+		return int(a.id) < int(b.id) if ga == gb else gb)
+	var kept: Array[Rect2i] = []
+	var shown := {}
+	# First pass: houses behind the path (never cover it). Second pass, until the
+	# area has MIN_HOUSES: houses in front, which fade when Kael walks behind them.
+	for allow_front in [false, true]:
+		for piece in houses:
+			if shown.has(str(piece.id)) or kept.size() >= (MAX_HOUSES if not allow_front else MIN_HOUSES): continue
+			var rect := Rect2i(int(piece.u), int(piece.v), int(piece.fu), int(piece.fv))
+			var crowded := false
+			for other in kept:
+				if other.grow(2).intersects(rect): crowded = true
+			if crowded or not _touches_path(rect.position.x, rect.position.y, rect.size.x, rect.size.y): continue
+			if not allow_front and _hides_path(rect.position.x, rect.position.y, rect.size.x, rect.size.y): continue
+			kept.append(rect)
+			shown[str(piece.id)] = true
+	for piece in houses:
+		if not shown.has(str(piece.id)): hidden[str(piece.id)] = true
+	# Low yard walls in loose fragments read as clutter: the edges are drawn by
+	# houses and tree mass instead.
+	for piece in model.data.pieces:
+		if piece.asset == "muro-quintal": hidden[str(piece.id)] = true
+	return hidden
+
 func _dress_bare_lots() -> void:
 	# Visual only: blocked lots without a house get yard props. Navigation,
 	# events and collision come from the map and stay unchanged.
@@ -353,17 +422,23 @@ func _dress_bare_lots() -> void:
 				var cell := model.cell_at(Vector2i(u+du,v+dv))
 				if cell.is_empty() or cell.material != "construcao" or used.has(model.key(Vector2i(u+du,v+dv))) or cell.level != base.level: return false
 		return true
-	var large := [["varal",""],["arvore","a"],["caixa-dagua",""],["arvore","florida"],["arvore","b"]]
+	# Back of the lot: tree mass. Along the path: a few yard objects only.
+	var woods := [["arvore","a"],["arvore","b"],["arvore","tronco-largo"],["arvore","a"],["arvore","b"]]
+	var yard := [["varal",""],["caixa-dagua",""]]
 	var small := [["vaso","pneu"],["flores","coral"],["vaso","ceramica"],["flores","amarela"]]
 	for v in int(model.data.h):
 		for u in int(model.data.w):
 			var seed := posmod(u*131+v*57+int(model.data.w)*7,97)
 			var pick: Array = []
 			var n := 1
-			if seed%3 != 0 and fits.call(u,v,2):
-				pick = large[seed%large.size()]
+			var front := _touches_path(u,v,2,2)
+			if not front and seed%4 != 0 and fits.call(u,v,2) and not _hides_path(u,v,2,2):
+				pick = woods[seed%woods.size()]
 				n = 2
-			elif seed%5 == 0 and fits.call(u,v,1): pick = small[seed%small.size()]
+			elif front and seed%5 == 0 and fits.call(u,v,2) and not _hides_path(u,v,2,2):
+				pick = yard[seed%yard.size()]
+				n = 2
+			elif seed%3 == 0 and fits.call(u,v,1) and _next_to_house(u,v): pick = small[seed%small.size()]
 			if pick.is_empty(): continue
 			var info := _definition({"asset":pick[0],"id":"lote","props":{"variante":pick[1]} if pick[1] != "" else {}})
 			if info.is_empty(): continue
@@ -374,6 +449,7 @@ func _dress_bare_lots() -> void:
 			node.configure(info,Vector2i(n,n),float(model.cell_at(Vector2i(u,v)).level),false,model.project(Vector2(u+n*.5,v+n*.5),false)-model.project(sort_point,false))
 			node.position = model.project(sort_point,false)
 			actors.add_child(node)
+			occluders.append(node)
 
 func _definition(piece: Dictionary) -> Dictionary:
 	var variant := str(piece.props.get("variante", ""))
@@ -391,6 +467,7 @@ func _definition(piece: Dictionary) -> Dictionary:
 
 func _build_pieces() -> void:
 	for piece in model.data.pieces:
+		if hidden_pieces.has(str(piece.id)): continue
 		var node: Node2D
 		var entry := _definition(piece)
 		var point := Vector2(piece.u + piece.fu*.5, piece.v + piece.fv*.5)
@@ -414,6 +491,7 @@ func _build_pieces() -> void:
 		node.set_meta("piece",piece)
 		actors.add_child(node)
 		piece_nodes[str(piece.id)] = node
+		occluders.append(node)
 		if piece.interact != null:
 			interaction_events.append({"id":"piece-"+str(piece.id),"piece_id":str(piece.id),"type":"piece","name":piece.name,"asset":piece.asset,"u":piece.u,"v":piece.v,"props":{"interacao":piece.interact}})
 
@@ -506,6 +584,19 @@ func _refresh_positions() -> void:
 	_place_actor(follower_root,companion,follower,42)
 	for actor in npc_nodes:_place_actor(actor.root,actor.visual,actor.point,84)
 	camera.position = model.project(player)
+	_fade_occluders()
+
+func _fade_occluders() -> void:
+	# A house or tree drawn over Kael turns see-through, so composition can keep
+	# some volume in front of the path without hiding the player.
+	var body := Rect2(model.project(player)-Vector2(20,84),Vector2(40,84))
+	var ground := model.project(player,false).y
+	for node in occluders:
+		if not is_instance_valid(node): continue
+		var art := node.get_node_or_null("Art") as Sprite2D
+		if art == null: continue
+		var covers := node.position.y > ground and Rect2(node.position+art.position,art.texture.get_size()).intersects(body)
+		art.modulate.a = .45 if covers else 1.0
 
 func _place_actor(root: Node2D, visual: Node2D, point: Vector2, height: float) -> void:
 	var ground := model.project(point,false)
