@@ -117,31 +117,38 @@ func _build_context() -> void:
 	var recipe: Dictionary = kits[1].get("context", {}) if kits.size()>1 else {}
 	var radius := int(recipe.get("radius",12))
 	var context := Node2D.new()
-	context.name="ContextoNaoJogavel";context.z_index=-100;context.y_sort_enabled=true
+	# Only the ground plane sits under the map; trees and houses sort by depth with
+	# everything else, so a tree in front of the map is drawn in front of it.
+	context.name="ContextoNaoJogavel";context.y_sort_enabled=true
 	actors.add_child(context)
 	var floor_plane := Polygon2D.new()
-	floor_plane.z_index=-1
+	floor_plane.z_index=-100
 	floor_plane.color=Color(str(recipe.get("color","476643")))
 	floor_plane.polygon=PackedVector2Array([model.project(Vector2(-radius,-radius),false),model.project(Vector2(model.data.w+radius,-radius),false),model.project(Vector2(model.data.w+radius,model.data.h+radius),false),model.project(Vector2(-radius,model.data.h+radius),false)])
 	context.add_child(floor_plane)
 	if recipe.is_empty() or not art_preview:return
-	var spacing := int(recipe.get("spacing",3))
-	for v in range(-radius,int(model.data.h)+radius,spacing):
-		for u in range(-radius,int(model.data.w)+radius,spacing):
-			if not (u+3<=0 or v+3<=0 or u>=int(model.data.w) or v>=int(model.data.h)):continue
-			var seed := posmod(u*137+v*71+u*v*13,23)
-			if seed<5:continue
-			# Jitter inside the lattice so the ring reads as a neighbourhood, not a grid.
+	# Surroundings read as hillside woods: trees of mixed kinds on an irregular
+	# lattice, and only a few houses higher up the slope, behind the map.
+	var w := int(model.data.w)
+	var h := int(model.data.h)
+	for v in range(-radius,h+radius,4):
+		for u in range(-radius,w+radius,4):
+			var seed := posmod(u*137+v*71+u*v*13,29)
 			var shift := Vector2(seed%3-1, (seed/3)%3-1)
-			if not (u+3+shift.x<=0 or v+3+shift.y<=0 or u+shift.x>=int(model.data.w) or v+shift.y>=int(model.data.h)): shift = Vector2.ZERO
-			var garden: bool = u>=int(model.data.w) or v>=int(model.data.h) or seed%4==0
-			var piece := {"asset":"arvore" if garden else recipe.asset,"id":"context","props":{"variante":["a","b","florida","tronco-largo"][seed%4] if garden else ["telha","laje","muro-chapisco"][(seed/2)%3]}}
-			var info := _definition(piece)
+			var at := Vector2(u,v)+shift
+			var behind: bool = at.x+2<=0 or at.y+2<=0
+			# Keep two cells clear in front, so tall crowns never hide the playable edge.
+			var front: bool = at.x>=w+3 or at.y>=h+3
+			if not (behind or front):continue
+			var house: bool = behind and (at.x<=-6 or at.y<=-6) and seed%7==0
+			if not house and seed<(13 if front else 9):continue
+			var variant: String = ["telha","laje","muro-chapisco"][seed%3] if house else ["a","b","tronco-largo","a","b","a","b","florida"][seed%8]
+			var info := _definition({"asset":recipe.asset if house else "arvore","id":"context","props":{"variante":variant}})
 			if info.is_empty():continue
+			var size := 3 if house else 2
 			var node := Prop.new()
-			var center:=Vector2(u+1.5,v+1.5)+shift
-			var sort_point:=Vector2(u+3,v+3)+shift
-			node.configure(info,Vector2i(3,3),0,false,model.project(center,false)-model.project(sort_point,false))
+			var sort_point:=at+Vector2(size,size)
+			node.configure(info,Vector2i(size,size),0,false,model.project(at+Vector2(size,size)*.5,false)-model.project(sort_point,false))
 			node.position=model.project(sort_point,false)
 			context.add_child(node)
 
