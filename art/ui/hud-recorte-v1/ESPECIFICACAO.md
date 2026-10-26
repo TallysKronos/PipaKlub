@@ -163,16 +163,101 @@ As medidas abaixo são em 1920×1080. "Âncora" é o canto do `Control`.
 - **Slots de save**: faixas 1000×120 com miniatura 16:9, área, hora de jogo e data. O automático é marcado com um chip `ceu`.
 - Estados de lista obrigatórios: vazio (mensagem + ação), carregando (3 losangos piscando em sequência), erro (mensagem + TENTAR DE NOVO).
 
-### 4.5 Batalha
+### 4.5 Batalha: duelo de pipas em tempo real
 
-| Componente | Âncora / tamanho | Notas |
+**A batalha é ação, não turno.** As pipas voam livres no céu presas a carretéis no chão. Um **corte** acontece quando a sua linha cruza a do rival dentro da faixa válida. O jogador está com os olhos na pipa o tempo todo. Por isso a regra muda em relação às outras telas: **o que decide a luta aparece no céu, junto das pipas; os cantos só guardam o estado**. Uma informação que exige leitura não deve aparecer no meio do combate.
+
+As regras abaixo vêm do motor atual (`src/engine.js`) e são as que a HUD precisa mostrar. Os nomes e valores já existem: não invente mecânica.
+
+| Mecânica | Regra no motor | O que a HUD mostra |
 | --- | --- | --- |
-| Placa do jogador | base-esq., 480×132 | Retrato losango, nome, Nv., **vida** (barra 360×18 com número), **linha/energia** `ceu` (barra 360×10) |
-| Placa do rival | topo-dir., 440×112 | Espelho da do jogador; sem número exato de vida para inimigo selvagem, só a barra |
-| **Leque de habilidades** | base-dir., 4 cartões 260×84 em leque de 4° entre eles | Nome, custo, ícone de tipo; a selecionada invertida e destacada 16 px; recarga como preenchimento diagonal `tinta-3` |
-| Turno / tempo | topo-centro, losango 120 px | Número em Display 48 |
-| **Palavras de impacto** | centro, sobre o alvo | CRÍTICO! (`sol`), ESQUIVOU (`ceu`), CORTE! (`rabiola`), em Display itálico 96 com contorno 6 px `tinta`. Entram em 120 ms, ficam 500 ms e saem em 160 ms. **No máximo uma por vez** |
-| Registro | acima do leque, 1 linha | Ex.: "Carcará usou Rasante." Some depois de 2 s |
+| **Linha** (vida da rodada) | Cada corte desgasta; zerou, a pipa cai e perde a rodada. No fim do tempo, vence quem tem mais linha | Barra grande do parceiro e do rival |
+| **Armação** | Estrutura da pipa, persiste entre rodadas e encontros | Barra fina abaixo da Linha |
+| **Energia** | Gasta por esquiva (18), manobras (20–32) e golpe especial (35–40); recupera com o tempo | Barra em **blocos de 10**; ao segurar uma ação, os blocos que ela vai gastar ficam marcados |
+| **Corte e qualidade** | Ângulo aberto (limpo), pipa em movimento (relada) e cruzamento no **centro dourado** da linha rival (52–68%) | Mira no ponto de cruzamento e **3 marcadores**: ÂNGULO · RELADA · CENTRO. Os três acesos dão crítico |
+| **Esquiva** | 0,28 s, custo 18, recarga 2,2 s. **Esquiva perfeita** no instante do puxão do rival devolve energia, e o próximo acerto em 2 s é crítico | Anel de tempo no rival que está puxando; após a perfeita, um marcador de CONTRA-ATAQUE com 2 s na sua pipa |
+| **Manobras de linha** | Puxão, Chicote, Estilingue, Laço, Folha solta, Duplo toque: **segurar para carregar** (até 1,2 s) e soltar | Anel de carga em volta do botão e da sua pipa; a janela de acerto pisca uma vez |
+| **Habilidade do tipo** | Puxão preciso, Dash lateral, Linha firme ou Foco, conforme a pipa | Botão próprio, com a duração como barra que esvazia |
+| **Guarda (Linha firme)** | 0,5 s, recarga de 20 s | Botão com recarga longa e halo na pipa enquanto ativa |
+| **Golpe especial** | Ex.: Pulo do Elo, Nó de Vendaval. Preparação de 1,4–1,65 s, com alcance em volta do alvo | **Aviso no alvo**: círculo do alcance que se fecha até o golpe. É a hora de esquivar |
+| **Escudo de entrada** | 2,5 s sem dano no começo da rodada | Halo translúcido na pipa, que some quando acaba |
+| **Rodadas** | 3 s de contagem ("JÁ!"), 60 s de rodada, 3,2 s de intervalo, vence quem chegar ao número de rodadas | Relógio no topo, vitórias em losangos e faixas de fase |
+| **Clima** | Ventania, linha encerada, garoa, neblina (Céu do dia) | Chip de clima abaixo do relógio, com o vento como seta |
+
+#### Camada 1: no céu (segue as pipas, em espaço de mundo)
+
+| Elemento | Aparência | Quando |
+| --- | --- | --- |
+| **Marca da sua pipa** | Losango `ceu` de 14 px abaixo da pipa e a sua linha com contorno `ceu`. A linha do rival fica `rabiola` | Sempre. "VOCÊ" escrito só nos 3 s iniciais da primeira rodada |
+| **Mira de cruzamento** | Losango de 28 px no ponto onde as linhas se cruzam: contorno `papel` (corte válido), `sol` (centro dourado) ou `tinta-3` tracejado (fora da faixa ou ângulo fechado) | Só quando as linhas se cruzam |
+| **Faixa dourada** | Trecho de 52–68% da linha rival levemente aceso em `sol` a 50% | Quando a sua linha está a menos de 160 px da do rival |
+| **Marcadores de qualidade** | 3 pequenos losangos sob a mira: ÂNGULO · RELADA · CENTRO, acesos em `papel` | Junto com a mira; os três acesos ficam `sol` |
+| **Números de desgaste** | −18 em rótulo 28 `papel` com contorno `tinta`; crítico em 40 `sol` | Sobem 24 px e somem em 500 ms. No máx. 3 ao mesmo tempo |
+| **Palavras de impacto** | CRÍTICO! (`sol`), ESQUIVA PERFEITA (`ceu`), BLOQUEOU (`papel`), CORTOU! (`rabiola`) em Display itálico 72–96 com contorno 6 px `tinta`, perto da pipa | **Uma por vez**; 120 ms de entrada, 500 ms parada, 160 ms de saída |
+| **Aviso de golpe** | Círculo de alcance `rabiola` tracejado em volta da sua pipa, preenchendo até o golpe, mais um "!" em losango sobre o rival | Durante a preparação do golpe especial ou da carga do chefe |
+| **Anel de esquiva perfeita** | Anel `ceu` que se fecha na sua pipa até o instante ideal | Quando o rival inicia um puxão que pode acertar você |
+| **Carga da manobra** | Arco `ceu` em volta da sua pipa, que enche em 1,2 s | Enquanto o botão da manobra está seguro |
+| **Halos** | Escudo de entrada: `papel` a 30%; Guarda: `ceu` a 50% com contorno | Enquanto durarem |
+
+Tudo no céu fica sem moldura, sem painel e sem sombra deslocada, para não tapar as pipas. Contorno `tinta` de 3–6 px garante leitura sobre o céu claro e sobre as nuvens.
+
+#### Camada 2: cantos (estado, para olhar de relance)
+
+| Componente | Âncora / tamanho | Conteúdo |
+| --- | --- | --- |
+| **Pipeiro (você)** | topo-esq., 400×96 | Retrato do pipeiro, nome, Nv. e **vitórias de rodada em losangos** (◆◆◇) |
+| **Rival** | topo-dir., 400×96, espelhado | O mesmo; no selvagem, "Soulmonster selvagem" no lugar do nível do pipeiro |
+| **Relógio** | topo-centro, losango 120 px | Segundos em Display 52 e "RODADA 2" em 20 abaixo; nos últimos 10 s o losango fica `rabiola` (uma vez, sem piscar) |
+| **Clima/vento** | abaixo do relógio, chip 200×36 | Ícone do clima, nome e seta de vento |
+| **Seu parceiro** | base-esq., 460×132 | Retrato losango, nome e Nv., **Linha** (360×20, com o número), **Armação** (360×8) e **Energia** em 10 blocos (360×12) |
+| **Parceiro rival** | topo-dir., abaixo do rival, 400×64 | Linha e Armação. **O rival não mostra energia nem recargas** (regra atual) |
+| **Barra de ações** | base, à direita do seu parceiro, botões de 88×88 em fila inclinada, com 12 px entre eles | Ver a tabela abaixo |
+| **Fugir** (só no encontro selvagem) | base-esq., acima do parceiro, chip 220×40 | "Segure F para fugir"; precisa segurar 1 s com anel de progresso, para evitar clique sem querer |
+
+Com 4 jogadores (partida rápida), os rivais viram uma coluna compacta no topo-direito, 320×56 cada: nome, losangos de rodada e Linha.
+
+**Botões da barra de ações** (na ordem, da esquerda para a direita):
+
+| Botão | Conteúdo | Estados |
+| --- | --- | --- |
+| Esquiva | Ícone + glyph | Pronto · recarga (2,2 s) · sem energia |
+| Manobra 1 e 2 | Ícone da manobra escolhida, glyph e custo em blocos | Pronto · **carregando** (anel) · recarga · sem energia |
+| Habilidade do tipo | Ícone do tipo | Pronto · **ativa** (barra de duração) · recarga |
+| Guarda | Ícone de escudo | Pronto · ativa · recarga (20 s) |
+| Golpe especial | Losango maior, 112 px, à direita | Pronto (contorno `sol`) · preparando · recarga |
+
+Estados visuais, iguais em todos os botões:
+- **pronto:** `tinta` com ícone `papel`; ao ficar pronto, um único brilho de contorno `papel` de 120 ms;
+- **recarga:** varredura diagonal de `tinta-3` que se retrai e segundos inteiros em rótulo 24 no centro;
+- **sem energia:** ícone `tinta-3` e custo em `rabiola`;
+- **ativo/carregando:** contorno `ceu` de 3 px.
+
+O glyph mostra a tecla ou o botão do controle que estiver configurado, nunca um texto fixo.
+
+#### Camada 3: faixas de fase (centro, entre as rodadas)
+
+Faixas diagonais de lado a lado, como no resultado, só **fora** do tempo de luta:
+- **RODADA 2**, com a contagem 3 · 2 · 1 · **JÁ!**; o "JÁ!" usa `rabiola` e fica 400 ms;
+- **CORTOU!** / **RODADA PERDIDA** / **EMPATE** no fim da rodada, com o placar em losangos;
+- **ÚLTIMOS 10 s**: só um chip abaixo do relógio, sem faixa, porque a luta está acontecendo.
+
+Durante a luta, nada cobre o centro da tela além da camada 1.
+
+#### Regras de leitura em ação
+
+- **Regra de 1 segundo:** tudo nos cantos precisa ser entendido num relance. Nada de frases durante a luta; só números, barras e ícones.
+- **Sua cor é `ceu`, a do rival é `rabiola`.** Linha, marca e halos seguem isso. Em partidas de 4, os outros rivais usam a cor de jogador atual (P1–P8), com contorno `tinta`.
+- **Prioridade quando muita coisa acontece:** aviso de golpe > anel de esquiva > mira > palavras de impacto > números. Se dois disputarem o mesmo lugar, o de menor prioridade espera ou some.
+- **Nenhum elemento da camada 1 a menos de 40 px de outra pipa** que não seja a dele. Afaste o texto na direção oposta.
+- **Linha abaixo de 25%:** a barra fica `rabiola` e a borda da tela recebe uma vinheta `tinta` de 6% (sem vermelho e sem pulsar).
+- **Reduzir movimento:** números e palavras aparecem e somem com fade de 80 ms, sem subir nem girar.
+
+#### Como montar no Godot
+
+- **Camada 1** dentro do mundo: nós `Node2D` filhos de cada pipa e um nó `CrossingMarker` posicionado pelo ponto de cruzamento que o motor já calcula. Desenho com `_draw()` (losangos, arcos com `draw_arc`) e `Label` com `LabelSettings` de contorno.
+- **Camadas 2 e 3** num `CanvasLayer` acima do mundo, com o Theme.
+- **Recargas:** `TextureProgressBar` com máscara losango e `fill_mode` em varredura, ou um shader de 10 linhas com o ângulo de 12°.
+- **Fonte dos dados:** a HUD só lê o estado da partida (`hp`, `hull`, `energy`, recargas, `signatureWindup`, `evade`, `counter`, fase, rodada e tempo), nunca calcula dano.
 
 ### 4.6 Resultado
 
@@ -221,7 +306,7 @@ Nomes dos arquivos: `icons/<nome>.svg` em minúsculas com hífen. Exporte també
 
 ## 7. Ordem de trabalho e pontos de aprovação
 
-1. **Mockups (para aprovação, nada de produção):** três telas em 1920×1080, que são exploração com prompt, diálogo com escolhas e menu de pausa com a Mochila aberta. Pode gerar com imagem a partir dos prompts da seção 8 e depois **corrigir as medidas no Godot**. Entregar em `mockups/` e esperar o "ok" do responsável.
+1. **Mockups (para aprovação, nada de produção):** quatro telas em 1920×1080: exploração com prompt, diálogo com escolhas, menu de pausa com a Mochila aberta e **batalha no momento de um corte crítico**. Pode gerar com imagem a partir dos prompts da seção 8 e depois **corrigir as medidas no Godot**. Entregar em `mockups/` e esperar o "ok" do responsável.
 2. **Theme e componentes:** `recorte_theme.tres`, os StyleBoxFlat da seção 5, fontes e a cena `components/demo_kit.tscn`, que mostra todos os componentes e estados lado a lado, com um botão para alternar 1280×720/1920×1080.
 3. **Telas:** exploração, diálogo, pausa, conteúdo, batalha e resultado como cenas em `components/` (ex.: `area_plate.tscn`, `interact_prompt.tscn`, `dialogue_box.tscn`, `pause_menu.tscn`, `battle_hud.tscn`), com sinais claros e sem lógica de jogo embutida.
 4. **Ícones e glyphs**, por último. Até chegarem, use um losango no lugar.
@@ -254,6 +339,8 @@ bosque brasileiro com trilha de terra e riacho, estilo anime 2D, cores em massa.
 
 **Pausa + Mochila:** `+ tela de menu: o jogo escurecido ao fundo; um grande corte diagonal azul-noite à esquerda com a lista em escada diagonal "MOCHILA, PIPA DEX, PARCEIROS, MISSÕES, OFICINA, SALVAR, CONFIGURAÇÕES, SAIR", com MOCHILA selecionada (faixa creme, texto azul-noite, triângulos coral); à direita um painel com o título "MOCHILA" grande extrapolando a borda, abas inclinadas "ITENS · LINHAS · RABIOLAS · CHAVE", lista de itens com ícones e quantidades e um painel de detalhe; no rodapé, comandos "Ⓐ CONFIRMAR  Ⓑ VOLTAR  LB/RB ABA".`
 
+**Batalha:** `+ duelo de pipas em tempo real num céu claro de praia brasileira: duas pipas-criatura voando presas a linhas que descem até carretéis no chão; a linha do jogador em ciano, a do rival em coral, cruzando-se no centro da tela, com um pequeno losango creme no ponto de cruzamento e três losanguinhos embaixo ("ÂNGULO · RELADA · CENTRO", dois acesos). Perto da pipa rival, a palavra "CRÍTICO!" em letras condensadas itálicas douradas com contorno azul-noite. Nos cantos superiores, placas inclinadas azul-noite: "Kael Nv. 3 ◆◇" à esquerda e "Pipa de rua · Soulmonster selvagem ◇◇" à direita, com a barra de linha do rival; no topo ao centro, um losango com "42" e "RODADA 1". Na base à esquerda, o parceiro "Raio de Sol Nv. 3" com barras de Linha, Armação fina e Energia em blocos; ao lado, uma fila de botões quadrados inclinados com ícones e teclas (Esquiva, Puxão, Chicote, Foco, Guarda) e um losango maior dourado para o golpe especial, um deles em recarga com varredura diagonal e "3". O centro do céu fica livre.`
+
 ---
 
 ## 9. Checklist de aceite
@@ -269,6 +356,7 @@ bosque brasileiro com trilha de terra e riacho, estilo anime 2D, cores em massa.
 - [ ] Contraste conferido (4,5:1 em texto, 3:1 em títulos).
 - [ ] Fontes e glyphs com licença registrada em `LICENSES.md`.
 - [ ] Prints de revisão em `mockups/revisao/` com a resolução no nome do arquivo.
+- [ ] Batalha: as pipas e o cruzamento das linhas nunca ficam cobertos pela HUD dos cantos; a mira, os avisos e as palavras de impacto seguem a ordem de prioridade; testado numa rodada inteira com controle, e não só em captura parada.
 - [ ] Nada copiado de Persona: comparar lado a lado e trocar qualquer elemento reconhecível.
 
 ## 10. Fora do escopo
