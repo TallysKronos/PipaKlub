@@ -71,6 +71,8 @@ func run() -> void:
 				if tick==3999:check(false,area.id+" controller stalled")
 			check(view.player.distance_to(goal)<.05,area.id+" actual controller reaches "+event.name)
 			check(view.model.walkable(Vector2i(view.follower)),area.id+" follower stays on walkable ground")
+			for tick in 120: view._physics_process(1.0/60.0)
+			check(view.follower.distance_to(view.player)<1.5,area.id+" follower catches up at "+event.name)
 	view.queue_free()
 	await process_frame
 	var report := {"checks":checks,"failures":failures,"areas":areas,"scope":"isolated geometry and preview; no campaign saves touched"}

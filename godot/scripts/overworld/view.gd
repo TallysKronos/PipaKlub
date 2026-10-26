@@ -29,6 +29,8 @@ var index: Dictionary
 var kits: Array[Dictionary] = []
 var kit_library: Dictionary = {}
 var terrain_layers: Array[TileMapLayer] = []
+var lots: Dictionary = {}
+var stairs_drawn: Dictionary = {}
 var opened: Dictionary = {}
 var nearby: Dictionary = {}
 var interaction_events: Array = []
@@ -61,6 +63,7 @@ func load_area(id: String) -> void:
 	for node in [terrain, camera]:
 		if is_instance_valid(node): remove_child(node); node.queue_free()
 	terrain_layers.clear()
+	stairs_drawn.clear()
 	model.setup(JSON.parse_string(FileAccess.get_file_as_string(source)))
 	kits.assign([kit_library.comum])
 	if kit_library.has(model.data.biome): kits.append(kit_library[model.data.biome])
@@ -77,6 +80,7 @@ func load_area(id: String) -> void:
 	_build_tiles()
 	_build_faces()
 	_build_pieces()
+	_dress_bare_lots()
 	_build_events()
 	var spawn: Dictionary = model.data.spawn
 	player = Vector2(spawn.u + .5, spawn.v + .5)
@@ -125,15 +129,18 @@ func _build_context() -> void:
 	for v in range(-radius,int(model.data.h)+radius,spacing):
 		for u in range(-radius,int(model.data.w)+radius,spacing):
 			if not (u+3<=0 or v+3<=0 or u>=int(model.data.w) or v>=int(model.data.h)):continue
-			var seed := posmod(u*137+v*71,11)
-			if seed<2:continue
-			var garden: bool = u>=int(model.data.w) or v>=int(model.data.h) or seed<5
-			var piece := {"asset":"arvore" if garden else recipe.asset,"id":"context","props":{"variante":["a","b","florida"][seed%3] if garden else ["telha","laje","muro-chapisco"][seed%3]}}
+			var seed := posmod(u*137+v*71+u*v*13,23)
+			if seed<5:continue
+			# Jitter inside the lattice so the ring reads as a neighbourhood, not a grid.
+			var shift := Vector2(seed%3-1, (seed/3)%3-1)
+			if not (u+3+shift.x<=0 or v+3+shift.y<=0 or u+shift.x>=int(model.data.w) or v+shift.y>=int(model.data.h)): shift = Vector2.ZERO
+			var garden: bool = u>=int(model.data.w) or v>=int(model.data.h) or seed%4==0
+			var piece := {"asset":"arvore" if garden else recipe.asset,"id":"context","props":{"variante":["a","b","florida","tronco-largo"][seed%4] if garden else ["telha","laje","muro-chapisco"][(seed/2)%3]}}
 			var info := _definition(piece)
 			if info.is_empty():continue
 			var node := Prop.new()
-			var center:=Vector2(u+1.5,v+1.5)
-			var sort_point:=Vector2(u+3,v+3)
+			var center:=Vector2(u+1.5,v+1.5)+shift
+			var sort_point:=Vector2(u+3,v+3)+shift
 			node.configure(info,Vector2i(3,3),0,false,model.project(center,false)-model.project(sort_point,false))
 			node.position=model.project(sort_point,false)
 			context.add_child(node)
@@ -143,6 +150,7 @@ func _build_tiles() -> void:
 	var ids: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/overworld/rascunho-atlas.json"))
 	var levels: Dictionary = {}
 	for cell in model.data.cells: levels[int(cell.level)] = true
+	lots = _occupied_lots()
 	for level in levels:
 		var tiles := TileSet.new()
 		tiles.tile_size = Vector2i(64, 32)
@@ -169,9 +177,12 @@ func _build_tiles() -> void:
 			if int(cell.level) != int(level) or cell.material == null: continue
 			var at := Vector2i(i % int(model.data.w), i / int(model.data.w))
 			if cell.get("ramp") != null:
-				_draw_ramp(at, cell)
+				if not _draw_kit_stairs(at, cell): _draw_ramp(at, cell)
 			elif cell.material == "ponte":
 				_draw_bridge(at, cell)
+			elif art_preview and kits.size()>1 and cell.material == "construcao" and kits[1].materials.has("grama") and lots.get(model.key(at), "muro-quintal") == "muro-quintal":
+				# A blocked lot without a house reads as a yard, not as bare brick.
+				_draw_art_floor(at, {"material":"grama","level":cell.level,"corners":["grama","grama","grama","grama"]})
 			elif art_preview and kits.size()>1 and kits[1].materials.has(cell.material):
 				_draw_art_floor(at, cell)
 			else: layer.set_cell(at, 0, Vector2i((at.x * 7 + at.y * 13) % 4, int(ids.get(cell.material, 0))))
@@ -216,6 +227,8 @@ func _draw_art_floor(at: Vector2i, cell: Dictionary) -> void:
 	for bit in 4:
 		var material := str(cell.corners[bit])
 		if material == cell.material:continue
+		# Blocked lots are drawn as yards; a brick corner would reappear along every path.
+		if material == "construcao" and model.data.biome == "morro":continue
 		for pair in kit.transitions:
 			var parts: PackedStringArray = pair.split("/")
 			if material not in parts:continue
@@ -266,7 +279,8 @@ func _build_faces() -> void:
 			wall.polygon = PackedVector2Array([pa-Vector2(0,(tier+1)*64),pb-Vector2(0,(tier+1)*64),pb-Vector2(0,tier*64),pa-Vector2(0,tier*64)])
 			wall.color = Color("B8A58D") if face.side == "u" else Color("8F7C6E")
 			if art_preview and kits.size()>1 and kits[1].walls.has("pedra"):
-				wall.texture = load(kits[1].root + kits[1].walls.pedra[face.side][(int(face.u)+int(face.v))%2])
+				var style := "pedra" if _face_touches_path(face) or not kits[1].walls.has("chapisco") else "chapisco"
+				wall.texture = load(kits[1].root + kits[1].walls[style][face.side][(int(face.u)+int(face.v))%2])
 				wall.uv = PackedVector2Array([Vector2(32,0),Vector2(0,16),Vector2(0,80),Vector2(32,64)]) if face.side == "u" else PackedVector2Array([Vector2(0,0),Vector2(32,16),Vector2(32,80),Vector2(0,64)])
 				wall.color = Color.WHITE
 			root.add_child(wall)
@@ -275,6 +289,84 @@ func _build_faces() -> void:
 		rim.width = 2
 		rim.default_color = Color("D5C9AD")
 		root.add_child(rim)
+
+func _face_touches_path(face: Dictionary) -> bool:
+	var upper := Vector2i(int(face.u), int(face.v))
+	var lower := upper + (Vector2i(1,0) if face.side == "u" else Vector2i(0,1))
+	return model.walkable(upper) or model.walkable(lower)
+
+func _occupied_lots() -> Dictionary:
+	# Cells under a piece footprint, by asset. Bare lots and low yard walls stand on grass.
+	var taken := {}
+	for piece in model.data.pieces:
+		for du in int(piece.fu):
+			for dv in int(piece.fv): taken[model.key(Vector2i(int(piece.u)+du,int(piece.v)+dv))] = str(piece.asset)
+	return taken
+
+func _draw_kit_stairs(at: Vector2i, cell: Dictionary) -> bool:
+	# Kit stairs are two cells wide: one sprite covers the pair, from the lower
+	# floor to one level up, on the same plane the feet follow.
+	if not art_preview or kits.size()<2 or not kits[1].get("stairs",{}).has(cell.ramp): return false
+	if stairs_drawn.has(model.key(at)): return true
+	var direction: Vector2i = Model.DIRS[cell.ramp]
+	var across := Vector2i(absi(direction.y), absi(direction.x))
+	var partner := Vector2i(-1,-1)
+	for side in [across, -across]:
+		var other := model.cell_at(at+side)
+		if not other.is_empty() and other.get("ramp") == cell.ramp and int(other.level) == int(cell.level) and not stairs_drawn.has(model.key(at+side)):
+			partner = at+side
+			break
+	if partner.x < 0: return false
+	var first := Vector2i(mini(at.x,partner.x), mini(at.y,partner.y))
+	var last := Vector2i(maxi(at.x,partner.x), maxi(at.y,partner.y)) + Vector2i.ONE
+	var top_left := Vector2(INF, INF)
+	for corner in [Vector2(first), Vector2(last.x,first.y), Vector2(first.x,last.y), Vector2(last)]:
+		for h in [float(cell.level), float(cell.level)+1.0]:
+			top_left = Vector2(minf(top_left.x,(corner.x-corner.y)*32.0), minf(top_left.y,(corner.x+corner.y)*16.0-h*64.0))
+	var sprite := Sprite2D.new()
+	sprite.texture = load(kits[1].root + kits[1].stairs[cell.ramp].file)
+	sprite.centered = false
+	sprite.position = top_left
+	# Below every actor, like the floor: a person on the steps is never covered.
+	sprite.z_index = -1
+	actors.add_child(sprite)
+	stairs_drawn[model.key(at)] = true
+	stairs_drawn[model.key(partner)] = true
+	return true
+
+func _dress_bare_lots() -> void:
+	# Visual only: blocked lots without a house get yard props. Navigation,
+	# events and collision come from the map and stay unchanged.
+	if not art_preview or model.data.biome != "morro" or kits.size()<2: return
+	var used := lots.duplicate()
+	var fits := func(u: int, v: int, n: int) -> bool:
+		var base := model.cell_at(Vector2i(u,v))
+		for du in n:
+			for dv in n:
+				var cell := model.cell_at(Vector2i(u+du,v+dv))
+				if cell.is_empty() or cell.material != "construcao" or used.has(model.key(Vector2i(u+du,v+dv))) or cell.level != base.level: return false
+		return true
+	var large := [["varal",""],["arvore","a"],["caixa-dagua",""],["arvore","florida"],["arvore","b"]]
+	var small := [["vaso","pneu"],["flores","coral"],["vaso","ceramica"],["flores","amarela"]]
+	for v in int(model.data.h):
+		for u in int(model.data.w):
+			var seed := posmod(u*131+v*57+int(model.data.w)*7,97)
+			var pick: Array = []
+			var n := 1
+			if seed%3 != 0 and fits.call(u,v,2):
+				pick = large[seed%large.size()]
+				n = 2
+			elif seed%5 == 0 and fits.call(u,v,1): pick = small[seed%small.size()]
+			if pick.is_empty(): continue
+			var info := _definition({"asset":pick[0],"id":"lote","props":{"variante":pick[1]} if pick[1] != "" else {}})
+			if info.is_empty(): continue
+			for du in n:
+				for dv in n: used[model.key(Vector2i(u+du,v+dv))] = true
+			var sort_point := Vector2(u+n,v+n)
+			var node := Prop.new()
+			node.configure(info,Vector2i(n,n),float(model.cell_at(Vector2i(u,v)).level),false,model.project(Vector2(u+n*.5,v+n*.5),false)-model.project(sort_point,false))
+			node.position = model.project(sort_point,false)
+			actors.add_child(node)
 
 func _definition(piece: Dictionary) -> Dictionary:
 	var variant := str(piece.props.get("variante", ""))
@@ -375,6 +467,8 @@ func _build_hud() -> void:
 	title.add_theme_color_override("font_outline_color",Hud.INK)
 	title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	header.add_child(title)
+	# The selector already names the area; a second floating title covered the art.
+	title.hide()
 	var toolbar := HBoxContainer.new()
 	header.add_child(toolbar)
 	selector = OptionButton.new()
@@ -470,7 +564,8 @@ func _physics_process(delta: float) -> void:
 		var route := model.path_to(follower,player)
 		if route.size() > 1:
 			var target: Vector2 = route[1]
-			if follower.distance_to(route[0]) > .15: target = route[0]
+			# Aim ahead; return to the own-cell center only when the straight line is blocked.
+			if not model.clear_segment(follower,target): target = route[0]
 			var next := follower.move_toward(target,delta*3.2)
 			if model.clear_segment(follower,next): follower = next
 	_refresh_positions()
