@@ -156,8 +156,8 @@ func _menu() -> void:
 	page.add_theme_constant_override("separation", 18)
 	scroll.add_child(page)
 	_label("CAMPANHA  /  SEU PRÓXIMO VENTO", page, 18).theme_type_variation = "RecorteAccentText"
-	_label("PipaKlub", page, 56)
-	_label("Um fio de sorte", page, 24)
+	_label("Soulmonsters", page, 56)
+	_label("Elo das Ruínas", page, 24)
 	status = _label("Escolha sua jornada. Seu progresso fica neste computador.", page)
 	var slots := GridContainer.new()
 	slots.columns = 3

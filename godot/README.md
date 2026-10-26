@@ -1,6 +1,6 @@
-# PipaKlub — campanha Godot
+# Soulmonsters: Elo das Ruínas — campanha Godot
 
-Cena principal: `scenes/campaign.tscn`, Godot 4.7.2 Compatibility, Windows x64. Execute `Iniciar.ps1` ou `exports/windows/PipaKlub.exe` junto de `PipaKlub.pck`. Para gerar novamente: `Exportar.ps1 -GodotPath <executável>`; templates oficiais Windows precisam estar instalados. A pasta exportada inclui licenças do motor e hashes em `build-info.json`. Binários ficam fora do Git.
+Cena principal: `scenes/campaign.tscn`, Godot 4.7.2 Compatibility, Windows x64. Execute `Iniciar.ps1` ou `exports/windows/Soulmonsters.exe` junto de `Soulmonsters.pck`. Para gerar novamente: `Exportar.ps1 -GodotPath <executável>`; templates oficiais Windows precisam estar instalados. A pasta exportada inclui licenças do motor e hashes em `build-info.json`. Binários ficam fora do Git.
 
 ## Implementado
 
