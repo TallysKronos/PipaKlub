@@ -15,15 +15,15 @@ func _ready() -> void:
 	mouse_filter = MOUSE_FILTER_IGNORE
 	add_to_group("recorte_motion")
 	if target is PanelContainer and target.theme_type_variation == "RecorteEmptyPanel": return
-	frame = NinePatchRect.new()
-	frame.texture = Ink.texture("frame-panel" if target is PanelContainer else "frame-button")
-	frame.draw_center = false
-	frame.mouse_filter = MOUSE_FILTER_IGNORE
-	frame.axis_stretch_horizontal = NinePatchRect.AXIS_STRETCH_MODE_TILE_FIT
-	frame.axis_stretch_vertical = NinePatchRect.AXIS_STRETCH_MODE_TILE_FIT
-	for side in ["left","top","right","bottom"]: frame.set("patch_margin_"+side,48)
-	add_child(frame)
-	if target is CheckButton or target is CheckBox or target is Slider or target is TabBar: frame.hide()
+	if target is PanelContainer:
+		frame = NinePatchRect.new()
+		frame.texture = Ink.texture("frame-panel")
+		frame.draw_center = false
+		frame.mouse_filter = MOUSE_FILTER_IGNORE
+		frame.axis_stretch_horizontal = NinePatchRect.AXIS_STRETCH_MODE_TILE_FIT
+		frame.axis_stretch_vertical = NinePatchRect.AXIS_STRETCH_MODE_TILE_FIT
+		for side in ["left","top","right","bottom"]: frame.set("patch_margin_"+side,48)
+		add_child(frame)
 	if (target is Slider and not target.editable) or (target is CheckBox and target.disabled): target.modulate = Tokens.alpha(Tokens.UNTINTED,.5)
 	if not target is PanelContainer:
 		marker = Marker.new()
@@ -53,8 +53,9 @@ func _ready() -> void:
 func layout_art() -> void:
 	size = target.size
 	if frame != null:
-		# Compact controls use the same fixed artwork at half optical scale.
-		var scale_factor := .5 if size.y < 96 else 1.0
+		# Keep ink corners at 12 logical pixels regardless of panel height.
+		# A taller container must never produce heavier strokes over its text.
+		var scale_factor := .25
 		frame.scale = Vector2.ONE * scale_factor
 		frame.size = size / scale_factor
 	if marker != null: marker.position = Vector2(size.x-10,size.y/2-17)

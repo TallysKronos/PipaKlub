@@ -4,6 +4,7 @@ const Front = preload("res://scripts/campaign/front_end.gd")
 const State = preload("res://scripts/campaign/state.gd")
 const Store = preload("res://scripts/campaign/save_store.gd")
 const Fixtures = preload("res://tools/player_audit_fixtures.gd")
+const DecorOverlap = preload("res://tools/decor_overlap.gd")
 var front: Control
 var results: Array = []
 var phase := "before"
@@ -32,6 +33,8 @@ func measure(id: String, requested: Vector2i) -> Dictionary:
 	var entries: Array = []
 	var findings: Array = []
 	var nodes := controls(front)
+	var decorations := DecorOverlap.inspect(front)
+	findings.append_array(decorations.findings)
 	for node in nodes:
 		if is_instance_valid(front.pause_overlay) and not front.pause_overlay.is_ancestor_of(node): continue
 		if not (node is Button or node is Label or node is LineEdit): continue
@@ -57,7 +60,7 @@ func measure(id: String, requested: Vector2i) -> Dictionary:
 				var intersection := visible.intersection(effective_rect(other))
 				if area(intersection) > 8: findings.append({"kind": "label_over_button", "priority": "P1", "text": text.left(130), "button": other.text})
 	var focus := root.gui_get_focus_owner()
-	return {"scenario": id, "requested_pixels": [requested.x, requested.y], "actual_pixels": [root.size.x, root.size.y], "ui_units": [front.size.x, front.size.y], "focus": focus.text if focus is Button else focus.get_class() if focus != null else "none", "widgets": entries, "findings": findings}
+	return {"scenario": id, "requested_pixels": [requested.x, requested.y], "actual_pixels": [root.size.x, root.size.y], "ui_units": [front.size.x, front.size.y], "focus": focus.text if focus is Button else focus.get_class() if focus != null else "none", "decorations_checked":decorations.decorations_checked, "widgets": entries, "findings": findings}
 func _in_scroll(node: Node) -> bool:
 	var parent := node.get_parent()
 	while parent != null:

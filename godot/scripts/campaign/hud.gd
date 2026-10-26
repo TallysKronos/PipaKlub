@@ -16,6 +16,8 @@ const CYAN := Tokens.CEU
 const BLACK := Tokens.NANQUIM
 const EDGE := 3.0
 const Pin = preload("res://scripts/campaign/hud_pin.gd")
+const Icons = preload("res://scripts/campaign/recorte_icons.gd")
+const InputHint = preload("res://scripts/campaign/recorte_input_hint.gd")
 static var manifest: Dictionary = {}
 static var sheets: Dictionary = {}
 
@@ -37,23 +39,26 @@ static func ornament(index: int = 0) -> AtlasTexture:
 	return texture
 
 static func decorate(target: Control, index: int = 0, extent: Vector2 = Vector2(96, 64)) -> void:
-	# Container layouts must not measure the ornament as content.
-	var holder := Node2D.new()
-	holder.z_index = 2
-	target.add_child(holder)
 	var art := TextureRect.new()
+	art.set_meta("ui_decorative", true)
 	art.texture = ornament(index)
 	art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	art.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	art.size = extent
-	holder.add_child(art)
-	var align := func(): holder.position = Vector2(target.size.x - extent.x + 12, -extent.y * .75)
-	target.resized.connect(align)
-	align.call()
+	art.custom_minimum_size = extent
+	art.size_flags_horizontal = Control.SIZE_SHRINK_END
+	target.add_child(art)
 
 static func secondary_button(button: Button) -> void:
 	button.theme_type_variation = "RecorteSecondaryButton"
+
+static func focus_space(parent: Node) -> MarginContainer:
+	# Contains the 24px visual shift, slanted edge and rabiola without moving input.
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left",4)
+	margin.add_theme_constant_override("margin_right",32)
+	parent.add_child(margin)
+	return margin
 
 static func fit_footer(panel: PanelContainer, contents: Control, minimum_height: float = 0) -> void:
 	# Height follows actual wrapped content, not a percentage of the viewport.
@@ -93,17 +98,24 @@ static func display() -> Font:
 static func lettering() -> Font:
 	return Tokens.lettering()
 
-static func icon(id: String) -> Texture2D:
-	if id in ["attack", "energy", "dodge", "puxao", "line", "bag", "team", "map", "settings", "back", "save", "tail"]: return artwork("icon-" + id)
-	if manifest.is_empty():
-		manifest = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/hud-manifest.json"))
-		sheets.panels = load("res://assets/campaign/hud-panels.png")
-		sheets.icons = load("res://assets/campaign/hud-icons.png")
-	var frame: Array = manifest.frames[id]
-	var texture := AtlasTexture.new()
-	texture.atlas = sheets[frame[0]]
-	texture.region = Rect2(frame[1], frame[2], frame[3], frame[4])
-	return texture
+static func icon(id: String, high_density: bool = false) -> Texture2D:
+	return Icons.texture(id,false,high_density)
+
+static func input_hint(parent: Node, action: String, caption: String = "") -> Control:
+	var hint := InputHint.new()
+	hint.action = action
+	hint.caption = caption
+	parent.add_child(hint)
+	return hint
+
+static func interaction_glyph(panel: PanelContainer) -> void:
+	panel.theme_type_variation = "RecortePromptPanel"
+	var holder := Node2D.new()
+	panel.add_child(holder)
+	var glyph := input_hint(holder,"interact")
+	var align := func(): glyph.position = Vector2(12,(panel.size.y-40)/2)
+	panel.resized.connect(align)
+	align.call_deferred()
 
 static func panel(role: String = "dark") -> StyleBoxFlat:
 	return make_theme().get_stylebox("panel", "RecortePaperPanel" if role == "paper" else "PanelContainer")
@@ -199,6 +211,9 @@ static func draw_result(canvas: CanvasItem, won: bool, fled: bool = false) -> vo
 	canvas.draw_string(display(), Vector2(500 - text_width / 2, 480), text, HORIZONTAL_ALIGNMENT_LEFT, -1, 42, INK)
 
 static func item_icon(id: String) -> Texture2D:
+	return icon("missoes" if id.begins_with("quest-") else "rabiola" if "rabiola" in id else "mochila")
+
+static func item_art(id: String) -> Texture2D:
 	var model_id := id.trim_prefix("damaged-").trim_prefix("rabiola-")
 	if model_id in ["basica", "mata", "azulao", "raio", "lacertubo", "quest-nina-tail"]: return artwork("item-" + model_id)
 	return icon("bag")

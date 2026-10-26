@@ -42,12 +42,9 @@ func _ready() -> void:
 	panel.offset_bottom = -12
 	panel.theme_type_variation = "PanelContainer"
 	add_child(panel)
-	var scroll := ScrollContainer.new()
-	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	panel.add_child(scroll)
 	bottom.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	scroll.add_child(bottom)
+	# This footer grows to its content; a non-scrolling clip cuts slanted edges.
+	panel.add_child(bottom)
 	lesson_label = Label.new()
 	lesson_label.add_theme_font_size_override("font_size", 20)
 	bottom.add_child(lesson_label)
@@ -59,7 +56,10 @@ func _ready() -> void:
 	resume_button.text = "Retomar treino"
 	resume_button.visible = false
 	resume_button.pressed.connect(func(): paused = false; resume_button.release_focus(); resume_button.hide())
-	bottom.add_child(resume_button)
+	var resume_space := Hud.focus_space(bottom)
+	resume_space.visible = false
+	resume_space.add_child(resume_button)
+	resume_button.visibility_changed.connect(func(): resume_space.visible = resume_button.visible)
 	next_button = Button.new()
 	next_button.text = "Continuar"
 	next_button.disabled = true
@@ -68,12 +68,17 @@ func _ready() -> void:
 	var row := HBoxContainer.new()
 	bottom.add_child(row)
 	next_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	row.add_child(next_button)
+	var next_space := Hud.focus_space(row)
+	next_space.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	next_space.add_child(next_button)
 	var exit := Button.new()
 	exit.text = "Salvar e voltar ao menu"
 	exit.pressed.connect(func(): leave.emit())
 	exit.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	row.add_child(exit)
+	var exit_space := Hud.focus_space(row)
+	exit_space.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	exit_space.add_child(exit)
+	Hud.secondary_button(exit)
 	Hud.fit_footer(panel, bottom, 208)
 
 func _field_scale() -> float:

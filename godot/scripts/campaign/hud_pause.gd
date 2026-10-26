@@ -35,6 +35,10 @@ func _ready() -> void:
 		margin.add_child(button)
 		if index == 0: first = button
 		index += 1
+	var hints := HBoxContainer.new()
+	column.add_child(hints)
+	Hud.input_hint(hints,"accept","Confirmar")
+	Hud.input_hint(hints,"pause","Retomar")
 	var card := PanelContainer.new()
 	card.anchor_left = .56
 	card.anchor_right = .93
@@ -42,9 +46,9 @@ func _ready() -> void:
 	card.anchor_bottom = .69
 	card.theme_type_variation = "RecortePaperPanel"
 	add_child(card)
-	Hud.decorate(card, 0, Vector2(170, 113))
 	var details := VBoxContainer.new()
 	card.add_child(details)
+	Hud.decorate(details, 0, Vector2(72, 48))
 	var summary: Array[String] = [str(player.get("name", "Kael")), "%d moedas" % int(player.get("coins", 0))]
 	for partner in player.get("partners", []):
 		if partner.id != player.get("equippedPartnerId", ""): continue

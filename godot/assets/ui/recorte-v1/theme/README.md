@@ -12,16 +12,18 @@ panel.theme_type_variation = "RecortePaperPanel"
 caption.theme_type_variation = "RecortePaperText"
 ```
 
+Para ações dentro de cards ou painéis, usar `Hud.focus_space(parent)` como Container do botão: o recuo de 4/32 px contém a borda inclinada, a translação e a rabiola. O espaço pertence ao layout, não à decoração. Em linhas de ações, o wrapper recebe os flags de expansão; se o botão for ocultável, sincronizar a visibilidade do wrapper para não deixar colunas vazias (ver `WorkshopView._add_action`).
+
 A instalação adiciona `RecorteUX`, que acompanha novos controles por sinal e monta a decoração fora da medição dos Containers. Não instanciar um controlador por botão. O controlador sobrevive às trocas de tela da campanha e recebe as mudanças de “Reduzir movimento”. Limites `Node2D`, `CanvasLayer` e `SubViewport` recebem o mesmo Theme; não dependem de um skin local.
 
 ## Contrato dos estados
 
-- Geometria em `StyleBoxFlat`: skew `(0.21, 0)`, raios zero e sombra sólida `(6,6)` em nanquim a 90%, sem blur. Barras/trilhos e pressionado não usam sombra. O miolo não é uma imagem esticada.
+- Geometria em `StyleBoxFlat`: botões usam skew `(0.21, 0)` e contorno nativo de 2 px, que acompanha o preenchimento. Painéis, campos, janelas, barras e trilhos são retangulares: aplicar a inclinação a componentes altos deslocava excessivamente suas bordas. Raios zero e sombra sólida `(6,6)` em nanquim a 90%, sem blur. Barras/trilhos e pressionado não usam sombra.
 - Normal/hover/foco/pressionado/desabilitado têm as mesmas margens de conteúdo. Hover e foco compartilham o estilo invertido; a rabiola fornece uma forma adicional, não apenas outra cor.
 - Foco desloca a apresentação `(24,-5)` em 120 ms `TRANS_QUART/EASE_OUT`. Os alvos lógicos não mudam durante hover, evitando um ciclo de entrar/sair do cursor. Essa opção usa `offset_transform_visual_only` do Godot 4.7; a faixa de interação continua no retângulo original. Em telas de conteúdo, reservar espaço para o deslocamento visual.
 - Rabiola entra com atraso de 40 ms; não há pisca-pisca ou Tween em loop. Reduzir movimento cancela o deslocamento ativo, zera a posição e usa apenas fade de 80 ms, mantendo o marcador geométrico.
-- Molduras usam o kit da PIP-63 num `NinePatchRect` sem centro. Em controles compactos, a arte usa escala óptica 0,5 (cantos de 24 px lógicos); painéis a partir de 96 px usam cantos de 48 px. O preenchimento continua separado.
-- O painel claro tem respiro lateral maior para o texto escuro não cair na borda inclinada. Placas de nome e diálogo usam variações próprias de margens.
+- Somente painéis usam a moldura da PIP-63 num `NinePatchRect` sem centro, com cantos fixos de 12 px lógicos (escala óptica 0,25). Moldura e preenchimento compartilham a silhueta retangular. Não sobrepor essa moldura retangular aos botões inclinados.
+- O painel claro tem margens laterais de 26 px e verticais de 22/24 px. Placas de nome e diálogo usam variações próprias de margens. Nos slots do menu, um MarginContainer reserva mais 32 px à direita da ação para conter o deslocamento e o marcador de foco.
 
 ## Variações semânticas
 

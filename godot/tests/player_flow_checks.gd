@@ -58,7 +58,13 @@ func run_checks() -> void:
 	await settle()
 	var edit: LineEdit = front.name_input
 	var color := edit.get_theme_color("font_placeholder_color")
-	check(color.r < .4 and color.g < .4 and color.b < .4, "name placeholder has a dark foreground on paper")
+	var background: Color = (edit.get_theme_stylebox("normal") as StyleBoxFlat).bg_color
+	var foreground_linear := color.srgb_to_linear()
+	var background_linear := background.srgb_to_linear()
+	var foreground_luminance := .2126 * foreground_linear.r + .7152 * foreground_linear.g + .0722 * foreground_linear.b
+	var background_luminance := .2126 * background_linear.r + .7152 * background_linear.g + .0722 * background_linear.b
+	var contrast := (maxf(foreground_luminance,background_luminance)+.05)/(minf(foreground_luminance,background_luminance)+.05)
+	check(contrast >= 4.5, "name placeholder maintains 4.5:1 contrast against its actual Theme background")
 	Fixtures.show(front, "won")
 	await settle()
 	var button: Button = front.battle.finish_button

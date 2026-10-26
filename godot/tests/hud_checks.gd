@@ -4,6 +4,7 @@ const Front = preload("res://scripts/campaign/front_end.gd")
 const Store = preload("res://scripts/campaign/save_store.gd")
 const State = preload("res://scripts/campaign/state.gd")
 const Fixtures = preload("res://tools/player_audit_fixtures.gd")
+const DecorOverlap = preload("res://tools/decor_overlap.gd")
 var checks := 0
 var failures := 0
 func check(value: bool, message: String) -> void:
@@ -32,7 +33,6 @@ func dialogs(node: Node) -> Array[AcceptDialog]:
 		if child is AcceptDialog: result.append(child)
 		result.append_array(dialogs(child))
 	return result
-
 func run_checks() -> void:
 	for pair in [[Hud.INK, Hud.PAPER], [Hud.PAPER, Hud.SURFACE], [Hud.INK, Hud.GOLD], [Hud.BLACK, Hud.DANGER], [Hud.MUTED, Hud.SURFACE], [Hud.Tokens.TINTA_3, Hud.PAPER]]:
 		var ratio := contrast(pair[0], pair[1])
@@ -49,8 +49,28 @@ func run_checks() -> void:
 		check(Hud.button_style(state).content_margin_right == normal.content_margin_right, "state keeps Theme content insets: " + state)
 	var front := Front.new()
 	front.session._store = Store.new("user://hud-checks-" + State.new_id())
+	front.preferences.storage_path = "user://hud-check-settings-" + State.new_id() + ".cfg"
 	root.add_child(front)
 	await frame()
+	var overlap_surface := Control.new()
+	root.add_child(overlap_surface)
+	overlap_surface.size = Vector2(300,150)
+	var overlap_label := Label.new()
+	overlap_label.text = "Texto protegido"
+	overlap_label.position = Vector2(20,20)
+	overlap_surface.add_child(overlap_label)
+	var decoration := TextureRect.new()
+	decoration.set_meta("ui_decorative",true)
+	decoration.texture = Hud.ornament()
+	decoration.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	decoration.position = Vector2(20,20)
+	decoration.size = Vector2(100,50)
+	overlap_surface.add_child(decoration)
+	await frame()
+	check(DecorOverlap.inspect(overlap_surface).findings.size() == 1,"real overlap detector reports injected decoration as P1")
+	decoration.position = Vector2(180,90)
+	check(DecorOverlap.inspect(overlap_surface).findings.is_empty(),"separate decoration clears overlap finding")
+	overlap_surface.free()
 	for extent in [220, 360, 540, 900]:
 		var card := Hud.card("Nome longo de um lugar que precisa quebrar em linhas sem aumentar a largura da interface")
 		card.position = Vector2(20, 20)
@@ -63,7 +83,7 @@ func run_checks() -> void:
 		check(pin.size == Vector2(20, 28), "detached pin keeps exact size " + str(extent))
 		check(pin.get_parent().position == Vector2(card.size.x - 26, -8), "pin stays anchored to frame, not text")
 		check(pin.mouse_filter == Control.MOUSE_FILTER_IGNORE, "ornament cannot intercept input")
-		check(card.get_theme_stylebox("panel") is StyleBoxFlat and card.get_theme_stylebox("panel").skew == Vector2(.21,0), "Theme owns panel geometry; ink corners are a separate decoration " + str(extent))
+		check(card.get_theme_stylebox("panel") is StyleBoxFlat and card.get_theme_stylebox("panel").skew == Vector2.ZERO, "Tall panels share the rectangular silhouette of their ink frame " + str(extent))
 		card.free()
 	for viewport_size in [Vector2i(1280, 720), Vector2i(1024, 768), Vector2i(1920, 1080)]:
 		root.size = viewport_size
@@ -75,6 +95,8 @@ func run_checks() -> void:
 			check(button.size.x >= 100 and button.size.y >= 48, "usable target " + button.text)
 		var focused := root.gui_get_focus_owner()
 		check(focused is Button, "menu has keyboard focus")
+		var decor_review := DecorOverlap.inspect(front)
+		check(decor_review.decorations_checked == 3 and decor_review.findings.is_empty(),"three menu decorations reserve content space")
 	for scenario in ["long-notice", "starter-confirm", "workshop-cancel", "morro-dialog", "binding-dialog"]:
 		Fixtures.show(front, scenario)
 		await frame()

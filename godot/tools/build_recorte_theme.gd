@@ -8,9 +8,12 @@ var styles: Dictionary = {}
 func box(id: String, fill: Color, margins: Vector4 = Vector4(22, 12, 22, 12), shadow: bool = true) -> StyleBoxFlat:
 	var style := StyleBoxFlat.new()
 	style.bg_color = fill
-	style.skew = Vector2(.21, 0)
+	var slanted := id.begins_with("Button-") or id.begins_with("RecorteSecondaryButton-") or id.begins_with("RecorteTabButton-") or id.begins_with("RecorteListButton-") or id.begins_with("RecorteIconButton-")
+	style.skew = Vector2(.21, 0) if slanted else Vector2.ZERO
 	style.set_corner_radius_all(0)
-	style.set_border_width_all(0)
+	# The native contour follows exactly the same geometry as the fill.
+	style.border_color = Tokens.NANQUIM
+	style.set_border_width_all(2)
 	style.shadow_color = Tokens.alpha(Tokens.NANQUIM, .9)
 	style.shadow_offset = Vector2(6, 6) if shadow else Vector2.ZERO
 	style.shadow_size = 0
@@ -35,6 +38,10 @@ func button_type(id: String, fill: Color, text: Color, selected: bool = false) -
 	var hover := box(id + "-hover", Tokens.PAPEL)
 	var pressed := box(id + "-pressed", Tokens.PAPEL if selected else Tokens.RABIOLA, Vector4(22,12,22,12), false)
 	var disabled := box(id + "-disabled", Tokens.TINTA_3)
+	if id == "RecorteListButton":
+		normal.set_border_width_all(0)
+		normal.shadow_offset = Vector2.ZERO
+		ResourceSaver.save(normal,ROOT+"styles/"+id+"-normal.tres")
 	result.set_stylebox("normal", id, normal)
 	result.set_stylebox("hover", id, hover)
 	result.set_stylebox("hover_pressed", id, hover)
@@ -81,11 +88,18 @@ func _initialize() -> void:
 	result.set_font_size("font_size","RecorteLettering",64)
 	result.set_constant("outline_size","RecorteLettering",6)
 	result.set_color("font_outline_color","RecorteLettering",Tokens.NANQUIM)
-	for pair in [["PanelContainer",Tokens.TINTA_2,Vector4(22,16,22,18)],["RecortePaperPanel",Tokens.PAPEL,Vector4(48,16,48,18)],
+	for pair in [["PanelContainer",Tokens.TINTA_2,Vector4(26,22,26,24)],["RecortePaperPanel",Tokens.PAPEL,Vector4(26,22,26,24)],
 		["RecorteDialoguePanel",Tokens.TINTA_2,Vector4(22,22,22,20)],["RecorteNamePanel",Tokens.PAPEL,Vector4(22,6,22,6)],
+		["RecortePromptPanel",Tokens.TINTA_2,Vector4(72,12,26,12)],
 		["RecorteBroadcastPanel",Tokens.TINTA_2,Vector4(22,8,22,10)],["RecorteBattlePanel",Tokens.TINTA,Vector4(28,12,28,12)]]:
 		if pair[0] != "PanelContainer": variation(pair[0],"PanelContainer")
-		result.set_stylebox("panel",pair[0],box(pair[0],pair[1],pair[2]))
+		var panel := box(pair[0],pair[1],pair[2])
+		# Tall content panels must not amplify the button's slant by their height.
+		# Their rectangular ink slice and paper now share the same silhouette.
+		panel.skew = Vector2.ZERO
+		panel.set_border_width_all(0)
+		ResourceSaver.save(panel,ROOT+"styles/"+str(pair[0])+".tres")
+		result.set_stylebox("panel",pair[0],panel)
 	variation("RecorteEmptyPanel","PanelContainer")
 	result.set_stylebox("panel","RecorteEmptyPanel",StyleBoxEmpty.new())
 	var track := box("bar-track",Tokens.TINTA_2,Vector4(0,0,0,0),false)
@@ -106,7 +120,7 @@ func _initialize() -> void:
 	ResourceSaver.save(field_focus,ROOT+"styles/field-focus.tres")
 	result.set_stylebox("normal","LineEdit",field)
 	result.set_stylebox("focus","LineEdit",field_focus)
-	result.set_stylebox("read_only","LineEdit",named("Button-disabled"))
+	result.set_stylebox("read_only","LineEdit",box("field-read-only",Tokens.TINTA_3))
 	for key in ["font_color","caret_color"]: result.set_color(key,"LineEdit",Tokens.PAPEL)
 	result.set_color("font_placeholder_color","LineEdit",Tokens.PAPEL_2)
 	result.set_color("font_uneditable_color","LineEdit",Tokens.alpha(Tokens.PAPEL_2,.6))

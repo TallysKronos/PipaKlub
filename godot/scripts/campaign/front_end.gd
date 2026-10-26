@@ -179,29 +179,39 @@ func _menu() -> void:
 			text = "Jornada %d · %s" % [i, _error(result.status)]
 		var card := PanelContainer.new()
 		card.theme_type_variation = "RecortePaperPanel"
-		Hud.decorate(card, i % 2, Vector2(90, 60))
 		card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var column := VBoxContainer.new()
+		column.add_theme_constant_override("separation",12)
 		card.add_child(column)
 		slots.add_child(card)
-		_label("JORNADA  %02d" % i, column, 18).theme_type_variation = "RecortePaperText"
+		var card_header := HBoxContainer.new()
+		column.add_child(card_header)
+		var slot_label := _label("JORNADA  %02d" % i, card_header, 18)
+		slot_label.theme_type_variation = "RecortePaperText"
+		slot_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		Hud.decorate(card_header, i % 4, Vector2(48,32))
 		var art := TextureRect.new()
-		art.texture = load("res://assets/campaign/portrait-kael.png") if result.status == "ok" else Hud.icon("puxao")
+		art.texture = load("res://assets/campaign/portrait-kael.png") if result.status == "ok" else Hud.icon("pipa",true)
 		art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		art.custom_minimum_size = Vector2(96, 112)
+		art.custom_minimum_size = Vector2(96, 96)
 		column.add_child(art)
 		var detail := "Um novo começo" if result.status == "missing" else str(result.data.player.name) if result.status == "ok" else "Jornada indisponível"
 		_label(detail, column, 24).theme_type_variation = "RecortePaperText"
-		var button := _button(text, column, _choose.bind(slot_id, result.status == "missing"))
+		var action := "Começar jornada" if result.status == "missing" else "Continuar jornada" if result.status == "ok" else "Indisponível"
+		var action_space := Hud.focus_space(column)
+		var button := _button(action, action_space, _choose.bind(slot_id, result.status == "missing"))
+		button.tooltip_text = text
 		Hud.secondary_button(button)
 		button.disabled = result.status not in ["missing", "ok"]
 		if not is_instance_valid(first) and not button.disabled:
 			first = button
 	var tools := HBoxContainer.new()
+	tools.add_theme_constant_override("separation",18)
 	page.add_child(tools)
 	_button("Configurações", tools, _show_settings)
 	_button("Sair", tools, func(): get_tree().quit())
+	Hud.input_hint(tools,"accept","Confirmar")
 	if is_instance_valid(first):
 		Hud.focus_later(first)
 
@@ -359,23 +369,25 @@ func _show_opening() -> void:
 		name_input.max_length = 24
 		page.add_child(name_input)
 		name_input.text_submitted.connect(func(_value: String): _name())
-		next = _button("Confirmar nome", page, _name)
+		next = _button("Confirmar nome", Hud.focus_space(page), _name)
 		Hud.focus_later(name_input)
 	elif current_step < 14 and current_step not in [3, 11, 13]:
-		next = _button("Avançar", page, _advance)
+		var next_space := Hud.focus_space(page)
+		next_space.size_flags_horizontal = Control.SIZE_SHRINK_END
+		next = _button("Avançar", next_space, _advance)
 		next.size_flags_horizontal = Control.SIZE_SHRINK_END
 		next.custom_minimum_size.x = 180
 		Hud.focus_later(next)
 	elif current_step == 14:
 		speech.text = ""
-		_button("Sair para a rua", page, func():
+		_button("Sair para a rua", Hud.focus_space(page), func():
 			if _result(journey.enter_world("quintal", Vector2(480, 768))):
 				_show_saved())
 	var menu := _button("Salvar e voltar ao menu", self, _menu)
 	menu.anchor_left = 1
 	menu.anchor_right = 1
-	menu.offset_left = -315
-	menu.offset_right = -24
+	menu.offset_left = -355
+	menu.offset_right = -64
 	menu.offset_top = 16
 	menu.offset_bottom = 70
 
@@ -560,6 +572,8 @@ func _show_starter() -> void:
 		_label("Escolha a rabiola do seu próximo parceiro. Esta escolha é única.", page)
 		var grid := GridContainer.new()
 		grid.columns = 2
+		grid.add_theme_constant_override("h_separation",20)
+		grid.add_theme_constant_override("v_separation",16)
 		page.add_child(grid)
 		for model_id in Journey.STARTERS:
 			var chosen: String = model_id
@@ -580,7 +594,7 @@ func _show_starter() -> void:
 			row.add_child(detail)
 			var description := {"basica": "Reforça o próximo corte.", "mata": "Reduz o dano recebido por um instante.", "azulao": "Favorece o ângulo no cruzamento.", "raio": "Rajada veloz de curta duração."}
 			_label(description[chosen] + "\nHabilidade · 25 energia", detail, 18)
-			var choose := _button(Journey.STARTERS[chosen], detail, func(): _confirm_starter(chosen))
+			var choose := _button(Journey.STARTERS[chosen], Hud.focus_space(detail), func(): _confirm_starter(chosen))
 			Hud.secondary_button(choose)
 
 	_button("Salvar e voltar ao menu", page, _menu)
