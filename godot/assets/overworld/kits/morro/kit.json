@@ -535,7 +535,8 @@
           ],
           "shadow": "sombras/contato.png",
           "source": {
-            "generator": "tools/overworld/build_art.py"
+            "generator": "tools/overworld/build_morro_walls.py",
+            "material": "fontes/muros-v2/chapisco.png"
           },
           "approval": "pending_concept_review",
           "role": "prop boundary on already-blocked construction, not a terrain cliff",
@@ -567,7 +568,8 @@
           ],
           "shadow": "sombras/contato.png",
           "source": {
-            "generator": "tools/overworld/build_art.py"
+            "generator": "tools/overworld/build_morro_walls.py",
+            "material": "fontes/muros-v2/chapisco.png"
           },
           "approval": "pending_concept_review",
           "role": "prop boundary on already-blocked construction, not a terrain cliff",
@@ -599,7 +601,8 @@
           ],
           "shadow": "sombras/contato.png",
           "source": {
-            "generator": "tools/overworld/build_art.py"
+            "generator": "tools/overworld/build_morro_walls.py",
+            "material": "fontes/muros-v2/chapisco.png"
           },
           "approval": "pending_concept_review",
           "role": "prop boundary on already-blocked construction, not a terrain cliff",
@@ -631,7 +634,8 @@
           ],
           "shadow": "sombras/contato.png",
           "source": {
-            "generator": "tools/overworld/build_art.py"
+            "generator": "tools/overworld/build_morro_walls.py",
+            "material": "fontes/muros-v2/chapisco.png"
           },
           "approval": "pending_concept_review",
           "role": "prop boundary on already-blocked construction, not a terrain cliff",
@@ -646,11 +650,53 @@
         "chao/calcada-0.png",
         "chao/calcada-1.png",
         "chao/calcada-2.png",
-        "chao/calcada-3.png"
+        "chao/calcada-3.png",
+        "chao/calcada-4.png",
+        "chao/calcada-5.png",
+        "chao/calcada-6.png",
+        "chao/calcada-7.png"
       ],
       "size": [
         64,
         32
+      ],
+      "filter": "linear",
+      "shadowBaked": false,
+      "source": "fontes/pisos-v2/calcada.png",
+      "sampling": "continuous-world-uv",
+      "sampleCells": [
+        [
+          0,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          2,
+          0
+        ]
       ]
     },
     "piso": {
@@ -658,11 +704,53 @@
         "chao/piso-0.png",
         "chao/piso-1.png",
         "chao/piso-2.png",
-        "chao/piso-3.png"
+        "chao/piso-3.png",
+        "chao/piso-4.png",
+        "chao/piso-5.png",
+        "chao/piso-6.png",
+        "chao/piso-7.png"
       ],
       "size": [
         64,
         32
+      ],
+      "filter": "linear",
+      "shadowBaked": false,
+      "source": "fontes/pisos-v2/piso.png",
+      "sampling": "continuous-world-uv",
+      "sampleCells": [
+        [
+          0,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          7,
+          6
+        ]
       ]
     },
     "grama": {
@@ -670,11 +758,57 @@
         "chao/grama-0.png",
         "chao/grama-1.png",
         "chao/grama-2.png",
-        "chao/grama-3.png"
+        "chao/grama-3.png",
+        "chao/grama-4.png",
+        "chao/grama-5.png",
+        "chao/grama-6.png",
+        "chao/grama-7.png"
       ],
       "size": [
         64,
         32
+      ],
+      "filter": "linear",
+      "shadowBaked": false,
+      "source": "fontes/pisos-v2/grama.png",
+      "sampling": "continuous-world-uv",
+      "sampleCells": [
+        [
+          0,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "smoothVariants": [
+        6,
+        7
       ]
     },
     "construcao": {
@@ -682,15 +816,185 @@
         "chao/construcao-0.png",
         "chao/construcao-1.png",
         "chao/construcao-2.png",
-        "chao/construcao-3.png"
+        "chao/construcao-3.png",
+        "chao/construcao-4.png",
+        "chao/construcao-5.png",
+        "chao/construcao-6.png",
+        "chao/construcao-7.png"
       ],
       "size": [
         64,
         32
+      ],
+      "filter": "linear",
+      "shadowBaked": false,
+      "source": "fontes/pisos-v2/piso.png",
+      "sampling": "continuous-world-uv",
+      "sampleCells": [
+        [
+          0,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          7,
+          6
+        ]
       ]
     }
   },
   "transitions": {
+    "grama/calcada": {
+      "corners": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ],
+      "maskBits": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "files": [
+        "transicoes/grama-calcada-0.png",
+        "transicoes/grama-calcada-1.png",
+        "transicoes/grama-calcada-2.png",
+        "transicoes/grama-calcada-3.png",
+        "transicoes/grama-calcada-4.png",
+        "transicoes/grama-calcada-5.png",
+        "transicoes/grama-calcada-6.png",
+        "transicoes/grama-calcada-7.png",
+        "transicoes/grama-calcada-8.png",
+        "transicoes/grama-calcada-9.png",
+        "transicoes/grama-calcada-10.png",
+        "transicoes/grama-calcada-11.png",
+        "transicoes/grama-calcada-12.png",
+        "transicoes/grama-calcada-13.png",
+        "transicoes/grama-calcada-14.png",
+        "transicoes/grama-calcada-15.png"
+      ]
+    },
+    "grama/piso": {
+      "corners": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ],
+      "maskBits": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "files": [
+        "transicoes/grama-piso-0.png",
+        "transicoes/grama-piso-1.png",
+        "transicoes/grama-piso-2.png",
+        "transicoes/grama-piso-3.png",
+        "transicoes/grama-piso-4.png",
+        "transicoes/grama-piso-5.png",
+        "transicoes/grama-piso-6.png",
+        "transicoes/grama-piso-7.png",
+        "transicoes/grama-piso-8.png",
+        "transicoes/grama-piso-9.png",
+        "transicoes/grama-piso-10.png",
+        "transicoes/grama-piso-11.png",
+        "transicoes/grama-piso-12.png",
+        "transicoes/grama-piso-13.png",
+        "transicoes/grama-piso-14.png",
+        "transicoes/grama-piso-15.png"
+      ]
+    },
+    "grama/construcao": {
+      "corners": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ],
+      "maskBits": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "files": [
+        "transicoes/grama-construcao-0.png",
+        "transicoes/grama-construcao-1.png",
+        "transicoes/grama-construcao-2.png",
+        "transicoes/grama-construcao-3.png",
+        "transicoes/grama-construcao-4.png",
+        "transicoes/grama-construcao-5.png",
+        "transicoes/grama-construcao-6.png",
+        "transicoes/grama-construcao-7.png",
+        "transicoes/grama-construcao-8.png",
+        "transicoes/grama-construcao-9.png",
+        "transicoes/grama-construcao-10.png",
+        "transicoes/grama-construcao-11.png",
+        "transicoes/grama-construcao-12.png",
+        "transicoes/grama-construcao-13.png",
+        "transicoes/grama-construcao-14.png",
+        "transicoes/grama-construcao-15.png"
+      ]
+    },
+    "calcada/piso": {
+      "corners": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ],
+      "maskBits": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "files": [
+        "transicoes/calcada-piso-0.png",
+        "transicoes/calcada-piso-1.png",
+        "transicoes/calcada-piso-2.png",
+        "transicoes/calcada-piso-3.png",
+        "transicoes/calcada-piso-4.png",
+        "transicoes/calcada-piso-5.png",
+        "transicoes/calcada-piso-6.png",
+        "transicoes/calcada-piso-7.png",
+        "transicoes/calcada-piso-8.png",
+        "transicoes/calcada-piso-9.png",
+        "transicoes/calcada-piso-10.png",
+        "transicoes/calcada-piso-11.png",
+        "transicoes/calcada-piso-12.png",
+        "transicoes/calcada-piso-13.png",
+        "transicoes/calcada-piso-14.png",
+        "transicoes/calcada-piso-15.png"
+      ]
+    },
     "calcada/construcao": {
       "corners": [
         "top",
@@ -723,7 +1027,7 @@
         "transicoes/calcada-construcao-15.png"
       ]
     },
-    "construcao/piso": {
+    "piso/construcao": {
       "corners": [
         "top",
         "right",
@@ -737,54 +1041,22 @@
         8
       ],
       "files": [
-        "transicoes/construcao-piso-0.png",
-        "transicoes/construcao-piso-1.png",
-        "transicoes/construcao-piso-2.png",
-        "transicoes/construcao-piso-3.png",
-        "transicoes/construcao-piso-4.png",
-        "transicoes/construcao-piso-5.png",
-        "transicoes/construcao-piso-6.png",
-        "transicoes/construcao-piso-7.png",
-        "transicoes/construcao-piso-8.png",
-        "transicoes/construcao-piso-9.png",
-        "transicoes/construcao-piso-10.png",
-        "transicoes/construcao-piso-11.png",
-        "transicoes/construcao-piso-12.png",
-        "transicoes/construcao-piso-13.png",
-        "transicoes/construcao-piso-14.png",
-        "transicoes/construcao-piso-15.png"
-      ]
-    },
-    "construcao/grama": {
-      "corners": [
-        "top",
-        "right",
-        "bottom",
-        "left"
-      ],
-      "maskBits": [
-        1,
-        2,
-        4,
-        8
-      ],
-      "files": [
-        "transicoes/construcao-grama-0.png",
-        "transicoes/construcao-grama-1.png",
-        "transicoes/construcao-grama-2.png",
-        "transicoes/construcao-grama-3.png",
-        "transicoes/construcao-grama-4.png",
-        "transicoes/construcao-grama-5.png",
-        "transicoes/construcao-grama-6.png",
-        "transicoes/construcao-grama-7.png",
-        "transicoes/construcao-grama-8.png",
-        "transicoes/construcao-grama-9.png",
-        "transicoes/construcao-grama-10.png",
-        "transicoes/construcao-grama-11.png",
-        "transicoes/construcao-grama-12.png",
-        "transicoes/construcao-grama-13.png",
-        "transicoes/construcao-grama-14.png",
-        "transicoes/construcao-grama-15.png"
+        "transicoes/piso-construcao-0.png",
+        "transicoes/piso-construcao-1.png",
+        "transicoes/piso-construcao-2.png",
+        "transicoes/piso-construcao-3.png",
+        "transicoes/piso-construcao-4.png",
+        "transicoes/piso-construcao-5.png",
+        "transicoes/piso-construcao-6.png",
+        "transicoes/piso-construcao-7.png",
+        "transicoes/piso-construcao-8.png",
+        "transicoes/piso-construcao-9.png",
+        "transicoes/piso-construcao-10.png",
+        "transicoes/piso-construcao-11.png",
+        "transicoes/piso-construcao-12.png",
+        "transicoes/piso-construcao-13.png",
+        "transicoes/piso-construcao-14.png",
+        "transicoes/piso-construcao-15.png"
       ]
     }
   },
@@ -835,7 +1107,15 @@
       ],
       "risePx": 64,
       "risers": 8,
-      "widthCells": 2
+      "widthCells": 2,
+      "renderer": "projected-stone-steps",
+      "source": {
+        "generator": "tools/overworld/build_morro_stairs.py",
+        "materials": [
+          "chao/superficies-atlas.png",
+          "muros/pedra-superficie.png"
+        ]
+      }
     },
     "u-": {
       "file": "escadas/u-.png",
@@ -845,7 +1125,15 @@
       ],
       "risePx": 64,
       "risers": 8,
-      "widthCells": 2
+      "widthCells": 2,
+      "renderer": "projected-stone-steps",
+      "source": {
+        "generator": "tools/overworld/build_morro_stairs.py",
+        "materials": [
+          "chao/superficies-atlas.png",
+          "muros/pedra-superficie.png"
+        ]
+      }
     },
     "v+": {
       "file": "escadas/v+.png",
@@ -855,7 +1143,15 @@
       ],
       "risePx": 64,
       "risers": 8,
-      "widthCells": 2
+      "widthCells": 2,
+      "renderer": "projected-stone-steps",
+      "source": {
+        "generator": "tools/overworld/build_morro_stairs.py",
+        "materials": [
+          "chao/superficies-atlas.png",
+          "muros/pedra-superficie.png"
+        ]
+      }
     },
     "v-": {
       "file": "escadas/v-.png",
@@ -865,7 +1161,15 @@
       ],
       "risePx": 64,
       "risers": 8,
-      "widthCells": 2
+      "widthCells": 2,
+      "renderer": "projected-stone-steps",
+      "source": {
+        "generator": "tools/overworld/build_morro_stairs.py",
+        "materials": [
+          "chao/superficies-atlas.png",
+          "muros/pedra-superficie.png"
+        ]
+      }
     }
   },
   "bridges": {},
@@ -876,5 +1180,150 @@
     "asset": "casa-morro",
     "spacing": 5,
     "role": "non-playable gardens and background houses, no collision or events"
+  },
+  "decals": [
+    {
+      "id": "capim-alto-0",
+      "file": "decalques/capim-alto-0.png",
+      "size": [
+        64,
+        48
+      ],
+      "anchor": [
+        32,
+        32
+      ],
+      "collision": false,
+      "source": "fontes/grama-morro/capim-alto-0.png"
+    },
+    {
+      "id": "capim-alto-1",
+      "file": "decalques/capim-alto-1.png",
+      "size": [
+        64,
+        48
+      ],
+      "anchor": [
+        32,
+        32
+      ],
+      "collision": false,
+      "source": "fontes/grama-morro/capim-alto-1.png"
+    },
+    {
+      "id": "capim-alto-2",
+      "file": "decalques/capim-alto-2.png",
+      "size": [
+        64,
+        48
+      ],
+      "anchor": [
+        32,
+        32
+      ],
+      "collision": false,
+      "source": "fontes/grama-morro/capim-alto-2.png"
+    },
+    {
+      "id": "terra-batida-0",
+      "file": "decalques/terra-batida-0.png",
+      "size": [
+        64,
+        48
+      ],
+      "anchor": [
+        32,
+        32
+      ],
+      "collision": false,
+      "source": "fontes/grama-morro/terra-batida-0.png"
+    },
+    {
+      "id": "terra-batida-1",
+      "file": "decalques/terra-batida-1.png",
+      "size": [
+        64,
+        48
+      ],
+      "anchor": [
+        32,
+        32
+      ],
+      "collision": false,
+      "source": "fontes/grama-morro/terra-batida-1.png"
+    },
+    {
+      "id": "trevo-flor-0",
+      "file": "decalques/trevo-flor-0.png",
+      "size": [
+        64,
+        48
+      ],
+      "anchor": [
+        32,
+        32
+      ],
+      "collision": false,
+      "source": "fontes/grama-morro/trevo-flor-0.png"
+    },
+    {
+      "id": "trevo-flor-1",
+      "file": "decalques/trevo-flor-1.png",
+      "size": [
+        64,
+        48
+      ],
+      "anchor": [
+        32,
+        32
+      ],
+      "collision": false,
+      "source": "fontes/grama-morro/trevo-flor-1.png"
+    }
+  ],
+  "floorSurface": {
+    "file": "chao/superficies-atlas.png",
+    "size": [
+      1536,
+      512
+    ],
+    "materials": [
+      "grama",
+      "calcada",
+      "piso"
+    ],
+    "cellTexels": 64,
+    "repeatCells": [
+      8,
+      8
+    ],
+    "coordinates": "world u/v, continuous across cells and levels",
+    "shader": "res://scripts/overworld/painted_floor.gdshader"
+  },
+  "wallSurfaces": {
+    "pedra": {
+      "file": "muros/pedra-superficie.png",
+      "size": [
+        512,
+        512
+      ],
+      "source": "fontes/muros-v2/pedra.png",
+      "repeatTexelsPerCell": [
+        128,
+        256
+      ]
+    },
+    "chapisco": {
+      "file": "muros/chapisco-superficie.png",
+      "size": [
+        512,
+        512
+      ],
+      "source": "fontes/muros-v2/chapisco.png",
+      "repeatTexelsPerCell": [
+        128,
+        256
+      ]
+    }
   }
 }

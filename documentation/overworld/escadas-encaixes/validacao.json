@@ -1,0 +1,63 @@
+{
+  "stairVariants": [
+    {
+      "direction": "u+",
+      "size": [
+        96,
+        112
+      ],
+      "risePx": 64,
+      "risers": 8,
+      "neutralGrayPixels": 0,
+      "mirrorMatch": true
+    },
+    {
+      "direction": "u-",
+      "size": [
+        96,
+        112
+      ],
+      "risePx": 64,
+      "risers": 8,
+      "neutralGrayPixels": 0,
+      "mirrorMatch": true
+    },
+    {
+      "direction": "v+",
+      "size": [
+        96,
+        112
+      ],
+      "risePx": 64,
+      "risers": 8,
+      "neutralGrayPixels": 0,
+      "mirrorMatch": true
+    },
+    {
+      "direction": "v-",
+      "size": [
+        96,
+        112
+      ],
+      "risePx": 64,
+      "risers": 8,
+      "neutralGrayPixels": 0,
+      "mirrorMatch": true
+    }
+  ],
+  "nativeCaptures": [
+    "escada-u+-1280x720.png",
+    "escada-u--1280x720.png",
+    "escada-v+-1280x720.png",
+    "escada-v--1280x720.png",
+    "kael-na-escada-1280x720.png",
+    "morro-escadaria-da-sombra-1280x720.png",
+    "morro-parque-dos-ventos-1280x720.png",
+    "morro-praca-da-chegada-1280x720.png",
+    "muros-detalhe-1280x720.png",
+    "quatro-direcoes.png"
+  ],
+  "nativeRenderErrors": 0,
+  "navigationModelChanged": false,
+  "visualBevelCells": "blocked corners next to low stair endpoints only"
+}

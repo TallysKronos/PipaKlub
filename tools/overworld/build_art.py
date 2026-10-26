@@ -151,6 +151,11 @@ WEDGES=[[(32,0),(48,8),(32,16),(16,8)],[(64,16),(48,24),(32,16),(48,8)],[(32,32)
 def terrain(k):
     directory=KITS/k['biome']
     for mat in ['calcada','piso','grama','construcao']:
+        if mat == 'grama' and k['biome'] == 'morro':
+            from build_morro_grass import tiles, decals
+            k['materials']['grama'] = tiles(directory/'chao')
+            k['decals'] = decals()
+            continue
         files=[]
         for n in range(4):
             c=Canvas(64,32);c.poly(DIAMOND,COLORS[mat],None)
@@ -237,6 +242,14 @@ def morro():
         file=f'pecas/muro-quintal-{direction}';c.save(KITS/'morro'/file)
         entry={'file':file+'.png','size':[64,96],'footprint':[1,1],'visualFootprint':[1,1],'height':2,'bloqueia':False,'anchor':[32,80],'isoAnchor':[32,96],'shadow':'sombras/contato.png','source':{'generator':'tools/overworld/build_art.py'},'approval':'pending_concept_review','role':'prop boundary on already-blocked construction, not a terrain cliff'}
         k['pieces'].setdefault('muro-quintal',{'default':'u+','variants':{}})['variants'][direction]=entry
+    if (KITS/'morro/fontes/pisos-v2/grama.png').exists():
+        from build_morro_floors import update_kit
+        k=update_kit(k)
+    if (KITS/'morro/fontes/muros-v2/pedra.png').exists():
+        from build_morro_walls import update_kit as update_walls
+        k=update_walls(k)
+        from build_morro_stairs import update_kit as update_stairs
+        k=update_stairs(k)
     write(KITS/'morro/kit.json',k);return k
 
 def studio(k):

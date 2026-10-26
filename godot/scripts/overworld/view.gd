@@ -30,6 +30,9 @@ var kits: Array[Dictionary] = []
 var kit_library: Dictionary = {}
 var terrain_layers: Array[TileMapLayer] = []
 var lots: Dictionary = {}
+var grass_material: ShaderMaterial
+var painted_floor_material: ShaderMaterial
+var stair_bevels: Dictionary = {}
 var hidden_pieces: Dictionary = {}
 var occluders: Array[Node2D] = []
 const MAX_HOUSES := 6
@@ -68,6 +71,7 @@ func load_area(id: String) -> void:
 	var source := "res://assets/overworld/maps/" + id + ".json"
 	if not FileAccess.file_exists(source): return
 	area_id = id
+	set_meta("grass_decal_count", 0)
 	for node in [terrain, camera]:
 		if is_instance_valid(node): remove_child(node); node.queue_free()
 	terrain_layers.clear()
@@ -171,6 +175,9 @@ func _build_tiles() -> void:
 	for cell in model.data.cells: levels[int(cell.level)] = true
 	hidden_pieces = _compose_houses()
 	lots = _occupied_lots()
+	# Inset stairs meet square masonry jambs. Clipping their terrace corners
+	# would detach those jambs from the inner cheeks of the stairwell.
+	stair_bevels = {}
 	if _soft_yards(): _build_lawn_base()
 	for level in levels:
 		var tiles := TileSet.new()
@@ -203,7 +210,7 @@ func _build_tiles() -> void:
 				_draw_bridge(at, cell)
 			elif _soft_yards() and cell.material == "construcao":
 				# A blocked lot without a house reads as a yard, not as bare brick.
-				_draw_art_floor(at, {"material":"grama","level":cell.level,"corners":["grama","grama","grama","grama"]})
+				_draw_art_floor(at, {"material":"grama","level":cell.level,"corners":cell.corners})
 			elif art_preview and kits.size()>1 and kits[1].materials.has(cell.material):
 				_draw_art_floor(at, cell)
 			else: layer.set_cell(at, 0, Vector2i((at.x * 7 + at.y * 13) % 4, int(ids.get(cell.material, 0))))
@@ -227,20 +234,34 @@ func _draw_bridge(at: Vector2i, cell: Dictionary) -> void:
 
 func _floor_node(at: Vector2i, level: float) -> Node2D:
 	var node := Node2D.new()
+	node.z_index = -2
 	node.position = model.project(Vector2(at) + Vector2(.5, .5), false)
 	actors.add_child(node)
 	return node
 
 func _draw_art_floor(at: Vector2i, cell: Dictionary) -> void:
 	var kit: Dictionary = kits[1]
+	if kit.has("floorSurface") and model.data.biome == "morro":
+		var floor_root := _floor_node(at, float(cell.level))
+		floor_root.add_child(_painted_floor(at, cell, true))
+		if cell.material == "grama":
+			floor_root.add_child(_yard_shade(at, float(cell.level)))
+			_grass_decal(floor_root, at, int(cell.level))
+		return
 	var file := ""
-	if kit.materials.has(cell.material): file = kit.materials[cell.material].variants[(at.x*7+at.y*13)%4]
+	if kit.materials.has(cell.material):
+		var variants: Array = kit.materials[cell.material].variants
+		var choice := _grass_hash(at) if cell.material == "grama" else at.x*7+at.y*13
+		file = variants[posmod(choice, variants.size())]
 	if file.is_empty(): return
 	var root := _floor_node(at, float(cell.level))
-	var sprite := Sprite2D.new()
-	sprite.texture = load(kit.root + file)
-	sprite.position.y = -float(cell.level) * 64
-	root.add_child(sprite)
+	if cell.material == "grama":
+		root.add_child(_grass_surface(kit.root + file, float(cell.level)))
+	else:
+		var sprite := Sprite2D.new()
+		sprite.texture = load(kit.root + file)
+		sprite.position.y = -float(cell.level) * 64
+		root.add_child(sprite)
 	if cell.material == "grama" and _soft_yards(): root.add_child(_yard_shade(at, float(cell.level)))
 	# Canonical shared vertices, including three-material junctions. A corner
 	# samples the existing pair atlas only inside its own quadrant; unrelated
@@ -263,6 +284,185 @@ func _draw_art_floor(at: Vector2i, cell: Dictionary) -> void:
 			patch.texture=load(kit.root+kit.transitions[pair].files[mask])
 			root.add_child(patch)
 			break
+	if cell.material == "grama" and _soft_yards(): _grass_decal(root, at, int(cell.level))
+
+func _grass_hash(at: Vector2i, salt: int = 0) -> int:
+	# Avalanche hash: no diagonal stripes, negative coordinates work too.
+	var value: int = posmod(at.x*374761393 + at.y*668265263 + salt, 2147483647)
+	value = posmod((value ^ (value >> 13))*1274126177, 2147483647)
+	return value ^ (value >> 16)
+
+func _floor_material_color(material_name: String) -> Color:
+	return Color(0,1,0,1) if material_name == "calcada" else Color(0,0,1,1) if material_name == "piso" else Color(1,0,0,1)
+
+func _stair_vertex_key(point: Vector2, level: float) -> String:
+	return str(roundi(point.x))+":"+str(roundi(point.y))+":"+str(roundi(level))
+
+func _plan_stair_bevels() -> Dictionary:
+	var result := {}
+	for index in model.data.cells.size():
+		var ramp: Dictionary = model.data.cells[index]
+		if ramp.get("ramp") == null: continue
+		var at := Vector2i(index%int(model.data.w),index/int(model.data.w))
+		var direction: Vector2i = Model.DIRS[ramp.ramp]
+		for corner in [Vector2i(0,0),Vector2i(1,0),Vector2i(1,1),Vector2i(0,1)]:
+			var rise: int = corner.x if direction.x>0 else 1-corner.x if direction.x<0 else corner.y if direction.y>0 else 1-corner.y
+			if rise != 0: continue
+			var vertex: Vector2i = at+corner
+			var high: Array[Vector2i] = []
+			for offset in [Vector2i(-1,-1),Vector2i(0,-1),Vector2i(-1,0),Vector2i(0,0)]:
+				var candidate: Vector2i = vertex+offset
+				var cell := model.cell_at(candidate)
+				if cell.is_empty() or cell.get("ramp") != null: continue
+				if int(cell.level) == int(ramp.level)+1: high.append(candidate)
+			if high.size()!=1 or model.walkable(high[0]): continue
+			var inward := Vector2(high[0])+Vector2(.5,.5)-Vector2(vertex)
+			var key := _stair_vertex_key(Vector2(vertex),float(ramp.level)+1)
+			result[key] = {"point":Vector2(vertex),"at":high[0],"level":float(ramp.level)+1,"bottom":float(ramp.level),"inward":inward.sign(),"distance":.18}
+	return result
+
+func _clip_stair_corner(points: Array[Vector2], bevel: Dictionary) -> Array[Vector2]:
+	var clipped: Array[Vector2] = []
+	if points.is_empty(): return clipped
+	var previous: Vector2 = points[-1]
+	var before: float = (previous-bevel.point).dot(bevel.inward)-float(bevel.distance)
+	for current in points:
+		var after: float = (current-bevel.point).dot(bevel.inward)-float(bevel.distance)
+		if (after>=-.00001) != (before>=-.00001): clipped.append(previous.lerp(current,before/(before-after)))
+		if after>=-.00001: clipped.append(current)
+		previous = current
+		before = after
+	return clipped
+
+func _floor_coverage(point: Vector2, level: float) -> Color:
+	# Interpolate neighbouring cell centres only where their actual surfaces
+	# meet this height. A low stair cannot paint a high yard's outer corner.
+	var sample := point-Vector2(.5,.5)
+	var first := Vector2i(floori(sample.x),floori(sample.y))
+	var fraction := sample-Vector2(first)
+	var total := Color(0,0,0,0)
+	var weight_sum := 0.0
+	for v in 2:
+		for u in 2:
+			var at := first+Vector2i(u,v)
+			var other := model.cell_at(at)
+			if other.is_empty(): continue
+			var height := float(other.level)
+			if other.get("ramp") != null:
+				var direction: Vector2i = Model.DIRS[other.ramp]
+				var local := (point-Vector2(at)).clamp(Vector2.ZERO,Vector2.ONE)
+				height += local.x if direction.x>0 else 1.0-local.x if direction.x<0 else local.y if direction.y>0 else 1.0-local.y
+			if not is_equal_approx(height,level): continue
+			var weight := (fraction.x if u else 1.0-fraction.x)*(fraction.y if v else 1.0-fraction.y)
+			total += _floor_material_color(str(other.material))*weight
+			weight_sum += weight
+	if weight_sum < .0001: return Color(1,0,0,1)
+	return Color(total.r/weight_sum,total.g/weight_sum,total.b/weight_sum,1)
+
+func _painted_floor(at: Vector2i, cell: Dictionary, neighbourhood: bool = false) -> Polygon2D:
+	var tile := Polygon2D.new()
+	tile.position.y = -float(cell.level)*64
+	tile.texture = load(kits[1].root + kits[1].floorSurface.file)
+	var uv := PackedVector2Array()
+	var weights := PackedColorArray()
+	var corners := [Vector2(0,0),Vector2(1,0),Vector2(1,1),Vector2(0,1)]
+	var colours: Array[Color] = []
+	for index in 4: colours.append(_floor_material_color(str(cell.corners[index])))
+	var coverage := func(f: Vector2) -> Color:
+		if neighbourhood: return _floor_coverage(Vector2(at)+f,float(cell.level))
+		return colours[0]*(1-f.x)*(1-f.y)+colours[1]*f.x*(1-f.y)+colours[2]*f.x*f.y+colours[3]*(1-f.x)*f.y
+	var bevels: Array = []
+	if neighbourhood:
+		for bevel: Dictionary in stair_bevels.values():
+			if bevel.at == at and is_equal_approx(float(bevel.level),float(cell.level)): bevels.append(bevel)
+	var pure := true
+	var reference: Color = coverage.call(Vector2(.5,.5))
+	for v in 3:
+		for u in 3:
+			if not reference.is_equal_approx(coverage.call(Vector2(u*.5,v*.5))): pure = false
+	var vertices := PackedVector2Array()
+	if not bevels.is_empty():
+		var triangles: Array[PackedInt32Array] = []
+		var divisions := 8
+		for v in divisions:
+			for u in divisions:
+				var a := Vector2(float(u)/divisions,float(v)/divisions)
+				var b := Vector2(float(u+1)/divisions,float(v+1)/divisions)
+				for source in [[a,Vector2(b.x,a.y),b],[a,b,Vector2(a.x,b.y)]]:
+					var polygon: Array[Vector2] = []
+					for f: Vector2 in source: polygon.append(Vector2(at)+f)
+					for bevel: Dictionary in bevels: polygon = _clip_stair_corner(polygon,bevel)
+					if polygon.size()<3: continue
+					var indices := PackedInt32Array()
+					for point in polygon:
+						indices.append(vertices.size())
+						var f := point-Vector2(at)
+						vertices.append(Vector2((f.x-f.y)*32,(f.x+f.y)*16-16))
+						uv.append(point*float(kits[1].floorSurface.cellTexels))
+						weights.append(coverage.call(f))
+					triangles.append(indices)
+		tile.polygons = triangles
+	elif pure:
+		vertices = PackedVector2Array([Vector2(0,-16),Vector2(32,0),Vector2(0,16),Vector2(-32,0)])
+		for corner: Vector2 in corners:
+			uv.append((Vector2(at)+corner)*float(kits[1].floorSurface.cellTexels))
+			weights.append(reference)
+	else:
+		# Tessellate only mixed edges. Bilinear coverage curves naturally around
+		# path ends instead of exposing the two triangles of a whole grid cell.
+		var triangles: Array[PackedInt32Array] = []
+		var divisions := 8
+		for v in divisions+1:
+			for u in divisions+1:
+				var f := Vector2(float(u)/divisions,float(v)/divisions)
+				vertices.append(Vector2((f.x-f.y)*32,(f.x+f.y)*16-16))
+				uv.append((Vector2(at)+f)*float(kits[1].floorSurface.cellTexels))
+				weights.append(coverage.call(f))
+		for v in divisions:
+			for u in divisions:
+				var a := v*(divisions+1)+u
+				triangles.append(PackedInt32Array([a,a+1,a+divisions+2]))
+				triangles.append(PackedInt32Array([a,a+divisions+2,a+divisions+1]))
+		tile.polygons = triangles
+	tile.polygon = vertices
+	tile.uv = uv
+	tile.vertex_colors = weights
+	if painted_floor_material == null:
+		painted_floor_material = ShaderMaterial.new()
+		painted_floor_material.shader = preload("res://scripts/overworld/painted_floor.gdshader")
+	tile.material = painted_floor_material
+	return tile
+
+func _grass_surface(file: String, level: float = 0.0) -> Polygon2D:
+	var floor_tile := Polygon2D.new()
+	floor_tile.polygon = PackedVector2Array([Vector2(0,-16),Vector2(32,0),Vector2(0,16),Vector2(-32,0)])
+	floor_tile.uv = PackedVector2Array([Vector2(32,0),Vector2(64,16),Vector2(32,32),Vector2(0,16)])
+	floor_tile.texture = load(file)
+	floor_tile.position.y = -level*64
+	if grass_material == null:
+		grass_material = ShaderMaterial.new()
+		grass_material.shader = preload("res://scripts/overworld/grass_floor.gdshader")
+	floor_tile.material = grass_material
+	return floor_tile
+
+func _grass_decal(root: Node2D, at: Vector2i, level: int) -> void:
+	var real_cell := model.cell_at(at)
+	if real_cell.is_empty() or real_cell.material not in ["grama","construcao"] or lots.has(model.key(at)): return
+	var details: Array = kits[1].get("decals", [])
+	if details.is_empty(): return
+	var edge := false
+	for offset in [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]:
+		if _yardness(at+offset, level) != _yardness(at, level): edge = true
+	if not edge or _grass_hash(at, 971) % 3 != 0: return
+	var detail: Dictionary = details[_grass_hash(at, 7391) % details.size()]
+	var decal := Sprite2D.new()
+	decal.name = "Decal_" + str(detail.id)
+	decal.texture = load(kits[1].root + detail.file)
+	decal.centered = false
+	decal.position = -Vector2(detail.anchor[0], detail.anchor[1]+level*64)
+	# Visual-only Sprite2D: no physics body, area, footprint or navigation edits.
+	root.add_child(decal)
+	set_meta("grass_decal_count", int(get_meta("grass_decal_count", 0))+1)
 
 func _draw_ramp(at: Vector2i, cell: Dictionary) -> void:
 	var root := _floor_node(at, float(cell.level))
@@ -288,34 +488,130 @@ func _draw_ramp(at: Vector2i, cell: Dictionary) -> void:
 			root.add_child(stroke)
 
 func _build_faces() -> void:
+	var finishes := _wall_finishes() if art_preview and kits.size()>1 and kits[1].has("wallSurfaces") else {}
 	for face in model.data.cliffs:
+		# A compiled cliff against a ramp is not a full-height rectangular wall:
+		# the steps occupy its lower section. The stair builder emits the exposed
+		# cheek above each tread. Keeping both fills the opening with masonry.
+		var adjacent := model.cell_at(Vector2i(face.u,face.v)+(Vector2i(1,0) if face.side == "u" else Vector2i(0,1)))
+		var adjacent_at := Vector2i(face.u,face.v)+(Vector2i(1,0) if face.side == "u" else Vector2i(0,1))
+		if art_preview and model.data.biome == "morro" and stairs_drawn.has(model.key(adjacent_at)) and kits.size()>1 and kits[1].has("wallSurfaces") and not adjacent.is_empty() and adjacent.get("ramp") != null and int(adjacent.level) == int(face.bottom) and int(face.top) == int(face.bottom)+1:
+			continue
 		var a := Vector2(face.u + 1, face.v) if face.side == "u" else Vector2(face.u, face.v + 1)
 		var b := Vector2(face.u + 1, face.v + 1)
 		var root := Node2D.new()
 		root.position = model.project(b, false)
 		actors.add_child(root)
-		var pa := model.project(a,false) - root.position
-		var pb := model.project(b,false) - root.position
+		var edge_a := a
+		var edge_b := b
+		var cut_a: Dictionary = stair_bevels.get(_stair_vertex_key(a,float(face.top)),{})
+		var cut_b: Dictionary = stair_bevels.get(_stair_vertex_key(b,float(face.top)),{})
+		if not cut_a.is_empty(): edge_a += (b-a).normalized()*float(cut_a.distance)
+		if not cut_b.is_empty(): edge_b += (a-b).normalized()*float(cut_b.distance)
+		var pa := model.project(edge_a,false) - root.position
+		var pb := model.project(edge_b,false) - root.position
 		for tier in range(int(face.bottom),int(face.top)):
 			var wall := Polygon2D.new()
 			wall.polygon = PackedVector2Array([pa-Vector2(0,(tier+1)*64),pb-Vector2(0,(tier+1)*64),pb-Vector2(0,tier*64),pa-Vector2(0,tier*64)])
 			wall.color = Color("B8A58D") if face.side == "u" else Color("8F7C6E")
 			if art_preview and kits.size()>1 and kits[1].walls.has("pedra"):
-				var style := "pedra" if _face_touches_path(face) or not kits[1].walls.has("chapisco") else "chapisco"
-				wall.texture = load(kits[1].root + kits[1].walls[style][face.side][(int(face.u)+int(face.v))%2])
-				wall.uv = PackedVector2Array([Vector2(32,0),Vector2(0,16),Vector2(0,80),Vector2(32,64)]) if face.side == "u" else PackedVector2Array([Vector2(0,0),Vector2(32,16),Vector2(32,80),Vector2(0,64)])
-				wall.color = Color.WHITE
+				var style: String = finishes.get(_wall_face_key(face), "pedra" if _face_touches_path(face) or not kits[1].walls.has("chapisco") else "chapisco")
+				if kits[1].has("wallSurfaces"):
+					var surface: Dictionary = kits[1].wallSurfaces[style]
+					var u := (edge_a.y if face.side == "u" else edge_a.x)*float(surface.repeatTexelsPerCell[0])
+					var v := float(-tier*surface.repeatTexelsPerCell[1])
+					var width := edge_a.distance_to(edge_b)*float(surface.repeatTexelsPerCell[0])
+					var height := float(surface.repeatTexelsPerCell[1])
+					wall.texture = load(kits[1].root + surface.file)
+					wall.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
+					wall.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+					wall.uv = PackedVector2Array([Vector2(u,v-height),Vector2(u+width,v-height),Vector2(u+width,v),Vector2(u,v)])
+					wall.color = Color.WHITE if face.side == "u" else Color(.86,.83,.78)
+				else:
+					wall.texture = load(kits[1].root + kits[1].walls[style][face.side][(int(face.u)+int(face.v))%2])
+					wall.uv = PackedVector2Array([Vector2(32,0),Vector2(0,16),Vector2(0,80),Vector2(32,64)]) if face.side == "u" else PackedVector2Array([Vector2(0,0),Vector2(32,16),Vector2(32,80),Vector2(0,64)])
+					wall.color = Color.WHITE
 			root.add_child(wall)
 		var rim := Line2D.new()
 		rim.points = PackedVector2Array([pa-Vector2(0,face.top*64),pb-Vector2(0,face.top*64)])
-		rim.width = 2
-		rim.default_color = Color("D5C9AD")
+		rim.width = 3.5 if art_preview and kits.size()>1 and kits[1].has("wallSurfaces") else 2.0
+		rim.default_color = Color("E8D1A6") if art_preview and kits.size()>1 and kits[1].has("wallSurfaces") else Color("D5C9AD")
 		root.add_child(rim)
+		if art_preview and kits.size()>1 and kits[1].has("wallSurfaces"):
+			var contact := Line2D.new()
+			contact.points = PackedVector2Array([pa-Vector2(0,face.bottom*64),pb-Vector2(0,face.bottom*64)])
+			contact.width = 1.5
+			contact.default_color = Color(.25,.19,.10,.26)
+			root.add_child(contact)
+	# Close every clipped corner with the corresponding vertical face and cap.
+	for bevel: Dictionary in stair_bevels.values():
+		var a: Vector2 = bevel.point+Vector2(bevel.inward.x,0)*float(bevel.distance)
+		var b: Vector2 = bevel.point+Vector2(0,bevel.inward.y)*float(bevel.distance)
+		var top := float(bevel.level)*64
+		var bottom := float(bevel.bottom)*64
+		var node := Node2D.new()
+		node.name = "CantoChanfradoEscada"
+		node.position = model.project(bevel.point,false)
+		actors.add_child(node)
+		var wall := _stone_wall_quad([a,b],bottom,top,false)
+		var points := wall.polygon
+		for index in points.size(): points[index] -= node.position
+		wall.polygon = points
+		node.add_child(wall)
+		var cap := Line2D.new()
+		cap.points = PackedVector2Array([model.project(a,false)-Vector2(0,top)-node.position,model.project(b,false)-Vector2(0,top)-node.position])
+		cap.width = 3.5
+		cap.default_color = Color("E8D1A6")
+		node.add_child(cap)
 
 func _face_touches_path(face: Dictionary) -> bool:
 	var upper := Vector2i(int(face.u), int(face.v))
 	var lower := upper + (Vector2i(1,0) if face.side == "u" else Vector2i(0,1))
 	return model.walkable(upper) or model.walkable(lower)
+
+func _wall_face_key(face: Dictionary) -> String:
+	return str(face.u)+":"+str(face.v)+":"+str(face.side)
+
+func _wall_finishes() -> Dictionary:
+	# Connected visible faces at the same height interval share one finish.
+	# A corner must not alternate stone/stucco just because one face touches a path.
+	var faces: Array = model.data.cliffs
+	var vertices: Dictionary = {}
+	var corners: Array = []
+	for index in faces.size():
+		var face: Dictionary = faces[index]
+		var a := Vector2i(face.u+1,face.v) if face.side == "u" else Vector2i(face.u,face.v+1)
+		var b := Vector2i(face.u+1,face.v+1)
+		var keys: Array[String] = []
+		for point in [a,b]:
+			var key := str(point.x)+":"+str(point.y)+":"+str(face.bottom)+":"+str(face.top)
+			keys.append(key)
+			if not vertices.has(key): vertices[key] = []
+			vertices[key].append(index)
+		corners.append(keys)
+	var visited: Dictionary = {}
+	var result: Dictionary = {}
+	var records: Array = []
+	for start in faces.size():
+		if visited.has(start): continue
+		var pending: Array[int] = [start]
+		var component: Array[int] = []
+		var stone := false
+		visited[start] = true
+		while not pending.is_empty():
+			var current: int = pending.pop_back()
+			component.append(current)
+			if _face_touches_path(faces[current]): stone = true
+			for key in corners[current]:
+				for adjacent: int in vertices[key]:
+					if visited.has(adjacent): continue
+					visited[adjacent] = true
+					pending.append(adjacent)
+		var finish := "pedra" if stone else "chapisco"
+		for index in component: result[_wall_face_key(faces[index])] = finish
+		records.append({"faces":component.size(),"finish":finish})
+	set_meta("wall_finish_components", records)
+	return result
 
 func _soft_yards() -> bool:
 	return art_preview and model.data.biome == "morro" and kits.size()>1 and kits[1].materials.has("grama")
@@ -340,10 +636,8 @@ func _yardness(cell: Vector2i, level: int) -> float:
 	return 0.0 if model.walkable(cell) else 1.0
 
 func _build_lawn_base() -> void:
-	# Pixel-art diamonds leave hairline gaps where they meet. A continuous base
-	# in the same shaded lawn colour sits under the ground floor, so the gaps
-	# show the right colour instead of drawing the cell grid.
-	var lawn := _average_color(kits[1].root + kits[1].materials.grama.variants[0])
+	# Extend the same lawn beyond the map. Inside tiles stand on their own;
+	# there is deliberately no coloured underlay concealing diamond seams.
 	var base := Node2D.new()
 	base.name = "BaseGramado"
 	base.z_index = -99
@@ -354,18 +648,17 @@ func _build_lawn_base() -> void:
 		for u in range(-ring, int(model.data.w)+ring):
 			var at := Vector2i(u,v)
 			var inside := not model.cell_at(at).is_empty()
-			if inside and int(model.cell_at(at).level) != 0: continue
+			if inside: continue
 			if not inside:
 				# The lawn texture runs past the map edge, so the edge has no seam.
-				var tile := Sprite2D.new()
-				tile.texture = load(kits[1].root + grass[posmod(u*7+v*13,4)])
+				var tile: Polygon2D
+				if kits[1].has("floorSurface"):
+					tile = _painted_floor(at, {"level":0,"corners":["grama","grama","grama","grama"]})
+				else:
+					tile = _grass_surface(kits[1].root + grass[_grass_hash(at) % grass.size()])
 				tile.position = model.project(Vector2(at)+Vector2(.5,.5), false)
 				base.add_child(tile)
 			var shade := _yard_shade(at, 0.0)
-			if inside:
-				var colors := PackedColorArray()
-				for c in shade.vertex_colors: colors.append(lawn.lerp(Color(c, 1.0), c.a))
-				shade.vertex_colors = colors
 			shade.position = model.project(Vector2(at)+Vector2(.5,.5), false)
 			base.add_child(shade)
 
@@ -401,6 +694,27 @@ func _draw_kit_stairs(at: Vector2i, cell: Dictionary) -> bool:
 	if stairs_drawn.has(model.key(at)): return true
 	var direction: Vector2i = Model.DIRS[cell.ramp]
 	var across := Vector2i(absi(direction.y), absi(direction.x))
+	if model.data.biome == "morro" and kits[1].has("floorSurface") and kits[1].has("wallSurfaces"):
+		# A flight can be one, two, or three cells wide. Pairing only two leaves
+		# the last cell of the Mirante staircase as a separate grey ramp.
+		var start := at
+		var finish := at
+		for sign_value: int in [-1,1]:
+			var cursor := at
+			while true:
+				var candidate: Vector2i = cursor+across*sign_value
+				var c := model.cell_at(candidate)
+				if c.is_empty() or c.get("ramp") != cell.ramp or int(c.level) != int(cell.level):break
+				cursor=candidate
+			if sign_value<0:start=cursor
+			else:finish=cursor
+		_draw_stone_stairs(start,finish+Vector2i.ONE,cell)
+		var cursor := start
+		while true:
+			stairs_drawn[model.key(cursor)]=true
+			if cursor==finish:break
+			cursor+=across
+		return true
 	var partner := Vector2i(-1,-1)
 	for side in [across, -across]:
 		var other := model.cell_at(at+side)
@@ -424,6 +738,110 @@ func _draw_kit_stairs(at: Vector2i, cell: Dictionary) -> bool:
 	stairs_drawn[model.key(at)] = true
 	stairs_drawn[model.key(partner)] = true
 	return true
+
+func _stone_wall_quad(points: Array, bottom: float, top: float, along_u: bool) -> Polygon2D:
+	var face := Polygon2D.new()
+	face.texture = load(kits[1].root+kits[1].wallSurfaces.pedra.file)
+	face.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
+	face.color = Color(.86,.83,.78) if along_u else Color.WHITE
+	var a: Vector2 = points[0]
+	var b: Vector2 = points[1]
+	face.polygon = PackedVector2Array([model.project(a,false)-Vector2(0,top),model.project(b,false)-Vector2(0,top),model.project(b,false)-Vector2(0,bottom),model.project(a,false)-Vector2(0,bottom)])
+	var u0 := (a.x if along_u else a.y)*128
+	var u1 := (b.x if along_u else b.y)*128
+	face.uv = PackedVector2Array([Vector2(u0,-top*4),Vector2(u1,-top*4),Vector2(u1,-bottom*4),Vector2(u0,-bottom*4)])
+	return face
+
+func _draw_stone_stairs(first: Vector2i, last: Vector2i, cell: Dictionary) -> void:
+	# Eight real stone treads, projected from the exact same 2:1 footprint and
+	# 64px rise as the navigation ramp. Artwork never defines the endpoints.
+	var root := Node2D.new()
+	root.name = "EscadaDePedra"
+	root.z_index = -1
+	root.y_sort_enabled = true
+	actors.add_child(root)
+	var direction := str(cell.ramp)
+	var base := float(cell.level)*64
+	var parts: Array = []
+	var across_u := direction.begins_with("v")
+	var width := float(last.x-first.x) if across_u else float(last.y-first.y)
+	for step in 8:
+		var t := float(step)/8
+		var next := float(step+1)/8
+		var height := base+(step+1)*8
+		var q: Array[Vector2]
+		if direction == "u+": q = [Vector2(t,0),Vector2(next,0),Vector2(next,width),Vector2(t,width)]
+		elif direction == "u-": q = [Vector2(1-next,0),Vector2(1-t,0),Vector2(1-t,width),Vector2(1-next,width)]
+		elif direction == "v+": q = [Vector2(0,t),Vector2(width,t),Vector2(width,next),Vector2(0,next)]
+		else: q = [Vector2(0,1-next),Vector2(width,1-next),Vector2(width,1-t),Vector2(0,1-t)]
+		for index in 4: q[index] += Vector2(first)
+		var tread := Polygon2D.new()
+		var polygon := PackedVector2Array()
+		var uv := PackedVector2Array()
+		var centre := Vector2.ZERO
+		for point in q:
+			polygon.append(model.project(point,false)-Vector2(0,height))
+			uv.append(point*64)
+			centre += point*.25
+		tread.polygon = polygon
+		tread.uv = uv
+		tread.texture = load(kits[1].root+kits[1].floorSurface.file)
+		tread.vertex_colors = PackedColorArray([Color(0,1,0,1),Color(0,1,0,1),Color(0,1,0,1),Color(0,1,0,1)])
+		tread.material = painted_floor_material
+		tread.set_meta("stair_face","tread")
+		parts.append({"node":tread,"depth":centre.x+centre.y})
+		var edge: Array = [q[0],q[3]] if direction == "u+" else [q[1],q[2]] if direction == "u-" else [q[0],q[1]] if direction == "v+" else [q[2],q[3]]
+		var riser := _stone_wall_quad(edge,height-8,height,across_u)
+		parts.append({"node":riser,"depth":(edge[0].x+edge[0].y+edge[1].x+edge[1].y)*.5+.0001})
+		# Fill the underside at both flanks. Adjacent retaining faces and yards
+		# occlude this support naturally, without triangular grey sprite margins.
+		var flanks: Array = [[q[0],q[1]],[q[3],q[2]]] if not across_u else [[q[0],q[3]],[q[1],q[2]]]
+		for side: Array in flanks:
+			var support := _stone_wall_quad(side,base,height,not across_u)
+			parts.append({"node":support,"depth":(side[0].x+side[0].y+side[1].x+side[1].y)*.5-.0001})
+			# Excavated terrace: the exposed wall is ABOVE the treads. A solid
+			# wedge underneath alone makes the flight look buried in the lawn.
+			var midpoint: Vector2 = (side[0]+side[1])*.5
+			var outward := Vector2(-1,0) if across_u and midpoint.x == first.x else Vector2(1,0) if across_u else Vector2(0,-1) if midpoint.y == first.y else Vector2(0,1)
+			var neighbour := model.cell_at(Vector2i((midpoint+outward*.05).floor()))
+			if not neighbour.is_empty() and not neighbour.get("ramp","") and float(neighbour.level)*64 >= base+64:
+				var cheek := _stone_wall_quad(side,height,base+70,not across_u)
+				cheek.name = "ParedeInternaEscada"
+				cheek.color *= Color(.60,.61,.58)
+				cheek.set_meta("stair_face","cheek")
+				parts.append({"node":cheek,"depth":midpoint.x+midpoint.y+.0003,"layer":1})
+				var outer_edge: Array = [side[0]+outward*.16,side[1]+outward*.16]
+				parts.append({"node":_stone_wall_quad(outer_edge,base+64,base+70,not across_u),"depth":midpoint.x+midpoint.y+outward.x*.16+outward.y*.16,"layer":1})
+				var cap := Polygon2D.new()
+				cap.name = "CoroamentoEscada"
+				cap.color = Color("E8D1A6")
+				var cap_points := PackedVector2Array()
+				for p: Vector2 in [side[0],side[1],side[1]+outward*.16,side[0]+outward*.16]:
+					cap_points.append(model.project(p,false)-Vector2(0,base+70))
+				cap.polygon = cap_points
+				parts.append({"node":cap,"depth":midpoint.x+midpoint.y+.0004,"layer":1})
+				# Close the little curb at both ends; no floating coping strips.
+				if step in [0,7]:
+					var mouth: Vector2 = side[0] if (direction in ["u+","v+"]) == (step == 0) else side[1]
+					parts.append({"node":_stone_wall_quad([mouth,mouth+outward*.16],base+64,base+70,across_u),"depth":mouth.x+mouth.y+.0005,"layer":1})
+	var back: Array
+	if direction == "u+": back = [Vector2(last.x,first.y),Vector2(last)]
+	elif direction == "u-": back = [Vector2(first),Vector2(first.x,last.y)]
+	elif direction == "v+": back = [Vector2(first.x,last.y),Vector2(last)]
+	else: back = [Vector2(first),Vector2(last.x,first.y)]
+	parts.append({"node":_stone_wall_quad(back,base,base+64,across_u),"depth":(back[0].x+back[0].y+back[1].x+back[1].y)*.5+.0002})
+	parts.sort_custom(func(a,b): return a.depth < b.depth)
+	for part in parts:
+		# Floor/steps are support surfaces below actors; upright cheeks join the
+		# retaining walls at z=0 and sort by their unraised footprint.
+		var anchor := Node2D.new()
+		anchor.z_index = int(part.get("layer",0))
+		anchor.position.y = float(part.depth)*16
+		var points: PackedVector2Array = part.node.polygon
+		for index in points.size(): points[index] -= anchor.position
+		part.node.polygon = points
+		root.add_child(anchor)
+		anchor.add_child(part.node)
 
 func _touches_path(u: int, v: int, fu: int, fv: int, reach: int = 1) -> bool:
 	for y in range(v-reach, v+fv+reach):

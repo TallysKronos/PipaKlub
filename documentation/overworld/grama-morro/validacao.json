@@ -1,0 +1,56 @@
+{
+  "tileSize": [
+    64,
+    32
+  ],
+  "variants": 8,
+  "nearlySmooth": [
+    6,
+    7
+  ],
+  "opaquePixelsPerDiamond": 1024,
+  "transparentInteriorPixels8x8": 0,
+  "adjacencyChecks": 256,
+  "field": [
+    8,
+    8
+  ],
+  "decals": 7,
+  "decalSize": [
+    64,
+    48
+  ],
+  "decalAnchor": [
+    32,
+    32
+  ],
+  "decalCollision": false,
+  "bakedYardShadow": false,
+  "mirroredAssets": [
+    "chao\\grama-0.png",
+    "chao\\grama-1.png",
+    "chao\\grama-2.png",
+    "chao\\grama-3.png",
+    "chao\\grama-4.png",
+    "chao\\grama-5.png",
+    "chao\\grama-6.png",
+    "chao\\grama-7.png",
+    "decalques\\capim-alto-0.png",
+    "decalques\\capim-alto-1.png",
+    "decalques\\capim-alto-2.png",
+    "decalques\\terra-batida-0.png",
+    "decalques\\terra-batida-1.png",
+    "decalques\\trevo-flor-0.png",
+    "decalques\\trevo-flor-1.png"
+  ],
+  "nativeGodotField": {
+    "zoom": 1.4,
+    "underlay": false,
+    "size": [
+      1280,
+      720
+    ],
+    "interiorPixelsTested": 126024,
+    "blackGaps": 0
+  }
+}
