@@ -1,0 +1,113 @@
+extends RefCounted
+## Single-process local store. Backups cover interrupted replacement on Windows.
+## Does not promise fsync/power-loss durability or online certification.
+const State = preload("res://scripts/campaign/state.gd")
+const DIRECTORY := "user://campaign"
+const MAX_BYTES := 8 * 1024 * 1024
+var directory: String
+
+func _init(storage_directory: String = DIRECTORY) -> void:
+	directory = storage_directory
+
+func _path(slot_id: String) -> String:
+	return directory.path_join(slot_id + ".json")
+
+func _read(path: String, slot_id: String) -> Dictionary:
+	if not FileAccess.file_exists(path):
+		return {"status": "missing"}
+	var file := FileAccess.open(path, FileAccess.READ)
+	if file == null:
+		return {"status": "io_error"}
+	if file.get_length() > MAX_BYTES:
+		return {"status": "invalid"}
+	var parser := JSON.new()
+	if parser.parse(file.get_as_text()) != OK:
+		return {"status": "invalid"}
+	var status: String = State.inspect(parser.data, slot_id)
+	return {"status": status, "data": parser.data if status == "ok" else {}}
+
+func load_slot(slot_id: String) -> Dictionary:
+	if not State.valid_slot(slot_id):
+		return {"status": "invalid_slot"}
+	var primary := _read(_path(slot_id), slot_id)
+	var backup := _read(_path(slot_id) + ".bak", slot_id)
+	# Never silently fall back to an old backup over an unknown/newer format.
+	for candidate in [primary, backup]:
+		if candidate.status in ["future", "unsupported", "io_error"]:
+			return {"status": candidate.status}
+	if primary.status == "ok":
+		return {"status": "ok", "data": primary.data, "recovered": false}
+	if backup.status == "ok":
+		return {"status": "ok", "data": backup.data, "recovered": true}
+	return {"status": "missing" if primary.status == "missing" and backup.status == "missing" else "corrupt"}
+
+func create_slot(slot_id: String) -> Dictionary:
+	if not State.valid_slot(slot_id):
+		return {"status": "invalid_slot"}
+	if FileAccess.file_exists(_path(slot_id)) or FileAccess.file_exists(_path(slot_id) + ".bak"):
+		return {"status": "occupied"}
+	return _save(State.fresh(slot_id), true)
+
+func save_slot(snapshot: Dictionary) -> Dictionary:
+	return _save(snapshot, false)
+
+func _write_checked(path: String, data: Dictionary) -> Error:
+	var text := JSON.stringify(data, "\t")
+	if text.to_utf8_buffer().size() > MAX_BYTES:
+		return ERR_OUT_OF_MEMORY
+	var file := FileAccess.open(path, FileAccess.WRITE)
+	if file == null:
+		return FileAccess.get_open_error()
+	file.store_string(text)
+	file.flush()
+	var error := file.get_error()
+	file.close()
+	if error != OK:
+		return error
+	var check := _read(path, str(data.slotId))
+	# JSON reads numbers as floats; compare against the serialized representation.
+	if check.status != "ok" or check.data != JSON.parse_string(text):
+		return ERR_FILE_CORRUPT
+	return OK
+
+func _save(snapshot: Dictionary, creating: bool) -> Dictionary:
+	var slot_id: String = str(snapshot.get("slotId", ""))
+	var inspection: String = State.inspect(snapshot, slot_id)
+	if inspection != "ok":
+		return {"status": inspection}
+	var current := load_slot(slot_id)
+	if creating:
+		if current.status != "missing":
+			return {"status": "occupied"}
+	else:
+		if current.status != "ok":
+			return current
+		if snapshot.revision != current.data.revision:
+			return {"status": "stale"}
+	var error := DirAccess.make_dir_recursive_absolute(directory)
+	if error != OK:
+		return {"status": "io_error", "error": error}
+	var next := snapshot.duplicate(true)
+	next.revision = int(snapshot.revision) + 1
+	var path := _path(slot_id)
+	error = _write_checked(path + ".tmp", next)
+	if error != OK:
+		return {"status": "io_error", "error": error}
+	# On recovery, leave the good backup untouched. Preserve the damaged primary
+	# separately before replacing it, so recovery never destroys the sole good copy.
+	if not creating and current.recovered and FileAccess.file_exists(path):
+		var damaged := path + ".damaged-" + FileAccess.get_sha256(path)
+		if not FileAccess.file_exists(damaged):
+			error = DirAccess.copy_absolute(path, damaged)
+			if error != OK:
+				return {"status": "io_error", "error": error}
+	elif not creating:
+		error = _write_checked(path + ".bak.tmp", current.data)
+		if error == OK:
+			error = DirAccess.rename_absolute(path + ".bak.tmp", path + ".bak")
+		if error != OK:
+			return {"status": "io_error", "error": error}
+	error = DirAccess.rename_absolute(path + ".tmp", path)
+	if error != OK:
+		return {"status": "io_error", "error": error}
+	return {"status": "ok", "data": next, "recovered": current.get("recovered", false)}

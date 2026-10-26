@@ -118,5 +118,18 @@ function drawProp(o){
  }
  function pick(p){const hit=hitAreas.filter(a=>hitsBox(p,a)).sort((a,b)=>b.depth-a.depth)[0];return hit?.action?{id:hit.id,action:hit.action,target:hit.target}:hit?.id||null;}
  function reset(){grass.reset();}
- return {draw,camera,pick,reset,props,grass,mapImage:board,project:toIso,unproject:fromIso};
+ // Offline export reuses the same painter and footprints, without baking actors.
+ function exportLayers(){
+  const previousActor=actor,previousContext=g;actor={x:-10000,y:-10000};wind=0;paused=true;
+  const floor=createCanvas();floor.width=ground.width;floor.height=ground.height;
+  const ctx=floor.getContext('2d');ctx.drawImage(ground,0,0);ctx.translate(930,20);
+  for(const tuft of grass.tufts)drawTallGrass(ctx,tuft,{project:toIso,wind:0,paused:true});
+  const layers=props.map((o,index)=>{
+   const p=toIso(o),b=o.type==='fence'?{x:Math.min(toIso(o.a).x,toIso(o.b).x)-12,y:Math.min(toIso(o.a).y,toIso(o.b).y)-55,w:Math.abs(toIso(o.a).x-toIso(o.b).x)+24,h:Math.abs(toIso(o.a).y-toIso(o.b).y)+70}:propBox(o);
+   const left=Math.floor(b.x-20),top=Math.floor(b.y-20),canvas=createCanvas();canvas.width=Math.ceil(b.w+40);canvas.height=Math.ceil(b.h+55);
+   g=canvas.getContext('2d');g.translate(-left,-top);drawProp(o);
+   return {canvas,index,rect:[left+930,top+20,canvas.width,canvas.height],depth:p.y+20,point:[o.x,o.y],type:o.type};
+  });actor=previousActor;g=previousContext;return {floor,layers};
+ }
+ return {draw,camera,pick,reset,props,grass,mapImage:board,project:toIso,unproject:fromIso,exportLayers};
 }

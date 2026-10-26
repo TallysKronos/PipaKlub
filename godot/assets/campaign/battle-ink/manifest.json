@@ -1,0 +1,194 @@
+{
+  "name": "Soulmonsters Battle Ink v1",
+  "date": "2026-10-26",
+  "references": [
+    "User battle HUD sketches provided 2026-10-26; primary: colored action cards and creature portraits; secondary: ink cut-in and round badge"
+  ],
+  "scope": "Native Godot battle UI. Runtime text, bars, bindings, costs and input remain independent.",
+  "assets": {
+    "brush-clusters-v1.png": {
+      "status": "draft, not used"
+    },
+    "brush-clusters-v2.png": {
+      "tool": "Built-in image_gen",
+      "original": "exec-b326e70c-1b2e-4676-85ba-37fe2ccc5ff7.png",
+      "brief": "Four isolated black manga ink swashes with white scratch marks, 2x2 layout, transparent background; refined to remove haze.",
+      "size": [
+        1536,
+        1024
+      ],
+      "slicing": "Four AtlasTexture quadrants, fixed aspect ratio. Original raster preserved.",
+      "alpha_range": [
+        0,
+        254
+      ],
+      "validation": "Alpha inspected; ornamental overlay checked on real blue sky and colored cards. Not used as a stretched whole-panel background."
+    },
+    "icon-*.svg": {
+      "source": "Original editable silhouette paths written for these action identities.",
+      "size": [
+        64,
+        64
+      ],
+      "names": [
+        "attack",
+        "energy",
+        "dodge",
+        "puxao",
+        "line",
+        "team"
+      ]
+    },
+    "strip-*.svg": {
+      "source": "Original vector geometry",
+      "size": [
+        256,
+        64
+      ],
+      "slicing": [
+        28,
+        12,
+        28,
+        12
+      ],
+      "roles": [
+        "dark",
+        "paper"
+      ]
+    },
+    "portrait-regions.json": {
+      "source": "Alpha bounds from existing approved combat idle frames; no new creature design",
+      "regions": {
+        "rabbito": [
+          39,
+          25,
+          143,
+          196
+        ],
+        "basic-carcara": [
+          58,
+          70,
+          135,
+          120
+        ],
+        "basic-mata-verde": [
+          30,
+          38,
+          198,
+          167
+        ],
+        "basic-azulao": [
+          28,
+          38,
+          204,
+          171
+        ],
+        "basic-raio-de-sol": [
+          27,
+          44,
+          205,
+          163
+        ],
+        "lacertubo": [
+          29,
+          55,
+          199,
+          127
+        ]
+      }
+    },
+    "sprite-bounds.json": {
+      "source": "Union of alpha extents across all existing combat animation frames; shared crop stabilizes frame origin",
+      "note": "Runtime fit preserves aspect ratio and uses existing real animation frames. No collision/damage changes."
+    },
+    "veredas-arena-wide-v2.png": {
+      "tool": "Built-in image_gen",
+      "original": "exec-2f1b6e58-7e7f-494b-bfd5-1aabb9d05aeb.png",
+      "brief": "Open courtyard, broad visible stone floor, low forest-ruin horizon and clear sky, matching the supplied composition reference.",
+      "size": [
+        1672,
+        941
+      ],
+      "role": "Battle background, no baked HUD, characters or text",
+      "validation": "Inspected source image and in-engine rendering."
+    },
+    "rooftop-arena-wide-v2.png": {
+      "tool": "Built-in image_gen",
+      "original": "exec-e5377583-4f0b-4622-a4e7-38f559aebd08.png",
+      "brief": "Rooftop variant with terrace floor beginning at approximately 55 percent height; simple skyline and quiet sky.",
+      "size": [
+        1672,
+        941
+      ],
+      "role": "Battle background, no baked HUD, characters or text",
+      "validation": "Inspected source image and in-engine rendering."
+    },
+    "foreground-veredas-v1.png": {
+      "tool": "Built-in image_gen",
+      "original": "exec-7f350d27-c5b5-40f4-b796-38af63c15647.png",
+      "brief": "Dark teal opaque foliage and rocks, transparent empty middle/top, wide 3:1 foreground strip; tall side clusters and low center.",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_range": [
+        0,
+        255
+      ],
+      "role": "Foreground decoration behind controls; left/right proportional caps and repeated low center region. No collisions or input."
+    },
+    "card-ripped-v2.svg": {
+      "source": "Original editable vector path",
+      "size": [
+        256,
+        160
+      ],
+      "slicing": [
+        30,
+        24,
+        30,
+        24
+      ],
+      "role": "Ripped card face; colored by material, separate selection burst, labels and keycap."
+    }
+  },
+  "palette": {
+    "cut": "#ff4866",
+    "skill": "#499df5",
+    "dodge": "#ffda32",
+    "pull": "#ff962e",
+    "guard": "#b17af0",
+    "signature": "#17d9ba",
+    "line": "#0bd1a1",
+    "structure": "#ffcf18",
+    "energy": "#29c8f2"
+  },
+  "integration": [
+    "battle_ink.gd",
+    "hud_action.gd",
+    "encounter_view.gd",
+    "morro_battle_view.gd"
+  ],
+  "validation": {
+    "matrix_captures": 70,
+    "targeted_captures": 35,
+    "resolutions": [
+      "960x540",
+      "1024x768",
+      "1270x710",
+      "1280x720",
+      "1280x800",
+      "1920x1080",
+      "2560x1080"
+    ],
+    "scope": "Rendered snapshots include pause, low energy, results, failed save, boss intro, long names and actual windup state fixtures."
+  },
+  "revision_wide_arena": {
+    "date": "2026-10-26",
+    "card_minimum_height": 132,
+    "projection": "Separate screen X/Y field projection, proportional sprite compensation. Effects use the same position projection; text remains in HUD space. Logical rules, limits, saves and hit tests unchanged.",
+    "flight_reserve": "192 UI units below status, 240 for three-player round header. Anchors terminate 30 UI units above cards.",
+    "selection": "Coral/white jagged burst and pale caption band. Only the selected command gets the persistent burst.",
+    "evidence": "documentation/BATTLE-WIDE-2026-10-26.md"
+  }
+}

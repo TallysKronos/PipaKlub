@@ -1,8 +1,10 @@
 ; Experimental native client. Independent local save, no production credentials.
 config_version=5
 [application]
-config/name="Soulmonsters — Veredas · Godot"
-run/main_scene="res://scenes/illustrated_veredas.tscn"
+config/name="PipaKlub"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="PipaKlub"
+run/main_scene="res://scenes/campaign.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 [display]
 window/size/viewport_width=1280
@@ -10,6 +12,7 @@ window/size/viewport_height=720
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 [rendering]
 renderer/rendering_method="gl_compatibility"
 textures/default_filters/use_nearest_mipmap_filter=false

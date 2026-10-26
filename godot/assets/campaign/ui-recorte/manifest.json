@@ -1,0 +1,169 @@
+{
+  "version": 1,
+  "name": "Soulmonsters · HUD Recorte",
+  "date": "2026-10-25",
+  "engine": "Godot 4.7.2",
+  "source_reference": "documentation/HUD-Recorte-referencia.html",
+  "generation": {
+    "tool": "Built-in image_gen",
+    "prompt": "Create a production-ready transparent PNG sheet of FOUR decorative corner ornaments for the original 2D monster-tamer game SOULMONSTERS. NOT a UI mockup, NOT rectangular cards. Four isolated ornaments, generous transparent spacing, 2x2 arrangement. Each is a small asymmetrical hand-illustrated assembly of folded kite paper, tiny bamboo cross spars, tied black string knots and flowing kite-tail ribbons. Top-left: cyan paper kite and cream knot with two short coral tail bows, silhouette sweeping down-right. Top-right: coral paper folded kite with cream bamboo and cyan tail, sweeping down-left. Bottom-left: cream/cyan knot with two folded paper tail bows sweeping up-right. Bottom-right: coral/cyan folded paper diamond and loose curved string sweeping up-left. Modern playful shonen manga print aesthetics, bold black ink contours, crisp flat colors, very minimal cel shading, no gold fantasy metal filigree, no 3D, no gradients, no glow, no text, no letters, no interface backgrounds. Fixed palette black #0B1017, navy #141E29, cream #F4E9D2, cyan #2EC8E3, coral #FF5A36, tiny yellow #FFC23D stitch accent. Clear readable silhouettes at 60 pixels. All four entire shapes visible, equal visual scale. Actual transparent background. The ornaments will be mounted separately at fixed size on stretchable Godot HUD surfaces.",
+    "refinement_prompt": "Edit this four-ornament Soulmonsters sheet. Preserve the exact four illustrated kite/ribbon designs, colors, spacing and 2x2 positions. Remove ALL glowing colored haze, all soft shadows, and ALL background from between and behind the ornaments. Make the colored paper, bamboo and black ink outlines fully opaque (alpha255), crisp. Everything outside the actual outlines must be fully transparent (alpha0), including space between strings and bows. No lighting halos. Actual transparent cutout PNG. Maintain flat 2D ink manga look; no text. These must be clean cutout game assets.",
+    "selected_original": "exec-bf72648a-bb45-4cd0-ac34-67078fc4d466.png",
+    "project_file": "kite-ornaments-v1.png",
+    "note": "Original generated image copied without raster rewriting. Four independent AtlasTexture quadrant regions. RGB under transparent alpha contains color haze; in-engine alpha composition verified."
+  },
+  "materials": {
+    "palette": [
+      "#0B1017",
+      "#141E29",
+      "#22303F",
+      "#33475A",
+      "#F4E9D2",
+      "#D8C9AC",
+      "#FF5A36",
+      "#2EC8E3",
+      "#FFC23D",
+      "#6FD08C"
+    ],
+    "outline": "black ink, flat folded paper, bamboo spars and knots",
+    "exclude": [
+      "3D bevel",
+      "metal filigree",
+      "glow",
+      "baked lettering"
+    ]
+  },
+  "assets": [
+    {
+      "file": "kite-ornaments-v1.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "alpha": true,
+      "regions": [
+        [
+          0,
+          0,
+          768,
+          512
+        ],
+        [
+          768,
+          0,
+          768,
+          512
+        ],
+        [
+          0,
+          512,
+          768,
+          512
+        ],
+        [
+          768,
+          512,
+          768,
+          512
+        ]
+      ],
+      "role": "separate proportional ornaments",
+      "provenance": "AI-generated for this project; no third-party downloaded art",
+      "status": "alpha and in-engine composition checked"
+    },
+    {
+      "files": "frame-{dark,danger,paper}.svg",
+      "size": [
+        256,
+        128
+      ],
+      "slice": [
+        24,
+        24,
+        24,
+        24
+      ],
+      "role": "nine-patch frame; only flat centers and straight edge middles grow",
+      "provenance": "Original editable project artwork, scripts/build-recorte-ui.mjs"
+    },
+    {
+      "files": "button-{normal,hover,pressed,disabled,focus}.svg",
+      "size": [
+        160,
+        64
+      ],
+      "slice": [
+        26,
+        12,
+        26,
+        12
+      ],
+      "role": "consistent fixed caps across all states"
+    },
+    {
+      "files": "icon-*.svg",
+      "size": [
+        64,
+        64
+      ],
+      "count": 12,
+      "role": "folded paper action/navigation icons, aspect fit"
+    },
+    {
+      "files": "ribbon-{victory,defeat}.svg",
+      "size": [
+        720,
+        160
+      ],
+      "role": "whole proportional result ribbon, no embedded text"
+    },
+    {
+      "files": "toggle-{on,off}.svg",
+      "size": [
+        84,
+        40
+      ],
+      "role": "fixed-size diamond switch"
+    },
+    {
+      "file": "splat.svg",
+      "size": [
+        256,
+        192
+      ],
+      "role": "monochrome tintable ink impact"
+    },
+    {
+      "file": "thread-mark.svg",
+      "size": [
+        320,
+        100
+      ],
+      "role": "header mark with double thread and kite"
+    }
+  ],
+  "contract": {
+    "filter": "linear, no mipmaps for UI",
+    "text": "live Godot Label or draw_string; never embedded in image",
+    "decorations": "mouse ignore; independent fixed size; no contribution to Container minimum",
+    "minimums": "48px target height, frame >= sum of source caps; content may increase minimum",
+    "tests": "hud_checks.gd, campaign_view_checks.gd; graphical captures at 1280x720 and 1024x768"
+  },
+  "revision_2026_10_26": {
+    "frame_change": "Removed cyan corner plates and multiple bevel-like inner strokes. Fixed 24px caps retained; solid ink shadow.",
+    "item_family": [
+      "item-basica.svg",
+      "item-mata.svg",
+      "item-azulao.svg",
+      "item-raio.svg",
+      "item-lacertubo.svg",
+      "item-quest-nina-tail.svg"
+    ],
+    "source": "scripts/build-recorte-ui.mjs; original editable SVG geometry",
+    "size": [
+      64,
+      64
+    ],
+    "selection": "Paper pressed state distinct from focus; quantity and mission text remain live UI"
+  }
+}

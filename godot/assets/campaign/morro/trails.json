@@ -1,0 +1,240 @@
+{
+  "stages": [
+    {
+      "id": "morro-1",
+      "name": "Primeiro cruzamento",
+      "level": 1,
+      "rounds": 2,
+      "coins": 10,
+      "foes": [
+        {
+          "name": "Zeca",
+          "color": 0
+        }
+      ],
+      "tip": "Cruze sua linha na faixa tracejada dele e segure o clique quando a mira ficar verde.",
+      "trail": "morro",
+      "trailIndex": 0,
+      "index": 0
+    },
+    {
+      "id": "morro-2",
+      "name": "Folha ao vento",
+      "level": 2,
+      "rounds": 2,
+      "coins": 12,
+      "foes": [
+        {
+          "name": "Bia",
+          "color": 1
+        }
+      ],
+      "tip": "A Bia muda de lado num sopro. Não persiga a pipa: espere a linha dela cruzar a sua.",
+      "trail": "morro",
+      "trailIndex": 0,
+      "index": 1
+    },
+    {
+      "id": "morro-3",
+      "counter": 2,
+      "name": "Dois na laje",
+      "level": 2,
+      "rounds": 2,
+      "coins": 16,
+      "foes": [
+        {
+          "name": "Juninho",
+          "color": 2
+        },
+        {
+          "name": "Lia",
+          "color": 3
+        }
+      ],
+      "tip": "Com três no céu, deixe os dois se cortarem e entre para terminar o serviço.",
+      "trail": "morro",
+      "trailIndex": 0,
+      "index": 2
+    },
+    {
+      "id": "morro-4",
+      "name": "Teimosia azul",
+      "level": 3,
+      "rounds": 2,
+      "coins": 18,
+      "foes": [
+        {
+          "name": "Tião",
+          "color": 2
+        }
+      ],
+      "tip": "Quando aparecer o anel vermelho, você está na mira: aperte Shift (ou ESQ) para esquivar. Esquivando na hora do puxão, o próximo acerto sai crítico.",
+      "trail": "morro",
+      "trailIndex": 0,
+      "index": 3
+    },
+    {
+      "id": "morro-5",
+      "drop": "rabiola-raio-de-sol",
+      "name": "Desafio de Mikka",
+      "level": 4,
+      "rounds": 3,
+      "coins": 30,
+      "boss": true,
+      "foes": [
+        {
+          "name": "Mikka",
+          "color": 3
+        }
+      ],
+      "tip": "Mikka lê o céu como um mapa. Guarde energia: quem puxa sem parar perde o fôlego.",
+      "trail": "morro",
+      "trailIndex": 0,
+      "index": 4
+    }
+  ],
+  "stories": {
+    "morro-1": {
+      "styles": [
+        "patient"
+      ],
+      "tactic": "Zeca observa o cruzamento antes de puxar.",
+      "before": [
+        [
+          "Zeca",
+          "Quem passa por esse portão ganha uma boa-vinda e um desafio! Não precisa correr: me mostra seu primeiro rebique."
+        ]
+      ],
+      "won": [
+        [
+          "Zeca",
+          "Aí sim! Você ouviu o vento antes de puxar. A Bia está na escadaria, debaixo da árvore. Ela nunca fica parada!"
+        ]
+      ],
+      "lost": [
+        [
+          "Zeca",
+          "Sem pressa. Olha para onde as linhas se cruzam e guarda energia para a hora certa. O portão continua aberto para você."
+        ]
+      ],
+      "nextHint": "Siga até a árvore da escadaria. Bia lê o vento pelas folhas."
+    },
+    "morro-2": {
+      "styles": [
+        "mobile"
+      ],
+      "tactic": "Bia muda de posição, mas demora um pouco mais para preparar o rebique.",
+      "before": [
+        [
+          "Bia",
+          "Tá vendo as folhas? Elas avisam quando o vento vai virar. Eu gosto de mudar de lado com ele. Consegue me acompanhar?"
+        ]
+      ],
+      "won": [
+        [
+          "Bia",
+          "Você encontrou meu ritmo! Lá na laje tem uma dupla fazendo barulho. O Juninho pensa antes de puxar; a Lia vai na frente."
+        ]
+      ],
+      "lost": [
+        [
+          "Bia",
+          "Não precisa me perseguir pelo céu inteiro. Espera minha linha passar pelo seu caminho. Tenta mais uma vez!"
+        ]
+      ],
+      "nextHint": "Na laje, Juninho e Lia voam juntos — mas cada um tem seu ritmo."
+    },
+    "morro-3": {
+      "styles": [
+        "patient",
+        "mobile"
+      ],
+      "tactic": "Juninho prepara puxões com calma; Lia se movimenta mais. Os rivais também disputam entre si.",
+      "before": [
+        [
+          "Juninho",
+          "Aqui na laje a gente combina o começo, mas cada pipa faz seu caminho."
+        ],
+        [
+          "Lia",
+          "E eu não prometo esperar ninguém! Quando três linhas se encontram, vale escolher bem a sua hora."
+        ]
+      ],
+      "won": [
+        [
+          "Juninho",
+          "Boa leitura! Você não entrou no meio da confusão."
+        ],
+        [
+          "Lia",
+          "O Tião está no mirante da caixa-d’água. Se ele fechar a guarda, muda o jeito de chegar!"
+        ]
+      ],
+      "lost": [
+        [
+          "Juninho",
+          "Com três no céu, dá para observar antes de entrar."
+        ],
+        [
+          "Lia",
+          "Escolhe um cruzamento bom. Correr atrás de todo mundo só gasta fôlego!"
+        ]
+      ],
+      "nextHint": "Suba até o mirante da caixa-d’água. Tião prefere guardar energia."
+    },
+    "morro-4": {
+      "styles": [
+        "guard"
+      ],
+      "tactic": "Tião conserva energia e procura sair de cruzamentos perigosos.",
+      "before": [
+        [
+          "Tião",
+          "Lá de cima parece que dá para alcançar tudo. Eu prefiro guardar o fôlego e escolher meu espaço. Vamos ver como você chega."
+        ]
+      ],
+      "won": [
+        [
+          "Tião",
+          "Você teve paciência para encontrar a abertura. O parque fica logo depois do mirante. Tem alguém esperando por quem consegue chegar até lá."
+        ]
+      ],
+      "lost": [
+        [
+          "Tião",
+          "Minha guarda não fica fechada para sempre. Voa, observa e muda o ângulo. O céu tem mais de um caminho."
+        ]
+      ],
+      "nextHint": "O caminho do parque está aberto. Uma última pipa espera no gramado."
+    },
+    "morro-5": {
+      "styles": [
+        "reader"
+      ],
+      "tactic": "Mikka guarda energia e prepara o rebique depois de ler o cruzamento.",
+      "before": [
+        [
+          "Mikka",
+          "Então foi você que atravessou o bairro! Sou Mikka. Cada um daqui te mostrou um jeito de voar. Agora quero conhecer o seu."
+        ],
+        [
+          "Mikka",
+          "Não precisa imitar ninguém. Encontre seu espaço, escute o vento e vamos fazer uma boa história no céu."
+        ]
+      ],
+      "won": [
+        [
+          "Mikka",
+          "Você conquistou o Morro do Sol! Essa rabiola é o começo de um novo laço. Passe no ateliê do professor para conhecer seu próximo parceiro."
+        ]
+      ],
+      "lost": [
+        [
+          "Mikka",
+          "Você chegou até aqui por mérito seu. Não deixa um duelo apagar os outros encontros. Descansa, observa seu parceiro e volta quando quiser."
+        ]
+      ],
+      "nextHint": "Você concluiu a história desta demo. Revisite o Morro, cuide dos seus parceiros e desafie seus amigos no online."
+    }
+  }
+}

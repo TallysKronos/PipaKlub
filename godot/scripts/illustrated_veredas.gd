@@ -176,12 +176,7 @@ func _physics_process(delta: float) -> void:
 	if modal.visible or paused:
 		avatar.moving=false
 		return
-	var direction:=Vector2(float(Input.is_physical_key_pressed(KEY_D) or Input.is_physical_key_pressed(KEY_RIGHT))-float(Input.is_physical_key_pressed(KEY_A) or Input.is_physical_key_pressed(KEY_LEFT)),float(Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN))-float(Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP)))
-	if not Input.get_connected_joypads().is_empty():
-		var device: int=Input.get_connected_joypads()[0]
-		var stick:=Vector2(Input.get_joy_axis(device,JOY_AXIS_LEFT_X),Input.get_joy_axis(device,JOY_AXIS_LEFT_Y))
-		if stick.length()>.2:
-			direction=stick
+	var direction := _movement_direction()
 	var before:=player
 	if direction.length()>.1:
 		route.clear()
@@ -477,3 +472,12 @@ func _proof() -> void:
 	await RenderingServer.frame_post_draw
 	get_viewport().get_texture().get_image().save_png("res://proof-illustrated.png")
 	get_tree().quit(0)
+
+func _movement_direction() -> Vector2:
+	var direction:=Vector2(float(Input.is_physical_key_pressed(KEY_D) or Input.is_physical_key_pressed(KEY_RIGHT))-float(Input.is_physical_key_pressed(KEY_A) or Input.is_physical_key_pressed(KEY_LEFT)),float(Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN))-float(Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP)))
+	if not Input.get_connected_joypads().is_empty():
+		var device: int=Input.get_connected_joypads()[0]
+		var stick:=Vector2(Input.get_joy_axis(device,JOY_AXIS_LEFT_X),Input.get_joy_axis(device,JOY_AXIS_LEFT_Y))
+		if stick.length()>.2:
+			direction=stick
+	return direction

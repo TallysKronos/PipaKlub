@@ -1,0 +1,196 @@
+extends Node2D
+const Controls = preload("res://scripts/campaign/controls.gd")
+## Uses the original room coordinates, footprints and 2:1 projection.
+signal interacted(id: String)
+const Avatar = preload("res://scripts/avatar.gd")
+var data: Dictionary
+var actor := Vector2.ZERO
+var can_walk := false
+var target_hotspot := ""
+var avatar: Node2D
+var props: Array[Dictionary] = []
+var camera: Dictionary
+var near := ""
+var companion: Sprite2D
+var companion_frames: Array = []
+var companion_point := Vector2.ZERO
+var trail: Array[Vector2] = []
+var clock := 0.0
+
+func configure(room: Dictionary, point: Array, walk: bool, target: String, mother: bool, partner: bool) -> void:
+	for child in get_children():
+		child.free()
+	props.clear()
+	companion = null
+	companion_frames.clear()
+	trail.clear()
+	data = room
+	camera = data.camera
+	actor = Vector2(point[0], point[1])
+	can_walk = walk
+	target_hotspot = target
+	var floor_sprite := Sprite2D.new()
+	floor_sprite.texture = load("res://assets/campaign/" + data.floorImage)
+	floor_sprite.centered = false
+	floor_sprite.z_index = 0
+	add_child(floor_sprite)
+	for prop in data.props:
+		var sprite := Sprite2D.new()
+		sprite.texture = load("res://assets/campaign/" + prop.image)
+		sprite.centered = false
+		sprite.position = Vector2(prop.rect[0], prop.rect[1])
+		sprite.scale = Vector2(prop.rect[2], prop.rect[3]) / sprite.texture.get_size()
+		add_child(sprite)
+		props.append({"node": sprite, "rect": prop.footprint, "layer": "flat" if prop.kind == "flat" else "wall" if prop.kind.begins_with("wall") else ""})
+	avatar = Avatar.new()
+	add_child(avatar)
+	avatar.scale = Vector2.ONE * .80 * float(camera.scale)
+	props.append({"node": avatar, "rect": {}, "layer": "", "actor": true})
+	if mother:
+		var npc := Sprite2D.new()
+		if data.get("id") == "professor":
+			npc.texture = load("res://assets/campaign/assis-overworld.png")
+			npc.offset = Vector2(0, -npc.texture.get_height() / 2.0)
+			npc.scale = Vector2.ONE * 102 / npc.texture.get_height() * float(camera.scale)
+		else:
+			npc.texture = load("res://assets/campaign/mother-overworld.png")
+			npc.region_enabled = true
+			npc.region_rect = Rect2(0, 0, 384, 512)
+			npc.offset = Vector2(-22, -245)
+			npc.scale = Vector2.ONE * .22 * float(camera.scale)
+		var location: Array = data.layout.blocking.mother
+		npc.position = project(Vector2(location[0], location[1]))
+		add_child(npc)
+		props.append({"node": npc, "rect": _foot(Vector2(location[0], location[1])), "layer": ""})
+	if partner:
+		var rabbit := Sprite2D.new()
+		rabbit.texture = load("res://assets/rabbito.png")
+		var atlas: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/rabbito.json"))
+		var frame: Dictionary = atlas.frames[atlas.animations.idle[0]].frame
+		rabbit.region_enabled = true
+		rabbit.region_rect = Rect2(frame.x, frame.y, frame.w, frame.h)
+		rabbit.offset = Vector2(0, -100)
+		rabbit.scale = Vector2.ONE * .27 * float(camera.scale)
+		companion_point = actor + Vector2(-60, 30)
+		if not _safe(companion_point):
+			companion_point = actor
+		rabbit.position = project(companion_point)
+		companion = rabbit
+		for key in atlas.animations.idle:
+			companion_frames.append(atlas.frames[key].frame)
+		trail.append(actor)
+		add_child(rabbit)
+		props.append({"node": rabbit, "rect": _foot(companion_point), "layer": "", "follower": true})
+	_update_order()
+
+func project(p: Vector2) -> Vector2:
+	var point := Vector2((p.x - p.y) * .82, (p.x + p.y) * .41) if data.get("projection") == "street" else Vector2((p.x - p.y) / 3, (p.x + p.y) / 6)
+	return (point - Vector2(camera.x, camera.y)) * float(camera.scale)
+
+func _foot(p: Vector2) -> Dictionary:
+	var u: float = (p.x - data.layout.floor.x) / 96
+	var v: float = (p.y - data.layout.floor.y) / 96
+	return {"u0": u - .12, "u1": u + .12, "v0": v - .12, "v1": v + .12}
+
+func _behind(a: Dictionary, b: Dictionary) -> bool:
+	return a.u1 <= b.u0 + .000001 or a.v1 <= b.v0 + .000001
+
+func _update_order() -> void:
+	avatar.position = project(actor)
+	if data.get("projection") == "street":
+		position = Vector2(480, 320) - avatar.position
+	var rest: Array[Dictionary] = []
+	var ordered: Array[Dictionary] = []
+	for layer in ["wall", "flat"]:
+		for item in props:
+			if item.layer == layer:
+				ordered.append(item)
+	for item in props:
+		if item.get("actor", false):
+			item.rect = _foot(actor)
+		if item.get("follower", false):
+			item.rect = _foot(companion_point)
+		if item.layer == "":
+			rest.append(item)
+	while not rest.is_empty():
+		var pick := -1
+		for i in rest.size():
+			var blocked := false
+			for j in rest.size():
+				if i != j and _behind(rest[j].rect, rest[i].rect) and not _behind(rest[i].rect, rest[j].rect):
+					blocked = true
+					break
+			if not blocked:
+				pick = i
+				break
+		if pick < 0:
+			pick = 0
+			for i in rest.size():
+				if rest[i].rect.u1 + rest[i].rect.v1 < rest[pick].rect.u1 + rest[pick].rect.v1:
+					pick = i
+		ordered.append(rest.pop_at(pick))
+	for i in ordered.size():
+		ordered[i].node.z_index = i + 1
+
+func _safe(p: Vector2) -> bool:
+	for dx in [-14, 0, 14]:
+		for dy in [-14, 0, 14]:
+			var inside := false
+			for r in data.walkable:
+				inside = inside or Rect2(r[0], r[1], r[2], r[3]).has_point(p + Vector2(dx, dy))
+			if not inside:
+				return false
+	for r in data.blocked:
+		if Rect2(r[0] - 14, r[1] - 14, r[2] + 28, r[3] + 28).has_point(p):
+			return false
+	return true
+
+func _process(delta: float) -> void:
+	if not is_instance_valid(avatar):
+		return
+	clock += delta
+	if is_instance_valid(companion):
+		var frame: Dictionary = companion_frames[int(clock * 12) % companion_frames.size()]
+		companion.region_rect = Rect2(frame.x, frame.y, frame.w, frame.h)
+		if trail.is_empty() or trail.back().distance_to(actor) > 8:
+			trail.append(actor)
+		var remaining := companion_point.distance_to(trail[0])
+		for i in range(1, trail.size()):
+			remaining += trail[i - 1].distance_to(trail[i])
+		if remaining > 70:
+			var next_point := companion_point.move_toward(trail[0], minf(remaining - 70, 400 * minf(delta, .05)))
+			if _safe(next_point):
+				companion_point = next_point
+			if companion_point.distance_to(trail[0]) < 1:
+				trail.pop_front()
+		companion.position = project(companion_point)
+		_update_order()
+	near = ""
+	for spot in data.hotspots:
+		if Vector2(spot.x, spot.y).distance_to(actor) <= 110:
+			near = spot.id
+	avatar.moving = false
+	if not can_walk:
+		return
+	var input := Controls.direction()
+	if input.length() < .1:
+		return
+	# Invert the room projection so screen directions match the player's input.
+	var world := Vector2(1.5 * input.x + 3 * input.y, 3 * input.y - 1.5 * input.x).normalized() * input.length() * 360 * minf(delta, .05)
+	var steps := maxi(1, ceili(world.length() / 4))
+	for i in steps:
+		var move := world / steps
+		if _safe(actor + move):
+			actor += move
+		elif _safe(actor + Vector2(move.x, 0)):
+			actor.x += move.x
+		elif _safe(actor + Vector2(0, move.y)):
+			actor.y += move.y
+	avatar.moving = true
+	avatar.facing = ("se" if input.x >= 0 else "sw") if input.y >= 0 else ("ne" if input.x >= 0 else "nw")
+	_update_order()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if can_walk and Controls.pressed(event, "interact") and not near.is_empty() and (near == target_hotspot or target_hotspot == "*"):
+		get_viewport().set_input_as_handled()
+		interacted.emit(near)

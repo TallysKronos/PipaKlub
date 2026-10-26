@@ -1,0 +1,5721 @@
+{
+  "park-trail": {
+    "id": "park-trail",
+    "name": "Parque dos Ventos · Jardim das Pipas",
+    "spawn": [
+      208,
+      816
+    ],
+    "walkable": [
+      {
+        "id": 1,
+        "name": "Prado explorável",
+        "x": 80,
+        "y": 192,
+        "w": 1376,
+        "h": 752,
+        "properties": {
+          "level": 0,
+          "ground_frame": "grass"
+        }
+      },
+      {
+        "id": 2,
+        "name": "Entrada",
+        "x": 144,
+        "y": 744,
+        "w": 160,
+        "h": 200,
+        "properties": {
+          "level": 0,
+          "ground_frame": "dirt",
+          "safe_area": true
+        }
+      },
+      {
+        "id": 3,
+        "name": "Passeio do jardim",
+        "x": 192,
+        "y": 744,
+        "w": 480,
+        "h": 144,
+        "properties": {
+          "level": 0,
+          "ground_frame": "dirt",
+          "safe_area": true
+        }
+      },
+      {
+        "id": 4,
+        "name": "Curva dos bancos",
+        "x": 528,
+        "y": 464,
+        "w": 144,
+        "h": 368,
+        "properties": {
+          "level": 0,
+          "ground_frame": "dirt",
+          "safe_area": true
+        }
+      },
+      {
+        "id": 5,
+        "name": "Passeio até a clareira",
+        "x": 576,
+        "y": 448,
+        "w": 800,
+        "h": 144,
+        "properties": {
+          "level": 0,
+          "ground_frame": "dirt",
+          "safe_area": true
+        }
+      },
+      {
+        "id": 6,
+        "name": "Saída entre árvores",
+        "x": 1232,
+        "y": 336,
+        "w": 144,
+        "h": 224,
+        "properties": {
+          "level": 0,
+          "ground_frame": "dirt",
+          "safe_area": true
+        }
+      },
+      {
+        "id": 7,
+        "name": "Largo de descanso",
+        "x": 272,
+        "y": 432,
+        "w": 280,
+        "h": 240,
+        "properties": {
+          "level": 0,
+          "ground_frame": "sidewalk",
+          "safe_area": true
+        }
+      },
+      {
+        "id": 8,
+        "name": "Acesso ao largo",
+        "x": 432,
+        "y": 576,
+        "w": 168,
+        "h": 96,
+        "properties": {
+          "level": 0,
+          "ground_frame": "dirt",
+          "safe_area": true
+        }
+      },
+      {
+        "id": 9,
+        "name": "Recanto do banco",
+        "x": 1040,
+        "y": 528,
+        "w": 160,
+        "h": 160,
+        "properties": {
+          "level": 0,
+          "ground_frame": "dirt",
+          "safe_area": true
+        }
+      },
+      {
+        "id": 40,
+        "name": "Capim da encosta",
+        "x": 742,
+        "y": 324,
+        "w": 350,
+        "h": 88,
+        "properties": {
+          "level": 0,
+          "ground_frame": "park-tall-grass",
+          "encounter_zone": "park-trail",
+          "habitat_id": "jardim-encosta"
+        }
+      },
+      {
+        "id": 41,
+        "name": "Lobulo da encosta",
+        "x": 766,
+        "y": 300,
+        "w": 290,
+        "h": 112,
+        "properties": {
+          "level": 0,
+          "ground_frame": "park-tall-grass",
+          "encounter_zone": "park-trail",
+          "habitat_id": "jardim-encosta"
+        }
+      },
+      {
+        "id": 42,
+        "name": "Borda da encosta",
+        "x": 756,
+        "y": 340,
+        "w": 308,
+        "h": 88,
+        "properties": {
+          "level": 0,
+          "ground_frame": "park-tall-grass",
+          "encounter_zone": "park-trail",
+          "habitat_id": "jardim-encosta"
+        }
+      },
+      {
+        "id": 43,
+        "name": "Capim do recanto arborizado",
+        "x": 160,
+        "y": 364,
+        "w": 144,
+        "h": 136,
+        "properties": {
+          "level": 0,
+          "ground_frame": "park-tall-grass",
+          "encounter_zone": "park-trail",
+          "habitat_id": "jardim-recanto"
+        }
+      },
+      {
+        "id": 44,
+        "name": "Lobulo do recanto",
+        "x": 184,
+        "y": 340,
+        "w": 84,
+        "h": 160,
+        "properties": {
+          "level": 0,
+          "ground_frame": "park-tall-grass",
+          "encounter_zone": "park-trail",
+          "habitat_id": "jardim-recanto"
+        }
+      },
+      {
+        "id": 45,
+        "name": "Borda do recanto",
+        "x": 174,
+        "y": 380,
+        "w": 102,
+        "h": 136,
+        "properties": {
+          "level": 0,
+          "ground_frame": "park-tall-grass",
+          "encounter_zone": "park-trail",
+          "habitat_id": "jardim-recanto"
+        }
+      },
+      {
+        "id": 46,
+        "name": "Capim do campo aberto",
+        "x": 752,
+        "y": 664,
+        "w": 264,
+        "h": 72,
+        "properties": {
+          "level": 0,
+          "ground_frame": "park-tall-grass",
+          "encounter_zone": "park-trail",
+          "habitat_id": "jardim-campo"
+        }
+      },
+      {
+        "id": 47,
+        "name": "Lobulo do campo",
+        "x": 776,
+        "y": 640,
+        "w": 204,
+        "h": 96,
+        "properties": {
+          "level": 0,
+          "ground_frame": "park-tall-grass",
+          "encounter_zone": "park-trail",
+          "habitat_id": "jardim-campo"
+        }
+      },
+      {
+        "id": 48,
+        "name": "Borda do campo",
+        "x": 766,
+        "y": 680,
+        "w": 222,
+        "h": 72,
+        "properties": {
+          "level": 0,
+          "ground_frame": "park-tall-grass",
+          "encounter_zone": "park-trail",
+          "habitat_id": "jardim-campo"
+        }
+      },
+      {
+        "id": 49,
+        "name": "Volta pelo campo aberto",
+        "x": 592,
+        "y": 768,
+        "w": 624,
+        "h": 112,
+        "properties": {
+          "level": 0,
+          "ground_frame": "dirt",
+          "safe_area": true
+        }
+      },
+      {
+        "id": 50,
+        "name": "Ramo leste do circuito",
+        "x": 1088,
+        "y": 520,
+        "w": 128,
+        "h": 304,
+        "properties": {
+          "level": 0,
+          "ground_frame": "dirt",
+          "safe_area": true
+        }
+      }
+    ],
+    "blocked": [
+      {
+        "id": 15,
+        "name": "park-tree-a",
+        "x": 29,
+        "y": 234,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 262
+        }
+      },
+      {
+        "id": 16,
+        "name": "park-tree-b",
+        "x": 383,
+        "y": 216,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 244
+        }
+      },
+      {
+        "id": 17,
+        "name": "park-tree-b",
+        "x": 631,
+        "y": 212,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 240
+        }
+      },
+      {
+        "id": 18,
+        "name": "park-tree-a",
+        "x": 791,
+        "y": 184,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 212
+        }
+      },
+      {
+        "id": 19,
+        "name": "park-tree-b",
+        "x": 1121,
+        "y": 214,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 242
+        }
+      },
+      {
+        "id": 20,
+        "name": "park-tree-b",
+        "x": 1281,
+        "y": 238,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 266
+        }
+      },
+      {
+        "id": 21,
+        "name": "park-tree-a",
+        "x": 1457,
+        "y": 236,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 264
+        }
+      },
+      {
+        "id": 22,
+        "name": "park-tree-b",
+        "x": 23,
+        "y": 502,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 530
+        }
+      },
+      {
+        "id": 23,
+        "name": "park-tree-b",
+        "x": 59,
+        "y": 732,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 760
+        }
+      },
+      {
+        "id": 24,
+        "name": "park-tree-a",
+        "x": 13,
+        "y": 982,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 1010
+        }
+      },
+      {
+        "id": 25,
+        "name": "park-tree-b",
+        "x": 1473,
+        "y": 486,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 514
+        }
+      },
+      {
+        "id": 26,
+        "name": "park-tree-b",
+        "x": 1461,
+        "y": 730,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 758
+        }
+      },
+      {
+        "id": 27,
+        "name": "park-tree-a",
+        "x": 1413,
+        "y": 972,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 1000
+        }
+      },
+      {
+        "id": 28,
+        "name": "park-tree-b",
+        "x": 401,
+        "y": 990,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 1018
+        }
+      },
+      {
+        "id": 29,
+        "name": "park-tree-b",
+        "x": 591,
+        "y": 974,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 1002
+        }
+      },
+      {
+        "id": 30,
+        "name": "park-tree-a",
+        "x": 833,
+        "y": 992,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 1020
+        }
+      },
+      {
+        "id": 31,
+        "name": "park-tree-b",
+        "x": 1081,
+        "y": 980,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 1008
+        }
+      },
+      {
+        "id": 32,
+        "name": "park-tree",
+        "x": 463,
+        "y": 226,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 254
+        }
+      },
+      {
+        "id": 33,
+        "name": "park-tree-flower",
+        "x": 185,
+        "y": 262,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 290
+        }
+      },
+      {
+        "id": 35,
+        "name": "park-tree-flower",
+        "x": 852,
+        "y": 738,
+        "w": 40,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 766
+        }
+      },
+      {
+        "id": 36,
+        "name": "bench",
+        "x": 372,
+        "y": 668,
+        "w": 96,
+        "h": 22,
+        "properties": {
+          "level": 0,
+          "sort_y": 690
+        }
+      },
+      {
+        "id": 37,
+        "name": "bench",
+        "x": 1070,
+        "y": 600,
+        "w": 96,
+        "h": 22,
+        "properties": {
+          "level": 0,
+          "sort_y": 622
+        }
+      },
+      {
+        "id": 38,
+        "name": "lamp",
+        "x": 267,
+        "y": 670,
+        "w": 18,
+        "h": 18,
+        "properties": {
+          "level": 0,
+          "sort_y": 688
+        }
+      },
+      {
+        "id": 39,
+        "name": "lamp",
+        "x": 1211,
+        "y": 608,
+        "w": 18,
+        "h": 18,
+        "properties": {
+          "level": 0,
+          "sort_y": 626
+        }
+      },
+      {
+        "id": 51,
+        "name": "park-tree-b",
+        "x": 721,
+        "y": 592,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 620
+        }
+      },
+      {
+        "id": 52,
+        "name": "park-tree-b",
+        "x": 893,
+        "y": 586,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 614
+        }
+      },
+      {
+        "id": 53,
+        "name": "park-tree-b",
+        "x": 989,
+        "y": 592,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 620
+        }
+      },
+      {
+        "id": 54,
+        "name": "coreto-post-0",
+        "x": 284,
+        "y": 459,
+        "w": 14,
+        "h": 14,
+        "properties": {
+          "level": 0,
+          "sort_y": 466
+        }
+      },
+      {
+        "id": 55,
+        "name": "coreto-post-1",
+        "x": 344,
+        "y": 418,
+        "w": 14,
+        "h": 14,
+        "properties": {
+          "level": 0,
+          "sort_y": 425
+        }
+      },
+      {
+        "id": 56,
+        "name": "coreto-post-2",
+        "x": 380,
+        "y": 359,
+        "w": 14,
+        "h": 14,
+        "properties": {
+          "level": 0,
+          "sort_y": 366
+        }
+      },
+      {
+        "id": 57,
+        "name": "coreto-post-3",
+        "x": 350,
+        "y": 310,
+        "w": 14,
+        "h": 14,
+        "properties": {
+          "level": 0,
+          "sort_y": 317
+        }
+      },
+      {
+        "id": 58,
+        "name": "coreto-post-4",
+        "x": 229,
+        "y": 431,
+        "w": 14,
+        "h": 14,
+        "properties": {
+          "level": 0,
+          "sort_y": 438
+        }
+      },
+      {
+        "id": 59,
+        "name": "entry-map",
+        "x": 250,
+        "y": 718,
+        "w": 140,
+        "h": 20,
+        "properties": {
+          "level": 0,
+          "sort_y": 738
+        }
+      },
+      {
+        "id": 60,
+        "name": "planter-west",
+        "x": 263,
+        "y": 618,
+        "w": 74,
+        "h": 20,
+        "properties": {
+          "level": 0,
+          "sort_y": 638
+        }
+      },
+      {
+        "id": 61,
+        "name": "planter-east",
+        "x": 481,
+        "y": 618,
+        "w": 74,
+        "h": 20,
+        "properties": {
+          "level": 0,
+          "sort_y": 638
+        }
+      },
+      {
+        "id": 62,
+        "name": "bin-west",
+        "x": 285,
+        "y": 638,
+        "w": 18,
+        "h": 16,
+        "properties": {
+          "level": 0,
+          "sort_y": 654
+        }
+      },
+      {
+        "id": 63,
+        "name": "bin-east",
+        "x": 1181,
+        "y": 621,
+        "w": 18,
+        "h": 16,
+        "properties": {
+          "level": 0,
+          "sort_y": 637
+        }
+      },
+      {
+        "id": 64,
+        "name": "lamp-west",
+        "x": 279,
+        "y": 464,
+        "w": 14,
+        "h": 14,
+        "properties": {
+          "level": 0,
+          "sort_y": 478
+        }
+      },
+      {
+        "id": 65,
+        "name": "lamp-east",
+        "x": 1293,
+        "y": 348,
+        "w": 14,
+        "h": 14,
+        "properties": {
+          "level": 0,
+          "sort_y": 362
+        }
+      }
+    ],
+    "places": [
+      {
+        "id": "tiled-11",
+        "name": "Voltar à Rua dos Ventos",
+        "node": 823,
+        "action": "street_scene",
+        "target": "quintal",
+        "point": [
+          208,
+          880
+        ]
+      },
+      {
+        "id": "tiled-12",
+        "name": "Seguir para a Clareira",
+        "node": 266,
+        "action": "street_scene",
+        "target": "park-clearing",
+        "point": [
+          1296,
+          400
+        ]
+      },
+      {
+        "id": "tiled-13",
+        "name": "Sr. Assis · encontros selvagens",
+        "node": 316,
+        "action": "wildGuide",
+        "point": [
+          336,
+          464
+        ]
+      },
+      {
+        "id": "tiled-14",
+        "name": "Descansar no largo",
+        "node": 622,
+        "action": "wildRest",
+        "point": [
+          432,
+          720
+        ]
+      },
+      {
+        "id": "tiled-66",
+        "name": "Descansar no banco leste",
+        "node": 569,
+        "action": "wildRest",
+        "point": [
+          1136,
+          656
+        ]
+      },
+      {
+        "id": "tiled-67",
+        "name": "Mapa do Parque dos Ventos",
+        "node": 701,
+        "action": "parkMap",
+        "point": [
+          336,
+          784
+        ]
+      }
+    ],
+    "props": [
+      {
+        "index": 0,
+        "rect": [
+          589,
+          -160,
+          330,
+          355
+        ],
+        "depth": 147.1,
+        "point": [
+          48,
+          262
+        ],
+        "type": "tree",
+        "image": "park-trail-0.png"
+      },
+      {
+        "index": 1,
+        "rect": [
+          930,
+          49,
+          259,
+          281
+        ],
+        "depth": 284.85999999999996,
+        "point": [
+          402,
+          244
+        ],
+        "type": "tree",
+        "image": "park-trail-1.png"
+      },
+      {
+        "index": 2,
+        "rect": [
+          1137,
+          149,
+          259,
+          281
+        ],
+        "depth": 384.9,
+        "point": [
+          650,
+          240
+        ],
+        "type": "tree",
+        "image": "park-trail-2.png"
+      },
+      {
+        "index": 3,
+        "rect": [
+          1250,
+          123,
+          340,
+          365
+        ],
+        "depth": 439.02,
+        "point": [
+          810,
+          212
+        ],
+        "type": "tree",
+        "image": "park-trail-3.png"
+      },
+      {
+        "index": 4,
+        "rect": [
+          1529,
+          335,
+          274,
+          297
+        ],
+        "depth": 586.62,
+        "point": [
+          1140,
+          242
+        ],
+        "type": "tree",
+        "image": "park-trail-4.png"
+      },
+      {
+        "index": 5,
+        "rect": [
+          1636,
+          403,
+          282,
+          305
+        ],
+        "depth": 662.06,
+        "point": [
+          1300,
+          266
+        ],
+        "type": "tree",
+        "image": "park-trail-5.png"
+      },
+      {
+        "index": 6,
+        "rect": [
+          1753,
+          417,
+          340,
+          365
+        ],
+        "depth": 733.4,
+        "point": [
+          1476,
+          264
+        ],
+        "type": "tree",
+        "image": "park-trail-6.png"
+      },
+      {
+        "index": 7,
+        "rect": [
+          404,
+          26,
+          251,
+          273
+        ],
+        "depth": 254.51999999999998,
+        "point": [
+          42,
+          530
+        ],
+        "type": "tree",
+        "image": "park-trail-7.png"
+      },
+      {
+        "index": 8,
+        "rect": [
+          237,
+          120,
+          267,
+          289
+        ],
+        "depth": 363.58,
+        "point": [
+          78,
+          760
+        ],
+        "type": "tree",
+        "image": "park-trail-8.png"
+      },
+      {
+        "index": 9,
+        "rect": [
+          -7,
+          200,
+          270,
+          293
+        ],
+        "depth": 447.21999999999997,
+        "point": [
+          32,
+          1010
+        ],
+        "type": "tree",
+        "image": "park-trail-9.png"
+      },
+      {
+        "index": 10,
+        "rect": [
+          1594,
+          591,
+          274,
+          297
+        ],
+        "depth": 842.4599999999999,
+        "point": [
+          1492,
+          514
+        ],
+        "type": "tree",
+        "image": "park-trail-10.png"
+      },
+      {
+        "index": 11,
+        "rect": [
+          1377,
+          671,
+          290,
+          313
+        ],
+        "depth": 937.5799999999999,
+        "point": [
+          1480,
+          758
+        ],
+        "type": "tree",
+        "image": "park-trail-11.png"
+      },
+      {
+        "index": 12,
+        "rect": [
+          1099,
+          671,
+          370,
+          396
+        ],
+        "depth": 1017.1199999999999,
+        "point": [
+          1432,
+          1000
+        ],
+        "type": "tree",
+        "image": "park-trail-12.png"
+      },
+      {
+        "index": 13,
+        "rect": [
+          317,
+          387,
+          245,
+          267
+        ],
+        "depth": 609.5799999999999,
+        "point": [
+          420,
+          1018
+        ],
+        "type": "tree",
+        "image": "park-trail-13.png"
+      },
+      {
+        "index": 14,
+        "rect": [
+          486,
+          458,
+          245,
+          267
+        ],
+        "depth": 680.92,
+        "point": [
+          610,
+          1002
+        ],
+        "type": "tree",
+        "image": "park-trail-14.png"
+      },
+      {
+        "index": 15,
+        "rect": [
+          652,
+          530,
+          280,
+          303
+        ],
+        "depth": 787.52,
+        "point": [
+          852,
+          1020
+        ],
+        "type": "tree",
+        "image": "park-trail-15.png"
+      },
+      {
+        "index": 16,
+        "rect": [
+          882,
+          662,
+          245,
+          267
+        ],
+        "depth": 884.28,
+        "point": [
+          1100,
+          1008
+        ],
+        "type": "tree",
+        "image": "park-trail-16.png"
+      },
+      {
+        "index": 17,
+        "rect": [
+          974,
+          60,
+          285,
+          309
+        ],
+        "depth": 321.76,
+        "point": [
+          482,
+          254
+        ],
+        "type": "tree",
+        "image": "park-trail-17.png"
+      },
+      {
+        "index": 18,
+        "rect": [
+          696,
+          -79,
+          325,
+          350
+        ],
+        "depth": 222.54,
+        "point": [
+          204,
+          290
+        ],
+        "type": "tree",
+        "image": "park-trail-18.png"
+      },
+      {
+        "index": 19,
+        "rect": [
+          719,
+          100,
+          300,
+          325
+        ],
+        "depth": 389.82,
+        "point": [
+          414,
+          488
+        ],
+        "type": "coreto",
+        "image": "park-trail-19.png"
+      },
+      {
+        "index": 20,
+        "rect": [
+          861,
+          405,
+          310,
+          334
+        ],
+        "depth": 691.5799999999999,
+        "point": [
+          872,
+          766
+        ],
+        "type": "tree",
+        "image": "park-trail-20.png"
+      },
+      {
+        "index": 21,
+        "rect": [
+          625,
+          361,
+          166,
+          149
+        ],
+        "depth": 475.09999999999997,
+        "point": [
+          420,
+          690
+        ],
+        "type": "bench",
+        "image": "park-trail-21.png"
+      },
+      {
+        "index": 22,
+        "rect": [
+          1253,
+          619,
+          166,
+          149
+        ],
+        "depth": 733.4,
+        "point": [
+          1118,
+          622
+        ],
+        "type": "bench",
+        "image": "park-trail-22.png"
+      },
+      {
+        "index": 23,
+        "rect": [
+          529,
+          255,
+          255,
+          204
+        ],
+        "depth": 415.23999999999995,
+        "point": [
+          276,
+          688
+        ],
+        "type": "windsock",
+        "image": "park-trail-23.png"
+      },
+      {
+        "index": 24,
+        "rect": [
+          1354,
+          616,
+          255,
+          204
+        ],
+        "depth": 776.8599999999999,
+        "point": [
+          1220,
+          626
+        ],
+        "type": "windsock",
+        "image": "park-trail-24.png"
+      },
+      {
+        "index": 25,
+        "rect": [
+          905,
+          355,
+          245,
+          267
+        ],
+        "depth": 577.6,
+        "point": [
+          740,
+          620
+        ],
+        "type": "tree",
+        "image": "park-trail-25.png"
+      },
+      {
+        "index": 26,
+        "rect": [
+          1051,
+          423,
+          245,
+          267
+        ],
+        "depth": 645.66,
+        "point": [
+          912,
+          614
+        ],
+        "type": "tree",
+        "image": "park-trail-26.png"
+      },
+      {
+        "index": 27,
+        "rect": [
+          1125,
+          465,
+          245,
+          267
+        ],
+        "depth": 687.4799999999999,
+        "point": [
+          1008,
+          620
+        ],
+        "type": "tree",
+        "image": "park-trail-27.png"
+      },
+      {
+        "index": 28,
+        "rect": [
+          652,
+          109,
+          135,
+          123
+        ],
+        "depth": 197.11999999999998,
+        "point": [
+          88,
+          344
+        ],
+        "type": "shrub",
+        "image": "park-trail-28.png"
+      },
+      {
+        "index": 29,
+        "rect": [
+          1700,
+          662,
+          135,
+          123
+        ],
+        "depth": 750.62,
+        "point": [
+          1402,
+          380
+        ],
+        "type": "shrub",
+        "image": "park-trail-29.png"
+      },
+      {
+        "index": 30,
+        "rect": [
+          1128,
+          847,
+          135,
+          123
+        ],
+        "depth": 935.1199999999999,
+        "point": [
+          1278,
+          954
+        ],
+        "type": "shrub",
+        "image": "park-trail-30.png"
+      },
+      {
+        "index": 31,
+        "rect": [
+          217,
+          346,
+          135,
+          123
+        ],
+        "depth": 434.09999999999997,
+        "point": [
+          112,
+          898
+        ],
+        "type": "shrub",
+        "image": "park-trail-31.png"
+      },
+      {
+        "index": 32,
+        "rect": [
+          706,
+          271,
+          128,
+          117
+        ],
+        "depth": 353.73999999999995,
+        "point": [
+          310,
+          504
+        ],
+        "type": "flowers",
+        "image": "park-trail-32.png"
+      },
+      {
+        "index": 33,
+        "rect": [
+          882,
+          352,
+          122,
+          113
+        ],
+        "depth": 430,
+        "point": [
+          508,
+          492
+        ],
+        "type": "flowers",
+        "image": "park-trail-33.png"
+      },
+      {
+        "index": 34,
+        "rect": [
+          496,
+          284,
+          182,
+          205
+        ],
+        "depth": 453.78,
+        "point": [
+          320,
+          738
+        ],
+        "type": "sign",
+        "image": "park-trail-34.png"
+      },
+      {
+        "index": 35,
+        "rect": [
+          592,
+          339,
+          120,
+          101
+        ],
+        "depth": 404.58,
+        "point": [
+          300,
+          638
+        ],
+        "type": "planter",
+        "image": "park-trail-35.png"
+      },
+      {
+        "index": 36,
+        "rect": [
+          771,
+          428,
+          120,
+          101
+        ],
+        "depth": 493.96,
+        "point": [
+          518,
+          638
+        ],
+        "type": "planter",
+        "image": "park-trail-36.png"
+      },
+      {
+        "index": 37,
+        "rect": [
+          600,
+          345,
+          69,
+          99
+        ],
+        "depth": 408.67999999999995,
+        "point": [
+          294,
+          654
+        ],
+        "type": "bin",
+        "image": "park-trail-37.png"
+      },
+      {
+        "index": 38,
+        "rect": [
+          1348,
+          705,
+          69,
+          99
+        ],
+        "depth": 769.0699999999999,
+        "point": [
+          1190,
+          637
+        ],
+        "type": "bin",
+        "image": "park-trail-38.png"
+      },
+      {
+        "index": 39,
+        "rect": [
+          731,
+          170,
+          83,
+          198
+        ],
+        "depth": 333.24,
+        "point": [
+          286,
+          478
+        ],
+        "type": "lamp",
+        "image": "park-trail-39.png"
+      },
+      {
+        "index": 40,
+        "rect": [
+          1657,
+          538,
+          83,
+          198
+        ],
+        "depth": 701.42,
+        "point": [
+          1300,
+          362
+        ],
+        "type": "lamp",
+        "image": "park-trail-40.png"
+      },
+      {
+        "index": 41,
+        "rect": [
+          1355,
+          375,
+          170,
+          164
+        ],
+        "depth": 776.8599999999999,
+        "point": [
+          1220,
+          626
+        ],
+        "type": "kite",
+        "image": "park-trail-41.png"
+      },
+      {
+        "index": 42,
+        "rect": [
+          822,
+          68,
+          134,
+          123
+        ],
+        "depth": 155.29999999999998,
+        "point": [
+          140,
+          190
+        ],
+        "type": "shrub",
+        "image": "park-trail-42.png"
+      },
+      {
+        "index": 43,
+        "rect": [
+          945,
+          129,
+          134,
+          123
+        ],
+        "depth": 216.79999999999998,
+        "point": [
+          290,
+          190
+        ],
+        "type": "shrub",
+        "image": "park-trail-43.png"
+      },
+      {
+        "index": 44,
+        "rect": [
+          1068,
+          191,
+          134,
+          123
+        ],
+        "depth": 278.3,
+        "point": [
+          440,
+          190
+        ],
+        "type": "shrub",
+        "image": "park-trail-44.png"
+      },
+      {
+        "index": 45,
+        "rect": [
+          1191,
+          252,
+          134,
+          123
+        ],
+        "depth": 339.79999999999995,
+        "point": [
+          590,
+          190
+        ],
+        "type": "shrub",
+        "image": "park-trail-45.png"
+      },
+      {
+        "index": 46,
+        "rect": [
+          1314,
+          314,
+          134,
+          123
+        ],
+        "depth": 401.29999999999995,
+        "point": [
+          740,
+          190
+        ],
+        "type": "shrub",
+        "image": "park-trail-46.png"
+      },
+      {
+        "index": 47,
+        "rect": [
+          1437,
+          375,
+          134,
+          123
+        ],
+        "depth": 462.79999999999995,
+        "point": [
+          890,
+          190
+        ],
+        "type": "shrub",
+        "image": "park-trail-47.png"
+      },
+      {
+        "index": 48,
+        "rect": [
+          1560,
+          437,
+          134,
+          123
+        ],
+        "depth": 524.3,
+        "point": [
+          1040,
+          190
+        ],
+        "type": "shrub",
+        "image": "park-trail-48.png"
+      },
+      {
+        "index": 49,
+        "rect": [
+          1683,
+          498,
+          134,
+          123
+        ],
+        "depth": 585.8,
+        "point": [
+          1190,
+          190
+        ],
+        "type": "shrub",
+        "image": "park-trail-49.png"
+      },
+      {
+        "index": 50,
+        "rect": [
+          1806,
+          560,
+          134,
+          123
+        ],
+        "depth": 647.3,
+        "point": [
+          1340,
+          190
+        ],
+        "type": "shrub",
+        "image": "park-trail-50.png"
+      },
+      {
+        "index": 51,
+        "rect": [
+          377,
+          474,
+          130,
+          120
+        ],
+        "depth": 558.74,
+        "point": [
+          360,
+          954
+        ],
+        "type": "shrub",
+        "image": "park-trail-51.png"
+      },
+      {
+        "index": 52,
+        "rect": [
+          517,
+          544,
+          130,
+          120
+        ],
+        "depth": 628.4399999999999,
+        "point": [
+          530,
+          954
+        ],
+        "type": "shrub",
+        "image": "park-trail-52.png"
+      },
+      {
+        "index": 53,
+        "rect": [
+          656,
+          613,
+          130,
+          120
+        ],
+        "depth": 698.14,
+        "point": [
+          700,
+          954
+        ],
+        "type": "shrub",
+        "image": "park-trail-53.png"
+      },
+      {
+        "index": 54,
+        "rect": [
+          796,
+          683,
+          130,
+          120
+        ],
+        "depth": 767.8399999999999,
+        "point": [
+          870,
+          954
+        ],
+        "type": "shrub",
+        "image": "park-trail-54.png"
+      },
+      {
+        "index": 55,
+        "rect": [
+          935,
+          753,
+          130,
+          120
+        ],
+        "depth": 837.54,
+        "point": [
+          1040,
+          954
+        ],
+        "type": "shrub",
+        "image": "park-trail-55.png"
+      },
+      {
+        "index": 56,
+        "rect": [
+          1074,
+          822,
+          130,
+          120
+        ],
+        "depth": 907.2399999999999,
+        "point": [
+          1210,
+          954
+        ],
+        "type": "shrub",
+        "image": "park-trail-56.png"
+      },
+      {
+        "index": 57,
+        "rect": [
+          1214,
+          892,
+          130,
+          120
+        ],
+        "depth": 976.9399999999999,
+        "point": [
+          1380,
+          954
+        ],
+        "type": "shrub",
+        "image": "park-trail-57.png"
+      },
+      {
+        "index": 58,
+        "rect": [
+          640,
+          104,
+          124,
+          115
+        ],
+        "depth": 184.82,
+        "point": [
+          62,
+          340
+        ],
+        "type": "shrub",
+        "image": "park-trail-58.png"
+      },
+      {
+        "index": 59,
+        "rect": [
+          1792,
+          679,
+          128,
+          118
+        ],
+        "depth": 762.0999999999999,
+        "point": [
+          1470,
+          340
+        ],
+        "type": "shrub",
+        "image": "park-trail-59.png"
+      },
+      {
+        "index": 60,
+        "rect": [
+          512,
+          168,
+          124,
+          115
+        ],
+        "depth": 248.36999999999998,
+        "point": [
+          62,
+          495
+        ],
+        "type": "shrub",
+        "image": "park-trail-60.png"
+      },
+      {
+        "index": 61,
+        "rect": [
+          1665,
+          742,
+          128,
+          118
+        ],
+        "depth": 825.65,
+        "point": [
+          1470,
+          495
+        ],
+        "type": "shrub",
+        "image": "park-trail-61.png"
+      },
+      {
+        "index": 62,
+        "rect": [
+          385,
+          231,
+          124,
+          115
+        ],
+        "depth": 311.91999999999996,
+        "point": [
+          62,
+          650
+        ],
+        "type": "shrub",
+        "image": "park-trail-62.png"
+      },
+      {
+        "index": 63,
+        "rect": [
+          1538,
+          806,
+          128,
+          118
+        ],
+        "depth": 889.1999999999999,
+        "point": [
+          1470,
+          650
+        ],
+        "type": "shrub",
+        "image": "park-trail-63.png"
+      },
+      {
+        "index": 64,
+        "rect": [
+          258,
+          295,
+          124,
+          115
+        ],
+        "depth": 375.46999999999997,
+        "point": [
+          62,
+          805
+        ],
+        "type": "shrub",
+        "image": "park-trail-64.png"
+      },
+      {
+        "index": 65,
+        "rect": [
+          1411,
+          869,
+          128,
+          118
+        ],
+        "depth": 952.75,
+        "point": [
+          1470,
+          805
+        ],
+        "type": "shrub",
+        "image": "park-trail-65.png"
+      },
+      {
+        "index": 66,
+        "rect": [
+          675,
+          -222,
+          287,
+          311
+        ],
+        "depth": 42.55,
+        "point": [
+          -40,
+          95
+        ],
+        "type": "tree",
+        "image": "park-trail-66.png"
+      },
+      {
+        "index": 67,
+        "rect": [
+          799,
+          -178,
+          311,
+          336
+        ],
+        "depth": 110.19999999999999,
+        "point": [
+          125,
+          95
+        ],
+        "type": "tree",
+        "image": "park-trail-67.png"
+      },
+      {
+        "index": 68,
+        "rect": [
+          934,
+          -110,
+          311,
+          336
+        ],
+        "depth": 177.85,
+        "point": [
+          290,
+          95
+        ],
+        "type": "tree",
+        "image": "park-trail-68.png"
+      },
+      {
+        "index": 69,
+        "rect": [
+          1069,
+          -42,
+          311,
+          336
+        ],
+        "depth": 245.5,
+        "point": [
+          455,
+          95
+        ],
+        "type": "tree",
+        "image": "park-trail-69.png"
+      },
+      {
+        "index": 70,
+        "rect": [
+          1205,
+          25,
+          311,
+          336
+        ],
+        "depth": 313.15,
+        "point": [
+          620,
+          95
+        ],
+        "type": "tree",
+        "image": "park-trail-70.png"
+      },
+      {
+        "index": 71,
+        "rect": [
+          1340,
+          93,
+          311,
+          336
+        ],
+        "depth": 380.79999999999995,
+        "point": [
+          785,
+          95
+        ],
+        "type": "tree",
+        "image": "park-trail-71.png"
+      },
+      {
+        "index": 72,
+        "rect": [
+          1475,
+          161,
+          311,
+          336
+        ],
+        "depth": 448.45,
+        "point": [
+          950,
+          95
+        ],
+        "type": "tree",
+        "image": "park-trail-72.png"
+      },
+      {
+        "index": 73,
+        "rect": [
+          1610,
+          228,
+          311,
+          336
+        ],
+        "depth": 516.0999999999999,
+        "point": [
+          1115,
+          95
+        ],
+        "type": "tree",
+        "image": "park-trail-73.png"
+      },
+      {
+        "index": 74,
+        "rect": [
+          1746,
+          296,
+          311,
+          336
+        ],
+        "depth": 583.75,
+        "point": [
+          1280,
+          95
+        ],
+        "type": "tree",
+        "image": "park-trail-74.png"
+      },
+      {
+        "index": 75,
+        "rect": [
+          1881,
+          364,
+          311,
+          336
+        ],
+        "depth": 651.4,
+        "point": [
+          1445,
+          95
+        ],
+        "type": "tree",
+        "image": "park-trail-75.png"
+      },
+      {
+        "index": 76,
+        "rect": [
+          543,
+          -179,
+          290,
+          314
+        ],
+        "depth": 88.06,
+        "point": [
+          -64,
+          230
+        ],
+        "type": "tree",
+        "image": "park-trail-76.png"
+      },
+      {
+        "index": 77,
+        "rect": [
+          1951,
+          456,
+          305,
+          329
+        ],
+        "depth": 738.3199999999999,
+        "point": [
+          1592,
+          160
+        ],
+        "type": "tree",
+        "image": "park-trail-77.png"
+      },
+      {
+        "index": 78,
+        "rect": [
+          408,
+          -111,
+          290,
+          314
+        ],
+        "depth": 155.70999999999998,
+        "point": [
+          -64,
+          395
+        ],
+        "type": "tree",
+        "image": "park-trail-78.png"
+      },
+      {
+        "index": 79,
+        "rect": [
+          1816,
+          524,
+          305,
+          329
+        ],
+        "depth": 805.9699999999999,
+        "point": [
+          1592,
+          325
+        ],
+        "type": "tree",
+        "image": "park-trail-79.png"
+      },
+      {
+        "index": 80,
+        "rect": [
+          273,
+          -44,
+          290,
+          314
+        ],
+        "depth": 223.35999999999999,
+        "point": [
+          -64,
+          560
+        ],
+        "type": "tree",
+        "image": "park-trail-80.png"
+      },
+      {
+        "index": 81,
+        "rect": [
+          1681,
+          592,
+          305,
+          329
+        ],
+        "depth": 873.62,
+        "point": [
+          1592,
+          490
+        ],
+        "type": "tree",
+        "image": "park-trail-81.png"
+      },
+      {
+        "index": 82,
+        "rect": [
+          138,
+          24,
+          290,
+          314
+        ],
+        "depth": 291.01,
+        "point": [
+          -64,
+          725
+        ],
+        "type": "tree",
+        "image": "park-trail-82.png"
+      },
+      {
+        "index": 83,
+        "rect": [
+          1545,
+          659,
+          305,
+          329
+        ],
+        "depth": 941.27,
+        "point": [
+          1592,
+          655
+        ],
+        "type": "tree",
+        "image": "park-trail-83.png"
+      },
+      {
+        "index": 84,
+        "rect": [
+          2,
+          91,
+          290,
+          314
+        ],
+        "depth": 358.65999999999997,
+        "point": [
+          -64,
+          890
+        ],
+        "type": "tree",
+        "image": "park-trail-84.png"
+      },
+      {
+        "index": 85,
+        "rect": [
+          1410,
+          727,
+          305,
+          329
+        ],
+        "depth": 1008.92,
+        "point": [
+          1592,
+          820
+        ],
+        "type": "tree",
+        "image": "park-trail-85.png"
+      },
+      {
+        "index": 86,
+        "rect": [
+          -133,
+          159,
+          290,
+          314
+        ],
+        "depth": 426.31,
+        "point": [
+          -64,
+          1055
+        ],
+        "type": "tree",
+        "image": "park-trail-86.png"
+      },
+      {
+        "index": 87,
+        "rect": [
+          1275,
+          795,
+          305,
+          329
+        ],
+        "depth": 1076.57,
+        "point": [
+          1592,
+          985
+        ],
+        "type": "tree",
+        "image": "park-trail-87.png"
+      },
+      {
+        "index": 88,
+        "rect": [
+          243,
+          368,
+          290,
+          314
+        ],
+        "depth": 635,
+        "point": [
+          420,
+          1080
+        ],
+        "type": "tree",
+        "image": "park-trail-88.png"
+      },
+      {
+        "index": 89,
+        "rect": [
+          383,
+          438,
+          290,
+          314
+        ],
+        "depth": 704.6999999999999,
+        "point": [
+          590,
+          1080
+        ],
+        "type": "tree",
+        "image": "park-trail-89.png"
+      },
+      {
+        "index": 90,
+        "rect": [
+          522,
+          507,
+          290,
+          314
+        ],
+        "depth": 774.4,
+        "point": [
+          760,
+          1080
+        ],
+        "type": "tree",
+        "image": "park-trail-90.png"
+      },
+      {
+        "index": 91,
+        "rect": [
+          662,
+          577,
+          290,
+          314
+        ],
+        "depth": 844.0999999999999,
+        "point": [
+          930,
+          1080
+        ],
+        "type": "tree",
+        "image": "park-trail-91.png"
+      },
+      {
+        "index": 92,
+        "rect": [
+          801,
+          647,
+          290,
+          314
+        ],
+        "depth": 913.8,
+        "point": [
+          1100,
+          1080
+        ],
+        "type": "tree",
+        "image": "park-trail-92.png"
+      },
+      {
+        "index": 93,
+        "rect": [
+          940,
+          716,
+          290,
+          314
+        ],
+        "depth": 983.4999999999999,
+        "point": [
+          1270,
+          1080
+        ],
+        "type": "tree",
+        "image": "park-trail-93.png"
+      },
+      {
+        "index": 94,
+        "rect": [
+          1080,
+          786,
+          290,
+          314
+        ],
+        "depth": 1053.2,
+        "point": [
+          1440,
+          1080
+        ],
+        "type": "tree",
+        "image": "park-trail-94.png"
+      },
+      {
+        "index": 95,
+        "rect": [
+          819,
+          49,
+          151,
+          169
+        ],
+        "depth": 146.65846153846152,
+        "point": [
+          132.92307692307693,
+          176
+        ],
+        "type": "fence",
+        "image": "park-trail-95.png"
+      },
+      {
+        "index": 96,
+        "rect": [
+          906,
+          93,
+          151,
+          169
+        ],
+        "depth": 190.0553846153846,
+        "point": [
+          238.76923076923077,
+          176
+        ],
+        "type": "fence",
+        "image": "park-trail-96.png"
+      },
+      {
+        "index": 97,
+        "rect": [
+          992,
+          136,
+          151,
+          169
+        ],
+        "depth": 233.4523076923077,
+        "point": [
+          344.61538461538464,
+          176
+        ],
+        "type": "fence",
+        "image": "park-trail-97.png"
+      },
+      {
+        "index": 98,
+        "rect": [
+          1079,
+          180,
+          151,
+          169
+        ],
+        "depth": 276.8492307692308,
+        "point": [
+          450.4615384615385,
+          176
+        ],
+        "type": "fence",
+        "image": "park-trail-98.png"
+      },
+      {
+        "index": 99,
+        "rect": [
+          1166,
+          223,
+          151,
+          169
+        ],
+        "depth": 320.24615384615385,
+        "point": [
+          556.3076923076924,
+          176
+        ],
+        "type": "fence",
+        "image": "park-trail-99.png"
+      },
+      {
+        "index": 100,
+        "rect": [
+          1253,
+          266,
+          151,
+          169
+        ],
+        "depth": 363.64307692307693,
+        "point": [
+          662.1538461538462,
+          176
+        ],
+        "type": "fence",
+        "image": "park-trail-100.png"
+      },
+      {
+        "index": 101,
+        "rect": [
+          1340,
+          310,
+          151,
+          169
+        ],
+        "depth": 407.03999999999996,
+        "point": [
+          768,
+          176
+        ],
+        "type": "fence",
+        "image": "park-trail-101.png"
+      },
+      {
+        "index": 102,
+        "rect": [
+          1426,
+          353,
+          151,
+          169
+        ],
+        "depth": 450.43692307692305,
+        "point": [
+          873.8461538461538,
+          176
+        ],
+        "type": "fence",
+        "image": "park-trail-102.png"
+      },
+      {
+        "index": 103,
+        "rect": [
+          1513,
+          397,
+          151,
+          169
+        ],
+        "depth": 493.8338461538461,
+        "point": [
+          979.6923076923077,
+          176
+        ],
+        "type": "fence",
+        "image": "park-trail-103.png"
+      },
+      {
+        "index": 104,
+        "rect": [
+          1600,
+          440,
+          151,
+          169
+        ],
+        "depth": 537.2307692307693,
+        "point": [
+          1085.5384615384617,
+          176
+        ],
+        "type": "fence",
+        "image": "park-trail-104.png"
+      },
+      {
+        "index": 105,
+        "rect": [
+          1687,
+          483,
+          151,
+          169
+        ],
+        "depth": 580.6276923076923,
+        "point": [
+          1191.3846153846155,
+          176
+        ],
+        "type": "fence",
+        "image": "park-trail-105.png"
+      },
+      {
+        "index": 106,
+        "rect": [
+          1774,
+          527,
+          151,
+          169
+        ],
+        "depth": 624.0246153846153,
+        "point": [
+          1297.2307692307693,
+          176
+        ],
+        "type": "fence",
+        "image": "park-trail-106.png"
+      },
+      {
+        "index": 107,
+        "rect": [
+          1860,
+          570,
+          151,
+          169
+        ],
+        "depth": 667.4215384615384,
+        "point": [
+          1403.076923076923,
+          176
+        ],
+        "type": "fence",
+        "image": "park-trail-107.png"
+      },
+      {
+        "index": 108,
+        "rect": [
+          1859,
+          627,
+          153,
+          170
+        ],
+        "depth": 724.2628571428571,
+        "point": [
+          1472,
+          245.71428571428572
+        ],
+        "type": "fence",
+        "image": "park-trail-108.png"
+      },
+      {
+        "index": 109,
+        "rect": [
+          1771,
+          671,
+          153,
+          170
+        ],
+        "depth": 768.3085714285713,
+        "point": [
+          1472,
+          353.1428571428571
+        ],
+        "type": "fence",
+        "image": "park-trail-109.png"
+      },
+      {
+        "index": 110,
+        "rect": [
+          1683,
+          715,
+          153,
+          170
+        ],
+        "depth": 812.3542857142857,
+        "point": [
+          1472,
+          460.57142857142856
+        ],
+        "type": "fence",
+        "image": "park-trail-110.png"
+      },
+      {
+        "index": 111,
+        "rect": [
+          1595,
+          759,
+          153,
+          170
+        ],
+        "depth": 856.4,
+        "point": [
+          1472,
+          568
+        ],
+        "type": "fence",
+        "image": "park-trail-111.png"
+      },
+      {
+        "index": 112,
+        "rect": [
+          1507,
+          803,
+          153,
+          170
+        ],
+        "depth": 900.4457142857143,
+        "point": [
+          1472,
+          675.4285714285713
+        ],
+        "type": "fence",
+        "image": "park-trail-112.png"
+      },
+      {
+        "index": 113,
+        "rect": [
+          1419,
+          847,
+          153,
+          170
+        ],
+        "depth": 944.4914285714286,
+        "point": [
+          1472,
+          782.8571428571429
+        ],
+        "type": "fence",
+        "image": "park-trail-113.png"
+      },
+      {
+        "index": 114,
+        "rect": [
+          1330,
+          891,
+          153,
+          170
+        ],
+        "depth": 988.5371428571427,
+        "point": [
+          1472,
+          890.2857142857143
+        ],
+        "type": "fence",
+        "image": "park-trail-114.png"
+      },
+      {
+        "index": 115,
+        "rect": [
+          169,
+          374,
+          117,
+          152
+        ],
+        "depth": 462.79999999999995,
+        "point": [
+          112,
+          968
+        ],
+        "type": "fence",
+        "image": "park-trail-115.png"
+      },
+      {
+        "index": 116,
+        "rect": [
+          379,
+          479,
+          152,
+          169
+        ],
+        "depth": 576.616,
+        "point": [
+          389.6,
+          968
+        ],
+        "type": "fence",
+        "image": "park-trail-116.png"
+      },
+      {
+        "index": 117,
+        "rect": [
+          467,
+          523,
+          152,
+          169
+        ],
+        "depth": 620.568,
+        "point": [
+          496.8,
+          968
+        ],
+        "type": "fence",
+        "image": "park-trail-117.png"
+      },
+      {
+        "index": 118,
+        "rect": [
+          555,
+          567,
+          152,
+          169
+        ],
+        "depth": 664.52,
+        "point": [
+          604,
+          968
+        ],
+        "type": "fence",
+        "image": "park-trail-118.png"
+      },
+      {
+        "index": 119,
+        "rect": [
+          643,
+          611,
+          152,
+          169
+        ],
+        "depth": 708.472,
+        "point": [
+          711.2,
+          968
+        ],
+        "type": "fence",
+        "image": "park-trail-119.png"
+      },
+      {
+        "index": 120,
+        "rect": [
+          731,
+          655,
+          152,
+          169
+        ],
+        "depth": 752.424,
+        "point": [
+          818.4000000000001,
+          968
+        ],
+        "type": "fence",
+        "image": "park-trail-120.png"
+      },
+      {
+        "index": 121,
+        "rect": [
+          819,
+          699,
+          152,
+          169
+        ],
+        "depth": 796.3759999999999,
+        "point": [
+          925.6,
+          968
+        ],
+        "type": "fence",
+        "image": "park-trail-121.png"
+      },
+      {
+        "index": 122,
+        "rect": [
+          907,
+          743,
+          152,
+          169
+        ],
+        "depth": 840.328,
+        "point": [
+          1032.8,
+          968
+        ],
+        "type": "fence",
+        "image": "park-trail-122.png"
+      },
+      {
+        "index": 123,
+        "rect": [
+          995,
+          787,
+          152,
+          169
+        ],
+        "depth": 884.28,
+        "point": [
+          1140,
+          968
+        ],
+        "type": "fence",
+        "image": "park-trail-123.png"
+      },
+      {
+        "index": 124,
+        "rect": [
+          1082,
+          831,
+          152,
+          169
+        ],
+        "depth": 928.2319999999999,
+        "point": [
+          1247.2,
+          968
+        ],
+        "type": "fence",
+        "image": "park-trail-124.png"
+      },
+      {
+        "index": 125,
+        "rect": [
+          1170,
+          875,
+          152,
+          169
+        ],
+        "depth": 972.184,
+        "point": [
+          1354.4,
+          968
+        ],
+        "type": "fence",
+        "image": "park-trail-125.png"
+      },
+      {
+        "index": 126,
+        "rect": [
+          695,
+          56,
+          149,
+          168
+        ],
+        "depth": 152.60571428571427,
+        "point": [
+          64,
+          259.42857142857144
+        ],
+        "type": "fence",
+        "image": "park-trail-126.png"
+      },
+      {
+        "index": 127,
+        "rect": [
+          611,
+          98,
+          149,
+          168
+        ],
+        "depth": 194.77714285714285,
+        "point": [
+          64,
+          362.2857142857143
+        ],
+        "type": "fence",
+        "image": "park-trail-127.png"
+      },
+      {
+        "index": 128,
+        "rect": [
+          526,
+          140,
+          149,
+          168
+        ],
+        "depth": 236.9485714285714,
+        "point": [
+          64,
+          465.1428571428571
+        ],
+        "type": "fence",
+        "image": "park-trail-128.png"
+      },
+      {
+        "index": 129,
+        "rect": [
+          442,
+          183,
+          149,
+          168
+        ],
+        "depth": 279.12,
+        "point": [
+          64,
+          568
+        ],
+        "type": "fence",
+        "image": "park-trail-129.png"
+      },
+      {
+        "index": 130,
+        "rect": [
+          358,
+          225,
+          149,
+          168
+        ],
+        "depth": 321.2914285714286,
+        "point": [
+          64,
+          670.8571428571429
+        ],
+        "type": "fence",
+        "image": "park-trail-130.png"
+      },
+      {
+        "index": 131,
+        "rect": [
+          273,
+          267,
+          149,
+          168
+        ],
+        "depth": 363.4628571428571,
+        "point": [
+          64,
+          773.7142857142857
+        ],
+        "type": "fence",
+        "image": "park-trail-131.png"
+      },
+      {
+        "index": 132,
+        "rect": [
+          189,
+          309,
+          149,
+          168
+        ],
+        "depth": 405.6342857142857,
+        "point": [
+          64,
+          876.5714285714286
+        ],
+        "type": "fence",
+        "image": "park-trail-132.png"
+      }
+    ],
+    "floorImage": "park-trail-floor.png"
+  },
+  "park-clearing": {
+    "id": "park-clearing",
+    "name": "Parque dos Ventos · Clareira do Papel",
+    "spawn": [
+      208,
+      816
+    ],
+    "walkable": [
+      {
+        "id": 1,
+        "name": "Prado explorável",
+        "x": 80,
+        "y": 192,
+        "w": 1376,
+        "h": 752,
+        "properties": {
+          "level": 0,
+          "ground_frame": "grass"
+        }
+      },
+      {
+        "id": 2,
+        "name": "Entrada",
+        "x": 144,
+        "y": 744,
+        "w": 160,
+        "h": 200,
+        "properties": {
+          "level": 0,
+          "ground_frame": "dirt",
+          "safe_area": true
+        }
+      },
+      {
+        "id": 3,
+        "name": "Passeio do jardim",
+        "x": 192,
+        "y": 744,
+        "w": 480,
+        "h": 144,
+        "properties": {
+          "level": 0,
+          "ground_frame": "dirt",
+          "safe_area": true
+        }
+      },
+      {
+        "id": 4,
+        "name": "Curva dos bancos",
+        "x": 528,
+        "y": 464,
+        "w": 144,
+        "h": 368,
+        "properties": {
+          "level": 0,
+          "ground_frame": "dirt",
+          "safe_area": true
+        }
+      },
+      {
+        "id": 5,
+        "name": "Passeio até a clareira",
+        "x": 576,
+        "y": 448,
+        "w": 800,
+        "h": 144,
+        "properties": {
+          "level": 0,
+          "ground_frame": "dirt",
+          "safe_area": true
+        }
+      },
+      {
+        "id": 6,
+        "name": "Saída entre árvores",
+        "x": 1232,
+        "y": 336,
+        "w": 144,
+        "h": 224,
+        "properties": {
+          "level": 0,
+          "ground_frame": "dirt",
+          "safe_area": true
+        }
+      },
+      {
+        "id": 7,
+        "name": "Largo de descanso",
+        "x": 272,
+        "y": 432,
+        "w": 280,
+        "h": 240,
+        "properties": {
+          "level": 0,
+          "ground_frame": "sidewalk",
+          "safe_area": true
+        }
+      },
+      {
+        "id": 8,
+        "name": "Acesso ao largo",
+        "x": 432,
+        "y": 576,
+        "w": 168,
+        "h": 96,
+        "properties": {
+          "level": 0,
+          "ground_frame": "dirt",
+          "safe_area": true
+        }
+      },
+      {
+        "id": 9,
+        "name": "Recanto do banco",
+        "x": 1040,
+        "y": 528,
+        "w": 160,
+        "h": 160,
+        "properties": {
+          "level": 0,
+          "ground_frame": "dirt",
+          "safe_area": true
+        }
+      },
+      {
+        "id": 40,
+        "name": "Habitat de capim 1",
+        "x": 740,
+        "y": 324,
+        "w": 360,
+        "h": 88,
+        "properties": {
+          "level": 0,
+          "ground_frame": "park-tall-grass",
+          "encounter_zone": "park-clearing"
+        }
+      },
+      {
+        "id": 41,
+        "name": "Lóbulo do habitat 1",
+        "x": 764,
+        "y": 300,
+        "w": 300,
+        "h": 112,
+        "properties": {
+          "level": 0,
+          "ground_frame": "park-tall-grass",
+          "encounter_zone": "park-clearing"
+        }
+      },
+      {
+        "id": 42,
+        "name": "Borda do habitat 1",
+        "x": 754,
+        "y": 340,
+        "w": 318,
+        "h": 88,
+        "properties": {
+          "level": 0,
+          "ground_frame": "park-tall-grass",
+          "encounter_zone": "park-clearing"
+        }
+      },
+      {
+        "id": 43,
+        "name": "Habitat de capim 2",
+        "x": 160,
+        "y": 364,
+        "w": 144,
+        "h": 136,
+        "properties": {
+          "level": 0,
+          "ground_frame": "park-tall-grass",
+          "encounter_zone": "park-clearing"
+        }
+      },
+      {
+        "id": 44,
+        "name": "Lóbulo do habitat 2",
+        "x": 184,
+        "y": 340,
+        "w": 84,
+        "h": 160,
+        "properties": {
+          "level": 0,
+          "ground_frame": "park-tall-grass",
+          "encounter_zone": "park-clearing"
+        }
+      },
+      {
+        "id": 45,
+        "name": "Borda do habitat 2",
+        "x": 174,
+        "y": 380,
+        "w": 102,
+        "h": 136,
+        "properties": {
+          "level": 0,
+          "ground_frame": "park-tall-grass",
+          "encounter_zone": "park-clearing"
+        }
+      },
+      {
+        "id": 46,
+        "name": "Habitat de capim 3",
+        "x": 1016,
+        "y": 728,
+        "w": 300,
+        "h": 128,
+        "properties": {
+          "level": 0,
+          "ground_frame": "park-tall-grass",
+          "encounter_zone": "park-clearing"
+        }
+      },
+      {
+        "id": 47,
+        "name": "Lóbulo do habitat 3",
+        "x": 1040,
+        "y": 704,
+        "w": 240,
+        "h": 152,
+        "properties": {
+          "level": 0,
+          "ground_frame": "park-tall-grass",
+          "encounter_zone": "park-clearing"
+        }
+      },
+      {
+        "id": 48,
+        "name": "Borda do habitat 3",
+        "x": 1030,
+        "y": 744,
+        "w": 258,
+        "h": 128,
+        "properties": {
+          "level": 0,
+          "ground_frame": "park-tall-grass",
+          "encounter_zone": "park-clearing"
+        }
+      }
+    ],
+    "blocked": [
+      {
+        "id": 15,
+        "name": "park-tree-a",
+        "x": 29,
+        "y": 234,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 262
+        }
+      },
+      {
+        "id": 16,
+        "name": "park-tree-b",
+        "x": 383,
+        "y": 216,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 244
+        }
+      },
+      {
+        "id": 17,
+        "name": "park-tree-b",
+        "x": 631,
+        "y": 212,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 240
+        }
+      },
+      {
+        "id": 18,
+        "name": "park-tree-a",
+        "x": 791,
+        "y": 184,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 212
+        }
+      },
+      {
+        "id": 19,
+        "name": "park-tree-b",
+        "x": 1121,
+        "y": 214,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 242
+        }
+      },
+      {
+        "id": 20,
+        "name": "park-tree-b",
+        "x": 1281,
+        "y": 238,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 266
+        }
+      },
+      {
+        "id": 21,
+        "name": "park-tree-a",
+        "x": 1457,
+        "y": 236,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 264
+        }
+      },
+      {
+        "id": 22,
+        "name": "park-tree-b",
+        "x": 23,
+        "y": 502,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 530
+        }
+      },
+      {
+        "id": 23,
+        "name": "park-tree-b",
+        "x": 59,
+        "y": 732,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 760
+        }
+      },
+      {
+        "id": 24,
+        "name": "park-tree-a",
+        "x": 13,
+        "y": 982,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 1010
+        }
+      },
+      {
+        "id": 25,
+        "name": "park-tree-b",
+        "x": 1473,
+        "y": 486,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 514
+        }
+      },
+      {
+        "id": 26,
+        "name": "park-tree-b",
+        "x": 1461,
+        "y": 730,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 758
+        }
+      },
+      {
+        "id": 27,
+        "name": "park-tree-a",
+        "x": 1413,
+        "y": 972,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 1000
+        }
+      },
+      {
+        "id": 28,
+        "name": "park-tree-b",
+        "x": 401,
+        "y": 990,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 1018
+        }
+      },
+      {
+        "id": 29,
+        "name": "park-tree-b",
+        "x": 591,
+        "y": 974,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 1002
+        }
+      },
+      {
+        "id": 30,
+        "name": "park-tree-a",
+        "x": 833,
+        "y": 992,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 1020
+        }
+      },
+      {
+        "id": 31,
+        "name": "park-tree-b",
+        "x": 1081,
+        "y": 980,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 1008
+        }
+      },
+      {
+        "id": 32,
+        "name": "park-tree",
+        "x": 463,
+        "y": 226,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 254
+        }
+      },
+      {
+        "id": 33,
+        "name": "park-tree-flower",
+        "x": 185,
+        "y": 262,
+        "w": 38,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 290
+        }
+      },
+      {
+        "id": 34,
+        "name": "park-tree",
+        "x": 835,
+        "y": 752,
+        "w": 42,
+        "h": 30,
+        "properties": {
+          "level": 0,
+          "sort_y": 782
+        }
+      },
+      {
+        "id": 35,
+        "name": "park-tree-flower",
+        "x": 394,
+        "y": 460,
+        "w": 40,
+        "h": 28,
+        "properties": {
+          "level": 0,
+          "sort_y": 488
+        }
+      },
+      {
+        "id": 36,
+        "name": "bench",
+        "x": 372,
+        "y": 668,
+        "w": 96,
+        "h": 22,
+        "properties": {
+          "level": 0,
+          "sort_y": 690
+        }
+      },
+      {
+        "id": 37,
+        "name": "bench",
+        "x": 1070,
+        "y": 600,
+        "w": 96,
+        "h": 22,
+        "properties": {
+          "level": 0,
+          "sort_y": 622
+        }
+      },
+      {
+        "id": 38,
+        "name": "lamp",
+        "x": 267,
+        "y": 670,
+        "w": 18,
+        "h": 18,
+        "properties": {
+          "level": 0,
+          "sort_y": 688
+        }
+      },
+      {
+        "id": 39,
+        "name": "lamp",
+        "x": 1211,
+        "y": 608,
+        "w": 18,
+        "h": 18,
+        "properties": {
+          "level": 0,
+          "sort_y": 626
+        }
+      },
+      {
+        "id": 49,
+        "name": "entry-map",
+        "x": 250,
+        "y": 718,
+        "w": 140,
+        "h": 20,
+        "properties": {
+          "level": 0,
+          "sort_y": 738
+        }
+      },
+      {
+        "id": 50,
+        "name": "planter-west",
+        "x": 263,
+        "y": 618,
+        "w": 74,
+        "h": 20,
+        "properties": {
+          "level": 0,
+          "sort_y": 638
+        }
+      },
+      {
+        "id": 51,
+        "name": "planter-east",
+        "x": 481,
+        "y": 618,
+        "w": 74,
+        "h": 20,
+        "properties": {
+          "level": 0,
+          "sort_y": 638
+        }
+      },
+      {
+        "id": 52,
+        "name": "bin-west",
+        "x": 285,
+        "y": 638,
+        "w": 18,
+        "h": 16,
+        "properties": {
+          "level": 0,
+          "sort_y": 654
+        }
+      },
+      {
+        "id": 53,
+        "name": "bin-east",
+        "x": 1181,
+        "y": 621,
+        "w": 18,
+        "h": 16,
+        "properties": {
+          "level": 0,
+          "sort_y": 637
+        }
+      },
+      {
+        "id": 54,
+        "name": "lamp-west",
+        "x": 279,
+        "y": 464,
+        "w": 14,
+        "h": 14,
+        "properties": {
+          "level": 0,
+          "sort_y": 478
+        }
+      },
+      {
+        "id": 55,
+        "name": "lamp-east",
+        "x": 1293,
+        "y": 348,
+        "w": 14,
+        "h": 14,
+        "properties": {
+          "level": 0,
+          "sort_y": 362
+        }
+      }
+    ],
+    "places": [
+      {
+        "id": "tiled-11",
+        "name": "Voltar ao Jardim das Pipas",
+        "node": 829,
+        "action": "street_scene",
+        "target": "park-trail",
+        "point": [
+          208,
+          880
+        ]
+      },
+      {
+        "id": "tiled-12",
+        "name": "Além da cidade · Veredas do Encanamento",
+        "node": 268,
+        "action": "street_scene",
+        "target": "park-veredas",
+        "point": [
+          1296,
+          400
+        ]
+      },
+      {
+        "id": "tiled-13",
+        "name": "Placa: habitats e encontros",
+        "node": 749,
+        "action": "wildGuide",
+        "point": [
+          336,
+          816
+        ]
+      },
+      {
+        "id": "tiled-14",
+        "name": "Descansar no largo",
+        "node": 630,
+        "action": "wildRest",
+        "point": [
+          432,
+          720
+        ]
+      },
+      {
+        "id": "tiled-56",
+        "name": "Descansar no banco leste",
+        "node": 577,
+        "action": "wildRest",
+        "point": [
+          1136,
+          656
+        ]
+      },
+      {
+        "id": "tiled-57",
+        "name": "Mapa do Parque dos Ventos",
+        "node": 709,
+        "action": "parkMap",
+        "point": [
+          336,
+          784
+        ]
+      }
+    ],
+    "props": [
+      {
+        "index": 0,
+        "rect": [
+          589,
+          -160,
+          330,
+          355
+        ],
+        "depth": 147.1,
+        "point": [
+          48,
+          262
+        ],
+        "type": "tree",
+        "image": "park-clearing-0.png"
+      },
+      {
+        "index": 1,
+        "rect": [
+          930,
+          49,
+          259,
+          281
+        ],
+        "depth": 284.85999999999996,
+        "point": [
+          402,
+          244
+        ],
+        "type": "tree",
+        "image": "park-clearing-1.png"
+      },
+      {
+        "index": 2,
+        "rect": [
+          1137,
+          149,
+          259,
+          281
+        ],
+        "depth": 384.9,
+        "point": [
+          650,
+          240
+        ],
+        "type": "tree",
+        "image": "park-clearing-2.png"
+      },
+      {
+        "index": 3,
+        "rect": [
+          1250,
+          123,
+          340,
+          365
+        ],
+        "depth": 439.02,
+        "point": [
+          810,
+          212
+        ],
+        "type": "tree",
+        "image": "park-clearing-3.png"
+      },
+      {
+        "index": 4,
+        "rect": [
+          1529,
+          335,
+          274,
+          297
+        ],
+        "depth": 586.62,
+        "point": [
+          1140,
+          242
+        ],
+        "type": "tree",
+        "image": "park-clearing-4.png"
+      },
+      {
+        "index": 5,
+        "rect": [
+          1636,
+          403,
+          282,
+          305
+        ],
+        "depth": 662.06,
+        "point": [
+          1300,
+          266
+        ],
+        "type": "tree",
+        "image": "park-clearing-5.png"
+      },
+      {
+        "index": 6,
+        "rect": [
+          1753,
+          417,
+          340,
+          365
+        ],
+        "depth": 733.4,
+        "point": [
+          1476,
+          264
+        ],
+        "type": "tree",
+        "image": "park-clearing-6.png"
+      },
+      {
+        "index": 7,
+        "rect": [
+          404,
+          26,
+          251,
+          273
+        ],
+        "depth": 254.51999999999998,
+        "point": [
+          42,
+          530
+        ],
+        "type": "tree",
+        "image": "park-clearing-7.png"
+      },
+      {
+        "index": 8,
+        "rect": [
+          237,
+          120,
+          267,
+          289
+        ],
+        "depth": 363.58,
+        "point": [
+          78,
+          760
+        ],
+        "type": "tree",
+        "image": "park-clearing-8.png"
+      },
+      {
+        "index": 9,
+        "rect": [
+          -7,
+          200,
+          270,
+          293
+        ],
+        "depth": 447.21999999999997,
+        "point": [
+          32,
+          1010
+        ],
+        "type": "tree",
+        "image": "park-clearing-9.png"
+      },
+      {
+        "index": 10,
+        "rect": [
+          1594,
+          591,
+          274,
+          297
+        ],
+        "depth": 842.4599999999999,
+        "point": [
+          1492,
+          514
+        ],
+        "type": "tree",
+        "image": "park-clearing-10.png"
+      },
+      {
+        "index": 11,
+        "rect": [
+          1377,
+          671,
+          290,
+          313
+        ],
+        "depth": 937.5799999999999,
+        "point": [
+          1480,
+          758
+        ],
+        "type": "tree",
+        "image": "park-clearing-11.png"
+      },
+      {
+        "index": 12,
+        "rect": [
+          1099,
+          671,
+          370,
+          396
+        ],
+        "depth": 1017.1199999999999,
+        "point": [
+          1432,
+          1000
+        ],
+        "type": "tree",
+        "image": "park-clearing-12.png"
+      },
+      {
+        "index": 13,
+        "rect": [
+          317,
+          387,
+          245,
+          267
+        ],
+        "depth": 609.5799999999999,
+        "point": [
+          420,
+          1018
+        ],
+        "type": "tree",
+        "image": "park-clearing-13.png"
+      },
+      {
+        "index": 14,
+        "rect": [
+          486,
+          458,
+          245,
+          267
+        ],
+        "depth": 680.92,
+        "point": [
+          610,
+          1002
+        ],
+        "type": "tree",
+        "image": "park-clearing-14.png"
+      },
+      {
+        "index": 15,
+        "rect": [
+          652,
+          530,
+          280,
+          303
+        ],
+        "depth": 787.52,
+        "point": [
+          852,
+          1020
+        ],
+        "type": "tree",
+        "image": "park-clearing-15.png"
+      },
+      {
+        "index": 16,
+        "rect": [
+          882,
+          662,
+          245,
+          267
+        ],
+        "depth": 884.28,
+        "point": [
+          1100,
+          1008
+        ],
+        "type": "tree",
+        "image": "park-clearing-16.png"
+      },
+      {
+        "index": 17,
+        "rect": [
+          974,
+          60,
+          285,
+          309
+        ],
+        "depth": 321.76,
+        "point": [
+          482,
+          254
+        ],
+        "type": "tree",
+        "image": "park-clearing-17.png"
+      },
+      {
+        "index": 18,
+        "rect": [
+          696,
+          -79,
+          325,
+          350
+        ],
+        "depth": 222.54,
+        "point": [
+          204,
+          290
+        ],
+        "type": "tree",
+        "image": "park-clearing-18.png"
+      },
+      {
+        "index": 19,
+        "rect": [
+          830,
+          395,
+          320,
+          345
+        ],
+        "depth": 691.5799999999999,
+        "point": [
+          856,
+          782
+        ],
+        "type": "tree",
+        "image": "park-clearing-19.png"
+      },
+      {
+        "index": 20,
+        "rect": [
+          704,
+          83,
+          330,
+          355
+        ],
+        "depth": 389.82,
+        "point": [
+          414,
+          488
+        ],
+        "type": "tree",
+        "image": "park-clearing-20.png"
+      },
+      {
+        "index": 21,
+        "rect": [
+          625,
+          361,
+          166,
+          149
+        ],
+        "depth": 475.09999999999997,
+        "point": [
+          420,
+          690
+        ],
+        "type": "bench",
+        "image": "park-clearing-21.png"
+      },
+      {
+        "index": 22,
+        "rect": [
+          1253,
+          619,
+          166,
+          149
+        ],
+        "depth": 733.4,
+        "point": [
+          1118,
+          622
+        ],
+        "type": "bench",
+        "image": "park-clearing-22.png"
+      },
+      {
+        "index": 23,
+        "rect": [
+          529,
+          255,
+          255,
+          204
+        ],
+        "depth": 415.23999999999995,
+        "point": [
+          276,
+          688
+        ],
+        "type": "windsock",
+        "image": "park-clearing-23.png"
+      },
+      {
+        "index": 24,
+        "rect": [
+          1354,
+          616,
+          255,
+          204
+        ],
+        "depth": 776.8599999999999,
+        "point": [
+          1220,
+          626
+        ],
+        "type": "windsock",
+        "image": "park-clearing-24.png"
+      },
+      {
+        "index": 25,
+        "rect": [
+          652,
+          109,
+          135,
+          123
+        ],
+        "depth": 197.11999999999998,
+        "point": [
+          88,
+          344
+        ],
+        "type": "shrub",
+        "image": "park-clearing-25.png"
+      },
+      {
+        "index": 26,
+        "rect": [
+          1700,
+          662,
+          135,
+          123
+        ],
+        "depth": 750.62,
+        "point": [
+          1402,
+          380
+        ],
+        "type": "shrub",
+        "image": "park-clearing-26.png"
+      },
+      {
+        "index": 27,
+        "rect": [
+          1128,
+          847,
+          135,
+          123
+        ],
+        "depth": 935.1199999999999,
+        "point": [
+          1278,
+          954
+        ],
+        "type": "shrub",
+        "image": "park-clearing-27.png"
+      },
+      {
+        "index": 28,
+        "rect": [
+          217,
+          346,
+          135,
+          123
+        ],
+        "depth": 434.09999999999997,
+        "point": [
+          112,
+          898
+        ],
+        "type": "shrub",
+        "image": "park-clearing-28.png"
+      },
+      {
+        "index": 29,
+        "rect": [
+          706,
+          271,
+          128,
+          117
+        ],
+        "depth": 353.73999999999995,
+        "point": [
+          310,
+          504
+        ],
+        "type": "flowers",
+        "image": "park-clearing-29.png"
+      },
+      {
+        "index": 30,
+        "rect": [
+          882,
+          352,
+          122,
+          113
+        ],
+        "depth": 430,
+        "point": [
+          508,
+          492
+        ],
+        "type": "flowers",
+        "image": "park-clearing-30.png"
+      },
+      {
+        "index": 31,
+        "rect": [
+          496,
+          284,
+          182,
+          205
+        ],
+        "depth": 453.78,
+        "point": [
+          320,
+          738
+        ],
+        "type": "sign",
+        "image": "park-clearing-31.png"
+      },
+      {
+        "index": 32,
+        "rect": [
+          592,
+          339,
+          120,
+          101
+        ],
+        "depth": 404.58,
+        "point": [
+          300,
+          638
+        ],
+        "type": "planter",
+        "image": "park-clearing-32.png"
+      },
+      {
+        "index": 33,
+        "rect": [
+          771,
+          428,
+          120,
+          101
+        ],
+        "depth": 493.96,
+        "point": [
+          518,
+          638
+        ],
+        "type": "planter",
+        "image": "park-clearing-33.png"
+      },
+      {
+        "index": 34,
+        "rect": [
+          600,
+          345,
+          69,
+          99
+        ],
+        "depth": 408.67999999999995,
+        "point": [
+          294,
+          654
+        ],
+        "type": "bin",
+        "image": "park-clearing-34.png"
+      },
+      {
+        "index": 35,
+        "rect": [
+          1348,
+          705,
+          69,
+          99
+        ],
+        "depth": 769.0699999999999,
+        "point": [
+          1190,
+          637
+        ],
+        "type": "bin",
+        "image": "park-clearing-35.png"
+      },
+      {
+        "index": 36,
+        "rect": [
+          731,
+          170,
+          83,
+          198
+        ],
+        "depth": 333.24,
+        "point": [
+          286,
+          478
+        ],
+        "type": "lamp",
+        "image": "park-clearing-36.png"
+      },
+      {
+        "index": 37,
+        "rect": [
+          1657,
+          538,
+          83,
+          198
+        ],
+        "depth": 701.42,
+        "point": [
+          1300,
+          362
+        ],
+        "type": "lamp",
+        "image": "park-clearing-37.png"
+      },
+      {
+        "index": 38,
+        "rect": [
+          1355,
+          375,
+          170,
+          164
+        ],
+        "depth": 776.8599999999999,
+        "point": [
+          1220,
+          626
+        ],
+        "type": "kite",
+        "image": "park-clearing-38.png"
+      },
+      {
+        "index": 39,
+        "rect": [
+          822,
+          68,
+          134,
+          123
+        ],
+        "depth": 155.29999999999998,
+        "point": [
+          140,
+          190
+        ],
+        "type": "shrub",
+        "image": "park-clearing-39.png"
+      },
+      {
+        "index": 40,
+        "rect": [
+          945,
+          129,
+          134,
+          123
+        ],
+        "depth": 216.79999999999998,
+        "point": [
+          290,
+          190
+        ],
+        "type": "shrub",
+        "image": "park-clearing-40.png"
+      },
+      {
+        "index": 41,
+        "rect": [
+          1068,
+          191,
+          134,
+          123
+        ],
+        "depth": 278.3,
+        "point": [
+          440,
+          190
+        ],
+        "type": "shrub",
+        "image": "park-clearing-41.png"
+      },
+      {
+        "index": 42,
+        "rect": [
+          1191,
+          252,
+          134,
+          123
+        ],
+        "depth": 339.79999999999995,
+        "point": [
+          590,
+          190
+        ],
+        "type": "shrub",
+        "image": "park-clearing-42.png"
+      },
+      {
+        "index": 43,
+        "rect": [
+          1314,
+          314,
+          134,
+          123
+        ],
+        "depth": 401.29999999999995,
+        "point": [
+          740,
+          190
+        ],
+        "type": "shrub",
+        "image": "park-clearing-43.png"
+      },
+      {
+        "index": 44,
+        "rect": [
+          1437,
+          375,
+          134,
+          123
+        ],
+        "depth": 462.79999999999995,
+        "point": [
+          890,
+          190
+        ],
+        "type": "shrub",
+        "image": "park-clearing-44.png"
+      },
+      {
+        "index": 45,
+        "rect": [
+          1560,
+          437,
+          134,
+          123
+        ],
+        "depth": 524.3,
+        "point": [
+          1040,
+          190
+        ],
+        "type": "shrub",
+        "image": "park-clearing-45.png"
+      },
+      {
+        "index": 46,
+        "rect": [
+          1683,
+          498,
+          134,
+          123
+        ],
+        "depth": 585.8,
+        "point": [
+          1190,
+          190
+        ],
+        "type": "shrub",
+        "image": "park-clearing-46.png"
+      },
+      {
+        "index": 47,
+        "rect": [
+          1806,
+          560,
+          134,
+          123
+        ],
+        "depth": 647.3,
+        "point": [
+          1340,
+          190
+        ],
+        "type": "shrub",
+        "image": "park-clearing-47.png"
+      },
+      {
+        "index": 48,
+        "rect": [
+          377,
+          474,
+          130,
+          120
+        ],
+        "depth": 558.74,
+        "point": [
+          360,
+          954
+        ],
+        "type": "shrub",
+        "image": "park-clearing-48.png"
+      },
+      {
+        "index": 49,
+        "rect": [
+          517,
+          544,
+          130,
+          120
+        ],
+        "depth": 628.4399999999999,
+        "point": [
+          530,
+          954
+        ],
+        "type": "shrub",
+        "image": "park-clearing-49.png"
+      },
+      {
+        "index": 50,
+        "rect": [
+          656,
+          613,
+          130,
+          120
+        ],
+        "depth": 698.14,
+        "point": [
+          700,
+          954
+        ],
+        "type": "shrub",
+        "image": "park-clearing-50.png"
+      },
+      {
+        "index": 51,
+        "rect": [
+          796,
+          683,
+          130,
+          120
+        ],
+        "depth": 767.8399999999999,
+        "point": [
+          870,
+          954
+        ],
+        "type": "shrub",
+        "image": "park-clearing-51.png"
+      },
+      {
+        "index": 52,
+        "rect": [
+          935,
+          753,
+          130,
+          120
+        ],
+        "depth": 837.54,
+        "point": [
+          1040,
+          954
+        ],
+        "type": "shrub",
+        "image": "park-clearing-52.png"
+      },
+      {
+        "index": 53,
+        "rect": [
+          1074,
+          822,
+          130,
+          120
+        ],
+        "depth": 907.2399999999999,
+        "point": [
+          1210,
+          954
+        ],
+        "type": "shrub",
+        "image": "park-clearing-53.png"
+      },
+      {
+        "index": 54,
+        "rect": [
+          1214,
+          892,
+          130,
+          120
+        ],
+        "depth": 976.9399999999999,
+        "point": [
+          1380,
+          954
+        ],
+        "type": "shrub",
+        "image": "park-clearing-54.png"
+      },
+      {
+        "index": 55,
+        "rect": [
+          640,
+          104,
+          124,
+          115
+        ],
+        "depth": 184.82,
+        "point": [
+          62,
+          340
+        ],
+        "type": "shrub",
+        "image": "park-clearing-55.png"
+      },
+      {
+        "index": 56,
+        "rect": [
+          1792,
+          679,
+          128,
+          118
+        ],
+        "depth": 762.0999999999999,
+        "point": [
+          1470,
+          340
+        ],
+        "type": "shrub",
+        "image": "park-clearing-56.png"
+      },
+      {
+        "index": 57,
+        "rect": [
+          512,
+          168,
+          124,
+          115
+        ],
+        "depth": 248.36999999999998,
+        "point": [
+          62,
+          495
+        ],
+        "type": "shrub",
+        "image": "park-clearing-57.png"
+      },
+      {
+        "index": 58,
+        "rect": [
+          1665,
+          742,
+          128,
+          118
+        ],
+        "depth": 825.65,
+        "point": [
+          1470,
+          495
+        ],
+        "type": "shrub",
+        "image": "park-clearing-58.png"
+      },
+      {
+        "index": 59,
+        "rect": [
+          385,
+          231,
+          124,
+          115
+        ],
+        "depth": 311.91999999999996,
+        "point": [
+          62,
+          650
+        ],
+        "type": "shrub",
+        "image": "park-clearing-59.png"
+      },
+      {
+        "index": 60,
+        "rect": [
+          1538,
+          806,
+          128,
+          118
+        ],
+        "depth": 889.1999999999999,
+        "point": [
+          1470,
+          650
+        ],
+        "type": "shrub",
+        "image": "park-clearing-60.png"
+      },
+      {
+        "index": 61,
+        "rect": [
+          258,
+          295,
+          124,
+          115
+        ],
+        "depth": 375.46999999999997,
+        "point": [
+          62,
+          805
+        ],
+        "type": "shrub",
+        "image": "park-clearing-61.png"
+      },
+      {
+        "index": 62,
+        "rect": [
+          1411,
+          869,
+          128,
+          118
+        ],
+        "depth": 952.75,
+        "point": [
+          1470,
+          805
+        ],
+        "type": "shrub",
+        "image": "park-clearing-62.png"
+      },
+      {
+        "index": 63,
+        "rect": [
+          675,
+          -222,
+          287,
+          311
+        ],
+        "depth": 42.55,
+        "point": [
+          -40,
+          95
+        ],
+        "type": "tree",
+        "image": "park-clearing-63.png"
+      },
+      {
+        "index": 64,
+        "rect": [
+          799,
+          -178,
+          311,
+          336
+        ],
+        "depth": 110.19999999999999,
+        "point": [
+          125,
+          95
+        ],
+        "type": "tree",
+        "image": "park-clearing-64.png"
+      },
+      {
+        "index": 65,
+        "rect": [
+          934,
+          -110,
+          311,
+          336
+        ],
+        "depth": 177.85,
+        "point": [
+          290,
+          95
+        ],
+        "type": "tree",
+        "image": "park-clearing-65.png"
+      },
+      {
+        "index": 66,
+        "rect": [
+          1069,
+          -42,
+          311,
+          336
+        ],
+        "depth": 245.5,
+        "point": [
+          455,
+          95
+        ],
+        "type": "tree",
+        "image": "park-clearing-66.png"
+      },
+      {
+        "index": 67,
+        "rect": [
+          1205,
+          25,
+          311,
+          336
+        ],
+        "depth": 313.15,
+        "point": [
+          620,
+          95
+        ],
+        "type": "tree",
+        "image": "park-clearing-67.png"
+      },
+      {
+        "index": 68,
+        "rect": [
+          1340,
+          93,
+          311,
+          336
+        ],
+        "depth": 380.79999999999995,
+        "point": [
+          785,
+          95
+        ],
+        "type": "tree",
+        "image": "park-clearing-68.png"
+      },
+      {
+        "index": 69,
+        "rect": [
+          1475,
+          161,
+          311,
+          336
+        ],
+        "depth": 448.45,
+        "point": [
+          950,
+          95
+        ],
+        "type": "tree",
+        "image": "park-clearing-69.png"
+      },
+      {
+        "index": 70,
+        "rect": [
+          1610,
+          228,
+          311,
+          336
+        ],
+        "depth": 516.0999999999999,
+        "point": [
+          1115,
+          95
+        ],
+        "type": "tree",
+        "image": "park-clearing-70.png"
+      },
+      {
+        "index": 71,
+        "rect": [
+          1746,
+          296,
+          311,
+          336
+        ],
+        "depth": 583.75,
+        "point": [
+          1280,
+          95
+        ],
+        "type": "tree",
+        "image": "park-clearing-71.png"
+      },
+      {
+        "index": 72,
+        "rect": [
+          1881,
+          364,
+          311,
+          336
+        ],
+        "depth": 651.4,
+        "point": [
+          1445,
+          95
+        ],
+        "type": "tree",
+        "image": "park-clearing-72.png"
+      },
+      {
+        "index": 73,
+        "rect": [
+          543,
+          -179,
+          290,
+          314
+        ],
+        "depth": 88.06,
+        "point": [
+          -64,
+          230
+        ],
+        "type": "tree",
+        "image": "park-clearing-73.png"
+      },
+      {
+        "index": 74,
+        "rect": [
+          1951,
+          456,
+          305,
+          329
+        ],
+        "depth": 738.3199999999999,
+        "point": [
+          1592,
+          160
+        ],
+        "type": "tree",
+        "image": "park-clearing-74.png"
+      },
+      {
+        "index": 75,
+        "rect": [
+          408,
+          -111,
+          290,
+          314
+        ],
+        "depth": 155.70999999999998,
+        "point": [
+          -64,
+          395
+        ],
+        "type": "tree",
+        "image": "park-clearing-75.png"
+      },
+      {
+        "index": 76,
+        "rect": [
+          1816,
+          524,
+          305,
+          329
+        ],
+        "depth": 805.9699999999999,
+        "point": [
+          1592,
+          325
+        ],
+        "type": "tree",
+        "image": "park-clearing-76.png"
+      },
+      {
+        "index": 77,
+        "rect": [
+          273,
+          -44,
+          290,
+          314
+        ],
+        "depth": 223.35999999999999,
+        "point": [
+          -64,
+          560
+        ],
+        "type": "tree",
+        "image": "park-clearing-77.png"
+      },
+      {
+        "index": 78,
+        "rect": [
+          1681,
+          592,
+          305,
+          329
+        ],
+        "depth": 873.62,
+        "point": [
+          1592,
+          490
+        ],
+        "type": "tree",
+        "image": "park-clearing-78.png"
+      },
+      {
+        "index": 79,
+        "rect": [
+          138,
+          24,
+          290,
+          314
+        ],
+        "depth": 291.01,
+        "point": [
+          -64,
+          725
+        ],
+        "type": "tree",
+        "image": "park-clearing-79.png"
+      },
+      {
+        "index": 80,
+        "rect": [
+          1545,
+          659,
+          305,
+          329
+        ],
+        "depth": 941.27,
+        "point": [
+          1592,
+          655
+        ],
+        "type": "tree",
+        "image": "park-clearing-80.png"
+      },
+      {
+        "index": 81,
+        "rect": [
+          2,
+          91,
+          290,
+          314
+        ],
+        "depth": 358.65999999999997,
+        "point": [
+          -64,
+          890
+        ],
+        "type": "tree",
+        "image": "park-clearing-81.png"
+      },
+      {
+        "index": 82,
+        "rect": [
+          1410,
+          727,
+          305,
+          329
+        ],
+        "depth": 1008.92,
+        "point": [
+          1592,
+          820
+        ],
+        "type": "tree",
+        "image": "park-clearing-82.png"
+      },
+      {
+        "index": 83,
+        "rect": [
+          -133,
+          159,
+          290,
+          314
+        ],
+        "depth": 426.31,
+        "point": [
+          -64,
+          1055
+        ],
+        "type": "tree",
+        "image": "park-clearing-83.png"
+      },
+      {
+        "index": 84,
+        "rect": [
+          1275,
+          795,
+          305,
+          329
+        ],
+        "depth": 1076.57,
+        "point": [
+          1592,
+          985
+        ],
+        "type": "tree",
+        "image": "park-clearing-84.png"
+      },
+      {
+        "index": 85,
+        "rect": [
+          243,
+          368,
+          290,
+          314
+        ],
+        "depth": 635,
+        "point": [
+          420,
+          1080
+        ],
+        "type": "tree",
+        "image": "park-clearing-85.png"
+      },
+      {
+        "index": 86,
+        "rect": [
+          383,
+          438,
+          290,
+          314
+        ],
+        "depth": 704.6999999999999,
+        "point": [
+          590,
+          1080
+        ],
+        "type": "tree",
+        "image": "park-clearing-86.png"
+      },
+      {
+        "index": 87,
+        "rect": [
+          522,
+          507,
+          290,
+          314
+        ],
+        "depth": 774.4,
+        "point": [
+          760,
+          1080
+        ],
+        "type": "tree",
+        "image": "park-clearing-87.png"
+      },
+      {
+        "index": 88,
+        "rect": [
+          662,
+          577,
+          290,
+          314
+        ],
+        "depth": 844.0999999999999,
+        "point": [
+          930,
+          1080
+        ],
+        "type": "tree",
+        "image": "park-clearing-88.png"
+      },
+      {
+        "index": 89,
+        "rect": [
+          801,
+          647,
+          290,
+          314
+        ],
+        "depth": 913.8,
+        "point": [
+          1100,
+          1080
+        ],
+        "type": "tree",
+        "image": "park-clearing-89.png"
+      },
+      {
+        "index": 90,
+        "rect": [
+          940,
+          716,
+          290,
+          314
+        ],
+        "depth": 983.4999999999999,
+        "point": [
+          1270,
+          1080
+        ],
+        "type": "tree",
+        "image": "park-clearing-90.png"
+      },
+      {
+        "index": 91,
+        "rect": [
+          1080,
+          786,
+          290,
+          314
+        ],
+        "depth": 1053.2,
+        "point": [
+          1440,
+          1080
+        ],
+        "type": "tree",
+        "image": "park-clearing-91.png"
+      },
+      {
+        "index": 92,
+        "rect": [
+          819,
+          49,
+          151,
+          169
+        ],
+        "depth": 146.65846153846152,
+        "point": [
+          132.92307692307693,
+          176
+        ],
+        "type": "fence",
+        "image": "park-clearing-92.png"
+      },
+      {
+        "index": 93,
+        "rect": [
+          906,
+          93,
+          151,
+          169
+        ],
+        "depth": 190.0553846153846,
+        "point": [
+          238.76923076923077,
+          176
+        ],
+        "type": "fence",
+        "image": "park-clearing-93.png"
+      },
+      {
+        "index": 94,
+        "rect": [
+          992,
+          136,
+          151,
+          169
+        ],
+        "depth": 233.4523076923077,
+        "point": [
+          344.61538461538464,
+          176
+        ],
+        "type": "fence",
+        "image": "park-clearing-94.png"
+      },
+      {
+        "index": 95,
+        "rect": [
+          1079,
+          180,
+          151,
+          169
+        ],
+        "depth": 276.8492307692308,
+        "point": [
+          450.4615384615385,
+          176
+        ],
+        "type": "fence",
+        "image": "park-clearing-95.png"
+      },
+      {
+        "index": 96,
+        "rect": [
+          1166,
+          223,
+          151,
+          169
+        ],
+        "depth": 320.24615384615385,
+        "point": [
+          556.3076923076924,
+          176
+        ],
+        "type": "fence",
+        "image": "park-clearing-96.png"
+      },
+      {
+        "index": 97,
+        "rect": [
+          1253,
+          266,
+          151,
+          169
+        ],
+        "depth": 363.64307692307693,
+        "point": [
+          662.1538461538462,
+          176
+        ],
+        "type": "fence",
+        "image": "park-clearing-97.png"
+      },
+      {
+        "index": 98,
+        "rect": [
+          1340,
+          310,
+          151,
+          169
+        ],
+        "depth": 407.03999999999996,
+        "point": [
+          768,
+          176
+        ],
+        "type": "fence",
+        "image": "park-clearing-98.png"
+      },
+      {
+        "index": 99,
+        "rect": [
+          1426,
+          353,
+          151,
+          169
+        ],
+        "depth": 450.43692307692305,
+        "point": [
+          873.8461538461538,
+          176
+        ],
+        "type": "fence",
+        "image": "park-clearing-99.png"
+      },
+      {
+        "index": 100,
+        "rect": [
+          1513,
+          397,
+          151,
+          169
+        ],
+        "depth": 493.8338461538461,
+        "point": [
+          979.6923076923077,
+          176
+        ],
+        "type": "fence",
+        "image": "park-clearing-100.png"
+      },
+      {
+        "index": 101,
+        "rect": [
+          1600,
+          440,
+          151,
+          169
+        ],
+        "depth": 537.2307692307693,
+        "point": [
+          1085.5384615384617,
+          176
+        ],
+        "type": "fence",
+        "image": "park-clearing-101.png"
+      },
+      {
+        "index": 102,
+        "rect": [
+          1687,
+          483,
+          151,
+          169
+        ],
+        "depth": 580.6276923076923,
+        "point": [
+          1191.3846153846155,
+          176
+        ],
+        "type": "fence",
+        "image": "park-clearing-102.png"
+      },
+      {
+        "index": 103,
+        "rect": [
+          1774,
+          527,
+          151,
+          169
+        ],
+        "depth": 624.0246153846153,
+        "point": [
+          1297.2307692307693,
+          176
+        ],
+        "type": "fence",
+        "image": "park-clearing-103.png"
+      },
+      {
+        "index": 104,
+        "rect": [
+          1860,
+          570,
+          151,
+          169
+        ],
+        "depth": 667.4215384615384,
+        "point": [
+          1403.076923076923,
+          176
+        ],
+        "type": "fence",
+        "image": "park-clearing-104.png"
+      },
+      {
+        "index": 105,
+        "rect": [
+          1859,
+          627,
+          153,
+          170
+        ],
+        "depth": 724.2628571428571,
+        "point": [
+          1472,
+          245.71428571428572
+        ],
+        "type": "fence",
+        "image": "park-clearing-105.png"
+      },
+      {
+        "index": 106,
+        "rect": [
+          1771,
+          671,
+          153,
+          170
+        ],
+        "depth": 768.3085714285713,
+        "point": [
+          1472,
+          353.1428571428571
+        ],
+        "type": "fence",
+        "image": "park-clearing-106.png"
+      },
+      {
+        "index": 107,
+        "rect": [
+          1683,
+          715,
+          153,
+          170
+        ],
+        "depth": 812.3542857142857,
+        "point": [
+          1472,
+          460.57142857142856
+        ],
+        "type": "fence",
+        "image": "park-clearing-107.png"
+      },
+      {
+        "index": 108,
+        "rect": [
+          1595,
+          759,
+          153,
+          170
+        ],
+        "depth": 856.4,
+        "point": [
+          1472,
+          568
+        ],
+        "type": "fence",
+        "image": "park-clearing-108.png"
+      },
+      {
+        "index": 109,
+        "rect": [
+          1507,
+          803,
+          153,
+          170
+        ],
+        "depth": 900.4457142857143,
+        "point": [
+          1472,
+          675.4285714285713
+        ],
+        "type": "fence",
+        "image": "park-clearing-109.png"
+      },
+      {
+        "index": 110,
+        "rect": [
+          1419,
+          847,
+          153,
+          170
+        ],
+        "depth": 944.4914285714286,
+        "point": [
+          1472,
+          782.8571428571429
+        ],
+        "type": "fence",
+        "image": "park-clearing-110.png"
+      },
+      {
+        "index": 111,
+        "rect": [
+          1330,
+          891,
+          153,
+          170
+        ],
+        "depth": 988.5371428571427,
+        "point": [
+          1472,
+          890.2857142857143
+        ],
+        "type": "fence",
+        "image": "park-clearing-111.png"
+      },
+      {
+        "index": 112,
+        "rect": [
+          169,
+          374,
+          117,
+          152
+        ],
+        "depth": 462.79999999999995,
+        "point": [
+          112,
+          968
+        ],
+        "type": "fence",
+        "image": "park-clearing-112.png"
+      },
+      {
+        "index": 113,
+        "rect": [
+          379,
+          479,
+          152,
+          169
+        ],
+        "depth": 576.616,
+        "point": [
+          389.6,
+          968
+        ],
+        "type": "fence",
+        "image": "park-clearing-113.png"
+      },
+      {
+        "index": 114,
+        "rect": [
+          467,
+          523,
+          152,
+          169
+        ],
+        "depth": 620.568,
+        "point": [
+          496.8,
+          968
+        ],
+        "type": "fence",
+        "image": "park-clearing-114.png"
+      },
+      {
+        "index": 115,
+        "rect": [
+          555,
+          567,
+          152,
+          169
+        ],
+        "depth": 664.52,
+        "point": [
+          604,
+          968
+        ],
+        "type": "fence",
+        "image": "park-clearing-115.png"
+      },
+      {
+        "index": 116,
+        "rect": [
+          643,
+          611,
+          152,
+          169
+        ],
+        "depth": 708.472,
+        "point": [
+          711.2,
+          968
+        ],
+        "type": "fence",
+        "image": "park-clearing-116.png"
+      },
+      {
+        "index": 117,
+        "rect": [
+          731,
+          655,
+          152,
+          169
+        ],
+        "depth": 752.424,
+        "point": [
+          818.4000000000001,
+          968
+        ],
+        "type": "fence",
+        "image": "park-clearing-117.png"
+      },
+      {
+        "index": 118,
+        "rect": [
+          819,
+          699,
+          152,
+          169
+        ],
+        "depth": 796.3759999999999,
+        "point": [
+          925.6,
+          968
+        ],
+        "type": "fence",
+        "image": "park-clearing-118.png"
+      },
+      {
+        "index": 119,
+        "rect": [
+          907,
+          743,
+          152,
+          169
+        ],
+        "depth": 840.328,
+        "point": [
+          1032.8,
+          968
+        ],
+        "type": "fence",
+        "image": "park-clearing-119.png"
+      },
+      {
+        "index": 120,
+        "rect": [
+          995,
+          787,
+          152,
+          169
+        ],
+        "depth": 884.28,
+        "point": [
+          1140,
+          968
+        ],
+        "type": "fence",
+        "image": "park-clearing-120.png"
+      },
+      {
+        "index": 121,
+        "rect": [
+          1082,
+          831,
+          152,
+          169
+        ],
+        "depth": 928.2319999999999,
+        "point": [
+          1247.2,
+          968
+        ],
+        "type": "fence",
+        "image": "park-clearing-121.png"
+      },
+      {
+        "index": 122,
+        "rect": [
+          1170,
+          875,
+          152,
+          169
+        ],
+        "depth": 972.184,
+        "point": [
+          1354.4,
+          968
+        ],
+        "type": "fence",
+        "image": "park-clearing-122.png"
+      },
+      {
+        "index": 123,
+        "rect": [
+          695,
+          56,
+          149,
+          168
+        ],
+        "depth": 152.60571428571427,
+        "point": [
+          64,
+          259.42857142857144
+        ],
+        "type": "fence",
+        "image": "park-clearing-123.png"
+      },
+      {
+        "index": 124,
+        "rect": [
+          611,
+          98,
+          149,
+          168
+        ],
+        "depth": 194.77714285714285,
+        "point": [
+          64,
+          362.2857142857143
+        ],
+        "type": "fence",
+        "image": "park-clearing-124.png"
+      },
+      {
+        "index": 125,
+        "rect": [
+          526,
+          140,
+          149,
+          168
+        ],
+        "depth": 236.9485714285714,
+        "point": [
+          64,
+          465.1428571428571
+        ],
+        "type": "fence",
+        "image": "park-clearing-125.png"
+      },
+      {
+        "index": 126,
+        "rect": [
+          442,
+          183,
+          149,
+          168
+        ],
+        "depth": 279.12,
+        "point": [
+          64,
+          568
+        ],
+        "type": "fence",
+        "image": "park-clearing-126.png"
+      },
+      {
+        "index": 127,
+        "rect": [
+          358,
+          225,
+          149,
+          168
+        ],
+        "depth": 321.2914285714286,
+        "point": [
+          64,
+          670.8571428571429
+        ],
+        "type": "fence",
+        "image": "park-clearing-127.png"
+      },
+      {
+        "index": 128,
+        "rect": [
+          273,
+          267,
+          149,
+          168
+        ],
+        "depth": 363.4628571428571,
+        "point": [
+          64,
+          773.7142857142857
+        ],
+        "type": "fence",
+        "image": "park-clearing-128.png"
+      },
+      {
+        "index": 129,
+        "rect": [
+          189,
+          309,
+          149,
+          168
+        ],
+        "depth": 405.6342857142857,
+        "point": [
+          64,
+          876.5714285714286
+        ],
+        "type": "fence",
+        "image": "park-clearing-129.png"
+      }
+    ],
+    "floorImage": "park-clearing-floor.png"
+  }
+}

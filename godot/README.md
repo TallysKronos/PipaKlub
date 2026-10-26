@@ -1,76 +1,85 @@
-# Soulmonsters — primeira versão Godot
+# PipaKlub — campanha Godot
 
-## Cena inicial atual: Veredas ilustradas
+Cena principal: `scenes/campaign.tscn`, Godot 4.7.2 Compatibility, Windows x64. Execute `Iniciar.ps1` ou `exports/windows/PipaKlub.exe` junto de `PipaKlub.pck`. Para gerar novamente: `Exportar.ps1 -GodotPath <executável>`; templates oficiais Windows precisam estar instalados. A pasta exportada inclui licenças do motor e hashes em `build-info.json`. Binários ficam fora do Git.
 
-A abertura usa `scenes/illustrated_veredas.tscn`, com arte panorâmica e atores separados. A revisão de movimento usa polígonos de chão e obstáculos, contato nos pés, rotas com folga e seguidor por pegadas. Entrada, duas pontes, mirante, encosta, rampas e pátio podem ser explorados; combate e missão do boss ainda não foram integrados nessa cena. M alterna visão geral e F3 destaca pisos e obstáculos.
+## Implementado
 
-`Iniciar.ps1 -Test` verifica dez marcos nos dois sentidos e percorre as rotas com o controlador real em quadros de 1/60 s. Veja [assets/illustrated/README.md](assets/illustrated/README.md). Não há save nessa cena: F5/save e a planta integral descritos abaixo pertencem ao protótipo anterior `scenes/main.tscn`. O pátio de escala continua em `scenes/scale_yard.tscn`. As seções seguintes registram as etapas anteriores.
-
-Protótipo nativo independente em Godot 4.7.2, renderer Compatibility, Windows como primeiro destino. Não substitui o cliente Canvas e não conecta banco, contas ou economia de produção. Nenhum asset de Digimon foi incorporado.
-
-## Executar
-
-Abra `project.godot` no Godot 4.7 e pressione F6/F5. No Windows também pode executar `./godot/Iniciar.ps1` da raiz do repositório; `-Editor` abre o editor e `-Test` executa as verificações sem janela. Em outro computador, instale Godot da distribuição oficial e defina GODOT_PATH ou passe `-GodotPath` ao launcher. Não há download automático de executáveis no launcher.
-
-A instalação desta tarefa está em C:/Users/User1/Documents/Codex/tools/godot, fora do Git. Não há executável standalone exportado nesta entrega: o projeto roda com o binário Godot. Export templates e build distribuível Windows serão a próxima etapa.
+- Três jornadas locais sem login, abertura de Kael, nascimento/nome de Rabbito, rua, professor e cinco lições de voo.
+- Oficina nativa em cinco etapas: primeira escolha, rabiolas encontradas, reserva de estoque, cancelamento com devolução, restauração após falha, qualidade/variante e parceiros com UUID.
+- Portão da rua leva ao Jardim das Pipas, depois à Clareira do Papel e às Veredas ilustradas. Os dois mapas iniciais reutilizam o renderizador JS para exportar chão e objetos separados; colisões, pontos de interação e entradas vêm das plantas originais. Nas duas áreas iniciais, navegação por teclado; clique para caminhar permanece disponível nas Veredas.
+- Morro do Sol completo: cinco mapas originais, Zeca, Bia, Juninho e Lia simultâneos, Tião e Mikka; séries de rodadas, passagens por vitória, revanches, dificuldade adaptativa, XP, moedas e rabiola única. Entrada pela Rua dos Ventos, retorno à cidade e conexão ao parque. Clique para caminhar ou WASD/setas, com respeito aos desníveis.
+- Cinco baús com recompensas originais e coleta única. Nina aceita a missão; vencer Lacertubo remove o boss e libera a rabiola de missão. Devolução fica salva. O jogador recebe separadamente a rabiola de Lacertubo.
+- Encontros somente no mato, espécies e nível sorteados antes da luta, primeira rabiola garantida e proteção após sete vitórias sem drop. Combate pode ser salvo/retomado, encerrado por fuga e concede desgaste/XP uma vez.
+- Coleção, escolha do parceiro, seguidor correspondente, bolsa e reparos gratuitos com o professor.
+- Filtro CRT ativado por padrão, opção para desativar e tela cheia, separados dos slots.
 
 ## Controles
 
-WASD, setas ou analógico esquerdo movem Kael na orientação da tela. Clique no chão para seguir uma rota. E/Enter ou A do controle interagem. F5 salva; Esc abre uma pausa. Os botões Entrada, Canal, Nina e Encosta são atalhos temporários de revisão. Eles não existem no jogo original.
+WASD/setas: mover; E/Enter: interagir por proximidade. No Morro e nas Veredas, clique para caminhar; nas Veredas, M para visão geral, sem lista de destinos revelados. Batalhas: Espaço cortar, Q habilidade, Shift esquiva, R puxão, G guarda, F assinatura de Rabbito. Bancada: mouse e A/D, com instruções por etapa. Esc salva e volta ao menu; na oficina pede para cancelar a montagem. Perda de foco pausa treino/combate/oficina.
 
-## Incluído
+## Persistência
 
-- Cena nativa Node2D, câmera com suavização, interface Control e ordenação dos personagens por profundidade.
-- Kael animado a partir do avatar original, com cabelo e mochila presos às âncoras dos quadros. Rabbito usa o atlas original; Nina usa a pose estática existente.
-- Planta integral das Veredas importada em JSON, terreno ilustrado, relevo, rampas, duas pontes, árvores e cinco baús.
-- Navegação AStar em coordenadas de mundo e altura. Água sem ponte e troncos bloqueiam movimento; rampas conectam patamares.
-- Conversa inicial com Nina e estado de baús em um save próprio `user://veredas-prototype-v1.json`, sem concessão de itens na conta original.
-- Validação de versão, posição transitável e IDs de baús ao carregar o save.
+`%APPDATA%/PipaKlub/campaign/slot-1.json` a `slot-3.json`. Configurações em `settings.cfg`. Temporário verificado, backup da gravação anterior, recuperação e bloqueio de schema futuro. Saves web/protótipos não são importados. Recibos impedem reaplicar operações na jornada carregada; não impedem edição/restauração manual nem certificam parceiros online. Não há lock entre duas instâncias nem Steam Cloud.
 
-## Limites da primeira etapa
+## Verificações autorizadas — 25/10/2026
 
-Ainda não há combate, inimigos selvagens, boss desenhado, abertura, oficina, coleção, áudio, login ou integração Steam. O conteúdo do baú é uma mensagem de protótipo, não um inventário migrado. O diálogo é texto e botão; o retrato foi separado para futura composição. Gamepad e interação estão implementados, mas não houve teste com um controle físico.
+- `godot --headless --path godot --script res://tests/campaign_checks.gd`: 206 verificações, zero falhas.
+- `godot --headless --path godot --script res://tests/campaign_view_checks.gd`: 23 verificações, zero falhas.
+- Referências geradas diretamente do código JS com `node scripts/godot-campaign-reference.mjs`: três montagens completas, comandos dos quatro tipos e trechos de 12 segundos das duas fases do boss. Isso não prova equivalência de todo o motor online.
+- Testes usam pastas únicas `campaign-checks-<UUID>` e `campaign-view-checks-<UUID>`. Vitória sintética é usada explicitamente para testar transações e transições; não é playtest de dificuldade.
+- Capturas visuais de parque, intro do boss e vitória em 1280×720; captura não grava jornada nem comprova um playthrough.
 
-A arte do terreno ainda usa desenho nativo de polígonos a partir das superfícies, não um TileMapLayer pintável no editor. Esta etapa verifica portabilidade e funcionamento; não comprova ainda ganho de autoria de mapas. O próximo passo é converter a família de materiais em TileSet/TileMapLayer e extrair ator, interação e diálogo em cenas reutilizáveis. O tile/colisão e a navegação precisam continuar usando as mesmas medidas.
+## Limites da entrega
 
-## Arquitetura e fontes
+Ainda faltam áudio, controle completo da bancada, remapeamento de gamepad, especializações, todas as manobras de linha, revisão integral de dificuldade e playtest humano contínuo desde novo jogo. As cinco lições do tutorial foram comparadas com traços completos do original; isso não comprova equivalência de todo o motor de combate. Campanha não chama rede, mas não foi validada com a rede fisicamente desativada.
 
-`scenes/main.tscn` compõe a raiz; `scripts/main.gd` controla este primeiro fluxo, `region.gd` concentra geometria/navegação e `avatar.gd` monta o avatar por âncoras. Dados e artes originais estão em assets. Para sincronizar novamente da versão atual, execute `node scripts/godot-sync.mjs` na raiz do repositório. Os arquivos de importação do Godot podem ser regenerados; `.godot` e `exports` são ignorados.
+Steamworks/App ID ainda não existem. Publicação, conquistas, Cloud e online opcional não estão implementados. Política de certificação dos parceiros continua pendente. PIP-60 permanece em andamento.
 
-Save de teste fica na pasta user:// do projeto Godot, separado do navegador. A API e as migrações do jogo original não foram modificadas. Para distribuição futura, incluir o aviso de licença do Godot e inventariar licenças de plugins quando houver.
+## Protótipos anteriores
 
-## Verificado
+`Iniciar.ps1 -Prototype` abre a antiga cena ilustrada sem economia de campanha. `-Test` executa a revisão de navegação desse protótipo; não executa os testes de campanha acima. Documentação: `assets/illustrated/README.md`. O pátio de escala e `scenes/main.tscn` continuam separados. Conversão Soulgen pausada em `art/soulgen/CONTINUIDADE.md`: próximo é Platofolha.
 
-Godot oficial 4.7.2 importou o projeto. Execução headless com `--smoke` verifica carregamento da cena, navegação da entrada ao pátio, altura do pátio, bloqueio do canal fora da ponte, cinco baús e quadros do parceiro. O verificador de referências retornou zero erros/avisos. Captura do viewport pelo renderer gráfico foi inspecionada; isso não equivale a playtest manual completo.
+## Revisão das HUDs
+Combate com ícones do kit Papel e Bambu, estados de recarga/energia, barras nomeadas e percentuais; salvar/fugir disponíveis na pausa. Exploração com painéis de contraste para localização, missão e moedas. Capturas revisadas em 1280×720; outros formatos e navegação por controle ainda pendentes. Verificações de campanha: 141 + 17 aprovadas após a revisão.
 
-## Próximos passos
+Tutorial: sequências completas das cinco lições geradas do JavaScript original e reproduzidas na Godot. Corrigidos vento sobre Nozinho, início do especial e acionamento de R por pressionamento. Comparação cobre conclusão e posição/energia/acertos/bloqueios/pontuação finais de cada sequência; não equivale a paridade de toda entrada possível. São agora 176 verificações de domínio e 17 de integração aprovadas. Tutorial com etapa e instruções roláveis; coleção com retrato, condição e progresso de XP. Capturas revisadas em 1280×720.
 
-1. Ajustar TileSet e edição visual do trecho de referência, com bordas e alturas.
-2. Separar cenas reutilizáveis de Kael, parceiro, baú e NPC.
-3. Validar teclado, controle, interação e save em um percurso manual completo.
-4. Migrar uma batalha e seu retorno ao mapa.
-5. Definir saves offline, integração de conta e exportação Windows para avaliação Steam.
+## Integração do percurso do parque
+
+`node scripts/godot-park-sync.mjs` exporta as duas áreas iniciais. Usa SOULGEN_CANVAS_MODULE, como o sincronizador da campanha. Não gera arte nova nem copia colisões à mão; objetos ficam em PNGs separados com profundidade. Rigs ambientais estão exportados na pose inicial, ainda sem animação nativa. A fonte TMJ/renderer JS continua canônica; refazer o export após editar essas plantas.
+
+Verificação atual: 188 verificações de domínio, 23 de integração e 1510 de geometria (probes comparadas ao JS e acesso às interações), todas aprovadas em dados isolados. Geometria: `godot --headless --path godot --script res://tests/park_checks.gd`. As 1510 verificações não são 1510 cenários de gameplay: a maioria compara pontos permitidos/proibidos. Capturas do Jardim e Clareira inspecionadas em 1280×720. Ainda sem playthrough humano completo, controle físico ou avaliação de dificuldade.
+
+## Controles centralizados
+
+Configurações → Controles permite remapear 12 ações do teclado e restaurar padrões. Conflitos são recusados; setas, Enter, Tab e Esc ficam reservados à navegação. Preferências persistem fora dos slots. A campanha lê ações nomeadas; dicas da HUD de batalha seguem teclado/controle. O analógico tem zona morta radial de 0,2 e mantém intensidade nas salas e nos mapas do parque. Desconexão pausa treino/batalha/oficina e avisa na exploração. Menus usam foco nativo; retomar solta o foco para Espaço continuar sendo ataque.
+
+Controle: analógico esquerdo move, A/× interage, X/□ corta, Y/△ habilidade, B/○ esquiva, RB/R1 puxão, LB/L1 guarda, R3 assinatura, View/Select mapa nas Veredas, Start retorna ao menu com save. Ainda sem remapeamento dos botões do controle, glifos detectados por modelo ou bancada totalmente operável sem mouse. Não declarar suporte completo a Steam Deck.
+
+Validação de entrada: `godot --headless --path godot --script res://tests/controls_checks.gd` — 19 verificações aprovadas usando eventos simulados e configurações em pasta isolada. Persistência/regras 188 e integração 23 também aprovadas após integrar os controles. Nenhum controle físico foi testado. Tela de remapeamento inspecionada em 1280×720. Build Windows regenerada sem erros.
+
+## Percurso contínuo validado — 25/10/2026
+
+Executado roteiro novo jogo → professor → cinco lições → oficina com gestos reais → três mapas do parque → Nina → vitória real sobre Lacertubo → coleta/devolução → salvar/retomar → voltar ao professor/reparar. Sem conceder itens, XP ou vitória diretamente. 105 verificações aprovadas na execução com encontro aleatório/fuga; 7 adicionais confirmaram a carga em processo novo. Runtime acelerado, não playtest humano de dificuldade. Corrigido bloqueio de save intermediário da oficina após recortar, causado pela representação numérica da direção do vento no JSON.
+
+Roteiro: `godot --headless --path godot --script res://tests/journey_playthrough.gd`. Usa uma pasta nova e isolada; o número de verificações varia se houver encontro aleatório. Relatório e limitações em [PLAYTEST-2026-10-25.md](PLAYTEST-2026-10-25.md). Persistência/regras agora: 206 verificações aprovadas, incluindo ida/volta JSON em todas as etapas da oficina. Entrada: 19; integração: 23. Executável Windows exportado iniciou e encerrou com código 0 no smoke headless; isso não equivale ao percurso integral dentro do release ou a teste de instalação Steam.
 
 
-## Revisão de escala e primeira camada TileMap
+## Morro jogável — 25/10/2026
 
-A cena inicial passou a ser `scenes/scale_yard.tscn`, um pátio compacto para avaliar proporções antes de ampliar a região. A cena `scenes/main.tscn` preserva as Veredas completas. A câmera usa zoom 1.4 (antes 0.95), aproximadamente 47% mais próximo. Árvores foram reduzidas em cerca de 13% em relação ao personagem. O save do pátio é separado: `user://scale-yard-v1.json`.
+`node scripts/godot-morro-sync.mjs` exporta diretamente os cinco mapas e diálogos
+originais, NPCs, geometria, desníveis, grafo de navegação e regras da demo.
+`tests/journey_playthrough.gd -- --with-morro` percorreu Novo jogo → oficina →
+Morro inteiro → cidade → parque → Lacertubo → missão de Nina → reparo, com
+198 verificações e nenhuma falha, usando comandos e callbacks das telas.
+Inclui salvar/retomar a disputa de três participantes e revisitar os mapas
+conquistados. Não concede parceiros, inventário ou vitórias artificiais.
 
-O pátio tem ponte, rampa de 80 unidades, Nina, um baú e árvores. Os atalhos da HUD ajudam a comparar clareira, Nina, rampa e baú. Nesta revisão não foram geradas novas artes: as ilustrações existentes foram normalizadas para os primeiros tiles isométricos.
+Regras: 377 verificações; transações isoladas: 47 (derrota, fuga, revanche e
+rabiola única); geometria e navegação: ver contagem em MORRO-PLAYTEST-2026-10-25.md.
+Ao carregar um combate, ele fica pausado até o jogador escolher Retomar.
 
-`tiles/veredas-materials.tres` é o TileSet externo, com células de 128×64, quatro materiais e quatro orientações espelhadas para cada material. `tiles/reference-ground.tscn` contém o TileMapLayer persistido: abra essa cena para pintar a camada no editor. A escala 0.82 faz cada passo corresponder a 64 unidades do mundo original (52.48×26.24 na tela). `tools/build_tiles.gd` regenera o atlas e a cena base; execute apenas para reconstruir a base, pois ele substitui a pintura dessa camada. Se o atlas mudar de dimensão, reimporte no editor antes de reconstruir a cena.
-
-Apenas a camada base de grama foi convertida em TileMapLayer. Caminhos, água, rampas e barrancos ainda usam a geometria do protótipo. Os próximos assets são transições, bordas e cantos; não considerar este atlas um kit final de autotiling. Alterar só a pintura da camada base não muda navegação: até a migração completa, os limites transitáveis continuam no JSON da cena.
-
-Verificado: importação Godot, teste do trajeto completo do pátio, bloqueio de água fora da ponte, altura, interação por proximidade, save isolado e correspondência entre a grade de tiles e a projeção. Captura gráfica inspecionada; sem playtest com controle físico nesta etapa.
-
-
-## Transições do caminho — primeira família
-
-O pátio agora usa duas camadas TileMapLayer de caminhos: PathsLow e PathsHigh, na cena `tiles/reference-paths.tscn`. O TileSet `tiles/path-transitions.tres` tem 16 máscaras de borda, com quatro orientações de textura (64 tiles). As máscaras consideram vizinhos nas quatro direções do mundo: negativo/positivo X e negativo/positivo Y. Células internas não recebem borda; cantos combinam duas ou mais bordas. A passagem para grama usa mistura com largura controlada e variação suave. Os materiais são os já existentes, sem nova geração de arte.
-
-Para regenerar: execute `Godot --headless --path godot --script res://tools/build_transitions.gd`, reimporte o projeto no editor e depois execute o mesmo comando com `-- --paint`. A primeira etapa grava o PNG; a segunda gera o TileSet e pinta as camadas iniciais a partir do JSON. Isso substitui a pintura dessas camadas: preserve edições manuais antes de regenerar. Não são terrains Connect configurados no editor; a seleção por vizinhança acontece na ferramenta de preparação. Os tiles continuam disponíveis para pintura manual.
-
-A ponte mantém deck livre de terra e recebe cabeceiras, sombra e espessura. A água ganhou pedras de margem interrompidas nas travessias. Rampas ganharam cunhas laterais de sustentação. Água, barrancos e rampas ainda usam geometria do protótipo: não afirmar que todo o mapa já foi convertido em tiles.
-
-Verificação adicional: 64 tiles presentes, célula interna sem borda, canto externo com duas transições e nenhuma célula de terra sobre a ponte. Captura gráfica do pátio revisada. Para avaliar novas alturas e o encaixe superior da rampa, use o botão de revisão Baú; a captura inicial não enquadra o patamar inteiro.
+Medição gráfica local em 1280×720, RTX 3060, limite de 60 FPS, 150 amostras por
+cena após 60 frames de aquecimento: medianas de 16,64–16,66 ms; p95 de
+16,72–16,99 ms. São medições deste PC; não certificam hardware mínimo.
+Relatório e limites: `MORRO-PLAYTEST-2026-10-25.md`.
