@@ -247,7 +247,6 @@ func _dialog(title: String, text: String, ok: String, cancel: String = "") -> Ac
 	add_child(dialog)
 	return dialog
 
-
 func _notice(message: String) -> void:
 	if is_instance_valid(park): park.paused = true
 	var was_walking: bool = is_instance_valid(room) and room.can_walk
@@ -477,6 +476,7 @@ func _show_world() -> void:
 	prompt.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	overlay.add_child(prompt)
 	status = _label("", prompt, 20)
+	Hud.interaction_glyph(prompt)
 	status.autowrap_mode = TextServer.AUTOWRAP_OFF
 	prompt.visible = false
 
@@ -539,13 +539,8 @@ func _simple_page(title: String) -> void:
 	page.add_child(heading_row)
 	var heading := _label(title, heading_row, 36)
 	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var mark := TextureRect.new()
-	mark.texture = Hud.artwork("thread-mark")
-	mark.custom_minimum_size = Vector2(160, 50)
-	mark.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	mark.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	mark.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	heading_row.add_child(mark)
+	Hud.input_hint(heading_row,"accept","Confirmar")
+	Hud.input_hint(heading_row,"back","Voltar")
 	_focus_first.call_deferred(page)
 
 func _focus_first(node: Node) -> bool:
@@ -685,6 +680,8 @@ func _process(delta: float) -> void:
 		broadcast[i].position = Vector2(300 + 350 * i + sin(clock * 1.7 + i) * 35, 280 + sin(clock * 2 + i) * 20)
 	if is_instance_valid(room) and room.can_walk:
 		status.text = Controls.prompt("interact") + " · " + {"desk": "Montar Rabbito", "stairs": "Descer para a sala", "exit": "Sair", "professor": "Conversar com Sr. Assis", "professor-home": "Entrar no ateliê", "morro": "Entrar no Morro do Sol", "park": "Entrar no parque", "workbench": "Usar bancada"}.get(room.near, "Interagir") if not room.near.is_empty() and (room.near == room.target_hotspot or room.target_hotspot == "*") else ("Analógico · Mover" if Controls.gamepad else "Setas · Mover")
+		if status.get_parent() is PanelContainer and status.get_parent().theme_type_variation == "RecortePromptPanel":
+			status.text = status.text.trim_prefix(Controls.prompt("interact")+" · ")
 		if status.get_parent().has_meta("contextual"): status.get_parent().visible = not room.near.is_empty()
 		elif current_step in [3, 11, 13] and room.near != room.target_hotspot:
 			status.text = ("Analógico · Mover" if Controls.gamepad else "WASD / setas · Mover") + "  ·  " + {3: "Aproxime-se da mesa de desenho.", 11: "Aproxime-se da escada para descer.", 13: "Aproxime-se da porta para sair."}[current_step]
@@ -943,9 +940,11 @@ func _show_collection() -> void:
 		details.add_child(progress)
 		_label("Nível máximo" if level == 50 else "%d / %d XP para o próximo nível" % [xp - previous, threshold - previous], details, 16)
 		var id: String = partner.id
-		var button := _button("Selecionado" if id == player.get("equippedPartnerId", "") else "Escolher parceiro", row, func():
+		var action_space := Hud.focus_space(row)
+		action_space.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		var button := _button("Selecionado" if id == player.get("equippedPartnerId", "") else "Escolher parceiro", action_space, func():
 			if _result(exploration.equip(id)): _show_collection())
-		button.custom_minimum_size.x = 180
+		button.custom_minimum_size.x = 256
 		button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 		button.disabled = id == player.get("equippedPartnerId", "")
 	_button("Voltar", page, _return_to_game)
@@ -992,6 +991,7 @@ func _show_tail_workshop() -> void:
 	_button("Voltar", page, _show_saved)
 
 func _apply_preferences() -> void:
+	Controls.set_family(preferences.pad_family)
 	var recorte := get_node_or_null("RecorteUX")
 	if recorte != null: recorte.set_reduced_motion(preferences.reduced_motion)
 	crt_layer.visible = preferences.crt
@@ -1024,6 +1024,22 @@ func _show_settings() -> void:
 			toggle.set_pressed_no_signal(preferences.get(key))
 			_apply_preferences())
 	_button("Controles", page, _show_controls)
+	var family_row := HBoxContainer.new()
+	page.add_child(family_row)
+	_label("Símbolos do controle",family_row,20).size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var family_choice := OptionButton.new()
+	var families := ["auto","xbox","ps","switch"]
+	for caption in ["Automático","Xbox","PlayStation","Nintendo Switch"]: family_choice.add_item(caption)
+	family_choice.select(families.find(preferences.pad_family))
+	family_row.add_child(family_choice)
+	family_choice.item_selected.connect(func(index: int):
+		var old: String = preferences.pad_family
+		preferences.pad_family = families[index]
+		if preferences.save_settings() != OK:
+			preferences.pad_family = old
+			family_choice.select(families.find(old))
+			_notice("Não foi possível guardar a configuração.")
+		_apply_preferences())
 	_button("Voltar", page, _menu if session.snapshot().is_empty() else _return_to_game)
 
 func _show_controls() -> void:
@@ -1038,7 +1054,10 @@ func _show_controls() -> void:
 	scroll.add_child(list)
 	for action in Controls.DEFAULTS:
 		var id: String = action
-		_button("%s · %s" % [Controls.LABELS[id], OS.get_keycode_string(int(preferences.bindings[id]))], list, func(): _capture_binding(id))
+		var binding_button := _button("%s · %s" % [Controls.LABELS[id], OS.get_keycode_string(int(preferences.bindings[id]))], list, func(): _capture_binding(id))
+		binding_button.icon = Controls.glyph(id,true)
+		binding_button.expand_icon = true
+		binding_button.add_theme_constant_override("icon_max_width",40)
 	_button("Restaurar padrão", page, func():
 		var old: Dictionary = preferences.bindings.duplicate()
 		preferences.bindings = Controls.DEFAULTS.duplicate()
@@ -1047,7 +1066,10 @@ func _show_controls() -> void:
 			_notice("Não foi possível salvar os controles.")
 		else: Controls.install(preferences.bindings)
 		_show_controls())
-	_label("Setas e Enter continuam disponíveis. Esc / Start abre a pausa durante o jogo e volta nas telas de menu. No controle: analógico move; A interage; X corta; Y habilidade; B esquiva; RB puxão; LB guarda; R3 assinatura. A bancada usa mouse e teclado.", page, 17)
+	_label("Setas e Enter continuam disponíveis. O botão de pausa abre o menu durante o jogo. Os símbolos abaixo acompanham seu controle e as teclas remapeadas. A bancada usa mouse e teclado.",page,17)
+	var live_hints := HBoxContainer.new()
+	page.add_child(live_hints)
+	for item in [["interact","Interagir"],["cut","Cortar"],["skill","Habilidade"],["dodge","Esquiva"],["guard","Guarda"],["signature","Assinatura"]]: Hud.input_hint(live_hints,item[0],item[1])
 	_button("Voltar", page, _show_settings)
 
 func _capture_binding(action: String) -> void:
@@ -1085,9 +1107,12 @@ func _input(event: InputEvent) -> void:
 	_cancel_binding()
 	_show_controls.call_deferred()
 
-func _controller_changed(_device: int, connected: bool) -> void:
+func _controller_changed(device: int, connected: bool) -> void:
+	if connected:
+		Controls.configure_device(device,Input.get_joy_name(device),int(Input.get_joy_info(device).get("vendor_id",0)))
+	else: Controls.remove_device(device)
 	if connected or not Controls.gamepad: return
-	Controls.gamepad = false
+	Controls.use_keyboard()
 	if is_instance_valid(battle): battle.paused = true
 	if is_instance_valid(workshop): workshop._pause()
 	for child in get_children():
