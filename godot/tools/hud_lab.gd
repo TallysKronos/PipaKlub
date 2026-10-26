@@ -69,7 +69,7 @@ func build_lab() -> void:
 	cards.add_theme_constant_override("v_separation", 20)
 	column.add_child(cards)
 	for extent in [220, 360, 540]:
-		var card := Hud.card("Veredas do Encantamento\n%d px · cantos fixos" % extent)
+		var card := Hud.card("Veredas do Encanamento\n%d px · cantos fixos" % extent)
 		card.custom_minimum_size = Vector2(extent, 130)
 		cards.add_child(card)
 	label("02  /  ESTADOS SEM MUDAR A CAIXA", column).add_theme_color_override("font_color", Hud.GOLD)

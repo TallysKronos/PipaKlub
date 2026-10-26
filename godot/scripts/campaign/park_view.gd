@@ -96,9 +96,9 @@ func _build_ui() -> void:
 	title.theme_type_variation = "RecorteWorldText"
 	title.add_theme_constant_override("shadow_offset_x", 2)
 	title.add_theme_constant_override("shadow_offset_y", 2)
-	title.text = "Veredas do Encantamento"
+	title.text = "Veredas do Encanamento"
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var location := Hud.card("Veredas do Encantamento")
+	var location := Hud.card("Veredas do Encanamento")
 	location.custom_minimum_size.x = 320
 	row.add_child(location)
 	Hud.retract_after(location, 3)
