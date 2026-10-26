@@ -257,6 +257,7 @@ func show_notice() -> void:
 	var dialog := AcceptDialog.new()
 	dialog.theme = Recorte.shared()
 	dialog.title = "UM NOVO VENTO"
+	dialog.ok_button_text = "Entendi"
 	dialog.dialog_text = "Esta demonstração não altera sua jornada."
 	dialog.confirmed.connect(dialog.queue_free)
 	add_child(dialog)
@@ -266,6 +267,8 @@ func show_confirm() -> void:
 	var dialog := ConfirmationDialog.new()
 	dialog.theme = Recorte.shared()
 	dialog.title = "PRONTO PARA VOAR?"
+	dialog.ok_button_text = "Confirmar"
+	dialog.cancel_button_text = "Cancelar"
 	dialog.dialog_text = "Teste os estados do kit. Nenhum dado será gravado."
 	dialog.confirmed.connect(dialog.queue_free)
 	dialog.canceled.connect(dialog.queue_free)

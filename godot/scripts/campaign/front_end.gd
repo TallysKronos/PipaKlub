@@ -224,15 +224,25 @@ func _choose(slot_id: String, create: bool) -> void:
 	if result.get("recovered", false):
 		_notice("Recuperamos sua jornada a partir do backup.")
 
+func _dialog(title: String, text: String, ok: String, cancel: String = "") -> AcceptDialog:
+	var dialog: AcceptDialog = AcceptDialog.new() if cancel.is_empty() else ConfirmationDialog.new()
+	dialog.title = title if not title.strip_edges().is_empty() else "Aviso"
+	dialog.dialog_text = text
+	dialog.ok_button_text = ok
+	dialog.dialog_autowrap = true
+	dialog.get_label().custom_minimum_size.x = 560
+	if dialog is ConfirmationDialog:
+		dialog.cancel_button_text = cancel
+		Hud.secondary_button(dialog.get_cancel_button())
+	add_child(dialog)
+	return dialog
+
+
 func _notice(message: String) -> void:
 	if is_instance_valid(park): park.paused = true
 	var was_walking: bool = is_instance_valid(room) and room.can_walk
 	if was_walking: room.can_walk = false
-	var dialog := AcceptDialog.new()
-	dialog.get_label().custom_minimum_size.x = 560
-	dialog.dialog_autowrap = true
-	dialog.dialog_text = message
-	add_child(dialog)
+	var dialog := _dialog("Aviso", message, "Entendi")
 	dialog.confirmed.connect(dialog.queue_free)
 	dialog.canceled.connect(dialog.queue_free)
 	dialog.tree_exiting.connect(func():
@@ -576,14 +586,12 @@ func _show_starter() -> void:
 	_button("Salvar e voltar ao menu", page, _menu)
 
 func _confirm_starter(model_id: String) -> void:
-	var dialog := ConfirmationDialog.new()
-	dialog.dialog_text = "Escolher a rabiola de %s? A escolha será guardada nesta jornada." % Journey.STARTERS[model_id]
-	add_child(dialog)
+	var dialog := _dialog("Escolher parceiro", "Escolher a rabiola de %s? A escolha será guardada nesta jornada." % Journey.STARTERS[model_id], "Escolher rabiola", "Continuar escolhendo") as ConfirmationDialog
 	dialog.confirmed.connect(func():
 		if _result(journey.choose(model_id)): _show_saved()
 		dialog.queue_free())
 	dialog.canceled.connect(dialog.queue_free)
-	dialog.popup_centered()
+	dialog.popup_centered(Vector2i(640,240))
 
 func _show_workshop() -> void:
 	_clear()
@@ -613,9 +621,7 @@ func _save_workshop(state: Dictionary) -> void:
 		_notice(_error(result.status))
 
 func _confirm_cancel_workshop() -> void:
-	var dialog := ConfirmationDialog.new()
-	dialog.dialog_text = "Sair da bancada? A montagem será reiniciada quando voltar. Sua rabiola continuará disponível."
-	add_child(dialog)
+	var dialog := _dialog("Sair da bancada", "Sair da bancada? A montagem será reiniciada quando voltar. Sua rabiola continuará disponível.", "Sair da bancada", "Ficar na bancada") as ConfirmationDialog
 	dialog.confirmed.connect(func():
 		if _result(journey.cancel_workshop()):
 			if quit_after_workshop: get_tree().quit()
@@ -623,7 +629,8 @@ func _confirm_cancel_workshop() -> void:
 		dialog.queue_free())
 	dialog.canceled.connect(func(): quit_after_workshop = false)
 	dialog.canceled.connect(dialog.queue_free)
-	dialog.popup_centered()
+	dialog.popup_centered(Vector2i(640,240))
+	dialog.get_cancel_button().grab_focus()
 
 func _broadcast() -> void:
 	var background := Sprite2D.new()
@@ -839,14 +846,7 @@ func _park_action(id: String) -> void:
 
 func _confirm_park(title: String, text: String, accept: String, callback: Callable) -> void:
 	park.paused = true
-	var dialog := ConfirmationDialog.new()
-	dialog.get_label().custom_minimum_size.x = 560
-	dialog.dialog_autowrap = true
-	dialog.title = title
-	dialog.dialog_text = text
-	dialog.ok_button_text = accept
-	dialog.cancel_button_text = "Conversar depois"
-	add_child(dialog)
+	var dialog := _dialog(title, text, accept, "Conversar depois") as ConfirmationDialog
 	dialog.confirmed.connect(callback)
 	dialog.confirmed.connect(dialog.queue_free)
 	dialog.canceled.connect(dialog.queue_free)
@@ -1038,11 +1038,7 @@ func _show_controls() -> void:
 
 func _capture_binding(action: String) -> void:
 	binding_target = action
-	binding_dialog = AcceptDialog.new()
-	binding_dialog.title = Controls.LABELS[action]
-	binding_dialog.dialog_text = "Pressione a nova tecla. Esc cancela."
-	binding_dialog.ok_button_text = "Cancelar"
-	add_child(binding_dialog)
+	binding_dialog = _dialog(Controls.LABELS[action], "Pressione a nova tecla. Esc cancela.", "Cancelar")
 	binding_dialog.window_input.connect(_input)
 	binding_dialog.confirmed.connect(_cancel_binding)
 	binding_dialog.canceled.connect(_cancel_binding)

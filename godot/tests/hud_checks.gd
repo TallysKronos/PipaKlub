@@ -3,6 +3,7 @@ const Hud = preload("res://scripts/campaign/hud.gd")
 const Front = preload("res://scripts/campaign/front_end.gd")
 const Store = preload("res://scripts/campaign/save_store.gd")
 const State = preload("res://scripts/campaign/state.gd")
+const Fixtures = preload("res://tools/player_audit_fixtures.gd")
 var checks := 0
 var failures := 0
 func check(value: bool, message: String) -> void:
@@ -25,6 +26,13 @@ func buttons(node: Node) -> Array:
 		if child is Button: result.append(child)
 		result.append_array(buttons(child))
 	return result
+func dialogs(node: Node) -> Array[AcceptDialog]:
+	var result: Array[AcceptDialog] = []
+	for child in node.get_children():
+		if child is AcceptDialog: result.append(child)
+		result.append_array(dialogs(child))
+	return result
+
 func run_checks() -> void:
 	for pair in [[Hud.INK, Hud.PAPER], [Hud.PAPER, Hud.SURFACE], [Hud.INK, Hud.GOLD], [Hud.BLACK, Hud.DANGER], [Hud.MUTED, Hud.SURFACE], [Hud.Tokens.TINTA_3, Hud.PAPER]]:
 		var ratio := contrast(pair[0], pair[1])
@@ -67,6 +75,16 @@ func run_checks() -> void:
 			check(button.size.x >= 100 and button.size.y >= 48, "usable target " + button.text)
 		var focused := root.gui_get_focus_owner()
 		check(focused is Button, "menu has keyboard focus")
+	for scenario in ["long-notice", "starter-confirm", "workshop-cancel", "morro-dialog", "binding-dialog"]:
+		Fixtures.show(front, scenario)
+		await frame()
+		var active_dialogs := dialogs(front)
+		check(active_dialogs.size() == 1, "one dialog in " + scenario)
+		for dialog in active_dialogs:
+			check(not dialog.title.strip_edges().is_empty() and dialog.title not in ["Alert!", "Please Confirm...", "OK", "Cancel"], "explicit localized title in " + scenario)
+			check(not dialog.ok_button_text.strip_edges().is_empty() and dialog.ok_button_text not in ["Alert!", "Please Confirm...", "OK", "Cancel"], "localized primary action in " + scenario)
+			if dialog is ConfirmationDialog:
+				check(not dialog.cancel_button_text.strip_edges().is_empty() and dialog.cancel_button_text not in ["Alert!", "Please Confirm...", "OK", "Cancel"], "localized cancel action in " + scenario)
 	front.free()
 	print("HUD CHECKS: %d checks, %d failures" % [checks, failures])
 	quit(1 if failures else 0)
