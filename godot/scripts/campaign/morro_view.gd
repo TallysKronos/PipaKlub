@@ -1,4 +1,5 @@
 extends "res://scripts/campaign/park_route_view.gd"
+const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 const Rules = preload("res://scripts/campaign/morro_rules.gd")
 var navigation := AStar2D.new()
 var path: PackedVector2Array = []
@@ -100,7 +101,7 @@ func _ready() -> void:
 		name_label.size.x = 160 if data.npcs.size() == 2 else 90
 		name_label.visible = data.npcs.size() != 2 or npc.name == "Juninho"
 		name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		name_label.add_theme_color_override("font_outline_color", Color("173d39"))
+		name_label.add_theme_color_override("font_outline_color", Tokens.NANQUIM)
 		name_label.add_theme_constant_override("outline_size", 4)
 		var label_root := Node2D.new()
 		label_root.position = sprite.position
@@ -178,7 +179,7 @@ func _ready() -> void:
 		row.add_child(button)
 	goal = Label.new()
 	goal.text = "Passagem liberada" if not gate_closed else "Explore o bairro e converse com os pipeiros."
-	goal.add_theme_color_override("font_outline_color", Color("173d39"))
+	goal.add_theme_color_override("font_outline_color", Tokens.NANQUIM)
 	goal.add_theme_constant_override("outline_size", 0)
 	var objective_panel := PanelContainer.new()
 	objective_panel.add_theme_stylebox_override("panel", Hud.panel())
@@ -192,7 +193,7 @@ func _ready() -> void:
 	gap.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	column.add_child(gap)
 	hint = Label.new()
-	hint.add_theme_color_override("font_outline_color", Color("173d39"))
+	hint.add_theme_color_override("font_outline_color", Tokens.NANQUIM)
 	hint.add_theme_constant_override("outline_size", 0)
 	var prompt_panel := PanelContainer.new()
 	prompt_panel.add_theme_stylebox_override("panel", Hud.panel())

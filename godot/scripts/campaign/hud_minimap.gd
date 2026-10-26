@@ -1,4 +1,5 @@
 extends Control
+const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 ## Local, schematic map. No NPC, chest or exit markers; discovery remains in the world.
 const Hud = preload("res://scripts/campaign/hud.gd")
 var subject: Node2D
@@ -26,7 +27,7 @@ func _draw() -> void:
 	if not is_instance_valid(subject): return
 	var center := Vector2(size.x / 2, 80)
 	var diamond := PackedVector2Array([Vector2(center.x, 5), Vector2(size.x - 5, center.y), Vector2(center.x, 155), Vector2(5, center.y)])
-	draw_colored_polygon(diamond, Color("243d36"))
+	draw_colored_polygon(diamond, Tokens.TINTA)
 	var origin: Vector2 = subject.player
 	var projected := subject.has_method("project")
 	if projected: origin = subject.project(origin)
@@ -35,7 +36,7 @@ func _draw() -> void:
 		for point in floor_polygon:
 			var position: Vector2 = subject.project(point) if projected else point
 			local.append(center + (position - origin) * .17)
-		for clipped in Geometry2D.intersect_polygons(local, diamond): draw_colored_polygon(clipped, Color("d8c9ac"))
+		for clipped in Geometry2D.intersect_polygons(local, diamond): draw_colored_polygon(clipped, Tokens.PAPEL_2)
 	var outline := diamond.duplicate()
 	outline.append(diamond[0])
 	draw_polyline(outline, Hud.PAPER, 3, true)

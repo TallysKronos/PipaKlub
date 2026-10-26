@@ -7,7 +7,7 @@ func _initialize() -> void:
 func label(text: String, parent: Node, heading: bool = false) -> Label:
 	var node := Label.new()
 	node.text = text
-	node.add_theme_font_override("font", Hud.font(heading))
+	node.add_theme_font_override("font", Hud.display() if heading else Hud.font())
 	node.add_theme_font_size_override("font_size", 32 if heading else 18)
 	node.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	parent.add_child(node)
@@ -62,7 +62,7 @@ func build_lab() -> void:
 		swatch.custom_minimum_size = Vector2(140, 52)
 		palette.add_child(swatch)
 		var caption := label(pair[0], swatch)
-		caption.add_theme_color_override("font_color", Hud.PAPER if pair[0] in ["Tinta", "Verde", "Risco"] else Hud.INK)
+		caption.add_theme_color_override("font_color", Hud.PAPER if pair[0] in ["Tinta", "Verde"] else Hud.BLACK)
 	label("01  /  MESMO COMPONENTE, TRÊS LARGURAS", column).add_theme_color_override("font_color", Hud.GOLD)
 	var cards := HFlowContainer.new()
 	cards.add_theme_constant_override("h_separation", 20)

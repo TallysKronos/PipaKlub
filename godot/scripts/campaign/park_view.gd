@@ -93,7 +93,7 @@ func _build_ui() -> void:
 	column.add_child(row)
 	var title := Label.new()
 	title.add_theme_font_size_override("font_size", 24)
-	title.add_theme_color_override("font_shadow_color", Color("103d36"))
+	title.add_theme_color_override("font_shadow_color", Tokens.NANQUIM)
 	title.add_theme_constant_override("shadow_offset_x", 2)
 	title.add_theme_constant_override("shadow_offset_y", 2)
 	title.text = "Veredas do Encantamento"
@@ -159,7 +159,7 @@ func _physics_process(delta: float) -> void:
 	if is_instance_valid(guardian) and not guardian_frames.is_empty():
 		var frame: Dictionary = guardian_frames[int(clock * 12) % guardian_frames.size()]
 		guardian.region_rect = Rect2(frame.x, frame.y, frame.w, frame.h)
-		tail.modulate = Color(1, .95, .65, .65 + .35 * sin(clock * 4))
+		tail.modulate = Tokens.alpha(Tokens.SOL, .65 + .35 * sin(clock * 4))
 	if paused: return
 	hint.text = Controls.prompt("interact") + " · " + _near_action().get("label", "") if not _near_action().is_empty() else ("Analógico · Mover" if Controls.gamepad else "Setas · Clique para caminhar") + " · %s mapa" % Controls.prompt("map")
 	hint.get_parent().visible = not _near_action().is_empty()

@@ -1,4 +1,5 @@
 extends Node2D
+const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 const Region = preload("res://scripts/region.gd")
 const Avatar = preload("res://scripts/avatar.gd")
 @export var reference_yard: bool = false
@@ -141,8 +142,8 @@ Kael, parceiro, Nina, árvore, baú, água e rampa"
 	dialog.hide()
 	box.add_child(dialog)
 	var panel_style:=StyleBoxFlat.new()
-	panel_style.bg_color=Color("fff0cf")
-	panel_style.border_color=Color("b58b48")
+	panel_style.bg_color=Tokens.PAPEL
+	panel_style.border_color=Tokens.NANQUIM
 	panel_style.set_border_width_all(3)
 	panel_style.content_margin_left=24
 	panel_style.content_margin_right=24
@@ -154,7 +155,7 @@ Kael, parceiro, Nina, árvore, baú, água e rampa"
 	dialog_text=Label.new()
 	dialog_text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	dialog_text.custom_minimum_size=Vector2(400,90)
-	dialog_text.add_theme_color_override("font_color",Color("183c3a"))
+	dialog_text.add_theme_color_override("font_color",Tokens.TINTA)
 	dialog_text.add_theme_font_size_override("font_size",22)
 	inner.add_child(dialog_text)
 	var close:=Button.new()

@@ -3,7 +3,7 @@
   "name": "Soulmonsters · HUD Recorte",
   "date": "2026-10-25",
   "engine": "Godot 4.7.2",
-  "source_reference": "documentation/HUD-Recorte-referencia.html",
+  "source_reference": "art/ui/hud-recorte-v1/ESPECIFICACAO.md",
   "generation": {
     "tool": "Built-in image_gen",
     "prompt": "Create a production-ready transparent PNG sheet of FOUR decorative corner ornaments for the original 2D monster-tamer game SOULMONSTERS. NOT a UI mockup, NOT rectangular cards. Four isolated ornaments, generous transparent spacing, 2x2 arrangement. Each is a small asymmetrical hand-illustrated assembly of folded kite paper, tiny bamboo cross spars, tied black string knots and flowing kite-tail ribbons. Top-left: cyan paper kite and cream knot with two short coral tail bows, silhouette sweeping down-right. Top-right: coral paper folded kite with cream bamboo and cyan tail, sweeping down-left. Bottom-left: cream/cyan knot with two folded paper tail bows sweeping up-right. Bottom-right: coral/cyan folded paper diamond and loose curved string sweeping up-left. Modern playful shonen manga print aesthetics, bold black ink contours, crisp flat colors, very minimal cel shading, no gold fantasy metal filigree, no 3D, no gradients, no glow, no text, no letters, no interface backgrounds. Fixed palette black #0B1017, navy #141E29, cream #F4E9D2, cyan #2EC8E3, coral #FF5A36, tiny yellow #FFC23D stitch accent. Clear readable silhouettes at 60 pixels. All four entire shapes visible, equal visual scale. Actual transparent background. The ornaments will be mounted separately at fixed size on stretchable Godot HUD surfaces.",
@@ -165,5 +165,46 @@
       64
     ],
     "selection": "Paper pressed state distinct from focus; quantity and mission text remain live UI"
+  },
+  "token_source": "res://scripts/campaign/ui_tokens.gd",
+  "tokens": {
+    "nanquim": "#0B1017",
+    "tinta": "#141E29",
+    "tinta-2": "#22303F",
+    "tinta-3": "#33475A",
+    "papel": "#F4E9D2",
+    "papel-2": "#D8C9AC",
+    "rabiola": "#FF5A36",
+    "ceu": "#2EC8E3",
+    "sol": "#FFC23D",
+    "folha": "#6FD08C",
+    "veu": {
+      "color": "#141E29",
+      "alpha": 0.72
+    }
+  },
+  "typography": {
+    "display": {
+      "family": "Lilita One",
+      "weight": 400,
+      "slant_degrees": 8
+    },
+    "lettering": {
+      "family": "Bangers",
+      "weight": 400
+    },
+    "label": {
+      "family": "Barlow Condensed",
+      "weight": 700,
+      "tabular_numbers": true
+    },
+    "text": {
+      "family": "Nunito",
+      "weights": [
+        600,
+        800
+      ]
+    },
+    "licenses": "godot/licenses/"
   }
 }

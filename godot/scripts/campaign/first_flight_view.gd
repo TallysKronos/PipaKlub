@@ -1,4 +1,5 @@
 extends Control
+const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
 signal continue_lesson
 signal leave
@@ -121,19 +122,19 @@ func _draw() -> void:
 		return
 	draw_set_transform(_field_offset(), 0, Vector2.ONE * _field_scale())
 	draw_texture_rect(background, Rect2(0, 0, 1000, 640), false)
-	draw_rect(Rect2(0, 0, 1000, 640), Color(0, .08, .12, .12))
+	draw_rect(Rect2(0, 0, 1000, 640), Tokens.alpha(Tokens.TINTA, .12))
 	var p: Dictionary = model.p
 	var q: Dictionary = model.q
 	var crossed: Dictionary = model.contact(p, q)
-	draw_line(Vector2(p.anchor, 585), Vector2(p.x, p.y), Color("70d4e0"), 3)
-	draw_dashed_line(Vector2(q.anchor, 585), Vector2(q.x, q.y), Color("edcf87"), 3, 8)
+	draw_line(Vector2(p.anchor, 585), Vector2(p.x, p.y), Tokens.CEU, 3)
+	draw_dashed_line(Vector2(q.anchor, 585), Vector2(q.x, q.y), Tokens.RABIOLA, 3, 8)
 	if not crossed.is_empty():
-		draw_circle(crossed.point, 12, Color("5ce9a2") if crossed.valid else Color("f1b85e"), false, 3)
+		draw_circle(crossed.point, 12, Tokens.FOLHA if crossed.valid else Tokens.PAPEL_2, false, 3)
 	if model.lesson == 0:
-		draw_circle(Vector2(700, 180), 45, Color("8ce8bf"), false, 4)
+		draw_circle(Vector2(700, 180), 45, Tokens.CEU, false, 4)
 	if q.signatureWindup > 0:
-		draw_circle(q.signatureAim, 78, Color(1, .25, .2, .2))
-		draw_arc(q.signatureAim, 78, -PI / 2, -PI / 2 + TAU * (1 - q.signatureWindup / 1.65), 48, Color("ff694a"), 5)
+		draw_circle(q.signatureAim, 78, Tokens.alpha(Tokens.RABIOLA, .2))
+		draw_arc(q.signatureAim, 78, -PI / 2, -PI / 2 + TAU * (1 - q.signatureWindup / 1.65), 48, Tokens.RABIOLA, 5)
 	for index in 2:
 		var id := "rabbito" if index == 0 else "nozinho"
 		var actor: Dictionary = p if index == 0 else q
@@ -142,7 +143,7 @@ func _draw() -> void:
 		var texture := texture_p if index == 0 else texture_q
 		draw_texture_rect_region(texture, Rect2(actor.x - 64, actor.y - 64, 128, 128), Rect2(frame.x, frame.y, frame.w, frame.h))
 		if actor.guardTime > 0:
-			draw_circle(Vector2(actor.x, actor.y), 56, Color("75e8d0"), false, 5)
+			draw_circle(Vector2(actor.x, actor.y), 56, Tokens.CEU, false, 5)
 		var x := 30 if index == 0 else 660
 		Hud.stat_card(self, Rect2(x, 20, 310, 92), "Rabbito" if index == 0 else "Nozinho", actor, "dark" if index == 0 else "danger", true)
 

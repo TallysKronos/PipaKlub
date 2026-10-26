@@ -26,7 +26,7 @@ func buttons(node: Node) -> Array:
 		result.append_array(buttons(child))
 	return result
 func run_checks() -> void:
-	for pair in [[Hud.INK, Hud.PAPER], [Hud.PAPER, Hud.SURFACE], [Hud.INK, Hud.GOLD], [Hud.PAPER, Hud.DANGER], [Hud.MUTED, Hud.SURFACE], [Color("485854"), Color("d4d7c9")]]:
+	for pair in [[Hud.INK, Hud.PAPER], [Hud.PAPER, Hud.SURFACE], [Hud.INK, Hud.GOLD], [Hud.BLACK, Hud.DANGER], [Hud.MUTED, Hud.SURFACE], [Hud.Tokens.TINTA_3, Hud.PAPER]]:
 		var ratio := contrast(pair[0], pair[1])
 		print("CONTRAST: ", pair[0].to_html(), "/", pair[1].to_html(), " = ", snappedf(ratio, .01))
 		check(ratio >= 4.5, "body text contrast >= 4.5")

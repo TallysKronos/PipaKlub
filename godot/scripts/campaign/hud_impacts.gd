@@ -1,8 +1,9 @@
 extends RefCounted
+const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 ## Presentation only. Events contain confirmed damage, never speculative input.
 const Hud = preload("res://scripts/campaign/hud.gd")
 var bursts: Array[Dictionary] = []
-var lettering: Font = load("res://assets/campaign/ui-modern/fonts/Bangers-Regular.ttf")
+var lettering: Font = Tokens.lettering()
 var reduced_motion := false
 
 func add(event: Dictionary) -> void:
@@ -21,7 +22,7 @@ func draw_on(canvas: CanvasItem, projector: Callable = Callable()) -> void:
 	for burst in bursts:
 		var age: float = burst.age
 		var alpha := clampf((.65 - age) / .18, 0, 1)
-		var color := Color(Hud.CORAL if burst.player else Hud.CYAN, alpha)
+		var color := Tokens.alpha(Tokens.CEU if burst.player else Tokens.RABIOLA, alpha)
 		var point: Vector2 = burst.point
 		if projector.is_valid(): point = projector.call(point)
 		else:

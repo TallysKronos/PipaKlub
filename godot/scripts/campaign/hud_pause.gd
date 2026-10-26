@@ -1,4 +1,5 @@
 extends Control
+const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 const Hud = preload("res://scripts/campaign/hud.gd")
 signal chosen(action: String)
 var player: Dictionary = {}
@@ -59,7 +60,7 @@ func _ready() -> void:
 		details.add_child(label)
 	Hud.focus_later(first)
 func _draw() -> void:
-	draw_rect(Rect2(Vector2.ZERO, size), Color("0b1017d9"))
+	draw_rect(Rect2(Vector2.ZERO, size), Tokens.VEU)
 	draw_colored_polygon(PackedVector2Array([Vector2.ZERO, Vector2(size.x * .51, 0), Vector2(size.x * .42, size.y), Vector2(0, size.y)]), Hud.INK)
 	draw_line(Vector2(size.x * .51, 0), Vector2(size.x * .42, size.y), Hud.CORAL, 5, true)
 	var art := Hud.ornament(2)

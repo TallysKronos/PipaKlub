@@ -1,4 +1,5 @@
 extends Control
+const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
 signal progress_changed(state: Dictionary)
 signal finished(outcome: Dictionary)
@@ -193,7 +194,7 @@ func _draw() -> void:
 			draw_line(Workshop.CENTER, point, Color("8b572b"), 8)
 			draw_line(Workshop.CENTER, point, Color("e7b86b"), 3)
 		else:
-			draw_dashed_line(Workshop.CENTER, point, Color("d8be87"), 3, 8)
+			draw_dashed_line(Workshop.CENTER, point, Tokens.PAPEL_2, 3, 8)
 	if model.run.stage == 0:
 		draw_rect(Rect2(760, 150, 180, 350), Color("604628"))
 		for i in int(Workshop.CLASSES[model.run.kind].rods):
@@ -202,17 +203,17 @@ func _draw() -> void:
 			draw_line(cursor - Vector2(0, 80), cursor + Vector2(0, 80), Color("f8d58e"), 8)
 	elif model.run.stage == 1:
 		for i in points.size():
-			draw_circle(points[i], 22, Color("58ba94") if i in model.run.step.tied else Color("dfb96d"), false, 5)
+			draw_circle(points[i], 22, Tokens.FOLHA if i in model.run.step.tied else Tokens.PAPEL_2, false, 5)
 		if model.run.step.holding >= 0:
 			var band: Array = model.run.step.windows[model.run.step.holding]
 			_meter(model.run.step.fill, band[0], band[1])
 	elif model.run.stage == 2:
 		for i in g.samples.size():
-			draw_circle(g.samples[i], 3, Color("4daa83") if i in model.run.step.covered else Color("5b5343"))
+			draw_circle(g.samples[i], 3, Tokens.FOLHA if i in model.run.step.covered else Tokens.TINTA_3)
 		_meter(model.run.step.tear, 0, .8)
 	elif model.run.stage == 3:
 		var tilt: float = model.run.step.theta
-		draw_line(Vector2(480, 460), Vector2(480, 460) + Vector2(sin(deg_to_rad(tilt)), -cos(deg_to_rad(tilt))) * 230, Color("3c7279"), 6)
+		draw_line(Vector2(480, 460), Vector2(480, 460) + Vector2(sin(deg_to_rad(tilt)), -cos(deg_to_rad(tilt))) * 230, Tokens.CEU, 6)
 		_meter(absf(tilt) / Workshop.FALL, 0, Workshop.ZONE / Workshop.FALL)
 		draw_style_box(Hud.panel(), Rect2(360, 527, 290, 52))
 		draw_string(Hud.font(), Vector2(390, 560), "%.1f / 9 s" % model.run.step.t, HORIZONTAL_ALIGNMENT_LEFT, -1, 24, Hud.PAPER)
@@ -222,8 +223,8 @@ func _draw() -> void:
 				draw_string(Hud.font(), Vector2(390, 110), "Rajada →" if gust.dir > 0 else "← Rajada", HORIZONTAL_ALIGNMENT_LEFT, -1, 28, Hud.INK)
 				break
 	elif model.run.stage == 4:
-		draw_circle(Workshop.CENTER, 84, Color("1d6770"))
-		draw_string(Hud.font(), Workshop.CENTER + Vector2(-75, 8), "Segure o elo", HORIZONTAL_ALIGNMENT_LEFT, -1, 23, Color("fff1c9"))
+		draw_circle(Workshop.CENTER, 84, Tokens.TINTA_2)
+		draw_string(Hud.font(), Workshop.CENTER + Vector2(-75, 8), "Segure o elo", HORIZONTAL_ALIGNMENT_LEFT, -1, 23, Tokens.PAPEL)
 		_meter(model.run.step.fill, .4, .92)
 	draw_set_transform(Vector2.ZERO)
 

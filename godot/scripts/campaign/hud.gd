@@ -1,26 +1,23 @@
 extends RefCounted
+const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 ## HUD Recorte: shared visual contracts for the native campaign.
-const INK := Color("141e29")
-const SURFACE := Color("22303f")
-const PAPER := Color("f4e9d2")
-const GOLD := Color("ffc23d")
-const MUTED := Color("d8c9ac")
-const DANGER := Color("33475a")
-const LINE := Color("6fd08c")
-const ENERGY := Color("2ec8e3")
-const TRACK := Color("0b1017")
-const CORAL := Color("ff5a36")
-const CYAN := Color("2ec8e3")
-const BLACK := Color("0b1017")
+const INK := Tokens.TINTA
+const SURFACE := Tokens.TINTA_2
+const PAPER := Tokens.PAPEL
+const GOLD := Tokens.SOL
+const MUTED := Tokens.PAPEL_2
+const DANGER := Tokens.RABIOLA
+const LINE := Tokens.FOLHA
+const ENERGY := Tokens.CEU
+const TRACK := Tokens.NANQUIM
+const CORAL := Tokens.RABIOLA
+const CYAN := Tokens.CEU
+const BLACK := Tokens.NANQUIM
 const EDGE := 3.0
 const Pin = preload("res://scripts/campaign/hud_pin.gd")
 static var manifest: Dictionary = {}
 static var sheets: Dictionary = {}
-static var bold_font: FontVariation
 
-static var text_font: Font
-static var display_font: Font
-static var label_font: Font
 static var art_cache: Dictionary = {}
 const ART_ROOT := "res://assets/campaign/ui-recorte/"
 static func artwork(id: String) -> Texture2D:
@@ -88,17 +85,13 @@ static func map_for(subject: Node2D, layer: CanvasLayer) -> void:
 static func retract_after(control: Control, delay: float) -> void:
 	control.create_tween().tween_property(control, "modulate:a", 0.0, .25).set_delay(delay)
 static func font(heading: bool = false) -> Font:
-	if text_font == null:
-		var variation := FontVariation.new()
-		variation.base_font = load("res://assets/campaign/ui-modern/fonts/Nunito.ttf")
-		variation.variation_opentype = {0x77676874: 700.0}
-		text_font = variation
-	if label_font == null: label_font = load("res://assets/campaign/ui-modern/fonts/BarlowCondensed-Bold.ttf")
-	return label_font if heading else text_font
+	return Tokens.label() if heading else Tokens.text()
 
 static func display() -> Font:
-	if display_font == null: display_font = load("res://assets/campaign/ui-modern/fonts/LilitaOne-Regular.ttf")
-	return display_font
+	return Tokens.display()
+
+static func lettering() -> Font:
+	return Tokens.lettering()
 
 static func icon(id: String) -> Texture2D:
 	if id in ["attack", "energy", "dodge", "puxao", "line", "bag", "team", "map", "settings", "back", "save", "tail"]: return artwork("icon-" + id)
@@ -169,7 +162,7 @@ static func make_theme() -> Theme:
 	for state in ["normal", "hover", "pressed", "disabled"]: ui.set_stylebox(state, "Button", button_style(state))
 	ui.set_stylebox("focus", "Button", focus_style())
 	for state in ["font_color", "font_hover_color", "font_pressed_color", "font_hover_pressed_color", "font_focus_color"]: ui.set_color(state, "Button", INK)
-	ui.set_color("font_disabled_color", "Button", Color("485854"))
+	ui.set_color("font_disabled_color", "Button", Tokens.TINTA_3)
 	ui.set_font("font", "Button", font(true))
 	ui.set_constant("outline_size", "Button", 0)
 	ui.set_color("font_color", "Label", PAPER)
@@ -195,7 +188,7 @@ static func make_theme() -> Theme:
 	ui.set_stylebox("focus", "LineEdit", focus_style(false))
 	ui.set_color("font_color", "LineEdit", INK)
 	ui.set_color("caret_color", "LineEdit", INK)
-	ui.set_color("font_placeholder_color", "LineEdit", Color("485854"))
+	ui.set_color("font_placeholder_color", "LineEdit", Tokens.TINTA_3)
 	ui.set_color("selection_color", "LineEdit", GOLD)
 	ui.set_color("font_selected_color", "LineEdit", INK)
 	var track := flat_panel()
@@ -265,7 +258,7 @@ static func stat_card(canvas: CanvasItem, rect: Rect2, title: String, actor: Dic
 		var fraction: float = clampf(values[index], 0, 1)
 		var track_width := rect.size.x - 186
 		var color: Color = ENERGY if names[index] == "Energia" else MUTED if names[index] == "Armação" else CORAL if role == "danger" else CYAN
-		if index == 0 and fraction < .25: color = Color("ffad95")
+		if index == 0 and fraction < .25: color = Tokens.RABIOLA
 		canvas.draw_string(font(), Vector2(rect.position.x + 14, y), names[index], HORIZONTAL_ALIGNMENT_LEFT, 94, 21, PAPER)
 		canvas.draw_rect(Rect2(rect.position.x + 110, y - 13, track_width, 11), TRACK)
 		if names[index] == "Energia":
