@@ -1,0 +1,2923 @@
+{
+  "type": "map",
+  "version": "1.10",
+  "tiledversion": "1.10.2",
+  "orientation": "isometric",
+  "renderorder": "right-down",
+  "width": 24,
+  "height": 16,
+  "tilewidth": 64,
+  "tileheight": 32,
+  "infinite": false,
+  "properties": [
+    {
+      "name": "nome",
+      "type": "string",
+      "value": "Morro do Sol · Parque dos Ventos"
+    },
+    {
+      "name": "regras",
+      "type": "string",
+      "value": "overworld-1"
+    },
+    {
+      "name": "bioma",
+      "type": "string",
+      "value": "morro"
+    },
+    {
+      "name": "cena_jogo",
+      "type": "string",
+      "value": "morro-area-5"
+    },
+    {
+      "name": "origem",
+      "type": "string",
+      "value": "importada do jogo; ajuste no Tiled"
+    }
+  ],
+  "tilesets": [
+    {
+      "firstgid": 1,
+      "source": "../tiles/rascunho.tsj"
+    }
+  ],
+  "layers": [
+    {
+      "id": 1,
+      "name": "chao",
+      "type": "tilelayer",
+      "width": 24,
+      "height": 16,
+      "x": 0,
+      "y": 0,
+      "opacity": 1,
+      "visible": true,
+      "data": [
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        1,
+        1,
+        1,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        1,
+        1,
+        1,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        1,
+        1,
+        1,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        1,
+        1,
+        1,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        1,
+        1,
+        1,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11
+      ]
+    },
+    {
+      "id": 2,
+      "name": "altura",
+      "type": "tilelayer",
+      "width": 24,
+      "height": 16,
+      "x": 0,
+      "y": 0,
+      "opacity": 1,
+      "visible": true,
+      "data": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": 3,
+      "name": "pecas",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "x": 0,
+      "y": 0,
+      "opacity": 1,
+      "visible": true,
+      "objects": [
+        {
+          "id": 1,
+          "name": "arvore grande",
+          "type": "peca",
+          "x": 144,
+          "y": 144,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "arvore-grande"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "2x2"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "toldo bandeirolas",
+          "type": "peca",
+          "x": 656,
+          "y": 144,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "toldo-bandeirolas"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "2x2"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Casa do morro",
+          "type": "peca",
+          "x": 240,
+          "y": 16,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "casa-morro"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "3x3"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "telha"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Casa do morro",
+          "type": "peca",
+          "x": 560,
+          "y": 16,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "casa-morro"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "3x3"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "laje"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Casa do morro",
+          "type": "peca",
+          "x": 80,
+          "y": 240,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "casa-morro"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "3x3"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "muro-chapisco"
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Casa do morro",
+          "type": "peca",
+          "x": 624,
+          "y": 240,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "casa-morro"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "3x3"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "telha"
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "name": "Casa do morro",
+          "type": "peca",
+          "x": 80,
+          "y": 368,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "casa-morro"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "3x3"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "laje"
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "name": "Casa do morro",
+          "type": "peca",
+          "x": 624,
+          "y": 368,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "casa-morro"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "3x3"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "muro-chapisco"
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "name": "Casa do morro",
+          "type": "peca",
+          "x": 208,
+          "y": 400,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "casa-morro"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "3x3"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "telha"
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "name": "Casa do morro",
+          "type": "peca",
+          "x": 464,
+          "y": 432,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "casa-morro"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "3x3"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "laje"
+            }
+          ]
+        },
+        {
+          "id": 16,
+          "name": "Casa de fundo",
+          "type": "peca",
+          "x": 16,
+          "y": 16,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "casa-morro"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "telha"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "3x3"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": true
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 17,
+          "name": "Casa de fundo",
+          "type": "peca",
+          "x": 112,
+          "y": 16,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "casa-morro"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "laje"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "3x3"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": true
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 18,
+          "name": "Casa de fundo",
+          "type": "peca",
+          "x": 656,
+          "y": 16,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "casa-morro"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "muro-chapisco"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "3x3"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": true
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 19,
+          "name": "Casa de fundo",
+          "type": "peca",
+          "x": 16,
+          "y": 112,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "casa-morro"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "telha"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "3x3"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": true
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "name": "Casa de fundo",
+          "type": "peca",
+          "x": 208,
+          "y": 112,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "casa-morro"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "laje"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "3x3"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": true
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 21,
+          "name": "Casa de fundo",
+          "type": "peca",
+          "x": 560,
+          "y": 112,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "casa-morro"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "muro-chapisco"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "3x3"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": true
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 22,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 368,
+          "y": 48,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "v+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 23,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 400,
+          "y": 48,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "v+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 24,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 432,
+          "y": 48,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "v+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 25,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 464,
+          "y": 48,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "v+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 26,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 496,
+          "y": 48,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "v+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 27,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 528,
+          "y": 48,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "v+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 28,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 336,
+          "y": 80,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "u+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 29,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 336,
+          "y": 112,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "u+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 30,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 368,
+          "y": 144,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "u+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 31,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 368,
+          "y": 144,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "v-"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 32,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 496,
+          "y": 144,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "u-"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 33,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 496,
+          "y": 144,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "v-"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 34,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 528,
+          "y": 144,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "v-"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 35,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 304,
+          "y": 176,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "v+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 36,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 336,
+          "y": 176,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "v+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 37,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 368,
+          "y": 176,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "u+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 38,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 368,
+          "y": 176,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "v+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 39,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 496,
+          "y": 176,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "u-"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 40,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 496,
+          "y": 176,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "v+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 41,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 528,
+          "y": 176,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "v+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 42,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 176,
+          "y": 208,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "u+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 43,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 624,
+          "y": 208,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "u-"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 44,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 176,
+          "y": 240,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "u+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 45,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 176,
+          "y": 272,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "u+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 46,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 176,
+          "y": 304,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "u+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 47,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 176,
+          "y": 336,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "u+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 48,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 624,
+          "y": 336,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "u-"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 49,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 176,
+          "y": 368,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "u+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 50,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 528,
+          "y": 400,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "u-"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 51,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 528,
+          "y": 400,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "v-"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 52,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 560,
+          "y": 400,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "v-"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 53,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 592,
+          "y": 400,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "v-"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 54,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 304,
+          "y": 432,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "v-"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 55,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 336,
+          "y": 432,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "u+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 56,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 336,
+          "y": 432,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "v-"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 57,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 336,
+          "y": 464,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "u+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        },
+        {
+          "id": 58,
+          "name": "Mureta de quintal",
+          "type": "peca",
+          "x": 336,
+          "y": 496,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "asset",
+              "type": "string",
+              "value": "muro-quintal"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "u+"
+            },
+            {
+              "name": "pegada",
+              "type": "string",
+              "value": "1x1"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
+            },
+            {
+              "name": "origem",
+              "type": "string",
+              "value": "PIP-87 vestir lote bloqueado"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "eventos",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "x": 0,
+      "y": 0,
+      "opacity": 1,
+      "visible": true,
+      "objects": [
+        {
+          "id": 11,
+          "name": "Entrada sul",
+          "type": "entrada",
+          "x": 400,
+          "y": 432,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": []
+        },
+        {
+          "id": 12,
+          "name": "Voltar para o Mirante da Caixa-d’água",
+          "type": "saida",
+          "x": 400,
+          "y": 496,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "destino",
+              "type": "string",
+              "value": "morro-area-4"
+            }
+          ]
+        },
+        {
+          "id": 13,
+          "name": "Sair para a cidade",
+          "type": "saida",
+          "x": 432,
+          "y": 112,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "destino",
+              "type": "string",
+              "value": "cidade"
+            },
+            {
+              "name": "requer",
+              "type": "string",
+              "value": "morro-5"
+            }
+          ]
+        },
+        {
+          "id": 14,
+          "name": "Encontro do bairro",
+          "type": "npc",
+          "x": 368,
+          "y": 304,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "desafio",
+              "type": "string",
+              "value": "morro-5"
+            }
+          ]
+        },
+        {
+          "id": 15,
+          "name": "Passagem para a próxima área",
+          "type": "interacao",
+          "x": 432,
+          "y": 240,
+          "point": true,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "acao",
+              "type": "string",
+              "value": "road_gate"
+            },
+            {
+              "name": "requer",
+              "type": "string",
+              "value": "morro-5"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "nextlayerid": 5,
+  "nextobjectid": 59
+}

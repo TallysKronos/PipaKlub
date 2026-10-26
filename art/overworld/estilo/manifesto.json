@@ -1,0 +1,53 @@
+{
+  "issue": "PIP-82",
+  "version": 2,
+  "approval": "pending_owner_review",
+  "approved_finish": {
+    "file": "revisao-manga-v2/ESQUINA-ALVO-SIMPLIFICADA.png",
+    "evidence": "User: Sim gostei",
+    "scope": "finish only; does not approve full board or geometry"
+  },
+  "role": "style-board; not runtime tileset",
+  "generator": "gerar_prancha.py",
+  "technical_source": "vector diagrams, GUIA-ESQUINA-2x1 and coordinate functions",
+  "illustration_source": "fontes/manga-v2/FAMILIA-MANGA.png",
+  "biomes": [
+    "BAIRRO",
+    "PARQUE",
+    "VEREDAS",
+    "MORRO"
+  ],
+  "reference_branch": "claude/mapas-areas",
+  "reference_commit": "469cb4e4c498faf6afcca9ee3f6782d72538f4a7",
+  "morro_decision": "isometric 2:1; previous 3/4 art is content reference only",
+  "files": [
+    {
+      "path": "PRANCHA-ESTILO.png",
+      "sha256": "548bb4661ed3f57d768381c7ec08e7decdffca148622d3eff6209d143c924254"
+    },
+    {
+      "path": "PRANCHA-ESTILO.svg",
+      "sha256": "23b95521c1cdb8656d22b2d8b2fcc87ab095f4b06271c53bcfd692e38507233a"
+    },
+    {
+      "path": "fontes/manga-v2/FAMILIA-MANGA.png",
+      "sha256": "00ee412aa37580c2c0e9b0ed70e974eb62b2c026d8c2244cdc8bb2169178b8b2"
+    },
+    {
+      "path": "fontes/manga-v2/PROPS-MANGA.png",
+      "sha256": "abc8a72811c14535083b3c05e4cb830c392afd01160ebe1f7bf2f1a4ddb5dfed"
+    },
+    {
+      "path": "fontes/manga-v2/props-normalizacao.json",
+      "sha256": "7157715757c0ee25db9e2a3f767f85a51113070c97d18851629d47d62a1defc5"
+    },
+    {
+      "path": "fontes/GUIA-ESQUINA-2x1.png",
+      "sha256": "9afc6bc1cc7fe79f307315c5a815ef34316a9c53970a0d524a2ec01432c87abd"
+    },
+    {
+      "path": "revisao-manga-v2/ESQUINA-ALVO-SIMPLIFICADA.png",
+      "sha256": "b3af108eb5a237da522b74d93b70cbd3f1235f02000c61515e815f9d0c3dbbfa"
+    }
+  ]
+}

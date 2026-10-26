@@ -1,0 +1,866 @@
+{
+  "schema": "overworld-kit-1",
+  "biome": "morro",
+  "grid": {
+    "cell": [
+      64,
+      32
+    ],
+    "height": 32,
+    "levelPx": 64
+  },
+  "approval": "pending_owner_review",
+  "styleBoard": "../../estilo/PRANCHA-ESTILO.png",
+  "pieces": {
+    "casa-morro": {
+      "default": "telha",
+      "variants": {
+        "telha": {
+          "file": "pecas/casa-morro-telha.png",
+          "size": [
+            192,
+            320
+          ],
+          "footprint": [
+            3,
+            3
+          ],
+          "visualFootprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "height": 7,
+          "anchor": [
+            96,
+            272
+          ],
+          "isoAnchor": [
+            96,
+            320
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/morro/fontes/casas-morro-v2.png",
+            "slot": 0,
+            "grid": [
+              3,
+              1
+            ],
+            "alpha_bbox": [
+              47,
+              29,
+              665,
+              664
+            ],
+            "geometryGuide": "fontes/geometria/casa-morro-telha.svg",
+            "normalization": "uniform, lowest base at front anchor",
+            "tool": "image_gen.imagegen"
+          },
+          "approval": "pending_concept_review",
+          "rasterSize": [
+            188,
+            193
+          ]
+        },
+        "laje": {
+          "file": "pecas/casa-morro-laje.png",
+          "size": [
+            192,
+            320
+          ],
+          "footprint": [
+            3,
+            3
+          ],
+          "visualFootprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "height": 7,
+          "anchor": [
+            96,
+            272
+          ],
+          "isoAnchor": [
+            96,
+            320
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/morro/fontes/casas-morro-v2.png",
+            "slot": 1,
+            "grid": [
+              3,
+              1
+            ],
+            "alpha_bbox": [
+              50,
+              34,
+              663,
+              673
+            ],
+            "geometryGuide": "fontes/geometria/casa-morro-laje.svg",
+            "normalization": "uniform, lowest base at front anchor",
+            "tool": "image_gen.imagegen"
+          },
+          "approval": "pending_concept_review",
+          "rasterSize": [
+            188,
+            196
+          ]
+        },
+        "muro-chapisco": {
+          "file": "pecas/casa-morro-muro-chapisco.png",
+          "size": [
+            192,
+            320
+          ],
+          "footprint": [
+            3,
+            3
+          ],
+          "visualFootprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "height": 7,
+          "anchor": [
+            96,
+            272
+          ],
+          "isoAnchor": [
+            96,
+            320
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/morro/fontes/casas-morro-v2.png",
+            "slot": 2,
+            "grid": [
+              3,
+              1
+            ],
+            "alpha_bbox": [
+              36,
+              56,
+              652,
+              677
+            ],
+            "geometryGuide": "fontes/geometria/casa-morro-muro-chapisco.svg",
+            "normalization": "uniform, lowest base at front anchor",
+            "tool": "image_gen.imagegen"
+          },
+          "approval": "pending_concept_review",
+          "rasterSize": [
+            188,
+            190
+          ]
+        }
+      }
+    },
+    "caixa-dagua": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/caixa-dagua-default.png",
+          "size": [
+            128,
+            192
+          ],
+          "footprint": [
+            2,
+            2
+          ],
+          "visualFootprint": [
+            2,
+            2
+          ],
+          "bloqueia": true,
+          "height": 4,
+          "anchor": [
+            64,
+            160
+          ],
+          "isoAnchor": [
+            64,
+            192
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/morro/fontes/pecas-morro.png",
+            "slot": 0,
+            "grid": [
+              3,
+              2
+            ],
+            "alpha_bbox": [
+              53,
+              58,
+              437,
+              504
+            ]
+          },
+          "rasterSize": [
+            83,
+            96
+          ],
+          "approval": "pending_owner_review"
+        }
+      }
+    },
+    "varal": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/varal-default.png",
+          "size": [
+            128,
+            192
+          ],
+          "footprint": [
+            2,
+            2
+          ],
+          "visualFootprint": [
+            2,
+            2
+          ],
+          "bloqueia": true,
+          "height": 4,
+          "anchor": [
+            64,
+            160
+          ],
+          "isoAnchor": [
+            64,
+            192
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/morro/fontes/pecas-morro.png",
+            "slot": 1,
+            "grid": [
+              3,
+              2
+            ],
+            "alpha_bbox": [
+              11,
+              87,
+              479,
+              505
+            ]
+          },
+          "rasterSize": [
+            108,
+            96
+          ],
+          "approval": "pending_owner_review"
+        }
+      }
+    },
+    "banca-pipas": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/banca-pipas-default.png",
+          "size": [
+            192,
+            256
+          ],
+          "footprint": [
+            2,
+            2
+          ],
+          "visualFootprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "height": 5,
+          "anchor": [
+            96,
+            208
+          ],
+          "isoAnchor": [
+            96,
+            256
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/morro/fontes/pecas-morro.png",
+            "slot": 2,
+            "grid": [
+              3,
+              2
+            ],
+            "alpha_bbox": [
+              0,
+              15,
+              474,
+              512
+            ]
+          },
+          "rasterSize": [
+            107,
+            112
+          ],
+          "approval": "pending_owner_review"
+        }
+      }
+    },
+    "toldo-bandeirolas": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/toldo-bandeirolas-default.png",
+          "size": [
+            192,
+            288
+          ],
+          "footprint": [
+            2,
+            2
+          ],
+          "visualFootprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "height": 6,
+          "anchor": [
+            96,
+            240
+          ],
+          "isoAnchor": [
+            96,
+            288
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/morro/fontes/pecas-morro.png",
+            "slot": 3,
+            "grid": [
+              3,
+              2
+            ],
+            "alpha_bbox": [
+              31,
+              22,
+              512,
+              468
+            ]
+          },
+          "rasterSize": [
+            138,
+            128
+          ],
+          "approval": "pending_owner_review"
+        }
+      }
+    },
+    "mirante-guarda-corpo": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/mirante-guarda-corpo-default.png",
+          "size": [
+            128,
+            160
+          ],
+          "footprint": [
+            2,
+            2
+          ],
+          "visualFootprint": [
+            2,
+            2
+          ],
+          "bloqueia": true,
+          "height": 3,
+          "anchor": [
+            64,
+            128
+          ],
+          "isoAnchor": [
+            64,
+            160
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/morro/fontes/pecas-morro.png",
+            "slot": 4,
+            "grid": [
+              3,
+              2
+            ],
+            "alpha_bbox": [
+              53,
+              111,
+              509,
+              405
+            ]
+          },
+          "rasterSize": [
+            87,
+            56
+          ],
+          "approval": "pending_owner_review"
+        }
+      }
+    },
+    "mesa-artesao": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/mesa-artesao-default.png",
+          "size": [
+            128,
+            160
+          ],
+          "footprint": [
+            2,
+            2
+          ],
+          "visualFootprint": [
+            2,
+            2
+          ],
+          "bloqueia": true,
+          "height": 3,
+          "anchor": [
+            64,
+            128
+          ],
+          "isoAnchor": [
+            64,
+            160
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/morro/fontes/pecas-morro.png",
+            "slot": 5,
+            "grid": [
+              3,
+              2
+            ],
+            "alpha_bbox": [
+              21,
+              42,
+              484,
+              480
+            ]
+          },
+          "rasterSize": [
+            68,
+            64
+          ],
+          "approval": "pending_owner_review"
+        }
+      }
+    },
+    "portao": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/portao-default.png",
+          "size": [
+            160,
+            208
+          ],
+          "footprint": [
+            4,
+            1
+          ],
+          "visualFootprint": [
+            4,
+            1
+          ],
+          "height": 4,
+          "bloqueia": false,
+          "anchor": [
+            80,
+            168
+          ],
+          "isoAnchor": [
+            128,
+            208
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "generator": "tools/overworld/build_art.py"
+          },
+          "approval": "pending_concept_review"
+        }
+      }
+    },
+    "muro-quintal": {
+      "default": "u+",
+      "variants": {
+        "u+": {
+          "file": "pecas/muro-quintal-u+.png",
+          "size": [
+            64,
+            96
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "height": 2,
+          "bloqueia": false,
+          "anchor": [
+            32,
+            80
+          ],
+          "isoAnchor": [
+            32,
+            96
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "generator": "tools/overworld/build_art.py"
+          },
+          "approval": "pending_concept_review",
+          "role": "prop boundary on already-blocked construction, not a terrain cliff"
+        },
+        "u-": {
+          "file": "pecas/muro-quintal-u-.png",
+          "size": [
+            64,
+            96
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "height": 2,
+          "bloqueia": false,
+          "anchor": [
+            32,
+            80
+          ],
+          "isoAnchor": [
+            32,
+            96
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "generator": "tools/overworld/build_art.py"
+          },
+          "approval": "pending_concept_review",
+          "role": "prop boundary on already-blocked construction, not a terrain cliff"
+        },
+        "v+": {
+          "file": "pecas/muro-quintal-v+.png",
+          "size": [
+            64,
+            96
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "height": 2,
+          "bloqueia": false,
+          "anchor": [
+            32,
+            80
+          ],
+          "isoAnchor": [
+            32,
+            96
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "generator": "tools/overworld/build_art.py"
+          },
+          "approval": "pending_concept_review",
+          "role": "prop boundary on already-blocked construction, not a terrain cliff"
+        },
+        "v-": {
+          "file": "pecas/muro-quintal-v-.png",
+          "size": [
+            64,
+            96
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "height": 2,
+          "bloqueia": false,
+          "anchor": [
+            32,
+            80
+          ],
+          "isoAnchor": [
+            32,
+            96
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "generator": "tools/overworld/build_art.py"
+          },
+          "approval": "pending_concept_review",
+          "role": "prop boundary on already-blocked construction, not a terrain cliff"
+        }
+      }
+    }
+  },
+  "materials": {
+    "calcada": {
+      "variants": [
+        "chao/calcada-0.png",
+        "chao/calcada-1.png",
+        "chao/calcada-2.png",
+        "chao/calcada-3.png"
+      ],
+      "size": [
+        64,
+        32
+      ]
+    },
+    "piso": {
+      "variants": [
+        "chao/piso-0.png",
+        "chao/piso-1.png",
+        "chao/piso-2.png",
+        "chao/piso-3.png"
+      ],
+      "size": [
+        64,
+        32
+      ]
+    },
+    "grama": {
+      "variants": [
+        "chao/grama-0.png",
+        "chao/grama-1.png",
+        "chao/grama-2.png",
+        "chao/grama-3.png"
+      ],
+      "size": [
+        64,
+        32
+      ]
+    },
+    "construcao": {
+      "variants": [
+        "chao/construcao-0.png",
+        "chao/construcao-1.png",
+        "chao/construcao-2.png",
+        "chao/construcao-3.png"
+      ],
+      "size": [
+        64,
+        32
+      ]
+    }
+  },
+  "transitions": {
+    "calcada/construcao": {
+      "corners": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ],
+      "maskBits": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "files": [
+        "transicoes/calcada-construcao-0.png",
+        "transicoes/calcada-construcao-1.png",
+        "transicoes/calcada-construcao-2.png",
+        "transicoes/calcada-construcao-3.png",
+        "transicoes/calcada-construcao-4.png",
+        "transicoes/calcada-construcao-5.png",
+        "transicoes/calcada-construcao-6.png",
+        "transicoes/calcada-construcao-7.png",
+        "transicoes/calcada-construcao-8.png",
+        "transicoes/calcada-construcao-9.png",
+        "transicoes/calcada-construcao-10.png",
+        "transicoes/calcada-construcao-11.png",
+        "transicoes/calcada-construcao-12.png",
+        "transicoes/calcada-construcao-13.png",
+        "transicoes/calcada-construcao-14.png",
+        "transicoes/calcada-construcao-15.png"
+      ]
+    },
+    "construcao/piso": {
+      "corners": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ],
+      "maskBits": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "files": [
+        "transicoes/construcao-piso-0.png",
+        "transicoes/construcao-piso-1.png",
+        "transicoes/construcao-piso-2.png",
+        "transicoes/construcao-piso-3.png",
+        "transicoes/construcao-piso-4.png",
+        "transicoes/construcao-piso-5.png",
+        "transicoes/construcao-piso-6.png",
+        "transicoes/construcao-piso-7.png",
+        "transicoes/construcao-piso-8.png",
+        "transicoes/construcao-piso-9.png",
+        "transicoes/construcao-piso-10.png",
+        "transicoes/construcao-piso-11.png",
+        "transicoes/construcao-piso-12.png",
+        "transicoes/construcao-piso-13.png",
+        "transicoes/construcao-piso-14.png",
+        "transicoes/construcao-piso-15.png"
+      ]
+    },
+    "construcao/grama": {
+      "corners": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ],
+      "maskBits": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "files": [
+        "transicoes/construcao-grama-0.png",
+        "transicoes/construcao-grama-1.png",
+        "transicoes/construcao-grama-2.png",
+        "transicoes/construcao-grama-3.png",
+        "transicoes/construcao-grama-4.png",
+        "transicoes/construcao-grama-5.png",
+        "transicoes/construcao-grama-6.png",
+        "transicoes/construcao-grama-7.png",
+        "transicoes/construcao-grama-8.png",
+        "transicoes/construcao-grama-9.png",
+        "transicoes/construcao-grama-10.png",
+        "transicoes/construcao-grama-11.png",
+        "transicoes/construcao-grama-12.png",
+        "transicoes/construcao-grama-13.png",
+        "transicoes/construcao-grama-14.png",
+        "transicoes/construcao-grama-15.png"
+      ]
+    }
+  },
+  "walls": {
+    "pedra": {
+      "u": [
+        "muros/pedra-u-0.png",
+        "muros/pedra-u-1.png"
+      ],
+      "v": [
+        "muros/pedra-v-0.png",
+        "muros/pedra-v-1.png"
+      ],
+      "interno": [
+        "muros/pedra-canto-interno-0.png",
+        "muros/pedra-canto-interno-1.png"
+      ],
+      "externo": [
+        "muros/pedra-canto-externo-0.png",
+        "muros/pedra-canto-externo-1.png"
+      ]
+    },
+    "chapisco": {
+      "u": [
+        "muros/chapisco-u-0.png",
+        "muros/chapisco-u-1.png"
+      ],
+      "v": [
+        "muros/chapisco-v-0.png",
+        "muros/chapisco-v-1.png"
+      ],
+      "interno": [
+        "muros/chapisco-canto-interno-0.png",
+        "muros/chapisco-canto-interno-1.png"
+      ],
+      "externo": [
+        "muros/chapisco-canto-externo-0.png",
+        "muros/chapisco-canto-externo-1.png"
+      ]
+    }
+  },
+  "stairs": {
+    "u+": {
+      "file": "escadas/u+.png",
+      "footprint": [
+        1,
+        2
+      ],
+      "risePx": 64,
+      "risers": 8,
+      "widthCells": 2
+    },
+    "u-": {
+      "file": "escadas/u-.png",
+      "footprint": [
+        1,
+        2
+      ],
+      "risePx": 64,
+      "risers": 8,
+      "widthCells": 2
+    },
+    "v+": {
+      "file": "escadas/v+.png",
+      "footprint": [
+        2,
+        1
+      ],
+      "risePx": 64,
+      "risers": 8,
+      "widthCells": 2
+    },
+    "v-": {
+      "file": "escadas/v-.png",
+      "footprint": [
+        2,
+        1
+      ],
+      "risePx": 64,
+      "risers": 8,
+      "widthCells": 2
+    }
+  },
+  "bridges": {},
+  "context": {
+    "radius": 12,
+    "material": "canteiro",
+    "color": "668A55",
+    "asset": "casa-morro",
+    "spacing": 5,
+    "role": "non-playable gardens and background houses, no collision or events"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "captures": [
+    {
+      "id": "morro-escadaria-da-sombra",
+      "method": "same compiled cells and camera in reference and kit assembly",
+      "size": [
+        1408,
+        1088
+      ],
+      "source": {
+        "file": "art/overworld/mapas/morro-escadaria-da-sombra.tmj",
+        "sha256": "2c8d5eefae74dc5beeffeb03c12c74abad32924fa40266681b7f69fa17d60d28"
+      },
+      "terrainDisplacementPx": 0
+    },
+    {
+      "id": "morro-laje-dos-ventos",
+      "method": "same compiled cells and camera in reference and kit assembly",
+      "size": [
+        1408,
+        1088
+      ],
+      "source": {
+        "file": "art/overworld/mapas/morro-laje-dos-ventos.tmj",
+        "sha256": "c7b85a57ebce776b4f8fb9d5d081cd8973b37c30ac7084162a0be93fb5cdec4d"
+      },
+      "terrainDisplacementPx": 0
+    },
+    {
+      "id": "morro-mirante-da-caixa-dagua",
+      "method": "same compiled cells and camera in reference and kit assembly",
+      "size": [
+        1408,
+        1088
+      ],
+      "source": {
+        "file": "art/overworld/mapas/morro-mirante-da-caixa-dagua.tmj",
+        "sha256": "5a3fc69b055af9003056a20168e70b5299ecc1799715e62ff8fbf22fea0ac306"
+      },
+      "terrainDisplacementPx": 0
+    },
+    {
+      "id": "morro-parque-dos-ventos",
+      "method": "same compiled cells and camera in reference and kit assembly",
+      "size": [
+        1408,
+        1088
+      ],
+      "source": {
+        "file": "art/overworld/mapas/morro-parque-dos-ventos.tmj",
+        "sha256": "03266de63a1c7c28a93d0f9afa06849a97c29bfbc39d9990847b273d88d392d2"
+      },
+      "terrainDisplacementPx": 0
+    },
+    {
+      "id": "morro-praca-da-chegada",
+      "method": "same compiled cells and camera in reference and kit assembly",
+      "size": [
+        1408,
+        1088
+      ],
+      "source": {
+        "file": "art/overworld/mapas/morro-praca-da-chegada.tmj",
+        "sha256": "63910a6e97f1cf58feaa19e66174659705aff3043d8dffb06531148b5362223b"
+      },
+      "terrainDisplacementPx": 0
+    }
+  ],
+  "findings": [],
+  "scope": "visual fixtures; new review maps do not replace campaign"
+}

@@ -1,0 +1,16 @@
+{
+  "issue": "PIP-82 / PIP-79",
+  "status": "pending_visual_review",
+  "role": "single_corner_visual_target",
+  "tool": "image_gen.imagegen",
+  "references": [],
+  "prompt": "Original environment art visual target for Soulmonsters / PipaKlub, a Brazilian kite monster taming game. ONE playable neighborhood street corner seen in orthographic isometric 2:1, floor axes exactly plus/minus 26.565 degrees, straight verticals. FULL BLEED game screen, environment continues beyond screen edges; NO floating island, NO diorama base, NO beveled platform. Absolutely hand-drawn TWO DIMENSIONAL MANGA background with bold contemporary youth street-graphic energy. This is a drawn anime game map, NOT a rendered 3D model.\n\nComposition: medium-close game camera, one small Brazilian kite-maker workshop at upper left, one distinctive broad graphic green tree upper right, a short plaster retaining wall and integrated steps to a higher garden behind; pale sidewalk bends around a blue-gray street in clear foreground. Wooden bench against garden, readable door, orange roof tiles drawn in broad grouped bands. Colorful ORIGINAL diamond kites, folded paper bird hanging at workshop, bamboo kite ribs, string spool display, paper pennants, small hand-painted abstract diamond mural, a few flower pots. All grounded and connected, generous walkable paths without props blocking them. No UI, no characters, no writing, no labels, no recognizable logos.\n\nART TREATMENT IS CRITICAL: expressive hand-inked dark navy outlines, thick-to-thin confident manga strokes, broad angular irregular silhouettes; flat screenprinted color shapes; base color plus ONE hard-edged shadow per material; no gradients, ambient occlusion, realistic reflections or volumetric lighting. Canopy is large simple interlocking leaf silhouettes with ONE flat shadow mass, NO individual leaf rendering. House is expressive illustrated architecture, NO miniature architectural model feeling. Surfaces have only a few purposeful short ink marks, not procedural texture or small scattered noise. Main forms stay flat and graphic. Manga hatching restricted to tiny dark accent areas. Graphic cyan and coral paint accents on props, warm paper cream #F5E9CB plaster, orange terracotta #BC6749 roofing, navy #26394D ink, green #668A55 with punchy lime highlights, sunlight yellow #E8BC58. Youthful, lively, warm Brazilian hand-made kite universe. More visually assertive and inked than cozy painterly RPG art, without splattering so much ink on the walkable floor that navigation is obscured. Bright flat daylight upper left, short flat contact shadows. Landscape illustration, compelling polished visual target. Do not copy characters, symbols, UI or environmental objects from existing games.",
+  "required": [
+    "2D mangá",
+    "cor em massas",
+    "contorno expressivo",
+    "identidade brasileira de pipas",
+    "isometria 2:1"
+  ],
+  "not_runtime": true
+}
