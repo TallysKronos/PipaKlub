@@ -1,23 +1,23 @@
 <title>HUD Recorte</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700;1,800&family=Nunito:wght@600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers&family=Lilita+One&family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700;1,800&family=Nunito:wght@600;700;800&display=swap">
 <style>
-/* Layout: faixa de documento à esquerda, telas 1920×1080 reduzidas por escala; tudo em tinta e papel com um acento. */
+/* Layout: documento em coluna; telas 1920×1080 reduzidas por escala. Estrutura Persona, traço de mangá (nanquim, retícula) e tinta de Splatoon dosada. */
 :root{
  --tinta:#141E29;--tinta-2:#22303F;--tinta-3:#33475A;--papel:#F4E9D2;--papel-2:#D8C9AC;
- --rabiola:#E5533B;--ceu:#6CC6D9;--sol:#EDB94E;--folha:#7FC98A;--veu:rgba(20,30,41,.72);
- --display:'Barlow Condensed','Arial Narrow',sans-serif;--texto:'Nunito','Segoe UI',sans-serif;
- --sombra:6px 6px 0 rgba(20,30,41,.85);color-scheme:dark}
+ --nanquim:#0B1017;--rabiola:#FF5A36;--ceu:#2EC8E3;--sol:#FFC23D;--folha:#6FD08C;--veu:rgba(20,30,41,.72);
+ --display:'Barlow Condensed','Arial Narrow',sans-serif;--impacto:'Lilita One','Arial Rounded MT Bold',sans-serif;--sfx:'Bangers','Impact',sans-serif;--texto:'Nunito','Segoe UI',sans-serif;
+ --sombra:6px 6px 0 rgba(11,16,23,.9);color-scheme:dark}
 *{box-sizing:border-box}html,body{margin:0}
 body{background:#0E151D;color:var(--papel);font:16px/1.55 var(--texto);padding-block:0 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .wrap{max-width:1200px;margin:0 auto}
 header.doc{padding:40px 0 8px;display:grid;gap:10px}
 .eyebrow{font:700 13px/1 var(--display);letter-spacing:.16em;text-transform:uppercase;color:var(--papel-2)}
-h1{font:italic 800 clamp(44px,8vw,88px)/.9 var(--display);margin:0;text-transform:uppercase;letter-spacing:.01em;text-wrap:balance}
+h1{font:400 clamp(44px,8vw,92px)/.95 var(--impacto);margin:0;text-transform:uppercase;letter-spacing:.01em;text-wrap:balance;transform:skewX(-8deg);transform-origin:left}
 h1 span{color:var(--rabiola)}
 .lede{max-width:65ch;color:var(--papel-2);margin:0}
-h2{font:italic 800 34px/1 var(--display);text-transform:uppercase;margin:44px 0 6px;display:flex;gap:12px;align-items:center;text-wrap:balance}
+h2{font:400 32px/1 var(--impacto);text-transform:uppercase;margin:44px 0 6px;display:flex;gap:12px;align-items:center;text-wrap:balance}
 h2::before{content:"";width:18px;height:18px;background:var(--rabiola);transform:rotate(45deg) scale(.8);flex:none}
 .note{color:var(--papel-2);max-width:70ch;margin:0 0 14px}
 .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
@@ -26,7 +26,8 @@ h2::before{content:"";width:18px;height:18px;background:var(--rabiola);transform
 .sw b{font:700 16px/1 var(--display);letter-spacing:.06em;text-transform:uppercase}
 .sw code{font:600 12px/1 ui-monospace,monospace;color:var(--papel-2)}
 .type{display:grid;gap:10px;background:var(--tinta-2);padding:18px 20px;overflow-x:auto}
-.type .d1{font:italic 800 64px/1 var(--display);text-transform:uppercase}
+.type .d1{font:400 64px/1 var(--impacto);text-transform:uppercase;transform:skewX(-8deg);transform-origin:left}
+.type .s1{font:400 72px/1 var(--sfx);letter-spacing:.03em;color:var(--sol);-webkit-text-stroke:8px var(--nanquim);paint-order:stroke fill;transform:rotate(-5deg);transform-origin:left;justify-self:start}
 .type .l1{font:700 28px/1 var(--display);text-transform:uppercase;letter-spacing:.04em}
 .type .t1{font:600 22px/1.4 var(--texto);max-width:60ch}
 .type small{font:600 12px/1 ui-monospace,monospace;color:var(--papel-2)}
@@ -38,8 +39,12 @@ h2::before{content:"";width:18px;height:18px;background:var(--rabiola);transform
 .cap b{font:700 15px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--papel)}
 .ab{position:absolute}
 .slant{transform:skewX(-12deg)}.unslant{transform:skewX(12deg)}
-.panel{background:var(--tinta);border:3px solid var(--tinta);box-shadow:var(--sombra)}
-.disp{font-family:var(--display);font-weight:800;font-style:italic;text-transform:uppercase;line-height:.95}
+.panel{isolation:isolate}.panel:not(.ab){position:relative}
+.panel::before{content:"";position:absolute;inset:-2px;z-index:-1;background:var(--pbg,var(--tinta));border:5px solid var(--nanquim);border-width:3px 6px 7px 4px;box-shadow:var(--sombra);filter:url(#pincel)}
+.disp{font-family:var(--impacto);font-weight:400;text-transform:uppercase;line-height:.95}.disp.it{transform:skewX(-8deg)}
+.sfx{font-family:var(--sfx);letter-spacing:.03em;line-height:1;-webkit-text-stroke:8px var(--nanquim);paint-order:stroke fill;white-space:nowrap}
+.tone{background-image:radial-gradient(circle,var(--nanquim) 1.7px,transparent 2.1px);background-size:9px 9px}
+svg.splat,svg.speed{position:absolute;overflow:visible;pointer-events:none}
 .lab{font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
 .diamond{transform:rotate(45deg)}
 .rab{display:inline-flex;gap:4px;align-items:center}.rab i{width:0;height:0;border-left:9px solid var(--rabiola);border-top:6px solid transparent;border-bottom:6px solid transparent}
@@ -51,15 +56,15 @@ h2::before{content:"";width:18px;height:18px;background:var(--rabiola);transform
 .kit{display:grid;gap:18px;background:var(--tinta-2);padding:22px;overflow-x:auto}
 .row{display:flex;gap:22px;flex-wrap:wrap;align-items:center}
 .state{display:grid;gap:8px;justify-items:start;font:600 12px/1 ui-monospace,monospace;color:var(--papel-2)}
-.btn{min-width:220px;height:60px;display:grid;place-items:center;font:700 26px/1 var(--display);text-transform:uppercase;letter-spacing:.05em;transform:skewX(-12deg);border:3px solid var(--tinta);box-shadow:var(--sombra);position:relative}
-.btn>span{transform:skewX(12deg)}
+.btn{isolation:isolate;min-width:220px;height:60px;display:grid;place-items:center;font:700 26px/1 var(--display);text-transform:uppercase;letter-spacing:.05em;transform:skewX(-12deg);border:3px solid var(--tinta);box-shadow:var(--sombra);position:relative}
+.btn>span{transform:skewX(12deg)}.btn::after{content:"";position:absolute;inset:-3px;z-index:-1;border:3px solid var(--nanquim);border-width:3px 5px 6px 3px;filter:url(#pincel)}
 .btn.p{background:var(--rabiola);color:var(--tinta)}
 .btn.f{background:var(--papel);color:var(--tinta);translate:-2px -2px}.btn.f::before{content:"";position:absolute;left:-3px;top:-3px;bottom:-3px;width:10px;background:var(--rabiola)}
 .btn.x{background:var(--rabiola);color:var(--tinta);box-shadow:none;translate:4px 4px}
 .btn.d{background:var(--tinta-3);color:rgba(216,201,172,.6);box-shadow:none}
 .btn.s{background:var(--tinta);color:var(--papel);border-color:var(--papel-2);border-width:2px}
 .li{width:300px;height:56px;display:flex;align-items:center;gap:12px;padding:0 18px;font:700 24px/1 var(--display);text-transform:uppercase;letter-spacing:.04em}
-.li.on{background:var(--papel);color:var(--tinta);transform:skewX(-12deg);box-shadow:4px 4px 0 rgba(20,30,41,.85)}.li.on>*{transform:skewX(12deg)}
+.li.on{position:relative;isolation:isolate;color:var(--nanquim);transform:skewX(-12deg)}.li.on>*{transform:skewX(12deg)}.li.on::before{content:"";position:absolute;inset:-4px -14px -6px -10px;z-index:-1;background:var(--papel);box-shadow:5px 5px 0 rgba(11,16,23,.9);filter:url(#pincel-forte);border-radius:3px 18px 4px 22px}
 .li.off{color:var(--papel);opacity:.9}.li.dis{color:var(--tinta-3)}
 .tabs{display:flex;gap:6px}.tab{padding:12px 22px;font:700 20px/1 var(--display);text-transform:uppercase;letter-spacing:.05em;background:var(--tinta);color:var(--papel-2);transform:skewX(-12deg)}.tab.on{background:var(--papel);color:var(--tinta)}.tab>span{display:inline-block;transform:skewX(12deg)}
 .toggle{width:84px;height:36px;background:var(--tinta);border:2px solid var(--tinta-3);position:relative;transform:skewX(-12deg)}.toggle i{position:absolute;top:4px;width:24px;height:24px;background:var(--papel);transform:skewX(12deg) rotate(45deg) scale(.8)}.toggle.on i{right:8px;background:var(--rabiola)}.toggle.off i{left:8px}
@@ -78,39 +83,49 @@ h2::before{content:"";width:18px;height:18px;background:var(--rabiola);transform
 .signals figure{margin:0;background:var(--tinta-2);padding:8px;display:grid;gap:8px}
 .signals svg{width:100%;height:auto;display:block}
 .signals figcaption{font:600 13px/1.35 var(--texto);color:var(--papel-2)}.signals b{display:block;font:700 16px/1.1 var(--display);letter-spacing:.05em;text-transform:uppercase;color:var(--papel)}
+.ink .cell{position:relative;height:170px;background:var(--tinta);overflow:hidden}
+.signals svg.splat,.signals svg.speed{height:auto}
+.wipe{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;background:var(--tinta-2)!important}.wipe i{background:var(--tinta);position:relative;overflow:hidden}
+.wipe i::after{content:"";position:absolute;left:50%;top:50%;width:calc(var(--p)*190px);height:calc(var(--p)*190px);translate:-50% -50%;background:var(--ceu);border-radius:46% 54% 40% 60%/55% 42% 58% 45%;filter:url(#pincel-forte)}
 footer{margin-top:40px;color:var(--papel-2);font-size:14px}
 </style>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+ <filter id="pincel" x="-5%" y="-10%" width="110%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="5"/></filter>
+ <filter id="pincel-forte" x="-8%" y="-20%" width="116%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" seed="9"/><feDisplacementMap in="SourceGraphic" scale="12"/></filter>
+</defs></svg>
 <div class="wrap">
 <header class="doc">
  <div class="eyebrow">Soulmonsters · Elo das Ruínas · Godot · referência para o Codex</div>
  <h1>HUD <span>Recorte</span> v1</h1>
- <p class="lede">Papel de pipa recortado a estilete sobre tinta azul-noite: cortes de 12°, letras condensadas e uma única cor de acento onde está a atenção. Inspirada na gramática de Persona, em versão contida. As medidas oficiais estão em <code>ESPECIFICACAO.md</code>; esta página mostra a aparência esperada.</p>
+ <p class="lede">Uma página de mangá colorida com tinta de Splatoon. A estrutura vem de Persona (diagonais de 12°, seleção invertida); o traço vem do mangá (nanquim a pincel, retícula, linhas de velocidade, onomatopeias); a energia vem do Splatoon (respingos, cores de equipe vivas, adesivos). Tudo dosado: calma no dia a dia, explosão nos momentos. As medidas oficiais estão em <code>ESPECIFICACAO.md</code>; esta página mostra a aparência esperada.</p>
 </header>
 
 <h2>Cores</h2>
-<p class="note">Tinta e papel fazem quase tudo. O acento coral aparece só no que está selecionado ou é a ação principal; ciano é o elo com o parceiro; dourado é recompensa.</p>
+<p class="note">Nanquim, tinta e papel fazem quase tudo, como numa página de mangá. As duas tintas de equipe são vivas, como no Splatoon: ciano é você e o elo com o parceiro, coral é o rival e a ação principal. Dourado só para recompensa e crítico.</p>
 <div class="swatches">
+ <div class="sw"><i style="background:#0B1017"></i><b>nanquim</b><code>#0B1017</code></div>
  <div class="sw"><i style="background:#141E29"></i><b>tinta</b><code>#141E29</code></div>
  <div class="sw"><i style="background:#22303F"></i><b>tinta-2</b><code>#22303F</code></div>
  <div class="sw"><i style="background:#33475A"></i><b>tinta-3</b><code>#33475A</code></div>
  <div class="sw"><i style="background:#F4E9D2"></i><b>papel</b><code>#F4E9D2</code></div>
  <div class="sw"><i style="background:#D8C9AC"></i><b>papel-2</b><code>#D8C9AC</code></div>
- <div class="sw"><i style="background:#E5533B"></i><b>rabiola · acento</b><code>#E5533B</code></div>
- <div class="sw"><i style="background:#6CC6D9"></i><b>céu · elo</b><code>#6CC6D9</code></div>
- <div class="sw"><i style="background:#EDB94E"></i><b>sol · recompensa</b><code>#EDB94E</code></div>
- <div class="sw"><i style="background:#7FC98A"></i><b>folha · vida</b><code>#7FC98A</code></div>
+ <div class="sw"><i style="background:#FF5A36"></i><b>rabiola · rival</b><code>#FF5A36</code></div>
+ <div class="sw"><i style="background:#2EC8E3"></i><b>céu · você</b><code>#2EC8E3</code></div>
+ <div class="sw"><i style="background:#FFC23D"></i><b>sol · recompensa</b><code>#FFC23D</code></div>
+ <div class="sw"><i style="background:#6FD08C"></i><b>folha · vida</b><code>#6FD08C</code></div>
 </div>
 
 <h2>Tipografia</h2>
 <div class="type">
- <div class="d1">Veredas do Encanamento</div><small>Display · Barlow Condensed 800 itálico · 64 px (1080p)</small>
+ <div class="d1">Veredas do Encanamento</div><small>Impacto · Lilita One, inclinação de 8° · 64 px (1080p)</small>
+ <div class="s1">TCHAC!</div><small>Onomatopeia · Bangers com contorno de nanquim · 72–140 px · só em momentos</small>
  <div class="l1">Mochila · Pipa Dex · Configurações</div><small>Rótulo · Barlow Condensed 700 · caixa alta · 28 px</small>
  <div class="t1">Atravessou a ponte? O mirante do outro lado tem um baú. A rampa fica perto do mato alto.</div><small>Texto · Nunito 600 · 30 px no diálogo, 22–26 px no resto</small>
 </div>
 
 <h2>Componentes e estados</h2>
-<p class="note">Molduras geométricas são StyleBoxFlat no Theme do Godot (skew 0,21; contorno 3 px; sombra sólida 6,6). O foco inverte as cores e desloca o item; nunca depende só da cor.</p>
+<p class="note">A forma vem do StyleBoxFlat (skew 0,21; sombra sólida 6,6) e o traço de nanquim vem de uma moldura 9-patch desenhada a pincel. O foco vira uma pincelada de papel e desloca o item; nunca depende só da cor.</p>
 <div class="kit">
  <div class="row">
   <div class="state"><div class="btn p"><span>Confirmar</span></div>normal</div>
@@ -136,7 +151,7 @@ footer{margin-top:40px;color:var(--papel-2);font-size:14px}
 <p class="note">Menos de 10% da tela. A placa de área entra ao mudar de região e recolhe em 3 s; o objetivo some em 4 s; o prompt só aparece perto do alvo.</p>
 <div class="frame"><div class="screen" data-screen>
  <div class="bg" style="background-image:url(fundo-exploracao.jpg)"></div>
- <div class="ab panel slant" style="left:78px;top:48px;width:560px;height:88px;padding:10px 30px"><div class="unslant"><div class="disp" style="font-size:44px;color:var(--papel)">Veredas do Encanamento</div><div class="lab" style="font-size:22px;color:var(--papel-2);margin-top:2px">Mirante</div></div></div>
+ <div class="ab panel slant" style="left:78px;top:48px;width:560px;height:88px;padding:10px 30px"><div class="unslant"><div class="disp" style="font-size:34px;color:var(--papel);white-space:nowrap">Veredas do Encanamento</div><div class="lab" style="font-size:22px;color:var(--papel-2);margin-top:2px">Mirante</div></div></div>
  <div class="ab slant" style="left:96px;top:152px;height:44px;padding:0 22px;display:flex;align-items:center;gap:12px;background:rgba(34,48,63,.92)"><div class="unslant" style="display:flex;align-items:center;gap:12px"><i style="width:14px;height:14px;background:var(--rabiola);transform:rotate(45deg)"></i><span style="font:700 22px/1 var(--texto);color:var(--papel)">Leve a rabiola até a Nina</span></div></div>
  <div class="ab" style="right:96px;top:56px;width:220px;height:220px">
   <div class="ab diamond" style="inset:32px;background:#2E4A3C;border:3px solid var(--tinta);box-shadow:var(--sombra);outline:2px solid var(--papel-2);outline-offset:-9px;overflow:hidden"><i class="ab" style="left:40px;top:60px;width:70px;height:26px;background:#C9A56A"></i><i class="ab" style="left:90px;top:20px;width:26px;height:90px;background:#C9A56A"></i><i class="ab" style="left:10px;top:100px;width:120px;height:20px;background:#3E8FA6"></i></div>
@@ -144,11 +159,12 @@ footer{margin-top:40px;color:var(--papel-2);font-size:14px}
   <i class="ab" style="left:100px;top:100px;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:20px solid var(--papel)"></i>
  </div>
  <div class="ab" style="left:72px;bottom:56px;width:420px;height:130px">
-  <svg class="ab" style="left:0;top:0" width="420" height="130"><path d="M92 64 C130 64 140 52 170 52" stroke="#6CC6D9" stroke-width="2" fill="none"/><path d="M92 70 C130 70 140 94 170 94" stroke="#6CC6D9" stroke-width="2" fill="none"/></svg>
+  <svg class="ab" style="left:0;top:0" width="420" height="130"><path d="M92 64 C130 64 140 52 170 52" stroke="#2EC8E3" stroke-width="2" fill="none"/><path d="M92 70 C130 70 140 94 170 94" stroke="#2EC8E3" stroke-width="2" fill="none"/></svg>
   <div class="ab diamond" style="left:14px;top:14px;width:102px;height:102px;background:var(--tinta-2);border:3px solid var(--tinta);box-shadow:var(--sombra);overflow:hidden"><img src="ref-carcara.png" alt="" style="position:absolute;left:50%;top:50%;width:120px;transform:translate(-50%,-50%) rotate(-45deg)"></div>
   <div class="ab panel slant" style="left:150px;top:14px;width:250px;height:100px;padding:10px 22px"><div class="unslant" style="display:grid;gap:8px"><div style="display:flex;justify-content:space-between;align-items:baseline"><span class="lab" style="font-size:26px">Carcará</span><span class="lab" style="font-size:22px;color:var(--papel-2)">Nv. 12</span></div><div class="bar"><i style="width:72%;background:var(--folha)"></i></div><div class="bar" style="height:10px"><i style="width:45%;background:var(--ceu)"></i></div></div></div>
  </div>
- <div class="ab slant" style="right:96px;bottom:150px;width:400px;height:60px;background:var(--tinta-2);box-shadow:4px 4px 0 rgba(20,30,41,.85);display:flex;align-items:center"><i style="width:10px;align-self:stretch;background:var(--folha)"></i><div class="unslant" style="padding:0 20px;font:700 22px/1 var(--texto);color:var(--papel)">Progresso salvo</div></div>
+ <div class="ab slant" style="right:96px;bottom:150px;width:400px;height:60px;background:var(--tinta-2);box-shadow:4px 4px 0 rgba(20,30,41,.85);display:flex;align-items:center"><i style="width:10px;align-self:stretch;background:var(--sol)"></i><div class="unslant" style="padding:0 20px 0 46px;font:700 22px/1 var(--texto);color:var(--papel)">Novo: <b style="color:var(--sol)">Linha encerada</b></div></div>
+ <svg class="splat" data-splat="1452 902 19 var(--sol) 7 0 200 0"></svg>
  <div class="ab panel slant" style="right:96px;bottom:56px;height:76px;padding:0 28px;display:flex;align-items:center"><div class="unslant" style="display:flex;align-items:center;gap:16px"><span class="key">E</span><span class="lab" style="font-size:30px">Abrir</span><span style="font:700 22px/1 var(--texto);color:var(--papel-2)">Baú do mirante</span></div></div>
 </div></div>
 <p class="cap"><b>1920×1080</b> placa de área 560×88 · objetivo · minimapa em losango 220 · parceiro com linha do elo · aviso · prompt de interação</p>
@@ -156,7 +172,9 @@ footer{margin-top:40px;color:var(--papel-2);font-size:14px}
 <h2>Diálogo</h2>
 <div class="frame"><div class="screen" data-screen>
  <div class="bg" style="background-image:url(fundo-exploracao.jpg);filter:brightness(.8)"></div>
+ <div class="ab tone" style="left:120px;top:200px;width:620px;height:700px;opacity:.22;-webkit-mask:linear-gradient(200deg,transparent 15%,#000 85%);mask:linear-gradient(200deg,transparent 15%,#000 85%)"></div>
  <img class="ab" src="ref-nina.png" alt="" style="left:200px;bottom:150px;height:640px">
+ <svg class="ab" style="left:560px;top:250px" width="70" height="96" viewBox="0 0 70 96" aria-hidden="true"><path d="M35 6C46 30 62 46 62 64a27 27 0 0 1-54 0C8 46 24 30 35 6z" fill="#BFE9F5" stroke="#F4E9D2" stroke-width="12" stroke-linejoin="round"/><path d="M35 6C46 30 62 46 62 64a27 27 0 0 1-54 0C8 46 24 30 35 6z" fill="#BFE9F5" stroke="#0B1017" stroke-width="5" stroke-linejoin="round"/><path d="M24 60c0 8 4 13 9 15" stroke="#F4E9D2" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
  <div class="ab" style="right:150px;top:330px;display:grid;gap:14px;justify-items:end">
   <div class="slant" style="width:600px;height:64px;background:var(--tinta);display:flex;align-items:center;padding:0 30px;box-shadow:4px 4px 0 rgba(20,30,41,.85)"><span class="unslant" style="font:700 26px/1 var(--texto)">Vou até lá</span></div>
   <div class="slant" style="width:640px;height:64px;background:var(--papel);color:var(--tinta);display:flex;align-items:center;gap:16px;padding:0 30px;box-shadow:var(--sombra);translate:-24px 0"><span class="unslant rab"><i></i><i></i><i></i></span><span class="unslant" style="font:800 26px/1 var(--texto)">Onde fica a rampa?</span></div>
@@ -172,6 +190,8 @@ footer{margin-top:40px;color:var(--papel-2);font-size:14px}
 <div class="frame"><div class="screen" data-screen>
  <div class="bg" style="background-image:url(fundo-exploracao.jpg);filter:blur(2px) brightness(.55)"></div>
  <div class="ab" style="inset:0;background:var(--tinta);clip-path:polygon(0 0,46% 0,34% 100%,0 100%)"></div>
+ <div class="ab tone" style="inset:0;opacity:.5;clip-path:polygon(0 0,46% 0,34% 100%,0 100%);-webkit-mask:linear-gradient(160deg,transparent 40%,#000 100%);mask:linear-gradient(160deg,transparent 40%,#000 100%);background-image:radial-gradient(circle,#33475A 1.7px,transparent 2.1px)"></div>
+ <svg class="splat" data-splat="800 120 80 var(--ceu) 21 0 200 0"></svg>
  <div class="ab" style="left:0;top:0;width:2px;height:1080px"></div>
  <div class="ab" style="left:96px;top:110px;display:grid;gap:10px">
   <div class="li on" style="width:470px;height:72px;font-size:40px;translate:24px 0"><span class="rab"><i></i><i></i><i></i></span><span>Mochila</span></div>
@@ -183,7 +203,7 @@ footer{margin-top:40px;color:var(--papel-2);font-size:14px}
   <div class="li off" style="height:72px;font-size:40px;padding-left:30px;translate:90px">Configurações</div>
   <div class="li off" style="height:72px;font-size:40px;padding-left:30px;translate:108px;color:var(--papel-2)">Sair</div>
  </div>
- <div class="ab panel" style="left:760px;top:150px;width:1080px;height:820px;background:var(--tinta-2);padding:96px 40px 40px">
+ <div class="ab panel" style="left:760px;top:150px;width:1080px;height:820px;--pbg:var(--tinta-2);padding:96px 40px 40px">
   <div class="ab disp" style="left:-28px;top:-44px;font-size:96px;color:var(--papel);text-shadow:6px 6px 0 rgba(20,30,41,.85)">Mochila</div>
   <div class="tabs" style="margin-bottom:28px"><div class="tab on"><span>Itens</span></div><div class="tab"><span>Linhas</span></div><div class="tab"><span>Rabiolas</span></div><div class="tab"><span>Chave</span></div></div>
   <div style="display:grid;grid-template-columns:480px 1fr;gap:40px">
@@ -195,7 +215,7 @@ footer{margin-top:40px;color:var(--papel-2);font-size:14px}
     <div class="li dis" style="width:470px;height:72px;font-size:26px"><span style="flex:1">Linha encerada</span><span>×0</span></div>
    </div>
    <div style="display:grid;align-content:start;gap:18px">
-    <div class="diamond" style="width:150px;height:150px;margin:20px 0 10px 40px;background:var(--tinta);border:3px solid var(--tinta);outline:2px solid var(--sol);outline-offset:-10px;display:grid;place-items:center"><svg width="88" height="88" viewBox="0 0 88 88" style="transform:rotate(-45deg)" aria-hidden="true"><rect x="10" y="14" width="68" height="10" fill="#D8C9AC"/><rect x="10" y="64" width="68" height="10" fill="#D8C9AC"/><rect x="22" y="24" width="44" height="40" fill="#F4E9D2"/><path d="M22 34h44M22 44h44M22 54h44" stroke="#E5533B" stroke-width="3"/></svg></div>
+    <div class="diamond" style="width:150px;height:150px;margin:20px 0 10px 40px;background:var(--tinta);border:3px solid var(--tinta);outline:2px solid var(--sol);outline-offset:-10px;display:grid;place-items:center"><svg width="88" height="88" viewBox="0 0 88 88" style="transform:rotate(-45deg)" aria-hidden="true"><rect x="10" y="14" width="68" height="10" fill="#D8C9AC"/><rect x="10" y="64" width="68" height="10" fill="#D8C9AC"/><rect x="22" y="24" width="44" height="40" fill="#F4E9D2"/><path d="M22 34h44M22 44h44M22 54h44" stroke="#FF5A36" stroke-width="3"/></svg></div>
     <div class="disp" style="font-size:48px">Carretel reforçado</div>
     <div style="font:600 24px/1.45 var(--texto);color:var(--papel-2);max-width:46ch">Segura mais tensão de linha. Use antes de um duelo para começar com a linha 20% mais firme.</div>
     <div class="row" style="gap:16px;margin-top:10px"><div class="btn p" style="min-width:200px"><span>Usar</span></div><div class="btn s" style="min-width:180px"><span>Descartar</span></div></div>
@@ -212,26 +232,28 @@ footer{margin-top:40px;color:var(--papel-2);font-size:14px}
 <p class="note">Duelo em tempo real. O que decide a luta aparece no céu, junto das pipas: mira no cruzamento das linhas, qualidade do corte, avisos e números. Os cantos guardam só o estado: vitórias, relógio, linha, armação, energia e ações.</p>
 <div class="frame"><div class="screen" data-screen>
  <div class="bg" style="background-image:url(fundo-ceu.jpg)"></div>
+ <svg class="speed" data-speed="760 300 220 760 36 rgba(244,233,210,.55)" style="left:0;top:0" width="1920" height="1080"></svg>
+ <svg class="splat" data-splat="993 563 64 var(--ceu) 5 0 -45 1"></svg>
  <svg class="ab" style="inset:0" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true">
-  <line x1="560" y1="990" x2="1180" y2="380" stroke="#141E29" stroke-width="7"/><line x1="560" y1="990" x2="1180" y2="380" stroke="#6CC6D9" stroke-width="3.5"/>
-  <line x1="1420" y1="990" x2="760" y2="330" stroke="#141E29" stroke-width="6" opacity=".7"/><line x1="1420" y1="990" x2="760" y2="330" stroke="#E5533B" stroke-width="3"/>
-  <line x1="1076.8" y1="646.8" x2="971.2" y2="541.2" stroke="#EDB94E" stroke-width="8" opacity=".55"/>
-  <g transform="translate(993.5 563.5)"><rect x="-20" y="-20" width="40" height="40" transform="rotate(45)" fill="none" stroke="#141E29" stroke-width="7"/><rect x="-20" y="-20" width="40" height="40" transform="rotate(45)" fill="none" stroke="#EDB94E" stroke-width="3.5"/></g>
+  <line x1="560" y1="990" x2="1180" y2="380" stroke="#141E29" stroke-width="7"/><line x1="560" y1="990" x2="1180" y2="380" stroke="#2EC8E3" stroke-width="3.5"/>
+  <line x1="1420" y1="990" x2="760" y2="330" stroke="#141E29" stroke-width="6" opacity=".7"/><line x1="1420" y1="990" x2="760" y2="330" stroke="#FF5A36" stroke-width="3"/>
+  <line x1="1076.8" y1="646.8" x2="971.2" y2="541.2" stroke="#FFC23D" stroke-width="8" opacity=".55"/>
+  <g transform="translate(993.5 563.5)"><rect x="-20" y="-20" width="40" height="40" transform="rotate(45)" fill="none" stroke="#141E29" stroke-width="7"/><rect x="-20" y="-20" width="40" height="40" transform="rotate(45)" fill="none" stroke="#FFC23D" stroke-width="3.5"/></g>
   <g font-family="Barlow Condensed,Arial Narrow,sans-serif" font-weight="700" font-size="17" letter-spacing="1" text-anchor="middle">
-   <g transform="translate(940 640)"><rect x="-7" y="-7" width="14" height="14" transform="rotate(45)" fill="#EDB94E" stroke="#141E29" stroke-width="3"/><text y="32" fill="#EDB94E" stroke="#141E29" stroke-width="4" paint-order="stroke">ÂNGULO</text></g>
-   <g transform="translate(1010 640)"><rect x="-7" y="-7" width="14" height="14" transform="rotate(45)" fill="#EDB94E" stroke="#141E29" stroke-width="3"/><text y="32" fill="#EDB94E" stroke="#141E29" stroke-width="4" paint-order="stroke">RELADA</text></g>
-   <g transform="translate(1080 640)"><rect x="-7" y="-7" width="14" height="14" transform="rotate(45)" fill="#EDB94E" stroke="#141E29" stroke-width="3"/><text y="32" fill="#EDB94E" stroke="#141E29" stroke-width="4" paint-order="stroke">CENTRO</text></g>
+   <g transform="translate(940 640)"><rect x="-7" y="-7" width="14" height="14" transform="rotate(45)" fill="#FFC23D" stroke="#141E29" stroke-width="3"/><text y="32" fill="#FFC23D" stroke="#141E29" stroke-width="4" paint-order="stroke">ÂNGULO</text></g>
+   <g transform="translate(1010 640)"><rect x="-7" y="-7" width="14" height="14" transform="rotate(45)" fill="#FFC23D" stroke="#141E29" stroke-width="3"/><text y="32" fill="#FFC23D" stroke="#141E29" stroke-width="4" paint-order="stroke">RELADA</text></g>
+   <g transform="translate(1080 640)"><rect x="-7" y="-7" width="14" height="14" transform="rotate(45)" fill="#FFC23D" stroke="#141E29" stroke-width="3"/><text y="32" fill="#FFC23D" stroke="#141E29" stroke-width="4" paint-order="stroke">CENTRO</text></g>
   </g>
-  <g transform="translate(1180 380)"><circle r="78" fill="none" stroke="#141E29" stroke-width="7" opacity=".5"/><path d="M0 -78 A78 78 0 1 1 -67.5 39" fill="none" stroke="#6CC6D9" stroke-width="4"/><rect x="-8" y="62" width="16" height="16" transform="rotate(45 0 70)" fill="#6CC6D9" stroke="#141E29" stroke-width="3"/></g>
+  <g transform="translate(1180 380)"><circle r="78" fill="none" stroke="#141E29" stroke-width="7" opacity=".5"/><path d="M0 -78 A78 78 0 1 1 -67.5 39" fill="none" stroke="#2EC8E3" stroke-width="4"/><rect x="-8" y="62" width="16" height="16" transform="rotate(45 0 70)" fill="#2EC8E3" stroke="#141E29" stroke-width="3"/></g>
  </svg>
  <img class="ab" src="ref-azulao.png" alt="" style="left:1100px;top:300px;width:170px">
  <img class="ab" src="ref-carcara.png" alt="" style="left:680px;top:250px;width:160px;transform:scaleX(-1)">
- <div class="ab disp" style="left:590px;top:160px;font-size:92px;color:var(--sol);-webkit-text-stroke:6px var(--tinta);paint-order:stroke fill;transform:rotate(-6deg)">Crítico!</div>
+ <div class="ab sfx" style="left:560px;top:120px;font-size:130px;color:var(--sol);-webkit-text-stroke:12px var(--nanquim);transform:rotate(-8deg)">TCHAC!</div>
  <div class="ab lab" style="left:860px;top:250px;font-size:44px;color:var(--sol);-webkit-text-stroke:4px var(--tinta);paint-order:stroke fill">−42</div>
  <div class="ab panel slant" style="left:84px;top:40px;width:400px;height:96px;padding:12px 26px"><div class="unslant" style="display:flex;gap:16px;align-items:center"><div class="diamond" style="width:52px;height:52px;margin:8px;background:var(--ceu);display:grid;place-items:center"><span class="disp" style="transform:rotate(-45deg);font-size:30px;color:var(--tinta)">K</span></div><div style="display:grid;gap:6px"><div style="display:flex;gap:14px;align-items:baseline"><span class="lab" style="font-size:28px">Kael</span><span class="lab" style="font-size:20px;color:var(--papel-2)">Pipeiro · Nv. 3</span></div><div style="display:flex;gap:8px"><i style="width:16px;height:16px;background:var(--ceu);transform:rotate(45deg)"></i><i style="width:16px;height:16px;border:2px solid var(--papel-2);transform:rotate(45deg)"></i></div></div></div></div>
  <div class="ab" style="right:84px;top:40px;width:400px;display:grid;gap:10px;justify-items:end">
   <div class="panel slant" style="width:400px;height:96px;padding:12px 26px"><div class="unslant" style="display:flex;gap:16px;align-items:center;justify-content:flex-end"><div style="display:grid;gap:6px;justify-items:end"><div style="display:flex;gap:14px;align-items:baseline"><span class="lab" style="font-size:18px;color:var(--papel-2);white-space:nowrap">Selvagem</span><span class="lab" style="font-size:28px;white-space:nowrap">Pipa de rua</span></div><div style="display:flex;gap:8px"><i style="width:16px;height:16px;border:2px solid var(--papel-2);transform:rotate(45deg)"></i><i style="width:16px;height:16px;border:2px solid var(--papel-2);transform:rotate(45deg)"></i></div></div><div class="diamond" style="width:52px;height:52px;margin:8px;background:var(--rabiola);display:grid;place-items:center"><span class="disp" style="transform:rotate(-45deg);font-size:30px;color:var(--tinta)">!</span></div></div></div>
-  <div class="panel slant" style="width:380px;height:64px;padding:8px 24px;background:var(--tinta-2)"><div class="unslant" style="display:grid;gap:6px"><div style="display:flex;justify-content:space-between"><span class="lab" style="font-size:20px">Carcará · Nv. 8</span><span class="lab" style="font-size:20px;color:var(--papel-2)">58%</span></div><div class="bar" style="height:14px"><i style="width:58%;background:var(--rabiola)"></i></div><div class="bar" style="height:6px"><i style="width:100%;background:var(--papel-2)"></i></div></div></div>
+  <div class="panel slant" style="width:380px;height:64px;padding:8px 24px;--pbg:var(--tinta-2)"><div class="unslant" style="display:grid;gap:6px"><div style="display:flex;justify-content:space-between"><span class="lab" style="font-size:20px">Carcará · Nv. 8</span><span class="lab" style="font-size:20px;color:var(--papel-2)">58%</span></div><div class="bar" style="height:14px"><i style="width:58%;background:var(--rabiola)"></i></div><div class="bar" style="height:6px"><i style="width:100%;background:var(--papel-2)"></i></div></div></div>
  </div>
  <div class="ab" style="left:900px;top:28px;width:120px;height:120px"><div class="ab diamond" style="inset:18px;background:var(--tinta);border:3px solid var(--tinta);box-shadow:var(--sombra)"></div><div class="ab" style="inset:0;display:grid;place-items:center;align-content:center"><span class="disp" style="font-size:50px">42</span><span class="lab" style="font-size:15px;color:var(--papel-2)">Rodada 1</span></div></div>
  <div class="ab slant" style="left:860px;top:160px;width:200px;height:36px;background:rgba(20,30,41,.88);display:grid;place-items:center"><span class="unslant lab" style="font-size:18px;color:var(--papel)">Ventania · vento ➜</span></div>
@@ -240,12 +262,12 @@ footer{margin-top:40px;color:var(--papel-2);font-size:14px}
  <div class="ab panel slant" style="left:150px;bottom:48px;width:460px;height:140px;padding:12px 26px 0 70px"><div class="unslant" style="display:grid;gap:8px"><div style="display:flex;justify-content:space-between;align-items:baseline"><span class="lab" style="font-size:28px">Azulão · Nv. 3</span><span class="lab" style="font-size:24px;font-variant-numeric:tabular-nums">77/120</span></div><div class="bar" style="height:20px"><i style="width:64%;background:var(--folha)"></i></div><div class="bar" style="height:8px"><i style="width:100%;background:var(--papel-2)"></i></div><div style="display:flex;gap:4px;transform:skewX(-12deg)">
   <i style="flex:1;height:12px;background:var(--ceu)"></i><i style="flex:1;height:12px;background:var(--ceu)"></i><i style="flex:1;height:12px;background:var(--ceu)"></i><i style="flex:1;height:12px;background:var(--ceu)"></i><i style="flex:1;height:12px;background:var(--ceu)"></i><i style="flex:1;height:12px;background:var(--papel);outline:2px solid var(--ceu)"></i><i style="flex:1;height:12px;background:var(--papel);outline:2px solid var(--ceu)"></i><i style="flex:1;height:12px;background:var(--papel);outline:2px solid var(--ceu)"></i><i style="flex:1;height:12px;background:var(--tinta-2)"></i><i style="flex:1;height:12px;background:var(--tinta-2)"></i></div></div></div>
  <div class="ab" style="left:650px;bottom:48px;display:flex;gap:12px;align-items:flex-end">
-  <div class="act"><svg viewBox="0 0 48 48"><path d="M8 30h22l-6-7m6 7-6 7" stroke="#F4E9D2" stroke-width="5" fill="none"/><path d="M12 16h16" stroke="#6CC6D9" stroke-width="4"/></svg><b>Shift</b><span>Esquiva</span></div>
+  <div class="act"><svg viewBox="0 0 48 48"><path d="M8 30h22l-6-7m6 7-6 7" stroke="#F4E9D2" stroke-width="5" fill="none"/><path d="M12 16h16" stroke="#2EC8E3" stroke-width="4"/></svg><b>Shift</b><span>Esquiva</span></div>
   <div class="act charge"><svg viewBox="0 0 48 48"><path d="M24 6v26a8 8 0 1 1-8-8" stroke="#F4E9D2" stroke-width="5" fill="none"/></svg><b>Q</b><span>Puxão</span></div>
   <div class="act cd"><svg viewBox="0 0 48 48"><path d="M6 28c8-14 14 8 22-6s10 6 14 0" stroke="#F4E9D2" stroke-width="5" fill="none"/></svg><b>E</b><em>3</em><span>Chicote</span></div>
   <div class="act low"><svg viewBox="0 0 48 48"><path d="M4 24 24 12l20 12-20 12z" stroke="#33475A" stroke-width="5" fill="none"/><circle cx="24" cy="24" r="5" fill="#33475A"/></svg><b>R</b><span>Foco <i style="color:var(--rabiola);font-style:normal">▮▮▮</i></span></div>
   <div class="act cd long"><svg viewBox="0 0 48 48"><path d="M24 6 40 12v12c0 10-8 16-16 18C16 40 8 34 8 24V12z" stroke="#F4E9D2" stroke-width="5" fill="none"/></svg><b>G</b><em>14</em><span>Guarda</span></div>
-  <div class="act special"><svg viewBox="0 0 48 48"><path d="M24 4 32 18 44 24 32 30 24 44 16 30 4 24 16 18z" fill="#EDB94E" stroke="#141E29" stroke-width="3"/></svg><b>Espaço</b><span>Pulo do Elo</span></div>
+  <div class="act special"><svg viewBox="0 0 48 48"><path d="M24 4 32 18 44 24 32 30 24 44 16 30 4 24 16 18z" fill="#FFC23D" stroke="#141E29" stroke-width="3"/></svg><b>Espaço</b><span>Pulo do Elo</span></div>
  </div>
 </div></div>
 <p class="cap"><b>1920×1080</b> sua linha em ciano e a do rival em coral · mira dourada no cruzamento, com ÂNGULO · RELADA · CENTRO todos acesos (crítico) · arco de carga do Puxão na sua pipa · energia em 10 blocos com o custo marcado · barra de ações com recarga em varredura diagonal, sem energia e golpe especial pronto</p>
@@ -253,34 +275,73 @@ footer{margin-top:40px;color:var(--papel-2);font-size:14px}
 <h2>Sinais no céu</h2>
 <p class="note">Desenhados junto das pipas, sem painel. Contorno azul-noite para ler sobre céu claro e nuvens.</p>
 <div class="signals">
- <figure><svg viewBox="0 0 240 180"><rect width="240" height="180" fill="#8FD3EE"/><line x1="40" y1="170" x2="200" y2="20" stroke="#141E29" stroke-width="6"/><line x1="40" y1="170" x2="200" y2="20" stroke="#6CC6D9" stroke-width="3"/><line x1="200" y1="170" x2="40" y2="20" stroke="#141E29" stroke-width="5"/><line x1="200" y1="170" x2="40" y2="20" stroke="#E5533B" stroke-width="3"/><rect x="106" y="81" width="28" height="28" transform="rotate(45 120 95)" fill="none" stroke="#141E29" stroke-width="6"/><rect x="106" y="81" width="28" height="28" transform="rotate(45 120 95)" fill="none" stroke="#F4E9D2" stroke-width="3"/></svg><figcaption><b>Corte válido</b> mira creme no cruzamento</figcaption></figure>
- <figure><svg viewBox="0 0 240 180"><rect width="240" height="180" fill="#8FD3EE"/><line x1="40" y1="170" x2="200" y2="20" stroke="#6CC6D9" stroke-width="3"/><line x1="200" y1="170" x2="40" y2="20" stroke="#E5533B" stroke-width="3"/><rect x="106" y="81" width="28" height="28" transform="rotate(45 120 95)" fill="none" stroke="#33475A" stroke-width="3" stroke-dasharray="6 5"/></svg><figcaption><b>Fora da faixa</b> tracejado apagado: ângulo fechado ou longe do centro</figcaption></figure>
- <figure><svg viewBox="0 0 240 180"><rect width="240" height="180" fill="#8FD3EE"/><circle cx="120" cy="95" r="60" fill="none" stroke="#141E29" stroke-width="6" stroke-dasharray="10 8"/><circle cx="120" cy="95" r="60" fill="none" stroke="#E5533B" stroke-width="3" stroke-dasharray="10 8"/><circle cx="120" cy="95" r="38" fill="#E5533B" opacity=".18"/><circle cx="120" cy="95" r="12" fill="#6CC6D9" stroke="#141E29" stroke-width="3"/><g transform="translate(196 34)"><rect x="-14" y="-14" width="28" height="28" transform="rotate(45)" fill="#E5533B" stroke="#141E29" stroke-width="3"/><text y="7" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="800" font-size="22" fill="#141E29">!</text></g></svg><figcaption><b>Aviso de golpe</b> alcance tracejado que preenche até o impacto</figcaption></figure>
- <figure><svg viewBox="0 0 240 180"><rect width="240" height="180" fill="#8FD3EE"/><circle cx="120" cy="95" r="54" fill="none" stroke="#141E29" stroke-width="6"/><circle cx="120" cy="95" r="54" fill="none" stroke="#6CC6D9" stroke-width="3"/><circle cx="120" cy="95" r="22" fill="none" stroke="#F4E9D2" stroke-width="3"/><circle cx="120" cy="95" r="12" fill="#6CC6D9" stroke="#141E29" stroke-width="3"/></svg><figcaption><b>Esquiva perfeita</b> anel que se fecha até o instante ideal</figcaption></figure>
- <figure><svg viewBox="0 0 240 180"><rect width="240" height="180" fill="#8FD3EE"/><circle cx="120" cy="95" r="44" fill="#F4E9D2" opacity=".3"/><circle cx="120" cy="95" r="44" fill="none" stroke="#F4E9D2" stroke-width="2"/><circle cx="120" cy="95" r="12" fill="#6CC6D9" stroke="#141E29" stroke-width="3"/><text x="120" y="168" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="700" font-size="18" fill="#141E29">2,5 s</text></svg><figcaption><b>Escudo de entrada</b> halo creme translúcido</figcaption></figure>
- <figure><svg viewBox="0 0 240 180"><rect width="240" height="180" fill="#8FD3EE"/><circle cx="120" cy="95" r="12" fill="#6CC6D9" stroke="#141E29" stroke-width="3"/><text x="120" y="58" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-style="italic" font-weight="800" font-size="34" fill="#6CC6D9" stroke="#141E29" stroke-width="5" paint-order="stroke">CONTRA!</text><path d="M84 132h72" stroke="#141E29" stroke-width="8"/><path d="M84 132h48" stroke="#6CC6D9" stroke-width="4"/></svg><figcaption><b>Contra-ataque</b> 2 s em que o próximo acerto é crítico</figcaption></figure>
+ <figure><svg viewBox="0 0 240 180"><rect width="240" height="180" fill="#8FD3EE"/><line x1="40" y1="170" x2="200" y2="20" stroke="#141E29" stroke-width="6"/><line x1="40" y1="170" x2="200" y2="20" stroke="#2EC8E3" stroke-width="3"/><line x1="200" y1="170" x2="40" y2="20" stroke="#141E29" stroke-width="5"/><line x1="200" y1="170" x2="40" y2="20" stroke="#FF5A36" stroke-width="3"/><rect x="106" y="81" width="28" height="28" transform="rotate(45 120 95)" fill="none" stroke="#141E29" stroke-width="6"/><rect x="106" y="81" width="28" height="28" transform="rotate(45 120 95)" fill="none" stroke="#F4E9D2" stroke-width="3"/></svg><figcaption><b>Corte válido</b> mira creme no cruzamento</figcaption></figure>
+ <figure><svg viewBox="0 0 240 180"><rect width="240" height="180" fill="#8FD3EE"/><line x1="40" y1="170" x2="200" y2="20" stroke="#2EC8E3" stroke-width="3"/><line x1="200" y1="170" x2="40" y2="20" stroke="#FF5A36" stroke-width="3"/><rect x="106" y="81" width="28" height="28" transform="rotate(45 120 95)" fill="none" stroke="#33475A" stroke-width="3" stroke-dasharray="6 5"/></svg><figcaption><b>Fora da faixa</b> tracejado apagado: ângulo fechado ou longe do centro</figcaption></figure>
+ <figure><svg viewBox="0 0 240 180"><rect width="240" height="180" fill="#8FD3EE"/><circle cx="120" cy="95" r="60" fill="none" stroke="#141E29" stroke-width="6" stroke-dasharray="10 8"/><circle cx="120" cy="95" r="60" fill="none" stroke="#FF5A36" stroke-width="3" stroke-dasharray="10 8"/><circle cx="120" cy="95" r="38" fill="#FF5A36" opacity=".18"/><circle cx="120" cy="95" r="12" fill="#2EC8E3" stroke="#141E29" stroke-width="3"/><g transform="translate(196 34)"><rect x="-14" y="-14" width="28" height="28" transform="rotate(45)" fill="#FF5A36" stroke="#141E29" stroke-width="3"/><text y="7" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="800" font-size="22" fill="#141E29">!</text></g></svg><figcaption><b>Aviso de golpe</b> alcance tracejado que preenche até o impacto</figcaption></figure>
+ <figure><svg viewBox="0 0 240 180"><rect width="240" height="180" fill="#8FD3EE"/><circle cx="120" cy="95" r="54" fill="none" stroke="#141E29" stroke-width="6"/><circle cx="120" cy="95" r="54" fill="none" stroke="#2EC8E3" stroke-width="3"/><circle cx="120" cy="95" r="22" fill="none" stroke="#F4E9D2" stroke-width="3"/><circle cx="120" cy="95" r="12" fill="#2EC8E3" stroke="#141E29" stroke-width="3"/></svg><figcaption><b>Esquiva perfeita</b> anel que se fecha até o instante ideal</figcaption></figure>
+ <figure><svg viewBox="0 0 240 180"><rect width="240" height="180" fill="#8FD3EE"/><circle cx="120" cy="95" r="44" fill="#F4E9D2" opacity=".3"/><circle cx="120" cy="95" r="44" fill="none" stroke="#F4E9D2" stroke-width="2"/><circle cx="120" cy="95" r="12" fill="#2EC8E3" stroke="#141E29" stroke-width="3"/><text x="120" y="168" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="700" font-size="18" fill="#141E29">2,5 s</text></svg><figcaption><b>Escudo de entrada</b> halo creme translúcido</figcaption></figure>
+ <figure><svg viewBox="0 0 240 180"><rect width="240" height="180" fill="#8FD3EE"/><circle cx="120" cy="95" r="12" fill="#2EC8E3" stroke="#141E29" stroke-width="3"/><text x="120" y="58" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-style="italic" font-weight="800" font-size="34" fill="#2EC8E3" stroke="#141E29" stroke-width="5" paint-order="stroke">CONTRA!</text><path d="M84 132h72" stroke="#141E29" stroke-width="8"/><path d="M84 132h48" stroke="#2EC8E3" stroke-width="4"/></svg><figcaption><b>Contra-ataque</b> 2 s em que o próximo acerto é crítico</figcaption></figure>
+</div>
+
+<h2>Linguagem de tinta</h2>
+<p class="note">As peças que o Codex desenha à mão (seção 3.1 da especificação). Todas brancas ou em nanquim, para recolorir no Godot. Respingos sempre na cor de quem agiu.</p>
+<div class="signals ink">
+ <figure><div class="cell"><div class="panel slant" style="width:200px;height:86px;margin:34px auto 0;padding:14px 22px"><div class="unslant lab" style="font-size:22px">Painel</div></div></div><figcaption><b>Moldura de nanquim</b> 9-patch a pincel, mais grossa embaixo e à direita</figcaption></figure>
+ <figure><div class="cell"><div class="li on" style="width:200px;height:56px;margin:56px auto 0;font-size:22px"><span class="rab"><i></i><i></i><i></i></span><span>Mochila</span></div></div><figcaption><b>Pincelada de seleção</b> substitui a faixa lisa do foco</figcaption></figure>
+ <figure><div class="cell"><svg class="splat" data-splat="26 100 10 var(--ceu) 2 0 -30 0"></svg><svg class="splat" data-splat="70 90 18 var(--ceu) 3 0 -20 0"></svg><svg class="splat" data-splat="128 80 28 var(--rabiola) 4 0 200 0"></svg></div><figcaption><b>Respingos P · M · G</b> mancha, gotas satélite, contorno só em fundo claro</figcaption></figure>
+ <figure><div class="cell"><svg class="splat" data-splat="120 70 34 var(--papel) 8 1 90 1"></svg></div><figcaption><b>Escorrido</b> no máximo um por mancha</figcaption></figure>
+ <figure><div class="cell tone" style="opacity:.9;background-color:var(--papel);background-image:radial-gradient(circle,#0B1017 3px,transparent 3.6px);background-size:12px 12px;-webkit-mask:linear-gradient(135deg,transparent,#000);mask:linear-gradient(135deg,transparent,#000)"></div><figcaption><b>Retícula</b> pontos a 45°, degradê; 8–25% conforme a tela</figcaption></figure>
+ <figure><div class="cell" style="background:var(--papel)"><svg class="speed" data-speed="120 85 26 260 34 #0B1017" style="left:0;top:0" width="240" height="170"></svg></div><figcaption><b>Linhas de concentração</b> 250 ms no crítico e no grito</figcaption></figure>
+ <figure><div class="cell" style="display:grid;place-items:center;align-content:center;gap:2px"><span class="sfx" style="font-size:46px;color:var(--sol);transform:rotate(-6deg)">TCHAC!</span><span class="sfx" style="font-size:34px;color:var(--ceu);-webkit-text-stroke:6px var(--nanquim);transform:rotate(4deg)">VUPT!  TOC!</span></div><figcaption><b>Onomatopeias</b> Bangers, texto vivo, em português</figcaption></figure>
+ <figure><div class="cell" style="display:flex;justify-content:center;align-items:center;gap:14px">
+  <svg width="44" height="60" viewBox="0 0 70 96"><path d="M35 6C46 30 62 46 62 64a27 27 0 0 1-54 0C8 46 24 30 35 6z" fill="#BFE9F5" stroke="#F4E9D2" stroke-width="12" stroke-linejoin="round"/><path d="M35 6C46 30 62 46 62 64a27 27 0 0 1-54 0C8 46 24 30 35 6z" fill="#BFE9F5" stroke="#0B1017" stroke-width="5"/></svg>
+  <svg width="56" height="56" viewBox="0 0 60 60"><g stroke="#F4E9D2" stroke-width="12" fill="none" stroke-linecap="round"><path d="M8 24c10 0 16-6 16-16M36 8c0 10 6 16 16 16M52 36c-10 0-16 6-16 16M24 52c0-10-6-16-16-16"/></g><g stroke="#FF5A36" stroke-width="6" fill="none" stroke-linecap="round"><path d="M8 24c10 0 16-6 16-16M36 8c0 10 6 16 16 16M52 36c-10 0-16 6-16 16M24 52c0-10-6-16-16-16"/></g></svg>
+  <span class="sfx" style="font-size:54px;color:var(--papel);-webkit-text-stroke:7px var(--nanquim)">!?</span></div><figcaption><b>Emoções de mangá</b> adesivos colados no retrato</figcaption></figure>
+ <figure><div class="cell"><svg class="splat" data-splat="120 85 46 var(--sol) 14 1 0 0"></svg><span class="ab sfx" style="left:78px;top:66px;font-size:40px;color:var(--nanquim);-webkit-text-stroke:0;transform:rotate(-8deg)">NOVO!</span></div><figcaption><b>Adesivo</b> respingo com borda clara; o texto é Label por cima</figcaption></figure>
+ <figure><div class="cell wipe"><i style="--p:.25"></i><i style="--p:.6"></i><i style="--p:1"></i></div><figcaption><b>Transição em mancha</b> 450 ms na cor do vencedor</figcaption></figure>
 </div>
 
 <h2>Resultado</h2>
 <div class="frame"><div class="screen" data-screen>
  <div class="bg" style="background:var(--tinta)"></div>
- <div class="ab" style="left:-80px;top:150px;width:2100px;height:320px;background:var(--papel);transform:rotate(-6deg);box-shadow:0 12px 0 rgba(0,0,0,.35)"></div>
- <div class="ab disp" style="left:150px;top:200px;font-size:210px;color:var(--tinta);transform:rotate(-6deg)">Vitória</div>
+ <svg class="speed" data-speed="560 330 260 1300 60 rgba(244,233,210,.16)" style="left:0;top:0" width="1920" height="1080"></svg>
+  <div class="ab" style="left:-80px;top:150px;width:2100px;height:320px;background:var(--papel);transform:rotate(-6deg);box-shadow:0 12px 0 rgba(0,0,0,.35);filter:url(#pincel-forte)"></div>
+ <div class="ab tone" style="left:-80px;top:150px;width:2100px;height:320px;transform:rotate(-6deg);opacity:.16;-webkit-mask:linear-gradient(90deg,transparent 30%,#000);mask:linear-gradient(90deg,transparent 30%,#000)"></div>
+ <svg class="splat" data-splat="1760 470 130 var(--ceu) 33 0 40 1"></svg>
+ <svg class="splat" data-splat="90 140 80 var(--ceu) 12 0 210 0"></svg>
+ <div class="ab sfx" style="left:1240px;top:150px;font-size:96px;color:var(--ceu);-webkit-text-stroke:10px var(--nanquim);transform:rotate(-12deg)">TCHAC!</div>
+ <div class="ab disp" style="left:150px;top:205px;font-size:200px;color:var(--nanquim);transform:rotate(-6deg) skewX(-8deg)">Vitória</div>
  <div class="ab" style="left:150px;top:560px;width:900px;display:grid;gap:14px">
   <div style="display:flex;justify-content:space-between"><span class="lab" style="font-size:30px">Carcará</span><span class="lab" style="font-size:28px;color:var(--sol)">+ 340 XP</span></div>
   <div class="bar" style="height:22px"><i style="width:84%;background:var(--sol)"></i></div>
   <div class="slant" style="justify-self:start;background:var(--sol);color:var(--tinta);padding:8px 18px;margin-top:6px"><span class="unslant lab" style="display:inline-block;font-size:24px">Subiu de nível · Nv. 13</span></div>
  </div>
  <div class="ab" style="left:1180px;top:520px;display:flex;gap:28px">
-  <div class="panel" style="width:220px;height:260px;background:var(--tinta-2);display:grid;place-items:center;align-content:center;gap:14px;outline:3px solid var(--sol);outline-offset:-10px"><img src="ref-bau.png" alt="" style="width:110px"><span class="lab" style="font-size:24px;text-align:center">Rabiola antiga</span></div>
-  <div class="panel" style="width:220px;height:260px;background:var(--tinta-2);display:grid;place-items:center;align-content:center;gap:14px"><i style="width:70px;height:70px;background:var(--papel);transform:rotate(45deg)"></i><span class="lab" style="font-size:24px;text-align:center">120 moedas</span></div>
+  <div class="panel" style="width:220px;height:260px;--pbg:var(--tinta-2);display:grid;place-items:center;align-content:center;gap:14px;outline:3px solid var(--sol);outline-offset:-10px"><img src="ref-bau.png" alt="" style="width:110px"><span class="lab" style="font-size:24px;text-align:center">Rabiola antiga</span></div>
+  <div class="panel" style="width:220px;height:260px;--pbg:var(--tinta-2);display:grid;place-items:center;align-content:center;gap:14px"><i style="width:70px;height:70px;background:var(--papel);transform:rotate(45deg)"></i><span class="lab" style="font-size:24px;text-align:center">120 moedas</span></div>
  </div>
  <div class="ab" style="right:96px;bottom:52px;display:flex;gap:10px;align-items:center;font:700 22px/1 var(--display);letter-spacing:.06em;text-transform:uppercase"><span class="key round">A</span>Continuar</div>
 </div></div>
 <p class="cap"><b>1920×1080</b> faixa diagonal atravessando a tela · XP em dourado animado uma vez · recompensas raras com contorno dourado, sem brilho</p>
 
-<footer>Fundos: capturas do protótipo atual, só como contexto. Retratos, pipas e baú: artes existentes do repositório. Fundo da batalha: trilha-beira-mar-v1. Nada aqui é asset final: a produção segue <code>ESPECIFICACAO.md</code>.</footer>
+<footer>Os respingos e linhas desta página são gerados por código só para ilustrar; no jogo eles são peças desenhadas à mão (seção 3.1). Fundos: capturas do protótipo atual, só como contexto. Retratos, pipas e baú: artes existentes do repositório. Fundo da batalha: trilha-beira-mar-v1. Nada aqui é asset final: a produção segue <code>ESPECIFICACAO.md</code>.</footer>
 </div>
+<script>
+// Respingos e linhas de velocidade gerados com semente fixa: o mesmo desenho a cada carga.
+(()=>{const rng=seed=>{let x=seed>>>0||1;return()=>((x=Math.imul(x^x>>>15,2246822507)^Math.imul(x^x>>>13,3266489909),(x^=x>>>16)>>>0)/4294967296);};
+ const blob=(cx,cy,r,rand,n=16,var_=.38)=>{const p=[];for(let i=0;i<n;i++){const a=i/n*Math.PI*2,k=.8+rand()*var_;p.push([cx+Math.cos(a)*r*k,cy+Math.sin(a)*r*k]);}
+  const m=(a,b)=>[(a[0]+b[0])/2,(a[1]+b[1])/2];let d='M'+m(p[n-1],p[0]).map(v=>v.toFixed(1)).join(' ');for(let i=0;i<n;i++){const q=m(p[i],p[(i+1)%n]);d+='Q'+p[i].map(v=>v.toFixed(1)).join(' ')+' '+q.map(v=>v.toFixed(1)).join(' ');}return d+'Z';};
+ for(const el of document.querySelectorAll('svg.splat')){const [x,y,r,color,seed,outline,dir,drip]=el.dataset.splat.split(' ');const R=+r,rand=rng(+seed*7919),W=R*5,c=W/2;
+  el.setAttribute('width',W);el.setAttribute('height',W);el.style.width=el.style.height=W+'px';el.setAttribute('viewBox','0 0 '+W+' '+W);el.style.left=(x-c)+'px';el.style.top=(y-c)+'px';
+  let parts=[blob(c,c,R,rand,18)];const n=4+Math.floor(rand()*4),base=(+dir||0)*Math.PI/180;
+  for(let i=0;i<n;i++){const a=base+(rand()-.5)*2.4,dd=R*(1.2+rand()*.75),sz=R*(.06+rand()*.12);parts.push(blob(c+Math.cos(a)*dd,c+Math.sin(a)*dd,sz,rand,8,.25));}
+  if(+drip){const w=R*.2,len=R*(.7+rand()*.5),x0=c+R*.15;parts.push(`M${x0-w/2} ${c+R*.4}h${w}v${len}a${w/2} ${w/2} 0 0 1 -${w} 0z`);}
+  const d=parts.join(' ');el.innerHTML=(+outline?`<path d="${d}" fill="none" stroke="#F4E9D2" stroke-width="10" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="#0B1017" stroke-width="4" stroke-linejoin="round"/>`:'')+`<path d="${d}" fill="${color}"/>`;}
+ for(const el of document.querySelectorAll('svg.speed')){const [cx,cy,inner,outer,count,color]=el.dataset.speed.split(' ');const rand=rng(+count*31);let d='';
+  for(let i=0;i<+count;i++){const a=i/count*Math.PI*2+rand()*.12,ri=+inner*(1+rand()*.5),w=.006+rand()*.012;const P=(r,t)=>[+cx+Math.cos(t)*r,+cy+Math.sin(t)*r];const a1=P(ri,a),b1=P(+outer,a-w),b2=P(+outer,a+w);d+=`M${a1.join(' ')}L${b1.join(' ')}L${b2.join(' ')}Z`;}
+  el.innerHTML=`<path d="${d}" fill="${color}"/>`;}
+})();
+</script>
 <script>
 (()=>{const fit=()=>{for(const s of document.querySelectorAll('[data-screen]')){const w=s.parentElement.clientWidth;s.style.transform='scale('+(w/1920)+')';}};
  addEventListener('resize',fit);if('ResizeObserver' in window)new ResizeObserver(fit).observe(document.body);fit();})();
