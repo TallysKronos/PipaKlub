@@ -27,13 +27,34 @@ Importação do projeto e `--check-only` da entrada da campanha, dos dois protó
 
 Laboratório nativo `hud_lab.gd -- --capture` renderizado e inspecionado em 1280×720 e 1024×768, renderer Compatibility/OpenGL, RTX 5070. Logs sem erros de execução nessas capturas. Evidências em `documentation/evidence/pip62/`. Confirmam somente o laboratório; não comprovam todas as telas, gamepad, acessibilidade integral ou paridade do gameplay.
 
-Sem execução do novo teste, das 12 suítes ou de `journey_playthrough.gd -- --with-morro`, respeitando a orientação vigente para não rodar testes sem pedido. Sem exportar executável final, alterar saves, publicar na Steam/Render ou mesclar na main. A PIP-62 permanece em andamento até a validação de aceite.
+Na primeira entrega, os testes de aceite ficaram pendentes. Após o pedido de continuação, executados o teste de tokens, as 12 suítes e `journey_playthrough.gd -- --with-morro`, todos com código de saída 0. Não foi necessário corrigir a implementação durante essa rodada. Logs sem `SCRIPT ERROR`, `ERROR`, `WARNING` ou falhas de asserção.
 
-## Comandos para a validação pendente
+| Verificação | Resultado |
+| --- | --- |
+| ui_tokens_checks | 73 verificações, 0 falhas |
+| campaign_checks | 206 verificações, 0 falhas |
+| campaign_view_checks | 30 verificações, 0 falhas |
+| controls_checks | 19 verificações, 0 falhas |
+| park_checks | 1510 verificações, 0 falhas |
+| art_direction_checks | 11 verificações, 0 falhas |
+| binding_window_checks | PASS, cut=84 |
+| hud_checks | 58 verificações, 0 falhas |
+| hud_effects_checks | 18 verificações, 0 falhas |
+| morro_checks | 377 verificações, 0 falhas |
+| morro_map_checks | 9386 verificações, 0 falhas |
+| morro_transaction_checks | 51 verificações, 0 falhas |
+| player_flow_checks | 7 verificações, 0 falhas |
+| journey_playthrough --with-morro | 209 verificações, 0 falhas; 8700 unidades percorridas |
+
+O percurso automatizado percorreu campanha, exploração e batalha com entradas reais dos controladores, confirmou a vitória do boss, a devolução da rabiola de Nina, persistência após recarregar e reparo pelo professor. A execução headless não substitui uma avaliação visual completa ou teste físico com controle. Os testes usam diretórios isolados; o save do jogador foi preservado. Logs de aceite em `documentation/evidence/pip62/acceptance/`.
+
+Sem exportar executável final, publicar na Steam/Render, fazer push ou mesclar na main. Critérios de aceite da PIP-62 cumpridos localmente na branch `godot`.
+
+## Reprodução da validação
 
 ```powershell
 $runtime = './tmp/godot-4.7.2/runtime/Godot_v4.7.2-stable_win64_console.exe'
 & $runtime --headless --path godot --script res://tests/ui_tokens_checks.gd
 ```
 
-Depois, quando solicitado, executar as suítes listadas na PIP-62: campaign_checks, campaign_view_checks, controls_checks, park_checks, art_direction_checks, binding_window_checks, hud_checks, hud_effects_checks, morro_checks, morro_map_checks, morro_transaction_checks, player_flow_checks e o percurso com `--with-morro`. Não declarar a tarefa Done apenas com sintaxe e capturas aprovadas.
+As demais suítes usam o mesmo comando, substituindo o nome do script. O percurso usa `--script res://tests/journey_playthrough.gd -- --with-morro`. Nesta rodada, cada processo recebeu também `--log-file` com caminho absoluto isolado em `tmp/`.
