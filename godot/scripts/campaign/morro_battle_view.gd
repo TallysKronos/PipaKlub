@@ -38,15 +38,6 @@ func _draw() -> void:
 	var factor := _arena_factor()
 	draw_set_transform(_field_origin(), 0, _field_scale())
 
-	if model.outcome.is_empty() and model.intro <= 0 and model.intermission <= 0 and model.alive(model.p):
-		for rival in model.actors.slice(1):
-			if not model.alive(rival): continue
-			var crossing: Dictionary = model.contact(model.p, rival)
-			if crossing.get("valid", false):
-				draw_circle(crossing.point, 15, Tokens.TINTA_2)
-				draw_arc(crossing.point, 15, 0, TAU, 32, Tokens.CEU, 3)
-				draw_line(crossing.point - Vector2(8, 0), crossing.point + Vector2(8, 0), Tokens.CEU, 2)
-				draw_line(crossing.point - Vector2(0, 8), crossing.point + Vector2(0, 8), Tokens.CEU, 2)
 	for index in model.actors.size():
 		var actor: Dictionary = model.actors[index]
 		var eliminated: bool = not model.alive(actor)
@@ -61,11 +52,6 @@ func _draw() -> void:
 		var frames: Array = content.combat[art_ids[index]].animations[animation]
 		var frame: Dictionary = frames[int(clock * 12) % frames.size()]
 		Ink.live_sprite(self, textures[index], art_ids[index], frame, Vector2(actor.x, actor.y), 220, Tokens.alpha(Tokens.UNTINTED, .45 if eliminated else 1), _field_scale())
-		if actor.guardTime > 0 and not eliminated: draw_circle(Vector2(actor.x, actor.y), 60, Tokens.CEU, false, 4)
-		if actor.signatureWindup > 0:
-			draw_circle(actor.signatureAim, 85, Tokens.alpha(Tokens.RABIOLA, .18))
-			draw_arc(actor.signatureAim, 85, 0, TAU, 60, Tokens.RABIOLA, 4)
-
 
 	_draw_feedback()
 	draw_set_transform(Vector2.ZERO)
@@ -89,5 +75,5 @@ func _draw() -> void:
 	draw_set_transform(Vector2.ZERO)
 	_draw_foreground()
 	_draw_status()
-	_draw_special()
+	# Persistent special indicators are rendered in the sky.
 

@@ -22,7 +22,9 @@ static func brush(index: int) -> Texture2D:
 static func icon(id: String) -> Texture2D:
 	return Hud.icon({"line":"guarda","energy":"foco","team":"pulo-do-elo"}.get(id,id))
 static func shape(rect: Rect2, cut: float = 16) -> PackedVector2Array:
-	return PackedVector2Array([rect.position + Vector2(cut, 4), Vector2(rect.end.x, rect.position.y), rect.end - Vector2(cut, 0), Vector2(rect.position.x, rect.end.y - 3)])
+	# Slivers must remain convex when a meter approaches zero.
+	var corner := minf(cut,maxf(0,rect.size.x*.45))
+	return PackedVector2Array([rect.position + Vector2(corner,minf(4,rect.size.y*.45)), Vector2(rect.end.x, rect.position.y), rect.end - Vector2(corner,0), Vector2(rect.position.x,rect.end.y-minf(3,rect.size.y*.45))])
 static func plate(canvas: CanvasItem, rect: Rect2, fill: Color, stroke: Color = BLACK, cut: float = 16) -> void:
 	canvas.draw_colored_polygon(shape(Rect2(rect.position + Vector2(4, 5), rect.size), cut), BLACK)
 	var points := shape(rect, cut)
@@ -65,7 +67,7 @@ static func status(canvas: CanvasItem, rect: Rect2, title: String, subtitle: Str
 		var track := Rect2(x + 79, y - 13, maxf(20, content_width - 126), 13)
 		canvas.draw_colored_polygon(shape(track, 3), Tokens.TINTA_2)
 		var fraction := clampf(values[i], 0, 1)
-		if fraction > .001: canvas.draw_colored_polygon(shape(Rect2(track.position, Vector2(track.size.x * fraction, track.size.y)), minf(3, track.size.x * fraction)), colors[i])
+		if track.size.x*fraction > .5: canvas.draw_colored_polygon(shape(Rect2(track.position, Vector2(track.size.x * fraction, track.size.y)),3),colors[i])
 		canvas.draw_string(Hud.font(true), Vector2(track.end.x + 7, y), "%d%%" % roundi(fraction * 100), HORIZONTAL_ALIGNMENT_LEFT, -1, 17, WHITE)
 	var face_bounds := Rect2(rect.position + Vector2(rect.size.x - 112 if rival else -11, -5), Vector2(125, 167))
 	canvas.draw_texture_rect(brush(2), Hud.fit_texture(brush(2), face_bounds.grow(8)), false, accent)

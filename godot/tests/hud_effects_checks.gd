@@ -31,7 +31,7 @@ func run_checks() -> void:
 	check(effects.bursts.is_empty(), "impact always returns to rest")
 	check(model.snapshot() == snapshot and Engine.time_scale == 1, "visual step cannot change combat or global time")
 	for index in 30: effects.add({"amount": 1, "point": Vector2(300, 300), "player": false, "body": false})
-	check(effects.bursts.size() == 10, "simultaneous damage has a bounded visual budget")
+	check(effects.bursts.size() == 3, "simultaneous damage has a bounded visual budget")
 	model.outcome = "won"
 	var before := player.duplicate(true)
 	var summary := Rewards.preview(player, {"kind": "lacertubo"}, model)

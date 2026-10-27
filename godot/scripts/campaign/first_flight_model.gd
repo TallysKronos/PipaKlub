@@ -56,32 +56,52 @@ func prepare(index: int) -> void:
 	q.x = 300.0
 	q.y = 180.0
 
-func contact(a: Dictionary, b: Dictionary) -> Dictionary:
-	var start := Vector2(a.anchor, 585)
-	var other := Vector2(b.anchor, 585)
-	var r := Vector2(a.x, a.y) - start
-	var v := Vector2(b.x, b.y) - other
+func signature_profile(_actor: Dictionary) -> Dictionary:
+	return {"radius":78.0,"windup":1.65}
+
+func attack_notice(actor: Dictionary) -> Dictionary:
+	var move: Dictionary=actor.get("lineMove",{})
+	return {"active":not move.is_empty() or actor.get("telegraph",0)>.6,"progress":clampf(float(move.get("elapsed",0))/1.05,0,1) if not move.is_empty() else float(actor.get("telegraph",0))}
+
+func _line_intersection(a: Dictionary,b: Dictionary) -> Dictionary:
+	var start := Vector2(a.anchor,585)
+	var other := Vector2(b.anchor,585)
+	var r := Vector2(a.x,a.y)-start
+	var v := Vector2(b.x,b.y)-other
 	var den := r.cross(v)
-	var angle := absf(den) / maxf(1, r.length() * v.length())
-	if angle < .2:
-		return {}
-	var d := other - start
-	var u := d.cross(v) / den
-	var w := d.cross(r) / den
-	if u <= .05 or u >= .98 or w <= .05 or w >= .98:
-		return {}
-	return {"point": start + r * u, "own": u, "enemy": w, "angle": angle,
-		"valid": u >= .35 and u <= .95 and w >= .3 and w <= .85, "perfect": w >= .52 and w <= .68}
+	if absf(den)<.00001: return {}
+	var angle := absf(den)/maxf(1,r.length()*v.length())
+	var d := other-start
+	var u := d.cross(v)/den
+	var w := d.cross(r)/den
+	if u<=.05 or u>=.98 or w<=.05 or w>=.98: return {}
+	return {"point":start+r*u,"own":u,"enemy":w,"angle":angle,
+		"valid":angle>=.2 and u>=.35 and u<=.95 and w>=.3 and w<=.85,"perfect":w>=.52 and w<=.68}
+
+func contact(a: Dictionary,b: Dictionary) -> Dictionary:
+	var crossing := _line_intersection(a,b)
+	return {} if crossing.is_empty() or crossing.angle<.2 else crossing
+
+func contact_hint(a: Dictionary,b: Dictionary) -> Dictionary:
+	# Preserve overrides such as Azulão; expose closed-angle intersections only to presentation.
+	var crossing := contact(a,b)
+	return _line_intersection(a,b) if crossing.is_empty() else crossing
+
+func cut_quality(a: Dictionary, c: Dictionary) -> Dictionary:
+	# Pure presentation contract shared with the damage rule. No counter is consumed here.
+	var clean: bool = c.get("angle",0.0) >= .85
+	var moving := Vector2(a.vx,a.vy).length() >= 110
+	var center: bool = c.get("perfect",false)
+	return {"angle":clean,"moving":moving,"center":center,"valid":c.get("valid",true),
+		"critical":(center and clean and moving) or a.counter > 0}
 
 func _damage(a: Dictionary, c: Dictionary) -> float:
-	var clean: bool = c.angle >= .85
-	var moving := Vector2(a.vx, a.vy).length() >= 110
-	var critical: bool = (c.perfect and clean and moving) or a.counter > 0
+	var quality := cut_quality(a,c)
 	var base := 24.0 if c.perfect else 18.0
-	if critical:
+	if quality.critical:
 		a.counter = 0.0
 		return base * 1.75
-	return base * (1 + (.2 if clean else 0) - (.2 if c.angle < .45 else 0) + (.15 if moving else 0))
+	return base * (1 + (.2 if quality.angle else 0) - (.2 if c.angle < .45 else 0) + (.15 if quality.moving else 0))
 
 func tick(delta: float, input: Dictionary) -> void:
 	if complete:
@@ -206,7 +226,7 @@ func _signature(dt: float, previous_cooldown: float) -> void:
 	q.hull = 100.0
 	if q.signatureWindup > 0:
 		q.signatureWindup = maxf(0, q.signatureWindup - dt)
-		if q.signatureWindup <= 0 and Vector2(p.x, p.y).distance_to(q.signatureAim) <= 78:
+		if q.signatureWindup <= 0 and Vector2(p.x, p.y).distance_to(q.signatureAim) <= signature_profile(q).radius:
 			if p.guardTime > 0:
 				p.blocks += 1
 			elif p.evade > 0:
@@ -214,7 +234,7 @@ func _signature(dt: float, previous_cooldown: float) -> void:
 			else:
 				p.hull = maxf(0, p.hull - 32)
 	elif previous_cooldown <= 0:
-		q.signatureWindup = 1.65
+		q.signatureWindup = signature_profile(q).windup
 		q.signatureCooldown = 22.0
 		q.signatureAim = Vector2(p.x, p.y)
 	elif previous_cooldown > 1.5:

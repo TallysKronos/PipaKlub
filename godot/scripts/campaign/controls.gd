@@ -3,7 +3,7 @@ extends RefCounted
 const DEFAULTS := {"left": KEY_A, "right": KEY_D, "up": KEY_W, "down": KEY_S,
 	"interact": KEY_E, "cut": KEY_SPACE, "skill": KEY_Q, "dodge": KEY_SHIFT,
 	"line": KEY_R, "guard": KEY_G, "signature": KEY_F, "map": KEY_M}
-const LABELS := {"left": "Mover à esquerda", "right": "Mover à direita", "up": "Mover para cima", "down": "Mover para baixo", "interact": "Interagir", "cut": "Cortar", "skill": "Habilidade", "dodge": "Esquiva", "line": "Puxão", "guard": "Guarda", "signature": "Assinatura", "map": "Mapa"}
+const LABELS := {"left": "Mover à esquerda", "right": "Mover à direita", "up": "Mover para cima", "down": "Mover para baixo", "interact": "Interagir", "cut": "Cortar", "skill": "Habilidade", "dodge": "Esquiva", "line": "Puxão", "guard": "Guarda", "signature": "Especial", "map": "Mapa"}
 const PAD := {"interact": JOY_BUTTON_A, "cut": JOY_BUTTON_X, "skill": JOY_BUTTON_Y, "dodge": JOY_BUTTON_B, "line": JOY_BUTTON_RIGHT_SHOULDER, "guard": JOY_BUTTON_LEFT_SHOULDER, "signature": JOY_BUTTON_RIGHT_STICK, "map": JOY_BUTTON_BACK}
 const RESERVED := [KEY_ESCAPE, KEY_ENTER, KEY_KP_ENTER, KEY_TAB, KEY_LEFT, KEY_RIGHT, KEY_UP, KEY_DOWN]
 static var bindings: Dictionary = DEFAULTS.duplicate()

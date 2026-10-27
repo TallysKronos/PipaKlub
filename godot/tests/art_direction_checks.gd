@@ -56,7 +56,7 @@ func run_checks() -> void:
 	var right: Vector2 = battle._project_field(Vector2(945, 200))
 	check(right.x - left.x > front.size.x * .8, "usable battle span fills over 80 percent of the viewport")
 	check(battle._project_field(Vector2(90, 585)).y < battle.bottom_panel.position.y - 12, "string anchors remain above the action cards")
-	check(tile.size.y <= 140, "compact action cards reserve more arena space")
+	check(battle.bottom_panel.size.y <= battle.size.y * .12 + .5, "PIP-68 action bar occupies at most 12 percent")
 	check(battle._project_field(Vector2(55, 70)).y - 110 * battle._arena_factor() > 165, "upper flight limit stays below status HUD")
 	check(battle._project_field(Vector2(945, 480)).y + 110 * battle._arena_factor() < battle.bottom_panel.position.y, "lower flight limit stays above action cards")
 	front.free()

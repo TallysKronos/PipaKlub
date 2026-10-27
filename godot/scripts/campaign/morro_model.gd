@@ -177,6 +177,14 @@ func _rival_input(actor: Dictionary, dt: float) -> Dictionary:
 		return {"x": direction.x, "y": direction.y, "cut": pull, "skill": skill}
 	return {"x": clampf((aim.x - actor.x) / 80, -b.speed, b.speed), "y": clampf((aim.y - actor.y) / 80, -b.speed, b.speed), "cut": pull, "skill": skill}
 
+func attack_notice(actor: Dictionary) -> Dictionary:
+	var notice := super.attack_notice(actor)
+	if is_same(actor,p):return notice
+	var brain:=_brain(actor.style)
+	var aiming:bool=alive(actor) and actor.target==p.slot and actor.attackCooldown<=0 and (actor.energy>=12+brain.reserve or p.hp<=24) and contact(actor,p).get("valid",false)
+	var progress:=clampf(actor.botFocus/brain.focus,0,1)
+	return {"active":aiming and progress>.6,"progress":progress}
+
 func snapshot() -> Dictionary:
 	var saved := super.snapshot()
 	saved.merge({"trailStage": stage_id, "actors": _encode(actors), "roundNumber": round_number, "roundsToWin": rounds_to_win, "intermission": intermission, "roundMessage": round_message, "aiLevel": ai_level})

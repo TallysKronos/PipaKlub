@@ -3,6 +3,7 @@ const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 const Hud = preload("res://scripts/campaign/hud.gd")
 signal chosen(action: String)
 var player: Dictionary = {}
+var battle_paused := false
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_STOP
@@ -55,7 +56,7 @@ func _ready() -> void:
 		var condition: Dictionary = partner.get("condition", {"line": 100, "structure": 100})
 		summary.append("Parceiro · " + partner.get("personalName", partner.modelId))
 		summary.append("Linha %d%% · Armação %d%%" % [condition.line, condition.structure])
-		summary.append("Reparo disponível no ateliê do Sr. Assis." if condition.line < 100 or condition.structure < 100 else "Pronto para explorar.")
+		summary.append("Batalha pausada. Retome quando estiver pronto." if battle_paused else "Reparo disponível no ateliê do Sr. Assis." if condition.line < 100 or condition.structure < 100 else "Pronto para explorar.")
 	for text in summary:
 		var label := Label.new()
 		label.text = text

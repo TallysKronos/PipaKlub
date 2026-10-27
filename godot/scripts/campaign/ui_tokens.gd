@@ -17,8 +17,8 @@ const UNTINTED := Color.WHITE
 const COLORS := {"nanquim": NANQUIM, "tinta": TINTA, "tinta-2": TINTA_2,
 	"tinta-3": TINTA_3, "papel": PAPEL, "papel-2": PAPEL_2,
 	"rabiola": RABIOLA, "ceu": CEU, "sol": SOL, "folha": FOLHA, "veu": VEU}
-const ACTION_COLORS := {"attack": RABIOLA, "energy": CEU, "dodge": PAPEL,
-	"puxao": RABIOLA, "line": CEU, "team": FOLHA}
+const ACTION_COLORS := {"attack": RABIOLA, "energy": FOLHA, "dodge": CEU,
+	"puxao": SOL, "line": PAPEL, "team": SOL}
 const FONT_ROOT := "res://assets/campaign/ui-modern/fonts/"
 const TEXT_PATH := FONT_ROOT + "Nunito.ttf"
 const LABEL_PATH := FONT_ROOT + "BarlowCondensed-Bold.ttf"

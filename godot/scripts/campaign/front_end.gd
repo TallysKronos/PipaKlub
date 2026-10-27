@@ -517,6 +517,7 @@ func _world_interact(id: String) -> void:
 func _show_practice() -> void:
 	_clear()
 	var view := FlightView.new()
+	view.reduced_motion=preferences.reduced_motion
 	var index: int = session.snapshot().checkpoint.lesson
 	view.configure(content, index)
 	add_child(view)
@@ -711,12 +712,18 @@ func _pause_game() -> void:
 	var practice := _practice_view()
 	if is_instance_valid(practice):
 		pause_previous.practice = practice.paused
-		practice.paused = true
-	if is_instance_valid(battle): battle.paused = true
+		practice.suspend_actions()
+	if is_instance_valid(battle): battle.suspend_actions()
 	if is_instance_valid(park): park.paused = true
 	if is_instance_valid(room): room.can_walk = false
 	pause_overlay = load("res://scripts/campaign/hud_pause.gd").new()
 	pause_overlay.player = session.snapshot().player
+	if is_instance_valid(battle):
+		pause_overlay.battle_paused=true
+		# Presentation copy only: conditions are settled into the save by the combat flow.
+		for partner in pause_overlay.player.get("partners",[]):
+			if partner.id==pause_overlay.player.get("equippedPartnerId",""):
+				partner.condition={"line":clampf(battle.model.p.hp/battle.model.p.stats.line*100,0,100),"structure":clampf(battle.model.p.hull/battle.model.p.stats.line*100,0,100)}
 	add_child(pause_overlay)
 	pause_overlay.chosen.connect(func(action: String):
 		if action in ["team", "bag", "settings"] and not _remember_world_position(): return
@@ -877,7 +884,7 @@ func _show_encounter() -> void:
 	battle.save_requested.connect(func(state: Dictionary):
 		var result: Dictionary = encounters.save_battle(state)
 		battle.blocked = result.status != "ok"
-		if battle.blocked: battle.paused = true)
+		if battle.blocked: battle.suspend_actions())
 	battle.leave_requested.connect(_menu)
 	battle.finish_requested.connect(func():
 		if not _result(encounters.save_battle(battle.model.snapshot())): return

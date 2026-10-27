@@ -12,6 +12,7 @@ const ACTION_COPY := {"cut": "Cortar a linha do oponente em um cruzamento.", "sk
 const Hud = preload("res://scripts/campaign/hud.gd")
 var pointer_held: Dictionary = {}
 var pointer_tapped: Dictionary = {}
+var require_action_release := false
 var model: RefCounted
 var content: Dictionary
 var textures: Array[Texture2D] = []
@@ -30,9 +31,14 @@ var guardian_frame: Texture2D
 var panel_styles: Array[StyleBox] = []
 var actions: HBoxContainer
 var move_cards: Array[Dictionary] = []
+var command_row: HBoxContainer
+var status_row: HBoxContainer
 var bottom_panel: PanelContainer
+var footer_contents: VBoxContainer
 const ImpactEffects = preload("res://scripts/campaign/hud_impacts.gd")
 const RewardPreview = preload("res://scripts/campaign/hud_rewards.gd")
+const SkySignals = preload("res://scripts/campaign/battle_signals.gd")
+var live_age := 0.0
 var impacts := ImpactEffects.new()
 var reward_player: Dictionary = {}
 var reward_encounter: Dictionary = {}
@@ -40,6 +46,7 @@ var reward_card: PanelContainer
 var reduced_motion := false
 var result_age := 0.0
 var result_summary: Dictionary = {}
+var result_wipe_started := false
 
 func configure(data: Dictionary, state: Dictionary) -> void:
 	content = data
@@ -56,7 +63,9 @@ func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	impacts.reduced_motion = reduced_motion
 	model.damage_applied.connect(impacts.add)
+	model.combat_feedback.connect(impacts.add)
 	var bottom := VBoxContainer.new()
+	footer_contents=bottom
 	bottom.add_theme_constant_override("separation", 6)
 	bottom_panel = PanelContainer.new()
 	bottom_panel.anchor_top = .70 if size.x >= 1100 else .63
@@ -74,17 +83,17 @@ func _ready() -> void:
 	bottom_panel.add_child(scroll)
 	bottom.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.add_child(bottom)
-	var command_row := GridContainer.new()
-	command_row.columns = 6 if model.model_id == "rabbito" else 5
-	command_row.add_theme_constant_override("h_separation", 3)
-	resized.connect(func(): command_row.columns = (6 if model.model_id == "rabbito" else 5) if size.x >= 1100 else 3 if size.x >= 800 else 2)
+	command_row = HBoxContainer.new()
+	command_row.alignment = BoxContainer.ALIGNMENT_END
+	command_row.add_theme_constant_override("separation", 8)
+	resized.connect(_layout_actions)
 	bottom.add_child(command_row)
 	var entries := [["Espaço", "Cortar", "attack", "attackCooldown", 12], ["Q", "Habilidade", "energy", "skillCooldown", 25], ["Shift", "Esquiva", "dodge", "dodgeCooldown", 18], ["R", "Puxão", "puxao", "lineCooldown", 28], ["G", "Guarda", "line", "guardCooldown", 0]]
-	if model.model_id == "rabbito": entries.append(["F", "Pulo do Elo", "team", "signatureCooldown", 40])
+	if model.model_id == "rabbito": entries.append(["F", "Especial", "team", "signatureCooldown", 40])
 	for entry in entries:
 		var command := VBoxContainer.new()
 		command.add_theme_constant_override("separation", 2)
-		command.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		command.size_flags_horizontal = Control.SIZE_SHRINK_END
 		command_row.add_child(command)
 		var art = load("res://scripts/campaign/hud_action.gd").new()
 		art.icon_id = entry[2]
@@ -95,8 +104,9 @@ func _ready() -> void:
 		art.action_id = action_id
 		art.mouse_entered.connect(func(): selected_action = action_id)
 		art.focus_entered.connect(func(): selected_action = action_id)
-		art.tooltip_text = ACTION_COPY[action_id]
+		art.tooltip_text = "" # Combat tips belong to pause/lesson, not hover popups.
 		art.held_changed.connect(func(held: bool):
+			if paused or blocked: return
 			pointer_held[action_id] = held
 			if held: pointer_tapped[action_id] = true)
 		var label := Label.new()
@@ -108,7 +118,7 @@ func _ready() -> void:
 	controls = Label.new()
 	controls.add_theme_font_size_override("font_size", 18)
 	controls.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	var status_row := HBoxContainer.new()
+	status_row = HBoxContainer.new()
 	bottom.add_child(status_row)
 	controls.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var description_panel := PanelContainer.new()
@@ -123,13 +133,19 @@ func _ready() -> void:
 			save_requested.emit(model.snapshot())
 			if blocked: return
 		paused = not paused
+		if paused:require_action_release=true
 		pointer_held.clear()
 		pointer_tapped.clear()
 		if not paused: resume_button.release_focus()
 		resume_button.text = "Retomar" if paused else "Pausar")
 	resume_button.theme_type_variation = "RecorteSecondaryButton"
 	resume_button.custom_minimum_size.x = 150
-	status_row.add_child(resume_button)
+	add_child(resume_button)
+	resume_button.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_LEFT)
+	resume_button.offset_left = 20
+	resume_button.offset_top = -58
+	resume_button.offset_right = 150
+	resume_button.offset_bottom = -18
 	resume_button.custom_minimum_size.y = 40
 	finish_button = Button.new()
 	finish_button.text = "Voltar ao parque"
@@ -152,12 +168,47 @@ func _ready() -> void:
 				if id == "menu": leave_requested.emit()
 				else: finish_requested.emit())
 		row.add_child(button)
-	Hud.fit_footer(bottom_panel, bottom, 140)
+	_layout_actions()
+	footer_contents.minimum_size_changed.connect(_layout_actions.call_deferred)
+
+func _layout_actions() -> void:
+	if not is_instance_valid(bottom_panel): return
+	var fighting: bool = model.outcome.is_empty() and not paused and not blocked
+	if is_instance_valid(resume_button):
+		var target:Node=status_row if paused or blocked else self
+		if resume_button.get_parent()!=target:
+			var focused:=resume_button.has_focus()
+			resume_button.reparent(target,false)
+			resume_button.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT if target==status_row else Control.PRESET_BOTTOM_LEFT)
+			if target==self:
+				resume_button.offset_left=20;resume_button.offset_top=-58
+				resume_button.offset_right=150;resume_button.offset_bottom=-18
+			if focused and get_parent().get("pause_overlay")==null:Hud.focus_later(resume_button)
+	bottom_panel.anchor_top = 1
+	bottom_panel.offset_bottom = -8 if fighting else -12
+	status_row.visible = paused or blocked
+	var height:=size.y*.12 if fighting else maxf(140,footer_contents.get_combined_minimum_size().y+8)
+	bottom_panel.offset_top=bottom_panel.offset_bottom-height
+	var unit := size.y / 1080.0
+	command_row.add_theme_constant_override("separation", roundi(12 * unit))
+	for command in move_cards:
+		command.tile.custom_minimum_size = Vector2(112,128) * unit
+		command.tile.size = command.tile.custom_minimum_size
+
 
 func _physics_process(delta: float) -> void:
+	_layout_actions()
+	if paused or blocked:
+		pointer_held.clear()
+		pointer_tapped.clear()
+		require_action_release=true
+	elif require_action_release:
+		var held:bool=ACTION_COPY.keys().any(func(action:String):return Controls.held(action) or bool(pointer_held.get(action,false)))
+		if not held:require_action_release=false
 	clock += delta
-	impacts.step(delta if not paused or not model.outcome.is_empty() else 0.0)
-	if not paused and model.outcome.is_empty():
+	if not paused and not blocked and model.intro <= 0: live_age += delta
+	impacts.step(delta) # Paint expires even while gameplay is paused.
+	if not paused and not blocked and model.outcome.is_empty():
 		var direction := Controls.direction()
 		model.tick(delta, {"x": direction.x, "y": direction.y, "cut": _action_held("cut"), "skill": _action_held("skill"), "dodge": _action_held("dodge"), "line": _action_held("line"), "guard": _action_held("guard"), "signature": _action_held("signature")})
 		pointer_tapped.clear()
@@ -175,6 +226,9 @@ func _physics_process(delta: float) -> void:
 		command.tile.selected = action == selected_action
 		command.tile.key_text = Controls.prompt(action)
 		command.tile.cooldown = cooldown
+		command.tile.charge = clampf(float(model.p.lineMove.get("elapsed",0)) / 1.05,0,1) if action == "line" else 0.0
+		command.tile.active = model.p.guardTime > 0 if action == "guard" else model.p.signatureWindup > 0 if action == "signature" else false
+		command.tile.reduced_motion = reduced_motion
 		command.tile.lock_reason = "PREPARE-SE" if model.intro > 0 else "NOVA RODADA" if model.get("intermission") != null and model.intermission > 0 else "FORA DA RODADA" if model.p.hp <= 0 or model.p.hull <= 0 else ""
 		command.tile.enough_energy = model.p.energy >= command.cost
 		command.tile.queue_redraw()
@@ -184,7 +238,7 @@ func _physics_process(delta: float) -> void:
 	resume_button.text = "Tentar salvar novamente" if blocked else "Retomar" if paused else "Pausar"
 	actions.visible = model.outcome.is_empty() and paused
 	controls.text = ("Analógico · Mover" if Controls.gamepad else "Mover: %s %s %s %s / setas" % [Controls.prompt("up"), Controls.prompt("left"), Controls.prompt("down"), Controls.prompt("right")]) + (" · %s: Pulo do Elo" % Controls.prompt("signature") if model.model_id == "rabbito" else "")
-	if paused: controls.text = "Jogo pausado." if not blocked else "Não foi possível salvar. Tente novamente antes de continuar."
+	if paused: controls.text = "Jogo pausado. " + ACTION_COPY[selected_action] if not blocked else "Não foi possível salvar. Tente novamente antes de continuar."
 	elif model.intro > 0: controls.text = "Lacertubo · O guardião dos canos — Leia o vento. Espere a abertura." if model.q.boss else "Um Pipamon selvagem apareceu no mato!"
 	elif model.q.signatureWindup > 0: controls.text = "Ruptura dos Canos! Saia do círculo ou proteja-se no impacto."
 	elif model.q.recovery > 0: controls.text = "O guardião está vulnerável!"
@@ -194,10 +248,23 @@ func _physics_process(delta: float) -> void:
 	if not model.outcome.is_empty():
 		controls.text = ("Vitória · +120 XP · Rabiola de Lacertubo" if model.q.boss else "Vitória · Recompensas serão guardadas ao voltar às Veredas.") if model.outcome == "won" else "Seu parceiro continua com você. Repare-o com o professor antes de tentar novamente."
 	if blocked: controls.text = "Não foi possível salvar. Tente novamente antes de continuar."
+	_layout_actions()
 	queue_redraw()
 
 func _update_result(delta: float) -> void:
 	if model.outcome.is_empty(): return
+	if not result_wipe_started:
+		result_wipe_started = true
+		if model.outcome != "fled":
+			var winner: Dictionary = model.p if model.outcome == "won" else model.q
+			if model.get("actors") != null and model.outcome != "won":
+				for actor: Dictionary in model.actors:
+					if actor.get("rounds",0)>winner.get("rounds",0): winner=actor
+			var wipe = load("res://scripts/campaign/recorte_ink_wipe.gd").new()
+			add_child(wipe)
+			wipe.z_index=50
+			wipe.finished.connect(wipe.queue_free,CONNECT_ONE_SHOT)
+			wipe.play([Tokens.CEU,Tokens.SOL,Tokens.FOLHA,Tokens.RABIOLA][int(winner.color)%4],reduced_motion,false)
 	result_age += delta
 	if not is_instance_valid(reward_card):
 		reward_card = load("res://scripts/campaign/hud_reward_card.gd").new()
@@ -219,6 +286,13 @@ func _update_result(delta: float) -> void:
 
 func _draw_feedback() -> void:
 	draw_set_transform(Vector2.ZERO)
+	if model.outcome.is_empty() and model.intro<=0 and model.p.hp>0 and model.p.hull>0 and (model.get("intermission")==null or model.intermission<=0):
+		SkySignals.draw_on(self,model,_project_field,live_age,reduced_motion)
+	impacts.protected_points.clear()
+	var actors: Array = model.actors if model.get("actors")!=null else [model.p,model.q]
+	for actor: Dictionary in actors: impacts.protected_points.append(_project_field(Vector2(actor.x,actor.y)))
+	impacts.visible_rect=Rect2(10,_field_top()-20,size.x-20,maxf(80,bottom_panel.position.y-_field_top()+10))
+	impacts.suppress_secondary=actors.slice(1).any(func(actor:Dictionary):return actor.get("signatureWindup",0)>0 or model.attack_notice(actor).active)
 	impacts.draw_on(self, _project_field)
 	draw_set_transform(_field_origin(), 0, _field_scale())
 
@@ -229,8 +303,9 @@ func _draw_result() -> void:
 	# Uniform scaling keeps illustrated corners and knots proportional.
 	var zoom := 1.0 if reduced_motion else .92 + .08 * sin(fraction * PI / 2)
 	var center := Vector2(500, 450)
-	var factor := _arena_factor()
-	draw_set_transform(Vector2((size.x - 1000 * factor) / 2, 48) + center * factor * (1 - zoom), 0, Vector2.ONE * factor * zoom)
+	var factor := minf(1.1,minf(size.x*.72/760,maxf(80,bottom_panel.position.y-180)/240))
+	var target := Vector2(size.x/2,(180+bottom_panel.position.y)/2)
+	draw_set_transform(target-center*factor*zoom,0,Vector2.ONE*factor*zoom)
 	Hud.draw_result(self, model.outcome == "won", model.outcome == "fled")
 
 func _arena_factor() -> float:
@@ -241,7 +316,7 @@ func _field_scale() -> Vector2:
 	return Vector2(maxf(.5, (size.x - 100) / 1000), _arena_factor())
 
 func _field_top() -> float:
-	return 240.0 if model.get("actors") != null and model.actors.size() > 2 else 192.0
+	return maxf(240,size.y*.28) if model.get("actors") != null and model.actors.size() > 2 else maxf(210,size.y*.24)
 
 func _field_origin() -> Vector2:
 	return Vector2(50, _field_top())
@@ -252,8 +327,8 @@ func _project_field(point: Vector2) -> Vector2:
 func _draw_foreground() -> void:
 	var source: Texture2D = foreground
 	var cap := source.get_width() / 4.0
-	var height := 240.0
-	var base_y := size.y - 90
+	var height := size.y * .15
+	var base_y := size.y * .96
 	var base := PackedVector2Array([Vector2(0, base_y - 4), Vector2(size.x * .15, base_y + 5), Vector2(size.x * .33, base_y - 7), Vector2(size.x * .5, base_y + 3), Vector2(size.x * .74, base_y - 5), Vector2(size.x, base_y), Vector2(size.x, size.y), Vector2(0, size.y)])
 	draw_colored_polygon(base, Tokens.TINTA)
 	var factor := height / source.get_height()
@@ -268,8 +343,14 @@ func _draw_foreground() -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_WINDOW_FOCUS_OUT:
-		paused = true
+		suspend_actions()
 		if is_instance_valid(resume_button): resume_button.text = "Retomar"
+
+func suspend_actions() -> void:
+	paused=true
+	require_action_release=true
+	pointer_held.clear()
+	pointer_tapped.clear()
 
 func _draw() -> void:
 	if model == null: return
@@ -289,11 +370,6 @@ func _draw() -> void:
 		var frame: Dictionary = frames[int(clock * 12) % frames.size()]
 		var width := 260 if index == 1 and model.q.boss else 220
 		Ink.live_sprite(self, textures[index], art_ids[index], frame, Vector2(actor.x, actor.y), width, Tokens.UNTINTED, _field_scale())
-		if actor.guardTime > 0: draw_circle(Vector2(actor.x, actor.y), 60, Tokens.CEU, false, 4)
-		if actor.signatureWindup > 0:
-			var radius := 95 if index == 1 else 85
-			draw_circle(actor.signatureAim, radius, Tokens.alpha(Tokens.RABIOLA, .18))
-			draw_arc(actor.signatureAim, radius, 0, TAU, 60, Tokens.RABIOLA, 4)
 
 	_draw_feedback()
 	if model.intro > 0 and model.q.boss and model.outcome.is_empty():
@@ -308,12 +384,13 @@ func _draw() -> void:
 	draw_set_transform(Vector2.ZERO)
 	_draw_foreground()
 	_draw_status()
-	_draw_special()
+	# Specials are signalled beside their source kite, without a blocking panel.
 
 func _panel(role: String = "dark") -> StyleBox:
 	return Hud.panel(role)
 
 func _action_held(action: String) -> bool:
+	if paused or blocked or require_action_release:return false
 	return Controls.held(action) or bool(pointer_held.get(action, false)) or bool(pointer_tapped.get(action, false))
 
 func _draw_field_background() -> void:
@@ -346,19 +423,6 @@ func _draw_status() -> void:
 		draw_string(Hud.font(true), rect.position + Vector2(23, 34), label, HORIZONTAL_ALIGNMENT_LEFT, -1, 27, Ink.WHITE)
 		var caption := "%02d:%02d" % [int(model.duration) / 60, int(model.duration) % 60]
 		draw_string(Hud.font(true), rect.position + Vector2(70, 61), caption, HORIZONTAL_ALIGNMENT_LEFT, -1, 20, Hud.GOLD)
-
-func _draw_special() -> void:
-	if model.p.signatureWindup <= 0 or not model.outcome.is_empty(): return
-	var y := maxf(218, bottom_panel.position.y - 135)
-	var box := Rect2(size.x - 405, y, 373, 112)
-	draw_texture_rect(Ink.brush(0), Hud.fit_texture(Ink.brush(0), box.grow(25)), false)
-	Ink.plate(self, box, Ink.BLACK, Ink.WHITE)
-	Ink.plate(self, Rect2(box.position + Vector2(113, 8), Vector2(244, 24)), Tokens.SOL, Ink.BLACK, 8)
-	draw_string(Hud.font(true), box.position + Vector2(134, 27), "GOLPE EXCLUSIVO", HORIZONTAL_ALIGNMENT_LEFT, -1, 18, Ink.BLACK)
-	draw_string(Hud.font(true), box.position + Vector2(122, 67), "PULO DO ELO", HORIZONTAL_ALIGNMENT_LEFT, -1, 34, Ink.WHITE)
-	draw_string(Hud.font(), box.position + Vector2(124, 92), "Acerte a área marcada!", HORIZONTAL_ALIGNMENT_LEFT, -1, 15, Ink.WHITE)
-	var face := Ink.portrait(textures[0], art_ids[0])
-	draw_texture_rect(face, Hud.fit_texture(face, Rect2(box.position + Vector2(3, -10), Vector2(112, 122))), false)
 
 func _draw_anchor(x: float, color: Color) -> void:
 	var point := _project_field(Vector2(x, 585))
