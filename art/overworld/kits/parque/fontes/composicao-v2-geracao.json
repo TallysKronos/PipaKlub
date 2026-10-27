@@ -1,0 +1,64 @@
+{
+  "issue": "PIP-85",
+  "revision": "composition-v2",
+  "date": "2026-10-27",
+  "tool": "image_gen.imagegen",
+  "prompts": [
+    {
+      "id": "grama-calma",
+      "transparent": false,
+      "prompt": "Use case: stylized-concept. Production seamless ground texture for PipaKlub's 2D anime park. Reference is the approved environment concept for STYLE only. Perfectly top-down flat SQUARE material texture, opaque full canvas. Quiet low mown lawn: broad smooth soft warm yellow-green fields with only very subtle value drift, a few small irregular natural patches. Base color close to #A4B96B. This is the visual REST layer beneath characters and landmarks. Extremely low contrast, calm, readable. No repeating grass tufts, no caret ^ shapes, no scattered sharp leaf strokes, no stippling, no outlines, no tiny flowers, no leaf shadows, no visible panels, grids, border, vignette, trees or objects. Slightly hand-painted game background, but NOT watercolor bloom, not photoreal, not 3D. Opposite edges seamlessly tile. Most of the image is calm solid color masses. No grass blade carpet. Match sunny Brazilian park cel-background colors while deliberately quieter than vegetation props."
+    },
+    {
+      "id": "arbusto-baixo-a",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. ONE isolated production sprite of a LOW broad shrub group for the boundary of a Brazilian 2D anime RPG park, matching reference navy-ink cel-painted material style. Camera orthographic elevated ISOMETRIC 2:1. Three connected unequal rounded clumps, bigger to left, smaller to right, rooted as one compact sideways strip. Height at most half its width, no tree trunk. Broad matte muted sage and olive green leaf MASSES, 2 simple shadow shades, just a FEW leaf notches on silhouette, VERY FEW interior leaf marks; no dense individual leaf detail, no neon yellow tips, no flower dots. Calm readable broad simple shapes, lower contrast than the coreto and character. Light upper-left. Clean opaque foliage with transparent background, no glow or translucent halo, no ground patch, no cast shadow, no scenery, text or interface. Single fully uncropped clump."
+    },
+    {
+      "id": "arbusto-baixo-b",
+      "transparent": true,
+      "prompt": "Use case: stylized-concept. ONE isolated low hedge shrub for a PipaKlub 2D anime RPG park perimeter, match reference art material. Isometric orthographic 2:1, low and wide, width about twice height. Two large rounded lopsided joined masses of muted blue-olive/sage green foliage, high on right and lower on left. Bold coherent navy outline, very sparse broad cel-shade leaf groupings, NOT tiny overlapping repeated leaves. Calm medium-dark foliage, softly warm sun-facing face. No bright neon leaf tips, no flowers, no dots, no tree trunk, no individual grass hair. A grounded compact irregular patch silhouette. Fully opaque paint, truly TRANSPARENT background including edge gaps; no glow, haze, shadow, ground diamond, soil, props, text or UI. One object, uncropped. This shrub groups the boundary at low height without blocking the player's view."
+    },
+    {
+      "id": "bosque-baixo",
+      "transparent": false,
+      "prompt": "Use case: stylized-concept. Production seamless square texture for the NON-WALKABLE WOODLAND perimeter of an isometric 2D anime RPG park. It must read as a carpet of LOW CLOSED SHRUB CANOPIES, not lawn and not individual upright trees. Broad connected rounded asymmetrical foliage MASSES in muted dark blue-sage, forest olive and soft moss green, arranged in varied group sizes. Sparse interior leaf-shaped marks, not many tiny leaves; low contrast within each mass. A few large shadow pockets between bushes, but no accessible open paths. Overall value noticeably darker and cooler than a sunny short yellow-green lawn. Use flat cel-painted broad shapes, coherent navy-green contour edges between clumps, simplified matching the provided PipaKlub park style. Perfectly TOP-DOWN FLAT material texture, NO perspective, no tree trunks, no long branches, no flowers, no scattered items, no sun dapple spots, no glow, no cast shadows, no visible tile borders, no UI or text. Fully opaque canvas edge to edge, opposite edges tile seamlessly. This quiet low-detail backing frames the playable park without adding lots of tall trees. Keep saturation moderate, avoid neon yellow highlights."
+    }
+  ],
+  "normalization": "tools/overworld/build_parque.py; periodic seam preparation for textures, alpha cleanup and uniform fit for shrubs; common tree originals preserved",
+  "implementation": "tools/overworld/compose_parque.mjs; authored source selection and relocation",
+  "outputs": [
+    {
+      "file": "art\\overworld\\kits\\parque\\fontes\\grama-calma.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "8d5ae2289fcd44749a7f1e5ab72e38791965aefbcc7f1c258397dae8806d800e"
+    },
+    {
+      "file": "art\\overworld\\kits\\parque\\fontes\\arbusto-baixo-a.png",
+      "size": [
+        1774,
+        887
+      ],
+      "sha256": "53fb7c63d7af529f179690b372a6f7e8d6aa9f0bade8541ec576f647104ddb0b"
+    },
+    {
+      "file": "art\\overworld\\kits\\parque\\fontes\\arbusto-baixo-b.png",
+      "size": [
+        1774,
+        887
+      ],
+      "sha256": "036ba3d819dbe2d557bc1d49b763019cbb309a28db287494e57f269c20040ae9"
+    },
+    {
+      "file": "art\\overworld\\kits\\parque\\fontes\\bosque-baixo.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "44422ae96ceb1d7d7cd3cc744831564181178741a14d070ebdd28132cc9fe940"
+    }
+  ]
+}

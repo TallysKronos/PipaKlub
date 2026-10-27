@@ -306,7 +306,8 @@
       ],
       "outline": false,
       "shadowBaked": false,
-      "source": "tools/overworld/build_bairro.py"
+      "source": "fontes/pisos-v2/calcada-placas.png",
+      "sampling": "continuous-world-uv; navigation tile boundaries do not define slab joints"
     },
     "asfalto": {
       "variants": [
@@ -321,7 +322,8 @@
       ],
       "outline": false,
       "shadowBaked": false,
-      "source": "tools/overworld/build_bairro.py"
+      "source": "fontes/pisos-v2/asfalto.png",
+      "sampling": "continuous-world-uv; navigation tile boundaries do not define slab joints"
     },
     "terra": {
       "variants": [
@@ -336,7 +338,8 @@
       ],
       "outline": false,
       "shadowBaked": false,
-      "source": "tools/overworld/build_bairro.py"
+      "source": "fontes/pisos-v2/terra.png",
+      "sampling": "continuous-world-uv; navigation tile boundaries do not define slab joints"
     },
     "canteiro": {
       "variants": [
@@ -351,7 +354,8 @@
       ],
       "outline": false,
       "shadowBaked": false,
-      "source": "tools/overworld/build_bairro.py"
+      "source": "fontes/pisos-v2/canteiro.png",
+      "sampling": "continuous-world-uv; navigation tile boundaries do not define slab joints"
     },
     "construcao": {
       "variants": [
@@ -366,7 +370,8 @@
       ],
       "outline": false,
       "shadowBaked": false,
-      "source": "tools/overworld/build_bairro.py"
+      "source": "fontes/pisos-v2/calcada-placas.png",
+      "sampling": "continuous-world-uv; navigation tile boundaries do not define slab joints"
     }
   },
   "transitions": {
@@ -684,5 +689,106 @@
     "vaso": "comum/vaso/ceramica",
     "arvore": "comum/arvore/a",
     "lixeira": "comum/lixeira/rua"
-  }
+  },
+  "surfaceMaterials": {
+    "calcada": {
+      "file": "superficies/calcada.png",
+      "repeatCells": 8,
+      "size": [
+        512,
+        512
+      ]
+    },
+    "asfalto": {
+      "file": "superficies/asfalto.png",
+      "repeatCells": 8,
+      "size": [
+        512,
+        512
+      ]
+    },
+    "canteiro": {
+      "file": "superficies/canteiro.png",
+      "repeatCells": 8,
+      "size": [
+        512,
+        512
+      ]
+    },
+    "terra": {
+      "file": "superficies/terra.png",
+      "repeatCells": 8,
+      "size": [
+        512,
+        512
+      ]
+    },
+    "construcao": {
+      "file": "superficies/calcada.png",
+      "repeatCells": 8,
+      "size": [
+        512,
+        512
+      ]
+    }
+  },
+  "surfaceShader": "res://shaders/bairro_surface.gdshader",
+  "groundDetails": [
+    {
+      "file": "decalques/ralo-u.png",
+      "point": [
+        8.5,
+        14.15
+      ]
+    },
+    {
+      "file": "decalques/ralo-u.png",
+      "point": [
+        23.5,
+        14.15
+      ]
+    },
+    {
+      "file": "decalques/ralo-u.png",
+      "point": [
+        36.5,
+        18.85
+      ]
+    },
+    {
+      "file": "decalques/tampa-inspecao.png",
+      "point": [
+        14.3,
+        16.5
+      ]
+    },
+    {
+      "file": "decalques/tampa-inspecao.png",
+      "point": [
+        32.5,
+        16.1
+      ]
+    },
+    {
+      "file": "decalques/fissura-0.png",
+      "point": [
+        11.3,
+        12.5
+      ]
+    },
+    {
+      "file": "decalques/fissura-1.png",
+      "point": [
+        23.4,
+        25.2
+      ]
+    },
+    {
+      "file": "decalques/fissura-2.png",
+      "point": [
+        34.6,
+        11.2
+      ]
+    }
+  ]
 }

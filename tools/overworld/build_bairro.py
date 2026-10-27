@@ -190,6 +190,9 @@ def main():
     furniture(k,'mural');furniture(k,'bancada-rua')
     hedge(k)
     k['sharedPieces']={'banco':'comum/banco/madeira','poste':'comum/poste/rua','vaso':'comum/vaso/ceramica','arvore':'comum/arvore/a','lixeira':'comum/lixeira/rua'}
+    if (DEST/'fontes/pisos-v2/calcada.png').exists():
+        from build_bairro_floors import update_kit
+        k=update_kit(k)
     (DEST/'kit.json').write_text(json.dumps(k,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     studio(k)
     # Compare all architectural props next to the actual Kael at 84 px.

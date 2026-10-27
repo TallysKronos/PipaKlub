@@ -7,13 +7,19 @@ func configure(info: Dictionary, footprint: Vector2i, level: float, blocks: bool
 	var art := get_node_or_null("Art") as Sprite2D
 	if art == null:
 		art = Sprite2D.new()
+		art.name = "Art"
 		add_child(art)
 	art.texture = load(info.texture)
 	art.centered = false
 	art.position = center_offset - Vector2(info.anchor[0], info.anchor[1]) - Vector2(0, level * 64)
+	if bool(info.get("foliageQuiet",false)):
+		var foliage_material := ShaderMaterial.new()
+		foliage_material.shader = load("res://shaders/parque_foliage.gdshader")
+		art.material = foliage_material
 	var contact := get_node_or_null("Contact") as Sprite2D
 	if contact == null:
 		contact = Sprite2D.new()
+		contact.name = "Contact"
 		add_child(contact)
 	contact.texture = load(info.shadow_texture)
 	contact.position = center_offset + Vector2(0, -level * 64)

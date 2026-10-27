@@ -1,0 +1,148 @@
+{
+  "issue": "PIP-85",
+  "tool": "image_gen.imagegen",
+  "date": "2026-10-27",
+  "inputs": "see prompts.refs; architectural guide is code-native SVG",
+  "prompts": [
+    {
+      "id": "coreto",
+      "prompt": "Use case: sketch-to-render. Produce ONE isolated production game sprite: the Jardim das Pipas community gazebo/coreto. INPUT1 is an exact architectural guide. Preserve its orthographic 2:1 isometric camera, roof silhouette, footprint 4x4, FIVE slender support pillars, and their ground contact points. INPUT2 is the approved ART STYLE concept. Refine guide into beautifully drawn anime neighborhood architecture with navy ink outline, terracotta hipped roof with clear curved ceramic tiles, blue-petrol fascia, cream plaster square slender pillars, simple broad cel shading and golden upper-left light. All sides OPEN. Keep visible back pillars as in guide. No floor plate, no platform, no steps, no raised foundation, no furniture, no plants, no people, no surroundings, no text, no drop shadow. Transparent background including the open spaces between pillars. Keep exactly same roof and pillar geometry as input1, no distortions. Tight coherent game-ready object, fully uncropped.",
+      "refs": [
+        "art/overworld/kits/parque/fontes/coreto-guia.png",
+        "art/overworld/conceitos/parque/jardim-das-pipas-estudo-v1.png"
+      ]
+    },
+    {
+      "id": "capim-a",
+      "prompt": "Use case: stylized-concept. ONE isolated clump of tall encounter grass for PipaKlub 2D isometric anime RPG. Match foliage rendering of reference, clean firm navy ink, broad cel shaded leaf masses, not 3D or watercolor. A roughly diamond-shaped ground base, camera isometric 2:1 from above. Dense cluster of 12-18 long broad pointed emerald grass leaves, yellow-green lit tips, dark teal lower leaves. Silhouette roughly wider than tall with varied fan leaves leaning gently right, a few tiny pale grass seed heads, organic asymmetric uneven tops. Readable against light yellow-green lawn at 48x48 pixels. Entire clump fully visible including bottom contact, transparent around every leaf. No soil patch, no ground diamond, no scenery, no flower pots, no shadows, no UI, no text, no white background. One compact silhouette, no separate floating leaves.",
+      "refs": [
+        "art/overworld/conceitos/parque/clareira-do-papel-estudo-v1.png"
+      ]
+    },
+    {
+      "id": "capim-b",
+      "prompt": "Use case: stylized-concept. ONE isolated production clump of tall encounter grass for PipaKlub 2D isometric anime RPG, matching the reference. Organic broad emerald blade fans, dark blue-green lower foliage, light warm lime tips, navy ink outline with simple cel shadows. Top-down elevated isometric 2:1. Compact diamond-like rooting footprint, wider than tall. Different asymmetric cluster: centre-left high leaves, low outer leaves bending left, 3 cream seed-heads at varied heights. Enough broad leaves to read at 48x48 pixels; not dozens of hair-thin lines. Transparent background with clean cutout around leaves, base contacts ground coherently. No soil, ground tile, shadows, props, creatures, UI or text. One clump only, fully uncropped, no floating leaves.",
+      "refs": [
+        "art/overworld/conceitos/parque/clareira-do-papel-estudo-v1.png"
+      ]
+    }
+  ],
+  "normalization": {
+    "tool": "tools/overworld/build_parque.py",
+    "grassAlpha": "discard alpha below 192 before resize to remove translucent halo",
+    "coreto": "uniform fit; roof mask and connected pillar alpha components for depth sorting",
+    "noSourceOverwrite": true
+  },
+  "groundSources": "Reuse of preserved image_gen neighborhood paintings; periodic seam normalization, dark tint for encounter/woodland soil",
+  "status": "native_visual_review_performed_owner_approval_pending",
+  "outputs": [
+    {
+      "file": "pecas/coreto-pilar-0.png",
+      "size": [
+        280,
+        304
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "00f8a3aeeecddfe2c19f91f9028729b18c42324212c18e7e430ccd791e011625"
+    },
+    {
+      "file": "pecas/coreto-pilar-1.png",
+      "size": [
+        280,
+        304
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "a5d0e53f41633114712693b7f1c6d178c29ad5326c1066b1780e9c15e38b0f4f"
+    },
+    {
+      "file": "pecas/coreto-pilar-2.png",
+      "size": [
+        280,
+        304
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "682ab9949684cbfbca5c2b9db3d2336e0a91a04a322c8f06515bc90074adab03"
+    },
+    {
+      "file": "pecas/coreto-pilar-3.png",
+      "size": [
+        280,
+        304
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "4cb95cf945e015c16d95c0da3ec43ab2abf8e73681c1a03a3dc544cccba2c665"
+    },
+    {
+      "file": "pecas/coreto-pilares.png",
+      "size": [
+        280,
+        304
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "b55a0d247dcea95cb0091900302e21fc14afda933048d313a5f9d705c270ca2f"
+    },
+    {
+      "file": "pecas/coreto-telhado.png",
+      "size": [
+        280,
+        304
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "bc430777f431401f89a1544bf926847f0d168522134553cf8b4f94d38d874fc0"
+    },
+    {
+      "file": "pecas/coreto.png",
+      "size": [
+        280,
+        304
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "104ded217bc6e719a9d5c28d958a46e14620f961b85f7c8ea1c4a9439a1af74c"
+    },
+    {
+      "file": "decalques/capim-a.png",
+      "size": [
+        52,
+        48
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "ce97fe95e1fe8b84cd64dbcdea0ebf20a354a302734dbc0745b18f894d771078"
+    },
+    {
+      "file": "decalques/capim-b.png",
+      "size": [
+        52,
+        48
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "d72a99ff5ef214242df93bf9dcb042eecebe73b06969e195c19754d5f57c6198"
+    }
+  ]
+}

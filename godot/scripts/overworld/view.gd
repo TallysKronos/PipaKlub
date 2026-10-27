@@ -31,6 +31,8 @@ var kit_library: Dictionary = {}
 var terrain_layers: Array[TileMapLayer] = []
 var lots: Dictionary = {}
 var grass_material: ShaderMaterial
+var bairro_surface_materials: Dictionary = {}
+var parque_grass_material: ShaderMaterial
 var painted_floor_material: ShaderMaterial
 var stair_bevels: Dictionary = {}
 var hidden_pieces: Dictionary = {}
@@ -95,6 +97,9 @@ func load_area(id: String) -> void:
 	_build_pieces()
 	_dress_bare_lots()
 	_dress_bairro_gardens()
+	_dress_parque()
+	_bairro_ground_details()
+	_bairro_ground_shadows()
 	_build_events()
 	var spawn: Dictionary = model.data.spawn
 	player = Vector2(spawn.u + .5, spawn.v + .5)
@@ -142,8 +147,29 @@ func _build_context() -> void:
 		# Outside the map reads as the same shaded yard, so the map edge disappears.
 		floor_plane.color=_average_color(kits[1].root + kits[1].materials.grama.variants[0]).lerp(Color(YARD_SHADE,1),YARD_SHADE_ALPHA)
 	floor_plane.polygon=PackedVector2Array([model.project(Vector2(-radius,-radius),false),model.project(Vector2(model.data.w+radius,-radius),false),model.project(Vector2(model.data.w+radius,model.data.h+radius),false),model.project(Vector2(-radius,model.data.h+radius),false)])
+	if art_preview and model.data.biome == "bairro": floor_plane.material = _bairro_surface_material("canteiro")
+	if art_preview and model.data.biome == "parque" and kits.size()>1:
+		var material := ShaderMaterial.new()
+		material.shader = load(kits[1].surfaceShader)
+		material.set_shader_parameter("surfaces",load(kits[1].root+kits[1].surfaceAtlas))
+		material.set_shader_parameter("material_id",4.0)
+		material.set_shader_parameter("edge_ids",Vector4(4,4,4,4))
+		material.set_shader_parameter("corner_ids",Vector4(4,4,4,4))
+		floor_plane.material = material
 	context.add_child(floor_plane)
 	if recipe.is_empty() or not art_preview:return
+	# Sparse authored background trees have trunks, height and ground-depth sort.
+	# They replace neither floor pixels nor the source-map blockers.
+	for i in recipe.get("authoredTrees",[]).size():
+		var point: Array = recipe.authoredTrees[i]
+		var at := Vector2(point[0],point[1])
+		var info := _definition({"asset":"arvore","id":"background","props":{"variante":"a" if i%2==0 else "b"}})
+		if info.is_empty():continue
+		var tree := Prop.new()
+		tree.position = model.project(at,false)
+		tree.configure(info,Vector2i.ONE,0,false)
+		context.add_child(tree)
+	if not bool(recipe.get("automaticTrees",true)): return
 	# Surroundings read as hillside woods: trees of mixed kinds on an irregular
 	# lattice, and only a few houses higher up the slope, behind the map.
 	var w := int(model.data.w)
@@ -157,7 +183,7 @@ func _build_context() -> void:
 			# Keep two cells clear in front, so tall crowns never hide the playable edge.
 			var front: bool = at.x>=w+3 or at.y>=h+3
 			if not (behind or front):continue
-			var house: bool = behind and (at.x<=-6 or at.y<=-6) and seed%7==0
+			var house: bool = bool(recipe.get("houses",true)) and behind and (at.x<=-6 or at.y<=-6) and seed%7==0
 			if not house and seed<(13 if front else 9):continue
 			var variant: String = ["telha","laje","muro-chapisco"][seed%3] if house else ["a","b","tronco-largo","a","b","a","b","florida"][seed%8]
 			var info := _definition({"asset":recipe.asset if house else "arvore","id":"context","props":{"variante":variant}})
@@ -242,6 +268,9 @@ func _floor_node(at: Vector2i, level: float) -> Node2D:
 
 func _draw_art_floor(at: Vector2i, cell: Dictionary) -> void:
 	var kit: Dictionary = kits[1]
+	if model.data.biome == "parque" and kit.has("surfaceAtlas"):
+		_draw_parque_floor(at,cell)
+		return
 	if model.data.biome == "bairro":
 		_draw_bairro_floor(at,cell)
 		return
@@ -290,39 +319,156 @@ func _draw_art_floor(at: Vector2i, cell: Dictionary) -> void:
 			break
 	if cell.material == "grama" and _soft_yards(): _grass_decal(root, at, int(cell.level))
 
+func _draw_parque_floor(at: Vector2i, cell: Dictionary) -> void:
+	var kit: Dictionary = kits[1]
+	var order: Array = kit.surfaceOrder
+	var own := maxi(0,order.find(str(cell.material)))
+	var edges := Vector4(own,own,own,own)
+	var offsets := [Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP,Vector2i.DOWN]
+	for i in 4:
+		var neighbor := model.cell_at(at+offsets[i])
+		if not neighbor.is_empty(): edges[i] = maxi(0,order.find(str(neighbor.material)))
+	var corners := Vector4(own,own,own,own)
+	for i in 4: corners[i] = maxi(0,order.find(str(cell.corners[i])))
+	var material := ShaderMaterial.new()
+	material.shader = load(kit.surfaceShader)
+	material.set_shader_parameter("surfaces",load(kit.root+kit.surfaceAtlas))
+	material.set_shader_parameter("material_id",float(own))
+	material.set_shader_parameter("edge_ids",edges)
+	material.set_shader_parameter("corner_ids",corners)
+	var surface := Polygon2D.new()
+	surface.polygon = PackedVector2Array([Vector2(0,-16),Vector2(32,0),Vector2(0,16),Vector2(-32,0)])
+	surface.material = material
+	var floor_root := _floor_node(at,0)
+	floor_root.add_child(surface)
+	if cell.material != "mato": return
+	if parque_grass_material == null:
+		parque_grass_material = ShaderMaterial.new()
+		parque_grass_material.shader = load(kit.encounterGrass.shader)
+		var preferences = preload("res://scripts/campaign/preferences.gd").new()
+		preferences.load_settings()
+		parque_grass_material.set_shader_parameter("wind_strength",0.0 if preferences.reduced_motion else 1.4)
+	var seed := posmod(at.x*137+at.y*71,101)
+	for n in 2:
+		var point := Vector2(at)+Vector2(.26 if n==0 else .74,.30+float((seed+n*17)%35)/100.0)
+		var tuft := Sprite2D.new()
+		tuft.texture = load(kit.root+kit.encounterGrass.files[(seed+n)%2])
+		tuft.centered = false
+		tuft.position = -Vector2(kit.encounterGrass.anchor[0],kit.encounterGrass.anchor[1])
+		tuft.material = parque_grass_material
+		var grass_root := Node2D.new()
+		grass_root.position = model.project(point,false)
+		grass_root.add_child(tuft)
+		actors.add_child(grass_root)
+
+func _dress_parque() -> void:
+	if not art_preview or model.data.biome != "parque" or kits.size()<2: return
+	# No automatic tree carpet. Authored low masses explain the woodland boundary
+	# while preserving long sightlines through the centre and the entry plaza.
+	var recipe: Dictionary = kits[1].get("boundaryShrubs",{})
+	for i in recipe.get("points",[]).size():
+		var uv: Array = recipe.points[i]
+		var at := Vector2(float(uv[0]),float(uv[1]))
+		if model.cell_at(Vector2i(floori(at.x),floori(at.y))).get("material","") != "bosque":continue
+		var shrub := Sprite2D.new()
+		shrub.texture = load(kits[1].root+recipe.files[i%recipe.files.size()])
+		shrub.centered = false
+		shrub.position = -Vector2(recipe.anchor[0],recipe.anchor[1])
+		var shrub_root := Node2D.new()
+		shrub_root.position = model.project(at,false)
+		var contact := Sprite2D.new()
+		contact.texture = load(kits[1].root+"sombras/contato.png")
+		contact.scale = Vector2(1.25,.55)
+		contact.position = Vector2(0,-3)
+		shrub_root.add_child(contact)
+		shrub_root.add_child(shrub)
+		actors.add_child(shrub_root)
+	if area_id == "jardim-das-pipas":
+		for piece in model.data.pieces:
+			if piece.asset != "arvore" or str(piece.props.get("variante","")) != "florida":continue
+			var info := _definition({"asset":"flores","id":"flor","props":{"variante":"coral"}})
+			var flowers := Prop.new()
+			flowers.configure(info,Vector2i.ONE,0,false)
+			flowers.position = model.project(Vector2(piece.u+.6,piece.v+.7),false)
+			actors.add_child(flowers)
+	else:
+		for piece in model.data.pieces:
+			if piece.asset != "arvore" or int(piece.id) not in [2,5,12]:continue
+			var info := _definition({"asset":"pipa-presa","id":"papel","props":{}})
+			if info.is_empty():continue
+			var paper := Prop.new()
+			paper.configure(info,Vector2i.ONE,0,false,Vector2(12,-105))
+			paper.position = model.project(Vector2(piece.u+.5,piece.v+.5),false)
+			actors.add_child(paper)
+
+func _bairro_surface_material(material_name: String) -> ShaderMaterial:
+	if bairro_surface_materials.has(material_name): return bairro_surface_materials[material_name]
+	var surfaces: Dictionary = kits[1].get("surfaceMaterials",{})
+	if not surfaces.has(material_name): return null
+	var entry: Dictionary = surfaces[material_name]
+	var material := ShaderMaterial.new()
+	material.shader = load("res://shaders/bairro_surface.gdshader")
+	material.set_shader_parameter("surface_tex",load(kits[1].root+entry.file))
+	material.set_shader_parameter("repeat_cells",float(entry.repeatCells))
+	if material_name == "construcao": material.set_shader_parameter("surface_tint",Color(.94,.90,.82))
+	bairro_surface_materials[material_name] = material
+	return material
+
+func _bairro_local(uv: Vector2) -> Vector2:
+	return Vector2((uv.x-uv.y)*32,(uv.x+uv.y)*16-16)
+
 func _draw_bairro_floor(at: Vector2i, cell: Dictionary) -> void:
-	# Opaque adjoining geometry owns coverage. Texture alpha is sampled only
-	# inside each tile, so linear filtering cannot expose a diagonal grid.
-	var colors := {"calcada":"E9DCB6","asfalto":"5A758E","terra":"CFAC73","canteiro":"8FAF65","construcao":"D6BE95"}
+	# Geometry owns coverage. The opaque painting is sampled in world u/v,
+	# so its scale, slab joints and worn patches never restart at tile edges.
 	var root := _floor_node(at,float(cell.level))
 	var surface := Polygon2D.new()
 	surface.polygon = PackedVector2Array([Vector2(0,-16),Vector2(32,0),Vector2(0,16),Vector2(-32,0)])
 	surface.position.y = -float(cell.level)*64
-	surface.color = Color(str(colors.get(str(cell.material),"8FAF65")))
+	surface.material = _bairro_surface_material(str(cell.material))
+	if surface.material == null: surface.color = Color("8FAF65")
 	root.add_child(surface)
-	var variants: Array = kits[1].materials[cell.material].variants
-	var detail := Polygon2D.new()
-	detail.polygon = PackedVector2Array([Vector2(0,-13),Vector2(26,0),Vector2(0,13),Vector2(-26,0)])
-	detail.uv = PackedVector2Array([Vector2(32,3),Vector2(58,16),Vector2(32,29),Vector2(6,16)])
-	detail.texture = load(kits[1].root+variants[_grass_hash(at)%variants.size()])
-	detail.position.y = surface.position.y
-	root.add_child(detail)
 	if cell.material != "calcada": return
 	var edges := [
-		[Vector2i.LEFT,Vector2(-32,0),Vector2(0,-16)],
-		[Vector2i.RIGHT,Vector2(32,0),Vector2(0,16)],
-		[Vector2i.UP,Vector2(0,-16),Vector2(32,0)],
-		[Vector2i.DOWN,Vector2(-32,0),Vector2(0,16)]
+		[Vector2i.LEFT,Vector2(0,0),Vector2(0,1),Vector2(.20,0),false],
+		[Vector2i.RIGHT,Vector2(1,0),Vector2(1,1),Vector2(-.20,0),false],
+		[Vector2i.UP,Vector2(0,0),Vector2(1,0),Vector2(0,.20),true],
+		[Vector2i.DOWN,Vector2(0,1),Vector2(1,1),Vector2(0,-.20),true]
 	]
 	for edge in edges:
 		var neighbour := model.cell_at(at+edge[0])
 		if neighbour.get("material","") != "asfalto": continue
-		var curb := Line2D.new()
-		curb.points = PackedVector2Array([edge[1],edge[2]])
-		curb.default_color = Color("F5E9CB")
-		curb.width = 2
+		var a: Vector2 = edge[1]
+		var b: Vector2 = edge[2]
+		var inward: Vector2 = edge[3]
+		var gutter := Polygon2D.new()
+		gutter.polygon = PackedVector2Array([_bairro_local(a),_bairro_local(b),_bairro_local(b-inward*.65),_bairro_local(a-inward*.65)])
+		gutter.color = Color("374E67")
+		gutter.z_index = 1
+		gutter.position.y = surface.position.y
+		root.add_child(gutter)
+		var curb := Polygon2D.new()
+		curb.polygon = PackedVector2Array([_bairro_local(a),_bairro_local(b),_bairro_local(b+inward),_bairro_local(a+inward)])
+		curb.color = Color("EADBB6") if posmod(floori(float(at.x if edge[4] else at.y)/2),3)!=0 else Color("DFCEA6")
+		curb.z_index = 1
 		curb.position.y = surface.position.y
 		root.add_child(curb)
+		for inner in [false,true]:
+			var border := Line2D.new()
+			var offset: Vector2 = inward if inner else Vector2.ZERO
+			border.points = PackedVector2Array([_bairro_local(a+offset),_bairro_local(b+offset)])
+			border.default_color = Color("F8ECCF") if inner else Color("3B5061")
+			border.width = 1.0 if inner else 1.2
+			border.z_index = 1
+			border.position.y = surface.position.y
+			root.add_child(border)
+		if posmod(at.x if edge[4] else at.y,2)==0:
+			var joint := Line2D.new()
+			joint.points = PackedVector2Array([_bairro_local(a),_bairro_local(a+inward)])
+			joint.default_color = Color("56616A")
+			joint.width = .8
+			joint.z_index = 1
+			joint.position.y = surface.position.y
+			root.add_child(joint)
 
 func _grass_hash(at: Vector2i, salt: int = 0) -> int:
 	# Avalanche hash: no diagonal stripes, negative coordinates work too.
@@ -981,16 +1127,64 @@ func _dress_bare_lots() -> void:
 			actors.add_child(node)
 			occluders.append(node)
 
+func _bairro_ground_details() -> void:
+	if not art_preview or model.data.biome != "bairro" or kits.size()<2: return
+	for decoration: Dictionary in kits[1].get("groundDetails",[]):
+		var point := Vector2(decoration.point[0],decoration.point[1])
+		var cell := model.cell_at(Vector2i(point.floor()))
+		if str(cell.get("material","")) not in ["asfalto","calcada"]: continue
+		var sprite := Sprite2D.new()
+		sprite.texture = load(kits[1].root+decoration.file)
+		sprite.position = model.project(point,false)
+		sprite.z_index = -1
+		actors.add_child(sprite)
+
+func _bairro_ground_shadows() -> void:
+	if not art_preview or model.data.biome not in ["bairro","parque"]: return
+	var canopy_material := ShaderMaterial.new()
+	canopy_material.shader = load("res://shaders/bairro_ground_shadow.gdshader")
+	for node in piece_nodes.values():
+		var piece: Dictionary = node.get_meta("piece")
+		if str(piece.asset) not in ["casa-kael","casa-assis","loja-pipas"]: continue
+		var shadow := Polygon2D.new()
+		var vertices := PackedVector2Array()
+		for uv in [Vector2(piece.u,piece.v),Vector2(piece.u+piece.fu,piece.v),Vector2(piece.u+piece.fu,piece.v+piece.fv),Vector2(piece.u,piece.v+piece.fv)]:
+			vertices.append(model.project(uv,false)+Vector2(18,12))
+		shadow.polygon = vertices
+		shadow.z_index = -1
+		shadow.color = Color(.10,.18,.25,.19)
+		actors.add_child(shadow)
+	for node in occluders:
+		if node.get_script() != Prop: continue
+		var definition: Dictionary = node.get("definition")
+		if not str(definition.get("texture","")).contains("arvore"): continue
+		var art := node.get_node_or_null("Art") as Sprite2D
+		if art == null: continue
+		var root := Node2D.new()
+		root.z_index = -1
+		root.transform = Transform2D(Vector2(.9,.42),Vector2(-.4,-.2),node.position)
+		var silhouette := Sprite2D.new()
+		silhouette.centered = false
+		silhouette.texture = art.texture
+		silhouette.position = art.position
+		silhouette.material = canopy_material
+		root.add_child(silhouette)
+		actors.add_child(root)
+
 func _definition(piece: Dictionary) -> Dictionary:
 	var variant := str(piece.props.get("variante", ""))
 	if piece.asset == "bau" and opened.has(area_id+":"+str(piece.id)): variant = "aberto"
 	if variant.is_empty() and piece.asset == "banco": variant = "concreto" if model.data.biome == "morro" else "madeira"
 	if variant.is_empty() and piece.asset == "placa-mapa": variant = "veredas" if model.data.biome == "veredas" else "parque"
-	for kit in kits:
+	for kit_index in range(kits.size()-1,-1,-1):
+		var kit: Dictionary = kits[kit_index]
 		if not kit.pieces.has(piece.asset): continue
 		var group: Dictionary = kit.pieces[piece.asset]
 		var entry: Dictionary = group.variants.get(variant, group.variants[group.default]).duplicate(true)
 		entry.texture = kit.root + entry.file
+		if entry.has("roofFile"):
+			entry.texture = kit.root + entry.roofFile
+			for part in entry.get("supportParts",[]): part.texture = kit.root + part.file
 		entry.shadow_texture = kit.root + entry.shadow
 		return entry
 	return {}
@@ -1066,6 +1260,18 @@ func _dress_bairro_gardens() -> void:
 func _build_pieces() -> void:
 	for piece in model.data.pieces:
 		if hidden_pieces.has(str(piece.id)): continue
+		if bool(piece.props.get("apenas_colisao",false)):
+			# Pillars are painted in the coreto sprite; these five source objects
+			# contribute only independent physical bodies and graph blockers.
+			var body := StaticBody2D.new()
+			body.collision_layer = 2
+			body.collision_mask = 0
+			body.position = model.project(Vector2(piece.u+.5,piece.v+.5),false)
+			var shape := CollisionPolygon2D.new()
+			shape.polygon = PackedVector2Array([Vector2(0,-16),Vector2(32,0),Vector2(0,16),Vector2(-32,0)])
+			body.add_child(shape)
+			actors.add_child(body)
+			continue
 		var node: Node2D
 		var entry := _definition(piece)
 		var point := Vector2(piece.u + piece.fu*.5, piece.v + piece.fv*.5)
@@ -1090,6 +1296,20 @@ func _build_pieces() -> void:
 		actors.add_child(node)
 		piece_nodes[str(piece.id)] = node
 		occluders.append(node)
+		if art_preview and entry.has("supportParts"):
+			var roof := node.get_node("Art") as Sprite2D
+			for part in entry.supportParts:
+				var foot := Vector2(part.foot[0],part.foot[1])
+				var pillar := Node2D.new()
+				pillar.position = node.position+roof.position+foot
+				var sprite := Sprite2D.new()
+				sprite.name = "Art"
+				sprite.texture = load(part.texture)
+				sprite.centered = false
+				sprite.position = -foot
+				pillar.add_child(sprite)
+				actors.add_child(pillar)
+				occluders.append(pillar)
 		if piece.interact != null:
 			interaction_events.append({"id":"piece-"+str(piece.id),"piece_id":str(piece.id),"type":"piece","name":piece.name,"asset":piece.asset,"u":piece.u,"v":piece.v,"props":{"interacao":piece.interact}})
 

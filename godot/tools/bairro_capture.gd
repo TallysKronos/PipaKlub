@@ -20,6 +20,7 @@ func capture() -> void:
 		{"file":"casa-assis","point":Vector2(21.5,10.5),"zoom":1.65},
 		{"file":"loja-pipas","point":Vector2(35.5,10.5),"zoom":1.65},
 		{"file":"praca","point":Vector2(20.5,26.5),"zoom":1.65},
+		{"file":"pisos-detalhe","point":Vector2(14.5,17.5),"zoom":1.7,"cameraOffset":0},
 		{"file":"rua-inteira","point":Vector2(22,16),"zoom":.52}
 	]
 	for frame in frames:
@@ -27,11 +28,11 @@ func capture() -> void:
 		view.follower = frame.point+Vector2(1,0)
 		view._refresh_positions()
 		view.camera.zoom = Vector2.ONE*float(frame.zoom)
-		view.camera.position = view.model.project(frame.point)-Vector2(0,95)
+		view.camera.position = view.model.project(frame.point)-Vector2(0,float(frame.get("cameraOffset",95)))
 		view.hint.text = "PIP-84 · revisão de arte local · sem alterar campanha"
 		for index in 4: await process_frame
 		await RenderingServer.frame_post_draw
 		root.get_texture().get_image().save_png(output.path_join(str(frame.file)+"-1280x720.png"))
 	view.free()
-	print("Bairro: cinco capturas de arte 1280x720; sem executar testes ou salvar campanha.")
+	print("Bairro: ",frames.size()," capturas de arte 1280x720; sem executar testes ou salvar campanha.")
 	quit()
