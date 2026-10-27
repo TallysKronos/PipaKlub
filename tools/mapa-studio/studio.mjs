@@ -27,7 +27,7 @@ async function loadFiles(files){
 // ---------- geometria ----------
 const P=(u,v,h)=>{const s=toScreen(u,v,h);return [s.x,s.y];};
 // Altura de um ponto dentro da célula (a rampa é um plano inclinado).
-function hIn(c,u,v,pu,pv){if(!c.ramp)return c.level;const d=RAMP_DIRS[c.ramp];if(!d)return c.level;const fu=pu-u,fv=pv-v;return c.level+(d[0]>0?fu:d[0]<0?1-fu:d[1]>0?fv:1-fv);}
+function hIn(c,u,v,pu,pv){if(!c.ramp)return c.level;const d=RAMP_DIRS[c.ramp];if(!d)return c.level;const fu=pu-u,fv=pv-v,t=d[0]>0?fu:d[0]<0?1-fu:d[1]>0?fv:1-fv;return c.level+(c.rampFrom??0)+t*((c.rampTo??1)-(c.rampFrom??0));}
 const corners=(u,v)=>[[u,v],[u+1,v],[u+1,v+1],[u,v+1]];
 const topQuad=(c,u,v)=>corners(u,v).map(([a,b])=>P(a,b,hIn(c,u,v,a,b)));
 // Faces visíveis (sudeste e sudoeste) descem até a altura do vizinho naquela aresta: barranco, cunha da rampa ou nada.

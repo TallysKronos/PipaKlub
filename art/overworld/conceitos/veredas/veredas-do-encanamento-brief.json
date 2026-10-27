@@ -1,0 +1,979 @@
+{
+  "issue": "PIP-86",
+  "id": "veredas-do-encanamento",
+  "source": "art/overworld/mapas/veredas-do-encanamento.tmj",
+  "sourceSha256": "a43668f92e6b4e26a04a88a35a012f3d80b4ec306354239fb589bc91ce0502fe",
+  "stage": "pilot_assembly",
+  "conceptFeedback": "Owner liked initial study and requested faithful implementation; not a pixel-alignment approval",
+  "projection": {
+    "cell": [
+      64,
+      32
+    ],
+    "levelPx": 64
+  },
+  "size": [
+    50,
+    32
+  ],
+  "materials": {
+    "bosque": 676,
+    "grama": 493,
+    "mato": 78,
+    "piso": 63,
+    "terra": 241,
+    "agua": 37,
+    "ponte": 12
+  },
+  "transitions": {
+    "bosque/grama": 165,
+    "grama/mato": 72,
+    "bosque/piso": 29,
+    "grama/terra": 186,
+    "mato/terra": 3,
+    "grama/piso": 9,
+    "bosque/terra": 18,
+    "agua/bosque": 4,
+    "agua/grama": 28,
+    "agua/ponte": 12,
+    "grama/ponte": 8,
+    "piso/terra": 5,
+    "mato/piso": 3
+  },
+  "pieces": [
+    {
+      "id": 1,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 3,
+      "v": 15,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "b"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 8,
+      "v": 16,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "b"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 12,
+      "v": 18,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "b"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 5,
+      "v": 22,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "b"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 12,
+      "v": 25,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "b"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 21,
+      "v": 12,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "b"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 29,
+      "v": 12,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "b"
+      }
+    },
+    {
+      "id": 8,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 33,
+      "v": 16,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "b"
+      }
+    },
+    {
+      "id": 9,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 31,
+      "v": 22,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "b"
+      }
+    },
+    {
+      "id": 10,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 39,
+      "v": 21,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "b"
+      }
+    },
+    {
+      "id": 11,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 40,
+      "v": 27,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "b"
+      }
+    },
+    {
+      "id": 12,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 24,
+      "v": 26,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "b"
+      }
+    },
+    {
+      "id": 13,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 4,
+      "v": 5,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "b"
+      }
+    },
+    {
+      "id": 14,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 9,
+      "v": 5,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "b"
+      }
+    },
+    {
+      "id": 15,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 28,
+      "v": 2,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "b"
+      }
+    },
+    {
+      "id": 16,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 38,
+      "v": 3,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "b"
+      }
+    },
+    {
+      "id": 17,
+      "name": "Baú do mirante",
+      "asset": "bau",
+      "u": 6,
+      "v": 6,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": "abrir",
+      "props": {
+        "asset": "bau",
+        "interacao": "abrir",
+        "bau": "lookout"
+      }
+    },
+    {
+      "id": 18,
+      "name": "Baú entre as raízes",
+      "asset": "bau",
+      "u": 7,
+      "v": 24,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": "abrir",
+      "props": {
+        "asset": "bau",
+        "interacao": "abrir",
+        "bau": "woodland"
+      }
+    },
+    {
+      "id": 19,
+      "name": "Baú da margem escondida",
+      "asset": "bau",
+      "u": 39,
+      "v": 25,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": "abrir",
+      "props": {
+        "asset": "bau",
+        "interacao": "abrir",
+        "bau": "canal"
+      }
+    },
+    {
+      "id": 20,
+      "name": "Baú da encosta",
+      "asset": "bau",
+      "u": 33,
+      "v": 4,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": "abrir",
+      "props": {
+        "asset": "bau",
+        "interacao": "abrir",
+        "bau": "ridge"
+      }
+    },
+    {
+      "id": 21,
+      "name": "Baú dos canos antigos",
+      "asset": "bau",
+      "u": 47,
+      "v": 8,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": "abrir",
+      "props": {
+        "asset": "bau",
+        "interacao": "abrir",
+        "bau": "courtyard"
+      }
+    },
+    {
+      "id": 22,
+      "name": "Placa do mapa",
+      "asset": "placa-mapa",
+      "u": 6,
+      "v": 12,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "placa-mapa",
+        "bloqueia": false
+      }
+    },
+    {
+      "id": 23,
+      "name": "Biruta",
+      "asset": "biruta",
+      "u": 23,
+      "v": 15,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "biruta",
+        "bloqueia": false
+      }
+    },
+    {
+      "id": 24,
+      "name": "Biruta do pátio",
+      "asset": "biruta",
+      "u": 43,
+      "v": 3,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "biruta",
+        "bloqueia": false
+      }
+    },
+    {
+      "id": 25,
+      "name": "Banco do pátio",
+      "asset": "banco",
+      "u": 43,
+      "v": 4,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "banco",
+        "bloqueia": false
+      }
+    },
+    {
+      "id": 26,
+      "name": "Papel rasgado (pipa presa)",
+      "asset": "pipa-presa",
+      "u": 9,
+      "v": 19,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "pipa-presa",
+        "bloqueia": false
+      }
+    },
+    {
+      "id": 27,
+      "name": "Flores",
+      "asset": "flores",
+      "u": 4,
+      "v": 7,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "flores",
+        "bloqueia": false
+      }
+    },
+    {
+      "id": 28,
+      "name": "Flores",
+      "asset": "flores",
+      "u": 9,
+      "v": 7,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "flores",
+        "bloqueia": false
+      }
+    },
+    {
+      "id": 29,
+      "name": "Flores",
+      "asset": "flores",
+      "u": 16,
+      "v": 19,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "flores",
+        "bloqueia": false
+      }
+    },
+    {
+      "id": 30,
+      "name": "Flores",
+      "asset": "flores",
+      "u": 20,
+      "v": 22,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "flores",
+        "bloqueia": false
+      }
+    },
+    {
+      "id": 31,
+      "name": "Flores",
+      "asset": "flores",
+      "u": 29,
+      "v": 7,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "flores",
+        "bloqueia": false
+      }
+    },
+    {
+      "id": 32,
+      "name": "Flores",
+      "asset": "flores",
+      "u": 39,
+      "v": 7,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "flores",
+        "bloqueia": false
+      }
+    },
+    {
+      "id": 33,
+      "name": "Flores",
+      "asset": "flores",
+      "u": 41,
+      "v": 25,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "flores",
+        "bloqueia": false
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": 34,
+      "type": "entrada",
+      "name": "Chegada da Clareira",
+      "u": 3,
+      "v": 12,
+      "props": {}
+    },
+    {
+      "id": 35,
+      "type": "saida",
+      "name": "Voltar à Clareira do Papel",
+      "u": 3,
+      "v": 14,
+      "props": {
+        "destino": "park-clearing"
+      }
+    },
+    {
+      "id": 36,
+      "type": "npc",
+      "name": "Lacertubo · guardião dos canos",
+      "u": 46,
+      "v": 5,
+      "props": {
+        "acao": "parkBoss"
+      }
+    },
+    {
+      "id": 37,
+      "type": "interacao",
+      "name": "Banco do pátio",
+      "u": 43,
+      "v": 4,
+      "props": {
+        "acao": "wildRest"
+      }
+    },
+    {
+      "id": 38,
+      "type": "interacao",
+      "name": "Sinais no bosque",
+      "u": 5,
+      "v": 12,
+      "props": {
+        "acao": "parkBossGuide"
+      }
+    },
+    {
+      "id": 39,
+      "type": "interacao",
+      "name": "Mapa das Veredas",
+      "u": 6,
+      "v": 12,
+      "props": {
+        "acao": "parkMap"
+      }
+    },
+    {
+      "id": 40,
+      "type": "interacao",
+      "name": "Papel rasgado entre as folhas",
+      "u": 9,
+      "v": 19,
+      "props": {
+        "acao": "veredasTrace"
+      }
+    },
+    {
+      "id": 41,
+      "type": "interacao",
+      "name": "Canos marcados",
+      "u": 32,
+      "v": 22,
+      "props": {
+        "acao": "veredasPipes"
+      }
+    },
+    {
+      "id": 42,
+      "type": "interacao",
+      "name": "Rabiola do Carcará de Nina",
+      "u": 46,
+      "v": 7,
+      "props": {
+        "acao": "veredasTail"
+      }
+    },
+    {
+      "id": 43,
+      "type": "npc",
+      "name": "Nina",
+      "u": 24,
+      "v": 15,
+      "props": {
+        "acao": "veredasNina"
+      }
+    }
+  ],
+  "ramps": [
+    {
+      "u": 11,
+      "v": 8,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.75,
+      "rampTo": 1
+    },
+    {
+      "u": 12,
+      "v": 8,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.75,
+      "rampTo": 1
+    },
+    {
+      "u": 13,
+      "v": 8,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.75,
+      "rampTo": 1
+    },
+    {
+      "u": 26,
+      "v": 8,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.75,
+      "rampTo": 1
+    },
+    {
+      "u": 27,
+      "v": 8,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.75,
+      "rampTo": 1
+    },
+    {
+      "u": 28,
+      "v": 8,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.75,
+      "rampTo": 1
+    },
+    {
+      "u": 37,
+      "v": 8,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.75,
+      "rampTo": 1
+    },
+    {
+      "u": 38,
+      "v": 8,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.75,
+      "rampTo": 1
+    },
+    {
+      "u": 39,
+      "v": 8,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.75,
+      "rampTo": 1
+    },
+    {
+      "u": 11,
+      "v": 9,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.5,
+      "rampTo": 0.75
+    },
+    {
+      "u": 12,
+      "v": 9,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.5,
+      "rampTo": 0.75
+    },
+    {
+      "u": 13,
+      "v": 9,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.5,
+      "rampTo": 0.75
+    },
+    {
+      "u": 26,
+      "v": 9,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.5,
+      "rampTo": 0.75
+    },
+    {
+      "u": 27,
+      "v": 9,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.5,
+      "rampTo": 0.75
+    },
+    {
+      "u": 28,
+      "v": 9,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.5,
+      "rampTo": 0.75
+    },
+    {
+      "u": 37,
+      "v": 9,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.5,
+      "rampTo": 0.75
+    },
+    {
+      "u": 38,
+      "v": 9,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.5,
+      "rampTo": 0.75
+    },
+    {
+      "u": 39,
+      "v": 9,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.5,
+      "rampTo": 0.75
+    },
+    {
+      "u": 11,
+      "v": 10,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.25,
+      "rampTo": 0.5
+    },
+    {
+      "u": 12,
+      "v": 10,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.25,
+      "rampTo": 0.5
+    },
+    {
+      "u": 13,
+      "v": 10,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.25,
+      "rampTo": 0.5
+    },
+    {
+      "u": 26,
+      "v": 10,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.25,
+      "rampTo": 0.5
+    },
+    {
+      "u": 27,
+      "v": 10,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.25,
+      "rampTo": 0.5
+    },
+    {
+      "u": 28,
+      "v": 10,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.25,
+      "rampTo": 0.5
+    },
+    {
+      "u": 37,
+      "v": 10,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.25,
+      "rampTo": 0.5
+    },
+    {
+      "u": 38,
+      "v": 10,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.25,
+      "rampTo": 0.5
+    },
+    {
+      "u": 39,
+      "v": 10,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.25,
+      "rampTo": 0.5
+    },
+    {
+      "u": 11,
+      "v": 11,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0,
+      "rampTo": 0.25
+    },
+    {
+      "u": 12,
+      "v": 11,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0,
+      "rampTo": 0.25
+    },
+    {
+      "u": 13,
+      "v": 11,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0,
+      "rampTo": 0.25
+    },
+    {
+      "u": 26,
+      "v": 11,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0,
+      "rampTo": 0.25
+    },
+    {
+      "u": 27,
+      "v": 11,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0,
+      "rampTo": 0.25
+    },
+    {
+      "u": 28,
+      "v": 11,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0,
+      "rampTo": 0.25
+    },
+    {
+      "u": 37,
+      "v": 11,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0,
+      "rampTo": 0.25
+    },
+    {
+      "u": 38,
+      "v": 11,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0,
+      "rampTo": 0.25
+    },
+    {
+      "u": 39,
+      "v": 11,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0,
+      "rampTo": 0.25
+    }
+  ],
+  "locks": [
+    "Source map is geometry authority",
+    "Five chests, Nina, Lacertubo and all interactions stay at exact source cells",
+    "Ramp tops and cheeks derive from height_at",
+    "Bridge deck spans water and meets both banks",
+    "No canopy sampled into floor",
+    "Sparse upright vegetation only; no automatic tree fill"
+  ]
+}

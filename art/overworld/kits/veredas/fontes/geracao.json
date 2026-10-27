@@ -1,0 +1,32 @@
+{
+  "terra": {
+    "prompt": "Production 2D game texture PipaKlub. Create ONE square seamless red cerrado clay ground surface, viewed perfectly top down, flat material swatch filling frame. Use reference only for clean illustrated/cel painted material style and palette: warm subdued terracotta clay, pale small dusty wear patches, tiny occasional ochre pebbles, broad quiet areas, very subtle shallow irregular fissures. NO square pavement, NO tile lines, NO dark repeating cracks, NO grass foliage or leaves, NO perspective, NO cast shadows, NO border or objects or text. Low contrast texture, deliberately calm so characters remain legible. Uniform flat lighting. Tileable all four sides. Color less saturated than reference paths. High quality 2D game texture.",
+    "tool": "image_gen.imagegen",
+    "status": "pilot_native_review_pending"
+  },
+  "agua": {
+    "prompt": "PipaKlub production game texture. ONE square seamless shallow water material, perfectly top down flat surface swatch filling entire image. Match reference clean illustrated 2D navy contour and cel shading aesthetic but TEXTURE ONLY. Quiet clear blue teal water, restrained broad hand painted ripple facets and very few short pale turquoise glints, faint small submerged rounded ochre pebbles scarcely visible. No shore, no bank, no grass, no lily pads, no objects, no foam carpet, no perspective, no gradients across frame, no vignette. Uniform light. Very low contrast for repeated small game-scale tiles. Tileable on four sides. Not photorealistic, not watercolor. The water must be clear and inviting, natural sparse ripple shapes not geometric checker pattern.",
+    "tool": "image_gen.imagegen",
+    "status": "pilot_native_review_pending"
+  },
+  "buriti": {
+    "prompt": "Create ONE production game asset: single buriti palm tree cutout for PipaKlub. Faithfully match the buriti palms of the reference concept: tall narrow textured brown ringed trunk ending in a radial crown of chunky fan palm leaves, olive green and yellow lit tips, navy contour, clean drawn cel shading, 2D illustrated game sprite, no watercolor. Orthographic isometric 2:1 world, tree growing upright; visible roots all meet a single ground contact at bottom center. Balanced asymmetric crown, individual fan leaves grouped in readable masses, sparse hanging dry fronds. Full tree in frame with generous transparent margin. IMPORTANT usable at 160px high in game, not photorealistic, not a 3D render. No scenery, no ground patch, no separate floating leaves, no text, no ground shadow, no extra plants. Transparent background.",
+    "tool": "image_gen.imagegen",
+    "status": "pilot_native_review_pending"
+  },
+  "arenito": {
+    "prompt": "Production game material for PipaKlub: one square seamless golden sandstone rock surface swatch, perfectly front-on flat material filling frame, warm ochre sandstone with broad irregular chunky block-like natural fractured planes, pale warm cream highlights and restrained brown thin joints. Match clean 2D illustrated cel-shaded rock banks in supplied reference. Large quiet flat stone facets, not small brickwork. Uniform diffuse lighting, no directional perspective, no grass, no objects, no border, no labels, no shadows from outside. Tileable edges. No watercolor mottling, no photorealism, no grids, no long dark straight cracks. Color golden sandstone moderately subdued for terrain cliffs and ancient courtyard stone.",
+    "tool": "image_gen.imagegen",
+    "status": "pilot_native_review_pending"
+  },
+  "madeira": {
+    "prompt": "One square flat seamless WOOD surface texture for a 2D illustrated isometric game bridge. Perfectly top down, warm honey ochre weathered wood, broad subtle hand-drawn flowing wood grain along vertical direction, restrained clean navy brown thin grain lines, cel shading, match wooden bridges in reference. A single continuous wood surface with no plank joints, no border, no nails, no vegetation, no ground, no cast shadows, no text, no perspective. Low contrast surface with large calm areas and a few tiny knots. Not photorealistic, not watercolor. Tileable on four edges.",
+    "tool": "image_gen.imagegen",
+    "status": "pilot_native_review_pending"
+  },
+  "concept": {
+    "prompt": "Create a polished 2D isometric game environment concept paintover for PipaKlub, Veredas do Encanamento. First reference is the AUTHORITATIVE map geometry; second is the visual style target only. Preserve first image's entire diamond footprint, both elevated plateaus, three exact ramp openings, two wooden stream crossings, paths, courtyard at far right, and every existing chest position. Match orthographic 2:1 projection, keep composition and walkable corridors. Brazilian cerrado vereda: light neutral olive short grass, warm red clay paths, exposed golden sandstone banks only at height edges, shallow teal clear stream, restrained upright buriti palms in place of some existing tree markers. Far-right guardian courtyard has weathered concrete pipes and navy metal fittings at existing blocks, open center. Painted 2D clean navy contours, cel shaded warm light, defined readable volumes like second reference. QUIET ground, no repeated floor grid, no leaves painted as trees on the floor. Sparse trees with visible trunks and contact shadows; no continuous canopy carpet. Paths wide and open. Match small props to first-reference placeholders, exactly five wooden chests. No new houses, no staircase replacing ramps, no new decorative islands, no UI, no lettering, no people or creatures. Keep all map edges and objects inside frame. This is concept art, not a screenshot mockup.",
+    "tool": "image_gen.imagegen",
+    "feedback": "User liked concept and requested faithful implementation; geometry alignment remains a separate check."
+  }
+}

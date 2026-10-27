@@ -44,6 +44,12 @@ O renderer, a navegação e a seleção pelo mouse devem partir das mesmas pegad
 
 ## Critérios de aceite
 
+### Revisão de detalhe obrigatória em novos layouts
+
+Além da vista geral, capturar cada encontro de rampa com patamar, canto interno/externo e lateral inclinada em escala ampliada, com e sem personagens sobre a junta. Conferir faces posteriores em bordas côncavas: omiti-las pode deixar triângulos de chão aparecendo entre segmentos que parecem colunas soltas. Topos, faces e laterais devem ter ordenação de profundidade compatível; um pequeno deslocamento na chave de ordenação precisa sobreviver à quantização do renderer, sem deslocar a geometria desenhada.
+
+As laterais não podem usar um revestimento inteiro esticado a cada célula. Os UVs devem acompanhar posição e altura contínuas, com iluminação consistente entre segmentos. Corrigir saliências isoladas da planta quando não representam uma forma intencional. Não entregar uma correção com a junta tapada pelo personagem, por árvore ou por HUD. Registrar a limitação se somente capturas estáticas foram conferidas.
+
 - Em uma prévia com cores simples, o pátio parece ligado fisicamente à encosta.
 - Nenhuma parede atravessa uma passagem entre pisos de mesma altura.
 - Toda borda elevada visível tem face e base; não existe piso pairando sobre a floresta.

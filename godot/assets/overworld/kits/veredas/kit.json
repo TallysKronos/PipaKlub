@@ -1,0 +1,1461 @@
+{
+  "schema": "overworld-kit-1",
+  "biome": "veredas",
+  "grid": {
+    "cell": [
+      64,
+      32
+    ],
+    "height": 32,
+    "levelPx": 64
+  },
+  "approval": "pilot_pending_visual_review",
+  "styleBoard": "../../estilo/PRANCHA-ESTILO.png",
+  "pieces": {
+    "arvore": {
+      "default": "a",
+      "variants": {
+        "a": {
+          "file": "pecas/buriti.png",
+          "size": [
+            107,
+            172
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            2,
+            2
+          ],
+          "height": 6,
+          "bloqueia": true,
+          "anchor": [
+            53,
+            170
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "fontes/buriti.png",
+            "generator": "image_gen.imagegen",
+            "normalization": "alpha crop; uniform rescale"
+          },
+          "approval": "pending_native_visual_review",
+          "scene": "res://scenes/overworld/pieces/veredas/arvore-a.tscn"
+        },
+        "b": {
+          "file": "pecas/buriti.png",
+          "size": [
+            107,
+            172
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            2,
+            2
+          ],
+          "height": 6,
+          "bloqueia": true,
+          "anchor": [
+            53,
+            170
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "fontes/buriti.png",
+            "generator": "image_gen.imagegen",
+            "normalization": "alpha crop; uniform rescale"
+          },
+          "approval": "pending_native_visual_review",
+          "scene": "res://scenes/overworld/pieces/veredas/arvore-b.tscn"
+        },
+        "cerrado": {
+          "file": "pecas/arvore-cerrado.png",
+          "size": [
+            109,
+            108
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            2,
+            2
+          ],
+          "height": 6,
+          "bloqueia": true,
+          "anchor": [
+            54,
+            108
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "../comum/pecas/arvore-b.png",
+            "normalization": "alpha crop and uniform scale"
+          },
+          "approval": "pending_native_visual_review",
+          "foliageQuiet": true,
+          "scene": "res://scenes/overworld/pieces/veredas/arvore-cerrado.tscn"
+        }
+      }
+    },
+    "buriti": {
+      "default": "a",
+      "variants": {
+        "a": {
+          "file": "pecas/buriti.png",
+          "size": [
+            107,
+            172
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            2,
+            2
+          ],
+          "height": 6,
+          "bloqueia": true,
+          "anchor": [
+            53,
+            170
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "fontes/buriti.png",
+            "generator": "image_gen.imagegen",
+            "normalization": "alpha crop; uniform rescale"
+          },
+          "approval": "pending_native_visual_review",
+          "scene": "res://scenes/overworld/pieces/veredas/buriti-a.tscn"
+        }
+      }
+    },
+    "capim-margem": {
+      "default": "a",
+      "variants": {
+        "a": {
+          "file": "pecas/capim-margem.png",
+          "size": [
+            68,
+            52
+          ],
+          "anchor": [
+            34,
+            49
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            2,
+            1
+          ],
+          "height": 3,
+          "bloqueia": false,
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "fontes/capim-margem.png",
+            "generator": "image_gen.imagegen",
+            "normalization": "alpha crop and uniform fit"
+          },
+          "approval": "pending_visual_review",
+          "scene": "res://scenes/overworld/pieces/veredas/capim-margem-a.tscn"
+        }
+      }
+    },
+    "canos-patio": {
+      "default": "a",
+      "variants": {
+        "a": {
+          "file": "pecas/canos-patio.png",
+          "size": [
+            128,
+            104
+          ],
+          "anchor": [
+            64,
+            97
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            2,
+            1
+          ],
+          "height": 3,
+          "bloqueia": false,
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "fontes/canos-patio.png",
+            "generator": "image_gen.imagegen",
+            "normalization": "alpha crop and uniform fit"
+          },
+          "approval": "pending_visual_review",
+          "scene": "res://scenes/overworld/pieces/veredas/canos-patio-a.tscn"
+        }
+      }
+    }
+  },
+  "materials": {
+    "grama": {
+      "variants": [
+        "chao/grama-0.png",
+        "chao/grama-1.png",
+        "chao/grama-2.png",
+        "chao/grama-3.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "surfaceIndex": 0,
+      "repeatCells": 8
+    },
+    "terra": {
+      "variants": [
+        "chao/terra-0.png",
+        "chao/terra-1.png",
+        "chao/terra-2.png",
+        "chao/terra-3.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "surfaceIndex": 1,
+      "repeatCells": 8
+    },
+    "mato": {
+      "variants": [
+        "chao/mato-0.png",
+        "chao/mato-1.png",
+        "chao/mato-2.png",
+        "chao/mato-3.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "surfaceIndex": 2,
+      "repeatCells": 8
+    },
+    "piso": {
+      "variants": [
+        "chao/piso-0.png",
+        "chao/piso-1.png",
+        "chao/piso-2.png",
+        "chao/piso-3.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "surfaceIndex": 3,
+      "repeatCells": 8
+    },
+    "agua": {
+      "variants": [
+        "chao/agua-0.png",
+        "chao/agua-1.png",
+        "chao/agua-2.png",
+        "chao/agua-3.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "surfaceIndex": 4,
+      "repeatCells": 8
+    },
+    "ponte": {
+      "variants": [
+        "chao/ponte-0.png",
+        "chao/ponte-1.png",
+        "chao/ponte-2.png",
+        "chao/ponte-3.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "surfaceIndex": 5,
+      "repeatCells": 8
+    },
+    "bosque": {
+      "variants": [
+        "chao/bosque-0.png",
+        "chao/bosque-1.png",
+        "chao/bosque-2.png",
+        "chao/bosque-3.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "surfaceIndex": 6,
+      "repeatCells": 8
+    }
+  },
+  "transitions": {
+    "grama/terra": {
+      "files": [
+        "transicoes/grama-terra-0.png",
+        "transicoes/grama-terra-1.png",
+        "transicoes/grama-terra-2.png",
+        "transicoes/grama-terra-3.png",
+        "transicoes/grama-terra-4.png",
+        "transicoes/grama-terra-5.png",
+        "transicoes/grama-terra-6.png",
+        "transicoes/grama-terra-7.png",
+        "transicoes/grama-terra-8.png",
+        "transicoes/grama-terra-9.png",
+        "transicoes/grama-terra-10.png",
+        "transicoes/grama-terra-11.png",
+        "transicoes/grama-terra-12.png",
+        "transicoes/grama-terra-13.png",
+        "transicoes/grama-terra-14.png",
+        "transicoes/grama-terra-15.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "bits": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ]
+    },
+    "bosque/grama": {
+      "files": [
+        "transicoes/bosque-grama-0.png",
+        "transicoes/bosque-grama-1.png",
+        "transicoes/bosque-grama-2.png",
+        "transicoes/bosque-grama-3.png",
+        "transicoes/bosque-grama-4.png",
+        "transicoes/bosque-grama-5.png",
+        "transicoes/bosque-grama-6.png",
+        "transicoes/bosque-grama-7.png",
+        "transicoes/bosque-grama-8.png",
+        "transicoes/bosque-grama-9.png",
+        "transicoes/bosque-grama-10.png",
+        "transicoes/bosque-grama-11.png",
+        "transicoes/bosque-grama-12.png",
+        "transicoes/bosque-grama-13.png",
+        "transicoes/bosque-grama-14.png",
+        "transicoes/bosque-grama-15.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "bits": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ]
+    },
+    "grama/mato": {
+      "files": [
+        "transicoes/grama-mato-0.png",
+        "transicoes/grama-mato-1.png",
+        "transicoes/grama-mato-2.png",
+        "transicoes/grama-mato-3.png",
+        "transicoes/grama-mato-4.png",
+        "transicoes/grama-mato-5.png",
+        "transicoes/grama-mato-6.png",
+        "transicoes/grama-mato-7.png",
+        "transicoes/grama-mato-8.png",
+        "transicoes/grama-mato-9.png",
+        "transicoes/grama-mato-10.png",
+        "transicoes/grama-mato-11.png",
+        "transicoes/grama-mato-12.png",
+        "transicoes/grama-mato-13.png",
+        "transicoes/grama-mato-14.png",
+        "transicoes/grama-mato-15.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "bits": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ]
+    },
+    "bosque/piso": {
+      "files": [
+        "transicoes/bosque-piso-0.png",
+        "transicoes/bosque-piso-1.png",
+        "transicoes/bosque-piso-2.png",
+        "transicoes/bosque-piso-3.png",
+        "transicoes/bosque-piso-4.png",
+        "transicoes/bosque-piso-5.png",
+        "transicoes/bosque-piso-6.png",
+        "transicoes/bosque-piso-7.png",
+        "transicoes/bosque-piso-8.png",
+        "transicoes/bosque-piso-9.png",
+        "transicoes/bosque-piso-10.png",
+        "transicoes/bosque-piso-11.png",
+        "transicoes/bosque-piso-12.png",
+        "transicoes/bosque-piso-13.png",
+        "transicoes/bosque-piso-14.png",
+        "transicoes/bosque-piso-15.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "bits": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ]
+    },
+    "agua/grama": {
+      "files": [
+        "transicoes/agua-grama-0.png",
+        "transicoes/agua-grama-1.png",
+        "transicoes/agua-grama-2.png",
+        "transicoes/agua-grama-3.png",
+        "transicoes/agua-grama-4.png",
+        "transicoes/agua-grama-5.png",
+        "transicoes/agua-grama-6.png",
+        "transicoes/agua-grama-7.png",
+        "transicoes/agua-grama-8.png",
+        "transicoes/agua-grama-9.png",
+        "transicoes/agua-grama-10.png",
+        "transicoes/agua-grama-11.png",
+        "transicoes/agua-grama-12.png",
+        "transicoes/agua-grama-13.png",
+        "transicoes/agua-grama-14.png",
+        "transicoes/agua-grama-15.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "bits": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ]
+    },
+    "bosque/terra": {
+      "files": [
+        "transicoes/bosque-terra-0.png",
+        "transicoes/bosque-terra-1.png",
+        "transicoes/bosque-terra-2.png",
+        "transicoes/bosque-terra-3.png",
+        "transicoes/bosque-terra-4.png",
+        "transicoes/bosque-terra-5.png",
+        "transicoes/bosque-terra-6.png",
+        "transicoes/bosque-terra-7.png",
+        "transicoes/bosque-terra-8.png",
+        "transicoes/bosque-terra-9.png",
+        "transicoes/bosque-terra-10.png",
+        "transicoes/bosque-terra-11.png",
+        "transicoes/bosque-terra-12.png",
+        "transicoes/bosque-terra-13.png",
+        "transicoes/bosque-terra-14.png",
+        "transicoes/bosque-terra-15.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "bits": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ]
+    },
+    "agua/ponte": {
+      "files": [
+        "transicoes/agua-ponte-0.png",
+        "transicoes/agua-ponte-1.png",
+        "transicoes/agua-ponte-2.png",
+        "transicoes/agua-ponte-3.png",
+        "transicoes/agua-ponte-4.png",
+        "transicoes/agua-ponte-5.png",
+        "transicoes/agua-ponte-6.png",
+        "transicoes/agua-ponte-7.png",
+        "transicoes/agua-ponte-8.png",
+        "transicoes/agua-ponte-9.png",
+        "transicoes/agua-ponte-10.png",
+        "transicoes/agua-ponte-11.png",
+        "transicoes/agua-ponte-12.png",
+        "transicoes/agua-ponte-13.png",
+        "transicoes/agua-ponte-14.png",
+        "transicoes/agua-ponte-15.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "bits": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ]
+    },
+    "grama/piso": {
+      "files": [
+        "transicoes/grama-piso-0.png",
+        "transicoes/grama-piso-1.png",
+        "transicoes/grama-piso-2.png",
+        "transicoes/grama-piso-3.png",
+        "transicoes/grama-piso-4.png",
+        "transicoes/grama-piso-5.png",
+        "transicoes/grama-piso-6.png",
+        "transicoes/grama-piso-7.png",
+        "transicoes/grama-piso-8.png",
+        "transicoes/grama-piso-9.png",
+        "transicoes/grama-piso-10.png",
+        "transicoes/grama-piso-11.png",
+        "transicoes/grama-piso-12.png",
+        "transicoes/grama-piso-13.png",
+        "transicoes/grama-piso-14.png",
+        "transicoes/grama-piso-15.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "bits": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ]
+    },
+    "grama/ponte": {
+      "files": [
+        "transicoes/grama-ponte-0.png",
+        "transicoes/grama-ponte-1.png",
+        "transicoes/grama-ponte-2.png",
+        "transicoes/grama-ponte-3.png",
+        "transicoes/grama-ponte-4.png",
+        "transicoes/grama-ponte-5.png",
+        "transicoes/grama-ponte-6.png",
+        "transicoes/grama-ponte-7.png",
+        "transicoes/grama-ponte-8.png",
+        "transicoes/grama-ponte-9.png",
+        "transicoes/grama-ponte-10.png",
+        "transicoes/grama-ponte-11.png",
+        "transicoes/grama-ponte-12.png",
+        "transicoes/grama-ponte-13.png",
+        "transicoes/grama-ponte-14.png",
+        "transicoes/grama-ponte-15.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "bits": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ]
+    },
+    "piso/terra": {
+      "files": [
+        "transicoes/piso-terra-0.png",
+        "transicoes/piso-terra-1.png",
+        "transicoes/piso-terra-2.png",
+        "transicoes/piso-terra-3.png",
+        "transicoes/piso-terra-4.png",
+        "transicoes/piso-terra-5.png",
+        "transicoes/piso-terra-6.png",
+        "transicoes/piso-terra-7.png",
+        "transicoes/piso-terra-8.png",
+        "transicoes/piso-terra-9.png",
+        "transicoes/piso-terra-10.png",
+        "transicoes/piso-terra-11.png",
+        "transicoes/piso-terra-12.png",
+        "transicoes/piso-terra-13.png",
+        "transicoes/piso-terra-14.png",
+        "transicoes/piso-terra-15.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "bits": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ]
+    },
+    "agua/bosque": {
+      "files": [
+        "transicoes/agua-bosque-0.png",
+        "transicoes/agua-bosque-1.png",
+        "transicoes/agua-bosque-2.png",
+        "transicoes/agua-bosque-3.png",
+        "transicoes/agua-bosque-4.png",
+        "transicoes/agua-bosque-5.png",
+        "transicoes/agua-bosque-6.png",
+        "transicoes/agua-bosque-7.png",
+        "transicoes/agua-bosque-8.png",
+        "transicoes/agua-bosque-9.png",
+        "transicoes/agua-bosque-10.png",
+        "transicoes/agua-bosque-11.png",
+        "transicoes/agua-bosque-12.png",
+        "transicoes/agua-bosque-13.png",
+        "transicoes/agua-bosque-14.png",
+        "transicoes/agua-bosque-15.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "bits": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ]
+    },
+    "mato/terra": {
+      "files": [
+        "transicoes/mato-terra-0.png",
+        "transicoes/mato-terra-1.png",
+        "transicoes/mato-terra-2.png",
+        "transicoes/mato-terra-3.png",
+        "transicoes/mato-terra-4.png",
+        "transicoes/mato-terra-5.png",
+        "transicoes/mato-terra-6.png",
+        "transicoes/mato-terra-7.png",
+        "transicoes/mato-terra-8.png",
+        "transicoes/mato-terra-9.png",
+        "transicoes/mato-terra-10.png",
+        "transicoes/mato-terra-11.png",
+        "transicoes/mato-terra-12.png",
+        "transicoes/mato-terra-13.png",
+        "transicoes/mato-terra-14.png",
+        "transicoes/mato-terra-15.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "bits": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ]
+    },
+    "mato/piso": {
+      "files": [
+        "transicoes/mato-piso-0.png",
+        "transicoes/mato-piso-1.png",
+        "transicoes/mato-piso-2.png",
+        "transicoes/mato-piso-3.png",
+        "transicoes/mato-piso-4.png",
+        "transicoes/mato-piso-5.png",
+        "transicoes/mato-piso-6.png",
+        "transicoes/mato-piso-7.png",
+        "transicoes/mato-piso-8.png",
+        "transicoes/mato-piso-9.png",
+        "transicoes/mato-piso-10.png",
+        "transicoes/mato-piso-11.png",
+        "transicoes/mato-piso-12.png",
+        "transicoes/mato-piso-13.png",
+        "transicoes/mato-piso-14.png",
+        "transicoes/mato-piso-15.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "bits": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ]
+    }
+  },
+  "walls": {
+    "pedra": {
+      "u": [
+        "muros/arenito-u-0.png",
+        "muros/arenito-u-1.png"
+      ],
+      "v": [
+        "muros/arenito-v-0.png",
+        "muros/arenito-v-1.png"
+      ]
+    }
+  },
+  "stairs": {},
+  "bridges": {
+    "u": {
+      "file": "pontes/tabuleiro-u.png",
+      "axis": "u",
+      "footprint": [
+        1,
+        1
+      ],
+      "surface": "superficies/ponte.png",
+      "geometry": "continuous source-cell deck; native exposed beams and end supports"
+    },
+    "v": {
+      "file": "pontes/tabuleiro-v.png",
+      "axis": "v",
+      "footprint": [
+        1,
+        1
+      ],
+      "surface": "superficies/ponte.png",
+      "geometry": "continuous source-cell deck; native exposed beams and end supports"
+    }
+  },
+  "issue": "PIP-86",
+  "surfaceShader": "res://shaders/veredas_ground.gdshader",
+  "surfaceAtlas": "superficies/atlas.png",
+  "surfaceOrder": [
+    "grama",
+    "terra",
+    "mato",
+    "piso",
+    "agua",
+    "ponte",
+    "bosque"
+  ],
+  "context": {
+    "radius": 3,
+    "color": "586841",
+    "houses": false,
+    "automaticTrees": false
+  },
+  "encounterGrass": {
+    "files": [
+      "decalques/capim-a.png",
+      "decalques/capim-b.png"
+    ],
+    "anchor": [
+      26,
+      45
+    ],
+    "shader": "res://shaders/parque_grass.gdshader"
+  },
+  "wallSurfaces": {
+    "pedra": {
+      "file": "superficies/barranco.png",
+      "repeatTexelsPerCell": [
+        96,
+        160
+      ]
+    }
+  },
+  "rampGeometry": {
+    "directions": [
+      "u+",
+      "u-",
+      "v+",
+      "v-"
+    ],
+    "source": "source map rampa_comprimento; compiled cell.rampFrom/rampTo; map_model.height_at",
+    "runCells": 4,
+    "topMaterial": "terra",
+    "cheekMaterial": "superficies/barranco.png",
+    "levelPx": 64,
+    "rasterNotStretched": true
+  },
+  "treeMix": [
+    "a",
+    "a",
+    "cerrado",
+    "a"
+  ],
+  "dressing": {
+    "veredas-piloto": [
+      {
+        "asset": "capim-margem",
+        "point": [
+          20.5,
+          0.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          20.5,
+          1.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          21.5,
+          2.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          21.5,
+          4.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          22.5,
+          6.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          22.5,
+          8.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          22.5,
+          10.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          21.5,
+          12.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          21.5,
+          14.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          16.5,
+          15.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          20.5,
+          15.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          15.5,
+          17.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          19.5,
+          17.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          15.5,
+          19.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          14.5,
+          22.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          14.5,
+          24.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          14.5,
+          26.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          15.5,
+          28.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          19.5,
+          29.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      }
+    ],
+    "veredas-do-encanamento": [
+      {
+        "asset": "capim-margem",
+        "point": [
+          31.5,
+          0.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          34.5,
+          0.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          40.5,
+          1.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          24.5,
+          2.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          4.5,
+          3.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          8.5,
+          3.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          12.5,
+          3.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          14.5,
+          4.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          14.5,
+          6.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          24.5,
+          7.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          9.5,
+          8.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          35.5,
+          8.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          14.5,
+          10.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          19.5,
+          10.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          25.5,
+          10.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          16.5,
+          11.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          20.5,
+          11.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          0.5,
+          13.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          16.5,
+          18.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          20.5,
+          18.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          20.5,
+          19.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          42.5,
+          19.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          0.5,
+          20.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          42.5,
+          20.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          20.5,
+          25.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          20.5,
+          26.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          17.5,
+          27.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_bank"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          14.5,
+          28.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          15.5,
+          28.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          16.5,
+          28.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          17.5,
+          28.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          39.5,
+          28.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          40.5,
+          28.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "capim-margem",
+        "point": [
+          41.5,
+          28.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_woodland_edge"
+      },
+      {
+        "asset": "canos-patio",
+        "point": [
+          43.5,
+          1.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_existing_blocked_courtyard_edge"
+      },
+      {
+        "asset": "canos-patio",
+        "point": [
+          47.5,
+          2.5
+        ],
+        "footprint": [
+          1,
+          1
+        ],
+        "role": "visual_only_existing_blocked_courtyard_edge"
+      }
+    ]
+  }
+}

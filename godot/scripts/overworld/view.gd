@@ -98,6 +98,7 @@ func load_area(id: String) -> void:
 	_dress_bare_lots()
 	_dress_bairro_gardens()
 	_dress_parque()
+	_dress_veredas()
 	_bairro_ground_details()
 	_bairro_ground_shadows()
 	_build_events()
@@ -243,6 +244,9 @@ func _build_tiles() -> void:
 			else: layer.set_cell(at, 0, Vector2i((at.x * 7 + at.y * 13) % 4, int(ids.get(cell.material, 0))))
 
 func _draw_bridge(at: Vector2i, cell: Dictionary) -> void:
+	if art_preview and model.data.biome == "veredas" and kits.size()>1:
+		_draw_veredas_bridge(at,cell)
+		return
 	var along_u := false
 	for offset in [Vector2i(1,0),Vector2i(-1,0)]:
 		var neighbor := model.cell_at(at+offset)
@@ -261,13 +265,16 @@ func _draw_bridge(at: Vector2i, cell: Dictionary) -> void:
 
 func _floor_node(at: Vector2i, level: float) -> Node2D:
 	var node := Node2D.new()
-	node.z_index = -2
+	node.z_index = 0 if model.data.biome == "veredas" else -2
 	node.position = model.project(Vector2(at) + Vector2(.5, .5), false)
 	actors.add_child(node)
 	return node
 
 func _draw_art_floor(at: Vector2i, cell: Dictionary) -> void:
 	var kit: Dictionary = kits[1]
+	if model.data.biome == "veredas" and kit.has("surfaceAtlas"):
+		_draw_veredas_floor(at,cell)
+		return
 	if model.data.biome == "parque" and kit.has("surfaceAtlas"):
 		_draw_parque_floor(at,cell)
 		return
@@ -319,6 +326,115 @@ func _draw_art_floor(at: Vector2i, cell: Dictionary) -> void:
 			break
 	if cell.material == "grama" and _soft_yards(): _grass_decal(root, at, int(cell.level))
 
+func _veredas_material(at: Vector2i, cell: Dictionary, finish: String = "") -> ShaderMaterial:
+	var kit: Dictionary = kits[1]
+	var order: Array = kit.surfaceOrder
+	var own := maxi(0,order.find(finish if not finish.is_empty() else str(cell.material)))
+	var edges := Vector4(own,own,own,own)
+	var corners := Vector4(own,own,own,own)
+	if finish.is_empty():
+		var offsets := [Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP,Vector2i.DOWN]
+		for i in 4:
+			var neighbor := model.cell_at(at+offsets[i])
+			# A vertical height edge is not a flat material transition. Decks
+			# likewise keep their wood right up to their structural edge.
+			if not neighbor.is_empty() and neighbor.level == cell.level and neighbor.material != "ponte":
+				edges[i] = maxi(0,order.find(str(neighbor.material)))
+		if cell.get("ramp") == null:
+			for i in 4:
+				if str(cell.corners[i]) != "ponte": corners[i] = maxi(0,order.find(str(cell.corners[i])))
+	var material := ShaderMaterial.new()
+	material.shader = load(kit.surfaceShader)
+	material.set_shader_parameter("surfaces",load(kit.root+kit.surfaceAtlas))
+	material.set_shader_parameter("material_id",float(own))
+	material.set_shader_parameter("edge_ids",edges)
+	material.set_shader_parameter("corner_ids",corners)
+	material.set_shader_parameter("cell_origin",Vector2(at))
+	return material
+
+func _draw_veredas_floor(at: Vector2i, cell: Dictionary) -> void:
+	var floor_root := _floor_node(at,float(cell.level))
+	var surface := Polygon2D.new()
+	surface.polygon = PackedVector2Array([Vector2(0,-16),Vector2(32,0),Vector2(0,16),Vector2(-32,0)])
+	surface.position.y = -float(cell.level)*64
+	surface.texture = load(kits[1].root+kits[1].surfaceAtlas)
+	var extent: Vector2 = surface.texture.get_size()
+	surface.uv = PackedVector2Array([Vector2.ZERO,Vector2(extent.x,0),extent,Vector2(0,extent.y)])
+	surface.material = _veredas_material(at,cell)
+	floor_root.add_child(surface)
+	if cell.material == "mato": _encounter_tufts(at,cell)
+
+func _draw_veredas_bridge(at: Vector2i, cell: Dictionary) -> void:
+	# Length is measured along both connected runs, rather than assuming that
+	# any u-neighbour means a u bridge (a wide v bridge has those too).
+	var lengths := Vector2i.ONE
+	for axis in 2:
+		var delta := Vector2i.RIGHT if axis == 0 else Vector2i.DOWN
+		for sign_value in [-1,1]:
+			var next: Vector2i = at+delta*int(sign_value)
+			while model.cell_at(next).get("material","") == "ponte":
+				lengths[axis] += 1
+				next += delta*sign_value
+	var along_u := lengths.x >= lengths.y
+	var root := _floor_node(at,float(cell.level))
+	var deck := Polygon2D.new()
+	deck.polygon = PackedVector2Array([Vector2(0,-16),Vector2(32,0),Vector2(0,16),Vector2(-32,0)])
+	deck.position.y = -float(cell.level)*64
+	deck.texture = load(kits[1].root+kits[1].surfaceAtlas)
+	var extent: Vector2 = deck.texture.get_size()
+	deck.uv = PackedVector2Array([Vector2.ZERO,Vector2(extent.x,0),extent,Vector2(0,extent.y)])
+	deck.material = _veredas_material(at,cell,"ponte")
+	root.add_child(deck)
+	# No outline around each diamond: plank seams run across the whole deck.
+	for n in 4:
+		var t := float(n)/4.0
+		var a := Vector2(t,0) if along_u else Vector2(0,t)
+		var b := Vector2(t,1) if along_u else Vector2(1,t)
+		var seam := Line2D.new()
+		seam.width = .7
+		seam.default_color = Color(.29,.18,.10,.65)
+		seam.points = PackedVector2Array([model.project(Vector2(at)+a,false)-root.position,model.project(Vector2(at)+b,false)-root.position])
+		seam.position.y = -float(cell.level)*64
+		root.add_child(seam)
+	# Continuous exposed side beams and short end posts. Only the outside of
+	# the connected deck receives supports, never a post on every tile joint.
+	for side in [-1,1]:
+		var offset := Vector2i(0,side) if along_u else Vector2i(side,0)
+		if model.cell_at(at+offset).get("material","") == "ponte": continue
+		var a := Vector2(0,0 if side<0 else 1) if along_u else Vector2(0 if side<0 else 1,0)
+		var b := a+(Vector2.RIGHT if along_u else Vector2.DOWN)
+		var points := PackedVector2Array([model.project(Vector2(at)+a,false)-root.position,model.project(Vector2(at)+b,false)-root.position])
+		var beam := Line2D.new()
+		beam.width = 5
+		beam.default_color = Color("79502D")
+		beam.points = points
+		beam.position.y = -float(cell.level)*64+2
+		root.add_child(beam)
+		for end in 2:
+			var neighbor := at+(Vector2i(-1 if end==0 else 1,0) if along_u else Vector2i(0,-1 if end==0 else 1))
+			if model.cell_at(neighbor).get("material","") == "ponte": continue
+			var post := Line2D.new()
+			post.width = 5
+			post.default_color = Color("9E6938")
+			post.points = PackedVector2Array([points[end]+Vector2(0,8),points[end]-Vector2(0,12)])
+			post.position.y = -float(cell.level)*64
+			root.add_child(post)
+
+func _dress_veredas() -> void:
+	if not art_preview or model.data.biome != "veredas" or kits.size()<2: return
+	var dressing: Dictionary = kits[1].get("dressing",{})
+	for decoration: Dictionary in dressing.get(area_id,[]):
+		var at := Vector2(decoration.point[0],decoration.point[1])
+		var entry := _definition({"asset":decoration.asset,"id":"veredas-decoration","props":{}})
+		if entry.is_empty(): continue
+		var node := Prop.new()
+		var sort_point := at+Vector2(.5,.5)
+		node.position = model.project(sort_point,false)
+		node.configure(entry,Vector2i.ONE,model.height_at(at),false,model.project(at,false)-model.project(sort_point,false))
+		node.set_meta("art_only",true)
+		actors.add_child(node)
+		occluders.append(node)
+
 func _draw_parque_floor(at: Vector2i, cell: Dictionary) -> void:
 	var kit: Dictionary = kits[1]
 	var order: Array = kit.surfaceOrder
@@ -342,6 +458,10 @@ func _draw_parque_floor(at: Vector2i, cell: Dictionary) -> void:
 	var floor_root := _floor_node(at,0)
 	floor_root.add_child(surface)
 	if cell.material != "mato": return
+	_encounter_tufts(at,cell)
+
+func _encounter_tufts(at: Vector2i, cell: Dictionary) -> void:
+	var kit: Dictionary = kits[1]
 	if parque_grass_material == null:
 		parque_grass_material = ShaderMaterial.new()
 		parque_grass_material.shader = load(kit.encounterGrass.shader)
@@ -358,6 +478,7 @@ func _draw_parque_floor(at: Vector2i, cell: Dictionary) -> void:
 		tuft.material = parque_grass_material
 		var grass_root := Node2D.new()
 		grass_root.position = model.project(point,false)
+		tuft.position.y -= float(cell.level)*64
 		grass_root.add_child(tuft)
 		actors.add_child(grass_root)
 
@@ -652,12 +773,45 @@ func _draw_ramp(at: Vector2i, cell: Dictionary) -> void:
 	var root := _floor_node(at, float(cell.level))
 	var quad := PackedVector2Array()
 	for offset in [Vector2(0,0),Vector2(1,0),Vector2(1,1),Vector2(0,1)]:
-		# Sample inside the ramp cell, so its end interpolates to the adjacent floor.
-		var p: Vector2 = Vector2(at) + offset.clamp(Vector2.ONE*.00001, Vector2.ONE*.99999)
-		quad.append(model.project(p) - root.position)
+		quad.append(model.project(Vector2(at)+offset,false)-Vector2(0,model.surface_height(cell,offset)*64)-root.position)
 	var ramp := Polygon2D.new()
 	ramp.polygon = quad
 	ramp.color = Color("DAD7C5") if model.data.biome == "morro" else Color("C7A16D")
+	if art_preview and model.data.biome == "veredas" and kits.size()>1:
+		ramp.color = Color.WHITE
+		ramp.texture = load(kits[1].root+kits[1].surfaceAtlas)
+		var extent: Vector2 = ramp.texture.get_size()
+		ramp.uv = PackedVector2Array([Vector2.ZERO,Vector2(extent.x,0),extent,Vector2(0,extent.y)])
+		ramp.material = _veredas_material(at,cell)
+		# Visible ramp side closes to the lower ground, sharing the exact
+		# support plane used by height_at and the actor's feet.
+		for side in [Vector2i.RIGHT,Vector2i.DOWN]:
+			var neighbor := model.cell_at(at+side)
+			if not neighbor.is_empty() and (neighbor.get("ramp") != null or int(neighbor.level)>int(cell.level)): continue
+			var a := Vector2(1,0) if side.x else Vector2(0,1)
+			var b := Vector2.ONE
+			var pa := model.project(Vector2(at)+a,false)-Vector2(0,model.surface_height(cell,a)*64)-root.position
+			var pb := model.project(Vector2(at)+b,false)-Vector2(0,model.surface_height(cell,b)*64)-root.position
+			var ba := model.project(Vector2(at)+a,false)-root.position-Vector2(0,float(cell.level)*64)
+			var bb := model.project(Vector2(at)+b,false)-root.position-Vector2(0,float(cell.level)*64)
+			if absf((pa-ba).y)+absf((pb-bb).y)<.01: continue
+			var cheek := Polygon2D.new()
+			# A side is an occluding wall, not a floor decal at z=-2. Sorting
+			# it at its front ground endpoint hides the bank behind the slope.
+			var cheek_root := Node2D.new()
+			cheek_root.name = "LateralRampa"
+			cheek_root.position = model.project(Vector2(at)+b,false)
+			cheek_root.position.y -= 1.0
+			actors.add_child(cheek_root)
+			var shift := root.position-cheek_root.position
+			cheek.polygon = PackedVector2Array([pa+shift,pb+shift,bb+shift,ba+shift])
+			cheek.texture = load(kits[1].root+"superficies/barranco.png")
+			cheek.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
+			var phase_a := (at.y+a.y if side.x else at.x+a.x)*96.0
+			var phase_b := (at.y+b.y if side.x else at.x+b.x)*96.0
+			cheek.uv = PackedVector2Array([Vector2(phase_a,-model.surface_height(cell,a)*160),Vector2(phase_b,-model.surface_height(cell,b)*160),Vector2(phase_b,-float(cell.level)*160),Vector2(phase_a,-float(cell.level)*160)])
+			cheek.color = Color.WHITE if side.x else Color(.86,.83,.78)
+			cheek_root.add_child(cheek)
 	root.add_child(ramp)
 	# Every riser is drawn on the same continuous height plane used by the feet.
 	if model.data.biome == "morro":
@@ -672,7 +826,7 @@ func _draw_ramp(at: Vector2i, cell: Dictionary) -> void:
 			root.add_child(stroke)
 
 func _build_faces() -> void:
-	var finishes := _wall_finishes() if art_preview and kits.size()>1 and kits[1].has("wallSurfaces") else {}
+	var finishes := _wall_finishes() if model.data.biome != "veredas" and art_preview and kits.size()>1 and kits[1].has("wallSurfaces") else {}
 	for face in model.data.cliffs:
 		# A compiled cliff against a ramp is not a full-height rectangular wall:
 		# the steps occupy its lower section. The stair builder emits the exposed
@@ -683,8 +837,11 @@ func _build_faces() -> void:
 			continue
 		var a := Vector2(face.u + 1, face.v) if face.side == "u" else Vector2(face.u, face.v + 1)
 		var b := Vector2(face.u + 1, face.v + 1)
+		if face.side == "u-": a = Vector2(face.u,face.v+1); b = Vector2(face.u,face.v)
+		if face.side == "v-": a = Vector2(face.u+1,face.v); b = Vector2(face.u,face.v)
 		var root := Node2D.new()
 		root.position = model.project(b, false)
+		if model.data.biome == "veredas": root.position.y = maxf(model.project(a,false).y,model.project(b,false).y)-1.0
 		actors.add_child(root)
 		var edge_a := a
 		var edge_b := b
@@ -696,20 +853,24 @@ func _build_faces() -> void:
 		var pb := model.project(edge_b,false) - root.position
 		for tier in range(int(face.bottom),int(face.top)):
 			var wall := Polygon2D.new()
-			wall.polygon = PackedVector2Array([pa-Vector2(0,(tier+1)*64),pb-Vector2(0,(tier+1)*64),pb-Vector2(0,tier*64),pa-Vector2(0,tier*64)])
+			var bottom_a := maxf(float(tier),float(face.get("bottomA",face.bottom)))
+			var bottom_b := maxf(float(tier),float(face.get("bottomB",face.bottom)))
+			wall.polygon = PackedVector2Array([pa-Vector2(0,(tier+1)*64),pb-Vector2(0,(tier+1)*64),pb-Vector2(0,bottom_b*64),pa-Vector2(0,bottom_a*64)])
 			wall.color = Color("B8A58D") if face.side == "u" else Color("8F7C6E")
 			if art_preview and kits.size()>1 and kits[1].walls.has("pedra"):
-				var style: String = finishes.get(_wall_face_key(face), "pedra" if _face_touches_path(face) or not kits[1].walls.has("chapisco") else "chapisco")
+				var style: String = "pedra" if model.data.biome == "veredas" else finishes.get(_wall_face_key(face), "pedra" if _face_touches_path(face) or not kits[1].walls.has("chapisco") else "chapisco")
+				if not kits[1].walls.has(style): style = "pedra"
 				if kits[1].has("wallSurfaces"):
 					var surface: Dictionary = kits[1].wallSurfaces[style]
-					var u := (edge_a.y if face.side == "u" else edge_a.x)*float(surface.repeatTexelsPerCell[0])
+					var along_v: bool = str(face.side).begins_with("u")
+					var u := (edge_a.y if along_v else edge_a.x)*float(surface.repeatTexelsPerCell[0])
 					var v := float(-tier*surface.repeatTexelsPerCell[1])
-					var width := edge_a.distance_to(edge_b)*float(surface.repeatTexelsPerCell[0])
+					var width := ((edge_b.y-edge_a.y) if along_v else (edge_b.x-edge_a.x))*float(surface.repeatTexelsPerCell[0])
 					var height := float(surface.repeatTexelsPerCell[1])
 					wall.texture = load(kits[1].root + surface.file)
 					wall.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
 					wall.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-					wall.uv = PackedVector2Array([Vector2(u,v-height),Vector2(u+width,v-height),Vector2(u+width,v),Vector2(u,v)])
+					wall.uv = PackedVector2Array([Vector2(u,v-height),Vector2(u+width,v-height),Vector2(u+width,v-(bottom_b-tier)*height),Vector2(u,v-(bottom_a-tier)*height)])
 					wall.color = Color.WHITE if face.side == "u" else Color(.86,.83,.78)
 				else:
 					wall.texture = load(kits[1].root + kits[1].walls[style][face.side][(int(face.u)+int(face.v))%2])
@@ -720,6 +881,7 @@ func _build_faces() -> void:
 		rim.points = PackedVector2Array([pa-Vector2(0,face.top*64),pb-Vector2(0,face.top*64)])
 		rim.width = 3.5 if art_preview and kits.size()>1 and kits[1].has("wallSurfaces") else 2.0
 		rim.default_color = Color("E8D1A6") if art_preview and kits.size()>1 and kits[1].has("wallSurfaces") else Color("D5C9AD")
+		if model.data.biome == "veredas" and str(face.side).ends_with("-"): rim.visible = false
 		root.add_child(rim)
 		if art_preview and kits.size()>1 and kits[1].has("wallSurfaces"):
 			var contact := Line2D.new()
@@ -1140,7 +1302,7 @@ func _bairro_ground_details() -> void:
 		actors.add_child(sprite)
 
 func _bairro_ground_shadows() -> void:
-	if not art_preview or model.data.biome not in ["bairro","parque"]: return
+	if not art_preview or model.data.biome not in ["bairro","parque","veredas"]: return
 	var canopy_material := ShaderMaterial.new()
 	canopy_material.shader = load("res://shaders/bairro_ground_shadow.gdshader")
 	for node in piece_nodes.values():
@@ -1157,22 +1319,31 @@ func _bairro_ground_shadows() -> void:
 	for node in occluders:
 		if node.get_script() != Prop: continue
 		var definition: Dictionary = node.get("definition")
-		if not str(definition.get("texture","")).contains("arvore"): continue
+		var texture_path := str(definition.get("texture",""))
+		if not texture_path.contains("arvore") and not texture_path.contains("buriti"): continue
 		var art := node.get_node_or_null("Art") as Sprite2D
 		if art == null: continue
 		var root := Node2D.new()
 		root.z_index = -1
-		root.transform = Transform2D(Vector2(.9,.42),Vector2(-.4,-.2),node.position)
+		var contact := node.get_node_or_null("Contact") as Sprite2D
+		var foot := contact.position if contact != null else Vector2.ZERO
+		if model.data.biome == "veredas":
+			root.transform = Transform2D(Vector2(.9,.15),Vector2(-.35,-.32),node.position+foot)
+		else:
+			root.transform = Transform2D(Vector2(.9,.42),Vector2(-.4,-.2),node.position)
 		var silhouette := Sprite2D.new()
 		silhouette.centered = false
 		silhouette.texture = art.texture
-		silhouette.position = art.position
+		silhouette.position = art.position-foot if model.data.biome == "veredas" else art.position
 		silhouette.material = canopy_material
 		root.add_child(silhouette)
 		actors.add_child(root)
 
 func _definition(piece: Dictionary) -> Dictionary:
 	var variant := str(piece.props.get("variante", ""))
+	if piece.asset == "arvore" and model.data.biome == "veredas" and kits.size()>1 and kits[1].has("treeMix"):
+		var mix: Array = kits[1].treeMix
+		variant = mix[posmod(int(str(piece.id)),mix.size())]
 	if piece.asset == "bau" and opened.has(area_id+":"+str(piece.id)): variant = "aberto"
 	if variant.is_empty() and piece.asset == "banco": variant = "concreto" if model.data.biome == "morro" else "madeira"
 	if variant.is_empty() and piece.asset == "placa-mapa": variant = "veredas" if model.data.biome == "veredas" else "parque"

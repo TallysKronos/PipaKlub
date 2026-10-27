@@ -42,6 +42,12 @@ func can_step(a: Vector2i, b: Vector2i) -> bool:
 	var cb := cell_at(b)
 	var ra := str(ca.get("ramp", "")) if ca.get("ramp") != null else ""
 	var rb := str(cb.get("ramp", "")) if cb.get("ramp") != null else ""
+	if (ca.has("rampFrom") or cb.has("rampFrom")) and (not ra.is_empty() or not rb.is_empty()):
+		var direction: Vector2i = DIRS[ra if not ra.is_empty() else rb]
+		if direction.x*delta.x+direction.y*delta.y == 0:
+			return ra == rb and ca.level == cb.level and ca.get("rampFrom",0) == cb.get("rampFrom",0) and ca.get("rampTo",1) == cb.get("rampTo",1)
+		var boundary := Vector2(a)+Vector2.ONE*.5+Vector2(delta)*.5
+		return absf(height_at(boundary-Vector2(delta)*.000001)-height_at(boundary+Vector2(delta)*.000001)) < .00001
 	if not ra.is_empty() and DIRS[ra] == delta: return cb.level == ca.level + 1
 	if not rb.is_empty() and DIRS[rb] == -delta: return ca.level == cb.level + 1
 	if not ra.is_empty() or not rb.is_empty():
@@ -53,11 +59,16 @@ func height_at(point: Vector2) -> float:
 	var cell := Vector2i(floori(point.x), floori(point.y))
 	var c := cell_at(cell)
 	if c.is_empty(): return 0
+	return surface_height(c,point-Vector2(cell))
+
+func surface_height(c: Dictionary, local: Vector2) -> float:
+	# Closed local coordinates are valid at both ends of a surface; callers
+	# rendering shared vertices need no epsilon that leaves a hairline gap.
 	if c.get("ramp") == null: return float(c.level)
 	var direction: Vector2i = DIRS[c.ramp]
-	var f := point - Vector2(cell)
+	var f := local.clamp(Vector2.ZERO,Vector2.ONE)
 	var rise := f.x if direction.x > 0 else 1.0 - f.x if direction.x < 0 else f.y if direction.y > 0 else 1.0 - f.y
-	return float(c.level) + rise
+	return float(c.level) + float(c.get("rampFrom",0)) + rise*(float(c.get("rampTo",1))-float(c.get("rampFrom",0)))
 
 func project(point: Vector2, raised: bool = true) -> Vector2:
 	return Vector2((point.x - point.y) * 32.0, (point.x + point.y) * 16.0 - (height_at(point) * 64.0 if raised else 0.0))
