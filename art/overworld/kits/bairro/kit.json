@@ -1,0 +1,688 @@
+{
+  "schema": "overworld-kit-1",
+  "biome": "bairro",
+  "grid": {
+    "cell": [
+      64,
+      32
+    ],
+    "height": 32,
+    "levelPx": 64
+  },
+  "approval": "concept_approved_kit_pending_visual_review",
+  "styleBoard": "../../estilo/PRANCHA-ESTILO.png",
+  "pieces": {
+    "casa-kael": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/casa-kael-default.png",
+          "size": [
+            256,
+            352
+          ],
+          "footprint": [
+            4,
+            4
+          ],
+          "visualFootprint": [
+            4,
+            4
+          ],
+          "bloqueia": true,
+          "height": 7,
+          "anchor": [
+            128.0,
+            288
+          ],
+          "isoAnchor": [
+            128,
+            352
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "generator": "image_gen.imagegen",
+            "file": "fontes/pinturas/casa-kael.png",
+            "geometry": "fontes/guias/casa-kael-default.svg",
+            "normalization": "tools/overworld/build_bairro.py; uniform fit to guide alpha box"
+          },
+          "approval": "pending_kit_visual_review",
+          "door": {
+            "front": "v+",
+            "wallPoint": [
+              2.5,
+              3.84,
+              0
+            ],
+            "thresholdPx": [
+              85.12,
+              325.44
+            ],
+            "approachCellRelative": [
+              2.5,
+              4.5
+            ],
+            "leafHeight": 100
+          }
+        }
+      }
+    },
+    "casa-assis": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/casa-assis-default.png",
+          "size": [
+            224,
+            336
+          ],
+          "footprint": [
+            4,
+            3
+          ],
+          "visualFootprint": [
+            4,
+            3
+          ],
+          "bloqueia": true,
+          "height": 7,
+          "anchor": [
+            112.0,
+            280
+          ],
+          "isoAnchor": [
+            128,
+            336
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "generator": "image_gen.imagegen",
+            "file": "fontes/pinturas/casa-assis.png",
+            "geometry": "fontes/guias/casa-assis-default.svg",
+            "normalization": "tools/overworld/build_bairro.py; uniform fit to guide alpha box"
+          },
+          "approval": "pending_kit_visual_review",
+          "door": {
+            "front": "v+",
+            "wallPoint": [
+              2.5,
+              2.84,
+              0
+            ],
+            "thresholdPx": [
+              85.12,
+              309.44
+            ],
+            "approachCellRelative": [
+              2.5,
+              3.5
+            ],
+            "leafHeight": 100
+          }
+        }
+      }
+    },
+    "loja-pipas": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/loja-pipas-default.png",
+          "size": [
+            224,
+            336
+          ],
+          "footprint": [
+            4,
+            3
+          ],
+          "visualFootprint": [
+            4,
+            3
+          ],
+          "bloqueia": true,
+          "height": 7,
+          "anchor": [
+            112.0,
+            280
+          ],
+          "isoAnchor": [
+            128,
+            336
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "generator": "image_gen.imagegen",
+            "file": "fontes/pinturas/loja-pipas.png",
+            "geometry": "fontes/guias/loja-pipas-default.svg",
+            "normalization": "tools/overworld/build_bairro.py; uniform fit to guide alpha box"
+          },
+          "approval": "pending_kit_visual_review",
+          "door": {
+            "front": "v+",
+            "wallPoint": [
+              3.5,
+              2.84,
+              0
+            ],
+            "thresholdPx": [
+              117.12,
+              325.44
+            ],
+            "approachCellRelative": [
+              3.5,
+              3.5
+            ],
+            "leafHeight": 100
+          }
+        }
+      }
+    },
+    "mural": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/mural-default.png",
+          "size": [
+            64,
+            160
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "bloqueia": false,
+          "height": 4,
+          "anchor": [
+            32,
+            144
+          ],
+          "isoAnchor": [
+            32,
+            160
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "generator": "image_gen.imagegen",
+            "file": "fontes/pinturas/mural.png",
+            "geometry": "fontes/guias/mural-default.svg",
+            "normalization": "tools/overworld/build_bairro.py; uniform fit to guide alpha box"
+          },
+          "approval": "pending_kit_visual_review"
+        }
+      }
+    },
+    "bancada-rua": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/bancada-rua-default.png",
+          "size": [
+            64,
+            128
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "bloqueia": false,
+          "height": 3,
+          "anchor": [
+            32,
+            112
+          ],
+          "isoAnchor": [
+            32,
+            128
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "generator": "image_gen.imagegen",
+            "file": "fontes/pinturas/bancada-rua.png",
+            "geometry": "fontes/guias/bancada-rua-default.svg",
+            "normalization": "tools/overworld/build_bairro.py; uniform fit to guide alpha box"
+          },
+          "approval": "pending_kit_visual_review"
+        }
+      }
+    },
+    "cerca-viva": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/cerca-viva-default.png",
+          "size": [
+            64,
+            96
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "bloqueia": false,
+          "height": 2,
+          "anchor": [
+            32,
+            80
+          ],
+          "isoAnchor": [
+            32,
+            96
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "generator": "image_gen.imagegen",
+            "file": "fontes/pinturas/cerca-viva.png",
+            "geometry": "fontes/guias/cerca-viva-default.svg",
+            "normalization": "tools/overworld/build_bairro.py; uniform fit to guide alpha box"
+          },
+          "approval": "pending_kit_visual_review"
+        }
+      }
+    }
+  },
+  "materials": {
+    "calcada": {
+      "variants": [
+        "chao/calcada-0.png",
+        "chao/calcada-1.png",
+        "chao/calcada-2.png",
+        "chao/calcada-3.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "outline": false,
+      "shadowBaked": false,
+      "source": "tools/overworld/build_bairro.py"
+    },
+    "asfalto": {
+      "variants": [
+        "chao/asfalto-0.png",
+        "chao/asfalto-1.png",
+        "chao/asfalto-2.png",
+        "chao/asfalto-3.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "outline": false,
+      "shadowBaked": false,
+      "source": "tools/overworld/build_bairro.py"
+    },
+    "terra": {
+      "variants": [
+        "chao/terra-0.png",
+        "chao/terra-1.png",
+        "chao/terra-2.png",
+        "chao/terra-3.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "outline": false,
+      "shadowBaked": false,
+      "source": "tools/overworld/build_bairro.py"
+    },
+    "canteiro": {
+      "variants": [
+        "chao/canteiro-0.png",
+        "chao/canteiro-1.png",
+        "chao/canteiro-2.png",
+        "chao/canteiro-3.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "outline": false,
+      "shadowBaked": false,
+      "source": "tools/overworld/build_bairro.py"
+    },
+    "construcao": {
+      "variants": [
+        "chao/construcao-0.png",
+        "chao/construcao-1.png",
+        "chao/construcao-2.png",
+        "chao/construcao-3.png"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "outline": false,
+      "shadowBaked": false,
+      "source": "tools/overworld/build_bairro.py"
+    }
+  },
+  "transitions": {
+    "canteiro/construcao": {
+      "corners": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ],
+      "maskBits": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "files": [
+        "transicoes/canteiro-construcao-0.png",
+        "transicoes/canteiro-construcao-1.png",
+        "transicoes/canteiro-construcao-2.png",
+        "transicoes/canteiro-construcao-3.png",
+        "transicoes/canteiro-construcao-4.png",
+        "transicoes/canteiro-construcao-5.png",
+        "transicoes/canteiro-construcao-6.png",
+        "transicoes/canteiro-construcao-7.png",
+        "transicoes/canteiro-construcao-8.png",
+        "transicoes/canteiro-construcao-9.png",
+        "transicoes/canteiro-construcao-10.png",
+        "transicoes/canteiro-construcao-11.png",
+        "transicoes/canteiro-construcao-12.png",
+        "transicoes/canteiro-construcao-13.png",
+        "transicoes/canteiro-construcao-14.png",
+        "transicoes/canteiro-construcao-15.png"
+      ],
+      "source": "tools/overworld/build_bairro.py"
+    },
+    "calcada/construcao": {
+      "corners": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ],
+      "maskBits": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "files": [
+        "transicoes/calcada-construcao-0.png",
+        "transicoes/calcada-construcao-1.png",
+        "transicoes/calcada-construcao-2.png",
+        "transicoes/calcada-construcao-3.png",
+        "transicoes/calcada-construcao-4.png",
+        "transicoes/calcada-construcao-5.png",
+        "transicoes/calcada-construcao-6.png",
+        "transicoes/calcada-construcao-7.png",
+        "transicoes/calcada-construcao-8.png",
+        "transicoes/calcada-construcao-9.png",
+        "transicoes/calcada-construcao-10.png",
+        "transicoes/calcada-construcao-11.png",
+        "transicoes/calcada-construcao-12.png",
+        "transicoes/calcada-construcao-13.png",
+        "transicoes/calcada-construcao-14.png",
+        "transicoes/calcada-construcao-15.png"
+      ],
+      "source": "tools/overworld/build_bairro.py"
+    },
+    "calcada/canteiro": {
+      "corners": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ],
+      "maskBits": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "files": [
+        "transicoes/calcada-canteiro-0.png",
+        "transicoes/calcada-canteiro-1.png",
+        "transicoes/calcada-canteiro-2.png",
+        "transicoes/calcada-canteiro-3.png",
+        "transicoes/calcada-canteiro-4.png",
+        "transicoes/calcada-canteiro-5.png",
+        "transicoes/calcada-canteiro-6.png",
+        "transicoes/calcada-canteiro-7.png",
+        "transicoes/calcada-canteiro-8.png",
+        "transicoes/calcada-canteiro-9.png",
+        "transicoes/calcada-canteiro-10.png",
+        "transicoes/calcada-canteiro-11.png",
+        "transicoes/calcada-canteiro-12.png",
+        "transicoes/calcada-canteiro-13.png",
+        "transicoes/calcada-canteiro-14.png",
+        "transicoes/calcada-canteiro-15.png"
+      ],
+      "source": "tools/overworld/build_bairro.py"
+    },
+    "asfalto/calcada": {
+      "corners": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ],
+      "maskBits": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "files": [
+        "transicoes/asfalto-calcada-0.png",
+        "transicoes/asfalto-calcada-1.png",
+        "transicoes/asfalto-calcada-2.png",
+        "transicoes/asfalto-calcada-3.png",
+        "transicoes/asfalto-calcada-4.png",
+        "transicoes/asfalto-calcada-5.png",
+        "transicoes/asfalto-calcada-6.png",
+        "transicoes/asfalto-calcada-7.png",
+        "transicoes/asfalto-calcada-8.png",
+        "transicoes/asfalto-calcada-9.png",
+        "transicoes/asfalto-calcada-10.png",
+        "transicoes/asfalto-calcada-11.png",
+        "transicoes/asfalto-calcada-12.png",
+        "transicoes/asfalto-calcada-13.png",
+        "transicoes/asfalto-calcada-14.png",
+        "transicoes/asfalto-calcada-15.png"
+      ],
+      "source": "tools/overworld/build_bairro.py"
+    },
+    "asfalto/canteiro": {
+      "corners": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ],
+      "maskBits": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "files": [
+        "transicoes/asfalto-canteiro-0.png",
+        "transicoes/asfalto-canteiro-1.png",
+        "transicoes/asfalto-canteiro-2.png",
+        "transicoes/asfalto-canteiro-3.png",
+        "transicoes/asfalto-canteiro-4.png",
+        "transicoes/asfalto-canteiro-5.png",
+        "transicoes/asfalto-canteiro-6.png",
+        "transicoes/asfalto-canteiro-7.png",
+        "transicoes/asfalto-canteiro-8.png",
+        "transicoes/asfalto-canteiro-9.png",
+        "transicoes/asfalto-canteiro-10.png",
+        "transicoes/asfalto-canteiro-11.png",
+        "transicoes/asfalto-canteiro-12.png",
+        "transicoes/asfalto-canteiro-13.png",
+        "transicoes/asfalto-canteiro-14.png",
+        "transicoes/asfalto-canteiro-15.png"
+      ],
+      "source": "tools/overworld/build_bairro.py"
+    },
+    "calcada/terra": {
+      "corners": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ],
+      "maskBits": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "files": [
+        "transicoes/calcada-terra-0.png",
+        "transicoes/calcada-terra-1.png",
+        "transicoes/calcada-terra-2.png",
+        "transicoes/calcada-terra-3.png",
+        "transicoes/calcada-terra-4.png",
+        "transicoes/calcada-terra-5.png",
+        "transicoes/calcada-terra-6.png",
+        "transicoes/calcada-terra-7.png",
+        "transicoes/calcada-terra-8.png",
+        "transicoes/calcada-terra-9.png",
+        "transicoes/calcada-terra-10.png",
+        "transicoes/calcada-terra-11.png",
+        "transicoes/calcada-terra-12.png",
+        "transicoes/calcada-terra-13.png",
+        "transicoes/calcada-terra-14.png",
+        "transicoes/calcada-terra-15.png"
+      ],
+      "source": "tools/overworld/build_bairro.py"
+    },
+    "canteiro/terra": {
+      "corners": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ],
+      "maskBits": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "files": [
+        "transicoes/canteiro-terra-0.png",
+        "transicoes/canteiro-terra-1.png",
+        "transicoes/canteiro-terra-2.png",
+        "transicoes/canteiro-terra-3.png",
+        "transicoes/canteiro-terra-4.png",
+        "transicoes/canteiro-terra-5.png",
+        "transicoes/canteiro-terra-6.png",
+        "transicoes/canteiro-terra-7.png",
+        "transicoes/canteiro-terra-8.png",
+        "transicoes/canteiro-terra-9.png",
+        "transicoes/canteiro-terra-10.png",
+        "transicoes/canteiro-terra-11.png",
+        "transicoes/canteiro-terra-12.png",
+        "transicoes/canteiro-terra-13.png",
+        "transicoes/canteiro-terra-14.png",
+        "transicoes/canteiro-terra-15.png"
+      ],
+      "source": "tools/overworld/build_bairro.py"
+    }
+  },
+  "walls": {},
+  "stairs": {},
+  "bridges": {},
+  "concept": "../../conceitos/bairro/rua-estudo-v2.png",
+  "sourceMapSha256": "6339ca495c8bae189e5fc4042c74808a24e32b4b7edb9a76f76bda982aeb288b",
+  "context": {
+    "radius": 8,
+    "color": "8FAF65",
+    "asset": "casa-kael"
+  },
+  "dressing": [
+    {
+      "asset": "poste",
+      "variant": "rua",
+      "point": [
+        3.5,
+        9.5
+      ]
+    },
+    {
+      "asset": "poste",
+      "variant": "rua",
+      "point": [
+        40.5,
+        9.5
+      ]
+    },
+    {
+      "asset": "vaso",
+      "variant": "ceramica",
+      "point": [
+        4.5,
+        9.5
+      ]
+    },
+    {
+      "asset": "vaso",
+      "variant": "ceramica",
+      "point": [
+        9.5,
+        9.5
+      ]
+    },
+    {
+      "asset": "vaso",
+      "variant": "ceramica",
+      "point": [
+        18.5,
+        9.5
+      ]
+    },
+    {
+      "asset": "vaso",
+      "variant": "ceramica",
+      "point": [
+        23.5,
+        9.5
+      ]
+    },
+    {
+      "asset": "vaso",
+      "variant": "ceramica",
+      "point": [
+        31.5,
+        9.5
+      ]
+    },
+    {
+      "asset": "vaso",
+      "variant": "ceramica",
+      "point": [
+        36.5,
+        9.5
+      ]
+    }
+  ],
+  "sharedPieces": {
+    "banco": "comum/banco/madeira",
+    "poste": "comum/poste/rua",
+    "vaso": "comum/vaso/ceramica",
+    "arvore": "comum/arvore/a",
+    "lixeira": "comum/lixeira/rua"
+  }
+}

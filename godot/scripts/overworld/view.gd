@@ -94,6 +94,7 @@ func load_area(id: String) -> void:
 	_build_faces()
 	_build_pieces()
 	_dress_bare_lots()
+	_dress_bairro_gardens()
 	_build_events()
 	var spawn: Dictionary = model.data.spawn
 	player = Vector2(spawn.u + .5, spawn.v + .5)
@@ -241,6 +242,9 @@ func _floor_node(at: Vector2i, level: float) -> Node2D:
 
 func _draw_art_floor(at: Vector2i, cell: Dictionary) -> void:
 	var kit: Dictionary = kits[1]
+	if model.data.biome == "bairro":
+		_draw_bairro_floor(at,cell)
+		return
 	if kit.has("floorSurface") and model.data.biome == "morro":
 		var floor_root := _floor_node(at, float(cell.level))
 		floor_root.add_child(_painted_floor(at, cell, true))
@@ -274,7 +278,7 @@ func _draw_art_floor(at: Vector2i, cell: Dictionary) -> void:
 		if material == "construcao" and model.data.biome == "morro":continue
 		for pair in kit.transitions:
 			var parts: PackedStringArray = pair.split("/")
-			if material not in parts:continue
+			if material not in parts or str(cell.material) not in parts:continue
 			var mask := (1<<bit) if parts[1]==material else 15^(1<<bit)
 			var patch := Polygon2D.new()
 			var uv: PackedVector2Array = wedges[bit]
@@ -285,6 +289,40 @@ func _draw_art_floor(at: Vector2i, cell: Dictionary) -> void:
 			root.add_child(patch)
 			break
 	if cell.material == "grama" and _soft_yards(): _grass_decal(root, at, int(cell.level))
+
+func _draw_bairro_floor(at: Vector2i, cell: Dictionary) -> void:
+	# Opaque adjoining geometry owns coverage. Texture alpha is sampled only
+	# inside each tile, so linear filtering cannot expose a diagonal grid.
+	var colors := {"calcada":"E9DCB6","asfalto":"5A758E","terra":"CFAC73","canteiro":"8FAF65","construcao":"D6BE95"}
+	var root := _floor_node(at,float(cell.level))
+	var surface := Polygon2D.new()
+	surface.polygon = PackedVector2Array([Vector2(0,-16),Vector2(32,0),Vector2(0,16),Vector2(-32,0)])
+	surface.position.y = -float(cell.level)*64
+	surface.color = Color(str(colors.get(str(cell.material),"8FAF65")))
+	root.add_child(surface)
+	var variants: Array = kits[1].materials[cell.material].variants
+	var detail := Polygon2D.new()
+	detail.polygon = PackedVector2Array([Vector2(0,-13),Vector2(26,0),Vector2(0,13),Vector2(-26,0)])
+	detail.uv = PackedVector2Array([Vector2(32,3),Vector2(58,16),Vector2(32,29),Vector2(6,16)])
+	detail.texture = load(kits[1].root+variants[_grass_hash(at)%variants.size()])
+	detail.position.y = surface.position.y
+	root.add_child(detail)
+	if cell.material != "calcada": return
+	var edges := [
+		[Vector2i.LEFT,Vector2(-32,0),Vector2(0,-16)],
+		[Vector2i.RIGHT,Vector2(32,0),Vector2(0,16)],
+		[Vector2i.UP,Vector2(0,-16),Vector2(32,0)],
+		[Vector2i.DOWN,Vector2(-32,0),Vector2(0,16)]
+	]
+	for edge in edges:
+		var neighbour := model.cell_at(at+edge[0])
+		if neighbour.get("material","") != "asfalto": continue
+		var curb := Line2D.new()
+		curb.points = PackedVector2Array([edge[1],edge[2]])
+		curb.default_color = Color("F5E9CB")
+		curb.width = 2
+		curb.position.y = surface.position.y
+		root.add_child(curb)
 
 func _grass_hash(at: Vector2i, salt: int = 0) -> int:
 	# Avalanche hash: no diagonal stripes, negative coordinates work too.
@@ -957,6 +995,74 @@ func _definition(piece: Dictionary) -> Dictionary:
 		return entry
 	return {}
 
+func _dress_bairro_gardens() -> void:
+	# Garden boundaries decorate only already-blocked source cells. No changes
+	# to movement, interaction positions or source-map object identifiers.
+	if not art_preview or model.data.biome != "bairro" or kits.size()<2: return
+	# Visual road continuation beyond both exits, without adding walkable cells.
+	for v in int(model.data.h):
+		for edge_u in [0,int(model.data.w)-1]:
+			var source := model.cell_at(Vector2i(edge_u,v))
+			if str(source.material) not in ["calcada","asfalto"]: continue
+			for distance in range(1,9):
+				var outside_u: int = -distance if edge_u==0 else int(model.data.w)-1+distance
+				var cell: Dictionary = source.duplicate(true)
+				cell.corners = [source.material,source.material,source.material,source.material]
+				_draw_art_floor(Vector2i(outside_u,v),cell)
+	var occupied := {}
+	for piece in model.data.pieces:
+		for du in int(piece.fu):
+			for dv in int(piece.fv): occupied[Vector2i(piece.u+du,piece.v+dv)] = true
+	var wire_points: Array[Vector2] = []
+	for decoration: Dictionary in kits[1].get("dressing",[]):
+		var point := Vector2(decoration.point[0],decoration.point[1])
+		var at := Vector2i(point.floor())
+		if model.cell_at(at).get("material","") != "canteiro" or occupied.has(at): continue
+		var entry := _definition({"asset":decoration.asset,"id":"garden-detail","props":{"variante":decoration.variant}})
+		if entry.is_empty(): continue
+		var prop := Prop.new()
+		prop.position = model.project(point,false)
+		prop.configure(entry,Vector2i.ONE,0,false)
+		actors.add_child(prop)
+		occluders.append(prop)
+		occupied[at] = true
+		if decoration.asset == "poste": wire_points.append(model.project(point,false)-Vector2(0,145))
+	if wire_points.size()==2:
+		var wire := Line2D.new()
+		wire.width = 1.2
+		wire.default_color = Color("26394D",.72)
+		# The street wire runs behind the roof silhouettes, rather than drawing
+		# a diagonal stripe through every foreground facade and window.
+		wire.position = wire_points[0]+Vector2(0,145)
+		for index in 21:
+			var t := float(index)/20
+			wire.add_point(wire_points[0].lerp(wire_points[1],t)+Vector2(0,24*4*t*(1-t))-wire.position)
+		actors.add_child(wire)
+	for v in int(model.data.h):
+		for u in int(model.data.w):
+			var at := Vector2i(u,v)
+			var cell := model.cell_at(at)
+			if cell.material != "canteiro" or occupied.has(at): continue
+			var boundary := false
+			for delta in [Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP,Vector2i.DOWN]:
+				var neighbour := model.cell_at(at+delta)
+				if not neighbour.is_empty() and str(neighbour.material) in ["calcada","terra"]: boundary = true
+			var asset := "cerca-viva" if boundary else ""
+			var variant := ""
+			# Back gardens continue beyond the houses with the shared tree family.
+			if not boundary and v in [1,4] and u%5==2:
+				asset = "arvore"
+				variant = "a" if u%2==0 else "b"
+			if asset.is_empty(): continue
+			var entry := _definition({"asset":asset,"id":"garden","props":{"variante":variant}})
+			if entry.is_empty(): continue
+			var point := Vector2(at)+Vector2(.5,.5)
+			var prop := Prop.new()
+			prop.position = model.project(point,false)
+			prop.configure(entry,Vector2i.ONE,0,false)
+			actors.add_child(prop)
+			occluders.append(prop)
+
 func _build_pieces() -> void:
 	for piece in model.data.pieces:
 		if hidden_pieces.has(str(piece.id)): continue
@@ -1087,6 +1193,11 @@ func _fade_occluders() -> void:
 		if not is_instance_valid(node): continue
 		var art := node.get_node_or_null("Art") as Sprite2D
 		if art == null: continue
+		if node.has_meta("piece"):
+			var piece: Dictionary = node.get_meta("piece")
+			if player.x>=float(piece.u)+float(piece.fu) or player.y>=float(piece.v)+float(piece.fv):
+				art.modulate.a = 1.0
+				continue
 		var covers := node.position.y > ground and Rect2(node.position+art.position,art.texture.get_size()).intersects(body)
 		art.modulate.a = .45 if covers else 1.0
 

@@ -13,6 +13,10 @@ const counts={};for(const c of m.cells)counts[c.material]=(counts[c.material]||0
 const pairs={};for(let v=0;v<m.h;v++)for(let u=0;u<m.w;u++)for(const [du,dv] of [[1,0],[0,1]]){const a=m.cells[v*m.w+u],b=m.cells[(v+dv)*m.w+u+du];if(u+du>=m.w||v+dv>=m.h||!b||a.material===b.material)continue;const key=[a.material,b.material].sort().join('/');pairs[key]=(pairs[key]||0)+1;}
 const pieces=m.pieces.map(p=>({id:p.id,asset:p.asset,cell:[p.u,p.v],footprint:[p.fu,p.fv],polygon:polygon(p.u,p.v,p.fu,p.fv),door:p.props.porta_u===undefined?null:{cell:[p.props.porta_u,p.props.porta_v],center:project(p.props.porta_u+.5,p.props.porta_v+.5),front:p.props.frente}}));
 const brief={issue:'PIP-84',stage:'concept_review',source,sourceSha256:crypto.createHash('sha256').update(raw).digest('hex'),style:'art/overworld/estilo/PRANCHA-ESTILO.png',projection:{cell:[64,32],levelPx:64,exportScale:2,bounds,imageSize:[(bounds.x1-bounds.x0)*2,(bounds.y1-bounds.y0)*2],edgeTolerancePx:4},materials:Object.entries(counts).map(([id,cells])=>({id,cells,walk:MATERIALS[id].walk,plannedTileVariants:4,tileSize:[64,32]})),transitions:Object.entries(pairs).map(([pair,edges])=>({pair,edges,plannedCornerMasks:16})),pieces,zones:m.zones,events:m.events.map(e=>({id:e.id,type:e.type,name:e.name,cell:[e.u,e.v],center:project(e.u+.5,e.v+.5)})),locks:['No navigation or event changes','No stairs, cliffs, ramps or raised terraces: level zero throughout','Impassable canteiro must read as planted or bounded garden, never open walkable lawn','No permanent characters or HUD in background','Kite shop, Assis workshop and Kael home have distinct silhouettes','Concept is not a runtime background or a validated modular kit'],approval:'pending_owner_review',alignment:'pending_pixel_review_of_generated_concept'};
+if(fs.existsSync(out+'/aprovacao.json')){
+ brief.approval=JSON.parse(fs.readFileSync(out+'/aprovacao.json','utf8')).status;
+ brief.stage='modular_kit_production';
+}
 fs.writeFileSync(out+'/brief.json',JSON.stringify(brief,null,2)+'\n');
 fs.copyFileSync('documentation/overworld/pip81/references/rua-dos-ventos-referencia.png',out+'/referencia.png');
 const [w,h]=brief.projection.imageSize;

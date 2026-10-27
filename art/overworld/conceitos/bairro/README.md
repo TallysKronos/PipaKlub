@@ -1,6 +1,6 @@
 # PIP-84 — Rua dos Ventos: estudo de acabamento
 
-Conceito em revisão. A imagem ainda não é um mapa jogável nem substitui a planta.
+Acabamento visual aprovado pelo responsável nesta conversa: “Gostei muito desse conceito”. A aprovação permite produzir a família modular; não aprova automaticamente encaixes, colisões, interiores ou integração final. A imagem não é um mapa jogável nem substitui a planta.
 
 ## Revisão visual
 

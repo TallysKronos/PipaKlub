@@ -1,0 +1,52 @@
+{
+  "tool": "image_gen.imagegen",
+  "approvedConcept": "art/overworld/conceitos/bairro/rua-estudo-v2.png",
+  "generation": "Six original transparent props generated from project-owned concept and geometry guides; no external game artwork used.",
+  "houses": [
+    "Paint the first reference's exact building geometry into a finished 2D game sprite. FIRST REFERENCE is mandatory orthographic 2:1 geometric guide: keep same facade widths, house footprint, roof planes, ridge, silhouette, door position and window placements. SECOND REFERENCE is the approved artistic concept; take only its clean navy hand-inked linework, grouped terracotta tiles, warm anime cel colors and crafted details. Do not copy the full street composition.\nSUBJECT: Kael's Brazilian neighborhood home: warm creamy plaster, deep teal wooden paneled door and shutters, full terracotta tiled gable roof. Small navy eaves, cream window trim, tiny wall lamp. Family home, NO shop display.\nView: same camera/elevation/orientation as first guide. Both ground axes precisely 2:1, verticals vertical, full gable roof two intact planes and covered rear, no perspective convergence. The visible front wall is LEFT facing; the right-facing wall is the side window. Door tall enough for an 84px character in a 126px wall; same door location as guide. No architecture redesign, no canopy, no steps or raised plinth/porch. Flat foundation at bottom follows EXACT guide diamond support polygon. Keep all art within guide's building silhouette, no plant pots or vegetation attached outside, no extra props. The source is a mechanical construction guide and should become hand-drawn high-quality game art: varied grouped barrel tiles with curved tile ends, tactile but simple plaster edge wear, chunky elegant ink, tiny door latch, warm wood trim, broad cel shading, clear eaves, base plus one shadow per material. Upper-left light, short contact shading only on building. No blurry watercolor, no vector wireframe look, no 3D render, no fake bevels, no noisy texture. Match second reference's appealing detailed anime game finish at real sprite scale.\nOUTPUT: only ONE complete isolated house, centered with small transparent margins, TRUE transparent background, NO ground tile, NO cast ground shadow, NO labels/text/characters/other buildings. Preserve guide proportions instead of making a narrow tall tower. Entire roof, foundation and eaves must fit.",
+    "Paint the first reference's exact building geometry into a finished 2D game sprite. FIRST REFERENCE is mandatory orthographic 2:1 geometric guide: keep same facade widths, house footprint, roof planes, ridge, silhouette, door position and window placements. SECOND REFERENCE is the approved artistic concept; take only its clean navy hand-inked linework, grouped terracotta tiles, warm anime cel colors and crafted details. Do not copy the full street composition.\nSUBJECT: Sr Assis's residential atelier: pale CORAL plaster, deep teal door and shutters, full terracotta tiled gable roof. Modest bamboo rods and two spools within the LEFT shuttered-window recess. Not a retail storefront. Tiny wall lamp.\nView: same camera/elevation/orientation as first guide. Both ground axes precisely 2:1, verticals vertical, full gable roof two intact planes and covered rear, no perspective convergence. The visible front wall is LEFT facing; the right-facing wall is the side window. Door tall enough for an 84px character in a 126px wall; same door location as guide. No architecture redesign, no canopy, no steps or raised plinth/porch. Flat foundation at bottom follows EXACT guide diamond support polygon. Keep all art within guide's building silhouette, no plant pots or vegetation attached outside, no extra props. The source is a mechanical construction guide and should become hand-drawn high-quality game art: varied grouped barrel tiles with curved tile ends, tactile but simple plaster edge wear, chunky elegant ink, tiny door latch, warm wood trim, broad cel shading, clear eaves, base plus one shadow per material. Upper-left light, short contact shading only on building. No blurry watercolor, no vector wireframe look, no 3D render, no fake bevels, no noisy texture. Match second reference's appealing detailed anime game finish at real sprite scale.\nOUTPUT: only ONE complete isolated house, centered with small transparent margins, TRUE transparent background, NO ground tile, NO cast ground shadow, NO labels/text/characters/other buildings. Preserve guide proportions instead of making a narrow tall tower. Entire roof, foundation and eaves must fit.",
+    "Paint the first reference's exact building geometry into a finished 2D game sprite. FIRST REFERENCE is mandatory orthographic 2:1 geometric guide: keep same facade widths, house footprint, roof planes, ridge, silhouette, door position and window placements. SECOND REFERENCE is the approved artistic concept; take only its clean navy hand-inked linework, grouped terracotta tiles, warm anime cel colors and crafted details. Do not copy the full street composition.\nSUBJECT: The neighborhood kite shop: cream plaster, deep teal door at RIGHT EDGE of the FRONT/left-facing wall exactly as guide, full terracotta tiled gable roof. LEFT window is an open shop display of bamboo rods, colorful spools and paper, three handmade diamond kites attached flat to wall above the shop display. Door stays in rightmost part of front wall; side wall has teal shuttered window.\nView: same camera/elevation/orientation as first guide. Both ground axes precisely 2:1, verticals vertical, full gable roof two intact planes and covered rear, no perspective convergence. The visible front wall is LEFT facing; the right-facing wall is the side window. Door tall enough for an 84px character in a 126px wall; same door location as guide. No architecture redesign, no canopy, no steps or raised plinth/porch. Flat foundation at bottom follows EXACT guide diamond support polygon. Keep all art within guide's building silhouette, no plant pots or vegetation attached outside, no extra props. The source is a mechanical construction guide and should become hand-drawn high-quality game art: varied grouped barrel tiles with curved tile ends, tactile but simple plaster edge wear, chunky elegant ink, tiny door latch, warm wood trim, broad cel shading, clear eaves, base plus one shadow per material. Upper-left light, short contact shading only on building. No blurry watercolor, no vector wireframe look, no 3D render, no fake bevels, no noisy texture. Match second reference's appealing detailed anime game finish at real sprite scale.\nOUTPUT: only ONE complete isolated house, centered with small transparent margins, TRUE transparent background, NO ground tile, NO cast ground shadow, NO labels/text/characters/other buildings. Preserve guide proportions instead of making a narrow tall tower. Entire roof, foundation and eaves must fit."
+  ],
+  "props": [
+    [
+      "mural",
+      "ONE freestanding Brazilian neighborhood noticeboard, warm sturdy wood frame with two thick grounded posts, four simple cream/cyan/orange paper notes pinned to cork, a tiny paper kite sketch but NO letters or readable text. Board broad and legible, frame layered joinery, not flimsy poles. Isometric front plane slopes down toward right at 26.565deg; base fits one 64x32 diamond; target native visible width54px height100px. No roof."
+    ],
+    [
+      "bancada-rua",
+      "ONE low sturdy artisan kite workbench, warm wood planked top on four chunky legs, slight side apron and low shelf, colorful folded paper sheets, two spools, a tiny diamond kite and three bamboo rods laid flat. Orthographic isometric axes slopes +/-26.565 degrees. Compact native silhouette width60px height58px; base fits one64x32diamond. Keep details grouped, no tiny noise."
+    ],
+    [
+      "cerca-viva",
+      "ONE low dense leafy hedge clump, irregular lush Brazilian garden foliage, broad angular scalloped leaf clusters with dark forest green underside, medium olive green body and light lime canopy highlights. NO isolated giant leaves or polygonal rocks. Organic hand-inked silhouette composed of 5 overlapping chunky leafy bunches. Orthographic isometric2:1; bottom footprint fits one64x32diamond, target native width60px height38px. A broad low hedge, no tree trunk, no flowerpot, no flowers."
+    ]
+  ],
+  "normalization": "Uniform alpha-bounds fit into native canvas. Original generated sources preserved in fontes/pinturas; geometric SVG guides in fontes/guias. No AI output defines navigation.",
+  "approval": "concept finish approved by owner; kit pending visual review",
+  "files": [
+    {
+      "file": "fontes/pinturas/bancada-rua.png",
+      "sha256": "2a3c469fbee68a990fc1965822b772a8f2e929e75d4e2ab1334fa67977b27340"
+    },
+    {
+      "file": "fontes/pinturas/casa-assis.png",
+      "sha256": "6e29902a8f660103f72e588ac5aad011395130662f723eed9237bac3fc93287b"
+    },
+    {
+      "file": "fontes/pinturas/casa-kael.png",
+      "sha256": "0bf31008e163c0cb0a1f19bc9e6f62b8daa62805aac6a2a2b710dd31c620efd4"
+    },
+    {
+      "file": "fontes/pinturas/cerca-viva.png",
+      "sha256": "ba5761cc7e936c3f292137a52a9bcfd75c8ec3060a6f9a4dc88904320615cbb0"
+    },
+    {
+      "file": "fontes/pinturas/loja-pipas.png",
+      "sha256": "c6cd9e47a45f7548952025e7a97a14c3c4897091c492837ebf8beedad3e167b8"
+    },
+    {
+      "file": "fontes/pinturas/mural.png",
+      "sha256": "1a701c80c542ed2aeca31ce8e0a0173ccc7f3501237402ff4080f19e312fac66"
+    }
+  ]
+}
