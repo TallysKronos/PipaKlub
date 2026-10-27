@@ -1,0 +1,592 @@
+{
+  "issue": "PIP-84",
+  "stage": "concept_review",
+  "source": "art/overworld/mapas/rua-dos-ventos.tmj",
+  "sourceSha256": "6339ca495c8bae189e5fc4042c74808a24e32b4b7edb9a76f76bda982aeb288b",
+  "style": "art/overworld/estilo/PRANCHA-ESTILO.png",
+  "projection": {
+    "cell": [
+      64,
+      32
+    ],
+    "levelPx": 64,
+    "exportScale": 2,
+    "bounds": {
+      "x0": -1096,
+      "x1": 1448,
+      "y0": -90,
+      "y1": 1262
+    },
+    "imageSize": [
+      5088,
+      2704
+    ],
+    "edgeTolerancePx": 4
+  },
+  "materials": [
+    {
+      "id": "canteiro",
+      "cells": 847,
+      "walk": false,
+      "plannedTileVariants": 4,
+      "tileSize": [
+        64,
+        32
+      ]
+    },
+    {
+      "id": "construcao",
+      "cells": 40,
+      "walk": false,
+      "plannedTileVariants": 4,
+      "tileSize": [
+        64,
+        32
+      ]
+    },
+    {
+      "id": "calcada",
+      "cells": 349,
+      "walk": true,
+      "plannedTileVariants": 4,
+      "tileSize": [
+        64,
+        32
+      ]
+    },
+    {
+      "id": "asfalto",
+      "cells": 200,
+      "walk": true,
+      "plannedTileVariants": 4,
+      "tileSize": [
+        64,
+        32
+      ]
+    },
+    {
+      "id": "terra",
+      "cells": 16,
+      "walk": true,
+      "plannedTileVariants": 4,
+      "tileSize": [
+        64,
+        32
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "pair": "canteiro/construcao",
+      "edges": 34,
+      "plannedCornerMasks": 16
+    },
+    {
+      "pair": "calcada/construcao",
+      "edges": 10,
+      "plannedCornerMasks": 16
+    },
+    {
+      "pair": "calcada/canteiro",
+      "edges": 97,
+      "plannedCornerMasks": 16
+    },
+    {
+      "pair": "asfalto/calcada",
+      "edges": 80,
+      "plannedCornerMasks": 16
+    },
+    {
+      "pair": "asfalto/canteiro",
+      "edges": 10,
+      "plannedCornerMasks": 16
+    },
+    {
+      "pair": "calcada/terra",
+      "edges": 5,
+      "plannedCornerMasks": 16
+    },
+    {
+      "pair": "canteiro/terra",
+      "edges": 11,
+      "plannedCornerMasks": 16
+    }
+  ],
+  "pieces": [
+    {
+      "id": 1,
+      "asset": "casa-kael",
+      "cell": [
+        5,
+        6
+      ],
+      "footprint": [
+        4,
+        4
+      ],
+      "polygon": [
+        [
+          2128,
+          532
+        ],
+        [
+          2384,
+          660
+        ],
+        [
+          2128,
+          788
+        ],
+        [
+          1872,
+          660
+        ]
+      ],
+      "door": {
+        "cell": [
+          7,
+          10
+        ],
+        "center": [
+          2000,
+          756
+        ],
+        "front": "v+"
+      }
+    },
+    {
+      "id": 2,
+      "asset": "casa-assis",
+      "cell": [
+        19,
+        7
+      ],
+      "footprint": [
+        4,
+        3
+      ],
+      "polygon": [
+        [
+          2960,
+          1012
+        ],
+        [
+          3216,
+          1140
+        ],
+        [
+          3024,
+          1236
+        ],
+        [
+          2768,
+          1108
+        ]
+      ],
+      "door": {
+        "cell": [
+          21,
+          10
+        ],
+        "center": [
+          2896,
+          1204
+        ],
+        "front": "v+"
+      }
+    },
+    {
+      "id": 3,
+      "asset": "loja-pipas",
+      "cell": [
+        32,
+        7
+      ],
+      "footprint": [
+        4,
+        3
+      ],
+      "polygon": [
+        [
+          3792,
+          1428
+        ],
+        [
+          4048,
+          1556
+        ],
+        [
+          3856,
+          1652
+        ],
+        [
+          3600,
+          1524
+        ]
+      ],
+      "door": {
+        "cell": [
+          35,
+          10
+        ],
+        "center": [
+          3792,
+          1652
+        ],
+        "front": "v+"
+      }
+    },
+    {
+      "id": 4,
+      "asset": "mural",
+      "cell": [
+        15,
+        22
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "polygon": [
+        [
+          1744,
+          1364
+        ],
+        [
+          1808,
+          1396
+        ],
+        [
+          1744,
+          1428
+        ],
+        [
+          1680,
+          1396
+        ]
+      ],
+      "door": null
+    },
+    {
+      "id": 5,
+      "asset": "bancada-rua",
+      "cell": [
+        20,
+        24
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "polygon": [
+        [
+          1936,
+          1588
+        ],
+        [
+          2000,
+          1620
+        ],
+        [
+          1936,
+          1652
+        ],
+        [
+          1872,
+          1620
+        ]
+      ],
+      "door": null
+    },
+    {
+      "id": 6,
+      "asset": "banco",
+      "cell": [
+        24,
+        22
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "polygon": [
+        [
+          2320,
+          1652
+        ],
+        [
+          2384,
+          1684
+        ],
+        [
+          2320,
+          1716
+        ],
+        [
+          2256,
+          1684
+        ]
+      ],
+      "door": null
+    },
+    {
+      "id": 7,
+      "asset": "banco",
+      "cell": [
+        9,
+        20
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "polygon": [
+        [
+          1488,
+          1108
+        ],
+        [
+          1552,
+          1140
+        ],
+        [
+          1488,
+          1172
+        ],
+        [
+          1424,
+          1140
+        ]
+      ],
+      "door": null
+    },
+    {
+      "id": 8,
+      "asset": "banco",
+      "cell": [
+        36,
+        20
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "polygon": [
+        [
+          3216,
+          1972
+        ],
+        [
+          3280,
+          2004
+        ],
+        [
+          3216,
+          2036
+        ],
+        [
+          3152,
+          2004
+        ]
+      ],
+      "door": null
+    }
+  ],
+  "zones": [
+    {
+      "name": "Fundos residenciais",
+      "u": 0,
+      "v": 0,
+      "fu": 44,
+      "fv": 6,
+      "props": {
+        "uso": "fundo-de-casa",
+        "colisao": "camadas chao e pecas; zona apenas orienta a arte"
+      }
+    },
+    {
+      "name": "Quintal de Kael",
+      "u": 2,
+      "v": 6,
+      "fu": 10,
+      "fv": 4,
+      "props": {
+        "uso": "quintal",
+        "colisao": "camadas chao e pecas; zona apenas orienta a arte"
+      }
+    },
+    {
+      "name": "Quintal do Sr. Assis",
+      "u": 16,
+      "v": 6,
+      "fu": 10,
+      "fv": 4,
+      "props": {
+        "uso": "quintal",
+        "colisao": "camadas chao e pecas; zona apenas orienta a arte"
+      }
+    },
+    {
+      "name": "Jardim da loja",
+      "u": 29,
+      "v": 6,
+      "fu": 11,
+      "fv": 4,
+      "props": {
+        "uso": "jardim",
+        "colisao": "camadas chao e pecas; zona apenas orienta a arte"
+      }
+    },
+    {
+      "name": "Praça e serviços",
+      "u": 14,
+      "v": 22,
+      "fu": 13,
+      "fv": 5,
+      "props": {
+        "uso": "praca",
+        "colisao": "camadas chao e pecas; zona apenas orienta a arte"
+      }
+    },
+    {
+      "name": "Trilha para o parque",
+      "u": 26,
+      "v": 27,
+      "fu": 4,
+      "fv": 4,
+      "props": {
+        "uso": "saida-parque",
+        "colisao": "camadas chao e pecas; zona apenas orienta a arte"
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": 9,
+      "type": "entrada",
+      "name": "Entrada da rua",
+      "cell": [
+        7,
+        12
+      ],
+      "center": [
+        1872,
+        820
+      ]
+    },
+    {
+      "id": 10,
+      "type": "saida",
+      "name": "Casa de Kael",
+      "cell": [
+        7,
+        10
+      ],
+      "center": [
+        2000,
+        756
+      ]
+    },
+    {
+      "id": 11,
+      "type": "saida",
+      "name": "Casa do Sr. Assis",
+      "cell": [
+        21,
+        10
+      ],
+      "center": [
+        2896,
+        1204
+      ]
+    },
+    {
+      "id": 12,
+      "type": "saida",
+      "name": "Loja de pipas",
+      "cell": [
+        35,
+        10
+      ],
+      "center": [
+        3792,
+        1652
+      ]
+    },
+    {
+      "id": 13,
+      "type": "saida",
+      "name": "Explorar a cidade",
+      "cell": [
+        40,
+        16
+      ],
+      "center": [
+        3728,
+        2004
+      ]
+    },
+    {
+      "id": 14,
+      "type": "interacao",
+      "name": "Mural · amigos",
+      "cell": [
+        15,
+        23
+      ],
+      "center": [
+        1680,
+        1428
+      ]
+    },
+    {
+      "id": 15,
+      "type": "interacao",
+      "name": "Mural · trocas",
+      "cell": [
+        15,
+        24
+      ],
+      "center": [
+        1616,
+        1460
+      ]
+    },
+    {
+      "id": 16,
+      "type": "interacao",
+      "name": "Seus parceiros",
+      "cell": [
+        21,
+        25
+      ],
+      "center": [
+        1936,
+        1684
+      ]
+    },
+    {
+      "id": 17,
+      "type": "interacao",
+      "name": "Parque dos Ventos · exploração",
+      "cell": [
+        28,
+        28
+      ],
+      "center": [
+        2192,
+        2004
+      ]
+    }
+  ],
+  "locks": [
+    "No navigation or event changes",
+    "No stairs, cliffs, ramps or raised terraces: level zero throughout",
+    "Impassable canteiro must read as planted or bounded garden, never open walkable lawn",
+    "No permanent characters or HUD in background",
+    "Kite shop, Assis workshop and Kael home have distinct silhouettes",
+    "Concept is not a runtime background or a validated modular kit"
+  ],
+  "approval": "pending_owner_review",
+  "alignment": "pending_pixel_review_of_generated_concept"
+}

@@ -1,0 +1,22 @@
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+import {parseTiled,MATERIALS} from '../mapa-studio/model.mjs';
+const source='art/overworld/mapas/rua-dos-ventos.tmj';
+const raw=fs.readFileSync(source);
+const m=parseTiled(JSON.parse(raw),{'rascunho.tsj':JSON.parse(fs.readFileSync('art/overworld/tiles/rascunho.tsj'))});
+const out='art/overworld/conceitos/bairro';fs.mkdirSync(out,{recursive:true});
+const maxLevel=Math.max(...m.cells.map(c=>c.level+(c.ramp?1:0)));
+const bounds={x0:-m.h*32-40,x1:m.w*32+40,y0:-maxLevel*64-90,y1:(m.w+m.h)*16+30};
+const project=(u,v,h=0)=>[2*((u-v)*32-bounds.x0),2*((u+v)*16-h*64-bounds.y0)];
+const polygon=(u,v,a,b)=>[[u,v],[u+a,v],[u+a,v+b],[u,v+b]].map(([u,v])=>project(u,v));
+const counts={};for(const c of m.cells)counts[c.material]=(counts[c.material]||0)+1;
+const pairs={};for(let v=0;v<m.h;v++)for(let u=0;u<m.w;u++)for(const [du,dv] of [[1,0],[0,1]]){const a=m.cells[v*m.w+u],b=m.cells[(v+dv)*m.w+u+du];if(u+du>=m.w||v+dv>=m.h||!b||a.material===b.material)continue;const key=[a.material,b.material].sort().join('/');pairs[key]=(pairs[key]||0)+1;}
+const pieces=m.pieces.map(p=>({id:p.id,asset:p.asset,cell:[p.u,p.v],footprint:[p.fu,p.fv],polygon:polygon(p.u,p.v,p.fu,p.fv),door:p.props.porta_u===undefined?null:{cell:[p.props.porta_u,p.props.porta_v],center:project(p.props.porta_u+.5,p.props.porta_v+.5),front:p.props.frente}}));
+const brief={issue:'PIP-84',stage:'concept_review',source,sourceSha256:crypto.createHash('sha256').update(raw).digest('hex'),style:'art/overworld/estilo/PRANCHA-ESTILO.png',projection:{cell:[64,32],levelPx:64,exportScale:2,bounds,imageSize:[(bounds.x1-bounds.x0)*2,(bounds.y1-bounds.y0)*2],edgeTolerancePx:4},materials:Object.entries(counts).map(([id,cells])=>({id,cells,walk:MATERIALS[id].walk,plannedTileVariants:4,tileSize:[64,32]})),transitions:Object.entries(pairs).map(([pair,edges])=>({pair,edges,plannedCornerMasks:16})),pieces,zones:m.zones,events:m.events.map(e=>({id:e.id,type:e.type,name:e.name,cell:[e.u,e.v],center:project(e.u+.5,e.v+.5)})),locks:['No navigation or event changes','No stairs, cliffs, ramps or raised terraces: level zero throughout','Impassable canteiro must read as planted or bounded garden, never open walkable lawn','No permanent characters or HUD in background','Kite shop, Assis workshop and Kael home have distinct silhouettes','Concept is not a runtime background or a validated modular kit'],approval:'pending_owner_review',alignment:'pending_pixel_review_of_generated_concept'};
+fs.writeFileSync(out+'/brief.json',JSON.stringify(brief,null,2)+'\n');
+fs.copyFileSync('documentation/overworld/pip81/references/rua-dos-ventos-referencia.png',out+'/referencia.png');
+const [w,h]=brief.projection.imageSize;
+const poly=points=>points.map(p=>p.join(',')).join(' ');
+const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><image href="referencia.png" width="${w}" height="${h}"/>${pieces.map(p=>`<polygon points="${poly(p.polygon)}" fill="none" stroke="#00eaff" stroke-width="3"/>${p.door?`<circle cx="${p.door.center[0]}" cy="${p.door.center[1]}" r="12" fill="#ff6544" stroke="white" stroke-width="3"/>`:''}`).join('')}</svg>`;
+fs.writeFileSync(out+'/registro-geometrico.svg',svg);
+console.log(JSON.stringify({file:out+'/brief.json',size:[w,h],materials:brief.materials.length,transitionPairs:brief.transitions.length,doors:pieces.filter(p=>p.door).length}));
