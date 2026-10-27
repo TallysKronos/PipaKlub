@@ -39,7 +39,8 @@ func frame() -> void:
 
 func button(node: Node, text: String) -> Button:
 	for child in node.get_children():
-		if child is Button and child.text == text: return child
+		# Slots display a short action; the tooltip retains the unique journey label.
+		if child is Button and (child.text == text or child.tooltip_text == text): return child
 		var found := button(child, text)
 		if found != null: return found
 	return null

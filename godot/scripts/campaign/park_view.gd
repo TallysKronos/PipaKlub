@@ -93,12 +93,12 @@ func _build_ui() -> void:
 	column.add_child(row)
 	var title := Label.new()
 	title.add_theme_font_size_override("font_size", 24)
-	title.add_theme_color_override("font_shadow_color", Color("103d36"))
+	title.theme_type_variation = "RecorteWorldText"
 	title.add_theme_constant_override("shadow_offset_x", 2)
 	title.add_theme_constant_override("shadow_offset_y", 2)
-	title.text = "Veredas do Encantamento"
+	title.text = "Veredas do Encanamento"
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var location := Hud.card("Veredas do Encantamento")
+	var location := Hud.card("Veredas do Encanamento")
 	location.custom_minimum_size.x = 320
 	row.add_child(location)
 	Hud.retract_after(location, 3)
@@ -124,7 +124,7 @@ func _build_ui() -> void:
 	objective.add_theme_font_size_override("font_size", 18)
 	objective.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	var mission := PanelContainer.new()
-	mission.add_theme_stylebox_override("panel", Hud.panel())
+	mission.theme_type_variation = "PanelContainer"
 	mission.custom_minimum_size.x = 320
 	mission.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	mission.add_child(objective)
@@ -148,10 +148,11 @@ func _build_ui() -> void:
 	modal.add_child(speech)
 	hint = Label.new()
 	var prompt_panel := PanelContainer.new()
-	prompt_panel.add_theme_stylebox_override("panel", Hud.panel())
+	prompt_panel.theme_type_variation = "PanelContainer"
 	prompt_panel.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	prompt_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	prompt_panel.add_child(hint)
+	Hud.interaction_glyph(prompt_panel)
 	column.add_child(prompt_panel)
 
 func _physics_process(delta: float) -> void:
@@ -159,9 +160,9 @@ func _physics_process(delta: float) -> void:
 	if is_instance_valid(guardian) and not guardian_frames.is_empty():
 		var frame: Dictionary = guardian_frames[int(clock * 12) % guardian_frames.size()]
 		guardian.region_rect = Rect2(frame.x, frame.y, frame.w, frame.h)
-		tail.modulate = Color(1, .95, .65, .65 + .35 * sin(clock * 4))
+		tail.modulate = Tokens.alpha(Tokens.SOL, .65 + .35 * sin(clock * 4))
 	if paused: return
-	hint.text = Controls.prompt("interact") + " · " + _near_action().get("label", "") if not _near_action().is_empty() else ("Analógico · Mover" if Controls.gamepad else "Setas · Clique para caminhar") + " · %s mapa" % Controls.prompt("map")
+	hint.text = _near_action().get("label", "") if not _near_action().is_empty() else ("Analógico · Mover" if Controls.gamepad else "Setas · Clique para caminhar") + " · %s mapa" % Controls.prompt("map")
 	hint.get_parent().visible = not _near_action().is_empty()
 	var moved := last_point.distance_to(player)
 	autosave_distance += moved

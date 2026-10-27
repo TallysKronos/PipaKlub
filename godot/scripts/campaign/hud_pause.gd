@@ -1,4 +1,5 @@
 extends Control
+const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 const Hud = preload("res://scripts/campaign/hud.gd")
 signal chosen(action: String)
 var player: Dictionary = {}
@@ -34,16 +35,20 @@ func _ready() -> void:
 		margin.add_child(button)
 		if index == 0: first = button
 		index += 1
+	var hints := HBoxContainer.new()
+	column.add_child(hints)
+	Hud.input_hint(hints,"accept","Confirmar")
+	Hud.input_hint(hints,"pause","Retomar")
 	var card := PanelContainer.new()
 	card.anchor_left = .56
 	card.anchor_right = .93
 	card.anchor_top = .24
 	card.anchor_bottom = .69
-	card.add_theme_stylebox_override("panel", Hud.panel("paper"))
+	card.theme_type_variation = "RecortePaperPanel"
 	add_child(card)
-	Hud.decorate(card, 0, Vector2(170, 113))
 	var details := VBoxContainer.new()
 	card.add_child(details)
+	Hud.decorate(details, 0, Vector2(72, 48))
 	var summary: Array[String] = [str(player.get("name", "Kael")), "%d moedas" % int(player.get("coins", 0))]
 	for partner in player.get("partners", []):
 		if partner.id != player.get("equippedPartnerId", ""): continue
@@ -55,11 +60,11 @@ func _ready() -> void:
 		var label := Label.new()
 		label.text = text
 		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		label.add_theme_color_override("font_color", Hud.INK)
+		label.theme_type_variation = "RecortePaperText"
 		details.add_child(label)
 	Hud.focus_later(first)
 func _draw() -> void:
-	draw_rect(Rect2(Vector2.ZERO, size), Color("0b1017d9"))
+	draw_rect(Rect2(Vector2.ZERO, size), Tokens.VEU)
 	draw_colored_polygon(PackedVector2Array([Vector2.ZERO, Vector2(size.x * .51, 0), Vector2(size.x * .42, size.y), Vector2(0, size.y)]), Hud.INK)
 	draw_line(Vector2(size.x * .51, 0), Vector2(size.x * .42, size.y), Hud.CORAL, 5, true)
 	var art := Hud.ornament(2)

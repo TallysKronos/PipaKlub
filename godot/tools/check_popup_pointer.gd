@@ -4,6 +4,9 @@ func _initialize() -> void:
 func run_check() -> void:
 	root.size = Vector2i(1270, 710)
 	var popup := ConfirmationDialog.new()
+	popup.title = "Conferir interação"
+	popup.ok_button_text = "Confirmar"
+	popup.cancel_button_text = "Cancelar"
 	popup.dialog_text = "Verificação isolada de clique no popup."
 	popup.dialog_hide_on_ok = false
 	root.add_child(popup)

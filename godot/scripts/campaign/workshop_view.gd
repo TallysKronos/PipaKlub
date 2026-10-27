@@ -1,4 +1,5 @@
 extends Control
+const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
 signal progress_changed(state: Dictionary)
 signal finished(outcome: Dictionary)
@@ -42,7 +43,7 @@ func _ready() -> void:
 	bottom_panel.offset_left = 24
 	bottom_panel.offset_right = -24
 	bottom_panel.offset_bottom = -16
-	bottom_panel.add_theme_stylebox_override("panel", Hud.panel())
+	bottom_panel.theme_type_variation = "PanelContainer"
 	add_child(bottom_panel)
 	var bottom := VBoxContainer.new()
 	bottom_panel.add_child(bottom)
@@ -61,26 +62,34 @@ func _ready() -> void:
 		if not storage_blocked:
 			paused = false
 			resume_button.hide())
-	actions.add_child(resume_button)
+	_add_action(actions,resume_button)
 	restock_button = Button.new()
 	restock_button.text = "Buscar materiais"
 	restock_button.visible = false
 	restock_button.pressed.connect(_restock)
-	actions.add_child(restock_button)
+	_add_action(actions,restock_button)
 	pause_button = Button.new()
 	pause_button.text = "Pausar"
 	pause_button.pressed.connect(_pause)
-	actions.add_child(pause_button)
+	_add_action(actions,pause_button)
 	var back := Button.new()
 	back.text = "Sair da bancada"
 	back.pressed.connect(func(): _pause(); leave_requested.emit())
-	actions.add_child(back)
+	_add_action(actions,back)
 	for button in [resume_button, restock_button, pause_button, back]:
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.custom_minimum_size.y = 56
 	Hud.secondary_button(back)
 	Hud.secondary_button(pause_button)
 	Hud.fit_footer(bottom_panel, bottom, 110)
+
+func _add_action(parent: HBoxContainer, button: Button) -> void:
+	var space := Hud.focus_space(parent)
+	space.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	space.visible = button.visible
+	space.add_child(button)
+	# Hidden actions must not leave empty columns in paused/blocked states.
+	button.visibility_changed.connect(func(): space.visible = button.visible)
 
 func _scale() -> float:
 	return minf(size.x / 960, maxf(200, bottom_panel.position.y - 8) / 640) if is_instance_valid(bottom_panel) else minf(size.x / 960, size.y * .7 / 640)
@@ -193,7 +202,7 @@ func _draw() -> void:
 			draw_line(Workshop.CENTER, point, Color("8b572b"), 8)
 			draw_line(Workshop.CENTER, point, Color("e7b86b"), 3)
 		else:
-			draw_dashed_line(Workshop.CENTER, point, Color("d8be87"), 3, 8)
+			draw_dashed_line(Workshop.CENTER, point, Tokens.PAPEL_2, 3, 8)
 	if model.run.stage == 0:
 		draw_rect(Rect2(760, 150, 180, 350), Color("604628"))
 		for i in int(Workshop.CLASSES[model.run.kind].rods):
@@ -202,28 +211,29 @@ func _draw() -> void:
 			draw_line(cursor - Vector2(0, 80), cursor + Vector2(0, 80), Color("f8d58e"), 8)
 	elif model.run.stage == 1:
 		for i in points.size():
-			draw_circle(points[i], 22, Color("58ba94") if i in model.run.step.tied else Color("dfb96d"), false, 5)
+			draw_circle(points[i], 22, Tokens.FOLHA if i in model.run.step.tied else Tokens.PAPEL_2, false, 5)
 		if model.run.step.holding >= 0:
 			var band: Array = model.run.step.windows[model.run.step.holding]
 			_meter(model.run.step.fill, band[0], band[1])
 	elif model.run.stage == 2:
 		for i in g.samples.size():
-			draw_circle(g.samples[i], 3, Color("4daa83") if i in model.run.step.covered else Color("5b5343"))
+			draw_circle(g.samples[i], 3, Tokens.FOLHA if i in model.run.step.covered else Tokens.TINTA_3)
 		_meter(model.run.step.tear, 0, .8)
 	elif model.run.stage == 3:
 		var tilt: float = model.run.step.theta
-		draw_line(Vector2(480, 460), Vector2(480, 460) + Vector2(sin(deg_to_rad(tilt)), -cos(deg_to_rad(tilt))) * 230, Color("3c7279"), 6)
+		draw_line(Vector2(480, 460), Vector2(480, 460) + Vector2(sin(deg_to_rad(tilt)), -cos(deg_to_rad(tilt))) * 230, Tokens.CEU, 6)
 		_meter(absf(tilt) / Workshop.FALL, 0, Workshop.ZONE / Workshop.FALL)
 		draw_style_box(Hud.panel(), Rect2(360, 527, 290, 52))
 		draw_string(Hud.font(), Vector2(390, 560), "%.1f / 9 s" % model.run.step.t, HORIZONTAL_ALIGNMENT_LEFT, -1, 24, Hud.PAPER)
 		for gust in model.run.step.gusts:
 			if gust.t > model.run.step.t and gust.t - model.run.step.t <= Workshop.CLASSES[model.run.kind].tell:
 				draw_style_box(Hud.panel("paper"), Rect2(355, 73, 300, 58))
-				draw_string(Hud.font(), Vector2(390, 110), "Rajada →" if gust.dir > 0 else "← Rajada", HORIZONTAL_ALIGNMENT_LEFT, -1, 28, Hud.INK)
+				draw_string(Hud.font(), Vector2(385, 110), "Rajada", HORIZONTAL_ALIGNMENT_LEFT, -1, 28, Hud.INK)
+				draw_texture_rect(Hud.icon("seta-direita" if gust.dir > 0 else "seta-esquerda"),Rect2(540,84,36,36),false)
 				break
 	elif model.run.stage == 4:
-		draw_circle(Workshop.CENTER, 84, Color("1d6770"))
-		draw_string(Hud.font(), Workshop.CENTER + Vector2(-75, 8), "Segure o elo", HORIZONTAL_ALIGNMENT_LEFT, -1, 23, Color("fff1c9"))
+		draw_circle(Workshop.CENTER, 84, Tokens.TINTA_2)
+		draw_string(Hud.font(), Workshop.CENTER + Vector2(-75, 8), "Segure o elo", HORIZONTAL_ALIGNMENT_LEFT, -1, 23, Tokens.PAPEL)
 		_meter(model.run.step.fill, .4, .92)
 	draw_set_transform(Vector2.ZERO)
 

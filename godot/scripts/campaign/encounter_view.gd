@@ -1,4 +1,5 @@
 extends Control
+const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
 signal save_requested(state: Dictionary)
 signal finish_requested
@@ -49,7 +50,7 @@ func configure(data: Dictionary, state: Dictionary) -> void:
 	for id in art_ids: textures.append(load("res://assets/campaign/" + content.combat[id].image))
 	background = load("res://assets/campaign/veredas-arena-wide-v2.png")
 	guardian_frame = load("res://assets/campaign/guardian-frame.png")
-	panel_styles.assign([_panel(Color("123d43")), _panel(Color("531d23"))])
+	panel_styles.assign([_panel("dark"), _panel("danger")])
 
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -64,9 +65,7 @@ func _ready() -> void:
 	bottom_panel.offset_left = 24
 	bottom_panel.offset_right = -24
 	bottom_panel.offset_bottom = -12
-	var footer_skin := StyleBoxEmpty.new()
-	footer_skin.set_content_margin_all(0)
-	bottom_panel.add_theme_stylebox_override("panel", footer_skin)
+	bottom_panel.theme_type_variation = "RecorteEmptyPanel"
 	add_child(bottom_panel)
 	var scroll := ScrollContainer.new()
 	scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
@@ -93,6 +92,7 @@ func _ready() -> void:
 		art.cost = entry[4]
 		command.add_child(art)
 		var action_id: String = {"attackCooldown": "cut", "skillCooldown": "skill", "dodgeCooldown": "dodge", "lineCooldown": "line", "guardCooldown": "guard", "signatureCooldown": "signature"}[entry[3]]
+		art.action_id = action_id
 		art.mouse_entered.connect(func(): selected_action = action_id)
 		art.focus_entered.connect(func(): selected_action = action_id)
 		art.tooltip_text = ACTION_COPY[action_id]
@@ -113,7 +113,7 @@ func _ready() -> void:
 	controls.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var description_panel := PanelContainer.new()
 	description_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	description_panel.add_theme_stylebox_override("panel", Ink.strip())
+	description_panel.theme_type_variation = "RecorteBattlePanel"
 	status_row.add_child(description_panel)
 	description_panel.add_child(controls)
 	resume_button = Button.new()
@@ -127,11 +127,8 @@ func _ready() -> void:
 		pointer_tapped.clear()
 		if not paused: resume_button.release_focus()
 		resume_button.text = "Retomar" if paused else "Pausar")
+	resume_button.theme_type_variation = "RecorteSecondaryButton"
 	resume_button.custom_minimum_size.x = 150
-	resume_button.add_theme_stylebox_override("normal", Ink.strip())
-	resume_button.add_theme_stylebox_override("hover", Ink.strip(true))
-	resume_button.add_theme_stylebox_override("focus", Ink.strip(true))
-	resume_button.add_theme_color_override("font_color", Ink.WHITE)
 	status_row.add_child(resume_button)
 	resume_button.custom_minimum_size.y = 40
 	finish_button = Button.new()
@@ -181,8 +178,8 @@ func _physics_process(delta: float) -> void:
 		command.tile.lock_reason = "PREPARE-SE" if model.intro > 0 else "NOVA RODADA" if model.get("intermission") != null and model.intermission > 0 else "FORA DA RODADA" if model.p.hp <= 0 or model.p.hull <= 0 else ""
 		command.tile.enough_energy = model.p.energy >= command.cost
 		command.tile.queue_redraw()
-		command.node.modulate = Color.WHITE
-		command.label.add_theme_color_override("font_color", Hud.MUTED if cooldown > 0 or model.p.energy < command.cost else Hud.PAPER)
+		command.node.modulate = Tokens.UNTINTED
+		command.label.theme_type_variation = "RecorteMutedText" if cooldown > 0 or model.p.energy < command.cost else "Label"
 	resume_button.visible = model.outcome.is_empty() or blocked
 	resume_button.text = "Tentar salvar novamente" if blocked else "Retomar" if paused else "Pausar"
 	actions.visible = model.outcome.is_empty() and paused
@@ -227,7 +224,7 @@ func _draw_feedback() -> void:
 
 func _draw_result() -> void:
 	draw_set_transform(Vector2.ZERO)
-	draw_rect(Rect2(0, 128, size.x, maxf(0, bottom_panel.position.y - 128)), Color("0b10172b"))
+	draw_rect(Rect2(0, 128, size.x, maxf(0, bottom_panel.position.y - 128)), Tokens.alpha(Tokens.NANQUIM, .17))
 	var fraction := 1.0 if reduced_motion else clampf(result_age / .24, 0, 1)
 	# Uniform scaling keeps illustrated corners and knots proportional.
 	var zoom := 1.0 if reduced_motion else .92 + .08 * sin(fraction * PI / 2)
@@ -258,7 +255,7 @@ func _draw_foreground() -> void:
 	var height := 240.0
 	var base_y := size.y - 90
 	var base := PackedVector2Array([Vector2(0, base_y - 4), Vector2(size.x * .15, base_y + 5), Vector2(size.x * .33, base_y - 7), Vector2(size.x * .5, base_y + 3), Vector2(size.x * .74, base_y - 5), Vector2(size.x, base_y), Vector2(size.x, size.y), Vector2(0, size.y)])
-	draw_colored_polygon(base, Color("102c2c"))
+	draw_colored_polygon(base, Tokens.TINTA)
 	var factor := height / source.get_height()
 	var width := cap * factor
 	var center_width := cap * 2 * factor
@@ -291,12 +288,12 @@ func _draw() -> void:
 		var frames: Array = content.combat[art_ids[index]].animations[action]
 		var frame: Dictionary = frames[int(clock * 12) % frames.size()]
 		var width := 260 if index == 1 and model.q.boss else 220
-		Ink.live_sprite(self, textures[index], art_ids[index], frame, Vector2(actor.x, actor.y), width, Color.WHITE, _field_scale())
-		if actor.guardTime > 0: draw_circle(Vector2(actor.x, actor.y), 60, Color("85f4d0"), false, 4)
+		Ink.live_sprite(self, textures[index], art_ids[index], frame, Vector2(actor.x, actor.y), width, Tokens.UNTINTED, _field_scale())
+		if actor.guardTime > 0: draw_circle(Vector2(actor.x, actor.y), 60, Tokens.CEU, false, 4)
 		if actor.signatureWindup > 0:
 			var radius := 95 if index == 1 else 85
-			draw_circle(actor.signatureAim, radius, Color(1, .15, .1, .18))
-			draw_arc(actor.signatureAim, radius, 0, TAU, 60, Color("ff6149"), 4)
+			draw_circle(actor.signatureAim, radius, Tokens.alpha(Tokens.RABIOLA, .18))
+			draw_arc(actor.signatureAim, radius, 0, TAU, 60, Tokens.RABIOLA, 4)
 
 	_draw_feedback()
 	if model.intro > 0 and model.q.boss and model.outcome.is_empty():
@@ -313,8 +310,8 @@ func _draw() -> void:
 	_draw_status()
 	_draw_special()
 
-func _panel(color: Color) -> StyleBox:
-	return Hud.panel("danger" if color.r > color.g else "dark")
+func _panel(role: String = "dark") -> StyleBox:
+	return Hud.panel(role)
 
 func _action_held(action: String) -> bool:
 	return Controls.held(action) or bool(pointer_held.get(action, false)) or bool(pointer_tapped.get(action, false))
@@ -356,7 +353,7 @@ func _draw_special() -> void:
 	var box := Rect2(size.x - 405, y, 373, 112)
 	draw_texture_rect(Ink.brush(0), Hud.fit_texture(Ink.brush(0), box.grow(25)), false)
 	Ink.plate(self, box, Ink.BLACK, Ink.WHITE)
-	Ink.plate(self, Rect2(box.position + Vector2(113, 8), Vector2(244, 24)), Color("ffda32"), Ink.BLACK, 8)
+	Ink.plate(self, Rect2(box.position + Vector2(113, 8), Vector2(244, 24)), Tokens.SOL, Ink.BLACK, 8)
 	draw_string(Hud.font(true), box.position + Vector2(134, 27), "GOLPE EXCLUSIVO", HORIZONTAL_ALIGNMENT_LEFT, -1, 18, Ink.BLACK)
 	draw_string(Hud.font(true), box.position + Vector2(122, 67), "PULO DO ELO", HORIZONTAL_ALIGNMENT_LEFT, -1, 34, Ink.WHITE)
 	draw_string(Hud.font(), box.position + Vector2(124, 92), "Acerte a área marcada!", HORIZONTAL_ALIGNMENT_LEFT, -1, 15, Ink.WHITE)
@@ -374,5 +371,5 @@ func _draw_anchor(x: float, color: Color) -> void:
 
 func draw_ellipse_stub(point: Vector2) -> void:
 	draw_set_transform(point, 0, Vector2(1, .25))
-	draw_circle(Vector2.ZERO, 18, Color(0, 0, 0, .25))
+	draw_circle(Vector2.ZERO, 18, Tokens.alpha(Tokens.NANQUIM, .25))
 	draw_set_transform(Vector2.ZERO)

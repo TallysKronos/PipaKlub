@@ -37,6 +37,7 @@ func run_checks() -> void:
 	await process_frame
 	check(Controls.held("cut"), "rebound key attacks")
 	check(Controls.prompt("cut") == "T", "prompt follows remap")
+	check(Controls.glyph_id("cut") == "t" and Controls.glyph("cut") != null,"keyboard glyph follows remapped key")
 	key(KEY_T, false)
 	var button := InputEventJoypadButton.new()
 	button.button_index = JOY_BUTTON_X
@@ -45,7 +46,7 @@ func run_checks() -> void:
 	Input.parse_input_event(button)
 	await process_frame
 	check(Controls.held("cut"), "simulated pad attacks after keyboard remap")
-	check(Controls.prompt("cut") == "X / □", "pad prompt switches")
+	check(Controls.prompt("cut") == "X", "pad prompt uses the active controller family")
 	button.pressed = false
 	Input.parse_input_event(button)
 	var axis := InputEventJoypadMotion.new()
@@ -88,6 +89,36 @@ func run_checks() -> void:
 	config.save(directory.path_join("invalid.cfg"))
 	loaded.load_settings(directory.path_join("invalid.cfg"))
 	check(loaded.bindings == Controls.DEFAULTS, "corrupt persisted mapping repaired in memory")
+	Controls.set_family("auto")
+	for profile in [[100,"Xbox Series Controller",0x045e,"xbox","A",JOY_BUTTON_A],[101,"DualSense Wireless Controller",0x054c,"ps","×",JOY_BUTTON_A],[102,"Nintendo Switch Pro Controller",0x057e,"switch","A",JOY_BUTTON_B],[103,"Unknown USB Pad",0,"xbox","A",JOY_BUTTON_A]]:
+		Controls.configure_device(profile[0],profile[1],profile[2])
+		var press := InputEventJoypadButton.new()
+		press.device = profile[0]
+		press.button_index = profile[5]
+		press.pressed = true
+		Controls.observe(press)
+		check(Controls.family() == profile[3],"device identification: "+profile[1])
+		check(Controls.prompt("interact") == profile[4],"printed confirm label: "+profile[1])
+		check(Controls.glyph("interact") != null,"confirm image exists: "+profile[1])
+		check(Controls.pressed(press,"interact") and press.is_action_pressed("ui_accept"),"same physical button confirms UI and world: "+profile[1])
+		Input.parse_input_event(press)
+		await process_frame
+		check(Controls.held("interact"),"normalized event reaches InputMap: "+profile[1])
+		press.pressed = false
+		Input.parse_input_event(press)
+		await process_frame
+		if profile[3] == "switch":
+			press.button_index = JOY_BUTTON_A
+			press.pressed = true
+			check(not Controls.pressed(press,"interact") and Controls.pressed(press,"dodge") and press.is_action_pressed("ui_cancel"),"Nintendo bottom B dodges and cancels, never confirms")
+			check(Controls.prompt("cut") == "Y" and Controls.prompt("skill") == "X","Nintendo X/Y labels follow unchanged physical positions")
+			check(Controls.glyph_id("interact") == "east" and Controls.glyph_id("dodge") == "south","Nintendo glyphs match right A and bottom B")
+	for device in [100,101,102,103]: Controls.remove_device(device)
+	var keyboard := InputEventKey.new()
+	keyboard.pressed = true
+	keyboard.physical_keycode = KEY_T
+	Controls.observe(keyboard)
+	check(Controls.family() == "kbd","keyboard switches live after gamepad")
 	Controls.install()
 	Controls.gamepad = false
 	print("CONTROLS CHECKS: %d checks, %d failures" % [checks, failures])

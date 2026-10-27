@@ -1,8 +1,11 @@
 // Original, editable Soulmonsters UI artwork. No raster mockup or baked text.
 import { mkdir, writeFile } from 'node:fs/promises';
+import {recorteTokens,syncRecorteManifest} from './sync-recorte-tokens.mjs';
 const out = new URL('../godot/assets/campaign/ui-recorte/', import.meta.url);
 await mkdir(out, { recursive: true });
-const colors = { ink:'#0B1017', dark:'#22303F', danger:'#33475A', paper:'#F4E9D2', muted:'#D8C9AC', cyan:'#2EC8E3', coral:'#FF5A36', gold:'#FFC23D' };
+const tokens = recorteTokens();
+// Dark rival panels retain readable paper text; danger signals use coral.
+const colors = { ink:tokens.nanquim, dark:tokens['tinta-2'], danger:tokens['tinta-3'], paper:tokens.papel, muted:tokens['papel-2'], cyan:tokens.ceu, coral:tokens.rabiola, gold:tokens.sol };
 const svg = (w,h,body) => `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">${body}</svg>`;
 const save = (name,w,h,body) => writeFile(new URL(name+'.svg',out),svg(w,h,body));
 // Source corners = 24px. Straight edge middles and blank center stretch independently.
@@ -17,7 +20,7 @@ for (const role of ['dark','danger','paper']) {
 }
 // Every state has identical slicing and content metrics; the brush ends never widen.
 for (const state of ['normal','hover','pressed','disabled','focus']) {
- const fill=state==='hover'||state==='focus'?colors.paper:state==='disabled'?'#D4D7C9':colors.coral;
+ const fill=state==='hover'||state==='focus'?colors.paper:state==='disabled'?colors.muted:colors.coral;
  await save('button-'+state,160,64,`
  <path d="M17 7L157 7 145 62 3 61Z" fill="${colors.ink}"/>
  <path d="M15 3L154 3 141 57 2 56Z" fill="${fill}" stroke="${state==='focus'?colors.cyan:colors.ink}" stroke-width="3"/>
@@ -29,7 +32,7 @@ for (const state of ['normal','hover','pressed','disabled','focus']) {
 for (const state of ['on','off']) await save('toggle-'+state,84,40,`
  <path d="M11 3L81 3 73 37 3 37Z" fill="${colors.ink}" stroke="${colors.muted}" stroke-width="2"/>
  <path d="M${state==='on'?58:23} 8l12 12-12 12-12-12Z" fill="${state==='on'?colors.coral:colors.paper}"/>
- <path d="M15 20h17" stroke="${state==='on'?colors.cyan:'#536575'}" stroke-width="3"/>`);
+ <path d="M15 20h17" stroke="${state==='on'?colors.cyan:tokens['tinta-3']}" stroke-width="3"/>`);
 // Icon language: bamboo spars + folded paper, 64px box and common ink weight.
 const iconPaths={
  attack:'<path d="M12 48L50 10 55 15 18 53Z" fill="#F4E9D2"/><path d="M14 38l12 12M33 15l16 17M13 10l6 7M45 48l8 6"/>',
@@ -57,6 +60,7 @@ for(const role of ['victory','defeat']) await save('ribbon-'+role,720,160,`
 await save('splat',256,192,`<path fill="white" d="M89 21L112 38 142 9 150 42 198 31 186 65 235 84 202 104 223 140 179 139 172 179 141 155 104 182 92 148 44 162 54 128 11 113 48 94 21 57 64 61 67 24Z"/><circle cx="225" cy="27" r="7" fill="white"/><circle cx="23" cy="170" r="5" fill="white"/>`);
 await save('thread-mark',320,100,`<g fill="none" stroke="${colors.cyan}" stroke-width="2"><path d="M3 75C71 9 153 96 225 22"/><path d="M3 81C71 15 153 102 225 28" opacity=".35"/></g><g stroke="${colors.ink}" stroke-width="3"><path d="M250 4L283 30 249 77 218 32Z" fill="${colors.coral}"/><path d="M250 4L249 77M218 32L283 30" fill="none"/></g>`);
 console.log('Soulmonsters Recorte: original SVG family generated.');
+syncRecorteManifest();
 
 // Item identities share ink weight, with distinct paper profiles, not color alone.
 for (const [id, color, shape] of [

@@ -1,4 +1,5 @@
 extends Control
+const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
 signal continue_lesson
 signal leave
@@ -39,14 +40,11 @@ func _ready() -> void:
 	panel.offset_left = 20
 	panel.offset_right = -20
 	panel.offset_bottom = -12
-	panel.add_theme_stylebox_override("panel", Hud.panel())
+	panel.theme_type_variation = "PanelContainer"
 	add_child(panel)
-	var scroll := ScrollContainer.new()
-	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	panel.add_child(scroll)
 	bottom.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	scroll.add_child(bottom)
+	# This footer grows to its content; a non-scrolling clip cuts slanted edges.
+	panel.add_child(bottom)
 	lesson_label = Label.new()
 	lesson_label.add_theme_font_size_override("font_size", 20)
 	bottom.add_child(lesson_label)
@@ -58,7 +56,10 @@ func _ready() -> void:
 	resume_button.text = "Retomar treino"
 	resume_button.visible = false
 	resume_button.pressed.connect(func(): paused = false; resume_button.release_focus(); resume_button.hide())
-	bottom.add_child(resume_button)
+	var resume_space := Hud.focus_space(bottom)
+	resume_space.visible = false
+	resume_space.add_child(resume_button)
+	resume_button.visibility_changed.connect(func(): resume_space.visible = resume_button.visible)
 	next_button = Button.new()
 	next_button.text = "Continuar"
 	next_button.disabled = true
@@ -67,12 +68,17 @@ func _ready() -> void:
 	var row := HBoxContainer.new()
 	bottom.add_child(row)
 	next_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	row.add_child(next_button)
+	var next_space := Hud.focus_space(row)
+	next_space.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	next_space.add_child(next_button)
 	var exit := Button.new()
 	exit.text = "Salvar e voltar ao menu"
 	exit.pressed.connect(func(): leave.emit())
 	exit.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	row.add_child(exit)
+	var exit_space := Hud.focus_space(row)
+	exit_space.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	exit_space.add_child(exit)
+	Hud.secondary_button(exit)
 	Hud.fit_footer(panel, bottom, 208)
 
 func _field_scale() -> float:
@@ -121,19 +127,19 @@ func _draw() -> void:
 		return
 	draw_set_transform(_field_offset(), 0, Vector2.ONE * _field_scale())
 	draw_texture_rect(background, Rect2(0, 0, 1000, 640), false)
-	draw_rect(Rect2(0, 0, 1000, 640), Color(0, .08, .12, .12))
+	draw_rect(Rect2(0, 0, 1000, 640), Tokens.alpha(Tokens.TINTA, .12))
 	var p: Dictionary = model.p
 	var q: Dictionary = model.q
 	var crossed: Dictionary = model.contact(p, q)
-	draw_line(Vector2(p.anchor, 585), Vector2(p.x, p.y), Color("70d4e0"), 3)
-	draw_dashed_line(Vector2(q.anchor, 585), Vector2(q.x, q.y), Color("edcf87"), 3, 8)
+	draw_line(Vector2(p.anchor, 585), Vector2(p.x, p.y), Tokens.CEU, 3)
+	draw_dashed_line(Vector2(q.anchor, 585), Vector2(q.x, q.y), Tokens.RABIOLA, 3, 8)
 	if not crossed.is_empty():
-		draw_circle(crossed.point, 12, Color("5ce9a2") if crossed.valid else Color("f1b85e"), false, 3)
+		draw_circle(crossed.point, 12, Tokens.FOLHA if crossed.valid else Tokens.PAPEL_2, false, 3)
 	if model.lesson == 0:
-		draw_circle(Vector2(700, 180), 45, Color("8ce8bf"), false, 4)
+		draw_circle(Vector2(700, 180), 45, Tokens.CEU, false, 4)
 	if q.signatureWindup > 0:
-		draw_circle(q.signatureAim, 78, Color(1, .25, .2, .2))
-		draw_arc(q.signatureAim, 78, -PI / 2, -PI / 2 + TAU * (1 - q.signatureWindup / 1.65), 48, Color("ff694a"), 5)
+		draw_circle(q.signatureAim, 78, Tokens.alpha(Tokens.RABIOLA, .2))
+		draw_arc(q.signatureAim, 78, -PI / 2, -PI / 2 + TAU * (1 - q.signatureWindup / 1.65), 48, Tokens.RABIOLA, 5)
 	for index in 2:
 		var id := "rabbito" if index == 0 else "nozinho"
 		var actor: Dictionary = p if index == 0 else q
@@ -142,7 +148,7 @@ func _draw() -> void:
 		var texture := texture_p if index == 0 else texture_q
 		draw_texture_rect_region(texture, Rect2(actor.x - 64, actor.y - 64, 128, 128), Rect2(frame.x, frame.y, frame.w, frame.h))
 		if actor.guardTime > 0:
-			draw_circle(Vector2(actor.x, actor.y), 56, Color("75e8d0"), false, 5)
+			draw_circle(Vector2(actor.x, actor.y), 56, Tokens.CEU, false, 5)
 		var x := 30 if index == 0 else 660
 		Hud.stat_card(self, Rect2(x, 20, 310, 92), "Rabbito" if index == 0 else "Nozinho", actor, "dark" if index == 0 else "danger", true)
 

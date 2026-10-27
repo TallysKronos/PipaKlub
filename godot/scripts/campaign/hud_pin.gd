@@ -1,8 +1,9 @@
 extends Control
+const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 ## Fixed-size kite pin, deliberately outside the stretchable panel surface.
-var ink := Color("141e29")
-var paper := Color("f4e9d2")
-var accent := Color("ff5a36")
+var ink := Tokens.NANQUIM
+var paper := Tokens.PAPEL
+var accent := Tokens.RABIOLA
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	focus_mode = Control.FOCUS_NONE

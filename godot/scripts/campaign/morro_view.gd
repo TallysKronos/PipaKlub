@@ -1,4 +1,5 @@
 extends "res://scripts/campaign/park_route_view.gd"
+const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 const Rules = preload("res://scripts/campaign/morro_rules.gd")
 var navigation := AStar2D.new()
 var path: PackedVector2Array = []
@@ -100,7 +101,7 @@ func _ready() -> void:
 		name_label.size.x = 160 if data.npcs.size() == 2 else 90
 		name_label.visible = data.npcs.size() != 2 or npc.name == "Juninho"
 		name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		name_label.add_theme_color_override("font_outline_color", Color("173d39"))
+		name_label.theme_type_variation = "RecorteWorldText"
 		name_label.add_theme_constant_override("outline_size", 4)
 		var label_root := Node2D.new()
 		label_root.position = sprite.position
@@ -178,10 +179,10 @@ func _ready() -> void:
 		row.add_child(button)
 	goal = Label.new()
 	goal.text = "Passagem liberada" if not gate_closed else "Explore o bairro e converse com os pipeiros."
-	goal.add_theme_color_override("font_outline_color", Color("173d39"))
+	goal.theme_type_variation = "RecorteWorldText"
 	goal.add_theme_constant_override("outline_size", 0)
 	var objective_panel := PanelContainer.new()
-	objective_panel.add_theme_stylebox_override("panel", Hud.panel())
+	objective_panel.theme_type_variation = "PanelContainer"
 	objective_panel.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	objective_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	objective_panel.add_child(goal)
@@ -192,13 +193,14 @@ func _ready() -> void:
 	gap.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	column.add_child(gap)
 	hint = Label.new()
-	hint.add_theme_color_override("font_outline_color", Color("173d39"))
+	hint.theme_type_variation = "RecorteWorldText"
 	hint.add_theme_constant_override("outline_size", 0)
 	var prompt_panel := PanelContainer.new()
-	prompt_panel.add_theme_stylebox_override("panel", Hud.panel())
+	prompt_panel.theme_type_variation = "PanelContainer"
 	prompt_panel.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	prompt_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	prompt_panel.add_child(hint)
+	Hud.interaction_glyph(prompt_panel)
 	column.add_child(prompt_panel)
 	_refresh()
 	camera.reset_smoothing()
@@ -275,7 +277,7 @@ func _physics_process(delta: float) -> void:
 	hint.get_parent().visible = not near.is_empty()
 	for place in data.places:
 		if place.id == near:
-			hint.text = Controls.prompt("interact") + " · " + ("Conversar com " + " e ".join(Rules.stage(data.stage).foes.map(func(f): return f.name)) if place.has("stage") else place.name)
+			hint.text = "Conversar com " + " e ".join(Rules.stage(data.stage).foes.map(func(f): return f.name)) if place.has("stage") else place.name
 	distance += before.distance_to(player)
 	if distance >= 250:
 		distance = 0

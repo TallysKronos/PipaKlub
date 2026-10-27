@@ -12,7 +12,8 @@ var progress: ProgressBar
 var progress_caption: Label
 
 func _ready() -> void:
-	add_theme_stylebox_override("panel", Hud.panel())
+	theme_type_variation = "PanelContainer"
+	theme = Hud.make_theme()
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var column := VBoxContainer.new()
 	column.add_theme_constant_override("separation", 4)
@@ -34,22 +35,17 @@ func _ready() -> void:
 	levels.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	row.add_child(levels)
 	earned = Label.new()
-	earned.add_theme_color_override("font_color", Hud.GOLD)
+	earned.theme_type_variation = "RecorteGoldText"
 	earned.add_theme_font_override("font", Hud.display())
 	row.add_child(earned)
 	progress = ProgressBar.new()
 	progress.show_percentage = false
 	progress.custom_minimum_size.y = 12
-	var fill := Hud.flat_panel()
-	fill.bg_color = Hud.GOLD
-	fill.set_border_width_all(0)
-	fill.set_content_margin_all(0)
-	fill.shadow_offset = Vector2.ZERO
-	progress.add_theme_stylebox_override("fill", fill)
+	progress.theme_type_variation = "RecorteXPBar"
 	column.add_child(progress)
 	progress_caption = Label.new()
 	progress_caption.add_theme_font_size_override("font_size", 16)
-	progress_caption.add_theme_color_override("font_color", Hud.MUTED)
+	progress_caption.theme_type_variation = "RecorteMutedText"
 	column.add_child(progress_caption)
 	var details := Label.new()
 	details.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -74,7 +70,7 @@ func advance(delta: float) -> void:
 	var before_level := Model.level_for_xp(summary.get("before", 0))
 	levels.text = "%s · Nv. %d" % [summary.get("name", "Seu parceiro"), before_level] + (" → %d" % level if level > before_level else "")
 	earned.text = "+%d XP" % amount if summary.get("xp", 0) > 0 else "Sem XP"
-	earned.add_theme_color_override("font_color", Hud.GOLD if summary.get("xp", 0) > 0 else Hud.MUTED)
+	earned.theme_type_variation = "RecorteGoldText" if summary.get("xp", 0) > 0 else "RecorteMutedText"
 	var base := 40 * (level - 1) + 10 * (level - 1) * (level - 1)
 	var threshold := 40 * level + 10 * level * level
 	progress.max_value = threshold - base

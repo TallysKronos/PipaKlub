@@ -1,4 +1,6 @@
 extends Node2D
+const Recorte = preload("res://scripts/campaign/recorte_theme.gd")
+const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 ## Pixel coordinates refer directly to the approved 1536x1024 clean plate.
 ## Separate experimental slice: no connection to the JS game's save/economy.
 const Avatar = preload("res://scripts/avatar.gd")
@@ -327,17 +329,11 @@ func _build_ui() -> void:
 	spacer.size_flags_vertical=Control.SIZE_EXPAND_FILL
 	layout.add_child(spacer)
 	modal=PanelContainer.new()
-	var style:=StyleBoxFlat.new()
-	style.bg_color=Color("fff0cf")
-	style.border_color=Color("ad854b")
-	style.set_border_width_all(3)
-	style.content_margin_left=24
-	style.content_margin_top=16
-	style.content_margin_bottom=16
-	modal.add_theme_stylebox_override("panel",style)
+	modal.theme = Recorte.shared()
+	modal.theme_type_variation = "RecortePaperPanel"
 	layout.add_child(modal)
 	speech=Label.new()
-	speech.add_theme_color_override("font_color",Color("173b3c"))
+	speech.theme_type_variation = "RecortePaperText"
 	speech.add_theme_font_size_override("font_size",22)
 	modal.add_child(speech)
 	modal.hide()
@@ -350,13 +346,13 @@ func _build_ui() -> void:
 func _draw() -> void:
 	if debug_routes:
 		for polygon in ground.floors:
-			draw_colored_polygon(polygon,Color(0,.9,.6,.30))
+			draw_colored_polygon(polygon,Tokens.alpha(Tokens.FOLHA, .30))
 		for polygon in ground.obstacles:
-			draw_colored_polygon(polygon,Color(1,.15,.05,.65))
+			draw_colored_polygon(polygon,Tokens.alpha(Tokens.RABIOLA, .65))
 		for landmark in data.landmarks:
 			var point:=Vector2(landmark.point[0],landmark.point[1])
-			draw_circle(point,6,Color.WHITE)
-			draw_string(ThemeDB.fallback_font,point+Vector2(8,-8),landmark.name,HORIZONTAL_ALIGNMENT_LEFT,-1,14,Color.WHITE)
+			draw_circle(point,6,Tokens.UNTINTED)
+			draw_string(ThemeDB.fallback_font,point+Vector2(8,-8),landmark.name,HORIZONTAL_ALIGNMENT_LEFT,-1,14,Tokens.UNTINTED)
 
 func _smoke() -> void:
 	var failures: Array[String]=[]

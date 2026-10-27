@@ -3,6 +3,7 @@ extends RefCounted
 var crt := true
 var fullscreen := false
 var reduced_motion := false
+var pad_family := "auto"
 var storage_path := "user://settings.cfg"
 const Controls = preload("res://scripts/campaign/controls.gd")
 var bindings: Dictionary = Controls.DEFAULTS.duplicate()
@@ -19,6 +20,8 @@ func load_settings(path: String = "") -> void:
 	reduced_motion = value if value is bool else false
 	value = config.get_value("controls", "keys", Controls.DEFAULTS)
 	bindings = value.duplicate() if Controls.validate(value) else Controls.DEFAULTS.duplicate()
+	value = config.get_value("controls","glyph_family","auto")
+	pad_family = value if value in ["auto","xbox","ps","switch"] else "auto"
 
 func save_settings(path: String = "") -> Error:
 	if path.is_empty(): path = storage_path
@@ -27,4 +30,5 @@ func save_settings(path: String = "") -> Error:
 	config.set_value("video", "fullscreen", fullscreen)
 	config.set_value("video", "reduced_motion", reduced_motion)
 	config.set_value("controls", "keys", bindings)
+	config.set_value("controls","glyph_family",pad_family)
 	return config.save(path)
