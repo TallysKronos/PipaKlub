@@ -302,6 +302,8 @@ func dress() -> void:
 	street_sign(Vector2(9.4,20),support(Vector2(9.4,20))+30,"RUA DO PRIMEIRO VENTO",.8,true)
 	street_sign(Vector2(18.8,13.5),support(Vector2(18.8,13.5))+30,"LADEIRA DAS RABIOLAS",.8,true)
 	street_sign(Vector2(19.8,.2),support(Vector2(19.8,.2))+30,"RUA DOS INVENTOS",.8,true)
+	street_sign(Vector2(30.5,.2),support(Vector2(30.5,.2))+28,"MORRO DO SOL →",.8,true)
+	street_sign(Vector2(30.5,20),support(Vector2(30.5,20))+28,"PARQUE →",.8,true)
 	for p in [Vector2(18.7,23.4),Vector2(8,3.8)]:
 		var verts: Array=[]
 		var uv:=PackedVector2Array()

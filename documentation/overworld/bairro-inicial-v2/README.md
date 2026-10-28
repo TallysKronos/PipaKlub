@@ -1,6 +1,6 @@
 # Vila do Primeiro Vento · bairro inicial v2
 
-Estado: **integrado localmente em uma prévia jogável, aguardando revisão artística do responsável**. Não substitui ainda o mapa/campanha existente. A casa de Kael, o professor e a lojinha são pontos de referência exteriores; interiores, compras e progressão da campanha não foram ligados a esta cena.
+Estado: **cidade aprovada visualmente e conectada ao fluxo local da campanha**, ainda sem testes funcionais de transição/salvamento. A cena `bairro-jogavel.tscn` continua sendo uma prévia independente; a campanha principal carrega o novo adaptador `neighborhood_view.gd` para o checkpoint `quintal`. O ateliê usa o interior e o fluxo de treino/Oficina existentes. Casa e lojinha permanecem pontos exteriores com diálogo, sem interior novo ou compras.
 
 ## Organização e intenção
 
@@ -65,3 +65,15 @@ O perímetro externo recebe faces verticais até a base comum `z=-40`, fechadas 
 ### Revisão da chegada da escada
 
 Patamar inferior pavimentado em `u=8..11, v=11..13`, ligado à calçada existente em `u=11`, na cota 8 px. A escadaria deixa de terminar na grama. Os oito pisos mantêm a subida 8→56 px e compartilham os UVs /16 do passeio. Dois corrimãos contínuos substituem as peças por célula: postes apoiados nos degraus e patamares, com pequenas extensões horizontais nas extremidades e bloqueadores próprios. Conferência visual nativa ampliada do conjunto e das chegadas superior/inferior; caminhada e testes não foram executados nesta revisão.
+
+
+### Primeira integração à campanha
+
+A rota `world/quintal` em `front_end.gd` agora carrega a cidade num SubViewport com o HUD de exploração atualizado. `neighborhood_view.gd` adapta o controlador à pausa, equipe, bolsa, mapa, autosave periódico e ao parceiro equipado. Falar com Assis/usar a entrada leva ao interior existente do professor. As saídas sinalizadas à direita levam ao parque e ao Morro depois do tutorial concluído; sua conclusão continua sendo validada pelo fluxo existente.
+
+`neighborhood_checkpoint.gd` identifica o novo espaço como `bairro-inicial-v2`, separando células nativas de posições do antigo mapa. Checkpoints antigos são interpretados para entrada pela casa/professor/parque/Morro; novos registros conservam a posição em `player.cityPosition` para retorno de outros mapas. A validação aceita saves antigos sem esses campos e verifica os campos novos. A gravação segue o Store existente, sem trocar a pasta ou excluir slots. Não foi executado teste de round-trip de save.
+
+A captura `campanha-1280x720.png` veio da rota real com estado fictício apenas em memória, sem criar slots, movimentar ou disparar interações. Abertura/parse e referências foram conferidos. Ainda falta o teste manual de sair/reentrar no professor, viajar às duas regiões e carregar novamente uma jornada. Os novos interiores da casa e da lojinha pertencem à próxima etapa.
+
+
+Para experimentar a campanha com a cidade nova: `./tools/overworld/open-campaign-city.ps1`. Abre o menu principal e usa perfil local separado em `tmp/campaign-city-profile`; jornadas criadas ali ficam nesse perfil. Para usar os slots normais, abra a cena principal `godot/scenes/campaign.tscn` no Godot. O launcher da prévia do bairro continua sem saves e sem o fluxo da campanha.

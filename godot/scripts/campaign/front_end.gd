@@ -179,7 +179,7 @@ func _main_menu_action(id:String) -> void:
 func _slot_location(snapshot:Dictionary) -> Dictionary:
 	var point:Dictionary=snapshot.get("checkpoint",{})
 	var scene:String=point.get("scene",snapshot.get("player",{}).get("encounter",{}).get("scene",""))
-	var name:String={"quintal":"Bairro dos Ventos","professor-home":"Ateliê do Sr. Assis","park-trail":"Jardim dos Ventos","park-clearing":"Clareira do Papel","park-veredas":"Veredas do Encanamento"}.get(scene,"Prólogo" if point.get("kind")=="opening" else "Ateliê do Sr. Assis")
+	var name:String={"quintal":"Vila do Primeiro Vento","professor-home":"Ateliê do Sr. Assis","park-trail":"Jardim dos Ventos","park-clearing":"Clareira do Papel","park-veredas":"Veredas do Encanamento"}.get(scene,"Prólogo" if point.get("kind")=="opening" else "Ateliê do Sr. Assis")
 	var texture:Texture2D=load("res://assets/campaign/rooftop-arena-wide-v2.png")
 	if scene.begins_with("morro"):
 		var data:Dictionary=Morro.maps().get(scene,{})
@@ -497,6 +497,9 @@ func _stage_container() -> void:
 	_layout_stage()
 
 func _show_world() -> void:
+	if session.snapshot().checkpoint.scene=="quintal":
+		_show_neighborhood()
+		return
 	if Morro.maps().has(session.snapshot().checkpoint.scene):
 		_show_morro()
 		return
@@ -531,6 +534,42 @@ func _show_world() -> void:
 		if id=="collection":_show_collection()
 		elif id=="bag":_show_bag()
 		else:_pause_game())
+
+func _show_neighborhood() -> void:
+	_clear()
+	var container:=SubViewportContainer.new()
+	container.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	container.stretch=true
+	add_child(container)
+	var viewport:=SubViewport.new()
+	viewport.size=Vector2i(size)
+	viewport.handle_input_locally=true
+	viewport.world_2d=World2D.new()
+	container.add_child(viewport)
+	var saved: Dictionary=session.snapshot()
+	park=load("res://scripts/campaign/neighborhood_view.gd").new()
+	park.saved_player=saved.player
+	park.checkpoint_position=Vector2(saved.checkpoint.position[0],saved.checkpoint.position[1])
+	park.set_meta("campaign_scene","quintal")
+	viewport.add_child(park)
+	park.action_requested.connect(_neighborhood_action)
+	park.menu_requested.connect(_pause_game)
+
+func _neighborhood_action(id: String) -> void:
+	if not _save_park():return
+	match id:
+		"autosave":return
+		"collection":_show_collection()
+		"bag":_show_bag()
+		"menu":_pause_game()
+		"map":_pause_game();menu_origin="map";_show_map()
+		"professor-home":
+			var entry: Array=content.rooms.professor.layout.blocking.kaelEntry
+			if _result(journey.enter_world("professor-home",Vector2(entry[0],entry[1]))):_show_saved.call_deferred()
+		"morro":
+			if session.snapshot().player.get("journey",{}).get("phase")=="complete" and _result(journey.enter_world("morro",Vector2(528,752))):_show_saved.call_deferred()
+		"park":
+			if session.snapshot().player.get("journey",{}).get("phase")=="complete" and _result(journey.enter_world("park-trail",Vector2(208,816))):_show_saved.call_deferred()
 
 func _world_interact(id: String) -> void:
 	var point: Dictionary = session.snapshot().checkpoint

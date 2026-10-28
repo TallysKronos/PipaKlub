@@ -59,6 +59,9 @@ static func inspect(value: Variant, slot_id: String) -> String:
 		for coordinate in checkpoint.position:
 			if not (coordinate is float or coordinate is int) or not is_finite(float(coordinate)) or absf(coordinate) > 4096:
 				return "invalid"
+	if checkpoint.has("space"):
+		if kind!="world" or checkpoint.get("scene")!="quintal" or checkpoint.space!="bairro-inicial-v2":return "invalid"
+		if not preload("res://scripts/campaign/neighborhood_checkpoint.gd").is_cell(Vector2(float(checkpoint.position[0]),float(checkpoint.position[1]))):return "invalid"
 	var player: Dictionary = value.player
 	if not player.get("name") is String or player.name.length() > 64 or not whole(player.get("coins")):
 		return "invalid"
@@ -74,6 +77,12 @@ static func inspect(value: Variant, slot_id: String) -> String:
 	for key in player.flags:
 		if not (key is String or key is StringName) or not player.flags[key] is bool:
 			return "invalid"
+	if player.has("cityPosition"):
+		var city: Variant=player.cityPosition
+		if not city is Array or city.size()!=2:return "invalid"
+		for coordinate in city:
+			if not (coordinate is int or coordinate is float) or not is_finite(float(coordinate)):return "invalid"
+		if not preload("res://scripts/campaign/neighborhood_checkpoint.gd").is_cell(Vector2(city[0],city[1])):return "invalid"
 	for key in ["openedChests", "completedOperations"]:
 		var seen := {}
 		for entry in player[key]:

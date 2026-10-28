@@ -14,6 +14,9 @@ func enter_world(scene: String, position: Vector2) -> Dictionary:
 	var saved: Dictionary = session.snapshot()
 	if saved.is_empty() or saved.player.partners.is_empty():
 		return {"status": "wrong_step"}
+	if scene=="quintal":
+		var point: Dictionary=preload("res://scripts/campaign/neighborhood_checkpoint.gd").make(position,saved.player)
+		return session.checkpoint(point,saved.player)
 	return session.checkpoint({"kind": "world", "scene": scene, "position": [position.x, position.y]}, saved.player)
 
 func practice() -> Dictionary:
