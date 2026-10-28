@@ -9,6 +9,7 @@ var model_id := "rabbito"
 var enemy_model_id := "lacertubo"
 var enemy_level := 15
 signal damage_applied(event: Dictionary)
+signal combat_feedback(event: Dictionary)
 
 func _apply_hit(hit: Dictionary) -> void:
 	var target: Dictionary = hit.target
@@ -17,7 +18,8 @@ func _apply_hit(hit: Dictionary) -> void:
 	target[field] = maxf(0, previous - hit.damage)
 	var amount: float = previous - target[field]
 	if amount > 0:
-		damage_applied.emit({"amount": amount, "body": hit.body, "point": Vector2(target.x, target.y), "player": is_same(target, p)})
+		var event := {"amount":amount,"body":hit.body,"point":hit.get("point",Vector2(target.x,target.y)),"player":is_same(target,p),"critical":hit.get("critical",false),"color":hit.get("color",0),"kind":"cut" if not hit.body else "hit","cut_line":target.hp<=0}
+		damage_applied.emit(event)
 
 static func level_for_xp(xp: float) -> int:
 	var level := 1
@@ -70,7 +72,7 @@ func tick(delta: float, input: Dictionary) -> void:
 		intro = maxf(0, intro - dt)
 		return
 	duration = maxf(0, duration - dt)
-	var wind := sin(time / 9) * 12
+	var wind := wind_strength()
 	_move_fighter(p, input, dt, wind)
 	_move_fighter(q, _boss_input(dt) if q.boss else _wild_input(dt), dt, wind)
 	var hits: Array = []
@@ -221,9 +223,18 @@ func _wild_input(dt: float) -> Dictionary:
 	if pull and q.attackCooldown <= 0: q.botFocus = -1.15
 	return {"x": clampf((target.x - q.x) / 80, -.6, .6), "y": clampf((target.y - q.y) / 80, -.6, .6), "cut": pull, "skill": pull and q.energy >= 40}
 
+func signature_profile(actor: Dictionary) -> Dictionary:
+	return {"radius":95.0 if actor.boss else 85.0,"windup":1.5 if actor.boss else 1.4}
+
+func attack_notice(actor: Dictionary) -> Dictionary:
+	var notice := super.attack_notice(actor)
+	if actor.boss or is_same(actor,p) or notice.active:return notice
+	var aiming:bool=actor.attackCooldown<=0 and actor.energy>=12 and contact(actor,p).get("valid",false)
+	return {"active":aiming and actor.botFocus/.95>.6,"progress":clampf(actor.botFocus/.95,0,1)}
+
 func _signature_hit(actor: Dictionary, target: Dictionary, dt: float, wants: bool, hits: Array) -> void:
 	actor.signatureCooldown = maxf(0, actor.signatureCooldown - dt)
-	var radius := 95 if actor.boss else 85
+	var radius: float = signature_profile(actor).radius
 	if actor.signatureWindup > 0:
 		actor.signatureWindup = maxf(0, actor.signatureWindup - dt)
 		if actor.signatureWindup > 0: return
@@ -232,11 +243,13 @@ func _signature_hit(actor: Dictionary, target: Dictionary, dt: float, wants: boo
 		if Vector2(target.x, target.y).distance_to(actor.signatureAim) > radius: return
 		if target.guardTime > 0:
 			target.blocks += 1
+			combat_feedback.emit({"kind":"block","amount":0,"point":Vector2(target.x,target.y),"player":is_same(target,p)})
 			return
 		if target.evade > 0:
 			target.counter = 2.0
+			combat_feedback.emit({"kind":"evade","amount":0,"point":Vector2(target.x,target.y),"player":is_same(target,p)})
 			return
-		hits.append({"target": target, "body": true, "damage": (44 if actor.boss else 38) * actor.stats.attack / target.stats.defense})
+		hits.append({"target": target, "body": true, "damage": (44 if actor.boss else 38) * actor.stats.attack / target.stats.defense,"color":actor.color})
 		return
 	var edge: bool = wants and (actor.boss or not actor.signatureHeld)
 	actor.signatureHeld = wants
@@ -245,7 +258,7 @@ func _signature_hit(actor: Dictionary, target: Dictionary, dt: float, wants: boo
 	if Vector2(actor.x, actor.y).distance_to(Vector2(target.x, target.y)) > 440: return
 	actor.energy -= cost
 	actor.signatureCooldown = 20.0 if actor.boss else 24.0
-	actor.signatureWindup = 1.5 if actor.boss else 1.4
+	actor.signatureWindup = signature_profile(actor).windup
 	actor.signatureAim = Vector2(target.x, target.y)
 	actor.strike = false
 	actor.maneuver = false
@@ -263,11 +276,14 @@ func _strike(actor: Dictionary, target: Dictionary, hits: Array) -> void:
 	if maneuver and not actor.lineMove.is_empty(): actor.lineMove.hit = true
 	if body and target.guardTime > 0:
 		target.blocks += 1
+		combat_feedback.emit({"kind":"block","amount":0,"point":Vector2(target.x,target.y),"player":is_same(target,p)})
 		return
 	if target.evade > 0:
 		target.energy = minf(target.stats.energy, target.energy + 18)
 		target.counter = 2.0
+		combat_feedback.emit({"kind":"evade","amount":0,"point":Vector2(target.x,target.y),"player":is_same(target,p)})
 		return
+	var quality := cut_quality(actor, {"angle":1.0,"perfect":false} if body else crossing)
 	var damage := 32.0 if maneuver else _damage(actor, {"angle": 1.0, "perfect": false} if body else crossing)
 	if maneuver: actor.counter = 0.0
 	if not maneuver and actor.color == 0 and actor.skillTime > 0:
@@ -277,7 +293,7 @@ func _strike(actor: Dictionary, target: Dictionary, hits: Array) -> void:
 	damage *= actor.stats.attack / target.stats.defense
 	if actor.boss and actor.phase == 2: damage *= 1.12
 	if target.boss: damage *= 1.2 if target.recovery > 0 else .18
-	hits.append({"target": target, "body": body, "damage": damage})
+	hits.append({"target":target,"body":body,"damage":damage,"point":Vector2(target.x,target.y) if body else crossing.point,"critical":quality.critical and not maneuver,"color":actor.color})
 
 func snapshot() -> Dictionary:
 	return _encode({"p": p, "q": q, "time": time, "intro": intro, "duration": duration, "outcome": outcome, "partnerId": partner_id, "modelId": model_id, "enemyModelId": enemy_model_id, "enemyLevel": enemy_level})
@@ -312,3 +328,6 @@ static func _decode(value: Variant) -> Variant:
 		return result
 	if value is Array: return value.map(_decode)
 	return value
+
+func wind_strength() -> float:
+	return sin(time/9)*12

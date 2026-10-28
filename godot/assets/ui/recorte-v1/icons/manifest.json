@@ -1,0 +1,1198 @@
+{
+  "version": 1,
+  "source": "Original project-authored vector geometry; scripts/build-recorte-icons.mjs",
+  "palette": "ui_tokens.gd via sync-recorte-tokens.mjs",
+  "status": "implemented; visual review required",
+  "assets": [
+    {
+      "id": "localizacao",
+      "file": "localizacao.svg",
+      "world": "world/localizacao.svg",
+      "png96": "png96/localizacao.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "seta-direita",
+      "file": "seta-direita.svg",
+      "world": "world/seta-direita.svg",
+      "png96": "png96/seta-direita.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "seta-esquerda",
+      "file": "seta-esquerda.svg",
+      "world": "world/seta-esquerda.svg",
+      "png96": "png96/seta-esquerda.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "pipa",
+      "file": "pipa.svg",
+      "world": "world/pipa.svg",
+      "png96": "png96/pipa.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "mochila",
+      "file": "mochila.svg",
+      "world": "world/mochila.svg",
+      "png96": "png96/mochila.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "pipa-dex",
+      "file": "pipa-dex.svg",
+      "world": "world/pipa-dex.svg",
+      "png96": "png96/pipa-dex.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "parceiros",
+      "file": "parceiros.svg",
+      "world": "world/parceiros.svg",
+      "png96": "png96/parceiros.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#6FD08C"
+    },
+    {
+      "id": "missoes",
+      "file": "missoes.svg",
+      "world": "world/missoes.svg",
+      "png96": "png96/missoes.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "oficina",
+      "file": "oficina.svg",
+      "world": "world/oficina.svg",
+      "png96": "png96/oficina.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "salvar",
+      "file": "salvar.svg",
+      "world": "world/salvar.svg",
+      "png96": "png96/salvar.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "carregar",
+      "file": "carregar.svg",
+      "world": "world/carregar.svg",
+      "png96": "png96/carregar.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "configuracoes",
+      "file": "configuracoes.svg",
+      "world": "world/configuracoes.svg",
+      "png96": "png96/configuracoes.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "sair",
+      "file": "sair.svg",
+      "world": "world/sair.svg",
+      "png96": "png96/sair.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#FF5A36"
+    },
+    {
+      "id": "mapa",
+      "file": "mapa.svg",
+      "world": "world/mapa.svg",
+      "png96": "png96/mapa.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "voltar",
+      "file": "voltar.svg",
+      "world": "world/voltar.svg",
+      "png96": "png96/voltar.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "confirmar",
+      "file": "confirmar.svg",
+      "world": "world/confirmar.svg",
+      "png96": "png96/confirmar.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "fechar",
+      "file": "fechar.svg",
+      "world": "world/fechar.svg",
+      "png96": "png96/fechar.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "info",
+      "file": "info.svg",
+      "world": "world/info.svg",
+      "png96": "png96/info.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "alerta",
+      "file": "alerta.svg",
+      "world": "world/alerta.svg",
+      "png96": "png96/alerta.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#FF5A36"
+    },
+    {
+      "id": "moeda",
+      "file": "moeda.svg",
+      "world": "world/moeda.svg",
+      "png96": "png96/moeda.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#FFC23D"
+    },
+    {
+      "id": "linha",
+      "file": "linha.svg",
+      "world": "world/linha.svg",
+      "png96": "png96/linha.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "rabiola",
+      "file": "rabiola.svg",
+      "world": "world/rabiola.svg",
+      "png96": "png96/rabiola.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "vida",
+      "file": "vida.svg",
+      "world": "world/vida.svg",
+      "png96": "png96/vida.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#6FD08C"
+    },
+    {
+      "id": "energia",
+      "file": "energia.svg",
+      "world": "world/energia.svg",
+      "png96": "png96/energia.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "xp",
+      "file": "xp.svg",
+      "world": "world/xp.svg",
+      "png96": "png96/xp.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#FFC23D"
+    },
+    {
+      "id": "nivel",
+      "file": "nivel.svg",
+      "world": "world/nivel.svg",
+      "png96": "png96/nivel.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#FFC23D"
+    },
+    {
+      "id": "tempo",
+      "file": "tempo.svg",
+      "world": "world/tempo.svg",
+      "png96": "png96/tempo.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "bau",
+      "file": "bau.svg",
+      "world": "world/bau.svg",
+      "png96": "png96/bau.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "chave",
+      "file": "chave.svg",
+      "world": "world/chave.svg",
+      "png96": "png96/chave.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "presente",
+      "file": "presente.svg",
+      "world": "world/presente.svg",
+      "png96": "png96/presente.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "troca",
+      "file": "troca.svg",
+      "world": "world/troca.svg",
+      "png96": "png96/troca.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "amigos",
+      "file": "amigos.svg",
+      "world": "world/amigos.svg",
+      "png96": "png96/amigos.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "ranqueada",
+      "file": "ranqueada.svg",
+      "world": "world/ranqueada.svg",
+      "png96": "png96/ranqueada.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#FFC23D"
+    },
+    {
+      "id": "treino",
+      "file": "treino.svg",
+      "world": "world/treino.svg",
+      "png96": "png96/treino.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "ceu-do-dia",
+      "file": "ceu-do-dia.svg",
+      "world": "world/ceu-do-dia.svg",
+      "png96": "png96/ceu-do-dia.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "cadeado",
+      "file": "cadeado.svg",
+      "world": "world/cadeado.svg",
+      "png96": "png96/cadeado.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "check",
+      "file": "check.svg",
+      "world": "world/check.svg",
+      "png96": "png96/check.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "mais",
+      "file": "mais.svg",
+      "world": "world/mais.svg",
+      "png96": "png96/mais.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "menos",
+      "file": "menos.svg",
+      "world": "world/menos.svg",
+      "png96": "png96/menos.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "filtro",
+      "file": "filtro.svg",
+      "world": "world/filtro.svg",
+      "png96": "png96/filtro.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "ordenar",
+      "file": "ordenar.svg",
+      "world": "world/ordenar.svg",
+      "png96": "png96/ordenar.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "buscar",
+      "file": "buscar.svg",
+      "world": "world/buscar.svg",
+      "png96": "png96/buscar.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "som",
+      "file": "som.svg",
+      "world": "world/som.svg",
+      "png96": "png96/som.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "musica",
+      "file": "musica.svg",
+      "world": "world/musica.svg",
+      "png96": "png96/musica.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "vibracao",
+      "file": "vibracao.svg",
+      "world": "world/vibracao.svg",
+      "png96": "png96/vibracao.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "idioma",
+      "file": "idioma.svg",
+      "world": "world/idioma.svg",
+      "png96": "png96/idioma.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "controle",
+      "file": "controle.svg",
+      "world": "world/controle.svg",
+      "png96": "png96/controle.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "teclado",
+      "file": "teclado.svg",
+      "world": "world/teclado.svg",
+      "png96": "png96/teclado.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "acessibilidade",
+      "file": "acessibilidade.svg",
+      "world": "world/acessibilidade.svg",
+      "png96": "png96/acessibilidade.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "cortar",
+      "file": "cortar.svg",
+      "world": "world/cortar.svg",
+      "png96": "png96/cortar.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#FF5A36"
+    },
+    {
+      "id": "esquiva",
+      "file": "esquiva.svg",
+      "world": "world/esquiva.svg",
+      "png96": "png96/esquiva.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "puxao",
+      "file": "puxao.svg",
+      "world": "world/puxao.svg",
+      "png96": "png96/puxao.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#FF5A36"
+    },
+    {
+      "id": "chicote",
+      "file": "chicote.svg",
+      "world": "world/chicote.svg",
+      "png96": "png96/chicote.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "estilingue",
+      "file": "estilingue.svg",
+      "world": "world/estilingue.svg",
+      "png96": "png96/estilingue.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "laco",
+      "file": "laco.svg",
+      "world": "world/laco.svg",
+      "png96": "png96/laco.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "folha-solta",
+      "file": "folha-solta.svg",
+      "world": "world/folha-solta.svg",
+      "png96": "png96/folha-solta.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#6FD08C"
+    },
+    {
+      "id": "duplo-toque",
+      "file": "duplo-toque.svg",
+      "world": "world/duplo-toque.svg",
+      "png96": "png96/duplo-toque.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "foco",
+      "file": "foco.svg",
+      "world": "world/foco.svg",
+      "png96": "png96/foco.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "dash",
+      "file": "dash.svg",
+      "world": "world/dash.svg",
+      "png96": "png96/dash.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "guarda",
+      "file": "guarda.svg",
+      "world": "world/guarda.svg",
+      "png96": "png96/guarda.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "especial",
+      "file": "especial.svg",
+      "world": "world/especial.svg",
+      "png96": "png96/especial.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#FFC23D"
+    },
+    {
+      "id": "fugir",
+      "file": "fugir.svg",
+      "world": "world/fugir.svg",
+      "png96": "png96/fugir.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#FF5A36"
+    },
+    {
+      "id": "pausar",
+      "file": "pausar.svg",
+      "world": "world/pausar.svg",
+      "png96": "png96/pausar.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "pulo-do-elo",
+      "file": "pulo-do-elo.svg",
+      "world": "world/pulo-do-elo.svg",
+      "png96": "png96/pulo-do-elo.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#FFC23D"
+    },
+    {
+      "id": "no-de-vendaval",
+      "file": "no-de-vendaval.svg",
+      "world": "world/no-de-vendaval.svg",
+      "png96": "png96/no-de-vendaval.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "ruptura-dos-canos",
+      "file": "ruptura-dos-canos.svg",
+      "world": "world/ruptura-dos-canos.svg",
+      "png96": "png96/ruptura-dos-canos.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#FF5A36"
+    },
+    {
+      "id": "precisa",
+      "file": "precisa.svg",
+      "world": "world/precisa.svg",
+      "png96": "png96/precisa.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "agil",
+      "file": "agil.svg",
+      "world": "world/agil.svg",
+      "png96": "png96/agil.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    },
+    {
+      "id": "guardia",
+      "file": "guardia.svg",
+      "world": "world/guardia.svg",
+      "png96": "png96/guardia.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#6FD08C"
+    },
+    {
+      "id": "tecnica",
+      "file": "tecnica.svg",
+      "world": "world/tecnica.svg",
+      "png96": "png96/tecnica.png",
+      "size": [
+        48,
+        48
+      ],
+      "worldSize": [
+        64,
+        64
+      ],
+      "worldPadding": 8,
+      "stroke": 3,
+      "accent": "#2EC8E3"
+    }
+  ]
+}

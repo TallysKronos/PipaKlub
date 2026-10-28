@@ -1,0 +1,1907 @@
+{
+  "schema": 1,
+  "id": "recorte-ink-v1",
+  "issue": "PIP-63",
+  "reference": "art/ui/hud-recorte-v1/ESPECIFICACAO.md#31",
+  "token_source": "res://scripts/campaign/ui_tokens.gd",
+  "tokens": {
+    "nanquim": "#0B1017",
+    "tinta": "#141E29",
+    "tinta-2": "#22303F",
+    "tinta-3": "#33475A",
+    "papel": "#F4E9D2",
+    "papel-2": "#D8C9AC",
+    "rabiola": "#FF5A36",
+    "ceu": "#2EC8E3",
+    "sol": "#FFC23D",
+    "folha": "#6FD08C",
+    "veu": {
+      "color": "#141E29",
+      "alpha": 0.72
+    }
+  },
+  "logical_scale": 1,
+  "master_scale": 2,
+  "source_directory": "art/ui/recorte-v1/sources",
+  "provenance": "Built-in image_gen original drawn atlases. See art/ui/recorte-v1/provenance.json. No third-party franchise artwork.",
+  "global_rules": {
+    "text_baked": false,
+    "premultiplied_alpha": false,
+    "filter": "linear",
+    "mipmaps": false,
+    "decorations_mouse_filter": "ignore",
+    "non_repeating_splats": "seeded family bag; no consecutive source variant; rotation and mirror from same event seed",
+    "motion": "event-driven, never continuous; reduce motion uses a still image with 80ms fade"
+  },
+  "approval": {
+    "technical": "png-and-native-corner-preflight-passed",
+    "visual": "pending-owner-review"
+  },
+  "assets": [
+    {
+      "id": "frame-panel",
+      "group": "frames",
+      "file": "ink/frames/frame-panel.png",
+      "file_2x": "ink/frames/frame-panel@2x.png",
+      "size": [
+        160,
+        160
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "slice": {
+        "mode": "nine_patch",
+        "margins": [
+          48,
+          48,
+          48,
+          48
+        ],
+        "axis_stretch": "tile_fit",
+        "draw_center": false,
+        "minimum": [
+          96,
+          96
+        ]
+      },
+      "content_insets": [
+        24,
+        20,
+        24,
+        20
+      ],
+      "tint": "nanquim",
+      "source_atlas": "frames.png",
+      "source_cell": 0
+    },
+    {
+      "id": "frame-ribbon",
+      "group": "frames",
+      "file": "ink/frames/frame-ribbon.png",
+      "file_2x": "ink/frames/frame-ribbon@2x.png",
+      "size": [
+        160,
+        160
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "slice": {
+        "mode": "nine_patch",
+        "margins": [
+          48,
+          48,
+          48,
+          48
+        ],
+        "axis_stretch": "tile_fit",
+        "draw_center": false,
+        "minimum": [
+          96,
+          96
+        ]
+      },
+      "content_insets": [
+        24,
+        20,
+        24,
+        20
+      ],
+      "tint": "nanquim",
+      "source_atlas": "frames.png",
+      "source_cell": 1
+    },
+    {
+      "id": "frame-button",
+      "group": "frames",
+      "file": "ink/frames/frame-button.png",
+      "file_2x": "ink/frames/frame-button@2x.png",
+      "size": [
+        160,
+        160
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "slice": {
+        "mode": "nine_patch",
+        "margins": [
+          48,
+          48,
+          48,
+          48
+        ],
+        "axis_stretch": "tile_fit",
+        "draw_center": false,
+        "minimum": [
+          96,
+          96
+        ]
+      },
+      "content_insets": [
+        24,
+        20,
+        24,
+        20
+      ],
+      "tint": "nanquim",
+      "source_atlas": "frames.png",
+      "source_cell": 2
+    },
+    {
+      "id": "frame-list-item",
+      "group": "frames",
+      "file": "ink/frames/frame-list-item.png",
+      "file_2x": "ink/frames/frame-list-item@2x.png",
+      "size": [
+        160,
+        160
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "slice": {
+        "mode": "nine_patch",
+        "margins": [
+          48,
+          48,
+          48,
+          48
+        ],
+        "axis_stretch": "tile_fit",
+        "draw_center": false,
+        "minimum": [
+          96,
+          96
+        ]
+      },
+      "content_insets": [
+        24,
+        20,
+        24,
+        20
+      ],
+      "tint": "nanquim",
+      "source_atlas": "frames.png",
+      "source_cell": 3
+    },
+    {
+      "id": "frame-speech",
+      "group": "frames",
+      "file": "ink/frames/frame-speech.png",
+      "file_2x": "ink/frames/frame-speech@2x.png",
+      "size": [
+        160,
+        160
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "slice": {
+        "mode": "nine_patch",
+        "margins": [
+          48,
+          48,
+          48,
+          48
+        ],
+        "axis_stretch": "tile_fit",
+        "draw_center": false,
+        "minimum": [
+          96,
+          96
+        ]
+      },
+      "content_insets": [
+        24,
+        20,
+        24,
+        20
+      ],
+      "tint": "nanquim",
+      "source_atlas": "frames.png",
+      "source_cell": 4
+    },
+    {
+      "id": "balloon-speech",
+      "group": "balloons",
+      "file": "ink/balloons/balloon-speech.png",
+      "file_2x": "ink/balloons/balloon-speech@2x.png",
+      "size": [
+        160,
+        160
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "slice": {
+        "mode": "nine_patch",
+        "margins": [
+          48,
+          48,
+          48,
+          48
+        ],
+        "axis_stretch": "tile_fit",
+        "draw_center": false,
+        "minimum": [
+          96,
+          160
+        ]
+      },
+      "content_insets": [
+        30,
+        26,
+        30,
+        26
+      ],
+      "tail": "tail-left",
+      "tint": "nanquim",
+      "source_atlas": "balloons.png",
+      "source_cell": 0
+    },
+    {
+      "id": "balloon-shout",
+      "group": "balloons",
+      "file": "ink/balloons/balloon-shout.png",
+      "file_2x": "ink/balloons/balloon-shout@2x.png",
+      "size": [
+        160,
+        160
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "slice": {
+        "mode": "nine_patch",
+        "margins": [
+          48,
+          48,
+          48,
+          48
+        ],
+        "axis_stretch": "tile_fit",
+        "draw_center": false,
+        "minimum": [
+          96,
+          160
+        ]
+      },
+      "content_insets": [
+        30,
+        26,
+        30,
+        26
+      ],
+      "tail": "tail-left",
+      "tint": "nanquim",
+      "source_atlas": "balloons.png",
+      "source_cell": 1
+    },
+    {
+      "id": "balloon-thought",
+      "group": "balloons",
+      "file": "ink/balloons/balloon-thought.png",
+      "file_2x": "ink/balloons/balloon-thought@2x.png",
+      "size": [
+        160,
+        160
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "slice": {
+        "mode": "nine_patch",
+        "margins": [
+          48,
+          48,
+          48,
+          48
+        ],
+        "axis_stretch": "tile_fit",
+        "draw_center": false,
+        "minimum": [
+          96,
+          160
+        ]
+      },
+      "content_insets": [
+        30,
+        26,
+        30,
+        26
+      ],
+      "tail": "tail-thought",
+      "tint": "nanquim",
+      "source_atlas": "balloons.png",
+      "source_cell": 2
+    },
+    {
+      "id": "balloon-whisper",
+      "group": "balloons",
+      "file": "ink/balloons/balloon-whisper.png",
+      "file_2x": "ink/balloons/balloon-whisper@2x.png",
+      "size": [
+        160,
+        160
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "slice": {
+        "mode": "nine_patch",
+        "margins": [
+          48,
+          48,
+          48,
+          48
+        ],
+        "axis_stretch": "tile_fit",
+        "draw_center": false,
+        "minimum": [
+          96,
+          160
+        ]
+      },
+      "content_insets": [
+        30,
+        26,
+        30,
+        26
+      ],
+      "tail": "tail-whisper",
+      "tint": "nanquim",
+      "source_atlas": "balloons.png",
+      "source_cell": 3
+    },
+    {
+      "id": "tail-left",
+      "group": "balloons",
+      "file": "ink/balloons/tail-left.png",
+      "file_2x": "ink/balloons/tail-left@2x.png",
+      "size": [
+        80,
+        64
+      ],
+      "pivot": [
+        0.5,
+        0
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "tint": "nanquim",
+      "source_atlas": "balloons.png",
+      "source_cell": 4
+    },
+    {
+      "id": "tail-right",
+      "group": "balloons",
+      "file": "ink/balloons/tail-right.png",
+      "file_2x": "ink/balloons/tail-right@2x.png",
+      "size": [
+        80,
+        64
+      ],
+      "pivot": [
+        0.5,
+        0
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "tint": "nanquim",
+      "source_atlas": "balloons.png",
+      "source_cell": 5
+    },
+    {
+      "id": "tail-thought",
+      "group": "balloons",
+      "file": "ink/balloons/tail-thought.png",
+      "file_2x": "ink/balloons/tail-thought@2x.png",
+      "size": [
+        80,
+        64
+      ],
+      "pivot": [
+        0.5,
+        0
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "tint": "nanquim",
+      "source_atlas": "balloons.png",
+      "source_cell": 6
+    },
+    {
+      "id": "tail-whisper",
+      "group": "balloons",
+      "file": "ink/balloons/tail-whisper.png",
+      "file_2x": "ink/balloons/tail-whisper@2x.png",
+      "size": [
+        80,
+        64
+      ],
+      "pivot": [
+        0.5,
+        0
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "tint": "nanquim",
+      "source_atlas": "balloons.png",
+      "source_cell": 7
+    },
+    {
+      "id": "selection-1",
+      "group": "strokes",
+      "file": "ink/strokes/selection-1.png",
+      "file_2x": "ink/strokes/selection-1@2x.png",
+      "size": [
+        320,
+        64
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "slice": {
+        "mode": "three_slice",
+        "margins": [
+          48,
+          0,
+          48,
+          0
+        ],
+        "axis_stretch": "stretch",
+        "minimum": [
+          96,
+          64
+        ]
+      },
+      "tint": "papel",
+      "source_atlas": "strokes.png",
+      "source_cell": 0
+    },
+    {
+      "id": "selection-2",
+      "group": "strokes",
+      "file": "ink/strokes/selection-2.png",
+      "file_2x": "ink/strokes/selection-2@2x.png",
+      "size": [
+        320,
+        64
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "slice": {
+        "mode": "three_slice",
+        "margins": [
+          48,
+          0,
+          48,
+          0
+        ],
+        "axis_stretch": "stretch",
+        "minimum": [
+          96,
+          64
+        ]
+      },
+      "tint": "papel",
+      "source_atlas": "strokes.png",
+      "source_cell": 1
+    },
+    {
+      "id": "selection-3",
+      "group": "strokes",
+      "file": "ink/strokes/selection-3.png",
+      "file_2x": "ink/strokes/selection-3@2x.png",
+      "size": [
+        320,
+        64
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "slice": {
+        "mode": "three_slice",
+        "margins": [
+          48,
+          0,
+          48,
+          0
+        ],
+        "axis_stretch": "stretch",
+        "minimum": [
+          96,
+          64
+        ]
+      },
+      "tint": "papel",
+      "source_atlas": "strokes.png",
+      "source_cell": 2
+    },
+    {
+      "id": "small-1",
+      "group": "splats",
+      "file": "ink/splats/small-1.png",
+      "file_2x": "ink/splats/small-1@2x.png",
+      "size": [
+        48,
+        48
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "small",
+      "variant": 1,
+      "tint": "white-mask",
+      "source_atlas": "splats.png",
+      "source_cell": 0,
+      "form": "filled"
+    },
+    {
+      "id": "small-1-outline",
+      "group": "splats",
+      "file": "ink/splats/small-1-outline.png",
+      "file_2x": "ink/splats/small-1-outline@2x.png",
+      "size": [
+        48,
+        48
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "small",
+      "variant": 1,
+      "tint": "white-mask",
+      "source_atlas": "splats.png",
+      "source_cell": 0,
+      "form": "outline",
+      "outline_width": 2
+    },
+    {
+      "id": "small-2",
+      "group": "splats",
+      "file": "ink/splats/small-2.png",
+      "file_2x": "ink/splats/small-2@2x.png",
+      "size": [
+        48,
+        48
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "small",
+      "variant": 2,
+      "tint": "white-mask",
+      "source_atlas": "splats.png",
+      "source_cell": 1,
+      "form": "filled"
+    },
+    {
+      "id": "small-2-outline",
+      "group": "splats",
+      "file": "ink/splats/small-2-outline.png",
+      "file_2x": "ink/splats/small-2-outline@2x.png",
+      "size": [
+        48,
+        48
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "small",
+      "variant": 2,
+      "tint": "white-mask",
+      "source_atlas": "splats.png",
+      "source_cell": 1,
+      "form": "outline",
+      "outline_width": 2
+    },
+    {
+      "id": "small-3",
+      "group": "splats",
+      "file": "ink/splats/small-3.png",
+      "file_2x": "ink/splats/small-3@2x.png",
+      "size": [
+        48,
+        48
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "small",
+      "variant": 3,
+      "tint": "white-mask",
+      "source_atlas": "splats.png",
+      "source_cell": 2,
+      "form": "filled"
+    },
+    {
+      "id": "small-3-outline",
+      "group": "splats",
+      "file": "ink/splats/small-3-outline.png",
+      "file_2x": "ink/splats/small-3-outline@2x.png",
+      "size": [
+        48,
+        48
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "small",
+      "variant": 3,
+      "tint": "white-mask",
+      "source_atlas": "splats.png",
+      "source_cell": 2,
+      "form": "outline",
+      "outline_width": 2
+    },
+    {
+      "id": "medium-1",
+      "group": "splats",
+      "file": "ink/splats/medium-1.png",
+      "file_2x": "ink/splats/medium-1@2x.png",
+      "size": [
+        120,
+        120
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "medium",
+      "variant": 1,
+      "tint": "white-mask",
+      "source_atlas": "splats.png",
+      "source_cell": 3,
+      "form": "filled"
+    },
+    {
+      "id": "medium-1-outline",
+      "group": "splats",
+      "file": "ink/splats/medium-1-outline.png",
+      "file_2x": "ink/splats/medium-1-outline@2x.png",
+      "size": [
+        120,
+        120
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "medium",
+      "variant": 1,
+      "tint": "white-mask",
+      "source_atlas": "splats.png",
+      "source_cell": 3,
+      "form": "outline",
+      "outline_width": 3
+    },
+    {
+      "id": "medium-2",
+      "group": "splats",
+      "file": "ink/splats/medium-2.png",
+      "file_2x": "ink/splats/medium-2@2x.png",
+      "size": [
+        120,
+        120
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "medium",
+      "variant": 2,
+      "tint": "white-mask",
+      "source_atlas": "splats.png",
+      "source_cell": 4,
+      "form": "filled"
+    },
+    {
+      "id": "medium-2-outline",
+      "group": "splats",
+      "file": "ink/splats/medium-2-outline.png",
+      "file_2x": "ink/splats/medium-2-outline@2x.png",
+      "size": [
+        120,
+        120
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "medium",
+      "variant": 2,
+      "tint": "white-mask",
+      "source_atlas": "splats.png",
+      "source_cell": 4,
+      "form": "outline",
+      "outline_width": 3
+    },
+    {
+      "id": "medium-3",
+      "group": "splats",
+      "file": "ink/splats/medium-3.png",
+      "file_2x": "ink/splats/medium-3@2x.png",
+      "size": [
+        120,
+        120
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "medium",
+      "variant": 3,
+      "tint": "white-mask",
+      "source_atlas": "splats.png",
+      "source_cell": 5,
+      "form": "filled"
+    },
+    {
+      "id": "medium-3-outline",
+      "group": "splats",
+      "file": "ink/splats/medium-3-outline.png",
+      "file_2x": "ink/splats/medium-3-outline@2x.png",
+      "size": [
+        120,
+        120
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "medium",
+      "variant": 3,
+      "tint": "white-mask",
+      "source_atlas": "splats.png",
+      "source_cell": 5,
+      "form": "outline",
+      "outline_width": 3
+    },
+    {
+      "id": "large-1",
+      "group": "splats",
+      "file": "ink/splats/large-1.png",
+      "file_2x": "ink/splats/large-1@2x.png",
+      "size": [
+        320,
+        320
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "large",
+      "variant": 1,
+      "tint": "white-mask",
+      "source_atlas": "splats.png",
+      "source_cell": 6,
+      "form": "filled"
+    },
+    {
+      "id": "large-1-outline",
+      "group": "splats",
+      "file": "ink/splats/large-1-outline.png",
+      "file_2x": "ink/splats/large-1-outline@2x.png",
+      "size": [
+        320,
+        320
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "large",
+      "variant": 1,
+      "tint": "white-mask",
+      "source_atlas": "splats.png",
+      "source_cell": 6,
+      "form": "outline",
+      "outline_width": 3
+    },
+    {
+      "id": "large-2",
+      "group": "splats",
+      "file": "ink/splats/large-2.png",
+      "file_2x": "ink/splats/large-2@2x.png",
+      "size": [
+        320,
+        320
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "large",
+      "variant": 2,
+      "tint": "white-mask",
+      "source_atlas": "splats.png",
+      "source_cell": 7,
+      "form": "filled"
+    },
+    {
+      "id": "large-2-outline",
+      "group": "splats",
+      "file": "ink/splats/large-2-outline.png",
+      "file_2x": "ink/splats/large-2-outline@2x.png",
+      "size": [
+        320,
+        320
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "large",
+      "variant": 2,
+      "tint": "white-mask",
+      "source_atlas": "splats.png",
+      "source_cell": 7,
+      "form": "outline",
+      "outline_width": 3
+    },
+    {
+      "id": "drip-1",
+      "group": "splats",
+      "file": "ink/splats/drip-1.png",
+      "file_2x": "ink/splats/drip-1@2x.png",
+      "size": [
+        120,
+        120
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "drip",
+      "variant": 1,
+      "tint": "white-mask",
+      "source_atlas": "drips.png",
+      "source_cell": 0,
+      "form": "filled"
+    },
+    {
+      "id": "drip-1-outline",
+      "group": "splats",
+      "file": "ink/splats/drip-1-outline.png",
+      "file_2x": "ink/splats/drip-1-outline@2x.png",
+      "size": [
+        120,
+        120
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "drip",
+      "variant": 1,
+      "tint": "white-mask",
+      "source_atlas": "drips.png",
+      "source_cell": 0,
+      "form": "outline",
+      "outline_width": 3
+    },
+    {
+      "id": "drip-2",
+      "group": "splats",
+      "file": "ink/splats/drip-2.png",
+      "file_2x": "ink/splats/drip-2@2x.png",
+      "size": [
+        120,
+        120
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "drip",
+      "variant": 2,
+      "tint": "white-mask",
+      "source_atlas": "drips.png",
+      "source_cell": 1,
+      "form": "filled"
+    },
+    {
+      "id": "drip-2-outline",
+      "group": "splats",
+      "file": "ink/splats/drip-2-outline.png",
+      "file_2x": "ink/splats/drip-2-outline@2x.png",
+      "size": [
+        120,
+        120
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "drip",
+      "variant": 2,
+      "tint": "white-mask",
+      "source_atlas": "drips.png",
+      "source_cell": 1,
+      "form": "outline",
+      "outline_width": 3
+    },
+    {
+      "id": "drip-3",
+      "group": "splats",
+      "file": "ink/splats/drip-3.png",
+      "file_2x": "ink/splats/drip-3@2x.png",
+      "size": [
+        120,
+        120
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "drip",
+      "variant": 3,
+      "tint": "white-mask",
+      "source_atlas": "drips.png",
+      "source_cell": 2,
+      "form": "filled"
+    },
+    {
+      "id": "drip-3-outline",
+      "group": "splats",
+      "file": "ink/splats/drip-3-outline.png",
+      "file_2x": "ink/splats/drip-3-outline@2x.png",
+      "size": [
+        120,
+        120
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "drip",
+      "variant": 3,
+      "tint": "white-mask",
+      "source_atlas": "drips.png",
+      "source_cell": 2,
+      "form": "outline",
+      "outline_width": 3
+    },
+    {
+      "id": "drip-4",
+      "group": "splats",
+      "file": "ink/splats/drip-4.png",
+      "file_2x": "ink/splats/drip-4@2x.png",
+      "size": [
+        120,
+        120
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "drip",
+      "variant": 4,
+      "tint": "white-mask",
+      "source_atlas": "drips.png",
+      "source_cell": 3,
+      "form": "filled"
+    },
+    {
+      "id": "drip-4-outline",
+      "group": "splats",
+      "file": "ink/splats/drip-4-outline.png",
+      "file_2x": "ink/splats/drip-4-outline@2x.png",
+      "size": [
+        120,
+        120
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "drip",
+      "variant": 4,
+      "tint": "white-mask",
+      "source_atlas": "drips.png",
+      "source_cell": 3,
+      "form": "outline",
+      "outline_width": 3
+    },
+    {
+      "id": "trail-1",
+      "group": "splats",
+      "file": "ink/splats/trail-1.png",
+      "file_2x": "ink/splats/trail-1@2x.png",
+      "size": [
+        120,
+        120
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "trail",
+      "variant": 1,
+      "tint": "white-mask",
+      "source_atlas": "drips.png",
+      "source_cell": 4,
+      "form": "filled"
+    },
+    {
+      "id": "trail-1-outline",
+      "group": "splats",
+      "file": "ink/splats/trail-1-outline.png",
+      "file_2x": "ink/splats/trail-1-outline@2x.png",
+      "size": [
+        120,
+        120
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "trail",
+      "variant": 1,
+      "tint": "white-mask",
+      "source_atlas": "drips.png",
+      "source_cell": 4,
+      "form": "outline",
+      "outline_width": 3
+    },
+    {
+      "id": "trail-2",
+      "group": "splats",
+      "file": "ink/splats/trail-2.png",
+      "file_2x": "ink/splats/trail-2@2x.png",
+      "size": [
+        120,
+        120
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "trail",
+      "variant": 2,
+      "tint": "white-mask",
+      "source_atlas": "drips.png",
+      "source_cell": 5,
+      "form": "filled"
+    },
+    {
+      "id": "trail-2-outline",
+      "group": "splats",
+      "file": "ink/splats/trail-2-outline.png",
+      "file_2x": "ink/splats/trail-2-outline@2x.png",
+      "size": [
+        120,
+        120
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "trail",
+      "variant": 2,
+      "tint": "white-mask",
+      "source_atlas": "drips.png",
+      "source_cell": 5,
+      "form": "outline",
+      "outline_width": 3
+    },
+    {
+      "id": "trail-3",
+      "group": "splats",
+      "file": "ink/splats/trail-3.png",
+      "file_2x": "ink/splats/trail-3@2x.png",
+      "size": [
+        120,
+        120
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "trail",
+      "variant": 3,
+      "tint": "white-mask",
+      "source_atlas": "drips.png",
+      "source_cell": 6,
+      "form": "filled"
+    },
+    {
+      "id": "trail-3-outline",
+      "group": "splats",
+      "file": "ink/splats/trail-3-outline.png",
+      "file_2x": "ink/splats/trail-3-outline@2x.png",
+      "size": [
+        120,
+        120
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "family": "trail",
+      "variant": 3,
+      "tint": "white-mask",
+      "source_atlas": "drips.png",
+      "source_cell": 6,
+      "form": "outline",
+      "outline_width": 3
+    },
+    {
+      "id": "sweat",
+      "group": "emotes",
+      "file": "ink/emotes/sweat.png",
+      "file_2x": "ink/emotes/sweat@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "tint": "preserve-duotone",
+      "source_atlas": "emotes.png",
+      "source_cell": 0,
+      "semantic": "sweat",
+      "paper_border_target": 4,
+      "ink_outline_target": 4
+    },
+    {
+      "id": "anger",
+      "group": "emotes",
+      "file": "ink/emotes/anger.png",
+      "file_2x": "ink/emotes/anger@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "tint": "preserve-duotone",
+      "source_atlas": "emotes.png",
+      "source_cell": 1,
+      "semantic": "anger",
+      "paper_border_target": 4,
+      "ink_outline_target": 4
+    },
+    {
+      "id": "sparkle",
+      "group": "emotes",
+      "file": "ink/emotes/sparkle.png",
+      "file_2x": "ink/emotes/sparkle@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "tint": "preserve-duotone",
+      "source_atlas": "emotes.png",
+      "source_cell": 2,
+      "semantic": "sparkle",
+      "paper_border_target": 4,
+      "ink_outline_target": 4
+    },
+    {
+      "id": "surprise",
+      "group": "emotes",
+      "file": "ink/emotes/surprise.png",
+      "file_2x": "ink/emotes/surprise@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "tint": "preserve-duotone",
+      "source_atlas": "emotes.png",
+      "source_cell": 3,
+      "semantic": "surprise",
+      "paper_border_target": 4,
+      "ink_outline_target": 4
+    },
+    {
+      "id": "question",
+      "group": "emotes",
+      "file": "ink/emotes/question.png",
+      "file_2x": "ink/emotes/question@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "tint": "preserve-duotone",
+      "source_atlas": "emotes.png",
+      "source_cell": 4,
+      "semantic": "question",
+      "paper_border_target": 4,
+      "ink_outline_target": 4
+    },
+    {
+      "id": "heart",
+      "group": "emotes",
+      "file": "ink/emotes/heart.png",
+      "file_2x": "ink/emotes/heart@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "tint": "preserve-duotone",
+      "source_atlas": "emotes.png",
+      "source_cell": 5,
+      "semantic": "heart",
+      "paper_border_target": 4,
+      "ink_outline_target": 4
+    },
+    {
+      "id": "dizzy",
+      "group": "emotes",
+      "file": "ink/emotes/dizzy.png",
+      "file_2x": "ink/emotes/dizzy@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "tint": "preserve-duotone",
+      "source_atlas": "emotes.png",
+      "source_cell": 6,
+      "semantic": "dizzy",
+      "paper_border_target": 4,
+      "ink_outline_target": 4
+    },
+    {
+      "id": "sigh",
+      "group": "emotes",
+      "file": "ink/emotes/sigh.png",
+      "file_2x": "ink/emotes/sigh@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "tint": "preserve-duotone",
+      "source_atlas": "emotes.png",
+      "source_cell": 7,
+      "semantic": "sigh",
+      "paper_border_target": 4,
+      "ink_outline_target": 4
+    },
+    {
+      "id": "sticker-new",
+      "group": "stickers",
+      "file": "ink/stickers/sticker-new.png",
+      "file_2x": "ink/stickers/sticker-new@2x.png",
+      "size": [
+        160,
+        160
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "tint": "preserve-duotone",
+      "live_label": "NOVO!",
+      "text_safe_rect": [
+        0.25,
+        0.38,
+        0.5,
+        0.24
+      ],
+      "source_atlas": "stickers.png",
+      "source_cell": 0
+    },
+    {
+      "id": "sticker-rare",
+      "group": "stickers",
+      "file": "ink/stickers/sticker-rare.png",
+      "file_2x": "ink/stickers/sticker-rare@2x.png",
+      "size": [
+        160,
+        160
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "tint": "preserve-duotone",
+      "live_label": "RARO",
+      "text_safe_rect": [
+        0.25,
+        0.38,
+        0.5,
+        0.24
+      ],
+      "source_atlas": "stickers.png",
+      "source_cell": 1
+    },
+    {
+      "id": "sticker-level",
+      "group": "stickers",
+      "file": "ink/stickers/sticker-level.png",
+      "file_2x": "ink/stickers/sticker-level@2x.png",
+      "size": [
+        160,
+        160
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "tint": "preserve-duotone",
+      "live_label": "NV.",
+      "text_safe_rect": [
+        0.25,
+        0.38,
+        0.5,
+        0.24
+      ],
+      "source_atlas": "stickers.png",
+      "source_cell": 2
+    },
+    {
+      "id": "sticker-double",
+      "group": "stickers",
+      "file": "ink/stickers/sticker-double.png",
+      "file_2x": "ink/stickers/sticker-double@2x.png",
+      "size": [
+        160,
+        160
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "tint": "preserve-duotone",
+      "live_label": "×2",
+      "text_safe_rect": [
+        0.25,
+        0.38,
+        0.5,
+        0.24
+      ],
+      "source_atlas": "stickers.png",
+      "source_cell": 3
+    },
+    {
+      "id": "concentration",
+      "group": "speedlines",
+      "file": "ink/speedlines/concentration.png",
+      "file_2x": "ink/speedlines/concentration@2x.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "tint": "white-mask",
+      "max_duration_ms": 250,
+      "source_atlas": "speed-concentration.png"
+    },
+    {
+      "id": "parallel",
+      "group": "speedlines",
+      "file": "ink/speedlines/parallel.png",
+      "file_2x": "ink/speedlines/parallel@2x.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "drawn atlas via built-in image_gen; deterministic slicing and palette normalization",
+      "approval": "pending-owner-review",
+      "tint": "white-mask",
+      "max_duration_ms": 250,
+      "source_atlas": "speed-parallel.png"
+    },
+    {
+      "id": "splat_mask",
+      "group": "transition",
+      "file": "ink/splat_mask.png",
+      "file_2x": "ink/splat_mask@2x.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "opaque-data",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "numerical center-out threshold field derived from drawn large-2 silhouette; not an illustration",
+      "approval": "pending-owner-review",
+      "tint": "grayscale-data",
+      "center_value": 0,
+      "edge_value": 255,
+      "color_space": "linear-data"
+    },
+    {
+      "id": "dots-fine",
+      "group": "halftone",
+      "file": "ink/halftone/dots-fine.png",
+      "file_2x": "ink/halftone/dots-fine@2x.png",
+      "size": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": true,
+      "source": "procedural periodic halftone fallback, not an illustrated asset",
+      "approval": "pending-owner-review",
+      "tint": "nanquim",
+      "spacing": 8,
+      "max_dot_diameter": 2.7
+    },
+    {
+      "id": "dots-dense",
+      "group": "halftone",
+      "file": "ink/halftone/dots-dense.png",
+      "file_2x": "ink/halftone/dots-dense@2x.png",
+      "size": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": true,
+      "source": "procedural periodic halftone fallback, not an illustrated asset",
+      "approval": "pending-owner-review",
+      "tint": "nanquim",
+      "spacing": 8,
+      "max_dot_diameter": 4
+    },
+    {
+      "id": "dots-ramp",
+      "group": "halftone",
+      "file": "ink/halftone/dots-ramp.png",
+      "file_2x": "ink/halftone/dots-ramp@2x.png",
+      "size": [
+        256,
+        256
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": "straight",
+      "filter": "linear",
+      "mipmaps": false,
+      "repeat": false,
+      "source": "procedural periodic halftone fallback, not an illustrated asset",
+      "approval": "pending-owner-review",
+      "tint": "nanquim",
+      "spacing": 8,
+      "max_dot_diameter": 4
+    }
+  ]
+}

@@ -4,6 +4,7 @@ const Front = preload("res://scripts/campaign/front_end.gd")
 const State = preload("res://scripts/campaign/state.gd")
 const Store = preload("res://scripts/campaign/save_store.gd")
 const Fixtures = preload("res://tools/player_audit_fixtures.gd")
+const DecorOverlap = preload("res://tools/decor_overlap.gd")
 var front: Control
 var results: Array = []
 var phase := "before"
@@ -32,6 +33,12 @@ func measure(id: String, requested: Vector2i) -> Dictionary:
 	var entries: Array = []
 	var findings: Array = []
 	var nodes := controls(front)
+	var modals:=get_nodes_in_group("manga_dialogue")
+	if not modals.is_empty():
+		var top:Node=modals[-1]
+		nodes.assign(nodes.filter(func(node:Control):return top==node or top.is_ancestor_of(node)))
+	var decorations := DecorOverlap.inspect(front)
+	findings.append_array(decorations.findings)
 	for node in nodes:
 		if is_instance_valid(front.pause_overlay) and not front.pause_overlay.is_ancestor_of(node): continue
 		if not (node is Button or node is Label or node is LineEdit): continue
@@ -57,7 +64,9 @@ func measure(id: String, requested: Vector2i) -> Dictionary:
 				var intersection := visible.intersection(effective_rect(other))
 				if area(intersection) > 8: findings.append({"kind": "label_over_button", "priority": "P1", "text": text.left(130), "button": other.text})
 	var focus := root.gui_get_focus_owner()
-	return {"scenario": id, "requested_pixels": [requested.x, requested.y], "actual_pixels": [root.size.x, root.size.y], "ui_units": [front.size.x, front.size.y], "focus": focus.text if focus is Button else focus.get_class() if focus != null else "none", "widgets": entries, "findings": findings}
+	var hud_fraction:=0.0
+	for hud in get_nodes_in_group("exploration_hud"):hud_fraction=maxf(hud_fraction,hud.occupied_fraction())
+	return {"scenario": id, "exploration_hud_fraction":hud_fraction, "requested_pixels": [requested.x, requested.y], "actual_pixels": [root.size.x, root.size.y], "ui_units": [front.size.x, front.size.y], "focus": focus.text if focus is Button else focus.get_class() if focus != null else "none", "decorations_checked":decorations.decorations_checked, "widgets": entries, "findings": findings}
 func _in_scroll(node: Node) -> bool:
 	var parent := node.get_parent()
 	while parent != null:
@@ -102,9 +111,11 @@ func run_audit() -> void:
 			if id in ["controls", "bag-full", "team-long"]:
 				var reached := 0
 				for node in controls(front):
-					if not node is Button or not _in_scroll(node) or node.disabled: continue
+					if not is_instance_valid(node) or not node is Button or not _in_scroll(node) or node.disabled: continue
 					node.grab_focus()
 					for frame in 4: await process_frame
+					# Responsive pagination can replace the old row after viewport reflow.
+					if not is_instance_valid(node) or not node.is_inside_tree():continue
 					if area(effective_rect(node)) / area(node.get_global_rect()) < .985:
 						record.findings.append({"kind": "scroll_focus_inaccessible", "priority": "P1", "text": node.text})
 					else: reached += 1

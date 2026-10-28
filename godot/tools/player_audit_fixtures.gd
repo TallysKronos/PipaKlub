@@ -12,6 +12,7 @@ static func scenarios() -> Array[String]:
 		result.append("lesson-%d" % lesson)
 		result.append("lesson-%d-complete" % lesson)
 	for stage in 5: result.append("workshop-%d" % stage)
+	result.append_array(["lesson-4-paused", "starter-confirm", "workshop-cancel", "binding-dialog"])
 	result.append_array(["workshop-paused", "workshop-blocked", "starter", "street", "professor", "trail", "clearing", "park", "park-map", "pause", "bag-empty", "bag-full", "team-long", "boss-intro", "battle", "battle-paused", "battle-energy", "won", "lost", "fled", "save-error", "morro", "morro-area-2", "morro-area-3", "morro-area-4", "morro-area-5", "morro-dialog", "morro-battle", "morro-won", "morro-lost", "long-notice"])
 	return result
 static func show(front: Control, id: String) -> void:
@@ -19,10 +20,11 @@ static func show(front: Control, id: String) -> void:
 	if id == "menu":
 		front._menu()
 		return
-	if id in ["settings", "controls"]:
+	if id in ["settings", "controls", "binding-dialog"]:
 		front.session.close_session()
 		if id == "settings": front._show_settings()
 		else: front._show_controls()
+		if id == "binding-dialog": front._capture_binding("cut")
 		return
 	var saved := State.fresh("slot-1")
 	saved.player.partners = [{"id": "audit-partner", "modelId": "rabbito", "personalName": "Rabbito", "xp": 0, "craftBonus": 0, "condition": {"line": 100, "structure": 100}}]
@@ -71,7 +73,7 @@ static func show(front: Control, id: String) -> void:
 		if id == "battle-long-name": saved.player.partners[0].personalName = "Um parceiro muito querido"
 		saved.player.encounter = {"kind": "lacertubo" if id == "boss-intro" else "wild", "scene": "park-clearing", "dropRoll": 0.0, "state": model.snapshot()}
 		saved.checkpoint = {"kind": "encounter"}
-	elif id == "starter":
+	elif id in ["starter", "starter-confirm"]:
 		saved.checkpoint = {"kind": "starter"}
 		saved.player.journey = {"lesson": 5, "phase": "starter"}
 	if id in ["bag-full", "team-long"]:
@@ -93,7 +95,15 @@ static func show(front: Control, id: String) -> void:
 				child.model.complete = id.ends_with("-complete")
 				child._process(0)
 				child.set_process(false)
+				if id.ends_with("-paused"):
+					child.paused = true
+					child.resume_button.show()
+					child.resume_button.grab_focus()
 	if id == "workshop-paused": front.workshop._pause()
+	if id == "workshop-cancel":
+		front.workshop._pause()
+		front._confirm_cancel_workshop()
+	if id == "starter-confirm": front._confirm_starter("basica")
 	if id == "workshop-blocked":
 		front.workshop.model.run.blocked = "linha"
 		front.workshop.help.text = "A linha acabou. Busque materiais para continuar a montagem."

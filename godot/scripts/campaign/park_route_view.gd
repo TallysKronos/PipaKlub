@@ -23,6 +23,15 @@ var threshold := 240.0
 var ui_theme: Theme
 var trail: Array[Vector2] = []
 var foot_radius := 10.0
+var exploration_hud:Control
+var ambient_seen:Dictionary={}
+func ambient_speech(id:String) -> void:
+	if id.is_empty() or ambient_seen.has(id):return
+	for place in data.places:
+		if place.id!=id or not place.has("stage"):continue
+		ambient_seen[id]=true
+		var story:Dictionary=load("res://scripts/campaign/morro_rules.gd").content().stories[place.stage]
+		load("res://scripts/campaign/hud_world_speech.gd").spawn(self,project(Vector2(place.point[0],place.point[1])),str(story.before[0][1]))
 
 func project(point: Vector2) -> Vector2:
 	return Vector2((point.x - point.y) * .82 + 930, (point.x + point.y) * .41 + 20)
@@ -99,51 +108,16 @@ func _ready() -> void:
 	add_child(camera)
 	var ui := CanvasLayer.new()
 	add_child(ui)
-	var layout := MarginContainer.new()
-	layout.theme = ui_theme
-	layout.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	for side in ["left", "right", "top", "bottom"]: layout.add_theme_constant_override("margin_" + side, 20)
-	layout.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	ui.add_child(layout)
-	Hud.map_for(self, ui)
-	var column := VBoxContainer.new()
-	column.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	layout.add_child(column)
-	var row := HBoxContainer.new()
-	column.add_child(row)
-	var title := Hud.card(data.name)
-	title.custom_minimum_size.x = 350
-	row.add_child(title)
-	Hud.retract_after(title, 3)
-	var spacer := Control.new()
-	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	row.add_child(spacer)
-	for option in [["Equipe", "collection"], ["Bolsa", "bag"], ["Menu", "menu"]]:
-		var button := Button.new()
-		button.text = option[0]
-		Hud.secondary_button(button)
-		button.icon = Hud.icon({"collection": "team", "bag": "bag", "menu": "settings"}[option[1]])
-		button.expand_icon = true
-		button.add_theme_constant_override("icon_max_width", 24)
-		button.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
-		button.custom_minimum_size = Vector2(122, 48)
-		var id: String = option[1]
-		button.pressed.connect(func():
-			if id == "menu": menu_requested.emit()
-			else: action_requested.emit(id))
-		row.add_child(button)
-	var gap := Control.new()
-	gap.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	gap.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	column.add_child(gap)
-	hint = Label.new()
-	hint.add_theme_font_size_override("font_size", 20)
-	var prompt_panel := PanelContainer.new()
-	prompt_panel.add_theme_stylebox_override("panel", Hud.panel())
-	prompt_panel.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
-	prompt_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	prompt_panel.add_child(hint)
-	column.add_child(prompt_panel)
+	exploration_hud=load("res://scripts/campaign/hud_exploration.gd").new()
+	exploration_hud.subject=self
+	exploration_hud.area_name=data.name
+	exploration_hud.player_data=saved_player
+	ui.add_child(exploration_hud)
+	exploration_hud.map=Hud.map_for(self,ui)
+	hint=exploration_hud.prompt
+	exploration_hud.chosen.connect(func(id:String):
+		if id=="menu":menu_requested.emit()
+		else:action_requested.emit(id))
 	threshold = randf_range(240, 480)
 	_refresh()
 
@@ -191,9 +165,9 @@ func _physics_process(delta: float) -> void:
 	near = ""
 	for place in data.places:
 		if player.distance_to(Vector2(place.point[0], place.point[1])) < 90: near = place.id
-	hint.text = "Analógico · Mover" if Controls.gamepad else "Setas · Mover"
+	hint.text = ""
 	for place in data.places:
-		if place.id == near: hint.text = Controls.prompt("interact") + " · " + place.name
+		if place.id == near: hint.text = place.name
 	hint.get_parent().visible = not near.is_empty()
 	var moved := before.distance_to(player)
 	distance += moved

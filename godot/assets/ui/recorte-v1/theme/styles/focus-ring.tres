@@ -1,0 +1,16 @@
+[gd_resource type="StyleBoxFlat" format=3]
+
+[resource]
+resource_name = "focus-ring"
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.95686275, 0.9137255, 0.8235294, 0)
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.95686275, 0.9137255, 0.8235294, 1)
+shadow_color = Color(0.043137256, 0.0627451, 0.09019608, 0.9)

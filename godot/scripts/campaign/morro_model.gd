@@ -51,7 +51,7 @@ func tick(delta: float, input: Dictionary) -> void:
 	var inputs: Array = [input]
 	for rival in actors.slice(1): inputs.append(_rival_input(rival, dt) if alive(rival) else {})
 	for index in actors.size():
-		if alive(actors[index]): _move_fighter(actors[index], inputs[index], dt, sin(time / 9) * 12)
+		if alive(actors[index]): _move_fighter(actors[index], inputs[index], dt, wind_strength())
 	var hits: Array = []
 	if alive(p):
 		var closest: Dictionary = {}
@@ -176,6 +176,14 @@ func _rival_input(actor: Dictionary, dt: float) -> Dictionary:
 		var direction := (Vector2(actor.x - actor.anchor, actor.y - 585)).normalized() * (.8 if sin(time * 1000 / 260 + actor.slot) > 0 else -.8)
 		return {"x": direction.x, "y": direction.y, "cut": pull, "skill": skill}
 	return {"x": clampf((aim.x - actor.x) / 80, -b.speed, b.speed), "y": clampf((aim.y - actor.y) / 80, -b.speed, b.speed), "cut": pull, "skill": skill}
+
+func attack_notice(actor: Dictionary) -> Dictionary:
+	var notice := super.attack_notice(actor)
+	if is_same(actor,p):return notice
+	var brain:=_brain(actor.style)
+	var aiming:bool=alive(actor) and actor.target==p.slot and actor.attackCooldown<=0 and (actor.energy>=12+brain.reserve or p.hp<=24) and contact(actor,p).get("valid",false)
+	var progress:=clampf(actor.botFocus/brain.focus,0,1)
+	return {"active":aiming and progress>.6,"progress":progress}
 
 func snapshot() -> Dictionary:
 	var saved := super.snapshot()

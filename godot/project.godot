@@ -1,7 +1,7 @@
 ; Experimental native client. Independent local save, no production credentials.
 config_version=5
 [application]
-config/name="PipaKlub"
+config/name="Soulmonsters: Elo das Ruínas"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="PipaKlub"
 run/main_scene="res://scenes/campaign.tscn"
@@ -13,6 +13,8 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+[gui]
+theme/custom="res://assets/ui/recorte-v1/theme/recorte_theme.tres"
 [rendering]
 renderer/rendering_method="gl_compatibility"
 textures/default_filters/use_nearest_mipmap_filter=false

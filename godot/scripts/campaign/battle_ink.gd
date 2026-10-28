@@ -1,10 +1,11 @@
 extends RefCounted
+const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 ## Battle-only art direction: paper cuts, fixed ink ends and live data.
 const Hud = preload("res://scripts/campaign/hud.gd")
 const ROOT := "res://assets/campaign/battle-ink/"
-const BLACK := Color("080c12")
-const WHITE := Color("fff8e9")
-const COLORS := {"attack": Color("ff4866"), "energy": Color("499df5"), "dodge": Color("ffda32"), "puxao": Color("ff962e"), "line": Color("b17af0"), "team": Color("17d9ba")}
+const BLACK := Tokens.NANQUIM
+const WHITE := Tokens.PAPEL
+const COLORS := Tokens.ACTION_COLORS
 static var brushes: Array[AtlasTexture] = []
 static var portraits: Dictionary = {}
 static var icons: Dictionary = {}
@@ -19,10 +20,11 @@ static func brush(index: int) -> Texture2D:
 			brushes.append(cut)
 	return brushes[index % 4]
 static func icon(id: String) -> Texture2D:
-	if not icons.has(id): icons[id] = load(ROOT + "icon-" + id + ".svg")
-	return icons[id]
+	return Hud.icon({"line":"guarda","energy":"foco","team":"pulo-do-elo"}.get(id,id))
 static func shape(rect: Rect2, cut: float = 16) -> PackedVector2Array:
-	return PackedVector2Array([rect.position + Vector2(cut, 4), Vector2(rect.end.x, rect.position.y), rect.end - Vector2(cut, 0), Vector2(rect.position.x, rect.end.y - 3)])
+	# Slivers must remain convex when a meter approaches zero.
+	var corner := minf(cut,maxf(0,rect.size.x*.45))
+	return PackedVector2Array([rect.position + Vector2(corner,minf(4,rect.size.y*.45)), Vector2(rect.end.x, rect.position.y), rect.end - Vector2(corner,0), Vector2(rect.position.x,rect.end.y-minf(3,rect.size.y*.45))])
 static func plate(canvas: CanvasItem, rect: Rect2, fill: Color, stroke: Color = BLACK, cut: float = 16) -> void:
 	canvas.draw_colored_polygon(shape(Rect2(rect.position + Vector2(4, 5), rect.size), cut), BLACK)
 	var points := shape(rect, cut)
@@ -40,8 +42,8 @@ static func portrait(texture: Texture2D, art_id: String) -> AtlasTexture:
 	result.atlas = texture
 	result.region = Rect2(region[0], region[1], region[2], region[3])
 	return result
-static func status(canvas: CanvasItem, rect: Rect2, title: String, subtitle: String, actor: Dictionary, face: Texture2D, rival: bool) -> void:
-	var accent := Color("96d944") if rival else Color("ff4866")
+static func status(canvas: CanvasItem, rect: Rect2, title: String, subtitle: String, actor: Dictionary, face: Texture2D, rival: bool, flip_face:bool=false) -> void:
+	var accent := Tokens.RABIOLA if rival else Tokens.CEU
 	canvas.draw_texture_rect(brush(1 if rival else 0), Hud.fit_texture(brush(1 if rival else 0), Rect2(rect.position - Vector2(15, 10), Vector2(rect.size.x + 30, 185))), false)
 	var outline := PackedVector2Array([Vector2(13, 11), Vector2(rect.size.x + 8, 0), Vector2(rect.size.x - 12, 58), Vector2(rect.size.x + 1, 48), Vector2(rect.size.x - 18, 108), Vector2(rect.size.x - 4, 99), Vector2(rect.size.x - 30, 158), Vector2(0, 149)])
 	for i in outline.size(): outline[i] += rect.position
@@ -58,31 +60,33 @@ static func status(canvas: CanvasItem, rect: Rect2, title: String, subtitle: Str
 	canvas.draw_string(Hud.font(true), Vector2(x + 2, rect.position.y + 51), subtitle, HORIZONTAL_ALIGNMENT_LEFT, -1, 14, BLACK)
 	var values := [actor.hp / actor.stats.line, actor.hull / actor.stats.line, actor.energy / actor.stats.energy]
 	var names := ["Linha", "Armação", "Energia"]
-	var colors := [Color("0bd1a1"), Color("ffcf18"), Color("29c8f2")]
+	var colors := [Tokens.FOLHA, Tokens.PAPEL_2, Tokens.CEU]
 	for i in 3:
 		var y: float = rect.position.y + 75 + i * 25
 		canvas.draw_string(Hud.font(), Vector2(x, y), names[i], HORIZONTAL_ALIGNMENT_LEFT, -1, 17, WHITE)
 		var track := Rect2(x + 79, y - 13, maxf(20, content_width - 126), 13)
-		canvas.draw_colored_polygon(shape(track, 3), Color("263344"))
+		canvas.draw_colored_polygon(shape(track, 3), Tokens.TINTA_2)
 		var fraction := clampf(values[i], 0, 1)
-		if fraction > .001: canvas.draw_colored_polygon(shape(Rect2(track.position, Vector2(track.size.x * fraction, track.size.y)), minf(3, track.size.x * fraction)), colors[i])
+		if track.size.x*fraction > .5: canvas.draw_colored_polygon(shape(Rect2(track.position, Vector2(track.size.x * fraction, track.size.y)),3),colors[i])
 		canvas.draw_string(Hud.font(true), Vector2(track.end.x + 7, y), "%d%%" % roundi(fraction * 100), HORIZONTAL_ALIGNMENT_LEFT, -1, 17, WHITE)
 	var face_bounds := Rect2(rect.position + Vector2(rect.size.x - 112 if rival else -11, -5), Vector2(125, 167))
 	canvas.draw_texture_rect(brush(2), Hud.fit_texture(brush(2), face_bounds.grow(8)), false, accent)
-	canvas.draw_texture_rect(face, Hud.fit_texture(face, face_bounds), false)
+	var face_rect:=Hud.fit_texture(face, face_bounds)
+	if flip_face:
+		face_rect.size.x=-face_rect.size.x
+	canvas.draw_texture_rect(face, face_rect, false)
 	# Angular paper tears, kept at their own size rather than stretched with the plate.
 	for i in 3:
 		var point := rect.position + Vector2(12 + i * 13, rect.size.y - 6)
 		canvas.draw_line(point, point + Vector2(15, -9), BLACK, 3, true)
 
-static func strip(paper: bool = false) -> StyleBoxTexture:
-	var style := Hud.sliced_panel(load(ROOT + ("strip-paper.svg" if paper else "strip-dark.svg")), Vector4(28, 12, 28, 12))
-	style.content_margin_left = 28
-	style.content_margin_right = 28
-	style.content_margin_top = 12
-	style.content_margin_bottom = 12
-	return style
-static func live_sprite(canvas: CanvasItem, texture: Texture2D, id: String, frame: Dictionary, center: Vector2, extent: float, tint: Color = Color.WHITE, projection: Vector2 = Vector2.ONE) -> void:
+static func strip(paper: bool = false) -> StyleBoxFlat:
+	return Hud.make_theme().get_stylebox("panel", "RecortePaperPanel" if paper else "RecorteBattlePanel")
+static func facing_flip(id:String, x:float, target_x:float) -> bool:
+	# These sheets are authored facing right. Keep HUD portraits stable; arena faces its target.
+	return id in ["rabbito","nozinho","lacertubo"] and x>target_x
+
+static func live_sprite(canvas: CanvasItem, texture: Texture2D, id: String, frame: Dictionary, center: Vector2, extent: float, tint: Color = Tokens.UNTINTED, projection: Vector2 = Vector2.ONE, flip_horizontal:bool=false) -> void:
 	if sprite_bounds.is_empty(): sprite_bounds = JSON.parse_string(FileAccess.get_file_as_string(ROOT + "sprite-bounds.json"))
 	var bounds: Array = sprite_bounds[id]
 	var width: float = bounds[2]
@@ -90,4 +94,6 @@ static func live_sprite(canvas: CanvasItem, texture: Texture2D, id: String, fram
 	var factor := extent / maxf(width, height)
 	var extent_on_canvas := Vector2(width * projection.y / projection.x, height) * factor
 	var target := Rect2(center - extent_on_canvas / 2, extent_on_canvas)
+	if flip_horizontal:
+		target.size.x=-target.size.x
 	canvas.draw_texture_rect_region(texture, target, Rect2(frame.x + bounds[0], frame.y + bounds[1], width, height), tint)

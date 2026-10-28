@@ -1,22 +1,29 @@
 extends Control
+## Shared PIP-68 action. Reference volume 112×128 at 1080p; fixed art proportions.
+const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 const Ink = preload("res://scripts/campaign/battle_ink.gd")
+const Hud = preload("res://scripts/campaign/hud.gd")
+const Controls = preload("res://scripts/campaign/controls.gd")
+var action_texture: Texture2D
+signal held_changed(held: bool)
 var title := "Cortar"
 var lock_reason := ""
 var selected := false
-var lettering: Font = load("res://assets/campaign/ui-modern/fonts/Bangers-Regular.ttf")
-const Hud = preload("res://scripts/campaign/hud.gd")
-signal held_changed(held: bool)
+var active := false
+var charge := 0.0
+var reduced_motion := false
 var icon_id := "attack"
 var key_text := ""
+var action_id := "cut"
 var cooldown := 0.0
+var cooldown_peak := 0.0
+var was_cooling := false
+var ready_flash := 0.0
 var cost := 0
 var enough_energy := true
-var frame_style: StyleBox
-var ripped_style: StyleBoxTexture
 func _ready() -> void:
-	frame_style = Hud.panel()
-	ripped_style = Hud.sliced_panel(load(Ink.ROOT + "card-ripped-v2.svg"), Vector4(30, 24, 30, 24))
-	custom_minimum_size = Vector2(105, 132)
+	action_texture = load(Ink.ROOT+"actions-painted-v1/"+icon_id+".png")
+	custom_minimum_size = Vector2(112,128) * get_viewport_rect().size.y / 1080.0
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	focus_mode = Control.FOCUS_ALL
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
@@ -24,46 +31,70 @@ func _ready() -> void:
 	mouse_exited.connect(queue_redraw)
 	focus_entered.connect(queue_redraw)
 	focus_exited.connect(queue_redraw)
-func _draw() -> void:
-	var fill: Color = Ink.COLORS.get(icon_id, Hud.CYAN)
-	var active := selected
-	var box := Rect2(5, 9, size.x - 13, size.y - 17)
-	if active:
-		var burst := PackedVector2Array([Vector2(2, 14), Vector2(25, 8), Vector2(17, 1), Vector2(size.x * .44, 7), Vector2(size.x * .53, 1), Vector2(size.x - 19, 8), Vector2(size.x - 2, 1), Vector2(size.x - 8, 35), Vector2(size.x - 1, 29), Vector2(size.x - 7, size.y - 12), Vector2(size.x - 28, size.y - 7), Vector2(size.x - 18, size.y - 1), Vector2(17, size.y - 6), Vector2(1, size.y - 1), Vector2(8, size.y - 38), Vector2(1, size.y - 31)])
-		draw_colored_polygon(burst, Color("ff315c"))
-		burst.append(burst[0])
-		draw_polyline(burst, Ink.WHITE, 4, true)
-	ripped_style.modulate_color = fill if enough_energy else fill.darkened(.35)
-	draw_style_box(ripped_style, box)
-	# Diagonal dry-brush scratches and halftone retain a fixed pitch.
-	for x in range(20, int(size.x) - 20, 9):
-		for y in range(21, 71, 9):
-			if x < size.x * .48: draw_circle(Vector2(x, y), 1.1, Color(0, 0, 0, .15))
-	var brush_art := Ink.brush(3)
-	draw_texture_rect(brush_art, Hud.fit_texture(brush_art, Rect2(13, 5, minf(150, size.x - 25), 88)), false, Color(1, 1, 1, .17))
-	var icon := Ink.icon(icon_id)
-	draw_texture_rect(icon, Hud.fit_texture(icon, Rect2((size.x - 57) / 2, 17, 57, 45)), false)
-	if active:
-		draw_colored_polygon(Ink.shape(Rect2(10, 72, size.x - 26, 22), 5), Color(1, 1, 1, .3))
-	var caption := Ink.ellipsis(title.to_upper(), lettering, 24, size.x - 32)
-	var text_width := lettering.get_string_size(caption, HORIZONTAL_ALIGNMENT_LEFT, -1, 24).x
-	draw_string(lettering, Vector2((size.x - text_width) / 2, 88), caption, HORIZONTAL_ALIGNMENT_LEFT, -1, 24, Ink.BLACK)
-	var cost_box := Rect2(size.x / 2 - 39, 96, 78, 26)
-	Ink.plate(self, cost_box, Ink.BLACK, Ink.BLACK, 6)
-	draw_colored_polygon(PackedVector2Array([Vector2(cost_box.position.x + 20, 100), Vector2(cost_box.position.x + 12, 112), Vector2(cost_box.position.x + 19, 111), Vector2(cost_box.position.x + 16, 121), Vector2(cost_box.position.x + 28, 107), Vector2(cost_box.position.x + 20, 108)]), Color("ffda32"))
-	draw_string(Hud.font(true), Vector2(cost_box.position.x + 35, 117), str(cost), HORIZONTAL_ALIGNMENT_LEFT, -1, 23, Ink.WHITE)
-	var key_width := maxf(30, Hud.font(true).get_string_size(key_text, HORIZONTAL_ALIGNMENT_LEFT, -1, 16).x + 16)
-	Ink.plate(self, Rect2(size.x - key_width - 7, 0, key_width, 25), Ink.WHITE, Ink.BLACK, 4)
-	draw_string(Hud.font(true), Vector2(size.x - key_width + 1, 18), key_text, HORIZONTAL_ALIGNMENT_LEFT, -1, 16, Ink.BLACK)
-	if cooldown > 0 or not enough_energy or not lock_reason.is_empty():
-		var state_box := Rect2(11, 52, size.x - 27, 22)
-		Ink.plate(self, state_box, Ink.BLACK, Ink.BLACK, 6)
-		var state := lock_reason if not lock_reason.is_empty() else "%.1f s" % cooldown if cooldown > 0 else "SEM ENERGIA"
-		var state_width := Hud.font(true).get_string_size(state, HORIZONTAL_ALIGNMENT_LEFT, -1, 17).x
-		draw_string(Hud.font(true), Vector2((size.x - state_width) / 2, 68), state, HORIZONTAL_ALIGNMENT_LEFT, -1, 17, Ink.WHITE)
-	if active or has_focus():
-		draw_line(Vector2(20, size.y - 5), Vector2(size.x - 20, size.y - 8), Ink.WHITE, 4, true)
+func _process(dt: float) -> void:
+	if cooldown > 0: cooldown_peak = maxf(cooldown_peak,cooldown)
+	elif was_cooling: ready_flash = .12; cooldown_peak = 0
+	was_cooling = cooldown > 0
+	ready_flash = maxf(0,ready_flash-dt)
+	if ready_flash > 0 or cooldown > 0: queue_redraw()
+func regions() -> Dictionary:
+	var f := size.y / 128.0
+	return {"caption":Rect2(0,112,112,16),"state":Rect2(30,42,52,42),"button":Rect2(0,0,112,112),"factor":f}
+func button_polygon() -> PackedVector2Array:
+	if action_id == "signature": return PackedVector2Array([Vector2(56,0),Vector2(112,56),Vector2(56,112),Vector2(0,56)])
+	# The slanted shape, artwork and caption share the same x=56 center axis.
+	return PackedVector2Array([Vector2(22,24),Vector2(108,24),Vector2(90,112),Vector2(4,112)])
 
+func fill_polygons(progress: float) -> Array[PackedVector2Array]:
+	var inset := PackedVector2Array()
+	var center := Vector2(56,56 if action_id=="signature" else 68)
+	for point in button_polygon(): inset.append(center+(point-center)*.90)
+	var low := 112.0
+	var high := 0.0 if action_id=="signature" else 24.0
+	var y := lerpf(low,high,clampf(progress,0,1))
+	var band := PackedVector2Array([Vector2(-1,y),Vector2(113,y),Vector2(113,113),Vector2(-1,113)])
+	return Geometry2D.intersect_polygons(inset,band)
+
+func _draw() -> void:
+	var factor := size.y / 128.0
+	var readable:=ceili(14/maxf(.01,factor))
+	draw_set_transform(Vector2((size.x-112*factor)/2,0),0,Vector2.ONE*factor)
+	var color: Color = Ink.COLORS.get(icon_id,Tokens.CEU)
+	var points := button_polygon()
+	draw_colored_polygon(points,Tokens.TINTA)
+	# Fill stays clipped inside the actual slanted silhouette, including the diamond.
+	var progress := charge if charge>0 else 1-cooldown/maxf(.01,cooldown_peak) if cooldown>0 else 0.0
+	for polygon in fill_polygons(progress):
+		draw_colored_polygon(polygon,Tokens.alpha(Tokens.CEU if charge>0 else color,.32))
+	points.append(points[0])
+	draw_polyline(points,Tokens.NANQUIM,7,true)
+	draw_polyline(points,Tokens.CEU if active else Tokens.PAPEL if has_focus() or ready_flash>0 else color if selected else Tokens.TINTA_3,3,true)
+	var tint := Tokens.UNTINTED if enough_energy and lock_reason.is_empty() else Tokens.alpha(Tokens.UNTINTED,.4)
+	# Painted flat manga action art; preserve its own paper, bamboo and action colors.
+	var special := action_id=="signature"
+	if action_texture != null: draw_texture_rect(action_texture,Rect2(20,12,72,72) if special else Rect2(18,24,76,76),false,tint)
+	# Separate countdown badge: never mask the central picture or the caption.
+	if cooldown>0:
+		draw_rect(Rect2(25,31,24,23),Tokens.NANQUIM)
+		draw_string(Tokens.label(),Vector2(32,49),str(ceili(cooldown)),HORIZONTAL_ALIGNMENT_LEFT,-1,22,Tokens.PAPEL)
+	# Cost stays inside the button; energy no longer resembles an external charge bar.
+	var cost_color := Tokens.PAPEL if enough_energy else Tokens.RABIOLA
+	var shift := Vector2(4,-13 if special else 0)
+	draw_line(Vector2(32,101)+shift,Vector2(73,101)+shift,Tokens.TINTA_3,1,true)
+	var bolt := PackedVector2Array([Vector2(43,92),Vector2(37,100),Vector2(42,100),Vector2(39,108),Vector2(48,97),Vector2(43,97)])
+	for i in bolt.size(): bolt[i]+=shift
+	draw_colored_polygon(bolt,Tokens.SOL if enough_energy else Tokens.RABIOLA)
+	draw_string(Tokens.label(),Vector2(51,107)+shift,str(cost),HORIZONTAL_ALIGNMENT_LEFT,-1,maxi(17,readable),cost_color)
+	# Glyph and caption never share the cooldown region. Keep the configured glyph native.
+	draw_rect(Rect2(77,13,34,7),color)
+	var glyph := Controls.glyph(action_id)
+	if glyph != null: draw_texture_rect(glyph,Hud.fit_texture(glyph,Rect2(79,0,31,31)),false)
+	else: draw_string(Tokens.label(),Vector2(78,18),key_text,HORIZONTAL_ALIGNMENT_LEFT,-1,maxi(17,readable),Tokens.PAPEL)
+	var caption := "ESPECIAL" if action_id=="signature" else title.to_upper()
+	var font_size := maxi(18,readable)
+	var w := Tokens.label().get_string_size(caption,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x
+	draw_string_outline(Tokens.label(),Vector2((112-w)/2,126),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,4,Tokens.NANQUIM)
+	draw_string(Tokens.label(),Vector2((112-w)/2,126),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,Tokens.PAPEL)
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		held_changed.emit(event.pressed)

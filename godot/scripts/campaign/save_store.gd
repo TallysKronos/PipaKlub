@@ -36,9 +36,9 @@ func load_slot(slot_id: String) -> Dictionary:
 		if candidate.status in ["future", "unsupported", "io_error"]:
 			return {"status": candidate.status}
 	if primary.status == "ok":
-		return {"status": "ok", "data": primary.data, "recovered": false}
+		return {"status": "ok", "data": primary.data, "recovered": false,"modifiedAt":FileAccess.get_modified_time(_path(slot_id))}
 	if backup.status == "ok":
-		return {"status": "ok", "data": backup.data, "recovered": true}
+		return {"status": "ok", "data": backup.data, "recovered": true,"modifiedAt":FileAccess.get_modified_time(_path(slot_id)+".bak")}
 	return {"status": "missing" if primary.status == "missing" and backup.status == "missing" else "corrupt"}
 
 func create_slot(slot_id: String) -> Dictionary:
@@ -89,6 +89,7 @@ func _save(snapshot: Dictionary, creating: bool) -> Dictionary:
 		return {"status": "io_error", "error": error}
 	var next := snapshot.duplicate(true)
 	next.revision = int(snapshot.revision) + 1
+	next.savedAt=int(Time.get_unix_time_from_system())
 	var path := _path(slot_id)
 	error = _write_checked(path + ".tmp", next)
 	if error != OK:
@@ -111,3 +112,48 @@ func _save(snapshot: Dictionary, creating: bool) -> Dictionary:
 	if error != OK:
 		return {"status": "io_error", "error": error}
 	return {"status": "ok", "data": next, "recovered": current.get("recovered", false)}
+
+func archive_slot(slot_id:String,revision:int) -> Dictionary:
+	if not State.valid_slot(slot_id):return {"status":"invalid_slot"}
+	var current:=load_slot(slot_id)
+	if current.status!="ok":return current
+	if int(current.data.revision)!=revision:return {"status":"stale"}
+	var folder:=directory.path_join("removed").path_join(slot_id+"-"+State.new_id())
+	if DirAccess.make_dir_recursive_absolute(folder)!=OK:return {"status":"io_error"}
+	var moved:Array[String]=[]
+	for suffix in ["",".bak"]:
+		var source:String=_path(slot_id)+suffix
+		if not FileAccess.file_exists(source):continue
+		if DirAccess.rename_absolute(source,folder.path_join(slot_id+".json"+suffix))!=OK:
+			for done in moved:DirAccess.rename_absolute(folder.path_join(slot_id+".json"+done),_path(slot_id)+done)
+			return {"status":"io_error"}
+		moved.append(suffix)
+	return {"status":"ok","archive":folder,"slotId":slot_id}
+func restore_slot(receipt:Dictionary) -> Dictionary:
+	var id:String=receipt.get("slotId","")
+	var folder:String=receipt.get("archive","")
+	if not State.valid_slot(id) or folder.get_base_dir()!=directory.path_join("removed") or not folder.get_file().begins_with(id+"-"):return {"status":"invalid_slot"}
+	if FileAccess.file_exists(_path(id)) or FileAccess.file_exists(_path(id)+".bak"):return {"status":"occupied"}
+	var copied:Array[String]=[]
+	for suffix in ["",".bak"]:
+		var source:=folder.path_join(id+".json"+suffix)
+		if not FileAccess.file_exists(source):continue
+		if DirAccess.copy_absolute(source,_path(id)+suffix)!=OK:
+			for done in copied:DirAccess.remove_absolute(_path(id)+done)
+			return {"status":"io_error"}
+		copied.append(suffix)
+	return load_slot(id)
+func latest_removed() -> Dictionary:
+	var parent:=directory.path_join("removed")
+	if not DirAccess.dir_exists_absolute(parent):return {}
+	var chosen:Dictionary={}
+	var newest:=0
+	for folder in DirAccess.get_directories_at(parent):
+		var id:=folder.left(6)
+		if not State.valid_slot(id) or not folder.begins_with(id+"-") or load_slot(id).status!="missing":continue
+		var path:=parent.path_join(folder).path_join(id+".json")
+		var modified:=FileAccess.get_modified_time(path)
+		if modified>=newest and _read(path,id).status=="ok":
+			newest=modified
+			chosen={"archive":parent.path_join(folder),"slotId":id}
+	return chosen

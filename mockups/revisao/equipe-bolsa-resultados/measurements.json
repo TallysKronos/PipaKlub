@@ -1,0 +1,1697 @@
+[
+	{
+		"actual_pixels": [
+			1280,
+			720
+		],
+		"decorations_checked": 0,
+		"findings": [],
+		"focus": "Escolher parceiro",
+		"focus_reachable_rows": 5,
+		"image": "team-long-1280x720.png",
+		"requested_pixels": [
+			1280,
+			720
+		],
+		"scenario": "team-long",
+		"ui_units": [
+			1280.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					48.0,
+					48.0,
+					896.0,
+					42.0
+				],
+				"text": "Equipe",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1008.0,
+					53.0,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1171.0,
+					53.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					240.0,
+					120.0,
+					644.0,
+					23.0
+				],
+				"text": "PARCEIRO ATIVO",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					240.0,
+					155.0,
+					644.0,
+					37.0
+				],
+				"text": "Rabbito · Nv. 1",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					240.0,
+					204.0,
+					644.0,
+					26.0
+				],
+				"text": "Linha 100% · Armação 100%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					240.0,
+					266.0,
+					644.0,
+					23.0
+				],
+				"text": "0 / 50 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					908.0,
+					176.0,
+					256.0,
+					56.0
+				],
+				"text": "Selecionado",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					240.0,
+					329.0,
+					644.0,
+					37.0
+				],
+				"text": "Um nome bem comprido aqui · Nv. 3",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					240.0,
+					378.0,
+					644.0,
+					26.0
+				],
+				"text": "Linha 20% · Armação 40%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					240.0,
+					440.0,
+					644.0,
+					23.0
+				],
+				"text": "0 / 90 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					908.0,
+					368.0,
+					256.0,
+					56.0
+				],
+				"text": "Escolher parceiro",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					240.0,
+					503.0,
+					644.0,
+					37.0
+				],
+				"text": "Um nome bem comprido aqui · Nv. 3",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					240.0,
+					552.0,
+					644.0,
+					26.0
+				],
+				"text": "Linha 20% · Armação 40%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					240.0,
+					614.0,
+					644.0,
+					23.0
+				],
+				"text": "60 / 90 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					908.0,
+					542.0,
+					256.0,
+					56.0
+				],
+				"text": "Escolher parceiro",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					240.0,
+					677.0,
+					644.0,
+					37.0
+				],
+				"text": "Um nome bem comprido aqui · Nv. 4",
+				"type": "Label",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					240.0,
+					726.0,
+					644.0,
+					26.0
+				],
+				"text": "Linha 20% · Armação 40%",
+				"type": "Label",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					240.0,
+					788.0,
+					644.0,
+					23.0
+				],
+				"text": "30 / 110 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					908.0,
+					716.0,
+					256.0,
+					56.0
+				],
+				"text": "Escolher parceiro",
+				"type": "Button",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					240.0,
+					851.0,
+					644.0,
+					37.0
+				],
+				"text": "Um nome bem comprido aqui · Nv. 4",
+				"type": "Label",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					240.0,
+					900.0,
+					644.0,
+					26.0
+				],
+				"text": "Linha 20% · Armação 40%",
+				"type": "Label",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					240.0,
+					962.0,
+					644.0,
+					23.0
+				],
+				"text": "90 / 110 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					908.0,
+					890.0,
+					256.0,
+					56.0
+				],
+				"text": "Escolher parceiro",
+				"type": "Button",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					240.0,
+					1025.0,
+					644.0,
+					37.0
+				],
+				"text": "Um nome bem comprido aqui · Nv. 5",
+				"type": "Label",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					240.0,
+					1074.0,
+					644.0,
+					26.0
+				],
+				"text": "Linha 20% · Armação 40%",
+				"type": "Label",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					240.0,
+					1136.0,
+					644.0,
+					23.0
+				],
+				"text": "40 / 130 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					908.0,
+					1064.0,
+					256.0,
+					56.0
+				],
+				"text": "Escolher parceiro",
+				"type": "Button",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					48.0,
+					616.0,
+					1184.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			720
+		],
+		"decorations_checked": 0,
+		"findings": [
+			{
+				"fraction": 0.953,
+				"kind": "scroll_row_partial",
+				"priority": "P3",
+				"text": "Rabiola de Raio de sol  × 2"
+			}
+		],
+		"focus": "Tudo",
+		"focus_reachable_rows": 6,
+		"image": "bag-full-1280x720.png",
+		"requested_pixels": [
+			1280,
+			720
+		],
+		"scenario": "bag-full",
+		"ui_units": [
+			1280.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					48.0,
+					48.0,
+					896.0,
+					42.0
+				],
+				"text": "Bolsa · 0 moedas",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1008.0,
+					53.0,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1171.0,
+					53.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					108.0,
+					125.0,
+					53.0
+				],
+				"text": "Tudo",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					177.0,
+					108.0,
+					125.0,
+					53.0
+				],
+				"text": "Rabiolas",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					306.0,
+					108.0,
+					125.0,
+					53.0
+				],
+				"text": "Missão",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					435.0,
+					108.0,
+					125.0,
+					53.0
+				],
+				"text": "Materiais",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					177.0,
+					569.0,
+					64.0
+				],
+				"text": "Rabiola de Carcará  × 2",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					249.0,
+					569.0,
+					64.0
+				],
+				"text": "Rabiola do Carcará de Nina  × 1",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					321.0,
+					569.0,
+					64.0
+				],
+				"text": "Rabiola de Lacertubo  × 1",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					393.0,
+					569.0,
+					64.0
+				],
+				"text": "Rabiola de Azulão  × 3",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					465.0,
+					569.0,
+					64.0
+				],
+				"text": "Rabiola de Mata verde  × 4",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					537.0,
+					569.0,
+					64.0
+				],
+				"text": "Rabiola de Raio de sol  × 2",
+				"type": "Button",
+				"visible_fraction": 0.953
+			},
+			{
+				"rect": [
+					681.0,
+					356.0,
+					525.0,
+					33.0
+				],
+				"text": "Rabiola de Carcará",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					681.0,
+					401.0,
+					525.0,
+					27.0
+				],
+				"text": "2 na mochila",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					681.0,
+					440.0,
+					525.0,
+					65.0
+				],
+				"text": "Leve ao ateliê do Sr. Assis para trabalhar nesta rabiola.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					616.0,
+					1184.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			720
+		],
+		"decorations_checked": 0,
+		"findings": [],
+		"focus": "Tudo",
+		"image": "bag-empty-1280x720.png",
+		"requested_pixels": [
+			1280,
+			720
+		],
+		"scenario": "bag-empty",
+		"ui_units": [
+			1280.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					48.0,
+					48.0,
+					896.0,
+					42.0
+				],
+				"text": "Bolsa · 0 moedas",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1008.0,
+					53.0,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1171.0,
+					53.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					108.0,
+					125.0,
+					53.0
+				],
+				"text": "Tudo",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					177.0,
+					108.0,
+					125.0,
+					53.0
+				],
+				"text": "Rabiolas",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					306.0,
+					108.0,
+					125.0,
+					53.0
+				],
+				"text": "Missão",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					435.0,
+					108.0,
+					125.0,
+					53.0
+				],
+				"text": "Materiais",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					681.0,
+					356.0,
+					525.0,
+					33.0
+				],
+				"text": "Nada por aqui",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					681.0,
+					401.0,
+					525.0,
+					27.0
+				],
+				"text": "",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					681.0,
+					440.0,
+					525.0,
+					31.0
+				],
+				"text": "Esta categoria ainda está vazia.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					616.0,
+					1184.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			720
+		],
+		"decorations_checked": 0,
+		"findings": [],
+		"focus": "none",
+		"image": "won-1280x720.png",
+		"requested_pixels": [
+			1280,
+			720
+		],
+		"scenario": "won",
+		"ui_units": [
+			1280.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					212.0,
+					490.0,
+					933.0,
+					29.0
+				],
+				"text": "Rabbito · Nv. 1",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1157.0,
+					491.0,
+					71.0,
+					26.0
+				],
+				"text": "+30 XP",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					212.0,
+					547.0,
+					1016.0,
+					23.0
+				],
+				"text": "30 / 50 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					212.0,
+					578.0,
+					1016.0,
+					51.0
+				],
+				"text": "Rabiola de Mata verde\nAo continuar, seu progresso será guardado.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					24.0,
+					647.0,
+					1232.0,
+					53.0
+				],
+				"text": "Voltar ao parque",
+				"type": "Button",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			720
+		],
+		"decorations_checked": 0,
+		"findings": [],
+		"focus": "none",
+		"image": "lost-1280x720.png",
+		"requested_pixels": [
+			1280,
+			720
+		],
+		"scenario": "lost",
+		"ui_units": [
+			1280.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					212.0,
+					490.0,
+					932.0,
+					29.0
+				],
+				"text": "Rabbito · Nv. 1",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1156.0,
+					491.0,
+					72.0,
+					26.0
+				],
+				"text": "Sem XP",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					212.0,
+					547.0,
+					1016.0,
+					23.0
+				],
+				"text": "0 / 50 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					212.0,
+					578.0,
+					1016.0,
+					51.0
+				],
+				"text": "Ao continuar, seu progresso será guardado.\nSeu parceiro continua com você. Procure o Sr. Assis no ateliê para reparar a linha e a armação.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					24.0,
+					647.0,
+					1232.0,
+					53.0
+				],
+				"text": "Voltar ao parque",
+				"type": "Button",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			800
+		],
+		"decorations_checked": 0,
+		"findings": [],
+		"focus": "Escolher parceiro",
+		"focus_reachable_rows": 5,
+		"image": "team-long-1280x800.png",
+		"requested_pixels": [
+			1280,
+			800
+		],
+		"scenario": "team-long",
+		"ui_units": [
+			1280.0,
+			800.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					48.0,
+					48.0,
+					896.0,
+					42.0
+				],
+				"text": "Equipe",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1008.0,
+					53.0,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1171.0,
+					53.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					240.0,
+					120.0,
+					644.0,
+					23.0
+				],
+				"text": "PARCEIRO ATIVO",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					240.0,
+					155.0,
+					644.0,
+					37.0
+				],
+				"text": "Rabbito · Nv. 1",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					240.0,
+					204.0,
+					644.0,
+					26.0
+				],
+				"text": "Linha 100% · Armação 100%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					240.0,
+					266.0,
+					644.0,
+					23.0
+				],
+				"text": "0 / 50 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					908.0,
+					176.0,
+					256.0,
+					56.0
+				],
+				"text": "Selecionado",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					240.0,
+					329.0,
+					644.0,
+					37.0
+				],
+				"text": "Um nome bem comprido aqui · Nv. 3",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					240.0,
+					378.0,
+					644.0,
+					26.0
+				],
+				"text": "Linha 20% · Armação 40%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					240.0,
+					440.0,
+					644.0,
+					23.0
+				],
+				"text": "0 / 90 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					908.0,
+					368.0,
+					256.0,
+					56.0
+				],
+				"text": "Escolher parceiro",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					240.0,
+					503.0,
+					644.0,
+					37.0
+				],
+				"text": "Um nome bem comprido aqui · Nv. 3",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					240.0,
+					552.0,
+					644.0,
+					26.0
+				],
+				"text": "Linha 20% · Armação 40%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					240.0,
+					614.0,
+					644.0,
+					23.0
+				],
+				"text": "60 / 90 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					908.0,
+					542.0,
+					256.0,
+					56.0
+				],
+				"text": "Escolher parceiro",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					240.0,
+					677.0,
+					644.0,
+					37.0
+				],
+				"text": "Um nome bem comprido aqui · Nv. 4",
+				"type": "Label",
+				"visible_fraction": 0.027
+			},
+			{
+				"rect": [
+					240.0,
+					726.0,
+					644.0,
+					26.0
+				],
+				"text": "Linha 20% · Armação 40%",
+				"type": "Label",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					240.0,
+					788.0,
+					644.0,
+					23.0
+				],
+				"text": "30 / 110 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					908.0,
+					716.0,
+					256.0,
+					56.0
+				],
+				"text": "Escolher parceiro",
+				"type": "Button",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					240.0,
+					851.0,
+					644.0,
+					37.0
+				],
+				"text": "Um nome bem comprido aqui · Nv. 4",
+				"type": "Label",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					240.0,
+					900.0,
+					644.0,
+					26.0
+				],
+				"text": "Linha 20% · Armação 40%",
+				"type": "Label",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					240.0,
+					962.0,
+					644.0,
+					23.0
+				],
+				"text": "90 / 110 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					908.0,
+					890.0,
+					256.0,
+					56.0
+				],
+				"text": "Escolher parceiro",
+				"type": "Button",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					240.0,
+					1025.0,
+					644.0,
+					37.0
+				],
+				"text": "Um nome bem comprido aqui · Nv. 5",
+				"type": "Label",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					240.0,
+					1074.0,
+					644.0,
+					26.0
+				],
+				"text": "Linha 20% · Armação 40%",
+				"type": "Label",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					240.0,
+					1136.0,
+					644.0,
+					23.0
+				],
+				"text": "40 / 130 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					908.0,
+					1064.0,
+					256.0,
+					56.0
+				],
+				"text": "Escolher parceiro",
+				"type": "Button",
+				"visible_fraction": 0.0
+			},
+			{
+				"rect": [
+					48.0,
+					696.0,
+					1184.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			800
+		],
+		"decorations_checked": 0,
+		"findings": [],
+		"focus": "Tudo",
+		"focus_reachable_rows": 6,
+		"image": "bag-full-1280x800.png",
+		"requested_pixels": [
+			1280,
+			800
+		],
+		"scenario": "bag-full",
+		"ui_units": [
+			1280.0,
+			800.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					48.0,
+					48.0,
+					896.0,
+					42.0
+				],
+				"text": "Bolsa · 0 moedas",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1008.0,
+					53.0,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1171.0,
+					53.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					108.0,
+					125.0,
+					53.0
+				],
+				"text": "Tudo",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					177.0,
+					108.0,
+					125.0,
+					53.0
+				],
+				"text": "Rabiolas",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					306.0,
+					108.0,
+					125.0,
+					53.0
+				],
+				"text": "Missão",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					435.0,
+					108.0,
+					125.0,
+					53.0
+				],
+				"text": "Materiais",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					177.0,
+					577.0,
+					64.0
+				],
+				"text": "Rabiola de Carcará  × 2",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					249.0,
+					577.0,
+					64.0
+				],
+				"text": "Rabiola do Carcará de Nina  × 1",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					321.0,
+					577.0,
+					64.0
+				],
+				"text": "Rabiola de Lacertubo  × 1",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					393.0,
+					577.0,
+					64.0
+				],
+				"text": "Rabiola de Azulão  × 3",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					465.0,
+					577.0,
+					64.0
+				],
+				"text": "Rabiola de Mata verde  × 4",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					537.0,
+					577.0,
+					64.0
+				],
+				"text": "Rabiola de Raio de sol  × 2",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					681.0,
+					356.0,
+					525.0,
+					33.0
+				],
+				"text": "Rabiola de Carcará",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					681.0,
+					401.0,
+					525.0,
+					27.0
+				],
+				"text": "2 na mochila",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					681.0,
+					440.0,
+					525.0,
+					65.0
+				],
+				"text": "Leve ao ateliê do Sr. Assis para trabalhar nesta rabiola.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					696.0,
+					1184.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			800
+		],
+		"decorations_checked": 0,
+		"findings": [],
+		"focus": "Tudo",
+		"image": "bag-empty-1280x800.png",
+		"requested_pixels": [
+			1280,
+			800
+		],
+		"scenario": "bag-empty",
+		"ui_units": [
+			1280.0,
+			800.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					48.0,
+					48.0,
+					896.0,
+					42.0
+				],
+				"text": "Bolsa · 0 moedas",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1008.0,
+					53.0,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1171.0,
+					53.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					108.0,
+					125.0,
+					53.0
+				],
+				"text": "Tudo",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					177.0,
+					108.0,
+					125.0,
+					53.0
+				],
+				"text": "Rabiolas",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					306.0,
+					108.0,
+					125.0,
+					53.0
+				],
+				"text": "Missão",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					435.0,
+					108.0,
+					125.0,
+					53.0
+				],
+				"text": "Materiais",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					681.0,
+					356.0,
+					525.0,
+					33.0
+				],
+				"text": "Nada por aqui",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					681.0,
+					401.0,
+					525.0,
+					27.0
+				],
+				"text": "",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					681.0,
+					440.0,
+					525.0,
+					31.0
+				],
+				"text": "Esta categoria ainda está vazia.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					696.0,
+					1184.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			800
+		],
+		"decorations_checked": 0,
+		"findings": [],
+		"focus": "none",
+		"image": "won-1280x800.png",
+		"requested_pixels": [
+			1280,
+			800
+		],
+		"scenario": "won",
+		"ui_units": [
+			1280.0,
+			800.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					212.0,
+					570.0,
+					933.0,
+					29.0
+				],
+				"text": "Rabbito · Nv. 1",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1157.0,
+					571.0,
+					71.0,
+					26.0
+				],
+				"text": "+30 XP",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					212.0,
+					627.0,
+					1016.0,
+					23.0
+				],
+				"text": "30 / 50 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					212.0,
+					658.0,
+					1016.0,
+					51.0
+				],
+				"text": "Rabiola de Mata verde\nAo continuar, seu progresso será guardado.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					24.0,
+					727.0,
+					1232.0,
+					53.0
+				],
+				"text": "Voltar ao parque",
+				"type": "Button",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			800
+		],
+		"decorations_checked": 0,
+		"findings": [],
+		"focus": "none",
+		"image": "lost-1280x800.png",
+		"requested_pixels": [
+			1280,
+			800
+		],
+		"scenario": "lost",
+		"ui_units": [
+			1280.0,
+			800.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					212.0,
+					570.0,
+					932.0,
+					29.0
+				],
+				"text": "Rabbito · Nv. 1",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1156.0,
+					571.0,
+					72.0,
+					26.0
+				],
+				"text": "Sem XP",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					212.0,
+					627.0,
+					1016.0,
+					23.0
+				],
+				"text": "0 / 50 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					212.0,
+					658.0,
+					1016.0,
+					51.0
+				],
+				"text": "Ao continuar, seu progresso será guardado.\nSeu parceiro continua com você. Procure o Sr. Assis no ateliê para reparar a linha e a armação.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					24.0,
+					727.0,
+					1232.0,
+					53.0
+				],
+				"text": "Voltar ao parque",
+				"type": "Button",
+				"visible_fraction": 1.0
+			}
+		]
+	}
+]

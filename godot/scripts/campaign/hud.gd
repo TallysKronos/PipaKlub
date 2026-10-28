@@ -1,26 +1,26 @@
 extends RefCounted
+const Recorte = preload("res://scripts/campaign/recorte_theme.gd")
+const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 ## HUD Recorte: shared visual contracts for the native campaign.
-const INK := Color("141e29")
-const SURFACE := Color("22303f")
-const PAPER := Color("f4e9d2")
-const GOLD := Color("ffc23d")
-const MUTED := Color("d8c9ac")
-const DANGER := Color("33475a")
-const LINE := Color("6fd08c")
-const ENERGY := Color("2ec8e3")
-const TRACK := Color("0b1017")
-const CORAL := Color("ff5a36")
-const CYAN := Color("2ec8e3")
-const BLACK := Color("0b1017")
+const INK := Tokens.TINTA
+const SURFACE := Tokens.TINTA_2
+const PAPER := Tokens.PAPEL
+const GOLD := Tokens.SOL
+const MUTED := Tokens.PAPEL_2
+const DANGER := Tokens.RABIOLA
+const LINE := Tokens.FOLHA
+const ENERGY := Tokens.CEU
+const TRACK := Tokens.NANQUIM
+const CORAL := Tokens.RABIOLA
+const CYAN := Tokens.CEU
+const BLACK := Tokens.NANQUIM
 const EDGE := 3.0
 const Pin = preload("res://scripts/campaign/hud_pin.gd")
+const Icons = preload("res://scripts/campaign/recorte_icons.gd")
+const InputHint = preload("res://scripts/campaign/recorte_input_hint.gd")
 static var manifest: Dictionary = {}
 static var sheets: Dictionary = {}
-static var bold_font: FontVariation
 
-static var text_font: Font
-static var display_font: Font
-static var label_font: Font
 static var art_cache: Dictionary = {}
 const ART_ROOT := "res://assets/campaign/ui-recorte/"
 static func artwork(id: String) -> Texture2D:
@@ -39,24 +39,51 @@ static func ornament(index: int = 0) -> AtlasTexture:
 	return texture
 
 static func decorate(target: Control, index: int = 0, extent: Vector2 = Vector2(96, 64)) -> void:
-	# Container layouts must not measure the ornament as content.
-	var holder := Node2D.new()
-	holder.z_index = 2
-	target.add_child(holder)
 	var art := TextureRect.new()
+	art.set_meta("ui_decorative", true)
 	art.texture = ornament(index)
 	art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	art.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	art.size = extent
-	holder.add_child(art)
-	var align := func(): holder.position = Vector2(target.size.x - extent.x + 12, -extent.y * .75)
-	target.resized.connect(align)
-	align.call()
+	art.custom_minimum_size = extent
+	art.size_flags_horizontal = Control.SIZE_SHRINK_END
+	target.add_child(art)
 
 static func secondary_button(button: Button) -> void:
-	button.add_theme_stylebox_override("normal", panel())
-	button.add_theme_color_override("font_color", PAPER)
+	button.theme_type_variation = "RecorteSecondaryButton"
+
+static func pause_glyph(button:Button) -> void:
+	button.text=""
+	button.icon=preload("res://scripts/campaign/controls.gd").glyph("pause",true)
+	button.expand_icon=true
+	button.icon_alignment=HORIZONTAL_ALIGNMENT_CENTER
+	button.add_theme_constant_override("icon_max_width",32)
+	button.custom_minimum_size=Vector2(56,56)
+	button.tooltip_text="Pausar"
+	for state in ["normal","hover","pressed","focus","disabled"]:
+		var style:=StyleBoxFlat.new()
+		style.bg_color=INK
+		style.border_color=CYAN if state in ["hover","focus"] else TRACK
+		style.set_border_width_all(2)
+		style.set_content_margin_all(6)
+		button.add_theme_stylebox_override(state,style)
+
+static func navigation_button(button:Button, secondary:bool=false, icon_id:String="") -> void:
+	button.custom_minimum_size.y=maxf(48,button.custom_minimum_size.y)
+	button.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+	if secondary:secondary_button(button)
+	if not icon_id.is_empty():
+		button.icon=icon(icon_id)
+		button.expand_icon=true
+		button.add_theme_constant_override("icon_max_width",28)
+
+static func focus_space(parent: Node) -> MarginContainer:
+	# Contains the 24px visual shift, slanted edge and rabiola without moving input.
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left",4)
+	margin.add_theme_constant_override("margin_right",32)
+	parent.add_child(margin)
+	return margin
 
 static func fit_footer(panel: PanelContainer, contents: Control, minimum_height: float = 0) -> void:
 	# Height follows actual wrapped content, not a percentage of the viewport.
@@ -80,145 +107,64 @@ static func focus_later(control: Control) -> void:
 		if target != null and target.is_inside_tree() and target.is_visible_in_tree(): target.grab_focus()
 	, CONNECT_ONE_SHOT)
 
-static func map_for(subject: Node2D, layer: CanvasLayer) -> void:
+static func map_for(subject: Node2D, layer: Node) -> Control:
 	var map := load("res://scripts/campaign/hud_minimap.gd").new() as Control
 	map.subject = subject
 	layer.add_child(map)
+	return map
 
 static func retract_after(control: Control, delay: float) -> void:
 	control.create_tween().tween_property(control, "modulate:a", 0.0, .25).set_delay(delay)
 static func font(heading: bool = false) -> Font:
-	if text_font == null:
-		var variation := FontVariation.new()
-		variation.base_font = load("res://assets/campaign/ui-modern/fonts/Nunito.ttf")
-		variation.variation_opentype = {0x77676874: 700.0}
-		text_font = variation
-	if label_font == null: label_font = load("res://assets/campaign/ui-modern/fonts/BarlowCondensed-Bold.ttf")
-	return label_font if heading else text_font
+	return Tokens.label() if heading else Tokens.text()
 
 static func display() -> Font:
-	if display_font == null: display_font = load("res://assets/campaign/ui-modern/fonts/LilitaOne-Regular.ttf")
-	return display_font
+	return Tokens.display()
 
-static func icon(id: String) -> Texture2D:
-	if id in ["attack", "energy", "dodge", "puxao", "line", "bag", "team", "map", "settings", "back", "save", "tail"]: return artwork("icon-" + id)
-	if manifest.is_empty():
-		manifest = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/hud-manifest.json"))
-		sheets.panels = load("res://assets/campaign/hud-panels.png")
-		sheets.icons = load("res://assets/campaign/hud-icons.png")
-	var frame: Array = manifest.frames[id]
-	var texture := AtlasTexture.new()
-	texture.atlas = sheets[frame[0]]
-	texture.region = Rect2(frame[1], frame[2], frame[3], frame[4])
-	return texture
+static func lettering() -> Font:
+	return Tokens.lettering()
 
-static func panel(role: String = "dark") -> StyleBoxTexture:
-	var style := sliced_panel(artwork("frame-" + (role if role in ["dark", "danger", "paper"] else "dark")), Vector4(24, 24, 24, 24))
-	style.content_margin_left = 22
-	style.content_margin_right = 22
-	style.content_margin_top = 16
-	style.content_margin_bottom = 18
-	return style
+static func icon(id: String, high_density: bool = false) -> Texture2D:
+	return Icons.texture(id,false,high_density)
+
+static func input_hint(parent: Node, action: String, caption: String = "") -> Control:
+	var hint := InputHint.new()
+	hint.action = action
+	hint.caption = caption
+	parent.add_child(hint)
+	return hint
+
+static func interaction_glyph(panel: PanelContainer) -> void:
+	panel.theme_type_variation = "RecortePromptPanel"
+	var holder := Node2D.new()
+	panel.add_child(holder)
+	var glyph := input_hint(holder,"interact")
+	var align := func(): glyph.position = Vector2(12,(panel.size.y-40)/2)
+	panel.resized.connect(align)
+	align.call_deferred()
+
+static func panel(role: String = "dark") -> StyleBoxFlat:
+	return make_theme().get_stylebox("panel", "RecortePaperPanel" if role == "paper" else "PanelContainer")
 
 static func flat_panel(role: String = "dark") -> StyleBoxFlat:
-	var style := StyleBoxFlat.new()
-	style.bg_color = PAPER if role == "paper" else DANGER if role == "danger" else SURFACE
-	style.border_color = BLACK
-	style.set_border_width_all(2)
-	style.border_width_left = 3
-	style.border_width_bottom = 5
-	style.corner_detail = 1
-	style.corner_radius_top_left = 2
-	style.corner_radius_top_right = int(EDGE)
-	style.corner_radius_bottom_left = int(EDGE)
-	style.corner_radius_bottom_right = 2
-	style.shadow_color = BLACK
-	style.shadow_offset = Vector2(4, 4)
-	style.shadow_size = 0
-	style.content_margin_left = 20
-	style.content_margin_right = 20
-	style.content_margin_top = 14
-	style.content_margin_bottom = 14
-	return style
+	return panel(role).duplicate()
 
-static func button_style(state: String = "normal") -> StyleBoxTexture:
-	var style := sliced_panel(artwork("button-" + state), Vector4(26, 12, 26, 12))
-	style.content_margin_left = 26
-	style.content_margin_right = 26
-	style.content_margin_top = 12
-	style.content_margin_bottom = 12
-	return style
+static func button_style(state: String = "normal") -> StyleBoxFlat:
+	return make_theme().get_stylebox(state, "Button")
 
 static func focus_style(fill_background: bool = true) -> StyleBox:
-	if fill_background: return button_style("focus")
-	var style := StyleBoxFlat.new()
-	style.draw_center = fill_background
-	style.bg_color = PAPER
-	style.border_color = CYAN
-	style.set_border_width_all(3)
-	style.set_expand_margin_all(4)
-	style.corner_detail = 1
-	style.corner_radius_top_right = int(EDGE + 4)
-	style.corner_radius_bottom_left = int(EDGE + 4)
-	return style
+	return make_theme().get_stylebox("focus", "Button" if fill_background else "ItemList")
 
 static func make_theme() -> Theme:
-	var ui := Theme.new()
-	ui.default_font = font()
-	ui.default_font_size = 20
-	for state in ["normal", "hover", "pressed", "disabled"]: ui.set_stylebox(state, "Button", button_style(state))
-	ui.set_stylebox("focus", "Button", focus_style())
-	for state in ["font_color", "font_hover_color", "font_pressed_color", "font_hover_pressed_color", "font_focus_color"]: ui.set_color(state, "Button", INK)
-	ui.set_color("font_disabled_color", "Button", Color("485854"))
-	ui.set_font("font", "Button", font(true))
-	ui.set_constant("outline_size", "Button", 0)
-	ui.set_color("font_color", "Label", PAPER)
-	ui.set_color("font_color", "RichTextLabel", PAPER)
-	ui.set_constant("separation", "VBoxContainer", 12)
-	ui.set_constant("separation", "HBoxContainer", 12)
-	for state in ["normal", "hover", "pressed", "disabled"]: ui.set_stylebox(state, "CheckButton", panel())
-	ui.set_stylebox("focus", "CheckButton", focus_style(false))
-	for color_key in ["font_color", "font_focus_color", "font_hover_color", "font_pressed_color"]: ui.set_color(color_key, "CheckButton", PAPER)
-	ui.set_icon("checked", "CheckButton", artwork("toggle-on"))
-	ui.set_icon("unchecked", "CheckButton", artwork("toggle-off"))
-	ui.set_stylebox("panel", "PanelContainer", panel())
-	ui.set_stylebox("panel", "AcceptDialog", panel())
-	var frame := panel()
-	frame.content_margin_top = 34
-	frame.expand_margin_top = 34
-	ui.set_stylebox("embedded_border", "Window", frame)
-	ui.set_stylebox("embedded_unfocused_border", "Window", frame)
-	ui.set_color("title_color", "Window", PAPER)
-	ui.set_color("title_outline_modulate", "Window", INK)
-	ui.set_font("title_font", "Window", font(true))
-	ui.set_stylebox("normal", "LineEdit", panel("paper"))
-	ui.set_stylebox("focus", "LineEdit", focus_style(false))
-	ui.set_color("font_color", "LineEdit", INK)
-	ui.set_color("caret_color", "LineEdit", INK)
-	ui.set_color("font_placeholder_color", "LineEdit", Color("485854"))
-	ui.set_color("selection_color", "LineEdit", GOLD)
-	ui.set_color("font_selected_color", "LineEdit", INK)
-	var track := flat_panel()
-	track.bg_color = TRACK
-	track.set_border_width_all(0)
-	track.shadow_size = 0
-	track.shadow_offset = Vector2.ZERO
-	track.set_content_margin_all(0)
-	track.set_corner_radius_all(3)
-	var fill: StyleBoxFlat = track.duplicate()
-	fill.bg_color = LINE
-	ui.set_stylebox("background", "ProgressBar", track)
-	ui.set_stylebox("fill", "ProgressBar", fill)
-	return ui
+	return Recorte.shared()
 
 static func card(text: String) -> PanelContainer:
 	var container := PanelContainer.new()
-	container.add_theme_stylebox_override("panel", panel())
+	container.theme = make_theme()
 	container.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var label := Label.new()
 	label.text = text
 	label.add_theme_font_override("font", font(true))
-	label.add_theme_color_override("font_color", PAPER)
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	label.size_flags_vertical = Control.SIZE_FILL
@@ -265,7 +211,7 @@ static func stat_card(canvas: CanvasItem, rect: Rect2, title: String, actor: Dic
 		var fraction: float = clampf(values[index], 0, 1)
 		var track_width := rect.size.x - 186
 		var color: Color = ENERGY if names[index] == "Energia" else MUTED if names[index] == "Armação" else CORAL if role == "danger" else CYAN
-		if index == 0 and fraction < .25: color = Color("ffad95")
+		if index == 0 and fraction < .25: color = Tokens.RABIOLA
 		canvas.draw_string(font(), Vector2(rect.position.x + 14, y), names[index], HORIZONTAL_ALIGNMENT_LEFT, 94, 21, PAPER)
 		canvas.draw_rect(Rect2(rect.position.x + 110, y - 13, track_width, 11), TRACK)
 		if names[index] == "Energia":
@@ -291,6 +237,9 @@ static func draw_result(canvas: CanvasItem, won: bool, fled: bool = false) -> vo
 	canvas.draw_string(display(), Vector2(500 - text_width / 2, 480), text, HORIZONTAL_ALIGNMENT_LEFT, -1, 42, INK)
 
 static func item_icon(id: String) -> Texture2D:
+	return icon("missoes" if id.begins_with("quest-") else "rabiola" if "rabiola" in id else "mochila")
+
+static func item_art(id: String) -> Texture2D:
 	var model_id := id.trim_prefix("damaged-").trim_prefix("rabiola-")
 	if model_id in ["basica", "mata", "azulao", "raio", "lacertubo", "quest-nina-tail"]: return artwork("item-" + model_id)
 	return icon("bag")

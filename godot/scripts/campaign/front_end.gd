@@ -29,6 +29,8 @@ var next: Button
 var name_input: LineEdit
 var portrait: TextureRect
 var current_step := -1
+var opening_pages:Array[String]=[]
+var opening_page_index:=0
 var broadcast: Array[Sprite2D] = []
 var clock := 0.0
 var journey: RefCounted
@@ -42,10 +44,17 @@ var preferences := Preferences.new()
 var crt_layer: CanvasLayer
 var quit_after_workshop := false
 var binding_target := ""
-var binding_dialog: AcceptDialog
+var binding_dialog: Control
 var pause_overlay: Control
 var pause_previous: Dictionary = {}
 var last_scene_key := ""
+var menu_origin:=""
+var binding_rows:Dictionary={}
+var controls_focus_action:=""
+var team_page:=0
+var settings_tab:="Vídeo"
+var settings_focus_controls:=false
+var team_load_state:="ready"
 
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -71,13 +80,15 @@ func _ready() -> void:
 	exploration = Exploration.new(session)
 	encounters = Encounters.new(session)
 	morro = Morro.new(session)
-	theme = Hud.make_theme()
+	Hud.Recorte.install(self, preferences.reduced_motion)
+	get_node("RecorteUX").set_text_scale(preferences.text_scale)
 	resized.connect(_layout_stage)
-	_menu()
+	_title()
 
 func _clear(route: String = "") -> void:
+	if not binding_target.is_empty():_cancel_binding()
 	for child in get_children():
-		if child != session and child != crt_layer:
+		if child != session and child != crt_layer and child.name != "RecorteUX":
 			remove_child(child)
 			child.queue_free()
 	stage = null
@@ -118,6 +129,7 @@ func _label(text: String, target: Node, font_size: int = 22) -> Label:
 func _button(text: String, target: Node, action: Callable) -> Button:
 	var button := Button.new()
 	button.text = text
+	Hud.navigation_button(button)
 	button.custom_minimum_size.y = 56
 	button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	button.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
@@ -137,74 +149,110 @@ func _button(text: String, target: Node, action: Callable) -> Button:
 	button.pressed.connect(action)
 	return button
 
+func _title() -> void:
+	_clear("title")
+	session.close_session()
+	var title_view=load("res://scripts/campaign/hud_title_menu.gd").new()
+	title_view.mode="title"
+	title_view.reduced_motion=preferences.reduced_motion
+	add_child(title_view)
+	title_view.selected.connect(func(_id:String):_menu())
+
 func _menu() -> void:
+	menu_origin=""
 	_clear("menu")
 	session.close_session()
-	var margin := MarginContainer.new()
-	margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	for side in ["left", "right"]:
-		margin.add_theme_constant_override("margin_" + side, 110)
-	for side in ["top", "bottom"]:
-		margin.add_theme_constant_override("margin_" + side, 48)
-	add_child(margin)
-	var scroll := ScrollContainer.new()
-	scroll.follow_focus = true
-	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	margin.add_child(scroll)
-	page = VBoxContainer.new()
-	page.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	page.add_theme_constant_override("separation", 18)
+	var menu=load("res://scripts/campaign/hud_title_menu.gd").new()
+	for index in range(1,4):
+		if session.inspect_slot("slot-%d"%index).status=="ok":menu.has_saves=true
+	menu.reduced_motion=preferences.reduced_motion
+	add_child(menu)
+	menu.selected.connect(_main_menu_action)
+
+func _main_menu_action(id:String) -> void:
+	match id:
+		"continue":_show_slots(false)
+		"new":_show_slots(true)
+		"settings":_show_settings()
+		"quit":get_tree().quit()
+
+func _slot_location(snapshot:Dictionary) -> Dictionary:
+	var point:Dictionary=snapshot.get("checkpoint",{})
+	var scene:String=point.get("scene",snapshot.get("player",{}).get("encounter",{}).get("scene",""))
+	var name:String={"quintal":"Bairro dos Ventos","professor-home":"Ateliê do Sr. Assis","park-trail":"Jardim dos Ventos","park-clearing":"Clareira do Papel","park-veredas":"Veredas do Encanamento"}.get(scene,"Prólogo" if point.get("kind")=="opening" else "Ateliê do Sr. Assis")
+	var texture:Texture2D=load("res://assets/campaign/rooftop-arena-wide-v2.png")
+	if scene.begins_with("morro"):
+		var data:Dictionary=Morro.maps().get(scene,{})
+		name=data.get("name","Morro do Sol")
+		if not data.get("images",[]).is_empty():texture=load("res://assets/campaign/morro/"+data.images[0].image)
+	elif scene in ["quintal","professor-home"]:
+		texture=load("res://assets/campaign/"+content.rooms["street" if scene=="quintal" else "professor"].floorImage)
+	elif scene in ["park-trail","park-clearing"]:
+		var maps:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/park/maps.json"))
+		texture=load("res://assets/campaign/park/"+maps[scene].floorImage)
+	elif scene=="park-veredas":texture=load("res://assets/illustrated/veredas-ground.png") if ResourceLoader.exists("res://assets/illustrated/veredas-ground.png") else load("res://assets/campaign/veredas-arena-wide-v2.png")
+	return {"name":name,"texture":texture}
+
+func _show_slots(new_journey:bool=false) -> void:
+	_clear("menu:slots")
+	session.close_session()
+	var background=load("res://scripts/campaign/hud_title_menu.gd").new()
+	background.mode="slots"
+	add_child(background)
+	var scroll:=ScrollContainer.new()
+	scroll.anchor_left=.5;scroll.anchor_right=.5;scroll.anchor_bottom=1
+	scroll.offset_left=-minf(550,size.x*.46);scroll.offset_right=minf(550,size.x*.46)
+	scroll.offset_top=32;scroll.offset_bottom=-24
+	scroll.follow_focus=true
+	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+	add_child(scroll)
+	page=VBoxContainer.new()
+	page.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	page.add_theme_constant_override("separation",14)
 	scroll.add_child(page)
-	_label("CAMPANHA  /  SEU PRÓXIMO VENTO", page, 18).add_theme_color_override("font_color", Hud.CYAN)
-	_label("PipaKlub", page, 56)
-	_label("Um fio de sorte", page, 24)
-	status = _label("Escolha sua jornada. Seu progresso fica neste computador.", page)
-	var slots := GridContainer.new()
-	slots.columns = 3
-	slots.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	slots.add_theme_constant_override("h_separation", 20)
-	slots.add_theme_constant_override("v_separation", 20)
-	page.add_child(slots)
-	page.resized.connect(func(): slots.columns = 3 if page.size.x >= 850 else 1)
-	var first: Button
-	for i in range(1, 4):
-		var slot_id := "slot-%d" % i
-		var result: Dictionary = session.inspect_slot(slot_id)
-		var text := "Jornada %d · Novo jogo" % i
-		if result.status == "ok":
-			text = "Jornada %d · Continuar — %s" % [i, str(result.data.player.name)]
-			if result.recovered:
-				text += " · Recuperar backup"
-		elif result.status != "missing":
-			text = "Jornada %d · %s" % [i, _error(result.status)]
-		var card := PanelContainer.new()
-		card.add_theme_stylebox_override("panel", Hud.panel("paper"))
-		Hud.decorate(card, i % 2, Vector2(90, 60))
-		card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		var column := VBoxContainer.new()
-		card.add_child(column)
-		slots.add_child(card)
-		_label("JORNADA  %02d" % i, column, 18).add_theme_color_override("font_color", Hud.INK)
-		var art := TextureRect.new()
-		art.texture = load("res://assets/campaign/portrait-kael.png") if result.status == "ok" else Hud.icon("puxao")
-		art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		art.custom_minimum_size = Vector2(96, 112)
-		column.add_child(art)
-		var detail := "Um novo começo" if result.status == "missing" else str(result.data.player.name) if result.status == "ok" else "Jornada indisponível"
-		_label(detail, column, 24).add_theme_color_override("font_color", Hud.INK)
-		var button := _button(text, column, _choose.bind(slot_id, result.status == "missing"))
-		button.add_theme_stylebox_override("normal", Hud.panel())
-		button.add_theme_color_override("font_color", Hud.PAPER)
-		button.disabled = result.status not in ["missing", "ok"]
-		if not is_instance_valid(first) and not button.disabled:
-			first = button
-	var tools := HBoxContainer.new()
+	var heading:=PanelContainer.new()
+	heading.theme_type_variation="RecorteEmptyPanel"
+	heading.set_meta("recorte_decorated",true)
+	page.add_child(heading)
+	_label("NOVA JORNADA" if new_journey else "SUAS JORNADAS",heading,38)
+	status=_label("Escolha um espaço vazio." if new_journey else "Retome de onde parou.",page,18)
+	var first:Button
+	for index in range(1,4):
+		var id:="slot-%d"%index
+		var inspection:Dictionary=session.inspect_slot(id)
+		var card=load("res://scripts/campaign/hud_journey_slot.gd").new()
+		card.slot_id=id;card.inspection=inspection;card.available_for_new=new_journey
+		if inspection.status=="ok":
+			var location:=_slot_location(inspection.data)
+			card.area_name=location.name;card.thumbnail=location.texture
+			var saved_player:Dictionary=inspection.data.get("player",{})
+			for partner in saved_player.get("partners",[]):
+				if partner.id!=saved_player.get("equippedPartnerId",""):continue
+				var art_id:String={"rabbito":"rabbito","basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","lacertubo":"lacertubo"}.get(partner.modelId,"")
+				if content.combat.has(art_id):
+					card.partner_portrait=load("res://scripts/campaign/battle_ink.gd").portrait(load("res://assets/campaign/"+content.combat[art_id].image),art_id)
+		page.add_child(card)
+		card.selected.connect(func():_choose(id,inspection.status=="missing"))
+		card.erase_requested.connect(func():_confirm_erase_slot(id,inspection,new_journey))
+		if first==null and not card.action.disabled:first=card.action
+	var tools:=HBoxContainer.new()
+	tools.add_theme_constant_override("separation",18)
 	page.add_child(tools)
-	_button("Configurações", tools, _show_settings)
-	_button("Sair", tools, func(): get_tree().quit())
-	if is_instance_valid(first):
-		Hud.focus_later(first)
+	var back:=_button("Voltar",tools,_menu)
+	var receipt:Dictionary=session._store.latest_removed()
+	if not receipt.is_empty():_button("Desfazer exclusão",tools,func():
+		if _result(session._store.restore_slot(receipt)):_show_slots(new_journey))
+	Hud.input_hint(tools,"accept","Confirmar")
+	Hud.input_hint(tools,"back","Voltar")
+	Hud.focus_later(first if first!=null else back)
+
+func _confirm_erase_slot(id:String,inspection:Dictionary,new_journey:bool) -> void:
+	var dialog:=_confirmation("Excluir jornada", "Excluir a jornada de %s?\n\nVocê poderá desfazer na lista de jornadas enquanto esse espaço continuar vazio."%inspection.data.player.name,"Excluir jornada")
+	dialog.confirmed.connect(func():
+		if _result(session._store.archive_slot(id,int(inspection.data.revision))):_show_slots(new_journey))
+	dialog.confirmed.connect(dialog.queue_free)
+	dialog.canceled.connect(dialog.queue_free)
+	dialog.popup_centered()
 
 func _error(code: String) -> String:
 	return {"corrupt": "Save danificado; mantenha os arquivos para recuperação.",
@@ -222,18 +270,40 @@ func _choose(slot_id: String, create: bool) -> void:
 		return
 	_show_saved()
 	if not create and is_instance_valid(battle): battle.paused = true
+	var wipe=load("res://scripts/campaign/recorte_ink_wipe.gd").new()
+	add_child(wipe)
+	wipe.z_index=90
+	wipe.finished.connect(wipe.queue_free,CONNECT_ONE_SHOT)
+	wipe.play(Hud.CYAN,preferences.reduced_motion,false)
 	if result.get("recovered", false):
 		_notice("Recuperamos sua jornada a partir do backup.")
 
+func _dialog(title: String, text: String, ok: String, cancel: String = "") -> Control:
+	var dialog=load("res://scripts/campaign/hud_dialogue.gd").new()
+	dialog.title=title
+	dialog.dialog_text=text
+	dialog.ok_button_text=ok
+	dialog.cancel_button_text=cancel
+	dialog.reduced_motion=preferences.reduced_motion
+	add_child(dialog)
+	return dialog
+
+func _confirmation(title:String,text:String,ok:String) -> Control:
+	var dialog=load("res://scripts/campaign/hud_confirmation.gd").new()
+	dialog.title=title
+	dialog.dialog_text=text
+	dialog.ok_button_text=ok
+	add_child(dialog)
+	return dialog
+
 func _notice(message: String) -> void:
+	if is_instance_valid(park) and (message.begins_with("Baú encontrado") or message=="Rabiola do Carcará de Nina recebida."):
+		park.exploration_hud.push_notice(message,"item")
+		return
 	if is_instance_valid(park): park.paused = true
 	var was_walking: bool = is_instance_valid(room) and room.can_walk
 	if was_walking: room.can_walk = false
-	var dialog := AcceptDialog.new()
-	dialog.get_label().custom_minimum_size.x = 560
-	dialog.dialog_autowrap = true
-	dialog.dialog_text = message
-	add_child(dialog)
+	var dialog := _dialog("Aviso", message, "Entendi")
 	dialog.confirmed.connect(dialog.queue_free)
 	dialog.canceled.connect(dialog.queue_free)
 	dialog.tree_exiting.connect(func():
@@ -260,6 +330,7 @@ func _return_to_game() -> void:
 	_show_saved()
 	# Returning from a page must not restart combat while the player is still orienting.
 	if is_instance_valid(battle): battle.paused = true
+	if not menu_origin.is_empty():_pause_game()
 
 func _show_opening() -> void:
 	_clear()
@@ -285,7 +356,7 @@ func _show_opening() -> void:
 		room.configure(map, point, current_step in [3, 11, 13], target, current_step >= 5, current_step >= 9)
 		room.interacted.connect(func(_id: String): _advance())
 	_layout_stage()
-	portrait = TextureRect.new()
+	portrait = load("res://scripts/campaign/hud_dialogue_portrait.gd").new()
 	portrait.anchor_top = 1
 	portrait.anchor_bottom = 1
 	portrait.offset_left = 8
@@ -296,7 +367,7 @@ func _show_opening() -> void:
 	portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	portrait.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(portrait)
-	var panel := PanelContainer.new()
+	var panel=load("res://scripts/campaign/hud_dialogue_surface.gd").new()
 	panel.anchor_top = .72
 	panel.anchor_right = 1
 	panel.anchor_bottom = 1
@@ -304,10 +375,7 @@ func _show_opening() -> void:
 	panel.offset_right = -40
 	panel.offset_top = -12
 	panel.offset_bottom = -20
-	var box := Hud.panel()
-	box.content_margin_top = 22
-	box.content_margin_bottom = 20
-	panel.add_theme_stylebox_override("panel", box)
+	panel.theme_type_variation = "RecorteDialoguePanel"
 	add_child(panel)
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 20)
@@ -317,29 +385,39 @@ func _show_opening() -> void:
 	page.add_theme_constant_override("separation", 6)
 	row.add_child(page)
 	var story: Dictionary = content.opening[mini(current_step, 13)]
+	var dialogue_tags=load("res://scripts/campaign/hud_dialogue_surface.gd").parse_tags(story.text)
+	panel.shouted=dialogue_tags.shout
+	portrait.emotion=dialogue_tags.emotion
+	portrait.reaction=dialogue_tags.reaction
 	var speaker: String = story.speaker
 	if content.portraits.has(speaker):
 		portrait.texture = load("res://assets/campaign/" + content.portraits[speaker])
 	portrait.visible = portrait.texture != null
-	var nameplate := PanelContainer.new()
+	var nameplate=load("res://scripts/campaign/hud_result_plate.gd").new()
+	nameplate.accent=Hud.CORAL
 	nameplate.position = Vector2(22, -34)
 	nameplate.custom_minimum_size = Vector2(maxf(180, Hud.font().get_string_size(speaker, HORIZONTAL_ALIGNMENT_LEFT, -1, 24).x + 48), 48)
-	var name_style := Hud.panel("paper")
-	name_style.content_margin_top = 6
-	name_style.content_margin_bottom = 6
-	nameplate.add_theme_stylebox_override("panel", name_style)
+	nameplate.theme_type_variation = "RecorteNamePanel"
 	nameplate.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var plate_holder := Node2D.new()
 	panel.add_child(plate_holder)
 	plate_holder.add_child(nameplate)
 	var heading := _label(speaker, nameplate, 24)
+	heading.add_theme_font_override("font",Hud.display())
 	heading.autowrap_mode = TextServer.AUTOWRAP_OFF
 	nameplate.visible = not speaker.is_empty()
-	heading.add_theme_color_override("font_color", Hud.INK)
-	speech = _label(story.text, page, 22)
-	speech.add_theme_color_override("font_color", Hud.PAPER)
+	heading.theme_type_variation = "Label"
+	speech = _label(dialogue_tags.text, page, 22)
+	opening_pages.clear()
+	opening_page_index=0
+	var paginate_opening:=func():
+		if not is_instance_valid(speech) or current_step in [3,10,11,13,14]:return
+		opening_pages=load("res://scripts/campaign/hud_dialogue_surface.gd").text_pages(dialogue_tags.text,Hud.font(),22,maxf(160,speech.size.x-12))
+		speech.text=opening_pages[0]
+	paginate_opening.call_deferred()
+	speech.theme_type_variation = "Label"
 	status = _label("", page, 16)
-	status.add_theme_color_override("font_color", Hud.MUTED)
+	status.theme_type_variation = "RecorteMutedText"
 	status.visible = current_step in [3, 11, 13]
 	if current_step in [3, 11, 13]:
 		speech.text = ""
@@ -350,33 +428,44 @@ func _show_opening() -> void:
 		panel.anchor_top = 1
 		panel.offset_top = -110
 		status.text = "WASD / setas · E para interagir"
+		panel.hide()
+		var hint=load("res://scripts/campaign/hud_opening_hint.gd").new()
+		hint.subject=room
+		add_child(hint)
 	if current_step == 10:
 		name_input = LineEdit.new()
 		name_input.placeholder_text = "Nome do parceiro · Rabbito"
 		name_input.max_length = 24
 		page.add_child(name_input)
 		name_input.text_submitted.connect(func(_value: String): _name())
-		next = _button("Confirmar nome", page, _name)
+		next = _button("Confirmar nome", Hud.focus_space(page), _name)
 		Hud.focus_later(name_input)
 	elif current_step < 14 and current_step not in [3, 11, 13]:
-		next = _button("Avançar", page, _advance)
+		var next_space := Hud.focus_space(page)
+		next_space.size_flags_horizontal = Control.SIZE_SHRINK_END
+		next = _button("Avançar", next_space, _advance)
 		next.size_flags_horizontal = Control.SIZE_SHRINK_END
 		next.custom_minimum_size.x = 180
 		Hud.focus_later(next)
 	elif current_step == 14:
 		speech.text = ""
-		_button("Sair para a rua", page, func():
+		_button("Sair para a rua", Hud.focus_space(page), func():
 			if _result(journey.enter_world("quintal", Vector2(480, 768))):
 				_show_saved())
-	var menu := _button("Salvar e voltar ao menu", self, _menu)
+	var menu := _button("", self, _pause_game)
+	Hud.pause_glyph(menu)
 	menu.anchor_left = 1
 	menu.anchor_right = 1
-	menu.offset_left = -315
+	menu.offset_left = -80
 	menu.offset_right = -24
 	menu.offset_top = 16
 	menu.offset_bottom = 70
 
 func _advance() -> void:
+	if opening_page_index<opening_pages.size()-1:
+		opening_page_index+=1
+		speech.text=opening_pages[opening_page_index]
+		return
 	var result: Dictionary = opening.advance(current_step)
 	if result.status == "ok":
 		_show_opening()
@@ -430,40 +519,18 @@ func _show_world() -> void:
 		room.companion.texture = load("res://assets/campaign/" + content.combat[id].image)
 		room.companion_frames = content.combat[id].animations.idle
 	room.interacted.connect(_world_interact)
-	var overlay := VBoxContainer.new()
-	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	overlay.offset_left = 20
-	overlay.offset_top = 20
-	overlay.offset_right = -20
-	overlay.offset_bottom = -20
-	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var overlay=load("res://scripts/campaign/hud_exploration.gd").new()
+	overlay.subject=room
+	overlay.area_name="Ateliê do Sr. Assis" if professor else "Bairro dos Ventos"
+	overlay.player_data=session.snapshot().player
 	add_child(overlay)
-	var tools := HBoxContainer.new()
-	overlay.add_child(tools)
-	var location := Hud.card("Ateliê do Sr. Assis" if professor else "Bairro dos Ventos")
-	location.custom_minimum_size.x = 300
-	tools.add_child(location)
-	Hud.retract_after(location, 3)
-	var spacer := Control.new()
-	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	spacer.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	tools.add_child(spacer)
-	_button("Equipe", tools, func(): _show_collection())
-	_button("Bolsa", tools, func(): _show_bag())
-	_button("Menu", tools, _pause_game)
-	var gap := Control.new()
-	gap.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	gap.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	overlay.add_child(gap)
-	var prompt := PanelContainer.new()
-	prompt.set_meta("contextual", true)
-	prompt.add_theme_stylebox_override("panel", Hud.panel())
-	prompt.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
-	prompt.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	overlay.add_child(prompt)
-	status = _label("", prompt, 20)
-	status.autowrap_mode = TextServer.AUTOWRAP_OFF
-	prompt.visible = false
+	overlay.map=Hud.map_for(room,overlay)
+	status=overlay.prompt
+	room.set_meta("exploration_hud",overlay)
+	overlay.chosen.connect(func(id:String):
+		if id=="collection":_show_collection()
+		elif id=="bag":_show_bag()
+		else:_pause_game())
 
 func _world_interact(id: String) -> void:
 	var point: Dictionary = session.snapshot().checkpoint
@@ -502,6 +569,7 @@ func _world_interact(id: String) -> void:
 func _show_practice() -> void:
 	_clear()
 	var view := FlightView.new()
+	view.reduced_motion=preferences.reduced_motion
 	var index: int = session.snapshot().checkpoint.lesson
 	view.configure(content, index)
 	add_child(view)
@@ -510,12 +578,18 @@ func _show_practice() -> void:
 			_show_saved())
 	view.leave.connect(_menu)
 
-func _simple_page(title: String) -> void:
+func _simple_page(title: String, illustrated:bool=false) -> void:
 	_clear("page:" + title)
+	if illustrated:
+		var backdrop=load("res://scripts/campaign/hud_title_menu.gd").new()
+		backdrop.mode="slots"
+		add_child(backdrop)
 	var margin := MarginContainer.new()
 	margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	for side in ["left", "right", "top", "bottom"]:
 		margin.add_theme_constant_override("margin_" + side, 48)
+	if illustrated:
+		for side in ["left","right"]:margin.add_theme_constant_override("margin_"+side,maxi(48,int((size.x-1100)/2)))
 	add_child(margin)
 	page = VBoxContainer.new()
 	page.add_theme_constant_override("separation", 18)
@@ -524,13 +598,8 @@ func _simple_page(title: String) -> void:
 	page.add_child(heading_row)
 	var heading := _label(title, heading_row, 36)
 	heading.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var mark := TextureRect.new()
-	mark.texture = Hud.artwork("thread-mark")
-	mark.custom_minimum_size = Vector2(160, 50)
-	mark.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	mark.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	mark.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	heading_row.add_child(mark)
+	Hud.input_hint(heading_row,"accept","Confirmar")
+	Hud.input_hint(heading_row,"back","Voltar")
 	_focus_first.call_deferred(page)
 
 func _focus_first(node: Node) -> bool:
@@ -557,12 +626,14 @@ func _show_starter() -> void:
 		_label("Escolha a rabiola do seu próximo parceiro. Esta escolha é única.", page)
 		var grid := GridContainer.new()
 		grid.columns = 2
+		grid.add_theme_constant_override("h_separation",20)
+		grid.add_theme_constant_override("v_separation",16)
 		page.add_child(grid)
 		for model_id in Journey.STARTERS:
 			var chosen: String = model_id
 			var card := PanelContainer.new()
 			card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-			card.add_theme_stylebox_override("panel", Hud.panel())
+			card.theme_type_variation = "PanelContainer"
 			grid.add_child(card)
 			var row := HBoxContainer.new()
 			card.add_child(row)
@@ -577,20 +648,18 @@ func _show_starter() -> void:
 			row.add_child(detail)
 			var description := {"basica": "Reforça o próximo corte.", "mata": "Reduz o dano recebido por um instante.", "azulao": "Favorece o ângulo no cruzamento.", "raio": "Rajada veloz de curta duração."}
 			_label(description[chosen] + "\nHabilidade · 25 energia", detail, 18)
-			var choose := _button(Journey.STARTERS[chosen], detail, func(): _confirm_starter(chosen))
+			var choose := _button(Journey.STARTERS[chosen], Hud.focus_space(detail), func(): _confirm_starter(chosen))
 			Hud.secondary_button(choose)
 
 	_button("Salvar e voltar ao menu", page, _menu)
 
 func _confirm_starter(model_id: String) -> void:
-	var dialog := ConfirmationDialog.new()
-	dialog.dialog_text = "Escolher a rabiola de %s? A escolha será guardada nesta jornada." % Journey.STARTERS[model_id]
-	add_child(dialog)
+	var dialog := _dialog("Escolher parceiro", "Escolher a rabiola de %s? A escolha será guardada nesta jornada." % Journey.STARTERS[model_id], "Escolher rabiola", "Continuar escolhendo")
 	dialog.confirmed.connect(func():
 		if _result(journey.choose(model_id)): _show_saved()
 		dialog.queue_free())
 	dialog.canceled.connect(dialog.queue_free)
-	dialog.popup_centered()
+	dialog.popup_centered(Vector2i(640,240))
 
 func _show_workshop() -> void:
 	_clear()
@@ -602,12 +671,29 @@ func _show_workshop() -> void:
 	workshop.finished.connect(func(_outcome: Dictionary):
 		if _result(journey.finish_workshop()):
 			_show_saved.call_deferred()
+			_show_workshop_quality.call_deferred(_outcome)
 		else:
 			workshop.paused = true
 			workshop.sent_outcome = false
 			workshop.storage_blocked = true
 			workshop.resume_button.show())
 	workshop.leave_requested.connect(_confirm_cancel_workshop)
+	workshop.pause_requested.connect(_pause_game)
+
+func _show_workshop_quality(outcome:Dictionary) -> void:
+	var badge=load("res://scripts/campaign/hud_result_plate.gd").new()
+	badge.accent=Hud.GOLD
+	badge.anchor_left=1;badge.anchor_right=1
+	badge.offset_left=-430;badge.offset_right=-24
+	badge.offset_top=88;badge.offset_bottom=160
+	badge.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	add_child(badge)
+	var stars:int=outcome.get("stars",1)
+	var quality:String="RARA" if stars>=4 else "BOA" if stars>=3 else "COMUM"
+	var broken:bool=outcome.get("type","")=="broken"
+	if broken:badge.accent=Hud.Tokens.TINTA_3
+	_label("ELO ROMPIDO" if broken else quality+" · ELO CRIADO",badge,26).add_theme_color_override("font_color",Hud.MUTED if broken else Hud.GOLD)
+	badge.create_tween().tween_interval(2.5).finished.connect(badge.queue_free)
 
 func _save_workshop(state: Dictionary) -> void:
 	var result: Dictionary = journey.save_workshop(state)
@@ -620,9 +706,7 @@ func _save_workshop(state: Dictionary) -> void:
 		_notice(_error(result.status))
 
 func _confirm_cancel_workshop() -> void:
-	var dialog := ConfirmationDialog.new()
-	dialog.dialog_text = "Sair da bancada? A montagem será reiniciada quando voltar. Sua rabiola continuará disponível."
-	add_child(dialog)
+	var dialog := _dialog("Sair da bancada", "Sair da bancada? A montagem será reiniciada quando voltar. Sua rabiola continuará disponível.", "Sair da bancada", "Ficar na bancada")
 	dialog.confirmed.connect(func():
 		if _result(journey.cancel_workshop()):
 			if quit_after_workshop: get_tree().quit()
@@ -630,7 +714,8 @@ func _confirm_cancel_workshop() -> void:
 		dialog.queue_free())
 	dialog.canceled.connect(func(): quit_after_workshop = false)
 	dialog.canceled.connect(dialog.queue_free)
-	dialog.popup_centered()
+	dialog.popup_centered(Vector2i(640,240))
+	dialog.get_cancel_button().grab_focus()
 
 func _broadcast() -> void:
 	var background := Sprite2D.new()
@@ -648,10 +733,7 @@ func _broadcast() -> void:
 	var score := PanelContainer.new()
 	score.position = Vector2(24, 12)
 	score.size = Vector2(620, 84)
-	var score_style := Hud.panel()
-	score_style.content_margin_top = 8
-	score_style.content_margin_bottom = 10
-	score.add_theme_stylebox_override("panel", score_style)
+	score.theme_type_variation = "RecorteBroadcastPanel"
 	stage.add_child(score)
 	var lines := VBoxContainer.new()
 	lines.add_theme_constant_override("separation", 2)
@@ -661,7 +743,7 @@ func _broadcast() -> void:
 	var station := PanelContainer.new()
 	station.position = Vector2(760, 544)
 	station.size = Vector2(160, 64)
-	station.add_theme_stylebox_override("panel", Hud.panel())
+	station.theme_type_variation = "PanelContainer"
 	stage.add_child(station)
 	_label("PIPA TV", station, 24)
 
@@ -674,13 +756,30 @@ func _process(delta: float) -> void:
 		broadcast[i].position = Vector2(300 + 350 * i + sin(clock * 1.7 + i) * 35, 280 + sin(clock * 2 + i) * 20)
 	if is_instance_valid(room) and room.can_walk:
 		status.text = Controls.prompt("interact") + " · " + {"desk": "Montar Rabbito", "stairs": "Descer para a sala", "exit": "Sair", "professor": "Conversar com Sr. Assis", "professor-home": "Entrar no ateliê", "morro": "Entrar no Morro do Sol", "park": "Entrar no parque", "workbench": "Usar bancada"}.get(room.near, "Interagir") if not room.near.is_empty() and (room.near == room.target_hotspot or room.target_hotspot == "*") else ("Analógico · Mover" if Controls.gamepad else "Setas · Mover")
-		if status.get_parent().has_meta("contextual"): status.get_parent().visible = not room.near.is_empty()
+		if status.get_parent() is PanelContainer and status.get_parent().theme_type_variation == "RecortePromptPanel":
+			status.text = status.text.trim_prefix(Controls.prompt("interact")+" · ")
+		if room.has_meta("exploration_hud"):
+			status.text=status.text.trim_prefix(Controls.prompt("interact")+" · ")
+			if room.near.is_empty():status.text=""
+		elif status.get_parent().has_meta("contextual"): status.get_parent().visible = not room.near.is_empty()
 		elif current_step in [3, 11, 13] and room.near != room.target_hotspot:
 			status.text = ("Analógico · Mover" if Controls.gamepad else "WASD / setas · Mover") + "  ·  " + {3: "Aproxime-se da mesa de desenho.", 11: "Aproxime-se da escada para descer.", 13: "Aproxime-se da porta para sair."}[current_step]
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Controls.cancel(event) and last_scene_key.begins_with("page:"):
-		if last_scene_key == "page:Controles · Teclado": _show_settings()
+	if event.is_action_pressed("campaign_map") and last_scene_key.begins_with("world:") and get_tree().get_nodes_in_group("manga_dialogue").is_empty():
+		if _remember_world_position():
+			_pause_game();menu_origin="map";_show_map()
+		get_viewport().set_input_as_handled();return
+	if last_scene_key=="page:Configurações" and event is InputEventJoypadButton and event.pressed and event.button_index in [JOY_BUTTON_LEFT_SHOULDER,JOY_BUTTON_RIGHT_SHOULDER]:
+		var categories:=["Vídeo","Acessibilidade","Controles"]
+		settings_tab=categories[posmod(categories.find(settings_tab)+(-1 if event.button_index==JOY_BUTTON_LEFT_SHOULDER else 1),3)]
+		_show_settings();get_viewport().set_input_as_handled();return
+	if event.is_action_pressed("ui_cancel") and last_scene_key=="menu":
+		_title();get_viewport().set_input_as_handled();return
+	if event.is_action_pressed("ui_cancel") and last_scene_key=="menu:slots":
+		_menu();get_viewport().set_input_as_handled();return
+	if (Controls.cancel(event) or event.is_action_pressed("ui_cancel")) and last_scene_key.begins_with("page:"):
+		if last_scene_key in ["page:Controles · Teclado","page:CONTROLES · TECLADO"]: _return_controls_settings()
 		elif session.snapshot().is_empty(): _menu()
 		else: _return_to_game()
 		get_viewport().set_input_as_handled()
@@ -689,34 +788,52 @@ func _unhandled_input(event: InputEvent) -> void:
 		if is_instance_valid(pause_overlay):
 			_resume_game()
 		elif is_instance_valid(workshop):
-			quit_after_workshop = false
-			workshop._pause()
-			_confirm_cancel_workshop()
+			_pause_game()
 		else:
 			_pause_game()
 		get_viewport().set_input_as_handled()
 
 func _pause_game() -> void:
 	if is_instance_valid(pause_overlay): return
+	get_tree().call_group("exploration_hud","reveal_objective")
 	get_viewport().set_input_as_handled()
 	pause_previous = {"battle": battle.paused if is_instance_valid(battle) else false, "park": park.paused if is_instance_valid(park) else false, "room": room.can_walk if is_instance_valid(room) else false}
+	if is_instance_valid(workshop):
+		pause_previous.workshop=false
+		workshop._pause()
 	var practice := _practice_view()
 	if is_instance_valid(practice):
 		pause_previous.practice = practice.paused
-		practice.paused = true
-	if is_instance_valid(battle): battle.paused = true
+		practice.suspend_actions()
+	if is_instance_valid(battle): battle.suspend_actions()
 	if is_instance_valid(park): park.paused = true
 	if is_instance_valid(room): room.can_walk = false
 	pause_overlay = load("res://scripts/campaign/hud_pause.gd").new()
 	pause_overlay.player = session.snapshot().player
+	pause_overlay.focus_action=menu_origin if not menu_origin.is_empty() else "resume"
+	for partner in pause_overlay.player.get("partners",[]):
+		if partner.id!=pause_overlay.player.get("equippedPartnerId",""):continue
+		var art_id:String={"rabbito":"rabbito","basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","lacertubo":"lacertubo"}.get(partner.modelId,"")
+		if content.combat.has(art_id):pause_overlay.partner_portrait=load("res://scripts/campaign/battle_ink.gd").portrait(load("res://assets/campaign/"+content.combat[art_id].image),art_id)
+	if is_instance_valid(battle):
+		pause_overlay.battle_paused=true
+		# Presentation copy only: conditions are settled into the save by the combat flow.
+		for partner in pause_overlay.player.get("partners",[]):
+			if partner.id==pause_overlay.player.get("equippedPartnerId",""):
+				partner.condition={"line":clampf(battle.model.p.hp/battle.model.p.stats.line*100,0,100),"structure":clampf(battle.model.p.hull/battle.model.p.stats.line*100,0,100)}
 	add_child(pause_overlay)
 	pause_overlay.chosen.connect(func(action: String):
-		if action in ["team", "bag", "settings"] and not _remember_world_position(): return
+		if action in ["team", "bag", "settings","map","save"] and not _remember_world_position(): return
+		if action in ["team","bag","settings","map"]:menu_origin=action
 		match action:
 			"resume": _resume_game()
 			"team": _show_collection()
 			"bag": _show_bag()
 			"settings": _show_settings()
+			"map":_show_map()
+			"save":
+				menu_origin="save"
+				pause_overlay.buttons.save.text="Jornada salva"
 			"menu": _return_to_menu()
 	)
 
@@ -725,9 +842,13 @@ func _resume_game() -> void:
 	remove_child(pause_overlay)
 	pause_overlay.queue_free()
 	pause_overlay = null
+	menu_origin=""
 	if is_instance_valid(battle): battle.paused = pause_previous.get("battle", false)
 	if is_instance_valid(park): park.paused = pause_previous.get("park", false)
 	if is_instance_valid(room): room.can_walk = pause_previous.get("room", false)
+	if is_instance_valid(workshop):
+		workshop.paused=pause_previous.get("workshop",false)
+		workshop.resume_button.visible=workshop.storage_blocked
 	var practice := _practice_view()
 	if is_instance_valid(practice): practice.paused = pause_previous.get("practice", false)
 
@@ -737,6 +858,7 @@ func _practice_view() -> Control:
 	return null
 
 func _return_to_menu() -> void:
+	if is_instance_valid(workshop) and not _result(journey.save_workshop(workshop.model.run.duplicate(true))):return
 	if is_instance_valid(battle):
 		battle.paused = true
 		if not _result(encounters.save_battle(battle.model.snapshot())): return
@@ -797,6 +919,9 @@ func _save_park() -> bool:
 		park.paused = true
 		_notice(_error(result.status))
 		return false
+	if is_instance_valid(park.exploration_hud):
+		park.exploration_hud.refresh(session.snapshot().player)
+		park.exploration_hud.push_notice("Progresso salvo","saved")
 	return true
 
 func _park_action(id: String) -> void:
@@ -831,9 +956,9 @@ func _park_action(id: String) -> void:
 		elif player.flags.get("ninaTail", false):
 			if _result(exploration.return_tail(point)):
 				park.refresh(session.snapshot().player)
-				_notice("Nina: Você encontrou! Eu reconheceria esse nó em qualquer lugar. Obrigada… Agora posso trazer meu Carcará de volta.\n\nMissão concluída · A rabiola de Nina")
+				_notice("Nina: [emo=brilho]Você encontrou! Eu reconheceria esse nó em qualquer lugar. Obrigada… Agora posso trazer meu Carcará de volta.\n\nJornada: Missão concluída · A rabiola de Nina")
 		elif not player.flags.get("ninaAccepted", false):
-			_confirm_park("Nina", "Meu Carcará tentou me proteger daquele lagarto. A linha rompeu e ele se recolheu na rabiola… O vento levou ela para os canos. Você consegue trazer a rabiola dele?", "Vou recuperar a rabiola", func():
+			_confirm_park("Nina", "[emo=suor]Meu Carcará tentou me proteger daquele lagarto. A linha rompeu e ele se recolheu na rabiola… O vento levou ela para os canos. Você consegue trazer a rabiola dele?", "Vou recuperar a rabiola", func():
 				if _result(exploration.accept_nina(point)): park.refresh(session.snapshot().player))
 		else: _notice("Nina: Ele arma a vela antes de puxar… Depois fica parado por um instante.")
 	elif id == "tail":
@@ -849,14 +974,7 @@ func _park_action(id: String) -> void:
 
 func _confirm_park(title: String, text: String, accept: String, callback: Callable) -> void:
 	park.paused = true
-	var dialog := ConfirmationDialog.new()
-	dialog.get_label().custom_minimum_size.x = 560
-	dialog.dialog_autowrap = true
-	dialog.title = title
-	dialog.dialog_text = text
-	dialog.ok_button_text = accept
-	dialog.cancel_button_text = "Conversar depois"
-	add_child(dialog)
+	var dialog := _dialog(title, text, accept, "Conversar depois")
 	dialog.confirmed.connect(callback)
 	dialog.confirmed.connect(dialog.queue_free)
 	dialog.canceled.connect(dialog.queue_free)
@@ -876,7 +994,7 @@ func _show_encounter() -> void:
 	battle.save_requested.connect(func(state: Dictionary):
 		var result: Dictionary = encounters.save_battle(state)
 		battle.blocked = result.status != "ok"
-		if battle.blocked: battle.paused = true)
+		if battle.blocked: battle.suspend_actions())
 	battle.leave_requested.connect(_menu)
 	battle.finish_requested.connect(func():
 		if not _result(encounters.save_battle(battle.model.snapshot())): return
@@ -885,6 +1003,7 @@ func _show_encounter() -> void:
 		elif _result(encounters.settle()): _show_saved.call_deferred())
 
 func _remember_world_position() -> bool:
+	if is_instance_valid(workshop):return _result(journey.save_workshop(workshop.model.run.duplicate(true)))
 	if is_instance_valid(battle): return _result(encounters.save_battle(battle.model.snapshot()))
 	if is_instance_valid(park): return _save_park()
 	if is_instance_valid(room): return _result(journey.enter_world(session.snapshot().checkpoint.scene, room.actor))
@@ -893,18 +1012,32 @@ func _remember_world_position() -> bool:
 func _show_collection() -> void:
 	if not _remember_world_position(): return
 	var player: Dictionary = session.snapshot().player
-	_simple_page("Equipe")
+	_simple_page("EQUIPE",true)
+	_label("Escolha quem vai voar ao seu lado.",page,17).add_theme_color_override("font_color",Hud.MUTED)
+	if team_load_state!="ready":
+		var state_view=load("res://scripts/campaign/hud_list_state.gd").new()
+		state_view.state=team_load_state
+		state_view.reduced_motion=preferences.reduced_motion
+		page.add_child(state_view)
+		state_view.retry_requested.connect(func():team_load_state="ready";_show_collection())
+		_button("Voltar",page,_return_to_game)
+		return
 	var scroll := ScrollContainer.new()
 	scroll.follow_focus = true
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	page.add_child(scroll)
 	var list := VBoxContainer.new()
+	list.add_theme_constant_override("separation",16)
 	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.add_child(list)
-	for partner in player.partners:
-		var card := PanelContainer.new()
-		card.add_theme_stylebox_override("panel", Hud.panel())
+	var team_capacity:=maxi(1,floori((size.y-250)/(190*preferences.text_scale)))
+	var team_pages:=maxi(1,ceili(float(player.partners.size())/team_capacity))
+	team_page=clampi(team_page,0,team_pages-1)
+	for partner in player.partners.slice(team_page*team_capacity,(team_page+1)*team_capacity):
+		var card=load("res://scripts/campaign/hud_result_plate.gd").new()
+		var selected:bool=partner.id==player.get("equippedPartnerId", "")
+		card.accent=Hud.CYAN if selected else Hud.Tokens.TINTA_3
 		list.add_child(card)
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation", 20)
@@ -916,19 +1049,39 @@ func _show_collection() -> void:
 		texture.atlas = load("res://assets/campaign/" + art.image)
 		texture.region = Rect2(frame.x, frame.y, frame.w, frame.h)
 		var portrait := TextureRect.new()
-		portrait.texture = texture
+		portrait.texture = load("res://scripts/campaign/battle_ink.gd").portrait(texture.atlas,art_id)
 		portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		portrait.custom_minimum_size = Vector2(144, 118)
 		row.add_child(portrait)
 		var details := VBoxContainer.new()
+		details.add_theme_constant_override("separation",6)
 		details.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		row.add_child(details)
 		var condition: Dictionary = partner.get("condition", {"line": 100, "structure": 100})
 		var level: int = EncounterView.Model.level_for_xp(partner.get("xp", 0))
-		_label("%s · Nv. %d" % [partner.get("personalName", partner.modelId), level], details)
-		_label("Linha %d%% · Armação %d%%" % [condition.line, condition.structure], details, 18)
+		if selected:
+			_label("PARCEIRO ATIVO",details,16).theme_type_variation="RecorteAccentText"
+		var partner_title:=_label("%s · Nv. %d" % [partner.get("personalName", partner.modelId), level], details,26)
+		partner_title.autowrap_mode=TextServer.AUTOWRAP_OFF
+		partner_title.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+		partner_title.tooltip_text=partner_title.text
+		for stat in [["Linha",condition.line,Hud.LINE],["Armação",condition.structure,Hud.GOLD]]:
+			var stat_row:=HBoxContainer.new()
+			details.add_child(stat_row)
+			_label("%s · %d%%"%[stat[0],stat[1]],stat_row,15).custom_minimum_size.x=140
+			var bar:=ProgressBar.new()
+			bar.value=clampf(stat[1],0,100)
+			bar.show_percentage=false
+			bar.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+			bar.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+			bar.custom_minimum_size.y=8
+			var fill:=StyleBoxFlat.new()
+			fill.bg_color=stat[2]
+			bar.add_theme_stylebox_override("fill",fill)
+			stat_row.add_child(bar)
 		var progress := ProgressBar.new()
+		progress.theme_type_variation="RecorteXPBar"
 		var xp: int = partner.get("xp", 0)
 		var previous: int = 40 * (level - 1) + 10 * (level - 1) * (level - 1)
 		var threshold: int = 40 * level + 10 * level * level
@@ -937,14 +1090,24 @@ func _show_collection() -> void:
 		progress.show_percentage = false
 		progress.custom_minimum_size.y = 12
 		details.add_child(progress)
-		_label("Nível máximo" if level == 50 else "%d / %d XP para o próximo nível" % [xp - previous, threshold - previous], details, 16)
+		_label("Nível máximo" if level == 50 else "%d / %d XP para o próximo nível" % [xp - previous, threshold - previous], details, 16).theme_type_variation="RecorteMutedText"
 		var id: String = partner.id
-		var button := _button("Selecionado" if id == player.get("equippedPartnerId", "") else "Escolher parceiro", row, func():
+		var action_space := Hud.focus_space(row)
+		action_space.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		var button := _button("Selecionado" if id == player.get("equippedPartnerId", "") else "Escolher parceiro", action_space, func():
 			if _result(exploration.equip(id)): _show_collection())
-		button.custom_minimum_size.x = 180
+		button.custom_minimum_size.x = 256
+		Hud.secondary_button(button)
 		button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 		button.disabled = id == player.get("equippedPartnerId", "")
-	_button("Voltar", page, _return_to_game)
+	if player.partners.is_empty():_label("Sua equipe começa com o primeiro elo. Continue sua história com o professor.",list,22)
+	var footer:=HBoxContainer.new()
+	page.add_child(footer)
+	_button("Voltar", footer, _return_to_game).custom_minimum_size.x=180
+	if team_pages>1:
+		_button("Anterior",footer,func():team_page-=1;_show_collection()).disabled=team_page==0
+		_button("Próxima",footer,func():team_page+=1;_show_collection()).disabled=team_page==team_pages-1
+		_label("%d / %d"%[team_page+1,team_pages],footer,16)
 
 func _route_action(id: String) -> void:
 	for place in park.data.places:
@@ -963,11 +1126,45 @@ func _route_action(id: String) -> void:
 func _show_bag() -> void:
 	if not _remember_world_position(): return
 	var player: Dictionary = session.snapshot().player
-	_simple_page("Bolsa · %d moedas" % player.coins)
+	_simple_page("MOCHILA",true)
+	_label("%d moedas · Materiais e lembranças da sua jornada"%player.coins,page,18).add_theme_color_override("font_color",Hud.GOLD)
 	var inventory_view = load("res://scripts/campaign/hud_inventory.gd").new()
 	inventory_view.inventory = player.inventory
+	inventory_view.reduced_motion=preferences.reduced_motion
 	page.add_child(inventory_view)
-	_button("Voltar", page, _return_to_game)
+	inventory_view.retry_requested.connect(func():
+		var fresh:Dictionary=session.snapshot().get("player",{})
+		if not fresh.get("inventory") is Dictionary:inventory_view.set_load_state("error");return
+		inventory_view.inventory=fresh.inventory
+		inventory_view.set_load_state("ready"))
+	var footer:=HBoxContainer.new()
+	page.add_child(footer)
+	_button("Voltar", footer, _return_to_game).custom_minimum_size.x=180
+	Hud.input_hint(footer,"guard","Aba anterior")
+	Hud.input_hint(footer,"line","Próxima aba")
+
+func _show_map() -> void:
+	var subject:Node2D=park if is_instance_valid(park) else room
+	var polygons:Array[PackedVector2Array]=[]
+	var point:=Vector2.ZERO
+	if is_instance_valid(subject):
+		point=subject.get("player") if subject.get("player")!=null else subject.actor
+		if subject.get("ground")!=null:polygons.assign(subject.ground.floors)
+		else:
+			for raw in subject.data.get("walkable",[]):
+				var rect:=Rect2(raw[0],raw[1],raw[2],raw[3]) if raw is Array else Rect2(raw.x,raw.y,raw.w,raw.h)
+				polygons.append(PackedVector2Array([rect.position,rect.position+Vector2(rect.size.x,0),rect.end,rect.position+Vector2(0,rect.size.y)]))
+	_simple_page("MAPA DA ÁREA",true)
+	_label(_slot_location(session.snapshot()).name+" · Você está aqui",page,18)
+	var map=load("res://scripts/campaign/hud_area_map.gd").new()
+	map.polygons=polygons
+	map.player=point
+	page.add_child(map)
+	if polygons.is_empty():_label("O mapa desta área ainda não está disponível.",page,18)
+	_label("Os caminhos orientam sua exploração. Descobertas ficam por sua conta.",page,16)
+	var footer:=HBoxContainer.new()
+	page.add_child(footer)
+	_button("Voltar",footer,_return_to_game).custom_minimum_size.x=180
 
 func _show_tail_workshop() -> void:
 	if not _remember_world_position(): return
@@ -988,24 +1185,65 @@ func _show_tail_workshop() -> void:
 	_button("Voltar", page, _show_saved)
 
 func _apply_preferences() -> void:
+	Controls.set_family(preferences.pad_family)
+	var recorte := get_node_or_null("RecorteUX")
+	if recorte != null: recorte.set_reduced_motion(preferences.reduced_motion)
+	if recorte!=null:recorte.set_text_scale(preferences.text_scale)
 	crt_layer.visible = preferences.crt
 	if DisplayServer.get_name() != "headless":
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if preferences.fullscreen else DisplayServer.WINDOW_MODE_WINDOWED)
 
 func _show_settings() -> void:
-	_simple_page("Configurações")
-	for item in [["Filtro de TV (CRT)", "crt"], ["Tela cheia", "fullscreen"], ["Reduzir animações da interface", "reduced_motion"]]:
+	_clear("page:Configurações")
+	var background=load("res://scripts/campaign/hud_title_menu.gd").new()
+	background.mode="slots"
+	add_child(background)
+	var scroll:=ScrollContainer.new()
+	scroll.anchor_left=.5;scroll.anchor_right=.5;scroll.anchor_bottom=1
+	scroll.offset_left=-minf(510,size.x*.44);scroll.offset_right=minf(510,size.x*.44)
+	scroll.offset_top=32;scroll.offset_bottom=-24
+	scroll.follow_focus=true
+	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+	add_child(scroll)
+	page=VBoxContainer.new()
+	page.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	page.add_theme_constant_override("separation",12)
+	scroll.add_child(page)
+	_label("CONFIGURAÇÕES",page,38)
+	_label("Seu jeito de jogar. As alterações são salvas automaticamente.",page,17)
+	var category_row:=HBoxContainer.new()
+	var active_tab:Button
+	category_row.add_theme_constant_override("separation",20)
+	page.add_child(category_row)
+	for category in ["Vídeo","Acessibilidade","Controles"]:
+		var tab:=Button.new();tab.text=category;Hud.navigation_button(tab,true)
+		tab.theme_type_variation="RecorteTabButton"
+		tab.toggle_mode=true;tab.button_pressed=category==settings_tab
+		tab.custom_minimum_size=Vector2(240,48)
+		category_row.add_child(tab)
+		if category==settings_tab:active_tab=tab
+		tab.pressed.connect(func():settings_tab=category;_show_settings())
+	_label(settings_tab.to_upper(),page,20).add_theme_color_override("font_color",Hud.CYAN)
+	for item in [["Filtro de TV (CRT)", "crt", "Linhas suaves de uma TV de tubo sobre o jogo."], ["Tela cheia", "fullscreen", "Use toda a tela para explorar e batalhar."], ["Reduzir animações da interface", "reduced_motion", "Suaviza transições e mantém os avisos estáticos."]]:
+		if (settings_tab=="Vídeo" and item[1]=="reduced_motion") or (settings_tab=="Acessibilidade" and item[1]!="reduced_motion") or settings_tab=="Controles":continue
 		var toggle := CheckButton.new()
-		toggle.text = item[0]
-		var state_label := Label.new()
-		state_label.custom_minimum_size.x = 110
-		state_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-		state_label.text = "Ligado" if preferences.get(item[1]) else "Desligado"
+		toggle.tooltip_text=item[0]+" — "+item[2]
+		toggle.text="Ligado" if preferences.get(item[1]) else "Desligado"
+		toggle.custom_minimum_size.x=170
+		toggle.custom_minimum_size.y=56
+		toggle.add_theme_font_size_override("font_size",20)
 		var toggle_row := HBoxContainer.new()
-		page.add_child(toggle_row)
-		toggle.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		toggle_row.add_theme_constant_override("separation",24)
+		var setting_card=load("res://scripts/campaign/hud_result_plate.gd").new()
+		page.add_child(setting_card)
+		setting_card.add_child(toggle_row)
+		var copy:=VBoxContainer.new()
+		copy.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+		copy.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+		toggle_row.add_child(copy)
+		_label(item[0],copy,20)
+		_label(item[2],copy,15).add_theme_color_override("font_color",Hud.MUTED)
 		toggle_row.add_child(toggle)
-		toggle_row.add_child(state_label)
 		var key: String = item[1]
 		toggle.button_pressed = preferences.get(key)
 		toggle.toggled.connect(func(enabled: bool):
@@ -1014,49 +1252,144 @@ func _show_settings() -> void:
 			if preferences.save_settings() != OK:
 				preferences.set(key, old)
 				_notice("Não foi possível guardar a configuração.")
-			state_label.text = "Ligado" if preferences.get(key) else "Desligado"
+			toggle.text = "Ligado" if preferences.get(key) else "Desligado"
 			toggle.set_pressed_no_signal(preferences.get(key))
 			_apply_preferences())
-	_button("Controles", page, _show_controls)
-	_button("Voltar", page, _menu if session.snapshot().is_empty() else _return_to_game)
+	var text_row:=HBoxContainer.new()
+	text_row.visible=settings_tab=="Acessibilidade"
+	page.add_child(text_row)
+	_label("Tamanho do texto",text_row,20).size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	var text_size:=OptionButton.new()
+	Hud.navigation_button(text_size,true)
+	text_size.custom_minimum_size=Vector2(260,48)
+	for caption in ["Padrão · 100%","Ampliado · 115%","Grande · 130%"]:text_size.add_item(caption)
+	text_size.select([1.0,1.15,1.3].find(preferences.text_scale))
+	text_row.add_child(text_size)
+	text_size.item_selected.connect(func(index:int):
+		var old:float=preferences.text_scale
+		preferences.text_scale=[1.0,1.15,1.3][index]
+		if preferences.save_settings()!=OK:preferences.text_scale=old;text_size.select([1.0,1.15,1.3].find(old))
+		_apply_preferences())
+	var controls_card=load("res://scripts/campaign/hud_result_plate.gd").new()
+	controls_card.visible=settings_tab=="Controles"
+	page.add_child(controls_card)
+	var controls_content:=VBoxContainer.new()
+	controls_content.add_theme_constant_override("separation",10)
+	controls_card.add_child(controls_content)
+	var family_row := HBoxContainer.new()
+	controls_content.add_child(family_row)
+	var family_copy:=VBoxContainer.new()
+	family_copy.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	family_row.add_child(family_copy)
+	_label("Símbolos do controle",family_copy,20)
+	_label("Escolha os botões exibidos nas instruções.",family_copy,15).add_theme_color_override("font_color",Hud.MUTED)
+	var family_choice := OptionButton.new()
+	Hud.navigation_button(family_choice,true)
+	family_choice.custom_minimum_size=Vector2(260,56)
+	var families := ["auto","xbox","ps","switch"]
+	for caption in ["Automático","Xbox","PlayStation","Nintendo Switch"]: family_choice.add_item(caption)
+	family_choice.select(families.find(preferences.pad_family))
+	family_row.add_child(family_choice)
+	family_choice.item_selected.connect(func(index: int):
+		var old: String = preferences.pad_family
+		preferences.pad_family = families[index]
+		if preferences.save_settings() != OK:
+			preferences.pad_family = old
+			family_choice.select(families.find(old))
+			_notice("Não foi possível guardar a configuração.")
+		_apply_preferences())
+	var keyboard_row:=HBoxContainer.new()
+	controls_content.add_child(keyboard_row)
+	_label("Personalize as teclas de movimento e de batalha.",keyboard_row,15).size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	var keyboard_button:=_button("Controles · Teclado",keyboard_row,_show_controls)
+	keyboard_button.custom_minimum_size.x=260
+	Hud.secondary_button(keyboard_button)
+	var footer:=HBoxContainer.new()
+	footer.add_theme_constant_override("separation",20)
+	page.add_child(footer)
+	_button("Voltar", footer, _menu if session.snapshot().is_empty() else _return_to_game).custom_minimum_size.x=180
+	Hud.input_hint(footer,"accept","Alterar")
+	Hud.input_hint(footer,"back","Voltar")
+	_label("LB / RB · Trocar seção",footer,16).autowrap_mode=TextServer.AUTOWRAP_OFF
+	_focus_first.call_deferred(page)
+	Hud.focus_later(active_tab)
+	if settings_focus_controls:
+		settings_focus_controls=false
+		Hud.focus_later(keyboard_button)
+
+func _return_controls_settings() -> void:
+	settings_tab="Controles"
+	settings_focus_controls=true
+	_show_settings()
 
 func _show_controls() -> void:
-	_simple_page("Controles · Teclado")
+	binding_rows.clear()
+	_simple_page("CONTROLES · TECLADO",true)
+	_label("Selecione uma ação e pressione a nova tecla.",page,17).add_theme_color_override("font_color",Hud.MUTED)
 	var scroll := ScrollContainer.new()
 	scroll.follow_focus = true
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	page.add_child(scroll)
-	var list := VBoxContainer.new()
-	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	scroll.add_child(list)
-	for action in Controls.DEFAULTS:
-		var id: String = action
-		_button("%s · %s" % [Controls.LABELS[id], OS.get_keycode_string(int(preferences.bindings[id]))], list, func(): _capture_binding(id))
-	_button("Restaurar padrão", page, func():
-		var old: Dictionary = preferences.bindings.duplicate()
-		preferences.bindings = Controls.DEFAULTS.duplicate()
-		if preferences.save_settings() != OK:
-			preferences.bindings = old
+	var columns:=HBoxContainer.new()
+	columns.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	columns.add_theme_constant_override("separation",28)
+	scroll.add_child(columns)
+	for group in [["EXPLORAÇÃO",["left","right","up","down","interact","map"]],["BATALHA",["cut","skill","dodge","line","guard","signature"]]]:
+		var card=load("res://scripts/campaign/hud_result_plate.gd").new()
+		card.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+		columns.add_child(card)
+		var list:=VBoxContainer.new()
+		list.add_theme_constant_override("separation",8)
+		card.add_child(list)
+		_label(group[0],list,18).add_theme_color_override("font_color",Hud.CYAN)
+		for action in group[1]:
+			var id:String=action
+			var binding_button:=_button("%s   ·   %s"%[Controls.LABELS[id],OS.get_keycode_string(int(preferences.bindings[id]))],list,func():_capture_binding(id))
+			binding_button.custom_minimum_size.y=46
+			binding_button.set_meta("binding_action",id)
+			Hud.secondary_button(binding_button)
+			binding_button.icon=Controls.glyph(id,true)
+			binding_button.expand_icon=true
+			binding_button.add_theme_constant_override("icon_max_width",32)
+			var feedback:=_label("",list,15)
+			feedback.visible=false
+			feedback.add_theme_color_override("font_color",Hud.GOLD)
+			binding_rows[id]={"button":binding_button,"feedback":feedback}
+	_label("Setas e Enter continuam disponíveis para navegar. Esc cancela a troca de tecla. A bancada usa mouse e teclado.",page,16).add_theme_color_override("font_color",Hud.MUTED)
+	var footer:=HBoxContainer.new()
+	footer.add_theme_constant_override("separation",24)
+	page.add_child(footer)
+	_button("Voltar",footer,_return_controls_settings).custom_minimum_size.x=180
+	var restore:=_button("Restaurar padrão", footer, _confirm_restore_controls)
+	restore.custom_minimum_size.x=320
+	Hud.secondary_button(restore)
+	if binding_rows.has(controls_focus_action):Hud.focus_later(binding_rows[controls_focus_action].button)
+
+func _confirm_restore_controls() -> void:
+	var dialog:=_confirmation("Restaurar teclas", "Substituir suas teclas personalizadas pelo padrão?\n\nSua jornada e os símbolos do controle serão mantidos.","Restaurar teclas")
+	dialog.confirmed.connect(func():
+		var old:Dictionary=preferences.bindings.duplicate()
+		preferences.bindings=Controls.DEFAULTS.duplicate()
+		if preferences.save_settings()!=OK:
+			preferences.bindings=old
 			_notice("Não foi possível salvar os controles.")
-		else: Controls.install(preferences.bindings)
-		_show_controls())
-	_label("Setas e Enter continuam disponíveis. Esc / Start abre a pausa durante o jogo e volta nas telas de menu. No controle: analógico move; A interage; X corta; Y habilidade; B esquiva; RB puxão; LB guarda; R3 assinatura. A bancada usa mouse e teclado.", page, 17)
-	_button("Voltar", page, _show_settings)
+		else:
+			Controls.install(preferences.bindings)
+			_show_controls())
+	dialog.confirmed.connect(dialog.queue_free)
+	dialog.canceled.connect(dialog.queue_free)
 
 func _capture_binding(action: String) -> void:
+	if not binding_target.is_empty():_cancel_binding()
 	binding_target = action
-	binding_dialog = AcceptDialog.new()
-	binding_dialog.title = Controls.LABELS[action]
-	binding_dialog.dialog_text = "Pressione a nova tecla. Esc cancela."
-	binding_dialog.ok_button_text = "Cancelar"
-	add_child(binding_dialog)
-	binding_dialog.window_input.connect(_input)
-	binding_dialog.confirmed.connect(_cancel_binding)
-	binding_dialog.canceled.connect(_cancel_binding)
-	binding_dialog.popup_centered(Vector2i(500, 140))
+	controls_focus_action=action
+	if binding_rows.has(action):
+		binding_rows[action].feedback.text="Pressione a nova tecla. Esc cancela."
+		binding_rows[action].feedback.show()
 
 func _cancel_binding() -> void:
+	if binding_rows.has(binding_target) and is_instance_valid(binding_rows[binding_target].feedback):binding_rows[binding_target].feedback.hide()
 	binding_target = ""
 	if is_instance_valid(binding_dialog): binding_dialog.queue_free()
 
@@ -1069,7 +1402,7 @@ func _input(event: InputEvent) -> void:
 		return
 	var conflict := Controls.conflict(binding_target, event.physical_keycode)
 	if not conflict.is_empty():
-		binding_dialog.dialog_text = "Tecla reservada à navegação. Escolha outra." if conflict == "reserved" else "Esta tecla já é usada para %s. Escolha outra." % Controls.LABELS[conflict]
+		if binding_rows.has(binding_target):binding_rows[binding_target].feedback.text="Tecla reservada à navegação. Escolha outra." if conflict=="reserved" else "Já usada para %s. Escolha outra."%Controls.LABELS[conflict]
 		return
 	var next: Dictionary = preferences.bindings.duplicate()
 	next[binding_target] = event.physical_keycode
@@ -1077,15 +1410,18 @@ func _input(event: InputEvent) -> void:
 	preferences.bindings = next
 	if preferences.save_settings() != OK:
 		preferences.bindings = old
-		binding_dialog.dialog_text = "Não foi possível salvar. Tente novamente."
+		if binding_rows.has(binding_target):binding_rows[binding_target].feedback.text="Não foi possível salvar. Tente novamente."
 		return
 	Controls.install(next)
 	_cancel_binding()
 	_show_controls.call_deferred()
 
-func _controller_changed(_device: int, connected: bool) -> void:
+func _controller_changed(device: int, connected: bool) -> void:
+	if connected:
+		Controls.configure_device(device,Input.get_joy_name(device),int(Input.get_joy_info(device).get("vendor_id",0)))
+	else: Controls.remove_device(device)
 	if connected or not Controls.gamepad: return
-	Controls.gamepad = false
+	Controls.use_keyboard()
 	if is_instance_valid(battle): battle.paused = true
 	if is_instance_valid(workshop): workshop._pause()
 	for child in get_children():
@@ -1137,7 +1473,7 @@ func _morro_action(id: String) -> void:
 	if place.has("stage"):
 		var story: Dictionary = Morro.Rules.content().stories[data.stage]
 		var text := "\n\n".join(story.before.map(func(line): return "%s: %s" % [line[0], line[1]]))
-		text += "\n\n" + story.tactic
+		text += "\n\nDica de voo: " + story.tactic
 		_confirm_park(" e ".join(Morro.Rules.stage(data.stage).foes.map(func(f): return f.name)), text, "Vamos voar!", func():
 			if _result(morro.start(park.player)): _show_saved.call_deferred())
 		return
@@ -1175,7 +1511,7 @@ func _return_morro_result() -> void:
 		_notice("Você pode conversar com o pipeiro para tentar novamente quando quiser.")
 		return
 	var text := "\n\n".join(lines.map(func(line): return "%s: %s" % [line[0], line[1]]))
-	text += "\n\n+%d XP" % result.partnerXp
+	text += "\n\nRecompensas: +%d XP" % result.partnerXp
 	if result.outcome == "won": text += " · %d estrelas · +%d moedas" % [result.stars, result.coins]
 	if result.get("drop") != null: text += "\nRabiola de Raio de sol recebida!"
 	_notice(text)

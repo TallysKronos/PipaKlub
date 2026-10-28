@@ -1,0 +1,66 @@
+{
+  "id": "soulmonsters-title-v1",
+  "issue": "PIP-75",
+  "generation": "Built-in image_gen; no external stock artwork",
+  "status": "integrated locally; awaiting user visual validation",
+  "assets": [
+    {
+      "file": "neighborhood.png",
+      "role": "full-screen title and menu background",
+      "source": "exec-6cefee33-c6ad-4666-b1a2-1e4a9686df5d.png",
+      "transparent": false,
+      "prompt": "Create a production-ready wide 16:9 background illustration for the title screen of Soulmonsters: Elo das Ruínas, a Brazilian kite monster-taming 2D game. Entire image is background art, NO text, NO lettering, NO logo, NO UI, NO frame. Colorful Brazilian hillside neighborhood rooftops overlooking a bay, distant green stone ruins and a little waterfall, expressive blue sky with a handful of handmade diamond-shaped kites and long ribbon tails. Hand-inked 2D manga adventure drawing, strong uneven dark ink contours, flat cel colors with very limited shadows, clear simplified foliage, vivid cyan sky and small coral/yellow accents; a graphic screenprinted energy, not 3D, not realistic, not painterly, no soft-rendered volume. Composition: leave the left 45 percent of the sky relatively calm for native UI and logo, strongest scenic landmarks to the right, low horizon, strong sense of warm wind and discovery. No characters; Kael portrait will be a separate existing layer. Edge-to-edge landscape suitable for cover-cropping ultrawide. Crisp attractive finished game key art."
+    },
+    {
+      "file": "logo.png",
+      "role": "title wordmark; all functional text remains native UI",
+      "source": "exec-1041fb24-eadc-4b31-9140-877fa6f91fe8.png",
+      "transparent": true,
+      "prompt": "Generate ONE isolated original illustrated title logo for a Brazilian 2D manga kite monster-taming adventure game. Exact main lettering: SOULMONSTERS. Exact smaller subtitle below: ELO DAS RUÍNAS. Transparent background, absolutely no backdrop, no mockup, no frame. Wide horizontal wordmark, highly readable bold hand-inked playful manga lettering, creamy paper colored letters with solid near-black #0B1017 ink outlines and offset ink shadow, a small cyan #2EC8E3 and coral #FF5A36 diamond kite integrated subtly near the end of the word, flowing kite ribbon underline connecting the subtitle. Small yellow #FFC23D accent, restrained ink flecks concentrated outside letter counters. Flat 2D graphic art, no 3D bevel, no chrome, no gradients, no extraneous text, no trademarked symbols. Strong silhouette, keep every letter and ribbon completely within generous transparent padding; all text precisely spelled including accents. The logo will sit over a cyan sky and over dark ink panels. Polished professional game wordmark, remains readable at 440 pixels wide."
+    },
+    {
+      "file": "neighborhood-soulmonsters-v2.png",
+      "role": "active title and menu background, replaces human portrait with four flying Soulmonsters",
+      "source": "exec-c736c4af-089b-428f-bb56-23a026fe1f7e.png",
+      "transparent": false,
+      "references": [
+        "neighborhood.png",
+        "assets/creatures/starters-soulgen-v2/azulao.png",
+        "assets/creatures/starters-soulgen-v2/carcara.png",
+        "assets/creatures/starters-soulgen-v2/rabbito.png",
+        "assets/creatures/basicos-v2/mata-verde.png"
+      ],
+      "prompt_file": "soulmonsters-v2-prompt.txt",
+      "review": "Rejected by user: character fidelity and choice of references."
+    },
+    {
+      "file": "neighborhood-soulgen-v3.png",
+      "role": "active corrected title and menu background",
+      "source": "exec-7e0c2ffd-2cc3-4bb9-8ffc-a7390d74f4d5.png",
+      "transparent": false,
+      "references": [
+        "neighborhood.png",
+        "art/soulgen/keys/rabbito/color-rig-v2/concept.png",
+        "art/soulgen/keys/guaravento/color-rig-v2/preview.png",
+        "art/soulgen/keys/flautrevo/color-rig-v2/preview.png",
+        "art/soulgen/keys/marulume/color-rig-v2/preview.png"
+      ],
+      "prompt_file": "soulgen-v3-prompt.txt"
+    },
+    {
+      "file": "neighborhood-starters-soulgen-v4.png",
+      "role": "active title and menu background: Rabbito and professor starters",
+      "source": "exec-cce69ae5-3190-4c20-b8c1-b25c077c72a5.png",
+      "transparent": false,
+      "references": [
+        "neighborhood-soulgen-v3.png",
+        "reference-rigs/carcara.png",
+        "reference-rigs/azulao.png",
+        "reference-rigs/mata-verde.png",
+        "reference-rigs/raio-de-sol.png"
+      ],
+      "prompt_file": "starters-v4-prompt.txt"
+    }
+  ],
+  "assembly": "Active v4: approved Rabbito appearance retained; Carcará, Azulão, Mata Verde and Raio de Sol referenced from current rendered Soulgen rigs. Logo and functional controls stay native separate layers."
+}

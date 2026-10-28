@@ -7,6 +7,13 @@ signal backup_recovered
 const Store = preload("res://scripts/campaign/save_store.gd")
 var _store := Store.new()
 var _snapshot: Dictionary = {}
+var _unsaved_play_seconds:=0.0
+func _process(delta:float) -> void:
+	if not _snapshot.is_empty():_unsaved_play_seconds+=maxf(0,delta)
+func _with_play_time(value:Dictionary) -> Dictionary:
+	if not value.has("playSeconds"):value.playTimePartial=true
+	value.playSeconds=float(value.get("playSeconds",0))+_unsaved_play_seconds
+	return value
 
 func snapshot() -> Dictionary:
 	return _snapshot.duplicate(true)
@@ -28,7 +35,7 @@ func checkpoint(checkpoint_data: Dictionary, player_data: Dictionary) -> Diction
 	next.player = player_data.duplicate(true)
 	# Receipts may only be added through commit_operation, never removed by a scene.
 	next.player.completedOperations = _snapshot.player.completedOperations.duplicate()
-	return _accept(_store.save_slot(next))
+	return _accept(_store.save_slot(_with_play_time(next)))
 
 func commit_operation(operation_id: String, checkpoint_data: Dictionary, player_data: Dictionary) -> Dictionary:
 	if _snapshot.is_empty():
@@ -43,15 +50,17 @@ func commit_operation(operation_id: String, checkpoint_data: Dictionary, player_
 	next.player.completedOperations = _snapshot.player.completedOperations.duplicate()
 	next.player.completedOperations.append(operation_id)
 	# Reward and receipt share one snapshot, so a restarted caller can reuse its ID.
-	return _accept(_store.save_slot(next))
+	return _accept(_store.save_slot(_with_play_time(next)))
 
 func close_session() -> void:
 	_snapshot.clear()
+	_unsaved_play_seconds=0
 	changed.emit({})
 
 func _accept(result: Dictionary) -> Dictionary:
 	if result.status == "ok":
 		_snapshot = result.data.duplicate(true)
+		_unsaved_play_seconds=0
 		changed.emit(snapshot())
 		if result.get("recovered", false):
 			backup_recovered.emit()

@@ -47,13 +47,15 @@ func run_checks() -> void:
 	check(not front.park.walk_to(Vector2(exit.point[0], exit.point[1])), "gate blocks click path")
 	for viewport_size in [Vector2i(1280, 720), Vector2i(1024, 768)]:
 		root.size = viewport_size
+		for frame in 2:await process_frame
 		var story: Dictionary = Morro.Rules.content().stories["morro-3"]
 		var text: String = "\n\n".join(story.before.map(func(line): return "%s: %s" % [line[0], line[1]])) + "\n\n" + story.tactic
 		front._confirm_park("Juninho e Lia", text, "Vamos voar!", func(): pass)
 		for index in 4: await process_frame
 		for child in front.get_children():
-			if not child is ConfirmationDialog: continue
-			check(child.position.x >= 0 and child.position.y >= 0 and child.position.x + child.size.x <= viewport_size.x and child.position.y + child.size.y <= viewport_size.y, "long dialogue stays inside viewport " + str(viewport_size))
+			if not child.is_in_group("manga_dialogue"): continue
+			# The new dialogue is a Control in stretched UI units, rather than a Window in pixels.
+			check(Rect2(Vector2.ZERO,front.size).encloses(child.get_rect()), "long dialogue stays inside UI viewport " + str(viewport_size))
 			var button_rect: Rect2 = child.get_ok_button().get_global_rect()
 			check(button_rect.end.y <= child.size.y and button_rect.position.y >= 0, "dialogue action remains visible " + str(viewport_size))
 			child.canceled.emit()

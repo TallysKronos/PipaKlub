@@ -1,4 +1,6 @@
 extends Node2D
+const Recorte = preload("res://scripts/campaign/recorte_theme.gd")
+const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 const Region = preload("res://scripts/region.gd")
 const Avatar = preload("res://scripts/avatar.gd")
 @export var reference_yard: bool = false
@@ -140,21 +142,14 @@ Kael, parceiro, Nina, árvore, baú, água e rampa"
 	dialog=PanelContainer.new()
 	dialog.hide()
 	box.add_child(dialog)
-	var panel_style:=StyleBoxFlat.new()
-	panel_style.bg_color=Color("fff0cf")
-	panel_style.border_color=Color("b58b48")
-	panel_style.set_border_width_all(3)
-	panel_style.content_margin_left=24
-	panel_style.content_margin_right=24
-	panel_style.content_margin_top=20
-	panel_style.content_margin_bottom=20
-	dialog.add_theme_stylebox_override("panel",panel_style)
+	dialog.theme = Recorte.shared()
+	dialog.theme_type_variation = "RecortePaperPanel"
 	var inner:=VBoxContainer.new()
 	dialog.add_child(inner)
 	dialog_text=Label.new()
 	dialog_text.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	dialog_text.custom_minimum_size=Vector2(400,90)
-	dialog_text.add_theme_color_override("font_color",Color("183c3a"))
+	dialog_text.theme_type_variation = "RecortePaperText"
 	dialog_text.add_theme_font_size_override("font_size",22)
 	inner.add_child(dialog_text)
 	var close:=Button.new()

@@ -18,6 +18,8 @@ var ui_theme: Theme
 var grass_distance := 0.0
 var grass_threshold := 180.0
 var resource_label: Label
+var exploration_hud:Control
+var nina_ambient_seen:=false
 
 func _ready() -> void:
 	player = spawn_point
@@ -72,97 +74,42 @@ func refresh(value: Dictionary) -> void:
 	tail.visible = saved_player.flags.get("guardianDefeated", false) and not saved_player.flags.get("ninaTail", false)
 	for id in chest_nodes: chest_nodes[id].visible = id not in saved_player.openedChests
 	objective.text = Park.objective(saved_player)
-	objective.get_parent().visible = not objective.text.is_empty()
+	exploration_hud.refresh(saved_player)
 	resource_label.text = "%s  ·  %d moedas" % [saved_player.get("name", "Kael"), saved_player.get("coins", 0)]
 
 func _build_ui() -> void:
-	var ui := CanvasLayer.new()
+	var ui:=CanvasLayer.new()
 	add_child(ui)
-	var layout := MarginContainer.new()
-	layout.theme = ui_theme
-	layout.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	for side in ["left", "right", "top", "bottom"]: layout.add_theme_constant_override("margin_" + side, 20)
-	layout.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	ui.add_child(layout)
-	Hud.map_for(self, ui)
-	var column := VBoxContainer.new()
-	column.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	layout.add_child(column)
-	var row := HBoxContainer.new()
-	row.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	column.add_child(row)
-	var title := Label.new()
-	title.add_theme_font_size_override("font_size", 24)
-	title.add_theme_color_override("font_shadow_color", Color("103d36"))
-	title.add_theme_constant_override("shadow_offset_x", 2)
-	title.add_theme_constant_override("shadow_offset_y", 2)
-	title.text = "Veredas do Encantamento"
-	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var location := Hud.card("Veredas do Encantamento")
-	location.custom_minimum_size.x = 320
-	row.add_child(location)
-	Hud.retract_after(location, 3)
-	title.queue_free()
-	var top_space := Control.new()
-	top_space.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	top_space.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	row.add_child(top_space)
-	for entry in [["Equipe", "collection"], ["Bolsa", "bag"], ["Menu", "menu"]]:
-		var button := Button.new()
-		button.text = entry[0]
-		Hud.secondary_button(button)
-		button.icon = Hud.icon({"collection": "team", "bag": "bag", "menu": "settings"}[entry[1]])
-		button.expand_icon = true
-		button.add_theme_constant_override("icon_max_width", 24)
-		button.custom_minimum_size = Vector2(122, 48)
-		var id: String = entry[1]
-		button.pressed.connect(func():
-			if id == "menu": menu_requested.emit()
-			else: action_requested.emit(id))
-		row.add_child(button)
-	objective = Label.new()
-	objective.add_theme_font_size_override("font_size", 18)
-	objective.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	var mission := PanelContainer.new()
-	mission.add_theme_stylebox_override("panel", Hud.panel())
-	mission.custom_minimum_size.x = 320
-	mission.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
-	mission.add_child(objective)
-	column.add_child(mission)
-	Hud.retract_after(mission, 4)
-	var name: String = saved_player.get("name", "Kael")
-	var coins: int = saved_player.get("coins", 0)
-	var info := Hud.card("%s  ·  %d moedas" % [name, coins])
-	info.custom_minimum_size.x = 320
-	resource_label = info.get_child(0)
-	info.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
-	column.add_child(info)
-	var spacer := Control.new()
-	spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	spacer.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	column.add_child(spacer)
-	modal = PanelContainer.new()
-	modal.visible = false
-	column.add_child(modal)
-	speech = Label.new()
+	exploration_hud=load("res://scripts/campaign/hud_exploration.gd").new()
+	exploration_hud.subject=self
+	exploration_hud.area_name="Veredas do Encanamento"
+	exploration_hud.player_data=saved_player
+	ui.add_child(exploration_hud)
+	exploration_hud.map=Hud.map_for(self,ui)
+	hint=exploration_hud.prompt
+	objective=exploration_hud.objective
+	resource_label=exploration_hud.coins
+	exploration_hud.chosen.connect(func(id:String):
+		if id=="menu":menu_requested.emit()
+		else:action_requested.emit(id))
+	modal=PanelContainer.new()
+	modal.hide()
+	ui.add_child(modal)
+	speech=Label.new()
 	modal.add_child(speech)
-	hint = Label.new()
-	var prompt_panel := PanelContainer.new()
-	prompt_panel.add_theme_stylebox_override("panel", Hud.panel())
-	prompt_panel.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
-	prompt_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	prompt_panel.add_child(hint)
-	column.add_child(prompt_panel)
 
 func _physics_process(delta: float) -> void:
 	super(delta)
 	if is_instance_valid(guardian) and not guardian_frames.is_empty():
 		var frame: Dictionary = guardian_frames[int(clock * 12) % guardian_frames.size()]
 		guardian.region_rect = Rect2(frame.x, frame.y, frame.w, frame.h)
-		tail.modulate = Color(1, .95, .65, .65 + .35 * sin(clock * 4))
+		tail.modulate = Tokens.alpha(Tokens.SOL, .65 + .35 * sin(clock * 4))
 	if paused: return
-	hint.text = Controls.prompt("interact") + " · " + _near_action().get("label", "") if not _near_action().is_empty() else ("Analógico · Mover" if Controls.gamepad else "Setas · Clique para caminhar") + " · %s mapa" % Controls.prompt("map")
+	hint.text = _near_action().get("label", "")
 	hint.get_parent().visible = not _near_action().is_empty()
+	if not nina_ambient_seen and _near_action().get("id","")=="nina":
+		nina_ambient_seen=true
+		load("res://scripts/campaign/hud_world_speech.gd").spawn(self,nina.position,"Ei… você pode me ajudar?")
 	var moved := last_point.distance_to(player)
 	autosave_distance += moved
 	if Park.in_grass(player): grass_distance += moved
@@ -179,7 +126,7 @@ func _physics_process(delta: float) -> void:
 
 func _near_action() -> Dictionary:
 	if player.distance_to(nina.position) < 65: return {"id": "nina", "label": "Conversar com Nina"}
-	if guardian.visible and player.distance_to(Park.BOSS) < 85: return {"id": "boss", "label": "Lacertubo"}
+	if guardian.visible and player.distance_to(Park.BOSS) < 85: return {"id": "boss", "label": "DESAFIAR · Lacertubo"}
 	if tail.visible and player.distance_to(Park.TAIL) < 60: return {"id": "tail", "label": "Recolher rabiola"}
 	for id in chest_nodes:
 		if chest_nodes[id].visible and player.distance_to(chest_nodes[id].position) < 50: return {"id": "chest:" + id, "label": "Abrir baú"}

@@ -39,7 +39,8 @@ func frame() -> void:
 
 func button(node: Node, text: String) -> Button:
 	for child in node.get_children():
-		if child is Button and child.text == text: return child
+		# Slots display a short action; the tooltip retains the unique journey label.
+		if child is Button and (child.text == text or child.tooltip_text == text): return child
 		var found := button(child, text)
 		if found != null: return found
 	return null
@@ -80,7 +81,8 @@ func pointer_click(target: Button) -> bool:
 	Input.flush_buffered_events()
 	return check(receipt.pressed, "GUI received real pointer click: " + target.text)
 
-func confirm_popup(dialog: AcceptDialog) -> void:
+func confirm_popup(dialog: Control) -> void:
+	while dialog.page_index<dialog.pages.size()-1:dialog.next_page()
 	if "--pointer-ui" in OS.get_cmdline_user_args(): pointer_click(dialog.get_ok_button())
 	else: dialog.confirmed.emit()
 
@@ -164,6 +166,8 @@ func run_journey() -> void:
 	view.preferences.storage_path = directory.path_join("settings.cfg")
 	root.add_child(view)
 	await frame()
+	view._show_slots(true)
+	await frame()
 	if not click("Jornada 1 · Novo jogo"): return finish()
 	await frame()
 	for step in range(15):
@@ -204,7 +208,7 @@ func run_journey() -> void:
 	if not click("Carcará"): return finish()
 	await frame()
 	for child in view.get_children():
-		if child is ConfirmationDialog: confirm_popup(child)
+		if child.is_in_group("manga_dialogue") and not child.cancel_button_text.is_empty(): confirm_popup(child)
 	await frame()
 	if not check(view.session.snapshot().checkpoint.kind == "workshop", "workshop started without granted items"): return finish()
 	await run_workshop()
@@ -229,6 +233,8 @@ func run_journey() -> void:
 	view.preferences.storage_path = directory.path_join("settings.cfg")
 	root.add_child(view)
 	await frame()
+	view._show_slots(false)
+	await frame()
 	if not click("Jornada 1 · Continuar — Kael"): return finish()
 	await frame()
 	var after: Dictionary = view.session.snapshot()
@@ -241,14 +247,14 @@ func run_journey() -> void:
 	view.park._interact()
 	await frame()
 	for child in view.get_children():
-		if child is ConfirmationDialog: confirm_popup(child)
+		if child.is_in_group("manga_dialogue") and not child.cancel_button_text.is_empty(): confirm_popup(child)
 	await frame()
 	if not check(view.session.snapshot().player.flags.get("ninaAccepted", false), "accepted Nina mission through nearby dialogue"): return finish()
 	if not await walk_veredas(Vector2(1300, 154)): return finish()
 	view.park._interact()
 	await frame()
 	for child in view.get_children():
-		if child is ConfirmationDialog: confirm_popup(child)
+		if child.is_in_group("manga_dialogue") and not child.cancel_button_text.is_empty(): confirm_popup(child)
 	await frame()
 	if not check(is_instance_valid(view.battle), "boss reached and encounter opened through exploration"): return finish()
 	await fight_boss()
@@ -270,6 +276,8 @@ func run_journey() -> void:
 	check(view.session.snapshot().player.inventory.get("rabiola-lacertubo", 0) == 1, "guardian own tail remains separate")
 	check(not view.session.snapshot().player.inventory.has("quest-nina-tail"), "returned quest item removed")
 	view._return_to_menu()
+	await frame()
+	view._show_slots(false)
 	await frame()
 	if not click("Jornada 1 · Continuar — Kael"): return finish()
 	await frame()
@@ -298,6 +306,8 @@ func resume_completed_journey() -> void:
 	view.preferences.storage_path = directory.path_join("settings.cfg")
 	root.add_child(view)
 	await frame()
+	view._show_slots(false)
+	await frame()
 	if not click("Jornada 1 · Continuar — Kael"): return finish()
 	await frame()
 	var saved: Dictionary = view.session.snapshot()
@@ -313,7 +323,7 @@ func resume_completed_journey() -> void:
 
 func dismiss_notice() -> void:
 	for child in view.get_children():
-		if child is AcceptDialog and not child is ConfirmationDialog: confirm_popup(child)
+		if child.is_in_group("manga_dialogue") and child.cancel_button_text.is_empty(): confirm_popup(child)
 
 func press_key(code: int) -> void:
 	for down in [true, false]:
@@ -530,7 +540,7 @@ func run_morro() -> bool:
 		var npc: Dictionary = data.places.filter(func(p): return p.has("stage"))[0]
 		if not await morro_interact(npc): return false
 		for child in view.get_children():
-			if child is ConfirmationDialog: confirm_popup(child)
+			if child.is_in_group("manga_dialogue") and not child.cancel_button_text.is_empty(): confirm_popup(child)
 		await frame()
 		if not check(is_instance_valid(view.battle), "Morro battle starts through dialogue"): return false
 		view.battle.paused = false
@@ -556,6 +566,8 @@ func run_morro() -> bool:
 			if scene == "morro-area-3" and not resumed and tick > 700:
 				var before: Dictionary = battle.model.snapshot()
 				view._return_to_menu()
+				await frame()
+				view._show_slots(false)
 				await frame()
 				if not click("Jornada 1 · Continuar — Kael"): return false
 				await frame()
