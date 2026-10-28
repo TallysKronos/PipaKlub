@@ -56,7 +56,7 @@ func run() -> void:
 			Fixtures.show(front,fixture)
 			await settle()
 			var battle: Control=front.battle
-			battle.paused=false;battle.model.intro=0
+			battle.paused=false;battle.model.intro=0;battle.launch_age=1
 			battle._physics_process(0)
 			await settle()
 			check(battle.bottom_panel.size.y<=battle.size.y*.12+.5,"action bar <=12% "+fixture+str(viewport))

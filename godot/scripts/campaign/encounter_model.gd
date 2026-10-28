@@ -72,7 +72,7 @@ func tick(delta: float, input: Dictionary) -> void:
 		intro = maxf(0, intro - dt)
 		return
 	duration = maxf(0, duration - dt)
-	var wind := sin(time / 9) * 12
+	var wind := wind_strength()
 	_move_fighter(p, input, dt, wind)
 	_move_fighter(q, _boss_input(dt) if q.boss else _wild_input(dt), dt, wind)
 	var hits: Array = []
@@ -328,3 +328,6 @@ static func _decode(value: Variant) -> Variant:
 		return result
 	if value is Array: return value.map(_decode)
 	return value
+
+func wind_strength() -> float:
+	return sin(time/9)*12

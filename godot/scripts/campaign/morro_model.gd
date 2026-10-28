@@ -51,7 +51,7 @@ func tick(delta: float, input: Dictionary) -> void:
 	var inputs: Array = [input]
 	for rival in actors.slice(1): inputs.append(_rival_input(rival, dt) if alive(rival) else {})
 	for index in actors.size():
-		if alive(actors[index]): _move_fighter(actors[index], inputs[index], dt, sin(time / 9) * 12)
+		if alive(actors[index]): _move_fighter(actors[index], inputs[index], dt, wind_strength())
 	var hits: Array = []
 	if alive(p):
 		var closest: Dictionary = {}

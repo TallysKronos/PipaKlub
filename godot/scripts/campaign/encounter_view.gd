@@ -6,6 +6,14 @@ signal finish_requested
 signal leave_requested
 const Model = preload("res://scripts/campaign/encounter_model.gd")
 const Ink = preload("res://scripts/campaign/battle_ink.gd")
+const Field=preload("res://scripts/campaign/battle_field.gd")
+const CornerHud=preload("res://scripts/campaign/battle_corner_hud.gd")
+var flee_hold:=0.0
+var flee_pointer:=false
+var flee_release:=true
+var flee_button:Button
+var launch_age:=0.0
+var round_wipe_number:=0
 var selected_action := "cut"
 var round_caption: Control
 const ACTION_COPY := {"cut": "Cortar a linha do oponente em um cruzamento.", "skill": "Usar a habilidade do seu parceiro.", "dodge": "Esquivar e abrir uma oportunidade de contra-ataque.", "line": "Preparar um puxão para disputar a linha.", "guard": "Proteger-se no momento do impacto.", "signature": "Pulo do Elo · Marque o alvo e acerte a área."}
@@ -47,6 +55,7 @@ var reduced_motion := false
 var result_age := 0.0
 var result_summary: Dictionary = {}
 var result_wipe_started := false
+var result_header:Control
 
 func configure(data: Dictionary, state: Dictionary) -> void:
 	content = data
@@ -141,6 +150,12 @@ func _ready() -> void:
 	resume_button.theme_type_variation = "RecorteSecondaryButton"
 	resume_button.custom_minimum_size.x = 150
 	add_child(resume_button)
+	flee_button=Button.new()
+	Hud.navigation_button(flee_button,true)
+	flee_button.add_theme_font_size_override("font_size",14)
+	flee_button.button_down.connect(func():flee_pointer=true)
+	flee_button.button_up.connect(func():flee_pointer=false)
+	add_child(flee_button)
 	resume_button.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_LEFT)
 	resume_button.offset_left = 20
 	resume_button.offset_top = -58
@@ -148,7 +163,17 @@ func _ready() -> void:
 	resume_button.offset_bottom = -18
 	resume_button.custom_minimum_size.y = 40
 	finish_button = Button.new()
-	finish_button.text = "Voltar ao parque"
+	finish_button.text = "Continuar"
+	Hud.navigation_button(finish_button,false,"back")
+	finish_button.icon=Controls.glyph("accept")
+	Controls.events.changed.connect(func():finish_button.icon=Controls.glyph("accept"))
+	for state in ["normal","hover","pressed","disabled"]:
+		var style:StyleBoxFlat=finish_button.get_theme_stylebox(state).duplicate()
+		style.bg_color=Tokens.SOL.darkened(.15) if state=="pressed" else Tokens.PAPEL if state=="hover" else Tokens.SOL
+		finish_button.add_theme_stylebox_override(state,style)
+	finish_button.add_theme_color_override("font_color",Tokens.NANQUIM)
+	finish_button.add_theme_color_override("font_hover_color",Tokens.NANQUIM)
+	finish_button.add_theme_color_override("font_pressed_color",Tokens.NANQUIM)
 	finish_button.visible = false
 	finish_button.pressed.connect(func(): finish_requested.emit())
 	bottom.add_child(finish_button)
@@ -158,6 +183,7 @@ func _ready() -> void:
 	for option in [["Salvar e voltar ao menu", "menu"], ["Fugir sem recompensa", "flee"]]:
 		var button := Button.new()
 		button.text = option[0]
+		Hud.navigation_button(button,true,"save" if option[1]=="menu" else "back")
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var id: String = option[1]
 		button.pressed.connect(func():
@@ -181,10 +207,27 @@ func _layout_actions() -> void:
 			resume_button.reparent(target,false)
 			resume_button.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT if target==status_row else Control.PRESET_BOTTOM_LEFT)
 			if target==self:
-				resume_button.offset_left=20;resume_button.offset_top=-58
-				resume_button.offset_right=150;resume_button.offset_bottom=-18
+				resume_button.offset_left=20;resume_button.offset_top=-size.y+88
+				resume_button.offset_right=150;resume_button.offset_bottom=-size.y+128
 			if focused and get_parent().get("pause_overlay")==null:Hud.focus_later(resume_button)
 	bottom_panel.anchor_top = 1
+	if resume_button.get_parent()==self:
+		resume_button.offset_top=-size.y+88
+		resume_button.offset_bottom=-size.y+128
+	var result:bool=not model.outcome.is_empty()
+	if is_instance_valid(flee_button):
+		flee_button.visible=not result and model.get("actors")==null and not paused and not blocked
+		flee_button.text="Segure %s para fugir"%Controls.prompt("interact")
+		flee_button.position=Vector2(20,size.y-184)
+		flee_button.size=Vector2(250,40)
+	# Decorative strokes extend outside the content box. Only item lists scroll/clip.
+	footer_contents.get_parent().clip_contents=not result
+	var panel_width:=minf(1180,size.x-80) if result else size.x-48
+	bottom_panel.offset_left=(size.x-panel_width)/2
+	bottom_panel.offset_right=-(size.x-panel_width)/2
+	finish_button.size_flags_horizontal=Control.SIZE_SHRINK_END
+	finish_button.custom_minimum_size=Vector2(240,48)
+	if is_instance_valid(reward_card):reward_card.custom_minimum_size.y=clampf(size.y*.56,390,490)
 	bottom_panel.offset_bottom = -8 if fighting else -12
 	status_row.visible = paused or blocked
 	var height:=size.y*.12 if fighting else maxf(140,footer_contents.get_combined_minimum_size().y+8)
@@ -198,6 +241,7 @@ func _layout_actions() -> void:
 
 func _physics_process(delta: float) -> void:
 	_layout_actions()
+	_step_flee(delta)
 	if paused or blocked:
 		pointer_held.clear()
 		pointer_tapped.clear()
@@ -206,6 +250,16 @@ func _physics_process(delta: float) -> void:
 		var held:bool=ACTION_COPY.keys().any(func(action:String):return Controls.held(action) or bool(pointer_held.get(action,false)))
 		if not held:require_action_release=false
 	clock += delta
+	if model.get("intermission")!=null and model.intermission>0 and round_wipe_number!=model.round_number:
+		round_wipe_number=model.round_number
+		var wipe=load("res://scripts/campaign/recorte_ink_wipe.gd").new()
+		add_child(wipe)
+		wipe.z_index=50
+		wipe.finished.connect(wipe.queue_free,CONNECT_ONE_SHOT)
+		wipe.play(Tokens.CEU if model.round_message.begins_with(model.p.name+" venceu") else Tokens.RABIOLA,reduced_motion,false)
+	if not paused and not blocked:
+		if model.intro>0 or (model.get("intermission")!=null and model.intermission>0):launch_age=0
+		else:launch_age+=delta
 	if not paused and not blocked and model.intro <= 0: live_age += delta
 	impacts.step(delta) # Paint expires even while gameplay is paused.
 	if not paused and not blocked and model.outcome.is_empty():
@@ -251,8 +305,27 @@ func _physics_process(delta: float) -> void:
 	_layout_actions()
 	queue_redraw()
 
+func _step_flee(delta:float) -> void:
+	var held:bool=Controls.held("interact") or flee_pointer
+	if paused or blocked or model.intro>0 or not model.outcome.is_empty() or model.get("actors")!=null:
+		flee_hold=0;flee_pointer=false;flee_release=true
+		return
+	if not held:flee_release=false
+	if flee_release:return
+	flee_hold=minf(1,flee_hold+delta) if held else 0.0
+	if flee_hold>=1:
+		flee_hold=0;flee_pointer=false;flee_release=true
+		model.outcome="fled"
+		save_requested.emit(model.snapshot())
+
 func _update_result(delta: float) -> void:
 	if model.outcome.is_empty(): return
+	if not is_instance_valid(result_header):
+		result_header=load("res://scripts/campaign/hud_result_header.gd").new()
+		add_child(result_header)
+	result_header.outcome=model.outcome
+	result_header.left=bottom_panel.position.x+12
+	result_header.queue_redraw()
 	if not result_wipe_started:
 		result_wipe_started = true
 		if model.outcome != "fled":
@@ -298,28 +371,18 @@ func _draw_feedback() -> void:
 
 func _draw_result() -> void:
 	draw_set_transform(Vector2.ZERO)
-	draw_rect(Rect2(0, 128, size.x, maxf(0, bottom_panel.position.y - 128)), Tokens.alpha(Tokens.NANQUIM, .17))
-	var fraction := 1.0 if reduced_motion else clampf(result_age / .24, 0, 1)
-	# Uniform scaling keeps illustrated corners and knots proportional.
-	var zoom := 1.0 if reduced_motion else .92 + .08 * sin(fraction * PI / 2)
-	var center := Vector2(500, 450)
-	var factor := minf(1.1,minf(size.x*.72/760,maxf(80,bottom_panel.position.y-180)/240))
-	var target := Vector2(size.x/2,(180+bottom_panel.position.y)/2)
-	draw_set_transform(target-center*factor*zoom,0,Vector2.ONE*factor*zoom)
-	Hud.draw_result(self, model.outcome == "won", model.outcome == "fled")
-
+	draw_rect(Rect2(Vector2.ZERO,size),Tokens.alpha(Tokens.NANQUIM,.42))
 func _arena_factor() -> float:
-	var floor_y := bottom_panel.position.y - 30 if is_instance_valid(bottom_panel) else size.y * .73
-	return maxf(.32, (floor_y - _field_top()) / 585)
+	return Field.scale_for(size).y
 
 func _field_scale() -> Vector2:
-	return Vector2(maxf(.5, (size.x - 100) / 1000), _arena_factor())
+	return Field.scale_for(size)
 
 func _field_top() -> float:
-	return maxf(240,size.y*.28) if model.get("actors") != null and model.actors.size() > 2 else maxf(210,size.y*.24)
+	return Field.origin(size).y
 
 func _field_origin() -> Vector2:
-	return Vector2(50, _field_top())
+	return Field.origin(size)
 
 func _project_field(point: Vector2) -> Vector2:
 	return _field_origin() + point * _field_scale()
@@ -368,16 +431,12 @@ func _draw() -> void:
 		elif actor.attackCooldown > .5 or actor.signatureWindup > 0: action = "attack"
 		var frames: Array = content.combat[art_ids[index]].animations[action]
 		var frame: Dictionary = frames[int(clock * 12) % frames.size()]
-		var width := 260 if index == 1 and model.q.boss else 220
-		Ink.live_sprite(self, textures[index], art_ids[index], frame, Vector2(actor.x, actor.y), width, Tokens.UNTINTED, _field_scale())
+		var width := 230 if index == 1 and model.q.boss else 180
+		var opponent:Dictionary=model.q if index==0 else model.p
+		var flip:bool=Ink.facing_flip(art_ids[index],actor.x,opponent.x)
+		Ink.live_sprite(self, textures[index], art_ids[index], frame, Vector2(actor.x, actor.y), width, Tokens.UNTINTED, _field_scale(),flip)
 
 	_draw_feedback()
-	if model.intro > 0 and model.q.boss and model.outcome.is_empty():
-		draw_set_transform(Vector2.ZERO)
-		var warning := Rect2(size.x / 2 - 350, 225, 700, 112)
-		Ink.plate(self, warning, Ink.BLACK, Ink.WHITE)
-		draw_string(Hud.font(true), warning.position + Vector2(30, 48), "LACERTUBO", HORIZONTAL_ALIGNMENT_LEFT, -1, 44, Ink.WHITE)
-		draw_string(Hud.font(), warning.position + Vector2(32, 84), "O GUARDIÃO DOS CANOS · PREPARE-SE", HORIZONTAL_ALIGNMENT_LEFT, -1, 20, Hud.CORAL)
 
 	if not model.outcome.is_empty():
 		_draw_result()
@@ -401,28 +460,52 @@ func _draw_field_background() -> void:
 	draw_texture_rect_region(background, bounds, source)
 
 func _draw_status() -> void:
-	var actors: Array = model.actors if model.get("actors") != null else [model.p, model.q]
-	var width := minf(464, (size.x - (220 if actors.size() == 2 else 48)) / actors.size() - 12)
+	if not model.outcome.is_empty():return
+	var actors:Array=model.actors if model.get("actors")!=null else [model.p,model.q]
+	var faces:Array=[]
+	var names:Array=[]
 	for index in actors.size():
-		var actor: Dictionary = actors[index]
-		var title: String = {"rabbito": "Rabbito", "basic-carcara": "Carcará", "basic-mata-verde": "Mata verde", "basic-azulao": "Azulão", "basic-raio-de-sol": "Raio de sol", "lacertubo": "Lacertubo"}.get(art_ids[index], "Pipamon")
-		var level: int = model.enemy_level if index > 0 and model.get("enemy_level") != null else 1
-		if index == 0:
-			for partner in reward_player.get("partners", []):
-				if partner.id != reward_player.get("equippedPartnerId", ""): continue
-				title = partner.get("personalName", title)
-				level = Model.level_for_xp(partner.get("xp", 0))
-		var subtitle := "Nv. %d" % level
-		if actor.has("rounds"): subtitle = "%s · %d / %d vitórias" % [actor.name, actor.rounds, model.rounds_to_win]
-		var x := 20.0 + index * (size.x - 40 - width) / maxf(1, actors.size() - 1)
-		Ink.status(self, Rect2(x, 10, width, 150), title, subtitle, actor, Ink.portrait(textures[index], art_ids[index]), index > 0)
-	if actors.size() == 2:
-		var rect := Rect2(size.x / 2 - 100, 18, 200, 82)
-		Ink.plate(self, rect, Ink.BLACK, Ink.WHITE)
-		var label := "RODADA %d" % model.round_number if model.get("round_number") != null else "ENCONTRO"
-		draw_string(Hud.font(true), rect.position + Vector2(23, 34), label, HORIZONTAL_ALIGNMENT_LEFT, -1, 27, Ink.WHITE)
-		var caption := "%02d:%02d" % [int(model.duration) / 60, int(model.duration) % 60]
-		draw_string(Hud.font(true), rect.position + Vector2(70, 61), caption, HORIZONTAL_ALIGNMENT_LEFT, -1, 20, Hud.GOLD)
+		faces.append(Ink.portrait(textures[index],art_ids[index]))
+		var title:String={"rabbito":"Rabbito","basic-carcara":"Carcará","basic-mata-verde":"Mata verde","basic-azulao":"Azulão","basic-raio-de-sol":"Raio de sol","lacertubo":"Lacertubo"}.get(art_ids[index],"Parceiro")
+		var level:int=model.enemy_level if index>0 else 1
+		if index==0:
+			for partner in reward_player.get("partners",[]):
+				if partner.id==reward_player.get("equippedPartnerId",""):
+					title=partner.get("personalName",title)
+					level=Model.level_for_xp(partner.get("xp",0))
+		names.append("%s · Nv. %d"%[title,level])
+	var cost:int=0
+	for command in move_cards:
+		if _action_held(command.tile.action_id):cost=command.cost
+	_draw_phase()
+	CornerHud.draw_on(self,actors,faces,names,reward_player,model.duration,model.round_number if model.get("round_number")!=null else 1,model.rounds_to_win if model.get("rounds_to_win")!=null else 1,model.wind_strength(),cost)
+	if flee_hold>0:
+		draw_arc(Vector2(286,size.y-160),14,-PI/2,-PI/2+TAU*flee_hold,32,Tokens.SOL,3,true)
+
+func _draw_phase() -> void:
+	var message:=""
+	if model.get("intermission")!=null and model.intermission>0:
+		message="EMPATE" if "empatada" in model.round_message else "CORTOU!" if model.round_message.begins_with(model.p.name+" venceu") else "RODADA PERDIDA"
+	elif model.intro>0:
+		message="LACERTUBO · O GUARDIÃO DOS CANOS" if model.q.boss else "RODADA %d · %d"%[model.round_number if model.get("round_number")!=null else 1,mini(3,ceili(model.intro))]
+	elif launch_age<.4:message="JÁ!"
+	if message.is_empty():return
+	var rect:=Rect2(size.x/2-320,size.y*.38,640,86)
+	if model.q.boss and model.intro>0 and not reduced_motion:
+		for index in 24:
+			var direction:=Vector2.from_angle(index*TAU/24)
+			draw_line(rect.get_center()+direction*size.length(),rect.get_center()+direction*420,Tokens.alpha(Tokens.PAPEL,.35),2,true)
+	draw_texture_rect(Ink.brush(1),rect.grow(36),false)
+	Ink.plate(self,rect,Tokens.TINTA,Tokens.TINTA)
+	var font_size:=28 if message.length()>24 else 38
+	var width:=Hud.lettering().get_string_size(message,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x
+	draw_string(Hud.lettering(),Vector2(size.x/2-width/2,rect.position.y+45),message,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,Tokens.RABIOLA)
+	if model.get("intermission")!=null and model.intermission>0:
+		for index in model.actors.size():
+			var actor_name:String=Ink.ellipsis(model.actors[index].name,Hud.font(true),14,70)
+			draw_string(Hud.font(true),Vector2(rect.position.x+16+index*180,rect.end.y-11),actor_name,HORIZONTAL_ALIGNMENT_LEFT,-1,14,Tokens.PAPEL)
+			CornerHud.diamonds(self,Vector2(rect.position.x+90+index*180,rect.end.y-15),model.actors[index].rounds,model.rounds_to_win,Tokens.CEU if index==0 else Tokens.RABIOLA)
+
 
 func _draw_anchor(x: float, color: Color) -> void:
 	var point := _project_field(Vector2(x, 585))

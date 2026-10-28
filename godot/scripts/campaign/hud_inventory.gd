@@ -9,6 +9,7 @@ var quantity: Label
 const NAMES := {"quest-nina-tail": "Rabiola do Carcará de Nina", "rabiola-lacertubo": "Rabiola de Lacertubo", "rabiola-basica": "Rabiola de Carcará", "rabiola-azulao": "Rabiola de Azulão", "rabiola-mata": "Rabiola de Mata verde", "rabiola-raio": "Rabiola de Raio de sol"}
 func _ready() -> void:
 	size_flags_vertical = Control.SIZE_EXPAND_FILL
+	add_theme_constant_override("separation",16)
 	var tabs := HFlowContainer.new()
 	var tab_group := ButtonGroup.new()
 	add_child(tabs)
@@ -33,13 +34,14 @@ func _ready() -> void:
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	row.add_child(scroll)
 	list = VBoxContainer.new()
+	list.add_theme_constant_override("separation",8)
 	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.add_child(list)
-	var detail := PanelContainer.new()
+	var detail=load("res://scripts/campaign/hud_result_plate.gd").new()
 	detail.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	detail.theme_type_variation = "RecortePaperPanel"
 	row.add_child(detail)
 	var column := VBoxContainer.new()
+	column.add_theme_constant_override("separation",12)
 	detail.add_child(column)
 	item_art = TextureRect.new()
 	item_art.custom_minimum_size = Vector2(120, 145)
@@ -50,11 +52,14 @@ func _ready() -> void:
 	item_name.add_theme_font_override("font", Hud.display())
 	item_name.add_theme_font_size_override("font_size", 28)
 	quantity = Label.new()
+	quantity.add_theme_font_override("font",Hud.font(true))
 	description = Label.new()
 	for label in [item_name, quantity, description]:
 		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		label.theme_type_variation = "RecortePaperText"
+		label.add_theme_color_override("font_color",Hud.PAPER)
 		column.add_child(label)
+	quantity.add_theme_color_override("font_color",Hud.CYAN)
+	description.add_theme_font_size_override("font_size",18)
 	populate("Tudo")
 func category(id: String) -> String:
 	return "Missão" if id.begins_with("quest-") else "Rabiolas" if "rabiola" in id else "Materiais"
@@ -83,6 +88,12 @@ func populate(filter: String) -> void:
 		button.pressed.connect(func(): select_item(id))
 		button.focus_entered.connect(func(): select_item(id))
 		list.add_child(button)
+	if first.is_empty():
+		var empty:=Label.new()
+		empty.text="Nenhum item nesta categoria.\nExplore para encontrar materiais e rabiolas."
+		empty.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+		empty.add_theme_font_size_override("font_size",18)
+		list.add_child(empty)
 	select_item(first)
 func select_item(id: String) -> void:
 	for child in list.get_children():

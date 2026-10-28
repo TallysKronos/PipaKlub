@@ -52,6 +52,15 @@ static func decorate(target: Control, index: int = 0, extent: Vector2 = Vector2(
 static func secondary_button(button: Button) -> void:
 	button.theme_type_variation = "RecorteSecondaryButton"
 
+static func navigation_button(button:Button, secondary:bool=false, icon_id:String="") -> void:
+	button.custom_minimum_size.y=maxf(48,button.custom_minimum_size.y)
+	button.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+	if secondary:secondary_button(button)
+	if not icon_id.is_empty():
+		button.icon=icon(icon_id)
+		button.expand_icon=true
+		button.add_theme_constant_override("icon_max_width",28)
+
 static func focus_space(parent: Node) -> MarginContainer:
 	# Contains the 24px visual shift, slanted edge and rabiola without moving input.
 	var margin := MarginContainer.new()
@@ -82,10 +91,11 @@ static func focus_later(control: Control) -> void:
 		if target != null and target.is_inside_tree() and target.is_visible_in_tree(): target.grab_focus()
 	, CONNECT_ONE_SHOT)
 
-static func map_for(subject: Node2D, layer: CanvasLayer) -> void:
+static func map_for(subject: Node2D, layer: Node) -> Control:
 	var map := load("res://scripts/campaign/hud_minimap.gd").new() as Control
 	map.subject = subject
 	layer.add_child(map)
+	return map
 
 static func retract_after(control: Control, delay: float) -> void:
 	control.create_tween().tween_property(control, "modulate:a", 0.0, .25).set_delay(delay)

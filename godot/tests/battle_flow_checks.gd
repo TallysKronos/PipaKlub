@@ -3,6 +3,7 @@ const Front=preload("res://scripts/campaign/front_end.gd")
 const Fixtures=preload("res://tools/player_audit_fixtures.gd")
 const Store=preload("res://scripts/campaign/save_store.gd")
 const State=preload("res://scripts/campaign/state.gd")
+const Ink=preload("res://scripts/campaign/battle_ink.gd")
 var count:=0
 var failures:Array=[]
 var captures:=false
@@ -21,6 +22,9 @@ func save_frame(name:String) -> void:
 	await settle();await RenderingServer.frame_post_draw
 	root.get_texture().get_image().save_png(output.path_join(name+".png"))
 func run() -> void:
+	check(Ink.facing_flip("lacertubo",700,300),"Lacertubo faces opponent on left")
+	check(not Ink.facing_flip("lacertubo",300,700),"Lacertubo faces opponent on right")
+	check(Ink.facing_flip("rabbito",700,300),"Rabbito faces opponent after crossing")
 	captures="--capture" in OS.get_cmdline_user_args()
 	if captures and DisplayServer.get_name()=="headless":printerr("Renderer required");quit(1);return
 	output=ProjectSettings.globalize_path("res://../mockups/revisao/fluxos")
@@ -85,10 +89,11 @@ func run() -> void:
 				check(practice.reduced_motion==reduced,"lesson receives motion preference")
 				check(practice.move_cards.size()==5,"lesson shares five action controls")
 				var field_size:Vector2=practice._field_scale()*Vector2(1000,640)
-				check(is_equal_approx(field_size.x,practice.size.x),"lesson arena spans viewport width")
-				check(field_size.y>practice.size.y*.55,"lesson reserves majority height for arena")
+				check(is_equal_approx(field_size.x,practice.size.x-100),"lesson arena spans viewport width")
+				check(field_size.y>practice.size.y*.4,"lesson reserves usable height below status HUD")
 				var point:=Vector2(700,180)
-				check((practice._project(point)/practice._field_scale()).distance_to(point)<.01,"pointer and signals share world projection")
+				check(((practice._project(point)-practice._field_offset())/practice._field_scale()).distance_to(point)<.01,"pointer and signals share world projection")
+				check(practice._project(Vector2(300,180)).y>190,"lesson actors stay below status cards")
 				check(not practice.hint.get_global_rect().intersects(practice.move_cards[0].tile.get_global_rect()),"instructions stay separate from commands")
 				for command in practice.move_cards:
 					check(command.tile.reduced_motion==reduced,"shared tile receives motion preference")

@@ -60,7 +60,9 @@ func measure(id: String, requested: Vector2i) -> Dictionary:
 				var intersection := visible.intersection(effective_rect(other))
 				if area(intersection) > 8: findings.append({"kind": "label_over_button", "priority": "P1", "text": text.left(130), "button": other.text})
 	var focus := root.gui_get_focus_owner()
-	return {"scenario": id, "requested_pixels": [requested.x, requested.y], "actual_pixels": [root.size.x, root.size.y], "ui_units": [front.size.x, front.size.y], "focus": focus.text if focus is Button else focus.get_class() if focus != null else "none", "decorations_checked":decorations.decorations_checked, "widgets": entries, "findings": findings}
+	var hud_fraction:=0.0
+	for hud in get_nodes_in_group("exploration_hud"):hud_fraction=maxf(hud_fraction,hud.occupied_fraction())
+	return {"scenario": id, "exploration_hud_fraction":hud_fraction, "requested_pixels": [requested.x, requested.y], "actual_pixels": [root.size.x, root.size.y], "ui_units": [front.size.x, front.size.y], "focus": focus.text if focus is Button else focus.get_class() if focus != null else "none", "decorations_checked":decorations.decorations_checked, "widgets": entries, "findings": findings}
 func _in_scroll(node: Node) -> bool:
 	var parent := node.get_parent()
 	while parent != null:

@@ -15,7 +15,7 @@ func configure(data: Dictionary, state: Dictionary) -> void:
 
 func _ready() -> void:
 	super._ready()
-	finish_button.text = "Voltar ao Morro do Sol"
+	finish_button.text = "Continuar"
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
@@ -51,24 +51,11 @@ func _draw() -> void:
 		elif actor.attackCooldown > .5 or actor.signatureWindup > 0: animation = "attack"
 		var frames: Array = content.combat[art_ids[index]].animations[animation]
 		var frame: Dictionary = frames[int(clock * 12) % frames.size()]
-		Ink.live_sprite(self, textures[index], art_ids[index], frame, Vector2(actor.x, actor.y), 220, Tokens.alpha(Tokens.UNTINTED, .45 if eliminated else 1), _field_scale())
+		var target:Dictionary=model.q if index==0 else model.p
+		Ink.live_sprite(self, textures[index], art_ids[index], frame, Vector2(actor.x, actor.y), 180, Tokens.alpha(Tokens.UNTINTED, .45 if eliminated else 1), _field_scale(),Ink.facing_flip(art_ids[index],actor.x,target.x))
 
 	_draw_feedback()
 	draw_set_transform(Vector2.ZERO)
-	if model.actors.size() > 2:
-		Ink.plate(self, Rect2(size.x / 2 - 130, 175, 260, 38), Ink.BLACK, Ink.WHITE)
-		draw_string(Hud.font(true), Vector2(size.x / 2 - 97, 200), "RODADA %d · %02d:%02d" % [model.round_number, int(model.duration) / 60, int(model.duration) % 60], HORIZONTAL_ALIGNMENT_LEFT, -1, 22, Ink.WHITE)
-	draw_set_transform(_field_origin(), 0, _field_scale())
-	if model.intro > 0 and model.intermission <= 0 and model.outcome.is_empty():
-		draw_set_transform(Vector2.ZERO)
-		var box := Rect2(size.x / 2 - 300, 240, 600, 112)
-		Ink.plate(self, box, Ink.BLACK, Ink.WHITE)
-		draw_string(Hud.font(true), box.position + Vector2(28, 40), Rules.stage(model.stage_id).name, HORIZONTAL_ALIGNMENT_LEFT, -1, 30, Ink.WHITE)
-		draw_string(Hud.font(true), box.position + Vector2(282, 86), str(int(ceilf(model.intro))), HORIZONTAL_ALIGNMENT_LEFT, -1, 36, Hud.GOLD)
-	elif model.intermission > 0 and model.outcome.is_empty():
-		draw_set_transform(Vector2.ZERO)
-		Ink.plate(self, Rect2(size.x / 2 - 300, 260, 600, 62), Ink.BLACK, Ink.WHITE)
-		draw_string(Hud.font(true), Vector2(size.x / 2 - 270, 302), model.round_message, HORIZONTAL_ALIGNMENT_LEFT, -1, 26, Ink.WHITE)
 
 	if not model.outcome.is_empty():
 		_draw_result()

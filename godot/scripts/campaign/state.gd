@@ -7,7 +7,7 @@ const RULES_VERSION := "demo-1"
 static func fresh(slot_id: String) -> Dictionary:
 	return {
 		"schemaVersion": SCHEMA_VERSION, "contentVersion": CONTENT_VERSION,
-		"rulesVersion": RULES_VERSION, "slotId": slot_id, "revision": 0,
+		"rulesVersion": RULES_VERSION, "slotId": slot_id, "revision": 0,"playSeconds":0.0,
 		"checkpoint": {"kind": "opening", "step": 0},
 		"player": {"name": "Kael", "avatar": {}, "coins": 0,
 			"inventory": {}, "partners": [], "flags": {}, "openedChests": [],
@@ -43,6 +43,8 @@ static func inspect(value: Variant, slot_id: String) -> String:
 		return "invalid"
 	if not value.get("checkpoint") is Dictionary or not value.get("player") is Dictionary:
 		return "invalid"
+	for key in ["playSeconds","savedAt"]:
+		if value.has(key) and (not (value[key] is int or value[key] is float) or not is_finite(float(value[key])) or float(value[key])<0):return "invalid"
 	var checkpoint: Dictionary = value.checkpoint
 	var kind: String = str(checkpoint.get("kind", ""))
 	if kind not in ["opening", "world", "practice", "starter", "workshop", "encounter"]:

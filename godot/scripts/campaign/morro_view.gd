@@ -102,12 +102,19 @@ func _ready() -> void:
 		name_label.visible = data.npcs.size() != 2 or npc.name == "Juninho"
 		name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		name_label.theme_type_variation = "RecorteWorldText"
-		name_label.add_theme_constant_override("outline_size", 4)
+		name_label.add_theme_font_size_override("font_size",16)
+		name_label.add_theme_constant_override("outline_size", 0)
 		var label_root := Node2D.new()
 		label_root.position = sprite.position
 		label_root.z_index = sprite.z_index
 		add_child(label_root)
-		label_root.add_child(name_label)
+		var tag=load("res://scripts/campaign/hud_result_plate.gd").new()
+		tag.accent=Tokens.PAPEL_2
+		tag.position=name_label.position
+		tag.visible=name_label.visible
+		name_label.position=Vector2.ZERO
+		label_root.add_child(tag)
+		tag.add_child(name_label)
 	avatar = Avatar.new()
 	add_child(avatar)
 	avatar.scale = Vector2.ONE * .62
@@ -143,65 +150,18 @@ func _ready() -> void:
 		navigation.connect_points(edge[0], edge[1])
 	var ui := CanvasLayer.new()
 	add_child(ui)
-	var margin := MarginContainer.new()
-	margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	margin.theme = ui_theme
-	margin.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	for side in ["left", "right", "top", "bottom"]: margin.add_theme_constant_override("margin_" + side, 20)
-	ui.add_child(margin)
-	Hud.map_for(self, ui)
-	var column := VBoxContainer.new()
-	column.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	margin.add_child(column)
-	var row := HBoxContainer.new()
-	row.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	column.add_child(row)
-	var card := Hud.card(data.name)
-	card.custom_minimum_size.x = 320
-	row.add_child(card)
-	Hud.retract_after(card, 3)
-	var spacer := Control.new()
-	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	spacer.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	row.add_child(spacer)
-	for option in [["Equipe", "collection"], ["Bolsa", "bag"], ["Menu", "menu"]]:
-		var button := Button.new()
-		button.text = option[0]
-		Hud.secondary_button(button)
-		button.icon = Hud.icon({"collection": "team", "bag": "bag", "menu": "settings"}[option[1]])
-		button.expand_icon = true
-		button.add_theme_constant_override("icon_max_width", 24)
-		button.custom_minimum_size = Vector2(122, 48)
-		var id: String = option[1]
-		button.pressed.connect(func():
-			if id == "menu": menu_requested.emit()
-			else: action_requested.emit(id))
-		row.add_child(button)
-	goal = Label.new()
-	goal.text = "Passagem liberada" if not gate_closed else "Explore o bairro e converse com os pipeiros."
-	goal.theme_type_variation = "RecorteWorldText"
-	goal.add_theme_constant_override("outline_size", 0)
-	var objective_panel := PanelContainer.new()
-	objective_panel.theme_type_variation = "PanelContainer"
-	objective_panel.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
-	objective_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	objective_panel.add_child(goal)
-	column.add_child(objective_panel)
-	Hud.retract_after(objective_panel, 4)
-	var gap := Control.new()
-	gap.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	gap.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	column.add_child(gap)
-	hint = Label.new()
-	hint.theme_type_variation = "RecorteWorldText"
-	hint.add_theme_constant_override("outline_size", 0)
-	var prompt_panel := PanelContainer.new()
-	prompt_panel.theme_type_variation = "PanelContainer"
-	prompt_panel.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
-	prompt_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	prompt_panel.add_child(hint)
-	Hud.interaction_glyph(prompt_panel)
-	column.add_child(prompt_panel)
+	exploration_hud=load("res://scripts/campaign/hud_exploration.gd").new()
+	exploration_hud.subject=self
+	exploration_hud.area_name=data.name
+	exploration_hud.player_data=saved_player
+	ui.add_child(exploration_hud)
+	exploration_hud.map=Hud.map_for(self,ui)
+	hint=exploration_hud.prompt
+	exploration_hud.chosen.connect(func(id:String):
+		if id=="menu":menu_requested.emit()
+		else:action_requested.emit(id))
+	goal=exploration_hud.objective
+	goal.text="Passagem liberada" if not gate_closed else "Explore o bairro e converse com os pipeiros."
 	_refresh()
 	camera.reset_smoothing()
 
@@ -273,8 +233,9 @@ func _physics_process(delta: float) -> void:
 		if gap < nearest:
 			nearest = gap
 			near = place.id
-	hint.text = "Analógico · Mover" if Controls.gamepad else "WASD / setas · Mover · Clique no caminho para caminhar"
+	hint.text = ""
 	hint.get_parent().visible = not near.is_empty()
+	ambient_speech(near)
 	for place in data.places:
 		if place.id == near:
 			hint.text = "Conversar com " + " e ".join(Rules.stage(data.stage).foes.map(func(f): return f.name)) if place.has("stage") else place.name

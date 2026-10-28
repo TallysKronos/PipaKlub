@@ -64,7 +64,7 @@ func layout_art() -> void:
 		brush.size = size + Vector2(16,14)
 
 func refresh_focus() -> void:
-	if marker == null: return
+	if marker == null or not is_instance_valid(target) or not target.is_inside_tree() or not is_inside_tree(): return
 	var disabled: bool = target is BaseButton and target.disabled
 	active = not disabled and (target.has_focus() or target.get_global_rect().has_point(target.get_global_mouse_position()))
 	if _tween != null: _tween.kill()

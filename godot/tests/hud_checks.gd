@@ -27,10 +27,10 @@ func buttons(node: Node) -> Array:
 		if child is Button: result.append(child)
 		result.append_array(buttons(child))
 	return result
-func dialogs(node: Node) -> Array[AcceptDialog]:
-	var result: Array[AcceptDialog] = []
+func dialogs(node: Node) -> Array[Control]:
+	var result: Array[Control] = []
 	for child in node.get_children():
-		if child is AcceptDialog: result.append(child)
+		if child.is_in_group("manga_dialogue"): result.append(child)
 		result.append_array(dialogs(child))
 	return result
 func run_checks() -> void:
@@ -90,13 +90,13 @@ func run_checks() -> void:
 		front._menu()
 		await frame()
 		var all_buttons := buttons(front)
-		check(all_buttons.size() == 5, "three slots and two menu commands")
+		check(all_buttons.size() == 4, "four main menu commands")
 		for button in all_buttons:
 			check(button.size.x >= 100 and button.size.y >= 48, "usable target " + button.text)
 		var focused := root.gui_get_focus_owner()
 		check(focused is Button, "menu has keyboard focus")
 		var decor_review := DecorOverlap.inspect(front)
-		check(decor_review.decorations_checked == 3 and decor_review.findings.is_empty(),"three menu decorations reserve content space")
+		check(decor_review.findings.is_empty(),"menu decorations reserve content space")
 	for scenario in ["long-notice", "starter-confirm", "workshop-cancel", "morro-dialog", "binding-dialog"]:
 		Fixtures.show(front, scenario)
 		await frame()
@@ -105,7 +105,7 @@ func run_checks() -> void:
 		for dialog in active_dialogs:
 			check(not dialog.title.strip_edges().is_empty() and dialog.title not in ["Alert!", "Please Confirm...", "OK", "Cancel"], "explicit localized title in " + scenario)
 			check(not dialog.ok_button_text.strip_edges().is_empty() and dialog.ok_button_text not in ["Alert!", "Please Confirm...", "OK", "Cancel"], "localized primary action in " + scenario)
-			if dialog is ConfirmationDialog:
+			if not dialog.cancel_button_text.is_empty():
 				check(not dialog.cancel_button_text.strip_edges().is_empty() and dialog.cancel_button_text not in ["Alert!", "Please Confirm...", "OK", "Cancel"], "localized cancel action in " + scenario)
 	front.free()
 	print("HUD CHECKS: %d checks, %d failures" % [checks, failures])

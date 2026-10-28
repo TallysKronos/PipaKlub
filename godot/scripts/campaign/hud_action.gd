@@ -57,6 +57,7 @@ func fill_polygons(progress: float) -> Array[PackedVector2Array]:
 
 func _draw() -> void:
 	var factor := size.y / 128.0
+	var readable:=ceili(14/maxf(.01,factor))
 	draw_set_transform(Vector2((size.x-112*factor)/2,0),0,Vector2.ONE*factor)
 	var color: Color = Ink.COLORS.get(icon_id,Tokens.CEU)
 	var points := button_polygon()
@@ -83,14 +84,14 @@ func _draw() -> void:
 	var bolt := PackedVector2Array([Vector2(43,92),Vector2(37,100),Vector2(42,100),Vector2(39,108),Vector2(48,97),Vector2(43,97)])
 	for i in bolt.size(): bolt[i]+=shift
 	draw_colored_polygon(bolt,Tokens.SOL if enough_energy else Tokens.RABIOLA)
-	draw_string(Tokens.label(),Vector2(51,107)+shift,str(cost),HORIZONTAL_ALIGNMENT_LEFT,-1,17,cost_color)
+	draw_string(Tokens.label(),Vector2(51,107)+shift,str(cost),HORIZONTAL_ALIGNMENT_LEFT,-1,maxi(17,readable),cost_color)
 	# Glyph and caption never share the cooldown region. Keep the configured glyph native.
 	draw_rect(Rect2(77,13,34,7),color)
 	var glyph := Controls.glyph(action_id)
 	if glyph != null: draw_texture_rect(glyph,Hud.fit_texture(glyph,Rect2(79,0,31,31)),false)
-	else: draw_string(Tokens.label(),Vector2(78,18),key_text,HORIZONTAL_ALIGNMENT_LEFT,-1,17,Tokens.PAPEL)
+	else: draw_string(Tokens.label(),Vector2(78,18),key_text,HORIZONTAL_ALIGNMENT_LEFT,-1,maxi(17,readable),Tokens.PAPEL)
 	var caption := "ESPECIAL" if action_id=="signature" else title.to_upper()
-	var font_size := 18
+	var font_size := maxi(18,readable)
 	var w := Tokens.label().get_string_size(caption,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x
 	draw_string_outline(Tokens.label(),Vector2((112-w)/2,126),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,4,Tokens.NANQUIM)
 	draw_string(Tokens.label(),Vector2((112-w)/2,126),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,Tokens.PAPEL)

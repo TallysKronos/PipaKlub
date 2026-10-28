@@ -56,3 +56,39 @@ Os testes cobrem o caminho de entrada de controle por simulação, **não um con
 Corrigida a sobreposição do botão interno Retomar com salvar/sair: ele participa da linha de status durante a pausa, preservando o foco do menu modal. As verificações incluem separação dos botões e retenção do foco.
 
 Em sessão isolada na janela Windows, foram observados: retomada do combate pelo botão, derrota e retorno ao parque, retomada do treino e acionamento da habilidade pelo card, com energia em 79% e recarga visível dentro da forma. O pressionamento curto de Q pela automação não produziu evidência visual suficiente para confirmar esse comando nesta sessão; não é declarado aprovado manualmente. O teclado/joypad continua coberto pelas verificações isoladas, sem equivaler a controle físico.
+
+## Padronização visual — treino e orientação
+
+O treino agora usa battle_ink.status, com as mesmas molduras, retratos, tipografia e barras de Linha/Armação/Energia das demais batalhas; o centro identifica a lição. A projeção reserva espaço sob os cards para não esconder os personagens. Retomar usa o destaque primário no menu de pausa, com margem para o foco.
+
+Folhas de Rabbito, Nozinho e Lacertubo voltadas à direita são espelhadas para encarar o alvo na arena; o retrato rival de Lacertubo encara o centro. A inversão mantém posição e pivô e não altera a física. As verificações de fluxo passaram com 797 checks; as de batalha Recorte passaram com 7.994. Não foi feito novo push nesta passagem.
+
+### Botões e configurações
+
+Adicionado contrato compartilhado navigation_button para altura mínima, ícones e tratamento de texto. Aplicado na navegação geral, treino, pausa e resultado; salvar/fugir usam aparência secundária e continuar/retomar mantêm destaque primário. Configurações receberam painéis Recorte, espaçamento e seletor com altura consistente; o rótulo Especial também aparece nos controles.
+
+Auditoria renderizada de configurações, pausa, vitória, derrota e lição 4 em 1280×720 e 1280×800: 10 capturas, sem ocorrências de corte ou sobreposição no medidor. Evidências em mockups/revisao/menus. Campaign view: 30 verificações sem falhas; fluxo: 797 sem falhas. Escopo desta passagem não certifica todas as telas do jogo.
+
+### Resultado central com capacidade de equipe
+
+Referências: Persona 5 Royal (galeria 4Gamer 056, separação de XP/moedas/itens) e Pokémon Sword/Shield (lista individual de progressão). Painel limitado a 900 unidades, duas colunas, altura de 320–420 unidades, banner reduzido e botão central de 280. Conteúdo excedente rola dentro de cada coluna; a ação de retorno fica fora da rolagem.
+
+additional_recipients aceita participantes adicionais com nome, XP e barra opcional baseada em progress/threshold fornecidos pelo produtor. Não distribui XP nem cria recompensas: o preview atual continua concedendo apenas ao parceiro ativo. O cenário capacidade-previa usa dados sintéticos explicitamente nomeados para dois mons e tamer; não salva esses dados. reward_layout_checks: quatro resoluções, vitória/derrota/capacidade. Artes de itens existentes são reutilizadas.
+
+### Resultado v2 — tamer, três espaços de time e saques
+
+Redesenho seguindo o rascunho fornecido: tamer com retrato e XP à esquerda, três cards fixos de Soulmonsters ao centro, moedas e lista de itens à direita. O preview agora simula Progression.award em cópias e expõe o ganho real de tamer, antes omitido. A curva de nível do tamer usa 20*n+3*n*n, igual a src/engine.js. Reservas sem participação recebem zero XP. Espaços vazios não inventam novos parceiros. Capacidade-previa usa equipe sintética de três integrantes apenas para apresentação, sem gravar o estado.
+
+Arte gerada via image_gen: result-frame-v1.png, fonte/proveniência em art/ui/battle-results-v2. A decoração é escalada uniformemente e fica atrás da área quieta de leitura; retratos, barras, números e botões continuam separados. Sem novo push. Testes: hud_effects_checks 20, battle_flow_checks 797; capturas de layout nas quatro resoluções pelo reward_layout_checks.
+
+### Contorno orgânico sem máscara retangular
+
+Removida a placa ciano que encobria a ilustração. A base agora é NinePatchRect com escala uniforme de 0,32 nos recortes fixos (380/380/180/170 de origem), estendendo apenas as regiões apropriadas de fundo. A rolagem externa deixa de cortar os ornamentos no resultado; a lista interna de recompensas mantém a rolagem. Texto do tamer centralizado na área quieta. Título separado do contorno superior. reward_layout_checks ampliado para 68 verificações, incluindo escala uniforme, ausência de clipping no ancestral e contenção do quadro ilustrado na tela.
+
+### Harmonia interna do resultado
+
+Mantida a moldura aprovada. Cards e faixa do tamer compartilham hud_result_plate.gd: recorte de papel com área quieta, sombra e pequenos acentos. Não usa o frame retangular genérico. Retratos do time aumentados, dados do tamer agrupados e botão Continuar de 240×48 com amarelo da vitória e estados de hover/pressionado. Capturas em 16:9, 16:10 e ultrawide pelo teste de layout. Passaram 68 verificações de layout, 797 de fluxo e 20 de efeitos/recompensas.
+
+### Auditoria de textos e respiro
+
+Corrigida sobreposição do subtítulo por ornamentos: cabeçalho próprio em z=5, faixa quieta para o subtítulo, separada dos strokes. Títulos de seção ganharam placas discretas. Padding superior 44 e direito 52; textos menores passaram a 14 unidades lógicas; legenda XP foi encurtada para evitar quebra redundante. Auditoria ampliada verifica altura de linhas, tamanho de fonte, visibilidade dos textos fora de listas roláveis, camada de cabeçalho e nomes longos de tamer/mon. Foram 716 verificações sem falhas com --long-text, mais capturas normais em quatro resoluções. A inspeção visual confirmou a leitura do subtítulo e das seções em 1280×720 e 1280×800. Não equivale à aprovação visual do responsável.

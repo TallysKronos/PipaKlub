@@ -36,6 +36,8 @@ func run_checks() -> void:
 	var before := player.duplicate(true)
 	var summary := Rewards.preview(player, {"kind": "lacertubo"}, model)
 	check(summary.xp == 120 and summary.items == ["Rabiola de Lacertubo"], "boss preview shows native reward")
+	check(summary.tamer.xp==24 and summary.tamer.after==24,"tamer preview follows settlement progression rule")
+	check(summary.team.size()==1 and summary.team[0].earnedXp==120,"team preview credits only actual participant")
 	check(player == before, "preview cannot award XP, mutate inventory or save")
 	partner.xp = 25965
 	summary = Rewards.preview(player, {"kind": "lacertubo"}, model)
