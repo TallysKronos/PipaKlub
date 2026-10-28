@@ -81,7 +81,12 @@ func load_area(id: String) -> void:
 	occluders.clear()
 	model.setup(JSON.parse_string(FileAccess.get_file_as_string(source)))
 	kits.assign([kit_library.comum])
-	if kit_library.has(model.data.biome): kits.append(kit_library[model.data.biome])
+	if kit_library.has(model.data.biome):
+		# Area overrides must never leak into the next map's shared kit.
+		var biome_kit: Dictionary = kit_library[model.data.biome].duplicate(true)
+		var visuals: Dictionary = biome_kit.get("areaVisuals",{}).get(id,{})
+		if visuals.has("floorSurfaceFile"): biome_kit.floorSurface.file = visuals.floorSurfaceFile
+		kits.append(biome_kit)
 	path.clear()
 	nearby.clear()
 	piece_nodes.clear()
@@ -101,6 +106,7 @@ func load_area(id: String) -> void:
 	_dress_veredas()
 	_bairro_ground_details()
 	_bairro_ground_shadows()
+	_morro_canopy_shadow()
 	_build_events()
 	var spawn: Dictionary = model.data.spawn
 	player = Vector2(spawn.u + .5, spawn.v + .5)
@@ -1008,6 +1014,35 @@ func _build_lawn_base() -> void:
 			shade.position = model.project(Vector2(at)+Vector2(.5,.5), false)
 			base.add_child(shade)
 
+func _morro_canopy_shadow() -> void:
+	if not art_preview or model.data.biome != "morro" or kits.size()<2: return
+	var recipe: Dictionary = kits[1].get("areaVisuals",{}).get(area_id,{})
+	var strength := float(recipe.get("canopyShadow",0.0))
+	if strength<=0: return
+	for piece in model.data.pieces:
+		if piece.asset != "arvore-grande": continue
+		var trunk := Vector2(piece.u+piece.fu*.5,piece.v+piece.fv*.5)
+		var centre := trunk+Vector2(.7,.4)
+		var level := model.height_at(trunk)
+		for v in range(floori(centre.y)-4,floori(centre.y)+5):
+			for u in range(floori(centre.x)-4,floori(centre.x)+5):
+				var at := Vector2i(u,v)
+				var cell := model.cell_at(at)
+				if cell.is_empty() or cell.get("ramp") != null or not is_equal_approx(float(cell.level),level): continue
+				var colours := PackedColorArray()
+				for corner: Vector2 in [Vector2.ZERO,Vector2.RIGHT,Vector2.ONE,Vector2.DOWN]:
+					var point: Vector2 = Vector2(at)+corner
+					var distance: float = point.distance_to(centre)/3.0
+					var dapple := .90+.10*sin(point.x*5+point.y*3)*sin(point.y*7-point.x*2)
+					colours.append(Color(.10,.18,.23,strength*(1.0-smoothstep(.30,1.0,distance))*dapple))
+				var shade := Polygon2D.new()
+				shade.name = "SombraDaCopa"
+				shade.polygon = PackedVector2Array([Vector2(0,-16),Vector2(32,0),Vector2(0,16),Vector2(-32,0)])
+				shade.vertex_colors = colours
+				shade.position = model.project(Vector2(at)+Vector2(.5,.5),false)-Vector2(0,level*64)
+				shade.z_index = -1
+				actors.add_child(shade)
+
 func _yard_shade(at: Vector2i, level: float) -> Polygon2D:
 	# Each diamond vertex averages the four cells that share it; Godot blends the
 	# vertex colours across the cell, which turns the stair-step edge into a gradient.
@@ -1218,6 +1253,14 @@ func _compose_houses() -> Dictionary:
 	# into yard and tree mass. Hand-placed houses win over generated filler.
 	var hidden := {}
 	if not art_preview or model.data.biome != "morro": return hidden
+	var authored: Dictionary = kits[1].get("composition",{}).get(area_id,{}) if kits.size()>1 else {}
+	if authored.has("houses"):
+		var visible_ids := {}
+		for house_id in authored.houses: visible_ids[int(house_id)] = true
+		for piece in model.data.pieces:
+			if piece.asset == "casa-morro" and not visible_ids.has(int(piece.id)): hidden[str(piece.id)] = true
+			if piece.asset == "muro-quintal": hidden[str(piece.id)] = true
+		return hidden
 	var houses: Array = []
 	for piece in model.data.pieces:
 		if piece.asset == "casa-morro": houses.append(piece)
@@ -1270,13 +1313,13 @@ func _dress_bare_lots() -> void:
 			var pick: Array = []
 			var n := 1
 			var front := _touches_path(u,v,2,2)
-			if not front and seed%4 != 0 and fits.call(u,v,2) and not _hides_path(u,v,2,2):
+			if bool(kits[1].get("automaticLotTrees",true)) and not front and seed%4 != 0 and fits.call(u,v,2) and not _hides_path(u,v,2,2):
 				pick = woods[seed%woods.size()]
 				n = 2
-			elif front and seed%5 == 0 and fits.call(u,v,2) and not _hides_path(u,v,2,2):
+			elif bool(kits[1].get("automaticYardFurniture",true)) and front and seed%5 == 0 and fits.call(u,v,2) and not _hides_path(u,v,2,2):
 				pick = yard[seed%yard.size()]
 				n = 2
-			elif seed%3 == 0 and fits.call(u,v,1) and _next_to_house(u,v): pick = small[seed%small.size()]
+			elif bool(kits[1].get("automaticLotSmall",true)) and seed%3 == 0 and fits.call(u,v,1) and _next_to_house(u,v): pick = small[seed%small.size()]
 			if pick.is_empty(): continue
 			var info := _definition({"asset":pick[0],"id":"lote","props":{"variante":pick[1]} if pick[1] != "" else {}})
 			if info.is_empty(): continue

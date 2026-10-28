@@ -1,0 +1,27 @@
+{
+  "tool": "image_gen built-in",
+  "prompts": {
+    "grama": "Production game surface texture for Soulmonsters modern Brazilian neighborhood, stylish 2D manga/cel animation hand-painted game art. A square orthographic top-down full-bleed seamless lawn grass material, NOT a landscape. Fresh medium yellow-green dominant field (#8EA95D) with sparse small angular blade clusters and subtle broad flat green patches, restrained clean ink touches, bright warm daylight, restrained four-to-six flat colors. Very calm ground, 85% quiet green space, clusters vary in shape and spacing, no repeated chevrons, no flowers or stones, no scene objects. Should harmonize with richly illustrated cream and blue modern houses, crisp windows and timber awnings. NOT watercolor, no grunge, no noise/grain, no realistic individual grass hairs, no ambient shadows, no grid, no borders, no isometric diamond. Opposite edges tile seamlessly. Export only the square surface, entirely opaque.",
+    "passeio": "Production game surface texture for Soulmonsters modern Brazilian neighborhood, refined 2D manga/cel background art. A square orthographic top-down full-bleed seamless warm pale limestone sidewalk paving material. Broad rectangular and square cut stone slabs, long staggered joints with a few irregular offsets, restrained thin warm-grey joint ink and very slight cream highlights along a few edges, flat ivory cream and pale sand colors, subtle large flat warm shadow planes. Large calm readable shapes, generous slabs and few joints. Hand-drawn architectural precision matching high-quality blue-and-cream modern illustrated townhouses. NOT random cracked earth, no broken jagged rocks, no busy tiny bricks, no grunge or grain, no watercolor, no 3D bevel, no cast shadows, no plants or props, no border, no perspective or isometric diamond. This is a material to project over geometry. Exactly uniform scale and top-down view throughout. Opposite edges tile seamlessly. Entirely opaque square image."
+  },
+  "paths": {
+    "passeio": "exec-5bb481da-6d5a-493b-a652-e02abce08d0f.png",
+    "grama": "exec-88eb14d2-9d4a-49d6-9155-d3922a838816.png"
+  },
+  "foundation": {
+    "source": "godot/assets/overworld/kits/terrenos-v1/superficies/terra-barranco.png",
+    "runtimeSize": [
+      1024,
+      512
+    ],
+    "normalization": "8 colors, 58% contrast, earth-brown palette, horizontal mirror repeat",
+    "geometry": "perimeter walls to z=-40, shared vertices and bottom cap"
+  },
+  "runtimeSize": [
+    1024,
+    1024
+  ],
+  "normalization": "512px painted sample; no dithering; 12 paving / 8 grass colors; reflected 2x2 wrap; asphalt reduced contrast; limestone wall from same paving painting",
+  "consumer": "godot/scripts/overworld/starter_neighborhood.gd",
+  "collisionChanges": false
+}

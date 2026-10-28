@@ -1,0 +1,49 @@
+{
+  "status": "local_playable_pending_art_approval",
+  "nativeResolution": [
+    1280,
+    720
+  ],
+  "streets": [
+    "Rua do Primeiro Vento",
+    "Ladeira das Rabiolas",
+    "Rua dos Inventos"
+  ],
+  "houses": 5,
+  "npcConversations": [
+    "assis",
+    "lia",
+    "nina",
+    "zeca"
+  ],
+  "parkedVehicles": 3,
+  "shortcutSteps": 8,
+  "elevationDifferencePx": 48,
+  "walkthroughDestinations": 32,
+  "walkthroughReached": 32,
+  "campaignIntegrated": false,
+  "projectTestSuitesRun": false,
+  "visibility": {
+    "centroidFallbackFaces": 0,
+    "cuts": 9366,
+    "hiddenFaces": 120,
+    "method": "projected opaque visibility with affine depth and convex fragments",
+    "sourceFaces": 2226,
+    "visibleConvexFragments": 4182
+  },
+  "propScaleReview": {
+    "backdrop": "#0B1525",
+    "personPx": 51,
+    "busStopPx": 130,
+    "benchPx": 38,
+    "vehiclesPx": {
+      "fusca": 100,
+      "jipe": 118,
+      "kombi": 128
+    },
+    "inspection": "native static 1280x720 captures, actor and object on same ground height",
+    "collidersResized": true,
+    "walkthroughRerun": false
+  },
+  "walkthroughScope": "Historical walkthrough before current prop/collider and stair revisions; not repeated in this visual revision."
+}

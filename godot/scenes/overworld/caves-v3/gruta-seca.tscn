@@ -1,0 +1,111 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/overworld/kits/cavernas-v3/surfaces/parede-basalto.png" id="1_u0w86"]
+[ext_resource type="Shader" path="res://shaders/overworld/cave_ground_blend.gdshader" id="2_1mpy1"]
+[ext_resource type="Texture2D" path="res://assets/overworld/kits/cavernas-v3/surfaces/terra-gruta.png" id="3_4wfy8"]
+[ext_resource type="Texture2D" path="res://assets/overworld/kits/cavernas-v3/surfaces/rocha-cinza.png" id="4_qv236"]
+[ext_resource type="PackedScene" path="res://scenes/overworld/caves-v3/props/estalagmite-alta.tscn" id="5_6xye7"]
+[ext_resource type="PackedScene" path="res://scenes/overworld/caves-v3/props/estalagmite-baixa.tscn" id="6_0t3qs"]
+[ext_resource type="PackedScene" path="res://scenes/overworld/caves-v3/props/coluna-calcario.tscn" id="7_qhnas"]
+[ext_resource type="PackedScene" path="res://scenes/overworld/caves-v3/props/rocha-solta.tscn" id="8_dreuh"]
+[ext_resource type="PackedScene" path="res://scenes/overworld/caves-v3/props/cristal-ambar.tscn" id="9_wgkq6"]
+[ext_resource type="PackedScene" path="res://scenes/overworld/caves-v3/props/cristal-azul.tscn" id="10_ai0kb"]
+[ext_resource type="PackedScene" path="res://scenes/overworld/caves-v3/props/cogumelos-gruta.tscn" id="11_0y4sb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xvbpq"]
+shader = ExtResource("2_1mpy1")
+shader_parameter/stone_texture = ExtResource("4_qv236")
+shader_parameter/earth_texture = ExtResource("3_4wfy8")
+shader_parameter/stone_tone = Color(0.20392157, 0.26666668, 0.3254902, 1)
+shader_parameter/earth_tone = Color(0.4862745, 0.38431373, 0.29803923, 1)
+shader_parameter/surface_contrast = 0.72
+shader_parameter/cells_per_repeat = 8.0
+shader_parameter/path_center = 4.5
+shader_parameter/path_start = 2.5
+shader_parameter/path_end = 10.5
+shader_parameter/half_width = 0.92
+shader_parameter/edge_variation = 0.32
+shader_parameter/blend_width = 0.12
+
+[node name="GrutaSeca" type="Node2D" unique_id=1428083302]
+
+[node name="@Node2D@136" type="Node2D" parent="." unique_id=866049059]
+
+[node name="@Polygon2D@137" type="Polygon2D" parent="@Node2D@136" unique_id=754673715]
+texture_repeat = 2
+texture = ExtResource("1_u0w86")
+polygon = PackedVector2Array(0, -144, -320, 16, -320, 144, 0, -16)
+uv = PackedVector2Array(0, 0, 640, 0, 640, 512, 0, 512)
+
+[node name="@Polygon2D@138" type="Polygon2D" parent="@Node2D@136" unique_id=19505810]
+texture_repeat = 2
+texture = ExtResource("1_u0w86")
+polygon = PackedVector2Array(-12, -150, -332, 10, -320, 16, 0, -144)
+uv = PackedVector2Array(0, 0, 640, 0, 640, 512, 0, 512)
+
+[node name="@Polygon2D@139" type="Polygon2D" parent="@Node2D@136" unique_id=1395120814]
+texture_repeat = 2
+color = Color(0.7, 0.7, 0.7, 1)
+texture = ExtResource("1_u0w86")
+polygon = PackedVector2Array(-320, 16, -332, 10, -332, 138, -320, 144)
+uv = PackedVector2Array(0, 0, 48, 0, 48, 512, 0, 512)
+
+[node name="@Polygon2D@140" type="Polygon2D" parent="@Node2D@136" unique_id=737420145]
+texture_repeat = 2
+color = Color(0.86, 0.86, 0.86, 1)
+texture = ExtResource("1_u0w86")
+polygon = PackedVector2Array(0, -144, 320, 16, 320, 144, 0, -16)
+uv = PackedVector2Array(0, 0, 640, 0, 640, 512, 0, 512)
+
+[node name="@Polygon2D@141" type="Polygon2D" parent="@Node2D@136" unique_id=603608908]
+texture_repeat = 2
+texture = ExtResource("1_u0w86")
+polygon = PackedVector2Array(12, -150, 332, 10, 320, 16, 0, -144)
+uv = PackedVector2Array(0, 0, 640, 0, 640, 512, 0, 512)
+
+[node name="@Polygon2D@142" type="Polygon2D" parent="@Node2D@136" unique_id=1928355155]
+texture_repeat = 2
+color = Color(0.7, 0.7, 0.7, 1)
+texture = ExtResource("1_u0w86")
+polygon = PackedVector2Array(320, 16, 332, 10, 332, 138, 320, 144)
+uv = PackedVector2Array(0, 0, 48, 0, 48, 512, 0, 512)
+
+[node name="BlendedCaveGround" type="Polygon2D" parent="." unique_id=2144424641]
+material = SubResource("ShaderMaterial_xvbpq")
+polygon = PackedVector2Array(0, -16, 320, 144, 0, 304, -320, 144)
+
+[node name="@Line2D@143" type="Line2D" parent="." unique_id=959974976]
+position = Vector2(-640, -245)
+points = PackedVector2Array(320, 389, 640, 229, 960, 389)
+width = 4.0
+default_color = Color(0.09019608, 0.101960786, 0.16078432, 1)
+
+[node name="DepthSortedProps" type="Node2D" parent="." unique_id=1661352972]
+y_sort_enabled = true
+
+[node name="estalagmite-alta" type="Node2D" parent="DepthSortedProps" unique_id=1823552309 instance=ExtResource("5_6xye7")]
+position = Vector2(0, 32)
+
+[node name="estalagmite-baixa" type="Node2D" parent="DepthSortedProps" unique_id=1489209873 instance=ExtResource("6_0t3qs")]
+position = Vector2(-32, 80)
+
+[node name="coluna-calcario" type="Node2D" parent="DepthSortedProps" unique_id=1726476100 instance=ExtResource("7_qhnas")]
+position = Vector2(-128, 96)
+
+[node name="rocha-solta" type="Node2D" parent="DepthSortedProps" unique_id=1049282983 instance=ExtResource("8_dreuh")]
+position = Vector2(-32, 240)
+
+[node name="estalagmite-baixa2" type="Node2D" parent="DepthSortedProps" unique_id=834582395 instance=ExtResource("6_0t3qs")]
+position = Vector2(64, 224)
+
+[node name="cristal-ambar" type="Node2D" parent="DepthSortedProps" unique_id=1650576286 instance=ExtResource("9_wgkq6")]
+position = Vector2(-160, 144)
+
+[node name="cristal-azul" type="Node2D" parent="DepthSortedProps" unique_id=265085857 instance=ExtResource("10_ai0kb")]
+position = Vector2(96, 208)
+
+[node name="cogumelos-gruta" type="Node2D" parent="DepthSortedProps" unique_id=1279103216 instance=ExtResource("11_0y4sb")]
+position = Vector2(0, 192)
+
+[node name="cogumelos-gruta2" type="Node2D" parent="DepthSortedProps" unique_id=80042377 instance=ExtResource("11_0y4sb")]
+position = Vector2(-224, 176)

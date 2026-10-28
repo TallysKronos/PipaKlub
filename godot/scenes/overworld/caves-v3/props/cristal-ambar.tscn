@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/overworld/kits/cavernas-v3/props/cristal-ambar.png" id="1"]
+[ext_resource type="Shader" path="res://shaders/overworld/cave_prop_outline.gdshader" id="2"]
+
+[sub_resource type="ShaderMaterial" id="Outline"]
+shader = ExtResource("2")
+
+[node name="cristal-ambar" type="Node2D"]
+
+[node name="ContactShadow" type="Polygon2D" parent="."]
+color = Color(0.035, 0.045, 0.075, 0.65)
+polygon = PackedVector2Array(27.880, -2.000, 26.930, -0.413, 24.145, 1.067, 19.714, 2.337, 13.940, 3.312, 7.216, 3.925, 0.000, 4.134, -7.216, 3.925, -13.940, 3.312, -19.714, 2.337, -24.145, 1.067, -26.930, -0.413, -27.880, -2.000, -26.930, -3.587, -24.145, -5.067, -19.714, -6.337, -13.940, -7.312, -7.216, -7.925, -0.000, -8.134, 7.216, -7.925, 13.940, -7.312, 19.714, -6.337, 24.145, -5.067, 26.930, -3.587)
+
+[node name="Visual" type="Sprite2D" parent="."]
+material = SubResource("Outline")
+texture_filter = 1
+texture = ExtResource("1")
+centered = false
+position = Vector2(-48.0, -62)

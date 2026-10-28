@@ -1,0 +1,85 @@
+{
+  "note": "Source-image luminance on opaque pixels; visual hierarchy also reviewed in native grayscale captures. Not a UI contrast conformance claim.",
+  "paintings": [
+    {
+      "id": "rocha-cinza",
+      "role": "floor",
+      "opaquePixelMedianLuma": 71.4
+    },
+    {
+      "id": "terra-gruta",
+      "role": "floor",
+      "opaquePixelMedianLuma": 96.09
+    },
+    {
+      "id": "rocha-umida",
+      "role": "floor",
+      "opaquePixelMedianLuma": 71.4
+    },
+    {
+      "id": "cascalho-gruta",
+      "role": "floor",
+      "opaquePixelMedianLuma": 96.09
+    },
+    {
+      "id": "parede-calcario",
+      "role": "wall",
+      "opaquePixelMedianLuma": 105.07
+    },
+    {
+      "id": "parede-basalto",
+      "role": "wall",
+      "opaquePixelMedianLuma": 105.8
+    },
+    {
+      "id": "parede-umida",
+      "role": "wall",
+      "opaquePixelMedianLuma": 103.95
+    },
+    {
+      "id": "parede-mineral",
+      "role": "wall",
+      "opaquePixelMedianLuma": 99.65
+    },
+    {
+      "id": "rocha-solta",
+      "role": "prop",
+      "opaquePixelMedianLuma": 134.23
+    },
+    {
+      "id": "estalagmite-baixa",
+      "role": "prop",
+      "opaquePixelMedianLuma": 166.22
+    },
+    {
+      "id": "estalagmite-alta",
+      "role": "prop",
+      "opaquePixelMedianLuma": 158.4
+    },
+    {
+      "id": "coluna-calcario",
+      "role": "prop",
+      "opaquePixelMedianLuma": 136.78
+    },
+    {
+      "id": "cristal-azul",
+      "role": "prop",
+      "opaquePixelMedianLuma": 150.11
+    },
+    {
+      "id": "cristal-ambar",
+      "role": "prop",
+      "opaquePixelMedianLuma": 161.0
+    },
+    {
+      "id": "cogumelos-gruta",
+      "role": "prop",
+      "opaquePixelMedianLuma": 135.23
+    },
+    {
+      "id": "entrada-gruta",
+      "role": "prop",
+      "opaquePixelMedianLuma": 125.69
+    }
+  ]
+}

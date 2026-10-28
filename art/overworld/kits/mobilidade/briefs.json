@@ -1,0 +1,427 @@
+{
+  "collection": "Soulmonsters — veículos brasileiros e mobilidade",
+  "schema": "mobility-library-1",
+  "grid": [
+    64,
+    32
+  ],
+  "status": "prepared_pending_owner_review",
+  "assets": [
+    {
+      "id": "fusca-azul",
+      "name": "Fusca azul",
+      "category": "brasileiros",
+      "footprint": [
+        2,
+        4
+      ],
+      "bodyHeight": 70,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "A Brazilian classic Volkswagen Beetle inspired compact car, soft sky blue body, rounded fenders and sloping rear, small round headlights, narrow cream bumpers, believable original Beetle proportions, plain badge area."
+    },
+    {
+      "id": "brasilia-amarela",
+      "name": "Brasília amarela",
+      "category": "brasileiros",
+      "footprint": [
+        2,
+        4
+      ],
+      "bodyHeight": 70,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "A Brazilian Volkswagen Brasilia inspired compact two-door wagon, warm ochre-yellow body, squared fastback wagon roof, broad rectangular side windows, classic short nose, simple steel wheels and cream trim."
+    },
+    {
+      "id": "gol-quadrado",
+      "name": "Gol quadrado vinho",
+      "category": "brasileiros",
+      "footprint": [
+        2,
+        4
+      ],
+      "bodyHeight": 70,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "A classic Brazilian Volkswagen Gol boxy two-door hatchback inspired car, muted wine-red body, angular compact hatchback silhouette, black simple bumpers, rectangular headlights, small grey steel wheels."
+    },
+    {
+      "id": "uno-verde",
+      "name": "Uno verde",
+      "category": "brasileiros",
+      "footprint": [
+        2,
+        4
+      ],
+      "bodyHeight": 74,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "A classic Brazilian Fiat Uno inspired tall boxy hatchback, muted sage green body, upright hatch, flat nose and practical tall windows, grey trim, compact proper road-car proportions."
+    },
+    {
+      "id": "chevette-creme",
+      "name": "Chevette creme",
+      "category": "brasileiros",
+      "footprint": [
+        2,
+        4
+      ],
+      "bodyHeight": 68,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "A Brazilian Chevrolet Chevette inspired two-door small sedan, warm cream body, distinct separate short trunk, long modest hood, simple dark rubber bumpers, original restrained 1970s/80s proportions."
+    },
+    {
+      "id": "opala-azul",
+      "name": "Opala azul-petróleo",
+      "category": "brasileiros",
+      "footprint": [
+        2,
+        5
+      ],
+      "bodyHeight": 72,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "A Brazilian Chevrolet Opala inspired classic two-door coupe, deep petrol-blue paint, long straight hood, short trunk, cream understated bumpers, modest round lamps, wide low roof, normal tyres."
+    },
+    {
+      "id": "kombi-bicolor",
+      "name": "Kombi bicolor",
+      "category": "brasileiros",
+      "footprint": [
+        2,
+        5
+      ],
+      "bodyHeight": 110,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "A Brazilian classic Volkswagen Kombi inspired microbus, cream upper half and mint teal lower half, flat front cab-over nose, split classic windshield, multiple side windows, rounded roof, small normal road wheels."
+    },
+    {
+      "id": "hatch-prata",
+      "name": "Hatch popular prata",
+      "category": "brasileiros",
+      "footprint": [
+        2,
+        4
+      ],
+      "bodyHeight": 72,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "An everyday Brazilian compact hatchback inspired by Fiat Palio proportions, muted warm silver paint, curved short hood, practical four doors, compact roof and dark blue glass, simple charcoal bumpers."
+    },
+    {
+      "id": "jipe-raiz",
+      "name": "Jipe raiz",
+      "category": "jipes-utilitarios",
+      "footprint": [
+        2,
+        4
+      ],
+      "bodyHeight": 84,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "A classic Willys inspired Brazilian countryside open jeep, olive green body, flat upright windshield, rounded front fenders, rear mounted spare tyre, folded canvas roof, chunky but realistically sized off-road tyres."
+    },
+    {
+      "id": "bandeirante-rural",
+      "name": "Bandeirante rural",
+      "category": "jipes-utilitarios",
+      "footprint": [
+        2,
+        5
+      ],
+      "bodyHeight": 106,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "A classic Toyota Bandeirante inspired Brazilian rural off-road wagon, cream and muted tan body, upright squared cabin, flat roof, round headlights, stout black tyres, spare wheel on rear, practical expedition proportions."
+    },
+    {
+      "id": "jipe-praia",
+      "name": "Jipe de praia",
+      "category": "jipes-utilitarios",
+      "footprint": [
+        2,
+        4
+      ],
+      "bodyHeight": 96,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "A Brazilian Troller inspired short wheelbase off-road hardtop jeep, petrol-blue body and ivory removable hard roof, squared compact rugged cabin, modest round lamps, black off-road tyres, no aggressive militaristic styling."
+    },
+    {
+      "id": "jipe-expedicao",
+      "name": "Jipe de expedição",
+      "category": "jipes-utilitarios",
+      "footprint": [
+        2,
+        5
+      ],
+      "bodyHeight": 106,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "A contemporary Brazilian expedition 4x4 jeep, muted terracotta red paint, squared cream roof, roof rack with one tightly strapped waterproof duffel, rear spare wheel and snorkel, sensible black tyres and practical bumpers."
+    },
+    {
+      "id": "picape-compacta",
+      "name": "Picape compacta",
+      "category": "jipes-utilitarios",
+      "footprint": [
+        2,
+        5
+      ],
+      "bodyHeight": 74,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "A Brazilian Volkswagen Saveiro inspired small single-cab pickup, muted charcoal teal body, short cab and clearly open empty cargo bed, grey simple bumpers, everyday working vehicle, no oversized wheels."
+    },
+    {
+      "id": "caminhonete-rural",
+      "name": "Caminhonete rural",
+      "category": "jipes-utilitarios",
+      "footprint": [
+        2,
+        5
+      ],
+      "bodyHeight": 92,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "A Brazilian Chevrolet D20 inspired older single-cab rural pickup, warm ivory paint with muted brown side stripe, long open cargo bed, squared broad front nose, practical steel wheels and worn but cared-for finish."
+    },
+    {
+      "id": "furgao-entregas",
+      "name": "Furgão de entregas",
+      "category": "jipes-utilitarios",
+      "footprint": [
+        2,
+        5
+      ],
+      "bodyHeight": 112,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "A practical Brazilian urban delivery panel van, cream white body with a muted coral lower band, high roof and solid side cargo panels, sliding service door outline, small petrol-blue cab windows, sturdy ordinary road tyres."
+    },
+    {
+      "id": "caminhao-leve",
+      "name": "Caminhão leve",
+      "category": "jipes-utilitarios",
+      "footprint": [
+        3,
+        6
+      ],
+      "bodyHeight": 122,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "A compact Brazilian cab-over urban delivery truck, muted teal cabin and ivory enclosed box cargo body, separate cargo box clearly mounted on chassis, simple rectangular cab, sensible twin axles and ordinary dark tyres. No trailer."
+    },
+    {
+      "id": "fusca-pipeiro",
+      "name": "Fusca pipeiro",
+      "category": "soulmonsters",
+      "footprint": [
+        2,
+        4
+      ],
+      "bodyHeight": 90,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "An ORIGINAL Soulmonsters kite-maker version of the blue classic rounded Beetle shape: warm coral body with cream panels, blue glass, a small roof rack carrying two rolled paper bundles, a bamboo frame and one secured thread reel. Small diamond emblem on door. Everything strapped down, no loose flying roof objects."
+    },
+    {
+      "id": "kombi-oficina",
+      "name": "Kombi oficina",
+      "category": "soulmonsters",
+      "footprint": [
+        2,
+        5
+      ],
+      "bodyHeight": 128,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "An ORIGINAL Soulmonsters mobile kite-repair microbus, mint and cream two-tone classic Kombi shape, side service hatch folded upward into a supported small canopy, neatly attached workbench with paper and thread reels inside the vehicle recess, small diamond and wrench emblem."
+    },
+    {
+      "id": "jipe-pesquisa",
+      "name": "Jipe de pesquisa",
+      "category": "soulmonsters",
+      "footprint": [
+        2,
+        5
+      ],
+      "bodyHeight": 118,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "An ORIGINAL Soulmonsters field-research off-road jeep, ivory body with petrol-blue panels and coral accents, compact roof sensor mast folded into travel position, sample cases and one small PVC-tube rack securely attached, original thread-loop diamond emblem. Believable grounded vehicle."
+    },
+    {
+      "id": "bugue-rabiola",
+      "name": "Bugue rabiola",
+      "category": "soulmonsters",
+      "footprint": [
+        2,
+        4
+      ],
+      "bodyHeight": 92,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "An ORIGINAL Brazilian beach buggy redesigned for Soulmonsters, warm golden yellow body, navy roll cage, short low open cabin, angular folded-paper-shaped rear fairing and two small taut decorative ribbon pennants attached to rear support. Real tyres and mechanical chassis, no eyes or living face."
+    },
+    {
+      "id": "laboratorio-movel",
+      "name": "Laboratório móvel",
+      "category": "soulmonsters",
+      "footprint": [
+        3,
+        5
+      ],
+      "bodyHeight": 136,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "An ORIGINAL Soulmonsters mobile laboratory van, ivory high roof with turquoise panels, simple blue glass, compact rooftop weather instrument, protected side sample drawers and folded paper frameworks visible behind one window, small wind-and-thread pictogram. Scientific but warm and civilian."
+    },
+    {
+      "id": "resgate-elos",
+      "name": "Resgate de elos",
+      "category": "soulmonsters",
+      "footprint": [
+        2,
+        5
+      ],
+      "bodyHeight": 118,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "An ORIGINAL Soulmonsters partner-restoration rescue pickup, cream body and soft teal panels, enclosed rear service canopy with small warm coral paper-patch emblem, neatly secured bamboo splints and paper repair cases, tiny amber roof beacon. No medical red cross, no captive creatures."
+    },
+    {
+      "id": "correio-pipas",
+      "name": "Correio de pipas",
+      "category": "soulmonsters",
+      "footprint": [
+        2,
+        4
+      ],
+      "bodyHeight": 94,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "An ORIGINAL Soulmonsters compact boxy hatchback delivery car inspired by a Brazilian Uno, ochre-yellow body, navy roof carrier fitted with a compact weatherproof paper parcel box, small kite-and-route emblem on door, practical tyres and grounded chassis."
+    },
+    {
+      "id": "picape-cooperativa",
+      "name": "Picape da cooperativa",
+      "category": "soulmonsters",
+      "footprint": [
+        2,
+        5
+      ],
+      "bodyHeight": 116,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "An ORIGINAL Soulmonsters artisan cooperative pickup, cream and muted sage body, open bed with securely strapped rolls of colored paper, bamboo spars and two thread spools, a small fitted navy roof rail and original intertwined-thread diamond emblem. Clearly a vehicle first, no giant decorative kite roof."
+    },
+    {
+      "id": "moto-entregas",
+      "name": "Moto de entregas",
+      "category": "mobilidade-rua",
+      "footprint": [
+        1,
+        3
+      ],
+      "bodyHeight": 102,
+      "kind": "vehicle",
+      "facing": "front-lower-left",
+      "brief": "One Brazilian everyday delivery motorcycle parked on its side stand, muted coral fuel tank, navy frame and black saddle, two correctly aligned wheels, compact cream delivery box behind saddle with tiny paper-diamond emblem. Complete motorcycle, no rider, believable engine, handlebars and fork."
+    },
+    {
+      "id": "ponto-onibus",
+      "name": "Ponto de ônibus",
+      "category": "mobilidade-rua",
+      "footprint": [
+        2,
+        4
+      ],
+      "bodyHeight": 150,
+      "kind": "prop",
+      "facing": "front-lower-left",
+      "brief": "One modern Brazilian neighborhood bus-stop shelter, cream low flat canopy with muted coral edge, navy thin upright steel posts and an attached wood bench, small blank timetable panel with a paper-diamond pictogram. No bus, no people, no sidewalk slab."
+    },
+    {
+      "id": "semaforo",
+      "name": "Semáforo urbano",
+      "category": "mobilidade-rua",
+      "footprint": [
+        1,
+        1
+      ],
+      "bodyHeight": 174,
+      "kind": "prop",
+      "facing": "front-lower-left",
+      "brief": "One Brazilian street traffic-light pole, slender navy steel post on a small square mounting foot, short supported upper arm, single vertical three-lamp charcoal housing with red amber green lenses, subtle sun shades. All parts correctly joined. No road or cables floating loose."
+    },
+    {
+      "id": "bomba-combustivel",
+      "name": "Bomba retrô",
+      "category": "mobilidade-rua",
+      "footprint": [
+        1,
+        1
+      ],
+      "bodyHeight": 96,
+      "kind": "prop",
+      "facing": "front-lower-left",
+      "brief": "One Brazilian vintage-style petrol pump, cream and teal metal casing, rounded rectangular top, blank small dark display, black hose attached continuously from side to nozzle in its bracket, small muted coral diamond decoration. No lettering, digits, brand or fuel price."
+    },
+    {
+      "id": "carregador-eletrico",
+      "name": "Carregador elétrico",
+      "category": "mobilidade-rua",
+      "footprint": [
+        1,
+        1
+      ],
+      "bodyHeight": 102,
+      "kind": "prop",
+      "facing": "front-lower-left",
+      "brief": "One compact modern electric vehicle charger, ivory upright casing with petrol-blue inset and small muted green status indicator, correctly attached coiled black cable and nozzle stored on side, small clean paper-diamond pictogram. No lettering or digits."
+    },
+    {
+      "id": "bancada-mecanica",
+      "name": "Bancada mecânica",
+      "category": "mobilidade-rua",
+      "footprint": [
+        2,
+        2
+      ],
+      "bodyHeight": 88,
+      "kind": "prop",
+      "facing": "front-lower-left",
+      "brief": "One tidy mechanic workbench for a Brazilian kite and vehicle workshop, warm honey wood top on navy steel legs, attached pegboard holding a wrench and pliers, one small thread reel and a paper repair roll on tabletop, small toolbox underneath. All tools supported, no loose floating items."
+    },
+    {
+      "id": "pilha-pneus",
+      "name": "Pilha de pneus",
+      "category": "mobilidade-rua",
+      "footprint": [
+        1,
+        1
+      ],
+      "bodyHeight": 56,
+      "kind": "prop",
+      "facing": "front-lower-left",
+      "brief": "One compact workshop stack of three used but tidy charcoal car tyres, visible tread simplified into clear broad shapes, one small ivory paper inventory tag attached to the top tyre by a short thread. No letters or digits. Isolated single stack."
+    },
+    {
+      "id": "barreira-transito",
+      "name": "Barreira de trânsito",
+      "category": "mobilidade-rua",
+      "footprint": [
+        3,
+        1
+      ],
+      "bodyHeight": 82,
+      "kind": "prop",
+      "facing": "front-lower-left",
+      "brief": "One temporary Brazilian road maintenance barrier assembly: two navy A-frame supports holding a cream and muted coral striped horizontal board, with two small orange traffic cones standing beside its feet, all within a compact isometric base. No lettering, no road slab, no people."
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "nativeResolution": [
+    1280,
+    720
+  ],
+  "nativeViews": 7,
+  "frames": 96,
+  "loopSeconds": 8,
+  "loopMaximumChannelDifference": 0,
+  "loopMeanChannelDifference": 0.0,
+  "quarterCycleChangedPixels": 44229,
+  "animatedPlantClusters": 6,
+  "plantRootVertexWeight": 0,
+  "effectsDisabledCapture": true,
+  "reducedMotionCapture": true,
+  "campaignIntegrated": false,
+  "gameplayTestsRun": false,
+  "terrain": {
+    "campaignIntegrated": false,
+    "levelsPx": [
+      32,
+      0,
+      -24
+    ],
+    "lowerRamp": {
+      "dropPx": 24,
+      "runCells": 2.5
+    },
+    "propsUseMeasuredHeight": true,
+    "upperRamp": {
+      "risePx": 32,
+      "runCells": 3
+    }
+  }
+}

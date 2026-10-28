@@ -1,0 +1,252 @@
+{
+  "version": 3,
+  "method": "single affine projection shared by two depth facade planes",
+  "models": {
+    "kael": {
+      "sourceFoundationEdges": [
+        [
+          [
+            110,
+            959
+          ],
+          [
+            647,
+            1208
+          ]
+        ],
+        [
+          [
+            778,
+            1224
+          ],
+          [
+            1177,
+            1010
+          ]
+        ]
+      ],
+      "file": "buildings/kael.png",
+      "size": [
+        731,
+        784
+      ],
+      "groundCorners": [
+        [
+          44.84367245657568,
+          605.12158808933
+        ],
+        [
+          440.7595743237203,
+          788.7027045975592
+        ],
+        [
+          722.6401985111662,
+          637.5186104218362
+        ]
+      ],
+      "name": "Casa do Kael · sobrado azul",
+      "source": "art\\overworld\\kits\\bairro-inicial-v2\\fontes\\arquitetura-v3\\kael-original.png",
+      "sourceGroundCorners": [
+        [
+          110,
+          959
+        ],
+        [
+          733.258236142419,
+          1247.9968357531889
+        ],
+        [
+          1177,
+          1010
+        ]
+      ],
+      "opaqueCrop": [
+        52,
+        19,
+        1178,
+        1228
+      ],
+      "normalization": "tight alpha crop, maximum 768px, 8px transparent gutter; no repaint or palette flattening"
+    },
+    "professor": {
+      "sourceFoundationEdges": null,
+      "file": "buildings/professor.png",
+      "size": [
+        784,
+        746
+      ],
+      "groundCorners": [
+        [
+          54.242473555736375,
+          540.413344182262
+        ],
+        [
+          386.68836452400325,
+          734.1318144833198
+        ],
+        [
+          764.7518307567128,
+          541.0382424735558
+        ]
+      ],
+      "name": "Professor · laboratório de vínculos",
+      "source": "art\\overworld\\kits\\bairro-inicial-v2\\fontes\\arquitetura-v3\\professor-original.png",
+      "sourceGroundCorners": [
+        [
+          118,
+          876
+        ],
+        [
+          650,
+          1186
+        ],
+        [
+          1255,
+          877
+        ]
+      ],
+      "opaqueCrop": [
+        44,
+        24,
+        1273,
+        1192
+      ],
+      "normalization": "tight alpha crop, maximum 768px, 8px transparent gutter; no repaint or palette flattening"
+    },
+    "shop": {
+      "sourceFoundationEdges": null,
+      "file": "buildings/shop.png",
+      "size": [
+        784,
+        727
+      ],
+      "groundCorners": [
+        [
+          40.74916387959866,
+          542.9030100334448
+        ],
+        [
+          398.4214046822743,
+          714.9966555183946
+        ],
+        [
+          750.314381270903,
+          537.123745819398
+        ]
+      ],
+      "name": "Linha & Papel · vitrine de pipas",
+      "source": "art\\overworld\\kits\\bairro-inicial-v2\\fontes\\arquitetura-v3\\shop-original.png",
+      "sourceGroundCorners": [
+        [
+          145,
+          860
+        ],
+        [
+          702,
+          1128
+        ],
+        [
+          1250,
+          851
+        ]
+      ],
+      "opaqueCrop": [
+        94,
+        27,
+        1290,
+        1135
+      ],
+      "normalization": "tight alpha crop, maximum 768px, 8px transparent gutter; no repaint or palette flattening"
+    },
+    "neighbor-north": {
+      "sourceFoundationEdges": null,
+      "file": "buildings/neighbor-north.png",
+      "size": [
+        784,
+        743
+      ],
+      "groundCorners": [
+        [
+          33.20207253886011,
+          559.7927461139897
+        ],
+        [
+          395.979274611399,
+          734.8808290155441
+        ],
+        [
+          759.419689119171,
+          561.119170984456
+        ]
+      ],
+      "name": "Casa térrea · jardim",
+      "source": "art\\overworld\\kits\\bairro-inicial-v2\\fontes\\arquitetura-v3\\neighbor-north-original.png",
+      "sourceGroundCorners": [
+        [
+          150,
+          864
+        ],
+        [
+          697,
+          1128
+        ],
+        [
+          1245,
+          866
+        ]
+      ],
+      "opaqueCrop": [
+        112,
+        32,
+        1270,
+        1128
+      ],
+      "normalization": "tight alpha crop, maximum 768px, 8px transparent gutter; no repaint or palette flattening"
+    },
+    "neighbor-south": {
+      "sourceFoundationEdges": null,
+      "file": "buildings/neighbor-south.png",
+      "size": [
+        784,
+        724
+      ],
+      "groundCorners": [
+        [
+          27.558573853989813,
+          541.9490662139219
+        ],
+        [
+          384.1765704584041,
+          714.0645161290323
+        ],
+        [
+          741.446519524618,
+          543.2529711375213
+        ]
+      ],
+      "name": "Casa ecológica · painéis solares",
+      "source": "art\\overworld\\kits\\bairro-inicial-v2\\fontes\\arquitetura-v3\\neighbor-south-original.png",
+      "sourceGroundCorners": [
+        [
+          150,
+          864
+        ],
+        [
+          697,
+          1128
+        ],
+        [
+          1245,
+          866
+        ]
+      ],
+      "opaqueCrop": [
+        120,
+        45,
+        1298,
+        1131
+      ],
+      "normalization": "tight alpha crop, maximum 768px, 8px transparent gutter; no repaint or palette flattening"
+    }
+  }
+}

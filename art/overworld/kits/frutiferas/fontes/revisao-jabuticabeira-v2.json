@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-27",
+  "reason": "User visual feedback: jabuticabeira looked strange.",
+  "generationPrompt": "Redesign the jabuticaba tree for Soulmonsters as a production cutout animation parts sheet. Reference shows current family linework, NOT desired botanical shape. Make this species clearly different from a mango tree. Exactly THREE disconnected components side by side on a landscape TRUE transparent background with large transparent gaps: LEFT complete bare jabuticaba trunk and roots with two main gently curving low forks and upper branches, pale warm cinnamon/beige bark with subtle lighter smooth peeling patches, restrained dark navy outline. NO fruit or leaves on trunk, NO thick orange fantasy trunk or spikes. CENTER a complete slightly airy oval rounded leafy canopy WITHOUT trunk or fruit. Many SMALL oval leaves grouped into soft irregular volumes, muted fresh green lights, medium green mids and dark teal recesses, NO large radiating mango-leaf starbursts, NO lime-neon palm-shaped clusters. Opaque foliage at lower central attachment to overlap branches for animation, irregular edges and a few small gaps higher up. RIGHT one single ROUND purple-black jabuticaba berry, tiny calyx and small soft highlight, NO long hanging stem, NO grape bunch. Keep clean 2D game cel shading, 3-4 clear value groups, warm upper-left light, crisp navy contours, NOT watercolor or photographic. Match family visual simplicity. Every component entirely contained, disconnected and independently usable, no assembled tree, no text, no lines/dividers, no ground or shadow. Jabuticabas will be separately instanced directly on bark later, so ZERO baked fruits on trunk/canopy.",
+  "generationSource": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-a1e41fc9-3d08-43ca-b0cd-cd81d515d7c8.png",
+  "cleanupPrompt": "Keep these exact three component designs, placement, sizes and colors. Remove ALL colored glows, soft shadows, haze and gradients around the components. Outside the hard navy outlines the alpha must be completely zero. Three clean flat cutout sprites on TRUE transparent background; no background color or glow at all. Preserve bark texture and leaf detail INSIDE their outlines. Keep left trunk, central canopy and right round purple berry separated.",
+  "cleanupSource": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-a6a62154-e8ac-49aa-a8c7-c2e5fea37745.png",
+  "changes": [
+    "Distinct pale bark and small-leaf canopy",
+    "16 small separately attached berries on actual bark alpha; irregular groups, not a row",
+    "Preserved independent fruit drop and fixed trunk"
+  ],
+  "tool": "image_gen.imagegen"
+}

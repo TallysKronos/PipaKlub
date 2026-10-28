@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/overworld/kits/cavernas-v3/props/estalagmite-alta.png" id="1"]
+[ext_resource type="Shader" path="res://shaders/overworld/cave_prop_outline.gdshader" id="2"]
+
+[sub_resource type="ShaderMaterial" id="Outline"]
+shader = ExtResource("2")
+
+[node name="estalagmite-alta" type="Node2D"]
+
+[node name="ContactShadow" type="Polygon2D" parent="."]
+color = Color(0.035, 0.045, 0.075, 0.65)
+polygon = PackedVector2Array(25.160, -2.000, 24.303, -0.567, 21.789, 0.768, 17.791, 1.914, 12.580, 2.794, 6.512, 3.347, 0.000, 3.535, -6.512, 3.347, -12.580, 2.794, -17.791, 1.914, -21.789, 0.768, -24.303, -0.567, -25.160, -2.000, -24.303, -3.433, -21.789, -4.768, -17.791, -5.914, -12.580, -6.794, -6.512, -7.347, -0.000, -7.535, 6.512, -7.347, 12.580, -6.794, 17.791, -5.914, 21.789, -4.768, 24.303, -3.433)
+
+[node name="Visual" type="Sprite2D" parent="."]
+material = SubResource("Outline")
+texture_filter = 1
+texture = ExtResource("1")
+centered = false
+position = Vector2(-43.0, -73)

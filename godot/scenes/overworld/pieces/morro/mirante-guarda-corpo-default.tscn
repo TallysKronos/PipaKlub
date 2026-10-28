@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://scripts/overworld/prop.gd" id="1"]
-[ext_resource type="Texture2D" path="res://assets/overworld/kits/morro/pecas/mirante-guarda-corpo-default.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/overworld/kits/morro/pecas/mirante-guarda-corpo-v4.png" id="2"]
 [ext_resource type="Texture2D" path="res://assets/overworld/kits/morro/sombras/contato.png" id="3"]
 
 [node name="Piece" type="Node2D"]

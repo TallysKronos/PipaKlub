@@ -1,0 +1,8 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompts": {
+    "cimento": "Create a seamless square orthographic TOP DOWN material texture for the sunny Brazilian kite workshop rooftop courtyard in reference 1. Texture ONLY: pale warm ivory cement, restrained clean 2D cel painted style, subtle trowel clouding and sparse tiny warm aggregate specks, very low contrast, neutral diffuse light. Uninterrupted cement plaster, NOT stone blocks. NO seams, NO tile grid, NO cracks, NO lines, NO scratches, NO objects, NO plants, NO vignette, NO border, NO cast shadows, no perspective. Consistent quiet brightness over entire surface, completely opaque edge to edge. It must repeat over a large game floor without looking busy.",
+    "varal": "Create ONE isolated 2D isometric production game sprite of a Brazilian rooftop kite drying line. Two honey bamboo poles joined by two taut cords, a small folded ivory and coral cloth, TWO colorful handmade paper diamond kites hanging by small loops, teal/navy/coral/gold palette, tiny knots readable, one loose kite ribbon gently curving. Enough empty space between hanging items. The poles are planted on a single 2x2 tile footprint: orthographic 2:1 isometric view, upright verticals, base endpoints on a line sloping 1:2 down right. Entire prop visible with padding. Match reference 1 clean warm navy outlines/cel shading/upper-left sunlight. No floor, no pedestal, no building, no landscape, no characters, no text, no cast ground shadow, no glow, no haze, true transparent background. Real believable cord attachments; keep lightweight silhouette and show both pole feet."
+  },
+  "normalization": "uniform alpha crop for prop; periodic-plus-smooth correction for cement; default atlas preserved"
+}

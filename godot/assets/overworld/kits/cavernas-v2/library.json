@@ -1,0 +1,2285 @@
+{
+  "schema": "cave-library-2",
+  "grid": [
+    64,
+    32
+  ],
+  "levelPx": 64,
+  "campaignIntegrated": false,
+  "collision": "not-authored",
+  "approval": "owner-review-pending",
+  "floors": {
+    "rocha-cinza": {
+      "name": "Leito de dobras",
+      "atlas": "atlas/rocha-cinza.png",
+      "tiles": [
+        {
+          "mask": 0,
+          "file": "tiles/rocha-cinza/blob-000.png",
+          "atlas": [
+            0,
+            0
+          ]
+        },
+        {
+          "mask": 1,
+          "file": "tiles/rocha-cinza/blob-001.png",
+          "atlas": [
+            1,
+            0
+          ]
+        },
+        {
+          "mask": 4,
+          "file": "tiles/rocha-cinza/blob-004.png",
+          "atlas": [
+            2,
+            0
+          ]
+        },
+        {
+          "mask": 5,
+          "file": "tiles/rocha-cinza/blob-005.png",
+          "atlas": [
+            3,
+            0
+          ]
+        },
+        {
+          "mask": 7,
+          "file": "tiles/rocha-cinza/blob-007.png",
+          "atlas": [
+            4,
+            0
+          ]
+        },
+        {
+          "mask": 16,
+          "file": "tiles/rocha-cinza/blob-016.png",
+          "atlas": [
+            5,
+            0
+          ]
+        },
+        {
+          "mask": 17,
+          "file": "tiles/rocha-cinza/blob-017.png",
+          "atlas": [
+            6,
+            0
+          ]
+        },
+        {
+          "mask": 20,
+          "file": "tiles/rocha-cinza/blob-020.png",
+          "atlas": [
+            7,
+            0
+          ]
+        },
+        {
+          "mask": 21,
+          "file": "tiles/rocha-cinza/blob-021.png",
+          "atlas": [
+            0,
+            1
+          ]
+        },
+        {
+          "mask": 23,
+          "file": "tiles/rocha-cinza/blob-023.png",
+          "atlas": [
+            1,
+            1
+          ]
+        },
+        {
+          "mask": 28,
+          "file": "tiles/rocha-cinza/blob-028.png",
+          "atlas": [
+            2,
+            1
+          ]
+        },
+        {
+          "mask": 29,
+          "file": "tiles/rocha-cinza/blob-029.png",
+          "atlas": [
+            3,
+            1
+          ]
+        },
+        {
+          "mask": 31,
+          "file": "tiles/rocha-cinza/blob-031.png",
+          "atlas": [
+            4,
+            1
+          ]
+        },
+        {
+          "mask": 64,
+          "file": "tiles/rocha-cinza/blob-064.png",
+          "atlas": [
+            5,
+            1
+          ]
+        },
+        {
+          "mask": 65,
+          "file": "tiles/rocha-cinza/blob-065.png",
+          "atlas": [
+            6,
+            1
+          ]
+        },
+        {
+          "mask": 68,
+          "file": "tiles/rocha-cinza/blob-068.png",
+          "atlas": [
+            7,
+            1
+          ]
+        },
+        {
+          "mask": 69,
+          "file": "tiles/rocha-cinza/blob-069.png",
+          "atlas": [
+            0,
+            2
+          ]
+        },
+        {
+          "mask": 71,
+          "file": "tiles/rocha-cinza/blob-071.png",
+          "atlas": [
+            1,
+            2
+          ]
+        },
+        {
+          "mask": 80,
+          "file": "tiles/rocha-cinza/blob-080.png",
+          "atlas": [
+            2,
+            2
+          ]
+        },
+        {
+          "mask": 81,
+          "file": "tiles/rocha-cinza/blob-081.png",
+          "atlas": [
+            3,
+            2
+          ]
+        },
+        {
+          "mask": 84,
+          "file": "tiles/rocha-cinza/blob-084.png",
+          "atlas": [
+            4,
+            2
+          ]
+        },
+        {
+          "mask": 85,
+          "file": "tiles/rocha-cinza/blob-085.png",
+          "atlas": [
+            5,
+            2
+          ]
+        },
+        {
+          "mask": 87,
+          "file": "tiles/rocha-cinza/blob-087.png",
+          "atlas": [
+            6,
+            2
+          ]
+        },
+        {
+          "mask": 92,
+          "file": "tiles/rocha-cinza/blob-092.png",
+          "atlas": [
+            7,
+            2
+          ]
+        },
+        {
+          "mask": 93,
+          "file": "tiles/rocha-cinza/blob-093.png",
+          "atlas": [
+            0,
+            3
+          ]
+        },
+        {
+          "mask": 95,
+          "file": "tiles/rocha-cinza/blob-095.png",
+          "atlas": [
+            1,
+            3
+          ]
+        },
+        {
+          "mask": 112,
+          "file": "tiles/rocha-cinza/blob-112.png",
+          "atlas": [
+            2,
+            3
+          ]
+        },
+        {
+          "mask": 113,
+          "file": "tiles/rocha-cinza/blob-113.png",
+          "atlas": [
+            3,
+            3
+          ]
+        },
+        {
+          "mask": 116,
+          "file": "tiles/rocha-cinza/blob-116.png",
+          "atlas": [
+            4,
+            3
+          ]
+        },
+        {
+          "mask": 117,
+          "file": "tiles/rocha-cinza/blob-117.png",
+          "atlas": [
+            5,
+            3
+          ]
+        },
+        {
+          "mask": 119,
+          "file": "tiles/rocha-cinza/blob-119.png",
+          "atlas": [
+            6,
+            3
+          ]
+        },
+        {
+          "mask": 124,
+          "file": "tiles/rocha-cinza/blob-124.png",
+          "atlas": [
+            7,
+            3
+          ]
+        },
+        {
+          "mask": 125,
+          "file": "tiles/rocha-cinza/blob-125.png",
+          "atlas": [
+            0,
+            4
+          ]
+        },
+        {
+          "mask": 127,
+          "file": "tiles/rocha-cinza/blob-127.png",
+          "atlas": [
+            1,
+            4
+          ]
+        },
+        {
+          "mask": 193,
+          "file": "tiles/rocha-cinza/blob-193.png",
+          "atlas": [
+            2,
+            4
+          ]
+        },
+        {
+          "mask": 197,
+          "file": "tiles/rocha-cinza/blob-197.png",
+          "atlas": [
+            3,
+            4
+          ]
+        },
+        {
+          "mask": 199,
+          "file": "tiles/rocha-cinza/blob-199.png",
+          "atlas": [
+            4,
+            4
+          ]
+        },
+        {
+          "mask": 209,
+          "file": "tiles/rocha-cinza/blob-209.png",
+          "atlas": [
+            5,
+            4
+          ]
+        },
+        {
+          "mask": 213,
+          "file": "tiles/rocha-cinza/blob-213.png",
+          "atlas": [
+            6,
+            4
+          ]
+        },
+        {
+          "mask": 215,
+          "file": "tiles/rocha-cinza/blob-215.png",
+          "atlas": [
+            7,
+            4
+          ]
+        },
+        {
+          "mask": 221,
+          "file": "tiles/rocha-cinza/blob-221.png",
+          "atlas": [
+            0,
+            5
+          ]
+        },
+        {
+          "mask": 223,
+          "file": "tiles/rocha-cinza/blob-223.png",
+          "atlas": [
+            1,
+            5
+          ]
+        },
+        {
+          "mask": 241,
+          "file": "tiles/rocha-cinza/blob-241.png",
+          "atlas": [
+            2,
+            5
+          ]
+        },
+        {
+          "mask": 245,
+          "file": "tiles/rocha-cinza/blob-245.png",
+          "atlas": [
+            3,
+            5
+          ]
+        },
+        {
+          "mask": 247,
+          "file": "tiles/rocha-cinza/blob-247.png",
+          "atlas": [
+            4,
+            5
+          ]
+        },
+        {
+          "mask": 253,
+          "file": "tiles/rocha-cinza/blob-253.png",
+          "atlas": [
+            5,
+            5
+          ]
+        },
+        {
+          "mask": 255,
+          "file": "tiles/rocha-cinza/blob-255.png",
+          "atlas": [
+            6,
+            5
+          ]
+        }
+      ],
+      "centers": [
+        {
+          "file": "tiles/rocha-cinza/centro-0.png",
+          "atlas": [
+            0,
+            6
+          ]
+        },
+        {
+          "file": "tiles/rocha-cinza/centro-1.png",
+          "atlas": [
+            1,
+            6
+          ]
+        },
+        {
+          "file": "tiles/rocha-cinza/centro-2.png",
+          "atlas": [
+            2,
+            6
+          ]
+        },
+        {
+          "file": "tiles/rocha-cinza/centro-3.png",
+          "atlas": [
+            3,
+            6
+          ]
+        },
+        {
+          "file": "tiles/rocha-cinza/centro-4.png",
+          "atlas": [
+            4,
+            6
+          ]
+        },
+        {
+          "file": "tiles/rocha-cinza/centro-5.png",
+          "atlas": [
+            5,
+            6
+          ]
+        },
+        {
+          "file": "tiles/rocha-cinza/centro-6.png",
+          "atlas": [
+            6,
+            6
+          ]
+        },
+        {
+          "file": "tiles/rocha-cinza/centro-7.png",
+          "atlas": [
+            7,
+            6
+          ]
+        }
+      ],
+      "surface": "surfaces/rocha-cinza.png"
+    },
+    "terra-gruta": {
+      "name": "Terra de papel",
+      "atlas": "atlas/terra-gruta.png",
+      "tiles": [
+        {
+          "mask": 0,
+          "file": "tiles/terra-gruta/blob-000.png",
+          "atlas": [
+            0,
+            0
+          ]
+        },
+        {
+          "mask": 1,
+          "file": "tiles/terra-gruta/blob-001.png",
+          "atlas": [
+            1,
+            0
+          ]
+        },
+        {
+          "mask": 4,
+          "file": "tiles/terra-gruta/blob-004.png",
+          "atlas": [
+            2,
+            0
+          ]
+        },
+        {
+          "mask": 5,
+          "file": "tiles/terra-gruta/blob-005.png",
+          "atlas": [
+            3,
+            0
+          ]
+        },
+        {
+          "mask": 7,
+          "file": "tiles/terra-gruta/blob-007.png",
+          "atlas": [
+            4,
+            0
+          ]
+        },
+        {
+          "mask": 16,
+          "file": "tiles/terra-gruta/blob-016.png",
+          "atlas": [
+            5,
+            0
+          ]
+        },
+        {
+          "mask": 17,
+          "file": "tiles/terra-gruta/blob-017.png",
+          "atlas": [
+            6,
+            0
+          ]
+        },
+        {
+          "mask": 20,
+          "file": "tiles/terra-gruta/blob-020.png",
+          "atlas": [
+            7,
+            0
+          ]
+        },
+        {
+          "mask": 21,
+          "file": "tiles/terra-gruta/blob-021.png",
+          "atlas": [
+            0,
+            1
+          ]
+        },
+        {
+          "mask": 23,
+          "file": "tiles/terra-gruta/blob-023.png",
+          "atlas": [
+            1,
+            1
+          ]
+        },
+        {
+          "mask": 28,
+          "file": "tiles/terra-gruta/blob-028.png",
+          "atlas": [
+            2,
+            1
+          ]
+        },
+        {
+          "mask": 29,
+          "file": "tiles/terra-gruta/blob-029.png",
+          "atlas": [
+            3,
+            1
+          ]
+        },
+        {
+          "mask": 31,
+          "file": "tiles/terra-gruta/blob-031.png",
+          "atlas": [
+            4,
+            1
+          ]
+        },
+        {
+          "mask": 64,
+          "file": "tiles/terra-gruta/blob-064.png",
+          "atlas": [
+            5,
+            1
+          ]
+        },
+        {
+          "mask": 65,
+          "file": "tiles/terra-gruta/blob-065.png",
+          "atlas": [
+            6,
+            1
+          ]
+        },
+        {
+          "mask": 68,
+          "file": "tiles/terra-gruta/blob-068.png",
+          "atlas": [
+            7,
+            1
+          ]
+        },
+        {
+          "mask": 69,
+          "file": "tiles/terra-gruta/blob-069.png",
+          "atlas": [
+            0,
+            2
+          ]
+        },
+        {
+          "mask": 71,
+          "file": "tiles/terra-gruta/blob-071.png",
+          "atlas": [
+            1,
+            2
+          ]
+        },
+        {
+          "mask": 80,
+          "file": "tiles/terra-gruta/blob-080.png",
+          "atlas": [
+            2,
+            2
+          ]
+        },
+        {
+          "mask": 81,
+          "file": "tiles/terra-gruta/blob-081.png",
+          "atlas": [
+            3,
+            2
+          ]
+        },
+        {
+          "mask": 84,
+          "file": "tiles/terra-gruta/blob-084.png",
+          "atlas": [
+            4,
+            2
+          ]
+        },
+        {
+          "mask": 85,
+          "file": "tiles/terra-gruta/blob-085.png",
+          "atlas": [
+            5,
+            2
+          ]
+        },
+        {
+          "mask": 87,
+          "file": "tiles/terra-gruta/blob-087.png",
+          "atlas": [
+            6,
+            2
+          ]
+        },
+        {
+          "mask": 92,
+          "file": "tiles/terra-gruta/blob-092.png",
+          "atlas": [
+            7,
+            2
+          ]
+        },
+        {
+          "mask": 93,
+          "file": "tiles/terra-gruta/blob-093.png",
+          "atlas": [
+            0,
+            3
+          ]
+        },
+        {
+          "mask": 95,
+          "file": "tiles/terra-gruta/blob-095.png",
+          "atlas": [
+            1,
+            3
+          ]
+        },
+        {
+          "mask": 112,
+          "file": "tiles/terra-gruta/blob-112.png",
+          "atlas": [
+            2,
+            3
+          ]
+        },
+        {
+          "mask": 113,
+          "file": "tiles/terra-gruta/blob-113.png",
+          "atlas": [
+            3,
+            3
+          ]
+        },
+        {
+          "mask": 116,
+          "file": "tiles/terra-gruta/blob-116.png",
+          "atlas": [
+            4,
+            3
+          ]
+        },
+        {
+          "mask": 117,
+          "file": "tiles/terra-gruta/blob-117.png",
+          "atlas": [
+            5,
+            3
+          ]
+        },
+        {
+          "mask": 119,
+          "file": "tiles/terra-gruta/blob-119.png",
+          "atlas": [
+            6,
+            3
+          ]
+        },
+        {
+          "mask": 124,
+          "file": "tiles/terra-gruta/blob-124.png",
+          "atlas": [
+            7,
+            3
+          ]
+        },
+        {
+          "mask": 125,
+          "file": "tiles/terra-gruta/blob-125.png",
+          "atlas": [
+            0,
+            4
+          ]
+        },
+        {
+          "mask": 127,
+          "file": "tiles/terra-gruta/blob-127.png",
+          "atlas": [
+            1,
+            4
+          ]
+        },
+        {
+          "mask": 193,
+          "file": "tiles/terra-gruta/blob-193.png",
+          "atlas": [
+            2,
+            4
+          ]
+        },
+        {
+          "mask": 197,
+          "file": "tiles/terra-gruta/blob-197.png",
+          "atlas": [
+            3,
+            4
+          ]
+        },
+        {
+          "mask": 199,
+          "file": "tiles/terra-gruta/blob-199.png",
+          "atlas": [
+            4,
+            4
+          ]
+        },
+        {
+          "mask": 209,
+          "file": "tiles/terra-gruta/blob-209.png",
+          "atlas": [
+            5,
+            4
+          ]
+        },
+        {
+          "mask": 213,
+          "file": "tiles/terra-gruta/blob-213.png",
+          "atlas": [
+            6,
+            4
+          ]
+        },
+        {
+          "mask": 215,
+          "file": "tiles/terra-gruta/blob-215.png",
+          "atlas": [
+            7,
+            4
+          ]
+        },
+        {
+          "mask": 221,
+          "file": "tiles/terra-gruta/blob-221.png",
+          "atlas": [
+            0,
+            5
+          ]
+        },
+        {
+          "mask": 223,
+          "file": "tiles/terra-gruta/blob-223.png",
+          "atlas": [
+            1,
+            5
+          ]
+        },
+        {
+          "mask": 241,
+          "file": "tiles/terra-gruta/blob-241.png",
+          "atlas": [
+            2,
+            5
+          ]
+        },
+        {
+          "mask": 245,
+          "file": "tiles/terra-gruta/blob-245.png",
+          "atlas": [
+            3,
+            5
+          ]
+        },
+        {
+          "mask": 247,
+          "file": "tiles/terra-gruta/blob-247.png",
+          "atlas": [
+            4,
+            5
+          ]
+        },
+        {
+          "mask": 253,
+          "file": "tiles/terra-gruta/blob-253.png",
+          "atlas": [
+            5,
+            5
+          ]
+        },
+        {
+          "mask": 255,
+          "file": "tiles/terra-gruta/blob-255.png",
+          "atlas": [
+            6,
+            5
+          ]
+        }
+      ],
+      "centers": [
+        {
+          "file": "tiles/terra-gruta/centro-0.png",
+          "atlas": [
+            0,
+            6
+          ]
+        },
+        {
+          "file": "tiles/terra-gruta/centro-1.png",
+          "atlas": [
+            1,
+            6
+          ]
+        },
+        {
+          "file": "tiles/terra-gruta/centro-2.png",
+          "atlas": [
+            2,
+            6
+          ]
+        },
+        {
+          "file": "tiles/terra-gruta/centro-3.png",
+          "atlas": [
+            3,
+            6
+          ]
+        },
+        {
+          "file": "tiles/terra-gruta/centro-4.png",
+          "atlas": [
+            4,
+            6
+          ]
+        },
+        {
+          "file": "tiles/terra-gruta/centro-5.png",
+          "atlas": [
+            5,
+            6
+          ]
+        },
+        {
+          "file": "tiles/terra-gruta/centro-6.png",
+          "atlas": [
+            6,
+            6
+          ]
+        },
+        {
+          "file": "tiles/terra-gruta/centro-7.png",
+          "atlas": [
+            7,
+            6
+          ]
+        }
+      ],
+      "surface": "surfaces/terra-gruta.png"
+    },
+    "rocha-umida": {
+      "name": "Pedra de maré",
+      "atlas": "atlas/rocha-umida.png",
+      "tiles": [
+        {
+          "mask": 0,
+          "file": "tiles/rocha-umida/blob-000.png",
+          "atlas": [
+            0,
+            0
+          ]
+        },
+        {
+          "mask": 1,
+          "file": "tiles/rocha-umida/blob-001.png",
+          "atlas": [
+            1,
+            0
+          ]
+        },
+        {
+          "mask": 4,
+          "file": "tiles/rocha-umida/blob-004.png",
+          "atlas": [
+            2,
+            0
+          ]
+        },
+        {
+          "mask": 5,
+          "file": "tiles/rocha-umida/blob-005.png",
+          "atlas": [
+            3,
+            0
+          ]
+        },
+        {
+          "mask": 7,
+          "file": "tiles/rocha-umida/blob-007.png",
+          "atlas": [
+            4,
+            0
+          ]
+        },
+        {
+          "mask": 16,
+          "file": "tiles/rocha-umida/blob-016.png",
+          "atlas": [
+            5,
+            0
+          ]
+        },
+        {
+          "mask": 17,
+          "file": "tiles/rocha-umida/blob-017.png",
+          "atlas": [
+            6,
+            0
+          ]
+        },
+        {
+          "mask": 20,
+          "file": "tiles/rocha-umida/blob-020.png",
+          "atlas": [
+            7,
+            0
+          ]
+        },
+        {
+          "mask": 21,
+          "file": "tiles/rocha-umida/blob-021.png",
+          "atlas": [
+            0,
+            1
+          ]
+        },
+        {
+          "mask": 23,
+          "file": "tiles/rocha-umida/blob-023.png",
+          "atlas": [
+            1,
+            1
+          ]
+        },
+        {
+          "mask": 28,
+          "file": "tiles/rocha-umida/blob-028.png",
+          "atlas": [
+            2,
+            1
+          ]
+        },
+        {
+          "mask": 29,
+          "file": "tiles/rocha-umida/blob-029.png",
+          "atlas": [
+            3,
+            1
+          ]
+        },
+        {
+          "mask": 31,
+          "file": "tiles/rocha-umida/blob-031.png",
+          "atlas": [
+            4,
+            1
+          ]
+        },
+        {
+          "mask": 64,
+          "file": "tiles/rocha-umida/blob-064.png",
+          "atlas": [
+            5,
+            1
+          ]
+        },
+        {
+          "mask": 65,
+          "file": "tiles/rocha-umida/blob-065.png",
+          "atlas": [
+            6,
+            1
+          ]
+        },
+        {
+          "mask": 68,
+          "file": "tiles/rocha-umida/blob-068.png",
+          "atlas": [
+            7,
+            1
+          ]
+        },
+        {
+          "mask": 69,
+          "file": "tiles/rocha-umida/blob-069.png",
+          "atlas": [
+            0,
+            2
+          ]
+        },
+        {
+          "mask": 71,
+          "file": "tiles/rocha-umida/blob-071.png",
+          "atlas": [
+            1,
+            2
+          ]
+        },
+        {
+          "mask": 80,
+          "file": "tiles/rocha-umida/blob-080.png",
+          "atlas": [
+            2,
+            2
+          ]
+        },
+        {
+          "mask": 81,
+          "file": "tiles/rocha-umida/blob-081.png",
+          "atlas": [
+            3,
+            2
+          ]
+        },
+        {
+          "mask": 84,
+          "file": "tiles/rocha-umida/blob-084.png",
+          "atlas": [
+            4,
+            2
+          ]
+        },
+        {
+          "mask": 85,
+          "file": "tiles/rocha-umida/blob-085.png",
+          "atlas": [
+            5,
+            2
+          ]
+        },
+        {
+          "mask": 87,
+          "file": "tiles/rocha-umida/blob-087.png",
+          "atlas": [
+            6,
+            2
+          ]
+        },
+        {
+          "mask": 92,
+          "file": "tiles/rocha-umida/blob-092.png",
+          "atlas": [
+            7,
+            2
+          ]
+        },
+        {
+          "mask": 93,
+          "file": "tiles/rocha-umida/blob-093.png",
+          "atlas": [
+            0,
+            3
+          ]
+        },
+        {
+          "mask": 95,
+          "file": "tiles/rocha-umida/blob-095.png",
+          "atlas": [
+            1,
+            3
+          ]
+        },
+        {
+          "mask": 112,
+          "file": "tiles/rocha-umida/blob-112.png",
+          "atlas": [
+            2,
+            3
+          ]
+        },
+        {
+          "mask": 113,
+          "file": "tiles/rocha-umida/blob-113.png",
+          "atlas": [
+            3,
+            3
+          ]
+        },
+        {
+          "mask": 116,
+          "file": "tiles/rocha-umida/blob-116.png",
+          "atlas": [
+            4,
+            3
+          ]
+        },
+        {
+          "mask": 117,
+          "file": "tiles/rocha-umida/blob-117.png",
+          "atlas": [
+            5,
+            3
+          ]
+        },
+        {
+          "mask": 119,
+          "file": "tiles/rocha-umida/blob-119.png",
+          "atlas": [
+            6,
+            3
+          ]
+        },
+        {
+          "mask": 124,
+          "file": "tiles/rocha-umida/blob-124.png",
+          "atlas": [
+            7,
+            3
+          ]
+        },
+        {
+          "mask": 125,
+          "file": "tiles/rocha-umida/blob-125.png",
+          "atlas": [
+            0,
+            4
+          ]
+        },
+        {
+          "mask": 127,
+          "file": "tiles/rocha-umida/blob-127.png",
+          "atlas": [
+            1,
+            4
+          ]
+        },
+        {
+          "mask": 193,
+          "file": "tiles/rocha-umida/blob-193.png",
+          "atlas": [
+            2,
+            4
+          ]
+        },
+        {
+          "mask": 197,
+          "file": "tiles/rocha-umida/blob-197.png",
+          "atlas": [
+            3,
+            4
+          ]
+        },
+        {
+          "mask": 199,
+          "file": "tiles/rocha-umida/blob-199.png",
+          "atlas": [
+            4,
+            4
+          ]
+        },
+        {
+          "mask": 209,
+          "file": "tiles/rocha-umida/blob-209.png",
+          "atlas": [
+            5,
+            4
+          ]
+        },
+        {
+          "mask": 213,
+          "file": "tiles/rocha-umida/blob-213.png",
+          "atlas": [
+            6,
+            4
+          ]
+        },
+        {
+          "mask": 215,
+          "file": "tiles/rocha-umida/blob-215.png",
+          "atlas": [
+            7,
+            4
+          ]
+        },
+        {
+          "mask": 221,
+          "file": "tiles/rocha-umida/blob-221.png",
+          "atlas": [
+            0,
+            5
+          ]
+        },
+        {
+          "mask": 223,
+          "file": "tiles/rocha-umida/blob-223.png",
+          "atlas": [
+            1,
+            5
+          ]
+        },
+        {
+          "mask": 241,
+          "file": "tiles/rocha-umida/blob-241.png",
+          "atlas": [
+            2,
+            5
+          ]
+        },
+        {
+          "mask": 245,
+          "file": "tiles/rocha-umida/blob-245.png",
+          "atlas": [
+            3,
+            5
+          ]
+        },
+        {
+          "mask": 247,
+          "file": "tiles/rocha-umida/blob-247.png",
+          "atlas": [
+            4,
+            5
+          ]
+        },
+        {
+          "mask": 253,
+          "file": "tiles/rocha-umida/blob-253.png",
+          "atlas": [
+            5,
+            5
+          ]
+        },
+        {
+          "mask": 255,
+          "file": "tiles/rocha-umida/blob-255.png",
+          "atlas": [
+            6,
+            5
+          ]
+        }
+      ],
+      "centers": [
+        {
+          "file": "tiles/rocha-umida/centro-0.png",
+          "atlas": [
+            0,
+            6
+          ]
+        },
+        {
+          "file": "tiles/rocha-umida/centro-1.png",
+          "atlas": [
+            1,
+            6
+          ]
+        },
+        {
+          "file": "tiles/rocha-umida/centro-2.png",
+          "atlas": [
+            2,
+            6
+          ]
+        },
+        {
+          "file": "tiles/rocha-umida/centro-3.png",
+          "atlas": [
+            3,
+            6
+          ]
+        },
+        {
+          "file": "tiles/rocha-umida/centro-4.png",
+          "atlas": [
+            4,
+            6
+          ]
+        },
+        {
+          "file": "tiles/rocha-umida/centro-5.png",
+          "atlas": [
+            5,
+            6
+          ]
+        },
+        {
+          "file": "tiles/rocha-umida/centro-6.png",
+          "atlas": [
+            6,
+            6
+          ]
+        },
+        {
+          "file": "tiles/rocha-umida/centro-7.png",
+          "atlas": [
+            7,
+            6
+          ]
+        }
+      ],
+      "surface": "surfaces/rocha-umida.png"
+    },
+    "cascalho-gruta": {
+      "name": "Lascas de vela",
+      "atlas": "atlas/cascalho-gruta.png",
+      "tiles": [
+        {
+          "mask": 0,
+          "file": "tiles/cascalho-gruta/blob-000.png",
+          "atlas": [
+            0,
+            0
+          ]
+        },
+        {
+          "mask": 1,
+          "file": "tiles/cascalho-gruta/blob-001.png",
+          "atlas": [
+            1,
+            0
+          ]
+        },
+        {
+          "mask": 4,
+          "file": "tiles/cascalho-gruta/blob-004.png",
+          "atlas": [
+            2,
+            0
+          ]
+        },
+        {
+          "mask": 5,
+          "file": "tiles/cascalho-gruta/blob-005.png",
+          "atlas": [
+            3,
+            0
+          ]
+        },
+        {
+          "mask": 7,
+          "file": "tiles/cascalho-gruta/blob-007.png",
+          "atlas": [
+            4,
+            0
+          ]
+        },
+        {
+          "mask": 16,
+          "file": "tiles/cascalho-gruta/blob-016.png",
+          "atlas": [
+            5,
+            0
+          ]
+        },
+        {
+          "mask": 17,
+          "file": "tiles/cascalho-gruta/blob-017.png",
+          "atlas": [
+            6,
+            0
+          ]
+        },
+        {
+          "mask": 20,
+          "file": "tiles/cascalho-gruta/blob-020.png",
+          "atlas": [
+            7,
+            0
+          ]
+        },
+        {
+          "mask": 21,
+          "file": "tiles/cascalho-gruta/blob-021.png",
+          "atlas": [
+            0,
+            1
+          ]
+        },
+        {
+          "mask": 23,
+          "file": "tiles/cascalho-gruta/blob-023.png",
+          "atlas": [
+            1,
+            1
+          ]
+        },
+        {
+          "mask": 28,
+          "file": "tiles/cascalho-gruta/blob-028.png",
+          "atlas": [
+            2,
+            1
+          ]
+        },
+        {
+          "mask": 29,
+          "file": "tiles/cascalho-gruta/blob-029.png",
+          "atlas": [
+            3,
+            1
+          ]
+        },
+        {
+          "mask": 31,
+          "file": "tiles/cascalho-gruta/blob-031.png",
+          "atlas": [
+            4,
+            1
+          ]
+        },
+        {
+          "mask": 64,
+          "file": "tiles/cascalho-gruta/blob-064.png",
+          "atlas": [
+            5,
+            1
+          ]
+        },
+        {
+          "mask": 65,
+          "file": "tiles/cascalho-gruta/blob-065.png",
+          "atlas": [
+            6,
+            1
+          ]
+        },
+        {
+          "mask": 68,
+          "file": "tiles/cascalho-gruta/blob-068.png",
+          "atlas": [
+            7,
+            1
+          ]
+        },
+        {
+          "mask": 69,
+          "file": "tiles/cascalho-gruta/blob-069.png",
+          "atlas": [
+            0,
+            2
+          ]
+        },
+        {
+          "mask": 71,
+          "file": "tiles/cascalho-gruta/blob-071.png",
+          "atlas": [
+            1,
+            2
+          ]
+        },
+        {
+          "mask": 80,
+          "file": "tiles/cascalho-gruta/blob-080.png",
+          "atlas": [
+            2,
+            2
+          ]
+        },
+        {
+          "mask": 81,
+          "file": "tiles/cascalho-gruta/blob-081.png",
+          "atlas": [
+            3,
+            2
+          ]
+        },
+        {
+          "mask": 84,
+          "file": "tiles/cascalho-gruta/blob-084.png",
+          "atlas": [
+            4,
+            2
+          ]
+        },
+        {
+          "mask": 85,
+          "file": "tiles/cascalho-gruta/blob-085.png",
+          "atlas": [
+            5,
+            2
+          ]
+        },
+        {
+          "mask": 87,
+          "file": "tiles/cascalho-gruta/blob-087.png",
+          "atlas": [
+            6,
+            2
+          ]
+        },
+        {
+          "mask": 92,
+          "file": "tiles/cascalho-gruta/blob-092.png",
+          "atlas": [
+            7,
+            2
+          ]
+        },
+        {
+          "mask": 93,
+          "file": "tiles/cascalho-gruta/blob-093.png",
+          "atlas": [
+            0,
+            3
+          ]
+        },
+        {
+          "mask": 95,
+          "file": "tiles/cascalho-gruta/blob-095.png",
+          "atlas": [
+            1,
+            3
+          ]
+        },
+        {
+          "mask": 112,
+          "file": "tiles/cascalho-gruta/blob-112.png",
+          "atlas": [
+            2,
+            3
+          ]
+        },
+        {
+          "mask": 113,
+          "file": "tiles/cascalho-gruta/blob-113.png",
+          "atlas": [
+            3,
+            3
+          ]
+        },
+        {
+          "mask": 116,
+          "file": "tiles/cascalho-gruta/blob-116.png",
+          "atlas": [
+            4,
+            3
+          ]
+        },
+        {
+          "mask": 117,
+          "file": "tiles/cascalho-gruta/blob-117.png",
+          "atlas": [
+            5,
+            3
+          ]
+        },
+        {
+          "mask": 119,
+          "file": "tiles/cascalho-gruta/blob-119.png",
+          "atlas": [
+            6,
+            3
+          ]
+        },
+        {
+          "mask": 124,
+          "file": "tiles/cascalho-gruta/blob-124.png",
+          "atlas": [
+            7,
+            3
+          ]
+        },
+        {
+          "mask": 125,
+          "file": "tiles/cascalho-gruta/blob-125.png",
+          "atlas": [
+            0,
+            4
+          ]
+        },
+        {
+          "mask": 127,
+          "file": "tiles/cascalho-gruta/blob-127.png",
+          "atlas": [
+            1,
+            4
+          ]
+        },
+        {
+          "mask": 193,
+          "file": "tiles/cascalho-gruta/blob-193.png",
+          "atlas": [
+            2,
+            4
+          ]
+        },
+        {
+          "mask": 197,
+          "file": "tiles/cascalho-gruta/blob-197.png",
+          "atlas": [
+            3,
+            4
+          ]
+        },
+        {
+          "mask": 199,
+          "file": "tiles/cascalho-gruta/blob-199.png",
+          "atlas": [
+            4,
+            4
+          ]
+        },
+        {
+          "mask": 209,
+          "file": "tiles/cascalho-gruta/blob-209.png",
+          "atlas": [
+            5,
+            4
+          ]
+        },
+        {
+          "mask": 213,
+          "file": "tiles/cascalho-gruta/blob-213.png",
+          "atlas": [
+            6,
+            4
+          ]
+        },
+        {
+          "mask": 215,
+          "file": "tiles/cascalho-gruta/blob-215.png",
+          "atlas": [
+            7,
+            4
+          ]
+        },
+        {
+          "mask": 221,
+          "file": "tiles/cascalho-gruta/blob-221.png",
+          "atlas": [
+            0,
+            5
+          ]
+        },
+        {
+          "mask": 223,
+          "file": "tiles/cascalho-gruta/blob-223.png",
+          "atlas": [
+            1,
+            5
+          ]
+        },
+        {
+          "mask": 241,
+          "file": "tiles/cascalho-gruta/blob-241.png",
+          "atlas": [
+            2,
+            5
+          ]
+        },
+        {
+          "mask": 245,
+          "file": "tiles/cascalho-gruta/blob-245.png",
+          "atlas": [
+            3,
+            5
+          ]
+        },
+        {
+          "mask": 247,
+          "file": "tiles/cascalho-gruta/blob-247.png",
+          "atlas": [
+            4,
+            5
+          ]
+        },
+        {
+          "mask": 253,
+          "file": "tiles/cascalho-gruta/blob-253.png",
+          "atlas": [
+            5,
+            5
+          ]
+        },
+        {
+          "mask": 255,
+          "file": "tiles/cascalho-gruta/blob-255.png",
+          "atlas": [
+            6,
+            5
+          ]
+        }
+      ],
+      "centers": [
+        {
+          "file": "tiles/cascalho-gruta/centro-0.png",
+          "atlas": [
+            0,
+            6
+          ]
+        },
+        {
+          "file": "tiles/cascalho-gruta/centro-1.png",
+          "atlas": [
+            1,
+            6
+          ]
+        },
+        {
+          "file": "tiles/cascalho-gruta/centro-2.png",
+          "atlas": [
+            2,
+            6
+          ]
+        },
+        {
+          "file": "tiles/cascalho-gruta/centro-3.png",
+          "atlas": [
+            3,
+            6
+          ]
+        },
+        {
+          "file": "tiles/cascalho-gruta/centro-4.png",
+          "atlas": [
+            4,
+            6
+          ]
+        },
+        {
+          "file": "tiles/cascalho-gruta/centro-5.png",
+          "atlas": [
+            5,
+            6
+          ]
+        },
+        {
+          "file": "tiles/cascalho-gruta/centro-6.png",
+          "atlas": [
+            6,
+            6
+          ]
+        },
+        {
+          "file": "tiles/cascalho-gruta/centro-7.png",
+          "atlas": [
+            7,
+            6
+          ]
+        }
+      ],
+      "surface": "surfaces/cascalho-gruta.png"
+    }
+  },
+  "walls": {
+    "parede-calcario": {
+      "name": "Dobras de calcário",
+      "surface": "surfaces/parede-calcario.png",
+      "files": [
+        {
+          "file": "walls/parede-calcario/u-0.png",
+          "role": "face",
+          "side": "u",
+          "phase": 0
+        },
+        {
+          "file": "walls/parede-calcario/u-1.png",
+          "role": "face",
+          "side": "u",
+          "phase": 1
+        },
+        {
+          "file": "walls/parede-calcario/u-2.png",
+          "role": "face",
+          "side": "u",
+          "phase": 2
+        },
+        {
+          "file": "walls/parede-calcario/u-3.png",
+          "role": "face",
+          "side": "u",
+          "phase": 3
+        },
+        {
+          "file": "walls/parede-calcario/v-0.png",
+          "role": "face",
+          "side": "v",
+          "phase": 0
+        },
+        {
+          "file": "walls/parede-calcario/v-1.png",
+          "role": "face",
+          "side": "v",
+          "phase": 1
+        },
+        {
+          "file": "walls/parede-calcario/v-2.png",
+          "role": "face",
+          "side": "v",
+          "phase": 2
+        },
+        {
+          "file": "walls/parede-calcario/v-3.png",
+          "role": "face",
+          "side": "v",
+          "phase": 3
+        },
+        {
+          "file": "walls/parede-calcario/canto-externo-0.png",
+          "role": "outer-corner"
+        },
+        {
+          "file": "walls/parede-calcario/canto-externo-1.png",
+          "role": "outer-corner"
+        },
+        {
+          "file": "walls/parede-calcario/canto-interno-0.png",
+          "role": "inner-corner"
+        },
+        {
+          "file": "walls/parede-calcario/canto-interno-1.png",
+          "role": "inner-corner"
+        },
+        {
+          "file": "walls/parede-calcario/u-inicio.png",
+          "role": "termination"
+        },
+        {
+          "file": "walls/parede-calcario/u-fim.png",
+          "role": "termination"
+        },
+        {
+          "file": "walls/parede-calcario/v-inicio.png",
+          "role": "termination"
+        },
+        {
+          "file": "walls/parede-calcario/v-fim.png",
+          "role": "termination"
+        }
+      ],
+      "height": 64
+    },
+    "parede-basalto": {
+      "name": "Ardósia do vento",
+      "surface": "surfaces/parede-basalto.png",
+      "files": [
+        {
+          "file": "walls/parede-basalto/u-0.png",
+          "role": "face",
+          "side": "u",
+          "phase": 0
+        },
+        {
+          "file": "walls/parede-basalto/u-1.png",
+          "role": "face",
+          "side": "u",
+          "phase": 1
+        },
+        {
+          "file": "walls/parede-basalto/u-2.png",
+          "role": "face",
+          "side": "u",
+          "phase": 2
+        },
+        {
+          "file": "walls/parede-basalto/u-3.png",
+          "role": "face",
+          "side": "u",
+          "phase": 3
+        },
+        {
+          "file": "walls/parede-basalto/v-0.png",
+          "role": "face",
+          "side": "v",
+          "phase": 0
+        },
+        {
+          "file": "walls/parede-basalto/v-1.png",
+          "role": "face",
+          "side": "v",
+          "phase": 1
+        },
+        {
+          "file": "walls/parede-basalto/v-2.png",
+          "role": "face",
+          "side": "v",
+          "phase": 2
+        },
+        {
+          "file": "walls/parede-basalto/v-3.png",
+          "role": "face",
+          "side": "v",
+          "phase": 3
+        },
+        {
+          "file": "walls/parede-basalto/canto-externo-0.png",
+          "role": "outer-corner"
+        },
+        {
+          "file": "walls/parede-basalto/canto-externo-1.png",
+          "role": "outer-corner"
+        },
+        {
+          "file": "walls/parede-basalto/canto-interno-0.png",
+          "role": "inner-corner"
+        },
+        {
+          "file": "walls/parede-basalto/canto-interno-1.png",
+          "role": "inner-corner"
+        },
+        {
+          "file": "walls/parede-basalto/u-inicio.png",
+          "role": "termination"
+        },
+        {
+          "file": "walls/parede-basalto/u-fim.png",
+          "role": "termination"
+        },
+        {
+          "file": "walls/parede-basalto/v-inicio.png",
+          "role": "termination"
+        },
+        {
+          "file": "walls/parede-basalto/v-fim.png",
+          "role": "termination"
+        }
+      ],
+      "height": 64
+    },
+    "parede-umida": {
+      "name": "Parede de ecos",
+      "surface": "surfaces/parede-umida.png",
+      "files": [
+        {
+          "file": "walls/parede-umida/u-0.png",
+          "role": "face",
+          "side": "u",
+          "phase": 0
+        },
+        {
+          "file": "walls/parede-umida/u-1.png",
+          "role": "face",
+          "side": "u",
+          "phase": 1
+        },
+        {
+          "file": "walls/parede-umida/u-2.png",
+          "role": "face",
+          "side": "u",
+          "phase": 2
+        },
+        {
+          "file": "walls/parede-umida/u-3.png",
+          "role": "face",
+          "side": "u",
+          "phase": 3
+        },
+        {
+          "file": "walls/parede-umida/v-0.png",
+          "role": "face",
+          "side": "v",
+          "phase": 0
+        },
+        {
+          "file": "walls/parede-umida/v-1.png",
+          "role": "face",
+          "side": "v",
+          "phase": 1
+        },
+        {
+          "file": "walls/parede-umida/v-2.png",
+          "role": "face",
+          "side": "v",
+          "phase": 2
+        },
+        {
+          "file": "walls/parede-umida/v-3.png",
+          "role": "face",
+          "side": "v",
+          "phase": 3
+        },
+        {
+          "file": "walls/parede-umida/canto-externo-0.png",
+          "role": "outer-corner"
+        },
+        {
+          "file": "walls/parede-umida/canto-externo-1.png",
+          "role": "outer-corner"
+        },
+        {
+          "file": "walls/parede-umida/canto-interno-0.png",
+          "role": "inner-corner"
+        },
+        {
+          "file": "walls/parede-umida/canto-interno-1.png",
+          "role": "inner-corner"
+        },
+        {
+          "file": "walls/parede-umida/u-inicio.png",
+          "role": "termination"
+        },
+        {
+          "file": "walls/parede-umida/u-fim.png",
+          "role": "termination"
+        },
+        {
+          "file": "walls/parede-umida/v-inicio.png",
+          "role": "termination"
+        },
+        {
+          "file": "walls/parede-umida/v-fim.png",
+          "role": "termination"
+        }
+      ],
+      "height": 64
+    },
+    "parede-mineral": {
+      "name": "Veios de elo",
+      "surface": "surfaces/parede-mineral.png",
+      "files": [
+        {
+          "file": "walls/parede-mineral/u-0.png",
+          "role": "face",
+          "side": "u",
+          "phase": 0
+        },
+        {
+          "file": "walls/parede-mineral/u-1.png",
+          "role": "face",
+          "side": "u",
+          "phase": 1
+        },
+        {
+          "file": "walls/parede-mineral/u-2.png",
+          "role": "face",
+          "side": "u",
+          "phase": 2
+        },
+        {
+          "file": "walls/parede-mineral/u-3.png",
+          "role": "face",
+          "side": "u",
+          "phase": 3
+        },
+        {
+          "file": "walls/parede-mineral/v-0.png",
+          "role": "face",
+          "side": "v",
+          "phase": 0
+        },
+        {
+          "file": "walls/parede-mineral/v-1.png",
+          "role": "face",
+          "side": "v",
+          "phase": 1
+        },
+        {
+          "file": "walls/parede-mineral/v-2.png",
+          "role": "face",
+          "side": "v",
+          "phase": 2
+        },
+        {
+          "file": "walls/parede-mineral/v-3.png",
+          "role": "face",
+          "side": "v",
+          "phase": 3
+        },
+        {
+          "file": "walls/parede-mineral/canto-externo-0.png",
+          "role": "outer-corner"
+        },
+        {
+          "file": "walls/parede-mineral/canto-externo-1.png",
+          "role": "outer-corner"
+        },
+        {
+          "file": "walls/parede-mineral/canto-interno-0.png",
+          "role": "inner-corner"
+        },
+        {
+          "file": "walls/parede-mineral/canto-interno-1.png",
+          "role": "inner-corner"
+        },
+        {
+          "file": "walls/parede-mineral/u-inicio.png",
+          "role": "termination"
+        },
+        {
+          "file": "walls/parede-mineral/u-fim.png",
+          "role": "termination"
+        },
+        {
+          "file": "walls/parede-mineral/v-inicio.png",
+          "role": "termination"
+        },
+        {
+          "file": "walls/parede-mineral/v-fim.png",
+          "role": "termination"
+        }
+      ],
+      "height": 64
+    }
+  },
+  "props": {
+    "rocha-solta": {
+      "name": "Pedras dobradas",
+      "file": "props/rocha-solta.png",
+      "size": [
+        116,
+        82
+      ],
+      "pivot": [
+        69.0,
+        63
+      ],
+      "footprintCells": [
+        2,
+        2
+      ],
+      "collision": "none-provisional-footprint",
+      "source": "fontes/rocha-solta.png"
+    },
+    "estalagmite-baixa": {
+      "name": "Nós de pedra",
+      "file": "props/estalagmite-baixa.png",
+      "size": [
+        98,
+        75
+      ],
+      "pivot": [
+        49.0,
+        64
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "collision": "none-provisional-footprint",
+      "source": "fontes/estalagmite-baixa.png"
+    },
+    "estalagmite-alta": {
+      "name": "Agulha do vento",
+      "file": "props/estalagmite-alta.png",
+      "size": [
+        90,
+        83
+      ],
+      "pivot": [
+        38.0,
+        70
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "collision": "none-provisional-footprint",
+      "source": "fontes/estalagmite-alta.png"
+    },
+    "coluna-calcario": {
+      "name": "Coluna de rabiolas",
+      "file": "props/coluna-calcario.png",
+      "size": [
+        112,
+        93
+      ],
+      "pivot": [
+        54.0,
+        84
+      ],
+      "footprintCells": [
+        2,
+        2
+      ],
+      "collision": "none-provisional-footprint",
+      "source": "fontes/coluna-calcario.png"
+    },
+    "cristal-azul": {
+      "name": "Ecos de Azulão",
+      "file": "props/cristal-azul.png",
+      "size": [
+        104,
+        73
+      ],
+      "pivot": [
+        55.0,
+        61
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "collision": "none-provisional-footprint",
+      "source": "fontes/cristal-azul.png"
+    },
+    "cristal-ambar": {
+      "name": "Brasa de Carcará",
+      "file": "props/cristal-ambar.png",
+      "size": [
+        98,
+        69
+      ],
+      "pivot": [
+        47.0,
+        57
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "collision": "none-provisional-footprint",
+      "source": "fontes/cristal-ambar.png"
+    },
+    "cogumelos-gruta": {
+      "name": "Flores de linha",
+      "file": "props/cogumelos-gruta.png",
+      "size": [
+        80,
+        63
+      ],
+      "pivot": [
+        39.0,
+        53
+      ],
+      "footprintCells": [
+        1,
+        1
+      ],
+      "collision": "none-provisional-footprint",
+      "source": "fontes/cogumelos-gruta.png"
+    },
+    "entrada-gruta": {
+      "name": "Portal do elo",
+      "file": "props/entrada-gruta.png",
+      "size": [
+        236,
+        172
+      ],
+      "pivot": [
+        164.5,
+        163
+      ],
+      "footprintCells": [
+        2,
+        2
+      ],
+      "collision": "none-provisional-footprint",
+      "source": "fontes/entrada-gruta.png"
+    }
+  },
+  "waterArt": {
+    "agua-linhas": {
+      "name": "Água de linhas",
+      "kind": "water",
+      "surface": "surfaces/agua-linhas.png"
+    },
+    "queda-fitas": {
+      "name": "Queda de fitas",
+      "kind": "fall",
+      "surface": "surfaces/queda-fitas.png"
+    }
+  }
+}

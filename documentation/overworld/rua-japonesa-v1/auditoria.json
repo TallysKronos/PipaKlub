@@ -1,0 +1,67 @@
+{
+  "nativeResolution": [
+    1280,
+    720
+  ],
+  "views": [
+    "rua",
+    "sem fachadas",
+    "geometria",
+    "casa ampliada",
+    "loja ampliada"
+  ],
+  "heightsPx": {
+    "road": 0,
+    "sidewalk": 10,
+    "channel": -3
+  },
+  "ramps": 2,
+  "manholes": 1,
+  "openGrates": 2,
+  "runtimeProps": 8,
+  "asphaltOppositeEdgesDifference": 0,
+  "buildings": {
+    "nativePlanes": true,
+    "legacyWholeSpritesRendered": false,
+    "wallHeightPx": 108,
+    "ridgeAboveWallPx": 34,
+    "shopFootprintCells": [
+      [
+        0.2,
+        2.2
+      ],
+      [
+        3.5,
+        5.2
+      ]
+    ],
+    "houseFootprintCells": [
+      [
+        10.2,
+        3.0
+      ],
+      [
+        13,
+        5.4
+      ]
+    ],
+    "foundationLevelPx": 10
+  },
+  "campaignIntegrated": false,
+  "gameplayTestsRun": false,
+  "artRevision": "manga-v4: native projecting balcony, supported fabric awning, raised window frames and sills; original foundation preserved",
+  "facadeDepth": {
+    "balconies": 1,
+    "floorProjectionCells": 0.65,
+    "floorLevelAboveFoundationPx": 62,
+    "floorThicknessPx": 4,
+    "railHeightPx": 21,
+    "awnings": 1,
+    "awningProjectionCells": 0.8,
+    "windowFrames": 3,
+    "openShutters": 2,
+    "clothFrames": 32,
+    "clothLoopSeconds": 4.48,
+    "animation": "only the free lower fabric edge moves"
+  }
+}

@@ -5,6 +5,16 @@ var textures: Dictionary = {}
 var facing: String = "se"
 var moving: bool = false
 var clock: float = 0.0
+var motion_action: String = ""
+
+func set_motion_action(action: String) -> void:
+	if action==motion_action:return
+	if not action.is_empty() and not manifest.actions.has(action):return
+	motion_action = action
+	if not action.is_empty():
+		for direction in ["se","ne"]:
+			for frame in manifest.actions[action].directions.get(direction,[]):
+				_cache(frame.image)
 
 func _ready() -> void:
 	manifest = JSON.parse_string(FileAccess.get_file_as_string("res://assets/kael/manifest.json"))
@@ -29,7 +39,10 @@ func _draw() -> void:
 	if manifest.is_empty():
 		return
 	var action: String = "andar" if moving else "parado"
+	if not motion_action.is_empty():action = motion_action
 	var direction: String = "ne" if facing in ["ne", "nw"] else "se"
+	if not manifest.actions[action].directions.has(direction):
+		direction = "ne" if manifest.actions[action].directions.has("ne") else "se"
 	var frames: Array = manifest.actions[action].directions[direction]
 	var index: int = int(clock * (10.0 if moving else 5.5)) % frames.size()
 	var frame: Dictionary = frames[index]

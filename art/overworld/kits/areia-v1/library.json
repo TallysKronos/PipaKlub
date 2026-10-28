@@ -1,0 +1,34 @@
+{
+  "schema": "sand-showcase-1",
+  "grid": [
+    64,
+    32
+  ],
+  "campaignIntegrated": false,
+  "collision": "not-authored",
+  "sand": {
+    "file": "surfaces/areia.png",
+    "source": "fontes/areia.png",
+    "size": [
+      512,
+      512
+    ],
+    "repeatCells": 8
+  },
+  "props": {
+    "arenito": {
+      "file": "props/arenito.png",
+      "source": "fontes/arenito.png",
+      "pivot": [
+        69.0,
+        46
+      ],
+      "size": [
+        128,
+        55
+      ]
+    }
+  },
+  "sharedTransition": "res://shaders/overworld/terrain_transition.gdshaderinc",
+  "duneHeightPx": 18
+}

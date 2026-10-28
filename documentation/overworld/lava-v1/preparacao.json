@@ -1,0 +1,35 @@
+[
+  {
+    "id": "basalto",
+    "size": [
+      512,
+      512
+    ],
+    "colors": 4,
+    "palette": [
+      "3C3548",
+      "514659",
+      "252634",
+      "745045"
+    ],
+    "oppositeXMaxDifference": 0,
+    "oppositeYMaxDifference": 0
+  },
+  {
+    "id": "lava",
+    "size": [
+      512,
+      512
+    ],
+    "colors": 5,
+    "palette": [
+      "E46B29",
+      "B83D28",
+      "F6B34C",
+      "3A2938",
+      "252634"
+    ],
+    "oppositeXMaxDifference": 0,
+    "oppositeYMaxDifference": 0
+  }
+]

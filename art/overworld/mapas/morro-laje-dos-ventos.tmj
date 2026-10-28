@@ -84,9 +84,9 @@
         11,
         11,
         11,
-        11,
-        11,
-        11,
+        8,
+        8,
+        8,
         7,
         7,
         7,
@@ -142,6 +142,9 @@
         11,
         11,
         11,
+        8,
+        8,
+        8,
         11,
         11,
         11,
@@ -158,12 +161,8 @@
         11,
         11,
         11,
-        11,
-        11,
-        11,
         7,
         7,
-        11,
         11,
         11,
         11,
@@ -192,15 +191,15 @@
         7,
         7,
         7,
-        11,
-        11,
-        11,
-        11,
+        7,
+        7,
+        7,
         11,
         11,
         11,
         11,
         11,
+        8,
         11,
         11,
         11,
@@ -216,15 +215,15 @@
         7,
         7,
         7,
-        11,
-        11,
-        11,
-        11,
+        7,
+        7,
+        7,
         11,
         11,
         11,
         11,
         11,
+        8,
         11,
         11,
         11,
@@ -240,15 +239,15 @@
         7,
         7,
         7,
-        11,
-        11,
-        11,
-        11,
+        7,
+        7,
+        7,
         11,
         11,
         11,
         11,
         11,
+        8,
         11,
         11,
         11,
@@ -264,18 +263,19 @@
         7,
         7,
         7,
-        11,
-        11,
-        11,
-        11,
-        11,
-        11,
-        11,
+        7,
+        7,
+        7,
         11,
         11,
         11,
         11,
         11,
+        8,
+        8,
+        8,
+        8,
+        8,
         7,
         7,
         7,
@@ -288,10 +288,8 @@
         7,
         7,
         7,
-        11,
-        11,
-        11,
-        11,
+        7,
+        7,
         11,
         11,
         11,
@@ -311,27 +309,11 @@
         7,
         7,
         7,
-        11,
-        11,
-        11,
-        11,
-        11,
-        11,
-        11,
-        11,
-        11,
-        11,
-        11,
-        11,
-        11,
-        11,
-        11,
-        11,
-        11,
-        11,
         7,
         7,
-        11,
+        8,
+        8,
+        8,
         11,
         11,
         11,
@@ -341,9 +323,21 @@
         11,
         11,
         11,
-        11,
-        11,
-        11,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
         11,
         11,
         11,
@@ -355,13 +349,19 @@
         11,
         7,
         7,
-        11,
-        11,
-        11,
-        11,
-        11,
-        11,
-        11,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
         11,
         11,
         11,
@@ -379,10 +379,6 @@
         11,
         7,
         7,
-        11,
-        11,
-        11,
-        11,
         11,
         11,
         11,
@@ -400,15 +396,19 @@
         11,
         11,
         11,
-        11,
+        8,
+        8,
+        8,
+        8,
+        8,
         7,
         7,
-        11,
-        11,
-        11,
-        11,
-        11,
-        11,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
         11,
         11,
         11,
@@ -868,6 +868,11 @@
               "name": "pegada",
               "type": "string",
               "value": "2x2"
+            },
+            {
+              "name": "variante",
+              "type": "string",
+              "value": "pipas"
             }
           ]
         },
@@ -921,6 +926,11 @@
               "name": "variante",
               "type": "string",
               "value": "telha"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": true
             }
           ]
         },
@@ -950,6 +960,11 @@
               "name": "variante",
               "type": "string",
               "value": "laje"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": true
             }
           ]
         },
@@ -979,6 +994,11 @@
               "name": "variante",
               "type": "string",
               "value": "muro-chapisco"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": true
             }
           ]
         },
@@ -1008,6 +1028,11 @@
               "name": "variante",
               "type": "string",
               "value": "telha"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
             }
           ]
         },
@@ -1037,6 +1062,11 @@
               "name": "variante",
               "type": "string",
               "value": "laje"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": true
             }
           ]
         },
@@ -1066,6 +1096,11 @@
               "name": "variante",
               "type": "string",
               "value": "muro-chapisco"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
             }
           ]
         },
@@ -1095,6 +1130,11 @@
               "name": "variante",
               "type": "string",
               "value": "telha"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": true
             }
           ]
         },
@@ -1128,7 +1168,7 @@
             {
               "name": "bloqueia",
               "type": "bool",
-              "value": true
+              "value": false
             },
             {
               "name": "origem",
@@ -1157,7 +1197,7 @@
             {
               "name": "variante",
               "type": "string",
-              "value": "laje"
+              "value": "laje-direita"
             },
             {
               "name": "pegada",
@@ -1206,7 +1246,7 @@
             {
               "name": "bloqueia",
               "type": "bool",
-              "value": true
+              "value": false
             },
             {
               "name": "origem",
@@ -1245,7 +1285,7 @@
             {
               "name": "bloqueia",
               "type": "bool",
-              "value": true
+              "value": false
             },
             {
               "name": "origem",
@@ -1323,7 +1363,7 @@
             {
               "name": "bloqueia",
               "type": "bool",
-              "value": true
+              "value": false
             },
             {
               "name": "origem",
@@ -1362,7 +1402,7 @@
             {
               "name": "bloqueia",
               "type": "bool",
-              "value": true
+              "value": false
             },
             {
               "name": "origem",
@@ -1401,7 +1441,7 @@
             {
               "name": "bloqueia",
               "type": "bool",
-              "value": true
+              "value": false
             },
             {
               "name": "origem",
@@ -1440,7 +1480,7 @@
             {
               "name": "bloqueia",
               "type": "bool",
-              "value": true
+              "value": false
             },
             {
               "name": "origem",
@@ -1469,7 +1509,7 @@
             {
               "name": "variante",
               "type": "string",
-              "value": "laje"
+              "value": "laje-direita"
             },
             {
               "name": "pegada",
@@ -1518,7 +1558,7 @@
             {
               "name": "bloqueia",
               "type": "bool",
-              "value": true
+              "value": false
             },
             {
               "name": "origem",

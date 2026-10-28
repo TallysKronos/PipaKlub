@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/overworld/water_patch.gd" id="1_5386l"]
+
+[node name="rio-branch" type="Node2D" unique_id=1560440281]
+script = ExtResource("1_5386l")
+water_id = "rio-claro"
+layout = "branch"

@@ -127,16 +127,16 @@
         11,
         11,
         11,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
         11,
         11,
-        11,
-        11,
-        11,
-        11,
-        11,
-        11,
-        11,
-        11,
         1,
         1,
         1,
@@ -158,14 +158,13 @@
         11,
         11,
         11,
+        8,
         11,
         11,
         11,
-        11,
         1,
         1,
         1,
-        11,
         11,
         11,
         11,
@@ -183,6 +182,7 @@
         11,
         11,
         11,
+        8,
         11,
         11,
         11,
@@ -297,9 +297,9 @@
         11,
         11,
         11,
-        11,
-        11,
-        11,
+        8,
+        8,
+        8,
         1,
         1,
         1,
@@ -313,7 +313,8 @@
         1,
         1,
         1,
-        11,
+        8,
+        8,
         11,
         11,
         11,
@@ -322,8 +323,7 @@
         11,
         11,
         11,
-        11,
-        11,
+        8,
         1,
         1,
         1,
@@ -337,7 +337,6 @@
         1,
         1,
         1,
-        11,
         11,
         11,
         11,
@@ -348,6 +347,7 @@
         11,
         11,
         11,
+        8,
         11,
         11,
         11,
@@ -359,6 +359,7 @@
         1,
         1,
         11,
+        8,
         11,
         11,
         11,
@@ -370,21 +371,19 @@
         11,
         11,
         11,
+        8,
         11,
         11,
         11,
         11,
         11,
-        11,
-        11,
         1,
         1,
         1,
-        11,
-        11,
         11,
         11,
         11,
+        8,
         11,
         11,
         11,
@@ -394,24 +393,21 @@
         11,
         11,
         11,
+        8,
+        8,
+        8,
         11,
         11,
         11,
         11,
         11,
-        11,
-        11,
         1,
         1,
         1,
-        11,
-        11,
-        11,
-        11,
-        11,
         11,
         11,
         11,
+        8,
         11,
         11,
         11,
@@ -425,6 +421,10 @@
         11,
         11,
         11,
+        8,
+        8,
+        8,
+        8,
         1,
         1,
         1,
@@ -921,6 +921,11 @@
               "name": "variante",
               "type": "string",
               "value": "telha"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": true
             }
           ]
         },
@@ -950,6 +955,11 @@
               "name": "variante",
               "type": "string",
               "value": "laje"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
             }
           ]
         },
@@ -979,6 +989,11 @@
               "name": "variante",
               "type": "string",
               "value": "muro-chapisco"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": true
             }
           ]
         },
@@ -1008,6 +1023,11 @@
               "name": "variante",
               "type": "string",
               "value": "telha"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": true
             }
           ]
         },
@@ -1037,6 +1057,11 @@
               "name": "variante",
               "type": "string",
               "value": "laje"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": true
             }
           ]
         },
@@ -1066,6 +1091,11 @@
               "name": "variante",
               "type": "string",
               "value": "muro-chapisco"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": false
             }
           ]
         },
@@ -1095,6 +1125,11 @@
               "name": "variante",
               "type": "string",
               "value": "telha"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": true
             }
           ]
         },
@@ -1123,7 +1158,12 @@
             {
               "name": "variante",
               "type": "string",
-              "value": "laje"
+              "value": "laje-direita"
+            },
+            {
+              "name": "bloqueia",
+              "type": "bool",
+              "value": true
             }
           ]
         },
@@ -1196,7 +1236,7 @@
             {
               "name": "bloqueia",
               "type": "bool",
-              "value": true
+              "value": false
             },
             {
               "name": "origem",
@@ -1235,7 +1275,7 @@
             {
               "name": "bloqueia",
               "type": "bool",
-              "value": true
+              "value": false
             },
             {
               "name": "origem",
@@ -1274,7 +1314,7 @@
             {
               "name": "bloqueia",
               "type": "bool",
-              "value": true
+              "value": false
             },
             {
               "name": "origem",
@@ -1313,7 +1353,7 @@
             {
               "name": "bloqueia",
               "type": "bool",
-              "value": true
+              "value": false
             },
             {
               "name": "origem",

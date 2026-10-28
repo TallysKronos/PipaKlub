@@ -1,0 +1,492 @@
+{
+  "beach": {
+    "observations": [
+      {
+        "arrived": true,
+        "position": [
+          10.0,
+          10.5000009536743
+        ],
+        "surface": "east_branch",
+        "target": [
+          10.0,
+          10.5
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          12.5,
+          10.5
+        ],
+        "surface": "beach_approach",
+        "target": [
+          12.5,
+          10.5
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          15.0,
+          10.5
+        ],
+        "surface": "beach_stairs",
+        "target": [
+          15.0,
+          10.5
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          17.0,
+          10.5
+        ],
+        "surface": "beach",
+        "target": [
+          17.0,
+          10.5
+        ]
+      }
+    ],
+    "transitions": [
+      "lower_hub",
+      "east_branch",
+      "beach_approach",
+      "beach_stairs",
+      "beach"
+    ]
+  },
+  "dockToTower": {
+    "observations": [
+      {
+        "arrived": true,
+        "position": [
+          8.5,
+          21.5
+        ],
+        "surface": "zigzag",
+        "target": [
+          8.5,
+          21.5
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          8.5,
+          18.5
+        ],
+        "surface": "cross_dock",
+        "target": [
+          8.5,
+          18.5
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          6.0,
+          18.5
+        ],
+        "surface": "cross_dock",
+        "target": [
+          6.0,
+          18.5
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          6.0,
+          17.5
+        ],
+        "surface": "dock",
+        "target": [
+          6.0,
+          17.5
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          6.0,
+          15.8999996185303
+        ],
+        "surface": "dock_stairs",
+        "target": [
+          6.0,
+          15.8999996185303
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          6.0,
+          14.0
+        ],
+        "surface": "dock_stairs",
+        "target": [
+          6.0,
+          14.0
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          7.75,
+          13.6000003814697
+        ],
+        "surface": "lower_hub",
+        "target": [
+          7.75,
+          13.6000003814697
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          7.75,
+          11.6999998092651
+        ],
+        "surface": "lower_hub",
+        "target": [
+          7.75,
+          11.6999998092651
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          7.75,
+          10.0
+        ],
+        "surface": "hub_stairs",
+        "target": [
+          7.75,
+          10.0
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          7.75,
+          8.00000190734863
+        ],
+        "surface": "upper_hub",
+        "target": [
+          7.75,
+          8.0
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          7.19999980926514,
+          8.0
+        ],
+        "surface": "upper_hub",
+        "target": [
+          7.19999980926514,
+          8.0
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          7.19999980926514,
+          5.90000009536743
+        ],
+        "surface": "north_bridge",
+        "target": [
+          7.19999980926514,
+          5.90000009536743
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          7.19999980926514,
+          2.10000371932983
+        ],
+        "surface": "north_bridge",
+        "target": [
+          7.19999980926514,
+          2.09999990463257
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          7.5,
+          2.09999990463257
+        ],
+        "surface": "north_bridge",
+        "target": [
+          7.5,
+          2.09999990463257
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          7.5,
+          1.0
+        ],
+        "surface": "tower_stairs",
+        "target": [
+          7.5,
+          1.0
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          7.5,
+          -0.5
+        ],
+        "surface": "tower_floor",
+        "target": [
+          7.5,
+          -0.5
+        ]
+      }
+    ],
+    "transitions": [
+      "terminal",
+      "zigzag",
+      "cross_dock",
+      "dock",
+      "dock_stairs",
+      "lower_hub",
+      "hub_stairs",
+      "upper_hub",
+      "north_bridge",
+      "tower_base",
+      "tower_stairs",
+      "tower_floor"
+    ]
+  },
+  "scope": "isolated movement and support probe, not campaign/player gameplay",
+  "towerToDock": {
+    "observations": [
+      {
+        "arrived": true,
+        "position": [
+          7.5,
+          2.09999918937683
+        ],
+        "surface": "north_bridge",
+        "target": [
+          7.5,
+          2.09999990463257
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          7.19999980926514,
+          2.09999990463257
+        ],
+        "surface": "north_bridge",
+        "target": [
+          7.19999980926514,
+          2.09999990463257
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          7.19999980926514,
+          5.89999628067017
+        ],
+        "surface": "north_bridge",
+        "target": [
+          7.19999980926514,
+          5.90000009536743
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          7.19999980926514,
+          8.0
+        ],
+        "surface": "upper_hub",
+        "target": [
+          7.19999980926514,
+          8.0
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          7.75,
+          8.0
+        ],
+        "surface": "upper_hub",
+        "target": [
+          7.75,
+          8.0
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          7.75,
+          11.6999998092651
+        ],
+        "surface": "lower_hub",
+        "target": [
+          7.75,
+          11.6999998092651
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          7.75,
+          13.6000003814697
+        ],
+        "surface": "lower_hub",
+        "target": [
+          7.75,
+          13.6000003814697
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          6.0,
+          14.0
+        ],
+        "surface": "dock_stairs",
+        "target": [
+          6.0,
+          14.0
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          6.0,
+          17.5
+        ],
+        "surface": "dock",
+        "target": [
+          6.0,
+          17.5
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          6.0,
+          18.5
+        ],
+        "surface": "cross_dock",
+        "target": [
+          6.0,
+          18.5
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          8.5,
+          18.5
+        ],
+        "surface": "cross_dock",
+        "target": [
+          8.5,
+          18.5
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          8.5,
+          22.5
+        ],
+        "surface": "terminal",
+        "target": [
+          8.5,
+          22.5
+        ]
+      }
+    ],
+    "transitions": [
+      "tower_floor",
+      "tower_stairs",
+      "north_bridge",
+      "upper_hub",
+      "hub_stairs",
+      "lower_hub",
+      "dock_stairs",
+      "dock",
+      "cross_dock",
+      "zigzag",
+      "terminal"
+    ]
+  },
+  "underpass": {
+    "observations": [
+      {
+        "arrived": true,
+        "position": [
+          8.5,
+          10.5000009536743
+        ],
+        "surface": "hub_stairs",
+        "target": [
+          8.5,
+          10.5
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          8.5,
+          8.50000286102295
+        ],
+        "surface": "upper_hub",
+        "target": [
+          8.5,
+          8.5
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          8.5,
+          10.5
+        ],
+        "surface": "hub_stairs",
+        "target": [
+          8.5,
+          10.5
+        ]
+      },
+      {
+        "arrived": true,
+        "position": [
+          8.5,
+          11.4999990463257
+        ],
+        "surface": "lower_hub",
+        "target": [
+          8.5,
+          11.5
+        ]
+      }
+    ],
+    "transitions": [
+      "lower_hub",
+      "hub_stairs",
+      "upper_hub",
+      "hub_stairs",
+      "lower_hub"
+    ]
+  }
+}

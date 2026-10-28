@@ -12,3 +12,6 @@ __pycache__/
 # Private evidence from the production account: keep local, never publish by default.
 art/ui-reviews/demo-dependencies-2026-10-22/
 godot-proof*.log
+# Reproducible native preview archives and machine-specific run logs stay local.
+documentation/overworld/**/*.zip
+documentation/overworld/**/*.log

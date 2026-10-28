@@ -1,6 +1,6 @@
 # Diretrizes de continuidade do terreno isométrico
 
-Escopo: mapas da engine JavaScript/Canvas do projeto. Esta diretriz complementa WORLD-ART-DIRECTION.md e deve orientar correções, novos mapas e revisão de assets. Estado: diretrizes e correção do pátio implementadas; revisão local com testes e navegador em 25/10/2026.
+Escopo: regras geométricas compartilhadas entre os cenários Godot e os mapas da engine JavaScript/Canvas do projeto. Esta diretriz complementa WORLD-ART-DIRECTION.md e deve orientar correções, novos mapas e revisão de assets. As seções históricas do pátio documentam a implementação no renderer legado.
 
 ## Diagnóstico das Veredas
 
@@ -76,3 +76,37 @@ Registrar screenshots antes/depois do mesmo enquadramento. Só declarar o proble
 O plano do terreno agora extrai o contorno da união de todos os pisos em cada altura, independentemente do material. Mantém somente faces externas visíveis, recorta as rampas e desconta cotas vizinhas. Pátio e passagem têm faces até a base; a parede interna da ligação foi removida. Topos de piso elevado são preenchidos até seus vértices estruturais, evitando cantos arredondados sem apoio. O acabamento de terra não recebe a franja de grama.
 
 Testes de regressão verificam as duas junções do acesso ao boss, a frente e a lateral do pátio, a sustentação da passagem, uma diferença de cota de 48 e a projeção/seleção dos dois lados das junções. A prévia isolada inclui “Veredas: acesso ao patio (previa)” para revisão reproduzível sem modificar uma conta. Screenshots locais em outputs/veredas-support, na pasta da tarefa. Não altera colisões, posições de save nem recompensas.
+
+## Apoio de construções ilustradas
+
+Na Rua das Rabiolas, alinhar o pixel opaco mais baixo de uma casa não garantiu apoio: as duas arestas da base do desenho tinham inclinações diferentes dos eixos do piso. Não aprovar uma fachada só pelo pivô ou pelo contato de um canto. Conferir as duas arestas completas, os três cantos visíveis, a implantação inteira e o telhado em captura ampliada.
+
+Quando a perspectiva pintada divergir, usar elevações ortográficas em planos nativos isométricos com paredes, fundação, empenas e telhado derivados da mesma planta (`street_building.gd`). Deslocamento vertical ou sombra não corrige uma base oblíqua. A implantação da casa/loja desta cena permanece toda no passeio +10, sem atravessar guia ou rampa.
+
+## Margens e cotas de água
+
+Regra adicionada após a revisão do poço da Gruta dos Elos, em 27/10/2026.
+
+- Poços naturais que recebem quedas são volumes escavados, não texturas retangulares sobre o solo. O chão superior deve ter um recorte real, e as faces internas da margem devem chegar à superfície da água na cota inferior.
+- Um único contorno medido gera o recorte do solo, a borda superior e a base das faces. A água recebe a mesma projeção com o deslocamento vertical da profundidade. Não arredondar a água deixando o buraco ou o barranco quadrado.
+- A margem natural usa assimetria e curvas/poucos segmentos suaves. Bordas perfeitamente retas e retangulares só representam uma estrutura construída intencional.
+- Declarar separadamente altura do lábio, altura do chão e altura da água. A queda termina na água: comprimento = altura do lábio menos altura da água. A espuma de impacto pertence à superfície inferior.
+- Na ordenação, a margem próxima e o chão superior ocluem a água e as faces ocultas. A espuma não pinta o chão caminhável. Conferir também a projeção inferior contra o limite externo do terreno, para não deixar uma lateral solta aparecendo fora do piso.
+- Preservar passagem, apoio e contraste dos objetos. Não resolver a junta cobrindo-a com um mon, pedra decorativa ou vegetação.
+
+### Referência medida da caverna
+
+| Superfície | Altura em pixels |
+| --- | ---: |
+| Lábio da cachoeira | +128 |
+| Solo e borda do poço | 0 |
+| Água | -24 |
+| Comprimento da queda | 152 |
+
+O componente `godot/scripts/overworld/cave_basin.gd` mantém o recorte, a superfície inferior, as faces e a queda juntos. Sua pegada de canto 10×10 tem folga de projeção para profundidade de 16–24 px. Um rebaixo maior exige redimensionar a pegada e revisar a folga, não somente aumentar a altura das faces.
+
+A diferença de polígonos usa a operação geométrica documentada em [Geometry2D.clip_polygons](https://docs.godotengine.org/en/stable/classes/class_geometry2d.html#class-geometry2d-method-clip-polygons). Nesta peça o contorno encontra a borda posterior do terreno, gerando uma superfície de chão recortada sem um anel interior separado. Para um poço inteiramente interno, tratar corretamente os anéis/triangulação; não desenhar o polígono do furo como piso.
+
+### Revisão mínima
+
+Capturar o mesmo enquadramento antes/depois, detalhe da boca, margem próxima, terminação lateral e ponto de impacto, mais uma montagem em cores simples sem objetos. Conferir a cena salva instanciada e a animação. Registrar cotas, comprimento da queda e contorno compartilhado junto às capturas. Essa revisão comprova os assets e sua montagem; navegação, colisão e campanha dependem da integração do mapa.

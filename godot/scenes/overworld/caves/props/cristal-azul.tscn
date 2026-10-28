@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/overworld/kits/cavernas-v1/props/cristal-azul.png" id="1"]
+
+[node name="cristal-azul" type="Node2D"]
+
+[node name="Visual" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1")
+centered = false
+position = Vector2(-53.5, -63)

@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/overworld/waterfall.gd" id="1_i0fyk"]
+
+[node name="cachoeira-v-2" type="Node2D" unique_id=84768048]
+script = ExtResource("1_i0fyk")
+curtain_id = "cortina-forte"
+drop_levels = 2

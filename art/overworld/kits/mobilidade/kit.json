@@ -1,0 +1,1562 @@
+{
+  "schema": "overworld-kit-1",
+  "biome": "mobilidade",
+  "grid": {
+    "cell": [
+      64,
+      32
+    ],
+    "height": 32,
+    "levelPx": 64
+  },
+  "approval": "pending_owner_review",
+  "styleBoard": "../../estilo/PRANCHA-ESTILO.png",
+  "pieces": {
+    "fusca-azul": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/fusca-azul-default.png",
+          "size": [
+            192,
+            192
+          ],
+          "footprint": [
+            2,
+            4
+          ],
+          "visualFootprint": [
+            2,
+            4
+          ],
+          "bloqueia": true,
+          "height": 1,
+          "anchor": [
+            96,
+            116
+          ],
+          "isoAnchor": [
+            64,
+            192
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            188,
+            128
+          ],
+          "category": "brasileiros",
+          "displayName": "Fusca azul",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/fusca-azul.png",
+            "geometryGuide": "fontes/geometria/fusca-azul.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "brasilia-amarela": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/brasilia-amarela-default.png",
+          "size": [
+            192,
+            192
+          ],
+          "footprint": [
+            2,
+            4
+          ],
+          "visualFootprint": [
+            2,
+            4
+          ],
+          "bloqueia": true,
+          "height": 1,
+          "anchor": [
+            96,
+            119
+          ],
+          "isoAnchor": [
+            64,
+            192
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            188,
+            114
+          ],
+          "category": "brasileiros",
+          "displayName": "Brasília amarela",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/brasilia-amarela.png",
+            "geometryGuide": "fontes/geometria/brasilia-amarela.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "gol-quadrado": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/gol-quadrado-default.png",
+          "size": [
+            192,
+            192
+          ],
+          "footprint": [
+            2,
+            4
+          ],
+          "visualFootprint": [
+            2,
+            4
+          ],
+          "bloqueia": true,
+          "height": 1,
+          "anchor": [
+            96,
+            117
+          ],
+          "isoAnchor": [
+            64,
+            192
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            188,
+            123
+          ],
+          "category": "brasileiros",
+          "displayName": "Gol quadrado vinho",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/gol-quadrado.png",
+            "geometryGuide": "fontes/geometria/gol-quadrado.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "uno-verde": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/uno-verde-default.png",
+          "size": [
+            192,
+            224
+          ],
+          "footprint": [
+            2,
+            4
+          ],
+          "visualFootprint": [
+            2,
+            4
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            96,
+            147
+          ],
+          "isoAnchor": [
+            64,
+            224
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            188,
+            132
+          ],
+          "category": "brasileiros",
+          "displayName": "Uno verde",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/uno-verde.png",
+            "geometryGuide": "fontes/geometria/uno-verde.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "chevette-creme": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/chevette-creme-default.png",
+          "size": [
+            192,
+            192
+          ],
+          "footprint": [
+            2,
+            4
+          ],
+          "visualFootprint": [
+            2,
+            4
+          ],
+          "bloqueia": true,
+          "height": 1,
+          "anchor": [
+            96,
+            118
+          ],
+          "isoAnchor": [
+            64,
+            192
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            188,
+            120
+          ],
+          "category": "brasileiros",
+          "displayName": "Chevette creme",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/chevette-creme.png",
+            "geometryGuide": "fontes/geometria/chevette-creme.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "opala-azul": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/opala-azul-default.png",
+          "size": [
+            224,
+            192
+          ],
+          "footprint": [
+            2,
+            5
+          ],
+          "visualFootprint": [
+            2,
+            5
+          ],
+          "bloqueia": true,
+          "height": 1,
+          "anchor": [
+            112,
+            110
+          ],
+          "isoAnchor": [
+            64,
+            192
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            220,
+            119
+          ],
+          "category": "brasileiros",
+          "displayName": "Opala azul-petróleo",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/opala-azul.png",
+            "geometryGuide": "fontes/geometria/opala-azul.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "kombi-bicolor": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/kombi-bicolor-default.png",
+          "size": [
+            224,
+            256
+          ],
+          "footprint": [
+            2,
+            5
+          ],
+          "visualFootprint": [
+            2,
+            5
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            112,
+            163
+          ],
+          "isoAnchor": [
+            64,
+            256
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            220,
+            166
+          ],
+          "category": "brasileiros",
+          "displayName": "Kombi bicolor",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/kombi-bicolor.png",
+            "geometryGuide": "fontes/geometria/kombi-bicolor.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "hatch-prata": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/hatch-prata-default.png",
+          "size": [
+            192,
+            192
+          ],
+          "footprint": [
+            2,
+            4
+          ],
+          "visualFootprint": [
+            2,
+            4
+          ],
+          "bloqueia": true,
+          "height": 1,
+          "anchor": [
+            96,
+            116
+          ],
+          "isoAnchor": [
+            64,
+            192
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            188,
+            127
+          ],
+          "category": "brasileiros",
+          "displayName": "Hatch popular prata",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/hatch-prata.png",
+            "geometryGuide": "fontes/geometria/hatch-prata.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "jipe-raiz": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/jipe-raiz-default.png",
+          "size": [
+            192,
+            192
+          ],
+          "footprint": [
+            2,
+            4
+          ],
+          "visualFootprint": [
+            2,
+            4
+          ],
+          "bloqueia": true,
+          "height": 1,
+          "anchor": [
+            96,
+            116
+          ],
+          "isoAnchor": [
+            64,
+            192
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            188,
+            128
+          ],
+          "category": "jipes-utilitarios",
+          "displayName": "Jipe raiz",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/jipe-raiz.png",
+            "geometryGuide": "fontes/geometria/jipe-raiz.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "bandeirante-rural": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/bandeirante-rural-default.png",
+          "size": [
+            224,
+            256
+          ],
+          "footprint": [
+            2,
+            5
+          ],
+          "visualFootprint": [
+            2,
+            5
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            112,
+            162
+          ],
+          "isoAnchor": [
+            64,
+            256
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            220,
+            172
+          ],
+          "category": "jipes-utilitarios",
+          "displayName": "Bandeirante rural",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/bandeirante-rural.png",
+            "geometryGuide": "fontes/geometria/bandeirante-rural.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "jipe-praia": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/jipe-praia-default.png",
+          "size": [
+            192,
+            224
+          ],
+          "footprint": [
+            2,
+            4
+          ],
+          "visualFootprint": [
+            2,
+            4
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            96,
+            145
+          ],
+          "isoAnchor": [
+            64,
+            224
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            188,
+            141
+          ],
+          "category": "jipes-utilitarios",
+          "displayName": "Jipe de praia",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/jipe-praia.png",
+            "geometryGuide": "fontes/geometria/jipe-praia.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "jipe-expedicao": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/jipe-expedicao-default.png",
+          "size": [
+            224,
+            256
+          ],
+          "footprint": [
+            2,
+            5
+          ],
+          "visualFootprint": [
+            2,
+            5
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            112,
+            163
+          ],
+          "isoAnchor": [
+            64,
+            256
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            220,
+            167
+          ],
+          "category": "jipes-utilitarios",
+          "displayName": "Jipe de expedição",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/jipe-expedicao.png",
+            "geometryGuide": "fontes/geometria/jipe-expedicao.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "picape-compacta": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/picape-compacta-default.png",
+          "size": [
+            224,
+            224
+          ],
+          "footprint": [
+            2,
+            5
+          ],
+          "visualFootprint": [
+            2,
+            5
+          ],
+          "bloqueia": true,
+          "height": 1,
+          "anchor": [
+            112,
+            141
+          ],
+          "isoAnchor": [
+            64,
+            224
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            220,
+            123
+          ],
+          "category": "jipes-utilitarios",
+          "displayName": "Picape compacta",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/picape-compacta.png",
+            "geometryGuide": "fontes/geometria/picape-compacta.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "caminhonete-rural": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/caminhonete-rural-default.png",
+          "size": [
+            224,
+            224
+          ],
+          "footprint": [
+            2,
+            5
+          ],
+          "visualFootprint": [
+            2,
+            5
+          ],
+          "bloqueia": true,
+          "height": 1,
+          "anchor": [
+            112,
+            140
+          ],
+          "isoAnchor": [
+            64,
+            224
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            220,
+            125
+          ],
+          "category": "jipes-utilitarios",
+          "displayName": "Caminhonete rural",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/caminhonete-rural.png",
+            "geometryGuide": "fontes/geometria/caminhonete-rural.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "furgao-entregas": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/furgao-entregas-default.png",
+          "size": [
+            224,
+            256
+          ],
+          "footprint": [
+            2,
+            5
+          ],
+          "visualFootprint": [
+            2,
+            5
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            112,
+            162
+          ],
+          "isoAnchor": [
+            64,
+            256
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            220,
+            173
+          ],
+          "category": "jipes-utilitarios",
+          "displayName": "Furgão de entregas",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/furgao-entregas.png",
+            "geometryGuide": "fontes/geometria/furgao-entregas.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "caminhao-leve": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/caminhao-leve-default.png",
+          "size": [
+            288,
+            352
+          ],
+          "footprint": [
+            3,
+            6
+          ],
+          "visualFootprint": [
+            3,
+            6
+          ],
+          "bloqueia": true,
+          "height": 4,
+          "anchor": [
+            144,
+            227
+          ],
+          "isoAnchor": [
+            96,
+            352
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            284,
+            242
+          ],
+          "category": "jipes-utilitarios",
+          "displayName": "Caminhão leve",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/caminhao-leve.png",
+            "geometryGuide": "fontes/geometria/caminhao-leve.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "fusca-pipeiro": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/fusca-pipeiro-default.png",
+          "size": [
+            192,
+            224
+          ],
+          "footprint": [
+            2,
+            4
+          ],
+          "visualFootprint": [
+            2,
+            4
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            96,
+            144
+          ],
+          "isoAnchor": [
+            64,
+            224
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            188,
+            144
+          ],
+          "category": "soulmonsters",
+          "displayName": "Fusca pipeiro",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/fusca-pipeiro.png",
+            "geometryGuide": "fontes/geometria/fusca-pipeiro.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "kombi-oficina": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/kombi-oficina-default.png",
+          "size": [
+            224,
+            256
+          ],
+          "footprint": [
+            2,
+            5
+          ],
+          "visualFootprint": [
+            2,
+            5
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            112,
+            165
+          ],
+          "isoAnchor": [
+            64,
+            256
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            220,
+            157
+          ],
+          "category": "soulmonsters",
+          "displayName": "Kombi oficina",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/kombi-oficina.png",
+            "geometryGuide": "fontes/geometria/kombi-oficina.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "jipe-pesquisa": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/jipe-pesquisa-default.png",
+          "size": [
+            224,
+            256
+          ],
+          "footprint": [
+            2,
+            5
+          ],
+          "visualFootprint": [
+            2,
+            5
+          ],
+          "bloqueia": true,
+          "height": 3,
+          "anchor": [
+            112,
+            160
+          ],
+          "isoAnchor": [
+            64,
+            256
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            220,
+            181
+          ],
+          "category": "soulmonsters",
+          "displayName": "Jipe de pesquisa",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/jipe-pesquisa.png",
+            "geometryGuide": "fontes/geometria/jipe-pesquisa.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "bugue-rabiola": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/bugue-rabiola-default.png",
+          "size": [
+            192,
+            224
+          ],
+          "footprint": [
+            2,
+            4
+          ],
+          "visualFootprint": [
+            2,
+            4
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            96,
+            148
+          ],
+          "isoAnchor": [
+            64,
+            224
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            188,
+            129
+          ],
+          "category": "soulmonsters",
+          "displayName": "Bugue rabiola",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/bugue-rabiola.png",
+            "geometryGuide": "fontes/geometria/bugue-rabiola.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "laboratorio-movel": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/laboratorio-movel-default.png",
+          "size": [
+            256,
+            320
+          ],
+          "footprint": [
+            3,
+            5
+          ],
+          "visualFootprint": [
+            3,
+            5
+          ],
+          "bloqueia": true,
+          "height": 3,
+          "anchor": [
+            128,
+            210
+          ],
+          "isoAnchor": [
+            96,
+            320
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            252,
+            211
+          ],
+          "category": "soulmonsters",
+          "displayName": "Laboratório móvel",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/laboratorio-movel.png",
+            "geometryGuide": "fontes/geometria/laboratorio-movel.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "resgate-elos": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/resgate-elos-default.png",
+          "size": [
+            224,
+            256
+          ],
+          "footprint": [
+            2,
+            5
+          ],
+          "visualFootprint": [
+            2,
+            5
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            112,
+            163
+          ],
+          "isoAnchor": [
+            64,
+            256
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            220,
+            166
+          ],
+          "category": "soulmonsters",
+          "displayName": "Resgate de elos",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/resgate-elos.png",
+            "geometryGuide": "fontes/geometria/resgate-elos.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "correio-pipas": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/correio-pipas-default.png",
+          "size": [
+            192,
+            224
+          ],
+          "footprint": [
+            2,
+            4
+          ],
+          "visualFootprint": [
+            2,
+            4
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            96,
+            144
+          ],
+          "isoAnchor": [
+            64,
+            224
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            188,
+            144
+          ],
+          "category": "soulmonsters",
+          "displayName": "Correio de pipas",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/correio-pipas.png",
+            "geometryGuide": "fontes/geometria/correio-pipas.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "picape-cooperativa": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/picape-cooperativa-default.png",
+          "size": [
+            224,
+            256
+          ],
+          "footprint": [
+            2,
+            5
+          ],
+          "visualFootprint": [
+            2,
+            5
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            112,
+            166
+          ],
+          "isoAnchor": [
+            64,
+            256
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            220,
+            155
+          ],
+          "category": "soulmonsters",
+          "displayName": "Picape da cooperativa",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/picape-cooperativa.png",
+            "geometryGuide": "fontes/geometria/picape-cooperativa.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "moto-entregas": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/moto-entregas-default.png",
+          "size": [
+            128,
+            160
+          ],
+          "footprint": [
+            1,
+            3
+          ],
+          "visualFootprint": [
+            1,
+            3
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            64,
+            105
+          ],
+          "isoAnchor": [
+            32,
+            160
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            124,
+            105
+          ],
+          "category": "mobilidade-rua",
+          "displayName": "Moto de entregas",
+          "kind": "vehicle",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_projected_ground_center",
+          "source": {
+            "file": "fontes/geradas/moto-entregas.png",
+            "geometryGuide": "fontes/geometria/moto-entregas.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "ponto-onibus": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/ponto-onibus-default.png",
+          "size": [
+            192,
+            224
+          ],
+          "footprint": [
+            2,
+            4
+          ],
+          "visualFootprint": [
+            2,
+            4
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            96,
+            176
+          ],
+          "isoAnchor": [
+            64,
+            224
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            188,
+            153
+          ],
+          "category": "mobilidade-rua",
+          "displayName": "Ponto de ônibus",
+          "kind": "prop",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_lowest_visible_contact",
+          "source": {
+            "file": "fontes/geradas/ponto-onibus.png",
+            "geometryGuide": "fontes/geometria/ponto-onibus.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "semaforo": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/semaforo-default.png",
+          "size": [
+            64,
+            192
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "bloqueia": true,
+          "height": 4,
+          "anchor": [
+            32,
+            176
+          ],
+          "isoAnchor": [
+            32,
+            192
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            60,
+            139
+          ],
+          "category": "mobilidade-rua",
+          "displayName": "Semáforo urbano",
+          "kind": "prop",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_lowest_visible_contact",
+          "source": {
+            "file": "fontes/geradas/semaforo.png",
+            "geometryGuide": "fontes/geometria/semaforo.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "bomba-combustivel": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/bomba-combustivel-default.png",
+          "size": [
+            64,
+            160
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "bloqueia": true,
+          "height": 3,
+          "anchor": [
+            32,
+            144
+          ],
+          "isoAnchor": [
+            32,
+            160
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            60,
+            105
+          ],
+          "category": "mobilidade-rua",
+          "displayName": "Bomba retrô",
+          "kind": "prop",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_lowest_visible_contact",
+          "source": {
+            "file": "fontes/geradas/bomba-combustivel.png",
+            "geometryGuide": "fontes/geometria/bomba-combustivel.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "carregador-eletrico": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/carregador-eletrico-default.png",
+          "size": [
+            64,
+            160
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "bloqueia": true,
+          "height": 3,
+          "anchor": [
+            32,
+            144
+          ],
+          "isoAnchor": [
+            32,
+            160
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            60,
+            122
+          ],
+          "category": "mobilidade-rua",
+          "displayName": "Carregador elétrico",
+          "kind": "prop",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_lowest_visible_contact",
+          "source": {
+            "file": "fontes/geradas/carregador-eletrico.png",
+            "geometryGuide": "fontes/geometria/carregador-eletrico.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "bancada-mecanica": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/bancada-mecanica-default.png",
+          "size": [
+            128,
+            192
+          ],
+          "footprint": [
+            2,
+            2
+          ],
+          "visualFootprint": [
+            2,
+            2
+          ],
+          "bloqueia": true,
+          "height": 3,
+          "anchor": [
+            64,
+            160
+          ],
+          "isoAnchor": [
+            64,
+            192
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            124,
+            131
+          ],
+          "category": "mobilidade-rua",
+          "displayName": "Bancada mecânica",
+          "kind": "prop",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_lowest_visible_contact",
+          "source": {
+            "file": "fontes/geradas/bancada-mecanica.png",
+            "geometryGuide": "fontes/geometria/bancada-mecanica.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "pilha-pneus": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/pilha-pneus-default.png",
+          "size": [
+            64,
+            128
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            32,
+            112
+          ],
+          "isoAnchor": [
+            32,
+            128
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            60,
+            75
+          ],
+          "category": "mobilidade-rua",
+          "displayName": "Pilha de pneus",
+          "kind": "prop",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_lowest_visible_contact",
+          "source": {
+            "file": "fontes/geradas/pilha-pneus.png",
+            "geometryGuide": "fontes/geometria/pilha-pneus.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    },
+    "barreira-transito": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/barreira-transito-default.png",
+          "size": [
+            128,
+            160
+          ],
+          "footprint": [
+            3,
+            1
+          ],
+          "visualFootprint": [
+            3,
+            1
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            64,
+            128
+          ],
+          "isoAnchor": [
+            96,
+            160
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            124,
+            111
+          ],
+          "category": "mobilidade-rua",
+          "displayName": "Barreira de trânsito",
+          "kind": "prop",
+          "facing": "front-lower-left",
+          "approval": "pending_owner_review",
+          "pivotStatus": "provisional_lowest_visible_contact",
+          "source": {
+            "file": "fontes/geradas/barreira-transito.png",
+            "geometryGuide": "fontes/geometria/barreira-transito.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha threshold 160; tight crop; uniform fit; original retained"
+          }
+        }
+      }
+    }
+  },
+  "materials": {},
+  "transitions": {},
+  "walls": {},
+  "stairs": {},
+  "bridges": {},
+  "role": "parked_mobility_library",
+  "campaignIntegrated": false,
+  "viewsPerAsset": 1,
+  "animated": false,
+  "placementStatus": "proposed_footprints_and_pivots_require_map_fit"
+}

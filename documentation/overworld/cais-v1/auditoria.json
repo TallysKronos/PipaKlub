@@ -1,0 +1,74 @@
+{
+  "nativeResolutions": [
+    [
+      1280,
+      960
+    ],
+    [
+      1280,
+      720
+    ]
+  ],
+  "surfaceCount": 23,
+  "stairFlights": 4,
+  "stairRisers": 37,
+  "supportElevationsPx": [
+    8.0,
+    12.0,
+    64.0,
+    128.0,
+    192.0,
+    224.0,
+    256.0,
+    288.0
+  ],
+  "reviewedProbeTargets": 36,
+  "reachedProbeTargets": 36,
+  "separateLowerAndUpperSurfaceIds": true,
+  "campaignIntegrated": false,
+  "projectTestSuitesRun": false,
+  "scope": "isolated geometry, visual capture and local support/movement probe",
+  "visibility": {
+    "centroidFallbackFaces": 0,
+    "cuts": 10006,
+    "hiddenFaces": 663,
+    "method": "projected opaque visibility with affine depth and convex fragments",
+    "sourceFaces": 2660,
+    "visibleConvexFragments": 3986
+  },
+  "corrections": {
+    "ladderPositions": [
+      [
+        -0.6,
+        5.6
+      ],
+      [
+        1.3,
+        6.4
+      ]
+    ],
+    "ladderRockMounts": [
+      -1,
+      1
+    ],
+    "postsUseHighestLowerSupport": true,
+    "towerBaseRug": [
+      8.8,
+      -1.3,
+      9.7,
+      -0.3
+    ],
+    "towerNearbyPalmsRemoved": true
+  },
+  "playableTraversal": {
+    "scene": "godot/scenes/overworld/pier/cais-jogavel.tscn",
+    "destinations": 68,
+    "reached": 68,
+    "miranteCompleted": true,
+    "depthAtlasSize": [
+      972,
+      912
+    ],
+    "campaignSaveUsed": false
+  }
+}

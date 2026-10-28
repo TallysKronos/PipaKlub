@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://shaders/overworld/cave_floor.gdshader" id="1_mgwwg"]
+[ext_resource type="Texture2D" path="res://assets/overworld/kits/cavernas-v2/surfaces/terra-gruta.png" id="2_pk31s"]
+
+[resource]
+shader = ExtResource("1_mgwwg")
+shader_parameter/surface_texture = ExtResource("2_pk31s")
+shader_parameter/cells_per_repeat = 8.0
+shader_parameter/surface_contrast = 0.75
+shader_parameter/base_tone = Color(0.7137255, 0.49411765, 0.3137255, 1)

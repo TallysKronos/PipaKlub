@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/overworld/cave_basin.gd" id="1_lo06m"]
+
+[node name="PocoRebaixado" type="Node2D" unique_id=765109191]
+script = ExtResource("1_lo06m")

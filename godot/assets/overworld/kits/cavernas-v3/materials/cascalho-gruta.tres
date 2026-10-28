@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://shaders/overworld/cave_floor.gdshader" id="1_5laxb"]
+[ext_resource type="Texture2D" path="res://assets/overworld/kits/cavernas-v3/surfaces/cascalho-gruta.png" id="2_1plu4"]
+
+[resource]
+shader = ExtResource("1_5laxb")
+shader_parameter/surface_texture = ExtResource("2_1plu4")
+shader_parameter/cells_per_repeat = 8.0
+shader_parameter/surface_contrast = 0.72
+shader_parameter/base_tone = Color(0.4117647, 0.3882353, 0.3529412, 1)

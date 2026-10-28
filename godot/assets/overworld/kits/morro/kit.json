@@ -16,7 +16,7 @@
       "default": "telha",
       "variants": {
         "telha": {
-          "file": "pecas/casa-morro-telha.png",
+          "file": "pecas/casa-morro-telha-v3.png",
           "size": [
             192,
             320
@@ -41,31 +41,22 @@
           ],
           "shadow": "sombras/contato.png",
           "source": {
-            "file": "art/overworld/kits/morro/fontes/casas-morro-v2.png",
-            "slot": 0,
-            "grid": [
-              3,
-              1
-            ],
-            "alpha_bbox": [
-              47,
-              29,
-              665,
-              664
-            ],
-            "geometryGuide": "fontes/geometria/casa-morro-telha.svg",
-            "normalization": "uniform, lowest base at front anchor",
-            "tool": "image_gen.imagegen"
+            "file": "fontes/fachadas-v3/telha.png",
+            "tool": "image_gen.imagegen",
+            "geometryGuide": "fontes/geometria/casa-morro-telha.png",
+            "normalization": "alpha cleanup, tight crop, uniform width fit, existing front base anchor"
           },
-          "approval": "pending_concept_review",
+          "approval": "pending_owner_review",
           "rasterSize": [
             188,
-            193
+            200
           ],
+          "groundAnchor": "front",
+          "doorFace": "v+",
           "scene": "res://scenes/overworld/pieces/morro/casa-morro-telha.tscn"
         },
         "laje": {
-          "file": "pecas/casa-morro-laje.png",
+          "file": "pecas/casa-morro-laje-v3.png",
           "size": [
             192,
             320
@@ -90,31 +81,22 @@
           ],
           "shadow": "sombras/contato.png",
           "source": {
-            "file": "art/overworld/kits/morro/fontes/casas-morro-v2.png",
-            "slot": 1,
-            "grid": [
-              3,
-              1
-            ],
-            "alpha_bbox": [
-              50,
-              34,
-              663,
-              673
-            ],
-            "geometryGuide": "fontes/geometria/casa-morro-laje.svg",
-            "normalization": "uniform, lowest base at front anchor",
-            "tool": "image_gen.imagegen"
+            "file": "fontes/fachadas-v3/laje.png",
+            "tool": "image_gen.imagegen",
+            "geometryGuide": "fontes/geometria/casa-morro-laje.png",
+            "normalization": "alpha cleanup, tight crop, uniform width fit, existing front base anchor"
           },
-          "approval": "pending_concept_review",
+          "approval": "pending_owner_review",
           "rasterSize": [
             188,
-            196
+            199
           ],
+          "groundAnchor": "front",
+          "doorFace": "v+",
           "scene": "res://scenes/overworld/pieces/morro/casa-morro-laje.tscn"
         },
         "muro-chapisco": {
-          "file": "pecas/casa-morro-muro-chapisco.png",
+          "file": "pecas/casa-morro-muro-chapisco-v3.png",
           "size": [
             192,
             320
@@ -139,28 +121,136 @@
           ],
           "shadow": "sombras/contato.png",
           "source": {
-            "file": "art/overworld/kits/morro/fontes/casas-morro-v2.png",
-            "slot": 2,
-            "grid": [
-              3,
-              1
-            ],
-            "alpha_bbox": [
-              36,
-              56,
-              652,
-              677
-            ],
-            "geometryGuide": "fontes/geometria/casa-morro-muro-chapisco.svg",
-            "normalization": "uniform, lowest base at front anchor",
-            "tool": "image_gen.imagegen"
+            "file": "fontes/fachadas-v3/muro-chapisco.png",
+            "tool": "image_gen.imagegen",
+            "geometryGuide": "fontes/geometria/casa-morro-muro-chapisco.png",
+            "normalization": "alpha cleanup, tight crop, uniform width fit, existing front base anchor"
           },
-          "approval": "pending_concept_review",
+          "approval": "pending_owner_review",
           "rasterSize": [
             188,
-            190
+            199
           ],
+          "groundAnchor": "front",
+          "doorFace": "v+",
           "scene": "res://scenes/overworld/pieces/morro/casa-morro-muro-chapisco.tscn"
+        },
+        "telha-direita": {
+          "file": "pecas/casa-morro-telha-direita-v4.png",
+          "size": [
+            192,
+            320
+          ],
+          "footprint": [
+            3,
+            3
+          ],
+          "visualFootprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "height": 7,
+          "anchor": [
+            96,
+            272
+          ],
+          "isoAnchor": [
+            96,
+            320
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "fontes/bordas-v4/telha-direita.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "threshold alpha halo; tight crop; uniform scale; existing canvas, anchor and collision"
+          },
+          "approval": "pending_owner_review",
+          "rasterSize": [
+            188,
+            202
+          ],
+          "groundAnchor": "front",
+          "doorFace": "u+",
+          "scene": "res://scenes/overworld/pieces/morro/casa-morro-telha-direita.tscn"
+        },
+        "laje-direita": {
+          "file": "pecas/casa-morro-laje-direita-v4.png",
+          "size": [
+            192,
+            320
+          ],
+          "footprint": [
+            3,
+            3
+          ],
+          "visualFootprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "height": 7,
+          "anchor": [
+            96,
+            272
+          ],
+          "isoAnchor": [
+            96,
+            320
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "fontes/bordas-v4/laje-direita.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "threshold alpha halo; tight crop; uniform scale; existing canvas, anchor and collision"
+          },
+          "approval": "pending_owner_review",
+          "rasterSize": [
+            188,
+            200
+          ],
+          "groundAnchor": "front",
+          "doorFace": "u+",
+          "scene": "res://scenes/overworld/pieces/morro/casa-morro-laje-direita.tscn"
+        },
+        "muro-chapisco-direita": {
+          "file": "pecas/casa-morro-muro-chapisco-direita-v4.png",
+          "size": [
+            192,
+            320
+          ],
+          "footprint": [
+            3,
+            3
+          ],
+          "visualFootprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "height": 7,
+          "anchor": [
+            96,
+            272
+          ],
+          "isoAnchor": [
+            96,
+            320
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "fontes/bordas-v4/muro-chapisco-direita.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "threshold alpha halo; tight crop; uniform scale; existing canvas, anchor and collision"
+          },
+          "approval": "pending_owner_review",
+          "rasterSize": [
+            188,
+            200
+          ],
+          "groundAnchor": "front",
+          "doorFace": "u+",
+          "scene": "res://scenes/overworld/pieces/morro/casa-morro-muro-chapisco-direita.tscn"
         }
       }
     },
@@ -263,6 +353,43 @@
           ],
           "approval": "pending_owner_review",
           "scene": "res://scenes/overworld/pieces/morro/varal-default.tscn"
+        },
+        "pipas": {
+          "file": "pecas/varal-pipas-v5.png",
+          "size": [
+            128,
+            192
+          ],
+          "footprint": [
+            2,
+            2
+          ],
+          "visualFootprint": [
+            2,
+            2
+          ],
+          "bloqueia": true,
+          "height": 4,
+          "anchor": [
+            64,
+            160
+          ],
+          "isoAnchor": [
+            64,
+            192
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "fontes/identidade-v5/varal-pipas.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha halo cleanup, tight crop, uniform fit, original pivot and collision"
+          },
+          "rasterSize": [
+            108,
+            112
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/morro/varal-pipas.tscn"
         }
       }
     },
@@ -270,7 +397,7 @@
       "default": "default",
       "variants": {
         "default": {
-          "file": "pecas/banca-pipas-default.png",
+          "file": "pecas/banca-pipas-v2.png",
           "size": [
             192,
             256
@@ -295,24 +422,15 @@
           ],
           "shadow": "sombras/contato.png",
           "source": {
-            "file": "art/overworld/kits/morro/fontes/pecas-morro.png",
-            "slot": 2,
-            "grid": [
-              3,
-              2
-            ],
-            "alpha_bbox": [
-              0,
-              15,
-              474,
-              512
-            ]
+            "file": "fontes/marcos-v2/banca.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha halo cleanup, tight crop, uniform fit; existing anchor and footprint preserved"
           },
           "rasterSize": [
-            107,
+            109,
             112
           ],
-          "approval": "pending_owner_review",
+          "approval": "pending_native_visual_review",
           "scene": "res://scenes/overworld/pieces/morro/banca-pipas-default.tscn"
         }
       }
@@ -321,7 +439,7 @@
       "default": "default",
       "variants": {
         "default": {
-          "file": "pecas/toldo-bandeirolas-default.png",
+          "file": "pecas/toldo-bandeirolas-v2.png",
           "size": [
             192,
             288
@@ -346,24 +464,15 @@
           ],
           "shadow": "sombras/contato.png",
           "source": {
-            "file": "art/overworld/kits/morro/fontes/pecas-morro.png",
-            "slot": 3,
-            "grid": [
-              3,
-              2
-            ],
-            "alpha_bbox": [
-              31,
-              22,
-              512,
-              468
-            ]
+            "file": "fontes/marcos-v2/toldo.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha halo cleanup, tight crop, uniform fit; existing anchor and footprint preserved"
           },
           "rasterSize": [
-            138,
+            115,
             128
           ],
-          "approval": "pending_owner_review",
+          "approval": "pending_native_visual_review",
           "scene": "res://scenes/overworld/pieces/morro/toldo-bandeirolas-default.tscn"
         }
       }
@@ -372,7 +481,7 @@
       "default": "default",
       "variants": {
         "default": {
-          "file": "pecas/mirante-guarda-corpo-default.png",
+          "file": "pecas/mirante-guarda-corpo-v4.png",
           "size": [
             128,
             160
@@ -397,24 +506,16 @@
           ],
           "shadow": "sombras/contato.png",
           "source": {
-            "file": "art/overworld/kits/morro/fontes/pecas-morro.png",
-            "slot": 4,
-            "grid": [
-              3,
-              2
-            ],
-            "alpha_bbox": [
-              53,
-              111,
-              509,
-              405
-            ]
+            "file": "fontes/bordas-v4/guarda-corpo-frontal.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "threshold alpha halo; tight crop; uniform scale; existing canvas, anchor and collision"
           },
           "rasterSize": [
-            87,
-            56
+            122,
+            64
           ],
           "approval": "pending_owner_review",
+          "groundAnchor": "front",
           "scene": "res://scenes/overworld/pieces/morro/mirante-guarda-corpo-default.tscn"
         }
       }
@@ -474,7 +575,7 @@
       "default": "default",
       "variants": {
         "default": {
-          "file": "pecas/portao-default.png",
+          "file": "pecas/portao-v2.png",
           "size": [
             160,
             208
@@ -499,9 +600,11 @@
           ],
           "shadow": "sombras/contato.png",
           "source": {
-            "generator": "tools/overworld/build_art.py"
+            "generator": "tools/overworld/refine_morro_gate.py",
+            "editable": "pecas/portao-v2.svg",
+            "note": "Existing SVG geometry refined; central 2.5-cell opening, no overhead rail across the neighbouring window"
           },
-          "approval": "pending_concept_review",
+          "approval": "pending_owner_review",
           "scene": "res://scenes/overworld/pieces/morro/portao-default.tscn"
         }
       }
@@ -1174,12 +1277,14 @@
   },
   "bridges": {},
   "context": {
-    "radius": 12,
+    "radius": 6,
     "material": "canteiro",
     "color": "668A55",
     "asset": "casa-morro",
     "spacing": 5,
-    "role": "non-playable gardens and background houses, no collision or events"
+    "role": "quiet background; all visible houses from authored source lots",
+    "automaticTrees": false,
+    "houses": false
   },
   "decals": [
     {
@@ -1324,6 +1429,83 @@
         128,
         256
       ]
+    }
+  },
+  "automaticLotTrees": false,
+  "automaticYardFurniture": false,
+  "composition": {
+    "morro-praca-da-chegada": {
+      "houses": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        14,
+        23
+      ]
+    },
+    "morro-escadaria-da-sombra": {
+      "houses": [
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        16,
+        17
+      ]
+    },
+    "morro-laje-dos-ventos": {
+      "houses": [
+        3,
+        4,
+        5,
+        7,
+        9,
+        19,
+        16,
+        24
+      ]
+    },
+    "morro-mirante-da-caixa-dagua": {
+      "houses": [
+        3,
+        4,
+        6,
+        7,
+        9,
+        15,
+        16,
+        17
+      ]
+    },
+    "morro-parque-dos-ventos": {
+      "houses": [
+        3,
+        5,
+        6,
+        7,
+        9,
+        10,
+        16
+      ]
+    }
+  },
+  "compositionRevision": "PIP-87 authored houses; no random tree or rooftop furniture fill; original footprints and navigation unchanged",
+  "automaticLotSmall": false,
+  "areaVisuals": {
+    "morro-laje-dos-ventos": {
+      "floorSurfaceFile": "chao/laje-superficies-v5.png",
+      "identity": "sunlit cement kite-making courtyard"
+    },
+    "morro-escadaria-da-sombra": {
+      "canopyShadow": 0.28
+    },
+    "morro-parque-dos-ventos": {
+      "canopyShadow": 0.13
     }
   }
 }

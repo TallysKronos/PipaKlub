@@ -1,0 +1,53 @@
+{
+  "surfaces": [
+    {
+      "id": "lago-claro",
+      "oppositeXError": 0,
+      "oppositeYError": 0
+    },
+    {
+      "id": "lago-profundo",
+      "oppositeXError": 0,
+      "oppositeYError": 0
+    },
+    {
+      "id": "rio-claro",
+      "oppositeXError": 0,
+      "oppositeYError": 0
+    },
+    {
+      "id": "rio-escuro",
+      "oppositeXError": 0,
+      "oppositeYError": 0
+    },
+    {
+      "id": "corredeira",
+      "oppositeXError": 0,
+      "oppositeYError": 0
+    },
+    {
+      "id": "agua-pantano",
+      "oppositeXError": 0,
+      "oppositeYError": 0
+    },
+    {
+      "id": "cortina-suave",
+      "oppositeXError": 0,
+      "oppositeYError": 0
+    },
+    {
+      "id": "cortina-forte",
+      "oppositeXError": 0,
+      "oppositeYError": 0
+    }
+  ],
+  "shoreGeometry": {
+    "canonicalStates": 47,
+    "consistentHorizontalPairs": 169,
+    "edgePortMismatches": [],
+    "note": "Rotationally symmetric geometry; horizontal port audit covers rotated edges. Raster/layout review still required."
+  },
+  "fixedMask": true,
+  "sourceCount": 12,
+  "projectedTiles": 282
+}

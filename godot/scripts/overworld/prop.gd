@@ -11,7 +11,10 @@ func configure(info: Dictionary, footprint: Vector2i, level: float, blocks: bool
 		add_child(art)
 	art.texture = load(info.texture)
 	art.centered = false
-	art.position = center_offset - Vector2(info.anchor[0], info.anchor[1]) - Vector2(0, level * 64)
+	# Most props anchor at the lot centre. Architecture authored with the
+	# lowest front corner as anchor must instead meet the sorting corner.
+	var art_base := Vector2.ZERO if info.get("groundAnchor", "center") == "front" else center_offset
+	art.position = art_base - Vector2(info.anchor[0], info.anchor[1]) - Vector2(0, level * 64)
 	if bool(info.get("foliageQuiet",false)):
 		var foliage_material := ShaderMaterial.new()
 		foliage_material.shader = load("res://shaders/parque_foliage.gdshader")
