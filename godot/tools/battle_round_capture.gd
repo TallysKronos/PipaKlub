@@ -29,6 +29,7 @@ func run() -> void:
 	if DisplayServer.get_name()=="headless":printerr("Renderer required");quit(1);return
 	root.size=Vector2i(1280,720)
 	output=ProjectSettings.globalize_path("res://../mockups/revisao/rodadas")
+	if "--pip78" in OS.get_cmdline_user_args():output=ProjectSettings.globalize_path("res://../mockups/revisao/pip78/rodadas")
 	DirAccess.make_dir_recursive_absolute(output)
 	var front:=Front.new()
 	front.session._store=Store.new("user://round-review-"+State.new_id())
@@ -75,7 +76,7 @@ func run() -> void:
 			var danger:bool=rivals.any(func(actor:Dictionary):return actor.signatureWindup>0 or view.model.attack_notice(actor).active)
 			trace.append({"time":time,"player":[view.model.p.x,view.model.p.y],"hp":view.model.p.hp,"energy":view.model.p.energy,"danger":danger,"outcome":view.model.outcome})
 			var ended:bool=not view.model.outcome.is_empty() or (view.model.get("intermission")!=null and view.model.intermission>0)
-			if tick%60==0 or (danger and not previous_danger) or ended:
+			if tick%10==0 or (danger and not previous_danger) or ended:
 				var file:="%s-%04d.png"%[fixture,tick]
 				await frame(file);frames.append(file)
 			previous_danger=danger

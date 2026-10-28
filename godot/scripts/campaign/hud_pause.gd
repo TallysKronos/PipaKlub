@@ -5,15 +5,17 @@ signal chosen(action: String)
 var player: Dictionary = {}
 var battle_paused := false
 var partner_portrait:Texture2D
+var focus_action:="resume"
+var buttons:Dictionary={}
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	var column := VBoxContainer.new()
 	column.anchor_left = .07
 	column.anchor_right = .43
-	column.anchor_top = .12
+	column.anchor_top = .06
 	column.anchor_bottom = .90
-	column.add_theme_constant_override("separation",12)
+	column.add_theme_constant_override("separation",8)
 	add_child(column)
 	var title := Label.new()
 	title.text = "UM RESPIRO"
@@ -27,9 +29,9 @@ func _ready() -> void:
 	column.add_child(subtitle)
 	var first: Button
 	var index := 0
-	for option in [["Retomar", "resume", "back"], ["Equipe", "team", "team"], ["Mochila", "bag", "bag"], ["Configurações", "settings", "settings"], ["Salvar e voltar ao menu", "menu", "save"]]:
+	for option in [["Retomar", "resume", "back"], ["Equipe", "team", "team"], ["Mochila", "bag", "bag"], ["Mapa", "map", "map"], ["Configurações", "settings", "settings"], ["Salvar jornada", "save", "save"], ["Voltar ao menu", "menu", "back"]]:
 		var margin := MarginContainer.new()
-		margin.add_theme_constant_override("margin_left", index * 10)
+		margin.add_theme_constant_override("margin_left", index * 18)
 		margin.add_theme_constant_override("margin_right", 24)
 		column.add_child(margin)
 		var button := Button.new()
@@ -38,12 +40,13 @@ func _ready() -> void:
 		button.icon = Hud.icon(option[2])
 		button.expand_icon = true
 		button.add_theme_constant_override("icon_max_width", 30)
-		button.custom_minimum_size.y = 54
+		button.custom_minimum_size.y = 46
 		button.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
 		button.tooltip_text=option[0]
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		button.pressed.connect(func(): chosen.emit(option[1]))
 		margin.add_child(button)
+		buttons[option[1]]=button
 		if index == 0: first = button
 		index += 1
 	var hints := HBoxContainer.new()
@@ -97,7 +100,7 @@ func _ready() -> void:
 			partner_details.add_child(bar)
 		_copy("Retome quando estiver pronto." if battle_paused else "Reparos no ateliê do Sr. Assis." if condition.line<100 or condition.structure<100 else "Pronto para explorar.",details,16,Hud.MUTED)
 	if not found:_copy("Sua história está começando.",partner_details,18,Hud.MUTED)
-	Hud.focus_later(first)
+	Hud.focus_later(buttons.get(focus_action,first))
 func _copy(text:String,parent:Node,font_size:int,color:Color) -> void:
 	var label:=Label.new()
 	label.text=text
@@ -109,5 +112,9 @@ func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO, size), Tokens.VEU)
 	draw_colored_polygon(PackedVector2Array([Vector2.ZERO, Vector2(size.x * .51, 0), Vector2(size.x * .42, size.y), Vector2(0, size.y)]), Hud.INK)
 	draw_line(Vector2(size.x * .51, 0), Vector2(size.x * .42, size.y), Hud.CYAN, 4, true)
+	for x in range(20,int(size.x*.4),22):
+		for y in range(20,int(size.y),22):draw_circle(Vector2(x,y),1.3,Color(Hud.PAPER,.08))
+	var kael:Texture2D=preload("res://assets/campaign/portrait-kael.png")
+	draw_texture_rect(kael,Hud.fit_texture(kael,Rect2(size.x*.58,size.y*.06,size.x*.32,size.y*.75)),false,Color(Hud.CYAN,.08))
 	var art := Hud.ornament(2)
 	draw_texture_rect(art, Hud.fit_texture(art, Rect2(size.x * .77, size.y * .73, 220, 146)), false)

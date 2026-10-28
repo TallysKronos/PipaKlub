@@ -33,6 +33,10 @@ func measure(id: String, requested: Vector2i) -> Dictionary:
 	var entries: Array = []
 	var findings: Array = []
 	var nodes := controls(front)
+	var modals:=get_nodes_in_group("manga_dialogue")
+	if not modals.is_empty():
+		var top:Node=modals[-1]
+		nodes.assign(nodes.filter(func(node:Control):return top==node or top.is_ancestor_of(node)))
 	var decorations := DecorOverlap.inspect(front)
 	findings.append_array(decorations.findings)
 	for node in nodes:
@@ -107,9 +111,11 @@ func run_audit() -> void:
 			if id in ["controls", "bag-full", "team-long"]:
 				var reached := 0
 				for node in controls(front):
-					if not node is Button or not _in_scroll(node) or node.disabled: continue
+					if not is_instance_valid(node) or not node is Button or not _in_scroll(node) or node.disabled: continue
 					node.grab_focus()
 					for frame in 4: await process_frame
+					# Responsive pagination can replace the old row after viewport reflow.
+					if not is_instance_valid(node) or not node.is_inside_tree():continue
 					if area(effective_rect(node)) / area(node.get_global_rect()) < .985:
 						record.findings.append({"kind": "scroll_focus_inaccessible", "priority": "P1", "text": node.text})
 					else: reached += 1

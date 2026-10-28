@@ -100,6 +100,10 @@ func run_checks() -> void:
 	for scenario in ["long-notice", "starter-confirm", "workshop-cancel", "morro-dialog", "binding-dialog"]:
 		Fixtures.show(front, scenario)
 		await frame()
+		if scenario=="binding-dialog":
+			check(front.binding_target=="cut" and front.binding_rows.cut.feedback.visible,"inline binding feedback visible")
+			check(dialogs(front).is_empty(),"inline remapping does not open modal")
+			continue
 		var active_dialogs := dialogs(front)
 		check(active_dialogs.size() == 1, "one dialog in " + scenario)
 		for dialog in active_dialogs:

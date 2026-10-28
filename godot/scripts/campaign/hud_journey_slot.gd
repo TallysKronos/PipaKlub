@@ -27,7 +27,7 @@ func _ready() -> void:
 	add_child(row)
 	var art:=TextureRect.new()
 	art.texture=partner_portrait if partner_portrait!=null else Hud.icon("pipa",true)
-	art.modulate=Color.WHITE if partner_portrait!=null else Hud.Tokens.TINTA_3
+	art.modulate=Hud.Tokens.UNTINTED if partner_portrait!=null else Hud.Tokens.TINTA_3
 	art.custom_minimum_size=Vector2(112,112)
 	art.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
 	art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
@@ -79,7 +79,7 @@ func _ready() -> void:
 		scene_art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		scene_art.mouse_filter=Control.MOUSE_FILTER_IGNORE
 		place.add_child(scene_art)
-		var place_caption:=caption("LOCAL ATUAL",place,12)
+		var place_caption:=caption("LOCAL ATUAL",place,14)
 		place_caption.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 		place_caption.add_theme_color_override("font_color",Hud.MUTED)
 	var commands:=VBoxContainer.new()

@@ -26,7 +26,7 @@ func run_checks() -> void:
 	await settle()
 	front._process(0)
 	await settle()
-	check(front.status.autowrap_mode == TextServer.AUTOWRAP_OFF, "interaction prompt cannot wrap one letter per line")
+	check(front.status.get_line_count()<=2 and front.status.size.x>=180,"interaction prompt uses at most two readable lines")
 	check(front.status.get_parent().size.x > 180 and front.status.size.y < 60, "interaction prompt has readable dimensions")
 	Fixtures.show(front, "battle")
 	await settle()

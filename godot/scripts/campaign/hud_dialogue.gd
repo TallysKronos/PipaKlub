@@ -62,11 +62,13 @@ func _ready() -> void:
 				target.show()
 				if is_instance_valid(target.map):target.map.show())
 	portrait=Portrait.new();add_child(portrait)
-	other_portrait=Portrait.new();other_portrait.modulate=Color(.65,.65,.65);add_child(other_portrait)
+	other_portrait=Portrait.new();other_portrait.modulate=Hud.Tokens.alpha(Hud.Tokens.UNTINTED,.65);add_child(other_portrait)
 	move_child(other_portrait,0)
 	box=Surface.new();add_child(box)
 	body=Label.new()
 	body.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	body.size_flags_vertical=Control.SIZE_FILL
+	body.vertical_alignment=VERTICAL_ALIGNMENT_TOP
 	body.add_theme_font_override("font",Hud.font())
 	box.add_child(body)
 	nameplate=load("res://scripts/campaign/hud_result_plate.gd").new()
@@ -176,6 +178,7 @@ func _show_page() -> void:
 	Hud.focus_later(target)
 	call_deferred("_align_choices")
 func _align_choices() -> void:
+	box.size=Vector2(size.x-box.position.x-32,maxf(180,240*size.y/1080.0))
 	choices.position.y=box.position.y-choices.get_combined_minimum_size().y-60
 func next_page() -> void:
 	if page_index<pages.size()-1:page_index+=1;_show_page()

@@ -52,6 +52,22 @@ static func decorate(target: Control, index: int = 0, extent: Vector2 = Vector2(
 static func secondary_button(button: Button) -> void:
 	button.theme_type_variation = "RecorteSecondaryButton"
 
+static func pause_glyph(button:Button) -> void:
+	button.text=""
+	button.icon=preload("res://scripts/campaign/controls.gd").glyph("pause",true)
+	button.expand_icon=true
+	button.icon_alignment=HORIZONTAL_ALIGNMENT_CENTER
+	button.add_theme_constant_override("icon_max_width",32)
+	button.custom_minimum_size=Vector2(56,56)
+	button.tooltip_text="Pausar"
+	for state in ["normal","hover","pressed","focus","disabled"]:
+		var style:=StyleBoxFlat.new()
+		style.bg_color=INK
+		style.border_color=CYAN if state in ["hover","focus"] else TRACK
+		style.set_border_width_all(2)
+		style.set_content_margin_all(6)
+		button.add_theme_stylebox_override(state,style)
+
 static func navigation_button(button:Button, secondary:bool=false, icon_id:String="") -> void:
 	button.custom_minimum_size.y=maxf(48,button.custom_minimum_size.y)
 	button.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS

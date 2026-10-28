@@ -487,24 +487,35 @@ func _draw_phase() -> void:
 	if model.get("intermission")!=null and model.intermission>0:
 		message="EMPATE" if "empatada" in model.round_message else "CORTOU!" if model.round_message.begins_with(model.p.name+" venceu") else "RODADA PERDIDA"
 	elif model.intro>0:
-		message="LACERTUBO · O GUARDIÃO DOS CANOS" if model.q.boss else "RODADA %d · %d"%[model.round_number if model.get("round_number")!=null else 1,mini(3,ceili(model.intro))]
+		message="LACERTUBO" if model.q.boss else "RODADA %d · %d"%[model.round_number if model.get("round_number")!=null else 1,mini(3,ceili(model.intro))]
 	elif launch_age<.4:message="JÁ!"
 	if message.is_empty():return
-	var rect:=Rect2(size.x/2-320,size.y*.38,640,86)
-	if model.q.boss and model.intro>0 and not reduced_motion:
-		for index in 24:
-			var direction:=Vector2.from_angle(index*TAU/24)
-			draw_line(rect.get_center()+direction*size.length(),rect.get_center()+direction*420,Tokens.alpha(Tokens.PAPEL,.35),2,true)
-	draw_texture_rect(Ink.brush(1),rect.grow(36),false)
+	var rect:=_phase_rect()
+	if not rect.has_area():return
 	Ink.plate(self,rect,Tokens.TINTA,Tokens.TINTA)
-	var font_size:=28 if message.length()>24 else 38
+	var font_size:=28
 	var width:=Hud.lettering().get_string_size(message,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x
-	draw_string(Hud.lettering(),Vector2(size.x/2-width/2,rect.position.y+45),message,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,Tokens.RABIOLA)
+	draw_string(Hud.lettering(),Vector2(size.x/2-width/2,rect.position.y+32),message,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,Tokens.RABIOLA)
 	if model.get("intermission")!=null and model.intermission>0:
 		for index in model.actors.size():
 			var actor_name:String=Ink.ellipsis(model.actors[index].name,Hud.font(true),14,70)
 			draw_string(Hud.font(true),Vector2(rect.position.x+16+index*180,rect.end.y-11),actor_name,HORIZONTAL_ALIGNMENT_LEFT,-1,14,Tokens.PAPEL)
 			CornerHud.diamonds(self,Vector2(rect.position.x+90+index*180,rect.end.y-15),model.actors[index].rounds,model.rounds_to_win,Tokens.CEU if index==0 else Tokens.RABIOLA)
+
+func _phase_rect() -> Rect2:
+	var actors:Array=model.actors if model.get("actors")!=null else [model.p,model.q]
+	var extent:=Vector2(560,72) if model.get("intermission")!=null and model.intermission>0 else Vector2(360,48)
+	for y in [174.0,size.y*.67]:
+		var candidate:=Rect2(Vector2(size.x/2-extent.x/2,y),extent)
+		var blocked:=false
+		for actor:Dictionary in actors:
+			var point:=_project_field(Vector2(actor.x,actor.y))
+			if candidate.grow(10).intersects(Rect2(point-Vector2(100,85),Vector2(200,170))):blocked=true
+		for rival:Dictionary in actors.slice(1):
+			var crossing:Dictionary=model.contact_hint(model.p,rival)
+			if not crossing.is_empty() and candidate.grow(36).has_point(_project_field(crossing.point)):blocked=true
+		if not blocked:return candidate
+	return Rect2()
 
 
 func _draw_anchor(x: float, color: Color) -> void:

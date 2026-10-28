@@ -24,7 +24,7 @@ func caption(text:String,parent:Node,font_size:int=18,role:String="Label") -> La
 	label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	label.add_theme_font_size_override("font_size",font_size)
 	label.theme_type_variation=role
-	label.add_theme_color_override("font_outline_color",Color("081c2a"))
+	label.add_theme_color_override("font_outline_color",Hud.INK)
 	label.add_theme_constant_override("outline_size",3)
 	parent.add_child(label)
 	return label

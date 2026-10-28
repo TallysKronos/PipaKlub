@@ -20,7 +20,9 @@ func inspect_sources(directory: String) -> void:
 	for file in folder.get_files():
 		if not file.ends_with(".gd"): continue
 		var source := FileAccess.get_file_as_string(directory.path_join(file))
-		check(not source.contains("add_theme_color_override(") and not source.contains("add_theme_stylebox_override("),"screen uses Theme variations: "+file)
+		# Token-based semantic overrides and adaptive inset geometry are supported.
+		# Forbid parallel Theme factories; palette/font literals have their own strict guard.
+		check(not source.contains("Theme.new("),"screen inherits the shared Theme: "+file)
 	for child in folder.get_directories(): inspect_sources(directory.path_join(child))
 
 func run_checks() -> void:

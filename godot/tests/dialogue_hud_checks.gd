@@ -53,7 +53,10 @@ func run() -> void:
 		for reduced in [false,true]:
 			if "--quick" in OS.get_cmdline_user_args() and reduced:continue
 			front.preferences.reduced_motion=reduced
-			for scenario in ["morro-dialog","long-notice","starter-confirm","workshop-cancel","binding-dialog","nina","assis"]:
+			Fixtures.show(front,"binding-dialog");await settle()
+			check(front.binding_target=="cut" and front.binding_rows.cut.feedback.visible,"inline key capture is readable")
+			check(get_nodes_in_group("manga_dialogue").is_empty(),"inline capture is separate from narrative dialogue")
+			for scenario in ["morro-dialog","long-notice","starter-confirm","workshop-cancel","nina","assis"]:
 				Fixtures.show(front,"park" if scenario=="nina" else "professor" if scenario=="assis" else scenario)
 				if scenario=="nina":front._notice("Nina: [emo=suor]Ele cortou minha linha perto dos canos. Meu Carcará ficou lá… Eu só consegui voltar até aqui.")
 				if scenario=="assis":front._notice("Sr. Assis: [emo=brilho]Pronto! Reforcei a linha e a armação dos seus parceiros. Estão novos em folha.")

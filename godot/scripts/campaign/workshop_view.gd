@@ -4,6 +4,7 @@ const Controls = preload("res://scripts/campaign/controls.gd")
 signal progress_changed(state: Dictionary)
 signal finished(outcome: Dictionary)
 signal leave_requested
+signal pause_requested
 const Hud = preload("res://scripts/campaign/hud.gd")
 const Workshop = preload("res://scripts/campaign/workshop_model.gd")
 const TITLES := ["Armação · arraste uma vareta até cada apoio", "Nós · segure um nó e solte na faixa verde", "Papel · recorte seguindo o pontilhado", "Voo · use A/D ou as setas para equilibrar", "Despertar · segure o elo e solte antes do excesso de brilho"]
@@ -23,6 +24,10 @@ var restock_button: Button
 var background: Texture2D
 var bottom_panel: PanelContainer
 var pause_button: Button
+var feedback_age:=2.0
+var feedback_success:=false
+const STAGES:=["ARMAÇÃO","NÓS","PAPEL","VOO","DESPERTAR"]
+const INSTRUCTIONS:=["Encaixe as varetas nos apoios.","Solte cada nó na faixa verde.","Recorte seguindo o pontilhado.","Use as teclas de movimento para equilibrar.","Solte o elo antes do excesso de brilho."]
 
 func configure(kind: String, seed_value: int, state: Dictionary = {}) -> void:
 	model = Workshop.new(kind, seed_value)
@@ -38,10 +43,11 @@ func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	background = load("res://assets/campaign/workshop-background.png")
 	bottom_panel = PanelContainer.new()
-	bottom_panel.anchor_right = 1
+	bottom_panel.anchor_top=1
 	bottom_panel.anchor_bottom = 1
 	bottom_panel.offset_left = 24
-	bottom_panel.offset_right = -24
+	bottom_panel.offset_right = 510
+	bottom_panel.offset_top=-96
 	bottom_panel.offset_bottom = -16
 	bottom_panel.theme_type_variation = "PanelContainer"
 	add_child(bottom_panel)
@@ -69,19 +75,27 @@ func _ready() -> void:
 	restock_button.pressed.connect(_restock)
 	_add_action(actions,restock_button)
 	pause_button = Button.new()
-	pause_button.text = "Pausar"
-	pause_button.pressed.connect(_pause)
-	_add_action(actions,pause_button)
+	pause_button.tooltip_text="Pausar montagem"
+	pause_button.icon=Controls.glyph("pause",true)
+	pause_button.expand_icon=true
+	pause_button.add_theme_constant_override("icon_max_width",32)
+	pause_button.pressed.connect(func():_pause();pause_requested.emit())
+	add_child(pause_button)
+	pause_button.anchor_left=1;pause_button.anchor_right=1
+	pause_button.offset_left=-80;pause_button.offset_right=-24
+	pause_button.offset_top=20;pause_button.offset_bottom=74
 	var back := Button.new()
 	back.text = "Sair da bancada"
 	back.pressed.connect(func(): _pause(); leave_requested.emit())
-	_add_action(actions,back)
+	back.hide()
 	for button in [resume_button, restock_button, pause_button, back]:
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.custom_minimum_size.y = 56
 	Hud.secondary_button(back)
 	Hud.secondary_button(pause_button)
-	Hud.fit_footer(bottom_panel, bottom, 110)
+	Hud.pause_glyph(pause_button)
+	back.queue_free()
+	Hud.fit_footer(bottom_panel,bottom,110)
 
 func _add_action(parent: HBoxContainer, button: Button) -> void:
 	var space := Hud.focus_space(parent)
@@ -92,10 +106,10 @@ func _add_action(parent: HBoxContainer, button: Button) -> void:
 	button.visibility_changed.connect(func(): space.visible = button.visible)
 
 func _scale() -> float:
-	return minf(size.x / 960, maxf(200, bottom_panel.position.y - 8) / 640) if is_instance_valid(bottom_panel) else minf(size.x / 960, size.y * .7 / 640)
+	return minf(size.x/960,size.y/640)
 
 func _offset() -> Vector2:
-	return Vector2((size.x - 960 * _scale()) / 2, 0)
+	return (size-Vector2(960,640)*_scale())/2
 
 func _gui_input(event: InputEvent) -> void:
 	if model == null or paused or not model.run.outcome.is_empty():
@@ -133,9 +147,13 @@ func _gui_input(event: InputEvent) -> void:
 func _feedback(result: Dictionary) -> void:
 	if result.has("message"):
 		help.text = result.message
+		feedback_age=0
+		feedback_success=false
 
 func _checkpoint_if_needed() -> void:
 	if last_stage != model.run.stage:
+		feedback_age=0
+		feedback_success=true
 		last_stage = model.run.stage
 		help.text = ""
 		progress_changed.emit(model.run.duplicate(true))
@@ -146,6 +164,7 @@ func _checkpoint_if_needed() -> void:
 func _process(delta: float) -> void:
 	if model == null:
 		return
+	feedback_age+=delta
 	if not paused:
 		var axis := Controls.direction().x
 		_feedback(model.tick(delta, axis))
@@ -155,6 +174,7 @@ func _process(delta: float) -> void:
 	restock_button.visible = not str(model.run.blocked).is_empty()
 	pause_button.visible = not paused
 	help.visible = not help.text.is_empty()
+	bottom_panel.visible=storage_blocked or restock_button.visible or resume_button.visible or (help.visible and feedback_age<2)
 	queue_redraw()
 
 func _restock() -> void:
@@ -185,12 +205,19 @@ func _notification(what: int) -> void:
 func _draw() -> void:
 	if model == null or background == null:
 		return
+	var cover:=maxf(size.x/background.get_width(),size.y/background.get_height())
+	draw_texture_rect(background,Rect2((size-background.get_size()*cover)/2,background.get_size()*cover),false)
 	draw_set_transform(_offset(), 0, Vector2.ONE * _scale())
-	draw_texture_rect(background, Rect2(0, 0, 960, 640), false)
-	draw_style_box(Hud.panel(), Rect2(30, 20, 900, 62))
 	var index: int = mini(model.run.stage, 4)
-	draw_string(Hud.font(), Vector2(46, 48), TITLES[index], HORIZONTAL_ALIGNMENT_LEFT, -1, 22, Hud.PAPER)
-	draw_string(Hud.font(), Vector2(46, 72), "Linha: %d · Papel: %d" % [model.run.materials.linha, model.run.materials.folha], HORIZONTAL_ALIGNMENT_LEFT, -1, 17, Hud.PAPER)
+	var ink=preload("res://scripts/campaign/battle_ink.gd")
+	ink.plate(self,Rect2(26,20,250,62),Hud.INK,Hud.CYAN,14)
+	draw_string(Hud.display(),Vector2(44,51),"%d/5 · %s"%[index+1,STAGES[index]],HORIZONTAL_ALIGNMENT_LEFT,-1,24,Hud.PAPER)
+	draw_string(Hud.font(true),Vector2(44,72),"Linha %d · Papel %d"%[model.run.materials.linha,model.run.materials.folha],HORIZONTAL_ALIGNMENT_LEFT,-1,15,Hud.MUTED)
+	ink.plate(self,Rect2(300,20,550,62),Hud.PAPER,Hud.INK,12)
+	draw_string(Hud.font(),Vector2(318,56),INSTRUCTIONS[index],HORIZONTAL_ALIGNMENT_LEFT,-1,20,Hud.INK)
+	for i in 5:
+		var p:=Vector2(46+i*28,100)
+		draw_colored_polygon(PackedVector2Array([p+Vector2(0,-7),p+Vector2(7,0),p+Vector2(0,7),p-Vector2(7,0)]),Hud.CYAN if i<=index else Hud.TRACK)
 	var g: Dictionary = model.geometry()
 	var points := PackedVector2Array(g.points)
 	if model.run.stage >= 2:
@@ -224,7 +251,7 @@ func _draw() -> void:
 		draw_line(Vector2(480, 460), Vector2(480, 460) + Vector2(sin(deg_to_rad(tilt)), -cos(deg_to_rad(tilt))) * 230, Tokens.CEU, 6)
 		_meter(absf(tilt) / Workshop.FALL, 0, Workshop.ZONE / Workshop.FALL)
 		draw_style_box(Hud.panel(), Rect2(360, 527, 290, 52))
-		draw_string(Hud.font(), Vector2(390, 560), "%.1f / 9 s" % model.run.step.t, HORIZONTAL_ALIGNMENT_LEFT, -1, 24, Hud.PAPER)
+		draw_string(Hud.font(true), Vector2(390, 560), "%.1f / 9 s" % model.run.step.t, HORIZONTAL_ALIGNMENT_LEFT, -1, 24, Hud.PAPER)
 		for gust in model.run.step.gusts:
 			if gust.t > model.run.step.t and gust.t - model.run.step.t <= Workshop.CLASSES[model.run.kind].tell:
 				draw_style_box(Hud.panel("paper"), Rect2(355, 73, 300, 58))
@@ -235,9 +262,18 @@ func _draw() -> void:
 		draw_circle(Workshop.CENTER, 84, Tokens.TINTA_2)
 		draw_string(Hud.font(), Workshop.CENTER + Vector2(-75, 8), "Segure o elo", HORIZONTAL_ALIGNMENT_LEFT, -1, 23, Tokens.PAPEL)
 		_meter(model.run.step.fill, .4, .92)
+	if feedback_age<1.0:
+		var color:Color=Hud.CYAN if feedback_success else Tokens.TINTA_3
+		var art=ink.brush(0)
+		draw_texture_rect(art,Rect2(660,460,220,120),false,color)
+		draw_string(Hud.lettering(),Vector2(690,530),"FEITO!" if feedback_success else "AJUSTE!",HORIZONTAL_ALIGNMENT_LEFT,-1,36,Hud.PAPER)
+	if not model.run.outcome.is_empty():
+		ink.plate(self,Rect2(340,420,280,80),Hud.INK,Hud.GOLD,14)
+		var stars:int=model.run.outcome.get("stars",1)
+		draw_string(Hud.display(),Vector2(365,470),"RARA" if stars>=4 else "BOA" if stars>=3 else "COMUM",HORIZONTAL_ALIGNMENT_LEFT,-1,28,Hud.PAPER)
 	draw_set_transform(Vector2.ZERO)
 
 func _meter(fill: float, start: float, end: float) -> void:
-	draw_rect(Rect2(270, 585, 420, 24), Hud.TRACK)
+	preload("res://scripts/campaign/battle_ink.gd").plate(self,Rect2(265,580,430,34),Hud.TRACK,Hud.INK,10)
 	draw_rect(Rect2(270 + 420 * start, 585, 420 * (end - start), 24), Hud.LINE)
 	draw_line(Vector2(270 + 420 * fill, 579), Vector2(270 + 420 * fill, 615), Hud.PAPER, 5)

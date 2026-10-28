@@ -20,6 +20,15 @@ const ART_EXPRESSIONS := {
 		'draw_rect(Rect2(760, 150, 180, 350), Color("604628"))': "Wooden supply tray.",
 		'draw_line(Vector2(790 + i * 24, 190), Vector2(800 + i * 24, 450), Color("e7b86b"), 8)': "Supply rods.",
 		'draw_line(cursor - Vector2(0, 80), cursor + Vector2(0, 80), Color("f8d58e"), 8)': "Held bamboo rod pigment."
+	},
+	"res://scripts/overworld/view.gd": {
+		'water.color = Color("77B3AF")': "World water material, not UI ink.",
+		'ramp.color = Color("DAD7C5") if model.data.biome == "morro" else Color("C7A16D")': "World ramp material.",
+		'stroke.default_color = Color("87918C")': "World ramp seam.",
+		'wall.color = Color("B8A58D") if face.side == "u" else Color("8F7C6E")': "Cliff material shading.",
+		'wall.color = Color.WHITE': "Identity modulation of cliff artwork.",
+		'rim.default_color = Color("D5C9AD")': "World terrain rim.",
+		'block.color = Color("26394D") if piece.blocks else Color("E8BC58")': "Review-only collision block overlay."
 	}
 }
 var checks := 0
