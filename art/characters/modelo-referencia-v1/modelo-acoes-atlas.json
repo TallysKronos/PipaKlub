@@ -1,0 +1,1738 @@
+{
+  "meta": {
+    "app": "Pixelgen",
+    "version": 2,
+    "image": "modelo-acoes-folha.png",
+    "size": {
+      "w": 336,
+      "h": 960
+    },
+    "scale": 1
+  },
+  "palette": [
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      27,
+      26,
+      46,
+      255
+    ],
+    [
+      148,
+      80,
+      63,
+      255
+    ],
+    [
+      214,
+      143,
+      99,
+      255
+    ],
+    [
+      244,
+      195,
+      145,
+      255
+    ],
+    [
+      253,
+      226,
+      189,
+      255
+    ],
+    [
+      42,
+      33,
+      82,
+      255
+    ],
+    [
+      74,
+      58,
+      147,
+      255
+    ],
+    [
+      118,
+      99,
+      216,
+      255
+    ],
+    [
+      185,
+      168,
+      255,
+      255
+    ],
+    [
+      115,
+      38,
+      74,
+      255
+    ],
+    [
+      207,
+      68,
+      88,
+      255
+    ],
+    [
+      255,
+      120,
+      102,
+      255
+    ],
+    [
+      255,
+      189,
+      156,
+      255
+    ],
+    [
+      35,
+      43,
+      82,
+      255
+    ],
+    [
+      58,
+      76,
+      136,
+      255
+    ],
+    [
+      96,
+      121,
+      189,
+      255
+    ],
+    [
+      125,
+      128,
+      166,
+      255
+    ],
+    [
+      217,
+      220,
+      236,
+      255
+    ],
+    [
+      255,
+      255,
+      255,
+      255
+    ],
+    [
+      47,
+      111,
+      159,
+      255
+    ],
+    [
+      124,
+      200,
+      228,
+      255
+    ],
+    [
+      228,
+      251,
+      255,
+      255
+    ]
+  ],
+  "sequences": [
+    {
+      "name": "climb-N",
+      "start": 0,
+      "end": 3,
+      "loop": true,
+      "direction": "forward"
+    },
+    {
+      "name": "climbdown-N",
+      "start": 0,
+      "end": 3,
+      "loop": true,
+      "direction": "reverse"
+    },
+    {
+      "name": "victory-S",
+      "start": 4,
+      "end": 7,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "victory-SO",
+      "start": 8,
+      "end": 11,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "victory-O",
+      "start": 12,
+      "end": 15,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "victory-NO",
+      "start": 16,
+      "end": 19,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "victory-N",
+      "start": 20,
+      "end": 23,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "victory-NE",
+      "start": 24,
+      "end": 27,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "victory-E",
+      "start": 28,
+      "end": 31,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "victory-SE",
+      "start": 32,
+      "end": 35,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "defeat-S",
+      "start": 36,
+      "end": 39,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "defeat-SO",
+      "start": 40,
+      "end": 43,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "defeat-O",
+      "start": 44,
+      "end": 47,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "defeat-NO",
+      "start": 48,
+      "end": 51,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "defeat-N",
+      "start": 52,
+      "end": 55,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "defeat-NE",
+      "start": 56,
+      "end": 59,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "defeat-E",
+      "start": 60,
+      "end": 63,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "defeat-SE",
+      "start": 64,
+      "end": 67,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "swim-S",
+      "start": 68,
+      "end": 71,
+      "loop": true,
+      "direction": "forward"
+    },
+    {
+      "name": "swim-SO",
+      "start": 72,
+      "end": 75,
+      "loop": true,
+      "direction": "forward"
+    },
+    {
+      "name": "swim-O",
+      "start": 76,
+      "end": 79,
+      "loop": true,
+      "direction": "forward"
+    },
+    {
+      "name": "swim-NO",
+      "start": 80,
+      "end": 83,
+      "loop": true,
+      "direction": "forward"
+    },
+    {
+      "name": "swim-N",
+      "start": 84,
+      "end": 87,
+      "loop": true,
+      "direction": "forward"
+    },
+    {
+      "name": "swim-NE",
+      "start": 88,
+      "end": 91,
+      "loop": true,
+      "direction": "forward"
+    },
+    {
+      "name": "swim-E",
+      "start": 92,
+      "end": 95,
+      "loop": true,
+      "direction": "forward"
+    },
+    {
+      "name": "swim-SE",
+      "start": 96,
+      "end": 99,
+      "loop": true,
+      "direction": "forward"
+    }
+  ],
+  "frames": [
+    {
+      "name": "climb-N-1",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 160
+    },
+    {
+      "name": "climb-N-2",
+      "frame": {
+        "x": 48,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 120
+    },
+    {
+      "name": "climb-N-3",
+      "frame": {
+        "x": 96,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 160
+    },
+    {
+      "name": "climb-N-4",
+      "frame": {
+        "x": 144,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 120
+    },
+    {
+      "name": "victory-S-1",
+      "frame": {
+        "x": 192,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 120
+    },
+    {
+      "name": "victory-S-2",
+      "frame": {
+        "x": 240,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 100
+    },
+    {
+      "name": "victory-S-3",
+      "frame": {
+        "x": 288,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "victory-S-4",
+      "frame": {
+        "x": 0,
+        "y": 64,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 700
+    },
+    {
+      "name": "victory-SO-1",
+      "frame": {
+        "x": 48,
+        "y": 64,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 120
+    },
+    {
+      "name": "victory-SO-2",
+      "frame": {
+        "x": 96,
+        "y": 64,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 100
+    },
+    {
+      "name": "victory-SO-3",
+      "frame": {
+        "x": 144,
+        "y": 64,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "victory-SO-4",
+      "frame": {
+        "x": 192,
+        "y": 64,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 700
+    },
+    {
+      "name": "victory-O-1",
+      "frame": {
+        "x": 240,
+        "y": 64,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 120
+    },
+    {
+      "name": "victory-O-2",
+      "frame": {
+        "x": 288,
+        "y": 64,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 100
+    },
+    {
+      "name": "victory-O-3",
+      "frame": {
+        "x": 0,
+        "y": 128,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "victory-O-4",
+      "frame": {
+        "x": 48,
+        "y": 128,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 700
+    },
+    {
+      "name": "victory-NO-1",
+      "frame": {
+        "x": 96,
+        "y": 128,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 120
+    },
+    {
+      "name": "victory-NO-2",
+      "frame": {
+        "x": 144,
+        "y": 128,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 100
+    },
+    {
+      "name": "victory-NO-3",
+      "frame": {
+        "x": 192,
+        "y": 128,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "victory-NO-4",
+      "frame": {
+        "x": 240,
+        "y": 128,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 700
+    },
+    {
+      "name": "victory-N-1",
+      "frame": {
+        "x": 288,
+        "y": 128,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 120
+    },
+    {
+      "name": "victory-N-2",
+      "frame": {
+        "x": 0,
+        "y": 192,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 100
+    },
+    {
+      "name": "victory-N-3",
+      "frame": {
+        "x": 48,
+        "y": 192,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "victory-N-4",
+      "frame": {
+        "x": 96,
+        "y": 192,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 700
+    },
+    {
+      "name": "victory-NE-1",
+      "frame": {
+        "x": 144,
+        "y": 192,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 120
+    },
+    {
+      "name": "victory-NE-2",
+      "frame": {
+        "x": 192,
+        "y": 192,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 100
+    },
+    {
+      "name": "victory-NE-3",
+      "frame": {
+        "x": 240,
+        "y": 192,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "victory-NE-4",
+      "frame": {
+        "x": 288,
+        "y": 192,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 700
+    },
+    {
+      "name": "victory-E-1",
+      "frame": {
+        "x": 0,
+        "y": 256,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 120
+    },
+    {
+      "name": "victory-E-2",
+      "frame": {
+        "x": 48,
+        "y": 256,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 100
+    },
+    {
+      "name": "victory-E-3",
+      "frame": {
+        "x": 96,
+        "y": 256,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "victory-E-4",
+      "frame": {
+        "x": 144,
+        "y": 256,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 700
+    },
+    {
+      "name": "victory-SE-1",
+      "frame": {
+        "x": 192,
+        "y": 256,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 120
+    },
+    {
+      "name": "victory-SE-2",
+      "frame": {
+        "x": 240,
+        "y": 256,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 100
+    },
+    {
+      "name": "victory-SE-3",
+      "frame": {
+        "x": 288,
+        "y": 256,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "victory-SE-4",
+      "frame": {
+        "x": 0,
+        "y": 320,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 700
+    },
+    {
+      "name": "defeat-S-1",
+      "frame": {
+        "x": 48,
+        "y": 320,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 120
+    },
+    {
+      "name": "defeat-S-2",
+      "frame": {
+        "x": 96,
+        "y": 320,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "defeat-S-3",
+      "frame": {
+        "x": 144,
+        "y": 320,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 200
+    },
+    {
+      "name": "defeat-S-4",
+      "frame": {
+        "x": 192,
+        "y": 320,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 900
+    },
+    {
+      "name": "defeat-SO-1",
+      "frame": {
+        "x": 240,
+        "y": 320,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 120
+    },
+    {
+      "name": "defeat-SO-2",
+      "frame": {
+        "x": 288,
+        "y": 320,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "defeat-SO-3",
+      "frame": {
+        "x": 0,
+        "y": 384,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 200
+    },
+    {
+      "name": "defeat-SO-4",
+      "frame": {
+        "x": 48,
+        "y": 384,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 900
+    },
+    {
+      "name": "defeat-O-1",
+      "frame": {
+        "x": 96,
+        "y": 384,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 120
+    },
+    {
+      "name": "defeat-O-2",
+      "frame": {
+        "x": 144,
+        "y": 384,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "defeat-O-3",
+      "frame": {
+        "x": 192,
+        "y": 384,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 200
+    },
+    {
+      "name": "defeat-O-4",
+      "frame": {
+        "x": 240,
+        "y": 384,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 900
+    },
+    {
+      "name": "defeat-NO-1",
+      "frame": {
+        "x": 288,
+        "y": 384,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 120
+    },
+    {
+      "name": "defeat-NO-2",
+      "frame": {
+        "x": 0,
+        "y": 448,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "defeat-NO-3",
+      "frame": {
+        "x": 48,
+        "y": 448,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 200
+    },
+    {
+      "name": "defeat-NO-4",
+      "frame": {
+        "x": 96,
+        "y": 448,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 900
+    },
+    {
+      "name": "defeat-N-1",
+      "frame": {
+        "x": 144,
+        "y": 448,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 120
+    },
+    {
+      "name": "defeat-N-2",
+      "frame": {
+        "x": 192,
+        "y": 448,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "defeat-N-3",
+      "frame": {
+        "x": 240,
+        "y": 448,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 200
+    },
+    {
+      "name": "defeat-N-4",
+      "frame": {
+        "x": 288,
+        "y": 448,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 900
+    },
+    {
+      "name": "defeat-NE-1",
+      "frame": {
+        "x": 0,
+        "y": 512,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 120
+    },
+    {
+      "name": "defeat-NE-2",
+      "frame": {
+        "x": 48,
+        "y": 512,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "defeat-NE-3",
+      "frame": {
+        "x": 96,
+        "y": 512,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 200
+    },
+    {
+      "name": "defeat-NE-4",
+      "frame": {
+        "x": 144,
+        "y": 512,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 900
+    },
+    {
+      "name": "defeat-E-1",
+      "frame": {
+        "x": 192,
+        "y": 512,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 120
+    },
+    {
+      "name": "defeat-E-2",
+      "frame": {
+        "x": 240,
+        "y": 512,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "defeat-E-3",
+      "frame": {
+        "x": 288,
+        "y": 512,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 200
+    },
+    {
+      "name": "defeat-E-4",
+      "frame": {
+        "x": 0,
+        "y": 576,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 900
+    },
+    {
+      "name": "defeat-SE-1",
+      "frame": {
+        "x": 48,
+        "y": 576,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 120
+    },
+    {
+      "name": "defeat-SE-2",
+      "frame": {
+        "x": 96,
+        "y": 576,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "defeat-SE-3",
+      "frame": {
+        "x": 144,
+        "y": 576,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 200
+    },
+    {
+      "name": "defeat-SE-4",
+      "frame": {
+        "x": 192,
+        "y": 576,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 900
+    },
+    {
+      "name": "swim-S-1",
+      "frame": {
+        "x": 240,
+        "y": 576,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-S-2",
+      "frame": {
+        "x": 288,
+        "y": 576,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-S-3",
+      "frame": {
+        "x": 0,
+        "y": 640,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-S-4",
+      "frame": {
+        "x": 48,
+        "y": 640,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-SO-1",
+      "frame": {
+        "x": 96,
+        "y": 640,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-SO-2",
+      "frame": {
+        "x": 144,
+        "y": 640,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-SO-3",
+      "frame": {
+        "x": 192,
+        "y": 640,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-SO-4",
+      "frame": {
+        "x": 240,
+        "y": 640,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-O-1",
+      "frame": {
+        "x": 288,
+        "y": 640,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-O-2",
+      "frame": {
+        "x": 0,
+        "y": 704,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-O-3",
+      "frame": {
+        "x": 48,
+        "y": 704,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-O-4",
+      "frame": {
+        "x": 96,
+        "y": 704,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-NO-1",
+      "frame": {
+        "x": 144,
+        "y": 704,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-NO-2",
+      "frame": {
+        "x": 192,
+        "y": 704,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-NO-3",
+      "frame": {
+        "x": 240,
+        "y": 704,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-NO-4",
+      "frame": {
+        "x": 288,
+        "y": 704,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-N-1",
+      "frame": {
+        "x": 0,
+        "y": 768,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-N-2",
+      "frame": {
+        "x": 48,
+        "y": 768,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-N-3",
+      "frame": {
+        "x": 96,
+        "y": 768,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-N-4",
+      "frame": {
+        "x": 144,
+        "y": 768,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-NE-1",
+      "frame": {
+        "x": 192,
+        "y": 768,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-NE-2",
+      "frame": {
+        "x": 240,
+        "y": 768,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-NE-3",
+      "frame": {
+        "x": 288,
+        "y": 768,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-NE-4",
+      "frame": {
+        "x": 0,
+        "y": 832,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-E-1",
+      "frame": {
+        "x": 48,
+        "y": 832,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-E-2",
+      "frame": {
+        "x": 96,
+        "y": 832,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-E-3",
+      "frame": {
+        "x": 144,
+        "y": 832,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-E-4",
+      "frame": {
+        "x": 192,
+        "y": 832,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-SE-1",
+      "frame": {
+        "x": 240,
+        "y": 832,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-SE-2",
+      "frame": {
+        "x": 288,
+        "y": 832,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-SE-3",
+      "frame": {
+        "x": 0,
+        "y": 896,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "swim-SE-4",
+      "frame": {
+        "x": 48,
+        "y": 896,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    }
+  ]
+}
