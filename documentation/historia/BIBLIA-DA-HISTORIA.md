@@ -41,7 +41,7 @@ Este documento orienta o roteiro, os diálogos, as áreas do mapa e os pedidos d
 | **Kael** (15 anos) | Canônico | Protagonista. Sonha com o campeonato e criou o próprio parceiro. |
 | **Rabbito** | Canônico | Parceiro desenhado pelo Kael. Não tem espécie registrada, e isso intriga o professor. |
 | **Heleana** (mãe do Kael) | Decidido | Foi uma jovem pesquisadora que encontrou a Rabiola Antiga nas Ruínas. Deixou a pesquisa e guardou a rabiola. |
-| **Sr. Assis** | Canônico + decidido | Professor e dono do ateliê que monta parceiros. Foi colega de expedição da Helena. Criou o Tyler. |
+| **Sr. Assis** | Canônico + decidido | Professor e dono do ateliê que monta parceiros. Foi colega de expedição da Heleana. Criou o Tyler. |
 | **Tyler** e o parceiro **Rai** (tigre dente-de-sabre) | Canônico + decidido | O homúnculo, que é o Assis jovem. Acredita ser filho do professor. Kael o encontra na trajetória 2. |
 | **Grampo** e o parceiro **Platyx** (ornitorrinco) | Canônico (one-shot) | Saqueador das Ruínas, que arranca peças em vez de repor. |
 | **Bando do Cerol**, liderado pelo **Rato** | Decidido | Grupo do Grampo. Usam linha com cerol para cortar rabiolas de selvagens e vender as almas. Querem o Elo. |
