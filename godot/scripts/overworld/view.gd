@@ -5,6 +5,7 @@ const Prop = preload("res://scripts/overworld/prop.gd")
 const Avatar = preload("res://scripts/avatar.gd")
 const Hud = preload("res://scripts/campaign/hud.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
+const Forest = preload("res://scripts/overworld/kronasta_forest.gd")
 signal interaction_requested(event: Dictionary)
 var model := Model.new()
 var area_id := "veredas-piloto"
@@ -96,17 +97,21 @@ func load_area(id: String) -> void:
 	terrain.y_sort_enabled = true
 	add_child(terrain)
 	actors = terrain
-	_build_context()
-	_build_tiles()
-	_build_faces()
-	_build_pieces()
-	_dress_bare_lots()
-	_dress_bairro_gardens()
-	_dress_parque()
-	_dress_veredas()
-	_bairro_ground_details()
-	_bairro_ground_shadows()
-	_morro_canopy_shadow()
+	var forest: bool = art_preview and model.data.biome == "floresta"
+	if forest:
+		Forest.build(self)
+	else:
+		_build_context()
+		_build_tiles()
+		_build_faces()
+		_build_pieces()
+		_dress_bare_lots()
+		_dress_bairro_gardens()
+		_dress_parque()
+		_dress_veredas()
+		_bairro_ground_details()
+		_bairro_ground_shadows()
+		_morro_canopy_shadow()
 	_build_events()
 	var spawn: Dictionary = model.data.spawn
 	player = Vector2(spawn.u + .5, spawn.v + .5)
@@ -125,7 +130,8 @@ func load_area(id: String) -> void:
 	follower_root.add_child(companion)
 	actors.add_child(follower_root)
 	camera = Camera2D.new()
-	camera.zoom = Vector2.ONE * 1.4
+	# Floresta: câmera mais aberta, para ler platôs e massas de mata (REGIOES-E-PARTES, seção 6).
+	camera.zoom = Vector2.ONE * (1.0 if forest else 1.4)
 	camera.position_smoothing_enabled = true
 	camera.position_smoothing_speed = 7.0
 	add_child(camera)
@@ -1651,7 +1657,9 @@ func _fade_occluders() -> void:
 			if player.x>=float(piece.u)+float(piece.fu) or player.y>=float(piece.v)+float(piece.fv):
 				art.modulate.a = 1.0
 				continue
-		var covers := node.position.y > ground and Rect2(node.position+art.position,art.texture.get_size()).intersects(body)
+		# Bounds follow the sprite's own scale and flip (forest trees vary both).
+		var bounds := art.get_transform() * art.get_rect()
+		var covers := node.position.y > ground and Rect2(node.position+bounds.position,bounds.size).intersects(body)
 		art.modulate.a = .45 if covers else 1.0
 
 func _place_actor(root: Node2D, visual: Node2D, point: Vector2, height: float) -> void:
