@@ -33,7 +33,7 @@
   {
    "name": "origem",
    "type": "string",
-   "value": "importada do jogo; ajuste no Tiled"
+   "value": "desenhar-parque.mjs"
   }
  ],
  "tilesets": [
@@ -42,6 +42,8 @@
    "source": "../tiles/rascunho.tsj"
   }
  ],
+ "nextlayerid": 5,
+ "nextobjectid": 33,
  "layers": [
   {
    "id": 1,
@@ -104,18 +106,8 @@
     10,
     10,
     10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
+    1,
+    1,
     10,
     10,
     10,
@@ -134,6 +126,19 @@
     1,
     1,
     1,
+    10,
+    10,
+    10,
+    10,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    10,
     1,
     1,
     1,
@@ -143,12 +148,10 @@
     1,
     1,
     1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
+    2,
+    2,
+    2,
+    2,
     10,
     10,
     1,
@@ -161,31 +164,78 @@
     1,
     1,
     1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    10,
+    10,
     10,
     10,
     1,
     1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    2,
+    1,
+    1,
+    10,
+    10,
+    10,
+    10,
+    10,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
     3,
     1,
     1,
     1,
+    2,
+    2,
+    1,
+    10,
+    10,
+    10,
+    10,
+    10,
     1,
     1,
     1,
+    2,
+    2,
+    2,
     1,
-    1,
+    3,
+    3,
     3,
     3,
     3,
@@ -195,229 +245,181 @@
     1,
     2,
     2,
-    2,
-    1,
     10,
     10,
-    1,
-    3,
-    3,
-    3,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    3,
-    3,
-    3,
-    3,
-    3,
-    1,
+    10,
+    10,
+    10,
+    10,
     1,
     2,
     2,
     2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
     1,
+    1,
+    2,
+    2,
+    10,
+    10,
+    10,
+    10,
     10,
     10,
     1,
+    2,
+    2,
+    2,
+    1,
     3,
     3,
     3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    1,
+    1,
+    2,
+    2,
+    1,
+    1,
+    10,
+    10,
+    10,
+    10,
+    10,
+    1,
+    2,
+    2,
+    2,
+    1,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    1,
+    1,
+    1,
+    2,
+    2,
+    1,
+    1,
+    1,
+    10,
+    10,
+    10,
+    10,
+    10,
     7,
     7,
     7,
     2,
     2,
+    3,
+    3,
+    3,
+    3,
+    1,
+    1,
+    1,
     2,
     2,
     2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
+    1,
+    1,
+    1,
     1,
     10,
     10,
-    1,
-    1,
-    1,
+    10,
+    10,
+    10,
     7,
     7,
     7,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    3,
+    3,
+    3,
+    1,
+    10,
+    10,
+    10,
+    10,
+    10,
+    2,
+    2,
     7,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    1,
-    10,
-    10,
-    1,
-    1,
-    1,
-    7,
-    7,
-    7,
-    2,
-    2,
-    2,
-    2,
-    1,
-    1,
-    1,
-    1,
-    1,
-    2,
-    2,
-    2,
-    1,
-    1,
     1,
     1,
     10,
     10,
     1,
     1,
-    1,
-    7,
-    7,
-    7,
     2,
     2,
-    2,
-    2,
-    1,
-    1,
-    1,
-    1,
-    1,
-    2,
-    2,
-    2,
-    1,
-    1,
-    1,
-    1,
-    10,
-    10,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    2,
-    2,
-    2,
-    1,
     1,
     1,
     1,
     1,
     3,
-    3,
-    3,
-    3,
-    3,
-    1,
-    1,
-    10,
-    10,
-    1,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    1,
-    1,
-    1,
-    1,
-    1,
-    3,
-    3,
-    3,
-    3,
-    3,
-    1,
-    1,
-    10,
-    10,
-    1,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    2,
-    1,
-    1,
-    1,
-    1,
-    1,
-    3,
-    3,
-    3,
-    3,
-    1,
-    1,
-    1,
-    10,
-    10,
-    1,
-    2,
-    2,
-    2,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
     10,
     10,
     10,
     10,
     10,
+    10,
+    10,
+    10,
+    2,
+    2,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    2,
+    2,
+    2,
     10,
     10,
     10,
@@ -849,10 +851,10 @@
    "objects": [
     {
      "id": 1,
-     "name": "Árvore",
+     "name": "Placa: habitats",
      "type": "peca",
-     "x": 16,
-     "y": 144,
+     "x": 176,
+     "y": 432,
      "point": true,
      "width": 0,
      "height": 0,
@@ -862,21 +864,21 @@
       {
        "name": "asset",
        "type": "string",
-       "value": "arvore"
+       "value": "placa-mapa"
       },
       {
-       "name": "variante",
+       "name": "pegada",
        "type": "string",
-       "value": "a"
+       "value": "2x1"
       }
      ]
     },
     {
      "id": 2,
-     "name": "Árvore",
+     "name": "Banco",
      "type": "peca",
-     "x": 208,
-     "y": 112,
+     "x": 656,
+     "y": 208,
      "point": true,
      "width": 0,
      "height": 0,
@@ -886,21 +888,45 @@
       {
        "name": "asset",
        "type": "string",
-       "value": "arvore"
+       "value": "banco"
+      },
+      {
+       "name": "pegada",
+       "type": "string",
+       "value": "2x1"
+      }
+     ]
+    },
+    {
+     "id": 3,
+     "name": "Pedra",
+     "type": "peca",
+     "x": 304,
+     "y": 208,
+     "point": true,
+     "width": 0,
+     "height": 0,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "asset",
+       "type": "string",
+       "value": "pedra"
       },
       {
        "name": "variante",
        "type": "string",
-       "value": "b"
+       "value": "1"
       }
      ]
     },
     {
      "id": 4,
-     "name": "Árvore",
+     "name": "Pedra",
      "type": "peca",
-     "x": 400,
-     "y": 112,
+     "x": 528,
+     "y": 240,
      "point": true,
      "width": 0,
      "height": 0,
@@ -910,44 +936,20 @@
       {
        "name": "asset",
        "type": "string",
-       "value": "arvore"
+       "value": "pedra"
       },
       {
        "name": "variante",
        "type": "string",
-       "value": "a"
+       "value": "2"
       }
      ]
     },
     {
      "id": 5,
-     "name": "Árvore",
+     "name": "Biruta",
      "type": "peca",
-     "x": 560,
-     "y": 112,
-     "point": true,
-     "width": 0,
-     "height": 0,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "arvore"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "b"
-      }
-     ]
-    },
-    {
-     "id": 7,
-     "name": "Árvore",
-     "type": "peca",
-     "x": 752,
+     "x": 464,
      "y": 144,
      "point": true,
      "width": 0,
@@ -958,20 +960,87 @@
       {
        "name": "asset",
        "type": "string",
-       "value": "arvore"
+       "value": "biruta"
+      }
+     ]
+    },
+    {
+     "id": 6,
+     "name": "Pipa presa",
+     "type": "peca",
+     "x": 272,
+     "y": 112,
+     "point": true,
+     "width": 0,
+     "height": 0,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "asset",
+       "type": "string",
+       "value": "pipa-presa"
       },
       {
-       "name": "variante",
+       "name": "bloqueia",
+       "type": "bool",
+       "value": false
+      }
+     ]
+    },
+    {
+     "id": 7,
+     "name": "Pipa presa",
+     "type": "peca",
+     "x": 592,
+     "y": 80,
+     "point": true,
+     "width": 0,
+     "height": 0,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "asset",
        "type": "string",
-       "value": "a"
+       "value": "pipa-presa"
+      },
+      {
+       "name": "bloqueia",
+       "type": "bool",
+       "value": false
       }
      ]
     },
     {
      "id": 8,
-     "name": "Árvore",
+     "name": "Pipa presa",
      "type": "peca",
-     "x": 16,
+     "x": 720,
+     "y": 304,
+     "point": true,
+     "width": 0,
+     "height": 0,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "asset",
+       "type": "string",
+       "value": "pipa-presa"
+      },
+      {
+       "name": "bloqueia",
+       "type": "bool",
+       "value": false
+      }
+     ]
+    },
+    {
+     "id": 9,
+     "name": "Pipa presa",
+     "type": "peca",
+     "x": 112,
      "y": 272,
      "point": true,
      "width": 0,
@@ -982,21 +1051,45 @@
       {
        "name": "asset",
        "type": "string",
-       "value": "arvore"
+       "value": "pipa-presa"
       },
       {
-       "name": "variante",
-       "type": "string",
-       "value": "b"
+       "name": "bloqueia",
+       "type": "bool",
+       "value": false
       }
      ]
     },
     {
      "id": 10,
+     "name": "Pipa presa",
+     "type": "peca",
+     "x": 368,
+     "y": 464,
+     "point": true,
+     "width": 0,
+     "height": 0,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "asset",
+       "type": "string",
+       "value": "pipa-presa"
+      },
+      {
+       "name": "bloqueia",
+       "type": "bool",
+       "value": false
+      }
+     ]
+    },
+    {
+     "id": 11,
      "name": "Árvore",
      "type": "peca",
      "x": 16,
-     "y": 496,
+     "y": 16,
      "point": true,
      "width": 0,
      "height": 0,
@@ -1011,7 +1104,7 @@
       {
        "name": "variante",
        "type": "string",
-       "value": "a"
+       "value": "b"
       }
      ]
     },
@@ -1019,8 +1112,8 @@
      "id": 12,
      "name": "Árvore",
      "type": "peca",
-     "x": 752,
-     "y": 368,
+     "x": 112,
+     "y": 16,
      "point": true,
      "width": 0,
      "height": 0,
@@ -1043,8 +1136,8 @@
      "id": 13,
      "name": "Árvore",
      "type": "peca",
-     "x": 720,
-     "y": 496,
+     "x": 464,
+     "y": 16,
      "point": true,
      "width": 0,
      "height": 0,
@@ -1067,32 +1160,8 @@
      "id": 14,
      "name": "Árvore",
      "type": "peca",
-     "x": 208,
-     "y": 496,
-     "point": true,
-     "width": 0,
-     "height": 0,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "arvore"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "b"
-      }
-     ]
-    },
-    {
-     "id": 16,
-     "name": "Árvore",
-     "type": "peca",
-     "x": 432,
-     "y": 496,
+     "x": 592,
+     "y": 16,
      "point": true,
      "width": 0,
      "height": 0,
@@ -1112,11 +1181,83 @@
      ]
     },
     {
+     "id": 15,
+     "name": "Árvore",
+     "type": "peca",
+     "x": 688,
+     "y": 16,
+     "point": true,
+     "width": 0,
+     "height": 0,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "asset",
+       "type": "string",
+       "value": "arvore"
+      },
+      {
+       "name": "variante",
+       "type": "string",
+       "value": "a"
+      }
+     ]
+    },
+    {
+     "id": 16,
+     "name": "Árvore",
+     "type": "peca",
+     "x": 176,
+     "y": 48,
+     "point": true,
+     "width": 0,
+     "height": 0,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "asset",
+       "type": "string",
+       "value": "arvore"
+      },
+      {
+       "name": "variante",
+       "type": "string",
+       "value": "b"
+      }
+     ]
+    },
+    {
      "id": 17,
      "name": "Árvore",
      "type": "peca",
-     "x": 560,
-     "y": 496,
+     "x": 272,
+     "y": 48,
+     "point": true,
+     "width": 0,
+     "height": 0,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "asset",
+       "type": "string",
+       "value": "arvore"
+      },
+      {
+       "name": "variante",
+       "type": "string",
+       "value": "b"
+      }
+     ]
+    },
+    {
+     "id": 18,
+     "name": "Árvore",
+     "type": "peca",
+     "x": 368,
+     "y": 48,
      "point": true,
      "width": 0,
      "height": 0,
@@ -1139,8 +1280,8 @@
      "id": 19,
      "name": "Árvore",
      "type": "peca",
-     "x": 112,
-     "y": 144,
+     "x": 528,
+     "y": 48,
      "point": true,
      "width": 0,
      "height": 0,
@@ -1155,7 +1296,7 @@
       {
        "name": "variante",
        "type": "string",
-       "value": "florida"
+       "value": "b"
       }
      ]
     },
@@ -1163,8 +1304,32 @@
      "id": 20,
      "name": "Árvore",
      "type": "peca",
-     "x": 672,
-     "y": 384,
+     "x": 752,
+     "y": 48,
+     "point": true,
+     "width": 0,
+     "height": 0,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "asset",
+       "type": "string",
+       "value": "arvore"
+      },
+      {
+       "name": "variante",
+       "type": "string",
+       "value": "b"
+      }
+     ]
+    },
+    {
+     "id": 21,
+     "name": "Árvore",
+     "type": "peca",
+     "x": 48,
+     "y": 80,
      "point": true,
      "width": 0,
      "height": 0,
@@ -1185,10 +1350,10 @@
     },
     {
      "id": 22,
-     "name": "bench",
+     "name": "Árvore",
      "type": "peca",
-     "x": 176,
-     "y": 336,
+     "x": 16,
+     "y": 144,
      "point": true,
      "width": 0,
      "height": 0,
@@ -1198,21 +1363,21 @@
       {
        "name": "asset",
        "type": "string",
-       "value": "banco"
+       "value": "arvore"
       },
       {
-       "name": "pegada",
+       "name": "variante",
        "type": "string",
-       "value": "2x1"
+       "value": "b"
       }
      ]
     },
     {
      "id": 23,
-     "name": "bench",
+     "name": "Árvore",
      "type": "peca",
-     "x": 528,
-     "y": 304,
+     "x": 48,
+     "y": 208,
      "point": true,
      "width": 0,
      "height": 0,
@@ -1222,20 +1387,44 @@
       {
        "name": "asset",
        "type": "string",
-       "value": "banco"
+       "value": "arvore"
       },
       {
-       "name": "pegada",
+       "name": "variante",
        "type": "string",
-       "value": "2x1"
+       "value": "b"
       }
      ]
     },
     {
      "id": 24,
-     "name": "lamp",
+     "name": "Árvore",
      "type": "peca",
-     "x": 144,
+     "x": 80,
+     "y": 272,
+     "point": true,
+     "width": 0,
+     "height": 0,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "asset",
+       "type": "string",
+       "value": "arvore"
+      },
+      {
+       "name": "variante",
+       "type": "string",
+       "value": "b"
+      }
+     ]
+    },
+    {
+     "id": 25,
+     "name": "Árvore",
+     "type": "peca",
+     "x": 48,
      "y": 336,
      "point": true,
      "width": 0,
@@ -1246,35 +1435,21 @@
       {
        "name": "asset",
        "type": "string",
-       "value": "poste"
-      }
-     ]
-    },
-    {
-     "id": 25,
-     "name": "lamp",
-     "type": "peca",
-     "x": 592,
-     "y": 304,
-     "point": true,
-     "width": 0,
-     "height": 0,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
+       "value": "arvore"
+      },
       {
-       "name": "asset",
+       "name": "variante",
        "type": "string",
-       "value": "poste"
+       "value": "a"
       }
      ]
     },
     {
      "id": 26,
-     "name": "entry-map",
+     "name": "Árvore",
      "type": "peca",
-     "x": 112,
-     "y": 368,
+     "x": 16,
+     "y": 400,
      "point": true,
      "width": 0,
      "height": 0,
@@ -1284,126 +1459,12 @@
       {
        "name": "asset",
        "type": "string",
-       "value": "placa-mapa"
+       "value": "arvore"
       },
       {
-       "name": "pegada",
+       "name": "variante",
        "type": "string",
-       "value": "2x1"
-      }
-     ]
-    },
-    {
-     "id": 27,
-     "name": "planter-west",
-     "type": "peca",
-     "x": 144,
-     "y": 304,
-     "point": true,
-     "width": 0,
-     "height": 0,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "vaso"
-      }
-     ]
-    },
-    {
-     "id": 28,
-     "name": "planter-east",
-     "type": "peca",
-     "x": 240,
-     "y": 304,
-     "point": true,
-     "width": 0,
-     "height": 0,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "vaso"
-      }
-     ]
-    },
-    {
-     "id": 29,
-     "name": "bin-west",
-     "type": "peca",
-     "x": 112,
-     "y": 304,
-     "point": true,
-     "width": 0,
-     "height": 0,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "lixeira"
-      }
-     ]
-    },
-    {
-     "id": 30,
-     "name": "bin-east",
-     "type": "peca",
-     "x": 624,
-     "y": 304,
-     "point": true,
-     "width": 0,
-     "height": 0,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "lixeira"
-      }
-     ]
-    },
-    {
-     "id": 31,
-     "name": "lamp-west",
-     "type": "peca",
-     "x": 144,
-     "y": 240,
-     "point": true,
-     "width": 0,
-     "height": 0,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "poste"
-      }
-     ]
-    },
-    {
-     "id": 32,
-     "name": "lamp-east",
-     "type": "peca",
-     "x": 656,
-     "y": 176,
-     "point": true,
-     "width": 0,
-     "height": 0,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "poste"
+       "value": "b"
       }
      ]
     }
@@ -1420,11 +1481,11 @@
    "visible": true,
    "objects": [
     {
-     "id": 33,
+     "id": 27,
      "name": "Chegada ao parque",
      "type": "entrada",
      "x": 112,
-     "y": 400,
+     "y": 432,
      "point": true,
      "width": 0,
      "height": 0,
@@ -1433,11 +1494,11 @@
      "properties": []
     },
     {
-     "id": 34,
+     "id": 28,
      "name": "Voltar ao Jardim das Pipas",
      "type": "saida",
-     "x": 112,
-     "y": 464,
+     "x": 80,
+     "y": 496,
      "point": true,
      "width": 0,
      "height": 0,
@@ -1452,11 +1513,11 @@
      ]
     },
     {
-     "id": 35,
+     "id": 29,
      "name": "Além da cidade · Veredas do Encanamento",
      "type": "saida",
-     "x": 656,
-     "y": 208,
+     "x": 752,
+     "y": 112,
      "point": true,
      "width": 0,
      "height": 0,
@@ -1471,10 +1532,10 @@
      ]
     },
     {
-     "id": 36,
+     "id": 30,
      "name": "Placa: habitats e encontros",
      "type": "interacao",
-     "x": 176,
+     "x": 208,
      "y": 400,
      "point": true,
      "width": 0,
@@ -1490,30 +1551,11 @@
      ]
     },
     {
-     "id": 37,
-     "name": "Descansar no largo",
-     "type": "interacao",
-     "x": 208,
-     "y": 368,
-     "point": true,
-     "width": 0,
-     "height": 0,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "acao",
-       "type": "string",
-       "value": "wildRest"
-      }
-     ]
-    },
-    {
-     "id": 38,
+     "id": 31,
      "name": "Descansar no banco leste",
      "type": "interacao",
-     "x": 560,
-     "y": 336,
+     "x": 656,
+     "y": 240,
      "point": true,
      "width": 0,
      "height": 0,
@@ -1528,10 +1570,10 @@
      ]
     },
     {
-     "id": 39,
+     "id": 32,
      "name": "Mapa do Parque dos Ventos",
      "type": "interacao",
-     "x": 176,
+     "x": 144,
      "y": 400,
      "point": true,
      "width": 0,
@@ -1548,7 +1590,5 @@
     }
    ]
   }
- ],
- "nextlayerid": 5,
- "nextobjectid": 40
+ ]
 }

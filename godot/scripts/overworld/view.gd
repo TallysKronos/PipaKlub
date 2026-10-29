@@ -60,7 +60,7 @@ func _ready() -> void:
 	for argument in OS.get_cmdline_user_args():
 		if argument.begins_with("--area="): area_id = argument.trim_prefix("--area=")
 		if argument == "--art-preview": art_preview = true
-	for biome in ["comum", "bairro", "parque", "veredas", "morro"]:
+	for biome in ["comum", "bairro", "parque", "veredas", "morro", "frutiferas"]:
 		var file: String = "res://assets/overworld/kits/" + biome + "/kit.json"
 		if not FileAccess.file_exists(file): continue
 		var kit: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(file))
@@ -493,10 +493,22 @@ func _dress_parque() -> void:
 	# No automatic tree carpet. Authored low masses explain the woodland boundary
 	# while preserving long sightlines through the centre and the entry plaza.
 	var recipe: Dictionary = kits[1].get("boundaryShrubs",{})
-	for i in recipe.get("points",[]).size():
-		var uv: Array = recipe.points[i]
+	# Low shrubs follow the woodland edge of whatever plan is loaded: every other
+	# bosque cell that touches walkable ground, skipping cells with a tree.
+	var trees := {}
+	for piece in model.data.pieces: trees[Vector2i(piece.u,piece.v)] = true
+	var points: Array = []
+	for v in int(model.data.h):
+		for u in int(model.data.w):
+			var cell := Vector2i(u,v)
+			if model.cell_at(cell).get("material","") != "bosque" or trees.has(cell) or posmod(u+v,2) == 1: continue
+			for d in [Vector2i(1,0),Vector2i(-1,0),Vector2i(0,1),Vector2i(0,-1)]:
+				if model.walkable(cell+d):
+					points.append([u+.5,v+.5])
+					break
+	for i in points.size():
+		var uv: Array = points[i]
 		var at := Vector2(float(uv[0]),float(uv[1]))
-		if model.cell_at(Vector2i(floori(at.x),floori(at.y))).get("material","") != "bosque":continue
 		var shrub := Sprite2D.new()
 		shrub.texture = load(kits[1].root+recipe.files[i%recipe.files.size()])
 		shrub.centered = false
@@ -1400,6 +1412,13 @@ func _definition(piece: Dictionary) -> Dictionary:
 			entry.texture = kit.root + entry.roofFile
 			for part in entry.get("supportParts",[]): part.texture = kit.root + part.file
 		entry.shadow_texture = kit.root + entry.shadow
+		return entry
+	# Fruit trees come from their own library, in any biome that places them.
+	var orchard: Dictionary = kit_library.get("frutiferas",{})
+	if orchard.get("pieces",{}).has(piece.asset):
+		var entry: Dictionary = orchard.pieces[piece.asset].variants.values()[0].duplicate(true)
+		entry.texture = orchard.root + entry.file
+		entry.shadow_texture = orchard.root + entry.shadow
 		return entry
 	return {}
 

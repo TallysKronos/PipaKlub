@@ -512,21 +512,12 @@
     "bosque"
   ],
   "context": {
-    "radius": 8,
+    "radius": 18,
     "color": "6B894B",
     "houses": false,
     "asset": "arvore",
-    "automaticTrees": false,
-    "authoredTrees": [
-      [
-        9.5,
-        -0.5
-      ],
-      [
-        19.5,
-        -0.5
-      ]
-    ]
+    "automaticTrees": true,
+    "authoredTrees": []
   },
   "encounterGrass": {
     "files": [
