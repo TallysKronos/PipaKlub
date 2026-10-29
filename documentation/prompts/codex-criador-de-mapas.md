@@ -18,18 +18,20 @@ dentro do repositório TallysKronos/PipaKlub. Responda e escreva em português d
 2. documentation/continuidade-terreno-isometrico.md: como derivar barranco e borda da geometria e da altura.
 3. art/overworld/ESPECIFICACAO-MAPAS.md: as regras "overworld-1" (grade, camadas, materiais, peças,
    eventos, rampas, pontes, conferência, pedidos A e B). É o seu contrato técnico.
-4. art/overworld/INVENTARIO-CODEX.md: áreas que já existem, biomas, materiais e transições.
+4. art/overworld/REGIOES-E-PARTES.md: toda região tem pelo menos 3 partes (A, B, C), cada parte com
+   itens espalhados, mais as regras contra o mapa chapado. É tão obrigatório quanto a especificação.
+5. art/overworld/INVENTARIO-CODEX.md: áreas que já existem, biomas, materiais e transições.
    É gerado por node tools/mapa-studio/inventario.mjs.
-5. documentation/historia/BIBLIA-DA-HISTORIA.md: as duas trajetórias, os personagens, os 12 bairros, quais
+6. documentation/historia/BIBLIA-DA-HISTORIA.md: as duas trajetórias, os personagens, os 12 bairros, quais
    áreas abrem depois de qual vitória e o que cada área revela. Também está no branch claude/historia.
-6. art/overworld/estilo/README.md e PRANCHA-ESTILO.png, WORLD-ART-DIRECTION.md e WORLD-EXPLORATION.md:
+7. art/overworld/estilo/README.md e PRANCHA-ESTILO.png, WORLD-ART-DIRECTION.md e WORLD-EXPLORATION.md:
    direção de arte e de exploração.
-7. documentation/overworld/godot-tilesets-profundidade.md: profundidade (um TileMapLayer por nível,
+8. documentation/overworld/godot-tilesets-profundidade.md: profundidade (um TileMapLayer por nível,
    y_sort_origin = nível·64, terrenos 47-blob) e por que os mapas precisam de relevo.
-8. art/overworld/kits/*: kits que já existem (morro, parque, veredas, bairro, cavernas-v1/v2/v3, aguas-v1,
+9. art/overworld/kits/*: kits que já existem (morro, parque, veredas, bairro, cavernas-v1/v2/v3, aguas-v1,
    terrenos-v1, frutiferas, urbano, cais-v1, areia-v1, planicie-v1, submerso-v1, lava-v1, mobilidade,
    comum). Reaproveite antes de criar peça nova.
-9. art/oneshot/tyler-fios-do-principio-v1/ROTEIRO.md: a caverna do mural e o motivo visual das Ruínas
+10. art/oneshot/tyler-fios-do-principio-v1/ROTEIRO.md: a caverna do mural e o motivo visual das Ruínas
    (dois traços que se encontram num nó; apitos de barro movidos pelo vento; "repor, não arrancar").
 
 Se dois documentos se contradizerem, prevalece: instrução explícita do dono > AGENTS.md >
@@ -38,6 +40,8 @@ ESPECIFICACAO-MAPAS.md > bíblia da história > o resto. Anote a contradição n
 =====================================================================
 2. O UNIVERSO QUE OS MAPAS CONTAM
 =====================================================================
+- O primeiro jogo se passa na região de KRONASTA, vista numa tela de mapa como a de Digimon World DS
+  (ícones ilustrados de cada lugar sobre a região pintada).
 - Brasil, cidade de morros e parques. Periferia viva: laje, caixa-d'água, escadaria, varal, muro pintado,
   fio de poste com pipa enroscada, campinho de terra, quadra, feira, praça com banco e igreja, bica.
   Natureza: cerrado e vereda (buriti, riacho raso, terra vermelha, arenito), mata atlântica, cachoeira.
@@ -61,6 +65,10 @@ Fase 0: o MAPA-MÚNDI (antes de qualquer área nova)
   conexões, e uma tabela por área com estas colunas:
   id | nome | trajetória (1, 2 ou ambas) | bioma | libera_apos (bairro ou evento) | conecta_com |
   função na história | encontros (sim/não) | tamanho estimado em células.
+- REGRA: cada lugar é uma REGIÃO com pelo menos 3 partes, A, B e C (mais, se fizer sentido), com o papel
+  de cada parte definido em REGIOES-E-PARTES.md. Liste as partes de cada região e os itens planejados.
+- Entregue também o esboço do MAPA DE KRONASTA, a tela do mundo: a posição de cada região, os caminhos
+  entre elas e quais se acendem depois de cada bairro.
 - Áreas que já existem e não podem ser apagadas nem renomeadas: morro-praca-da-chegada,
   morro-escadaria-da-sombra, morro-laje-dos-ventos, morro-mirante-da-caixa-dagua,
   morro-parque-dos-ventos, rua-dos-ventos, jardim-das-pipas, clareira-do-papel, veredas-do-encanamento.
@@ -72,7 +80,8 @@ Fase 0: o MAPA-MÚNDI (antes de qualquer área nova)
   feira, de porto e cais, de vila operária, de serra, de lagoa, de centro histórico. Sem dois bairros
   iguais. Marque tudo como PROPOSTA até o dono aprovar.
 
-Fase 1 em diante: área por área, na ordem da história (bairro 2 e o que ele libera, depois bairro 3...).
+Fase 1 em diante: região por região, na ordem da história. Cada região é entregue com as partes A, B e C
+completas e ligadas, com itens; não entregue uma parte solta.
 
 =====================================================================
 4. FLUXO OBRIGATÓRIO POR ÁREA (primeiro a planta, depois a arte)
@@ -199,6 +208,9 @@ H. CAPTURAS E REVISÃO
 =====================================================================
 9. CRITÉRIOS DE ACEITE DE UMA ÁREA
 =====================================================================
+[ ] Região com pelo menos 3 partes (A, B, C), ligadas A ↔ B ↔ C, e atalho de volta depois de C
+[ ] Pelo menos 3 itens por parte, pelo menos 1 escondido, todos alcançáveis
+[ ] Pelo menos 40% de platô nas áreas naturais, árvores em massas e moldura sem vazio
 [ ] Mapa Studio sem ERRO, com cada AVISO justificado
 [ ] Kael alcança entrada, saídas, NPCs, baús e gatilhos sem "pular"
 [ ] Pelo menos 2 níveis (natural) ou relevo urbano (laje, escadaria, rua em declive), com rampa ou

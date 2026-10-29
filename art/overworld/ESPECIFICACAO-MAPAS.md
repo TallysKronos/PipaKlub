@@ -4,6 +4,8 @@ Este documento cobre as áreas grandes do jogo: a Rua inicial, as Veredas, o Pá
 
 Regra de ouro, a mesma de `documentation/continuidade-terreno-isometrico.md`: **primeiro a planta, depois a arte**. A planta é feita em cores lisas: onde se anda, onde tem desnível, onde tem rampa e ponte. Ela é conferida automaticamente e percorrida com o Kael. Só depois dessa conferência a arte é pintada por cima. Vegetação nunca esconde junta quebrada.
 
+**Regiões em partes:** toda região explorável de Kronasta tem pelo menos 3 mapas, A, B e C, ligados por saídas e com itens espalhados. As regras de papel das partes, ligações, itens (evento `item`), nomes (`regiao`, `parte`) e as regras contra o mapa chapado estão em [REGIOES-E-PARTES.md](REGIOES-E-PARTES.md). Elas valem junto com este documento.
+
 ## 1. Fluxo de trabalho
 
 | Etapa | Quem | Ferramenta | Sai |

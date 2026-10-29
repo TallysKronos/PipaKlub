@@ -62,6 +62,8 @@ Este documento orienta o roteiro, os diálogos, as áreas do mapa e os pedidos d
 
 ## 5. Estrutura: bairros que abrem o mapa
 
+**[Decidido] Kronasta e regiões em partes.** O primeiro jogo se passa na região de **Kronasta**, que o jogador vê numa tela de mapa como a de Digimon World DS. Cada lugar da tabela abaixo (bairro, parque, Ruínas) é uma **região com pelo menos 3 partes, A, B e C**, com itens espalhados. Num bairro, a parte A tem os capangas 1 e 2, a B tem os capangas 3 e 4, e a C tem o campeão. Nas regiões da trajetória 2, a revelação fica em C. Regras completas em `art/overworld/REGIOES-E-PARTES.md`.
+
 **[Proposta]** Doze bairros, como no plano `CAMPANHA-CIDADE.md`. Cada vitória sobre um campeão de bairro abre uma área, e cada área avança a trajetória 2.
 
 | Vitória no campeonato (trajetória 1) | Área que abre | O que a trajetória 2 revela |
@@ -134,3 +136,5 @@ O Kael e o Tyler derrotam o Bando e devolvem o Elo à câmara do ovo. O Assis ac
 - **Bairros:** são 12. A final exige os 12 bairros, a derrota do vilão e a do lendário.
 - **Tyler:** o fio dele fica para a continuação.
 - **Jamile:** não tem ligação com a família.
+- **Mundo:** o primeiro jogo se passa em Kronasta.
+- **Regiões:** toda região tem pelo menos 3 partes, A, B e C, com itens espalhados. Outras podem ter mais partes.
