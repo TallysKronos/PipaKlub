@@ -61,10 +61,9 @@ func run() -> void:
 			check(view.reward_card.size.y>=270,"reward panel has room for content")
 			check(view.get_global_rect().encloses(view.finish_button.get_global_rect()),"continue remains visible")
 			check(view.get_global_rect().encloses(view.reward_card.get_global_rect()),"result remains visible")
-			var backing:NinePatchRect=view.reward_card.find_child("IllustratedBacking",true,false)
-			check(backing!=null and backing.scale==Vector2.ONE*.32,"illustrated corners retain uniform source scale")
+			# Approved unified board: no frame around the result; the cards stand on the arena.
+			check(view.reward_card.find_child("IllustratedBacking",true,false)==null,"result has no surrounding frame")
 			check(not view.footer_contents.get_parent().clip_contents,"result ornament is not rectangularly clipped")
-			check(view.get_global_rect().encloses(backing.get_global_rect()),"outer artwork stays within screen")
 			check(view.result_header.z_index>view.reward_card.z_index,"subtitle stays above decorative artwork")
 			if capture:
 				await create_timer(.6).timeout

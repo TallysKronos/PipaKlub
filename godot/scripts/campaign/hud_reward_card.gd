@@ -159,7 +159,8 @@ func _ready() -> void:
 			var holder:=Node2D.new()
 			plate.add_child(holder)
 			splash(holder,"NOVO!",Vector2.ZERO)
-			var place:=func():holder.position=Vector2(plate.size.x-70,-52)
+			var place:=func():
+				if is_instance_valid(plate) and is_instance_valid(holder):holder.position=Vector2(plate.size.x-70,-52)
 			plate.resized.connect(place)
 			place.call_deferred()
 		for item in items.slice(1):

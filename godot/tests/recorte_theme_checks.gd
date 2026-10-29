@@ -53,8 +53,8 @@ func run_checks() -> void:
 	await create_timer(.22).timeout
 	var decoration: Control = button.get_node("RecorteArt").get_child(0)
 	check(root.gui_get_focus_owner() == button,"native keyboard focus")
-	check(decoration.marker.modulate.a > .99 and decoration.marker.get_script() != null,"focus includes visible three-triangle geometry, not color alone")
-	check(button.offset_transform_position == Vector2(24,-5),"focus finishes its bounded 24px shift")
+	check(decoration.marker.modulate.a > .99 and decoration.marker.size.x >= 12 and decoration.underline != null and decoration.underline.modulate.a > .99,"focus shows the coral ▶ and yellow stroke of the approved board, not color alone")
+	check(button.offset_transform_position == Vector2(10,-2),"focus finishes its bounded 10px shift")
 	check(not disabled.get_node("RecorteArt").get_child(0).active,"disabled control never receives active decoration")
 	get_root().gui_release_focus()
 	button.grab_focus()
