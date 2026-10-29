@@ -111,8 +111,9 @@ test('reference model: builds E and S views, animates with the recipes and passe
 });
 test('action boards: ladder, victory, defeat and swim sequences pass check and render on their scenes',async()=>{
  const {build}=await import('./examples/modelo-acoes.mjs');const {check}=await import('./cli.mjs');const {renderBoard,sceneGif,sceneFor}=await import('./render.mjs');const p=build();
- assert.deepEqual(p.sequences.map(s=>s.name),['climb-N','victory-S','defeat-S','swim-S','swim-E']);assert.equal(check(p).pass,true,JSON.stringify(check(p).errors));
+ const dirs=['S','SO','O','NO','N','NE','E','SE'];assert.deepEqual(p.sequences.map(s=>s.name),['climb-N','climbdown-N',...['victory','defeat','swim'].flatMap(a=>dirs.map(d=>`${a}-${d}`))]);
+ assert.equal(p.sequences[1].direction,'reverse');const e=p.frames.findIndex(f=>f.name==='victory-E-4'),o=p.frames.findIndex(f=>f.name==='victory-O-4');for(let y=0;y<64;y++)for(let x=0;x<48;x++)assert.equal(p.frames[o].indices[y*48+x],p.frames[e].indices[y*48+47-x]);assert.equal(check(p).pass,true,JSON.stringify(check(p).errors));
  assert.equal(sceneFor('climb-N'),'escada');assert.equal(sceneFor('swim-E'),'agua');const cv=renderBoard(p,p.sequences.map(s=>s.name),{zoom:1});assert.ok(cv.w>p.width*4&&cv.h>p.height*5);
- const g=sceneGif(p,p.sequences[1],{zoom:1});assert.equal(g.frames.length,5);assert.ok(g.palette.length<=256);
+ const g=sceneGif(p,p.sequences.find(s=>s.name==='victory-S'),{zoom:1});assert.equal(g.frames.length,5);assert.ok(g.palette.length<=256);
  const swim=p.frames.find(f=>f.name==='swim-S-1');for(let y=46;y<64;y++)for(let x=0;x<48;x++)assert.equal(swim.indices[y*48+x],0);
 });

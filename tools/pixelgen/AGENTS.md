@@ -62,7 +62,13 @@ Leia antes o [`ESTILO-PIXEL.md`](ESTILO-PIXEL.md): proporção, contorno, cor, l
 - **Escada vertical (`climb-N`):** vista de costas. As mãos seguram os trilhos em x≈16 e x≈32, e as pernas alternam com a mão do lado oposto. A escada é peça do mapa e não entra no sprite. A prancha só a desenha por trás, para conferir o encaixe.
 - **Nado (`swim-*`):** o corpo é cortado na linha d'água (y=43) e as ondinhas entram depois do contorno, sem tinta embaixo. A água é o tile do mapa.
 - **Pranchas:** `render --board all` monta uma linha por sequência no cenário da ação (`climb` sobre o barranco com escada, `swim` na água, o resto na grama), com o tempo de cada quadro. Com `--gif`, a animação sai no mesmo cenário.
-- **Ações do modelo:** `node tools/pixelgen/examples/modelo-acoes.mjs saida.pixelgen.json` gera escada, vitória, derrota e nado com membros articulados (ombro → cotovelo → mão, quadril → joelho → pé). Use-o como gabarito dessas poses.
+- **Ações do modelo:** `node tools/pixelgen/examples/modelo-acoes.mjs saida.pixelgen.json` gera vitória, derrota e nado nas 8 direções, mais a escada (`climb-N` e `climbdown-N`), com membros articulados (ombro → cotovelo → mão, quadril → joelho → pé). Use-o como gabarito dessas poses.
+  - Cada ação é desenhada de frente (S) e de lado (E).
+  - N sai da pose de frente vista de costas.
+  - SE e NE são três-quartos: os membros do lado esquerdo da tela ficam na frente, e os do outro lado se recolhem para o corpo e escurecem um tom.
+  - O, SO e NO são espelhos de E, SE e NE.
+  - Um braço da frente levantado passa por cima da cabeça, para o punho erguido não sumir.
+  - A escada só tem a vista de costas, porque escada vertical sempre se encara. A descida toca os mesmos quadros ao contrário (`direction: reverse`).
 - **Tempos de referência:**
   - idle: 2 quadros, 700 e 350 ms;
   - walk: 4 quadros, 140/110/140/110 ms;
