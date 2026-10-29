@@ -1,5 +1,6 @@
 // Deterministic native-grid conversion. No DOM, network, or image smoothing.
 import {duration,validateSequences} from './animation.mjs';
+import {upgrade,compositeFrame,MAX_CEL_PIXELS} from './document.mjs';
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 export function settings(input={}){
  const n=(k,d,a,b)=>clamp(Math.round(input[k]!==''&&Number.isFinite(Number(input[k]))?Number(input[k]):d),a,b);
@@ -119,6 +120,7 @@ export function convert(source,input={}){
  return {kind:'pixelgen',version:1,width:opt.width,height:opt.height,cols:opt.cols,rows:opt.rows,palette,frames:indexed,settings:opt};
 }
 export function pixels(project,frame){
+ compositeFrame(project,frame);
  const data=new Uint8ClampedArray(project.width*project.height*4);
  for(let i=0;i<frame.indices.length;i++)data.set(project.palette[frame.indices[i]],i*4);return data;
 }
@@ -131,16 +133,20 @@ export function audit(project){
  if(edge)warnings.push(`${edge} pixel(s) na borda: confira cortes e margem.`);
  return {colors:colors.size,frames:project.frames.length,empty,edge,alpha:'0 / 255',warnings};
 }
-export function serialize(project){const {source,...native}=project;return {...native,frames:project.frames.map(f=>({...f,indices:Array.from(f.indices)}))};}
+export function serialize(project){const {source,...native}=project;return {...native,frames:project.frames.map(f=>({...f,indices:Array.from(compositeFrame(project,f)),cels:f.cels?.map(c=>Array.from(c))}))};}
 export function validateProject(p){
- if(p?.kind!=='pixelgen'||p.version!==1)throw Error('Projeto Pixelgen inválido ou versão não suportada.');
+ if(p?.kind!=='pixelgen'||![1,2].includes(p.version))throw Error('Projeto Pixelgen inválido ou versão não suportada.');
  for(const key of ['width','height'])if(!Number.isInteger(p[key])||p[key]<1||p[key]>256)throw Error('Dimensões de projeto inválidas.');
  if(!Number.isInteger(p.cols)||!Number.isInteger(p.rows)||p.cols<1||p.rows<1||p.cols>16||p.rows>16)throw Error('Grade inválida.');
  if(p.width*p.height*p.cols*p.rows>1048576)throw Error('Projeto excede 1 milhão de pixels nativos.');
  if(!Array.isArray(p.frames)||!p.frames.length||p.frames.length>p.cols*p.rows||p.frames.length>256)throw Error('Número de quadros inválido.');
  if(!Array.isArray(p.palette)||p.palette.length<1||p.palette.length>256||p.palette.some((c,i)=>!Array.isArray(c)||c.length!==4||c.some(v=>!Number.isInteger(v)||v<0||v>255)||c[3]!== (i?255:0)))throw Error('Paleta inválida.');
+ if(p.version===2&&(!Array.isArray(p.layers)||!p.layers.length||p.layers.length>8||p.width*p.height*p.frames.length*p.layers.length>MAX_CEL_PIXELS))throw Error('Camadas inválidas ou acima do limite.');
+ const validPixels=a=>Array.isArray(a)&&a.length===p.width*p.height&&!a.some(v=>!Number.isInteger(v)||v<0||v>=p.palette.length);
+ const metadata=r=>r&&['x','y','w','h'].every(k=>Number.isInteger(r[k])&&r[k]>=0&&r[k]<=16384)&&r.w>0&&r.h>0?{x:r.x,y:r.y,w:r.w,h:r.h}:undefined;
  const frames=p.frames.map((f,i)=>{
-  if(!Array.isArray(f.indices)||f.indices.length!==p.width*p.height||f.indices.some(v=>!Number.isInteger(v)||v<0||v>=p.palette.length))throw Error('Pixels de quadro inválidos.');
-  return {...f,name:String(f.name||`quadro-${i+1}`).slice(0,80),duration:duration(f),row:Math.floor(i/p.cols),col:i%p.cols,indices:Uint8Array.from(f.indices)};
- });const {source,...native}=p;return {...native,name:String(p.name||'Projeto').slice(0,80),frames,sequences:validateSequences(p.sequences,frames.length)};
+  if(!validPixels(f.indices))throw Error('Pixels de quadro inválidos.');
+  if(p.version===2&&(!Array.isArray(f.cels)||f.cels.length!==p.layers.length||f.cels.some(c=>!validPixels(c))))throw Error('Pixels de camada inválidos.');
+  return {name:String(f.name||`quadro-${i+1}`).slice(0,80),duration:duration(f),row:Math.floor(i/p.cols),col:i%p.cols,indices:Uint8Array.from(f.indices),cels:p.version===2?f.cels.map(c=>Uint8Array.from(c)):undefined,sourceRect:metadata(f.sourceRect),sourceBounds:metadata(f.sourceBounds)};
+ });return upgrade({kind:'pixelgen',version:2,id:typeof p.id==='string'&&/^[a-zA-Z0-9_-]{1,80}$/.test(p.id)?p.id:undefined,width:p.width,height:p.height,cols:p.cols,rows:p.rows,palette:p.palette.map(c=>[...c]),settings:settings(p.settings||{}),layers:p.version===2?p.layers.map(l=>({name:String(l.name||'Camada').slice(0,80),visible:l.visible!==false,locked:l.locked===true})):undefined,name:String(p.name||'Projeto').slice(0,80),frames,sequences:validateSequences(p.sequences,frames.length)});
 }

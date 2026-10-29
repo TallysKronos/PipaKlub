@@ -1,0 +1,2993 @@
+[
+  {
+    "name": "preflight",
+    "args": {
+      "mode": "headless"
+    },
+    "content": [
+      {
+        "type": "text",
+        "text": "READY (headless) — Aseprite 1.3.18.6, no sprite open. Nothing is on disk until you save."
+      }
+    ],
+    "structuredContent": {
+      "ready": true,
+      "mode": "headless",
+      "switched": false,
+      "bridgeConnected": true,
+      "pluginConnected": true,
+      "asepriteVersion": "1.3.18.6",
+      "extensionVersion": "0.8.2",
+      "features": [
+        "draw_batch",
+        "recolor",
+        "validate",
+        "tileset",
+        "reference",
+        "filmstrip"
+      ],
+      "activeSprite": null,
+      "directive": "Ready, headless: there is no window, so the user sees only what `look` shows and the files you write. Open or create a sprite with sprite_manage, and save it (op 'save'/'save_as') before you finish — unsaved work is lost when this server stops."
+    }
+  },
+  {
+    "name": "sprite_manage",
+    "args": {
+      "op": "open",
+      "path": "C:/Users/user/produto/pipa-club-pip88/art/characters/kael-eight-directions-v1/kael-library.aseprite"
+    },
+    "content": [
+      {
+        "type": "text",
+        "text": "open: kael-library.aseprite. Refer to it as '#1283'."
+      }
+    ],
+    "structuredContent": {
+      "op": "open",
+      "sprite": "kael-library.aseprite",
+      "width": 48,
+      "height": 64,
+      "id": 1283
+    }
+  },
+  {
+    "name": "sprite_info",
+    "args": {},
+    "content": [
+      {
+        "type": "text",
+        "text": "kael-library.aseprite 48×64 indexed · 256 frame(s) · 5 layer(s) · 33-colour palette · tags: idle-S, walk-S, run-S, interact-S, attack-S, hurt-S, victory-S, fall-S, idle-SO, walk-SO, run-SO, interact-SO, attack-SO, hurt-SO, victory-SO, fall-SO, idle-O, walk-O, run-O, interact-O, attack-O, hurt-O, victory-O, fall-O, idle-NO, walk-NO, run-NO, interact-NO, attack-NO, hurt-NO, victory-NO, fall-NO, idle-N, walk-N, run-N, interact-N, attack-N, hurt-N, victory-N, fall-N, idle-NE, walk-NE, run-NE, interact-NE, attack-NE, hurt-NE, victory-NE, fall-NE, idle-E, walk-E, run-E, interact-E, attack-E, hurt-E, victory-E, fall-E, idle-SE, walk-SE, run-SE, interact-SE, attack-SE, hurt-SE, victory-SE, fall-SE"
+      }
+    ],
+    "structuredContent": {
+      "width": 48,
+      "height": 64,
+      "colorMode": "indexed",
+      "layers": [
+        {
+          "opacity": 255,
+          "editable": true,
+          "blendMode": "3",
+          "name": "Partes distantes e rabiolas",
+          "isGroup": false,
+          "cels": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121,
+            122,
+            123,
+            124,
+            125,
+            126,
+            127,
+            128,
+            129,
+            130,
+            131,
+            132,
+            133,
+            134,
+            135,
+            136,
+            137,
+            138,
+            139,
+            140,
+            141,
+            142,
+            143,
+            144,
+            145,
+            146,
+            147,
+            148,
+            149,
+            150,
+            151,
+            152,
+            153,
+            154,
+            155,
+            156,
+            157,
+            158,
+            159,
+            160,
+            161,
+            162,
+            163,
+            164,
+            165,
+            166,
+            167,
+            168,
+            169,
+            170,
+            171,
+            172,
+            173,
+            174,
+            175,
+            176,
+            177,
+            178,
+            179,
+            180,
+            181,
+            182,
+            183,
+            184,
+            185,
+            186,
+            187,
+            188,
+            189,
+            190,
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197,
+            198,
+            199,
+            200,
+            201,
+            202,
+            203,
+            204,
+            205,
+            206,
+            207,
+            208,
+            209,
+            210,
+            211,
+            212,
+            213,
+            214,
+            215,
+            216,
+            217,
+            218,
+            219,
+            220,
+            221,
+            222,
+            223,
+            224,
+            225,
+            226,
+            227,
+            228,
+            229,
+            230,
+            231,
+            232,
+            233,
+            234,
+            235,
+            236,
+            237,
+            238,
+            239,
+            240,
+            241,
+            242,
+            243,
+            244,
+            245,
+            246,
+            247,
+            248,
+            249,
+            250,
+            251,
+            252,
+            253,
+            254,
+            255,
+            256
+          ],
+          "index": 1,
+          "visible": true,
+          "isTilemap": false
+        },
+        {
+          "opacity": 255,
+          "editable": true,
+          "blendMode": "3",
+          "name": "Pernas e calçados",
+          "isGroup": false,
+          "cels": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121,
+            122,
+            123,
+            124,
+            125,
+            126,
+            127,
+            128,
+            129,
+            130,
+            131,
+            132,
+            133,
+            134,
+            135,
+            136,
+            137,
+            138,
+            139,
+            140,
+            141,
+            142,
+            143,
+            144,
+            145,
+            146,
+            147,
+            148,
+            149,
+            150,
+            151,
+            152,
+            153,
+            154,
+            155,
+            156,
+            157,
+            158,
+            159,
+            160,
+            161,
+            162,
+            163,
+            164,
+            165,
+            166,
+            167,
+            168,
+            169,
+            170,
+            171,
+            172,
+            173,
+            174,
+            175,
+            176,
+            177,
+            178,
+            179,
+            180,
+            181,
+            182,
+            183,
+            184,
+            185,
+            186,
+            187,
+            188,
+            189,
+            190,
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197,
+            198,
+            199,
+            200,
+            201,
+            202,
+            203,
+            204,
+            205,
+            206,
+            207,
+            208,
+            209,
+            210,
+            211,
+            212,
+            213,
+            214,
+            215,
+            216,
+            217,
+            218,
+            219,
+            220,
+            221,
+            222,
+            223,
+            224,
+            225,
+            226,
+            227,
+            228,
+            229,
+            230,
+            231,
+            232,
+            233,
+            234,
+            235,
+            236,
+            237,
+            238,
+            239,
+            240,
+            241,
+            242,
+            243,
+            244,
+            245,
+            246,
+            247,
+            248,
+            249,
+            250,
+            251,
+            252,
+            253,
+            254,
+            255,
+            256
+          ],
+          "index": 2,
+          "visible": true,
+          "isTilemap": false
+        },
+        {
+          "opacity": 255,
+          "editable": true,
+          "blendMode": "3",
+          "name": "Tronco e fones",
+          "isGroup": false,
+          "cels": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121,
+            122,
+            123,
+            124,
+            125,
+            126,
+            127,
+            128,
+            129,
+            130,
+            131,
+            132,
+            133,
+            134,
+            135,
+            136,
+            137,
+            138,
+            139,
+            140,
+            141,
+            142,
+            143,
+            144,
+            145,
+            146,
+            147,
+            148,
+            149,
+            150,
+            151,
+            152,
+            153,
+            154,
+            155,
+            156,
+            157,
+            158,
+            159,
+            160,
+            161,
+            162,
+            163,
+            164,
+            165,
+            166,
+            167,
+            168,
+            169,
+            170,
+            171,
+            172,
+            173,
+            174,
+            175,
+            176,
+            177,
+            178,
+            179,
+            180,
+            181,
+            182,
+            183,
+            184,
+            185,
+            186,
+            187,
+            188,
+            189,
+            190,
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197,
+            198,
+            199,
+            200,
+            201,
+            202,
+            203,
+            204,
+            205,
+            206,
+            207,
+            208,
+            209,
+            210,
+            211,
+            212,
+            213,
+            214,
+            215,
+            216,
+            217,
+            218,
+            219,
+            220,
+            221,
+            222,
+            223,
+            224,
+            225,
+            226,
+            227,
+            228,
+            229,
+            230,
+            231,
+            232,
+            233,
+            234,
+            235,
+            236,
+            237,
+            238,
+            239,
+            240,
+            241,
+            242,
+            243,
+            244,
+            245,
+            246,
+            247,
+            248,
+            249,
+            250,
+            251,
+            252,
+            253,
+            254,
+            255,
+            256
+          ],
+          "index": 3,
+          "visible": true,
+          "isTilemap": false
+        },
+        {
+          "opacity": 255,
+          "editable": true,
+          "blendMode": "3",
+          "name": "Braço próximo e mãos",
+          "isGroup": false,
+          "cels": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121,
+            122,
+            123,
+            124,
+            125,
+            126,
+            127,
+            128,
+            129,
+            130,
+            131,
+            132,
+            133,
+            134,
+            135,
+            136,
+            137,
+            138,
+            139,
+            140,
+            141,
+            142,
+            143,
+            144,
+            145,
+            146,
+            147,
+            148,
+            149,
+            150,
+            151,
+            152,
+            153,
+            154,
+            155,
+            156,
+            157,
+            158,
+            159,
+            160,
+            161,
+            162,
+            163,
+            164,
+            165,
+            166,
+            167,
+            168,
+            169,
+            170,
+            171,
+            172,
+            173,
+            174,
+            175,
+            176,
+            177,
+            178,
+            179,
+            180,
+            181,
+            182,
+            183,
+            184,
+            185,
+            186,
+            187,
+            188,
+            189,
+            190,
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197,
+            198,
+            199,
+            200,
+            201,
+            202,
+            203,
+            204,
+            205,
+            206,
+            207,
+            208,
+            209,
+            210,
+            211,
+            212,
+            213,
+            214,
+            215,
+            216,
+            217,
+            218,
+            219,
+            220,
+            221,
+            222,
+            223,
+            224,
+            225,
+            226,
+            227,
+            228,
+            229,
+            230,
+            231,
+            232,
+            233,
+            234,
+            235,
+            236,
+            237,
+            238,
+            239,
+            240,
+            241,
+            242,
+            243,
+            244,
+            245,
+            246,
+            247,
+            248,
+            249,
+            250,
+            251,
+            252,
+            253,
+            254,
+            255,
+            256
+          ],
+          "index": 4,
+          "visible": true,
+          "isTilemap": false
+        },
+        {
+          "opacity": 255,
+          "editable": true,
+          "blendMode": "3",
+          "name": "Cabeça",
+          "isGroup": false,
+          "cels": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121,
+            122,
+            123,
+            124,
+            125,
+            126,
+            127,
+            128,
+            129,
+            130,
+            131,
+            132,
+            133,
+            134,
+            135,
+            136,
+            137,
+            138,
+            139,
+            140,
+            141,
+            142,
+            143,
+            144,
+            145,
+            146,
+            147,
+            148,
+            149,
+            150,
+            151,
+            152,
+            153,
+            154,
+            155,
+            156,
+            157,
+            158,
+            159,
+            160,
+            161,
+            162,
+            163,
+            164,
+            165,
+            166,
+            167,
+            168,
+            169,
+            170,
+            171,
+            172,
+            173,
+            174,
+            175,
+            176,
+            177,
+            178,
+            179,
+            180,
+            181,
+            182,
+            183,
+            184,
+            185,
+            186,
+            187,
+            188,
+            189,
+            190,
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197,
+            198,
+            199,
+            200,
+            201,
+            202,
+            203,
+            204,
+            205,
+            206,
+            207,
+            208,
+            209,
+            210,
+            211,
+            212,
+            213,
+            214,
+            215,
+            216,
+            217,
+            218,
+            219,
+            220,
+            221,
+            222,
+            223,
+            224,
+            225,
+            226,
+            227,
+            228,
+            229,
+            230,
+            231,
+            232,
+            233,
+            234,
+            235,
+            236,
+            237,
+            238,
+            239,
+            240,
+            241,
+            242,
+            243,
+            244,
+            245,
+            246,
+            247,
+            248,
+            249,
+            250,
+            251,
+            252,
+            253,
+            254,
+            255,
+            256
+          ],
+          "index": 5,
+          "visible": true,
+          "isTilemap": false
+        }
+      ],
+      "filename": "C:\\Users\\user\\produto\\pipa-club-pip88\\art\\characters\\kael-eight-directions-v1\\kael-library.aseprite",
+      "modified": false,
+      "activeLayer": "Partes distantes e rabiolas",
+      "id": 1283,
+      "name": "kael-library.aseprite",
+      "frameCount": 256,
+      "activeFrame": 1,
+      "tags": [
+        {
+          "from": 1,
+          "name": "idle-S",
+          "to": 2,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 3,
+          "name": "walk-S",
+          "to": 6,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 7,
+          "name": "run-S",
+          "to": 12,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 13,
+          "name": "interact-S",
+          "to": 16,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 17,
+          "name": "attack-S",
+          "to": 22,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 23,
+          "name": "hurt-S",
+          "to": 24,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 25,
+          "name": "victory-S",
+          "to": 28,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 29,
+          "name": "fall-S",
+          "to": 32,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 33,
+          "name": "idle-SO",
+          "to": 34,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 35,
+          "name": "walk-SO",
+          "to": 38,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 39,
+          "name": "run-SO",
+          "to": 44,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 45,
+          "name": "interact-SO",
+          "to": 48,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 49,
+          "name": "attack-SO",
+          "to": 54,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 55,
+          "name": "hurt-SO",
+          "to": 56,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 57,
+          "name": "victory-SO",
+          "to": 60,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 61,
+          "name": "fall-SO",
+          "to": 64,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 65,
+          "name": "idle-O",
+          "to": 66,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 67,
+          "name": "walk-O",
+          "to": 70,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 71,
+          "name": "run-O",
+          "to": 76,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 77,
+          "name": "interact-O",
+          "to": 80,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 81,
+          "name": "attack-O",
+          "to": 86,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 87,
+          "name": "hurt-O",
+          "to": 88,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 89,
+          "name": "victory-O",
+          "to": 92,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 93,
+          "name": "fall-O",
+          "to": 96,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 97,
+          "name": "idle-NO",
+          "to": 98,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 99,
+          "name": "walk-NO",
+          "to": 102,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 103,
+          "name": "run-NO",
+          "to": 108,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 109,
+          "name": "interact-NO",
+          "to": 112,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 113,
+          "name": "attack-NO",
+          "to": 118,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 119,
+          "name": "hurt-NO",
+          "to": 120,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 121,
+          "name": "victory-NO",
+          "to": 124,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 125,
+          "name": "fall-NO",
+          "to": 128,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 129,
+          "name": "idle-N",
+          "to": 130,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 131,
+          "name": "walk-N",
+          "to": 134,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 135,
+          "name": "run-N",
+          "to": 140,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 141,
+          "name": "interact-N",
+          "to": 144,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 145,
+          "name": "attack-N",
+          "to": 150,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 151,
+          "name": "hurt-N",
+          "to": 152,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 153,
+          "name": "victory-N",
+          "to": 156,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 157,
+          "name": "fall-N",
+          "to": 160,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 161,
+          "name": "idle-NE",
+          "to": 162,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 163,
+          "name": "walk-NE",
+          "to": 166,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 167,
+          "name": "run-NE",
+          "to": 172,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 173,
+          "name": "interact-NE",
+          "to": 176,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 177,
+          "name": "attack-NE",
+          "to": 182,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 183,
+          "name": "hurt-NE",
+          "to": 184,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 185,
+          "name": "victory-NE",
+          "to": 188,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 189,
+          "name": "fall-NE",
+          "to": 192,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 193,
+          "name": "idle-E",
+          "to": 194,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 195,
+          "name": "walk-E",
+          "to": 198,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 199,
+          "name": "run-E",
+          "to": 204,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 205,
+          "name": "interact-E",
+          "to": 208,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 209,
+          "name": "attack-E",
+          "to": 214,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 215,
+          "name": "hurt-E",
+          "to": 216,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 217,
+          "name": "victory-E",
+          "to": 220,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 221,
+          "name": "fall-E",
+          "to": 224,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 225,
+          "name": "idle-SE",
+          "to": 226,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 227,
+          "name": "walk-SE",
+          "to": 230,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 231,
+          "name": "run-SE",
+          "to": 236,
+          "repeats": 0,
+          "direction": "0"
+        },
+        {
+          "from": 237,
+          "name": "interact-SE",
+          "to": 240,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 241,
+          "name": "attack-SE",
+          "to": 246,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 247,
+          "name": "hurt-SE",
+          "to": 248,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 249,
+          "name": "victory-SE",
+          "to": 252,
+          "repeats": 1,
+          "direction": "0"
+        },
+        {
+          "from": 253,
+          "name": "fall-SE",
+          "to": 256,
+          "repeats": 1,
+          "direction": "0"
+        }
+      ],
+      "frames": [
+        {
+          "number": 1,
+          "durationMs": 700
+        },
+        {
+          "number": 2,
+          "durationMs": 350
+        },
+        {
+          "number": 3,
+          "durationMs": 140
+        },
+        {
+          "number": 4,
+          "durationMs": 100
+        },
+        {
+          "number": 5,
+          "durationMs": 140
+        },
+        {
+          "number": 6,
+          "durationMs": 100
+        },
+        {
+          "number": 7,
+          "durationMs": 90
+        },
+        {
+          "number": 8,
+          "durationMs": 70
+        },
+        {
+          "number": 9,
+          "durationMs": 70
+        },
+        {
+          "number": 10,
+          "durationMs": 90
+        },
+        {
+          "number": 11,
+          "durationMs": 70
+        },
+        {
+          "number": 12,
+          "durationMs": 70
+        },
+        {
+          "number": 13,
+          "durationMs": 140
+        },
+        {
+          "number": 14,
+          "durationMs": 120
+        },
+        {
+          "number": 15,
+          "durationMs": 280
+        },
+        {
+          "number": 16,
+          "durationMs": 180
+        },
+        {
+          "number": 17,
+          "durationMs": 160
+        },
+        {
+          "number": 18,
+          "durationMs": 130
+        },
+        {
+          "number": 19,
+          "durationMs": 60
+        },
+        {
+          "number": 20,
+          "durationMs": 110
+        },
+        {
+          "number": 21,
+          "durationMs": 160
+        },
+        {
+          "number": 22,
+          "durationMs": 220
+        },
+        {
+          "number": 23,
+          "durationMs": 90
+        },
+        {
+          "number": 24,
+          "durationMs": 250
+        },
+        {
+          "number": 25,
+          "durationMs": 120
+        },
+        {
+          "number": 26,
+          "durationMs": 200
+        },
+        {
+          "number": 27,
+          "durationMs": 130
+        },
+        {
+          "number": 28,
+          "durationMs": 350
+        },
+        {
+          "number": 29,
+          "durationMs": 120
+        },
+        {
+          "number": 30,
+          "durationMs": 160
+        },
+        {
+          "number": 31,
+          "durationMs": 140
+        },
+        {
+          "number": 32,
+          "durationMs": 700
+        },
+        {
+          "number": 33,
+          "durationMs": 700
+        },
+        {
+          "number": 34,
+          "durationMs": 350
+        },
+        {
+          "number": 35,
+          "durationMs": 140
+        },
+        {
+          "number": 36,
+          "durationMs": 100
+        },
+        {
+          "number": 37,
+          "durationMs": 140
+        },
+        {
+          "number": 38,
+          "durationMs": 100
+        },
+        {
+          "number": 39,
+          "durationMs": 90
+        },
+        {
+          "number": 40,
+          "durationMs": 70
+        },
+        {
+          "number": 41,
+          "durationMs": 70
+        },
+        {
+          "number": 42,
+          "durationMs": 90
+        },
+        {
+          "number": 43,
+          "durationMs": 70
+        },
+        {
+          "number": 44,
+          "durationMs": 70
+        },
+        {
+          "number": 45,
+          "durationMs": 140
+        },
+        {
+          "number": 46,
+          "durationMs": 120
+        },
+        {
+          "number": 47,
+          "durationMs": 280
+        },
+        {
+          "number": 48,
+          "durationMs": 180
+        },
+        {
+          "number": 49,
+          "durationMs": 160
+        },
+        {
+          "number": 50,
+          "durationMs": 130
+        },
+        {
+          "number": 51,
+          "durationMs": 60
+        },
+        {
+          "number": 52,
+          "durationMs": 110
+        },
+        {
+          "number": 53,
+          "durationMs": 160
+        },
+        {
+          "number": 54,
+          "durationMs": 220
+        },
+        {
+          "number": 55,
+          "durationMs": 90
+        },
+        {
+          "number": 56,
+          "durationMs": 250
+        },
+        {
+          "number": 57,
+          "durationMs": 120
+        },
+        {
+          "number": 58,
+          "durationMs": 200
+        },
+        {
+          "number": 59,
+          "durationMs": 130
+        },
+        {
+          "number": 60,
+          "durationMs": 350
+        },
+        {
+          "number": 61,
+          "durationMs": 120
+        },
+        {
+          "number": 62,
+          "durationMs": 160
+        },
+        {
+          "number": 63,
+          "durationMs": 140
+        },
+        {
+          "number": 64,
+          "durationMs": 700
+        },
+        {
+          "number": 65,
+          "durationMs": 700
+        },
+        {
+          "number": 66,
+          "durationMs": 350
+        },
+        {
+          "number": 67,
+          "durationMs": 140
+        },
+        {
+          "number": 68,
+          "durationMs": 100
+        },
+        {
+          "number": 69,
+          "durationMs": 140
+        },
+        {
+          "number": 70,
+          "durationMs": 100
+        },
+        {
+          "number": 71,
+          "durationMs": 90
+        },
+        {
+          "number": 72,
+          "durationMs": 70
+        },
+        {
+          "number": 73,
+          "durationMs": 70
+        },
+        {
+          "number": 74,
+          "durationMs": 90
+        },
+        {
+          "number": 75,
+          "durationMs": 70
+        },
+        {
+          "number": 76,
+          "durationMs": 70
+        },
+        {
+          "number": 77,
+          "durationMs": 140
+        },
+        {
+          "number": 78,
+          "durationMs": 120
+        },
+        {
+          "number": 79,
+          "durationMs": 280
+        },
+        {
+          "number": 80,
+          "durationMs": 180
+        },
+        {
+          "number": 81,
+          "durationMs": 160
+        },
+        {
+          "number": 82,
+          "durationMs": 130
+        },
+        {
+          "number": 83,
+          "durationMs": 60
+        },
+        {
+          "number": 84,
+          "durationMs": 110
+        },
+        {
+          "number": 85,
+          "durationMs": 160
+        },
+        {
+          "number": 86,
+          "durationMs": 220
+        },
+        {
+          "number": 87,
+          "durationMs": 90
+        },
+        {
+          "number": 88,
+          "durationMs": 250
+        },
+        {
+          "number": 89,
+          "durationMs": 120
+        },
+        {
+          "number": 90,
+          "durationMs": 200
+        },
+        {
+          "number": 91,
+          "durationMs": 130
+        },
+        {
+          "number": 92,
+          "durationMs": 350
+        },
+        {
+          "number": 93,
+          "durationMs": 120
+        },
+        {
+          "number": 94,
+          "durationMs": 160
+        },
+        {
+          "number": 95,
+          "durationMs": 140
+        },
+        {
+          "number": 96,
+          "durationMs": 700
+        },
+        {
+          "number": 97,
+          "durationMs": 700
+        },
+        {
+          "number": 98,
+          "durationMs": 350
+        },
+        {
+          "number": 99,
+          "durationMs": 140
+        },
+        {
+          "number": 100,
+          "durationMs": 100
+        },
+        {
+          "number": 101,
+          "durationMs": 140
+        },
+        {
+          "number": 102,
+          "durationMs": 100
+        },
+        {
+          "number": 103,
+          "durationMs": 90
+        },
+        {
+          "number": 104,
+          "durationMs": 70
+        },
+        {
+          "number": 105,
+          "durationMs": 70
+        },
+        {
+          "number": 106,
+          "durationMs": 90
+        },
+        {
+          "number": 107,
+          "durationMs": 70
+        },
+        {
+          "number": 108,
+          "durationMs": 70
+        },
+        {
+          "number": 109,
+          "durationMs": 140
+        },
+        {
+          "number": 110,
+          "durationMs": 120
+        },
+        {
+          "number": 111,
+          "durationMs": 280
+        },
+        {
+          "number": 112,
+          "durationMs": 180
+        },
+        {
+          "number": 113,
+          "durationMs": 160
+        },
+        {
+          "number": 114,
+          "durationMs": 130
+        },
+        {
+          "number": 115,
+          "durationMs": 60
+        },
+        {
+          "number": 116,
+          "durationMs": 110
+        },
+        {
+          "number": 117,
+          "durationMs": 160
+        },
+        {
+          "number": 118,
+          "durationMs": 220
+        },
+        {
+          "number": 119,
+          "durationMs": 90
+        },
+        {
+          "number": 120,
+          "durationMs": 250
+        },
+        {
+          "number": 121,
+          "durationMs": 120
+        },
+        {
+          "number": 122,
+          "durationMs": 200
+        },
+        {
+          "number": 123,
+          "durationMs": 130
+        },
+        {
+          "number": 124,
+          "durationMs": 350
+        },
+        {
+          "number": 125,
+          "durationMs": 120
+        },
+        {
+          "number": 126,
+          "durationMs": 160
+        },
+        {
+          "number": 127,
+          "durationMs": 140
+        },
+        {
+          "number": 128,
+          "durationMs": 700
+        },
+        {
+          "number": 129,
+          "durationMs": 700
+        },
+        {
+          "number": 130,
+          "durationMs": 350
+        },
+        {
+          "number": 131,
+          "durationMs": 140
+        },
+        {
+          "number": 132,
+          "durationMs": 100
+        },
+        {
+          "number": 133,
+          "durationMs": 140
+        },
+        {
+          "number": 134,
+          "durationMs": 100
+        },
+        {
+          "number": 135,
+          "durationMs": 90
+        },
+        {
+          "number": 136,
+          "durationMs": 70
+        },
+        {
+          "number": 137,
+          "durationMs": 70
+        },
+        {
+          "number": 138,
+          "durationMs": 90
+        },
+        {
+          "number": 139,
+          "durationMs": 70
+        },
+        {
+          "number": 140,
+          "durationMs": 70
+        },
+        {
+          "number": 141,
+          "durationMs": 140
+        },
+        {
+          "number": 142,
+          "durationMs": 120
+        },
+        {
+          "number": 143,
+          "durationMs": 280
+        },
+        {
+          "number": 144,
+          "durationMs": 180
+        },
+        {
+          "number": 145,
+          "durationMs": 160
+        },
+        {
+          "number": 146,
+          "durationMs": 130
+        },
+        {
+          "number": 147,
+          "durationMs": 60
+        },
+        {
+          "number": 148,
+          "durationMs": 110
+        },
+        {
+          "number": 149,
+          "durationMs": 160
+        },
+        {
+          "number": 150,
+          "durationMs": 220
+        },
+        {
+          "number": 151,
+          "durationMs": 90
+        },
+        {
+          "number": 152,
+          "durationMs": 250
+        },
+        {
+          "number": 153,
+          "durationMs": 120
+        },
+        {
+          "number": 154,
+          "durationMs": 200
+        },
+        {
+          "number": 155,
+          "durationMs": 130
+        },
+        {
+          "number": 156,
+          "durationMs": 350
+        },
+        {
+          "number": 157,
+          "durationMs": 120
+        },
+        {
+          "number": 158,
+          "durationMs": 160
+        },
+        {
+          "number": 159,
+          "durationMs": 140
+        },
+        {
+          "number": 160,
+          "durationMs": 700
+        },
+        {
+          "number": 161,
+          "durationMs": 700
+        },
+        {
+          "number": 162,
+          "durationMs": 350
+        },
+        {
+          "number": 163,
+          "durationMs": 140
+        },
+        {
+          "number": 164,
+          "durationMs": 100
+        },
+        {
+          "number": 165,
+          "durationMs": 140
+        },
+        {
+          "number": 166,
+          "durationMs": 100
+        },
+        {
+          "number": 167,
+          "durationMs": 90
+        },
+        {
+          "number": 168,
+          "durationMs": 70
+        },
+        {
+          "number": 169,
+          "durationMs": 70
+        },
+        {
+          "number": 170,
+          "durationMs": 90
+        },
+        {
+          "number": 171,
+          "durationMs": 70
+        },
+        {
+          "number": 172,
+          "durationMs": 70
+        },
+        {
+          "number": 173,
+          "durationMs": 140
+        },
+        {
+          "number": 174,
+          "durationMs": 120
+        },
+        {
+          "number": 175,
+          "durationMs": 280
+        },
+        {
+          "number": 176,
+          "durationMs": 180
+        },
+        {
+          "number": 177,
+          "durationMs": 160
+        },
+        {
+          "number": 178,
+          "durationMs": 130
+        },
+        {
+          "number": 179,
+          "durationMs": 60
+        },
+        {
+          "number": 180,
+          "durationMs": 110
+        },
+        {
+          "number": 181,
+          "durationMs": 160
+        },
+        {
+          "number": 182,
+          "durationMs": 220
+        },
+        {
+          "number": 183,
+          "durationMs": 90
+        },
+        {
+          "number": 184,
+          "durationMs": 250
+        },
+        {
+          "number": 185,
+          "durationMs": 120
+        },
+        {
+          "number": 186,
+          "durationMs": 200
+        },
+        {
+          "number": 187,
+          "durationMs": 130
+        },
+        {
+          "number": 188,
+          "durationMs": 350
+        },
+        {
+          "number": 189,
+          "durationMs": 120
+        },
+        {
+          "number": 190,
+          "durationMs": 160
+        },
+        {
+          "number": 191,
+          "durationMs": 140
+        },
+        {
+          "number": 192,
+          "durationMs": 700
+        },
+        {
+          "number": 193,
+          "durationMs": 700
+        },
+        {
+          "number": 194,
+          "durationMs": 350
+        },
+        {
+          "number": 195,
+          "durationMs": 140
+        },
+        {
+          "number": 196,
+          "durationMs": 100
+        },
+        {
+          "number": 197,
+          "durationMs": 140
+        },
+        {
+          "number": 198,
+          "durationMs": 100
+        },
+        {
+          "number": 199,
+          "durationMs": 90
+        },
+        {
+          "number": 200,
+          "durationMs": 70
+        },
+        {
+          "number": 201,
+          "durationMs": 70
+        },
+        {
+          "number": 202,
+          "durationMs": 90
+        },
+        {
+          "number": 203,
+          "durationMs": 70
+        },
+        {
+          "number": 204,
+          "durationMs": 70
+        },
+        {
+          "number": 205,
+          "durationMs": 140
+        },
+        {
+          "number": 206,
+          "durationMs": 120
+        },
+        {
+          "number": 207,
+          "durationMs": 280
+        },
+        {
+          "number": 208,
+          "durationMs": 180
+        },
+        {
+          "number": 209,
+          "durationMs": 160
+        },
+        {
+          "number": 210,
+          "durationMs": 130
+        },
+        {
+          "number": 211,
+          "durationMs": 60
+        },
+        {
+          "number": 212,
+          "durationMs": 110
+        },
+        {
+          "number": 213,
+          "durationMs": 160
+        },
+        {
+          "number": 214,
+          "durationMs": 220
+        },
+        {
+          "number": 215,
+          "durationMs": 90
+        },
+        {
+          "number": 216,
+          "durationMs": 250
+        },
+        {
+          "number": 217,
+          "durationMs": 120
+        },
+        {
+          "number": 218,
+          "durationMs": 200
+        },
+        {
+          "number": 219,
+          "durationMs": 130
+        },
+        {
+          "number": 220,
+          "durationMs": 350
+        },
+        {
+          "number": 221,
+          "durationMs": 120
+        },
+        {
+          "number": 222,
+          "durationMs": 160
+        },
+        {
+          "number": 223,
+          "durationMs": 140
+        },
+        {
+          "number": 224,
+          "durationMs": 700
+        },
+        {
+          "number": 225,
+          "durationMs": 700
+        },
+        {
+          "number": 226,
+          "durationMs": 350
+        },
+        {
+          "number": 227,
+          "durationMs": 140
+        },
+        {
+          "number": 228,
+          "durationMs": 100
+        },
+        {
+          "number": 229,
+          "durationMs": 140
+        },
+        {
+          "number": 230,
+          "durationMs": 100
+        },
+        {
+          "number": 231,
+          "durationMs": 90
+        },
+        {
+          "number": 232,
+          "durationMs": 70
+        },
+        {
+          "number": 233,
+          "durationMs": 70
+        },
+        {
+          "number": 234,
+          "durationMs": 90
+        },
+        {
+          "number": 235,
+          "durationMs": 70
+        },
+        {
+          "number": 236,
+          "durationMs": 70
+        },
+        {
+          "number": 237,
+          "durationMs": 140
+        },
+        {
+          "number": 238,
+          "durationMs": 120
+        },
+        {
+          "number": 239,
+          "durationMs": 280
+        },
+        {
+          "number": 240,
+          "durationMs": 180
+        },
+        {
+          "number": 241,
+          "durationMs": 160
+        },
+        {
+          "number": 242,
+          "durationMs": 130
+        },
+        {
+          "number": 243,
+          "durationMs": 60
+        },
+        {
+          "number": 244,
+          "durationMs": 110
+        },
+        {
+          "number": 245,
+          "durationMs": 160
+        },
+        {
+          "number": 246,
+          "durationMs": 220
+        },
+        {
+          "number": 247,
+          "durationMs": 90
+        },
+        {
+          "number": 248,
+          "durationMs": 250
+        },
+        {
+          "number": 249,
+          "durationMs": 120
+        },
+        {
+          "number": 250,
+          "durationMs": 200
+        },
+        {
+          "number": 251,
+          "durationMs": 130
+        },
+        {
+          "number": 252,
+          "durationMs": 350
+        },
+        {
+          "number": 253,
+          "durationMs": 120
+        },
+        {
+          "number": 254,
+          "durationMs": 160
+        },
+        {
+          "number": 255,
+          "durationMs": 140
+        },
+        {
+          "number": 256,
+          "durationMs": 700
+        }
+      ],
+      "transparentIndex": 0,
+      "palette": [
+        "#00000000",
+        "#020311",
+        "#050514",
+        "#07091e",
+        "#1f1d2d",
+        "#212236",
+        "#2a2733",
+        "#2c2f49",
+        "#203267",
+        "#402e2f",
+        "#2d3b71",
+        "#593426",
+        "#234794",
+        "#3b4a79",
+        "#3e4b6c",
+        "#5a4847",
+        "#71432e",
+        "#8d5133",
+        "#be7837",
+        "#81879b",
+        "#6793b7",
+        "#ee9e61",
+        "#b1adb6",
+        "#89c2df",
+        "#fcb780",
+        "#fcbc88",
+        "#fcc293",
+        "#f0c5a4",
+        "#f2e6df",
+        "#f5e9e0",
+        "#f9ebdf",
+        "#fbebde",
+        "#fcede0"
+      ]
+    }
+  },
+  {
+    "name": "look",
+    "args": {
+      "op": "preview",
+      "frame": 232,
+      "scale": 6
+    },
+    "content": [
+      {
+        "type": "text",
+        "text": "kael-library.aseprite — 48×64 shown at 6×. For exact pixel values use op 'ascii'."
+      }
+    ],
+    "structuredContent": {
+      "op": "preview",
+      "sprite": "kael-library.aseprite",
+      "width": 48,
+      "height": 64,
+      "scale": 6
+    }
+  },
+  {
+    "name": "validate",
+    "args": {
+      "checks": [
+        "palette",
+        "layers",
+        "animation",
+        "export_readiness"
+      ]
+    },
+    "content": [
+      {
+        "type": "text",
+        "text": "Clean."
+      }
+    ],
+    "structuredContent": {
+      "sprite": "kael-library.aseprite",
+      "findings": [],
+      "passed": true,
+      "score": 100,
+      "summary": "Clean."
+    }
+  },
+  {
+    "name": "sprite_manage",
+    "args": {
+      "op": "save_as",
+      "path": "C:/Users/user/produto/pipa-club-pip88/tmp/kael-pack/native-roundtrip.aseprite"
+    },
+    "content": [
+      {
+        "type": "text",
+        "text": "save_as: native-roundtrip.aseprite. Refer to it as '#1283'."
+      }
+    ],
+    "structuredContent": {
+      "op": "save_as",
+      "sprite": "native-roundtrip.aseprite",
+      "path": "C:\\Users\\user\\produto\\pipa-club-pip88\\tmp\\kael-pack\\native-roundtrip.aseprite",
+      "id": 1283
+    }
+  }
+]

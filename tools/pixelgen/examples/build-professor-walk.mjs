@@ -4,8 +4,10 @@ import {fileURLToPath} from 'node:url';
 import {validateProject,serialize,audit} from '../core.mjs';
 import {atlas} from '../animation.mjs';
 import {aseprite} from '../aseprite.mjs';
+import {extract} from '../document.mjs';
 const root=new URL('../../../',import.meta.url),dir=new URL('art/characters/professor-walk-pixel-v1/',root);
 const p=validateProject(JSON.parse(await fs.readFile(new URL('draft.pixelgen.json',dir),'utf8')));
+for(const frame of p.frames)frame.indices=frame.cels[0];
 const originals=p.frames.map(f=>f.indices.slice());
 // A single head model stops AI redrawing hair, eye and goggles on every pose.
 for(const f of p.frames)for(let y=0;y<32;y++)for(let x=0;x<48;x++)f.indices[y*48+x]=originals[0][y*48+x];
@@ -19,7 +21,8 @@ for(let y=49;y<57;y++)for(let x=8;x<39;x++){
 }
 p.name='Professor · caminhada esquerda';p.sequences=[{name:'walk-left',start:0,end:3,loop:true}];
 p.frames.forEach((f,i)=>{f.duration=[140,110,140,110][i];f.sourceRect=undefined;f.sourceBounds=undefined;});
-const json=JSON.stringify(serialize(p),null,1);
+extract(p,0,0,{x:0,y:0,w:48,h:32},true);p.layers[0].name='Corpo';p.layers[1].name='Cabeça';
+const json=JSON.stringify(serialize(p));
 await fs.writeFile(new URL('professor-walk.pixelgen.json',import.meta.url),json);
 await fs.writeFile(new URL('professor-walk.pixelgen.json',dir),json);
 await fs.writeFile(new URL('professor-walk.aseprite',dir),aseprite(p));

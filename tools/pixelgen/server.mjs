@@ -2,8 +2,11 @@ import http from 'node:http';
 import fs from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 const app=new URL('./',import.meta.url);
-const allowed=new Map([['/','index.html'],...['style.css','app.mjs','core.mjs','animation.mjs','worker.mjs','aseprite.mjs'].map(f=>['/'+f,f])]);
+const allowed=new Map([['/','index.html'],...['style.css','app.mjs','core.mjs','animation.mjs','document.mjs','storage.mjs','quality.mjs','godot.mjs','worker.mjs','aseprite.mjs'].map(f=>['/'+f,f])]);
 allowed.set('/professor-walk.pixelgen.json','examples/professor-walk.pixelgen.json');
+allowed.set('/kael-walk.pixelgen.json','examples/kael-walk.pixelgen.json');
+allowed.set('/kael-library.pixelgen.json','../../art/characters/kael-eight-directions-v1/kael-library.pixelgen.json');
+allowed.set('/kael-stairs.pixelgen.json','../../art/characters/kael-stairs-study-v1/kael-stairs.pixelgen.json');
 const types={html:'text/html; charset=utf-8',css:'text/css; charset=utf-8',mjs:'text/javascript; charset=utf-8',png:'image/png',json:'application/json; charset=utf-8'};
 export async function serve(req,res){
  const headers={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Content-Security-Policy':"default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; worker-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'"};

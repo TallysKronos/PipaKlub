@@ -1,58 +1,72 @@
-# Pixelgen
+# Pixelgen Studio 2
 
-Bancada local para transformar uma imagem ou folha de referências em quadros de pixels nativos, limpar a transparência, construir uma paleta compartilhada e retocar os pixels antes da exportação. Não altera o jogo nem chama serviços de IA.
+Bancada local de pixel art do Soulmonsters: referência → grade nativa → camadas → animação → revisão → exportação. Os projetos permanecem no navegador e nos arquivos que você baixar; o servidor não recebe imagens nem salva arquivos por você.
 
 ## Abrir
-
-Na raiz do projeto:
 
 ```sh
 npm run studio:pixel
 ```
 
-Acesse `http://127.0.0.1:5264/`. Se a porta estiver ocupada, o terminal informa a próxima disponível. O servidor atende somente ao próprio computador. Não precisa de build ou dependências adicionais.
+Acesse http://127.0.0.1:5264/. O terminal informa outra porta se necessário. Recarregue a página para receber a nova interface. Não precisa de build nem de novas dependências para usar a bancada.
 
-## Fluxo
+## Projetos e recuperação
 
-1. Importe PNG, JPEG ou WebP; ou use a folha de Kael e professor incluída como exemplo.
-2. Defina colunas, linhas e, quando necessário, o recorte da fonte. A separação pressupõe uma grade regular: uma imagem gerada pode exigir ajuste do recorte para não atravessar os personagens.
-3. Escolha resolução nativa, quantidade de cores e limpeza. O padrão é 48×64, até 32 cores opacas mais transparência. Os quadros da mesma linha compartilham a escala e podem alinhar os pés.
-4. Converta. O processamento roda em um worker para não bloquear a bancada. Fundos uniformes podem ser removidos por preenchimento conectado às bordas; fundos ilustrados complexos exigem uma fonte com transparência ou preparação manual.
-5. Use Comparar para conferir a identidade e Pixel para editar: B lápis, E borracha, I conta-gotas, G preenchimento; botão direito apaga. Ctrl+Z desfaz e Ctrl+Shift+Z refaz. As setas da bancada deslocam o quadro em um pixel. Editar uma cor da paleta atualiza todos os quadros. Onion skin mostra a pose anterior em verde e a próxima em violeta; essas camadas não são exportadas.
-6. Salve o projeto e exporte. Reconverter substitui os pixels por uma nova conversão e pode ser desfeito. O histórico guarda até 20 estados dos pixels, paleta e parâmetros; não é um histórico das imagens importadas.
+Em **Projetos**, crie um sprite vazio de 48×64, 32×32, 64×32 ou 64×64, guarde o projeto atual e abra projetos da biblioteca. A biblioteca usa IndexedDB neste navegador, incluindo camadas e imagem de origem. Guardar novamente atualiza o mesmo projeto; importar outro exemplo cria um projeto independente.
 
-Na timeline, selecione uma sequência, ajuste seu nome, início, fim e loop em Editar e aplique. O campo ms controla a duração do quadro selecionado (20–2000 ms). Reproduzir usa essas durações; o controle de velocidade só altera a prévia. O botão ⧉ duplica o quadro e ajusta os intervalos das sequências. Projetos anteriores continuam abrindo; sem sequências cadastradas, cada linha vira uma sequência inicial. Uma folha com quatro direções estáticas não é um ciclo de caminhada.
+A gravação automática guarda o estado atual e o anterior em uma transação. **Recuperar gravação anterior** abre a cópia anterior; Desfazer permite voltar. Reabrir o autosave não sobrescreve imediatamente a cópia de recuperação. Projetos antigos v1 são migrados para v2 com seus pixels preservados; o autosave antigo não é apagado.
 
-Use **Professor · teste de caminhada** para abrir o primeiro ciclo `walk-left`: quatro poses, 48×64, 140/110/140/110 ms, loop de 500 ms. É uma proposta para revisão de movimento, ainda sem substituir os sprites no jogo.
+**Salvar projeto ↓ / Ctrl+S** baixa um arquivo portátil .pixelgen.json, com a fonte quando disponível. Limpar dados do navegador remove a biblioteca; guarde arquivos fora dele como backup. Falhas de quota ou indisponibilidade de armazenamento são exibidas; não são tratadas como gravação bem-sucedida.
 
-## Formatos
+## Camadas e edição
 
-- `.aseprite`: documento indexado de 8 bits, índice transparente 0, uma camada editável chamada Pixels, uma cel por quadro, durações individuais e tags com os intervalos das sequências. Não inventa camadas anatômicas.
-- PNG: folha ou quadro na resolução nativa, RGBA com cores limitadas e alpha binário. O zoom da bancada não modifica a exportação.
-- Atlas JSON v2: retângulos em pixels, pivôs locais em pixels, nomes, durações, paleta e sequências com intervalos e loop. É um formato simples do Pixelgen; não é um recurso Godot pronto nem um importador automático.
-- GPL: paleta opaca compatível com editores de pixel art.
-- `.pixelgen.json`: pixels indexados, paleta, nomes, parâmetros e fonte original incorporada quando disponível. A gravação automática no navegador guarda somente os pixels e parâmetros; use Salvar projeto para guardar também a fonte. Ao restaurar apenas o autosave, importe novamente a fonte para reconverter.
+- Até 8 camadas indexadas: nome, visibilidade, bloqueio e ordem. O desenho e os deslocamentos afetam somente a camada ativa.
+- B lápis, E borracha, I conta-gotas, G preenchimento, M seleção retangular. Botão direito apaga. A seleção restringe o lápis e o preenchimento.
+- **Separar em camada** recorta a seleção mantendo o encaixe e a aparência. Pode agir só no quadro atual ou em todos. Não identifica anatomia automaticamente.
+- As setas deslocam a seleção ou camada em pixels inteiros. Espelhar funciona na seleção ou na camada completa. Delete apaga a área selecionada; sem seleção, limpa a camada do quadro atual.
+- **Copiar pose à sequência** replica o conteúdo da camada ativa para os quadros da sequência. Útil para reutilizar uma cabeça; as cels são cópias independentes, não cels vinculadas.
+- Ctrl+A seleciona o quadro; Esc limpa a seleção. Ctrl+Z / Ctrl+Shift+Z desfazem/refazem. O histórico inclui documento e referência de origem, com limite de estados e memória.
 
-Limites: fonte até 16 megapixels / 32 MB; projeto até 1.048.576 pixels nativos e 256 entradas de paleta. Projetos JSON até 64 MB. A remoção de ilhas é opcional porque pode apagar detalhes legítimos.
+Kael e professor têm exemplos de caminhada para a esquerda com cabeça e corpo em camadas separadas. Ambos usam quatro poses 48×64 e tempos 140/110/140/110 ms. Os exemplos ainda estão sujeitos à revisão artística; não substituem os personagens no jogo.
 
-## O que a conversão garante
+Também estão disponíveis **Kael · 8 direções e movimentos**, com seleção de direção/ação e filtro da timeline, e **Kael · subir escada · 4 quadros**, um estudo menor de costas em 64×80. A biblioteca de oito direções foi rejeitada na revisão artística do usuário por baixa legibilidade; permanece como estudo técnico editável. O estudo da escada permite revisar um único ciclo antes de ampliar o conjunto.
 
-Coordenadas inteiras, quadro nativo, índices de paleta e alpha 0/255. Não há suavização na visualização dos pixels nem na exportação. Isso garante uma estrutura editável de pixel art; não garante anatomia correta, contornos desenhados à mão, identidade perfeita ou continuidade entre poses. A referência e o editor estão disponíveis para essa revisão.
+## Animação
 
-Não há upload: a imagem é processada no navegador. Projetos ficam no armazenamento local desse navegador ou nos arquivos que você escolher baixar. O servidor só entrega os arquivos da ferramenta e a imagem de exemplo.
+A timeline permite duplicar, inserir quadros vazios, excluir e reordenar dentro da sequência selecionada. Nomes, intervalos, durações e modos normal, reverso e ping-pong são editáveis. **Aplicar ms à sequência** ajusta todos os seus quadros. A velocidade de prévia não modifica o arquivo exportado. Espaço no canvas inicia/para.
 
-## Verificação inicial — 28/10/2026
+Onion skin mostra poses vizinhas em verde e violeta somente no editor; nunca é exportado. A leitura 1× ajuda a conferir o resultado no tamanho nativo. Uma folha de quatro direções estáticas não se transforma automaticamente em uma caminhada.
 
-- Exemplo convertido em 8 quadros 48×64; folha 192×128; 32 cores opacas, alpha binário, sem quadros vazios ou pixels encostando na borda.
-- Projeto serializado e reaberto sem alteração dos índices; limite de memória verificado.
-- Arquivo Aseprite lido por um parser independente em Python: cabeçalho, oito frames/cels, camada, paleta e tags; todos os pixels e cores conferem com o projeto exportado.
-- Inicialização DOM e operações de lápis, deslocamento, paleta e desfazer/refazer verificadas com canvas simulado. Isso não comprova renderização no navegador.
-- Rotas estáticas conferidas diretamente no handler: arquivos entregues com MIME correto; arquivo fora da lista retorna 404 e POST retorna 405.
-- Servidor iniciado e acesso HTTP real à página inicial confirmado com status 200.
-- Inspeção visual no navegador indisponível porque o controle local de navegador está desabilitado no Work. Aseprite não foi encontrado nos caminhos de instalação consultados; a abertura no aplicativo ainda precisa de confirmação.
+## Conversão e revisão
 
-Artefatos do exemplo: `art/characters/rpg-overworld-study-v1/pixelgen-native-v1/`.
+Importe PNG/JPEG/WebP, defina grade, recorte, resolução, paleta e limpeza. O processamento roda em worker. Cores dominantes ou nearest-neighbor; alinhamento de pés ou centro; alpha binário; remoção opcional de fundo conectado às bordas e de pequenas ilhas. A separação pressupõe células regulares: rascunhos gerados podem precisar de ajuste do recorte. Fundos complexos exigem uma fonte recortada adequadamente.
 
-Atualização de animação: lógica DOM verificada com canvas simulado para onion skin, duração variável, término sem loop, duplicação, desfazer e ajuste dos intervalos. Parser independente conferiu tag `walk-left` de 0 a 3 e tempos 140/110/140/110 ms no Aseprite. Os quatro frames do GIF foram decodificados e comparados pixel a pixel com o projeto. Cabeça estável nos quatro quadros; 31 cores opacas usadas e alpha binário. Inspeção interativa do navegador continua bloqueada pela configuração do Work.
+A revisão geométrica lista quadros vazios, pixels isolados, contato com bordas e variação do apoio vertical. O relatório JSON inclui contornos, contagem de pixels e duração real das sequências. Esses avisos não certificam anatomia ou movimento.
 
-Escritor Aseprite implementado a partir da [especificação oficial do formato](https://github.com/aseprite/aseprite/blob/main/docs/ase-file-specs.md).
+## Exportação
+
+- PNG de quadro ou folha: resolução nativa, composição das camadas visíveis, paleta limitada e alpha 0/255.
+- Aseprite indexado: camadas reais, visibilidade/bloqueio, cels, tempos e tags com modos de reprodução. Sem suavização ou rig inventado.
+- Atlas JSON: recortes, pivôs em pixels, duração e sequências. A imagem é a composição visível.
+- Godot .tres: recurso SpriteFrames para AnimatedSprite2D. Exporte também o PNG e coloque-o no caminho res:// indicado. Reverso/ping-pong são materializados na ordem dos quadros para manter compatibilidade. Use filtro Nearest; o pivô do atlas é uma orientação para configurar o nó, não uma propriedade inserida no SpriteFrames.
+- Paleta GPL e relatório de qualidade JSON.
+
+Limites: 16 MP / 32 MB por fonte; 1.048.576 pixels na grade; 4.194.304 pixels de cels; 8 camadas; 256 quadros; 256 entradas de paleta incluindo transparência. Projeto JSON até 64 MB. A conversão garante estrutura nativa editável; contornos, identidade e poses ainda precisam de trabalho artístico.
+
+## Verificação
+
+```sh
+npm run studio:pixel:check
+```
+
+O comando verifica migração, camadas, recorte, composição, transformação, histórico, animação, exportação e fluxo DOM. O canvas do teste DOM é simulado: ele não comprova aparência no navegador.
+
+Também foram executadas verificações independentes de IndexedDB com fake-indexeddb, importação/exportação real no Aseprite 1.3.18.6 e carregamento real do SpriteFrames no Godot 4.7.2. Evidências e limites em documentation/pixelgen/studio-v2/README.md. A inspeção interativa do navegador está indisponível pela configuração do Work.
+
+## Skills e Aseprite
+
+Foram instaladas as skills pixel-art, pixel-art-animator, pixel-art-professional e aseprite-ai-artist no Codex. O pacote @pebbly/aseprite-ai-artist 0.8.2 está em uma pasta local de ferramentas, com extensão instalada no Aseprite e MCP configurado para a instalação Steam. O diagnóstico MCP respondeu READY em modo headless. As ferramentas das skills de willibrandon e do pacote AI Artist têm APIs diferentes; consulte as ferramentas realmente expostas, sem pressupor nomes intercambiáveis.
+
+A conexão é uma ferramenta do Codex; o Pixelgen não depende dela para abrir ou editar. A configuração e os pacotes locais não são enviados no Git. Consulte documentation/pixelgen/skill-installation.json para origens e versões. As skills ficam disponíveis no próximo turno; pode ser necessário reiniciar o Codex para carregar o novo servidor MCP.
+
+Referências: especificação Aseprite em https://github.com/aseprite/aseprite/blob/main/docs/ase-file-specs.md e documentação SpriteFrames em https://docs.godotengine.org/en/stable/classes/class_spriteframes.html.
