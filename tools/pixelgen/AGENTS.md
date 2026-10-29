@@ -6,25 +6,52 @@ Ferramenta para criar e animar os personagens do Soulmonsters por comandos. O pr
 npm run pixel -- help
 ```
 
+Leia antes o [`ESTILO-PIXEL.md`](ESTILO-PIXEL.md): proporção, contorno, cor, luz e animação do jogo, com as fontes.
+
 ## Fluxo obrigatório: desenhar → olhar → conferir
 
+0. **Ficha do personagem primeiro.** Ela fixa os números que valem em todas as direções:
+   ```sh
+   npm run pixel -- sheet nina.pixelgen.json --set nome=Nina --set cabecas=2.5 --set altura=54 --set base=61 \
+     --set cores=16 --set rampas=tinta,pele,cabelo,roupa --set referencia=idle-S-1 --set preenchimentoMax=0.75
+   ```
+   Também aceita um JSON (`sheet nina.pixelgen.json ficha.json`). Os campos são `nome`, `cabecas`, `altura`, `base` (linha dos pés), `larguraMax`, `cores`, `rampas`, `preenchimentoMax` (silhueta-alvo), `referencia` (quadro que define cabeça e membros), `partes` (nomes das camadas, se forem outros) e `notas`.
 1. **Crie o projeto e as rampas antes de desenhar.** Cada material tem uma rampa do escuro para o claro (3 a 5 tons): `tinta` (contorno), `pele`, `cabelo`, `roupa`… Use a cor como `"pele:1"`, nunca hex solto no meio do desenho.
-2. **Desenhe por partes, uma camada por parte**: `Pernas`, `Tronco`, `Braço de trás`, `Braço da frente`, `Cabeça`, `Cabelo`. É assim que a animação reaproveita a cabeça e o tronco entre quadros (op `copy`).
-3. **Olhe o resultado depois de cada etapa.** Nunca entregue sem ter visto os PNGs:
+2. **Desenhe por partes, uma camada por parte**: `Perna de trás`, `Perna da frente`, `Braço de trás`, `Tronco`, `Braço da frente`, `Cabeça` e `Cabelo` (opcional). As receitas animam movendo essas camadas, e a op `copy` reaproveita a cabeça e o tronco entre quadros. "Frente" é o membro mais perto da câmera.
+3. **Marque a pose** do quadro parado (op `pose` ou comando `pose`). São 9 pontos: `topo` (alto da cabeça), `queixo`, `ombroTras`, `ombroFrente`, `maoTras`, `maoFrente`, `quadril`, `peTras` e `peFrente` (o pixel do pé que toca o chão). Confira com `render --pose`.
+4. **Gere os ciclos pelas receitas** e depois ajuste à mão:
+   ```sh
+   npm run pixel -- recipe nina.pixelgen.json idle S --base idle-S-1 --replace
+   npm run pixel -- recipe nina.pixelgen.json walk S --base idle-S-1
+   npm run pixel -- recipe nina.pixelgen.json run E --base idle-E-1 [--stride 1.5]
+   ```
+   A receita cria `<movimento>-<dir>-1..n` no fim, com os tempos do jogo e a sequência. Ela inclina pernas e braços a partir do quadril e do ombro, faz o sobe e desce do corpo, levanta o pé que passa e move os pontos da pose junto. Se houver camada `Contorno`, ela é refeita em volta. **O resultado é um rascunho de tempo e espaçamento:** redesenhe joelho, pé e mão nos quadros de contato e passagem antes de entregar. `--replace` refaz um ciclo que já existe. O próprio quadro base pode estar entre os substituídos, como no idle.
+5. **Olhe o resultado depois de cada etapa.** Nunca entregue sem ter visto os PNGs:
    - `render --frame N --zoom 8`: quadro ampliado com grade a cada pixel e linha forte a cada 8;
    - `render --silhouette`: **a pose precisa ler só pela silhueta**. Se braços e pernas não se separam do corpo, redesenhe a pose antes de pintar;
    - `render --grounds`: o quadro sobre grama, terra, calçada e noite, em 3× e no tamanho real (1×). O que vale é o 1×;
    - `render --sheet`: todos os quadros lado a lado, para comparar proporção entre direções;
    - `render --gif <sequência>`: a animação no tempo real;
+   - `render --pose`: os pontos e ossos da pose por cima do quadro;
    - `render --onion`: o quadro anterior (verde) e o próximo (violeta) por baixo, para medir o deslocamento;
    - `ascii --frame N [--layer nome]`: a grade em texto com a legenda de cores, para corrigir pixels exatos.
-4. **Rode `check` antes de entregar.** Ele sai com código 1 e lista os erros quando:
+6. **Rode `check` antes de entregar.** Ele sai com código 1 e lista os erros quando:
    - o contorno escuro cobre menos de 70% da borda;
    - falta contraste com grama, terra ou calçada;
    - há um quadro vazio;
-   - os pés variam mais de 1 px numa sequência `idle`.
+   - os pés variam mais de 1 px numa sequência `idle`, ou um pé marcado se mexe no idle;
+   - a figura foge da ficha: altura (±2 px), número de cabeças (±0,3), linha dos pés, cabeça diferente da referência (mais de 1 px), mais cores do que a ficha permite ou uma rampa obrigatória que falta.
 
-   Os avisos (noite, cores vizinhas parecidas, pixels soltos, figura pequena) pedem que você olhe de novo.
+   Os avisos pedem que você olhe de novo:
+   - noite;
+   - cores vizinhas parecidas;
+   - pixels soltos;
+   - figura pequena;
+   - silhueta cheia demais;
+   - membro com tamanho diferente da referência;
+   - pé apoiado que anda em velocidades diferentes;
+   - cor fora das rampas;
+   - quadro sem pose.
 
 ## Convenções do jogo
 
@@ -68,6 +95,8 @@ Campos comuns:
 | `copy` | `fromFrame`, `fromLayer`, `rect`, `dx`, `dy`, `flip`, `opaque` | copia uma região de outro quadro ou camada (reaproveita a cabeça) |
 | `outline` | `target`, `color`, `diagonal` | cria a camada `Contorno` por fora da figura |
 | `selout` | `layer`, `target` | escurece a borda da camada com a própria rampa |
+| `pose` | `frame`, `points: {topo:[x,y],…}`, `clear` | marca os pontos da pose (`null` remove um ponto) |
+| `recipe` | `motion` (`idle`/`walk`/`run`), `dir`, `base`, `replace`, `stride`, `parts` | gera um ciclo a partir do quadro parado |
 
 ## Exemplo mínimo
 

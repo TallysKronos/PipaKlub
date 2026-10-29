@@ -35,6 +35,10 @@ Também estão disponíveis **Kael · 8 direções e movimentos**, com seleção
 
 `npm run pixel -- help` lista os comandos: criar projeto, rampas de cor nomeadas, desenho por operações JSON (linha, retângulo, elipse, balde, cópia entre quadros, espelho, contornos), quadros, camadas e sequências; renderização para revisão (quadro ampliado, silhueta, onion skin, chãos do jogo, folha e GIF); visão em texto (`ascii`); conferência de entrega (`check`, sai com código 1 se reprovar) e exportações (PNG, Aseprite, atlas, Godot, GPL). O fluxo de trabalho e a referência das operações estão em [AGENTS.md](AGENTS.md). Os projetos são os mesmos `.pixelgen.json` da bancada.
 
+## Pose, receitas e ficha
+
+Cada quadro pode ter uma pose com 9 pontos: cabeça (topo e queixo), ombros, mãos, quadril e pés. Cada personagem tem uma ficha com altura, número de cabeças, linha dos pés, limite de cores e rampas. As receitas `idle`, `walk` e `run` geram os ciclos a partir do quadro parado, movendo as camadas de cada parte. O `check` confere a proporção contra a ficha e avisa quando o pé desliza. As regras de estilo e as fontes estão em [ESTILO-PIXEL.md](ESTILO-PIXEL.md). A bancada preserva a pose e a ficha ao abrir e salvar.
+
 ## Legibilidade
 
 Sprite pequeno lê pela silhueta, pelo contorno fechado e pelo contraste com o chão. A seção **Legibilidade** (painel direito) e a bancada trazem:

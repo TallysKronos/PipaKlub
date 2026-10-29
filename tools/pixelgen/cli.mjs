@@ -15,6 +15,7 @@ import {apply,frameList,layerIndex,toHex,setRamp} from './draw.mjs';
 import {renderFrame,renderSheet,renderGrounds,gifFrames,asciiFrame,Canvas,frameRGBA} from './render.mjs';
 import {encodePNG,decodePNG} from './png.mjs';
 import {encodeGIF} from './gif.mjs';
+import {rigReport,recipe,validateSheet,validatePose,measure,POINTS,RECIPES} from './rig.mjs';
 
 const HELP=`Pixelgen CLI — uso: npm run pixel -- <comando> <projeto.pixelgen.json> [opções]
 
@@ -24,13 +25,18 @@ const HELP=`Pixelgen CLI — uso: npm run pixel -- <comando> <projeto.pixelgen.j
   draw <arq> <ops.json | ->          aplica uma lista JSON de operações (ver AGENTS.md)
   ascii <arq> [--frame i] [--layer nome]     grade de caracteres + legenda de cores
   render <arq> --out pasta [--frame i|nome|all] [--zoom 8] [--ground grama|terra|calcada|noite|xadrez]
-         [--silhouette] [--onion] [--sheet] [--grounds] [--gif sequência] [--no-grid]
+         [--silhouette] [--onion] [--pose] [--sheet] [--grounds] [--gif sequência] [--no-grid]
+  pose <arq> --frame i [topo=24,8 queixo=24,29 ...] [--clear]   marca/mostra os pontos da pose
+         pontos: topo queixo ombroTras ombroFrente maoTras maoFrente quadril peTras peFrente
+  recipe <arq> <idle|walk|run> <S|SO|O|NO|N|NE|E|SE> --base quadro [--replace] [--stride 1]
+         gera o ciclo a partir da pose parada, movendo as camadas de cada parte
+  sheet <arq> [ficha.json] [--set cabecas=2.5 --set altura=58 ...]   ficha do personagem
   check <arq> [--sequence nome] [--json]     legibilidade + geometria; sai com código 1 se reprovar
   import <imagem.png> <arq> [--cols 4 --rows 1 --width 48 --height 64 --colors 32 ...]
   export <arq> [--png folha.png] [--frame-png quadro.png --frame i] [--aseprite a.aseprite]
          [--atlas a.json] [--godot res://caminho/folha.png --tres a.tres] [--gpl paleta.gpl]`;
 
-function args(list){const out={_:[]};for(let i=0;i<list.length;i++){const a=list[i];if(a.startsWith('--')){const k=a.slice(2),v=list[i+1];if(v===undefined||v.startsWith('--'))out[k]=true;else{out[k]=v;i++;}}else out._.push(a);}return out;}
+function args(list){const out={_:[],set:[]};for(let i=0;i<list.length;i++){const a=list[i];if(a.startsWith('--')){const k=a.slice(2),v=list[i+1];if(v===undefined||v.startsWith('--'))out[k]=true;else if(k==='set'){out.set.push(v);i++;}else{out[k]=v;i++;}}else out._.push(a);}return out;}
 const load=file=>{if(!fs.existsSync(file))throw Error(`Projeto não encontrado: ${file}`);return validateProject(JSON.parse(fs.readFileSync(file,'utf8')));};
 const save=(file,p)=>{fs.mkdirSync(path.dirname(path.resolve(file)),{recursive:true});fs.writeFileSync(file,JSON.stringify(serialize(p)));};
 const writePNG=(file,cv)=>{fs.mkdirSync(path.dirname(path.resolve(file)),{recursive:true});fs.writeFileSync(file,encodePNG(cv.data,cv.w,cv.h));return file;};
@@ -56,6 +62,7 @@ export function check(p,{sequence}={}){
  const list=frames||p.frames.map((_,i)=>i);for(const i of list){const f=q.frames[i];if(!f.opaquePixels)errors.push(`Quadro ${i} (${f.name}) vazio.`);else{if(f.bounds.h<p.height*.45)warnings.push(`Quadro ${i}: figura ocupa só ${f.bounds.h}px de altura.`);if(f.isolatedPixels>2)warnings.push(`Quadro ${i}: ${f.isolatedPixels} pixels isolados.`);}}
  for(const s of q.sequences){if(sequence&&s.name!==sequence)continue;const still=/^(idle|parado)/.test(s.name);if(s.groundVariation>(still?1:2))(still?errors:warnings).push(`${s.name}: o apoio dos pés varia ${s.groundVariation}px.`);}
  for(const w of q.warnings)if(/toca|borda/.test(w))warnings.push(w);
+ const rig=rigReport(p,{frames});errors.push(...rig.errors);warnings.push(...rig.warnings);
  return {pass:!errors.length,errors,warnings,metrics:{darkEdge:leg.darkEdge,grounds:leg.grounds,confusingNeighbours:leg.confusingNeighbours,colorsUsed:q.colorsUsed}};
 }
 export async function run(argv){
@@ -77,9 +84,16 @@ export async function run(argv){
    if(a.sheet)written.push(writePNG(`${base}-folha${a.silhouette?'-silhueta':''}.png`,renderSheet(p,a.frame?list:p.frames.map((_,i)=>i),{zoom:Number(a.zoom)||3,ground:a.ground||'grama',silhouette:!!a.silhouette})));
    else if(a.grounds)for(const f of list)written.push(writePNG(`${base}-${f}-chaos-do-jogo.png`,renderGrounds(p,f)));
    else if(!a.gif)for(const f of list){const s=sequencesFor(p).find(s=>f>=s.start&&f<=s.end),prev=s?(f>s.start?f-1:s.loop!==false&&s.end>s.start?s.end:null):null,next=s?(f<s.end?f+1:s.loop!==false&&s.end>s.start?s.start:null):null;
-    written.push(writePNG(`${base}-${f}${a.silhouette?'-silhueta':''}.png`,renderFrame(p,f,{zoom,grid:!a['no-grid'],ground,silhouette:!!a.silhouette,onion:!!a.onion,neighbours:[prev,next]})));}
+    written.push(writePNG(`${base}-${f}${a.silhouette?'-silhueta':''}.png`,renderFrame(p,f,{zoom,grid:!a['no-grid'],ground,silhouette:!!a.silhouette,onion:!!a.onion,pose:!!a.pose,neighbours:[prev,next]})));}
    if(a.gif){const s=sequencesFor(p).find(s=>s.name===a.gif);if(!s)throw Error(`Sequência inexistente: ${a.gif}. Sequências: ${sequencesFor(p).map(s=>s.name).join(', ')}`);const g=gifFrames(p,playbackOrder(s),{zoom:Number(a.zoom)||3,ground:a.ground||'grama'});const f=`${base}-${s.name}.gif`;fs.mkdirSync(out,{recursive:true});fs.writeFileSync(f,encodeGIF(g.frames,g.width,g.height,g.palette));written.push(f);}
    return print({written});}
+  case 'pose':{const list=frameList(p,target(a.frame)??0),points=Object.fromEntries(rest.map(s=>{const m=/^([a-zA-Z]+)=(-?\d+),(-?\d+)$/.exec(s);if(!m)throw Error(`Ponto inválido: ${s}. Use nome=x,y.`);return [m[1],[Number(m[2]),Number(m[3])]];}));
+   if(rest.length||a.clear){for(const i of list){const f=p.frames[i];f.pose=validatePose(a.clear?points:{...(f.pose||{}),...points},p.width,p.height);}save(file,p);}
+   return print(list.map(i=>({frame:i,name:p.frames[i].name,pose:p.frames[i].pose||{},medidas:measure(p,i)})));}
+  case 'recipe':{const [motion,dir]=rest;if(!a.base)throw Error('Informe --base com o quadro parado da direção.');const r=recipe(p,{motion,dir,base:target(a.base),replace:!!a.replace,stride:a.stride?Number(a.stride):1});save(file,p);return print(r);}
+  case 'sheet':{let next={...(p.sheet||{})};if(rest[0])next={...next,...JSON.parse(fs.readFileSync(rest[0],'utf8'))};
+   for(const s of a.set){const m=/^([a-zA-Z]+)=(.*)$/.exec(s);if(!m)throw Error(`Use --set chave=valor: ${s}`);next[m[1]]=m[2]===''?undefined:/^-?\d+(\.\d+)?$/.test(m[2])?Number(m[2]):m[1]==='rampas'?m[2].split(','):m[2];}
+   if(rest[0]||a.set.length){p.sheet=validateSheet(next,p);save(file,p);}return print(p.sheet||{});}
   case 'check':{const r=check(p,{sequence:a.sequence});if(a.json)print(r);else{print(`${r.pass?'APROVADO':'REPROVADO'} · contorno ${Math.round(r.metrics.darkEdge*100)}% · cores ${r.metrics.colorsUsed}`);for(const e of r.errors)print('ERRO  '+e);for(const w of r.warnings)print('AVISO '+w);}if(!r.pass)process.exitCode=1;return;}
   case 'export':{const written=[],name=path.basename(file).replace(/\.pixelgen\.json$|\.json$/,'');
    if(a.png){const cv=new Canvas(p.width*p.cols,p.height*p.rows,[0,0,0,0]);p.frames.forEach((f,i)=>cv.blit(pixels(p,f),p.width,p.height,i%p.cols*p.width,Math.floor(i/p.cols)*p.height));written.push(writePNG(a.png,cv));}

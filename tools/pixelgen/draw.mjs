@@ -5,6 +5,7 @@
 import {addLayer,compositeFrame,compositeAll,editable,layerPixels} from './document.mjs';
 import {duplicateFrame,deleteFrame,sequencesFor} from './animation.mjs';
 import {addOutline,selectiveOutline} from './legibility.mjs';
+import {validatePose,recipe} from './rig.mjs';
 const hexRGB=h=>{const m=/^#?([0-9a-f]{6})$/i.exec(h);if(!m)throw Error(`Cor inválida: ${h}`);const n=parseInt(m[1],16);return [n>>16,(n>>8)&255,n&255,255];};
 export const toHex=c=>'#'+c.slice(0,3).map(v=>v.toString(16).padStart(2,'0')).join('');
 export function colorIndex(p,spec){
@@ -81,6 +82,10 @@ export function apply(p,ops){
      if(!op.remove){const range=frameList(p,op.frames);const start=Math.min(...range),end=Math.max(...range);if(end-start+1!==range.length)throw Error('Uma sequência usa quadros vizinhos.');list.push({name:op.name,start,end,loop:op.loop!==false,direction:['reverse','pingpong'].includes(op.direction)?op.direction:'forward'});}
      p.sequences=list.length?list:undefined;log.push({op:'sequence',name:op.name});continue;}
     case 'outline':{const frames=op.target===undefined?null:frameList(p,op.target);const i=addOutline(p,{frames,color:op.color===undefined?undefined:colorIndex(p,op.color),diagonal:!!op.diagonal});log.push({op:'outline',layer:p.layers[i].name});continue;}
+    case 'pose':{// Keypoints for the pose checks; merges unless clear:true, null removes a point.
+     for(const i of frameList(p,op.frame)){const f=p.frames[i],next=op.clear?{}:{...(f.pose||{})};for(const [k,v] of Object.entries(op.points||{}))if(v===null)delete next[k];else next[k]=v;f.pose=validatePose(next,p.width,p.height);}
+     log.push({op:'pose',frames:frameList(p,op.frame).length});continue;}
+    case 'recipe':log.push({op:'recipe',...recipe(p,{motion:op.motion,dir:op.dir,base:op.base,replace:!!op.replace,stride:op.stride??1,parts:op.parts})});continue;
     case 'selout':{const frames=op.target===undefined?null:frameList(p,op.target);log.push({op:'selout',changed:selectiveOutline(p,layerIndex(p,op.layer),{frames})});continue;}
    }
    const layer=layerIndex(p,op.layer);editable(p,layer);let changed=0;

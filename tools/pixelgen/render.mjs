@@ -2,6 +2,7 @@
 // previews and labelled contact sheets. Pure RGBA buffers; png.mjs/gif.mjs write them.
 import {compositeFrame} from './document.mjs';
 import {GROUNDS,silhouetteRGBA} from './legibility.mjs';
+import {drawPose} from './rig.mjs';
 const FONT={'0':'111101101101111','1':'010110010010111','2':'111001111100111','3':'111001111001111','4':'101101111001001','5':'111100111001111','6':'111100111101111','7':'111001010010010','8':'111101111101111','9':'111101111001111',
  a:'010101111101101',b:'110101110101110',c:'011100100100011',d:'110101101101110',e:'111100110100111',f:'111100110100100',g:'011100101101011',h:'101101111101101',i:'111010010010111',j:'001001001101010',k:'101101110101101',l:'100100100100111',m:'101111111101101',n:'110101101101101',o:'010101101101010',p:'110101110100100',q:'010101101011001',r:'110101110101101',s:'011100010001110',t:'111010010010010',u:'101101101101111',v:'101101101101010',w:'101101111111101',x:'101101010101101',y:'101101010010010',z:'111001010100111','-':'000000111000000','.':'000000000000010',':':'000010000010000','/':'001001010100100',' ':'000000000000000','·':'000000010000000'};
 export class Canvas{
@@ -19,12 +20,13 @@ export function frameRGBA(p,index,{silhouette=false,tint=null}={}){
 }
 function background(cv,x,y,w,h,ground){if(GROUNDS[ground])cv.rect(x,y,w,h,[...GROUNDS[ground],255]);else if(ground==='papel')cv.rect(x,y,w,h,[233,228,216,255]);else cv.checker(x,y,w,h,Math.max(4,Math.floor(w/16)));}
 // One frame, enlarged, optionally with grid, onion skin (previous green, next violet) and silhouette.
-export function renderFrame(p,index,{zoom=8,grid=true,ground='xadrez',silhouette=false,onion=false,neighbours=null}={}){
+export function renderFrame(p,index,{zoom=8,grid=true,ground='xadrez',silhouette=false,onion=false,neighbours=null,pose=false}={}){
  const pad=2,w=p.width*zoom,h=p.height*zoom,cv=new Canvas(w+pad*2,h+pad*2+12);
  background(cv,pad,pad,w,h,silhouette?'papel':ground);
  if(onion&&neighbours){if(neighbours[0]!=null)cv.blit(frameRGBA(p,neighbours[0],{tint:[75,230,175]}),p.width,p.height,pad,pad,zoom,.35);if(neighbours[1]!=null)cv.blit(frameRGBA(p,neighbours[1],{tint:[193,125,255]}),p.width,p.height,pad,pad,zoom,.35);}
  cv.blit(frameRGBA(p,index,{silhouette}),p.width,p.height,pad,pad,zoom);
  if(grid&&zoom>=4){for(let x=0;x<=p.width;x++)for(let y=0;y<h;y++)cv.set(pad+x*zoom-(x===p.width?1:0),pad+y,x%8===0?[239,187,104,90]:[170,184,201,40]);for(let y=0;y<=p.height;y++)for(let x=0;x<w;x++)cv.set(pad+x,pad+y*zoom-(y===p.height?1:0),y%8===0?[239,187,104,90]:[170,184,201,40]);}
+ if(pose)drawPose(cv,p.frames[index].pose,pad,pad,zoom);
  cv.text(`${index} ${p.frames[index].name}`.slice(0,Math.floor(w/4)),pad,pad+h+4);return cv;
 }
 // Contact sheet: every listed frame at the given zoom on a ground, labelled with index and name.

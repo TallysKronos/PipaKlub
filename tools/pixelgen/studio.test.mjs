@@ -80,3 +80,28 @@ test('agent CLI: structured drawing, ramps, PNG/GIF round trip and delivery chec
  const r=check(p);assert.equal(r.pass,true,JSON.stringify(r.errors));const empty=validateProject(serialize(p));empty.frames[1].cels.forEach(c=>c.fill(0));assert.equal(check(empty).pass,false);
  const file=new URL('./.cli-test.pixelgen.json',import.meta.url).pathname;try{await run(['new',file,'--size','16x16']);await run(['ramp',file,'aco','#333333','#999999']);const loaded=JSON.parse(fs.readFileSync(file,'utf8'));assert.deepEqual(Object.keys(loaded.ramps),['aco']);}finally{fs.rmSync(file,{force:true});}
 });
+test('rig: pose survives save, recipes build cycles with planted feet, sheet gates proportions',async()=>{
+ const {apply}=await import('./draw.mjs');const {rigReport,recipe,measure,validateSheet}=await import('./rig.mjs');const {check}=await import('./cli.mjs');
+ const p=validateProject({kind:'pixelgen',version:2,name:'r',width:48,height:64,cols:1,rows:1,palette:[[0,0,0,0],[20,24,30,255]],layers:[{name:'Perna de trás'}],frames:[{name:'idle-E-1',indices:Array(3072).fill(0),cels:[Array(3072).fill(0)]}],sequences:[{name:'idle-E',start:0,end:0,loop:true}]});
+ apply(p,[{op:'ramp',name:'pele',colors:['#8a5038','#c98b5e','#f0c49a']},{op:'ramp',name:'roupa',colors:['#1f3f7a','#3a6fc4']},
+  {op:'layer',add:'Perna da frente'},{op:'layer',add:'Braço de trás',below:'Perna de trás'},{op:'layer',add:'Tronco'},{op:'layer',add:'Braço da frente'},{op:'layer',add:'Cabeça'},
+  {op:'rect',layer:'Perna de trás',x:21,y:44,w:3,h:17,color:'roupa:0'},{op:'rect',layer:'Perna da frente',x:24,y:44,w:3,h:17,color:'roupa:0'},{op:'rect',layer:'Tronco',x:19,y:30,w:10,h:15,color:'roupa:1'},
+  {op:'rect',layer:'Braço de trás',x:19,y:32,w:2,h:11,color:'pele:0'},{op:'rect',layer:'Braço da frente',x:26,y:32,w:3,h:11,color:'pele:1'},{op:'ellipse',layer:'Cabeça',cx:24,cy:19,rx:9,ry:10,color:'pele:2'},
+  {op:'pose',points:{topo:[24,9],queixo:[24,29],ombroTras:[20,32],ombroFrente:[27,32],maoTras:[20,42],maoFrente:[27,42],quadril:[24,44],peTras:[22,60],peFrente:[25,60]}},{op:'outline',color:1}]);
+ assert.throws(()=>apply(p,[{op:'pose',points:{joelho:[1,1]}}]),/desconhecido: joelho/);
+ const m=measure(p,0);assert.equal(m.cabeca,21);assert.equal(m.base,61);
+ p.sheet=validateSheet({cabecas:2.5,altura:53,base:61,cores:12,referencia:'idle-E-1'},p);assert.deepEqual(rigReport(p).errors,[]);
+ const restored=validateProject(serialize(p));assert.deepEqual(restored.frames[0].pose,p.frames[0].pose);assert.equal(restored.sheet.cabecas,2.5);
+ const walk=apply(p,[{op:'recipe',motion:'walk',dir:'E',base:'idle-E-1'}])[0];assert.deepEqual(walk.frames,[1,2,3,4]);
+ assert.deepEqual(p.frames.slice(1).map(f=>f.duration),[140,110,140,110]);assert.notDeepEqual([...p.frames[1].indices],[...p.frames[0].indices]);
+ const r=rigReport(p);assert.deepEqual(r.errors,[]);const feet=r.feet.find(f=>f.sequence==='walk-E');assert.ok(feet.speeds.length>=2);assert.ok(Math.max(...feet.speeds)-Math.min(...feet.speeds)<=1);
+ for(const i of [1,2,3,4])assert.ok(p.frames[i].pose.peFrente[1]<=60&&p.frames[i].pose.peTras[1]<=60);
+ assert.ok(p.frames[1].pose.peFrente[0]>p.frames[0].pose.peFrente[0]);assert.equal(p.frames[1].pose.quadril[0],p.frames[0].pose.quadril[0]);
+ assert.throws(()=>recipe(p,{motion:'walk',dir:'E',base:0}),/replace/);recipe(p,{motion:'idle',dir:'E',base:'idle-E-1',replace:true});
+ assert.equal(p.frames.filter(f=>f.name.startsWith('idle-E-')).length,2);assert.equal(p.frames.length,6);assert.ok(p.sequences.find(s=>s.name==='walk-E'));
+ const idle=p.sequences.find(s=>s.name==='idle-E');assert.equal(idle.end-idle.start,1);assert.equal(p.frames[idle.start+1].pose.peFrente[1],p.frames[idle.start].pose.peFrente[1]);
+ assert.equal(check(p).pass,true,JSON.stringify(check(p).errors));
+ const slide=validateProject(serialize(p));slide.frames[idle.start+1].pose.peFrente[0]+=2;assert.match(rigReport(slide).errors.join(),/idle-E: peFrente desliza/);
+ const wrong=validateProject(serialize(p));wrong.sheet.cabecas=4;assert.equal(check(wrong).pass,false);
+ const bad=validateProject(serialize(p));bad.layers[1].name='Outra';assert.throws(()=>recipe(bad,{motion:'run',dir:'E',base:0}),/Faltam camadas/);
+});
