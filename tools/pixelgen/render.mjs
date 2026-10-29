@@ -1,6 +1,7 @@
 // Review images for agents: enlarged frames with grid, silhouette, onion skin, ground
 // previews and labelled contact sheets. Pure RGBA buffers; png.mjs/gif.mjs write them.
 import {compositeFrame} from './document.mjs';
+import {sequencesFor,playbackOrder} from './animation.mjs';
 import {GROUNDS,silhouetteRGBA} from './legibility.mjs';
 import {drawPose} from './rig.mjs';
 const FONT={'0':'111101101101111','1':'010110010010111','2':'111001111100111','3':'111001111001111','4':'101101111001001','5':'111100111001111','6':'111100111101111','7':'111001010010010','8':'111101111101111','9':'111101111001111',
@@ -54,3 +55,27 @@ export function asciiFrame(p,index,layer=null){
  const ramps=Object.entries(p.ramps||{});const legend=used.map(c=>{const r=ramps.find(([,l])=>l.includes(c));return `${key.get(c)}=${c} #${p.palette[c].slice(0,3).map(v=>v.toString(16).padStart(2,'0')).join('')}${r?` ${r[0]}:${r[1].indexOf(c)}`:''}`;});
  return [ruler,...rows,'',...legend].join('\n');
 }
+// Context scenes for boards and GIFs: the action seen where it happens in the game.
+// escada: earth bank with a vertical wooden ladder (rails at x≈16 and x≈32, rungs scroll
+// down as the character climbs); agua: water with moving glints; otherwise a ground colour.
+export function sceneFor(name){return /^climb/.test(name)?'escada':/^swim/.test(name)?'agua':'grama';}
+function noise(x,y){let h=(x*374761393+y*668265263)|0;h=(h^(h>>>13))*1274126177|0;return ((h^(h>>>16))>>>0)/4294967295;}
+export function drawScene(cv,x0,y0,p,zoom,kind,tick=0){const w=p.width,h=p.height,px=(x,y,c)=>cv.rect(x0+x*zoom,y0+y*zoom,zoom,zoom,c);
+ if(kind==='escada'){for(let y=0;y<h;y++)for(let x=0;x<w;x++){const band=Math.floor((y+tick*2)/9)%3,n=noise(x,Math.floor((y+tick*2)/2));const base=[[150,96,58],[134,84,52],[163,108,66]][band];px(x,y,[...base.map(v=>v-(n>.86?22:n<.08?-14:0)),255]);}
+  for(const rx of [15,31])for(let y=0;y<h;y++){px(rx,y,[92,56,34,255]);px(rx+1,y,[171,116,66,255]);px(rx+2,y,[120,76,44,255]);}
+  for(let y=((tick*2)%7+7)%7;y<h;y+=7)for(let x=17;x<31;x++){px(x,y,[188,132,78,255]);px(x,y+1,[112,70,40,255]);}return;}
+ if(kind==='agua'){for(let y=0;y<h;y++)for(let x=0;x<w;x++){const n=noise(x,y);px(x,y,y<18?[58,140,182,255]:[48,124,168,255]);if(((x+tick*2+Math.floor(y/5)*7)%17===0)&&y%5===0)px(x,y,[150,214,236,255]);}return;}
+ cv.rect(x0,y0,w*zoom,h*zoom,[...(GROUNDS[kind]||GROUNDS.grama),255]);}
+// Board: one row per sequence, every frame on its scene, labelled; reads top to bottom.
+export function renderBoard(p,names,{zoom=3}={}){const seqs=names.map(n=>{const s=sequencesFor(p).find(s=>s.name===n);if(!s)throw Error(`Sequência inexistente: ${n}`);return s;});
+ const cols=Math.max(...seqs.map(s=>s.end-s.start+1)),cw=p.width*zoom+6,rh=p.height*zoom+26,cv=new Canvas(cols*cw+8,seqs.length*rh+6);
+ seqs.forEach((s,r)=>{const y=6+r*rh;cv.text(`${s.name}  ${s.loop===false?'sem repetir':'em loop'}`,4,y,[239,187,104,255]);
+  for(let i=s.start;i<=s.end;i++){const x=4+(i-s.start)*cw;drawScene(cv,x,y+8,p,zoom,sceneFor(s.name),i-s.start);cv.blit(frameRGBA(p,i),p.width,p.height,x,y+8,zoom);cv.text(`${i-s.start+1} · ${p.frames[i].duration||150}ms`,x,y+10+p.height*zoom,[160,175,189,255]);}});
+ return cv;}
+// Canvases → indexed GIF frames (exact colours; falls back to the nearest when over 256).
+export function canvasGif(canvases,delays){const pal=[[0,0,0,0]],key=new Map(),frames=canvases.map((cv,n)=>{const out=new Uint8Array(cv.w*cv.h);
+  for(let i=0;i<out.length;i++){const r=cv.data[i*4],g=cv.data[i*4+1],b=cv.data[i*4+2],k=(r<<16)|(g<<8)|b;let v=key.get(k);
+   if(v===undefined){if(pal.length<256){v=pal.push([r,g,b,255])-1;}else{let best=1,d=1e9;for(let j=1;j<pal.length;j++){const e=(pal[j][0]-r)**2+(pal[j][1]-g)**2+(pal[j][2]-b)**2;if(e<d){d=e;best=j;}}v=best;}key.set(k,v);}out[i]=v;}
+  return {indices:out,delay:delays[n]};});return {palette:pal,width:canvases[0].w,height:canvases[0].h,frames};}
+export function sceneGif(p,s,{zoom=4}={}){const order=playbackOrder(s),cvs=order.map((i,n)=>{const cv=new Canvas(p.width*zoom,p.height*zoom);drawScene(cv,0,0,p,zoom,sceneFor(s.name),i-s.start);cv.blit(frameRGBA(p,i),p.width,p.height,0,0,zoom);return cv;});
+ if(s.loop===false){cvs.push(cvs.at(-1));}return canvasGif(cvs,[...order.map(i=>p.frames[i].duration||150),...(s.loop===false?[1500]:[])]);}

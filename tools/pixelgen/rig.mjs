@@ -49,12 +49,14 @@ export function rigReport(p,{frames}={}){
  const ref=sheet.referencia!==undefined?p.frames.findIndex(f=>f.name===sheet.referencia):-1,base=ref>=0?measure(p,ref):null;
  if(sheet.referencia!==undefined&&ref<0)errors.push(`Quadro de referência da ficha não existe: ${sheet.referencia}.`);
  for(const m of ms){const tag=`Quadro ${m.frame} (${m.name})`;if(!m.altura)continue;
-  if(sheet.altura&&Math.abs(m.altura-sheet.altura)>2&&!/^(fall|hurt|attack)/.test(m.name))errors.push(`${tag}: altura ${m.altura}px, a ficha pede ${sheet.altura}±2.`);
-  if(sheet.base!==undefined&&m.base!==sheet.base&&!/^(run|fall|hurt|attack|victory)/.test(m.name))(Math.abs(m.base-sheet.base)>1?errors:warnings).push(`${tag}: pés na linha ${m.base}, a ficha pede ${sheet.base}.`);
+  // Actions that change the body's height or hide part of it are exempt from height and feet line.
+  const free=/^(run|fall|hurt|attack|victory|defeat|swim|climb)/.test(m.name);
+  if(sheet.altura&&Math.abs(m.altura-sheet.altura)>2&&!free)errors.push(`${tag}: altura ${m.altura}px, a ficha pede ${sheet.altura}±2.`);
+  if(sheet.base!==undefined&&m.base!==sheet.base&&!free)(Math.abs(m.base-sheet.base)>1?errors:warnings).push(`${tag}: pés na linha ${m.base}, a ficha pede ${sheet.base}.`);
   if(sheet.larguraMax&&m.largura>sheet.larguraMax)warnings.push(`${tag}: largura ${m.largura}px passa de ${sheet.larguraMax}.`);
   if(sheet.preenchimentoMax&&m.preenchimento>sheet.preenchimentoMax)warnings.push(`${tag}: a silhueta preenche ${Math.round(m.preenchimento*100)}% da caixa (máx. ${Math.round(sheet.preenchimentoMax*100)}%); separe braços e pernas do corpo.`);
-  if(sheet.cabecas&&m.cabecas&&Math.abs(m.cabecas-sheet.cabecas)>.3)errors.push(`${tag}: ${m.cabecas.toFixed(2)} cabeças de altura, a ficha pede ${sheet.cabecas}.`);
-  if(base&&m.frame!==base.frame){
+  if(sheet.cabecas&&m.cabecas&&!free&&Math.abs(m.cabecas-sheet.cabecas)>.3)errors.push(`${tag}: ${m.cabecas.toFixed(2)} cabeças de altura, a ficha pede ${sheet.cabecas}.`);
+  if(base&&m.frame!==base.frame&&!free){
    if(base.cabeca&&m.cabeca&&Math.abs(m.cabeca-base.cabeca)>1)errors.push(`${tag}: cabeça com ${m.cabeca}px, a referência tem ${base.cabeca}px.`);
    if(base.tronco&&m.tronco&&Math.abs(m.tronco-base.tronco)>2)warnings.push(`${tag}: tronco ${m.tronco.toFixed(1)}px, referência ${base.tronco.toFixed(1)}px.`);
    for(const k of ['bracoTras','bracoFrente','pernaTras','pernaFrente'])if(base[k]&&m[k]&&Math.abs(m[k]-base[k])>Math.max(2,base[k]*.3))warnings.push(`${tag}: ${k} ${m[k].toFixed(1)}px, referência ${base[k].toFixed(1)}px (encurtar só por perspectiva).`);}
@@ -68,7 +70,7 @@ export function rigReport(p,{frames}={}){
   const still=/^(idle|parado)/.test(s.name),speeds=[],ground=Math.max(-1,...idx.flatMap(i=>['peTras','peFrente'].map(k=>p.frames[i].pose?.[k]?.[1]??-1)));
   for(let n=0;n<idx.length;n++){const a=p.frames[idx[n]].pose,b=p.frames[idx[(n+1)%idx.length]].pose;if(!a||!b||(n===idx.length-1&&s.loop===false))continue;
    for(const k of ['peTras','peFrente']){if(!a[k]||!b[k]||a[k][1]<ground||b[k][1]<ground)continue;const dx=b[k][0]-a[k][0],dy=b[k][1]-a[k][1];
-    if(still&&(dx||dy))errors.push(`${s.name}: ${k} desliza ${dx},${dy}px entre ${p.frames[idx[n]].name} e ${p.frames[idx[(n+1)%idx.length]].name}.`);else if(!still)speeds.push({k,dx,from:idx[n]});}}
+    if(still&&(dx||dy))errors.push(`${s.name}: ${k} desliza ${dx},${dy}px entre ${p.frames[idx[n]].name} e ${p.frames[idx[(n+1)%idx.length]].name}.`);else if(/^(walk|run)/.test(s.name))speeds.push({k,dx,from:idx[n]});}}
   if(speeds.length>1){const dxs=speeds.map(v=>v.dx),spread=Math.max(...dxs)-Math.min(...dxs);if(spread>1)warnings.push(`${s.name}: o pé apoiado anda ${dxs.join('/')}px por quadro; mantenha a mesma velocidade de chão (diferença ≤ 1).`);}
   feet.push({sequence:s.name,speeds:speeds.map(v=>v.dx)});}
  const posed=list.filter(i=>p.frames[i].pose).length;if(posed&&posed<list.length)warnings.push(`${list.length-posed} quadro(s) sem pose marcada.`);

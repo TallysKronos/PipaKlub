@@ -58,7 +58,11 @@ Leia antes o [`ESTILO-PIXEL.md`](ESTILO-PIXEL.md): proporção, contorno, cor, l
 - **Personagem no overworld:** 48×64, pés na mesma linha de base (2 px de margem embaixo) e cabeça grande.
 - **Direções:** `S SO O NO N NE E SE`. Nomes de sequência `<movimento>-<direção>`, como `walk-S` e `idle-NE`; quadros `<movimento>-<direção>-<n>`. A bancada usa esses nomes para montar o seletor de direção e movimento.
 - **Modelo de referência:** `node tools/pixelgen/examples/modelo-referencia.mjs saida.pixelgen.json` gera um personagem completo (vistas E e S, idle, walk e run) para comparar proporção, sombra e tempo. Use-o como gabarito até existir a biblioteca de poses aprovadas.
-- **Movimentos:** `idle`, `walk`, `run`, `interact`, `attack`, `hurt`, `victory`, `fall`.
+- **Movimentos:** `idle`, `walk`, `run`, `interact`, `attack`, `hurt`, `victory`, `defeat`, `fall`, `climb` e `swim`. As ações `victory`, `defeat`, `climb` e `swim` mudam a altura do corpo ou escondem parte dele, por isso ficam livres da altura e da linha dos pés da ficha.
+- **Escada vertical (`climb-N`):** vista de costas. As mãos seguram os trilhos em x≈16 e x≈32, e as pernas alternam com a mão do lado oposto. A escada é peça do mapa e não entra no sprite. A prancha só a desenha por trás, para conferir o encaixe.
+- **Nado (`swim-*`):** o corpo é cortado na linha d'água (y=43) e as ondinhas entram depois do contorno, sem tinta embaixo. A água é o tile do mapa.
+- **Pranchas:** `render --board all` monta uma linha por sequência no cenário da ação (`climb` sobre o barranco com escada, `swim` na água, o resto na grama), com o tempo de cada quadro. Com `--gif`, a animação sai no mesmo cenário.
+- **Ações do modelo:** `node tools/pixelgen/examples/modelo-acoes.mjs saida.pixelgen.json` gera escada, vitória, derrota e nado com membros articulados (ombro → cotovelo → mão, quadril → joelho → pé). Use-o como gabarito dessas poses.
 - **Tempos de referência:**
   - idle: 2 quadros, 700 e 350 ms;
   - walk: 4 quadros, 140/110/140/110 ms;

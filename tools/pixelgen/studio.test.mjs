@@ -109,3 +109,10 @@ test('reference model: builds E and S views, animates with the recipes and passe
  const {build}=await import('./examples/modelo-referencia.mjs');const {check}=await import('./cli.mjs');const p=build();
  assert.deepEqual(p.sequences.map(s=>s.name).sort(),['idle-E','idle-S','run-E','walk-E','walk-S']);const r=check(p);assert.equal(r.pass,true,JSON.stringify(r.errors));
 });
+test('action boards: ladder, victory, defeat and swim sequences pass check and render on their scenes',async()=>{
+ const {build}=await import('./examples/modelo-acoes.mjs');const {check}=await import('./cli.mjs');const {renderBoard,sceneGif,sceneFor}=await import('./render.mjs');const p=build();
+ assert.deepEqual(p.sequences.map(s=>s.name),['climb-N','victory-S','defeat-S','swim-S','swim-E']);assert.equal(check(p).pass,true,JSON.stringify(check(p).errors));
+ assert.equal(sceneFor('climb-N'),'escada');assert.equal(sceneFor('swim-E'),'agua');const cv=renderBoard(p,p.sequences.map(s=>s.name),{zoom:1});assert.ok(cv.w>p.width*4&&cv.h>p.height*5);
+ const g=sceneGif(p,p.sequences[1],{zoom:1});assert.equal(g.frames.length,5);assert.ok(g.palette.length<=256);
+ const swim=p.frames.find(f=>f.name==='swim-S-1');for(let y=46;y<64;y++)for(let x=0;x<48;x++)assert.equal(swim.indices[y*48+x],0);
+});

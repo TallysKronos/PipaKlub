@@ -12,7 +12,7 @@ import {godotResource} from './godot.mjs';
 import {qualityReport} from './quality.mjs';
 import {legibilityReport,GROUNDS} from './legibility.mjs';
 import {apply,frameList,layerIndex,toHex,setRamp} from './draw.mjs';
-import {renderFrame,renderSheet,renderGrounds,gifFrames,asciiFrame,Canvas,frameRGBA} from './render.mjs';
+import {renderFrame,renderSheet,renderGrounds,gifFrames,asciiFrame,Canvas,frameRGBA,renderBoard,sceneGif,sceneFor} from './render.mjs';
 import {encodePNG,decodePNG} from './png.mjs';
 import {encodeGIF} from './gif.mjs';
 import {rigReport,recipe,validateSheet,validatePose,measure,POINTS,RECIPES} from './rig.mjs';
@@ -26,6 +26,8 @@ const HELP=`Pixelgen CLI — uso: npm run pixel -- <comando> <projeto.pixelgen.j
   ascii <arq> [--frame i] [--layer nome]     grade de caracteres + legenda de cores
   render <arq> --out pasta [--frame i|nome|all] [--zoom 8] [--ground grama|terra|calcada|noite|xadrez]
          [--silhouette] [--onion] [--pose] [--sheet] [--grounds] [--gif sequência] [--no-grid]
+         [--board seq,seq|all]  prancha: uma linha por sequência, no cenário da ação
+         (climb → barranco com escada, swim → água, o resto na grama); --gif também usa o cenário
   pose <arq> --frame i [topo=24,8 queixo=24,29 ...] [--clear]   marca/mostra os pontos da pose
          pontos: topo queixo ombroTras ombroFrente maoTras maoFrente quadril peTras peFrente
   recipe <arq> <idle|walk|run> <S|SO|O|NO|N|NE|E|SE> --base quadro [--replace] [--stride 1]
@@ -81,11 +83,12 @@ export async function run(argv){
   case 'render':{
    const out=a.out||'pixelgen-render',zoom=Number(a.zoom)||8,ground=a.ground||'xadrez',written=[],base=path.join(out,path.basename(file).replace(/\.pixelgen\.json$|\.json$/,''));
    const list=frameList(p,target(a.frame)??0);
-   if(a.sheet)written.push(writePNG(`${base}-folha${a.silhouette?'-silhueta':''}.png`,renderSheet(p,a.frame?list:p.frames.map((_,i)=>i),{zoom:Number(a.zoom)||3,ground:a.ground||'grama',silhouette:!!a.silhouette})));
+   if(a.board){const names=a.board===true||a.board==='all'?sequencesFor(p).map(s=>s.name):String(a.board).split(',');written.push(writePNG(`${base}-prancha.png`,renderBoard(p,names,{zoom:Number(a.zoom)||3})));}
+   else if(a.sheet)written.push(writePNG(`${base}-folha${a.silhouette?'-silhueta':''}.png`,renderSheet(p,a.frame?list:p.frames.map((_,i)=>i),{zoom:Number(a.zoom)||3,ground:a.ground||'grama',silhouette:!!a.silhouette})));
    else if(a.grounds)for(const f of list)written.push(writePNG(`${base}-${f}-chaos-do-jogo.png`,renderGrounds(p,f)));
-   else if(!a.gif)for(const f of list){const s=sequencesFor(p).find(s=>f>=s.start&&f<=s.end),prev=s?(f>s.start?f-1:s.loop!==false&&s.end>s.start?s.end:null):null,next=s?(f<s.end?f+1:s.loop!==false&&s.end>s.start?s.start:null):null;
+   else if(!a.gif&&!a.board)for(const f of list){const s=sequencesFor(p).find(s=>f>=s.start&&f<=s.end),prev=s?(f>s.start?f-1:s.loop!==false&&s.end>s.start?s.end:null):null,next=s?(f<s.end?f+1:s.loop!==false&&s.end>s.start?s.start:null):null;
     written.push(writePNG(`${base}-${f}${a.silhouette?'-silhueta':''}.png`,renderFrame(p,f,{zoom,grid:!a['no-grid'],ground,silhouette:!!a.silhouette,onion:!!a.onion,pose:!!a.pose,neighbours:[prev,next]})));}
-   if(a.gif){const s=sequencesFor(p).find(s=>s.name===a.gif);if(!s)throw Error(`Sequência inexistente: ${a.gif}. Sequências: ${sequencesFor(p).map(s=>s.name).join(', ')}`);const g=gifFrames(p,playbackOrder(s),{zoom:Number(a.zoom)||3,ground:a.ground||'grama'});const f=`${base}-${s.name}.gif`;fs.mkdirSync(out,{recursive:true});fs.writeFileSync(f,encodeGIF(g.frames,g.width,g.height,g.palette));written.push(f);}
+   if(a.gif){const s=sequencesFor(p).find(s=>s.name===a.gif);if(!s)throw Error(`Sequência inexistente: ${a.gif}. Sequências: ${sequencesFor(p).map(s=>s.name).join(', ')}`);const g=a.ground||sceneFor(s.name)==='grama'?gifFrames(p,playbackOrder(s),{zoom:Number(a.zoom)||3,ground:a.ground||'grama'}):sceneGif(p,s,{zoom:Number(a.zoom)||4});const f=`${base}-${s.name}.gif`;fs.mkdirSync(out,{recursive:true});fs.writeFileSync(f,encodeGIF(g.frames,g.width,g.height,g.palette));written.push(f);}
    return print({written});}
   case 'pose':{const list=frameList(p,target(a.frame)??0),points=Object.fromEntries(rest.map(s=>{const m=/^([a-zA-Z]+)=(-?\d+),(-?\d+)$/.exec(s);if(!m)throw Error(`Ponto inválido: ${s}. Use nome=x,y.`);return [m[1],[Number(m[2]),Number(m[3])]];}));
    if(rest.length||a.clear){for(const i of list){const f=p.frames[i];f.pose=validatePose(a.clear?points:{...(f.pose||{}),...points},p.width,p.height);}save(file,p);}

@@ -9,7 +9,7 @@ import {apply} from '../draw.mjs';
 import {recipe,validateSheet} from '../rig.mjs';
 
 const W=48,H=64,L=(()=>{const v=[-.55,-.62,.56],n=Math.hypot(...v);return v.map(x=>x/n);})();
-const RAMPS={
+export const RAMPS={
  tinta:['#1b1a2e'],
  pele:['#94503f','#d68f63','#f4c391','#fde2bd'],
  cabelo:['#2a2152','#4a3a93','#7663d8','#b9a8ff'],
@@ -18,18 +18,19 @@ const RAMPS={
  tenis:['#7d80a6','#d9dcec','#ffffff'],
  olho:['#ffffff']};
 // Per-layer pixel maps; later writes win, like painting.
-function canvas(){const m=new Map();return {m,set(x,y,c){if(x>=0&&y>=0&&x<W&&y<H)m.set(x+','+y,c);},del(x,y){m.delete(x+','+y);},has(x,y){return m.has(x+','+y);}};}
-const tone=(ramp,dot,shift=0)=>{const n=RAMPS[ramp].length,t=n>=4?(dot>.93?3:dot>.6?2:dot>.08?1:0):n===3?(dot>.6?2:dot>.08?1:0):0;return `${ramp}:${Math.max(0,Math.min(n-1,t+shift))}`;};
-const lit=(nx,ny)=>{const nz=Math.sqrt(Math.max(0,1-nx*nx-ny*ny));return nx*L[0]+ny*L[1]+nz*L[2];};
-function ellipse(c,cx,cy,rx,ry,ramp,{shift=0,keep=()=>true,soft=.9}={}){for(let y=Math.floor(cy-ry);y<=cy+ry;y++)for(let x=Math.floor(cx-rx);x<=cx+rx;x++){const nx=(x-cx)/(rx+.5),ny=(y-cy)/(ry+.5);if(nx*nx+ny*ny>1||!keep(x,y))continue;c.set(x,y,tone(ramp,lit(nx*soft,ny*soft),shift));}}
+// at(dx,dy) translates later drawing, so a whole part can be posed by an offset.
+export function canvas(){const m=new Map();let ox=0,oy=0;return {m,at(dx=0,dy=0){ox=dx;oy=dy;return this;},set(x,y,c){x+=ox;y+=oy;if(x>=0&&y>=0&&x<W&&y<H)m.set(x+','+y,c);},del(x,y){m.delete((x+ox)+','+(y+oy));},has(x,y){return m.has((x+ox)+','+(y+oy));}};}
+export const tone=(ramp,dot,shift=0)=>{const n=RAMPS[ramp].length,t=n>=4?(dot>.93?3:dot>.6?2:dot>.08?1:0):n===3?(dot>.6?2:dot>.08?1:0):0;return `${ramp}:${Math.max(0,Math.min(n-1,t+shift))}`;};
+export const lit=(nx,ny)=>{const nz=Math.sqrt(Math.max(0,1-nx*nx-ny*ny));return nx*L[0]+ny*L[1]+nz*L[2];};
+export function ellipse(c,cx,cy,rx,ry,ramp,{shift=0,keep=()=>true,soft=.9}={}){for(let y=Math.floor(cy-ry);y<=cy+ry;y++)for(let x=Math.floor(cx-rx);x<=cx+rx;x++){const nx=(x-cx)/(rx+.5),ny=(y-cy)/(ry+.5);if(nx*nx+ny*ny>1||!keep(x,y))continue;c.set(x,y,tone(ramp,lit(nx*soft,ny*soft),shift));}}
 // Vertical cylinder (limb, torso) with rounded ends; r rounds the corners.
-function capsule(c,x0,y0,x1,y1,ramp,{shift=0,r=1,tilt=-.2}={}){const cx=(x0+x1)/2,hw=(x1-x0)/2+.5;for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++){
+export function capsule(c,x0,y0,x1,y1,ramp,{shift=0,r=1,tilt=-.2}={}){const cx=(x0+x1)/2,hw=(x1-x0)/2+.5;for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++){
  const cornerX=x<x0+r?x0+r-x:x>x1-r?x-(x1-r):0,cornerY=y<y0+r?y0+r-y:y>y1-r?y-(y1-r):0;if(cornerX&&cornerY&&cornerX*cornerX+cornerY*cornerY>r*r+.5)continue;
  const ny=y<y0+2?-.5:y>y1-1?.3:tilt;c.set(x,y,tone(ramp,lit((x-cx)/hw*.95,ny),shift));}}
 // Interior edge of a part in the part's darkest shade (sel-out), so overlapping parts separate.
-function selout(c,ramp,{skipTop=false}={}){const edge=[];for(const k of c.m.keys()){const [x,y]=k.split(',').map(Number);if(!c.m.get(k).startsWith(ramp+':'))continue;
- for(const [dx,dy] of [[1,0],[-1,0],[0,1],[0,-1]]){if(skipTop&&dy===-1)continue;if(!c.has(x+dx,y+dy)){edge.push([x,y]);break;}}}for(const [x,y] of edge)c.set(x,y,ramp+':0');}
-const ops=layers=>Object.entries(layers).flatMap(([layer,c])=>{const by=new Map();for(const [k,v] of c.m){if(!by.has(v))by.set(v,[]);by.get(v).push(k.split(',').map(Number));}return [...by].map(([color,points])=>({op:'pixels',layer,color,points}));});
+export function selout(c,ramp,{skipTop=false}={}){const edge=[];for(const k of c.m.keys()){const [x,y]=k.split(',').map(Number);if(!c.m.get(k).startsWith(ramp+':'))continue;
+ for(const [dx,dy] of [[1,0],[-1,0],[0,1],[0,-1]]){if(skipTop&&dy===-1)continue;if(!c.m.has((x+dx)+','+(y+dy))){edge.push([x,y]);break;}}}for(const [x,y] of edge)c.m.set(x+','+y,ramp+':0');}
+export const ops=layers=>Object.entries(layers).flatMap(([layer,c])=>{const by=new Map();for(const [k,v] of c.m){if(!by.has(v))by.set(v,[]);by.get(v).push(k.split(',').map(Number));}return [...by].map(([color,points])=>({op:'pixels',layer,color,points}));});
 
 function shoe(c,x,front,shift){for(let y=57;y<=59;y++)for(let i=-1;i<=(front?4:3);i++){if(y===57&&(i<0||i>2))continue;c.set(x+i,y,tone('tenis',lit((i-1.5)/3.5,(y-58)/2)*1.1,shift));}for(let i=-1;i<=(front?4:3);i++)c.set(x+i,60,'roupa:1');}
 function sideView(){
