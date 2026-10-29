@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-29",
+  "refs": {
+    "historia": "f3df6373316305ff0c9dec449d1229f2cd0c4526",
+    "prova": "e02169eb73eb2f25ca6c15f1dddac97db2d10763"
+  },
+  "files": {
+    "historia": [
+      "art/overworld/REGIOES-E-PARTES.md",
+      "art/overworld/ESPECIFICACAO-MAPAS.md",
+      "documentation/historia/BIBLIA-DA-HISTORIA.md"
+    ],
+    "prova": [
+      "documentation/overworld/godot-tilesets-profundidade.md",
+      "tools/mapa-studio/model.mjs",
+      "art/overworld/tiles/rascunho.tsj",
+      "art/overworld/mapas/kronasta-bosque-a.tmj",
+      "godot/assets/overworld/maps/kronasta-bosque-a.json",
+      "godot/assets/overworld/maps/index.json",
+      "godot/scripts/overworld/kronasta_forest.gd",
+      "godot/shaders/kronasta_ground.gdshader",
+      "documentation/overworld/kronasta/captures/prancha-antes-depois.png",
+      "documentation/overworld/kronasta/captures/area-inteira.png",
+      "documentation/overworld/kronasta/captures/rampas-geometria.png",
+      "documentation/overworld/kronasta/captures/rampas.png"
+    ]
+  },
+  "scope": "read-only snapshots for analysis, no runtime merge"
+}

@@ -1,0 +1,661 @@
+{
+  "region": "parque-dos-ventos",
+  "areas": [
+    {
+      "id": "jardim-das-pipas",
+      "part": "A",
+      "size": [
+        60,
+        44
+      ],
+      "verdict": "ok",
+      "raised_percent": 41.78,
+      "reachable": 1432,
+      "raised_walkable": 652,
+      "piece_count": 243,
+      "tree_count": 226,
+      "item_count": 3,
+      "ramps": [
+        [
+          23,
+          12
+        ],
+        [
+          23,
+          13
+        ],
+        [
+          23,
+          14
+        ],
+        [
+          14,
+          23
+        ],
+        [
+          15,
+          23
+        ],
+        [
+          16,
+          23
+        ],
+        [
+          43,
+          26
+        ],
+        [
+          44,
+          26
+        ],
+        [
+          45,
+          26
+        ]
+      ],
+      "visits": [
+        {
+          "id": 36,
+          "name": "Chegada ao parque",
+          "steps": 0,
+          "seconds_minimum_at_3_cells_s": 0,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 37,
+          "name": "Voltar à Rua dos Ventos",
+          "steps": 2,
+          "seconds_minimum_at_3_cells_s": 0.7,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 38,
+          "name": "Seguir para a Clareira",
+          "steps": 41,
+          "seconds_minimum_at_3_cells_s": 13.7,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 39,
+          "name": "Sr. Assis · encontros selvagens",
+          "steps": 7,
+          "seconds_minimum_at_3_cells_s": 2.3,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 40,
+          "name": "Descansar no largo",
+          "steps": 8,
+          "seconds_minimum_at_3_cells_s": 2.7,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 41,
+          "name": "Descansar no banco leste",
+          "steps": 35,
+          "seconds_minimum_at_3_cells_s": 11.7,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 42,
+          "name": "Mapa do Parque dos Ventos",
+          "steps": 9,
+          "seconds_minimum_at_3_cells_s": 3,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 43,
+          "name": "Nina",
+          "steps": 9,
+          "seconds_minimum_at_3_cells_s": 3,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 44,
+          "name": "Vestígio na trilha · releitura após o resgate",
+          "steps": 14,
+          "seconds_minimum_at_3_cells_s": 4.7,
+          "requires": "ninaReturned",
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 1001,
+          "name": "Papel de preparação · escondido",
+          "steps": 39,
+          "seconds_minimum_at_3_cells_s": 13,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 1002,
+          "name": "Linha de preparação · visivel",
+          "steps": 7,
+          "seconds_minimum_at_3_cells_s": 2.3,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 1003,
+          "name": "Papel de preparação · brilho",
+          "steps": 40,
+          "seconds_minimum_at_3_cells_s": 13.3,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 45,
+          "name": "Baú do coreto",
+          "steps": 40,
+          "seconds_minimum_at_3_cells_s": 13.3,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 46,
+          "name": "Baú do laço baixo",
+          "steps": 44,
+          "seconds_minimum_at_3_cells_s": 14.7,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        }
+      ],
+      "preserved_ids": 46,
+      "source": "C:\\Users\\User1\\Documents\\Codex\\2026-10-24\\que\\PipaKlub\\art/overworld/mapas/jardim-das-pipas.tmj"
+    },
+    {
+      "id": "clareira-do-papel",
+      "part": "B",
+      "size": [
+        64,
+        48
+      ],
+      "verdict": "ok",
+      "raised_percent": 44.3,
+      "reachable": 1946,
+      "raised_walkable": 1109,
+      "piece_count": 260,
+      "tree_count": 242,
+      "item_count": 3,
+      "ramps": [
+        [
+          25,
+          13
+        ],
+        [
+          25,
+          14
+        ],
+        [
+          25,
+          15
+        ],
+        [
+          15,
+          25
+        ],
+        [
+          16,
+          25
+        ],
+        [
+          17,
+          25
+        ],
+        [
+          47,
+          29
+        ],
+        [
+          48,
+          29
+        ],
+        [
+          49,
+          29
+        ],
+        [
+          24,
+          36
+        ],
+        [
+          24,
+          37
+        ],
+        [
+          24,
+          38
+        ]
+      ],
+      "visits": [
+        {
+          "id": 33,
+          "name": "Chegada ao parque",
+          "steps": 0,
+          "seconds_minimum_at_3_cells_s": 0,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 34,
+          "name": "Voltar ao Jardim das Pipas",
+          "steps": 2,
+          "seconds_minimum_at_3_cells_s": 0.7,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 35,
+          "name": "Além da cidade · Veredas do Encanamento",
+          "steps": 46,
+          "seconds_minimum_at_3_cells_s": 15.3,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 36,
+          "name": "Placa: habitats e encontros",
+          "steps": 9,
+          "seconds_minimum_at_3_cells_s": 3,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 37,
+          "name": "Descansar no largo",
+          "steps": 9,
+          "seconds_minimum_at_3_cells_s": 3,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 38,
+          "name": "Descansar no banco leste",
+          "steps": 38,
+          "seconds_minimum_at_3_cells_s": 12.7,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 39,
+          "name": "Mapa do Parque dos Ventos",
+          "steps": 9,
+          "seconds_minimum_at_3_cells_s": 3,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 1001,
+          "name": "Papel de preparação · escondido",
+          "steps": 26,
+          "seconds_minimum_at_3_cells_s": 8.7,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 1002,
+          "name": "Linha de preparação · brilho",
+          "steps": 43,
+          "seconds_minimum_at_3_cells_s": 14.3,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 1003,
+          "name": "Papel de preparação · visivel",
+          "steps": 42,
+          "seconds_minimum_at_3_cells_s": 14,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 1100,
+          "name": "Rastro junto ao riacho",
+          "steps": 22,
+          "seconds_minimum_at_3_cells_s": 7.3,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 1200,
+          "name": "Chegada pelo mirante alto",
+          "steps": 57,
+          "seconds_minimum_at_3_cells_s": 19,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 1201,
+          "name": "Veredas pela trilha alta",
+          "steps": 59,
+          "seconds_minimum_at_3_cells_s": 19.7,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        }
+      ],
+      "preserved_ids": 39,
+      "source": "C:\\Users\\User1\\Documents\\Codex\\2026-10-24\\que\\PipaKlub\\art/overworld/mapas/clareira-do-papel.tmj"
+    },
+    {
+      "id": "veredas-do-encanamento",
+      "part": "C",
+      "size": [
+        64,
+        48
+      ],
+      "verdict": "ok",
+      "raised_percent": 44.01,
+      "reachable": 1998,
+      "raised_walkable": 1081,
+      "piece_count": 270,
+      "tree_count": 246,
+      "item_count": 3,
+      "ramps": [
+        [
+          26,
+          14
+        ],
+        [
+          26,
+          15
+        ],
+        [
+          26,
+          16
+        ],
+        [
+          16,
+          26
+        ],
+        [
+          17,
+          26
+        ],
+        [
+          18,
+          26
+        ],
+        [
+          47,
+          29
+        ],
+        [
+          48,
+          29
+        ],
+        [
+          49,
+          29
+        ],
+        [
+          23,
+          37
+        ],
+        [
+          23,
+          38
+        ],
+        [
+          23,
+          39
+        ]
+      ],
+      "visits": [
+        {
+          "id": 34,
+          "name": "Chegada da Clareira",
+          "steps": 0,
+          "seconds_minimum_at_3_cells_s": 0,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 35,
+          "name": "Voltar à Clareira do Papel",
+          "steps": 2,
+          "seconds_minimum_at_3_cells_s": 0.7,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 36,
+          "name": "Lacertubo · guardião dos canos",
+          "steps": 49,
+          "seconds_minimum_at_3_cells_s": 16.3,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 37,
+          "name": "Banco do pátio",
+          "steps": 37,
+          "seconds_minimum_at_3_cells_s": 12.3,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 38,
+          "name": "Sinais no bosque",
+          "steps": 10,
+          "seconds_minimum_at_3_cells_s": 3.3,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 39,
+          "name": "Mapa das Veredas",
+          "steps": 8,
+          "seconds_minimum_at_3_cells_s": 2.7,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 40,
+          "name": "Papel rasgado entre as folhas",
+          "steps": 16,
+          "seconds_minimum_at_3_cells_s": 5.3,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 41,
+          "name": "Canos marcados",
+          "steps": 44,
+          "seconds_minimum_at_3_cells_s": 14.7,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 42,
+          "name": "Rabiola do Carcará de Nina",
+          "steps": 52,
+          "seconds_minimum_at_3_cells_s": 17.3,
+          "requires": "guardianDefeated",
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 43,
+          "name": "Nina",
+          "steps": 6,
+          "seconds_minimum_at_3_cells_s": 2,
+          "requires": "ninaReturned",
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 1001,
+          "name": "Papel de preparação · escondido",
+          "steps": 39,
+          "seconds_minimum_at_3_cells_s": 13,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 1002,
+          "name": "Linha de preparação · visivel",
+          "steps": 10,
+          "seconds_minimum_at_3_cells_s": 3.3,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 1003,
+          "name": "Papel de preparação · brilho",
+          "steps": 40,
+          "seconds_minimum_at_3_cells_s": 13.3,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 1200,
+          "name": "Chegada pelo canal alto",
+          "steps": 50,
+          "seconds_minimum_at_3_cells_s": 16.7,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 1201,
+          "name": "Clareira pela trilha alta",
+          "steps": 52,
+          "seconds_minimum_at_3_cells_s": 17.3,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 1100,
+          "name": "Retorno curto ao Jardim · após a vitória",
+          "steps": 57,
+          "seconds_minimum_at_3_cells_s": 19,
+          "requires": "guardianDefeated",
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 17,
+          "name": "Baú do mirante",
+          "steps": 45,
+          "seconds_minimum_at_3_cells_s": 15,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 18,
+          "name": "Baú entre as raízes",
+          "steps": 43,
+          "seconds_minimum_at_3_cells_s": 14.3,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 19,
+          "name": "Baú da margem escondida",
+          "steps": 26,
+          "seconds_minimum_at_3_cells_s": 8.7,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 20,
+          "name": "Baú da encosta",
+          "steps": 37,
+          "seconds_minimum_at_3_cells_s": 12.3,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        },
+        {
+          "id": 21,
+          "name": "Baú dos canos antigos",
+          "steps": 52,
+          "seconds_minimum_at_3_cells_s": 17.3,
+          "requires": null,
+          "return": true,
+          "no_forced_grass": true
+        }
+      ],
+      "preserved_ids": 43,
+      "source": "C:\\Users\\User1\\Documents\\Codex\\2026-10-24\\que\\PipaKlub\\art/overworld/mapas/veredas-do-encanamento.tmj"
+    }
+  ],
+  "failures": [],
+  "warnings": [
+    "jardim-das-pipas/44: condições são dados propostos; a prévia atual não as aplica.",
+    "jardim-das-pipas: travessia mínima 13.7s; meta de 1–3min ainda não validada com conteúdo.",
+    "clareira-do-papel/1201: condições são dados propostos; a prévia atual não as aplica.",
+    "clareira-do-papel: travessia mínima 15.3s; meta de 1–3min ainda não validada com conteúdo.",
+    "veredas-do-encanamento/36: condições são dados propostos; a prévia atual não as aplica.",
+    "veredas-do-encanamento/42: condições são dados propostos; a prévia atual não as aplica.",
+    "veredas-do-encanamento/43: condições são dados propostos; a prévia atual não as aplica.",
+    "veredas-do-encanamento/1201: condições são dados propostos; a prévia atual não as aplica.",
+    "veredas-do-encanamento/1100: condições são dados propostos; a prévia atual não as aplica."
+  ],
+  "scope": "planta e grafo regional; sem concessão de itens, saves ou campanha",
+  "graph": {
+    "A": [
+      "B",
+      "Rua dos Ventos"
+    ],
+    "B": [
+      "A",
+      "C pela trilha baixa",
+      "C pelo mirante alto"
+    ],
+    "C": [
+      "B pela trilha baixa",
+      "B pelo canal alto",
+      "A após guardianDefeated"
+    ]
+  }
+}
