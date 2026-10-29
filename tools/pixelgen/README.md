@@ -31,6 +31,18 @@ Kael e professor têm exemplos de caminhada para a esquerda com cabeça e corpo 
 
 Também estão disponíveis **Kael · 8 direções e movimentos**, com seleção de direção/ação e filtro da timeline, e **Kael · subir escada · 4 quadros**, um estudo menor de costas em 64×80. A biblioteca de oito direções foi rejeitada na revisão artística do usuário por baixa legibilidade; permanece como estudo técnico editável. O estudo da escada permite revisar um único ciclo antes de ampliar o conjunto.
 
+## Legibilidade
+
+Sprite pequeno lê pela silhueta, pelo contorno fechado e pelo contraste com o chão. A seção **Legibilidade** (painel direito) e a bancada trazem:
+
+- **Silhueta** (ao lado de Pixel/Fonte/Comparar): a figura em preto chapado sobre papel. Se a pose não lê assim, cor nenhuma resolve.
+- **Chão** e **Leitura** (barra da bancada): a prévia em tamanho real aparece sobre grama, terra, calçada, noite ou xadrez, em 1×, 2× ou 3×, e anima junto com a timeline.
+- **Contorno externo**: cria a camada *Contorno* no topo, com a cor mais escura da paleta, por fora da figura (4 vizinhos; marque *Diagonais* para 8). Ela pode ser ocultada, editada ou excluída; Desfazer volta.
+- **Contorno seletivo · camada ativa**: os pixels da camada ativa que estão na borda da figura passam a um tom mais escuro da própria cor, escolhido na paleta (sel-out). Não cria cores novas.
+- **Analisar legibilidade**: mede quanto da borda tem contorno escuro, quanto da borda se destaca de cada chão (contraste mínimo 1,6) e quantas cores vizinhas têm quase o mesmo brilho (abaixo de 1,12). Abaixo de 70% de contorno ou acima de 25% de borda apagada num chão, aparece um aviso. *Todos os quadros* mede a sequência inteira; desmarcado, só o quadro atual.
+
+O zoom **Caber** (padrão) escolhe o maior zoom inteiro que mantém o quadro visível na bancada.
+
 ## Animação
 
 A timeline permite duplicar, inserir quadros vazios, excluir e reordenar dentro da sequência selecionada. Nomes, intervalos, durações e modos normal, reverso e ping-pong são editáveis. **Aplicar ms à sequência** ajusta todos os seus quadros. A velocidade de prévia não modifica o arquivo exportado. Espaço no canvas inicia/para.

@@ -5,6 +5,7 @@ import {upgrade,cloneDocument,compositeFrame,compositeAll,editable,layerPixels,a
 import {createStorage} from './storage.mjs';
 import {qualityReport} from './quality.mjs';
 import {godotResource} from './godot.mjs';
+import {GROUNDS,GROUND_LABELS,addOutline,selectiveOutline,silhouetteRGBA,legibilityReport} from './legibility.mjs';
 const $=id=>document.getElementById(id),editor=$('editor'),ctx=editor.getContext('2d');
 const fields=['cols','rows','width','height','colors','margin','alpha','tolerance','specks','background','sample','align','x','y','cropWidth','cropHeight'];
 let project=null,source=null,sourceCanvas=null,sourceUrl=null,selected=0,colorIndex=1,tool='brush',view='pixel',worker=null;
@@ -66,9 +67,19 @@ function drawRaw(context,x,y,w,h){
  const factor=Math.min((w-8)/r.w,(h-8)/r.h),dw=r.w*factor,dh=r.h*factor;
  context.imageSmoothingEnabled=true;context.drawImage(sourceCanvas,r.x,r.y,r.w,r.h,x+(w-dw)/2,y+h-dh-4,dw,dh);context.imageSmoothingEnabled=false;
 }
+// "Caber" picks the largest whole zoom that keeps the frame inside the visible bench.
+function zoomValue(){if($('zoom').value!=='fit')return Number($('zoom').value);const area=$('canvasArea'),cols=view==='compare'?2:1;
+ const w=(area.clientWidth||900)-60,h=(area.clientHeight||600)-80;return Math.max(1,Math.min(16,Math.floor(Math.min(w/(project.width*cols),h/project.height))));}
+function renderPreview(frame){
+ const native=$('native'),scale=Number($('previewScale').value)||1,ground=$('previewGround').value,pad=4*scale;
+ native.width=project.width*scale+pad*2;native.height=project.height*scale+pad*2;const c=native.getContext('2d');c.imageSmoothingEnabled=false;
+ if(GROUNDS[ground]){c.fillStyle=hex(GROUNDS[ground]);c.fillRect(0,0,native.width,native.height);}else checker(c,native.width,native.height);
+ c.drawImage(frame,pad,pad,project.width*scale,project.height*scale);
+ $('previewCaption').textContent=`LEITURA ${scale}× · ${(GROUND_LABELS[ground]||'XADREZ').toUpperCase()}`;
+}
 function renderEditor(){
  if(!project)return;
- const z=Number($('zoom').value),w=project.width*z,h=project.height*z,gap=view==='compare'?20:0;
+ const z=zoomValue(),w=project.width*z,h=project.height*z,gap=view==='compare'?20:0;
  const cw=view==='compare'?w*2+gap:w;if(editor.width!==cw)editor.width=cw;if(editor.height!==h)editor.height=h;
  checker(ctx,editor.width,editor.height);ctx.imageSmoothingEnabled=false;
  const frame=frameCanvas(project.frames[selected]);
@@ -79,6 +90,7 @@ function renderEditor(){
    for(const [index,tint] of indices){const c=frameCanvas(project.frames[index]),cx=c.getContext('2d'),rgba=pixels(project,project.frames[index]);for(let i=0;i<rgba.length;i+=4)if(rgba[i+3]){rgba.set(tint,i);rgba[i+3]=90;}cx.putImageData(new ImageData(rgba,project.width,project.height),0,0);ctx.drawImage(c,0,0,w,h);}
   }ctx.drawImage(frame,0,0,w,h);
  }
+ else if(view==='silhouette'){const c=document.createElement('canvas');c.width=project.width;c.height=project.height;c.getContext('2d').putImageData(new ImageData(silhouetteRGBA(compositeFrame(project,project.frames[selected])),project.width,project.height),0,0);ctx.drawImage(c,0,0,w,h);}
  else if(view==='source')drawRaw(ctx,0,0,w,h);
  else{drawRaw(ctx,0,0,w,h);ctx.fillStyle='#111923';ctx.fillRect(w,0,gap,h);ctx.drawImage(frame,w+gap,0,w,h);}
  if($('grid').checked&&z>=6&&view!=='source'){
@@ -86,10 +98,10 @@ function renderEditor(){
   for(let x=0;x<=project.width;x++){ctx.moveTo(start+x*z+.5,0);ctx.lineTo(start+x*z+.5,h);}
   for(let y=0;y<=project.height;y++){ctx.moveTo(start,y*z+.5);ctx.lineTo(start+w,y*z+.5);}ctx.stroke();
  }
- const native=$('native');native.width=project.width;native.height=project.height;native.getContext('2d').drawImage(frame,0,0);
+ renderPreview(frame);const native=$('native');
  if(view==='pixel'&&selection){ctx.strokeStyle='#71cdbd';ctx.lineWidth=1;ctx.strokeRect(selection.x*z+.5,selection.y*z+.5,selection.w*z,selection.h*z);}
  native.parentElement.hidden=project.width>80||project.height>110;
- $('frameCaption').textContent=(view==='compare'?'Fonte → pixel · ':view==='source'?'Fonte reduzida · ':'')+project.frames[selected].name;
+ $('frameCaption').textContent=(view==='compare'?'Fonte → pixel · ':view==='source'?'Fonte reduzida · ':view==='silhouette'?'Silhueta · ':'')+project.frames[selected].name;
  $('sizeCaption').textContent=`${project.width} × ${project.height} PX / ${z}×`;
  $('undo').disabled=!undo.length;$('redo').disabled=!redo.length;
  $('selectionInfo').textContent=selection?`${selection.w}×${selection.h} · ${selection.x},${selection.y}`:'Sem seleção';
@@ -201,15 +213,26 @@ $('openImage').onclick=()=>$('imageFile').click();$('openProject').onclick=()=>$
 $('imageFile').onchange=async e=>{try{if(!e.target.files[0])return;const previous=snapshot();await loadImage(e.target.files[0],e.target.files[0].name);runConversion(false,previous);}catch(error){status(error.message);}finally{e.target.value='';}};
 $('projectFile').onchange=async e=>{try{if(e.target.files[0])await openProject(e.target.files[0]);}catch(error){status('Não foi possível abrir: '+error.message);}finally{e.target.value='';}};
 const drop=$('dropzone');drop.ondragover=e=>{e.preventDefault();drop.classList.add('dragover');};drop.ondragleave=()=>drop.classList.remove('dragover');drop.ondrop=async e=>{e.preventDefault();drop.classList.remove('dragover');try{const f=e.dataTransfer.files[0];if(f){const previous=snapshot();await loadImage(f,f.name);runConversion(false,previous);}}catch(error){status(error.message);}};
-async function walkExample(file,label,description='caminhada para a esquerda · quatro poses · teste de movimento.'){try{const r=await fetch(file);if(!r.ok)throw Error('Exemplo indisponível.');await openProject(new File([await r.blob()],file));$('zoom').value='6';$('grid').checked=false;play();status(label+' · '+description);}catch(e){status(e.message);}}
+async function walkExample(file,label,description='caminhada para a esquerda · quatro poses · teste de movimento.'){try{const r=await fetch(file);if(!r.ok)throw Error('Exemplo indisponível.');await openProject(new File([await r.blob()],file));$('zoom').value='fit';$('grid').checked=false;play();status(label+' · '+description);}catch(e){status(e.message);}}
 $('demo').onclick=example;$('walkDemo').onclick=()=>walkExample('professor-walk.pixelgen.json','Professor');$('kaelWalkDemo').onclick=()=>walkExample('kael-walk.pixelgen.json','Kael');
 $('kaelStairsDemo').onclick=()=>walkExample('kael-stairs.pixelgen.json','Kael','subir escada · vista de costas · quatro poses · estudo convertido para revisão.');
-$('kaelLibraryDemo').onclick=async()=>{try{const r=await fetch('kael-library.pixelgen.json');if(!r.ok)throw Error('Biblioteca indisponível.');await openProject(new File([await r.blob()],'kael-library.pixelgen.json'));$('zoom').value='6';$('grid').checked=false;renderEditor();play();status('Kael · 8 direções · 8 movimentos · escolha a direção e o movimento acima da timeline.');}catch(e){status(e.message);}};
+$('kaelLibraryDemo').onclick=async()=>{try{const r=await fetch('kael-library.pixelgen.json');if(!r.ok)throw Error('Biblioteca indisponível.');await openProject(new File([await r.blob()],'kael-library.pixelgen.json'));$('zoom').value='fit';$('grid').checked=false;renderEditor();play();status('Kael · 8 direções · 8 movimentos · escolha a direção e o movimento acima da timeline.');}catch(e){status(e.message);}};
 $('conversionForm').onsubmit=e=>{e.preventDefault();runConversion();};fields.forEach(k=>$(k).addEventListener('change',drawSource));
 document.querySelectorAll('[data-tool]').forEach(b=>b.onclick=()=>setTool(b.dataset.tool));
-document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{if(b.dataset.view!=='pixel'&&!source)return status('Abra a fonte original para comparar.');view=b.dataset.view;document.querySelectorAll('[data-view]').forEach(q=>q.classList.toggle('selected',q===b));renderEditor();});
+document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{if(!['pixel','silhouette'].includes(b.dataset.view)&&!source)return status('Abra a fonte original para comparar.');view=b.dataset.view;document.querySelectorAll('[data-view]').forEach(q=>q.classList.toggle('selected',q===b));renderEditor();});
 $('zoom').onchange=renderEditor;$('grid').onchange=renderEditor;$('undo').onclick=()=>history(true);$('redo').onclick=()=>history(false);
-$('onion').onchange=renderEditor;
+$('onion').onchange=renderEditor;$('previewGround').onchange=$('previewScale').onchange=renderEditor;
+globalThis.addEventListener?.('resize',()=>{if(project&&$('zoom').value==='fit')renderEditor();});
+const legibilityFrames=()=>$('legibilityAll').checked?null:selected;
+function showLegibility(){if(!project)return;const r=legibilityReport(project,{frames:legibilityFrames()}),box=$('legibilityResult');box.replaceChildren();
+ const meter=(label,value,good)=>{const row=document.createElement('div');row.className='meter';const bar=document.createElement('i'),fillBar=document.createElement('b');fillBar.style.width=Math.round(value*100)+'%';if(!good)fillBar.className='bad';bar.append(fillBar);row.append(label,bar,Math.round(value*100)+'%');box.append(row);};
+ meter('Contorno',r.darkEdge,r.darkEdge>=.7);for(const [key,v] of Object.entries(r.grounds))meter(GROUND_LABELS[key],1-v,v<=.25);
+ for(const text of r.warnings){const line=document.createElement('p');line.textContent=text;box.append(line);}
+ if(!r.warnings.length){const ok=document.createElement('p');ok.className='ok';ok.textContent='✓ Contorno fechado e contraste bom nos quatro chões. Confira a pose na Silhueta.';box.append(ok);}
+ status('Legibilidade medida. As barras mostram a borda escura e a borda que se destaca de cada chão.');}
+$('legibilityCheck').onclick=showLegibility;
+$('outlineOuter').onclick=()=>{if(mutateLayer(p=>addOutline(p,{frames:legibilityFrames(),diagonal:$('outlineDiagonal').checked})))status('Camada Contorno criada no topo. Oculte, edite ou exclua quando quiser.');};
+$('outlineSelective').onclick=()=>{let count=0;if(mutateLayer(p=>{count=selectiveOutline(p,activeLayer,{frames:legibilityFrames()});if(!count)throw Error('Nenhum pixel desta camada está na borda da figura.');}))status(`Contorno seletivo: ${count} pixels de borda escurecidos com a própria paleta.`);};
 $('frameDuration').onchange=()=>{if(!project)return;stop();checkpoint();project.frames[selected].duration=duration({duration:$('frameDuration').value});$('frameDuration').value=project.frames[selected].duration;changed();};
 $('duplicateFrame').onclick=()=>{if(!project)return;stop();try{const next=copy(project),i=duplicateFrame(next,selected);checkpoint();project=next;selected=i;changed(true);status('Quadro duplicado. Desenhe a próxima pose com onion skin.');}catch(e){status(e.message);}};
 $('sequence').onchange=()=>{if(!project)return;stop();sequenceIndex=Number($('sequence').value);renderSequence();chooseFrame(sequence().start);};

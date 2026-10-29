@@ -2,7 +2,7 @@ import http from 'node:http';
 import fs from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 const app=new URL('./',import.meta.url);
-const allowed=new Map([['/','index.html'],...['style.css','app.mjs','core.mjs','animation.mjs','document.mjs','storage.mjs','quality.mjs','godot.mjs','worker.mjs','aseprite.mjs'].map(f=>['/'+f,f])]);
+const allowed=new Map([['/','index.html'],...['style.css','app.mjs','core.mjs','animation.mjs','document.mjs','storage.mjs','quality.mjs','godot.mjs','worker.mjs','aseprite.mjs','legibility.mjs'].map(f=>['/'+f,f])]);
 allowed.set('/professor-walk.pixelgen.json','examples/professor-walk.pixelgen.json');
 allowed.set('/kael-walk.pixelgen.json','examples/kael-walk.pixelgen.json');
 allowed.set('/kael-library.pixelgen.json','../../art/characters/kael-eight-directions-v1/kael-library.pixelgen.json');

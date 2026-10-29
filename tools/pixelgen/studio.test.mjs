@@ -51,3 +51,16 @@ test('autosave fallback keeps a recoverable previous revision and reports quota 
  await s.automatic({name:'first'});await s.automatic({name:'second'});assert.equal((await s.restore()).name,'second');assert.equal((await s.restore(true)).name,'first');
  const failed=createStorage(null,{getItem:()=>null,setItem:()=>{throw Error('quota');}});await assert.rejects(failed.automatic({}),/quota/);
 });
+test('legibility: outline layer, selective outline and contrast report stay inside the palette',async()=>{
+ const {addOutline,selectiveOutline,legibilityReport,edgeMask,outsideRing,darker,contrast}=await import('./legibility.mjs');
+ const p=sample(),before=p.frames.map(f=>[...f.indices]),w=p.width,h=p.height;
+ const ring=outsideRing(p.frames[0].indices,w,h);assert.ok(ring.some(Boolean));ring.forEach((v,i)=>{if(v)assert.equal(p.frames[0].indices[i],0);});
+ const layer=addOutline(p,{frames:0});assert.equal(p.layers[layer].name,'Contorno');assert.equal(p.layers.length,2);
+ p.frames[0].indices.forEach((v,i)=>{if(before[0][i])assert.equal(v,before[0][i]);});assert.deepEqual([...p.frames[1].indices],before[1]);
+ p.layers[layer].visible=false;compositeAll(p);assert.deepEqual([...p.frames[0].indices],before[0]);
+ const q=sample(),edge=edgeMask(q.frames[0].indices,w,h),changed=selectiveOutline(q,0,{frames:0});assert.ok(changed>0);
+ q.frames[0].indices.forEach((v,i)=>{if(!edge[i])assert.equal(v,before[0][i]);else if(v!==before[0][i])assert.ok(contrast(q.palette[v],[0,0,0])<=contrast(q.palette[before[0][i]],[0,0,0]));});
+ for(let i=1;i<q.palette.length;i++)assert.ok(darker(q.palette,i)>0);
+ const r=legibilityReport(sample());assert.equal(r.frames.length,4);assert.ok(r.darkEdge>=0&&r.darkEdge<=1);assert.deepEqual(Object.keys(r.grounds).sort(),['calcada','grama','noite','terra']);
+ const outlined=legibilityReport(p,{frames:0});assert.ok(outlined.darkEdge>=legibilityReport(sample(),{frames:0}).darkEdge);
+});

@@ -1,7 +1,7 @@
 // Functional DOM check. The canvas is simulated; this does not validate browser layout.
 import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:assert/strict';import {parseHTML} from 'linkedom';
 import * as core from './core.mjs';import * as doc from './document.mjs';import * as animation from './animation.mjs';
-import {aseprite} from './aseprite.mjs';import {qualityReport} from './quality.mjs';import {godotResource} from './godot.mjs';
+import * as legibility from './legibility.mjs';import {aseprite} from './aseprite.mjs';import {qualityReport} from './quality.mjs';import {godotResource} from './godot.mjs';
 const read=file=>fs.readFileSync(new URL(file,import.meta.url),'utf8');
 const {window,document}=parseHTML(read('index.html'));
 const painter={putImageData(){},drawImage(){},clearRect(){},fillRect(){},beginPath(){},moveTo(){},lineTo(){},stroke(){},strokeRect(){}};
@@ -14,7 +14,7 @@ let timerId=0;const timers=new Map(),downloads=[];
 const context=vm.createContext({document,console,Uint8Array,Uint8ClampedArray,Map,Set,Number,Math,JSON,Array,String,Object,Error,Blob,File,
  URL:{createObjectURL:blob=>{downloads.push(blob);return 'blob:test';},revokeObjectURL:()=>{}},
  setTimeout:(fn,ms)=>{timers.set(++timerId,{fn,ms});return timerId;},clearTimeout:i=>timers.delete(i),localStorage:{getItem:()=>null},
- ImageData:class{constructor(data,width,height){Object.assign(this,{data,width,height});}},...core,...doc,...animation,animationAtlas:animation.atlas,aseprite,qualityReport,godotResource,createStorage:()=>storage});
+ ImageData:class{constructor(data,width,height){Object.assign(this,{data,width,height});}},...core,...doc,...animation,...legibility,animationAtlas:animation.atlas,aseprite,qualityReport,godotResource,createStorage:()=>storage});
 await vm.runInContext(read('app.mjs').replace(/^import .*;\r?\n/gm,'')+';ready',context);
 const evaluate=code=>vm.runInContext(code,context),click=id=>document.getElementById(id).onclick();
 assert.equal(document.querySelectorAll('.layer-row').length,2);assert.equal(document.querySelectorAll('.frame').length,4);
@@ -29,6 +29,9 @@ await click('saveLibrary');assert.equal(saved.frames.length,4);assert.equal(save
 click('saveProject');assert.equal(JSON.parse(await downloads.at(-1).text()).layers.length,3);click('exportGodot');assert.match(await downloads.at(-1).text(),/SpriteFrames/);
 document.getElementById('newPreset').value='32x32';await click('createProject');assert.equal(evaluate('project.width'),32);assert.equal(document.querySelectorAll('.frame').length,1);click('deleteFrame');assert.match(document.getElementById('status').textContent,/Mantenha/);
 await document.querySelector('.project-entry').onclick();assert.equal(evaluate('project.width'),48);assert.equal(evaluate('project.layers.length'),3);
+click('outlineOuter');assert.equal(evaluate("project.layers.at(-1).name"),'Contorno');click('undo');
+click('legibilityCheck');assert.ok(document.getElementById('legibilityResult').children.length>=5);
+for(const b of document.querySelectorAll('[data-view]'))if(b.dataset.view==='silhouette')b.onclick();assert.equal(evaluate('view'),'silhouette');for(const b of document.querySelectorAll('[data-view]'))if(b.dataset.view==='pixel')b.onclick();
 console.log('PASS DOM: layers, selection, locked edits, undo, propagation, frame controls, ping-pong, library, new/reopen, file and Godot export. Canvas simulated; visual layout not verified.');
 // Full-sized directional library must remain selectable without changing its art or tags.
 const kaelLibrary=read('../../art/characters/kael-eight-directions-v1/kael-library.pixelgen.json');
