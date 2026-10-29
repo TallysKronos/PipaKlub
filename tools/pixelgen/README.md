@@ -31,6 +31,10 @@ Kael e professor têm exemplos de caminhada para a esquerda com cabeça e corpo 
 
 Também estão disponíveis **Kael · 8 direções e movimentos**, com seleção de direção/ação e filtro da timeline, e **Kael · subir escada · 4 quadros**, um estudo menor de costas em 64×80. A biblioteca de oito direções foi rejeitada na revisão artística do usuário por baixa legibilidade; permanece como estudo técnico editável. O estudo da escada permite revisar um único ciclo antes de ampliar o conjunto.
 
+## Linha de comando para agentes
+
+`npm run pixel -- help` lista os comandos: criar projeto, rampas de cor nomeadas, desenho por operações JSON (linha, retângulo, elipse, balde, cópia entre quadros, espelho, contornos), quadros, camadas e sequências; renderização para revisão (quadro ampliado, silhueta, onion skin, chãos do jogo, folha e GIF); visão em texto (`ascii`); conferência de entrega (`check`, sai com código 1 se reprovar) e exportações (PNG, Aseprite, atlas, Godot, GPL). O fluxo de trabalho e a referência das operações estão em [AGENTS.md](AGENTS.md). Os projetos são os mesmos `.pixelgen.json` da bancada.
+
 ## Legibilidade
 
 Sprite pequeno lê pela silhueta, pelo contorno fechado e pelo contraste com o chão. A seção **Legibilidade** (painel direito) e a bancada trazem:

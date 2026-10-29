@@ -134,6 +134,12 @@ export function audit(project){
  return {colors:colors.size,frames:project.frames.length,empty,edge,alpha:'0 / 255',warnings};
 }
 export function serialize(project){const {source,...native}=project;return {...native,frames:project.frames.map(f=>({...f,indices:Array.from(compositeFrame(project,f)),cels:f.cels?.map(c=>Array.from(c))}))};}
+// Named colour ramps (dark → light) let tools and agents ask for "pele:2" instead of raw indices.
+export function validateRamps(ramps,size){
+ if(ramps===undefined||ramps===null)return undefined;
+ if(typeof ramps!=='object'||Array.isArray(ramps)||Object.keys(ramps).length>64)throw Error('Rampas de cor inválidas.');
+ const out={};for(const [name,list] of Object.entries(ramps)){if(!/^[a-z0-9-]{1,32}$/.test(name)||!Array.isArray(list)||!list.length||list.length>16||list.some(i=>!Number.isInteger(i)||i<1||i>=size))throw Error(`Rampa "${name}" inválida.`);out[name]=[...list];}
+ return out;}
 export function validateProject(p){
  if(p?.kind!=='pixelgen'||![1,2].includes(p.version))throw Error('Projeto Pixelgen inválido ou versão não suportada.');
  for(const key of ['width','height'])if(!Number.isInteger(p[key])||p[key]<1||p[key]>256)throw Error('Dimensões de projeto inválidas.');
@@ -148,5 +154,5 @@ export function validateProject(p){
   if(!validPixels(f.indices))throw Error('Pixels de quadro inválidos.');
   if(p.version===2&&(!Array.isArray(f.cels)||f.cels.length!==p.layers.length||f.cels.some(c=>!validPixels(c))))throw Error('Pixels de camada inválidos.');
   return {name:String(f.name||`quadro-${i+1}`).slice(0,80),duration:duration(f),row:Math.floor(i/p.cols),col:i%p.cols,indices:Uint8Array.from(f.indices),cels:p.version===2?f.cels.map(c=>Uint8Array.from(c)):undefined,sourceRect:metadata(f.sourceRect),sourceBounds:metadata(f.sourceBounds)};
- });return upgrade({kind:'pixelgen',version:2,id:typeof p.id==='string'&&/^[a-zA-Z0-9_-]{1,80}$/.test(p.id)?p.id:undefined,width:p.width,height:p.height,cols:p.cols,rows:p.rows,palette:p.palette.map(c=>[...c]),settings:settings(p.settings||{}),layers:p.version===2?p.layers.map(l=>({name:String(l.name||'Camada').slice(0,80),visible:l.visible!==false,locked:l.locked===true})):undefined,name:String(p.name||'Projeto').slice(0,80),frames,sequences:validateSequences(p.sequences,frames.length)});
+ });return upgrade({kind:'pixelgen',version:2,id:typeof p.id==='string'&&/^[a-zA-Z0-9_-]{1,80}$/.test(p.id)?p.id:undefined,width:p.width,height:p.height,cols:p.cols,rows:p.rows,palette:p.palette.map(c=>[...c]),settings:settings(p.settings||{}),layers:p.version===2?p.layers.map(l=>({name:String(l.name||'Camada').slice(0,80),visible:l.visible!==false,locked:l.locked===true})):undefined,name:String(p.name||'Projeto').slice(0,80),frames,sequences:validateSequences(p.sequences,frames.length),ramps:validateRamps(p.ramps,p.palette.length)});
 }

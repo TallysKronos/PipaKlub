@@ -64,3 +64,19 @@ test('legibility: outline layer, selective outline and contrast report stay insi
  const r=legibilityReport(sample());assert.equal(r.frames.length,4);assert.ok(r.darkEdge>=0&&r.darkEdge<=1);assert.deepEqual(Object.keys(r.grounds).sort(),['calcada','grama','noite','terra']);
  const outlined=legibilityReport(p,{frames:0});assert.ok(outlined.darkEdge>=legibilityReport(sample(),{frames:0}).darkEdge);
 });
+test('agent CLI: structured drawing, ramps, PNG/GIF round trip and delivery check',async()=>{
+ const {apply,colorIndex,setRamp}=await import('./draw.mjs');const {encodePNG,decodePNG}=await import('./png.mjs');const {encodeGIF}=await import('./gif.mjs');
+ const {renderFrame,gifFrames,asciiFrame}=await import('./render.mjs');const {check,run}=await import('./cli.mjs');
+ const p=validateProject({kind:'pixelgen',version:2,name:'t',width:16,height:24,cols:1,rows:1,palette:[[0,0,0,0],[20,24,30,255]],layers:[{name:'Corpo'}],frames:[{name:'idle-S-1',indices:Array(384).fill(0),cels:[Array(384).fill(0)]}],sequences:[{name:'idle-S',start:0,end:0,loop:true}]});
+ assert.deepEqual(setRamp(p,'pele',['#7a4a32','#c98b5e','#f0c49a']),[2,3,4]);assert.equal(colorIndex(p,'pele:2'),4);assert.equal(colorIndex(p,'#7a4a32'),2);assert.throws(()=>colorIndex(p,'pele:3'),/3 tons/);
+ const log=apply(p,[{op:'layer',add:'Cabeça'},{op:'ellipse',layer:'Cabeça',cx:8,cy:6,rx:4,ry:4,color:'pele:1'},{op:'rect',layer:'Corpo',x:5,y:11,w:6,h:11,color:'#2f4f8a'},
+  {op:'line',layer:'Corpo',points:[[5,11],[10,16]],color:'pele:0'},{op:'frame',add:'idle-S-2',copy:0,duration:300},{op:'copy',frame:1,layer:'Cabeça',fromFrame:0,fromLayer:'Cabeça',dy:1},{op:'sequence',name:'idle-S',frames:[0,1]},{op:'outline',color:1}]);
+ assert.equal(p.frames.length,2);assert.equal(p.layers.at(-1).name,'Contorno');assert.ok(log.find(l=>l.op==='ellipse').changed>40);assert.equal(p.frames[1].duration,300);
+ assert.throws(()=>apply(p,[{op:'rect',layer:'Nada',x:0,y:0,w:1,h:1,color:1}]),/Operação 1 \(rect\): Camada inexistente/);
+ const restored=validateProject(serialize(p));assert.deepEqual(restored.ramps,p.ramps);
+ const cv=renderFrame(p,0,{zoom:4}),png=decodePNG(encodePNG(cv.data,cv.w,cv.h));assert.equal(png.width,cv.w);assert.deepEqual([...png.data.slice(0,64)],[...cv.data.slice(0,64)]);
+ const g=gifFrames(p,[0,1],{zoom:2}),gif=encodeGIF(g.frames,g.width,g.height,g.palette);assert.equal(gif.toString('ascii',0,6),'GIF89a');assert.equal(gif.at(-1),0x3b);
+ assert.match(asciiFrame(p,0),/pele:1/);
+ const r=check(p);assert.equal(r.pass,true,JSON.stringify(r.errors));const empty=validateProject(serialize(p));empty.frames[1].cels.forEach(c=>c.fill(0));assert.equal(check(empty).pass,false);
+ const file=new URL('./.cli-test.pixelgen.json',import.meta.url).pathname;try{await run(['new',file,'--size','16x16']);await run(['ramp',file,'aco','#333333','#999999']);const loaded=JSON.parse(fs.readFileSync(file,'utf8'));assert.deepEqual(Object.keys(loaded.ramps),['aco']);}finally{fs.rmSync(file,{force:true});}
+});

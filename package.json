@@ -30,7 +30,8 @@
     "steam:config": "node desktop/scripts/steam-vdf.mjs",
     "review:avatar": "node tools/avatar-studio/game-review-server.mjs",
     "studio:mapa": "node tools/mapa-studio/server.mjs",
-    "mapa:piloto": "node tools/mapa-studio/gerar-piloto.mjs"
+    "mapa:piloto": "node tools/mapa-studio/gerar-piloto.mjs",
+    "pixel": "node tools/pixelgen/cli.mjs"
   },
   "dependencies": {
     "pg": "^8.23.1",
