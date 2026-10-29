@@ -5,6 +5,7 @@ const Prop = preload("res://scripts/overworld/prop.gd")
 const Avatar = preload("res://scripts/avatar.gd")
 const Hud = preload("res://scripts/campaign/hud.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
+const ParqueSurfaces = preload("res://scripts/overworld/parque_surfaces.gd")
 signal interaction_requested(event: Dictionary)
 var model := Model.new()
 var area_id := "veredas-piloto"
@@ -28,6 +29,8 @@ var art_toggle: CheckButton
 var index: Dictionary
 var kits: Array[Dictionary] = []
 var kit_library: Dictionary = {}
+var paint_materials: Dictionary = {}
+var parque_surfaces: RefCounted
 var terrain_layers: Array[TileMapLayer] = []
 var lots: Dictionary = {}
 var grass_material: ShaderMaterial
@@ -69,11 +72,13 @@ func _ready() -> void:
 	_build_hud()
 	load_area(area_id)
 
-func load_area(id: String) -> void:
+func load_area(id: String, entrance: String = "") -> void:
 	var source := "res://assets/overworld/maps/" + id + ".json"
 	if not FileAccess.file_exists(source): return
 	area_id = id
 	set_meta("grass_decal_count", 0)
+	paint_materials.clear()
+
 	for node in [terrain, camera]:
 		if is_instance_valid(node): remove_child(node); node.queue_free()
 	terrain_layers.clear()
@@ -96,6 +101,7 @@ func load_area(id: String) -> void:
 	terrain.y_sort_enabled = true
 	add_child(terrain)
 	actors = terrain
+	parque_surfaces = ParqueSurfaces.new(model,actors,kits[1]) if art_preview and kits.size()>1 and kits[1].has("mangaWater") else null
 	_build_context()
 	_build_tiles()
 	_build_faces()
@@ -109,6 +115,11 @@ func load_area(id: String) -> void:
 	_morro_canopy_shadow()
 	_build_events()
 	var spawn: Dictionary = model.data.spawn
+	if not entrance.is_empty():
+		for candidate in model.data.events:
+			if candidate.type == "entrada" and str(candidate.props.get("entrada", "")) == entrance:
+				spawn = candidate
+				break
 	player = Vector2(spawn.u + .5, spawn.v + .5)
 	follower = player
 	player_root = Node2D.new()
@@ -240,6 +251,9 @@ func _build_tiles() -> void:
 			var at := Vector2i(i % int(model.data.w), i / int(model.data.w))
 			if cell.get("ramp") != null:
 				if not _draw_kit_stairs(at, cell): _draw_ramp(at, cell)
+			elif cell.material == "agua" and parque_surfaces != null:
+				parque_surfaces.draw_water(at,cell)
+
 			elif cell.material == "ponte":
 				_draw_bridge(at, cell)
 			elif _soft_yards() and cell.material == "construcao":
@@ -253,11 +267,23 @@ func _draw_bridge(at: Vector2i, cell: Dictionary) -> void:
 	if art_preview and model.data.biome == "veredas" and kits.size()>1:
 		_draw_veredas_bridge(at,cell)
 		return
-	var along_u := false
-	for offset in [Vector2i(1,0),Vector2i(-1,0)]:
-		var neighbor := model.cell_at(at+offset)
-		if neighbor.get("material", "") == "ponte": along_u = true
-	var axis := "u" if along_u else "v"
+	if parque_surfaces != null and parque_surfaces.draw_bridge(at,cell): return
+	# Width neighbours do not define the run: measure the whole connected deck.
+	var pending: Array[Vector2i] = [at]
+	var seen: Dictionary = {}
+	var low := at
+	var high := at
+	while not pending.is_empty():
+		var p: Vector2i = pending.pop_back()
+		if seen.has(p): continue
+		seen[p] = true
+		low = low.min(p)
+		high = high.max(p)
+		for offset in [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]:
+			var next: Vector2i = p + offset
+			if not seen.has(next) and model.cell_at(next).get("material", "") == "ponte": pending.append(next)
+	var axis := "u" if high.x-low.x > high.y-low.y else "v"
+
 	var root := _floor_node(at, float(cell.level))
 	var water := Polygon2D.new()
 	water.polygon = PackedVector2Array([Vector2(0,-16),Vector2(32,0),Vector2(0,16),Vector2(-32,0)])
@@ -265,7 +291,8 @@ func _draw_bridge(at: Vector2i, cell: Dictionary) -> void:
 	water.color = Color("77B3AF")
 	root.add_child(water)
 	var deck := Sprite2D.new()
-	deck.texture = load(kits[0].root + kits[0].bridges[axis].file)
+	var bridge_kit: Dictionary = kits[1] if art_preview and kits.size()>1 and kits[1].has("bridges") else kits[0]
+	deck.texture = load(bridge_kit.root + bridge_kit.bridges[axis].file)
 	deck.position.y = -float(cell.level)*64
 	root.add_child(deck)
 
@@ -278,6 +305,9 @@ func _floor_node(at: Vector2i, level: float) -> Node2D:
 
 func _draw_art_floor(at: Vector2i, cell: Dictionary) -> void:
 	var kit: Dictionary = kits[1]
+	if kit.get("surfaceTreatment",{}).get("kind","") == "native-editable-manga-v3":
+		_draw_manga_floor(at,cell)
+		return
 	if model.data.biome == "veredas" and kit.has("surfaceAtlas"):
 		_draw_veredas_floor(at,cell)
 		return
@@ -293,6 +323,7 @@ func _draw_art_floor(at: Vector2i, cell: Dictionary) -> void:
 		if cell.material == "grama":
 			floor_root.add_child(_yard_shade(at, float(cell.level)))
 			_grass_decal(floor_root, at, int(cell.level))
+
 		return
 	var file := ""
 	if kit.materials.has(cell.material):
@@ -309,6 +340,7 @@ func _draw_art_floor(at: Vector2i, cell: Dictionary) -> void:
 		sprite.position.y = -float(cell.level) * 64
 		root.add_child(sprite)
 	if cell.material == "grama" and _soft_yards(): root.add_child(_yard_shade(at, float(cell.level)))
+
 	# Canonical shared vertices, including three-material junctions. A corner
 	# samples the existing pair atlas only inside its own quadrant; unrelated
 	# corners of that texture never overwrite the third material.
@@ -328,6 +360,7 @@ func _draw_art_floor(at: Vector2i, cell: Dictionary) -> void:
 			for point in uv:poly.append(point-Vector2(32,16+float(cell.level)*64))
 			patch.polygon=poly;patch.uv=uv
 			patch.texture=load(kit.root+kit.transitions[pair].files[mask])
+			patch.material = _paint_material(str(cell.material))
 			root.add_child(patch)
 			break
 	if cell.material == "grama" and _soft_yards(): _grass_decal(root, at, int(cell.level))
@@ -775,6 +808,48 @@ func _grass_decal(root: Node2D, at: Vector2i, level: int) -> void:
 	root.add_child(decal)
 	set_meta("grass_decal_count", int(get_meta("grass_decal_count", 0))+1)
 
+func _draw_manga_floor(at: Vector2i, cell: Dictionary) -> void:
+	var palette: Dictionary = kits[1].surfaceTreatment.colors
+	if not palette.has(cell.material): return
+	var root := _floor_node(at,float(cell.level))
+	root.name = "PisoManga"
+	var lift := Vector2(0,-float(cell.level)*64)
+	var corners := [Vector2(0,-16),Vector2(32,0),Vector2(0,16),Vector2(-32,0)]
+	var base := Polygon2D.new()
+	var base_shape := PackedVector2Array()
+	for point in corners: base_shape.append(point+lift)
+	base.polygon = base_shape
+	base.color = Color(palette[cell.material])
+	base.material = _paint_material(str(cell.material))
+	root.add_child(base)
+	# Curved corner regions share exact edge midpoints with their neighbours.
+	# No transparent raster perimeter, no repeated coloured grid around tiles.
+	for i in 4:
+		var surface := str(cell.corners[i])
+		if surface==cell.material or not palette.has(surface): continue
+		var tip: Vector2 = corners[i]
+		var start: Vector2 = tip.lerp(corners[(i+1)%4],.5)
+		var end: Vector2 = tip.lerp(corners[(i+3)%4],.5)
+		var shape := PackedVector2Array([tip+lift,start+lift])
+		var control: Vector2 = -tip*.45
+		for step in range(1,9):
+			var t := float(step)/8.0
+			shape.append((1-t)*(1-t)*start+2*(1-t)*t*control+t*t*end+lift)
+		var patch := Polygon2D.new()
+		patch.polygon = shape
+		patch.color = Color(palette[surface])
+		patch.material = _paint_material(surface)
+		root.add_child(patch)
+
+func _paint_material(surface: String) -> Material:
+	if kits.size()<2 or not kits[1].get("paintSurfaces",{}).has(surface): return null
+	if not paint_materials.has(surface):
+		var material := ShaderMaterial.new()
+		material.shader = preload("res://shaders/parque_paint.gdshader")
+		material.set_shader_parameter("painting",load(kits[1].root+kits[1].paintSurfaces[surface]))
+		paint_materials[surface] = material
+	return paint_materials[surface]
+
 func _draw_ramp(at: Vector2i, cell: Dictionary) -> void:
 	var root := _floor_node(at, float(cell.level))
 	var quad := PackedVector2Array()
@@ -818,6 +893,15 @@ func _draw_ramp(at: Vector2i, cell: Dictionary) -> void:
 			cheek.uv = PackedVector2Array([Vector2(phase_a,-model.surface_height(cell,a)*160),Vector2(phase_b,-model.surface_height(cell,b)*160),Vector2(phase_b,-float(cell.level)*160),Vector2(phase_a,-float(cell.level)*160)])
 			cheek.color = Color.WHITE if side.x else Color(.86,.83,.78)
 			cheek_root.add_child(cheek)
+	elif art_preview and kits.size()>1 and kits[1].get("paintSurfaces",{}).has("terra"):
+		if kits[1].get("surfaceTreatment",{}).get("kind","") == "native-editable-manga-v3":
+			ramp.color = Color(kits[1].surfaceTreatment.colors.terra)
+		else:
+			ramp.color = Color.WHITE
+			ramp.texture = load(kits[1].root+kits[1].materials.terra.variants[0])
+			ramp.uv = PackedVector2Array([Vector2(32,0),Vector2(64,16),Vector2(32,32),Vector2(0,16)])
+		ramp.material = _paint_material("terra")
+
 	root.add_child(ramp)
 	# Every riser is drawn on the same continuous height plane used by the feet.
 	if model.data.biome == "morro":
@@ -1729,7 +1813,7 @@ func interact() -> void:
 		return
 	if nearby.type == "saida":
 		var destination := str(nearby.props.get("destino",""))
-		if index.scenes.has(destination): load_area(index.scenes[destination]); return
+		if index.scenes.has(destination): load_area(index.scenes[destination], str(nearby.props.get("entrada_destino", ""))); return
 		message("Destino fora desta prévia: " + destination)
 	else: message(nearby.name + " • " + str(nearby.props.get("texto",nearby.props.get("fala","Interação de revisão, sem alterar a campanha."))))
 

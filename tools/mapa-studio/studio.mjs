@@ -130,6 +130,13 @@ $('open').onclick=()=>$('fileMap').click();$('fileMap').onchange=e=>{if(e.target
 $('reload').onclick=()=>S.source==='repo'?loadRepo(S.name):say('Mapa aberto do computador: use "Abrir .tmj" de novo depois de salvar (o navegador não relê o arquivo sozinho).');
 $('mapPick').onchange=e=>loadRepo(e.target.value);$('refPlain').onclick=()=>exportPNG(false);$('refLabels').onclick=()=>exportPNG(true);
 addEventListener('resize',()=>{resize();});
+// Header/footer wrapping can resize the stage without a window resize. Keep
+// drawing pixels and pointer coordinates on the same measured rectangle.
+new ResizeObserver(()=>{
+ const r=canvas.getBoundingClientRect(),d=devicePixelRatio||1;
+ if(canvas.width===Math.round(r.width*d)&&canvas.height===Math.round(r.height*d))return;
+ if(S.m)fit();else resize();
+}).observe(canvas);
 canvas.addEventListener('contextmenu',e=>e.preventDefault());
 canvas.addEventListener('pointerdown',e=>{canvas.focus();if(e.button===2||e.button===1||S.keys.has(' ')){S.drag={x:e.clientX,y:e.clientY,cx:S.cam.x,cy:S.cam.y};canvas.setPointerCapture(e.pointerId);return;}
  if(e.button===0&&S.m){const r=canvas.getBoundingClientRect(),cell=pick(...toWorld(e.clientX-r.left,e.clientY-r.top));if(cell)walkTo(cell);}});

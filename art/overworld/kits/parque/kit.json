@@ -9,8 +9,6 @@
     "height": 32,
     "levelPx": 64
   },
-  "approval": "volume_revision_pending_owner_review",
-  "styleBoard": "../../estilo/PRANCHA-ESTILO.png",
   "pieces": {
     "coreto": {
       "default": "default",
@@ -47,7 +45,7 @@
             "normalization": "uniform fit to architectural guide alpha bounds"
           },
           "collision": "five separate coreto-pilar map pieces",
-          "approval": "pending_visual_review",
+          "approval": "pending_owner_review",
           "roofFile": "pecas/coreto-telhado.png",
           "supportsFile": "pecas/coreto-pilares.png",
           "supportParts": [
@@ -111,7 +109,8 @@
             "file": "art/overworld/kits/comum/pecas/arvore-a.png",
             "normalization": "alpha crop and uniform rescale; source retained"
           },
-          "foliageQuiet": true
+          "foliageQuiet": true,
+          "approval": "pending_owner_review"
         },
         "b": {
           "file": "pecas/arvore-b.png",
@@ -138,7 +137,8 @@
             "file": "art/overworld/kits/comum/pecas/arvore-b.png",
             "normalization": "alpha crop and uniform rescale; source retained"
           },
-          "foliageQuiet": true
+          "foliageQuiet": true,
+          "approval": "pending_owner_review"
         },
         "florida": {
           "file": "pecas/arvore-florida.png",
@@ -165,7 +165,107 @@
             "file": "art/overworld/kits/comum/pecas/arvore-florida.png",
             "normalization": "alpha crop and uniform rescale; source retained"
           },
-          "foliageQuiet": true
+          "foliageQuiet": true,
+          "approval": "pending_owner_review"
+        }
+      }
+    },
+    "buriti": {
+      "default": "a",
+      "variants": {
+        "a": {
+          "file": "ambientacao-v2/pecas/buriti.png",
+          "size": [
+            107,
+            172
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            2,
+            2
+          ],
+          "height": 6,
+          "bloqueia": true,
+          "anchor": [
+            53,
+            170
+          ],
+          "shadow": "ambientacao-v2/sombras/contato.png",
+          "source": {
+            "file": "fontes/buriti.png",
+            "generator": "image_gen.imagegen",
+            "normalization": "alpha crop; uniform rescale"
+          },
+          "approval": "pending_native_visual_review"
+        }
+      }
+    },
+    "capim-margem": {
+      "default": "a",
+      "variants": {
+        "a": {
+          "file": "ambientacao-v2/pecas/capim-margem.png",
+          "size": [
+            68,
+            52
+          ],
+          "anchor": [
+            34,
+            49
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            2,
+            1
+          ],
+          "height": 3,
+          "bloqueia": false,
+          "shadow": "ambientacao-v2/sombras/contato.png",
+          "source": {
+            "file": "fontes/capim-margem.png",
+            "generator": "image_gen.imagegen",
+            "normalization": "alpha crop and uniform fit"
+          },
+          "approval": "pending_visual_review"
+        }
+      }
+    },
+    "canos-patio": {
+      "default": "a",
+      "variants": {
+        "a": {
+          "file": "ambientacao-v2/pecas/canos-patio.png",
+          "size": [
+            128,
+            104
+          ],
+          "anchor": [
+            64,
+            97
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            2,
+            1
+          ],
+          "height": 3,
+          "bloqueia": false,
+          "shadow": "ambientacao-v2/sombras/contato.png",
+          "source": {
+            "file": "fontes/canos-patio.png",
+            "generator": "image_gen.imagegen",
+            "normalization": "alpha crop and uniform fit"
+          },
+          "approval": "pending_visual_review"
         }
       }
     }
@@ -173,10 +273,10 @@
   "materials": {
     "grama": {
       "variants": [
-        "chao/grama-0.png",
-        "chao/grama-1.png",
-        "chao/grama-2.png",
-        "chao/grama-3.png"
+        "manga-v3/grama.svg",
+        "manga-v3/grama.svg",
+        "manga-v3/grama.svg",
+        "manga-v3/grama.svg"
       ],
       "size": [
         64,
@@ -189,10 +289,10 @@
     },
     "terra": {
       "variants": [
-        "chao/terra-0.png",
-        "chao/terra-1.png",
-        "chao/terra-2.png",
-        "chao/terra-3.png"
+        "manga-v3/terra.svg",
+        "manga-v3/terra.svg",
+        "manga-v3/terra.svg",
+        "manga-v3/terra.svg"
       ],
       "size": [
         64,
@@ -205,10 +305,10 @@
     },
     "mato": {
       "variants": [
-        "chao/mato-0.png",
-        "chao/mato-1.png",
-        "chao/mato-2.png",
-        "chao/mato-3.png"
+        "manga-v3/mato.svg",
+        "manga-v3/mato.svg",
+        "manga-v3/mato.svg",
+        "manga-v3/mato.svg"
       ],
       "size": [
         64,
@@ -221,10 +321,10 @@
     },
     "piso": {
       "variants": [
-        "chao/piso-0.png",
-        "chao/piso-1.png",
-        "chao/piso-2.png",
-        "chao/piso-3.png"
+        "manga-v3/piso.svg",
+        "manga-v3/piso.svg",
+        "manga-v3/piso.svg",
+        "manga-v3/piso.svg"
       ],
       "size": [
         64,
@@ -237,10 +337,10 @@
     },
     "bosque": {
       "variants": [
-        "chao/bosque-0.png",
-        "chao/bosque-1.png",
-        "chao/bosque-2.png",
-        "chao/bosque-3.png"
+        "manga-v3/bosque.svg",
+        "manga-v3/bosque.svg",
+        "manga-v3/bosque.svg",
+        "manga-v3/bosque.svg"
       ],
       "size": [
         64,
@@ -250,27 +350,41 @@
       "repeatCells": 8,
       "source": "fontes/grama.png",
       "derivation": "original floor family restored; periodic seam normalization; base tint only for mato/bosque"
+    },
+    "agua": {
+      "variants": [
+        "manga-v3/agua-base.svg",
+        "manga-v3/agua-base.svg",
+        "manga-v3/agua-base.svg",
+        "manga-v3/agua-base.svg"
+      ],
+      "size": [
+        64,
+        32
+      ],
+      "surfaceIndex": 4,
+      "repeatCells": 8
     }
   },
   "transitions": {
     "bosque/grama": {
       "files": [
-        "transicoes/bosque-grama-0.png",
-        "transicoes/bosque-grama-1.png",
-        "transicoes/bosque-grama-2.png",
-        "transicoes/bosque-grama-3.png",
-        "transicoes/bosque-grama-4.png",
-        "transicoes/bosque-grama-5.png",
-        "transicoes/bosque-grama-6.png",
-        "transicoes/bosque-grama-7.png",
-        "transicoes/bosque-grama-8.png",
-        "transicoes/bosque-grama-9.png",
-        "transicoes/bosque-grama-10.png",
-        "transicoes/bosque-grama-11.png",
-        "transicoes/bosque-grama-12.png",
-        "transicoes/bosque-grama-13.png",
-        "transicoes/bosque-grama-14.png",
-        "transicoes/bosque-grama-15.png"
+        "manga-v3/transicao-bosque-grama-0.svg",
+        "manga-v3/transicao-bosque-grama-1.svg",
+        "manga-v3/transicao-bosque-grama-2.svg",
+        "manga-v3/transicao-bosque-grama-3.svg",
+        "manga-v3/transicao-bosque-grama-4.svg",
+        "manga-v3/transicao-bosque-grama-5.svg",
+        "manga-v3/transicao-bosque-grama-6.svg",
+        "manga-v3/transicao-bosque-grama-7.svg",
+        "manga-v3/transicao-bosque-grama-8.svg",
+        "manga-v3/transicao-bosque-grama-9.svg",
+        "manga-v3/transicao-bosque-grama-10.svg",
+        "manga-v3/transicao-bosque-grama-11.svg",
+        "manga-v3/transicao-bosque-grama-12.svg",
+        "manga-v3/transicao-bosque-grama-13.svg",
+        "manga-v3/transicao-bosque-grama-14.svg",
+        "manga-v3/transicao-bosque-grama-15.svg"
       ],
       "size": [
         64,
@@ -285,22 +399,22 @@
     },
     "grama/terra": {
       "files": [
-        "transicoes/grama-terra-0.png",
-        "transicoes/grama-terra-1.png",
-        "transicoes/grama-terra-2.png",
-        "transicoes/grama-terra-3.png",
-        "transicoes/grama-terra-4.png",
-        "transicoes/grama-terra-5.png",
-        "transicoes/grama-terra-6.png",
-        "transicoes/grama-terra-7.png",
-        "transicoes/grama-terra-8.png",
-        "transicoes/grama-terra-9.png",
-        "transicoes/grama-terra-10.png",
-        "transicoes/grama-terra-11.png",
-        "transicoes/grama-terra-12.png",
-        "transicoes/grama-terra-13.png",
-        "transicoes/grama-terra-14.png",
-        "transicoes/grama-terra-15.png"
+        "manga-v3/transicao-grama-terra-0.svg",
+        "manga-v3/transicao-grama-terra-1.svg",
+        "manga-v3/transicao-grama-terra-2.svg",
+        "manga-v3/transicao-grama-terra-3.svg",
+        "manga-v3/transicao-grama-terra-4.svg",
+        "manga-v3/transicao-grama-terra-5.svg",
+        "manga-v3/transicao-grama-terra-6.svg",
+        "manga-v3/transicao-grama-terra-7.svg",
+        "manga-v3/transicao-grama-terra-8.svg",
+        "manga-v3/transicao-grama-terra-9.svg",
+        "manga-v3/transicao-grama-terra-10.svg",
+        "manga-v3/transicao-grama-terra-11.svg",
+        "manga-v3/transicao-grama-terra-12.svg",
+        "manga-v3/transicao-grama-terra-13.svg",
+        "manga-v3/transicao-grama-terra-14.svg",
+        "manga-v3/transicao-grama-terra-15.svg"
       ],
       "size": [
         64,
@@ -315,22 +429,22 @@
     },
     "grama/mato": {
       "files": [
-        "transicoes/grama-mato-0.png",
-        "transicoes/grama-mato-1.png",
-        "transicoes/grama-mato-2.png",
-        "transicoes/grama-mato-3.png",
-        "transicoes/grama-mato-4.png",
-        "transicoes/grama-mato-5.png",
-        "transicoes/grama-mato-6.png",
-        "transicoes/grama-mato-7.png",
-        "transicoes/grama-mato-8.png",
-        "transicoes/grama-mato-9.png",
-        "transicoes/grama-mato-10.png",
-        "transicoes/grama-mato-11.png",
-        "transicoes/grama-mato-12.png",
-        "transicoes/grama-mato-13.png",
-        "transicoes/grama-mato-14.png",
-        "transicoes/grama-mato-15.png"
+        "manga-v3/transicao-grama-mato-0.svg",
+        "manga-v3/transicao-grama-mato-1.svg",
+        "manga-v3/transicao-grama-mato-2.svg",
+        "manga-v3/transicao-grama-mato-3.svg",
+        "manga-v3/transicao-grama-mato-4.svg",
+        "manga-v3/transicao-grama-mato-5.svg",
+        "manga-v3/transicao-grama-mato-6.svg",
+        "manga-v3/transicao-grama-mato-7.svg",
+        "manga-v3/transicao-grama-mato-8.svg",
+        "manga-v3/transicao-grama-mato-9.svg",
+        "manga-v3/transicao-grama-mato-10.svg",
+        "manga-v3/transicao-grama-mato-11.svg",
+        "manga-v3/transicao-grama-mato-12.svg",
+        "manga-v3/transicao-grama-mato-13.svg",
+        "manga-v3/transicao-grama-mato-14.svg",
+        "manga-v3/transicao-grama-mato-15.svg"
       ],
       "size": [
         64,
@@ -345,22 +459,22 @@
     },
     "grama/piso": {
       "files": [
-        "transicoes/grama-piso-0.png",
-        "transicoes/grama-piso-1.png",
-        "transicoes/grama-piso-2.png",
-        "transicoes/grama-piso-3.png",
-        "transicoes/grama-piso-4.png",
-        "transicoes/grama-piso-5.png",
-        "transicoes/grama-piso-6.png",
-        "transicoes/grama-piso-7.png",
-        "transicoes/grama-piso-8.png",
-        "transicoes/grama-piso-9.png",
-        "transicoes/grama-piso-10.png",
-        "transicoes/grama-piso-11.png",
-        "transicoes/grama-piso-12.png",
-        "transicoes/grama-piso-13.png",
-        "transicoes/grama-piso-14.png",
-        "transicoes/grama-piso-15.png"
+        "manga-v3/transicao-grama-piso-0.svg",
+        "manga-v3/transicao-grama-piso-1.svg",
+        "manga-v3/transicao-grama-piso-2.svg",
+        "manga-v3/transicao-grama-piso-3.svg",
+        "manga-v3/transicao-grama-piso-4.svg",
+        "manga-v3/transicao-grama-piso-5.svg",
+        "manga-v3/transicao-grama-piso-6.svg",
+        "manga-v3/transicao-grama-piso-7.svg",
+        "manga-v3/transicao-grama-piso-8.svg",
+        "manga-v3/transicao-grama-piso-9.svg",
+        "manga-v3/transicao-grama-piso-10.svg",
+        "manga-v3/transicao-grama-piso-11.svg",
+        "manga-v3/transicao-grama-piso-12.svg",
+        "manga-v3/transicao-grama-piso-13.svg",
+        "manga-v3/transicao-grama-piso-14.svg",
+        "manga-v3/transicao-grama-piso-15.svg"
       ],
       "size": [
         64,
@@ -375,22 +489,22 @@
     },
     "mato/terra": {
       "files": [
-        "transicoes/mato-terra-0.png",
-        "transicoes/mato-terra-1.png",
-        "transicoes/mato-terra-2.png",
-        "transicoes/mato-terra-3.png",
-        "transicoes/mato-terra-4.png",
-        "transicoes/mato-terra-5.png",
-        "transicoes/mato-terra-6.png",
-        "transicoes/mato-terra-7.png",
-        "transicoes/mato-terra-8.png",
-        "transicoes/mato-terra-9.png",
-        "transicoes/mato-terra-10.png",
-        "transicoes/mato-terra-11.png",
-        "transicoes/mato-terra-12.png",
-        "transicoes/mato-terra-13.png",
-        "transicoes/mato-terra-14.png",
-        "transicoes/mato-terra-15.png"
+        "manga-v3/transicao-mato-terra-0.svg",
+        "manga-v3/transicao-mato-terra-1.svg",
+        "manga-v3/transicao-mato-terra-2.svg",
+        "manga-v3/transicao-mato-terra-3.svg",
+        "manga-v3/transicao-mato-terra-4.svg",
+        "manga-v3/transicao-mato-terra-5.svg",
+        "manga-v3/transicao-mato-terra-6.svg",
+        "manga-v3/transicao-mato-terra-7.svg",
+        "manga-v3/transicao-mato-terra-8.svg",
+        "manga-v3/transicao-mato-terra-9.svg",
+        "manga-v3/transicao-mato-terra-10.svg",
+        "manga-v3/transicao-mato-terra-11.svg",
+        "manga-v3/transicao-mato-terra-12.svg",
+        "manga-v3/transicao-mato-terra-13.svg",
+        "manga-v3/transicao-mato-terra-14.svg",
+        "manga-v3/transicao-mato-terra-15.svg"
       ],
       "size": [
         64,
@@ -405,22 +519,22 @@
     },
     "piso/terra": {
       "files": [
-        "transicoes/piso-terra-0.png",
-        "transicoes/piso-terra-1.png",
-        "transicoes/piso-terra-2.png",
-        "transicoes/piso-terra-3.png",
-        "transicoes/piso-terra-4.png",
-        "transicoes/piso-terra-5.png",
-        "transicoes/piso-terra-6.png",
-        "transicoes/piso-terra-7.png",
-        "transicoes/piso-terra-8.png",
-        "transicoes/piso-terra-9.png",
-        "transicoes/piso-terra-10.png",
-        "transicoes/piso-terra-11.png",
-        "transicoes/piso-terra-12.png",
-        "transicoes/piso-terra-13.png",
-        "transicoes/piso-terra-14.png",
-        "transicoes/piso-terra-15.png"
+        "manga-v3/transicao-piso-terra-0.svg",
+        "manga-v3/transicao-piso-terra-1.svg",
+        "manga-v3/transicao-piso-terra-2.svg",
+        "manga-v3/transicao-piso-terra-3.svg",
+        "manga-v3/transicao-piso-terra-4.svg",
+        "manga-v3/transicao-piso-terra-5.svg",
+        "manga-v3/transicao-piso-terra-6.svg",
+        "manga-v3/transicao-piso-terra-7.svg",
+        "manga-v3/transicao-piso-terra-8.svg",
+        "manga-v3/transicao-piso-terra-9.svg",
+        "manga-v3/transicao-piso-terra-10.svg",
+        "manga-v3/transicao-piso-terra-11.svg",
+        "manga-v3/transicao-piso-terra-12.svg",
+        "manga-v3/transicao-piso-terra-13.svg",
+        "manga-v3/transicao-piso-terra-14.svg",
+        "manga-v3/transicao-piso-terra-15.svg"
       ],
       "size": [
         64,
@@ -435,22 +549,22 @@
     },
     "bosque/terra": {
       "files": [
-        "transicoes/bosque-terra-0.png",
-        "transicoes/bosque-terra-1.png",
-        "transicoes/bosque-terra-2.png",
-        "transicoes/bosque-terra-3.png",
-        "transicoes/bosque-terra-4.png",
-        "transicoes/bosque-terra-5.png",
-        "transicoes/bosque-terra-6.png",
-        "transicoes/bosque-terra-7.png",
-        "transicoes/bosque-terra-8.png",
-        "transicoes/bosque-terra-9.png",
-        "transicoes/bosque-terra-10.png",
-        "transicoes/bosque-terra-11.png",
-        "transicoes/bosque-terra-12.png",
-        "transicoes/bosque-terra-13.png",
-        "transicoes/bosque-terra-14.png",
-        "transicoes/bosque-terra-15.png"
+        "manga-v3/transicao-bosque-terra-0.svg",
+        "manga-v3/transicao-bosque-terra-1.svg",
+        "manga-v3/transicao-bosque-terra-2.svg",
+        "manga-v3/transicao-bosque-terra-3.svg",
+        "manga-v3/transicao-bosque-terra-4.svg",
+        "manga-v3/transicao-bosque-terra-5.svg",
+        "manga-v3/transicao-bosque-terra-6.svg",
+        "manga-v3/transicao-bosque-terra-7.svg",
+        "manga-v3/transicao-bosque-terra-8.svg",
+        "manga-v3/transicao-bosque-terra-9.svg",
+        "manga-v3/transicao-bosque-terra-10.svg",
+        "manga-v3/transicao-bosque-terra-11.svg",
+        "manga-v3/transicao-bosque-terra-12.svg",
+        "manga-v3/transicao-bosque-terra-13.svg",
+        "manga-v3/transicao-bosque-terra-14.svg",
+        "manga-v3/transicao-bosque-terra-15.svg"
       ],
       "size": [
         64,
@@ -465,22 +579,22 @@
     },
     "mato/piso": {
       "files": [
-        "transicoes/mato-piso-0.png",
-        "transicoes/mato-piso-1.png",
-        "transicoes/mato-piso-2.png",
-        "transicoes/mato-piso-3.png",
-        "transicoes/mato-piso-4.png",
-        "transicoes/mato-piso-5.png",
-        "transicoes/mato-piso-6.png",
-        "transicoes/mato-piso-7.png",
-        "transicoes/mato-piso-8.png",
-        "transicoes/mato-piso-9.png",
-        "transicoes/mato-piso-10.png",
-        "transicoes/mato-piso-11.png",
-        "transicoes/mato-piso-12.png",
-        "transicoes/mato-piso-13.png",
-        "transicoes/mato-piso-14.png",
-        "transicoes/mato-piso-15.png"
+        "manga-v3/transicao-mato-piso-0.svg",
+        "manga-v3/transicao-mato-piso-1.svg",
+        "manga-v3/transicao-mato-piso-2.svg",
+        "manga-v3/transicao-mato-piso-3.svg",
+        "manga-v3/transicao-mato-piso-4.svg",
+        "manga-v3/transicao-mato-piso-5.svg",
+        "manga-v3/transicao-mato-piso-6.svg",
+        "manga-v3/transicao-mato-piso-7.svg",
+        "manga-v3/transicao-mato-piso-8.svg",
+        "manga-v3/transicao-mato-piso-9.svg",
+        "manga-v3/transicao-mato-piso-10.svg",
+        "manga-v3/transicao-mato-piso-11.svg",
+        "manga-v3/transicao-mato-piso-12.svg",
+        "manga-v3/transicao-mato-piso-13.svg",
+        "manga-v3/transicao-mato-piso-14.svg",
+        "manga-v3/transicao-mato-piso-15.svg"
       ],
       "size": [
         64,
@@ -494,222 +608,77 @@
       ]
     }
   },
-  "walls": {},
-  "stairs": {},
-  "bridges": {},
-  "issue": "PIP-85",
-  "surfaceShader": "res://shaders/parque_ground.gdshader",
-  "surfaceAtlas": "superficies/atlas.png",
-  "surfaceOrder": [
-    "grama",
-    "terra",
-    "mato",
-    "piso",
-    "bosque"
-  ],
-  "context": {
-    "radius": 8,
-    "color": "6B894B",
-    "houses": false,
-    "asset": "arvore",
-    "automaticTrees": false,
-    "authoredTrees": [
-      [
-        9.5,
-        -0.5
+  "walls": {
+    "pedra": {
+      "u": [
+        "ambientacao-v2/muros/arenito-u-0.png",
+        "ambientacao-v2/muros/arenito-u-1.png"
       ],
-      [
-        19.5,
-        -0.5
+      "v": [
+        "ambientacao-v2/muros/arenito-v-0.png",
+        "ambientacao-v2/muros/arenito-v-1.png"
       ]
-    ]
+    }
   },
-  "encounterGrass": {
-    "files": [
-      "decalques/capim-a.png",
-      "decalques/capim-b.png"
+  "stairs": {},
+  "bridges": {
+    "u": {
+      "file": "ambientacao-v2/pontes/tabuleiro-u.png"
+    },
+    "v": {
+      "file": "ambientacao-v2/pontes/tabuleiro-v.png"
+    }
+  },
+  "approval": "pending_owner_review_manga_v3",
+  "styleBoard": "../../estilo/PRANCHA-ESTILO.png",
+  "sourceRevision": "18dec6b87808a45ec23853ff4eb526c37a331b9a",
+  "scope": "static compatible subset; no automatic foliage placement, animated grass, layered gazebo or shader changes",
+  "surfaceTreatment": {
+    "kind": "native-editable-manga-v3",
+    "colors": {
+      "grama": "#85AD58",
+      "terra": "#DFB86F",
+      "mato": "#5B9147",
+      "piso": "#E9D5A3",
+      "bosque": "#4C7445"
+    },
+    "source": "tools/overworld/build_parque_manga.py",
+    "note": "flat surfaces; world-space drawn marks; continuous bridge with separate rails"
+  },
+  "dressingRevision": "f3df6373316305ff0c9dec449d1229f2cd0c4526",
+  "paintSurfaces": {
+    "grama": "manga-v3/marcas-grama.svg",
+    "terra": "manga-v3/marcas-terra.svg",
+    "mato": "manga-v3/marcas-mato.svg",
+    "piso": "manga-v3/marcas-piso.svg",
+    "bosque": "manga-v3/marcas-bosque.svg"
+  },
+  "mangaWater": {
+    "depthPx": 18,
+    "palette": [
+      "#246272",
+      "#328D98",
+      "#70C6BB"
     ],
-    "anchor": [
-      26,
-      45
+    "style": "flat cut banks; drawn current marks; no water photo"
+  },
+  "continuousBridge": {
+    "footprint": [
+      3,
+      11
+    ],
+    "file": "manga-v3/ponte-tabuleiro-3x11.svg",
+    "rails": {
+      "fundo": "manga-v3/ponte-corda-fundo.svg",
+      "frente": "manga-v3/ponte-corda-frente.svg"
+    },
+    "origin": [
+      368,
+      28
     ],
     "size": [
-      52,
-      48
-    ],
-    "shader": "res://shaders/parque_grass.gdshader"
-  },
-  "boundaryShrubs": {
-    "points": [
-      [
-        1.5,
-        15.5
-      ],
-      [
-        3.5,
-        15.5
-      ],
-      [
-        5.5,
-        15.5
-      ],
-      [
-        7.5,
-        15.5
-      ],
-      [
-        9.5,
-        15.5
-      ],
-      [
-        11.5,
-        15.5
-      ],
-      [
-        13.5,
-        15.5
-      ],
-      [
-        15.5,
-        15.5
-      ],
-      [
-        17.5,
-        15.5
-      ],
-      [
-        19.5,
-        15.5
-      ],
-      [
-        21.5,
-        15.5
-      ],
-      [
-        23.5,
-        15.5
-      ],
-      [
-        0.5,
-        3.5
-      ],
-      [
-        0.5,
-        5.5
-      ],
-      [
-        0.5,
-        7.5
-      ],
-      [
-        0.5,
-        9.5
-      ],
-      [
-        0.5,
-        11.5
-      ],
-      [
-        0.5,
-        13.5
-      ],
-      [
-        23.5,
-        3.5
-      ],
-      [
-        23.5,
-        5.5
-      ],
-      [
-        23.5,
-        7.5
-      ],
-      [
-        23.5,
-        9.5
-      ],
-      [
-        23.5,
-        11.5
-      ],
-      [
-        23.5,
-        13.5
-      ],
-      [
-        1.5,
-        2.0
-      ],
-      [
-        3.5,
-        2.0
-      ],
-      [
-        5.5,
-        2.0
-      ],
-      [
-        7.5,
-        2.0
-      ],
-      [
-        9.5,
-        2.0
-      ],
-      [
-        11.5,
-        2.0
-      ],
-      [
-        13.5,
-        2.0
-      ],
-      [
-        15.5,
-        2.0
-      ],
-      [
-        17.5,
-        2.0
-      ],
-      [
-        19.5,
-        2.0
-      ],
-      [
-        21.5,
-        2.0
-      ],
-      [
-        23.5,
-        2.0
-      ],
-      [
-        4.5,
-        0.5
-      ],
-      [
-        10.5,
-        0.5
-      ],
-      [
-        17.5,
-        0.5
-      ],
-      [
-        22.5,
-        0.5
-      ]
-    ],
-    "anchor": [
-      48,
-      45
-    ],
-    "files": [
-      "decalques/arbusto-baixo-a.png",
-      "decalques/arbusto-baixo-b.png"
-    ],
-    "role": "upright low shrub props, separate contact shadows; only inside blocked bosque; no new blockers"
+      480,
+      276
+    ]
   }
 }

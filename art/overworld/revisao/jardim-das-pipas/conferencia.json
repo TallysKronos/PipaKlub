@@ -1,0 +1,132 @@
+{
+  "area": "jardim-das-pipas",
+  "dimensoes": [
+    40,
+    32
+  ],
+  "veredito": "ok",
+  "conferencia": [
+    {
+      "level": "ok",
+      "rule": "Mapa",
+      "text": "Planta conferida: entrada, acessos, rampas, pontes e trilhas. 1027 células alcançáveis."
+    }
+  ],
+  "visitas": [
+    {
+      "label": "Chegada ao parque",
+      "celula": {
+        "u": 4,
+        "v": 27
+      },
+      "passos": 0,
+      "ida_e_volta": true,
+      "sem_mato": true
+    },
+    {
+      "label": "Voltar à Rua dos Ventos",
+      "celula": {
+        "u": 4,
+        "v": 29
+      },
+      "passos": 2,
+      "ida_e_volta": true,
+      "sem_mato": true
+    },
+    {
+      "label": "Seguir para a Clareira",
+      "celula": {
+        "u": 33,
+        "v": 5
+      },
+      "passos": 51,
+      "ida_e_volta": true,
+      "sem_mato": true
+    },
+    {
+      "label": "Sr. Assis · encontros selvagens",
+      "celula": {
+        "u": 5,
+        "v": 23
+      },
+      "passos": 11,
+      "ida_e_volta": true,
+      "sem_mato": true
+    },
+    {
+      "label": "Descansar no largo",
+      "celula": {
+        "u": 8,
+        "v": 24
+      },
+      "passos": 7,
+      "ida_e_volta": true,
+      "sem_mato": true
+    },
+    {
+      "label": "Descansar no banco leste",
+      "celula": {
+        "u": 29,
+        "v": 8
+      },
+      "passos": 44,
+      "ida_e_volta": true,
+      "sem_mato": true
+    },
+    {
+      "label": "Mapa do Parque dos Ventos",
+      "celula": {
+        "u": 3,
+        "v": 24
+      },
+      "passos": 4,
+      "ida_e_volta": true,
+      "sem_mato": true
+    },
+    {
+      "label": "Nina · a rabiola perdida",
+      "celula": {
+        "u": 9,
+        "v": 23
+      },
+      "passos": 9,
+      "ida_e_volta": true,
+      "sem_mato": true
+    },
+    {
+      "label": "Vestígio na trilha · releitura após o resgate",
+      "celula": {
+        "u": 19,
+        "v": 23
+      },
+      "passos": 19,
+      "ida_e_volta": true,
+      "sem_mato": true
+    },
+    {
+      "label": "Baú do coreto",
+      "celula": {
+        "u": 14,
+        "v": 6
+      },
+      "passos": 31,
+      "ida_e_volta": true,
+      "sem_mato": true
+    },
+    {
+      "label": "Baú do laço baixo",
+      "celula": {
+        "u": 26,
+        "v": 29
+      },
+      "passos": 24,
+      "ida_e_volta": true,
+      "sem_mato": true
+    }
+  ],
+  "celulas_alcancaveis": 1027,
+  "rampas_bidirecionais": 3,
+  "sem_mato_obrigatorio": true,
+  "objetos_antigos_preservados": 42,
+  "status": "planta conferida pelo modelo; inspeção visual e integração narrativa registradas separadamente"
+}

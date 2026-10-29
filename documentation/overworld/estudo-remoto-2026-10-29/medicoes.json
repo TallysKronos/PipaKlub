@@ -1,0 +1,445 @@
+{
+  "prova_com_seu_modelo": {
+    "dimensoes": [
+      52,
+      44
+    ],
+    "propriedades": {
+      "nome": "Bosque dos Ventos · Trilha das Copas",
+      "regras": "overworld-1",
+      "bioma": "floresta",
+      "cena_jogo": "kronasta-bosque-a",
+      "regiao": "bosque-dos-ventos",
+      "parte": "A",
+      "trajetoria": "ambas",
+      "rampa_comprimento": 2,
+      "origem": "desenhar-kronasta-bosque.mjs"
+    },
+    "cells": 2288,
+    "raised": 988,
+    "raised_percent": 43.18,
+    "raised_walkable": 603,
+    "reachable": 1136,
+    "ramps": 16,
+    "pieces": 939,
+    "trees": 754,
+    "isolated_trees": 0,
+    "items": [
+      {
+        "id": 944,
+        "item": "moedas",
+        "visibilidade": "visivel",
+        "requer": null,
+        "celula": [
+          22,
+          3
+        ],
+        "alcancavel": true
+      },
+      {
+        "id": 945,
+        "item": "papel-seda",
+        "visibilidade": "escondido",
+        "requer": null,
+        "celula": [
+          36,
+          21
+        ],
+        "alcancavel": true
+      },
+      {
+        "id": 946,
+        "item": "vareta-bambu",
+        "visibilidade": "escondido",
+        "requer": null,
+        "celula": [
+          13,
+          30
+        ],
+        "alcancavel": true
+      },
+      {
+        "id": 947,
+        "item": "cola-reparo",
+        "visibilidade": "visivel",
+        "requer": null,
+        "celula": [
+          24,
+          24
+        ],
+        "alcancavel": true
+      },
+      {
+        "id": 948,
+        "item": "linha-encerada",
+        "visibilidade": "brilho",
+        "requer": null,
+        "celula": [
+          42,
+          32
+        ],
+        "alcancavel": true
+      },
+      {
+        "id": 949,
+        "item": "pista-caderno-heleana-1",
+        "visibilidade": "escondido",
+        "requer": null,
+        "celula": [
+          12,
+          10
+        ],
+        "alcancavel": true
+      }
+    ],
+    "item_events": 6,
+    "chests": 0,
+    "verdict": "ok",
+    "issues": [
+      {
+        "level": "ok",
+        "rule": "Mapa",
+        "text": "Planta conferida: entrada, acessos, rampas, pontes e trilhas. 1136 células alcançáveis."
+      }
+    ],
+    "path": [
+      {
+        "nome": "Voltar ao mapa de Kronasta",
+        "destino": "kronasta",
+        "passos": 2,
+        "segundos_teoricos_a_3_celulas_s": 0.7,
+        "sem_mato": true
+      },
+      {
+        "nome": "Seguir para o Bosque dos Ventos B",
+        "destino": "kronasta-bosque-b",
+        "passos": 45,
+        "segundos_teoricos_a_3_celulas_s": 15,
+        "sem_mato": true
+      }
+    ]
+  },
+  "prova_com_modelo_local": {
+    "dimensoes": [
+      52,
+      44
+    ],
+    "propriedades": {
+      "nome": "Bosque dos Ventos · Trilha das Copas",
+      "regras": "overworld-1",
+      "bioma": "floresta",
+      "cena_jogo": "kronasta-bosque-a",
+      "regiao": "bosque-dos-ventos",
+      "parte": "A",
+      "trajetoria": "ambas",
+      "rampa_comprimento": 2,
+      "origem": "desenhar-kronasta-bosque.mjs"
+    },
+    "cells": 2288,
+    "raised": 988,
+    "raised_percent": 43.18,
+    "raised_walkable": 603,
+    "reachable": 1136,
+    "ramps": 8,
+    "pieces": 939,
+    "trees": 754,
+    "isolated_trees": 0,
+    "items": [
+      {
+        "id": 944,
+        "item": "moedas",
+        "visibilidade": "visivel",
+        "requer": null,
+        "celula": [
+          22,
+          3
+        ],
+        "alcancavel": true
+      },
+      {
+        "id": 945,
+        "item": "papel-seda",
+        "visibilidade": "escondido",
+        "requer": null,
+        "celula": [
+          36,
+          21
+        ],
+        "alcancavel": true
+      },
+      {
+        "id": 946,
+        "item": "vareta-bambu",
+        "visibilidade": "escondido",
+        "requer": null,
+        "celula": [
+          13,
+          30
+        ],
+        "alcancavel": true
+      },
+      {
+        "id": 947,
+        "item": "cola-reparo",
+        "visibilidade": "visivel",
+        "requer": null,
+        "celula": [
+          24,
+          24
+        ],
+        "alcancavel": true
+      },
+      {
+        "id": 948,
+        "item": "linha-encerada",
+        "visibilidade": "brilho",
+        "requer": null,
+        "celula": [
+          42,
+          32
+        ],
+        "alcancavel": true
+      },
+      {
+        "id": 949,
+        "item": "pista-caderno-heleana-1",
+        "visibilidade": "escondido",
+        "requer": null,
+        "celula": [
+          12,
+          10
+        ],
+        "alcancavel": true
+      }
+    ],
+    "item_events": 6,
+    "chests": 0,
+    "verdict": "ok",
+    "issues": [
+      {
+        "level": "ok",
+        "rule": "Mapa",
+        "text": "Planta conferida: entrada, acessos, rampas, pontes e trilhas. 1136 células alcançáveis."
+      }
+    ],
+    "path": [
+      {
+        "nome": "Voltar ao mapa de Kronasta",
+        "destino": "kronasta",
+        "passos": 2,
+        "segundos_teoricos_a_3_celulas_s": 0.7,
+        "sem_mato": true
+      },
+      {
+        "nome": "Seguir para o Bosque dos Ventos B",
+        "destino": "kronasta-bosque-b",
+        "passos": 45,
+        "segundos_teoricos_a_3_celulas_s": 15,
+        "sem_mato": true
+      }
+    ]
+  },
+  "jardim_atual": {
+    "dimensoes": [
+      40,
+      32
+    ],
+    "propriedades": {
+      "nome": "Parque dos Ventos · Jardim das Pipas",
+      "regras": "overworld-1",
+      "bioma": "parque",
+      "cena_jogo": "park-trail",
+      "origem": "planta autoral da missão de Nina; 2026-10-29",
+      "libera_apos": "primeira-criacao-assis",
+      "trajetoria": "ambas",
+      "estado": "planta-proposta-nina-v1"
+    },
+    "cells": 1280,
+    "raised": 140,
+    "raised_percent": 10.94,
+    "raised_walkable": 118,
+    "reachable": 1027,
+    "ramps": 3,
+    "pieces": 37,
+    "trees": 23,
+    "isolated_trees": 23,
+    "items": [],
+    "item_events": 0,
+    "chests": 2,
+    "verdict": "ok",
+    "issues": [
+      {
+        "level": "ok",
+        "rule": "Mapa",
+        "text": "Planta conferida: entrada, acessos, rampas, pontes e trilhas. 1027 células alcançáveis."
+      }
+    ],
+    "path": [
+      {
+        "nome": "Voltar à Rua dos Ventos",
+        "destino": "quintal",
+        "passos": 2,
+        "segundos_teoricos_a_3_celulas_s": 0.7,
+        "sem_mato": true
+      },
+      {
+        "nome": "Seguir para a Clareira",
+        "destino": "park-clearing",
+        "passos": 51,
+        "segundos_teoricos_a_3_celulas_s": 17,
+        "sem_mato": true
+      }
+    ]
+  },
+  "avisos": [
+    "Tempos são mínimos teóricos de caminho em grade, sem pausas ou batalhas; não substituem playtest.",
+    "Contagem de árvores isoladas é do mapa inteiro; a regra por tela precisa da câmera.",
+    "Auditores existentes não implementam integralmente as novas regras regionais."
+  ],
+  "destinos_fora_do_indice": [
+    {
+      "nome": "Voltar ao mapa de Kronasta",
+      "destino": "kronasta",
+      "passos": 2,
+      "segundos_teoricos_a_3_celulas_s": 0.7,
+      "sem_mato": true
+    },
+    {
+      "nome": "Seguir para o Bosque dos Ventos B",
+      "destino": "kronasta-bosque-b",
+      "passos": 45,
+      "segundos_teoricos_a_3_celulas_s": 15,
+      "sem_mato": true
+    }
+  ],
+  "alturas_incompativeis": [
+    {
+      "celula": [
+        14,
+        9
+      ],
+      "modelo_remoto": 0.75,
+      "modelo_local": 0.5
+    },
+    {
+      "celula": [
+        15,
+        9
+      ],
+      "modelo_remoto": 0.25,
+      "modelo_local": 0
+    },
+    {
+      "celula": [
+        14,
+        10
+      ],
+      "modelo_remoto": 0.75,
+      "modelo_local": 0.5
+    },
+    {
+      "celula": [
+        15,
+        10
+      ],
+      "modelo_remoto": 0.25,
+      "modelo_local": 0
+    },
+    {
+      "celula": [
+        35,
+        26
+      ],
+      "modelo_remoto": 0.75,
+      "modelo_local": 0.5
+    },
+    {
+      "celula": [
+        36,
+        26
+      ],
+      "modelo_remoto": 0.75,
+      "modelo_local": 0.5
+    },
+    {
+      "celula": [
+        35,
+        27
+      ],
+      "modelo_remoto": 0.25,
+      "modelo_local": 0
+    },
+    {
+      "celula": [
+        36,
+        27
+      ],
+      "modelo_remoto": 0.25,
+      "modelo_local": 0
+    },
+    {
+      "celula": [
+        16,
+        30
+      ],
+      "modelo_remoto": 0.75,
+      "modelo_local": 0.5
+    },
+    {
+      "celula": [
+        17,
+        30
+      ],
+      "modelo_remoto": 0.25,
+      "modelo_local": 0
+    },
+    {
+      "celula": [
+        16,
+        31
+      ],
+      "modelo_remoto": 0.75,
+      "modelo_local": 0.5
+    },
+    {
+      "celula": [
+        17,
+        31
+      ],
+      "modelo_remoto": 0.25,
+      "modelo_local": 0
+    },
+    {
+      "celula": [
+        38,
+        36
+      ],
+      "modelo_remoto": 0.75,
+      "modelo_local": 0.5
+    },
+    {
+      "celula": [
+        39,
+        36
+      ],
+      "modelo_remoto": 0.75,
+      "modelo_local": 0.5
+    },
+    {
+      "celula": [
+        38,
+        37
+      ],
+      "modelo_remoto": 0.25,
+      "modelo_local": 0
+    },
+    {
+      "celula": [
+        39,
+        37
+      ],
+      "modelo_remoto": 0.25,
+      "modelo_local": 0
+    }
+  ]
+}
