@@ -6,6 +6,8 @@ const Avatar = preload("res://scripts/avatar.gd")
 const Hud = preload("res://scripts/campaign/hud.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
 const ParqueSurfaces = preload("res://scripts/overworld/parque_surfaces.gd")
+const Forest = preload("res://scripts/overworld/kronasta_forest.gd")
+
 signal interaction_requested(event: Dictionary)
 var model := Model.new()
 var area_id := "veredas-piloto"
@@ -63,7 +65,7 @@ func _ready() -> void:
 	for argument in OS.get_cmdline_user_args():
 		if argument.begins_with("--area="): area_id = argument.trim_prefix("--area=")
 		if argument == "--art-preview": art_preview = true
-	for biome in ["comum", "bairro", "parque", "veredas", "morro"]:
+	for biome in ["comum", "bairro", "parque", "veredas", "morro", "frutiferas"]:
 		var file: String = "res://assets/overworld/kits/" + biome + "/kit.json"
 		if not FileAccess.file_exists(file): continue
 		var kit: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(file))
@@ -102,17 +104,22 @@ func load_area(id: String, entrance: String = "") -> void:
 	add_child(terrain)
 	actors = terrain
 	parque_surfaces = ParqueSurfaces.new(model,actors,kits[1]) if art_preview and kits.size()>1 and kits[1].has("mangaWater") else null
-	_build_context()
-	_build_tiles()
-	_build_faces()
-	_build_pieces()
-	_dress_bare_lots()
-	_dress_bairro_gardens()
-	_dress_parque()
-	_dress_veredas()
-	_bairro_ground_details()
-	_bairro_ground_shadows()
-	_morro_canopy_shadow()
+	var forest: bool = art_preview and model.data.biome == "floresta"
+	if forest:
+		Forest.build(self)
+	else:
+		_build_context()
+		_build_tiles()
+		_build_faces()
+		_build_pieces()
+		_dress_bare_lots()
+		_dress_bairro_gardens()
+		_dress_parque()
+		_dress_veredas()
+		_bairro_ground_details()
+		_bairro_ground_shadows()
+		_morro_canopy_shadow()
+
 	_build_events()
 	var spawn: Dictionary = model.data.spawn
 	if not entrance.is_empty():
@@ -136,7 +143,8 @@ func load_area(id: String, entrance: String = "") -> void:
 	follower_root.add_child(companion)
 	actors.add_child(follower_root)
 	camera = Camera2D.new()
-	camera.zoom = Vector2.ONE * 1.4
+	# Floresta: câmera mais aberta, para ler platôs e massas de mata (REGIOES-E-PARTES, seção 6).
+	camera.zoom = Vector2.ONE * (1.0 if forest else 1.4)
 	camera.position_smoothing_enabled = true
 	camera.position_smoothing_speed = 7.0
 	add_child(camera)
@@ -526,10 +534,22 @@ func _dress_parque() -> void:
 	# No automatic tree carpet. Authored low masses explain the woodland boundary
 	# while preserving long sightlines through the centre and the entry plaza.
 	var recipe: Dictionary = kits[1].get("boundaryShrubs",{})
-	for i in recipe.get("points",[]).size():
-		var uv: Array = recipe.points[i]
+	# Low shrubs follow the woodland edge of whatever plan is loaded: every other
+	# bosque cell that touches walkable ground, skipping cells with a tree.
+	var trees := {}
+	for piece in model.data.pieces: trees[Vector2i(piece.u,piece.v)] = true
+	var points: Array = []
+	for v in int(model.data.h):
+		for u in int(model.data.w):
+			var cell := Vector2i(u,v)
+			if model.cell_at(cell).get("material","") != "bosque" or trees.has(cell) or posmod(u+v,2) == 1: continue
+			for d in [Vector2i(1,0),Vector2i(-1,0),Vector2i(0,1),Vector2i(0,-1)]:
+				if model.walkable(cell+d):
+					points.append([u+.5,v+.5])
+					break
+	for i in points.size():
+		var uv: Array = points[i]
 		var at := Vector2(float(uv[0]),float(uv[1]))
-		if model.cell_at(Vector2i(floori(at.x),floori(at.y))).get("material","") != "bosque":continue
 		var shrub := Sprite2D.new()
 		shrub.texture = load(kits[1].root+recipe.files[i%recipe.files.size()])
 		shrub.centered = false
@@ -1485,6 +1505,13 @@ func _definition(piece: Dictionary) -> Dictionary:
 			for part in entry.get("supportParts",[]): part.texture = kit.root + part.file
 		entry.shadow_texture = kit.root + entry.shadow
 		return entry
+	# Fruit trees come from their own library, in any biome that places them.
+	var orchard: Dictionary = kit_library.get("frutiferas",{})
+	if orchard.get("pieces",{}).has(piece.asset):
+		var entry: Dictionary = orchard.pieces[piece.asset].variants.values()[0].duplicate(true)
+		entry.texture = orchard.root + entry.file
+		entry.shadow_texture = orchard.root + entry.shadow
+		return entry
 	return {}
 
 func _dress_bairro_gardens() -> void:
@@ -1716,7 +1743,9 @@ func _fade_occluders() -> void:
 			if player.x>=float(piece.u)+float(piece.fu) or player.y>=float(piece.v)+float(piece.fv):
 				art.modulate.a = 1.0
 				continue
-		var covers := node.position.y > ground and Rect2(node.position+art.position,art.texture.get_size()).intersects(body)
+		# Bounds follow the sprite's own scale and flip (forest trees vary both).
+		var bounds := art.get_transform() * art.get_rect()
+		var covers := node.position.y > ground and Rect2(node.position+bounds.position,bounds.size).intersects(body)
 		art.modulate.a = .45 if covers else 1.0
 
 func _place_actor(root: Node2D, visual: Node2D, point: Vector2, height: float) -> void:
