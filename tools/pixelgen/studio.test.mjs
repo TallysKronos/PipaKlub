@@ -105,3 +105,7 @@ test('rig: pose survives save, recipes build cycles with planted feet, sheet gat
  const wrong=validateProject(serialize(p));wrong.sheet.cabecas=4;assert.equal(check(wrong).pass,false);
  const bad=validateProject(serialize(p));bad.layers[1].name='Outra';assert.throws(()=>recipe(bad,{motion:'run',dir:'E',base:0}),/Faltam camadas/);
 });
+test('reference model: builds E and S views, animates with the recipes and passes check',async()=>{
+ const {build}=await import('./examples/modelo-referencia.mjs');const {check}=await import('./cli.mjs');const p=build();
+ assert.deepEqual(p.sequences.map(s=>s.name).sort(),['idle-E','idle-S','run-E','walk-E','walk-S']);const r=check(p);assert.equal(r.pass,true,JSON.stringify(r.errors));
+});

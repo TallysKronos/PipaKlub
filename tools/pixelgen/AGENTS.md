@@ -57,6 +57,7 @@ Leia antes o [`ESTILO-PIXEL.md`](ESTILO-PIXEL.md): proporção, contorno, cor, l
 
 - **Personagem no overworld:** 48×64, pés na mesma linha de base (2 px de margem embaixo) e cabeça grande.
 - **Direções:** `S SO O NO N NE E SE`. Nomes de sequência `<movimento>-<direção>`, como `walk-S` e `idle-NE`; quadros `<movimento>-<direção>-<n>`. A bancada usa esses nomes para montar o seletor de direção e movimento.
+- **Modelo de referência:** `node tools/pixelgen/examples/modelo-referencia.mjs saida.pixelgen.json` gera um personagem completo (vistas E e S, idle, walk e run) para comparar proporção, sombra e tempo. Use-o como gabarito até existir a biblioteca de poses aprovadas.
 - **Movimentos:** `idle`, `walk`, `run`, `interact`, `attack`, `hurt`, `victory`, `fall`.
 - **Tempos de referência:**
   - idle: 2 quadros, 700 e 350 ms;

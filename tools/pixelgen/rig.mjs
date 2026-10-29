@@ -83,17 +83,17 @@ export function directionVector(dir){return {S:[0,1],N:[0,-1],E:[1,0],O:[-1,0],S
 export const RECIPES={
  idle:{durations:[700,350],frames:[{},{body:[0,1]}]},
  walk:{durations:[140,110,140,110],frames:[
-  {pernaFrente:['f',2],pernaTras:['f',-2],bracoFrente:['f',-1],bracoTras:['f',1]},
+  {pernaFrente:['f',3],pernaTras:['f',-3],bracoFrente:['f',-2],bracoTras:['f',2]},
   {body:[0,-1],lift:'pernaTras'},
-  {pernaFrente:['f',-2],pernaTras:['f',2],bracoFrente:['f',1],bracoTras:['f',-1]},
+  {pernaFrente:['f',-3],pernaTras:['f',3],bracoFrente:['f',2],bracoTras:['f',-2]},
   {body:[0,-1],lift:'pernaFrente'}]},
  run:{durations:[90,90,90,90,90,90],frames:[
-  {lean:1,pernaFrente:['f',3],pernaTras:['f',-3],bracoFrente:['f',-2],bracoTras:['f',2]},
-  {lean:1,body:[0,-1],pernaFrente:['f',1],pernaTras:['f',-1],lift:'pernaTras'},
-  {lean:1,all:[0,-2],pernaFrente:['f',-1],pernaTras:['f',1]},
-  {lean:1,pernaFrente:['f',-3],pernaTras:['f',3],bracoFrente:['f',2],bracoTras:['f',-2]},
-  {lean:1,body:[0,-1],pernaFrente:['f',-1],pernaTras:['f',1],lift:'pernaFrente'},
-  {lean:1,all:[0,-2],pernaFrente:['f',1],pernaTras:['f',-1]}]}};
+  {lean:1,pernaFrente:['f',5],pernaTras:['f',-5],bracoFrente:['f',-3],bracoTras:['f',3]},
+  {lean:1,body:[0,-1],pernaFrente:['f',2],pernaTras:['f',-2],bracoFrente:['f',-1],bracoTras:['f',1],lift:'pernaTras'},
+  {lean:1,all:[0,-2],pernaFrente:['f',-2],pernaTras:['f',2],bracoFrente:['f',1],bracoTras:['f',-1]},
+  {lean:1,pernaFrente:['f',-5],pernaTras:['f',5],bracoFrente:['f',3],bracoTras:['f',-3]},
+  {lean:1,body:[0,-1],pernaFrente:['f',-2],pernaTras:['f',2],bracoFrente:['f',1],bracoTras:['f',-1],lift:'pernaFrente'},
+  {lean:1,all:[0,-2],pernaFrente:['f',2],pernaTras:['f',-2],bracoFrente:['f',-1],bracoTras:['f',1]}]}};
 const UPPER=['tronco','cabeca','cabelo','bracoTras','bracoFrente'],LIMBS=['pernaTras','pernaFrente','bracoTras','bracoFrente'];
 // Builds frames <motion>-<dir>-1..n after the last frame, from a base frame, plus the sequence.
 export function recipe(p,{motion,dir,base,replace=false,stride=1,parts:custom}={}){
