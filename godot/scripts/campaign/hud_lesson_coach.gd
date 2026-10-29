@@ -7,6 +7,7 @@ var pinned:=false
 var compact:=false
 var full_title:=""
 var short_title:="Sr. Assis"
+var content_column:VBoxContainer
 func _ready() -> void:
 	set_meta("recorte_decorated",true)
 	theme_type_variation="RecorteEmptyPanel"
@@ -24,6 +25,7 @@ func _ready() -> void:
 	portrait.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	row.add_child(portrait)
 	var column:=VBoxContainer.new()
+	content_column=column
 	column.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	column.add_theme_constant_override("separation",6)
 	row.add_child(column)
@@ -52,6 +54,8 @@ func _ready() -> void:
 		column.add_child(label)
 	short.hide()
 	resized.connect(queue_redraw)
+func add_advance(button:Button)->void:
+	Hud.focus_space(content_column).add_child(button)
 func set_compact(value:bool) -> void:
 	compact=value and not pinned
 	title.text=short_title if compact else full_title

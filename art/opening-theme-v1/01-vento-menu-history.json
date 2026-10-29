@@ -1,0 +1,195 @@
+{
+  "prompt": [
+    24,
+    "b0945472-2107-4d75-ab7d-33f93cf60e8f",
+    {
+      "1": {
+        "class_type": "UNETLoader",
+        "inputs": {
+          "unet_name": "acestep_v1.5_turbo.safetensors",
+          "weight_dtype": "default"
+        }
+      },
+      "2": {
+        "class_type": "DualCLIPLoader",
+        "inputs": {
+          "clip_name1": "qwen_0.6b_ace15.safetensors",
+          "clip_name2": "qwen_1.7b_ace15.safetensors",
+          "type": "ace",
+          "device": "default"
+        }
+      },
+      "3": {
+        "class_type": "VAELoader",
+        "inputs": {
+          "vae_name": "ace_1.5_vae.safetensors"
+        }
+      },
+      "4": {
+        "class_type": "LoadAudio",
+        "inputs": {
+          "audio": "soulmonsters-vento-reference.wav"
+        }
+      },
+      "5": {
+        "class_type": "VAEEncodeAudio",
+        "inputs": {
+          "audio": [
+            "4",
+            0
+          ],
+          "vae": [
+            "3",
+            0
+          ]
+        }
+      },
+      "6": {
+        "class_type": "TextEncodeAceStepAudio1.5",
+        "inputs": {
+          "clip": [
+            "2",
+            0
+          ],
+          "tags": "Instrumental Japanese adventure role-playing game title screen arrangement of the provided theme. Replace the sung melody with a clear warm solo flute and rounded celesta answering its phrases. Preserve the reference melodic contour, chord motion and rhythmic identity as much as possible. Light pizzicato bass, soft piano chords, restrained brushed snare, small bell accents like sunlight on kite paper. Nostalgic hopeful friendship and a new journey, melodic and memorable, transparent four-part handheld game arrangement. Gentle playable menu music, moderate dynamics, no cinematic crescendo, no pop rock wall, no electric guitar solo. Absolutely instrumental: no singing, speech, humming, choir or vocal chops. Short introduction, recognizable main theme early, contrasting answer, return to theme and a short turnaround. Clean dry samples, soft high frequencies, no fadeout.",
+          "lyrics": "[Instrumental]",
+          "seed": 28102841,
+          "bpm": 88,
+          "duration": 87.27272727272727,
+          "timesignature": "4",
+          "language": "unknown",
+          "keyscale": "D major",
+          "generate_audio_codes": false,
+          "cfg_scale": 2.0,
+          "temperature": 0.85,
+          "top_p": 0.9,
+          "top_k": 0,
+          "min_p": 0.0
+        }
+      },
+      "7": {
+        "class_type": "ConditioningZeroOut",
+        "inputs": {
+          "conditioning": [
+            "6",
+            0
+          ]
+        }
+      },
+      "8": {
+        "class_type": "ModelSamplingAuraFlow",
+        "inputs": {
+          "model": [
+            "1",
+            0
+          ],
+          "shift": 3.0
+        }
+      },
+      "9": {
+        "class_type": "KSampler",
+        "inputs": {
+          "model": [
+            "8",
+            0
+          ],
+          "seed": 28102841,
+          "steps": 12,
+          "cfg": 1.0,
+          "sampler_name": "euler",
+          "scheduler": "simple",
+          "positive": [
+            "6",
+            0
+          ],
+          "negative": [
+            "7",
+            0
+          ],
+          "latent_image": [
+            "5",
+            0
+          ],
+          "denoise": 0.76
+        }
+      },
+      "10": {
+        "class_type": "VAEDecodeAudio",
+        "inputs": {
+          "samples": [
+            "9",
+            0
+          ],
+          "vae": [
+            "3",
+            0
+          ]
+        }
+      },
+      "11": {
+        "class_type": "SaveAudio",
+        "inputs": {
+          "audio": [
+            "10",
+            0
+          ],
+          "filename_prefix": "Soulmonsters/opening-theme-v1/01-vento-menu"
+        }
+      }
+    },
+    {
+      "client_id": "soulmonsters-opening-theme",
+      "create_time": 1793225925602
+    },
+    [
+      "11"
+    ]
+  ],
+  "outputs": {
+    "11": {
+      "audio": [
+        {
+          "filename": "01-vento-menu_00001.flac",
+          "subfolder": "Soulmonsters\\opening-theme-v1",
+          "type": "output"
+        }
+      ]
+    }
+  },
+  "status": {
+    "status_str": "success",
+    "completed": true,
+    "messages": [
+      [
+        "execution_start",
+        {
+          "prompt_id": "b0945472-2107-4d75-ab7d-33f93cf60e8f",
+          "timestamp": 1793225925606
+        }
+      ],
+      [
+        "execution_cached",
+        {
+          "nodes": [],
+          "prompt_id": "b0945472-2107-4d75-ab7d-33f93cf60e8f",
+          "timestamp": 1793225925658
+        }
+      ],
+      [
+        "execution_success",
+        {
+          "prompt_id": "b0945472-2107-4d75-ab7d-33f93cf60e8f",
+          "timestamp": 1793225954823
+        }
+      ]
+    ]
+  },
+  "meta": {
+    "11": {
+      "node_id": "11",
+      "display_node": "11",
+      "parent_node": null,
+      "real_node_id": "11"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "family":"Pipa TV V3: TV-to-bedroom handoff",
+  "status":"Rendered, superseded by V4 after user rejected cartoon interpretation of Kael",
+  "measured_film_seconds":27.26,
+  "workflow":"workflows/04-kael-quarto-h3-local.json",
+  "job":"9f9b21a2-5b1c-408e-8dbc-5242478adcef",
+  "model":"MiniMax H3 local ref2va INT8, 20 steps, res_multistep/beta",
+  "api_nodes":false,
+  "seed":2810202604,
+  "requested_seconds":8,
+  "native_resolution":[864,480],
+  "fps":24,
+  "references":["fontes/pipatv-v3-tv-final.png","fontes/pipatv-v3-quarto-chave.png","fontes/pipatv-v3-kael-identidade.png"],
+  "preceding_film":"../pipa-tv-cinematic-v2/video-original/pipa-tv-v2-montagem-nativa.mp4",
+  "editor":"tools/extend-pipa-tv-v3.py",
+  "notes":"Existing three-clip V2 film preserved. New shot pulls back from its battle to CRT in Kael's bedroom, then settles toward game camera. Full film plays once, allows skip, and commits only broadcast completion to opening step 2 before returning to native room. No rewards are created by this handoff."
+}

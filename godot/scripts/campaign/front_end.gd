@@ -5,6 +5,7 @@ const Room = preload("res://scripts/campaign/room_view.gd")
 const Journey = preload("res://scripts/campaign/journey.gd")
 const FlightView = preload("res://scripts/campaign/first_flight_view.gd")
 const WorkshopView = preload("res://scripts/campaign/workshop_view.gd")
+const TutorialStaging=preload("res://scripts/campaign/tutorial_staging.gd")
 const Morro = preload("res://scripts/campaign/morro.gd")
 const MorroView = preload("res://scripts/campaign/morro_view.gd")
 const MorroBattleView = preload("res://scripts/campaign/morro_battle_view.gd")
@@ -17,6 +18,8 @@ const Preferences = preload("res://scripts/campaign/preferences.gd")
 const Backdrop = preload("res://scripts/campaign/hud_backdrop.gd")
 const Hud = preload("res://scripts/campaign/hud.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
+const Sound = preload("res://scripts/campaign/sound_director.gd")
+var sound := Sound.new()
 var session := Session.new()
 var opening: RefCounted
 var content: Dictionary
@@ -31,8 +34,9 @@ var portrait: TextureRect
 var current_step := -1
 var opening_pages:Array[String]=[]
 var opening_page_index:=0
-var broadcast: Array[Sprite2D] = []
-var clock := 0.0
+var opening_busy:=false
+var flow_busy:=false
+var opening_generation:=0
 var journey: RefCounted
 var workshop: Control
 var park: Node2D
@@ -55,11 +59,15 @@ var team_page:=0
 var settings_tab:="Vídeo"
 var settings_focus_controls:=false
 var team_load_state:="ready"
+var scene_loading:CanvasLayer
 
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	get_tree().auto_accept_quit = false
 	preferences.load_settings()
+	sound.name = "SoundDirector"
+	add_child(sound)
+	sound.configure(preferences.audio_levels, preferences.dialogue_blips)
 	Controls.install(preferences.bindings)
 	Input.joy_connection_changed.connect(_controller_changed)
 	crt_layer = CanvasLayer.new()
@@ -75,6 +83,8 @@ func _ready() -> void:
 	_apply_preferences()
 	content = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/content.json"))
 	add_child(session)
+	session.changed.connect(sound.saved)
+	session.storage_failed.connect(func(_reason: String): sound.play_event("progress.save_error"))
 	opening = Opening.new(session)
 	journey = Journey.new(session)
 	exploration = Exploration.new(session)
@@ -86,9 +96,15 @@ func _ready() -> void:
 	_title()
 
 func _clear(route: String = "") -> void:
+	sound.clear_context()
+	if route == "title" or route.begins_with("menu"): sound.play_music("menu")
+	elif not route.begins_with("opening:") and route != "page:Configurações": sound.stop_music()
+	opening_generation+=1
+	opening_busy=false
+	flow_busy=false
 	if not binding_target.is_empty():_cancel_binding()
 	for child in get_children():
-		if child != session and child != crt_layer and child.name != "RecorteUX":
+		if child != session and child != crt_layer and child != sound and child != scene_loading and child.name != "RecorteUX":
 			remove_child(child)
 			child.queue_free()
 	stage = null
@@ -97,7 +113,6 @@ func _clear(route: String = "") -> void:
 	park = null
 	battle = null
 	status = null
-	broadcast.clear()
 	current_step = -1
 	pause_overlay = null
 	var background := ColorRect.new()
@@ -108,7 +123,7 @@ func _clear(route: String = "") -> void:
 	add_child(Backdrop.new())
 	var checkpoint: Dictionary = session.snapshot().get("checkpoint", {})
 	var scene_key := route if not route.is_empty() else str(checkpoint.get("kind", "menu")) + ":" + str(checkpoint.get("scene", ""))
-	if not last_scene_key.is_empty() and scene_key != last_scene_key:
+	if not is_instance_valid(scene_loading) and not last_scene_key.is_empty() and scene_key != last_scene_key:
 		var layer := CanvasLayer.new()
 		layer.layer = 80
 		add_child(layer)
@@ -247,6 +262,7 @@ func _show_slots(new_journey:bool=false) -> void:
 	Hud.focus_later(first if first!=null else back)
 
 func _confirm_erase_slot(id:String,inspection:Dictionary,new_journey:bool) -> void:
+	sound.play_event("ui.warning")
 	var dialog:=_confirmation("Excluir jornada", "Excluir a jornada de %s?\n\nVocê poderá desfazer na lista de jornadas enquanto esse espaço continuar vazio."%inspection.data.player.name,"Excluir jornada")
 	dialog.confirmed.connect(func():
 		if _result(session._store.archive_slot(id,int(inspection.data.revision))):_show_slots(new_journey))
@@ -264,6 +280,7 @@ func _error(code: String) -> String:
 		"io_error": "Não foi possível acessar o save. Confira o espaço e a permissão da pasta."}.get(code, "Não foi possível continuar. Seu último save foi mantido.")
 
 func _choose(slot_id: String, create: bool) -> void:
+	sound.reset_session()
 	var result: Dictionary = session.start(slot_id) if create else session.resume_slot(slot_id)
 	if result.status != "ok":
 		status.text = _error(result.status)
@@ -279,6 +296,7 @@ func _choose(slot_id: String, create: bool) -> void:
 		_notice("Recuperamos sua jornada a partir do backup.")
 
 func _dialog(title: String, text: String, ok: String, cancel: String = "") -> Control:
+	sound.play_event("dialogue.open")
 	var dialog=load("res://scripts/campaign/hud_dialogue.gd").new()
 	dialog.title=title
 	dialog.dialog_text=text
@@ -333,28 +351,51 @@ func _return_to_game() -> void:
 	if not menu_origin.is_empty():_pause_game()
 
 func _show_opening() -> void:
-	_clear()
-	var saved: Dictionary = session.snapshot()
-	current_step = int(saved.checkpoint.step)
-	stage = Node2D.new()
+	var saved: Dictionary=session.snapshot()
+	var step: int=int(saved.checkpoint.step)
+	var room_key := "home" if step>=12 else "bedroom"
+	# Detach before clearing UI: the same room and actors survive every line.
+	var preserved: Node2D
+	if is_instance_valid(room) and room.get_meta("opening_room","")==room_key:
+		preserved=room
+		room.get_parent().remove_child(room)
+	_clear("opening:"+room_key)
+	if step >= 2: sound.play_music("opening")
+	else: sound.stop_music()
+	current_step=step
+	next=null
+	stage=Node2D.new()
 	add_child(stage)
-	if current_step < 2:
-		_broadcast()
-	else:
-		room = Room.new()
+	var map: Dictionary=content.rooms[room_key]
+	var point: Array=map.layout.blocking.kaelEntry if room_key=="home" else map.layout.blocking.kaelDesk
+	if step<=3:point=map.layout.blocking.kaelTV
+	elif step in [6,7,8]:point=map.layout.blocking.kaelTalk
+	elif step==14:
+		for spot in map.hotspots:
+			if spot.id=="exit":point=[spot.x,spot.y]
+	if is_instance_valid(preserved):
+		room=preserved
 		stage.add_child(room)
-		var home := current_step >= 12
-		var map: Dictionary = content.rooms.home if home else content.rooms.bedroom
-		var point: Array = map.layout.blocking.kaelEntry if home else map.layout.blocking.kaelDesk
-		if current_step in [2, 3]:
-			point = map.layout.blocking.kaelTV
-		elif current_step in [5, 6, 7]:
-			point = map.layout.blocking.kaelTalk
-		elif current_step in [8, 9, 10, 11]:
-			point = map.layout.blocking.kaelBirth
-		var target := "desk" if current_step == 3 else "stairs" if current_step == 11 else "exit"
-		room.configure(map, point, current_step in [3, 11, 13], target, current_step >= 5, current_step >= 9)
-		room.interacted.connect(func(_id: String): _advance())
+	else:
+		room=Room.new()
+		stage.add_child(room)
+		room.configure(map,point,false,"",true,false)
+		room.set_meta("opening_room",room_key)
+		room.interacted.connect(func(_id: String):_advance())
+	room.can_walk=false
+	room.set_story_paused(false)
+	room.target_hotspot="desk" if step==3 else "stairs" if step==11 else "exit"
+	room.mother_sprite.visible=step>=5
+	if step>=10 and not is_instance_valid(room.companion):
+		room.add_companion()
+		room.companion_point=Vector2(1145,640) if room_key=="bedroom" else room.actor+Vector2(-60,30)
+		room.companion.position=room.project(room.companion_point)
+	if step<=1 and not is_instance_valid(room.opening_tv):
+		room.opening_tv=load("res://scripts/campaign/opening_tv.gd").new()
+		room.opening_tv.content=content
+		room.add_child(room.opening_tv)
+		room.opening_tv.handoff_requested.connect(func():_finish_opening_film.call_deferred())
+	room.opening_pose()
 	_layout_stage()
 	portrait = load("res://scripts/campaign/hud_dialogue_portrait.gd").new()
 	portrait.anchor_top = 1
@@ -411,7 +452,7 @@ func _show_opening() -> void:
 	opening_pages.clear()
 	opening_page_index=0
 	var paginate_opening:=func():
-		if not is_instance_valid(speech) or current_step in [3,10,11,13,14]:return
+		if not is_instance_valid(speech) or not speech.is_visible_in_tree() or current_step in [3,10,11,13,14]:return
 		opening_pages=load("res://scripts/campaign/hud_dialogue_surface.gd").text_pages(dialogue_tags.text,Hud.font(),22,maxf(160,speech.size.x-12))
 		speech.text=opening_pages[0]
 	paginate_opening.call_deferred()
@@ -460,19 +501,77 @@ func _show_opening() -> void:
 	menu.offset_right = -24
 	menu.offset_top = 16
 	menu.offset_bottom = 70
+	menu.z_index=110
+	opening_busy=true
+	if is_instance_valid(next):next.disabled=true
+	var hide_dialogue: bool=step in [2,4,5,7,8,9,11,12]
+	if step<=1 and is_instance_valid(room.opening_tv) and room.opening_tv.cinematic_handoff:hide_dialogue=true
+	if hide_dialogue:panel.hide();portrait.hide()
+	_present_opening.call_deferred(step,opening_generation,panel,hide_dialogue)
+
+func _present_opening(step: int,generation: int,panel: Control,hidden_for_action: bool) -> void:
+	await preload("res://scripts/campaign/opening_staging.gd").play(room,step)
+	if generation!=opening_generation or not is_instance_valid(room) or not is_instance_valid(panel):return
+	opening_busy=false
+	if step<=1 and is_instance_valid(room.opening_tv) and room.opening_tv.cinematic_handoff:return
+	if is_instance_valid(next):next.disabled=false
+	if hidden_for_action and step not in [3,11,13,14]:
+		panel.show()
+		portrait.visible=portrait.texture!=null
+		# Hidden containers have no final line width until layout has run.
+		await get_tree().process_frame
+		await get_tree().process_frame
+		if generation!=opening_generation or not is_instance_valid(speech):return
+		var story: Dictionary=content.opening[mini(step,13)]
+		var text: String=load("res://scripts/campaign/hud_dialogue_surface.gd").parse_tags(story.text).text
+		opening_pages=load("res://scripts/campaign/hud_dialogue_surface.gd").text_pages(text,Hud.font(),22,maxf(160,speech.size.x-12))
+		opening_page_index=0
+		speech.text=opening_pages[0]
+	if is_instance_valid(next):Hud.focus_later(next)
+
+func _finish_opening_film()->void:
+	if opening_busy or is_instance_valid(pause_overlay) or not is_instance_valid(room) or not is_instance_valid(room.opening_tv) or current_step not in [0,1]:return
+	opening_busy=true
+	var result:Dictionary=opening.finish_broadcast(current_step)
+	if result.status=="ok":
+		_show_opening()
+	else:
+		opening_busy=false
+		room.opening_tv.handoff_failed(_error(result.status))
 
 func _advance() -> void:
+	if opening_busy:return
+	sound.play_event("dialogue.advance")
 	if opening_page_index<opening_pages.size()-1:
 		opening_page_index+=1
 		speech.text=opening_pages[opening_page_index]
 		return
+	var previous_step := current_step
+	if previous_step in [11,13]:
+		opening_busy=true
+		var generation := opening_generation
+		await preload("res://scripts/campaign/opening_staging.gd").leave(room,previous_step)
+		if generation!=opening_generation:return
 	var result: Dictionary = opening.advance(current_step)
 	if result.status == "ok":
-		_show_opening()
+		if previous_step==13:
+			var departure: Dictionary=journey.enter_world("quintal",Vector2(480,768))
+			if departure.status=="ok":_show_saved()
+			else:
+				_show_opening()
+				_notice(_error(departure.status))
+		else:_show_opening()
 	else:
+		opening_busy=false
+		if is_instance_valid(room):
+			room.avatar.modulate.a=1
+			room.avatar.set_motion_action("")
+			if is_instance_valid(room.companion):room.companion.modulate.a=1
+			room.can_walk=previous_step in [3,11,13]
 		status.text = _error(result.status)
 
 func _name() -> void:
+	if opening_busy:return
 	var result: Dictionary = opening.name_partner(name_input.text)
 	if result.status == "ok":
 		_show_opening()
@@ -516,11 +615,7 @@ func _show_world() -> void:
 	room = Room.new()
 	stage.add_child(room)
 	room.configure(data, point.position, true, "*", professor, true)
-	for partner in session.snapshot().player.partners:
-		if partner.id != session.snapshot().player.get("equippedPartnerId", ""): continue
-		var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
-		room.companion.texture = load("res://assets/campaign/" + content.combat[id].image)
-		room.companion_frames = content.combat[id].animations.idle
+	_equip_room_companion()
 	room.interacted.connect(_world_interact)
 	var overlay=load("res://scripts/campaign/hud_exploration.gd").new()
 	overlay.subject=room
@@ -534,8 +629,26 @@ func _show_world() -> void:
 		if id=="collection":_show_collection()
 		elif id=="bag":_show_bag()
 		else:_pause_game())
+	if professor and room.actor.distance_to(Vector2(1056,1232))<4:
+		TutorialStaging.enter_atelier.call_deferred(self)
+
+func _equip_room_companion()->void:
+	for partner in session.snapshot().player.partners:
+		if partner.id != session.snapshot().player.get("equippedPartnerId", ""): continue
+		var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
+		room.companion.texture = load("res://assets/campaign/" + content.combat[id].image)
+		room.companion_frames = content.combat[id].animations.idle
 
 func _show_neighborhood() -> void:
+	if is_instance_valid(scene_loading):return
+	scene_loading=load("res://scripts/campaign/hud_scene_loading.gd").new()
+	scene_loading.reduced_motion=preferences.reduced_motion
+	add_child(scene_loading)
+	flow_busy=true
+	if is_instance_valid(room):room.set_story_paused(true)
+	if is_instance_valid(park):park.paused=true
+	await scene_loading.cover()
+	if not is_inside_tree():return
 	_clear()
 	var container:=SubViewportContainer.new()
 	container.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -551,9 +664,21 @@ func _show_neighborhood() -> void:
 	park.saved_player=saved.player
 	park.checkpoint_position=Vector2(saved.checkpoint.position[0],saved.checkpoint.position[1])
 	park.set_meta("campaign_scene","quintal")
+	park.paused=true
 	viewport.add_child(park)
 	park.action_requested.connect(_neighborhood_action)
 	park.menu_requested.connect(_pause_game)
+	# Let the SubViewport draw the initialized city before uncovering it.
+	await get_tree().process_frame
+	await RenderingServer.frame_post_draw
+	if not is_instance_valid(park) or not is_instance_valid(scene_loading):
+		if is_instance_valid(scene_loading):scene_loading.queue_free()
+		scene_loading=null
+		return
+	await scene_loading.reveal()
+	scene_loading.queue_free()
+	scene_loading=null
+	if is_instance_valid(park):park.paused=false
 
 func _neighborhood_action(id: String) -> void:
 	if not _save_park():return
@@ -572,6 +697,7 @@ func _neighborhood_action(id: String) -> void:
 			if session.snapshot().player.get("journey",{}).get("phase")=="complete" and _result(journey.enter_world("park-trail",Vector2(208,816))):_show_saved.call_deferred()
 
 func _world_interact(id: String) -> void:
+	if flow_busy:return
 	var point: Dictionary = session.snapshot().checkpoint
 	if point.scene == "quintal":
 		if id == "morro" and session.snapshot().player.get("journey", {}).get("phase") == "complete":
@@ -587,21 +713,11 @@ func _world_interact(id: String) -> void:
 		else:
 			_notice("Kael: eu preciso ver o professor primeiro")
 	elif id == "exit":
-		if _result(journey.enter_world("quintal", Vector2(1376, 740))):
-			_show_saved()
+		TutorialStaging.leave_atelier(self)
 	elif id == "professor":
-		if session.snapshot().player.get("journey", {}).get("phase") == "complete":
-			if _result(exploration.repair()): _notice("Sr. Assis: Pronto! Reforcei a linha e a armação dos seus parceiros. Estão novos em folha.")
-		elif _result(journey.practice()):
-			_show_saved()
+		TutorialStaging.meet_professor(self)
 	elif id == "workbench":
-		var player: Dictionary = session.snapshot().player
-		if player.get("journey", {}).get("lesson", 0) < 5:
-			_notice("Sr. Assis: Vamos treinar com o Nozinho primeiro.")
-		elif player.get("starter", {}).get("completed", false):
-			_show_tail_workshop()
-		elif _result(journey.practice()):
-			_show_saved()
+		TutorialStaging.open_workbench(self)
 	else:
 		_notice("Estudos sobre pipas, almas e o vento.")
 
@@ -612,12 +728,29 @@ func _show_practice() -> void:
 	var index: int = session.snapshot().checkpoint.lesson
 	view.configure(content, index)
 	add_child(view)
-	view.continue_lesson.connect(func():
-		if view.model.complete and _result(journey.lesson_completed(index)):
-			_show_saved())
+	view.continue_lesson.connect(_continue_practice.bind(view))
 	view.leave.connect(_menu)
 
+func _continue_practice(view:Control)->void:
+	if flow_busy or not is_instance_valid(view) or not view.model.complete:return
+	flow_busy=true
+	var generation:int=opening_generation
+	var index:int=view.model.lesson
+	if not _result(journey.lesson_completed(index)):
+		flow_busy=false
+		return
+	if index<4:
+		view.prepare_lesson(index+1)
+		flow_busy=false
+	else:
+		view.suspend_actions()
+		if await TutorialStaging.talk(self,"Sr. Assis: É isso! Recolha sua linha com calma. Vamos voltar ao ateliê; tenho uma surpresa para você.","Recolher a pipa"):
+			if not TutorialStaging.valid(self,generation):return
+			await view.reel_in()
+			if TutorialStaging.valid(self,generation):TutorialStaging.after_practice(self)
+
 func _simple_page(title: String, illustrated:bool=false) -> void:
+	sound.play_event("ui.open")
 	_clear("page:" + title)
 	if illustrated:
 		var backdrop=load("res://scripts/campaign/hud_title_menu.gd").new()
@@ -650,8 +783,72 @@ func _focus_first(node: Node) -> bool:
 		if _focus_first(child): return true
 	return false
 
+func _workshop_page(title:String)->void:
+	_clear("page:oficina")
+	var backdrop:=TextureRect.new()
+	backdrop.texture=load("res://assets/campaign/workshop-background.png")
+	backdrop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	backdrop.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
+	backdrop.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	backdrop.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	add_child(backdrop)
+	var shade:=ColorRect.new()
+	shade.color=Color(.025,.07,.1,.38)
+	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	shade.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	add_child(shade)
+	var host:=TextureRect.new()
+	host.texture=load("res://assets/campaign/portrait-assis.png")
+	host.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
+	host.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	host.anchor_top=.18;host.anchor_right=.32;host.anchor_bottom=1
+	host.offset_left=8;host.offset_bottom=80
+	host.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	add_child(host)
+	var host_label:=Label.new()
+	host_label.text="SR. ASSIS\nCada pipa começa com um cuidado."
+	host_label.add_theme_font_override("font",Hud.display())
+	host_label.add_theme_font_size_override("font_size",24)
+	host_label.add_theme_color_override("font_outline_color",Hud.INK)
+	host_label.add_theme_constant_override("outline_size",8)
+	host_label.anchor_top=1;host_label.anchor_bottom=1
+	host_label.offset_left=28;host_label.offset_top=-92
+	add_child(host_label)
+	var panel:=PanelContainer.new()
+	panel.anchor_left=.33;panel.anchor_right=1;panel.anchor_bottom=1
+	panel.offset_left=0;panel.offset_right=-28
+	panel.offset_top=38;panel.offset_bottom=-32
+	var style:=StyleBoxFlat.new()
+	style.bg_color=Color("20333e")
+	style.border_color=Color("e8bc58")
+	style.set_border_width_all(2)
+	style.set_corner_radius_all(12)
+	style.content_margin_left=24;style.content_margin_right=24
+	style.content_margin_top=20;style.content_margin_bottom=20
+	panel.add_theme_stylebox_override("panel",style)
+	add_child(panel)
+	var stack:=VBoxContainer.new()
+	stack.add_theme_constant_override("separation",16)
+	panel.add_child(stack)
+	_label(title,stack,32)
+	_label("Escolha sua rabiola. Na bancada, suas mãos dão forma ao novo elo.",stack,18)
+	var scroll:=ScrollContainer.new()
+	scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.follow_focus=true
+	stack.add_child(scroll)
+	page=VBoxContainer.new()
+	page.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	page.add_theme_constant_override("separation",16)
+	scroll.add_child(page)
+	var hints:=HBoxContainer.new()
+	stack.add_child(hints)
+	Hud.input_hint(hints,"accept","Escolher")
+	Hud.input_hint(hints,"back","Voltar")
+	_focus_first.call_deferred(page)
+
 func _show_starter() -> void:
-	_simple_page("Sr. Assis · Oficina das Almas")
+	_workshop_page("OFICINA DAS ALMAS")
 	var player: Dictionary = session.snapshot().player
 	if player.has("starter"):
 		_label("Sua rabiola: " + Journey.STARTERS[player.starter.modelId], page)
@@ -660,7 +857,7 @@ func _show_starter() -> void:
 				if _result(journey.restore_tail()): _show_saved())
 		else:
 			_button("Começar a montagem", page, func():
-				if _result(journey.start_workshop()): _show_saved())
+				if _result(journey.start_workshop()): TutorialStaging.handoff(self,false))
 	else:
 		_label("Escolha a rabiola do seu próximo parceiro. Esta escolha é única.", page)
 		var grid := GridContainer.new()
@@ -680,23 +877,29 @@ func _show_starter() -> void:
 			portrait.texture = _partner_portrait(chosen)
 			portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 			portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-			portrait.custom_minimum_size = Vector2(120, 106)
+			portrait.custom_minimum_size = Vector2(88, 96)
 			row.add_child(portrait)
 			var detail := VBoxContainer.new()
 			detail.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			row.add_child(detail)
 			var description := {"basica": "Reforça o próximo corte.", "mata": "Reduz o dano recebido por um instante.", "azulao": "Favorece o ângulo no cruzamento.", "raio": "Rajada veloz de curta duração."}
-			_label(description[chosen] + "\nHabilidade · 25 energia", detail, 18)
+			_label(description[chosen] + "\nHabilidade · 25 energia", detail, 16)
 			var choose := _button(Journey.STARTERS[chosen], Hud.focus_space(detail), func(): _confirm_starter(chosen))
 			Hud.secondary_button(choose)
 
 	_button("Salvar e voltar ao menu", page, _menu)
 
 func _confirm_starter(model_id: String) -> void:
+	sound.play_event("workshop.select_tail")
 	var dialog := _dialog("Escolher parceiro", "Escolher a rabiola de %s? A escolha será guardada nesta jornada." % Journey.STARTERS[model_id], "Escolher rabiola", "Continuar escolhendo")
 	dialog.confirmed.connect(func():
-		if _result(journey.choose(model_id)): _show_saved()
-		dialog.queue_free())
+		if flow_busy:return
+		flow_busy=true
+		if _result(journey.choose(model_id)):
+			dialog.queue_free()
+			TutorialStaging.handoff(self)
+		else:flow_busy=false;dialog.queue_free()
+	)
 	dialog.canceled.connect(dialog.queue_free)
 	dialog.popup_centered(Vector2i(640,240))
 
@@ -708,16 +911,37 @@ func _show_workshop() -> void:
 	add_child(workshop)
 	workshop.progress_changed.connect(_save_workshop)
 	workshop.finished.connect(func(_outcome: Dictionary):
-		if _result(journey.finish_workshop()):
-			_show_saved.call_deferred()
-			_show_workshop_quality.call_deferred(_outcome)
-		else:
-			workshop.paused = true
-			workshop.sent_outcome = false
-			workshop.storage_blocked = true
-			workshop.resume_button.show())
+		_finish_workshop_presentation.call_deferred(_outcome))
 	workshop.leave_requested.connect(_confirm_cancel_workshop)
 	workshop.pause_requested.connect(_pause_game)
+
+func _finish_workshop_presentation(outcome:Dictionary)->void:
+	if not is_instance_valid(workshop) or flow_busy:return
+	flow_busy=true
+	workshop.paused=true
+	var job:Dictionary=session.snapshot().player.workshop.duplicate(true)
+	if not _result(journey.finish_workshop()):
+		flow_busy=false
+		workshop.sent_outcome=false
+		workshop.storage_blocked=true
+		workshop.resume_button.show()
+		return
+	if outcome.get("type")=="broken":
+		_show_saved()
+		await TutorialStaging.talk(self,"Sr. Assis: O elo não se firmou desta vez. Sua rabiola foi preservada para reparo. Vamos cuidar dela e tentar de novo.","Cuidar da rabiola")
+		return
+	_clear("workshop:birth")
+	flow_busy=true
+	var birth:Control=load("res://scripts/campaign/workshop_birth_view.gd").new()
+	var art_id:String={"basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","lacertubo":"lacertubo"}.get(job.modelId,"rabbito")
+	birth.partner_name=Journey.CATALOG.get(job.modelId,job.modelId)
+	birth.partner_texture=load("res://assets/campaign/"+content.combat[art_id].image)
+	birth.frames=content.combat[art_id].animations.idle
+	birth.outcome=outcome.duplicate(true)
+	birth.variant=job.get("variant",false)
+	birth.reduced_motion=preferences.reduced_motion
+	add_child(birth)
+	birth.continued.connect(func():TutorialStaging.return_after_birth(self,job.get("source","")!="inventory"),CONNECT_ONE_SHOT)
 
 func _show_workshop_quality(outcome:Dictionary) -> void:
 	var badge=load("res://scripts/campaign/hud_result_plate.gd").new()
@@ -748,6 +972,7 @@ func _confirm_cancel_workshop() -> void:
 	var dialog := _dialog("Sair da bancada", "Sair da bancada? A montagem será reiniciada quando voltar. Sua rabiola continuará disponível.", "Sair da bancada", "Ficar na bancada")
 	dialog.confirmed.connect(func():
 		if _result(journey.cancel_workshop()):
+			sound.play_event.call_deferred("workshop.abort")
 			if quit_after_workshop: get_tree().quit()
 			else: _show_saved()
 		dialog.queue_free())
@@ -756,44 +981,8 @@ func _confirm_cancel_workshop() -> void:
 	dialog.popup_centered(Vector2i(640,240))
 	dialog.get_cancel_button().grab_focus()
 
-func _broadcast() -> void:
-	var background := Sprite2D.new()
-	background.texture = load("res://assets/campaign/broadcast-background.png")
-	background.centered = false
-	background.scale = Vector2(960, 640) / background.texture.get_size()
-	stage.add_child(background)
-	for i in 2:
-		var sprite := Sprite2D.new()
-		sprite.texture = load("res://assets/campaign/" + content.broadcast[i].image)
-		sprite.region_enabled = true
-		sprite.scale = Vector2(-.8 if i == 1 else .8, .8)
-		stage.add_child(sprite)
-		broadcast.append(sprite)
-	var score := PanelContainer.new()
-	score.position = Vector2(24, 12)
-	score.size = Vector2(620, 84)
-	score.theme_type_variation = "RecorteBroadcastPanel"
-	stage.add_child(score)
-	var lines := VBoxContainer.new()
-	lines.add_theme_constant_override("separation", 2)
-	score.add_child(lines)
-	_label("FINAL REGIONAL  ·  AO VIVO", lines, 20)
-	_label("Jamile / Carcará  ×  Gollia / Azulão", lines, 18)
-	var station := PanelContainer.new()
-	station.position = Vector2(760, 544)
-	station.size = Vector2(160, 64)
-	station.theme_type_variation = "PanelContainer"
-	stage.add_child(station)
-	_label("PIPA TV", station, 24)
-
-func _process(delta: float) -> void:
-	clock += delta
-	for i in broadcast.size():
-		var frames: Array = content.broadcast[i].frames
-		var frame: Dictionary = frames[int(clock * 12) % frames.size()]
-		broadcast[i].region_rect = Rect2(frame.x, frame.y, frame.w, frame.h)
-		broadcast[i].position = Vector2(300 + 350 * i + sin(clock * 1.7 + i) * 35, 280 + sin(clock * 2 + i) * 20)
-	if is_instance_valid(room) and room.can_walk:
+func _process(_delta: float) -> void:
+	if is_instance_valid(room) and room.can_walk and is_instance_valid(status):
 		status.text = Controls.prompt("interact") + " · " + {"desk": "Montar Rabbito", "stairs": "Descer para a sala", "exit": "Sair", "professor": "Conversar com Sr. Assis", "professor-home": "Entrar no ateliê", "morro": "Entrar no Morro do Sol", "park": "Entrar no parque", "workbench": "Usar bancada"}.get(room.near, "Interagir") if not room.near.is_empty() and (room.near == room.target_hotspot or room.target_hotspot == "*") else ("Analógico · Mover" if Controls.gamepad else "Setas · Mover")
 		if status.get_parent() is PanelContainer and status.get_parent().theme_type_variation == "RecortePromptPanel":
 			status.text = status.text.trim_prefix(Controls.prompt("interact")+" · ")
@@ -805,13 +994,19 @@ func _process(delta: float) -> void:
 			status.text = ("Analógico · Mover" if Controls.gamepad else "WASD / setas · Mover") + "  ·  " + {3: "Aproxime-se da mesa de desenho.", 11: "Aproxime-se da escada para descer.", 13: "Aproxime-se da porta para sair."}[current_step]
 
 func _unhandled_input(event: InputEvent) -> void:
+	if is_instance_valid(scene_loading):
+		get_viewport().set_input_as_handled();return
+	if flow_busy and event.is_action_pressed("campaign_map"):
+		get_viewport().set_input_as_handled();return
+	if flow_busy and last_scene_key=="workshop:birth" and Controls.cancel(event):
+		get_viewport().set_input_as_handled();return
 	if event.is_action_pressed("campaign_map") and last_scene_key.begins_with("world:") and get_tree().get_nodes_in_group("manga_dialogue").is_empty():
 		if _remember_world_position():
 			_pause_game();menu_origin="map";_show_map()
 		get_viewport().set_input_as_handled();return
 	if last_scene_key=="page:Configurações" and event is InputEventJoypadButton and event.pressed and event.button_index in [JOY_BUTTON_LEFT_SHOULDER,JOY_BUTTON_RIGHT_SHOULDER]:
-		var categories:=["Vídeo","Acessibilidade","Controles"]
-		settings_tab=categories[posmod(categories.find(settings_tab)+(-1 if event.button_index==JOY_BUTTON_LEFT_SHOULDER else 1),3)]
+		var categories:=["Vídeo","Áudio","Acessibilidade","Controles"]
+		settings_tab=categories[posmod(categories.find(settings_tab)+(-1 if event.button_index==JOY_BUTTON_LEFT_SHOULDER else 1),categories.size())]
 		_show_settings();get_viewport().set_input_as_handled();return
 	if event.is_action_pressed("ui_cancel") and last_scene_key=="menu":
 		_title();get_viewport().set_input_as_handled();return
@@ -834,6 +1029,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _pause_game() -> void:
 	if is_instance_valid(pause_overlay): return
+	sound.play_event("ui.pause")
+	sound.set_game_paused(true)
 	get_tree().call_group("exploration_hud","reveal_objective")
 	get_viewport().set_input_as_handled()
 	pause_previous = {"battle": battle.paused if is_instance_valid(battle) else false, "park": park.paused if is_instance_valid(park) else false, "room": room.can_walk if is_instance_valid(room) else false}
@@ -843,11 +1040,15 @@ func _pause_game() -> void:
 	var practice := _practice_view()
 	if is_instance_valid(practice):
 		pause_previous.practice = practice.paused
+		practice.cinematic_paused=true
 		practice.suspend_actions()
 	if is_instance_valid(battle): battle.suspend_actions()
 	if is_instance_valid(park): park.paused = true
-	if is_instance_valid(room): room.can_walk = false
+	if is_instance_valid(room):
+		room.can_walk = false
+		if room.has_method("set_story_paused"):room.set_story_paused(true)
 	pause_overlay = load("res://scripts/campaign/hud_pause.gd").new()
+	pause_overlay.z_index=200
 	pause_overlay.player = session.snapshot().player
 	pause_overlay.focus_action=menu_origin if not menu_origin.is_empty() else "resume"
 	for partner in pause_overlay.player.get("partners",[]):
@@ -872,24 +1073,31 @@ func _pause_game() -> void:
 			"map":_show_map()
 			"save":
 				menu_origin="save"
+				sound.play_event("progress.save_ok")
 				pause_overlay.buttons.save.text="Jornada salva"
 			"menu": _return_to_menu()
 	)
 
 func _resume_game() -> void:
 	if not is_instance_valid(pause_overlay): return
+	sound.set_game_paused(false)
+	sound.play_event("ui.resume")
 	remove_child(pause_overlay)
 	pause_overlay.queue_free()
 	pause_overlay = null
 	menu_origin=""
 	if is_instance_valid(battle): battle.paused = pause_previous.get("battle", false)
 	if is_instance_valid(park): park.paused = pause_previous.get("park", false)
-	if is_instance_valid(room): room.can_walk = pause_previous.get("room", false)
+	if is_instance_valid(room):
+		room.can_walk = pause_previous.get("room", false)
+		if room.has_method("set_story_paused"):room.set_story_paused(false)
 	if is_instance_valid(workshop):
 		workshop.paused=pause_previous.get("workshop",false)
 		workshop.resume_button.visible=workshop.storage_blocked
 	var practice := _practice_view()
-	if is_instance_valid(practice): practice.paused = pause_previous.get("practice", false)
+	if is_instance_valid(practice):
+		practice.paused = pause_previous.get("practice", false)
+		practice.cinematic_paused=false
 
 func _practice_view() -> Control:
 	for child in get_children():
@@ -909,6 +1117,13 @@ func _return_to_menu() -> void:
 	_menu()
 
 func _notification(what: int) -> void:
+	if what==NOTIFICATION_WM_CLOSE_REQUEST and is_instance_valid(scene_loading):
+		# The destination checkpoint is already committed; don't save a half-built view.
+		get_tree().quit();return
+	if what==NOTIFICATION_WM_WINDOW_FOCUS_OUT and is_instance_valid(room) and (flow_busy or opening_busy or room.has_meta("opening_room")):
+		room.set_story_paused(true)
+	if what==NOTIFICATION_WM_WINDOW_FOCUS_IN and is_instance_valid(room) and not is_instance_valid(pause_overlay):
+		room.set_story_paused(false)
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		if is_instance_valid(battle) and not _result(encounters.save_battle(battle.model.snapshot())): return
 		if is_instance_valid(park) and not _save_park(): return
@@ -1049,6 +1264,7 @@ func _remember_world_position() -> bool:
 	return true
 
 func _show_collection() -> void:
+	sound.play_event("inventory.inspect")
 	if not _remember_world_position(): return
 	var player: Dictionary = session.snapshot().player
 	_simple_page("EQUIPE",true)
@@ -1164,6 +1380,7 @@ func _route_action(id: String) -> void:
 
 func _show_bag() -> void:
 	if not _remember_world_position(): return
+	sound.play_event("inventory.bag")
 	var player: Dictionary = session.snapshot().player
 	_simple_page("MOCHILA",true)
 	_label("%d moedas · Materiais e lembranças da sua jornada"%player.coins,page,18).add_theme_color_override("font_color",Hud.GOLD)
@@ -1183,6 +1400,7 @@ func _show_bag() -> void:
 	Hud.input_hint(footer,"line","Próxima aba")
 
 func _show_map() -> void:
+	sound.play_event("ui.map")
 	var subject:Node2D=park if is_instance_valid(park) else room
 	var polygons:Array[PackedVector2Array]=[]
 	var point:=Vector2.ZERO
@@ -1208,14 +1426,17 @@ func _show_map() -> void:
 func _show_tail_workshop() -> void:
 	if not _remember_world_position(): return
 	var player: Dictionary = session.snapshot().player
-	_simple_page("Sr. Assis · Rabiolas encontradas")
+	_workshop_page("SUAS RABIOLAS")
 	var found := false
 	for model_id in Journey.CATALOG:
 		var chosen: String = model_id
 		if player.inventory.get("rabiola-" + chosen, 0) > 0:
 			found = true
 			_button("Montar %s · %d rabiola(s)" % [Journey.CATALOG[chosen], player.inventory["rabiola-" + chosen]], page, func():
-				if _result(journey.start_summon(chosen)): _show_saved())
+				if flow_busy:return
+				flow_busy=true
+				if _result(journey.start_summon(chosen)):TutorialStaging.handoff(self,false)
+				else:flow_busy=false)
 		if player.inventory.get("damaged-rabiola-" + chosen, 0) > 0:
 			found = true
 			_button("Restaurar rabiola de " + Journey.CATALOG[chosen], page, func():
@@ -1224,6 +1445,7 @@ func _show_tail_workshop() -> void:
 	_button("Voltar", page, _show_saved)
 
 func _apply_preferences() -> void:
+	if sound.is_inside_tree(): sound.configure(preferences.audio_levels, preferences.dialogue_blips)
 	Controls.set_family(preferences.pad_family)
 	var recorte := get_node_or_null("RecorteUX")
 	if recorte != null: recorte.set_reduced_motion(preferences.reduced_motion)
@@ -1254,16 +1476,18 @@ func _show_settings() -> void:
 	var active_tab:Button
 	category_row.add_theme_constant_override("separation",20)
 	page.add_child(category_row)
-	for category in ["Vídeo","Acessibilidade","Controles"]:
+	for category in ["Vídeo","Áudio","Acessibilidade","Controles"]:
 		var tab:=Button.new();tab.text=category;Hud.navigation_button(tab,true)
 		tab.theme_type_variation="RecorteTabButton"
 		tab.toggle_mode=true;tab.button_pressed=category==settings_tab
-		tab.custom_minimum_size=Vector2(240,48)
+		tab.custom_minimum_size=Vector2(200,48)
 		category_row.add_child(tab)
 		if category==settings_tab:active_tab=tab
-		tab.pressed.connect(func():settings_tab=category;_show_settings())
+		tab.pressed.connect(func():sound.play_event("ui.tab");settings_tab=category;_show_settings())
 	_label(settings_tab.to_upper(),page,20).add_theme_color_override("font_color",Hud.CYAN)
+	if settings_tab == "Áudio": _audio_settings()
 	for item in [["Filtro de TV (CRT)", "crt", "Linhas suaves de uma TV de tubo sobre o jogo."], ["Tela cheia", "fullscreen", "Use toda a tela para explorar e batalhar."], ["Reduzir animações da interface", "reduced_motion", "Suaviza transições e mantém os avisos estáticos."]]:
+		if settings_tab == "Áudio": continue
 		if (settings_tab=="Vídeo" and item[1]=="reduced_motion") or (settings_tab=="Acessibilidade" and item[1]!="reduced_motion") or settings_tab=="Controles":continue
 		var toggle := CheckButton.new()
 		toggle.tooltip_text=item[0]+" — "+item[2]
@@ -1355,6 +1579,45 @@ func _show_settings() -> void:
 	if settings_focus_controls:
 		settings_focus_controls=false
 		Hud.focus_later(keyboard_button)
+
+func _audio_settings() -> void:
+	for item in [["master", "Volume geral"], ["music", "Música"], ["sfx", "Efeitos do jogo"], ["ui", "Menus e diálogos"], ["ambience", "Ambientes"]]:
+		var key: String = item[0]
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", 16)
+		page.add_child(row)
+		_label(item[1], row, 20).custom_minimum_size.x = 240
+		var slider := HSlider.new()
+		slider.min_value = 0; slider.max_value = 100; slider.step = 5
+		slider.value = float(preferences.audio_levels[key]) * 100
+		slider.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		slider.custom_minimum_size = Vector2(160, 48)
+		slider.tooltip_text = item[1]
+		row.add_child(slider)
+		var value_label := _label("%d%%" % slider.value, row, 18)
+		value_label.custom_minimum_size.x = 70
+		slider.value_changed.connect(func(value: float):
+			preferences.audio_levels[key] = value / 100.0
+			value_label.text = "%d%%" % value
+			_apply_preferences())
+		slider.value_changed.connect(func(_value: float): sound.play_event("ui.slider"))
+		# Persist on commit, not every drag tick. Keyboard/joypad edits are committed below.
+		slider.drag_ended.connect(func(_changed: bool): _save_audio_settings())
+		slider.focus_exited.connect(_save_audio_settings)
+	var blips := CheckButton.new()
+	blips.text = "Sinal breve ao exibir cada fala"
+	blips.button_pressed = preferences.dialogue_blips
+	blips.custom_minimum_size.y = 48
+	page.add_child(blips)
+	blips.toggled.connect(func(enabled: bool):
+		preferences.dialogue_blips = enabled
+		_apply_preferences()
+		_save_audio_settings())
+	_button("Ouvir efeito de exemplo", page, func(): sound.play_event("battle.block"))
+	_label("Volume zero silencia a categoria. As vozes da abertura seguem o volume geral.", page, 16)
+
+func _save_audio_settings() -> void:
+	if preferences.save_settings() != OK: sound.play_event("ui.deny")
 
 func _return_controls_settings() -> void:
 	settings_tab="Controles"

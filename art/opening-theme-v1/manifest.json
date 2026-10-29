@@ -1,0 +1,58 @@
+{
+  "tool": "ACE-Step 1.5 Turbo local audio-to-audio, 12 steps",
+  "reference": "o-vento-nos-chamou-v1.mp3",
+  "reference_uploaded_to": "ComfyUI on this computer only",
+  "paid_api": false,
+  "tracks": [
+    {
+      "id": "01-vento-menu",
+      "seconds": 87.24,
+      "reference_conditioned": true,
+      "preview": "art/opening-theme-v1/01-vento-menu.mp3",
+      "game": "godot/assets/audio/music/opening-theme-v1/vento-menu.ogg",
+      "source_loudness_measurement": {
+        "input_i": "-14.61",
+        "input_tp": "0.45",
+        "input_lra": "14.50",
+        "input_thresh": "-25.63",
+        "output_i": "-19.63",
+        "output_tp": "-2.07",
+        "output_lra": "9.50",
+        "output_thresh": "-30.23",
+        "normalization_type": "dynamic",
+        "target_offset": "-2.37"
+      },
+      "requested_master_lufs": -22,
+      "requested_true_peak_db": -2,
+      "notes": "Full decode, loudness analysis, endpoint anti-click fades; perceptual listening and musical loop continuity pending."
+    },
+    {
+      "id": "02-vento-aventura",
+      "seconds": 87.24,
+      "reference_conditioned": true,
+      "preview": "art/opening-theme-v1/02-vento-aventura.mp3",
+      "game": "godot/assets/audio/music/opening-theme-v1/vento-aventura.ogg",
+      "source_loudness_measurement": {
+        "input_i": "-17.85",
+        "input_tp": "0.02",
+        "input_lra": "3.90",
+        "input_thresh": "-27.88",
+        "output_i": "-21.46",
+        "output_tp": "-4.15",
+        "output_lra": "3.70",
+        "output_thresh": "-31.49",
+        "normalization_type": "dynamic",
+        "target_offset": "-0.54"
+      },
+      "requested_master_lufs": -22,
+      "requested_true_peak_db": -2,
+      "notes": "Full decode, loudness analysis, endpoint anti-click fades; perceptual listening and musical loop continuity pending."
+    }
+  ],
+  "integrated": "Native title/menu and prologue after TV film; preview arrangement pending listening approval",
+  "limitations": [
+    "Not a verified note-for-note transcription",
+    "Instrumental requested; absence of residual voice not certified by listening",
+    "Loop repetition enabled, musical seam requires listening"
+  ]
+}

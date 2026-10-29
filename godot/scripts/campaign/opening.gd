@@ -7,6 +7,13 @@ var session: Node
 func _init(local_session: Node) -> void:
 	session = local_session
 
+func finish_broadcast(expected: int) -> Dictionary:
+	var saved: Dictionary=session.snapshot()
+	if saved.is_empty() or saved.checkpoint.get("kind")!="opening" or int(saved.checkpoint.step)!=expected or expected not in [0,1]:
+		return {"status":"wrong_step"}
+	# Both broadcast lines have no rewards; persist the film-to-room handoff once.
+	return session.commit_operation("opening-broadcast-%d" % expected,{"kind":"opening","step":2},saved.player)
+
 func advance(expected: int) -> Dictionary:
 	var saved: Dictionary = session.snapshot()
 	if saved.is_empty() or saved.checkpoint.get("kind") != "opening" or saved.checkpoint.step != expected or expected == 10 or expected >= 14:

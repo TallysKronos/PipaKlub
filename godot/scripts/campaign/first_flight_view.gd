@@ -37,6 +37,13 @@ var lesson_label: Label
 var pointer_actions: Dictionary = {}
 var move_cards: Array = []
 var bottom_panel: PanelContainer
+var settling_from:Array[Vector2]=[]
+var settling_age:=1.0
+const SETTLING_TIME:=.65
+var cinematic:=false
+var cinematic_paused:=false
+var reel_progress:=0.0
+var reel_origins:Array[Vector2]=[]
 
 func configure(data: Dictionary, lesson: int) -> void:
 	content = data
@@ -55,11 +62,13 @@ func _ready() -> void:
 	hint=coach.body
 	next_button=Button.new()
 	Hud.navigation_button(next_button)
+	next_button.add_theme_font_size_override("font_size",20)
 	next_button.expand_icon=true
 	next_button.add_theme_constant_override("icon_max_width",22)
 	next_button.disabled=true
-	next_button.pressed.connect(func():continue_lesson.emit())
-	add_child(next_button)
+	next_button.pressed.connect(func():
+		if model.complete and settling_age>=SETTLING_TIME:continue_lesson.emit())
+	coach.add_advance(next_button)
 	resume_button=Button.new()
 	resume_button.text="Retomar treino"
 	Hud.navigation_button(resume_button,false,"back")
@@ -98,11 +107,10 @@ func _layout_lesson() -> void:
 	coach.visible=not paused
 	next_button.visible=not paused
 	command_row.visible=not paused
-	var width:=minf(460,size.x*.38)
+	var width:=minf(400,size.x*.36)
 	coach.size=Vector2(width,0)
-	next_button.size=Vector2(260,48)
-	next_button.position=Vector2(20,size.y-138-next_button.size.y)
-	coach.position=Vector2(20,next_button.position.y-20-coach.get_combined_minimum_size().y)
+	next_button.custom_minimum_size.y=48
+	coach.position=Vector2(20,size.y-28-coach.get_combined_minimum_size().y)
 	var action_height:=128*size.y/1080.0
 	command_row.position=Vector2(440,size.y-action_height-8)
 	command_row.size=Vector2(maxf(0,size.x-464),action_height)
@@ -115,6 +123,8 @@ func _layout_lesson() -> void:
 	resume_button.size=Vector2(320,48)
 	save_button.position=Vector2(size.x/2-160,size.y/2+22)
 	save_button.size=Vector2(320,48)
+	if cinematic:
+		for control:Control in [coach,next_button,command_row,pause_button,resume_button,save_button]:control.hide()
 
 func _field_scale() -> Vector2:
 	return Field.scale_for(size)
@@ -123,12 +133,49 @@ func _field_offset() -> Vector2:
 func _project(point:Vector2) -> Vector2:
 	return _field_offset()+point*_field_scale()
 
+func prepare_lesson(index:int)->void:
+	settling_from.assign([Vector2(model.p.x,model.p.y),Vector2(model.q.x,model.q.y)])
+	# Keep the arena and sprites; reset the exercise exactly like loading a new lesson.
+	model=Flight.new(index)
+	settling_age=SETTLING_TIME if reduced_motion else 0.0
+	paused=false
+	require_action_release=true
+	pointer_actions.clear()
+	line_held=false
+	mouse_target=Vector2(-1,-1)
+	was_complete=false
+	activity_age=10
+	highlight_age=0
+	next_button.release_focus()
+	queue_redraw()
+
+func _actor_point(index:int)->Vector2:
+	var actor:Dictionary=model.p if index==0 else model.q
+	var target:=Vector2(actor.x,actor.y)
+	if cinematic and reel_origins.size()==2:
+		return reel_origins[index].lerp(Vector2(actor.anchor,585),smoothstep(0,1,reel_progress))
+	if settling_from.size()!=2 or settling_age>=SETTLING_TIME:return target
+	return settling_from[index].lerp(target,smoothstep(0,SETTLING_TIME,settling_age))
+
+func reel_in()->void:
+	reel_origins.assign([_actor_point(0),_actor_point(1)])
+	cinematic=true
+	paused=true
+	var tree:=get_tree()
+	while is_inside_tree() and reel_progress<1:
+		await tree.process_frame
+		if not is_instance_valid(self) or not is_inside_tree():return
+		if cinematic_paused or not get_window().has_focus():continue
+		reel_progress=minf(1,reel_progress+minf(get_process_delta_time(),.05)/(.15 if reduced_motion else .8))
+		queue_redraw()
+
 func _process(delta: float) -> void:
 	if model == null:
 		return
 	clock += delta
 	highlight_age+=delta
 	activity_age+=delta
+	if not paused:settling_age+=minf(delta,.05)
 	if paused:
 		pointer_actions.clear()
 		require_action_release=true
@@ -140,7 +187,7 @@ func _process(delta: float) -> void:
 		direction = (mouse_target - Vector2(model.p.x, model.p.y)).limit_length()
 	if direction.length()>.1 or ["cut","skill","dodge","line","guard"].any(func(action:String):return _action_held(action)):activity_age=0
 	var line_now := _action_held("line")
-	if not paused:
+	if not paused and settling_age>=SETTLING_TIME:
 		model.tick(delta, {"x": direction.x, "y": direction.y,
 		"cut": _action_held("cut"),"skill":_action_held("skill"),"dodge":_action_held("dodge"),
 		"line": line_now and not line_held, "guard": _action_held("guard")})
@@ -165,7 +212,7 @@ func _process(delta: float) -> void:
 	next_button.disabled = not model.complete
 	if model.complete and not was_complete:Hud.focus_later(next_button)
 	was_complete=model.complete
-	next_button.text = ("Concluir treino" if model.lesson == 4 else "Próxima lição") if model.complete else "Conclua o desafio"
+	next_button.text = ("Recolher a pipa" if model.lesson == 4 else "Avançar") if model.complete else "Pratique no campo"
 	next_button.icon=Hud.icon("cadeado") if not model.complete else Hud.icon("back")
 	coach.short.text={0:"Leve seu parceiro até o alvo.",1:"Cruze as linhas e corte.",2:"Leia a sua energia.",3:"Experimente a ferramenta indicada.",4:"Vença o duelo com Nozinho."}.get(model.lesson,"")
 	if model.lesson==3:coach.short.text=hint.text.split("\n")[-1]
@@ -202,8 +249,8 @@ func _draw() -> void:
 	var p: Dictionary = model.p
 	var q: Dictionary = model.q
 	var crossed: Dictionary = model.contact(p, q)
-	draw_line(_project(Vector2(p.anchor, 585)), _project(Vector2(p.x, p.y)), Tokens.CEU, 3)
-	draw_dashed_line(_project(Vector2(q.anchor, 585)), _project(Vector2(q.x, q.y)), Tokens.RABIOLA, 3, 8)
+	draw_line(_project(Vector2(p.anchor, 585)), _project(_actor_point(0)), Tokens.CEU, 3)
+	draw_dashed_line(_project(Vector2(q.anchor, 585)), _project(_actor_point(1)), Tokens.RABIOLA, 3, 8)
 	if model.lesson == 0:
 		var target:=PackedVector2Array()
 		for step in 49:
@@ -216,7 +263,8 @@ func _draw() -> void:
 		var frame: Dictionary = frames[int(clock * 12) % frames.size()]
 		var texture := texture_p if index == 0 else texture_q
 		var extent:=Vector2.ONE*clampf(field.size.y*.22,80,150)
-		var sprite_rect:=Rect2(_project(Vector2(actor.x,actor.y))-extent*.5,extent)
+		if cinematic:extent*=1.0-.65*reel_progress
+		var sprite_rect:=Rect2(_project(_actor_point(index))-extent*.5,extent)
 		var target:Dictionary=q if index==0 else p
 		if Ink.facing_flip(id,actor.x,target.x):
 			sprite_rect.size.x=-sprite_rect.size.x
@@ -239,10 +287,10 @@ func _draw() -> void:
 	draw_set_transform(Vector2.ZERO)
 	SkySignals.draw_on(self,model,_project,clock,reduced_motion)
 	_draw_lesson_highlight()
-	if paused:draw_rect(Rect2(Vector2.ZERO,size),Tokens.alpha(Tokens.NANQUIM,.55))
+	if paused and not cinematic:draw_rect(Rect2(Vector2.ZERO,size),Tokens.alpha(Tokens.NANQUIM,.55))
 
 func _action_held(action:String) -> bool:
-	return not paused and not require_action_release and (Controls.held(action) or bool(pointer_actions.get(action,false)))
+	return not paused and settling_age>=SETTLING_TIME and not require_action_release and (Controls.held(action) or bool(pointer_actions.get(action,false)))
 
 
 func _draw_lesson_highlight() -> void:

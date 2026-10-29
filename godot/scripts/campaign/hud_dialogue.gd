@@ -17,6 +17,7 @@ var cancel_button_text:=""
 var options:Array=[]
 var option_buttons:Array[Button]=[]
 var reduced_motion:=false
+var allow_cancel:=true
 var body:Label
 var box:PanelContainer
 var nameplate:PanelContainer
@@ -151,6 +152,7 @@ func _rebuild() -> void:
 	page_index=clampi(page_index,0,pages.size()-1)
 	_show_page()
 func _show_page() -> void:
+	preload("res://scripts/campaign/sound_director.gd").cue(self, "dialogue.blip")
 	var page:Dictionary=pages[page_index]
 	body.text=page.text
 	name_label.text=page.speaker
@@ -181,9 +183,11 @@ func _align_choices() -> void:
 	box.size=Vector2(size.x-box.position.x-32,maxf(180,240*size.y/1080.0))
 	choices.position.y=box.position.y-choices.get_combined_minimum_size().y-60
 func next_page() -> void:
+	preload("res://scripts/campaign/sound_director.gd").cue(self, "dialogue.advance")
 	if page_index<pages.size()-1:page_index+=1;_show_page()
 func _finish(accepted:bool) -> void:
 	if _closed:return
+	preload("res://scripts/campaign/sound_director.gd").cue(self, "dialogue.choice" if accepted else "dialogue.end")
 	_closed=true
 	if accepted:confirmed.emit()
 	else:canceled.emit()
@@ -199,7 +203,7 @@ func _process(delta:float) -> void:
 func _input(event:InputEvent) -> void:
 	if Controls.cancel(event) or event.is_action_pressed("ui_cancel"):
 		get_viewport().set_input_as_handled()
-		_finish(cancel_button_text.is_empty())
+		if allow_cancel:_finish(cancel_button_text.is_empty())
 func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO,size),Color(Hud.BLACK,.38))
 	if not is_instance_valid(box):return

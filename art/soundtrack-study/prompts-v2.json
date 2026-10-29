@@ -1,0 +1,38 @@
+{
+  "version": "v2",
+  "tool": "ComfyUI ACE-Step 1.5 Turbo local",
+  "intent": "Composition-led second round; requested structures are not verified scores",
+  "lyrics": "[Instrumental]",
+  "tracks": [
+    {
+      "id": "01-vila-v2",
+      "name": "Primeiro Vento — novo começo",
+      "bpm": 112,
+      "key": "G major",
+      "seed": 28102811,
+      "bars": 32,
+      "seconds": 68.571,
+      "prompt": "Instrumental handheld adventure RPG town music. A clear singable lead melody is the foreground, not an ambient groove. Compact warm sampled clarinet and a small rounded trumpet trade short phrases, articulated notes and audible rests. Present a distinctive two-bar rhythmic idea immediately: two short pickups, a longer rising note, a stepwise falling answer with space at the end. Develop this idea rather than continuously improvising. 4/4, 112 BPM, G major, 32 bars: 8 bars main theme, 8 bars varied answer, 8 bars contrasting wistful relative-minor bridge, 8 bars main theme returning. Independently moving plucked bass, quiet short piano chords, sparse snare and closed hi-hat; no acoustic guitar or lounge electric piano. Bright neighborhood morning with a touch of yearning to leave on an adventure; affectionate and energetic, not sleepy or corporate cheerful. Early handheld sample-based game timbres, dry crisp attacks, light stereo space, transparent four-part writing. New original tune. Entirely instrumental, no voice or choir, no SFX, no fadeout, no long intro, no orchestral swell or EDM drop. End with a short musical turnaround that invites the opening theme again."
+    },
+    {
+      "id": "02-parque-v2",
+      "name": "Parque — trilhas ao vento",
+      "bpm": 120,
+      "key": "D major",
+      "seed": 28102812,
+      "bars": 32,
+      "seconds": 64,
+      "prompt": "Instrumental handheld monster-adventure RPG exploration theme, crisp sample-based woodwinds and mallet tones, tuneful and playful with a little mystery. Foreground solo flute states a compact two-bar motif in the first seconds, a small rising leap answered by descending steps, a distinctive short-short-long rhythm and a breathing rest. Repeat with variation so the tune is easy to remember. A marimba answers only in gaps, active warm pizzicato bass, light syncopated snare and shaker, thin held harmony low in the mix. Four independent clear roles, never everybody playing busy melodies together. 4/4, 120 BPM, D major. 32 bars: memorable A for 8 bars, varied A for 8, darker B minor middle for 8 with a brief chromatic passing note, A return for 8 with flute and marimba exchanging roles. Sunny elevated park, discovery and motion, inquisitive rather than sleepy. Original composed melody, not a cover. No singing, no humming, no speech, no choir, no nature SFX, no modern pop production, no long ambient intro, no EDM build or drop, no fadeout. Short turnaround back to the opening, consistent tempo."
+    },
+    {
+      "id": "03-batalha-v2",
+      "name": "Batalha — cruzamento de linhas",
+      "bpm": 152,
+      "key": "E minor",
+      "seed": 28102813,
+      "bars": 32,
+      "seconds": 50.526,
+      "prompt": "Instrumental tactical monster-battle game music with early handheld sample-based character, lean and sharply melodic rather than cinematic. A bright short brass lead and a focused square-wave synth exchange a bold two-bar rhythmic hook: repeated accented notes, an upward leap and a descending answer. State the hook immediately and bring it back recognizably. Fast independently moving melodic bass, tight dry snare and kick, occasional timpani punctuation; restrained string staccato fills only in lead rests. 4/4, 152 BPM, E minor. Exactly planned 32-bar arc: A 8 bars, A variation 8, contrasting G-major melodic lift 8, A return 8 with a more active bass and a short tense dominant turnaround. Clear tune at the front, controlled density, few simultaneous parts, dramatic harmonic tension without random soloing. Youthful rivalry, quick tactical reactions, exhilarating paper-kite aerial duel, not grim war or victory celebration. Original composition. No vocals, choir, speech, SFX, overdriven metal wall, trap drums, EDM drop, long buildup, huge trailer orchestra or fadeout. Keep a steady pulse and finish ready to return to the opening."
+    }
+  ]
+}

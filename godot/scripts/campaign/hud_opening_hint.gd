@@ -15,4 +15,4 @@ func _ready() -> void:
 func _process(_delta:float) -> void:
 	if Controls.direction().length_squared()>0:moved=true
 	movement.visible=not moved
-	visible=not moved or (is_instance_valid(subject) and not str(subject.near).is_empty())
+	visible=is_instance_valid(subject) and subject.can_walk and (not moved or not str(subject.near).is_empty())

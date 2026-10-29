@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-28",
+  "source": "Retorno direto do usuário após ouvir as três propostas V1",
+  "tracks": {
+    "01-vila-v1": {"decision": "rejected", "comment": "Não gostei nada", "use_as_approved_reference": false},
+    "02-parque-v1": {"decision": "partial_interest", "comment": "Gostei um pouco", "use_as_approved_reference": false},
+    "03-batalha-v1": {"decision": "partial_interest", "comment": "Gostei um pouco", "use_as_approved_reference": false}
+  },
+  "unknown": ["Quais trechos específicos agradaram na 02 e 03", "Se a rejeição da 01 vem da melodia, timbre, ritmo, harmonia ou combinação", "Quanto de fidelidade ao timbre GBA o usuário prefere"],
+  "next_method": "Estudar composição e função antes de gerar; escolher motivos curtos e comparar variações controladas, sem tratar as faixas V1 como aprovadas."
+}

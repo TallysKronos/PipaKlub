@@ -1,0 +1,13 @@
+{
+  "family": "Pipa TV competitors v1",
+  "status": "concepts_for_user_review",
+  "source": "OpenAI built-in image_gen",
+  "style_reference": "godot/assets/nina-portrait.png (illustration language only)",
+  "assets": [
+    {"file": "jamile-conceito.png", "role": "character model sheet", "character": "Jamile", "partner": "Carcará", "views": ["full body", "kite handling", "confident", "focused", "surprised"], "background": "cream opaque", "collision": false, "rigged": false},
+    {"file": "gollia-conceito.png", "role": "character model sheet", "character": "Gollia", "partner": "Azulão", "views": ["full body", "kite handling", "confident", "focused", "surprised"], "background": "cream opaque", "collision": false, "rigged": false}
+  ],
+  "review": "Visually inspected both sheets. Strong different silhouettes and coordinated palettes. Before rigging, standardize anatomical side of Jamile braid and Gollia wrist wraps, simplify minor costume folds and produce individual clean views. Sheets are concept references, not runtime sprites.",
+  "runtime_changes": false,
+  "new_video_generated": false
+}

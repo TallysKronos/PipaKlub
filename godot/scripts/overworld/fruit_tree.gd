@@ -72,6 +72,8 @@ func fruit_count() -> int:
 
 func hit() -> bool:
 	if busy or project.is_empty(): return false
+	preload("res://scripts/campaign/sound_director.gd").cue(self, "world.tree_hit")
+	preload("res://scripts/campaign/sound_director.gd").cue(self, "world.canopy")
 	busy = true
 	released = false
 	current_clip = "hit"
@@ -85,6 +87,7 @@ func _release_fruit() -> void:
 		var drop := attached.duplicate() as Node2D
 		var original_transform := attached.global_transform
 		attached.hide()
+		preload("res://scripts/campaign/sound_director.gd").cue(self, "world.fruit_fall")
 		get_parent().add_child(drop)
 		drop.global_transform = original_transform
 		drop.z_index = 5

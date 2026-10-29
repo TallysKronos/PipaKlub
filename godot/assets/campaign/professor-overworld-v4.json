@@ -1,0 +1,225 @@
+{
+  "image": "professor-overworld-v4.png",
+  "frames": {
+    "south-idle": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 384
+      },
+      "anchor": {
+        "x": 128,
+        "y": 376
+      },
+      "source_rect": [
+        0,
+        0,
+        443,
+        443
+      ],
+      "source_bounds": [
+        156,
+        13,
+        370,
+        434
+      ]
+    },
+    "west-idle": {
+      "frame": {
+        "x": 256,
+        "y": 0,
+        "w": 256,
+        "h": 384
+      },
+      "anchor": {
+        "x": 128,
+        "y": 376
+      },
+      "source_rect": [
+        443,
+        0,
+        887,
+        443
+      ],
+      "source_bounds": [
+        118,
+        14,
+        317,
+        435
+      ]
+    },
+    "east-idle": {
+      "frame": {
+        "x": 512,
+        "y": 0,
+        "w": 256,
+        "h": 384
+      },
+      "anchor": {
+        "x": 128,
+        "y": 376
+      },
+      "source_rect": [
+        887,
+        0,
+        1330,
+        443
+      ],
+      "source_bounds": [
+        118,
+        17,
+        323,
+        435
+      ]
+    },
+    "north-idle": {
+      "frame": {
+        "x": 768,
+        "y": 0,
+        "w": 256,
+        "h": 384
+      },
+      "anchor": {
+        "x": 128,
+        "y": 376
+      },
+      "source_rect": [
+        1330,
+        0,
+        1774,
+        443
+      ],
+      "source_bounds": [
+        81,
+        16,
+        285,
+        434
+      ]
+    },
+    "south-step": {
+      "frame": {
+        "x": 0,
+        "y": 384,
+        "w": 256,
+        "h": 384
+      },
+      "anchor": {
+        "x": 128,
+        "y": 376
+      },
+      "source_rect": [
+        0,
+        443,
+        443,
+        887
+      ],
+      "source_bounds": [
+        157,
+        9,
+        371,
+        426
+      ]
+    },
+    "west-step": {
+      "frame": {
+        "x": 256,
+        "y": 384,
+        "w": 256,
+        "h": 384
+      },
+      "anchor": {
+        "x": 128,
+        "y": 376
+      },
+      "source_rect": [
+        443,
+        443,
+        887,
+        887
+      ],
+      "source_bounds": [
+        114,
+        8,
+        329,
+        423
+      ]
+    },
+    "east-step": {
+      "frame": {
+        "x": 512,
+        "y": 384,
+        "w": 256,
+        "h": 384
+      },
+      "anchor": {
+        "x": 128,
+        "y": 376
+      },
+      "source_rect": [
+        887,
+        443,
+        1330,
+        887
+      ],
+      "source_bounds": [
+        112,
+        11,
+        329,
+        423
+      ]
+    },
+    "north-step": {
+      "frame": {
+        "x": 768,
+        "y": 384,
+        "w": 256,
+        "h": 384
+      },
+      "anchor": {
+        "x": 128,
+        "y": 376
+      },
+      "source_rect": [
+        1330,
+        443,
+        1774,
+        887
+      ],
+      "source_bounds": [
+        79,
+        15,
+        282,
+        426
+      ]
+    }
+  },
+  "directions": [
+    "south",
+    "west",
+    "east",
+    "north"
+  ],
+  "poses": [
+    "idle",
+    "step"
+  ],
+  "cell_size": [
+    256,
+    384
+  ],
+  "common_scale": 0.8646080760095012,
+  "source_size": [
+    1774,
+    887
+  ],
+  "source_alpha": [
+    0,
+    255
+  ],
+  "status": "Directional poses prepared; front idle integrated. Not a complete walk cycle.",
+  "active_idle_size": [
+    199,
+    368
+  ]
+}

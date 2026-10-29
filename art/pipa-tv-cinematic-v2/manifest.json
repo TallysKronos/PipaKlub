@@ -1,0 +1,26 @@
+{
+  "family": "Pipa TV cinematic V2",
+  "generation": "ComfyUI local MiniMax H3 ref2va INT8; image_gen reference staging",
+  "style": "Approved Locutor V4 and original character sheets, thin-line 2D manga",
+  "paid_api_nodes": false,
+  "fps": 24,
+  "native_resolution": [864, 480],
+  "steps": 20,
+  "requested_seconds_each": 6,
+  "frame_grid": "17n+5; approximately 6.58 seconds each",
+  "clips": [
+    {"role": "Announcer introduces the final and gestures right", "workflow": "workflows/01-locutor-h3-local.json", "job": "6998f953-78f7-4a83-9acc-46daee1730ce", "seed": 2810202601},
+    {"role": "Jamile and Gollia control their reels; camera follows blue thread upward", "workflow": "workflows/02-pipeiros-h3-local.json", "job": "b5c7ca75-26ad-4476-9adc-447273451535", "seed": 2810202602},
+    {"role": "Blue thread leads to Azulao and Carcara aerial duel", "workflow": "workflows/03-batalha-h3-local.json", "job": "18dfc0df-0d85-463b-bd24-5f1b75ea83db", "seed": 2810202603}
+  ],
+  "continuity": {"Jamile": "orange thread, Carcara", "Gollia": "blue thread, Azulao", "sun": "upper left", "arena": "Coastal Brazilian terrace, navy rail and cream compass mosaic"},
+  "source_files": "fontes/; prompts.json",
+  "originals": "video-original/",
+  "edit_script": "tools/assemble-pipa-tv-v2.py",
+  "library_saved": true,
+  "generation_status": "all_three_jobs_completed",
+  "edit_status": "assembled_and_exported",
+  "measured_seconds": 19.42,
+  "local_runtime": "godot/assets/campaign/cinematics/pipa-tv-abertura-v2.ogv; opening_tv.gd updated",
+  "notes": "Reference-to-video generates interpreted movement. Exact gestures, continuous thread attachment and speech wording require visual/auditory review. Runtime approval is separate from a completed render."
+}

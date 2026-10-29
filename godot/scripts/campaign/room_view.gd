@@ -16,12 +16,22 @@ var companion_frames: Array = []
 var companion_point := Vector2.ZERO
 var trail: Array[Vector2] = []
 var clock := 0.0
+var mother_sprite: Sprite2D
+var mother_point := Vector2.ZERO
+var mother_facing := 0
+var mother_walking := false
+var mother_reveal := 1.0
+var story_paused := false
+var cinematic_actor_moving := false
+var companion_follow := true
+var opening_tv: Node2D
 
 func configure(room: Dictionary, point: Array, walk: bool, target: String, mother: bool, partner: bool) -> void:
 	for child in get_children():
 		child.free()
 	props.clear()
 	companion = null
+	mother_sprite = null
 	companion_frames.clear()
 	trail.clear()
 	data = room
@@ -59,10 +69,16 @@ func configure(room: Dictionary, point: Array, walk: bool, target: String, mothe
 			npc.offset = Vector2(-22, -245)
 			npc.scale = Vector2.ONE * .22 * float(camera.scale)
 		var location: Array = data.layout.blocking.mother
+		mother_point=Vector2(location[0],location[1])
+		mother_sprite=npc
 		npc.position = project(Vector2(location[0], location[1]))
 		add_child(npc)
 		props.append({"node": npc, "rect": _foot(Vector2(location[0], location[1])), "layer": ""})
-	if partner:
+	if partner:add_companion()
+	_update_order()
+
+func add_companion() -> void:
+	if not is_instance_valid(companion):
 		var rabbit := Sprite2D.new()
 		rabbit.texture = load("res://assets/rabbito.png")
 		var atlas: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/rabbito.json"))
@@ -82,6 +98,45 @@ func configure(room: Dictionary, point: Array, walk: bool, target: String, mothe
 		add_child(rabbit)
 		props.append({"node": rabbit, "rect": _foot(companion_point), "layer": "", "follower": true})
 	_update_order()
+
+func opening_pose() -> void:
+	avatar.position=project(actor)
+	if is_instance_valid(mother_sprite):
+		mother_sprite.position=project(mother_point)+Vector2(0,(1.0-mother_reveal)*40.0*float(camera.scale))
+		if data.get("id")!="professor":
+			var row := 1 if mother_walking and int(clock*7)%2==1 else 0
+			mother_sprite.region_rect=Rect2(mother_facing*384,row*512,384,512)
+			mother_sprite.offset=Vector2(-20,256-(452 if row==1 else 490))
+			if mother_sprite.material!=null:
+				mother_sprite.material.set_shader_parameter("row",float(row))
+				mother_sprite.material.set_shader_parameter("reveal",mother_reveal)
+		for item in props:
+			if item.node==mother_sprite:item.rect=_foot(mother_point)
+	_update_order()
+
+func face_actor(target: Vector2) -> void:
+	var direction := project(target)-project(actor)
+	avatar.facing=("s" if direction.y>=0 else "n")+("e" if direction.x>=0 else "w")
+
+func face_mother(target: Vector2) -> void:
+	var direction := project(target)-project(mother_point)
+	mother_facing=(2 if direction.x>0 else 1) if absf(direction.x)>absf(direction.y) else (3 if direction.y<0 else 0)
+
+func enable_stair_reveal() -> void:
+	if not is_instance_valid(mother_sprite) or mother_sprite.material!=null:return
+	var shader:=Shader.new()
+	shader.code="shader_type canvas_item; uniform float row=0.0; uniform float reveal=1.0; void fragment(){if((UV.y-row*0.5)*2.0>reveal){discard;}}"
+	var material:=ShaderMaterial.new()
+	material.shader=shader
+	mother_sprite.material=material
+
+func set_story_paused(value: bool) -> void:
+	story_paused=value
+	avatar.set_process(not value)
+	if value:avatar.moving=false
+	if is_instance_valid(opening_tv):
+		if opening_tv.has_method("set_cinematic_paused"):opening_tv.set_cinematic_paused(value or not opening_tv.visible)
+		else:opening_tv.set_process(not value and opening_tv.visible)
 
 func project(p: Vector2) -> Vector2:
 	var point := Vector2((p.x - p.y) * .82, (p.x + p.y) * .41) if data.get("projection") == "street" else Vector2((p.x - p.y) / 3, (p.x + p.y) / 6)
@@ -148,8 +203,10 @@ func _safe(p: Vector2) -> bool:
 func _process(delta: float) -> void:
 	if not is_instance_valid(avatar):
 		return
+	if story_paused:return
 	clock += delta
-	if is_instance_valid(companion):
+	if is_instance_valid(mother_sprite):opening_pose()
+	if is_instance_valid(companion) and companion_follow:
 		var frame: Dictionary = companion_frames[int(clock * 12) % companion_frames.size()]
 		companion.region_rect = Rect2(frame.x, frame.y, frame.w, frame.h)
 		if trail.is_empty() or trail.back().distance_to(actor) > 8:
@@ -169,7 +226,7 @@ func _process(delta: float) -> void:
 	for spot in data.hotspots:
 		if Vector2(spot.x, spot.y).distance_to(actor) <= 110:
 			near = spot.id
-	avatar.moving = false
+	avatar.moving = cinematic_actor_moving
 	if not can_walk:
 		return
 	var input := Controls.direction()

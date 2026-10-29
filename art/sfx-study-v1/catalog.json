@@ -1,0 +1,3629 @@
+{
+  "version": 1,
+  "sample_rate": 48000,
+  "channels": 1,
+  "encoding": "PCM16 WAV",
+  "events": [
+    {
+      "id": "ui.focus",
+      "category": "ui",
+      "title": "Mover foco",
+      "recipe": "tick",
+      "duration_requested": 0.07,
+      "variants": 2,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/front_end.gd · _button / _pause_game / _resume_game / _show_settings",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/ui/focus_01.wav",
+          "seconds": 0.07,
+          "sample_peak_dbfs": -13.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/ui/focus_02.wav",
+          "seconds": 0.07,
+          "sample_peak_dbfs": -13.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "UI",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 80,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "ui.confirm",
+      "category": "ui",
+      "title": "Confirmar",
+      "recipe": "confirm",
+      "duration_requested": 0.22,
+      "variants": 2,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/front_end.gd · _button / _pause_game / _resume_game / _show_settings",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/ui/confirm_01.wav",
+          "seconds": 0.22,
+          "sample_peak_dbfs": -13.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/ui/confirm_02.wav",
+          "seconds": 0.22,
+          "sample_peak_dbfs": -13.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "UI",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 80,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "ui.cancel",
+      "category": "ui",
+      "title": "Voltar",
+      "recipe": "cancel",
+      "duration_requested": 0.19,
+      "variants": 2,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/front_end.gd · _button / _pause_game / _resume_game / _show_settings",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/ui/cancel_01.wav",
+          "seconds": 0.19,
+          "sample_peak_dbfs": -13.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/ui/cancel_02.wav",
+          "seconds": 0.19,
+          "sample_peak_dbfs": -13.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "UI",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 80,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "ui.open",
+      "category": "ui",
+      "title": "Abrir painel",
+      "recipe": "page_open",
+      "duration_requested": 0.25,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/front_end.gd · _button / _pause_game / _resume_game / _show_settings",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/ui/open_01.wav",
+          "seconds": 0.25,
+          "sample_peak_dbfs": -13.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "UI",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 80,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "ui.close",
+      "category": "ui",
+      "title": "Fechar painel",
+      "recipe": "page_close",
+      "duration_requested": 0.2,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/front_end.gd · _button / _pause_game / _resume_game / _show_settings",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/ui/close_01.wav",
+          "seconds": 0.2,
+          "sample_peak_dbfs": -13.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "UI",
+      "loop": false,
+      "integration_status": "reserved_asset",
+      "cooldown_ms": 80,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "ui.deny",
+      "category": "ui",
+      "title": "Ação indisponível",
+      "recipe": "deny",
+      "duration_requested": 0.2,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/front_end.gd · _button / _pause_game / _resume_game / _show_settings",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/ui/deny_01.wav",
+          "seconds": 0.2,
+          "sample_peak_dbfs": -13.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "UI",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 80,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "ui.tab",
+      "category": "ui",
+      "title": "Trocar aba",
+      "recipe": "tick",
+      "duration_requested": 0.1,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/front_end.gd · _button / _pause_game / _resume_game / _show_settings",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/ui/tab_01.wav",
+          "seconds": 0.1,
+          "sample_peak_dbfs": -13.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "UI",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 80,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "ui.slider",
+      "category": "ui",
+      "title": "Ajustar opção",
+      "recipe": "tick",
+      "duration_requested": 0.065,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/front_end.gd · _button / _pause_game / _resume_game / _show_settings",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/ui/slider_01.wav",
+          "seconds": 0.065,
+          "sample_peak_dbfs": -13.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "UI",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 80,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "ui.pause",
+      "category": "ui",
+      "title": "Pausar",
+      "recipe": "pause",
+      "duration_requested": 0.28,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/front_end.gd · _button / _pause_game / _resume_game / _show_settings",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/ui/pause_01.wav",
+          "seconds": 0.28,
+          "sample_peak_dbfs": -13.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "UI",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 80,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "ui.resume",
+      "category": "ui",
+      "title": "Retomar",
+      "recipe": "resume",
+      "duration_requested": 0.3,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/front_end.gd · _button / _pause_game / _resume_game / _show_settings",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/ui/resume_01.wav",
+          "seconds": 0.3,
+          "sample_peak_dbfs": -13.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "UI",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 80,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "ui.warning",
+      "category": "ui",
+      "title": "Confirmação destrutiva",
+      "recipe": "warning",
+      "duration_requested": 0.42,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/front_end.gd · _button / _pause_game / _resume_game / _show_settings",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/ui/warning_01.wav",
+          "seconds": 0.42,
+          "sample_peak_dbfs": -13.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "UI",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 80,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "ui.map",
+      "category": "ui",
+      "title": "Abrir mapa",
+      "recipe": "page_open",
+      "duration_requested": 0.4,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/front_end.gd · _button / _pause_game / _resume_game / _show_settings",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/ui/map_01.wav",
+          "seconds": 0.4,
+          "sample_peak_dbfs": -13.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "UI",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 80,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "dialogue.open",
+      "category": "dialogue",
+      "title": "Iniciar conversa",
+      "recipe": "dialogue",
+      "duration_requested": 0.2,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/front_end.gd · _advance / _dialog / _confirmation",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/dialogue/open_01.wav",
+          "seconds": 0.2,
+          "sample_peak_dbfs": -19.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "UI",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "dialogue.advance",
+      "category": "dialogue",
+      "title": "Avançar fala",
+      "recipe": "tick",
+      "duration_requested": 0.08,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/front_end.gd · _advance / _dialog / _confirmation",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/dialogue/advance_01.wav",
+          "seconds": 0.08,
+          "sample_peak_dbfs": -19.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "UI",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "dialogue.choice",
+      "category": "dialogue",
+      "title": "Escolher resposta",
+      "recipe": "confirm",
+      "duration_requested": 0.22,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/front_end.gd · _advance / _dialog / _confirmation",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/dialogue/choice_01.wav",
+          "seconds": 0.22,
+          "sample_peak_dbfs": -19.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "UI",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "dialogue.end",
+      "category": "dialogue",
+      "title": "Encerrar conversa",
+      "recipe": "cancel",
+      "duration_requested": 0.26,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/front_end.gd · _advance / _dialog / _confirmation",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/dialogue/end_01.wav",
+          "seconds": 0.26,
+          "sample_peak_dbfs": -19.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "UI",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "dialogue.blip",
+      "category": "dialogue",
+      "title": "Pulso de texto opcional",
+      "recipe": "blip",
+      "duration_requested": 0.045,
+      "variants": 3,
+      "notes": "Não tocar a cada caractere; limitar a 8 Hz, desligável.",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/front_end.gd · _advance / _dialog / _confirmation",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/dialogue/blip_01.wav",
+          "seconds": 0.045,
+          "sample_peak_dbfs": -19.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/dialogue/blip_02.wav",
+          "seconds": 0.045,
+          "sample_peak_dbfs": -19.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/dialogue/blip_03.wav",
+          "seconds": 0.045,
+          "sample_peak_dbfs": -19.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "UI",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "progress.save_ok",
+      "category": "progress",
+      "title": "Gravação confirmada",
+      "recipe": "save",
+      "duration_requested": 0.5,
+      "variants": 1,
+      "notes": "Disparar somente após operação confirmada; não ao iniciar gravação.",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/progression.gd · discover / acquire / award; session.gd · commit_operation",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/progress/save_ok_01.wav",
+          "seconds": 0.5,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "progress.save_error",
+      "category": "progress",
+      "title": "Falha ao gravar",
+      "recipe": "deny",
+      "duration_requested": 0.4,
+      "variants": 1,
+      "notes": "Disparar somente após operação confirmada; não ao iniciar gravação.",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/progression.gd · discover / acquire / award; session.gd · commit_operation",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/progress/save_error_01.wav",
+          "seconds": 0.4,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "progress.objective",
+      "category": "progress",
+      "title": "Objetivo recebido",
+      "recipe": "objective",
+      "duration_requested": 0.8,
+      "variants": 1,
+      "notes": "Disparar somente após operação confirmada; não ao iniciar gravação.",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/progression.gd · discover / acquire / award; session.gd · commit_operation",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/progress/objective_01.wav",
+          "seconds": 0.8,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "progress.quest_complete",
+      "category": "progress",
+      "title": "Objetivo concluído",
+      "recipe": "reward",
+      "duration_requested": 1.2,
+      "variants": 1,
+      "notes": "Disparar somente após operação confirmada; não ao iniciar gravação.",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/progression.gd · discover / acquire / award; session.gd · commit_operation",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/progress/quest_complete_01.wav",
+          "seconds": 1.2,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "progress.item",
+      "category": "progress",
+      "title": "Item recebido",
+      "recipe": "pickup",
+      "duration_requested": 0.35,
+      "variants": 2,
+      "notes": "Disparar somente após operação confirmada; não ao iniciar gravação.",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/progression.gd · discover / acquire / award; session.gd · commit_operation",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/progress/item_01.wav",
+          "seconds": 0.35,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/progress/item_02.wav",
+          "seconds": 0.35,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "progress.coins",
+      "category": "progress",
+      "title": "Moedas recebidas",
+      "recipe": "coins",
+      "duration_requested": 0.42,
+      "variants": 2,
+      "notes": "Disparar somente após operação confirmada; não ao iniciar gravação.",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/progression.gd · discover / acquire / award; session.gd · commit_operation",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/progress/coins_01.wav",
+          "seconds": 0.42,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/progress/coins_02.wav",
+          "seconds": 0.42,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "progress.xp",
+      "category": "progress",
+      "title": "XP concedido",
+      "recipe": "xp",
+      "duration_requested": 0.35,
+      "variants": 2,
+      "notes": "Disparar somente após operação confirmada; não ao iniciar gravação.",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/progression.gd · discover / acquire / award; session.gd · commit_operation",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/progress/xp_01.wav",
+          "seconds": 0.35,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/progress/xp_02.wav",
+          "seconds": 0.35,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "progress.level_up",
+      "category": "progress",
+      "title": "Subiu de nível",
+      "recipe": "level",
+      "duration_requested": 1.3,
+      "variants": 1,
+      "notes": "Disparar somente após operação confirmada; não ao iniciar gravação.",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/progression.gd · discover / acquire / award; session.gd · commit_operation",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/progress/level_up_01.wav",
+          "seconds": 1.3,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "progress.discovery",
+      "category": "progress",
+      "title": "Espécie descoberta",
+      "recipe": "discovery",
+      "duration_requested": 0.9,
+      "variants": 1,
+      "notes": "Disparar somente após operação confirmada; não ao iniciar gravação.",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/progression.gd · discover / acquire / award; session.gd · commit_operation",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/progress/discovery_01.wav",
+          "seconds": 0.9,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "progress.area",
+      "category": "progress",
+      "title": "Área descoberta",
+      "recipe": "area",
+      "duration_requested": 1.0,
+      "variants": 1,
+      "notes": "Disparar somente após operação confirmada; não ao iniciar gravação.",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/progression.gd · discover / acquire / award; session.gd · commit_operation",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/progress/area_01.wav",
+          "seconds": 1.0,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "reserved_asset",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "progress.tutorial",
+      "category": "progress",
+      "title": "Exercício concluído",
+      "recipe": "objective",
+      "duration_requested": 0.65,
+      "variants": 1,
+      "notes": "Disparar somente após operação confirmada; não ao iniciar gravação.",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/progression.gd · discover / acquire / award; session.gd · commit_operation",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/progress/tutorial_01.wav",
+          "seconds": 0.65,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "inventory.bag",
+      "category": "inventory",
+      "title": "Abrir bolsa",
+      "recipe": "bag",
+      "duration_requested": 0.3,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/front_end.gd · _show_bag / _show_collection / _show_tail_workshop; exploration.gd · equip / repair",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/inventory/bag_01.wav",
+          "seconds": 0.3,
+          "sample_peak_dbfs": -9.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "inventory.equip",
+      "category": "inventory",
+      "title": "Equipar parceiro",
+      "recipe": "equip",
+      "duration_requested": 0.45,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/front_end.gd · _show_bag / _show_collection / _show_tail_workshop; exploration.gd · equip / repair",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/inventory/equip_01.wav",
+          "seconds": 0.45,
+          "sample_peak_dbfs": -9.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "inventory.unequip",
+      "category": "inventory",
+      "title": "Retirar equipamento",
+      "recipe": "cancel",
+      "duration_requested": 0.25,
+      "variants": 1,
+      "notes": "",
+      "action_status": "future",
+      "source": "godot/scripts/campaign/front_end.gd · _show_bag / _show_collection / _show_tail_workshop; exploration.gd · equip / repair",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/inventory/unequip_01.wav",
+          "seconds": 0.25,
+          "sample_peak_dbfs": -9.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "reserved_asset",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "inventory.inspect",
+      "category": "inventory",
+      "title": "Inspecionar parceiro",
+      "recipe": "dialogue",
+      "duration_requested": 0.22,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/front_end.gd · _show_bag / _show_collection / _show_tail_workshop; exploration.gd · equip / repair",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/inventory/inspect_01.wav",
+          "seconds": 0.22,
+          "sample_peak_dbfs": -9.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "inventory.repair_start",
+      "category": "inventory",
+      "title": "Iniciar reparo",
+      "recipe": "repair",
+      "duration_requested": 0.8,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/front_end.gd · _show_bag / _show_collection / _show_tail_workshop; exploration.gd · equip / repair",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/inventory/repair_start_01.wav",
+          "seconds": 0.8,
+          "sample_peak_dbfs": -9.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "reserved_asset",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "inventory.repair_done",
+      "category": "inventory",
+      "title": "Reparo concluído",
+      "recipe": "heal",
+      "duration_requested": 1.4,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/front_end.gd · _show_bag / _show_collection / _show_tail_workshop; exploration.gd · equip / repair",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/inventory/repair_done_01.wav",
+          "seconds": 1.4,
+          "sample_peak_dbfs": -9.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "inventory.tail_restore",
+      "category": "inventory",
+      "title": "Restaurar rabiola",
+      "recipe": "repair",
+      "duration_requested": 0.9,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/front_end.gd · _show_bag / _show_collection / _show_tail_workshop; exploration.gd · equip / repair",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/inventory/tail_restore_01.wav",
+          "seconds": 0.9,
+          "sample_peak_dbfs": -9.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "inventory.consume",
+      "category": "inventory",
+      "title": "Usar consumível",
+      "recipe": "pickup",
+      "duration_requested": 0.45,
+      "variants": 1,
+      "notes": "",
+      "action_status": "future",
+      "source": "godot/scripts/campaign/front_end.gd · _show_bag / _show_collection / _show_tail_workshop; exploration.gd · equip / repair",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/inventory/consume_01.wav",
+          "seconds": 0.45,
+          "sample_peak_dbfs": -9.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "reserved_asset",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "world.step_stone",
+      "category": "world",
+      "title": "Passo em pedra/calçada",
+      "recipe": "stone",
+      "duration_requested": 0.19,
+      "variants": 5,
+      "notes": "Contato curto de sola, sem apito; cinco variantes, evita duas últimas; passos por deslocamento, intervalo mínimo 280 ms.",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/room_view.gd · _process / _safe; park_view.gd · _physics_process / _interact; exploration.gd · chest / collect_tail; overworld/fruit_tree.gd · hit / fruit_landed",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/world/step_stone_01.wav",
+          "seconds": 0.19,
+          "sample_peak_dbfs": -19.45
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/step_stone_02.wav",
+          "seconds": 0.19,
+          "sample_peak_dbfs": -19.49
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/step_stone_03.wav",
+          "seconds": 0.19,
+          "sample_peak_dbfs": -19.1
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/step_stone_04.wav",
+          "seconds": 0.19,
+          "sample_peak_dbfs": -19.94
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/step_stone_05.wav",
+          "seconds": 0.19,
+          "sample_peak_dbfs": -19.77
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 180,
+      "max_voices": 2,
+      "pitch_variation": 0.018,
+      "review_status": "technical_pass_listening_pending",
+      "revision": "soft-sole-v2"
+    },
+    {
+      "id": "world.step_soil",
+      "category": "world",
+      "title": "Passo em terra",
+      "recipe": "soil",
+      "duration_requested": 0.22,
+      "variants": 5,
+      "notes": "Contato curto de sola, sem apito; cinco variantes, evita duas últimas; passos por deslocamento, intervalo mínimo 280 ms.",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/room_view.gd · _process / _safe; park_view.gd · _physics_process / _interact; exploration.gd · chest / collect_tail; overworld/fruit_tree.gd · hit / fruit_landed",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/world/step_soil_01.wav",
+          "seconds": 0.22,
+          "sample_peak_dbfs": -18.38
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/step_soil_02.wav",
+          "seconds": 0.22,
+          "sample_peak_dbfs": -18.78
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/step_soil_03.wav",
+          "seconds": 0.22,
+          "sample_peak_dbfs": -19.82
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/step_soil_04.wav",
+          "seconds": 0.22,
+          "sample_peak_dbfs": -18.2
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/step_soil_05.wav",
+          "seconds": 0.22,
+          "sample_peak_dbfs": -19.82
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 180,
+      "max_voices": 2,
+      "pitch_variation": 0.018,
+      "review_status": "technical_pass_listening_pending",
+      "revision": "soft-sole-v2"
+    },
+    {
+      "id": "world.step_grass",
+      "category": "world",
+      "title": "Passo em grama",
+      "recipe": "grass",
+      "duration_requested": 0.25,
+      "variants": 5,
+      "notes": "Contato curto de sola, sem apito; cinco variantes, evita duas últimas; passos por deslocamento, intervalo mínimo 280 ms.",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/room_view.gd · _process / _safe; park_view.gd · _physics_process / _interact; exploration.gd · chest / collect_tail; overworld/fruit_tree.gd · hit / fruit_landed",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/world/step_grass_01.wav",
+          "seconds": 0.25,
+          "sample_peak_dbfs": -19.08
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/step_grass_02.wav",
+          "seconds": 0.25,
+          "sample_peak_dbfs": -18.72
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/step_grass_03.wav",
+          "seconds": 0.25,
+          "sample_peak_dbfs": -19.24
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/step_grass_04.wav",
+          "seconds": 0.25,
+          "sample_peak_dbfs": -19.38
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/step_grass_05.wav",
+          "seconds": 0.25,
+          "sample_peak_dbfs": -18.94
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 180,
+      "max_voices": 2,
+      "pitch_variation": 0.018,
+      "review_status": "technical_pass_listening_pending",
+      "revision": "soft-sole-v2"
+    },
+    {
+      "id": "world.step_wood",
+      "category": "world",
+      "title": "Passo em madeira/escada",
+      "recipe": "wood",
+      "duration_requested": 0.22,
+      "variants": 5,
+      "notes": "Contato curto de sola, sem apito; cinco variantes, evita duas últimas; passos por deslocamento, intervalo mínimo 280 ms.",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/room_view.gd · _process / _safe; park_view.gd · _physics_process / _interact; exploration.gd · chest / collect_tail; overworld/fruit_tree.gd · hit / fruit_landed",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/world/step_wood_01.wav",
+          "seconds": 0.22,
+          "sample_peak_dbfs": -18.41
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/step_wood_02.wav",
+          "seconds": 0.22,
+          "sample_peak_dbfs": -19.85
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/step_wood_03.wav",
+          "seconds": 0.22,
+          "sample_peak_dbfs": -18.43
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/step_wood_04.wav",
+          "seconds": 0.22,
+          "sample_peak_dbfs": -18.36
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/step_wood_05.wav",
+          "seconds": 0.22,
+          "sample_peak_dbfs": -18.43
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 180,
+      "max_voices": 2,
+      "pitch_variation": 0.018,
+      "review_status": "technical_pass_listening_pending",
+      "revision": "soft-sole-v2"
+    },
+    {
+      "id": "world.grass_rustle",
+      "category": "world",
+      "title": "Atravessar matinho",
+      "recipe": "rustle",
+      "duration_requested": 0.45,
+      "variants": 3,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/room_view.gd · _process / _safe; park_view.gd · _physics_process / _interact; exploration.gd · chest / collect_tail; overworld/fruit_tree.gd · hit / fruit_landed",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/world/grass_rustle_01.wav",
+          "seconds": 0.45,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/grass_rustle_02.wav",
+          "seconds": 0.45,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/grass_rustle_03.wav",
+          "seconds": 0.45,
+          "sample_peak_dbfs": -12.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "world.door_open",
+      "category": "world",
+      "title": "Abrir porta",
+      "recipe": "door",
+      "duration_requested": 0.65,
+      "variants": 2,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/room_view.gd · _process / _safe; park_view.gd · _physics_process / _interact; exploration.gd · chest / collect_tail; overworld/fruit_tree.gd · hit / fruit_landed",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/world/door_open_01.wav",
+          "seconds": 0.65,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/door_open_02.wav",
+          "seconds": 0.65,
+          "sample_peak_dbfs": -12.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "world.door_close",
+      "category": "world",
+      "title": "Fechar porta",
+      "recipe": "door_close",
+      "duration_requested": 0.4,
+      "variants": 2,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/room_view.gd · _process / _safe; park_view.gd · _physics_process / _interact; exploration.gd · chest / collect_tail; overworld/fruit_tree.gd · hit / fruit_landed",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/world/door_close_01.wav",
+          "seconds": 0.4,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/door_close_02.wav",
+          "seconds": 0.4,
+          "sample_peak_dbfs": -12.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "reserved_asset",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "world.stairs",
+      "category": "world",
+      "title": "Contato no degrau",
+      "recipe": "wood",
+      "duration_requested": 0.2,
+      "variants": 3,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/room_view.gd · _process / _safe; park_view.gd · _physics_process / _interact; exploration.gd · chest / collect_tail; overworld/fruit_tree.gd · hit / fruit_landed",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/world/stairs_01.wav",
+          "seconds": 0.2,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/stairs_02.wav",
+          "seconds": 0.2,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/stairs_03.wav",
+          "seconds": 0.2,
+          "sample_peak_dbfs": -12.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "reserved_asset",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "world.chest_open",
+      "category": "world",
+      "title": "Abrir baú",
+      "recipe": "chest",
+      "duration_requested": 0.8,
+      "variants": 2,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/room_view.gd · _process / _safe; park_view.gd · _physics_process / _interact; exploration.gd · chest / collect_tail; overworld/fruit_tree.gd · hit / fruit_landed",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/world/chest_open_01.wav",
+          "seconds": 0.8,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/chest_open_02.wav",
+          "seconds": 0.8,
+          "sample_peak_dbfs": -12.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "world.tail_pickup",
+      "category": "world",
+      "title": "Recolher rabiola",
+      "recipe": "paper_pickup",
+      "duration_requested": 0.6,
+      "variants": 2,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/room_view.gd · _process / _safe; park_view.gd · _physics_process / _interact; exploration.gd · chest / collect_tail; overworld/fruit_tree.gd · hit / fruit_landed",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/world/tail_pickup_01.wav",
+          "seconds": 0.6,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/tail_pickup_02.wav",
+          "seconds": 0.6,
+          "sample_peak_dbfs": -12.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "world.tree_hit",
+      "category": "world",
+      "title": "Bater na árvore",
+      "recipe": "tree",
+      "duration_requested": 0.45,
+      "variants": 3,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/room_view.gd · _process / _safe; park_view.gd · _physics_process / _interact; exploration.gd · chest / collect_tail; overworld/fruit_tree.gd · hit / fruit_landed",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/world/tree_hit_01.wav",
+          "seconds": 0.45,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/tree_hit_02.wav",
+          "seconds": 0.45,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/tree_hit_03.wav",
+          "seconds": 0.45,
+          "sample_peak_dbfs": -12.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "world.canopy",
+      "category": "world",
+      "title": "Balanço da copa",
+      "recipe": "rustle",
+      "duration_requested": 0.9,
+      "variants": 3,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/room_view.gd · _process / _safe; park_view.gd · _physics_process / _interact; exploration.gd · chest / collect_tail; overworld/fruit_tree.gd · hit / fruit_landed",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/world/canopy_01.wav",
+          "seconds": 0.9,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/canopy_02.wav",
+          "seconds": 0.9,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/canopy_03.wav",
+          "seconds": 0.9,
+          "sample_peak_dbfs": -12.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "world.fruit_fall",
+      "category": "world",
+      "title": "Fruto soltando",
+      "recipe": "fruit_fall",
+      "duration_requested": 0.4,
+      "variants": 2,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/room_view.gd · _process / _safe; park_view.gd · _physics_process / _interact; exploration.gd · chest / collect_tail; overworld/fruit_tree.gd · hit / fruit_landed",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/world/fruit_fall_01.wav",
+          "seconds": 0.4,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/fruit_fall_02.wav",
+          "seconds": 0.4,
+          "sample_peak_dbfs": -12.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "world.fruit_land",
+      "category": "world",
+      "title": "Fruto no chão",
+      "recipe": "fruit",
+      "duration_requested": 0.3,
+      "variants": 3,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/room_view.gd · _process / _safe; park_view.gd · _physics_process / _interact; exploration.gd · chest / collect_tail; overworld/fruit_tree.gd · hit / fruit_landed",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/world/fruit_land_01.wav",
+          "seconds": 0.3,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/fruit_land_02.wav",
+          "seconds": 0.3,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/fruit_land_03.wav",
+          "seconds": 0.3,
+          "sample_peak_dbfs": -12.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "world.transition",
+      "category": "world",
+      "title": "Trocar de área",
+      "recipe": "transition",
+      "duration_requested": 0.65,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/room_view.gd · _process / _safe; park_view.gd · _physics_process / _interact; exploration.gd · chest / collect_tail; overworld/fruit_tree.gd · hit / fruit_landed",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/world/transition_01.wav",
+          "seconds": 0.65,
+          "sample_peak_dbfs": -12.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "world.interact",
+      "category": "world",
+      "title": "Interagir",
+      "recipe": "dialogue",
+      "duration_requested": 0.14,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/room_view.gd · _process / _safe; park_view.gd · _physics_process / _interact; exploration.gd · chest / collect_tail; overworld/fruit_tree.gd · hit / fruit_landed",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/world/interact_01.wav",
+          "seconds": 0.14,
+          "sample_peak_dbfs": -12.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "reserved_asset",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "world.splash",
+      "category": "world",
+      "title": "Passo em água rasa",
+      "recipe": "splash",
+      "duration_requested": 0.45,
+      "variants": 3,
+      "notes": "",
+      "action_status": "future",
+      "source": "godot/scripts/campaign/room_view.gd · _process / _safe; park_view.gd · _physics_process / _interact; exploration.gd · chest / collect_tail; overworld/fruit_tree.gd · hit / fruit_landed",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/world/splash_01.wav",
+          "seconds": 0.45,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/splash_02.wav",
+          "seconds": 0.45,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/world/splash_03.wav",
+          "seconds": 0.45,
+          "sample_peak_dbfs": -12.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "reserved_asset",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "workshop.select_tail",
+      "category": "workshop",
+      "title": "Escolher rabiola",
+      "recipe": "paper_pickup",
+      "duration_requested": 0.45,
+      "variants": 2,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/workshop_model.gd · place_rod / hold_knot / release_knot / cut_at / hold_soul / release_soul / _finish / _lose",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/select_tail_01.wav",
+          "seconds": 0.45,
+          "sample_peak_dbfs": -10.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/select_tail_02.wav",
+          "seconds": 0.45,
+          "sample_peak_dbfs": -10.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "workshop.select_frame",
+      "category": "workshop",
+      "title": "Escolher gabarito",
+      "recipe": "wood",
+      "duration_requested": 0.25,
+      "variants": 2,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/workshop_model.gd · place_rod / hold_knot / release_knot / cut_at / hold_soul / release_soul / _finish / _lose",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/select_frame_01.wav",
+          "seconds": 0.25,
+          "sample_peak_dbfs": -10.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/select_frame_02.wav",
+          "seconds": 0.25,
+          "sample_peak_dbfs": -10.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "reserved_asset",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "workshop.rod_place",
+      "category": "workshop",
+      "title": "Encaixar vareta",
+      "recipe": "bamboo",
+      "duration_requested": 0.22,
+      "variants": 3,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/workshop_model.gd · place_rod / hold_knot / release_knot / cut_at / hold_soul / release_soul / _finish / _lose",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/rod_place_01.wav",
+          "seconds": 0.22,
+          "sample_peak_dbfs": -10.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/rod_place_02.wav",
+          "seconds": 0.22,
+          "sample_peak_dbfs": -10.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/rod_place_03.wav",
+          "seconds": 0.22,
+          "sample_peak_dbfs": -10.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "workshop.rod_fail",
+      "category": "workshop",
+      "title": "Vareta fora do encaixe",
+      "recipe": "wood_fail",
+      "duration_requested": 0.25,
+      "variants": 2,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/workshop_model.gd · place_rod / hold_knot / release_knot / cut_at / hold_soul / release_soul / _finish / _lose",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/rod_fail_01.wav",
+          "seconds": 0.25,
+          "sample_peak_dbfs": -10.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/rod_fail_02.wav",
+          "seconds": 0.25,
+          "sample_peak_dbfs": -10.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "workshop.knot_pull",
+      "category": "workshop",
+      "title": "Tensionar nó",
+      "recipe": "twang",
+      "duration_requested": 0.38,
+      "variants": 3,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/workshop_model.gd · place_rod / hold_knot / release_knot / cut_at / hold_soul / release_soul / _finish / _lose",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/knot_pull_01.wav",
+          "seconds": 0.38,
+          "sample_peak_dbfs": -10.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/knot_pull_02.wav",
+          "seconds": 0.38,
+          "sample_peak_dbfs": -10.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/knot_pull_03.wav",
+          "seconds": 0.38,
+          "sample_peak_dbfs": -10.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "workshop.knot_good",
+      "category": "workshop",
+      "title": "Nó correto",
+      "recipe": "knot",
+      "duration_requested": 0.3,
+      "variants": 3,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/workshop_model.gd · place_rod / hold_knot / release_knot / cut_at / hold_soul / release_soul / _finish / _lose",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/knot_good_01.wav",
+          "seconds": 0.3,
+          "sample_peak_dbfs": -10.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/knot_good_02.wav",
+          "seconds": 0.3,
+          "sample_peak_dbfs": -10.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/knot_good_03.wav",
+          "seconds": 0.3,
+          "sample_peak_dbfs": -10.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "workshop.paper_cut",
+      "category": "workshop",
+      "title": "Recortar papel",
+      "recipe": "paper_cut",
+      "duration_requested": 0.36,
+      "variants": 4,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/workshop_model.gd · place_rod / hold_knot / release_knot / cut_at / hold_soul / release_soul / _finish / _lose",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/paper_cut_01.wav",
+          "seconds": 0.36,
+          "sample_peak_dbfs": -10.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/paper_cut_02.wav",
+          "seconds": 0.36,
+          "sample_peak_dbfs": -10.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/paper_cut_03.wav",
+          "seconds": 0.36,
+          "sample_peak_dbfs": -10.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/paper_cut_04.wav",
+          "seconds": 0.36,
+          "sample_peak_dbfs": -10.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "workshop.paper_tear",
+      "category": "workshop",
+      "title": "Rasgar papel por erro",
+      "recipe": "tear",
+      "duration_requested": 0.5,
+      "variants": 3,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/workshop_model.gd · place_rod / hold_knot / release_knot / cut_at / hold_soul / release_soul / _finish / _lose",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/paper_tear_01.wav",
+          "seconds": 0.5,
+          "sample_peak_dbfs": -10.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/paper_tear_02.wav",
+          "seconds": 0.5,
+          "sample_peak_dbfs": -10.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/paper_tear_03.wav",
+          "seconds": 0.5,
+          "sample_peak_dbfs": -10.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "workshop.gust",
+      "category": "workshop",
+      "title": "Rajada no teste",
+      "recipe": "gust",
+      "duration_requested": 0.7,
+      "variants": 3,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/workshop_model.gd · place_rod / hold_knot / release_knot / cut_at / hold_soul / release_soul / _finish / _lose",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/gust_01.wav",
+          "seconds": 0.7,
+          "sample_peak_dbfs": -10.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/gust_02.wav",
+          "seconds": 0.7,
+          "sample_peak_dbfs": -10.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/gust_03.wav",
+          "seconds": 0.7,
+          "sample_peak_dbfs": -10.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "workshop.balance",
+      "category": "workshop",
+      "title": "Retomar equilíbrio",
+      "recipe": "balance",
+      "duration_requested": 0.4,
+      "variants": 2,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/workshop_model.gd · place_rod / hold_knot / release_knot / cut_at / hold_soul / release_soul / _finish / _lose",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/balance_01.wav",
+          "seconds": 0.4,
+          "sample_peak_dbfs": -10.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/balance_02.wav",
+          "seconds": 0.4,
+          "sample_peak_dbfs": -10.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "workshop.soul_charge",
+      "category": "workshop",
+      "title": "Carregar elo",
+      "recipe": "soul",
+      "duration_requested": 1.5,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/workshop_model.gd · place_rod / hold_knot / release_knot / cut_at / hold_soul / release_soul / _finish / _lose",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/soul_charge_01.wav",
+          "seconds": 1.5,
+          "sample_peak_dbfs": -10.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "workshop.stage_done",
+      "category": "workshop",
+      "title": "Etapa concluída",
+      "recipe": "stage",
+      "duration_requested": 0.65,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/workshop_model.gd · place_rod / hold_knot / release_knot / cut_at / hold_soul / release_soul / _finish / _lose",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/stage_done_01.wav",
+          "seconds": 0.65,
+          "sample_peak_dbfs": -10.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "workshop.birth",
+      "category": "workshop",
+      "title": "Nascimento do parceiro",
+      "recipe": "birth",
+      "duration_requested": 2.4,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/workshop_model.gd · place_rod / hold_knot / release_knot / cut_at / hold_soul / release_soul / _finish / _lose",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/birth_01.wav",
+          "seconds": 2.4,
+          "sample_peak_dbfs": -10.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "workshop.abort",
+      "category": "workshop",
+      "title": "Cancelar montagem",
+      "recipe": "page_close",
+      "duration_requested": 0.45,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/workshop_model.gd · place_rod / hold_knot / release_knot / cut_at / hold_soul / release_soul / _finish / _lose",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/abort_01.wav",
+          "seconds": 0.45,
+          "sample_peak_dbfs": -10.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "workshop.restock",
+      "category": "workshop",
+      "title": "Repor materiais",
+      "recipe": "bag",
+      "duration_requested": 0.5,
+      "variants": 2,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/workshop_model.gd · place_rod / hold_knot / release_knot / cut_at / hold_soul / release_soul / _finish / _lose",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/restock_01.wav",
+          "seconds": 0.5,
+          "sample_peak_dbfs": -10.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/workshop/restock_02.wav",
+          "seconds": 0.5,
+          "sample_peak_dbfs": -10.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.encounter",
+      "category": "battle",
+      "title": "Encontro selvagem",
+      "recipe": "encounter",
+      "duration_requested": 0.85,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/encounter_01.wav",
+          "seconds": 0.85,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.launch",
+      "category": "battle",
+      "title": "Lançar pipa",
+      "recipe": "launch",
+      "duration_requested": 0.7,
+      "variants": 3,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/launch_01.wav",
+          "seconds": 0.7,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/launch_02.wav",
+          "seconds": 0.7,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/launch_03.wav",
+          "seconds": 0.7,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.round_start",
+      "category": "battle",
+      "title": "Início de rodada",
+      "recipe": "round",
+      "duration_requested": 0.75,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/round_start_01.wav",
+          "seconds": 0.75,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.attack",
+      "category": "battle",
+      "title": "Ataque sem confirmar dano",
+      "recipe": "swing",
+      "duration_requested": 0.25,
+      "variants": 4,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/attack_01.wav",
+          "seconds": 0.25,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/attack_02.wav",
+          "seconds": 0.25,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/attack_03.wav",
+          "seconds": 0.25,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/attack_04.wav",
+          "seconds": 0.25,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.line_hit",
+      "category": "battle",
+      "title": "Acertou a linha",
+      "recipe": "line_hit",
+      "duration_requested": 0.28,
+      "variants": 4,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/line_hit_01.wav",
+          "seconds": 0.28,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/line_hit_02.wav",
+          "seconds": 0.28,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/line_hit_03.wav",
+          "seconds": 0.28,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/line_hit_04.wav",
+          "seconds": 0.28,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.hull_hit",
+      "category": "battle",
+      "title": "Dano na estrutura",
+      "recipe": "hull",
+      "duration_requested": 0.38,
+      "variants": 4,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/hull_hit_01.wav",
+          "seconds": 0.38,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/hull_hit_02.wav",
+          "seconds": 0.38,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/hull_hit_03.wav",
+          "seconds": 0.38,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/hull_hit_04.wav",
+          "seconds": 0.38,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.critical",
+      "category": "battle",
+      "title": "Acerto crítico",
+      "recipe": "critical",
+      "duration_requested": 0.48,
+      "variants": 3,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/critical_01.wav",
+          "seconds": 0.48,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/critical_02.wav",
+          "seconds": 0.48,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/critical_03.wav",
+          "seconds": 0.48,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.line_snap",
+      "category": "battle",
+      "title": "Linha rompida",
+      "recipe": "snap",
+      "duration_requested": 0.5,
+      "variants": 3,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/line_snap_01.wav",
+          "seconds": 0.5,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/line_snap_02.wav",
+          "seconds": 0.5,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/line_snap_03.wav",
+          "seconds": 0.5,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.hull_break",
+      "category": "battle",
+      "title": "Estrutura quebrada",
+      "recipe": "break",
+      "duration_requested": 0.75,
+      "variants": 3,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/hull_break_01.wav",
+          "seconds": 0.75,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/hull_break_02.wav",
+          "seconds": 0.75,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/hull_break_03.wav",
+          "seconds": 0.75,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.pull",
+      "category": "battle",
+      "title": "Puxão de linha",
+      "recipe": "pull",
+      "duration_requested": 0.6,
+      "variants": 3,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/pull_01.wav",
+          "seconds": 0.6,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/pull_02.wav",
+          "seconds": 0.6,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/pull_03.wav",
+          "seconds": 0.6,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.dodge",
+      "category": "battle",
+      "title": "Esquiva ativada",
+      "recipe": "dodge",
+      "duration_requested": 0.3,
+      "variants": 3,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/dodge_01.wav",
+          "seconds": 0.3,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/dodge_02.wav",
+          "seconds": 0.3,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/dodge_03.wav",
+          "seconds": 0.3,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.evade",
+      "category": "battle",
+      "title": "Golpe evitado",
+      "recipe": "evade",
+      "duration_requested": 0.35,
+      "variants": 2,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/evade_01.wav",
+          "seconds": 0.35,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/evade_02.wav",
+          "seconds": 0.35,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.guard",
+      "category": "battle",
+      "title": "Guarda de 0,5 s",
+      "recipe": "guard",
+      "duration_requested": 0.5,
+      "variants": 2,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/guard_01.wav",
+          "seconds": 0.5,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/guard_02.wav",
+          "seconds": 0.5,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.block",
+      "category": "battle",
+      "title": "Golpe bloqueado",
+      "recipe": "block",
+      "duration_requested": 0.35,
+      "variants": 3,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/block_01.wav",
+          "seconds": 0.35,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/block_02.wav",
+          "seconds": 0.35,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/block_03.wav",
+          "seconds": 0.35,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.counter",
+      "category": "battle",
+      "title": "Janela de contra-ataque",
+      "recipe": "counter",
+      "duration_requested": 0.45,
+      "variants": 2,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/counter_01.wav",
+          "seconds": 0.45,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/counter_02.wav",
+          "seconds": 0.45,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.energy_ready",
+      "category": "battle",
+      "title": "Energia suficiente",
+      "recipe": "ready",
+      "duration_requested": 0.35,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/energy_ready_01.wav",
+          "seconds": 0.35,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.no_energy",
+      "category": "battle",
+      "title": "Sem energia",
+      "recipe": "deny",
+      "duration_requested": 0.18,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/no_energy_01.wav",
+          "seconds": 0.18,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.cooldown_ready",
+      "category": "battle",
+      "title": "Recarga concluída",
+      "recipe": "ready",
+      "duration_requested": 0.24,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/cooldown_ready_01.wav",
+          "seconds": 0.24,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.signature_charge",
+      "category": "battle",
+      "title": "Preparação de assinatura",
+      "recipe": "charge",
+      "duration_requested": 1.5,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/signature_charge_01.wav",
+          "seconds": 1.5,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.signature_banner",
+      "category": "battle",
+      "title": "Entrada do banner",
+      "recipe": "banner",
+      "duration_requested": 0.55,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/signature_banner_01.wav",
+          "seconds": 0.55,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.signature_rabbito",
+      "category": "battle",
+      "title": "Rabbito · Pulo do Elo",
+      "recipe": "rabbit",
+      "duration_requested": 1.0,
+      "variants": 2,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/signature_rabbito_01.wav",
+          "seconds": 1.0,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/signature_rabbito_02.wav",
+          "seconds": 1.0,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.signature_nozinho",
+      "category": "battle",
+      "title": "Nozinho · proposta de nó de vento",
+      "recipe": "knot_special",
+      "duration_requested": 1.1,
+      "variants": 2,
+      "notes": "",
+      "action_status": "legacy_or_proposed",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/signature_nozinho_01.wav",
+          "seconds": 1.1,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/signature_nozinho_02.wav",
+          "seconds": 1.1,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "reserved_asset",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.signature_lacertubo",
+      "category": "battle",
+      "title": "Lacertubo · pressão tubular",
+      "recipe": "pvc",
+      "duration_requested": 1.35,
+      "variants": 2,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/signature_lacertubo_01.wav",
+          "seconds": 1.35,
+          "sample_peak_dbfs": -7.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/battle/signature_lacertubo_02.wav",
+          "seconds": 1.35,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.boss_intro",
+      "category": "battle",
+      "title": "Entrada do Lacertubo",
+      "recipe": "boss",
+      "duration_requested": 1.8,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/boss_intro_01.wav",
+          "seconds": 1.8,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.boss_phase",
+      "category": "battle",
+      "title": "Mudança de fase",
+      "recipe": "phase",
+      "duration_requested": 1.15,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/boss_phase_01.wav",
+          "seconds": 1.15,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.low_line",
+      "category": "battle",
+      "title": "Linha em estado crítico",
+      "recipe": "low",
+      "duration_requested": 0.5,
+      "variants": 1,
+      "notes": "Alerta discreto: intervalo mínimo 6 s; não depender apenas de áudio.",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/low_line_01.wav",
+          "seconds": 0.5,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 6000,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.victory",
+      "category": "battle",
+      "title": "Vitória",
+      "recipe": "victory",
+      "duration_requested": 1.9,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/victory_01.wav",
+          "seconds": 1.9,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.defeat",
+      "category": "battle",
+      "title": "Derrota",
+      "recipe": "defeat",
+      "duration_requested": 1.4,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/defeat_01.wav",
+          "seconds": 1.4,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "battle.flee",
+      "category": "battle",
+      "title": "Fuga concluída",
+      "recipe": "flee",
+      "duration_requested": 0.75,
+      "variants": 1,
+      "notes": "",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_model.gd · damage_applied / combat_feedback / _move_fighter / _signature_hit / _strike; morro_model.gd · _finish_round / _new_round",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/battle/flee_01.wav",
+          "seconds": 0.75,
+          "sample_peak_dbfs": -7.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "creature.rabbito",
+      "category": "creature",
+      "title": "Chamado · Rabbito",
+      "recipe": "creature",
+      "duration_requested": 0.7,
+      "variants": 3,
+      "notes": "Voz estilizada sintética provisória, não gravação nem design vocal aprovado.",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_view.gd · configure / _draw; workshop_birth_view.gd · nascimento",
+      "pitch": 1.3,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/creature/rabbito_01.wav",
+          "seconds": 0.7,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/creature/rabbito_02.wav",
+          "seconds": 0.7,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/creature/rabbito_03.wav",
+          "seconds": 0.7,
+          "sample_peak_dbfs": -12.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "creature.carcara",
+      "category": "creature",
+      "title": "Chamado · Carcará",
+      "recipe": "creature",
+      "duration_requested": 0.7,
+      "variants": 3,
+      "notes": "Voz estilizada sintética provisória, não gravação nem design vocal aprovado.",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_view.gd · configure / _draw; workshop_birth_view.gd · nascimento",
+      "pitch": 0.9,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/creature/carcara_01.wav",
+          "seconds": 0.7,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/creature/carcara_02.wav",
+          "seconds": 0.7,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/creature/carcara_03.wav",
+          "seconds": 0.7,
+          "sample_peak_dbfs": -12.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "creature.azulao",
+      "category": "creature",
+      "title": "Chamado · Azulão",
+      "recipe": "creature",
+      "duration_requested": 0.7,
+      "variants": 3,
+      "notes": "Voz estilizada sintética provisória, não gravação nem design vocal aprovado.",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_view.gd · configure / _draw; workshop_birth_view.gd · nascimento",
+      "pitch": 1.15,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/creature/azulao_01.wav",
+          "seconds": 0.7,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/creature/azulao_02.wav",
+          "seconds": 0.7,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/creature/azulao_03.wav",
+          "seconds": 0.7,
+          "sample_peak_dbfs": -12.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "creature.mata",
+      "category": "creature",
+      "title": "Chamado · Mata Verde",
+      "recipe": "creature",
+      "duration_requested": 0.7,
+      "variants": 3,
+      "notes": "Voz estilizada sintética provisória, não gravação nem design vocal aprovado.",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_view.gd · configure / _draw; workshop_birth_view.gd · nascimento",
+      "pitch": 0.75,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/creature/mata_01.wav",
+          "seconds": 0.7,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/creature/mata_02.wav",
+          "seconds": 0.7,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/creature/mata_03.wav",
+          "seconds": 0.7,
+          "sample_peak_dbfs": -12.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "creature.raio",
+      "category": "creature",
+      "title": "Chamado · Raio de Sol",
+      "recipe": "creature",
+      "duration_requested": 0.7,
+      "variants": 3,
+      "notes": "Voz estilizada sintética provisória, não gravação nem design vocal aprovado.",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_view.gd · configure / _draw; workshop_birth_view.gd · nascimento",
+      "pitch": 1.45,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/creature/raio_01.wav",
+          "seconds": 0.7,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/creature/raio_02.wav",
+          "seconds": 0.7,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/creature/raio_03.wav",
+          "seconds": 0.7,
+          "sample_peak_dbfs": -12.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "creature.lacertubo",
+      "category": "creature",
+      "title": "Chamado · Lacertubo",
+      "recipe": "creature",
+      "duration_requested": 1.0,
+      "variants": 3,
+      "notes": "Voz estilizada sintética provisória, não gravação nem design vocal aprovado.",
+      "action_status": "existing",
+      "source": "godot/scripts/campaign/encounter_view.gd · configure / _draw; workshop_birth_view.gd · nascimento",
+      "pitch": 0.48,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/creature/lacertubo_01.wav",
+          "seconds": 1.0,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/creature/lacertubo_02.wav",
+          "seconds": 1.0,
+          "sample_peak_dbfs": -12.0
+        },
+        {
+          "path": "res://assets/audio/sfx-v1/creature/lacertubo_03.wav",
+          "seconds": 1.0,
+          "sample_peak_dbfs": -12.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "SFX",
+      "loop": false,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 4,
+      "pitch_variation": 0.025,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "ambience.wind",
+      "category": "ambience",
+      "title": "Vento de campo",
+      "recipe": "wind",
+      "duration_requested": 12,
+      "variants": 1,
+      "notes": "Loop procedural periódico; não contém música nem pessoas.",
+      "action_status": "showcase_or_campaign",
+      "source": "godot/scripts/overworld/ · starter_neighborhood / cave_water / cave_waterfall / lava_showcase / pier_play; areas are not all campaign-enabled",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/ambience/wind_01.wav",
+          "seconds": 12.0,
+          "sample_peak_dbfs": -21.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "Ambience",
+      "loop": true,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 1,
+      "pitch_variation": 0,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "ambience.leaves",
+      "category": "ambience",
+      "title": "Folhagem",
+      "recipe": "leaves",
+      "duration_requested": 12,
+      "variants": 1,
+      "notes": "Loop procedural periódico; não contém música nem pessoas.",
+      "action_status": "showcase_or_campaign",
+      "source": "godot/scripts/overworld/ · starter_neighborhood / cave_water / cave_waterfall / lava_showcase / pier_play; areas are not all campaign-enabled",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/ambience/leaves_01.wav",
+          "seconds": 12.0,
+          "sample_peak_dbfs": -21.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "Ambience",
+      "loop": true,
+      "integration_status": "connected_in_native_client",
+      "cooldown_ms": 100,
+      "max_voices": 1,
+      "pitch_variation": 0,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "ambience.water",
+      "category": "ambience",
+      "title": "Água corrente",
+      "recipe": "water",
+      "duration_requested": 12,
+      "variants": 1,
+      "notes": "Loop procedural periódico; não contém música nem pessoas.",
+      "action_status": "showcase_or_campaign",
+      "source": "godot/scripts/overworld/ · starter_neighborhood / cave_water / cave_waterfall / lava_showcase / pier_play; areas are not all campaign-enabled",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/ambience/water_01.wav",
+          "seconds": 12.0,
+          "sample_peak_dbfs": -21.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "Ambience",
+      "loop": true,
+      "integration_status": "reserved_asset",
+      "cooldown_ms": 100,
+      "max_voices": 1,
+      "pitch_variation": 0,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "ambience.cave",
+      "category": "ambience",
+      "title": "Ar de caverna",
+      "recipe": "cave",
+      "duration_requested": 12,
+      "variants": 1,
+      "notes": "Loop procedural periódico; não contém música nem pessoas.",
+      "action_status": "showcase_or_campaign",
+      "source": "godot/scripts/overworld/ · starter_neighborhood / cave_water / cave_waterfall / lava_showcase / pier_play; areas are not all campaign-enabled",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/ambience/cave_01.wav",
+          "seconds": 12.0,
+          "sample_peak_dbfs": -21.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "Ambience",
+      "loop": true,
+      "integration_status": "reserved_asset",
+      "cooldown_ms": 100,
+      "max_voices": 1,
+      "pitch_variation": 0,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "ambience.lava",
+      "category": "ambience",
+      "title": "Borbulhar vulcânico",
+      "recipe": "lava",
+      "duration_requested": 12,
+      "variants": 1,
+      "notes": "Loop procedural periódico; não contém música nem pessoas.",
+      "action_status": "showcase_or_campaign",
+      "source": "godot/scripts/overworld/ · starter_neighborhood / cave_water / cave_waterfall / lava_showcase / pier_play; areas are not all campaign-enabled",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/ambience/lava_01.wav",
+          "seconds": 12.0,
+          "sample_peak_dbfs": -21.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "Ambience",
+      "loop": true,
+      "integration_status": "reserved_asset",
+      "cooldown_ms": 100,
+      "max_voices": 1,
+      "pitch_variation": 0,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "ambience.coast",
+      "category": "ambience",
+      "title": "Água do cais",
+      "recipe": "coast",
+      "duration_requested": 12,
+      "variants": 1,
+      "notes": "Loop procedural periódico; não contém música nem pessoas.",
+      "action_status": "showcase_or_campaign",
+      "source": "godot/scripts/overworld/ · starter_neighborhood / cave_water / cave_waterfall / lava_showcase / pier_play; areas are not all campaign-enabled",
+      "pitch": 1.0,
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/ambience/coast_01.wav",
+          "seconds": 12.0,
+          "sample_peak_dbfs": -21.0
+        }
+      ],
+      "method": "original procedural DSP",
+      "bus": "Ambience",
+      "loop": true,
+      "integration_status": "reserved_asset",
+      "cooldown_ms": 100,
+      "max_voices": 1,
+      "pitch_variation": 0,
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "texture.paper",
+      "title": "Papel e recortes",
+      "category": "texture",
+      "notes": "Textura gerada para escuta e recorte; não é um one-shot isolado nem loop final aprovado.",
+      "method": "Stable Audio Open 1.0 via ComfyUI local",
+      "prompt": "Close dry foley recording of thin paper being gently crumpled, handled, folded and cut with scissors, several distinct short papery rustles and crisp cuts with small quiet pauses between gestures. Handmade paper kite craft table. No voices, no music, no room chatter, no other background noise.",
+      "seed": 28102901,
+      "prompt_id": "73c61117-e3cf-4fc9-bc69-f5e358ba0728",
+      "original": "art\\sfx-study-v1\\ai-originals\\paper\\73c61117_000.flac",
+      "workflow": "art/sfx-study-v1/workflows/texture-paper.json",
+      "action_status": "layer_candidate",
+      "source": "Workshop and overworld materials; audition before layering",
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/texture/paper_01.wav",
+          "seconds": 7.9877,
+          "sample_peak_dbfs": -12
+        }
+      ],
+      "bus": "SFX",
+      "loop": false,
+      "cooldown_ms": 500,
+      "max_voices": 1,
+      "pitch_variation": 0,
+      "integration_status": "reserved_asset",
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "texture.bamboo",
+      "title": "Varetas e madeira",
+      "category": "texture",
+      "notes": "Textura gerada para escuta e recorte; não é um one-shot isolado nem loop final aprovado.",
+      "method": "Stable Audio Open 1.0 via ComfyUI local",
+      "prompt": "Dry close-up foley recording of small thin bamboo sticks gently tapping and clicking against each other, tying a taut cotton string around bamboo rods, slight delicate wooden creaks, separated short natural gestures with quiet pauses, intimate craft workshop sound. No music, no voice, no melody, no background chatter.",
+      "seed": 28102902,
+      "prompt_id": "d47329b6-beed-4c59-bdc4-d0bef2060133",
+      "original": "art\\sfx-study-v1\\ai-originals\\bamboo\\d47329b6_000.flac",
+      "workflow": "art/sfx-study-v1/workflows/texture-bamboo.json",
+      "action_status": "layer_candidate",
+      "source": "Workshop and overworld materials; audition before layering",
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/texture/bamboo_01.wav",
+          "seconds": 7.9877,
+          "sample_peak_dbfs": -12
+        }
+      ],
+      "bus": "SFX",
+      "loop": false,
+      "cooldown_ms": 500,
+      "max_voices": 1,
+      "pitch_variation": 0,
+      "integration_status": "reserved_asset",
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "texture.leaves",
+      "title": "Folhagem ao vento",
+      "category": "texture",
+      "notes": "Textura gerada para escuta e recorte; não é um one-shot isolado nem loop final aprovado.",
+      "method": "Stable Audio Open 1.0 via ComfyUI local",
+      "prompt": "Natural ambience of a gentle breeze through leafy tree branches, soft leaves rustling in small waves of wind, intimate quiet garden, steady airy texture, no birds, no voices, no traffic, no music, no sudden loud gusts.",
+      "seed": 28102903,
+      "prompt_id": "d248f156-5a77-4926-bb9c-9f956ffe4b71",
+      "original": "art\\sfx-study-v1\\ai-originals\\leaves\\d248f156_000.flac",
+      "workflow": "art/sfx-study-v1/workflows/texture-leaves.json",
+      "action_status": "layer_candidate",
+      "source": "Workshop and overworld materials; audition before layering",
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/texture/leaves_01.wav",
+          "seconds": 11.9815,
+          "sample_peak_dbfs": -12
+        }
+      ],
+      "bus": "Ambience",
+      "loop": false,
+      "cooldown_ms": 500,
+      "max_voices": 1,
+      "pitch_variation": 0,
+      "integration_status": "reserved_asset",
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "texture.stream",
+      "title": "Riacho",
+      "category": "texture",
+      "notes": "Textura gerada para escuta e recorte; não é um one-shot isolado nem loop final aprovado.",
+      "method": "Stable Audio Open 1.0 via ComfyUI local",
+      "prompt": "A small shallow stream trickling and bubbling over rounded stones, close clear water texture, continuous soft flowing water, peaceful creek, no music, no voices, no birds, no wind, no splashing people.",
+      "seed": 28102904,
+      "prompt_id": "d6cc14de-3f31-40e2-a47b-636efe8f4a1b",
+      "original": "art\\sfx-study-v1\\ai-originals\\stream\\d6cc14de_000.flac",
+      "workflow": "art/sfx-study-v1/workflows/texture-stream.json",
+      "action_status": "layer_candidate",
+      "source": "Workshop and overworld materials; audition before layering",
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/texture/stream_01.wav",
+          "seconds": 11.9815,
+          "sample_peak_dbfs": -12
+        }
+      ],
+      "bus": "Ambience",
+      "loop": false,
+      "cooldown_ms": 500,
+      "max_voices": 1,
+      "pitch_variation": 0,
+      "integration_status": "reserved_asset",
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "texture.coast",
+      "title": "Água sob o cais",
+      "category": "texture",
+      "notes": "Textura gerada para escuta e recorte; não é um one-shot isolado nem loop final aprovado.",
+      "method": "Stable Audio Open 1.0 via ComfyUI local",
+      "prompt": "Soft small waves of water gently lapping against wooden pier posts in a quiet sheltered harbor, continuous calm water movement with occasional gentle wooden creak, no people, no boat engines, no seagulls, no music.",
+      "seed": 28102905,
+      "prompt_id": "875a69a8-94cb-4d57-a787-f254936899c1",
+      "original": "art\\sfx-study-v1\\ai-originals\\coast\\875a69a8_000.flac",
+      "workflow": "art/sfx-study-v1/workflows/texture-coast.json",
+      "action_status": "layer_candidate",
+      "source": "Workshop and overworld materials; audition before layering",
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/texture/coast_01.wav",
+          "seconds": 11.9815,
+          "sample_peak_dbfs": -12
+        }
+      ],
+      "bus": "Ambience",
+      "loop": false,
+      "cooldown_ms": 500,
+      "max_voices": 1,
+      "pitch_variation": 0,
+      "integration_status": "reserved_asset",
+      "review_status": "technical_pass_listening_pending"
+    },
+    {
+      "id": "texture.cave",
+      "title": "Ar e goteiras de caverna",
+      "category": "texture",
+      "notes": "Textura gerada para escuta e recorte; não é um one-shot isolado nem loop final aprovado.",
+      "method": "Stable Audio Open 1.0 via ComfyUI local",
+      "prompt": "Quiet cavern ambience, soft low air movement and sparse single water drops falling into a shallow pool, subtle natural stone reverberation, tranquil mysterious spacious cave, no voices, no music, no dramatic rumble, no monsters.",
+      "seed": 28102906,
+      "prompt_id": "82fb9d27-a3f3-4a4f-9388-b74515384738",
+      "original": "art\\sfx-study-v1\\ai-originals\\cave\\82fb9d27_000.flac",
+      "workflow": "art/sfx-study-v1/workflows/texture-cave.json",
+      "action_status": "layer_candidate",
+      "source": "Workshop and overworld materials; audition before layering",
+      "files": [
+        {
+          "path": "res://assets/audio/sfx-v1/texture/cave_01.wav",
+          "seconds": 11.9815,
+          "sample_peak_dbfs": -12
+        }
+      ],
+      "bus": "Ambience",
+      "loop": false,
+      "cooldown_ms": 500,
+      "max_voices": 1,
+      "pitch_variation": 0,
+      "integration_status": "reserved_asset",
+      "review_status": "technical_pass_listening_pending"
+    }
+  ],
+  "event_count": 115,
+  "file_count": 215,
+  "sources": "209 original procedural DSP files plus six locally generated Stable Audio Open textures. No commercial game samples.",
+  "technical_review": "Finite signals, non-silence, conservative sample peaks, PCM decode. Musical/perceptual quality requires listening.",
+  "note": "Mapped hooks indicate candidate consumers, not implemented wiring. Existing/future status refers to the action, not audio integration.",
+  "model_source": "https://huggingface.co/Comfy-Org/stable-audio-open-1.0"
+}

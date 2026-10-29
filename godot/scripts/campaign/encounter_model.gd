@@ -19,6 +19,7 @@ func _apply_hit(hit: Dictionary) -> void:
 	var amount: float = previous - target[field]
 	if amount > 0:
 		var event := {"amount":amount,"body":hit.body,"point":hit.get("point",Vector2(target.x,target.y)),"player":is_same(target,p),"critical":hit.get("critical",false),"color":hit.get("color",0),"kind":"cut" if not hit.body else "hit","cut_line":target.hp<=0}
+		event.broke_hull = bool(hit.body) and target.hull <= 0
 		damage_applied.emit(event)
 
 static func level_for_xp(xp: float) -> int:
