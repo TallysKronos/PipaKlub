@@ -136,8 +136,7 @@ func _copy(text:String,parent:Node,font_size:int,color:Color,font:Font=null,wrap
 	label.add_theme_font_size_override("font_size",font_size)
 	label.add_theme_color_override("font_color",color)
 	parent.add_child(label)
-# Board: the world stays visible under an even ink veil with a fine dot screen.
+# Board: the world stays visible under an ink veil with the manga print (halftone, speed lines).
 func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO, size), Tokens.VEU)
-	for x in range(12,int(size.x),18):
-		for y in range(12,int(size.y),18):draw_circle(Vector2(x,y),1.2,Color(Hud.PAPER,.07))
+	preload("res://scripts/campaign/battle_ink.gd").menu_print(self,size,Vector2(size.x*.16,size.y*.12),.12,.14)

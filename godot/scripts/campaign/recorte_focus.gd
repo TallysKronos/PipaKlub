@@ -8,6 +8,8 @@ var reduced_motion := false
 var marker: Control
 var frame: NinePatchRect
 var brush: TextureRect
+## Board: a short yellow brush stroke under the focused label.
+var underline: TextureRect
 var active := false
 var _tween: Tween
 
@@ -26,9 +28,17 @@ func _ready() -> void:
 		add_child(frame)
 	if (target is Slider and not target.editable) or (target is CheckBox and target.disabled): target.modulate = Tokens.alpha(Tokens.UNTINTED,.5)
 	if not target is PanelContainer:
-		marker = Marker.new()
+		# Board: the focused item points with a coral ▶ instead of the rabiola spikes.
+		marker = Control.new()
+		marker.mouse_filter = MOUSE_FILTER_IGNORE
+		marker.size = Vector2(16,18)
 		marker.modulate.a = 0
+		marker.draw.connect(func():
+			var arrow := PackedVector2Array([Vector2(0,0),Vector2(15,9),Vector2(0,18)])
+			marker.draw_colored_polygon(arrow,Tokens.RABIOLA))
 		add_child(marker)
+		# Tabs are short: the ▶ would crowd the label, the yellow stroke is enough.
+		if target.theme_type_variation == "RecorteTabButton": marker.hide()
 		target.focus_entered.connect(refresh_focus)
 		target.focus_exited.connect(refresh_focus)
 		target.mouse_entered.connect(refresh_focus.call_deferred)
@@ -44,6 +54,13 @@ func _ready() -> void:
 			brush.mouse_filter = MOUSE_FILTER_IGNORE
 			brush.show_behind_parent = true
 			target.add_child(brush)
+			underline = TextureRect.new()
+			underline.texture = Ink.texture("selection-2")
+			underline.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			underline.stretch_mode = TextureRect.STRETCH_SCALE
+			underline.modulate = Tokens.alpha(Tokens.SOL,0)
+			underline.mouse_filter = MOUSE_FILTER_IGNORE
+			add_child(underline)
 			target.button_down.connect(refresh_focus)
 			target.button_up.connect(refresh_focus)
 	target.resized.connect(layout_art)
@@ -58,7 +75,12 @@ func layout_art() -> void:
 		var scale_factor := .25
 		frame.scale = Vector2.ONE * scale_factor
 		frame.size = size / scale_factor
-	if marker != null: marker.position = Vector2(size.x-10,size.y/2-17)
+	if marker != null: marker.position = Vector2(size.x-34,size.y/2-9)
+	if underline != null:
+		var start := 20.0
+		if target is Button and target.icon != null: start += 40
+		underline.position = Vector2(start,size.y-15)
+		underline.size = Vector2(minf(96,size.x*.32),12)
 	if brush != null:
 		brush.position = Vector2(-8,-7)
 		brush.size = size + Vector2(16,14)
@@ -71,10 +93,11 @@ func refresh_focus() -> void:
 	_tween = create_tween().set_parallel(true)
 	var duration := .08 if reduced_motion else .12
 	if target is Button and not target is CheckButton and not target is CheckBox:
-		var displacement := Vector2.ZERO if reduced_motion or not active else Vector2(24,-5)
+		var displacement := Vector2.ZERO if reduced_motion or not active else Vector2(10,-2)
 		if target.is_pressed() and not reduced_motion: displacement += Vector2(4,4)
 		_tween.tween_property(target,"offset_transform_position",displacement,duration).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 		_tween.tween_property(brush,"modulate:a",1.0 if active else 0.0,duration)
+		if underline != null: _tween.tween_property(underline,"modulate:a",1.0 if active else 0.0,duration)
 	_tween.tween_property(marker,"modulate:a",1.0 if active else 0.0,duration).set_delay(0 if reduced_motion else .04)
 
 func set_reduced_motion(value: bool) -> void:

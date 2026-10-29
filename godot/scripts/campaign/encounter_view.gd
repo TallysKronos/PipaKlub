@@ -470,7 +470,10 @@ func _draw_field_background() -> void:
 	draw_texture_rect_region(background, bounds, source)
 
 func _draw_status() -> void:
-	if not model.outcome.is_empty():return
+	# Result screens: the manga print (halftone, speed lines) sits in the background, under every card.
+	if not model.outcome.is_empty():
+		Ink.menu_print(self,size,Vector2(size.x*.25,0),.16 if model.outcome=="won" else .06,.12)
+		return
 	var actors:Array=model.actors if model.get("actors")!=null else [model.p,model.q]
 	var faces:Array=[]
 	var names:Array=[]

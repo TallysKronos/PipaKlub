@@ -10,6 +10,7 @@ func _ready() -> void:
 func _draw() -> void:
 	var w := size.x
 	var h := size.y
+	preload("res://scripts/campaign/battle_ink.gd").menu_print(self,size,Vector2(w*.2,h*.1),.10,.14)
 	draw_colored_polygon(PackedVector2Array([Vector2(w * .68, 0), Vector2(w, 0), Vector2(w, h), Vector2(w * .92, h), Vector2(w * .53, h * .22)]), Tokens.alpha(Tokens.PAPEL, .03))
 	draw_colored_polygon(PackedVector2Array([Vector2(w * .82, 0), Vector2(w * .86, 0), Vector2(w * .47, h), Vector2(w * .43, h)]), Tokens.alpha(Tokens.RABIOLA, .03))
 	var center := Vector2(w * .91, h * .24)

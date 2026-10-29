@@ -39,6 +39,18 @@ static func plate(canvas: CanvasItem, rect: Rect2, fill: Color, stroke: Color = 
 	canvas.draw_polyline(points, BLACK, 2, true)
 	if stroke != BLACK and stroke != fill and stroke != Tokens.TINTA:
 		canvas.draw_rect(Rect2(rect.position + Vector2(14, -3), Vector2(minf(110, rect.size.x * .32), 5)), stroke)
+# Menu print layer (approved board): the manga effect lives in the background only, an even
+# halftone ramp plus faint concentration lines; cards, bars and text stay clean on top.
+static var _ramp: Texture2D
+static var _lines: Texture2D
+static func menu_print(canvas: CanvasItem, size: Vector2, focus: Vector2, lines: float = .10, dots: float = .10) -> void:
+	if _ramp == null:
+		_ramp = load("res://assets/ui/recorte-v1/ink/halftone/dots-ramp.png")
+		_lines = load("res://assets/ui/recorte-v1/ink/speedlines/concentration.png")
+	for x in range(0, int(size.x)+1, 256):
+		for y in range(0, int(size.y)+1, 256): canvas.draw_texture_rect(_ramp, Rect2(x, y, 256, 256), false, Tokens.alpha(Tokens.PAPEL, dots))
+	var extent := maxf(size.x, size.y)*1.4
+	if lines > 0: canvas.draw_texture_rect(_lines, Rect2(focus-Vector2.ONE*extent/2, Vector2.ONE*extent), false, Tokens.alpha(Tokens.PAPEL, lines))
 static func ellipsis(text: String, font: Font, font_size: int, width: float) -> String:
 	var result := text
 	while not result.is_empty() and font.get_string_size(result + ("…" if result != text else ""), HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x > width: result = result.left(-1)

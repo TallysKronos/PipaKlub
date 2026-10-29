@@ -56,19 +56,20 @@ func meter(parent:Node,value:float,maximum:float) -> ProgressBar:
 
 const ITEM_IDS:={"Rabiola de Mata verde":"rabiola-mata","Rabiola de Lacertubo":"rabiola-lacertubo","Rabiola de Carcará":"rabiola-basica","Rabiola de Raio de sol":"rabiola-raio"}
 
-# "NOVO!" / "NÍVEL!" ink splash sticker from the approved board.
+# "NOVO!" / "NÍVEL!" sticker from the Recorte ink set, tilted like the approved board.
 func splash(parent:Node,text:String,at:Vector2) -> Control:
 	var sticker:=Control.new()
 	sticker.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	sticker.position=at
-	sticker.size=Vector2(104,60)
+	sticker.size=Vector2(110,110)
+	sticker.rotation=deg_to_rad(10)
 	sticker.z_index=2
+	var art:Texture2D=load("res://assets/ui/recorte-v1/ink/stickers/sticker-new.png" if text=="NOVO!" else "res://assets/ui/recorte-v1/ink/stickers/sticker-level.png")
 	sticker.draw.connect(func():
-		sticker.draw_texture_rect(Hud.artwork("splat"),Rect2(Vector2(-4,-6),sticker.size+Vector2(8,12)),false,Hud.PAPER)
-		sticker.draw_texture_rect(Hud.artwork("splat"),Rect2(Vector2.ZERO,sticker.size),false,Hud.INK)
-		var font:=Hud.lettering()
-		var width:=font.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,26).x
-		sticker.draw_string(font,Vector2((sticker.size.x-width)/2,39),text,HORIZONTAL_ALIGNMENT_LEFT,-1,26,Hud.PAPER))
+		sticker.draw_texture_rect(art,Rect2(Vector2.ZERO,sticker.size),false)
+		var font:=Hud.font(true)
+		var width:=font.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,22).x
+		sticker.draw_string(font,Vector2((sticker.size.x-width)/2,62),text,HORIZONTAL_ALIGNMENT_LEFT,-1,22,Hud.PAPER))
 	parent.add_child(sticker)
 	return sticker
 
@@ -158,7 +159,7 @@ func _ready() -> void:
 			var holder:=Node2D.new()
 			plate.add_child(holder)
 			splash(holder,"NOVO!",Vector2.ZERO)
-			var place:=func():holder.position=Vector2(plate.size.x-92,-30)
+			var place:=func():holder.position=Vector2(plate.size.x-70,-52)
 			plate.resized.connect(place)
 			place.call_deferred()
 		for item in items.slice(1):
