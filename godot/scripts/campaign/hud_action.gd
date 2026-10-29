@@ -1,9 +1,11 @@
 extends Control
-## Shared PIP-68 action. Reference volume 112×128 at 1080p; fixed art proportions.
+## Shared PIP-68 action. Drawn in a 112×128 local box, shown at 150×171 at 1080p (approved
+## HUD board: large illustrated disc, ring in the action colour, key sticker, cost pill).
 const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 const Ink = preload("res://scripts/campaign/battle_ink.gd")
 const Hud = preload("res://scripts/campaign/hud.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
+const SIZE := Vector2(150,171)
 var action_texture: Texture2D
 signal held_changed(held: bool)
 var title := "Cortar"
@@ -23,7 +25,7 @@ var cost := 0
 var enough_energy := true
 func _ready() -> void:
 	action_texture = load(Ink.ROOT+"actions-painted-v1/"+icon_id+".png")
-	custom_minimum_size = Vector2(112,128) * get_viewport_rect().size.y / 1080.0
+	custom_minimum_size = SIZE * get_viewport_rect().size.y / 1080.0
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	focus_mode = Control.FOCUS_ALL
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
@@ -39,19 +41,19 @@ func _process(dt: float) -> void:
 	if ready_flash > 0 or cooldown > 0: queue_redraw()
 func regions() -> Dictionary:
 	var f := size.y / 128.0
-	return {"caption":Rect2(0,112,112,16),"state":Rect2(30,42,52,42),"button":Rect2(0,0,112,112),"factor":f}
+	return {"caption":Rect2(0,108,112,20),"state":Rect2(70,60,32,26),"button":Rect2(4,2,104,100),"factor":f}
+const CENTER := Vector2(56,52)
 func button_polygon() -> PackedVector2Array:
-	if action_id == "signature": return PackedVector2Array([Vector2(56,0),Vector2(112,56),Vector2(56,112),Vector2(0,56)])
-	# The slanted shape, artwork and caption share the same x=56 center axis.
-	return PackedVector2Array([Vector2(22,24),Vector2(108,24),Vector2(90,112),Vector2(4,112)])
+	# Approved board: illustrated disc with a ring in the action colour; the special is a diamond.
+	if action_id == "signature": return PackedVector2Array([CENTER+Vector2(0,-50),CENTER+Vector2(50,0),CENTER+Vector2(0,50),CENTER+Vector2(-50,0)])
+	var points := PackedVector2Array()
+	for i in 40: points.append(CENTER+Vector2.from_angle(TAU*i/40.0)*48)
+	return points
 
 func fill_polygons(progress: float) -> Array[PackedVector2Array]:
 	var inset := PackedVector2Array()
-	var center := Vector2(56,56 if action_id=="signature" else 68)
-	for point in button_polygon(): inset.append(center+(point-center)*.90)
-	var low := 112.0
-	var high := 0.0 if action_id=="signature" else 24.0
-	var y := lerpf(low,high,clampf(progress,0,1))
+	for point in button_polygon(): inset.append(CENTER+(point-CENTER)*.90)
+	var y := lerpf(CENTER.y+50,CENTER.y-50,clampf(progress,0,1))
 	var band := PackedVector2Array([Vector2(-1,y),Vector2(113,y),Vector2(113,113),Vector2(-1,113)])
 	return Geometry2D.intersect_polygons(inset,band)
 
@@ -60,41 +62,53 @@ func _draw() -> void:
 	var readable:=ceili(14/maxf(.01,factor))
 	draw_set_transform(Vector2((size.x-112*factor)/2,0),0,Vector2.ONE*factor)
 	var color: Color = Ink.COLORS.get(icon_id,Tokens.CEU)
+	var special := action_id=="signature"
 	var points := button_polygon()
+	var shadow := PackedVector2Array()
+	for point in points: shadow.append(point+Vector2(3,4))
+	draw_colored_polygon(shadow,Tokens.NANQUIM)
 	draw_colored_polygon(points,Tokens.TINTA)
-	# Fill stays clipped inside the actual slanted silhouette, including the diamond.
+	# Fill stays clipped inside the actual silhouette, including the diamond.
 	var progress := charge if charge>0 else 1-cooldown/maxf(.01,cooldown_peak) if cooldown>0 else 0.0
 	for polygon in fill_polygons(progress):
 		draw_colored_polygon(polygon,Tokens.alpha(Tokens.CEU if charge>0 else color,.32))
+	var usable := enough_energy and lock_reason.is_empty()
+	var tint := Tokens.UNTINTED if usable and cooldown<=0 else Tokens.alpha(Tokens.UNTINTED,.45)
+	# Painted flat manga action art fills the disc; it keeps its own paper, bamboo and colours.
+	if action_texture != null: draw_texture_rect(action_texture,Rect2(CENTER-Vector2(40,40),Vector2(80,80)) if not special else Rect2(CENTER-Vector2(36,38),Vector2(72,72)),false,tint)
 	points.append(points[0])
-	draw_polyline(points,Tokens.NANQUIM,7,true)
-	draw_polyline(points,Tokens.CEU if active else Tokens.PAPEL if has_focus() or ready_flash>0 else color if selected else Tokens.TINTA_3,3,true)
-	var tint := Tokens.UNTINTED if enough_energy and lock_reason.is_empty() else Tokens.alpha(Tokens.UNTINTED,.4)
-	# Painted flat manga action art; preserve its own paper, bamboo and action colors.
-	var special := action_id=="signature"
-	if action_texture != null: draw_texture_rect(action_texture,Rect2(20,12,72,72) if special else Rect2(18,24,76,76),false,tint)
-	# Separate countdown badge: never mask the central picture or the caption.
+	draw_polyline(points,Tokens.NANQUIM,9,true)
+	draw_polyline(points,Tokens.CEU if active else Tokens.PAPEL if has_focus() or ready_flash>0 else color if usable else Tokens.TINTA_3,5 if selected or has_focus() or active else 4,true)
+	# Separate countdown badge: never mask the centre of the picture or the caption.
 	if cooldown>0:
-		draw_rect(Rect2(25,31,24,23),Tokens.NANQUIM)
-		draw_string(Tokens.label(),Vector2(32,49),str(ceili(cooldown)),HORIZONTAL_ALIGNMENT_LEFT,-1,22,Tokens.PAPEL)
-	# Cost stays inside the button; energy no longer resembles an external charge bar.
-	var cost_color := Tokens.PAPEL if enough_energy else Tokens.RABIOLA
-	var shift := Vector2(4,-13 if special else 0)
-	draw_line(Vector2(32,101)+shift,Vector2(73,101)+shift,Tokens.TINTA_3,1,true)
-	var bolt := PackedVector2Array([Vector2(43,92),Vector2(37,100),Vector2(42,100),Vector2(39,108),Vector2(48,97),Vector2(43,97)])
-	for i in bolt.size(): bolt[i]+=shift
+		var badge: Rect2 = regions().state
+		draw_rect(badge,Tokens.NANQUIM)
+		draw_rect(badge,Tokens.PAPEL,false,2)
+		var number := str(ceili(cooldown))
+		var nw := Tokens.label().get_string_size(number,HORIZONTAL_ALIGNMENT_LEFT,-1,22).x
+		draw_string(Tokens.label(),Vector2(badge.get_center().x-nw/2,badge.end.y-5),number,HORIZONTAL_ALIGNMENT_LEFT,-1,22,Tokens.PAPEL)
+	# Cost pill on the lower rim; coral when the energy is short (not only dimmer).
+	var pill := Rect2(CENTER+Vector2(-21,36 if not special else 30),Vector2(42,19))
+	draw_rect(pill,Tokens.NANQUIM)
+	draw_rect(pill,Tokens.SOL if enough_energy else Tokens.RABIOLA,false,2)
+	var bolt := PackedVector2Array([Vector2(8,1),Vector2(2,9),Vector2(7,9),Vector2(4,17),Vector2(13,6),Vector2(8,6)])
+	for i in bolt.size(): bolt[i]+=pill.position+Vector2(3,1)
 	draw_colored_polygon(bolt,Tokens.SOL if enough_energy else Tokens.RABIOLA)
-	draw_string(Tokens.label(),Vector2(51,107)+shift,str(cost),HORIZONTAL_ALIGNMENT_LEFT,-1,maxi(17,readable),cost_color)
-	# Glyph and caption never share the cooldown region. Keep the configured glyph native.
-	draw_rect(Rect2(77,13,34,7),color)
+	draw_string(Tokens.label(),pill.position+Vector2(18,16),str(cost),HORIZONTAL_ALIGNMENT_LEFT,-1,maxi(16,readable),Tokens.PAPEL if enough_energy else Tokens.RABIOLA)
+	# Key sticker on the upper-left rim, with the binding the player actually has.
 	var glyph := Controls.glyph(action_id)
-	if glyph != null: draw_texture_rect(glyph,Hud.fit_texture(glyph,Rect2(79,0,31,31)),false)
-	else: draw_string(Tokens.label(),Vector2(78,18),key_text,HORIZONTAL_ALIGNMENT_LEFT,-1,maxi(17,readable),Tokens.PAPEL)
-	var caption := "ESPECIAL" if action_id=="signature" else title.to_upper()
-	var font_size := maxi(18,readable)
+	# Long keys (Espaço, Shift) get a wider sticker so the glyph stays legible.
+	var sticker := Rect2(0,0,32 if glyph==null or glyph.get_width()<=glyph.get_height()*1.3 else 50,28)
+	draw_rect(Rect2(sticker.position+Vector2(2,2),sticker.size),Tokens.NANQUIM)
+	draw_rect(sticker,Tokens.PAPEL)
+	draw_rect(sticker,Tokens.NANQUIM,false,2)
+	if glyph != null: draw_texture_rect(glyph,Hud.fit_texture(glyph,sticker.grow(-3)),false)
+	else: draw_string(Tokens.label(),Vector2(6,21),key_text,HORIZONTAL_ALIGNMENT_LEFT,-1,maxi(16,readable),Tokens.NANQUIM)
+	var caption := "ESPECIAL" if special else title.to_upper()
+	var font_size := maxi(15,readable)
 	var w := Tokens.label().get_string_size(caption,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x
-	draw_string_outline(Tokens.label(),Vector2((112-w)/2,126),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,4,Tokens.NANQUIM)
-	draw_string(Tokens.label(),Vector2((112-w)/2,126),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,Tokens.PAPEL)
+	draw_string_outline(Tokens.label(),Vector2((112-w)/2,125),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,5,Tokens.NANQUIM)
+	draw_string(Tokens.label(),Vector2((112-w)/2,125),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,Tokens.PAPEL)
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		held_changed.emit(event.pressed)

@@ -149,10 +149,15 @@ func _ready() -> void:
 		resume_button.text = "Retomar" if paused else "Pausar")
 	resume_button.theme_type_variation = "RecorteSecondaryButton"
 	resume_button.custom_minimum_size.x = 150
+	# Board chips: the bound key as a glyph next to a short label.
+	resume_button.icon = Controls.glyph("pause")
+	resume_button.expand_icon = true
+	resume_button.add_theme_constant_override("icon_max_width",26)
+	resume_button.add_theme_font_size_override("font_size",18)
 	add_child(resume_button)
 	flee_button=Button.new()
 	Hud.navigation_button(flee_button,true)
-	flee_button.add_theme_font_size_override("font_size",14)
+	flee_button.add_theme_font_size_override("font_size",16)
 	flee_button.button_down.connect(func():flee_pointer=true)
 	flee_button.button_up.connect(func():flee_pointer=false)
 	add_child(flee_button)
@@ -217,7 +222,11 @@ func _layout_actions() -> void:
 	var result:bool=not model.outcome.is_empty()
 	if is_instance_valid(flee_button):
 		flee_button.visible=not result and model.get("actors")==null and not paused and not blocked
-		flee_button.text="Segure %s para fugir"%Controls.prompt("interact")
+		var flee_glyph:=Controls.glyph("interact")
+		flee_button.icon=flee_glyph
+		flee_button.expand_icon=flee_glyph!=null
+		flee_button.add_theme_constant_override("icon_max_width",26)
+		flee_button.text="Segure para fugir" if flee_glyph!=null else "Segure %s para fugir"%Controls.prompt("interact")
 		flee_button.position=Vector2(20,size.y-184)
 		flee_button.size=Vector2(250,40)
 	# Decorative strokes extend outside the content box. Only item lists scroll/clip.
@@ -230,12 +239,13 @@ func _layout_actions() -> void:
 	if is_instance_valid(reward_card):reward_card.custom_minimum_size.y=clampf(size.y*.56,390,490)
 	bottom_panel.offset_bottom = -8 if fighting else -12
 	status_row.visible = paused or blocked
-	var height:=size.y*.12 if fighting else maxf(140,footer_contents.get_combined_minimum_size().y+8)
+	# The illustrated action discs need 16.5% of the height (user-approved HUD board; was 12%).
+	var height:=size.y*.165 if fighting else maxf(140,footer_contents.get_combined_minimum_size().y+8)
 	bottom_panel.offset_top=bottom_panel.offset_bottom-height
 	var unit := size.y / 1080.0
-	command_row.add_theme_constant_override("separation", roundi(12 * unit))
+	command_row.add_theme_constant_override("separation", roundi(8 * unit))
 	for command in move_cards:
-		command.tile.custom_minimum_size = Vector2(112,128) * unit
+		command.tile.custom_minimum_size = command.tile.SIZE * unit
 		command.tile.size = command.tile.custom_minimum_size
 
 
@@ -478,9 +488,14 @@ func _draw_status() -> void:
 	for command in move_cards:
 		if _action_held(command.tile.action_id):cost=command.cost
 	_draw_phase()
-	CornerHud.draw_on(self,actors,faces,names,reward_player,model.duration,model.round_number if model.get("round_number")!=null else 1,model.rounds_to_win if model.get("rounds_to_win")!=null else 1,model.wind_strength(),cost)
+	CornerHud.draw_on(self,actors,faces,names,reward_player,model.duration,model.round_number if model.get("round_number")!=null else 1,model.rounds_to_win if model.get("rounds_to_win")!=null else 1,model.wind_strength(),cost,-1,_footer_top())
 	if flee_hold>0:
 		draw_arc(Vector2(286,size.y-160),14,-PI/2,-PI/2+TAU*flee_hold,32,Tokens.SOL,3,true)
+
+# While the pause/result footer is open the partner card rises above it instead of sitting under it.
+func _footer_top() -> float:
+	var fighting: bool = model.outcome.is_empty() and not paused and not blocked
+	return -1.0 if fighting or not is_instance_valid(bottom_panel) else bottom_panel.position.y-8
 
 func _draw_phase() -> void:
 	var message:=""
@@ -488,8 +503,11 @@ func _draw_phase() -> void:
 		message="EMPATE" if "empatada" in model.round_message else "CORTOU!" if model.round_message.begins_with(model.p.name+" venceu") else "RODADA PERDIDA"
 	elif model.intro>0:
 		message="LACERTUBO" if model.q.boss else "RODADA %d · %d"%[model.round_number if model.get("round_number")!=null else 1,mini(3,ceili(model.intro))]
-	elif launch_age<.4:message="JÁ!"
+	elif launch_age<.6:message="JÁ!"
 	if message.is_empty():return
+	if message=="JÁ!":
+		_draw_shout(message,launch_age/.6)
+		return
 	var rect:=_phase_rect()
 	if not rect.has_area():return
 	Ink.plate(self,rect,Tokens.TINTA,Tokens.TINTA)
@@ -501,6 +519,22 @@ func _draw_phase() -> void:
 			var actor_name:String=Ink.ellipsis(model.actors[index].name,Hud.font(true),14,70)
 			draw_string(Hud.font(true),Vector2(rect.position.x+16+index*180,rect.end.y-11),actor_name,HORIZONTAL_ALIGNMENT_LEFT,-1,14,Tokens.PAPEL)
 			CornerHud.diamonds(self,Vector2(rect.position.x+90+index*180,rect.end.y-15),model.actors[index].rounds,model.rounds_to_win,Tokens.CEU if index==0 else Tokens.RABIOLA)
+
+# Manga shout for the launch: Bangers in coral, thick ink outline, solid shadow, tilted, with a
+# short pop that reduced motion turns off. No plate, so it reads as lettering over the sky.
+func _draw_shout(message:String,t:float) -> void:
+	var font:=Hud.lettering()
+	var font_size:=roundi(size.y*.1)
+	var pop:=1.0 if reduced_motion else lerpf(1.35,1.0,clampf(t*4,0,1))
+	var width:=font.get_string_size(message,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x
+	var center:=Vector2(size.x/2,size.y*.33)
+	draw_set_transform(center,deg_to_rad(-8),Vector2.ONE*pop)
+	var origin:=Vector2(-width/2,font_size*.35)
+	draw_string_outline(font,origin+Vector2(5,6),message,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,maxi(8,font_size/6),Tokens.NANQUIM)
+	draw_string(font,origin+Vector2(5,6),message,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,Tokens.NANQUIM)
+	draw_string_outline(font,origin,message,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,maxi(8,font_size/6),Tokens.NANQUIM)
+	draw_string(font,origin,message,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,Tokens.RABIOLA)
+	draw_set_transform(Vector2.ZERO,0,Vector2.ONE)
 
 func _phase_rect() -> Rect2:
 	var actors:Array=model.actors if model.get("actors")!=null else [model.p,model.q]

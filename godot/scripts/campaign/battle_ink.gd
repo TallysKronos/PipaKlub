@@ -25,12 +25,20 @@ static func shape(rect: Rect2, cut: float = 16) -> PackedVector2Array:
 	# Slivers must remain convex when a meter approaches zero.
 	var corner := minf(cut,maxf(0,rect.size.x*.45))
 	return PackedVector2Array([rect.position + Vector2(corner,minf(4,rect.size.y*.45)), Vector2(rect.end.x, rect.position.y), rect.end - Vector2(corner,0), Vector2(rect.position.x,rect.end.y-minf(3,rect.size.y*.45))])
+# Recorte card (approved unified HUD board): ink body with the upper-right corner cut, a solid
+# offset shadow, a thin nanquim contour and, instead of a full coloured border, a short accent
+# tab on the top edge (céu = player, rabiola = rival). Paper plates use the same cut.
+static func card_shape(rect: Rect2, cut: float = 16) -> PackedVector2Array:
+	var corner := minf(cut,minf(rect.size.x,rect.size.y)*.45)
+	return PackedVector2Array([rect.position, Vector2(rect.end.x-corner, rect.position.y), Vector2(rect.end.x, rect.position.y+corner), rect.end, Vector2(rect.position.x, rect.end.y)])
 static func plate(canvas: CanvasItem, rect: Rect2, fill: Color, stroke: Color = BLACK, cut: float = 16) -> void:
-	canvas.draw_colored_polygon(shape(Rect2(rect.position + Vector2(4, 5), rect.size), cut), BLACK)
-	var points := shape(rect, cut)
+	canvas.draw_colored_polygon(card_shape(Rect2(rect.position + Vector2(5, 6), rect.size), cut), BLACK)
+	var points := card_shape(rect, cut)
 	canvas.draw_colored_polygon(points, fill)
 	points.append(points[0])
-	canvas.draw_polyline(points, stroke, 4, true)
+	canvas.draw_polyline(points, BLACK, 2, true)
+	if stroke != BLACK and stroke != fill and stroke != Tokens.TINTA:
+		canvas.draw_rect(Rect2(rect.position + Vector2(14, -3), Vector2(minf(110, rect.size.x * .32), 5)), stroke)
 static func ellipsis(text: String, font: Font, font_size: int, width: float) -> String:
 	var result := text
 	while not result.is_empty() and font.get_string_size(result + ("…" if result != text else ""), HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x > width: result = result.left(-1)

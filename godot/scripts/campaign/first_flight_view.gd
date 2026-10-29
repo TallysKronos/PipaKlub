@@ -111,7 +111,7 @@ func _layout_lesson() -> void:
 	coach.size=Vector2(width,0)
 	next_button.custom_minimum_size.y=48
 	coach.position=Vector2(20,size.y-28-coach.get_combined_minimum_size().y)
-	var action_height:=128*size.y/1080.0
+	var action_height:=preload("res://scripts/campaign/hud_action.gd").SIZE.y*size.y/1080.0
 	command_row.position=Vector2(440,size.y-action_height-8)
 	command_row.size=Vector2(maxf(0,size.x-464),action_height)
 	pause_button.position=Vector2(20,88)
@@ -193,7 +193,7 @@ func _process(delta: float) -> void:
 		"line": line_now and not line_held, "guard": _action_held("guard")})
 	line_held = line_now
 	for command in move_cards:
-		command.tile.custom_minimum_size=Vector2(112,128)*size.y/1080.0
+		command.tile.custom_minimum_size=command.tile.SIZE*size.y/1080.0
 		command.tile.cooldown=model.p[command.cooldown]
 		command.tile.key_text=Controls.prompt(command.tile.action_id)
 		command.tile.enough_energy=model.p.energy>=command.tile.cost

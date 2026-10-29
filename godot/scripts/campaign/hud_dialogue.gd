@@ -72,12 +72,29 @@ func _ready() -> void:
 	body.vertical_alignment=VERTICAL_ALIGNMENT_TOP
 	body.add_theme_font_override("font",Hud.font())
 	box.add_child(body)
+	# Board: the speaker's name is a paper sticker in Lilita over the box edge.
 	nameplate=load("res://scripts/campaign/hud_result_plate.gd").new()
-	nameplate.accent=Hud.CORAL
+	nameplate.accent=Hud.MUTED
+	nameplate.paper=true
 	add_child(nameplate)
-	name_label=Label.new();name_label.add_theme_font_override("font",Hud.display());nameplate.add_child(name_label)
+	name_label=Label.new();name_label.add_theme_font_override("font",Hud.display());name_label.theme_type_variation="RecortePaperText";nameplate.add_child(name_label)
 	choices=VBoxContainer.new();choices.add_theme_constant_override("separation",8);add_child(choices)
 	advance=_button("Continuar",func():next_page())
+	# Board: "[E] CONTINUAR ▶" inside the speech box, as a prompt rather than a framed button.
+	advance.text="CONTINUAR  ▶"
+	advance.icon=Controls.glyph("interact")
+	advance.expand_icon=false
+	advance.add_theme_constant_override("icon_max_width",26)
+	advance.alignment=HORIZONTAL_ALIGNMENT_CENTER
+	advance.text_overrun_behavior=TextServer.OVERRUN_NO_TRIMMING
+	advance.set_meta("recorte_decorated",true) # no paper focus brush over the inline prompt
+	for state in ["normal","hover","pressed","hover_pressed","disabled"]:advance.add_theme_stylebox_override(state,StyleBoxEmpty.new())
+	var underline:=StyleBoxFlat.new()
+	underline.draw_center=false
+	underline.border_color=Hud.CORAL
+	underline.border_width_bottom=3
+	advance.add_theme_stylebox_override("focus",underline)
+	for key in ["font_color","font_hover_color","font_focus_color","font_pressed_color","font_hover_pressed_color"]:advance.add_theme_color_override(key,Hud.PAPER)
 	decline=_button(cancel_button_text,func():_finish(false))
 	accept=_button(ok_button_text,func():_finish(true))
 	for option in options.slice(0,4):
@@ -120,9 +137,10 @@ func _rebuild() -> void:
 	box.size=Vector2(size.x-box.position.x-32,height)
 	var font_size:=maxi(20,roundi(30*factor))
 	body.add_theme_font_size_override("font_size",font_size)
-	nameplate.position=box.position-Vector2(-20,40)
-	nameplate.size=Vector2(360*factor,48)
-	name_label.add_theme_font_size_override("font_size",maxi(22,roundi(32*factor)))
+	var name_size:=maxi(22,roundi(32*factor))
+	name_label.add_theme_font_size_override("font_size",name_size)
+	nameplate.size=Vector2(0,0)
+	nameplate.position=box.position+Vector2(22,-name_size-18)
 	portrait.position=Vector2(16,box.position.y-340*factor)
 	portrait.size=Vector2(400,520)*factor
 	other_portrait.position=portrait.position+Vector2(290*factor,25*factor)
@@ -182,6 +200,13 @@ func _show_page() -> void:
 func _align_choices() -> void:
 	box.size=Vector2(size.x-box.position.x-32,maxf(180,240*size.y/1080.0))
 	choices.position.y=box.position.y-choices.get_combined_minimum_size().y-60
+	# A lone "Continuar" sits on the box's lower-right edge, next to the text it advances;
+	# real choices keep their column above the box.
+	if advance.visible and not accept.visible and not decline.visible:
+		var lone:=advance.get_combined_minimum_size()+Vector2(8,0)
+		choices.size=Vector2(lone.x,0)
+		choices.position=Vector2(box.position.x+box.size.x-lone.x-24,box.position.y+box.size.y-lone.y-12)
+	else:choices.size.x=minf(640*size.y/1080.0,size.x*.45);choices.position.x=size.x-choices.size.x-32
 func next_page() -> void:
 	preload("res://scripts/campaign/sound_director.gd").cue(self, "dialogue.advance")
 	if page_index<pages.size()-1:page_index+=1;_show_page()
@@ -212,6 +237,7 @@ func _draw() -> void:
 			var angle:=TAU*index/12
 			var vector:=Vector2.from_angle(angle)
 			draw_line(size*.5+vector*size.y*.42,size*.5+vector*size.y*.5,Hud.PAPER,2)
+	if is_instance_valid(advance) and advance.visible:return # the inline prompt already shows ▶
 	var offset:=0.0 if reduced_motion else 2*(1-cos(elapsed*PI/.6))
 	var center:=_indicator+Vector2(0,offset)
 	draw_colored_polygon(PackedVector2Array([center+Vector2(0,-7),center+Vector2(6,0),center+Vector2(0,7),center+Vector2(-6,0)]),Hud.CORAL)

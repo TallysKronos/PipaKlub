@@ -49,14 +49,30 @@ func _ready() -> void:
 	mouse_filter=MOUSE_FILTER_IGNORE
 	theme=Hud.make_theme()
 	add_to_group("exploration_hud")
+	# Board: the place name on a paper plate in Lilita, dark ink text.
 	area_panel=plate(self)
+	area_panel.paper=true
 	area=label(area_panel,24)
 	area.text=area_name
+	area.theme_type_variation="RecortePaperText"
+	area.autowrap_mode=TextServer.AUTOWRAP_OFF
 	area.add_theme_font_override("font",Hud.display())
 	area_panel.modulate.a=0
 	area_panel.create_tween().tween_property(area_panel,"modulate:a",1,.14)
-	objective_panel=plate(self,Hud.CORAL)
-	objective=label(objective_panel)
+	objective_panel=plate(self,Hud.MUTED)
+	var objective_row:=HBoxContainer.new()
+	objective_row.mouse_filter=MOUSE_FILTER_IGNORE
+	objective_row.add_theme_constant_override("separation",12)
+	objective_panel.add_child(objective_row)
+	var clipboard:=TextureRect.new()
+	clipboard.texture=Hud.icon("tail")
+	clipboard.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
+	clipboard.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	clipboard.custom_minimum_size=Vector2(26,26)
+	clipboard.mouse_filter=MOUSE_FILTER_IGNORE
+	objective_row.add_child(clipboard)
+	objective=label(objective_row,18)
+	objective.size_flags_horizontal=SIZE_EXPAND_FILL
 	objective.max_lines_visible=2
 	objective_panel.hide()
 	partner_panel=Control.new()
@@ -65,12 +81,17 @@ func _ready() -> void:
 	partner_panel.draw.connect(_draw_partner)
 	coins=label(self)
 	coins.theme_type_variation="RecorteGoldText"
-	prompt_panel=plate(self,Hud.CYAN)
+	# Board: the interaction prompt is a paper plate with the key glyph and uppercase label.
+	prompt_panel=plate(self,Hud.MUTED)
+	prompt_panel.paper=true
 	var row:=HBoxContainer.new()
 	row.mouse_filter=MOUSE_FILTER_IGNORE
 	prompt_panel.add_child(row)
 	Hud.input_hint(row,"interact")
-	prompt=label(row)
+	prompt=label(row,20)
+	prompt.theme_type_variation="RecortePaperText"
+	prompt.add_theme_font_override("font",Hud.font(true))
+	prompt.uppercase=true
 	prompt.max_lines_visible=2
 	prompt.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
 	prompt.size_flags_horizontal=SIZE_EXPAND_FILL
@@ -153,8 +174,10 @@ func _layout() -> void:
 	var factor:=size.y/1080.0
 	var compact:=area_age>=3
 	area_panel.position=Vector2(20,20)
-	area_panel.size=Vector2(maxf(240,280*factor) if compact else 560*factor,44*factor if compact else 88*factor)
-	area.add_theme_font_size_override("font_size",16 if compact else maxi(22,roundi(34*factor)))
+	var area_size:=22 if compact else maxi(24,roundi(34*factor))
+	area.add_theme_font_size_override("font_size",area_size)
+	var area_width:=Hud.display().get_string_size(area.text,HORIZONTAL_ALIGNMENT_LEFT,-1,area_size).x
+	area_panel.size=Vector2(minf(size.x*.45,area_width+44),area_size+22)
 	if is_instance_valid(map):
 		var edge:=220*factor
 		map.offset_left=-edge-20
@@ -162,16 +185,17 @@ func _layout() -> void:
 		map.offset_top=20
 		map.offset_bottom=edge+20
 	objective_panel.position=Vector2(20,area_panel.position.y+area_panel.size.y+12)
-	objective_panel.size=Vector2(520*factor,72*factor)
+	objective_panel.size=Vector2(maxf(340,520*factor),maxf(56,64*factor))
 	objective_panel.visible=not objective.text.is_empty() and objective_age<4
-	partner_panel.position=Vector2(20,size.y-120*factor-20)
-	partner_panel.size=Vector2(360,120)*factor
+	partner_panel.size=Vector2(maxf(250,330*factor),maxf(62,80*factor))
+	partner_panel.position=Vector2(20,size.y-partner_panel.size.y-18)
 	partner_panel.visible=not partner.is_empty()
 	coins.text="%d moedas"%int(player_data.get("coins",0))
 	coins.position=partner_panel.position-Vector2(0,32)
 	coins.visible=coin_age<3
-	prompt.custom_minimum_size.x=maxf(120,440*factor-76)
-	prompt_panel.size=Vector2(440*factor,72*factor)
+	var prompt_width:=Hud.font(true).get_string_size(prompt.text.to_upper(),HORIZONTAL_ALIGNMENT_LEFT,-1,20).x
+	prompt.custom_minimum_size.x=minf(prompt_width+4,size.x*.4)
+	prompt_panel.size=Vector2(0,0)
 	prompt_panel.position=Vector2(size.x-prompt_panel.size.x-20,size.y-prompt_panel.size.y-20)
 	prompt_panel.visible=not prompt.text.is_empty()
 	notice_stack.size=Vector2(420,200)*factor
@@ -179,27 +203,26 @@ func _layout() -> void:
 	tools.position=Vector2(size.x-tools.get_combined_minimum_size().x-20,220*factor+32)
 	tools.visible=pointer_mode and not Controls.gamepad and idle_age<4
 	partner_panel.queue_redraw()
+# Board: compact partner card: face, name in Lilita, level on the right, line bar below.
 func _draw_partner() -> void:
 	if partner.is_empty():return
 	var extent:=partner_panel.size
-	Ink.plate(partner_panel,Rect2(Vector2.ZERO,extent),Hud.INK,Hud.CYAN,12)
-	var center:=Vector2(extent.y*.48,extent.y*.5)
-	var radius:=extent.y*.4
-	var diamond:=PackedVector2Array([center+Vector2(0,-radius),center+Vector2(radius,0),center+Vector2(0,radius),center+Vector2(-radius,0),center+Vector2(0,-radius)])
-	partner_panel.draw_colored_polygon(diamond,Hud.SURFACE)
-	partner_panel.draw_polyline(diamond,Hud.CYAN,2,true)
-	if portrait!=null:partner_panel.draw_texture_rect(portrait,Hud.fit_texture(portrait,Rect2(center-Vector2.ONE*radius*.8,Vector2.ONE*radius*1.6)),false)
-	var left:=extent.y
-	var width:=extent.x-left-12
-	var title:String=partner.get("personalName",partner.get("modelId","Parceiro"))+" · Nv. %d"%Model.level_for_xp(partner.get("xp",0))
-	partner_panel.draw_string(Hud.font(true),Vector2(left,24),Ink.ellipsis(title,Hud.font(true),16,width),HORIZONTAL_ALIGNMENT_LEFT,-1,16,Hud.PAPER)
+	Ink.plate(partner_panel,Rect2(Vector2.ZERO,extent),Hud.Tokens.TINTA,Hud.CYAN,12)
+	var face:=Rect2(Vector2(10,6),Vector2(extent.y-12,extent.y-12))
+	if portrait!=null:partner_panel.draw_texture_rect(portrait,Hud.fit_texture(portrait,face),false)
+	var left:=face.end.x+12
+	var width:=extent.x-left-16
+	var level:="NV. %d"%Model.level_for_xp(partner.get("xp",0))
+	var level_width:=Hud.font(true).get_string_size(level,HORIZONTAL_ALIGNMENT_LEFT,-1,15).x
+	var title:String=partner.get("personalName",partner.get("modelId","Parceiro"))
+	partner_panel.draw_string(Hud.display(),Vector2(left,extent.y*.45),Ink.ellipsis(title,Hud.display(),20,width-level_width-8),HORIZONTAL_ALIGNMENT_LEFT,-1,20,Hud.PAPER)
+	partner_panel.draw_string(Hud.font(true),Vector2(extent.x-16-level_width,extent.y*.42),level,HORIZONTAL_ALIGNMENT_LEFT,-1,15,Hud.Tokens.PAPEL_2)
 	var health:float=partner.get("condition",{}).get("line",100)
 	var color:=Hud.LINE if health>=50 else Hud.GOLD if health>=25 else Hud.CORAL
-	partner_panel.draw_rect(Rect2(left,extent.y*.48,width,6),Hud.TRACK)
-	partner_panel.draw_rect(Rect2(left,extent.y*.48,width*health/100,6),color)
-	partner_panel.draw_string(Hud.font(),Vector2(left,extent.y-12),"Linha %d%%"%health,HORIZONTAL_ALIGNMENT_LEFT,-1,14,Hud.PAPER)
-	partner_panel.draw_line(Vector2(left,extent.y-5),Vector2(extent.x-12,extent.y-5),Hud.CYAN,2,true)
-	partner_panel.draw_line(center+Vector2(radius,0),Vector2(left-4,extent.y*.5),Hud.CYAN,2,true)
+	var bar:=Rect2(left,extent.y*.62,width,8)
+	partner_panel.draw_rect(bar,Hud.TRACK)
+	partner_panel.draw_rect(Rect2(bar.position,Vector2(bar.size.x*health/100,bar.size.y)),color)
+	partner_panel.draw_rect(bar,Hud.Tokens.NANQUIM,false,1)
 func occupied_fraction() -> float:
 	var total:=0.0
 	for widget in [area_panel,objective_panel,partner_panel,prompt_panel,tools,coins,notice_stack,map]:

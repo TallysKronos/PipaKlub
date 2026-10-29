@@ -59,7 +59,7 @@ func run() -> void:
 			battle.paused=false;battle.model.intro=0;battle.launch_age=1
 			battle._physics_process(0)
 			await settle()
-			check(battle.bottom_panel.size.y<=battle.size.y*.12+.5,"action bar <=12% "+fixture+str(viewport))
+			check(battle.bottom_panel.size.y<=battle.size.y*.165+.5,"action bar <=16.5% "+fixture+str(viewport))
 			check(not battle.status_row.visible,"tips hidden during combat")
 			for state in ["ready","cooldown","energy","charge","active","locked"]:
 				for item in battle.move_cards:
