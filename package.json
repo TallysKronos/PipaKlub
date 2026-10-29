@@ -13,6 +13,7 @@
     "atelier": "node tools/atelie/server.mjs",
     "audit:world": "node scripts/audit-world.mjs",
     "studio:sprites": "node tools/soulgen-studio/server.mjs",
+    "studio:pixel": "node tools/pixelgen/server.mjs",
     "studio:export-game": "node tools/soulgen-studio/export-game.mjs",
     "studio:iso": "node tools/iso-studio/server.mjs",
     "oficina:v3": "node tools/oficina-v3/server.mjs",
