@@ -9,7 +9,7 @@ Planta u→ / v↓:
       item ---- ramal de vista ---- item
                     |
         entrada B v+ terra0
-   atalho C→A no canto u−, terra0
+   atalho C→A em (32,43), v+, terra0
 ```
 Marco principal: poste de madeira alto com fitas coloridas; bancos e sinal de uso comunitário agrupados. Mureta sobre aresta de queda, aberta somente na boca da escada. A escada usa a mesma superfície navegável da rampa v−; arte em degraus de espelhos iguais.
 

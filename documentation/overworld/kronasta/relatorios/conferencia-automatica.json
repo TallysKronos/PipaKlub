@@ -1,0 +1,77 @@
+[
+  {
+    "id": "kronasta-bosque-a",
+    "ok": true,
+    "issues": [
+      {
+        "level": "ok",
+        "rule": "Mapa",
+        "text": "Planta conferida: entrada, acessos, rampas, pontes e trilhas. 1141 células alcançáveis."
+      }
+    ],
+    "stats": {
+      "plateau": 0.4318181818181818,
+      "items": 6,
+      "hidden": 3,
+      "ramps": 16,
+      "unreachable": 0,
+      "loose": 0,
+      "isolatedTrees": 0,
+      "accesses": 43
+    },
+    "lines": [
+      "CONFERÊNCIA ZERO QUEBRA: SEM ERRO · 0 erros · 0 avisos",
+      "Platô 43.2% · 6 itens (3 escondidos) · 16 células de rampa · 0 inalcançáveis · 0 degraus soltos"
+    ]
+  },
+  {
+    "id": "kronasta-bosque-b",
+    "ok": true,
+    "issues": [
+      {
+        "level": "ok",
+        "rule": "Mapa",
+        "text": "Planta conferida: entrada, acessos, rampas, pontes e trilhas. 921 células alcançáveis."
+      }
+    ],
+    "stats": {
+      "plateau": 0.4178321678321678,
+      "items": 3,
+      "hidden": 1,
+      "ramps": 12,
+      "unreachable": 0,
+      "loose": 0,
+      "isolatedTrees": 2,
+      "accesses": 58
+    },
+    "lines": [
+      "CONFERÊNCIA ZERO QUEBRA: SEM ERRO · 0 erros · 0 avisos",
+      "Platô 41.8% · 3 itens (1 escondidos) · 12 células de rampa · 0 inalcançáveis · 0 degraus soltos"
+    ]
+  },
+  {
+    "id": "kronasta-bosque-c",
+    "ok": true,
+    "issues": [
+      {
+        "level": "ok",
+        "rule": "Mapa",
+        "text": "Planta conferida: entrada, acessos, rampas, pontes e trilhas. 1241 células alcançáveis."
+      }
+    ],
+    "stats": {
+      "plateau": 0.5673076923076923,
+      "items": 3,
+      "hidden": 1,
+      "ramps": 14,
+      "unreachable": 0,
+      "loose": 0,
+      "isolatedTrees": 0,
+      "accesses": 38
+    },
+    "lines": [
+      "CONFERÊNCIA ZERO QUEBRA: SEM ERRO · 0 erros · 0 avisos",
+      "Platô 56.7% · 3 itens (1 escondidos) · 14 células de rampa · 0 inalcançáveis · 0 degraus soltos"
+    ]
+  }
+]
