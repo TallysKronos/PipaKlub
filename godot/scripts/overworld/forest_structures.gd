@@ -117,10 +117,11 @@ static func build(view) -> void:
  # Bridge timbers laid in the same cell footprint, head posts only at the two banks.
  for v in int(model.data.h):
   for u in int(model.data.w):
+   if f.get("swamp",false) and not geometry():continue
    if model.cell_at(Vector2i(u,v)).material!="ponte":continue
    var plank:=Node2D.new();plank.position=iso(Vector2(u,v))+Vector2(0,3);view.actors.add_child(plank)
    for t in [0.0,.33,.66]:line(plank,PackedVector2Array([iso(Vector2(u,v+t))-plank.position,iso(Vector2(u+1,v+t))-plank.position]),1.4,Color("667b80") if f.get("industrial",false) else Color("735333"))
- if not w.is_empty():
+ if not w.is_empty() and (not f.get("swamp",false) or geometry()):
   var bridge:Dictionary=w.get("bridge",{"u":23,"v":19,"w":3,"h":6})
   for at in [Vector2(bridge.u,bridge.v),Vector2(bridge.u+bridge.w,bridge.v),Vector2(bridge.u,bridge.v+bridge.h),Vector2(bridge.u+bridge.w,bridge.v+bridge.h)]:
    var post:=Node2D.new();post.position=iso(at)+Vector2(0,4);view.actors.add_child(post)

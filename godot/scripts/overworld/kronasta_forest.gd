@@ -184,7 +184,7 @@ static func _tree(view,model,point:Vector2,level:int,variant:String,r:float,occl
 		for at:Array in model.data.forest.get("clearViews",[]):
 			var access:Vector2=model.project(Vector2(at[0],at[1]))
 			var delta:=base-access
-			if absf(delta.x)<90 and delta.y>0 and delta.y<250:return
+			if absf(delta.x)<110 and delta.y>0 and delta.y<300:return
 	var root:=Node2D.new()
 	root.set_meta("scenery",true)
 	root.position=model.project(point,false)
@@ -202,7 +202,7 @@ static func _tree(view,model,point:Vector2,level:int,variant:String,r:float,occl
 	art.scale=Vector2(size*(-1.0 if r>.5 else 1.0),size)
 	art.position=Vector2(96*size*(1.0 if r>.5 else -1.0),-272*size-level*64)
 	if bool(model.data.get("forest",{}).get("swamp",false)):
-		var swamp_texture:=preload("res://scripts/overworld/industrial_structures.gd").texture(KITS+"pantano-v1/pecas/arvore-cipos.png")
+		var swamp_texture:=preload("res://scripts/overworld/industrial_structures.gd").texture(KITS+"pantano-v1/pecas/arvore-cipos-v2.png")
 		if swamp_texture:
 			art.texture=swamp_texture
 			var swamp_scale:=.16*size
@@ -283,6 +283,10 @@ static func _tufts(view,model) -> void:
 				if not n.is_empty() and n.material in ["bosque","terra","mato"]:edge=true
 			if _hash(u,v,31)>(.55 if edge else .07):continue
 			var at:=Vector2(u+.2+_hash(u,v,32)*.6,v+.2+_hash(u,v,33)*.6)
+			if bool(model.data.get("forest",{}).get("swamp",false)):
+				if _hash(u,v,31)>(.30 if edge else .02):continue
+				preload("res://scripts/overworld/swamp_structures.gd").grass(view,at,float(cell.level)*64,48+_hash(u,v,35)*12)
+				continue
 			_sprite(view,model,at,int(cell.level),"parque/decalques/capim-"+("a" if _hash(u,v,34)<.5 else "b")+".png",Vector2(26,44),.75+_hash(u,v,35)*.35)
 
 static func _glint(view,model,event:Dictionary) -> void:
