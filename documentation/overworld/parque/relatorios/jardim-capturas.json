@@ -1,0 +1,823 @@
+{
+  "area": "jardim-das-pipas",
+  "mapSha256": "80856ae625e3103b835e8f931f4b55ed9784824e3fa5cd5b818d6cf982ee8b17",
+  "planSha256": "4f84eb8fc50e378e0bd8ec5471b05e41a9e524b7e46ff0c1b3dfbedf2d72d621",
+  "images": [
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/area-inteira.png",
+      "sha256": "f92dacab917f87441dd1567eb7feae3c918eb19ee2f977182238ef0da16f9172"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/entrada.png",
+      "sha256": "15139842995c6214acc1285b8908c3152084cf51da0386079bbacd3efb208a64"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/centro.png",
+      "sha256": "b732e55ce244b0e19cbe0f281f5c45f23141ebf138499d736fc4658999eca1e2"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/saida-8-39.png",
+      "sha256": "d07673a98892dfb982cf3e066e69622db48922841242211528478cc0510b033d"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/saida-36-0.png",
+      "sha256": "5b3b0ab282629350be51f9a4ef20aa7f43ad95ffbf2a39fca891626ba15ae52b"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/canto-n1-30-2.png",
+      "sha256": "3df2f6e3888ee2435521394604795ffed838d42ed8b6d40db4405df8d8c6d752"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/canto-n1-34-2.png",
+      "sha256": "15cd7870e173b2d4dfcf0e4f504789e1ad8d88ba5a0554bbb7b77aed9343e989"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/canto-n1-38-2.png",
+      "sha256": "ea050ecfa7cd3c0fb9b098398960b202e07fe7669dc0841747aef2b613a7ac31"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/canto-n1-44-2.png",
+      "sha256": "4886ae39749dd4cbbdaf4efee95d97e0ed740f1828448555ebe51abcd58dc190"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/canto-n1-20-4.png",
+      "sha256": "a93f08cb7c06c87e302218f448a08b5b2d277248fae350c9597097e8f3edce0a"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/canto-n1-24-4.png",
+      "sha256": "427dc7f3f10eaf6fdd463f30f4288231c5f906c44de7bf903759bf013377f4b2"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/canto-n1-20-12.png",
+      "sha256": "dfcebb6020e0c5e405101dc03a25f0715265f2ee49cc288f4d65b0c28f775719"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/canto-n1-30-12.png",
+      "sha256": "52e8d95b17503bfb1704d3d3a2d54bc9b9c3550be0beded38478336235b68383"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/canto-n1-34-12.png",
+      "sha256": "24177098a1e7080e639194fc34a3abea9081d23b83aa13e6c6e180e1b1f0da3e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/canto-n1-38-12.png",
+      "sha256": "3d61a9941b2c9640bfc1118519ee7eeb245699058c119aea94e33d1d02ef75ce"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/canto-n1-44-12.png",
+      "sha256": "fc8c049707548959ceaaad1a6b851d2861c219aa357598149a1653a52f3ed848"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/canto-n1-30-16.png",
+      "sha256": "9b18c4966ab389eb824e677f1cbcd7972014d2f57c8d8d663309772e7020dbb3"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/canto-n1-32-16.png",
+      "sha256": "ebe49280d0917c7e16350cef1bb01ebcdc088b3bb50538b82ba0c9a66b1ecf08"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/canto-n1-38-16.png",
+      "sha256": "259fc11d989100e476e5acdcfef237d09707e463f7b1593f12fc3bdec5412896"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/canto-n1-46-16.png",
+      "sha256": "cdc8cd0cdcd8bb5d2dfe2a9fead3a9381f890b96e3824c71a82cb8b972c7975e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/canto-n1-20-26.png",
+      "sha256": "bd7d0c8bc82ab337dc3f30cb0cc5528668110615bd9330e84f38c511c71a0cde"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/canto-n1-32-26.png",
+      "sha256": "d5a14f6989ed68763e934717f7c2e38de98fbf352da5c9608eaed886ae5a8b48"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/canto-n1-4-28.png",
+      "sha256": "5047fc0b23d267a10b52543bc04cabc4de4ece0694b41e32b6ee8584c88f27b5"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/canto-n1-20-28.png",
+      "sha256": "eeae76f62f5934bb33a192da1a1d091b7dfc464a3bf2f25d1a0fbb4bf99d8093"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/canto-n1-38-28.png",
+      "sha256": "3d4ab5c28de05c3e811e845e110df6c59c25aeadfdf483a5e02f1078c0e07b09"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/canto-n1-40-28.png",
+      "sha256": "d967530dc8b3dee78c49de9427ff20ce5e07561a62ae207fac0efc2dbc606a27"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/canto-n1-40-32.png",
+      "sha256": "5555a9d694e4ccf5a44fe0bb0f1750cf34ce36ba6f30567d64416d9db9a84099"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/canto-n1-46-32.png",
+      "sha256": "7e1abbbf34d25b4f0f8f26e201762a0765775ce93963c8ca8ca1ada2bc044021"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/rampa-topo-30-12.png",
+      "sha256": "5062770ec1f64038ca0daab525889c6fbd4b5af59c8d72357302800cf77663ab"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/plato-30-12.png",
+      "sha256": "b8fe53e03ad5a49126c67fffacdec706ce07bed83e0a06f0b83176a7b3ec40f0"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/rampa-topo-31-12.png",
+      "sha256": "2664f891a8523f1baff6595e8977cab5f49f71ed3829222658780431b2fa0a39"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/plato-31-12.png",
+      "sha256": "4277467eaae6ffa54d741852564debf9f72eed12c3e7883c1733ab218e1b5930"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/rampa-pe-30-13.png",
+      "sha256": "53bb920963de97d7dda06f1c9532bb49875923a6c6eb36420b528e0d25ace61e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/rampa-pe-31-13.png",
+      "sha256": "67973a8d4b8016a2014994a52354f811ccfaac5b3b99b4a6003561b0992dff54"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/rampa-topo-24-26.png",
+      "sha256": "4e24ec434e959e3acdb312876e7e4dbffb2d34c106a65b5795dc85cace68e715"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/plato-24-26.png",
+      "sha256": "25e3d2324ebebd782f4f6640b30fe65e705a49af1e72f030e4684ba572aba9d4"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/rampa-topo-25-26.png",
+      "sha256": "2bccfc112d0651752fcb9bb7d5c93c18a4d310186d6683083bd7a498c1d6cf44"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/plato-25-26.png",
+      "sha256": "70db887ea795c2f0d876afa9dc529ccbc122c9e51db24b1c1549a1862dbb2435"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/rampa-topo-26-26.png",
+      "sha256": "c476517a0cb715a5d1e75d1dde932b302996b32281ab52eeece0818ce1a57376"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/plato-26-26.png",
+      "sha256": "d89adc57f671d9bcef6b2be1f057cb5ae38aca5697f74e2424bfb58dcd019e3b"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/rampa-pe-24-27.png",
+      "sha256": "7523245a1187731233eca23d56c6bde17fcdfa74bd3e436dec38043991cdb583"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/rampa-pe-25-27.png",
+      "sha256": "8da1ec3f8f5d57bcdfc5c083ebb2f06a80610838c62bc721ea27c6d63f630869"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/rampa-pe-26-27.png",
+      "sha256": "8ee751fdea00539c17b98be2b73ac830b4075fd74e948551e8d03d9acd645543"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/rampa-topo-12-28.png",
+      "sha256": "2a2fe45cd3e71ebba7f869a7b9ae89a414c449c157d0ec1738d81c8d192f5faa"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/plato-12-28.png",
+      "sha256": "37c6d07941e168f9c2446a01b39141208d9c9eea16a7eb9cd6bb56db1709264a"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/rampa-topo-13-28.png",
+      "sha256": "5fb1901198d421320fd41e014398bf4dfcc05949e8123fd7492f3bad4e48603e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/plato-13-28.png",
+      "sha256": "d00201385123860551c3331bba1add00ba2b0cb195c76b8459c5625e5c5b99b1"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/rampa-pe-12-29.png",
+      "sha256": "65de98974d9d23c6eb79739112a40ac0b2aafc59091684f64d1f6921e03fc2b1"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/rampa-pe-13-29.png",
+      "sha256": "6b2e0b69a37834ec1cd1df02693e2a256654aec550663095ac085d2dd290ad0f"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/rampa-topo-40-32.png",
+      "sha256": "4ea658fabc190ca0d703d83875cfd211803255354f1029e2dad62b55cc0514e4"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/plato-40-32.png",
+      "sha256": "8f5542eaa2795cda3e34423912e6134070ff4aacadc45a16d02e73ad15989f7a"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/rampa-topo-41-32.png",
+      "sha256": "0d62102542d8aba0020392f0644f4bc5faf9e5e1a160dbd476b480fdfb1da128"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/plato-41-32.png",
+      "sha256": "8ac78ee7c2bc6c7ab8ec79bc3ef3a0aa527825b5c7ec4d24aeea8403ef9ce0de"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/rampa-pe-40-33.png",
+      "sha256": "b6cd2332fbd7146be00a7f05ff3fa70805584fc32160029f07eee13c7f364ab6"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/rampa-pe-41-33.png",
+      "sha256": "64addc631d394a132022bffd1f39ecedef1d14b3348ea83c751d5608cda26ee3"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/mureta-junta-20-26.png",
+      "sha256": "bd7d0c8bc82ab337dc3f30cb0cc5528668110615bd9330e84f38c511c71a0cde"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/mureta-junta-24-26.png",
+      "sha256": "fe867507861f8fe002d65972a324b82dc0c063be9fca4da759913978f076ac7c"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/mureta-junta-27-26.png",
+      "sha256": "5514e025ede2621e4c8ded65e75630140524b3f1424ad0de3d20099c07d9636e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/mureta-junta-32-26.png",
+      "sha256": "d5a14f6989ed68763e934717f7c2e38de98fbf352da5c9608eaed886ae5a8b48"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/mureta-junta-32-16.png",
+      "sha256": "ebe49280d0917c7e16350cef1bb01ebcdc088b3bb50538b82ba0c9a66b1ecf08"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/praca-coreto.png",
+      "sha256": "6c2c4938f274a537f9dd517c9c55f537820a4b2af58ecc3bc1345ff0392a137d"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/pomar.png",
+      "sha256": "cdadb3b24954a28d345b474f0b83063f41ae769ff15295f0e19b6e94644849ed"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/mirante-florido.png",
+      "sha256": "6f90f8f7d3d099817a0b3a120a730934e5261e2912507f31c1f46b5687fd0bfe"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/coreto-pilares.png",
+      "sha256": "629b76b6e5f6a27a9d4c9f0449c8520b094d599930ca3ccfeb9c9e3946724854"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/escada-pe.png",
+      "sha256": "aceee929ce611f096d44d295c1b67fc547dbaac996477fcbebb1dd92f6b73c11"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/escada-chegada.png",
+      "sha256": "a61498798558672e665dcf5fe2c55355acf32a467484fbe1c42e60e5cfefd5fc"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/pegadas-palmadas.png",
+      "sha256": "8bd0e191953091fbe767b679cf581af0ae309470109f017e4582ddfd53d40899"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/geometria/encontro-opcional.png",
+      "sha256": "2e1a6d1e0db3d69d6c5cba6cc848eebd605968312cb3f43a66b41f16ddad27c9"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/area-inteira.png",
+      "sha256": "e8020ff2b4a296f84dfd52093e65d432d67280b6be8361edb377e1faec8c158d"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/entrada.png",
+      "sha256": "f0159b76e997bf3111c871daec4d7d15cf9a7056b973efad62a481ee2bf729cf"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/centro.png",
+      "sha256": "66f0b1027fdc7c8bac6e4914f4659e58e42a6adfb9220c986ee0fbffc63b7123"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/saida-8-39.png",
+      "sha256": "ca7fc38cebea7ac0dccca43f2ed407ea84d703390a975839c2b2c8dad051d0de"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/saida-36-0.png",
+      "sha256": "2a20a19198c730eed0eca4b5a63eb48c6f727385836e6b9a2b2bca3ec753eb8d"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/canto-n1-30-2.png",
+      "sha256": "145367c10975804572b5950130daa9aabedaba5bbf6639358872166c560e1178"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/canto-n1-34-2.png",
+      "sha256": "d9ac78924e1c0f75ec3152baff0604cfc79d5a31c1af25c5f066cedacaab5e47"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/canto-n1-38-2.png",
+      "sha256": "f683fa7fd0b4c50847fc736f29e33e50731e296918f3be405e7dbcd3a8d78eae"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/canto-n1-44-2.png",
+      "sha256": "b26fe830c49ad5358ff8346047b7271cd78d1b9d35d31a6ca17b8f0042859d4c"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/canto-n1-20-4.png",
+      "sha256": "ad0bba5f2eb7db4b29583f4bf0dbbdfd84652321f58361239a6821a4f8195870"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/canto-n1-24-4.png",
+      "sha256": "a4f881541cbdcdb96a80ae5b91cf1efd233f458552b8755bae93bd8bf2f4961b"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/canto-n1-20-12.png",
+      "sha256": "5dc3084edc316a780602b3e30a100cd1f77ee90ed5876f6754a0926402a93edc"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/canto-n1-30-12.png",
+      "sha256": "c13f8809bcd4ef7db9caf8b8820c0be34411310aa2ce6551de0e4096ed2a2870"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/canto-n1-34-12.png",
+      "sha256": "cd9769de833a5cc3540b26722bb19586effaaf680f8eb9e2e4a61fb2912bd097"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/canto-n1-38-12.png",
+      "sha256": "d5ac91dbe692fed4ea0dd64533e7a09a8e5533d221acd30012c0066d421810f1"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/canto-n1-44-12.png",
+      "sha256": "0971c4a8735a109fc171ec6f7ba12a4160665ba9eb83e82a6f60a055b754e1f2"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/canto-n1-30-16.png",
+      "sha256": "acc79cd8be1b6b7ef309d6e1369c3f8f35e13bd1581524febcd89cb1b1036a18"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/canto-n1-32-16.png",
+      "sha256": "73c1d866f62af236ae0ad8d90ecf3abff3b211715ec7eed120700e05756678c0"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/canto-n1-38-16.png",
+      "sha256": "d3c3255fdc3412705c00536065d89a14a9a53aed50fed404573c44102c7aa4bd"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/canto-n1-46-16.png",
+      "sha256": "b94b587208533e64e607bb015a0304619807dce5925a9b8322298b7747bf1606"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/canto-n1-20-26.png",
+      "sha256": "565187adf0de47028e043522a22b3438147c2434f0e014e12228b15af3d15ab1"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/canto-n1-32-26.png",
+      "sha256": "3cdcb0e0cd8d9928f1188838bef172d88605d56883a6fb6c941c12181265356b"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/canto-n1-4-28.png",
+      "sha256": "7d35a19aa5d7ad7fb6891a348e1df1017132b84f56f53ae344cebac5efffa94f"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/canto-n1-20-28.png",
+      "sha256": "ec95989fb0fd18bcd14faebf562b42076c8beea81e528d9a02c6f936a82fe6c5"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/canto-n1-38-28.png",
+      "sha256": "90f8cb7f990e7d5ac872ebd498d42cec2fcd5591b9e75fcb31a0e51d60b942fb"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/canto-n1-40-28.png",
+      "sha256": "708050be0ea7d6bababfb5318df7cefe1e54d9397423c1ca0c6203d5bc3b6cb8"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/canto-n1-40-32.png",
+      "sha256": "a9dd289b22f1b270be3614f3ad0c151db1edcbfc3efc8240a6c0cdd163e6d2b5"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/canto-n1-46-32.png",
+      "sha256": "87d66fc113fa69363fac5b0eb8da3972426d04de76fb1fdee0c5f68d8aa3e355"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/rampa-topo-30-12.png",
+      "sha256": "41918cc2918d715f25e83d154b1c32ade9eac8618cf7ffe98ab0dced4cb69a52"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/plato-30-12.png",
+      "sha256": "cb8864a43f9bb10230379f6545f326b715a46c7895c7a25eeb1d3446b5c931fe"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/rampa-topo-31-12.png",
+      "sha256": "e8e0bc828310fc41638a3b5f2d280e06ccdaf2f9cf1c1a1647cff29beaef1f85"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/plato-31-12.png",
+      "sha256": "e34135018c6dbbb1b2b777283ca70c9dc1945df1515f80bbb806ed7940939ea6"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/rampa-pe-30-13.png",
+      "sha256": "c031b243de553ad3afdf0f13e749fce690f4d4e8209a6503fdfc8174dab49add"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/rampa-pe-31-13.png",
+      "sha256": "520935518e300c4c2f155e60de72dd945e60d8402836d60f25ca705ae1b5b7cd"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/rampa-topo-24-26.png",
+      "sha256": "dd4f0d070e1aedf2472f52532efe23e69b0827fd968fd4b49d0d394bbf37f7d9"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/plato-24-26.png",
+      "sha256": "45ae6558338743cc956a5b950277c60bad6dfdf8815429835dc6a7e94368a184"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/rampa-topo-25-26.png",
+      "sha256": "ffbffe29ed50a0213b3e90f08d232ec0780b85870fc3a22a104db461c93f1384"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/plato-25-26.png",
+      "sha256": "f8ff53014f5278fe8dad039935ba988bb740fa0418fbf59584037f08ffc5f776"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/rampa-topo-26-26.png",
+      "sha256": "24baaf9eb50224c0ac373336fd21ebaadcd1b46278dbdab29fc37312444bca81"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/plato-26-26.png",
+      "sha256": "75d7587eb54217a37ba5406b109d0991b59678df9f7e2b5ef6b97ab418acae46"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/rampa-pe-24-27.png",
+      "sha256": "6498cbd369ab53ab5f894e3a2a1865ced2f04109e724432d67fe7a47760c5178"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/rampa-pe-25-27.png",
+      "sha256": "4aca3d149aa13103360ddfdff9fccf74250ac208e6a2a88adcc2d3db2a3b6f6e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/rampa-pe-26-27.png",
+      "sha256": "804a4c8fe8c8670654a77bf58b0bae7c909d8049f2598562fbd92679af0e52be"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/rampa-topo-12-28.png",
+      "sha256": "ab854942495f0a40a929e32e4ec6370d4f5589d4d73f1281ccb8c0b9f4e62121"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/plato-12-28.png",
+      "sha256": "42df1e1c325d3e3160494c3d8bd511330271c615737328d1aabe712db6ff508e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/rampa-topo-13-28.png",
+      "sha256": "201823625e2a8c2f727ba49cff958228156d5fad8f9f3ecba38eed0a682f246f"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/plato-13-28.png",
+      "sha256": "166da2923f96c412293dfe816553492db473e0dd74070022db038bf5b7f4c90e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/rampa-pe-12-29.png",
+      "sha256": "8434732075ec7407e66e917da806d13dfbdfad93e15104579fad6ab6ec65e14d"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/rampa-pe-13-29.png",
+      "sha256": "f3fe2db4cc164f5df868f9f32120d116a88c8507a958ba68ec1c91420a073961"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/rampa-topo-40-32.png",
+      "sha256": "0cd3aa2a6e74c0951b924e45fb03bee0b2fc94cef55a1bf49d5f5af7092af941"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/plato-40-32.png",
+      "sha256": "33f2c6068c6f653861915ee96d8a974b147a99ebaca57a1ab58d099692979a87"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/rampa-topo-41-32.png",
+      "sha256": "50c2ff02b54c745e255f28a91e717d34fd10ba4dda3c84ef107e96e7f8e817bf"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/plato-41-32.png",
+      "sha256": "192ed21662a45c8bedc5928b433aa0a3522fa8caf878cebed3a7e924406ac87f"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/rampa-pe-40-33.png",
+      "sha256": "de715c5837fb689167d36523eddd6e010ad30f3c1af3131e4c18c377256418e2"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/rampa-pe-41-33.png",
+      "sha256": "3eec9187fd0e1f2f2925c9ad3b8c7bee85005dfe3f30e1df8e6a4ab4509c4c92"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/mureta-junta-20-26.png",
+      "sha256": "5182b145b2e680036f0aebdfad266e0b6975010813afd47f319416e803b21594"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/mureta-junta-24-26.png",
+      "sha256": "0ba0628cc7730ffd87aff82d5dfe02ddf03704f38159383a108c0c522e0603b0"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/mureta-junta-27-26.png",
+      "sha256": "9611c6a1b5847f422f453bacdeaf0aaada4425d4114846a111970eb93a927597"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/mureta-junta-32-26.png",
+      "sha256": "3cdcb0e0cd8d9928f1188838bef172d88605d56883a6fb6c941c12181265356b"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/mureta-junta-32-16.png",
+      "sha256": "73c1d866f62af236ae0ad8d90ecf3abff3b211715ec7eed120700e05756678c0"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/praca-coreto.png",
+      "sha256": "392919680da631c11aa42727e96e77b9b3fbb7b0edc1b887b002d948b8e5bafe"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/pomar.png",
+      "sha256": "af54ccd4754bac04aafede5b80b8f11a02590dd0e66d87f56a44569a6fbf8a58"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/mirante-florido.png",
+      "sha256": "b53353a844e4268e5b69b49a0ef7f7f10bb106392a75ef076aa4908ab69e6582"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/coreto-pilares.png",
+      "sha256": "a5a2fff7623ce0d96aa0def25d9dc8c86c0c2041a2bea7b4a8e6cbe089bcc842"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/escada-pe.png",
+      "sha256": "9e165e843e6c87eefe07b1e73abbbe575b2bb706cac9df7ea13314263a6dee3f"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/escada-chegada.png",
+      "sha256": "d42de88fb0f434ef7769d8f96b72a09275448578730ab38c7e2b62fa09a8219f"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/pegadas-palmadas.png",
+      "sha256": "b0b30c324892e2f1a7861540693bdcb67fcf8c73dfcd57e04a5dce3f549514e6"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte/encontro-opcional.png",
+      "sha256": "77de0715333c87c2a415790119bdcdc14b599bd88e227e7c6c8e5be8e366afea"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/area-inteira.png",
+      "sha256": "471b2f4080e6ce70f1db20d7c5ef4fd5933933d829b37aff94cc9453ca60e319"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/entrada.png",
+      "sha256": "6f8694af7f1463dc4f5c5b5a61d804b0df37c2bbac8728c847eca27f9dd4ebc5"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/centro.png",
+      "sha256": "4ba0b9e34979a3a94f2943f117f0b8719bb964d4fae949f94954ddfb56a4e829"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/saida-8-39.png",
+      "sha256": "ec5e48cc3499ff4bdfeee245194056c621005e54989491e8d73335bf73c8ee81"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/saida-36-0.png",
+      "sha256": "ffaec071959ab187eb1d67b335485ce0824af7f21dab49644d74e4e03f97e7fe"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/canto-n1-30-2.png",
+      "sha256": "2c7ab084aebcbabc6c7e262415526991ff33e0753c278966f753b25e558453c7"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/canto-n1-34-2.png",
+      "sha256": "e7e299ca2dd6d7c132c457695e66f82672475cd697ee33c4a14e19cd57bfca78"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/canto-n1-38-2.png",
+      "sha256": "7f72f0c0fdeb2941c93da1c662a3d767e9f544d13fe5f64ffffc3f380efd182e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/canto-n1-44-2.png",
+      "sha256": "f7f705de88caf20ded9df2f24fa209ecc6a394e08b02518be5a1e886fa096cef"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/canto-n1-20-4.png",
+      "sha256": "837c2c3a1afba3af48e2c9b896c816cc49c7be7f5ee017dbe434e9b7eff68030"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/canto-n1-24-4.png",
+      "sha256": "a0465c051b2e1610b030d36ee7eb4f9cb326dee1ba7c60ae653ad10b38cdb7da"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/canto-n1-20-12.png",
+      "sha256": "787920ba1682ab90d8761e898bf803f5ae068df5314ea011e0d0f6a966d28462"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/canto-n1-30-12.png",
+      "sha256": "b2fdd7549450ee20181c6bff874e49b0255ec04d4254871553e71c167571d311"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/canto-n1-34-12.png",
+      "sha256": "631653c510b90ccdba220c4d1b182001ad9071153d0b0f75829d3e50a01bb725"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/canto-n1-38-12.png",
+      "sha256": "a9d5b6b441a57b941e31eae851b1d130a85c55ad314a6eb0ee3f4a9e1aacbfb2"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/canto-n1-44-12.png",
+      "sha256": "8b7b941793dd927ad6ec143d61c7bee86ca963863f4daf592d6540cccd2bbb83"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/canto-n1-30-16.png",
+      "sha256": "496b95d8af9a07ea40105e5f7a23dab45cdd1290a412338fbd3c5ef2da39ea78"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/canto-n1-32-16.png",
+      "sha256": "f5c4623e96f24cf454d4050e58dcdfd48f8943effedb7ccfcaab5b7678e2ba18"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/canto-n1-38-16.png",
+      "sha256": "e09d0d5f0aaf2011851781184c2b9c3fe69fc24e6ae6caa50bf2016c3d39fa12"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/canto-n1-46-16.png",
+      "sha256": "bb6b9a09dcb21b0e98cfba13c40941ef000edf5b489b8565ff006d0a5b3e4bcd"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/canto-n1-20-26.png",
+      "sha256": "552c3ec83338ece8573c65e345b9abdacf4f6ce2e75d0814ce117c9622747449"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/canto-n1-32-26.png",
+      "sha256": "0d6c7f31344415d9bcca703b694c02a96bcf6856ce3a3f7c605bc350b66ecb35"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/canto-n1-4-28.png",
+      "sha256": "f52de1294edd65434c6113cdfc6454a508c1bd28324f8de9d951d93494948c12"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/canto-n1-20-28.png",
+      "sha256": "bf5c690bdc3259c2120b5cd87ca17a2ae71d567d4ae4f12b112f428ea6f85f21"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/canto-n1-38-28.png",
+      "sha256": "e7893a3522a4aa8844792e7c1fe720c08634ec7e75ba4043dff4eb75a79f4f09"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/canto-n1-40-28.png",
+      "sha256": "006a32e93f3af5232f97db6d630693665c617e997713413f017845bc4ba23b2c"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/canto-n1-40-32.png",
+      "sha256": "e9e0848ecc55460443f40ca40fcc845332f65e15920cc54ca7f67e74f7c2d722"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/canto-n1-46-32.png",
+      "sha256": "c45b0c7e913b91475b15aee2b1af425f34403b066efa2b5fced801a050c0326e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/rampa-topo-30-12.png",
+      "sha256": "1c1b16ab31d95de18e412a00360aea7fe469adb03c4b42eeabe04876215e7698"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/plato-30-12.png",
+      "sha256": "31f27ae73c29074849080ce9a1c616b77e0335f6fa3d90a4991537cf26767f31"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/rampa-topo-31-12.png",
+      "sha256": "6bab3eac8c23d22445520f9125316c6def8e73e57191c54aea995eca5bc52bf5"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/plato-31-12.png",
+      "sha256": "42f8082e7cb180c5009ec6bce2eba01bcb719f9ddd892aa75223f3405104402e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/rampa-pe-30-13.png",
+      "sha256": "2fc9293ac3d2018eb7ca4234e7ad6a9b8bdb5e92b4e3b364474db2afa17b58a5"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/rampa-pe-31-13.png",
+      "sha256": "cdc18f3cad0faba08456e0882c25c16700239d4f987b712040f8f2bde2f4725c"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/rampa-topo-24-26.png",
+      "sha256": "c0820b91afe553b8f80a03bf178393a2993620843c248d56b7fd957476dbd85f"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/plato-24-26.png",
+      "sha256": "110620e48521fb932a316bee861dd055cbd8d5dc16844fdfb05792e454fa2050"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/rampa-topo-25-26.png",
+      "sha256": "4252256d3fdcc21a9d4ec4d40624f695a3c449f685cf0c81eadee61069c30c01"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/plato-25-26.png",
+      "sha256": "a95d91b4aad61c42e354a947d8868bd01bd495bc41c4f56d478d63205ea9a2af"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/rampa-topo-26-26.png",
+      "sha256": "c6977bb8d5b83f4bd76c9a24ad044bbb51d05830e159a038e8447c34dc9ac335"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/plato-26-26.png",
+      "sha256": "5a8a7a3b7ce362abf0eefe4192d4d131f206a4c8ec5096f051efc8f96b246f68"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/rampa-pe-24-27.png",
+      "sha256": "81b799b777165ae4b7f1a827b7a53e8c326a8638e9ad81c6d72a7f794bc4012e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/rampa-pe-25-27.png",
+      "sha256": "e8d7f4c979ec625bb49d2ef58cc10b5a9a08fb82e8a71599cd96fb3e24f8792c"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/rampa-pe-26-27.png",
+      "sha256": "02dcd9e9e973dd880e9874e89ebf0ebec93a475b7c584ed40c582f49421875f1"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/rampa-topo-12-28.png",
+      "sha256": "c4d36541b50097b6f891d951f7f4e944490cb852cdf8f533ed2251af5b4bd2f1"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/plato-12-28.png",
+      "sha256": "c0482fc136fad85528674db3e243316e4d2e90b4aa4d1d3280c292030a5514e0"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/rampa-topo-13-28.png",
+      "sha256": "fecceaccedc4325a94849038b2e192533aac9fdb21f77ba1ff52623898ef98b8"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/plato-13-28.png",
+      "sha256": "af52227a620d80600d51107a2cad39b742b9c57ff23b798bc884d44de1a7dcf6"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/rampa-pe-12-29.png",
+      "sha256": "b69f5aa2cd3ee60e3ce27abbdf1fa7ffa93b8c3bdf69676ce1d7deb2ab97505a"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/rampa-pe-13-29.png",
+      "sha256": "4bff7414b2fa1321df000a2205d64e01c71a4eb8040de358599dbd528aabf9b6"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/rampa-topo-40-32.png",
+      "sha256": "dee943bdd04bb3c615c639792c1bc5acb821899e22502253a5b97f7f45b25c57"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/plato-40-32.png",
+      "sha256": "bf1608980411cf6660a524aaa680f0ddf0977fbb2e17de065ff9e3c2538f3291"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/rampa-topo-41-32.png",
+      "sha256": "6479d6f25bef6cf222da677acc92c8df6d95e8a6a054faa5743bac9e624c5c4a"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/plato-41-32.png",
+      "sha256": "372caf780ec9e3657f5ab36a2b639cad768d9b4dcc5045c319efd90e99c8e957"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/rampa-pe-40-33.png",
+      "sha256": "ca8605b553f4e0d7cbd80f25de81ab2a1e4ce016bd85f5419b39a74d74e69778"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/rampa-pe-41-33.png",
+      "sha256": "1424fe26c0dca327e1c2606229e21639787d5e67c25c23852e415643818ca481"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/mureta-junta-20-26.png",
+      "sha256": "503e68725e8b6b3f3fba7efda51db1e5bf19803cdd58ddee383d7698470ccac3"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/mureta-junta-24-26.png",
+      "sha256": "819cc0f98e36029950784166d59b686326896c7550e47d57ee10507879cd43f9"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/mureta-junta-27-26.png",
+      "sha256": "85eb88db7ecfd9040d195ed91c817c304e3f798a664cfdf087d074ef7f7e8cfd"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/mureta-junta-32-26.png",
+      "sha256": "0d6c7f31344415d9bcca703b694c02a96bcf6856ce3a3f7c605bc350b66ecb35"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/mureta-junta-32-16.png",
+      "sha256": "f5c4623e96f24cf454d4050e58dcdfd48f8943effedb7ccfcaab5b7678e2ba18"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/praca-coreto.png",
+      "sha256": "eac88f90cabda17c6b45134ef2d8c29f911b2a1517f6df9f4b28bcf84971798b"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/pomar.png",
+      "sha256": "1013972331a90bcf4e775580886d26111b6812b745628db389b02335d43723c1"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/mirante-florido.png",
+      "sha256": "a7ef201ef5e44e28be12eff20bf6e4fd0f6a2fe1bb3fe828b1d4716eb4fbdc37"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/coreto-pilares.png",
+      "sha256": "384eb9dd50dd7e32b4f8c6398e75319b6f082cf342d13089f4b0842f53a7bd37"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/escada-pe.png",
+      "sha256": "758c54b995624d29d71bb14a49abd502182136d4fc7afa7298ad16334a10ed26"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/escada-chegada.png",
+      "sha256": "fc9c542f2e8231d021f01196bcebe55bdb4c47b340376a3e6404f454bf5a43e0"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/pegadas-palmadas.png",
+      "sha256": "b5520a5833885e155f8f3166b02fa3fe8e23f7bfce40287cfbfda9d363c24d69"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/jardim-das-pipas/arte-terreno/encontro-opcional.png",
+      "sha256": "d10f8e4c717ad2f32c9bddb74b767889963093ed6fb1e1f8dbb8b9ecc42813f4"
+    }
+  ]
+}
