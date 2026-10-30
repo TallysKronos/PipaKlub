@@ -13,6 +13,7 @@ static func shapes(model) -> Array:
  return [uv_points(w.contour),uv_points(w.channel)] if not w.is_empty() else []
 static func is_water(model,p:Vector2) -> bool:
  for shape:PackedVector2Array in shapes(model):
+  if shape.is_empty():continue
   if Geometry2D.is_point_in_polygon(p,shape):return true
  return false
 static func floor_cut(model,node:Node2D,poly:Polygon2D,corners:Array,u:int,v:int) -> void:
@@ -23,6 +24,7 @@ static func floor_cut(model,node:Node2D,poly:Polygon2D,corners:Array,u:int,v:int
  var fragments:Array=[PackedVector2Array(corners)]
  if c.get("material","")!="ponte":
   for shape:PackedVector2Array in shapes(model):
+   if shape.is_empty():continue
    var next:Array=[]
    for f:PackedVector2Array in fragments:next.append_array(Geometry2D.clip_polygons(f,shape))
    fragments=next
@@ -63,6 +65,7 @@ static func build(view) -> void:
   var contours:=shapes(model)
   for index in contours.size():
    var contour:PackedVector2Array=contours[index]
+   if contour.is_empty():continue
    if index==0:
     contour.insert(1,Vector2(35,9))
     contour.insert(2,Vector2(36,9))
@@ -95,12 +98,13 @@ static func build(view) -> void:
       face.uv=face_uv
     line(bank,PackedVector2Array([a-bank.position,b-bank.position]),3,Color("84a54a"))
     if Geometry2D.is_point_in_polygon((a+b)*.5+Vector2(0,depth)-bank.position,aperture):line(bank,PackedVector2Array([a+Vector2(0,depth)-bank.position,b+Vector2(0,depth)-bank.position]),3,Color(.05,.12,.13,.6))
-  var fall_root:=Node2D.new();fall_root.position=iso(Vector2(w.fall[0],w.fall[1]));view.actors.add_child(fall_root)
-  var fall:=Node2D.new();fall.set_script(FALL);fall.width_cells=1;fall.drop_levels=1;fall.drop_pixels_override=float(w.lipHeight)+float(w.depth);fall.position=Vector2(0,-float(w.lipHeight));fall.preview_time=.4;fall_root.add_child(fall)
-  if geometry():
-   fall.hide();var plane:=Node2D.new();plane.position=fall_root.position;view.actors.add_child(plane)
-   var lip:float=float(w.lipHeight);var water_height:float=float(w.depth)
-   quad(plane,PackedVector2Array([Vector2(0,-lip),Vector2(32,16-lip),Vector2(32,16+water_height),Vector2(0,water_height)]),Color("8ed3e0"))
+  if w.get("fall")!=null:
+   var fall_root:=Node2D.new();fall_root.position=iso(Vector2(w.fall[0],w.fall[1]));view.actors.add_child(fall_root)
+   var fall:=Node2D.new();fall.set_script(FALL);fall.width_cells=1;fall.drop_levels=1;fall.drop_pixels_override=float(w.lipHeight)+float(w.depth);fall.position=Vector2(0,-float(w.lipHeight));fall.preview_time=.4;fall_root.add_child(fall)
+   if geometry():
+    fall.hide();var plane:=Node2D.new();plane.position=fall_root.position;view.actors.add_child(plane)
+    var lip:float=float(w.lipHeight);var water_height:float=float(w.depth)
+    quad(plane,PackedVector2Array([Vector2(0,-lip),Vector2(32,16-lip),Vector2(32,16+water_height),Vector2(0,water_height)]),Color("8ed3e0"))
  # Bridge timbers laid in the same cell footprint, head posts only at the two banks.
  for v in int(model.data.h):
   for u in int(model.data.w):

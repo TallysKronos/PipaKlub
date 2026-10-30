@@ -12,6 +12,7 @@ var area_id := "veredas-piloto"
 var art_preview := false
 var player := Vector2.ZERO
 var follower := Vector2.ZERO
+var follower_trail: Array[Vector2] = []
 var path := PackedVector2Array()
 var clock := 0.0
 var actors: Node2D
@@ -125,6 +126,7 @@ func load_area(id: String, arrival: Dictionary = {}) -> void:
 				var target := Vector2i(int(au), int(av))
 				if model.walkable(target): player = Vector2(target) + Vector2.ONE * .5
 	follower = player
+	follower_trail.clear()
 	player_root = Node2D.new()
 	avatar = Avatar.new()
 	player_root.add_child(avatar)
@@ -1735,7 +1737,10 @@ func _physics_process(delta: float) -> void:
 			if grass_distance > 6:
 				grass_distance = 0
 				message("Mato: gatilho de encontro validado • prévia sem batalha ou recompensa")
-	if follower.distance_to(player) > .8:
+	if bool(model.data.get("forest",{}).get("followTrail",false)):
+		if avatar.moving:follower_trail.append(player)
+		_follow_recorded_path(delta)
+	elif follower.distance_to(player) > .8:
 		var route := model.path_to(follower,player)
 		if route.size() > 1:
 			var target: Vector2 = route[1]
@@ -1752,6 +1757,24 @@ func _physics_process(delta: float) -> void:
 			nearby = event
 			break
 	hint.text = notice if clock < notice_until else "E • " + nearby.name if not nearby.is_empty() else "WASD / setas • caminhar   Clique • ir até lá   Roda • zoom"
+
+func _follow_recorded_path(delta: float) -> void:
+	# On curved banks a freshly recomputed shortest path can switch sides of a
+	# long obstacle. Keep the accepted player steps instead; never shortcut water.
+	var distance := 0.0
+	var previous := follower
+	for point in follower_trail:
+		distance += previous.distance_to(point)
+		previous = point
+	var budget := minf(delta*3.2,maxf(0,distance-.8))
+	while budget>.00001 and not follower_trail.is_empty():
+		var target: Vector2 = follower_trail[0]
+		var next := follower.move_toward(target,budget)
+		if not model.clear_segment(follower,next):break
+		budget -= follower.distance_to(next)
+		follower = next
+		if follower.distance_to(target)<.00001:follower_trail.remove_at(0)
+		else:break
 
 func interact() -> void:
 	if nearby.is_empty(): return
