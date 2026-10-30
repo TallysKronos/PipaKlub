@@ -7,6 +7,8 @@ import fs from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {parseTiled,audit,verdict,canStep,blockedByPiece} from './model.mjs';
 import {compile} from '../import-overworld.mjs';
+import {writeCapturePlan} from './capturas-bosque.mjs';
+import {auditBosque} from './conferir-regiao-bosque.mjs';
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const tileset=JSON.parse(fs.readFileSync(root+'art/overworld/tiles/rascunho.tsj','utf8'));
 const GID=Object.fromEntries(tileset.tiles.filter(t=>typeof t.properties?.[0]?.value==='string'&&t.id<16).map(t=>[t.properties[0].value,t.id+1]));
@@ -100,8 +102,13 @@ for(let v=0;v<H;v++)for(let u=0;u<W;u++){if(mat[I(u,v)]!=='bosque')continue;
  const r=hash(u,v,S+5);
  if(front){if(r<.55)put('Arbusto',u,v,{asset:'arbusto',variante:r<.27?'a':'b'});continue;}
  if(r<.9)put('Árvore',u,v,{asset:'arvore',variante:r<.07?'florida':r<.42?'a':r<.8?'b':'grande'});}
+// Reserve removed rock IDs so existing pieces, NPC and item IDs stay stable.
 const rocks=[[20,36],[21,37],[29,24],[28,25],[29,25],[19,15],[20,14],[33,8],[25,29],[13,26],[14,27]];
-rocks.forEach(([u,v],k)=>{if(walkCell(u,v)&&mat[I(u,v)]!=='terra')put('Pedra',u,v,{asset:'pedra',variante:String(k%3)});});
+const retainedRocks=new Map([[20,36],[29,24],[19,15],[33,8],[25,29],[13,26]].map((p,k)=>[p.join(','),k]));
+rocks.forEach(([u,v])=>{if(!walkCell(u,v)||mat[I(u,v)]==='terra'||taken.has(u+','+v))return;
+ if(!retainedRocks.has(u+','+v)){id++;return;}
+ put('Pedra',u,v,{asset:'pedra',variante:String(retainedRocks.get(u+','+v)%3)});
+});
 [[24,38,'amarela'],[25,39,'coral'],[19,29,'azul'],[20,30,'amarela'],[28,19,'coral'],[21,20,'azul'],[26,13,'amarela'],[20,6,'coral']]
  .forEach(([u,v,c])=>{if(walkCell(u,v)&&mat[I(u,v)]!=='terra')put('Flores',u,v,{asset:'flores',variante:c,bloqueia:false});});
 put('Placa da trilha',29,40,{asset:'placa-mapa',pegada:'1x1'});
@@ -114,7 +121,7 @@ E('saida','Seguir para o Bosque dos Ventos B',24,1,{destino:'kronasta-bosque-b'}
 E('npc','Guarda-parque Dito',25,35,{fala:'Dito',texto:'Os platôs guardam mais do que vista. Repara nas rampas de terra.'});
 // Item no alto do platô leste (escondido atrás das copas), outro no platô oeste, um na beira da
 // trilha (visível) e um cintilando no alto do platô sudeste.
-const items=[['Moedas esquecidas',22,3,'moedas',30,'visivel'],['Papel de seda',36,21,'papel-seda',2,'escondido'],['Vareta de bambu',13,30,'vareta-bambu',1,'escondido'],['Cola de reparo',24,24,'cola-reparo',1,'visivel'],['Linha encerada',42,32,'linha-encerada',1,'brilho'],['Página do caderno',12,10,'pista-caderno-heleana-1',1,'escondido']];
+const items=[['Moedas esquecidas',22,3,'moedas',30,'visivel'],['Papel de seda',36,21,'papel-seda',2,'escondido'],['Vareta de bambu',13,30,'vareta-bambu',1,'escondido'],['Cola de reparo',24,24,'cola-reparo',1,'visivel'],['Linha encerada',42,32,'linha-encerada',1,'brilho'],['Página do caderno',11,10,'pista-caderno-heleana-1',1,'escondido']];
 for(const [name,u,v,item,q,vis] of items)E('item',name,u,v,{item,quantidade:q,visibilidade:vis,trajetoria:item.startsWith('pista')?'2':'ambas'});
 
 const raw={type:'map',version:'1.10',tiledversion:'1.10.2',orientation:'isometric',renderorder:'right-down',width:W,height:H,tilewidth:64,tileheight:32,infinite:false,
@@ -135,7 +142,10 @@ const walkableCount=m.cells.filter((c,i)=>!['bosque','agua','rocha'].includes(c.
 const plat=m.cells.filter(c=>c.level>0).length/m.cells.length;
 fs.writeFileSync(root+'art/overworld/mapas/kronasta-bosque-a.tmj',JSON.stringify(raw,null,1)+'\n');
 const out=compile(raw,'kronasta-bosque-a');fs.writeFileSync(root+'godot/assets/overworld/maps/kronasta-bosque-a.json',JSON.stringify(out));
+writeCapturePlan(out);
+auditBosque();
 const indexFile=root+'godot/assets/overworld/maps/index.json',index=JSON.parse(fs.readFileSync(indexFile,'utf8'));
+index.scenes['kronasta-bosque-a']='kronasta-bosque-a';
 index.areas=index.areas.filter(a=>a.id!=='kronasta-bosque-a');index.areas.push({id:'kronasta-bosque-a',name:'Bosque dos Ventos · Trilha das Copas',scene:'kronasta-bosque-a',biome:'floresta'});
 fs.writeFileSync(indexFile,JSON.stringify(index,null,2)+'\n');
 console.log(`kronasta-bosque-a: ${verdict(issues).toUpperCase()} · ${seen.size} células alcançáveis · ${pieces.filter(p=>p.name==='Árvore').length} árvores · platô ${Math.round(plat*100)}% · ${ramps.length} células de rampa · ${items.length} itens`);
