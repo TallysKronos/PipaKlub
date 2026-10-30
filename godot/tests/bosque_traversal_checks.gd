@@ -50,12 +50,18 @@ func run() -> void:
 	root.add_child(view)
 	await process_frame
 	view.set_physics_process(false)
-	for part in ["a","b","c"]:
+	var parts := ["a","b","c"]
+	for argument in OS.get_cmdline_user_args():
+		if argument.begins_with("--part="):
+			var selected := argument.trim_prefix("--part=")
+			if selected not in parts: fail("invalid part "+selected); quit(1); return
+			parts = [selected]
+	for part in parts:
 		view.load_area("kronasta-bosque-"+part)
 		var start: Vector2 = view.player
 		var goals: Dictionary = {}
-		for event in view.model.data.events:
-			if event.type not in ["item","npc","saida"]: continue
+		for event in view.interaction_events:
+			if event.type not in ["item","npc","saida","piece"]: continue
 			var point := Vector2(event.u+.5,event.v+.5)
 			if not view.model.walkable(cell(point)):
 				var found := false
