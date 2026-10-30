@@ -39,6 +39,9 @@ static func floor_cut(model,node:Node2D,poly:Polygon2D,corners:Array,u:int,v:int
   var shade:Color=poly.vertex_colors[0] if poly.vertex_colors.size()>0 else Color.WHITE
   target.vertex_colors=PackedColorArray()
   target.color=shade
+  if bool(model.data.get("forest",{}).get("industrial",false)) and not geometry():
+   target.uv=fragment
+   target.color=shade
   if c.get("material","")=="piso":
    target.material=null
    target.texture=null if geometry() else load(BASE+"terrenos-v1/superficies/bloquete.png")
@@ -50,7 +53,7 @@ static func floor_cut(model,node:Node2D,poly:Polygon2D,corners:Array,u:int,v:int
   if c.get("material","")=="ponte":
    target.material=null
    target.texture=null
-   target.color=Color("b08a52")
+   target.color=Color("a8b9b9") if model.data.get("forest",{}).get("industrial",false) else Color("b08a52")
   node.add_child(target)
 static func line(parent:Node2D,points:PackedVector2Array,width:float,color:Color) -> void:
  var node:=Line2D.new();node.points=points;node.width=width;node.default_color=color;parent.add_child(node)
@@ -81,7 +84,10 @@ static func build(view) -> void:
    for i in contour.size():
     var uv_a:Vector2=contour[i];var uv_b:Vector2=contour[(i+1)%contour.size()]
     if index==0 and uv_a==Vector2(35,9) and uv_b==Vector2(36,9):continue
-    if index==1 and maxf(uv_a.x,uv_b.x)>=23 and minf(uv_a.x,uv_b.x)<=26:continue
+    var bridge:Dictionary=w.get("bridge",{"u":23,"v":19,"w":3,"h":6})
+    if index==1 and maxf(uv_a.x,uv_b.x)>=float(bridge.u) and minf(uv_a.x,uv_b.x)<=float(bridge.u+bridge.w):
+     # Split long banks at the actual deck; do not discard an entire channel side.
+     if not f.get("industrial",false):continue
     var a:Vector2=iso(uv_a);var b:Vector2=iso(uv_b)
     var bank:=Node2D.new();bank.position=Vector2(0,maxf(a.y,b.y)+3);view.actors.add_child(bank)
     var pts:=PackedVector2Array([a-bank.position,b-bank.position,b+Vector2(0,depth)-bank.position,a+Vector2(0,depth)-bank.position])
@@ -96,7 +102,7 @@ static func build(view) -> void:
       var face_uv:=PackedVector2Array()
       for p in fragment:face_uv.append((p+bank.position)*2)
       face.uv=face_uv
-    line(bank,PackedVector2Array([a-bank.position,b-bank.position]),3,Color("84a54a"))
+    line(bank,PackedVector2Array([a-bank.position,b-bank.position]),3,Color("a4aaa0") if f.get("industrial",false) else Color("84a54a"))
     if Geometry2D.is_point_in_polygon((a+b)*.5+Vector2(0,depth)-bank.position,aperture):line(bank,PackedVector2Array([a+Vector2(0,depth)-bank.position,b+Vector2(0,depth)-bank.position]),3,Color(.05,.12,.13,.6))
   if w.get("fall")!=null:
    var fall_root:=Node2D.new();fall_root.position=iso(Vector2(w.fall[0],w.fall[1]));view.actors.add_child(fall_root)
@@ -110,11 +116,12 @@ static func build(view) -> void:
   for u in int(model.data.w):
    if model.cell_at(Vector2i(u,v)).material!="ponte":continue
    var plank:=Node2D.new();plank.position=iso(Vector2(u,v))+Vector2(0,3);view.actors.add_child(plank)
-   for t in [0.0,.33,.66]:line(plank,PackedVector2Array([iso(Vector2(u,v+t))-plank.position,iso(Vector2(u+1,v+t))-plank.position]),1.4,Color("735333"))
+   for t in [0.0,.33,.66]:line(plank,PackedVector2Array([iso(Vector2(u,v+t))-plank.position,iso(Vector2(u+1,v+t))-plank.position]),1.4,Color("667b80") if f.get("industrial",false) else Color("735333"))
  if not w.is_empty():
-  for at in [Vector2(23,19),Vector2(26,19),Vector2(23,25),Vector2(26,25)]:
+  var bridge:Dictionary=w.get("bridge",{"u":23,"v":19,"w":3,"h":6})
+  for at in [Vector2(bridge.u,bridge.v),Vector2(bridge.u+bridge.w,bridge.v),Vector2(bridge.u,bridge.v+bridge.h),Vector2(bridge.u+bridge.w,bridge.v+bridge.h)]:
    var post:=Node2D.new();post.position=iso(at)+Vector2(0,4);view.actors.add_child(post)
-   line(post,PackedVector2Array([Vector2(0,-4),Vector2(0,-30)]),7,Color("79542f"))
+   line(post,PackedVector2Array([Vector2(0,-4),Vector2(0,-30)]),7,Color("687e83") if f.get("industrial",false) else Color("79542f"))
    line(post,PackedVector2Array([Vector2(-3,-30),Vector2(3,-30)]),3,Color("dbba78"))
  for guard:Dictionary in f.get("guards",[]):_guard(view,guard)
  for stairs:Dictionary in f.get("stairs",[]):_stairs(view,stairs)

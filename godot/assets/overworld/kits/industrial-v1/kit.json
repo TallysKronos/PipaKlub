@@ -1,0 +1,16 @@
+{
+ "schema":"overworld-kit-1",
+ "biome":"industrial-v1",
+ "grid":{"cell":[64,32],"levelPx":64},
+ "approval":"pending_owner_review",
+ "renderer":"res://scripts/overworld/industrial_structures.gd",
+ "surfaces":{
+  "metal":{"file":"superficies/metal-azul.png","size":[1254,1254],"role":"warehouse roof and container cladding","source":"image_gen.imagegen; original retained in art/overworld/kits/industrial-v1/fontes"},
+  "concrete":{"file":"superficies/concreto.png","size":[1254,1254],"role":"continuous yard and retaining walls","detailShader":"res://shaders/industrial_surface.gdshader","source":"image_gen.imagegen"}
+ },
+ "pieces":{
+  "caldeira":{"default":"a","variants":{"a":{"file":"pecas/caldeiras.png","size":[1536,1024],"anchor":[768,850],"scale":0.23,"footprint":[3,4],"frames":1,"durationMs":0,"alphaShader":"res://shaders/industrial_cutout.gdshader","source":"image_gen.imagegen; clean-alpha edit; originals retained"}}},
+  "industrial-volume":{"source":"native measured geometry","styles":["galpao","usina","container","barreira"],"anchor":"front footprint corner","collision":"Tiled footprint; style does not change navigation"}
+ },
+ "limitations":["No rig or animation in this static asset family","Caldeira alpha sampled 0..254; shader rejects faint outer haze","Native roof/walls derive from the same 2:1 footprint; no painted building base","Runtime preview reads PNG sources directly because full-project import stalled while processing unrelated fonts"]
+}
