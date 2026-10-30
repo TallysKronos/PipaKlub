@@ -36,9 +36,7 @@ func run() -> void:
 	for event in view.interaction_events:
 		if event.type=="saida" and event.props.destino=="park-clearing":exit=event
 	view.nearby=exit;view.interact()
-	# This branch retains the larger campaign Clareira, whose valid south entry
-	# replaces the preview's (unsupported here) 3,13 arrival.
-	check(view.area_id=="clareira-do-papel" and view.player==Vector2(view.model.data.spawn.u+.5,view.model.data.spawn.v+.5),"A to B campaign south arrival")
+	check(view.area_id=="clareira-do-papel" and view.player==Vector2(8.5,36.5),"A to B arrival")
 	for event in view.interaction_events:
 		if event.type=="saida" and event.props.get("destino","")=="park-trail":view.nearby=event;break
 	view.interact()
