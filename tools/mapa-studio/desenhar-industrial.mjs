@@ -33,6 +33,15 @@ export function industrialPart(part){
  building('Depósito de peças',23,5,6,6,80,'galpao');
  building('Carga azul',6,21,4,3,52,'container');building('Carga ocre',16,21,3,4,52,'container');
  building(part==='B'?'Caldeiras':'Gerador do pátio',39,18,3,4,76,'caldeira');
+ if(part==='A'){
+  feature.mangaDressing=true;
+  building('Paletes e caixas da doca',7,15,3,2,34,'carga');
+  building('Carreteis de expedição',16,15,3,2,27,'carretel');
+  building('Reserva de tambores',25,12,2,2,32,'tambor');
+  building('Caixotes do depósito',29,6,2,3,40,'carga');
+  building('Carga de manutenção',39,10,3,2,36,'carga');
+  feature.shots.push({name:'doca-viva',u:12,v:15,zoom:1,kind:'jogo'},{name:'carga-detalhe',u:8,v:16,zoom:2.3},{name:'deposito-vivo',u:27,v:10,zoom:1,kind:'jogo'});
+ }
  // The source footprint owns collision, while illustrated surfaces only dress it.
  for(let u=4;u<20;u++)if(u<12||u>14)feature.guards.push({u,v:27,side:'v'});
  if(part==='B'){

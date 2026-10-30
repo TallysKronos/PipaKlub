@@ -1,5 +1,6 @@
 extends RefCounted
 const S=preload("res://scripts/overworld/forest_structures.gd")
+const D=preload("res://scripts/overworld/industrial_dressing.gd")
 static var textures:Dictionary={}
 static func texture(file:String) -> Texture2D:
  if textures.has(file):return textures[file]
@@ -18,6 +19,7 @@ static func build(view) -> void:
    if c.material=="rocha":block(view,Vector2(u,v),1,1,36,"barreira",simple)
  for b:Dictionary in model.data.forest.get("buildings",[]):
   block(view,Vector2(b.u,b.v),float(b.w),float(b.h),float(b.z),str(b.style),simple)
+ if model.data.forest.get("mangaDressing",false) and not simple:D.yard(view)
 static func block(view,at:Vector2,w:float,h:float,z:float,style:String,simple:bool) -> void:
  var model=view.model
  var level:float=model.height_at(at+Vector2(.5,.5))*64
@@ -28,6 +30,23 @@ static func block(view,at:Vector2,w:float,h:float,z:float,style:String,simple:bo
  var c:=S.iso(at+Vector2(w,h),level)-root.position
  var d:=S.iso(at+Vector2(0,h),level)-root.position
  var lift:=Vector2(0,z)
+ var manga:bool=model.data.forest.get("mangaDressing",false)
+ if manga:root.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
+ if style=="carga" and not simple:
+  var sprite:=Sprite2D.new();sprite.centered=false
+  sprite.texture=texture("res://assets/overworld/kits/industrial-v1/pecas/carga-manga.png")
+  # Three measured pallet contacts map onto the exact blocking footprint.
+  var source:=Transform2D(Vector2(-490,-306),Vector2(460,-326),Vector2.ZERO)
+  var target:=Transform2D(d-c,b-c,Vector2.ZERO)
+  var transform:=target*source.affine_inverse()
+  transform.origin=c-transform.basis_xform(Vector2(800,966))
+  sprite.transform=transform
+  var cutout:=ShaderMaterial.new();cutout.shader=preload("res://shaders/industrial_cutout.gdshader");sprite.material=cutout
+  root.add_child(sprite)
+  return
+ if style in ["carga","tambor","carretel"]:
+  D.cargo(root,a,b,c,d,z,style,simple)
+  return
  if style=="caldeira" and not simple:
   var art:=Sprite2D.new();art.name="Art"
   art.texture=texture("res://assets/overworld/kits/industrial-v1/pecas/caldeiras.png")
@@ -38,9 +57,11 @@ static func block(view,at:Vector2,w:float,h:float,z:float,style:String,simple:bo
   return
  var face_color:=Color("bc8763") if style in ["galpao","usina"] else Color("397c86") if style=="container" else Color("6d7f7e")
  if simple:face_color=Color("7b9297")
+ if manga and style=="container":face_color=Color("d69b42") if at.x>12 else Color("be6551")
+ if manga and style=="galpao":face_color=Color("d5a44c")
  var metal:Texture2D=null
  var file:="res://assets/overworld/kits/industrial-v1/superficies/metal-azul.png"
- if not simple and style!="barreira":metal=texture(file)
+ if not simple and style!="barreira" and (not manga or style=="galpao"):metal=texture(file)
  for points in [PackedVector2Array([d-lift,c-lift,c,d]),PackedVector2Array([c-lift,b-lift,b,c])]:
   var wall:=S.quad(root,points,face_color if points[0]==d-lift else face_color.darkened(.22))
   if metal and style=="container":
@@ -82,3 +103,11 @@ static func block(view,at:Vector2,w:float,h:float,z:float,style:String,simple:bo
   var p:=S.iso(at+Vector2(2,2),level)-root.position
   S.quad(root,PackedVector2Array([p-Vector2(12,z),p+Vector2(12,-z),p+Vector2(12,-z-140),p-Vector2(12,z+140)]),Color("98674e"))
   for k in 6:S.line(root,PackedVector2Array([p+Vector2(-12,-z-20-k*20),p+Vector2(12,-z-20-k*20)]),2,Color("c29671"))
+ if manga:
+  if style=="galpao":
+   var facade:=texture("res://assets/overworld/kits/industrial-v1/superficies/fachada-manga.png")
+   if facade:
+    var wall:=S.quad(root,PackedVector2Array([d-lift,c-lift,c,d]),Color.WHITE,facade)
+    wall.uv=PackedVector2Array([Vector2.ZERO,Vector2(facade.get_width(),0),Vector2(facade.get_width(),facade.get_height()),Vector2(0,facade.get_height())])
+    S.line(root,PackedVector2Array([d-lift,c-lift,c,d,d-lift]),2.5,Color("30494f"))
+  D.building(root,a,b,c,d,z,style)
