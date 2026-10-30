@@ -204,3 +204,5 @@ const {generateJardim}=await import('./desenhar-jardim-das-pipas.mjs');
 generateJardim();
 const {generateClareira}=await import('./desenhar-clareira-do-papel.mjs');
 generateClareira();
+const {generateVeredas}=await import('./desenhar-veredas-do-encanamento.mjs');
+generateVeredas();
