@@ -38,3 +38,15 @@ test('items and tree density remain explicit warnings; inaccessible items are er
  m.events.push({type:'item',name:'Ilha',u:20,v:10,props:{}});for(const [du,dv]of [[1,0],[-1,0],[0,1],[0,-1],[0,0]])fill(m,20+du,10+dv,cell('rocha'));assert.ok(rules(m,{requiredRoute:[]}).includes('Item inalcançável'));
  assert.match(report.lines[0],/CONFERÊNCIA ZERO QUEBRA/);
 });
+test('mandatory exits must remain reachable without encounter grass; optional grass is allowed',()=>{
+ const m=model();m.events.push({type:'saida',name:'Próxima parte',u:6,v:3,props:{destino:'b'}});
+ for(let v=0;v<m.h;v++)fill(m,4,v,cell('mato'));
+ assert.ok(rules(m,{requiredRoute:[]}).includes('Encontro obrigatório'));
+ fill(m,4,3,cell());assert.ok(!rules(m,{requiredRoute:[]}).includes('Encontro obrigatório'));
+ assert.equal(m.cells[4*m.w+4].material,'mato');
+});
+test('edge guards must follow a drop and cannot close a ramp mouth or a same-level connection',()=>{
+ const m=model();for(let v=0;v<3;v++)for(let u=0;u<m.w;u++)fill(m,u,v,cell('grama',1));fill(m,3,3,{...cell(),ramp:'v-'});
+ let result=rules(m,{requiredRoute:[],guards:[{u:3,v:2,side:'v'},{u:2,v:1,side:'u'}]});assert.ok(result.includes('Mureta cruzando acesso'));
+ result=rules(m,{requiredRoute:[],guards:[{u:1,v:2,side:'v'}]});assert.ok(!result.includes('Mureta cruzando acesso'));assert.ok(!result.includes('Mureta sem borda'));
+});

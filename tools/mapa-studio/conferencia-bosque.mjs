@@ -15,7 +15,7 @@ export function wideReachable(m,start,solid=blockedByPiece(m)){
  const seen=new Set();if(!start||!walkable(m,start.u,start.v,solid))return seen;
  const queue=[start];seen.add(key(m,start));for(let i=0;i<queue.length;i++)for(const d of D){const p=plus(queue[i],d),k=key(m,p);if(!at(m,p.u,p.v)||seen.has(k)||!wideEdge(m,queue[i],p,solid))continue;seen.add(k);queue.push(p);}return seen;
 }
-export function auditZeroBreak(m,{region=[],links=[],requiredRoute,accesses=[],frameDepth=4}={}){
+export function auditZeroBreak(m,{region=[],links=[],requiredRoute,accesses=[],guards=[],frameDepth=4}={}){
  const issues=[...audit(m)],solid=blockedByPiece(m),seen=reachable(m,m.spawn,solid);
  const add=(level,rule,text,cell)=>issues.push({level,rule,text,...(cell?{cell}: {})});
  let plateau=0,unreachable=0,loose=0,ramps=0;
@@ -41,6 +41,13 @@ export function auditZeroBreak(m,{region=[],links=[],requiredRoute,accesses=[],f
  for(const a of accesses)for(const p of a.cells||[a])protect(p,a.name||'acesso declarado');
  for(const p of m.pieces)for(const a of accessCells.values())if(covers(p,a))add('fail',/mureta|muro|cerca/.test(p.asset+' '+p.name)?'Mureta cruzando acesso':'Peça sobre acesso',`${p.name||p.asset} ocupa ${a.label} em ${a.u},${a.v}.`,a);
  for(const e of m.events){const access=accessCells.get(key(m,e));if(access&&!['entrada','saida'].includes(e.type))add('fail','Evento sobre acesso',`${e.name||e.type} ocupa ${access.label}.`,e);}
+ for(const guard of guards){
+  const d=guard.side==='u'?[1,0]:guard.side==='v'?[0,1]:null,c=at(m,guard.u,guard.v);
+  if(!d||!c){add('fail','Mureta inválida','Aresta de mureta não corresponde a uma célula.',guard);continue;}
+  const next=plus(guard,d),n=at(m,next.u,next.v);
+  if(c.ramp||n?.ramp||n&&canStep(m,guard,next,solid))add('fail','Mureta cruzando acesso',`Mureta ${guard.side} em ${guard.u},${guard.v} cruza ligação caminhável/rampa.`,guard);
+  else if(c.level<=0||n&&n.level>=c.level)add('fail','Mureta sem borda',`Guarda-corpo ${guard.side} em ${guard.u},${guard.v} não está sobre queda exposta.`,guard);
+ }
  const near=e=>[[0,0],...D].some(d=>{const p=plus(e,d);return at(m,p.u,p.v)&&seen[key(m,p)];});
  const items=m.events.filter(e=>e.type==='item');for(const e of items)if(!near(e))add('fail','Item inalcançável',`${e.name||e.props?.item} não está ao alcance.`,e);
  if(items.length<3)add('warn','Itens por parte',`Somente ${items.length} itens; mínimo 3.`);
@@ -53,6 +60,9 @@ export function auditZeroBreak(m,{region=[],links=[],requiredRoute,accesses=[],f
  if(crowded.length)add('warn','Árvore solta',`${isolated.length} árvores isoladas; ${crowded.length} excedem duas na mesma janela de jogo.`,crowded[0]);
  const route=requiredRoute||[m.spawn,...m.events.filter(e=>e.type==='saida')];
  for(let i=1;i<route.length;i++)if(!wideReachable(m,route[i-1],solid).has(key(m,route[i])))add('fail','Corredor estreito',`Sem corredor contínuo de duas células entre ${route[i-1].u},${route[i-1].v} e ${route[i].u},${route[i].v}.`,route[i]);
+ const safe={...m,cells:m.cells.map(c=>c.material==='mato'?{...c,material:'bosque'}:c)};
+ const safeSeen=reachable(safe,m.spawn,solid);
+ for(const e of m.events.filter(e=>e.type==='saida'))if(!safeSeen[key(m,e)])add('fail','Encontro obrigatório',`Saída ${e.name||e.props?.destino} exige atravessar mato de encontro.`,e);
  const frame=[];for(let v=0;v<m.h;v++)for(let u=0;u<m.w;u++)if(Math.min(u,v,m.w-1-u,m.h-1-v)<frameDepth&&walkable(m,u,v,solid)&&!m.events.some(e=>['entrada','saida'].includes(e.type)&&Math.max(Math.abs(u-e.u),Math.abs(v-e.v))<=frameDepth+1))frame.push({u,v});
  if(frame.length)add('warn','Moldura',`${frame.length} células caminháveis na moldura fora dos acessos; conferir captura.`,frame[0]);
  if(region.length){const parts=new Set(region.map(r=>r.part));if(!['A','B','C'].every(p=>parts.has(p)))add('fail','Partes da região','Região precisa das partes A, B e C.');
