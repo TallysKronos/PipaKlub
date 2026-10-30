@@ -17,7 +17,7 @@ export function writeCapturePlan(map,features={},outputBase='documentation/overw
   if((c.rampFrom??0)===0)add(`rampa-pe-${u}-${v}`,u+.5,v+.5);
   if((c.rampTo??1)===1){add(`rampa-topo-${u}-${v}`,u+.5,v+.5);add(`plato-${u}-${v}`,u+.5,v+.5,1,'jogo');}
  });
- if(features.water){
+ if(features.water&&!features.industrial){
   features.water.contour.forEach(([u,v],i)=>add('poco-contorno-'+i,u,v));
   for(const u of [0,12,24,36,51])add('riacho-margem-'+u,u,22+Math.sin(u*.13)*2);
  }
