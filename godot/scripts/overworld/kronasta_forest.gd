@@ -5,6 +5,7 @@ extends RefCounted
 ## então um platô na frente cobre o que está atrás dele. O chão usa máscaras de trilha, mata,
 ## manchas e mato (bordas orgânicas, fora da grade). A moldura continua além do mapa com mata.
 const KITS := "res://assets/overworld/kits/"
+const Structures=preload("res://scripts/overworld/forest_structures.gd")
 const RING := 9
 const TREES := {"a":"comum/pecas/arvore-a.png","b":"comum/pecas/arvore-b.png","florida":"comum/pecas/arvore-florida.png","grande":"comum/pecas/arvore-tronco-largo.png"}
 
@@ -43,7 +44,7 @@ static func build(view) -> void:
 			var level:=int(model.cell_at(Vector2i(u,v)).get("level",0)) if inside else 0
 			# Platô um pouco mais claro que o chão de baixo; rampa sombreada pelo lado em que sobe
 			# (subindo para +u/+v ela vira de costas para a câmera e escurece).
-			var tone:=1.0+.06*level
+			var tone:=.88+.18*level
 			if inside and model.cell_at(Vector2i(u,v)).get("ramp")!=null:
 				tone*=.80 if str(model.cell_at(Vector2i(u,v)).ramp) in ["u+","v+"] else 1.12
 			for corner in corners:
@@ -60,18 +61,21 @@ static func build(view) -> void:
 				# Conferência geométrica: cores chapadas por nível, rampa em vermelho.
 				poly.material=null
 				var c:Dictionary=model.cell_at(Vector2i(u,v)) if inside else {}
-				var flat:=Color("6a8f4e") if c.is_empty() or int(c.level)==0 else Color("b9d77a")
+				var flat:=Color("6a8f4e") if c.is_empty() or int(c.level)==0 else Color("b9d77a") if int(c.level)==1 else Color("d9e9a8")
+				if not c.is_empty() and c.material=="bosque":flat=flat.darkened(.28)
+				if not c.is_empty() and c.material=="terra":flat=Color("cbac72")
 				if not c.is_empty() and c.get("ramp")!=null:flat=Color("d0473b") if str(c.ramp) in ["u+","v+"] else Color("e0a03a")
 				poly.vertex_colors=PackedColorArray([flat,flat,flat,flat])
-			node.add_child(poly)
+			Structures.floor_cut(model,node,poly,corners,u,v)
 			if inside:
 				_walls(view,model,node,u,v,wall_texture)
-			elif _hash(u,v,7)<.82 and not _near_exit(u,v,w,h,exits) and _hidden_behind(model,u,v)>4:
+			elif OS.get_environment("KRONASTA_GEOMETRIA")!="1" and _hash(u,v,7)<.82 and not Structures.is_water(model,Vector2(u+.5,v+.5)) and not _near_exit(u,v,w,h,exits) and _hidden_behind(model,u,v)>4:
 				_tree(view,model,Vector2(u+.5+(_hash(u,v,3)-.5)*.5,v+.5+(_hash(u,v,4)-.5)*.5),0,"a" if _hash(u,v,5)<.5 else "b",_hash(u,v,6),true)
+	Structures.build(view)
 	for piece in model.data.pieces:_piece(view,model,piece)
 	_tufts(view,model)
 	for event in model.data.events:
-		if event.type=="item" and str(event.props.get("visibilidade","")) in ["visivel","brilho"]:_glint(view,model,event)
+		if OS.get_environment("KRONASTA_GEOMETRIA")!="1" and event.type=="item" and str(event.props.get("visibilidade","")) in ["visivel","brilho"]:_glint(view,model,event)
 
 static func _screen(point:Vector2,height:float) -> Vector2:
 	return Vector2((point.x-point.y)*32.0,(point.x+point.y)*16.0-height*64.0)
@@ -98,11 +102,12 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 		var wall:=Polygon2D.new()
 		var pts:=[_screen(a,top_a),_screen(b,top_b),_screen(b,low_b),_screen(a,low_a)]
 		wall.polygon=PackedVector2Array(pts.map(func(p):return p-node.position))
-		wall.texture=texture
+		wall.texture=texture if OS.get_environment("KRONASTA_GEOMETRIA")!="1" else null
 		wall.texture_repeat=CanvasItem.TEXTURE_REPEAT_ENABLED
 		var s0:=float(u+v)*44.0
 		wall.uv=PackedVector2Array([Vector2(s0,-top_a*112),Vector2(s0+44,-top_b*112),Vector2(s0+44,-low_b*112),Vector2(s0,-low_a*112)])
 		var lit:=Color(1.0,.97,.92) if side=="u" else Color(.70,.66,.64)
+		if OS.get_environment("KRONASTA_GEOMETRIA")=="1":lit=Color("9a7652") if side=="u" else Color("775b46")
 		wall.vertex_colors=PackedColorArray([lit,lit,lit*Color(.62,.60,.62),lit*Color(.62,.60,.62)])
 		node.add_child(wall)
 		# Borda de grama que dobra por cima do paredão, com recorte irregular.
@@ -134,6 +139,7 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 
 static func _tree(view,model,point:Vector2,level:int,variant:String,r:float,occluder:bool,shrink:float=1.0) -> void:
 	var root:=Node2D.new()
+	root.set_meta("scenery",true)
 	root.position=model.project(point,false)
 	var contact:=Sprite2D.new()
 	contact.texture=load(KITS+"comum/sombras/contato.png")
@@ -162,6 +168,7 @@ static func _hidden_behind(model,u:int,v:int) -> int:
 
 static func _sprite(view,model,point:Vector2,level:int,file:String,anchor:Vector2,scale:float=1.0,shadow:float=0.0) -> Node2D:
 	var root:=Node2D.new()
+	root.set_meta("scenery",true)
 	root.position=model.project(point,false)
 	if shadow>0:
 		var contact:=Sprite2D.new()
@@ -181,6 +188,8 @@ static func _sprite(view,model,point:Vector2,level:int,file:String,anchor:Vector
 	return root
 
 static func _piece(view,model,piece:Dictionary) -> void:
+	if OS.get_environment("KRONASTA_GEOMETRIA")=="1":return
+	if piece.interact!=null:view.interaction_events.append({"id":"piece-"+str(piece.id),"type":"piece","name":piece.name,"asset":piece.asset,"piece_id":piece.id,"u":piece.u,"v":piece.v,"props":piece.props})
 	var cell:Dictionary=model.cell_at(Vector2i(piece.u,piece.v))
 	var level:=int(cell.get("level",0))
 	var r:=_hash(int(piece.u),int(piece.v),21)
@@ -191,19 +200,23 @@ static func _piece(view,model,piece:Dictionary) -> void:
 			# Copa alta na frente de chão caminhável vira arbusto ou árvore baixa: a mata
 			# emoldura a trilha pelos lados e por trás, sem tampar o caminho.
 			var cover:=_hidden_behind(model,int(piece.u),int(piece.v))
+			if model.data.get("forest",{}).get("water")!=null and at.x>30 and at.x<47 and at.y>8 and at.y<25:return
 			if cover<=2:
-				view.occluders.append(_sprite(view,model,at,level,"parque/decalques/arbusto-baixo-"+("a" if r<.5 else "b")+".png",Vector2(48,45),1.25+r*.3,1.5))
+				return
 			else:
 				_tree(view,model,at+Vector2(r-.5,_hash(int(piece.u),int(piece.v),22)-.5)*.36,level,variant,r,true,.62 if cover<=3 else .8 if cover<=4 else 1.0)
 		"arbusto":
+			if _hidden_behind(model,int(piece.u),int(piece.v))<=2:return
 			var bush:=_sprite(view,model,at,level,"parque/decalques/arbusto-baixo-"+("a" if variant=="a" else "b")+".png",Vector2(48,45),1.15+r*.3,1.5)
 			view.occluders.append(bush)
+		"banco":_sprite(view,model,at,level,"comum/pecas/banco-madeira.png",Vector2(48,120),1.4,1.4)
 		"pedra":_sprite(view,model,at,level,"comum/pecas/pedra-"+variant+".png",Vector2(32,80),1.0,.9)
 		"flores":_sprite(view,model,at,level,"comum/pecas/flores-"+variant+".png",Vector2(32,80),1.0,0.0)
 		"placa-mapa":_sprite(view,model,at,level,"comum/pecas/placa-mapa-parque.png",Vector2(64,160),.9,1.2)
 
 # Tufos de capim concentrados nas bordas (mata e trilha), raros no meio da grama.
 static func _tufts(view,model) -> void:
+	if OS.get_environment("KRONASTA_GEOMETRIA")=="1":return
 	for v in int(model.data.h):
 		for u in int(model.data.w):
 			var cell:Dictionary=model.cell_at(Vector2i(u,v))

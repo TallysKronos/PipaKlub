@@ -21,7 +21,7 @@ void fragment() {
 	float patch = smoothstep(.40, .60, m.b + (grain - .5) * .10);
 	vec3 grass = mix(texture(grass_a, tuv).rgb * vec3(1.07, 1.05, .90), texture(grass_b, tuv + vec2(.37, .11)).rgb * vec3(.84, .95, .86), patch);
 	// Mato de encontro: grama mais funda e saturada.
-	grass = mix(grass, grass * vec3(.80, .98, .78), smoothstep(.35, .7, m.a));
+	grass = mix(grass, grass * vec3(.80, .98, .78), smoothstep(.10, .85, m.a + (grain-.5)*.12));
 	// Sob as copas: chão em sombra profunda e fria.
 	grass = mix(grass, grass * vec3(.48, .58, .55), smoothstep(.30, .80, m.g));
 	float edge = m.r + (grain - .5) * .26;
