@@ -1,0 +1,277 @@
+{
+  "prompt": [
+    32,
+    "e4cfd5d4-a629-4d4d-a75b-62cd88cdd416",
+    {
+      "1": {
+        "class_type": "UNETLoader",
+        "inputs": {
+          "unet_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+          "weight_dtype": "default"
+        }
+      },
+      "2": {
+        "class_type": "CLIPLoader",
+        "inputs": {
+          "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+          "type": "minimax",
+          "device": "default"
+        }
+      },
+      "3": {
+        "class_type": "VAELoader",
+        "inputs": {
+          "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+        }
+      },
+      "4": {
+        "class_type": "VAELoader",
+        "inputs": {
+          "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+        }
+      },
+      "5": {
+        "class_type": "LoadImage",
+        "inputs": {
+          "image": "lacertubo-patio-keyframe.png"
+        }
+      },
+      "7": {
+        "class_type": "LoadImage",
+        "inputs": {
+          "image": "lacertubo-approved-identity.png"
+        }
+      },
+      "8": {
+        "class_type": "MiniMaxH3ReferenceToVideo",
+        "inputs": {
+          "clip": [
+            "2",
+            0
+          ],
+          "vae": [
+            "3",
+            0
+          ],
+          "audio_vae": [
+            "4",
+            0
+          ],
+          "prompt": "Original Soulmonsters hand-drawn 2D manga anime film. Thin confident ink, clean flat teal and golden orange local colors, restrained single cel shadows, subtle warm anime background. Preserve the exact living PAPER KITE LIZARD identity in both references: ONE low quadruped with long angular pointed snout, teal/gold folded paper panels, white stitched patches, white PVC tube joints, bamboo spars tied with orange knots, four clawed feet, one triangular dorsal paper sail, ONE connected segmented pennant tail. Paper and bamboo construction is anatomical. No organic scales, no metal robot, no giant dragon, no extra legs, no duplicated tails. <Picture 1> is the START FRAME and exact courtyard setting. <Picture 2> is IDENTITY ONLY, never show its plain background or turn this into a sheet.\nONE CONTINUOUS CINEMATIC TAKE, 8 seconds, landscape, ground-level three-quarter lens, not isometric game graphics. Begin exactly from Picture 1. Three blue PVC pipe elbows occupy the left foreground, Lacertubo on courtyard paving center-right, turquoise canal and green railing behind. Seconds 0-2: the blue pipe fittings rattle with two low hollow metallic knocks; a little dust loosens, folded paper scraps slide in a light gust. Lacertubo notices the vibration, narrows his eyes and turns his head slightly toward camera without changing identity. Camera makes a smooth short dolly right and forward, revealing him past the foreground pipes. Seconds 2-5: Lacertubo takes TWO deliberate short heavy steps toward camera-left, four claws visibly lift and plant on the paving with consistent contact, paper shoulder and PVC elbow joints articulate, tail follows with delayed sway. He stops and raises/opens his attached triangular dorsal sail. Seconds 5-7: he braces his four feet, lifts his snout, opens his mouth and gives a short fierce rough PAPER-LIZARD GROWL, tension in the sail and fluttering pennant tail. Camera ends in a dramatic medium-low three-quarter view, preserving all of head and sail in frame. Seconds 7-8: mouth closes and he fixes a territorial stare toward camera-left, paper scraps settle and the camera eases to a stop. This is anticipation for a boss fight; no attack, no fire, no explosion, no humans and no dialogue.\nActual hand-drawn character articulation and environmental animation, not still-image scaling, not slideshow, no cuts, no teleportation, no morphing or changing colors. Keep the courtyard paving grounded and the canal at a lower elevation. Atmospheric hollow pipes, soft wind, paper rustling, grounded claw footfalls, one creature growl, distant running water. No music, no speech, no captions, no title, no HUD, no text, no logo, no borders.\n",
+          "width": 864,
+          "height": 480,
+          "length": 192,
+          "ref_image_size": "match",
+          "ref_images.ref_image_0": [
+            "5",
+            0
+          ],
+          "ref_images.ref_image_1": [
+            "7",
+            0
+          ]
+        }
+      },
+      "9": {
+        "class_type": "MiniMaxH3AddGuide",
+        "inputs": {
+          "positive": [
+            "8",
+            0
+          ],
+          "latent": [
+            "8",
+            1
+          ],
+          "vae": [
+            "3",
+            0
+          ],
+          "image": [
+            "5",
+            0
+          ],
+          "frame_idx": 0
+        }
+      },
+      "10": {
+        "class_type": "BasicGuider",
+        "inputs": {
+          "model": [
+            "1",
+            0
+          ],
+          "conditioning": [
+            "9",
+            0
+          ]
+        }
+      },
+      "11": {
+        "class_type": "RandomNoise",
+        "inputs": {
+          "noise_seed": 3010202688
+        }
+      },
+      "12": {
+        "class_type": "KSamplerSelect",
+        "inputs": {
+          "sampler_name": "res_multistep"
+        }
+      },
+      "13": {
+        "class_type": "BasicScheduler",
+        "inputs": {
+          "model": [
+            "1",
+            0
+          ],
+          "scheduler": "beta",
+          "steps": 20,
+          "denoise": 1
+        }
+      },
+      "14": {
+        "class_type": "SamplerCustomAdvanced",
+        "inputs": {
+          "noise": [
+            "11",
+            0
+          ],
+          "guider": [
+            "10",
+            0
+          ],
+          "sampler": [
+            "12",
+            0
+          ],
+          "sigmas": [
+            "13",
+            0
+          ],
+          "latent_image": [
+            "8",
+            1
+          ]
+        }
+      },
+      "15": {
+        "class_type": "VAEDecode",
+        "inputs": {
+          "samples": [
+            "14",
+            0
+          ],
+          "vae": [
+            "3",
+            0
+          ]
+        }
+      },
+      "16": {
+        "class_type": "VAEDecodeAudio",
+        "inputs": {
+          "samples": [
+            "14",
+            0
+          ],
+          "vae": [
+            "4",
+            0
+          ]
+        }
+      },
+      "17": {
+        "class_type": "CreateVideo",
+        "inputs": {
+          "images": [
+            "15",
+            0
+          ],
+          "audio": [
+            "16",
+            0
+          ],
+          "fps": 24
+        }
+      },
+      "18": {
+        "class_type": "SaveVideo",
+        "inputs": {
+          "video": [
+            "17",
+            0
+          ],
+          "filename_prefix": "SoulmonstersLacertubo/cinematic-patio-v1",
+          "format": "auto",
+          "format.codec": "auto",
+          "codec": "auto"
+        }
+      }
+    },
+    {
+      "client_id": "soulmonsters-lacertubo-cinematic-v1",
+      "create_time": 1793403788180
+    },
+    [
+      "18"
+    ]
+  ],
+  "outputs": {
+    "18": {
+      "images": [
+        {
+          "filename": "cinematic-patio-v1_00001_.mp4",
+          "subfolder": "SoulmonstersLacertubo",
+          "type": "output"
+        }
+      ],
+      "animated": [
+        true
+      ]
+    }
+  },
+  "status": {
+    "status_str": "success",
+    "completed": true,
+    "messages": [
+      [
+        "execution_start",
+        {
+          "prompt_id": "e4cfd5d4-a629-4d4d-a75b-62cd88cdd416",
+          "timestamp": 1793403788185
+        }
+      ],
+      [
+        "execution_cached",
+        {
+          "nodes": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "12"
+          ],
+          "prompt_id": "e4cfd5d4-a629-4d4d-a75b-62cd88cdd416",
+          "timestamp": 1793403788510
+        }
+      ],
+      [
+        "execution_success",
+        {
+          "prompt_id": "e4cfd5d4-a629-4d4d-a75b-62cd88cdd416",
+          "timestamp": 1793404319195
+        }
+      ]
+    ]
+  },
+  "meta": {
+    "18": {
+      "node_id": "18",
+      "display_node": "18",
+      "parent_node": null,
+      "real_node_id": "18"
+    }
+  }
+}
