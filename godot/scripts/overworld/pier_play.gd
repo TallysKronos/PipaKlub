@@ -2,6 +2,7 @@ extends Node2D
 ## Independent playable dock. Surface graph owns height and edge collision.
 ## Does not load/write campaign slots or access the network.
 const Controls = preload("res://scripts/campaign/controls.gd")
+const CompanionFollow = preload("res://scripts/campaign/companion_follow.gd")
 const Locomotion = preload("res://scripts/campaign/locomotion.gd")
 const Avatar = preload("res://scripts/avatar.gd")
 const Hud = preload("res://scripts/campaign/hud.gd")
@@ -240,7 +241,7 @@ func _refresh_visuals() -> void:
 	if not partner_frames.is_empty():
 		var f: Dictionary = partner_frames[int(clock*10)%partner_frames.size()]
 		partner.region_rect = Rect2(f.x,f.y,f.w,f.h)
-	partner.flip_h = avatar.facing in ["sw","nw"]
+	CompanionFollow.orient(partner,avatar.facing)
 	var goal := _goal()
 	var toward: Vector2 = world.iso(goal.p,goal.h)-player_root.position
 	compass.text = ["→","↘","↓","↙","←","↖","↑","↗"][posmod(roundi(toward.angle()/(PI/4)),8)]

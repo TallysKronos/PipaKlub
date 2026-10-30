@@ -5,6 +5,7 @@ const Prop = preload("res://scripts/overworld/prop.gd")
 const Avatar = preload("res://scripts/avatar.gd")
 const Hud = preload("res://scripts/campaign/hud.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
+const CompanionFollow = preload("res://scripts/campaign/companion_follow.gd")
 const Locomotion = preload("res://scripts/campaign/locomotion.gd")
 const ParqueSurfaces = preload("res://scripts/overworld/parque_surfaces.gd")
 const ClareiraTerrain = preload("res://scripts/overworld/clareira_terrain.gd")
@@ -1802,28 +1803,30 @@ func _build_hud() -> void:
 func _refresh_positions() -> void:
 	_place_actor(player_root,avatar,player,84)
 	_place_actor(follower_root,companion,follower,42)
+	CompanionFollow.orient(companion,avatar.facing)
 	for actor in npc_nodes:_place_actor(actor.root,actor.visual,actor.point,84)
 	camera.position = model.project(player)
 	_fade_occluders()
 
 func _fade_occluders() -> void:
-	# A house or tree drawn over Kael turns see-through, so composition can keep
-	# some volume in front of the path without hiding the player.
-	var body := Rect2(model.project(player)-Vector2(20,84),Vector2(40,84))
-	var ground := model.project(player,false).y
+	var pair:Array[Dictionary]=[]
+	# Project each actor once, rather than repeat height queries for every tree.
+	for member in [{"point":player,"height":84.0},{"point":follower,"height":42.0}]:
+		var at:Vector2=member.point
+		pair.append({"point":at,"body":Rect2(model.project(at)-Vector2(20,member.height),Vector2(40,member.height)),"ground":model.project(at,false).y})
 	for node in occluders:
-		if not is_instance_valid(node): continue
-		var art := node.get_node_or_null("Art") as Sprite2D
-		if art == null: continue
-		if node.has_meta("piece"):
-			var piece: Dictionary = node.get_meta("piece")
-			if player.x>=float(piece.u)+float(piece.fu) or player.y>=float(piece.v)+float(piece.fv):
-				art.modulate.a = 1.0
-				continue
-		# Bounds follow the sprite's own scale and flip (forest trees vary both).
-		var bounds := art.get_transform() * art.get_rect()
-		var covers := node.position.y > ground and Rect2(node.position+bounds.position,bounds.size).intersects(body)
-		art.modulate.a = .45 if covers else 1.0
+		if not is_instance_valid(node):continue
+		var art:=node.get_node_or_null("Art") as Sprite2D
+		if art==null:continue
+		var bounds:=art.get_transform()*art.get_rect()
+		var covers:=false
+		for member in pair:
+			var point:Vector2=member.point
+			if node.has_meta("piece"):
+				var piece:Dictionary=node.get_meta("piece")
+				if point.x>=float(piece.u)+float(piece.fu) or point.y>=float(piece.v)+float(piece.fv):continue
+			if node.position.y>member.ground and Rect2(node.position+bounds.position,bounds.size).intersects(member.body):covers=true;break
+		art.modulate.a=.45 if covers else 1.0
 
 func _place_actor(root: Node2D, visual: Node2D, point: Vector2, height: float) -> void:
 	var ground := model.project(point,false)
@@ -1870,14 +1873,14 @@ func _physics_process(delta: float) -> void:
 		path.clear()
 		var lattice := Vector2(input.x+2*input.y,-input.x+2*input.y).normalized()
 		var candidate := player + lattice * delta * speed
-		if model.clear_segment(player,candidate): player = candidate
+		if model.clear_segment(player,candidate): _adopt_player_step(candidate)
 		else:
 			for step in [Vector2(lattice.x,0),Vector2(0,lattice.y)]:
 				candidate = player + step*delta*speed
-				if model.clear_segment(player,candidate): player = candidate
+				if model.clear_segment(player,candidate): _adopt_player_step(candidate)
 	elif not path.is_empty():
 		var candidate := player.move_toward(path[0],delta*speed)
-		if model.clear_segment(player,candidate): player = candidate
+		if model.clear_segment(player,candidate): _adopt_player_step(candidate)
 		else: path.clear()
 		if not path.is_empty() and player.distance_to(path[0]) < .01: path.remove_at(0)
 	avatar.moving = player.distance_to(old) > .001
@@ -1891,17 +1894,7 @@ func _physics_process(delta: float) -> void:
 			if grass_distance > 6:
 				grass_distance = 0
 				message("Mato: gatilho de encontro validado • prévia sem batalha ou recompensa")
-	if bool(model.data.get("forest",{}).get("followTrail",false)):
-		if avatar.moving:follower_trail.append(player)
-		_follow_recorded_path(delta)
-	elif follower.distance_to(player) > .8:
-		var route := model.path_to(follower,player)
-		if route.size() > 1:
-			var target: Vector2 = route[1]
-			# Aim ahead; return to the own-cell center only when the straight line is blocked.
-			if not model.clear_segment(follower,target): target = route[0]
-			var next := follower.move_toward(target,delta*(5.8 if Locomotion.requested() or follower.distance_to(player)>1.5 else 3.2))
-			if model.clear_segment(follower,next): follower = next
+	_follow_recorded_path(delta)
 	_refresh_positions()
 	nearby = {}
 	for event in interaction_events:
@@ -1912,23 +1905,15 @@ func _physics_process(delta: float) -> void:
 			break
 	hint.text = notice if clock < notice_until else "E â€¢ " + nearby.name if not nearby.is_empty() else "WASD / setas â€¢ caminhar   Clique â€¢ ir atÃ© lÃ¡   Roda â€¢ zoom"
 
+func _adopt_player_step(next:Vector2) -> void:
+	if next==player:return
+	if follower_trail.is_empty():follower_trail.append(player)
+	player=next
+	follower_trail.append(player)
+
 func _follow_recorded_path(delta: float) -> void:
-	# On curved banks a freshly recomputed shortest path can switch sides of a
-	# long obstacle. Keep the accepted player steps instead; never shortcut water.
-	var distance := 0.0
-	var previous := follower
-	for point in follower_trail:
-		distance += previous.distance_to(point)
-		previous = point
-	var budget := minf(delta*(5.8 if Locomotion.requested() or follower.distance_to(player)>1.5 else 3.2),maxf(0,distance-.8))
-	while budget>.00001 and not follower_trail.is_empty():
-		var target: Vector2 = follower_trail[0]
-		var next := follower.move_toward(target,budget)
-		if not model.clear_segment(follower,next):break
-		budget -= follower.distance_to(next)
-		follower = next
-		if follower.distance_to(target)<.00001:follower_trail.remove_at(0)
-		else:break
+	# Every map follows the accepted footsteps, never a newly chosen shortcut.
+	follower=CompanionFollow.advance(follower,follower_trail,delta,6.3,.8,model.clear_segment)
 
 func interact() -> void:
 	if nearby.is_empty(): return

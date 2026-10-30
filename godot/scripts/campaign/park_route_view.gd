@@ -1,5 +1,6 @@
 extends Node2D
 const Controls = preload("res://scripts/campaign/controls.gd")
+const CompanionFollow = preload("res://scripts/campaign/companion_follow.gd")
 signal action_requested(id: String)
 signal menu_requested
 const Avatar = preload("res://scripts/avatar.gd")
@@ -141,6 +142,7 @@ func _refresh() -> void:
 	avatar.position = project(player)
 	avatar.z_index = landscape.depth(player) if is_instance_valid(landscape) else int(avatar.position.y)
 	companion.position = project(follower)
+	CompanionFollow.orient(companion,avatar.facing)
 	companion.z_index = landscape.depth(follower) if is_instance_valid(landscape) else int(companion.position.y)
 	var frame: Dictionary = frames[int(clock * 12) % frames.size()]
 	companion.region_rect = Rect2(frame.x, frame.y, frame.w, frame.h)

@@ -1,5 +1,6 @@
 extends Node2D
 const Controls = preload("res://scripts/campaign/controls.gd")
+const CompanionFollow = preload("res://scripts/campaign/companion_follow.gd")
 const Locomotion = preload("res://scripts/campaign/locomotion.gd")
 ## Uses the original room coordinates, footprints and 2:1 projection.
 signal interacted(id: String)
@@ -200,16 +201,9 @@ func _process(delta: float) -> void:
 		companion.region_rect = Rect2(frame.x, frame.y, frame.w, frame.h)
 		if trail.is_empty() or trail.back().distance_to(actor) > 8:
 			trail.append(actor)
-		var remaining := companion_point.distance_to(trail[0])
-		for i in range(1, trail.size()):
-			remaining += trail[i - 1].distance_to(trail[i])
-		if remaining > 70:
-			var next_point := companion_point.move_toward(trail[0], minf(remaining - 70, 400 * minf(delta, .05)))
-			if _safe(next_point):
-				companion_point = next_point
-			if companion_point.distance_to(trail[0]) < 1:
-				trail.pop_front()
+		companion_point=CompanionFollow.advance(companion_point,trail,minf(delta,.05),720.0,70.0,_companion_segment)
 		companion.position = project(companion_point)
+		CompanionFollow.orient(companion,avatar.facing)
 		_update_order()
 	near = ""
 	for spot in data.hotspots:
@@ -229,16 +223,27 @@ func _process(delta: float) -> void:
 	var before := actor
 	for i in steps:
 		var move := world / steps
+		var previous:=actor
 		if _safe(actor + move):
 			actor += move
 		elif _safe(actor + Vector2(move.x, 0)):
 			actor.x += move.x
 		elif _safe(actor + Vector2(0, move.y)):
 			actor.y += move.y
+		if actor!=previous and is_instance_valid(companion) and companion_follow:
+			if trail.is_empty():trail.append(previous)
+			trail.append(actor)
 	avatar.moving = actor.distance_to(before)>.01
 	avatar.running=avatar.moving and Locomotion.requested()
 	if avatar.moving:avatar.face_motion(project(actor)-project(before))
+	if is_instance_valid(companion):CompanionFollow.orient(companion,avatar.facing)
 	_update_order()
+
+func _companion_segment(from:Vector2,to:Vector2) -> bool:
+	var samples:=maxi(1,ceili(from.distance_to(to)/4.0))
+	for i in range(1,samples+1):
+		if not _safe(from.lerp(to,float(i)/samples)):return false
+	return true
 
 func _unhandled_input(event: InputEvent) -> void:
 	if can_walk and Controls.pressed(event, "interact") and not near.is_empty() and (near == target_hotspot or target_hotspot == "*"):
