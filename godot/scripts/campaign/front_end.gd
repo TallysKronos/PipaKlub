@@ -194,7 +194,7 @@ func _main_menu_action(id:String) -> void:
 func _slot_location(snapshot:Dictionary) -> Dictionary:
 	var point:Dictionary=snapshot.get("checkpoint",{})
 	var scene:String=point.get("scene",snapshot.get("player",{}).get("encounter",{}).get("scene",""))
-	var name:String={"quintal":"Vila do Primeiro Vento","professor-home":"Ateliê do Sr. Assis","park-trail":"Jardim dos Ventos","park-clearing":"Clareira do Papel","park-veredas":"Veredas do Encanamento"}.get(scene,"Prólogo" if point.get("kind")=="opening" else "Ateliê do Sr. Assis")
+	var name:String={"quintal":"Vila do Primeiro Vento","professor-home":"Ateliê do Sr. Assis","park-trail":"Jardim dos Ventos","park-clearing":"Clareira do Papel","park-veredas":"Veredas do Encanamento","kronasta-bosque-a":"Bosque · Trilha das Copas","kronasta-bosque-b":"Bosque · Desvio do Riacho","kronasta-bosque-c":"Bosque · Clareira do Marco"}.get(scene,"Prólogo" if point.get("kind")=="opening" else "Ateliê do Sr. Assis")
 	var texture:Texture2D=load("res://assets/campaign/rooftop-arena-wide-v2.png")
 	if scene.begins_with("morro"):
 		var data:Dictionary=Morro.maps().get(scene,{})
@@ -603,7 +603,7 @@ func _show_world() -> void:
 	if Morro.maps().has(session.snapshot().checkpoint.scene):
 		_show_morro()
 		return
-	if session.snapshot().checkpoint.scene in ["park-trail", "park-clearing", "park-veredas"]:
+	if ParkCheckpoint.MAPS.has(session.snapshot().checkpoint.scene):
 		_load_park()
 		return
 	_clear()
@@ -1176,6 +1176,12 @@ func _show_park() -> void:
 	if saved.checkpoint.get("space","")!=ParkCheckpoint.SPACE:
 		if not _result(journey.enter_world(saved.checkpoint.scene,ParkCheckpoint.resolve(saved.checkpoint),ParkCheckpoint.SPACE)): return
 		saved=session.snapshot()
+	if ParkCheckpoint.is_bosque(saved.checkpoint.scene):
+		var discovery: Dictionary=load("res://scripts/campaign/bosque_campaign.gd").new(session).arrive()
+		if discovery.status not in ["ok","already_applied"]:
+			_result(discovery)
+			return
+		saved=session.snapshot()
 	park = ParkOverworldView.new()
 	park.ui_theme = theme
 	park.content = content
@@ -1203,6 +1209,9 @@ func _save_park() -> bool:
 func _park_exit(event: Dictionary) -> void:
 	if not _save_park(): return
 	var saved: Dictionary = session.snapshot()
+	if ParkCheckpoint.is_bosque(saved.checkpoint.scene) and event.props.get("destino","")=="kronasta":
+		_show_kronasta()
+		return
 	var destination: Dictionary = ParkCheckpoint.exit_target(saved.checkpoint,str(int(event.id)),saved.player)
 	if not _result(destination): return
 	park.paused=true
@@ -1211,10 +1220,13 @@ func _park_exit(event: Dictionary) -> void:
 
 func _park_event(id: String) -> void:
 	var player: Dictionary = session.snapshot().player
-	for event in park.model.data.events:
+	for event in park.interaction_events:
 		if str(int(event.id))!=id or not ParkCheckpoint.allowed(event,player,park.area_id): continue
 		if park.player.distance_to(Vector2(event.u+.5,event.v+.5))>1.8: return
 		var action: String = event.props.get("acao","")
+		if ParkCheckpoint.is_bosque(park.saved_checkpoint.scene) and event.type=="npc":
+			_notice(event.name+": "+str(event.props.get("texto","")))
+			return
 		if action=="parkMap": _show_map()
 		elif action=="wildGuide" and park.area_id=="jardim-das-pipas": _park_training("assis")
 		elif action=="wildGuide": _notice("Sr. Assis: Pipamons podem aparecer enquanto você caminha pelo parque. No capim alto os encontros são mais frequentes. Pontes e lugares de conversa são tranquilos. Os bancos recuperam linha e estrutura; o professor também pode ajudar.")
@@ -1531,6 +1543,35 @@ func _show_map() -> void:
 	var footer:=HBoxContainer.new()
 	page.add_child(footer)
 	_button("Voltar",footer,_return_to_game).custom_minimum_size.x=180
+	if load("res://scripts/campaign/bosque_campaign.gd").available(session.snapshot().player):
+		_button("Região de Kronasta",footer,_show_kronasta)
+
+func _show_kronasta() -> void:
+	if not _remember_world_position(): return
+	var saved: Dictionary=session.snapshot()
+	var region=load("res://scripts/campaign/bosque_campaign.gd")
+	if not region.available(saved.player): return
+	_simple_page("REGIÃO DE KRONASTA",true)
+	_label("Você está em "+_slot_location(saved).name,page,20)
+	_label("Bosque dos Ventos · uma trilha opcional por três áreas conectadas.",page,18)
+	_label("Trilha das Copas  →  Desvio do Riacho  →  Clareira do Marco",page,22)
+	var discovered: Array[String]=[]
+	for part in ["A","B","C"]:
+		if saved.player.flags.get("bosqueParte"+part+"Descoberta",false): discovered.append(part)
+	_label("Áreas descobertas: "+("nenhuma" if discovered.is_empty() else ", ".join(discovered)),page,18)
+	_label("Atravesse o riacho pela ponte. Na clareira, os bancos recuperam sua equipe e o atalho facilita a volta.",page,17)
+	var space:=Control.new()
+	space.size_flags_vertical=Control.SIZE_EXPAND_FILL
+	page.add_child(space)
+	_button("Entrar no Bosque · Trilha das Copas",page,func():_travel_kronasta("kronasta-bosque-a"))
+	_button("Voltar à Vila do Primeiro Vento",page,func():_travel_kronasta("quintal"))
+	_button("Continuar de onde parei",page,_return_to_game)
+
+func _travel_kronasta(destination: String) -> void:
+	if not _result(load("res://scripts/campaign/bosque_campaign.gd").new(session).travel(destination)): return
+	menu_origin=""
+	sound.set_game_paused(false)
+	_show_saved()
 
 func _show_tail_workshop() -> void:
 	if not _remember_world_position(): return

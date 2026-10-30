@@ -1,11 +1,14 @@
 extends RefCounted
 ## Explicit coordinate version: legacy illustrated pixels never become map cells by guesswork.
 const SPACE := "parque-overworld-v1"
-const MAPS := {"park-trail":"jardim-das-pipas","park-clearing":"clareira-do-papel","park-veredas":"veredas-do-encanamento"}
+const MAPS := {"park-trail":"jardim-das-pipas","park-clearing":"clareira-do-papel","park-veredas":"veredas-do-encanamento","kronasta-bosque-a":"kronasta-bosque-a","kronasta-bosque-b":"kronasta-bosque-b","kronasta-bosque-c":"kronasta-bosque-c"}
 const Model = preload("res://scripts/overworld/map_model.gd")
 const Legacy = preload("res://scripts/campaign/park_data.gd")
 static var _maps: Dictionary = {}
 static var _models: Dictionary = {}
+
+static func is_bosque(scene: String) -> bool:
+	return scene in ["kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c"]
 
 static func data(scene: String) -> Dictionary:
 	if not MAPS.has(scene): return {}
@@ -26,7 +29,7 @@ static func valid_position(scene: String, point: Vector2) -> bool:
 
 static func safe(scene: String, point: Vector2) -> Vector2:
 	var model = model_for(scene)
-	if valid_position(scene,point) and model.walkable(Vector2i(point.floor())): return point
+	if valid_position(scene,point) and model.point_walkable(point): return point
 	if not point.is_finite(): point = spawn(scene)
 	var id: int = model.graph.get_closest_point(point)
 	return model.graph.get_point_position(id)
@@ -69,13 +72,13 @@ static func migrate(scene: String, point: Vector2) -> Vector2:
 	return safe(scene,best)
 
 static func make(scene: String, point: Vector2, space: String = "") -> Dictionary:
-	var resolved := safe(scene,point) if space==SPACE else migrate(scene,point)
+	var resolved := safe(scene,point) if space==SPACE or is_bosque(scene) else migrate(scene,point)
 	return {"kind":"world","scene":scene,"position":[resolved.x,resolved.y],"space":SPACE}
 
 static func resolve(checkpoint: Dictionary) -> Vector2:
 	var raw: Array = checkpoint.get("position",[208,816])
 	var point := Vector2(raw[0],raw[1])
-	return safe(checkpoint.scene,point) if checkpoint.get("space","")==SPACE else migrate(checkpoint.scene,point)
+	return safe(checkpoint.scene,point) if checkpoint.get("space","")==SPACE or is_bosque(checkpoint.scene) else migrate(checkpoint.scene,point)
 
 static func near(checkpoint: Dictionary, key: String, point: Vector2) -> bool:
 	if checkpoint.get("space","")!=SPACE: return false
@@ -99,6 +102,7 @@ static func allowed(event: Dictionary, player: Dictionary, area: String = "") ->
 	var flags: Dictionary = player.get("flags",{})
 	if props.has("requer") and not flags.get(str(props.requer),false): return false
 	if props.has("ocultar_apos") and flags.get(str(props.ocultar_apos),false): return false
+	if props.get("descoberta","")=="clareira-do-marco" and not flags.get("bosqueClareiraDescoberta",false): return false
 	if props.get("acao","")=="veredasTail" and flags.get("ninaTail",false): return false
 	if event.get("type","")=="item" and ("park-item-"+area+"-"+str(int(event.id))) in player.get("completedOperations",[]): return false
 	return true
@@ -116,6 +120,10 @@ static func exit_target(checkpoint: Dictionary, id: String, player: Dictionary) 
 		if not MAPS.has(destination): return {"status":"wrong_step"}
 		var entrance: String = event.props.get("entrada_destino","")
 		var point := spawn(destination,entrance)
+		if is_bosque(source) and is_bosque(destination):
+			if event.props.has("chegada_u") and event.props.has("chegada_v"):
+				point=safe(destination,Vector2(float(event.props.chegada_u)+.5,float(event.props.chegada_v)+.5))
+			return {"status":"ok","scene":destination,"point":point,"space":SPACE}
 		if entrance.is_empty() and MAPS.keys().find(destination)<MAPS.keys().find(source):
 			for back in data(destination).events:
 				if back.type=="saida" and back.props.get("destino","")==source and not back.props.has("entrada_destino"):

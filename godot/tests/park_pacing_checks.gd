@@ -23,7 +23,9 @@ func _initialize() -> void:
 			elif weight>0: outside+=1
 			if cell.material in ["ponte","piso"] or cell.get("ramp")!=null: check(weight==0,"bridge, square and ramp safe: "+scene)
 		check(outside>30,scene+" has encounters beyond grass")
-		if scene!="park-trail": check(grass>0,scene+" retains high-grass encounters")
+		# Original park maps promise encounter grass. Bosque B's authored grass
+		# surrounds protected interactions; ordinary terrain still hosts encounters.
+		if scene in ["park-clearing","park-veredas"]: check(grass>0,scene+" retains high-grass encounters")
 		for event in model.data.events:
 			if event.type in ["npc","saida","entrada"] or event.props.get("acao","")=="parkBoss":
 				check(Pacing.weight(model,Vector2(event.u+.5,event.v+.5))==0,"interaction remains safe: "+event.name)

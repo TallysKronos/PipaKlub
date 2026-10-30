@@ -19,7 +19,7 @@ var load_state:="ready"
 var reduced_motion:=false
 var state_time:=0.0
 static var seen:Dictionary={}
-const NAMES := {"quest-nina-tail": "Rabiola do Carcará de Nina", "rabiola-lacertubo": "Rabiola de Lacertubo", "rabiola-basica": "Rabiola de Carcará", "rabiola-azulao": "Rabiola de Azulão", "rabiola-mata": "Rabiola de Mata verde", "rabiola-raio": "Rabiola de Raio de sol"}
+const NAMES := {"quest-nina-tail": "Rabiola do Carcará de Nina", "rabiola-lacertubo": "Rabiola de Lacertubo", "rabiola-basica": "Rabiola de Carcará", "rabiola-azulao": "Rabiola de Azulão", "rabiola-mata": "Rabiola de Mata verde", "rabiola-raio": "Rabiola de Raio de sol","papel-seda":"Papel de seda","vareta-bambu":"Vareta de bambu","cola-reparo":"Cola de reparo","linha-encerada":"Linha encerada","pista-caderno-heleana-1":"Página do caderno"}
 func _ready() -> void:
 	size_flags_vertical = Control.SIZE_EXPAND_FILL
 	add_theme_constant_override("separation",16)
@@ -108,7 +108,7 @@ func _unhandled_input(event:InputEvent) -> void:
 		page_index=0;populate(tabs[index].text);tabs[index].grab_focus()
 		get_viewport().set_input_as_handled()
 func category(id: String) -> String:
-	return "Missão" if id.begins_with("quest-") else "Rabiolas" if "rabiola" in id else "Materiais"
+	return "Missão" if id.begins_with("quest-") or id.begins_with("pista-") else "Rabiolas" if "rabiola" in id else "Materiais"
 func populate(filter: String) -> void:
 	current_filter=filter
 	for tab in tabs:tab.set_pressed_no_signal(tab.text==filter)
@@ -173,6 +173,7 @@ func select_item(id: String) -> void:
 	item_name.text = NAMES.get(id, id.replace("-", " ").capitalize()) if not id.is_empty() else "Nada por aqui"
 	quantity.text = ("MISSÃO · " if category(id) == "Missão" else "") + "%d na mochila" % inventory.get(id, 0) if not id.is_empty() else ""
 	description.text = "Esta categoria ainda está vazia." if id.is_empty() else "Nina está esperando por esta rabiola. Entregue-a pessoalmente." if id == "quest-nina-tail" else "Leve ao ateliê do Sr. Assis para trabalhar nesta rabiola." if category(id) == "Rabiolas" else "Material guardado para sua jornada."
+	if id=="pista-caderno-heleana-1": description.text="Página encontrada em um dos platôs do Bosque dos Ventos. Guardada entre suas pistas."
 	if id.is_empty() and load_state!="ready":
 		item_name.text="Carregando itens" if load_state=="loading" else "Itens indisponíveis"
 		description.text="Aguarde a leitura da mochila." if load_state=="loading" else "Tente novamente para atualizar a lista."

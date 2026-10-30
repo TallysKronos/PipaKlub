@@ -17,7 +17,7 @@ static func walking_grace(player: Dictionary) -> float:
 	return 12.0 if result=="lost" else 8.0 if result=="fled" else 6.0
 
 static func weight(model, point: Vector2) -> float:
-	if not model.walkable(Vector2i(point.floor())): return 0.0
+	if not model.point_walkable(point): return 0.0
 	var cell: Dictionary=model.cell_at(Vector2i(point.floor()))
 	if cell.material not in ["grama","terra","mato"] or cell.get("ramp")!=null: return 0.0
 	for event in model.data.events:
@@ -28,10 +28,12 @@ static func weight(model, point: Vector2) -> float:
 	for event in Training.events(str(model.data.get("id","")),model):
 		if point.distance_to(Vector2(event.u+.5,event.v+.5))<3.0: return 0.0
 	for piece in model.data.pieces:
-		if piece.asset=="bau" and point.distance_to(Vector2(piece.u+.5,piece.v+.5))<2.5: return 0.0
+		if piece.asset in ["bau","banco"] and point.distance_to(Vector2(piece.u+.5,piece.v+.5))<2.5: return 0.0
 	return 1.6 if cell.material=="mato" else 1.0
 
 static func wild_level(scene: String, roll: int) -> int:
+	if scene.begins_with("kronasta-bosque-"):
+		return {"kronasta-bosque-a":1,"kronasta-bosque-b":2,"kronasta-bosque-c":3}[scene]+roll%3
 	return 5+roll%3 if scene=="park-veredas" else 2+roll%3 if scene=="park-clearing" else 1+roll%3
 
 static func level_penalty(gap: int) -> float:

@@ -74,6 +74,8 @@ func repair() -> Dictionary:
 
 func park_loot(id: String, point: Vector2) -> Dictionary:
 	var saved: Dictionary = session.snapshot()
+	if preload("res://scripts/campaign/park_checkpoint.gd").is_bosque(saved.checkpoint.get("scene","")):
+		return preload("res://scripts/campaign/bosque_campaign.gd").new(session).collect(id,point)
 	var Checkpoint = preload("res://scripts/campaign/park_checkpoint.gd")
 	var checkpoint: Dictionary = saved.get("checkpoint",{})
 	if checkpoint.get("space","")!=Checkpoint.SPACE or not Checkpoint.MAPS.has(checkpoint.get("scene","")): return {"status":"wrong_step"}
@@ -114,9 +116,9 @@ func rest(point: Vector2) -> Dictionary:
 	var Checkpoint=preload("res://scripts/campaign/park_checkpoint.gd")
 	if saved.checkpoint.get("kind","")!="world" or saved.checkpoint.get("space","")!=Checkpoint.SPACE or not Checkpoint.MAPS.has(saved.checkpoint.get("scene","")): return {"status":"wrong_step"}
 	var model=Checkpoint.model_for(saved.checkpoint.scene)
-	if not model.walkable(Vector2i(point.floor())): return {"status":"wrong_step"}
+	if not point.is_finite() or not model.point_walkable(point): return {"status":"wrong_step"}
 	var nearby:=false
-	for event in model.data.events:
+	for event in model.data.events+preload("res://scripts/campaign/bosque_campaign.gd").rest_events(model.data.id,model):
 		var target:=Vector2(event.u+.5,event.v+.5)
 		if event.props.get("acao","")=="wildRest" and point.distance_to(target)<=1.8 and absf(model.height_at(point)-model.height_at(target))<.25: nearby=true;break
 	if not nearby: return {"status":"wrong_step"}

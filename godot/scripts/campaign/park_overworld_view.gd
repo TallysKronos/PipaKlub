@@ -4,6 +4,7 @@ const Checkpoint = preload("res://scripts/campaign/park_checkpoint.gd")
 const Park = preload("res://scripts/campaign/park_data.gd")
 const Training=preload("res://scripts/campaign/park_training.gd")
 const Pacing = preload("res://scripts/campaign/park_pacing.gd")
+const Bosque = preload("res://scripts/campaign/bosque_campaign.gd")
 signal action_requested(id: String)
 signal menu_requested
 signal exit_requested(event: Dictionary)
@@ -61,7 +62,7 @@ func _ready() -> void:
 	interface.hide()
 	player = Checkpoint.resolve(saved_checkpoint)
 	follower = player
-	camera.zoom = Vector2.ONE*1.15
+	camera.zoom = Vector2.ONE*(1.0 if Checkpoint.is_bosque(saved_checkpoint.scene) else 1.15)
 	_refresh_positions()
 	camera.reset_smoothing()
 	var partner_id := "rabbito"
@@ -75,7 +76,7 @@ func _ready() -> void:
 	add_child(ui)
 	exploration_hud = load("res://scripts/campaign/hud_exploration.gd").new()
 	exploration_hud.subject = self
-	exploration_hud.area_name = {"park-trail":"Jardim das Pipas","park-clearing":"Clareira do Papel","park-veredas":"Veredas do Encanamento"}[saved_checkpoint.scene]
+	exploration_hud.area_name = model.data.name
 	exploration_hud.player_data = saved_player
 	ui.add_child(exploration_hud)
 	hint = exploration_hud.prompt
@@ -93,7 +94,12 @@ func _ready() -> void:
 	encounter_grace=Pacing.walking_grace(saved_player)
 
 func _build_events() -> void:
+	# Dito has no approved overworld sprite in the delivery. Do not duplicate another
+	# character or leave an invisible person as an interaction target.
+	if Checkpoint.is_bosque(area_id):
+		interaction_events=interaction_events.filter(func(event: Dictionary): return event.type!="npc" or event.props.has("npcIdentity"))
 	interaction_events.append_array(Training.events(area_id,model))
+	interaction_events.append_array(Bosque.rest_events(area_id,model))
 	super()
 
 func _roll_encounter_distance() -> void:
@@ -161,7 +167,8 @@ func refresh(value: Dictionary) -> void:
 			art.position=node.get_meta("center_offset",Vector2.ZERO)-Vector2(entry.anchor[0],entry.anchor[1])-Vector2(0,model.height_at(Vector2(piece.u+.5,piece.v+.5))*64)
 	if is_instance_valid(exploration_hud):
 		exploration_hud.refresh(saved_player)
-		exploration_hud.objective.text = Training.objective(saved_player,str(saved_checkpoint.get("scene","park-trail")))
+		var scene: String=saved_checkpoint.get("scene","park-trail")
+		exploration_hud.objective.text = Bosque.objective(saved_player,scene) if Checkpoint.is_bosque(scene) else Training.objective(saved_player,scene)
 
 func _physics_process(delta: float) -> void:
 	if paused: avatar.moving=false; return
