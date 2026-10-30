@@ -202,3 +202,5 @@ console.log('Plantas compiladas para o Godot.');
 // legacy batch must retain the new map and its stable IDs/return coordinates.
 const {generateJardim}=await import('./desenhar-jardim-das-pipas.mjs');
 generateJardim();
+const {generateClareira}=await import('./desenhar-clareira-do-papel.mjs');
+generateClareira();
