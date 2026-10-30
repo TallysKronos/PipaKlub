@@ -40,7 +40,7 @@ func run() -> void:
 	view._pet();check(session.snapshot().player==before.player,"petting has no economy mutation")
 	view._care();check(view.steps==["clean"],"clean step")
 	view._care();view._care();view.finish_result(false,"Tente novamente")
-	check(view.steps==["clean","frame"] and not view.action.disabled,"failed UI repair can retry final step")
+	check(view.steps==["clean","frame"] and not view.tool_buttons[2].disabled,"failed UI repair can retry final step")
 	check(session.snapshot().player==before.player,"partial care preserves kit and condition")
 	view.queue_free();await process_frame
 	view=load("res://scripts/campaign/partner_care_view.gd").new();view.partner=before.player.partners[0];view.kits=1;view.coins=24;view.welcome=false

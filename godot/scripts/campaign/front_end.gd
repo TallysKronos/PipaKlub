@@ -1506,7 +1506,10 @@ func _show_partner_care(partner_id:String="") -> void:
 	for entry in saved.player.partners:
 		if entry.id==wanted:chosen=entry;break
 	if chosen.is_empty():chosen=saved.player.partners[0]
-	_simple_page("CUIDAR DO PARCEIRO",true)
+	_clear("page:CUIDAR DO PARCEIRO")
+	page=VBoxContainer.new()
+	add_child(page)
+	page.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	var view=load("res://scripts/campaign/partner_care_view.gd").new()
 	view.partner=chosen.duplicate(true)
 	view.kits=int(saved.player.inventory.get(care.ITEM,0))
@@ -1521,8 +1524,7 @@ func _show_partner_care(partner_id:String="") -> void:
 		if result.status=="ok":
 			var player:Dictionary=session.snapshot().player
 			view.refresh_stock(int(player.inventory.get(care.ITEM,0)),int(player.coins),false)
-			if not view.action.disabled:view.action.grab_focus()
-			else:view.pet.grab_focus()
+			view.stage.grab_focus()
 		else:view.message.text="Moedas insuficientes para outro kit." if result.status=="not_enough_coins" else "Não foi possível guardar o kit. Tente novamente.")
 	view.completed.connect(func(steps:Array):
 		var result:Dictionary=care.finish(id,operation,steps)
