@@ -1,3 +1,7 @@
+# Clareira do Papel — parte B
+
+Parte B refeita em 48×40, com roda de encontro, biruta elevada, dois caminhos pelo platô oeste, descanso e capim opcional. [Relatório e limites](relatorios/entrega-clareira.md), capturas em captures/clareira-do-papel/. Jardim e Clareira estão renovados; Veredas ainda aguarda revisão. Os registros abaixo documentam as etapas anteriores.
+
 # Jardim das Pipas — revisão em platôs
 
 A parte A foi refeita em 48×40, com praça do coreto elevada, pomar, mirante, quatro materiais e mato opcional. Brief, percurso automatizado e limites em [relatório da entrega](relatorios/entrega-jardim.md). Capturas em captures/jardim-das-pipas/ e comparação em comparativo-jardim/. Clareira e Veredas ainda usam as plantas anteriores. O registro PIP-85 abaixo é histórico.
