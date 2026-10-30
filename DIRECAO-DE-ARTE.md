@@ -28,6 +28,20 @@ Integrar essa construção ao corpo: asa como vela tensionada, cauda como rabiol
 
 O cotidiano dá identidade ao elenco: mochila usada, roupa adequada ao clima, ferramentas, quintais, morros, pequenos comércios, carretéis e brincadeiras. Definir função e história de um objeto antes de adicioná-lo ao figurino. Variar pessoas, corpos, idades e tons de pele. Evitar reduzir personalidade a estereótipos sociais.
 
+### Adendo de personagens humanos · 30/10/2026
+
+Para as novas pranchas, o responsável pelo projeto escolheu explicitamente o [sheet de Kael](art/characters/parque-pipeiros-v3/references/kael-estilo.png) como referência principal de acabamento e formato. Abrir essa imagem antes de gerar: linha fina, rosto delicado de mangá, olhos ovais, nariz e boca pequenos, cores chapadas e sombra econômica. A prancha coletiva V2 dos pipeiros foi considerada ainda próxima demais de cartoon; ela fornece identidade e figurino, não o acabamento a repetir. Preservar diferenças de idade, pele e massa corporal ao mudar o traço.
+
+Para os próximos personagens inéditos, combinar seu ofício e personalidade no universo Soulmonsters com uma inspiração de conto, mito, fábula ou narrativa semelhante, conforme a nova orientação do responsável. Escolher uma fonte narrativa específica e registrar a inspiração no briefing; conferir a história em uma fonte antes de atribuir características a ela. Traduzir poucos elementos em silhueta, corte da roupa, penteado, ferramenta ou atitude. Evitar fantasia literal, cópia de uma adaptação de terceiros e acúmulo de símbolos. A inspiração é proposta de design, não aprovação automática de biografia, poderes ou canon. Esta regra vale para novas criações; as cinco pranchas individuais dos pipeiros preservam as identidades já definidas.
+
+### Exploração antes da prancha · estudo Bulbagarden de 30/10/2026
+
+Consultar o [estudo de concept art](art/benchmarks/bulbagarden-concept-2026-10-30/ESTUDO.md) e a [galeria de 48 fichas](art/benchmarks/bulbagarden-concept-2026-10-30/index.html) antes de criar novos humanos. O levantamento completo contém 725 arquivos únicos; a inspeção visual dirigida cobre 48 pranchas, não todo o índice.
+
+Separar acabamento e construção: o Kael escolhido continua definindo linha, cor e economia de sombra, mas não obriga todos a terem seu rosto, topete ou corpo. Mangá simples pode ter exageros intencionais e figuras contidas. Não impor proibições universais de mangas, cabelos ou calçados expressivos quando uma decisão de silhueta coerente os justificar.
+
+Antes de fechar um sheet novo, comparar três arquiteturas que mudem corpo, cabeça e atitude; explorar rosto sem acessórios e uma situação de uso. Para Zuric, desenhar piloto usando a moto antes de finalizar o veículo isolado. Inspirar-se em propriedades do conto/mito que mudem decisões grandes, sem depender de estampa ou repetição de símbolos. Uma ficha de frente/costas/expressões documenta uma solução escolhida; não comprova que houve exploração nem que o conceito é único. Estas são regras de trabalho do projeto, não alegações sobre o processo interno dos autores das referências.
+
 ## 3. Um desenho, três traduções
 
 | Uso | Acabamento e leitura | O que preservar |

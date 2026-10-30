@@ -1,0 +1,509 @@
+{
+  "cell": [
+    64,
+    96
+  ],
+  "frames": 64,
+  "directions": [
+    "S",
+    "SO",
+    "O",
+    "NO",
+    "N",
+    "NE",
+    "E",
+    "SE"
+  ],
+  "palette": [
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      247,
+      227,
+      197,
+      255
+    ],
+    [
+      248,
+      185,
+      137,
+      255
+    ],
+    [
+      230,
+      211,
+      191,
+      255
+    ],
+    [
+      147,
+      191,
+      197,
+      255
+    ],
+    [
+      167,
+      134,
+      120,
+      255
+    ],
+    [
+      92,
+      109,
+      146,
+      255
+    ],
+    [
+      81,
+      110,
+      155,
+      255
+    ],
+    [
+      78,
+      99,
+      140,
+      255
+    ],
+    [
+      60,
+      83,
+      131,
+      255
+    ],
+    [
+      38,
+      82,
+      152,
+      255
+    ],
+    [
+      32,
+      83,
+      162,
+      255
+    ],
+    [
+      33,
+      81,
+      151,
+      255
+    ],
+    [
+      28,
+      85,
+      164,
+      255
+    ],
+    [
+      26,
+      79,
+      162,
+      255
+    ],
+    [
+      28,
+      80,
+      155,
+      255
+    ],
+    [
+      78,
+      28,
+      93,
+      255
+    ],
+    [
+      62,
+      53,
+      74,
+      255
+    ],
+    [
+      64,
+      6,
+      73,
+      255
+    ],
+    [
+      49,
+      59,
+      80,
+      255
+    ],
+    [
+      49,
+      38,
+      63,
+      255
+    ],
+    [
+      38,
+      64,
+      117,
+      255
+    ],
+    [
+      41,
+      54,
+      74,
+      255
+    ],
+    [
+      39,
+      48,
+      69,
+      255
+    ],
+    [
+      38,
+      24,
+      55,
+      255
+    ],
+    [
+      26,
+      71,
+      145,
+      255
+    ],
+    [
+      24,
+      53,
+      99,
+      255
+    ],
+    [
+      16,
+      37,
+      84,
+      255
+    ],
+    [
+      19,
+      32,
+      55,
+      255
+    ],
+    [
+      9,
+      19,
+      57,
+      255
+    ],
+    [
+      12,
+      7,
+      52,
+      255
+    ],
+    [
+      10,
+      14,
+      29,
+      255
+    ],
+    [
+      8,
+      3,
+      25,
+      255
+    ]
+  ],
+  "alignment": {
+    "crop": [
+      144,
+      50,
+      366,
+      466
+    ],
+    "scale": 0.21634615384615385,
+    "resized": [
+      48,
+      90
+    ],
+    "offset": [
+      8,
+      4
+    ]
+  },
+  "selections": [
+    {
+      "startFrame": 42,
+      "endFrame": 65,
+      "frames": [
+        42,
+        45,
+        48,
+        51,
+        54,
+        56,
+        59,
+        62
+      ],
+      "timestamps": [
+        1.75,
+        1.875,
+        2.0,
+        2.125,
+        2.25,
+        2.3333333333333335,
+        2.4583333333333335,
+        2.5833333333333335
+      ],
+      "duration": 0.9583333333333334,
+      "matchingScore": 3.197,
+      "status": "candidato: conferir emenda, contatos e identidade visualmente",
+      "direction": "S",
+      "video": "C:\\Users\\user\\produto\\pipa-club-pip88\\art\\characters\\kael-video-eight-directions-v1\\video-original\\walk-S.mp4"
+    },
+    {
+      "startFrame": 26,
+      "endFrame": 50,
+      "frames": [
+        26,
+        29,
+        32,
+        35,
+        38,
+        41,
+        44,
+        47
+      ],
+      "timestamps": [
+        1.0833333333333333,
+        1.2083333333333333,
+        1.3333333333333333,
+        1.4583333333333333,
+        1.5833333333333333,
+        1.7083333333333333,
+        1.8333333333333333,
+        1.9583333333333333
+      ],
+      "duration": 1.0,
+      "matchingScore": 1.807,
+      "status": "candidato: conferir emenda, contatos e identidade visualmente",
+      "direction": "SO",
+      "video": "C:\\Users\\user\\produto\\pipa-club-pip88\\art\\characters\\kael-video-eight-directions-v1\\video-original\\walk-SO.mp4"
+    },
+    {
+      "startFrame": 38,
+      "endFrame": 62,
+      "frames": [
+        38,
+        41,
+        44,
+        47,
+        50,
+        53,
+        56,
+        59
+      ],
+      "timestamps": [
+        1.5833333333333333,
+        1.7083333333333333,
+        1.8333333333333333,
+        1.9583333333333333,
+        2.0833333333333335,
+        2.2083333333333335,
+        2.3333333333333335,
+        2.4583333333333335
+      ],
+      "duration": 1.0,
+      "matchingScore": 2.176,
+      "status": "candidato: conferir emenda, contatos e identidade visualmente",
+      "direction": "O",
+      "video": "C:\\Users\\user\\produto\\pipa-club-pip88\\art\\characters\\kael-video-eight-directions-v1\\video-original\\walk-O.mp4"
+    },
+    {
+      "startFrame": 42,
+      "endFrame": 66,
+      "frames": [
+        42,
+        45,
+        48,
+        51,
+        54,
+        57,
+        60,
+        63
+      ],
+      "timestamps": [
+        1.75,
+        1.875,
+        2.0,
+        2.125,
+        2.25,
+        2.375,
+        2.5,
+        2.625
+      ],
+      "duration": 1.0,
+      "matchingScore": 1.219,
+      "status": "candidato: conferir emenda, contatos e identidade visualmente",
+      "direction": "NO",
+      "video": "C:\\Users\\user\\produto\\pipa-club-pip88\\art\\characters\\kael-video-eight-directions-v1\\video-original\\walk-NO.mp4",
+      "invalidBackgroundFrames": []
+    },
+    {
+      "startFrame": 14,
+      "endFrame": 40,
+      "frames": [
+        14,
+        17,
+        20,
+        24,
+        27,
+        30,
+        34,
+        37
+      ],
+      "timestamps": [
+        0.5833333333333334,
+        0.7083333333333334,
+        0.8333333333333334,
+        1.0,
+        1.125,
+        1.25,
+        1.4166666666666667,
+        1.5416666666666667
+      ],
+      "duration": 1.0833333333333333,
+      "matchingScore": 8.016,
+      "status": "candidato: conferir emenda, contatos e identidade visualmente",
+      "direction": "N",
+      "video": "C:\\Users\\user\\produto\\pipa-club-pip88\\art\\characters\\kael-video-eight-directions-v1\\video-original\\walk-N.mp4",
+      "invalidBackgroundFrames": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77
+      ]
+    },
+    {
+      "startFrame": 34,
+      "endFrame": 63,
+      "frames": [
+        34,
+        38,
+        41,
+        45,
+        48,
+        52,
+        56,
+        59
+      ],
+      "timestamps": [
+        1.4166666666666667,
+        1.5833333333333333,
+        1.7083333333333333,
+        1.875,
+        2.0,
+        2.1666666666666665,
+        2.3333333333333335,
+        2.4583333333333335
+      ],
+      "duration": 1.2083333333333333,
+      "matchingScore": 1.055,
+      "status": "candidato: conferir emenda, contatos e identidade visualmente",
+      "direction": "NE",
+      "video": "C:\\Users\\user\\produto\\pipa-club-pip88\\art\\characters\\kael-video-eight-directions-v1\\video-original\\walk-NE.mp4",
+      "invalidBackgroundFrames": []
+    },
+    {
+      "startFrame": 36,
+      "endFrame": 64,
+      "frames": [
+        36,
+        40,
+        43,
+        46,
+        50,
+        54,
+        57,
+        60
+      ],
+      "timestamps": [
+        1.5,
+        1.6666666666666667,
+        1.7916666666666667,
+        1.9166666666666667,
+        2.0833333333333335,
+        2.25,
+        2.375,
+        2.5
+      ],
+      "duration": 1.1666666666666667,
+      "matchingScore": 1.774,
+      "status": "candidato: conferir emenda, contatos e identidade visualmente",
+      "direction": "E",
+      "video": "C:\\Users\\user\\produto\\pipa-club-pip88\\art\\characters\\kael-video-sprite-v1\\video-original\\2ee8f5c1_000.mp4"
+    },
+    {
+      "startFrame": 18,
+      "endFrame": 42,
+      "frames": [
+        18,
+        21,
+        24,
+        27,
+        30,
+        33,
+        36,
+        39
+      ],
+      "timestamps": [
+        0.75,
+        0.875,
+        1.0,
+        1.125,
+        1.25,
+        1.375,
+        1.5,
+        1.625
+      ],
+      "duration": 1.0,
+      "matchingScore": 1.76,
+      "status": "candidato: conferir emenda, contatos e identidade visualmente",
+      "direction": "SE",
+      "video": "C:\\Users\\user\\produto\\pipa-club-pip88\\art\\characters\\kael-video-eight-directions-v1\\video-original\\walk-SE.mp4"
+    }
+  ],
+  "status": "rascunho: revisar variação de volume, pixels soltos e loops; não integrado ao jogo"
+}

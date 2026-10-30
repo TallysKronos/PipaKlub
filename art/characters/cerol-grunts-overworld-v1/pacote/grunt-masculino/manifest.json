@@ -1,0 +1,207 @@
+{
+  "id": "grunt-masculino",
+  "name": "Grunt masculino",
+  "source": "../../fontes/grunt-masculino.png",
+  "identityReference": "art/characters/cerol-hunters-v1/grunt-masculino-sheet.png",
+  "cell": [
+    64,
+    96
+  ],
+  "pivot": [
+    32,
+    94
+  ],
+  "directions": [
+    "S",
+    "SO",
+    "O",
+    "NO",
+    "N",
+    "NE",
+    "E",
+    "SE"
+  ],
+  "sourceOrder": [
+    0,
+    1,
+    6,
+    3,
+    4,
+    5,
+    2,
+    7
+  ],
+  "sharedScale": 0.18526315789473685,
+  "sourceBounds": [
+    [
+      152,
+      39,
+      342,
+      507
+    ],
+    [
+      119,
+      35,
+      302,
+      510
+    ],
+    [
+      96,
+      12,
+      263,
+      482
+    ],
+    [
+      61,
+      42,
+      233,
+      510
+    ],
+    [
+      144,
+      15,
+      346,
+      483
+    ],
+    [
+      126,
+      12,
+      310,
+      483
+    ],
+    [
+      98,
+      42,
+      270,
+      507
+    ],
+    [
+      55,
+      12,
+      240,
+      484
+    ]
+  ],
+  "colors": 31,
+  "cleanup": [
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 331
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 321
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 236
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 293
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 339
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 308
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 244
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 304
+    }
+  ],
+  "animation": "static directional bases; no walk cycle",
+  "status": "native export verified; user artistic approval pending",
+  "nativeRoundtripExact": true,
+  "integratedInGame": false,
+  "measurements": [
+    {
+      "direction": "idle-S-1",
+      "bounds": [
+        14,
+        7,
+        49,
+        95
+      ],
+      "height": 88
+    },
+    {
+      "direction": "idle-SO-1",
+      "bounds": [
+        15,
+        7,
+        49,
+        95
+      ],
+      "height": 88
+    },
+    {
+      "direction": "idle-O-1",
+      "bounds": [
+        16,
+        7,
+        47,
+        95
+      ],
+      "height": 88
+    },
+    {
+      "direction": "idle-NO-1",
+      "bounds": [
+        16,
+        7,
+        48,
+        95
+      ],
+      "height": 88
+    },
+    {
+      "direction": "idle-N-1",
+      "bounds": [
+        13,
+        7,
+        50,
+        95
+      ],
+      "height": 88
+    },
+    {
+      "direction": "idle-NE-1",
+      "bounds": [
+        15,
+        7,
+        49,
+        95
+      ],
+      "height": 88
+    },
+    {
+      "direction": "idle-E-1",
+      "bounds": [
+        15,
+        7,
+        48,
+        95
+      ],
+      "height": 88
+    },
+    {
+      "direction": "idle-SE-1",
+      "bounds": [
+        15,
+        7,
+        49,
+        95
+      ],
+      "height": 88
+    }
+  ],
+  "opaqueColors": 31
+}

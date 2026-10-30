@@ -1,0 +1,58 @@
+{
+  "cell": [
+    64,
+    96
+  ],
+  "pivot": [
+    32,
+    94
+  ],
+  "directions": [
+    "S",
+    "SO",
+    "O",
+    "NO",
+    "N",
+    "NE",
+    "E",
+    "SE"
+  ],
+  "status": "directional drafts, not walking",
+  "styleReference": "art/characters/kael-video-eight-directions-v1/referencias/prancha-original.png",
+  "characters": [
+    {
+      "id": "ronne",
+      "height": 74,
+      "prompt": "Create a production overworld SPRITE TURNAROUND for Soulmonsters. Image1 STYLE ONLY: same crisp pixel cluster manga RPG rendering as Kael, modest top-down orthographic camera, roughly 3.5 heads tall adult sprite proportions, not toddler chibi, not 3D. Image2 IDENTITY: preserve this character's own body, hairstyle, skin and costume, simplify seams to strong readable clusters, do not copy Kael's blue clothes. Exactly EIGHT full body static standing directions, single neutral pose rotated in place, 4 equal columns and 2 equal rows, 1536x1024 sheet, each slot384x512, centered with same size and feet groundline at90% each slot. Strict order: top row SOUTH front, SOUTHWEST facing left/front, WEST left profile, NORTHWEST left/back. Bottom row NORTH back, NORTHEAST right/back, EAST right profile, SOUTHEAST right/front. All silhouettes separate, complete feet inside slots. Transparent background, NO floor shadow, no text, no labels, no grid, no scenery. Strong readable thin dark pixel outlines, flat limited colors and single shade, no blur/gradients/antialias illustration. True rear views hide eyes/nose. Keep anatomical accessory sides through rotation. Static directional bases, NOT walk cycles. Ronne: SHORT ADULT male villain boss, compact torso and short legs, never a child, medium brown skin, narrow sly mature eyes, black angular spiky fringe with ivory streak on anatomical LEFT front, small forehead wraps at anatomical RIGHT temple. Thick coiled ivory mummy collar frames nape. Short broad black diamond-shaped coat with ivory edging and two attached long ivory tail panels at back, black trousers and boots, ivory wraps on LEFT lower leg, both forearms. ONE large brass dark wooden command kite reel attached at FRONT CENTER of waist, with visible circular sides and axle; it is hidden from rear except belt side supports, DO NOT duplicate it onto back. Arms relaxed, fingers visible, maintain one reel and head streak sides in all eight poses. Boss should feel shorter and compact without a huge baby head.",
+      "name": "Ronne",
+      "ref": "art/characters/cerol-hunters-v1/ronne-sheet.png",
+      "sourceOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "id": "malvadocia",
+      "height": 88,
+      "prompt": "Create a production overworld SPRITE TURNAROUND for Soulmonsters. Image1 STYLE ONLY: same crisp pixel cluster manga RPG rendering as Kael, modest top-down orthographic camera, roughly 3.5 heads tall adult sprite proportions, not toddler chibi, not 3D. Image2 IDENTITY: preserve this character's own body, hairstyle, skin and costume, simplify seams to strong readable clusters, do not copy Kael's blue clothes. Exactly EIGHT full body static standing directions, single neutral pose rotated in place, 4 equal columns and 2 equal rows, 1536x1024 sheet, each slot384x512, centered with same size and feet groundline at90% each slot. Strict order: top row SOUTH front, SOUTHWEST facing left/front, WEST left profile, NORTHWEST left/back. Bottom row NORTH back, NORTHEAST right/back, EAST right profile, SOUTHEAST right/front. All silhouettes separate, complete feet inside slots. Transparent background, NO floor shadow, no text, no labels, no grid, no scenery. Strong readable thin dark pixel outlines, flat limited colors and single shade, no blur/gradients/antialias illustration. True rear views hide eyes/nose. Keep anatomical accessory sides through rotation. Static directional bases, NOT walk cycles. Malvadocia: PLUS-SIZE adult female villain boss, real full rounded belly, broad hips, thick arms, full face, imperious narrow anime eyes. NOT slim under wide clothing. Black geometrically swept hair and wide ivory streak on anatomical RIGHT front, ivory head wraps at back. Huge ivory folded shroud collar, bone bandages spiral around round trunk and both full arms, black ankle-length broad mantle, THREE ivory shroud tail panels attached at rear waist with small brass attachments, black shoes. One small brass/dark wood kite reel on anatomical LEFT hip; keep it on that same side during rotation, hidden by body when naturally occluded. Body width visibly larger than Kael and Ronne, round shoulders and hips remain round on profile and back. Arms relaxed or one hand resting on hip consistently across views. Simplify tiny crests into a cut-kite diamond, keep connected wraps and cloth.",
+      "name": "Malvadocia",
+      "ref": "art/characters/cerol-hunters-v1/malvadocia-sheet.png",
+      "sourceOrder": [
+        0,
+        1,
+        6,
+        3,
+        4,
+        5,
+        2,
+        7
+      ]
+    }
+  ]
+}

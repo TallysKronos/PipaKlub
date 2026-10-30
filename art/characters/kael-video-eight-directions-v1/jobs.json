@@ -1,0 +1,169 @@
+[
+  {
+    "direction": "S",
+    "reference": "referencias\\kael-angle-S-v1.png",
+    "referenceCell": 0,
+    "sourceBox": [
+      158,
+      36,
+      341,
+      496
+    ],
+    "referenceScale": 0.8695652173913043,
+    "workflow": "workflows\\walk-S-local.json",
+    "status": "completed",
+    "start": 1.1666667,
+    "duration": 1.1666667,
+    "prompt_id": "87eee456-6655-4852-afe0-2c6b0c63632a",
+    "video": "video-original\\walk-S.mp4",
+    "bytes": 718163
+  },
+  {
+    "direction": "SO",
+    "reference": "referencias\\kael-angle-SO-v1.png",
+    "referenceCell": 1,
+    "sourceBox": [
+      121,
+      36,
+      285,
+      499
+    ],
+    "referenceScale": 0.8639308855291576,
+    "workflow": "workflows\\walk-SO-local.json",
+    "status": "completed",
+    "start": 1.1666667,
+    "duration": 1.1666667,
+    "prompt_id": "04813dd6-bdcf-447b-bfcd-245c1b28b320",
+    "video": "video-original\\walk-SO.mp4",
+    "bytes": 688594
+  },
+  {
+    "direction": "O",
+    "reference": "referencias\\kael-angle-O-v1.png",
+    "referenceCell": 6,
+    "sourceBox": [
+      85,
+      7,
+      255,
+      469
+    ],
+    "referenceScale": 0.8658008658008658,
+    "workflow": "workflows\\walk-O-local.json",
+    "status": "completed",
+    "start": 1.1666667,
+    "duration": 1.1666667,
+    "prompt_id": "0bd9d3fc-d1be-4e57-9385-c6888832e90f",
+    "video": "video-original\\walk-O.mp4",
+    "bytes": 756143
+  },
+  {
+    "direction": "NO",
+    "reference": "referencias\\kael-angle-NO-v1.png",
+    "referenceCell": 3,
+    "sourceBox": [
+      58,
+      44,
+      226,
+      499
+    ],
+    "referenceScale": 0.8791208791208791,
+    "workflow": "workflows/walk-NO-v2-local.json",
+    "status": "completed",
+    "start": 1.1666667,
+    "duration": 1.1666667,
+    "bytes": 644162,
+    "attempts": [
+      {
+        "prompt_id": "106c1ef1-6999-436f-9370-c77a3a858d98",
+        "video": "video-original/walk-NO-rejected-effects.mp4",
+        "reason": "rejected: extra yellow background effects"
+      }
+    ],
+    "prompt_id": "1f58fb64-e30f-452c-bcae-80aaad0ccd52",
+    "video": "video-original\\walk-NO.mp4"
+  },
+  {
+    "direction": "N",
+    "reference": "referencias\\kael-angle-N-v1.png",
+    "referenceCell": 4,
+    "sourceBox": [
+      159,
+      12,
+      336,
+      468
+    ],
+    "referenceScale": 0.8771929824561403,
+    "workflow": "workflows/walk-N-v3-local.json",
+    "status": "completed",
+    "start": 1.1666667,
+    "duration": 1.1666667,
+    "bytes": 626531,
+    "attempts": [
+      {
+        "prompt_id": "9ddc8d6f-d2e5-45b2-b384-5ba26473f4f8",
+        "video": "video-original/walk-N-rejected-multiple.mp4",
+        "reason": "rejected: front-facing duplicates and scenery instead of one rear-view sprite"
+      },
+      {
+        "prompt_id": "c827feaa-4d18-4a9e-99c9-f00bad5cd886",
+        "video": "video-original/walk-N-rejected-hopping.mp4",
+        "reason": "rejected: hopping instead of alternating grounded walking"
+      }
+    ],
+    "prompt_id": "0bc470b7-55b4-4d97-b1f0-c592566f0365",
+    "video": "video-original\\walk-N.mp4"
+  },
+  {
+    "direction": "NE",
+    "reference": "referencias\\kael-angle-NE-v1.png",
+    "referenceCell": 5,
+    "sourceBox": [
+      121,
+      10,
+      285,
+      469
+    ],
+    "referenceScale": 0.8714596949891068,
+    "workflow": "workflows/walk-NE-v2-local.json",
+    "status": "completed",
+    "start": 1.1666667,
+    "duration": 1.1666667,
+    "bytes": 617583,
+    "attempts": [
+      {
+        "prompt_id": "1a920844-7e37-45e3-8a08-423b3dbee076",
+        "video": "video-original/walk-NE-rejected-scenery.mp4",
+        "reason": "rejected: added ramp and yellow background lighting"
+      }
+    ],
+    "prompt_id": "fd009c77-677b-4169-ac70-cfd003f3daaf",
+    "video": "video-original\\walk-NE.mp4"
+  },
+  {
+    "direction": "E",
+    "status": "reused",
+    "video": "video-original/walk-E.mp4",
+    "start": 1.1666667,
+    "duration": 1.1666667,
+    "reusedFrom": "../kael-video-sprite-v1/video-original/2ee8f5c1_000.mp4"
+  },
+  {
+    "direction": "SE",
+    "reference": "referencias\\kael-angle-SE-v1.png",
+    "referenceCell": 7,
+    "sourceBox": [
+      59,
+      10,
+      227,
+      470
+    ],
+    "referenceScale": 0.8695652173913043,
+    "workflow": "workflows\\walk-SE-local.json",
+    "status": "completed",
+    "start": 1.1666667,
+    "duration": 1.1666667,
+    "prompt_id": "d11abae1-a7e4-4e99-8a05-9a0b2e1b08c5",
+    "video": "video-original\\walk-SE.mp4",
+    "bytes": 501528
+  }
+]

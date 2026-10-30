@@ -1,0 +1,127 @@
+{
+  "id": "nina",
+  "name": "Nina",
+  "source": "../../fontes/nina.png",
+  "identityReference": "assets/characters/nina-v1/portrait.png",
+  "cell": [
+    64,
+    96
+  ],
+  "pivot": [
+    32,
+    94
+  ],
+  "directions": [
+    "S",
+    "SO",
+    "O",
+    "NO",
+    "N",
+    "NE",
+    "E",
+    "SE"
+  ],
+  "sourceOrder": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "sharedScale": 0.17291666666666666,
+  "sourceBounds": [
+    [
+      120,
+      24,
+      319,
+      497
+    ],
+    [
+      97,
+      20,
+      321,
+      500
+    ],
+    [
+      25,
+      20,
+      252,
+      500
+    ],
+    [
+      67,
+      21,
+      293,
+      500
+    ],
+    [
+      122,
+      13,
+      316,
+      484
+    ],
+    [
+      101,
+      13,
+      306,
+      485
+    ],
+    [
+      66,
+      12,
+      278,
+      485
+    ],
+    [
+      66,
+      12,
+      282,
+      487
+    ]
+  ],
+  "colors": 31,
+  "cleanup": [
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 306
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 330
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 265
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 341
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 316
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 313
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 271
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 311
+    }
+  ],
+  "animation": "static directional bases; no walk cycle",
+  "status": "integrated locally; independent art review 8/10; awaiting user visual approval in game",
+  "nativeRoundtripExact": true,
+  "integratedInGame": true,
+  "reviewScore": 8,
+  "targetedCorrection": "left profile and right-hip bag continuity in SW/NE corrected",
+  "runtimePath": "godot/assets/npc-ds/nina.png"
+}

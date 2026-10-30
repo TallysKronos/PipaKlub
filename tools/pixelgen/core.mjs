@@ -2,6 +2,8 @@
 import {duration,validateSequences} from './animation.mjs';
 import {upgrade,compositeFrame,MAX_CEL_PIXELS} from './document.mjs';
 import {validatePose,validateSheet} from './rig.mjs';
+import {validateSupport} from './skeleton.mjs';
+import {validateCharacterStyle} from './character-style.mjs';
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 export function settings(input={}){
  const n=(k,d,a,b)=>clamp(Math.round(input[k]!==''&&Number.isFinite(Number(input[k]))?Number(input[k]):d),a,b);
@@ -154,6 +156,6 @@ export function validateProject(p){
  const frames=p.frames.map((f,i)=>{
   if(!validPixels(f.indices))throw Error('Pixels de quadro inválidos.');
   if(p.version===2&&(!Array.isArray(f.cels)||f.cels.length!==p.layers.length||f.cels.some(c=>!validPixels(c))))throw Error('Pixels de camada inválidos.');
-  return {name:String(f.name||`quadro-${i+1}`).slice(0,80),duration:duration(f),row:Math.floor(i/p.cols),col:i%p.cols,indices:Uint8Array.from(f.indices),cels:p.version===2?f.cels.map(c=>Uint8Array.from(c)):undefined,sourceRect:metadata(f.sourceRect),sourceBounds:metadata(f.sourceBounds),pose:validatePose(f.pose,p.width,p.height)};
- });return upgrade({kind:'pixelgen',version:2,id:typeof p.id==='string'&&/^[a-zA-Z0-9_-]{1,80}$/.test(p.id)?p.id:undefined,width:p.width,height:p.height,cols:p.cols,rows:p.rows,palette:p.palette.map(c=>[...c]),settings:settings(p.settings||{}),layers:p.version===2?p.layers.map(l=>({name:String(l.name||'Camada').slice(0,80),visible:l.visible!==false,locked:l.locked===true})):undefined,name:String(p.name||'Projeto').slice(0,80),frames,sequences:validateSequences(p.sequences,frames.length),ramps:validateRamps(p.ramps,p.palette.length),sheet:validateSheet(p.sheet,p)});
+  return {name:String(f.name||`quadro-${i+1}`).slice(0,80),duration:duration(f),row:Math.floor(i/p.cols),col:i%p.cols,indices:Uint8Array.from(f.indices),cels:p.version===2?f.cels.map(c=>Uint8Array.from(c)):undefined,sourceRect:metadata(f.sourceRect),sourceBounds:metadata(f.sourceBounds),pose:validatePose(f.pose,p.width,p.height),support:validateSupport(f.support,f.pose||{})};
+ });return upgrade({kind:'pixelgen',version:2,id:typeof p.id==='string'&&/^[a-zA-Z0-9_-]{1,80}$/.test(p.id)?p.id:undefined,width:p.width,height:p.height,cols:p.cols,rows:p.rows,palette:p.palette.map(c=>[...c]),settings:settings(p.settings||{}),layers:p.version===2?p.layers.map(l=>({name:String(l.name||'Camada').slice(0,80),visible:l.visible!==false,locked:l.locked===true})):undefined,name:String(p.name||'Projeto').slice(0,80),frames,sequences:validateSequences(p.sequences,frames.length),ramps:validateRamps(p.ramps,p.palette.length),sheet:validateSheet(p.sheet,p),style:validateCharacterStyle(p.style,p)});
 }

@@ -7,12 +7,13 @@ import {duplicateFrame,deleteFrame,sequencesFor} from './animation.mjs';
 import {qualityReport} from './quality.mjs';
 import {outsideRing} from './legibility.mjs';
 
-export const POINTS=['topo','queixo','ombroTras','ombroFrente','maoTras','maoFrente','quadril','peTras','peFrente'];
+import {JOINTS,PARENTS} from './skeleton.mjs';
+export const POINTS=JOINTS;
 export const DIRECTIONS=['S','SO','O','NO','N','NE','E','SE'];
 // Default part layers. A sheet can rename them ("partes": {"pernaFrente": "Perna dir"}).
 export const PARTS={pernaTras:'Perna de trás',pernaFrente:'Perna da frente',tronco:'Tronco',bracoTras:'Braço de trás',bracoFrente:'Braço da frente',cabeca:'Cabeça',cabelo:'Cabelo'};
 // Keypoints follow the part that carries them. "Frente" is the limb nearer the camera.
-const CARRY={topo:'cabeca',queixo:'cabeca',ombroTras:'tronco',ombroFrente:'tronco',quadril:'tronco',peTras:'pernaTras',peFrente:'pernaFrente',maoTras:'bracoTras',maoFrente:'bracoFrente'};
+const CARRY={topo:'cabeca',queixo:'cabeca',ombroTras:'tronco',ombroFrente:'tronco',quadril:'tronco',peTras:'pernaTras',peFrente:'pernaFrente',maoTras:'bracoTras',maoFrente:'bracoFrente',pescoco:'tronco',cotoveloTras:'bracoTras',cotoveloFrente:'bracoFrente',joelhoTras:'pernaTras',joelhoFrente:'pernaFrente'};
 
 export function validatePose(pose,w,h){
  if(pose===undefined||pose===null)return undefined;
@@ -106,13 +107,13 @@ export function recipe(p,{motion,dir,base,replace=false,stride=1,parts:custom}={
  const name=`${motion}-${dir}`,b=typeof base==='number'?base:p.frames.findIndex(f=>f.name===base);if(b<0||!p.frames[b])throw Error(`Quadro base inexistente: ${base}`);
  const old=p.frames.map((f,i)=>f.name.startsWith(name+'-')&&/^\d+$/.test(f.name.slice(name.length+1))?i:-1).filter(i=>i>=0);
  if(old.length&&!replace)throw Error(`Já existem quadros ${name}-*. Use replace para refazer.`);
- const snap={cels:p.frames[b].cels.map(c=>c.slice()),pose:p.frames[b].pose?structuredClone(p.frames[b].pose):undefined};
+ const snap={cels:p.frames[b].cels.map(c=>c.slice()),support:p.frames[b].support?[...p.frames[b].support]:undefined,pose:p.frames[b].pose?structuredClone(p.frames[b].pose):undefined};
  if(p.sequences)p.sequences=p.sequences.filter(s=>s.name!==name);
  const [vx,vy]=directionVector(dir),front=vx===0,side=vy===0,w=p.width,created=[];
  r.frames.forEach((spec,n)=>{
   // Append after the last frame: duplicating the last one keeps every sequence range intact.
   const i=duplicateFrame(p,p.frames.length-1),fr=p.frames[i];p.sequences=p.sequences?.map(q=>q.end===i?{...q,end:i-1}:q);
-  fr.cels=snap.cels.map(c=>c.slice());fr.name=`${name}-${n+1}`;fr.duration=r.durations[n];const pose=snap.pose?structuredClone(snap.pose):undefined;
+  fr.cels=snap.cels.map(c=>c.slice());fr.name=`${name}-${n+1}`;fr.duration=r.durations[n];fr.support=motion==='idle'?snap.support?.slice():undefined;const pose=snap.pose?structuredClone(snap.pose):undefined;
   // 'f' = forward along the facing. Sides slide across; diagonals across and half in depth;
   // front/back views raise the limb that goes away from the camera by 1px (never below the base).
   const base=k=>{const [bx,by]=spec.all||(UPPER.includes(k)&&spec.body)||[0,0];return [bx+(spec.lean&&UPPER.includes(k)&&!front?spec.lean*Math.sign(vx):0),by];};
@@ -141,8 +142,8 @@ export function recipe(p,{motion,dir,base,replace=false,stride=1,parts:custom}={
 // Draws keypoints and bones over an RGBA review canvas (render --pose).
 export function drawPose(cv,pose,ox,oy,zoom){
  if(!pose)return;const col={topo:[255,214,102,255],queixo:[255,214,102,255],quadril:[255,120,120,255],ombroTras:[90,140,200,255],ombroFrente:[120,200,255,255],maoTras:[80,190,130,255],maoFrente:[120,255,170,255],peTras:[190,100,170,255],peFrente:[255,140,220,255]};
- const bones=[['topo','queixo'],['queixo','quadril'],['ombroTras','maoTras'],['ombroFrente','maoFrente'],['ombroTras','ombroFrente'],['quadril','peTras'],['quadril','peFrente']];
+ const bones=pose.pescoco?Object.entries(PARENTS).filter(([,p])=>p).map(([j,p])=>[p,j]):[['topo','queixo'],['queixo','quadril'],['ombroTras','maoTras'],['ombroFrente','maoFrente'],['ombroTras','ombroFrente'],['quadril','peTras'],['quadril','peFrente']];
  const c=pt=>[ox+pose[pt][0]*zoom+(zoom>>1),oy+pose[pt][1]*zoom+(zoom>>1)];
  for(const [a,b] of bones){if(!pose[a]||!pose[b])continue;const [x0,y0]=c(a),[x1,y1]=c(b),n=Math.max(Math.abs(x1-x0),Math.abs(y1-y0),1);for(let t=0;t<=n;t++)cv.set(Math.round(x0+(x1-x0)*t/n),Math.round(y0+(y1-y0)*t/n),[255,255,255,170]);}
- for(const pt of Object.keys(pose)){const [x,y]=c(pt),r=Math.max(1,zoom>>2);cv.rect(x-r-1,y-r-1,r*2+3,r*2+3,[20,24,30,255]);cv.rect(x-r,y-r,r*2+1,r*2+1,col[pt]);}
+ for(const pt of Object.keys(pose)){const [x,y]=c(pt),r=Math.max(1,zoom>>2);cv.rect(x-r-1,y-r-1,r*2+3,r*2+3,[20,24,30,255]);cv.rect(x-r,y-r,r*2+1,r*2+1,(col[pt]||[255,220,130,255]));}
 }

@@ -1,6 +1,6 @@
 # Estilo de pixel dos personagens (Soulmonsters)
 
-Regras para desenhar e animar os personagens do overworld (48×64, mapa isométrico 2:1) no acabamento mangá + Splatoon. A seção "Fontes" lista a pesquisa que embasa estas regras. O que dá para medir, o `check` mede. O resto fica com quem revisa.
+Para personagens novos, usar o perfil **Soulmon DS** em [CHARACTER-DS.md](CHARACTER-DS.md): corpo mais esguio, cabeça compacta e membros legíveis, conforme o pedido do usuário de aproximar a leitura de Pokémon Ranger DS. As regras de 2,5 cabeças e 16 cores abaixo descrevem o estudo legado, não o padrão atual nem uma aprovação dos lotes de Kael rejeitados. Permanecem válidos os fundamentos de clusters, contorno seletivo, luz, leitura em 1× e revisão de movimento.
 
 ## Precisa treinar a ferramenta?
 

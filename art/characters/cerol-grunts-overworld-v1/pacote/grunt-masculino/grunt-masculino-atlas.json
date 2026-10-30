@@ -1,0 +1,69 @@
+{
+  "image": "grunt-masculino-directions.png",
+  "cell": [
+    64,
+    96
+  ],
+  "pivot": [
+    32,
+    94
+  ],
+  "frames": {
+    "idle-S-1": {
+      "x": 0,
+      "y": 0,
+      "w": 64,
+      "h": 96,
+      "durationMs": 200
+    },
+    "idle-SO-1": {
+      "x": 64,
+      "y": 0,
+      "w": 64,
+      "h": 96,
+      "durationMs": 200
+    },
+    "idle-O-1": {
+      "x": 128,
+      "y": 0,
+      "w": 64,
+      "h": 96,
+      "durationMs": 200
+    },
+    "idle-NO-1": {
+      "x": 192,
+      "y": 0,
+      "w": 64,
+      "h": 96,
+      "durationMs": 200
+    },
+    "idle-N-1": {
+      "x": 0,
+      "y": 96,
+      "w": 64,
+      "h": 96,
+      "durationMs": 200
+    },
+    "idle-NE-1": {
+      "x": 64,
+      "y": 96,
+      "w": 64,
+      "h": 96,
+      "durationMs": 200
+    },
+    "idle-E-1": {
+      "x": 128,
+      "y": 96,
+      "w": 64,
+      "h": 96,
+      "durationMs": 200
+    },
+    "idle-SE-1": {
+      "x": 192,
+      "y": 96,
+      "w": 64,
+      "h": 96,
+      "durationMs": 200
+    }
+  }
+}

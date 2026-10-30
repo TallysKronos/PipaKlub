@@ -2,6 +2,16 @@
 
 Ferramenta para criar e animar os personagens do Soulmonsters por comandos. O projeto é um arquivo `.pixelgen.json`: abre igual na bancada (`npm run studio:pixel`), onde o responsável revisa e retoca.
 
+## Direção atual: Soulmon DS
+
+O usuário rejeitou a leitura dos lotes grandes de Kael e pediu uma direção próxima de Pokémon Ranger DS. **Não usar as bibliotecas de Kael v1/v2 nem o modelo genérico de cabeça grande como arte aprovada.** Os exemplos antigos abaixo são demonstrações técnicas, não o padrão artístico atual.
+
+Para personagens novos: `pixel new personagem.pixelgen.json --profile soulmon-ds-v1 --body jovem --name Nome`. Corpos disponíveis: jovem, adulto e robusto; dimensões: 48×64 (padrão) ou 32×48. A base cria oito direções vazias, camadas, poses-guia, ficha e paleta editável, não uma figura automaticamente pronta.
+
+Desenhe e revise uma pose em 1× antes de marcar `profile arquivo --base-reviewed true`; faça e revise um ciclo curto antes de marcar `--cycle-reviewed true`. Só depois expanda a biblioteca. Não marque sem olhar. Use `check` para cabeça grande/solta, proporção, apoio e paleta, sem confundir aprovação técnica com artística. Roupas, pele, cabelo e acessórios são próprios de cada personagem. O conceito v3 é uma referência visual, não uma folha nativa pronta para conversão automática.
+
+`pixel pack idle.pixelgen.json walk.pixelgen.json --out pacote` monta documentos separados sem redimensionar, exigindo mesmo personagem, célula, paleta e pivô. Contratos, guias e limites em [CHARACTER-DS.md](CHARACTER-DS.md).
+
 ```sh
 npm run pixel -- help
 ```
@@ -18,7 +28,8 @@ Leia antes o [`ESTILO-PIXEL.md`](ESTILO-PIXEL.md): proporção, contorno, cor, l
    Também aceita um JSON (`sheet nina.pixelgen.json ficha.json`). Os campos são `nome`, `cabecas`, `altura`, `base` (linha dos pés), `larguraMax`, `cores`, `rampas`, `preenchimentoMax` (silhueta-alvo), `referencia` (quadro que define cabeça e membros), `partes` (nomes das camadas, se forem outros) e `notas`.
 1. **Crie o projeto e as rampas antes de desenhar.** Cada material tem uma rampa do escuro para o claro (3 a 5 tons): `tinta` (contorno), `pele`, `cabelo`, `roupa`… Use a cor como `"pele:1"`, nunca hex solto no meio do desenho.
 2. **Desenhe por partes, uma camada por parte**: `Perna de trás`, `Perna da frente`, `Braço de trás`, `Tronco`, `Braço da frente`, `Cabeça` e `Cabelo` (opcional). As receitas animam movendo essas camadas, e a op `copy` reaproveita a cabeça e o tronco entre quadros. "Frente" é o membro mais perto da câmera.
-3. **Marque a pose** do quadro parado (op `pose` ou comando `pose`). São 9 pontos: `topo` (alto da cabeça), `queixo`, `ombroTras`, `ombroFrente`, `maoTras`, `maoFrente`, `quadril`, `peTras` e `peFrente` (o pixel do pé que toca o chão). Confira com `render --pose`.
+3. **Marque a pose** do quadro parado (op `pose` ou comando `pose`). O esquema legado tem 9 pontos: `topo` (alto da cabeça), `queixo`, `ombroTras`, `ombroFrente`, `maoTras`, `maoFrente`, `quadril`, `peTras` e `peFrente` (o pixel do pé que toca o chão). Confira com `render --pose`.
+   Para bases DS novas, use o esqueleto de 14 juntas (também pescoço, cotovelos e joelhos), `skeleton --complete`, apoio por quadro e editor por arraste. Preserve `.pixelgen.json`: Aseprite não armazena esse rig. O rig guia desenho, não converte recortes em pixel art final. Ver CHARACTER-DS.md.
 4. **Gere os ciclos pelas receitas** e depois ajuste à mão:
    ```sh
    npm run pixel -- recipe nina.pixelgen.json idle S --base idle-S-1 --replace

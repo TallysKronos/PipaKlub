@@ -1,0 +1,122 @@
+{
+  "id": "malvadocia",
+  "name": "Malvadocia",
+  "source": "../../fontes/malvadocia.png",
+  "identityReference": "art/characters/cerol-hunters-v1/malvadocia-sheet.png",
+  "cell": [
+    64,
+    96
+  ],
+  "pivot": [
+    32,
+    94
+  ],
+  "directions": [
+    "S",
+    "SO",
+    "O",
+    "NO",
+    "N",
+    "NE",
+    "E",
+    "SE"
+  ],
+  "sourceOrder": [
+    0,
+    1,
+    6,
+    3,
+    4,
+    5,
+    2,
+    7
+  ],
+  "sharedScale": 0.17670682730923695,
+  "sourceBounds": [
+    [
+      77,
+      25,
+      374,
+      512
+    ],
+    [
+      57,
+      27,
+      341,
+      512
+    ],
+    [
+      77,
+      0,
+      287,
+      494
+    ],
+    [
+      24,
+      27,
+      312,
+      512
+    ],
+    [
+      82,
+      0,
+      376,
+      493
+    ],
+    [
+      57,
+      0,
+      337,
+      492
+    ],
+    [
+      66,
+      27,
+      289,
+      512
+    ],
+    [
+      12,
+      0,
+      302,
+      498
+    ]
+  ],
+  "colors": 31,
+  "cleanup": [
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 254
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 264
+    },
+    {
+      "detachedPixelsRemoved": 1,
+      "edgePixelsInked": 234
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 247
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 254
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 262
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 250
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 266
+    }
+  ],
+  "animation": "static directional bases; no walk cycle",
+  "status": "draft awaiting native Aseprite review/export"
+}

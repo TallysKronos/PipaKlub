@@ -1,0 +1,100 @@
+{
+  "status": "Concept test V2 — awaiting user review; not integrated in game",
+  "characters": [
+    {
+      "id": "iara",
+      "name": "Iara",
+      "age": 17,
+      "area": "Jardim das Pipas",
+      "partner": "Mata verde",
+      "motif": "Resgate de pipas e fios presos",
+      "contrast": "Enfrenta a altura com determinação, embora tenha receio dela.",
+      "signals": [
+        "trança em laço",
+        "jaqueta arredondada curta",
+        "postura de tensão no fio"
+      ],
+      "palette": [
+        "sálvia",
+        "creme",
+        "carvão"
+      ]
+    },
+    {
+      "id": "nilo",
+      "name": "Nilo",
+      "age": 15,
+      "area": "Clareira do Papel",
+      "partner": "Carcará",
+      "motif": "Entregador de pipas dobradas",
+      "contrast": "Corre sem parar, mas sempre precisa conferir o endereço duas vezes.",
+      "signals": [
+        "topete baixo lateral",
+        "estojo retangular diagonal preso às costas",
+        "passo inclinado olhando para trás"
+      ],
+      "palette": [
+        "mostarda",
+        "ferrugem",
+        "marinho"
+      ]
+    },
+    {
+      "id": "dora",
+      "name": "Dora",
+      "age": 22,
+      "area": "Clareira do Papel",
+      "partner": "Raio de sol",
+      "motif": "Especialista em carretéis e nós",
+      "contrast": "Enérgica na conversa e meticulosa com os menores nós.",
+      "signals": [
+        "corpo baixo e robusto",
+        "mangas quadradas e avental",
+        "carretel com eixo nas duas mãos"
+      ],
+      "palette": [
+        "coral",
+        "creme",
+        "grafite"
+      ]
+    },
+    {
+      "id": "caue",
+      "name": "Cauê",
+      "age": 19,
+      "area": "Veredas do Encanamento",
+      "partner": "Mata verde",
+      "motif": "Observador dos ventos",
+      "contrast": "Reservado com pessoas, atento a qualquer mudança na brisa.",
+      "signals": [
+        "silhueta mais alta e estreita",
+        "colete curto de gola dobrada",
+        "medidor de vento em bambu com fitas"
+      ],
+      "palette": [
+        "oliva",
+        "ocre",
+        "bege"
+      ]
+    },
+    {
+      "id": "celina",
+      "name": "Celina",
+      "age": 48,
+      "area": "Veredas do Encanamento",
+      "partner": "Raio de sol",
+      "motif": "Artesã de armações e reparos",
+      "contrast": "Acolhe os aprendizes e adora vencer seus duelos.",
+      "signals": [
+        "coque grisalho largo e baixo",
+        "avental curvo assimétrico",
+        "armação oval de bambu"
+      ],
+      "palette": [
+        "ardósia",
+        "terracota",
+        "creme"
+      ]
+    }
+  ]
+}

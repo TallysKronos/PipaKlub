@@ -1,0 +1,126 @@
+{
+  "id": "mae",
+  "name": "Mãe do Kael",
+  "source": "../../fontes/mae.png",
+  "identityReference": "assets/story/kael-birthday-v1/mother.png",
+  "cell": [
+    64,
+    96
+  ],
+  "pivot": [
+    32,
+    94
+  ],
+  "directions": [
+    "S",
+    "SO",
+    "O",
+    "NO",
+    "N",
+    "NE",
+    "E",
+    "SE"
+  ],
+  "sourceOrder": [
+    0,
+    1,
+    6,
+    3,
+    4,
+    5,
+    2,
+    7
+  ],
+  "sharedScale": 0.18219461697722567,
+  "sourceBounds": [
+    [
+      153,
+      31,
+      345,
+      512
+    ],
+    [
+      111,
+      29,
+      320,
+      512
+    ],
+    [
+      66,
+      13,
+      273,
+      476
+    ],
+    [
+      55,
+      31,
+      244,
+      511
+    ],
+    [
+      153,
+      10,
+      348,
+      476
+    ],
+    [
+      117,
+      13,
+      309,
+      478
+    ],
+    [
+      80,
+      40,
+      285,
+      512
+    ],
+    [
+      41,
+      9,
+      247,
+      480
+    ]
+  ],
+  "colors": 31,
+  "cleanup": [
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 302
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 294
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 225
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 267
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 320
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 269
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 226
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 271
+    }
+  ],
+  "animation": "static directional bases; no walk cycle",
+  "status": "integrated locally; independent art review 8/10; awaiting user visual approval in game",
+  "nativeRoundtripExact": true,
+  "integratedInGame": true,
+  "reviewScore": 8,
+  "runtimePath": "godot/assets/npc-ds/mae.png"
+}

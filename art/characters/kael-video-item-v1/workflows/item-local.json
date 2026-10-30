@@ -1,0 +1,209 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "type": "minimax",
+      "device": "default"
+    }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+    }
+  },
+  "4": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+    }
+  },
+  "5": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "kael-item-SE.png"
+    }
+  },
+  "8": {
+    "class_type": "MiniMaxH3ReferenceToVideo",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "audio_vae": [
+        "4",
+        0
+      ],
+      "prompt": "A single Kael pixel-art game character celebrates finding an item. Begin in the exact three-quarter standing pose from the starting image. First smoothly turn the entire body toward the viewer until BOTH EYES and the chest face straight toward the camera. Then smile confidently, place his LEFT HAND on his hip, and raise his RIGHT ARM straight up above his head. Point his RIGHT INDEX FINGER straight toward the sky, with the other fingers curled into a fist. Hold this victorious upward-pointing pose for two seconds, then lower the arm and finish facing directly toward the viewer. One turn and one arm raise only. Timeline: turn during the first second; lift arm during the second second; hold the upward-pointing index finger during seconds three and four; lower arm in the final second. Fixed orthographic camera, fixed horizontal center, feet planted on one baseline, constant body size. Entire raised hand and fingertip must fit inside the frame with ample magenta space above. Preserve the original navy swept hair, blue jacket with thin ivory sleeve stripes and hanging ivory straps, black shirt, grey-blue trousers, dark boots with ivory soles, cyan headphones around his neck. Exact outfit proportions and colors, no transformations or lighting changes. Clean flat 2D anime pixel-sprite appearance, crisp large clusters. Uniform flat magenta #ff00ff background, no scenery, no ground, no shadow, no text, no sparkles, no objects, no extra characters, no blur or 3D. The empty area above the raised finger is left free for the game to display an item icon. Silent.",
+      "width": 512,
+      "height": 512,
+      "length": 124,
+      "ref_image_size": "match",
+      "ref_images.ref_image_0": [
+        "5",
+        0
+      ]
+    }
+  },
+  "9": {
+    "class_type": "MiniMaxH3AddGuide",
+    "inputs": {
+      "positive": [
+        "8",
+        0
+      ],
+      "latent": [
+        "8",
+        1
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "image": [
+        "5",
+        0
+      ],
+      "frame_idx": 0
+    }
+  },
+  "10": {
+    "class_type": "BasicGuider",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "conditioning": [
+        "19",
+        0
+      ]
+    }
+  },
+  "11": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 2910203107
+    }
+  },
+  "12": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "res_multistep"
+    }
+  },
+  "13": {
+    "class_type": "BasicScheduler",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "scheduler": "beta",
+      "steps": 16,
+      "denoise": 1.0
+    }
+  },
+  "14": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "11",
+        0
+      ],
+      "guider": [
+        "10",
+        0
+      ],
+      "sampler": [
+        "12",
+        0
+      ],
+      "sigmas": [
+        "13",
+        0
+      ],
+      "latent_image": [
+        "8",
+        1
+      ]
+    }
+  },
+  "15": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "14",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "17": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "15",
+        0
+      ],
+      "fps": 24
+    }
+  },
+  "18": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "17",
+        0
+      ],
+      "filename_prefix": "Pixelgen/KaelItem",
+      "format": "auto",
+      "format.codec": "auto",
+      "codec": "auto"
+    }
+  },
+  "19": {
+    "class_type": "MiniMaxH3AddGuide",
+    "inputs": {
+      "positive": [
+        "9",
+        0
+      ],
+      "latent": [
+        "8",
+        1
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "image": [
+        "6",
+        0
+      ],
+      "frame_idx": -1
+    }
+  },
+  "6": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "kael-item-S.png"
+    }
+  }
+}

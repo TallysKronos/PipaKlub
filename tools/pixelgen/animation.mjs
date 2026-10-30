@@ -17,7 +17,7 @@ export function duplicateFrame(project,index){
  const cols=Math.max(project.cols,Math.ceil((project.frames.length+1)/16)),rows=Math.ceil((project.frames.length+1)/cols);
  if(rows>16||project.width*project.height*cols*rows>1048576||(project.layers?.length||1)*project.width*project.height*(project.frames.length+1)>4194304)throw Error('A duplicação excede o limite da grade.');
  const seq=sequencesFor(project).map(s=>({...s,start:s.start>index?s.start+1:s.start,end:s.end>=index?s.end+1:s.end}));
- const f=project.frames[index];project.frames.splice(index+1,0,{...f,name:f.name+'-copia',duration:duration(f),indices:f.indices.slice(),cels:f.cels?.map(c=>c.slice()),pose:f.pose?structuredClone(f.pose):undefined});
+ const f=project.frames[index];project.frames.splice(index+1,0,{...f,name:f.name+'-copia',duration:duration(f),indices:f.indices.slice(),cels:f.cels?.map(c=>c.slice()),support:f.support?[...f.support]:undefined,pose:f.pose?structuredClone(f.pose):undefined});
  project.cols=cols;project.rows=rows;project.sequences=seq;project.frames.forEach((f,i)=>{f.row=Math.floor(i/cols);f.col=i%cols;});return index+1;
 }
 export function playbackOrder(s){const a=Array.from({length:s.end-s.start+1},(_,i)=>s.start+i);if(s.direction==='reverse')return a.reverse();if(s.direction==='pingpong'&&a.length>1)return [...a,...a.slice(1,-1).reverse(),...(s.loop===false?[a[0]]:[])];return a;}
@@ -27,5 +27,5 @@ export function deleteFrame(p,index){
  p.frames.splice(index,1);p.cols=Math.min(p.cols,p.frames.length);p.rows=Math.ceil(p.frames.length/p.cols);p.frames.forEach((f,i)=>{f.row=Math.floor(i/p.cols);f.col=i%p.cols;});p.sequences=seq.length?seq:[{name:'sequencia',start:0,end:p.frames.length-1,loop:true}];return Math.min(index,p.frames.length-1);
 }
 export function atlas(project,image){return {meta:{app:'Pixelgen',version:2,image,size:{w:project.width*project.cols,h:project.height*project.rows},scale:1},
- palette:project.palette,sequences:sequencesFor(project).map(s=>({...s})),frames:project.frames.map((f,i)=>({name:f.name,frame:{x:i%project.cols*project.width,y:Math.floor(i/project.cols)*project.height,w:project.width,h:project.height},
- pivot:{x:Math.floor(project.width/2),y:project.height-(project.settings?.margin??2)},duration:duration(f)}))};}
+ style:project.style?{...project.style}:undefined,palette:project.palette,sequences:sequencesFor(project).map(s=>({...s})),frames:project.frames.map((f,i)=>({name:f.name,frame:{x:i%project.cols*project.width,y:Math.floor(i/project.cols)*project.height,w:project.width,h:project.height},
+ pose:f.pose?structuredClone(f.pose):undefined,support:f.support?[...f.support]:undefined,pivot:{x:Math.floor(project.width/2),y:project.height-(project.settings?.margin??2)},duration:duration(f)}))};}

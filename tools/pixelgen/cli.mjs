@@ -16,10 +16,16 @@ import {renderFrame,renderSheet,renderGrounds,gifFrames,asciiFrame,Canvas,frameR
 import {encodePNG,decodePNG} from './png.mjs';
 import {encodeGIF} from './gif.mjs';
 import {rigReport,recipe,validateSheet,validatePose,measure,POINTS,RECIPES} from './rig.mjs';
+import {createCharacterBase,styleReport,CHARACTER_STYLE} from './character-style.mjs';
+import {completeSkeleton,skeletonReport,skeletonTemplate,applySkeletonTemplate} from './skeleton.mjs';
+import {buildSheetPack} from './sheet-pack.mjs';
 
 const HELP=`Pixelgen CLI — uso: npm run pixel -- <comando> <projeto.pixelgen.json> [opções]
 
   new <arq> --size 48x64 [--name Nome] [--palette outro.pixelgen.json|cores.gpl|"#hex,#hex"]
+  new <arq> --profile soulmon-ds-v1 [--body jovem|adulto|robusto] [--size 48x64|32x48]
+  profile <arq> [--base-reviewed true|false] [--cycle-reviewed true|false]  contrato e revisão visual manual
+  pack <arq1> [arq2 ...] --out pasta [--columns 8]  folhas por ação + montagem PNG e atlas, sem redimensionar
   info <arq>                         resumo JSON: camadas, quadros, sequências, paleta, rampas
   ramp <arq> <nome> <#escuro> ... <#claro>   rampa nomeada (use "nome:0" nas operações)
   draw <arq> <ops.json | ->          aplica uma lista JSON de operações (ver AGENTS.md)
@@ -28,6 +34,7 @@ const HELP=`Pixelgen CLI — uso: npm run pixel -- <comando> <projeto.pixelgen.j
          [--silhouette] [--onion] [--pose] [--sheet] [--grounds] [--gif sequência] [--no-grid]
          [--board seq,seq|all]  prancha: uma linha por sequência, no cenário da ação
          (climb → barranco com escada, swim → água, o resto na grama); --gif também usa o cenário
+  skeleton <arq> [--frame i] [--complete] [--export rig.json] [--import rig.json] [--support peTras,peFrente|none]
   pose <arq> --frame i [topo=24,8 queixo=24,29 ...] [--clear]   marca/mostra os pontos da pose
          pontos: topo queixo ombroTras ombroFrente maoTras maoFrente quadril peTras peFrente
   recipe <arq> <idle|walk|run> <S|SO|O|NO|N|NE|E|SE> --base quadro [--replace] [--stride 1]
@@ -65,17 +72,36 @@ export function check(p,{sequence}={}){
  for(const s of q.sequences){if(sequence&&s.name!==sequence)continue;const still=/^(idle|parado)/.test(s.name);if(s.groundVariation>(still?1:2))(still?errors:warnings).push(`${s.name}: o apoio dos pés varia ${s.groundVariation}px.`);}
  for(const w of q.warnings)if(/toca|borda/.test(w))warnings.push(w);
  const rig=rigReport(p,{frames});errors.push(...rig.errors);warnings.push(...rig.warnings);
- return {pass:!errors.length,errors,warnings,metrics:{darkEdge:leg.darkEdge,grounds:leg.grounds,confusingNeighbours:leg.confusingNeighbours,colorsUsed:q.colorsUsed}};
+ const style=styleReport(p,{frames});errors.push(...style.errors);warnings.push(...style.warnings);
+ const skeleton=skeletonReport(p);warnings.push(...skeleton.warnings);
+ return {pass:!errors.length,errors,warnings,style,skeleton,metrics:{darkEdge:leg.darkEdge,grounds:leg.grounds,confusingNeighbours:leg.confusingNeighbours,colorsUsed:q.colorsUsed}};
 }
 export async function run(argv){
  const a=args(argv),[cmd,file,...rest]=a._;
  if(!cmd||cmd==='help'||a.help)return print(HELP);
+ if(cmd==='pack'){
+  if(!file||!a.out)throw Error('Use pack projeto1 [projeto2 ...] --out pasta.');
+  const pack=buildSheetPack([file,...rest].map(load),{columns:Number(a.columns||8)});fs.mkdirSync(a.out,{recursive:true});
+  writePNG(path.join(a.out,'completo.png'),{w:pack.width,h:pack.height,data:pack.rgba});
+  for(const sheet of pack.sheets)writePNG(path.join(a.out,sheet.name),{w:sheet.width,h:sheet.height,data:sheet.rgba});
+  fs.writeFileSync(path.join(a.out,'completo.atlas.json'),JSON.stringify(pack.atlas,null,2));
+  return print({sheets:pack.sheets.map(s=>s.name),frames:pack.atlas.frames.length,cell:pack.atlas.cell,pivot:pack.atlas.pivot,master:[pack.width,pack.height]});
+ }
  if(cmd==='new'){const [w,h]=String(a.size||'48x64').split('x').map(Number),palette=paletteFrom(a.palette);
+  if(a.profile){if(a.profile!==CHARACTER_STYLE)throw Error('Perfil desconhecido. Use soulmon-ds-v1.');const p=validateProject(createCharacterBase({name:a.name||path.basename(file).replace(/\.pixelgen\.json$/,''),body:a.body||'jovem',width:w,height:h}));save(file,p);return print({...summary(p),style:p.style,sheet:p.sheet,note:'Base vazia com guias, não arte final.'});}
   const p=validateProject({kind:'pixelgen',version:2,name:a.name||path.basename(file).replace(/\.pixelgen\.json$|\.json$/,''),width:w,height:h,cols:1,rows:1,palette,layers:[{name:'Corpo',visible:true,locked:false}],frames:[{name:'idle-S-1',indices:Array(w*h).fill(0),cels:[Array(w*h).fill(0)]}],sequences:[{name:'idle-S',start:0,end:0,loop:true}]});
   if(a.palette?.endsWith('.json'))p.ramps=load(a.palette).ramps;save(file,p);return print(summary(p));}
  if(cmd==='import'){const [out]=rest,src=decodePNG(fs.readFileSync(file)),opts=Object.fromEntries(Object.entries(a).filter(([k])=>k!=='_'));const p=validateProject({...convert(src,opts),name:a.name||path.basename(out).replace(/\.pixelgen\.json$/,'')});save(out,p);return print(summary(p));}
  const p=load(file);
  switch(cmd){
+  case 'profile':{
+   if(!p.style)throw Error('Projeto legado sem perfil DS; crie uma nova base com new --profile soulmon-ds-v1.');
+   for(const [flag,key]of [['base-reviewed','baseReviewed'],['cycle-reviewed','cycleReviewed']])if(a[flag]!==undefined){
+    if(!['true','false'].includes(a[flag]))throw Error(`Use --${flag} true ou false.`);
+    if(a[flag]==='true'&&!p.frames.some(f=>f.indices.some(Boolean)))throw Error('Desenhe antes de registrar revisão visual.');
+    p.style[key]=a[flag]==='true';
+   }
+   save(file,p);return print(styleReport(p));}
   case 'info':return print(summary(p));
   case 'ramp':{const [name,...colors]=rest;const list=setRamp(p,name,colors);save(file,p);return print({ramp:name,indices:list,colors:list.map(i=>toHex(p.palette[i]))});}
   case 'draw':{const src=rest[0];if(!src)throw Error('Informe o arquivo de operações ou - para ler da entrada.');const ops=JSON.parse(src==='-'?fs.readFileSync(0,'utf8'):fs.readFileSync(src,'utf8'));const log=apply(p,Array.isArray(ops)?ops:ops.ops);save(file,p);return print({ok:true,log});}
@@ -90,6 +116,9 @@ export async function run(argv){
     written.push(writePNG(`${base}-${f}${a.silhouette?'-silhueta':''}.png`,renderFrame(p,f,{zoom,grid:!a['no-grid'],ground,silhouette:!!a.silhouette,onion:!!a.onion,pose:!!a.pose,neighbours:[prev,next]})));}
    if(a.gif){const s=sequencesFor(p).find(s=>s.name===a.gif);if(!s)throw Error(`Sequência inexistente: ${a.gif}. Sequências: ${sequencesFor(p).map(s=>s.name).join(', ')}`);const g=a.ground||sceneFor(s.name)==='grama'?gifFrames(p,playbackOrder(s),{zoom:Number(a.zoom)||3,ground:a.ground||'grama'}):sceneGif(p,s,{zoom:Number(a.zoom)||4});const f=`${base}-${s.name}.gif`;fs.mkdirSync(out,{recursive:true});fs.writeFileSync(f,encodeGIF(g.frames,g.width,g.height,g.palette));written.push(f);}
    return print({written});}
+  case 'skeleton':{const list=frameList(p,target(a.frame)??0);
+   if(a.complete||a.import||a.support!==undefined){for(const i of list){const f=p.frames[i];if(a.complete)f.pose=completeSkeleton(f.pose);if(a.import)applySkeletonTemplate(p,i,JSON.parse(fs.readFileSync(a.import,'utf8')));if(a.support!==undefined){const support=a.support==='none'?[]:String(a.support).split(',');if(support.some(k=>!['peTras','peFrente'].includes(k)||!f.pose?.[k])||new Set(support).size!==support.length)throw Error('Apoio inválido.');f.support=support;}}save(file,p);}
+   if(a.export){if(list.length!==1)throw Error('Exporte um quadro por esqueleto.');fs.writeFileSync(a.export,JSON.stringify(skeletonTemplate(p,list[0]),null,2));}return print(skeletonReport(p));}
   case 'pose':{const list=frameList(p,target(a.frame)??0),points=Object.fromEntries(rest.map(s=>{const m=/^([a-zA-Z]+)=(-?\d+),(-?\d+)$/.exec(s);if(!m)throw Error(`Ponto inválido: ${s}. Use nome=x,y.`);return [m[1],[Number(m[2]),Number(m[3])]];}));
    if(rest.length||a.clear){for(const i of list){const f=p.frames[i];f.pose=validatePose(a.clear?points:{...(f.pose||{}),...points},p.width,p.height);}save(file,p);}
    return print(list.map(i=>({frame:i,name:p.frames[i].name,pose:p.frames[i].pose||{},medidas:measure(p,i)})));}

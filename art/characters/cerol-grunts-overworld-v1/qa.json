@@ -1,0 +1,187 @@
+{
+  "characters": [
+    {
+      "id": "grunt-feminino",
+      "frames": 8,
+      "nativeRoundtripExact": true,
+      "alpha": "binary0/255",
+      "colors": 31,
+      "measurements": [
+        {
+          "direction": "idle-S-1",
+          "bounds": [
+            13,
+            9,
+            50,
+            95
+          ],
+          "height": 86
+        },
+        {
+          "direction": "idle-SO-1",
+          "bounds": [
+            14,
+            9,
+            50,
+            95
+          ],
+          "height": 86
+        },
+        {
+          "direction": "idle-O-1",
+          "bounds": [
+            17,
+            9,
+            47,
+            95
+          ],
+          "height": 86
+        },
+        {
+          "direction": "idle-NO-1",
+          "bounds": [
+            15,
+            9,
+            49,
+            95
+          ],
+          "height": 86
+        },
+        {
+          "direction": "idle-N-1",
+          "bounds": [
+            12,
+            9,
+            51,
+            95
+          ],
+          "height": 86
+        },
+        {
+          "direction": "idle-NE-1",
+          "bounds": [
+            14,
+            9,
+            50,
+            95
+          ],
+          "height": 86
+        },
+        {
+          "direction": "idle-E-1",
+          "bounds": [
+            16,
+            9,
+            47,
+            95
+          ],
+          "height": 86
+        },
+        {
+          "direction": "idle-SE-1",
+          "bounds": [
+            14,
+            9,
+            49,
+            95
+          ],
+          "height": 86
+        }
+      ],
+      "aseprite": true
+    },
+    {
+      "id": "grunt-masculino",
+      "frames": 8,
+      "nativeRoundtripExact": true,
+      "alpha": "binary0/255",
+      "colors": 31,
+      "measurements": [
+        {
+          "direction": "idle-S-1",
+          "bounds": [
+            14,
+            7,
+            49,
+            95
+          ],
+          "height": 88
+        },
+        {
+          "direction": "idle-SO-1",
+          "bounds": [
+            15,
+            7,
+            49,
+            95
+          ],
+          "height": 88
+        },
+        {
+          "direction": "idle-O-1",
+          "bounds": [
+            16,
+            7,
+            47,
+            95
+          ],
+          "height": 88
+        },
+        {
+          "direction": "idle-NO-1",
+          "bounds": [
+            16,
+            7,
+            48,
+            95
+          ],
+          "height": 88
+        },
+        {
+          "direction": "idle-N-1",
+          "bounds": [
+            13,
+            7,
+            50,
+            95
+          ],
+          "height": 88
+        },
+        {
+          "direction": "idle-NE-1",
+          "bounds": [
+            15,
+            7,
+            49,
+            95
+          ],
+          "height": 88
+        },
+        {
+          "direction": "idle-E-1",
+          "bounds": [
+            15,
+            7,
+            48,
+            95
+          ],
+          "height": 88
+        },
+        {
+          "direction": "idle-SE-1",
+          "bounds": [
+            15,
+            7,
+            49,
+            95
+          ],
+          "height": 88
+        }
+      ],
+      "aseprite": true
+    }
+  ],
+  "totalDirections": 16,
+  "animation": false,
+  "runtimeModified": false
+}

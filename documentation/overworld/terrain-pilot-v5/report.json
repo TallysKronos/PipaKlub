@@ -1,0 +1,156 @@
+{
+  "captures": [
+    {
+      "file": "01-antes.png",
+      "focal": [
+        29.5,
+        38.5
+      ],
+      "geometryOnly": false,
+      "objects": true,
+      "pilot": false,
+      "zoom": 1.55
+    },
+    {
+      "file": "02-antes-sem-objetos.png",
+      "focal": [
+        29.5,
+        38.5
+      ],
+      "geometryOnly": false,
+      "objects": false,
+      "pilot": false,
+      "zoom": 1.55
+    },
+    {
+      "file": "07-rampa-antes.png",
+      "focal": [
+        24.5,
+        37.5
+      ],
+      "geometryOnly": false,
+      "objects": false,
+      "pilot": false,
+      "zoom": 2.0
+    },
+    {
+      "file": "09-pontes-sul-antes.png",
+      "focal": [
+        29.5,
+        34.5
+      ],
+      "geometryOnly": false,
+      "objects": false,
+      "pilot": false,
+      "zoom": 1.7
+    },
+    {
+      "file": "11-pontes-norte-antes.png",
+      "focal": [
+        29.5,
+        24.5
+      ],
+      "geometryOnly": false,
+      "objects": false,
+      "pilot": false,
+      "zoom": 1.7
+    },
+    {
+      "file": "03-depois.png",
+      "focal": [
+        29.5,
+        38.5
+      ],
+      "geometryOnly": false,
+      "objects": true,
+      "pilot": true,
+      "zoom": 1.55
+    },
+    {
+      "file": "04-depois-sem-objetos.png",
+      "focal": [
+        29.5,
+        38.5
+      ],
+      "geometryOnly": false,
+      "objects": false,
+      "pilot": true,
+      "zoom": 1.55
+    },
+    {
+      "file": "05-cores-chapadas.png",
+      "focal": [
+        29.5,
+        38.5
+      ],
+      "geometryOnly": true,
+      "objects": false,
+      "pilot": true,
+      "zoom": 1.55
+    },
+    {
+      "file": "06-juntas-ampliadas.png",
+      "focal": [
+        29.5,
+        38.5
+      ],
+      "geometryOnly": false,
+      "objects": false,
+      "pilot": true,
+      "zoom": 2.5
+    },
+    {
+      "file": "08-rampa-depois.png",
+      "focal": [
+        24.5,
+        37.5
+      ],
+      "geometryOnly": false,
+      "objects": false,
+      "pilot": true,
+      "zoom": 2.0
+    },
+    {
+      "file": "13-rampa-cores-chapadas.png",
+      "focal": [
+        24.5,
+        37.5
+      ],
+      "geometryOnly": true,
+      "objects": false,
+      "pilot": true,
+      "zoom": 2.0
+    },
+    {
+      "file": "10-pontes-sul-depois.png",
+      "focal": [
+        29.5,
+        34.5
+      ],
+      "geometryOnly": false,
+      "objects": false,
+      "pilot": true,
+      "zoom": 1.7
+    },
+    {
+      "file": "12-pontes-norte-depois.png",
+      "focal": [
+        29.5,
+        24.5
+      ],
+      "geometryOnly": false,
+      "objects": false,
+      "pilot": true,
+      "zoom": 1.7
+    }
+  ],
+  "mapDataUnchanged": true,
+  "pilotCells": [
+    20,
+    22,
+    18,
+    23
+  ],
+  "scope": "opt-in visual prototype; campaign unchanged; no saves",
+  "togglePreservesPosition": true
+}

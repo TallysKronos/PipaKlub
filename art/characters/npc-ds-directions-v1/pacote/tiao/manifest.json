@@ -1,0 +1,126 @@
+{
+  "id": "tiao",
+  "name": "Tião",
+  "source": "../../fontes/tiao.png",
+  "identityReference": "assets/characters/morro-rivals/tiao-v1.png",
+  "cell": [
+    64,
+    96
+  ],
+  "pivot": [
+    32,
+    94
+  ],
+  "directions": [
+    "S",
+    "SO",
+    "O",
+    "NO",
+    "N",
+    "NE",
+    "E",
+    "SE"
+  ],
+  "sourceOrder": [
+    0,
+    1,
+    6,
+    3,
+    4,
+    5,
+    2,
+    7
+  ],
+  "sharedScale": 0.1956521739130435,
+  "sourceBounds": [
+    [
+      136,
+      40,
+      331,
+      493
+    ],
+    [
+      111,
+      41,
+      296,
+      496
+    ],
+    [
+      94,
+      16,
+      268,
+      474
+    ],
+    [
+      69,
+      40,
+      252,
+      499
+    ],
+    [
+      139,
+      19,
+      329,
+      469
+    ],
+    [
+      115,
+      20,
+      299,
+      474
+    ],
+    [
+      89,
+      39,
+      256,
+      499
+    ],
+    [
+      76,
+      19,
+      266,
+      475
+    ]
+  ],
+  "colors": 31,
+  "cleanup": [
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 269
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 264
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 229
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 268
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 265
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 262
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 227
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 269
+    }
+  ],
+  "animation": "static directional bases; no walk cycle",
+  "status": "integrated locally; independent art review 8/10; awaiting user visual approval in game",
+  "nativeRoundtripExact": true,
+  "integratedInGame": true,
+  "reviewScore": 8,
+  "runtimePath": "godot/assets/npc-ds/tiao.png"
+}

@@ -1,0 +1,671 @@
+{
+  "cell": [
+    96,
+    112
+  ],
+  "pivot": [
+    48,
+    110
+  ],
+  "frames": 32,
+  "directions": [
+    "SE",
+    "NE"
+  ],
+  "loop": false,
+  "durationMs": 820,
+  "scale": 0.21634615384615385,
+  "paletteSharedWithWalk": true,
+  "rootPolicy": "fixed source x=256; selected sole baseline; translation only, runtime owns arc",
+  "cleanup": {
+    "version": 1,
+    "policy": "../cleanup/policy.json",
+    "pantsBaseIndex": 6,
+    "pantsShadowIndex": 19,
+    "outlineIndex": 31,
+    "detachedIslandMaxPixels": 2
+  },
+  "records": [
+    {
+      "direction": "SE",
+      "timestamp": 0,
+      "root": [
+        256,
+        460
+      ],
+      "bounds": [
+        184,
+        60,
+        328,
+        460
+      ],
+      "video": "video-original\\SE\\160bc00d_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 184,
+        "contourRemapped": 231
+      }
+    },
+    {
+      "direction": "SE",
+      "timestamp": 0.4583,
+      "root": [
+        256,
+        462
+      ],
+      "bounds": [
+        176,
+        60,
+        332,
+        462
+      ],
+      "video": "video-original\\SE\\160bc00d_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 182,
+        "contourRemapped": 240
+      }
+    },
+    {
+      "direction": "SE",
+      "timestamp": 0.75,
+      "root": [
+        256,
+        460
+      ],
+      "bounds": [
+        132,
+        128,
+        366,
+        460
+      ],
+      "video": "video-original\\SE\\160bc00d_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 151,
+        "contourRemapped": 255
+      }
+    },
+    {
+      "direction": "SE",
+      "timestamp": 1.5,
+      "root": [
+        256,
+        460
+      ],
+      "bounds": [
+        130,
+        132,
+        368,
+        460
+      ],
+      "video": "video-original\\SE\\160bc00d_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 152,
+        "contourRemapped": 255
+      }
+    },
+    {
+      "direction": "SE",
+      "timestamp": 1.5833,
+      "root": [
+        256,
+        460
+      ],
+      "bounds": [
+        140,
+        128,
+        364,
+        460
+      ],
+      "video": "video-original\\SE\\160bc00d_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 152,
+        "contourRemapped": 248
+      }
+    },
+    {
+      "direction": "SE",
+      "timestamp": 1.625,
+      "root": [
+        256,
+        444
+      ],
+      "bounds": [
+        122,
+        58,
+        408,
+        444
+      ],
+      "video": "video-original\\SE\\160bc00d_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 183,
+        "contourRemapped": 307
+      }
+    },
+    {
+      "direction": "SE",
+      "timestamp": 1.7083,
+      "root": [
+        256,
+        390
+      ],
+      "bounds": [
+        122,
+        20,
+        402,
+        390
+      ],
+      "video": "video-original\\SE\\160bc00d_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 228,
+        "contourRemapped": 287
+      }
+    },
+    {
+      "direction": "SE",
+      "timestamp": 1.8333,
+      "root": [
+        256,
+        382
+      ],
+      "bounds": [
+        120,
+        16,
+        400,
+        382
+      ],
+      "video": "video-original\\SE\\160bc00d_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 188,
+        "contourRemapped": 271
+      }
+    },
+    {
+      "direction": "SE",
+      "timestamp": 2.5,
+      "root": [
+        256,
+        376
+      ],
+      "bounds": [
+        120,
+        10,
+        400,
+        376
+      ],
+      "video": "video-original\\SE\\160bc00d_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 213,
+        "contourRemapped": 270
+      }
+    },
+    {
+      "direction": "SE",
+      "timestamp": 3.0833,
+      "root": [
+        256,
+        384
+      ],
+      "bounds": [
+        120,
+        18,
+        400,
+        384
+      ],
+      "video": "video-original\\SE\\160bc00d_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 201,
+        "contourRemapped": 283
+      }
+    },
+    {
+      "direction": "SE",
+      "timestamp": 3.2083,
+      "root": [
+        256,
+        430
+      ],
+      "bounds": [
+        122,
+        52,
+        412,
+        430
+      ],
+      "video": "video-original\\SE\\160bc00d_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 186,
+        "contourRemapped": 287
+      }
+    },
+    {
+      "direction": "SE",
+      "timestamp": 3.2917,
+      "root": [
+        256,
+        460
+      ],
+      "bounds": [
+        124,
+        120,
+        390,
+        460
+      ],
+      "video": "video-original\\SE\\160bc00d_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 163,
+        "contourRemapped": 260
+      }
+    },
+    {
+      "direction": "SE",
+      "timestamp": 3.375,
+      "root": [
+        256,
+        460
+      ],
+      "bounds": [
+        128,
+        126,
+        374,
+        460
+      ],
+      "video": "video-original\\SE\\160bc00d_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 134,
+        "contourRemapped": 253
+      }
+    },
+    {
+      "direction": "SE",
+      "timestamp": 3.75,
+      "root": [
+        256,
+        460
+      ],
+      "bounds": [
+        130,
+        130,
+        370,
+        460
+      ],
+      "video": "video-original\\SE\\160bc00d_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 137,
+        "contourRemapped": 252
+      }
+    },
+    {
+      "direction": "SE",
+      "timestamp": 4.1667,
+      "root": [
+        256,
+        460
+      ],
+      "bounds": [
+        144,
+        128,
+        364,
+        460
+      ],
+      "video": "video-original\\SE\\160bc00d_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 144,
+        "contourRemapped": 257
+      }
+    },
+    {
+      "direction": "SE",
+      "timestamp": 4.5,
+      "root": [
+        256,
+        460
+      ],
+      "bounds": [
+        182,
+        60,
+        332,
+        460
+      ],
+      "video": "video-original\\SE\\160bc00d_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 176,
+        "contourRemapped": 248
+      }
+    },
+    {
+      "direction": "NE",
+      "timestamp": 0,
+      "root": [
+        256,
+        460
+      ],
+      "bounds": [
+        184,
+        60,
+        326,
+        460
+      ],
+      "video": "video-original\\NE\\50a572d3_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 187,
+        "contourRemapped": 227
+      }
+    },
+    {
+      "direction": "NE",
+      "timestamp": 0.4583,
+      "root": [
+        256,
+        459
+      ],
+      "bounds": [
+        180,
+        70,
+        336,
+        459
+      ],
+      "video": "video-original\\NE\\50a572d3_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 183,
+        "contourRemapped": 248
+      }
+    },
+    {
+      "direction": "NE",
+      "timestamp": 0.75,
+      "root": [
+        256,
+        459
+      ],
+      "bounds": [
+        148,
+        148,
+        374,
+        459
+      ],
+      "video": "video-original\\NE\\50a572d3_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 88,
+        "contourRemapped": 244
+      }
+    },
+    {
+      "direction": "NE",
+      "timestamp": 1.8333,
+      "root": [
+        256,
+        460
+      ],
+      "bounds": [
+        142,
+        152,
+        384,
+        460
+      ],
+      "video": "video-original\\NE\\50a572d3_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 81,
+        "contourRemapped": 244
+      }
+    },
+    {
+      "direction": "NE",
+      "timestamp": 1.9167,
+      "root": [
+        256,
+        460
+      ],
+      "bounds": [
+        154,
+        126,
+        368,
+        460
+      ],
+      "video": "video-original\\NE\\50a572d3_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 91,
+        "contourRemapped": 262
+      }
+    },
+    {
+      "direction": "NE",
+      "timestamp": 1.9583,
+      "root": [
+        256,
+        456
+      ],
+      "bounds": [
+        168,
+        96,
+        352,
+        456
+      ],
+      "video": "video-original\\NE\\50a572d3_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 75,
+        "contourRemapped": 251
+      }
+    },
+    {
+      "direction": "NE",
+      "timestamp": 2,
+      "root": [
+        256,
+        386
+      ],
+      "bounds": [
+        140,
+        8,
+        380,
+        386
+      ],
+      "video": "video-original\\NE\\50a572d3_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 160,
+        "contourRemapped": 281
+      }
+    },
+    {
+      "direction": "NE",
+      "timestamp": 2.0833,
+      "root": [
+        256,
+        372
+      ],
+      "bounds": [
+        140,
+        2,
+        382,
+        372
+      ],
+      "video": "video-original\\NE\\50a572d3_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 120,
+        "contourRemapped": 282
+      }
+    },
+    {
+      "direction": "NE",
+      "timestamp": 2.5,
+      "root": [
+        256,
+        348
+      ],
+      "bounds": [
+        142,
+        0,
+        379,
+        348
+      ],
+      "video": "video-original\\NE\\50a572d3_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 147,
+        "contourRemapped": 270
+      }
+    },
+    {
+      "direction": "NE",
+      "timestamp": 3.75,
+      "root": [
+        256,
+        388
+      ],
+      "bounds": [
+        150,
+        26,
+        374,
+        388
+      ],
+      "video": "video-original\\NE\\50a572d3_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 107,
+        "contourRemapped": 278
+      }
+    },
+    {
+      "direction": "NE",
+      "timestamp": 3.9167,
+      "root": [
+        256,
+        414
+      ],
+      "bounds": [
+        150,
+        50,
+        374,
+        414
+      ],
+      "video": "video-original\\NE\\50a572d3_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 124,
+        "contourRemapped": 287
+      }
+    },
+    {
+      "direction": "NE",
+      "timestamp": 4.0833,
+      "root": [
+        256,
+        458
+      ],
+      "bounds": [
+        142,
+        92,
+        382,
+        458
+      ],
+      "video": "video-original\\NE\\50a572d3_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 105,
+        "contourRemapped": 285
+      }
+    },
+    {
+      "direction": "NE",
+      "timestamp": 4.1667,
+      "root": [
+        256,
+        458
+      ],
+      "bounds": [
+        146,
+        102,
+        374,
+        458
+      ],
+      "video": "video-original\\NE\\50a572d3_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 103,
+        "contourRemapped": 272
+      }
+    },
+    {
+      "direction": "NE",
+      "timestamp": 4.2083,
+      "root": [
+        256,
+        458
+      ],
+      "bounds": [
+        144,
+        104,
+        374,
+        458
+      ],
+      "video": "video-original\\NE\\50a572d3_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 82,
+        "contourRemapped": 266
+      }
+    },
+    {
+      "direction": "NE",
+      "timestamp": 4.25,
+      "root": [
+        256,
+        459
+      ],
+      "bounds": [
+        152,
+        100,
+        366,
+        459
+      ],
+      "video": "video-original\\NE\\50a572d3_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 118,
+        "contourRemapped": 253
+      }
+    },
+    {
+      "direction": "NE",
+      "timestamp": 4.5,
+      "root": [
+        256,
+        459
+      ],
+      "bounds": [
+        184,
+        60,
+        326,
+        459
+      ],
+      "video": "video-original\\NE\\50a572d3_000.mp4",
+      "cleanup": {
+        "islandPixelsRemoved": 0,
+        "pantsRemapped": 173,
+        "contourRemapped": 224
+      }
+    }
+  ],
+  "status": "video-derived pixel draft; inspect timing, soles and anatomy at game scale"
+}

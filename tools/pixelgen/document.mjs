@@ -12,7 +12,7 @@ export function upgrade(p){
  for(const f of p.frames)if(!f.cels)f.cels=p.layers.map((_,i)=>i?new Uint8Array(p.width*p.height):f.indices.slice());
  p.version=2;return compositeAll(p);
 }
-export function cloneDocument(p){return {...p,layers:p.layers?.map(l=>({...l})),settings:p.settings?{...p.settings}:undefined,sequences:p.sequences?.map(s=>({...s})),ramps:p.ramps?Object.fromEntries(Object.entries(p.ramps).map(([k,v])=>[k,[...v]])):undefined,sheet:p.sheet?structuredClone(p.sheet):undefined,frames:p.frames.map(f=>({...f,indices:f.indices.slice(),cels:f.cels?.map(c=>c.slice()),pose:f.pose?structuredClone(f.pose):undefined}))};}
+export function cloneDocument(p){return {...p,style:p.style?{...p.style}:undefined,layers:p.layers?.map(l=>({...l})),settings:p.settings?{...p.settings}:undefined,sequences:p.sequences?.map(s=>({...s})),ramps:p.ramps?Object.fromEntries(Object.entries(p.ramps).map(([k,v])=>[k,[...v]])):undefined,sheet:p.sheet?structuredClone(p.sheet):undefined,frames:p.frames.map(f=>({...f,indices:f.indices.slice(),cels:f.cels?.map(c=>c.slice()),support:f.support?[...f.support]:undefined,pose:f.pose?structuredClone(f.pose):undefined}))};}
 export function editable(p,layer){if(!p.layers[layer])throw Error('Selecione uma camada.');if(p.layers[layer].locked)throw Error('Desbloqueie a camada para editar.');if(p.layers[layer].visible===false)throw Error('Mostre a camada para editar.');}
 export function layerPixels(p,frame,layer){return p.frames[frame].cels[layer];}
 export function addLayer(p,after=p.layers.length-1,name='Nova camada'){

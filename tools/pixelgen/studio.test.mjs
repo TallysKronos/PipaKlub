@@ -78,7 +78,8 @@ test('agent CLI: structured drawing, ramps, PNG/GIF round trip and delivery chec
  const g=gifFrames(p,[0,1],{zoom:2}),gif=encodeGIF(g.frames,g.width,g.height,g.palette);assert.equal(gif.toString('ascii',0,6),'GIF89a');assert.equal(gif.at(-1),0x3b);
  assert.match(asciiFrame(p,0),/pele:1/);
  const r=check(p);assert.equal(r.pass,true,JSON.stringify(r.errors));const empty=validateProject(serialize(p));empty.frames[1].cels.forEach(c=>c.fill(0));assert.equal(check(empty).pass,false);
- const file=new URL('./.cli-test.pixelgen.json',import.meta.url).pathname;try{await run(['new',file,'--size','16x16']);await run(['ramp',file,'aco','#333333','#999999']);const loaded=JSON.parse(fs.readFileSync(file,'utf8'));assert.deepEqual(Object.keys(loaded.ramps),['aco']);}finally{fs.rmSync(file,{force:true});}
+ const {fileURLToPath}=await import('node:url');
+ const file=fileURLToPath(new URL('./.cli-test.pixelgen.json',import.meta.url));try{await run(['new',file,'--size','16x16']);await run(['ramp',file,'aco','#333333','#999999']);const loaded=JSON.parse(fs.readFileSync(file,'utf8'));assert.deepEqual(Object.keys(loaded.ramps),['aco']);}finally{fs.rmSync(file,{force:true});}
 });
 test('rig: pose survives save, recipes build cycles with planted feet, sheet gates proportions',async()=>{
  const {apply}=await import('./draw.mjs');const {rigReport,recipe,measure,validateSheet}=await import('./rig.mjs');const {check}=await import('./cli.mjs');

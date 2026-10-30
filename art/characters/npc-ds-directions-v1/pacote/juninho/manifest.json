@@ -1,0 +1,126 @@
+{
+  "id": "juninho",
+  "name": "Juninho",
+  "source": "../../fontes/juninho.png",
+  "identityReference": "assets/characters/morro-rivals/juninho-v1.png",
+  "cell": [
+    64,
+    96
+  ],
+  "pivot": [
+    32,
+    94
+  ],
+  "directions": [
+    "S",
+    "SO",
+    "O",
+    "NO",
+    "N",
+    "NE",
+    "E",
+    "SE"
+  ],
+  "sourceOrder": [
+    0,
+    1,
+    6,
+    3,
+    4,
+    5,
+    2,
+    7
+  ],
+  "sharedScale": 0.16738197424892703,
+  "sourceBounds": [
+    [
+      156,
+      37,
+      336,
+      503
+    ],
+    [
+      112,
+      42,
+      304,
+      504
+    ],
+    [
+      80,
+      24,
+      275,
+      474
+    ],
+    [
+      73,
+      43,
+      263,
+      504
+    ],
+    [
+      158,
+      19,
+      326,
+      471
+    ],
+    [
+      111,
+      19,
+      302,
+      472
+    ],
+    [
+      68,
+      42,
+      270,
+      504
+    ],
+    [
+      56,
+      22,
+      254,
+      476
+    ]
+  ],
+  "colors": 31,
+  "cleanup": [
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 236
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 229
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 206
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 235
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 225
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 230
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 200
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 235
+    }
+  ],
+  "animation": "static directional bases; no walk cycle",
+  "status": "integrated locally; independent art review 8/10; awaiting user visual approval in game",
+  "nativeRoundtripExact": true,
+  "integratedInGame": true,
+  "reviewScore": 8,
+  "runtimePath": "godot/assets/npc-ds/juninho.png"
+}

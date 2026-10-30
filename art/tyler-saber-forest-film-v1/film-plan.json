@@ -1,0 +1,209 @@
+{
+  "duration": 80,
+  "fps": 24,
+  "generation_dimensions": [
+    864,
+    480
+  ],
+  "delivery_dimensions": [
+    1280,
+    720
+  ],
+  "generation": "local H3 ref2va installed, no API nodes",
+  "shots": [
+    {
+      "id": "01-entrada",
+      "title": "Entrando na floresta",
+      "start": 0,
+      "end": 8,
+      "seconds": 8,
+      "subtitles": [],
+      "video_prompt": "Original Soulmonsters hand-drawn 2D manga anime. Delicate fine gray ink, expressive oval eyes, simple nose and chin, slim youthful proportions, clean flat local colors, restrained cel shadows. No 3D, pixel art, poster painting, thick cartoon outlines, collage, titles, subtitles or logos. Maintain the identities, relative sizes and costume construction of the references. Motion must be actual character animation with changing joint poses and environmental movement, not a still-image zoom or slideshow. No spontaneous duplication or transformation. Tyler is the slim boy with black swept spiky hair, only three white outer side tufts (never an entirely white fringe), reddish eyes, ivory short-sleeved hooded jacket and burgundy lining/tails, black V-neck shirt/cropped trousers, fingerless gloves, small gold wheel pendant, burgundy sneakers. Saber is ONE white/pink living paper-kite feline: two attached upper saber fangs, four dark paws, red eyes, small gold collar bell, bamboo burgundy/ivory diamond sail on shoulders with a sakura emblem, one connected pink petal-ribbon tail. Her kite, tail, fangs and limbs stay attached. <Picture 1> is the START KEYFRAME and scene layout, not a sheet. <Picture 2> and <Picture 3> are character IDENTITY references only; never show sheets, text or white reference backgrounds in the film. Wide low three-quarter tracking shot, full-body Tyler and Saber on the ochre trail. Seconds0-3 their feet take real alternating steps toward screen right; camera tracks alongside, forest layers show mild parallax. Seconds3-6 Saber lifts her nose toward a passing blue butterfly, her paper sail and petal tail flutter; Tyler glances at her and smiles subtly. Seconds6-8 they continue deeper toward the pale sunlit clearing, foreground leaves pass gently at the edge. Preserve the start keyframe's composition and daylight. Audio soft forest birds, rustling foliage, two sets of distinct footsteps, tiny bell. No speech or music.",
+      "keyframe": "keyframes/01-entrada.png",
+      "workflow": "workflows/01-entrada-h3-local.json",
+      "status": "prepared"
+    },
+    {
+      "id": "02-chamado",
+      "title": "Um pedido ao longe",
+      "start": 8,
+      "end": 16,
+      "seconds": 8,
+      "subtitles": [
+        {
+          "start": 10,
+          "end": 14,
+          "speaker": "???",
+          "text": "Socorro! Tem alguém aí?"
+        }
+      ],
+      "video_prompt": "Original Soulmonsters hand-drawn 2D manga anime. Delicate fine gray ink, expressive oval eyes, simple nose and chin, slim youthful proportions, clean flat local colors, restrained cel shadows. No 3D, pixel art, poster painting, thick cartoon outlines, collage, titles, subtitles or logos. Maintain the identities, relative sizes and costume construction of the references. Motion must be actual character animation with changing joint poses and environmental movement, not a still-image zoom or slideshow. No spontaneous duplication or transformation. Tyler is the slim boy with black swept spiky hair, only three white outer side tufts (never an entirely white fringe), reddish eyes, ivory short-sleeved hooded jacket and burgundy lining/tails, black V-neck shirt/cropped trousers, fingerless gloves, small gold wheel pendant, burgundy sneakers. Saber is ONE white/pink living paper-kite feline: two attached upper saber fangs, four dark paws, red eyes, small gold collar bell, bamboo burgundy/ivory diamond sail on shoulders with a sakura emblem, one connected pink petal-ribbon tail. Her kite, tail, fangs and limbs stay attached. <Picture 1> is the START KEYFRAME and scene layout, not a sheet. <Picture 2> and <Picture 3> are character IDENTITY references only; never show sheets, text or white reference backgrounds in the film. Medium two-shot, same trail and daylight. Seconds0-2 Tyler and Saber walk into view left to right. At2s a distant young girl cries in Brazilian Portuguese, \"Socorro! Tem alguém aí?\" Tyler stops, turns his head toward screen right; Saber's ears prick and her stance becomes alert. Seconds4-8 Tyler gestures toward the sound and they move cautiously toward the clearing. One slow camera push, clear acting, no scene morph. Audio the distant girl line, leaves and small bell, no music.",
+      "keyframe": "keyframes/02-chamado.png",
+      "workflow": "workflows/02-chamado-h3-local.json",
+      "status": "prepared"
+    },
+    {
+      "id": "03-pedido",
+      "title": "Lia pede ajuda",
+      "start": 16,
+      "end": 24,
+      "seconds": 8,
+      "subtitles": [
+        {
+          "start": 17,
+          "end": 20,
+          "speaker": "Lia",
+          "text": "Por favor, me ajudem!"
+        },
+        {
+          "start": 20,
+          "end": 23.6,
+          "speaker": "Lia",
+          "text": "O Lacertubo não deixa ninguém passar pela ponte!"
+        }
+      ],
+      "video_prompt": "Original Soulmonsters hand-drawn 2D manga anime. Delicate fine gray ink, expressive oval eyes, simple nose and chin, slim youthful proportions, clean flat local colors, restrained cel shadows. No 3D, pixel art, poster painting, thick cartoon outlines, collage, titles, subtitles or logos. Maintain the identities, relative sizes and costume construction of the references. Motion must be actual character animation with changing joint poses and environmental movement, not a still-image zoom or slideshow. No spontaneous duplication or transformation. Tyler is the slim boy with black swept spiky hair, only three white outer side tufts (never an entirely white fringe), reddish eyes, ivory short-sleeved hooded jacket and burgundy lining/tails, black V-neck shirt/cropped trousers, fingerless gloves, small gold wheel pendant, burgundy sneakers. Saber is ONE white/pink living paper-kite feline: two attached upper saber fangs, four dark paws, red eyes, small gold collar bell, bamboo burgundy/ivory diamond sail on shoulders with a sakura emblem, one connected pink petal-ribbon tail. Her kite, tail, fangs and limbs stay attached. The girl Lia has warm brown skin, short dark curly bob, a single large yellow leaf-shaped hair clip, teal short poncho with cream collar, mustard shorts, brown ankle boots and a small coral crossbody satchel. She is a frightened young forest explorer, never a duplicate of Tyler. <Picture 1> is the START KEYFRAME and scene layout, not a sheet. <Picture 2> and <Picture 3> are character IDENTITY references only; never show sheets, text or white reference backgrounds in the film. Medium shot of Lia stepping from the right-side ferns onto the trail, Tyler and Saber visible at left listening. Seconds0-2 she takes two hurried steps and catches her breath. Seconds2-6 she points off-screen right toward the stream bridge, speaking frightened but clearly in Brazilian Portuguese: \"Por favor, me ajudem! O Lacertubo não deixa ninguém passar pela ponte!\" Seconds6-8 Tyler listens, Saber shifts protectively between them and the unseen threat. No running in place or teleporting. Audio Lia's one continuous line, breath, forest ambience.",
+      "keyframe": "keyframes/03-pedido.png",
+      "workflow": "workflows/03-pedido-h3-local.json",
+      "status": "prepared"
+    },
+    {
+      "id": "04-promessa",
+      "title": "Tyler decide ajudar",
+      "start": 24,
+      "end": 32,
+      "seconds": 8,
+      "subtitles": [
+        {
+          "start": 25,
+          "end": 28.5,
+          "speaker": "Tyler",
+          "text": "Fique atrás de mim. Vamos abrir o caminho."
+        },
+        {
+          "start": 29.2,
+          "end": 30.8,
+          "speaker": "Tyler",
+          "text": "Pronta, Saber?"
+        }
+      ],
+      "video_prompt": "Original Soulmonsters hand-drawn 2D manga anime. Delicate fine gray ink, expressive oval eyes, simple nose and chin, slim youthful proportions, clean flat local colors, restrained cel shadows. No 3D, pixel art, poster painting, thick cartoon outlines, collage, titles, subtitles or logos. Maintain the identities, relative sizes and costume construction of the references. Motion must be actual character animation with changing joint poses and environmental movement, not a still-image zoom or slideshow. No spontaneous duplication or transformation. Tyler is the slim boy with black swept spiky hair, only three white outer side tufts (never an entirely white fringe), reddish eyes, ivory short-sleeved hooded jacket and burgundy lining/tails, black V-neck shirt/cropped trousers, fingerless gloves, small gold wheel pendant, burgundy sneakers. Saber is ONE white/pink living paper-kite feline: two attached upper saber fangs, four dark paws, red eyes, small gold collar bell, bamboo burgundy/ivory diamond sail on shoulders with a sakura emblem, one connected pink petal-ribbon tail. Her kite, tail, fangs and limbs stay attached. The girl Lia has warm brown skin, short dark curly bob, a single large yellow leaf-shaped hair clip, teal short poncho with cream collar, mustard shorts, brown ankle boots and a small coral crossbody satchel. She is a frightened young forest explorer, never a duplicate of Tyler. <Picture 1> is the START KEYFRAME and scene layout, not a sheet. <Picture 2> and <Picture 3> are character IDENTITY references only; never show sheets, text or white reference backgrounds in the film. Medium close three-quarter Tyler, Lia behind left, Saber close foreground right. Seconds0-3 Tyler calmly raises one gloved hand reassuringly toward Lia and says in Brazilian Portuguese, \"Fique atrás de mim. Vamos abrir o caminho.\" Seconds3-6 he lifts a compact wooden kite-line spool; a thin burgundy string runs visibly from his hand to Saber's bamboo bridle. He asks, \"Pronta, Saber?\" Saber lowers her shoulders, ears forward, gives a short determined feline chirp. Seconds6-8 Tyler turns to lead toward the bridge. Wind rustles jacket tails. No magic identity reveal, no lab imagery, no music.",
+      "keyframe": "keyframes/04-promessa.png",
+      "workflow": "workflows/04-promessa-h3-local.json",
+      "status": "prepared"
+    },
+    {
+      "id": "05-lacertubo",
+      "title": "O guardião da ponte",
+      "start": 32,
+      "end": 40,
+      "seconds": 8,
+      "subtitles": [
+        {
+          "start": 34.2,
+          "end": 36.3,
+          "speaker": "Tyler",
+          "text": "Então é você, Lacertubo..."
+        }
+      ],
+      "video_prompt": "Original Soulmonsters hand-drawn 2D manga anime. Delicate fine gray ink, expressive oval eyes, simple nose and chin, slim youthful proportions, clean flat local colors, restrained cel shadows. No 3D, pixel art, poster painting, thick cartoon outlines, collage, titles, subtitles or logos. Maintain the identities, relative sizes and costume construction of the references. Motion must be actual character animation with changing joint poses and environmental movement, not a still-image zoom or slideshow. No spontaneous duplication or transformation. Tyler is the slim boy with black swept spiky hair, only three white outer side tufts (never an entirely white fringe), reddish eyes, ivory short-sleeved hooded jacket and burgundy lining/tails, black V-neck shirt/cropped trousers, fingerless gloves, small gold wheel pendant, burgundy sneakers. Saber is ONE white/pink living paper-kite feline: two attached upper saber fangs, four dark paws, red eyes, small gold collar bell, bamboo burgundy/ivory diamond sail on shoulders with a sakura emblem, one connected pink petal-ribbon tail. Her kite, tail, fangs and limbs stay attached. The girl Lia has warm brown skin, short dark curly bob, a single large yellow leaf-shaped hair clip, teal short poncho with cream collar, mustard shorts, brown ankle boots and a small coral crossbody satchel. She is a frightened young forest explorer, never a duplicate of Tyler. Lacertubo is ONE large low quadrupedal folded-paper lizard: angular teal and golden-orange triangular panels, cream articulated joints, white claws, bamboo spars and orange knot joints, triangular dorsal sail/spines, segmented orange/teal pennant tail. No fire dragon, organic green dinosaur or metal robot. He is about twice Saber's body mass, with broad low stance, not gigantic. <Picture 1> is the START KEYFRAME and scene layout, not a sheet. <Picture 2> and <Picture 3> are character IDENTITY references only; never show sheets, text or white reference backgrounds in the film. Wide low battle establishing shot in the SAME forest clearing: short wooden footbridge over a shallow stream in background right, mossy boulder left, a leaning tree frames the rear. Saber and Tyler stay SCREEN LEFT, Lacertubo SCREEN RIGHT facing left. Lia stays safely behind Tyler at far left. Seconds0-3 Lacertubo steps from the bridge approach, bamboo/paper joints flex with his low heavy stride. Seconds3-5 he plants four clawed feet and lifts his triangular dorsal sail, gives a rough papery lizard growl. Tyler quietly says in Brazilian Portuguese, \"Então é você, Lacertubo...\" Seconds5-8 Saber braces facing right, burgundy string connects to Tyler. Maintain clear axis and distance, no immediate attack. Stream, rustling paper, growl, no music.",
+      "keyframe": "keyframes/05-lacertubo.png",
+      "workflow": "workflows/05-lacertubo-h3-local.json",
+      "status": "prepared"
+    },
+    {
+      "id": "06-esquiva",
+      "title": "Primeiro ataque",
+      "start": 40,
+      "end": 48,
+      "seconds": 8,
+      "subtitles": [
+        {
+          "start": 41,
+          "end": 43,
+          "speaker": "Tyler",
+          "text": "Saber, pela esquerda!"
+        }
+      ],
+      "video_prompt": "Original Soulmonsters hand-drawn 2D manga anime. Delicate fine gray ink, expressive oval eyes, simple nose and chin, slim youthful proportions, clean flat local colors, restrained cel shadows. No 3D, pixel art, poster painting, thick cartoon outlines, collage, titles, subtitles or logos. Maintain the identities, relative sizes and costume construction of the references. Motion must be actual character animation with changing joint poses and environmental movement, not a still-image zoom or slideshow. No spontaneous duplication or transformation. Tyler is the slim boy with black swept spiky hair, only three white outer side tufts (never an entirely white fringe), reddish eyes, ivory short-sleeved hooded jacket and burgundy lining/tails, black V-neck shirt/cropped trousers, fingerless gloves, small gold wheel pendant, burgundy sneakers. Saber is ONE white/pink living paper-kite feline: two attached upper saber fangs, four dark paws, red eyes, small gold collar bell, bamboo burgundy/ivory diamond sail on shoulders with a sakura emblem, one connected pink petal-ribbon tail. Her kite, tail, fangs and limbs stay attached. The girl Lia has warm brown skin, short dark curly bob, a single large yellow leaf-shaped hair clip, teal short poncho with cream collar, mustard shorts, brown ankle boots and a small coral crossbody satchel. She is a frightened young forest explorer, never a duplicate of Tyler. Lacertubo is ONE large low quadrupedal folded-paper lizard: angular teal and golden-orange triangular panels, cream articulated joints, white claws, bamboo spars and orange knot joints, triangular dorsal sail/spines, segmented orange/teal pennant tail. No fire dragon, organic green dinosaur or metal robot. He is about twice Saber's body mass, with broad low stance, not gigantic. <Picture 1> is the START KEYFRAME and scene layout, not a sheet. <Picture 2> and <Picture 3> are character IDENTITY references only; never show sheets, text or white reference backgrounds in the film. Dynamic medium-wide shot, SAME bridge clearing and screen axis. Seconds0-2 Lacertubo on RIGHT lowers his head and charges LEFT with real four-legged steps, kicking ochre dust. Tyler at far LEFT shouts in Brazilian Portuguese, \"Saber, pela esquerda!\" Seconds2-5 Saber springs SIDEWAYS toward foreground, paws fold and extend in a readable evasive arc; Lacertubo rushes past her previous position and brakes on claws. Seconds5-8 Saber lands firmly on four dark paws at LEFT foreground, petals trail behind then settle, Lacertubo turns on RIGHT. Thin line stays attached with plausible slack, no line through neck. No injury, no blood. Paw impacts, paper rush and sliding gravel; no music.",
+      "keyframe": "keyframes/06-esquiva.png",
+      "workflow": "workflows/06-esquiva-h3-local.json",
+      "status": "prepared"
+    },
+    {
+      "id": "07-contra-ataque",
+      "title": "Uma abertura",
+      "start": 48,
+      "end": 56,
+      "seconds": 8,
+      "subtitles": [
+        {
+          "start": 50.3,
+          "end": 52.1,
+          "speaker": "Tyler",
+          "text": "Agora! Corta o vento!"
+        }
+      ],
+      "video_prompt": "Original Soulmonsters hand-drawn 2D manga anime. Delicate fine gray ink, expressive oval eyes, simple nose and chin, slim youthful proportions, clean flat local colors, restrained cel shadows. No 3D, pixel art, poster painting, thick cartoon outlines, collage, titles, subtitles or logos. Maintain the identities, relative sizes and costume construction of the references. Motion must be actual character animation with changing joint poses and environmental movement, not a still-image zoom or slideshow. No spontaneous duplication or transformation. Tyler is the slim boy with black swept spiky hair, only three white outer side tufts (never an entirely white fringe), reddish eyes, ivory short-sleeved hooded jacket and burgundy lining/tails, black V-neck shirt/cropped trousers, fingerless gloves, small gold wheel pendant, burgundy sneakers. Saber is ONE white/pink living paper-kite feline: two attached upper saber fangs, four dark paws, red eyes, small gold collar bell, bamboo burgundy/ivory diamond sail on shoulders with a sakura emblem, one connected pink petal-ribbon tail. Her kite, tail, fangs and limbs stay attached. The girl Lia has warm brown skin, short dark curly bob, a single large yellow leaf-shaped hair clip, teal short poncho with cream collar, mustard shorts, brown ankle boots and a small coral crossbody satchel. She is a frightened young forest explorer, never a duplicate of Tyler. Lacertubo is ONE large low quadrupedal folded-paper lizard: angular teal and golden-orange triangular panels, cream articulated joints, white claws, bamboo spars and orange knot joints, triangular dorsal sail/spines, segmented orange/teal pennant tail. No fire dragon, organic green dinosaur or metal robot. He is about twice Saber's body mass, with broad low stance, not gigantic. <Picture 1> is the START KEYFRAME and scene layout, not a sheet. <Picture 2> and <Picture 3> are character IDENTITY references only; never show sheets, text or white reference backgrounds in the film. Low lateral anime action shot, same clearing, Saber LEFT, Lacertubo RIGHT. Seconds0-2 Saber crouches and compresses hind legs, Tyler firmly controls the line from left background. Seconds2-5 Saber leaps forward RIGHT, her attached shoulder kite tilts, pink petal ribbon draws a short sweeping arc. Tyler shouts in Brazilian Portuguese, \"Agora! Corta o vento!\" Saber's forepaw and a controlled pink wind crescent strike Lacertubo's side with a brief white cel impact burst. Seconds5-8 Lacertubo staggers one pace but recovers, his dorsal sail flares, Saber lands at center-left ready again. Do not defeat him yet. No character morph or fusion, no glowing fur transformation. Papery impact, gust, claws scrape, no music.",
+      "keyframe": "keyframes/07-contra-ataque.png",
+      "workflow": "workflows/07-contra-ataque-h3-local.json",
+      "status": "prepared"
+    },
+    {
+      "id": "08-assinatura",
+      "title": "Laço de confiança",
+      "start": 56,
+      "end": 64,
+      "seconds": 8,
+      "subtitles": [
+        {
+          "start": 57,
+          "end": 59.3,
+          "speaker": "Tyler",
+          "text": "Juntos, Saber. Laço de Cerejeira!"
+        }
+      ],
+      "video_prompt": "Original Soulmonsters hand-drawn 2D manga anime. Delicate fine gray ink, expressive oval eyes, simple nose and chin, slim youthful proportions, clean flat local colors, restrained cel shadows. No 3D, pixel art, poster painting, thick cartoon outlines, collage, titles, subtitles or logos. Maintain the identities, relative sizes and costume construction of the references. Motion must be actual character animation with changing joint poses and environmental movement, not a still-image zoom or slideshow. No spontaneous duplication or transformation. Tyler is the slim boy with black swept spiky hair, only three white outer side tufts (never an entirely white fringe), reddish eyes, ivory short-sleeved hooded jacket and burgundy lining/tails, black V-neck shirt/cropped trousers, fingerless gloves, small gold wheel pendant, burgundy sneakers. Saber is ONE white/pink living paper-kite feline: two attached upper saber fangs, four dark paws, red eyes, small gold collar bell, bamboo burgundy/ivory diamond sail on shoulders with a sakura emblem, one connected pink petal-ribbon tail. Her kite, tail, fangs and limbs stay attached. Lacertubo is ONE large low quadrupedal folded-paper lizard: angular teal and golden-orange triangular panels, cream articulated joints, white claws, bamboo spars and orange knot joints, triangular dorsal sail/spines, segmented orange/teal pennant tail. No fire dragon, organic green dinosaur or metal robot. He is about twice Saber's body mass, with broad low stance, not gigantic. <Picture 1> is the START KEYFRAME and scene layout, not a sheet. <Picture 2> and <Picture 3> are character IDENTITY references only; never show sheets, text or white reference backgrounds in the film. Tense medium-close preparation shot, Tyler at LEFT and Saber near RIGHT foreground with Lacertubo blurred far right background, same sunny clearing. Seconds0-2 Tyler plants his feet, grips the wooden spool and draws the burgundy line taut with one deliberate arm motion, close acting on his determined eyes. Seconds2-5 he says in Brazilian Portuguese, \"Juntos, Saber. Laço de Cerejeira!\" A restrained pink light travels along the VISIBLE ATTACHED LINE to the bamboo shoulder kite. Seconds5-8 Saber crouches low, four paws steady, pink petals circle her attached kite, two saber fangs catch a clean highlight. Anticipation and gathering force, no strike yet. Paper twang, rising breeze, gentle bell, no music. CRITICAL COMPOSITION LOCK: This is a TWO-CHARACTER CLOSE SHOT of Tyler and Saber only. Lia stays entirely OFFSCREEN behind the camera for all eight seconds. NO GIRL VISIBLE, NO OTHER HUMAN, no person entering from any edge. Do not create a child in the background. Only distant Lacertubo may remain a small blurred shape at far right. Keep the start keyframe camera crop and cast count exactly. ",
+      "keyframe": "keyframes/08-assinatura.png",
+      "workflow": "workflows/08-assinatura-h3-local.json",
+      "status": "prepared"
+    },
+    {
+      "id": "09-vitoria",
+      "title": "Golpe decisivo",
+      "start": 64,
+      "end": 72,
+      "seconds": 8,
+      "subtitles": [],
+      "video_prompt": "Original Soulmonsters hand-drawn 2D manga anime. Delicate fine gray ink, expressive oval eyes, simple nose and chin, slim youthful proportions, clean flat local colors, restrained cel shadows. No 3D, pixel art, poster painting, thick cartoon outlines, collage, titles, subtitles or logos. Maintain the identities, relative sizes and costume construction of the references. Motion must be actual character animation with changing joint poses and environmental movement, not a still-image zoom or slideshow. No spontaneous duplication or transformation. Tyler is the slim boy with black swept spiky hair, only three white outer side tufts (never an entirely white fringe), reddish eyes, ivory short-sleeved hooded jacket and burgundy lining/tails, black V-neck shirt/cropped trousers, fingerless gloves, small gold wheel pendant, burgundy sneakers. Saber is ONE white/pink living paper-kite feline: two attached upper saber fangs, four dark paws, red eyes, small gold collar bell, bamboo burgundy/ivory diamond sail on shoulders with a sakura emblem, one connected pink petal-ribbon tail. Her kite, tail, fangs and limbs stay attached. The girl Lia has warm brown skin, short dark curly bob, a single large yellow leaf-shaped hair clip, teal short poncho with cream collar, mustard shorts, brown ankle boots and a small coral crossbody satchel. She is a frightened young forest explorer, never a duplicate of Tyler. Lacertubo is ONE large low quadrupedal folded-paper lizard: angular teal and golden-orange triangular panels, cream articulated joints, white claws, bamboo spars and orange knot joints, triangular dorsal sail/spines, segmented orange/teal pennant tail. No fire dragon, organic green dinosaur or metal robot. He is about twice Saber's body mass, with broad low stance, not gigantic. <Picture 1> is the START KEYFRAME and scene layout, not a sheet. <Picture 2> and <Picture 3> are character IDENTITY references only; never show sheets, text or white reference backgrounds in the film. Climactic wide anime battle action with readable silhouettes: Saber LEFT facing RIGHT, Lacertubo RIGHT facing LEFT, Tyler far LEFT maintains kite line, Lia safely behind him, SAME bridge stream and leaning tree. Seconds0-2 Saber launches in a low powerful four-legged leap toward RIGHT, attached sail catches pink wind. Seconds2-4 two clean pink petal crescents arc forward from her saber fangs and shoulder kite and HIT Lacertubo's triangular side panels, one sharp white cel-animation impact frame and dust, NOT a full-screen dissolve. Seconds4-6 Lacertubo is pushed BACK onto the dirt before the bridge, slips, folds his legs and falls onto his side, clearly defeated but alive, no blood or dismemberment. Seconds6-8 Saber lands upright on four paws center-left, pink petals settle while Lacertubo remains motionless except breathing at far right. The wooden bridge stays intact and path is now clear. Audible rush, decisive paper-crack impact, small ground thump then quiet stream. No speech, no music, no reset.",
+      "keyframe": "keyframes/09-vitoria.png",
+      "workflow": "workflows/09-vitoria-h3-local.json",
+      "status": "prepared"
+    },
+    {
+      "id": "10-despedida",
+      "title": "Caminho livre",
+      "start": 72,
+      "end": 80,
+      "seconds": 8,
+      "subtitles": [
+        {
+          "start": 72.8,
+          "end": 75.4,
+          "speaker": "Lia",
+          "text": "Obrigada! Vocês conseguiram!"
+        },
+        {
+          "start": 76,
+          "end": 78.3,
+          "speaker": "Tyler",
+          "text": "Vamos, Saber. Nossa jornada continua."
+        }
+      ],
+      "video_prompt": "Original Soulmonsters hand-drawn 2D manga anime. Delicate fine gray ink, expressive oval eyes, simple nose and chin, slim youthful proportions, clean flat local colors, restrained cel shadows. No 3D, pixel art, poster painting, thick cartoon outlines, collage, titles, subtitles or logos. Maintain the identities, relative sizes and costume construction of the references. Motion must be actual character animation with changing joint poses and environmental movement, not a still-image zoom or slideshow. No spontaneous duplication or transformation. Tyler is the slim boy with black swept spiky hair, only three white outer side tufts (never an entirely white fringe), reddish eyes, ivory short-sleeved hooded jacket and burgundy lining/tails, black V-neck shirt/cropped trousers, fingerless gloves, small gold wheel pendant, burgundy sneakers. Saber is ONE white/pink living paper-kite feline: two attached upper saber fangs, four dark paws, red eyes, small gold collar bell, bamboo burgundy/ivory diamond sail on shoulders with a sakura emblem, one connected pink petal-ribbon tail. Her kite, tail, fangs and limbs stay attached. The girl Lia has warm brown skin, short dark curly bob, a single large yellow leaf-shaped hair clip, teal short poncho with cream collar, mustard shorts, brown ankle boots and a small coral crossbody satchel. She is a frightened young forest explorer, never a duplicate of Tyler. Lacertubo is ONE large low quadrupedal folded-paper lizard: angular teal and golden-orange triangular panels, cream articulated joints, white claws, bamboo spars and orange knot joints, triangular dorsal sail/spines, segmented orange/teal pennant tail. No fire dragon, organic green dinosaur or metal robot. He is about twice Saber's body mass, with broad low stance, not gigantic. <Picture 1> is the START KEYFRAME and scene layout, not a sheet. <Picture 2> and <Picture 3> are character IDENTITY references only; never show sheets, text or white reference backgrounds in the film. Peaceful wide ending in SAME sunny forest bridge clearing after victory. Lacertubo rests defeated but breathing harmlessly at far right edge, no new attack. Lia at left turns toward Tyler and Saber, relief replacing fear, says in Brazilian Portuguese, \"Obrigada! Vocês conseguiram!\" Tyler kneels just enough to gently stroke Saber's head near her ears with one hand; Saber closes eyes contentedly, bell sways, fangs remain attached. Tyler stands and says, \"Vamos, Saber. Nossa jornada continua.\" During final3 seconds Lia leads onto the intact wooden bridge; Tyler and Saber follow toward warm sunlit path beyond, camera eases back, a few pink petals drift across foreground. Conclude on the trio moving into the forest, no cliffhanger, no black fade inside generated clip. Soft footsteps on wood, stream, birds and a tiny bell, no music.",
+      "keyframe": "keyframes/10-despedida.png",
+      "workflow": "workflows/10-despedida-h3-local.json",
+      "status": "prepared"
+    }
+  ]
+}

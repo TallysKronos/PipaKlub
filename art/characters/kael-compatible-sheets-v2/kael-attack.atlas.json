@@ -1,0 +1,848 @@
+{
+  "meta": {
+    "app": "Pixelgen",
+    "version": 2,
+    "image": "kael-attack.png",
+    "size": {
+      "w": 384,
+      "h": 512
+    },
+    "scale": 1
+  },
+  "palette": [
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      17,
+      26,
+      46,
+      255
+    ],
+    [
+      23,
+      35,
+      63,
+      255
+    ],
+    [
+      40,
+      63,
+      113,
+      255
+    ],
+    [
+      69,
+      95,
+      152,
+      255
+    ],
+    [
+      186,
+      121,
+      94,
+      255
+    ],
+    [
+      242,
+      188,
+      142,
+      255
+    ],
+    [
+      255,
+      225,
+      179,
+      255
+    ],
+    [
+      24,
+      55,
+      85,
+      255
+    ],
+    [
+      44,
+      84,
+      139,
+      255
+    ],
+    [
+      71,
+      118,
+      178,
+      255
+    ],
+    [
+      32,
+      41,
+      54,
+      255
+    ],
+    [
+      75,
+      86,
+      108,
+      255
+    ],
+    [
+      238,
+      233,
+      214,
+      255
+    ],
+    [
+      64,
+      183,
+      199,
+      255
+    ],
+    [
+      155,
+      225,
+      219,
+      255
+    ],
+    [
+      48,
+      60,
+      81,
+      255
+    ]
+  ],
+  "sequences": [
+    {
+      "name": "attack-S",
+      "start": 0,
+      "end": 5,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "attack-SO",
+      "start": 6,
+      "end": 11,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "attack-O",
+      "start": 12,
+      "end": 17,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "attack-NO",
+      "start": 18,
+      "end": 23,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "attack-N",
+      "start": 24,
+      "end": 29,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "attack-NE",
+      "start": 30,
+      "end": 35,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "attack-E",
+      "start": 36,
+      "end": 41,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "attack-SE",
+      "start": 42,
+      "end": 47,
+      "loop": false,
+      "direction": "forward"
+    }
+  ],
+  "frames": [
+    {
+      "name": "attack-S-1",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 160
+    },
+    {
+      "name": "attack-S-2",
+      "frame": {
+        "x": 48,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "attack-S-3",
+      "frame": {
+        "x": 96,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 65
+    },
+    {
+      "name": "attack-S-4",
+      "frame": {
+        "x": 144,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 130
+    },
+    {
+      "name": "attack-S-5",
+      "frame": {
+        "x": 192,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "attack-S-6",
+      "frame": {
+        "x": 240,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 230
+    },
+    {
+      "name": "attack-SO-1",
+      "frame": {
+        "x": 0,
+        "y": 64,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 160
+    },
+    {
+      "name": "attack-SO-2",
+      "frame": {
+        "x": 48,
+        "y": 64,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "attack-SO-3",
+      "frame": {
+        "x": 96,
+        "y": 64,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 65
+    },
+    {
+      "name": "attack-SO-4",
+      "frame": {
+        "x": 144,
+        "y": 64,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 130
+    },
+    {
+      "name": "attack-SO-5",
+      "frame": {
+        "x": 192,
+        "y": 64,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "attack-SO-6",
+      "frame": {
+        "x": 240,
+        "y": 64,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 230
+    },
+    {
+      "name": "attack-O-1",
+      "frame": {
+        "x": 0,
+        "y": 128,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 160
+    },
+    {
+      "name": "attack-O-2",
+      "frame": {
+        "x": 48,
+        "y": 128,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "attack-O-3",
+      "frame": {
+        "x": 96,
+        "y": 128,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 65
+    },
+    {
+      "name": "attack-O-4",
+      "frame": {
+        "x": 144,
+        "y": 128,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 130
+    },
+    {
+      "name": "attack-O-5",
+      "frame": {
+        "x": 192,
+        "y": 128,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "attack-O-6",
+      "frame": {
+        "x": 240,
+        "y": 128,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 230
+    },
+    {
+      "name": "attack-NO-1",
+      "frame": {
+        "x": 0,
+        "y": 192,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 160
+    },
+    {
+      "name": "attack-NO-2",
+      "frame": {
+        "x": 48,
+        "y": 192,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "attack-NO-3",
+      "frame": {
+        "x": 96,
+        "y": 192,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 65
+    },
+    {
+      "name": "attack-NO-4",
+      "frame": {
+        "x": 144,
+        "y": 192,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 130
+    },
+    {
+      "name": "attack-NO-5",
+      "frame": {
+        "x": 192,
+        "y": 192,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "attack-NO-6",
+      "frame": {
+        "x": 240,
+        "y": 192,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 230
+    },
+    {
+      "name": "attack-N-1",
+      "frame": {
+        "x": 0,
+        "y": 256,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 160
+    },
+    {
+      "name": "attack-N-2",
+      "frame": {
+        "x": 48,
+        "y": 256,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "attack-N-3",
+      "frame": {
+        "x": 96,
+        "y": 256,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 65
+    },
+    {
+      "name": "attack-N-4",
+      "frame": {
+        "x": 144,
+        "y": 256,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 130
+    },
+    {
+      "name": "attack-N-5",
+      "frame": {
+        "x": 192,
+        "y": 256,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "attack-N-6",
+      "frame": {
+        "x": 240,
+        "y": 256,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 230
+    },
+    {
+      "name": "attack-NE-1",
+      "frame": {
+        "x": 0,
+        "y": 320,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 160
+    },
+    {
+      "name": "attack-NE-2",
+      "frame": {
+        "x": 48,
+        "y": 320,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "attack-NE-3",
+      "frame": {
+        "x": 96,
+        "y": 320,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 65
+    },
+    {
+      "name": "attack-NE-4",
+      "frame": {
+        "x": 144,
+        "y": 320,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 130
+    },
+    {
+      "name": "attack-NE-5",
+      "frame": {
+        "x": 192,
+        "y": 320,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "attack-NE-6",
+      "frame": {
+        "x": 240,
+        "y": 320,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 230
+    },
+    {
+      "name": "attack-E-1",
+      "frame": {
+        "x": 0,
+        "y": 384,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 160
+    },
+    {
+      "name": "attack-E-2",
+      "frame": {
+        "x": 48,
+        "y": 384,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "attack-E-3",
+      "frame": {
+        "x": 96,
+        "y": 384,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 65
+    },
+    {
+      "name": "attack-E-4",
+      "frame": {
+        "x": 144,
+        "y": 384,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 130
+    },
+    {
+      "name": "attack-E-5",
+      "frame": {
+        "x": 192,
+        "y": 384,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "attack-E-6",
+      "frame": {
+        "x": 240,
+        "y": 384,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 230
+    },
+    {
+      "name": "attack-SE-1",
+      "frame": {
+        "x": 0,
+        "y": 448,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 160
+    },
+    {
+      "name": "attack-SE-2",
+      "frame": {
+        "x": 48,
+        "y": 448,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "attack-SE-3",
+      "frame": {
+        "x": 96,
+        "y": 448,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 65
+    },
+    {
+      "name": "attack-SE-4",
+      "frame": {
+        "x": 144,
+        "y": 448,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 130
+    },
+    {
+      "name": "attack-SE-5",
+      "frame": {
+        "x": 192,
+        "y": 448,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "attack-SE-6",
+      "frame": {
+        "x": 240,
+        "y": 448,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 230
+    }
+  ]
+}

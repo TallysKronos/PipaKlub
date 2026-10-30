@@ -3,14 +3,19 @@ import {aseprite} from './aseprite.mjs';
 import {duration,sequencesFor,duplicateFrame,deleteFrame,playbackOrder,atlas as animationAtlas} from './animation.mjs';
 import {upgrade,cloneDocument,compositeFrame,compositeAll,editable,layerPixels,addLayer,removeLayer,moveLayer,extract,transform} from './document.mjs';
 import {createStorage} from './storage.mjs';
+import {initAlbum} from './album.mjs';
 import {qualityReport} from './quality.mjs';
 import {godotResource} from './godot.mjs';
 import {GROUNDS,GROUND_LABELS,addOutline,selectiveOutline,silhouetteRGBA,legibilityReport} from './legibility.mjs';
+import {createCharacterBase,characterGuide,styleReport,paintCharacterGuides,BODY_TYPES} from './character-style.mjs';
+import {completeSkeleton,moveSkeletonJoint,paintSkeleton,skeletonReport,skeletonTemplate,applySkeletonTemplate} from './skeleton.mjs';
 const $=id=>document.getElementById(id),editor=$('editor'),ctx=editor.getContext('2d');
 const fields=['cols','rows','width','height','colors','margin','alpha','tolerance','specks','background','sample','align','x','y','cropWidth','cropHeight'];
 let project=null,source=null,sourceCanvas=null,sourceUrl=null,selected=0,colorIndex=1,tool='brush',view='pixel',worker=null;
 let undo=[],redo=[],drawing=false,lastPoint=null,playTimer=null,saveTimer=null,saveWarning=false,sequenceIndex=0,playing=false;
+let rigDrag=null,rigClipboard=null;
 let activeLayer=0,selection=null,selectionStart=null,libraryItems=[],saveRevision=0;
+let albumSession=null;
 const storage=createStorage();
 const status=text=>{$('status').textContent=text;};
 const hex=c=>'#'+c.slice(0,3).map(v=>v.toString(16).padStart(2,'0')).join('');
@@ -21,7 +26,8 @@ function snapshot(){return project?{document:copy(project),source,sourceCanvas,s
 function pushUndo(value){if(!value)return;undo.push(value);const sources=()=>[...new Set(undo.map(s=>s.source).filter(Boolean))].reduce((n,s)=>n+s.data.byteLength,0);while(undo.length>1&&(undo.length>20||undo.reduce((n,s)=>n+s.document.width*s.document.height*s.document.frames.length*(s.document.layers.length+1),0)>16777216||sources()>67108864))undo.shift();redo=[];}
 function checkpoint(){pushUndo(snapshot());}
 function persist(){
- const revision=++saveRevision;clearTimeout(saveTimer);$('saveState').textContent='Gravando…';saveTimer=setTimeout(async()=>{if(!project)return;try{await storage.automatic({...serialize({...project,name:$('projectName').value}),source:sourceUrl});if(revision===saveRevision)$('saveState').textContent='Salvo neste navegador';saveWarning=false;}
+ const value={...serialize({...project,name:$('projectName').value}),source:sourceUrl};albumSession?.change(value);
+ const revision=++saveRevision;clearTimeout(saveTimer);$('saveState').textContent='Gravando…';saveTimer=setTimeout(async()=>{try{await storage.automatic(value);if(revision===saveRevision)$('saveState').textContent=albumSession?.active?'Cópia de recuperação no navegador':'Salvo neste navegador';saveWarning=false;}
  catch{if(revision!==saveRevision)return;$('saveState').textContent='Exporte uma cópia';if(!saveWarning){status('Não foi possível gravar no navegador. Use Salvar projeto para guardar uma cópia.');saveWarning=true;}}},500);
 }
 function changed(all=false,save=true){if(!project)return;if(all)compositeAll(project);else compositeFrame(project,project.frames[selected]);project.name=$('projectName').value;renderEditor();if(all)renderFrames();else renderThumb(selected);renderAudit();renderLayers();if(save)persist();}
@@ -49,13 +55,13 @@ function chooseDirectionMotion(){
 }
 $('facingChoice').onchange=$('motionChoice').onchange=chooseDirectionMotion;$('onlySequence').onchange=()=>project&&renderDirectionBrowser();
 function play(){
- if(drawing)endDraw();
+ if(drawing||rigDrag)endDraw();
  if(playing){stop();renderEditor();return;}if(!project)return;
  const order=playbackOrder(sequence());let position=0;playing=true;$('play').textContent='Ⅱ Parar';chooseFrame(order[0]);
  const next=()=>{if(!playing)return;position++;if(position>=order.length){if(sequence().loop===false){stop();renderEditor();return;}position=0;}chooseFrame(order[position]);schedule();};
  const schedule=()=>{playTimer=setTimeout(next,duration(project.frames[selected])/Number($('playSpeed').value));};schedule();
 }
-function setTool(next){tool=next;document.querySelectorAll('[data-tool]').forEach(b=>b.classList.toggle('selected',b.dataset.tool===next));}
+function setTool(next){$('skeletonEdit').checked=false;tool=next;document.querySelectorAll('[data-tool]').forEach(b=>b.classList.toggle('selected',b.dataset.tool===next));}
 function chooseFrame(index){if(!project)return;selected=Math.max(0,Math.min(index,project.frames.length-1));$('frameName').value=project.frames[selected].name;
  $('frameDuration').value=duration(project.frames[selected]);
  document.querySelectorAll('.frame').forEach((b,i)=>b.classList.toggle('selected',i===selected));renderEditor();drawSource();}
@@ -98,7 +104,9 @@ function renderEditor(){
   for(let x=0;x<=project.width;x++){ctx.moveTo(start+x*z+.5,0);ctx.lineTo(start+x*z+.5,h);}
   for(let y=0;y<=project.height;y++){ctx.moveTo(start,y*z+.5);ctx.lineTo(start+w,y*z+.5);}ctx.stroke();
  }
- renderPreview(frame);const native=$('native');
+ if($('characterGuides').checked&&view!=='source')paintCharacterGuides(ctx,project,z,view==='compare'?w+gap:0);
+ if($('skeletonVisible').checked&&view!=='source')paintSkeleton(ctx,project.frames[selected].pose,z,view==='compare'?w+gap:0,project.frames[selected].support||[]);
+ renderSkeletonPanel();renderCharacterStyle();renderPreview(frame);const native=$('native');
  if(view==='pixel'&&selection){ctx.strokeStyle='#71cdbd';ctx.lineWidth=1;ctx.strokeRect(selection.x*z+.5,selection.y*z+.5,selection.w*z,selection.h*z);}
  native.parentElement.hidden=project.width>80||project.height>110;
  $('frameCaption').textContent=(view==='compare'?'Fonte → pixel · ':view==='source'?'Fonte reduzida · ':view==='silhouette'?'Silhueta · ':'')+project.frames[selected].name;
@@ -137,7 +145,13 @@ function renderLayers(){
  }$('layerName').value=project.layers[activeLayer].name;$('layerCount').textContent=project.layers.length+'/8';
 }
 function mutateLayer(job){if(!project||worker)return false;stop();try{const next=copy(project),result=job(next);checkpoint();project=next;if(Number.isInteger(result))activeLayer=result;changed(true);return true;}catch(e){status(e.message);return false;}}
-function showQuality(downloadReport=false){if(!project)return;const report=qualityReport(project);$('warnings').replaceChildren();for(const text of report.warnings){const line=document.createElement('p');line.textContent=text;$('warnings').append(line);}if(!report.warnings.length)$('warnings').textContent='✓ Sem alertas geométricos; revise o movimento.';if(downloadReport)download(new Blob([JSON.stringify(report,null,2)],{type:'application/json'}),safeName()+'-quality.json');else status('Revisão geométrica concluída. Os avisos não substituem a revisão visual.');}
+function showQuality(downloadReport=false){if(!project)return;const report=qualityReport(project),style=styleReport(project);report.style=style;report.skeleton=skeletonReport(project);report.warnings.push(...style.errors,...style.warnings,...report.skeleton.warnings);$('warnings').replaceChildren();for(const text of report.warnings){const line=document.createElement('p');line.textContent=text;$('warnings').append(line);}if(!report.warnings.length)$('warnings').textContent='✓ Sem alertas geométricos; revise o movimento.';if(downloadReport)download(new Blob([JSON.stringify(report,null,2)],{type:'application/json'}),safeName()+'-quality.json');else status('Revisão geométrica concluída. Os avisos não substituem a revisão visual.');}
+function renderCharacterStyle(){
+ const guide=characterGuide(project);$('characterStylePanel').hidden=!guide;
+ if(!guide)return;
+ $('characterStyleSummary').textContent=`Soulmon DS · ${BODY_TYPES[project.style.body].label} · ${guide.heads} cabeças · altura ${guide.height}px · pés ${guide.base} · pivô ${guide.pivot.join(',')} · até 20 cores`;
+ $('baseReviewed').checked=project.style.baseReviewed;$('cycleReviewed').checked=project.style.cycleReviewed;
+}
 function drawSource(){
  const c=$('sourceCanvas'),context=c.getContext('2d');c.width=460;c.height=270;context.clearRect(0,0,c.width,c.height);
  if(!sourceCanvas)return;const factor=Math.min(c.width/sourceCanvas.width,c.height/sourceCanvas.height),w=sourceCanvas.width*factor,h=sourceCanvas.height*factor;
@@ -147,6 +161,7 @@ function drawSource(){
  const r=project?.frames[selected]?.sourceRect;if(r){context.fillStyle='#efbb6830';context.fillRect(ox+r.x*factor,oy+r.y*factor,r.w*factor,r.h*factor);}
 }
 async function loadImage(blob,name,keep=false){
+ if(albumSession?.active&&!keep)throw Error('Abra a bancada livre para importar outra imagem.');
  if(blob.size>32*1024*1024)throw Error('A imagem deve ter no máximo 32 MB.');
  const bitmap=await createImageBitmap(blob);
  if(bitmap.width*bitmap.height>16777216){bitmap.close();throw Error('Use uma imagem de até 16 megapixels.');}
@@ -156,6 +171,7 @@ async function loadImage(blob,name,keep=false){
  $('sourceSize').textContent=`${c.width}×${c.height}`;if(!keep)$('projectName').value=name.replace(/\.[^.]+$/,'');drawSource();
 }
 function runConversion(demo=false,previous=null){
+ if(albumSession?.active){status('Abra a bancada livre para converter outra folha; a grade do personagem é preservada.');return;}
  if(!source)return status('Importe a imagem de origem para converter.');
  const prior=previous||snapshot();stop();worker?.terminate();worker=new Worker('worker.mjs',{type:'module'});busy(true);status('Amostrando a fonte e construindo a paleta…');
  worker.onmessage=({data})=>{busy(false);worker.terminate();worker=null;if(data.error)return status(data.error);
@@ -182,6 +198,12 @@ function fill(p){if(selection&&(p.x<selection.x||p.y<selection.y||p.x>=selection
 editor.addEventListener('contextmenu',e=>e.preventDefault());
 editor.addEventListener('pointerdown',e=>{
  if(!project||view!=='pixel'||worker)return;stop();const p=point(e);inspect(p);
+ if($('skeletonEdit').checked){
+  const pose=project.frames[selected].pose;if(!pose)return status('Crie ou complete o esqueleto primeiro.');
+  const radius=Math.max(1,8/zoomValue()),nearest=Object.keys(pose).sort((a,b)=>Math.hypot(pose[a][0]-p.x,pose[a][1]-p.y)-Math.hypot(pose[b][0]-p.x,pose[b][1]-p.y))[0];
+  if(!nearest||Math.hypot(pose[nearest][0]-p.x,pose[nearest][1]-p.y)>radius)return;
+  checkpoint();rigDrag={key:nearest,pose:structuredClone(pose)};editor.setPointerCapture(e.pointerId);status('Movendo '+nearest+' · pixels preservados');return;
+ }
  if(p.x<0||p.x>=project.width||p.y<0||p.y>=project.height)return;
  editor.focus();if(tool==='pick'){chooseColor(project.frames[selected].indices[p.y*project.width+p.x]);return;}
  if(tool==='select'){drawing=true;selectionStart=p;selection={...p,w:1,h:1};editor.setPointerCapture(e.pointerId);renderEditor();return;}
@@ -189,18 +211,19 @@ editor.addEventListener('pointerdown',e=>{
  checkpoint();if(tool==='fill'&&e.button!==2){fill(p);changed();return;}
  drawing=true;lastPoint=p;editor.setPointerCapture(e.pointerId);writePixel(p.x,p.y,tool==='erase'||e.button===2);changed();
 });
-editor.addEventListener('pointermove',e=>{if(!project)return;const p=point(e);inspect(p);if(!drawing)return;if(selectionStart){const x=Math.max(0,Math.min(project.width-1,p.x)),y=Math.max(0,Math.min(project.height-1,p.y));selection={x:Math.min(selectionStart.x,x),y:Math.min(selectionStart.y,y),w:Math.abs(selectionStart.x-x)+1,h:Math.abs(selectionStart.y-y)+1};renderEditor();return;}line(lastPoint,p,tool==='erase'||e.buttons===2);lastPoint=p;changed();});
-const endDraw=()=>{if(drawing){drawing=false;lastPoint=null;if(selectionStart){selectionStart=null;renderEditor();}else changed();}};editor.addEventListener('pointerup',endDraw);editor.addEventListener('pointercancel',endDraw);editor.addEventListener('lostpointercapture',endDraw);
+editor.addEventListener('pointermove',e=>{if(!project)return;const p=point(e);inspect(p);if(rigDrag){try{project.frames[selected].pose=moveSkeletonJoint(rigDrag.pose,rigDrag.key,[p.x,p.y],{width:project.width,height:project.height,support:project.frames[selected].support||[]});renderEditor();}catch(error){status(error.message);}return;}if(!drawing)return;if(selectionStart){const x=Math.max(0,Math.min(project.width-1,p.x)),y=Math.max(0,Math.min(project.height-1,p.y));selection={x:Math.min(selectionStart.x,x),y:Math.min(selectionStart.y,y),w:Math.abs(selectionStart.x-x)+1,h:Math.abs(selectionStart.y-y)+1};renderEditor();return;}line(lastPoint,p,tool==='erase'||e.buttons===2);lastPoint=p;changed();});
+const endDraw=()=>{if(rigDrag){rigDrag=null;changed();return;}if(drawing){drawing=false;lastPoint=null;if(selectionStart){selectionStart=null;renderEditor();}else changed();}};editor.addEventListener('pointerup',endDraw);editor.addEventListener('pointercancel',endDraw);editor.addEventListener('lostpointercapture',endDraw);
 function history(back){if(!project)return;stop();const from=back?undo:redo,to=back?redo:undo;if(!from.length)return;to.push(snapshot());const state=from.pop();project=state.document;source=state.source;sourceCanvas=state.sourceCanvas;sourceUrl=state.sourceUrl;activeLayer=state.activeLayer;selected=state.selected;sequenceIndex=state.sequenceIndex;selection=null;
  $('projectName').value=project.name||$('projectName').value;applySettings(project.settings);renderFrames();renderPalette();changed(true);status(back?'Última edição desfeita.':'Edição refeita.');}
-function nudge(dx,dy){if(!mutateLayer(p=>transform(p,selected,activeLayer,selection,'move',dx,dy)))return;if(selection)selection={...selection,x:Math.max(0,Math.min(project.width-selection.w,selection.x+dx)),y:Math.max(0,Math.min(project.height-selection.h,selection.y+dy))};renderEditor();}
+function nudge(dx,dy){if($('skeletonEdit').checked)return status('Use o arraste das juntas ou desative Editar juntas para mover pixels.');if(!mutateLayer(p=>transform(p,selected,activeLayer,selection,'move',dx,dy)))return;if(selection)selection={...selection,x:Math.max(0,Math.min(project.width-selection.w,selection.x+dx)),y:Math.max(0,Math.min(project.height-selection.h,selection.y+dy))};renderEditor();}
 function download(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),10000);status('Exportado: '+name);}
 function png(single=false){if(!project)return;const c=document.createElement('canvas');c.width=project.width*(single?1:project.cols);c.height=project.height*(single?1:project.rows);const cx=c.getContext('2d');
  (single?[project.frames[selected]]:project.frames).forEach((f,i)=>cx.putImageData(new ImageData(pixels(project,f),project.width,project.height),single?0:i%project.cols*project.width,single?0:Math.floor(i/project.cols)*project.height));
  c.toBlob(blob=>download(blob,safeName()+(single?'-quadro':'-sheet')+'.png'),'image/png');}
 function atlas(){return animationAtlas(project,safeName()+'-sheet.png');}
 function saveProject(){if(!project)return;download(new Blob([JSON.stringify({...serialize(project),name:$('projectName').value,source:sourceUrl})],{type:'application/json'}),safeName()+'.pixelgen.json');}
-async function openProject(file,autosave=true){
+async function openProject(file,autosave=true,connected=false){
+ if(!connected)await albumSession?.detach();
  if(file.size>64*1024*1024)throw Error('Projeto maior que 64 MB.');
  const data=JSON.parse(await file.text()),next=validateProject(data);
  let nextBlob=null;if(data.source){if(typeof data.source!=='string'||data.source.length>48*1024*1024||!/^data:image\/(png|jpeg|webp);base64,/.test(data.source))throw Error('Fonte do projeto inválida.');const [header,encoded]=data.source.split(',');nextBlob=new Blob([Uint8Array.from(atob(encoded),c=>c.charCodeAt(0))],{type:header.slice(5,header.indexOf(';'))});const check=await createImageBitmap(nextBlob);const tooLarge=check.width*check.height>16777216;check.close();if(tooLarge)throw Error('Fonte maior que 16 megapixels.');}
@@ -216,6 +239,10 @@ const drop=$('dropzone');drop.ondragover=e=>{e.preventDefault();drop.classList.a
 async function walkExample(file,label,description='caminhada para a esquerda · quatro poses · teste de movimento.'){try{const r=await fetch(file);if(!r.ok)throw Error('Exemplo indisponível.');await openProject(new File([await r.blob()],file));$('zoom').value='fit';$('grid').checked=false;play();status(label+' · '+description);}catch(e){status(e.message);}}
 $('demo').onclick=example;$('walkDemo').onclick=()=>walkExample('professor-walk.pixelgen.json','Professor');$('kaelWalkDemo').onclick=()=>walkExample('kael-walk.pixelgen.json','Kael');
 $('kaelStairsDemo').onclick=()=>walkExample('kael-stairs.pixelgen.json','Kael','subir escada · vista de costas · quatro poses · estudo convertido para revisão.');
+$('kaelVideoDemo').onclick=()=>walkExample('kael-video.pixelgen.json','Kael · vídeo','rascunho extraído de MiniMax local · 8 quadros, 64×96 e paleta comum · revisar rosto, clusters e loop.');
+$('kaelVideoAnglesDemo').onclick=()=>walkExample('kael-video-angles.pixelgen.json','Kael · oito direções','64 quadros extraídos de vídeo · escala e paleta compartilhadas · rascunho para revisar contatos, identidade e loops.');
+$('kaelVideoJumpDemo').onclick=()=>walkExample('kael-video-jump.pixelgen.json','Kael · salto de barranco','Preparação, impulso e aterrissagem · duas vistas, 820 ms, sem loop · rascunho integrado nas Veredas.');
+$('kaelVideoItemDemo').onclick=()=>walkExample('kael-video-item.pixelgen.json','Kael · recebeu item','Comemora de frente, aponta para o céu e baixa o braço · cores por material e contorno limpo · sem loop.');
 $('kaelLibraryDemo').onclick=async()=>{try{const r=await fetch('kael-library.pixelgen.json');if(!r.ok)throw Error('Biblioteca indisponível.');await openProject(new File([await r.blob()],'kael-library.pixelgen.json'));$('zoom').value='fit';$('grid').checked=false;renderEditor();play();status('Kael · 8 direções · 8 movimentos · escolha a direção e o movimento acima da timeline.');}catch(e){status(e.message);}};
 $('conversionForm').onsubmit=e=>{e.preventDefault();runConversion();};fields.forEach(k=>$(k).addEventListener('change',drawSource));
 document.querySelectorAll('[data-tool]').forEach(b=>b.onclick=()=>setTool(b.dataset.tool));
@@ -266,7 +293,36 @@ function renderLibrary(){const filter=$('librarySearch').value.toLowerCase();$('
 $('library').onclick=()=>{stop();$('libraryDialog').showModal();populateLibrary();};$('closeLibrary').onclick=()=>$('libraryDialog').close();$('librarySearch').oninput=renderLibrary;
 $('saveLibrary').onclick=async()=>{if(!project)return;try{project.name=$('projectName').value;project.id=await storage.save({...serialize(project),source:sourceUrl});persist();await populateLibrary();status('Projeto guardado na biblioteca deste navegador.');}catch(e){status('Não foi possível guardar: '+e.message);}};
 $('recover').onclick=async()=>{try{const value=await storage.restore(true);if(!value)throw Error('Ainda não há uma gravação anterior.');await openProject(new File([JSON.stringify(value)],'recovery.json'));$('libraryDialog').close();status('Gravação anterior recuperada. Desfazer retorna ao estado anterior à recuperação.');}catch(e){status(e.message);}};
-$('createProject').onclick=async()=>{try{const [w,h]=$('newPreset').value.split('x').map(Number),p=validateProject({kind:'pixelgen',version:1,name:$('newName').value.trim()||'Novo sprite',width:w,height:h,cols:1,rows:1,palette:project?project.palette.map(c=>[...c]):[[0,0,0,0],[24,32,48,255],[248,238,220,255]],frames:[{name:'idle',indices:Array(w*h).fill(0)}],sequences:[{name:'idle',start:0,end:0,loop:true}]});await openProject(new File([JSON.stringify(serialize(p))],'new.json'));$('libraryDialog').close();}catch(e){status(e.message);}};
+$('createProject').onclick=async()=>{try{
+ const preset=$('newPreset').value,isCharacter=preset.startsWith('ds-'),[w,h]=preset.replace(/^ds-/,'').split('x').map(Number),name=$('newName').value.trim()||'Novo sprite';
+ const p=validateProject(isCharacter?createCharacterBase({name,body:$('newBody').value,width:w,height:h}):{kind:'pixelgen',version:1,name,width:w,height:h,cols:1,rows:1,palette:project?project.palette.map(c=>[...c]):[[0,0,0,0],[24,32,48,255],[248,238,220,255]],frames:[{name:'idle',indices:Array(w*h).fill(0)}],sequences:[{name:'idle',start:0,end:0,loop:true}]});
+ await openProject(new File([JSON.stringify(serialize(p))],'new.json'));$('previewScale').value='1';$('zoom').value='fit';renderEditor();$('libraryDialog').close();
+ if(isCharacter)status('Base DS criada: oito direções vazias, camadas e guias. Comece pela pose S; a aparência ainda precisa ser desenhada.');
+ }catch(e){status(e.message);}};
+$('characterGuides').onchange=()=>renderEditor();
+function renderSkeletonPanel(){
+ const f=project.frames[selected];$('skeletonPanel').hidden=!project.style&&!f.pose;
+ for(const [id,key]of [['supportBack','peTras'],['supportFront','peFrente']])$(id).checked=f.support?.includes(key)||false;
+ $('skeletonStatus').textContent=f.pose?`${Object.keys(f.pose).length} juntas · ${f.support?.length||0} pés apoiados · só pose, pixels preservados`:'Sem esqueleto neste quadro';
+}
+function mutateSkeleton(job){if(!project||worker)return;stop();try{const next=copy(project);job(next);checkpoint();project=next;changed();}catch(error){status(error.message);}}
+$('skeletonVisible').onchange=()=>{if(!$('skeletonVisible').checked)$('skeletonEdit').checked=false;renderEditor();};
+$('skeletonEdit').onchange=()=>{stop();if($('skeletonEdit').checked)$('skeletonVisible').checked=true;renderEditor();};
+$('skeletonComplete').onclick=()=>mutateSkeleton(p=>{const f=p.frames[selected];if(f.pose)f.pose=completeSkeleton(f.pose);else{if(!p.style)throw Error('Crie uma base DS ou marque quadril e queixo.');const base=createCharacterBase({body:p.style.body,width:p.width,height:p.height});const dir=f.name.match(/-(S|SO|O|NO|N|NE|E|SE)-/)?.[1]||'S';f.pose=base.frames.find(f=>f.name===`idle-${dir}-1`).pose;} $('skeletonVisible').checked=true;});
+for(const [id,key]of [['supportBack','peTras'],['supportFront','peFrente']])$(id).onchange=()=>mutateSkeleton(p=>{const f=p.frames[selected];if(!f.pose?.[key])throw Error('Complete o esqueleto primeiro.');f.support=[...(f.support||[]).filter(k=>k!==key),...($(id).checked?[key]:[])];});
+$('skeletonCopy').onclick=()=>{if(!project)return;try{rigClipboard=skeletonTemplate(project,selected);status('Esqueleto copiado. Cole em outro quadro da mesma direção e corpo.');}catch(e){status(e.message);}};
+$('skeletonPaste').onclick=()=>mutateSkeleton(p=>{if(!rigClipboard)throw Error('Copie um esqueleto primeiro.');applySkeletonTemplate(p,selected,rigClipboard);});
+$('skeletonExport').onclick=()=>{if(!project)return;try{download(new Blob([JSON.stringify(skeletonTemplate(project,selected),null,2)],{type:'application/json'}),safeName()+'-skeleton.json');}catch(e){status(e.message);}};
+$('skeletonImport').onchange=async e=>{const file=e.target.files?.[0];if(!file)return;try{if(file.size>32768)throw Error('Esqueleto maior que 32 KB.');const template=JSON.parse(await file.text());mutateSkeleton(p=>applySkeletonTemplate(p,selected,template));}catch(error){status(error.message);}finally{e.target.value='';}};
+
+for(const [id,key]of [['baseReviewed','baseReviewed'],['cycleReviewed','cycleReviewed']])$(id).onchange=()=>{
+ if(!project?.style)return;const value=$(id).checked;
+ if(value&&(!project.frames[selected].indices.some(Boolean)||(key==='cycleReviewed'&&(!project.style.baseReviewed||!/^walk-/.test(sequence().name)||sequence().end-sequence().start<1)))){
+  $(id).checked=false;status('Desenhe a pose primeiro; para revisar o ciclo, marque a base e selecione uma caminhada com pelo menos dois quadros.');return;
+ }
+ checkpoint();project.style[key]=value;if(key==='baseReviewed'&&!value)project.style.cycleReviewed=false;changed(false);
+ status('Revisão visual registrada manualmente. Os alertas geométricos continuam independentes.');
+};
 document.addEventListener('keydown',e=>{
  if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){e.preventDefault();saveProject();return;}
  if(['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName)||$('libraryDialog').open)return;
@@ -279,4 +335,11 @@ document.addEventListener('keydown',e=>{
 // Migrate the old autosave without deleting it. Malformed current data falls back to recovery.
 async function restore(){for(const previous of [false,true]){try{const data=await storage.restore(previous);if(data){await openProject(new File([JSON.stringify(data)],'autosave.json'),false);$('saveState').textContent='Restaurado neste navegador';status(previous?'Gravação anterior recuperada.':'Projeto e fonte restaurados deste navegador.');return;}}catch{}}
  try{const saved=localStorage.getItem('pixelgen-project-v1');if(saved){await openProject(new File([saved],'legacy.json'));status('Projeto anterior migrado com seus pixels preservados.');return;}}catch{}await example();}
-const ready=restore();
+const ready=(async()=>{
+ await restore();
+ albumSession=await initAlbum({document,
+  open:async value=>{await openProject(new File([JSON.stringify(value)],'character.pixelgen.json'),false,true);undo=[];redo=[];$('zoom').value='fit';$('grid').checked=false;renderEditor();},
+  refresh:renderEditor,close:()=>{if(drawing||rigDrag)endDraw();stop();}
+ });
+ if(!albumSession){document.body.classList.remove('album-visible');$('albumHome').hidden=true;}
+})();

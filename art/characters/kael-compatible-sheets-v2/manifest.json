@@ -1,0 +1,375 @@
+{
+  "schema": "kael-compatible-sheets-2",
+  "cell": [
+    48,
+    64
+  ],
+  "pivot": [
+    24,
+    62
+  ],
+  "directions": [
+    "S",
+    "SO",
+    "O",
+    "NO",
+    "N",
+    "NE",
+    "E",
+    "SE"
+  ],
+  "palette": [
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      17,
+      26,
+      46,
+      255
+    ],
+    [
+      23,
+      35,
+      63,
+      255
+    ],
+    [
+      40,
+      63,
+      113,
+      255
+    ],
+    [
+      69,
+      95,
+      152,
+      255
+    ],
+    [
+      186,
+      121,
+      94,
+      255
+    ],
+    [
+      242,
+      188,
+      142,
+      255
+    ],
+    [
+      255,
+      225,
+      179,
+      255
+    ],
+    [
+      24,
+      55,
+      85,
+      255
+    ],
+    [
+      44,
+      84,
+      139,
+      255
+    ],
+    [
+      71,
+      118,
+      178,
+      255
+    ],
+    [
+      32,
+      41,
+      54,
+      255
+    ],
+    [
+      75,
+      86,
+      108,
+      255
+    ],
+    [
+      238,
+      233,
+      214,
+      255
+    ],
+    [
+      64,
+      183,
+      199,
+      255
+    ],
+    [
+      155,
+      225,
+      219,
+      255
+    ],
+    [
+      48,
+      60,
+      81,
+      255
+    ]
+  ],
+  "columns": 8,
+  "rowsPerSheet": 8,
+  "sheets": [
+    {
+      "motion": "idle",
+      "image": "kael-idle.png",
+      "source": "kael-idle.pixelgen.json",
+      "aseprite": "kael-idle.aseprite",
+      "rect": [
+        0,
+        0,
+        384,
+        512
+      ],
+      "frames": 16,
+      "framesPerDirection": 2,
+      "sequences": [
+        "idle-S",
+        "idle-SO",
+        "idle-O",
+        "idle-NO",
+        "idle-N",
+        "idle-NE",
+        "idle-E",
+        "idle-SE"
+      ]
+    },
+    {
+      "motion": "walk",
+      "image": "kael-walk.png",
+      "source": "kael-walk.pixelgen.json",
+      "aseprite": "kael-walk.aseprite",
+      "rect": [
+        0,
+        512,
+        384,
+        512
+      ],
+      "frames": 32,
+      "framesPerDirection": 4,
+      "sequences": [
+        "walk-S",
+        "walk-SO",
+        "walk-O",
+        "walk-NO",
+        "walk-N",
+        "walk-NE",
+        "walk-E",
+        "walk-SE"
+      ]
+    },
+    {
+      "motion": "run",
+      "image": "kael-run.png",
+      "source": "kael-run.pixelgen.json",
+      "aseprite": "kael-run.aseprite",
+      "rect": [
+        0,
+        1024,
+        384,
+        512
+      ],
+      "frames": 48,
+      "framesPerDirection": 6,
+      "sequences": [
+        "run-S",
+        "run-SO",
+        "run-O",
+        "run-NO",
+        "run-N",
+        "run-NE",
+        "run-E",
+        "run-SE"
+      ]
+    },
+    {
+      "motion": "interact",
+      "image": "kael-interact.png",
+      "source": "kael-interact.pixelgen.json",
+      "aseprite": "kael-interact.aseprite",
+      "rect": [
+        0,
+        1536,
+        384,
+        512
+      ],
+      "frames": 32,
+      "framesPerDirection": 4,
+      "sequences": [
+        "interact-S",
+        "interact-SO",
+        "interact-O",
+        "interact-NO",
+        "interact-N",
+        "interact-NE",
+        "interact-E",
+        "interact-SE"
+      ]
+    },
+    {
+      "motion": "attack",
+      "image": "kael-attack.png",
+      "source": "kael-attack.pixelgen.json",
+      "aseprite": "kael-attack.aseprite",
+      "rect": [
+        0,
+        2048,
+        384,
+        512
+      ],
+      "frames": 48,
+      "framesPerDirection": 6,
+      "sequences": [
+        "attack-S",
+        "attack-SO",
+        "attack-O",
+        "attack-NO",
+        "attack-N",
+        "attack-NE",
+        "attack-E",
+        "attack-SE"
+      ]
+    },
+    {
+      "motion": "hurt",
+      "image": "kael-hurt.png",
+      "source": "kael-hurt.pixelgen.json",
+      "aseprite": "kael-hurt.aseprite",
+      "rect": [
+        0,
+        2560,
+        384,
+        512
+      ],
+      "frames": 16,
+      "framesPerDirection": 2,
+      "sequences": [
+        "hurt-S",
+        "hurt-SO",
+        "hurt-O",
+        "hurt-NO",
+        "hurt-N",
+        "hurt-NE",
+        "hurt-E",
+        "hurt-SE"
+      ]
+    },
+    {
+      "motion": "victory",
+      "image": "kael-victory.png",
+      "source": "kael-victory.pixelgen.json",
+      "aseprite": "kael-victory.aseprite",
+      "rect": [
+        0,
+        3072,
+        384,
+        512
+      ],
+      "frames": 32,
+      "framesPerDirection": 4,
+      "sequences": [
+        "victory-S",
+        "victory-SO",
+        "victory-O",
+        "victory-NO",
+        "victory-N",
+        "victory-NE",
+        "victory-E",
+        "victory-SE"
+      ]
+    },
+    {
+      "motion": "defeat",
+      "image": "kael-defeat.png",
+      "source": "kael-defeat.pixelgen.json",
+      "aseprite": "kael-defeat.aseprite",
+      "rect": [
+        0,
+        3584,
+        384,
+        512
+      ],
+      "frames": 32,
+      "framesPerDirection": 4,
+      "sequences": [
+        "defeat-S",
+        "defeat-SO",
+        "defeat-O",
+        "defeat-NO",
+        "defeat-N",
+        "defeat-NE",
+        "defeat-E",
+        "defeat-SE"
+      ]
+    },
+    {
+      "motion": "swim",
+      "image": "kael-swim.png",
+      "source": "kael-swim.pixelgen.json",
+      "aseprite": "kael-swim.aseprite",
+      "rect": [
+        0,
+        4096,
+        384,
+        512
+      ],
+      "frames": 32,
+      "framesPerDirection": 4,
+      "sequences": [
+        "swim-S",
+        "swim-SO",
+        "swim-O",
+        "swim-NO",
+        "swim-N",
+        "swim-NE",
+        "swim-E",
+        "swim-SE"
+      ]
+    },
+    {
+      "motion": "climb",
+      "image": "kael-climb.png",
+      "source": "kael-climb.pixelgen.json",
+      "aseprite": "kael-climb.aseprite",
+      "rect": [
+        0,
+        4608,
+        384,
+        512
+      ],
+      "frames": 4,
+      "framesPerDirection": 4,
+      "sequences": [
+        "climb-N",
+        "climbdown-N"
+      ]
+    }
+  ],
+  "status": "native-verified-awaiting-user-art-review",
+  "master": {
+    "image": "kael-completo.png",
+    "atlas": "kael-completo.atlas.json",
+    "spriteFrames": "kael-completo.tres",
+    "frames": 292,
+    "sequences": 74,
+    "size": [
+      384,
+      5120
+    ]
+  }
+}

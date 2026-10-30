@@ -1,5 +1,7 @@
 # Pixelgen Studio 2
 
+**Base para personagens novos:** em Projetos, escolha **personagem Soulmon DS**, corpo jovem/adulto/robusto e grade 48×64 ou 32×48. O editor fornece camadas, oito poses-guia, ficha, paleta, guias anatômicas e prévia 1×; a arte precisa ser desenhada e revista. O perfil preserva sua identidade nos arquivos e no histórico. Veja [CHARACTER-DS.md](CHARACTER-DS.md) para o processo e a montagem de folhas separadas com `pixel pack`.
+
 Bancada local de pixel art do Soulmonsters: referência → grade nativa → camadas → animação → revisão → exportação. Os projetos permanecem no navegador e nos arquivos que você baixar; o servidor não recebe imagens nem salva arquivos por você.
 
 ## Abrir
@@ -90,3 +92,11 @@ Foram instaladas as skills pixel-art, pixel-art-animator, pixel-art-professional
 A conexão é uma ferramenta do Codex; o Pixelgen não depende dela para abrir ou editar. A configuração e os pacotes locais não são enviados no Git. Consulte documentation/pixelgen/skill-installation.json para origens e versões. As skills ficam disponíveis no próximo turno; pode ser necessário reiniciar o Codex para carregar o novo servidor MCP.
 
 Referências: especificação Aseprite em https://github.com/aseprite/aseprite/blob/main/docs/ase-file-specs.md e documentação SpriteFrames em https://docs.godotengine.org/en/stable/classes/class_spriteframes.html.
+
+
+Esqueletos: bases DS incluem 14 juntas e contato dos pés. No painel **Esqueleto articulado**, ative **Editar juntas por arraste**; exporte/importe poses da mesma direção e corpo. Isso preserva os pixels. Guia e CLI em [CHARACTER-DS.md](CHARACTER-DS.md#esqueleto-articulado-pose-não-recorte-giratório).
+
+
+Teste vídeo → folha: `video-to-sheet.py` extrai timestamps, remove chroma magenta e monta PNG/projeto Pixelgen com escala e paleta comuns. Exemplo e limites em `art/characters/kael-video-sprite-v1/README.md`. É uma fonte para revisão de movimento; não certifica pixel art final.
+
+Estabilidade de cor: compartilhar uma paleta global não fixa a cor de cada roupa. Para um lote vindo de vídeo, marque as regiões do material em cada pose e restrinja seus tons à rampa escolhida. Limpe ilhas soltas e a contaminação do chroma no contorno nativo; não aplique erosão geral que apague dedos ou pontas do cabelo. O exemplo do salto está em `examples/clean-kael-jump.py` e `art/characters/kael-video-jump-v1/cleanup/`. Depois dos retoques no Aseprite, compare os quadros exportados ao Pixelgen e confira a animação sobre fundos claros, escuros e no jogo.

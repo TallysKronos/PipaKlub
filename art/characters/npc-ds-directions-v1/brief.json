@@ -1,0 +1,169 @@
+{
+  "status": "em produção; bases direcionais estáticas, não caminhada",
+  "cell": [
+    64,
+    96
+  ],
+  "pivot": [
+    32,
+    94
+  ],
+  "directions": [
+    "S",
+    "SO",
+    "O",
+    "NO",
+    "N",
+    "NE",
+    "E",
+    "SE"
+  ],
+  "paletteLimit": 32,
+  "styleReference": "art/characters/kael-video-eight-directions-v1/referencias/prancha-original.png",
+  "characters": [
+    {
+      "id": "professor",
+      "name": "Professor Assis",
+      "ref": "art/professor-identity-v3/approved-sheet.png",
+      "height": 90,
+      "identity": "48 anos, óculos âmbar na testa, mechas brancas, jaleco branco, polo azul, calça e sapatos marrons.",
+      "prompt": "Create a clean production overworld SPRITE turnaround for Soulmonsters. Image1 is the approved KAEL STYLE ONLY (not the identity). Image2 is the PROFESSOR ASSIS identity. Render exactly eight FULL-BODY standing sprites of Professor Assis, same scale and pixel-grid visual language as Kael: crisp hard pixel clusters, small expressive anime eyes, roughly 3.5 heads tall, modest top-down orthographic RPG camera, short clean dark outline, economical flat cel shading, no gradients, no 3D. Preserve adult proportions, NOT toddler chibi. Identity: friendly mature 48-year-old professor, warm skin, short black spiky hair, white temple streaks, amber/brown aviation goggles on forehead, BLUE polo under WHITE knee-length laboratory coat, small blue badge on anatomical LEFT chest, BROWN trousers and brown shoes. Empty hands relaxed by sides. Exactly 4 equal columns x2 equal rows, 1536x1024 landscape sheet, each cell384x512, characters centered with full silhouette entirely inside own cell, equal groundline at90%cellheight, body about410px tall, no overlap. ORDER mandatory: TOP row front(S), front-left(SW), LEFT profile(W), back-left(NW). BOTTOM row back(N), back-right(NE), RIGHT profile(E), front-right(SE). Neutral planted feet, single consistent pose rotating in place. No clone of Kael's hair/clothes. Transparent background, no floor, no shadows, no effects, no text, no labels, no grid or borders. Maintain identity/accessory sides across all views. This is a directional base, not walking frames.",
+      "sourceOrder": [
+        0,
+        1,
+        6,
+        3,
+        4,
+        5,
+        2,
+        7
+      ]
+    },
+    {
+      "id": "mae",
+      "name": "Mãe do Kael",
+      "ref": "assets/story/kael-birthday-v1/mother.png",
+      "height": 88,
+      "identity": "Adult Brazilian woman, warm medium tan skin, brown eyes, navy-black wavy hair pinned in a high loose bun with two curled side locks. Teal puff-short-sleeved blouse, coral-red calf-length wrap skirt with side knot, flat brown sandals. No held item. Warm mature mother, not a child.",
+      "prompt": "Create a production directional overworld sprite sheet for Soulmonsters. Image1 is KAEL STYLE ONLY; image2 is TARGET IDENTITY. Do NOT draw Kael. Match image1 precisely: crisp pixel-like clusters, economical flat cel shading, dark thin pixel outline, simple expressive anime eyes, approx 3.5 heads tall with clean slim limbs, modest elevated orthographic RPG camera. NO 3D, NO toddler chibi, NO painted texture. Eight FULL-BODY neutral standing views, planted feet, ONE same character rotated, exactly4 equal columns by2 equal rows on1536x1024canvas, eachcell384x512. Full silhouettes centered inside eachcell,feetbaseline90%, consistent bodyheight about410sourcepixels, generous padding. ORDER top row SOUTH/front, SOUTHWEST/front-left, WEST/profile facing LEFT, NORTHWEST/back-left. Bottom row NORTH/back, NORTHEAST/back-right, EAST/profile facing RIGHT, SOUTHEAST/front-right. No overlapping figures. All clothes/colors/accessory sides consistent through rotation. Transparent background, no floor/no shadow/no text/no labels/no grid/no border/no effects. Simple clear hand shapes, exactly two arms and two legs. These are eight directions, NOT walk frames. Target identity: Adult Brazilian woman, warm medium tan skin, brown eyes, navy-black wavy hair pinned in a high loose bun with two curled side locks. Teal puff-short-sleeved blouse, coral-red calf-length wrap skirt with side knot, flat brown sandals. No held item. Warm mature mother, not a child.",
+      "sourceOrder": [
+        0,
+        1,
+        6,
+        3,
+        4,
+        5,
+        2,
+        7
+      ]
+    },
+    {
+      "id": "nina",
+      "name": "Nina",
+      "ref": "assets/characters/nina-v1/portrait.png",
+      "height": 83,
+      "identity": "Teenage Brazilian girl, warm brown skin, large brown eyes, dark brown curly HIGH ponytail with TEAL ribbon/headband and small knot, loose yellow rolled-sleeve overshirt over teal t-shirt, dark teal cuffed shorts, sturdy brown ankle boots. Cream canvas crossbody messenger bag at anatomical RIGHT hip, strap on LEFT shoulder, with small teal/gold kite motif, art paper rolls inside. Preserve bag strap side. Gentle worried expression. Not Lia: headband is TEAL and overshirt is open yellow.",
+      "prompt": "Create a production directional overworld sprite sheet for Soulmonsters. Image1 is KAEL STYLE ONLY; image2 is TARGET IDENTITY. Do NOT draw Kael. Match image1 precisely: crisp pixel-like clusters, economical flat cel shading, dark thin pixel outline, simple expressive anime eyes, approx 3.5 heads tall with clean slim limbs, modest elevated orthographic RPG camera. NO 3D, NO toddler chibi, NO painted texture. Eight FULL-BODY neutral standing views, planted feet, ONE same character rotated, exactly4 equal columns by2 equal rows on1536x1024canvas, eachcell384x512. Full silhouettes centered inside eachcell,feetbaseline90%, consistent bodyheight about410sourcepixels, generous padding. ORDER top row SOUTH/front, SOUTHWEST/front-left, WEST/profile facing LEFT, NORTHWEST/back-left. Bottom row NORTH/back, NORTHEAST/back-right, EAST/profile facing RIGHT, SOUTHEAST/front-right. No overlapping figures. All clothes/colors/accessory sides consistent through rotation. Transparent background, no floor/no shadow/no text/no labels/no grid/no border/no effects. Simple clear hand shapes, exactly two arms and two legs. These are eight directions, NOT walk frames. Target identity: Teenage Brazilian girl, warm brown skin, large brown eyes, dark brown curly HIGH ponytail with TEAL ribbon/headband and small knot, loose yellow rolled-sleeve overshirt over teal t-shirt, dark teal cuffed shorts, sturdy brown ankle boots. Cream canvas crossbody messenger bag at anatomical RIGHT hip, strap on LEFT shoulder, with small teal/gold kite motif, art paper rolls inside. Preserve bag strap side. Gentle worried expression. Not Lia: headband is TEAL and overshirt is open yellow.",
+      "sourceOrder": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "id": "bia",
+      "name": "Bia",
+      "ref": "assets/characters/morro-rivals/bia-v1.png",
+      "height": 78,
+      "identity": "Young brown-skinned Brazilian girl with brown eyes and TWO short brown braided pigtails tied with green ribbons. Olive green utility vest over cream short-sleeve t-shirt, navy cuffed shorts, white socks, olive/lime and cream sneakers. Small wooden kite reel held at anatomical LEFT hip in left hand; NO trailing loose string. Free right arm relaxed. Confident bright smile.",
+      "prompt": "Create a production directional overworld sprite sheet for Soulmonsters. Image1 is KAEL STYLE ONLY; image2 is TARGET IDENTITY. Do NOT draw Kael. Match image1 precisely: crisp pixel-like clusters, economical flat cel shading, dark thin pixel outline, simple expressive anime eyes, approx 3.5 heads tall with clean slim limbs, modest elevated orthographic RPG camera. NO 3D, NO toddler chibi, NO painted texture. Eight FULL-BODY neutral standing views, planted feet, ONE same character rotated, exactly4 equal columns by2 equal rows on1536x1024canvas, eachcell384x512. Full silhouettes centered inside eachcell,feetbaseline90%, consistent bodyheight about410sourcepixels, generous padding. ORDER top row SOUTH/front, SOUTHWEST/front-left, WEST/profile facing LEFT, NORTHWEST/back-left. Bottom row NORTH/back, NORTHEAST/back-right, EAST/profile facing RIGHT, SOUTHEAST/front-right. No overlapping figures. All clothes/colors/accessory sides consistent through rotation. Transparent background, no floor/no shadow/no text/no labels/no grid/no border/no effects. Simple clear hand shapes, exactly two arms and two legs. These are eight directions, NOT walk frames. Target identity: Young brown-skinned Brazilian girl with brown eyes and TWO short brown braided pigtails tied with green ribbons. Olive green utility vest over cream short-sleeve t-shirt, navy cuffed shorts, white socks, olive/lime and cream sneakers. Small wooden kite reel held at anatomical LEFT hip in left hand; NO trailing loose string. Free right arm relaxed. Confident bright smile.",
+      "sourceOrder": [
+        0,
+        1,
+        6,
+        3,
+        4,
+        5,
+        2,
+        7
+      ]
+    },
+    {
+      "id": "juninho",
+      "name": "Juninho",
+      "ref": "assets/characters/morro-rivals/juninho-v1.png",
+      "height": 78,
+      "identity": "Young tan Brazilian boy with brown hair and backwards dusty BLUE baseball cap, cap brim always points behind head in each view, brown eyes. Blue sleeveless hooded open vest over cream tee, terracotta cuffed knee shorts, white socks with blue stripes, blue/cream sneakers. Small wooden kite reel carried in both hands at waist, no loose trailing string. Calm friendly boy, no backpack.",
+      "prompt": "Create a production directional overworld sprite sheet for Soulmonsters. Image1 is KAEL STYLE ONLY; image2 is TARGET IDENTITY. Do NOT draw Kael. Match image1 precisely: crisp pixel-like clusters, economical flat cel shading, dark thin pixel outline, simple expressive anime eyes, approx 3.5 heads tall with clean slim limbs, modest elevated orthographic RPG camera. NO 3D, NO toddler chibi, NO painted texture. Eight FULL-BODY neutral standing views, planted feet, ONE same character rotated, exactly4 equal columns by2 equal rows on1536x1024canvas, eachcell384x512. Full silhouettes centered inside eachcell,feetbaseline90%, consistent bodyheight about410sourcepixels, generous padding. ORDER top row SOUTH/front, SOUTHWEST/front-left, WEST/profile facing LEFT, NORTHWEST/back-left. Bottom row NORTH/back, NORTHEAST/back-right, EAST/profile facing RIGHT, SOUTHEAST/front-right. No overlapping figures. All clothes/colors/accessory sides consistent through rotation. Transparent background, no floor/no shadow/no text/no labels/no grid/no border/no effects. Simple clear hand shapes, exactly two arms and two legs. These are eight directions, NOT walk frames. Target identity: Young tan Brazilian boy with brown hair and backwards dusty BLUE baseball cap, cap brim always points behind head in each view, brown eyes. Blue sleeveless hooded open vest over cream tee, terracotta cuffed knee shorts, white socks with blue stripes, blue/cream sneakers. Small wooden kite reel carried in both hands at waist, no loose trailing string. Calm friendly boy, no backpack.",
+      "sourceOrder": [
+        0,
+        1,
+        6,
+        3,
+        4,
+        5,
+        2,
+        7
+      ]
+    },
+    {
+      "id": "lia",
+      "name": "Lia",
+      "ref": "assets/characters/morro-rivals/lia-v1.png",
+      "height": 78,
+      "identity": "Young DARK BROWN skinned Brazilian girl, dark brown eyes, voluminous dark brown curly HIGH PUFF, tied with OCHRE YELLOW headband and knot. Ochre yellow short sleeve tee with a SINGLE CREAM HORIZONTAL chest stripe and cream cuffs, PLUM shorts with cream side stripes and cream drawstring, white socks, red/cream sneakers. Small wooden kite reel at anatomical LEFT hip, no trailing string. Joyful cheeky grin. NOT Nina: headband is yellow, shirt is closed and shorts are PLUM.",
+      "prompt": "Create a production directional overworld sprite sheet for Soulmonsters. Image1 is KAEL STYLE ONLY; image2 is TARGET IDENTITY. Do NOT draw Kael. Match image1 precisely: crisp pixel-like clusters, economical flat cel shading, dark thin pixel outline, simple expressive anime eyes, approx 3.5 heads tall with clean slim limbs, modest elevated orthographic RPG camera. NO 3D, NO toddler chibi, NO painted texture. Eight FULL-BODY neutral standing views, planted feet, ONE same character rotated, exactly4 equal columns by2 equal rows on1536x1024canvas, eachcell384x512. Full silhouettes centered inside eachcell,feetbaseline90%, consistent bodyheight about410sourcepixels, generous padding. ORDER top row SOUTH/front, SOUTHWEST/front-left, WEST/profile facing LEFT, NORTHWEST/back-left. Bottom row NORTH/back, NORTHEAST/back-right, EAST/profile facing RIGHT, SOUTHEAST/front-right. No overlapping figures. All clothes/colors/accessory sides consistent through rotation. Transparent background, no floor/no shadow/no text/no labels/no grid/no border/no effects. Simple clear hand shapes, exactly two arms and two legs. These are eight directions, NOT walk frames. Target identity: Young DARK BROWN skinned Brazilian girl, dark brown eyes, voluminous dark brown curly HIGH PUFF, tied with OCHRE YELLOW headband and knot. Ochre yellow short sleeve tee with a SINGLE CREAM HORIZONTAL chest stripe and cream cuffs, PLUM shorts with cream side stripes and cream drawstring, white socks, red/cream sneakers. Small wooden kite reel at anatomical LEFT hip, no trailing string. Joyful cheeky grin. NOT Nina: headband is yellow, shirt is closed and shorts are PLUM.",
+      "sourceOrder": [
+        0,
+        1,
+        6,
+        3,
+        4,
+        5,
+        2,
+        7
+      ]
+    },
+    {
+      "id": "zeca",
+      "name": "Zeca",
+      "ref": "assets/characters/morro-rivals/zeca-v1.png",
+      "height": 78,
+      "identity": "Young medium brown-skinned Brazilian boy, brown eyes and short fluffy curly dark brown hair, no cap. Open ORANGE short sleeve overshirt over cream tee, TEAL cuffed knee-length shorts, orange/cream canvas sneakers. Small wooden kite reel close to anatomical RIGHT hip in right hand, no loose trailing string. Left arm relaxed, youthful cheerful smile.",
+      "prompt": "Create a production directional overworld sprite sheet for Soulmonsters. Image1 is KAEL STYLE ONLY; image2 is TARGET IDENTITY. Do NOT draw Kael. Match image1 precisely: crisp pixel-like clusters, economical flat cel shading, dark thin pixel outline, simple expressive anime eyes, approx 3.5 heads tall with clean slim limbs, modest elevated orthographic RPG camera. NO 3D, NO toddler chibi, NO painted texture. Eight FULL-BODY neutral standing views, planted feet, ONE same character rotated, exactly4 equal columns by2 equal rows on1536x1024canvas, eachcell384x512. Full silhouettes centered inside eachcell,feetbaseline90%, consistent bodyheight about410sourcepixels, generous padding. ORDER top row SOUTH/front, SOUTHWEST/front-left, WEST/profile facing LEFT, NORTHWEST/back-left. Bottom row NORTH/back, NORTHEAST/back-right, EAST/profile facing RIGHT, SOUTHEAST/front-right. No overlapping figures. All clothes/colors/accessory sides consistent through rotation. Transparent background, no floor/no shadow/no text/no labels/no grid/no border/no effects. Simple clear hand shapes, exactly two arms and two legs. These are eight directions, NOT walk frames. Target identity: Young medium brown-skinned Brazilian boy, brown eyes and short fluffy curly dark brown hair, no cap. Open ORANGE short sleeve overshirt over cream tee, TEAL cuffed knee-length shorts, orange/cream canvas sneakers. Small wooden kite reel close to anatomical RIGHT hip in right hand, no loose trailing string. Left arm relaxed, youthful cheerful smile.",
+      "sourceOrder": [
+        0,
+        1,
+        6,
+        3,
+        4,
+        5,
+        2,
+        7
+      ]
+    },
+    {
+      "id": "tiao",
+      "name": "Tião",
+      "ref": "assets/characters/morro-rivals/tiao-v1.png",
+      "height": 90,
+      "identity": "Mature stocky Brazilian man, broad torso and short neck, warm tan skin, short salt-and-pepper dark grey hair with white temples, thick grey eyebrows and neat GREY MOUSTACHE, NO BEARD. Blue short sleeve workshirt open over cream undershirt, olive LONG trousers, brown practical shoes. Small wooden reel cradled at waist with both hands, no trailing string. Clearly mature broad adult, friendly smile, not a child, no goggles.",
+      "prompt": "Create a production directional overworld sprite sheet for Soulmonsters. Image1 is KAEL STYLE ONLY; image2 is TARGET IDENTITY. Do NOT draw Kael. Match image1 precisely: crisp pixel-like clusters, economical flat cel shading, dark thin pixel outline, simple expressive anime eyes, approx 3.5 heads tall with clean slim limbs, modest elevated orthographic RPG camera. NO 3D, NO toddler chibi, NO painted texture. Eight FULL-BODY neutral standing views, planted feet, ONE same character rotated, exactly4 equal columns by2 equal rows on1536x1024canvas, eachcell384x512. Full silhouettes centered inside eachcell,feetbaseline90%, consistent bodyheight about410sourcepixels, generous padding. ORDER top row SOUTH/front, SOUTHWEST/front-left, WEST/profile facing LEFT, NORTHWEST/back-left. Bottom row NORTH/back, NORTHEAST/back-right, EAST/profile facing RIGHT, SOUTHEAST/front-right. No overlapping figures. All clothes/colors/accessory sides consistent through rotation. Transparent background, no floor/no shadow/no text/no labels/no grid/no border/no effects. Simple clear hand shapes, exactly two arms and two legs. These are eight directions, NOT walk frames. Target identity: Mature stocky Brazilian man, broad torso and short neck, warm tan skin, short salt-and-pepper dark grey hair with white temples, thick grey eyebrows and neat GREY MOUSTACHE, NO BEARD. Blue short sleeve workshirt open over cream undershirt, olive LONG trousers, brown practical shoes. Small wooden reel cradled at waist with both hands, no trailing string. Clearly mature broad adult, friendly smile, not a child, no goggles.",
+      "sourceOrder": [
+        0,
+        1,
+        6,
+        3,
+        4,
+        5,
+        2,
+        7
+      ]
+    }
+  ]
+}

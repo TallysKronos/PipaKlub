@@ -1,0 +1,71 @@
+{
+  "checks": 231,
+  "failures": [],
+  "fixtureDirectory": "tmp/kael-gameplay-fixture",
+  "samples": [
+    {
+      "facing": "se",
+      "pixelScale": [
+        1.08606064319611,
+        1.08606064319611
+      ],
+      "scene": "opening-3",
+      "walkDirections": 8
+    },
+    {
+      "facing": "se",
+      "pixelScale": [
+        0.882215440273285,
+        0.882215440273285
+      ],
+      "scene": "professor",
+      "walkDirections": 8
+    },
+    {
+      "facing": "se",
+      "pixelScale": [
+        0.649599969387054,
+        0.649599969387054
+      ],
+      "scene": "street",
+      "walkDirections": 8
+    },
+    {
+      "facing": "se",
+      "pixelScale": [
+        0.896000027656555,
+        0.896000027656555
+      ],
+      "scene": "trail",
+      "walkDirections": 8
+    },
+    {
+      "facing": "se",
+      "pixelScale": [
+        0.896000027656555,
+        0.896000027656555
+      ],
+      "scene": "clearing",
+      "walkDirections": 8
+    },
+    {
+      "facing": "se",
+      "pixelScale": [
+        0.779999971389771,
+        0.779999971389771
+      ],
+      "scene": "park",
+      "walkDirections": 8
+    },
+    {
+      "facing": "se",
+      "pixelScale": [
+        0.694400012493134,
+        0.694400012493134
+      ],
+      "scene": "morro-area-2",
+      "walkDirections": 8
+    }
+  ],
+  "usesProductionSave": false
+}
