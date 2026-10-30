@@ -9,7 +9,7 @@ import {decodePNG} from './png.mjs';
 import {characters} from './character-catalog.mjs';
 test('catalog includes fourteen human actors and four prepared Cerol Hunters',()=>{
  assert.equal(characters.length,18);assert.equal(characters.filter(c=>c.inGame).length,14);
- assert.deepEqual(characters[0].assets.map(a=>a.id),['kael-walk','kael-jump','kael-item']);
+ assert.deepEqual(characters[0].assets.map(a=>a.id),['kael-idle','kael-run','kael-walk','kael-jump','kael-item']);
 });
 test('save persists layered pixels, runtime PNG, native document and recoverable original; rejects stale/structural writes',async t=>{
  const root=await fs.mkdtemp(path.join(os.tmpdir(),'pixelgen-album-'));t.after(()=>fs.rm(root,{recursive:true,force:true}));

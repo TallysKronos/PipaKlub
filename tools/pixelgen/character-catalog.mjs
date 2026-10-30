@@ -3,6 +3,8 @@ const npcNames={professor:'Professor Assis',mae:'Mãe do Kael',nina:'Nina',bia:'
 const asset=(id,label,project,png,runtime=png)=>({id,label,project,png,runtime});
 export const characters=[
  {id:'kael',name:'Kael',role:'Protagonista',group:'Campanha',inGame:true,assets:[
+  asset('kael-idle','Repouso · 8 direções','art/characters/kael-locomotion-v1/kael-idle.pixelgen.json','godot/assets/kael-video/kael-idle-eight.png'),
+  asset('kael-run','Corrida · 8 direções','art/characters/kael-locomotion-v1/kael-run.pixelgen.json','godot/assets/kael-video/kael-run-eight.png'),
   asset('kael-walk','Caminhada · 8 direções','art/characters/kael-video-eight-directions-v1/pacote/kael-eight.pixelgen.json','art/characters/kael-video-eight-directions-v1/pacote/kael-walk-eight.png','godot/assets/kael-video/kael-walk-eight.png'),
   asset('kael-jump','Salto de barranco','art/characters/kael-video-jump-v1/pacote/kael-jump.pixelgen.json','art/characters/kael-video-jump-v1/pacote/kael-jump.png','godot/assets/kael-video/kael-jump.png'),
   asset('kael-item','Receber item','art/characters/kael-video-item-v1/pacote/kael-item.pixelgen.json','art/characters/kael-video-item-v1/pacote/kael-item.png','godot/assets/kael-video/kael-item.png')

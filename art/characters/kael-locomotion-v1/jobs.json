@@ -1,0 +1,68 @@
+[
+  {
+    "direction": "s",
+    "reference": "references\\kael-rest-s.png",
+    "workflow": "workflows\\run-s-local.json",
+    "status": "collected",
+    "prompt_id": "02be9836-9759-4e81-aba0-e23de71f435b",
+    "video": "video-original\\kael-run-s.mp4"
+  },
+  {
+    "direction": "sw",
+    "reference": "references\\kael-rest-sw.png",
+    "workflow": "workflows\\run-sw-local.json",
+    "status": "collected",
+    "prompt_id": "805efb93-3a70-44d4-942f-0f90748051a0",
+    "video": "video-original\\kael-run-sw.mp4"
+  },
+  {
+    "direction": "w",
+    "reference": "references\\kael-rest-w.png",
+    "workflow": "workflows\\run-w-local.json",
+    "status": "collected",
+    "prompt_id": "6d25d190-ddb1-47cf-9336-3d5961185490",
+    "video": "video-original\\kael-run-w.mp4"
+  },
+  {
+    "direction": "nw",
+    "reference": "references\\kael-rest-nw.png",
+    "workflow": "workflows\\run-nw-local.json",
+    "status": "collected",
+    "prompt_id": "01c81a8b-1d7a-40c0-952c-8eef5fade6de",
+    "video": "video-original\\kael-run-nw.mp4"
+  },
+  {
+    "direction": "n",
+    "reference": "references\\kael-rest-n.png",
+    "workflow": "workflows\\run-n-local.json",
+    "status": "collected",
+    "prompt_id": "969a332d-fafc-4704-8e45-c7627607e848",
+    "video": "video-original\\kael-run-n.mp4"
+  },
+  {
+    "direction": "ne",
+    "reference": "references\\kael-rest-ne.png",
+    "workflow": "workflows/run-ne-clean-local.json",
+    "status": "collected",
+    "prompt_id": "caa25be1-ad53-487e-8f47-1ee9ecef0ea2",
+    "previous_prompt_id": "7ef19c89-eef5-45d5-aa87-f4e741302ef1",
+    "rejected_background_prompt_id": "e36b5063-ced1-4747-b07e-c45457d5b958",
+    "video": "video-original\\kael-run-ne.mp4"
+  },
+  {
+    "direction": "e",
+    "reference": "references\\kael-rest-e.png",
+    "workflow": "workflows\\run-e-local.json",
+    "status": "collected",
+    "prompt_id": "405f3709-0038-48a4-b2f6-cc4527c95a06",
+    "video": "video-original\\kael-run-e.mp4"
+  },
+  {
+    "direction": "se",
+    "reference": "references\\kael-rest-se.png",
+    "workflow": "workflows\\run-se-local.json",
+    "status": "collected",
+    "prompt_id": "eeb5aee0-28b9-4087-9d91-3537e2feb1a9",
+    "video": "video-original\\kael-run-se.mp4"
+  }
+]
