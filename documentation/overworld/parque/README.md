@@ -1,3 +1,7 @@
+# Parque dos Ventos — três partes renovadas
+
+Jardim, Clareira e Veredas receberam novas plantas. A parte C inclui riacho recortado, ponte apoiada, pátio elevado e escada. [Relatório das Veredas](relatorios/entrega-veredas.md) registra os testes, capturas e pendências de campanha (Ruínas, Grampo e atalho pós-vitória). Registros abaixo preservam as etapas anteriores.
+
 # Clareira do Papel — parte B
 
 Parte B refeita em 48×40, com roda de encontro, biruta elevada, dois caminhos pelo platô oeste, descanso e capim opcional. [Relatório e limites](relatorios/entrega-clareira.md), capturas em captures/clareira-do-papel/. Jardim e Clareira estão renovados; Veredas ainda aguarda revisão. Os registros abaixo documentam as etapas anteriores.
