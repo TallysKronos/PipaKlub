@@ -46,7 +46,7 @@ export function generateJardim(){
  for(let u=20;u<32;u++)if(u<24||u>26)feature.guards.push({u,v:25,side:'v'});
  for(let v=12;v<26;v++)feature.guards.push({u:31,v,side:'u'});
  feature.guards=feature.guards.filter(g=>{const du=g.side==='u'?1:0,dv=g.side==='v'?1:0;return level[index(g.u,g.v)]>level[index(g.u+du,g.v+dv)]&&!ramps[index(g.u,g.v)]&&!ramps[index(g.u+du,g.v+dv)];});
- const exit=events.find(o=>o.id===45);exit.properties.push(...props({chegada_u:3,chegada_v:13}));
+ const exit=events.find(o=>o.id===45);
  const mapProperties=props({nome:'Parque dos Ventos · Jardim das Pipas',regras:'overworld-1',bioma:'parque',cena_jogo:'park-trail',regiao:'parque-dos-ventos',parte:'A',trajetoria:'ambas',libera_apos:'morro-do-sol',rampa_comprimento:2,forest:JSON.stringify(feature),origem:'desenhar-jardim-das-pipas.mjs'});
  const raw=()=>({type:'map',version:'1.10',orientation:'isometric',width:W,height:H,tilewidth:64,tileheight:32,infinite:false,properties:mapProperties,tilesets:[{firstgid:1,source:'../tiles/rascunho.tsj'}],nextobjectid:next,layers:[{name:'chao',type:'tilelayer',width:W,height:H,data:mat.map(m=>gid[m])},{name:'altura',type:'tilelayer',width:W,height:H,data:level.map((l,i)=>ramps[i]||(l?16+l:0))},{name:'pecas',type:'objectgroup',objects:pieces},{name:'eventos',type:'objectgroup',objects:events}]});
  let m=parseTiled(raw(),{'rascunho.tsj':ts}),seen=reachable(m,m.spawn);
@@ -69,9 +69,13 @@ export function generateJardim(){
  const bReturn=bRaw.layers.find(l=>l.name==='eventos').objects.find(o=>o.type==='saida'&&o.properties.some(p=>p.name==='destino'&&p.value==='park-trail'));
  bReturn.properties=bReturn.properties.filter(p=>!['chegada_u','chegada_v'].includes(p.name));bReturn.properties.push(...props({chegada_u:36,chegada_v:2}));
  const b=parseTiled(bRaw,{'rascunho.tsj':ts});
+ exit.properties=exit.properties.filter(p=>!['chegada_u','chegada_v'].includes(p.name));
+ exit.properties.push(...props({chegada_u:b.spawn.u,chegada_v:b.spawn.v}));
  const c=parseTiled(JSON.parse(fs.readFileSync(root+'art/overworld/mapas/veredas-do-encanamento.tmj')),{'rascunho.tsj':ts});
  const region=[{id:'park-trail',part:'A',map:m},{id:'park-clearing',part:'B',map:b},{id:'park-veredas',part:'C',map:c}];
- const links=[{from:{area:'park-trail',u:36,v:0,direction:'v-'},to:{area:'park-clearing',u:2,v:15,direction:'v+'}},{from:{area:'park-clearing',u:23,v:3,direction:'u+'},to:{area:'park-veredas',u:0,v:13,direction:'u-'}}];
+ const back=b.events.find(e=>e.type==='saida'&&e.props.destino==='park-trail');
+ const forward=b.events.find(e=>e.type==='saida'&&e.props.destino==='park-veredas');
+ const links=[{from:{area:'park-trail',u:36,v:0,direction:'v-'},to:{area:'park-clearing',u:back.u,v:back.v,direction:'v+'}},{from:{area:'park-clearing',u:forward.u,v:forward.v,direction:'u+'},to:{area:'park-veredas',u:0,v:13,direction:'u-'}}];
  const result=auditZeroBreak(m,{region,links,guards:feature.guards});
  console.log(result.lines.join('\n'));if(!result.ok)throw Error('Jardim geometry rejected');
  fs.writeFileSync(root+'art/overworld/mapas/'+ID+'.tmj',JSON.stringify(outRaw,null,1)+'\n');
