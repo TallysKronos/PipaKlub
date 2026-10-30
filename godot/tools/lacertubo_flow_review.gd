@@ -19,11 +19,12 @@ func run() -> void:
 	await place("park-veredas",boss+Vector2(0,5),1260)
 	front.park._physics_process(.016)
 	for i in 90: await process_frame
-	check(dialog()!=null and front.park.guardian_focus,"approach opens presentation and focuses guardian")
-	check(front.session.snapshot().player.flags.get("lacertuboIntroduced",false),"presentation persists")
+	var cinematics:Array=front.find_children("*","Control",true,false).filter(func(node):return node.get_script()!=null and node.get_script().resource_path=="res://scripts/campaign/lacertubo_cinematic.gd")
+	check(cinematics.size()==1 and front.park.guardian_focus,"approach opens cinematic and focuses guardian")
 	await shot("01-apresentacao")
-	await close_dialog()
+	if not cinematics.is_empty():cinematics[0].complete()
 	for i in 60: await process_frame
+	check(front.session.snapshot().player.flags.get("lacertuboIntroduced",false),"finished presentation persists")
 	check(not front.park.paused and not front.park.guardian_focus,"dismiss restores player control")
 	check(front.park.camera.position.distance_to(model.project(front.park.player))<1,"camera returns to Kael")
 	front.park._physics_process(.016)

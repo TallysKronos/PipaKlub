@@ -1250,17 +1250,20 @@ func _park_action(id: String) -> void:
 	var point: Vector2 = park.player
 	var player: Dictionary = session.snapshot().player
 	if id=="guardian-approach":
-		var presented: Dictionary=exploration.introduce_guardian(point)
-		if not _result(presented): park.paused=false; return
-		park.refresh(session.snapshot().player)
-		await park.focus_guardian()
-		if not is_instance_valid(park): return
-		var presentation:=_dialog("Kael","Os canos estão tremendo… É o Lacertubo!\n\nA rabiola da Nina ficou atrás dele. Preciso esperar a vela baixar para encontrar uma abertura.","Voltar ao Kael")
-		presentation.confirmed.connect(presentation.queue_free)
-		presentation.canceled.connect(presentation.queue_free)
-		presentation.tree_exiting.connect(func():
-			if is_instance_valid(park): park.restore_guardian_focus())
-		presentation.popup_centered(Vector2i(640,300))
+		if park.guardian_focus:return
+		var presentation=load("res://scripts/campaign/lacertubo_cinematic.gd").new()
+		presentation.park=park
+		presentation.reduced_motion=preferences.reduced_motion
+		presentation.cue.connect(func(event_id:String):sound.play_event(event_id))
+		var cinema_layer:=CanvasLayer.new()
+		cinema_layer.layer=30
+		add_child(cinema_layer)
+		cinema_layer.add_child(presentation)
+		await presentation.finished
+		cinema_layer.queue_free()
+		if not is_instance_valid(park):return
+		var presented:Dictionary=exploration.introduce_guardian(point)
+		if _result(presented):park.refresh(session.snapshot().player)
 		return
 	if park.get("checkpoint_space")==null and park.get_meta("campaign_scene") != "park-veredas" and id not in ["collection", "bag", "wild"]:
 		_route_action(id)
