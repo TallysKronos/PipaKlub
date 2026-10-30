@@ -62,6 +62,18 @@
       "biome": "veredas"
     },
     {
+      "id": "kronasta-bosque-b",
+      "name": "Bosque dos Ventos · Desvio do Riacho",
+      "scene": "kronasta-bosque-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-bosque-c",
+      "name": "Bosque dos Ventos · Clareira do Marco",
+      "scene": "kronasta-bosque-c",
+      "biome": "floresta"
+    },
+    {
       "id": "kronasta-bosque-a",
       "name": "Bosque dos Ventos · Trilha das Copas",
       "scene": "kronasta-bosque-a",
@@ -77,7 +89,10 @@
     "morro-area-5": "morro-parque-dos-ventos",
     "morro": "morro-praca-da-chegada",
     "quintal": "rua-dos-ventos",
-    "park-veredas": "veredas-do-encanamento"
+    "park-veredas": "veredas-do-encanamento",
+    "kronasta-bosque-b": "kronasta-bosque-b",
+    "kronasta-bosque-c": "kronasta-bosque-c",
+    "kronasta-bosque-a": "kronasta-bosque-a"
   },
   "campaignReplacement": false
 }

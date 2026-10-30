@@ -5,11 +5,19 @@ const PASSABLE := ["grama", "terra", "mato", "ponte", "piso", "calcada", "asfalt
 var data: Dictionary = {}
 var solid: Dictionary = {}
 var graph := AStar2D.new()
+var water_contours: Array[PackedVector2Array] = []
 
 func setup(source: Dictionary) -> void:
 	data = source
 	solid.clear()
 	graph.clear()
+	water_contours.clear()
+	var water: Dictionary = data.get("forest",{}).get("water",{}) if data.get("forest",{}).get("water") != null else {}
+	for name in ["contour","channel"]:
+		if not water.has(name): continue
+		var outline := PackedVector2Array()
+		for p in water[name]: outline.append(Vector2(p[0],p[1]))
+		water_contours.append(outline)
 	for piece in data.pieces:
 		if not piece.blocks: continue
 		for du in int(piece.fu):
@@ -22,7 +30,8 @@ func setup(source: Dictionary) -> void:
 		var cell := Vector2i(id % int(data.w), id / int(data.w))
 		for delta in DIRS.values():
 			var next: Vector2i = cell + delta
-			if can_step(cell, next): graph.connect_points(id, key(next), false)
+			if can_step(cell, next) and (water_contours.is_empty() or clear_segment(Vector2(cell)+Vector2.ONE*.5,Vector2(next)+Vector2.ONE*.5)):
+				graph.connect_points(id, key(next), false)
 
 func key(cell: Vector2i) -> int:
 	return cell.y * int(data.w) + cell.x
@@ -81,11 +90,21 @@ func path_to(from: Vector2, to: Vector2) -> PackedVector2Array:
 
 func clear_segment(a: Vector2, b: Vector2) -> bool:
 	var previous := Vector2i(floori(a.x), floori(a.y))
-	if not walkable(previous): return false
+	if not point_walkable(a): return false
 	for i in range(1, maxi(2, ceili(a.distance_to(b) * 32)) + 1):
 		var p := a.lerp(b, float(i) / maxi(2, ceili(a.distance_to(b) * 32)))
 		var next := Vector2i(floori(p.x), floori(p.y))
 		if previous != next and not can_step(previous, next): return false
-		if not walkable(next): return false
+		if not point_walkable(p): return false
 		previous = next
+	return true
+
+func point_walkable(point: Vector2) -> bool:
+	var at := Vector2i(floori(point.x),floori(point.y))
+	if not walkable(at): return false
+	if cell_at(at).material == "ponte": return true
+	# Curved shorelines can cross a fraction of an otherwise passable grid cell.
+	# Movement uses the same measured aperture as the rendered floor cutout.
+	for outline in water_contours:
+		if Geometry2D.is_point_in_polygon(point,outline): return false
 	return true

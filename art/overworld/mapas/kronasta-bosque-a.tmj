@@ -26830,83 +26830,11 @@
      ]
     },
     {
-     "id": 924,
-     "name": "Pedra",
-     "type": "peca",
-     "x": 688,
-     "y": 1200,
-     "point": true,
-     "width": 0,
-     "height": 0,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "pedra"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "1"
-      }
-     ]
-    },
-    {
      "id": 925,
      "name": "Pedra",
      "type": "peca",
      "x": 944,
      "y": 784,
-     "point": true,
-     "width": 0,
-     "height": 0,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "pedra"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "2"
-      }
-     ]
-    },
-    {
-     "id": 926,
-     "name": "Pedra",
-     "type": "peca",
-     "x": 912,
-     "y": 816,
-     "point": true,
-     "width": 0,
-     "height": 0,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "pedra"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "0"
-      }
-     ]
-    },
-    {
-     "id": 927,
-     "name": "Pedra",
-     "type": "peca",
-     "x": 944,
-     "y": 816,
      "point": true,
      "width": 0,
      "height": 0,
@@ -26950,30 +26878,6 @@
      ]
     },
     {
-     "id": 929,
-     "name": "Pedra",
-     "type": "peca",
-     "x": 656,
-     "y": 464,
-     "point": true,
-     "width": 0,
-     "height": 0,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "pedra"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "0"
-      }
-     ]
-    },
-    {
      "id": 930,
      "name": "Pedra",
      "type": "peca",
@@ -26993,7 +26897,7 @@
       {
        "name": "variante",
        "type": "string",
-       "value": "1"
+       "value": "0"
       }
      ]
     },
@@ -27017,7 +26921,7 @@
       {
        "name": "variante",
        "type": "string",
-       "value": "2"
+       "value": "1"
       }
      ]
     },
@@ -27041,31 +26945,7 @@
       {
        "name": "variante",
        "type": "string",
-       "value": "0"
-      }
-     ]
-    },
-    {
-     "id": 933,
-     "name": "Pedra",
-     "type": "peca",
-     "x": 464,
-     "y": 880,
-     "point": true,
-     "width": 0,
-     "height": 0,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "pedra"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "1"
+       "value": "2"
       }
      ]
     },
@@ -27504,7 +27384,7 @@
      "id": 949,
      "name": "Página do caderno",
      "type": "item",
-     "x": 400,
+     "x": 368,
      "y": 336,
      "point": true,
      "width": 0,
