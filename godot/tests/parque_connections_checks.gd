@@ -1,10 +1,13 @@
 extends SceneTree
-const View = preload("res://scripts/overworld/view.gd")
+var View: GDScript
 var failures: Array[String] = []
 func _initialize() -> void:
 	call_deferred("run")
 func run() -> void:
-	var view := View.new()
+	# Resolve avatar dependencies after project autoloads have entered the tree.
+	View=load("res://scripts/overworld/view.gd")
+	var view: Node2D = View.new()
+	view.art_preview=true
 	root.add_child(view)
 	await process_frame
 	for test in [["clareira-do-papel","mirante-alto",Vector2(61.5,18.5)], ["veredas-do-encanamento","canal-alto",Vector2(61.5,25.5)]]:

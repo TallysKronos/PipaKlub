@@ -3,6 +3,7 @@ const Controls = preload("res://scripts/campaign/controls.gd")
 ## Uses the original room coordinates, footprints and 2:1 projection.
 signal interacted(id: String)
 const Avatar = preload("res://scripts/avatar.gd")
+const NpcPixels = preload("res://scripts/npc_pixel_sprite.gd")
 var data: Dictionary
 var actor := Vector2.ZERO
 var can_walk := false
@@ -54,20 +55,14 @@ func configure(room: Dictionary, point: Array, walk: bool, target: String, mothe
 		props.append({"node": sprite, "rect": prop.footprint, "layer": "flat" if prop.kind == "flat" else "wall" if prop.kind.begins_with("wall") else ""})
 	avatar = Avatar.new()
 	add_child(avatar)
-	avatar.scale = Vector2.ONE * .80 * float(camera.scale)
+	avatar.scale = Vector2.ONE * .80 * Avatar.BODY_SCALE * float(camera.scale)
 	props.append({"node": avatar, "rect": {}, "layer": "", "actor": true})
 	if mother:
 		var npc := Sprite2D.new()
 		if data.get("id") == "professor":
-			npc.texture = load("res://assets/campaign/assis-overworld.png")
-			npc.offset = Vector2(0, -npc.texture.get_height() / 2.0)
-			npc.scale = Vector2.ONE * 102 / npc.texture.get_height() * float(camera.scale)
+			NpcPixels.setup(npc,"professor",NpcPixels.height_for("professor",avatar.scale.y))
 		else:
-			npc.texture = load("res://assets/campaign/mother-overworld.png")
-			npc.region_enabled = true
-			npc.region_rect = Rect2(0, 0, 384, 512)
-			npc.offset = Vector2(-22, -245)
-			npc.scale = Vector2.ONE * .22 * float(camera.scale)
+			NpcPixels.setup(npc,"mae",NpcPixels.height_for("mae",avatar.scale.y))
 		var location: Array = data.layout.blocking.mother
 		mother_point=Vector2(location[0],location[1])
 		mother_sprite=npc
@@ -104,31 +99,24 @@ func opening_pose() -> void:
 	if is_instance_valid(mother_sprite):
 		mother_sprite.position=project(mother_point)+Vector2(0,(1.0-mother_reveal)*40.0*float(camera.scale))
 		if data.get("id")!="professor":
-			var row := 1 if mother_walking and int(clock*7)%2==1 else 0
-			mother_sprite.region_rect=Rect2(mother_facing*384,row*512,384,512)
-			mother_sprite.offset=Vector2(-20,256-(452 if row==1 else 490))
 			if mother_sprite.material!=null:
-				mother_sprite.material.set_shader_parameter("row",float(row))
-				mother_sprite.material.set_shader_parameter("reveal",mother_reveal)
+				NpcPixels.reveal(mother_sprite,mother_reveal)
 		for item in props:
 			if item.node==mother_sprite:item.rect=_foot(mother_point)
 	_update_order()
 
 func face_actor(target: Vector2) -> void:
 	var direction := project(target)-project(actor)
-	avatar.facing=("s" if direction.y>=0 else "n")+("e" if direction.x>=0 else "w")
+	avatar.face_motion(direction)
 
 func face_mother(target: Vector2) -> void:
 	var direction := project(target)-project(mother_point)
 	mother_facing=(2 if direction.x>0 else 1) if absf(direction.x)>absf(direction.y) else (3 if direction.y<0 else 0)
+	if is_instance_valid(mother_sprite):NpcPixels.face_motion(mother_sprite,direction)
 
 func enable_stair_reveal() -> void:
 	if not is_instance_valid(mother_sprite) or mother_sprite.material!=null:return
-	var shader:=Shader.new()
-	shader.code="shader_type canvas_item; uniform float row=0.0; uniform float reveal=1.0; void fragment(){if((UV.y-row*0.5)*2.0>reveal){discard;}}"
-	var material:=ShaderMaterial.new()
-	material.shader=shader
-	mother_sprite.material=material
+	NpcPixels.reveal(mother_sprite,mother_reveal)
 
 func set_story_paused(value: bool) -> void:
 	story_paused=value
@@ -235,6 +223,7 @@ func _process(delta: float) -> void:
 	# Invert the room projection so screen directions match the player's input.
 	var world := Vector2(1.5 * input.x + 3 * input.y, 3 * input.y - 1.5 * input.x).normalized() * input.length() * 360 * minf(delta, .05)
 	var steps := maxi(1, ceili(world.length() / 4))
+	var before := actor
 	for i in steps:
 		var move := world / steps
 		if _safe(actor + move):
@@ -243,8 +232,8 @@ func _process(delta: float) -> void:
 			actor.x += move.x
 		elif _safe(actor + Vector2(0, move.y)):
 			actor.y += move.y
-	avatar.moving = true
-	avatar.facing = ("se" if input.x >= 0 else "sw") if input.y >= 0 else ("ne" if input.x >= 0 else "nw")
+	avatar.moving = actor.distance_to(before)>.01
+	if avatar.moving:avatar.face_motion(project(actor)-project(before))
 	_update_order()
 
 func _unhandled_input(event: InputEvent) -> void:

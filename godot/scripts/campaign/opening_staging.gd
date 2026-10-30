@@ -1,17 +1,18 @@
 extends RefCounted
 ## Presentation only: no rewards, flags or checkpoints are committed here.
 ## Paths stay on room floor; only explicit stair segments enter the stairwell.
-static func alive(room: Node2D) -> bool:
+static func alive(room: Variant) -> bool:
 	return is_instance_valid(room) and room.is_inside_tree()
 
-static func wait(room: Node2D,seconds: float) -> void:
+static func wait(room: Variant,seconds: float) -> void:
+	if not alive(room):return
 	var tree: SceneTree=room.get_tree()
 	var elapsed := 0.0
 	while alive(room) and elapsed<seconds:
 		await tree.process_frame
 		if alive(room) and not room.story_paused:elapsed+=minf(room.get_process_delta_time(),.05)
 
-static func walk(room: Node2D,who: String,points: Array,speed: float=200.0,stair: int=0) -> void:
+static func walk(room: Variant,who: String,points: Array,speed: float=200.0,stair: int=0) -> void:
 	if not alive(room):return
 	var tree: SceneTree=room.get_tree()
 	for target: Vector2 in points:

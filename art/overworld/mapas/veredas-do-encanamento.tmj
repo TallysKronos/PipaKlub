@@ -14418,42 +14418,6 @@
      "y": 720
     },
     {
-     "id": 4004,
-     "name": "canos-patio",
-     "type": "peca",
-     "point": true,
-     "visible": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "canos-patio"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "a"
-      },
-      {
-       "name": "pegada",
-       "type": "string",
-       "value": "1x1"
-      },
-      {
-       "name": "bloqueia",
-       "type": "bool",
-       "value": false
-      },
-      {
-       "name": "origem",
-       "type": "string",
-       "value": "ambientacao-v2"
-      }
-     ],
-     "x": 1424,
-     "y": 368
-    },
-    {
      "id": 4005,
      "name": "canos-patio",
      "type": "peca",
@@ -14468,7 +14432,7 @@
       {
        "name": "variante",
        "type": "string",
-       "value": "a"
+       "value": "b"
       },
       {
        "name": "pegada",
@@ -14486,44 +14450,8 @@
        "value": "ambientacao-v2"
       }
      ],
-     "x": 1712,
-     "y": 528
-    },
-    {
-     "id": 4006,
-     "name": "canos-patio",
-     "type": "peca",
-     "point": true,
-     "visible": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "canos-patio"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "a"
-      },
-      {
-       "name": "pegada",
-       "type": "string",
-       "value": "1x1"
-      },
-      {
-       "name": "bloqueia",
-       "type": "bool",
-       "value": false
-      },
-      {
-       "name": "origem",
-       "type": "string",
-       "value": "ambientacao-v2"
-      }
-     ],
-     "x": 1392,
-     "y": 624
+     "x": 1520,
+     "y": 368
     }
    ]
   },
@@ -14726,40 +14654,6 @@
      ]
     },
     {
-     "id": 43,
-     "name": "Nina",
-     "type": "npc",
-     "x": 976,
-     "y": 1296,
-     "point": true,
-     "width": 0,
-     "height": 0,
-     "rotation": 0,
-     "visible": true,
-     "properties": [
-      {
-       "name": "acao",
-       "type": "string",
-       "value": "veredasNina"
-      },
-      {
-       "name": "fase",
-       "type": "string",
-       "value": "retorno-jardim"
-      },
-      {
-       "name": "visibilidade",
-       "type": "string",
-       "value": "inativo-na-primeira-visita"
-      },
-      {
-       "name": "requer",
-       "type": "string",
-       "value": "ninaReturned"
-      }
-     ]
-    },
-    {
      "id": 1001,
      "name": "Papel de preparação · escondido",
      "type": "item",
@@ -14921,7 +14815,7 @@
     },
     {
      "id": 1100,
-     "name": "Retorno curto ao Jardim · após a vitória",
+     "name": "Atalho para Nina · Jardim das Pipas",
      "type": "saida",
      "x": 2032,
      "y": 624,
@@ -14936,7 +14830,7 @@
       {
        "name": "requer",
        "type": "string",
-       "value": "guardianDefeated"
+       "value": "ninaTail"
       },
       {
        "name": "entrada_destino",

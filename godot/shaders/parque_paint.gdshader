@@ -1,6 +1,7 @@
 shader_type canvas_item;
 render_mode unshaded;
-uniform sampler2D painting : repeat_enable, filter_linear;
+uniform sampler2D painting : source_color, repeat_enable, filter_linear;
+uniform vec4 paint_tint : source_color = vec4(1.0);
 varying vec2 ground_position;
 varying vec4 surface_tint;
 void vertex() {
@@ -9,9 +10,10 @@ void vertex() {
 }
 void fragment() {
     vec4 base = texture(TEXTURE, UV) * surface_tint;
-    vec3 detail = texture(painting, ground_position / vec2(512.0,256.0)).rgb;
-    float value = dot(detail,vec3(0.299,0.587,0.114));
-    // Quiet painted marks, retaining the approved flat terrain palette.
-    float marks = clamp((value-0.502)*0.42,-0.10,0.07);
-    COLOR = vec4(clamp(base.rgb+marks,vec3(0.0),vec3(1.0)),base.a);
+    // One shared world phase across cells, corner patches and ramps. The
+    // original painted colour masses must survive instead of becoming grain.
+    // Mirrored sampling joins imperfect source edges without a visible seam.
+    vec2 p = vec2(1.0)-abs(mod(ground_position / vec2(448.0),vec2(2.0))-vec2(1.0));
+    vec3 paint = texture(painting, p).rgb;
+    COLOR = vec4(paint * paint_tint.rgb, base.a);
 }

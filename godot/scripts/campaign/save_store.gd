@@ -36,9 +36,9 @@ func load_slot(slot_id: String) -> Dictionary:
 		if candidate.status in ["future", "unsupported", "io_error"]:
 			return {"status": candidate.status}
 	if primary.status == "ok":
-		return {"status": "ok", "data": primary.data, "recovered": false,"modifiedAt":FileAccess.get_modified_time(_path(slot_id))}
+		return {"status": "ok", "data": State.migrate_progression(primary.data), "recovered": false,"modifiedAt":FileAccess.get_modified_time(_path(slot_id))}
 	if backup.status == "ok":
-		return {"status": "ok", "data": backup.data, "recovered": true,"modifiedAt":FileAccess.get_modified_time(_path(slot_id)+".bak")}
+		return {"status": "ok", "data": State.migrate_progression(backup.data), "recovered": true,"modifiedAt":FileAccess.get_modified_time(_path(slot_id)+".bak")}
 	return {"status": "missing" if primary.status == "missing" and backup.status == "missing" else "corrupt"}
 
 func create_slot(slot_id: String) -> Dictionary:
@@ -87,7 +87,7 @@ func _save(snapshot: Dictionary, creating: bool) -> Dictionary:
 	var error := DirAccess.make_dir_recursive_absolute(directory)
 	if error != OK:
 		return {"status": "io_error", "error": error}
-	var next := snapshot.duplicate(true)
+	var next := State.migrate_progression(snapshot)
 	next.revision = int(snapshot.revision) + 1
 	next.savedAt=int(Time.get_unix_time_from_system())
 	var path := _path(slot_id)

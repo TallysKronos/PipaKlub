@@ -1,0 +1,17 @@
+{
+  "map": "clareira-do-papel",
+  "mapSha256": "978e63707739acc825ae979c6dfca081bc14a6409308c5b1bd6d4d9de11cd1b8",
+  "size": [
+    64,
+    48
+  ],
+  "density": 16,
+  "halo": 3,
+  "sources": {
+    "terra.png": "Approved terrain-pilot-v3 imagegen original",
+    "grama.png": "Approved terrain-pilot-v4 imagegen original",
+    "barranco.png": "Approved simplified terrain-pilot-v5/barranco-manga-v2.png"
+  },
+  "mask": "clareira-contour.png",
+  "rebuild": "godot --headless --path godot --script res://tools/bake_clareira_terrain.gd"
+}

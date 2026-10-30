@@ -27,9 +27,9 @@ static func preview(player: Dictionary, encounter: Dictionary, model: RefCounted
 		if reward.get("drop") != null: summary.items.append("Rabiola de Raio de sol")
 	elif won:
 		var boss: bool = encounter.get("kind", "") == "lacertubo"
-		amount = Encounters.reward_amount(boss, encounter.get("scene", "park-veredas"), model.enemy_model_id)
+		amount = Encounters.reward_for(encounter,model.snapshot())
 		if boss: summary.items.append("Rabiola de Lacertubo")
-		else:
+		elif encounter.get("kind","")!="trainer":
 			var drop: Dictionary = player.get("wildDrop", {"intro": false, "misses": 0})
 			if not drop.intro or drop.misses >= 7 or encounter.get("dropRoll", 1) < .25:
 				var name: String = {"basica": "Carcará", "mata": "Mata verde", "raio": "Raio de sol"}.get(model.enemy_model_id, model.enemy_model_id)
@@ -40,7 +40,7 @@ static func preview(player: Dictionary, encounter: Dictionary, model: RefCounted
 		var item_id:String={"Rabiola de Mata verde":"rabiola-mata","Rabiola de Lacertubo":"rabiola-lacertubo","Rabiola de Carcará":"rabiola-basica","Rabiola de Raio de sol":"rabiola-raio"}.get(item,"")
 		if not item_id.is_empty() and player.get("inventory",{}).get(item_id,0)==0:summary.new_items.append(item)
 	if won and encounter.get("kind","")=="lacertubo" and not player.get("flags",{}).get("ninaTail",false):
-		summary.notice="A rabiola de Nina ficou no chão. Procure-a na clareira."
+		summary.notice="A rabiola de Nina ficou no chão. Procure-a no pátio, atrás do guardião."
 	summary.after = summary.before + summary.xp
 	var projected:Dictionary=player.duplicate(true)
 	var projected_partner:Dictionary=partner.duplicate(true)

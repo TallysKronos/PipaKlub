@@ -8,6 +8,7 @@ uniform sampler2D grass_b : repeat_enable, filter_linear;
 uniform sampler2D dirt : repeat_enable, filter_linear;
 uniform vec2 map_size = vec2(1.0);
 uniform float tex_scale = 0.0026;
+vec2 mirror_uv(vec2 p){return vec2(1.0)-abs(mod(p,vec2(2.0))-vec2(1.0));}
 varying vec2 world;
 
 void vertex() {
@@ -19,7 +20,7 @@ void fragment() {
 	vec2 tuv = world * tex_scale;
 	float grain = texture(grass_a, tuv * 3.7 + vec2(.21, .63)).g;
 	float patch = smoothstep(.40, .60, m.b + (grain - .5) * .10);
-	vec3 grass = mix(texture(grass_a, tuv).rgb * vec3(1.07, 1.05, .90), texture(grass_b, tuv + vec2(.37, .11)).rgb * vec3(.84, .95, .86), patch);
+	vec3 grass = mix(texture(grass_a, mirror_uv(tuv)).rgb, texture(grass_b, mirror_uv(tuv + vec2(.37, .11))).rgb * vec3(.93, .97, .94), patch);
 	// Mato de encontro: grama mais funda e saturada.
 	grass = mix(grass, grass * vec3(.80, .98, .78), smoothstep(.35, .7, m.a));
 	// Sob as copas: chão em sombra profunda e fria.
@@ -28,7 +29,7 @@ void fragment() {
 	float path = smoothstep(.47, .55, edge);
 	float rim = smoothstep(.28, .47, edge) * (1.0 - path);
 	grass *= 1.0 - rim * .20;
-	vec3 soil = texture(dirt, tuv * 1.15).rgb;
+	vec3 soil = texture(dirt, mirror_uv(tuv * 1.15)).rgb;
 	soil *= mix(.86, 1.04, smoothstep(.55, .85, edge)); // centro da trilha mais claro
 	vec3 col = mix(grass, soil, path);
 	COLOR = vec4(col * COLOR.rgb, 1.0);

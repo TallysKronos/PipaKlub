@@ -25,6 +25,7 @@ var trail: Array[Vector2] = []
 var foot_radius := 10.0
 var exploration_hud:Control
 var ambient_seen:Dictionary={}
+var landscape: Node2D
 func ambient_speech(id:String) -> void:
 	if id.is_empty() or ambient_seen.has(id):return
 	for place in data.places:
@@ -34,7 +35,7 @@ func ambient_speech(id:String) -> void:
 		load("res://scripts/campaign/hud_world_speech.gd").spawn(self,project(Vector2(place.point[0],place.point[1])),str(story.before[0][1]))
 
 func project(point: Vector2) -> Vector2:
-	return Vector2((point.x - point.y) * .82 + 930, (point.x + point.y) * .41 + 20)
+	return landscape.project(point) if is_instance_valid(landscape) else Vector2((point.x - point.y) * .82 + 930, (point.x + point.y) * .41 + 20)
 
 func safe(point: Vector2) -> bool:
 	if not point.is_finite(): return false
@@ -65,31 +66,46 @@ func in_grass(point: Vector2) -> bool:
 	return false
 
 func _ready() -> void:
+	Controls.install()
 	if not safe(player): player = Vector2(data.spawn[0], data.spawn[1])
 	follower = player
-	var floor_sprite := Sprite2D.new()
-	floor_sprite.texture = load("res://assets/campaign/park/" + data.floorImage)
-	floor_sprite.centered = false
-	add_child(floor_sprite)
-	for prop in data.props:
-		var sprite := Sprite2D.new()
-		sprite.texture = load("res://assets/campaign/park/" + prop.image)
-		sprite.centered = false
-		sprite.position = Vector2(prop.rect[0], prop.rect[1])
-		sprite.z_index = int(prop.depth)
-		add_child(sprite)
+	if data.id in ["park-trail","park-clearing"]:
+		data=data.duplicate(true)
+		landscape=load("res://scripts/overworld/park_landscape.gd").new()
+		add_child(landscape)
+		landscape.build(data.id,data)
+		data.blocked=data.blocked.filter(func(block: Dictionary):return not str(block.name).begins_with("coreto-post-"))
+		data.blocked.append_array(landscape.static_blockers)
+		if not safe(player):
+			for offset in [Vector2(24,0),Vector2(-24,0),Vector2(0,24),Vector2(0,-24),Vector2(40,40)]:
+				if safe(player+offset):player+=offset;break
+			if not safe(player):player=Vector2(data.spawn[0],data.spawn[1])
+		follower=player
+	else:
+		var floor_sprite := Sprite2D.new()
+		floor_sprite.texture = load("res://assets/campaign/park/" + data.floorImage)
+		floor_sprite.centered = false
+		add_child(floor_sprite)
+		for prop in data.props:
+			var sprite := Sprite2D.new()
+			sprite.texture = load("res://assets/campaign/park/" + prop.image)
+			sprite.centered = false
+			sprite.position = Vector2(prop.rect[0], prop.rect[1])
+			sprite.z_index = int(prop.depth)
+			add_child(sprite)
 	for place in data.places:
 		if place.action != "wildGuide": continue
+		if is_instance_valid(landscape) and data.id=="park-clearing":continue
 		var professor := Sprite2D.new()
 		professor.texture = load("res://assets/campaign/assis-overworld.png")
 		professor.offset = Vector2(0, -professor.texture.get_height() / 2.0)
 		professor.scale = Vector2.ONE * 90 / professor.texture.get_height()
 		professor.position = project(Vector2(place.point[0], place.point[1]) + Vector2(0, -35))
-		professor.z_index = int(professor.position.y)
+		professor.z_index = landscape.depth(Vector2(place.point[0],place.point[1])+Vector2(0,-35)) if is_instance_valid(landscape) else int(professor.position.y)
 		add_child(professor)
 	avatar = Avatar.new()
 	add_child(avatar)
-	avatar.scale = Vector2.ONE * .8
+	avatar.scale = Vector2.ONE * .8 * Avatar.BODY_SCALE
 	companion = Sprite2D.new()
 	var partner_id: String = "rabbito"
 	for partner in saved_player.partners:
@@ -123,9 +139,9 @@ func _ready() -> void:
 
 func _refresh() -> void:
 	avatar.position = project(player)
-	avatar.z_index = int(avatar.position.y)
+	avatar.z_index = landscape.depth(player) if is_instance_valid(landscape) else int(avatar.position.y)
 	companion.position = project(follower)
-	companion.z_index = int(companion.position.y)
+	companion.z_index = landscape.depth(follower) if is_instance_valid(landscape) else int(companion.position.y)
 	var frame: Dictionary = frames[int(clock * 12) % frames.size()]
 	companion.region_rect = Rect2(frame.x, frame.y, frame.w, frame.h)
 	camera.position = project(player)
@@ -141,12 +157,14 @@ func _physics_process(delta: float) -> void:
 	var steps := maxi(1, ceili(movement.length() / 3))
 	for index in steps:
 		var step := movement / steps
-		if safe(player + step): player += step
-		elif safe(player + Vector2(step.x, 0)): player.x += step.x
-		elif safe(player + Vector2(0, step.y)): player.y += step.y
+		if safe(player + step) and _connected(player,player+step): player += step
+		elif safe(player + Vector2(step.x, 0)) and _connected(player,player+Vector2(step.x,0)): player.x += step.x
+		elif safe(player + Vector2(0, step.y)) and _connected(player,player+Vector2(0,step.y)): player.y += step.y
 		if trail.is_empty() or trail.back().distance_to(player) >= 2: trail.append(player)
 	avatar.moving = before.distance_to(player) > .01
-	if avatar.moving: avatar.facing = ("n" if input.y < 0 else "s") + ("w" if input.x < 0 else "e")
+	if avatar.moving:
+		var direction: Vector2 = landscape.planar(player)-landscape.planar(before) if is_instance_valid(landscape) else project(player)-project(before)
+		avatar.face_motion(direction)
 	var remaining := 0.0
 	var previous := follower
 	for point in trail:
@@ -157,7 +175,7 @@ func _physics_process(delta: float) -> void:
 		var length := follower.distance_to(trail[0])
 		var amount := minf(budget, length)
 		var candidate := follower.move_toward(trail[0], amount)
-		if not safe(candidate): break
+		if not safe(candidate) or not _connected(follower,candidate): break
 		follower = candidate
 		budget -= amount
 		if length <= amount + .001: trail.pop_front()
@@ -189,3 +207,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 			action_requested.emit(near)
 
+
+func _connected(a: Vector2,b: Vector2) -> bool:
+	return not is_instance_valid(landscape) or landscape.connected(a,b)

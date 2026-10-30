@@ -16,6 +16,10 @@ config/use_custom_user_dir=true
 config/custom_user_dir_name="PipaKlub"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
+[autoload]
+
+PixelgenSprites="*res://scripts/pixelgen_sprites.gd"
+
 [display]
 
 window/size/viewport_width=1280

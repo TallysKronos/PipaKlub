@@ -297,8 +297,12 @@ func dress() -> void:
 		{"id":"lia","name":"Lia · Linha & Papel","p":Vector2(25.8,-.6),"image":"res://assets/campaign/morro/bia.png","line":"Pode chegar! Linha, papel e um bom conselho nunca faltam. Escolha um papel que goste de dançar com o vento, não só um que brilhe na vitrine."},
 		{"id":"zeca","name":"Zeca","p":Vector2(22.8,18.5),"image":"res://assets/campaign/morro/zeca.png","line":"Um banco na sombra e espaço pra empinar pipa… essa pracinha é nosso ponto de encontro."}]
 	for person in people:
-		var crop := Rect2(125,65,232,380) if person.id=="lia" else Rect2(122,60,221,387) if person.id=="zeca" else Rect2()
-		billboard(person.image,person.p,support(person.p),PERSON_HEIGHT,false,crop)
+		var id: String="professor" if person.id=="assis" else person.id
+		person.image="res://assets/npc-ds/"+id+".png"
+		var pixels=preload("res://scripts/npc_pixel_sprite.gd")
+		var kael=preload("res://scripts/kael_video_avatar.gd")
+		billboard(person.image,person.p,support(person.p),pixels.height_for(id,.58*kael.BODY_SCALE),false,Rect2(192,96,64,96))
+		parts.back().node.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	street_sign(Vector2(9.4,20),support(Vector2(9.4,20))+30,"RUA DO PRIMEIRO VENTO",.8,true)
 	street_sign(Vector2(18.8,13.5),support(Vector2(18.8,13.5))+30,"LADEIRA DAS RABIOLAS",.8,true)
 	street_sign(Vector2(19.8,.2),support(Vector2(19.8,.2))+30,"RUA DOS INVENTOS",.8,true)

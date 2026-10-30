@@ -12,7 +12,7 @@ func check(value: bool, text: String) -> void:
 		failures += 1
 		printerr("FAIL: ", text)
 func _initialize() -> void:
-	var directory := "user://morro-transactions-" + State.new_id()
+	var directory := ProjectSettings.globalize_path("res://../tmp/morro-transactions-" + State.new_id())
 	var session := Session.new()
 	session._store = Store.new(directory)
 	check(session.start("slot-1").status == "ok", "create isolated slot")

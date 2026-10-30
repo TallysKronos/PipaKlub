@@ -5,19 +5,25 @@ var actors: Node2D
 var kit: Dictionary
 var decks: Dictionary = {}
 var water_material: ShaderMaterial
+var paint: Callable
+var shoreline: RefCounted
+var channel_tried := false
+var natural_channel := false
 
-func _init(source: RefCounted, parent: Node2D, art: Dictionary) -> void:
+func _init(source: RefCounted, parent: Node2D, art: Dictionary, painter: Callable = Callable()) -> void:
 	model = source
 	actors = parent
 	kit = art
+	paint = painter
 	water_material = ShaderMaterial.new()
 	water_material.shader = preload("res://shaders/overworld/water_surface.gdshader")
-	water_material.set_shader_parameter("surface_texture",load("res://assets/overworld/kits/aguas-v1/surfaces/rio-claro.png"))
+	water_material.set_shader_parameter("surface_texture",load(kit.root+kit.mangaWater.get("surface","../cavernas-v3/surfaces/agua-linhas.png")))
+	water_material.set_shader_parameter("screen_space_surface",true)
 	var mask := Image.create(1,1,false,Image.FORMAT_RGBA8)
 	mask.fill(Color(0,0,0,1))
 	water_material.set_shader_parameter("shore_texture",ImageTexture.create_from_image(mask))
 	water_material.set_shader_parameter("flow_direction",Vector2(1,0))
-	water_material.set_shader_parameter("cycle_seconds",4.0)
+	water_material.set_shader_parameter("cycle_seconds",32.0)
 
 func polygon(parent: Node2D, points: PackedVector2Array, color: Color) -> Polygon2D:
 	var item := Polygon2D.new()
@@ -36,6 +42,12 @@ func line(parent: Node2D, points: PackedVector2Array, color: Color, width: float
 	parent.add_child(item)
 
 func draw_water(at: Vector2i, cell: Dictionary, beneath_bridge: bool = false) -> void:
+	if not channel_tried:
+		channel_tried = true
+		if paint.is_valid() and kit.has("wallSurfaces"):
+			shoreline = preload("res://scripts/overworld/parque_shoreline.gd").new()
+			natural_channel = shoreline.build(model,actors,kit,water_material,paint)
+	if natural_channel: return
 	var depth := float(kit.mangaWater.depthPx)
 	var root := Node2D.new()
 	root.name = "AguaRebaixada"
@@ -63,7 +75,12 @@ func draw_water(at: Vector2i, cell: Dictionary, beneath_bridge: bool = false) ->
 		var a: Vector2 = corners[i]
 		var b: Vector2 = corners[(i+1)%4]
 		var down := Vector2(0,depth)
-		polygon(shore,PackedVector2Array([a,b,b+down,a+down]),Color("8B744B") if i in [0,3] else Color("AE905A"))
+		var bank := polygon(shore,PackedVector2Array([a,b,b+down,a+down]),Color("c6ac86") if i in [0,3] else Color("9a8269"))
+		bank.texture = load("res://assets/overworld/kits/bairro-inicial-v2/surfaces/terra-fundacao.png")
+		bank.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
+		# Shared phase follows the bank run, never restarts each cell.
+		var phase := float(at.x if i in [0,2] else at.y)*64.0
+		bank.uv = PackedVector2Array([Vector2(phase,0),Vector2(phase+64,0),Vector2(phase+64,depth),Vector2(phase,depth)])
 		line(shore,PackedVector2Array([a+down,b+down]),Color("205563"),2.0)
 		line(shore,PackedVector2Array([a,b]),Color("456B43"),2.4)
 		# Short ink hatching on exposed earth, drawn at a fixed native scale.

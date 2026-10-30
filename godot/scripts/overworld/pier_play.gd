@@ -68,7 +68,7 @@ func _ready() -> void:
 	avatar = Avatar.new()
 	avatar.material = player_material
 	player_root.add_child(avatar)
-	avatar.scale = Vector2.ONE*.58
+	avatar.scale = Vector2.ONE*.58*Avatar.BODY_SCALE
 	_shadow(player_root,player_material,Vector2(10,4))
 	partner_root = Node2D.new()
 	partner_root.z_index = 9
@@ -205,7 +205,7 @@ func _physics_process(delta: float) -> void:
 	avatar.moving = old.distance_to(cell)>.0001 or not ladder.is_empty()
 	if avatar.moving and ladder.is_empty():
 		var screen: Vector2 = world.iso(cell)-world.iso(old)
-		avatar.facing = "se" if screen.x>=0 and screen.y>=0 else "ne" if screen.x>=0 else "sw" if screen.y>=0 else "nw"
+		avatar.face_motion(screen)
 	_refresh_visuals()
 	_update_hint()
 	var look: Vector2 = (world.iso(cell)-world.iso(old))*8

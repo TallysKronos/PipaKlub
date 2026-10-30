@@ -9,8 +9,8 @@ const TutorialStaging=preload("res://scripts/campaign/tutorial_staging.gd")
 const Morro = preload("res://scripts/campaign/morro.gd")
 const MorroView = preload("res://scripts/campaign/morro_view.gd")
 const MorroBattleView = preload("res://scripts/campaign/morro_battle_view.gd")
-const ParkView = preload("res://scripts/campaign/park_view.gd")
-const ParkRouteView = preload("res://scripts/campaign/park_route_view.gd")
+const ParkOverworldView = preload("res://scripts/campaign/park_overworld_view.gd")
+const ParkCheckpoint = preload("res://scripts/campaign/park_checkpoint.gd")
 const Exploration = preload("res://scripts/campaign/exploration.gd")
 const Encounters = preload("res://scripts/campaign/encounters.gd")
 const EncounterView = preload("res://scripts/campaign/encounter_view.gd")
@@ -316,6 +316,7 @@ func _confirmation(title:String,text:String,ok:String) -> Control:
 
 func _notice(message: String) -> void:
 	if is_instance_valid(park) and (message.begins_with("Baú encontrado") or message=="Rabiola do Carcará de Nina recebida."):
+		if park.has_method("celebrate_item") and park.celebrate_item(message):return
 		park.exploration_hud.push_notice(message,"item")
 		return
 	if is_instance_valid(park): park.paused = true
@@ -603,7 +604,7 @@ func _show_world() -> void:
 		_show_morro()
 		return
 	if session.snapshot().checkpoint.scene in ["park-trail", "park-clearing", "park-veredas"]:
-		_show_park()
+		_load_park()
 		return
 	_clear()
 	_stage_container()
@@ -1138,6 +1139,28 @@ func _notification(what: int) -> void:
 				return
 		get_tree().quit()
 
+func _load_park() -> void:
+	if DisplayServer.get_name()=="headless": _show_park(); return
+	if is_instance_valid(scene_loading): return
+	scene_loading=load("res://scripts/campaign/hud_scene_loading.gd").new()
+	scene_loading.reduced_motion=preferences.reduced_motion
+	add_child(scene_loading)
+	flow_busy=true
+	if is_instance_valid(park): park.paused=true
+	await scene_loading.cover()
+	if not is_inside_tree(): return
+	_show_park()
+	flow_busy=true
+	if is_instance_valid(park): park.paused=true
+	await get_tree().process_frame
+	await RenderingServer.frame_post_draw
+	if is_instance_valid(scene_loading):
+		await scene_loading.reveal()
+		scene_loading.queue_free()
+	scene_loading=null
+	flow_busy=false
+	if is_instance_valid(park): park.paused=false
+
 func _show_park() -> void:
 	_clear()
 	var container := SubViewportContainer.new()
@@ -1150,25 +1173,24 @@ func _show_park() -> void:
 	viewport.world_2d = World2D.new()
 	container.add_child(viewport)
 	var saved: Dictionary = session.snapshot()
-	if saved.checkpoint.scene != "park-veredas":
-		park = ParkRouteView.new()
-		park.ui_theme = theme
-		var maps: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/park/maps.json"))
-		park.data = maps[saved.checkpoint.scene]
-		park.content = content
-		park.player = Vector2(saved.checkpoint.position[0], saved.checkpoint.position[1])
-	else:
-		park = ParkView.new()
-		park.ui_theme = theme
-		park.spawn_point = Vector2(saved.checkpoint.position[0], saved.checkpoint.position[1])
+	if saved.checkpoint.get("space","")!=ParkCheckpoint.SPACE:
+		if not _result(journey.enter_world(saved.checkpoint.scene,ParkCheckpoint.resolve(saved.checkpoint),ParkCheckpoint.SPACE)): return
+		saved=session.snapshot()
+	park = ParkOverworldView.new()
+	park.ui_theme = theme
+	park.content = content
+	park.saved_checkpoint = saved.checkpoint
 	park.set_meta("campaign_scene", saved.checkpoint.scene)
 	park.saved_player = saved.player
+	park.reduced_motion = preferences.reduced_motion
 	viewport.add_child(park)
 	park.action_requested.connect(_park_action)
 	park.menu_requested.connect(_pause_game)
+	park.exit_requested.connect(_park_exit)
 
 func _save_park() -> bool:
-	var result: Dictionary = journey.enter_world(park.get_meta("campaign_scene"), park.player)
+	var space: String = park.get("checkpoint_space") if park.get("checkpoint_space")!=null else ""
+	var result: Dictionary = journey.enter_world(park.get_meta("campaign_scene"), park.player,space)
 	if result.status != "ok":
 		park.paused = true
 		_notice(_error(result.status))
@@ -1178,6 +1200,34 @@ func _save_park() -> bool:
 		park.exploration_hud.push_notice("Progresso salvo","saved")
 	return true
 
+func _park_exit(event: Dictionary) -> void:
+	if not _save_park(): return
+	var saved: Dictionary = session.snapshot()
+	var destination: Dictionary = ParkCheckpoint.exit_target(saved.checkpoint,str(int(event.id)),saved.player)
+	if not _result(destination): return
+	park.paused=true
+	if _result(journey.enter_world(destination.scene,destination.point,destination.space)): _show_saved.call_deferred()
+	else: park.paused=false
+
+func _park_event(id: String) -> void:
+	var player: Dictionary = session.snapshot().player
+	for event in park.model.data.events:
+		if str(int(event.id))!=id or not ParkCheckpoint.allowed(event,player,park.area_id): continue
+		if park.player.distance_to(Vector2(event.u+.5,event.v+.5))>1.8: return
+		var action: String = event.props.get("acao","")
+		if action=="parkMap": _show_map()
+		elif action=="wildGuide" and park.area_id=="jardim-das-pipas": _park_training("assis")
+		elif action=="wildGuide": _notice("Sr. Assis: Pipamons podem aparecer enquanto você caminha pelo parque. No capim alto os encontros são mais frequentes. Pontes e lugares de conversa são tranquilos. Os bancos recuperam linha e estrutura; o professor também pode ajudar.")
+		elif action=="wildRest":
+			_confirm_park("Um respiro no parque", "Descanse no banco para recuperar a linha e a estrutura de toda a equipe. Não custa moedas e não concede experiência.", "Descansar", func():
+				if _result(exploration.rest(park.player)):
+					park.path.clear()
+					park.refresh(session.snapshot().player)
+					park.encounter_grace=6.0
+					park.exploration_hud.push_notice("Equipe recuperada · linha e estrutura completas","item"))
+		else: _notice(event.props.get("texto",{"parkBossGuide":"Há papel preso nos galhos e marcas seguindo para o canal. Nina disse que a rabiola foi levada para os canos. Siga a trilha; o pátio fica na parte alta.","veredasTrace":"Um pedaço da linha de Nina está preso aqui. As marcas continuam em direção aos canos, na parte alta das Veredas.","veredasPipes":"Os canos vibram em intervalos… e há uma rabiola presa logo adiante. O Lacertubo está no pátio. Há um banco atrás de você para recuperar sua equipe antes de se aproximar."}.get(action,event.name)))
+		return
+
 func _park_action(id: String) -> void:
 	if id == "autosave":
 		_save_park()
@@ -1185,8 +1235,34 @@ func _park_action(id: String) -> void:
 	if not _save_park(): return
 	var point: Vector2 = park.player
 	var player: Dictionary = session.snapshot().player
-	if park.get_meta("campaign_scene") != "park-veredas" and id not in ["collection", "bag", "wild"]:
+	if id=="guardian-approach":
+		var presented: Dictionary=exploration.introduce_guardian(point)
+		if not _result(presented): park.paused=false; return
+		park.refresh(session.snapshot().player)
+		await park.focus_guardian()
+		if not is_instance_valid(park): return
+		var presentation:=_dialog("Kael","Os canos estão tremendo… É o Lacertubo!\n\nA rabiola da Nina ficou atrás dele. Preciso esperar a vela baixar para encontrar uma abertura.","Voltar ao Kael")
+		presentation.confirmed.connect(presentation.queue_free)
+		presentation.canceled.connect(presentation.queue_free)
+		presentation.tree_exiting.connect(func():
+			if is_instance_valid(park): park.restore_guardian_focus())
+		presentation.popup_centered(Vector2i(640,300))
+		return
+	if park.get("checkpoint_space")==null and park.get_meta("campaign_scene") != "park-veredas" and id not in ["collection", "bag", "wild"]:
 		_route_action(id)
+		return
+	if id.begins_with("training:"):
+		_park_training(id.trim_prefix("training:"))
+		return
+	if id.begins_with("park-loot:"):
+		var reward: Dictionary = exploration.park_loot(id.trim_prefix("park-loot:"),point)
+		if reward.status=="already_applied": _notice("Você já recolheu isso."); return
+		if _result(reward):
+			park.refresh(session.snapshot().player)
+			park.celebrate_item("Recebido · "+reward.get("reward","Item"))
+		return
+	if id.begins_with("park-event:"):
+		_park_event(id.trim_prefix("park-event:"))
 		return
 	if id == "exit":
 		if _result(journey.enter_world("park-clearing", Vector2(1232, 400))): _show_saved.call_deferred()
@@ -1197,7 +1273,7 @@ func _park_action(id: String) -> void:
 		if result.status == "ok":
 			park.paused = true
 			_show_saved.call_deferred()
-		elif result.status == "repair_needed": _notice("Seu parceiro precisa de reparos. O professor pode ajudar.")
+		elif result.status == "repair_needed": _notice("Seu parceiro precisa se recuperar. Descanse em um banco do parque ou procure o professor.")
 	elif id.begins_with("chest:"):
 		var chest_id := id.trim_prefix("chest:")
 		var result: Dictionary = exploration.chest(chest_id, point)
@@ -1214,21 +1290,47 @@ func _park_action(id: String) -> void:
 		elif not player.flags.get("ninaAccepted", false):
 			_confirm_park("Nina", "[emo=suor]Meu Carcará tentou me proteger daquele lagarto. A linha rompeu e ele se recolheu na rabiola… O vento levou ela para os canos. Você consegue trazer a rabiola dele?", "Vou recuperar a rabiola", func():
 				if _result(exploration.accept_nina(point)): park.refresh(session.snapshot().player))
-		else: _notice("Nina: Ele arma a vela antes de puxar… Depois fica parado por um instante.")
+		else: _notice("Nina: Siga pelo Jardim até a Clareira e procure os canos nas Veredas. Os pipeiros pelo caminho podem treinar com você. Ele arma a vela antes de puxar… Depois fica parado por um instante.")
 	elif id == "tail":
 		if _result(exploration.collect_tail(point)):
 			park.refresh(session.snapshot().player)
 			_notice("Rabiola do Carcará de Nina recebida.")
 	elif id == "boss":
-		if not player.flags.get("ninaAccepted", false):
-			_notice("Há alguém na clareira, perto dos canos.")
+		if _training_needs_recovery(player):
+			_notice("Seu parceiro está sem condições de lutar. Recue até o banco junto à subida dos canos para recuperar a equipe.")
 			return
-		_confirm_park("Lacertubo · Guardião dos canos", "Parceiro recomendado: Nv. 15. Você pode fugir e continua com seu parceiro se perder.", "Enfrentar Lacertubo", func():
+		if not player.flags.get("ninaAccepted", false):
+			_notice("Converse com Nina no Jardim das Pipas antes de enfrentar o guardião.")
+			return
+		var Training=preload("res://scripts/campaign/park_training.gd")
+		var current: int=Training.level(player)
+		var preparation: String="A rabiola de Nina está atrás dele. Seu parceiro está no Nv. %d. Recomendado: Nv. 8. " % current
+		if current<8: preparation+="Ainda será uma luta difícil: os duelos opcionais dos pipeiros dão experiência na primeira vitória. Você pode se preparar e voltar. "
+		preparation+="Observe a preparação do golpe e ataque quando ele baixar a guarda. Se perder, seu parceiro continua com você; recupere-o em um banco."
+		_confirm_park("Lacertubo · Guardião dos canos", preparation, "Enfrentar Lacertubo", func():
 			if _result(encounters.start_boss(point)): _show_saved.call_deferred())
 
+func _training_needs_recovery(player: Dictionary) -> bool:
+	return preload("res://scripts/campaign/park_training.gd").needs_rest(player)
+
+func _park_training(id: String) -> void:
+	var Training=preload("res://scripts/campaign/park_training.gd")
+	var entry: Dictionary=Training.duel(id)
+	if entry.is_empty(): return
+	var player: Dictionary=session.snapshot().player
+	if Training.completed(player,id):
+		_notice("%s: %s Já concluímos nosso duelo. Siga explorando; os bancos recuperam sua equipe." % [entry.name,entry.tip])
+		return
+	var introduction: String=str(entry.get("intro",""))
+	var text: String=(introduction+"\n\n" if not introduction.is_empty() else "")+"%s\n\nDuelo opcional · adversário Nv. %d · +%d XP na primeira vitória. Seu parceiro está no Nv. %d. Não há rabiola como prêmio." % [entry.tip,entry.level,entry.xp,Training.level(player)]
+	_confirm_park(entry.name,text,"Vamos treinar",func():
+		var result: Dictionary=encounters.start_training(id,park.player)
+		if _result(result) and result.status=="ok": _show_saved.call_deferred())
+
 func _confirm_park(title: String, text: String, accept: String, callback: Callable) -> void:
+	park.path.clear()
 	park.paused = true
-	var dialog := _dialog(title, text, accept, "Conversar depois")
+	var dialog := _dialog(title, text, accept, "Agora não")
 	dialog.confirmed.connect(callback)
 	dialog.confirmed.connect(dialog.queue_free)
 	dialog.canceled.connect(dialog.queue_free)
@@ -1338,10 +1440,10 @@ func _show_collection() -> void:
 		var progress := ProgressBar.new()
 		progress.theme_type_variation="RecorteXPBar"
 		var xp: int = partner.get("xp", 0)
-		var previous: int = 40 * (level - 1) + 10 * (level - 1) * (level - 1)
-		var threshold: int = 40 * level + 10 * level * level
+		var previous: int = EncounterView.Model.xp_for_level(level)
+		var threshold: int = EncounterView.Model.xp_for_level(level+1) if level<50 else previous+1
 		progress.max_value = threshold - previous
-		progress.value = xp - previous
+		progress.value = xp - previous if level<50 else progress.max_value
 		progress.show_percentage = false
 		progress.custom_minimum_size.y = 12
 		details.add_child(progress)
@@ -1400,13 +1502,20 @@ func _show_bag() -> void:
 	Hud.input_hint(footer,"line","Próxima aba")
 
 func _show_map() -> void:
+	if not _remember_world_position(): return
 	sound.play_event("ui.map")
 	var subject:Node2D=park if is_instance_valid(park) else room
 	var polygons:Array[PackedVector2Array]=[]
 	var point:=Vector2.ZERO
 	if is_instance_valid(subject):
 		point=subject.get("player") if subject.get("player")!=null else subject.actor
-		if subject.get("ground")!=null:polygons.assign(subject.ground.floors)
+		if subject.has_method("map_polygons"):
+			for raw in subject.map_polygons():
+				var projected := PackedVector2Array()
+				for at in raw: projected.append(subject.project(at))
+				polygons.append(projected)
+			point=subject.project(point)
+		elif subject.get("ground")!=null:polygons.assign(subject.ground.floors)
 		else:
 			for raw in subject.data.get("walkable",[]):
 				var rect:=Rect2(raw[0],raw[1],raw[2],raw[3]) if raw is Array else Rect2(raw.x,raw.y,raw.w,raw.h)

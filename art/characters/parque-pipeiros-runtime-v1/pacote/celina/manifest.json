@@ -1,0 +1,173 @@
+{
+  "id": "celina",
+  "name": "Celina",
+  "source": "../../fontes/celina.png",
+  "identityReference": "art/characters/parque-pipeiros-v3/celina-sheet.png",
+  "cell": [
+    64,
+    96
+  ],
+  "pivot": [
+    32,
+    94
+  ],
+  "directions": [
+    "S",
+    "SO",
+    "O",
+    "NO",
+    "N",
+    "NE",
+    "E",
+    "SE"
+  ],
+  "sourceOrder": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "sharedScale": 0.17558886509635974,
+  "sourceBounds": [
+    [
+      80,
+      75,
+      326,
+      541
+    ],
+    [
+      76,
+      76,
+      309,
+      543
+    ],
+    [
+      71,
+      87,
+      297,
+      543
+    ],
+    [
+      68,
+      87,
+      274,
+      542
+    ],
+    [
+      80,
+      31,
+      319,
+      498
+    ],
+    [
+      81,
+      33,
+      309,
+      498
+    ],
+    [
+      56,
+      36,
+      268,
+      498
+    ],
+    [
+      51,
+      33,
+      283,
+      498
+    ]
+  ],
+  "colors": 31,
+  "cleanup": [
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 274
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 282
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 213
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 257
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 270
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 269
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 207
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 276
+    }
+  ],
+  "animation": "static directional bases; no walk cycle",
+  "status": "native Aseprite export; reviewed in Godot",
+  "exportedBounds": [
+    [
+      10,
+      13,
+      53,
+      95
+    ],
+    [
+      11,
+      13,
+      52,
+      95
+    ],
+    [
+      12,
+      15,
+      52,
+      95
+    ],
+    [
+      14,
+      15,
+      50,
+      95
+    ],
+    [
+      11,
+      13,
+      53,
+      95
+    ],
+    [
+      12,
+      13,
+      52,
+      95
+    ],
+    [
+      13,
+      14,
+      50,
+      95
+    ],
+    [
+      11,
+      13,
+      52,
+      95
+    ]
+  ],
+  "criticScore": 8
+}

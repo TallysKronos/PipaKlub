@@ -49,15 +49,17 @@ WIDTH=32*(3+RUN)+32
 HEIGHT=16*(3+RUN)+52
 def p(u,v,lift=0): return (ORIGIN+32*u-32*v,28+16*u+16*v-lift)
 def point(q): return f'{q[0]:g},{q[1]:g}'
-def poly(points,fill,stroke='#203A40',width=2): return f'<polygon points="{" ".join(point(q) for q in points)}" fill="{fill}" stroke="{stroke}" stroke-width="{width}" stroke-linejoin="round"/>'
-body=poly([p(0,0),p(3,0),p(3,RUN),p(0,RUN)],'#8D643E',width=3)
+def poly(points,fill,stroke='#4B5149',width=1.1): return f'<polygon points="{" ".join(point(q) for q in points)}" fill="{fill}" stroke="{stroke}" stroke-width="{width}" stroke-linejoin="round"/>'
+body=poly([p(0,0),p(3,0),p(3,RUN),p(0,RUN)],'#8D7256',width=1.8)
 body+=poly([p(3,0),p(3,RUN),p(3,RUN,-6),p(3,0,-6)],'#785038')
 body+=poly([p(0,RUN),p(3,RUN),p(3,RUN,-6),p(0,RUN,-6)],'#A47542')
 for i in range(RUN*2):
-    v=i*.5+.025;end=(i+1)*.5-.025
-    body+=poly([p(.035,v),p(2.965,v),p(2.965,end),p(.035,end)],['#D7AC63','#E5BE79','#CFA363'][i%3],width=1.8)
+    v=i*.5+.018;end=(i+1)*.5-.018
+    # Mildly varied internal plank edges; the measured deck perimeter is fixed.
+    edge=.03+(i*7%5)*.012
+    body+=poly([p(edge,v),p(3-edge,v),p(3-edge,end),p(edge,end)],['#BDA27B','#C6AD87','#B69B77','#C0A680'][i%4],width=.7)
     a,b=p(.45,v+.2),p(1.55,v+.2)
-    body+=f'<path d="M{point(a)}L{point(b)}" fill="none" stroke="#A57745" stroke-width="1.2" stroke-linecap="round"/>'
+    if i%3==0: body+=f'<path d="M{point(a)}L{point(b)}" fill="none" stroke="#957E60" stroke-width=".7" stroke-linecap="round"/>'
     for u in [.18,2.82]:
         x,y=p(u,v+.2);body+=f'<circle cx="{x}" cy="{y}" r="1.2" fill="#35434A"/>'
 deck=svg('ponte-tabuleiro-3x11',WIDTH,HEIGHT,body)
@@ -67,8 +69,8 @@ for name,u in [('fundo',.08),('frente',2.92)]:
     rope='M'+point(p(u,0,19))
     for start in [0,RUN/4,RUN/2,RUN*3/4]:
         rope+=' Q'+point(p(u,start+RUN/8,7))+' '+point(p(u,start+RUN/4,19))
-    body+=f'<path d="{rope}" fill="none" stroke="#203A40" stroke-width="4" stroke-linecap="round"/>'
-    body+=f'<path d="{rope}" fill="none" stroke="#D8BF82" stroke-width="1.8" stroke-linecap="round"/>'
+    body+=f'<path d="{rope}" fill="none" stroke="#485046" stroke-width="2.2" stroke-linecap="round"/>'
+    body+=f'<path d="{rope}" fill="none" stroke="#CAB992" stroke-width="1.1" stroke-linecap="round"/>'
     for v in [0,RUN/4,RUN/2,RUN*3/4,RUN]:
         x,y=p(u,v)
         body+=poly([(x-3,y+3),(x+3,y),(x+3,y-23),(x-3,y-21)],'#B88A4F',width=1.6)
@@ -77,7 +79,8 @@ for name,u in [('fundo',.08),('frente',2.92)]:
 kit['mangaWater']={'depthPx':18,'palette':['#246272','#328D98','#70C6BB'],'style':'flat cut banks; drawn current marks; no water photo'}
 kit['continuousBridge']={'footprint':[3,RUN],'file':deck,'rails':rails,'origin':[ORIGIN,28],'size':[WIDTH,HEIGHT]}
 kit['surfaceTreatment']={'kind':'native-editable-manga-v3','colors':colors,'source':'tools/overworld/build_parque_manga.py','note':'flat surfaces; world-space drawn marks; continuous bridge with separate rails'}
-kit['approval']='pending_owner_review_manga_v3'
+from parque_painted_materials import apply
+apply(kit)  # Rebuilding bridge geometry must not replace the approved raster art.
 for folder in FOLDERS: (folder/'kit.json').write_text(json.dumps(kit,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 (FOLDERS[0]/'manga-v3/MANIFESTO.json').write_text(json.dumps({'files':files,'source':'original repository-native SVG art','style':'flat manga: navy contour, two wood tones, no gradient; quiet drawn terrain marks','bridge':'native 3x11 cells; never stretch to other footprints','approval':'pending_owner_review'},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 print(f'{len(files)} native SVG assets')

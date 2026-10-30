@@ -2,7 +2,15 @@ extends RefCounted
 ## Plain campaign data. Scene nodes and online credentials never enter a slot.
 const SCHEMA_VERSION := 1
 const CONTENT_VERSION := "demo-1"
-const RULES_VERSION := "demo-1"
+const RULES_VERSION := "progression-2"
+const Levels = preload("res://scripts/campaign/partner_levels.gd")
+
+static func migrate_progression(value: Dictionary) -> Dictionary:
+	var migrated:=value.duplicate(true)
+	if migrated.get("rulesVersion")=="demo-1":
+		for partner in migrated.player.partners: partner.xp=Levels.from_legacy(int(partner.get("xp",0)))
+		migrated.rulesVersion=RULES_VERSION
+	return migrated
 
 static func fresh(slot_id: String) -> Dictionary:
 	return {
@@ -37,7 +45,7 @@ static func inspect(value: Variant, slot_id: String) -> String:
 	# No legacy campaign schema has shipped. Prototype saves are not campaign saves.
 	if value.schemaVersion != SCHEMA_VERSION:
 		return "unsupported"
-	if value.get("contentVersion") != CONTENT_VERSION or value.get("rulesVersion") != RULES_VERSION:
+	if value.get("contentVersion") != CONTENT_VERSION or value.get("rulesVersion") not in ["demo-1",RULES_VERSION]:
 		return "unsupported"
 	if value.get("slotId") != slot_id or not valid_slot(slot_id) or not whole(value.get("revision")):
 		return "invalid"
@@ -60,8 +68,13 @@ static func inspect(value: Variant, slot_id: String) -> String:
 			if not (coordinate is float or coordinate is int) or not is_finite(float(coordinate)) or absf(coordinate) > 4096:
 				return "invalid"
 	if checkpoint.has("space"):
-		if kind!="world" or checkpoint.get("scene")!="quintal" or checkpoint.space!="bairro-inicial-v2":return "invalid"
-		if not preload("res://scripts/campaign/neighborhood_checkpoint.gd").is_cell(Vector2(float(checkpoint.position[0]),float(checkpoint.position[1]))):return "invalid"
+		if kind!="world":return "invalid"
+		var point := Vector2(float(checkpoint.position[0]),float(checkpoint.position[1]))
+		if checkpoint.space=="bairro-inicial-v2":
+			if checkpoint.get("scene")!="quintal" or not preload("res://scripts/campaign/neighborhood_checkpoint.gd").is_cell(point):return "invalid"
+		elif checkpoint.space=="parque-overworld-v1":
+			if not preload("res://scripts/campaign/park_checkpoint.gd").valid_position(checkpoint.get("scene",""),point):return "invalid"
+		else:return "invalid"
 	var player: Dictionary = value.player
 	if not player.get("name") is String or player.name.length() > 64 or not whole(player.get("coins")):
 		return "invalid"
@@ -183,13 +196,19 @@ static func valid_workshop(state: Dictionary) -> bool:
 	return true
 
 static func valid_encounter(value: Variant) -> bool:
-	if not value is Dictionary or not value.get("id") is String or value.get("kind") not in ["lacertubo", "wild", "morro"] or not value.get("state") is Dictionary: return false
+	if value is Dictionary and value.has("rewardXp") and (not whole(value.rewardXp) or value.rewardXp>100000): return false
+	if not value is Dictionary or not value.get("id") is String or value.get("kind") not in ["lacertubo", "wild", "morro", "trainer"] or not value.get("state") is Dictionary: return false
 	if not value.get("returnPoint") is Array or value.returnPoint.size() != 2: return false
 	for point in value.returnPoint:
 		if not number(point) or point < 0 or point > 1536: return false
+	if value.has("space"):
+		if value.space!="parque-overworld-v1" or not preload("res://scripts/campaign/park_checkpoint.gd").valid_position(value.get("scene","park-veredas"),Vector2(value.returnPoint[0],value.returnPoint[1])): return false
 	var state: Dictionary = value.state
-	if value.kind == "wild":
+	if value.kind in ["wild","trainer"]:
 		if not number(value.get("dropRoll")) or value.dropRoll < 0 or value.dropRoll >= 1 or state.get("enemyModelId") not in ["basica", "mata", "raio"] or not whole(state.get("enemyLevel")) or state.enemyLevel < 1 or state.enemyLevel > 9: return false
+	if value.kind=="trainer":
+		var duel: Dictionary=preload("res://scripts/campaign/park_training.gd").duel(str(value.get("trainerId","")))
+		if duel.is_empty() or value.get("scene","")!=duel.scene or value.get("space","")!="parque-overworld-v1" or value.get("rewardXp",-1)!=duel.xp or state.get("enemyModelId","")!=duel.species or int(state.get("enemyLevel",0))!=duel.level: return false
 	if state.get("outcome") not in ["", "won", "lost", "fled"] or not state.get("partnerId") is String or not state.get("modelId") is String: return false
 	for field in ["time", "intro", "duration"]:
 		if not number(state.get(field)) or state[field] < 0: return false

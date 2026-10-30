@@ -199,7 +199,8 @@
             "generator": "image_gen.imagegen",
             "normalization": "alpha crop; uniform rescale"
           },
-          "approval": "pending_native_visual_review"
+          "approval": "pending_native_visual_review",
+          "foliageQuiet": true
         }
       }
     },
@@ -232,7 +233,8 @@
             "generator": "image_gen.imagegen",
             "normalization": "alpha crop and uniform fit"
           },
-          "approval": "pending_visual_review"
+          "approval": "pending_visual_review",
+          "foliageQuiet": true
         }
       }
     },
@@ -265,6 +267,30 @@
             "generator": "image_gen.imagegen",
             "normalization": "alpha crop and uniform fit"
           },
+          "approval": "pending_visual_review"
+        },
+        "b": {
+          "file": "veredas-manga-v1/estacao.png",
+          "size": [
+            288,
+            169
+          ],
+          "anchor": [
+            144,
+            151
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            4,
+            2
+          ],
+          "height": 3,
+          "bloqueia": false,
+          "shadow": "ambientacao-v2/sombras/contato.png",
+          "source": "imagegen: veredas-manga-v1/estacao-source.png",
           "approval": "pending_visual_review"
         }
       }
@@ -629,7 +655,7 @@
       "file": "ambientacao-v2/pontes/tabuleiro-v.png"
     }
   },
-  "approval": "pending_owner_review_manga_v3",
+  "approval": "pending_owner_review_painted_refinement_v4",
   "styleBoard": "../../estilo/PRANCHA-ESTILO.png",
   "sourceRevision": "18dec6b87808a45ec23853ff4eb526c37a331b9a",
   "scope": "static compatible subset; no automatic foliage placement, animated grass, layered gazebo or shader changes",
@@ -643,24 +669,25 @@
       "bosque": "#4C7445"
     },
     "source": "tools/overworld/build_parque_manga.py",
-    "note": "flat surfaces; world-space drawn marks; continuous bridge with separate rails"
+    "note": "Restrained pintura-v4 manga raster paintings and bairro sidewalk in continuous world space; native polygons own transitions, banks and elevation. SVGs are geometry fallbacks only."
   },
   "dressingRevision": "f3df6373316305ff0c9dec449d1229f2cd0c4526",
   "paintSurfaces": {
-    "grama": "manga-v3/marcas-grama.svg",
-    "terra": "manga-v3/marcas-terra.svg",
-    "mato": "manga-v3/marcas-mato.svg",
-    "piso": "manga-v3/marcas-piso.svg",
-    "bosque": "manga-v3/marcas-bosque.svg"
+    "grama": "pintura-v4/grama.png",
+    "terra": "pintura-v4/terra.png",
+    "mato": "pintura-v4/grama.png",
+    "bosque": "pintura-v4/grama.png",
+    "piso": "../bairro-inicial-v2/surfaces/passeio-manga-v4.png"
   },
   "mangaWater": {
-    "depthPx": 18,
+    "depthPx": 32,
     "palette": [
       "#246272",
       "#328D98",
       "#70C6BB"
     ],
-    "style": "flat cut banks; drawn current marks; no water photo"
+    "style": "flat cut banks; drawn current marks; no water photo",
+    "surface": "../cavernas-v3/surfaces/agua-linhas.png"
   },
   "continuousBridge": {
     "footprint": [
@@ -680,5 +707,25 @@
       480,
       276
     ]
+  },
+  "paintTints": {
+    "mato": "#a3b49d",
+    "bosque": "#8c9d91"
+  },
+  "wallSurfaces": {
+    "pedra": {
+      "file": "pintura-v4/barranco.png",
+      "repeatTexelsPerCell": [
+        48,
+        96
+      ]
+    }
+  },
+  "areaVisuals": {
+    "veredas-do-encanamento": {
+      "paintSurfaces": {
+        "piso": "veredas-manga-v1/pedra.png"
+      }
+    }
   }
 }

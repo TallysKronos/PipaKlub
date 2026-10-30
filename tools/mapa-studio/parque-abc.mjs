@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {parseTiled,audit,verdict,blockedByPiece,walkable,reachable,findPath,canStep} from './model.mjs';
 import {compile} from '../import-overworld.mjs';
+import {refineMap} from './refine-parque.mjs';
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const folder=root+'art/overworld/revisao/parque-abc/';fs.mkdirSync(folder,{recursive:true});
 const sets={'rascunho.tsj':JSON.parse(fs.readFileSync(root+'art/overworld/tiles/rascunho.tsj','utf8'))};
@@ -184,18 +185,19 @@ function build(c){
  if(c.part==='C'){
   // Physical door in the high bank, not an exit marker dropped in the grass.
   rect(ground,7,57,18,63,20);rect(alt,17,57,18,63,20);
-  events.push({id:1100,name:'Retorno curto ao Jardim · após a vitória',type:'saida',x:63.5*32,y:19.5*32,point:true,visible:true,
-   properties:[property('destino','park-trail'),property('requer','guardianDefeated'),property('entrada_destino','chegada-ao-parque')]});
+  events.push({id:1100,name:'Atalho para Nina · Jardim das Pipas',type:'saida',x:63.5*32,y:19.5*32,point:true,visible:true,
+   properties:[property('destino','park-trail'),property('requer','ninaTail'),property('entrada_destino','chegada-ao-parque')]});
   putProps(events.find(e=>e.id===36),{ocultar_apos:'guardianDefeated'});
   putProps(events.find(e=>e.id===42),{requer:'guardianDefeated',visibilidade:'brilho',missao:'nina',recompensa_separada_do_boss:true});
-  putProps(events.find(e=>e.id===43),{fase:'retorno-jardim',visibilidade:'inativo-na-primeira-visita',requer:'ninaReturned'});
+  // Nina remains in the Jardim throughout the rescue; no duplicate actor in Veredas.
+  const duplicateNina=events.findIndex(e=>e.id===43);if(duplicateNina>=0)events.splice(duplicateNina,1);
  }
  // Sparse landmarks, on supported ground, never stamped over the ramps or doors.
  const dressing=c.part==='A'?[['buriti',8,17],['buriti',49,20],['capim-margem',40,22]]:
   c.part==='B'?[['buriti',8,14],['buriti',53,12],['buriti',8,38],['capim-margem',29,28],['capim-margem',35,31],['capim-margem',24,29],['capim-margem',38,30]]:
-  [['buriti',9,14],['buriti',53,34],['capim-margem',42,22],['capim-margem',53,22],['canos-patio',44,11],['canos-patio',54,17],['canos-patio',43,19]];
+  [['buriti',9,14],['buriti',53,34],['capim-margem',42,22],['capim-margem',53,22],['canos-patio',47,11]];
  dressing.forEach(([asset,u,v],i)=>{
-  const o={id:4000+i,name:asset,type:'peca',point:true,visible:true,properties:Object.entries({asset,variante:'a',pegada:'1x1',bloqueia:asset==='buriti',origem:'ambientacao-v2'}).map(([k,v])=>property(k,v))};
+  const o={id:4000+i,name:asset,type:'peca',point:true,visible:true,properties:Object.entries({asset,variante:asset==='canos-patio'?'b':'a',pegada:'1x1',bloqueia:asset==='buriti',origem:'ambientacao-v2'}).map(([k,v])=>property(k,v))};
   allocate(o,[u,v]);pieces.push(o);
  });
  const mapProperties={...props(raw.properties),nome:c.title,regiao:'parque-dos-ventos',parte:c.part,trajetoria:'ambas',bioma:'parque',cena_jogo:c.scene,
@@ -205,6 +207,7 @@ function build(c){
  const result={...raw,width:W,height:H,properties:Object.entries(mapProperties).map(([k,v])=>property(k,v)),
   layers:[tileLayer(1,'chao',ground),tileLayer(2,'altura',alt),objectLayer(3,'pecas',pieces),objectLayer(4,'eventos',events)],nextobjectid:5001};
  // Unused walkable plateaus are not disguised islands: retain their height as blocked forest.
+ refineMap(result,c.id);
  let m=parseTiled(result,sets),solid=blockedByPiece(m),seen=reachable(m,m.spawn,solid);
  for(let i=0;i<W*H;i++)if(!seen[i]&&walkable(m,i%W,Math.floor(i/W),solid))ground[i]=10;
  m=parseTiled(result,sets);

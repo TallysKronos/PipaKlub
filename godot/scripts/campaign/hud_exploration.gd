@@ -197,8 +197,16 @@ func _draw_partner() -> void:
 	var color:=Hud.LINE if health>=50 else Hud.GOLD if health>=25 else Hud.CORAL
 	partner_panel.draw_rect(Rect2(left,extent.y*.48,width,6),Hud.TRACK)
 	partner_panel.draw_rect(Rect2(left,extent.y*.48,width*health/100,6),color)
-	partner_panel.draw_string(Hud.font(),Vector2(left,extent.y-12),"Linha %d%%"%health,HORIZONTAL_ALIGNMENT_LEFT,-1,14,Hud.PAPER)
-	partner_panel.draw_line(Vector2(left,extent.y-5),Vector2(extent.x-12,extent.y-5),Hud.CYAN,2,true)
+	var structure: float=partner.get("condition",{}).get("structure",100)
+	partner_panel.draw_string(Hud.font(),Vector2(left,extent.y-17),"Linha %d%% · Estr. %d%%"%[health,structure],HORIZONTAL_ALIGNMENT_LEFT,width,11,Hud.PAPER)
+	var level:=Model.level_for_xp(partner.get("xp",0))
+	var start:=Model.xp_for_level(level)
+	var next:=Model.xp_for_level(mini(50,level+1))
+	var progress:=1.0 if level>=50 else clampf(float(partner.get("xp",0)-start)/maxi(1,next-start),0,1)
+	partner_panel.draw_string(Hud.font(),Vector2(left,extent.y-3),"XP",HORIZONTAL_ALIGNMENT_LEFT,-1,9,Hud.GOLD)
+	partner_panel.draw_rect(Rect2(left+18,extent.y-8,width-18,4),Hud.TRACK)
+	partner_panel.draw_rect(Rect2(left+18,extent.y-8,(width-18)*progress,4),Hud.GOLD)
+	partner_panel.tooltip_text="Experiência %d / %d para o Nv. %d"%[int(partner.get("xp",0))-start,next-start,mini(50,level+1)] if level<50 else "Nível máximo"
 	partner_panel.draw_line(center+Vector2(radius,0),Vector2(left-4,extent.y*.5),Hud.CYAN,2,true)
 func occupied_fraction() -> float:
 	var total:=0.0

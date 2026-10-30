@@ -20,14 +20,14 @@ static func build(view) -> void:
 	var material:=ShaderMaterial.new()
 	material.shader=load("res://shaders/kronasta_ground.gdshader")
 	material.set_shader_parameter("masks",_masks(model))
-	material.set_shader_parameter("grass_a",load(KITS+"terrenos-v1/superficies/grama-campo.png"))
-	material.set_shader_parameter("grass_b",load(KITS+"terrenos-v1/superficies/grama-musgo.png"))
-	material.set_shader_parameter("dirt",load(KITS+"terrenos-v1/superficies/terra-ocre.png"))
+	material.set_shader_parameter("grass_a",load(KITS+"parque/pintura-v4/grama.png"))
+	material.set_shader_parameter("grass_b",load(KITS+"parque/pintura-v4/grama.png"))
+	material.set_shader_parameter("dirt",load(KITS+"parque/pintura-v4/terra.png"))
 	material.set_shader_parameter("map_size",Vector2(w,h))
 	var blank:=Image.create(1,1,false,Image.FORMAT_RGBA8)
 	blank.fill(Color.WHITE)
 	var white:=ImageTexture.create_from_image(blank)
-	var wall_texture:Texture2D=load(KITS+"terrenos-v1/superficies/terra-barranco.png")
+	var wall_texture:Texture2D=load(KITS+"parque/pintura-v4/barranco.png")
 	var exits:=_exit_columns(model)
 	for v in range(-RING,h+RING):
 		for u in range(-RING,w+RING):
@@ -66,7 +66,7 @@ static func build(view) -> void:
 			node.add_child(poly)
 			if inside:
 				_walls(view,model,node,u,v,wall_texture)
-			elif _hash(u,v,7)<.82 and not _near_exit(u,v,w,h,exits) and _hidden_behind(model,u,v)>4:
+			elif _hash(u,v,7)<.27 and not _near_exit(u,v,w,h,exits) and _hidden_behind(model,u,v)>4:
 				_tree(view,model,Vector2(u+.5+(_hash(u,v,3)-.5)*.5,v+.5+(_hash(u,v,4)-.5)*.5),0,"a" if _hash(u,v,5)<.5 else "b",_hash(u,v,6),true)
 	for piece in model.data.pieces:_piece(view,model,piece)
 	_tufts(view,model)
@@ -117,8 +117,8 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 		node.add_child(lip)
 		var rim:=Line2D.new()
 		rim.points=PackedVector2Array([pts[0]-node.position+Vector2(0,1),pts[1]-node.position+Vector2(0,1)])
-		rim.width=2.0
-		rim.default_color=Color("a7d65e")
+		rim.width=1.0
+		rim.default_color=Color("96a574")
 		node.add_child(rim)
 		# Sombra de contato no chão de baixo, desenhada logo depois desse chão.
 		var shade:=Node2D.new()
@@ -144,6 +144,9 @@ static func _tree(view,model,point:Vector2,level:int,variant:String,r:float,occl
 	var art:=Sprite2D.new()
 	art.name="Art"
 	art.texture=load(KITS+TREES.get(variant,TREES.a))
+	var foliage := ShaderMaterial.new()
+	foliage.shader = load("res://shaders/parque_foliage.gdshader")
+	art.material = foliage
 	art.centered=false
 	var size:=(.86+r*.30)*shrink
 	art.scale=Vector2(size*(-1.0 if r>.5 else 1.0),size)
@@ -173,6 +176,10 @@ static func _sprite(view,model,point:Vector2,level:int,file:String,anchor:Vector
 	var art:=Sprite2D.new()
 	art.name="Art"
 	art.texture=load(KITS+file)
+	if "capim" in file or "arbusto" in file:
+		var foliage := ShaderMaterial.new()
+		foliage.shader = load("res://shaders/parque_foliage.gdshader")
+		art.material = foliage
 	art.centered=false
 	art.scale=Vector2.ONE*scale
 	art.position=-anchor*scale-Vector2(0,level*64)
@@ -212,9 +219,9 @@ static func _tufts(view,model) -> void:
 			for d in [Vector2i(1,0),Vector2i(-1,0),Vector2i(0,1),Vector2i(0,-1)]:
 				var n:Dictionary=model.cell_at(Vector2i(u,v)+d)
 				if not n.is_empty() and n.material in ["bosque","terra","mato"]:edge=true
-			if _hash(u,v,31)>(.55 if edge else .07):continue
+			if _hash(u,v,31)>(.22 if edge else .025):continue
 			var at:=Vector2(u+.2+_hash(u,v,32)*.6,v+.2+_hash(u,v,33)*.6)
-			_sprite(view,model,at,int(cell.level),"parque/decalques/capim-"+("a" if _hash(u,v,34)<.5 else "b")+".png",Vector2(26,44),.75+_hash(u,v,35)*.35)
+			_sprite(view,model,at,int(cell.level),"parque/decalques/capim-"+("a" if _hash(u,v,34)<.5 else "b")+".png",Vector2(26,44),.6+_hash(u,v,35)*.25)
 
 static func _glint(view,model,event:Dictionary) -> void:
 	var cell:Dictionary=model.cell_at(Vector2i(event.u,event.v))

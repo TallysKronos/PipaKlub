@@ -85,19 +85,24 @@ func _ready() -> void:
 			add_child(sprite)
 	for npc in data.npcs:
 		var sprite := Sprite2D.new()
-		sprite.texture = load("res://assets/campaign/morro/" + npc.image)
-		sprite.region_enabled = true
-		var bounds: Dictionary = npc.bounds
-		sprite.region_rect = Rect2(bounds.x, bounds.y, bounds.w, bounds.h)
-		sprite.scale = Vector2.ONE * 72 / bounds.h
-		sprite.offset.y = -bounds.h / 2
+		var pixels=preload("res://scripts/npc_pixel_sprite.gd")
+		var identity: String=pixels.identity(npc.name)
+		if not identity.is_empty():pixels.setup(sprite,identity,pixels.height_for(identity,.62*Avatar.BODY_SCALE))
+		else:
+			# Characters outside this produced family keep their original art.
+			sprite.texture=load("res://assets/campaign/morro/"+npc.image)
+			sprite.region_enabled=true
+			var bounds: Dictionary=npc.bounds
+			sprite.region_rect=Rect2(bounds.x,bounds.y,bounds.w,bounds.h)
+			sprite.scale=Vector2.ONE*72/bounds.h
+			sprite.offset.y=-bounds.h/2
 		sprite.position = Vector2(npc.point[0], npc.point[1])
 		sprite.z_index = level_at(sprite.position) * 1200 + int(sprite.position.y)
 		add_child(sprite)
 		npc_sprites.append(sprite)
 		var name_label := Label.new()
 		name_label.text = "Juninho e Lia" if data.npcs.size() == 2 else npc.name
-		name_label.position = Vector2(-57, -92) if data.npcs.size() == 2 else Vector2(-45, -92)
+		name_label.position = Vector2(-57, -116) if data.npcs.size() == 2 else Vector2(-45, -116)
 		name_label.size.x = 160 if data.npcs.size() == 2 else 90
 		name_label.visible = data.npcs.size() != 2 or npc.name == "Juninho"
 		name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -117,7 +122,7 @@ func _ready() -> void:
 		tag.add_child(name_label)
 	avatar = Avatar.new()
 	add_child(avatar)
-	avatar.scale = Vector2.ONE * .62
+	avatar.scale = Vector2.ONE * .62 * Avatar.BODY_SCALE
 	companion = Sprite2D.new()
 	var model := "rabbito"
 	for partner in saved_player.partners:
@@ -209,7 +214,7 @@ func _physics_process(delta: float) -> void:
 		elif segment(player, player + Vector2(0, step.y)): player.y += step.y
 		if trail.is_empty() or trail.back().distance_to(player) >= 2: trail.append(player)
 	avatar.moving = before.distance_to(player) > .01
-	if avatar.moving: avatar.facing = ("n" if direction.y < 0 else "s") + ("w" if direction.x < 0 else "e")
+	if avatar.moving: avatar.face_motion(player-before)
 	var remaining := 0.0
 	var previous := follower
 	for point in trail:
