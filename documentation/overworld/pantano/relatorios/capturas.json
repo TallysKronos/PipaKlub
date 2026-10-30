@@ -1,0 +1,1883 @@
+[
+  {
+    "area": "kronasta-pantano-a",
+    "mapSha256": "c88db44b700784451032dc5bad9a63144f2f5a56a40e8be6d1997e60c3d81de8",
+    "planSha256": "0b1815c02b4fc930514f1e91cffab28497fa23ca2e5874bcee0b408980c574bb",
+    "images": [
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/area-inteira.png",
+        "sha256": "df217129854b4aba518d9dec085f6c279394702903a81b381e12909f44747024"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/entrada.png",
+        "sha256": "67f98e6ecb1687dc4806244d13c8a776c7ed8069afe1d107e2357b21381c9b40"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/centro.png",
+        "sha256": "6033214a7b3493f75e217523d1468cc632b53d6bab45ea640d3ca1e08cddb051"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/saida-24-0.png",
+        "sha256": "ffd69a247f5df0da9bfab0e1caba0dce12d41477c81e07233de81debcb111b15"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/canto-n1-20-16.png",
+        "sha256": "7dc22f2d9fbdcd89e06bd53907ed93a887dc9385781a585b0dd3b1f91f1f4bd0"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/canto-n1-28-16.png",
+        "sha256": "5b91523d8253d924ef8a87abbd0a0fbbf5ddf89ba588c85797b50dc5486f80f8"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/canto-n1-18-28.png",
+        "sha256": "d415acaa49211da3658d235ee349857d6f58cde1cc69c7a0f8bd3bc5d0c16195"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/canto-n1-30-28.png",
+        "sha256": "d9c74f94b48b34b70883a60b816d33ebf5b6d12ad3fb60887a51dce67fa0a9e2"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/canto-n1-18-32.png",
+        "sha256": "395b86e201406612a8ba03104e0389f2571781ae86fca2d379ba66ce4a82150d"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/canto-n1-30-32.png",
+        "sha256": "199bc5c63b2a9c49a9d3afa75ae5769b305072f021a0ef63ef9fd8ebd6528613"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/rampa-topo-10-16.png",
+        "sha256": "67e1bcc9b2c953f969fcdb56ec05974fbffd12c987c9348be0cfa0b52920fbeb"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/plato-10-16.png",
+        "sha256": "fdc9008a775433047c02fcdb9e36bb2c279a4c2e6a2e41fd23929d2a104f0244"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/rampa-topo-11-16.png",
+        "sha256": "5be7c5af0a8ccf7ceb0b68e21c392fad8c4983a75283bfd8df66dcdb61111eba"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/plato-11-16.png",
+        "sha256": "1923d82fd93fd2c2a6a8fe3556906a51c47891f8f9611c3eeb685fd9fa017203"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/rampa-topo-34-16.png",
+        "sha256": "3d40e43ace654c7fbaf33fb2bc83a35222fb1dd1be6553d8817c09619aead0c5"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/plato-34-16.png",
+        "sha256": "5b6bb180896e8d2587df756bcd5eda3e04aa6a6e933261b4fd5cfe5ccf49b93f"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/rampa-topo-35-16.png",
+        "sha256": "fcdd1f9ebbee0cd890f1aca70e55e481438d8f7f0ce6e30d80ec1d6196385957"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/plato-35-16.png",
+        "sha256": "41c6600f56e54d4e70575fa9f1ba95daade41b622d71abcccbf351a0e7f2aa2f"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/rampa-pe-10-17.png",
+        "sha256": "5bbefbb3056dbdbdc73c892dc556c3568502e96fdb3ca814a50dda2929722a4f"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/rampa-pe-11-17.png",
+        "sha256": "b93f2a0c367a696c7b00669f4a9abcfc0e9ae3eb781c99f50a2a047fa3ab322b"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/rampa-pe-34-17.png",
+        "sha256": "ec208190ee5550fac01fc766338fe7ecc994cc6d6b1415d98eee420b2c399cf7"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/rampa-pe-35-17.png",
+        "sha256": "0ca95866c600371d3afc5c2ebbddab86c5dcc102e12747ec5c4d3f6b1e6f5199"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/rampa-topo-10-32.png",
+        "sha256": "f0080a3c419273b9092027893525a214c5a7ede561853a6c2269a6d6fac3d12e"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/plato-10-32.png",
+        "sha256": "dcac97144ed42516845f3b4d985a797cb9b6ef9ff024c4cb22959ac8f54111b4"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/rampa-topo-11-32.png",
+        "sha256": "ccf1299feb0192d0add43b911a9d2f2ccb1d848c80123e811825213136d7bda4"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/plato-11-32.png",
+        "sha256": "ef52d12f143a952c78628e289049e2b582891b9130a10527497ca94078b58b85"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/rampa-topo-34-32.png",
+        "sha256": "2bb72fedaa30ea1195a0e03277699a432dade2d0f485ea379c2aa3e6ceb4f7d0"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/plato-34-32.png",
+        "sha256": "e8ef9a399f81a8650a649d19887900a892935a1f32d04333734dad595d23922d"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/rampa-topo-35-32.png",
+        "sha256": "b2b495ead6090a99fdfb7e1862415bcc65c69189e6022ba4e2205349c4cd039b"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/plato-35-32.png",
+        "sha256": "0bdb928515c81c7ec76c3e42c014a86ecc7396d353c4fb9bc2b0585202e3df5c"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/rampa-pe-10-33.png",
+        "sha256": "6efd85a6e1f2cb1b80233de50e7bd36172d2a870e5616060c562c1e96fc502fe"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/rampa-pe-11-33.png",
+        "sha256": "ad1e2d28b8b87b4a40c9b37589b1cc515b132f73d85f66d40d691e3dcf0ed91b"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/rampa-pe-34-33.png",
+        "sha256": "6a338677036cdce52515d86a220867eac0406e7873ae65f1e9eafac6fc50fe06"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/rampa-pe-35-33.png",
+        "sha256": "d4c0c8c4895ce01edd9afda162f8e56436f0f91aea23685434e81ea89cc1702f"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/travessia.png",
+        "sha256": "3d7adb3fa681b93e06662fbcbd5af22ef8cc9f2f57c4ea625cad78948cbfaedc"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/aterro-seco.png",
+        "sha256": "eadd4366323fa5fe2ffb50631cadb1644fe67e66277979f157ef77a65533268c"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/raizes-norte.png",
+        "sha256": "5c11f7dfc7a4c37da9df97401da2aedcdf35bdf103094f248f1bb87e91acb193"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/cabeceira-norte.png",
+        "sha256": "5e2978d78fa914e95d111956f4acaa262f67aaa7eec137fa16030c6468b950f8"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/cabeceira-sul.png",
+        "sha256": "480a23b7b36cc7033290b452e9e987af099802068a69248ab187849f9680e728"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/margem-norte-4.png",
+        "sha256": "6bc9b48d4607237ce1e918bdad08fed795ada5ff0730e2f4d30b73cc7bba8bfe"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/margem-sul-4.png",
+        "sha256": "d7e5578b19f48daad11454aec89846765cfd311f0f2094a6c487e44df026bb56"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/margem-norte-12.png",
+        "sha256": "9f564b6a74626b374cbbe4a265c9f6a2f486b51bb07f93e0d65fd9bd49a4f4b8"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/margem-sul-12.png",
+        "sha256": "b4fc9e3c52e263ef0bcc3c47219427609439d67f79820a61b27943378501028b"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/margem-norte-20.png",
+        "sha256": "24c36c7e8c5cafdaadbfc2ec5dac38d7d5c2da2e8f914cb82c5168cc936ec8d4"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/margem-sul-20.png",
+        "sha256": "6035e4efdeb8d09400989356af79c5ad6da5c2141e71c62bd7ec832f0635d185"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/margem-norte-28.png",
+        "sha256": "0261a25c85c455836d8914cef30b8fa38d632c002cff95c0ac1f2af621137b1d"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/margem-sul-28.png",
+        "sha256": "b974a261742bbf77cee6075fd10f469017c0d8c14dde00edff397bf77c5001c0"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/margem-norte-36.png",
+        "sha256": "ede84ee04621ba09a5cdec57321c68a8fb1f36e2195380e27a37a7e3e8b8390b"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/margem-sul-36.png",
+        "sha256": "db0d5150ad2a7369515cddcfe795d5128672e3f0405d60036974042f343c05b5"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/margem-norte-44.png",
+        "sha256": "8fef19799ad10c04126554eeccafc4a6606cedd5e3fcd1a7c3cefc9cc28b1ca8"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/geometria/margem-sul-44.png",
+        "sha256": "29c78557a27c85cbe1ce347eef1bbfc73e89eafbf629f053d2801cb1ed06bd60"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/area-inteira.png",
+        "sha256": "32d683bcc9f431be999b3a72be050f5897d6eb60743f8f6bc6fdaf1d60e60f99"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/entrada.png",
+        "sha256": "9c60b2b93e4a7ce55458d548c43ba3164472ec7ebd106295bb6fcc8a34386983"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/centro.png",
+        "sha256": "d0531521245ba8e5b7f1e38aa21251235f95d342f2e8617e2e48e50ffe582f10"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/saida-24-0.png",
+        "sha256": "9515777994142ad8dafda7dc466d79637155c921d7399971d05b6f8a8f2ebd17"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/canto-n1-20-16.png",
+        "sha256": "c05f459bdbf8a87295ad485b13682b6e2f064f4e963b2b37cd929234b0ff712d"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/canto-n1-28-16.png",
+        "sha256": "4f2bfe874479c47a85857afd510c548d80a92bf776ed55bd2e037f46523aca44"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/canto-n1-18-28.png",
+        "sha256": "2dd537445846c96c22a21b7b9b98481380a7f7b3bcef37b574a730503aaad09f"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/canto-n1-30-28.png",
+        "sha256": "74472dd5938c7edfbcf2be4299e0f5e8dd7be0ed1b1931fa24627f3cc5fce11f"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/canto-n1-18-32.png",
+        "sha256": "7106746c9ae3f129d4b566ff0d674faa0736570327da3d3e7f3655bfc7c42049"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/canto-n1-30-32.png",
+        "sha256": "ea1dba674e00a14f7a3aebe6d36cdab3729d307e06ea113c0252a0a4b2fef402"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/rampa-topo-10-16.png",
+        "sha256": "d29f1f41321bf53635a2a1af6f4fd7c3d894711a3a018b2ff2137b753c6089ae"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/plato-10-16.png",
+        "sha256": "2d38d8e1bb8f01d3091a02e1eec9d4f630d95a889f57a13dd59a5aef61150f33"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/rampa-topo-11-16.png",
+        "sha256": "c8000c32e928df7c4343a67e2e1171ce7d78d57b01c159e63a3e55e3e3af7b43"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/plato-11-16.png",
+        "sha256": "0c13ce6e8df8f600cc0e1efdac1371d55783ba8500bcbfa3b4958492b6e30439"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/rampa-topo-34-16.png",
+        "sha256": "ca69f684e96c54f8e47129762128fa3756115dc1eb8e16c44539e710cf24cfa7"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/plato-34-16.png",
+        "sha256": "f42de6e0f214178a379d43f5a11e3637ba5da2f4ba8f3bc1481987b5d1df00a9"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/rampa-topo-35-16.png",
+        "sha256": "381c75c52a04b58dc2554e5abb5df2b5347ac0efd9b0b612b20afd2d98e3784e"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/plato-35-16.png",
+        "sha256": "779c2b763990c1eae75cabd3ab7e0b0dad7de6d756a8589c2d55eba4903d1b86"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/rampa-pe-10-17.png",
+        "sha256": "75741d6b9e470c9a23b638b14c90b34945baf40a6db5342dfb594866ae01c0ee"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/rampa-pe-11-17.png",
+        "sha256": "04d05f18527d61909ebca1ee159919d63167a39c2b08b0861883565c30fd666c"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/rampa-pe-34-17.png",
+        "sha256": "54d5c6d92196751387f8b9eb91e071506077e1ad4f706ece132ad7b0726234ab"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/rampa-pe-35-17.png",
+        "sha256": "399f208dfdb2c3779e0d2d98ff4aad1be37ccaa1584a5eeb59e5dc6050272594"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/rampa-topo-10-32.png",
+        "sha256": "f3398ea536b7142fe681e7b1d1fd2ba546d0a6fec25d0c6078fbf9dc3375efd2"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/plato-10-32.png",
+        "sha256": "14c9ca730c30ac417414892ea85e29a825d66648697922cca47c5854202f3681"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/rampa-topo-11-32.png",
+        "sha256": "2da9a2c324f88bfe536aa609779fb628a94d18eacb92432d103f1d91f2bcb981"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/plato-11-32.png",
+        "sha256": "b9a074a994a6c436afba4e1d20f1e1105a1cac813e0d52eb04c729ed682610ad"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/rampa-topo-34-32.png",
+        "sha256": "c882e550ca9acd524926f739f8fb961a0f01d51ca6d8c9e11dd4250e38fcba41"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/plato-34-32.png",
+        "sha256": "6f6c75db1e046e5080f6b2627f6a4d5433f742534e11e6b33594431baef08aea"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/rampa-topo-35-32.png",
+        "sha256": "bd2a611e32d0a215c7bb40182b437439aab353a115e3f504c2f52a414962fa3a"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/plato-35-32.png",
+        "sha256": "297c42f82f18b70e2c42d4eedb4656ef69aadfac706de63fed7ff4033a5ce737"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/rampa-pe-10-33.png",
+        "sha256": "964d27246540faddfd7586a34b03943234faf4c96a3994a87bf9c5faa3c814f3"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/rampa-pe-11-33.png",
+        "sha256": "1ebce56db6bb3a05dd4a633f1b75f63e50bc5ec7ba9408fae48a21e75d1354cb"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/rampa-pe-34-33.png",
+        "sha256": "35004bb5860df1330d5e02b2079ff72094bbb00bcc3e243cf7d0b71b85e64e5a"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/rampa-pe-35-33.png",
+        "sha256": "9dc3679db73bae3c9bc298f01d9d8e377a3dcef63718ff31ac62869a794c06b1"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/travessia.png",
+        "sha256": "3e89b93e1489bf5052d6157bd326cb6dd8dd5d635b54fa84f1c4277dead95164"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/aterro-seco.png",
+        "sha256": "7f9d65857ab3e8b0588e1349e9257f67e1ae1d6fb1e27d5826388925232f22a9"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/raizes-norte.png",
+        "sha256": "ad6b74b57ddbdc0591c317c61e3e881a83581eadec26a243f5a5bf8bf51f14df"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/cabeceira-norte.png",
+        "sha256": "a0477b430698dd040b7437d8164e5b3366c3357196bc2ac5d1d4157f41d19273"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/cabeceira-sul.png",
+        "sha256": "f48a516fa0df4e6aba1020826b1269b1223cb64d2e85aabc15fab73aa464d9b1"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/margem-norte-4.png",
+        "sha256": "94485d90c4a6c91361de511a07ad7e51ed9edb8534f4d6ecc3f44f5b97aa65b0"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/margem-sul-4.png",
+        "sha256": "5a0b8430de1dd399cb747c26d92d487e31b53cb00f53053a390d9e478b05bbf6"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/margem-norte-12.png",
+        "sha256": "970fb9b44b6b2c43932a2b8b21641b03b4f17c205966b897bc9978ee175a434c"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/margem-sul-12.png",
+        "sha256": "cad5c0cd570aa6623c82ae9fb8c172a3bce1c51aceb1945d031fe0e1c0337c61"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/margem-norte-20.png",
+        "sha256": "70607af458525217850a552d084af861bff32d5e4352f5a144e343eb9aefc52e"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/margem-sul-20.png",
+        "sha256": "54c817ba5a44835a4a75134b2885de149bcfe817eab87cf0bcaf8be094ec5352"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/margem-norte-28.png",
+        "sha256": "59b34e7a85a0c1d2a1aafbd3448ed9d68d5a50d2d5a8d2aae3be713839a6ac8a"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/margem-sul-28.png",
+        "sha256": "db72db1e2cdc2e890881147cd27495be836d3aeaa24c96e7a5238761d6e3fb73"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/margem-norte-36.png",
+        "sha256": "e6420f0190c6d5e82c46cb585bb67b91f5c4e6d15167914550da67043e907d2f"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/margem-sul-36.png",
+        "sha256": "2b00c06f03ea406f7b31763ebeba83351b2aa59c5632d9d14c02638087f30d8f"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/margem-norte-44.png",
+        "sha256": "c621a41785dd689833dcfcee4e0f1fa632a60ace77960c65ee6674d477a6cc22"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte/margem-sul-44.png",
+        "sha256": "af186628745b14dcb5cda72dda30137b0c0ad91ec4359a0df47a7b20ba24fa32"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/area-inteira.png",
+        "sha256": "56567f4d0ae2c30bc5300ff5a00a835d1cf42254fe91635408f9b02616bb4eef"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/entrada.png",
+        "sha256": "7d549c67fb684e2c4fce7ece6b30963ab9205417e5b1805edb1683bc183a4d80"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/centro.png",
+        "sha256": "a82b6c189f94ac5f2ec80f790f55e362312386c92b694a7b24c739aff1ae42ca"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/saida-24-0.png",
+        "sha256": "23128fa1de99604a2d7be0f00607439ef9013ae99a63cff53412cc29a4dfaee3"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/canto-n1-20-16.png",
+        "sha256": "5614e9a07d1bb50e342e1fbc3d819abdbed6ab59fc5d3084280c7a4ae130050a"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/canto-n1-28-16.png",
+        "sha256": "fb63f47f5ae0c531057302329ef98b5408c5294db90b7d1afd1e6dbb07d617e5"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/canto-n1-18-28.png",
+        "sha256": "c15bdd001c0997e0e5df01a8f0f610a5331876b419788b375a78d86341b6e61c"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/canto-n1-30-28.png",
+        "sha256": "7401f931b1a8f14a622a5d4103341cad8a893395acc09e5a03c3641290919295"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/canto-n1-18-32.png",
+        "sha256": "76eda833dbf9f82956cc481fbfec42a863bd4ed4b92b630a1d50c6260f0a9c93"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/canto-n1-30-32.png",
+        "sha256": "86dc25de412489fe103e21a7a3a4318d698c7650374bf7aa0f07b6cecb5e822a"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/rampa-topo-10-16.png",
+        "sha256": "5a64fd4ba36e151e4f20c0981e7ca83b3f5571eb6e037871ac384ee0cd1d2400"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/plato-10-16.png",
+        "sha256": "068e0fc7f38bd0a54c77a5c14505fed14b66b0cb795af70f29a1b7def8f04863"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/rampa-topo-11-16.png",
+        "sha256": "65fa225980e32932fbb16579b1a02e19c7c4cf3d6ca6cd23edd5dae273c206f6"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/plato-11-16.png",
+        "sha256": "aeb04f1bd31a7951cc858d6852f11f0c59e7beb66a1aa504b14af676d00b9b59"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/rampa-topo-34-16.png",
+        "sha256": "302896d1fedf09fa4d9b1a8a25794d2c5129eb44147e236a92fbe308b40a4cd6"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/plato-34-16.png",
+        "sha256": "ecbe294f762f51d2c92c46bcc67922eea9e96aa16b951fded9da70a6c84cad97"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/rampa-topo-35-16.png",
+        "sha256": "8e6df5f8fe3c1c72d00c1ef5daf4cf0813214dce89c66405fc09834ad93d1184"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/plato-35-16.png",
+        "sha256": "8f8a751dabd0039b4e96bda32856f40840fb83a6088fab27cee25ea983ac8040"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/rampa-pe-10-17.png",
+        "sha256": "d528acc00290cd426458bfd56e1d8fbb4046daa8ca1e19bc2f50cc987a954bea"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/rampa-pe-11-17.png",
+        "sha256": "2d7c6188c0d5459656a6e8f5aafebbd5d931450362d1a98fec88cf461d5daaed"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/rampa-pe-34-17.png",
+        "sha256": "58ee191a067e07cb71c647f25d9f6dd1a3161e53ef09f7c6e570bafe2f4b7bc4"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/rampa-pe-35-17.png",
+        "sha256": "5d62b3061bdb51a1571120d12f92136803262f4eb67f7c8ec728a95d2b29d276"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/rampa-topo-10-32.png",
+        "sha256": "e946209af47f21f325dc90b9b8eed4bbdbd525fd77b672db392528ac79ad1b0a"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/plato-10-32.png",
+        "sha256": "ccf847c7d182e58e4f41350f6e7e12ee5d5d364a35295e04542559f15a426fe8"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/rampa-topo-11-32.png",
+        "sha256": "1d8e36f8a58413f3ff8a92d75cb5a1231ee82f2f218f6ff84b5459b6895ba805"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/plato-11-32.png",
+        "sha256": "b8da590e599589c164986f7f1161dfe26abe7e1eed3c82a88af17443f79d5ebb"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/rampa-topo-34-32.png",
+        "sha256": "448f716a630bbdc6c4e92f9049397fb0e65d2b65bf468887cc98e5f53c2557fc"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/plato-34-32.png",
+        "sha256": "788d129caef17a9684c0dee67bc952a8f4dac1be50a545b255a9dea594d22803"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/rampa-topo-35-32.png",
+        "sha256": "2e4668b535b6a94156580abb965592a94817f3cd493a2345575d50ca4de344f5"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/plato-35-32.png",
+        "sha256": "edb45dd1f824af14a949c776d7cdd1e31d5f2a2e6a11f18bfc047df6329e7ccb"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/rampa-pe-10-33.png",
+        "sha256": "c27ccab9535219a0592716909e93679390a4092bc91c00b6532f23823e2cd0e1"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/rampa-pe-11-33.png",
+        "sha256": "e90f67159fb4ed288897c01741fead34cc1d96e3d88a09cae040b34cb741a940"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/rampa-pe-34-33.png",
+        "sha256": "6806b7b9d8627b6b35e5116b506ff991dcbf626c2b0668a75992308932900322"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/rampa-pe-35-33.png",
+        "sha256": "6e628c0bae537df346154809829afb197496b0a7cbda6ee64d527f2284af0632"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/travessia.png",
+        "sha256": "a5fddc291a9deb3574ce33aac5918c05f48e46c722e369be34a2af87faecdf44"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/aterro-seco.png",
+        "sha256": "1fdce4ec00b216ffe0c4dfbf7261cc5adf33369cb3934f708ceeb3bcae096201"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/raizes-norte.png",
+        "sha256": "dad3f188dbc7dc7ddf07bab114060d928f79cef9f4822aa532dfe512faea8762"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/cabeceira-norte.png",
+        "sha256": "d7960309e00f9bc1487ed925c5632458d5f321ea8e97f8b4cb3ca4ff05fbd8e1"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/cabeceira-sul.png",
+        "sha256": "b79862c604f2a4ab01afc2cfacc1ca42d067fb211aa257c797fb3b01cd251c08"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/margem-norte-4.png",
+        "sha256": "0f5436eab1b1c9f0ed421ed01d0cfd64d4c5ffd2d52798062b0ad402f198c730"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/margem-sul-4.png",
+        "sha256": "fc08aa6a9b1c26e9dbb14a5510dbe595dfdf2b1332de1aeca99d6f63adac29bf"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/margem-norte-12.png",
+        "sha256": "bae5a1ed2c5c56b1b280e72c3b6f30a495409d20bab5d70a44e6efcb576bf8f4"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/margem-sul-12.png",
+        "sha256": "2594f8cbd3f3a3d5d2272eaaf5df14b1e1e4fc8acd85a486612a2ab8ebff2273"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/margem-norte-20.png",
+        "sha256": "f55c8f9976de39f1258c3831a68f5062866409377944c0aa8475f74c75d1c07d"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/margem-sul-20.png",
+        "sha256": "b1e890d37ed7332025cac93efd86f9a0a4f5d42c954eaae1a0b9f99fbb9153cb"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/margem-norte-28.png",
+        "sha256": "8f8828b089552f9d25caf85ac0d955095bbfc12e0cc1933a9f039ab56f86a853"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/margem-sul-28.png",
+        "sha256": "7936328e80bf75b048814f52c93371adc2aaa928ececb6ca82849b84bcc09bb5"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/margem-norte-36.png",
+        "sha256": "70a016d281072508cf4052c26369ef4b87fa88adc5c3de0ef214e169661af70d"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/margem-sul-36.png",
+        "sha256": "92fa7bced201d7414fa27e4413551f27c65c0147a189f11d9f0ef8f5bdc35bbc"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/margem-norte-44.png",
+        "sha256": "1b5e6f2784c3941ac43141e9c1de75496173623b6a33bcbe6525dbb75c3d5057"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/a/arte-terreno/margem-sul-44.png",
+        "sha256": "0d82231be5b6aa9e7586a02ad5a8c9b8123be99fd7974d5575d16d8fbf0dba68"
+      }
+    ]
+  },
+  {
+    "area": "kronasta-pantano-b",
+    "mapSha256": "ba5a2ed15109b2ae0ea23c12907b9e158c714c2b2c735e10661c9f22aa11f00b",
+    "planSha256": "15c7a5dbff4d6bff9c318ec9fb3f88913b71c358b9186784497327ff6ab4bc94",
+    "images": [
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/area-inteira.png",
+        "sha256": "0bdcaab5fe373aee37e5cbc1df7f59da9a9932ec705a9c408306bd294ef660cb"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/entrada.png",
+        "sha256": "64f86bb43efbd80ef11757154db963f2e3f9c4c5b9ab5d5cb6416b4576900645"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/centro.png",
+        "sha256": "60cf969b2cb1ee2b84c788849128efefeb6a69972c59957d359cd51e320f6173"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/saida-24-39.png",
+        "sha256": "a3346f6bcb950c51c0e7f738221ba1a04519a49b73ad853e7fe3d0fa7661d8a7"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/saida-24-0.png",
+        "sha256": "ffd69a247f5df0da9bfab0e1caba0dce12d41477c81e07233de81debcb111b15"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/canto-n1-20-16.png",
+        "sha256": "aee766c32f9761eabbacbe376823ca518f89c97d234c190eecc51c751ba23bc7"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/canto-n1-28-16.png",
+        "sha256": "c0e490b983aff164f1343bc6c65fb4396b7fd42c44a3e6ae79c24ad241ffcc86"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/canto-n1-18-28.png",
+        "sha256": "51af84976bbb2988e8766ed69ef02288cb3d4a9e6cd305c9f85b2dab8b36c71b"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/canto-n1-30-28.png",
+        "sha256": "9c6cff65dc1d107eedb0e04aab0448176ae102abed336aba40195ce69768cd73"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/canto-n1-18-32.png",
+        "sha256": "ee8ac16b82a8e1401a1e2e802621b035a7c120713a65855f93490f5aecb50bc5"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/canto-n1-30-32.png",
+        "sha256": "395d26c1715787af652df862e22f55a9ffe8999f5b74c8b71005c2ae1a42b45f"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/rampa-topo-10-16.png",
+        "sha256": "aebee2e33efb991fe5f8ff757714614260f5e5ff3abf98eb4f57f5ababe5dc1f"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/plato-10-16.png",
+        "sha256": "115056ac80aa836808ed3dd65577407b38b6a4613071ca4f28f4fccbdf4ac9b0"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/rampa-topo-11-16.png",
+        "sha256": "16ea1666442824d52d49be4a54a8424d8f08c6c405e9d64a364d33034ea14d1f"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/plato-11-16.png",
+        "sha256": "74ba95ab14d366c4cd40e55c9e9db09fd96ea8e82724b7f340f4fe04b8c0a16e"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/rampa-topo-34-16.png",
+        "sha256": "cd4b350cb362df06ee6e5fdb571a217511a977b5b613717e8f49f343a452a9df"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/plato-34-16.png",
+        "sha256": "77ee351066d2b846e24fc62a60170d4dd01cb94f8144f47a7508b7ec00a7de81"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/rampa-topo-35-16.png",
+        "sha256": "5e33368c363057cb4c2cb6b07fe2cfbe1e8b375802cfe2f5927e63da0a71f8a2"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/plato-35-16.png",
+        "sha256": "50bc0d6e2c09e9dbc85e7ee467d966cd8169efbdeeb98ec3c2d1397f3128cf28"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/rampa-pe-10-17.png",
+        "sha256": "6c65879b7e2779b73ca3294174c0f27c3caa58e1cd3fd1e709b7e3020ffa12c3"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/rampa-pe-11-17.png",
+        "sha256": "49f76d1ae8e589edc69e86e5fdf1fda9edd134a9efbd6df347a929401a38fb3b"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/rampa-pe-34-17.png",
+        "sha256": "5b5ffdcc4dedd663fe4759ed00b1a847108fa7f664c9a070b28cd16f808a8e22"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/rampa-pe-35-17.png",
+        "sha256": "14fddc4801ddc95b4f3261364c0a315649d2b7c54037b177d78d3c00f1f74a3f"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/rampa-topo-10-32.png",
+        "sha256": "7bb8de8b29c4b1788fa5c31eeb8b7eaa3b90ff2232a15c118bb9471e88e1033d"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/plato-10-32.png",
+        "sha256": "fadd3756648398bcf70b59a3c10bf321de4ae82c6133052a6b2373f0c35f9d1a"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/rampa-topo-11-32.png",
+        "sha256": "5cd600880a84634d022d2aa6997859672ef167838b83406f969f599e9cfa357f"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/plato-11-32.png",
+        "sha256": "2fa16a12473d380ef3539a0a04bebfa094463436c438c848a855413a37589f11"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/rampa-topo-34-32.png",
+        "sha256": "9e62540e6f414d355de44207e26f83974531fc71922d5e4e2b57b28c5791f66a"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/plato-34-32.png",
+        "sha256": "38b389340dd5bfc2c0ef7edb914ecc250fc6f6f8b6c88a4155cec25b85974be9"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/rampa-topo-35-32.png",
+        "sha256": "40621eaa8736ed230a2ab54ee29ceebc3d04cd339ec12de59d9eaa767d4df539"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/plato-35-32.png",
+        "sha256": "66ef4401f4a00f4ad85197303b2211c9bb135067019d5f303d083b343b8705e8"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/rampa-pe-10-33.png",
+        "sha256": "8d0c2afbf02112fd956e5bab0b3e2876d659902a26c0271be7c27888adf8d055"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/rampa-pe-11-33.png",
+        "sha256": "567a1c98144e2f333712fd363a221d74252e36b731dbb743c18e1ba448adcbaf"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/rampa-pe-34-33.png",
+        "sha256": "478a8441e88744ffe853eddfc118af9cd196654e066b5e74cdce33c07ce8c015"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/rampa-pe-35-33.png",
+        "sha256": "50fa883dd83a364c1607d0d8f2170b6ef450113b8842ed896253b8696ab8a6e9"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/travessia.png",
+        "sha256": "b389285a2120496f80b52fc386a107caaa2ab4f55bd06f103bd9ba52218e1ef8"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/aterro-seco.png",
+        "sha256": "e7de9cb753c556c2f852a22f9fb3b55f5fde2cc51d5242e87b378150e316eeb6"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/raizes-norte.png",
+        "sha256": "d48e0669d0c6e3500e6f79ba432ea208f61f2facdca9a31e638a6458b1f4776d"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/cabeceira-norte.png",
+        "sha256": "eb32e68410ccd3632d2d258fa467c637cd39e0c7f7b9fa8a1b84884035c5f557"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/cabeceira-sul.png",
+        "sha256": "58b811cd1dd297adcdfd039180401adbac0652c97adb91bbeb0b82a75df239d4"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/margem-norte-4.png",
+        "sha256": "41845b11dd3fecd6b8de1ef38871c08f28b0376477108b03507512e3a4a04f8a"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/margem-sul-4.png",
+        "sha256": "10d41d42d5418caa9d675170cbfc73a1fef08d0612684056b0ca22209564ed05"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/margem-norte-12.png",
+        "sha256": "f222d776faf340ddecc1f2b2b65a94c169a209a76e716ced9a5552cca036c13b"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/margem-sul-12.png",
+        "sha256": "9e48816e1008a411d810c3f539206d76ea5eb751966d836eb24563358b2b76af"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/margem-norte-20.png",
+        "sha256": "1859fb219190832da8683625aba466845638228d25b666630c3f1be092af58ed"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/margem-sul-20.png",
+        "sha256": "0928c6eea672ff4ef8cf3e40fbd2588d19829a1748e17c75fe805e5dc99962e8"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/margem-norte-28.png",
+        "sha256": "a9a87d1df2f2a2c10e4d0076787269d6b80d6e619cb96edc387eba468339fa0b"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/margem-sul-28.png",
+        "sha256": "cf0129c873695ca1f29d9c6f7c1a8755e59dabbe4c7abfd63b8ec39f07102d32"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/margem-norte-36.png",
+        "sha256": "c2829970f93e0f612c6085c978564e4d74873d21b5ff6c63a6e88c7ffc023da7"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/margem-sul-36.png",
+        "sha256": "ac488e210c07b83ea438d02da2bb1871a067c5d4080fe1fb024c2de3345beb9e"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/margem-norte-44.png",
+        "sha256": "e4cd71d64b3688e1631b6425c4bf8a14d2b3431dc9148053e247bbc69e7ac8a4"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/geometria/margem-sul-44.png",
+        "sha256": "48a64b477ab154afb65dcafa5cdd2d28edf46e2ff8272bd17332f62d5bb58697"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/area-inteira.png",
+        "sha256": "ac3d53e6563d7cf2e575bb5ff9def021a841cedcd85726fd0b0685e9348b5665"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/entrada.png",
+        "sha256": "152c83e7f16826b42c6dbe0bfc6c0981710ff4272f5b37e08967fddf61f78317"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/centro.png",
+        "sha256": "940c5c89526900652041cf5f3e5bd693cf870dba13fa70f8b02e4a410252d733"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/saida-24-39.png",
+        "sha256": "64c9ebdec1b6fe66ffdc8778d6d7217eaf598c236a95e4ffdf1053c315ed35f6"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/saida-24-0.png",
+        "sha256": "a9558df0f60c0b4da333de0f0216eaa7485bb20dbd7b466ebade33068b120119"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/canto-n1-20-16.png",
+        "sha256": "14e514e0f43a70ee9fc90ebb77c3ab8ae909c258a136b2a8da43346d3979fdce"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/canto-n1-28-16.png",
+        "sha256": "4ad1a36ee3ef1f6c24cf0bb6886b61819a04a8ea6bdeb6216ce8c1df4512ccb3"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/canto-n1-18-28.png",
+        "sha256": "a40bcc76ac7fb8caea25dbb39200625e8f71bad5aca093368149aa02a147ed70"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/canto-n1-30-28.png",
+        "sha256": "6cefce31ae9a2b15faf06b63e003b21c533729128866f91c1880d32f7c4a7eba"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/canto-n1-18-32.png",
+        "sha256": "1616f325f9d555104393369261aca71203cbe2d70dd83ff7239c037e6bd9a1f7"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/canto-n1-30-32.png",
+        "sha256": "c28a704a6384cb0730832ebe9b565e69f2ae11ec6b2d9ae65e2567fd74e8ea51"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/rampa-topo-10-16.png",
+        "sha256": "8ff997387bc6c427fd3a6095c56e9d96268195a7a1bcf72ac76b42100707f961"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/plato-10-16.png",
+        "sha256": "452005e3e7feb601b860131555d13ee30623f9c1e338c4aaed7ba7e75a3746f7"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/rampa-topo-11-16.png",
+        "sha256": "e0c9bce1eee93c5f8c451bbb10bcea7c9717b19349c8330e22f82905f9ad4ea0"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/plato-11-16.png",
+        "sha256": "009530ec71b8c311da34455c6582a979eb6ea357db6c58cb8b71217c0538ad45"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/rampa-topo-34-16.png",
+        "sha256": "09d4e15dfe6584bed9f9030ce47f72e90852b761aecbc3a741fe27288737d4c9"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/plato-34-16.png",
+        "sha256": "2f157739013dde3c7779049b475856ba3e33f0e6fe7973a767d4b18182498976"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/rampa-topo-35-16.png",
+        "sha256": "e56a60be9b85eb225a6ff3d6fb7d23f7fc4f36ca927b1924ad2a64c66f8a3e37"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/plato-35-16.png",
+        "sha256": "64bf1443d9cf33ce99e239896cb327b1c771fd831f6c208f0da43ca709bd2fbb"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/rampa-pe-10-17.png",
+        "sha256": "adfdf8d675665a25ec2988034addd42f84eee7ca2839fdc0cfb984df8e7209d7"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/rampa-pe-11-17.png",
+        "sha256": "520187ef950eae0b5265e074946510488bac01ae2b42a1c4420d113fe4bbd2a6"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/rampa-pe-34-17.png",
+        "sha256": "28155ca895bbcdfbd5e422c89eb0be662f87f75eca64881f61dc684f100eb86e"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/rampa-pe-35-17.png",
+        "sha256": "fe22e1fc5771156fbcd4b8d8977dd6d5073ea8c19496de75399ef47516b91941"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/rampa-topo-10-32.png",
+        "sha256": "c4c1eb83c103bd67a4b3a32891aa9f827a800fb19a071b1842cea9e0aa28182f"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/plato-10-32.png",
+        "sha256": "7ff4fff6edb151c0e861672a6f521387a29d3a2da5cf627c83d92569e914c00a"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/rampa-topo-11-32.png",
+        "sha256": "6af61b5635bfcf3b60adff5fdb0d5f75d9a8e50360a59ce9d02f9ec40c18a3ab"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/plato-11-32.png",
+        "sha256": "15e896a903f8444145191b2c3e5b85eb05c33015a5de6f8cf8ca83a8354a91e5"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/rampa-topo-34-32.png",
+        "sha256": "acf5a9e25dd81f150546f37a924a6f37bb58e91549567da52e15cf79f2a121bf"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/plato-34-32.png",
+        "sha256": "3fdc8acd70fd10b71961123997307a4ecfccf4b5dab2060ea7ab1c5502664d9f"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/rampa-topo-35-32.png",
+        "sha256": "cd07460fa091ef24cbaf83cab5bee07d50b9c097d145524f1b36d577fcddd58e"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/plato-35-32.png",
+        "sha256": "9e16a354d686b7908be0e12edd9b4282cc321b863d15c7a3c5248921fc156b94"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/rampa-pe-10-33.png",
+        "sha256": "8797f26c4a8dd971f27777b5f1a416221d0bca99e690526d443b6afe9c2971f8"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/rampa-pe-11-33.png",
+        "sha256": "c278ab3bc82bad077fbe44077d03d3198c535a204fdea0f9a76b30039429f31e"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/rampa-pe-34-33.png",
+        "sha256": "1b0a82725ca723eac6ef50d47355ce7bd51909791eb2f7fe1229363edc785f61"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/rampa-pe-35-33.png",
+        "sha256": "cc1d266e866021f7cb6f43242df0aced7e2d014671f07594f0330675fc57f7c1"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/travessia.png",
+        "sha256": "99d561eac484e331a45c05075ed6950b1add46a92fe0652777d28f16b5490a0c"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/aterro-seco.png",
+        "sha256": "7e86af1e3c216263624d7264809cfb2c0a6b9fbd6061223ce087aad9fad9565f"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/raizes-norte.png",
+        "sha256": "2d5ab25fa72ed87e632acf3b64b498683aa5b899cf017eb1fc16dbcb2c7108b2"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/cabeceira-norte.png",
+        "sha256": "b0dc7463043b0dfb59f3c493cc3992fa85d680ee420be1148f4b925287dae0d6"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/cabeceira-sul.png",
+        "sha256": "1dc80801ba5b934f0b6183ba6048b2c959c663e5d6320bfa7a5636a19c8fd84e"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/margem-norte-4.png",
+        "sha256": "7bda604bffb07757a09a9e9c932d75e501585a18f394a89e0672d6330523a0cb"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/margem-sul-4.png",
+        "sha256": "221e95fecaaa67ce652215ace0f45bba6851d203afa06b5bcadd45c08e0c227b"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/margem-norte-12.png",
+        "sha256": "93c50ea1a5a9bd4570b856208880c0fd9f819401fdea1529b172ac89bfe2fadd"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/margem-sul-12.png",
+        "sha256": "6c281e3843632c4237a889ea7103e82ffe92958c7937106839021c7cedcb768b"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/margem-norte-20.png",
+        "sha256": "018dbf4a85f293e3b2851be6330c16ad6ff5b47ed4c02e7ff0bc3d58c9102098"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/margem-sul-20.png",
+        "sha256": "6d826df15357f1c30aa6382ab1582f1c35057998bd5a61280a885ed1aff3d175"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/margem-norte-28.png",
+        "sha256": "a6e650609ebba7001a95c01d9f1e97b89dbfdc53af828a2783e1ff95bb6393c9"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/margem-sul-28.png",
+        "sha256": "8e827239466da5bb833545a68959d4433a22e8a42ddffeb280450e9bcddb27b3"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/margem-norte-36.png",
+        "sha256": "3d69abb6885d5cc6e67ee04cc1fd9fa4677505b809159f02a9fac6a92b47b388"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/margem-sul-36.png",
+        "sha256": "a68a9511b81872b31be006037f291af4f3e7914b8ea685a8fb96b5ca8bacafff"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/margem-norte-44.png",
+        "sha256": "3ac5943334f81a08121cb1995b519f366eb91f4ab9a458e891fd8d4b2987b9a2"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte/margem-sul-44.png",
+        "sha256": "9f3febc870dad391fd825199dcdb2bbcbbc1cc79d803fc8ad260a67ad27d3399"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/area-inteira.png",
+        "sha256": "e49e45a3d6d80aebce782de43b32f4e6eb0ca5866960e5c8781478d122b0d159"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/entrada.png",
+        "sha256": "44549ff1568e486c05a437b65f2629e5ed539fb84320823c87bd1e2fbcc050e7"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/centro.png",
+        "sha256": "d7d77aeaf1018163f47189804fcfb20881b3d5a28dc17368105f9b6971f88aeb"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/saida-24-39.png",
+        "sha256": "9310059822c4d3a65de479a07f4c0ae6c4ec90681fb83cc702831191cfb9f8e2"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/saida-24-0.png",
+        "sha256": "23128fa1de99604a2d7be0f00607439ef9013ae99a63cff53412cc29a4dfaee3"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/canto-n1-20-16.png",
+        "sha256": "3b2a431bb0ed2a3371837ba28ed34d233185d15c189bd115ae5c7f29ec3c749a"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/canto-n1-28-16.png",
+        "sha256": "e96045ed9af14f0ff02d6ceb009e3568dfc370bc51c1620a3584f1bf9335a988"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/canto-n1-18-28.png",
+        "sha256": "a3de00c13ad5a42acbe88aa34deca68e8e0b1a7b30af1b7b28012e493f7d5366"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/canto-n1-30-28.png",
+        "sha256": "571bc6601fb0d10f01a43afce8eabe1d0a8df5df17992be822d55e2b6a679493"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/canto-n1-18-32.png",
+        "sha256": "ea47bdf9b422125481962f2925ed109be02474b1624e5c9d6e8dcc979569ccec"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/canto-n1-30-32.png",
+        "sha256": "62cc1a0645e997b68941e673c7e71b3b912116b8347500c26811b5cf78eeb8c6"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/rampa-topo-10-16.png",
+        "sha256": "c18c2ef5052036dc6a56e0e7aed95921665bbd28378f62c109045ec3baae7e96"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/plato-10-16.png",
+        "sha256": "6929d6a9a43234205d37fc118ca395ed5e957e89226f01d14019c7f8dab5ec58"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/rampa-topo-11-16.png",
+        "sha256": "053eedc239a19b320e18052acb2f9657698a05b569354149393773496260c023"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/plato-11-16.png",
+        "sha256": "cba44160e458609603a72b2e4cce230d28b207eb8aa5932e1c6fce73c8f013a9"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/rampa-topo-34-16.png",
+        "sha256": "a32f62947d3650627a023505749486cbe9204f0f60e640d2d68510bdf79a9f80"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/plato-34-16.png",
+        "sha256": "1b869ba3adcea22e30218423bb410e59719cb5ddd9e4139e8a9c4dc1b25c06f5"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/rampa-topo-35-16.png",
+        "sha256": "d94ed901b3fbfa8aecba78f4a3e1da9caeefd5b71b82c7cb62e5b61ff7f3dc87"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/plato-35-16.png",
+        "sha256": "7a2aedef0e1cdb13a50bc493a4ae46719b52b9591e0d9604015db949a4e477f8"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/rampa-pe-10-17.png",
+        "sha256": "de0d761594efa13830e57e32fd0956de60779ecde8b1cf452b5885838302ef99"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/rampa-pe-11-17.png",
+        "sha256": "12e525ce59e90eb9fb0f57abf213df18af39671c30507adb7b3a7c142a9422d8"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/rampa-pe-34-17.png",
+        "sha256": "ced55db9631cc7a173e67ca57ee30bab33eac8d97e601328a75f4538a51efc58"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/rampa-pe-35-17.png",
+        "sha256": "c390751f73ccedad3f6d73060690feeb98b416eced29292a7666aa7231a8c8f8"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/rampa-topo-10-32.png",
+        "sha256": "81ccf1387d92dfe703abb0b2c0eef7fe475005751066790c1a6671942a800c06"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/plato-10-32.png",
+        "sha256": "8df11cd63f8b5eace677946ebee7b7b0585880726734a6665bfdee4147398931"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/rampa-topo-11-32.png",
+        "sha256": "45228753f024bc8d548266229c772983467be720348d134c2a55f56f62a08684"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/plato-11-32.png",
+        "sha256": "747922ee02dba543421a0ddf526c5ce37cf952adcdf1679ea77e8126cf0add15"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/rampa-topo-34-32.png",
+        "sha256": "524ba6702b6599a5248419bcb44eaba7e962718070fb420de2ac534c7303c95c"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/plato-34-32.png",
+        "sha256": "b8a6285496f4519be2c5f9e11796356ff1686b97673ea3d2460733b392b28058"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/rampa-topo-35-32.png",
+        "sha256": "47392b17995fe5a073bb8d800d8e4e1408fb25d9eab592cda01d0b92d876e4b2"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/plato-35-32.png",
+        "sha256": "6c1aeb446f3ee367accd9d121f3841a9da16c9a11b4512f4bc8697a6a941b404"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/rampa-pe-10-33.png",
+        "sha256": "33858fd3f28a9c8b86f48f0acf1d3b54bb8578c993810856eb647fa99969bd6f"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/rampa-pe-11-33.png",
+        "sha256": "a8b2c655fbced041c22de3c37a33fc03556cc4fa17ec74ad1f8e9a16868fcae5"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/rampa-pe-34-33.png",
+        "sha256": "330955379dc6a619bd6767253ec69cf79b80cc3c0bd5c6d4e0c102d4002adcfc"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/rampa-pe-35-33.png",
+        "sha256": "a012441b1d78e0b5a0a694ebb0acf9767987c397a171e97a9f1196c0b616d275"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/travessia.png",
+        "sha256": "287335bea05207e12a85c992439984e69b4ad75c6d6ee9d7bfc013c82c6d19fb"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/aterro-seco.png",
+        "sha256": "053f24a286c2dd47efcec14d2de21512933af3f763db414db4aa2d74e141cafc"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/raizes-norte.png",
+        "sha256": "9355108335e19b51e448604a2bebd279aa5a54a3cd1176567b8463a2bc486b62"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/cabeceira-norte.png",
+        "sha256": "d7bd6970a7092cae61e0cc3bb657e606b83be5ddc2dbd6250269c90d2cbfa127"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/cabeceira-sul.png",
+        "sha256": "df57ef7ab91069930f665d02aaa63f13f03650e4e1d3978267bcfd9b42799a35"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/margem-norte-4.png",
+        "sha256": "dfb00b5fa574c5a2fb0cc5ddf403f218bc1c9be25eff13b8f79ff2337c5a08b8"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/margem-sul-4.png",
+        "sha256": "2e76a1d1334da35c332d1809849406b073c48535e9690b470192cd0a5366d3ed"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/margem-norte-12.png",
+        "sha256": "aba9046dd20e11c54832da6da72cf91b9d17d3303b5d1ebdbb4db1729c3f5c3c"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/margem-sul-12.png",
+        "sha256": "bf887751406a694204a3cfe8c8d7ee8e673f752161bcc241dc225ba02efd67d3"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/margem-norte-20.png",
+        "sha256": "12b6875e15ef86dc93a98f50dd3f8006b0e96b2dfc8d9f92124670dad9bc1fdf"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/margem-sul-20.png",
+        "sha256": "e4b875c95a46658d03d2ce3ae782907e31cbf22fe93ef65f1e8b69c7838638a5"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/margem-norte-28.png",
+        "sha256": "ca57b000fdee9dd372e67ae9c33aef905a3346e1b6f251f7e247a8c5b4b5907b"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/margem-sul-28.png",
+        "sha256": "01f0198d82a37bcb9a39facec25e281c38d0d3f47c5eb0a3b76f0e1fb847171b"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/margem-norte-36.png",
+        "sha256": "a323b73e6781dd21ab1b04a7ff2db30fa0e1f3e6051a1ee3c3c3359393c0c860"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/margem-sul-36.png",
+        "sha256": "d717ffe503b9b3da5896a8b1a0e5088ad5d5f0953ff7099ef53c67ee582c73f9"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/margem-norte-44.png",
+        "sha256": "90258eb8f1ef3123957ca56a734dfcda5a4ab85d60c33ec212f252ebc188b6ab"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/b/arte-terreno/margem-sul-44.png",
+        "sha256": "8cff02b1fdc373109cb19a84d11c93349f190264319e8c1dc6dba5cd721b847b"
+      }
+    ]
+  },
+  {
+    "area": "kronasta-pantano-c",
+    "mapSha256": "62d0c42cba019c6baedd5838597b390b4d68d3755779c04566aa80c99fae20ef",
+    "planSha256": "a454bf6012b4e6ba982b0a097fc53a720829c099424028fab1ae029741286262",
+    "images": [
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/area-inteira.png",
+        "sha256": "26ee033642bc47eefd08cf3295de2538baf8d897dda3b34dcb476223d61ba8fe"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/entrada.png",
+        "sha256": "731681b53402ea7903a703a840f1652089a4cc0116b218c489bd51d40544bbab"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/centro.png",
+        "sha256": "cac661629e5b44b29fe8a13a87c13c6de7656ddd761ee716ed0de1a35dbeb3ca"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/saida-24-39.png",
+        "sha256": "f0c52c7f6ce35c30522cd256d3f75dfab62f8085b07eae0c06b7cc8f182331cc"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/saida-24-0.png",
+        "sha256": "ffd69a247f5df0da9bfab0e1caba0dce12d41477c81e07233de81debcb111b15"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/canto-n1-20-16.png",
+        "sha256": "db84b9d09c7628ad19499befda2d435b7f076514001469c1f90b36d4f3275a4c"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/canto-n1-28-16.png",
+        "sha256": "1eb6d313b9cfa4872e80411405fe4a38df233e21b8d1ad29ef8527578ef287f8"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/canto-n1-18-28.png",
+        "sha256": "b9353a9c617c32f72ef55c581905052df22daa737448066c222ec6248f725b7b"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/canto-n1-30-28.png",
+        "sha256": "e59406863f714ce1a402ae66ab713cbc78c1c6c44c5df0d720ce3917927ebf0a"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/canto-n1-18-32.png",
+        "sha256": "89249ff9d5317f397f0509a0210dced1b756304799d4c8c7d4805ca49c64f8ef"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/canto-n1-30-32.png",
+        "sha256": "e485f20bb917535b35ef2d5c9a71521ff49644b81b19b62189ffdf0bd2921858"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/rampa-topo-10-16.png",
+        "sha256": "1681b6ffb2784127a9b0ffde180e0ce9a68fc755ecd12c34e3b8210a67c0aa18"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/plato-10-16.png",
+        "sha256": "dc0531ab1df6066c924c43de1b2b03d6001b7e093c3effde5a02bdf14681f79a"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/rampa-topo-11-16.png",
+        "sha256": "4708598fba065be127d24b76ae276da0bab24dba286592d50efdb43ee8e62250"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/plato-11-16.png",
+        "sha256": "0e6b04a395ded8776206a0adade619dd12e850f0eb3146dddda994fc279dd595"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/rampa-topo-34-16.png",
+        "sha256": "110db7b201eb2b0f184404a8469ea1b41945ca8f48fb8dfd0829c686ac7f7574"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/plato-34-16.png",
+        "sha256": "70a6385d07457795b45b5a9393e9533a42b3020c4b5aec7a272dd1196fd1c489"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/rampa-topo-35-16.png",
+        "sha256": "84a43fe4e327a1b99da016bd75077477133ed91798796ed125f048eaa220e273"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/plato-35-16.png",
+        "sha256": "70a9b0ca944ea6e096a4cc8f264c67ed25ea53050c6db78d30cd1885d78851b5"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/rampa-pe-10-17.png",
+        "sha256": "4e3dcc6335ba919504b7dfdc0cd095e0730d1d07110a7809e9c4f00ba589c866"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/rampa-pe-11-17.png",
+        "sha256": "de15c285cec2f921d70f5ff6aff043cf73327076b06150a9f4085f43bacb83bc"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/rampa-pe-34-17.png",
+        "sha256": "bed74291c6655f09d804dce31c8a9e42e7fc28aec1c0f13e856733d330325078"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/rampa-pe-35-17.png",
+        "sha256": "2226b840bd5e0f08af6b63c972b4570df8d5ebab61212d5ff19957bb6f86108d"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/rampa-topo-10-32.png",
+        "sha256": "5bef562e616efa4d195a1b1a8ea7b675f7d3ca86bf730ec397b0786c02f895d8"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/plato-10-32.png",
+        "sha256": "8f6bcf0083e069b849ebb7138d61fbec3f8e97cdcc68c7bc28c84546764668e6"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/rampa-topo-11-32.png",
+        "sha256": "561b8d461ac03f92475bf53a965fc50f82b1056bd2705123dbfa2c3cbcc52184"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/plato-11-32.png",
+        "sha256": "54936cb0783a484d95a0a6544c5310692bdd513b26232c91456379b0b4b29901"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/rampa-topo-34-32.png",
+        "sha256": "c2e77560be935b241982e7565a87f5dcec42c9612a080f54f8e7c140ce921766"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/plato-34-32.png",
+        "sha256": "751f98eb3a8f075ad71b1efc6766f05d4bb7c399f90cfbe559ccde7545cebfec"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/rampa-topo-35-32.png",
+        "sha256": "9f3d00a670801727e18d56f3ba609c110b05927be222560324990148025d0fe7"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/plato-35-32.png",
+        "sha256": "74892e4815c49bbb52d160e461e903ad3e60e67af858523569db3ba10356df67"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/rampa-pe-10-33.png",
+        "sha256": "15ac49a140e2473525f315adaceeda938589df5af8191475203b0a8f00786360"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/rampa-pe-11-33.png",
+        "sha256": "95c37cfb6b1b6412603807dffcceed359406f288ae769a2dc53b93ed5c6b5444"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/rampa-pe-34-33.png",
+        "sha256": "c3e8ee36ab97c2e25eb09651908980e2412f44743932983b380d59780cc81a8e"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/rampa-pe-35-33.png",
+        "sha256": "b8916d8edb0f3b36eca2448e2a3c93e897912b5ced700a21d5fd3bcc69f320a1"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/travessia.png",
+        "sha256": "91fc3506aaa2217b2653b32c5b4c0967b3f0e4001d1affead808d9356cfb8095"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/aterro-seco.png",
+        "sha256": "eebb82b76c2c6b0186204004f5fb8dcbaaf40e0c2a3bd86bf3d30f87cce6fed3"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/raizes-norte.png",
+        "sha256": "235438ed26ae564bb5ccbd03e6a60822b5347a803f3508cbf6149fcc17135b1c"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/cabeceira-norte.png",
+        "sha256": "67486390f644c2f072a6111ce2941ac373bedea166b608fcfcd3772f7c2186ba"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/cabeceira-sul.png",
+        "sha256": "1dba096a93ede77d1912fc4a0dcb80155518abeac558de6fb4c4143e71d837f0"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/margem-norte-4.png",
+        "sha256": "ea7c8ed96049172b2be774cff1648e3d9885c727abd5a6272d4e4f84dc32db31"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/margem-sul-4.png",
+        "sha256": "4e1965b1b37ec40f5d9cf1c6b413717ce7eb0939ea0e13850b1d78d16b5afa3f"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/margem-norte-12.png",
+        "sha256": "b94b9cf6f14639ee83587041f1542d11ce404d5da750ed478e8aa63ecc7920e9"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/margem-sul-12.png",
+        "sha256": "ddebfaf3e7a502be2a3fd8bb25a0a0018ffc3126629a721217c6ec8c269f6462"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/margem-norte-20.png",
+        "sha256": "b2e37944bc05d3362a9911b3384be3bc9e765b63c0064d93a3d3822ff2edce74"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/margem-sul-20.png",
+        "sha256": "d87e6c4581d0871b1c993e7bde6430582896cec8a68b4a089e052ddbd8764687"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/margem-norte-28.png",
+        "sha256": "e13e6fa8c852be4a599d40f9841022b42d145f8826e93bcff0f2517a8318be85"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/margem-sul-28.png",
+        "sha256": "a0b8d1d902677fde874bddecd65acbee1530e2b0a21e4a3d4cbbdb266046b1ac"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/margem-norte-36.png",
+        "sha256": "2316166f1cdbf788923050cdcaaf778d0dae350cdb19546cc90d5c617f59e541"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/margem-sul-36.png",
+        "sha256": "573231c0c843db8cfd37d647470a1ee5b3905e14f53bf1ec8ae4261623c9503b"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/margem-norte-44.png",
+        "sha256": "e1d512367f02ce34956fd552f0929631e87fd2c866075a45f2b9181226de4291"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/geometria/margem-sul-44.png",
+        "sha256": "da0a993d39074146ce17f849d1ce59b0f75a4011f4141a4fc7af5599d5771536"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/area-inteira.png",
+        "sha256": "cfc4ca341ef3fc93a16881c50a315ab81920dd46b5283ba8cab49cd095864725"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/entrada.png",
+        "sha256": "cb5a003ccaffbb2e0ee16da2ce2567a1ba9d66049612656be3e611a7f3181562"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/centro.png",
+        "sha256": "028606ca18ecebe9e201419a771e3491a44418013ef77e46ae73d0f6ed2452a0"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/saida-24-39.png",
+        "sha256": "71d29ee869d5e9c5af643e217882df0b9e2d32307b9629ea0d22da63ff84a2da"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/saida-24-0.png",
+        "sha256": "9d83967f7ddf25c98cd1cd7122c7ab9b0937de9ff5ee921a8d5a5477125e2645"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/canto-n1-20-16.png",
+        "sha256": "d0b14be30542468059389aba8217c3d5ee83f95e0be02e05a35a0c4d86ec3399"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/canto-n1-28-16.png",
+        "sha256": "87d6aac625e31ae2224880ad2825c4060568948e1b181280438d1c674a229788"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/canto-n1-18-28.png",
+        "sha256": "936b057fe6ae6a17ff9a3fa2442bd4c55849d395fc3c83d5d01cced14c09dd23"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/canto-n1-30-28.png",
+        "sha256": "cc7b81a0b4d6fb35efd4108d274111338453c36176b7df33310d54d706401fde"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/canto-n1-18-32.png",
+        "sha256": "efb84e785963ed8c2b3438d870353266bff6c665001cd328e4920433062023e0"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/canto-n1-30-32.png",
+        "sha256": "fd7a3f622c6c1063a809d834809bb09b5bf0a0b0b6d074fe8644c26ffc34fce1"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/rampa-topo-10-16.png",
+        "sha256": "4b8a384a3f3d58cda41b151cf9116cfa0633936bcfde541c47392085ebdd3ece"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/plato-10-16.png",
+        "sha256": "a790b6fcac532239436dc95cab11da96311c9dcc89377fa953d0edb92885683d"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/rampa-topo-11-16.png",
+        "sha256": "dbf0e7029c7ea907d3e04daed4fa215bcd95fff336b77f9c277587233274e16d"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/plato-11-16.png",
+        "sha256": "b101d370ea96ca4d49cb125702efc570d61d353eeea29055169000d567346cd3"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/rampa-topo-34-16.png",
+        "sha256": "6e5ba1283c1b87578fe621a13fcb546c0ccff125028343f5ba8e55182d1c45f9"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/plato-34-16.png",
+        "sha256": "7467a760cefbd79bb39ce50ce733df63a951b28bda535a64cc1d715ab1381b67"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/rampa-topo-35-16.png",
+        "sha256": "49dc43f00342bb33c01eaae42bd2ab5fd09f623348887add2112621302dedc6d"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/plato-35-16.png",
+        "sha256": "172f62eb8db9affcfa36f01ddd0c05c550245dbfdc47e4da267931ee853dbbda"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/rampa-pe-10-17.png",
+        "sha256": "e41d0450ea2142b3c0f73b91985f41c00a4108e0979ed4ea5d73c1c133f86039"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/rampa-pe-11-17.png",
+        "sha256": "7dc1c82de4db34979ec42d94a07cab650f3aa842ecf03bcc8283029df63edc73"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/rampa-pe-34-17.png",
+        "sha256": "ad663ed9a2c7f6a56880404c52edd7a96f09cd484e25f7c4c839540522570711"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/rampa-pe-35-17.png",
+        "sha256": "796d09ab82c39f36590ab8cf9ec43637d98b4864fa104cbd4f041e494c19f210"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/rampa-topo-10-32.png",
+        "sha256": "6e1f68aab3407e6fe6a241b50c9a1f597a6fed0a1786f622edf1770f1ab045af"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/plato-10-32.png",
+        "sha256": "b2f2bf206a8bca7ec1a6edcd5a78da8b194e4a19b50e6481eec057f689d22b46"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/rampa-topo-11-32.png",
+        "sha256": "13d4310dd9ad2450b1df4c828bb6d5675cde638758097135ff73a3572114cafc"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/plato-11-32.png",
+        "sha256": "6eef6e77440bab204cfdbea01ec3da3d27e52a519ded0a9144ffc3d71f4c531d"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/rampa-topo-34-32.png",
+        "sha256": "5d5440db66625debcccae3e6b24cdfb8043123eb4d629398f05675f730853524"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/plato-34-32.png",
+        "sha256": "a741898a09106713ba6661cfb00c68ac1b3204ba0be2525ef8ca70dfeae09bf8"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/rampa-topo-35-32.png",
+        "sha256": "347ced4a568b014034819c28eea420b1ba08d8c30e6c0521e415d002f5f27e8b"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/plato-35-32.png",
+        "sha256": "4d9ae00a907b0881ce158fdb3d4112a18e19b7e44479a51d4df1797bf98a0122"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/rampa-pe-10-33.png",
+        "sha256": "d5ea02db1339c07ea8b587eb1407527f2ba61609a09606fe2b7b03cb6410952e"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/rampa-pe-11-33.png",
+        "sha256": "60788807a07712141ec5cf6854ef2e0021626bf49b64075466987107558485c3"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/rampa-pe-34-33.png",
+        "sha256": "f14d9a8c3660bb20cdb6f4b0b5d5e1633580a86058a50d246d65aed3528c9895"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/rampa-pe-35-33.png",
+        "sha256": "e20d4da06df2427744ff687eec15513645bdfd967088b00bb5608ace3c36f68d"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/travessia.png",
+        "sha256": "603fddfdb292181c06c8ada9743b85b4eecc4b64f83ebf03e9e9e30fd6d12e79"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/aterro-seco.png",
+        "sha256": "9242f1573fd012ec60fd4cedcd413c01eaec291c4567124eb34f237576529430"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/raizes-norte.png",
+        "sha256": "c9bdcee78fcbc8b5c436706f12cdb7b7382ca87167fc84019b74b94ba777cfdd"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/cabeceira-norte.png",
+        "sha256": "67d2d5b91c68858637364457ae50d45d39f7b188646a489298831a3660a6aa6c"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/cabeceira-sul.png",
+        "sha256": "abfe6e84ec0f559d72b384b3490ae8ba9f242fe69b98edfb09c31d4953736b66"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/margem-norte-4.png",
+        "sha256": "4944cdc138d4759a264ff7b25166494452ba05ad906ed05f047eb6a0df486f10"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/margem-sul-4.png",
+        "sha256": "e69299c1b655b3809df1ed6c626e4e8d0adba3c66309788e82690df9c90c1ffe"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/margem-norte-12.png",
+        "sha256": "730253650517b013ca4c4dd2e88238bc95a020a210a74e313582d1d250363d8e"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/margem-sul-12.png",
+        "sha256": "0951e1251dbe1ff4aae78d57e775a3db02ef883814dabc34abc66b8c8c9487b2"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/margem-norte-20.png",
+        "sha256": "922b90057db1ed17532a7f2b490b87b47c05373051457089004d27918cbaf8a3"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/margem-sul-20.png",
+        "sha256": "787f4c216d69a1437f050c11349ecdb0f38fa25ddc43ad9bb5036448ea372af4"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/margem-norte-28.png",
+        "sha256": "274e623cf6d630539cbbeff761adc72ba3575e7de8f5b0a23a709c52b5fd24f0"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/margem-sul-28.png",
+        "sha256": "75a8f1ccf01a73aa5ec797ac9737c2e4e0753253beea9755d0ce3923e9e62815"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/margem-norte-36.png",
+        "sha256": "96f37d11b99a9e715a2f6d71441f5a90fcf78afeb50643f40c90747e3f792388"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/margem-sul-36.png",
+        "sha256": "e35e3002dc55a2ccd27e82338eb3932c19d945b61ece7e7fed7866c818dac2e5"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/margem-norte-44.png",
+        "sha256": "9ca1fc8b207c9c9769cc131f2a6ef52fb232cd0b00dcdadca1deb4fa5fcd42d1"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte/margem-sul-44.png",
+        "sha256": "b2204555ce01bb2578c62015a4a799fbc7ab983d29cbb022d0f404bfbe940f55"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/area-inteira.png",
+        "sha256": "b874c26361a4f5bf5a4f9d65cc2d8a0412fc554ae60d77ca7430ac59007976ad"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/entrada.png",
+        "sha256": "15e7cc137845e02ad43a1496a8bc5ec41ce1a55b4488b13296bc714ae9e0236d"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/centro.png",
+        "sha256": "47c7bff176022df099a86c229e0987d8476878f6130b97a21e78a31bcff2e040"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/saida-24-39.png",
+        "sha256": "0f0148def6eac6bae22d0a7af0d31dbd4d1ddd08ac5593b58290ce52ed8792e1"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/saida-24-0.png",
+        "sha256": "23128fa1de99604a2d7be0f00607439ef9013ae99a63cff53412cc29a4dfaee3"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/canto-n1-20-16.png",
+        "sha256": "393e63ea44fcf6039e23b2e2f0897fcf322e39fba4a6fc9c16a6ca15f75e6cfc"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/canto-n1-28-16.png",
+        "sha256": "edce0bfdd3e9659fa7a67d4393df466177c4ebcce02771c6da955d5411d74f86"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/canto-n1-18-28.png",
+        "sha256": "16626ca1f679fe0e9e210cd26f3b2eff6beadd14791cd9d1d8c532de8cef4ba5"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/canto-n1-30-28.png",
+        "sha256": "8299d935a8ad2d5a50b770fc2105c6a707d98ec5a33356cbb5fd6d2d43635f51"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/canto-n1-18-32.png",
+        "sha256": "d0729d6042982660b3d91ff9bc2b2e8afc144efa5ad6508b3a1a440b2f874a77"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/canto-n1-30-32.png",
+        "sha256": "5c0914e4278674fbc0ffc88c23a4b4a219c4b302ee5b1a487b7cc678b922fca3"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/rampa-topo-10-16.png",
+        "sha256": "74770e31881a517f671c7325055fdcd402e1d427d7d2b362d68262d63640f878"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/plato-10-16.png",
+        "sha256": "283d9d35def8e83f184c6fd8f7d33660fe8a0805194ec4467e47612a7768379d"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/rampa-topo-11-16.png",
+        "sha256": "76e5ee1dab810b0ee118a636c1896487a960901a7dc65e3bd4f26a413c60e683"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/plato-11-16.png",
+        "sha256": "2a1f49317112e8ce9cf8878c31952c3791078c9ded65ed45bdecd36961f0c20b"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/rampa-topo-34-16.png",
+        "sha256": "83460dc385350d299ddd0e00d1a6ac78cfc8d4dee1f2bb8479471014a291ca76"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/plato-34-16.png",
+        "sha256": "164e334f29bdfad2f04c78df85b44ad860a71da7e482483df9eaac2e392fc314"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/rampa-topo-35-16.png",
+        "sha256": "e00833f65e653c1516b0d35eb82ed7459167c08d40e6d8152737ab454d17b7ec"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/plato-35-16.png",
+        "sha256": "500c937bd649202767e89af37df63e35076bfc3444f3e3c59c9193da3d972a95"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/rampa-pe-10-17.png",
+        "sha256": "00532b3d6666ec633ffc7a589d3752eb8e7864583415e2fe153acab15bdee28c"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/rampa-pe-11-17.png",
+        "sha256": "3ee3ce3c0a0ba1289abb40e8ce1553af688958dab8857275c9d09600b2a3fe71"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/rampa-pe-34-17.png",
+        "sha256": "7f3ec652f2301ac764078ba6e7a35eca3b73ea6a7c790030f4fb9d62ab97d466"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/rampa-pe-35-17.png",
+        "sha256": "ef7f021427252ff8802f65b1d806ec03a3924a5a4b3ca887ee002e87d4931fb3"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/rampa-topo-10-32.png",
+        "sha256": "b2624391177c8fa51126924eff8ff9141eab0150bf1c579c1f535adec2ec23f9"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/plato-10-32.png",
+        "sha256": "2243a24f7fdabe7dc55eb4a83213e72ad30a25f39b5857aa7eb28a933938fc20"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/rampa-topo-11-32.png",
+        "sha256": "d542197c7070b98baa3b558aaf3264b67b6135c08c9891680ad1067f764baac1"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/plato-11-32.png",
+        "sha256": "8f91037476ea1d0e924ffc851ba5bca15e04185785e992f5fbc5c062a0031ba8"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/rampa-topo-34-32.png",
+        "sha256": "f6f2d4bec9a4abe0c98851bef6ef97a401443774ea9c46f79caa4a6bba983f34"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/plato-34-32.png",
+        "sha256": "0a6cf3a36a23a000643d55cc2d42708b7141036155fbd5427c08e2d85fc68122"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/rampa-topo-35-32.png",
+        "sha256": "d79f5b693d2da698497867afa512b0ca0941939797dabedb9ee11ab79a1f3854"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/plato-35-32.png",
+        "sha256": "f61a6cfbabce913c17f596bf05ae6d8b89c2ac8c15b96bad872003c2e8039759"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/rampa-pe-10-33.png",
+        "sha256": "920558945a43fc044c858e7c5db22606930d9337eb15172316d618e6d7d72730"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/rampa-pe-11-33.png",
+        "sha256": "fd68bff664b7452af1520b548180fea03c2bd2e199cd41f7d7b822a6192d1518"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/rampa-pe-34-33.png",
+        "sha256": "8b9b59b2508cbe460eb2e031e444609e6c97edf0203177ad9b9c5638f548331e"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/rampa-pe-35-33.png",
+        "sha256": "f2ab6cf9a4415561f2daa168cd564f98a5e9e44325cf29c8be2be9d49ae5fde9"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/travessia.png",
+        "sha256": "53af5b3fd3dc632cbc6cce016a7751073e0916c9ad212f39b68c087ea6855c51"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/aterro-seco.png",
+        "sha256": "76c9aafaa50b59ea1723a75767fc5ac831e2650aaef1e386e75cb5006f75bd6a"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/raizes-norte.png",
+        "sha256": "42f5f28482568b7b4553fd1eda7f589d09b0bcc101411c239ee6328220d73360"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/cabeceira-norte.png",
+        "sha256": "aa6febadde0bed66e033bec30627744aae792e7f2fb9ca97fae4aec35d5dfc0f"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/cabeceira-sul.png",
+        "sha256": "d596b5ef2881a07fa789a49c4802e8fe9a0c48b32464fda502394ca0ad9d0d25"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/margem-norte-4.png",
+        "sha256": "1d5571fce7782f652cde2d32204115cb4c5a4026837b56a9307b317844dec759"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/margem-sul-4.png",
+        "sha256": "dedb6ac13943faed9d8a8ac753dc58366702b60f160ef51d967400be02a1476a"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/margem-norte-12.png",
+        "sha256": "0c33c38f13226e86ebee98e68d53e33e7047674ddaab43eca32b4815bf72b647"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/margem-sul-12.png",
+        "sha256": "119db0d5bb5e0cfce35d99de8f106550f7bf370f6232b5576c23bd427aa984d9"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/margem-norte-20.png",
+        "sha256": "6b9b5feb6062d91e0573e49d152ca4dde32325687365507f08a22eb4c61ca72a"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/margem-sul-20.png",
+        "sha256": "7b827b138292aa588f5665b80bd820bbecea61350123b41a268d265c622102ff"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/margem-norte-28.png",
+        "sha256": "383c72bcd328f4906b21bb6638bb7ce8db2bcaea8dceae07245d139539ee9155"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/margem-sul-28.png",
+        "sha256": "f999ad229fa11b9293ab561e0776001f0aa64b822de2d7aacbfe9ae1b8f5a5c6"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/margem-norte-36.png",
+        "sha256": "81831fa24a2312d5590f43530aa7d07e82bcecfd472092e20d8c35db8501022f"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/margem-sul-36.png",
+        "sha256": "56ebd493f79e76d9ab9b23dd056241915df32e6676828a22ead01018d780e349"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/margem-norte-44.png",
+        "sha256": "2a7befc8fbb91136e1fa717e85edfac2f7901372508a9ac664269a5653169a2f"
+      },
+      {
+        "path": "documentation/overworld/pantano/captures/c/arte-terreno/margem-sul-44.png",
+        "sha256": "a7141958750ef91bf777433d2bdb98a14216740e175cd6e924dd48255ecaf90f"
+      }
+    ]
+  }
+]
