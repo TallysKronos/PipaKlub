@@ -48,7 +48,7 @@ func run() -> void:
 	app.park.set_physics_process(false)
 	var before:Dictionary=app.session.snapshot().player
 	var position:Vector2=app.park.player
-	app.preferences.reduced_motion=false
+	app.preferences.reduced_motion=true
 	app.park._physics_process(.016)
 	var intro:Node=cinema();check(intro!=null,"approach starts cinematic")
 	if intro==null:quit(1);return

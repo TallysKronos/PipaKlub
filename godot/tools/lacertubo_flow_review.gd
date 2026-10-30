@@ -19,7 +19,7 @@ func run() -> void:
 	await place("park-veredas",boss+Vector2(0,5),1260)
 	front.park._physics_process(.016)
 	for i in 90: await process_frame
-	var cinematics:Array=front.find_children("*","Control",true,false).filter(func(node):return node.get_script()!=null and node.get_script().resource_path=="res://scripts/campaign/lacertubo_cinematic.gd")
+	var cinematics:Array=front.find_children("*","Control",true,false).filter(func(node):return node.get_script()!=null and node.get_script().resource_path in ["res://scripts/campaign/lacertubo_cinematic.gd","res://scripts/campaign/lacertubo_movie.gd"])
 	check(cinematics.size()==1 and front.park.guardian_focus,"approach opens cinematic and focuses guardian")
 	await shot("01-apresentacao")
 	if not cinematics.is_empty():cinematics[0].complete()

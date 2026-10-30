@@ -1251,7 +1251,8 @@ func _park_action(id: String) -> void:
 	var player: Dictionary = session.snapshot().player
 	if id=="guardian-approach":
 		if park.guardian_focus:return
-		var presentation=load("res://scripts/campaign/lacertubo_cinematic.gd").new()
+		var movie_available:bool=not preferences.reduced_motion and FileAccess.file_exists("res://assets/campaign/cinematics/lacertubo-patio-h3-v1.ogv")
+		var presentation=load("res://scripts/campaign/lacertubo_movie.gd" if movie_available else "res://scripts/campaign/lacertubo_cinematic.gd").new()
 		presentation.park=park
 		presentation.reduced_motion=preferences.reduced_motion
 		presentation.cue.connect(func(event_id:String):sound.play_event(event_id))
