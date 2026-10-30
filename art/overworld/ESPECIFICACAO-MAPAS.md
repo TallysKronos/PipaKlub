@@ -4,6 +4,8 @@ Este documento cobre as áreas grandes do jogo: a Rua inicial, as Veredas, o Pá
 
 Regra de ouro, a mesma de `documentation/continuidade-terreno-isometrico.md`: **primeiro a planta, depois a arte**. A planta é feita em cores lisas: onde se anda, onde tem desnível, onde tem rampa e ponte. Ela é conferida automaticamente e percorrida com o Kael. Só depois dessa conferência a arte é pintada por cima. Vegetação nunca esconde junta quebrada.
 
+**Regiões em partes:** toda região explorável de Kronasta tem pelo menos 3 mapas, A, B e C, ligados por saídas e com itens espalhados. As regras de papel das partes, ligações, itens (evento `item`), nomes (`regiao`, `parte`) e as regras contra o mapa chapado estão em [REGIOES-E-PARTES.md](REGIOES-E-PARTES.md). Elas valem junto com este documento.
+
 ## 1. Fluxo de trabalho
 
 | Etapa | Quem | Ferramenta | Sai |
@@ -75,6 +77,7 @@ O material é só **revestimento**: ele não decide se há barranco. Quem decide
 
 1. **Nível** é um andar inteiro. Barrancos aparecem sozinhos onde um vizinho é mais baixo, com a altura da **diferença**: de 2 para 1 a parede tem um nível, não dois. Entre vizinhos do mesmo nível não há parede, mesmo com materiais diferentes.
 2. **Rampa** fica no nível de **baixo** e sobe um nível no sentido da seta. A célula da frente da seta precisa ser o nível de cima, e a de trás, o nível da rampa. A parede é recortada onde a rampa encosta, e os lados da rampa viram cunhas.
+   **A seta aponta para o fundo da tela: `u-` ou `v-`.** Com rampa de 2 células (`rampa_comprimento` 2), uma rampa `u+` ou `v+` tem a inclinação da linha de visão da câmera e some atrás do patamar; com 1 célula, fica de costas. O acesso a um platô fica na face da frente dele (prova em `documentation/overworld/kronasta/captures/rampas-geometria.png`).
 3. **Rampa larga** = várias células de rampa lado a lado com a mesma seta. Dá para andar de lado entre elas, mas não sair pela lateral para o chão.
 4. **Ponte** = material `ponte` sobre a água. No eixo mais comprido, as duas pontas encostam em chão andável. Pontes elevadas (com pilares) são outra peça e ficam para depois.
 5. Só se passa de um nível para outro por rampa (ou, no futuro, escada como peça). A conferência reprova evento ou baú que só se alcança "pulando".
