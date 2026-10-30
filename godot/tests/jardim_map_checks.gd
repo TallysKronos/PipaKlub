@@ -36,7 +36,7 @@ func run() -> void:
 	for event in view.interaction_events:
 		if event.type=="saida" and event.props.destino=="park-clearing":exit=event
 	view.nearby=exit;view.interact()
-	check(view.area_id=="clareira-do-papel" and view.player==Vector2(3.5,13.5),"A to B arrival")
+	check(view.area_id=="clareira-do-papel" and view.player==Vector2(8.5,36.5),"A to B arrival")
 	for event in view.interaction_events:
 		if event.type=="saida" and event.props.get("destino","")=="park-trail":view.nearby=event;break
 	view.interact()
