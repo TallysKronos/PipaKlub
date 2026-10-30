@@ -7,6 +7,7 @@ description: "Crie ou redesenhe personagens humanos de Soulmonsters/PipaKlub no 
 
 A referência visual aprovada é o **Locutor V4**: o usuário disse explicitamente “esse é o estilo que eu quero”. O concept do Kael enviado pelo usuário define a origem do traço. As imagens em `references/` são parte funcional desta skill; abra-as antes de criar arte. Não substitua a inspeção por uma descrição genérica de anime.
 
+- [Kael, prancha de 30/10/2026](references/kael-prancha-2026-10-30.png): prancha desenhada pelo dono, com o mesmo layout e acabamento do locutor. É a autoridade de estilo e de layout para concepts novos (ver a skill `soulmonsters-concept-personagens`).
 - [Locutor aprovado](references/locutor-aprovado.png): autoridade principal para acabamento, rosto, proporção, cores e integração de motivos na roupa.
 - [Kael autoral](references/kael-autoral.png): construção leve de linha, rosto e cabelo. Não copiar sua roupa/cabelo para todo NPC.
 - [Produção e exemplo de prompt](references/producao.md): ler ao gerar, editar ou preparar recortes.
