@@ -28,6 +28,7 @@ static func build(view) -> void:
 	material.set_shader_parameter("grass_b",load(KITS+"terrenos-v1/superficies/grama-musgo.png"))
 	material.set_shader_parameter("dirt",load(KITS+"terrenos-v1/superficies/terra-ocre.png"))
 	material.set_shader_parameter("map_size",Vector2(w,h))
+	material.set_shader_parameter("swamp",bool(model.data.get("forest",{}).get("swamp",false)))
 	if industrial:
 		industrial_surface.set_shader_parameter("floor_mode",true)
 		industrial_surface.set_shader_parameter("masks",material.get_shader_parameter("masks"))
@@ -85,17 +86,20 @@ static func build(view) -> void:
 			Structures.floor_cut(model,node,poly,corners,u,v)
 			if inside:
 				_walls(view,model,node,u,v,wall_texture)
-				if bool(model.data.get("forest",{}).get("nativeProps",false)) and model.cell_at(Vector2i(u,v)).material=="mato" and OS.get_environment("KRONASTA_GEOMETRIA")!="1":
+				if bool(model.data.get("forest",{}).get("nativeProps",false)) and not bool(model.data.get("forest",{}).get("swamp",false)) and model.cell_at(Vector2i(u,v)).material=="mato" and OS.get_environment("KRONASTA_GEOMETRIA")!="1":
 					view._encounter_tufts(Vector2i(u,v),model.cell_at(Vector2i(u,v)))
 			elif not industrial and OS.get_environment("KRONASTA_GEOMETRIA")!="1" and _hash(u,v,7)<.82 and not Structures.is_water(model,Vector2(u+.5,v+.5)) and not _near_exit(u,v,w,h,exits) and _hidden_behind(model,u,v)>4:
 				_tree(view,model,Vector2(u+.5+(_hash(u,v,3)-.5)*.5,v+.5+(_hash(u,v,4)-.5)*.5),0,"a" if _hash(u,v,5)<.5 else "b",_hash(u,v,6),true)
 	Structures.build(view)
 	if bool(model.data.get("forest",{}).get("industrial",false)):
 		preload("res://scripts/overworld/industrial_structures.gd").build(view)
+	if bool(model.data.get("forest",{}).get("swamp",false)):
+		preload("res://scripts/overworld/swamp_structures.gd").build(view)
 	if bool(model.data.get("forest",{}).get("nativeProps",false)):
 		var native_pieces: Array = []
 		for piece in model.data.pieces:
 			if piece.asset=="industrial-volume":continue
+			if piece.asset=="pantano-arvore":continue
 			if piece.asset in ["arvore","arbusto","flores","pedra"]:_piece(view,model,piece)
 			else:native_pieces.append(piece)
 		if not native_pieces.is_empty():
@@ -175,6 +179,12 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 		shade.add_child(shadow)
 
 static func _tree(view,model,point:Vector2,level:int,variant:String,r:float,occluder:bool,shrink:float=1.0) -> void:
+	if bool(model.data.get("forest",{}).get("swamp",false)):
+		var base:=_screen(point,float(level))
+		for at:Array in model.data.forest.get("clearViews",[]):
+			var access:Vector2=model.project(Vector2(at[0],at[1]))
+			var delta:=base-access
+			if absf(delta.x)<90 and delta.y>0 and delta.y<250:return
 	var root:=Node2D.new()
 	root.set_meta("scenery",true)
 	root.position=model.project(point,false)
@@ -191,6 +201,15 @@ static func _tree(view,model,point:Vector2,level:int,variant:String,r:float,occl
 	var size:=(.86+r*.30)*shrink
 	art.scale=Vector2(size*(-1.0 if r>.5 else 1.0),size)
 	art.position=Vector2(96*size*(1.0 if r>.5 else -1.0),-272*size-level*64)
+	if bool(model.data.get("forest",{}).get("swamp",false)):
+		var swamp_texture:=preload("res://scripts/overworld/industrial_structures.gd").texture(KITS+"pantano-v1/pecas/arvore-cipos.png")
+		if swamp_texture:
+			art.texture=swamp_texture
+			var swamp_scale:=.16*size
+			art.scale=Vector2(swamp_scale*(-1.0 if r>.5 else 1.0),swamp_scale)
+			art.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
+			art.position=Vector2(swamp_texture.get_width()*.5*swamp_scale*(1.0 if r>.5 else -1.0),-swamp_texture.get_height()*.94*swamp_scale-level*64)
+			var cutout:=ShaderMaterial.new();cutout.shader=preload("res://shaders/industrial_cutout.gdshader");art.material=cutout
 	root.add_child(art)
 	view.actors.add_child(root)
 	if occluder:view.occluders.append(root)

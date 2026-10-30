@@ -76,7 +76,10 @@ static func build(view) -> void:
    var surface:=Node2D.new();surface.z_index=-2;view.actors.add_child(surface)
    var bottom:=PackedVector2Array()
    for p in contour:bottom.append(iso(p)+Vector2(0,depth))
-   var water:=quad(surface,bottom,Color("2a7490") if geometry() else Color(.65,.87,.93),null if geometry() else load(BASE+"aguas-v1/surfaces/rio-claro.png"))
+   var swamp:bool=f.get("swamp",false)
+   var water:=quad(surface,bottom,Color("2a7490") if geometry() else Color("20483b") if swamp else Color(.65,.87,.93),null if geometry() or swamp else load(BASE+"aguas-v1/surfaces/rio-claro.png"))
+   if swamp and not geometry():
+    var shader:=ShaderMaterial.new();shader.shader=preload("res://shaders/swamp_water.gdshader");water.material=shader
    if not geometry():
     water.texture_repeat=CanvasItem.TEXTURE_REPEAT_ENABLED
     var uv:=PackedVector2Array();for p in bottom:uv.append(p*.8)

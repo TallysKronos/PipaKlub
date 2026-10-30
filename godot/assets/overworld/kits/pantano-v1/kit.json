@@ -1,0 +1,11 @@
+{
+ "schema":"overworld-kit-1",
+ "biome":"pantano-v1",
+ "grid":{"cell":[64,32],"levelPx":64},
+ "approval":"pending_owner_review",
+ "renderer":"res://scripts/overworld/swamp_structures.gd",
+ "pieces":{"pantano-arvore":{"file":"pecas/arvore-cipos.png","size":[1024,1536],"anchor":[512,1443.84],"scale":0.19,"footprint":[1,1],"frames":1,"durationMs":0,"filter":"linear","alphaMin":0,"zeroAlphaSamplesStep4":56239,"alphaShader":"res://shaders/industrial_cutout.gdshader","source":"image_gen.imagegen, 2026-10-30; original preserved under art/overworld/kits/pantano-v1/fontes"}},
+ "water":{"shader":"res://shaders/swamp_water.gdshader","depthPx":12,"collision":"same measured curved aperture as ground cutout","animation":"subtle phase of ripples, no gameplay effect"},
+ "reuse":["terrenos-v1 grass/earth textures with conditional swamp palette","comum shrubs and contact shadows","forest_structures measured banks/bridge; unchanged in other biomes"],
+ "limitations":["Generated PNG retains faint outer alpha haze; runtime cutout rejects it","Preview loads source PNG through existing cached image helper; packaged export not verified","No tree rig or foliage animation","Not a certified botanical reconstruction"]
+}

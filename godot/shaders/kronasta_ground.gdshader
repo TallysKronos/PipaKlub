@@ -8,6 +8,7 @@ uniform sampler2D grass_b : repeat_enable, filter_linear;
 uniform sampler2D dirt : repeat_enable, filter_linear;
 uniform vec2 map_size = vec2(1.0);
 uniform float tex_scale = 0.0026;
+uniform bool swamp = false;
 varying vec2 world;
 
 void vertex() {
@@ -31,5 +32,11 @@ void fragment() {
 	vec3 soil = texture(dirt, tuv * 1.15).rgb;
 	soil *= mix(.86, 1.04, smoothstep(.55, .85, edge)); // centro da trilha mais claro
 	vec3 col = mix(grass, soil, path);
+	if(swamp){
+		float lum=dot(col,vec3(.299,.587,.114));
+		vec3 moss=mix(vec3(.20,.29,.15),vec3(.43,.49,.28),clamp(lum,0.,1.));
+		vec3 mud=mix(vec3(.32,.26,.17),vec3(.64,.55,.36),clamp(lum,0.,1.));
+		col=mix(moss,mud,path);
+	}
 	COLOR = vec4(col * COLOR.rgb, 1.0);
 }
