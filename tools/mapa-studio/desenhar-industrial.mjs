@@ -29,8 +29,8 @@ export function industrialPart(part){
  if(part==='C')path([[36,39],[36,32]],4);
  const feature={nativeProps:true,industrial:true,followTrail:true,stairs:[{u:12,v:28,width:3,length:2}],guards:[],buildings:[],shots:[]};
  const building=(name,u,v,w,h,z,style)=>{piece('industrial-volume',name,u,v,w,h,{style});feature.buildings.push({name,u,v,w,h,z,style});feature.shots.push({name:'implantacao-'+feature.buildings.length,u:u+w/2,v:v+h,zoom:2.3});};
- building(part==='C'?'Usina':'Galpão de manutenção',6,5,10,7,128,part==='C'?'usina':'galpao');
- building('Depósito de peças',23,5,6,6,80,'galpao');
+ building(part==='C'?'Usina':'Galpão de manutenção',6,5,10,7,part==='A'?320:128,part==='C'?'usina':'galpao');
+ building('Depósito de peças',23,5,6,6,part==='A'?192:80,'galpao');
  building('Carga azul',6,21,4,3,52,'container');building('Carga ocre',16,21,3,4,52,'container');
  building(part==='B'?'Caldeiras':'Gerador do pátio',39,18,3,4,76,'caldeira');
  if(part==='A'){
@@ -40,7 +40,7 @@ export function industrialPart(part){
   building('Reserva de tambores',25,12,2,2,32,'tambor');
   building('Caixotes do depósito',29,6,2,3,40,'carga');
   building('Carga de manutenção',39,10,3,2,36,'carga');
-  feature.shots.push({name:'doca-viva',u:12,v:15,zoom:1,kind:'jogo'},{name:'carga-detalhe',u:8,v:16,zoom:2.3},{name:'deposito-vivo',u:27,v:10,zoom:1,kind:'jogo'});
+  feature.shots.push({name:'doca-viva',u:6,v:9,zoom:1,kind:'jogo'},{name:'carga-detalhe',u:8,v:16,zoom:2.3},{name:'deposito-vivo',u:24,v:7,zoom:1,kind:'jogo'});
  }
  // The source footprint owns collision, while illustrated surfaces only dress it.
  for(let u=4;u<20;u++)if(u<12||u>14)feature.guards.push({u,v:27,side:'v'});

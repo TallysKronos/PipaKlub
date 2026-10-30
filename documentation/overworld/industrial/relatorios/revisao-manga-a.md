@@ -1,5 +1,7 @@
 # Pátio de Cargas — revisão visual 2D, 30/10/2026
 
+Correção posterior de proporção: galpão de 128 para 320 px de altura, depósito de 80 para 192 px. A largura horizontal frontal de cada prédio agora coincide com a altura, preservando o aspecto da elevação quadrada pintada. Base, pegada, itens e colisão inalterados. Telhado e detalhes laterais acompanham o volume real. Recapturadas as 53 vistas nas três versões e reenquadradas `doca-viva`/`deposito-vivo`. Conferidos nativamente fachada inteira e implantação. Node: 8 testes, zero falhas; percurso A: 66 viagens, zero falhas. Testes gerais do Godot abaixo pertencem à revisão anterior; não repetidos nesta alteração de altura de cenário.
+
 ## 1. Arquivos
 Gerador `tools/mapa-studio/desenhar-industrial.mjs`, planta/compilado A, renderizador `industrial_structures.gd` e novo `industrial_dressing.gd`. Kit industrial próprio: fachada ortográfica ilustrada e carga em palete, com fontes preservadas. B e C mantêm sua composição anterior.
 
