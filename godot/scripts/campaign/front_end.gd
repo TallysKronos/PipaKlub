@@ -276,7 +276,7 @@ func _error(code: String) -> String:
 		"unsupported": "Versão do save incompatível.", "occupied": "Esta jornada já existe.",
 		"invalid_name": "Use um nome de até 24 caracteres, sem quebras de linha.",
 		"stale": "A jornada foi alterada. Volte ao menu e carregue novamente.",
-		"repair_needed": "Seu parceiro precisa de reparos. Volte ao professor: ele cuida da equipe gratuitamente.",
+		"repair_needed": "Seu parceiro precisa de reparos. Use um Kit de Remendo em Equipe → Cuidar ou procure o professor.",
 		"io_error": "Não foi possível acessar o save. Confira o espaço e a permissão da pasta."}.get(code, "Não foi possível continuar. Seu último save foi mantido.")
 
 func _choose(slot_id: String, create: bool) -> void:
@@ -1014,7 +1014,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and last_scene_key=="menu:slots":
 		_menu();get_viewport().set_input_as_handled();return
 	if (Controls.cancel(event) or event.is_action_pressed("ui_cancel")) and last_scene_key.begins_with("page:"):
-		if last_scene_key in ["page:Controles · Teclado","page:CONTROLES · TECLADO"]: _return_controls_settings()
+		if last_scene_key=="page:CUIDAR DO PARCEIRO":_show_collection()
+		elif last_scene_key in ["page:Controles · Teclado","page:CONTROLES · TECLADO"]: _return_controls_settings()
 		elif session.snapshot().is_empty(): _menu()
 		else: _return_to_game()
 		get_viewport().set_input_as_handled()
@@ -1286,7 +1287,7 @@ func _park_action(id: String) -> void:
 		if result.status == "ok":
 			park.paused = true
 			_show_saved.call_deferred()
-		elif result.status == "repair_needed": _notice("Seu parceiro precisa se recuperar. Descanse em um banco do parque ou procure o professor.")
+		elif result.status == "repair_needed": _notice("Seu parceiro precisa se recuperar. Use um Kit de Remendo em Equipe → Cuidar, descanse em um banco ou procure o professor.")
 	elif id.begins_with("chest:"):
 		var chest_id := id.trim_prefix("chest:")
 		var result: Dictionary = exploration.chest(chest_id, point)
@@ -1462,6 +1463,8 @@ func _show_collection() -> void:
 		details.add_child(progress)
 		_label("Nível máximo" if level == 50 else "%d / %d XP para o próximo nível" % [xp - previous, threshold - previous], details, 16).theme_type_variation="RecorteMutedText"
 		var id: String = partner.id
+		var care_id:String=partner.id
+		_button("Cuidar",details,func():_show_partner_care(care_id)).disabled=session.snapshot().checkpoint.get("kind","")!="world"
 		var action_space := Hud.focus_space(row)
 		action_space.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 		var button := _button("Selecionado" if id == player.get("equippedPartnerId", "") else "Escolher parceiro", action_space, func():
@@ -1493,6 +1496,44 @@ func _route_action(id: String) -> void:
 		elif place.action == "wildRest": _notice("Uma pausa no caminho. Aqui podemos baixar a guarda.")
 		elif place.action == "parkMap": _notice("Parque dos Ventos\n\nA trilha segue até a Clareira do Papel. Além dela ficam as Veredas.")
 
+func _show_partner_care(partner_id:String="") -> void:
+	if not _remember_world_position():return
+	var care=load("res://scripts/campaign/partner_care.gd").new(session)
+	var saved:Dictionary=session.snapshot()
+	if not care.available(saved):_notice("Os cuidados ficam disponíveis durante a exploração.");return
+	var chosen:Dictionary={}
+	var wanted:String=partner_id if not partner_id.is_empty() else str(saved.player.get("equippedPartnerId",""))
+	for entry in saved.player.partners:
+		if entry.id==wanted:chosen=entry;break
+	if chosen.is_empty():chosen=saved.player.partners[0]
+	_simple_page("CUIDAR DO PARCEIRO",true)
+	var view=load("res://scripts/campaign/partner_care_view.gd").new()
+	view.partner=chosen.duplicate(true)
+	view.kits=int(saved.player.inventory.get(care.ITEM,0))
+	view.coins=int(saved.player.coins)
+	view.welcome=not saved.player.flags.get("careWelcomeKit",false)
+	view.reduced_motion=preferences.reduced_motion
+	page.add_child(view)
+	var operation:String="partner-care-"+preload("res://scripts/campaign/state.gd").new_id()
+	var id:String=chosen.id
+	view.supplies_requested.connect(func():
+		var result:Dictionary=care.supplies()
+		if result.status=="ok":
+			var player:Dictionary=session.snapshot().player
+			view.refresh_stock(int(player.inventory.get(care.ITEM,0)),int(player.coins),false)
+			if not view.action.disabled:view.action.grab_focus()
+			else:view.pet.grab_focus()
+		else:view.message.text="Moedas insuficientes para outro kit." if result.status=="not_enough_coins" else "Não foi possível guardar o kit. Tente novamente.")
+	view.completed.connect(func(steps:Array):
+		var result:Dictionary=care.finish(id,operation,steps)
+		var ok:bool=result.status in ["ok","already_applied"]
+		view.finish_result(ok,"Não foi possível salvar o reparo. Seu kit foi preservado; tente novamente.")
+		if ok:
+			view.refresh_stock(int(session.snapshot().player.inventory.get(care.ITEM,0)),int(session.snapshot().player.coins),false)
+			view.supply.disabled=true
+			view.pet.grab_focus())
+	view.back_requested.connect(_show_collection)
+
 func _show_bag() -> void:
 	if not _remember_world_position(): return
 	sound.play_event("inventory.bag")
@@ -1500,6 +1541,8 @@ func _show_bag() -> void:
 	_simple_page("MOCHILA",true)
 	_label("%d moedas · Materiais e lembranças da sua jornada"%player.coins,page,18).add_theme_color_override("font_color",Hud.GOLD)
 	var inventory_view = load("res://scripts/campaign/hud_inventory.gd").new()
+	inventory_view.care_available=session.snapshot().checkpoint.get("kind","")=="world"
+	inventory_view.care_requested.connect(func():_show_partner_care())
 	inventory_view.inventory = player.inventory
 	inventory_view.reduced_motion=preferences.reduced_motion
 	page.add_child(inventory_view)
@@ -1511,6 +1554,8 @@ func _show_bag() -> void:
 	var footer:=HBoxContainer.new()
 	page.add_child(footer)
 	_button("Voltar", footer, _return_to_game).custom_minimum_size.x=180
+	var care_button:=_button("Cuidar do parceiro",footer,func():_show_partner_care())
+	care_button.disabled=player.partners.is_empty() or session.snapshot().checkpoint.get("kind","")!="world"
 	Hud.input_hint(footer,"guard","Aba anterior")
 	Hud.input_hint(footer,"line","Próxima aba")
 

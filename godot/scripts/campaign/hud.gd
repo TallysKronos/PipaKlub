@@ -240,6 +240,7 @@ static func item_icon(id: String) -> Texture2D:
 	return icon("missoes" if id.begins_with("quest-") else "rabiola" if "rabiola" in id else "mochila")
 
 static func item_art(id: String) -> Texture2D:
+	if id=="kit-remendo":return load("res://assets/ui/kit-remendo.svg")
 	var model_id := id.trim_prefix("damaged-").trim_prefix("rabiola-")
 	if model_id in ["basica", "mata", "azulao", "raio", "lacertubo", "quest-nina-tail"]: return artwork("item-" + model_id)
 	return icon("bag")

@@ -7,6 +7,9 @@ var description: Label
 var item_art: TextureRect
 var quantity: Label
 signal retry_requested
+signal care_requested
+var use_button:Button
+var care_available:=true
 var tabs:Array[Button]=[]
 var current_filter:="Tudo"
 var page_index:=0
@@ -19,7 +22,7 @@ var load_state:="ready"
 var reduced_motion:=false
 var state_time:=0.0
 static var seen:Dictionary={}
-const NAMES := {"quest-nina-tail": "Rabiola do Carcará de Nina", "rabiola-lacertubo": "Rabiola de Lacertubo", "rabiola-basica": "Rabiola de Carcará", "rabiola-azulao": "Rabiola de Azulão", "rabiola-mata": "Rabiola de Mata verde", "rabiola-raio": "Rabiola de Raio de sol","papel-seda":"Papel de seda","vareta-bambu":"Vareta de bambu","cola-reparo":"Cola de reparo","linha-encerada":"Linha encerada","pista-caderno-heleana-1":"Página do caderno"}
+const NAMES := {"kit-remendo":"Kit de Remendo","quest-nina-tail": "Rabiola do Carcará de Nina", "rabiola-lacertubo": "Rabiola de Lacertubo", "rabiola-basica": "Rabiola de Carcará", "rabiola-azulao": "Rabiola de Azulão", "rabiola-mata": "Rabiola de Mata verde", "rabiola-raio": "Rabiola de Raio de sol","papel-seda":"Papel de seda","vareta-bambu":"Vareta de bambu","cola-reparo":"Cola de reparo","linha-encerada":"Linha encerada","pista-caderno-heleana-1":"Página do caderno"}
 func _ready() -> void:
 	size_flags_vertical = Control.SIZE_EXPAND_FILL
 	add_theme_constant_override("separation",16)
@@ -75,6 +78,9 @@ func _ready() -> void:
 		column.add_child(label)
 	quantity.add_theme_color_override("font_color",Hud.CYAN)
 	description.add_theme_font_size_override("font_size",18)
+	use_button=Button.new();use_button.text="Cuidar do parceiro"
+	Hud.navigation_button(use_button,true);column.add_child(use_button)
+	use_button.pressed.connect(func():care_requested.emit())
 	var paging:=HBoxContainer.new()
 	paging.add_theme_constant_override("separation",16)
 	add_child(paging)
@@ -164,6 +170,8 @@ func populate(filter: String) -> void:
 		show_all.pressed.connect(func():page_index=0;populate("Tudo");tabs[0].grab_focus())
 	select_item(first)
 func select_item(id: String) -> void:
+	use_button.visible=id=="kit-remendo"
+	use_button.disabled=not care_available
 	if not id.is_empty():seen[id]=true
 	for child in list.get_children():
 		if child is Button:
@@ -174,6 +182,9 @@ func select_item(id: String) -> void:
 	quantity.text = ("MISSÃO · " if category(id) == "Missão" else "") + "%d na mochila" % inventory.get(id, 0) if not id.is_empty() else ""
 	description.text = "Esta categoria ainda está vazia." if id.is_empty() else "Nina está esperando por esta rabiola. Entregue-a pessoalmente." if id == "quest-nina-tail" else "Leve ao ateliê do Sr. Assis para trabalhar nesta rabiola." if category(id) == "Rabiolas" else "Material guardado para sua jornada."
 	if id=="pista-caderno-heleana-1": description.text="Página encontrada em um dos platôs do Bosque dos Ventos. Guardada entre suas pistas."
+	if id=="kit-remendo":
+		item_name.text="Kit de Remendo"
+		description.text="Papel, cola e linha para cuidar de um Soulmonster. Restaura toda a linha e a armação ao concluir os cuidados."
 	if id.is_empty() and load_state!="ready":
 		item_name.text="Carregando itens" if load_state=="loading" else "Itens indisponíveis"
 		description.text="Aguarde a leitura da mochila." if load_state=="loading" else "Tente novamente para atualizar a lista."
