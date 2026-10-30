@@ -198,3 +198,7 @@ const {compile}=await import('../import-overworld.mjs');
 for(const id of ['jardim-das-pipas','clareira-do-papel','veredas-do-encanamento'])
  fs.writeFileSync(root+`godot/assets/overworld/maps/${id}.json`,JSON.stringify(compile(JSON.parse(fs.readFileSync(root+`art/overworld/mapas/${id}.tmj`,'utf8')),id)));
 console.log('Plantas compiladas para o Godot.');
+// The approved terraced Jardim supersedes the old flat draft above. Running the
+// legacy batch must retain the new map and its stable IDs/return coordinates.
+const {generateJardim}=await import('./desenhar-jardim-das-pipas.mjs');
+generateJardim();
