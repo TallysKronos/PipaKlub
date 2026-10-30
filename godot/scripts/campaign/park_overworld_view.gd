@@ -94,9 +94,9 @@ func _ready() -> void:
 	encounter_grace=Pacing.walking_grace(saved_player)
 
 func _build_events() -> void:
-	if saved_checkpoint.scene=="park-trail" and model.data.get("forest",{}).get("nativeProps",false):
-		for event in Checkpoint.data("park-trail").events:
-			if event.name!="Nina": continue
+	if model.data.get("forest",{}).get("nativeProps",false):
+		for event in Checkpoint.data(saved_checkpoint.scene).events:
+			if model.data.events.any(func(existing: Dictionary): return int(existing.id)==int(event.id)): continue
 			model.data.events.append(event.duplicate(true))
 			interaction_events.append(event.duplicate(true))
 	# Dito has no approved overworld sprite in the delivery. Do not duplicate another

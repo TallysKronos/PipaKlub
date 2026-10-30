@@ -1173,8 +1173,9 @@ func _show_park() -> void:
 	viewport.world_2d = World2D.new()
 	container.add_child(viewport)
 	var saved: Dictionary = session.snapshot()
-	if saved.checkpoint.get("space","")!=ParkCheckpoint.SPACE:
-		if not _result(journey.enter_world(saved.checkpoint.scene,ParkCheckpoint.resolve(saved.checkpoint),ParkCheckpoint.SPACE)): return
+	var resolved: Vector2=ParkCheckpoint.resolve(saved.checkpoint)
+	if saved.checkpoint.get("space","")!=ParkCheckpoint.SPACE or not resolved.is_equal_approx(Vector2(saved.checkpoint.position[0],saved.checkpoint.position[1])):
+		if not _result(journey.enter_world(saved.checkpoint.scene,resolved,ParkCheckpoint.SPACE)): return
 		saved=session.snapshot()
 	if ParkCheckpoint.is_bosque(saved.checkpoint.scene):
 		var discovery: Dictionary=load("res://scripts/campaign/bosque_campaign.gd").new(session).arrive()

@@ -1,5 +1,7 @@
 # Jardim das Pipas — atualização na campanha
 
+Registro da primeira integração do Jardim. Clareira e Veredas foram renovadas depois; o estado atual está em [integração das partes B/C](integracao-clareira-veredas.md).
+
 Atualização trazida de `origin/codex/mapa-jardim-das-pipas` (`160b673a`): os três commits novos `cdf1edc8`, `af5f068d` e `160b673a` foram aplicados sobre `codex/integracao-bosque-kronasta`, preservando os serviços e a integração local do Bosque. Não houve merge em main ou push.
 
 O novo Jardim substitui a planta anterior com praça elevada, coreto, pomar, mirante e rampas. A Clareira da campanha conserva sua geometria; recebe somente os metadados de chegada de retorno ao Jardim. Os executáveis locais do motor não fazem parte dos commits.

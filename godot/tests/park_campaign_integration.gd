@@ -121,6 +121,12 @@ func run() -> void:
 	check(app.session.snapshot().player.coins==73 and app.session.snapshot().player.openedChests==["woodland"],"migration preserves inventory and collected chests")
 	check(app.session.snapshot().player.inventory==player.inventory,"migration preserves exact inventory")
 	check(app.park.model.walkable(Vector2i(app.park.player.floor())),"legacy load lands on walkable ground")
+	var previous: Dictionary=app.session.snapshot()
+	check(app.session.checkpoint({"kind":"world","scene":"park-veredas","space":Checkpoint.SPACE,"position":[61.5,25.5]},previous.player).status=="ok","earlier native extent remains loadable")
+	check(Store.new(storage).load_slot("slot-1").status=="ok","earlier native slot reloads from disk")
+	app._show_park();await ready_park()
+	check(Checkpoint.valid_position("park-veredas",app.park.player) and app.park.model.point_walkable(app.park.player),"old position moves onto supported current ground")
+	check(app.session.snapshot().player.inventory==previous.player.inventory and app.session.snapshot().player.coins==previous.player.coins,"layout migration preserves rewards")
 	# Begin the actual A -> B -> C route from the city entry contract.
 	check(app.journey.enter_world("park-trail",Vector2(208,816)).status=="ok","city entry resolves to native Garden")
 	app._show_park(); await ready_park()
@@ -134,20 +140,33 @@ func run() -> void:
 	await use_event(45)
 	check(app.session.snapshot().checkpoint.scene=="park-clearing","Garden -> Clearing")
 	await shot("02-clareira")
-	# Physically cross both bridges, not just test graph reachability.
-	for point in [Vector2(27.5,24.5),Vector2(27.5,34.5),Vector2(32.5,34.5),Vector2(32.5,24.5)]: walk(point)
-	await shot("03-pontes")
-	await use_event(1201)
-	check(app.session.snapshot().checkpoint.scene=="park-veredas" and app.park.player==Vector2(61.5,25.5),"high exit preserves named arrival")
+	# All four authored materials use real campaign receipts.
+	for item in app.park.model.data.events:
+		if item.type!="item": continue
+		if walk(Vector2(item.u+.5,item.v+.5)):
+			check(app.exploration.park_loot(str(int(item.id)),app.park.player).status=="ok","Clareira material "+str(item.id))
+	await use_event(29)
+	check(app.session.snapshot().checkpoint.scene=="park-veredas" and app.park.player==Vector2(2.5,13.5),"east exit preserves Veredas arrival")
+	for trainer in preload("res://scripts/campaign/park_training.gd").events(app.park.area_id,app.park.model):
+		check(Vector2(trainer.u+.5,trainer.v+.5).distance_to(Checkpoint.target("park-veredas","boss"))>=10.0,"trainer remains outside guardian approach")
 	await shot("04-veredas")
+	# Physically cross the new measured river bridge, both banks and back.
+	for point in [Vector2(24.5,18.5),Vector2(24.5,25.5),Vector2(24.5,18.5)]: walk(point)
+	await shot("03-pontes")
+	for item in app.park.model.data.events:
+		if item.type!="item": continue
+		if walk(Vector2(item.u+.5,item.v+.5)):
+			check(app.exploration.park_loot(str(int(item.id)),app.park.player).status=="ok","Veredas material "+str(item.id))
 	for id in ["lookout","canal","ridge"]:
 		var target := Checkpoint.target("park-veredas","chest:"+id)
 		if walk(target):
 			check(app.exploration.chest(id,app.park.player).status=="ok","native chest reward: "+id)
 	app.park.refresh(app.session.snapshot().player)
-	check(app.park.collected_pieces.has("18"),"old woodland chest remains open after migration")
+	check(app.park.collected_pieces.has("2"),"old woodland chest remains open after migration")
 	check(not Checkpoint.allowed(event(1100),app.session.snapshot().player),"shortcut locked before victory")
-	check(not Checkpoint.allowed(event(42),app.session.snapshot().player),"quest tail hidden before victory")
+	check(not Checkpoint.allowed(event(96),app.session.snapshot().player),"quest tail hidden before victory")
+	if walk(Checkpoint.target("park-veredas","chest:courtyard")):
+		check(app.exploration.chest("courtyard",app.park.player).status=="guardian","courtyard chest guarded before victory")
 	# Resolve an actual boss fight with bounded player inputs, without setting outcome.
 	if walk(Checkpoint.target("park-veredas","boss")):
 		app._park_action("boss"); await confirm()
@@ -169,8 +188,10 @@ func run() -> void:
 			battle.finish_requested.emit()
 			await ready_park()
 	check(app.session.snapshot().player.flags.get("guardianDefeated",false),"boss victory persists")
+	if walk(Checkpoint.target("park-veredas","chest:courtyard")):
+		check(app.exploration.chest("courtyard",app.park.player).status=="ok","courtyard chest opens after victory")
 	check(not Checkpoint.allowed(event(1100),app.session.snapshot().player),"shortcut stays locked until the quest item is collected")
-	await use_event(42)
+	await use_event(96)
 	check(app.session.snapshot().player.flags.get("ninaTail",false),"tail collected separately after boss")
 	app.park.item_receipt.clear(); app.park.avatar.stop_item()
 	await use_event(1100)

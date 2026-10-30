@@ -73,7 +73,7 @@ static func inspect(value: Variant, slot_id: String) -> String:
 		if checkpoint.space=="bairro-inicial-v2":
 			if checkpoint.get("scene")!="quintal" or not preload("res://scripts/campaign/neighborhood_checkpoint.gd").is_cell(point):return "invalid"
 		elif checkpoint.space=="parque-overworld-v1":
-			if not preload("res://scripts/campaign/park_checkpoint.gd").valid_position(checkpoint.get("scene",""),point):return "invalid"
+			if not preload("res://scripts/campaign/park_checkpoint.gd").loadable_position(checkpoint.get("scene",""),point):return "invalid"
 		else:return "invalid"
 	var player: Dictionary = value.player
 	if not player.get("name") is String or player.name.length() > 64 or not whole(player.get("coins")):
@@ -202,7 +202,7 @@ static func valid_encounter(value: Variant) -> bool:
 	for point in value.returnPoint:
 		if not number(point) or point < 0 or point > 1536: return false
 	if value.has("space"):
-		if value.space!="parque-overworld-v1" or not preload("res://scripts/campaign/park_checkpoint.gd").valid_position(value.get("scene","park-veredas"),Vector2(value.returnPoint[0],value.returnPoint[1])): return false
+		if value.space!="parque-overworld-v1" or not preload("res://scripts/campaign/park_checkpoint.gd").loadable_position(value.get("scene","park-veredas"),Vector2(value.returnPoint[0],value.returnPoint[1])): return false
 	var state: Dictionary = value.state
 	if value.kind in ["wild","trainer"]:
 		if not number(value.get("dropRoll")) or value.dropRoll < 0 or value.dropRoll >= 1 or state.get("enemyModelId") not in ["basica", "mata", "raio"] or not whole(state.get("enemyLevel")) or state.enemyLevel < 1 or state.enemyLevel > 9: return false

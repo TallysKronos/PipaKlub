@@ -1,5 +1,5 @@
 extends SceneTree
-const View=preload("res://scripts/overworld/view.gd")
+
 var failures:Array[String]=[]
 var trips:=0
 var frames:=0
@@ -7,7 +7,7 @@ func _initialize() -> void:call_deferred("run")
 func check(ok:bool,label:String) -> void:
 	if not ok and label not in failures:failures.append(label);printerr("FAIL ",label)
 func run() -> void:
-	var view:=View.new();view.area_id="clareira-do-papel";view.art_preview=true
+	var view: Node2D=load("res://scripts/overworld/view.gd").new();view.area_id="clareira-do-papel";view.art_preview=true
 	root.add_child(view);await process_frame;view.set_physics_process(false)
 	check(view.player==Vector2(8.5,36.5),"south entrance")
 	var start:Vector2=view.player

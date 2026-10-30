@@ -18,6 +18,8 @@ static func data(scene: String) -> Dictionary:
 		# campaign adapter, with an ID distinct from its entrance event 43.
 		if scene=="park-trail" and _maps[scene].get("forest",{}).get("nativeProps",false):
 			_maps[scene].events.append({"id":8243,"type":"npc","name":"Nina","u":10,"v":32,"props":{"fala":"nina-jardim-proposta","missao":"nina","bloqueia":false}})
+		if scene=="park-veredas" and _maps[scene].get("forest",{}).get("nativeProps",false):
+			_maps[scene].events.append({"id":1100,"type":"saida","name":"Atalho para o Jardim das Pipas","u":43,"v":33,"props":{"destino":"park-trail","requer":"ninaTail"}})
 	return _maps[scene]
 
 static func model_for(scene: String):
@@ -30,6 +32,12 @@ static func model_for(scene: String):
 static func valid_position(scene: String, point: Vector2) -> bool:
 	var map := data(scene)
 	return not map.is_empty() and point.is_finite() and point.x>=0 and point.y>=0 and point.x<float(map.w) and point.y<float(map.h)
+
+static func loadable_position(scene: String, point: Vector2) -> bool:
+	# Earlier native park layouts were 64x48. Accept their saved coordinates for
+	# loading only; resolve()/make() move them onto supported current terrain.
+	if valid_position(scene,point): return true
+	return scene in ["park-trail","park-clearing","park-veredas"] and point.is_finite() and point.x>=0 and point.y>=0 and point.x<64 and point.y<48
 
 static func safe(scene: String, point: Vector2) -> Vector2:
 	var model = model_for(scene)
@@ -107,7 +115,7 @@ static func allowed(event: Dictionary, player: Dictionary, area: String = "") ->
 	if props.has("requer") and not flags.get(str(props.requer),false): return false
 	if props.has("ocultar_apos") and flags.get(str(props.ocultar_apos),false): return false
 	if props.get("descoberta","")=="clareira-do-marco" and not flags.get("bosqueClareiraDescoberta",false): return false
-	if props.get("acao","")=="veredasTail" and flags.get("ninaTail",false): return false
+	if props.get("acao","")=="veredasTail" and (not flags.get("guardianDefeated",false) or not flags.get("ninaAccepted",false) or flags.get("ninaTail",false)): return false
 	if event.get("type","")=="item" and ("park-item-"+area+"-"+str(int(event.id))) in player.get("completedOperations",[]): return false
 	return true
 

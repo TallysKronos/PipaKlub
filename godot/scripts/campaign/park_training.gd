@@ -31,18 +31,21 @@ static func events(area: String, model) -> Array:
 	var result: Array=[]
 	for entry in DUELS:
 		if entry.area!=area or entry.id=="assis": continue
-		var point: Vector2i=entry.point
+		var anchor: Vector2i=entry.point
+		if area=="veredas-do-encanamento" and model.data.get("forest",{}).get("nativeProps",false):
+			anchor={"zeca":Vector2i(10,13),"tiao":Vector2i(28,14)}.get(entry.id,anchor)
+		var point: Vector2i=anchor
 		var best:=INF
 		# Resolve to a supported, open tile without covering an existing interaction.
 		for dv in range(-3,4):
 			for du in range(-3,4):
-				var candidate: Vector2i=entry.point+Vector2i(du,dv)
+				var candidate: Vector2i=anchor+Vector2i(du,dv)
 				if not model.walkable(candidate) or model.cell_at(candidate).get("ramp")!=null: continue
 				var busy:=false
 				for event in model.data.events:
 					if Vector2(candidate).distance_to(Vector2(event.u,event.v))<1.5: busy=true;break
 				if busy: continue
-				var score:=Vector2(candidate-entry.point).length_squared()
+				var score:=Vector2(candidate-anchor).length_squared()
 				if score<best: best=score;point=candidate
 		if best==INF: continue
 		result.append({"id":8100+DUELS.find(entry),"type":"npc","name":entry.name,"u":point.x,"v":point.y,"props":{"acao":"parkTraining","trainer":entry.id,"npcIdentity":entry.name}})

@@ -9,7 +9,7 @@ static func available(player: Dictionary) -> bool:
 	return not player.get("partners",[]).is_empty() and player.get("journey",{}).get("phase","")=="complete"
 
 static func authored_materials(scene: String) -> bool:
-	return Checkpoint.is_bosque(scene) or (scene=="park-trail" and Checkpoint.data(scene).get("forest",{}).get("nativeProps",false))
+	return Checkpoint.is_bosque(scene) or (Checkpoint.MAPS.has(scene) and Checkpoint.data(scene).get("forest",{}).get("nativeProps",false))
 
 func travel(destination: String) -> Dictionary:
 	var saved: Dictionary=session.snapshot()

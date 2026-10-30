@@ -1,10 +1,10 @@
 {
   "areas": [
     {
-      "directed_edges": 6980,
+      "directed_edges": 4692,
       "id": "clareira-do-papel",
-      "ramp_probes": 60,
-      "walkable": 1956
+      "ramp_probes": 80,
+      "walkable": 1281
     },
     {
       "directed_edges": 4228,
@@ -49,10 +49,10 @@
       "walkable": 560
     },
     {
-      "directed_edges": 7294,
+      "directed_edges": 4994,
       "id": "veredas-do-encanamento",
-      "ramp_probes": 60,
-      "walkable": 1998
+      "ramp_probes": 90,
+      "walkable": 1386
     },
     {
       "directed_edges": 3496,
@@ -79,7 +79,7 @@
       "walkable": 1141
     }
   ],
-  "checks": 97687,
+  "checks": 88039,
   "failures": [],
   "scope": "isolated geometry and preview; no campaign saves touched"
 }

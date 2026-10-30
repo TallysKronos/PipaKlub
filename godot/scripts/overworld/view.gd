@@ -105,7 +105,7 @@ func load_area(id: String, arrival: Variant = "") -> void:
 			biome_kit.paintSurfaces[surface]=visuals.paintSurfaces[surface]
 		kits.append(biome_kit)
 	clareira_terrain=null
-	if use_clareira_materials and art_preview and id in ["clareira-do-papel","veredas-do-encanamento"]:
+	if use_clareira_materials and art_preview and id in ["clareira-do-papel","veredas-do-encanamento"] and not model.data.get("forest",{}).get("nativeProps",false):
 		clareira_terrain=ClareiraTerrain.new()
 		clareira_terrain.setup(model,kits[1],false,id)
 		if clareira_terrain.material==null: clareira_terrain=null

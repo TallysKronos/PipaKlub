@@ -1,5 +1,7 @@
 # Parque dos Ventos — três partes renovadas
 
+**Integração local da campanha concluída:** as três plantas novas estão no fluxo do parque, com materiais, baús, Lacertubo, missão da Nina, atalho e compatibilidade com posições de saves antigos. [Relatório da integração](relatorios/integracao-clareira-veredas.md): 148 verificações da campanha e 228 travessias de B/C passaram. Cutscenes novas e a porta das Ruínas continuam fora desta atualização. As seções seguintes preservam o histórico das entregas isoladas.
+
 Jardim, Clareira e Veredas receberam novas plantas. A parte C inclui riacho recortado, ponte apoiada, pátio elevado e escada. [Relatório das Veredas](relatorios/entrega-veredas.md) registra os testes, capturas e pendências de campanha (Ruínas, Grampo e atalho pós-vitória). Registros abaixo preservam as etapas anteriores.
 
 # Clareira do Papel — parte B
