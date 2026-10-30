@@ -70,7 +70,7 @@ func _ready() -> void:
 	_build_hud()
 	load_area(area_id)
 
-func load_area(id: String) -> void:
+func load_area(id: String, arrival: Dictionary = {}) -> void:
 	var source := "res://assets/overworld/maps/" + id + ".json"
 	if not FileAccess.file_exists(source): return
 	area_id = id
@@ -115,6 +115,15 @@ func load_area(id: String) -> void:
 	_build_events()
 	var spawn: Dictionary = model.data.spawn
 	player = Vector2(spawn.u + .5, spawn.v + .5)
+	# Preview exits may arrive at the matching end of the next map. Invalid
+	# coordinates fall back to its declared entrance; no campaign/save is changed.
+	if arrival.has("chegada_u") and arrival.has("chegada_v"):
+		var au: Variant = arrival.chegada_u
+		var av: Variant = arrival.chegada_v
+		if (au is int or au is float) and (av is int or av is float):
+			if is_finite(float(au)) and is_finite(float(av)) and float(au) == floorf(float(au)) and float(av) == floorf(float(av)):
+				var target := Vector2i(int(au), int(av))
+				if model.walkable(target): player = Vector2(target) + Vector2.ONE * .5
 	follower = player
 	player_root = Node2D.new()
 	avatar = Avatar.new()
@@ -1756,7 +1765,7 @@ func interact() -> void:
 		return
 	if nearby.type == "saida":
 		var destination := str(nearby.props.get("destino",""))
-		if index.scenes.has(destination): load_area(index.scenes[destination]); return
+		if index.scenes.has(destination): load_area(index.scenes[destination], nearby.props.duplicate()); return
 		message("Destino fora desta prévia: " + destination)
 	else: message(nearby.name + " • " + str(nearby.props.get("texto",nearby.props.get("fala","Interação de revisão, sem alterar a campanha."))))
 
