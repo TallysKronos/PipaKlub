@@ -5,6 +5,7 @@ const Prop = preload("res://scripts/overworld/prop.gd")
 const Avatar = preload("res://scripts/avatar.gd")
 const Hud = preload("res://scripts/campaign/hud.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
+const Locomotion = preload("res://scripts/campaign/locomotion.gd")
 const ParqueSurfaces = preload("res://scripts/overworld/parque_surfaces.gd")
 const ClareiraTerrain = preload("res://scripts/overworld/clareira_terrain.gd")
 const ClareiraBanks = preload("res://scripts/overworld/clareira_banks.gd")
@@ -1854,7 +1855,12 @@ func walk_to(point: Vector2) -> bool:
 	if not path.is_empty() and player.distance_to(path[0]) < .08: path.remove_at(0)
 	return not path.is_empty()
 
+func toggle_run() -> void:
+	Locomotion.toggle()
+
 func _physics_process(delta: float) -> void:
+	Locomotion.update()
+	var speed := 3.0*Locomotion.multiplier()
 	clock += delta
 	var old := player
 	var input := Controls.direction()
@@ -1863,18 +1869,19 @@ func _physics_process(delta: float) -> void:
 		# at corners, so keyboard input cannot cut a diagonal through blockers.
 		path.clear()
 		var lattice := Vector2(input.x+2*input.y,-input.x+2*input.y).normalized()
-		var candidate := player + lattice * delta * 3.0
+		var candidate := player + lattice * delta * speed
 		if model.clear_segment(player,candidate): player = candidate
 		else:
 			for step in [Vector2(lattice.x,0),Vector2(0,lattice.y)]:
-				candidate = player + step*delta*3.0
+				candidate = player + step*delta*speed
 				if model.clear_segment(player,candidate): player = candidate
 	elif not path.is_empty():
-		var candidate := player.move_toward(path[0],delta*3.0)
+		var candidate := player.move_toward(path[0],delta*speed)
 		if model.clear_segment(player,candidate): player = candidate
 		else: path.clear()
 		if not path.is_empty() and player.distance_to(path[0]) < .01: path.remove_at(0)
 	avatar.moving = player.distance_to(old) > .001
+	avatar.running = avatar.moving and Locomotion.requested()
 	if avatar.moving:
 		var screen := model.project(player,false)-model.project(old,false)
 		avatar.face_motion(screen)
@@ -1893,7 +1900,7 @@ func _physics_process(delta: float) -> void:
 			var target: Vector2 = route[1]
 			# Aim ahead; return to the own-cell center only when the straight line is blocked.
 			if not model.clear_segment(follower,target): target = route[0]
-			var next := follower.move_toward(target,delta*3.2)
+			var next := follower.move_toward(target,delta*(5.8 if Locomotion.requested() or follower.distance_to(player)>1.5 else 3.2))
 			if model.clear_segment(follower,next): follower = next
 	_refresh_positions()
 	nearby = {}
@@ -1913,7 +1920,7 @@ func _follow_recorded_path(delta: float) -> void:
 	for point in follower_trail:
 		distance += previous.distance_to(point)
 		previous = point
-	var budget := minf(delta*3.2,maxf(0,distance-.8))
+	var budget := minf(delta*(5.8 if Locomotion.requested() or follower.distance_to(player)>1.5 else 3.2),maxf(0,distance-.8))
 	while budget>.00001 and not follower_trail.is_empty():
 		var target: Vector2 = follower_trail[0]
 		var next := follower.move_toward(target,budget)

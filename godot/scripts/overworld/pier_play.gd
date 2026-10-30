@@ -2,6 +2,7 @@ extends Node2D
 ## Independent playable dock. Surface graph owns height and edge collision.
 ## Does not load/write campaign slots or access the network.
 const Controls = preload("res://scripts/campaign/controls.gd")
+const Locomotion = preload("res://scripts/campaign/locomotion.gd")
 const Avatar = preload("res://scripts/avatar.gd")
 const Hud = preload("res://scripts/campaign/hud.gd")
 const Depth = preload("res://scripts/overworld/pier_depth.gd")
@@ -192,8 +193,15 @@ func _record_trail(old: Vector2,old_height: float) -> void:
 		follower_height = lerpf(a.h,b.h,t)
 		follower_surface = b.surface if t>.5 else a.surface
 
+func toggle_run() -> void:
+	if not paused and not overview:Locomotion.toggle()
+
 func _physics_process(delta: float) -> void:
-	if paused or overview:return
+	if paused or overview:
+		avatar.moving=false
+		avatar.running=false
+		return
+	Locomotion.update()
 	clock += delta
 	var old := cell
 	if not ladder.is_empty():_advance_ladder(delta)
@@ -201,8 +209,9 @@ func _physics_process(delta: float) -> void:
 		var input := Controls.direction()
 		if input.length()>.1:
 			var lattice := Vector2(input.x+2*input.y,-input.x+2*input.y).normalized()
-			walk(lattice*SPEED*delta*minf(input.length(),1.0))
+			walk(lattice*SPEED*Locomotion.multiplier()*delta*minf(input.length(),1.0))
 	avatar.moving = old.distance_to(cell)>.0001 or not ladder.is_empty()
+	avatar.running=avatar.moving and ladder.is_empty() and Locomotion.requested()
 	if avatar.moving and ladder.is_empty():
 		var screen: Vector2 = world.iso(cell)-world.iso(old)
 		avatar.face_motion(screen)

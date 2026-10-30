@@ -1,5 +1,6 @@
 extends Node2D
 const Controls = preload("res://scripts/campaign/controls.gd")
+const Locomotion = preload("res://scripts/campaign/locomotion.gd")
 ## Uses the original room coordinates, footprints and 2:1 projection.
 signal interacted(id: String)
 const Avatar = preload("res://scripts/avatar.gd")
@@ -121,7 +122,7 @@ func enable_stair_reveal() -> void:
 func set_story_paused(value: bool) -> void:
 	story_paused=value
 	avatar.set_process(not value)
-	if value:avatar.moving=false
+	if value:avatar.moving=false; avatar.running=false
 	if is_instance_valid(opening_tv):
 		if opening_tv.has_method("set_cinematic_paused"):opening_tv.set_cinematic_paused(value or not opening_tv.visible)
 		else:opening_tv.set_process(not value and opening_tv.visible)
@@ -214,14 +215,16 @@ func _process(delta: float) -> void:
 	for spot in data.hotspots:
 		if Vector2(spot.x, spot.y).distance_to(actor) <= 110:
 			near = spot.id
+	avatar.running=false
 	avatar.moving = cinematic_actor_moving
 	if not can_walk:
 		return
+	Locomotion.update()
 	var input := Controls.direction()
 	if input.length() < .1:
 		return
 	# Invert the room projection so screen directions match the player's input.
-	var world := Vector2(1.5 * input.x + 3 * input.y, 3 * input.y - 1.5 * input.x).normalized() * input.length() * 360 * minf(delta, .05)
+	var world := Vector2(1.5 * input.x + 3 * input.y, 3 * input.y - 1.5 * input.x).normalized() * input.length() * 360 * Locomotion.multiplier() * minf(delta, .05)
 	var steps := maxi(1, ceili(world.length() / 4))
 	var before := actor
 	for i in steps:
@@ -233,6 +236,7 @@ func _process(delta: float) -> void:
 		elif _safe(actor + Vector2(0, move.y)):
 			actor.y += move.y
 	avatar.moving = actor.distance_to(before)>.01
+	avatar.running=avatar.moving and Locomotion.requested()
 	if avatar.moving:avatar.face_motion(project(actor)-project(before))
 	_update_order()
 

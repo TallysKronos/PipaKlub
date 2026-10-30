@@ -3,8 +3,8 @@ extends RefCounted
 const DEFAULTS := {"left": KEY_A, "right": KEY_D, "up": KEY_W, "down": KEY_S,
 	"interact": KEY_E, "cut": KEY_SPACE, "skill": KEY_Q, "dodge": KEY_SHIFT,
 	"line": KEY_R, "guard": KEY_G, "signature": KEY_F, "map": KEY_M}
-const LABELS := {"left": "Mover à esquerda", "right": "Mover à direita", "up": "Mover para cima", "down": "Mover para baixo", "interact": "Interagir", "cut": "Cortar", "skill": "Habilidade", "dodge": "Esquiva", "line": "Puxão", "guard": "Guarda", "signature": "Especial", "map": "Mapa"}
-const PAD := {"interact": JOY_BUTTON_A, "cut": JOY_BUTTON_X, "skill": JOY_BUTTON_Y, "dodge": JOY_BUTTON_B, "line": JOY_BUTTON_RIGHT_SHOULDER, "guard": JOY_BUTTON_LEFT_SHOULDER, "signature": JOY_BUTTON_RIGHT_STICK, "map": JOY_BUTTON_BACK}
+const LABELS := {"left": "Mover à esquerda", "right": "Mover à direita", "up": "Mover para cima", "down": "Mover para baixo", "interact": "Interagir", "cut": "Cortar", "skill": "Habilidade", "dodge": "Esquiva / corrida na exploração", "line": "Puxão", "guard": "Guarda", "signature": "Especial", "map": "Mapa"}
+const PAD := {"run": JOY_BUTTON_LEFT_STICK, "interact": JOY_BUTTON_A, "cut": JOY_BUTTON_X, "skill": JOY_BUTTON_Y, "dodge": JOY_BUTTON_B, "line": JOY_BUTTON_RIGHT_SHOULDER, "guard": JOY_BUTTON_LEFT_SHOULDER, "signature": JOY_BUTTON_RIGHT_STICK, "map": JOY_BUTTON_BACK}
 const RESERVED := [KEY_ESCAPE, KEY_ENTER, KEY_KP_ENTER, KEY_TAB, KEY_LEFT, KEY_RIGHT, KEY_UP, KEY_DOWN]
 static var bindings: Dictionary = DEFAULTS.duplicate()
 static var gamepad := false
@@ -15,7 +15,7 @@ static var family_override := "auto"
 static var events = preload("res://scripts/campaign/input_events.gd").new()
 static var _glyphs: Dictionary = {}
 static var _device_families: Dictionary = {}
-const PAD_GLYPHS := {"interact":"south", "cut":"west", "skill":"north", "dodge":"east", "line":"rb", "guard":"lb", "signature":"rs", "map":"back", "pause":"start", "accept":"south", "back":"east"}
+const PAD_GLYPHS := {"run":"ls", "interact":"south", "cut":"west", "skill":"north", "dodge":"east", "line":"rb", "guard":"lb", "signature":"rs", "map":"back", "pause":"start", "accept":"south", "back":"east"}
 const FAMILY_NAMES := {
 	"xbox":{"south":"A","east":"B","west":"X","north":"Y","rb":"RB","lb":"LB","rs":"R3","back":"View","start":"Menu","ls":"Analógico"},
 	"ps":{"south":"×","east":"○","west":"□","north":"△","rb":"R1","lb":"L1","rs":"R3","back":"Share","start":"Options","ls":"Analógico"},
@@ -36,8 +36,9 @@ static func conflict(action: String, key: int) -> String:
 		if other != action and bindings[other] == key: return other
 	return ""
 
-static func install(value: Dictionary = DEFAULTS) -> void:
-	bindings = value.duplicate() if validate(value) else DEFAULTS.duplicate()
+static func install(value: Dictionary = {}) -> void:
+	var selected := bindings if value.is_empty() else value
+	bindings = selected.duplicate() if validate(selected) else DEFAULTS.duplicate()
 	for action in DEFAULTS:
 		var name: String = "campaign_" + action
 		if not InputMap.has_action(name): InputMap.add_action(name, .2)
@@ -45,6 +46,12 @@ static func install(value: Dictionary = DEFAULTS) -> void:
 		var key := InputEventKey.new()
 		key.physical_keycode = int(bindings[action])
 		InputMap.action_add_event(name, key)
+	# Share the keyboard dodge key only in exploration; preserve saved keymaps.
+	if not InputMap.has_action("campaign_run"):InputMap.add_action("campaign_run")
+	InputMap.action_erase_events("campaign_run")
+	var run_key := InputEventKey.new()
+	run_key.physical_keycode=int(bindings.dodge)
+	InputMap.action_add_event("campaign_run",run_key)
 	for pair in [["left", KEY_LEFT], ["right", KEY_RIGHT], ["up", KEY_UP], ["down", KEY_DOWN], ["interact", KEY_ENTER]]:
 		var key := InputEventKey.new()
 		key.physical_keycode = pair[1]
@@ -138,6 +145,7 @@ static func pressed(event: InputEvent, action: String) -> bool:
 	return event.is_action_pressed("campaign_" + action) and not (event is InputEventKey and event.echo)
 
 static func prompt(action: String) -> String:
+	if action=="run" and gamepad:return "L3" if family()!="switch" else "Analógico E"
 	if gamepad and family() == "ps" and pad_glyph(action) == "back": return "Create" if ps_generation == 5 else "Select" if ps_generation == 3 else "Share"
 	if gamepad and family() == "ps" and action == "pause" and ps_generation == 3: return "Start"
 	if gamepad: return FAMILY_NAMES[family()].get(pad_glyph(action),"Analógico")
@@ -145,6 +153,7 @@ static func prompt(action: String) -> String:
 	return "Espaço" if key == KEY_SPACE else OS.get_keycode_string(key)
 
 static func key_for(action: String) -> int:
+	if action=="run":return int(bindings.dodge)
 	return int(bindings.get(action,{"accept":KEY_ENTER,"back":KEY_ESCAPE,"pause":KEY_ESCAPE}.get(action,KEY_ENTER)))
 
 static func glyph_id(action: String, keyboard: bool = false) -> String:

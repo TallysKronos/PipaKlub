@@ -175,8 +175,11 @@ func refresh(value: Dictionary) -> void:
 		var scene: String=saved_checkpoint.get("scene","park-trail")
 		exploration_hud.objective.text = Bosque.objective(saved_player,scene) if Checkpoint.is_bosque(scene) else Training.objective(saved_player,scene)
 
+func toggle_run() -> void:
+	if not paused and item_receipt.is_empty():super.toggle_run()
+
 func _physics_process(delta: float) -> void:
-	if paused: avatar.moving=false; return
+	if paused: avatar.moving=false; avatar.running=false; return
 	if not item_receipt.is_empty():
 		item_receipt.time+=delta
 		avatar.item_pose(minf(1.0,item_receipt.time/item_receipt.duration),item_receipt.facing)

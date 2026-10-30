@@ -4,6 +4,7 @@ signal chosen(action:String)
 const Hud=preload("res://scripts/campaign/hud.gd")
 const Ink=preload("res://scripts/campaign/battle_ink.gd")
 const Controls=preload("res://scripts/campaign/controls.gd")
+const Locomotion = preload("res://scripts/campaign/locomotion.gd")
 const Model=preload("res://scripts/campaign/encounter_model.gd")
 var subject:Node2D
 var area_name:=""
@@ -22,6 +23,7 @@ var objective_panel:PanelContainer
 var prompt_panel:PanelContainer
 var partner_panel:Control
 var tools:HBoxContainer
+var run_button:Button
 var map:Control
 var notices:Array[Dictionary]=[]
 var notice_stack:VBoxContainer
@@ -89,6 +91,16 @@ func _ready() -> void:
 		button.pressed.connect(func():chosen.emit(option[1]))
 		tools.add_child(button)
 	resized.connect(_layout)
+	run_button=Button.new()
+	run_button.name="RunToggle"
+	run_button.toggle_mode=true
+	run_button.focus_mode=Control.FOCUS_NONE
+	run_button.custom_minimum_size=Vector2(184,44)
+	Hud.navigation_button(run_button,true)
+	run_button.tooltip_text="Segure Shift para correr ou clique para alternar. No controle: L3."
+	run_button.pressed.connect(func():
+		if is_instance_valid(subject) and subject.has_method("toggle_run"):subject.toggle_run())
+	add_child(run_button)
 	refresh(player_data)
 	_layout()
 func refresh(value:Dictionary) -> void:
@@ -150,6 +162,11 @@ func _process(delta:float) -> void:
 		_layout()
 func _layout() -> void:
 	if not is_instance_valid(area):return
+	run_button.visible=is_instance_valid(subject) and subject.has_method("toggle_run")
+	run_button.set_pressed_no_signal(Locomotion.toggled)
+	run_button.text="Corrida ligada" if Locomotion.toggled else Controls.prompt("run")+" · Correr"
+	run_button.tooltip_text=("Pressione %s ou clique para alternar a corrida." if Controls.gamepad else "Segure %s para correr ou clique para alternar.")%Controls.prompt("run")
+	run_button.position=Vector2((size.x-run_button.size.x)/2,size.y-run_button.size.y-20)
 	var factor:=size.y/1080.0
 	var compact:=area_age>=3
 	area_panel.position=Vector2(20,20)
