@@ -1,6 +1,5 @@
 extends SceneTree
 ## Captura determinística de TODAS as juntas enumeradas no manifesto da área. Sem atores ou HUD.
-
 func _initialize() -> void:call_deferred("capture")
 func capture() -> void:
  root.size=Vector2i(1280,720)

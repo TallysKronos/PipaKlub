@@ -8,6 +8,10 @@ A identidade e os contratos existentes estão em `MANUAL-DE-ASSETS.md`, `HUD-KIT
 
 Os arquivos externos e sua revisão estão registrados em `.agents/vendor/awesome-gamedev-agent-skills/source-lock.json`. Preserve licença e NOTICE ao redistribuí-los. A instalação de skills não autoriza deploy, alterações de banco ou download automático das demais skills citadas nos exemplos.
 
+## Mapas do overworld
+
+Os mapas do overworld são construídos no Godot (`godot/`), por decisão do dono. Para criar, corrigir ou melhorar áreas exploráveis (planta, relevo, barrancos, muretas, rampas, escadas, pontes, vegetação, itens e eventos), leia `.agents/skills/soulmonsters-construtor-de-mapas/SKILL.md` e as referências que ela indicar. O agente do Codex para essa tarefa está em `.codex/agents/construtor-de-mapas.toml`.
+
 ## Continuidade de terrenos e desníveis
 
 Para criar ou corrigir pisos elevados, barrancos, rampas, pontes e conexões entre áreas, siga `documentation/continuidade-terreno-isometrico.md`. Derive sustentação e bordas da geometria e da altura, independentemente do material. Valide as conexões com cores simples antes das texturas e confira o resultado no jogo; não esconda defeitos de encaixe com vegetação.

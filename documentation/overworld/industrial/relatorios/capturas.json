@@ -1,0 +1,1883 @@
+[
+  {
+    "area": "kronasta-industrial-a",
+    "mapSha256": "5f6ed8f02ba18f7890eb5ef6c0b503146ec66d998c8b0d4f2adb2b734cf2285d",
+    "planSha256": "ed14cc43c6dd471c7c8a2adef35a96a1d23105ebf63028f5046e27cf6094298a",
+    "images": [
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/area-inteira.png",
+        "sha256": "0e0ac7be567988de0cc045be4604eed6c11380a63aca72455265a772f57fe5cd"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/entrada.png",
+        "sha256": "da31a946645d0c7a2368720ca3e0c1ae281c23cc3929ef902771e51f34f18d5c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/centro.png",
+        "sha256": "9bc417c401bd6dd178c78ead50dea456c3170c23edf0d35789fb7c071bbf6e9d"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/saida-36-0.png",
+        "sha256": "197304e320c1ca12a06106ec9fd0bb90bd3531b886cc02bf3209a353d7dbb4b0"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/canto-n1-32-4.png",
+        "sha256": "f72d354859a2a8ef4c48b43dafaf3dc0b800f92d6c02d56fcf1a0272d96aeebe"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/canto-n1-34-4.png",
+        "sha256": "b99f1c87e3185e5bde0809cf4366f002d23cb33c13b0e9710eaee799025c73ac"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/canto-n1-20-16.png",
+        "sha256": "8ccb298853b2ccb26d8fe4c2347d86380da8a667f45b8967a398a5faeb058ce9"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/canto-n1-32-16.png",
+        "sha256": "451cf896e290e16205269cf9d242099d6551d011204638b1049ae3749a572a3e"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/canto-n1-4-28.png",
+        "sha256": "66133025e2fefde7d4b43044c47bd8eb7337239006e2d4b047ff30f2bdb17a79"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/canto-n1-20-28.png",
+        "sha256": "65d67f9aa845e8c214511dafa322b8a5dc4ff786fbacc56ed219e989d3efde83"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/canto-n1-38-28.png",
+        "sha256": "129dbc05e6b096c5a1b685cb9fe1cb11e648b627d04ee74feb76af2c5680dda2"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/canto-n1-44-28.png",
+        "sha256": "b0a7eb2e3c3c5735c1c067773f5b12fd52d2ba61584ee39f548dea29163c2b2e"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/rampa-topo-24-16.png",
+        "sha256": "32049a112e60c7e828d18199317159e0447b6ac5ce29c5ae8a681723fc6246f0"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/plato-24-16.png",
+        "sha256": "0d523d74dd37fbfaa2a4719dd87b32c601c0b1d307fea9d647f3db4be0088010"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/rampa-topo-25-16.png",
+        "sha256": "145427c39bc361cd110a9b977dc31cee90b63cacd4f818949a7a0d3b98e8e591"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/plato-25-16.png",
+        "sha256": "08789269fc6e077ac35a1e8eb39ef5beb6441f90e344056c2ab256483dd5e437"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/rampa-pe-24-17.png",
+        "sha256": "da89f575a116a78afc7642bc01049f5240967e53349f05f3dac9b095eb20e577"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/rampa-pe-25-17.png",
+        "sha256": "85cde7f2c738b98ea85f3079ce96c24198aeb42ac48dcc558444339f5e1ffb72"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/rampa-topo-12-28.png",
+        "sha256": "4efd937b72d7d6740dd888b872aa3c87e677d6ea0ded16ff8d65f400cf5d8ab2"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/plato-12-28.png",
+        "sha256": "515889a93de191fc4b5d37a6711502869d5b469e1f34710e031149e37850cefd"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/rampa-topo-13-28.png",
+        "sha256": "edb94d9cd7b95d45eb96a179264927fcdb5c9b86ad0c3e99774b24e9f161383a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/plato-13-28.png",
+        "sha256": "794edac6d5de48c41357fb3a17e89e1f4b14dadb9f1d01749d052126ff024725"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/rampa-topo-14-28.png",
+        "sha256": "a0cdf143fb5c41c4f2df0c604d7725e936eaec4dc46b9d926b81d9190df7297a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/plato-14-28.png",
+        "sha256": "11f8d43fcf3c3f02d6036b64bf85483b9ee98237991611f2dcceb2fe84930345"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/rampa-topo-40-28.png",
+        "sha256": "9779a50265097fc6f0e3cf33f9639c1f58e9efde3f5277f97e22acf517ea6d4a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/plato-40-28.png",
+        "sha256": "fa39246c3790742e017846867971305f258e560f1480800b701ee3c33eefb73b"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/rampa-topo-41-28.png",
+        "sha256": "1f8e73079f3d4e7e80d71a252e55df50b45ec8aafad03af52a045be6bfe49463"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/plato-41-28.png",
+        "sha256": "e89e7242dcaf1ccf497e60b1c0f5e27f6b4f95e6a2d66161230bee26c254201f"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/rampa-pe-12-29.png",
+        "sha256": "6c3766bf69065d4f39e5ee809f7e29113fbc7f2c6a6980b014d167095d834acc"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/rampa-pe-13-29.png",
+        "sha256": "54efb307cfd392dac310c94170fe34bb494fda97a78022d93574e067c8ff5594"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/rampa-pe-14-29.png",
+        "sha256": "92f429f4fcfc0f61914e81eb308247bef62173c6be5eac09d188a92e5bb4bdbc"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/rampa-pe-40-29.png",
+        "sha256": "af843de9bcce8fff1233a734c14386f6b24d9af54b9ff7a28a35d90c20226348"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/rampa-pe-41-29.png",
+        "sha256": "c05b133019398248825fa318a14db44e156a37dafa680066191dd10dfcca82ed"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/mureta-junta-4-28.png",
+        "sha256": "66133025e2fefde7d4b43044c47bd8eb7337239006e2d4b047ff30f2bdb17a79"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/mureta-junta-12-28.png",
+        "sha256": "35d293f5093f7e45f3f9b9c0089da3e2cb1b032fbe2e5a601159db42918ea697"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/mureta-junta-15-28.png",
+        "sha256": "0c42f17f5f4f6f0f83baf702b052d263489633c011e656326c074c910beed923"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/mureta-junta-20-28.png",
+        "sha256": "65d67f9aa845e8c214511dafa322b8a5dc4ff786fbacc56ed219e989d3efde83"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/implantacao-1.png",
+        "sha256": "ead807dd6980c76bcfb749c19d77fe3526329c493c14742676c9ce6474d97a18"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/implantacao-2.png",
+        "sha256": "4492d68671d2988a22dc2a56bc8af88df481f0120bb8a2ba60788416142181a1"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/implantacao-3.png",
+        "sha256": "328557e98d544ab58b4548e2c0487304b132e907f1db488190d030bae0b01013"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/implantacao-4.png",
+        "sha256": "a05392dee6e4c4f35483a7c6ff1265160402bcd656094f3f02e28fbe242800aa"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/implantacao-5.png",
+        "sha256": "678a2dccb194345db7f91f16ddafc0c2f6eeca60eda73aee0a1499b6372070c1"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/implantacao-6.png",
+        "sha256": "8eb95dc0a7081eb8d639f940213a305e9acc4f9479fb905266cc9747d3c10fed"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/implantacao-7.png",
+        "sha256": "a418b54ae2680934163403f0944202236291119d5e2447e0bda7a2f833fa49d9"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/implantacao-8.png",
+        "sha256": "1ad826fa000517287808a8e4a6005375b3167c2dd63fba2779e7b2260b24637b"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/implantacao-9.png",
+        "sha256": "054c4c73e13845fdaec08418cc844181d28046557f7a720b3533b4d186be0c15"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/implantacao-10.png",
+        "sha256": "ed899dc5d7653f80e916325dd31360a45354db20e3aebbfb4f17a9aeb91a4cbc"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/doca-viva.png",
+        "sha256": "587e3b18e24c28012aab77a1fe3a2ee13b102fb3e4ef1765186bb8ae9b23cff7"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/carga-detalhe.png",
+        "sha256": "41a0d1447b51d7409b26f88073a2d9bcbb23199e79a1f831cb520be91e77633a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/deposito-vivo.png",
+        "sha256": "05f18692cf2a2f3ef685f0db530d7fca61384ac9cb0a49d8644d365c38079f6c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/doca-principal.png",
+        "sha256": "7da3836620e5cfa3c6d69cac5bb560f18218a964e60426366c595bccb7dc435e"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/deposito.png",
+        "sha256": "fb6a17b0f6cef8c152681551be0a0456e7058ec548a03abf7666af4b148d047c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/geometria/maquinas.png",
+        "sha256": "30574ceef58782b531fc4f3f3da953ea96b601ccb12c3542b1d5802044a4b1d0"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/area-inteira.png",
+        "sha256": "3e4a639debc495a217dd0ad9dfbfa8cf7b6eace1051af2cb6866184457573b69"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/entrada.png",
+        "sha256": "e258b8437c75124da1099bdc96660f64c3666134bba502423eca48e22ae4903e"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/centro.png",
+        "sha256": "4371bfe9f4cfa8c0e686dc5e78088f0852638c8e2863adbe0854bc0ab6110d33"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/saida-36-0.png",
+        "sha256": "569d3b61eae99db9bb19d0504040a5278d33de45faab1edbef2427bd0fe11e84"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/canto-n1-32-4.png",
+        "sha256": "d96691233623de1b54850f905a624dd5c8ca2482908c0f2420c1cc7bf7177462"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/canto-n1-34-4.png",
+        "sha256": "aaf20c54357f9582ddd7425e2663c81bfdc8d4e5ac71caf477a500dbc2edb8d1"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/canto-n1-20-16.png",
+        "sha256": "32575fa970b543f586f93e50aa57a1045d0fe49720af54a23038503baffc251a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/canto-n1-32-16.png",
+        "sha256": "646134072c28d01a9d83c3a2372d37e200226dd46a44858a27d90af239e95c46"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/canto-n1-4-28.png",
+        "sha256": "d5e7323c69a68d47659889856d225cdfcdb67a98065ef894bf7ae5027681f4c8"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/canto-n1-20-28.png",
+        "sha256": "997c86761bc57b36cbe9add1304146f6f2ae5cc897de65ca1e96d4f9f1a72d72"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/canto-n1-38-28.png",
+        "sha256": "8351a2688e1f46593d9ee8a107429f08d1143676cfbd03376633cd38ffebca34"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/canto-n1-44-28.png",
+        "sha256": "7d333afa9db87209da32213f317cd5df9bb00c4d8ff962f02b3c81e60add9318"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/rampa-topo-24-16.png",
+        "sha256": "671949e80ffbf9026f29fcaee7c21a0b4d6bb89bd9f6677415ad3fc027500494"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/plato-24-16.png",
+        "sha256": "a8a127f5b19d97d57bb014f849851d16885c47ac340070131e65b95191ec6006"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/rampa-topo-25-16.png",
+        "sha256": "b01fdded91e380284f4df194615159c8f7354ffd0a12b02568c6b338df0a5252"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/plato-25-16.png",
+        "sha256": "cc88f5e00fe758f0ff2e6351cedd235267ea9b3694221f76c84e97b84ee7fad3"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/rampa-pe-24-17.png",
+        "sha256": "ec820829518398833f02a6fe333e4b595b694e3c2568b9b23d9f096c879bc40f"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/rampa-pe-25-17.png",
+        "sha256": "294b96d4f6dc45050abf04a17951c5f83b06926201f6bb210f087a3ebee29dd0"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/rampa-topo-12-28.png",
+        "sha256": "1443cda0df202b6359aace6aa14f466508647413461a87c482c7d4fbad44662b"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/plato-12-28.png",
+        "sha256": "b38112391a621e51b60cdc9a58e08e922bedf574f04acc814cccee26bba15eaa"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/rampa-topo-13-28.png",
+        "sha256": "cda71a2df5efb4963801a537a35081614a9b912c5ae93a3d8c7a1f00d987ae56"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/plato-13-28.png",
+        "sha256": "0e88783c4c993172bc367e11ac21db6341b538b08c94056a8e99c9703a79c444"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/rampa-topo-14-28.png",
+        "sha256": "29cbf76db540a05760dc0ff6ebd9da7da888844ab51f5595ed2c908a39104e13"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/plato-14-28.png",
+        "sha256": "1e38eeba42001dd6fa89b50d213f99a79363ea28def1cdd90aa49daab844731e"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/rampa-topo-40-28.png",
+        "sha256": "8b6b4b610eb0ec4a6a507e2501176ba2866e606cab56aa37c9431e5be9db5a9e"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/plato-40-28.png",
+        "sha256": "738d7cacc49dc9d0f482f7800be8c6cf89589bd595de43ce3a3e0524283b7a54"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/rampa-topo-41-28.png",
+        "sha256": "52d7e930311ca805f7616d23deca10017515929e8a033bac53007ce2e4495ad6"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/plato-41-28.png",
+        "sha256": "35d9211b3a75c5ab704064581eb8cf8982d27d977b9a86cf327783b3f96eb6c9"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/rampa-pe-12-29.png",
+        "sha256": "fe1e4035e60ec000aebe7e7474385e5f55d486f33b10c0c75076e94064db1785"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/rampa-pe-13-29.png",
+        "sha256": "b490e16b39d13239ba466f5c2f9354af0ca01d75ef0d051868ba334f494121c2"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/rampa-pe-14-29.png",
+        "sha256": "c9353c93873ce562a32733e52760064a82f618b8bee7971dcaabb644e32fd280"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/rampa-pe-40-29.png",
+        "sha256": "dead0c81bf819f21a0011e26933c8ef8cac12c2420d8a80d7645652c53917000"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/rampa-pe-41-29.png",
+        "sha256": "fd1cfb8346c819bd2853d9703f411846b5a9499e1f130109ea51a082fb29c042"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/mureta-junta-4-28.png",
+        "sha256": "d5e7323c69a68d47659889856d225cdfcdb67a98065ef894bf7ae5027681f4c8"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/mureta-junta-12-28.png",
+        "sha256": "9eed3594a1c5bb2d508b42945dea9cdce9d894c81caf4667739784ed47e9fc0d"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/mureta-junta-15-28.png",
+        "sha256": "0c81cfc673441a56283444c0ffe8f7da4e1c8f4a901fabfc7d0aead74c021196"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/mureta-junta-20-28.png",
+        "sha256": "997c86761bc57b36cbe9add1304146f6f2ae5cc897de65ca1e96d4f9f1a72d72"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/implantacao-1.png",
+        "sha256": "f165d91f7a28dd2fd44afd7cde3f249a36b98ac7a376f1305770219f803804c2"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/implantacao-2.png",
+        "sha256": "b3a87fec49f17dea2e857833848cfe68b5949b8e018f9b2e90645ee1b4412f8e"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/implantacao-3.png",
+        "sha256": "3164664a10d26fd858eb0a57b0e2adc97b4d7379ec0109c994ad0c0c6db8a634"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/implantacao-4.png",
+        "sha256": "9a9d617f6b2a7926d381d0a2d661636a22b4a5d8fa348010be641b197a60dfae"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/implantacao-5.png",
+        "sha256": "48c827a21ac6e96b6561876b817ce3faf8df725da30cb4acaa9d0ea703ebd633"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/implantacao-6.png",
+        "sha256": "c56b6abcaecb811e4c3006b91bee9c0ccdac7df61495566f68a3bba0c8d1427a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/implantacao-7.png",
+        "sha256": "15fd8c074aa2f3fd2379e75ece0e8b37754dca144cf72a8690d766976fa1bb33"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/implantacao-8.png",
+        "sha256": "5303ce7cac65d783fdb23dd4d52fd0fef0e05f97fb0d6554280374458dd6ef86"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/implantacao-9.png",
+        "sha256": "284f046e2bea08cd0b30ca968bd28b3ae1bade2c62dcbcbfd9d950b6ee20257a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/implantacao-10.png",
+        "sha256": "be215491e8b7a43e7fdd80464303e83195b68a8dd8d9e1101612834ec3047416"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/doca-viva.png",
+        "sha256": "b553f3d0dd8dcbd6d422fdccc93c202bf2cba120138dceab9a603d4b07e100c2"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/carga-detalhe.png",
+        "sha256": "256839e5399fe5d3fc85486128891eac446c9cacb516d74e49ea4947c8ed83a5"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/deposito-vivo.png",
+        "sha256": "dd89e8834032645f16ddd37126e9d433113b42cad0ae212e1646d77aefe8407c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/doca-principal.png",
+        "sha256": "97f9414e96f0f5de3ee9a6f216a7ad5bb5546fd7da961eff2d7f8935f181ae00"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/deposito.png",
+        "sha256": "0c6ae0ba38e4a1e8b0c8db36253ac976e2522f6a7a1e331697e6daef85ba667c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte/maquinas.png",
+        "sha256": "3d2d8ff5c8c2508a9085908608a54ef3011dbff489992c757ad5c1147d687ebd"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/area-inteira.png",
+        "sha256": "f9179c9feffce36e54f64a1677c508c74024f21dc354ac9b795dd9964e9cdb70"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/entrada.png",
+        "sha256": "e2a5ff7c6ce8cfab7e4bcc8640170e692da7b88900ce56e7d6b63913f4f6a59f"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/centro.png",
+        "sha256": "7b5e424619a26b14b56948410c5c4d7e128128d24912270b410d510be93fa6da"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/saida-36-0.png",
+        "sha256": "250da4b9a4d8dfbb5f1edcad0ceb6defa79fd66dea1d41207fecf6aad6c8e029"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/canto-n1-32-4.png",
+        "sha256": "3caa6affcec532cd2136dd76ab56a6b98091dc0d5a92e521efe21ce7cb4479d2"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/canto-n1-34-4.png",
+        "sha256": "5f60deb65b78f05e5dc7579697a4fec49db048f84e889911479430c27d940451"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/canto-n1-20-16.png",
+        "sha256": "bb6e5171b4bdfe4ea3283779c0faa305aeef5f91a2fb964b2f45298cb3fb713c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/canto-n1-32-16.png",
+        "sha256": "7037120f7161e1753a7863e2c9f0645529e92f232fe8c827a1643a3b37b08143"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/canto-n1-4-28.png",
+        "sha256": "a3426bbc2816e7394716c94715c3aba1ed72ad7935a7466b0ff1d873593e7e0b"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/canto-n1-20-28.png",
+        "sha256": "8e431fa81bcc10f1bb12e1e34d02bb31b56561915fee1fb26f6d34b57c537fa2"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/canto-n1-38-28.png",
+        "sha256": "8eaeaf8b790a8c5ae172ff48654902fa55519ecc166d909dc0666f0d2e3bbf87"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/canto-n1-44-28.png",
+        "sha256": "096818c7a24ede71c22c87b4c17d160c4ac288972747cccc103575846eeae829"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/rampa-topo-24-16.png",
+        "sha256": "ec6013ebcb2a789d669692d84986905dd060a72840d07c74c372c2d8b170c95b"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/plato-24-16.png",
+        "sha256": "993df6184b4223e81d9bf9675f3acc54fdcd4a769d37fa8c96e8bf3ea56ec1f8"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/rampa-topo-25-16.png",
+        "sha256": "2ed713566d8e7a646862d7461a4a95bc8de0adedfed9e63016e79984267baa9c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/plato-25-16.png",
+        "sha256": "bb26fcf29d85ce0c666efee9428d56c97139a82def8bf74be2b26c408f3ace9a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/rampa-pe-24-17.png",
+        "sha256": "75b43a80bfec5a78e4862318eff3d99703fbad8a2f226791a36bf1d2f005adbf"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/rampa-pe-25-17.png",
+        "sha256": "a063dda31f2c2fe16e4f015bdc06ccc0e73ec5f2a6fa9a866d434f7214fb67fc"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/rampa-topo-12-28.png",
+        "sha256": "c4801b4f31e1f67097e9ae820cdea6ab742961ad859901f2c104d31d14b7c0db"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/plato-12-28.png",
+        "sha256": "6d0c23ccca16f40c14a877a95bc0d1479edd6e9d37b307717958f34a3eaff2a4"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/rampa-topo-13-28.png",
+        "sha256": "e8f32de1d30b14090a6d26d61606271fd8ae26d7e2fc31b4d8c35de8982b8fbe"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/plato-13-28.png",
+        "sha256": "a94605863049319480177bc943f1c3fff4338b512f36ce10d34643a2cc422d60"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/rampa-topo-14-28.png",
+        "sha256": "cd334c4687523305330a59c091dadddc60d7b5fc8bae06c8418033141e11ffcf"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/plato-14-28.png",
+        "sha256": "200ec421af52348096b61f3f937ffcc134962943e8e4950bcd2dabdb3b1b31c4"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/rampa-topo-40-28.png",
+        "sha256": "d78dbb08de101aff60ebb4133f07d6cb408c8e5886c0b0fcf281746ccf2969ba"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/plato-40-28.png",
+        "sha256": "350b53a5e26779d930c0484b017f330dee81a11df65e4627b388d64fe0113403"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/rampa-topo-41-28.png",
+        "sha256": "8fb577e89f9465a1486c57330dc9f4b7de00587fe684608b891e63ba63de57b2"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/plato-41-28.png",
+        "sha256": "bde3f4594e19f75201d4e1969e33d968a8b69c39ee44812953a7d43a6aa1bf03"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/rampa-pe-12-29.png",
+        "sha256": "d410fbb4656381611d24c05e6b8cfe08c932bc15c1e496d53540178b9319be61"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/rampa-pe-13-29.png",
+        "sha256": "7a735655c611ac44d6ae5782548d878f3bf658f1bcf77f8bbb335d5f4c8d73ef"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/rampa-pe-14-29.png",
+        "sha256": "f546c118cc40fb27ecf14feb6d3a576840ed1e478b0ade51625139337cbc2e5c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/rampa-pe-40-29.png",
+        "sha256": "23094b0ad052825f9e9d3fbeabd0ca8bb8cf4613f2e81a0b3d4a72f1c482c63b"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/rampa-pe-41-29.png",
+        "sha256": "94ef91ca2cba39db8bf2f105732da7c74a03a8bc533aaf5e65764a073df29b6c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/mureta-junta-4-28.png",
+        "sha256": "a3426bbc2816e7394716c94715c3aba1ed72ad7935a7466b0ff1d873593e7e0b"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/mureta-junta-12-28.png",
+        "sha256": "69ef465d43ffd478b39220b3041e00a53c4109bc9fcf3b3a8447b828c9bbf7b8"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/mureta-junta-15-28.png",
+        "sha256": "42e002064ac2f774ebee5fa2d41900053c7b812ce9506205a298c6849a72711a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/mureta-junta-20-28.png",
+        "sha256": "8e431fa81bcc10f1bb12e1e34d02bb31b56561915fee1fb26f6d34b57c537fa2"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/implantacao-1.png",
+        "sha256": "4ad8c168a3cfb51c878e8ac06412ee783b0a8fa8f2d8bfb29938483d944f7f27"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/implantacao-2.png",
+        "sha256": "f4d23cbb8ec401f6f04b796cfeb6ff4c94c49a3939977c19ed03ad9cef9165da"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/implantacao-3.png",
+        "sha256": "4266d4e6a6902baacec214c698a00caaad17bb81b59fa6efaf78f3209cb94813"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/implantacao-4.png",
+        "sha256": "8242e9d7d53fd77f2e8352a97ee78b90dd986559761299c33cee3c77ccf20674"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/implantacao-5.png",
+        "sha256": "3d90606698b8725493c8dd20311f8ce512fa0f321ad3dc9fb16a5fd61bb4f773"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/implantacao-6.png",
+        "sha256": "10f3eea27153d78eced69d3627c662ec288633c5cb822d0ba5c298124749c4ca"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/implantacao-7.png",
+        "sha256": "d3b301e503cc8222b671ee3d4faed1ec545dd7708f832d22cd39ef55ce38ad49"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/implantacao-8.png",
+        "sha256": "8f4054ee66f13da27f49cac1bb48972003e813e3b1ad6a4f98010f9ed3619b43"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/implantacao-9.png",
+        "sha256": "37d3def8fdfbf723c4fab8c42b55258870a0bc3c4d7f0f17619071297d5ef245"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/implantacao-10.png",
+        "sha256": "59bd6c5e4a77d25b157da675a1acb811faac74fc3d05c6e5efc3bbbd562abc6f"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/doca-viva.png",
+        "sha256": "f8322253a940ce654a67f679a1f61be87aaeabe86d119443418df52c200a6e17"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/carga-detalhe.png",
+        "sha256": "9e3b4c597e894381bc886bd48b0c4d6cf236f3681745e1808d24818cbd3f9fb2"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/deposito-vivo.png",
+        "sha256": "bfab38637b85361cb8477629a090d71f94b71deff4977a94bade60ea87f957a2"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/doca-principal.png",
+        "sha256": "e2d436faf91526b42ae16b3934be5111b47c9ab04e4eafc39df28b5efdacdff8"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/deposito.png",
+        "sha256": "518bb8d47d80b055897d783623a639d9e76210f12429871829d102c5f9c2d301"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/a/arte-terreno/maquinas.png",
+        "sha256": "098b3709ab5c9e984680d1d6b037c7ac8927938f84ca6365554219bfd9f66a69"
+      }
+    ]
+  },
+  {
+    "area": "kronasta-industrial-b",
+    "mapSha256": "613a44cbf6f298ba7415d04c979c2c14e233cc3878b294ead34ecdde9bad5b8e",
+    "planSha256": "6e08726cf455fef90eaac0e98eb1ac887d2d1639159d627223643352e77d06ab",
+    "images": [
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/area-inteira.png",
+        "sha256": "27dde4ab1948ebe504d71232982194ec94ff11ec016561bd8e863f7b8151747b"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/entrada.png",
+        "sha256": "8dd96452c55b7eb9bdbc19df10133bfd84a62feaf64a84c1df8935225e2bcce1"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/centro.png",
+        "sha256": "fc5622a1ce4527d50cc203a3afe11ac8e6b696fddb89a616f3fc20e33e5d4604"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/saida-36-39.png",
+        "sha256": "8d3d1e58abac12556ad059124ffd0d9a65e7e1ecd1dd424a474117b80a629681"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/saida-36-0.png",
+        "sha256": "a486f65d81daa7abfe4f6741e77cb86c806e728ff0897a0d50afceed33761c28"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/canto-n1-32-4.png",
+        "sha256": "ae5aa8b4348b26afb39d3f45067441e1c16b9c283a7c29a6d727140f94b823de"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/canto-n1-34-4.png",
+        "sha256": "7a6d98a37b066f7bd8478766ccdaf5775b435d0575d0af78d5a2a01cd1eca3ed"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/canto-n1-20-16.png",
+        "sha256": "0c86c911aa55d384606e12ca6bc25f83facac9ec5fce82f780987192315f6b40"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/canto-n1-32-16.png",
+        "sha256": "aa022abf940f423b02fdcfbbfe3034197000824e65f6d5084e50a0399d0ff0eb"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/canto-n1-4-28.png",
+        "sha256": "71dfe104d7de626a23ec2ae5cadb9af8e8f4be0ba1b4c984f1b5b91d9447b1e8"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/canto-n1-20-28.png",
+        "sha256": "565d73b4770614b9a01085f99d8cd86ff691440d82ef7d78f203330dd8d434ef"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/canto-n1-38-28.png",
+        "sha256": "21693e9bd5823e44582e13465721a29a9c0e8bb85c4ffab681e815e038275ec7"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/canto-n1-44-28.png",
+        "sha256": "a0a4549afa715ca07e05dfd921ac71a1b506ecfa20d24e65b3537123acfebc58"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/rampa-topo-24-16.png",
+        "sha256": "d15f394c354677e93d95f702c9935b456803ba484d2b0d526e28917fc8806d7a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/plato-24-16.png",
+        "sha256": "7147737df23ce016ad36b1adb610d5bfe83306a99cf17bf3e1cc25aa55b8f565"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/rampa-topo-25-16.png",
+        "sha256": "92a382a8eaeb602a738f8ffc0f19f4d89279b9d90787ed3a9b9e94dd951602c6"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/plato-25-16.png",
+        "sha256": "c250ff62bdd62adb80258830717698c0132edb15277a73e5da093d1092022d8e"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/rampa-pe-24-17.png",
+        "sha256": "00e232afcba7b3ddfcb918da0e43657c1f1d35789b0cc03c397885b203238100"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/rampa-pe-25-17.png",
+        "sha256": "aa23cddee2a8b1512b2a89a5df9750f1ad92ed188b86acc5d254f924849a3174"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/rampa-topo-12-28.png",
+        "sha256": "af7111fa79e445ff9cf6791849efc30d335ec0c338dec6f1c93368535fba735a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/plato-12-28.png",
+        "sha256": "5e0341b0f4da6a01217c30d14a56ce268254913b7c8c76e0f588795882976614"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/rampa-topo-13-28.png",
+        "sha256": "e075b2aa08d769798c3269d03e61b899824044756f6e700e429c9c8cf7617c10"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/plato-13-28.png",
+        "sha256": "f33137adc3330b9c87ccb6bec7ea3603bea842bc571039c24d6b531cc8f73afd"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/rampa-topo-14-28.png",
+        "sha256": "38b03659c26a9b44e219ec0e7d9e00cdec624377f4ee563b131ec2ba7da4baae"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/plato-14-28.png",
+        "sha256": "8595e25a3f1d1d8a27a35a39cd75adf89e3806b59859c61e6fe1e03e8bdabe75"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/rampa-topo-40-28.png",
+        "sha256": "fd0013ea0c7cf47d55ccc03fb632660d6c091c6f3eea22d8c7fe751827cbeae9"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/plato-40-28.png",
+        "sha256": "0b5fce5e55f9f92bda7696fb63ebe734fa6a81165aee3e1ad7d361dcbdba3303"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/rampa-topo-41-28.png",
+        "sha256": "b0093da0dc572bbf5e9b0d9db29eaf6ec992a1da4ab5d698d9662074d2a9b671"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/plato-41-28.png",
+        "sha256": "ee89c7f8eb143b0319ada6bfefbe4719ec45b5d9fc4a006e2eec0aae18f0ff8d"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/rampa-pe-12-29.png",
+        "sha256": "ae9b297c97ac08bef030af28d62d70a3475366a5ffe6385cb3ed3f45b34ad903"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/rampa-pe-13-29.png",
+        "sha256": "a1789ba5f721046ba14bc49188667845e68daf7c091f4522b5b9ae88d2ac277a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/rampa-pe-14-29.png",
+        "sha256": "17a6b4e3f91124515096146043832883f5d9c4d9ec3a79d8f07b73f116b15f94"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/rampa-pe-40-29.png",
+        "sha256": "ab9db90c8e80f3b6cac117d1769b14f3bca2ca15e2509cfdf771efd0312a82b3"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/rampa-pe-41-29.png",
+        "sha256": "bef17f03634a7eb4691bd6a0687fea30e2e14f230e6b0dc1917fdbb50219bbad"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/mureta-junta-4-28.png",
+        "sha256": "71dfe104d7de626a23ec2ae5cadb9af8e8f4be0ba1b4c984f1b5b91d9447b1e8"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/mureta-junta-12-28.png",
+        "sha256": "68e8ea935bb515806455199fcfc2b01938ee3db60fac12b4020d6bf8fdfed991"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/mureta-junta-15-28.png",
+        "sha256": "5b66b9d6180f397bd1939c306b9a2ffacd2177a5dc9e029f6bbfc139a9116d4d"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/mureta-junta-20-28.png",
+        "sha256": "565d73b4770614b9a01085f99d8cd86ff691440d82ef7d78f203330dd8d434ef"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/implantacao-1.png",
+        "sha256": "408b7ce8f33db2842df40e447e6e0f8ad15122f0ce4f83b928b82010ae0612f5"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/implantacao-2.png",
+        "sha256": "46ad803c6283c1cc0906c2027e9450d9dbd004376d1f9238745eab64d6fbcb74"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/implantacao-3.png",
+        "sha256": "369f7bcd1a0d639200e781492c605c3648698aafb4500328593d5e75e4c92a02"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/implantacao-4.png",
+        "sha256": "9eba6424b9d48edf9eba0cfcaad6316d237e12194c80e1ceeb6f10b24187aca7"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/implantacao-5.png",
+        "sha256": "af69245425b47c32a68126cfa308d61050d1f5af86b31a1c7869166551d4e26a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/canal-canto-0.png",
+        "sha256": "a289013425ab81e2810bd961b0fdd5c98fd47782013b5575a138a3fbeaf5b789"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/canal-canto-1.png",
+        "sha256": "e7c16471d159160732553a8456fa53efa8e22db8a0376ee5ea8c9fd79e1d0916"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/canal-canto-2.png",
+        "sha256": "1e5cf78ff774e4c4b44efb8b7324b15406eca7a165f3e9835f08ea9dc34751b4"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/canal-canto-3.png",
+        "sha256": "5dffaaf80133002ccaadb2f72e3d67fad778c884dc1c908fc84ca2bff3f248f0"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/canal-margem-norte.png",
+        "sha256": "a289013425ab81e2810bd961b0fdd5c98fd47782013b5575a138a3fbeaf5b789"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/canal-margem-sul.png",
+        "sha256": "e3947b3796115c6e0826fdfb70e9ce29ce5a94e362167646a8b5bceeda8bc3f2"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/canal-ponta-oeste.png",
+        "sha256": "2def64ad848618e2a3e87b7a1d91ba4800a1a30fe73bae612acc3731d700d4bb"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/canal-ponta-leste.png",
+        "sha256": "2a47aaf05f436c9049109aa7f9dd4ded635bb02a03d9373967d78666113a019c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/passarela-norte.png",
+        "sha256": "7fa7bee9ea98c41fb6437d908716dbc33a6eb98acaddb3ffd1c311e0bfa4de4c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/passarela-sul.png",
+        "sha256": "46bc8b97b19b3da7b507da5c2a3d661e09f387d2cb58fffbe05caa55c2ec40a9"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/doca-principal.png",
+        "sha256": "4078ffcb752823c907e2291055f6ffba5e8fd46d859307b5d916d05fc73eb450"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/deposito.png",
+        "sha256": "e50f52b88b5d62b92967b9a2ef3c1bf7b89b71f93726c5c0273fe719d71ce508"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/geometria/maquinas.png",
+        "sha256": "4dc517b29b75d15db634e845eff7889127ec508da89b7a08962b81d406aa53e9"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/area-inteira.png",
+        "sha256": "55382bb9c11fb35936e77640d398eb99eb133b1be2630faa35b2534b6585378b"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/entrada.png",
+        "sha256": "9bf13c550c49d892d0c0b04a4986f220e6d2c9e1a877a9318110f9d1299c26ed"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/centro.png",
+        "sha256": "9152b2eb60af995f5d78bde079e25becb3ea57e87f8654970ce27110ca6c8399"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/saida-36-39.png",
+        "sha256": "60a3ffa84a840f3828cc3dcb53735bfcfe811e03d1d463e78b9d8a2e2db41e48"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/saida-36-0.png",
+        "sha256": "ab31f6d96d229c26c069b53c7c55d1e6f7b5c66f6c8fe2253c0dcc3e94d27bd4"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/canto-n1-32-4.png",
+        "sha256": "a7eeede581582737afe83dede3994d6c46384006cfea1ad380e1fc79758c3496"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/canto-n1-34-4.png",
+        "sha256": "b0a37cee2ee549cdb65645202074c3a5a4649c0d81cda76ddd6572f8e2c88a60"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/canto-n1-20-16.png",
+        "sha256": "c2c84a0d2b27e18d889146be28954587b6b2be505e81bf2774bc0583800bfecd"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/canto-n1-32-16.png",
+        "sha256": "90f7d1bf3871a6d81bd7c05488a23890aeb2f75e38a05fcde87b75831ace79b8"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/canto-n1-4-28.png",
+        "sha256": "cd093c385803fe3466a879af4e8d8ce0f076cf67b47c10223839c82292542c62"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/canto-n1-20-28.png",
+        "sha256": "bf3b832cb690090be180a672920d83630cf128afb7a166438bf4074a967ce6df"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/canto-n1-38-28.png",
+        "sha256": "972d90ad3d20c7e6f8ec3b5f5a6d7ffc275e049d53b1fd8025e257143d77ce65"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/canto-n1-44-28.png",
+        "sha256": "aefd65b95e4847e200be58936ee31081a1177ed354a1cd2db88d9bdb0404374a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/rampa-topo-24-16.png",
+        "sha256": "73c036e5b0f241b4b6052ec2e4621cf358fc7aa1c243752cca4e33560eca5e80"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/plato-24-16.png",
+        "sha256": "189476f15c5768c55456bb391c99db8a8e31fd70fb21825312e25af2283e91e8"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/rampa-topo-25-16.png",
+        "sha256": "e70fc51acab800062f72f073c2371faac2b5c065802061f336a6a11abf64e5fb"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/plato-25-16.png",
+        "sha256": "9d4d21db483086e5b2c03a151615d0ab75faadfa7a3637155c57bc7911c64391"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/rampa-pe-24-17.png",
+        "sha256": "44256f92cd1428137e9f285584dad5248fbbd658933a20217ae0b2a6e0d23c3e"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/rampa-pe-25-17.png",
+        "sha256": "086d01e5fd712ce42dc3add585282d53c3d70bc9ce2be5293cf19d6899a9f9d3"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/rampa-topo-12-28.png",
+        "sha256": "7418609ff63a4e7673d32bef550367811b36673cfcbae9cebb16d11536e58076"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/plato-12-28.png",
+        "sha256": "27402c4c111f2266a302aad126cee4db91f181232c6fa85729d94163d336e191"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/rampa-topo-13-28.png",
+        "sha256": "e2c6b41c86a8fe8c7dfff4fa11d683cb941c61f7c66de97c24eed3b597cc7e8c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/plato-13-28.png",
+        "sha256": "c3252be3e98df56594ce7447e920244e08d2874aa83b7a0c9fd230d832b00e2b"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/rampa-topo-14-28.png",
+        "sha256": "eeeeba749960232c11ba8e25b054c66bc6070c83d53e0004c2c10708d7fd3503"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/plato-14-28.png",
+        "sha256": "87f0a2278c49e139dad1a22b90ad502fb64b2ebe5fca2b0b216f61da272c9c46"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/rampa-topo-40-28.png",
+        "sha256": "c160335a10079b5d93d474492a385b37edb60faac1b52c58c64fd52dfab8a8d7"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/plato-40-28.png",
+        "sha256": "3a983bb2b181fad5538d808d5d984d379f6de41dc6200d131a7ae1f15fc9e8ec"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/rampa-topo-41-28.png",
+        "sha256": "f53ff268cf80ac9f6bb8413ffe00e26b86e21b075dae5eb9d6909ca30086359c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/plato-41-28.png",
+        "sha256": "2966347d6c481fd5ddd2e1a02af084e64c2861166ed6697066f43b99b502cc8a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/rampa-pe-12-29.png",
+        "sha256": "c5a87018c5a2381e209a5c2fbbf566e7455dc04b77716fc63c8671f645070a87"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/rampa-pe-13-29.png",
+        "sha256": "2a381d3193431fa89fab6eae3a281c0d99a41a0821be72beb5f7988f2e9fbc89"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/rampa-pe-14-29.png",
+        "sha256": "ff4e367eb11824260919e3adb9f1327c491deb34980f7458b038273c6dc430ad"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/rampa-pe-40-29.png",
+        "sha256": "a70688d85537a9563be6a6dda928b5a46e1873002436d72d57f15815cf52ce5d"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/rampa-pe-41-29.png",
+        "sha256": "8d0949c558fb2486219d7e6a9a61d5c1733ca99e50f822562667ae300be314f9"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/mureta-junta-4-28.png",
+        "sha256": "cd093c385803fe3466a879af4e8d8ce0f076cf67b47c10223839c82292542c62"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/mureta-junta-12-28.png",
+        "sha256": "489fc5a4b8ad45473bccc572d26355c63639b81700ad57a5beaaae66b61029b3"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/mureta-junta-15-28.png",
+        "sha256": "d5391ff52821879eb4ec93820bebf40f8a2227415bd9079fbb914933a7446cd5"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/mureta-junta-20-28.png",
+        "sha256": "bf3b832cb690090be180a672920d83630cf128afb7a166438bf4074a967ce6df"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/implantacao-1.png",
+        "sha256": "ce04cb5b8620e12abcc697de63e140c60b8e975e0ca507cfa049c93e799a70c4"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/implantacao-2.png",
+        "sha256": "a0376c6d24d669e6b6d3d7b3203cb4628f4fd18046916e6b1cfdd4f30de9dde0"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/implantacao-3.png",
+        "sha256": "0927363f2a4a59f9fdff819b81bab2b0fbe27b182ae5b37f95cda43619c79fbc"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/implantacao-4.png",
+        "sha256": "c63a45ae849ca5c8db0dd6edfa5c9caa88514f960a2c5ccad82548b6ad1dcf76"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/implantacao-5.png",
+        "sha256": "0c679a2ab12ee8e579e6337e4f6aebd4def6b746baa1ae198602bd3dedb26587"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/canal-canto-0.png",
+        "sha256": "9d117002ed7413af97c684d2adea50885dfbf0e9b2ed480bc7d2e7ba2a70ac42"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/canal-canto-1.png",
+        "sha256": "c5bc3ab06d83391b5d5771c9019de35e46a3ccff5ee06f2306491ef76a0d5a0d"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/canal-canto-2.png",
+        "sha256": "9ae561bdbf3c627a60b530f983abbea40cf7d4bae374de2f4de3380d477b5e00"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/canal-canto-3.png",
+        "sha256": "d2131d8bb06ac47038c2805962487e5875e5bd2bc89e0bcd105361da0b17acaa"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/canal-margem-norte.png",
+        "sha256": "9d117002ed7413af97c684d2adea50885dfbf0e9b2ed480bc7d2e7ba2a70ac42"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/canal-margem-sul.png",
+        "sha256": "51173c80c461ceab9b730af1f9219109077f2d1d765fee39fb8aa6a894808bbf"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/canal-ponta-oeste.png",
+        "sha256": "92774a66c551f10d8fef5c0cb801bd97f4c0244c6627d28b0055b76215b903ca"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/canal-ponta-leste.png",
+        "sha256": "12c606f3c32fb0ecf553aa3e02b75daae060fb4be6a11bf457cf37f1d1c142e4"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/passarela-norte.png",
+        "sha256": "fc3e19b6a8ae836ff94950d7cb4ea5dd9201d0531436beaa32983c1932aff2ed"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/passarela-sul.png",
+        "sha256": "7ed25b6cf251576eb15510c2754d3f65a6504379e67c58649d9fa023adad6591"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/doca-principal.png",
+        "sha256": "137d18fe22708f181f38b7af5f03bbb680b4ba6e5492e6bf874b98933f1d239f"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/deposito.png",
+        "sha256": "e44dd5e4f53a836666bd5dc66fcf6d99d0aa54c1eb9712f34fd13be52cf64e34"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte/maquinas.png",
+        "sha256": "4ae4a19065cbe9d0cd68b407b63581108d252e4c33752109165e2647a4e991aa"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/area-inteira.png",
+        "sha256": "72e6b4a6ab8eb432901620ef04e8e6cf8e4f076b6b7df673154601752fa134ae"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/entrada.png",
+        "sha256": "bd612495efa4cc58b466aefcf66b5ee18f3b34d7a10299b056068424abf1cc65"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/centro.png",
+        "sha256": "50f8580687f835593befd8fb1ac63cdd44fc1dbe84fac39d9e174eaa5abf1b4b"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/saida-36-39.png",
+        "sha256": "eef4da2676584af4f4be727508277b90d663d7fe6536573d6e78cf03eb5c9a3d"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/saida-36-0.png",
+        "sha256": "da4734c9137db0906f0b69330d54107abf03396e02c1326aa236d149fc0eebf9"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/canto-n1-32-4.png",
+        "sha256": "3caa6affcec532cd2136dd76ab56a6b98091dc0d5a92e521efe21ce7cb4479d2"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/canto-n1-34-4.png",
+        "sha256": "f8eb0be1ae5856215662771aef34ca9bc42b7a38d5c47280b8c1ce2a881bdab0"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/canto-n1-20-16.png",
+        "sha256": "36b1d6300ebf0098a68211478de0464b8ff3478ef44e2219ec226ad23c4970f0"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/canto-n1-32-16.png",
+        "sha256": "e636d35b8f3f15adcb6534cc125fd15dbbe9c5df48a4e87a32c3521e7d508a41"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/canto-n1-4-28.png",
+        "sha256": "76b5f9336c42c5abfcb6aba752a372642ea61d89993dbd67464104d099af9a5c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/canto-n1-20-28.png",
+        "sha256": "3e7e3bfc41d10b2d11d7837d3d58830f0a08928d42873f6910c34fc35cc8410f"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/canto-n1-38-28.png",
+        "sha256": "284f5cb82fe5f8df7c570588b6c5a29c0e0cd7dba61792bdb67d55e9d1a960f1"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/canto-n1-44-28.png",
+        "sha256": "007a3127479ae607c12e702aa9aa8151ee5f21ddbbf692b89abd5e752bab8454"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/rampa-topo-24-16.png",
+        "sha256": "9c2ac0151bf012ca8ba36f12ea19995ffdc174241441eaf50413546025bf69a2"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/plato-24-16.png",
+        "sha256": "85fdb6fbcb912680c49f4820c195e674c0215847e6c61426847ed9535f6d4a37"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/rampa-topo-25-16.png",
+        "sha256": "ed670dab3ea1773161e469c3588daba85c61d865aefff8f28a0f9044d3b16ffa"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/plato-25-16.png",
+        "sha256": "95d27ebd1dee1f413a70eaebe8ad234445b36412596b2a1eef27d60ee16b7508"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/rampa-pe-24-17.png",
+        "sha256": "4af9a01cf65dc498d82c9c7d09ea45d15754785b540e221efd49dc2aaa85ae46"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/rampa-pe-25-17.png",
+        "sha256": "ab8136bfdaa1865aecfa070e62c59992ab149c86d61af3b88e4d1452baee8a7e"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/rampa-topo-12-28.png",
+        "sha256": "ea32ec823b35c5be25e54c5ecac4d5c1607fd22462ca8f4d95ccf5ce72585405"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/plato-12-28.png",
+        "sha256": "3aae1753f8633995d6e7754de2de243361d9be625cae8256e63a81bccb6517b2"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/rampa-topo-13-28.png",
+        "sha256": "2d9454be01d06f4f0147b9dbb958fece1bd336252130869a3b08db0503d3fb6e"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/plato-13-28.png",
+        "sha256": "f18a02ac02f80b10e589478f9441c9da91b7b9fe5f460f098e61e8d7399ce991"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/rampa-topo-14-28.png",
+        "sha256": "e46addcb5426105b6c2a52b0af5854a0a73dd7875fe90621c3e2ed67cf53d1ec"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/plato-14-28.png",
+        "sha256": "3eee80c376d24e32a1b1a808e4481b66790103615383efba5ddc0cd92e090b80"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/rampa-topo-40-28.png",
+        "sha256": "277913859c55ba8fa89f778d9b75e30209409249b1ae3cb1044dd248b20eb432"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/plato-40-28.png",
+        "sha256": "a2fd8618e2e0c8f4a9f6cd09431410e59d73f7714e3c2c645a7a023d54d3edcc"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/rampa-topo-41-28.png",
+        "sha256": "a9ffc856759cfbe39b2354f192179cf7b8be45b95a5eec6a784bef832cf7b4b5"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/plato-41-28.png",
+        "sha256": "ad607896962ff2a1ba1a463e255f5dbc36920b1c12293214e171ca5206f68098"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/rampa-pe-12-29.png",
+        "sha256": "d254b88aab16edba5e2b8ba4c92d3e669a4a4f60e0748b087831dbc3f69467d1"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/rampa-pe-13-29.png",
+        "sha256": "12f76286584ccd0baf08ef5aceee18a2f642f184f068128db15831ec131afc39"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/rampa-pe-14-29.png",
+        "sha256": "de13016ed2bfd33197f422959478a5743a97ad428b10e63b005b0e4de4af9fb7"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/rampa-pe-40-29.png",
+        "sha256": "5946a89f1ebf9f44396dc2a9f30d2c8200787b3ec8ef33d5cb5ab7e46390d2c5"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/rampa-pe-41-29.png",
+        "sha256": "23ec51fffd7ac52767cdf6e4b75bf57b171146c3915b57b701a6bea46e17725c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/mureta-junta-4-28.png",
+        "sha256": "76b5f9336c42c5abfcb6aba752a372642ea61d89993dbd67464104d099af9a5c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/mureta-junta-12-28.png",
+        "sha256": "9df58951c0324be277f015c76501fe214a4e341f2722a187df5f9338378fe3e4"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/mureta-junta-15-28.png",
+        "sha256": "04293cae91d62c03ae02dced1e0375aed3aeaef051b8724e79e1f67a2d7e19f4"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/mureta-junta-20-28.png",
+        "sha256": "3e7e3bfc41d10b2d11d7837d3d58830f0a08928d42873f6910c34fc35cc8410f"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/implantacao-1.png",
+        "sha256": "f40c9b30208138960b5424d84aa0a1cb8d0c532098696e777d27c7bf1e39b966"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/implantacao-2.png",
+        "sha256": "f4d23cbb8ec401f6f04b796cfeb6ff4c94c49a3939977c19ed03ad9cef9165da"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/implantacao-3.png",
+        "sha256": "e91558084543059cadd23f7a19a425a148b5f552779e84c8eb318368e6332f7c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/implantacao-4.png",
+        "sha256": "43492e77f7b87a175c8a4ea388efeebe692f4834f6594bcdc4e176c58d7ec31d"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/implantacao-5.png",
+        "sha256": "3287bf9336c802a338a319d42cff2d39f57a687a57527ae7ea022e9a27082609"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/canal-canto-0.png",
+        "sha256": "8275392e98ca53ec1a60eeff9fe9c41e5dea512ed633a57866af1109c9d1254b"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/canal-canto-1.png",
+        "sha256": "7e5a7026e43a4791e561375909233213e4e8b692efe0d39dbe818dec5fc7e1da"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/canal-canto-2.png",
+        "sha256": "43596b00ed0526104fb1c01782c1773590493b19abd785ed0edf68d8c8952b74"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/canal-canto-3.png",
+        "sha256": "b01b4b907f1186306467cbdfffb832a498ed06c1a34c7c3b4cf797e6cbe35a0f"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/canal-margem-norte.png",
+        "sha256": "8275392e98ca53ec1a60eeff9fe9c41e5dea512ed633a57866af1109c9d1254b"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/canal-margem-sul.png",
+        "sha256": "c8c4424cd24e4345d2bb593f15942c63738437744152f3d491bc443873646622"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/canal-ponta-oeste.png",
+        "sha256": "38c08325dba910a001abb3db80317b4dfa4f3007e98b7004f1eaf9c96689ffa1"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/canal-ponta-leste.png",
+        "sha256": "9cfb819dfba10b3de9af951b20d57d5f668a79bee87d3ed018b951b9dad4311a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/passarela-norte.png",
+        "sha256": "cc96bfec2311a5e7f65a76e8eec632c4c247f1f06aa1a6e6179f55bb6adb7813"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/passarela-sul.png",
+        "sha256": "d82bd9a88b09462a32d073a39c972deb69a40bb29e0bb0339d0d168d58273ff5"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/doca-principal.png",
+        "sha256": "fe2818b98f17ccac08ac3daae370535955e4b142db9cfec0ae579c41bb570f6c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/deposito.png",
+        "sha256": "0ff73730592fa8f6b96633e8df7c7ed242a75b9db5255b93bea7ef758bc239b2"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/b/arte-terreno/maquinas.png",
+        "sha256": "ba54093a3f8a169185cc4a144b73f5cd80c599c9716042a56a5b01f48b7e1cea"
+      }
+    ]
+  },
+  {
+    "area": "kronasta-industrial-c",
+    "mapSha256": "96076ff7f02574e8ca4237dde808939cf1333b831d78c2a8a8b753a6c18de978",
+    "planSha256": "1a3ae37f3f72d0c475ac91c49a9aec688d4788d87feaa5f5c27f77fc483e847b",
+    "images": [
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/area-inteira.png",
+        "sha256": "1456068cc58ace58f78ec59bde2e22a3a04b0c1fd3ff2d5b241c10a299d5ebe6"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/entrada.png",
+        "sha256": "b570f12c3d17ca17cfa24f03c8e86f5c0cd6bb4138fc7a91f5596c93ed1c5f2b"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/centro.png",
+        "sha256": "d842584f5ab66f4aa7b8cf11f6e80a6e674b04b4a5e6025774c142dda3b1e5ea"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/saida-36-39.png",
+        "sha256": "cd227491f198f36a223f92df6125da7f0ff2475c303bb285463a310bd73546c5"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/saida-8-39.png",
+        "sha256": "f9f2d8aa2857e7b4e3ee8a3ec7a39cfd67fb6f363a9ce4b9fcffc847a2b679b0"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/canto-n1-32-4.png",
+        "sha256": "62525772f3ee241297fd7ffa8e67d7b8deb3ce5bfccd2d9775dadbd7543dd252"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/canto-n1-38-4.png",
+        "sha256": "365965e39ac0a3138eb31e2fe5417cbd383d5c23646c6abf09dda0c8af88529e"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/canto-n1-20-16.png",
+        "sha256": "0c86c911aa55d384606e12ca6bc25f83facac9ec5fce82f780987192315f6b40"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/canto-n1-32-16.png",
+        "sha256": "da99d8c1ded43b77e9bd4ece128688aa047ec5315c346b2ab346abdbd00c2be5"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/canto-n1-4-28.png",
+        "sha256": "95a101d8d5994eb8d200f69c532d1a80425db2c317eeff985ae4251641e36c51"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/canto-n1-20-28.png",
+        "sha256": "3007a61fa60d720c02b9df1f6be3b350a690071f78b4c1e92532ce1c349eb39a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/canto-n1-38-28.png",
+        "sha256": "372056d4eed1c4c8819fee0a894aa86c1ad68972e4a29dab797b2053115db81b"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/canto-n1-44-28.png",
+        "sha256": "b0a7eb2e3c3c5735c1c067773f5b12fd52d2ba61584ee39f548dea29163c2b2e"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/rampa-topo-24-16.png",
+        "sha256": "d15f394c354677e93d95f702c9935b456803ba484d2b0d526e28917fc8806d7a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/plato-24-16.png",
+        "sha256": "c6078418ce6234bb2d03e4833084fe7044136d574d9dc32e26c8f11011ab0067"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/rampa-topo-25-16.png",
+        "sha256": "a6c64684e2e996b02c6da8b31ce9c3e652d14eea2223f23001f98c80d6f41879"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/plato-25-16.png",
+        "sha256": "dd4038e194219b9b21baeff674c644401bdb46a48d0384a9a46444e6db590f04"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/rampa-pe-24-17.png",
+        "sha256": "894bb9a694893d4759db2624a368a7a596bd32e35a4db8c216ee5fe418317a45"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/rampa-pe-25-17.png",
+        "sha256": "087ecf73e8b2fa56084d211bff8f54b24a7e5140f170232d07617283be8fba94"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/rampa-topo-12-28.png",
+        "sha256": "c73c579b7a5a4ebc2f29221241d1b42c1f932c5f2aa55719bf988d458e36f6b8"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/plato-12-28.png",
+        "sha256": "55b67cf9b7647060dbfd95f81f67437d45412163b776621b4721e72c6a71fc26"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/rampa-topo-13-28.png",
+        "sha256": "acb8ea0b9e4f8b56e148caaa91c36c4a46c3510e46b81b992ca76f5e5cbbc9ab"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/plato-13-28.png",
+        "sha256": "be0188c7eeb1193ec693e4cd7d93d9d633ffc4704a559a8902ac4fbe200b8d9f"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/rampa-topo-14-28.png",
+        "sha256": "9dcade31a2be0195db7161f409f581594a54739a8af71ea3a583dc5c554a5808"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/plato-14-28.png",
+        "sha256": "71e71503aa2613e14a6fa8e4234b41d35e92f73c60845746d3fa19bde1f9cf4c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/rampa-topo-40-28.png",
+        "sha256": "91be2de75227374a33d2b006a8dcda1ccc33180a9307e25ffa2f36ed9be4c452"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/plato-40-28.png",
+        "sha256": "8c78d7529217fd6478a8a074e020ac0e907da98865b6842b0f4f053a83762187"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/rampa-topo-41-28.png",
+        "sha256": "b5cb7a3bfef529cebc573de741998409476211a2bc411468d91247007d9db87d"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/plato-41-28.png",
+        "sha256": "595787a326afd5def25b38033f8d2d0d8a00ed2bef4051ef1f0706e9fec9af32"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/rampa-pe-12-29.png",
+        "sha256": "da0612aee5cb07bb30804bf2e3ae578e4cec09b7cc4f376005c387432a4be2d5"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/rampa-pe-13-29.png",
+        "sha256": "9b1a19061b2261965a7588954f4a44cfe7407ec1442bdef6888d2faf3f4d7d11"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/rampa-pe-14-29.png",
+        "sha256": "f86f020cbc052398aff5cd06d5bd1a9617d00555763d2a772bd86b682891d172"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/rampa-pe-40-29.png",
+        "sha256": "8bdf938aa70fa24e2cf435f43f6e858e8bbe23244b2028ebdc4b356d117162de"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/rampa-pe-41-29.png",
+        "sha256": "08fe99fb16e2b9fb1283220099b56e4baf7922b04b5954657cf62793b2927472"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/mureta-junta-4-28.png",
+        "sha256": "95a101d8d5994eb8d200f69c532d1a80425db2c317eeff985ae4251641e36c51"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/mureta-junta-12-28.png",
+        "sha256": "a480a6881b76eb70340f876c5806d019a606d9166b78475b8253ef5391f398fe"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/mureta-junta-15-28.png",
+        "sha256": "2787a2dc70e5c30b041c7d35a5712d32711a1db9a5204348881a2b8f22be8b71"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/mureta-junta-20-28.png",
+        "sha256": "3007a61fa60d720c02b9df1f6be3b350a690071f78b4c1e92532ce1c349eb39a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/implantacao-1.png",
+        "sha256": "408b7ce8f33db2842df40e447e6e0f8ad15122f0ce4f83b928b82010ae0612f5"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/implantacao-2.png",
+        "sha256": "46ad803c6283c1cc0906c2027e9450d9dbd004376d1f9238745eab64d6fbcb74"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/implantacao-3.png",
+        "sha256": "369f7bcd1a0d639200e781492c605c3648698aafb4500328593d5e75e4c92a02"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/implantacao-4.png",
+        "sha256": "56a92edd2b1ce67419551cc6658119cc1f52d1e6aa3538bcaaaa38b285e69939"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/implantacao-5.png",
+        "sha256": "4e4795f99fbe3cb3d4cdb8f38abaf594df9fa9e0efefd0dc5e4c330b247cdc08"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/doca-principal.png",
+        "sha256": "e2d295bcfff9c20b0444af7b7960cadbe2ac707783235f4f9776431f902b93d4"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/deposito.png",
+        "sha256": "3feeb93e39982bded8d6780e85a3c960212cb74a771f3837c68cb1e1dec7319c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/geometria/maquinas.png",
+        "sha256": "60a31a94f6246c4014d84a7ee0bc3eeb304197b1e99b6b3a2bf53669e653907b"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/area-inteira.png",
+        "sha256": "0fca824eab14f7978a3f94ecd7c5323480d87180e6f550b85bebcae5f2cb0b40"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/entrada.png",
+        "sha256": "50c0b04f489a670a69b533f4e35f5a49c73e6bf84f82f7c884732e6cc583447a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/centro.png",
+        "sha256": "2311a9373ab449dfe3b489368637043774c77da4ff79ba5ee83f290b5fdcd601"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/saida-36-39.png",
+        "sha256": "4ab43456aa7162538dc57b9ca46920a126986a874764d48be45ae3b6f03f76df"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/saida-8-39.png",
+        "sha256": "3332ea7bdac6a26946d13cc8b46932ed2302b9e370227ab23be58d8074e56d6c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/canto-n1-32-4.png",
+        "sha256": "05edb1ae0ce569a56b4e7ea5613f72f752571799ac4730e425645ae6ae0f3791"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/canto-n1-38-4.png",
+        "sha256": "af8d3ea9849f7a85aa372dc8c15deee70917c81392c3ddfc2974dd98296b3e06"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/canto-n1-20-16.png",
+        "sha256": "c2c84a0d2b27e18d889146be28954587b6b2be505e81bf2774bc0583800bfecd"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/canto-n1-32-16.png",
+        "sha256": "1b0adeb02a1066d00d42dd894ea1fbb4ad0a49b8f3d9fdca42583f704b5e022d"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/canto-n1-4-28.png",
+        "sha256": "94a0a93941c619061318aab686444633b6ac52ad118fe2a595be5ecb75435262"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/canto-n1-20-28.png",
+        "sha256": "dafcc047557a19c096781e79bd3b1b11d54653fbe0124e01a35a081ade547c99"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/canto-n1-38-28.png",
+        "sha256": "951a059d99a450db65a5a03cc3930434cb361a3ecbf8156c65ff57fe89a3fea7"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/canto-n1-44-28.png",
+        "sha256": "6e0e2345462146402ab9d8346bcab82aaacbe55027eb4658b8d46d1e64326fcb"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/rampa-topo-24-16.png",
+        "sha256": "73c036e5b0f241b4b6052ec2e4621cf358fc7aa1c243752cca4e33560eca5e80"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/plato-24-16.png",
+        "sha256": "1cc580ef46d1caf1422a79822c1857fc332a23a987f453adab0abc4bd58be847"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/rampa-topo-25-16.png",
+        "sha256": "0fda30eddd43bfa03c63a71d4e550e94eed3454b1009d98542cacf299c23736f"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/plato-25-16.png",
+        "sha256": "7076ab7218115f187a818b1e1a8116b405d0b821f3d360069dc223ff3c21c95c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/rampa-pe-24-17.png",
+        "sha256": "ec8034ef04824713323d6771095b654530159fa2dfd72a76c76fb27ad564cec0"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/rampa-pe-25-17.png",
+        "sha256": "4d774687456d611d6b490c32eaab5c58b043fc7065213ba1b2eb66e93039dd2a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/rampa-topo-12-28.png",
+        "sha256": "436a8d469cc839db8ccb8470502a0785a95fa507fa20c4b4b8a3516ef9d4f3a6"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/plato-12-28.png",
+        "sha256": "4707484dcde2c862e1654b375517de070c123f7f06e0814bd06ae45b319c8fa2"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/rampa-topo-13-28.png",
+        "sha256": "71bd7cb9fa12d547b76a8495e42a62d2a62ecb0c57c0d968d43e7531c5c27e7f"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/plato-13-28.png",
+        "sha256": "40326379993f90c652635217320f81acfb5c4eb74342859429318c7ea6b81661"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/rampa-topo-14-28.png",
+        "sha256": "68935abdbc7ccb018d1f0ab412c8a548dabe268576bf17a57a8b4f495dd9390a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/plato-14-28.png",
+        "sha256": "f6bbaeffac831b8ab85933740ed4bdc8afb8f40447a73f43aef1ff8590317432"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/rampa-topo-40-28.png",
+        "sha256": "ecd0f165e413a21dbc5d609dec2c9dd4aac56aaf4d1da95c753f16534cfa0c3e"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/plato-40-28.png",
+        "sha256": "1d1b6f9223c655d4178cca20da9c218babafa1d80353885442e5eef87b43505c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/rampa-topo-41-28.png",
+        "sha256": "4c738924650ef26653db76cf2d9efafb4959b22b2309dfd4d55296e6ec4ec518"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/plato-41-28.png",
+        "sha256": "d39f813083dbd3ccad5e7b7d8de776d091c2a1c1a103b2826874b5b9e0f705b9"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/rampa-pe-12-29.png",
+        "sha256": "d7e99e516428c8f6ac9b91d5851f5884cdeae7c2367297dd6d9631298df4c1c6"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/rampa-pe-13-29.png",
+        "sha256": "49fa7d39e88c5f4afb10e8eb62b836946537386386dac2b6a1c96bd4030fc831"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/rampa-pe-14-29.png",
+        "sha256": "4930215acec672d36ba911ca0b14683d9436985d75a1bd3268afdc11edfb94b7"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/rampa-pe-40-29.png",
+        "sha256": "85daccd0d7360cf49bf567d01707bf0ac05b35efe061762c03972477cbdbd75e"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/rampa-pe-41-29.png",
+        "sha256": "9ca7006bbff2f83e4e71e7bbb8e476ca8eb4e329c230ea7ac3d8e8dcfd6a07d4"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/mureta-junta-4-28.png",
+        "sha256": "94a0a93941c619061318aab686444633b6ac52ad118fe2a595be5ecb75435262"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/mureta-junta-12-28.png",
+        "sha256": "8ac0982775b4afd76f929549b283f35bb0c1d46e131c4ea4dfe8256ec366ed2a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/mureta-junta-15-28.png",
+        "sha256": "1403956b97cbbe700968ba9166a4c72e10d6ae75ab2715352f94c4456220a253"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/mureta-junta-20-28.png",
+        "sha256": "dafcc047557a19c096781e79bd3b1b11d54653fbe0124e01a35a081ade547c99"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/implantacao-1.png",
+        "sha256": "ce04cb5b8620e12abcc697de63e140c60b8e975e0ca507cfa049c93e799a70c4"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/implantacao-2.png",
+        "sha256": "a0376c6d24d669e6b6d3d7b3203cb4628f4fd18046916e6b1cfdd4f30de9dde0"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/implantacao-3.png",
+        "sha256": "6a186f625ac8a153ddd483b2937eda4ff9f175c24cc4407e2222042ca89c269c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/implantacao-4.png",
+        "sha256": "1353a56b5c91e1cf359185c426fcf76f5ab4abf7ebf538b11a3e4e3f2e0eb9ee"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/implantacao-5.png",
+        "sha256": "f36d018a89796275ed08a1dc67edc11fa40ece31e2aaf2c7cd59cb48caa4e43d"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/doca-principal.png",
+        "sha256": "90f0837e1fcae467fb58e89c4218ed8b790be7381ab4a406b029484b59f97aa4"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/deposito.png",
+        "sha256": "d341e2c914c68f1785335dd59a41701a0791a84970c25d0a2f474f1a56f0cd50"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte/maquinas.png",
+        "sha256": "b4313c86474e248c0db53b7d677cdef0093a228ab959b258fa1ac89ad67b3329"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/area-inteira.png",
+        "sha256": "675150452097e21c0c481ae689121dc0ee48b4dabded4fb48f4f1976fe0f7d9f"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/entrada.png",
+        "sha256": "b8fe083e2bb74d1f98d438b3d6718e9e1058105b7c1c501a638257830b0fb1f4"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/centro.png",
+        "sha256": "b671000ebe86c0c72cd4f3b3036dca81a4f41bea02b57ca801d98245bbae4e8f"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/saida-36-39.png",
+        "sha256": "e752b11d04c49b447d8798df94338b014ca5b978c21788440c592750d1dc003c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/saida-8-39.png",
+        "sha256": "fad9f45b920fd70e2b5751b720b91d80e32012e0faeff0991bafb02a6ededfe3"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/canto-n1-32-4.png",
+        "sha256": "76fd46a45bb6b7de33572076634743f143d812d626e7206d2de7627a2a1476e0"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/canto-n1-38-4.png",
+        "sha256": "2eab5552ad7c260a2a9f64ada85de3418d72e32e4296646ace7b3ba53e5333a4"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/canto-n1-20-16.png",
+        "sha256": "36b1d6300ebf0098a68211478de0464b8ff3478ef44e2219ec226ad23c4970f0"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/canto-n1-32-16.png",
+        "sha256": "b7cbbd410e68863058a3a6f5cc512ffe315f5194f20b327ae9e95ad31a153267"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/canto-n1-4-28.png",
+        "sha256": "a3426bbc2816e7394716c94715c3aba1ed72ad7935a7466b0ff1d873593e7e0b"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/canto-n1-20-28.png",
+        "sha256": "ac9c0946899c85246b748b4abef4cf059262e9dd95bace0aa88be03baf12986d"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/canto-n1-38-28.png",
+        "sha256": "29de7d4214134aafaaef3be50ccd029f02c1be502e042e63d9d15baaf4a42140"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/canto-n1-44-28.png",
+        "sha256": "01836a00a1c11f0a10254642885bc4051f3b14e65d8336119e4e3a29714d248f"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/rampa-topo-24-16.png",
+        "sha256": "9c2ac0151bf012ca8ba36f12ea19995ffdc174241441eaf50413546025bf69a2"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/plato-24-16.png",
+        "sha256": "7438b014d81beb0faa451e0f5ad7ff13eb7b731a928f124a4e432f70a799caad"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/rampa-topo-25-16.png",
+        "sha256": "8ca2872940b91eb2c1728603dd23bf79911076b6b2ab9a3f190040a16810f21f"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/plato-25-16.png",
+        "sha256": "1f7ae8418a13f291b7a56da9338facf110828098f62d7d15f2ca246f2ede67b9"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/rampa-pe-24-17.png",
+        "sha256": "6ab6dbf66256bdaf1105fcab8886ecb5d07aad38499001ecaa3b562bab54874b"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/rampa-pe-25-17.png",
+        "sha256": "f474812921bcd9bc91827b8ee1aeb44a520cf34ec45902429e6f1bc06817ccb1"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/rampa-topo-12-28.png",
+        "sha256": "c3f1f6cb27c82a84cb3aef3d716555cb3f9d63dca356170466a7e76cb916806f"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/plato-12-28.png",
+        "sha256": "a0bed39dba9d78bc691efbe9345864972b9b30952dc057cc78cba5ee854d79c0"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/rampa-topo-13-28.png",
+        "sha256": "6e7850121be1988bb896d27a1872a2e70fbb23ba121e7eed80c6e5b0b6057c5e"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/plato-13-28.png",
+        "sha256": "eef947a55f532db491c892c7d14915a9c8c0f8a7512f2b66839c96c35057e67b"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/rampa-topo-14-28.png",
+        "sha256": "e3fa643ae8dfb97155ec2942e33b609328f30caec186377d1491877231247a2c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/plato-14-28.png",
+        "sha256": "6741daa0666ff75040955daed249612ddd65a5ebe90e41cc259ce900fba986c3"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/rampa-topo-40-28.png",
+        "sha256": "85c3122dd4aa974e6b38df446bbfda117c54c4bc872559c74acab290a6a36713"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/plato-40-28.png",
+        "sha256": "1aad35684a84d9bc39487451b7f3322e24b785ab6745e849a5e8974c37a7da4d"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/rampa-topo-41-28.png",
+        "sha256": "ac0e5f3c38be85bec677e381b7c89b827aa3fa7b17f47123b9c6366e0f4921e2"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/plato-41-28.png",
+        "sha256": "9500dc60550f862126e296198c3fec74dc27c36a00d447ab9a90b789d86c414c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/rampa-pe-12-29.png",
+        "sha256": "d410fbb4656381611d24c05e6b8cfe08c932bc15c1e496d53540178b9319be61"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/rampa-pe-13-29.png",
+        "sha256": "7a735655c611ac44d6ae5782548d878f3bf658f1bcf77f8bbb335d5f4c8d73ef"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/rampa-pe-14-29.png",
+        "sha256": "f546c118cc40fb27ecf14feb6d3a576840ed1e478b0ade51625139337cbc2e5c"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/rampa-pe-40-29.png",
+        "sha256": "70d0fb04d578117b744741df745a5259a1f94c57ba58b22560c282ffd350e289"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/rampa-pe-41-29.png",
+        "sha256": "4562395b8e4a1e25e4167b189f4c11b98766366db06d968eb5d490fe794cd374"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/mureta-junta-4-28.png",
+        "sha256": "a3426bbc2816e7394716c94715c3aba1ed72ad7935a7466b0ff1d873593e7e0b"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/mureta-junta-12-28.png",
+        "sha256": "b4138ddf3444fe01cf9efcf6dd426ce215d16a4bb5e97d46e51b3a940d066e08"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/mureta-junta-15-28.png",
+        "sha256": "42e002064ac2f774ebee5fa2d41900053c7b812ce9506205a298c6849a72711a"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/mureta-junta-20-28.png",
+        "sha256": "ac9c0946899c85246b748b4abef4cf059262e9dd95bace0aa88be03baf12986d"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/implantacao-1.png",
+        "sha256": "f40c9b30208138960b5424d84aa0a1cb8d0c532098696e777d27c7bf1e39b966"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/implantacao-2.png",
+        "sha256": "f4d23cbb8ec401f6f04b796cfeb6ff4c94c49a3939977c19ed03ad9cef9165da"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/implantacao-3.png",
+        "sha256": "613747646777e650f5470135ae044ebd93a36ae76b9201cdd9763fffe93f0c7f"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/implantacao-4.png",
+        "sha256": "7950db4f7742e7bfe8d49be99cee7a144ef13462977d9d0b89b70004e6d08a89"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/implantacao-5.png",
+        "sha256": "8022bc258b944a0d243adf2f11670a43ccc18ece4102113daa4a3e7968804aae"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/doca-principal.png",
+        "sha256": "bb488ff68888c20664c9579a320b7573f4dbf5e286a78251237e761b74c12c24"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/deposito.png",
+        "sha256": "a3694c9229488b4bcac55f33d2ec4920a72229d48a1fa87929f9c916b7d7f68f"
+      },
+      {
+        "path": "documentation/overworld/industrial/captures/c/arte-terreno/maquinas.png",
+        "sha256": "954568ab2e32fd3b6e6af5473eadbf30c4ee902980aff7d8535b2d2ae14f8d98"
+      }
+    ]
+  }
+]

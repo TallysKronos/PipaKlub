@@ -1,5 +1,4 @@
 extends SceneTree
-
 var failures:Array[String]=[]
 var trips:=0
 var frames:=0

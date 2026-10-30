@@ -1,0 +1,11 @@
+# Kit industrial v1
+
+Produção desta tarefa, em revisão do dono. Fonte de direção: `MANUAL-DE-ASSETS.md`, `WORLD-ART-DIRECTION.md` e brief `art/overworld/briefs/distrito-industrial.md`. Novos bitmaps produzidos pelo gerador de imagens integrado, sem API/CLI externa. Não atribuir autoria/licença a terceiros nem copiar composição de outra franquia.
+
+Três assets selecionados: metal azul-petróleo corrugado 1254², concreto quente 1254² e caldeiras 1536×1024. Fontes preservadas em `fontes/`; seleções de runtime e medidas no `godot/assets/overworld/kits/industrial-v1/kit.json`. Geometria de galpões, contêineres, usina/chaminé, portões e divisórias é nativa, baseada na pegada Tiled. Textura não define colisão.
+
+Prompts: metal — amostra ortográfica repetível, dobras verticais largas, azul-petróleo, desgaste discreto, desenho 2D com luz superior esquerda, sem objetos/texto/perspectiva; concreto — amostra repetível cinza quente com manchas/cracas discretas, sem grade, vignette ou perspectiva; caldeira — conjunto único de dois reservatórios teal com válvulas douradas e manômetros, vista isométrica 2:1, desenho juvenil 2D, fundo transparente, sem chão/texto. Segunda chamada editou o recorte para retirar fundo/brilho, mantendo máquina/cores/silhueta.
+
+O gerador não retirou completamente a faixa de alpha suave externa: o shader de recorte descarta alpha abaixo de .88, sem alterar o PNG fonte. Resultado conferido no cenário, não apenas pela presença do canal alpha. QA em `qa.json`: amostragem a cada 4px, dimensões e hash; não representa contagem exaustiva de todos os pixels. Nenhuma animação/rig alegada. Escala da máquina .23 e âncora (768,850) estão explícitas. As texturas foram pedidas repetíveis, mas não há certificação de costura perfeita: foram verificadas na montagem, não numa prova 3×3 isolada.
+
+O importador geral do projeto travou/encerrou antes de importar os PNGs novos, durante o processamento de fontes antigas. A prévia usa `Image.load_from_file` e cache `ImageTexture`, em vez de depender de `.import` ausentes. Não afirmar validação de um export empacotado; integração deve configurar importação/empacotamento. Filtro linear padrão do cenário preservado; shader reduz ruído e mantém escala contínua. Não foram alterados kits antigos.

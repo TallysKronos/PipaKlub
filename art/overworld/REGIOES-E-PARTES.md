@@ -96,6 +96,11 @@ Valem em toda parte, com as referências de Digimon World DS que o criador aprov
 6. **Moldura:** as últimas 4 a 6 células de cada mapa são preenchimento (mata, paredão ou água). A câmera nunca mostra o vazio.
 7. **Câmera:** o zoom padrão mostra bastante mundo, em torno de 1,0. A arte é pensada para essa distância.
 
+8. **Rampas para o fundo:** toda rampa sobe em `u-` ou `v-`, chegando pela face da frente do platô. Rampa subindo para a câmera some na projeção.
+9. **Paredão sem ameia:** a cota é decidida em blocos de 2×2 com contorno quase retangular, para o barranco correr em trechos longos.
+
+A metodologia completa de construção está na skill `.agents/skills/soulmonsters-construtor-de-mapas/`.
+
 ## 7. Conferência
 
 Somam-se às regras de `ESPECIFICACAO-MAPAS.md`, seção 5:

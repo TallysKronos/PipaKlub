@@ -18,6 +18,9 @@ static func build(view) -> void:
 	var model = view.model
 	var w:int=int(model.data.w)
 	var h:int=int(model.data.h)
+	var industrial:bool=bool(model.data.get("forest",{}).get("industrial",false))
+	var industrial_surface:=ShaderMaterial.new()
+	if industrial:industrial_surface.shader=preload("res://shaders/industrial_surface.gdshader")
 	var material:=ShaderMaterial.new()
 	material.shader=load("res://shaders/kronasta_ground.gdshader")
 	material.set_shader_parameter("masks",_masks(model))
@@ -25,10 +28,15 @@ static func build(view) -> void:
 	material.set_shader_parameter("grass_b",load(KITS+"terrenos-v1/superficies/grama-musgo.png"))
 	material.set_shader_parameter("dirt",load(KITS+"terrenos-v1/superficies/terra-ocre.png"))
 	material.set_shader_parameter("map_size",Vector2(w,h))
+	if industrial:
+		industrial_surface.set_shader_parameter("floor_mode",true)
+		industrial_surface.set_shader_parameter("masks",material.get_shader_parameter("masks"))
+		industrial_surface.set_shader_parameter("map_size",Vector2(w,h))
 	var blank:=Image.create(1,1,false,Image.FORMAT_RGBA8)
 	blank.fill(Color.WHITE)
 	var white:=ImageTexture.create_from_image(blank)
-	var wall_texture:Texture2D=load(KITS+"terrenos-v1/superficies/terra-barranco.png")
+	var concrete:Texture2D=preload("res://scripts/overworld/industrial_structures.gd").texture(KITS+"industrial-v1/superficies/concreto.png") if industrial else null
+	var wall_texture:Texture2D=concrete if industrial else load(KITS+"terrenos-v1/superficies/terra-barranco.png")
 	var exits:=_exit_columns(model)
 	for v in range(-RING,h+RING):
 		for u in range(-RING,w+RING):
@@ -57,6 +65,14 @@ static func build(view) -> void:
 			poly.vertex_colors=colors
 			poly.texture=white
 			poly.material=material
+			if industrial and OS.get_environment("KRONASTA_GEOMETRIA")!="1":
+				poly.material=industrial_surface
+				poly.texture=concrete
+				poly.texture_repeat=CanvasItem.TEXTURE_REPEAT_ENABLED
+				var concrete_uv:=PackedVector2Array()
+				for corner in corners:concrete_uv.append(corner)
+				poly.uv=concrete_uv
+				poly.color=Color.WHITE
 			if OS.get_environment("KRONASTA_GEOMETRIA")=="1":
 				# Conferência geométrica: cores chapadas por nível, rampa em vermelho.
 				poly.material=null
@@ -71,12 +87,15 @@ static func build(view) -> void:
 				_walls(view,model,node,u,v,wall_texture)
 				if bool(model.data.get("forest",{}).get("nativeProps",false)) and model.cell_at(Vector2i(u,v)).material=="mato" and OS.get_environment("KRONASTA_GEOMETRIA")!="1":
 					view._encounter_tufts(Vector2i(u,v),model.cell_at(Vector2i(u,v)))
-			elif OS.get_environment("KRONASTA_GEOMETRIA")!="1" and _hash(u,v,7)<.82 and not Structures.is_water(model,Vector2(u+.5,v+.5)) and not _near_exit(u,v,w,h,exits) and _hidden_behind(model,u,v)>4:
+			elif not industrial and OS.get_environment("KRONASTA_GEOMETRIA")!="1" and _hash(u,v,7)<.82 and not Structures.is_water(model,Vector2(u+.5,v+.5)) and not _near_exit(u,v,w,h,exits) and _hidden_behind(model,u,v)>4:
 				_tree(view,model,Vector2(u+.5+(_hash(u,v,3)-.5)*.5,v+.5+(_hash(u,v,4)-.5)*.5),0,"a" if _hash(u,v,5)<.5 else "b",_hash(u,v,6),true)
 	Structures.build(view)
+	if bool(model.data.get("forest",{}).get("industrial",false)):
+		preload("res://scripts/overworld/industrial_structures.gd").build(view)
 	if bool(model.data.get("forest",{}).get("nativeProps",false)):
 		var native_pieces: Array = []
 		for piece in model.data.pieces:
+			if piece.asset=="industrial-volume":continue
 			if piece.asset in ["arvore","arbusto","flores","pedra"]:_piece(view,model,piece)
 			else:native_pieces.append(piece)
 		if not native_pieces.is_empty():
@@ -86,7 +105,7 @@ static func build(view) -> void:
 			view.art_preview=preview
 	else:
 		for piece in model.data.pieces:_piece(view,model,piece)
-	_tufts(view,model)
+	if not bool(model.data.get("forest",{}).get("industrial",false)):_tufts(view,model)
 	for event in model.data.events:
 		if view.campaign_mode: break # Campaign markers follow persistent collection receipts.
 		if OS.get_environment("KRONASTA_GEOMETRIA")!="1" and event.type=="item" and str(event.props.get("visibilidade","")) in ["visivel","brilho"]:_glint(view,model,event)
@@ -118,6 +137,10 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 		wall.polygon=PackedVector2Array(pts.map(func(p):return p-node.position))
 		wall.texture=texture if OS.get_environment("KRONASTA_GEOMETRIA")!="1" else null
 		wall.texture_repeat=CanvasItem.TEXTURE_REPEAT_ENABLED
+		if bool(model.data.get("forest",{}).get("industrial",false)) and OS.get_environment("KRONASTA_GEOMETRIA")!="1":
+			var concrete_shader:=ShaderMaterial.new()
+			concrete_shader.shader=preload("res://shaders/industrial_surface.gdshader")
+			wall.material=concrete_shader
 		var s0:=float(u+v)*44.0
 		wall.uv=PackedVector2Array([Vector2(s0,-top_a*112),Vector2(s0+44,-top_b*112),Vector2(s0+44,-low_b*112),Vector2(s0,-low_a*112)])
 		var lit:=Color(1.0,.97,.92) if side=="u" else Color(.70,.66,.64)
@@ -129,15 +152,16 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 		var lip_pts:=PackedVector2Array([pts[0]-node.position,pts[1]-node.position])
 		for k in range(6,-1,-1):
 			var t:=float(k)/6.0
-			var drop:=4.0+_hash(u*7+k,v*3,11 if side=="u" else 13)*7.0
+			var drop:=4.0 if bool(model.data.get("forest",{}).get("industrial",false)) else 4.0+_hash(u*7+k,v*3,11 if side=="u" else 13)*7.0
 			lip_pts.append(pts[0].lerp(pts[1],t)-node.position+Vector2(0,drop))
 		lip.polygon=lip_pts
 		lip.color=Color("4a7a2a") if side=="u" else Color("3d6824")
+		if bool(model.data.get("forest",{}).get("industrial",false)):lip.color=Color("7c8381")
 		node.add_child(lip)
 		var rim:=Line2D.new()
 		rim.points=PackedVector2Array([pts[0]-node.position+Vector2(0,1),pts[1]-node.position+Vector2(0,1)])
 		rim.width=2.0
-		rim.default_color=Color("a7d65e")
+		rim.default_color=Color("d6cc9c") if bool(model.data.get("forest",{}).get("industrial",false)) else Color("a7d65e")
 		node.add_child(rim)
 		# Sombra de contato no chão de baixo, desenhada logo depois desse chão.
 		var shade:=Node2D.new()

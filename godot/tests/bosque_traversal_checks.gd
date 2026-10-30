@@ -1,6 +1,5 @@
 extends SceneTree
 ## Exercises the actual preview movement, not just its path graph. No saves/rewards.
-
 var failures: Array[String] = []
 var frames := 0
 var trips := 0

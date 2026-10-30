@@ -78,6 +78,24 @@
       "name": "Bosque dos Ventos · Trilha das Copas",
       "scene": "kronasta-bosque-a",
       "biome": "floresta"
+    },
+    {
+      "id": "kronasta-industrial-a",
+      "name": "Distrito Industrial · Pátio de Cargas",
+      "scene": "kronasta-industrial-a",
+      "biome": "parque"
+    },
+    {
+      "id": "kronasta-industrial-b",
+      "name": "Distrito Industrial · Canal das Caldeiras",
+      "scene": "kronasta-industrial-b",
+      "biome": "parque"
+    },
+    {
+      "id": "kronasta-industrial-c",
+      "name": "Distrito Industrial · Usina do Vento",
+      "scene": "kronasta-industrial-c",
+      "biome": "parque"
     }
   ],
   "scenes": {
@@ -92,7 +110,10 @@
     "park-veredas": "veredas-do-encanamento",
     "kronasta-bosque-b": "kronasta-bosque-b",
     "kronasta-bosque-c": "kronasta-bosque-c",
-    "kronasta-bosque-a": "kronasta-bosque-a"
+    "kronasta-bosque-a": "kronasta-bosque-a",
+    "kronasta-industrial-a": "kronasta-industrial-a",
+    "kronasta-industrial-b": "kronasta-industrial-b",
+    "kronasta-industrial-c": "kronasta-industrial-c"
   },
   "campaignReplacement": false
 }

@@ -1,5 +1,4 @@
 extends SceneTree
-
 var failures: Array[String] = []
 var checks := 0
 
