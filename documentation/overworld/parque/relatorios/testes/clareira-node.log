@@ -1,0 +1,27 @@
+✔ Clareira preserves every old object ID, action and destination while replacing the layout (1.5019ms)
+✔ Clareira compiled data includes the same measured structures as its Tiled source (81.3368ms)
+✔ Clareira has four reachable material rewards and preserves the mission tail elsewhere (7.5871ms)
+✔ two-lane check rejects a one-cell throat even when both rooms are reachable (8.0277ms)
+✔ forbidden ramps, isolated raised cells, and single-cell unreachable pockets are errors (1.6861ms)
+✔ ramps require terrain at the foot, two landing cells, and no decorative or event obstruction (3.7312ms)
+✔ regional audit verifies three parts, reciprocal exits, direction, material and elevation (5.4658ms)
+✔ items and tree density remain explicit warnings; inaccessible items are errors (8.6387ms)
+✔ mandatory exits must remain reachable without encounter grass; optional grass is allowed (1.1587ms)
+✔ edge guards must follow a drop and cannot close a ramp mouth or a same-level connection (1.4643ms)
+✔ Jardim preserves every old object ID, action and destination while replacing the layout (2.0396ms)
+✔ Jardim compiled data includes the same measured structures as its Tiled source (79.1663ms)
+✔ Jardim has four reachable material rewards and preserves the mission tail elsewhere (7.0947ms)
+✔ lê só mapas isométricos 64×32 e entende chão, altura e objetos (8.1077ms)
+✔ rampa liga os dois níveis só no sentido da seta; o lado é barranco (3.7007ms)
+✔ ponte precisa encostar em terra firme nas duas pontas (0.8636ms)
+✔ evento sem acesso reprova; área isolada avisa (0.6648ms)
+✔ árvore bloqueia a célula; baú precisa ser alcançável (1.5754ms)
+✔ o mapa piloto das Veredas passa na conferência (13.8999ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 245.8265
