@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 const root=new URL('../../',import.meta.url);
-export function writeCapturePlan(map,features={}){
+export function writeCapturePlan(map,features={},outputBase='documentation/overworld/kronasta'){
  const shots=[{name:'area-inteira',u:map.w/2,v:map.h/2,zoom:.36,kind:'geral'}];
  const add=(name,u,v,zoom=2.3,kind='junta')=>shots.push({name,u,v,zoom,kind});
  add('entrada',map.spawn.u+.5,map.spawn.v+.5,1,'jogo');
@@ -24,7 +24,7 @@ export function writeCapturePlan(map,features={}){
  const joins=new Map();for(const g of features.guards??[]){const a=g.side==='u'?[g.u+1,g.v]:[g.u,g.v+1],b=[g.u+1,g.v+1];for(const p of[a,b]){const k=p.join(',');const entry=joins.get(k)??{u:p[0],v:p[1],sides:[]};entry.sides.push(g.side);joins.set(k,entry);}}
  for(const j of joins.values())if(j.sides.length===1||new Set(j.sides).size>1)add('mureta-junta-'+j.u+'-'+j.v,j.u,j.v);
  for(const shot of features.shots??[])add(shot.name,shot.u,shot.v,shot.zoom??2.3,shot.kind??'junta');
- const dir=new URL('documentation/overworld/kronasta/planos/',root);fs.mkdirSync(dir,{recursive:true});
+ const dir=new URL(outputBase+'/planos/',root);fs.mkdirSync(dir,{recursive:true});
  fs.writeFileSync(new URL(map.id+'.json',dir),JSON.stringify({area:map.id,shots},null,2)+'\n');
  return shots;
 }

@@ -69,10 +69,23 @@ static func build(view) -> void:
 			Structures.floor_cut(model,node,poly,corners,u,v)
 			if inside:
 				_walls(view,model,node,u,v,wall_texture)
+				if bool(model.data.get("forest",{}).get("nativeProps",false)) and model.cell_at(Vector2i(u,v)).material=="mato" and OS.get_environment("KRONASTA_GEOMETRIA")!="1":
+					view._encounter_tufts(Vector2i(u,v),model.cell_at(Vector2i(u,v)))
 			elif OS.get_environment("KRONASTA_GEOMETRIA")!="1" and _hash(u,v,7)<.82 and not Structures.is_water(model,Vector2(u+.5,v+.5)) and not _near_exit(u,v,w,h,exits) and _hidden_behind(model,u,v)>4:
 				_tree(view,model,Vector2(u+.5+(_hash(u,v,3)-.5)*.5,v+.5+(_hash(u,v,4)-.5)*.5),0,"a" if _hash(u,v,5)<.5 else "b",_hash(u,v,6),true)
 	Structures.build(view)
-	for piece in model.data.pieces:_piece(view,model,piece)
+	if bool(model.data.get("forest",{}).get("nativeProps",false)):
+		var native_pieces: Array = []
+		for piece in model.data.pieces:
+			if piece.asset in ["arvore","arbusto","flores","pedra"]:_piece(view,model,piece)
+			else:native_pieces.append(piece)
+		if not native_pieces.is_empty():
+			var preview: bool = view.art_preview
+			if OS.get_environment("KRONASTA_GEOMETRIA")=="1":view.art_preview=false
+			view._build_pieces(native_pieces)
+			view.art_preview=preview
+	else:
+		for piece in model.data.pieces:_piece(view,model,piece)
 	_tufts(view,model)
 	for event in model.data.events:
 		if view.campaign_mode: break # Campaign markers follow persistent collection receipts.

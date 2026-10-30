@@ -6,14 +6,17 @@ func capture() -> void:
  root.size=Vector2i(1280,720)
  var area:="kronasta-bosque-a"
  var output:=""
+ var plan_path:=""
  var terrain_only:=false
  for arg in OS.get_cmdline_user_args():
   if arg.begins_with("--area="):area=arg.trim_prefix("--area=")
+  if arg.begins_with("--plan="):plan_path=arg.trim_prefix("--plan=")
   if arg=="--terrain-only":terrain_only=true
   if arg.begins_with("--out="):output=arg.trim_prefix("--out=")
  if output.is_empty():output=ProjectSettings.globalize_path("res://../documentation/overworld/kronasta/captures/"+area+"/"+("geometria" if OS.get_environment("KRONASTA_GEOMETRIA")=="1" else "arte"))
  DirAccess.make_dir_recursive_absolute(output)
- var plan:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://../documentation/overworld/kronasta/planos/"+area+".json"))
+ if plan_path.is_empty():plan_path="res://../documentation/overworld/kronasta/planos/"+area+".json"
+ var plan:Dictionary=JSON.parse_string(FileAccess.get_file_as_string(plan_path))
  var view: Node2D=load("res://scripts/overworld/view.gd").new()
  view.area_id=area
  view.art_preview=true
