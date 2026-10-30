@@ -1,3 +1,7 @@
+# Jardim das Pipas — revisão em platôs
+
+A parte A foi refeita em 48×40, com praça do coreto elevada, pomar, mirante, quatro materiais e mato opcional. Brief, percurso automatizado e limites em [relatório da entrega](relatorios/entrega-jardim.md). Capturas em captures/jardim-das-pipas/ e comparação em comparativo-jardim/. Clareira e Veredas ainda usam as plantas anteriores. O registro PIP-85 abaixo é histórico.
+
 # PIP-85 — revisão nativa
 
 **Correção vigente: volume e piso anterior restaurado.** A composição v2 foi rejeitada porque a mata estava sendo desenhada no chão e a nova grama piorou o acabamento. A folhagem foi removida dos materiais de piso e substituída por sprites de arbustos com sombra e profundidade próprias. A família anterior de pisos foi restaurada. Evidências novas em `correcao-volume/depois/`; captura rejeitada preservada em `correcao-volume/antes/`.
