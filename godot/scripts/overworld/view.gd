@@ -97,7 +97,7 @@ func load_area(id: String, arrival: Dictionary = {}) -> void:
 	terrain.y_sort_enabled = true
 	add_child(terrain)
 	actors = terrain
-	var forest: bool = art_preview and model.data.biome == "floresta"
+	var forest: bool = art_preview and (model.data.biome == "floresta" or bool(model.data.get("forest",{}).get("nativeProps",false)))
 	if forest:
 		Forest.build(self)
 	else:
@@ -1505,8 +1505,9 @@ func _dress_bairro_gardens() -> void:
 			actors.add_child(prop)
 			occluders.append(prop)
 
-func _build_pieces() -> void:
-	for piece in model.data.pieces:
+func _build_pieces(source_pieces: Array = []) -> void:
+	var collection: Array = model.data.pieces if source_pieces.is_empty() else source_pieces
+	for piece in collection:
 		if hidden_pieces.has(str(piece.id)): continue
 		if bool(piece.props.get("apenas_colisao",false)):
 			# Pillars are painted in the coreto sprite; these five source objects
@@ -1541,6 +1542,7 @@ func _build_pieces() -> void:
 			node.add_child(block)
 		node.position = model.project(sort_point,false)
 		node.set_meta("piece",piece)
+		node.set_meta("scenery",true)
 		actors.add_child(node)
 		piece_nodes[str(piece.id)] = node
 		occluders.append(node)
@@ -1549,12 +1551,14 @@ func _build_pieces() -> void:
 			for part in entry.supportParts:
 				var foot := Vector2(part.foot[0],part.foot[1])
 				var pillar := Node2D.new()
-				pillar.position = node.position+roof.position+foot
+				var elevation: float = model.height_at(point)*64
+				pillar.position = node.position+roof.position+foot+Vector2(0,elevation)
+				pillar.set_meta("scenery",true)
 				var sprite := Sprite2D.new()
 				sprite.name = "Art"
 				sprite.texture = load(part.texture)
 				sprite.centered = false
-				sprite.position = -foot
+				sprite.position = -foot-Vector2(0,elevation)
 				pillar.add_child(sprite)
 				actors.add_child(pillar)
 				occluders.append(pillar)

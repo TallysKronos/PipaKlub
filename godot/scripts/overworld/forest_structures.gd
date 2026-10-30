@@ -115,6 +115,20 @@ static func build(view) -> void:
  for guard:Dictionary in f.get("guards",[]):_guard(view,guard)
  for stairs:Dictionary in f.get("stairs",[]):_stairs(view,stairs)
  if f.get("landmark")!=null:_landmark(view,f.landmark)
+ if not geometry():
+  for track:Array in f.get("footprints",[]):
+   var point:=Vector2(track[0],track[1])
+   var node:=Node2D.new();node.position=view.model.project(point,false)+Vector2(0,2);view.actors.add_child(node)
+   var base:Vector2=view.model.project(point)-node.position
+   # Flat impressions in the earth, three joined toes and a heel. These are
+   # surface geometry, with the same height/depth as the measured ground.
+   var shape:=PackedVector2Array([Vector2(-5,2),Vector2(-8,-1),Vector2(-5,-4),Vector2(-1,-1),Vector2(0,-5),Vector2(3,-4),Vector2(3,0),Vector2(7,-2),Vector2(8,1),Vector2(2,5),Vector2(-2,5)])
+   for i in shape.size():shape[i]=shape[i]*Vector2(1,.6)+base
+   quad(node,shape,Color("785734",.85))
+  if not f.get("footprints",[]).is_empty():
+   var strand:=Node2D.new();var point:=Vector2(23.7,34.5);strand.position=view.model.project(point,false)+Vector2(0,2);view.actors.add_child(strand)
+   var base:Vector2=view.model.project(point)-strand.position
+   line(strand,PackedVector2Array([base+Vector2(-14,0),base+Vector2(-6,-3),base+Vector2(2,0),base+Vector2(9,-4),base+Vector2(18,-2)]),1.4,Color("514c42"))
 static func _guard(view,g:Dictionary) -> void:
  var model=view.model
  var a:=Vector2(g.u+1,g.v) if g.side=="u" else Vector2(g.u,g.v+1)
