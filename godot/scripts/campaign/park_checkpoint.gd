@@ -14,6 +14,10 @@ static func data(scene: String) -> Dictionary:
 	if not MAPS.has(scene): return {}
 	if not _maps.has(scene):
 		_maps[scene] = JSON.parse_string(FileAccess.get_file_as_string("res://assets/overworld/maps/"+MAPS[scene]+".json"))
+		# The incoming layout is a preview. Preserve the live Nina quest in the
+		# campaign adapter, with an ID distinct from its entrance event 43.
+		if scene=="park-trail" and _maps[scene].get("forest",{}).get("nativeProps",false):
+			_maps[scene].events.append({"id":8243,"type":"npc","name":"Nina","u":10,"v":32,"props":{"fala":"nina-jardim-proposta","missao":"nina","bloqueia":false}})
 	return _maps[scene]
 
 static func model_for(scene: String):
@@ -120,6 +124,10 @@ static func exit_target(checkpoint: Dictionary, id: String, player: Dictionary) 
 		if not MAPS.has(destination): return {"status":"wrong_step"}
 		var entrance: String = event.props.get("entrada_destino","")
 		var point := spawn(destination,entrance)
+		if event.props.has("chegada_u") and event.props.has("chegada_v"):
+			var authored:=Vector2(float(event.props.chegada_u)+.5,float(event.props.chegada_v)+.5)
+			if valid_position(destination,authored) and model_for(destination).point_walkable(authored):
+				return {"status":"ok","scene":destination,"point":authored,"space":SPACE}
 		if is_bosque(source) and is_bosque(destination):
 			if event.props.has("chegada_u") and event.props.has("chegada_v"):
 				point=safe(destination,Vector2(float(event.props.chegada_u)+.5,float(event.props.chegada_v)+.5))

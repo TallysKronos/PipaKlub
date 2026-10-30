@@ -1,5 +1,5 @@
 extends SceneTree
-const View=preload("res://scripts/overworld/view.gd")
+
 var failures:Array[String]=[]
 var trips:=0
 var frames:=0
@@ -7,7 +7,7 @@ func _initialize() -> void:call_deferred("run")
 func check(ok:bool,label:String) -> void:
 	if not ok and label not in failures:failures.append(label);printerr("FAIL ",label)
 func run() -> void:
-	var view:=View.new();view.area_id="jardim-das-pipas";view.art_preview=true
+	var view: Node2D=load("res://scripts/overworld/view.gd").new();view.area_id="jardim-das-pipas";view.art_preview=true
 	root.add_child(view);await process_frame;view.set_physics_process(false)
 	check(view.player==Vector2(8.5,36.5),"south entrance")
 	var start:Vector2=view.player
@@ -36,7 +36,9 @@ func run() -> void:
 	for event in view.interaction_events:
 		if event.type=="saida" and event.props.destino=="park-clearing":exit=event
 	view.nearby=exit;view.interact()
-	check(view.area_id=="clareira-do-papel" and view.player==Vector2(3.5,13.5),"A to B arrival")
+	# This branch retains the larger campaign Clareira, whose valid south entry
+	# replaces the preview's (unsupported here) 3,13 arrival.
+	check(view.area_id=="clareira-do-papel" and view.player==Vector2(view.model.data.spawn.u+.5,view.model.data.spawn.v+.5),"A to B campaign south arrival")
 	for event in view.interaction_events:
 		if event.type=="saida" and event.props.get("destino","")=="park-trail":view.nearby=event;break
 	view.interact()

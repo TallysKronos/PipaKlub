@@ -51,7 +51,10 @@ static func events(area: String, model) -> Array:
 static func point(id: String,model) -> Vector2:
 	var entry:=duel(id)
 	if entry.is_empty(): return Vector2.INF
-	if id=="assis": return Vector2(entry.point)+Vector2.ONE*.5
+	if id=="assis":
+		for event in model.data.events:
+			if event.props.get("acao","")=="wildGuide": return Vector2(event.u+.5,event.v+.5)
+		return Vector2(entry.point)+Vector2.ONE*.5
 	for event in events(entry.area,model):
 		if event.props.trainer==id: return Vector2(event.u+.5,event.v+.5)
 	return Vector2.INF

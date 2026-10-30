@@ -7,10 +7,10 @@
       "walkable": 1956
     },
     {
-      "directed_edges": 5100,
+      "directed_edges": 4228,
       "id": "jardim-das-pipas",
-      "ramp_probes": 45,
-      "walkable": 1432
+      "ramp_probes": 90,
+      "walkable": 1163
     },
     {
       "directed_edges": 314,
@@ -79,7 +79,7 @@
       "walkable": 1141
     }
   ],
-  "checks": 101250,
+  "checks": 97687,
   "failures": [],
   "scope": "isolated geometry and preview; no campaign saves touched"
 }

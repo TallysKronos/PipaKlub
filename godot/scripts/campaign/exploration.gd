@@ -74,7 +74,7 @@ func repair() -> Dictionary:
 
 func park_loot(id: String, point: Vector2) -> Dictionary:
 	var saved: Dictionary = session.snapshot()
-	if preload("res://scripts/campaign/park_checkpoint.gd").is_bosque(saved.checkpoint.get("scene","")):
+	if preload("res://scripts/campaign/bosque_campaign.gd").authored_materials(saved.checkpoint.get("scene","")):
 		return preload("res://scripts/campaign/bosque_campaign.gd").new(session).collect(id,point)
 	var Checkpoint = preload("res://scripts/campaign/park_checkpoint.gd")
 	var checkpoint: Dictionary = saved.get("checkpoint",{})

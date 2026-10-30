@@ -533,9 +533,10 @@ func _draw_parque_floor(at: Vector2i, cell: Dictionary) -> void:
 
 func _encounter_tufts(at: Vector2i, cell: Dictionary) -> void:
 	var kit: Dictionary = kits[1]
+	var grass: Dictionary=kit.get("encounterGrass",{"shader":"res://shaders/parque_grass.gdshader","files":["decalques/capim-a.png","decalques/capim-b.png"],"anchor":[26,45]})
 	if parque_grass_material == null:
 		parque_grass_material = ShaderMaterial.new()
-		parque_grass_material.shader = load(kit.encounterGrass.shader)
+		parque_grass_material.shader = load(grass.shader)
 		var preferences = preload("res://scripts/campaign/preferences.gd").new()
 		preferences.load_settings()
 		parque_grass_material.set_shader_parameter("wind_strength",0.0 if preferences.reduced_motion else 1.4)
@@ -543,9 +544,9 @@ func _encounter_tufts(at: Vector2i, cell: Dictionary) -> void:
 	for n in 2:
 		var point := Vector2(at)+Vector2(.26 if n==0 else .74,.30+float((seed+n*17)%35)/100.0)
 		var tuft := Sprite2D.new()
-		tuft.texture = load(kit.root+kit.encounterGrass.files[(seed+n)%2])
+		tuft.texture = load(kit.root+grass.files[(seed+n)%2])
 		tuft.centered = false
-		tuft.position = -Vector2(kit.encounterGrass.anchor[0],kit.encounterGrass.anchor[1])
+		tuft.position = -Vector2(grass.anchor[0],grass.anchor[1])
 		tuft.material = parque_grass_material
 		var grass_root := Node2D.new()
 		grass_root.position = model.project(point,false)

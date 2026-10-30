@@ -8,6 +8,9 @@ func _init(local_session: Node) -> void: session=local_session
 static func available(player: Dictionary) -> bool:
 	return not player.get("partners",[]).is_empty() and player.get("journey",{}).get("phase","")=="complete"
 
+static func authored_materials(scene: String) -> bool:
+	return Checkpoint.is_bosque(scene) or (scene=="park-trail" and Checkpoint.data(scene).get("forest",{}).get("nativeProps",false))
+
 func travel(destination: String) -> Dictionary:
 	var saved: Dictionary=session.snapshot()
 	var source: String=saved.get("checkpoint",{}).get("scene","")
@@ -36,12 +39,12 @@ func arrive() -> Dictionary:
 func collect(id: String, point: Vector2) -> Dictionary:
 	var saved: Dictionary=session.snapshot()
 	var scene: String=saved.checkpoint.get("scene","")
-	if not Checkpoint.is_bosque(scene) or saved.checkpoint.get("space","")!=Checkpoint.SPACE or not available(saved.player): return {"status":"wrong_step"}
+	if not authored_materials(scene) or saved.checkpoint.get("space","")!=Checkpoint.SPACE or not available(saved.player): return {"status":"wrong_step"}
 	var model=Checkpoint.model_for(scene)
 	if not point.is_finite() or not model.point_walkable(point): return {"status":"wrong_step"}
 	for event in model.data.events:
 		if str(int(event.id))!=id or event.type!="item": continue
-		var receipt: String="park-item-"+scene+"-"+id
+		var receipt: String="park-item-"+Checkpoint.MAPS[scene]+"-"+id
 		if receipt in saved.player.completedOperations: return {"status":"already_applied"}
 		var target:=Vector2(event.u+.5,event.v+.5)
 		if point.distance_to(target)>1.8 or absf(model.height_at(point)-model.height_at(target))>=.25 or not Checkpoint.allowed(event,saved.player,scene): return {"status":"wrong_step"}
