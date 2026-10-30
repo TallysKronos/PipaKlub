@@ -96,6 +96,24 @@
       "name": "Distrito Industrial · Usina do Vento",
       "scene": "kronasta-industrial-c",
       "biome": "parque"
+    },
+    {
+      "id": "kronasta-pantano-a",
+      "name": "Pântano · Entrada alagada",
+      "scene": "kronasta-pantano-a",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-pantano-b",
+      "name": "Pântano · Curva dos cipós",
+      "scene": "kronasta-pantano-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-pantano-c",
+      "name": "Pântano · Clareira das raízes",
+      "scene": "kronasta-pantano-c",
+      "biome": "floresta"
     }
   ],
   "scenes": {
@@ -113,7 +131,10 @@
     "kronasta-bosque-a": "kronasta-bosque-a",
     "kronasta-industrial-a": "kronasta-industrial-a",
     "kronasta-industrial-b": "kronasta-industrial-b",
-    "kronasta-industrial-c": "kronasta-industrial-c"
+    "kronasta-industrial-c": "kronasta-industrial-c",
+    "kronasta-pantano-a": "kronasta-pantano-a",
+    "kronasta-pantano-b": "kronasta-pantano-b",
+    "kronasta-pantano-c": "kronasta-pantano-c"
   },
   "campaignReplacement": false
 }
