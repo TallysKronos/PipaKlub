@@ -6,8 +6,11 @@ func _ready() -> void:
 	set_meta("recorte_decorated",true)
 	theme_type_variation="RecorteEmptyPanel"
 	var spacing:=StyleBoxEmpty.new()
-	for side in [SIDE_LEFT,SIDE_RIGHT]:spacing.set_content_margin(side,12)
-	for side in [SIDE_TOP,SIDE_BOTTOM]:spacing.set_content_margin(side,8)
+	# The cut corners move the slanted sides 12 px in and the accent stripe sits on
+	# the top edge: text keeps 8 px clear of both.
+	for side in [SIDE_LEFT,SIDE_RIGHT]:spacing.set_content_margin(side,20)
+	spacing.set_content_margin(SIDE_TOP,12)
+	spacing.set_content_margin(SIDE_BOTTOM,10)
 	add_theme_stylebox_override("panel",spacing)
 	resized.connect(queue_redraw)
 func _draw() -> void:

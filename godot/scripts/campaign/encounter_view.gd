@@ -228,8 +228,15 @@ func _layout_actions() -> void:
 	finish_button.size_flags_horizontal=Control.SIZE_SHRINK_END
 	finish_button.custom_minimum_size=Vector2(240,48)
 	if is_instance_valid(reward_card):reward_card.custom_minimum_size.y=clampf(size.y*.56,390,490)
-	bottom_panel.offset_bottom = -8 if fighting else -12
+	bottom_panel.offset_bottom = -16 if fighting else -12
 	status_row.visible = paused or blocked
+	# Paused, the footer covers the corner status drawn under it instead of letting
+	# the partner card show between the buttons.
+	var covering:bool=(paused or blocked) and not result
+	if covering!=bool(bottom_panel.get_meta("covering",false)):
+		bottom_panel.set_meta("covering",covering)
+		if covering:bottom_panel.add_theme_stylebox_override("panel",_panel("dark"))
+		else:bottom_panel.remove_theme_stylebox_override("panel")
 	var height:=size.y*.12 if fighting else maxf(140,footer_contents.get_combined_minimum_size().y+8)
 	bottom_panel.offset_top=bottom_panel.offset_bottom-height
 	var unit := size.y / 1080.0

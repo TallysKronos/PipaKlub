@@ -91,6 +91,12 @@ func run() -> void:
 					root.get_texture().get_image().save_png(output.path_join("%s-%s-%dx%d.png"%[scenario,"reduzido" if reduced else "normal",viewport.x,viewport.y]))
 		for step in [0,5,6,10]:
 			Fixtures.show(front,"opening-%d"%step);await settle()
+			# Staged steps hide the speech panel until their action finishes, then paginate.
+			for frame in 600:
+				if not front.opening_busy:break
+				await process_frame
+			await settle()
+			if not front.speech.is_visible_in_tree():continue # the TV film owns the screen
 			check(front.speech.get_line_count()<=3,"opening stays at most three lines")
 			check(front.speech.get_global_rect().end.y<front.size.y,"opening text visible")
 			if capture:

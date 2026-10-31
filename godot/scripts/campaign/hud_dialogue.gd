@@ -140,7 +140,7 @@ func _rebuild() -> void:
 		var parsed:=Surface.parse_tags(paragraph)
 		var lines:Array[String]=[]
 		var line:=""
-		var width:=maxf(180,box.size.x-64)
+		var width:=maxf(180,box.size.x-2*Surface.side_margin(box.size.y))
 		for word in str(parsed.text).replace("\n"," ").split(" ",false):
 			var candidate:=word if line.is_empty() else line+" "+word
 			if Hud.font().get_string_size(candidate,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x>width and not line.is_empty():lines.append(line);line=word

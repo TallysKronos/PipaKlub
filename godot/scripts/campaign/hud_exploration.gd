@@ -170,8 +170,13 @@ func _layout() -> void:
 	var factor:=size.y/1080.0
 	var compact:=area_age>=3
 	area_panel.position=Vector2(20,20)
-	area_panel.size=Vector2(maxf(240,280*factor) if compact else 560*factor,44*factor if compact else 88*factor)
-	area.add_theme_font_size_override("font_size",16 if compact else maxi(22,roundi(34*factor)))
+	var area_font:=16 if compact else maxi(22,roundi(34*factor))
+	area.add_theme_font_size_override("font_size",area_font)
+	# Long area names widen the plate (up to 55% of the screen) instead of wrapping
+	# against its bottom stripe; beyond that the plate grows in height.
+	var area_margins:=area_panel.get_theme_stylebox("panel").get_minimum_size().x+24
+	var area_need:=Hud.display().get_string_size(area.text,HORIZONTAL_ALIGNMENT_LEFT,-1,area_font).x+area_margins
+	area_panel.size=Vector2(clampf(area_need,maxf(240,280*factor) if compact else 560*factor,size.x*.55),44*factor if compact else 88*factor)
 	if is_instance_valid(map):
 		var edge:=220*factor
 		map.offset_left=-edge-20
@@ -206,23 +211,24 @@ func _draw_partner() -> void:
 	partner_panel.draw_colored_polygon(diamond,Hud.SURFACE)
 	partner_panel.draw_polyline(diamond,Hud.CYAN,2,true)
 	if portrait!=null:partner_panel.draw_texture_rect(portrait,Hud.fit_texture(portrait,Rect2(center-Vector2.ONE*radius*.8,Vector2.ONE*radius*1.6)),false)
+	# Rows keep 12 px inside the plate: the XP line used to sit on the bottom stroke.
 	var left:=extent.y
-	var width:=extent.x-left-12
+	var width:=extent.x-left-24
 	var title:String=partner.get("personalName",partner.get("modelId","Parceiro"))+" · Nv. %d"%Model.level_for_xp(partner.get("xp",0))
 	partner_panel.draw_string(Hud.font(true),Vector2(left,24),Ink.ellipsis(title,Hud.font(true),16,width),HORIZONTAL_ALIGNMENT_LEFT,-1,16,Hud.PAPER)
 	var health:float=partner.get("condition",{}).get("line",100)
 	var color:=Hud.LINE if health>=50 else Hud.GOLD if health>=25 else Hud.CORAL
-	partner_panel.draw_rect(Rect2(left,extent.y*.48,width,6),Hud.TRACK)
-	partner_panel.draw_rect(Rect2(left,extent.y*.48,width*health/100,6),color)
+	partner_panel.draw_rect(Rect2(left,34,width,6),Hud.TRACK)
+	partner_panel.draw_rect(Rect2(left,34,width*health/100,6),color)
 	var structure: float=partner.get("condition",{}).get("structure",100)
-	partner_panel.draw_string(Hud.font(),Vector2(left,extent.y-17),"Linha %d%% · Estr. %d%%"%[health,structure],HORIZONTAL_ALIGNMENT_LEFT,width,11,Hud.PAPER)
+	partner_panel.draw_string(Hud.font(),Vector2(left,extent.y-27),"Linha %d%% · Estr. %d%%"%[health,structure],HORIZONTAL_ALIGNMENT_LEFT,width,11,Hud.PAPER)
 	var level:=Model.level_for_xp(partner.get("xp",0))
 	var start:=Model.xp_for_level(level)
 	var next:=Model.xp_for_level(mini(50,level+1))
 	var progress:=1.0 if level>=50 else clampf(float(partner.get("xp",0)-start)/maxi(1,next-start),0,1)
-	partner_panel.draw_string(Hud.font(),Vector2(left,extent.y-3),"XP",HORIZONTAL_ALIGNMENT_LEFT,-1,9,Hud.GOLD)
-	partner_panel.draw_rect(Rect2(left+18,extent.y-8,width-18,4),Hud.TRACK)
-	partner_panel.draw_rect(Rect2(left+18,extent.y-8,(width-18)*progress,4),Hud.GOLD)
+	partner_panel.draw_string(Hud.font(),Vector2(left,extent.y-12),"XP",HORIZONTAL_ALIGNMENT_LEFT,-1,9,Hud.GOLD)
+	partner_panel.draw_rect(Rect2(left+18,extent.y-18,width-18,4),Hud.TRACK)
+	partner_panel.draw_rect(Rect2(left+18,extent.y-18,(width-18)*progress,4),Hud.GOLD)
 	partner_panel.tooltip_text="Experiência %d / %d para o Nv. %d"%[int(partner.get("xp",0))-start,next-start,mini(50,level+1)] if level<50 else "Nível máximo"
 	partner_panel.draw_line(center+Vector2(radius,0),Vector2(left-4,extent.y*.5),Hud.CYAN,2,true)
 func occupied_fraction() -> float:
