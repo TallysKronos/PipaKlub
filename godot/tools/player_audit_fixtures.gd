@@ -91,6 +91,9 @@ static func show(front: Control, id: String) -> void:
 		if id == "team-long": front._show_collection()
 		elif id == "starter": front._show_starter()
 		else: front._show_bag()
+	# Park scenes open synchronously, as in headless runs: the animated loading cover
+	# would otherwise clear a notice the fixture posts right after.
+	elif str(saved.checkpoint.get("scene","")) in ParkCheckpoint.MAPS and saved.checkpoint.kind == "world": front._show_park()
 	else: front._show_saved()
 	if id.begins_with("lesson-"):
 		for child in front.get_children():
