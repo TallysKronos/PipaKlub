@@ -6,9 +6,18 @@ func _initialize() -> void:call_deferred("run")
 func check(ok:bool,label:String) -> void:
 	if not ok and label not in failures:failures.append(label);printerr("FAIL ",label)
 func run() -> void:
-	var view: Node2D=load("res://scripts/overworld/view.gd").new();view.area_id=OS.get_environment("INDUSTRIAL_AREA");view.art_preview=true
+	# INDUSTRIAL_AREA checks one part; without it, the three parts of the district.
+	var areas:Array=Array(OS.get_environment("INDUSTRIAL_AREA").split(",",false))
+	if areas.is_empty():areas=["kronasta-industrial-a","kronasta-industrial-b","kronasta-industrial-c"]
+	for area in areas:await check_area(str(area))
+	print("Real preview movement and foot support; no saves/rewards changed; visual occlusion and human controller test not asserted")
+	quit(0 if failures.is_empty() else 1)
+func check_area(area:String) -> void:
+	var view: Node2D=load("res://scripts/overworld/view.gd").new();view.area_id=area;view.art_preview=true
 	root.add_child(view);await process_frame;view.set_physics_process(false)
-	check(view.model.walkable(Vector2i(view.player)),"valid entrance")
+	check(view.area_id==area and not view.model.data.is_empty(),area+" loaded")
+	if view.model.data.is_empty():view.queue_free();return
+	check(view.model.walkable(Vector2i(view.player)),area+" valid entrance")
 	var start:Vector2=view.player
 	var goals:Dictionary={}
 	for event in view.interaction_events:
@@ -39,9 +48,7 @@ func run() -> void:
 		check(view.player==Vector2(event.props.chegada_u+.5,event.props.chegada_v+.5),"arrival of "+source)
 		view.load_area(source)
 	view.queue_free();await process_frame
-	print("INDUSTRIAL ",goals.size()," targets; ",trips," trips; ",frames," frames; ",failures.size()," failures")
-	print("Real preview movement and foot support; no saves/rewards changed; visual occlusion and human controller test not asserted")
-	quit(0 if failures.is_empty() else 1)
+	print("INDUSTRIAL ",area,": ",goals.size()," targets; ",trips," trips; ",frames," frames; ",failures.size()," failures")
 func walk(view:Node2D,goal:Vector2,label:String) -> void:
 	trips+=1
 	if view.player.distance_to(goal)<.02:return

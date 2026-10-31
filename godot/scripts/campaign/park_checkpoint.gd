@@ -115,6 +115,8 @@ static func allowed(event: Dictionary, player: Dictionary, area: String = "") ->
 	if props.has("requer") and not flags.get(str(props.requer),false): return false
 	if props.has("ocultar_apos") and flags.get(str(props.ocultar_apos),false): return false
 	if props.get("descoberta","")=="clareira-do-marco" and not flags.get("bosqueClareiraDescoberta",false): return false
+	# Lacertubo leaves the Veredas once defeated; only the quest tail remains.
+	if props.get("acao","")=="parkBoss" and flags.get("guardianDefeated",false): return false
 	if props.get("acao","")=="veredasTail" and (not flags.get("guardianDefeated",false) or not flags.get("ninaAccepted",false) or flags.get("ninaTail",false)): return false
 	if event.get("type","")=="item" and ("park-item-"+area+"-"+str(int(event.id))) in player.get("completedOperations",[]): return false
 	return true

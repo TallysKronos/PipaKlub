@@ -2,6 +2,16 @@ extends Node
 ## Local authoring textures refresh without restarting the running project.
 ## Packaged builds continue to use their imported resources.
 var _textures: Dictionary = {}
+
+## Entry point for static code: uses the autoload when it is running and plain
+## load() otherwise. Scripts run with `-s` (tests, captures) have no autoloads,
+## so the global name PixelgenSprites does not even compile there.
+static func load_texture(resource_path: String) -> Texture2D:
+	var tree := Engine.get_main_loop() as SceneTree
+	var live: Node = tree.root.get_node_or_null("PixelgenSprites") if tree != null and tree.root != null else null
+	if live != null and live.has_method("texture"):
+		return live.call("texture", resource_path) as Texture2D
+	return load(resource_path) as Texture2D
 var _hashes: Dictionary = {}
 var _elapsed: float = 0.0
 

@@ -1,5 +1,6 @@
 extends RefCounted
 ## Shared static directional bases. No synthesized walking or reward behavior.
+const Pixelgen = preload("res://scripts/pixelgen_sprites.gd")
 const HEIGHTS := {"professor":90.0,"mae":88.0,"nina":83.0,"bia":78.0,"juninho":78.0,"lia":78.0,"zeca":78.0,"tiao":90.0,"iara":82.0,"nilo":82.0,"dora":76.0,"caue":82.0,"celina":82.0}
 const DIRECTIONS := ["s","sw","w","nw","n","ne","e","se"]
 const Avatar = preload("res://scripts/kael_video_avatar.gd")
@@ -13,7 +14,7 @@ static func identity(display_name: String) -> String:
 
 static func setup(sprite: Sprite2D,id: String,height_pixels: float,facing: String="se") -> void:
 	assert(HEIGHTS.has(id),"Unknown NPC identity: "+id)
-	sprite.texture=PixelgenSprites.texture("res://assets/npc-ds/"+id+".png")
+	sprite.texture=Pixelgen.load_texture("res://assets/npc-ds/"+id+".png")
 	sprite.region_enabled=true
 	sprite.centered=true
 	sprite.offset=Vector2(0,-46)
