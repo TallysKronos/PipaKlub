@@ -33,6 +33,8 @@ static func build(view) -> void:
 	material.set_shader_parameter("boss_arena",model.data.get("forest",{}).has("arena"))
 	if mountain:
 		material.set_shader_parameter("mountain",true)
+		material.set_shader_parameter("mountain_stage",int(model.data.forest.baseLevel)/2)
+		material.set_shader_parameter("mountain_rock",preload("res://scripts/overworld/industrial_structures.gd").texture(KITS+"montanha-v1/superficies/rocha.png"))
 		material.set_shader_parameter("terrain_mask",preload("res://scripts/overworld/mountain_structures.gd").mask(model))
 	if industrial:
 		industrial_surface.set_shader_parameter("floor_mode",true)
@@ -48,6 +50,7 @@ static func build(view) -> void:
 	for v in range(-RING,h+RING):
 		for u in range(-RING,w+RING):
 			var inside:=u>=0 and v>=0 and u<w and v<h
+			if mountain and not inside:continue
 			var node:=Node2D.new()
 			node.position=Vector2((u-v)*32,(u+v)*16+2)
 			view.actors.add_child(node)
@@ -95,7 +98,7 @@ static func build(view) -> void:
 				poly.vertex_colors=PackedColorArray([flat,flat,flat,flat])
 			Structures.floor_cut(model,node,poly,corners,u,v)
 			if inside:
-				_walls(view,model,node,u,v,wall_texture)
+				if not mountain or level>=0:_walls(view,model,node,u,v,wall_texture)
 				if bool(model.data.get("forest",{}).get("nativeProps",false)) and not mountain and not bool(model.data.get("forest",{}).get("swamp",false)) and model.cell_at(Vector2i(u,v)).material=="mato" and OS.get_environment("KRONASTA_GEOMETRIA")!="1":
 					view._encounter_tufts(Vector2i(u,v),model.cell_at(Vector2i(u,v)))
 			elif not industrial and not mountain and OS.get_environment("KRONASTA_GEOMETRIA")!="1" and _hash(u,v,7)<.82 and not Structures.is_water(model,Vector2(u+.5,v+.5)) and not _near_exit(u,v,w,h,exits) and _hidden_behind(model,u,v)>4:
@@ -138,17 +141,21 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 	for side in ["u","v"]:
 		var n:=Vector2i(u+1,v) if side=="u" else Vector2i(u,v+1)
 		var neighbour:Dictionary=model.cell_at(n)
-		if neighbour.is_empty():continue
+		var mountain:bool=bool(model.data.get("forest",{}).get("mountain",false))
+		if neighbour.is_empty() and not mountain:continue
 		var a:=Vector2(u+1,v) if side=="u" else Vector2(u,v+1)
 		var b:=Vector2(u+1,v+1)
 		var top_a:=_corner_height(model,u,v,a)
 		var top_b:=_corner_height(model,u,v,b)
-		var low_a:=_corner_height(model,n.x,n.y,a)
-		var low_b:=_corner_height(model,n.x,n.y,b)
+		var low_a:float=-18 if neighbour.is_empty() else _corner_height(model,n.x,n.y,a)
+		var low_b:float=-18 if neighbour.is_empty() else _corner_height(model,n.x,n.y,b)
+		if mountain and (neighbour.is_empty() or float(neighbour.get("level",0))<0):low_a=-18;low_b=-18
 		if top_a<=low_a+.001 and top_b<=low_b+.001:continue
 		low_a=minf(low_a,top_a);low_b=minf(low_b,top_b)
 		var wall:=Polygon2D.new()
-		var pts:=[_screen(a,top_a),_screen(b,top_b),_screen(b,low_b),_screen(a,low_a)]
+		var foot_a:Vector2=a
+		var foot_b:Vector2=b
+		var pts:=[_screen(a,top_a),_screen(b,top_b),_screen(foot_b,low_b),_screen(foot_a,low_a)]
 		wall.polygon=PackedVector2Array(pts.map(func(p):return p-node.position))
 		wall.texture=texture if OS.get_environment("KRONASTA_GEOMETRIA")!="1" else null
 		wall.texture_repeat=CanvasItem.TEXTURE_REPEAT_ENABLED
@@ -172,20 +179,22 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 		lip.polygon=lip_pts
 		lip.color=Color("4a7a2a") if side=="u" else Color("3d6824")
 		if bool(model.data.get("forest",{}).get("industrial",false)):lip.color=Color("7c8381")
+		if bool(model.data.get("forest",{}).get("mountain",false)):lip.color=Color("666951")
 		node.add_child(lip)
 		var rim:=Line2D.new()
 		rim.points=PackedVector2Array([pts[0]-node.position+Vector2(0,1),pts[1]-node.position+Vector2(0,1)])
 		rim.width=2.0
 		rim.default_color=Color("d6cc9c") if bool(model.data.get("forest",{}).get("industrial",false)) else Color("a7d65e")
+		if bool(model.data.get("forest",{}).get("mountain",false)):rim.default_color=Color("a8a27b")
 		node.add_child(rim)
 		# Sombra de contato no chão de baixo, desenhada logo depois desse chão.
 		var shade:=Node2D.new()
 		shade.position=Vector2((n.x-n.y)*32,(n.x+n.y)*16+3)
 		view.actors.add_child(shade)
-		var inner_a:=a+(Vector2(.5,0) if side=="u" else Vector2(0,.5))
-		var inner_b:=b+(Vector2(.5,0) if side=="u" else Vector2(0,.5))
+		var inner_a:=foot_a+(Vector2(.5,0) if side=="u" else Vector2(0,.5))
+		var inner_b:=foot_b+(Vector2(.5,0) if side=="u" else Vector2(0,.5))
 		var shadow:=Polygon2D.new()
-		shadow.polygon=PackedVector2Array([_screen(a,low_a)-shade.position,_screen(b,low_b)-shade.position,_screen(inner_b,low_b)-shade.position,_screen(inner_a,low_a)-shade.position])
+		shadow.polygon=PackedVector2Array([_screen(foot_a,low_a)-shade.position,_screen(foot_b,low_b)-shade.position,_screen(inner_b,low_b)-shade.position,_screen(inner_a,low_a)-shade.position])
 		var dark:=Color(.04,.07,.02,.42)
 		shadow.vertex_colors=PackedColorArray([dark,dark,Color(dark,0),Color(dark,0)])
 		shade.add_child(shadow)

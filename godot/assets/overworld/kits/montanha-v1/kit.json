@@ -27,7 +27,12 @@
         3
       ],
       "alphaMin": 0,
-      "zeroAlphaSamplesStep4": 56537
+      "zeroAlphaSamplesStep4": 56537,
+      "scaleByPart": {
+        "A": 0.23,
+        "B": 0.3,
+        "C": 0.37
+      }
     },
     "rochedos": {
       "file": "pecas/rochedos.png",
@@ -49,6 +54,29 @@
       ],
       "alphaMin": 0,
       "zeroAlphaSamplesStep4": 50959
+    },
+    "macicoV2": {
+      "file": "pecas/macico-v2.png",
+      "size": [
+        1422,
+        1106
+      ],
+      "anchor": [
+        711,
+        1028.58
+      ],
+      "scaleRange": [
+        0.33,
+        0.39
+      ],
+      "footprint": [
+        5,
+        5
+      ],
+      "alphaMin": 0,
+      "zeroAlphaSamplesStep4": 47068,
+      "source": "image_gen.imagegen 2026-10-30, original retained in fontes/macico-v2.png",
+      "filter": "linear"
     }
   },
   "surfaces": {
@@ -64,11 +92,39 @@
   "source": "image_gen.imagegen, 2026-10-30; original sources retained in art/overworld/kits/montanha-v1/fontes",
   "direction": "2D manga/cartoon, bold navy contours and hard cel shading. Dofus/Wakfu as graphic language reference, not copied assets.",
   "reused": [
-    "pantano-v1/pecas/grama-manga.png"
+    "pantano-v1/pecas/grama-manga.png",
+    "comum/pecas/arvore-a.png"
   ],
   "notes": [
     "Static scenery, no rig or animation",
     "Art does not change collision or geometry",
-    "Linear filtering and industrial_cutout alpha shader on props"
-  ]
+    "Linear filtering and industrial_cutout alpha shader on props",
+    "Revision 2: authored rock clusters replace the repeated boulder field; real raised bedrock blocks flat-looking forbidden terrain; cliff support continues to level -18"
+  ],
+  "revision": 2,
+  "background": {
+    "file": "panorama-v2.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "alphaMin": 255,
+    "worldWidth": 5000,
+    "positionByPart": {
+      "A": [
+        128,
+        360
+      ],
+      "B": [
+        128,
+        750
+      ],
+      "C": [
+        128,
+        1100
+      ]
+    },
+    "role": "Distant scenery only; never used as walkable surface or collision",
+    "source": "image_gen.imagegen 2026-10-30"
+  }
 }
