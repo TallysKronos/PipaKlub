@@ -20,6 +20,7 @@ static func build(view) -> void:
 	var h:int=int(model.data.h)
 	var industrial:bool=bool(model.data.get("forest",{}).get("industrial",false))
 	var mountain:bool=bool(model.data.get("forest",{}).get("mountain",false))
+	var mine:bool=bool(model.data.get("forest",{}).get("mine",false))
 	var industrial_surface:=ShaderMaterial.new()
 	if industrial:industrial_surface.shader=preload("res://shaders/industrial_surface.gdshader")
 	var material:=ShaderMaterial.new()
@@ -36,6 +37,13 @@ static func build(view) -> void:
 		material.set_shader_parameter("mountain_stage",int(model.data.forest.baseLevel)/2)
 		material.set_shader_parameter("mountain_rock",preload("res://scripts/overworld/industrial_structures.gd").texture(KITS+"montanha-v1/superficies/rocha.png"))
 		material.set_shader_parameter("terrain_mask",preload("res://scripts/overworld/mountain_structures.gd").mask(model))
+	if mine:
+		material.shader=preload("res://shaders/mine_ground.gdshader")
+		material.set_shader_parameter("masks",_masks(model))
+		material.set_shader_parameter("map_size",Vector2(w,h))
+		material.set_shader_parameter("stone",load(KITS+"cavernas-v3/surfaces/rocha-cinza.png"))
+		material.set_shader_parameter("earth",load(KITS+"cavernas-v3/surfaces/terra-gruta.png"))
+		material.set_shader_parameter("rock_mask",preload("res://scripts/overworld/mine_structures.gd").mask(model))
 	if industrial:
 		industrial_surface.set_shader_parameter("floor_mode",true)
 		industrial_surface.set_shader_parameter("masks",material.get_shader_parameter("masks"))
@@ -46,11 +54,12 @@ static func build(view) -> void:
 	var concrete:Texture2D=preload("res://scripts/overworld/industrial_structures.gd").texture(KITS+"industrial-v1/superficies/concreto.png") if industrial else null
 	var wall_texture:Texture2D=concrete if industrial else load(KITS+"terrenos-v1/superficies/terra-barranco.png")
 	if mountain:wall_texture=preload("res://scripts/overworld/industrial_structures.gd").texture(KITS+"montanha-v1/superficies/rocha.png")
+	if mine:wall_texture=load(KITS+"cavernas-v3/surfaces/parede-basalto.png")
 	var exits:=_exit_columns(model)
 	for v in range(-RING,h+RING):
 		for u in range(-RING,w+RING):
 			var inside:=u>=0 and v>=0 and u<w and v<h
-			if mountain and not inside:continue
+			if (mountain or mine) and not inside:continue
 			var node:=Node2D.new()
 			node.position=Vector2((u-v)*32,(u+v)*16+2)
 			view.actors.add_child(node)
@@ -90,8 +99,9 @@ static func build(view) -> void:
 				poly.material=null
 				var c:Dictionary=model.cell_at(Vector2i(u,v)) if inside else {}
 				var flat:=Color("6a8f4e") if c.is_empty() or int(c.level)==0 else Color("b9d77a") if int(c.level)==1 else Color("d9e9a8")
+				if mine:flat=[Color("626b7b"),Color("8e9bb0"),Color("a9b3c0"),Color("bdc7ce"),Color("c7d0d3"),Color("d6d5c4"),Color("e0dfcf")][clampi(level,0,6)]
 				if mountain:flat=[Color("547c63"),Color("81a56f"),Color("b8c98e"),Color("70a5ab"),Color("a1b6d0"),Color("c9b4d4"),Color("e6d6b0")][clampi(level,0,6)]
-				if mountain and (c.is_empty() or c.get("material")=="rocha"):flat=flat.darkened(.55)
+				if (mountain or mine) and (c.is_empty() or c.get("material")=="rocha"):flat=flat.darkened(.55)
 				if not c.is_empty() and c.material=="bosque":flat=flat.darkened(.28)
 				if not c.is_empty() and c.material=="terra":flat=Color("cbac72")
 				if not c.is_empty() and c.get("ramp")!=null:flat=Color("d0473b") if str(c.ramp) in ["u+","v+"] else Color("e0a03a")
@@ -99,9 +109,9 @@ static func build(view) -> void:
 			Structures.floor_cut(model,node,poly,corners,u,v)
 			if inside:
 				if not mountain or level>=0:_walls(view,model,node,u,v,wall_texture)
-				if bool(model.data.get("forest",{}).get("nativeProps",false)) and not mountain and not bool(model.data.get("forest",{}).get("swamp",false)) and model.cell_at(Vector2i(u,v)).material=="mato" and OS.get_environment("KRONASTA_GEOMETRIA")!="1":
+				if bool(model.data.get("forest",{}).get("nativeProps",false)) and not mountain and not mine and not bool(model.data.get("forest",{}).get("swamp",false)) and model.cell_at(Vector2i(u,v)).material=="mato" and OS.get_environment("KRONASTA_GEOMETRIA")!="1":
 					view._encounter_tufts(Vector2i(u,v),model.cell_at(Vector2i(u,v)))
-			elif not industrial and not mountain and OS.get_environment("KRONASTA_GEOMETRIA")!="1" and _hash(u,v,7)<.82 and not Structures.is_water(model,Vector2(u+.5,v+.5)) and not _near_exit(u,v,w,h,exits) and _hidden_behind(model,u,v)>4:
+			elif not industrial and not mountain and not mine and OS.get_environment("KRONASTA_GEOMETRIA")!="1" and _hash(u,v,7)<.82 and not Structures.is_water(model,Vector2(u+.5,v+.5)) and not _near_exit(u,v,w,h,exits) and _hidden_behind(model,u,v)>4:
 				_tree(view,model,Vector2(u+.5+(_hash(u,v,3)-.5)*.5,v+.5+(_hash(u,v,4)-.5)*.5),0,"a" if _hash(u,v,5)<.5 else "b",_hash(u,v,6),true)
 	Structures.build(view)
 	if bool(model.data.get("forest",{}).get("industrial",false)):
@@ -109,12 +119,13 @@ static func build(view) -> void:
 	if bool(model.data.get("forest",{}).get("swamp",false)):
 		preload("res://scripts/overworld/swamp_structures.gd").build(view)
 	if mountain:preload("res://scripts/overworld/mountain_structures.gd").build(view)
+	if mine:preload("res://scripts/overworld/mine_structures.gd").build(view)
 	if bool(model.data.get("forest",{}).get("nativeProps",false)):
 		var native_pieces: Array = []
 		for piece in model.data.pieces:
 			if piece.asset=="industrial-volume":continue
 			if piece.asset in ["pantano-arvore","pantano-arvore-seca"]:continue
-			if piece.asset=="montanha-crista":continue
+			if piece.asset in ["montanha-crista","mina-prop","mina-cave","mina-suporte"]:continue
 			if piece.asset in ["arvore","arbusto","flores","pedra"]:_piece(view,model,piece)
 			else:native_pieces.append(piece)
 		if not native_pieces.is_empty():
@@ -124,7 +135,7 @@ static func build(view) -> void:
 			view.art_preview=preview
 	else:
 		for piece in model.data.pieces:_piece(view,model,piece)
-	if not bool(model.data.get("forest",{}).get("industrial",false)) and not mountain:_tufts(view,model)
+	if not bool(model.data.get("forest",{}).get("industrial",false)) and not mountain and not mine:_tufts(view,model)
 	for event in model.data.events:
 		if OS.get_environment("KRONASTA_GEOMETRIA")!="1" and event.type=="item" and str(event.props.get("visibilidade","")) in ["visivel","brilho"]:_glint(view,model,event)
 
@@ -138,6 +149,12 @@ static func _corner_height(model,u:int,v:int,corner:Vector2) -> float:
 # Paredão de terra nas bordas da frente (+u e +v) onde o vizinho é mais baixo: textura com
 # estratos, face sudeste média e sudoeste escura, sombra na base, borda de grama dobrando.
 static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void:
+	if bool(model.data.get("forest",{}).get("mine",false)):
+		var near:=false
+		for y in range(v-3,v+4):
+			for x in range(u-3,u+4):
+				if model.walkable(Vector2i(x,y)):near=true
+		if not near:return
 	for side in ["u","v"]:
 		var n:=Vector2i(u+1,v) if side=="u" else Vector2i(u,v+1)
 		var neighbour:Dictionary=model.cell_at(n)
@@ -180,12 +197,14 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 		lip.color=Color("4a7a2a") if side=="u" else Color("3d6824")
 		if bool(model.data.get("forest",{}).get("industrial",false)):lip.color=Color("7c8381")
 		if bool(model.data.get("forest",{}).get("mountain",false)):lip.color=Color("666951")
+		if bool(model.data.get("forest",{}).get("mine",false)):lip.color=Color("252a35")
 		node.add_child(lip)
 		var rim:=Line2D.new()
 		rim.points=PackedVector2Array([pts[0]-node.position+Vector2(0,1),pts[1]-node.position+Vector2(0,1)])
 		rim.width=2.0
 		rim.default_color=Color("d6cc9c") if bool(model.data.get("forest",{}).get("industrial",false)) else Color("a7d65e")
 		if bool(model.data.get("forest",{}).get("mountain",false)):rim.default_color=Color("a8a27b")
+		if bool(model.data.get("forest",{}).get("mine",false)):rim.default_color=Color("77766b")
 		node.add_child(rim)
 		# Sombra de contato no chão de baixo, desenhada logo depois desse chão.
 		var shade:=Node2D.new()

@@ -22,6 +22,17 @@ static func floor_cut(model,node:Node2D,poly:Polygon2D,corners:Array,u:int,v:int
  if model.data.get("forest",{}).get("mountain",false) and (u<0 or v<0 or u>=int(model.data.w) or v>=int(model.data.h)):
   c=model.cell_at(Vector2i(clampi(u,0,int(model.data.w)-1),clampi(v,0,int(model.data.h)-1)))
  if model.data.get("forest",{}).get("mountain",false) and int(c.level)<0:poly.free();return
+ if model.data.get("forest",{}).get("mine",false) and c.get("material")=="rocha":
+  # Camera-side ceiling is cut away, as in the existing cave library.
+  var cutaway:=false
+  for k in range(1,6):
+   if model.walkable(Vector2i(u-k,v-k)):cutaway=true
+  if cutaway:poly.free();return
+  var near:=false
+  for y in range(v-3,v+4):
+   for x in range(u-3,u+4):
+    if model.walkable(Vector2i(x,y)):near=true
+  if not near:poly.free();return
  for stairs:Dictionary in model.data.get("forest",{}).get("stairs",[]):
   if u>=int(stairs.u) and u<int(stairs.u+stairs.width) and v>=int(stairs.v) and v<int(stairs.v+2):poly.free();return
  var fragments:Array=[PackedVector2Array(corners)]

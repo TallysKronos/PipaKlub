@@ -36,7 +36,7 @@ func capture() -> void:
    if node.get_meta("scenery",false):node.hide()
  for shot in plan.shots:
   view.camera.zoom=Vector2.ONE*float(shot.zoom)
-  view.camera.position=view.model.project(Vector2(shot.u,shot.v))-Vector2(0,35)
+  view.camera.position=view.model.project(Vector2(shot.u,shot.v))-Vector2(0,35)+Vector2(0,float(shot.get("offsetY",0)))
   await process_frame
   await RenderingServer.frame_post_draw
   var error:int=root.get_texture().get_image().save_png(output.path_join(str(shot.name)+".png"))
