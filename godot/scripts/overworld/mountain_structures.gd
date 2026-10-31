@@ -2,9 +2,8 @@ extends RefCounted
 const S=preload("res://scripts/overworld/forest_structures.gd")
 const Assets=preload("res://scripts/overworld/industrial_structures.gd")
 static func build(view) -> void:
- var sky:=Polygon2D.new();sky.polygon=PackedVector2Array([Vector2(-10000,-10000),Vector2(10000,-10000),Vector2(10000,10000),Vector2(-10000,10000)]);sky.color=Color("9ab9c2");sky.z_index=-100;view.actors.add_child(sky)
+ var sky:=Polygon2D.new();sky.polygon=PackedVector2Array([Vector2(-10000,-10000),Vector2(10000,-10000),Vector2(10000,10000),Vector2(-10000,10000)]);sky.color=Color.BLACK;sky.z_index=-100;view.actors.add_child(sky)
  if not S.geometry():
-  panorama(view)
   field(view)
  for piece:Dictionary in view.model.data.pieces:
   if piece.asset!="montanha-crista":continue
@@ -24,10 +23,6 @@ static func mask(model) -> Texture2D:
  for v in int(model.data.h):
   for u in int(model.data.w):im.set_pixel(u,v,Color(1 if model.cell_at(Vector2i(u,v)).material=="rocha" else 0,0,0,1))
  return ImageTexture.create_from_image(im)
-static func panorama(view) -> void:
- var texture:=Assets.texture("res://assets/overworld/kits/montanha-v1/panorama-v2.png")
- if texture==null:return
- var backdrop:=Sprite2D.new();backdrop.texture=texture;backdrop.position=Vector2(128,360 if int(view.model.data.forest.baseLevel)==0 else 750 if int(view.model.data.forest.baseLevel)==2 else 1100);backdrop.scale=Vector2.ONE*(5000.0/texture.get_width());backdrop.z_index=-90;backdrop.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR;view.actors.add_child(backdrop)
 static func field(view) -> void:
  var model=view.model
  var texture:=Assets.texture("res://assets/overworld/kits/montanha-v1/pecas/macico-v2.png")
