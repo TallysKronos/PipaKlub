@@ -8,7 +8,8 @@ export function writeCapturePlan(map,features={},outputBase='documentation/overw
  for(const e of map.events.filter(e=>e.type==='saida'))add('saida-'+e.u+'-'+e.v,e.u+.5,e.v+.5,1,'jogo');
  // Toda mudança de contorno de cada faixa de cota: 1/3 cantos convexos e côncavos,
  // diagonal 2+2, e contato com rampa; inclui as bordas ocultas na vista geral.
- for(let level=1;level<=2;level++)for(let v=1;v<map.h;v++)for(let u=1;u<map.w;u++){
+ const maxLevel=Math.max(...map.cells.map(c=>c.level));
+ for(let level=1;level<=maxLevel;level++)for(let v=1;v<map.h;v++)for(let u=1;u<map.w;u++){
   const cells=[[u-1,v-1],[u,v-1],[u,v],[u-1,v]].map(([x,y])=>map.cells[y*map.w+x]);
   const bits=cells.map(c=>c.level>=level&&!c.ramp),n=bits.filter(Boolean).length;
   if(n===1||n===3||(n===2&&bits[0]===bits[2]))add(`canto-n${level}-${u}-${v}`,u,v);
@@ -24,6 +25,8 @@ export function writeCapturePlan(map,features={},outputBase='documentation/overw
  const joins=new Map();for(const g of features.guards??[]){const a=g.side==='u'?[g.u+1,g.v]:[g.u,g.v+1],b=[g.u+1,g.v+1];for(const p of[a,b]){const k=p.join(',');const entry=joins.get(k)??{u:p[0],v:p[1],sides:[]};entry.sides.push(g.side);joins.set(k,entry);}}
  for(const j of joins.values())if(j.sides.length===1||new Set(j.sides).size>1)add('mureta-junta-'+j.u+'-'+j.v,j.u,j.v);
  for(const shot of features.shots??[])add(shot.name,shot.u,shot.v,shot.zoom??2.3,shot.kind??'junta');
+ // One frame covers every elevation on the same vertical cliff corner.
+ if(features.mountain){shots[0].zoom=.30;const seen=new Set();for(let i=0;i<shots.length;){const s=shots[i],key=s.u+','+s.v;if(s.name.startsWith('canto-')&&seen.has(key)){shots.splice(i,1);continue;}if(s.name.startsWith('canto-'))seen.add(key);i++;}}
  const dir=new URL(outputBase+'/planos/',root);fs.mkdirSync(dir,{recursive:true});
  fs.writeFileSync(new URL(map.id+'.json',dir),JSON.stringify({area:map.id,shots},null,2)+'\n');
  return shots;

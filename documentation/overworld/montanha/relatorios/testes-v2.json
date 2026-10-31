@@ -1,0 +1,48 @@
+{
+  "revision": 2,
+  "node": {
+    "tests": 14,
+    "failures": 0
+  },
+  "godot": {
+    "overworld": {
+      "checks": 186722,
+      "failures": 0
+    },
+    "morro": {
+      "checks": 9386,
+      "failures": 0
+    },
+    "swampWater": {
+      "failures": 0
+    }
+  },
+  "movement": [
+    {
+      "part": "A",
+      "targets": 28,
+      "trips": 56,
+      "frames": 20060,
+      "failures": 0
+    },
+    {
+      "part": "B",
+      "targets": 29,
+      "trips": 58,
+      "frames": 27460,
+      "failures": 0
+    },
+    {
+      "part": "C",
+      "targets": 53,
+      "trips": 106,
+      "frames": 32800,
+      "failures": 0
+    }
+  ],
+  "caveats": [
+    "Headless general overworld test prints pre-existing _painted_floor shader diagnostics",
+    "Physical controller and exported build not tested",
+    "Screenshots render on NVIDIA GTX1650 Compatibility OpenGL3"
+  ]
+}

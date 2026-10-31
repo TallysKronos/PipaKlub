@@ -19,6 +19,7 @@ static func build(view) -> void:
 	var w:int=int(model.data.w)
 	var h:int=int(model.data.h)
 	var industrial:bool=bool(model.data.get("forest",{}).get("industrial",false))
+	var mountain:bool=bool(model.data.get("forest",{}).get("mountain",false))
 	var industrial_surface:=ShaderMaterial.new()
 	if industrial:industrial_surface.shader=preload("res://shaders/industrial_surface.gdshader")
 	var material:=ShaderMaterial.new()
@@ -28,6 +29,13 @@ static func build(view) -> void:
 	material.set_shader_parameter("grass_b",load(KITS+"terrenos-v1/superficies/grama-musgo.png"))
 	material.set_shader_parameter("dirt",load(KITS+"terrenos-v1/superficies/terra-ocre.png"))
 	material.set_shader_parameter("map_size",Vector2(w,h))
+	material.set_shader_parameter("swamp",bool(model.data.get("forest",{}).get("swamp",false)))
+	material.set_shader_parameter("boss_arena",model.data.get("forest",{}).has("arena"))
+	if mountain:
+		material.set_shader_parameter("mountain",true)
+		material.set_shader_parameter("mountain_stage",int(model.data.forest.baseLevel)/2)
+		material.set_shader_parameter("mountain_rock",preload("res://scripts/overworld/industrial_structures.gd").texture(KITS+"montanha-v1/superficies/rocha.png"))
+		material.set_shader_parameter("terrain_mask",preload("res://scripts/overworld/mountain_structures.gd").mask(model))
 	if industrial:
 		industrial_surface.set_shader_parameter("floor_mode",true)
 		industrial_surface.set_shader_parameter("masks",material.get_shader_parameter("masks"))
@@ -37,10 +45,12 @@ static func build(view) -> void:
 	var white:=ImageTexture.create_from_image(blank)
 	var concrete:Texture2D=preload("res://scripts/overworld/industrial_structures.gd").texture(KITS+"industrial-v1/superficies/concreto.png") if industrial else null
 	var wall_texture:Texture2D=concrete if industrial else load(KITS+"terrenos-v1/superficies/terra-barranco.png")
+	if mountain:wall_texture=preload("res://scripts/overworld/industrial_structures.gd").texture(KITS+"montanha-v1/superficies/rocha.png")
 	var exits:=_exit_columns(model)
 	for v in range(-RING,h+RING):
 		for u in range(-RING,w+RING):
 			var inside:=u>=0 and v>=0 and u<w and v<h
+			if mountain and not inside:continue
 			var node:=Node2D.new()
 			node.position=Vector2((u-v)*32,(u+v)*16+2)
 			view.actors.add_child(node)
@@ -50,13 +60,15 @@ static func build(view) -> void:
 			var uvs:=PackedVector2Array()
 			var colors:=PackedColorArray()
 			var level:=int(model.cell_at(Vector2i(u,v)).get("level",0)) if inside else 0
+			if mountain and not inside:level=int(model.cell_at(Vector2i(clampi(u,0,w-1),clampi(v,0,h-1))).get("level",0))
 			# Platô um pouco mais claro que o chão de baixo; rampa sombreada pelo lado em que sobe
 			# (subindo para +u/+v ela vira de costas para a câmera e escurece).
 			var tone:=.88+.18*level
+			if mountain:tone=.96+.05*(level-int(model.data.forest.baseLevel))
 			if inside and model.cell_at(Vector2i(u,v)).get("ramp")!=null:
 				tone*=.80 if str(model.cell_at(Vector2i(u,v)).ramp) in ["u+","v+"] else 1.12
 			for corner in corners:
-				var height:=_corner_height(model,u,v,corner) if inside else 0.0
+				var height:=_corner_height(model,u,v,corner) if inside else float(level)
 				points.append(_screen(corner,height)-node.position)
 				uvs.append(corner)
 				colors.append(Color(tone,tone,tone))
@@ -78,24 +90,31 @@ static func build(view) -> void:
 				poly.material=null
 				var c:Dictionary=model.cell_at(Vector2i(u,v)) if inside else {}
 				var flat:=Color("6a8f4e") if c.is_empty() or int(c.level)==0 else Color("b9d77a") if int(c.level)==1 else Color("d9e9a8")
+				if mountain:flat=[Color("547c63"),Color("81a56f"),Color("b8c98e"),Color("70a5ab"),Color("a1b6d0"),Color("c9b4d4"),Color("e6d6b0")][clampi(level,0,6)]
+				if mountain and (c.is_empty() or c.get("material")=="rocha"):flat=flat.darkened(.55)
 				if not c.is_empty() and c.material=="bosque":flat=flat.darkened(.28)
 				if not c.is_empty() and c.material=="terra":flat=Color("cbac72")
 				if not c.is_empty() and c.get("ramp")!=null:flat=Color("d0473b") if str(c.ramp) in ["u+","v+"] else Color("e0a03a")
 				poly.vertex_colors=PackedColorArray([flat,flat,flat,flat])
 			Structures.floor_cut(model,node,poly,corners,u,v)
 			if inside:
-				_walls(view,model,node,u,v,wall_texture)
-				if bool(model.data.get("forest",{}).get("nativeProps",false)) and model.cell_at(Vector2i(u,v)).material=="mato" and OS.get_environment("KRONASTA_GEOMETRIA")!="1":
+				if not mountain or level>=0:_walls(view,model,node,u,v,wall_texture)
+				if bool(model.data.get("forest",{}).get("nativeProps",false)) and not mountain and not bool(model.data.get("forest",{}).get("swamp",false)) and model.cell_at(Vector2i(u,v)).material=="mato" and OS.get_environment("KRONASTA_GEOMETRIA")!="1":
 					view._encounter_tufts(Vector2i(u,v),model.cell_at(Vector2i(u,v)))
-			elif not industrial and OS.get_environment("KRONASTA_GEOMETRIA")!="1" and _hash(u,v,7)<.82 and not Structures.is_water(model,Vector2(u+.5,v+.5)) and not _near_exit(u,v,w,h,exits) and _hidden_behind(model,u,v)>4:
+			elif not industrial and not mountain and OS.get_environment("KRONASTA_GEOMETRIA")!="1" and _hash(u,v,7)<.82 and not Structures.is_water(model,Vector2(u+.5,v+.5)) and not _near_exit(u,v,w,h,exits) and _hidden_behind(model,u,v)>4:
 				_tree(view,model,Vector2(u+.5+(_hash(u,v,3)-.5)*.5,v+.5+(_hash(u,v,4)-.5)*.5),0,"a" if _hash(u,v,5)<.5 else "b",_hash(u,v,6),true)
 	Structures.build(view)
 	if bool(model.data.get("forest",{}).get("industrial",false)):
 		preload("res://scripts/overworld/industrial_structures.gd").build(view)
+	if bool(model.data.get("forest",{}).get("swamp",false)):
+		preload("res://scripts/overworld/swamp_structures.gd").build(view)
+	if mountain:preload("res://scripts/overworld/mountain_structures.gd").build(view)
 	if bool(model.data.get("forest",{}).get("nativeProps",false)):
 		var native_pieces: Array = []
 		for piece in model.data.pieces:
 			if piece.asset=="industrial-volume":continue
+			if piece.asset in ["pantano-arvore","pantano-arvore-seca"]:continue
+			if piece.asset=="montanha-crista":continue
 			if piece.asset in ["arvore","arbusto","flores","pedra"]:_piece(view,model,piece)
 			else:native_pieces.append(piece)
 		if not native_pieces.is_empty():
@@ -105,7 +124,7 @@ static func build(view) -> void:
 			view.art_preview=preview
 	else:
 		for piece in model.data.pieces:_piece(view,model,piece)
-	if not bool(model.data.get("forest",{}).get("industrial",false)):_tufts(view,model)
+	if not bool(model.data.get("forest",{}).get("industrial",false)) and not mountain:_tufts(view,model)
 	for event in model.data.events:
 		if view.campaign_mode: break # Campaign markers follow persistent collection receipts.
 		if OS.get_environment("KRONASTA_GEOMETRIA")!="1" and event.type=="item" and str(event.props.get("visibilidade","")) in ["visivel","brilho"]:_glint(view,model,event)
@@ -123,17 +142,21 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 	for side in ["u","v"]:
 		var n:=Vector2i(u+1,v) if side=="u" else Vector2i(u,v+1)
 		var neighbour:Dictionary=model.cell_at(n)
-		if neighbour.is_empty():continue
+		var mountain:bool=bool(model.data.get("forest",{}).get("mountain",false))
+		if neighbour.is_empty() and not mountain:continue
 		var a:=Vector2(u+1,v) if side=="u" else Vector2(u,v+1)
 		var b:=Vector2(u+1,v+1)
 		var top_a:=_corner_height(model,u,v,a)
 		var top_b:=_corner_height(model,u,v,b)
-		var low_a:=_corner_height(model,n.x,n.y,a)
-		var low_b:=_corner_height(model,n.x,n.y,b)
+		var low_a:float=-18 if neighbour.is_empty() else _corner_height(model,n.x,n.y,a)
+		var low_b:float=-18 if neighbour.is_empty() else _corner_height(model,n.x,n.y,b)
+		if mountain and (neighbour.is_empty() or float(neighbour.get("level",0))<0):low_a=-18;low_b=-18
 		if top_a<=low_a+.001 and top_b<=low_b+.001:continue
 		low_a=minf(low_a,top_a);low_b=minf(low_b,top_b)
 		var wall:=Polygon2D.new()
-		var pts:=[_screen(a,top_a),_screen(b,top_b),_screen(b,low_b),_screen(a,low_a)]
+		var foot_a:Vector2=a
+		var foot_b:Vector2=b
+		var pts:=[_screen(a,top_a),_screen(b,top_b),_screen(foot_b,low_b),_screen(foot_a,low_a)]
 		wall.polygon=PackedVector2Array(pts.map(func(p):return p-node.position))
 		wall.texture=texture if OS.get_environment("KRONASTA_GEOMETRIA")!="1" else null
 		wall.texture_repeat=CanvasItem.TEXTURE_REPEAT_ENABLED
@@ -157,25 +180,33 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 		lip.polygon=lip_pts
 		lip.color=Color("4a7a2a") if side=="u" else Color("3d6824")
 		if bool(model.data.get("forest",{}).get("industrial",false)):lip.color=Color("7c8381")
+		if bool(model.data.get("forest",{}).get("mountain",false)):lip.color=Color("666951")
 		node.add_child(lip)
 		var rim:=Line2D.new()
 		rim.points=PackedVector2Array([pts[0]-node.position+Vector2(0,1),pts[1]-node.position+Vector2(0,1)])
 		rim.width=2.0
 		rim.default_color=Color("d6cc9c") if bool(model.data.get("forest",{}).get("industrial",false)) else Color("a7d65e")
+		if bool(model.data.get("forest",{}).get("mountain",false)):rim.default_color=Color("a8a27b")
 		node.add_child(rim)
 		# Sombra de contato no chão de baixo, desenhada logo depois desse chão.
 		var shade:=Node2D.new()
 		shade.position=Vector2((n.x-n.y)*32,(n.x+n.y)*16+3)
 		view.actors.add_child(shade)
-		var inner_a:=a+(Vector2(.5,0) if side=="u" else Vector2(0,.5))
-		var inner_b:=b+(Vector2(.5,0) if side=="u" else Vector2(0,.5))
+		var inner_a:=foot_a+(Vector2(.5,0) if side=="u" else Vector2(0,.5))
+		var inner_b:=foot_b+(Vector2(.5,0) if side=="u" else Vector2(0,.5))
 		var shadow:=Polygon2D.new()
-		shadow.polygon=PackedVector2Array([_screen(a,low_a)-shade.position,_screen(b,low_b)-shade.position,_screen(inner_b,low_b)-shade.position,_screen(inner_a,low_a)-shade.position])
+		shadow.polygon=PackedVector2Array([_screen(foot_a,low_a)-shade.position,_screen(foot_b,low_b)-shade.position,_screen(inner_b,low_b)-shade.position,_screen(inner_a,low_a)-shade.position])
 		var dark:=Color(.04,.07,.02,.42)
 		shadow.vertex_colors=PackedColorArray([dark,dark,Color(dark,0),Color(dark,0)])
 		shade.add_child(shadow)
 
 static func _tree(view,model,point:Vector2,level:int,variant:String,r:float,occluder:bool,shrink:float=1.0) -> void:
+	if bool(model.data.get("forest",{}).get("swamp",false)):
+		var base:=_screen(point,float(level))
+		for at:Array in model.data.forest.get("clearViews",[]):
+			var access:Vector2=model.project(Vector2(at[0],at[1]))
+			var delta:=base-access
+			if absf(delta.x)<110 and delta.y>0 and delta.y<300:return
 	var root:=Node2D.new()
 	root.set_meta("scenery",true)
 	root.position=model.project(point,false)
@@ -192,6 +223,16 @@ static func _tree(view,model,point:Vector2,level:int,variant:String,r:float,occl
 	var size:=(.86+r*.30)*shrink
 	art.scale=Vector2(size*(-1.0 if r>.5 else 1.0),size)
 	art.position=Vector2(96*size*(1.0 if r>.5 else -1.0),-272*size-level*64)
+	if bool(model.data.get("forest",{}).get("swamp",false)):
+		var swamp_texture:=preload("res://scripts/overworld/industrial_structures.gd").texture(KITS+"pantano-v1/pecas/arvore-cipos-v2.png")
+		if swamp_texture:
+			art.texture=swamp_texture
+			if model.data.forest.has("arena"):art.modulate=Color(.76,.83,.81)
+			var swamp_scale:=.16*size
+			art.scale=Vector2(swamp_scale*(-1.0 if r>.5 else 1.0),swamp_scale)
+			art.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
+			art.position=Vector2(swamp_texture.get_width()*.5*swamp_scale*(1.0 if r>.5 else -1.0),-swamp_texture.get_height()*.94*swamp_scale-level*64)
+			var cutout:=ShaderMaterial.new();cutout.shader=preload("res://shaders/industrial_cutout.gdshader");art.material=cutout
 	root.add_child(art)
 	view.actors.add_child(root)
 	if occluder:view.occluders.append(root)
@@ -265,6 +306,10 @@ static func _tufts(view,model) -> void:
 				if not n.is_empty() and n.material in ["bosque","terra","mato"]:edge=true
 			if _hash(u,v,31)>(.55 if edge else .07):continue
 			var at:=Vector2(u+.2+_hash(u,v,32)*.6,v+.2+_hash(u,v,33)*.6)
+			if bool(model.data.get("forest",{}).get("swamp",false)):
+				if _hash(u,v,31)>(.30 if edge else .02):continue
+				preload("res://scripts/overworld/swamp_structures.gd").grass(view,at,float(cell.level)*64,48+_hash(u,v,35)*12)
+				continue
 			_sprite(view,model,at,int(cell.level),"parque/decalques/capim-"+("a" if _hash(u,v,34)<.5 else "b")+".png",Vector2(26,44),.75+_hash(u,v,35)*.35)
 
 static func _glint(view,model,event:Dictionary) -> void:
