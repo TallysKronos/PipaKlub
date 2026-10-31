@@ -36,3 +36,11 @@ test('C has a walkable return loop independent of its first ascent',()=>{
  const map=compiled[2],blocked=new Set();for(let v=36;v<=37;v++)for(let u=12;u<=14;u++)blocked.add(v*map.w+u);
  assert.ok(path(map,map.events.find(e=>e.name==='Mirante do cume'),blocked).length>0);
 });
+
+test('revised mountain has connected support rather than hollow corridor islands',()=>{
+ for(const map of compiled){
+  const ground=map.cells.filter(c=>c.level>=0);assert.ok(ground.length/map.cells.length>.75,'most of the footprint is real continuous mountain');
+  assert.ok(map.cells.filter(c=>c.material==='rocha'&&c.level>=0).length>ground.length*.4,'paths are cut through a supported rock mass');
+  assert.equal(map.forest.artRevision,2);
+ }
+});

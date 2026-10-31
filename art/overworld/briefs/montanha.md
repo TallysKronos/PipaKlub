@@ -21,3 +21,18 @@ Altura absoluta: A0→2, B2→4, C4→6. Ligações material terra e mesma cota 
 Ritmo por parte: base aberta → passagem de subida → banco de terreno amplo → curva estreita → vista superior aberta. Um marco principal no alto de cada parte (crista ou pináculo), dois secundários no máximo. Vegetação baixa perto das juntas. Cume com vista e laço de retorno, sem vitória inventada. Não usar teleporte para encurtar a descida.
 
 Reaproveitar projeção, movimento, faces e sombras medidos. Tiles de altura0–6 e rampas com nível-base explícito ficam em tileset inline próprio, sem alterar rascunho/kit alheio. Capturas de TODOS os níveis, inclusive3–6. Arte só após blocagem e percurso. Textura nova de rocha em cores chapadas/cel shading; UV contínuo nas faces, sem pintar juntas falsas. Conferir cantos, patamares, cunhas e apoio do marco sem atores nas juntas. Entrega com prints por parte e limites de verificação.
+
+## Revisão 2 — composição de montanha contínua
+A versão anterior foi rejeitada visualmente: pistas suspensas, repetição de pedras, partes parecidas, ausência de recompensa visual no cume. Preservar as conexões e as rampas reais; reconstruir a sustentação como maciço contínuo com contorno irregular. Rocha bloqueada deve parecer maciço, sem vegetação disfarçando junta.
+
+Planta de intenção (cotas absolutas, v- sobe):
+```
+A SOPÉ                    B ENCOSTA                    C CUME
+      saída n2                  saída n4                marco rochoso n6
+  mirante---trilha          beco---cotovelo              clareira oval
+      rampa v- n1→2          rampa v- n3→4             /rampa     rampa\
+ jardim / ramal-item      saliência / ramal-item       trilha   retorno
+      rampa v- n0→1          rampa v- n2→3             \rampa     rampa/
+ entrada + abrigo verde    entrada + patamar n2            entrada n4
+```
+A: alargar bolsões de vegetação baixa e permitir diagonais no percurso central, com maciço fechando o fundo. B: maior presença de rocha, trajetória recortada por saliências e patamares estreitos. C: clareira superior mais ampla, vegetação rara, marco em escala maior e panorama visível. Três becos mantêm os itens, um escondido por parte. Todo elemento distante e panorama é cenário; a silhueta caminhável continua derivada do mapa e validada por física. Sem novos personagens ou revelações canônicas.
