@@ -1,29 +1,31 @@
-# Entrega — Montanha A/B/C
+# Entrega — revisão visual Montanha A/B/C
 
-## 1. Arquivos
-Gerador e testes próprios em tools/mapa-studio; brief em art/overworld/briefs/montanha.md; três fontes Tiled e três mapas compilados; index de prévias. Kit montanha-v1, fontes, prova de repetição 3×3 e manifesto. Construtor mountain_structures.gd; ramificações condicionais nos construtores de floresta e shader de chão. Capturador agora cobre cotas acima de 2 e evita imagens repetidas da mesma coluna de barranco na montanha.
+## 1. Arquivos criados e alterados
+Mesmos IDs e mesma branch codex/mapa-montanha. Gerador, brief e fontes Tiled/compiladas reconstruídos. Novo panorama-v2 e macico-v2, fontes preservadas e manifesto atualizado. Construtor mountain_structures: distribuição autoral de maciços em vez de grade de pedras, marco crescente por parte, vegetação do sopé e panorama com enquadramento conforme a altitude. Shader de chão: paletas por trecho, rocha e terra com variação; bordas dos barrancos menos saturadas. Sustentação externa estendida com o mesmo contorno do terreno; rocha bloqueada agora tem volume acima da trilha. Antes/depois em comparacao/.
 
 ## 2. Resultado automático
-A: SEM ERRO, 0 erros/avisos; platô 45,6%; 3 itens, 1 escondido; 12 células de rampa; 0 inalcançáveis/degraus soltos.
-B: SEM ERRO, 0 erros/avisos; platô 49,9%; 3 itens, 1 escondido; 12 células de rampa; 0 inalcançáveis/degraus soltos.
-C: SEM ERRO, 0 erros/avisos; platô 52,4%; 3 itens, 1 escondido; 24 células de rampa; 0 inalcançáveis/degraus soltos.
-
-Node: 13 testes, 13 aprovados (montanha, modelo, industrial e pântano). Overworld: 186722 verificações, 0 falhas. Morro: 9386 verificações, 0 falhas. Pântano: 0 falhas de margens/pontes. O teste headless geral ainda imprime diagnóstico do shader legado _painted_floor; os testes de renderização das capturas da montanha não registraram erro de script/shader. O primeiro teste do Morro não conseguiu escrever o save temporário no ambiente restrito; repetido com acesso ao diretório de usuário, passou.
+Gerador: A, B e C SEM ERRO, 0 erros e 0 avisos.
+A: platô 88,8%; B: 84,2%; C: 82,1%. Cada parte: 3 itens, 1 escondido; nenhum inalcançável ou degrau solto. Rampas: A 12 células, B 12, C 24; todas v-. Conexões mantêm material terra, cotas 2/4 e direções v-/v+.
+Node: 14 testes aprovados. Godot overworld: 186722 verificações/0 falhas; Morro: 9386/0; pântano: 0 falhas. Teste adicional impede regressão ao modelo de corredores sem massa de sustentação. Dados resumidos em testes-v2.json.
 
 ## 3. Capturas
-captures/a, b, c: geometria, arte e arte-terreno; 66, 76 e 103 enquadramentos por versão respectivamente. Total 735 PNGs nativos 1280×720, além das seis pranchas de contato. Planos em planos/. A geral usa zoom 0,30 para caber a altura; jogo 1,0; juntas 2,3. Um enquadramento cobre toda a coluna de um mesmo canto de barranco, sem repetir a mesma imagem por cada nível atravessado. As juntas não têm personagem. Sem água, ponte ou mureta nesta região. Pranchas revistas para continuidade e amostras ampliadas para textura/acesso/base do marco; dimensões e inventário conferidos pelo verificador de capturas.
+Planos próprios, vistas gerais, jogo em zoom 1 e detalhes de juntas em zoom 2,3, sem personagens. Geometria, arte e arte-terreno. 121 enquadramentos em A, 143 em B, 189 em C: 1359 imagens nativas 1280×720. Mesmo canto em vários níveis usa um enquadramento da coluna inteira. Verificador confere dimensões, inventário e hashes em capturas.json. Pranchas de contato para conferência do conjunto; comparacao/ contém versão anterior e comparação lado a lado.
+
+A vista geral prioriza o terreno explorável. O corpo da montanha continua abaixo do enquadramento, em vez de terminar como plataforma suspensa. O panorama é cenário distante, sem colisão ou passagem aparente integrada à planta. Não há água, mureta ou ponte neste percurso.
 
 ## 4. Percurso
-Teste com o controlador real da prévia e física do Godot: A 28 destinos/56 viagens/20060 quadros; B 29/58/27420; C 53/106/32320. Total 220 viagens, 0 falhas. Verifica suporte dos pés e seguidor; inclui rampas em ambos os sentidos, itens e saídas. Testes Node asseguram que o cume exige rampas em ambas as cotas de cada parte e que C tem rota alternativa de descida. Não é sessão manual com controle físico.
+Controlador real da prévia: A 28 destinos, 56 viagens, 20060 quadros; B 29/58/27460; C 53/106/32800. Total 220 viagens, nenhuma falha. Itens, saídas, rampas nos dois sentidos, pés apoiados e seguidor conferidos pelo teste. Rotas centrais têm curvas e larguras próprias; C mantém volta alternativa. Revisão visual em gerais e pranchas, com amostras ampliadas de acesso, paredes e apoio de peças. Não houve sessão manual com controle físico.
 
-## 5. Itens e história
-Cada parte contém cola-reparo, vareta-bambu escondida e papel-seda em becos acessíveis. Mato opcional fora da travessia obrigatória. Marco rochoso nas três partes. C termina em mirante; não há chefe, personagem, revelação ou nome canônico novo. Prévia independente, sem concessão de itens à conta ou alteração de campanha. A→B conserva cota 2; B→C conserva cota 4; terra e orientação v-/v+ combinam.
+## 5. Itens, pistas e revelações
+Preservados os três itens por parte e o mato opcional. Sem nova informação de história, chefe, NPC ou nome canônico. Sopé verde, encosta exposta e cume aberto são diferenças ambientais, não eventos de campanha. A crista de C ganhou escala de marco e vista para montanhas distantes. Região continua prévia independente, sem concessão de recompensas à conta.
 
 ## 6. Integração
-Disponível no seletor de overworld_preview. Integração de campanha, encontros e economia depende de tarefa específica; não foi modificada. Não houve exportação de jogo, deploy, merge ou envio ao remoto nesta tarefa.
+Disponível no seletor de overworld_preview. Campanha, economia, save e combate preservados. Nenhum deploy, merge ou push nesta revisão.
 
-## 7. Decisões do dono
-Avaliar a direção visual das capturas. Recomendação: aprovar a leitura de altura e navegação da prévia antes de definir nome canônico, habitantes e ligação com a cidade.
+## 7. Decisão do dono
+Revisar as novas capturas. A recomendação é conferir esta composição no jogo antes de qualquer integração narrativa.
 
-## 8. Não verificado
-Controle físico, Steam/export, desempenho em outras GPUs, sessão completa de campanha, concessão real dos itens e aprovação artística do dono. A revisão de todas as imagens foi em pranchas; nem todos os detalhes foram inspecionados individualmente em resolução total. A textura repetida tem padrões reconhecíveis em paredes grandes; a prova 3×3 foi preservada e isso pode receber variante adicional após aprovação. O fundo azul representa profundidade atmosférica de prévia, sem panorama distante pintado. Não há promessa de conclusão artística de produção.
+## 8. Não verificado e limites
+Não testados: controle físico, export/Steam, outras GPUs e ciclo completo de campanha. Revisão do conjunto por pranchas; nem todas as imagens foram inspecionadas individualmente em tamanho integral. O terreno ainda usa uma grade isométrica: contornos têm degraus e a textura de parede repete padrões em faces extensas. O panorama é uma pintura fixa no espaço do mundo, sem parallax. Não há aprovação artística do dono. O teste headless geral ainda imprime diagnóstico de shader legado _painted_floor; isso é separado do renderer da montanha. O teste do Morro também pode emitir aviso de liberação de recursos ao encerrar, embora as verificações passem.
+
+Revisão conferida após as capturas: foram retiradas as faces externas inclinadas experimentais porque geravam fendas na ordenação de profundidade. As faces finais continuam verticais e fechadas, com grande profundidade; a silhueta superior e os volumes bloqueados foram reconstruídos. Isso melhora a sustentação, mas ainda deixa leitura de terraços geométricos; uma montanha inteiramente orgânica exigiria modelar contornos fora da grade com o mesmo contrato de colisão. Esse limite está explícito para revisão do dono.
