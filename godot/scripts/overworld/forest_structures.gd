@@ -16,6 +16,16 @@ static func is_water(model,p:Vector2) -> bool:
   if shape.is_empty():continue
   if Geometry2D.is_point_in_polygon(p,shape):return true
  return false
+static func mine_cut_height(model,u:int,v:int) -> float:
+ if not model.data.get("forest",{}).get("mine",false):return -999.0
+ var c:Dictionary=model.cell_at(Vector2i(u,v))
+ if c.get("material")!="rocha":return -999.0
+ var height:float=-999.0
+ for k in range(1,6):
+  for p:Vector2i in [Vector2i(u-k,v-k),Vector2i(u-k,v),Vector2i(u,v-k)]:
+   if model.walkable(p):height=maxf(height,model.height_at(Vector2(p)+Vector2(.5,.5))+14.0/64.0)
+ return height
+static func mine_cutaway(model,u:int,v:int) -> bool:return mine_cut_height(model,u,v)>-999.0
 static func floor_cut(model,node:Node2D,poly:Polygon2D,corners:Array,u:int,v:int) -> void:
  var c:Dictionary=model.cell_at(Vector2i(u,v))
  if c.is_empty():c={"material":"grama","level":0}
@@ -23,11 +33,6 @@ static func floor_cut(model,node:Node2D,poly:Polygon2D,corners:Array,u:int,v:int
   c=model.cell_at(Vector2i(clampi(u,0,int(model.data.w)-1),clampi(v,0,int(model.data.h)-1)))
  if model.data.get("forest",{}).get("mountain",false) and int(c.level)<0:poly.free();return
  if model.data.get("forest",{}).get("mine",false) and c.get("material")=="rocha":
-  # Camera-side ceiling is cut away, as in the existing cave library.
-  var cutaway:=false
-  for k in range(1,6):
-   if model.walkable(Vector2i(u-k,v-k)):cutaway=true
-  if cutaway:poly.free();return
   var near:=false
   for y in range(v-3,v+4):
    for x in range(u-3,u+4):
@@ -47,7 +52,10 @@ static func floor_cut(model,node:Node2D,poly:Polygon2D,corners:Array,u:int,v:int
   var fragment:PackedVector2Array=fragments[index]
   var target:Polygon2D=poly if index==0 else poly.duplicate()
   var points:=PackedVector2Array()
-  for p in fragment:points.append(iso(p,model.surface_height(c,p-Vector2(u,v))*64)-node.position)
+  for p in fragment:
+   var height:float=mine_cut_height(model,u,v)
+   if height<=-999.0:height=model.surface_height(c,p-Vector2(u,v))
+   points.append(iso(p,height*64)-node.position)
   target.polygon=points
   target.uv=fragment
   var shade:Color=poly.vertex_colors[0] if poly.vertex_colors.size()>0 else Color.WHITE

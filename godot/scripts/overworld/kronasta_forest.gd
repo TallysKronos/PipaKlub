@@ -144,6 +144,8 @@ static func _screen(point:Vector2,height:float) -> Vector2:
 
 static func _corner_height(model,u:int,v:int,corner:Vector2) -> float:
 	var cell:Dictionary=model.cell_at(Vector2i(u,v))
+	var cut:float=Structures.mine_cut_height(model,u,v)
+	if cut>-999.0:return cut
 	return model.surface_height(cell,corner-Vector2(u,v))
 
 # Paredão de terra nas bordas da frente (+u e +v) onde o vizinho é mais baixo: textura com

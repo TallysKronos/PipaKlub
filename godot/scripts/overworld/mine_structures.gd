@@ -9,6 +9,7 @@ static func mask(model) -> Texture2D:
  return ImageTexture.create_from_image(im)
 static func build(view) -> void:
  var bg:=Polygon2D.new();bg.polygon=PackedVector2Array([Vector2(-10000,-10000),Vector2(10000,-10000),Vector2(10000,10000),Vector2(-10000,10000)]);bg.color=Color.BLACK;bg.z_index=-100;view.actors.add_child(bg)
+ cut_border(view)
  if S.geometry():
   for piece:Dictionary in view.model.data.pieces:
    if str(piece.asset).begins_with("mina-"):Assets.block(view,Vector2(piece.u,piece.v),piece.fu,piece.fv,128 if piece.asset=="mina-suporte" else 65,"barreira",true)
@@ -87,3 +88,25 @@ static func cave_prop(view,p:Dictionary) -> void:
  if scene==null:return
  var at:=Vector2(p.u+.5,p.v+.5);var root:=Node2D.new();root.set_meta("scenery",true);root.position=view.model.project(at,false);view.actors.add_child(root)
  var instance:Node2D=scene.instantiate();instance.position=Vector2(0,-view.model.height_at(at)*64);root.add_child(instance)
+
+# The exposed camera-side cut is a continuous short section, not orphan tall walls.
+static func cut_border(view) -> void:
+ var model=view.model
+ for v in int(model.data.h):
+  for u in int(model.data.w):
+   var cell:Dictionary=model.cell_at(Vector2i(u,v))
+   if cell.get("material")=="rocha":continue
+   for side in [Vector2i(1,0),Vector2i(0,1)]:
+    var n:Vector2i=Vector2i(u,v)+Vector2i(side)
+    if model.cell_at(n).get("material")!="rocha":continue
+    var a:=Vector2(u+1,v) if side.x==1 else Vector2(u,v+1)
+    var b:=Vector2(u+1,v+1)
+    var ha:float=model.surface_height(cell,a-Vector2(u,v))*64
+    var hb:float=model.surface_height(cell,b-Vector2(u,v))*64
+    var root:=Node2D.new();root.position=model.project(Vector2(u+.5,v+.5),false);view.actors.add_child(root)
+    var bottom_a:Vector2=S.iso(a,ha)-root.position;var bottom_b:Vector2=S.iso(b,hb)-root.position
+    var top_a:Vector2=bottom_a-Vector2(0,14);var top_b:Vector2=bottom_b-Vector2(0,14)
+    var face:=Polygon2D.new();face.polygon=PackedVector2Array([bottom_a,bottom_b,top_b,top_a]);face.color=Color("4d525f") if S.geometry() else Color("353342");root.add_child(face)
+    var depth:Vector2=S.iso(Vector2(side)*.27)
+    var cap:=Polygon2D.new();cap.polygon=PackedVector2Array([top_a,top_b,top_b+depth,top_a+depth]);cap.color=Color("87909d") if S.geometry() else Color("65616a");root.add_child(cap)
+    line(root,top_a,top_b,Color("95877b"),1.2)
