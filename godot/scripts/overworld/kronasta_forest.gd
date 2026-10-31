@@ -29,6 +29,7 @@ static func build(view) -> void:
 	material.set_shader_parameter("dirt",load(KITS+"terrenos-v1/superficies/terra-ocre.png"))
 	material.set_shader_parameter("map_size",Vector2(w,h))
 	material.set_shader_parameter("swamp",bool(model.data.get("forest",{}).get("swamp",false)))
+	material.set_shader_parameter("boss_arena",model.data.get("forest",{}).has("arena"))
 	if industrial:
 		industrial_surface.set_shader_parameter("floor_mode",true)
 		industrial_surface.set_shader_parameter("masks",material.get_shader_parameter("masks"))
@@ -99,7 +100,7 @@ static func build(view) -> void:
 		var native_pieces: Array = []
 		for piece in model.data.pieces:
 			if piece.asset=="industrial-volume":continue
-			if piece.asset=="pantano-arvore":continue
+			if piece.asset in ["pantano-arvore","pantano-arvore-seca"]:continue
 			if piece.asset in ["arvore","arbusto","flores","pedra"]:_piece(view,model,piece)
 			else:native_pieces.append(piece)
 		if not native_pieces.is_empty():
@@ -205,6 +206,7 @@ static func _tree(view,model,point:Vector2,level:int,variant:String,r:float,occl
 		var swamp_texture:=preload("res://scripts/overworld/industrial_structures.gd").texture(KITS+"pantano-v1/pecas/arvore-cipos-v2.png")
 		if swamp_texture:
 			art.texture=swamp_texture
+			if model.data.forest.has("arena"):art.modulate=Color(.76,.83,.81)
 			var swamp_scale:=.16*size
 			art.scale=Vector2(swamp_scale*(-1.0 if r>.5 else 1.0),swamp_scale)
 			art.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR

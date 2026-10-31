@@ -80,6 +80,10 @@ static func build(view) -> void:
    var water:=quad(surface,bottom,Color("2a7490") if geometry() else Color("20483b") if swamp else Color(.65,.87,.93),null if geometry() or swamp else load(BASE+"aguas-v1/surfaces/rio-claro.png"))
    if swamp and not geometry():
     var shader:=ShaderMaterial.new();shader.shader=preload("res://shaders/swamp_water.gdshader");water.material=shader
+    if f.has("arena"):
+     shader.set_shader_parameter("arena",true)
+     shader.set_shader_parameter("arena_center",iso(Vector2(f.arena.center[0],f.arena.center[1]))+Vector2(0,depth))
+     shader.set_shader_parameter("arena_radii",Vector2(32,16)*sqrt(2.0)*float(f.arena.radius))
    if not geometry():
     water.texture_repeat=CanvasItem.TEXTURE_REPEAT_ENABLED
     var uv:=PackedVector2Array();for p in bottom:uv.append(p*.8)
@@ -88,7 +92,7 @@ static func build(view) -> void:
     var uv_a:Vector2=contour[i];var uv_b:Vector2=contour[(i+1)%contour.size()]
     if index==0 and uv_a==Vector2(35,9) and uv_b==Vector2(36,9):continue
     var bridge:Dictionary=w.get("bridge",{"u":23,"v":19,"w":3,"h":6})
-    if index==1 and maxf(uv_a.x,uv_b.x)>=float(bridge.u) and minf(uv_a.x,uv_b.x)<=float(bridge.u+bridge.w):
+    if index==1 and not w.get("noBridge",false) and maxf(uv_a.x,uv_b.x)>=float(bridge.u) and minf(uv_a.x,uv_b.x)<=float(bridge.u+bridge.w):
      # Split long banks at the actual deck; do not discard an entire channel side.
      if not f.get("industrial",false):continue
     var a:Vector2=iso(uv_a);var b:Vector2=iso(uv_b)
@@ -121,7 +125,7 @@ static func build(view) -> void:
    if model.cell_at(Vector2i(u,v)).material!="ponte":continue
    var plank:=Node2D.new();plank.position=iso(Vector2(u,v))+Vector2(0,3);view.actors.add_child(plank)
    for t in [0.0,.33,.66]:line(plank,PackedVector2Array([iso(Vector2(u,v+t))-plank.position,iso(Vector2(u+1,v+t))-plank.position]),1.4,Color("667b80") if f.get("industrial",false) else Color("735333"))
- if not w.is_empty() and (not f.get("swamp",false) or geometry()):
+ if not w.is_empty() and not w.get("noBridge",false) and (not f.get("swamp",false) or geometry()):
   var bridge:Dictionary=w.get("bridge",{"u":23,"v":19,"w":3,"h":6})
   for at in [Vector2(bridge.u,bridge.v),Vector2(bridge.u+bridge.w,bridge.v),Vector2(bridge.u,bridge.v+bridge.h),Vector2(bridge.u+bridge.w,bridge.v+bridge.h)]:
    var post:=Node2D.new();post.position=iso(at)+Vector2(0,4);view.actors.add_child(post)

@@ -9,6 +9,7 @@ uniform sampler2D dirt : repeat_enable, filter_linear;
 uniform vec2 map_size = vec2(1.0);
 uniform float tex_scale = 0.0026;
 uniform bool swamp = false;
+uniform bool boss_arena = false;
 varying vec2 world;
 
 void vertex() {
@@ -37,6 +38,7 @@ void fragment() {
 		vec3 moss=mix(vec3(.20,.29,.15),vec3(.43,.49,.28),clamp(lum,0.,1.));
 		vec3 mud=mix(vec3(.32,.26,.17),vec3(.64,.55,.36),clamp(lum,0.,1.));
 		col=mix(moss,mud,path);
+		if(boss_arena)col*=vec3(.72,.79,.82);
 	}
 	COLOR = vec4(col * COLOR.rgb, 1.0);
 }

@@ -2,16 +2,18 @@ extends RefCounted
 const S=preload("res://scripts/overworld/forest_structures.gd")
 const Assets=preload("res://scripts/overworld/industrial_structures.gd")
 static func build(view) -> void:
- if S.geometry():return
+ if S.geometry():
+  for piece:Dictionary in view.model.data.pieces:
+   if piece.asset=="pantano-arvore-seca":Assets.block(view,Vector2(piece.u,piece.v),piece.fu,piece.fv,36,"barreira",true)
+  return
  bridge(view)
  var texture:=Assets.texture("res://assets/overworld/kits/pantano-v1/pecas/arvore-cipos-v2.png")
  if texture==null:return
- for at:Array in view.model.data.forest.get("waterTrees",[]):
-  tree(view,texture,Vector2(at[0],at[1]),-12,.17)
  for piece:Dictionary in view.model.data.pieces:
-  if piece.asset!="pantano-arvore":continue
-  var at:=Vector2(piece.u+.5,piece.v+.5)
-  tree(view,texture,at,view.model.height_at(at)*64,.19)
+  if piece.asset not in ["pantano-arvore","pantano-arvore-seca"]:continue
+  var at:=Vector2(piece.u+float(piece.get("fu",1))*.5,piece.v+float(piece.get("fv",1))*.5)
+  var art:Texture2D=Assets.texture("res://assets/overworld/kits/pantano-v1/pecas/arvore-seca.png") if piece.asset=="pantano-arvore-seca" else texture
+  if art:tree(view,art,at,view.model.height_at(at)*64,.14 if piece.asset=="pantano-arvore-seca" else .19)
 static func tree(view,texture:Texture2D,at:Vector2,height:float,scale:float) -> void:
  var base:=S.iso(at,height)
  for point:Array in view.model.data.forest.get("clearViews",[]):
@@ -37,6 +39,7 @@ static func outlined(root:Node2D,points:PackedVector2Array,color:Color) -> void:
  S.quad(root,points,color)
  var edge:=points.duplicate();edge.append(points[0]);S.line(root,edge,1.7,Color("384443"))
 static func bridge(view) -> void:
+ if view.model.data.forest.water.get("noBridge",false):return
  var b:Dictionary=view.model.data.forest.water.bridge
  var u:float=b.u;var v:float=b.v;var w:float=b.w;var h:float=b.h
  # Measured deck remains at ground0 above water-12. Art never changes passage width.

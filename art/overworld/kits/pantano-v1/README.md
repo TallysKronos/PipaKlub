@@ -1,5 +1,11 @@
 # Pântano v1 — 30/10/2026
 
+## Árvore ressecada da arena
+Novo asset `fontes/arvore-seca.png`, runtime `godot/assets/overworld/kits/pantano-v1/pecas/arvore-seca.png`. Geração nativa `image_gen.imagegen`, fonte `exec-bcc6ee27-3545-4920-8b33-7a1c81d1f732.png`;1024×1536, alpha mínimo0,66.807 amostras alpha0 em passo4. Âncora(512,1443.84), escala.14, pegada2×2 explicitamente bloqueada em terra firme. Mesmo recorte de alpha do kit para rejeitar névoa fraca da geração. Fonte sem processamento de pixels. Não representa o boss. As árvores decorativas na água foram removidas do gerador e do consumidor.
+
+### Prompt integral — árvore ressecada
+Use case stylized-concept. One isolated twisted dead swamp tree for an isometric 2D cartoon manga RPG boss-area environment. Original design inspired by Dofus/Wakfu graphic language. Thick dark navy ink outline, large simple shapes, flat hard-edged two-tone cel shading, NO realism. A stout bent trunk, 3 forked bare branches curving outward, a few hanging curly vines, exaggerated broad buttress roots firmly touching the ground, small dull olive moss caps. No face, no eyes, no creature or person, just a tree. Dark desaturated brown wood with muted blue-green shadow planes and dusty gray highlights. Ominous but youthful adventure tone. Just 5 or 6 sweeping bark lines, no small bark detail, no texture grain, no gradient or 3D rendering. Orthographic elevated isometric view, compact 2:1 root footprint, upper-left light, complete tree centered in portrait 2:3 canvas, generous empty margin. Base center at horizontal50% and vertical94%. Transparent empty background with no halo, mist, glow, floor, water, ground shadow, text or symbols. Crisp animation production artwork readable at 200px high, coherent with a cartoon mossy swamp tree with bold outlines, coiled vines and exaggerated roots.
+
 ## Revisão ativa: árvore v2, mangá/cartoon
 O dono rejeitou a primeira árvore por excesso de realismo e pediu referência visual Dofus. A versão ativa agora é `fontes/arvore-cipos-v2.png`, runtime `godot/assets/overworld/kits/pantano-v1/pecas/arvore-cipos-v2.png`. Copa em massas arredondadas, contorno azul-escuro grosso, sombras em planos, tronco com curvas e poucos sinais gráficos, raízes exageradas e cipós com folhas grandes. Nenhum personagem ou asset de Dofus foi incorporado. A v1 abaixo é histórico e não é mais consumida.
 
