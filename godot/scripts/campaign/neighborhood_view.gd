@@ -12,6 +12,47 @@ var player: Vector2:
 var autosave_age := 0.0
 var last_saved_cell := Vector2.ZERO
 var exit_id := ""
+var active_dialogue: Control
+
+# Merge identical row spans before projection: streets stay legible without a tile grid.
+func _map_spans(kind: String) -> Array[Rect2]:
+	var spans: Array[Rect2] = []
+	for v in range(-7,28):
+		var start := -1
+		for u in range(33):
+			var matches: bool = u<32 and world.find_surface(world.cell_id(u,v)).get("kind","")==kind
+			if matches and start<0:start=u
+			if matches or start<0:continue
+			var merged := false
+			for i in spans.size():
+				if spans[i].position.x==start and spans[i].size.x==u-start and spans[i].end.y==v:
+					spans[i].size.y+=1;merged=true;break
+			if not merged:spans.append(Rect2(start,v,u-start,1))
+			start=-1
+	return spans
+
+func _map_rect(rect: Rect2) -> PackedVector2Array:
+	return PackedVector2Array([rect.position,rect.position+Vector2(rect.size.x,0),rect.end,rect.position+Vector2(0,rect.size.y)])
+
+func map_polygons() -> Array[PackedVector2Array]:
+	var paths: Array[PackedVector2Array] = []
+	for kind in ["paving","asphalt"]:
+		for span in _map_spans(kind):paths.append(_map_rect(span))
+	return paths
+
+func map_regions() -> Array[Dictionary]:
+	var regions: Array[Dictionary] = [{"polygon":_map_rect(Rect2(0,-7,32,35)),"color":Color("647B58")}]
+	for kind in ["paving","asphalt"]:
+		for span in _map_spans(kind):
+			regions.append({"polygon":_map_rect(span),"color":Color("D8CDAF") if kind=="paving" else Color("405766")})
+	return regions
+
+func map_landmarks() -> Array[Dictionary]:
+	var markers: Array[Dictionary] = []
+	for house in world.houses:
+		var title: String={"casa-kael":"Casa do Kael","professor":"Ateliê do professor","loja":"Loja da Lia"}.get(house.id,"")
+		if not title.is_empty():markers.append({"point":house.door,"text":title})
+	return markers
 
 func _ready() -> void:
 	super._ready()
@@ -85,6 +126,10 @@ func _update_hint() -> void:
 
 func interact() -> void:
 	if paused:return
+	if is_instance_valid(active_dialogue):
+		if active_dialogue.page_index<active_dialogue.pages.size()-1:active_dialogue.next_page()
+		else:active_dialogue._finish(true)
+		return
 	if not conversation.is_empty():
 		super.interact();return
 	_update_hint()
@@ -95,9 +140,36 @@ func interact() -> void:
 	elif near_person.get("id")=="assis" or near_house.get("id")=="professor":action_requested.emit("professor-home")
 	else:super.interact()
 
+func _say(speaker: String,lines: Array) -> void:
+	if is_instance_valid(active_dialogue):return
+	conversation.assign(lines)
+	dialogue_panel.hide()
+	avatar.moving=false;avatar.running=false
+	active_dialogue=load("res://scripts/campaign/hud_dialogue.gd").new()
+	active_dialogue.title=speaker
+	active_dialogue.dialog_text="\n\n".join(lines)
+	active_dialogue.ok_button_text="Continuar"
+	active_dialogue.confirmed.connect(_close_dialogue)
+	active_dialogue.canceled.connect(_close_dialogue)
+	hud_root.add_child(active_dialogue)
+
+func _close_dialogue() -> void:
+	conversation.clear()
+	if is_instance_valid(active_dialogue):
+		hud_root.remove_child(active_dialogue)
+		active_dialogue.queue_free()
+	active_dialogue=null
+	_update_hint()
+
 func _unhandled_input(event: InputEvent) -> void:
 	Controls.observe(event)
 	if paused:return
+	if is_instance_valid(active_dialogue):
+		if Controls.pressed(event,"interact"):
+			if active_dialogue.page_index<active_dialogue.pages.size()-1:active_dialogue.next_page()
+			else:active_dialogue._finish(true)
+		get_viewport().set_input_as_handled()
+		return
 	if not conversation.is_empty():
 		super._unhandled_input(event);return
 	if Controls.cancel(event):

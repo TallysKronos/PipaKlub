@@ -1570,6 +1570,8 @@ func _show_map() -> void:
 	sound.play_event("ui.map")
 	var subject:Node2D=park if is_instance_valid(park) else room
 	var polygons:Array[PackedVector2Array]=[]
+	var regions:Array[Dictionary]=[]
+	var landmarks:Array[Dictionary]=[]
 	var point:=Vector2.ZERO
 	if is_instance_valid(subject):
 		point=subject.get("player") if subject.get("player")!=null else subject.actor
@@ -1579,6 +1581,14 @@ func _show_map() -> void:
 				for at in raw: projected.append(subject.project(at))
 				polygons.append(projected)
 			point=subject.project(point)
+			if subject.has_method("map_regions"):
+				for region in subject.map_regions():
+					var outline:=PackedVector2Array()
+					for at in region.polygon:outline.append(subject.project(at))
+					regions.append({"polygon":outline,"color":region.color})
+			if subject.has_method("map_landmarks"):
+				for marker in subject.map_landmarks():
+					landmarks.append({"point":subject.project(marker.point),"text":marker.text})
 		elif subject.get("ground")!=null:polygons.assign(subject.ground.floors)
 		else:
 			for raw in subject.data.get("walkable",[]):
@@ -1588,6 +1598,8 @@ func _show_map() -> void:
 	_label(_slot_location(session.snapshot()).name+" · Você está aqui",page,18)
 	var map=load("res://scripts/campaign/hud_area_map.gd").new()
 	map.polygons=polygons
+	map.regions=regions
+	map.landmarks=landmarks
 	map.player=point
 	page.add_child(map)
 	if polygons.is_empty():_label("O mapa desta área ainda não está disponível.",page,18)

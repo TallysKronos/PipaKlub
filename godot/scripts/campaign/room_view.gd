@@ -28,6 +28,7 @@ var story_paused := false
 var cinematic_actor_moving := false
 var companion_follow := true
 var opening_tv: Node2D
+var target_marker: Node2D
 
 func configure(room: Dictionary, point: Array, walk: bool, target: String, mother: bool, partner: bool) -> void:
 	for child in get_children():
@@ -38,6 +39,10 @@ func configure(room: Dictionary, point: Array, walk: bool, target: String, mothe
 	companion_frames.clear()
 	trail.clear()
 	data = room
+	target_marker=Node2D.new()
+	target_marker.z_index=250
+	target_marker.draw.connect(_draw_target)
+	add_child(target_marker)
 	camera = data.camera
 	actor = Vector2(point[0], point[1])
 	can_walk = walk
@@ -195,6 +200,7 @@ func _process(delta: float) -> void:
 		return
 	if story_paused:return
 	clock += delta
+	if is_instance_valid(target_marker):target_marker.queue_redraw()
 	if is_instance_valid(mother_sprite):opening_pose()
 	if is_instance_valid(companion) and companion_follow:
 		var frame: Dictionary = companion_frames[int(clock * 12) % companion_frames.size()]
@@ -206,9 +212,13 @@ func _process(delta: float) -> void:
 		CompanionFollow.orient(companion,avatar.facing)
 		_update_order()
 	near = ""
+	var nearest := INF
 	for spot in data.hotspots:
-		if Vector2(spot.x, spot.y).distance_to(actor) <= 110:
-			near = spot.id
+		if target_hotspot!="*" and spot.id!=target_hotspot:continue
+		var distance:=Vector2(spot.x,spot.y).distance_to(actor)
+		var reach:=150.0 if spot.id=="stairs" else 110.0
+		if distance<=reach and distance<nearest:
+			near=spot.id;nearest=distance
 	avatar.running=false
 	avatar.moving = cinematic_actor_moving
 	if not can_walk:
@@ -249,3 +259,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	if can_walk and Controls.pressed(event, "interact") and not near.is_empty() and (near == target_hotspot or target_hotspot == "*"):
 		get_viewport().set_input_as_handled()
 		interacted.emit(near)
+
+func _draw_target() -> void:
+	if not can_walk:return
+	for spot in data.get("hotspots",[]):
+		if spot.id!=target_hotspot:continue
+		var at:=project(Vector2(spot.x,spot.y))
+		var color:=Color("55CCD5")
+		target_marker.draw_arc(at,20,0,TAU,32,color,2,true)
+		target_marker.draw_colored_polygon(PackedVector2Array([at+Vector2(-7,-38),at+Vector2(7,-38),at+Vector2(0,-27)]),color)

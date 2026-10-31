@@ -181,6 +181,8 @@ func _show_page() -> void:
 	call_deferred("_align_choices")
 func _align_choices() -> void:
 	box.size=Vector2(size.x-box.position.x-32,maxf(180,240*size.y/1080.0))
+	# Containers can grow to a button's minimum width after _rebuild().
+	choices.position.x=size.x-choices.size.x-64
 	choices.position.y=box.position.y-choices.get_combined_minimum_size().y-60
 func next_page() -> void:
 	preload("res://scripts/campaign/sound_director.gd").cue(self, "dialogue.advance")
