@@ -208,7 +208,9 @@ static func valid_encounter(value: Variant) -> bool:
 		if not number(value.get("dropRoll")) or value.dropRoll < 0 or value.dropRoll >= 1 or state.get("enemyModelId") not in ["basica", "mata", "raio"] or not whole(state.get("enemyLevel")) or state.enemyLevel < 1 or state.enemyLevel > 9: return false
 	if value.kind=="trainer":
 		var duel: Dictionary=preload("res://scripts/campaign/park_training.gd").duel(str(value.get("trainerId","")))
-		if duel.is_empty() or value.get("scene","")!=duel.scene or value.get("space","")!="parque-overworld-v1" or value.get("rewardXp",-1)!=duel.xp or state.get("enemyModelId","")!=duel.species or int(state.get("enemyLevel",0))!=duel.level: return false
+		if duel.is_empty():return false
+		var old_xp:int=preload("res://scripts/campaign/park_training.gd").LEGACY_XP.get(value.get("trainerId",""),-1)
+		if value.get("scene","")!=duel.scene or value.get("space","")!="parque-overworld-v1" or value.get("rewardXp",-1) not in [duel.xp,old_xp] or state.get("enemyModelId","")!=duel.species or int(state.get("enemyLevel",0))!=duel.level: return false
 	if state.get("outcome") not in ["", "won", "lost", "fled"] or not state.get("partnerId") is String or not state.get("modelId") is String: return false
 	for field in ["time", "intro", "duration"]:
 		if not number(state.get(field)) or state[field] < 0: return false

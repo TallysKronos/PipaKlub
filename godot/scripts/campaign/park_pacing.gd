@@ -3,11 +3,10 @@ extends RefCounted
 const Training=preload("res://scripts/campaign/park_training.gd")
 const BOSS_LEVEL := 8
 const MIN_WALK_SECONDS := 4.0
-const SPECIES_XP := {"basica":Vector2i(10,3),"mata":Vector2i(14,4),"raio":Vector2i(18,5),"lacertubo":Vector2i(80,20)}
+const Rewards=preload("res://scripts/campaign/opponent_rewards.gd")
 
 static func reward_xp(species: String, level: int) -> int:
-	var values: Vector2i=SPECIES_XP.get(species,Vector2i(10,3))
-	return values.x+(clampi(level,1,50)-1)*values.y
+	return Rewards.xp(species,level)
 
 static func distance_range(scene: String) -> Vector2:
 	return {"park-trail":Vector2(18,26),"park-clearing":Vector2(14,22),"park-veredas":Vector2(12,19)}.get(scene,Vector2(18,26))

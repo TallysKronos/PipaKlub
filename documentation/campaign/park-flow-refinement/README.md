@@ -1,5 +1,7 @@
 # Refinamento do percurso até o guardião
 
+> Histórico: a meta de seis duelos até o nível 8 descrita abaixo foi substituída pelo [balanceamento de 31/10/2026](BALANCEAMENTO-2026-10-31.md). Treinadores agora dão o mesmo XP de parceiro que selvagens equivalentes; os bônus são dinheiro e XP do tamer.
+
 Implementação local: duelos opcionais com XP única, descanso funcional, objetivos por região, explicação do nível recomendado e indicadores de estrutura/XP no HUD. Curva de nível e XP dos selvagens preservadas. O elenco dos cinco duelos reaproveitados foi rejeitado pelo usuário; os novos conceitos estão em `art/characters/parque-pipeiros-v1/` e ainda precisam de aprovação e produção dos sprites.
 
 Antes, o caminho dependia de cerca de 49 vitórias selvagens para 1260 XP (Nv.8). Agora as seis primeiras vitórias dos duelos somam 1260 XP. Os encontros de exploração acrescentam progresso, sem ser necessários para fechar a lacuna. Ignorar os duelos continua permitido; enfrentar o guardião abaixo do recomendado também.

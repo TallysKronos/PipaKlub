@@ -45,6 +45,9 @@ static func preview(player: Dictionary, encounter: Dictionary, model: RefCounted
 	var projected:Dictionary=player.duplicate(true)
 	var projected_partner:Dictionary=partner.duplicate(true)
 	Progression.award(projected,projected_partner,amount)
+	var bonus:=Encounters.owner_bonus(encounter,model.snapshot())
+	summary.coins+=bonus.coins
+	projected.tamerXp=mini(31383,int(projected.get("tamerXp",0))+int(bonus.tamerXp))
 	summary.tamer={"name":player.get("name","Kael"),"before":int(player.get("tamerXp",0)),"after":int(projected.get("tamerXp",0)),"xp":int(projected.get("tamerXp",0))-int(player.get("tamerXp",0))}
 	summary.team=[]
 	var equipped:Dictionary=partner.duplicate(true)

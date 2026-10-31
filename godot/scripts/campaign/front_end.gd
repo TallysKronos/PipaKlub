@@ -1340,7 +1340,7 @@ func _park_training(id: String) -> void:
 		_notice("%s: %s Já concluímos nosso duelo. Siga explorando; os bancos recuperam sua equipe." % [entry.name,entry.tip])
 		return
 	var introduction: String=str(entry.get("intro",""))
-	var text: String=(introduction+"\n\n" if not introduction.is_empty() else "")+"%s\n\nDuelo opcional · adversário Nv. %d · +%d XP na primeira vitória. Seu parceiro está no Nv. %d. Não há rabiola como prêmio." % [entry.tip,entry.level,entry.xp,Training.level(player)]
+	var text: String=(introduction+"\n\n" if not introduction.is_empty() else "")+"%s\n\nDuelo opcional · adversário Nv. %d · +%d XP para o parceiro (igual ao selvagem), %d moedas e +%d XP extra de tamer. Seu parceiro está no Nv. %d. Não há rabiola como prêmio." % [entry.tip,entry.level,entry.xp,entry.coins,entry.tamerXp,Training.level(player)]
 	_confirm_park(entry.name,text,"Vamos treinar",func():
 		var result: Dictionary=encounters.start_training(id,park.player)
 		if _result(result) and result.status=="ok": _show_saved.call_deferred())

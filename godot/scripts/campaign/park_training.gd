@@ -1,20 +1,26 @@
 extends RefCounted
 ## Authored, optional first-clear duels. Wild XP and the shared level curve stay intact.
 const Levels=preload("res://scripts/campaign/partner_levels.gd")
+const Rewards=preload("res://scripts/campaign/opponent_rewards.gd")
+const LEGACY_XP:={"assis":70,"bia":110,"juninho":170,"lia":220,"zeca":300,"tiao":390}
 # Duel IDs remain stable because first-clear receipts in existing saves use them.
 # Only this park cast changes; the original NPCs still belong to their own areas.
 const DUELS := [
-	{"id":"assis","name":"Sr. Assis","scene":"park-trail","area":"jardim-das-pipas","point":Vector2i(31,36),"species":"basica","level":2,"xp":70,"tip":"Procure o cruzamento dos fios antes de cortar. Não precisa atacar sem parar."},
-	{"id":"bia","name":"Iara","scene":"park-trail","area":"jardim-das-pipas","point":Vector2i(43,23),"species":"mata","level":3,"xp":110,"intro":"Sou a Iara. Se uma pipa prender nos galhos, eu desembaraço o fio. Quer treinar antes de seguir?","tip":"Guarde energia para defender. Quando eu errar a puxada, você terá uma abertura."},
-	{"id":"juninho","name":"Nilo","scene":"park-clearing","area":"clareira-do-papel","point":Vector2i(32,39),"species":"basica","level":4,"xp":170,"intro":"Nilo, entregador de pipas! Esta vai para... espera, depois confiro o endereço. Cabe um duelo no caminho!","tip":"Experimente alternar movimento e corte. Ficar parado facilita a minha puxada."},
-	{"id":"lia","name":"Dora","scene":"park-clearing","area":"clareira-do-papel","point":Vector2i(43,24),"species":"raio","level":5,"xp":220,"intro":"Sou a Dora. Um carretel bem cuidado gira leve; um pipeiro precisa saber a hora de aliviar também. Vamos praticar?","tip":"Não gaste toda a energia de uma vez. Afaste-se um pouco para recuperar o fôlego."},
-	{"id":"zeca","name":"Cauê","scene":"park-veredas","area":"veredas-do-encanamento","point":Vector2i(33,38),"species":"mata","level":6,"xp":300,"intro":"Cauê. Escute um instante... o vento mudou entre os canos. Num duelo, também dá para perceber o que vem antes do golpe.","tip":"O Lacertubo avisa antes do golpe. Treine observar o adversário, proteger e responder."},
-	{"id":"tiao","name":"Celina","scene":"park-veredas","area":"veredas-do-encanamento","point":Vector2i(38,35),"species":"raio","level":7,"xp":390,"intro":"Pode me chamar de Celina. Conserto armações há muitos anos, mas ainda gosto de pôr uma boa linha à prova. Aceita um treino?","tip":"Depois deste treino, siga os canos até o pátio. Descanse no banco antes de subir; dali em diante, é território do Lacertubo."}
+	{"id":"assis","name":"Sr. Assis","scene":"park-trail","area":"jardim-das-pipas","point":Vector2i(31,36),"species":"basica","level":2,"tip":"Procure o cruzamento dos fios antes de cortar. Não precisa atacar sem parar."},
+	{"id":"bia","name":"Iara","scene":"park-trail","area":"jardim-das-pipas","point":Vector2i(43,23),"species":"mata","level":3,"intro":"Sou a Iara. Se uma pipa prender nos galhos, eu desembaraço o fio. Quer treinar antes de seguir?","tip":"Guarde energia para defender. Quando eu errar a puxada, você terá uma abertura."},
+	{"id":"juninho","name":"Nilo","scene":"park-clearing","area":"clareira-do-papel","point":Vector2i(32,35),"species":"basica","level":4,"intro":"Nilo, entregador de pipas! Esta vai para... espera, depois confiro o endereço. Cabe um duelo no caminho!","tip":"Experimente alternar movimento e corte. Ficar parado facilita a minha puxada."},
+	{"id":"lia","name":"Dora","scene":"park-clearing","area":"clareira-do-papel","point":Vector2i(43,24),"species":"raio","level":5,"intro":"Sou a Dora. Um carretel bem cuidado gira leve; um pipeiro precisa saber a hora de aliviar também. Vamos praticar?","tip":"Não gaste toda a energia de uma vez. Afaste-se um pouco para recuperar o fôlego."},
+	{"id":"zeca","name":"Cauê","scene":"park-veredas","area":"veredas-do-encanamento","point":Vector2i(33,38),"species":"mata","level":6,"intro":"Cauê. Escute um instante... o vento mudou entre os canos. Num duelo, também dá para perceber o que vem antes do golpe.","tip":"O Lacertubo avisa antes do golpe. Treine observar o adversário, proteger e responder."},
+	{"id":"tiao","name":"Celina","scene":"park-veredas","area":"veredas-do-encanamento","point":Vector2i(38,35),"species":"raio","level":7,"intro":"Pode me chamar de Celina. Conserto armações há muitos anos, mas ainda gosto de pôr uma boa linha à prova. Aceita um treino?","tip":"Depois deste treino, siga os canos até o pátio. Descanse no banco antes de subir; dali em diante, é território do Lacertubo."}
 ]
 static var _events: Dictionary={}
 static func duel(id: String) -> Dictionary:
 	for entry in DUELS:
-		if entry.id==id: return entry.duplicate(true)
+		if entry.id==id:
+			var result:Dictionary=entry.duplicate(true)
+			result.xp=Rewards.xp(entry.species,entry.level)
+			result.merge(Rewards.trainer_bonus(entry.level))
+			return result
 	return {}
 static func receipt(id: String) -> String: return "park-trainer-"+id
 static func completed(player: Dictionary,id: String) -> bool: return receipt(id) in player.get("completedOperations",[])
