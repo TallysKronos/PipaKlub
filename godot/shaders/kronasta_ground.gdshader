@@ -10,6 +10,8 @@ uniform vec2 map_size = vec2(1.0);
 uniform float tex_scale = 0.0026;
 uniform bool swamp = false;
 uniform bool boss_arena = false;
+uniform bool mountain = false;
+uniform sampler2D terrain_mask : filter_nearest;
 varying vec2 world;
 
 void vertex() {
@@ -33,6 +35,16 @@ void fragment() {
 	vec3 soil = texture(dirt, tuv * 1.15).rgb;
 	soil *= mix(.86, 1.04, smoothstep(.55, .85, edge)); // centro da trilha mais claro
 	vec3 col = mix(grass, soil, path);
+	if(mountain){
+		float rock=texture(terrain_mask,UV/map_size).r;
+		vec3 turf=mix(vec3(.34,.43,.27),vec3(.44,.50,.33),patch);
+		vec3 trail=mix(vec3(.64,.55,.38),vec3(.76,.67,.47),smoothstep(.3,.75,edge));
+		turf *= mix(.90,1.08,grain);
+        turf=mix(turf,turf*vec3(.72,.89,.67),smoothstep(.12,.8,m.a));
+        trail *= mix(.86,1.09,texture(dirt,tuv*1.15).g);
+        col=mix(turf,trail,path);
+		col=mix(col,mix(vec3(.30,.36,.37),vec3(.42,.47,.45),patch),rock);
+	}
 	if(swamp){
 		float lum=dot(col,vec3(.299,.587,.114));
 		vec3 moss=mix(vec3(.20,.29,.15),vec3(.43,.49,.28),clamp(lum,0.,1.));

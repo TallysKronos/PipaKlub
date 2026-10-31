@@ -19,6 +19,9 @@ static func is_water(model,p:Vector2) -> bool:
 static func floor_cut(model,node:Node2D,poly:Polygon2D,corners:Array,u:int,v:int) -> void:
  var c:Dictionary=model.cell_at(Vector2i(u,v))
  if c.is_empty():c={"material":"grama","level":0}
+ if model.data.get("forest",{}).get("mountain",false) and (u<0 or v<0 or u>=int(model.data.w) or v>=int(model.data.h)):
+  c=model.cell_at(Vector2i(clampi(u,0,int(model.data.w)-1),clampi(v,0,int(model.data.h)-1)))
+ if model.data.get("forest",{}).get("mountain",false) and int(c.level)<0:poly.free();return
  for stairs:Dictionary in model.data.get("forest",{}).get("stairs",[]):
   if u>=int(stairs.u) and u<int(stairs.u+stairs.width) and v>=int(stairs.v) and v<int(stairs.v+2):poly.free();return
  var fragments:Array=[PackedVector2Array(corners)]

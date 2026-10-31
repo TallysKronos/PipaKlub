@@ -19,6 +19,7 @@ static func build(view) -> void:
 	var w:int=int(model.data.w)
 	var h:int=int(model.data.h)
 	var industrial:bool=bool(model.data.get("forest",{}).get("industrial",false))
+	var mountain:bool=bool(model.data.get("forest",{}).get("mountain",false))
 	var industrial_surface:=ShaderMaterial.new()
 	if industrial:industrial_surface.shader=preload("res://shaders/industrial_surface.gdshader")
 	var material:=ShaderMaterial.new()
@@ -30,6 +31,9 @@ static func build(view) -> void:
 	material.set_shader_parameter("map_size",Vector2(w,h))
 	material.set_shader_parameter("swamp",bool(model.data.get("forest",{}).get("swamp",false)))
 	material.set_shader_parameter("boss_arena",model.data.get("forest",{}).has("arena"))
+	if mountain:
+		material.set_shader_parameter("mountain",true)
+		material.set_shader_parameter("terrain_mask",preload("res://scripts/overworld/mountain_structures.gd").mask(model))
 	if industrial:
 		industrial_surface.set_shader_parameter("floor_mode",true)
 		industrial_surface.set_shader_parameter("masks",material.get_shader_parameter("masks"))
@@ -39,6 +43,7 @@ static func build(view) -> void:
 	var white:=ImageTexture.create_from_image(blank)
 	var concrete:Texture2D=preload("res://scripts/overworld/industrial_structures.gd").texture(KITS+"industrial-v1/superficies/concreto.png") if industrial else null
 	var wall_texture:Texture2D=concrete if industrial else load(KITS+"terrenos-v1/superficies/terra-barranco.png")
+	if mountain:wall_texture=preload("res://scripts/overworld/industrial_structures.gd").texture(KITS+"montanha-v1/superficies/rocha.png")
 	var exits:=_exit_columns(model)
 	for v in range(-RING,h+RING):
 		for u in range(-RING,w+RING):
@@ -52,13 +57,15 @@ static func build(view) -> void:
 			var uvs:=PackedVector2Array()
 			var colors:=PackedColorArray()
 			var level:=int(model.cell_at(Vector2i(u,v)).get("level",0)) if inside else 0
+			if mountain and not inside:level=int(model.cell_at(Vector2i(clampi(u,0,w-1),clampi(v,0,h-1))).get("level",0))
 			# Platô um pouco mais claro que o chão de baixo; rampa sombreada pelo lado em que sobe
 			# (subindo para +u/+v ela vira de costas para a câmera e escurece).
 			var tone:=.88+.18*level
+			if mountain:tone=.96+.05*(level-int(model.data.forest.baseLevel))
 			if inside and model.cell_at(Vector2i(u,v)).get("ramp")!=null:
 				tone*=.80 if str(model.cell_at(Vector2i(u,v)).ramp) in ["u+","v+"] else 1.12
 			for corner in corners:
-				var height:=_corner_height(model,u,v,corner) if inside else 0.0
+				var height:=_corner_height(model,u,v,corner) if inside else float(level)
 				points.append(_screen(corner,height)-node.position)
 				uvs.append(corner)
 				colors.append(Color(tone,tone,tone))
@@ -80,6 +87,8 @@ static func build(view) -> void:
 				poly.material=null
 				var c:Dictionary=model.cell_at(Vector2i(u,v)) if inside else {}
 				var flat:=Color("6a8f4e") if c.is_empty() or int(c.level)==0 else Color("b9d77a") if int(c.level)==1 else Color("d9e9a8")
+				if mountain:flat=[Color("547c63"),Color("81a56f"),Color("b8c98e"),Color("70a5ab"),Color("a1b6d0"),Color("c9b4d4"),Color("e6d6b0")][clampi(level,0,6)]
+				if mountain and (c.is_empty() or c.get("material")=="rocha"):flat=flat.darkened(.55)
 				if not c.is_empty() and c.material=="bosque":flat=flat.darkened(.28)
 				if not c.is_empty() and c.material=="terra":flat=Color("cbac72")
 				if not c.is_empty() and c.get("ramp")!=null:flat=Color("d0473b") if str(c.ramp) in ["u+","v+"] else Color("e0a03a")
@@ -87,20 +96,22 @@ static func build(view) -> void:
 			Structures.floor_cut(model,node,poly,corners,u,v)
 			if inside:
 				_walls(view,model,node,u,v,wall_texture)
-				if bool(model.data.get("forest",{}).get("nativeProps",false)) and not bool(model.data.get("forest",{}).get("swamp",false)) and model.cell_at(Vector2i(u,v)).material=="mato" and OS.get_environment("KRONASTA_GEOMETRIA")!="1":
+				if bool(model.data.get("forest",{}).get("nativeProps",false)) and not mountain and not bool(model.data.get("forest",{}).get("swamp",false)) and model.cell_at(Vector2i(u,v)).material=="mato" and OS.get_environment("KRONASTA_GEOMETRIA")!="1":
 					view._encounter_tufts(Vector2i(u,v),model.cell_at(Vector2i(u,v)))
-			elif not industrial and OS.get_environment("KRONASTA_GEOMETRIA")!="1" and _hash(u,v,7)<.82 and not Structures.is_water(model,Vector2(u+.5,v+.5)) and not _near_exit(u,v,w,h,exits) and _hidden_behind(model,u,v)>4:
+			elif not industrial and not mountain and OS.get_environment("KRONASTA_GEOMETRIA")!="1" and _hash(u,v,7)<.82 and not Structures.is_water(model,Vector2(u+.5,v+.5)) and not _near_exit(u,v,w,h,exits) and _hidden_behind(model,u,v)>4:
 				_tree(view,model,Vector2(u+.5+(_hash(u,v,3)-.5)*.5,v+.5+(_hash(u,v,4)-.5)*.5),0,"a" if _hash(u,v,5)<.5 else "b",_hash(u,v,6),true)
 	Structures.build(view)
 	if bool(model.data.get("forest",{}).get("industrial",false)):
 		preload("res://scripts/overworld/industrial_structures.gd").build(view)
 	if bool(model.data.get("forest",{}).get("swamp",false)):
 		preload("res://scripts/overworld/swamp_structures.gd").build(view)
+	if mountain:preload("res://scripts/overworld/mountain_structures.gd").build(view)
 	if bool(model.data.get("forest",{}).get("nativeProps",false)):
 		var native_pieces: Array = []
 		for piece in model.data.pieces:
 			if piece.asset=="industrial-volume":continue
 			if piece.asset in ["pantano-arvore","pantano-arvore-seca"]:continue
+			if piece.asset=="montanha-crista":continue
 			if piece.asset in ["arvore","arbusto","flores","pedra"]:_piece(view,model,piece)
 			else:native_pieces.append(piece)
 		if not native_pieces.is_empty():
@@ -110,7 +121,7 @@ static func build(view) -> void:
 			view.art_preview=preview
 	else:
 		for piece in model.data.pieces:_piece(view,model,piece)
-	if not bool(model.data.get("forest",{}).get("industrial",false)):_tufts(view,model)
+	if not bool(model.data.get("forest",{}).get("industrial",false)) and not mountain:_tufts(view,model)
 	for event in model.data.events:
 		if OS.get_environment("KRONASTA_GEOMETRIA")!="1" and event.type=="item" and str(event.props.get("visibilidade","")) in ["visivel","brilho"]:_glint(view,model,event)
 

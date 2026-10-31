@@ -1,0 +1,74 @@
+{
+  "schema": "overworld-kit-1",
+  "biome": "montanha-v1",
+  "grid": {
+    "cell": [
+      64,
+      32
+    ],
+    "levelPx": 64
+  },
+  "approval": "pending_owner_review",
+  "renderer": "res://scripts/overworld/mountain_structures.gd",
+  "pieces": {
+    "crista": {
+      "file": "pecas/crista.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "anchor": [
+        512,
+        1443.84
+      ],
+      "scale": 0.18,
+      "footprint": [
+        3,
+        3
+      ],
+      "alphaMin": 0,
+      "zeroAlphaSamplesStep4": 56537
+    },
+    "rochedos": {
+      "file": "pecas/rochedos.png",
+      "size": [
+        1774,
+        887
+      ],
+      "anchor": [
+        887,
+        780.56
+      ],
+      "scaleRange": [
+        0.085,
+        0.2072
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "alphaMin": 0,
+      "zeroAlphaSamplesStep4": 50959
+    }
+  },
+  "surfaces": {
+    "rocha": {
+      "file": "superficies/rocha.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "alphaMin": 255
+    }
+  },
+  "source": "image_gen.imagegen, 2026-10-30; original sources retained in art/overworld/kits/montanha-v1/fontes",
+  "direction": "2D manga/cartoon, bold navy contours and hard cel shading. Dofus/Wakfu as graphic language reference, not copied assets.",
+  "reused": [
+    "pantano-v1/pecas/grama-manga.png"
+  ],
+  "notes": [
+    "Static scenery, no rig or animation",
+    "Art does not change collision or geometry",
+    "Linear filtering and industrial_cutout alpha shader on props"
+  ]
+}
