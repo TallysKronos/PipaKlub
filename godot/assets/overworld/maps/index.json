@@ -114,6 +114,24 @@
       "name": "Pântano · Lago profundo",
       "scene": "kronasta-pantano-c",
       "biome": "floresta"
+    },
+    {
+      "id": "kronasta-montanha-a",
+      "name": "Montanha · Sopé",
+      "scene": "kronasta-montanha-a",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-montanha-b",
+      "name": "Montanha · Encosta",
+      "scene": "kronasta-montanha-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-montanha-c",
+      "name": "Montanha · Cume",
+      "scene": "kronasta-montanha-c",
+      "biome": "floresta"
     }
   ],
   "scenes": {
@@ -134,7 +152,10 @@
     "kronasta-industrial-c": "kronasta-industrial-c",
     "kronasta-pantano-a": "kronasta-pantano-a",
     "kronasta-pantano-b": "kronasta-pantano-b",
-    "kronasta-pantano-c": "kronasta-pantano-c"
+    "kronasta-pantano-c": "kronasta-pantano-c",
+    "kronasta-montanha-a": "kronasta-montanha-a",
+    "kronasta-montanha-b": "kronasta-montanha-b",
+    "kronasta-montanha-c": "kronasta-montanha-c"
   },
   "campaignReplacement": false
 }
