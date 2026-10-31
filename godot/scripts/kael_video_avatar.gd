@@ -1,5 +1,6 @@
 extends Node2D
 ## Video-derived pixel study: runtime translation/height belongs to the map controller.
+const Pixelgen = preload("res://scripts/pixelgen_sprites.gd")
 const DIRECTIONS := ["s","sw","w","nw","n","ne","e","se"]
 const BODY_SCALE := 1.12 # Old composed silhouette 96 px; new directional body about 86 px.
 const STANDING_HEIGHT := 86.0 # Measured SE standing silhouette; excludes transparent cell margin.
@@ -38,12 +39,12 @@ func set_motion_action(action: String) -> void:
 	motion_action=action
 func _ready() -> void:
 	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
-	walking=PixelgenSprites.texture("res://assets/kael-video/kael-walk-eight.png")
-	resting=PixelgenSprites.texture("res://assets/kael-video/kael-idle-eight.png")
-	sprinting=PixelgenSprites.texture("res://assets/kael-video/kael-run-eight.png")
-	jumping=PixelgenSprites.texture("res://assets/kael-video/kael-jump.png")
+	walking=Pixelgen.load_texture("res://assets/kael-video/kael-walk-eight.png")
+	resting=Pixelgen.load_texture("res://assets/kael-video/kael-idle-eight.png")
+	sprinting=Pixelgen.load_texture("res://assets/kael-video/kael-run-eight.png")
+	jumping=Pixelgen.load_texture("res://assets/kael-video/kael-jump.png")
 	jump_frames=JSON.parse_string(FileAccess.get_file_as_string("res://assets/kael-video/jump.json"))
-	item_texture=PixelgenSprites.texture("res://assets/kael-video/kael-item.png")
+	item_texture=Pixelgen.load_texture("res://assets/kael-video/kael-item.png")
 	item_frames=JSON.parse_string(FileAccess.get_file_as_string("res://assets/kael-video/item.json"))
 
 func item_pose(t: float, from_facing: String) -> void:

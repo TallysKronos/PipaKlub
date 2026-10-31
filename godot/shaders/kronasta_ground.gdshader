@@ -8,6 +8,12 @@ uniform sampler2D grass_b : repeat_enable, filter_linear;
 uniform sampler2D dirt : repeat_enable, filter_linear;
 uniform vec2 map_size = vec2(1.0);
 uniform float tex_scale = 0.0026;
+uniform bool swamp = false;
+uniform bool boss_arena = false;
+uniform bool mountain = false;
+uniform float mountain_stage = 0.;
+uniform sampler2D mountain_rock : repeat_enable, filter_linear;
+uniform sampler2D terrain_mask : filter_nearest;
 varying vec2 world;
 
 void vertex() {
@@ -31,5 +37,25 @@ void fragment() {
 	vec3 soil = texture(dirt, tuv * 1.15).rgb;
 	soil *= mix(.86, 1.04, smoothstep(.55, .85, edge)); // centro da trilha mais claro
 	vec3 col = mix(grass, soil, path);
+	if(mountain){
+		float rock=texture(terrain_mask,UV/map_size).r;
+		vec3 turf=mix(mix(vec3(.34,.45,.25),vec3(.48,.52,.34),mountain_stage*.5),vec3(.54,.57,.37),patch*.55);
+		vec3 trail=mix(vec3(.64,.55,.38),vec3(.76,.67,.47),smoothstep(.3,.75,edge));
+		turf *= mix(.90,1.08,grain);
+        turf=mix(turf,turf*vec3(.72,.89,.67),smoothstep(.12,.8,m.a));
+        trail=mix(trail,vec3(.66,.65,.52),mountain_stage*.28);
+        trail *= mix(.86,1.09,texture(dirt,tuv*1.15).g);
+        col=mix(turf,trail,path);
+		vec3 bedrock=texture(mountain_rock,tuv*.65).rgb;
+        bedrock=mix(bedrock,mix(vec3(.40,.47,.33),vec3(.57,.57,.49),mountain_stage*.5),.64);
+        col=mix(col,bedrock,rock);
+	}
+	if(swamp){
+		float lum=dot(col,vec3(.299,.587,.114));
+		vec3 moss=mix(vec3(.20,.29,.15),vec3(.43,.49,.28),clamp(lum,0.,1.));
+		vec3 mud=mix(vec3(.32,.26,.17),vec3(.64,.55,.36),clamp(lum,0.,1.));
+		col=mix(moss,mud,path);
+		if(boss_arena)col*=vec3(.72,.79,.82);
+	}
 	COLOR = vec4(col * COLOR.rgb, 1.0);
 }

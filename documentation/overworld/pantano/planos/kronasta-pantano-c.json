@@ -1,0 +1,334 @@
+{
+  "area": "kronasta-pantano-c",
+  "shots": [
+    {
+      "name": "area-inteira",
+      "u": 24,
+      "v": 20,
+      "zoom": 0.36,
+      "kind": "geral"
+    },
+    {
+      "name": "entrada",
+      "u": 24.5,
+      "v": 37.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "centro",
+      "u": 24,
+      "v": 20,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "saida-24-39",
+      "u": 24.5,
+      "v": 39.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "saida-24-0",
+      "u": 24.5,
+      "v": 0.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "canto-n1-12-4",
+      "u": 12,
+      "v": 4,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-22-4",
+      "u": 22,
+      "v": 4,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-26-4",
+      "u": 26,
+      "v": 4,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-36-4",
+      "u": 36,
+      "v": 4,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-12-28",
+      "u": 12,
+      "v": 28,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-36-28",
+      "u": 36,
+      "v": 28,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-12-32",
+      "u": 12,
+      "v": 32,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-36-32",
+      "u": 36,
+      "v": 32,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "rampa-topo-6-28",
+      "u": 6.5,
+      "v": 28.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "plato-6-28",
+      "u": 6.5,
+      "v": 28.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "rampa-topo-7-28",
+      "u": 7.5,
+      "v": 28.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "plato-7-28",
+      "u": 7.5,
+      "v": 28.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "rampa-topo-40-28",
+      "u": 40.5,
+      "v": 28.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "plato-40-28",
+      "u": 40.5,
+      "v": 28.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "rampa-topo-41-28",
+      "u": 41.5,
+      "v": 28.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "plato-41-28",
+      "u": 41.5,
+      "v": 28.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "rampa-pe-6-29",
+      "u": 6.5,
+      "v": 29.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "rampa-pe-7-29",
+      "u": 7.5,
+      "v": 29.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "rampa-pe-40-29",
+      "u": 40.5,
+      "v": 29.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "rampa-pe-41-29",
+      "u": 41.5,
+      "v": 29.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "arena",
+      "u": 24,
+      "v": 18,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "aproximacao",
+      "u": 24,
+      "v": 30,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "volta-oeste",
+      "u": 13,
+      "v": 18,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "volta-leste",
+      "u": 34,
+      "v": 18,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "arvore-seca-oeste",
+      "u": 7,
+      "v": 24,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "arvore-seca-leste",
+      "u": 41,
+      "v": 24,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "lago-margem-0",
+      "u": 32.5,
+      "v": 18,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "lago-margem-1",
+      "u": 31.852976026345935,
+      "v": 21.252809175103263,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "lago-margem-2",
+      "u": 30.010407640085653,
+      "v": 24.010407640085653,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "lago-margem-3",
+      "u": 27.252809175103263,
+      "v": 25.852976026345935,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "lago-margem-4",
+      "u": 24,
+      "v": 26.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "lago-margem-5",
+      "u": 20.747190824896737,
+      "v": 25.852976026345935,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "lago-margem-6",
+      "u": 17.989592359914347,
+      "v": 24.010407640085653,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "lago-margem-7",
+      "u": 16.147023973654065,
+      "v": 21.252809175103263,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "lago-margem-8",
+      "u": 15.5,
+      "v": 18,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "lago-margem-9",
+      "u": 16.14702397365406,
+      "v": 14.747190824896737,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "lago-margem-10",
+      "u": 17.989592359914344,
+      "v": 11.989592359914347,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "lago-margem-11",
+      "u": 20.747190824896734,
+      "v": 10.147023973654065,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "lago-margem-12",
+      "u": 24,
+      "v": 9.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "lago-margem-13",
+      "u": 27.252809175103266,
+      "v": 10.147023973654065,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "lago-margem-14",
+      "u": 30.010407640085653,
+      "v": 11.989592359914344,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "lago-margem-15",
+      "u": 31.852976026345935,
+      "v": 14.747190824896732,
+      "zoom": 2.3,
+      "kind": "junta"
+    }
+  ]
+}

@@ -19,6 +19,9 @@ static func is_water(model,p:Vector2) -> bool:
 static func floor_cut(model,node:Node2D,poly:Polygon2D,corners:Array,u:int,v:int) -> void:
  var c:Dictionary=model.cell_at(Vector2i(u,v))
  if c.is_empty():c={"material":"grama","level":0}
+ if model.data.get("forest",{}).get("mountain",false) and (u<0 or v<0 or u>=int(model.data.w) or v>=int(model.data.h)):
+  c=model.cell_at(Vector2i(clampi(u,0,int(model.data.w)-1),clampi(v,0,int(model.data.h)-1)))
+ if model.data.get("forest",{}).get("mountain",false) and int(c.level)<0:poly.free();return
  for stairs:Dictionary in model.data.get("forest",{}).get("stairs",[]):
   if u>=int(stairs.u) and u<int(stairs.u+stairs.width) and v>=int(stairs.v) and v<int(stairs.v+2):poly.free();return
  var fragments:Array=[PackedVector2Array(corners)]
@@ -76,7 +79,14 @@ static func build(view) -> void:
    var surface:=Node2D.new();surface.z_index=-2;view.actors.add_child(surface)
    var bottom:=PackedVector2Array()
    for p in contour:bottom.append(iso(p)+Vector2(0,depth))
-   var water:=quad(surface,bottom,Color("2a7490") if geometry() else Color(.65,.87,.93),null if geometry() else load(BASE+"aguas-v1/surfaces/rio-claro.png"))
+   var swamp:bool=f.get("swamp",false)
+   var water:=quad(surface,bottom,Color("2a7490") if geometry() else Color("20483b") if swamp else Color(.65,.87,.93),null if geometry() or swamp else load(BASE+"aguas-v1/surfaces/rio-claro.png"))
+   if swamp and not geometry():
+    var shader:=ShaderMaterial.new();shader.shader=preload("res://shaders/swamp_water.gdshader");water.material=shader
+    if f.has("arena"):
+     shader.set_shader_parameter("arena",true)
+     shader.set_shader_parameter("arena_center",iso(Vector2(f.arena.center[0],f.arena.center[1]))+Vector2(0,depth))
+     shader.set_shader_parameter("arena_radii",Vector2(32,16)*sqrt(2.0)*float(f.arena.radius))
    if not geometry():
     water.texture_repeat=CanvasItem.TEXTURE_REPEAT_ENABLED
     var uv:=PackedVector2Array();for p in bottom:uv.append(p*.8)
@@ -85,7 +95,7 @@ static func build(view) -> void:
     var uv_a:Vector2=contour[i];var uv_b:Vector2=contour[(i+1)%contour.size()]
     if index==0 and uv_a==Vector2(35,9) and uv_b==Vector2(36,9):continue
     var bridge:Dictionary=w.get("bridge",{"u":23,"v":19,"w":3,"h":6})
-    if index==1 and maxf(uv_a.x,uv_b.x)>=float(bridge.u) and minf(uv_a.x,uv_b.x)<=float(bridge.u+bridge.w):
+    if index==1 and not w.get("noBridge",false) and maxf(uv_a.x,uv_b.x)>=float(bridge.u) and minf(uv_a.x,uv_b.x)<=float(bridge.u+bridge.w):
      # Split long banks at the actual deck; do not discard an entire channel side.
      if not f.get("industrial",false):continue
     var a:Vector2=iso(uv_a);var b:Vector2=iso(uv_b)
@@ -114,10 +124,11 @@ static func build(view) -> void:
  # Bridge timbers laid in the same cell footprint, head posts only at the two banks.
  for v in int(model.data.h):
   for u in int(model.data.w):
+   if f.get("swamp",false) and not geometry():continue
    if model.cell_at(Vector2i(u,v)).material!="ponte":continue
    var plank:=Node2D.new();plank.position=iso(Vector2(u,v))+Vector2(0,3);view.actors.add_child(plank)
    for t in [0.0,.33,.66]:line(plank,PackedVector2Array([iso(Vector2(u,v+t))-plank.position,iso(Vector2(u+1,v+t))-plank.position]),1.4,Color("667b80") if f.get("industrial",false) else Color("735333"))
- if not w.is_empty():
+ if not w.is_empty() and not w.get("noBridge",false) and (not f.get("swamp",false) or geometry()):
   var bridge:Dictionary=w.get("bridge",{"u":23,"v":19,"w":3,"h":6})
   for at in [Vector2(bridge.u,bridge.v),Vector2(bridge.u+bridge.w,bridge.v),Vector2(bridge.u,bridge.v+bridge.h),Vector2(bridge.u+bridge.w,bridge.v+bridge.h)]:
    var post:=Node2D.new();post.position=iso(at)+Vector2(0,4);view.actors.add_child(post)
