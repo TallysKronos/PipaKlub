@@ -25,7 +25,10 @@ func _initialize() -> void:
   for point in model.graph.get_point_ids():
    for other in model.graph.get_point_connections(point):
     if not model.clear_segment(model.graph.get_point_position(point),model.graph.get_point_position(other)):failures+=1
-  if bridge==0:failures+=1
+  if model.data.forest.water.get("noBridge",false):
+   if bridge!=0 or model.clear_segment(Vector2(24,18),Vector2(24,18)):failures+=1
+   if not model.clear_segment(Vector2(24.5,29.5),Vector2(24.5,29.5)):failures+=1
+  elif bridge==0:failures+=1
   print("PANTANO ",part," · ",shore," shore samples blocked · ",bridge," bridge samples passable")
  print("PANTANO WATER ",failures," failures")
  quit(0 if failures==0 else 1)

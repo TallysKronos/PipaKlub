@@ -1,5 +1,30 @@
 # Pântano — prévia independente autorizada, 30/10/2026
 
+## Revisão de percurso e arena, autorizada em 30/10
+Manter A; substituir as plantas provisórias B/C por áreas próprias, preservando IDs. Remover todas as árvores decorativas da água. Sem inventar espécie/nome do boss: pergunta enviada ao dono, ambiente pode ser construído com lago vazio enquanto isso.
+
+### B — travessia deslocada (blocos 48×40)
+```
+ [aterro1/item]  saída24,0  [aterro1/item]
+      rampa v− -- curva de terra -- rampa v−
+ ~~~~~ canal sinuoso ~~~~~ ponte34,19..27 ~~~
+ [aterro1/mato]     desvio pela direita   [aterro1]
+      rampa v− --- entrada24,39 --- rampa v−
+```
+Abrir na entrada → desviar à direita até ponte estreita → abrir na margem norte. Três materiais alcançáveis, um escondido; mato opcional. Dois marcos secundários de mata, sem árvore plantada em água.
+
+### C — clareira do lago circular (48×40)
+```
+  moldura elevada1 / mata, atalho para A24,0
+ [maciço1] ----- volta seca ----- [maciço1]
+ [item]      lago circular         [item]
+ [mato]       centro24,18           [mato]
+ [rampa v−]   água−24             [rampa v−]
+        clareira de chegada0 / contemplação
+                  entrada24,39
+```
+Marco principal: lago circular de raio8,5 células, borda baixa e rebaixo real. Um anel largo de terra firme permite contornar sem atravessar água; sem ponte sobre o boss. Árvores enquadram o exterior; clareira central limpa. Névoa/ondulações de atmosfera não podem cobrir a margem nem sugerir chão. Três itens nos terraços laterais, sem item dentro d'água. O boss e o combate dependem de definição posterior; nenhum gatilho de vitória será inventado.
+
 Sem chefe, NPC canônico ou revelação. IDs `kronasta-pantano-a/b/c`; nomes descritivos de trabalho: Entrada alagada, Curva dos cipós, Clareira das raízes. Não conectado à campanha. Referências em `documentation/overworld/pantano/pesquisa-direcao.md`.
 
 ## Planta antes da arte
