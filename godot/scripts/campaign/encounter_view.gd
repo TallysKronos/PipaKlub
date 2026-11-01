@@ -16,6 +16,7 @@ var launch_age:=0.0
 var round_wipe_number:=0
 var selected_action := "cut"
 var round_caption: Control
+var boss_intro:Control
 const ACTION_COPY := {"cut": "Cortar a linha do oponente em um cruzamento.", "skill": "Usar a habilidade do seu parceiro.", "dodge": "Esquivar e abrir uma oportunidade de contra-ataque.", "line": "Preparar um puxão para disputar a linha.", "guard": "Proteger-se no momento do impacto.", "signature": "Pulo do Elo · Marque o alvo e acerte a área."}
 const Hud = preload("res://scripts/campaign/hud.gd")
 var pointer_held: Dictionary = {}
@@ -73,6 +74,13 @@ func _ready() -> void:
 	impacts.reduced_motion = reduced_motion
 	model.damage_applied.connect(impacts.add)
 	model.combat_feedback.connect(impacts.add)
+	if model.q.get("boss",false):
+		boss_intro=load("res://scripts/campaign/boss_presentation.gd").new()
+		boss_intro.face=Ink.portrait(textures[1],art_ids[1])
+		boss_intro.reduced_motion=reduced_motion
+		boss_intro.remaining=model.intro
+		boss_intro.visible=model.intro>0 and model.outcome.is_empty()
+		add_child(boss_intro)
 	var bottom := VBoxContainer.new()
 	footer_contents=bottom
 	bottom.add_theme_constant_override("separation", 6)
@@ -280,9 +288,14 @@ func _physics_process(delta: float) -> void:
 			save_clock = 0
 			save_requested.emit(model.snapshot())
 	finish_button.visible = not model.outcome.is_empty()
+	if is_instance_valid(boss_intro):
+		boss_intro.remaining=model.intro
+		boss_intro.visible=model.intro>0 and model.outcome.is_empty() and not paused and not blocked
+		boss_intro.queue_redraw()
+		if model.intro>0:require_action_release=true
 	_update_result(delta)
 	for command in move_cards:
-		command.node.visible = model.outcome.is_empty() and not paused
+		command.node.visible = model.outcome.is_empty() and not paused and not (model.q.get("boss",false) and model.intro>0)
 		var cooldown: float = model.p[command.cooldown]
 		var action: String = {"attackCooldown": "cut", "skillCooldown": "skill", "dodgeCooldown": "dodge", "lineCooldown": "line", "guardCooldown": "guard", "signatureCooldown": "signature"}[command.cooldown]
 		command.label.text = "%s · %d energia" % [command.name, command.cost]
@@ -432,6 +445,7 @@ func _draw() -> void:
 	draw_set_transform(_field_origin(), 0, _field_scale())
 
 	for index in 2:
+		if model.q.get("boss",false) and model.intro>0:continue
 		var actor: Dictionary = model.p if index == 0 else model.q
 		draw_line(Vector2(actor.anchor, 585), Vector2(actor.x, actor.y), Hud.BLACK, 6)
 		draw_line(Vector2(actor.anchor, 585), Vector2(actor.x, actor.y), Hud.CYAN if index == 0 else Hud.CORAL, 3)
@@ -493,6 +507,7 @@ func _draw_status() -> void:
 		draw_arc(Vector2(286,size.y-160),14,-PI/2,-PI/2+TAU*flee_hold,32,Tokens.SOL,3,true)
 
 func _draw_phase() -> void:
+	if model.q.get("boss",false) and model.intro>0:return
 	var message:=""
 	if model.get("intermission")!=null and model.intermission>0:
 		message="EMPATE" if "empatada" in model.round_message else "CORTOU!" if model.round_message.begins_with(model.p.name+" venceu") else "RODADA PERDIDA"

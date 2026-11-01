@@ -4,7 +4,7 @@ const Levels = preload("res://scripts/campaign/partner_levels.gd")
 ## Single-round local Lacertubo encounter. Contact/costs/armor follow src/engine.js.
 ## Does not implement online rooms, specialization classes or the six line loadouts.
 var outcome := ""
-var intro := 6.6
+var intro := 3.2
 var duration := 120.0
 var partner_id := ""
 var model_id := "rabbito"

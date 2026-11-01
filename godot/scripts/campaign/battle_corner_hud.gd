@@ -4,6 +4,7 @@ const Hud=preload("res://scripts/campaign/hud.gd")
 const Ink=preload("res://scripts/campaign/battle_ink.gd")
 const T=preload("res://scripts/campaign/ui_tokens.gd")
 const PILOT=preload("res://assets/campaign/portrait-kael.png")
+const Boss=preload("res://scripts/campaign/boss_presentation.gd")
 static func regions(size:Vector2,rivals:int=1) -> Dictionary:
 	return {"pilot":Rect2(20,14,300,66),"partner":Rect2(20,size.y-126,400,108),"clock":Rect2(size.x/2-45,12,90,90),"weather":Rect2(size.x/2-100,138,200,28),"rivals":Rect2(size.x-320,14,300,104 if rivals==1 else 66*rivals)}
 static func text(c:CanvasItem,p:Vector2,value:String,font_size:int=16,color:Color=T.PAPEL) -> void:
@@ -22,6 +23,7 @@ static func diamonds(c:CanvasItem,start:Vector2,won:int,total:int,color:Color) -
 		c.draw_colored_polygon(shape,color if index<won else T.TINTA_3)
 static func draw_on(c:Control,actors:Array,faces:Array,names:Array,player:Dictionary,seconds:float,round_no:int,rounds:int,wind:float,cost:int=0,lesson:int=-1,footer_top:float=-1) -> void:
 	var boxes:=regions(c.size,actors.size()-1)
+	var boss:bool=actors.size()==2 and actors[1].get("boss",false)
 	if footer_top>=0:boxes.partner.position.y=footer_top-116
 	if actors[0].hp/actors[0].stats.line<.25:
 		var thickness:float=minf(c.size.x,c.size.y)*.06
@@ -35,6 +37,7 @@ static func draw_on(c:Control,actors:Array,faces:Array,names:Array,player:Dictio
 	text(c,pilot.position+Vector2(72,48),"Tamer · Nv. %d"%level,14,T.PAPEL_2)
 	diamonds(c,pilot.position+Vector2(240,46),actors[0].get("rounds",0),rounds,T.CEU)
 	for index in range(1,actors.size()):
+		if boss:continue
 		var a:Dictionary=rival_summary(actors[index])
 		var compact:bool=actors.size()>2
 		var box:=Rect2(boxes.rivals.position+Vector2(0,(index-1)*66),Vector2(300,60 if compact else 104))
@@ -69,6 +72,11 @@ static func draw_on(c:Control,actors:Array,faces:Array,names:Array,player:Dictio
 		c.draw_rect(cell_rect,T.CEU if p.energy/p.stats.energy>cell/10.0 else T.TINTA_3)
 		if cell<ceili(cost/p.stats.energy*10) and cost>0:c.draw_rect(cell_rect.grow(1),T.SOL,false,1)
 	text(c,card.position+Vector2(339,92),"%d%%"%roundi(p.energy/p.stats.energy*100),14)
+	if boss:
+		Boss.draw_meter(c,actors[1],faces[1],seconds,int(actors[1].get("level",1)))
+		Ink.plate(c,boxes.weather,T.TINTA,T.TINTA,6)
+		text(c,boxes.weather.position+Vector2(14,20),"Vento %s · %s"%["leve" if absf(wind)<6 else "moderado","→" if wind>=0 else "←"],14,T.PAPEL_2)
+		return
 	var center:Vector2=boxes.clock.get_center()
 	var diamond:=PackedVector2Array([center+Vector2(0,-45),center+Vector2(55,0),center+Vector2(0,45),center+Vector2(-55,0)])
 	c.draw_colored_polygon(diamond,T.TINTA)
