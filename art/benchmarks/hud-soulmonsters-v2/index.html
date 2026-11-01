@@ -1,0 +1,307 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Estudo de HUD · Soulmonsters · PIP-127</title>
+<style>
+:root{color-scheme:light;--ink:#172d36;--paper:#f6f3eb;--accent:#006d77}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,sans-serif}header,main,footer{max-width:1440px;margin:auto;padding:32px clamp(20px,4vw,64px)}header{border-bottom:2px solid var(--ink)}header p{max-width:820px}h1{font-size:clamp(32px,5vw,62px);line-height:1.08;letter-spacing:-.04em;margin:20px 0}h2{font-size:30px;line-height:1.2;margin-top:50px}h3{line-height:1.35}a{color:var(--accent);text-underline-offset:3px}nav{display:flex;gap:12px;flex-wrap:wrap}nav a{padding:8px 12px;border:1px solid #a4b8bb;border-radius:6px}.eyebrow,.tag{text-transform:uppercase;font-size:12px;font-weight:750;letter-spacing:.08em}.notice{border-left:4px solid #b07019;background:#f4e6cd;padding:14px 20px;margin:24px 0}.filters{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}button{font:inherit;font-size:14px;border:1px solid #7e969a;padding:9px 14px;background:transparent;color:var(--ink);cursor:pointer;border-radius:6px}button[aria-pressed=true]{background:var(--ink);color:white}button:focus-visible,a:focus-visible{outline:3px solid #b1670b;outline-offset:4px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:24px}.card{border:1px solid #b3c1c2;background:#fff;border-radius:8px;overflow:hidden}.picture{height:260px;display:flex;background:#e4e9e7;align-items:center;justify-content:center;padding:12px}.picture img{max-width:100%;max-height:100%;object-fit:contain}.caption{padding:20px}.caption h3{margin:8px 0}.caption p{font-size:14px;margin:8px 0}.credit{color:#4d6469}[hidden]{display:none!important}.report{max-width:960px;margin:auto}.report img{max-width:100%;max-height:480px;object-fit:contain;background:white;margin:12px auto;display:block}code{font-size:.88em;overflow-wrap:anywhere}.table-scroll{overflow:auto}table{border-collapse:collapse;font-size:14px;min-width:650px}td{border:1px solid #bcc9c8;padding:10px;vertical-align:top}tr:first-child{font-weight:bold;background:#e4ece8}.summary{max-width:960px}.contact{width:100%;height:auto}footer{border-top:1px solid #b3c1c2;font-size:14px}html{scroll-behavior:auto}
+</style></head><body><header><div class="eyebrow">Soulmonsters / Pesquisa visual / PIP-127 / 01.11.2026</div><h1>A interface como parte<br>do mundo.</h1><p>Sete famílias de HUD, 27 evidências e dez princípios para pipa, Kronasta, almática, Elo e Pipa TV. Este é um caderno de pesquisa, não uma proposta de HUD aprovada.</p><nav aria-label="Seções"><a href="#sintese">Síntese</a><a href="#evidencias">Evidências</a><a href="#analise">Estudo completo</a><a href="fontes.json">Fontes e hashes</a></nav></header><main>
+<section id="sintese" class="summary"><h2>Identidade é uma gramática.</h2><p>Forma, comando, foco e ritmo precisam compartilhar uma lógica. A pipa pode explicar os recursos e suas relações; o bairro pode orientar a consulta; a Pipa TV pode marcar os grandes acontecimentos.</p><div class="notice"><strong>Escopo: observação estática.</strong> Não foram medidos animação, áudio, latência ou controle físico. Ni no Kuni tem cobertura parcial de campo e pausa; a intro VS de Black/White não foi comprovada. As versões analisadas estão identificadas em cada evidência.</div><a href="prancha-comparativa.jpg"><img class="contact" src="prancha-comparativa.jpg" alt="Sete referências representativas identificadas por jogo e código de evidência"></a></section>
+<section id="evidencias"><h2>Evidências com procedência</h2><p>Abra uma imagem para ampliar. Referências de terceiros para estudo crítico; não são assets para integrar ao jogo.</p><div class="filters" role="group" aria-label="Filtrar evidências por jogo"><button type="button" data-filter="all" aria-pressed="true">Todos</button><button type="button" data-filter="bw" aria-pressed="false">Black / White</button><button type="button" data-filter="dwds" aria-pressed="false">Digimon World DS</button><button type="button" data-filter="pmd" aria-pressed="false">Explorers of Sky</button><button type="button" data-filter="persona" aria-pressed="false">Persona 5</button><button type="button" data-filter="yokai" aria-pressed="false">Yo-kai Watch</button><button type="button" data-filter="ninokuni" aria-pressed="false">Ni no Kuni</button><button type="button" data-filter="cyber" aria-pressed="false">Cyber Sleuth</button></div><p id="count" role="status" aria-live="polite">27 evidências</p><div class="grid"><article class="card" data-game="bw">
+      <a class="picture" href="evidencias/bw-pdf-07.png" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/bw-pdf-07.png" alt="Controles e organização das duas telas"></a>
+      <div class="caption"><span class="tag">bw-7 · Black / White</span>
+      <h3>Controles e organização das duas telas</h3><p>Black Version, Nintendo DS; não Black 2/White 2</p>
+      <p>PDF página 7 (índice 6) · consulta 2026-11-01</p>
+      <p class="credit">Nintendo / The Pokémon Company / GAME FREAK</p>
+      <a href="https://csassets.nintendo.com/noaext/image/private/t_KA_PDF/DS_Pokemon_Black">Fonte e contexto</a> · <a href="https://csassets.nintendo.com/noaext/image/private/t_KA_PDF/DS_Pokemon_Black">Original</a></div></article>
+<article class="card" data-game="bw">
+      <a class="picture" href="evidencias/bw-pdf-08.png" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/bw-pdf-08.png" alt="Menu principal, equipe, Pokédex e mochila"></a>
+      <div class="caption"><span class="tag">bw-8 · Black / White</span>
+      <h3>Menu principal, equipe, Pokédex e mochila</h3><p>Black Version, Nintendo DS; não Black 2/White 2</p>
+      <p>PDF página 8 (índice 7) · consulta 2026-11-01</p>
+      <p class="credit">Nintendo / The Pokémon Company / GAME FREAK</p>
+      <a href="https://csassets.nintendo.com/noaext/image/private/t_KA_PDF/DS_Pokemon_Black">Fonte e contexto</a> · <a href="https://csassets.nintendo.com/noaext/image/private/t_KA_PDF/DS_Pokemon_Black">Original</a></div></article>
+<article class="card" data-game="bw">
+      <a class="picture" href="evidencias/bw-pdf-10.png" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/bw-pdf-10.png" alt="Batalha e mudança de parceiro"></a>
+      <div class="caption"><span class="tag">bw-10 · Black / White</span>
+      <h3>Batalha e mudança de parceiro</h3><p>Black Version, Nintendo DS; não Black 2/White 2</p>
+      <p>PDF página 10 (índice 9) · consulta 2026-11-01</p>
+      <p class="credit">Nintendo / The Pokémon Company / GAME FREAK</p>
+      <a href="https://csassets.nintendo.com/noaext/image/private/t_KA_PDF/DS_Pokemon_Black">Fonte e contexto</a> · <a href="https://csassets.nintendo.com/noaext/image/private/t_KA_PDF/DS_Pokemon_Black">Original</a></div></article>
+<article class="card" data-game="dwds">
+      <a class="picture" href="evidencias/dwds-001.jpg" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/dwds-001.jpg" alt="Batalha: informação versus comando"></a>
+      <div class="caption"><span class="tag">dw-001 · Digimon World DS</span>
+      <h3>Batalha: informação versus comando</h3><p>Digimon World DS, Nintendo DS, telas em inglês</p>
+      <p>Screenshot 001 · consulta 2026-11-01</p>
+      <p class="credit">Jogo: BANDAI NAMCO / BEC; hospedagem: RPGFan; captura individual não identificada na galeria</p>
+      <a href="https://www.rpgfan.com/gallery/digimon-world-ds-screenshots/">Fonte e contexto</a> · <a href="https://www.rpgfan.com/wp-content/uploads/2021/11/Digimon-World-DS-Screenshot-001.jpg">Original</a></div></article>
+<article class="card" data-game="dwds">
+      <a class="picture" href="evidencias/dwds-008.jpg" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/dwds-008.jpg" alt="Exploração e fazenda na segunda tela"></a>
+      <div class="caption"><span class="tag">dw-008 · Digimon World DS</span>
+      <h3>Exploração e fazenda na segunda tela</h3><p>Digimon World DS, Nintendo DS, telas em inglês</p>
+      <p>Screenshot 008 · consulta 2026-11-01</p>
+      <p class="credit">Jogo: BANDAI NAMCO / BEC; hospedagem: RPGFan; captura individual não identificada na galeria</p>
+      <a href="https://www.rpgfan.com/gallery/digimon-world-ds-screenshots/">Fonte e contexto</a> · <a href="https://www.rpgfan.com/wp-content/uploads/2021/11/Digimon-World-DS-Screenshot-008.jpg">Original</a></div></article>
+<article class="card" data-game="dwds">
+      <a class="picture" href="evidencias/dwds-012.jpg" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/dwds-012.jpg" alt="Equipe, atributos e reservas"></a>
+      <div class="caption"><span class="tag">dw-012 · Digimon World DS</span>
+      <h3>Equipe, atributos e reservas</h3><p>Digimon World DS, Nintendo DS, telas em inglês</p>
+      <p>Screenshot 012 · consulta 2026-11-01</p>
+      <p class="credit">Jogo: BANDAI NAMCO / BEC; hospedagem: RPGFan; captura individual não identificada na galeria</p>
+      <a href="https://www.rpgfan.com/gallery/digimon-world-ds-screenshots/">Fonte e contexto</a> · <a href="https://www.rpgfan.com/wp-content/uploads/2021/11/Digimon-World-DS-Screenshot-012.jpg">Original</a></div></article>
+<article class="card" data-game="dwds">
+      <a class="picture" href="evidencias/dwds-pdf-01.png" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/dwds-pdf-01.png" alt="Confirmação visual: INFORMATION/BATTLE FIELD/BATTLE MENU"></a>
+      <div class="caption"><span class="tag">dw-official · Digimon World DS</span>
+      <h3>Confirmação visual: INFORMATION/BATTLE FIELD/BATTLE MENU</h3><p>Digimon Story japonês (mesmo título-base de Digimon World DS), Nintendo DS</p>
+      <p>PDF página 1; edição japonesa · consulta 2026-11-01</p>
+      <p class="credit">BANDAI NAMCO Games</p>
+      <a href="https://www.bandainamco.co.jp/releases/images/3/30796.pdf">Fonte e contexto</a> · <a href="https://www.bandainamco.co.jp/releases/images/3/30796.pdf">Original</a></div></article>
+<article class="card" data-game="pmd">
+      <a class="picture" href="evidencias/pmd-pdf-09.png" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/pmd-pdf-09.png" alt="Campo e lista de comandos"></a>
+      <div class="caption"><span class="tag">pmd-9 · Explorers of Sky</span>
+      <h3>Campo e lista de comandos</h3><p>Pokémon Mystery Dungeon: Explorers of Sky, Nintendo DS</p>
+      <p>PDF página 9; páginas impressas 16–17 · consulta 2026-11-01</p>
+      <p class="credit">Nintendo / The Pokémon Company / Chunsoft</p>
+      <a href="https://www.nintendo.com/eu/media/downloads/games_8/emanuals/nintendo_ds_21/Manual_NintendoDS_PokemonMysteryDungeonExplorersOfSky_EN.pdf">Fonte e contexto</a> · <a href="https://www.nintendo.com/eu/media/downloads/games_8/emanuals/nintendo_ds_21/Manual_NintendoDS_PokemonMysteryDungeonExplorersOfSky_EN.pdf">Original</a></div></article>
+<article class="card" data-game="pmd">
+      <a class="picture" href="evidencias/pmd-pdf-10.png" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/pmd-pdf-10.png" alt="Dungeon, recursos e opções"></a>
+      <div class="caption"><span class="tag">pmd-10 · Explorers of Sky</span>
+      <h3>Dungeon, recursos e opções</h3><p>Pokémon Mystery Dungeon: Explorers of Sky, Nintendo DS</p>
+      <p>PDF página 10; páginas impressas 18–19 · consulta 2026-11-01</p>
+      <p class="credit">Nintendo / The Pokémon Company / Chunsoft</p>
+      <a href="https://www.nintendo.com/eu/media/downloads/games_8/emanuals/nintendo_ds_21/Manual_NintendoDS_PokemonMysteryDungeonExplorersOfSky_EN.pdf">Fonte e contexto</a> · <a href="https://www.nintendo.com/eu/media/downloads/games_8/emanuals/nintendo_ds_21/Manual_NintendoDS_PokemonMysteryDungeonExplorersOfSky_EN.pdf">Original</a></div></article>
+<article class="card" data-game="pmd">
+      <a class="picture" href="evidencias/pmd-pdf-11.png" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/pmd-pdf-11.png" alt="Golpes e itens em dungeon"></a>
+      <div class="caption"><span class="tag">pmd-11 · Explorers of Sky</span>
+      <h3>Golpes e itens em dungeon</h3><p>Pokémon Mystery Dungeon: Explorers of Sky, Nintendo DS</p>
+      <p>PDF página 11; páginas impressas 20–21 · consulta 2026-11-01</p>
+      <p class="credit">Nintendo / The Pokémon Company / Chunsoft</p>
+      <a href="https://www.nintendo.com/eu/media/downloads/games_8/emanuals/nintendo_ds_21/Manual_NintendoDS_PokemonMysteryDungeonExplorersOfSky_EN.pdf">Fonte e contexto</a> · <a href="https://www.nintendo.com/eu/media/downloads/games_8/emanuals/nintendo_ds_21/Manual_NintendoDS_PokemonMysteryDungeonExplorersOfSky_EN.pdf">Original</a></div></article>
+<article class="card" data-game="persona">
+      <a class="picture" href="evidencias/p5-manual-019.jpg" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/p5-manual-019.jpg" alt="Exploração urbana e ação contextual"></a>
+      <div class="caption"><span class="tag">p5-019 · Persona 5</span>
+      <h3>Exploração urbana e ação contextual</h3><p>Persona 5 original, PS4; não Royal</p>
+      <p>Manual página 19 · consulta 2026-11-01</p>
+      <p class="credit">ATLUS / SEGA</p>
+      <a href="https://atlus.com/persona5/manual/ps4/">Fonte e contexto</a> · <a href="https://atlus.com/persona5/manual/ps4/img/019.jpg">Original</a></div></article>
+<article class="card" data-game="persona">
+      <a class="picture" href="evidencias/p5-manual-031.jpg" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/p5-manual-031.jpg" alt="Dungeon: objetivo, mapa e equipe"></a>
+      <div class="caption"><span class="tag">p5-031 · Persona 5</span>
+      <h3>Dungeon: objetivo, mapa e equipe</h3><p>Persona 5 original, PS4; não Royal</p>
+      <p>Manual página 31 · consulta 2026-11-01</p>
+      <p class="credit">ATLUS / SEGA</p>
+      <a href="https://atlus.com/persona5/manual/ps4/">Fonte e contexto</a> · <a href="https://atlus.com/persona5/manual/ps4/img/031.jpg">Original</a></div></article>
+<article class="card" data-game="persona">
+      <a class="picture" href="evidencias/p5-manual-034.jpg" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/p5-manual-034.jpg" alt="Menu principal e submenus"></a>
+      <div class="caption"><span class="tag">p5-034 · Persona 5</span>
+      <h3>Menu principal e submenus</h3><p>Persona 5 original, PS4; não Royal</p>
+      <p>Manual página 34 · consulta 2026-11-01</p>
+      <p class="credit">ATLUS / SEGA</p>
+      <a href="https://atlus.com/persona5/manual/ps4/">Fonte e contexto</a> · <a href="https://atlus.com/persona5/manual/ps4/img/034.jpg">Original</a></div></article>
+<article class="card" data-game="persona">
+      <a class="picture" href="evidencias/p5-manual-039.jpg" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/p5-manual-039.jpg" alt="Batalha: HUD e estado de entrada"></a>
+      <div class="caption"><span class="tag">p5-039 · Persona 5</span>
+      <h3>Batalha: HUD e estado de entrada</h3><p>Persona 5 original, PS4; não Royal</p>
+      <p>Manual página 39 · consulta 2026-11-01</p>
+      <p class="credit">ATLUS / SEGA</p>
+      <a href="https://atlus.com/persona5/manual/ps4/">Fonte e contexto</a> · <a href="https://atlus.com/persona5/manual/ps4/img/039.jpg">Original</a></div></article>
+<article class="card" data-game="persona">
+      <a class="picture" href="evidencias/p5-manual-040.jpg" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/p5-manual-040.jpg" alt="Comandos e relação com botões"></a>
+      <div class="caption"><span class="tag">p5-040 · Persona 5</span>
+      <h3>Comandos e relação com botões</h3><p>Persona 5 original, PS4; não Royal</p>
+      <p>Manual página 40 · consulta 2026-11-01</p>
+      <p class="credit">ATLUS / SEGA</p>
+      <a href="https://atlus.com/persona5/manual/ps4/">Fonte e contexto</a> · <a href="https://atlus.com/persona5/manual/ps4/img/040.jpg">Original</a></div></article>
+<article class="card" data-game="persona">
+      <a class="picture" href="evidencias/p5-manual-046.jpg" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/p5-manual-046.jpg" alt="Resultado e retorno após derrota"></a>
+      <div class="caption"><span class="tag">p5-046 · Persona 5</span>
+      <h3>Resultado e retorno após derrota</h3><p>Persona 5 original, PS4; não Royal</p>
+      <p>Manual página 46 · consulta 2026-11-01</p>
+      <p class="credit">ATLUS / SEGA</p>
+      <a href="https://atlus.com/persona5/manual/ps4/">Fonte e contexto</a> · <a href="https://atlus.com/persona5/manual/ps4/img/046.jpg">Original</a></div></article>
+<article class="card" data-game="yokai">
+      <a class="picture" href="evidencias/yokai-pdf-22.png" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/yokai-pdf-22.png" alt="Campo, radar e mapa"></a>
+      <div class="caption"><span class="tag">yk-22 · Yo-kai Watch</span>
+      <h3>Campo, radar e mapa</h3><p>Yo-kai Watch primeiro jogo, Nintendo 3DS</p>
+      <p>PDF página 22; seção 9 · consulta 2026-11-01</p>
+      <p class="credit">LEVEL-5 / Nintendo</p>
+      <a href="https://www.nintendo.com/eu/media/downloads/games_8/emanuals/nintendo_3ds_2/yo_kai_watch_/ElectronicManual_Nintendo3DS_YokaiWatch_EN.pdf">Fonte e contexto</a> · <a href="https://www.nintendo.com/eu/media/downloads/games_8/emanuals/nintendo_3ds_2/yo_kai_watch_/ElectronicManual_Nintendo3DS_YokaiWatch_EN.pdf">Original</a></div></article>
+<article class="card" data-game="yokai">
+      <a class="picture" href="evidencias/yokai-pdf-29.png" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/yokai-pdf-29.png" alt="Menu principal e equipe"></a>
+      <div class="caption"><span class="tag">yk-29 · Yo-kai Watch</span>
+      <h3>Menu principal e equipe</h3><p>Yo-kai Watch primeiro jogo, Nintendo 3DS</p>
+      <p>PDF página 29; seção 12 · consulta 2026-11-01</p>
+      <p class="credit">LEVEL-5 / Nintendo</p>
+      <a href="https://www.nintendo.com/eu/media/downloads/games_8/emanuals/nintendo_3ds_2/yo_kai_watch_/ElectronicManual_Nintendo3DS_YokaiWatch_EN.pdf">Fonte e contexto</a> · <a href="https://www.nintendo.com/eu/media/downloads/games_8/emanuals/nintendo_3ds_2/yo_kai_watch_/ElectronicManual_Nintendo3DS_YokaiWatch_EN.pdf">Original</a></div></article>
+<article class="card" data-game="yokai">
+      <a class="picture" href="evidencias/yokai-pdf-40.png" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/yokai-pdf-40.png" alt="Batalha e roda de parceiros"></a>
+      <div class="caption"><span class="tag">yk-40 · Yo-kai Watch</span>
+      <h3>Batalha e roda de parceiros</h3><p>Yo-kai Watch primeiro jogo, Nintendo 3DS</p>
+      <p>PDF página 40; seção 16 · consulta 2026-11-01</p>
+      <p class="credit">LEVEL-5 / Nintendo</p>
+      <a href="https://www.nintendo.com/eu/media/downloads/games_8/emanuals/nintendo_3ds_2/yo_kai_watch_/ElectronicManual_Nintendo3DS_YokaiWatch_EN.pdf">Fonte e contexto</a> · <a href="https://www.nintendo.com/eu/media/downloads/games_8/emanuals/nintendo_3ds_2/yo_kai_watch_/ElectronicManual_Nintendo3DS_YokaiWatch_EN.pdf">Original</a></div></article>
+<article class="card" data-game="ninokuni">
+      <a class="picture" href="evidencias/nnk-world.jpg" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/nnk-world.jpg" alt="Mundo amplo — imagem promocional sem HUD"></a>
+      <div class="caption"><span class="tag">nk-world · Ni no Kuni</span>
+      <h3>Mundo amplo — imagem promocional sem HUD</h3><p>Wrath of the White Witch Remastered, PC; não Ni no Kuni II</p>
+      <p>Screenshot oficial 2; não prova HUD de exploração · consulta 2026-11-01</p>
+      <p class="credit">LEVEL-5 / BANDAI NAMCO</p>
+      <a href="https://store.steampowered.com/app/798460/Ni_no_Kuni_Wrath_of_the_White_Witch_Remastered/">Fonte e contexto</a> · <a href="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/798460/ss_fbff13a7ce41a8d16fb86ada2448c949ce3f44f4.1920x1080.jpg?t=1771958172">Original</a></div></article>
+<article class="card" data-game="ninokuni">
+      <a class="picture" href="evidencias/nnk-02_command-balloons.jpg" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/nnk-02_command-balloons.jpg" alt="Batalha: comandos e retrato"></a>
+      <div class="caption"><span class="tag">nk-02_command-balloons · Ni no Kuni</span>
+      <h3>Batalha: comandos e retrato</h3><p>Remastered, conforme declaração do artigo; plataforma exata da captura não comprovada</p>
+      <p>Imagem 02_command-balloons; composição anotada pelo artigo · consulta 2026-11-01</p>
+      <p class="credit">Jogo: LEVEL-5 / BANDAI NAMCO; seleção/anotações: The Picky Champy</p>
+      <a href="https://champicky.com/2020/12/15/ni-no-kuni-wrath-of-the-white-witch-battle-screen-interface-design-analysis/">Fonte e contexto</a> · <a href="https://champicky.com/wp-content/uploads/2020/11/02_command-balloons.jpg">Original</a></div></article>
+<article class="card" data-game="ninokuni">
+      <a class="picture" href="evidencias/nnk-06_spells-provisions.jpg" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/nnk-06_spells-provisions.jpg" alt="Submenus de magias e provisões"></a>
+      <div class="caption"><span class="tag">nk-06_spells-provisions · Ni no Kuni</span>
+      <h3>Submenus de magias e provisões</h3><p>Remastered, conforme declaração do artigo; plataforma exata da captura não comprovada</p>
+      <p>Imagem 06_spells-provisions; composição anotada pelo artigo · consulta 2026-11-01</p>
+      <p class="credit">Jogo: LEVEL-5 / BANDAI NAMCO; seleção/anotações: The Picky Champy</p>
+      <a href="https://champicky.com/2020/12/15/ni-no-kuni-wrath-of-the-white-witch-battle-screen-interface-design-analysis/">Fonte e contexto</a> · <a href="https://champicky.com/wp-content/uploads/2020/11/06_spells-provisions.jpg">Original</a></div></article>
+<article class="card" data-game="cyber">
+      <a class="picture" href="evidencias/cyber-3.jpg" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/cyber-3.jpg" alt="Batalha e ordem de turnos"></a>
+      <div class="caption"><span class="tag">cs-3 · Cyber Sleuth</span>
+      <h3>Batalha e ordem de turnos</h3><p>Complete Edition, PC; pacote inclui Cyber Sleuth e Hacker’s Memory, sem atribuir toda imagem a uma campanha</p>
+      <p>Screenshot oficial 4 · consulta 2026-11-01</p>
+      <p class="credit">BANDAI NAMCO / Media.Vision</p>
+      <a href="https://store.steampowered.com/app/1042550/Digimon_Story_Cyber_Sleuth_Complete_Edition/">Fonte e contexto</a> · <a href="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1042550/ss_b85abb30e749ea91b3f3827b895e0cea2b063d78.1920x1080.jpg?t=1792446596">Original</a></div></article>
+<article class="card" data-game="cyber">
+      <a class="picture" href="evidencias/cyber-5.jpg" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/cyber-5.jpg" alt="Exploração com minimapa"></a>
+      <div class="caption"><span class="tag">cs-5 · Cyber Sleuth</span>
+      <h3>Exploração com minimapa</h3><p>Complete Edition, PC; pacote inclui Cyber Sleuth e Hacker’s Memory, sem atribuir toda imagem a uma campanha</p>
+      <p>Screenshot oficial 6 · consulta 2026-11-01</p>
+      <p class="credit">BANDAI NAMCO / Media.Vision</p>
+      <a href="https://store.steampowered.com/app/1042550/Digimon_Story_Cyber_Sleuth_Complete_Edition/">Fonte e contexto</a> · <a href="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1042550/c464950bb4510beee2aaa84d408978883117f351/ss_c464950bb4510beee2aaa84d408978883117f351.1920x1080.jpg?t=1792446596">Original</a></div></article>
+<article class="card" data-game="cyber">
+      <a class="picture" href="evidencias/cyber-6.jpg" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/cyber-6.jpg" alt="Menu de atributos"></a>
+      <div class="caption"><span class="tag">cs-6 · Cyber Sleuth</span>
+      <h3>Menu de atributos</h3><p>Complete Edition, PC; pacote inclui Cyber Sleuth e Hacker’s Memory, sem atribuir toda imagem a uma campanha</p>
+      <p>Screenshot oficial 7 · consulta 2026-11-01</p>
+      <p class="credit">BANDAI NAMCO / Media.Vision</p>
+      <a href="https://store.steampowered.com/app/1042550/Digimon_Story_Cyber_Sleuth_Complete_Edition/">Fonte e contexto</a> · <a href="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1042550/e52d6a1ca2c4a65c8535816cab211adf4b75b680/ss_e52d6a1ca2c4a65c8535816cab211adf4b75b680.1920x1080.jpg?t=1792446596">Original</a></div></article>
+<article class="card" data-game="cyber">
+      <a class="picture" href="evidencias/cyber-7.jpg" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/cyber-7.jpg" alt="DigiFarm: comandos e seleção"></a>
+      <div class="caption"><span class="tag">cs-7 · Cyber Sleuth</span>
+      <h3>DigiFarm: comandos e seleção</h3><p>Complete Edition, PC; pacote inclui Cyber Sleuth e Hacker’s Memory, sem atribuir toda imagem a uma campanha</p>
+      <p>Screenshot oficial 8 · consulta 2026-11-01</p>
+      <p class="credit">BANDAI NAMCO / Media.Vision</p>
+      <a href="https://store.steampowered.com/app/1042550/Digimon_Story_Cyber_Sleuth_Complete_Edition/">Fonte e contexto</a> · <a href="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1042550/cbd65f9801ec2ae642a0a64a18f34ab2f4c44324/ss_cbd65f9801ec2ae642a0a64a18f34ab2f4c44324.1920x1080.jpg?t=1792446596">Original</a></div></article>
+<article class="card" data-game="cyber">
+      <a class="picture" href="evidencias/cybermanual-pdf-04.png" target="_blank" rel="noopener"><img loading="lazy" src="evidencias/cybermanual-pdf-04.png" alt="Controles de navegação, não amostra de HUD"></a>
+      <div class="caption"><span class="tag">cs-controls · Cyber Sleuth</span>
+      <h3>Controles de navegação, não amostra de HUD</h3><p>Cyber Sleuth original, PS4; usado só para referência de navegação</p>
+      <p>PDF página 4 · consulta 2026-11-01</p>
+      <p class="credit">BANDAI NAMCO</p>
+      <a href="https://media-center.namcobandaigames.eu/manuals/digimonstory_cybersleuth/DSCS_PS4_emanual_GB.pdf">Fonte e contexto</a> · <a href="https://media-center.namcobandaigames.eu/manuals/digimonstory_cybersleuth/DSCS_PS4_emanual_GB.pdf">Original</a></div></article></div></section>
+<section id="analise" class="report"><h1>PIP-127 — benchmark de HUDs para Soulmonsters</h1>
+<p>Estudo visual realizado em <strong>01/11/2026</strong>. <a href="index.html">Galeria navegável</a> · <a href="fontes.json">Fontes e evidências</a>. Escopo: sete famílias de interface, com 27 evidências selecionadas. Este estudo não escolhe a direção da PIP-129 e não altera a HUD atual.</p>
+<p>A conclusão é que <strong>a identidade vem de uma gramática que organiza a experiência</strong>, não de colar o símbolo do jogo numa interface comum. Para Soulmonsters, linha, tração, amarração, matéria leve e vida de bairro precisam explicar composição, estados e movimentos. Papel texturizado ou losangos, sozinhos, não bastam.</p>
+<h2>Método e limites</h2>
+<p>Foram abertos e inspecionados visualmente manuais oficiais e capturas de gameplay. As páginas dos manuais são provas documentais: a diagramação externa do manual não foi confundida com a HUD dentro das capturas. A triagem de galerias e folhas de contato serviu para escolher exemplos, não para afirmar que cada imagem foi analisada individualmente em detalhe.</p>
+<p>As observações descrevem as imagens vistas. As aplicações a Soulmonsters são <strong>inferências/propostas de design</strong>. Não foram executados os sete jogos, medidos tempos de animação, ouvidos sons nem testados seus controles físicos. Portanto não se atribuem durações, curvas, eficácia de UX ou intenções dos designers sem prova. O reconhecimento discutido é uma avaliação interna, não resultado de teste cego com jogadores.</p>
+<div class="table-scroll"><table>
+<tr><td>Família</td><td>Versão efetivamente usada</td><td>Exploração</td><td>Batalha</td><td>Menus</td></tr>
+<tr><td>Pokémon Black/White</td><td>Manual oficial <strong>Black Version</strong>, DS</td><td>Organização dos controles; cobertura visual reduzida do campo</td><td>HUD e escolha de ações</td><td>Principal, equipe, Pokédex e mochila</td></tr>
+<tr><td>Digimon World DS</td><td>Inglês, DS; press release japonês complementar</td><td>Cenário + fazenda na segunda tela</td><td>Informação, alvo e comandos</td><td>Formação, atributos e reserva</td></tr>
+<tr><td>Mystery Dungeon</td><td><strong>Explorers of Sky</strong>, DS</td><td>Campo e dungeon</td><td>Combate no contexto da dungeon; listas de golpes</td><td>Comandos, itens, equipe e opções</td></tr>
+<tr><td>Persona 5</td><td><strong>Original PS4</strong>, não Royal</td><td>Cidade e dungeon</td><td>HUD, comandos e entrada em perigo</td><td>Principal, itens/equipamento e resultado</td></tr>
+<tr><td>Yo-kai Watch</td><td><strong>Primeiro jogo</strong>, 3DS</td><td>Radar e mapa</td><td>Roda e comando</td><td>Principal e equipe</td></tr>
+<tr><td>Ni no Kuni</td><td><strong>Wrath of the White Witch Remastered</strong></td><td>Imagem oficial de mundo <strong>sem HUD</strong>; não valida leitura da HUD</td><td>Comandos e recursos</td><td>Submenus de batalha; pausa completa não inspecionada</td></tr>
+<tr><td>Cyber Sleuth</td><td><strong>Complete Edition PC</strong>; manual PS4 complementar</td><td>Minimap e grupo</td><td>Recursos e fila de turnos</td><td>Atributos e DigiFarm</td></tr>
+</table></div>
+<p>White não foi conferido separadamente de Black. A loja de Cyber Sleuth reúne duas campanhas: as capturas analisam a linguagem do pacote sem inventar diferenças entre Cyber Sleuth e Hacker’s Memory. Em Ni no Kuni, não generalizar uma imagem promocional sem HUD para a interface de exploração. Não se usou Ni no Kuni II. Nenhuma tela de Royal fundamenta a ficha de Persona 5.</p>
+<h2>1. Pokémon Black/White — economia de informação e hierarquia</h2>
+<p><strong>Evidências:</strong> <a href="evidencias/bw-pdf-07.png">BW-7</a>, <a href="evidencias/bw-pdf-08.png">BW-8</a>, <a href="evidencias/bw-pdf-10.png">BW-10</a>. Fonte: <a href="https://csassets.nintendo.com/noaext/image/private/t_KA_PDF/DS_Pokemon_Black">manual Nintendo</a>.</p>
+<p><strong>Observado.</strong> Placas compactas distinguem os dois lados do combate; nome, nível e HP têm agrupamento previsível. O comando principal domina a tela inferior; alternativas ocupam áreas secundárias. Equipe, mochila e Pokédex não são a mesma lista com outra legenda. Ícones pequenos trabalham junto de palavras. A tipografia funcional é contida; o sprite conserva protagonismo. A alternância entre ambiente, comando e ficha usa as duas telas como separação física de tarefas.</p>
+<p><strong>Leitura de identidade.</strong> O reconhecimento depende do conjunto: silhueta dos status, relação entre adversários, botão principal e elenco. Isoladamente, uma barra de HP não é assinatura suficiente.</p>
+<p><strong>Transferir.</strong> Separar o dado que orienta a decisão do comando que a executa. Manter posições previsíveis sem precisar de molduras enormes.</p>
+<p><strong>Não transportar.</strong> Poké Ball, desenho das placas, touchscreen dividido e arranjo literal das quatro ações. A intro VS de líderes não foi inspecionada nesta amostra; ela exige referência específica na PIP-133.</p>
+<h2>2. Digimon World DS — um instrumento para administrar criaturas</h2>
+<p><strong>Evidências:</strong> <a href="evidencias/dwds-001.jpg">batalha</a>, <a href="evidencias/dwds-008.jpg">campo/fazenda</a>, <a href="evidencias/dwds-012.jpg">formação</a>, <a href="evidencias/dwds-pdf-01.png">comunicado oficial</a>. Fontes: <a href="https://www.rpgfan.com/gallery/digimon-world-ds-screenshots/">RPGFan</a>, <a href="https://www.bandainamco.co.jp/releases/images/3/30796.pdf">Bandai Namco</a>.</p>
+<p><strong>Observado.</strong> Ciano, verdes luminosos, placas técnicas e pequenos conectores reaparecem. Na batalha, a área de informação e a miniatura do campo ficam separadas da cena e dos comandos. Retratos repetidos mantêm a equipe comparável. Na formação, atributos e reservas ficam explícitos. A fazenda ocupa a outra tela durante o percurso, sem transformar o chão explorável num quadro de números. Letras são compactas e o contraste entre fundos e painéis ajuda a conter a densidade.</p>
+<p><strong>Leitura de identidade.</strong> A linguagem de instrumento digital une criar, observar e combater. O painel existe para relacionar dados, não só emoldurá-los.</p>
+<p><strong>Transferir.</strong> Pipa Dex, Varal e quadro de evolução devem revelar relações diferentes do mesmo parceiro. Dados comparáveis merecem alinhamento consistente.</p>
+<p><strong>Não transportar.</strong> Circuitos neon, scan percentual, Digivice ou a densidade DS ampliada para desktop. Os dois monitores não justificam dois painéis permanentes cobrindo Soulmonsters.</p>
+<h2>3. Explorers of Sky — retratos e contexto com muita informação compacta</h2>
+<p><strong>Evidências:</strong> <a href="evidencias/pmd-pdf-09.png">campo</a>, <a href="evidencias/pmd-pdf-10.png">dungeon</a>, <a href="evidencias/pmd-pdf-11.png">golpes/itens</a>. Fonte: <a href="https://www.nintendo.com/eu/media/downloads/games_8/emanuals/nintendo_ds_21/Manual_NintendoDS_PokemonMysteryDungeonExplorersOfSky_EN.pdf">manual Nintendo</a>.</p>
+<p><strong>Observado.</strong> Campo e dungeon recebem conjuntos de dados distintos. Localização, piso e recursos são agrupados; comandos aparecem em listas curtas sobre o mundo. Itens, golpes e equipe compartilham uma gramática de janela, com seleção, rótulo e informação numérica. Retratos pequenos tornam os parceiros identificáveis sem precisar da ilustração inteira. Texto e ícones precisam funcionar em poucos pixels; o fundo da janela estabiliza a leitura sobre o mapa.</p>
+<p><strong>Leitura de identidade.</strong> A afinidade com os parceiros e a estrutura de expedição aparecem na maneira de apresentar equipe, local e ação. Não é a decoração de madeira do manual que define a HUD.</p>
+<p><strong>Transferir.</strong> Dado contextual deve mudar conforme o modo. Conversa pode ser expressiva enquanto inventário e golpes permanecem diretos.</p>
+<p><strong>Não transportar.</strong> Belly, PP, grade tática e a estética pixel/DS como exigências para o nosso sistema. Não adicionar recursos só porque aparecem na referência.</p>
+<h2>4. Persona 5 — consistência sem repetir o mesmo layout</h2>
+<p><strong>Evidências:</strong> <a href="evidencias/p5-manual-019.jpg">cidade</a>, <a href="evidencias/p5-manual-031.jpg">dungeon</a>, <a href="evidencias/p5-manual-034.jpg">menu</a>, <a href="evidencias/p5-manual-039.jpg">batalha</a>, <a href="evidencias/p5-manual-040.jpg">comandos</a>, <a href="evidencias/p5-manual-046.jpg">resultado</a>. Fonte: <a href="https://atlus.com/persona5/manual/ps4/">manual ATLUS, PS4 original</a>.</p>
+<p><strong>Observado.</strong> Massas pretas e brancas, recortes, contraste forte e tipos expressivos atravessam as telas. O menu ocupa o quadro com personagem e opções; a exploração concentra informação nas bordas; a batalha aproxima comandos do personagem ativo. Seleção é explícita por forma, contraste e posição, não apenas por uma cor discreta. Texto de explicação permanece mais regular que títulos e chamadas. O resultado tem sua própria composição sem abandonar a família.</p>
+<p><strong>Leitura de identidade.</strong> O sistema repete relações gráficas, não uma única caixa. O enquadramento permite intensidade variável.</p>
+<p><strong>Transferir.</strong> Uma mesma assinatura pode existir numa interação pequena e numa apresentação de campeão, mudando escala e densidade.</p>
+<p><strong>Não transportar.</strong> Paleta preto/vermelho/branco inteira, recortes ransom, estrelas e composição dos Phantom Thieves. Um Persona 5 recolorido com pipas continuaria parecendo Persona 5.</p>
+<h2>5. Yo-kai Watch — o objeto do mundo estrutura a interface</h2>
+<p><strong>Evidências:</strong> <a href="evidencias/yokai-pdf-22.png">campo</a>, <a href="evidencias/yokai-pdf-29.png">menu</a>, <a href="evidencias/yokai-pdf-40.png">batalha</a>. Fonte: <a href="https://www.nintendo.com/eu/media/downloads/games_8/emanuals/nintendo_3ds_2/yo_kai_watch_/ElectronicManual_Nintendo3DS_YokaiWatch_EN.pdf">manual Nintendo/LEVEL-5</a>.</p>
+<p><strong>Observado.</strong> Radar, relógio, medalhas e roda dão funções diferentes ao círculo. A equipe se organiza num mecanismo visual coerente; ações se distribuem ao redor dele. O menu usa objetos reconhecíveis junto de rótulos. O mapa oferece referências espaciais distintas do cenário. Painéis e botões são mais arredondados e coloridos do que nas referências digitais, mas continuam hierarquizados.</p>
+<p><strong>Leitura de identidade.</strong> O objeto central deixa de ser um ícone aplicado no canto e vira modo de organizar e agir. Essa relação é mais específica que simplesmente usar círculos.</p>
+<p><strong>Transferir.</strong> Investigar como carretel, amarração e continuidade do fio podem explicar foco, progressão ou tensão. A relação precisa funcionar, não apenas ilustrar.</p>
+<p><strong>Não transportar.</strong> A roda de seis parceiros, o desenho do relógio ou minijogos de stylus. Não forçar toda tela de Soulmonsters a caber num carretel circular.</p>
+<h2>6. Ni no Kuni — o comando participa da relação com o parceiro</h2>
+<p><strong>Evidências:</strong> <a href="evidencias/nnk-02_command-balloons.jpg">comandos</a>, <a href="evidencias/nnk-06_spells-provisions.jpg">listas</a>, <a href="evidencias/nnk-world.jpg">mundo promocional</a>. Fontes: <a href="https://champicky.com/2020/12/15/ni-no-kuni-wrath-of-the-white-witch-battle-screen-interface-design-analysis/">capturas anotadas The Picky Champy</a>, <a href="https://store.steampowered.com/app/798460/Ni_no_Kuni_Wrath_of_the_White_Witch_Remastered/">loja oficial</a>.</p>
+<p><strong>Observado.</strong> Comandos claros em balões se agrupam junto ao retrato do treinador. As listas preservam o balão, com ícone, nome, custo e seleção. As barras informativas são mais discretas e não competem pela mesma forma de ação. Fundos claros, bordas finas e preenchimento suave combinam com a ilustração. A imagem de mundo sem HUD ajuda apenas a avaliar o contexto artístico; não demonstra quanto a interface ocupa durante exploração.</p>
+<p><strong>Leitura de identidade.</strong> A relação humano/parceiro pode ser expressa pela forma do comando. A interpretação de “ordem falada” é uma leitura de design, não uma declaração de intenção do estúdio.</p>
+<p><strong>Transferir.</strong> Mostrar quem orienta e quem age; separar ação de informação com gramática compreensível.</p>
+<p><strong>Não transportar.</strong> Balões de comando como assinatura própria, pergaminho medieval ou a estética Ghibli. Pausa completa e transições não foram verificadas.</p>
+<h2>7. Cyber Sleuth — densidade com alinhamento e seleção inequívoca</h2>
+<p><strong>Evidências:</strong> <a href="evidencias/cyber-3.jpg">batalha</a>, <a href="evidencias/cyber-5.jpg">campo</a>, <a href="evidencias/cyber-6.jpg">atributos</a>, <a href="evidencias/cyber-7.jpg">fazenda</a>. Fontes: <a href="https://store.steampowered.com/app/1042550/Digimon_Story_Cyber_Sleuth_Complete_Edition/">loja oficial Complete Edition</a>, <a href="https://media-center.namcobandaigames.eu/manuals/digimonstory_cybersleuth/DSCS_PS4_emanual_GB.pdf">manual de controles PS4</a>.</p>
+<p><strong>Observado.</strong> Azul/ciano e superfícies claras organizam estatísticas em colunas e barras; na fazenda, o amarelo identifica a linha escolhida. Retratos, rótulos e abas distribuem informação sem depender de desenhos enormes. Na batalha, status ficam juntos e a ordem de turnos forma uma faixa própria. O minimapa é periférico. A fonte funcional e os alinhamentos repetidos estabilizam a quantidade de números.</p>
+<p><strong>Leitura de identidade.</strong> A linguagem tecnológica funciona como sistema de consulta. Os dados parecem pertencer ao mesmo instrumento mesmo quando muda a cena.</p>
+<p><strong>Transferir.</strong> Alinhar atributos, distinguir seleção de propriedade e separar estado do parceiro do ritmo da disputa. Cabeçalho expressivo não exige números inclinados.</p>
+<p><strong>Não transportar.</strong> Ciano holográfico como padrão universal, painéis de terminal ou uma fila de turnos numa batalha que usa outro ritmo. As imagens do pacote não comprovam qual campanha gerou cada captura.</p>
+<h2>Comparação transversal</h2>
+<div class="table-scroll"><table>
+<tr><td>Pergunta</td><td>Evidência útil</td><td>Consequência para nós</td></tr>
+<tr><td>O que dá reconhecimento além do logo?</td><td>Sistema de recortes P5; mecanismo YK; instrumento DW/CS</td><td>Repetir relações e comportamento, não um adesivo</td></tr>
+<tr><td>Onde a interface pode ser intensa?</td><td>Composição diferente entre campo, menu e batalha</td><td>Exploração calma; confronto concentrado; pausa consultável</td></tr>
+<tr><td>Qual o papel do parceiro?</td><td>Retratos persistentes e comandos atribuídos</td><td>O Elo precisa aparecer como relação entre atores</td></tr>
+<tr><td>Como cabem muitos dados?</td><td>Alinhamentos de CS/DW; listas compactas PMD</td><td>Dados regulares sobre superfície tranquila</td></tr>
+<tr><td>Forma pode explicar ação?</td><td>Roda YK; comando junto ao retrato em NK</td><td>Linha e nó podem comunicar vínculo, tensão e foco</td></tr>
+<tr><td>O que hardware limita?</td><td>Separação física DS/3DS</td><td>Redistribuir por prioridade, não copiar duas telas</td></tr>
+</table></div>
+<h2>Dez princípios próprios para Soulmonsters</h2>
+<p>Os dez princípios abaixo são o resultado proposto deste estudo. Não são a direção escolhida nem aprovação artística do dono. Os critérios de conferência são metas para os mocks, não resultados de teste já obtidos.</p>
+<h3>1. Construção de pipa, não decoração de pipa</h3>
+<p><strong>Origem:</strong> objeto funcional em Yo-kai Watch; repetição de gramática em Persona 5. <strong>Aplicação:</strong> um eixo de vareta, uma união amarrada e uma borda de seda precisam ter papéis consistentes na família. Se tudo for apenas um desenho sobre um retângulo, a assinatura ainda não nasceu. <strong>Conferir:</strong> esconder logo, personagens e ornamentos figurativos; a relação entre placa, junção e foco ainda deve unir exploração, batalha e pausa.</p>
+<h3>2. Linha e Armação devem parecer recursos diferentes</h3>
+<p><strong>Origem:</strong> agrupamento legível de status em Black; comparabilidade em Cyber Sleuth. <strong>Aplicação:</strong> investigar fio/tensão para Linha e suporte/reforços para Armação, sempre com nome e valor. Energia e XP não reutilizam o mesmo sinal sem distinção. <strong>Conferir:</strong> versões monocromáticas, valores baixos e texto ampliado; o jogador consegue distinguir recurso e proprietário sem depender apenas de cor. Nenhuma nova regra de desgaste é criada por esse desenho.</p>
+<h3>3. O Elo é uma relação entre parceiros</h3>
+<p><strong>Origem:</strong> proximidade entre comando/retrato em Ni no Kuni e organização da equipe nas referências Digimon. <strong>Aplicação:</strong> o vínculo visual deve indicar quem orienta, quem executa e qual parceiro está ativo. Um fio pode conectar elementos relacionados, sem atravessar todo o cenário. <strong>Conferir:</strong> troca de parceiro, membro derrotado, reserva e montaria; nunca parecer que um membro diferente está usando a ação. Não expor lore secreto para justificar um ornamento.</p>
+<h3>4. Explorar, disputar e consultar têm densidades distintas</h3>
+<p><strong>Origem:</strong> campo/dungeon de Explorers of Sky e composições de Persona 5. <strong>Aplicação:</strong> bairro deixa chão e interação respirarem; batalha concentra leitura urgente; pausa aceita mais detalhe organizado. Mesma família, três ocupações. <strong>Conferir:</strong> os nove mocks usam o mesmo mundo e dados; área de conflito, caminho e personagem não ficam encobertos por decoração. Não exigir uma porcentagem universal de HUD para todos os cenários.</p>
+<h3>5. A seleção é uma amarração visível e estável</h3>
+<p><strong>Origem:</strong> destaque de linha em Cyber Sleuth e contraste estrutural de Persona 5. <strong>Aplicação:</strong> explorar ponto de nó, pequena rabiola ou conexão curta como foco. O símbolo tem versão imóvel e contrasta também sem cor. <strong>Conferir:</strong> teclado, direcional e mouse levam ao mesmo alvo; foco não salta por hover incidental, e voltar recupera a escolha. O nome e o contorno do alvo continuam claros com animação reduzida.</p>
+<h3>6. A enroscada merece uma frase visual própria</h3>
+<p><strong>Origem:</strong> forma explicando mecânica em Yo-kai Watch e separação entre alvo/comando nas referências de batalha. <strong>Aplicação:</strong> diferenciar aproximação, contato e enroscada confirmada com o fio e seu ponto de cruzamento; acompanhar por rótulo e instrução adequada ao estado real. <strong>Conferir:</strong> reconhecer enroscada versus golpe, dano ou guarda em miniatura, sem depender de som. Antes de implementar, ler a regra do motor: este estudo não redefine detecção, janela ou resultado.</p>
+<h3>7. Kronasta aparece nos suportes da informação</h3>
+<p><strong>Origem:</strong> coerência entre universo e interface nas sete amostras. <strong>Aplicação:</strong> cartaz de bairro, marca pintada, anotação de oficina ou papel preso têm função na navegação e nos avisos. Não trocar todo fundo por cimento. <strong>Conferir:</strong> uma lista longa mantém área lisa para leitura; lambe-lambe e muro se concentram no suporte, título e estado, sem textura sob números e fala. O resultado deve comunicar bairro brasileiro sem virar cenário genérico de grafite.</p>
+<h3>8. Pipa TV guarda a energia dos acontecimentos grandes</h3>
+<p><strong>Origem:</strong> composição dedicada de resultado em Persona 5; separação entre informação e espetáculo nas batalhas estudadas. <strong>Aplicação:</strong> VS do campeão e vitória podem assumir enquadramento de transmissão com assinatura Soulmonsters. O status persistente continua contido durante a ação. <strong>Conferir:</strong> leitura de nome, adversário e condição da disputa antes da liberação; reprise/pular/movimento reduzido mantêm informação. A sequência VS de Black/White ainda precisa de inspeção específica; nenhum timing foi copiado ou medido aqui.</p>
+<h3>9. Uma família, instrumentos de consulta diferentes</h3>
+<p><strong>Origem:</strong> equipe/Pokédex/mochila em Black, formação/fazenda em DW, listas contextuais em PMD. <strong>Aplicação:</strong> Dex é consulta, evolução é relação, Varal é organização e emblemas são trajetória de 12 conquistas. Eles compartilham materiais, foco e tipografia, sem serem a mesma grade reciclada. <strong>Conferir:</strong> vazio, cheio, bloqueado e detalhe extenso; cada tela deixa claro o que se pode fazer e o que só informa.</p>
+<h3>10. Reconhecimento precisa sobreviver à redução do efeito</h3>
+<p><strong>Origem:</strong> redundância de forma, contraste, retrato, texto e posição observada em várias famílias. <strong>Aplicação:</strong> a assinatura continua com movimento reduzido, sem som, texto maior e fundo difícil. Fonte de título pode ter personalidade; números e descrições mantêm regularidade. <strong>Conferir:</strong> pranchas sem logo em miniatura e quatro resoluções, incluindo foco de controle e mouse. Primeiro revisão interna; só declarar reconhecimento por jogadores depois de um teste real, com método e resultado registrados.</p>
+<h2>Como os princípios entram na PIP-128</h2>
+<div class="table-scroll"><table>
+<tr><td>Direção</td><td>Pergunta a responder</td><td>Risco principal</td></tr>
+<tr><td>A — papel de seda e vareta</td><td>A tensão entre superfície e suporte organiza a informação?</td><td>Virar painel de bambu genérico ou textura demais</td></tr>
+<tr><td>B — muro do bairro</td><td>A hierarquia de cartazes comunica Kronasta e campeonato?</td><td>Parecer outro jogo de recortes/grafite; ruído permanente</td></tr>
+<tr><td>C — carretel e Elo</td><td>O percurso do fio torna foco, vínculo e recurso compreensíveis?</td><td>Fazer roda decorativa ou interface tecnológica genérica</td></tr>
+</table></div>
+<p>As três precisam provar os dez princípios nos mesmos contextos: exploração, batalha e pausa. Não há vencedora antecipada. A decisão PIP-129 compara identidade, leitura, interação e custo; não ganha automaticamente a proposta com mais textura ou animação.</p>
+<h2>O que este estudo não autoriza afirmar</h2>
+<ul>
+<li>Não medimos duração, curva, ritmo sonoro, latência ou legibilidade em controle físico dos jogos de referência.</li>
+<li>Não identificamos fontes comerciais nem autorizamos reutilização de arte, ícones ou screenshots como assets.</li>
+<li>Não comprovamos a intro VS de Black/White; isso fica explícito para a PIP-133.</li>
+<li>Ni no Kuni tem cobertura parcial do campo e da pausa; a análise de comando está sustentada pelas telas de batalha e listas. Seu peso na comparação fica restrito a essa evidência.</li>
+<li>O kit Recorte atual não foi reprovado por um teste de usuário nesta tarefa. O pedido do dono inicia uma nova direção; este estudo fornece critérios, não uma falsa auditoria retrospectiva.</li>
+</ul>
+<h2>Entrega e reprodução</h2>
+<p><code>fontes.json</code> registra crédito, versão, endereço direto, localizador, data e SHA-256 de cada imagem. <code>evidencias/</code> contém apenas a amostra selecionada, não manuais completos nem pacotes de sprites. A página <code>index.html</code> permite filtrar por jogo e ampliar cada evidência. Os arquivos de referência são de seus respectivos titulares, usados aqui como estudo crítico, sem licença implícita para produção.</p>
+<p>A inspeção e os dez princípios são a entrega local da PIP-127. A PIP-128 continua pendente: nenhum dos nove mocks foi criado nesta etapa. Nenhum merge, push ou alteração no Linear foi feito.</p></section></main><footer>Reconstruir: python build_gallery.py · Fontes consultadas em 01/11/2026 · Direitos das imagens pertencem aos titulares identificados. Sem alteração de gameplay, merge ou push nesta etapa.</footer><script>
+const buttons=[...document.querySelectorAll('[data-filter]')],cards=[...document.querySelectorAll('[data-game]')];
+buttons.forEach(button=>button.addEventListener('click',()=>{buttons.forEach(b=>b.setAttribute('aria-pressed',String(b===button)));let total=0;cards.forEach(card=>{card.hidden=button.dataset.filter!=='all'&&card.dataset.game!==button.dataset.filter;if(!card.hidden)total++});document.getElementById('count').textContent=`${total} evidências`;}));
+</script></body></html>

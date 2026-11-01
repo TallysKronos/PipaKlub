@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-01",
+  "evidence_count": 27,
+  "games": 7,
+  "principles": 10,
+  "checks": [
+    "Unique IDs",
+    "Local files and SHA-256",
+    "Seven game groups",
+    "Exactly ten ordered principles",
+    "Local HTML links"
+  ],
+  "errors": [],
+  "status": "pass",
+  "limitations": [
+    "Artifact integrity only; no browser layout, input hardware, gameplay, sound or timing tests."
+  ]
+}
