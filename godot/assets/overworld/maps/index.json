@@ -198,6 +198,24 @@
       "name": "Submerso · Fenda abissal",
       "scene": "submerso-c",
       "biome": "floresta"
+    },
+    {
+      "id": "kronasta-bambuzal-a",
+      "name": "Vila do Bambuzal · Praça de Chegada",
+      "scene": "kronasta-bambuzal-a",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-bambuzal-b",
+      "name": "Vila do Bambuzal · Caminho das Varetas",
+      "scene": "kronasta-bambuzal-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-bambuzal-c",
+      "name": "Vila do Bambuzal · Arena do Bambuzal",
+      "scene": "kronasta-bambuzal-c",
+      "biome": "floresta"
     }
   ],
   "scenes": {
@@ -232,7 +250,10 @@
     "gelo-d": "gelo-d",
     "submerso-a": "submerso-a",
     "submerso-b": "submerso-b",
-    "submerso-c": "submerso-c"
+    "submerso-c": "submerso-c",
+    "kronasta-bambuzal-a": "kronasta-bambuzal-a",
+    "kronasta-bambuzal-b": "kronasta-bambuzal-b",
+    "kronasta-bambuzal-c": "kronasta-bambuzal-c"
   },
   "campaignReplacement": false
 }

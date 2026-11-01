@@ -155,7 +155,7 @@ static func build(view) -> void:
    line(post,PackedVector2Array([Vector2(-3,-30),Vector2(3,-30)]),3,Color("dbba78"))
  for guard:Dictionary in f.get("guards",[]):_guard(view,guard)
  for stairs:Dictionary in f.get("stairs",[]):_stairs(view,stairs)
- if f.get("landmark")!=null:_landmark(view,f.landmark)
+ if f.get("landmark")!=null and not f.get("bamboo",false):_landmark(view,f.landmark)
  if not geometry():
   for track:Array in f.get("footprints",[]):
    var point:=Vector2(track[0],track[1])
@@ -183,8 +183,9 @@ static func _guard(view,g:Dictionary) -> void:
  for p in [base_a,base_b]:line(node,PackedVector2Array([p-node.position,p-Vector2(0,20)-node.position]),3,Color("716449"))
 static func _stairs(view,s:Dictionary) -> void:
  var u:float=s.u;var v:float=s.v;var width:float=s.width
+ var base:float=float(view.model.cell_at(Vector2i(int(u),int(v))).get("level",0))*64
  for k in 8:
-  var low:float=float(k)/8;var high:float=float(k+1)/8;var height:float=high*64
+  var low:float=float(k)/8;var high:float=float(k+1)/8;var height:float=base+high*64
   var a:=Vector2(u,v+2-high*2);var b:=Vector2(u+width,v+2-high*2)
   var c:=Vector2(u+width,v+2-low*2);var d:=Vector2(u,v+2-low*2)
   var node:=Node2D.new();node.position=iso((a+c)*.5)+Vector2(0,4);view.actors.add_child(node)

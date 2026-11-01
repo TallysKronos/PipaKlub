@@ -97,7 +97,10 @@ func load_area(id: String, arrival: Variant = "") -> void:
 	stairs_drawn.clear()
 	occluders.clear()
 	model.setup(JSON.parse_string(FileAccess.get_file_as_string(source)))
+	RenderingServer.set_default_clear_color(Color.BLACK if model.data.get("forest",{}).get("bamboo",false) else ProjectSettings.get_setting("rendering/environment/defaults/default_clear_color"))
 	kits.assign([kit_library.comum])
+	if bool(model.data.get("forest",{}).get("bamboo",false)):
+		kits.append(kit_library.parque.duplicate(true))
 	if kit_library.has(model.data.biome):
 		# Area overrides must never leak into the next map's shared kit.
 		var biome_kit: Dictionary = kit_library[model.data.biome].duplicate(true)
@@ -1729,6 +1732,12 @@ func _build_events() -> void:
 			var list: Array = npc_data.morro.get(model.data.scene,[]) if model.data.biome=="morro" else [npc_data.nina] if event.name=="Nina" else [npc_data.lacertubo] if event.props.get("acao", "")=="parkBoss" else [npc_data.assis] if model.data.biome=="parque" and event.props.get("acao","")=="wildGuide" else []
 			if event.props.has("npcIdentity"):
 				list=[{"name":str(event.props.npcIdentity),"bounds":{"x":0,"y":0,"w":64,"h":96}}]
+			if event.props.get("district","")=="bambuzal":
+				var atlas:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/npc-ds/bambuzal-v1/atlas.json"))
+				for frame:Dictionary in atlas.sprites:
+					if frame.name==event.name and frame.facing=="se":
+						list=[{"name":event.name,"image":"res://assets/npc-ds/bambuzal-v1/atlas.png","bounds":{"x":frame.bounds[0],"y":frame.bounds[1],"w":frame.bounds[2],"h":frame.bounds[3]}}]
+
 			var holder := Node2D.new()
 			node.add_child(holder)
 			var names: Array[String] = []
@@ -1742,6 +1751,7 @@ func _build_events() -> void:
 				if not identity.is_empty():pixels.setup(sprite,identity,pixels.height_for(identity,.85*Avatar.BODY_SCALE))
 				else:
 					sprite.texture=load(entry.image);sprite.region_enabled=true
+					if event.props.get("district","")=="bambuzal":sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 					sprite.region_rect=Rect2(bounds.x,bounds.y,bounds.w,bounds.h)
 					sprite.scale=Vector2.ONE*native_height/float(bounds.h)
 					sprite.offset=Vector2(0,-bounds.h*.5)
