@@ -1,6 +1,7 @@
 extends Node2D
 const HouseArt=preload("res://scripts/campaign/house_modern.gd")
 const ProfessorArt=preload("res://scripts/campaign/professor_modern.gd")
+const ShopArt=preload("res://scripts/campaign/shop_modern.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
 ## Uses the original room coordinates, footprints and 2:1 projection.
 signal interacted(id: String)
@@ -41,7 +42,9 @@ func configure(room: Dictionary, point: Array, walk: bool, target: String, mothe
 	actor = Vector2(point[0], point[1])
 	can_walk = walk
 	target_hotspot = target
-	if ProfessorArt.applies(data):
+	if ShopArt.applies(data):
+		ShopArt.build_floor(self)
+	elif ProfessorArt.applies(data):
 		ProfessorArt.build_floor(self)
 	elif HouseArt.applies(data):
 		HouseArt.build_floor(self)
@@ -53,7 +56,9 @@ func configure(room: Dictionary, point: Array, walk: bool, target: String, mothe
 		add_child(floor_sprite)
 	for prop in data.props:
 		var sprite:Node2D
-		if ProfessorArt.applies(data):
+		if ShopArt.applies(data):
+			sprite=ShopArt.create_prop(self,prop)
+		elif ProfessorArt.applies(data):
 			sprite=ProfessorArt.create_prop(self,prop)
 		elif HouseArt.applies(data):
 			sprite=HouseArt.create_prop(self,prop)
@@ -87,6 +92,7 @@ func configure(room: Dictionary, point: Array, walk: bool, target: String, mothe
 		npc.position = project(Vector2(location[0], location[1]))
 		add_child(npc)
 		props.append({"node": npc, "rect": _foot(Vector2(location[0], location[1])), "layer": ""})
+	if ShopArt.applies(data):ShopArt.add_owner(self)
 	if partner:add_companion()
 	_update_order()
 

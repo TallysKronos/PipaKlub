@@ -73,13 +73,17 @@ func _goal() -> Dictionary:
 
 func _update_hint() -> void:
 	super._update_hint()
+	# At the shop threshold, entering wins; Lia can still be greeted a step away.
+	for house in world.houses:
+		if house.id=="loja" and cell.distance_to(house.door)<.65:
+			near_house=house;near_person={};break
 	context.hide();objective.hide();progress_label.hide()
 	if not is_instance_valid(exploration_hud):return
 	exit_id="morro" if cell.distance_to(Checkpoint.MORRO)<1.6 else "park" if cell.distance_to(Checkpoint.PARK)<1.6 else ""
 	var hint := ""
 	if not exit_id.is_empty():hint="Seguir para o Morro do Sol" if exit_id=="morro" else "Seguir para o parque"
 	elif not near_person.is_empty():hint="Entrar no ateliê do professor" if near_person.id=="assis" else "Conversar com "+str(near_person.name)
-	elif not near_house.is_empty():hint="Entrar no ateliê" if near_house.id=="professor" else "Examinar a entrada"
+	elif not near_house.is_empty():hint="Entrar na Linha & Papel" if near_house.id=="loja" else "Entrar no ateliê" if near_house.id=="professor" else "Examinar a entrada"
 	exploration_hud.prompt.text=hint
 	exploration_hud.objective.text="Explore o parque ou siga para o Morro do Sol." if saved_player.get("journey",{}).get("phase")=="complete" else "Suba a ladeira e entre no ateliê do professor."
 
@@ -93,6 +97,7 @@ func interact() -> void:
 			_say("Kael",["Primeiro vou concluir meu treino e montar minha pipa com o professor."])
 		else:action_requested.emit(exit_id)
 	elif near_person.get("id")=="assis" or near_house.get("id")=="professor":action_requested.emit("professor-home")
+	elif near_house.get("id")=="loja":action_requested.emit("kite-shop")
 	else:super.interact()
 
 func _unhandled_input(event: InputEvent) -> void:

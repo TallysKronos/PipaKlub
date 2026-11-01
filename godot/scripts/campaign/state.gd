@@ -54,11 +54,12 @@ static func inspect(value: Variant, slot_id: String) -> String:
 	if kind == "practice" and (not whole(checkpoint.get("lesson")) or checkpoint.lesson > 4):
 		return "invalid"
 	if kind == "world":
-		if checkpoint.get("scene") not in ["quintal", "professor-home", "park-trail", "park-clearing", "park-veredas", "morro", "morro-area-2", "morro-area-3", "morro-area-4", "morro-area-5"] or not checkpoint.get("position") is Array or checkpoint.position.size() != 2:
+		if checkpoint.get("scene") not in ["quintal", "professor-home", "kite-shop", "park-trail", "park-clearing", "park-veredas", "morro", "morro-area-2", "morro-area-3", "morro-area-4", "morro-area-5"] or not checkpoint.get("position") is Array or checkpoint.position.size() != 2:
 			return "invalid"
 		for coordinate in checkpoint.position:
 			if not (coordinate is float or coordinate is int) or not is_finite(float(coordinate)) or absf(coordinate) > 4096:
 				return "invalid"
+		if checkpoint.scene=="kite-shop" and not preload("res://scripts/campaign/shop_data.gd").safe(Vector2(checkpoint.position[0],checkpoint.position[1])):return "invalid"
 	if checkpoint.has("space"):
 		if kind!="world" or checkpoint.get("scene")!="quintal" or checkpoint.space!="bairro-inicial-v2":return "invalid"
 		if not preload("res://scripts/campaign/neighborhood_checkpoint.gd").is_cell(Vector2(float(checkpoint.position[0]),float(checkpoint.position[1]))):return "invalid"
