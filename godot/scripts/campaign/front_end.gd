@@ -5,6 +5,7 @@ const Room = preload("res://scripts/campaign/room_view.gd")
 const Journey = preload("res://scripts/campaign/journey.gd")
 const FlightView = preload("res://scripts/campaign/first_flight_view.gd")
 const WorkshopView = preload("res://scripts/campaign/workshop_view.gd")
+const ShopData=preload("res://scripts/campaign/shop_data.gd")
 const TutorialStaging=preload("res://scripts/campaign/tutorial_staging.gd")
 const Morro = preload("res://scripts/campaign/morro.gd")
 const MorroView = preload("res://scripts/campaign/morro_view.gd")
@@ -198,6 +199,7 @@ func _slot_location(snapshot:Dictionary) -> Dictionary:
 	var point:Dictionary=snapshot.get("checkpoint",{})
 	var scene:String=point.get("scene",snapshot.get("player",{}).get("encounter",{}).get("scene",""))
 	var name:String={"quintal":"Vila do Primeiro Vento","professor-home":"Ateliê do Sr. Assis","park-trail":"Jardim dos Ventos","park-clearing":"Clareira do Papel","park-veredas":"Veredas do Encanamento","kronasta-bosque-a":"Bosque · Trilha das Copas","kronasta-bosque-b":"Bosque · Desvio do Riacho","kronasta-bosque-c":"Bosque · Clareira do Marco"}.get(scene,"Prólogo" if point.get("kind")=="opening" else "Ateliê do Sr. Assis")
+	if scene=="kite-shop":name="Linha & Papel"
 	var texture:Texture2D=load("res://assets/campaign/rooftop-arena-wide-v2.png")
 	if point.get("kind")=="opening":
 		var room_key:String="home" if int(point.get("step",0))>=12 else "bedroom"
@@ -210,12 +212,16 @@ func _slot_location(snapshot:Dictionary) -> Dictionary:
 	elif ParkCheckpoint.is_regional_preview(scene):
 		name=ParkCheckpoint.data(scene).get("name","Kronasta")
 		texture=load("res://assets/campaign/maps/kronasta-atlas-v1.png")
+	elif scene=="kite-shop":
+		texture=ImageTexture.create_from_image(Image.load_from_file("res://assets/campaign/loja-tcg-v1/preview.png"))
 	elif scene.begins_with("morro"):
 		var data:Dictionary=Morro.maps().get(scene,{})
 		name=data.get("name","Morro do Sol")
 		if not data.get("images",[]).is_empty():texture=load("res://assets/campaign/morro/"+data.images[0].image)
-	elif scene in ["quintal","professor-home"]:
-		texture=load("res://assets/campaign/"+content.rooms["street" if scene=="quintal" else "professor"].floorImage)
+	elif scene=="professor-home":
+		texture=ImageTexture.create_from_image(Image.load_from_file("res://assets/campaign/professor-moderno-v1/preview.png"))
+	elif scene=="quintal":
+		texture=load("res://assets/campaign/"+content.rooms.street.floorImage)
 	elif scene in ["park-trail","park-clearing"]:
 		var maps:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/park/maps.json"))
 		texture=load("res://assets/campaign/park/"+maps[scene].floorImage)
@@ -797,8 +803,9 @@ func _show_world() -> void:
 	_stage_container()
 	var point: Dictionary = session.snapshot().checkpoint
 	var professor: bool = point.scene == "professor-home"
-	var data: Dictionary = (content.rooms.professor if professor else content.rooms.street).duplicate(true)
-	if not professor and not data.hotspots.any(func(h: Dictionary): return h.id == "morro"):
+	var shop:bool=point.scene=="kite-shop"
+	var data: Dictionary = ShopData.room() if shop else (content.rooms.professor if professor else content.rooms.street).duplicate(true)
+	if not professor and not shop and not data.hotspots.any(func(h: Dictionary): return h.id == "morro"):
 		data.hotspots.append({"id": "morro", "name": "Morro do Sol", "x": 2592, "y": 1040})
 	room = Room.new()
 	stage.add_child(room)
@@ -807,7 +814,7 @@ func _show_world() -> void:
 	room.interacted.connect(_world_interact)
 	var overlay=load("res://scripts/campaign/hud_exploration.gd").new()
 	overlay.subject=room
-	overlay.area_name="Ateliê do Sr. Assis" if professor else "Bairro dos Ventos"
+	overlay.area_name="Linha & Papel" if shop else "Ateliê do Sr. Assis" if professor else "Bairro dos Ventos"
 	overlay.player_data=session.snapshot().player
 	add_child(overlay)
 	overlay.map=Hud.map_for(room,overlay)
@@ -879,6 +886,8 @@ func _neighborhood_action(id: String) -> void:
 		"professor-home":
 			var entry: Array=content.rooms.professor.layout.blocking.kaelEntry
 			if _result(journey.enter_world("professor-home",Vector2(entry[0],entry[1]))):_show_saved.call_deferred()
+		"kite-shop":
+			if _result(journey.enter_world("kite-shop",ShopData.ENTRY)):_show_saved.call_deferred()
 		"morro":
 			if session.snapshot().player.get("journey",{}).get("phase")=="complete" and _result(journey.enter_world("morro",Vector2(528,752))):_show_saved.call_deferred()
 		"park":
@@ -887,6 +896,8 @@ func _neighborhood_action(id: String) -> void:
 func _world_interact(id: String) -> void:
 	if flow_busy:return
 	var point: Dictionary = session.snapshot().checkpoint
+	if point.scene=="kite-shop":
+		_shop_interact(id);return
 	if point.scene == "quintal":
 		if id == "morro" and session.snapshot().player.get("journey", {}).get("phase") == "complete":
 			if _result(journey.enter_world("morro", Vector2(528, 752))): _show_saved()
@@ -908,6 +919,26 @@ func _world_interact(id: String) -> void:
 		TutorialStaging.open_workbench(self)
 	else:
 		_notice("Estudos sobre pipas, almas e o vento.")
+
+func _shop_interact(id:String)->void:
+	if id=="exit":
+		var previous:Array=session.snapshot().player.get("cityPosition",[ShopData.CITY_ENTRY.x,ShopData.CITY_ENTRY.y])
+		if _result(journey.enter_world("quintal",Vector2(previous[0],previous[1]))):_show_saved.call_deferred()
+		return
+	var title:="Dono da loja" if id=="counter" else "Linha & Papel"
+	var text:String={"counter":"Bem-vindo à Linha & Papel! Pode olhar os mostruários com calma. As mesas são o ponto de encontro de quem gosta de montar, colecionar e conversar sobre Soulmonsters.","showcase":"Mostruários de papéis, linhas e kits de montagem. Cada cor ajuda a dar personalidade a uma pipa.","gondola":"Kits, pastas e acessórios organizados para os colecionadores.","table-a":"Mesas da comunidade, com espaço para abrir pastas, mostrar coleções e conhecer outros jogadores.","table-b":"Um segundo espaço de convivência para os jogadores do bairro."}.get(id,"Fique à vontade para explorar a loja.")
+	room.can_walk=false
+	if id=="counter":room.face_actor(ShopData.OWNER)
+	var dialog:=_dialog(title,text,"Continuar")
+	dialog.name="ShopConversation"
+	if id=="counter":
+		var owner_art:Sprite2D=room.get_node("ShopOwner/Art")
+		dialog._portraits[title]=owner_art.texture
+		dialog.portrait.material=owner_art.material
+	dialog.confirmed.connect(dialog.queue_free);dialog.canceled.connect(dialog.queue_free)
+	dialog.tree_exiting.connect(func():
+		if is_instance_valid(room):room.can_walk=true)
+	dialog.popup_centered()
 
 func _show_practice() -> void:
 	_clear()

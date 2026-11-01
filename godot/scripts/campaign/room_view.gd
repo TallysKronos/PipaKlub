@@ -1,4 +1,7 @@
 extends Node2D
+const HouseArt=preload("res://scripts/campaign/house_modern.gd")
+const ProfessorArt=preload("res://scripts/campaign/professor_modern.gd")
+const ShopArt=preload("res://scripts/campaign/shop_modern.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
 const CompanionFollow = preload("res://scripts/campaign/companion_follow.gd")
 const Locomotion = preload("res://scripts/campaign/locomotion.gd")
@@ -39,26 +42,42 @@ func configure(room: Dictionary, point: Array, walk: bool, target: String, mothe
 	mother_sprite = null
 	companion_frames.clear()
 	trail.clear()
-	data = room
+	data = HouseArt.room_data(room)
 	target_marker=Node2D.new()
 	target_marker.z_index=250
 	target_marker.draw.connect(_draw_target)
 	add_child(target_marker)
 	camera = data.camera
 	actor = Vector2(point[0], point[1])
+	if ShopArt.applies(data):actor=preload("res://scripts/campaign/shop_data.gd").resume_point(actor)
 	can_walk = walk
 	target_hotspot = target
-	var floor_sprite := Sprite2D.new()
-	floor_sprite.texture = load("res://assets/campaign/" + data.floorImage)
-	floor_sprite.centered = false
-	floor_sprite.z_index = 0
-	add_child(floor_sprite)
+	if ShopArt.applies(data):
+		ShopArt.build_floor(self)
+	elif ProfessorArt.applies(data):
+		ProfessorArt.build_floor(self)
+	elif HouseArt.applies(data):
+		HouseArt.build_floor(self)
+	else:
+		var floor_sprite := Sprite2D.new()
+		floor_sprite.texture = load("res://assets/campaign/" + data.floorImage)
+		floor_sprite.centered = false
+		floor_sprite.z_index = 0
+		add_child(floor_sprite)
 	for prop in data.props:
-		var sprite := Sprite2D.new()
-		sprite.texture = load("res://assets/campaign/" + prop.image)
-		sprite.centered = false
-		sprite.position = Vector2(prop.rect[0], prop.rect[1])
-		sprite.scale = Vector2(prop.rect[2], prop.rect[3]) / sprite.texture.get_size()
+		var sprite:Node2D
+		if ShopArt.applies(data):
+			sprite=ShopArt.create_prop(self,prop)
+		elif ProfessorArt.applies(data):
+			sprite=ProfessorArt.create_prop(self,prop)
+		elif HouseArt.applies(data):
+			sprite=HouseArt.create_prop(self,prop)
+		else:
+			sprite=Sprite2D.new()
+			sprite.texture = load("res://assets/campaign/" + prop.image)
+			sprite.centered = false
+			sprite.position = Vector2(prop.rect[0], prop.rect[1])
+			sprite.scale = Vector2(prop.rect[2], prop.rect[3]) / sprite.texture.get_size()
 		add_child(sprite)
 		props.append({"node": sprite, "rect": prop.footprint, "layer": "flat" if prop.kind == "flat" else "wall" if prop.kind.begins_with("wall") else ""})
 	avatar = Avatar.new()
@@ -77,6 +96,7 @@ func configure(room: Dictionary, point: Array, walk: bool, target: String, mothe
 		npc.position = project(Vector2(location[0], location[1]))
 		add_child(npc)
 		props.append({"node": npc, "rect": _foot(Vector2(location[0], location[1])), "layer": ""})
+	if ShopArt.applies(data):ShopArt.add_owner(self)
 	if partner:add_companion()
 	_update_order()
 

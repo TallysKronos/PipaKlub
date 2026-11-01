@@ -62,11 +62,13 @@ static func inspect(value: Variant, slot_id: String) -> String:
 	if kind == "practice" and (not whole(checkpoint.get("lesson")) or checkpoint.lesson > 4):
 		return "invalid"
 	if kind == "world":
-		if checkpoint.get("scene") not in ["quintal", "professor-home", "park-trail", "park-clearing", "park-veredas", "morro", "morro-area-2", "morro-area-3", "morro-area-4", "morro-area-5","kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c","kronasta-pantano-a","kronasta-pantano-b","kronasta-pantano-c","kronasta-montanha-a","kronasta-montanha-b","kronasta-montanha-c","kronasta-industrial-a","kronasta-industrial-b","kronasta-industrial-c","mina-ferro-a","mina-ferro-b","mina-ferro-c","mina-ferro-d","gelo-a","gelo-b","gelo-c","gelo-d","submerso-a","submerso-b","submerso-c"] or not checkpoint.get("position") is Array or checkpoint.position.size() != 2:
+		if checkpoint.get("scene") not in ["quintal", "professor-home", "kite-shop", "park-trail", "park-clearing", "park-veredas", "morro", "morro-area-2", "morro-area-3", "morro-area-4", "morro-area-5","kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c","kronasta-pantano-a","kronasta-pantano-b","kronasta-pantano-c","kronasta-montanha-a","kronasta-montanha-b","kronasta-montanha-c","kronasta-industrial-a","kronasta-industrial-b","kronasta-industrial-c","mina-ferro-a","mina-ferro-b","mina-ferro-c","mina-ferro-d","gelo-a","gelo-b","gelo-c","gelo-d","submerso-a","submerso-b","submerso-c"] or not checkpoint.get("position") is Array or checkpoint.position.size() != 2:
 			return "invalid"
 		for coordinate in checkpoint.position:
 			if not (coordinate is float or coordinate is int) or not is_finite(float(coordinate)) or absf(coordinate) > 4096:
 				return "invalid"
+		# Furniture can move between map revisions; RoomView recovers a nearby free spot.
+		if checkpoint.scene=="kite-shop" and not preload("res://scripts/campaign/shop_data.gd").inside_floor(Vector2(checkpoint.position[0],checkpoint.position[1])):return "invalid"
 	if checkpoint.has("space"):
 		if kind!="world":return "invalid"
 		var point := Vector2(float(checkpoint.position[0]),float(checkpoint.position[1]))
