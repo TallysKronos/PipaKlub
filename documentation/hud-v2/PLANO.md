@@ -8,10 +8,10 @@ Critério central: uma captura sem logo precisa ser reconhecível como Soulmonst
 | --- | --- | --- | --- |
 | 1 | PIP-126 | Agente designer-de-hud e skill própria | Implementado; validação registrada em PIP-126.md |
 | 2 | PIP-127 | Benchmark dos sete jogos; 10 princípios próprios | Estudo local entregue; 27 evidências, versões e limites em PIP-127.md |
-| 3 | PIP-128 | A papel/vareta; B muro; C carretel/Elo; 3 mocks por direção | V1 rejeitada por falta de direção artística; três pranchas ilustradas v2 em avaliação, links em PIP-128.md |
-| 4 | PIP-129 | Escolher direção e registrar justificativa | Escolha delegada ao assistente pelo dono; pendente das propostas |
-| 5 | PIP-130 | Forma-assinatura, paleta, tipografia, ícones e Theme | Pendente da escolha |
-| 6 | PIP-131 | Logo e tela de título | Pendente da escolha/sistema |
+| 3 | PIP-128 | A papel/vareta; B muro; C carretel/Elo; 3 mocks por direção | V1 rejeitada; B ilustrada v2 preferida pelo dono e adotada na PIP-129 |
+| 4 | PIP-129 | Escolher direção e registrar justificativa | B — Mural de Kronasta; decisão local em DECISAO.md |
+| 5 | PIP-130 | Forma-assinatura, paleta, tipografia, ícones e Theme | Próxima etapa; produzir sistema ilustrado B |
+| 6 | PIP-131 | Logo e tela de título | Pendente do sistema B |
 | 7 | PIP-132 | Exploração e Kronasta | Pendente do sistema |
 | 8 | PIP-133 | Batalha, VS de campeão, enroscada | Pendente do sistema |
 | 9 | PIP-134 | Diálogo | Pendente do sistema |
@@ -25,7 +25,7 @@ O agrupamento individual PIP-130/131 e PIP-132–137 segue a ordem descrita pelo
 
 ## Relação com PIP-61
 
-As 12 tarefas antigas ainda abertas ficam em espera até a escolha da PIP-129. Depois, levantar IDs/títulos reais e mapear cada uma para absorção em tarefa nova ou encerramento como substituída. Não reabrir trabalho visual antigo em paralelo por hábito. Preservar Theme, tokens, fontes/licenças e testes de margem úteis. O vínculo entre os dois épicos foi informado pelo dono; não foi alterado nem auditado nesta sessão.
+A direção B foi escolhida na PIP-129. Levantar IDs/títulos reais das 12 tarefas antigas e mapear cada uma para absorção em tarefa nova ou encerramento como substituída; inventário ainda pendente, critérios em ABSORCAO-PIP-61.md. Não reabrir trabalho visual antigo em paralelo por hábito. Preservar Theme, tokens, fontes/licenças e testes de margem úteis. O vínculo entre os dois épicos foi informado pelo dono; não foi alterado nem auditado nesta sessão.
 
 ## Restrições e provas
 

@@ -1,6 +1,6 @@
 {
   "date": "2026-11-01",
-  "status": "concepts-pending-user-review",
+  "status": "direction-B-selected",
   "supersedes": "pip-128 — geometric art direction rejected by user",
   "images": [
     {
@@ -45,5 +45,13 @@
         ]
       }
     }
-  ]
+  ],
+  "decision": {
+    "selectedDirection": "B",
+    "name": "Mural de Kronasta — revisão ilustrada 2",
+    "userPreference": "Olha eu gostei bastante da versão B",
+    "adoption": "Assistente adota B conforme preferência expressa e delegação anterior da PIP-129.",
+    "technicalAcceptance": false,
+    "record": "documentation/hud-v2/DECISAO.md"
+  }
 }

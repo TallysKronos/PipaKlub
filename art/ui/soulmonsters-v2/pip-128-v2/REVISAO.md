@@ -40,4 +40,4 @@ As pranchas são referências conceituais, não PNGs gigantes para montar a inte
 
 ## Estado
 
-PIP-128: propostas refeitas após a crítica; aguardam avaliação artística do dono. PIP-129 ainda não foi registrada. Nenhuma direção recebeu aprovação tácita da entrega antiga. Sem mudança no jogo, merge, push ou status no Linear.
+Após esta entrega, o dono declarou: «Olha eu gostei bastante da versão B». A preferência fundamenta a adoção de **B ilustrada v2 — Mural de Kronasta** na PIP-129, registrada em `documentation/hud-v2/DECISAO.md`. A e C permanecem alternativas de pesquisa. A escolha artística não é aceite técnico dos pixels gerados. Sem mudança no jogo, merge, push ou status no Linear.
