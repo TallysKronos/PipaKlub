@@ -12,8 +12,8 @@ Critério central: uma captura sem logo precisa ser reconhecível como Soulmonst
 | 4 | PIP-129 | Escolher direção e registrar justificativa | B — Mural de Kronasta; decisão local em DECISAO.md |
 | 5 | PIP-130 | Forma-assinatura, paleta, tipografia, ícones e Theme | Fundação opt-in e ícones salientes implementados; 978 checks novos passaram; auditorias legadas falham em fontes inalteradas, ver PIP-130.md |
 | 6 | PIP-131 | Logo e tela de título | Marca e menu real implementados; 336 checks novos, 16 capturas em quatro resoluções; ver PIP-131.md |
-| 7 | PIP-132 | Exploração e Kronasta | Próxima etapa: aplicar a direção Mural ao overworld |
-| 8 | PIP-133 | Batalha, VS de campeão, enroscada | Pendente do sistema |
+| 7 | PIP-132 | Exploração e Kronasta | Integrada à HUD compartilhada e carta regional; 616 checks novos, 153 do Atlas, 163 nativos da exploração; ver PIP-132.md |
+| 8 | PIP-133 | Batalha, VS de campeão, enroscada | Próxima etapa; infraestrutura e exploração Mural disponíveis |
 | 9 | PIP-134 | Diálogo | Pendente do sistema |
 | 10 | PIP-135 | Pipa Dex, evolução, Varal, 12 emblemas | Pendente do sistema |
 | 11 | PIP-136 | Resultado e grandes momentos | Pendente do sistema |

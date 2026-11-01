@@ -1,4 +1,10 @@
 extends RefCounted
+static func text_scale_for(node:Node) -> float:
+	var ancestor:=node.get_parent()
+	while ancestor!=null:
+		if ancestor.has_meta("hud_text_scale"):return float(ancestor.get_meta("hud_text_scale"))
+		ancestor=ancestor.get_parent()
+	return 1.0
 ## Opt-in PIP-130 foundation. Does not install globally or alter campaign flows.
 const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 const PATH := "res://assets/ui/mural-v1/theme/mural_theme.tres"

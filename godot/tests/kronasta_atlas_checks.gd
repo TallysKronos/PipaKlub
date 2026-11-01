@@ -20,7 +20,7 @@ func run() -> void:
 	quit(1 if failures else 0)
 func exercise() -> bool:
 	app=load("res://scripts/campaign/front_end.gd").new()
-	var folder:="user://atlas-"+State.new_id()
+	var folder:=ProjectSettings.globalize_path("res://../tmp/atlas-"+State.new_id())
 	app.session._store=Store.new(folder)
 	app.preferences.storage_path=folder+".cfg"
 	root.add_child(app)
@@ -47,6 +47,15 @@ func exercise() -> bool:
 	app._show_park()
 	await settle()
 	check(is_instance_valid(app.park) and app.park.area_id=="kronasta-pantano-a","swamp opens through actual campaign adapter")
+	app.park.paused=false
+	var overlay:Control=get_nodes_in_group("exploration_hud")[0]
+	app.flow_busy=true
+	overlay.chosen.emit("map")
+	check(not app.last_scene_key.begins_with("page:"),"HUD map respects busy scene")
+	app.flow_busy=false
+	overlay.chosen.emit("map");await settle()
+	check(app.last_scene_key=="page:REGIÃO DE KRONASTA","mouse HUD action opens real atlas")
+	app._return_to_game();await settle()
 	app.park.paused=false
 	var map_key:=InputEventKey.new();map_key.pressed=true;map_key.physical_keycode=KEY_M
 	app._unhandled_input(map_key)

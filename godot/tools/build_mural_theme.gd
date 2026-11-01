@@ -88,6 +88,10 @@ func _initialize() -> void:
 	variation("MuralInkPanel","PanelContainer");result.set_stylebox("panel","MuralInkPanel",content_ink)
 	variation("MuralSunPanel","PanelContainer");result.set_stylebox("panel","MuralSunPanel",content_sun)
 	variation("MuralTitlePanel","PanelContainer")
+	# Quiet exploration notices use compact posters, not large-board padding.
+	for entry in [["MuralHudPanel","paper"],["MuralHudSunPanel","selected"],["MuralHudInkPanel","ink"]]:
+		variation(entry[0],"PanelContainer")
+		result.set_stylebox("panel",entry[0],texture_box(entry[1],Vector4(24,14,24,14)))
 	var title:=texture_box("title-paper-v2",Vector4(40,58,32,28))
 	title.set_texture_margin(SIDE_TOP,55)
 	title.set_texture_margin(SIDE_LEFT,112)

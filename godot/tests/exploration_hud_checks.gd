@@ -30,7 +30,7 @@ func run() -> void:
 			# Park areas open behind the animated loading cover.
 			for frame in 600:
 				if not front.flow_busy and not is_instance_valid(front.scene_loading):break
-				await process_frame
+				await create_timer(.01).timeout
 			await settle()
 			var overlays:=get_nodes_in_group("exploration_hud")
 			check(overlays.size()==1,"one shared HUD: "+scene)
@@ -77,6 +77,7 @@ func run() -> void:
 			await settle()
 			check(hud.notices.size()==3,"maximum three notices")
 			check(hud.notice_stack.get_rect().end.y<hud.prompt_panel.position.y,"notices stay above interaction")
+			if hud.notice_stack.get_rect().end.y>=hud.prompt_panel.position.y:print("NOTICE RECT ",scene," ",hud.notice_stack.get_rect()," PROMPT ",hud.prompt_panel.get_rect())
 			if capture and scene=="park" and viewport==Vector2i(1280,720):
 				hud.prompt.text="ABRIR · Baú"
 				hud._input(pointer);hud._process(0);hud._layout()

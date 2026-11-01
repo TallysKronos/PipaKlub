@@ -825,6 +825,7 @@ func _show_world() -> void:
 	overlay.chosen.connect(func(id:String):
 		if id=="collection":_show_collection()
 		elif id=="bag":_show_bag()
+		elif id=="map":_open_exploration_map()
 		else:_pause_game())
 	if professor and room.actor.distance_to(Vector2(1056,1232))<4:
 		TutorialStaging.enter_atelier.call_deferred(self)
@@ -878,6 +879,7 @@ func _show_neighborhood() -> void:
 	if is_instance_valid(park):park.paused=false
 
 func _neighborhood_action(id: String) -> void:
+	if id=="map":_open_exploration_map();return
 	if flow_busy:return
 	if not _save_park(true):return
 	if id.begins_with("mount-quest:"):
@@ -1533,6 +1535,7 @@ func _park_event(id: String) -> void:
 		return
 
 func _park_action(id: String) -> void:
+	if id=="map":_open_exploration_map();return
 	if id == "autosave":
 		_save_park()
 		return
@@ -1915,6 +1918,11 @@ func _show_map() -> void:
 		_show_kronasta()
 	else:_show_local_map()
 
+func _open_exploration_map() -> void:
+	if flow_busy or opening_busy or is_instance_valid(scene_loading) or not get_tree().get_nodes_in_group("manga_dialogue").is_empty():return
+	if is_instance_valid(park) and park.paused:return
+	_pause_game();menu_origin="map";_show_map()
+
 func _show_local_map() -> void:
 	if not _remember_world_position(): return
 	sound.play_event("ui.map")
@@ -2054,6 +2062,7 @@ func _show_tail_workshop() -> void:
 		else:_show_saved())
 
 func _apply_preferences() -> void:
+	set_meta("hud_text_scale",preferences.text_scale)
 	if sound.is_inside_tree(): sound.configure(preferences.audio_levels, preferences.dialogue_blips)
 	Controls.set_family(preferences.pad_family)
 	var recorte := get_node_or_null("RecorteUX")
@@ -2368,6 +2377,7 @@ func _show_morro() -> void:
 	create_tween().tween_property(container, "modulate:a", 1.0, .18)
 
 func _morro_action(id: String) -> void:
+	if id=="map":_open_exploration_map();return
 	if not _save_park(): return
 	if id == "autosave": return
 	if id == "collection":

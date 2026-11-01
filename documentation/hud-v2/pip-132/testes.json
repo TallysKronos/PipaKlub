@@ -1,0 +1,15 @@
+{
+	"checks": 616,
+	"failures": [],
+	"notes": "Native keyboard events; regional signals and no-save UI fixtures. Physical devices not tested.",
+	"resolutions": [
+		"1280x720",
+		"1920x1080",
+		"1024x768",
+		"1280x800"
+	],
+	"textScales": [
+		1.0,
+		1.5
+	]
+}
