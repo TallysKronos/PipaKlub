@@ -200,8 +200,10 @@ func _slot_location(snapshot:Dictionary) -> Dictionary:
 		var data:Dictionary=Morro.maps().get(scene,{})
 		name=data.get("name","Morro do Sol")
 		if not data.get("images",[]).is_empty():texture=load("res://assets/campaign/morro/"+data.images[0].image)
-	elif scene in ["quintal","professor-home"]:
-		texture=load("res://assets/campaign/"+content.rooms["street" if scene=="quintal" else "professor"].floorImage)
+	elif scene=="professor-home":
+		texture=ImageTexture.create_from_image(Image.load_from_file("res://assets/campaign/professor-moderno-v1/preview.png"))
+	elif scene=="quintal":
+		texture=load("res://assets/campaign/"+content.rooms.street.floorImage)
 	elif scene in ["park-trail","park-clearing"]:
 		var maps:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/park/maps.json"))
 		texture=load("res://assets/campaign/park/"+maps[scene].floorImage)

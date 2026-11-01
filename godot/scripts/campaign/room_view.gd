@@ -1,5 +1,6 @@
 extends Node2D
 const HouseArt=preload("res://scripts/campaign/house_modern.gd")
+const ProfessorArt=preload("res://scripts/campaign/professor_modern.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
 ## Uses the original room coordinates, footprints and 2:1 projection.
 signal interacted(id: String)
@@ -40,7 +41,9 @@ func configure(room: Dictionary, point: Array, walk: bool, target: String, mothe
 	actor = Vector2(point[0], point[1])
 	can_walk = walk
 	target_hotspot = target
-	if HouseArt.applies(data):
+	if ProfessorArt.applies(data):
+		ProfessorArt.build_floor(self)
+	elif HouseArt.applies(data):
 		HouseArt.build_floor(self)
 	else:
 		var floor_sprite := Sprite2D.new()
@@ -50,7 +53,9 @@ func configure(room: Dictionary, point: Array, walk: bool, target: String, mothe
 		add_child(floor_sprite)
 	for prop in data.props:
 		var sprite:Node2D
-		if HouseArt.applies(data):
+		if ProfessorArt.applies(data):
+			sprite=ProfessorArt.create_prop(self,prop)
+		elif HouseArt.applies(data):
 			sprite=HouseArt.create_prop(self,prop)
 		else:
 			sprite=Sprite2D.new()

@@ -76,7 +76,7 @@ func run() -> void:
  home.actor=Vector2(480,544);home.opening_pose();check(home.avatar.z_index<sofa.z_index,"actor behind sofa")
  home.actor=Vector2(480,912);home.opening_pose();check(home.avatar.z_index>sofa.z_index,"actor in front of sofa")
  home.free()
- check(not Art.applies(content.rooms.professor),"other interiors keep original art")
+ check(not Art.applies(content.rooms.professor),"professor uses its own renderer, not the house kit")
  print("CASA MODERNA ",checks," checks; bedroom ",seen.size(),", home ",visited.size()," reachable samples; ",failures," failures; no save access")
  quit(0 if failures==0 else 1)
 
