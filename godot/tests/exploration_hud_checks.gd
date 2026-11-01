@@ -27,6 +27,11 @@ func run() -> void:
 		for scene in ["street","professor","trail","clearing","park","morro","morro-area-2","morro-area-3","morro-area-4","morro-area-5"]:
 			Fixtures.show(front,scene)
 			await settle()
+			# Park areas open behind the animated loading cover.
+			for frame in 600:
+				if not front.flow_busy and not is_instance_valid(front.scene_loading):break
+				await process_frame
+			await settle()
 			var overlays:=get_nodes_in_group("exploration_hud")
 			check(overlays.size()==1,"one shared HUD: "+scene)
 			if overlays.is_empty():continue

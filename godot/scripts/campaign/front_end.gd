@@ -1594,6 +1594,7 @@ func _show_collection() -> void:
 		button.disabled = id == player.get("equippedPartnerId", "")
 	if player.partners.is_empty():_label("Sua equipe começa com o primeiro elo. Continue sua história com o professor.",list,22)
 	var footer:=HBoxContainer.new()
+	footer.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
 	page.add_child(footer)
 	_button("Voltar", footer, _return_to_game).custom_minimum_size.x=180
 	if team_pages>1:
@@ -1673,6 +1674,7 @@ func _show_bag() -> void:
 		inventory_view.inventory=fresh.inventory
 		inventory_view.set_load_state("ready"))
 	var footer:=HBoxContainer.new()
+	footer.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
 	page.add_child(footer)
 	_button("Voltar", footer, _return_to_game).custom_minimum_size.x=180
 	var care_button:=_button("Cuidar do parceiro",footer,func():_show_partner_care())
@@ -1725,6 +1727,7 @@ func _show_local_map() -> void:
 	if polygons.is_empty():_label("O mapa desta área ainda não está disponível.",page,18)
 	_label("Os caminhos orientam sua exploração. Descobertas ficam por sua conta.",page,16)
 	var footer:=HBoxContainer.new()
+	footer.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
 	page.add_child(footer)
 	_button("Voltar",footer,_return_to_game).custom_minimum_size.x=180
 	if load("res://scripts/campaign/bosque_campaign.gd").available(session.snapshot().player):
@@ -1802,6 +1805,7 @@ func _show_settings() -> void:
 	_label("CONFIGURAÇÕES",page,38)
 	_label("Seu jeito de jogar. As alterações são salvas automaticamente.",page,17)
 	var category_row:=HBoxContainer.new()
+	category_row.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
 	var active_tab:Button
 	category_row.add_theme_constant_override("separation",20)
 	page.add_child(category_row)
@@ -1891,12 +1895,14 @@ func _show_settings() -> void:
 			_notice("Não foi possível guardar a configuração.")
 		_apply_preferences())
 	var keyboard_row:=HBoxContainer.new()
+	keyboard_row.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
 	controls_content.add_child(keyboard_row)
 	_label("Personalize as teclas de movimento e de batalha.",keyboard_row,15).size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	var keyboard_button:=_button("Controles · Teclado",keyboard_row,_show_controls)
 	keyboard_button.custom_minimum_size.x=260
 	Hud.secondary_button(keyboard_button)
 	var footer:=HBoxContainer.new()
+	footer.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
 	footer.add_theme_constant_override("separation",20)
 	page.add_child(footer)
 	_button("Voltar", footer, _menu if session.snapshot().is_empty() else _return_to_game).custom_minimum_size.x=180
@@ -1989,6 +1995,7 @@ func _show_controls() -> void:
 			binding_rows[id]={"button":binding_button,"feedback":feedback}
 	_label("Setas e Enter continuam disponíveis para navegar. Esc cancela a troca de tecla. A bancada usa mouse e teclado.",page,16).add_theme_color_override("font_color",Hud.MUTED)
 	var footer:=HBoxContainer.new()
+	footer.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
 	footer.add_theme_constant_override("separation",24)
 	page.add_child(footer)
 	_button("Voltar",footer,_return_controls_settings).custom_minimum_size.x=180

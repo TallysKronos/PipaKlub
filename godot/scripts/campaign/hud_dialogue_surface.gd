@@ -8,15 +8,24 @@ var shouted:=false
 func _ready() -> void:
 	set_meta("recorte_decorated",true)
 	theme_type_variation="RecorteEmptyPanel"
-	var spacing:=StyleBoxEmpty.new()
-	for side in [SIDE_LEFT,SIDE_RIGHT]:spacing.set_content_margin(side,28)
-	for side in [SIDE_TOP,SIDE_BOTTOM]:spacing.set_content_margin(side,20)
-	add_theme_stylebox_override("panel",spacing)
-	resized.connect(queue_redraw)
+	add_theme_stylebox_override("panel",StyleBoxEmpty.new())
+	_fit_margins()
+	resized.connect(func():_fit_margins();queue_redraw())
 func _draw() -> void:
 	draw_box(self,size,shouted)
+# The plate is a parallelogram: its top-left and bottom-right corners move in by
+# cut(). The text keeps 20 px from the slanted sides, not from the bounding box.
+static func cut(height:float) -> float:
+	return clampf(height*.2126,12,52)
+static func side_margin(height:float) -> float:
+	return cut(height)+20.0
+func _fit_margins() -> void:
+	var spacing:=get_theme_stylebox("panel") as StyleBoxEmpty
+	if spacing==null:return
+	for side in [SIDE_LEFT,SIDE_RIGHT]:spacing.set_content_margin(side,side_margin(size.y))
+	for side in [SIDE_TOP,SIDE_BOTTOM]:spacing.set_content_margin(side,20)
 static func draw_box(canvas:CanvasItem,extent:Vector2,shout:bool=false) -> void:
-	Ink.plate(canvas,Rect2(Vector2.ZERO,extent),Hud.INK,Hud.PAPER,clampf(extent.y*.2126,12,52))
+	Ink.plate(canvas,Rect2(Vector2.ZERO,extent),Hud.INK,Hud.PAPER,cut(extent.y))
 	if shout:
 		for x in range(36,int(extent.x)-20,72):
 			canvas.draw_colored_polygon(PackedVector2Array([Vector2(x-10,1),Vector2(x,-10),Vector2(x+12,1)]),Hud.PAPER)
