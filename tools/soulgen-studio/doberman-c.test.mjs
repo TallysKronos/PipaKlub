@@ -43,3 +43,8 @@ test('complete tail includes the cords and two leaves; faces keep canonical alph
  for(const face of ['fierce','happy','hurt']){const image=decodePNG(fs.readFileSync(new URL('head-'+face+'.png',folder)));let changed=0;assert.deepEqual([image.width,image.height],[head.width,head.height]);for(let i=0;i<head.data.length;i+=4){assert.equal(image.data[i+3],head.data[i+3]);const x=i/4%head.width,y=Math.floor(i/4/head.width),inside=part.faceWindows.some(([a,b,w,h])=>x>=a&&x<a+w&&y>=b&&y<b+h);if(!inside)assert.deepEqual(image.data.subarray(i,i+4),head.data.subarray(i,i+4));else if(image.data[i]!==head.data[i]||image.data[i+1]!==head.data[i+1]||image.data[i+2]!==head.data[i+2])changed++;}assert.ok(changed>1000);}
  assert.equal(sample(project,'skill',.55).face,'fierce');assert.equal(sample(project,'victory',1).face,'happy');assert.equal(sample(project,'hurt',.2).face,'hurt');assert.equal(sample(project,'hurt',.7).face,'normal');
 });
+
+test('happy face keeps the canonical mouth and both cheek papers below the eye window',()=>{
+ const head=decodePNG(fs.readFileSync(new URL('head.png',folder))),happy=decodePNG(fs.readFileSync(new URL('head-happy.png',folder)));
+ for(let y=281;y<head.height;y++)for(let x=0;x<head.width;x++){const i=(y*head.width+x)*4;assert.deepEqual(happy.data.subarray(i,i+4),head.data.subarray(i,i+4));}
+});

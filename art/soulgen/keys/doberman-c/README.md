@@ -46,3 +46,7 @@ A prévia `preview.html` permite alternar ações e velocidade; `animations.gif`
 Os passos de renderização usam @napi-rs/canvas; `SOULGEN_CANVAS_MODULE` pode indicar a instalação local. A exportação do atlas é explícita; baixar um projeto editado no Soulgen não sobrescreve o jogo automaticamente.
 
 Validação: testes de fidelidade RGBA, dimensões, hierarquia, encaixes, projeto portátil, rotas e recuperação independente; 18 verificações nativas de equipe, HP e reprodução de ações. Aprovação artística do recorte e dos movimentos ainda cabe ao autor.
+
+### Correção localizada do sorriso · rig 4
+
+A felicidade agora combina os olhos felizes registrados com o sorriso fechado da cabeça canônica. Todos os pixels abaixo da janela dos olhos são os originais, incluindo boca, mandíbula e duas folhas faciais. Isso elimina o conflito da boca aberta com a folha posterior. Os PNGs de repouso, ataque e dano conservaram seus hashes. Cinco testes do preset passaram, incluindo a proteção dos pixels do focinho. O preset arquiva a recuperação antiga e carrega rigRevision 4; artRevision permanece 3. Atlas e prévias reexportados.
