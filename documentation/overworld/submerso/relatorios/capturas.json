@@ -1,0 +1,3575 @@
+[
+  {
+    "area": "submerso-a",
+    "mapSha256": "eaee15736464e7c3021284b4477f733aa6a7ec24878e45ade70b368041aeb42b",
+    "planSha256": "5a0b31b73602908de520fec379fe7350dac351cc20de4e8a6ce8f543df91008b",
+    "images": [
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/area-inteira.png",
+        "sha256": "d0cec4699b60c0982a8ec8fdfec0900fdccb5aeeb08e164cb5847980aa924234"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/entrada.png",
+        "sha256": "4226fce996a5e9e69eec02f6836c539124d319f7331b9f65cbcf86779415a02a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/centro.png",
+        "sha256": "3dee19d0be66b439b3beba9451d935e143c74d818612142bb62a11b829f767d5"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/saida-28-0.png",
+        "sha256": "e1060e3bbc5764edf389ff033d8e1fb0dd198aa48c19cd6f92c4205ceb67e5ea"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-10-4.png",
+        "sha256": "d9a5ab782ae3d547ba3f30adf706f798b20d053e1057a805bc453a4800acb418"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-27-4.png",
+        "sha256": "f09ac6326a0e20c2c5e730bb412556f0512eccaaa24f68a9bc572f57d26b2edf"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-30-4.png",
+        "sha256": "5def10b9140de1d426d93c807e5ce82683988a214096233e5a714c3c1703c213"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-44-4.png",
+        "sha256": "39b9b1ea68861dacd23b5961b52b29cd4c2e7a28cb3de06b5aa25d7cf9bff8a3"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-6-12.png",
+        "sha256": "34a045cd1b8d1783ce0b1323e8878d384581c9e9fc469858fe1457f9a1742b55"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-10-12.png",
+        "sha256": "e8795631c0aa047423cba9b9648ee321beb683a2ab82795c296e318b65b16996"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-44-12.png",
+        "sha256": "4aa6caa891333fdc4af51bf1800e89c27eb3559f7f2b27099439ecc2e99548a4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-48-12.png",
+        "sha256": "28d05d4751c067a12da950d44df4d4ab958cbe5b3aec8e23907a6f373c2ee468"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-13-18.png",
+        "sha256": "121df9af9c1c4d96294b531af4328b348176090405e49dfd51f7ebc6d92f123d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-18-18.png",
+        "sha256": "65f6c871f63a898ca04c2fb22c24d4a2fd08c09552eea9c9b0182b1fdad05cba"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-4-20.png",
+        "sha256": "a1b8e4cc808f9275934a0911b5844eee549fcb2d1dde5283752fd79b49b28937"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-6-20.png",
+        "sha256": "871a65d8d0d2661bdb74fc0a54353f61bed9e8b5684abee938269f78f4549bb7"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-13-20.png",
+        "sha256": "5aa3f96e0be6784dd8e13fe28a19aa72469963ad6920b481a460a715e078c48e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-18-20.png",
+        "sha256": "626fcb4f35b2fdc429b39fd3d70d15b9b2b6fa29955e5de79810e3fb07461771"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-48-20.png",
+        "sha256": "56eb8381e1272548d274b69183a158518a28144e835a19d2312bb7a83913633e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-50-20.png",
+        "sha256": "488e3f0a95625e548b598f68b4f22c1e05d489b90f6436d5c9369266a86ade86"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-31-28.png",
+        "sha256": "029c9e4e738eabf8d24841a8151b58ee2e7957f57b1d787b48f4de5105b7bf67"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-36-28.png",
+        "sha256": "16dbbe4ef73a35831601464c83cfe007142357a77ca13dd3e82a5de6ce93bff0"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-31-30.png",
+        "sha256": "2c481b7516391c431fddc88ddbb47d611ae2d807d994c722124db9380b96a068"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-36-30.png",
+        "sha256": "67fe9bb06a96af9fae3274d5c3a219e3c03a65bdee1adebaa41f575a763c720b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-4-36.png",
+        "sha256": "2251703870d3d13e18b8aa2e0bd31a1f2d4e456f00860f8acc1049a35ba1666c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-8-36.png",
+        "sha256": "5c1a9c1f6c32d04e4e5786bafcb0d5170440073cf163c92bbd6c5dd8f57b3d5e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-46-36.png",
+        "sha256": "7240af19c3abae473074641c64fcc592009cf50cc014c4cf8dc13fa4dd1dd42b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-50-36.png",
+        "sha256": "2a723af48814facaf964160a27c2cbec81ae0ed30e8a5fe86372e639e21d46b8"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-8-42.png",
+        "sha256": "8f2d2e934a5fccab9d3f91d60d0c7d9344cb0ad76f0104dba6696992718356b1"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-16-42.png",
+        "sha256": "5a8f81c66ecb66bd11023acddf71d08de49ef5bae5c698e3e44fdd4048fc144b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-40-42.png",
+        "sha256": "6d841ea69d2415ee6cf78a8d92a52f149df70e85e623b54b6e6cb672ea9ca64a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-46-42.png",
+        "sha256": "da8f24f601dc3f068cf1ff71423bbeadd70cb0ba7972f9580b2b8f7aaeabfcbb"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-16-44.png",
+        "sha256": "b254d8a71ef56b069a58b4273566778c2a63ad6b71b04b50b77f5c906b0ddc91"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-27-44.png",
+        "sha256": "801c2020f504c26cb03a9f226cce76832227b483bcd24cb426dfb792e2924e23"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-30-44.png",
+        "sha256": "d33f528cabbdba3b016400ad7bdb74e7cdc934801162a80e06718b787efec231"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n1-40-44.png",
+        "sha256": "89f887df43c95873df88372632a1a3803b09f3293a3759aea7eff2e7f7ce39f3"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n2-4-26.png",
+        "sha256": "1e2df48dedb7e745c0793d80213c9e5d75283b84f6ad38433d2bb5187bb087b4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n2-18-26.png",
+        "sha256": "6af1f984a725914b4ec2ce8c3cfa76cb7e3d115a33378671c074f6e0f775a64f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n2-18-28.png",
+        "sha256": "d9ed8dfdc5cf873e93d663b53e6fdea121e1542640a61b3226d7425e9850c33f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n2-40-28.png",
+        "sha256": "db31d5bf5ede0be299a0f0bfb98674a890663c47c0e1b0742d1eba1dad9d5e30"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n2-40-30.png",
+        "sha256": "c8659cf8845a891b45dbc017fc219a2d928a29190af9082268c574b73b029fc9"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n2-50-30.png",
+        "sha256": "062d47e299ea54955a4610dc0737feba729c9c81406390ffb7c14607ea9c7b23"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n3-10-6.png",
+        "sha256": "8e654daa523d7286732e0aa50e382a834f61551450e4c8309e557c9241f58b3c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n3-24-6.png",
+        "sha256": "e5202d4701b4bfac35b1555276badf337e6ebe679afaff5419b94ad52f6fc551"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n3-8-12.png",
+        "sha256": "11ca0e127f2c800bc04b3ac610a61307e5e8a20ab7278caedbb83bdaf4db91db"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n3-8-18.png",
+        "sha256": "4eceeaee1e4f729f1b3ee61145278c92e095725060af17bd16c96d03afd0ed14"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/canto-n3-24-18.png",
+        "sha256": "04746498c8d73ccb1476c2fb22052b42d2055b5111ee3728a01bb32d81498783"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/rampa-topo-13-18.png",
+        "sha256": "410d9e117d4d9aa35e69292e81edb04e8a097ff76feb1123fe614172dd3d2012"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/plato-13-18.png",
+        "sha256": "b158a0eb59acd12a5cae70f68d2be0c666c17757fbb07406be58e9ee347b7936"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/rampa-topo-14-18.png",
+        "sha256": "99dffb12e70cd4fff0398e181c865337aafa043142635e946c653003df0cbf31"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/plato-14-18.png",
+        "sha256": "45102a6d3585fec106f4e05bde253d4be60ebfc8a852be09bf048c27b14e97d4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/rampa-topo-15-18.png",
+        "sha256": "787cb904512e004a4f022efca91e4f1c0f53431b814138fb5c4407565c1d79ff"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/plato-15-18.png",
+        "sha256": "b650b43b7251dc8868e9db0002e4f88dce177c6b03d2aab41657ca33128a3889"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/rampa-topo-16-18.png",
+        "sha256": "3902d2cbe087587f5abfe61a60021b8c3dd43936c4762b35c61b78a096a5d180"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/plato-16-18.png",
+        "sha256": "f9e48711c2b9a247e4d56b7820f1d3262b33f87634ef1cee12a420701ec7fc31"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/rampa-topo-17-18.png",
+        "sha256": "d0511a2d9ff9ec1693bdb97f91a9fe1f005602635ea3881e16ac703943158fde"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/plato-17-18.png",
+        "sha256": "10577dfcdf504c4d6a9a7a8811c89c515c1573d942e2ef9fdad688f696ee42fa"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/rampa-pe-13-19.png",
+        "sha256": "0b5bdecdab947a27ee1c6639e90594c88b7e7972a926903eb167a0196092b8ee"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/rampa-pe-14-19.png",
+        "sha256": "0c3bb7532bb744cacd889142f98e6b92f444e158f8aed511936c4dfff32f74c7"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/rampa-pe-15-19.png",
+        "sha256": "4956b98087e9afb52cac40da35364f98e3526b7625ed37f69a25fa7922a7df36"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/rampa-pe-16-19.png",
+        "sha256": "2190278ea39fcad0caa1b0c416b55a493134526353cbb6bb8fecc21eb6ed1b37"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/rampa-pe-17-19.png",
+        "sha256": "85cd87f09f171ce6a0f71b358c1d2657037c6dbe29a73dcc046bba1f16af833e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/rampa-topo-31-28.png",
+        "sha256": "f4392889c280b901aeb39c8a30a1460cc404e79c413344b39abe607e83a486f5"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/plato-31-28.png",
+        "sha256": "32a08cdf1d26708133e2d673816322c6919c1663680cd06bd9f3ad48b45057bd"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/rampa-topo-32-28.png",
+        "sha256": "c5e6d2f3a31dc97a9f9b6c82b5d967a7344f7a684f4784bcefe54487d4221de9"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/plato-32-28.png",
+        "sha256": "f2d845ee5dbfad80957524f82481c598d300e85966f2184b36854c21c86d25bc"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/rampa-topo-33-28.png",
+        "sha256": "a095861fc2e33c5a774a446860cda30aa5d1ade9e39c740dc295710dad237e30"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/plato-33-28.png",
+        "sha256": "22791267471dd79aa3eb6b6e04157a3a1073d8d9f822442658cbdb094afc8e88"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/rampa-topo-34-28.png",
+        "sha256": "0848b10a99105efabbb592f8fd9da95a5cb4117b8fb3a4932e0ae93fb3ab2870"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/plato-34-28.png",
+        "sha256": "4650cb227e9cc22ef8fc30f3e7ffe8978e264a0b304b1c77251bf8a81ae88a82"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/rampa-topo-35-28.png",
+        "sha256": "4784ab8c2e5987bd90f1df1feb06b42ef6f4a76d9a6d9e7ef55b104797e8e88c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/plato-35-28.png",
+        "sha256": "5f122b81551adfea24a1d4cf58cbd721f32cae14dff31939da2accf4297e7dbd"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/rampa-pe-31-29.png",
+        "sha256": "8ae07347536dde2b4949a986e5c7cbe74215e0238d1a18f7e69d7cf02471833d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/rampa-pe-32-29.png",
+        "sha256": "11f35d065c510fa0ecc74b452284238dfd2bb146bf4aa95d623d3ba496e00f01"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/rampa-pe-33-29.png",
+        "sha256": "ad1186a631cea8e6c7bc55640d12d4278afaf567ad4b87bd4f4364e67c066792"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/rampa-pe-34-29.png",
+        "sha256": "27d1037d696ae45aee7a32943d8ceaf312fd4354f99ac79ccf99d794846e4d9d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/rampa-pe-35-29.png",
+        "sha256": "29828f3d06caacf00e9e66a42c433bac7629d903fefe59159817276ae003f334"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/chegada.png",
+        "sha256": "8c5d4b97be6fd2fc2d106fb159d2c7174f40f6341d90f988d171274f662f1426"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/patamar.png",
+        "sha256": "41a9fa84344a401bc99d3835e966220d38ff9de6f9db7d28d188a596c2cc0467"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/mirante.png",
+        "sha256": "d86e6a3dda13b6a1d95a5ff5450f1be40203b070b98186045fcb34969fee7953"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/desvio.png",
+        "sha256": "44b87a9b832e90a98d350023990e1d7baae5c062e6a51c348fc75fd247492708"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/marco.png",
+        "sha256": "5af159e2d354f0a587165361ee90851744e7e58a22d73aa71e67f25a211c46e0"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/lateral-rampa-31-28.png",
+        "sha256": "d7af8cdad6d6ffb5dec288002678155414b8ac94845abcb8e04b04a0f4448eb2"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/lateral-rampa-13-18.png",
+        "sha256": "23049b15c5cb9e97e6b2e17a967b11c020ef2b65f636a04167769eb2bd7c270b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/areia-0-oeste.png",
+        "sha256": "e70a6ab2e06a22421a48ee9a1b435abef3f374034f8f6dc2a5f356b7083c79d2"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/areia-0-leste.png",
+        "sha256": "eb4ea9f80c6c7a50690630815371426034a3273f3b7550191d984b108d7e4c7c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/areia-0-norte.png",
+        "sha256": "68f708f7fe472abf43133e3081c11c375279da0d09f1b7184f5662a3772dacea"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/areia-0-sul.png",
+        "sha256": "919e899a3139249d134d449391c1ff00c42d2e6c2617708ba9fa8ffa07f09798"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/areia-1-oeste.png",
+        "sha256": "854dda906739c17680835ba466df5e7af63441c533190e510cbd58dc34e3100a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/areia-1-leste.png",
+        "sha256": "396aeecf420d75c7c61464763f088e5178af82a243f5fbdc9896b310bf69d97f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/areia-1-norte.png",
+        "sha256": "0d581a4d28466456d979b6c8cd0cfafddddf30980a1f9acc63b168eec68c5721"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/areia-1-sul.png",
+        "sha256": "1b940298aa841137d8242474e9dee48f5010d7998cf98ae628eec74d02309084"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/areia-2-oeste.png",
+        "sha256": "9a570bff6580054ba2ad70f57853ceab94a43c4a765056bdd0b0ddc3e6df5393"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/areia-2-leste.png",
+        "sha256": "4d81fe582ed6f4e7c7553a17c9514abc60b29b395ae547f0e567fea5f751a09b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/areia-2-norte.png",
+        "sha256": "cc2dba12cf7b5cf6d1a564184a48e92c075b053d3aac022dcd965affc3c1470d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/geometria/areia-2-sul.png",
+        "sha256": "e02bfef05792fb43e6c3af0fbc4a6d0dd793c7372bb4f8c120684297099cc3b0"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/area-inteira.png",
+        "sha256": "1df9dd5732ade7a32bc5e098cb65d8c4619028ee903184ccab28227a2a9b6701"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/entrada.png",
+        "sha256": "50145111ac3289490e1e09aa35efd818395a81443b26aa969d359de146fe3926"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/centro.png",
+        "sha256": "0a1c4deea744ba0f6a0488fa9ce4dd0e014cd480e2a38fa3968b14da25c2d850"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/saida-28-0.png",
+        "sha256": "f3a933c6cbef7dc7fe9f5e367768e9a31fc1bb17208a5812c5e6339d7c249a00"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-10-4.png",
+        "sha256": "aed1a94136b549484bc09392c48e27836261ba186c5597ff5df05e9f25ad8178"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-27-4.png",
+        "sha256": "18f681cfd049d8eac12661d4d30a81c16e17379cb3d7216e1801767d450738a3"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-30-4.png",
+        "sha256": "5b1999092d063278f6bc03eed4071c10158cc24f7e6c2c3b7a534f3dfda49603"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-44-4.png",
+        "sha256": "17920149b9e0823b71422d04ff2a12f2d6fc6d8301b0f695ba47326ee83cb98e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-6-12.png",
+        "sha256": "b6508b88d4f2e0a6d69156c3be92ec2ba21b4fa597d585ced794c85511af3f23"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-10-12.png",
+        "sha256": "767f9d5c42aa0199af304153a0be746d424f8803e6b23bdd98ade801d4bbe394"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-44-12.png",
+        "sha256": "fc7eb8ffad495b98d5019ac17c24277bc7f75073161a2f6dcfb7ed1d4df7fe53"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-48-12.png",
+        "sha256": "492fac5cca3b62a73a8e3bbf0c112ba86439eb37d6a161fcc07efd8d96716fd3"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-13-18.png",
+        "sha256": "f2b83589d6c99ce3a1398f3e6ca7043c7defdb6f0f212cda0bef9a4ace1b544d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-18-18.png",
+        "sha256": "04f6967ea2a144f081524281286ebcc60b7cc74cd33d19ad410c9ee57f1890cc"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-4-20.png",
+        "sha256": "71da3f8670b6e6e630fc194306ad308e586a8577ad0d68679706a2c555e2a9b6"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-6-20.png",
+        "sha256": "8b8d21d7dc16ae33b065d74a5c2dba37d157bcd4bcf80c43880fb4509f40d329"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-13-20.png",
+        "sha256": "0fbb1de2074ef1f6f71a48d405e7109562a779c1396f3651e3208f64c2568af8"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-18-20.png",
+        "sha256": "006ccaab30c9da7086d95bd25e2fc7197f23d603a0d936b908dc649d335f255f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-48-20.png",
+        "sha256": "5e0df80e6ac73090b2caed4c655beacf3da281def1e4587c61da1b0ca7aedf64"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-50-20.png",
+        "sha256": "66175ddec6a62865ec4dffe328c10146fcbebeafb22cb87791a831a8e3198cdb"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-31-28.png",
+        "sha256": "dcbfa53fbaef5609cfc52b4350c2f1914cb3345fbf1a75de3666dda959dce728"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-36-28.png",
+        "sha256": "a74ce254bb42c1fd38a6c240e62e91dd1edb51bd85abf98c932b0f77092b851c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-31-30.png",
+        "sha256": "c0ba394a7da07cfa0ecbb80c9d75ef4c087ff8e61bbe09e236bf32b02a05b220"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-36-30.png",
+        "sha256": "f837335fddff55d4b46c6166b9fb7736ec8b14a9ea87b0c02890e9ea45d332f5"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-4-36.png",
+        "sha256": "759ca6a852f7ceb43409bed395598b3903c02d3e3652d58327c849c048e9ce9c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-8-36.png",
+        "sha256": "e8a580cec4d60a1dca1ceff971e08ec4a4d659288479c1dc232ba65768defb4b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-46-36.png",
+        "sha256": "257566f732aa6c06aa7530acec20e5eb2ea1bc9a96ebc77dfc1896e8d6600845"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-50-36.png",
+        "sha256": "8b91dc4fd92f797b2c84e7aeb5fba93f83f84628c6b4ddb93da9cb245d9ebc77"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-8-42.png",
+        "sha256": "7145c2793079782ce2c9110e9631c85f4b924c73e8ff78902af03e6c12ccd0b8"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-16-42.png",
+        "sha256": "44f9b080d57982444121eb3830061e7b27427adce90e283a9620351ef00ed599"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-40-42.png",
+        "sha256": "2a0f06164a4067bda5400c06cdfca14cfa8934e9e1b6e069ca6c6e26f5cafbcf"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-46-42.png",
+        "sha256": "6895b8cfd81cd30b395802dbce1b2bb4ed3dca5b71f655a9829b4a3cd8e63a31"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-16-44.png",
+        "sha256": "26478abc958e3b985396dfff1f1a5c2170da73dc71d60ad1b835450c767e500d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-27-44.png",
+        "sha256": "ee23408383b79c0129e285f2ece72ff50cf82beaf84f7341e2c47764660002d5"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-30-44.png",
+        "sha256": "411b0b19f4c2e0bdd5e4f656463a033d58d93cf9ff495ef1341c022205e8b9b7"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n1-40-44.png",
+        "sha256": "ee1995ed90e6765838548b869666273c23674fc1e93cc1556088ed9c6b920304"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n2-4-26.png",
+        "sha256": "c4f20891f0bc401d5afca13e03e0d10d9b27ec45869f1b21109c2b1e21882902"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n2-18-26.png",
+        "sha256": "d8299b191efbe1b4b3972f65e0bea6567feba5a461f64855407da1316ebc59e3"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n2-18-28.png",
+        "sha256": "5e29b73011cb564d4edca71514c95626367ba0b4d34cb7fe3215a5f8ae655034"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n2-40-28.png",
+        "sha256": "53ebb74419867616486bec5b85a5e6f7b9cc8fbb77483a7cb4687de0da8d4caf"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n2-40-30.png",
+        "sha256": "95aade94977cf202a4baef27e2935b902e1e4a5beccfdf2096e9650b1ac80a56"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n2-50-30.png",
+        "sha256": "f2348a2545e6e5d63ff6c56341c5887cbbd767528050f1f0aed3a3b14cb7ec3e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n3-10-6.png",
+        "sha256": "2ede7646b03eb1733a0519ea8035a7cc3326e9f4729403590c2f44f064a6b090"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n3-24-6.png",
+        "sha256": "d94d49929dd2138165b78df5252ca3281b2c0836003a56cdb9f006c774979369"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n3-8-12.png",
+        "sha256": "6d8519b8625c682f6ac7f8766e4081e4e06dd18f7a09f5154ad78cb675a700f0"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n3-8-18.png",
+        "sha256": "d9b661db2531e435f4b919af0c95e7eeb60a80e295dc123cca88978ef87f809f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/canto-n3-24-18.png",
+        "sha256": "381dad82fe2cea29cd26830ca8d33ead83214991e81185282cc81adb7d7e3626"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/rampa-topo-13-18.png",
+        "sha256": "2d33accc9fb0c697dd1fe1a1a2f6e55549cb10396b5367fd6b32c0f612ff42d6"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/plato-13-18.png",
+        "sha256": "fcf5b4455fe824c0b407a8701619f290f1ae415db079bfa07e9bd9c196e2a003"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/rampa-topo-14-18.png",
+        "sha256": "c870ffde78ce4234992c64de9fe2ef1a6be13a15bfb01bbdfe2bc5b854f5b07e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/plato-14-18.png",
+        "sha256": "de72751b6c459f9e5cf47968f662ca6c0d1371653268900bf89f7ebb306adddb"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/rampa-topo-15-18.png",
+        "sha256": "c460567017596759b988033697876bbb123d0be75e9ccecf5b89257f68519fdf"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/plato-15-18.png",
+        "sha256": "fd145ac92f9710cae130150966a95032e86df94c9ce8814ad7a2ad99b29b2ced"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/rampa-topo-16-18.png",
+        "sha256": "e0210f48192b69f7f39fa021ae4ca785a8986186cce7d73e60329798be906fa8"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/plato-16-18.png",
+        "sha256": "29deff964762a13827aa030b6ab588dbc0d361734c266e5fbbc1713bebdcf010"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/rampa-topo-17-18.png",
+        "sha256": "3b73bb07d64190ae452f4802f82cb6403c273215e0e2b39602cf6f5d93e1c865"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/plato-17-18.png",
+        "sha256": "c11744497b7bd2442331f0a9801eb92487bcb34dea9e94539bb4daba9a596cd2"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/rampa-pe-13-19.png",
+        "sha256": "30e042cf65a394206dd6ce0ebd29b930013a8110b75851c60b03e56cb1b7c292"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/rampa-pe-14-19.png",
+        "sha256": "4ca6afec5a98bf704593490f594dd20fc1c35e0eece806a32f9a92caac46461a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/rampa-pe-15-19.png",
+        "sha256": "20810f6c157fb991740fb260ed786f00578fed350984d3bf481d4588add9b96f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/rampa-pe-16-19.png",
+        "sha256": "d5e651322d7c62616e8d8584c7c6f265b3a20d01ed9b04f6794f54b3d3239e86"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/rampa-pe-17-19.png",
+        "sha256": "c24e2b15038d79ad2b2b349005a9b977de9a2fdeed697c2a4120ff34e411ac7f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/rampa-topo-31-28.png",
+        "sha256": "84c3d566ca48cdd7f70d90b9d4ed505379179106ae5caaa731f5237ef12f818d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/plato-31-28.png",
+        "sha256": "8f64c019734ec8f474e425d8d4a23b8eb378002664a1a797b9122f58d5301ae5"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/rampa-topo-32-28.png",
+        "sha256": "6510deaf5815fe81b841634159bd794ec8351fa78cdf4ef1059b69e66eca7ff0"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/plato-32-28.png",
+        "sha256": "dd84be1707a854cc3a45185f8a9dd5267ffc7fa2b6e89cbd5bdb75240937bd62"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/rampa-topo-33-28.png",
+        "sha256": "95801b1a5166892570f0ee4b20fd4cd429df38ea9744003d6da3367d03bc96ed"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/plato-33-28.png",
+        "sha256": "79b7ad8c48ae7d6ff7cbc920463525c33346a370509fc81119abe841b4e76366"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/rampa-topo-34-28.png",
+        "sha256": "cbe09d51a32a062d158f1ef6f0ef6837b7517e6b788d4856a1dd4b4755e6f7d4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/plato-34-28.png",
+        "sha256": "e8574c7bb25126da21557b1c93f8a01acc83858e97e36a2d66d438ad8ee822e7"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/rampa-topo-35-28.png",
+        "sha256": "7bdafc5542fcf3fa09196e5d6baa0e825903c02cf388a95e4dc8a16dfd3c9816"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/plato-35-28.png",
+        "sha256": "e2c71fe62562edb7bc9797b6c750da9206f7c37ef6a580dbabb7e5de465601b3"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/rampa-pe-31-29.png",
+        "sha256": "4dc50b457eaadf5f22c1737a9b1e3d03a2d46594194f34adaa2e80fb84e692b4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/rampa-pe-32-29.png",
+        "sha256": "9937961ce9fb42abd259c30e4c8dc18270380f0f3934c78baba5429ed60f19b3"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/rampa-pe-33-29.png",
+        "sha256": "e7e09a49db0f52b8bbdba0bb0ce1eee1b14f8da3af90abedba432afbf8338f85"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/rampa-pe-34-29.png",
+        "sha256": "f5e89f958bed251a871df0a6a9fbcffecb9a826f81018b6ec949bd4f53fece65"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/rampa-pe-35-29.png",
+        "sha256": "1069c45ca6aa57b5b79cadb969e11822e50a1e2e2f69f81eb22130f508266523"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/chegada.png",
+        "sha256": "421eb438e0d9eb65193b5cf8773760c65529806090011c7f4c11a92b3b98e65a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/patamar.png",
+        "sha256": "70248f80dad909b5b282f02f16cb1d87a2ac07d5b3eeb14d5fca7bf99ec9a8f0"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/mirante.png",
+        "sha256": "943c81f24f35059121e3106925c6122eed94e334541dddd6d33eb788f7655b74"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/desvio.png",
+        "sha256": "262c77694cc44d37b38a9055c8adef652e0d80f7627ad15ae093010ff7ab4987"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/marco.png",
+        "sha256": "ff9e058f9a02e7dadd2062a3601d9060f7033600772c2ee06ae804e28312b5c1"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/lateral-rampa-31-28.png",
+        "sha256": "ebd5e2cd26358e845a722c810c3991f59340be2ec03d8a9e05d9882e75ffb07a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/lateral-rampa-13-18.png",
+        "sha256": "827455e731574a426a5a3e651d702a4b4f5bc4938796dc998224b980528b8e92"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/areia-0-oeste.png",
+        "sha256": "963eb8e48bf36270e27a6a9d97c04e9ee5c931c77443d5ba97ec0971c8d71821"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/areia-0-leste.png",
+        "sha256": "ea8a1c78ece83413d7b6cd669213ceb8c04f2c2e52704b2ab5d00097b258fe1d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/areia-0-norte.png",
+        "sha256": "49d9c7a6c2a9dd31aaa08f5b75791a382747a505576009d45065ee68986fe5cc"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/areia-0-sul.png",
+        "sha256": "d9ebb566a7673315409da13c08ff6f2bf4445ea38210053123870b2227d65155"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/areia-1-oeste.png",
+        "sha256": "086d4a0bcc3babc27005b979086e5ceda613de115242b290ada11707fe7216ba"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/areia-1-leste.png",
+        "sha256": "1956010b2b141cd21a6a2c061c252cefb9f64cb1280a4424e2d9b4350bfee203"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/areia-1-norte.png",
+        "sha256": "bfebde2dc2b06571484c25501bc02a0d9013c7c872de07027ccbf65f4d1fb809"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/areia-1-sul.png",
+        "sha256": "0abb75b8a83d751a9b2ff74b26dc3b38dc18c02918a2d9e32a083f1345290ac4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/areia-2-oeste.png",
+        "sha256": "ba3ba19431f98bc800e473e00e6909dd8d56b7a1b0728de50ed70bdf1841d2dd"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/areia-2-leste.png",
+        "sha256": "ef6a3ad51055b3753eca195943cb2431c6d33d01521f2adf9b153d2bcda727f2"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/areia-2-norte.png",
+        "sha256": "8f827eec828e89627b41cd333dbfd43e710d113ae1f6d0033cc09574936abd77"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte/areia-2-sul.png",
+        "sha256": "ff2cd1cf784007fd6cde04efe037d95fbbc6e8d137ce6bd9da5e901ad3dae3d4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/area-inteira.png",
+        "sha256": "e78a2e49fdc2ff78d46468bbc26830cac7042797d51432a0e25d2f9f0f909440"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/entrada.png",
+        "sha256": "92d4e089a37db5bbe8b7662a81389de62712ef1cceee53c470627a3736775922"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/centro.png",
+        "sha256": "c0ae2978d44b4df3a1ec62daab795a4cbf2a2847feaa129934908c44a193f587"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/saida-28-0.png",
+        "sha256": "f85e828bb03540cd4f6129780d3a6bde08f49a1108e7c91e7ed85d0e348f9d16"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-10-4.png",
+        "sha256": "72ad87e857ff08de2c849b3c8f24303e71ec739bd08a371316af655d01053542"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-27-4.png",
+        "sha256": "f87b7517f29087336b2e66070e045c68976132d57fdf361f025490d3db249431"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-30-4.png",
+        "sha256": "45c607d0b0a9b1ab0e654bbf34942d1b2284ee8152edfb797f5fe782dc7d2b46"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-44-4.png",
+        "sha256": "79eb76031f080fa608ac15731d331f08bbd023f7fb54643b7205a4a33a6f54fd"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-6-12.png",
+        "sha256": "4d7833877387cb1b34ec1a2dee9d502e16e8d3ba5cef6db562c7dfb9a1d3beb0"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-10-12.png",
+        "sha256": "15bc5a412080f118d438868cf29b6225e174b158dbcbf3c6679d1f420100b865"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-44-12.png",
+        "sha256": "e96958ff2f23a155f4ffc0464326474a4361674063e117cbe84f53557281540c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-48-12.png",
+        "sha256": "27915154674afb7e066d53db6e0d8fc509b584704343a358bb0220dbfc8a1892"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-13-18.png",
+        "sha256": "548defdaa2e0bd21a058ef37cf9d6ca2e3e6ad3933450024cb72efdf5036c756"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-18-18.png",
+        "sha256": "0f6544f810f5aa52936f83cace821c13074a4b4107e538efb823db8eb1915a18"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-4-20.png",
+        "sha256": "7a9e340034e5b5d7d82b3e1d356e046e37b3ee0bb6b7153dd6a22d176c772384"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-6-20.png",
+        "sha256": "b2b72dac0f51f4523c1f76544d08671480ed9fb0cabc65b678055994e1b66d72"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-13-20.png",
+        "sha256": "e506ebb554ec6da86015563eae8fda8164632b0e65d4944abe26a8ee34b098df"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-18-20.png",
+        "sha256": "e742db94d63b141dc8923f1d8a4dc2a98c40c3bcd453aa2c6252697ddd3bd93b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-48-20.png",
+        "sha256": "8a77735dcb9140dea1141b892d936d5d2eb49aa01b323f140c5ca35d7b0bd266"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-50-20.png",
+        "sha256": "66175ddec6a62865ec4dffe328c10146fcbebeafb22cb87791a831a8e3198cdb"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-31-28.png",
+        "sha256": "402d5cd462ea6e32332a09b92366e88b7d191a7a037b6911933eae18f37a95c3"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-36-28.png",
+        "sha256": "d0b27d08ef05873f0e5d8ae7899982cbb7574d2200a9af73d8acb79575272569"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-31-30.png",
+        "sha256": "86d528f38d2baecb770369da756a82692effab1f02e59be5721654753e4f890f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-36-30.png",
+        "sha256": "3c08c7ddedf8da8c411cf66c3e8b8fffa3d7339aa1343b3ac18844c3cd92274c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-4-36.png",
+        "sha256": "2c0c154dd82eeeadbc96fed4fe513355107519142dad2311a4e3186f92e6eadf"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-8-36.png",
+        "sha256": "945deb60f4e08facf20bafe02915ab83198ef29857cbf2a607259d1b6b2c6b26"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-46-36.png",
+        "sha256": "887dabad91aeb4ff20c8d41a237f97519c438021a673bd1ea3af31051714e752"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-50-36.png",
+        "sha256": "8b91dc4fd92f797b2c84e7aeb5fba93f83f84628c6b4ddb93da9cb245d9ebc77"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-8-42.png",
+        "sha256": "7145c2793079782ce2c9110e9631c85f4b924c73e8ff78902af03e6c12ccd0b8"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-16-42.png",
+        "sha256": "ad32fa1e79cb6fb79a07369e787303a3c8cf7fac403eb1628d04e6454772a2a4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-40-42.png",
+        "sha256": "8710f8f0f16de3235a7a36dc67c2b8f342ef21c337db2b0211fc4f8d9da71333"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-46-42.png",
+        "sha256": "6895b8cfd81cd30b395802dbce1b2bb4ed3dca5b71f655a9829b4a3cd8e63a31"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-16-44.png",
+        "sha256": "0e7c1a5e9862a58067d430c96296fcaf84e4782214a574492335087b9a529b1d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-27-44.png",
+        "sha256": "2b898e77f923e82466b869c2d293b2f3ca56ecc7f5ce138335b7b0ef84ef7862"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-30-44.png",
+        "sha256": "c6869fc6e62e616fec7c0830328de5493739da8574c212735713cebb463a0cc5"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n1-40-44.png",
+        "sha256": "e68f053b8dd6d4b91a1a957c631d62cab6764ba5624290a2e2649bd5cad8d142"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n2-4-26.png",
+        "sha256": "89d9e9ffa015c5b796d6f0584a00910ff17656efc2e26c951893302af9928d3c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n2-18-26.png",
+        "sha256": "c728ca4a1ef5b4de849e8080f11cf1834e9e9ab3912334fa01e3d346a23c2fe4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n2-18-28.png",
+        "sha256": "47b81ec1a4314f9b2827b54780c3e80de6ef16756800b411647638c85e6f7469"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n2-40-28.png",
+        "sha256": "9c8aab26dfb4c0f16a2d100ecaff03ce68ceff145dc908f1dc6ecf8b4abbc758"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n2-40-30.png",
+        "sha256": "3acb5f505f9077f8c5556984b3bec22fd41edcdb0971719f9c623e596ccb7cc9"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n2-50-30.png",
+        "sha256": "f2348a2545e6e5d63ff6c56341c5887cbbd767528050f1f0aed3a3b14cb7ec3e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n3-10-6.png",
+        "sha256": "0bf10534287994623a6a9b99b5bf6154c3e4cce648e5df14ed1296f68ac10374"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n3-24-6.png",
+        "sha256": "08ece2890f2ffb29a1d21f8fd9859fa4f2e1d6bfa9815ea27bde6c16cf631373"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n3-8-12.png",
+        "sha256": "daa6bc332455b135f3076db0d7d548c03ebad92ff3e1a22baf85a32f66c29e76"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n3-8-18.png",
+        "sha256": "27bea9f119bc056e15957331dc4f5390ae387cf58a85988c90bd3a4f4d86221c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/canto-n3-24-18.png",
+        "sha256": "ed67a6af9b6deddd7dfbfe9f3d4c346db4d282ec57bf3d664ca7a1b53c2b5816"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/rampa-topo-13-18.png",
+        "sha256": "3208279b2cb13f1f7ea10fdfbdd301d5d90bbfe25fe4342811fd44fe38837c14"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/plato-13-18.png",
+        "sha256": "3b8e2424c1a5259de2ae6dbf2b7693859ba05ed83d547bcff3d42afdaccd0dbb"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/rampa-topo-14-18.png",
+        "sha256": "2c869898afc2574dcdbb8e4c88a79b6d6a99a57dca4754787c113ee70c40e16b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/plato-14-18.png",
+        "sha256": "fcfc907bc4a9f8b033db439b7a67a0ab093a3ac2832390ee9a59ccf43d4594af"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/rampa-topo-15-18.png",
+        "sha256": "97105a026e0ecccce31b776c9ea1ce326a096807c20855c70e966331ef2d5f7d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/plato-15-18.png",
+        "sha256": "f7bb994a96e5d0eb6262e35f28ae80885df080e11b0e65714f8a94eff392be05"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/rampa-topo-16-18.png",
+        "sha256": "9dd42c3a155353f00f54cdf0315e0a22a39af31b898bc1d8a5e648759375c5cf"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/plato-16-18.png",
+        "sha256": "5137ee614eb4a70b838373bed11be2f352ba99d5005cd74450af4f3d0400cb5f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/rampa-topo-17-18.png",
+        "sha256": "a596673689468357a83f382da87df77a58feb6967d4c191a125f0109c546dc4e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/plato-17-18.png",
+        "sha256": "7168f56b69863f03368f513fb553c9c3714f4e0b51bd042fddf89a81255feeab"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/rampa-pe-13-19.png",
+        "sha256": "3d708f16595a2082035b3a6e02f924e7ee09be8aa65b31b3bbdf2ea0835e9a74"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/rampa-pe-14-19.png",
+        "sha256": "c794621d597885582e991fa72b01ee323be7788093a25071f997ec408cddd4ba"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/rampa-pe-15-19.png",
+        "sha256": "0710a7deb169694bc6de99a2de617dc1a7b5f1c48fb6e9ea59f6408e934d6fda"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/rampa-pe-16-19.png",
+        "sha256": "7496f710420af38f21b49c4523269f2d24a180c8eae5d05050ffbbfa0e5b256b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/rampa-pe-17-19.png",
+        "sha256": "6484dc7d32a35da0d776d6d739d3330851a4fbafc9d62652c42a8b9f44d669a4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/rampa-topo-31-28.png",
+        "sha256": "ea1b19de8497c264ecef26ad582a683a6f4f0069ac81a8193b298d1b031da0d4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/plato-31-28.png",
+        "sha256": "2260d157583fdb050d5943d43ef3f2181189be82e1f9b48f2e363fa4af01321c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/rampa-topo-32-28.png",
+        "sha256": "76293f3d4f5fa7b175c63453a59cf691ee1afa90e570ae1284212291ae2b833d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/plato-32-28.png",
+        "sha256": "c27122df74f020642b708f3f335ef9193f6a8104b7f5858eb551e9e76a2f816f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/rampa-topo-33-28.png",
+        "sha256": "db9db4feec5436af75b54608b4b1dcdf269fa02f7bcb1e041cd779aa18977c7e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/plato-33-28.png",
+        "sha256": "d4812db5062435d5932f04060f179ad3a3526d82c69460c6cbe0dafff61eeaf1"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/rampa-topo-34-28.png",
+        "sha256": "9aa4237dbddca7bbce2f2d379704f5a190c5d4ec4abc61d56d388cf5bd478d6d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/plato-34-28.png",
+        "sha256": "f484ddc13ee14ba1618f0b18ab2df0469154e12447681693ddc0c2b3facea037"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/rampa-topo-35-28.png",
+        "sha256": "72b6b9e8e3f381f8d31df0a6544fb425c87a5e87b05ac7ea4f9723de00ec9c14"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/plato-35-28.png",
+        "sha256": "059fa36d9a26ccde3f3f2305a620e83e1081d9b25b30f092b4fa8c82b0f80623"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/rampa-pe-31-29.png",
+        "sha256": "0e956b53a3554cf35416f330eec09116015087d1d40b11a86c0fe86bc61e07ea"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/rampa-pe-32-29.png",
+        "sha256": "7c8e04b6e4d3766d2ee26885b9abcc42a99da3fe0ea2348919a65f80acd0f5f5"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/rampa-pe-33-29.png",
+        "sha256": "1fed56bca2bf78760962064ba03f93f417c7991a93c44bfbf472a2aeda675a30"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/rampa-pe-34-29.png",
+        "sha256": "cc42b4d780b74b71d96ca4829318d35c9babb7d484e28613005af02e9d1a38c1"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/rampa-pe-35-29.png",
+        "sha256": "f2991d342415731dbe2537d9ec4e9cc32664f7238dde19dcd3ac40989686edbd"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/chegada.png",
+        "sha256": "99139d6fe232ac2d2abe57c7020327b33043afe8abeb39b3e7a26e3e28b4b022"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/patamar.png",
+        "sha256": "01885dbd6ae6b50e5a7765e81853cbcc0256350790231398f24129c7d9ce5c5e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/mirante.png",
+        "sha256": "965d4206676271604cab567d97f199efad8e7c6b4bbfbf5db3c074294f41647c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/desvio.png",
+        "sha256": "a292113172e9267eb768cebed0fe5277325aea83d7f269298b5091765757442e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/marco.png",
+        "sha256": "04d13d41d855685d262c6e1c2f4e51366eb2f2192137cf1d7db04791dd3cb543"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/lateral-rampa-31-28.png",
+        "sha256": "5adcbf1719757bfbfb260c524dcaa7a1193445aaa3fa708c71cd0f4b5540e745"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/lateral-rampa-13-18.png",
+        "sha256": "457bdaa037eb9b51dee4352e5ccd762649174d0fda213daaf08ba40ed1aec406"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/areia-0-oeste.png",
+        "sha256": "2b8a8c6db6d76f0467ab2ff51875550cc70945714547e60314a10fba9a53bc46"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/areia-0-leste.png",
+        "sha256": "b0ad23b6b195263b697b545eadb4ba1ea9470580b6637f5c255406278d57a733"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/areia-0-norte.png",
+        "sha256": "1786e70da71f0192cf3ced39bdc3155e8e2654ccb1fe10e7dc0550690da77fd8"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/areia-0-sul.png",
+        "sha256": "34663564bc993a09eb51a45db9468d5ba271cb42918dc1bbea14529952721dcb"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/areia-1-oeste.png",
+        "sha256": "1f3289e937aa9302ba8c1357356977dc42ba9d941cbfb8e122a1ec5072d76c8a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/areia-1-leste.png",
+        "sha256": "d6cc36353531a30276743d15eed214775098371714528571ca52c6f1c5d98d1e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/areia-1-norte.png",
+        "sha256": "2e27a5cff822a411f4d042e9280328278e179d59cad6d8b806b9871a5c903e42"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/areia-1-sul.png",
+        "sha256": "f38dd47fdaa1bc14e7fd361d576199c6453ca57c31aa5fb711982914255301ae"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/areia-2-oeste.png",
+        "sha256": "d82c6fe4cc71b4bbc9e8c4c2981371df51f3eb90ed67012b335e6c0ba3b49578"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/areia-2-leste.png",
+        "sha256": "9fbfd16c242d80e887ec63a626cffa72c46f133d64e9726c608f404962a3e5ca"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/areia-2-norte.png",
+        "sha256": "41e2baffd4096dd1c93843a1da321c0837f5c958a58072b5073fc4c32b774504"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/a/arte-terreno/areia-2-sul.png",
+        "sha256": "379e0ec81218a3280f251b96693cc42ed674aef4557386799b3c8c1a3b30c3c2"
+      }
+    ]
+  },
+  {
+    "area": "submerso-b",
+    "mapSha256": "9c63719d2a4019e0ccda498a24533ac90e0379d6f537c8eb7bf1ade02b22186e",
+    "planSha256": "3bbc62a3fa59b63999a1281dea3d9ccac7819014246132d3c209b4b23c6205a6",
+    "images": [
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/area-inteira.png",
+        "sha256": "7bdf9a55bb97a1556b6a772da5793eb8560b6a633c0c981429d37e1c337089e8"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/entrada.png",
+        "sha256": "89dc0ded0bc4763868776c6d66b94618aa0916bf87faba30e2f11b44438ccb5c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/centro.png",
+        "sha256": "df4d728a930806c23d5212f9631141dbdc00d2eeebb16ffd980b6bb564e85a85"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/saida-28-47.png",
+        "sha256": "a161318ad4316c2dd5cde68db0e35fbf0f985a6fec44e4f7214e28cd043b35cb"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/saida-28-0.png",
+        "sha256": "6d1d690394be641c6fc08e580ae3ce5dc9c9a7de4b94d23938eb5a7ccbe80c35"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-12-4.png",
+        "sha256": "6a78fbf25b670a11115fd1c6bb08a7ec2b784064021db86ddbe2e46eb118f463"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-27-4.png",
+        "sha256": "3d192a61d2b9f0e0902a9c360a731d76e9aa5de7d1426acc683e457d29140a3d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-30-4.png",
+        "sha256": "0b8a7db993fa33824bebb7ffd427e138020977dde80c89198ed99e3527b3b56b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-46-4.png",
+        "sha256": "10b3052b48d434c20ff24ec2d6437cd057a6676db28102f50df2710d02884841"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-6-10.png",
+        "sha256": "a05fb280e3ef3f450f6313fe0dc7f67c28808ee63a69af38c18644c8cc11e7db"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-12-10.png",
+        "sha256": "9ff990186d10f79c28ae01472a1dca2646483ea8553afe638a889fa3c0848381"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-46-10.png",
+        "sha256": "17ccec24a65197cc841b624a7cf505c2d944030758f85ffcea1ee6f5ba0d3258"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-50-10.png",
+        "sha256": "a3edd5cd54fb67655ed1c081be54103224404a3ecb096e2d145b848c9dcbf6fe"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-37-16.png",
+        "sha256": "3ef7e740dd7bd017cf143aa15a8d4276de3488907da35b2a3b7e753d3a81133c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-42-16.png",
+        "sha256": "76ada04764862b2f30c158fe59e65f110c09b6c02720776d62b65fb655376835"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-4-18.png",
+        "sha256": "7a969cdbb1f9b35f98532270dbc45701a695739108d4787fccbada2db5dc40df"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-6-18.png",
+        "sha256": "ee0102185ca31900798c40b8c279365cff67a4882ff53dd21e1361e9c32080c8"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-37-18.png",
+        "sha256": "d36ee681e5eb6fe7ca3b0e8485ae2827ac182fde3a94b1b2206cdaf90a115dce"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-42-18.png",
+        "sha256": "034f5782cb427ada299304c664f5f3aeb73a91534f9dc01a4925e35296297bbb"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-9-26.png",
+        "sha256": "5a1f2bdf7458fd984de5c6de9d6a955590500a1c9c9a525a678d6d2335271a3d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-14-26.png",
+        "sha256": "0a0d4c3f3ec1eeb729169b1e31a93a733bbb8bf2735a61276fa9d5e07a15502a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-9-28.png",
+        "sha256": "e484ee9a7daacfc344527a9d03ab98ea533e8af2a5a39943a3ad5952695c51cc"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-14-28.png",
+        "sha256": "3cf0f96923fa93e91c6d0b25f174cc6dadde9a7809c69bf490ed05d74bdc52da"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-4-38.png",
+        "sha256": "6fd264ad0c4954e0aafd481ab05f8e06a304feeb101377832de9caf0406e5f55"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-8-38.png",
+        "sha256": "cc3b7cb14c6b618891449095940934cb6e749c94b4460f0fa7446a7dde658373"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-48-38.png",
+        "sha256": "abdd2125493ccaa2a2a0e65421c5a9d4f5cc247ede0dc8555584942b62b13f1e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-50-38.png",
+        "sha256": "919f404686af412e35541d66eacea2a095dea98ad0b3ef47dd62468fcdc2fe31"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-46-41.png",
+        "sha256": "8d84db24322c68bd3d6d52c4c12ecb09d6737864a425c99f9aebdbc6f234486c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-48-41.png",
+        "sha256": "5caff63e85caea87f99f1bffa23b511e28c157a1fa9e0170bec107d44ba34197"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-8-42.png",
+        "sha256": "5823cd251476bc8621c49a1138367987fc200811af9c0bd1ca11fdb47dda9156"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-16-42.png",
+        "sha256": "53372e34561faceab55e121a439fdbf398a5db709b88d597267f42d56b6afa61"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-40-42.png",
+        "sha256": "5b38d477c94e010583f0962c544e46341b23efe74c85b2bc56ea5de234ffaa57"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-46-42.png",
+        "sha256": "f113105a8c1a270faba6f08affdb073e4d562bfdd4192d1b8be9818449a01303"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-16-44.png",
+        "sha256": "18b7cc379a438d8d2cdcf1fa1c5e6bf8946010443922f68f6614c0c4481097a2"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-27-44.png",
+        "sha256": "493e0e0670586da19041354239ad97271ff46fc99fea3041fd0d98948da7625b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-30-44.png",
+        "sha256": "969d28d25d8688aeabc18847868b148a933f04d3e17b9c5c5e558ab948f74f12"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n1-40-44.png",
+        "sha256": "cdbd215e76e97a3f277c6ac8c2b6509fad1fdc15cf7d1c9ef62fff7826f30289"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n3-4-26.png",
+        "sha256": "4f0cfae819be08e6fa0dd9edef951b838a809b1c2875161236c7806ca7a4b68f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n3-20-26.png",
+        "sha256": "9f693fad28591f99d184f23d7ee98f9c663a07e31c367cdce003662eafb27865"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n3-20-28.png",
+        "sha256": "c0bb0799f31e15622dd968dbd8dc0690ce2a8b3fa83be1f58b6bbb4da0d9e204"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n3-40-28.png",
+        "sha256": "4cce45df3dfd789f178f39a4d7957a10d2fc202b89b7fe36acfb27cee70cfa9e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n3-40-30.png",
+        "sha256": "1988486a37b72d7f620e73a9a157e880b2fe53cc119a79160732265d7fc91d56"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n3-50-30.png",
+        "sha256": "28097ee9ba026ed179ef8dc0b7c62a5e8e6b55684160e0788ddac59e7ac1b4b8"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n4-32-6.png",
+        "sha256": "0b8a7db993fa33824bebb7ffd427e138020977dde80c89198ed99e3527b3b56b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n4-46-6.png",
+        "sha256": "c576bf7c18f3262f84f37ed652ccbeee46a3ad111814a5c6e845d65b9f9767c4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n4-48-10.png",
+        "sha256": "bd16ca6bc368ef41e3dff9013f80064f20ac292fdff1745d89cf5712ea8db169"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n4-32-16.png",
+        "sha256": "88dc4e8fda1c9566262a2667d9b4ea2c9dfac9796b56d2b6a4eae8ee5750ebcd"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/canto-n4-48-16.png",
+        "sha256": "35fa161c812cc6902feaa4a8b7b367d43ce54c7e4b8bdea8886190017c3125da"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/rampa-topo-37-16.png",
+        "sha256": "0b994f3f084beabe35e528ca0702d031366a7af018e432fd9d96f6f170d4e263"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/plato-37-16.png",
+        "sha256": "0ffe5ef3f7d9e7656d9f845f19917443effe58c80782bd37ae97f979f25096ce"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/rampa-topo-38-16.png",
+        "sha256": "b1c4c505b5dbf8267a2a3c66f4b84d6ce11a4f36258c0d9c709e4fb25bfd6d0d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/plato-38-16.png",
+        "sha256": "7721403a86d6dddb6bc9b9179de8c79b82730cb9fbf0ac2dbcd14840e92c37b1"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/rampa-topo-39-16.png",
+        "sha256": "be51c3cdef46d19500bcef26059c3f9e8c3b4dff0c1a2a66fd4f0af747b97e99"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/plato-39-16.png",
+        "sha256": "bf199239595dcdcb75bd806ab11e6ed3ea4a97283111a53e0761c32eb86891d2"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/rampa-topo-40-16.png",
+        "sha256": "394f86f013ca0ccc0f172e8ec6ca17c406ae5396c342c1e6b594b33d7ee676b3"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/plato-40-16.png",
+        "sha256": "9ea32390ecf3d165a1a5d114680eba1238bf2aa460b5fc9f90ac467b2b66368b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/rampa-topo-41-16.png",
+        "sha256": "b55383b34d9e9adf1f9cbe5b71ca929a9767c8eec77bb0a8eaedfb168cdac0de"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/plato-41-16.png",
+        "sha256": "764987223ba33d7fd8076cc1ac1365b323dab4d5bf8cd2ec56828e3830c74eff"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/rampa-pe-37-17.png",
+        "sha256": "18d8889e8df1055114a1008de713dc7179031fcc4841d6464eabe4117ba39b7a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/rampa-pe-38-17.png",
+        "sha256": "17cb2d8590d9688be552f5a2fc669fb9f851ad2969309086027c05e2d036423f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/rampa-pe-39-17.png",
+        "sha256": "7b01b7662791cc0701195faa942db0ceba53a0e24e03652dc4b5b46544f523ea"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/rampa-pe-40-17.png",
+        "sha256": "cfb91aabb7b0d03ff000a6fc96c6fc0d4969dccc2e661a4560fc6f54378268f6"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/rampa-pe-41-17.png",
+        "sha256": "4d6cbd392b273b5ff52e71a1a793ec6f179f1a4eb03ad2b34f609cca6c7f7897"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/rampa-topo-9-26.png",
+        "sha256": "16eb042bd3fb96a64ee8a653f44d65680f7f46e00feb72c9115fbc983ad30a98"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/plato-9-26.png",
+        "sha256": "12c38f1b3cee447a6dfc20969d7636d6ce7344e9731c4bb142f599b008162645"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/rampa-topo-10-26.png",
+        "sha256": "25d58fe6ae4d28b48e1d867273ffa36b8d327758be85bd33913c204dfb4c5bb3"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/plato-10-26.png",
+        "sha256": "f0b8d2828e1102dcab05618c3db02694a738bd5bb02e42725f93c69553f2f0c7"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/rampa-topo-11-26.png",
+        "sha256": "af55b889ce71c96485eb118f203f318491b82624e2460551840c62ac1af2c5a5"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/plato-11-26.png",
+        "sha256": "5a9299858a762fc30404114e88fa8ed14425f07bde6c559eb7bc3512d55e7de5"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/rampa-topo-12-26.png",
+        "sha256": "2cf6fa5ff7fea037f11d05bf403e50fc5fc66aded05b25ef3541fb3bcbf319d7"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/plato-12-26.png",
+        "sha256": "35d9e687d8263c19a88a460142f44d02c9e1b603392d8e4eeda4555c4aef1825"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/rampa-topo-13-26.png",
+        "sha256": "8f7301d894994f8653b99d1cb6995a370a54a22b2fae42c5e9f7ef76b83bfc25"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/plato-13-26.png",
+        "sha256": "8e57f893577024709919c37612d493bc517dc26a30a26dccb28e2d563ce97135"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/rampa-pe-9-27.png",
+        "sha256": "6ae1cfbcb60329727fd56744dc518f1c9b340ac66798c96ec7bd62696a9c1f71"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/rampa-pe-10-27.png",
+        "sha256": "b9bfd88d0e7c4c3a567c7ef2b39938da7e62fa83190cef8ae14130aaf5d77864"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/rampa-pe-11-27.png",
+        "sha256": "b10537eed91e17cc1acfe63ab00b8d5c29fa7ddf93b752ae4b131c0b16975161"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/rampa-pe-12-27.png",
+        "sha256": "784f955881bee63b6fba0536b5c4f9074075da7e933f988c652a87a4e8f70d2c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/rampa-pe-13-27.png",
+        "sha256": "0b30ec2845822c0901bfafd3004cb72ca46fd4875d3e3a6086e4bbd85308bbcb"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/chegada.png",
+        "sha256": "7ce354068c5f98444376faf23cdedb09544cd8131f319fe15d249d667c48472d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/patamar.png",
+        "sha256": "4762e7c54743deb9fe73c9ea2c0911cd31eb88de94538977524a55caff1b1f57"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/mirante.png",
+        "sha256": "5d10bdeea8eb2b7f411b220de5dca7703af76f1653b9dd43e4d42312042f3f08"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/desvio.png",
+        "sha256": "ce0f49203dcb06e1e6a8fdc6195df7146fa0d6325dd89a6b69769a058752b72c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/marco.png",
+        "sha256": "1686e33d12164480acb675734f33eeb0179870c26cfad7a20728f691c029046d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/lateral-rampa-9-26.png",
+        "sha256": "f2ef61eb8b0b32f5396c4e8be411d1326310f189c2c18dac3e47c59e28d332a4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/lateral-rampa-37-16.png",
+        "sha256": "5ac84bb7397b64eeeadd9a91055dfb70e46de9609283b83c106be9f054a472a3"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/areia-0-oeste.png",
+        "sha256": "2687adf1f3aa2bbfa70e4ba12537e8fc6c3b7482bee11d78ee701c3e23cd4e67"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/areia-0-leste.png",
+        "sha256": "cd1a5c785e623fd53b16587e9af4eae884de7ea1421121cd74c447228b25f488"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/areia-0-norte.png",
+        "sha256": "d05f1165d7d656dcb450279d083e6568dfcc22268e09ce852bb3067497bb5f9d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/areia-0-sul.png",
+        "sha256": "0eee86afc0dc8eb95d1200e0575042210eb03aedc1f2288c19cd03fee1dfd446"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/areia-1-oeste.png",
+        "sha256": "c4048dda9325e714977a7a5c6c621105e9b466ae9b69d945dfe1fecbdfc96329"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/areia-1-leste.png",
+        "sha256": "cbb5deb1c540aa4faf1735955156e9d5d9fd4dea101632f00543d9e915da5c7a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/areia-1-norte.png",
+        "sha256": "c75a8cb466f2ff5b790f12dc6230df3c51aeb23f6bc0f7db748e11498084924b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/areia-1-sul.png",
+        "sha256": "74a7e6705edfc5bb3415fa045cc1c99744efe029383f0983094d88fa7114ea82"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/areia-2-oeste.png",
+        "sha256": "821bdfff280b42d5b7618c9e9afeeea72e06e17516857ae3bfa3946df0c9b285"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/areia-2-leste.png",
+        "sha256": "eec323e0d6dd35199c519e2b4c85634cbfc1cb09b797a544c5f5a8a75d49b5a4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/areia-2-norte.png",
+        "sha256": "3797dc15dde713ed1ef788aeb070fc10ba9375341d84f835f5eab150f950b4e9"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/geometria/areia-2-sul.png",
+        "sha256": "f1a0c462e59735311cdaaffc11bab0fce15c6dee485e2fb3563ae1bb3dcd0dff"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/area-inteira.png",
+        "sha256": "1b0a01c8344180d1509f68f0d715259426223064274643ad17c681b83bb009f4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/entrada.png",
+        "sha256": "7f7356e1ca3cfc24e2029eb8e4ffad06be3010a22dd4eff53ccf0d0c4445f0d2"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/centro.png",
+        "sha256": "915f50108a1df5448ca05a9abd6ac92f02bc6bdebed414343b315895878c42f5"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/saida-28-47.png",
+        "sha256": "15d655d762feb19d9d7cd54763affe949d8ae53724a98aac5c803e75a4b4bae5"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/saida-28-0.png",
+        "sha256": "a6446c26de5c3c037154405049d480dbd1d64062210be6067c029e55874de514"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-12-4.png",
+        "sha256": "b17420d9970e83e066481ec8662f94f18983e106db8ae92d363e19182950b9f7"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-27-4.png",
+        "sha256": "cd57b8fe348e71d0317cb3402be067c82434df48ed08f00d019f6bba657b13a4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-30-4.png",
+        "sha256": "850bb8c135d9fbf4c220d1d8f7d31e188050a1cb872bd6d8aed75b550ee5845c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-46-4.png",
+        "sha256": "02c2dd7b5f5b0abdfe169f417339d69ca8cdf7914fdfdd31d7e2e58f51b76e7d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-6-10.png",
+        "sha256": "f5448dc9fe45ea8b523b49e47dda447f9249a70a87c5cacddb3d5964763e0ea1"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-12-10.png",
+        "sha256": "45231c7b0289ace41beaee3812b88e8284ecaf96d2b0bbe37d3a90e206097c02"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-46-10.png",
+        "sha256": "f7b8d95906686559ce1c8f283a37b241b14f676f32cf80a64423ee723a9db6b3"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-50-10.png",
+        "sha256": "9b32762664e48b79d63e91f29867fa604441b138826d6db720b5a8f5282e5d19"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-37-16.png",
+        "sha256": "7ed51947b2d9f5b5cd22b8bb1a5727670a5776c5f930521f614cc49c0ef2f21d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-42-16.png",
+        "sha256": "9d3d2dc8bbe58386594cc0052101afa6e1081b20f5926c1d180f02a1cae7ab7f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-4-18.png",
+        "sha256": "221dad6363af15e4453a326d94c8d5ab5ed79dfb9dd5ea5e3e7bfd53cce638ba"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-6-18.png",
+        "sha256": "d5377525276f59af51d8ac090ac7ee0ab392c176a1a8b75d69335eddc6799b41"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-37-18.png",
+        "sha256": "7723b45853d8d950cea5faece45864034364efbd7d5e78fef1353b46ce474eff"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-42-18.png",
+        "sha256": "7432d84d3fe09e0ce03c5f6e34718ffb24716957c1c3b10b04e66698ed936d5b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-9-26.png",
+        "sha256": "327abcaa5b660b2929473b9e8441f87a704ffc9ad35063f63540ed8c9a3adaea"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-14-26.png",
+        "sha256": "841c29f1e5cca5a1db8e71fdb17316754103d90ade4821fd42620960ad2ae40d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-9-28.png",
+        "sha256": "566eb3ff7b3457ef20e94b4618c24d60c4516f851ca1419bb5847afbe72263ed"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-14-28.png",
+        "sha256": "8ec3b4a573f2367d5523cbb642894947789850c692ecd97615d1cb69a803589d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-4-38.png",
+        "sha256": "42bff022037bc27932dbb86159c44f0beead029e3923aadd3441b10e25979cb4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-8-38.png",
+        "sha256": "d0a07c7f03316bfe3f0ea3acf885a297f7cdffa981bdc1c54ddc82785c849a9c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-48-38.png",
+        "sha256": "e956b919af5e018d79c2b515fd70b6be6c41f81f25c342be9b0426a635f47afd"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-50-38.png",
+        "sha256": "4c2a544ca83915ee3047ee83d3500d505d3319110b28f47e97823dcfa271ec85"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-46-41.png",
+        "sha256": "af09c35f1bb1bbb43f4273f73d1fe08754aa839372515877799150cbc47ffafa"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-48-41.png",
+        "sha256": "5e02986c2fdea84fb99d515bfb84ba2a42b818ad831511451e38a14aabb324b4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-8-42.png",
+        "sha256": "823269d27de6739c96631b4d6ce7a10fa9748a7c17d777e29644d4d6451f2174"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-16-42.png",
+        "sha256": "fa5517d406fdccdf1a4774d2f97ae38eed08f223fd4bad0c2a05059bdeb3fa43"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-40-42.png",
+        "sha256": "0bce2df7d6eb3fda2f87e7b511944ee0666c86b20720073eaba28be0911b6936"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-46-42.png",
+        "sha256": "1a50ea1a83a8968c7125a2760012a5a73cab95668a866902f56a8d6a95e6eb22"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-16-44.png",
+        "sha256": "fcb8af986740b14d6c615067d3960c860b80c917f0ada2b8006ec098aaa32e08"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-27-44.png",
+        "sha256": "1003047f527a23acd0ab0871eae61e2f27bb32afc1f3a905968f011c9b1bb005"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-30-44.png",
+        "sha256": "5140e03a07db24c8b73b990eb3e5e49353ad13de8e7ef08e501625e7fb446552"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n1-40-44.png",
+        "sha256": "3e7aa0093e901b733b87712c1ce3b30f3e7d99c849645cf5e6de395337587cb8"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n3-4-26.png",
+        "sha256": "27f219b9d651e7a639d986f026e1e93e5775ebc8f8608f9c6bd0511fb5a93c50"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n3-20-26.png",
+        "sha256": "26d313ab9767693c3e4f1635197abf7f1ac97945b168fa6510486963c67d3f8c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n3-20-28.png",
+        "sha256": "e70bcbe9c4d7d81cd8750d119da34862934d9781bac5e3d334828fe14cc8758b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n3-40-28.png",
+        "sha256": "998306224eced349a14fac9d163abfdf0db880074e0c3eae21c41d1b2658f664"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n3-40-30.png",
+        "sha256": "6b8d14f8cb73046187ac9aabbdbcbf62f399a784eb403abf4b1bda9be0325037"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n3-50-30.png",
+        "sha256": "67b7626e719fecf40cc18f4ce1022888736efa9827dfa00af9ab120dd985cb36"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n4-32-6.png",
+        "sha256": "850bb8c135d9fbf4c220d1d8f7d31e188050a1cb872bd6d8aed75b550ee5845c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n4-46-6.png",
+        "sha256": "8fa90b12f77dd689ad14169bcaad1ce602c13e01f481b2b7f7faa68d62c8ea5e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n4-48-10.png",
+        "sha256": "1272e097a41fc66f6c8e2eb00e95b7b67eb513d833c576668f288f3eef0e98b9"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n4-32-16.png",
+        "sha256": "d0b55aeee5e0c03e3beed976c416cb60bb1ad9f18000b381cf969d2653c0a52a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/canto-n4-48-16.png",
+        "sha256": "929c2c0ac8029d1e259fe0adc854f0f806e031611a7e24b6d824aeb9929648a5"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/rampa-topo-37-16.png",
+        "sha256": "6bffb1977466d5e5f85546069bd6eed5d90f2927f1827500bc866101406ebe92"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/plato-37-16.png",
+        "sha256": "c1490ebc621e3abc6138cba16dff7882ff0ae1f6ae4846ba3d5638731bf77d3e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/rampa-topo-38-16.png",
+        "sha256": "f06730bccf1274da842000e0db55583192c62b0f8cdfc84ea8dd11642fe58b03"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/plato-38-16.png",
+        "sha256": "596c46c2f6061f5a4e9520f1420039fa6ff86d58d6bcbbedaf52c4a853b65228"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/rampa-topo-39-16.png",
+        "sha256": "9fbff92846a6aad36c13fd0afee0e63172e0f4a7d81653d01836812be68f4e75"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/plato-39-16.png",
+        "sha256": "288d7ccf4c0cf476e641fedb5ca4d5f6220d6b0cea5d9fee214f46d2158f9db9"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/rampa-topo-40-16.png",
+        "sha256": "7d60fe698fb79072ae9e419ccaef163f0fcf62ad91b2d07f73ef74caa404b08d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/plato-40-16.png",
+        "sha256": "c2234fe9ffcf1ecd960a1c89a85a7d7da895bc8250035c25154edc92b9220dac"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/rampa-topo-41-16.png",
+        "sha256": "c41aa8565395a21da88a28ae92d57f3b6ed692e6ecbc465a9115855afd6daeea"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/plato-41-16.png",
+        "sha256": "5c5e177d56d14648900365fbe8ad4a00a60beccefe0ff3e8167228cd4bacc23f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/rampa-pe-37-17.png",
+        "sha256": "8d87967a774b92ccf28a5a4a093744a568e3dbc27f7f24c056d466824b74253b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/rampa-pe-38-17.png",
+        "sha256": "06659b29111084b29dd299a20164e29ceb2be791c95d162d11edfe4efe89967d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/rampa-pe-39-17.png",
+        "sha256": "9398e4ef97d13ef50b4d16d5795d315b1e268230877f578006fd5b26d93a20ce"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/rampa-pe-40-17.png",
+        "sha256": "cf59a05e01ed4ddf68b645de5afb6e5b7aa1b3de6ed12ec1f14381c392e8b462"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/rampa-pe-41-17.png",
+        "sha256": "9120477e734b3e109398d884745a31f24783973c28a792b87e004c8db7d1468b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/rampa-topo-9-26.png",
+        "sha256": "02edb9329d1aa3fb49544681a102c0bc9e8015c3377826e5bad7af94f39fb2e6"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/plato-9-26.png",
+        "sha256": "4482783b6f37d6cb330cb0200aed36a661eccc32e42c15531b5c0eb30ce0be4a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/rampa-topo-10-26.png",
+        "sha256": "e6ac6a12fa9c8ec7a845a3ae663b2fa936c6231dff00dc1fa9ee8c7caed055d7"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/plato-10-26.png",
+        "sha256": "1e5b55aa097759fcb3e722f5d3161aae8aa5097e472e5a9d15d26c7a8e1a2fa2"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/rampa-topo-11-26.png",
+        "sha256": "d2ae8d37d11112cb1f23819a668b53f088fb3bdfb0d5cb55e7305433a2fb2f21"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/plato-11-26.png",
+        "sha256": "282334c46c19d94b63d3cd8681b0df08f8756af8af7282d4b6f861f73c6cffba"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/rampa-topo-12-26.png",
+        "sha256": "b4722daeabd428ed4f7ae20476868642665a177c3c2049e3d00182897253ce91"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/plato-12-26.png",
+        "sha256": "4356ee735410e0e7a9239ce780b564967b0cfeaabbe9a5391a9af38ee11622da"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/rampa-topo-13-26.png",
+        "sha256": "4b8b3f47234b4daca287378c2a895659ede264b68585dae32c48f01e4821d74e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/plato-13-26.png",
+        "sha256": "7a42bc8db217b65d3ac77e74c3629d5402487a30e85a4ac49bd9d6a42af7fc36"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/rampa-pe-9-27.png",
+        "sha256": "f1921c861ee729788a702ffda9d4948cd290f3ab908434b198d4d4cfd01b3190"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/rampa-pe-10-27.png",
+        "sha256": "4b149acde537c3bf37806e8eedd9ac65f202df6f5528df116ea5fb6a615b2144"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/rampa-pe-11-27.png",
+        "sha256": "667abc76c6c9946cb214ca21dae0f495efafc0969114d4a3ca911cb1fb4c894b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/rampa-pe-12-27.png",
+        "sha256": "82167702af3491e397e59fa8479817d672dd7e873470b8cd6787c99584785dfe"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/rampa-pe-13-27.png",
+        "sha256": "2a43d4fb324b3b0a2060edef7914253cf5da52f58bac4f314de2eee49746ca78"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/chegada.png",
+        "sha256": "4cc6b2dac4d5ae1b45f9886dad6d168086ec813580519691e5c94d81f193e924"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/patamar.png",
+        "sha256": "b1ad68afea6c16f259e60481a98337b9d1cce3a10a813c5b0007e0318ca70eba"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/mirante.png",
+        "sha256": "f9044b6c3c4facbd8d51393daa4d7798ef6d2a244e65a9b50f4c8721008e2513"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/desvio.png",
+        "sha256": "56406f205980ba067429eb8e31ce9268eda3c54034a49251315cdb3f51d1a63d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/marco.png",
+        "sha256": "a8f7d47ab75080dc2475420e63771216182ef9bbde849e8374d2e7db6fad4444"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/lateral-rampa-9-26.png",
+        "sha256": "64f05c0055d016fbd2fd96bd2e0f8302e4732a0415407a5a9dfcc8f947167bc6"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/lateral-rampa-37-16.png",
+        "sha256": "96533e2cde2f4739ca495754b02f2e5f4e02dcc371715fd45acb31e0660fdc0c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/areia-0-oeste.png",
+        "sha256": "f366daf3d59ce8c8a8e3fa9a6a8af3e75327e8b311a5fbce1ca459033bf80e5e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/areia-0-leste.png",
+        "sha256": "3c196ac7fe5b4fa064ae4a0725a0a6b53d9cade6d8c7d2eb96e94fffe5adf145"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/areia-0-norte.png",
+        "sha256": "0d199dcaf0ea1b98c288c7ab56c32a52648278e57feb83f2f3028c5a9a15280a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/areia-0-sul.png",
+        "sha256": "1952b34f64bc9f79a95b49cc7ba1cb2a31beae1992628fc0931117cbe580b90b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/areia-1-oeste.png",
+        "sha256": "f5f3e5b7114a018f742a07acc99a70c44880bc111ade551a9a76c108be2e40a0"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/areia-1-leste.png",
+        "sha256": "198e9aea3de103635149ed967704eac59d3aab2baa66d8d3cd0aa866322de85a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/areia-1-norte.png",
+        "sha256": "b424fe011da748b959844939e7cf012c5a4a9e677ad1ee7263f126237acbdc63"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/areia-1-sul.png",
+        "sha256": "4258b5e8ee326ffc3a35aa8cf1b93771bdf49047b7a549b5b86e4e7097e99053"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/areia-2-oeste.png",
+        "sha256": "1178186162d027e8ce9913dd2d2294b099d1e6329e040d1f64a85d97cf3472d7"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/areia-2-leste.png",
+        "sha256": "4f2945a045f097655c8bffb60455cdeffcae39ac05cfd212c7175021601d8524"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/areia-2-norte.png",
+        "sha256": "3003a439381527031b78b7c61b36025b031668edbcba2b7641cdbe4d42c9011f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte/areia-2-sul.png",
+        "sha256": "a43a8660d8a606ce94d9583d93a1441029c73463e5760a412c5c107b2d10cc0e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/area-inteira.png",
+        "sha256": "859d105b064d9577a28d53ac5ad37e8c39d0297cb2282c78deededf94ea399de"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/entrada.png",
+        "sha256": "450391064649d5e0a5d99d64d7f4b67d941d7871db7bfd0b02f21f3d27ebaa38"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/centro.png",
+        "sha256": "ec7485ab8a4ce6661836dcf372ed8b736e4ee378b147a781d2994991e5e61aa4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/saida-28-47.png",
+        "sha256": "f49209b79508d6e964b5bc2ce84b447130d562f09f1f992cc07350c34bb91b9b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/saida-28-0.png",
+        "sha256": "3408698f772d455d10033b6ca44018a23601b79aa71a16c4590f717bb190df07"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-12-4.png",
+        "sha256": "c0ef2430e53939d0798894029d24293e6178f93e46f40692c61b776c7cd0bf20"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-27-4.png",
+        "sha256": "a6f2a403f99ef376e9bb7123f96eb4462098310c1de45d13c0c2c0e20382927e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-30-4.png",
+        "sha256": "9bea919e5cc6ac7c50c6bceae1e2861072a1be8e5e16d398d7467f42987b4404"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-46-4.png",
+        "sha256": "02c2dd7b5f5b0abdfe169f417339d69ca8cdf7914fdfdd31d7e2e58f51b76e7d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-6-10.png",
+        "sha256": "f9a45cebb86095265e7e3c0312db54e985601d160c6d8e2b75189b4a596e168d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-12-10.png",
+        "sha256": "220133163cfb5740791d2f7bca1079bdb5bbd95a76ec7a1a07792ef25d3ba345"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-46-10.png",
+        "sha256": "fcedb4604b99bb209dc6e6e7e94836268c42ddf7428e516e36932c30a980002b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-50-10.png",
+        "sha256": "9b32762664e48b79d63e91f29867fa604441b138826d6db720b5a8f5282e5d19"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-37-16.png",
+        "sha256": "86546537011a348ea74302e62ecd492afc88ee947153d2a1cbc011b71b362b4f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-42-16.png",
+        "sha256": "bbba8f7f2426ffc611cad0d9fe4c10b0334acb757389b84daea2f071919951d1"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-4-18.png",
+        "sha256": "4b5df07baa6395c04e6bc1ec1aa548fd87491240ca06ca6c8fcabf5e67dc3b0b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-6-18.png",
+        "sha256": "fe37d692b653ee12b2f0e9c8e99e4b8a520a68a9bb145a8cfa4274ffa0be9b2e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-37-18.png",
+        "sha256": "40ffaefffe26170ba5a27e44878675f2d2aaf0afcbba944e7c063e33f9df915e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-42-18.png",
+        "sha256": "e7438ba60485f8ca10d11bc6f153792e1ea0b7282174c4d7e2ac6b0d8036094b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-9-26.png",
+        "sha256": "bab9e67d6853f1c59d62a6e52a456fb0ceadd0cbf2c9bd66cce9464f5f5aacf1"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-14-26.png",
+        "sha256": "d42724b237609d2588547f8455c8d9542030812bb405fbf625c057a0d1bf46bc"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-9-28.png",
+        "sha256": "549ce5983d2b42a0f0a8bd51a0596310e557b9ed2adbe2d1cbd029823609e555"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-14-28.png",
+        "sha256": "22b22a3abf5e305a7d3184c23ade5576c916e462cd82ab59f2e231466d2cc5df"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-4-38.png",
+        "sha256": "42bff022037bc27932dbb86159c44f0beead029e3923aadd3441b10e25979cb4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-8-38.png",
+        "sha256": "127f2d5920f8fcfd4adc1cc75143f1d4f3f8d9fca26ebbf0caa160710559a6cd"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-48-38.png",
+        "sha256": "e956b919af5e018d79c2b515fd70b6be6c41f81f25c342be9b0426a635f47afd"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-50-38.png",
+        "sha256": "4c2a544ca83915ee3047ee83d3500d505d3319110b28f47e97823dcfa271ec85"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-46-41.png",
+        "sha256": "af09c35f1bb1bbb43f4273f73d1fe08754aa839372515877799150cbc47ffafa"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-48-41.png",
+        "sha256": "5e02986c2fdea84fb99d515bfb84ba2a42b818ad831511451e38a14aabb324b4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-8-42.png",
+        "sha256": "823269d27de6739c96631b4d6ce7a10fa9748a7c17d777e29644d4d6451f2174"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-16-42.png",
+        "sha256": "c4a4de8ac3b1ee3c4f5f2030168e2e5ba56567174d036fee4378ef9bbb32ddd5"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-40-42.png",
+        "sha256": "0bce2df7d6eb3fda2f87e7b511944ee0666c86b20720073eaba28be0911b6936"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-46-42.png",
+        "sha256": "1a50ea1a83a8968c7125a2760012a5a73cab95668a866902f56a8d6a95e6eb22"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-16-44.png",
+        "sha256": "1336760458ec7981bf4b1fb39429d4b8f4be051e1f599787e0c5ee4095abe7ab"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-27-44.png",
+        "sha256": "a13d47fb708533735cac22f3f4b2a9f5896478752b6f5087b8feea3b5bdf0537"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-30-44.png",
+        "sha256": "5140e03a07db24c8b73b990eb3e5e49353ad13de8e7ef08e501625e7fb446552"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n1-40-44.png",
+        "sha256": "3e7aa0093e901b733b87712c1ce3b30f3e7d99c849645cf5e6de395337587cb8"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n3-4-26.png",
+        "sha256": "bb45ac20642e52019b96c345d2b1354f5a30f038d18454b2839da9562531953c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n3-20-26.png",
+        "sha256": "f7135252d9ff15bdab77dce5a563c975ca53fc5f7417f571c6cd2f57cf30432f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n3-20-28.png",
+        "sha256": "ee36b015ae6d71ace9e5aa017e581cf73882768877ac6395d15e66bb57fa53f0"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n3-40-28.png",
+        "sha256": "80387f46f800cf3a5243205b53fcafbb8aef6e59c143c3e6337f24843616e57f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n3-40-30.png",
+        "sha256": "f067ce558ad1c63aa44e28ae4ceb66c506fb9b38b886bdc2bf78c5d127999f8d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n3-50-30.png",
+        "sha256": "67b7626e719fecf40cc18f4ce1022888736efa9827dfa00af9ab120dd985cb36"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n4-32-6.png",
+        "sha256": "9bea919e5cc6ac7c50c6bceae1e2861072a1be8e5e16d398d7467f42987b4404"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n4-46-6.png",
+        "sha256": "8fa90b12f77dd689ad14169bcaad1ce602c13e01f481b2b7f7faa68d62c8ea5e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n4-48-10.png",
+        "sha256": "6e4e40aab0270b1e44fb62a4a7e21788e107b47dd4ff0aed18b06a6447518289"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n4-32-16.png",
+        "sha256": "d0636026cd24a9ca00e64ea1ddf811bd1eb59e0abe287635d0933d5577db72a3"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/canto-n4-48-16.png",
+        "sha256": "1b74876f18dd5cb11ddf4291c78399b79f91f6ce939bdcc385836f5f43f38084"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/rampa-topo-37-16.png",
+        "sha256": "ccdc988f265b3fb75f677f7616a0e77492f4c8192512c127981f1f334f90d72b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/plato-37-16.png",
+        "sha256": "542def004ecc12b6142891046c02e4c6a683b4baf6e8bd7c52114c53ca611367"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/rampa-topo-38-16.png",
+        "sha256": "98f876961aeabd254ba39d378335bc668586583577c94221117b648c3cb35143"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/plato-38-16.png",
+        "sha256": "9be118636bd540c74396a65644ad9c5da60ebbeadc7f6a8a6fe30c94d2041594"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/rampa-topo-39-16.png",
+        "sha256": "aef4ee9ccc285af3ce68dbb243aa7a6fad5339239eee5158d97886e860274c3f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/plato-39-16.png",
+        "sha256": "b3246a271e37feaad4d0eb69295310c86cb394a04732d680bdc5b0828a5e71a9"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/rampa-topo-40-16.png",
+        "sha256": "f6724a14eae0ab693cb957f00731a8ffcca544f6bbac9d565d2c709b156515a0"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/plato-40-16.png",
+        "sha256": "61d1c837c81d715ce5b2312906d25d385a85df4fd118cda236d6446a3bddd3c5"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/rampa-topo-41-16.png",
+        "sha256": "c3ae82d78febb73495b9c707e46cc48cd51af4dfff8e7389704fbc9936eee94c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/plato-41-16.png",
+        "sha256": "8a2315197c60c44c54bf7aa219d67544ae8e18ed140bf48813c3bfe5dac0f736"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/rampa-pe-37-17.png",
+        "sha256": "83084f7abfc55117ef253602db4a0789de88aba3bf476efbe7280442a95676d5"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/rampa-pe-38-17.png",
+        "sha256": "55f16364e6b77d682125077a6a735a5819997db7936103e522426af491370070"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/rampa-pe-39-17.png",
+        "sha256": "9afba3fa496ac17a6ece384728d977332eba3753b7403f4bd598f044dd497ebb"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/rampa-pe-40-17.png",
+        "sha256": "5b8332ea748caad5a2f37d9d4956eb0217f7f23907321568a3b648e08010a1e0"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/rampa-pe-41-17.png",
+        "sha256": "f3423844976791a588cec49fc741a9036ff21070c6989507e0a25b9c913c1fc8"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/rampa-topo-9-26.png",
+        "sha256": "5f96a469beb00eb18e527ef3bb79d7446102cc6adb9f6df6d2cd32478256d0dc"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/plato-9-26.png",
+        "sha256": "63319d2b4f68791df30e4551a5808236fdacabd2800b6efc8b58e0ac143d5e5e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/rampa-topo-10-26.png",
+        "sha256": "d12672cc917eb98fc6795a36e4e8571b35be825f6055be35c08c1f30452ee600"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/plato-10-26.png",
+        "sha256": "ced0c263049d93c1f6b09727953a2f68636ee70ae95f774883b08359b1863fdf"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/rampa-topo-11-26.png",
+        "sha256": "64bf9a1bfa04cda852927f47812ca6fbf3e45a6f54334c0f145ca4e560528282"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/plato-11-26.png",
+        "sha256": "67784798886b061661ea9b1bc6217513ccdf733552fc77353468b797f616d89f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/rampa-topo-12-26.png",
+        "sha256": "f811e3aa255ffd19790ad9ac378a278bce738eaa88be4a5d2db61873b0535ee1"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/plato-12-26.png",
+        "sha256": "3aa83dde160c3341969188f5ae5f7ab30a4871b4b3e2ec42a2da4f8145a343af"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/rampa-topo-13-26.png",
+        "sha256": "4046a675d33f5f9eca126ab79369202fdcc93cbaedacba8586d956f26cceec52"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/plato-13-26.png",
+        "sha256": "068211516d83f2c65b5583c33fc855d555726731c0964ebfc107cf0e8246901e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/rampa-pe-9-27.png",
+        "sha256": "3be034206ce176492798b95aef8385b3e165fff8dd8e23523dc72acf2467703d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/rampa-pe-10-27.png",
+        "sha256": "ffc5eff49650701bd2a7bd46a89f39f670d7905df063e306c12a1651d5ffec3b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/rampa-pe-11-27.png",
+        "sha256": "b5827221e4772413552967471bc84a26cde32e584520db899043e58e80081b20"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/rampa-pe-12-27.png",
+        "sha256": "7064b4cb45db13c64290eaf26c29044fb2cd9ae82934c63c53c845aa3f190f94"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/rampa-pe-13-27.png",
+        "sha256": "fec88b9691915bbe5e17edc90fbfb807855c3c8cabdc11b8a10b0418eff92603"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/chegada.png",
+        "sha256": "269f16f906372c358603384df54ac4f16d5451ed5da98ca55d5ab15b04ca8b3f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/patamar.png",
+        "sha256": "61d6bb3ea3b0c01e3d8a6e05ac29d5dd8f99d0b9fe5ec24fa2a8c37c798a18ff"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/mirante.png",
+        "sha256": "cfd5030d7d9cf63143cc763887bbdae3b2c5604df096ae8980e5721f5752ad49"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/desvio.png",
+        "sha256": "b3e94bde048a72f5991e4d10bb1d3912243b40e66cdf286d093ac7837070964d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/marco.png",
+        "sha256": "d8d786cd5127bacf595169790b3c822696240909157dc364b0c8c878a73ba8b9"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/lateral-rampa-9-26.png",
+        "sha256": "e7b8b4a4bb33dd9bbe5132b8f988ff0e71af15128a6f28a9cdbd50c457b476e2"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/lateral-rampa-37-16.png",
+        "sha256": "176d16638ab3ae4a348f25580873fee18c83c89b49ba9f19ed308089dd4754e9"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/areia-0-oeste.png",
+        "sha256": "f219c7d7d0faa5ecd55b998bb3a7a52c736300d035a31dcebffe12dfd94ecbfb"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/areia-0-leste.png",
+        "sha256": "2511c3007ed5f18014036d3a08010490437168ab396a29b4cca1e8ed2aa6e6a4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/areia-0-norte.png",
+        "sha256": "1150b3d168def4f5cf42e5763f77048d059cef6329cefa99a00d702b77e13c6a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/areia-0-sul.png",
+        "sha256": "27282c0593cc2c49b5a8341bd51439b507dc6cfb508ff2b71f5b71ecca12e54b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/areia-1-oeste.png",
+        "sha256": "fd3f58304d5bf03e7e0f5ed263be8aa26976d9295d9d4d20a4df1d4f5bdcdc58"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/areia-1-leste.png",
+        "sha256": "46cc5dee4e0de96537b73fba9f805b443ac2711778f554c94676ea6a6dd45fb6"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/areia-1-norte.png",
+        "sha256": "c4c6d9e88a7a3e3d26c82d7119ca4845a169d9c2ef262fbf355ba37aa3d8c63d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/areia-1-sul.png",
+        "sha256": "0277a03ae2094a68ae953dd21b59f49131a074088ec163a5ef481422eea9d51e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/areia-2-oeste.png",
+        "sha256": "ad743e3b3033651f66ef65a3d685577f1bfd8a13e3efd57fdb34a9da9eac2bff"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/areia-2-leste.png",
+        "sha256": "f4425d879f5bcf0b3071f5695c741dbd29ce4e0a28121fcd931f0d6391deb971"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/areia-2-norte.png",
+        "sha256": "581eefd63ec8b66f37778829536b25f73d7bca40e4da29843f27879579622241"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/b/arte-terreno/areia-2-sul.png",
+        "sha256": "a4229d3416a54aa4f5f856e93a687970765c8d6d03b652850d9ae29062dfc483"
+      }
+    ]
+  },
+  {
+    "area": "submerso-c",
+    "mapSha256": "fa15fb34f11a967d5c7f8c4b262602bca03c95c7ae52a7627086ff31bd7a7f7c",
+    "planSha256": "0d47eaeac59470ff6dfe67579269112d1bc9bd57db318113218dbe50911cc43e",
+    "images": [
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/area-inteira.png",
+        "sha256": "1d609e015e5f353795069652cd1981b141c343a81a139313883c11ea66c3848f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/entrada.png",
+        "sha256": "06e1e73b1b7fa0cc7fc054d745c7cef3dcd8ccb323ce921e39abdbd2de92df92"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/centro.png",
+        "sha256": "c969991a85ca8adfa30276c1cbfef5ed83923ea0db65d17b9910e29d8e4ea126"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/saida-28-47.png",
+        "sha256": "bee42b84557ad2cf32739587e53960bfe1b2b71796da10ef71f9866fc28e1a0e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-10-4.png",
+        "sha256": "6465a4f466473c1eb4dbbdb56010c02dc10ac6d8215dac2ffd8d43882b23e25f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-44-4.png",
+        "sha256": "25b47c31af2b1f710aed037c9bc92eb58428d9caa4dab97792324bbfa0553e99"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-6-12.png",
+        "sha256": "a2bcdbf4f26dda9f50288b130d557b4a8245c1c6325861cb3e7c437994f06f82"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-10-12.png",
+        "sha256": "ba50cc00451108edaa48216a152c945474b8aa1e5c009dcb1076a1dc69f079eb"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-44-12.png",
+        "sha256": "a768aea747b72841752519c491142e7ada06649db942692e0ce757a5b88b8bad"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-48-12.png",
+        "sha256": "be43de194edbcf8905b85fea3b2e50a404ddfffa42b197a8540f33d031a81f43"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-17-18.png",
+        "sha256": "8ff7d95a0a7e136b472c89afd1a3b4acf38315908ecbd4d2f092f8facf3c5ebe"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-22-18.png",
+        "sha256": "3ac4af8f60beca8a2af7b8318cfe7410862e249759bb1387c9a63b0669f3f29c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-17-20.png",
+        "sha256": "fe9bf5c5a623ff1d23d55f64ab90775dd69600b17923d111a51a4dc0cac1875b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-22-20.png",
+        "sha256": "d191b6e73f41e401db4fc26f384206fbbd4b319191f4fa07605d7783e995bef8"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-4-22.png",
+        "sha256": "80df5abd25334056aa0c8a1db8ec7c3f8eb1c2095b8c24e8f7833fe721f5cb76"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-6-22.png",
+        "sha256": "5854512c07e37297e0b7aea24d82cecefcf3587738c0e6ac65d172a838df5cd5"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-48-22.png",
+        "sha256": "b9762135958a75c60fe4e87468c654e7398a02d791cc90c4808def2c7321e121"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-52-22.png",
+        "sha256": "bc33618153eacb8ce5dc2dfdb65d9ac210de0e162f20380e70b5c43fc4e40d90"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-39-28.png",
+        "sha256": "7bff9c9668b867365625fd3c823bca4764afd126e78303f4315dadd43757650b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-44-28.png",
+        "sha256": "e0c05d866e97b2a1ffc043c97074bd76ce51e71fe83c83ba2caa6aeb275c1941"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-39-30.png",
+        "sha256": "d086d9494d5d7ea53933e4e2a6f450c2f7068f4f5772e28c18be649664e47133"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-44-30.png",
+        "sha256": "c8bcab900c7977706ad2f610d23150f0fb67d8e6d0fad25f1b9f91a982a21927"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-26-32.png",
+        "sha256": "4faa401edb9e75605c2cca26974615028f40df53927b8daa7aaf6a07ccf650aa"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-30-32.png",
+        "sha256": "5dfc4036d618c044cd61160af93484bda73607dd9c5b59b23f53aa8d5684db79"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-30-34.png",
+        "sha256": "06762b079423b76b9b72a0ffe7c120af4d4229e0778aea1e291b687806f5ffe6"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-32-34.png",
+        "sha256": "410209e26f8073059a86a65bb874c995ed7643a92c4b99a0ed9fc358d33f83eb"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-4-38.png",
+        "sha256": "ca3bd33dc2d66dddd3a39e8a76cd3ecf6ec250ba3693f9c6a22953e301c77139"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-10-38.png",
+        "sha256": "95d5d16e9ab1784792fe2d945dbae8050b4e45a3114cc880ca36b9611a6780f0"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-30-38.png",
+        "sha256": "c2a6cfb5dffe5089b7d5b51e283bce46a10a3a7e9f57c4b305bc826e5d157629"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-32-38.png",
+        "sha256": "8bb6c303cfa1f42006af730d49d2a12a73303d1430e2154da176cb55565e40ca"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-49-38.png",
+        "sha256": "e06a5b385976102595f5c613635ccf601c42adedb376ccf4128fb94a47bc2a2d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-52-38.png",
+        "sha256": "799c3460eb192efc2acd04f45254182f4ccd58460c8b2dd4036f102a06e21000"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-26-40.png",
+        "sha256": "c466b53a6b5ff27fb7484a2cef1f3a3b1cee9462282e412e2922118ae4f5914e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-30-40.png",
+        "sha256": "b2949a1918b8f9588e0b9cc66ded66d822b4550d9798e36d176f1e3717f5f15f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-48-41.png",
+        "sha256": "22308294405c8758e22ad679231f916ab7b577db1269f4af34189d6b09db108c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-49-41.png",
+        "sha256": "fa0dbb7a8d50055c897dbb346eb120904565736895a73a04ef77403c92888f9b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-10-42.png",
+        "sha256": "28dc392baddef8ee38006f378898794f728161ff10147c038440b900ae83871b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-18-42.png",
+        "sha256": "588052b9d30fe459127956374e2246498675f6de09452e9da01835e66a4c1009"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-40-42.png",
+        "sha256": "59d5b5dcef62217f5306312f445cabf26bc094e037fcbd503557df40e9e1935a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-48-42.png",
+        "sha256": "ac4a339227f2c14aed20047d1cedc7abbe2f9cd668a185b84afd8f06b38880b5"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-18-44.png",
+        "sha256": "92856fa7df92847b9ba5370bbbb17706a239ae605d0360eda2e24ac4c6953431"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-27-44.png",
+        "sha256": "5d3f31315d971aed8987b685e5c0eea6294c03f555bacad4978788b69a906810"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-30-44.png",
+        "sha256": "3f30e0fbc57f8567b5e0c3bb115c1f833b60eef791bb30f32950758d20e2675b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n1-40-44.png",
+        "sha256": "08ece730baa113d20ec5f2e20688b36a04bf4e7e876c9abab96e4ca4d6d531a4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n4-24-26.png",
+        "sha256": "28bca02d7433379cf9e1819c8c9036750277e702ad450c07a2d4a6ede3a34f76"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n4-38-26.png",
+        "sha256": "a360aba5435961f9ea7ec9424175d447e2fe4e76716aef716c7d6a3c5acfd8b8"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n4-38-28.png",
+        "sha256": "38251c5b7fbc049b3c56ba8a3cc6b533702988cdf43084d5fd2976c316c36583"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n4-52-28.png",
+        "sha256": "fce11c0adbe40c8e2686f42e9fe7a1f595f32a91bcf23ab17f8be4f49e21d9c8"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n4-4-30.png",
+        "sha256": "2a0833405fa0ebc9f1815b5edb322ba01f2628c5e2c6a8a01d70f47b35a7c588"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n4-24-30.png",
+        "sha256": "0bbb346fa3b68e053a4056c57bccbef91bad5967ad1c9ee3a80d2b8435565403"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n5-10-6.png",
+        "sha256": "45c5b72da45e8254018c3f61b8804fcd3a3bdfaa68c6f3e31cea799ca52677a6"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n5-26-6.png",
+        "sha256": "92f3c71946ec0c286ff6a4c6ca62d337dbc4325ebfb9efaacd05af5c2f9993db"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n5-10-18.png",
+        "sha256": "2017a77c89e1f02213d05f07475c2668de5dea1cdf96119cd2de917b0f491d9f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/canto-n5-26-18.png",
+        "sha256": "8c58ac8947b20a72f9951e723a637d51b321e362347afb4caae5aacc2e09b06f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/rampa-topo-17-18.png",
+        "sha256": "b6d87b342848b6b37e1857dd4cc80cca80b4c17c1ace0445d62aa0498674833e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/plato-17-18.png",
+        "sha256": "61ffa9d50b7ce814e29029008919a40a4fb76ce163e424e9c71527884d48b059"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/rampa-topo-18-18.png",
+        "sha256": "0b1d8660182121d26fea7816e9b8fc352809c0e4f32232d7973b19dd9a9fed8e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/plato-18-18.png",
+        "sha256": "c3275e483ac6070313edc6f6f2abbe5ea335290499deac270097c953f7c6d9fe"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/rampa-topo-19-18.png",
+        "sha256": "6a9c81651edd4fb642190f50436d6fc93bb93ca0b54156a577a178eb5371dfe8"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/plato-19-18.png",
+        "sha256": "42df54ab670cababfa68a44ae1f1f68c6279c11b094296523ab20f107982f3e6"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/rampa-topo-20-18.png",
+        "sha256": "af3d3ff8dd13970477a6cba036a45c3200a1a30adb7f17118132dbc3e5c55a93"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/plato-20-18.png",
+        "sha256": "1496b719ddabdeb03da9d0da55d7eae6dc50f0a3afe2758497caa2fd46ef0931"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/rampa-topo-21-18.png",
+        "sha256": "f47c907281510d359db1167bf7e81f4cd01a1e8111938ca20b1a4cfc07b1c071"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/plato-21-18.png",
+        "sha256": "8d3248cfaae573e9c3747ed210da272cfa76442bff2c391cabc8dce5c712b6cd"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/rampa-pe-17-19.png",
+        "sha256": "70d67014b9ca3471cd63a66a3609ca29329cd7b02a459d5b55fa6c46b84ea492"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/rampa-pe-18-19.png",
+        "sha256": "7b3ab30f590c6f89c4d42f610b76664bc5de47551ec751213fe1abc5ec24331d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/rampa-pe-19-19.png",
+        "sha256": "dc282d2b30afe67989e14973d403261e75be4733be25741465b0156b0e153342"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/rampa-pe-20-19.png",
+        "sha256": "1bd1c35268405b54c22dafed72c10d80a991030d805fee2ebd0c08f41f0eaa05"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/rampa-pe-21-19.png",
+        "sha256": "19e4ff5c867cdc1b7c5d0f247bf4330c6b4fa39872ef6d0009d77cc60e026dec"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/rampa-topo-39-28.png",
+        "sha256": "488904d6c105540806971679b065f805e061e1ccef8164a2a110f5171924f5dc"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/plato-39-28.png",
+        "sha256": "77d0aca804bd9db5212f409908c88867eeccb609ed8538469d223174bed1b0e9"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/rampa-topo-40-28.png",
+        "sha256": "54fcf3d25ebcd89b0bc310180b91dddee9f6ccd93db74293598943429a199cb5"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/plato-40-28.png",
+        "sha256": "e4068eac9ced84a52866a3ed00e9070fb8ee07a4f7fe19a0de019506e4e326f6"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/rampa-topo-41-28.png",
+        "sha256": "b61637d6971e9a62f1a4011a887a03a27d2df596fcca39af5de395723d82e518"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/plato-41-28.png",
+        "sha256": "e34a82e89fad24bd1d036b2df8bcb8798e25011d6e26176495c7b08842ad715b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/rampa-topo-42-28.png",
+        "sha256": "1b6d81a9deee2c2720a213a099c8d97ebbf0e59a58f31b7c8eb59c36cf2aa1b1"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/plato-42-28.png",
+        "sha256": "24e8a5d558e7d619361a48eb1bd2542e45fbb88ea4d431d49f8162021c8f5be6"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/rampa-topo-43-28.png",
+        "sha256": "46f7bdf665da4b47190950ddc2bc9836b78fa56e3b561ccddca830bd99fb6e83"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/plato-43-28.png",
+        "sha256": "42076f56c23c90ac917a34e3161a8f36d918685530deff16b72dfd7e7bd65ca8"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/rampa-pe-39-29.png",
+        "sha256": "0acd55ef8aa8f0a6a83dffe5c20d4c0dcfce9bb9c8f98f4c6a4f9fa806bde2ef"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/rampa-pe-40-29.png",
+        "sha256": "56f8cf8e6fd2f8907c514daf42d3761e34fc8a14aba71b7e6c73d2feaf16943e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/rampa-pe-41-29.png",
+        "sha256": "b811dce8dec1bb55dc0627a4f3cfd465e8911be5b5ed95235cd811576ab55758"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/rampa-pe-42-29.png",
+        "sha256": "308cd4f70a488da6ab61ce24175c06ce7542665103a2abff2b2a9854ac7b6dfb"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/rampa-pe-43-29.png",
+        "sha256": "6a80426d02162aed8d8776b5f55c4a236fb6d5e718bac2a5e57e94ea4f1c6f86"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/chegada.png",
+        "sha256": "5391cb863a65df35566392d8fa17cc7c24145cb361d9b0747b72113c9080bc7c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/patamar.png",
+        "sha256": "8c79b190f2ccfcf5b2fa3cfb9144806442693b55e0f087e8389d5e6e6080916b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/mirante.png",
+        "sha256": "2e6c57b9bfaaaed6e0259dace62349cbb5e618d71f3992121a09e39ed35052ee"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/desvio.png",
+        "sha256": "0bd59e118b578a0d4dd25293ce9ea5bb349638a5de0bcf0308f14ac7cc0fac37"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/marco.png",
+        "sha256": "0e9570e69317dc03ad1640a9023cf150a041cad47f6cfa4f9dae4a24799d0ba0"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/lateral-rampa-39-28.png",
+        "sha256": "94509ac0e81417c7eded7f635e562f162208c9f9ccd3f1960345d784c04e9e7c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/lateral-rampa-17-18.png",
+        "sha256": "efd15cad5dec99a6e6981029c884e981f69775640a93fbc94e0716d772139f56"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/areia-0-oeste.png",
+        "sha256": "6a3c40b72ca1a78699d0b2b772a6ee4f992caa47764b9c55aeebac927a3281db"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/areia-0-leste.png",
+        "sha256": "65034c38035d18ec55294c7a3b7193544203d3f1dedaf91141c992ac74fb295a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/areia-0-norte.png",
+        "sha256": "4e1b240d497548d75007151eedb54ba8a3343d4c3fe5d38468168f4c284de74b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/areia-0-sul.png",
+        "sha256": "848a6f532235631f3190e044f916fac4a2336c2f87675268bd3753b10161bae4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/areia-1-oeste.png",
+        "sha256": "a960eb33ddef9db9e07b719c6a2d46c7623df163b18a852844dd9547a7984a71"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/areia-1-leste.png",
+        "sha256": "5cee8cfeab6476544bc1a185404744b61d2e59950f629ff5f49619447ce27b4a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/areia-1-norte.png",
+        "sha256": "266718ddc973587fab0022bfb2057326ed61c353246470c6cb37ca7ce7806910"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/areia-1-sul.png",
+        "sha256": "b0e426d6a44f3812efb7b351078f46a7d9468a426242986a144b98a5121d162b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/areia-2-oeste.png",
+        "sha256": "1a80e2c23222714babb8ddd5b7bfc77b52095712f8bf46ba9ccf92352d63700b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/areia-2-leste.png",
+        "sha256": "32aa26478497f068376693f499ad42c643d32a27d14446734fdfe80811689da9"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/areia-2-norte.png",
+        "sha256": "3168a23097873fe398c8429b5233336e7871873b45baa3aba76c409f91489092"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/geometria/areia-2-sul.png",
+        "sha256": "36418e77b1c7766dba16aa89dffb8f8c449533aabe4fc885093232b4bbdbc513"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/area-inteira.png",
+        "sha256": "9a7f4895ad53c509dbbe6d300cae4db8e771ecfd269ddb192a0751873af4e1b4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/entrada.png",
+        "sha256": "1bde3452ff8a29417a23c8b1a531b788608231246faedc217be5fd9c17bf7ac1"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/centro.png",
+        "sha256": "2f39d24150981e396950e65206edaf43a6e7625cca0e73de5f7924ebd4881b1e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/saida-28-47.png",
+        "sha256": "bf774ea32eff71f2be25f00c8c6494e203d886a2188d6a1e4f70256e7b3820e8"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-10-4.png",
+        "sha256": "051f5678a86ad50d66db5dc8d23ecce866c846e66df193caff00de653aa601a5"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-44-4.png",
+        "sha256": "5b1096d7c417ccc2458c58be9df00949bcb0c614b495d2a2a96595c06fc0acf2"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-6-12.png",
+        "sha256": "ecb28f922fe146c5688c87cae772838fac852b9c084388a3788baa1215f448a0"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-10-12.png",
+        "sha256": "9100bf55d425e14a6310b56b90b777bc45708a115ec4e6b7c674d074ab4a28b0"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-44-12.png",
+        "sha256": "5c88e20c4d2b7610bc19aea7aa7bedfe9c835d611758ed85ff3344de6d1b26ba"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-48-12.png",
+        "sha256": "6e21c08193adedeee4ef84195eb1f1bbeb8a02548c23b79eb3163be6ddd6ff52"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-17-18.png",
+        "sha256": "894e823d234fd1b25c473e83995ff39f31798f97a71684e3d04c142f80c31b75"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-22-18.png",
+        "sha256": "397846573c3f18e266dd94603597d9a16a1961dae4c9d569d8f58653de28975b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-17-20.png",
+        "sha256": "8da9e4e82ffbecea3c539e3198c787b463a677259e2670659ca69b00b0ecfd13"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-22-20.png",
+        "sha256": "9fa950da4e2b30cf4dde97daff4290b664d7afbed72ccb41f0189e1e1febf476"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-4-22.png",
+        "sha256": "ac8d8741c9eafd4d871c6b7d4584c103ed90a6861bc523404cd39f735e6f7967"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-6-22.png",
+        "sha256": "2647d8f12a3a8426f9ff62eab1f8233181ecaf6dafb48a3053e7164d4e47f8fa"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-48-22.png",
+        "sha256": "417c090ccbb3e588cb685f29b1e940131e161d8deb7e3778c3f69020fe031d49"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-52-22.png",
+        "sha256": "76dd04104882a7dcce578c388015ce8771b6f35e419ee815c04d9c8ff0c376d2"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-39-28.png",
+        "sha256": "89232cc7da5ed1c74c7c610ca1d90660ddbb8cb69c3655a7921c79c65c565b4a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-44-28.png",
+        "sha256": "2bac1f4dccd417a6d1486910ac9d32165de9afb281caa44877f0dc33065fb666"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-39-30.png",
+        "sha256": "c6d508067c8c5cb91297cab7ec1a57cbfbff74c99d05c07cd8ef4a54f0a0787d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-44-30.png",
+        "sha256": "fb704596283c81185e38822cce1e12c174f534aa255934b3a88947e8722c9e1c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-26-32.png",
+        "sha256": "e202bf7f798a87bb6b482d2826ce8d769c4ddc82dd9c1350aaa821691a1471b2"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-30-32.png",
+        "sha256": "0c26b0c87c60077556239de1745d93227553dd490caebfbdd766a61591755f9d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-30-34.png",
+        "sha256": "cad4b06339731370d2e6ca6b1d791d7eaae8307fd4844cccd0c7d35e774a882b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-32-34.png",
+        "sha256": "5634be8e713614f48e20c8c107802a1c4f280267e5701a3dbacbea9e450b8e21"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-4-38.png",
+        "sha256": "bc0e8baae6c767e32519816aae056cf9430ff642860e4b2c9fc7e34686400bd8"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-10-38.png",
+        "sha256": "bdfb8867b8daffeb3d88d6e9dd392dd4a604536701ea719c3899e2c49e6245a0"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-30-38.png",
+        "sha256": "ff995c2fb5667c20f67ff1e1028e59beee984afd46f83f44a42e3408c5a57c5f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-32-38.png",
+        "sha256": "031374b1589aa08c1817e797adda7e21c4ee8df6005c5c5b3a010016faa4d276"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-49-38.png",
+        "sha256": "ba62ce63ab57cdd616bb5657b3b16daf60b5410e9360fd23335fe92d45d35700"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-52-38.png",
+        "sha256": "13cdb4465cf12d66bc849622b5ddd2aa7bff490ff35824e3e30579dbc68347a0"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-26-40.png",
+        "sha256": "bca3d9783ffcf0e3ac428d39806f247a79d79da444b5781b0a1f33276c7c0986"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-30-40.png",
+        "sha256": "de542d82394d890646e00cc47ebeb9624b8f2c43de4cfa5c7f6a336056dae582"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-48-41.png",
+        "sha256": "954dba0338f964aea57ab5c9b548263d03751e034c48088d6e8124fd68cbb902"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-49-41.png",
+        "sha256": "6ab75457a336562412888a9f4666192e92a4c8125fa09077c5af9977b28661ea"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-10-42.png",
+        "sha256": "d637c8ec6f5a7213ab3d84b39a8062ba431da2654fd4dfec383fc01f9cdb875b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-18-42.png",
+        "sha256": "9114bf8b44a938f32224f04c05d711ce88e1d7cc0109c25f734516f32c13af46"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-40-42.png",
+        "sha256": "c9b548b833fe703bcad7dc70735e3957f6ed5a4e5d021fb0d92adbe1ad8d9d59"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-48-42.png",
+        "sha256": "96954cffc150b6825b150ad0d2f1d94c862ff8c582c71d98a405dece334ccaf6"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-18-44.png",
+        "sha256": "ddc4a3055367f9ea961af61dbc1966d237759dd7cf587e741a7b2c30d884dbce"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-27-44.png",
+        "sha256": "8df07303f0e878a4afe6e4558a40106704d6acf7740953b0b2edb00519b38bfc"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-30-44.png",
+        "sha256": "44e68276bce75211f16eef29d3357b803bdbc140b508fd5c607a9f4f5000775a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n1-40-44.png",
+        "sha256": "0a0542b4ef07c1f99f67d23ecb228884d5792936955529f33b02db8a4eec25c1"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n4-24-26.png",
+        "sha256": "977690adfb935489977f5fb9d08e416f56735df4db33070999cadfeba1585eea"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n4-38-26.png",
+        "sha256": "10d1b6c26a7bf79e14bee47785501a50a5a9c47abc8a091822f3339f16011caa"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n4-38-28.png",
+        "sha256": "73b3622aba6c9c4e95a6ca1ff51b3acff87067327d8b793a72875635a241477e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n4-52-28.png",
+        "sha256": "c5e5a04c7699f408025a6cd3e7eccf2c4c51ef9666d3e41dd4729073a174545d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n4-4-30.png",
+        "sha256": "62891c9472b8f5161c1e030fcb5be7b74a92d220ce29919655ac3a154b6d5128"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n4-24-30.png",
+        "sha256": "2e8e1daaad17f3f2ddda8956586168820e08c6d4a1273db2772d25b19d22579f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n5-10-6.png",
+        "sha256": "0631e59a3db4273485a930237a5c91e6f9ce501ba0dc67c31b2c61a7738a70d1"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n5-26-6.png",
+        "sha256": "a01022adb99821e59e4b253c4e758325e5773b04dd91c8bc27697731b92efe7b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n5-10-18.png",
+        "sha256": "b6bc6841b6f61b959bd680086aa8c8f980c5f7b9b6fedadb7021ef1e83a0ba0a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/canto-n5-26-18.png",
+        "sha256": "86db9cb28ce8c407adc9419b5c7ffc88445d41ed20483de81d2ee3ec14141703"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/rampa-topo-17-18.png",
+        "sha256": "c7f713f225dce0e46bdbd03314e4c4c1180fea387d313a10b4aef6c629e8e8cf"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/plato-17-18.png",
+        "sha256": "2936c79edcc89632d29ab3bff11f06c033b6b1027cf5402c2ada581addd556c6"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/rampa-topo-18-18.png",
+        "sha256": "a81a0f6e702de034740c442d4c2edd41fae651fe84e467fbc79c49d1a2e46859"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/plato-18-18.png",
+        "sha256": "29ab291127363dfa9cb66c19d674f0fb9cec36876d4452f2628a0005d9ceb238"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/rampa-topo-19-18.png",
+        "sha256": "b780bc73eaeb48454e4feedc0297be3715826de34282ee15b0575d24e2c36fb8"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/plato-19-18.png",
+        "sha256": "92989506ba925e96b08a426b16397a29cdd2950e2f4d56c838946ebfa51643ba"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/rampa-topo-20-18.png",
+        "sha256": "5bdd7d50d6a794323c5f04ca8f0a830f4354c971ab13ffc85fe26b6d116d8b3a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/plato-20-18.png",
+        "sha256": "818f5f05ce60df8cc467cb092641afc560e98dab6f1c473d5edbb70dc3667542"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/rampa-topo-21-18.png",
+        "sha256": "e49c06515917ff86a47b568e6a8f0997ee3237fb6dc2150d789a399fc65f7173"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/plato-21-18.png",
+        "sha256": "699de48551b0a40fa6ef7589f90805a46b31f01a54e5d760db921f9b6fbd4d62"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/rampa-pe-17-19.png",
+        "sha256": "1cae3f181f6c8b8d1566a7f56aaaa781f0c43ea9a3dc07e15040055960a38eee"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/rampa-pe-18-19.png",
+        "sha256": "8e43d6ce86ef87329302d2674fd70f2fadb08009b9948d9f26bff9a9a58d4558"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/rampa-pe-19-19.png",
+        "sha256": "f5e89831f5552eaf698962565836385f5c41ed8e10bcaf87daeab4093e01680b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/rampa-pe-20-19.png",
+        "sha256": "b6a6449dcd6e188b13ec70967dcbbbab5b5061413b1ed929cf448c4ed58fb2a1"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/rampa-pe-21-19.png",
+        "sha256": "da7f281f843e7fd2ae0827ea45b7c4fd580e8ceb2038bfa489ae012cfcbd37b2"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/rampa-topo-39-28.png",
+        "sha256": "896462bd0f2860703b2c42301adb9216edca180b572d3fec52a07f0011aca92e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/plato-39-28.png",
+        "sha256": "82a2ec19809c13db098c1796dcb9c6726592748f28db9b565567733ec9a727f7"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/rampa-topo-40-28.png",
+        "sha256": "e0ece1d4bcf5c9712cfd6e2987dcffcc51623e5c5c294422913bed2a5cc58935"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/plato-40-28.png",
+        "sha256": "fc7f82715f495408e06bb4c9cecc829f5aeb367b2f3072a5ea579376c8a3f7a6"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/rampa-topo-41-28.png",
+        "sha256": "c6845b85efc7b359c96874cd03a5702a0b6d5bb8a2fad0e6d8f3ce0e76a42748"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/plato-41-28.png",
+        "sha256": "1fa21108db54f9793674480dd272fcd8481d44ef119bb211ec3e51468a1565ee"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/rampa-topo-42-28.png",
+        "sha256": "e66cf37f7ca5f3910c2d48f356c9293c2b4abc03ae016696e0cafc4c81265f95"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/plato-42-28.png",
+        "sha256": "9e88485b43f53fa4044aea10ca748ddd65ddf6d5bfaa65e9cd5caed8b0eb37c6"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/rampa-topo-43-28.png",
+        "sha256": "0114c033d808cc95448cf4ecf487ef980134d8151f413e9305e1ebeb00838af2"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/plato-43-28.png",
+        "sha256": "739e44962cd82e40d1dddce1ae19d0b9766286f750f1757110a015e73859a65f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/rampa-pe-39-29.png",
+        "sha256": "46a29fec2167a31bb015f135e6586023ec929d3d079d380879d72c8ff2f38d05"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/rampa-pe-40-29.png",
+        "sha256": "db134a986cb78b84fc42532030b13bb6c132af8cd911629d563fdb2456be0c99"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/rampa-pe-41-29.png",
+        "sha256": "bad857aa84c7b471feaa2ea53b61fead0dbddf09288a20f36210b9a9d3ca45a2"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/rampa-pe-42-29.png",
+        "sha256": "8772d3ffd07b2dbe2f949e4282fb41e8814d5d851870ab9739709db62ca108b0"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/rampa-pe-43-29.png",
+        "sha256": "1e160221fabd9c5c441771247fdb346746091c6bcf1e6960061656cea52c9167"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/chegada.png",
+        "sha256": "5ddf50d80f5ad784bc6722df3ba58b171578aa9d265bc7cc9293c87fdc0f3a56"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/patamar.png",
+        "sha256": "a3582b0a19124490044e25fcc27b441dafc76af4f8688a12f343460a6d0f151c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/mirante.png",
+        "sha256": "2410865971e8c025630c61b86d20a01df803dd61d384aa582825377d6954b528"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/desvio.png",
+        "sha256": "249cf35d83472f6d36bce15333ac52bea9956c20d30cb36930142e6ffe89253d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/marco.png",
+        "sha256": "3b115f1a17dddceb96beefda5cf251d63977e368fc56e0466eedf1c55520ae53"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/lateral-rampa-39-28.png",
+        "sha256": "d07a8b1b199fe6ebb8cbacaf9f3c14581e1380f910c60daaaf36e0cfccba556b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/lateral-rampa-17-18.png",
+        "sha256": "2e0d002b3a866ba857f28822c53d9758d2ad0b82053b08b06b5bc171e4a33b30"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/areia-0-oeste.png",
+        "sha256": "14b1ed4fc6f525ef376d0a51aca3e34934671f17d1be92dc100b8766162d7269"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/areia-0-leste.png",
+        "sha256": "b1deac444b9b329fc8d24ff7e35c6d19039211132453fb7c83916acdf4636149"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/areia-0-norte.png",
+        "sha256": "dd4615819ebc90571c9f3a91a9e28f351017bac798be570b178735ddd8bffc2e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/areia-0-sul.png",
+        "sha256": "b97c697187920282ceeea046865f3ee42bcdddc0e6c6f6511d1764f52b4553f2"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/areia-1-oeste.png",
+        "sha256": "228967f81f2b9203531e1abac090c2a17480539a9f59dd64e12cee8e8d14ee55"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/areia-1-leste.png",
+        "sha256": "444c28a4438ce79d211b3d104791f1914972cbfae6c200fc2cc3c09af94f422b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/areia-1-norte.png",
+        "sha256": "38ab0eb2efe177de146b58104ff374eb5c106518b8eeff4bfd94e80d22642f69"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/areia-1-sul.png",
+        "sha256": "5fdd83a71367aa8d88dee554ecab24e94ae938bdceca3dc8cf02484dbcb13074"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/areia-2-oeste.png",
+        "sha256": "4aecfd3a71a6b938de6d7aaa5b3b754d034ac8770b7fe88446dfe5f41133d4ec"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/areia-2-leste.png",
+        "sha256": "d8e5afad9e69c3fafb076e70a2f960c49053c083ce2ddae9794c2bb12f81eec3"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/areia-2-norte.png",
+        "sha256": "fa8bd2aca64fc43c96ceeb2c2c0a39cc848e445d6c44c5b707d632ad2aa8dd51"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte/areia-2-sul.png",
+        "sha256": "b43d63a97aab0afa4e6f83233e4c33126012e25dc93d40cee56e892bdd3752e1"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/area-inteira.png",
+        "sha256": "ea40e0a5a7fe253b58434888739638398f0fadc536c43831161e6009a99b8eeb"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/entrada.png",
+        "sha256": "58369a671f33a4429bfd8453aea03ed1c7dc210435bc4aac48bc9df0f215ff04"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/centro.png",
+        "sha256": "54051700446ae0742e9cc00f7b8662bcd77c993bc782497767601da9d804f8c4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/saida-28-47.png",
+        "sha256": "babbcce24b5a828d74f8889892f2a3e467dd19848a0175a4c5acaf6b87c33377"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-10-4.png",
+        "sha256": "2db310f59468893bcc444f17edda0d875b3e3605d70988db1819fce23d89b98b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-44-4.png",
+        "sha256": "c699dcaed15abcb571757d5bc424c3fac57bed4109cffc87ce9fd12e8046b452"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-6-12.png",
+        "sha256": "afe3cdbd5dc14a9a42fc0349d88c00626b8290471dc422c8e811b464b2e4d72d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-10-12.png",
+        "sha256": "e8f7ed7999793295125f0e23a521fd810f0815526f95c8ed0d238900a781b01f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-44-12.png",
+        "sha256": "34196a35dd794b2baf78577c564115a2ff4477b2e4b1557df271e5df83e0ac69"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-48-12.png",
+        "sha256": "6e21c08193adedeee4ef84195eb1f1bbeb8a02548c23b79eb3163be6ddd6ff52"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-17-18.png",
+        "sha256": "d0ff9390a55e0654883ac41c7a60774db7885f8f30516fd22bccf8ac3ba581b8"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-22-18.png",
+        "sha256": "266eb9a65c8799747582dc4bcd5146a734f503269cf772f45c69be0ad462781d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-17-20.png",
+        "sha256": "71299d811bce06008d11df54cb76e4ffda77db41a43a6358e45dce9a5fddc237"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-22-20.png",
+        "sha256": "e6cd056cec833f4fe16a5b2975dbcdc38b24e884ef36399d313b4f03adf92a9b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-4-22.png",
+        "sha256": "a5bd9b16ab8b0e6ff5ccddebbe7bc0b12c1b93c83abb75cacec625e1ef9ea354"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-6-22.png",
+        "sha256": "d0bb31073957d705e456c533dd38c985106d24566d36b124e300ccd563ba00e7"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-48-22.png",
+        "sha256": "df8eaf355f429646623464d6db58fcb175f9ed11d418ae7d32c08fa90b1d2819"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-52-22.png",
+        "sha256": "76dd04104882a7dcce578c388015ce8771b6f35e419ee815c04d9c8ff0c376d2"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-39-28.png",
+        "sha256": "b539e1a732a8189ef51315a42d023425bae4e450580c51b9ada3d7c934febf38"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-44-28.png",
+        "sha256": "856747652da5a44ba76b18e8cd746e94cfcac66fda3ccf7c545281107fb03662"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-39-30.png",
+        "sha256": "63c7d374a7d75a8ba8245493126a1643e34296a5ed150793bacf61d1b3edbea9"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-44-30.png",
+        "sha256": "bdf8c972e7a4c52d8bd44ebf57c290778de69260845bc26dd7009dbb03374547"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-26-32.png",
+        "sha256": "cb8ac562ca7f84799943ae4fdea635d845a5daa46de2f092a305786b607fac9c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-30-32.png",
+        "sha256": "122dddfc6c1a4db924d58b7bc0710d3035cbd2a9451a4b24830466bd20871daa"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-30-34.png",
+        "sha256": "ed676b934051a7682793d5f959f917f2a69df8e9818dbb8dbabd437cd6d02e9e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-32-34.png",
+        "sha256": "19b5a8824a2af84ff079b6f32fdd24329ca5f0c9ac58180852b2a9638058ebb5"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-4-38.png",
+        "sha256": "825bc0eca2350e2d609fcba33acc099745d5caca995cb6cf4a1f71ec3d502592"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-10-38.png",
+        "sha256": "576526af667afbde22670243471fd6da076723274d97a0f0e2af6986c7dd4bcf"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-30-38.png",
+        "sha256": "3e84fdae5dad48602f80851b8673789f2c1f5f2d514c2c7f8b81a38eed12f4ff"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-32-38.png",
+        "sha256": "ebae27dd66a96556e359ede5af816ad5fd5f6a4d10aab6bbcc8d4502f5a6a5e0"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-49-38.png",
+        "sha256": "ba62ce63ab57cdd616bb5657b3b16daf60b5410e9360fd23335fe92d45d35700"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-52-38.png",
+        "sha256": "13cdb4465cf12d66bc849622b5ddd2aa7bff490ff35824e3e30579dbc68347a0"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-26-40.png",
+        "sha256": "d416d311dbf9fcc0bd4e0fcc4005c7da39710208a2e1ee9606ba934cd3767be3"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-30-40.png",
+        "sha256": "1d3777a617215d944858c3b1be7ffe63d82ae1084c246815a8d8f177c7f04d8c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-48-41.png",
+        "sha256": "954dba0338f964aea57ab5c9b548263d03751e034c48088d6e8124fd68cbb902"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-49-41.png",
+        "sha256": "6ab75457a336562412888a9f4666192e92a4c8125fa09077c5af9977b28661ea"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-10-42.png",
+        "sha256": "d637c8ec6f5a7213ab3d84b39a8062ba431da2654fd4dfec383fc01f9cdb875b"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-18-42.png",
+        "sha256": "ad61e2ed1b792897ca7a59d3f26098a7463be3be3eb4b9284d3d84a5f2e94f51"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-40-42.png",
+        "sha256": "c9b548b833fe703bcad7dc70735e3957f6ed5a4e5d021fb0d92adbe1ad8d9d59"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-48-42.png",
+        "sha256": "96954cffc150b6825b150ad0d2f1d94c862ff8c582c71d98a405dece334ccaf6"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-18-44.png",
+        "sha256": "ddc4a3055367f9ea961af61dbc1966d237759dd7cf587e741a7b2c30d884dbce"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-27-44.png",
+        "sha256": "bcb6911549d2245cad5a082d3c09f4e7bbe1d18684071071d0e5b8ee0e912d2a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-30-44.png",
+        "sha256": "44e68276bce75211f16eef29d3357b803bdbc140b508fd5c607a9f4f5000775a"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n1-40-44.png",
+        "sha256": "0a0542b4ef07c1f99f67d23ecb228884d5792936955529f33b02db8a4eec25c1"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n4-24-26.png",
+        "sha256": "33277381c2c49f4c65ed17dd3715e7da1fef54e25263850247663f2b5c9bac7c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n4-38-26.png",
+        "sha256": "ce765e4b187c3f73f91d6e0406d10580151a8149e4577e9542cde3ba492fcc04"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n4-38-28.png",
+        "sha256": "abf54cf04584ff0d053368298d206a490a30b68ce5a90e997f42e8cf05228084"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n4-52-28.png",
+        "sha256": "c5e5a04c7699f408025a6cd3e7eccf2c4c51ef9666d3e41dd4729073a174545d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n4-4-30.png",
+        "sha256": "eb05942187c86dfa445132070823613b1be36e419ee5c7d41ca2cf6218d304f5"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n4-24-30.png",
+        "sha256": "8d83b1aed4d5a47d344863fca0e03e7473a2c28b7d2573084925a59c07998a85"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n5-10-6.png",
+        "sha256": "b338b7187966dcddf53f0e709c3b33e24ddbd25eb2bfd435e8bd471663fdd992"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n5-26-6.png",
+        "sha256": "37b2ad37ccce1cdf8fda9007d72e1b2cd55aa5d34c184684ceab18a1ea036ff4"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n5-10-18.png",
+        "sha256": "001044c0ee289f3ef5f40219738af6c7c8f394d95312d361c66a05b1c25f8781"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/canto-n5-26-18.png",
+        "sha256": "047234b097ac75a2bd8a9e839e9c93dbcde20958ed4d99500ae4550d725e8fa6"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/rampa-topo-17-18.png",
+        "sha256": "d46f989cf6765981cccba1b6687683ca757ab480d74280d5ca88cdb79e995905"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/plato-17-18.png",
+        "sha256": "601daa2299953d3b8d231c52a63b6b4739a8dc9d4b4c279b2ceb2c353eaa6e2f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/rampa-topo-18-18.png",
+        "sha256": "39ede83955c05780a86b99cf5c8e9df0116fbc428b6e61d120477ecf9c94695d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/plato-18-18.png",
+        "sha256": "e5756f573b8cfb448259f82d8beb9f9327ee08a4b1851bbeb51c43aa0b82ee60"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/rampa-topo-19-18.png",
+        "sha256": "887addbb0922835a747b671adb74e2036f0518f5cc6e4e14f6d9256330c27969"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/plato-19-18.png",
+        "sha256": "7582c0ecef7fcb0a72f8d7ae2eff547f20db6f7ed77bbfc92e5f4a6166275dee"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/rampa-topo-20-18.png",
+        "sha256": "1fa8c47e2da4af2fc4da6a1a7c88e1a468f5d1619373acf49312a2e9f1c69a64"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/plato-20-18.png",
+        "sha256": "856a2caef3a40c50b5725e512fc224eb7f75ec806911ca3830d75b21299a4bc7"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/rampa-topo-21-18.png",
+        "sha256": "056a75be90f049860cb1a6254967fe015c56558a5e9245cedfc9b8352ee869af"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/plato-21-18.png",
+        "sha256": "30b2788cdc7db7f7f85a433d8a838d8f202bd6a1a0e1c3bdce291350f861cc22"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/rampa-pe-17-19.png",
+        "sha256": "c17b948b88e5e129bb0b6e48bd13faf21124e6f33ca9d06522a66c5149a6ca98"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/rampa-pe-18-19.png",
+        "sha256": "99ec65a98681573fe1704357a0fadab5a80b789bc01fe8aadb9ad8ff40650c21"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/rampa-pe-19-19.png",
+        "sha256": "cf56f9cbd20f005e8fd6d0edcbfc6aeecc22c54dc3b1c5088d12c3102e5a75f7"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/rampa-pe-20-19.png",
+        "sha256": "6cfb08172732566023df4f1ddec4ecb5f5df4e8faa8337f9bcb3795ca68e0edf"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/rampa-pe-21-19.png",
+        "sha256": "b4623c273440e43f97e5513a7dbf18c21cf2d14aa93a45f5aba791a5b549f32e"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/rampa-topo-39-28.png",
+        "sha256": "251292a8348cd80f4f16ed9ec3a0df714bdd324c7b62a8370762d20c975b49f7"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/plato-39-28.png",
+        "sha256": "b19c2b1eef17cf2dee1b8545408e730d42d95ca0178ac3e838a9ecfb5c12f832"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/rampa-topo-40-28.png",
+        "sha256": "35e5a0da7cb542da2db6e741e45d5f103c2adc28ac7c4e9a9f742008001984f7"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/plato-40-28.png",
+        "sha256": "08c4a9d47810486e48bd4739b1b59b0e20f16bfd88f22673e03fe1b432c8bb00"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/rampa-topo-41-28.png",
+        "sha256": "f66ea11ccbdafcb9b8eec6904be843509569d621b04bb459e823e12ab014277c"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/plato-41-28.png",
+        "sha256": "14cbf5f4733f30e8f5c774810775ff23c26e72cc77394be53ecbfd4406b3a735"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/rampa-topo-42-28.png",
+        "sha256": "5ed2a30953ed8ec0adbb94929ad25c06402fbfb4fbca328354652218ce54fc73"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/plato-42-28.png",
+        "sha256": "300a53e44ea3da61460e397fb08b0a77bd555ec1303195bbc0a3203dbe08ea94"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/rampa-topo-43-28.png",
+        "sha256": "61776f2e2086e21ffcac753d430c68a8292ff67855deb8b823d1f494cce4ed64"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/plato-43-28.png",
+        "sha256": "bb2728fc3209de146313db1b5498d8f0fe43287825171359553af24627d958dc"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/rampa-pe-39-29.png",
+        "sha256": "32451938c5edc3c0048fbdf7cf3b31c53aeb1ac2aac6b0cadf47b6d2cb466029"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/rampa-pe-40-29.png",
+        "sha256": "e9f8d76b249b3f94e12b1f6294e7e17e11ef891be6620ce2e2891c68a11163f1"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/rampa-pe-41-29.png",
+        "sha256": "7e9aa6ff30972bab4cb43df6fff17917984df16344396c541cdd7138afe220b3"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/rampa-pe-42-29.png",
+        "sha256": "612f510cec2a01a29fc35e9524dada602cdbccc6f2872ffb157447636efb6081"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/rampa-pe-43-29.png",
+        "sha256": "533c1145e04b41cc7b07a898e5a29ed2bdb7e46039c22dd833fb6bf0ae469346"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/chegada.png",
+        "sha256": "ed6a97ed21916ea651b68c729a3b8de41375f67c5daa124bcb568e24ae8b7a81"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/patamar.png",
+        "sha256": "fef2c1601e27d0400c5b59c20f0b5ae4d5baf81aa5353365b19333f882e5c2ed"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/mirante.png",
+        "sha256": "034c1529843991216a77bb1b429f1361415cd7a3406e6837f62f82a6338c9a92"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/desvio.png",
+        "sha256": "5099c2ac8952031d13e96f0c9467011febd48543f4ee205af4cf9a16f42a515f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/marco.png",
+        "sha256": "317df3d8d7c96e57685678bc6c19c5fa12d7383dd79dbe5f0ddba3ef4644227d"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/lateral-rampa-39-28.png",
+        "sha256": "4542fa966db29de6516e1f0330c095a5cc682a306fc3b3450712dae15ff65f44"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/lateral-rampa-17-18.png",
+        "sha256": "93fd4b657181f65344c6b8a3dfac6931f0d76aa97c38e9b8f09f693dd3086017"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/areia-0-oeste.png",
+        "sha256": "65e1ec87ac8bd54d351d483037b630c0c255cf8296472bd4bd57f01322ab5edc"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/areia-0-leste.png",
+        "sha256": "fcf008a11796960b8274c7d1e1d1880de0ebf749a1db99c1b1599353cc797015"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/areia-0-norte.png",
+        "sha256": "bc2285d06924bc2ee9a52104141673dc435a6ee849ecd258e30ef124062b05e0"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/areia-0-sul.png",
+        "sha256": "8e7732774c727b918c805c68317641ab3f66f1aa340b952c28512ae246273052"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/areia-1-oeste.png",
+        "sha256": "1029da51707e6d6f098b83754ea25009c1981ad449543c7f0061611badc58d65"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/areia-1-leste.png",
+        "sha256": "81c8fbd0296eb9c89af1a8ce0444e49afa5159cd15ddf0a1b12063314197a644"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/areia-1-norte.png",
+        "sha256": "784cf1885fa583413c5b66e2118d916a7620cd3b5f4a8ca96725d40613a3b5fd"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/areia-1-sul.png",
+        "sha256": "992f40adddfa763c37aed3c68311b76f1bc206971057745c60e287727ae670a3"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/areia-2-oeste.png",
+        "sha256": "aa8e7b8d89547a7f675461abd93708b2e3e27e9da6a27c8807b3a1e887752f42"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/areia-2-leste.png",
+        "sha256": "fa3662a43c73cba5a74bff1d5b1067bb5f2919c0d2189ddb034450c9fd26b980"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/areia-2-norte.png",
+        "sha256": "fa2afce13c22d64e239eb0872a86e159c36b3a2ef02c70edd9fac367422bc00f"
+      },
+      {
+        "path": "documentation/overworld/submerso/captures/c/arte-terreno/areia-2-sul.png",
+        "sha256": "afdaed3d2d40b9bde6b1738222c8182b1fadb09de950a5ecf977b509d1c30824"
+      }
+    ]
+  }
+]
