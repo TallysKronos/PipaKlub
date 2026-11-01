@@ -18,7 +18,7 @@ static func walking_grace(player: Dictionary) -> float:
 static func weight(model, point: Vector2) -> float:
 	if not model.point_walkable(point): return 0.0
 	var cell: Dictionary=model.cell_at(Vector2i(point.floor()))
-	if str(model.data.get("id","")).begins_with("kronasta-bambuzal-") and cell.material!="mato":return 0.0
+	if (str(model.data.get("id","")).begins_with("kronasta-bambuzal-") or str(model.data.get("id","")).begins_with("kronasta-beira-canal-")) and cell.material!="mato":return 0.0
 	if cell.material not in ["grama","terra","mato"] or cell.get("ramp")!=null: return 0.0
 	for event in model.data.events:
 		var action: String=event.props.get("acao","")
@@ -32,6 +32,7 @@ static func weight(model, point: Vector2) -> float:
 	return 1.6 if cell.material=="mato" else 1.0
 
 static func wild_level(scene: String, roll: int) -> int:
+	if scene.begins_with("kronasta-beira-canal-"):return 12+roll%3
 	if scene.begins_with("kronasta-bambuzal-"):return 7+roll%3
 	if scene.begins_with("kronasta-bosque-"):
 		return {"kronasta-bosque-a":1,"kronasta-bosque-b":2,"kronasta-bosque-c":3}[scene]+roll%3

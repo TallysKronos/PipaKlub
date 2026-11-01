@@ -17,8 +17,9 @@ func _initialize()->void:
 	var service:=Glide.new(session);var entry:Dictionary=Glide.data().links[0];var a:=Glide.point(entry.from);var b:=Glide.point(entry.to)
 	var model=CP.model_for("park-veredas")
 	for e:Dictionary in Glide.data().links:
+		model=CP.model_for(Glide.scene_for(e))
 		check(Glide.valid_link(e),"audited link "+e.id)
-		check(not model.path_to(CP.spawn("park-veredas"),Glide.point(e.from)).is_empty(),"both banks reachable by ordinary route")
+		check(not model.path_to(CP.spawn(Glide.scene_for(e)),Glide.point(e.from)).is_empty(),"both banks reachable by ordinary route "+e.id)
 		check(not model.clear_segment(Glide.point(e.from),Glide.point(e.to)),"water is not walkable")
 	check(session.checkpoint(CP.make("park-veredas",a,CP.SPACE),p).status=="ok","takeoff fixture")
 	check(service.begin(entry.id,a).status=="wrong_step","loan permission required")

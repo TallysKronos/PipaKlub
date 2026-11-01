@@ -45,6 +45,7 @@ func start_wild(point: Vector2) -> Dictionary:
 	var level := 5 + bytes.decode_u32(4) % 5 if scene == "park-veredas" else 1 + bytes.decode_u32(4) % 3 + (1 if scene == "park-clearing" else 0)
 	if saved.checkpoint.get("space","")==Checkpoint.SPACE: level=Pacing.wild_level(scene,bytes.decode_u32(4))
 	if scene.begins_with("kronasta-bambuzal-"):species=preload("res://scripts/campaign/bambuzal_wild_drafts.gd").choose(roll)
+	if scene.begins_with("kronasta-beira-canal-"):species="lacertubo"
 	var model := Model.new(partner, {"modelId": species, "level": level})
 	Progression.discover(player, species)
 	player.encounter = {"id": State.new_id(), "kind": "wild", "scene": scene, "dropRoll": bytes.decode_u32(8) / 4294967296.0, "returnPoint": [point.x, point.y], "state": model.snapshot()}

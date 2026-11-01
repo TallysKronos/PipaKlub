@@ -17,7 +17,7 @@ const PLACES := [
 	{"id":"morro","name":"Morro do Sol","kind":"bairro","bairro":1,"act":1,"levels":"4–8","note":"Bairro 1 · Mikka. Acesso pela Vila."},
 	{"id":"bosque","name":"Bosque dos Ventos","kind":"natural","act":1,"levels":"1–5","scene":"kronasta-bosque-a","note":"Trilha das Copas, Desvio do Riacho e Clareira do Marco."},
 	{"scene":"kronasta-bambuzal-a","id":"bambuzal","name":"Vila do Bambuzal","kind":"bairro","bairro":2,"act":1,"levels":"9–12","note":"Bairro 2 · Lohan."},
-	{"id":"beira-canal","name":"Beira-Canal","kind":"bairro","bairro":3,"act":2,"levels":"12–15","note":"Bairro 3 · Kleie."},
+	{"scene":"kronasta-beira-canal-a","id":"beira-canal","name":"Beira-Canal","kind":"bairro","bairro":3,"act":2,"levels":"12–15","note":"Bairro 3 · Kleie."},
 	{"id":"feira","name":"Feira do Largo","kind":"bairro","bairro":4,"act":2,"levels":"15–18","note":"Bairro 4."},
 	{"id":"caverna","name":"Caverna do Mural","kind":"ruinas","act":2,"levels":"15–18","note":"O primeiro laço."},
 	{"id":"cais","name":"Cais Velho","kind":"bairro","bairro":5,"act":3,"levels":"18–21","note":"Bairro 5."},
@@ -49,6 +49,9 @@ const BEATS := [
 	{"id":"nina-devolvida","act":1,"place":"parque","text":"Leve a rabiola de volta para Nina, no Jardim das Pipas."},
 	{"id":"promocao-verde","act":1,"place":"parque","text":"Volte à Nina para reconhecer o exame e receber a categoria Rabiola Verde."},
 	{"id":"planar-nina","act":1,"place":"parque","text":"Experimente Planar com o Carcará da Nina nas setas azuis junto ao rio das Veredas."},
+	{"id":"canal-pipeiros","act":2,"place":"beira-canal","text":"Explore Beira-Canal e vença os quatro pipeiros do percurso."},
+	{"id":"canal-comporta","act":2,"place":"parque","text":"Volte às Veredas. Enfrente Grampo junto ao controle do canal e destranque a comporta."},
+	{"id":"canal-kleie","act":2,"place":"beira-canal","text":"A comporta está aberta. Volte ao pátio e dispute o emblema com Kleie."},
 ]
 
 ## QA previews: built maps whose story gate does not exist yet open only in development
@@ -72,6 +75,9 @@ static func mikka_defeated(player: Dictionary) -> bool:
 static func beat_done(player: Dictionary, id: String) -> bool:
 	var f:=flags(player)
 	match id:
+		"canal-pipeiros":return preload("res://scripts/campaign/district_rules.gd").qualified(preload("res://scripts/campaign/district_rules.gd").entry(player,"beira-canal"),preload("res://scripts/campaign/district_rules.gd").definition("beira-canal"))
+		"canal-comporta":return f.get("comportaVeredasAberta",false)
+		"canal-kleie":return preload("res://scripts/campaign/district_rules.gd").completed(player,"beira-canal")
 		"prologo": return prologue_done(player)
 		"nina": return f.get("ninaAccepted",false)
 		"lacertubo": return f.get("guardianDefeated",false)
@@ -100,7 +106,7 @@ static func category(player: Dictionary) -> String:
 
 static func act(player: Dictionary) -> int:
 	var beat:=current_beat(player)
-	return int(beat.act) if not beat.is_empty() else 1
+	return int(beat.act) if not beat.is_empty() else 2 if flags(player).get("leagueGreen",false) else 1
 
 static func objective(player: Dictionary) -> String:
 	var beat:=current_beat(player)
@@ -144,7 +150,7 @@ static func state(player: Dictionary, id: String) -> String:
 		"rua-dos-ventos": return "aberto"
 		"parque": return "aberto" if prologue_done(player) else "fechado"
 		"morro": return "vencido" if mikka_defeated(player) else "aberto" if prologue_done(player) else "fechado"
-		"beira-canal": return "fechado" if not preload("res://scripts/campaign/district_rules.gd").completed(player,"bambuzal") else "em-breve"
+		"beira-canal": return "vencido" if preload("res://scripts/campaign/district_rules.gd").completed(player,id) else "aberto" if flags(player).get("leagueGreen",false) else "fechado"
 		"bambuzal": return "vencido" if preload("res://scripts/campaign/district_rules.gd").completed(player,"bambuzal") else "aberto" if mikka_defeated(player) else "fechado"
 		"bosque": return "aberto" if prologue_done(player) else "fechado"
 	# Previews follow only the prologue in QA; players see them as not built yet.
@@ -157,6 +163,7 @@ static func can_travel(player: Dictionary, id: String) -> bool:
 
 static func requirement(player: Dictionary, id: String) -> String:
 	var entry:=place(id)
+	if id=="beira-canal" and preload("res://scripts/campaign/district_rules.gd").completed(player,"bambuzal") and not flags(player).get("leagueGreen",false):return "Conclua o primeiro exame com Nina"
 	match state(player,id):
 		"aberto": return "QA · prévia sem história" if entry.get("preview",false) else "Aberto"
 		"vencido": return "Bairro vencido"

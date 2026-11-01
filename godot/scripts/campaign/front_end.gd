@@ -297,6 +297,7 @@ func _error(code: String) -> String:
 		"future": "Este save precisa de uma versão mais recente do jogo.",
 		"unsupported": "Versão do save incompatível.", "occupied": "Esta jornada já existe.",
 		"invalid_name": "Use um nome de até 24 caracteres, sem quebras de linha.",
+		"not_enough_coins":"Você precisa de 12 moedas para descansar na oficina. O ateliê do professor continua gratuito.",
 		"stale": "A jornada foi alterada. Volte ao menu e carregue novamente.",
 		"repair_needed": "Seu parceiro precisa de reparos. Use um Kit de Remendo em Equipe → Cuidar ou procure o professor.",
 		"io_error": "Não foi possível acessar o save. Confira o espaço e a permissão da pasta."}.get(code, "Não foi possível continuar. Seu último save foi mantido.")
@@ -1482,7 +1483,7 @@ func _show_park() -> void:
 			_result(discovery)
 			return
 		saved=session.snapshot()
-	park = load("res://scripts/campaign/park_glide_view.gd").new() if saved.checkpoint.scene=="park-veredas" else ParkOverworldView.new()
+	park = load("res://scripts/campaign/park_glide_view.gd").new() if saved.checkpoint.scene in ["park-veredas","kronasta-beira-canal-b"] else ParkOverworldView.new()
 	park.ui_theme = theme
 	park.content = content
 	park.saved_checkpoint = saved.checkpoint
@@ -1526,6 +1527,14 @@ func _park_event(id: String) -> void:
 		if str(int(event.id))!=id or not ParkCheckpoint.allowed(event,player,park.area_id): continue
 		if park.player.distance_to(Vector2(event.u+.5,event.v+.5))>1.8: return
 		var action: String = event.props.get("acao","")
+		if action=="canalClue":
+			_notice(event.props.texto);return
+		if action=="districtRest" and event.props.get("district")=="beira-canal":
+			_confirm_park("Descansar na oficina","Recuperar toda a equipe por 12 moedas? Se todos estiverem bem, nada será cobrado.","Descansar",func():
+				if _result(load("res://scripts/campaign/canal_gate.gd").new(session).rest(park.player)):park.refresh(session.snapshot().player))
+			return
+		if action=="canalGate":
+			_request_canal_gate();return
 		if action=="ninaGlide":
 			_request_nina_glide(str(event.props.glideLink));return
 		if action in ["tylerClareira","tylerRai"]:
@@ -1699,6 +1708,8 @@ func _show_encounter() -> void:
 			if _result(load("res://scripts/campaign/district_campaign.gd").new(session).settle()):_return_district_result.call_deferred()
 		elif is_morro:
 			if _result(morro.settle()): _return_morro_result.call_deferred()
+		elif session.snapshot().player.encounter.kind=="canal-gate":
+			if _result(load("res://scripts/campaign/canal_gate.gd").new(session).settle()):_show_saved.call_deferred()
 		elif _result(encounters.settle()): _show_saved.call_deferred())
 
 func _remember_world_position() -> bool:
@@ -2519,22 +2530,25 @@ func _district_action(id:String)->void:
 	var service=load("res://scripts/campaign/district_campaign.gd").new(session)
 	var rules=load("res://scripts/campaign/district_rules.gd")
 	var player:Dictionary=session.snapshot().player
-	var title:Dictionary=rules.entry(player,"bambuzal")
 	var entry:Dictionary=service.stage(id)
+	var district:String=entry.get("district","")
+	var title:Dictionary=rules.entry(player,district)
 	if entry.is_empty():return
-	if title.champion=="player" and id!="bambuzal-5" and title.pendingDefense.is_empty():
+	if title.champion=="player" and id!=district+"-5" and title.pendingDefense.is_empty():
 		if not _result(service.offer_defense(id,park.player)):return
-		player=session.snapshot().player;title=rules.entry(player,"bambuzal")
+		player=session.snapshot().player;title=rules.entry(player,district)
 	if not title.pendingDefense.is_empty():
 		if title.pendingDefense.challenger!=entry.npcId:
-			_notice(rules.objective(player,"bambuzal"));return
-		_confirm_park("Defender o Bambuzal",entry.name+" quer disputar seu título. Derrota ou fuga entrega o título ao desafiante e exige quatro novas vitórias para a reconquista. Você pode responder depois; o desafio permanece salvo.","Defender meu título",func():
+			_notice(rules.objective(player,district));return
+		_confirm_park("Defender "+rules.definition(district).name,entry.name+" quer disputar seu título. Derrota ou fuga entrega o título ao desafiante e exige quatro novas vitórias para a reconquista. Você pode responder depois; o desafio permanece salvo.","Defender meu título",func():
 			if _result(service.start(id,park.player,true)):_show_saved.call_deferred())
 		return
-	var planned:Dictionary=rules.prepare(player,"bambuzal",id)
+	var planned:Dictionary=rules.prepare(player,district,id)
 	if planned.status=="already_applied":_notice("Este duelo já foi concluído. Você pode continuar explorando o bairro.");return
-	if planned.status!="ok":_notice("Vença os quatro pipeiros na ordem do percurso antes do campeão." if id=="bambuzal-5" else "Conclua o desafio anterior para continuar.");return
-	var speaker:String=rules.opponent_name(player,"bambuzal") if id=="bambuzal-5" and title.completed else entry.name
+	if planned.status!="ok":
+		if rules.status(player,district)=="prerequisite":_notice(service.objective(player,district));return
+		_notice("Vença os quatro pipeiros na ordem do percurso antes do campeão." if id==district+"-5" else "Conclua o desafio anterior para continuar.");return
+	var speaker:String=rules.opponent_name(player,district) if id==district+"-5" and title.completed else entry.name
 	var text:String=entry.before[0][1] if planned.context.mode=="progress" else "Vamos disputar mais uma vez. O caminho para recuperar o título passa por estes quatro desafios."
 	_confirm_park(speaker,text+"\n\nAdversário Nv. %d · vence quem conquistar %d rodadas."%[entry.level,entry.rounds],"Disputar",func():
 		if _result(service.start(id,park.player)):_show_saved.call_deferred())
@@ -2548,8 +2562,8 @@ func _return_district_result()->void:
 	var entry:Dictionary=service.stage(result.duel)
 	var text:String=""
 	if result.mode=="progress":text=entry.won[0][1] if result.outcome=="won" else entry.lost[0][1]
-	else:text=service.objective(player)
-	if result.get("emblem",false):text+="\n\nInsígnia do Bambuzal recebida. Clareira do Papel liberada; Beira-Canal é o próximo bairro."
+	else:text=service.objective(player,result.district)
+	if result.get("emblem",false):text+="\n\nInsígnia recebida · "+str(result.district)+". O próximo destino está no mapa de Kronasta."
 	_notice(text)
 
 func _show_tyler_clareira()->void:
@@ -2604,3 +2618,13 @@ func _request_nina_glide(id:String)->void:
 	_confirm_park("Planar · Carcará da Nina",text,"Planar",func():
 		var result:Dictionary=glide.new(session).begin(id,park.player)
 		if _result(result):park.play_glide(session.snapshot().player.ninaGlideFlight))
+
+func _request_canal_gate()->void:
+	var service=load("res://scripts/campaign/canal_gate.gd").new(session)
+	if session.snapshot().player.flags.get("grampoVeredasVencido",false):
+		_confirm_park("Comporta das Veredas","O Lacertubo já deixou este lugar. A Rabiola Antiga vibra perto da entrada fechada das Ruínas. O controle do canal está ao alcance: destrancar a comporta?","Destrancar",func():
+			if _result(service.open(park.player)):
+				park.refresh(session.snapshot().player);park.exploration_hud.push_notice("Comporta aberta · volte ao pátio de Kleie","item"))
+	else:
+		_confirm_park("Grampo","Vai mexer no controle? Achei essas peças primeiro! Platyx, segura a linha.\n\nDuelo de história · adversário Nv. 14. Derrota ou fuga permitem tentar novamente.","Enfrentar Grampo",func():
+			if _result(service.begin(park.player)):_show_saved.call_deferred())

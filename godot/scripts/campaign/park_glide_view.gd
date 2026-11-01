@@ -14,12 +14,19 @@ var landing_sent:=false
 func _ready()->void:
 	super._ready()
 	_build_glide_marks()
+	if saved_checkpoint.scene=="park-veredas" and preload("res://scripts/campaign/canal_gate.gd").available(saved_player):
+		var wheel:=Node2D.new();wheel.position=model.project(preload("res://scripts/campaign/canal_gate.gd").AT);actors.add_child(wheel)
+		wheel.draw.connect(func():
+			wheel.draw_line(Vector2.ZERO,Vector2(0,-26),Color("36566a"),6)
+			wheel.draw_arc(Vector2(0,-30),10,0,TAU,20,Color("e5b66d"),3,true)
+			wheel.draw_line(Vector2(-9,-30),Vector2(9,-30),Color("e5b66d"),2))
 func _build_events()->void:
-	for e:Dictionary in Glide.events():
+	for e:Dictionary in Glide.events(saved_checkpoint.scene):
 		if not interaction_events.any(func(old):return int(old.id)==int(e.id)):interaction_events.append(e)
 	super._build_events()
 func _build_glide_marks()->void:
 	for entry:Dictionary in Glide.data().links:
+		if Glide.scene_for(entry)!=saved_checkpoint.scene:continue
 		var marker:=Node2D.new();marker.position=model.project(Glide.point(entry.from));marker.z_index=4;actors.add_child(marker)
 		marker.draw.connect(func():
 			var color:=Color("65c8ef") if Glide.allowed(saved_player) else Color("82959b")

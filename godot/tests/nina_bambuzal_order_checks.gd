@@ -48,5 +48,5 @@ func _initialize()->void:
 	preload("res://scripts/campaign/league_promotion.gd").award_into(p)
 	check(Story.current_beat(p).id=="planar-nina","promotion introduces borrowed glide tutorial")
 	p.flags.ninaGlideTutorialDone=true
-	check(Story.current_beat(p).is_empty(),"authored story beats complete")
+	check(Story.current_beat(p).id=="canal-pipeiros","after Planar the third district follows")
 	session.free();print("NINA ORDER: %d checks, %d failures"%[checks,failures.size()]);quit(0 if failures.is_empty() else 1)

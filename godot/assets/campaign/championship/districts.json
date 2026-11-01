@@ -494,7 +494,7 @@
       "id": "beira-canal",
       "number": 3,
       "name": "Beira-Canal",
-      "playable": false,
+      "playable": true,
       "next": "feira",
       "prerequisiteFlag": "comportaVeredasAberta",
       "unlocks": [
@@ -514,69 +514,177 @@
           "id": "beira-canal-1",
           "part": "A",
           "role": "lieutenant",
-          "npcId": "beira-canal-capanga-1",
-          "name": "Capanga 1",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "canal-1",
+          "name": "Vaeli",
+          "level": 12,
+          "before": [
+            [
+              "Vaeli",
+              "A água parou e ninguém sabe por quê. Antes de seguir, vamos testar o seu ritmo."
+            ]
+          ],
+          "won": [
+            [
+              "Vaeli",
+              "Olhe os canos: o comando fica nas Veredas, acima de nós."
+            ]
+          ],
+          "lost": [
+            [
+              "Vaeli",
+              "Cuide do seu parceiro. O desafio continua aqui quando vocês estiverem prontos."
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 40,
+            "xp": 73,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "npcName": "Vaeli",
+          "scene": "kronasta-beira-canal-a",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Vaeli",
+              "color": 2
+            }
+          ],
+          "styles": [
+            "patient"
+          ]
         },
         {
           "id": "beira-canal-2",
           "part": "A",
           "role": "lieutenant",
-          "npcId": "beira-canal-capanga-2",
-          "name": "Capanga 2",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "canal-2",
+          "name": "Noxen",
+          "level": 12,
+          "before": [
+            [
+              "Noxen",
+              "Escuta o canal. Sem correnteza, até o vento parece preso. Vamos voar?"
+            ]
+          ],
+          "won": [
+            [
+              "Noxen",
+              "Siga para a oficina. Soryn conhece esse encanamento."
+            ]
+          ],
+          "lost": [
+            [
+              "Noxen",
+              "Cuide do seu parceiro. O desafio continua aqui quando vocês estiverem prontos."
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 45,
+            "xp": 73,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "npcName": "Noxen",
+          "scene": "kronasta-beira-canal-a",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Noxen",
+              "color": 3
+            }
+          ],
+          "styles": [
+            "reader"
+          ]
         },
         {
           "id": "beira-canal-3",
           "part": "B",
           "role": "lieutenant",
-          "npcId": "beira-canal-capanga-3",
-          "name": "Capanga 3",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "canal-3",
+          "name": "Soryn",
+          "level": 13,
+          "before": [
+            [
+              "Soryn",
+              "Eu conserto as peças. Mas não adianta trocar cano com a comporta fechada. Primeiro, nosso duelo."
+            ]
+          ],
+          "won": [
+            [
+              "Soryn",
+              "Há descanso junto à oficina. Eriska está na praça do outro lado."
+            ]
+          ],
+          "lost": [
+            [
+              "Soryn",
+              "Cuide do seu parceiro. O desafio continua aqui quando vocês estiverem prontos."
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 50,
+            "xp": 80,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "npcName": "Soryn",
+          "scene": "kronasta-beira-canal-b",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Soryn",
+              "color": 0
+            }
+          ],
+          "styles": [
+            "aggressive"
+          ]
         },
         {
           "id": "beira-canal-4",
           "part": "B",
           "role": "lieutenant",
-          "npcId": "beira-canal-capanga-4",
-          "name": "Capanga 4",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "canal-4",
+          "name": "Eriska",
+          "level": 14,
+          "before": [
+            [
+              "Eriska",
+              "Kleie quer ver o canal correndo antes da disputa. E eu quero ver sua linha em ação."
+            ]
+          ],
+          "won": [
+            [
+              "Eriska",
+              "O comando principal fica nas Veredas. Volte quando destrancar a comporta."
+            ]
+          ],
+          "lost": [
+            [
+              "Eriska",
+              "Cuide do seu parceiro. O desafio continua aqui quando vocês estiverem prontos."
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 55,
+            "xp": 88,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "npcName": "Eriska",
+          "scene": "kronasta-beira-canal-b",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Eriska",
+              "color": 1
+            }
+          ],
+          "styles": [
+            "reader"
+          ]
         },
         {
           "id": "beira-canal-5",
@@ -585,15 +693,42 @@
           "npcId": "kleie",
           "name": "Kleie",
           "level": 15,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "before": [
+            [
+              "Kleie",
+              "O canal voltou a respirar. Agora vamos fazer o vento correr pela arena!"
+            ]
+          ],
+          "won": [
+            [
+              "Kleie",
+              "Beira-Canal é seu! A Feira do Largo é o próximo bairro. Leve nosso vento com você."
+            ]
+          ],
+          "lost": [
+            [
+              "Kleie",
+              "Cuide do seu parceiro. O desafio continua aqui quando vocês estiverem prontos."
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 60,
+            "xp": 96,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "npcName": "Kleie",
+          "scene": "kronasta-beira-canal-c",
+          "rounds": 3,
+          "foes": [
+            {
+              "name": "Kleie",
+              "color": 1
+            }
+          ],
+          "styles": [
+            "patient"
+          ]
         }
       ]
     },
