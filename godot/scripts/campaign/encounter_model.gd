@@ -12,6 +12,7 @@ var enemy_model_id := "lacertubo"
 var enemy_level := Pacing.BOSS_LEVEL
 signal damage_applied(event: Dictionary)
 signal combat_feedback(event: Dictionary)
+signal signature_started(id:String,enemy:bool)
 
 func _apply_hit(hit: Dictionary) -> void:
 	var target: Dictionary = hit.target
@@ -288,6 +289,7 @@ func _signature_hit(actor: Dictionary, target: Dictionary, dt: float, wants: boo
 	actor.signatureAim = Vector2(target.x, target.y)
 	actor.strike = false
 	actor.maneuver = false
+	signature_started.emit(model_id if is_same(actor,p) else enemy_model_id,not is_same(actor,p))
 	if actor.boss:
 		actor.charge = 0.0
 		actor.telegraph = 0.0

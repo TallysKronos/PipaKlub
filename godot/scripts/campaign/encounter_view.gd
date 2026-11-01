@@ -17,6 +17,7 @@ var round_wipe_number:=0
 var selected_action := "cut"
 var round_caption: Control
 var boss_intro:Control
+var signature_banner:Control
 const ACTION_COPY := {"cut": "Cortar a linha do oponente em um cruzamento.", "skill": "Usar a habilidade do seu parceiro.", "dodge": "Esquivar e abrir uma oportunidade de contra-ataque.", "line": "Preparar um puxão para disputar a linha.", "guard": "Proteger-se no momento do impacto.", "signature": "Pulo do Elo · Marque o alvo e acerte a área."}
 const Hud = preload("res://scripts/campaign/hud.gd")
 var pointer_held: Dictionary = {}
@@ -74,6 +75,10 @@ func _ready() -> void:
 	impacts.reduced_motion = reduced_motion
 	model.damage_applied.connect(impacts.add)
 	model.combat_feedback.connect(impacts.add)
+	signature_banner=load("res://scripts/campaign/signature_banner.gd").new()
+	signature_banner.reduced_motion=reduced_motion
+	add_child(signature_banner)
+	model.signature_started.connect(signature_banner.announce)
 	if model.q.get("boss",false):
 		boss_intro=load("res://scripts/campaign/boss_presentation.gd").new()
 		boss_intro.face=Ink.portrait(textures[1],art_ids[1])
@@ -279,6 +284,7 @@ func _physics_process(delta: float) -> void:
 		else:launch_age+=delta
 	if not paused and not blocked and model.intro <= 0: live_age += delta
 	impacts.step(delta) # Paint expires even while gameplay is paused.
+	signature_banner.advance(delta,paused or blocked,not model.outcome.is_empty())
 	if not paused and not blocked and model.outcome.is_empty():
 		var direction := Controls.direction()
 		model.tick(delta, {"x": direction.x, "y": direction.y, "cut": _action_held("cut"), "skill": _action_held("skill"), "dodge": _action_held("dodge"), "line": _action_held("line"), "guard": _action_held("guard"), "signature": _action_held("signature")})

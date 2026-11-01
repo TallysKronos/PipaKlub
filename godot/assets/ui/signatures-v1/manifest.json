@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "images": {
+    "nozinho": {
+      "image": "nozinho.png",
+      "name": "Nozinho",
+      "move": "Nó de Vendaval",
+      "tone": "amber",
+      "focus": "50% 45%"
+    },
+    "rabbito": {
+      "image": "rabbito.png",
+      "name": "Rabbito",
+      "move": "Pulo do Elo",
+      "tone": "teal",
+      "focus": "38% 54%"
+    },
+    "lacertubo": {
+      "image": "lacertubo.png",
+      "name": "Lacertubo",
+      "move": "Ruptura dos Canos",
+      "tone": "amber",
+      "focus": "42% 50%"
+    }
+  }
+}
