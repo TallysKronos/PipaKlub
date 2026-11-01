@@ -1,4 +1,5 @@
 extends Node2D
+const HouseArt=preload("res://scripts/campaign/house_modern.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
 ## Uses the original room coordinates, footprints and 2:1 projection.
 signal interacted(id: String)
@@ -39,17 +40,24 @@ func configure(room: Dictionary, point: Array, walk: bool, target: String, mothe
 	actor = Vector2(point[0], point[1])
 	can_walk = walk
 	target_hotspot = target
-	var floor_sprite := Sprite2D.new()
-	floor_sprite.texture = load("res://assets/campaign/" + data.floorImage)
-	floor_sprite.centered = false
-	floor_sprite.z_index = 0
-	add_child(floor_sprite)
+	if HouseArt.applies(data):
+		HouseArt.build_floor(self)
+	else:
+		var floor_sprite := Sprite2D.new()
+		floor_sprite.texture = load("res://assets/campaign/" + data.floorImage)
+		floor_sprite.centered = false
+		floor_sprite.z_index = 0
+		add_child(floor_sprite)
 	for prop in data.props:
-		var sprite := Sprite2D.new()
-		sprite.texture = load("res://assets/campaign/" + prop.image)
-		sprite.centered = false
-		sprite.position = Vector2(prop.rect[0], prop.rect[1])
-		sprite.scale = Vector2(prop.rect[2], prop.rect[3]) / sprite.texture.get_size()
+		var sprite:Node2D
+		if HouseArt.applies(data):
+			sprite=HouseArt.create_prop(self,prop)
+		else:
+			sprite=Sprite2D.new()
+			sprite.texture = load("res://assets/campaign/" + prop.image)
+			sprite.centered = false
+			sprite.position = Vector2(prop.rect[0], prop.rect[1])
+			sprite.scale = Vector2(prop.rect[2], prop.rect[3]) / sprite.texture.get_size()
 		add_child(sprite)
 		props.append({"node": sprite, "rect": prop.footprint, "layer": "flat" if prop.kind == "flat" else "wall" if prop.kind.begins_with("wall") else ""})
 	avatar = Avatar.new()
