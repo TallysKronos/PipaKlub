@@ -62,13 +62,13 @@ func run() -> void:
 	check(not Identity.pending(app.session.snapshot()),"delivery acknowledged after menu guidance")
 	app._show_identity()
 	await settle()
-	check(card().slots.size()==12,"exactly twelve emblem slots")
-	check(card().slots.all(func(slot): return not slot.earned),"training and guardian give no district emblems")
+	check(card().tabs.size()==2,"identity contains profile and history only")
+	check(app.session.snapshot().player.get("districtEmblems",{}).is_empty(),"training and guardian give no district emblems")
 	for viewport in [Vector2i(1280,720),Vector2i(1920,1080)]:
 		root.size = viewport
 		if DisplayServer.get_name()!="headless": DisplayServer.window_set_size(viewport)
 		await settle()
-		for slot in card().slots: check(root.get_visible_rect().encloses(slot.get_global_rect()),"emblem fits %s" % viewport)
+		for tab in card().tabs: check(root.get_visible_rect().encloses(tab.get_global_rect()),"identity navigation fits %s" % viewport)
 		check(root.get_visible_rect().encloses(card().back.get_global_rect()),"return button fits")
 		check(root.gui_get_focus_owner()==card().back,"initial keyboard focus")
 		if "--capture" in OS.get_cmdline_user_args():
@@ -76,8 +76,8 @@ func run() -> void:
 			DirAccess.make_dir_recursive_absolute(output)
 			await RenderingServer.frame_post_draw
 			root.get_texture().get_image().save_png(output.path_join("carteira-%dx%d.png" % [viewport.x,viewport.y]))
-	card().slots[11].pressed.emit()
-	check("12" in card().detail.text,"slot details selectable")
+	card().tabs[1].pressed.emit()
+	check(card().pages[1].visible,"history selectable")
 	check(app.session.resume_slot("slot-1").status=="ok" and not Identity.pending(app.session.snapshot()),"completed presentation remains acknowledged")
 	app._show_saved()
 	await settle()
@@ -127,7 +127,7 @@ func run() -> void:
 	app._show_identity()
 	await settle()
 	check(card().name_label.text==long_player.name and card().name_label.tooltip_text==long_player.name,"long name preserved with tooltip")
-	check(root.get_visible_rect().encloses(card().back.get_global_rect()) and root.get_visible_rect().encloses(card().slots[11].get_global_rect()),"long name does not displace controls")
+	check(root.get_visible_rect().encloses(card().back.get_global_rect()) and root.get_visible_rect().encloses(card().tabs[1].get_global_rect()),"long name does not displace controls")
 	var escape := InputEventKey.new();escape.pressed=true;escape.physical_keycode=KEY_ESCAPE
 	app._unhandled_input(escape)
 	await settle()

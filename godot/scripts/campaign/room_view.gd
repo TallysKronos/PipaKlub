@@ -23,6 +23,7 @@ var mother_sprite: Sprite2D
 var mother_point := Vector2.ZERO
 var mother_facing := 0
 var mother_walking := false
+var mother_stair:=0
 var mother_reveal := 1.0
 var story_paused := false
 var cinematic_actor_moving := false
@@ -104,6 +105,7 @@ func add_companion() -> void:
 func opening_pose() -> void:
 	avatar.position=project(actor)
 	if is_instance_valid(mother_sprite):
+		NpcPixels.animate_walk(mother_sprite,mother_walking,clock,mother_stair!=0)
 		mother_sprite.position=project(mother_point)+Vector2(0,(1.0-mother_reveal)*40.0*float(camera.scale))
 		if data.get("id")!="professor":
 			if mother_sprite.material!=null:

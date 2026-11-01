@@ -199,7 +199,15 @@ func _slot_location(snapshot:Dictionary) -> Dictionary:
 	var scene:String=point.get("scene",snapshot.get("player",{}).get("encounter",{}).get("scene",""))
 	var name:String={"quintal":"Vila do Primeiro Vento","professor-home":"Ateliê do Sr. Assis","park-trail":"Jardim dos Ventos","park-clearing":"Clareira do Papel","park-veredas":"Veredas do Encanamento","kronasta-bosque-a":"Bosque · Trilha das Copas","kronasta-bosque-b":"Bosque · Desvio do Riacho","kronasta-bosque-c":"Bosque · Clareira do Marco"}.get(scene,"Prólogo" if point.get("kind")=="opening" else "Ateliê do Sr. Assis")
 	var texture:Texture2D=load("res://assets/campaign/rooftop-arena-wide-v2.png")
-	if scene.begins_with("morro"):
+	if point.get("kind")=="opening":
+		var room_key:String="home" if int(point.get("step",0))>=12 else "bedroom"
+		name="Casa do Kael" if room_key=="home" else "Quarto do Kael"
+		texture=load("res://assets/campaign/"+content.rooms[room_key].floorImage)
+	elif point.get("kind") in ["starter","workshop"]:
+		texture=load("res://assets/campaign/workshop-background.png")
+	elif point.get("kind")=="practice":
+		name="Treino com o Sr. Assis"
+	elif scene.begins_with("morro"):
 		var data:Dictionary=Morro.maps().get(scene,{})
 		name=data.get("name","Morro do Sol")
 		if not data.get("images",[]).is_empty():texture=load("res://assets/campaign/morro/"+data.images[0].image)
@@ -366,10 +374,10 @@ func _show_identity() -> void:
 	_clear("page:CARTEIRA DE PIPEIRO")
 	var card = load("res://scripts/campaign/hud_pipeiro_identity.gd").new()
 	card.saved = session.snapshot()
+	card.backdrop_texture = _slot_location(card.saved).texture
 	card.reduced_motion = preferences.reduced_motion
 	add_child(card)
 	card.closed.connect(_close_identity)
-	card.emblems_requested.connect(_open_emblem_case)
 
 func _resume_first_insignia() -> void:
 	_show_world()
@@ -380,12 +388,13 @@ func _resume_first_insignia() -> void:
 
 func _present_first_insignia(from_mikka:bool) -> void:
 	var generation:=opening_generation
-	if is_instance_valid(park):park.paused=true;park.path.clear()
+	if is_instance_valid(park):
+		park.paused=true
+		var pending_path:Variant=park.get("path")
+		if pending_path!=null:pending_path.clear();park.set("path",pending_path)
 	if is_instance_valid(room):room.can_walk=false
 	if from_mikka:
-		var result:Dictionary=session.snapshot().player.lastMorro
 		var text:="Mikka: Você conquistou o Morro do Sol! Esta insígnia é sua. É o primeiro bairro de uma longa jornada.\n\nMikka: A rabiola que você ganhou também é o começo de um novo laço. Passe no ateliê do professor para montar seu próximo parceiro."
-		text+="\n\nJornada: +%d XP · %d estrelas · +%d moedas."%[result.partnerXp,result.stars,result.coins]
 		var dialog:=_dialog("Mikka",text,"Receber a insígnia")
 		dialog.allow_cancel=false
 		var accepted:=[false]
@@ -515,7 +524,13 @@ func _nina_homecoming() -> void:
 	dialog.popup_centered(Vector2i(640, 300))
 
 func _return_to_game() -> void:
-	_show_saved()
+	var point:Dictionary=session.snapshot().get("checkpoint",{})
+	# Returning to the lobby is not a map transition. Reuse the loaded park assets
+	# synchronously, so a loading cover cannot clear the newly restored lobby.
+	if point.get("kind","")=="world" and ParkCheckpoint.MAPS.has(point.get("scene","")):_show_park()
+	else:_show_saved()
+	while is_instance_valid(scene_loading):await get_tree().process_frame
+	if not is_inside_tree():return
 	# Returning from a page must not restart combat while the player is still orienting.
 	if is_instance_valid(battle): battle.paused = true
 	if not menu_origin.is_empty():_pause_game()
@@ -1185,7 +1200,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if (Controls.cancel(event) or event.is_action_pressed("ui_cancel")) and last_scene_key.begins_with("page:"):
 		if last_scene_key=="page:CARTEIRA DE PIPEIRO": _close_identity()
 		elif last_scene_key=="page:DEMO CONCLUÍDA": _finish_demo("explore")
-		elif last_scene_key=="page:CUIDAR DO PARCEIRO":_show_collection()
+		elif last_scene_key=="page:CUIDAR DO PARCEIRO":_leave_partner_care()
 		elif last_scene_key in ["page:Controles · Teclado","page:CONTROLES · TECLADO"]: _return_controls_settings()
 		elif session.snapshot().is_empty(): _menu()
 		else: _return_to_game()
@@ -1223,7 +1238,7 @@ func _pause_game() -> void:
 	pause_overlay = load("res://scripts/campaign/hud_pause.gd").new()
 	pause_overlay.z_index=200
 	pause_overlay.player = session.snapshot().player
-	pause_overlay.focus_action=menu_origin if not menu_origin.is_empty() else "resume"
+	pause_overlay.focus_action=menu_origin if not menu_origin.is_empty() else "team"
 	for partner in pause_overlay.player.get("partners",[]):
 		if partner.id!=pause_overlay.player.get("equippedPartnerId",""):continue
 		var art_id:String={"rabbito":"rabbito","basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","lacertubo":"lacertubo"}.get(partner.modelId,"")
@@ -1236,20 +1251,24 @@ func _pause_game() -> void:
 				partner.condition={"line":clampf(battle.model.p.hp/battle.model.p.stats.line*100,0,100),"structure":clampf(battle.model.p.hull/battle.model.p.stats.line*100,0,100)}
 	add_child(pause_overlay)
 	pause_overlay.chosen.connect(func(action: String):
-		if action in ["team", "bag", "settings","map","save","identity","emblems"] and not _remember_world_position(): return
-		if action in ["team","bag","settings","map","identity","emblems"]:menu_origin=action
+		if action in ["team", "bag", "settings","map","save","identity","emblems","missions","workshop"] and not _remember_world_position(): return
+		if action in ["team","bag","settings","map","identity","emblems","missions","workshop"]:menu_origin=action
 		match action:
 			"resume": _resume_game()
 			"team": _show_collection()
 			"bag": _show_bag()
 			"identity": _show_identity()
 			"emblems": _open_emblem_case()
+			"missions": _show_missions()
+			"workshop": _show_lobby_workshop()
 			"settings": _show_settings()
 			"map":_show_map()
 			"save":
 				menu_origin="save"
 				sound.play_event("progress.save_ok")
 				pause_overlay.buttons.save.text="Jornada salva"
+				pause_overlay.description.text="Jornada salva. Pode continuar sua aventura."
+				pause_overlay.buttons.save.queue_redraw()
 			"menu": _return_to_menu()
 	)
 
@@ -1675,6 +1694,7 @@ func _route_action(id: String) -> void:
 		elif place.action == "parkMap": _notice("Parque dos Ventos\n\nA trilha segue até a Clareira do Papel. Além dela ficam as Veredas.")
 
 func _show_partner_care(partner_id:String="") -> void:
+	if flow_busy or is_instance_valid(scene_loading):return
 	if not _remember_world_position():return
 	var care=load("res://scripts/campaign/partner_care.gd").new(session)
 	var saved:Dictionary=session.snapshot()
@@ -1684,6 +1704,40 @@ func _show_partner_care(partner_id:String="") -> void:
 	for entry in saved.player.partners:
 		if entry.id==wanted:chosen=entry;break
 	if chosen.is_empty():chosen=saved.player.partners[0]
+	# Leave the menu first: camping belongs to the real map and its camera.
+	if ParkCheckpoint.MAPS.has(saved.checkpoint.get("scene","")):_show_park()
+	else:_show_world()
+	while is_instance_valid(scene_loading):await get_tree().process_frame
+	if not is_inside_tree():return
+	var subject:Node2D=park if is_instance_valid(park) else room
+	if not is_instance_valid(subject) or not is_instance_valid(subject.get("avatar")):
+		_notice("Não foi possível preparar o acampamento aqui. Tente novamente.");return
+	flow_busy=true
+	if is_instance_valid(park):
+		park.paused=true
+		# The city uses the dock controller, which has no point-path property.
+		var pending_path:Variant=park.get("path")
+		if pending_path!=null:
+			pending_path.clear();park.set("path",pending_path)
+	if is_instance_valid(room):room.can_walk=false
+	var camp=load("res://scripts/campaign/care_camp_transition.gd").new()
+	camp.avatar=subject.avatar;camp.companion=subject.get("companion");camp.reduced_motion=preferences.reduced_motion
+	if camp.companion==null:camp.companion=subject.get("partner")
+	add_child(camp)
+	var generation:int=opening_generation
+	await camp.play()
+	if not TutorialStaging.valid(self,generation):return
+	remove_child(camp)
+	_open_partner_care(chosen)
+	add_child(camp)
+	flow_busy=true
+	await camp.reveal()
+	if is_instance_valid(camp):camp.queue_free()
+	flow_busy=false
+
+func _open_partner_care(chosen:Dictionary) -> void:
+	var care=load("res://scripts/campaign/partner_care.gd").new(session)
+	var saved:Dictionary=session.snapshot()
 	_clear("page:CUIDAR DO PARCEIRO")
 	page=VBoxContainer.new()
 	add_child(page)
@@ -1712,7 +1766,12 @@ func _show_partner_care(partner_id:String="") -> void:
 			view.refresh_stock(int(session.snapshot().player.inventory.get(care.ITEM,0)),int(session.snapshot().player.coins),false)
 			view.supply.disabled=true
 			view.pet.grab_focus())
-	view.back_requested.connect(_show_collection)
+	view.back_requested.connect(_leave_partner_care)
+
+func _leave_partner_care() -> void:
+	if flow_busy:return
+	menu_origin=""
+	_show_saved()
 
 func _show_bag() -> void:
 	if not _remember_world_position(): return
@@ -1813,6 +1872,51 @@ func _travel_kronasta(destination: String) -> void:
 	sound.set_game_paused(false)
 	_show_saved()
 
+func _show_missions() -> void:
+	var player:Dictionary=session.snapshot().player
+	_simple_page("MISSÕES",true)
+	_label("Objetivos da sua jornada",page,24).add_theme_color_override("font_color",Hud.CYAN)
+	var scroll:=ScrollContainer.new();scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;page.add_child(scroll)
+	var list:=VBoxContainer.new();list.size_flags_horizontal=Control.SIZE_EXPAND_FILL;list.add_theme_constant_override("separation",16);scroll.add_child(list)
+	var trained:bool=int(player.get("journey",{}).get("lesson",0))>=5
+	var entries:Array=[["Os primeiros elos","Conclua o treinamento com o Sr. Assis.",trained]]
+	if trained:
+		entries.append(["Seu primeiro parceiro","Monte seu primeiro Pipamon na oficina.",not player.get("partners",[]).is_empty()])
+		var victories:int=player.get("morro",{}).get("stars",{}).size()
+		entries.append(["Desafios do Morro do Sol","%d / 5 desafios concluídos. Converse com os pipeiros para avançar."%victories,player.get("districtEmblems",{}).has("bairro-01")])
+	if player.get("flags",{}).get("ninaAccepted",false):
+		var instruction:="Explore as Veredas e recupere a rabiola de Nina."
+		if player.flags.get("guardianDefeated",false):instruction="Recolha a rabiola nas Veredas e leve-a de volta à Nina."
+		if player.flags.get("ninaTail",false):instruction="Volte e entregue a rabiola à Nina."
+		entries.append(["O pedido de Nina",instruction,bool(player.flags.get("ninaReturned",false))])
+	for entry in entries:
+		var plate=load("res://scripts/campaign/hud_result_plate.gd").new();list.add_child(plate)
+		var column:=VBoxContainer.new();column.add_theme_constant_override("separation",6);plate.add_child(column)
+		_label(("CONCLUÍDA · " if entry[2] else "EM ANDAMENTO · ")+entry[0],column,25).add_theme_color_override("font_color",Hud.GOLD if entry[2] else Hud.CYAN)
+		_label(entry[1],column,21)
+	_button("Voltar ao lobby",page,_return_to_game).custom_minimum_size.y=48
+
+func _show_lobby_workshop() -> void:
+	var saved:Dictionary=session.snapshot()
+	if saved.checkpoint.get("scene","")=="professor-home":
+		_show_tail_workshop()
+		return
+	_simple_page("OFICINA",true)
+	_label("Novos parceiros começam com uma rabiola.",page,26).add_theme_color_override("font_color",Hud.GOLD)
+	_label("A montagem e a restauração acontecem no ateliê do Sr. Assis. Aqui você pode consultar o que já encontrou.",page,22)
+	var scroll:=ScrollContainer.new();scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;page.add_child(scroll)
+	var list:=VBoxContainer.new();list.size_flags_horizontal=Control.SIZE_EXPAND_FILL;list.add_theme_constant_override("separation",12);scroll.add_child(list)
+	var found:=false
+	for id in Journey.CATALOG:
+		var intact:=int(saved.player.inventory.get("rabiola-"+id,0))
+		var damaged:=int(saved.player.inventory.get("damaged-rabiola-"+id,0))
+		if intact+damaged==0:continue
+		found=true
+		_label("%s · %d pronta(s) para montar · %d para restaurar"%[Journey.CATALOG[id],intact,damaged],list,23)
+	if not found:_label("Você ainda não encontrou rabiolas. Explore o mundo e converse com seus moradores.",list,22)
+	var footer:=HBoxContainer.new();footer.add_theme_constant_override("separation",32);page.add_child(footer)
+	_button("Voltar ao lobby",footer,_return_to_game)
+
 func _show_tail_workshop() -> void:
 	if not _remember_world_position(): return
 	var player: Dictionary = session.snapshot().player
@@ -1832,7 +1936,9 @@ func _show_tail_workshop() -> void:
 			_button("Restaurar rabiola de " + Journey.CATALOG[chosen], page, func():
 				if _result(journey.restore_inventory_tail(chosen)): _show_tail_workshop())
 	if not found: _label("Traga uma rabiola encontrada no parque para construir um novo parceiro.", page)
-	_button("Voltar", page, _show_saved)
+	_button("Voltar", page, func():
+		if menu_origin=="workshop":_return_to_game()
+		else:_show_saved())
 
 func _apply_preferences() -> void:
 	if sound.is_inside_tree(): sound.configure(preferences.audio_levels, preferences.dialogue_blips)
@@ -2205,14 +2311,18 @@ func _return_morro_result() -> void:
 	_show_saved()
 	var result: Dictionary = session.snapshot().player.lastMorro
 	var lines: Array = Morro.Rules.content().stories[result.stage].won if result.outcome == "won" else Morro.Rules.content().stories[result.stage].lost
-	if result.outcome == "fled":
-		_notice("Você pode conversar com o pipeiro para tentar novamente quando quiser.")
-		return
-	var text := "\n\n".join(lines.map(func(line): return "%s: %s" % [line[0], line[1]]))
-	text += "\n\nRecompensas: +%d XP" % result.partnerXp
-	if result.outcome == "won": text += " · %d estrelas · +%d moedas" % [result.stars, result.coins]
-	if result.get("drop") != null: text += "\nRabiola de Raio de sol recebida!"
-	_notice(text)
+	# The shared illustrated battle result is the sole reward presentation.
+	# Returning to the map preserves the NPC's voice without repeating a receipt.
+	var text:="Você pode conversar com o pipeiro para tentar novamente quando quiser." if result.outcome=="fled" else "\n\n".join(lines.map(func(line): return "%s: %s" % [line[0], line[1]]))
+	var title:=" e ".join(Morro.Rules.stage(result.stage).foes.map(func(foe):return foe.name))
+	if is_instance_valid(park):park.paused=true
+	var dialog:=_dialog(title,text,"Continuar explorando")
+	dialog.set_meta("morro_epilogue",true)
+	dialog.confirmed.connect(dialog.queue_free)
+	dialog.canceled.connect(dialog.queue_free)
+	dialog.tree_exiting.connect(func():
+		if is_instance_valid(park):park.paused=false)
+	dialog.popup_centered()
 
 func _partner_portrait(model_id: String) -> Texture2D:
 	var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "lacertubo": "lacertubo"}.get(model_id, "rabbito")

@@ -193,6 +193,11 @@ func tick(delta: float, input: Dictionary) -> void:
 			if q.hp <= 0 or q.hull <= 0:
 				p.score += 100
 	if lesson == 3:
+		# Practice allows quick retries after a mistimed tool. Combat has its own
+		# cooldown rules and does not use this teaching-only tick branch.
+		p.guardCooldown=minf(p.guardCooldown,2.0)
+		p.skillCooldown=minf(p.skillCooldown,1.5)
+		p.lineCooldown=minf(p.lineCooldown,2.0)
 		skill_activated = skill_activated or p.skillCount > base_skill
 		if exercise == "skill" and skill_activated and (had_skill or p.skillTime > 0 or p.skillCount > old_skill) and p.hits > old_hits:
 			exercise = "dodge"

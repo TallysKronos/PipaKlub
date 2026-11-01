@@ -331,6 +331,7 @@ func _update_result(delta: float) -> void:
 		result_header=load("res://scripts/campaign/hud_result_header.gd").new()
 		add_child(result_header)
 	result_header.outcome=model.outcome
+	result_header.context="RECOMPENSAS DO DESAFIO · MORRO DO SOL" if reward_encounter.get("kind","")=="morro" else "RECOMPENSAS DO ENCONTRO"
 	result_header.left=bottom_panel.position.x+12
 	result_header.queue_redraw()
 	if not result_wipe_started:

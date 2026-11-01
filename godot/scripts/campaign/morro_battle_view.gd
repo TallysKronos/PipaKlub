@@ -24,12 +24,6 @@ func _physics_process(delta: float) -> void:
 		if model.intermission > 0: controls.text = model.round_message + " · Próxima rodada em %.0f" % ceilf(model.intermission)
 		elif model.intro > 0: controls.text = "%s · Vence quem conquistar %d rodadas." % [entry.name, model.rounds_to_win]
 		elif not model.alive(model.p): controls.text = "Seu parceiro caiu nesta rodada. Acompanhe a disputa dos rivais."
-	if not model.outcome.is_empty():
-		if model.outcome == "won":
-			var result := Rules.settle(Rules.defaults(), model.stage_id, true, model.rounds_lost())
-			controls.text = "Vitória · %d estrelas · Volte ao bairro para guardar as recompensas." % result.stars
-		elif model.outcome == "fled": controls.text = "Você saiu do desafio. Seu progresso anterior continua guardado."
-		else: controls.text = "O desafio continua disponível. O professor repara seu parceiro gratuitamente."
 	if blocked: controls.text = "Não foi possível salvar. Tente novamente antes de continuar."
 
 func _draw() -> void:

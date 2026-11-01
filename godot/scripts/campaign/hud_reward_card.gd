@@ -98,7 +98,10 @@ func _ready() -> void:
 	tamer.custom_minimum_size.x=210
 	tamer.add_theme_constant_override("separation",6)
 	layout.add_child(tamer)
-	portrait(load("res://assets/campaign/portrait-kael.png"),tamer,Vector2(210,185))
+	var tamer_art:=AtlasTexture.new()
+	tamer_art.atlas=load("res://assets/campaign/portrait-kael-manga-v4.png")
+	tamer_art.region=Rect2(120,0,610,900)
+	portrait(tamer_art,tamer,Vector2(210,185))
 	var trainer:Dictionary=summary.get("tamer",{})
 	var total:int=trainer.get("after",0)
 	var tamer_level:=1

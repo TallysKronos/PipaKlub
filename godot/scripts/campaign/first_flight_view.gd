@@ -44,6 +44,7 @@ var cinematic:=false
 var cinematic_paused:=false
 var reel_progress:=0.0
 var reel_origins:Array[Vector2]=[]
+var spotlight:Control
 
 func configure(data: Dictionary, lesson: int) -> void:
 	content = data
@@ -68,7 +69,7 @@ func _ready() -> void:
 	next_button.disabled=true
 	next_button.pressed.connect(func():
 		if model.complete and settling_age>=SETTLING_TIME:continue_lesson.emit())
-	coach.add_advance(next_button)
+	add_child(next_button)
 	resume_button=Button.new()
 	resume_button.text="Retomar treino"
 	Hud.navigation_button(resume_button,false,"back")
@@ -99,18 +100,22 @@ func _ready() -> void:
 		command_row.add_child(art)
 		move_cards.append({"tile":art,"cooldown":entry[3]})
 	resized.connect(_layout_lesson)
+	spotlight=load("res://scripts/campaign/hud_tutorial_spotlight.gd").new()
+	add_child(spotlight)
 	_layout_lesson.call_deferred()
 
 func _layout_lesson() -> void:
 	if not is_instance_valid(coach):return
 	coach.set_compact(activity_age<2 and not paused and not model.complete)
 	coach.visible=not paused
-	next_button.visible=not paused
-	command_row.visible=not paused
+	next_button.visible=not paused and model.complete
+	next_button.position=Vector2(size.x-292,size.y-70)
+	next_button.size=Vector2(260,48)
+	command_row.visible=not paused and not model.complete
 	var width:=minf(400,size.x*.36)
 	coach.size=Vector2(width,0)
 	next_button.custom_minimum_size.y=48
-	coach.position=Vector2(20,size.y-28-coach.get_combined_minimum_size().y)
+	coach.position=Vector2(20,size.y-146-coach.get_combined_minimum_size().y)
 	var action_height:=128*size.y/1080.0
 	command_row.position=Vector2(440,size.y-action_height-16)
 	command_row.size=Vector2(maxf(0,size.x-464),action_height)
@@ -205,20 +210,18 @@ func _process(delta: float) -> void:
 	var lesson: Dictionary = content.lessons[model.lesson]
 	coach.full_title = "Sr. Assis · %d / 5 · %s" % [model.lesson + 1, lesson.title]
 	coach.short_title="Sr. Assis · %d / 5"%[model.lesson+1]
-	hint.text = lesson.success if model.complete else lesson.hint
-	if model.lesson == 3 and not model.complete:
-		hint.text += "\n" + {"skill": "%s · Habilidade: acerte Nozinho" % Controls.prompt("skill"), "dodge": "%s · Esquiva" % Controls.prompt("dodge"), "line": "%s · Rebicada" % Controls.prompt("line"), "guard": "%s · Guarda: proteja-se no impacto" % Controls.prompt("guard")}.get(model.exercise, "")
+	hint.text = lesson.success if model.complete else guidance()
 	hint.text = hint.text.replace("WASD / setas", "analógico" if Controls.gamepad else "setas").replace("Espaço", Controls.prompt("cut")).replace("com R", "com " + Controls.prompt("line"))
 	next_button.disabled = not model.complete
 	if model.complete and not was_complete:Hud.focus_later(next_button)
 	was_complete=model.complete
 	next_button.text = ("Recolher a pipa" if model.lesson == 4 else "Avançar") if model.complete else "Pratique no campo"
 	next_button.icon=Hud.icon("cadeado") if not model.complete else Hud.icon("back")
-	coach.short.text={0:"Leve seu parceiro até o alvo.",1:"Cruze as linhas e corte.",2:"Leia a sua energia.",3:"Experimente a ferramenta indicada.",4:"Vença o duelo com Nozinho."}.get(model.lesson,"")
-	if model.lesson==3:coach.short.text=hint.text.split("\n")[-1]
+	coach.short.text=guidance()
 	var key:="%d-%s"%[model.lesson,model.exercise]
 	if key!=highlight_key:highlight_key=key;highlight_age=0
 	_layout_lesson()
+	_update_spotlight()
 	queue_redraw()
 
 func _notification(what: int) -> void:
@@ -233,7 +236,7 @@ func suspend_actions() -> void:
 
 func _gui_input(event: InputEvent) -> void:
 	if paused:return
-	if event is InputEventMouseMotion:
+	if (event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_LEFT and event.pressed) or (event is InputEventMouseMotion and event.button_mask&MOUSE_BUTTON_MASK_LEFT):
 		var point: Vector2 = (event.position - _field_offset()) / _field_scale()
 		if point.y >= 70 and point.y <= 480:
 			mouse_target = point
@@ -294,16 +297,36 @@ func _action_held(action:String) -> bool:
 
 
 func _draw_lesson_highlight() -> void:
-	var duration:=.08 if reduced_motion else 1.2
-	if highlight_age>=duration or paused:return
-	var target:=_project(Vector2(500,260))
-	if model.lesson==0:target=_project(Vector2(700,180))
-	elif model.lesson==2:target=Vector2(300,size.y-42)
-	elif model.lesson==3:
-		for command in move_cards:
-			if command.tile.action_id==model.exercise:target=command.tile.get_global_rect().get_center()
-	var tint:=Tokens.alpha(Tokens.SOL,(1-highlight_age/duration)*.7)
-	draw_texture_rect(Ink.brush(1),Rect2(target-Vector2(52,28),Vector2(104,56)),false,tint)
-	var head:=target-Vector2(3,24)
-	draw_line(head-Vector2(42,42),head,tint,4,true)
-	draw_colored_polygon(PackedVector2Array([head,head-Vector2(18,5),head-Vector2(5,18)]),tint)
+	# Persistent soft spotlight replaces the old brief brush flash.
+	return
+
+func guidance() -> String:
+	match model.lesson:
+		0:return "Leve Rabbito até o alvo iluminado. Use as setas ou clique no campo."
+		1:return "Cruze os fios. Quando o encontro ficar verde, pressione %s para cortar."%Controls.prompt("cut")
+		2:return "Solte o ataque e espere a energia chegar a 90%%. Energia: %d%%."%int(model.p.energy)
+		3:
+			if model.exercise=="skill" and model.p.skillTime>0:return "Habilidade ativada! Agora pressione %s para acertar Nozinho."%Controls.prompt("cut")
+			return {"skill":"Ative a habilidade com %s. Depois, corte o fio de Nozinho."%Controls.prompt("skill"),"dodge":"Pressione %s para se esquivar."%Controls.prompt("dodge"),"line":"Pressione %s uma vez para puxar a linha."%Controls.prompt("line"),"guard":"Quando o círculo do ataque encher, pressione %s para se proteger."%Controls.prompt("guard")}.get(model.exercise,"")
+	return "Vença Nozinho usando o corte. O encontro dos fios mostra onde atacar."
+
+func _update_spotlight() -> void:
+	if not is_instance_valid(spotlight):return
+	spotlight.visible=not paused and not cinematic and not model.complete
+	if not spotlight.visible:return
+	var p:=_project(Vector2(model.p.x,model.p.y))
+	var target:=_project(Vector2(700,180)) if model.lesson==0 else _project(Vector2(model.q.x,model.q.y))
+	var primary:=Rect2(target-Vector2(65,65),Vector2(130,130))
+	var action:String="cut" if model.lesson in [1,4] else str(model.exercise) if model.lesson==3 else ""
+	if model.lesson==3 and model.exercise=="skill" and model.p.skillTime>0:action="cut"
+	if model.lesson==2:primary=CornerHud.regions(size).partner.grow(8)
+	for command in move_cards:
+		if command.tile.action_id==action:
+			primary=Rect2(command.tile.global_position-global_position,command.tile.size).grow(10)
+	var holes:Array[Rect2]=[primary,Rect2(p-Vector2(75,75),Vector2(150,150)),Rect2(coach.global_position-global_position,coach.size).grow(8),Rect2(pause_button.position,pause_button.size).grow(5)]
+	if model.lesson in [1,4] or (model.lesson==3 and model.exercise=="skill"):
+		var crossed:Dictionary=model.contact(model.p,model.q)
+		var at:Vector2=_project(crossed.point) if not crossed.is_empty() else target
+		holes.append(Rect2(at-Vector2(65,65),Vector2(130,130)))
+		holes.append(Rect2(target-Vector2(70,70),Vector2(140,140)))
+	spotlight.update_targets(holes)
