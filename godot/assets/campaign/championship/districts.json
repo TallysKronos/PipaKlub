@@ -1,0 +1,1423 @@
+{
+  "version": 1,
+  "districts": [
+    {
+      "id": "morro",
+      "number": 1,
+      "name": "Morro do Sol",
+      "playable": true,
+      "next": "bambuzal",
+      "prerequisiteFlag": "",
+      "unlocks": [
+        "park-trail"
+      ],
+      "champion": {
+        "id": "mikka",
+        "name": "Mikka",
+        "level": 8
+      },
+      "emblem": {
+        "slot": 0,
+        "name": "Insígnia do Morro do Sol"
+      },
+      "stages": [
+        {
+          "id": "morro-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "zeca",
+          "name": "Zeca",
+          "level": 1,
+          "before": [
+            [
+              "Zeca",
+              "Quem passa por esse portão ganha uma boa-vinda e um desafio! Não precisa correr: me mostra seu primeiro rebique."
+            ]
+          ],
+          "won": [
+            [
+              "Zeca",
+              "Aí sim! Você ouviu o vento antes de puxar. A Bia está na escadaria, debaixo da árvore. Ela nunca fica parada!"
+            ]
+          ],
+          "lost": [
+            [
+              "Zeca",
+              "Sem pressa. Olha para onde as linhas se cruzam e guarda energia para a hora certa. O portão continua aberto para você."
+            ]
+          ],
+          "reward": {
+            "coins": 10,
+            "xp": 120,
+            "item": ""
+          },
+          "authored": true,
+          "scene": "morro",
+          "npcName": "Zeca",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Zeca",
+              "color": 0
+            }
+          ]
+        },
+        {
+          "id": "morro-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "bia",
+          "name": "Bia",
+          "level": 2,
+          "before": [
+            [
+              "Bia",
+              "Tá vendo as folhas? Elas avisam quando o vento vai virar. Eu gosto de mudar de lado com ele. Consegue me acompanhar?"
+            ]
+          ],
+          "won": [
+            [
+              "Bia",
+              "Você encontrou meu ritmo! Lá na laje tem uma dupla fazendo barulho. O Juninho pensa antes de puxar; a Lia vai na frente."
+            ]
+          ],
+          "lost": [
+            [
+              "Bia",
+              "Não precisa me perseguir pelo céu inteiro. Espera minha linha passar pelo seu caminho. Tenta mais uma vez!"
+            ]
+          ],
+          "reward": {
+            "coins": 12,
+            "xp": 120,
+            "item": ""
+          },
+          "authored": true,
+          "scene": "morro-area-2",
+          "npcName": "Bia",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Bia",
+              "color": 1
+            }
+          ]
+        },
+        {
+          "id": "morro-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "juninho",
+          "name": "Juninho e Lia",
+          "level": 2,
+          "before": [
+            [
+              "Juninho",
+              "Aqui na laje a gente combina o começo, mas cada pipa faz seu caminho."
+            ],
+            [
+              "Lia",
+              "E eu não prometo esperar ninguém! Quando três linhas se encontram, vale escolher bem a sua hora."
+            ]
+          ],
+          "won": [
+            [
+              "Juninho",
+              "Boa leitura! Você não entrou no meio da confusão."
+            ],
+            [
+              "Lia",
+              "O Tião está no mirante da caixa-d’água. Se ele fechar a guarda, muda o jeito de chegar!"
+            ]
+          ],
+          "lost": [
+            [
+              "Juninho",
+              "Com três no céu, dá para observar antes de entrar."
+            ],
+            [
+              "Lia",
+              "Escolhe um cruzamento bom. Correr atrás de todo mundo só gasta fôlego!"
+            ]
+          ],
+          "reward": {
+            "coins": 16,
+            "xp": 120,
+            "item": ""
+          },
+          "authored": true,
+          "scene": "morro-area-3",
+          "npcName": "Juninho",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Juninho",
+              "color": 2
+            },
+            {
+              "name": "Lia",
+              "color": 3
+            }
+          ]
+        },
+        {
+          "id": "morro-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "tiao",
+          "name": "Tião",
+          "level": 3,
+          "before": [
+            [
+              "Tião",
+              "Lá de cima parece que dá para alcançar tudo. Eu prefiro guardar o fôlego e escolher meu espaço. Vamos ver como você chega."
+            ]
+          ],
+          "won": [
+            [
+              "Tião",
+              "Você teve paciência para encontrar a abertura. O parque fica logo depois do mirante. Tem alguém esperando por quem consegue chegar até lá."
+            ]
+          ],
+          "lost": [
+            [
+              "Tião",
+              "Minha guarda não fica fechada para sempre. Voa, observa e muda o ângulo. O céu tem mais de um caminho."
+            ]
+          ],
+          "reward": {
+            "coins": 18,
+            "xp": 120,
+            "item": ""
+          },
+          "authored": true,
+          "scene": "morro-area-4",
+          "npcName": "Tião",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Tião",
+              "color": 2
+            }
+          ]
+        },
+        {
+          "id": "morro-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "mikka",
+          "name": "Mikka",
+          "level": 4,
+          "before": [
+            [
+              "Mikka",
+              "Então foi você que atravessou o bairro! Sou Mikka. Cada um daqui te mostrou um jeito de voar. Agora quero conhecer o seu."
+            ],
+            [
+              "Mikka",
+              "Não precisa imitar ninguém. Encontre seu espaço, escute o vento e vamos fazer uma boa história no céu."
+            ]
+          ],
+          "won": [
+            [
+              "Mikka",
+              "Você conquistou o Morro do Sol! Esta é sua primeira insígnia. A rabiola também é o começo de um novo laço. Passe no ateliê do professor para conhecer seu próximo parceiro."
+            ]
+          ],
+          "lost": [
+            [
+              "Mikka",
+              "Você chegou até aqui por mérito seu. Não deixa um duelo apagar os outros encontros. Descansa, observa seu parceiro e volta quando quiser."
+            ]
+          ],
+          "reward": {
+            "coins": 30,
+            "xp": 120,
+            "item": "rabiola-raio"
+          },
+          "authored": true,
+          "scene": "morro-area-5",
+          "npcName": "Mikka",
+          "rounds": 3,
+          "foes": [
+            {
+              "name": "Mikka",
+              "color": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bambuzal",
+      "number": 2,
+      "name": "Vila do Bambuzal",
+      "playable": false,
+      "next": "beira-canal",
+      "prerequisiteFlag": "",
+      "unlocks": [
+        "park-clearing"
+      ],
+      "champion": {
+        "id": "lohan",
+        "name": "Lohan",
+        "level": 12
+      },
+      "emblem": {
+        "slot": 1,
+        "name": "Insígnia do Vila do Bambuzal"
+      },
+      "stages": [
+        {
+          "id": "bambuzal-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "bambuzal-capanga-1",
+          "name": "Capanga 1",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "bambuzal-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "bambuzal-capanga-2",
+          "name": "Capanga 2",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "bambuzal-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "bambuzal-capanga-3",
+          "name": "Capanga 3",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "bambuzal-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "bambuzal-capanga-4",
+          "name": "Capanga 4",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "bambuzal-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "lohan",
+          "name": "Lohan",
+          "level": 12,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        }
+      ]
+    },
+    {
+      "id": "beira-canal",
+      "number": 3,
+      "name": "Beira-Canal",
+      "playable": false,
+      "next": "feira",
+      "prerequisiteFlag": "comportaVeredasAberta",
+      "unlocks": [
+        "park-veredas"
+      ],
+      "champion": {
+        "id": "kleie",
+        "name": "Kleie",
+        "level": 15
+      },
+      "emblem": {
+        "slot": 2,
+        "name": "Insígnia do Beira-Canal"
+      },
+      "stages": [
+        {
+          "id": "beira-canal-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "beira-canal-capanga-1",
+          "name": "Capanga 1",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "beira-canal-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "beira-canal-capanga-2",
+          "name": "Capanga 2",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "beira-canal-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "beira-canal-capanga-3",
+          "name": "Capanga 3",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "beira-canal-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "beira-canal-capanga-4",
+          "name": "Capanga 4",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "beira-canal-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "kleie",
+          "name": "Kleie",
+          "level": 15,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        }
+      ]
+    },
+    {
+      "id": "feira",
+      "number": 4,
+      "name": "Feira do Largo",
+      "playable": false,
+      "next": "cais",
+      "prerequisiteFlag": "",
+      "unlocks": [
+        "caverna"
+      ],
+      "champion": {
+        "id": "zulmira",
+        "name": "Dona Zulmira",
+        "level": 18
+      },
+      "emblem": {
+        "slot": 3,
+        "name": "Insígnia do Feira do Largo"
+      },
+      "stages": [
+        {
+          "id": "feira-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "feira-capanga-1",
+          "name": "Capanga 1",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "feira-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "feira-capanga-2",
+          "name": "Capanga 2",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "feira-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "feira-capanga-3",
+          "name": "Capanga 3",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "feira-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "feira-capanga-4",
+          "name": "Capanga 4",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "feira-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "zulmira",
+          "name": "Dona Zulmira",
+          "level": 18,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        }
+      ]
+    },
+    {
+      "id": "cais",
+      "number": 5,
+      "name": "Cais Velho",
+      "playable": false,
+      "next": "industrial",
+      "prerequisiteFlag": "",
+      "unlocks": [],
+      "champion": {
+        "id": "marisol",
+        "name": "Marisol",
+        "level": 21
+      },
+      "emblem": {
+        "slot": 4,
+        "name": "Insígnia do Cais Velho"
+      },
+      "stages": [
+        {
+          "id": "cais-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "cais-capanga-1",
+          "name": "Capanga 1",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "cais-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "cais-capanga-2",
+          "name": "Capanga 2",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "cais-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "cais-capanga-3",
+          "name": "Capanga 3",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "cais-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "cais-capanga-4",
+          "name": "Capanga 4",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "cais-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "marisol",
+          "name": "Marisol",
+          "level": 21,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        }
+      ]
+    },
+    {
+      "id": "industrial",
+      "number": 6,
+      "name": "Vila Operária",
+      "playable": false,
+      "next": "palafitas",
+      "prerequisiteFlag": "",
+      "unlocks": [
+        "arquivo-atelie"
+      ],
+      "champion": {
+        "id": "bruno-solda",
+        "name": "Bruno Solda",
+        "level": 24
+      },
+      "emblem": {
+        "slot": 5,
+        "name": "Insígnia do Vila Operária"
+      },
+      "stages": [
+        {
+          "id": "industrial-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "industrial-capanga-1",
+          "name": "Capanga 1",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "industrial-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "industrial-capanga-2",
+          "name": "Capanga 2",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "industrial-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "industrial-capanga-3",
+          "name": "Capanga 3",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "industrial-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "industrial-capanga-4",
+          "name": "Capanga 4",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "industrial-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "bruno-solda",
+          "name": "Bruno Solda",
+          "level": 24,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        }
+      ]
+    },
+    {
+      "id": "palafitas",
+      "number": 7,
+      "name": "Palafitas",
+      "playable": false,
+      "next": "alto-da-serra",
+      "prerequisiteFlag": "",
+      "unlocks": [],
+      "champion": {
+        "id": "caio-garca",
+        "name": "Caio Garça",
+        "level": 27
+      },
+      "emblem": {
+        "slot": 6,
+        "name": "Insígnia do Palafitas"
+      },
+      "stages": [
+        {
+          "id": "palafitas-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "palafitas-capanga-1",
+          "name": "Capanga 1",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "palafitas-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "palafitas-capanga-2",
+          "name": "Capanga 2",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "palafitas-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "palafitas-capanga-3",
+          "name": "Capanga 3",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "palafitas-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "palafitas-capanga-4",
+          "name": "Capanga 4",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "palafitas-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "caio-garca",
+          "name": "Caio Garça",
+          "level": 27,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        }
+      ]
+    },
+    {
+      "id": "alto-da-serra",
+      "number": 8,
+      "name": "Alto da Serra",
+      "playable": false,
+      "next": "centro",
+      "prerequisiteFlag": "",
+      "unlocks": [
+        "casa-noite"
+      ],
+      "champion": {
+        "id": "dona-neve",
+        "name": "Dona Neve",
+        "level": 30
+      },
+      "emblem": {
+        "slot": 7,
+        "name": "Insígnia do Alto da Serra"
+      },
+      "stages": [
+        {
+          "id": "alto-da-serra-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "alto-da-serra-capanga-1",
+          "name": "Capanga 1",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "alto-da-serra-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "alto-da-serra-capanga-2",
+          "name": "Capanga 2",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "alto-da-serra-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "alto-da-serra-capanga-3",
+          "name": "Capanga 3",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "alto-da-serra-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "alto-da-serra-capanga-4",
+          "name": "Capanga 4",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "alto-da-serra-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "dona-neve",
+          "name": "Dona Neve",
+          "level": 30,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        }
+      ]
+    },
+    {
+      "id": "centro",
+      "number": 9,
+      "name": "Centro",
+      "playable": false,
+      "next": "lajes",
+      "prerequisiteFlag": "",
+      "unlocks": [],
+      "champion": {
+        "id": "leo-antena",
+        "name": "Leo Antena",
+        "level": 33
+      },
+      "emblem": {
+        "slot": 8,
+        "name": "Insígnia do Centro"
+      },
+      "stages": [
+        {
+          "id": "centro-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "centro-capanga-1",
+          "name": "Capanga 1",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "centro-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "centro-capanga-2",
+          "name": "Capanga 2",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "centro-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "centro-capanga-3",
+          "name": "Capanga 3",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "centro-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "centro-capanga-4",
+          "name": "Capanga 4",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "centro-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "leo-antena",
+          "name": "Leo Antena",
+          "level": 33,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        }
+      ]
+    },
+    {
+      "id": "lajes",
+      "number": 10,
+      "name": "Conjunto das Lajes",
+      "playable": false,
+      "next": "porto",
+      "prerequisiteFlag": "",
+      "unlocks": [
+        "laboratorio"
+      ],
+      "champion": {
+        "id": "taina",
+        "name": "Tainá",
+        "level": 36
+      },
+      "emblem": {
+        "slot": 9,
+        "name": "Insígnia do Conjunto das Lajes"
+      },
+      "stages": [
+        {
+          "id": "lajes-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "lajes-capanga-1",
+          "name": "Capanga 1",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "lajes-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "lajes-capanga-2",
+          "name": "Capanga 2",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "lajes-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "lajes-capanga-3",
+          "name": "Capanga 3",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "lajes-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "lajes-capanga-4",
+          "name": "Capanga 4",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "lajes-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "taina",
+          "name": "Tainá",
+          "level": 36,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        }
+      ]
+    },
+    {
+      "id": "porto",
+      "number": 11,
+      "name": "Porto Novo",
+      "playable": false,
+      "next": "mirante",
+      "prerequisiteFlag": "",
+      "unlocks": [
+        "coracao"
+      ],
+      "champion": {
+        "id": "jurandir",
+        "name": "Capitão Jurandir",
+        "level": 40
+      },
+      "emblem": {
+        "slot": 10,
+        "name": "Insígnia do Porto Novo"
+      },
+      "stages": [
+        {
+          "id": "porto-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "porto-capanga-1",
+          "name": "Capanga 1",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "porto-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "porto-capanga-2",
+          "name": "Capanga 2",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "porto-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "porto-capanga-3",
+          "name": "Capanga 3",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "porto-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "porto-capanga-4",
+          "name": "Capanga 4",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "porto-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "jurandir",
+          "name": "Capitão Jurandir",
+          "level": 40,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        }
+      ]
+    },
+    {
+      "id": "mirante",
+      "number": 12,
+      "name": "Alto do Mirante",
+      "playable": false,
+      "next": "",
+      "prerequisiteFlag": "",
+      "unlocks": [
+        "santuario"
+      ],
+      "champion": {
+        "id": "icaro",
+        "name": "Ícaro",
+        "level": 44
+      },
+      "emblem": {
+        "slot": 11,
+        "name": "Insígnia do Alto do Mirante"
+      },
+      "stages": [
+        {
+          "id": "mirante-1",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "mirante-capanga-1",
+          "name": "Capanga 1",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "mirante-2",
+          "part": "A",
+          "role": "lieutenant",
+          "npcId": "mirante-capanga-2",
+          "name": "Capanga 2",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "mirante-3",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "mirante-capanga-3",
+          "name": "Capanga 3",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "mirante-4",
+          "part": "B",
+          "role": "lieutenant",
+          "npcId": "mirante-capanga-4",
+          "name": "Capanga 4",
+          "level": null,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        },
+        {
+          "id": "mirante-5",
+          "part": "C",
+          "role": "champion",
+          "npcId": "icaro",
+          "name": "Ícaro",
+          "level": 44,
+          "before": [],
+          "won": [],
+          "lost": [],
+          "reward": {
+            "coins": 0,
+            "xp": 0,
+            "item": ""
+          },
+          "authored": false
+        }
+      ]
+    }
+  ]
+}

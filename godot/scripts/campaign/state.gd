@@ -123,6 +123,9 @@ static func inspect(value: Variant, slot_id: String) -> String:
 			for entry in player[field]:
 				if not entry is String: return "invalid"
 	if player.has("morro") and not valid_morro(player.morro): return "invalid"
+	if player.has("championship"):
+		if player.championship is Dictionary and whole(player.championship.get("version")) and player.championship.version>1:return "future"
+		if not preload("res://scripts/campaign/district_rules.gd").valid(player.championship):return "invalid"
 	if player.has("pipeiroIdentity") and not preload("res://scripts/campaign/pipeiro_identity.gd").valid_identity(player.pipeiroIdentity): return "invalid"
 	if player.has("districtEmblems") and not preload("res://scripts/campaign/pipeiro_identity.gd").valid_emblems(player.districtEmblems): return "invalid"
 	if player.has("wildDrop"):
@@ -131,6 +134,10 @@ static func inspect(value: Variant, slot_id: String) -> String:
 		if not (player.encounterGraceUntil is int or player.encounterGraceUntil is float) or not is_finite(player.encounterGraceUntil) or player.encounterGraceUntil < 0: return "invalid"
 	if kind == "encounter" and not valid_encounter(player.get("encounter")):
 		return "invalid"
+	if kind=="encounter" and player.encounter.has("districtContext"):
+		var context:Dictionary=player.encounter.districtContext
+		var ready:Dictionary=preload("res://scripts/campaign/district_rules.gd").prepare(player,context.district,context.duel,context.defenseId)
+		if ready.status!="ok" or not preload("res://scripts/campaign/district_rules.gd").same_context(ready.context,context):return "invalid"
 	if kind in ["practice", "starter", "workshop"]:
 		if not player.get("journey") is Dictionary or not whole(player.journey.get("lesson")) or player.journey.lesson > 5:
 			return "invalid"
@@ -219,7 +226,16 @@ static func valid_encounter(value: Variant) -> bool:
 	for field in ["time", "intro", "duration"]:
 		if not number(state.get(field)) or state[field] < 0: return false
 	if value.kind == "morro":
-		if not valid_morro_state(state) or value.get("scene") != {"morro-1": "morro", "morro-2": "morro-area-2", "morro-3": "morro-area-3", "morro-4": "morro-area-4", "morro-5": "morro-area-5"}.get(state.get("trailStage")): return false
+		if not valid_morro_state(state):return false
+		var scenes:Dictionary={"morro-1":"morro","morro-2":"morro-area-2","morro-3":"morro-area-3","morro-4":"morro-area-4","morro-5":"morro-area-5"}
+		if value.has("districtContext"):
+			var context:Variant=value.districtContext
+			if not preload("res://scripts/campaign/district_rules.gd").valid_context(context) or context.district!="morro" or context.duel!=state.trailStage:return false
+			if context.mode=="defense":
+				var d:Dictionary=preload("res://scripts/campaign/district_rules.gd").definition("morro")
+				if not d.stages.slice(0,4).any(func(s):return s.scene==value.get("scene") and s.npcId==context.opponent):return false
+			elif value.get("scene")!=scenes.get(state.trailStage):return false
+		elif value.get("scene")!=scenes.get(state.trailStage):return false
 	var actors: Array = state.actors if value.kind == "morro" else [state.get("p"), state.get("q")]
 	for actor_value in actors:
 		if not actor_value is Dictionary: return false

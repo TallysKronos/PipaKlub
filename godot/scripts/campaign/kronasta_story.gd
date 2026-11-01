@@ -63,7 +63,7 @@ static func prologue_done(player: Dictionary) -> bool:
 	return not player.get("partners",[]).is_empty() and player.get("journey",{}).get("phase","")=="complete"
 
 static func mikka_defeated(player: Dictionary) -> bool:
-	return player.get("morro",{}).get("stars",{}).has("morro-5")
+	return preload("res://scripts/campaign/district_rules.gd").completed(player,"morro")
 
 static func beat_done(player: Dictionary, id: String) -> bool:
 	var f:=flags(player)
@@ -81,10 +81,10 @@ static func current_beat(player: Dictionary) -> Dictionary:
 		if not beat_done(player,beat.id): return beat
 	return {}
 
-## Neighbourhoods won. Only the Morro do Sol is built; the rest stay 0 until their
-## content exists, so nothing here invents progress.
+## Permanent completion across the district catalog, independent of current title.
+## Only authored encounters can produce completion in the playable campaign.
 static func neighbourhoods_won(player: Dictionary) -> int:
-	return 1 if mikka_defeated(player) else 0
+	return preload("res://scripts/campaign/district_rules.gd").completed_count(player)
 
 ## Categories rise with the exam of each pair of neighbourhoods (section 6). No exam is
 ## built yet, so every save is in Rabiola Branca.

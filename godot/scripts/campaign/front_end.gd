@@ -2385,13 +2385,30 @@ func _morro_action(id: String) -> void:
 	if park.player.distance_to(Vector2(place.point[0], place.point[1])) > 90: return
 	if place.has("stage"):
 		var names := " e ".join(Morro.Rules.stage(data.stage).foes.map(func(f): return f.name))
-		if session.snapshot().player.get("morro", Morro.Rules.defaults()).stars.has(data.stage):
+		var districts=preload("res://scripts/campaign/district_rules.gd")
+		var player:Dictionary=session.snapshot().player
+		var title:Dictionary=districts.entry(player,"morro")
+		if not title.pendingDefense.is_empty():
+			if title.pendingDefense.scene==session.snapshot().checkpoint.scene:_show_title_defense()
+			else:_notice(districts.objective(player,"morro"))
+			return
+		if title.champion=="player" and data.stage!="morro-5":
+			if _result(morro.offer_defense(park.player)):_show_title_defense()
+			return
+		var planned:Dictionary=districts.prepare(player,"morro",data.stage)
+		if planned.status=="already_applied":
 			_notice("Você já venceu %s aqui. Este desafio está concluído; o caminho segue aberto." % names)
+			return
+		if planned.status!="ok":
+			_notice(districts.objective(player,"morro") if title.completed else "Vença os desafios anteriores antes de enfrentar este pipeiro.")
 			return
 		var story: Dictionary = Morro.Rules.content().stories[data.stage]
 		var text := "\n\n".join(story.before.map(func(line): return "%s: %s" % [line[0], line[1]]))
+		if planned.context.mode in ["requalify","reclaim"]:
+			text="Este duelo faz parte da reconquista do título. A primeira recompensa e a insígnia não serão concedidas novamente."
+			if data.stage=="morro-5":names=districts.opponent_name(player,"morro")
 		text += "\n\nDica de voo: " + story.tactic
-		_confirm_park(" e ".join(Morro.Rules.stage(data.stage).foes.map(func(f): return f.name)), text, "Vamos voar!", func():
+		_confirm_park(names, text, "Vamos voar!", func():
 			if _result(morro.start(park.player)): _show_saved.call_deferred())
 		return
 	if place.action == "pilot_story":
@@ -2420,6 +2437,15 @@ func _morro_action(id: String) -> void:
 				if exit_place.get("action", "") == "road_next": point = Vector2(exit_place.point[0], exit_place.point[1])
 		if _result(journey.enter_world(place.target, point)): _show_saved.call_deferred()
 
+func _show_title_defense() -> void:
+	var player:Dictionary=session.snapshot().player
+	var districts=preload("res://scripts/campaign/district_rules.gd")
+	var opponent:String=districts.opponent_name(player,"morro")
+	var text:="%s desafia você pelo título do Morro do Sol.\n\nSe perder ou desistir da luta, ele fica com o título e você precisa vencer os quatro desafios novamente para recuperá-lo. Sua insígnia e os caminhos já abertos continuam seus.\n\nVocê pode responder depois: o desafio permanece salvo."%opponent
+	_confirm_park("Defesa de título · "+opponent,text,"Defender meu título",func():
+		if _result(morro.start_defense(park.player)):_show_saved.call_deferred())
+	if is_instance_valid(park.goal):park.goal.text=districts.objective(player,"morro")
+
 func _return_morro_result() -> void:
 	if not _result(DistrictBadges.ensure_legacy(session)):return
 	if DistrictBadges.pending(session.snapshot()):
@@ -2433,6 +2459,9 @@ func _return_morro_result() -> void:
 	# Returning to the map preserves the NPC's voice without repeating a receipt.
 	var text:="Você pode conversar com o pipeiro para tentar novamente quando quiser." if result.outcome=="fled" else "\n\n".join(lines.map(func(line): return "%s: %s" % [line[0], line[1]]))
 	var title:=" e ".join(Morro.Rules.stage(result.stage).foes.map(func(foe):return foe.name))
+	if result.get("districtMode","progress")!="progress":
+		title="Disputa pelo título"
+		text=preload("res://scripts/campaign/district_rules.gd").objective(session.snapshot().player,"morro")
 	if is_instance_valid(park):park.paused=true
 	var dialog:=_dialog(title,text,"Continuar explorando")
 	dialog.set_meta("morro_epilogue",true)

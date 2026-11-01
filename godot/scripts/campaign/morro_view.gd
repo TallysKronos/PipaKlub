@@ -42,6 +42,10 @@ func _ready() -> void:
 	var progress: Dictionary = saved_player.get("morro", Rules.defaults())
 	gate_closed = not progress.stars.has(data.stage)
 	data = data.duplicate(true)
+	var district=preload("res://scripts/campaign/district_rules.gd")
+	var title:Dictionary=district.entry(saved_player,"morro")
+	if data.stage=="morro-5" and title.completed and title.champion!="player":
+		data.npcs[0].name=district.opponent_name(saved_player,"morro")
 	for rect in data.foreground:
 		if rect.properties.get("road_gate", false):
 			gate = rect
@@ -167,6 +171,8 @@ func _ready() -> void:
 		else:action_requested.emit(id))
 	goal=exploration_hud.objective
 	goal.text="Passagem liberada" if not gate_closed else "Explore o bairro e converse com os pipeiros."
+	var title_goal:String=preload("res://scripts/campaign/district_rules.gd").objective(saved_player,"morro")
+	if not title_goal.is_empty():goal.text=title_goal
 	_refresh()
 	camera.reset_smoothing()
 
@@ -244,6 +250,8 @@ func _physics_process(delta: float) -> void:
 	for place in data.places:
 		if place.id == near:
 			hint.text = "Conversar com " + " e ".join(Rules.stage(data.stage).foes.map(func(f): return f.name)) if place.has("stage") else place.name
+			if place.has("stage") and data.stage=="morro-5" and preload("res://scripts/campaign/district_rules.gd").entry(saved_player,"morro").champion!="mikka":
+				hint.text="Conversar com "+data.npcs[0].name
 	distance += before.distance_to(player)
 	if distance >= 250:
 		distance = 0
