@@ -1730,6 +1730,10 @@ func _build_events() -> void:
 		actors.add_child(node)
 		if event.type=="npc":
 			var list: Array = npc_data.morro.get(model.data.scene,[]) if model.data.biome=="morro" else [npc_data.nina] if event.name=="Nina" else [npc_data.lacertubo] if event.props.get("acao", "")=="parkBoss" else [npc_data.assis] if model.data.biome=="parque" and event.props.get("acao","")=="wildGuide" else []
+			if event.props.has("storySprite"):
+				var path:String="res://assets/campaign/tyler-clareira-v1/"+str(event.props.storySprite)+".png"
+				var tex:Texture2D=load(path)
+				list=[{"name":event.name,"image":path,"bounds":{"x":0,"y":0,"w":tex.get_width(),"h":tex.get_height()}}]
 			if event.props.has("npcIdentity"):
 				list=[{"name":str(event.props.npcIdentity),"bounds":{"x":0,"y":0,"w":64,"h":96}}]
 			if event.props.get("district","")=="bambuzal":
@@ -1757,6 +1761,9 @@ func _build_events() -> void:
 					sprite.offset=Vector2(0,-bounds.h*.5)
 				sprite.position.x=(i-(list.size()-1)*.5)*30
 				holder.add_child(sprite)
+				if event.props.get("storySprite","")=="tyler":
+					var reel=load("res://scripts/campaign/tyler_reel_prop.gd").new()
+					reel.position=Vector2(16,-34);holder.add_child(reel)
 				names.append(entry.name)
 			if not names.is_empty():event.name=" e ".join(names)
 			npc_nodes.append({"root":node,"visual":holder,"point":Vector2(event.u+.5,event.v+.5)})

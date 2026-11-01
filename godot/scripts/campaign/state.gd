@@ -122,6 +122,7 @@ static func inspect(value: Variant, slot_id: String) -> String:
 			if not player[field] is Array: return "invalid"
 			for entry in player[field]:
 				if not entry is String: return "invalid"
+	if player.has("tylerClareiraStep") and (not whole(player.tylerClareiraStep) or player.tylerClareiraStep>11):return "invalid"
 	if player.has("morro") and not valid_morro(player.morro): return "invalid"
 	if player.has("championship"):
 		if player.championship is Dictionary and whole(player.championship.get("version")) and player.championship.version>1:return "future"
@@ -216,7 +217,7 @@ static func valid_encounter(value: Variant) -> bool:
 		if value.space!="parque-overworld-v1" or not preload("res://scripts/campaign/park_checkpoint.gd").loadable_position(value.get("scene","park-veredas"),Vector2(value.returnPoint[0],value.returnPoint[1])): return false
 	var state: Dictionary = value.state
 	if value.kind in ["wild","trainer"]:
-		if not number(value.get("dropRoll")) or value.dropRoll < 0 or value.dropRoll >= 1 or state.get("enemyModelId") not in ["basica", "mata", "raio"] or not whole(state.get("enemyLevel")) or state.enemyLevel < 1 or state.enemyLevel > 9: return false
+		if not number(value.get("dropRoll")) or value.dropRoll < 0 or value.dropRoll >= 1 or state.get("enemyModelId") not in ["basica", "mata", "raio","rascunho-bicho-pau","rascunho-joaninha"] or not whole(state.get("enemyLevel")) or state.enemyLevel < 1 or state.enemyLevel > 9: return false
 	if value.kind=="trainer":
 		var duel: Dictionary=preload("res://scripts/campaign/park_training.gd").duel(str(value.get("trainerId","")))
 		if duel.is_empty():return false

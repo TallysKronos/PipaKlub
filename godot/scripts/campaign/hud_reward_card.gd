@@ -204,7 +204,7 @@ func _ready() -> void:
 		if item in summary.get("new_items",[]):caption("NOVO!",column,14,"RecorteGoldText")
 		var row:=HBoxContainer.new()
 		column.add_child(row)
-		var item_id:String={"Rabiola de Mata verde":"rabiola-mata","Rabiola de Lacertubo":"rabiola-lacertubo","Rabiola de Carcará":"rabiola-basica","Rabiola de Raio de sol":"rabiola-raio"}.get(str(item),"")
+		var item_id:String={"Rabiola de Bicho-pau de Vareta [rascunho]":"rabiola-rascunho-bicho-pau","Rabiola de Joaninha-pião [rascunho]":"rabiola-rascunho-joaninha","Rabiola de Mata verde":"rabiola-mata","Rabiola de Lacertubo":"rabiola-lacertubo","Rabiola de Carcará":"rabiola-basica","Rabiola de Raio de sol":"rabiola-raio"}.get(str(item),"")
 		if not item_id.is_empty():portrait(Hud.item_art(item_id),row,Vector2(40,48))
 		caption(str(item),row,16).size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	if summary.get("items",[]).is_empty():caption("Nenhum item obtido.",items,16,"RecorteMutedText")

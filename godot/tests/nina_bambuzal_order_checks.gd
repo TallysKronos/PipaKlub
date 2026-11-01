@@ -38,7 +38,9 @@ func _initialize()->void:
 	for stage:Dictionary in Rules.definition("bambuzal").stages:
 		var planned:=Rules.prepare(p,"bambuzal",stage.id);p=Rules.settle(p,planned.context,"won").player
 	check(Story.park_access(p,"park-clearing") and Story.park_access(p,"park-veredas"),"Lohan opens real park connections")
-	check(Story.current_beat(p).id=="lacertubo","existing recovery segment now follows Lohan")
+	check(Story.current_beat(p).id=="tyler","Tyler introduction follows Lohan")
+	p.flags.tylerClareiraMet=true
+	check(Story.current_beat(p).id=="lacertubo","recovery follows Tyler")
 	p.flags.guardianDefeated=true
 	check(Story.current_beat(p).id=="nina-devolvida","then the handoff")
 	p.flags.ninaReturned=true

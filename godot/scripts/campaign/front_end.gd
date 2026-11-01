@@ -1517,6 +1517,8 @@ func _park_event(id: String) -> void:
 		if str(int(event.id))!=id or not ParkCheckpoint.allowed(event,player,park.area_id): continue
 		if park.player.distance_to(Vector2(event.u+.5,event.v+.5))>1.8: return
 		var action: String = event.props.get("acao","")
+		if action in ["tylerClareira","tylerRai"]:
+			_show_tyler_clareira();return
 		if action=="districtDuel":
 			_district_action(str(event.props.duel))
 			return
@@ -2531,3 +2533,32 @@ func _return_district_result()->void:
 	else:text=service.objective(player)
 	if result.get("emblem",false):text+="\n\nInsígnia do Bambuzal recebida. Clareira do Papel liberada; Beira-Canal é o próximo bairro."
 	_notice(text)
+
+func _show_tyler_clareira()->void:
+	var service=load("res://scripts/campaign/tyler_clareira.gd").new(session)
+	if not service.available(park.player):return
+	if service.done(session.snapshot().player):
+		_notice("Tyler: Rai e eu vamos conferir este lado. O banco está livre se vocês precisarem descansar.");return
+	var index:int=service.step(session.snapshot().player)
+	var line:Dictionary=service.nodes()[index]
+	park.path.clear();park.paused=true
+	var camera_start:Vector2=park.camera.position
+	park.camera.zoom=Vector2.ONE*(1.35 if line.get("cue","")=="reel" else 1.15)
+	var focus:Vector2=park.model.project(service.point())
+	if line.get("cue","")=="rai":focus=park.model.project(Vector2(26.5,20.5))
+	if preferences.reduced_motion:park.camera.position=focus
+	else:park.create_tween().tween_property(park.camera,"position",focus,.45)
+	var scene_dialog:=_dialog(line.speaker,line.text,"Continuar","Continuar depois")
+	scene_dialog.allow_cancel=false
+	scene_dialog._portraits["Tyler"]=load("res://assets/campaign/tyler-clareira-v1/tyler.png")
+	scene_dialog._portraits["Rai"]=load("res://assets/campaign/tyler-clareira-v1/rai.png")
+	scene_dialog.confirmed.connect(func():
+		var result:Dictionary=service.advance(index,park.player)
+		if result.status!="ok":_result(result);return
+		scene_dialog.queue_free()
+		if not service.done(session.snapshot().player):_show_tyler_clareira.call_deferred()
+		else:
+			park.paused=false;park.camera.zoom=Vector2.ONE*1.15;park.camera.position=camera_start;park.refresh(session.snapshot().player);park.encounter_grace=6.0)
+	scene_dialog.canceled.connect(func():
+		scene_dialog.queue_free();park.paused=false;park.camera.zoom=Vector2.ONE*1.15;park.camera.position=camera_start)
+	scene_dialog.popup_centered()

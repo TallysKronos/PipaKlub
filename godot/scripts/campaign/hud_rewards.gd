@@ -36,12 +36,12 @@ static func preview(player: Dictionary, encounter: Dictionary, model: RefCounted
 		elif encounter.get("kind","")!="trainer":
 			var drop: Dictionary = player.get("wildDrop", {"intro": false, "misses": 0})
 			if not drop.intro or drop.misses >= 7 or encounter.get("dropRoll", 1) < .25:
-				var name: String = {"basica": "Carcará", "mata": "Mata verde", "raio": "Raio de sol"}.get(model.enemy_model_id, model.enemy_model_id)
+				var name: String = {"basica": "Carcará", "mata": "Mata verde", "raio": "Raio de sol","rascunho-bicho-pau":"Bicho-pau de Vareta [rascunho]","rascunho-joaninha":"Joaninha-pião [rascunho]"}.get(model.enemy_model_id, model.enemy_model_id)
 				summary.items.append("Rabiola de " + name)
 	summary.xp = Progression.credit_for(partner, amount)
 	summary.new_items=[]
 	for item in summary.items:
-		var item_id:String={"Rabiola de Mata verde":"rabiola-mata","Rabiola de Lacertubo":"rabiola-lacertubo","Rabiola de Carcará":"rabiola-basica","Rabiola de Raio de sol":"rabiola-raio"}.get(item,"")
+		var item_id:String={"Rabiola de Bicho-pau de Vareta [rascunho]":"rabiola-rascunho-bicho-pau","Rabiola de Joaninha-pião [rascunho]":"rabiola-rascunho-joaninha","Rabiola de Mata verde":"rabiola-mata","Rabiola de Lacertubo":"rabiola-lacertubo","Rabiola de Carcará":"rabiola-basica","Rabiola de Raio de sol":"rabiola-raio"}.get(item,"")
 		if not item_id.is_empty() and player.get("inventory",{}).get(item_id,0)==0:summary.new_items.append(item)
 	if won and encounter.get("kind","")=="lacertubo" and not player.get("flags",{}).get("ninaTail",false):
 		summary.notice="A rabiola de Nina ficou no chão. Procure-a no pátio, atrás do guardião."

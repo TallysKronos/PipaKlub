@@ -33,6 +33,7 @@ static func data(scene: String) -> Dictionary:
 			_maps[scene].events.append({"id":8243,"type":"npc","name":"Nina","u":10,"v":32,"props":{"fala":"nina-jardim-proposta","missao":"nina","bloqueia":false}})
 		if scene=="park-veredas" and _maps[scene].get("forest",{}).get("nativeProps",false):
 			_maps[scene].events.append({"id":1100,"type":"saida","name":"Atalho para o Jardim das Pipas","u":43,"v":33,"props":{"destino":"park-trail","requer":"ninaTail"}})
+	if scene=="park-clearing" and not _maps[scene].events.any(func(e):return int(e.id)==10601):_maps[scene].events.append_array(preload("res://scripts/campaign/tyler_clareira.gd").events())
 	return _maps[scene]
 
 static func model_for(scene: String):
@@ -125,6 +126,7 @@ static func encounter_weight(checkpoint: Dictionary, point: Vector2) -> float:
 static func allowed(event: Dictionary, player: Dictionary, area: String = "") -> bool:
 	var props: Dictionary = event.get("props",{})
 	var flags: Dictionary = player.get("flags",{})
+	if props.get("acao","") in ["tylerClareira","tylerRai"] and not preload("res://scripts/campaign/tyler_clareira.gd").unlocked(player):return false
 	if props.has("requer") and not flags.get(str(props.requer),false): return false
 	if props.has("ocultar_apos") and flags.get(str(props.ocultar_apos),false): return false
 	if props.get("descoberta","")=="clareira-do-marco" and not flags.get("bosqueClareiraDescoberta",false): return false

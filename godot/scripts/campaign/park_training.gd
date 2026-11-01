@@ -76,6 +76,7 @@ static func objective(player: Dictionary,scene: String) -> String:
 	var story=load("res://scripts/campaign/kronasta_story.gd")
 	if not story.mikka_defeated(player) and not flags.get("ninaAccepted",false):return story.objective(player)
 	if flags.get("ninaBambuzalOrder",false) and not story.park_access(player,"park-clearing"):return story.objective(player)
+	if scene=="park-clearing" and preload("res://scripts/campaign/tyler_clareira.gd").unlocked(player) and not preload("res://scripts/campaign/tyler_clareira.gd").done(player):return "Converse com o rapaz e seu parceiro na roda da Clareira."
 	if needs_rest(player) and not flags.get("guardianDefeated",false): return "Seu parceiro precisa descansar. Procure um banco do parque."
 	if flags.get("ninaReturned",false): return preload("res://scripts/campaign/kronasta_story.gd").objective(player)
 	if flags.get("ninaTail",false): return "Leve a rabiola para Nina. O atalho ao Jardim fica a leste do pátio." if scene=="park-veredas" else "Volte à entrada do Jardim e entregue a rabiola para Nina."

@@ -110,6 +110,9 @@ func _build_events() -> void:
 	# character or leave an invisible person as an interaction target.
 	if Checkpoint.is_bosque(area_id):
 		interaction_events=interaction_events.filter(func(event: Dictionary): return event.type!="npc" or event.props.has("npcIdentity"))
+	if saved_checkpoint.scene=="park-clearing":
+		for e:Dictionary in preload("res://scripts/campaign/tyler_clareira.gd").events():
+			if not interaction_events.any(func(existing):return int(existing.id)==int(e.id)):interaction_events.append(e)
 	interaction_events.append_array(Training.events(area_id,model))
 	interaction_events.append_array(Bosque.rest_events(area_id,model))
 	super()

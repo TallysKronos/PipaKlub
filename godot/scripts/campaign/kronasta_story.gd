@@ -44,6 +44,7 @@ const BEATS := [
 	{"id":"nina","act":1,"place":"parque","text":"Depois da Mikka, fale com Nina no Jardim das Pipas. A rabiola do Carcará dela foi levada."},
 	{"id":"bosque","act":1,"place":"bosque","text":"Siga pelo Bosque dos Ventos até a Clareira do Marco. Pela pausa: Mapa → Região de Kronasta."},
 	{"id":"lohan","act":1,"place":"bambuzal","text":"Explore a Vila do Bambuzal e vença o Lohan, campeão do segundo bairro."},
+	{"id":"tyler","act":1,"place":"parque","text":"Encontre Tyler e Rai na roda da Clareira do Papel."},
 	{"id":"lacertubo","act":2,"place":"parque","text":"A passagem pela Clareira está aberta. Explore as Veredas e recupere a rabiola de Nina no pátio do Lacertubo."},
 	{"id":"nina-devolvida","act":2,"place":"parque","text":"Leve a rabiola de volta para Nina, no Jardim das Pipas."},
 ]
@@ -74,6 +75,7 @@ static func beat_done(player: Dictionary, id: String) -> bool:
 		"lacertubo": return f.get("guardianDefeated",false)
 		"nina-devolvida": return f.get("ninaReturned",false)
 		"mikka": return mikka_defeated(player)
+		"tyler": return f.get("tylerClareiraMet",false)
 		"lohan": return preload("res://scripts/campaign/district_rules.gd").completed(player,"bambuzal")
 		"bosque": return f.get("bosqueClareiraDescoberta",false)
 	return false

@@ -67,7 +67,7 @@ func configure(data: Dictionary, state: Dictionary) -> void:
 	model = Model.new()
 	model.restore(state)
 	var assets := {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "lacertubo": "lacertubo"}
-	art_ids.assign([assets.get(model.model_id, "rabbito"), assets.get(model.enemy_model_id, "lacertubo")])
+	art_ids.assign([assets.get(model.model_id, "rabbito"), model.enemy_model_id if model.enemy_model_id.begins_with("rascunho-") else assets.get(model.enemy_model_id, "lacertubo")])
 	for id in art_ids: textures.append(load("res://assets/campaign/" + content.combat[id].image))
 	background = load("res://assets/campaign/veredas-arena-wide-v2.png")
 	guardian_frame = load("res://assets/campaign/guardian-frame.png")
@@ -508,6 +508,7 @@ func _draw_status() -> void:
 				if partner.id==reward_player.get("equippedPartnerId",""):
 					title=partner.get("personalName",title)
 					level=Model.level_for_xp(partner.get("xp",0))
+		if index>0 and model.enemy_model_id.begins_with("rascunho-"):title="Bicho-pau de Vareta [rascunho]" if model.enemy_model_id=="rascunho-bicho-pau" else "Joaninha-pião [rascunho]"
 		names.append("%s · Nv. %d"%[title,level])
 	var cost:int=0
 	for command in move_cards:

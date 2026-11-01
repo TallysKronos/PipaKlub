@@ -8152,6 +8152,80 @@
         }
       },
       "source": "art/soulgen/keys/doberman-c/refined-rig-v3/doberman-c.soulgen.json"
+    },
+    "rascunho-bicho-pau": {
+      "image": "tyler-clareira-v1/rascunho-bicho-pau.png",
+      "animations": {
+        "idle": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 615,
+            "h": 508
+          }
+        ],
+        "attack": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 615,
+            "h": 508
+          }
+        ],
+        "victory": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 615,
+            "h": 508
+          }
+        ],
+        "defeat": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 615,
+            "h": 508
+          }
+        ]
+      }
+    },
+    "rascunho-joaninha": {
+      "image": "tyler-clareira-v1/rascunho-joaninha.png",
+      "animations": {
+        "idle": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 445,
+            "h": 455
+          }
+        ],
+        "attack": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 445,
+            "h": 455
+          }
+        ],
+        "victory": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 445,
+            "h": 455
+          }
+        ],
+        "defeat": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 445,
+            "h": 455
+          }
+        ]
+      }
     }
   },
   "broadcast": [
