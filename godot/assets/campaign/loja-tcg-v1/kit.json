@@ -1,0 +1,134 @@
+{
+  "schema": "shop-tcg-1",
+  "generator": "image_gen.imagegen",
+  "approval": "pending_owner_review",
+  "projection": [
+    64,
+    32
+  ],
+  "renderer": "res://scripts/campaign/shop_modern.gd",
+  "pieces": {
+    "counter": {
+      "size": [
+        1774,
+        887
+      ],
+      "bounds": [
+        48,
+        30,
+        1679,
+        849
+      ],
+      "zeroAlphaSamplesStep2": 195541,
+      "alphaMin": 0,
+      "id": "counter",
+      "file": "counter.png",
+      "frames": 1,
+      "filter": "linear",
+      "scale": "uniform fit"
+    },
+    "display": {
+      "size": [
+        1536,
+        1024
+      ],
+      "bounds": [
+        346,
+        32,
+        829,
+        961
+      ],
+      "zeroAlphaSamplesStep2": 252536,
+      "alphaMin": 0,
+      "id": "display",
+      "file": "display.png",
+      "frames": 1,
+      "filter": "linear",
+      "scale": "uniform fit"
+    },
+    "gondola": {
+      "size": [
+        1536,
+        1024
+      ],
+      "bounds": [
+        42,
+        32,
+        1451,
+        975
+      ],
+      "zeroAlphaSamplesStep2": 179446,
+      "alphaMin": 0,
+      "id": "gondola",
+      "file": "gondola.png",
+      "frames": 1,
+      "filter": "linear",
+      "scale": "uniform fit"
+    },
+    "owner": {
+      "size": [
+        1024,
+        1536
+      ],
+      "bounds": [
+        108,
+        28,
+        811,
+        1481
+      ],
+      "zeroAlphaSamplesStep2": 192206,
+      "alphaMin": 0,
+      "id": "owner",
+      "file": "owner.png",
+      "frames": 1,
+      "filter": "linear",
+      "scale": "uniform fit"
+    },
+    "shelf": {
+      "size": [
+        1536,
+        1024
+      ],
+      "bounds": [
+        26,
+        40,
+        1485,
+        965
+      ],
+      "zeroAlphaSamplesStep2": 171507,
+      "alphaMin": 0,
+      "id": "shelf",
+      "file": "shelf.png",
+      "frames": 1,
+      "filter": "linear",
+      "scale": "uniform fit"
+    },
+    "table": {
+      "size": [
+        1536,
+        1024
+      ],
+      "bounds": [
+        78,
+        42,
+        1387,
+        937
+      ],
+      "zeroAlphaSamplesStep2": 230837,
+      "alphaMin": 0,
+      "id": "table",
+      "file": "table.png",
+      "frames": 1,
+      "filter": "linear",
+      "scale": "uniform fit"
+    }
+  },
+  "preview": {
+    "file": "preview.png",
+    "kind": "opaque native Godot screenshot for save card",
+    "size": [
+      1280,
+      720
+    ]
+  }
+}
