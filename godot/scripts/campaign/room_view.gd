@@ -35,7 +35,7 @@ func configure(room: Dictionary, point: Array, walk: bool, target: String, mothe
 	mother_sprite = null
 	companion_frames.clear()
 	trail.clear()
-	data = room
+	data = HouseArt.room_data(room)
 	camera = data.camera
 	actor = Vector2(point[0], point[1])
 	can_walk = walk

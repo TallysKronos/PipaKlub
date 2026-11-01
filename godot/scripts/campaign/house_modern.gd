@@ -3,6 +3,21 @@ const BASE="res://assets/campaign/casa-moderna-v1/"
 const INK=Color("263544")
 static func applies(data:Dictionary) -> bool:return data.get("floorImage","") in ["bedroom-floor.png","home-floor.png"]
 static func geometry() -> bool:return OS.get_environment("KAEL_ROOM_GEOMETRY")=="1"
+static func room_data(source:Dictionary) -> Dictionary:
+ if source.get("floorImage","")!="home-floor.png":return source
+ if source.get("homeModernLayout",0)==2:return source
+ var data:Dictionary=source.duplicate(true)
+ data.homeModernLayout=2
+ data.layout.floor.w=1440;data.layout.floor.h=1056
+ data.floor=[384,288,1440,1056];data.walkable=[data.floor.duplicate()]
+ data.width=2016;data.height=1472
+ # Preserve staging coordinates. Only the view zoom and its prop rectangles change.
+ var ratio:float=1.0/float(data.camera.scale)
+ data.camera.scale=1.0
+ for p in data.props:
+  for i in 4:p.rect[i]*=ratio
+ data.props.append({"id":"porta-mae","kind":"wallRight","footprint":null,"rect":[800.0,244.0,56.0,168.0]})
+ return data
 static func poly(root:Node2D,points:PackedVector2Array,color:Color,stroke:bool=true,width:float=1.5) -> void:
  var shape:=Polygon2D.new();shape.polygon=points;shape.color=color;root.add_child(shape)
  if stroke:
@@ -27,8 +42,8 @@ static func build_floor(room) -> void:
  poly(root,PackedVector2Array([left,left+Vector2(0,12),front+Vector2(0,12),front]),Color("959f9d"),true,2.)
  poly(root,PackedVector2Array([front,front+Vector2(0,12),right+Vector2(0,12),right]),Color("c1c8c2"),true,2.)
  if home:
-  for row in 5:
-   for col in 6:
+  for row in int(ceil(float(f.h)/192.0)):
+   for col in int(ceil(float(f.w)/192.0)):
     var x:float=f.x+col*192;var y:float=f.y+row*192
     var w:float=minf(192,f.x+f.w-x);var h:float=minf(192,f.y+f.h-y)
     if w>0 and h>0:
@@ -58,10 +73,23 @@ static func build_floor(room) -> void:
    poly(root,PackedVector2Array([top,center,bottom,center-side]),Color("e0b66b"),false)
    line(root,top,bottom,INK,1.);line(root,center-side,center+side,INK,1.)
    line(root,bottom,bottom+Vector2(-9,23),Color("495967"),1.2)
+ else:
+  # The private hall is on the same walking plane, with a small doorstep mat.
+  rect(room,root,1632,320,168,96,Color("e5e4d8"),true)
+  rect(room,root,1644,332,144,72,Color("718e9c"),false)
  room.set_meta("house_art","modern-v1")
 static func create_prop(room,p:Dictionary) -> Node2D:
  var root:=Node2D.new();root.name="Modern_"+str(p.id)
  var r:=Rect2(p.rect[0],p.rect[1],p.rect[2],p.rect[3]);var id:String=p.id
+ if id=="porta-mae":
+  var a:=r.position;var b:=a+Vector2(r.size.x,r.size.x*.5)
+  var d:=a+Vector2(0,140);var c:=b+Vector2(0,140)
+  poly(root,PackedVector2Array([a,b,c,d]),Color("f1f0e8"),true,2.)
+  var left:=a+Vector2(5,9);var right:=b+Vector2(-5,4)
+  poly(root,PackedVector2Array([left,right,right+Vector2(0,126),left+Vector2(0,126)]),Color("9ac4d1") if geometry() else Color("d4bd91"),true,1.)
+  line(root,left+Vector2(8,6),left+Vector2(8,121),Color("315a7a"),4.)
+  line(root,right+Vector2(-7,64),right+Vector2(-7,83),Color("edf0eb"),3.)
+  return root
  if id=="abertura-escada":
   stairwell_rail(room,root)
   return root

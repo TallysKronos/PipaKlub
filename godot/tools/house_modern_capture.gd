@@ -21,7 +21,7 @@ func capture() -> void:
   if root.get_texture().get_image().save_png(out.path_join(file+"-"+shot+".png"))!=OK:quit(1);return
  if not file.ends_with("antes"):
   var focuses:Dictionary={"cama":Vector2(480,260),"mesa":Vector2(730,370),"escada":Vector2(225,380),"canto-paredes":Vector2(441,80)}
-  if room_key=="home":focuses={"sofa":Vector2(300,280),"jantar":Vector2(550,320),"cozinha":Vector2(770,330),"escada-topo":Vector2(630,305),"escada-base":Vector2(540,510),"porta":Vector2(160,260)}
+  if room_key=="home":focuses={"sofa":Vector2(270,252),"jantar":Vector2(495,288),"cozinha":Vector2(693,297),"escada-topo":Vector2(567,275),"escada-base":Vector2(486,459),"porta":Vector2(144,234),"porta-mae":Vector2(828,330)}
   for key in focuses:
    room.scale=Vector2.ONE*2.0;room.position=Vector2(640,360)-focuses[key]*2.0
    await process_frame;await RenderingServer.frame_post_draw

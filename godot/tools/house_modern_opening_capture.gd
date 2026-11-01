@@ -18,7 +18,10 @@ func run() -> void:
  campaign=Front.new();campaign.session._store=Store.new("user://house-preview-"+State.new_id());root.add_child(campaign)
  campaign.session._snapshot=State.fresh("slot-3")
  if "--only-home" in OS.get_cmdline_user_args():
-  await show_step(12);await hold(3.5);await shot("09-sala")
+  var file:="09-sala"
+  for arg in OS.get_cmdline_user_args():
+   if arg.begins_with("--home-shot="):file=arg.trim_prefix("--home-shot=")
+  await show_step(12);await hold(3.5);await shot(file)
   campaign.session.close_session();campaign.free();print("HOUSE OPENING: downstairs refreshed; isolated progress");quit();return
  await show_step(2);await hold(.4);await shot("01-apos-tv")
  await show_step(4);await hold(1.8);await shot("02-bancada")

@@ -1,5 +1,7 @@
 # Casa do Kael — reforma contemporânea dos dois pisos
 
+**Atualização posterior:** o dono pediu um térreo maior e uma porta para o quarto da mãe. A implementação vigente e as novas verificações estão em [ampliacao-terreo.md](ampliacao-terreo.md). As dimensões e a câmera do térreo descritas como preservadas abaixo se referem à primeira reforma, antes desse pedido.
+
 ## 1. Arquivos criados e alterados
 
 Branch local `codex/quarto-kael-manga`, baseada em `codex/mapa-submerso`. Integração em `godot/scripts/campaign/room_view.gd`; renderer novo `house_modern.gd`; kit em `godot/assets/campaign/casa-moderna-v1/`; fontes, brief, prompts e QA em `art/casa-kael-moderna-v1/`. Ferramentas reproduzíveis `house_modern_capture.gd` e `house_modern_opening_capture.gd`; teste `house_modern_checks.gd`.

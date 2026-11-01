@@ -45,7 +45,10 @@ func run() -> void:
  room.actor=Vector2(1200,528);room.opening_pose();check(room.avatar.z_index>desk.z_index,"actor in front of desk")
  room.free()
  var home:=Room.new();root.add_child(home);home.configure(content.rooms.home,content.rooms.home.entry,false,"",true,true);home.set_process(false)
- check(home.data==content.rooms.home,"downstairs preserves all navigation data")
+ check(home.data.layout.floor.w*home.data.layout.floor.h>content.rooms.home.layout.floor.w*content.rooms.home.layout.floor.h*1.5,"downstairs adds more than 50 percent floor area")
+ check(home.data.entry==content.rooms.home.entry and home.data.blocked==content.rooms.home.blocked,"existing entry and furniture collisions remain compatible")
+ check(content.rooms.home.layout.floor.w==1152,"source room is not mutated")
+ check(Art.room_data(home.data)==home.data,"reconfiguring the modern layout is idempotent")
  check(home.get_meta("house_art","")=="modern-v1","downstairs uses matching house art")
  var visited:Dictionary={};var queue:Array[Vector2i]=[Vector2i(1424,1104)];visited[queue[0]]=true;var index:=0
  while index<queue.size():
@@ -57,6 +60,11 @@ func run() -> void:
   var found:=false
   for p:Vector2i in visited:if Vector2(p).distance_to(Vector2(spot.x,spot.y))<50:found=true;break
   check(found,"downstairs reachable interaction "+str(spot.id))
+ for target in [Vector2(1712,464),Vector2(1712,1200),Vector2(880,1248)]:
+  var reachable:=false
+  for p:Vector2i in visited:if Vector2(p).distance_to(target)<24:reachable=true;break
+  check(reachable and home._safe(target),"new hall and extended floor are reachable "+str(target))
+ check(home.get_node_or_null("Modern_porta-mae")!=null,"mother bedroom has a separate architectural door")
  for item in home.props:
   var art:Sprite2D=item.node.get_node_or_null("Art")
   if art:
