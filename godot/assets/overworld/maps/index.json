@@ -156,6 +156,30 @@
       "name": "Mina de ferro · Grande veio",
       "scene": "mina-ferro-d",
       "biome": "floresta"
+    },
+    {
+      "id": "gelo-a",
+      "name": "Gelo · Clareira nevada",
+      "scene": "gelo-a",
+      "biome": "floresta"
+    },
+    {
+      "id": "gelo-b",
+      "name": "Gelo · Lago congelado",
+      "scene": "gelo-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "gelo-c",
+      "name": "Gelo · Desfiladeiro de cristal",
+      "scene": "gelo-c",
+      "biome": "floresta"
+    },
+    {
+      "id": "gelo-d",
+      "name": "Gelo · Coroa da geleira",
+      "scene": "gelo-d",
+      "biome": "floresta"
     }
   ],
   "scenes": {
@@ -183,7 +207,11 @@
     "mina-ferro-a": "mina-ferro-a",
     "mina-ferro-b": "mina-ferro-b",
     "mina-ferro-c": "mina-ferro-c",
-    "mina-ferro-d": "mina-ferro-d"
+    "mina-ferro-d": "mina-ferro-d",
+    "gelo-a": "gelo-a",
+    "gelo-b": "gelo-b",
+    "gelo-c": "gelo-c",
+    "gelo-d": "gelo-d"
   },
   "campaignReplacement": false
 }
