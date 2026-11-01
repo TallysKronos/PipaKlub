@@ -1,5 +1,7 @@
 # Linha & Papel — kit de loja TCG v1
 
+Após a revisão de circulação, a gôndola é usada em uma única posição. As duas mesas foram deslocadas à direita. Artes originais preservadas; veja `documentation/overworld/loja-tcg/corredores.md`.
+
 Seis imagens originais geradas com a ferramenta nativa `image_gen.imagegen`: balcão-vitrine, estante, expositor vertical de pipas, ilha de mostruários, mesa com dois bancos e novo dono chibi. Fontes intactas em `fontes/`, prompts exatos e nomes de origem em `prompts.json`, medições alfa em `qa.json`. O balcão, orientado pelo novo ateliê do professor, foi a referência visual das quatro peças relacionadas. O NPC usa o Assis apenas como guia de linguagem chibi, com identidade, roupa e silhueta próprias.
 
 O usuário escolheu um novo personagem como dono. Lia permanece na frente da loja; o novo personagem não recebeu nome pessoal nem história: aparece como Dono da loja. O sprite tem um frame estático; não é um spritesheet de caminhada. A conversa reutiliza o mesmo desenho com recorte alfa no retrato.

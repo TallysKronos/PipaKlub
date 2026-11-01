@@ -40,11 +40,21 @@ func run()->void:
  check(owner.z_index<room.get_node("Shop_counter").z_index,"owner is drawn behind the counter")
  check(not room._safe(D.OWNER),"owner has a physical foot collision")
  room.actor=D.point(8,4.5);room.opening_pose();check(room.avatar.z_index>room.get_node("Shop_counter").z_index,"customer stands in front of counter")
- for pose in [[D.point(8,.8),"counter",true],[D.point(7,6),"table-a",true],[D.point(10,9.5),"table-a",false]]:
+ for pose in [[D.point(8,.8),"counter",true],[D.point(9,6),"table-a",true],[D.point(12,9.5),"table-a",false]]:
   check(room._safe(pose[0]),"occlusion pose is on walkable floor")
   room.actor=pose[0];room.opening_pose()
   var prop:Node2D=room.get_node("Shop_"+str(pose[1]))
   check(room.avatar.z_index<prop.z_index if pose[2] else room.avatar.z_index>prop.z_index,"depth order around "+str(pose[1]))
+ var aisle_clear:=true
+ for x in range(1104,1393,16):
+  for y in range(720,1585,16):
+   if not room._safe(Vector2(x,y)):aisle_clear=false
+ check(aisle_clear,"continuous three-cell-wide clear strip connects entrance to counter")
+ var old_position:=D.point(11.5,5.5)
+ check(not D.safe(old_position) and D.safe(D.resume_point(old_position)),"old position under moved furniture recovers on free floor")
+ var restored:=Room.new();root.add_child(restored);restored.configure(data,[old_position.x,old_position.y],false,"*",false,false)
+ check(restored._safe(restored.actor) and restored.actor.distance_to(old_position)<144,"RoomView resumes an old save nearby without spawning inside furniture")
+ restored.free()
  var session:=Session.new();session._store=Store.new("user://shop-checks-"+State.new_id());root.add_child(session)
  check(session.start("slot-1").status=="ok","isolated slot created")
  var saved:Dictionary=session.snapshot();saved.player.partners=[{"id":State.new_id(),"modelId":"rabbito","personalName":"Rabbito","xp":0,"craftBonus":0,"condition":{"line":100,"structure":100}}];saved.player.equippedPartnerId=saved.player.partners[0].id
@@ -53,6 +63,8 @@ func run()->void:
  check(journey.enter_world("kite-shop",D.ENTRY).status=="ok","shop checkpoint is accepted")
  var stored:Dictionary=session.snapshot()
  check(State.inspect(stored,"slot-1")=="ok","shop snapshot validates")
+ var older:Dictionary=stored.duplicate(true);older.checkpoint.position=[old_position.x,old_position.y]
+ check(State.inspect(older,"slot-1")=="ok","map revision does not invalidate an older shop save")
  check(journey.enter_world("kite-shop",D.point(1,12)).status=="ok","walked position can be saved")
  session.close_session();check(session.resume_slot("slot-1").status=="ok","shop save reloads")
  check(session.snapshot().checkpoint.scene=="kite-shop" and session.snapshot().checkpoint.position==[480.0,1440.0],"reload preserves shop position")

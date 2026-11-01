@@ -23,6 +23,6 @@ func run()->void:
  room.position=Vector2(640,360)-Vector2(550,280)*2;room.get_node("ShopOwner").show()
  await shot(name+"-dono-balcao")
  room.get_node("ShopOwner").hide();room.avatar.show();room.scale=Vector2.ONE*1.1;room.position=Vector2(120,15)
- for pose in [["atras-balcao",D.point(8,.8)],["frente-balcao",D.point(8,4.5)],["atras-mesa",D.point(7,6)],["frente-mesa",D.point(10,9.5)]]:
+ for pose in [["atras-balcao",D.point(8,.8)],["frente-balcao",D.point(8,4.5)],["atras-mesa",D.point(9,6)],["frente-mesa",D.point(12,9.5)]]:
   room.actor=pose[1];room.opening_pose();await shot(name+"-oclusao-"+str(pose[0]))
  room.free();print("SHOP capture ",name);quit()

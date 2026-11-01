@@ -11,6 +11,7 @@ func _init(local_session: Node) -> void:
 	session = local_session
 
 func enter_world(scene: String, position: Vector2) -> Dictionary:
+	if scene=="kite-shop" and not preload("res://scripts/campaign/shop_data.gd").safe(position):return {"status":"invalid"}
 	var saved: Dictionary = session.snapshot()
 	if saved.is_empty() or saved.player.partners.is_empty():
 		return {"status": "wrong_step"}

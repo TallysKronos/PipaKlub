@@ -1,5 +1,7 @@
 # Linha & Papel — loja ampliada no Godot
 
+**Revisão vigente:** [corredores.md](corredores.md) documenta a redistribuição do mobiliário para passagens mais largas. Os números e a disposição abaixo registram a primeira entrega.
+
 ## 1. Arquivos criados e alterados
 
 Branch `codex/loja-tcg-moderna`, baseada na reforma do professor. Brief, seis fontes, prompts e alfa em `art/loja-tcg-v1/`. Kit em `godot/assets/campaign/loja-tcg-v1/`. Planta `shop_data.gd`; renderer `shop_modern.gd`; integração em RoomView, frontend, adaptador do bairro e validação de checkpoints. Preset Windows inclui os PNGs/JSON brutos. Teste `shop_modern_checks.gd`; capturas `shop_modern_capture.gd` e fluxo verificável `shop_flow_capture.gd`.

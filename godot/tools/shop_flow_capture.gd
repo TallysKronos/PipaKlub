@@ -39,6 +39,8 @@ func run()->void:
  if not require(await wait_for(true),"real doorway enters shop"):return
  await create_timer(.8).timeout
  await shot("02-interior-hud")
+ if not require(await Staging.approach(front.room,D.point(8.5,9)),"walk through the widened central aisle"):return
+ await shot("02b-corredor-livre")
  if not require(await Staging.approach(front.room,D.point(8,4.5)),"walk to counter without crossing furniture"):return
  front.room.can_walk=true;front.room.interacted.emit("counter")
  await process_frame

@@ -40,6 +40,7 @@ func configure(room: Dictionary, point: Array, walk: bool, target: String, mothe
 	data = HouseArt.room_data(room)
 	camera = data.camera
 	actor = Vector2(point[0], point[1])
+	if ShopArt.applies(data):actor=preload("res://scripts/campaign/shop_data.gd").resume_point(actor)
 	can_walk = walk
 	target_hotspot = target
 	if ShopArt.applies(data):
