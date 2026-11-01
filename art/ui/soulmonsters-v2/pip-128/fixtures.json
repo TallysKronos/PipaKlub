@@ -1,0 +1,207 @@
+{
+  "fixture": {
+    "area": "Bosque dos Ventos",
+    "part": "TRILHA DAS COPAS · A",
+    "objective": "Siga a trilha até o marco de pedra.",
+    "longObjective": "Investigue o marco de pedra na bifurcação e descubra de onde vem o fio preso entre as raízes.",
+    "partner": "Rabbito",
+    "level": 8,
+    "line": 84,
+    "hull": 96,
+    "energy": 70,
+    "rival": "Lacertubo",
+    "rivalLevel": 8,
+    "rivalLine": 62,
+    "rivalHull": 78,
+    "seconds": 42,
+    "money": "1.240",
+    "emblems": "0 / 12",
+    "selected": "Soulmonsters"
+  },
+  "directions": {
+    "A": {
+      "name": "Seda & vareta",
+      "label": "Papel leve. Estrutura aparente.",
+      "ink": "#163d40",
+      "paper": "#fff5dc",
+      "muted": "#536b65",
+      "accent": "#087b7e",
+      "line": "#087b7e",
+      "select": "#c05528",
+      "edge": "#a77f43",
+      "surface": "#f2dfb3"
+    },
+    "B": {
+      "name": "Muro do bairro",
+      "label": "O bairro escreve a interface.",
+      "ink": "#233d42",
+      "paper": "#fff0ca",
+      "muted": "#b7ceca",
+      "accent": "#f3ae48",
+      "line": "#8dd5ba",
+      "select": "#ed7c40",
+      "edge": "#e9ba71",
+      "surface": "#34565a"
+    },
+    "C": {
+      "name": "Carretel & Elo",
+      "label": "Um fio entre você e seu parceiro.",
+      "ink": "#152e43",
+      "paper": "#f7edcf",
+      "muted": "#b8cbd0",
+      "accent": "#f4b95d",
+      "line": "#8ed7ca",
+      "select": "#f4b95d",
+      "edge": "#b49665",
+      "surface": "#25465a"
+    }
+  },
+  "assets": {
+    "world": "contexto/exploracao.png",
+    "arena": "../../../../godot/assets/campaign/veredas-arena-wide-v2.png",
+    "kael": "../../../../godot/assets/campaign/portrait-kael-manga-v4.png",
+    "rabbit": "../../../../godot/assets/campaign/combat-rabbito.png",
+    "rival": "../../../../godot/assets/campaign/combat-lacertubo.png"
+  },
+  "base": [
+    1280,
+    720
+  ],
+  "records": [
+    {
+      "direction": "A",
+      "mode": "exploracao",
+      "file": "A/exploracao.png",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "direction": "A",
+      "mode": "batalha",
+      "file": "A/batalha.png",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "direction": "A",
+      "mode": "pausa",
+      "file": "A/pausa.png",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "direction": "A",
+      "mode": "texto_longo",
+      "file": "A/texto_longo.png",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "direction": "A",
+      "mode": "componentes",
+      "file": "A/componentes.png",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "direction": "B",
+      "mode": "exploracao",
+      "file": "B/exploracao.png",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "direction": "B",
+      "mode": "batalha",
+      "file": "B/batalha.png",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "direction": "B",
+      "mode": "pausa",
+      "file": "B/pausa.png",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "direction": "B",
+      "mode": "texto_longo",
+      "file": "B/texto_longo.png",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "direction": "B",
+      "mode": "componentes",
+      "file": "B/componentes.png",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "direction": "C",
+      "mode": "exploracao",
+      "file": "C/exploracao.png",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "direction": "C",
+      "mode": "batalha",
+      "file": "C/batalha.png",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "direction": "C",
+      "mode": "pausa",
+      "file": "C/pausa.png",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "direction": "C",
+      "mode": "texto_longo",
+      "file": "C/texto_longo.png",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "direction": "C",
+      "mode": "componentes",
+      "file": "C/componentes.png",
+      "dimensions": [
+        1280,
+        720
+      ]
+    }
+  ]
+}

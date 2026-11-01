@@ -8,7 +8,7 @@ Critério central: uma captura sem logo precisa ser reconhecível como Soulmonst
 | --- | --- | --- | --- |
 | 1 | PIP-126 | Agente designer-de-hud e skill própria | Implementado; validação registrada em PIP-126.md |
 | 2 | PIP-127 | Benchmark dos sete jogos; 10 princípios próprios | Estudo local entregue; 27 evidências, versões e limites em PIP-127.md |
-| 3 | PIP-128 | A papel/vareta; B muro; C carretel/Elo; 3 mocks por direção | Próxima etapa; benchmark disponível |
+| 3 | PIP-128 | A papel/vareta; B muro; C carretel/Elo; 3 mocks por direção | Nove mocks locais e provas entregues; limites em PIP-128.md |
 | 4 | PIP-129 | Escolher direção e registrar justificativa | Escolha delegada ao assistente pelo dono; pendente das propostas |
 | 5 | PIP-130 | Forma-assinatura, paleta, tipografia, ícones e Theme | Pendente da escolha |
 | 6 | PIP-131 | Logo e tela de título | Pendente da escolha/sistema |

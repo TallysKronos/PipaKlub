@@ -1,0 +1,17 @@
+{
+  "status": "pass",
+  "checks": [
+    "45 direction PNGs exist and match declared dimensions",
+    "Static local HTML links resolve",
+    "Inline gallery JavaScript syntax passes node --check",
+    "36 geometric checks have no flagged failures",
+    "Source asset and font hashes recorded"
+  ],
+  "errors": [],
+  "minimum_font": 9.6,
+  "limitations": [
+    "No browser rendering, game input or physical controller test",
+    "Uniform fit is not adaptive Godot layout",
+    "Small secondary type at 1024 remains a production limitation"
+  ]
+}
