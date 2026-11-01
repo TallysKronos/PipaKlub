@@ -1,0 +1,115 @@
+{
+  "schema": "professor-modern-1",
+  "approval": "pending_owner_review",
+  "generator": "image_gen.imagegen",
+  "projection": [
+    64,
+    32
+  ],
+  "renderer": "res://scripts/campaign/professor_modern.gd",
+  "pieces": {
+    "chest": {
+      "size": [
+        1536,
+        1024
+      ],
+      "id": "chest",
+      "zeroAlphaSamplesStep2": 223956,
+      "bounds": [
+        208,
+        28,
+        1117,
+        975
+      ],
+      "alphaMin": 0,
+      "file": "chest.png",
+      "frames": 1,
+      "scale": "uniform fit",
+      "filter": "linear"
+    },
+    "desk": {
+      "size": [
+        1536,
+        1024
+      ],
+      "id": "desk",
+      "zeroAlphaSamplesStep2": 225846,
+      "bounds": [
+        92,
+        24,
+        1341,
+        977
+      ],
+      "alphaMin": 0,
+      "file": "desk.png",
+      "frames": 1,
+      "scale": "uniform fit",
+      "filter": "linear"
+    },
+    "library": {
+      "size": [
+        1070,
+        1470
+      ],
+      "id": "library",
+      "zeroAlphaSamplesStep2": 125819,
+      "bounds": [
+        40,
+        16,
+        995,
+        1443
+      ],
+      "alphaMin": 0,
+      "file": "library.png",
+      "frames": 1,
+      "scale": "uniform fit",
+      "filter": "linear"
+    },
+    "study": {
+      "size": [
+        1271,
+        1237
+      ],
+      "id": "study",
+      "zeroAlphaSamplesStep2": 233595,
+      "bounds": [
+        254,
+        22,
+        745,
+        1187
+      ],
+      "alphaMin": 0,
+      "file": "study.png",
+      "frames": 1,
+      "scale": "uniform fit",
+      "filter": "linear"
+    },
+    "workbench": {
+      "size": [
+        1536,
+        1024
+      ],
+      "id": "workbench",
+      "zeroAlphaSamplesStep2": 236149,
+      "bounds": [
+        152,
+        14,
+        1257,
+        995
+      ],
+      "alphaMin": 0,
+      "file": "workbench.png",
+      "frames": 1,
+      "scale": "uniform fit",
+      "filter": "linear"
+    }
+  },
+  "preview": {
+    "file": "preview.png",
+    "kind": "opaque native Godot screenshot, save-card thumbnail",
+    "size": [
+      1280,
+      720
+    ]
+  }
+}
