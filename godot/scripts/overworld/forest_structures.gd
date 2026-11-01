@@ -200,4 +200,3 @@ static func _landmark(view,p:Dictionary) -> void:
  for k in 5:
   var x:float=-54+k*26;var color:Color=[Color("edb849"),Color("dc7462"),Color("61afae"),Color("6b93b4"),Color("d6b978")][k]
   quad(node,PackedVector2Array([base+Vector2(x,-169),base+Vector2(x+14,-169),base+Vector2(x+30,-88-k%2*18),base+Vector2(x+16,-93-k%2*18)]),color)
-

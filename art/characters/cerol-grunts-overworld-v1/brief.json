@@ -1,0 +1,57 @@
+{
+  "cell": [
+    64,
+    96
+  ],
+  "pivot": [
+    32,
+    94
+  ],
+  "directions": [
+    "S",
+    "SO",
+    "O",
+    "NO",
+    "N",
+    "NE",
+    "E",
+    "SE"
+  ],
+  "animation": false,
+  "characters": [
+    {
+      "id": "grunt-feminino",
+      "name": "Grunt feminino",
+      "height": 86,
+      "ref": "art/characters/cerol-hunters-v1/grunt-feminino-sheet.png",
+      "prompt": "Create a clean production overworld SPRITE turnaround for Soulmonsters. First image is KAEL STYLE ONLY, second image is THIS GRUNT'S IDENTITY. Exactly eight full-body standing sprites of the same adult character, neutral pose with both hands relaxed at sides, consistent height and grounded feet. Match Kael's crisp dark pixel cluster outlines and flat cel shading, modest top-down orthographic RPG camera, roughly3.5heads high with adult body, not toddler or 3D. Preserve black/charcoal clothes, ivory mummy wraps, own skin/hair. Render 1536x1024, exactly4equal columns x2equal rows,384x512 each, one centered full silhouette per cell, feet at90%cellheight. ORDER top row S front, SW facingLEFT/front, W LEFT profile, NW LEFT/back; bottom N back, NE RIGHT/back, E RIGHT profile, SE RIGHT/front. Do NOT swap left/right profiles. Transparent background, no shadows/floor, no text/labels/grid, no scenery or extra items. Small cut-kite ivory emblem on chest and larger at back, practical boots and cargo trousers. Strong readable black clothing masses separated with charcoal highlights, minimal wrap seam detail. No villain boss collar/mantle. Asymmetric equipment MUST keep anatomical side under rotation; never mirror it onto opposite limb. Rear views no eyes/nose. Single small functioning kite reel at belt, no trailing unattached string. This is static directional base not walk cycle. Young adult WOMAN, medium brown skin, chin-length straight BLACK bob with pointed face framing pieces, ivory bandage headband partly covered by bangs. Black short raised-collar work jacket with rolled sleeves over charcoal tee, charcoal full cargo trousers, black fingerless gloves and boots, small brass buckle. Ivory mummy wrap on anatomical LEFT FOREARM and anatomical RIGHT CALF only; other forearm bare brown skin. Small reel at anatomical RIGHT HIP. Front view: wrapped forearm viewerRIGHT, wrapped calf viewerLEFT, reel viewerLEFT. Back view: wrapped forearm viewerLEFT, wrapped calf viewerRIGHT, reel viewerRIGHT. The concept's back calf is inconsistent: obey these specified anatomical sides for the game sprites. Narrow confident manga eyes, modest adult proportions, one consistent relaxed standing pose all eight views.",
+      "sourceOrder": [
+        0,
+        1,
+        6,
+        3,
+        4,
+        5,
+        2,
+        7
+      ]
+    },
+    {
+      "id": "grunt-masculino",
+      "name": "Grunt masculino",
+      "height": 88,
+      "ref": "art/characters/cerol-hunters-v1/grunt-masculino-sheet.png",
+      "prompt": "Create a clean production overworld SPRITE turnaround for Soulmonsters. First image is KAEL STYLE ONLY, second image is THIS GRUNT'S IDENTITY. Exactly eight full-body standing sprites of the same adult character, neutral pose with both hands relaxed at sides, consistent height and grounded feet. Match Kael's crisp dark pixel cluster outlines and flat cel shading, modest top-down orthographic RPG camera, roughly3.5heads high with adult body, not toddler or 3D. Preserve black/charcoal clothes, ivory mummy wraps, own skin/hair. Render 1536x1024, exactly4equal columns x2equal rows,384x512 each, one centered full silhouette per cell, feet at90%cellheight. ORDER top row S front, SW facingLEFT/front, W LEFT profile, NW LEFT/back; bottom N back, NE RIGHT/back, E RIGHT profile, SE RIGHT/front. Do NOT swap left/right profiles. Transparent background, no shadows/floor, no text/labels/grid, no scenery or extra items. Small cut-kite ivory emblem on chest and larger at back, practical boots and cargo trousers. Strong readable black clothing masses separated with charcoal highlights, minimal wrap seam detail. No villain boss collar/mantle. Asymmetric equipment MUST keep anatomical side under rotation; never mirror it onto opposite limb. Rear views no eyes/nose. Single small functioning kite reel at belt, no trailing unattached string. This is static directional base not walk cycle. Young adult MAN, light tan skin, short BLACK spiky hair with cropped sides, ivory headband knot at rear and TWO short connected cloth tails. Narrow stern eyes, black raised-collar short work jacket over charcoal tee, charcoal full cargo trousers, black fingerless gloves and boots, brass buckle. Ivory mummy wraps on anatomical RIGHT FOREARM and anatomical LEFT CALF only; other forearm bare tan skin. Small kite reel on anatomical LEFT HIP. Front view: wrapped forearm viewerLEFT, wrapped calf viewerRIGHT, reel viewerRIGHT. Back view: wrapped forearm viewerRIGHT, wrapped calf viewerLEFT, reel viewerLEFT. Small ivory accent piping on jacket, match model reference. Adult proportions and quiet planted stance, not giant head or muscular armored soldier.",
+      "sourceOrder": [
+        0,
+        1,
+        6,
+        3,
+        4,
+        5,
+        2,
+        7
+      ]
+    }
+  ]
+}

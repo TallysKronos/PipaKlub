@@ -13,7 +13,9 @@ func _ready() -> void:
 	offset_right = -20
 	offset_top = 20
 	offset_bottom = 180
-	if subject.get("ground") != null:
+	if subject.has_method("map_polygons"):
+		floors.assign(subject.map_polygons())
+	elif subject.get("ground") != null:
 		floors.assign(subject.ground.floors)
 	else:
 		for rect in subject.data.walkable:

@@ -105,4 +105,3 @@ static func decal(view,at:Vector2) -> Node2D:
  var anchor:=Node2D.new();anchor.position=S.iso(at+Vector2(2,2))+Vector2(0,3);view.actors.add_child(anchor)
  var canvas:=Node2D.new();canvas.position=-anchor.position;anchor.add_child(canvas)
  return canvas
-

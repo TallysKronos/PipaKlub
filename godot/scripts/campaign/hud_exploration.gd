@@ -4,6 +4,7 @@ signal chosen(action:String)
 const Hud=preload("res://scripts/campaign/hud.gd")
 const Ink=preload("res://scripts/campaign/battle_ink.gd")
 const Controls=preload("res://scripts/campaign/controls.gd")
+const Locomotion = preload("res://scripts/campaign/locomotion.gd")
 const Model=preload("res://scripts/campaign/encounter_model.gd")
 var subject:Node2D
 var area_name:=""
@@ -22,6 +23,7 @@ var objective_panel:PanelContainer
 var prompt_panel:PanelContainer
 var partner_panel:Control
 var tools:HBoxContainer
+var run_button:Button
 var map:Control
 var notices:Array[Dictionary]=[]
 var notice_stack:VBoxContainer
@@ -89,6 +91,16 @@ func _ready() -> void:
 		button.pressed.connect(func():chosen.emit(option[1]))
 		tools.add_child(button)
 	resized.connect(_layout)
+	run_button=Button.new()
+	run_button.name="RunToggle"
+	run_button.toggle_mode=true
+	run_button.focus_mode=Control.FOCUS_NONE
+	run_button.custom_minimum_size=Vector2(184,44)
+	Hud.navigation_button(run_button,true)
+	run_button.tooltip_text="Segure Shift para correr ou clique para alternar. No controle: L3."
+	run_button.pressed.connect(func():
+		if is_instance_valid(subject) and subject.has_method("toggle_run"):subject.toggle_run())
+	add_child(run_button)
 	refresh(player_data)
 	_layout()
 func refresh(value:Dictionary) -> void:
@@ -150,11 +162,21 @@ func _process(delta:float) -> void:
 		_layout()
 func _layout() -> void:
 	if not is_instance_valid(area):return
+	run_button.visible=is_instance_valid(subject) and subject.has_method("toggle_run")
+	run_button.set_pressed_no_signal(Locomotion.toggled)
+	run_button.text="Corrida ligada" if Locomotion.toggled else Controls.prompt("run")+" · Correr"
+	run_button.tooltip_text=("Pressione %s ou clique para alternar a corrida." if Controls.gamepad else "Segure %s para correr ou clique para alternar.")%Controls.prompt("run")
+	run_button.position=Vector2((size.x-run_button.size.x)/2,size.y-run_button.size.y-20)
 	var factor:=size.y/1080.0
 	var compact:=area_age>=3
 	area_panel.position=Vector2(20,20)
-	area_panel.size=Vector2(maxf(240,280*factor) if compact else 560*factor,44*factor if compact else 88*factor)
-	area.add_theme_font_size_override("font_size",16 if compact else maxi(22,roundi(34*factor)))
+	var area_font:=16 if compact else maxi(22,roundi(34*factor))
+	area.add_theme_font_size_override("font_size",area_font)
+	# Long area names widen the plate (up to 55% of the screen) instead of wrapping
+	# against its bottom stripe; beyond that the plate grows in height.
+	var area_margins:=area_panel.get_theme_stylebox("panel").get_minimum_size().x+24
+	var area_need:=Hud.display().get_string_size(area.text,HORIZONTAL_ALIGNMENT_LEFT,-1,area_font).x+area_margins
+	area_panel.size=Vector2(clampf(area_need,maxf(240,280*factor) if compact else 560*factor,size.x*.55),44*factor if compact else 88*factor)
 	if is_instance_valid(map):
 		var edge:=220*factor
 		map.offset_left=-edge-20
@@ -189,16 +211,25 @@ func _draw_partner() -> void:
 	partner_panel.draw_colored_polygon(diamond,Hud.SURFACE)
 	partner_panel.draw_polyline(diamond,Hud.CYAN,2,true)
 	if portrait!=null:partner_panel.draw_texture_rect(portrait,Hud.fit_texture(portrait,Rect2(center-Vector2.ONE*radius*.8,Vector2.ONE*radius*1.6)),false)
+	# Rows keep 12 px inside the plate: the XP line used to sit on the bottom stroke.
 	var left:=extent.y
-	var width:=extent.x-left-12
+	var width:=extent.x-left-24
 	var title:String=partner.get("personalName",partner.get("modelId","Parceiro"))+" · Nv. %d"%Model.level_for_xp(partner.get("xp",0))
 	partner_panel.draw_string(Hud.font(true),Vector2(left,24),Ink.ellipsis(title,Hud.font(true),16,width),HORIZONTAL_ALIGNMENT_LEFT,-1,16,Hud.PAPER)
 	var health:float=partner.get("condition",{}).get("line",100)
 	var color:=Hud.LINE if health>=50 else Hud.GOLD if health>=25 else Hud.CORAL
-	partner_panel.draw_rect(Rect2(left,extent.y*.48,width,6),Hud.TRACK)
-	partner_panel.draw_rect(Rect2(left,extent.y*.48,width*health/100,6),color)
-	partner_panel.draw_string(Hud.font(),Vector2(left,extent.y-12),"Linha %d%%"%health,HORIZONTAL_ALIGNMENT_LEFT,-1,14,Hud.PAPER)
-	partner_panel.draw_line(Vector2(left,extent.y-5),Vector2(extent.x-12,extent.y-5),Hud.CYAN,2,true)
+	partner_panel.draw_rect(Rect2(left,34,width,6),Hud.TRACK)
+	partner_panel.draw_rect(Rect2(left,34,width*health/100,6),color)
+	var structure: float=partner.get("condition",{}).get("structure",100)
+	partner_panel.draw_string(Hud.font(),Vector2(left,extent.y-27),"Linha %d%% · Estr. %d%%"%[health,structure],HORIZONTAL_ALIGNMENT_LEFT,width,11,Hud.PAPER)
+	var level:=Model.level_for_xp(partner.get("xp",0))
+	var start:=Model.xp_for_level(level)
+	var next:=Model.xp_for_level(mini(50,level+1))
+	var progress:=1.0 if level>=50 else clampf(float(partner.get("xp",0)-start)/maxi(1,next-start),0,1)
+	partner_panel.draw_string(Hud.font(),Vector2(left,extent.y-12),"XP",HORIZONTAL_ALIGNMENT_LEFT,-1,9,Hud.GOLD)
+	partner_panel.draw_rect(Rect2(left+18,extent.y-18,width-18,4),Hud.TRACK)
+	partner_panel.draw_rect(Rect2(left+18,extent.y-18,(width-18)*progress,4),Hud.GOLD)
+	partner_panel.tooltip_text="Experiência %d / %d para o Nv. %d"%[int(partner.get("xp",0))-start,next-start,mini(50,level+1)] if level<50 else "Nível máximo"
 	partner_panel.draw_line(center+Vector2(radius,0),Vector2(left-4,extent.y*.5),Hud.CYAN,2,true)
 func occupied_fraction() -> float:
 	var total:=0.0

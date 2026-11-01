@@ -1,6 +1,6 @@
 extends SceneTree
 const Model = preload("res://scripts/overworld/map_model.gd")
-const View = preload("res://scripts/overworld/view.gd")
+
 var checks := 0
 var failures: Array[String] = []
 var areas: Array = []
@@ -43,7 +43,7 @@ func run() -> void:
 			check(reached,area.id+" event approachable "+event.name)
 		areas.append({"id":area.id,"walkable":expected_cells.size(),"directed_edges":expected_edges.size(),"ramp_probes":data.oracle.heightProbes.size()})
 	# Instantiate both review modes, and inspect real Godot tile coordinate transforms.
-	var view := View.new()
+	var view: Node2D = load("res://scripts/overworld/view.gd").new()
 	view.art_preview = true
 	root.add_child(view)
 	await process_frame

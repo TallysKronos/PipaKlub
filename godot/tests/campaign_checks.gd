@@ -29,6 +29,8 @@ func write_json(path: String, value: Variant) -> void:
 
 func _initialize() -> void:
 	var directory := "user://campaign-checks-" + State.new_id()
+	for argument in OS.get_cmdline_user_args():
+		if argument.begins_with("--test-root="): directory=argument.trim_prefix("--test-root=").path_join("campaign-checks-"+State.new_id())
 	print("ISOLATED DIRECTORY: ", ProjectSettings.globalize_path(directory))
 	var store := Store.new(directory)
 	var session := Session.new()
@@ -138,6 +140,15 @@ func _initialize() -> void:
 	for initial_hp in [250, 130]:
 		var boss_trace: Array = JSON.parse_string(FileAccess.get_file_as_string("res://tests/fixtures/boss-%d.json" % initial_hp))
 		var boss_model := Encounter.new()
+		# Historical JS traces describe an already-started pre-rebalance battle.
+		# Restore that save shape; new encounters use the current pacing profile.
+		boss_model.q.stats.line=250.0
+		boss_model.q.stats.attack=1.18
+		boss_model.q.hull=250.0
+		boss_model.p.erase("level")
+		boss_model.q.erase("level")
+		boss_model.enemy_level=15
+		boss_model.restore(boss_model.snapshot())
 		boss_model.intro = 0
 		boss_model.q.hp = initial_hp
 		var trace_equal := true

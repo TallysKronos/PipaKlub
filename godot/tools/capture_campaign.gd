@@ -2,6 +2,8 @@ extends SceneTree
 ## Visual review only: no slot is created or written; not a gameplay test.
 const FrontEnd = preload("res://scripts/campaign/front_end.gd")
 const State = preload("res://scripts/campaign/state.gd")
+const ParkCheckpoint = preload("res://scripts/campaign/park_checkpoint.gd")
+const Audit = preload("res://tools/ui_margin_audit.gd")
 
 func _initialize() -> void:
 	call_deferred("_capture")
@@ -14,7 +16,8 @@ func _capture() -> void:
 			shot = argument.trim_prefix("--shot=")
 		if argument.begins_with("--width="): viewport_size.x = clampi(argument.trim_prefix("--width=").to_int(), 800, 2560)
 		if argument.begins_with("--height="): viewport_size.y = clampi(argument.trim_prefix("--height=").to_int(), 600, 1440)
-	if shot not in ["menu", "controls", "bedroom", "street", "professor", "practice", "workshop", "park", "trail", "clearing", "boss", "live", "impact", "paused", "victory", "defeat", "team", "bag", "pause", "morro", "morro-2", "morro-3", "morro-4", "morro-5", "morro-battle", "morro-dialog"]:
+	var audit := "--audit" in OS.get_cmdline_user_args()
+	if shot not in ["settings", "slots", "map", "care", "menu", "controls", "bedroom", "street", "professor", "practice", "workshop", "park", "trail", "clearing", "boss", "live", "impact", "paused", "victory", "victory-unfocused", "defeat", "team", "bag", "pause", "morro", "morro-2", "morro-3", "morro-4", "morro-5", "morro-battle", "morro-dialog"]:
 		quit(1)
 		return
 	root.size = viewport_size
@@ -26,7 +29,9 @@ func _capture() -> void:
 	root.size = viewport_size
 	await process_frame
 	if shot == "controls": view._show_controls()
-	if shot not in ["menu", "controls"]:
+	if shot == "settings": view._show_settings()
+	if shot == "slots": view._show_slots(true)
+	if shot not in ["menu", "controls", "settings", "slots"]:
 		var saved := State.fresh("slot-1")
 		saved.player.partners = [{"id": "visual-review", "modelId": "rabbito", "personalName": "Rabbito", "xp": 0, "condition": {"line": 100, "structure": 100}}]
 		saved.player.equippedPartnerId = "visual-review"
@@ -50,16 +55,17 @@ func _capture() -> void:
 			saved.checkpoint = {"kind": "practice", "lesson": 0}
 		elif shot in ["trail", "clearing"]:
 			saved.player.journey = {"lesson": 5, "phase": "complete"}
-			saved.checkpoint = {"kind": "world", "scene": "park-trail" if shot == "trail" else "park-clearing", "position": [336, 784]}
-		elif shot in ["park", "team", "bag", "pause"]:
+			var park_scene := "park-trail" if shot == "trail" else "park-clearing"
+			saved.checkpoint = ParkCheckpoint.make(park_scene, ParkCheckpoint.spawn(park_scene), ParkCheckpoint.SPACE)
+		elif shot in ["park", "team", "bag", "pause", "map", "care"]:
 			saved.player.journey = {"lesson": 5, "phase": "complete"}
 			saved.player.flags.ninaAccepted = true
 			saved.player.inventory = {"quest-nina-tail": 1, "rabiola-basica": 2, "rabiola-lacertubo": 1}
-			saved.checkpoint = {"kind": "world", "scene": "park-veredas", "position": [1160, 366]}
-		elif shot in ["boss", "live", "impact", "paused", "victory", "defeat"]:
+			saved.checkpoint = ParkCheckpoint.make("park-veredas", ParkCheckpoint.spawn("park-veredas"), ParkCheckpoint.SPACE)
+		elif shot in ["boss", "live", "impact", "paused", "victory", "victory-unfocused", "defeat"]:
 			var model = load("res://scripts/campaign/encounter_model.gd").new(saved.player.partners[0])
 			if shot in ["live", "impact", "paused"]: model.intro = 0
-			if shot == "victory":
+			if shot in ["victory", "victory-unfocused"]:
 				model.outcome = "won"
 				model.intro = 0
 				model.q.hp = 0
@@ -75,26 +81,35 @@ func _capture() -> void:
 			saved.checkpoint = {"kind": "workshop"}
 		view.session._snapshot = saved
 		view._show_saved()
+		# The park opens behind an animated loading cover; wait before switching pages.
+		for frame in 600:
+			if not view.flow_busy and not is_instance_valid(view.scene_loading): break
+			await process_frame
 		if shot == "morro-dialog":
 			var story: Dictionary = load("res://scripts/campaign/morro_rules.gd").content().stories["morro-3"]
 			var text: String = "\n\n".join(story.before.map(func(line): return "%s: %s" % [line[0], line[1]])) + "\n\n" + story.tactic
 			view._confirm_park("Juninho e Lia", text, "Vamos voar!", func(): pass)
 		if shot == "paused": view.battle.paused = true
+		# Alt-tab or a screenshot tool pauses the view on the result screen.
+		if shot == "victory-unfocused": view.battle.suspend_actions()
 		if shot == "impact":
 			# Synthetic confirmed hit in a read-only visual fixture, frozen for inspection.
 			view.battle.paused = true
 			view.battle.model._apply_hit({"target": view.battle.model.q, "body": false, "damage": 12.0})
 		if shot == "pause": view._pause_game()
-		if shot in ["team", "bag"]:
+		if shot in ["team", "bag", "map", "care"]:
 			# Capture uses an in-memory fixture: never attempt to persist its position.
 			view._clear()
 			if shot == "team": view._show_collection()
+			elif shot == "map": view._show_map()
+			elif shot == "care": view._show_partner_care("visual-review")
 			else: view._show_bag()
 	for i in 4:
 		await process_frame
 	# Let the 450ms reveal and the once-only reward counter settle before review.
-	await create_timer(1.3 if shot in ["victory", "defeat"] else .5).timeout
+	await create_timer(1.3 if shot in ["victory", "victory-unfocused", "defeat"] else .5).timeout
 	await RenderingServer.frame_post_draw
+	if audit: Audit.report(root, shot + ("" if viewport_size == Vector2i(1280, 720) else "-%dx%d" % [viewport_size.x, viewport_size.y]))
 	var folder := ProjectSettings.globalize_path("res://").get_base_dir().path_join("../tmp/campaign-review").simplify_path()
 	DirAccess.make_dir_recursive_absolute(folder)
 	var suffix := "" if viewport_size == Vector2i(1280, 720) else "-%dx%d" % [viewport_size.x, viewport_size.y]

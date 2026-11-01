@@ -1,0 +1,81 @@
+{
+  "pass": true,
+  "frames": 64,
+  "cell": [
+    64,
+    96
+  ],
+  "sheet": [
+    512,
+    768
+  ],
+  "opaqueColors": 32,
+  "alpha": [
+    0,
+    255
+  ],
+  "pivot": [
+    32,
+    94
+  ],
+  "directions": [
+    {
+      "direction": "S",
+      "uniqueFrames": 8,
+      "durationMs": 958
+    },
+    {
+      "direction": "SO",
+      "uniqueFrames": 8,
+      "durationMs": 1000
+    },
+    {
+      "direction": "O",
+      "uniqueFrames": 8,
+      "durationMs": 1000
+    },
+    {
+      "direction": "NO",
+      "uniqueFrames": 8,
+      "durationMs": 1000
+    },
+    {
+      "direction": "N",
+      "uniqueFrames": 8,
+      "durationMs": 1084
+    },
+    {
+      "direction": "NE",
+      "uniqueFrames": 8,
+      "durationMs": 1210
+    },
+    {
+      "direction": "E",
+      "uniqueFrames": 8,
+      "durationMs": 1168
+    },
+    {
+      "direction": "SE",
+      "uniqueFrames": 8,
+      "durationMs": 1000
+    }
+  ],
+  "exactPNGMatchesProject": true,
+  "separateSheetsReassembleExactly": true,
+  "artStatus": "rascunho para revisão; verificação de pixels não certifica anatomia ou loops perfeitos",
+  "nativeAsepriteRoundTrip": {
+    "pass": true,
+    "frames": 64,
+    "tags": [
+      "walk-S",
+      "walk-SO",
+      "walk-O",
+      "walk-NO",
+      "walk-N",
+      "walk-NE",
+      "walk-E",
+      "walk-SE"
+    ],
+    "exactVisibleRGBA": true
+  }
+}

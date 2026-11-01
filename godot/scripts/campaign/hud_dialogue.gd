@@ -140,7 +140,7 @@ func _rebuild() -> void:
 		var parsed:=Surface.parse_tags(paragraph)
 		var lines:Array[String]=[]
 		var line:=""
-		var width:=maxf(180,box.size.x-64)
+		var width:=maxf(180,box.size.x-2*Surface.side_margin(box.size.y))
 		for word in str(parsed.text).replace("\n"," ").split(" ",false):
 			var candidate:=word if line.is_empty() else line+" "+word
 			if Hud.font().get_string_size(candidate,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x>width and not line.is_empty():lines.append(line);line=word
@@ -181,6 +181,8 @@ func _show_page() -> void:
 	call_deferred("_align_choices")
 func _align_choices() -> void:
 	box.size=Vector2(size.x-box.position.x-32,maxf(180,240*size.y/1080.0))
+	# Containers can grow to a button's minimum width after _rebuild().
+	choices.position.x=size.x-choices.size.x-64
 	choices.position.y=box.position.y-choices.get_combined_minimum_size().y-60
 func next_page() -> void:
 	preload("res://scripts/campaign/sound_director.gd").cue(self, "dialogue.advance")

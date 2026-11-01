@@ -34,14 +34,16 @@ func run_checks() -> void:
 	check(effects.bursts.size() == 3, "simultaneous damage has a bounded visual budget")
 	model.outcome = "won"
 	var before := player.duplicate(true)
-	var summary := Rewards.preview(player, {"kind": "lacertubo"}, model)
-	check(summary.xp == 120 and summary.items == ["Rabiola de Lacertubo"], "boss preview shows native reward")
-	check(summary.tamer.xp==24 and summary.tamer.after==24,"tamer preview follows settlement progression rule")
-	check(summary.team.size()==1 and summary.team[0].earnedXp==120,"team preview credits only actual participant")
+	var boss_reward:=preload("res://scripts/campaign/encounters.gd").reward_amount(true,"park-veredas","lacertubo",8)
+	var encounter:={"kind":"lacertubo","rewardXp":boss_reward}
+	var summary := Rewards.preview(player, encounter, model)
+	check(summary.xp == boss_reward and summary.items == ["Rabiola de Lacertubo"], "boss preview shows native reward")
+	check(summary.tamer.xp==int(boss_reward/5) and summary.tamer.after==int(boss_reward/5),"tamer preview follows settlement progression rule")
+	check(summary.team.size()==1 and summary.team[0].earnedXp==boss_reward,"team preview credits only actual participant")
 	check(player == before, "preview cannot award XP, mutate inventory or save")
-	partner.xp = 25965
-	summary = Rewards.preview(player, {"kind": "lacertubo"}, model)
-	check(summary.xp == 5 and summary.after == 25970, "preview respects level cap credit")
+	partner.xp = Model.xp_for_level(50)-5
+	summary = Rewards.preview(player, encounter, model)
+	check(summary.xp == 5 and summary.after == Model.xp_for_level(50), "preview respects level cap credit")
 	partner.xp = 0
 	model.outcome = "fled"
 	check(Rewards.preview(player, {"kind": "lacertubo"}, model).xp == 0, "flee never presents a reward")
@@ -50,14 +52,14 @@ func run_checks() -> void:
 	check(Rewards.preview(player, {"kind": "morro"}, trail).xp == 20, "Morro loss retains native consolation XP")
 	model.outcome = "won"
 	var card := Card.new()
-	card.summary = Rewards.preview(player, {"kind": "lacertubo"}, model)
+	card.summary = Rewards.preview(player, encounter, model)
 	root.add_child(card)
 	card.advance(.4)
-	check(card.shown > 0 and card.shown < 120, "reward counter progresses between endpoints")
+	check(card.shown > 0 and card.shown < boss_reward, "reward counter progresses between endpoints")
 	card.advance(1)
-	check(card.shown == 120 and card.levels.text.contains("→ 3"), "counter ends at actual XP and crossed level")
+	check(card.shown == boss_reward and card.levels.text.contains("→ 4"), "counter ends at actual XP and crossed level")
 	card.advance(10)
-	check(card.shown == 120, "counter never loops or increases settlement")
+	check(card.shown == boss_reward, "counter never loops or increases settlement")
 	card.free()
 	card = Card.new()
 	card.summary = summary
@@ -67,7 +69,7 @@ func run_checks() -> void:
 	card.free()
 	var prefs := Preferences.new()
 	prefs.reduced_motion = true
-	var path := "user://hud-effects-" + State.new_id() + ".cfg"
+	var path := ProjectSettings.globalize_path("res://../tmp/hud-effects-" + State.new_id() + ".cfg")
 	check(prefs.save_settings(path) == OK, "save isolated motion preference")
 	var loaded := Preferences.new()
 	loaded.load_settings(path)

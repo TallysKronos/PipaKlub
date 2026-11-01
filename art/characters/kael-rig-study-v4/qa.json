@@ -1,0 +1,268 @@
+{
+  "pass": true,
+  "errors": [],
+  "warnings": [
+    "No chão escuro (noite) 98% da borda some; considere um realce de luz na borda.",
+    "Perfil DS: pose base ainda sem revisão visual registrada em 1×.",
+    "walk-E-2: peFrente mudou de posição durante o apoio; confira chão e câmera.",
+    "walk-E-3: peFrente mudou de posição durante o apoio; confira chão e câmera.",
+    "walk-E-4: peTras mudou de posição durante o apoio; confira chão e câmera."
+  ],
+  "style": {
+    "profile": "soulmon-ds-v1",
+    "body": "jovem",
+    "guide": {
+      "top": 8,
+      "chin": 24,
+      "shoulder": 27,
+      "hip": 43,
+      "knee": 52,
+      "base": 61,
+      "pivot": [
+        24,
+        62
+      ],
+      "cx": 24,
+      "height": 54,
+      "head": 17,
+      "heads": 3.2,
+      "shoulderHalf": 12,
+      "colors": 16
+    },
+    "errors": [],
+    "warnings": [
+      "Perfil DS: pose base ainda sem revisão visual registrada em 1×."
+    ],
+    "measures": [
+      {
+        "frame": 0,
+        "name": "walk-E-1",
+        "height": 54,
+        "headHeight": 17,
+        "neckGap": 0
+      },
+      {
+        "frame": 1,
+        "name": "walk-E-2",
+        "height": 55,
+        "headHeight": 17,
+        "neckGap": 0
+      },
+      {
+        "frame": 2,
+        "name": "walk-E-3",
+        "height": 54,
+        "headHeight": 17,
+        "neckGap": 0
+      },
+      {
+        "frame": 3,
+        "name": "walk-E-4",
+        "height": 55,
+        "headHeight": 17,
+        "neckGap": 0
+      }
+    ],
+    "review": {
+      "base": false,
+      "cycle": false
+    },
+    "note": "Guias e medidas não certificam identidade, anatomia nem animação bonita."
+  },
+  "skeleton": {
+    "errors": [],
+    "warnings": [
+      "walk-E-2: peFrente mudou de posição durante o apoio; confira chão e câmera.",
+      "walk-E-3: peFrente mudou de posição durante o apoio; confira chão e câmera.",
+      "walk-E-4: peTras mudou de posição durante o apoio; confira chão e câmera."
+    ],
+    "frames": [
+      {
+        "name": "walk-E-1",
+        "bones": {
+          "pescoco": 16.0312195418814,
+          "queixo": 4.242640687119286,
+          "topo": 16.492422502470642,
+          "ombroTras": 2,
+          "cotoveloTras": 6.708203932499369,
+          "maoTras": 5.385164807134505,
+          "ombroFrente": 3.6055512754639896,
+          "cotoveloFrente": 6.708203932499369,
+          "maoFrente": 6.324555320336759,
+          "joelhoTras": 8.94427190999916,
+          "peTras": 9.486832980505138,
+          "joelhoFrente": 8.94427190999916,
+          "peFrente": 9.486832980505138
+        },
+        "support": [
+          "peTras",
+          "peFrente"
+        ],
+        "anchors": {
+          "cabelo": [
+            25,
+            8
+          ],
+          "gola": [
+            26,
+            27
+          ],
+          "cinto": [
+            25,
+            43
+          ],
+          "acessorioTras": [
+            31,
+            40
+          ],
+          "acessorioFrente": [
+            18,
+            41
+          ]
+        }
+      },
+      {
+        "name": "walk-E-2",
+        "bones": {
+          "pescoco": 16.0312195418814,
+          "queixo": 4.242640687119286,
+          "topo": 16.492422502470642,
+          "ombroTras": 2,
+          "cotoveloTras": 6.324555320336759,
+          "maoTras": 6,
+          "ombroFrente": 3.6055512754639896,
+          "cotoveloFrente": 7,
+          "maoFrente": 6.0827625302982185,
+          "joelhoTras": 9.219544457292887,
+          "peTras": 7.810249675906656,
+          "joelhoFrente": 9,
+          "peFrente": 9
+        },
+        "support": [
+          "peFrente"
+        ],
+        "anchors": {
+          "cabelo": [
+            25,
+            7
+          ],
+          "gola": [
+            26,
+            26
+          ],
+          "cinto": [
+            25,
+            42
+          ],
+          "acessorioTras": [
+            28,
+            40
+          ],
+          "acessorioFrente": [
+            24,
+            41
+          ]
+        }
+      },
+      {
+        "name": "walk-E-3",
+        "bones": {
+          "pescoco": 16.0312195418814,
+          "queixo": 4.242640687119286,
+          "topo": 16.492422502470642,
+          "ombroTras": 2,
+          "cotoveloTras": 6.708203932499369,
+          "maoTras": 6.324555320336759,
+          "ombroFrente": 3.6055512754639896,
+          "cotoveloFrente": 7.211102550927979,
+          "maoFrente": 5.8309518948453,
+          "joelhoTras": 8.94427190999916,
+          "peTras": 9.486832980505138,
+          "joelhoFrente": 8.94427190999916,
+          "peFrente": 9.486832980505138
+        },
+        "support": [
+          "peTras",
+          "peFrente"
+        ],
+        "anchors": {
+          "cabelo": [
+            25,
+            8
+          ],
+          "gola": [
+            26,
+            27
+          ],
+          "cinto": [
+            25,
+            43
+          ],
+          "acessorioTras": [
+            21,
+            41
+          ],
+          "acessorioFrente": [
+            30,
+            40
+          ]
+        }
+      },
+      {
+        "name": "walk-E-4",
+        "bones": {
+          "pescoco": 16.0312195418814,
+          "queixo": 4.242640687119286,
+          "topo": 16.492422502470642,
+          "ombroTras": 2,
+          "cotoveloTras": 6,
+          "maoTras": 6,
+          "ombroFrente": 3.6055512754639896,
+          "cotoveloFrente": 7.0710678118654755,
+          "maoFrente": 6.0827625302982185,
+          "joelhoTras": 9,
+          "peTras": 9,
+          "joelhoFrente": 9.219544457292887,
+          "peFrente": 7.810249675906656
+        },
+        "support": [
+          "peTras"
+        ],
+        "anchors": {
+          "cabelo": [
+            25,
+            7
+          ],
+          "gola": [
+            26,
+            26
+          ],
+          "cinto": [
+            25,
+            42
+          ],
+          "acessorioTras": [
+            26,
+            40
+          ],
+          "acessorioFrente": [
+            25,
+            41
+          ]
+        }
+      }
+    ],
+    "note": "Esqueleto guia a pose; os pixels e as juntas ainda precisam de desenho e revisão em 1×."
+  },
+  "metrics": {
+    "darkEdge": 0.9769357495881383,
+    "grounds": {
+      "grama": 0.013179571663920923,
+      "terra": 0.013179571663920923,
+      "calcada": 0.008237232289950576,
+      "noite": 0.9769357495881383
+    },
+    "confusingNeighbours": 0,
+    "colorsUsed": 14
+  }
+}

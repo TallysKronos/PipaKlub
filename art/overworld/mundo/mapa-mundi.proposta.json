@@ -1,0 +1,1441 @@
+{
+  "estado": "PROPOSTA — AGUARDA APROVAÇÃO",
+  "data": "2026-10-29",
+  "fonte_historia": "origin/claude/historia@18dec6b87808a45ec23853ff4eb526c37a331b9a",
+  "areas": [
+    {
+      "id": "rua-dos-ventos",
+      "nome": "Rua dos Ventos",
+      "trajetoria": "ambas",
+      "bioma": "Bairro inicial",
+      "libera_apos": "primeira criação com Assis",
+      "funcao": "Base de preparação; portas de casa, ateliê e loja",
+      "encontros": "não",
+      "tamanho": "44×33",
+      "estado": "EXISTENTE; papel futuro em proposta",
+      "conecta_com": [
+        "morro-praca-da-chegada",
+        "jardim-das-pipas",
+        "canais-da-argila-eixo",
+        "pedra-bordada-eixo"
+      ]
+    },
+    {
+      "id": "morro-praca-da-chegada",
+      "nome": "Praça da Chegada",
+      "trajetoria": "1",
+      "bioma": "Morro do Sol",
+      "libera_apos": "acesso ao Morro",
+      "funcao": "Entrada do circuito; Zeca",
+      "encontros": "não",
+      "tamanho": "24×16",
+      "estado": "EXISTENTE; papel futuro em proposta",
+      "conecta_com": [
+        "morro-escadaria-da-sombra",
+        "rua-dos-ventos"
+      ]
+    },
+    {
+      "id": "morro-escadaria-da-sombra",
+      "nome": "Escadaria da Sombra",
+      "trajetoria": "1",
+      "bioma": "Morro do Sol",
+      "libera_apos": "acesso ao Morro",
+      "funcao": "Bia; pausa e subida",
+      "encontros": "não",
+      "tamanho": "24×16",
+      "estado": "EXISTENTE; papel futuro em proposta",
+      "conecta_com": [
+        "morro-praca-da-chegada",
+        "morro-laje-dos-ventos"
+      ]
+    },
+    {
+      "id": "morro-laje-dos-ventos",
+      "nome": "Laje dos Ventos",
+      "trajetoria": "1",
+      "bioma": "Morro do Sol",
+      "libera_apos": "acesso ao Morro",
+      "funcao": "Juninho e Lia; treino de leitura do vento",
+      "encontros": "não",
+      "tamanho": "24×16",
+      "estado": "EXISTENTE; papel futuro em proposta",
+      "conecta_com": [
+        "morro-escadaria-da-sombra",
+        "morro-mirante-da-caixa-dagua"
+      ]
+    },
+    {
+      "id": "morro-mirante-da-caixa-dagua",
+      "nome": "Mirante da Caixa-d’água",
+      "trajetoria": "1",
+      "bioma": "Morro do Sol",
+      "libera_apos": "acesso ao Morro",
+      "funcao": "Tião; antecipar visualmente o parque",
+      "encontros": "não",
+      "tamanho": "24×16",
+      "estado": "EXISTENTE; papel futuro em proposta",
+      "conecta_com": [
+        "morro-laje-dos-ventos",
+        "morro-parque-dos-ventos"
+      ]
+    },
+    {
+      "id": "morro-parque-dos-ventos",
+      "nome": "Parque dos Ventos · Morro",
+      "trajetoria": "1",
+      "bioma": "Morro do Sol",
+      "libera_apos": "acesso ao Morro; duelo de Mikka conforme qualificação",
+      "funcao": "Fecho do bairro 1; marco do coreto",
+      "encontros": "não",
+      "tamanho": "24×16",
+      "estado": "EXISTENTE; papel futuro em proposta",
+      "conecta_com": [
+        "morro-mirante-da-caixa-dagua",
+        "beira-mar-eixo"
+      ]
+    },
+    {
+      "id": "jardim-das-pipas",
+      "nome": "Jardim das Pipas",
+      "trajetoria": "ambas",
+      "bioma": "Parque dos Ventos",
+      "libera_apos": "início da missão de Nina; sem exigir três bairros",
+      "funcao": "Ouvir Nina, estabelecer o vínculo com Carcará e seguir rastros",
+      "encontros": "sim, somente no mato",
+      "tamanho": "60×44",
+      "estado": "EXISTENTE; papel futuro em proposta",
+      "conecta_com": [
+        "rua-dos-ventos",
+        "clareira-do-papel"
+      ]
+    },
+    {
+      "id": "clareira-do-papel",
+      "nome": "Clareira do Papel",
+      "trajetoria": "ambas",
+      "bioma": "Parque dos Ventos",
+      "libera_apos": "seguir a busca de Nina",
+      "funcao": "Escolha entre trilha segura e exploração; descanso antes das Veredas",
+      "encontros": "sim, somente no mato",
+      "tamanho": "64×48",
+      "estado": "EXISTENTE; papel futuro em proposta",
+      "conecta_com": [
+        "jardim-das-pipas",
+        "veredas-do-encanamento"
+      ]
+    },
+    {
+      "id": "veredas-do-encanamento",
+      "nome": "Veredas do Encanamento",
+      "trajetoria": "ambas",
+      "bioma": "Vereda e arenito",
+      "libera_apos": "busca de Nina; acesso profundo separado após bairro 3",
+      "funcao": "Lacertubo, recuperação de Carcará e primeira entrada vedada das Ruínas",
+      "encontros": "sim, somente no mato",
+      "tamanho": "64×48",
+      "estado": "EXISTENTE; papel futuro em proposta",
+      "conecta_com": [
+        "clareira-do-papel",
+        "galeria-dos-apitos"
+      ]
+    },
+    {
+      "id": "beira-mar-eixo",
+      "nome": "Beira-Mar · eixo central",
+      "trajetoria": "ambas",
+      "bioma": "Cais, restinga e vila de pescadores",
+      "libera_apos": "vitória permanente no bairro 1",
+      "funcao": "Entrada segura, descanso e primeiro capanga; marco: Farol baixo",
+      "encontros": "não",
+      "tamanho": "40×32",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "morro-parque-dos-ventos",
+        "beira-mar-ruas",
+        "beira-mar-travessia"
+      ]
+    },
+    {
+      "id": "beira-mar-ruas",
+      "nome": "Beira-Mar · ruas",
+      "trajetoria": "1",
+      "bioma": "Cais, restinga e vila de pescadores",
+      "libera_apos": "vitória permanente no bairro 1",
+      "funcao": "Outros três capangas, laço opcional com baú e retorno curto ao eixo",
+      "encontros": "não",
+      "tamanho": "48×40",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "beira-mar-eixo",
+        "beira-mar-arena"
+      ]
+    },
+    {
+      "id": "beira-mar-arena",
+      "nome": "Beira-Mar · arena",
+      "trajetoria": "1",
+      "bioma": "Cais, restinga e vila de pescadores",
+      "libera_apos": "vitória permanente no bairro 1; desafio do campeão após quatro qualificações",
+      "funcao": "Campeão ainda sem nome aprovado; arena no ponto simbólico",
+      "encontros": "não",
+      "tamanho": "32×28",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "beira-mar-ruas"
+      ]
+    },
+    {
+      "id": "beira-mar-travessia",
+      "nome": "Beira-Mar · travessia natural",
+      "trajetoria": "ambas",
+      "bioma": "Cais, restinga e vila de pescadores",
+      "libera_apos": "vitória no bairro 2; retorno preservado após abertura",
+      "funcao": "Ligação ao próximo bairro, mato contornável e atalho de retorno",
+      "encontros": "sim, somente no mato",
+      "tamanho": "48×36",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "beira-mar-eixo",
+        "campanarios-eixo"
+      ]
+    },
+    {
+      "id": "campanarios-eixo",
+      "nome": "Campanários · eixo central",
+      "trajetoria": "ambas",
+      "bioma": "Colina histórica e jardins de igreja",
+      "libera_apos": "vitória permanente no bairro 2",
+      "funcao": "Entrada segura, descanso e primeiro capanga; marco: Torre dos sinos",
+      "encontros": "não",
+      "tamanho": "40×32",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "beira-mar-travessia",
+        "campanarios-ruas",
+        "campanarios-travessia"
+      ]
+    },
+    {
+      "id": "campanarios-ruas",
+      "nome": "Campanários · ruas",
+      "trajetoria": "1",
+      "bioma": "Colina histórica e jardins de igreja",
+      "libera_apos": "vitória permanente no bairro 2",
+      "funcao": "Outros três capangas, laço opcional com baú e retorno curto ao eixo",
+      "encontros": "não",
+      "tamanho": "48×40",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "campanarios-eixo",
+        "campanarios-arena"
+      ]
+    },
+    {
+      "id": "campanarios-arena",
+      "nome": "Campanários · arena",
+      "trajetoria": "1",
+      "bioma": "Colina histórica e jardins de igreja",
+      "libera_apos": "vitória permanente no bairro 2; desafio do campeão após quatro qualificações",
+      "funcao": "Campeão ainda sem nome aprovado; arena no ponto simbólico",
+      "encontros": "não",
+      "tamanho": "32×28",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "campanarios-ruas"
+      ]
+    },
+    {
+      "id": "campanarios-travessia",
+      "nome": "Campanários · travessia natural",
+      "trajetoria": "ambas",
+      "bioma": "Colina histórica e jardins de igreja",
+      "libera_apos": "vitória no bairro 3; retorno preservado após abertura",
+      "funcao": "Ligação ao próximo bairro, mato contornável e atalho de retorno",
+      "encontros": "sim, somente no mato",
+      "tamanho": "48×36",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "campanarios-eixo",
+        "feira-das-fitas-eixo"
+      ]
+    },
+    {
+      "id": "feira-das-fitas-eixo",
+      "nome": "Feira das Fitas · eixo central",
+      "trajetoria": "ambas",
+      "bioma": "Mercado aberto e pomares de quintal",
+      "libera_apos": "vitória permanente no bairro 3",
+      "funcao": "Entrada segura, descanso e primeiro capanga; marco: Cobertura de feira",
+      "encontros": "não",
+      "tamanho": "40×32",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "campanarios-travessia",
+        "feira-das-fitas-ruas",
+        "feira-das-fitas-travessia"
+      ]
+    },
+    {
+      "id": "feira-das-fitas-ruas",
+      "nome": "Feira das Fitas · ruas",
+      "trajetoria": "1",
+      "bioma": "Mercado aberto e pomares de quintal",
+      "libera_apos": "vitória permanente no bairro 3",
+      "funcao": "Outros três capangas, laço opcional com baú e retorno curto ao eixo",
+      "encontros": "não",
+      "tamanho": "48×40",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "feira-das-fitas-eixo",
+        "feira-das-fitas-arena"
+      ]
+    },
+    {
+      "id": "feira-das-fitas-arena",
+      "nome": "Feira das Fitas · arena",
+      "trajetoria": "1",
+      "bioma": "Mercado aberto e pomares de quintal",
+      "libera_apos": "vitória permanente no bairro 3; desafio do campeão após quatro qualificações",
+      "funcao": "Campeão ainda sem nome aprovado; arena no ponto simbólico",
+      "encontros": "não",
+      "tamanho": "32×28",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "feira-das-fitas-ruas"
+      ]
+    },
+    {
+      "id": "feira-das-fitas-travessia",
+      "nome": "Feira das Fitas · travessia natural",
+      "trajetoria": "ambas",
+      "bioma": "Mercado aberto e pomares de quintal",
+      "libera_apos": "vitória no bairro 4; retorno preservado após abertura",
+      "funcao": "Ligação ao próximo bairro, mato contornável e atalho de retorno",
+      "encontros": "sim, somente no mato",
+      "tamanho": "48×36",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "feira-das-fitas-eixo",
+        "vila-das-oficinas-eixo"
+      ]
+    },
+    {
+      "id": "vila-das-oficinas-eixo",
+      "nome": "Vila das Oficinas · eixo central",
+      "trajetoria": "ambas",
+      "bioma": "Vila operária e galpões artesanais",
+      "libera_apos": "vitória permanente no bairro 4",
+      "funcao": "Entrada segura, descanso e primeiro capanga; marco: Chaminé desativada",
+      "encontros": "não",
+      "tamanho": "40×32",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "feira-das-fitas-travessia",
+        "vila-das-oficinas-ruas",
+        "vila-das-oficinas-travessia"
+      ]
+    },
+    {
+      "id": "vila-das-oficinas-ruas",
+      "nome": "Vila das Oficinas · ruas",
+      "trajetoria": "1",
+      "bioma": "Vila operária e galpões artesanais",
+      "libera_apos": "vitória permanente no bairro 4",
+      "funcao": "Outros três capangas, laço opcional com baú e retorno curto ao eixo",
+      "encontros": "não",
+      "tamanho": "48×40",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "vila-das-oficinas-eixo",
+        "vila-das-oficinas-arena"
+      ]
+    },
+    {
+      "id": "vila-das-oficinas-arena",
+      "nome": "Vila das Oficinas · arena",
+      "trajetoria": "1",
+      "bioma": "Vila operária e galpões artesanais",
+      "libera_apos": "vitória permanente no bairro 4; desafio do campeão após quatro qualificações",
+      "funcao": "Campeão ainda sem nome aprovado; arena no ponto simbólico",
+      "encontros": "não",
+      "tamanho": "32×28",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "vila-das-oficinas-ruas"
+      ]
+    },
+    {
+      "id": "vila-das-oficinas-travessia",
+      "nome": "Vila das Oficinas · travessia natural",
+      "trajetoria": "ambas",
+      "bioma": "Vila operária e galpões artesanais",
+      "libera_apos": "vitória no bairro 5; retorno preservado após abertura",
+      "funcao": "Ligação ao próximo bairro, mato contornável e atalho de retorno",
+      "encontros": "sim, somente no mato",
+      "tamanho": "48×36",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "vila-das-oficinas-eixo",
+        "canais-da-argila-eixo"
+      ]
+    },
+    {
+      "id": "canais-da-argila-eixo",
+      "nome": "Canais da Argila · eixo central",
+      "trajetoria": "ambas",
+      "bioma": "Olarias e canais rasos de barro",
+      "libera_apos": "vitória permanente no bairro 5",
+      "funcao": "Entrada segura, descanso e primeiro capanga; marco: Roda de água",
+      "encontros": "não",
+      "tamanho": "40×32",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "vila-das-oficinas-travessia",
+        "canais-da-argila-ruas",
+        "canais-da-argila-travessia",
+        "rua-dos-ventos"
+      ]
+    },
+    {
+      "id": "canais-da-argila-ruas",
+      "nome": "Canais da Argila · ruas",
+      "trajetoria": "1",
+      "bioma": "Olarias e canais rasos de barro",
+      "libera_apos": "vitória permanente no bairro 5",
+      "funcao": "Outros três capangas, laço opcional com baú e retorno curto ao eixo",
+      "encontros": "não",
+      "tamanho": "48×40",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "canais-da-argila-eixo",
+        "canais-da-argila-arena"
+      ]
+    },
+    {
+      "id": "canais-da-argila-arena",
+      "nome": "Canais da Argila · arena",
+      "trajetoria": "1",
+      "bioma": "Olarias e canais rasos de barro",
+      "libera_apos": "vitória permanente no bairro 5; desafio do campeão após quatro qualificações",
+      "funcao": "Campeão ainda sem nome aprovado; arena no ponto simbólico",
+      "encontros": "não",
+      "tamanho": "32×28",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "canais-da-argila-ruas"
+      ]
+    },
+    {
+      "id": "canais-da-argila-travessia",
+      "nome": "Canais da Argila · travessia natural",
+      "trajetoria": "ambas",
+      "bioma": "Olarias e canais rasos de barro",
+      "libera_apos": "vitória no bairro 6; retorno preservado após abertura",
+      "funcao": "Ligação ao próximo bairro, mato contornável e atalho de retorno",
+      "encontros": "sim, somente no mato",
+      "tamanho": "48×36",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "canais-da-argila-eixo",
+        "lagoa-do-junco-eixo"
+      ]
+    },
+    {
+      "id": "lagoa-do-junco-eixo",
+      "nome": "Lagoa do Junco · eixo central",
+      "trajetoria": "ambas",
+      "bioma": "Lagoa e palafitas baixas",
+      "libera_apos": "vitória permanente no bairro 6",
+      "funcao": "Entrada segura, descanso e primeiro capanga; marco: Passarela da lagoa",
+      "encontros": "não",
+      "tamanho": "40×32",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "canais-da-argila-travessia",
+        "lagoa-do-junco-ruas",
+        "lagoa-do-junco-travessia"
+      ]
+    },
+    {
+      "id": "lagoa-do-junco-ruas",
+      "nome": "Lagoa do Junco · ruas",
+      "trajetoria": "1",
+      "bioma": "Lagoa e palafitas baixas",
+      "libera_apos": "vitória permanente no bairro 6",
+      "funcao": "Outros três capangas, laço opcional com baú e retorno curto ao eixo",
+      "encontros": "não",
+      "tamanho": "48×40",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "lagoa-do-junco-eixo",
+        "lagoa-do-junco-arena"
+      ]
+    },
+    {
+      "id": "lagoa-do-junco-arena",
+      "nome": "Lagoa do Junco · arena",
+      "trajetoria": "1",
+      "bioma": "Lagoa e palafitas baixas",
+      "libera_apos": "vitória permanente no bairro 6; desafio do campeão após quatro qualificações",
+      "funcao": "Campeão ainda sem nome aprovado; arena no ponto simbólico",
+      "encontros": "não",
+      "tamanho": "32×28",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "lagoa-do-junco-ruas"
+      ]
+    },
+    {
+      "id": "lagoa-do-junco-travessia",
+      "nome": "Lagoa do Junco · travessia natural",
+      "trajetoria": "ambas",
+      "bioma": "Lagoa e palafitas baixas",
+      "libera_apos": "vitória no bairro 7; retorno preservado após abertura",
+      "funcao": "Ligação ao próximo bairro, mato contornável e atalho de retorno",
+      "encontros": "sim, somente no mato",
+      "tamanho": "48×36",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "lagoa-do-junco-eixo",
+        "serra-do-apito-eixo"
+      ]
+    },
+    {
+      "id": "serra-do-apito-eixo",
+      "nome": "Serra do Apito · eixo central",
+      "trajetoria": "ambas",
+      "bioma": "Serra de mata atlântica e nascentes",
+      "libera_apos": "vitória permanente no bairro 7",
+      "funcao": "Entrada segura, descanso e primeiro capanga; marco: Pedra assobiadora",
+      "encontros": "não",
+      "tamanho": "40×32",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "lagoa-do-junco-travessia",
+        "serra-do-apito-ruas",
+        "serra-do-apito-travessia"
+      ]
+    },
+    {
+      "id": "serra-do-apito-ruas",
+      "nome": "Serra do Apito · ruas",
+      "trajetoria": "1",
+      "bioma": "Serra de mata atlântica e nascentes",
+      "libera_apos": "vitória permanente no bairro 7",
+      "funcao": "Outros três capangas, laço opcional com baú e retorno curto ao eixo",
+      "encontros": "não",
+      "tamanho": "48×40",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "serra-do-apito-eixo",
+        "serra-do-apito-arena"
+      ]
+    },
+    {
+      "id": "serra-do-apito-arena",
+      "nome": "Serra do Apito · arena",
+      "trajetoria": "1",
+      "bioma": "Serra de mata atlântica e nascentes",
+      "libera_apos": "vitória permanente no bairro 7; desafio do campeão após quatro qualificações",
+      "funcao": "Campeão ainda sem nome aprovado; arena no ponto simbólico",
+      "encontros": "não",
+      "tamanho": "32×28",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "serra-do-apito-ruas"
+      ]
+    },
+    {
+      "id": "serra-do-apito-travessia",
+      "nome": "Serra do Apito · travessia natural",
+      "trajetoria": "ambas",
+      "bioma": "Serra de mata atlântica e nascentes",
+      "libera_apos": "vitória no bairro 8; retorno preservado após abertura",
+      "funcao": "Ligação ao próximo bairro, mato contornável e atalho de retorno",
+      "encontros": "sim, somente no mato",
+      "tamanho": "48×36",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "serra-do-apito-eixo",
+        "buritizal-eixo"
+      ]
+    },
+    {
+      "id": "buritizal-eixo",
+      "nome": "Buritizal · eixo central",
+      "trajetoria": "ambas",
+      "bioma": "Cerrado e vereda de buritis",
+      "libera_apos": "vitória permanente no bairro 8",
+      "funcao": "Entrada segura, descanso e primeiro capanga; marco: Buriti solitário",
+      "encontros": "não",
+      "tamanho": "40×32",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "serra-do-apito-travessia",
+        "buritizal-ruas",
+        "buritizal-travessia"
+      ]
+    },
+    {
+      "id": "buritizal-ruas",
+      "nome": "Buritizal · ruas",
+      "trajetoria": "1",
+      "bioma": "Cerrado e vereda de buritis",
+      "libera_apos": "vitória permanente no bairro 8",
+      "funcao": "Outros três capangas, laço opcional com baú e retorno curto ao eixo",
+      "encontros": "não",
+      "tamanho": "48×40",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "buritizal-eixo",
+        "buritizal-arena"
+      ]
+    },
+    {
+      "id": "buritizal-arena",
+      "nome": "Buritizal · arena",
+      "trajetoria": "1",
+      "bioma": "Cerrado e vereda de buritis",
+      "libera_apos": "vitória permanente no bairro 8; desafio do campeão após quatro qualificações",
+      "funcao": "Campeão ainda sem nome aprovado; arena no ponto simbólico",
+      "encontros": "não",
+      "tamanho": "32×28",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "buritizal-ruas"
+      ]
+    },
+    {
+      "id": "buritizal-travessia",
+      "nome": "Buritizal · travessia natural",
+      "trajetoria": "ambas",
+      "bioma": "Cerrado e vereda de buritis",
+      "libera_apos": "vitória no bairro 9; retorno preservado após abertura",
+      "funcao": "Ligação ao próximo bairro, mato contornável e atalho de retorno",
+      "encontros": "sim, somente no mato",
+      "tamanho": "48×36",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "buritizal-eixo",
+        "pedra-bordada-eixo"
+      ]
+    },
+    {
+      "id": "pedra-bordada-eixo",
+      "nome": "Pedra Bordada · eixo central",
+      "trajetoria": "ambas",
+      "bioma": "Escarpa de arenito e casario de bordadeiras",
+      "libera_apos": "vitória permanente no bairro 9",
+      "funcao": "Entrada segura, descanso e primeiro capanga; marco: Arco de arenito",
+      "encontros": "não",
+      "tamanho": "40×32",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "buritizal-travessia",
+        "pedra-bordada-ruas",
+        "pedra-bordada-travessia",
+        "rua-dos-ventos"
+      ]
+    },
+    {
+      "id": "pedra-bordada-ruas",
+      "nome": "Pedra Bordada · ruas",
+      "trajetoria": "1",
+      "bioma": "Escarpa de arenito e casario de bordadeiras",
+      "libera_apos": "vitória permanente no bairro 9",
+      "funcao": "Outros três capangas, laço opcional com baú e retorno curto ao eixo",
+      "encontros": "não",
+      "tamanho": "48×40",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "pedra-bordada-eixo",
+        "pedra-bordada-arena"
+      ]
+    },
+    {
+      "id": "pedra-bordada-arena",
+      "nome": "Pedra Bordada · arena",
+      "trajetoria": "1",
+      "bioma": "Escarpa de arenito e casario de bordadeiras",
+      "libera_apos": "vitória permanente no bairro 9; desafio do campeão após quatro qualificações",
+      "funcao": "Campeão ainda sem nome aprovado; arena no ponto simbólico",
+      "encontros": "não",
+      "tamanho": "32×28",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "pedra-bordada-ruas"
+      ]
+    },
+    {
+      "id": "pedra-bordada-travessia",
+      "nome": "Pedra Bordada · travessia natural",
+      "trajetoria": "ambas",
+      "bioma": "Escarpa de arenito e casario de bordadeiras",
+      "libera_apos": "vitória no bairro 10; retorno preservado após abertura",
+      "funcao": "Ligação ao próximo bairro, mato contornável e atalho de retorno",
+      "encontros": "sim, somente no mato",
+      "tamanho": "48×36",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "pedra-bordada-eixo",
+        "alto-dos-varais-eixo"
+      ]
+    },
+    {
+      "id": "alto-dos-varais-eixo",
+      "nome": "Alto dos Varais · eixo central",
+      "trajetoria": "ambas",
+      "bioma": "Morro urbano denso e lajes comunitárias",
+      "libera_apos": "vitória permanente no bairro 10",
+      "funcao": "Entrada segura, descanso e primeiro capanga; marco: Reservatório pintado",
+      "encontros": "não",
+      "tamanho": "40×32",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "pedra-bordada-travessia",
+        "alto-dos-varais-ruas",
+        "alto-dos-varais-travessia",
+        "caminho-dos-canais-antigos"
+      ]
+    },
+    {
+      "id": "alto-dos-varais-ruas",
+      "nome": "Alto dos Varais · ruas",
+      "trajetoria": "1",
+      "bioma": "Morro urbano denso e lajes comunitárias",
+      "libera_apos": "vitória permanente no bairro 10",
+      "funcao": "Outros três capangas, laço opcional com baú e retorno curto ao eixo",
+      "encontros": "não",
+      "tamanho": "48×40",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "alto-dos-varais-eixo",
+        "alto-dos-varais-arena"
+      ]
+    },
+    {
+      "id": "alto-dos-varais-arena",
+      "nome": "Alto dos Varais · arena",
+      "trajetoria": "1",
+      "bioma": "Morro urbano denso e lajes comunitárias",
+      "libera_apos": "vitória permanente no bairro 10; desafio do campeão após quatro qualificações",
+      "funcao": "Campeão ainda sem nome aprovado; arena no ponto simbólico",
+      "encontros": "não",
+      "tamanho": "32×28",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "alto-dos-varais-ruas"
+      ]
+    },
+    {
+      "id": "alto-dos-varais-travessia",
+      "nome": "Alto dos Varais · travessia natural",
+      "trajetoria": "ambas",
+      "bioma": "Morro urbano denso e lajes comunitárias",
+      "libera_apos": "vitória no bairro 11; retorno preservado após abertura",
+      "funcao": "Ligação ao próximo bairro, mato contornável e atalho de retorno",
+      "encontros": "sim, somente no mato",
+      "tamanho": "48×36",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "alto-dos-varais-eixo",
+        "nascente-do-vento-eixo"
+      ]
+    },
+    {
+      "id": "nascente-do-vento-eixo",
+      "nome": "Nascente do Vento · eixo central",
+      "trajetoria": "ambas",
+      "bioma": "Cabeceira do rio e campo de altitude",
+      "libera_apos": "vitória permanente no bairro 11",
+      "funcao": "Entrada segura, descanso e primeiro capanga; marco: Crista do Primeiro Vento",
+      "encontros": "não",
+      "tamanho": "40×32",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "alto-dos-varais-travessia",
+        "nascente-do-vento-ruas",
+        "nascente-do-vento-travessia",
+        "estadio-do-championship"
+      ]
+    },
+    {
+      "id": "nascente-do-vento-ruas",
+      "nome": "Nascente do Vento · ruas",
+      "trajetoria": "1",
+      "bioma": "Cabeceira do rio e campo de altitude",
+      "libera_apos": "vitória permanente no bairro 11",
+      "funcao": "Outros três capangas, laço opcional com baú e retorno curto ao eixo",
+      "encontros": "não",
+      "tamanho": "48×40",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "nascente-do-vento-eixo",
+        "nascente-do-vento-arena"
+      ]
+    },
+    {
+      "id": "nascente-do-vento-arena",
+      "nome": "Nascente do Vento · arena",
+      "trajetoria": "1",
+      "bioma": "Cabeceira do rio e campo de altitude",
+      "libera_apos": "vitória permanente no bairro 11; desafio do campeão após quatro qualificações",
+      "funcao": "Campeão ainda sem nome aprovado; arena no ponto simbólico",
+      "encontros": "não",
+      "tamanho": "32×28",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "nascente-do-vento-ruas"
+      ]
+    },
+    {
+      "id": "nascente-do-vento-travessia",
+      "nome": "Nascente do Vento · travessia natural",
+      "trajetoria": "ambas",
+      "bioma": "Cabeceira do rio e campo de altitude",
+      "libera_apos": "vitória no bairro 12; retorno preservado após abertura",
+      "funcao": "Ligação ao próximo bairro, mato contornável e atalho de retorno",
+      "encontros": "sim, somente no mato",
+      "tamanho": "48×36",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "nascente-do-vento-eixo",
+        "santuario-do-lendario"
+      ]
+    },
+    {
+      "id": "galeria-dos-apitos",
+      "nome": "Galeria dos Apitos",
+      "trajetoria": "2",
+      "bioma": "Ruínas rasas de arenito",
+      "libera_apos": "bairro 3 + missão inicial de Nina concluída",
+      "funcao": "Investigar danos além do pátio; Grampo evidencia o contraste entre preservar e arrancar",
+      "encontros": "sim, somente no mato exterior",
+      "tamanho": "40×32",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "veredas-do-encanamento",
+        "caverna-do-mural"
+      ]
+    },
+    {
+      "id": "caverna-do-mural",
+      "nome": "Caverna do Mural",
+      "trajetoria": "2",
+      "bioma": "Caverna de arenito e canais",
+      "libera_apos": "bairro 4; acesso pela galeria",
+      "funcao": "Tyler mostra o primeiro laço; reação da Rabiola Antiga, sem explicar o Elo",
+      "encontros": "não; conflito roteirizado separado",
+      "tamanho": "48×40",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "galeria-dos-apitos",
+        "caminho-dos-canais-antigos"
+      ]
+    },
+    {
+      "id": "caminho-dos-canais-antigos",
+      "nome": "Caminho dos Canais Antigos",
+      "trajetoria": "2",
+      "bioma": "Ruínas e nascente",
+      "libera_apos": "bairro 11",
+      "funcao": "Preparação, descanso e vista do coração; equipamento arrancado antecipa ocupação",
+      "encontros": "sim, somente no mato",
+      "tamanho": "48×36",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "caverna-do-mural",
+        "coracao-das-ruinas",
+        "alto-dos-varais-eixo"
+      ]
+    },
+    {
+      "id": "coracao-das-ruinas",
+      "nome": "Coração das Ruínas",
+      "trajetoria": "2",
+      "bioma": "Canais, arenito e câmara do ovo",
+      "libera_apos": "bairro 11 para investigar; Rato só após bairro 12",
+      "funcao": "Bando invade; união da família; confronto com Rato respeita a ordem final",
+      "encontros": "não; confrontos roteirizados",
+      "tamanho": "64×56",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "caminho-dos-canais-antigos",
+        "santuario-do-lendario"
+      ]
+    },
+    {
+      "id": "santuario-do-lendario",
+      "nome": "Santuário do Lendário",
+      "trajetoria": "ambas",
+      "bioma": "Ruína aberta e cabeceira de rio",
+      "libera_apos": "12 bairros + Rato derrotado",
+      "funcao": "Teste do lendário; identidade e espécie não definidas",
+      "encontros": "não; duelo do lendário",
+      "tamanho": "48×40",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "coracao-das-ruinas",
+        "nascente-do-vento-travessia"
+      ]
+    },
+    {
+      "id": "estadio-do-championship",
+      "nome": "Estádio do Championship",
+      "trajetoria": "1",
+      "bioma": "Equipamento público e praça de acesso",
+      "libera_apos": "12 bairros + Rato + lendário, nessa ordem",
+      "funcao": "Final com Jamile; arquibancada reúne família, professor e Tyler",
+      "encontros": "não",
+      "tamanho": "64×48",
+      "estado": "PROPOSTA",
+      "conecta_com": [
+        "nascente-do-vento-eixo"
+      ]
+    }
+  ],
+  "conexoes": [
+    {
+      "de": "morro-praca-da-chegada",
+      "para": "morro-escadaria-da-sombra",
+      "condicao": "livre após acesso às duas áreas",
+      "estado": "SAÍDAS TMJ NOS DOIS SENTIDOS",
+      "bidirecional": true
+    },
+    {
+      "de": "morro-escadaria-da-sombra",
+      "para": "morro-laje-dos-ventos",
+      "condicao": "livre após acesso às duas áreas",
+      "estado": "SAÍDAS TMJ NOS DOIS SENTIDOS",
+      "bidirecional": true
+    },
+    {
+      "de": "morro-laje-dos-ventos",
+      "para": "morro-mirante-da-caixa-dagua",
+      "condicao": "livre após acesso às duas áreas",
+      "estado": "SAÍDAS TMJ NOS DOIS SENTIDOS",
+      "bidirecional": true
+    },
+    {
+      "de": "morro-mirante-da-caixa-dagua",
+      "para": "morro-parque-dos-ventos",
+      "condicao": "livre após acesso às duas áreas",
+      "estado": "SAÍDAS TMJ NOS DOIS SENTIDOS",
+      "bidirecional": true
+    },
+    {
+      "de": "rua-dos-ventos",
+      "para": "morro-praca-da-chegada",
+      "condicao": "conexão via cidade; falta saída direta na Rua",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "rua-dos-ventos",
+      "para": "jardim-das-pipas",
+      "condicao": "missão de Nina; retorno TMJ ao quintal existe, ida ainda depende do jogo",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "jardim-das-pipas",
+      "para": "clareira-do-papel",
+      "condicao": "livre após acesso às duas áreas",
+      "estado": "SAÍDAS TMJ NOS DOIS SENTIDOS",
+      "bidirecional": true
+    },
+    {
+      "de": "clareira-do-papel",
+      "para": "veredas-do-encanamento",
+      "condicao": "livre após acesso às duas áreas",
+      "estado": "SAÍDAS TMJ NOS DOIS SENTIDOS",
+      "bidirecional": true
+    },
+    {
+      "de": "morro-parque-dos-ventos",
+      "para": "beira-mar-eixo",
+      "condicao": "vitória permanente no bairro 1",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "beira-mar-eixo",
+      "para": "beira-mar-ruas",
+      "condicao": "livre após acesso às duas áreas",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "beira-mar-ruas",
+      "para": "beira-mar-arena",
+      "condicao": "duelo exige quatro qualificações; passeio não concede vitória",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "beira-mar-eixo",
+      "para": "beira-mar-travessia",
+      "condicao": "vitória no bairro 2",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "beira-mar-travessia",
+      "para": "campanarios-eixo",
+      "condicao": "vitória permanente no bairro 2",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "campanarios-eixo",
+      "para": "campanarios-ruas",
+      "condicao": "livre após acesso às duas áreas",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "campanarios-ruas",
+      "para": "campanarios-arena",
+      "condicao": "duelo exige quatro qualificações; passeio não concede vitória",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "campanarios-eixo",
+      "para": "campanarios-travessia",
+      "condicao": "vitória no bairro 3",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "campanarios-travessia",
+      "para": "feira-das-fitas-eixo",
+      "condicao": "vitória permanente no bairro 3",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "feira-das-fitas-eixo",
+      "para": "feira-das-fitas-ruas",
+      "condicao": "livre após acesso às duas áreas",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "feira-das-fitas-ruas",
+      "para": "feira-das-fitas-arena",
+      "condicao": "duelo exige quatro qualificações; passeio não concede vitória",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "feira-das-fitas-eixo",
+      "para": "feira-das-fitas-travessia",
+      "condicao": "vitória no bairro 4",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "feira-das-fitas-travessia",
+      "para": "vila-das-oficinas-eixo",
+      "condicao": "vitória permanente no bairro 4",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "vila-das-oficinas-eixo",
+      "para": "vila-das-oficinas-ruas",
+      "condicao": "livre após acesso às duas áreas",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "vila-das-oficinas-ruas",
+      "para": "vila-das-oficinas-arena",
+      "condicao": "duelo exige quatro qualificações; passeio não concede vitória",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "vila-das-oficinas-eixo",
+      "para": "vila-das-oficinas-travessia",
+      "condicao": "vitória no bairro 5",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "vila-das-oficinas-travessia",
+      "para": "canais-da-argila-eixo",
+      "condicao": "vitória permanente no bairro 5",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "canais-da-argila-eixo",
+      "para": "canais-da-argila-ruas",
+      "condicao": "livre após acesso às duas áreas",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "canais-da-argila-ruas",
+      "para": "canais-da-argila-arena",
+      "condicao": "duelo exige quatro qualificações; passeio não concede vitória",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "canais-da-argila-eixo",
+      "para": "canais-da-argila-travessia",
+      "condicao": "vitória no bairro 6",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "canais-da-argila-travessia",
+      "para": "lagoa-do-junco-eixo",
+      "condicao": "vitória permanente no bairro 6",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "lagoa-do-junco-eixo",
+      "para": "lagoa-do-junco-ruas",
+      "condicao": "livre após acesso às duas áreas",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "lagoa-do-junco-ruas",
+      "para": "lagoa-do-junco-arena",
+      "condicao": "duelo exige quatro qualificações; passeio não concede vitória",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "lagoa-do-junco-eixo",
+      "para": "lagoa-do-junco-travessia",
+      "condicao": "vitória no bairro 7",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "lagoa-do-junco-travessia",
+      "para": "serra-do-apito-eixo",
+      "condicao": "vitória permanente no bairro 7",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "serra-do-apito-eixo",
+      "para": "serra-do-apito-ruas",
+      "condicao": "livre após acesso às duas áreas",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "serra-do-apito-ruas",
+      "para": "serra-do-apito-arena",
+      "condicao": "duelo exige quatro qualificações; passeio não concede vitória",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "serra-do-apito-eixo",
+      "para": "serra-do-apito-travessia",
+      "condicao": "vitória no bairro 8",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "serra-do-apito-travessia",
+      "para": "buritizal-eixo",
+      "condicao": "vitória permanente no bairro 8",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "buritizal-eixo",
+      "para": "buritizal-ruas",
+      "condicao": "livre após acesso às duas áreas",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "buritizal-ruas",
+      "para": "buritizal-arena",
+      "condicao": "duelo exige quatro qualificações; passeio não concede vitória",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "buritizal-eixo",
+      "para": "buritizal-travessia",
+      "condicao": "vitória no bairro 9",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "buritizal-travessia",
+      "para": "pedra-bordada-eixo",
+      "condicao": "vitória permanente no bairro 9",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "pedra-bordada-eixo",
+      "para": "pedra-bordada-ruas",
+      "condicao": "livre após acesso às duas áreas",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "pedra-bordada-ruas",
+      "para": "pedra-bordada-arena",
+      "condicao": "duelo exige quatro qualificações; passeio não concede vitória",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "pedra-bordada-eixo",
+      "para": "pedra-bordada-travessia",
+      "condicao": "vitória no bairro 10",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "pedra-bordada-travessia",
+      "para": "alto-dos-varais-eixo",
+      "condicao": "vitória permanente no bairro 10",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "alto-dos-varais-eixo",
+      "para": "alto-dos-varais-ruas",
+      "condicao": "livre após acesso às duas áreas",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "alto-dos-varais-ruas",
+      "para": "alto-dos-varais-arena",
+      "condicao": "duelo exige quatro qualificações; passeio não concede vitória",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "alto-dos-varais-eixo",
+      "para": "alto-dos-varais-travessia",
+      "condicao": "vitória no bairro 11",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "alto-dos-varais-travessia",
+      "para": "nascente-do-vento-eixo",
+      "condicao": "vitória permanente no bairro 11",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "nascente-do-vento-eixo",
+      "para": "nascente-do-vento-ruas",
+      "condicao": "livre após acesso às duas áreas",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "nascente-do-vento-ruas",
+      "para": "nascente-do-vento-arena",
+      "condicao": "duelo exige quatro qualificações; passeio não concede vitória",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "nascente-do-vento-eixo",
+      "para": "nascente-do-vento-travessia",
+      "condicao": "vitória no bairro 12",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "veredas-do-encanamento",
+      "para": "galeria-dos-apitos",
+      "condicao": "bairro 3 + missão de Nina concluída",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "galeria-dos-apitos",
+      "para": "caverna-do-mural",
+      "condicao": "bairro 4",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "caverna-do-mural",
+      "para": "caminho-dos-canais-antigos",
+      "condicao": "bairro 11; passagem antes visível, fechada",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "caminho-dos-canais-antigos",
+      "para": "coracao-das-ruinas",
+      "condicao": "bairro 11; Rato exige bairro 12",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "alto-dos-varais-eixo",
+      "para": "caminho-dos-canais-antigos",
+      "condicao": "bairro 11; reabre caminho familiar às Ruínas",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "coracao-das-ruinas",
+      "para": "santuario-do-lendario",
+      "condicao": "12 bairros + Rato derrotado",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "nascente-do-vento-travessia",
+      "para": "santuario-do-lendario",
+      "condicao": "12 bairros + Rato derrotado",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "nascente-do-vento-eixo",
+      "para": "estadio-do-championship",
+      "condicao": "12 bairros + Rato + lendário",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "canais-da-argila-eixo",
+      "para": "rua-dos-ventos",
+      "condicao": "atalho após bairro 6; não antecipa o acesso ao bairro",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    },
+    {
+      "de": "pedra-bordada-eixo",
+      "para": "rua-dos-ventos",
+      "condicao": "atalho após bairro 10; não abre laboratório antes do evento",
+      "estado": "PROPOSTA",
+      "bidirecional": true
+    }
+  ],
+  "saidas_tmj_lidas": [
+    {
+      "origem": "clareira-do-papel",
+      "destino_cena": "park-trail",
+      "destino_area": "jardim-das-pipas"
+    },
+    {
+      "origem": "clareira-do-papel",
+      "destino_cena": "park-veredas",
+      "destino_area": "veredas-do-encanamento"
+    },
+    {
+      "origem": "jardim-das-pipas",
+      "destino_cena": "quintal",
+      "destino_area": "rua-dos-ventos"
+    },
+    {
+      "origem": "jardim-das-pipas",
+      "destino_cena": "park-clearing",
+      "destino_area": "clareira-do-papel"
+    },
+    {
+      "origem": "morro-escadaria-da-sombra",
+      "destino_cena": "morro",
+      "destino_area": "morro-praca-da-chegada"
+    },
+    {
+      "origem": "morro-escadaria-da-sombra",
+      "destino_cena": "morro-area-3",
+      "destino_area": "morro-laje-dos-ventos"
+    },
+    {
+      "origem": "morro-laje-dos-ventos",
+      "destino_cena": "morro-area-2",
+      "destino_area": "morro-escadaria-da-sombra"
+    },
+    {
+      "origem": "morro-laje-dos-ventos",
+      "destino_cena": "morro-area-4",
+      "destino_area": "morro-mirante-da-caixa-dagua"
+    },
+    {
+      "origem": "morro-mirante-da-caixa-dagua",
+      "destino_cena": "morro-area-3",
+      "destino_area": "morro-laje-dos-ventos"
+    },
+    {
+      "origem": "morro-mirante-da-caixa-dagua",
+      "destino_cena": "morro-area-5",
+      "destino_area": "morro-parque-dos-ventos"
+    },
+    {
+      "origem": "morro-parque-dos-ventos",
+      "destino_cena": "morro-area-4",
+      "destino_area": "morro-mirante-da-caixa-dagua"
+    },
+    {
+      "origem": "morro-parque-dos-ventos",
+      "destino_cena": "cidade",
+      "destino_area": null
+    },
+    {
+      "origem": "morro-praca-da-chegada",
+      "destino_cena": "quintal",
+      "destino_area": "rua-dos-ventos"
+    },
+    {
+      "origem": "morro-praca-da-chegada",
+      "destino_cena": "morro-area-2",
+      "destino_area": "morro-escadaria-da-sombra"
+    },
+    {
+      "origem": "rua-dos-ventos",
+      "destino_cena": "kael-home",
+      "destino_area": null
+    },
+    {
+      "origem": "rua-dos-ventos",
+      "destino_cena": "professor-home",
+      "destino_area": null
+    },
+    {
+      "origem": "rua-dos-ventos",
+      "destino_cena": "kite-shop",
+      "destino_area": null
+    },
+    {
+      "origem": "rua-dos-ventos",
+      "destino_cena": "cidade",
+      "destino_area": null
+    },
+    {
+      "origem": "veredas-do-encanamento",
+      "destino_cena": "park-clearing",
+      "destino_area": "clareira-do-papel"
+    },
+    {
+      "origem": "veredas-do-encanamento",
+      "destino_cena": "park-trail",
+      "destino_area": "jardim-das-pipas"
+    },
+    {
+      "origem": "veredas-piloto",
+      "destino_cena": "park-veredas",
+      "destino_area": "veredas-do-encanamento"
+    }
+  ]
+}

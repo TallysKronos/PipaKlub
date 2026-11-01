@@ -1,6 +1,5 @@
 extends SceneTree
 ## Exercises the actual preview movement, not just its path graph. No saves/rewards.
-const View = preload("res://scripts/overworld/view.gd")
 var failures: Array[String] = []
 var frames := 0
 var trips := 0
@@ -44,7 +43,7 @@ func walk(view: Node2D, goal: Vector2, label: String) -> void:
 	if view.follower.distance_to(view.player) > 1.5: fail(label+": follower left behind")
 
 func run() -> void:
-	var view := View.new()
+	var view: Node2D = load("res://scripts/overworld/view.gd").new()
 	view.area_id = "kronasta-bosque-a"
 	view.art_preview = true
 	root.add_child(view)

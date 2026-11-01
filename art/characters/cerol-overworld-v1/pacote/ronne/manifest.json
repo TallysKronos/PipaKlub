@@ -1,0 +1,122 @@
+{
+  "id": "ronne",
+  "name": "Ronne",
+  "source": "../../fontes/ronne.png",
+  "identityReference": "art/characters/cerol-hunters-v1/ronne-sheet.png",
+  "cell": [
+    64,
+    96
+  ],
+  "pivot": [
+    32,
+    94
+  ],
+  "directions": [
+    "S",
+    "SO",
+    "O",
+    "NO",
+    "N",
+    "NE",
+    "E",
+    "SE"
+  ],
+  "sourceOrder": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "sharedScale": 0.15384615384615385,
+  "sourceBounds": [
+    [
+      140,
+      67,
+      370,
+      512
+    ],
+    [
+      108,
+      63,
+      320,
+      512
+    ],
+    [
+      107,
+      68,
+      283,
+      512
+    ],
+    [
+      79,
+      66,
+      284,
+      512
+    ],
+    [
+      140,
+      0,
+      370,
+      478
+    ],
+    [
+      124,
+      0,
+      327,
+      479
+    ],
+    [
+      108,
+      0,
+      277,
+      481
+    ],
+    [
+      72,
+      0,
+      293,
+      479
+    ]
+  ],
+  "colors": 31,
+  "cleanup": [
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 230
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 220
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 203
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 226
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 236
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 225
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 206
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 228
+    }
+  ],
+  "animation": "static directional bases; no walk cycle",
+  "status": "draft awaiting native Aseprite review/export"
+}

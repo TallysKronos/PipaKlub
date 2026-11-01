@@ -5,11 +5,18 @@ const Prop = preload("res://scripts/overworld/prop.gd")
 const Avatar = preload("res://scripts/avatar.gd")
 const Hud = preload("res://scripts/campaign/hud.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
+const CompanionFollow = preload("res://scripts/campaign/companion_follow.gd")
+const Locomotion = preload("res://scripts/campaign/locomotion.gd")
+const ParqueSurfaces = preload("res://scripts/overworld/parque_surfaces.gd")
+const ClareiraTerrain = preload("res://scripts/overworld/clareira_terrain.gd")
+const ClareiraBanks = preload("res://scripts/overworld/clareira_banks.gd")
 const Forest = preload("res://scripts/overworld/kronasta_forest.gd")
+
 signal interaction_requested(event: Dictionary)
 var model := Model.new()
 var area_id := "veredas-piloto"
 var art_preview := false
+var campaign_mode := false
 var player := Vector2.ZERO
 var follower := Vector2.ZERO
 var follower_trail: Array[Vector2] = []
@@ -30,6 +37,10 @@ var art_toggle: CheckButton
 var index: Dictionary
 var kits: Array[Dictionary] = []
 var kit_library: Dictionary = {}
+var paint_materials: Dictionary = {}
+var use_clareira_materials := true
+var clareira_terrain: RefCounted
+var parque_surfaces: RefCounted
 var terrain_layers: Array[TileMapLayer] = []
 var lots: Dictionary = {}
 var grass_material: ShaderMaterial
@@ -60,6 +71,7 @@ func _ready() -> void:
 	Controls.install()
 	index = JSON.parse_string(FileAccess.get_file_as_string("res://assets/overworld/maps/index.json"))
 	for argument in OS.get_cmdline_user_args():
+		if campaign_mode: break
 		if argument.begins_with("--area="): area_id = argument.trim_prefix("--area=")
 		if argument == "--art-preview": art_preview = true
 	for biome in ["comum", "bairro", "parque", "veredas", "morro", "frutiferas"]:
@@ -71,11 +83,14 @@ func _ready() -> void:
 	_build_hud()
 	load_area(area_id)
 
-func load_area(id: String, arrival: Dictionary = {}) -> void:
+func load_area(id: String, arrival: Variant = "") -> void:
+	var entrance: String = arrival if arrival is String else str(arrival.get("entrada_destino","")) if arrival is Dictionary else ""
 	var source := "res://assets/overworld/maps/" + id + ".json"
 	if not FileAccess.file_exists(source): return
 	area_id = id
 	set_meta("grass_decal_count", 0)
+	paint_materials.clear()
+
 	for node in [terrain, camera]:
 		if is_instance_valid(node): remove_child(node); node.queue_free()
 	terrain_layers.clear()
@@ -88,7 +103,14 @@ func load_area(id: String, arrival: Dictionary = {}) -> void:
 		var biome_kit: Dictionary = kit_library[model.data.biome].duplicate(true)
 		var visuals: Dictionary = biome_kit.get("areaVisuals",{}).get(id,{})
 		if visuals.has("floorSurfaceFile"): biome_kit.floorSurface.file = visuals.floorSurfaceFile
+		for surface in visuals.get("paintSurfaces",{}):
+			biome_kit.paintSurfaces[surface]=visuals.paintSurfaces[surface]
 		kits.append(biome_kit)
+	clareira_terrain=null
+	if use_clareira_materials and art_preview and id in ["clareira-do-papel","veredas-do-encanamento"] and not model.data.get("forest",{}).get("nativeProps",false):
+		clareira_terrain=ClareiraTerrain.new()
+		clareira_terrain.setup(model,kits[1],false,id)
+		if clareira_terrain.material==null: clareira_terrain=null
 	path.clear()
 	nearby.clear()
 	piece_nodes.clear()
@@ -98,6 +120,7 @@ func load_area(id: String, arrival: Dictionary = {}) -> void:
 	terrain.y_sort_enabled = true
 	add_child(terrain)
 	actors = terrain
+	parque_surfaces = ParqueSurfaces.new(model,actors,kits[1],_paint_material) if art_preview and kits.size()>1 and kits[1].has("mangaWater") else null
 	var forest: bool = art_preview and (model.data.biome == "floresta" or bool(model.data.get("forest",{}).get("nativeProps",false)))
 	if forest:
 		Forest.build(self)
@@ -105,6 +128,7 @@ func load_area(id: String, arrival: Dictionary = {}) -> void:
 		_build_context()
 		_build_tiles()
 		_build_faces()
+		if clareira_terrain!=null: ClareiraBanks.apply(self)
 		_build_pieces()
 		_dress_bare_lots()
 		_dress_bairro_gardens()
@@ -113,18 +137,22 @@ func load_area(id: String, arrival: Dictionary = {}) -> void:
 		_bairro_ground_details()
 		_bairro_ground_shadows()
 		_morro_canopy_shadow()
+
 	_build_events()
 	var spawn: Dictionary = model.data.spawn
+	if not entrance.is_empty():
+		for candidate in model.data.events:
+			if candidate.type == "entrada" and str(candidate.props.get("entrada", "")) == entrance:
+				spawn = candidate
+				break
 	player = Vector2(spawn.u + .5, spawn.v + .5)
-	# Preview exits may arrive at the matching end of the next map. Invalid
-	# coordinates fall back to its declared entrance; no campaign/save is changed.
-	if arrival.has("chegada_u") and arrival.has("chegada_v"):
-		var au: Variant = arrival.chegada_u
-		var av: Variant = arrival.chegada_v
+	if arrival is Dictionary and arrival.has("chegada_u") and arrival.has("chegada_v"):
+		var au: Variant=arrival.chegada_u
+		var av: Variant=arrival.chegada_v
 		if (au is int or au is float) and (av is int or av is float):
-			if is_finite(float(au)) and is_finite(float(av)) and float(au) == floorf(float(au)) and float(av) == floorf(float(av)):
-				var target := Vector2i(int(au), int(av))
-				if model.walkable(target): player = Vector2(target) + Vector2.ONE * .5
+			if is_finite(float(au)) and is_finite(float(av)) and float(au)==floorf(float(au)) and float(av)==floorf(float(av)):
+				var target:=Vector2(int(au)+.5,int(av)+.5)
+				if model.point_walkable(target): player=target
 	follower = player
 	follower_trail.clear()
 	player_root = Node2D.new()
@@ -141,7 +169,7 @@ func load_area(id: String, arrival: Dictionary = {}) -> void:
 	follower_root.add_child(companion)
 	actors.add_child(follower_root)
 	camera = Camera2D.new()
-	# Floresta: câmera mais aberta, para ler platôs e massas de mata (REGIOES-E-PARTES, seção 6).
+	# Floresta: cÃ¢mera mais aberta, para ler platÃ´s e massas de mata (REGIOES-E-PARTES, seÃ§Ã£o 6).
 	camera.zoom = Vector2.ONE * (1.0 if forest else 1.4)
 	camera.position_smoothing_enabled = true
 	camera.position_smoothing_speed = 7.0
@@ -150,9 +178,9 @@ func load_area(id: String, arrival: Dictionary = {}) -> void:
 	camera.reset_smoothing()
 	for i in index.areas.size():
 		if index.areas[i].id == id: selector.select(i)
-	title.text = model.data.name + (" • Estudo de arte" if art_preview and kits.size()>1 else " • Kit comum / chão rascunho" if art_preview else " • Rascunho")
+	title.text = model.data.name + (" â€¢ Estudo de arte" if art_preview and kits.size()>1 else " â€¢ Kit comum / chÃ£o rascunho" if art_preview else " â€¢ Rascunho")
 	art_toggle.set_pressed_no_signal(art_preview)
-	message("Prévia independente • progresso da campanha preservado")
+	message("PrÃ©via independente â€¢ progresso da campanha preservado")
 
 func _build_context() -> void:
 	# Kit-authored background recipe. It never contributes navigation, collision,
@@ -172,7 +200,7 @@ func _build_context() -> void:
 		floor_plane.color=_average_color(kits[1].root + kits[1].materials.grama.variants[0]).lerp(Color(YARD_SHADE,1),YARD_SHADE_ALPHA)
 	floor_plane.polygon=PackedVector2Array([model.project(Vector2(-radius,-radius),false),model.project(Vector2(model.data.w+radius,-radius),false),model.project(Vector2(model.data.w+radius,model.data.h+radius),false),model.project(Vector2(-radius,model.data.h+radius),false)])
 	if art_preview and model.data.biome == "bairro": floor_plane.material = _bairro_surface_material("canteiro")
-	if art_preview and model.data.biome == "parque" and kits.size()>1:
+	if art_preview and model.data.biome == "parque" and kits.size()>1 and kits[1].has("surfaceShader"):
 		var material := ShaderMaterial.new()
 		material.shader = load(kits[1].surfaceShader)
 		material.set_shader_parameter("surfaces",load(kits[1].root+kits[1].surfaceAtlas))
@@ -257,6 +285,9 @@ func _build_tiles() -> void:
 			var at := Vector2i(i % int(model.data.w), i / int(model.data.w))
 			if cell.get("ramp") != null:
 				if not _draw_kit_stairs(at, cell): _draw_ramp(at, cell)
+			elif cell.material == "agua" and parque_surfaces != null:
+				parque_surfaces.draw_water(at,cell)
+
 			elif cell.material == "ponte":
 				_draw_bridge(at, cell)
 			elif _soft_yards() and cell.material == "construcao":
@@ -270,11 +301,23 @@ func _draw_bridge(at: Vector2i, cell: Dictionary) -> void:
 	if art_preview and model.data.biome == "veredas" and kits.size()>1:
 		_draw_veredas_bridge(at,cell)
 		return
-	var along_u := false
-	for offset in [Vector2i(1,0),Vector2i(-1,0)]:
-		var neighbor := model.cell_at(at+offset)
-		if neighbor.get("material", "") == "ponte": along_u = true
-	var axis := "u" if along_u else "v"
+	if parque_surfaces != null and parque_surfaces.draw_bridge(at,cell): return
+	# Width neighbours do not define the run: measure the whole connected deck.
+	var pending: Array[Vector2i] = [at]
+	var seen: Dictionary = {}
+	var low := at
+	var high := at
+	while not pending.is_empty():
+		var p: Vector2i = pending.pop_back()
+		if seen.has(p): continue
+		seen[p] = true
+		low = low.min(p)
+		high = high.max(p)
+		for offset in [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]:
+			var next: Vector2i = p + offset
+			if not seen.has(next) and model.cell_at(next).get("material", "") == "ponte": pending.append(next)
+	var axis := "u" if high.x-low.x > high.y-low.y else "v"
+
 	var root := _floor_node(at, float(cell.level))
 	var water := Polygon2D.new()
 	water.polygon = PackedVector2Array([Vector2(0,-16),Vector2(32,0),Vector2(0,16),Vector2(-32,0)])
@@ -282,19 +325,25 @@ func _draw_bridge(at: Vector2i, cell: Dictionary) -> void:
 	water.color = Color("77B3AF")
 	root.add_child(water)
 	var deck := Sprite2D.new()
-	deck.texture = load(kits[0].root + kits[0].bridges[axis].file)
+	var bridge_kit: Dictionary = kits[1] if art_preview and kits.size()>1 and kits[1].has("bridges") else kits[0]
+	deck.texture = load(bridge_kit.root + bridge_kit.bridges[axis].file)
 	deck.position.y = -float(cell.level)*64
 	root.add_child(deck)
 
 func _floor_node(at: Vector2i, level: float) -> Node2D:
 	var node := Node2D.new()
-	node.z_index = 0 if model.data.biome == "veredas" else -2
+	# Raised park floors must sort with cliff faces and actors. Keeping every
+	# floor below every wall exposes back-wall strokes across ramps/plateaus.
+	node.z_index = 0 if model.data.biome in ["veredas","parque"] else -2
 	node.position = model.project(Vector2(at) + Vector2(.5, .5), false)
 	actors.add_child(node)
 	return node
 
 func _draw_art_floor(at: Vector2i, cell: Dictionary) -> void:
 	var kit: Dictionary = kits[1]
+	if kit.get("surfaceTreatment",{}).get("kind","") == "native-editable-manga-v3":
+		_draw_manga_floor(at,cell)
+		return
 	if model.data.biome == "veredas" and kit.has("surfaceAtlas"):
 		_draw_veredas_floor(at,cell)
 		return
@@ -310,6 +359,7 @@ func _draw_art_floor(at: Vector2i, cell: Dictionary) -> void:
 		if cell.material == "grama":
 			floor_root.add_child(_yard_shade(at, float(cell.level)))
 			_grass_decal(floor_root, at, int(cell.level))
+
 		return
 	var file := ""
 	if kit.materials.has(cell.material):
@@ -326,6 +376,7 @@ func _draw_art_floor(at: Vector2i, cell: Dictionary) -> void:
 		sprite.position.y = -float(cell.level) * 64
 		root.add_child(sprite)
 	if cell.material == "grama" and _soft_yards(): root.add_child(_yard_shade(at, float(cell.level)))
+
 	# Canonical shared vertices, including three-material junctions. A corner
 	# samples the existing pair atlas only inside its own quadrant; unrelated
 	# corners of that texture never overwrite the third material.
@@ -345,6 +396,7 @@ func _draw_art_floor(at: Vector2i, cell: Dictionary) -> void:
 			for point in uv:poly.append(point-Vector2(32,16+float(cell.level)*64))
 			patch.polygon=poly;patch.uv=uv
 			patch.texture=load(kit.root+kit.transitions[pair].files[mask])
+			patch.material = _paint_material(str(cell.material))
 			root.add_child(patch)
 			break
 	if cell.material == "grama" and _soft_yards(): _grass_decal(root, at, int(cell.level))
@@ -485,9 +537,10 @@ func _draw_parque_floor(at: Vector2i, cell: Dictionary) -> void:
 
 func _encounter_tufts(at: Vector2i, cell: Dictionary) -> void:
 	var kit: Dictionary = kits[1]
+	var grass: Dictionary=kit.get("encounterGrass",{"shader":"res://shaders/parque_grass.gdshader","files":["decalques/capim-a.png","decalques/capim-b.png"],"anchor":[26,45]})
 	if parque_grass_material == null:
 		parque_grass_material = ShaderMaterial.new()
-		parque_grass_material.shader = load(kit.encounterGrass.shader)
+		parque_grass_material.shader = load(grass.shader)
 		var preferences = preload("res://scripts/campaign/preferences.gd").new()
 		preferences.load_settings()
 		parque_grass_material.set_shader_parameter("wind_strength",0.0 if preferences.reduced_motion else 1.4)
@@ -495,9 +548,9 @@ func _encounter_tufts(at: Vector2i, cell: Dictionary) -> void:
 	for n in 2:
 		var point := Vector2(at)+Vector2(.26 if n==0 else .74,.30+float((seed+n*17)%35)/100.0)
 		var tuft := Sprite2D.new()
-		tuft.texture = load(kit.root+kit.encounterGrass.files[(seed+n)%2])
+		tuft.texture = load(kit.root+grass.files[(seed+n)%2])
 		tuft.centered = false
-		tuft.position = -Vector2(kit.encounterGrass.anchor[0],kit.encounterGrass.anchor[1])
+		tuft.position = -Vector2(grass.anchor[0],grass.anchor[1])
 		tuft.material = parque_grass_material
 		var grass_root := Node2D.new()
 		grass_root.position = model.project(point,false)
@@ -510,6 +563,7 @@ func _dress_parque() -> void:
 	# No automatic tree carpet. Authored low masses explain the woodland boundary
 	# while preserving long sightlines through the centre and the entry plaza.
 	var recipe: Dictionary = kits[1].get("boundaryShrubs",{})
+	if recipe.get("files",[]).is_empty(): return
 	# Low shrubs follow the woodland edge of whatever plan is loaded: every other
 	# bosque cell that touches walkable ground, skipping cells with a tree.
 	var trees := {}
@@ -804,6 +858,54 @@ func _grass_decal(root: Node2D, at: Vector2i, level: int) -> void:
 	root.add_child(decal)
 	set_meta("grass_decal_count", int(get_meta("grass_decal_count", 0))+1)
 
+func _draw_manga_floor(at: Vector2i, cell: Dictionary) -> void:
+	if clareira_terrain!=null and clareira_terrain.supports(at,cell):
+		clareira_terrain.tile(at,self)
+		return
+	var palette: Dictionary = kits[1].surfaceTreatment.colors
+	if not palette.has(cell.material): return
+	var root := _floor_node(at,float(cell.level))
+	root.name = "PisoManga"
+	var lift := Vector2(0,-float(cell.level)*64)
+	var corners := [Vector2(0,-16),Vector2(32,0),Vector2(0,16),Vector2(-32,0)]
+	var base := Polygon2D.new()
+	var base_shape := PackedVector2Array()
+	for point in corners: base_shape.append(point+lift)
+	base.polygon = base_shape
+	base.color = Color(palette[cell.material])
+	base.material = _paint_material(str(cell.material))
+	root.add_child(base)
+	# Curved corner regions share exact edge midpoints with their neighbours.
+	# No transparent raster perimeter, no repeated coloured grid around tiles.
+	for i in 4:
+		var surface := str(cell.corners[i])
+		if surface==cell.material or not palette.has(surface): continue
+		var tip: Vector2 = corners[i]
+		var start: Vector2 = tip.lerp(corners[(i+1)%4],.5)
+		var end: Vector2 = tip.lerp(corners[(i+3)%4],.5)
+		var shape := PackedVector2Array([tip+lift,start+lift])
+		var corner_offset: Vector2i = [Vector2i.ZERO,Vector2i.RIGHT,Vector2i.ONE,Vector2i.DOWN][i]
+		var bend := .08 + float(_grass_hash(at+corner_offset)%101)/101.0*.40
+		var control: Vector2 = -tip*bend
+		for step in range(1,9):
+			var t := float(step)/8.0
+			shape.append((1-t)*(1-t)*start+2*(1-t)*t*control+t*t*end+lift)
+		var patch := Polygon2D.new()
+		patch.polygon = shape
+		patch.color = Color(palette[surface])
+		patch.material = _paint_material(surface)
+		root.add_child(patch)
+
+func _paint_material(surface: String) -> Material:
+	if kits.size()<2 or not kits[1].get("paintSurfaces",{}).has(surface): return null
+	if not paint_materials.has(surface):
+		var material := ShaderMaterial.new()
+		material.shader = preload("res://shaders/parque_paint.gdshader")
+		material.set_shader_parameter("painting",load(kits[1].root+kits[1].paintSurfaces[surface]))
+		material.set_shader_parameter("paint_tint",Color(kits[1].get("paintTints",{}).get(surface,"ffffff")))
+		paint_materials[surface] = material
+	return paint_materials[surface]
+
 func _draw_ramp(at: Vector2i, cell: Dictionary) -> void:
 	var root := _floor_node(at, float(cell.level))
 	var quad := PackedVector2Array()
@@ -847,7 +949,38 @@ func _draw_ramp(at: Vector2i, cell: Dictionary) -> void:
 			cheek.uv = PackedVector2Array([Vector2(phase_a,-model.surface_height(cell,a)*160),Vector2(phase_b,-model.surface_height(cell,b)*160),Vector2(phase_b,-float(cell.level)*160),Vector2(phase_a,-float(cell.level)*160)])
 			cheek.color = Color.WHITE if side.x else Color(.86,.83,.78)
 			cheek_root.add_child(cheek)
+	elif art_preview and kits.size()>1 and kits[1].get("paintSurfaces",{}).has("terra"):
+		if kits[1].get("surfaceTreatment",{}).get("kind","") == "native-editable-manga-v3":
+			ramp.color = Color(kits[1].surfaceTreatment.colors.terra)
+		else:
+			ramp.color = Color.WHITE
+			ramp.texture = load(kits[1].root+kits[1].materials.terra.variants[0])
+			ramp.uv = PackedVector2Array([Vector2(32,0),Vector2(64,16),Vector2(32,32),Vector2(0,16)])
+		ramp.material = _paint_material("terra")
+
 	root.add_child(ramp)
+	if clareira_terrain!=null and area_id=="veredas-do-encanamento":
+		# Close the exposed triangular support, using the same height field as
+		# the slope. The park biome previously left these faces as green gaps.
+		for side in [Vector2i.RIGHT,Vector2i.DOWN]:
+			var neighbor:=model.cell_at(at+side)
+			if not neighbor.is_empty() and (neighbor.get("ramp")!=null or float(neighbor.level)>float(cell.level)): continue
+			var a:=Vector2(1,0) if side.x else Vector2(0,1)
+			var b:=Vector2.ONE
+			var ha: float=model.surface_height(cell,a)
+			var hb: float=model.surface_height(cell,b)
+			var base: float=cell.level
+			if absf(ha-base)+absf(hb-base)<.01: continue
+			var support:=Node2D.new()
+			support.name="ApoioRampaVeredas"
+			support.position=model.project(Vector2(at)+b,false)-Vector2(0,1)
+			actors.add_child(support)
+			var pa:=model.project(Vector2(at)+a,false)-support.position
+			var pb:=model.project(Vector2(at)+b,false)-support.position
+			var cheek:=Polygon2D.new()
+			cheek.polygon=PackedVector2Array([pa-Vector2(0,ha*64),pb-Vector2(0,hb*64),pb-Vector2(0,base*64),pa-Vector2(0,base*64)])
+			ClareiraBanks._bank_surface(cheek,(at.x+at.y+a.x+a.y)*32,(at.x+at.y+2)*32,ha-base,hb-base,1.0 if side.x else .85)
+			support.add_child(cheek)
 	# Every riser is drawn on the same continuous height plane used by the feet.
 	if model.data.biome == "morro":
 		var direction: Vector2i = Model.DIRS[cell.ramp]
@@ -859,6 +992,8 @@ func _draw_ramp(at: Vector2i, cell: Dictionary) -> void:
 			stroke.default_color = Color("87918C")
 			stroke.points = PackedVector2Array([model.project(Vector2(at)+a.clamp(Vector2.ONE*.00001,Vector2.ONE*.99999))-root.position,model.project(Vector2(at)+b.clamp(Vector2.ONE*.00001,Vector2.ONE*.99999))-root.position])
 			root.add_child(stroke)
+
+	if clareira_terrain!=null and clareira_terrain.supports(at,cell): clareira_terrain.tile(at,self)
 
 func _build_faces() -> void:
 	var finishes := _wall_finishes() if model.data.biome != "veredas" and art_preview and kits.size()>1 and kits[1].has("wallSurfaces") else {}
@@ -914,8 +1049,8 @@ func _build_faces() -> void:
 			root.add_child(wall)
 		var rim := Line2D.new()
 		rim.points = PackedVector2Array([pa-Vector2(0,face.top*64),pb-Vector2(0,face.top*64)])
-		rim.width = 3.5 if art_preview and kits.size()>1 and kits[1].has("wallSurfaces") else 2.0
-		rim.default_color = Color("E8D1A6") if art_preview and kits.size()>1 and kits[1].has("wallSurfaces") else Color("D5C9AD")
+		rim.width = 1.2 if model.data.biome == "parque" else 3.5 if art_preview and kits.size()>1 and kits[1].has("wallSurfaces") else 2.0
+		rim.default_color = Color("9caa79") if model.data.biome == "parque" else Color("E8D1A6") if art_preview and kits.size()>1 and kits[1].has("wallSurfaces") else Color("D5C9AD")
 		if model.data.biome == "veredas" and str(face.side).ends_with("-"): rim.visible = false
 		root.add_child(rim)
 		if art_preview and kits.size()>1 and kits[1].has("wallSurfaces"):
@@ -1534,6 +1669,14 @@ func _build_pieces(source_pieces: Array = []) -> void:
 				node = packed.instantiate()
 			else: node = Prop.new()
 			node.configure(entry, Vector2i(piece.fu,piece.fv), model.height_at(point), piece.blocks,center_offset)
+			if model.data.biome == "parque" and piece.asset == "arvore":
+				var art := node.get_node_or_null("Art") as Sprite2D
+				if art != null:
+					var scale_factor := .83+float(_grass_hash(Vector2i(piece.u,piece.v))%19)/100.0
+					if Forest._hidden_behind(model,int(piece.u),int(piece.v))<=3: scale_factor*=.78
+					var pivot := center_offset-Vector2(0,model.height_at(point)*64)
+					art.position = pivot+(art.position-pivot)*scale_factor
+					art.scale *= scale_factor
 		else:
 			node = Node2D.new()
 			var block := Polygon2D.new()
@@ -1583,7 +1726,9 @@ func _build_events() -> void:
 		node.add_child(shape)
 		actors.add_child(node)
 		if event.type=="npc":
-			var list: Array = npc_data.morro.get(model.data.scene,[]) if model.data.biome=="morro" else [npc_data.nina] if event.name=="Nina" else [npc_data.lacertubo] if event.props.get("acao", "")=="parkBoss" else [npc_data.assis] if model.data.biome=="parque" else []
+			var list: Array = npc_data.morro.get(model.data.scene,[]) if model.data.biome=="morro" else [npc_data.nina] if event.name=="Nina" else [npc_data.lacertubo] if event.props.get("acao", "")=="parkBoss" else [npc_data.assis] if model.data.biome=="parque" and event.props.get("acao","")=="wildGuide" else []
+			if event.props.has("npcIdentity"):
+				list=[{"name":str(event.props.npcIdentity),"bounds":{"x":0,"y":0,"w":64,"h":96}}]
 			var holder := Node2D.new()
 			node.add_child(holder)
 			var names: Array[String] = []
@@ -1591,11 +1736,15 @@ func _build_events() -> void:
 				var entry: Dictionary = list[i]
 				var bounds: Dictionary = entry.bounds
 				var sprite := Sprite2D.new()
-				sprite.texture=load(entry.image);sprite.region_enabled=true
-				sprite.region_rect=Rect2(bounds.x,bounds.y,bounds.w,bounds.h)
 				var native_height := 128.0 if entry.name=="Lacertubo" else 84.0
-				sprite.scale=Vector2.ONE*native_height/float(bounds.h)
-				sprite.offset=Vector2(0,-bounds.h*.5)
+				var pixels=preload("res://scripts/npc_pixel_sprite.gd")
+				var identity: String=pixels.identity(entry.name)
+				if not identity.is_empty():pixels.setup(sprite,identity,pixels.height_for(identity,.85*Avatar.BODY_SCALE))
+				else:
+					sprite.texture=load(entry.image);sprite.region_enabled=true
+					sprite.region_rect=Rect2(bounds.x,bounds.y,bounds.w,bounds.h)
+					sprite.scale=Vector2.ONE*native_height/float(bounds.h)
+					sprite.offset=Vector2(0,-bounds.h*.5)
 				sprite.position.x=(i-(list.size()-1)*.5)*30
 				holder.add_child(sprite)
 				names.append(entry.name)
@@ -1637,7 +1786,7 @@ func _build_hud() -> void:
 	selector.item_selected.connect(func(i: int): load_area(index.areas[i].id))
 	toolbar.add_child(selector)
 	var toggle := CheckButton.new()
-	toggle.text = "Arte em revisão"
+	toggle.text = "Arte em revisÃ£o"
 	toggle.button_pressed = art_preview
 	art_toggle=toggle
 	toggle.toggled.connect(func(value: bool): art_preview = value;load_area(area_id))
@@ -1654,28 +1803,30 @@ func _build_hud() -> void:
 func _refresh_positions() -> void:
 	_place_actor(player_root,avatar,player,84)
 	_place_actor(follower_root,companion,follower,42)
+	CompanionFollow.orient(companion,avatar.facing)
 	for actor in npc_nodes:_place_actor(actor.root,actor.visual,actor.point,84)
 	camera.position = model.project(player)
 	_fade_occluders()
 
 func _fade_occluders() -> void:
-	# A house or tree drawn over Kael turns see-through, so composition can keep
-	# some volume in front of the path without hiding the player.
-	var body := Rect2(model.project(player)-Vector2(20,84),Vector2(40,84))
-	var ground := model.project(player,false).y
+	var pair:Array[Dictionary]=[]
+	# Project each actor once, rather than repeat height queries for every tree.
+	for member in [{"point":player,"height":84.0},{"point":follower,"height":42.0}]:
+		var at:Vector2=member.point
+		pair.append({"point":at,"body":Rect2(model.project(at)-Vector2(20,member.height),Vector2(40,member.height)),"ground":model.project(at,false).y})
 	for node in occluders:
-		if not is_instance_valid(node): continue
-		var art := node.get_node_or_null("Art") as Sprite2D
-		if art == null: continue
-		if node.has_meta("piece"):
-			var piece: Dictionary = node.get_meta("piece")
-			if player.x>=float(piece.u)+float(piece.fu) or player.y>=float(piece.v)+float(piece.fv):
-				art.modulate.a = 1.0
-				continue
-		# Bounds follow the sprite's own scale and flip (forest trees vary both).
-		var bounds := art.get_transform() * art.get_rect()
-		var covers := node.position.y > ground and Rect2(node.position+bounds.position,bounds.size).intersects(body)
-		art.modulate.a = .45 if covers else 1.0
+		if not is_instance_valid(node):continue
+		var art:=node.get_node_or_null("Art") as Sprite2D
+		if art==null:continue
+		var bounds:=art.get_transform()*art.get_rect()
+		var covers:=false
+		for member in pair:
+			var point:Vector2=member.point
+			if node.has_meta("piece"):
+				var piece:Dictionary=node.get_meta("piece")
+				if point.x>=float(piece.u)+float(piece.fu) or point.y>=float(piece.v)+float(piece.fv):continue
+			if node.position.y>member.ground and Rect2(node.position+bounds.position,bounds.size).intersects(member.body):covers=true;break
+		art.modulate.a=.45 if covers else 1.0
 
 func _place_actor(root: Node2D, visual: Node2D, point: Vector2, height: float) -> void:
 	var ground := model.project(point,false)
@@ -1707,7 +1858,12 @@ func walk_to(point: Vector2) -> bool:
 	if not path.is_empty() and player.distance_to(path[0]) < .08: path.remove_at(0)
 	return not path.is_empty()
 
+func toggle_run() -> void:
+	Locomotion.toggle()
+
 func _physics_process(delta: float) -> void:
+	Locomotion.update()
+	var speed := 3.0*Locomotion.multiplier()
 	clock += delta
 	var old := player
 	var input := Controls.direction()
@@ -1716,38 +1872,29 @@ func _physics_process(delta: float) -> void:
 		# at corners, so keyboard input cannot cut a diagonal through blockers.
 		path.clear()
 		var lattice := Vector2(input.x+2*input.y,-input.x+2*input.y).normalized()
-		var candidate := player + lattice * delta * 3.0
-		if model.clear_segment(player,candidate): player = candidate
+		var candidate := player + lattice * delta * speed
+		if model.clear_segment(player,candidate): _adopt_player_step(candidate)
 		else:
 			for step in [Vector2(lattice.x,0),Vector2(0,lattice.y)]:
-				candidate = player + step*delta*3.0
-				if model.clear_segment(player,candidate): player = candidate
+				candidate = player + step*delta*speed
+				if model.clear_segment(player,candidate): _adopt_player_step(candidate)
 	elif not path.is_empty():
-		var candidate := player.move_toward(path[0],delta*3.0)
-		if model.clear_segment(player,candidate): player = candidate
+		var candidate := player.move_toward(path[0],delta*speed)
+		if model.clear_segment(player,candidate): _adopt_player_step(candidate)
 		else: path.clear()
 		if not path.is_empty() and player.distance_to(path[0]) < .01: path.remove_at(0)
 	avatar.moving = player.distance_to(old) > .001
+	avatar.running = avatar.moving and Locomotion.requested()
 	if avatar.moving:
 		var screen := model.project(player,false)-model.project(old,false)
-		avatar.facing = "se" if screen.x >= 0 and screen.y >= 0 else "ne" if screen.x >= 0 else "sw" if screen.y >= 0 else "nw"
+		avatar.face_motion(screen)
 		var cell := model.cell_at(Vector2i(floori(player.x),floori(player.y)))
-		if cell.material == "mato":
+		if cell.material == "mato" and not campaign_mode:
 			grass_distance += player.distance_to(old)
 			if grass_distance > 6:
 				grass_distance = 0
 				message("Mato: gatilho de encontro validado • prévia sem batalha ou recompensa")
-	if bool(model.data.get("forest",{}).get("followTrail",false)):
-		if avatar.moving:follower_trail.append(player)
-		_follow_recorded_path(delta)
-	elif follower.distance_to(player) > .8:
-		var route := model.path_to(follower,player)
-		if route.size() > 1:
-			var target: Vector2 = route[1]
-			# Aim ahead; return to the own-cell center only when the straight line is blocked.
-			if not model.clear_segment(follower,target): target = route[0]
-			var next := follower.move_toward(target,delta*3.2)
-			if model.clear_segment(follower,next): follower = next
+	_follow_recorded_path(delta)
 	_refresh_positions()
 	nearby = {}
 	for event in interaction_events:
@@ -1756,25 +1903,17 @@ func _physics_process(delta: float) -> void:
 		if player.distance_to(target) < 1.8:
 			nearby = event
 			break
-	hint.text = notice if clock < notice_until else "E • " + nearby.name if not nearby.is_empty() else "WASD / setas • caminhar   Clique • ir até lá   Roda • zoom"
+	hint.text = notice if clock < notice_until else "E â€¢ " + nearby.name if not nearby.is_empty() else "WASD / setas â€¢ caminhar   Clique â€¢ ir atÃ© lÃ¡   Roda â€¢ zoom"
+
+func _adopt_player_step(next:Vector2) -> void:
+	if next==player:return
+	if follower_trail.is_empty():follower_trail.append(player)
+	player=next
+	follower_trail.append(player)
 
 func _follow_recorded_path(delta: float) -> void:
-	# On curved banks a freshly recomputed shortest path can switch sides of a
-	# long obstacle. Keep the accepted player steps instead; never shortcut water.
-	var distance := 0.0
-	var previous := follower
-	for point in follower_trail:
-		distance += previous.distance_to(point)
-		previous = point
-	var budget := minf(delta*3.2,maxf(0,distance-.8))
-	while budget>.00001 and not follower_trail.is_empty():
-		var target: Vector2 = follower_trail[0]
-		var next := follower.move_toward(target,budget)
-		if not model.clear_segment(follower,next):break
-		budget -= follower.distance_to(next)
-		follower = next
-		if follower.distance_to(target)<.00001:follower_trail.remove_at(0)
-		else:break
+	# Every map follows the accepted footsteps, never a newly chosen shortcut.
+	follower=CompanionFollow.advance(follower,follower_trail,delta,6.3,.8,model.clear_segment)
 
 func interact() -> void:
 	if nearby.is_empty(): return
@@ -1788,13 +1927,13 @@ func interact() -> void:
 			var sprite: Sprite2D = node.get_node("Art")
 			sprite.texture = load(kits[0].root+entry.file)
 			sprite.position = node.get_meta("center_offset",Vector2.ZERO)-Vector2(entry.anchor[0],entry.anchor[1])-Vector2(0,model.height_at(Vector2(nearby.u+.5,nearby.v+.5))*64)
-		message("Baú aberto na prévia • sem conceder itens ou alterar saves")
+		message("BaÃº aberto na prÃ©via â€¢ sem conceder itens ou alterar saves")
 		return
 	if nearby.type == "saida":
 		var destination := str(nearby.props.get("destino",""))
 		if index.scenes.has(destination): load_area(index.scenes[destination], nearby.props.duplicate()); return
-		message("Destino fora desta prévia: " + destination)
-	else: message(nearby.name + " • " + str(nearby.props.get("texto",nearby.props.get("fala","Interação de revisão, sem alterar a campanha."))))
+		message("Destino fora desta prÃ©via: " + destination)
+	else: message(nearby.name + " â€¢ " + str(nearby.props.get("texto",nearby.props.get("fala","InteraÃ§Ã£o de revisÃ£o, sem alterar a campanha."))))
 
 func _unhandled_input(event: InputEvent) -> void:
 	Controls.observe(event)

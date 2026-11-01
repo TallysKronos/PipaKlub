@@ -43,6 +43,7 @@ func _obstructed(p: Vector2,_id: String) -> bool:
 func _physics_process(delta: float) -> void:
 	if not conversation.is_empty():
 		avatar.moving = false
+		avatar.running = false
 		return
 	super._physics_process(delta)
 

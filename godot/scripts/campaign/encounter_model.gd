@@ -1,4 +1,6 @@
 extends "res://scripts/campaign/first_flight_model.gd"
+const Pacing = preload("res://scripts/campaign/park_pacing.gd")
+const Levels = preload("res://scripts/campaign/partner_levels.gd")
 ## Single-round local Lacertubo encounter. Contact/costs/armor follow src/engine.js.
 ## Does not implement online rooms, specialization classes or the six line loadouts.
 var outcome := ""
@@ -7,7 +9,7 @@ var duration := 120.0
 var partner_id := ""
 var model_id := "rabbito"
 var enemy_model_id := "lacertubo"
-var enemy_level := 15
+var enemy_level := Pacing.BOSS_LEVEL
 signal damage_applied(event: Dictionary)
 signal combat_feedback(event: Dictionary)
 
@@ -15,7 +17,12 @@ func _apply_hit(hit: Dictionary) -> void:
 	var target: Dictionary = hit.target
 	var field: String = "hull" if hit.body else "hp"
 	var previous: float = target[field]
-	target[field] = maxf(0, previous - hit.damage)
+	var multiplier:=1.0
+	if p.has("level") and q.has("level"):
+		var lower: Dictionary=p if p.level<q.level else q
+		var penalty:=Pacing.level_penalty(absi(int(p.level)-int(q.level)))
+		multiplier=1.0+penalty if is_same(target,lower) else 1.0-penalty
+	target[field] = maxf(0, previous - hit.damage*multiplier)
 	var amount: float = previous - target[field]
 	if amount > 0:
 		var event := {"amount":amount,"body":hit.body,"point":hit.get("point",Vector2(target.x,target.y)),"player":is_same(target,p),"critical":hit.get("critical",false),"color":hit.get("color",0),"kind":"cut" if not hit.body else "hit","cut_line":target.hp<=0}
@@ -23,9 +30,10 @@ func _apply_hit(hit: Dictionary) -> void:
 		damage_applied.emit(event)
 
 static func level_for_xp(xp: float) -> int:
-	var level := 1
-	while level < 50 and xp >= 40 * level + 10 * level * level: level += 1
-	return level
+	return Levels.level_for_xp(xp)
+
+static func xp_for_level(level: int) -> int:
+	return Levels.xp_for_level(level)
 
 static func stats(level: int, bonus: float = 0) -> Dictionary:
 	var f := (clampi(level, 1, 50) - 1) / 49.0
@@ -38,7 +46,8 @@ func _init(partner: Dictionary = {}, enemy: Dictionary = {}) -> void:
 	partner_id = partner.get("id", "")
 	model_id = partner.get("modelId", "rabbito")
 	p = _fighter(172, 90, stats(level_for_xp(partner.get("xp", 0)), partner.get("craftBonus", 0)))
-	q = _fighter(828, 910, {"line": 250.0, "energy": 125.0, "attack": 1.18, "defense": 1.05, "speed": 157.0, "regen": 19.0})
+	p.level=level_for_xp(partner.get("xp",0))
+	q = _fighter(828, 910, {"line": 210.0, "energy": 125.0, "attack": 1.12, "defense": 1.05, "speed": 157.0, "regen": 19.0})
 	p.color = {"rabbito": 0, "basica": 0, "mata": 2, "azulao": 3, "raio": 1, "lacertubo": 2}.get(model_id, 0)
 	q.color = 2
 	q.boss = true
@@ -49,6 +58,7 @@ func _init(partner: Dictionary = {}, enemy: Dictionary = {}) -> void:
 		q.color = {"basica": 0, "mata": 2, "raio": 1}.get(enemy_model_id, 0)
 		intro = 3.0
 		duration = 60.0
+	q.level=enemy_level
 	p.hp *= partner.get("condition", {}).get("line", 100) / 100.0
 	p.hull *= partner.get("condition", {}).get("structure", 100) / 100.0
 
@@ -75,7 +85,7 @@ func tick(delta: float, input: Dictionary) -> void:
 	duration = maxf(0, duration - dt)
 	var wind := wind_strength()
 	_move_fighter(p, input, dt, wind)
-	_move_fighter(q, _boss_input(dt) if q.boss else _wild_input(dt), dt, wind)
+	_move_fighter(q, _boss_input(dt) if q.boss else _trainer_input(dt) if q.has("trainingRank") else _wild_input(dt), dt, wind)
 	var hits: Array = []
 	if q.boss: _signature_hit(q, p, dt, true, hits)
 	_signature_hit(p, q, dt, input.get("signature", false) and model_id == "rabbito", hits)
@@ -211,6 +221,21 @@ func _boss_input(dt: float) -> Dictionary:
 			q.telegraph = 0.0
 			q.recovery = 1.15 if phase == 2 else 1.5
 	else: q.telegraph = 0.0
+	return input
+
+func _trainer_input(dt: float) -> Dictionary:
+	var input:=_wild_input(dt)
+	var rank:=clampi(int(q.trainingRank),1,6)
+	var own:=contact(q,p)
+	var threat:=contact(p,q)
+	input.x*=1.0+(rank-1)*.035
+	input.y*=1.0+(rank-1)*.035
+	if rank>=2 and threat.get("valid",false) and p.attackCooldown>.48 and q.guardCooldown<=0 and sin(time*1.7)>.35:
+		input.guard=true
+	if rank>=3 and own.get("valid",false) and q.energy>=65 and q.lineCooldown<=0 and sin(time*1.3)>.5:
+		input.line=true
+	if rank>=4 and threat.get("valid",false) and not own.get("valid",false) and q.dodgeCooldown<=0 and sin(time*1.1)>.8:
+		input.dodge=true
 	return input
 
 func _wild_input(dt: float) -> Dictionary:

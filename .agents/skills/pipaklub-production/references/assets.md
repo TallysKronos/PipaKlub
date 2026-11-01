@@ -8,6 +8,12 @@ Localize o manifesto/atlas e o consumidor em `src/art-client.js`, `src/menu-ui.j
 
 ## Aceitação por família
 
+### Concept de personagens humanos
+
+Combine esta referência com a [skill local de personagens Soulmonsters](../../soulmonsters-character-art/SKILL.md), atualizada com o piloto comparativo de Zuric. A skill distingue acabamento aprovado, hipóteses de design e conceitos em revisão.
+
+Para criar um novo humano ou corrigir um conceito genérico, consultar `art/benchmarks/bulbagarden-concept-2026-10-30/ESTUDO.md`, `FICHAS.md` e o adendo de personagens em `DIRECAO-DE-ARTE.md`. Abrir o Kael indicado pelo usuário como referência de acabamento; usar referências externas para analisar decisões, sem copiar identidade ou figurino. Explorar corpo, cabeça e gesto antes de fechar a prancha de modelo. Comparar alternativas estruturais e uma situação de uso, preservando o mangá 2D e permitindo exagero seletivo. Não confundir pouca sombra com pouca personalidade nem transformar todos os adultos no rosto/corpo de Kael. O índice de 725 arquivos é metadado; somente 48 pranchas receberam inspeção visual no estudo atual.
+
 - **Sprites e chibis:** preserve volume, rosto, orientação e apoio entre frames. Examine a sequência animada, não só a prancha; cauda/rabiola deve continuar ancorada. Retratos e corpo inteiro têm recortes próprios.
 - **Tiles e muros:** leia também `WORLD-ART-DIRECTION.md` e `HUD-KIT.md` apenas se houver interface. Compare repetição 3×3, trechos longos, quatro cantos e juntas entre eixos. Não repita tampas nos segmentos intermediários nem disfarce emendas com vegetação.
 - **Objetos:** tronco toca a copa e o solo; banco enfrenta uma área utilizável; pivô de profundidade e colisão representam a base, não todo o PNG. Valide caminhos e zonas de interação no mapa real.

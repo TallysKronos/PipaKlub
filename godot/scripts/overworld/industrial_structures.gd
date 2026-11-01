@@ -4,9 +4,9 @@ const D=preload("res://scripts/overworld/industrial_dressing.gd")
 static var textures:Dictionary={}
 static func texture(file:String) -> Texture2D:
  if textures.has(file):return textures[file]
- var image:=Image.load_from_file(ProjectSettings.globalize_path(file))
- if image==null or image.is_empty():return null
- var result:=ImageTexture.create_from_image(image)
+ # Imported resources remain available inside exported PCKs as well as the editor.
+ var result:=load(file) as Texture2D
+ if result==null:return null
  textures[file]=result
  return result
 static func build(view) -> void:

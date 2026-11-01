@@ -228,8 +228,17 @@ func _layout_actions() -> void:
 	finish_button.size_flags_horizontal=Control.SIZE_SHRINK_END
 	finish_button.custom_minimum_size=Vector2(240,48)
 	if is_instance_valid(reward_card):reward_card.custom_minimum_size.y=clampf(size.y*.56,390,490)
-	bottom_panel.offset_bottom = -8 if fighting else -12
-	status_row.visible = paused or blocked
+	bottom_panel.offset_bottom = -16 if fighting else -12
+	# The pause line has no place on the result screen: losing window focus pauses
+	# the view, and the bar would otherwise slide under the VITÓRIA header.
+	status_row.visible = blocked or (paused and not result)
+	# Paused, the footer covers the corner status drawn under it instead of letting
+	# the partner card show between the buttons.
+	var covering:bool=(paused or blocked) and not result
+	if covering!=bool(bottom_panel.get_meta("covering",false)):
+		bottom_panel.set_meta("covering",covering)
+		if covering:bottom_panel.add_theme_stylebox_override("panel",_panel("dark"))
+		else:bottom_panel.remove_theme_stylebox_override("panel")
 	var height:=size.y*.12 if fighting else maxf(140,footer_contents.get_combined_minimum_size().y+8)
 	bottom_panel.offset_top=bottom_panel.offset_bottom-height
 	var unit := size.y / 1080.0
@@ -293,14 +302,14 @@ func _physics_process(delta: float) -> void:
 	actions.visible = model.outcome.is_empty() and paused
 	controls.text = ("Analógico · Mover" if Controls.gamepad else "Mover: %s %s %s %s / setas" % [Controls.prompt("up"), Controls.prompt("left"), Controls.prompt("down"), Controls.prompt("right")]) + (" · %s: Pulo do Elo" % Controls.prompt("signature") if model.model_id == "rabbito" else "")
 	if paused: controls.text = "Jogo pausado. " + ACTION_COPY[selected_action] if not blocked else "Não foi possível salvar. Tente novamente antes de continuar."
-	elif model.intro > 0: controls.text = "Lacertubo · O guardião dos canos — Leia o vento. Espere a abertura." if model.q.boss else "Um Pipamon selvagem apareceu no mato!"
+	elif model.intro > 0: controls.text = "Lacertubo · O guardião dos canos — Leia o vento. Espere a abertura." if model.q.boss else ("%s · duelo de preparação" % reward_encounter.get("trainerName","Pipeiro") if reward_encounter.get("kind","")=="trainer" else "Um Soulmon selvagem cruzou seu caminho!")
 	elif model.q.signatureWindup > 0: controls.text = "Ruptura dos Canos! Saia do círculo ou proteja-se no impacto."
 	elif model.q.recovery > 0: controls.text = "O guardião está vulnerável!"
 	elif model.q.telegraph > .6: controls.text = "Ele vai puxar!"
 	elif model.intro <= 0 and model.q.signatureWindup <= 0 and model.q.recovery <= 0 and model.q.telegraph <= .6:
 		controls.text = ACTION_COPY[selected_action]
 	if not model.outcome.is_empty():
-		controls.text = ("Vitória · +120 XP · Rabiola de Lacertubo" if model.q.boss else "Vitória · Recompensas serão guardadas ao voltar às Veredas.") if model.outcome == "won" else "Seu parceiro continua com você. Repare-o com o professor antes de tentar novamente."
+		controls.text = ("Vitória · Confira sua experiência e os itens recebidos.") if model.outcome == "won" else "Seu parceiro continua com você. Descanse em um banco do parque ou procure o professor."
 	if blocked: controls.text = "Não foi possível salvar. Tente novamente antes de continuar."
 	_layout_actions()
 	queue_redraw()
@@ -487,7 +496,7 @@ func _draw_phase() -> void:
 	if model.get("intermission")!=null and model.intermission>0:
 		message="EMPATE" if "empatada" in model.round_message else "CORTOU!" if model.round_message.begins_with(model.p.name+" venceu") else "RODADA PERDIDA"
 	elif model.intro>0:
-		message="LACERTUBO" if model.q.boss else "RODADA %d · %d"%[model.round_number if model.get("round_number")!=null else 1,mini(3,ceili(model.intro))]
+		message=str(reward_encounter.get("trainerName","DUELO")) if reward_encounter.get("kind","")=="trainer" else "LACERTUBO" if model.q.boss else "RODADA %d · %d"%[model.round_number if model.get("round_number")!=null else 1,mini(3,ceili(model.intro))]
 	elif launch_age<.4:message="JÁ!"
 	if message.is_empty():return
 	var rect:=_phase_rect()

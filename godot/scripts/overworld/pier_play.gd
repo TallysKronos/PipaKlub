@@ -2,6 +2,8 @@ extends Node2D
 ## Independent playable dock. Surface graph owns height and edge collision.
 ## Does not load/write campaign slots or access the network.
 const Controls = preload("res://scripts/campaign/controls.gd")
+const CompanionFollow = preload("res://scripts/campaign/companion_follow.gd")
+const Locomotion = preload("res://scripts/campaign/locomotion.gd")
 const Avatar = preload("res://scripts/avatar.gd")
 const Hud = preload("res://scripts/campaign/hud.gd")
 const Depth = preload("res://scripts/overworld/pier_depth.gd")
@@ -68,7 +70,7 @@ func _ready() -> void:
 	avatar = Avatar.new()
 	avatar.material = player_material
 	player_root.add_child(avatar)
-	avatar.scale = Vector2.ONE*.58
+	avatar.scale = Vector2.ONE*.58*Avatar.BODY_SCALE
 	_shadow(player_root,player_material,Vector2(10,4))
 	partner_root = Node2D.new()
 	partner_root.z_index = 9
@@ -192,8 +194,15 @@ func _record_trail(old: Vector2,old_height: float) -> void:
 		follower_height = lerpf(a.h,b.h,t)
 		follower_surface = b.surface if t>.5 else a.surface
 
+func toggle_run() -> void:
+	if not paused and not overview:Locomotion.toggle()
+
 func _physics_process(delta: float) -> void:
-	if paused or overview:return
+	if paused or overview:
+		avatar.moving=false
+		avatar.running=false
+		return
+	Locomotion.update()
 	clock += delta
 	var old := cell
 	if not ladder.is_empty():_advance_ladder(delta)
@@ -201,11 +210,12 @@ func _physics_process(delta: float) -> void:
 		var input := Controls.direction()
 		if input.length()>.1:
 			var lattice := Vector2(input.x+2*input.y,-input.x+2*input.y).normalized()
-			walk(lattice*SPEED*delta*minf(input.length(),1.0))
+			walk(lattice*SPEED*Locomotion.multiplier()*delta*minf(input.length(),1.0))
 	avatar.moving = old.distance_to(cell)>.0001 or not ladder.is_empty()
+	avatar.running=avatar.moving and ladder.is_empty() and Locomotion.requested()
 	if avatar.moving and ladder.is_empty():
 		var screen: Vector2 = world.iso(cell)-world.iso(old)
-		avatar.facing = "se" if screen.x>=0 and screen.y>=0 else "ne" if screen.x>=0 else "sw" if screen.y>=0 else "nw"
+		avatar.face_motion(screen)
 	_refresh_visuals()
 	_update_hint()
 	var look: Vector2 = (world.iso(cell)-world.iso(old))*8
@@ -231,7 +241,7 @@ func _refresh_visuals() -> void:
 	if not partner_frames.is_empty():
 		var f: Dictionary = partner_frames[int(clock*10)%partner_frames.size()]
 		partner.region_rect = Rect2(f.x,f.y,f.w,f.h)
-	partner.flip_h = avatar.facing in ["sw","nw"]
+	CompanionFollow.orient(partner,avatar.facing)
 	var goal := _goal()
 	var toward: Vector2 = world.iso(goal.p,goal.h)-player_root.position
 	compass.text = ["→","↘","↓","↙","←","↖","↑","↗"][posmod(roundi(toward.angle()/(PI/4)),8)]

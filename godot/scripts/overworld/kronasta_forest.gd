@@ -161,6 +161,7 @@ static func build(view) -> void:
 		for piece in model.data.pieces:_piece(view,model,piece)
 	if not bool(model.data.get("forest",{}).get("industrial",false)) and not mountain and not mine and not ice:_tufts(view,model)
 	for event in model.data.events:
+		if view.campaign_mode: break # Campaign markers follow persistent collection receipts.
 		if OS.get_environment("KRONASTA_GEOMETRIA")!="1" and event.type=="item" and str(event.props.get("visibilidade","")) in ["visivel","brilho"]:_glint(view,model,event)
 
 static func _screen(point:Vector2,height:float) -> Vector2:

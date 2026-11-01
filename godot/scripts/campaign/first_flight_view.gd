@@ -112,7 +112,7 @@ func _layout_lesson() -> void:
 	next_button.custom_minimum_size.y=48
 	coach.position=Vector2(20,size.y-28-coach.get_combined_minimum_size().y)
 	var action_height:=128*size.y/1080.0
-	command_row.position=Vector2(440,size.y-action_height-8)
+	command_row.position=Vector2(440,size.y-action_height-16)
 	command_row.size=Vector2(maxf(0,size.x-464),action_height)
 	pause_button.position=Vector2(20,88)
 	pause_button.size=Vector2(150,40)

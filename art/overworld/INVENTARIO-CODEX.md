@@ -13,15 +13,15 @@ Regras de desenho, grade (64×32, 1 nível = 64 px de parede) e pedidos A (conce
 
 | Área | Bioma | Cena do jogo | Tamanho | Níveis | Conferência |
 | --- | --- | --- | --- | --- | --- |
-| Parque dos Ventos · Clareira do Papel (`clareira-do-papel`) | Parque dos Ventos | `park-clearing` | 24×16 | 0–0 | OK |
-| Parque dos Ventos · Jardim das Pipas (`jardim-das-pipas`) | Parque dos Ventos | `park-trail` | 24×16 | 0–0 | OK |
+| Clareira do Papel · B os caminhos do riacho (`clareira-do-papel`) | Parque dos Ventos | `park-clearing` | 64×48 | 0–1 | OK |
+| Jardim das Pipas · A chegada (`jardim-das-pipas`) | Parque dos Ventos | `park-trail` | 60×44 | 0–1 | OK |
 | Morro do Sol · Escadaria da Sombra (`morro-escadaria-da-sombra`) | Morro do Sol | `morro-area-2` | 24×16 | 0–1 | OK |
 | Morro do Sol · Laje dos Ventos (`morro-laje-dos-ventos`) | Morro do Sol | `morro-area-3` | 24×16 | 0–1 | OK |
 | Morro do Sol · Mirante da Caixa-d’água (`morro-mirante-da-caixa-dagua`) | Morro do Sol | `morro-area-4` | 24×16 | 0–1 | OK |
 | Morro do Sol · Parque dos Ventos (`morro-parque-dos-ventos`) | Morro do Sol | `morro-area-5` | 24×16 | 0–0 | OK |
 | Morro do Sol · Praça da Chegada (`morro-praca-da-chegada`) | Morro do Sol | `morro` | 24×16 | 0–1 | OK |
 | Rua dos Ventos (`rua-dos-ventos`) | Bairro (Rua dos Ventos) | `quintal` | 44×33 | 0–0 | OK |
-| Veredas do Encanamento (`veredas-do-encanamento`) | Veredas do Encanamento | `park-veredas` | 50×32 | 0–1 | OK |
+| Veredas do Encanamento · C o pátio dos canos (`veredas-do-encanamento`) | Parque dos Ventos | `park-veredas` | 64×48 | 0–1 | OK |
 
 ## Bioma: Bairro (Rua dos Ventos)
 
@@ -59,83 +59,54 @@ Regras de desenho, grade (64×32, 1 nível = 64 px de parede) e pedidos A (conce
 
 ## Bioma: Parque dos Ventos
 
-Áreas: Parque dos Ventos · Clareira do Papel · Parque dos Ventos · Jardim das Pipas
+Áreas: Clareira do Papel · B os caminhos do riacho · Jardim das Pipas · A chegada · Veredas do Encanamento · C o pátio dos canos
 
 **Chão (tiles 64×32, 4 variações lisas cada):**
-- `grama` — Grama · 284 células
-- `bosque` — Mata fechada (bloqueio) (bloqueio: precisa ler como "não dá para passar") · 240 células
-- `terra` — Terra (trilha) · 162 células
-- `mato` — Mato alto (encontros) · 56 células
-- `piso` — Piso de pedra · 26 células
+- `grama` — Grama · 3788 células
+- `bosque` — Mata fechada (bloqueio) (bloqueio: precisa ler como "não dá para passar") · 3297 células
+- `terra` — Terra (trilha) · 1252 células
+- `piso` — Piso de pedra · 366 células
+- `mato` — Mato alto (encontros) · 35 células
+- `ponte` — Ponte · 30 células
+- `agua` — Água (bloqueio: precisa ler como "não dá para passar") · 16 células
 
 **Transições (autotile de cantos, 16 peças por par):**
-- bosque / grama · 130 bordas
-- grama / terra · 112 bordas
-- grama / mato · 58 bordas
-- grama / piso · 18 bordas
-- mato / terra · 18 bordas
-- piso / terra · 10 bordas
-- bosque / terra · 6 bordas
-- mato / piso · 4 bordas
+- bosque / grama · 933 bordas
+- grama / terra · 786 bordas
+- grama / piso · 150 bordas
+- piso / terra · 74 bordas
+- bosque / terra · 55 bordas
+- grama / mato · 36 bordas
+- ponte / terra · 16 bordas
+- bosque / piso · 12 bordas
+- agua / grama · 11 bordas
+- mato / terra · 10 bordas
+- agua / terra · 9 bordas
+- grama / ponte · 8 bordas
+- agua / ponte · 8 bordas
+- mato / piso · 2 bordas
 
 **Barrancos e muros de contenção:**
-- nenhum
+- 1 nível · face sudeste · 190 faces
+- 1 nível · face sudoeste · 220 faces
+- cantos externo e interno para cada altura usada; topo casando com o chão do nível de cima
 
-**Rampas / escadas:** nenhuma
-**Pontes:** nenhuma
+**Rampas / escadas:** v- ×18, u- ×15 (tampo inclinado + cunhas laterais; no Morro e no Bairro, desenhar como **escadaria** de concreto)
+**Pontes:** 30 células de tabuleiro, nos dois eixos, com cabeceiras
 
 **Peças (Iso Studio, grade comum):**
-- arvore (b) ×28
-- arvore (a) ×12
+- arvore (b) ×375
+- arvore (a) ×347
 - poste ×8
-- arvore (florida) ×4
+- arvore (florida) ×7
+- bau ×7
+- flores ×7
 - banco 2x1 ×4
 - vaso ×4
 - lixeira ×4
 - placa-mapa 2x1 ×2
-- coreto 4x4 ×1
-
-## Bioma: Veredas do Encanamento
-
-Áreas: Veredas do Encanamento
-
-**Chão (tiles 64×32, 4 variações lisas cada):**
-- `bosque` — Mata fechada (bloqueio) (bloqueio: precisa ler como "não dá para passar") · 676 células
-- `grama` — Grama · 493 células
-- `terra` — Terra (trilha) · 241 células
-- `mato` — Mato alto (encontros) · 78 células
-- `piso` — Piso de pedra · 63 células
-- `agua` — Água (bloqueio: precisa ler como "não dá para passar") · 37 células
-- `ponte` — Ponte · 12 células
-
-**Transições (autotile de cantos, 16 peças por par):**
-- grama / terra · 186 bordas
-- bosque / grama · 165 bordas
-- grama / mato · 72 bordas
-- bosque / piso · 29 bordas
-- agua / grama · 28 bordas
-- bosque / terra · 18 bordas
-- agua / ponte · 12 bordas
-- grama / piso · 9 bordas
-- grama / ponte · 8 bordas
-- piso / terra · 5 bordas
-- agua / bosque · 4 bordas
-- mato / terra · 3 bordas
-- mato / piso · 3 bordas
-
-**Barrancos e muros de contenção:**
-- 1 nível · face sudeste · 23 faces
-- 1 nível · face sudoeste · 41 faces
-- cantos externo e interno para cada altura usada; topo casando com o chão do nível de cima
-
-**Rampas / escadas:** v- ×9 (tampo inclinado + cunhas laterais; no Morro e no Bairro, desenhar como **escadaria** de concreto)
-**Pontes:** 12 células de tabuleiro, nos dois eixos, com cabeceiras
-
-**Peças (Iso Studio, grade comum):**
-- arvore (b) ×16
-- flores ×7
-- bau ×5
 - biruta ×2
+- coreto 4x4 ×1
 - placa-mapa ×1
 - banco ×1
 - pipa-presa ×1
@@ -183,24 +154,22 @@ Regras de desenho, grade (64×32, 1 nível = 64 px de parede) e pedidos A (conce
 
 ## Por área
 
-### Parque dos Ventos · Clareira do Papel — `clareira-do-papel.tmj`
+### Clareira do Papel · B os caminhos do riacho — `clareira-do-papel.tmj`
 
-- Cena do jogo: `park-clearing` · 24×16 células · níveis 0–0 · conferência OK
-- Chão: grama 148, bosque 120, terra 72, mato 31, piso 13
-- Peças: arvore (a) ×6, arvore (b) ×13, arvore (florida) ×2, banco 2x1 ×2, poste ×4, placa-mapa 2x1 ×1, vaso ×2, lixeira ×2
-- Eventos: saida: Voltar ao Jardim das Pipas → park-trail · saida: Além da cidade · Veredas do Encanamento → park-veredas · interacao: Placa: habitats e encontros · interacao: Descansar no largo · interacao: Descansar no banco leste · interacao: Mapa do Parque dos Ventos
-- Zoneamento visual (sem alterar colisões): não se aplica
-- Portas vinculadas às fachadas: não se aplica
+- Cena do jogo: `park-clearing` · 64×48 células · níveis 0–1 · conferência OK
+- Chão: grama 1468, bosque 1049, terra 428, piso 62, ponte 30, mato 19, agua 16
+- Peças: arvore (a) ×120, arvore (b) ×126, arvore (florida) ×3, banco 2x1 ×2, poste ×4, placa-mapa 2x1 ×1, vaso ×2, lixeira ×2
+- Eventos: saida: Voltar ao Jardim das Pipas → park-trail · saida: Além da cidade · Veredas do Encanamento → park-veredas · interacao: Placa: habitats e encontros · interacao: Descansar no largo · interacao: Descansar no banco leste · interacao: Mapa do Parque dos Ventos · item: Papel de preparação · escondido · item: Linha de preparação · brilho · item: Papel de preparação · visivel · interacao: Rastro junto ao riacho
+
 - Referência para o conceito: abra no Mapa Studio e use **Baixar referência para o Codex**.
 
-### Parque dos Ventos · Jardim das Pipas — `jardim-das-pipas.tmj`
+### Jardim das Pipas · A chegada — `jardim-das-pipas.tmj`
 
-- Cena do jogo: `park-trail` · 24×16 células · níveis 0–0 · conferência OK
-- Chão: grama 136, bosque 120, terra 90, mato 25, piso 13
-- Peças: coreto 4x4 ×1, arvore (a) ×6, arvore (b) ×15, arvore (florida) ×2, banco 2x1 ×2, poste ×4, placa-mapa 2x1 ×1, vaso ×2, lixeira ×2
-- Eventos: saida: Voltar à Rua dos Ventos → quintal · saida: Seguir para a Clareira → park-clearing · npc: Sr. Assis · encontros selvagens · interacao: Descansar no largo · interacao: Descansar no banco leste · interacao: Mapa do Parque dos Ventos
-- Zoneamento visual (sem alterar colisões): não se aplica
-- Portas vinculadas às fachadas: não se aplica
+- Cena do jogo: `park-trail` · 60×44 células · níveis 0–1 · conferência OK
+- Chão: bosque 1174, grama 1012, terra 381, piso 73
+- Peças: coreto 4x4 ×1, arvore (a) ×108, arvore (b) ×115, arvore (florida) ×3, banco 2x1 ×2, poste ×4, placa-mapa 2x1 ×1, vaso ×2, lixeira ×2, bau ×2
+- Eventos: saida: Voltar à Rua dos Ventos → quintal · saida: Seguir para a Clareira → park-clearing · npc: Sr. Assis · encontros selvagens · interacao: Descansar no largo · interacao: Descansar no banco leste · interacao: Mapa do Parque dos Ventos · npc: Nina · interacao: Vestígio na trilha · releitura após o resgate · item: Papel de preparação · escondido · item: Linha de preparação · visivel · item: Papel de preparação · brilho
+
 - Referência para o conceito: abra no Mapa Studio e use **Baixar referência para o Codex**.
 
 ### Morro do Sol · Escadaria da Sombra — `morro-escadaria-da-sombra.tmj`
@@ -263,14 +232,13 @@ Regras de desenho, grade (64×32, 1 nível = 64 px de parede) e pedidos A (conce
 - Portas vinculadas às fachadas: Casa de Kael: (7,10), frente v+ · Casa do Sr. Assis: (21,10), frente v+ · Loja de pipas: (35,10), frente v+
 - Referência para o conceito: abra no Mapa Studio e use **Baixar referência para o Codex**.
 
-### Veredas do Encanamento — `veredas-do-encanamento.tmj`
+### Veredas do Encanamento · C o pátio dos canos — `veredas-do-encanamento.tmj`
 
-- Cena do jogo: `park-veredas` · 50×32 células · níveis 0–1 · conferência OK
-- Chão: bosque 676, grama 493, terra 241, mato 78, piso 63, agua 37, ponte 12
-- Peças: arvore (b) ×16, bau ×5, placa-mapa ×1, biruta ×2, banco ×1, pipa-presa ×1, flores ×7
-- Eventos: saida: Voltar à Clareira do Papel → park-clearing · npc: Lacertubo · guardião dos canos · interacao: Banco do pátio · interacao: Sinais no bosque · interacao: Mapa das Veredas · interacao: Papel rasgado entre as folhas · interacao: Canos marcados · interacao: Rabiola do Carcará de Nina · npc: Nina
-- Zoneamento visual (sem alterar colisões): não se aplica
-- Portas vinculadas às fachadas: não se aplica
+- Cena do jogo: `park-veredas` · 64×48 células · níveis 0–1 · conferência OK
+- Chão: grama 1308, bosque 1074, terra 443, piso 231, mato 16
+- Peças: arvore (b) ×134, bau ×5, placa-mapa ×1, biruta ×2, banco ×1, pipa-presa ×1, flores ×7, arvore (a) ×119, arvore (florida) ×1
+- Eventos: saida: Voltar à Clareira do Papel → park-clearing · npc: Lacertubo · guardião dos canos · interacao: Banco do pátio · interacao: Sinais no bosque · interacao: Mapa das Veredas · interacao: Papel rasgado entre as folhas · interacao: Canos marcados · interacao: Rabiola do Carcará de Nina · npc: Nina · item: Papel de preparação · escondido · item: Linha de preparação · visivel · item: Papel de preparação · brilho · saida: Retorno curto ao Jardim · após a vitória → park-trail
+
 - Referência para o conceito: abra no Mapa Studio e use **Baixar referência para o Codex**.
 
 ## Pendências conhecidas das plantas importadas

@@ -1,0 +1,173 @@
+{
+  "id": "nilo",
+  "name": "Nilo",
+  "source": "../../fontes/nilo.png",
+  "identityReference": "art/characters/parque-pipeiros-v3/nilo-sheet.png",
+  "cell": [
+    64,
+    96
+  ],
+  "pivot": [
+    32,
+    94
+  ],
+  "directions": [
+    "S",
+    "SO",
+    "O",
+    "NO",
+    "N",
+    "NE",
+    "E",
+    "SE"
+  ],
+  "sourceOrder": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "sharedScale": 0.1719077568134172,
+  "sourceBounds": [
+    [
+      110,
+      62,
+      299,
+      535
+    ],
+    [
+      87,
+      59,
+      286,
+      535
+    ],
+    [
+      80,
+      63,
+      278,
+      535
+    ],
+    [
+      86,
+      58,
+      273,
+      535
+    ],
+    [
+      101,
+      27,
+      287,
+      495
+    ],
+    [
+      93,
+      27,
+      277,
+      495
+    ],
+    [
+      92,
+      26,
+      281,
+      498
+    ],
+    [
+      99,
+      24,
+      295,
+      498
+    ]
+  ],
+  "colors": 31,
+  "cleanup": [
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 271
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 275
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 221
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 266
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 272
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 268
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 223
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 267
+    }
+  ],
+  "animation": "static directional bases; no walk cycle",
+  "status": "native Aseprite export; reviewed in Godot",
+  "exportedBounds": [
+    [
+      16,
+      14,
+      48,
+      95
+    ],
+    [
+      15,
+      13,
+      48,
+      95
+    ],
+    [
+      15,
+      14,
+      48,
+      95
+    ],
+    [
+      17,
+      13,
+      48,
+      95
+    ],
+    [
+      17,
+      15,
+      48,
+      95
+    ],
+    [
+      16,
+      15,
+      48,
+      95
+    ],
+    [
+      16,
+      14,
+      48,
+      95
+    ],
+    [
+      15,
+      14,
+      49,
+      95
+    ]
+  ],
+  "criticScore": 8
+}

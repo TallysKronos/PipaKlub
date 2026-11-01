@@ -1,0 +1,83 @@
+{
+  "schema": "overworld-index-1",
+  "areas": [
+    {
+      "id": "clareira-do-papel",
+      "name": "Parque dos Ventos · Clareira do Papel",
+      "scene": "park-clearing",
+      "biome": "parque"
+    },
+    {
+      "id": "jardim-das-pipas",
+      "name": "Parque dos Ventos · Jardim das Pipas",
+      "scene": "park-trail",
+      "biome": "parque"
+    },
+    {
+      "id": "morro-escadaria-da-sombra",
+      "name": "Morro do Sol · Escadaria da Sombra",
+      "scene": "morro-area-2",
+      "biome": "morro"
+    },
+    {
+      "id": "morro-laje-dos-ventos",
+      "name": "Morro do Sol · Laje dos Ventos",
+      "scene": "morro-area-3",
+      "biome": "morro"
+    },
+    {
+      "id": "morro-mirante-da-caixa-dagua",
+      "name": "Morro do Sol · Mirante da Caixa-d’água",
+      "scene": "morro-area-4",
+      "biome": "morro"
+    },
+    {
+      "id": "morro-parque-dos-ventos",
+      "name": "Morro do Sol · Parque dos Ventos",
+      "scene": "morro-area-5",
+      "biome": "morro"
+    },
+    {
+      "id": "morro-praca-da-chegada",
+      "name": "Morro do Sol · Praça da Chegada",
+      "scene": "morro",
+      "biome": "morro"
+    },
+    {
+      "id": "rua-dos-ventos",
+      "name": "Rua dos Ventos",
+      "scene": "quintal",
+      "biome": "bairro"
+    },
+    {
+      "id": "veredas-do-encanamento",
+      "name": "Veredas do Encanamento",
+      "scene": "park-veredas",
+      "biome": "veredas"
+    },
+    {
+      "id": "veredas-piloto",
+      "name": "Veredas · trecho piloto (ponte, rampa e mirante)",
+      "scene": "veredas-piloto",
+      "biome": "veredas"
+    },
+    {
+      "id": "kronasta-bosque-a",
+      "name": "Bosque dos Ventos · Trilha das Copas",
+      "scene": "kronasta-bosque-a",
+      "biome": "floresta"
+    }
+  ],
+  "scenes": {
+    "park-clearing": "clareira-do-papel",
+    "park-trail": "jardim-das-pipas",
+    "morro-area-2": "morro-escadaria-da-sombra",
+    "morro-area-3": "morro-laje-dos-ventos",
+    "morro-area-4": "morro-mirante-da-caixa-dagua",
+    "morro-area-5": "morro-parque-dos-ventos",
+    "morro": "morro-praca-da-chegada",
+    "quintal": "rua-dos-ventos",
+    "park-veredas": "veredas-do-encanamento"
+  },
+  "campaignReplacement": false
+}

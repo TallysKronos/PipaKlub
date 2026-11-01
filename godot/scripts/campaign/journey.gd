@@ -10,7 +10,7 @@ var session: Node
 func _init(local_session: Node) -> void:
 	session = local_session
 
-func enter_world(scene: String, position: Vector2) -> Dictionary:
+func enter_world(scene: String, position: Vector2, space: String = "") -> Dictionary:
 	if scene=="kite-shop" and not preload("res://scripts/campaign/shop_data.gd").safe(position):return {"status":"invalid"}
 	var saved: Dictionary = session.snapshot()
 	if saved.is_empty() or saved.player.partners.is_empty():
@@ -18,6 +18,8 @@ func enter_world(scene: String, position: Vector2) -> Dictionary:
 	if scene=="quintal":
 		var point: Dictionary=preload("res://scripts/campaign/neighborhood_checkpoint.gd").make(position,saved.player)
 		return session.checkpoint(point,saved.player)
+	if preload("res://scripts/campaign/park_checkpoint.gd").MAPS.has(scene):
+		return session.checkpoint(preload("res://scripts/campaign/park_checkpoint.gd").make(scene,position,space),saved.player)
 	return session.checkpoint({"kind": "world", "scene": scene, "position": [position.x, position.y]}, saved.player)
 
 func practice() -> Dictionary:

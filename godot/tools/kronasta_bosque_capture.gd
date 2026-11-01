@@ -1,18 +1,18 @@
 extends SceneTree
 ## Revisão de arte da área de prova kronasta-bosque-a: câmeras fixas, sem salvar campanha.
-const View = preload("res://scripts/overworld/view.gd")
 
 func _initialize() -> void:
 	call_deferred("capture")
 
 func capture() -> void:
+	var View = load("res://scripts/overworld/view.gd")
 	root.size = Vector2i(1280,720)
 	var output := ""
 	for argument in OS.get_cmdline_user_args():
 		if argument.begins_with("--out="): output = argument.trim_prefix("--out=")
 	if output.is_empty(): output = ProjectSettings.globalize_path("res://../documentation/overworld/kronasta/captures")
 	DirAccess.make_dir_recursive_absolute(output)
-	var view := View.new()
+	var view = View.new()
 	view.area_id = "kronasta-bosque-a"
 	view.art_preview = true
 	root.add_child(view)

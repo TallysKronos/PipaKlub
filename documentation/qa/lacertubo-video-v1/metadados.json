@@ -1,0 +1,32 @@
+{
+  "source": "art\\lacertubo-cinematic-video-v1\\video-original\\cinematic-patio-v1_00001_.mp4",
+  "native": {
+    "seconds": 8.0,
+    "audio": true,
+    "dimensions": [
+      864,
+      480
+    ]
+  },
+  "preview": "documentation\\qa\\lacertubo-video-v1\\lacertubo-cinematic.mp4",
+  "preview_metadata": {
+    "seconds": 8.0,
+    "audio": true,
+    "dimensions": [
+      1280,
+      720
+    ]
+  },
+  "game_movie": "godot\\assets\\campaign\\cinematics\\lacertubo-patio-h3-v1.ogv",
+  "game_metadata": {
+    "seconds": 8.0,
+    "audio": true,
+    "dimensions": [
+      864,
+      480
+    ]
+  },
+  "single_generation": true,
+  "native_hd": false,
+  "editing": "Proportional upscale and encoding only; no cuts, holds or dissolves."
+}

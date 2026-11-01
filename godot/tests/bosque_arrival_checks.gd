@@ -1,5 +1,4 @@
 extends SceneTree
-const View = preload("res://scripts/overworld/view.gd")
 var failures: Array[String] = []
 var checks := 0
 
@@ -11,7 +10,7 @@ func _initialize() -> void:
 	call_deferred("run")
 
 func run() -> void:
-	var view := View.new()
+	var view: Node2D = load("res://scripts/overworld/view.gd").new()
 	view.area_id = "kronasta-bosque-b"
 	view.art_preview = false
 	root.add_child(view)

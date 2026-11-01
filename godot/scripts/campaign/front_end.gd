@@ -10,8 +10,8 @@ const TutorialStaging=preload("res://scripts/campaign/tutorial_staging.gd")
 const Morro = preload("res://scripts/campaign/morro.gd")
 const MorroView = preload("res://scripts/campaign/morro_view.gd")
 const MorroBattleView = preload("res://scripts/campaign/morro_battle_view.gd")
-const ParkView = preload("res://scripts/campaign/park_view.gd")
-const ParkRouteView = preload("res://scripts/campaign/park_route_view.gd")
+const ParkOverworldView = preload("res://scripts/campaign/park_overworld_view.gd")
+const ParkCheckpoint = preload("res://scripts/campaign/park_checkpoint.gd")
 const Exploration = preload("res://scripts/campaign/exploration.gd")
 const Encounters = preload("res://scripts/campaign/encounters.gd")
 const EncounterView = preload("res://scripts/campaign/encounter_view.gd")
@@ -195,7 +195,7 @@ func _main_menu_action(id:String) -> void:
 func _slot_location(snapshot:Dictionary) -> Dictionary:
 	var point:Dictionary=snapshot.get("checkpoint",{})
 	var scene:String=point.get("scene",snapshot.get("player",{}).get("encounter",{}).get("scene",""))
-	var name:String={"quintal":"Vila do Primeiro Vento","professor-home":"Ateliê do Sr. Assis","park-trail":"Jardim dos Ventos","park-clearing":"Clareira do Papel","park-veredas":"Veredas do Encanamento"}.get(scene,"Prólogo" if point.get("kind")=="opening" else "Ateliê do Sr. Assis")
+	var name:String={"quintal":"Vila do Primeiro Vento","professor-home":"Ateliê do Sr. Assis","park-trail":"Jardim dos Ventos","park-clearing":"Clareira do Papel","park-veredas":"Veredas do Encanamento","kronasta-bosque-a":"Bosque · Trilha das Copas","kronasta-bosque-b":"Bosque · Desvio do Riacho","kronasta-bosque-c":"Bosque · Clareira do Marco"}.get(scene,"Prólogo" if point.get("kind")=="opening" else "Ateliê do Sr. Assis")
 	if scene=="kite-shop":name="Linha & Papel"
 	var texture:Texture2D=load("res://assets/campaign/rooftop-arena-wide-v2.png")
 	if scene=="kite-shop":
@@ -282,7 +282,7 @@ func _error(code: String) -> String:
 		"unsupported": "Versão do save incompatível.", "occupied": "Esta jornada já existe.",
 		"invalid_name": "Use um nome de até 24 caracteres, sem quebras de linha.",
 		"stale": "A jornada foi alterada. Volte ao menu e carregue novamente.",
-		"repair_needed": "Seu parceiro precisa de reparos. Volte ao professor: ele cuida da equipe gratuitamente.",
+		"repair_needed": "Seu parceiro precisa de reparos. Use um Kit de Remendo em Equipe → Cuidar ou procure o professor.",
 		"io_error": "Não foi possível acessar o save. Confira o espaço e a permissão da pasta."}.get(code, "Não foi possível continuar. Seu último save foi mantido.")
 
 func _choose(slot_id: String, create: bool) -> void:
@@ -322,6 +322,7 @@ func _confirmation(title:String,text:String,ok:String) -> Control:
 
 func _notice(message: String) -> void:
 	if is_instance_valid(park) and (message.begins_with("Baú encontrado") or message=="Rabiola do Carcará de Nina recebida."):
+		if park.has_method("celebrate_item") and park.celebrate_item(message):return
 		park.exploration_hud.push_notice(message,"item")
 		return
 	if is_instance_valid(park): park.paused = true
@@ -608,8 +609,8 @@ func _show_world() -> void:
 	if Morro.maps().has(session.snapshot().checkpoint.scene):
 		_show_morro()
 		return
-	if session.snapshot().checkpoint.scene in ["park-trail", "park-clearing", "park-veredas"]:
-		_show_park()
+	if ParkCheckpoint.MAPS.has(session.snapshot().checkpoint.scene):
+		_load_park()
 		return
 	_clear()
 	_stage_container()
@@ -1044,7 +1045,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and last_scene_key=="menu:slots":
 		_menu();get_viewport().set_input_as_handled();return
 	if (Controls.cancel(event) or event.is_action_pressed("ui_cancel")) and last_scene_key.begins_with("page:"):
-		if last_scene_key in ["page:Controles · Teclado","page:CONTROLES · TECLADO"]: _return_controls_settings()
+		if last_scene_key=="page:CUIDAR DO PARCEIRO":_show_collection()
+		elif last_scene_key in ["page:Controles · Teclado","page:CONTROLES · TECLADO"]: _return_controls_settings()
 		elif session.snapshot().is_empty(): _menu()
 		else: _return_to_game()
 		get_viewport().set_input_as_handled()
@@ -1169,6 +1171,28 @@ func _notification(what: int) -> void:
 				return
 		get_tree().quit()
 
+func _load_park() -> void:
+	if DisplayServer.get_name()=="headless": _show_park(); return
+	if is_instance_valid(scene_loading): return
+	scene_loading=load("res://scripts/campaign/hud_scene_loading.gd").new()
+	scene_loading.reduced_motion=preferences.reduced_motion
+	add_child(scene_loading)
+	flow_busy=true
+	if is_instance_valid(park): park.paused=true
+	await scene_loading.cover()
+	if not is_inside_tree(): return
+	_show_park()
+	flow_busy=true
+	if is_instance_valid(park): park.paused=true
+	await get_tree().process_frame
+	await RenderingServer.frame_post_draw
+	if is_instance_valid(scene_loading):
+		await scene_loading.reveal()
+		scene_loading.queue_free()
+	scene_loading=null
+	flow_busy=false
+	if is_instance_valid(park): park.paused=false
+
 func _show_park() -> void:
 	_clear()
 	var container := SubViewportContainer.new()
@@ -1181,25 +1205,31 @@ func _show_park() -> void:
 	viewport.world_2d = World2D.new()
 	container.add_child(viewport)
 	var saved: Dictionary = session.snapshot()
-	if saved.checkpoint.scene != "park-veredas":
-		park = ParkRouteView.new()
-		park.ui_theme = theme
-		var maps: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/park/maps.json"))
-		park.data = maps[saved.checkpoint.scene]
-		park.content = content
-		park.player = Vector2(saved.checkpoint.position[0], saved.checkpoint.position[1])
-	else:
-		park = ParkView.new()
-		park.ui_theme = theme
-		park.spawn_point = Vector2(saved.checkpoint.position[0], saved.checkpoint.position[1])
+	var resolved: Vector2=ParkCheckpoint.resolve(saved.checkpoint)
+	if saved.checkpoint.get("space","")!=ParkCheckpoint.SPACE or not resolved.is_equal_approx(Vector2(saved.checkpoint.position[0],saved.checkpoint.position[1])):
+		if not _result(journey.enter_world(saved.checkpoint.scene,resolved,ParkCheckpoint.SPACE)): return
+		saved=session.snapshot()
+	if ParkCheckpoint.is_bosque(saved.checkpoint.scene):
+		var discovery: Dictionary=load("res://scripts/campaign/bosque_campaign.gd").new(session).arrive()
+		if discovery.status not in ["ok","already_applied"]:
+			_result(discovery)
+			return
+		saved=session.snapshot()
+	park = ParkOverworldView.new()
+	park.ui_theme = theme
+	park.content = content
+	park.saved_checkpoint = saved.checkpoint
 	park.set_meta("campaign_scene", saved.checkpoint.scene)
 	park.saved_player = saved.player
+	park.reduced_motion = preferences.reduced_motion
 	viewport.add_child(park)
 	park.action_requested.connect(_park_action)
 	park.menu_requested.connect(_pause_game)
+	park.exit_requested.connect(_park_exit)
 
 func _save_park() -> bool:
-	var result: Dictionary = journey.enter_world(park.get_meta("campaign_scene"), park.player)
+	var space: String = park.get("checkpoint_space") if park.get("checkpoint_space")!=null else ""
+	var result: Dictionary = journey.enter_world(park.get_meta("campaign_scene"), park.player,space)
 	if result.status != "ok":
 		park.paused = true
 		_notice(_error(result.status))
@@ -1209,6 +1239,40 @@ func _save_park() -> bool:
 		park.exploration_hud.push_notice("Progresso salvo","saved")
 	return true
 
+func _park_exit(event: Dictionary) -> void:
+	if not _save_park(): return
+	var saved: Dictionary = session.snapshot()
+	if ParkCheckpoint.is_bosque(saved.checkpoint.scene) and event.props.get("destino","")=="kronasta":
+		_show_kronasta()
+		return
+	var destination: Dictionary = ParkCheckpoint.exit_target(saved.checkpoint,str(int(event.id)),saved.player)
+	if not _result(destination): return
+	park.paused=true
+	if _result(journey.enter_world(destination.scene,destination.point,destination.space)): _show_saved.call_deferred()
+	else: park.paused=false
+
+func _park_event(id: String) -> void:
+	var player: Dictionary = session.snapshot().player
+	for event in park.interaction_events:
+		if str(int(event.id))!=id or not ParkCheckpoint.allowed(event,player,park.area_id): continue
+		if park.player.distance_to(Vector2(event.u+.5,event.v+.5))>1.8: return
+		var action: String = event.props.get("acao","")
+		if ParkCheckpoint.is_bosque(park.saved_checkpoint.scene) and event.type=="npc":
+			_notice(event.name+": "+str(event.props.get("texto","")))
+			return
+		if action=="parkMap": _show_map()
+		elif action=="wildGuide" and park.area_id=="jardim-das-pipas": _park_training("assis")
+		elif action=="wildGuide": _notice("Sr. Assis: Pipamons podem aparecer enquanto você caminha pelo parque. No capim alto os encontros são mais frequentes. Pontes e lugares de conversa são tranquilos. Os bancos recuperam linha e estrutura; o professor também pode ajudar.")
+		elif action=="wildRest":
+			_confirm_park("Um respiro no parque", "Descanse no banco para recuperar a linha e a estrutura de toda a equipe. Não custa moedas e não concede experiência.", "Descansar", func():
+				if _result(exploration.rest(park.player)):
+					park.path.clear()
+					park.refresh(session.snapshot().player)
+					park.encounter_grace=6.0
+					park.exploration_hud.push_notice("Equipe recuperada · linha e estrutura completas","item"))
+		else: _notice(event.props.get("texto",{"parkBossGuide":"Há papel preso nos galhos e marcas seguindo para o canal. Nina disse que a rabiola foi levada para os canos. Siga a trilha; o pátio fica na parte alta.","veredasTrace":"Um pedaço da linha de Nina está preso aqui. As marcas continuam em direção aos canos, na parte alta das Veredas.","veredasPipes":"Os canos vibram em intervalos… e há uma rabiola presa logo adiante. O Lacertubo está no pátio. Há um banco atrás de você para recuperar sua equipe antes de se aproximar."}.get(action,event.name)))
+		return
+
 func _park_action(id: String) -> void:
 	if id == "autosave":
 		_save_park()
@@ -1216,8 +1280,38 @@ func _park_action(id: String) -> void:
 	if not _save_park(): return
 	var point: Vector2 = park.player
 	var player: Dictionary = session.snapshot().player
-	if park.get_meta("campaign_scene") != "park-veredas" and id not in ["collection", "bag", "wild"]:
+	if id=="guardian-approach":
+		if park.guardian_focus:return
+		var movie_available:bool=not preferences.reduced_motion and FileAccess.file_exists("res://assets/campaign/cinematics/lacertubo-patio-h3-v1.ogv")
+		var presentation=load("res://scripts/campaign/lacertubo_movie.gd" if movie_available else "res://scripts/campaign/lacertubo_cinematic.gd").new()
+		presentation.park=park
+		presentation.reduced_motion=preferences.reduced_motion
+		presentation.cue.connect(func(event_id:String):sound.play_event(event_id))
+		var cinema_layer:=CanvasLayer.new()
+		cinema_layer.layer=30
+		add_child(cinema_layer)
+		cinema_layer.add_child(presentation)
+		await presentation.finished
+		cinema_layer.queue_free()
+		if not is_instance_valid(park):return
+		var presented:Dictionary=exploration.introduce_guardian(point)
+		if _result(presented):park.refresh(session.snapshot().player)
+		return
+	if park.get("checkpoint_space")==null and park.get_meta("campaign_scene") != "park-veredas" and id not in ["collection", "bag", "wild"]:
 		_route_action(id)
+		return
+	if id.begins_with("training:"):
+		_park_training(id.trim_prefix("training:"))
+		return
+	if id.begins_with("park-loot:"):
+		var reward: Dictionary = exploration.park_loot(id.trim_prefix("park-loot:"),point)
+		if reward.status=="already_applied": _notice("Você já recolheu isso."); return
+		if _result(reward):
+			park.refresh(session.snapshot().player)
+			park.celebrate_item("Recebido · "+reward.get("reward","Item"))
+		return
+	if id.begins_with("park-event:"):
+		_park_event(id.trim_prefix("park-event:"))
 		return
 	if id == "exit":
 		if _result(journey.enter_world("park-clearing", Vector2(1232, 400))): _show_saved.call_deferred()
@@ -1228,7 +1322,7 @@ func _park_action(id: String) -> void:
 		if result.status == "ok":
 			park.paused = true
 			_show_saved.call_deferred()
-		elif result.status == "repair_needed": _notice("Seu parceiro precisa de reparos. O professor pode ajudar.")
+		elif result.status == "repair_needed": _notice("Seu parceiro precisa se recuperar. Use um Kit de Remendo em Equipe → Cuidar, descanse em um banco ou procure o professor.")
 	elif id.begins_with("chest:"):
 		var chest_id := id.trim_prefix("chest:")
 		var result: Dictionary = exploration.chest(chest_id, point)
@@ -1245,21 +1339,47 @@ func _park_action(id: String) -> void:
 		elif not player.flags.get("ninaAccepted", false):
 			_confirm_park("Nina", "[emo=suor]Meu Carcará tentou me proteger daquele lagarto. A linha rompeu e ele se recolheu na rabiola… O vento levou ela para os canos. Você consegue trazer a rabiola dele?", "Vou recuperar a rabiola", func():
 				if _result(exploration.accept_nina(point)): park.refresh(session.snapshot().player))
-		else: _notice("Nina: Ele arma a vela antes de puxar… Depois fica parado por um instante.")
+		else: _notice("Nina: Siga pelo Jardim até a Clareira e procure os canos nas Veredas. Os pipeiros pelo caminho podem treinar com você. Ele arma a vela antes de puxar… Depois fica parado por um instante.")
 	elif id == "tail":
 		if _result(exploration.collect_tail(point)):
 			park.refresh(session.snapshot().player)
 			_notice("Rabiola do Carcará de Nina recebida.")
 	elif id == "boss":
-		if not player.flags.get("ninaAccepted", false):
-			_notice("Há alguém na clareira, perto dos canos.")
+		if _training_needs_recovery(player):
+			_notice("Seu parceiro está sem condições de lutar. Recue até o banco junto à subida dos canos para recuperar a equipe.")
 			return
-		_confirm_park("Lacertubo · Guardião dos canos", "Parceiro recomendado: Nv. 15. Você pode fugir e continua com seu parceiro se perder.", "Enfrentar Lacertubo", func():
+		if not player.flags.get("ninaAccepted", false):
+			_notice("Converse com Nina no Jardim das Pipas antes de enfrentar o guardião.")
+			return
+		var Training=preload("res://scripts/campaign/park_training.gd")
+		var current: int=Training.level(player)
+		var preparation: String="A rabiola de Nina está atrás dele. Seu parceiro está no Nv. %d. Recomendado: Nv. 8. " % current
+		if current<8: preparation+="Ainda será uma luta difícil: os duelos opcionais dos pipeiros dão experiência na primeira vitória. Você pode se preparar e voltar. "
+		preparation+="Observe a preparação do golpe e ataque quando ele baixar a guarda. Se perder, seu parceiro continua com você; recupere-o em um banco."
+		_confirm_park("Lacertubo · Guardião dos canos", preparation, "Enfrentar Lacertubo", func():
 			if _result(encounters.start_boss(point)): _show_saved.call_deferred())
 
+func _training_needs_recovery(player: Dictionary) -> bool:
+	return preload("res://scripts/campaign/park_training.gd").needs_rest(player)
+
+func _park_training(id: String) -> void:
+	var Training=preload("res://scripts/campaign/park_training.gd")
+	var entry: Dictionary=Training.duel(id)
+	if entry.is_empty(): return
+	var player: Dictionary=session.snapshot().player
+	if Training.completed(player,id):
+		_notice("%s: %s Já concluímos nosso duelo. Siga explorando; os bancos recuperam sua equipe." % [entry.name,entry.tip])
+		return
+	var introduction: String=str(entry.get("intro",""))
+	var text: String=(introduction+"\n\n" if not introduction.is_empty() else "")+"%s\n\nDuelo opcional · adversário Nv. %d · +%d XP na primeira vitória. Seu parceiro está no Nv. %d. Não há rabiola como prêmio." % [entry.tip,entry.level,entry.xp,Training.level(player)]
+	_confirm_park(entry.name,text,"Vamos treinar",func():
+		var result: Dictionary=encounters.start_training(id,park.player)
+		if _result(result) and result.status=="ok": _show_saved.call_deferred())
+
 func _confirm_park(title: String, text: String, accept: String, callback: Callable) -> void:
+	park.path.clear()
 	park.paused = true
-	var dialog := _dialog(title, text, accept, "Conversar depois")
+	var dialog := _dialog(title, text, accept, "Agora não")
 	dialog.confirmed.connect(callback)
 	dialog.confirmed.connect(dialog.queue_free)
 	dialog.canceled.connect(dialog.queue_free)
@@ -1369,15 +1489,17 @@ func _show_collection() -> void:
 		var progress := ProgressBar.new()
 		progress.theme_type_variation="RecorteXPBar"
 		var xp: int = partner.get("xp", 0)
-		var previous: int = 40 * (level - 1) + 10 * (level - 1) * (level - 1)
-		var threshold: int = 40 * level + 10 * level * level
+		var previous: int = EncounterView.Model.xp_for_level(level)
+		var threshold: int = EncounterView.Model.xp_for_level(level+1) if level<50 else previous+1
 		progress.max_value = threshold - previous
-		progress.value = xp - previous
+		progress.value = xp - previous if level<50 else progress.max_value
 		progress.show_percentage = false
 		progress.custom_minimum_size.y = 12
 		details.add_child(progress)
 		_label("Nível máximo" if level == 50 else "%d / %d XP para o próximo nível" % [xp - previous, threshold - previous], details, 16).theme_type_variation="RecorteMutedText"
 		var id: String = partner.id
+		var care_id:String=partner.id
+		_button("Cuidar",details,func():_show_partner_care(care_id)).disabled=session.snapshot().checkpoint.get("kind","")!="world"
 		var action_space := Hud.focus_space(row)
 		action_space.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 		var button := _button("Selecionado" if id == player.get("equippedPartnerId", "") else "Escolher parceiro", action_space, func():
@@ -1388,6 +1510,7 @@ func _show_collection() -> void:
 		button.disabled = id == player.get("equippedPartnerId", "")
 	if player.partners.is_empty():_label("Sua equipe começa com o primeiro elo. Continue sua história com o professor.",list,22)
 	var footer:=HBoxContainer.new()
+	footer.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
 	page.add_child(footer)
 	_button("Voltar", footer, _return_to_game).custom_minimum_size.x=180
 	if team_pages>1:
@@ -1409,6 +1532,46 @@ func _route_action(id: String) -> void:
 		elif place.action == "wildRest": _notice("Uma pausa no caminho. Aqui podemos baixar a guarda.")
 		elif place.action == "parkMap": _notice("Parque dos Ventos\n\nA trilha segue até a Clareira do Papel. Além dela ficam as Veredas.")
 
+func _show_partner_care(partner_id:String="") -> void:
+	if not _remember_world_position():return
+	var care=load("res://scripts/campaign/partner_care.gd").new(session)
+	var saved:Dictionary=session.snapshot()
+	if not care.available(saved):_notice("Os cuidados ficam disponíveis durante a exploração.");return
+	var chosen:Dictionary={}
+	var wanted:String=partner_id if not partner_id.is_empty() else str(saved.player.get("equippedPartnerId",""))
+	for entry in saved.player.partners:
+		if entry.id==wanted:chosen=entry;break
+	if chosen.is_empty():chosen=saved.player.partners[0]
+	_clear("page:CUIDAR DO PARCEIRO")
+	page=VBoxContainer.new()
+	add_child(page)
+	page.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	var view=load("res://scripts/campaign/partner_care_view.gd").new()
+	view.partner=chosen.duplicate(true)
+	view.kits=int(saved.player.inventory.get(care.ITEM,0))
+	view.coins=int(saved.player.coins)
+	view.welcome=not saved.player.flags.get("careWelcomeKit",false)
+	view.reduced_motion=preferences.reduced_motion
+	page.add_child(view)
+	var operation:String="partner-care-"+preload("res://scripts/campaign/state.gd").new_id()
+	var id:String=chosen.id
+	view.supplies_requested.connect(func():
+		var result:Dictionary=care.supplies()
+		if result.status=="ok":
+			var player:Dictionary=session.snapshot().player
+			view.refresh_stock(int(player.inventory.get(care.ITEM,0)),int(player.coins),false)
+			view.stage.grab_focus()
+		else:view.message.text="Moedas insuficientes para outro kit." if result.status=="not_enough_coins" else "Não foi possível guardar o kit. Tente novamente.")
+	view.completed.connect(func(steps:Array):
+		var result:Dictionary=care.finish(id,operation,steps)
+		var ok:bool=result.status in ["ok","already_applied"]
+		view.finish_result(ok,"Não foi possível salvar o reparo. Seu kit foi preservado; tente novamente.")
+		if ok:
+			view.refresh_stock(int(session.snapshot().player.inventory.get(care.ITEM,0)),int(session.snapshot().player.coins),false)
+			view.supply.disabled=true
+			view.pet.grab_focus())
+	view.back_requested.connect(_show_collection)
+
 func _show_bag() -> void:
 	if not _remember_world_position(): return
 	sound.play_event("inventory.bag")
@@ -1416,6 +1579,8 @@ func _show_bag() -> void:
 	_simple_page("MOCHILA",true)
 	_label("%d moedas · Materiais e lembranças da sua jornada"%player.coins,page,18).add_theme_color_override("font_color",Hud.GOLD)
 	var inventory_view = load("res://scripts/campaign/hud_inventory.gd").new()
+	inventory_view.care_available=session.snapshot().checkpoint.get("kind","")=="world"
+	inventory_view.care_requested.connect(func():_show_partner_care())
 	inventory_view.inventory = player.inventory
 	inventory_view.reduced_motion=preferences.reduced_motion
 	page.add_child(inventory_view)
@@ -1425,19 +1590,39 @@ func _show_bag() -> void:
 		inventory_view.inventory=fresh.inventory
 		inventory_view.set_load_state("ready"))
 	var footer:=HBoxContainer.new()
+	footer.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
 	page.add_child(footer)
 	_button("Voltar", footer, _return_to_game).custom_minimum_size.x=180
+	var care_button:=_button("Cuidar do parceiro",footer,func():_show_partner_care())
+	care_button.disabled=player.partners.is_empty() or session.snapshot().checkpoint.get("kind","")!="world"
 	Hud.input_hint(footer,"guard","Aba anterior")
 	Hud.input_hint(footer,"line","Próxima aba")
 
 func _show_map() -> void:
+	if not _remember_world_position(): return
 	sound.play_event("ui.map")
 	var subject:Node2D=park if is_instance_valid(park) else room
 	var polygons:Array[PackedVector2Array]=[]
+	var regions:Array[Dictionary]=[]
+	var landmarks:Array[Dictionary]=[]
 	var point:=Vector2.ZERO
 	if is_instance_valid(subject):
 		point=subject.get("player") if subject.get("player")!=null else subject.actor
-		if subject.get("ground")!=null:polygons.assign(subject.ground.floors)
+		if subject.has_method("map_polygons"):
+			for raw in subject.map_polygons():
+				var projected := PackedVector2Array()
+				for at in raw: projected.append(subject.project(at))
+				polygons.append(projected)
+			point=subject.project(point)
+			if subject.has_method("map_regions"):
+				for region in subject.map_regions():
+					var outline:=PackedVector2Array()
+					for at in region.polygon:outline.append(subject.project(at))
+					regions.append({"polygon":outline,"color":region.color})
+			if subject.has_method("map_landmarks"):
+				for marker in subject.map_landmarks():
+					landmarks.append({"point":subject.project(marker.point),"text":marker.text})
+		elif subject.get("ground")!=null:polygons.assign(subject.ground.floors)
 		else:
 			for raw in subject.data.get("walkable",[]):
 				var rect:=Rect2(raw[0],raw[1],raw[2],raw[3]) if raw is Array else Rect2(raw.x,raw.y,raw.w,raw.h)
@@ -1446,13 +1631,45 @@ func _show_map() -> void:
 	_label(_slot_location(session.snapshot()).name+" · Você está aqui",page,18)
 	var map=load("res://scripts/campaign/hud_area_map.gd").new()
 	map.polygons=polygons
+	map.regions=regions
+	map.landmarks=landmarks
 	map.player=point
 	page.add_child(map)
 	if polygons.is_empty():_label("O mapa desta área ainda não está disponível.",page,18)
 	_label("Os caminhos orientam sua exploração. Descobertas ficam por sua conta.",page,16)
 	var footer:=HBoxContainer.new()
+	footer.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
 	page.add_child(footer)
 	_button("Voltar",footer,_return_to_game).custom_minimum_size.x=180
+	if load("res://scripts/campaign/bosque_campaign.gd").available(session.snapshot().player):
+		_button("Região de Kronasta",footer,_show_kronasta)
+
+func _show_kronasta() -> void:
+	if not _remember_world_position(): return
+	var saved: Dictionary=session.snapshot()
+	var region=load("res://scripts/campaign/bosque_campaign.gd")
+	if not region.available(saved.player): return
+	_simple_page("REGIÃO DE KRONASTA",true)
+	_label("Você está em "+_slot_location(saved).name,page,20)
+	_label("Bosque dos Ventos · uma trilha opcional por três áreas conectadas.",page,18)
+	_label("Trilha das Copas  →  Desvio do Riacho  →  Clareira do Marco",page,22)
+	var discovered: Array[String]=[]
+	for part in ["A","B","C"]:
+		if saved.player.flags.get("bosqueParte"+part+"Descoberta",false): discovered.append(part)
+	_label("Áreas descobertas: "+("nenhuma" if discovered.is_empty() else ", ".join(discovered)),page,18)
+	_label("Atravesse o riacho pela ponte. Na clareira, os bancos recuperam sua equipe e o atalho facilita a volta.",page,17)
+	var space:=Control.new()
+	space.size_flags_vertical=Control.SIZE_EXPAND_FILL
+	page.add_child(space)
+	_button("Entrar no Bosque · Trilha das Copas",page,func():_travel_kronasta("kronasta-bosque-a"))
+	_button("Voltar à Vila do Primeiro Vento",page,func():_travel_kronasta("quintal"))
+	_button("Continuar de onde parei",page,_return_to_game)
+
+func _travel_kronasta(destination: String) -> void:
+	if not _result(load("res://scripts/campaign/bosque_campaign.gd").new(session).travel(destination)): return
+	menu_origin=""
+	sound.set_game_paused(false)
+	_show_saved()
 
 func _show_tail_workshop() -> void:
 	if not _remember_world_position(): return
@@ -1504,6 +1721,7 @@ func _show_settings() -> void:
 	_label("CONFIGURAÇÕES",page,38)
 	_label("Seu jeito de jogar. As alterações são salvas automaticamente.",page,17)
 	var category_row:=HBoxContainer.new()
+	category_row.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
 	var active_tab:Button
 	category_row.add_theme_constant_override("separation",20)
 	page.add_child(category_row)
@@ -1593,12 +1811,14 @@ func _show_settings() -> void:
 			_notice("Não foi possível guardar a configuração.")
 		_apply_preferences())
 	var keyboard_row:=HBoxContainer.new()
+	keyboard_row.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
 	controls_content.add_child(keyboard_row)
 	_label("Personalize as teclas de movimento e de batalha.",keyboard_row,15).size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	var keyboard_button:=_button("Controles · Teclado",keyboard_row,_show_controls)
 	keyboard_button.custom_minimum_size.x=260
 	Hud.secondary_button(keyboard_button)
 	var footer:=HBoxContainer.new()
+	footer.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
 	footer.add_theme_constant_override("separation",20)
 	page.add_child(footer)
 	_button("Voltar", footer, _menu if session.snapshot().is_empty() else _return_to_game).custom_minimum_size.x=180
@@ -1691,6 +1911,7 @@ func _show_controls() -> void:
 			binding_rows[id]={"button":binding_button,"feedback":feedback}
 	_label("Setas e Enter continuam disponíveis para navegar. Esc cancela a troca de tecla. A bancada usa mouse e teclado.",page,16).add_theme_color_override("font_color",Hud.MUTED)
 	var footer:=HBoxContainer.new()
+	footer.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
 	footer.add_theme_constant_override("separation",24)
 	page.add_child(footer)
 	_button("Voltar",footer,_return_controls_settings).custom_minimum_size.x=180

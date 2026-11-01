@@ -1,0 +1,90 @@
+{
+  "character": "kael",
+  "origin": {
+    "idle": "existing approved eight-direction rest references, layered respiration in Aseprite",
+    "run": "local installed MiniMax H3 reference-to-video; workflows/prompts/jobs and selected source frames retained"
+  },
+  "sourceApproval": "existing Kael design, new animations pending player feedback",
+  "animations": {
+    "idle": {
+      "size": [
+        512,
+        768
+      ],
+      "cell": [
+        64,
+        96
+      ],
+      "pivot": [
+        32,
+        94
+      ],
+      "directions": [
+        "s",
+        "sw",
+        "w",
+        "nw",
+        "n",
+        "ne",
+        "e",
+        "se"
+      ],
+      "framesPerDirection": 8,
+      "durationsMs": [
+        480,
+        150,
+        320,
+        150,
+        480,
+        150,
+        320,
+        150
+      ],
+      "colors": 32,
+      "binaryAlpha": true,
+      "existingPalette": true,
+      "idleFeetFixed": true,
+      "runtime": "godot\\assets\\kael-video\\kael-idle-eight.png"
+    },
+    "run": {
+      "size": [
+        512,
+        768
+      ],
+      "cell": [
+        64,
+        96
+      ],
+      "pivot": [
+        32,
+        94
+      ],
+      "directions": [
+        "s",
+        "sw",
+        "w",
+        "nw",
+        "n",
+        "ne",
+        "e",
+        "se"
+      ],
+      "framesPerDirection": 8,
+      "durationsMs": [
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "colors": 32,
+      "binaryAlpha": true,
+      "existingPalette": true,
+      "idleFeetFixed": false,
+      "runtime": "godot\\assets\\kael-video\\kael-run-eight.png"
+    }
+  }
+}

@@ -1,5 +1,5 @@
 extends SceneTree
-const Front = preload("res://scripts/campaign/front_end.gd")
+var Front: GDScript
 const Fixtures = preload("res://tools/player_audit_fixtures.gd")
 const Store = preload("res://scripts/campaign/save_store.gd")
 const State = preload("res://scripts/campaign/state.gd")
@@ -23,9 +23,12 @@ func escape() -> void:
 		key.pressed = down
 		root.push_input(key, true)
 func run_checks() -> void:
+	Front=load("res://scripts/campaign/front_end.gd")
 	front = Front.new()
-	front.session._store = Store.new("user://player-flow-" + State.new_id())
-	front.preferences.storage_path = "user://player-flow-settings-" + State.new_id() + ".cfg"
+	var test_root: String=OS.get_environment("PIPA_TEST_ROOT")
+	var storage: String=(test_root.path_join("player-flow-") if not test_root.is_empty() else "user://player-flow-")+State.new_id()
+	front.session._store = Store.new(storage)
+	front.preferences.storage_path = storage+"-settings.cfg"
 	root.add_child(front)
 	front.preferences.reduced_motion = true
 	Fixtures.show(front, "lesson-0")

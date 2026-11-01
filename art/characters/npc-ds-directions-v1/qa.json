@@ -1,0 +1,102 @@
+{
+  "characters": [
+    {
+      "id": "professor",
+      "frames": 8,
+      "nativeRoundtripExact": true,
+      "alpha": "0/255",
+      "pivot": [
+        32,
+        94
+      ],
+      "opaqueColors": 30,
+      "aseprite": true
+    },
+    {
+      "id": "mae",
+      "frames": 8,
+      "nativeRoundtripExact": true,
+      "alpha": "0/255",
+      "pivot": [
+        32,
+        94
+      ],
+      "opaqueColors": 31,
+      "aseprite": true
+    },
+    {
+      "id": "nina",
+      "frames": 8,
+      "nativeRoundtripExact": true,
+      "alpha": "0/255",
+      "pivot": [
+        32,
+        94
+      ],
+      "opaqueColors": 30,
+      "aseprite": true
+    },
+    {
+      "id": "bia",
+      "frames": 8,
+      "nativeRoundtripExact": true,
+      "alpha": "0/255",
+      "pivot": [
+        32,
+        94
+      ],
+      "opaqueColors": 30,
+      "aseprite": true
+    },
+    {
+      "id": "juninho",
+      "frames": 8,
+      "nativeRoundtripExact": true,
+      "alpha": "0/255",
+      "pivot": [
+        32,
+        94
+      ],
+      "opaqueColors": 31,
+      "aseprite": true
+    },
+    {
+      "id": "lia",
+      "frames": 8,
+      "nativeRoundtripExact": true,
+      "alpha": "0/255",
+      "pivot": [
+        32,
+        94
+      ],
+      "opaqueColors": 31,
+      "aseprite": true
+    },
+    {
+      "id": "zeca",
+      "frames": 8,
+      "nativeRoundtripExact": true,
+      "alpha": "0/255",
+      "pivot": [
+        32,
+        94
+      ],
+      "opaqueColors": 31,
+      "aseprite": true
+    },
+    {
+      "id": "tiao",
+      "frames": 8,
+      "nativeRoundtripExact": true,
+      "alpha": "0/255",
+      "pivot": [
+        32,
+        94
+      ],
+      "opaqueColors": 31,
+      "aseprite": true
+    }
+  ],
+  "totalDirections": 64,
+  "animation": "static directions, not walk"
+}

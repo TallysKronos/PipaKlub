@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3]
+
+[ext_resource type="Texture2D" path="res://kael-sheet.png" id="1_sheet"]
+
+[sub_resource type="AtlasTexture" id="Atlas_0"]
+atlas = ExtResource("1_sheet")
+region = Rect2(0, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="Atlas_1"]
+atlas = ExtResource("1_sheet")
+region = Rect2(48, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="Atlas_2"]
+atlas = ExtResource("1_sheet")
+region = Rect2(96, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="Atlas_3"]
+atlas = ExtResource("1_sheet")
+region = Rect2(144, 0, 48, 64)
+
+[resource]
+animations = [{
+"frames": [{ "duration": 0.14, "texture": SubResource("Atlas_0") },
+{ "duration": 0.11, "texture": SubResource("Atlas_1") },
+{ "duration": 0.14, "texture": SubResource("Atlas_2") },
+{ "duration": 0.11, "texture": SubResource("Atlas_3") },
+{ "duration": 0.14, "texture": SubResource("Atlas_2") },
+{ "duration": 0.11, "texture": SubResource("Atlas_1") }],
+"loop": true,
+"name": &"walk-left",
+"speed": 1.0
+}]

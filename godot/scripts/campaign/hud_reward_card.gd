@@ -223,8 +223,8 @@ func advance(delta: float) -> void:
 	levels.text = "%s\nNv. %d" % [summary.get("name", "Seu parceiro"), before_level] + (" → %d" % level if level > before_level else "")
 	earned.text = "+%d XP" % amount if summary.get("xp", 0) > 0 else "Sem XP"
 	earned.theme_type_variation = "RecorteGoldText" if summary.get("xp", 0) > 0 else "RecorteMutedText"
-	var base := 40 * (level - 1) + 10 * (level - 1) * (level - 1)
-	var threshold := 40 * level + 10 * level * level
+	var base := Model.xp_for_level(level)
+	var threshold := Model.xp_for_level(level+1) if level<50 else base+1
 	progress.max_value = threshold - base
 	progress.value = total - base if level < 50 else progress.max_value
 	progress_caption.text = "%d / %d XP" % [total - base, threshold - base] if level < 50 else "Nível máximo"

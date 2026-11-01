@@ -5,6 +5,7 @@ const Model = preload("res://scripts/campaign/encounter_model.gd")
 const Morro = preload("res://scripts/campaign/morro.gd")
 const MorroModel = preload("res://scripts/campaign/morro_model.gd")
 const Workshop = preload("res://scripts/campaign/workshop_model.gd")
+const ParkCheckpoint = preload("res://scripts/campaign/park_checkpoint.gd")
 static func scenarios() -> Array[String]:
 	var result: Array[String] = ["menu", "settings", "controls"]
 	for step in 15: result.append("opening-%d" % step)
@@ -31,7 +32,8 @@ static func show(front: Control, id: String) -> void:
 	saved.player.equippedPartnerId = "audit-partner"
 	saved.player.journey = {"lesson": 5, "phase": "complete"}
 	saved.player.flags = {"ninaAccepted": true}
-	saved.checkpoint = {"kind": "world", "scene": "park-veredas", "position": [1160, 366]}
+	# The park maps use native cells now; the old pixel positions no longer load.
+	saved.checkpoint = ParkCheckpoint.make("park-veredas", ParkCheckpoint.spawn("park-veredas"), ParkCheckpoint.SPACE)
 	if id.begins_with("opening-"): saved.checkpoint = {"kind": "opening", "step": id.trim_prefix("opening-").to_int()}
 	elif id.begins_with("lesson-"): saved.checkpoint = {"kind": "practice", "lesson": id.split("-")[1].to_int()}
 	elif id.begins_with("workshop-"):
@@ -44,7 +46,8 @@ static func show(front: Control, id: String) -> void:
 	elif id in ["street", "professor"]:
 		saved.checkpoint = {"kind": "world", "scene": "quintal" if id == "street" else "professor-home", "position": [1376, 688] if id == "street" else [1056, 1232]}
 	elif id in ["trail", "clearing"]:
-		saved.checkpoint = {"kind": "world", "scene": "park-trail" if id == "trail" else "park-clearing", "position": [336, 784]}
+		var park_scene := "park-trail" if id == "trail" else "park-clearing"
+		saved.checkpoint = ParkCheckpoint.make(park_scene, ParkCheckpoint.spawn(park_scene), ParkCheckpoint.SPACE)
 	elif id.begins_with("morro"):
 		var scene: String = id if Morro.maps().has(id) else "morro-area-3"
 		saved.checkpoint = {"kind": "world", "scene": scene, "position": Morro.maps()[scene].spawn}
@@ -88,6 +91,9 @@ static func show(front: Control, id: String) -> void:
 		if id == "team-long": front._show_collection()
 		elif id == "starter": front._show_starter()
 		else: front._show_bag()
+	# Park scenes open synchronously, as in headless runs: the animated loading cover
+	# would otherwise clear a notice the fixture posts right after.
+	elif str(saved.checkpoint.get("scene","")) in ParkCheckpoint.MAPS and saved.checkpoint.kind == "world": front._show_park()
 	else: front._show_saved()
 	if id.begins_with("lesson-"):
 		for child in front.get_children():

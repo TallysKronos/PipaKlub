@@ -3,9 +3,12 @@ const HouseArt=preload("res://scripts/campaign/house_modern.gd")
 const ProfessorArt=preload("res://scripts/campaign/professor_modern.gd")
 const ShopArt=preload("res://scripts/campaign/shop_modern.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
+const CompanionFollow = preload("res://scripts/campaign/companion_follow.gd")
+const Locomotion = preload("res://scripts/campaign/locomotion.gd")
 ## Uses the original room coordinates, footprints and 2:1 projection.
 signal interacted(id: String)
 const Avatar = preload("res://scripts/avatar.gd")
+const NpcPixels = preload("res://scripts/npc_pixel_sprite.gd")
 var data: Dictionary
 var actor := Vector2.ZERO
 var can_walk := false
@@ -28,6 +31,7 @@ var story_paused := false
 var cinematic_actor_moving := false
 var companion_follow := true
 var opening_tv: Node2D
+var target_marker: Node2D
 
 func configure(room: Dictionary, point: Array, walk: bool, target: String, mother: bool, partner: bool) -> void:
 	for child in get_children():
@@ -38,6 +42,10 @@ func configure(room: Dictionary, point: Array, walk: bool, target: String, mothe
 	companion_frames.clear()
 	trail.clear()
 	data = HouseArt.room_data(room)
+	target_marker=Node2D.new()
+	target_marker.z_index=250
+	target_marker.draw.connect(_draw_target)
+	add_child(target_marker)
 	camera = data.camera
 	actor = Vector2(point[0], point[1])
 	if ShopArt.applies(data):actor=preload("res://scripts/campaign/shop_data.gd").resume_point(actor)
@@ -73,20 +81,14 @@ func configure(room: Dictionary, point: Array, walk: bool, target: String, mothe
 		props.append({"node": sprite, "rect": prop.footprint, "layer": "flat" if prop.kind == "flat" else "wall" if prop.kind.begins_with("wall") else ""})
 	avatar = Avatar.new()
 	add_child(avatar)
-	avatar.scale = Vector2.ONE * .80 * float(camera.scale)
+	avatar.scale = Vector2.ONE * .80 * Avatar.BODY_SCALE * float(camera.scale)
 	props.append({"node": avatar, "rect": {}, "layer": "", "actor": true})
 	if mother:
 		var npc := Sprite2D.new()
 		if data.get("id") == "professor":
-			npc.texture = load("res://assets/campaign/assis-overworld.png")
-			npc.offset = Vector2(0, -npc.texture.get_height() / 2.0)
-			npc.scale = Vector2.ONE * 102 / npc.texture.get_height() * float(camera.scale)
+			NpcPixels.setup(npc,"professor",NpcPixels.height_for("professor",avatar.scale.y))
 		else:
-			npc.texture = load("res://assets/campaign/mother-overworld.png")
-			npc.region_enabled = true
-			npc.region_rect = Rect2(0, 0, 384, 512)
-			npc.offset = Vector2(-22, -245)
-			npc.scale = Vector2.ONE * .22 * float(camera.scale)
+			NpcPixels.setup(npc,"mae",NpcPixels.height_for("mae",avatar.scale.y))
 		var location: Array = data.layout.blocking.mother
 		mother_point=Vector2(location[0],location[1])
 		mother_sprite=npc
@@ -124,36 +126,29 @@ func opening_pose() -> void:
 	if is_instance_valid(mother_sprite):
 		mother_sprite.position=project(mother_point)+Vector2(0,(1.0-mother_reveal)*40.0*float(camera.scale))
 		if data.get("id")!="professor":
-			var row := 1 if mother_walking and int(clock*7)%2==1 else 0
-			mother_sprite.region_rect=Rect2(mother_facing*384,row*512,384,512)
-			mother_sprite.offset=Vector2(-20,256-(452 if row==1 else 490))
 			if mother_sprite.material!=null:
-				mother_sprite.material.set_shader_parameter("row",float(row))
-				mother_sprite.material.set_shader_parameter("reveal",mother_reveal)
+				NpcPixels.reveal(mother_sprite,mother_reveal)
 		for item in props:
 			if item.node==mother_sprite:item.rect=_foot(mother_point)
 	_update_order()
 
 func face_actor(target: Vector2) -> void:
 	var direction := project(target)-project(actor)
-	avatar.facing=("s" if direction.y>=0 else "n")+("e" if direction.x>=0 else "w")
+	avatar.face_motion(direction)
 
 func face_mother(target: Vector2) -> void:
 	var direction := project(target)-project(mother_point)
 	mother_facing=(2 if direction.x>0 else 1) if absf(direction.x)>absf(direction.y) else (3 if direction.y<0 else 0)
+	if is_instance_valid(mother_sprite):NpcPixels.face_motion(mother_sprite,direction)
 
 func enable_stair_reveal() -> void:
 	if not is_instance_valid(mother_sprite) or mother_sprite.material!=null:return
-	var shader:=Shader.new()
-	shader.code="shader_type canvas_item; uniform float row=0.0; uniform float reveal=1.0; void fragment(){if((UV.y-row*0.5)*2.0>reveal){discard;}}"
-	var material:=ShaderMaterial.new()
-	material.shader=shader
-	mother_sprite.material=material
+	NpcPixels.reveal(mother_sprite,mother_reveal)
 
 func set_story_paused(value: bool) -> void:
 	story_paused=value
 	avatar.set_process(not value)
-	if value:avatar.moving=false
+	if value:avatar.moving=false; avatar.running=false
 	if is_instance_valid(opening_tv):
 		if opening_tv.has_method("set_cinematic_paused"):opening_tv.set_cinematic_paused(value or not opening_tv.visible)
 		else:opening_tv.set_process(not value and opening_tv.visible)
@@ -225,49 +220,71 @@ func _process(delta: float) -> void:
 		return
 	if story_paused:return
 	clock += delta
+	if is_instance_valid(target_marker):target_marker.queue_redraw()
 	if is_instance_valid(mother_sprite):opening_pose()
 	if is_instance_valid(companion) and companion_follow:
 		var frame: Dictionary = companion_frames[int(clock * 12) % companion_frames.size()]
 		companion.region_rect = Rect2(frame.x, frame.y, frame.w, frame.h)
 		if trail.is_empty() or trail.back().distance_to(actor) > 8:
 			trail.append(actor)
-		var remaining := companion_point.distance_to(trail[0])
-		for i in range(1, trail.size()):
-			remaining += trail[i - 1].distance_to(trail[i])
-		if remaining > 70:
-			var next_point := companion_point.move_toward(trail[0], minf(remaining - 70, 400 * minf(delta, .05)))
-			if _safe(next_point):
-				companion_point = next_point
-			if companion_point.distance_to(trail[0]) < 1:
-				trail.pop_front()
+		companion_point=CompanionFollow.advance(companion_point,trail,minf(delta,.05),720.0,70.0,_companion_segment)
 		companion.position = project(companion_point)
+		CompanionFollow.orient(companion,avatar.facing)
 		_update_order()
 	near = ""
+	var nearest := INF
 	for spot in data.hotspots:
-		if Vector2(spot.x, spot.y).distance_to(actor) <= 110:
-			near = spot.id
+		if target_hotspot!="*" and spot.id!=target_hotspot:continue
+		var distance:=Vector2(spot.x,spot.y).distance_to(actor)
+		var reach:=150.0 if spot.id=="stairs" else 110.0
+		if distance<=reach and distance<nearest:
+			near=spot.id;nearest=distance
+	avatar.running=false
 	avatar.moving = cinematic_actor_moving
 	if not can_walk:
 		return
+	Locomotion.update()
 	var input := Controls.direction()
 	if input.length() < .1:
 		return
 	# Invert the room projection so screen directions match the player's input.
-	var world := Vector2(1.5 * input.x + 3 * input.y, 3 * input.y - 1.5 * input.x).normalized() * input.length() * 360 * minf(delta, .05)
+	var world := Vector2(1.5 * input.x + 3 * input.y, 3 * input.y - 1.5 * input.x).normalized() * input.length() * 360 * Locomotion.multiplier() * minf(delta, .05)
 	var steps := maxi(1, ceili(world.length() / 4))
+	var before := actor
 	for i in steps:
 		var move := world / steps
+		var previous:=actor
 		if _safe(actor + move):
 			actor += move
 		elif _safe(actor + Vector2(move.x, 0)):
 			actor.x += move.x
 		elif _safe(actor + Vector2(0, move.y)):
 			actor.y += move.y
-	avatar.moving = true
-	avatar.facing = ("se" if input.x >= 0 else "sw") if input.y >= 0 else ("ne" if input.x >= 0 else "nw")
+		if actor!=previous and is_instance_valid(companion) and companion_follow:
+			if trail.is_empty():trail.append(previous)
+			trail.append(actor)
+	avatar.moving = actor.distance_to(before)>.01
+	avatar.running=avatar.moving and Locomotion.requested()
+	if avatar.moving:avatar.face_motion(project(actor)-project(before))
+	if is_instance_valid(companion):CompanionFollow.orient(companion,avatar.facing)
 	_update_order()
+
+func _companion_segment(from:Vector2,to:Vector2) -> bool:
+	var samples:=maxi(1,ceili(from.distance_to(to)/4.0))
+	for i in range(1,samples+1):
+		if not _safe(from.lerp(to,float(i)/samples)):return false
+	return true
 
 func _unhandled_input(event: InputEvent) -> void:
 	if can_walk and Controls.pressed(event, "interact") and not near.is_empty() and (near == target_hotspot or target_hotspot == "*"):
 		get_viewport().set_input_as_handled()
 		interacted.emit(near)
+
+func _draw_target() -> void:
+	if not can_walk:return
+	for spot in data.get("hotspots",[]):
+		if spot.id!=target_hotspot:continue
+		var at:=project(Vector2(spot.x,spot.y))
+		var color:=Color("55CCD5")
+		target_marker.draw_arc(at,20,0,TAU,32,color,2,true)
+		target_marker.draw_colored_polygon(PackedVector2Array([at+Vector2(-7,-38),at+Vector2(7,-38),at+Vector2(0,-27)]),color)

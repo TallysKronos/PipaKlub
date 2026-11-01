@@ -1,46 +1,46 @@
 {
   "areas": [
     {
-      "directed_edges": 842,
+      "directed_edges": 4692,
       "id": "clareira-do-papel",
-      "ramp_probes": 0,
-      "walkable": 242
+      "ramp_probes": 80,
+      "walkable": 1281
     },
     {
-      "directed_edges": 768,
+      "directed_edges": 4228,
       "id": "jardim-das-pipas",
-      "ramp_probes": 0,
-      "walkable": 226
+      "ramp_probes": 90,
+      "walkable": 1163
     },
     {
-      "directed_edges": 266,
+      "directed_edges": 314,
       "id": "morro-escadaria-da-sombra",
       "ramp_probes": 10,
-      "walkable": 82
+      "walkable": 106
     },
     {
-      "directed_edges": 334,
+      "directed_edges": 476,
       "id": "morro-laje-dos-ventos",
       "ramp_probes": 10,
-      "walkable": 100
+      "walkable": 151
     },
     {
-      "directed_edges": 244,
+      "directed_edges": 310,
       "id": "morro-mirante-da-caixa-dagua",
       "ramp_probes": 15,
-      "walkable": 76
+      "walkable": 106
     },
     {
-      "directed_edges": 388,
+      "directed_edges": 446,
       "id": "morro-parque-dos-ventos",
       "ramp_probes": 0,
-      "walkable": 112
+      "walkable": 140
     },
     {
-      "directed_edges": 392,
+      "directed_edges": 448,
       "id": "morro-praca-da-chegada",
       "ramp_probes": 10,
-      "walkable": 117
+      "walkable": 141
     },
     {
       "directed_edges": 2092,
@@ -49,19 +49,37 @@
       "walkable": 560
     },
     {
-      "directed_edges": 3130,
+      "directed_edges": 4994,
       "id": "veredas-do-encanamento",
-      "ramp_probes": 45,
-      "walkable": 866
+      "ramp_probes": 90,
+      "walkable": 1386
     },
     {
-      "directed_edges": 3508,
+      "directed_edges": 3496,
       "id": "veredas-piloto",
-      "ramp_probes": 10,
+      "ramp_probes": 40,
       "walkable": 970
+    },
+    {
+      "directed_edges": 3274,
+      "id": "kronasta-bosque-b",
+      "ramp_probes": 60,
+      "walkable": 921
+    },
+    {
+      "directed_edges": 4516,
+      "id": "kronasta-bosque-c",
+      "ramp_probes": 70,
+      "walkable": 1241
+    },
+    {
+      "directed_edges": 4026,
+      "id": "kronasta-bosque-a",
+      "ramp_probes": 80,
+      "walkable": 1141
     }
   ],
-  "checks": 34410,
+  "checks": 88039,
   "failures": [],
   "scope": "isolated geometry and preview; no campaign saves touched"
 }

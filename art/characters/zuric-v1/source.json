@@ -1,0 +1,53 @@
+{
+  "name": "Zuric",
+  "status": "conceito — aguardando revisão artística",
+  "created": "2026-10-30",
+  "userRequirements": [
+    "motoqueiro",
+    "roupas de couro",
+    "pose de gangue",
+    "inspiração na mula sem cabeça",
+    "mangá 2D",
+    "personagem e motoca na mesma arte"
+  ],
+  "proposedIdentity": {
+    "age": 27,
+    "build": "baixo, largo e compacto",
+    "skin": "castanha morna",
+    "hair": "crista baixa preta penteada para trás em três mechas, pontas cobre",
+    "palette": [
+      "couro preto berinjela",
+      "cobre queimado",
+      "marfim"
+    ]
+  },
+  "narrativeSource": {
+    "title": "Folclore Brasileiro — Mula sem Cabeça",
+    "url": "https://www.britania.go.gov.br/wp-content/uploads/2020/03/FOLCLORE-BRASILEIRO.pdf",
+    "additionalSource": "https://dana.com.br/social/nossos-projetos/lendas-brasileiras/mula-sem-cabeca/",
+    "translation": [
+      "Fogo no pescoço → gola com recortes e forro de labareda",
+      "Ferraduras → ferragens em U nas botas e na moto",
+      "Ausência de cabeça → frente baixa com farol embutido, sem carenagem superior proeminente",
+      "Cauda → recortes curtos no paralama traseiro"
+    ],
+    "note": "Releitura visual proposta; o personagem é humano e tem cabeça. Não atribuir a ele automaticamente a biografia, maldição ou poderes da lenda."
+  },
+  "references": [
+    {
+      "file": "references/kael-estilo.png",
+      "role": "Autoridade explícita de traço: mangá 2D limpo, linha fina e cores chapadas"
+    }
+  ],
+  "prompt": "Create an ORIGINAL INDIVIDUAL manga character-and-motorcycle concept model sheet for the game SOULMONSTERS. Character name \"Zuric\" in small handwritten text only. Landscape white sheet, clean and spacious, full uncropped bodies and bike wheels.\nThe attached Kael model sheet is the EXACT STYLE AUTHORITY, NOT identity. Same delicate thin dark hand-drawn lines, simple expressive oval manga eyes, small nose and mouth, clean jaw, modestly elongated anime limbs, very simple flat local colors, ONE economical crisp cel shadow tone per surface, little highlight. This is 2D MANGA model art, not western cartoon, caricature, chibi, realistic biker painting or 3D render. Keep motorcycle equally simple hand-drawn anime, not photoreal metal. No gradients, atmospheric lights, large eyes with bulbous cheeks, oily leather shine, textured shading, heavy black outlines, cinematic poster.\nDESIGN GOAL: a highly memorable Brazilian motorcycle gang rider whose costume and motorcycle reinterpret MULA SEM CABEÇA (headless mule folklore) through FUNCTIONAL SHAPES: neck flame, pounding horseshoes, dark nighttime silhouette. Human Zuric HAS his normal visible head; no literal headless body, no skull, no flaming skull, no horror gore, no Ghost Rider costume. Do not just put ordinary flame decals on a generic biker.\nZURIC identity: male about 27 years old, medium warm brown skin, SHORT and broad solid build, strong compact shoulders and strong calves, slightly long torso, adult but gently drawn manga face, amber-brown narrow oval eyes, one small notch in anatomical RIGHT eyebrow, asymmetrical self-assured closed smirk. Black hair has shaved sides and a very distinctive LOW backswept central crest formed of THREE broad pointed locks, rear tips burnt copper orange, like an extinguished neck fire swept by wind; NOT Kael's tall pointed hairstyle, not a huge pompadour. No beard, no sunglasses hiding eyes.\nCOSTUME blackened aubergine LEATHER cropped biker jacket, rounded broad shoulders, HIGH asymmetrically folded collar whose THREE angular burnt-orange lining panels rise from actual collar seams like small tongues of fire along back and sides of neck. Collar leaves chin/face visible, fabric not actual burning fire. Jacket has one off-center bronze toggle clasp shaped like an incomplete horseshoe (simple U), no random chains or stud spam. OFF-WHITE plain undershirt, charcoal tapered heavy riding trousers with sewn rounded knee reinforcement panels and copper ankle straps. Short heavy but NORMAL SCALE leather boots with simple U-shaped metal heel guards, no absurd platform soles, no hooves replacing feet. Fingerless gloves. ONE small practical wooden kite-line spool in a leather holder on anatomical LEFT hip, links him to Soulmonsters without dozens of kite logos. No actual weapon. Pose \"gang leader\": grounded wide stance, chin slightly lowered, one thumb hooked into belt, other hand loosely holding a compact plain open-face helmet at thigh. Quiet intimidating confidence, not exaggerated flexing or giant grin. Preserve open negative spaces around arms.\nMOTORCYCLE: a customized compact Brazilian street tracker / small bobber named concept 'Sem-Cabeça' (do NOT print this name or logos). Short low fuel tank, low single cognac saddle, muscular compact frame, two normal-size thick street tires, real axles, aligned forks, real handlebars, chain/swingarm, footpegs and believable support on side stand. Blackened aubergine body + burnt copper fork/tank lower trim + off-white small flat panels. UNIQUE silhouette: NO tall upper headlight housing or animal head on front; a small inset horizontal AMBER lamp is integrated LOW into a horseshoe-shaped curved fork brace ABOVE front wheel, leaving open space between handlebar and front wheel. Safe recognizable motorcycle with front lighting, not missing its front fork or handlebar. Fuel tank flows into a rising short copper-edged rear fender whose THREE flat small fins echo the collar and a mule's fiery tail, structural metal panels not literal flames. Exhaust is a short chunky side pipe protected by curved U-shaped heat shield, like iron horseshoe geometry; believable engine and exhaust routing. A single small bamboo kite carrying tube strapped lengthwise under saddle, not a weapon. No skulls, skeletal wheels, spikes everywhere, magic fire or decorative horse statue. Draw bike in consistent 3/4 side view, facing viewer-right, parked on visible sidestand with tire bottoms on same ground line. Wheels belong to same perspective, rear not larger than front.\nSHEET COMPOSITION: left third LARGE FULL-BODY Zuric front 3/4 standing independent of bike, about 70% canvas height, all shoes and helmet visible. Center-right lower half ONE LARGE COMPLETE motorcycle in 3/4 side view occupying about half canvas width; bike seat height around human hip, coherent relative scale. Upper middle small FULL-BODY BACK view of Zuric showing actual collar and jacket back and same left-hip spool. Upper right TWO generously sized manga head-and-shoulder portraits: knowing smirk and calmly challenging determination, same anatomical right eyebrow notch and hair orange tips. No duplicate motorcycles, no split panels, no scenery, no opaque shape behind subject. Do not make person look like Kael in leather; specific short broad body, flat backward crest and mature face. Every part easy to read and redraw. White background.",
+  "integration": "Nenhuma alteração de runtime, sprite ou animação.",
+  "output": {
+    "file": "zuric-e-motoca-sheet.png",
+    "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-e9d9bc35-721d-4d60-a0bf-4d8aa501865e.png"
+  },
+  "review": {
+    "method": "Visual inspection against Kael reference.",
+    "observed": "Thin manga faces, complete human front/back and two expressions; head intact; collar flame motifs, horseshoe hardware, low inset lamp, two complete wheels with forks/engine/side stand. Motorcycle more detailed than human costume.",
+    "limits": "Concept only, not mechanical engineering validation or animation rig. Generated body is less compact than the initial proposed brief; user may choose proportions."
+  }
+}

@@ -1,6 +1,5 @@
 extends SceneTree
 ## Captura determinística de TODAS as juntas enumeradas no manifesto da área. Sem atores ou HUD.
-const View = preload("res://scripts/overworld/view.gd")
 func _initialize() -> void:call_deferred("capture")
 func capture() -> void:
  root.size=Vector2i(1280,720)
@@ -17,7 +16,7 @@ func capture() -> void:
  DirAccess.make_dir_recursive_absolute(output)
  if plan_path.is_empty():plan_path="res://../documentation/overworld/kronasta/planos/"+area+".json"
  var plan:Dictionary=JSON.parse_string(FileAccess.get_file_as_string(plan_path))
- var view:=View.new()
+ var view: Node2D=load("res://scripts/overworld/view.gd").new()
  view.area_id=area
  view.art_preview=true
  root.add_child(view)
