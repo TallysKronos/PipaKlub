@@ -21,7 +21,8 @@ static func build(view) -> void:
 	var industrial:bool=bool(model.data.get("forest",{}).get("industrial",false))
 	var mountain:bool=bool(model.data.get("forest",{}).get("mountain",false))
 	var mine:bool=bool(model.data.get("forest",{}).get("mine",false))
-	var ice:bool=bool(model.data.get("forest",{}).get("ice",false))
+	var submerged:bool=bool(model.data.get("forest",{}).get("submerged",false))
+	var ice:bool=bool(model.data.get("forest",{}).get("ice",false)) or submerged
 	var industrial_surface:=ShaderMaterial.new()
 	if industrial:industrial_surface.shader=preload("res://shaders/industrial_surface.gdshader")
 	var material:=ShaderMaterial.new()
@@ -45,12 +46,19 @@ static func build(view) -> void:
 		material.set_shader_parameter("stone",load(KITS+"cavernas-v3/surfaces/rocha-cinza.png"))
 		material.set_shader_parameter("earth",load(KITS+"cavernas-v3/surfaces/terra-gruta.png"))
 		material.set_shader_parameter("rock_mask",preload("res://scripts/overworld/mine_structures.gd").mask(model))
-	if ice:
+	if ice and not submerged:
 		material.shader=preload("res://shaders/ice_ground.gdshader")
 		material.set_shader_parameter("masks",_masks(model))
 		material.set_shader_parameter("map_size",Vector2(w,h))
 		material.set_shader_parameter("noise_texture",load(KITS+"cavernas-v3/surfaces/rocha-cinza.png"))
 		material.set_shader_parameter("frozen_mask",preload("res://scripts/overworld/ice_structures.gd").mask(model))
+	if submerged:
+		material.shader=preload("res://shaders/submerged_ground.gdshader")
+		material.set_shader_parameter("masks",_masks(model))
+		material.set_shader_parameter("map_size",Vector2(w,h))
+		material.set_shader_parameter("noise_texture",load(KITS+"cavernas-v3/surfaces/rocha-cinza.png"))
+		material.set_shader_parameter("sand_mask",preload("res://scripts/overworld/submerged_structures.gd").mask(model))
+		material.set_shader_parameter("still",OS.get_environment("SUBMERSO_CAPTURE")=="1")
 	if industrial:
 		industrial_surface.set_shader_parameter("floor_mode",true)
 		industrial_surface.set_shader_parameter("masks",material.get_shader_parameter("masks"))
@@ -65,6 +73,7 @@ static func build(view) -> void:
 	if ice:
 		var path:String=KITS+"gelo-v1/superficies/parede.png"
 		wall_texture=preload("res://scripts/overworld/industrial_structures.gd").texture(path) if FileAccess.file_exists(path) else load(KITS+"cavernas-v3/surfaces/parede-basalto.png")
+	if submerged:wall_texture=load(KITS+"cavernas-v3/surfaces/parede-basalto.png")
 	var exits:=_exit_columns(model)
 	for v in range(-RING,h+RING):
 		for u in range(-RING,w+RING):
@@ -133,13 +142,14 @@ static func build(view) -> void:
 		preload("res://scripts/overworld/swamp_structures.gd").build(view)
 	if mountain:preload("res://scripts/overworld/mountain_structures.gd").build(view)
 	if mine:preload("res://scripts/overworld/mine_structures.gd").build(view)
-	if ice:preload("res://scripts/overworld/ice_structures.gd").build(view)
+	if submerged:preload("res://scripts/overworld/submerged_structures.gd").build(view)
+	elif ice:preload("res://scripts/overworld/ice_structures.gd").build(view)
 	if bool(model.data.get("forest",{}).get("nativeProps",false)):
 		var native_pieces: Array = []
 		for piece in model.data.pieces:
 			if piece.asset=="industrial-volume":continue
 			if piece.asset in ["pantano-arvore","pantano-arvore-seca"]:continue
-			if piece.asset in ["montanha-crista","mina-prop","mina-cave","mina-suporte","gelo-prop","gelo-marker"]:continue
+			if piece.asset in ["montanha-crista","mina-prop","mina-cave","mina-suporte","gelo-prop","gelo-marker","submerso-prop","submerso-marker"]:continue
 			if piece.asset in ["arvore","arbusto","flores","pedra"]:_piece(view,model,piece)
 			else:native_pieces.append(piece)
 		if not native_pieces.is_empty():
@@ -175,7 +185,7 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 		var n:=Vector2i(u+1,v) if side=="u" else Vector2i(u,v+1)
 		var neighbour:Dictionary=model.cell_at(n)
 		var mountain:bool=bool(model.data.get("forest",{}).get("mountain",false))
-		var ice:bool=bool(model.data.get("forest",{}).get("ice",false))
+		var ice:bool=bool(model.data.get("forest",{}).get("ice",false)) or bool(model.data.get("forest",{}).get("submerged",false))
 		if neighbour.is_empty() and not mountain and not ice:continue
 		var a:=Vector2(u+1,v) if side=="u" else Vector2(u,v+1)
 		var b:=Vector2(u+1,v+1)
@@ -202,6 +212,7 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 		wall.uv=PackedVector2Array([Vector2(s0,-top_a*112),Vector2(s0+44,-top_b*112),Vector2(s0+44,-low_b*112),Vector2(s0,-low_a*112)])
 		var lit:=Color(1.0,.97,.92) if side=="u" else Color(.70,.66,.64)
 		if ice:lit=Color(.88,.97,1.0) if side=="u" else Color(.60,.76,.90)
+		if bool(model.data.get("forest",{}).get("submerged",false)):lit=Color(.38,.69,.72) if side=="u" else Color(.25,.48,.62)
 		if OS.get_environment("KRONASTA_GEOMETRIA")=="1":lit=Color("9a7652") if side=="u" else Color("775b46")
 		wall.vertex_colors=PackedColorArray([lit,lit,lit*Color(.62,.60,.62),lit*Color(.62,.60,.62)])
 		node.add_child(wall)
@@ -218,6 +229,7 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 		if bool(model.data.get("forest",{}).get("mountain",false)):lip.color=Color("666951")
 		if bool(model.data.get("forest",{}).get("mine",false)):lip.color=Color("252a35")
 		if ice:lip.color=Color("9dbed7")
+		if bool(model.data.get("forest",{}).get("submerged",false)):lip.color=Color("376c72")
 		node.add_child(lip)
 		var rim:=Line2D.new()
 		rim.points=PackedVector2Array([pts[0]-node.position+Vector2(0,1),pts[1]-node.position+Vector2(0,1)])
@@ -226,6 +238,7 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 		if bool(model.data.get("forest",{}).get("mountain",false)):rim.default_color=Color("a8a27b")
 		if bool(model.data.get("forest",{}).get("mine",false)):rim.default_color=Color("77766b")
 		if ice:rim.default_color=Color("ecfaff")
+		if bool(model.data.get("forest",{}).get("submerged",false)):rim.default_color=Color("5c9f9e")
 		node.add_child(rim)
 		# Sombra de contato no chão de baixo, desenhada logo depois desse chão.
 		var shade:=Node2D.new()
