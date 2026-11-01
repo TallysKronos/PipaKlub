@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" path="res://assets/ui/mural-v1/pieces/board-paper.png" id="19_u3lme"]
 [ext_resource type="Texture2D" path="res://assets/ui/mural-v1/pieces/board-sun.png" id="20_gaxph"]
 [ext_resource type="FontFile" path="res://assets/campaign/ui-modern/fonts/Bangers-Regular.ttf" id="21_my6it"]
-[ext_resource type="Texture2D" path="res://assets/ui/mural-v1/pieces/title-paper.png" id="22_mtjgb"]
+[ext_resource type="Texture2D" path="res://assets/ui/mural-v1/pieces/title-paper-v2.png" id="22_mtjgb"]
 [ext_resource type="FontFile" path="res://assets/campaign/ui-modern/fonts/LilitaOne-Regular.ttf" id="23_wntqo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01rj8"]
@@ -359,7 +359,7 @@ content_margin_bottom = 28.0
 texture = ExtResource("22_mtjgb")
 texture_margin_left = 112.0
 texture_margin_top = 55.0
-texture_margin_right = 28.0
+texture_margin_right = 96.0
 texture_margin_bottom = 28.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b5550"]

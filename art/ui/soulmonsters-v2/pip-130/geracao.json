@@ -28,6 +28,15 @@
       "original": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-16bc0a54-26b8-4082-8dbf-11e227e6e308.png",
       "reference": "art/ui/soulmonsters-v2/pip-128-v2/B-prancha.png",
       "referenceRole": "Chosen direction, linework, palette and original game subject material"
+    },
+    {
+      "id": "title-corners-v2",
+      "tool": "image_gen__imagegen",
+      "source": "fontes/title-paper-corners-source.png",
+      "prompt": "title-corners-prompt.txt",
+      "reference": "godot/assets/ui/mural-v1/pieces/title-paper.png",
+      "referenceRole": "Edit target: preserve Mural style while confining peg/red print to fixed top corner slices",
+      "production": "godot/assets/ui/mural-v1/pieces/title-paper-v2.png"
     }
   ],
   "processing": "Mechanical cuts and uniform resample only, original drawing preserved; see slice_assets.py. No generated text used in runtime."

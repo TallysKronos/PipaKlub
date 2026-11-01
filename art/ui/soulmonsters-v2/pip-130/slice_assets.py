@@ -47,6 +47,10 @@ with Image.open(ROOT / 'fontes/boards-source.png') as board_source:
 for n, name in enumerate(['board-paper','board-ink','board-sun']):
     cut('boards-source.png', name, (round(n*width/3),0,round((n+1)*width/3),height), 'pieces')
 
+with Image.open(ROOT / 'fontes/title-paper-corners-source.png') as title_source:
+    width, height = title_source.size
+cut('title-paper-corners-source.png', 'title-paper-v2', (0,0,width,height), 'pieces')
+
 # The generated sheet's optical rows are not mathematically equal. Cuts follow
 # the transparent gutters, inspected before export, instead of clipping art.
 xs, ys = [0, 386, 730, 1094, 1448], [0, 402, 735, 1086]

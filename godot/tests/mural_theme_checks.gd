@@ -31,6 +31,17 @@ func run_checks() -> void:
 	check(theme != null,"Mural Theme resource loads")
 	check(theme==Mural.shared(),"shared Theme is reused")
 	check(theme.get_stylebox("normal","MuralFocusButton") is StyleBoxTexture,"focus uses illustrated poster")
+	var title:=theme.get_stylebox("panel","MuralTitlePanel") as StyleBoxTexture
+	var artwork:=title.texture.get_image()
+	var red_count:=0
+	var red_protected:=true
+	for y in artwork.get_height():
+		for x in range(roundi(artwork.get_width()*.6),artwork.get_width()):
+			var color:=artwork.get_pixel(x,y)
+			if color.a>.7 and color.r>.55 and color.r>color.g*1.4 and color.r>color.b*1.6:
+				red_count+=1
+				red_protected=red_protected and x>=artwork.get_width()-title.get_texture_margin(SIDE_RIGHT) and y<title.get_texture_margin(SIDE_TOP)
+	check(red_count>0 and red_protected,"title red print lies wholly in fixed top-right corner, outside both stretch axes")
 	for id in ["team","bag","missions","emblems","identity","workshop","save","settings","dex","evolution","varal","puxao"]:
 		check(Mural.icon(id)!=null,"icon loads: "+id)
 	check(Mural.icon("not-an-icon")==null,"unknown icon handled without load error")

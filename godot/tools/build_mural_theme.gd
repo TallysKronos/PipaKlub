@@ -88,9 +88,10 @@ func _initialize() -> void:
 	variation("MuralInkPanel","PanelContainer");result.set_stylebox("panel","MuralInkPanel",content_ink)
 	variation("MuralSunPanel","PanelContainer");result.set_stylebox("panel","MuralSunPanel",content_sun)
 	variation("MuralTitlePanel","PanelContainer")
-	var title:=texture_box("title-paper",Vector4(40,58,32,28))
+	var title:=texture_box("title-paper-v2",Vector4(40,58,32,28))
 	title.set_texture_margin(SIDE_TOP,55)
 	title.set_texture_margin(SIDE_LEFT,112)
+	title.set_texture_margin(SIDE_RIGHT,96)
 	result.set_stylebox("panel","MuralTitlePanel",title)
 	for type in ["LineEdit","TextEdit","ItemList"]:
 		result.set_stylebox("normal",type,paper)

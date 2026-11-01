@@ -6,7 +6,7 @@ Direção: [B ilustrada, revisão 2](../pip-128-v2/B-prancha.png), escolhida na 
 
 A assinatura combina cartaz impresso de contorno desenhado, dobra/reforço de papel e registro de tinta. Amarrações e presilhas pertencem às peças fixas. As escolhas usam cartazes mais expressivos; superfícies altas de consulta usam borda calma para não repetir rasgos junto aos números. Os ícones são ilustrações próprias com contorno e sombra chapada, não símbolos genéricos substitutos.
 
-Foram produzidos três atlases por ferramenta integrada de imagem: seis suportes/ornamentos, 12 ícones e três painéis altos. As artes foram inspecionadas antes do corte. `geracao.json` registra referências e saídas; os três prompts estão nesta pasta. `slice_assets.py` só faz cortes mecânicos, enquadramento por alpha, redução proporcional e padding transparente; não redesenha personagens nem modifica a paleta. As fontes originais permanecem em `fontes/`.
+Foram produzidos três atlases por ferramenta integrada de imagem: seis suportes/ornamentos, 12 ícones e três painéis altos; depois, uma edição específica da faixa corrigiu seus cantos expansíveis. As artes foram inspecionadas antes do corte. `geracao.json` registra referências e saídas; os três prompts estão nesta pasta. `slice_assets.py` só faz cortes mecânicos, enquadramento por alpha, redução proporcional e padding transparente; não redesenha personagens nem modifica a paleta. As fontes originais permanecem em `fontes/`.
 
 ### Famílias de suporte
 
@@ -17,7 +17,9 @@ Foram produzidos três atlases por ferramenta integrada de imagem: seis suportes
 | `clips` | Ornamento separado, opcional; não esticar junto ao conteúdo. |
 | `board-paper`, `board-ink`, `board-sun` | Superfícies grandes, com cantos ilustrados e trechos retos expansíveis. |
 
-O recorte para peças compactas usa margens de textura 28/36/28/28 px (esquerda/cima/direita/baixo), no arquivo reduzido. Painéis altos usam 60 px em cada lado. A faixa clara usa canto esquerdo de 112 px e topo de 55 px para preservar a presilha. O centro acompanha o conteúdo; cantos, ícones e presilhas não são reescalados pelo comprimento do texto. A repetição vertical de rasgos foi reprovada na revisão e removida com o atlas de painéis próprios.
+O recorte para peças compactas usa margens de textura 28/36/28/28 px (esquerda/cima/direita/baixo), no arquivo reduzido. Painéis altos usam 60 px em cada lado. A faixa clara ativa é `title-paper-v2`: margens 112/55/96/28 px. A presilha e o pequeno registro vermelho ficam inteiros nos cantos superiores fixos; só papel vazio participa da expansão. A peça anterior permanece como histórico, sem uso pelo Theme. O centro acompanha o conteúdo; cantos, ícones e presilhas não são reescalados pelo comprimento do texto. A repetição vertical de rasgos foi reprovada na revisão e removida com o atlas de painéis próprios.
+
+Na revisão da faixa, o dono apontou um detalhe vermelho esticado: o corte direito de 28 px deixava parte dele na área central, e a decoração também atravessava o corte vertical. Foi produzida uma versão específica com o registro restrito ao canto superior e corte direito de 96 px. `title-corners-prompt.txt` e `fontes/title-paper-corners-source.png` preservam a edição. A prova `faixa-larguras.png` compara 400, 760 e 1.200 px; o teste do Theme verifica que os pixels vermelhos ficam fora das duas faixas expansíveis.
 
 ## Paleta semântica
 

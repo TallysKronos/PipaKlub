@@ -1,11 +1,12 @@
 {
   "status": "pass",
   "images": 20,
-  "assets": 21,
+  "assets": 22,
   "checks": [
-    "20 requested/obtained native capture dimensions",
-    "21 RGBA assets with real alpha",
-    "Export SHA-256 matches current production files"
+    "22 RGBA assets with real alpha",
+    "Export SHA-256 matches production files",
+    "20 native lab captures plus the three-width title comparison"
   ],
-  "errors": []
+  "errors": [],
+  "titleWidthProof": "capturas/faixa-larguras.png"
 }
