@@ -29,11 +29,18 @@ func exercise() -> bool:
 	saved.player.partners=[{"id":"atlas-partner","modelId":"rabbito","xp":0,"condition":{"line":100,"structure":100}}]
 	saved.player.equippedPartnerId="atlas-partner"
 	saved.player.journey={"phase":"complete","lesson":5}
+	saved.player.flags.merge({"ninaAccepted":true,"guardianDefeated":true,"ninaReturned":true,"bosqueClareiraDescoberta":true})
+	saved.player.morro=preload("res://scripts/campaign/morro_rules.gd").defaults()
+	saved.player.morro.stars={"morro-5":3}
 	check(app.session.checkpoint({"kind":"world","scene":"quintal","position":[4.4,17.4],"space":"bairro-inicial-v2"},saved.player).status=="ok","travel-ready player")
 	var service=load("res://scripts/campaign/bosque_campaign.gd").new(app.session)
 	var before:Dictionary=app.session.snapshot().player.duplicate(true)
 	for region in Atlas.REGIONS:
 		for scene in region.scenes:
+			if Checkpoint.is_kronasta(scene) and not scene.ends_with("-a"):
+				var unchanged:Dictionary=app.session.snapshot()
+				check(service.travel(scene).status=="wrong_step" and app.session.snapshot()==unchanged,"parts B/C require walking: "+scene)
+				continue
 			check(service.travel(scene).status=="ok","travel to "+scene)
 			var cp:Dictionary=app.session.snapshot().checkpoint
 			check(cp.scene==scene and State.inspect(app.session.snapshot(),"slot-1")=="ok","save validates "+scene)

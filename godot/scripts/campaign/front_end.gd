@@ -200,6 +200,8 @@ func _slot_location(snapshot:Dictionary) -> Dictionary:
 	var scene:String=point.get("scene",snapshot.get("player",{}).get("encounter",{}).get("scene",""))
 	var name:String={"quintal":"Vila do Primeiro Vento","professor-home":"Ateliê do Sr. Assis","park-trail":"Jardim dos Ventos","park-clearing":"Clareira do Papel","park-veredas":"Veredas do Encanamento","kronasta-bosque-a":"Bosque · Trilha das Copas","kronasta-bosque-b":"Bosque · Desvio do Riacho","kronasta-bosque-c":"Bosque · Clareira do Marco"}.get(scene,"Prólogo" if point.get("kind")=="opening" else "Ateliê do Sr. Assis")
 	if scene=="kite-shop":name="Linha & Papel"
+	# Region maps carry their own "<Região> · <parte>" name.
+	if ParkCheckpoint.is_kronasta(scene) and not ParkCheckpoint.is_bosque(scene):name=str(ParkCheckpoint.data(scene).get("name",name))
 	var texture:Texture2D=load("res://assets/campaign/rooftop-arena-wide-v2.png")
 	if point.get("kind")=="opening":
 		var room_key:String="home" if int(point.get("step",0))>=12 else "bedroom"
@@ -1466,7 +1468,7 @@ func _show_park() -> void:
 	if saved.checkpoint.get("space","")!=ParkCheckpoint.SPACE or not resolved.is_equal_approx(Vector2(saved.checkpoint.position[0],saved.checkpoint.position[1])):
 		if not _result(journey.enter_world(saved.checkpoint.scene,resolved,ParkCheckpoint.SPACE)): return
 		saved=session.snapshot()
-	if ParkCheckpoint.is_bosque(saved.checkpoint.scene):
+	if ParkCheckpoint.is_kronasta(saved.checkpoint.scene):
 		var discovery: Dictionary=load("res://scripts/campaign/bosque_campaign.gd").new(session).arrive()
 		if discovery.status not in ["ok","already_applied"]:
 			_result(discovery)
@@ -1499,7 +1501,7 @@ func _save_park(quiet:bool=false) -> bool:
 func _park_exit(event: Dictionary) -> void:
 	if not _save_park(): return
 	var saved: Dictionary = session.snapshot()
-	if ParkCheckpoint.is_bosque(saved.checkpoint.scene) and event.props.get("destino","")=="kronasta":
+	if ParkCheckpoint.is_kronasta(saved.checkpoint.scene) and event.props.get("destino","")=="kronasta":
 		_show_kronasta()
 		return
 	var destination: Dictionary = ParkCheckpoint.exit_target(saved.checkpoint,str(int(event.id)),saved.player)
@@ -1514,7 +1516,7 @@ func _park_event(id: String) -> void:
 		if str(int(event.id))!=id or not ParkCheckpoint.allowed(event,player,park.area_id): continue
 		if park.player.distance_to(Vector2(event.u+.5,event.v+.5))>1.8: return
 		var action: String = event.props.get("acao","")
-		if ParkCheckpoint.is_bosque(park.saved_checkpoint.scene) and event.type=="npc":
+		if ParkCheckpoint.is_kronasta(park.saved_checkpoint.scene) and event.type=="npc":
 			_notice(event.name+": "+str(event.props.get("texto","")))
 			return
 		if action=="parkMap": _show_map()
@@ -1967,6 +1969,7 @@ func _show_kronasta() -> void:
 	_clear("page:REGIÃO DE KRONASTA")
 	var atlas=load("res://scripts/campaign/hud_kronasta_map.gd").new()
 	atlas.current_scene=saved.checkpoint.get("scene","")
+	atlas.saved_player=saved.player.duplicate(true)
 	add_child(atlas)
 	atlas.travel_requested.connect(_travel_kronasta)
 	atlas.local_requested.connect(_show_local_map)

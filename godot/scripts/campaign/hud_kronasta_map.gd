@@ -5,7 +5,10 @@ signal closed
 const Hud=preload("res://scripts/campaign/hud.gd")
 const Atlas=preload("res://scripts/campaign/kronasta_atlas.gd")
 const Controls=preload("res://scripts/campaign/controls.gd")
+const Checkpoint=preload("res://scripts/campaign/park_checkpoint.gd")
+const Story=preload("res://scripts/campaign/kronasta_story.gd")
 var current_scene:="quintal"
+var saved_player:Dictionary={}
 var selected:=0
 var map_rect:=Rect2()
 var art:Texture2D
@@ -108,8 +111,16 @@ func select(index:int) -> void:
 	detail.text=region.description
 	state_label.text="EM BREVE · ACESSO APAGADO" if region.scenes.is_empty() else "EXPLORAÇÃO DISPONÍVEL" if region.get("preview",false) else "CAMINHO ABERTO"
 	state_label.modulate=Hud.MUTED if region.scenes.is_empty() else Hud.CYAN
+	var story_region:bool=region.id in Checkpoint.REGIONS
+	if story_region:state_label.text=Story.requirement(saved_player,region.id)
+	detail.tooltip_text=Story.objective(saved_player)
 	for child in parts.get_children():parts.remove_child(child);child.queue_free()
-	if region.scenes.is_empty():
+	if story_region and not Story.can_travel(saved_player,region.id):
+		var disabled:=action(parts,"Caminho ainda fechado",func():pass);disabled.disabled=true
+	elif story_region:
+		# Regional travel enters part A; B/C are reached by walking the authored exits.
+		action(parts,region.parts[0],func():travel_requested.emit(region.scenes[0]))
+	elif region.scenes.is_empty():
 		var disabled:=action(parts,"Ainda não disponível",func():pass);disabled.disabled=true
 	else:
 		for i in region.scenes.size():

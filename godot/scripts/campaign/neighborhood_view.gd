@@ -137,7 +137,7 @@ func _update_hint() -> void:
 		if near_person.get("id")=="zeca":hint+=" · Missão de montaria"
 		elif near_person.get("id")=="lia" and quest.stage(saved_player)==1:hint+=" · Fecho da guia"
 	exploration_hud.prompt.text=hint
-	exploration_hud.objective.text="Explore o parque ou siga para o Morro do Sol." if saved_player.get("journey",{}).get("phase")=="complete" else "Suba a ladeira e entre no ateliê do professor."
+	exploration_hud.objective.text=preload("res://scripts/campaign/kronasta_story.gd").objective(saved_player) if saved_player.get("journey",{}).get("phase")=="complete" else "Suba a ladeira e entre no ateliê do professor."
 	if quest.available(saved_player) and quest.stage(saved_player) in [1,2]:exploration_hud.objective.text=quest.objective(saved_player)
 
 func can_mount() -> bool:

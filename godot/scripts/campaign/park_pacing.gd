@@ -33,6 +33,12 @@ static func weight(model, point: Vector2) -> float:
 static func wild_level(scene: String, roll: int) -> int:
 	if scene.begins_with("kronasta-bosque-"):
 		return {"kronasta-bosque-a":1,"kronasta-bosque-b":2,"kronasta-bosque-c":3}[scene]+roll%3
+	# Preview regions: provisional levels just above the Bosque until their
+	# neighbourhoods exist (BIBLIA-DA-HISTORIA.md, section 3).
+	var preview := {"industrial":4,"pantano":5,"montanha":6}
+	for region in preview:
+		if scene.begins_with("kronasta-"+region+"-"):
+			return int(preview[region])+("abc".find(scene.right(1)))/2+roll%3
 	return 5+roll%3 if scene=="park-veredas" else 2+roll%3 if scene=="park-clearing" else 1+roll%3
 
 static func level_penalty(gap: int) -> float:
