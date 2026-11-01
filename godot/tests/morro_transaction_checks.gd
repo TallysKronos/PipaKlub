@@ -25,7 +25,7 @@ func _initialize() -> void:
 	check(session.checkpoint({"kind": "world", "scene": "morro", "position": place.point}, player).status == "ok", "post-professor fixture")
 	var service := Morro.new(session)
 	check(service.start(point + Vector2(500, 0)).status == "wrong_step", "requires nearby NPC")
-	for outcome in ["fled", "lost", "won", "won"]:
+	for outcome in ["fled", "lost", "won"]:
 		# Synthetic terminal states exercise storage/reward transactions separately from the input playthrough.
 		player = session.snapshot().player
 		player.partners[0].condition = {"line": 100, "structure": 100}
@@ -50,12 +50,14 @@ func _initialize() -> void:
 		if outcome == "lost": check(after.morro.losses == 1 and after.morro.fails["morro-1"] == 1 and after.coins == 0 and after.partners[0].xp == 20, "defeat keeps challenge retryable and grants original XP")
 		if outcome == "won": check(after.coins - before.coins == (15 if before.get("morro", Morro.Rules.defaults()).stars.has("morro-1") else 25), "first clear bonus paid once")
 		check(session.resume_slot("slot-1").status == "ok", "result reloads")
+	# Story duels are not replayed once won; the area itself stays open.
+	check(service.start(point).status == "already_applied", "won challenge does not start again")
 	player = session.snapshot().player
 	for id in ["morro-1", "morro-2", "morro-3", "morro-4"]: player.morro.stars[id] = 3
 	var final_place: Dictionary = Morro.maps()["morro-area-5"].places.filter(func(p): return p.has("stage"))[0]
 	check(session.checkpoint({"kind": "world", "scene": "morro-area-5", "position": final_place.point}, player).status == "ok", "leader transaction fixture")
-	for attempt in 2:
-		check(service.start(Vector2(final_place.point[0], final_place.point[1])).status == "ok", "leader rematch available")
+	for attempt in 1:
+		check(service.start(Vector2(final_place.point[0], final_place.point[1])).status == "ok", "leader duel available")
 		var leader := Model.new()
 		leader.restore(session.snapshot().player.encounter.state)
 		leader.outcome = "won"
@@ -64,7 +66,9 @@ func _initialize() -> void:
 		end.player.encounter.state = leader.snapshot()
 		check(session.checkpoint(end.checkpoint, end.player).status == "ok", "leader terminal fixture")
 		check(service.settle().status == "ok", "leader reward transaction")
-		check(session.snapshot().player.inventory.get("rabiola-raio", 0) == 1, "leader rematch never duplicates unique tail")
+		check(session.snapshot().player.inventory.get("rabiola-raio", 0) == 1, "leader grants the unique tail")
+	check(service.start(Vector2(final_place.point[0], final_place.point[1])).status == "already_applied", "no rematch with the champion after winning")
+	check(session.snapshot().player.inventory.get("rabiola-raio", 0) == 1, "unique tail kept once")
 	var malformed := session.snapshot()
 	malformed.player.morro.mastery = 9
 	check(State.inspect(malformed, "slot-1") == "invalid", "invalid mastery rejected")

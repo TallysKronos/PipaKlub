@@ -2384,6 +2384,10 @@ func _morro_action(id: String) -> void:
 	if place.is_empty(): return
 	if park.player.distance_to(Vector2(place.point[0], place.point[1])) > 90: return
 	if place.has("stage"):
+		var names := " e ".join(Morro.Rules.stage(data.stage).foes.map(func(f): return f.name))
+		if session.snapshot().player.get("morro", Morro.Rules.defaults()).stars.has(data.stage):
+			_notice("Você já venceu %s aqui. Este desafio está concluído; o caminho segue aberto." % names)
+			return
 		var story: Dictionary = Morro.Rules.content().stories[data.stage]
 		var text := "\n\n".join(story.before.map(func(line): return "%s: %s" % [line[0], line[1]]))
 		text += "\n\nDica de voo: " + story.tactic

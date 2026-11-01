@@ -19,6 +19,7 @@ var state_label:Label
 var parts:VBoxContainer
 var side:PanelContainer
 var top:Label
+var objective_label:Label
 var footer:HBoxContainer
 var back:Button
 var area_button:Button
@@ -60,6 +61,10 @@ func _ready() -> void:
 		art=load("res://assets/campaign/maps/kronasta-atlas-v1.png")
 	top=label(self,"KRONASTA  /  CARTA DOS CAMINHOS",30)
 	top.add_theme_font_override("font",Hud.display())
+	objective_label=label(self,Story.objective(saved_player),16)
+	objective_label.autowrap_mode=TextServer.AUTOWRAP_OFF
+	objective_label.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+	objective_label.tooltip_text=objective_label.text
 	side=PanelContainer.new();side.add_theme_stylebox_override("panel",Hud.panel("dark"));add_child(side)
 	var column:=VBoxContainer.new();column.add_theme_constant_override("separation",14);side.add_child(column)
 	state_label=label(column,"",14)
@@ -77,6 +82,7 @@ func _ready() -> void:
 		marker.focus_mode=FOCUS_ALL;marker.custom_minimum_size=Vector2(42,42)
 		marker.set_meta("recorte_decorated",true)
 		add_child(marker);markers.append(marker)
+		if not Story.qa() and (region.get("preview",false) or region.scenes.is_empty()):marker.hide();marker.focus_mode=FOCUS_NONE
 		marker.pressed.connect(func():select(i))
 		marker.focus_entered.connect(func():select(i))
 	footer=HBoxContainer.new();footer.add_theme_constant_override("separation",14);add_child(footer)
@@ -90,11 +96,13 @@ func _ready() -> void:
 	selected=0
 	for i in Atlas.REGIONS.size():
 		if Atlas.REGIONS[i].id==Atlas.region_for(current_scene):selected=i
+	if not markers[selected].visible:selected=0
 	resized.connect(_layout);_layout();select(selected)
 	_layout.call_deferred()
 	Hud.focus_later(markers[selected])
 func _layout() -> void:
 	top.position=Vector2(32,24);top.size=Vector2(size.x-64,50)
+	objective_label.position=Vector2(32,74);objective_label.size=Vector2(size.x-64,22)
 	side.position=Vector2(size.x-324,104);side.size=Vector2(292,size.y-200)
 	var available:=Rect2(24,98,size.x-372,size.y-194)
 	var factor:=minf(available.size.x/1536,available.size.y/1024)
@@ -115,7 +123,9 @@ func select(index:int) -> void:
 	if story_region:state_label.text=Story.requirement(saved_player,region.id)
 	detail.tooltip_text=Story.objective(saved_player)
 	for child in parts.get_children():parts.remove_child(child);child.queue_free()
-	if story_region and not Story.can_travel(saved_player,region.id):
+	if region.get("preview",false) and not Story.qa():
+		var disabled:=action(parts,"Ainda não disponível",func():pass);disabled.disabled=true
+	elif story_region and not Story.can_travel(saved_player,region.id):
 		var disabled:=action(parts,"Caminho ainda fechado",func():pass);disabled.disabled=true
 	elif story_region:
 		# Regional travel enters part A; B/C are reached by walking the authored exits.
@@ -132,6 +142,7 @@ func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO,size),Hud.INK)
 	if art!=null:draw_texture_rect(art,map_rect,false)
 	for link in Atlas.LINKS:
+		if not markers[link[0]].visible or not markers[link[1]].visible:continue
 		var a:Dictionary=Atlas.REGIONS[link[0]];var b:Dictionary=Atlas.REGIONS[link[1]]
 		var start:Vector2=map_rect.position+a.at*map_rect.size
 		var end:Vector2=map_rect.position+b.at*map_rect.size

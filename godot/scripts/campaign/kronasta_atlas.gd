@@ -25,5 +25,5 @@ static func region_for(scene:String) -> String:
 	return "vila"
 static func can_travel(scene:String) -> bool:
 	for region in REGIONS:
-		if scene in region.scenes:return true
+		if scene in region.scenes:return not region.get("preview",false) or preload("res://scripts/campaign/kronasta_story.gd").qa()
 	return false

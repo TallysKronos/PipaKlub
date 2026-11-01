@@ -89,6 +89,14 @@ func exercise() -> bool:
 			root.get_texture().get_image().save_png(folder_out.path_join("atlas-%dx%d.png"%[viewport.x,viewport.y]))
 	atlas.select(9)
 	check(atlas.parts.get_child(0).disabled,"volcano stays unavailable")
+	var story=preload("res://scripts/campaign/kronasta_story.gd")
+	story.qa_override=0
+	for region in Atlas.REGIONS:
+		if not region.get("preview",false):continue
+		for scene in region.scenes:
+			var unchanged:Dictionary=app.session.snapshot()
+			check(service.travel(scene).status=="wrong_step" and app.session.snapshot()==unchanged,"player cannot enter QA preview "+scene)
+	story.qa_override=-1
 	app._show_local_map()
 	await settle()
 	check(app.page!=null,"local area map remains accessible")

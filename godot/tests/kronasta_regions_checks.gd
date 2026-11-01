@@ -60,6 +60,25 @@ func exit_to(destination: String) -> void:
 		return
 	check(false,"exit exists to "+destination)
 
+## A won Morro duel stays won: the area is open, the duel does not start again.
+func morro_once() -> void:
+	var Morro=preload("res://scripts/campaign/morro.gd")
+	var saved: Dictionary=app.session.snapshot()
+	var data: Dictionary=Morro.maps()["morro-area-5"]
+	var place: Dictionary=data.places.filter(func(p: Dictionary): return p.has("stage"))[0]
+	var at:=Vector2(place.point[0],place.point[1])
+	saved.player.morro=preload("res://scripts/campaign/morro_rules.gd").defaults()
+	for id in ["morro-1","morro-2","morro-3","morro-4"]: saved.player.morro.stars[id]=3
+	check(app.session.checkpoint({"kind":"world","scene":"morro-area-5","position":[at.x,at.y]},saved.player).status=="ok","at the Mikka duel")
+	var service=Morro.new(app.session)
+	var first: Dictionary=service.start(at)
+	check(first.status=="ok","Mikka duel starts the first time")
+	saved=app.session.snapshot()
+	saved.player.erase("encounter")
+	saved.player.morro.stars["morro-5"]=2
+	check(app.session.checkpoint({"kind":"world","scene":"morro-area-5","position":[at.x,at.y]},saved.player).status=="ok","back after winning")
+	check(service.start(at).status=="already_applied","won duel is not replayed")
+
 func story_rules() -> void:
 	var player: Dictionary={"partners":[],"journey":{"phase":"practice"},"flags":{}}
 	check(Story.current_beat(player).id=="prologo","fresh save starts at the prologue")
@@ -76,10 +95,18 @@ func story_rules() -> void:
 	player.morro={"stars":{"morro-5":3}}
 	check(Story.neighbourhoods_won(player)==1 and Story.state(player,"morro")=="vencido","Mikka counts as neighbourhood 1")
 	check(Story.current_beat(player).id=="bosque","then the Bosque")
-	for region in ["industrial","pantano","montanha"]: check(not Story.can_travel(player,region),region+" closed while the act is open")
+	Story.qa_override=0
+	for region in ["industrial","pantano","montanha"]: check(not Story.can_travel(player,region) and Story.state(player,region)=="em-breve",region+" hidden from players")
+	check(Story.previews(player).is_empty(),"players get no preview list")
+	Story.qa_override=1
+	for region in ["industrial","pantano","montanha"]: check(Story.can_travel(player,region),region+" open for QA after the prologue")
+	check(Story.previews(player).size()==3,"QA preview list")
+	check(not Story.released(player).any(func(e): return e.get("preview",false)),"previews never listed as released")
 	player.flags.bosqueClareiraDescoberta=true
 	check(Story.current_beat(player).is_empty(),"built act 1 complete")
-	for region in ["industrial","pantano","montanha"]: check(Story.can_travel(player,region),region+" preview opens")
+	check(Story.next_destination(player).id=="bambuzal","next destination is the next neighbourhood")
+	check(Story.objective(player).contains("Vila do Bambuzal"),"objective names only the next destination")
+	check(Story.released(player).map(func(e): return e.id)==["rua-dos-ventos","parque","morro","bosque"],"released places")
 	check(Story.state(player,"bambuzal")=="em-breve","unbuilt neighbourhood stays em breve")
 	check(not Story.can_travel(player,"bambuzal"),"unbuilt place has no travel")
 	check(Story.category(player)=="Rabiola Branca","category waits for its exam")
@@ -90,6 +117,9 @@ func story_rules() -> void:
 		for part in "abc": check(Checkpoint.region_of("kronasta-%s-%s"%[region,part])==region,"region of %s %s"%[region,part])
 	check(Checkpoint.region_of("park-veredas").is_empty(),"park is not a free-roam region")
 	check(Pacing.wild_level("kronasta-montanha-c",0)>Pacing.wild_level("kronasta-bosque-a",0),"preview wild levels above the Bosque")
+	Story.qa_override=0
+	player={"partners":[{"id":"p"}],"journey":{"phase":"complete"},"flags":{}}
+	check(Story.next_destination(player).id=="bambuzal" and Story.objective(player).contains("Nina"),"before Mikka: objective follows the story, next locked place is the Bambuzal")
 
 func run() -> void:
 	root.size=Vector2i(1280,720)
@@ -107,9 +137,14 @@ func run() -> void:
 	player.encounterGraceUntil=Time.get_unix_time_from_system()+3600
 	check(app.session.checkpoint({"kind":"world","scene":"quintal","position":[10.5,20.5],"space":"bairro-inicial-v2"},player).status=="ok","city checkpoint")
 	var service=Bosque.new(app.session)
-	check(service.travel("kronasta-industrial-a").status=="wrong_step","preview closed before act 1")
+	Story.qa_override=0
+	check(service.travel("kronasta-industrial-a").status=="wrong_step","preview closed for players")
+	check(service.travel("kronasta-bosque-a").status=="ok" and service.travel("quintal").status=="ok","released region open both ways")
+	Story.qa_override=1
+	Story.qa_override=0
 	app._show_kronasta()
-	await shot("01-kronasta-inicio")
+	await shot("01-kronasta-jogador")
+	Story.qa_override=1
 	player=app.session.snapshot().player
 	# This fixture resumes after the existing demo-ending presentation was acknowledged.
 	player.flags.merge({"ninaAccepted":true,"guardianDefeated":true,"ninaReturned":true,"bosqueClareiraDescoberta":true,"demoEndingSeen":true})
@@ -119,7 +154,7 @@ func run() -> void:
 	check(progress.status=="ok","act 1 progress "+str(progress)+" "+str(app.session.snapshot().checkpoint))
 	check(service.travel("kronasta-industrial-b").status=="wrong_step","regions are entered by part A")
 	app._show_kronasta()
-	await shot("02-kronasta-previas")
+	await shot("02-kronasta-qa")
 	for region in ["industrial","pantano","montanha"]:
 		app._travel_kronasta("kronasta-%s-a"%region)
 		await ready_park()
@@ -140,6 +175,7 @@ func run() -> void:
 		await shot("04-"+region+"-c")
 		check(app._save_park(),"save in "+region)
 		check(service.travel("quintal").status=="ok","back to the city from "+region)
+	await morro_once()
 	var report:=FileAccess.open(output.path_join("report.json"),FileAccess.WRITE)
 	report.store_string(JSON.stringify({"checks":checks,"failures":failures},"  "))
 	print("# pass %d"%(checks-failures.size()))
