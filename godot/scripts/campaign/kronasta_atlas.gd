@@ -12,9 +12,12 @@ const REGIONS := [
 	{"id":"ruinas","name":"Ruínas antigas","at":Vector2(.54,.78),"scenes":[],"parts":[],"description":"Vestígios nas terras do norte. Esta região ainda não está disponível."},
 	{"id":"vulcao","name":"Vulcão de Kronasta","at":Vector2(.88,.78),"scenes":[],"parts":[],"description":"Além das montanhas, uma terra de cinzas e lava. Região futura; nome provisório."},
 	{"id":"cavernas","name":"Cavernas de cristal","at":Vector2(.84,.43),"scenes":[],"parts":[],"description":"Passagens sob as rochas. Região futura; nome provisório."},
-	{"id":"planicies","name":"Planícies de Kronasta","at":Vector2(.52,.20),"scenes":[],"parts":[],"description":"Campos abertos ao vento. Região futura; nome provisório."}
+	{"id":"planicies","name":"Planícies de Kronasta","at":Vector2(.52,.20),"scenes":[],"parts":[],"description":"Campos abertos ao vento. Região futura; nome provisório."},
+	{"id":"mina","name":"Mina de ferro","at":Vector2(.59,.62),"scenes":["mina-ferro-a","mina-ferro-b","mina-ferro-c","mina-ferro-d"],"parts":["Pátio de carga","Entroncamento ferroviário","Frentes de extração","Grande veio"],"description":"Quatro galerias conectadas, trilhos e passagens elevadas. Exploração disponível; história e mineração em desenvolvimento.","preview":true},
+	{"id":"gelo","name":"Geleira de Kronasta","at":Vector2(.67,.08),"scenes":["gelo-a","gelo-b","gelo-c","gelo-d"],"parts":["Clareira nevada","Bacia de gelo","Fenda glacial","Coroa da geleira"],"description":"Bosques nevados, gelo trincado e três pisos para explorar. História em desenvolvimento; o gelo não quebra nem escorrega.","preview":true},
+	{"id":"submerso","name":"Recifes de Kronasta","at":Vector2(.10,.71),"scenes":["submerso-a","submerso-b","submerso-c"],"parts":["Recife de entrada","Jardim de algas","Fenda abissal"],"description":"Explore o leito entre corais e formações rochosas. História em desenvolvimento; sem nado livre ou sistema de oxigênio.","preview":true}
 ]
-const LINKS := [[0,1],[0,6],[0,7],[1,2],[2,8],[2,3],[2,4],[4,9],[4,10],[3,10],[3,11],[11,5]]
+const LINKS := [[0,1],[0,6],[0,7],[1,2],[2,8],[2,3],[2,4],[4,9],[4,10],[3,10],[3,11],[11,5],[4,12],[4,13],[7,14]]
 static func region_for(scene:String) -> String:
 	for region in REGIONS:
 		if scene in region.scenes:return region.id

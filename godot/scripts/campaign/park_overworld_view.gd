@@ -63,6 +63,7 @@ func _ready() -> void:
 	player = Checkpoint.resolve(saved_checkpoint)
 	follower = player
 	camera.zoom = Vector2.ONE*(1.0 if Checkpoint.is_bosque(saved_checkpoint.scene) else 1.15)
+	if area_id.begins_with("gelo-") or area_id.begins_with("mina-ferro-") or area_id.begins_with("submerso-"):camera.zoom=Vector2.ONE
 	_refresh_positions()
 	camera.reset_smoothing()
 	var partner_id := "rabbito"

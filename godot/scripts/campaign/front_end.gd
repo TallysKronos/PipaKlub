@@ -207,6 +207,9 @@ func _slot_location(snapshot:Dictionary) -> Dictionary:
 		texture=load("res://assets/campaign/workshop-background.png")
 	elif point.get("kind")=="practice":
 		name="Treino com o Sr. Assis"
+	elif ParkCheckpoint.is_regional_preview(scene):
+		name=ParkCheckpoint.data(scene).get("name","Kronasta")
+		texture=load("res://assets/campaign/maps/kronasta-atlas-v1.png")
 	elif scene.begins_with("morro"):
 		var data:Dictionary=Morro.maps().get(scene,{})
 		name=data.get("name","Morro do Sol")

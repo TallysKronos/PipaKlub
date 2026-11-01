@@ -57,7 +57,7 @@ func exercise() -> bool:
 		if child.get_script()==load("res://scripts/campaign/hud_kronasta_map.gd"):atlas=child
 	check(is_instance_valid(atlas),"atlas attached")
 	if not is_instance_valid(atlas):return false
-	check(atlas.art!=null and atlas.markers.size()==12,"illustration and twelve region points")
+	check(atlas.art!=null and atlas.markers.size()==Atlas.REGIONS.size(),"illustration and all regional access points")
 	for i in Atlas.REGIONS.size():
 		atlas.select(i)
 		var region:Dictionary=Atlas.REGIONS[i]

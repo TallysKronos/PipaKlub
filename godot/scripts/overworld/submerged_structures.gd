@@ -21,7 +21,7 @@ static func build(view) -> void:
 static func prop(view,p:Dictionary) -> void:
  var kind:String=str(p.props.get("variante","rocha"))
  var path:String="res://assets/overworld/kits/cavernas-v3/props/rocha-solta.png" if kind=="rocha" else BASE+kind+".png"
- if not FileAccess.file_exists(path):return
+ if not ResourceLoader.exists(path):return
  var texture:=Assets.texture(path)
  if texture==null:return
  var at:=Vector2(p.u+p.fu*.5,p.v+p.fv*.5);var height:float=view.model.height_at(at)*64

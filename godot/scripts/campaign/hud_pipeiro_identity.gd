@@ -190,6 +190,7 @@ func select_tab(index:int) -> void:
 func location() -> String:
 	var scene:String=saved.get("checkpoint",{}).get("scene",saved.player.get("encounter",{}).get("scene",""))
 	if scene.begins_with("morro"):return "Morro do Sol"
+	if scene.begins_with("gelo-") or scene.begins_with("mina-ferro-") or scene.begins_with("submerso-"):return str(load("res://scripts/campaign/park_checkpoint.gd").data(scene).get("name","Kronasta"))
 	if scene.begins_with("kronasta-"):return {"bosque":"Bosque de Kronasta","pantano":"Pântano de Kronasta","montanha":"Montanhas de Kronasta","industrial":"Distrito Industrial"}.get(scene.split("-")[1],"Kronasta")
 	return {"quintal":"Vila do Primeiro Vento","professor-home":"Ateliê do Sr. Assis","park-trail":"Jardim dos Ventos","park-clearing":"Clareira do Papel","park-veredas":"Veredas"}.get(scene,"Ateliê do Sr. Assis")
 func milestone() -> String:

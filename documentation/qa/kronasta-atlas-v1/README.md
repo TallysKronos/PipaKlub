@@ -1,5 +1,7 @@
 # Kronasta — carta regional interativa
 
+Atualização 01/11/2026: adicionados Mina de ferro (4 partes), Geleira de Kronasta (4 partes) e Recifes de Kronasta (3 partes). São agora 15 marcadores e 28 destinos. Capturas atualizadas. Conferência: [integração regional](../integracao-regional-2026-11-01/README.md).
+
 31/10/2026. Implementação local no Godot, sem push.
 
 Depois do treino/oficina, M abre a carta regional. Selecione um círculo e escolha a entrada no painel lateral. Setas/controle navegam entre controles; Enter confirma. M ou Voltar ao jogo fecha; Escape segue o retorno padrão dos menus. O mapa esquemático anterior permanece em Mapa da área. Antes de concluir a introdução, o mapa continua local e não libera viagem antecipada.
