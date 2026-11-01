@@ -10,7 +10,7 @@ func settle() -> void:
 	for i in 6:await process_frame
 func capture(label:String) -> void:
 	if "--capture" not in OS.get_cmdline_user_args():return
-	var out:=ProjectSettings.globalize_path("res://../documentation/qa/mount-doberman-v1")
+	var out:=ProjectSettings.globalize_path("res://../documentation/qa/mount-doberman-v2")
 	DirAccess.make_dir_recursive_absolute(out)
 	await RenderingServer.frame_post_draw
 	root.get_texture().get_image().save_png(out.path_join(label+".png"))
@@ -34,8 +34,16 @@ func run() -> void:
 			check(view.avatar.mount_rig.facing==facing,"direction synchronized "+scenario+facing)
 			check(view.avatar.mount_rig.rider.get_parent()==view.avatar.mount_rig.seat,"rider attached to socket")
 			check(view.avatar.mount_rig.seat.position.y<0,"socket above ground")
+			var rig:Node2D=view.avatar.mount_rig
+			check(rig.far_leg.z_index<rig.body.z_index and rig.rider.z_index>rig.body.z_index,"legs straddle body layers")
+			check(rig.far_leg.region_rect==rig.rider.region_rect and rig.far_leg.position==rig.rider.position,"layer masks use same aligned silhouette")
+			check(rig.far_leg.material.get_shader_parameter("far_layer")==true and rig.rider.material.get_shader_parameter("far_layer")==false,"complementary leg masks")
+			check(rig.seat.z_index==0,"whole rider never hidden behind creature")
 		view.avatar.facing="se";view.avatar._process(0);await settle()
 		await capture(scenario)
+		if scenario=="trail":
+			for direction in view.avatar.DIRECTIONS:
+				view.avatar.facing=direction;view.avatar._process(0);await settle();await capture("map-"+direction)
 		view.paused=true;view.toggle_mount()
 		check(view.avatar.mounted,scenario+" paused toggle rejected")
 		view.paused=false;view.toggle_mount()
@@ -71,5 +79,14 @@ func run() -> void:
 		avatar.position=Vector2(160+(i%4)*320,330+(i/4)*350)
 		avatar.scale=Vector2.ONE*1.5;avatar.facing=avatar.DIRECTIONS[i];avatar.set_mounted(true)
 	await settle();await capture("directional-fit")
+	# One pose at a time at larger scale exposes seams that the overview can hide.
+	for child in stage.get_children():child.hide()
+	for index in [0,1,2,3,4,5,6,7]:
+		var subject:Node2D=stage.get_child(index);subject.show();subject.position=Vector2(640,590);subject.scale=Vector2.ONE*3.2
+		await settle();await capture("detail-"+subject.facing)
+		subject.hide()
+	var foot=load("res://scripts/avatar.gd").new();stage.add_child(foot);foot.position=Vector2(430,540);foot.scale=Vector2.ONE*2.2
+	var mounted:Node2D=stage.get_child(7);mounted.show();mounted.position=Vector2(800,540);mounted.scale=Vector2.ONE*2.2
+	await settle();await capture("kael-scale-comparison")
 	stage.free();await settle()
 	print("MOUNTS: %d checks; %d failures"%[checks,failures]);quit(1 if failures else 0)
