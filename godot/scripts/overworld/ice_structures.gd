@@ -16,7 +16,6 @@ static func build(view) -> void:
   if p.asset=="gelo-prop":prop(view,p)
   if p.asset=="gelo-marker":marker(view,p)
  footprints(view)
- if view.model.data.forest.part=="B":lake_cracks(view)
 static func line(root:Node2D,a:Vector2,b:Vector2,color:Color,width:float) -> void:
  var l:=Line2D.new();l.points=PackedVector2Array([a,b]);l.default_color=color;l.width=width;l.antialiased=true;root.add_child(l)
 static func prop(view,p:Dictionary) -> void:
@@ -25,10 +24,11 @@ static func prop(view,p:Dictionary) -> void:
  var at:=Vector2(p.u+p.fu*.5,p.v+p.fv*.5);var height:float=view.model.height_at(at)*64
  var root:=Node2D.new();root.set_meta("scenery",true);root.position=view.model.project(at,false);view.actors.add_child(root)
  var scale:float=240.0/texture.get_height() if kind=="pinheiro" else (360.0 if kind=="formacao" and p.fu>=4 else 255.0 if kind=="formacao" else 250.0 if kind=="abrigo" else 190.0)/texture.get_width()
+ scale*=float(p.props.get("escala",1.0))
  var shadow:=Polygon2D.new();var points:=PackedVector2Array()
  for k in 20:points.append(Vector2(cos(TAU*k/20.0)*p.fu*15,sin(TAU*k/20.0)*p.fv*7)-Vector2(0,height))
  shadow.polygon=points;shadow.color=Color(.12,.29,.48,.20);root.add_child(shadow)
- var art:=Sprite2D.new();art.name="Art";art.texture=texture;art.centered=false;art.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR;art.scale=Vector2.ONE*scale
+ var art:=Sprite2D.new();art.name="Art";art.texture=texture;art.centered=false;art.flip_h=bool(p.props.get("espelho",false));art.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR;art.scale=Vector2.ONE*scale
  var anchor:float=.95 if kind=="pinheiro" else .87
  art.position=-Vector2(texture.get_width()*.5,texture.get_height()*anchor)*scale-Vector2(0,height)
  var cut:=ShaderMaterial.new();cut.shader=preload("res://shaders/industrial_cutout.gdshader");art.material=cut;root.add_child(art);view.occluders.append(root)
@@ -52,10 +52,3 @@ static func footprints(view) -> void:
      var mark:=Polygon2D.new();var points:=PackedVector2Array()
      for k in 8:points.append(Vector2(cos(TAU*k/8.0)*2.7+side*3.5,sin(TAU*k/8.0)*1.4+side*2.5)-Vector2(0,view.model.height_at(at)*64))
      mark.polygon=points;mark.color=Color(.35,.56,.74,.35);root.add_child(mark)
-static func lake_cracks(view) -> void:
- for branch:Array in [[[15,28],[19,29],[22,27],[26,28],[28,30]],[[19,29],[18,31],[21,32]],[[22,27],[23,25]],[[26,28],[27,26]]]:
-  for n in range(1,branch.size()):
-   var a:=Vector2(branch[n-1][0]+.5,branch[n-1][1]+.5);var b:=Vector2(branch[n][0]+.5,branch[n][1]+.5)
-   var root:=Node2D.new();root.position=view.model.project((a+b)*.5,false);view.actors.add_child(root)
-   line(root,view.model.project(a)-root.position,view.model.project(b)-root.position,Color(.08,.32,.54,.5),2)
-   line(root,view.model.project(a)-root.position-Vector2(0,1),view.model.project(b)-root.position-Vector2(0,1),Color(.83,.96,1.,.6),.8)

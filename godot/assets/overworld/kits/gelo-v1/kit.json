@@ -164,6 +164,7 @@
   "notes": [
     "Secondary formation width 255px, footprint 3x3; hero 360px, footprint 4x3.",
     "Original semi-transparent halos are discarded by existing cutout shader; source PNGs unmodified.",
-    "Frozen lake is opaque traversable ground. No sliding, dynamic weather, boss or online reward implementation."
+    "Frozen lake is opaque traversable ground. No sliding, dynamic weather, boss or online reward implementation.",
+    "Revision 2: clustered groves use per-instance scale .91/1/1.09 and optional horizontal mirror; trunk collision remains 1x1. Ice fracture plates and snow coasts are rendered in continuous map UV, independent of navigation."
   ]
 }
