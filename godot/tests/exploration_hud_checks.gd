@@ -30,13 +30,14 @@ func run() -> void:
 			# Park areas open behind the animated loading cover.
 			for frame in 600:
 				if not front.flow_busy and not is_instance_valid(front.scene_loading):break
-				await process_frame
+				await physics_frame
 			await settle()
 			var overlays:=get_nodes_in_group("exploration_hud")
 			check(overlays.size()==1,"one shared HUD: "+scene)
 			if overlays.is_empty():continue
 			var hud:Control=overlays[0]
 			if is_instance_valid(front.park):front.park.set_physics_process(false)
+			if is_instance_valid(front.park):front.park.set_process(false)
 			if is_instance_valid(front.room):front.room.set_physics_process(false)
 			hud._process(0)
 			hud._process(4.2)

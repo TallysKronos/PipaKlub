@@ -871,7 +871,8 @@ func _show_neighborhood() -> void:
 	park.menu_requested.connect(_pause_game)
 	# Let the SubViewport draw the initialized city before uncovering it.
 	await get_tree().process_frame
-	await RenderingServer.frame_post_draw
+	if DisplayServer.get_name()=="headless":await get_tree().process_frame
+	else:await RenderingServer.frame_post_draw
 	if not is_instance_valid(park) or not is_instance_valid(scene_loading):
 		if is_instance_valid(scene_loading):scene_loading.queue_free()
 		scene_loading=null
@@ -1448,7 +1449,8 @@ func _load_park() -> void:
 	flow_busy=true
 	if is_instance_valid(park): park.paused=true
 	await get_tree().process_frame
-	await RenderingServer.frame_post_draw
+	if DisplayServer.get_name()=="headless":await get_tree().process_frame
+	else:await RenderingServer.frame_post_draw
 	if is_instance_valid(scene_loading):
 		await scene_loading.reveal()
 		scene_loading.queue_free()

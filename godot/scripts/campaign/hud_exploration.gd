@@ -60,13 +60,13 @@ func _ready() -> void:
 	area_panel.create_tween().tween_property(area_panel,"modulate:a",1,.14)
 	objective_panel=plate(self,Hud.CORAL)
 	objective=label(objective_panel)
-	objective.max_lines_visible=2
 	objective_panel.hide()
 	partner_panel=Control.new()
 	partner_panel.mouse_filter=MOUSE_FILTER_IGNORE
 	add_child(partner_panel)
 	partner_panel.draw.connect(_draw_partner)
 	coins=label(self)
+	coins.autowrap_mode=TextServer.AUTOWRAP_OFF
 	coins.theme_type_variation="RecorteGoldText"
 	prompt_panel=plate(self,Hud.CYAN)
 	var row:=HBoxContainer.new()
@@ -88,7 +88,7 @@ func _ready() -> void:
 		button.text=option[0]
 		Hud.navigation_button(button,true,option[2])
 		button.add_theme_font_size_override("font_size",16)
-		button.custom_minimum_size=Vector2(104,48)
+		button.custom_minimum_size=Vector2(144,48)
 		button.pressed.connect(func():chosen.emit(option[1]))
 		tools.add_child(button)
 	resized.connect(_layout)
@@ -196,7 +196,8 @@ func _layout() -> void:
 		map.offset_top=20
 		map.offset_bottom=edge+20
 	objective_panel.position=Vector2(20,area_panel.position.y+area_panel.size.y+12)
-	objective_panel.size=Vector2(520*factor,72*factor)
+	objective_panel.custom_minimum_size.x=minf(maxf(520*factor,400),size.x*.55)
+	objective_panel.reset_size()
 	objective_panel.visible=not objective.text.is_empty() and objective_age<4
 	partner_panel.position=Vector2(20,size.y-120*factor-20)
 	partner_panel.size=Vector2(360,120)*factor
