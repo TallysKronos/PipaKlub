@@ -174,6 +174,7 @@ func _title() -> void:
 	var title_view=load("res://scripts/campaign/hud_title_menu.gd").new()
 	title_view.mode="title"
 	title_view.reduced_motion=preferences.reduced_motion
+	title_view.text_scale=preferences.text_scale
 	add_child(title_view)
 	title_view.selected.connect(func(_id:String):_menu())
 
@@ -185,6 +186,7 @@ func _menu() -> void:
 	for index in range(1,4):
 		if session.inspect_slot("slot-%d"%index).status=="ok":menu.has_saves=true
 	menu.reduced_motion=preferences.reduced_motion
+	menu.text_scale=preferences.text_scale
 	add_child(menu)
 	menu.selected.connect(_main_menu_action)
 

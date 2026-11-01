@@ -1,0 +1,21 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompt": "prompt.txt",
+  "source": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-19e70765-e5a8-4ba2-b5df-4f089c069774.png",
+  "reference": "art/ui/soulmonsters-v2/pip-128-v2/B-prancha.png",
+  "usage": "art direction only; no game benchmark images used",
+  "output": {
+    "path": "godot\\assets\\ui\\mural-v1\\brand\\logo.png",
+    "size": [
+      1983,
+      793
+    ],
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "sha256": "d787a817a21a2032213ed7c876c69e8eb5eff8fa005a51199a4b358393dd6a49"
+  },
+  "backgroundReused": "godot/assets/campaign/title-v1/neighborhood-starters-soulgen-v4.png"
+}
