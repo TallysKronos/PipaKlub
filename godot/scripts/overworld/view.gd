@@ -97,9 +97,9 @@ func load_area(id: String, arrival: Variant = "") -> void:
 	stairs_drawn.clear()
 	occluders.clear()
 	model.setup(JSON.parse_string(FileAccess.get_file_as_string(source)))
-	RenderingServer.set_default_clear_color(Color.BLACK if model.data.get("forest",{}).get("bamboo",false) else ProjectSettings.get_setting("rendering/environment/defaults/default_clear_color"))
+	RenderingServer.set_default_clear_color(Color.BLACK if model.data.get("forest",{}).get("bamboo",false) or model.data.get("forest",{}).get("canal",false) else ProjectSettings.get_setting("rendering/environment/defaults/default_clear_color"))
 	kits.assign([kit_library.comum])
-	if bool(model.data.get("forest",{}).get("bamboo",false)):
+	if bool(model.data.get("forest",{}).get("bamboo",false)) or model.data.get("forest",{}).get("canal",false):
 		kits.append(kit_library.parque.duplicate(true))
 	if kit_library.has(model.data.biome):
 		# Area overrides must never leak into the next map's shared kit.
@@ -1734,13 +1734,18 @@ func _build_events() -> void:
 				var path:String="res://assets/campaign/tyler-clareira-v1/"+str(event.props.storySprite)+".png"
 				var tex:Texture2D=load(path)
 				list=[{"name":event.name,"image":path,"bounds":{"x":0,"y":0,"w":tex.get_width(),"h":tex.get_height()}}]
+			if event.props.has("storySpritePath"):
+				var path:String=event.props.storySpritePath
+				var tex:Texture2D=load(path)
+				list=[{"name":event.name,"image":path,"bounds":{"x":0,"y":0,"w":tex.get_width(),"h":tex.get_height()}}]
 			if event.props.has("npcIdentity"):
 				list=[{"name":str(event.props.npcIdentity),"bounds":{"x":0,"y":0,"w":64,"h":96}}]
-			if event.props.get("district","")=="bambuzal":
-				var atlas:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/npc-ds/bambuzal-v1/atlas.json"))
+			if event.props.get("district","") in ["bambuzal","beira-canal"]:
+				var atlas_path:String="res://assets/npc-ds/"+str(event.props.district)+"-v1/"
+				var atlas:Dictionary=JSON.parse_string(FileAccess.get_file_as_string(atlas_path+"atlas.json"))
 				for frame:Dictionary in atlas.sprites:
 					if frame.name==event.name and frame.facing=="se":
-						list=[{"name":event.name,"image":"res://assets/npc-ds/bambuzal-v1/atlas.png","bounds":{"x":frame.bounds[0],"y":frame.bounds[1],"w":frame.bounds[2],"h":frame.bounds[3]}}]
+						list=[{"name":event.name,"image":atlas_path+"atlas.png","bounds":{"x":frame.bounds[0],"y":frame.bounds[1],"w":frame.bounds[2],"h":frame.bounds[3]}}]
 
 			var holder := Node2D.new()
 			node.add_child(holder)

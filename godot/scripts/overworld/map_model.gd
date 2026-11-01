@@ -103,6 +103,9 @@ func point_walkable(point: Vector2) -> bool:
 	var at := Vector2i(floori(point.x),floori(point.y))
 	if not walkable(at): return false
 	if cell_at(at).material == "ponte": return true
+	# Constructed canals are grid-aligned: their apertures occupy only agua cells.
+	# The walkable supporting cell owns its boundary, even at floating-point seams.
+	if data.get("forest",{}).get("canal",false):return true
 	# Curved shorelines can cross a fraction of an otherwise passable grid cell.
 	# Movement uses the same measured aperture as the rendered floor cutout.
 	for outline in water_contours:

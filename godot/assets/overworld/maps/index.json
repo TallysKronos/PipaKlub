@@ -216,6 +216,24 @@
       "name": "Vila do Bambuzal · Arena do Bambuzal",
       "scene": "kronasta-bambuzal-c",
       "biome": "floresta"
+    },
+    {
+      "id": "kronasta-beira-canal-a",
+      "name": "Beira-Canal · A",
+      "scene": "kronasta-beira-canal-a",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-beira-canal-b",
+      "name": "Beira-Canal · B",
+      "scene": "kronasta-beira-canal-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-beira-canal-c",
+      "name": "Beira-Canal · C",
+      "scene": "kronasta-beira-canal-c",
+      "biome": "floresta"
     }
   ],
   "scenes": {
@@ -253,7 +271,10 @@
     "submerso-c": "submerso-c",
     "kronasta-bambuzal-a": "kronasta-bambuzal-a",
     "kronasta-bambuzal-b": "kronasta-bambuzal-b",
-    "kronasta-bambuzal-c": "kronasta-bambuzal-c"
+    "kronasta-bambuzal-c": "kronasta-bambuzal-c",
+    "kronasta-beira-canal-a": "kronasta-beira-canal-a",
+    "kronasta-beira-canal-b": "kronasta-beira-canal-b",
+    "kronasta-beira-canal-c": "kronasta-beira-canal-c"
   },
   "campaignReplacement": false
 }

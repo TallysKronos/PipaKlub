@@ -91,7 +91,7 @@ static func build(view) -> void:
   for index in contours.size():
    var contour:PackedVector2Array=contours[index]
    if contour.is_empty():continue
-   if index==0:
+   if index==0 and not f.get("canal",false):
     contour.insert(1,Vector2(35,9))
     contour.insert(2,Vector2(36,9))
    var depth:float=float(w.depth if index==0 else w.channelDepth)
@@ -100,6 +100,9 @@ static func build(view) -> void:
    for p in contour:bottom.append(iso(p)+Vector2(0,depth))
    var swamp:bool=f.get("swamp",false)
    var water:=quad(surface,bottom,Color("2a7490") if geometry() else Color("20483b") if swamp else Color(.65,.87,.93),null if geometry() or swamp else load(BASE+"aguas-v1/surfaces/rio-claro.png"))
+   if f.get("canal",false) and not geometry():
+    var player:Variant=view.get("saved_player")
+    if not player is Dictionary or not player.get("flags",{}).get("comportaVeredasAberta",false):water.modulate=Color(.58,.67,.36)
    if swamp and not geometry():
     var shader:=ShaderMaterial.new();shader.shader=preload("res://shaders/swamp_water.gdshader");water.material=shader
     if f.has("arena"):
