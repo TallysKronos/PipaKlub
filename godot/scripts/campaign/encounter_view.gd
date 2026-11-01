@@ -229,7 +229,9 @@ func _layout_actions() -> void:
 	finish_button.custom_minimum_size=Vector2(240,48)
 	if is_instance_valid(reward_card):reward_card.custom_minimum_size.y=clampf(size.y*.56,390,490)
 	bottom_panel.offset_bottom = -16 if fighting else -12
-	status_row.visible = paused or blocked
+	# The pause line has no place on the result screen: losing window focus pauses
+	# the view, and the bar would otherwise slide under the VITÓRIA header.
+	status_row.visible = blocked or (paused and not result)
 	# Paused, the footer covers the corner status drawn under it instead of letting
 	# the partner card show between the buttons.
 	var covering:bool=(paused or blocked) and not result
