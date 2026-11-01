@@ -61,14 +61,18 @@ A v2 mantém tudo o que era decidido ou canônico na v1 e acrescenta a progress�
   - **almática** é o termo dos pesquisadores, como no one-shot;
   - "Pipamon" sai dos textos novos.
 
-### 2.2 Como se ganha um parceiro: o laço
+### 2.2 Como se ganha um parceiro: enroscada e drop
 
-**[Proposta]** É a versão do Soulmonsters para o scan de Digimon World DS (P1, P2), ligada à lenda do mural:
+**[Decidido 01/11]** Há dois jeitos de ganhar um parceiro de um Soulmonster selvagem:
 
-- Cada espécie selvagem tem uma **confiança** que sobe a cada duelo limpo com ela, sem cerol e sem fuga.
-- Em 100%, a criatura **oferece a ponta da linha**: deixa a rabiola dela com o Kael. Acima de 100%, a rabiola sai mais forte, como o scan acima de 100%.
-- A rabiola vai para a oficina, onde o Kael monta o corpo. **Sem rabiola não há parceiro**, e isso já é regra canônica.
-- Os chefes de Trilha que já existem deixam rabiolas (`rabiola-lacertubo`, `rabiola-azulao`, `rabiola-mata`, `rabiola-raio`). Isso continua. É a forma "chefe" do mesmo laço.
+1. **Enroscada.** Quando a pipa do Kael corta a de um selvagem, a pipa cortada pode ficar **enroscada** na linha do vencedor. O Kael fica com ela **no nível em que estava**, pronta para o time.
+2. **Drop aleatório.** Ao vencer um selvagem, há uma chance pequena (não pode ser fácil) de ele deixar a **rabiola**. Ela vai para a oficina, onde o Kael monta o corpo, e o parceiro **nasce no nível 1**.
+
+Regras:
+- **Pipas de NPCs (pipeiros, capangas, campeões) nunca ficam enroscadas.** Só selvagens.
+- **O jogador nunca perde pipas**, nem ao ser cortado.
+- **Sem rabiola não há parceiro** continua valendo (regra canônica): a pipa enroscada já vem com a rabiola dela.
+- Os chefes de Trilha que já existem continuam deixando rabiolas (`rabiola-lacertubo`, `rabiola-azulao`, `rabiola-mata`, `rabiola-raio`).
 
 ### 2.3 O que o cerol faz
 
@@ -78,14 +82,14 @@ A v2 mantém tudo o que era decidido ou canônico na v1 e acrescenta a progress�
 
 ### 2.4 Os Quatro Ventos
 
-**[Proposta]** Quatro almáticas antigas, uma em cada santuário de Kronasta, que sopram o vento das quatro direções. São os guardiões da lenda: os primeiros a receber alma do visitante do mural. Cada um mora numa região natural:
+**[Decidido 01/11]** Quatro almáticas antigas e destrutivas, forças da natureza misturadas com pipa. São os guardiões da lenda: os primeiros a receber alma do visitante do mural. Cada uma mora num lugar extremo de Kronasta:
 
-| Vento | De onde sopra | Região | Personalidade |
+| Vento | Força | Lugar | Personalidade [Proposta] |
 | --- | --- | --- | --- |
-| **Terral** | Da terra para o mar, à noite | Bosque de Kronasta | Paciente, fala pouco, só aparece de noite |
-| **Mormaço** | Calor parado | Pântano | Preguiçoso e esperto. Testa com enigmas |
-| **Minuano** | Frio do sul | Montanha (Serra do Minuano) | Exigente, só respeita quem chega sem atalho |
-| **Aracati** | Brisa do mar, à tarde | Ilha do Aracati (litoral) | Brincalhão, o mais próximo dos humanos |
+| **Trovareta** | Trovão + vareta | Floresta (Bosque, à noite, em tempestade) | Paciente e temível, só aparece na tempestade |
+| **Rabiolava** | Lava + rabiola | Vulcão | Furiosa, a mais difícil de acalmar |
+| **Glacerol** | Geleira + cerol | Gelo (geleira) | Fria e cortante, testa com paciência |
+| **Tufanocorte** | Tufão + corte | Montanha (Serra) | Exigente, só respeita quem sobe sem atalho |
 
 Eles não são supervisores de rank, como os guardiões de Digimon World DS. Eles ficam fora do campeonato: são a ponte entre a trajetória 1 e a 2.
 
@@ -98,8 +102,8 @@ Eles não são supervisores de rank, como os guardiões de Digimon World DS. Ele
 | **Pulo do Elo** | Rabbito (já existe como golpe) | Vãos curtos e degraus altos | Ato 1 |
 | **Planar** | Espécies-ave, como o Carcará | Descer de platôs para longe, atravessar ravinas no sentido da descida | Ato 2 |
 | **Remar** | Espécies d'água, como o Platyx | Atravessar água rasa e canais | Ato 3 |
-| **Cavar** | Uma espécie-tatu (a criar) | Buracos marcados no chão, que levam a galerias | Ato 4 |
-| **Corrente de ar** | Presente do Aracati | Subir por correntes de vento em penhascos | Ato 4 |
+| **Cavar** | Uma espécie-tatu da Serra (a criar) | Buracos marcados no chão, que levam a galerias | Ato 4 |
+| **Corrente de ar** | Presente do Tufanocorte | Subir por correntes de vento em penhascos | Ato 4 |
 
 **Regra de mapa:** todo bloqueio por habilidade precisa ser **visto antes** de poder ser usado. Isso já está em `art/overworld/REGIOES-E-PARTES.md`.
 
@@ -121,11 +125,12 @@ Eles não são supervisores de rank, como os guardiões de Digimon World DS. Ele
 | Bairro 4 | Feira do Largo | Bairro 3 | 15–18 | A, B, C |
 | Bairro 5 | Cais Velho | Bairro 4 | 18–21 | A, B, C |
 | Bairro 6 | Vila Operária (Distrito Industrial) | Bairro 5 | 21–24 | A, B, C, D (galpão do Bando) |
-| Natural | Pântano do Mormaço | Bairro 6 + Remar | 22–28 | A, B, C, D |
+| Natural | Pântano | Bairro 6 + Remar | 22–28 | A, B, C, D |
 | Bairro 7 | Palafitas | Bairro 6 | 24–27 | A, B, C |
-| Natural | Serra do Minuano (Montanha) | Bairro 7 | 26–32 | A, B, C, D |
+| Natural | Serra (Montanha) | Bairro 7 | 26–32 | A, B, C, D |
 | Bairro 8 | Alto da Serra | Bairro 7 | 27–30 | A, B, C |
-| Natural | Ilha do Aracati | Bairro 8 | 30–34 | A, B, C |
+| Natural | Vulcão | Bairro 7 | 26–32 | A, B, C, D |
+| Natural | Geleira | Bairro 8 | 30–34 | A, B, C |
 | Bairro 9 | Centro (Praça da Matriz e estúdio da Pipa TV) | Bairro 8 | 30–33 | A, B, C |
 | Bairro 10 | Conjunto das Lajes | Bairro 9 | 33–36 | A, B, C |
 | Bairro 11 | Porto Novo | Bairro 10 | 36–40 | A, B, C |
@@ -137,7 +142,7 @@ Eles não são supervisores de rank, como os guardiões de Digimon World DS. Ele
 **Notas:**
 - Os nomes dos bairros 2 a 12 são proposta. O Morro do Sol, o Parque dos Ventos, o Bosque de Kronasta, a Montanha, o Pântano e o Distrito Industrial já existem no repositório.
 - **Zonas perigosas opcionais (P15).** A parte **D** das regiões naturais tem nível bem acima do resto, um **Errante** (um selvagem forte que vaga por um caminho fixo) e um NPC que avisa antes: *"Não desce aí antes de estar com uns 25. Mas quem volta, volta forte."*
-- **Lugares vistos fechados (P14).** Desde o ato 1 o jogador vê, do alto do Morro do Sol, o estádio, a ponte para a Ilha do Aracati com a cancela fechada e a fumaça do galpão na Vila Operária.
+- **Lugares vistos fechados (P14).** Desde o ato 1 o jogador vê, do alto do Morro do Sol, o estádio, a fumaça do Vulcão no horizonte e a fumaça do galpão na Vila Operária.
 
 ## 4. Personagens
 
@@ -150,14 +155,14 @@ Eles não são supervisores de rank, como os guardiões de Digimon World DS. Ele
 | **Heleana** (mãe do Kael) | Decidido | Foi uma jovem pesquisadora que encontrou a Rabiola Antiga nas Ruínas. Deixou a pesquisa e guardou a rabiola. |
 | **Sr. Assis** | Canônico + decidido | Professor e dono do ateliê que monta parceiros. Foi colega de expedição da Heleana. Criou o Tyler. |
 | **Tyler** e o parceiro **Rai** (tigre dente-de-sabre) | Canônico + decidido | O homúnculo, que é o Assis jovem. Acredita ser filho do professor. Kael o encontra na trajetória 2. |
-| **Retalho** | Proposta | Almática selvagem e rival recorrente (seção 7.3). Na verdade, é a antiga parceira da Heleana. |
+| **Retalho** | Decidido 01/11 | Almática selvagem e rival recorrente, de máscara e cheia de cicatrizes de energia. É a antiga parceira da Heleana, perdida no ataque de um lendário (seção 5). |
 
 ### 4.2 Campeonato
 
 | Personagem | Estado | Papel |
 | --- | --- | --- |
 | **Mikka** | Canônico | Campeã do Morro do Sol, o primeiro bairro. |
-| **Gollia** | Canônico (Pipa TV) | Destaque da temporada e rival do Kael. **[Proposta]** Ela acredita que força é tudo (P5). É tentada pelo Carretel Negro no ato 3 e se arrepende no ato 6. |
+| **Gollia** | Canônico (Pipa TV) + decidido 01/11 | Destaque da temporada e rival do Kael. **Homem robusto.** Acredita que força é tudo (P5): aceita o Carretel Negro no ato 3, passa para o time do Bando no ato 5 e se arrepende no final (ato 6). |
 | **Jamile** | Canônico + decidido | Campeã atual e final da trajetória 1. Não tem ligação com a família do Kael. **[Proposta]** É a "veterana que salva" (P1): aparece duas vezes antes da final, uma para salvar o Kael e outra para ser salva por ele. |
 | **Lohan** e **Kleie** | Canônico (Trilhas) | **[Proposta]** Campeões dos bairros 2 e 3. Reaproveitam nomes que já existem, como o `CAMPANHA-CIDADE.md` pede. |
 | **Dona Cida** | Proposta | Árbitra-chefe da Liga de Kronasta. Aplica os exames de categoria (seção 6). |
@@ -187,7 +192,7 @@ Eles não são supervisores de rank, como os guardiões de Digimon World DS. Ele
 3. **A ruptura.** A Heleana não aceita: dar alma a alguém para servir a um propósito é esticar a linha à força. Ela deixa a pesquisa, leva a Rabiola Antiga para que ninguém a use de novo, e o Kael nasce.
 4. **A mentira.** No aniversário de 15 anos, ela diz: *"Esta rabiola era minha quando eu era criança"*. A fala já está na abertura, e mais tarde o jogador vai reler esse presente com outros olhos.
 5. **O Tyler hoje.** Ele aparenta 16 anos, mas foi criado há cerca de 12, porque o Elo acelera o crescimento. O fio que o sustenta está enfraquecendo, e é por isso que o Assis voltou a pesquisar as Ruínas. É o lado humano do professor.
-6. **[Proposta] A parceira que ficou.** Na expedição, a Heleana tinha uma parceira. Na noite da ruptura, ela soltou a parceira nas Ruínas para que ninguém a usasse para chegar ao Elo. Sem a dona, a parceira esqueceu quem era e foi se remendando com o que achava. Hoje é o **Retalho**.
+6. **[Decidido 01/11] A parceira que ficou.** Numa expedição às ruínas de um dos lendários, a Heleana e a parceira almática dela foram atacadas pelo lendário. A Heleana sobreviveu; a parceira ficou presa. A Heleana nunca se recuperou dessa perda. Presa nas ruínas, a parceira evoluiu sozinha: a **máscara** e as **cicatrizes de energia** fazem parte dessa evolução. Hoje é a **Retalho**. **[Proposta]** O lendário que as atacou é o mesmo do Santuário, que reagiu à retirada da Rabiola Antiga.
 
 ## 6. Categorias do campeonato (ranks)
 
@@ -195,14 +200,14 @@ Eles não são supervisores de rank, como os guardiões de Digimon World DS. Ele
 
 | Categoria | Bairros | Exame para subir | O que libera |
 | --- | --- | --- | --- |
-| **Rabiola Branca** | 1 e 2 | Achar a rabiola da Nina no Parque dos Ventos | 2 vagas no Varal. Remonta até o estágio Pipa |
+| **Rabiola Branca** | 1 e 2 | Achar a rabiola da Nina no Parque dos Ventos | 2 vagas no Varal |
 | **Rabiola Verde** | 3 e 4 | Achar o Tyler, que a Liga dá como desaparecido | Loja da Liga, ala 2. Pedidos de parceiro da categoria Verde |
-| **Rabiola Azul** | 5 e 6 | Trazer o Retalho de volta sem cortar a rabiola dele | Remonta até o estágio Arraia. 4 vagas no Varal |
+| **Rabiola Azul** | 5 e 6 | Trazer a Retalho de volta sem cortar a rabiola dela | 4 vagas no Varal |
 | **Rabiola Vermelha** | 7 e 8 | Libertar os Quatro Ventos | Loja da Liga, ala 3. Torneio da TV |
-| **Rabiola Dourada** | 9 e 10 | **Copa Relâmpago**: 3 duelos seguidos, 3 parceiros fixos, sem itens (P24) | Remonta até o estágio Pandorga. 6 vagas no Varal |
+| **Rabiola Dourada** | 9 e 10 | **Copa Relâmpago**: 3 duelos seguidos, 3 parceiros fixos, sem itens (P24) | 6 vagas no Varal |
 | **Campeão de Kronasta** | 11 e 12 | A final contra a Jamile | Pós-jogo |
 
-**Estágios de remonta [Proposta]:** são a "evolução" do Soulmonsters. O parceiro não muda de alma, muda de corpo: o Kael desmonta e monta de novo na oficina com materiais melhores. Os nomes são regionais do Brasil para pipa, do menor ao maior: **Cafifa → Pipa → Arraia → Pandorga**. Como em Digimon World DS, a categoria limita o estágio que o Kael sabe montar.
+**[Decidido 01/11] Evolução pelo quadro de evolução.** Cada espécie tem um **quadro de evolução** no menu do parceiro, com as formas possíveis. Quando o parceiro chega ao nível de uma forma, ela fica disponível e **o jogador decide** se evolui. **[Proposta]** O quadro pode ter ramos (duas formas possíveis no mesmo nível), e a Agulha de desatar (ato 3) permite voltar uma forma para seguir por outro ramo.
 
 ## 7. A campanha, ato por ato
 
@@ -229,7 +234,7 @@ Já existe: abertura, aniversário de 15 anos, Rabbito, oficina, treino com o Sr
 | --- | --- | --- | --- | --- |
 | 1 | Morro do Sol E | Duelo com a Mikka (canônico). | Mikka (8) | Bairro 2 e Parque A |
 | 2 | Parque A, Jardim | **A rabiola cortada.** A da Nina foi cortada com cerol. Há pegadas de pata palmada. De longe, um garoto de mecha branca conserta um apito de vento e some (v1). **[Proposta]** O garoto foge, e o Kael o persegue pelas três telas do Jardim: em cada lugar onde o garoto some há um baú (P16). | — | Pista do Platyx |
-| 3 | Bosque de Kronasta A–C | Já existe no jogo. Encontra a **página 1 do caderno da Heleana**. **[Proposta]** É a primeira aparição do **Retalho**, que desafia o Kael e foge. | Retalho (10) | Página do caderno |
+| 3 | Bosque de Kronasta A–C | Já existe no jogo. Encontra a **página 1 do caderno da Heleana**. **[Proposta]** É a primeira aparição da **Retalho**, mascarada, que desafia o Kael e foge. | Retalho (10) | Página do caderno |
 | 4 | Vila do Bambuzal | Bairro 2. Problema: o bambuzal está sendo cortado à noite para vender vareta ao Bando. | Lohan (12) | Bairro 3 e Parque B |
 | 5 | Parque B, Clareira | **O filho do professor.** Kael conhece o Tyler e o Rai. O Tyler se apresenta como filho do Assis, e o Kael nunca soube que o professor tinha filho (v1). **[Proposta]** O Tyler devolve a rabiola da Nina: ele a achou e emendou. | — | **Exame da categoria Branca**: devolver a rabiola à Nina |
 
@@ -245,7 +250,7 @@ Já existe: abertura, aniversário de 15 anos, Rabbito, oficina, treino com o Sr
 | 4 | Feira do Largo | Bairro 4. **O item falso (P8).** A porta das Ruínas só abre com um apito de vento. O Seu Lalau vende um "apito original". Na porta, o apito chia: é de plástico. | Seu Lalau (16) | — |
 | 5 | Feira do Largo B | O Seu Lalau confessa que trocou o apito verdadeiro com o Grampo por cerol. O Grampo está no beco do mercado. | Grampo e Platyx (17) | **Apito de vento verdadeiro** |
 | 6 | Feira do Largo C | Duelo pelo bairro. | Campeão 4, **Dona Zulmira** (18), feirante e ex-pipeira | Bairro 5 e Caverna do Mural |
-| 7 | Caverna do Mural | **O primeiro laço.** O Tyler mostra o mural do one-shot. O ovo de luz do mural responde à Rabiola Antiga (v1). **[Proposta]** O Retalho aparece no fundo da caverna olhando o mural e foge. | — | Exame da categoria Verde |
+| 7 | Caverna do Mural | **O primeiro laço.** O Tyler mostra o mural do one-shot. O ovo de luz do mural responde à Rabiola Antiga (v1). **[Proposta]** A Retalho aparece no fundo da caverna olhando o mural e foge. | — | Exame da categoria Verde |
 
 **Exame da categoria Verde [Proposta]:** a Liga dá o Tyler como "pipeiro sem registro desaparecido" e pede ao Kael para achá-lo. É uma corrente curta de NPCs (no máximo três, ver o estudo, seção 5): Nozinho → Bia → o Tyler, que está no telhado da Caverna emendando rabiolas de selvagens cortadas pelo Bando.
 
@@ -254,28 +259,28 @@ Já existe: abertura, aniversário de 15 anos, Rabbito, oficina, treino com o Sr
 | Ordem | Lugar | Acontece | Chefe ou duelo | Abre |
 | --- | --- | --- | --- | --- |
 | 1 | Cais Velho | Bairro 5. Barcos de pesca com pipas de sinalização. | Campeã 5, **Marisol** (21) | Bairro 6 |
-| 2 | Bosque D | O **Retalho evoluiu sozinho** e está maior (P4). Desafia o Kael: *"Quem tem dono é fraco."* | Retalho (22) | Pista: ele tem um nó de expedição na rabiola |
-| 3 | Arquivo do ateliê | **A foto.** Kael acha uma foto da expedição: a mãe jovem ao lado do Assis jovem, que é idêntico ao Tyler (v1). **[Proposta]** Na foto também aparece uma almática remendada no ombro da Heleana. | — | — |
-| 4 | Vila Operária A–B | Bairro 6. Fábrica de linha. A Gollia está lá e aceita o Carretel Negro do Bando "só para testar". | Gollia (23) | — |
-| 5 | Vila Operária D, galpão | **O chefe impossível (P9).** O Bando costurou três rabiolas roubadas num só corpo, a **Pipa-Dragão**. O Kael não tem como vencer. O Retalho se joga na frente para defender o Kael e perde, como o lobo solitário de Digimon World DS. O Tyler chega e **desata os nós**, soltando duas das três almas. A Pipa-Dragão encolhe. | Pipa-Dragão (impossível) → Pipa-Dragão desatada (25) | **Agulha de desatar**: permite desmontar um parceiro e remontar por outra rota |
+| 2 | Bosque D | A **Retalho evoluiu sozinha**: maior, com mais cicatrizes de energia (P4). Desafia o Kael: *"Quem tem dono é fraco."* | Retalho (22) | Pista: um nó de expedição na rabiola dela |
+| 3 | Arquivo do ateliê | **A foto.** Kael acha uma foto da expedição: a mãe jovem ao lado do Assis jovem, que é idêntico ao Tyler (v1). **[Proposta]** Na foto também aparece a parceira da Heleana, ainda sem máscara. | — | — |
+| 4 | Vila Operária A–B | Bairro 6. Fábrica de linha. O Gollia está lá e aceita o Carretel Negro do Bando "só para testar". | Gollia (23) | — |
+| 5 | Vila Operária D, galpão | **O chefe impossível (P9).** O Bando costurou três rabiolas roubadas num só corpo, a **Pipa-Dragão**. O Kael não tem como vencer. A Retalho se joga na frente para defender o Kael e perde, como o lobo solitário de Digimon World DS. O Tyler chega e **desata os nós**, soltando duas das três almas. A Pipa-Dragão encolhe. | Pipa-Dragão (impossível) → Pipa-Dragão desatada (25) | **Agulha de desatar**: no quadro de evolução, volta uma forma para seguir por outro ramo |
 | 6 | Vila Operária C | Duelo pelo bairro. | Campeão 6, **Bruno Solda** (24) | Bairro 7 |
-| 7 | Ateliê | O Retalho, ferido, deixa o Kael chegar perto. O Assis reconhece o nó da rabiola. | — | Exame da categoria Azul |
+| 7 | Ateliê | A Retalho, ferida, deixa o Kael chegar perto. O Assis reconhece o nó da rabiola. | — | Exame da categoria Azul |
 
-**Exame da categoria Azul [Proposta]:** trazer o Retalho de volta **sem cortar a rabiola**. É o arco do Pagumon de Digimon World DS: o Retalho foge do Varal, come uma flor que faz mal (é preciso achar o remédio no Pântano) e depois é pego por valentões das Palafitas. No fim, ele aceita ficar. A revelação de quem ele é fica para o ato 4.
+**Exame da categoria Azul [Proposta]:** trazer a Retalho de volta **sem cortar a rabiola**. É o arco do Pagumon de Digimon World DS: a Retalho foge do Varal, come uma flor que faz mal (é preciso achar o remédio no Pântano) e depois é pega por valentões das Palafitas. No fim, ela aceita ficar. A revelação de quem ela é fica para o ato 4.
 
 ### 7.5 Ato 4 — Rabiola Vermelha: "Os Quatro Ventos"
 
 | Ordem | Lugar | Acontece | Chefe ou duelo | Abre |
 | --- | --- | --- | --- | --- |
-| 1 | Pântano do Mormaço | Os ventos param em Kronasta. Pipas não sobem. **O Rato prendeu os Quatro Ventos com o Carretel Negro** (P10). O Mormaço é o primeiro. É preciso **Remar**. | Mormaço amarrado (27) | O Mormaço solto e um enigma: "o frio sabe onde estão os outros" |
+| 1 | Vulcão | Os ventos param em Kronasta. Pipas não sobem. **O Rato prendeu os Quatro Ventos com o Carretel Negro** (P10). A Rabiolava é a primeira, na cratera. | Rabiolava amarrada (27) | Rabiolava solta e um enigma: "o frio sabe onde estão os outros" |
 | 2 | Palafitas | Bairro 7. | Campeão 7, **Caio Garça** (27) | Bairro 8 e a Serra |
-| 3 | Casa do Kael, à noite | **A confissão.** A mãe conta que era pesquisadora e que a rabiola veio das Ruínas. "Era minha quando eu era criança" era mentira (v1). **[Proposta]** Ela reconhece o Retalho e chora. Conta da parceira que soltou nas Ruínas. | — | O Retalho lembra do nome verdadeiro |
-| 4 | Serra do Minuano | O Minuano, amarrado. Só respeita quem sobe sem atalho: a subida é a pé, sem Planar. | Minuano amarrado (29) | Presente: **Cavar** (o Minuano mostra a espécie-tatu que mora na Serra) |
-| 5 | Alto da Serra | Bairro 8. | Campeã 8, **Dona Neve** (30) | Bairro 9 e a ponte da Ilha |
-| 6 | Bosque de noite | O Terral, amarrado. Só aparece à noite. Um **tenente do Bando**, o Navalha, tenta cortar a rabiola dele. | Navalha (30) → Terral amarrado (31) | — |
-| 7 | Ilha do Aracati | O Aracati, amarrado, guardado pelo **Rato em pessoa**. O Rato não luta: assiste. Ele convida o Kael para o Bando: *"Você também deu alma a uma coisa que você fez."* O Kael recusa. | Aracati amarrado (33) | Presente: **Corrente de ar**. Exame da categoria Vermelha |
+| 3 | Casa do Kael, à noite | **A confissão.** A mãe conta que era pesquisadora e que a rabiola veio das Ruínas. "Era minha quando eu era criança" era mentira (v1). Ela reconhece a Retalho pela máscara e pelas cicatrizes e chora: conta do ataque do lendário e da parceira que ficou presa. | — | A Retalho lembra do nome verdadeiro |
+| 4 | Serra (Montanha) | O Tufanocorte, amarrado. Só respeita quem sobe sem atalho: a subida é a pé, sem Planar. | Tufanocorte amarrado (29) | Presente: **Corrente de ar**. A espécie-tatu da Serra ensina **Cavar** |
+| 5 | Alto da Serra | Bairro 8. | Campeã 8, **Dona Neve** (30) | Bairro 9 e a Geleira |
+| 6 | Bosque, noite de tempestade | A Trovareta, amarrada. Só aparece na tempestade. Um **tenente do Bando**, o Navalha, tenta cortar a rabiola dela. | Navalha (30) → Trovareta amarrada (31) | — |
+| 7 | Geleira | A Glacerol, amarrada, guardada pelo **Rato em pessoa**. O Rato não luta: assiste. Ele convida o Kael para o Bando: *"Você também deu alma a uma coisa que você fez."* O Kael recusa. | Glacerol amarrada (33) | Exame da categoria Vermelha |
 
-**Revelação de reunião (P20 e a reunião de domadores de Digimon World DS):** depois do Aracati, todos os campeões já vencidos se reúnem na Praça da Matriz. A Mikka, o Lohan, a Kleie e os outros decidem **patrulhar Kronasta juntos**. É o momento em que o campeonato vira comunidade.
+**Revelação de reunião (P20 e a reunião de domadores de Digimon World DS):** depois da Glacerol, todos os campeões já vencidos se reúnem na Praça da Matriz. A Mikka, o Lohan, a Kleie e os outros decidem **patrulhar Kronasta juntos**. É o momento em que o campeonato vira comunidade.
 
 ### 7.6 Ato 5 — Rabiola Dourada: "A noite do cerol"
 
@@ -286,7 +291,7 @@ Já existe: abertura, aniversário de 15 anos, Rabbito, oficina, treino com o Sr
 | 3 | Kronasta inteira | **A noite do cerol (P12).** O Bando corta as rabiolas de meio bairro numa noite. Kronasta vira o **mundo espelho**: os mesmos mapas, à noite, com Desalmados, barreiras do Bando e NPCs sem parceiro. Para passar nas barreiras, o Kael usa uma **braçadeira do Bando** tirada de um capanga (o "Crony ID" de Digimon World 3). | Desalmados (30–35) | — |
 | 4 | Conjunto das Lajes | Bairro 10, de noite. A campeã luta mesmo com o bairro tomado. | Campeã 10, **Tainá** (36) | Bairro 11 |
 | 5 | Vila Operária D, galpão | **Invasão (P17).** O galpão do Bando tem cadeado de três nós. Cada tenente guarda um nó (P7). Depois, uma sequência de lutas contra capangas até o fundo. | Peteca (34), Cola-Fina (35), Navalha (36) → sequência de capangas | Almas guardadas libertadas |
-| 6 | Fundo do galpão | **A Gollia amarrada.** O parceiro dela foi sobrecarregado com o Carretel Negro e virou um monstro sem controle (o GranKuwagamon de Digimon World DS). A Gollia fica sem ação. O Retalho protege a Gollia. | Parceiro da Gollia descontrolado (37) | A Gollia se arrepende |
+| 6 | Fundo do galpão | **O Gollia no time do Bando.** Ele luta pelo Rato. O parceiro dele, sobrecarregado com o Carretel Negro, vira um monstro sem controle (o GranKuwagamon de Digimon World DS) e o Gollia fica sem ação. A Retalho o protege. Ele foge com o Bando, abalado. | Gollia (36) → parceiro do Gollia descontrolado (37) | Semente do arrependimento |
 | 7 | Alto da Serra, torre do vento | **O gerador (P12, a máquina de desfazer porcos de Digimon World 3).** Os Quatro Ventos sopram juntos do alto da Serra e devolvem as almas cortadas aos corpos. Kronasta volta ao normal. | — | **Exame da categoria Dourada: Copa Relâmpago** |
 
 ### 7.7 Ato 6 — Campeão de Kronasta: "O Elo"
@@ -297,10 +302,11 @@ Já existe: abertura, aniversário de 15 anos, Rabbito, oficina, treino com o Sr
 | 2 | Coração das Ruínas, entrada | **Aliados amarrados (P11).** O Rato prendeu três amigos com o Carretel Negro: a Nina, a Mikka e a Jamile. É um corredor de chefes. | Nina (40), Mikka (41), Jamile (43) | — |
 | 3 | Coração das Ruínas, parte D | **Sem volta (P18).** Aviso na tela antes de entrar. **O Elo.** O Bando invade para levar o Elo. A Heleana, o Assis, o Tyler e o Kael agem juntos pela primeira vez (v1). | — | — |
 | 4 | Câmara do ovo | **O Grande Carretel (P18, chefe em partes).** Primeiro, os **quatro carretéis menores**, um por Vento roubado, como os casulos de Digimon World DS. Depois, o Carretel Grande em duas fases. | 4 carretéis (42) → Grande Carretel (44) | — |
+| 4b | Câmara do ovo | **O arrependimento do Gollia.** Ele larga o Bando e segura os capangas na porta da câmara para o Kael passar. | — | — |
 | 5 | Câmara do ovo | **A traição invertida.** O Rato manda o Grampo esticar a linha do Elo à força. O Platyx se recusa a puxar. O Grampo larga o carretel e ajuda o Kael. | **Rato** (45) | O Elo volta para a câmara |
 | 6 | Alto do Mirante | Bairro 12. O ex-campeão da cidade, que desistiu porque achava o campeonato "vendido para a TV". | Campeão 12, **Ícaro** (44) | Santuário |
 | 7 | Santuário do Lendário | **O lendário.** O lendário do jogo desperta, e Kael precisa vencê-lo antes da final (v1). **[Proposta]** É o antagonista ideológico (P6): acha que humanos esticam a linha e testa o Kael. Quando perde, não é a força que o convence: é o Rabbito escolher ficar do lado do Kael sem ser mandado. | **Lendário** (46) | Final do campeonato |
-| 8 | Estádio de Kronasta | **A final contra a Jamile.** As duas trajetórias se encontram na arquibancada: a mãe, o professor e o Tyler assistem ao Kael (v1). **[Proposta]** A Gollia, o Grampo e os campeões dos bairros estão na arquibancada. | Jamile (48–50) | Créditos |
+| 8 | Estádio de Kronasta | **A final contra a Jamile.** As duas trajetórias se encontram na arquibancada: a mãe, o professor e o Tyler assistem ao Kael (v1). **[Proposta]** O Gollia, o Grampo e os campeões dos bairros estão na arquibancada. | Jamile (48–50) | Créditos |
 
 **[Decidido] Regras de progressão:**
 
@@ -338,15 +344,15 @@ Esta tabela é a da v1, com a ordem detalhada acima.
 | 1 | Mikka 8, Lohan 12 | Retalho 10 | 6–12 |
 | 2 | Kleie 15, Dona Zulmira 18 | Grampo 14, Lacertubo 15, Seu Lalau 16, Grampo 17 | 12–18 |
 | 3 | Marisol 21, Bruno Solda 24 | Retalho 22, Gollia 23, Pipa-Dragão 25 | 18–25 |
-| 4 | Caio Garça 27, Dona Neve 30 | Mormaço 27, Minuano 29, Navalha 30, Terral 31, Aracati 33 | 25–33 |
-| 5 | Leo Antena 33, Tainá 36 | Desalmados 30–35, os 3 tenentes 34–36, parceiro da Gollia 37 | 30–37 |
+| 4 | Caio Garça 27, Dona Neve 30 | Rabiolava 27, Tufanocorte 29, Navalha 30, Trovareta 31, Glacerol 33 | 25–33 |
+| 5 | Leo Antena 33, Tainá 36 | Desalmados 30–35, os 3 tenentes 34–36, Gollia 36, parceiro do Gollia 37 | 30–37 |
 | 6 | Capitão Jurandir 40, Ícaro 44, Jamile 48–50 | Nina 40, Mikka 41, Jamile 43, 4 carretéis 42, Grande Carretel 44, Rato 45, Lendário 46 | 40–50 |
 | Pós | Defesas de título, Liga dos Campeões | Lendário desperto 62, Errantes das partes D | 55–65 |
 
 **Regras de chefe [Proposta]:**
 - Todo golpe forte tem **telegrafo**: o jogador "lê o vento" antes. Nada de KO instantâneo sem aviso (estudo, seção 5).
 - Uma derrota roteirizada por ato, no máximo: a Pipa-Dragão no ato 3 e o Rato assistindo no ato 4. Nunca duas seguidas.
-- Chefes que são almáticas amarradas (os Quatro Ventos, o parceiro da Gollia, os amigos) **não são mortos**: quando perdem, o laço verdadeiro puxa de volta e eles agradecem. É o que o tom da seção 13 pede: nenhuma morte em cena.
+- Chefes que são almáticas amarradas (os Quatro Ventos, o parceiro do Gollia, os amigos) **não são mortos**: quando perdem, o laço verdadeiro puxa de volta e eles agradecem. É o que o tom da seção 13 pede: nenhuma morte em cena.
 
 ### 8.1 Selvagens por região
 
@@ -362,10 +368,11 @@ Esta tabela é a da v1, com a ordem detalhada acima.
 | Feira do Largo | **Pombo de jornal**; **gato de saco de papel** | **Papagaio de feira**, que repete as falas dos NPCs | — |
 | Cais Velho e Porto Novo | **Caranguejo-carretel**; **gaivota de sinalização** | **Peixe-voador de seda** | — |
 | Vila Operária | **Mariposa de lâmpada**; **rato de bobina** (mascote do Bando) | **Tatu-bola de engrenagem** | **Pipa-Dragão** remendada, solta depois do ato 3 |
-| Pântano do Mormaço | **Jacaré-arraia**; **garça de papel crepom**; sapo-cano | **Capivara de boia** | **Sucuri de rabiola** |
+| Pântano | **Jacaré-arraia**; **garça de papel crepom**; sapo-cano | **Capivara de boia** | **Sucuri de rabiola** |
 | Palafitas | **Guaiamum**; garça de papel crepom | **Boto de papel** | — |
-| Serra do Minuano | **Gavião-carrapateiro**; **lagarto de pedra** | **Lobo-guará de vareta** | **Condor de pandorga** |
-| Ilha do Aracati | **Tartaruga de papel-cartão**; gaivota de sinalização | **Arraia-jamanta** (piada com a pipa arraia) | — |
+| Serra (Montanha) | **Gavião-carrapateiro**; **lagarto de pedra** | **Lobo-guará de vareta** | **Condor de pandorga** |
+| Vulcão | **Salamandra de brasa**; **urubu de fuligem** | **Tatu-bola de pedra-pomes** | **Fênix de papel-carvão** |
+| Geleira | **Pinguim de papel-vegetal**; **raposa de neve de seda** | **Arraia-jamanta de gelo** | — |
 | Centro e Conjunto das Lajes | Pombo de jornal; **morcego de antena** | **Urubu-rei de cartaz** | — |
 | Ruínas (Caverna, Coração, Santuário) | **Formiga de mural**; **coruja de pedra** | Almáticas antigas, de papel amarelado e desenho do mural | — |
 | Noite do cerol (ato 5) | Desalmados de qualquer espécie da região, cinzentos e sem rabiola | — | — |
@@ -400,7 +407,7 @@ São as Favor Quests: aparecem **conversando com o parceiro no Varal**, nem semp
 | Azul | **Semente para plantar** | Quer uma árvore no Varal | Bosque | Personalidade "caprichosa" |
 | Azul | **Peça da engrenagem** | O corpo rangendo | Vila Operária | Espécie metálica |
 | Vermelha | **Camiseta da torcida** | Quer torcer pelo Kael na final | Centro | — |
-| Vermelha | **Confiança de outra espécie** | "Para um experimento": juntar 100% de confiança de uma espécie | Qualquer | 5 parceiros no estágio Arraia |
+| Vermelha | **Confiança de outra espécie** | "Para um experimento": juntar 100% de confiança de uma espécie | Qualquer | 5 parceiros evoluídos |
 | Dourada | **Carta para quem foi cortado** | Era amigo de um Desalmado do bairro | Bairro onde ele está | Depois da noite do cerol |
 
 ### 9.3 Arco secundário: o Pipeiro Fantasma da TV
@@ -419,7 +426,7 @@ São as Favor Quests: aparecem **conversando com o parceiro no Varal**, nem semp
 | --- | --- | --- | --- |
 | **Campeonato de bairro** | Decidido | 4 capangas + campeão. Defesa de título, perda e reconquista conforme o `CAMPANHA-CIDADE.md` | Emblema, primeira recompensa única por conta |
 | **Copa Relâmpago** | Proposta | Exame da categoria Dourada. 3 duelos seguidos, 3 parceiros escolhidos antes e fixos, **sem itens** (P24) | Promoção |
-| **Torneio da TV** | Proposta | Abre na categoria Vermelha. Chaveamento de 8, com a Gollia como cabeça de chave. Transmitido no `broadcast` que já existe | Rabiola rara e um título da TV |
+| **Torneio da TV** | Proposta | Abre na categoria Vermelha. Chaveamento de 8, com o Gollia como cabeça de chave. Transmitido no `broadcast` que já existe | Rabiola rara e um título da TV |
 | **Duelos de rua** | Proposta | Pipeiros andando pelos mapas que desafiam ao ver o Kael, como os domadores das florestas de Digimon World 3 | Moedas e materiais |
 | **Final do Championship** | Decidido | Exige os 12 bairros, o Rato e o lendário | Título de Campeão de Kronasta |
 | **Liga dos Campeões** | Proposta, pós-jogo | Os 12 campeões de bairro com times novos, em sequência | Rabiolas raras |
@@ -432,9 +439,8 @@ São as Favor Quests: aparecem **conversando com o parceiro no Varal**, nem semp
 | --- | --- | --- |
 | **Descanso pago (P22)** | Pousadas de Digimon World 3 (8, 12, 16, 32) | Lanchonete, bica ou banco de cada bairro. O preço sobe a cada bairro. O ateliê do Assis é sempre de graça |
 | **Loja da Liga** | Alas da loja por rank (Digimon World DS) | Materiais e consumíveis. Novas alas por categoria |
-| **Oficina e remonta** | Laboratório (Digimon World 3), Return Chip (Digimon World DS) | Já existe a oficina de 5 etapas. Acrescenta: remontar por estágio e desmontar com a Agulha de desatar |
-| **Armeiro lendário** | Kulon Armourer (Digimon World 3) | Um velho fabricante de linha na Serra que só vende a melhor linha quando os parceiros do Kael estão fortes o bastante |
-| **Bafo de figurinhas (P21)** | Jogo de cartas de Digimon World 3 | Álbum de figurinhas das almáticas. Pipeiros desafiam para um bafo e a figurinha vira dica de espécie. Opcional e curto |
+| **Oficina e quadro de evolução** | Laboratório (Digimon World 3), Return Chip (Digimon World DS) | A oficina de 5 etapas monta parceiros a partir de rabiolas (drop). O quadro de evolução fica no menu do parceiro; a Agulha de desatar volta uma forma |
+| **Bafo de figurinhas (P21)** | Jogo de cartas de Digimon World 3 | **[Decidido 01/11]** Álbum de figurinhas das almáticas. Pipeiros desafiam para um bafo e a figurinha vira dica de espécie. Opcional e curto |
 | **Mapa de Kronasta** | Tela de mapa de Digimon World DS | Já decidido. Mostra o nível sugerido de cada lugar |
 | **Taverna** | Lamb Chop (Digimon World 3) | O boteco do Seu Tião: dicas, rumores e a lista de pedidos de outros pipeiros |
 
@@ -450,9 +456,9 @@ São as Favor Quests: aparecem **conversando com o parceiro no Varal**, nem semp
 | Pegadas palmadas e fiapo de cerol | Jardim das Pipas | Grampo e o Bando |
 | O Tyler "repõe, não arranca" | Veredas | Contraste com o Grampo. **[Proposta]** E o Pipeiro Fantasma |
 | **[Proposta]** O garoto do Jardim consertando um apito de vento | Ato 1 | O apito que abre a porta |
-| **[Proposta]** O Retalho olhando o mural em silêncio | Ato 2 | A parceira da Heleana |
-| **[Proposta]** O nó de expedição na rabiola do Retalho | Ato 3 | A foto e a confissão |
-| **[Proposta]** A Gollia dizendo "força é tudo" no Torneio da TV | Ato 3 | O Carretel Negro e o arrependimento |
+| A Retalho, mascarada, olhando o mural em silêncio | Ato 2 | A parceira da Heleana |
+| O nó de expedição na rabiola da Retalho | Ato 3 | A foto e a confissão |
+| O Gollia dizendo "força é tudo" no Torneio da TV | Ato 3 | O Carretel Negro, a troca de lado e o arrependimento |
 | **[Proposta]** Os ventos parando de soprar um a um em Kronasta | Ato 4 | Os Quatro Ventos amarrados |
 | **[Proposta]** O Platyx hesitando antes de obedecer o Grampo | Atos 2 a 5 | A traição invertida |
 
@@ -460,7 +466,7 @@ São as Favor Quests: aparecem **conversando com o parceiro no Varal**, nem semp
 
 **[Proposta] Final.** O Rato quer usar o Elo para dar alma a parceiros obedientes, que servem sem escolher, como uma linha esticada à força.
 
-O Kael e o Tyler derrotam o Bando e devolvem o Elo à câmara do ovo. O Assis aceita que o Tyler não é a continuação dele, e sim uma pessoa. A Heleana volta a pesquisar, agora com o filho. **[Proposta]** E com o Retalho, que volta a ser parceiro dela.
+O Kael e o Tyler derrotam o Bando e devolvem o Elo à câmara do ovo. O Assis aceita que o Tyler não é a continuação dele, e sim uma pessoa. A Heleana volta a pesquisar, agora com o filho. **[Decidido 01/11]** E com a Retalho, que volta a ser parceira dela.
 
 **[Decidido]** O fio do Tyler não se resolve neste jogo: fica para a continuação. Proposta de gancho: na cena pós-créditos, o remendo do carretel do Tyler se desfaz um pouco mais.
 
@@ -490,23 +496,9 @@ O Kael e o Tyler derrotam o Bando e devolvem o Elo à câmara do ovo. O Assis ac
 
 ## 15. Decisões pendentes
 
-Da v1:
-1. O nome e o design do lendário. A proposta é que seja o visitante do mural.
-2. A aparência e o parceiro do Rato.
-3. Os nomes e os campeões dos bairros 2 a 12. A seção 7 propõe nomes; falta aprovar.
-
-Novas na v2:
-4. **Laço por confiança** (seção 2.2): é assim que se ganha um parceiro?
-5. **Remonta por estágios** (seção 6): os nomes Cafifa, Pipa, Arraia e Pandorga, e se a categoria limita o estágio.
-6. **Retalho** como a parceira da Heleana (seções 5 e 7).
-7. **Os Quatro Ventos**: nomes, regiões e se ficam fora do campeonato.
-8. **A noite do cerol** como mundo espelho do ato 5. É o maior custo de produção: os mesmos mapas com iluminação de noite e eventos novos.
-9. **Gollia** tentada pelo Carretel Negro e o parceiro dela descontrolado.
-10. **Grampo** mudando de lado no final.
-11. **Tyler como Pipeiro Fantasma.**
-12. **Categorias com nome de rabiola** (Branca, Verde, Azul, Vermelha, Dourada) e a **Dona Cida** como árbitra.
-13. **Sistemas opcionais:** o bafo de figurinhas, o armeiro lendário e o arco do Pipeiro Fantasma da TV.
-14. **Habilidades de campo** (seção 2.5): quais espécies dão cada uma.
+Todas as 14 decisões da v2 foram tomadas em 01/11/2026 (seção 18). Ficam com o agente de concept, para o criador escolher entre propostas:
+1. O **nome e o design do lendário** (o visitante do mural, que também atacou a expedição da Heleana).
+2. A **aparência e o parceiro do Rato**.
 
 ## 16. Decisões registradas (29/10/2026)
 
@@ -524,4 +516,15 @@ Novas na v2:
 - **Viagem livre, história única.** O jogador vai e volta entre todos os lugares já liberados (grind, itens, selvagens). Partes da história não se repetem: chefe ou duelo de história vencido some daquele lugar, e a área continua aberta. Vale para o Lacertubo, os treinadores do parque e os duelos do Morro do Sol, incluindo a Mikka.
 - **Sem viagem por ato.** A tela de Kronasta mostra os lugares liberados e só o próximo destino da história; o que vem depois fica como surpresa. Os atos continuam como capítulos do roteiro.
 - **Prévias só para QA.** Mapas prontos cuja história ainda não existe (Distrito Industrial, Pântano, Montanha) abrem só em build de desenvolvimento. No jogo publicado ficam "em breve".
+
+## 18. Decisões registradas (01/11/2026, segunda rodada)
+
+- **Parceiros:** dois jeitos. **Enroscada**: a pipa selvagem cortada fica presa na linha do Kael e vem no nível em que estava. **Drop aleatório**, mais difícil: rabiola que se monta na oficina, parceiro nasce no nível 1. Pipas de NPCs nunca enroscam; o jogador nunca perde pipas (§2.2).
+- **Evolução:** quadro de evolução no menu do parceiro; ao atingir o nível a forma fica disponível e o jogador decide evoluir (§6). Sai a remonta por estágios (Cafifa, Pipa, Arraia, Pandorga).
+- **Retalho:** almática parceira da Heleana. As duas foram atacadas por um lendário numa expedição às ruínas dele; a Heleana sobreviveu, a Retalho ficou presa. A máscara e as cicatrizes de energia fazem parte da evolução dela. A Heleana nunca se recuperou da perda (§5).
+- **Quatro Ventos:** Trovareta (floresta), Rabiolava (vulcão), Glacerol (gelo) e Tufanocorte (montanha). Vulcão e Geleira entram como regiões; a Ilha do Aracati sai (§2.4, §3, §7.5).
+- **Gollia:** homem robusto. Passa para o time do Bando e se arrepende no final (§4.2, §7.6, §7.7).
+- **Mantidos como propostos:** a noite do cerol, o Grampo mudando de lado, o Tyler como Pipeiro Fantasma, as categorias com nome de rabiola e a Dona Cida, as cinco habilidades de campo e os nomes dos campeões 4 a 12.
+- **Extras:** entram o bafo de figurinhas, o arco do Pipeiro Fantasma da TV e o Torneio da TV. O armeiro lendário sai.
+- **Rato e lendário:** o agente de concept propõe 2 ou 3 versões de cada para o criador escolher.
 
