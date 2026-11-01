@@ -1,0 +1,39 @@
+{
+  "canonicalSize": [
+    332,
+    485
+  ],
+  "windows": [
+    [
+      162,
+      207,
+      134,
+      74
+    ],
+    [
+      181,
+      264,
+      151,
+      102
+    ]
+  ],
+  "expressions": {
+    "fierce": {
+      "changed_pixels": 7770,
+      "alpha_identical": true,
+      "outside_face_identical": true
+    },
+    "happy": {
+      "changed_pixels": 7796,
+      "alpha_identical": true,
+      "outside_face_identical": true
+    },
+    "hurt": {
+      "changed_pixels": 7635,
+      "alpha_identical": true,
+      "outside_face_identical": true
+    }
+  },
+  "source": "expressions-source.png",
+  "method": "Facial RGB registered in two windows; canonical alpha, ears, neck and every external pixel unchanged."
+}

@@ -1,0 +1,45 @@
+{
+  "structure": {
+    "ok": true,
+    "errors": [],
+    "warnings": []
+  },
+  "anatomy": {
+    "warnings": [],
+    "notes": [
+      "OK · Encaixe Rabiola completa · fios, nós e duas velas: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Cabeça, duas orelhas e pescoço: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Pata dianteira próxima: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Pata dianteira distante: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Pata traseira próxima: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Pata traseira distante: desvio máximo 0.00 unidades."
+    ]
+  },
+  "expressions": {
+    "fierce": {
+      "changed_pixels": 7770,
+      "alpha_identical": true,
+      "outside_face_identical": true
+    },
+    "happy": {
+      "changed_pixels": 7796,
+      "alpha_identical": true,
+      "outside_face_identical": true
+    },
+    "hurt": {
+      "changed_pixels": 7635,
+      "alpha_identical": true,
+      "outside_face_identical": true
+    }
+  },
+  "atlas": {
+    "frames": 109,
+    "size": [
+      2048,
+      3584
+    ],
+    "fps": 12,
+    "borderPixels": 0
+  },
+  "note": "Technical validation and rendered pose review; not author approval or game integration."
+}

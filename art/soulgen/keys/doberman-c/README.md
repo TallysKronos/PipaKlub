@@ -2,7 +2,20 @@
 
 [Abrir no Soulgen](http://127.0.0.1:5240/?preset=doberman-c). Nome provisório, identidade da opção C aprovada.
 
-Versão ativa: **sliced-rig-v2**. A imagem enviada pelo autor foi copiada para `source.png`; nenhuma peça foi redesenhada. A tentativa anterior de geração de peças foi rejeitada e não é carregada pelo preset nem pelo jogo.
+Versão ativa: **refined-rig-v3**. A revisão 2 permanece arquivada como referência. A imagem enviada pelo autor foi copiada para `source.png`; nenhuma peça foi redesenhada. A tentativa anterior de geração de peças foi rejeitada e não é carregada pelo preset nem pelo jogo.
+
+## Refinamento 3
+
+- Sete peças: torso, cabeça, quatro patas e uma rabiola completa. Fios, nós traseiros e ambas as folhas pertencem à rabiola; o pivô fica no nó do quadril. O trecho de fio que some sob o dorso acompanha a mesma peça. Os tirantes e nós do peito continuam no torso, pois fazem parte da armação.
+- Cortes das patas traseiras reposicionados para devolver o flanco ao torso. Bordas das pernas não ficam mais soltas na camada do corpo.
+- Limpeza registrada: 15.860 pixels de névoa/alpha fraco distante e 712 pixels de pequenos fragmentos desconectados do torso foram removidos. Os 364.730 pixels restantes mantêm seu RGBA da fonte. A revisão 3 não é apresentada como remontagem integral dos 381.302 pixels da revisão 2.
+- Expressões novas de ataque, vitória e dano: geradas com imagegen e registradas somente nas janelas de olhos/boca da cabeça canônica. Alpha idêntico e todos os pixels externos às janelas idênticos. Orelhas, estalactites, nariz e pescoço permanecem na arte canônica.
+- Skill usa fierce, vitória usa happy, dano/derrota usam hurt; repouso retorna a normal. Seis ações e 109 frames a 12 FPS.
+- O preset arquiva a recuperação antiga no navegador antes de abrir a revisão 3. Recarregue a aba para receber a revisão atual. Salvar o projeto baixa uma cópia portátil; não aplica edição de arte ao jogo automaticamente.
+
+Reprodução da revisão 3: slice-refined.mjs → register-expressions.mjs → build-refined.mjs → review-refined.mjs → tools/soulgen-studio/export-doberman-battle.mjs. A fonte de expressões e o prompt estão em refined-rig-v3/. Os renderizadores usam SOULGEN_CANVAS_MODULE ou @napi-rs/canvas.
+
+Verificado: 12 testes Node de recortes/registro/rig/rotas/amostrador e 18 verificações nativas no Godot, sem falhas. Atlas de combate ativo: combat-doberman-c-soulgen-v3.png. A descrição abaixo registra a revisão 2 e suas limitações originais.
 
 ## Análise da imagem e recortes
 

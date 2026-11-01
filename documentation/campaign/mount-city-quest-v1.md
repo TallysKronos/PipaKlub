@@ -108,3 +108,7 @@ Após rejeição das peças redesenhadas, a versão ativa foi refeita por recort
 O atlas `combat-doberman-c-soulgen-v2.png` substitui a pose estática como fonte de combate, preservando o PNG anterior. Ações únicas usam seu próprio início e param no último frame; pausa interrompe o relógio. O amostrador também é compartilhado com as batalhas do Morro. A regra da cidade foi corrigida para consultar elegibilidade completa, e o marcador da missão continua consultando a posse do prêmio.
 
 Verificado: 14 testes Node (rig, recorte RGBA exato, projeto portátil, rotas, amostrador e Nozinho) e 18 verificações nativas de equipe/montaria/ações, todos passando. Capturas atualizadas em `documentation/qa/mount-party-v1/`. Prévia animada GIF e HTML junto ao rig.
+
+## Recortes e expressões — revisão 3
+
+O rig Soulgen foi refinado para sete peças; a rabiola agora inclui os fios e nós traseiros. Faces fierce/happy/hurt registradas, com alpha e pixels externos às janelas faciais preservados. Exportação ativa combat-doberman-c-soulgen-v3.png. Nenhuma alteração de aquisição, atributos ou regra de HP nesta revisão. 12 testes Node e 18 verificações nativas passaram; capturas da equipe/batalha atualizadas. Fonte, limitações e limpeza de resíduos documentadas no README do rig.

@@ -216,3 +216,7 @@ Herravento · Caçador das Rajadas: oito peças proporcionais e cinco ações em
 ## Dóber de papel · recorte fiel
 
 Abra `/?preset=doberman-c` ou **Projeto e biblioteca → Abrir Dóber de papel · recorte fiel**. A versão ativa recorta a imagem enviada pelo autor, preservando as coordenadas de oito peças e todos os pixels visíveis. Seis ações, pivôs editáveis, projeto portátil e atlas de combate. [Análise, recortes e limites](../../art/soulgen/keys/doberman-c/README.md).
+
+## Refinamento do Dóber · revisão 3
+
+O preset `?preset=doberman-c` agora carrega `refined-rig-v3`: torso sem a rabiola, quatro patas recortadas e rabiola completa com fios/nós/duas folhas. Três faces registradas (ataque, vitória, dano) entram nas ações. A recuperação da revisão 2 é arquivada antes da atualização. [Detalhes e imagens](../../art/soulgen/keys/doberman-c/README.md).
