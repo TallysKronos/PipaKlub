@@ -62,7 +62,7 @@ func _ready() -> void:
 	interface.hide()
 	player = Checkpoint.resolve(saved_checkpoint)
 	follower = player
-	camera.zoom = Vector2.ONE*(1.0 if Checkpoint.is_bosque(saved_checkpoint.scene) else 1.15)
+	camera.zoom = Vector2.ONE*(1.0 if Checkpoint.is_kronasta(saved_checkpoint.scene) else 1.15)
 	_refresh_positions()
 	camera.reset_smoothing()
 	var partner_id := "rabbito"
@@ -173,7 +173,7 @@ func refresh(value: Dictionary) -> void:
 	if is_instance_valid(exploration_hud):
 		exploration_hud.refresh(saved_player)
 		var scene: String=saved_checkpoint.get("scene","park-trail")
-		exploration_hud.objective.text = Bosque.objective(saved_player,scene) if Checkpoint.is_bosque(scene) else Training.objective(saved_player,scene)
+		exploration_hud.objective.text = Bosque.objective(saved_player,scene) if Checkpoint.is_kronasta(scene) else Training.objective(saved_player,scene)
 
 func toggle_run() -> void:
 	if not paused and item_receipt.is_empty():super.toggle_run()

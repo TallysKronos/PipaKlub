@@ -195,6 +195,8 @@ func _slot_location(snapshot:Dictionary) -> Dictionary:
 	var point:Dictionary=snapshot.get("checkpoint",{})
 	var scene:String=point.get("scene",snapshot.get("player",{}).get("encounter",{}).get("scene",""))
 	var name:String={"quintal":"Vila do Primeiro Vento","professor-home":"Ateliê do Sr. Assis","park-trail":"Jardim dos Ventos","park-clearing":"Clareira do Papel","park-veredas":"Veredas do Encanamento","kronasta-bosque-a":"Bosque · Trilha das Copas","kronasta-bosque-b":"Bosque · Desvio do Riacho","kronasta-bosque-c":"Bosque · Clareira do Marco"}.get(scene,"Prólogo" if point.get("kind")=="opening" else "Ateliê do Sr. Assis")
+	# Region maps carry their own "<Região> · <parte>" name.
+	if ParkCheckpoint.is_kronasta(scene) and not ParkCheckpoint.is_bosque(scene):name=str(ParkCheckpoint.data(scene).get("name",name))
 	var texture:Texture2D=load("res://assets/campaign/rooftop-arena-wide-v2.png")
 	if scene.begins_with("morro"):
 		var data:Dictionary=Morro.maps().get(scene,{})
@@ -1178,7 +1180,7 @@ func _show_park() -> void:
 	if saved.checkpoint.get("space","")!=ParkCheckpoint.SPACE or not resolved.is_equal_approx(Vector2(saved.checkpoint.position[0],saved.checkpoint.position[1])):
 		if not _result(journey.enter_world(saved.checkpoint.scene,resolved,ParkCheckpoint.SPACE)): return
 		saved=session.snapshot()
-	if ParkCheckpoint.is_bosque(saved.checkpoint.scene):
+	if ParkCheckpoint.is_kronasta(saved.checkpoint.scene):
 		var discovery: Dictionary=load("res://scripts/campaign/bosque_campaign.gd").new(session).arrive()
 		if discovery.status not in ["ok","already_applied"]:
 			_result(discovery)
@@ -1211,7 +1213,7 @@ func _save_park() -> bool:
 func _park_exit(event: Dictionary) -> void:
 	if not _save_park(): return
 	var saved: Dictionary = session.snapshot()
-	if ParkCheckpoint.is_bosque(saved.checkpoint.scene) and event.props.get("destino","")=="kronasta":
+	if ParkCheckpoint.is_kronasta(saved.checkpoint.scene) and event.props.get("destino","")=="kronasta":
 		_show_kronasta()
 		return
 	var destination: Dictionary = ParkCheckpoint.exit_target(saved.checkpoint,str(int(event.id)),saved.player)
@@ -1226,7 +1228,7 @@ func _park_event(id: String) -> void:
 		if str(int(event.id))!=id or not ParkCheckpoint.allowed(event,player,park.area_id): continue
 		if park.player.distance_to(Vector2(event.u+.5,event.v+.5))>1.8: return
 		var action: String = event.props.get("acao","")
-		if ParkCheckpoint.is_bosque(park.saved_checkpoint.scene) and event.type=="npc":
+		if ParkCheckpoint.is_kronasta(park.saved_checkpoint.scene) and event.type=="npc":
 			_notice(event.name+": "+str(event.props.get("texto","")))
 			return
 		if action=="parkMap": _show_map()
@@ -1618,21 +1620,58 @@ func _show_kronasta() -> void:
 	var saved: Dictionary=session.snapshot()
 	var region=load("res://scripts/campaign/bosque_campaign.gd")
 	if not region.available(saved.player): return
+	var Story=load("res://scripts/campaign/kronasta_story.gd")
+	var player: Dictionary=saved.player
 	_simple_page("REGIÃO DE KRONASTA",true)
-	_label("Você está em "+_slot_location(saved).name,page,20)
-	_label("Bosque dos Ventos · uma trilha opcional por três áreas conectadas.",page,18)
-	_label("Trilha das Copas  →  Desvio do Riacho  →  Clareira do Marco",page,22)
-	var discovered: Array[String]=[]
-	for part in ["A","B","C"]:
-		if saved.player.flags.get("bosqueParte"+part+"Descoberta",false): discovered.append(part)
-	_label("Áreas descobertas: "+("nenhuma" if discovered.is_empty() else ", ".join(discovered)),page,18)
-	_label("Atravesse o riacho pela ponte. Na clareira, os bancos recuperam sua equipe e o atalho facilita a volta.",page,17)
-	var space:=Control.new()
-	space.size_flags_vertical=Control.SIZE_EXPAND_FILL
-	page.add_child(space)
-	_button("Entrar no Bosque · Trilha das Copas",page,func():_travel_kronasta("kronasta-bosque-a"))
-	_button("Voltar à Vila do Primeiro Vento",page,func():_travel_kronasta("quintal"))
-	_button("Continuar de onde parei",page,_return_to_game)
+	page.add_theme_constant_override("separation",10)
+	_label("Você está em "+_slot_location(saved).name,page,18).add_theme_color_override("font_color",Hud.MUTED)
+	_label("%s  ·  Categoria %s  ·  Bairros vencidos %d de 12"%[Story.ACTS[Story.act(player)],Story.category(player),Story.neighbourhoods_won(player)],page,20)
+	var goal:=_label("Objetivo · "+Story.objective(player),page,19)
+	goal.add_theme_color_override("font_color",Hud.GOLD)
+	var scroll:=ScrollContainer.new()
+	scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.follow_focus=true
+	page.add_child(scroll)
+	var list:=VBoxContainer.new()
+	list.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	list.add_theme_constant_override("separation",6)
+	scroll.add_child(list)
+	# Travel starts from the Vila or a map scene; elsewhere the list is read-only.
+	var here: String=saved.checkpoint.get("scene","")
+	var can_leave: bool=here=="quintal" or ParkCheckpoint.MAPS.has(here)
+	if not can_leave:_label("Para viajar, volte à Vila do Primeiro Vento ou a uma área do mapa.",page,16).add_theme_color_override("font_color",Hud.MUTED)
+	var shown_act:=-1
+	for entry in Story.PLACES:
+		var id: String=entry.id
+		var state: String=Story.state(player,id)
+		if int(entry.act)!=shown_act:
+			shown_act=int(entry.act)
+			_label(Story.ACTS[shown_act].to_upper(),list,16).add_theme_color_override("font_color",Hud.CYAN)
+		var row:=HBoxContainer.new()
+		row.add_theme_constant_override("separation",16)
+		list.add_child(row)
+		var title:=_label("%s  ·  Nv. %s"%[entry.name,entry.levels],row,18)
+		title.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+		title.autowrap_mode=TextServer.AUTOWRAP_OFF
+		title.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+		title.tooltip_text=entry.note
+		if state=="em-breve":title.add_theme_color_override("font_color",Hud.MUTED)
+		if Story.can_travel(player,id) and can_leave:
+			var destination: String=Story.scene_for_travel(id)
+			# The row already names the place; the button stays short so it never truncates.
+			var go:=_button("Entrar",row,func():_travel_kronasta(destination))
+			go.custom_minimum_size=Vector2(170,44)
+			go.tooltip_text=entry.name+" · "+Story.requirement(player,id)
+		else:
+			var status:=_label(Story.requirement(player,id),row,16)
+			status.autowrap_mode=TextServer.AUTOWRAP_OFF
+			status.add_theme_color_override("font_color",Hud.GOLD if state=="vencido" else Hud.MUTED)
+	var footer:=HBoxContainer.new()
+	footer.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
+	page.add_child(footer)
+	_button("Continuar de onde parei",footer,_return_to_game).custom_minimum_size.x=360
+	if can_leave and here!="quintal":_button("Voltar à Vila do Primeiro Vento",footer,func():_travel_kronasta("quintal")).custom_minimum_size.x=440
 
 func _travel_kronasta(destination: String) -> void:
 	if not _result(load("res://scripts/campaign/bosque_campaign.gd").new(session).travel(destination)): return

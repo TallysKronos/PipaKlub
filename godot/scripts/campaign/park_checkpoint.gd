@@ -1,7 +1,10 @@
 extends RefCounted
 ## Explicit coordinate version: legacy illustrated pixels never become map cells by guesswork.
 const SPACE := "parque-overworld-v1"
-const MAPS := {"park-trail":"jardim-das-pipas","park-clearing":"clareira-do-papel","park-veredas":"veredas-do-encanamento","kronasta-bosque-a":"kronasta-bosque-a","kronasta-bosque-b":"kronasta-bosque-b","kronasta-bosque-c":"kronasta-bosque-c"}
+const MAPS := {"park-trail":"jardim-das-pipas","park-clearing":"clareira-do-papel","park-veredas":"veredas-do-encanamento","kronasta-bosque-a":"kronasta-bosque-a","kronasta-bosque-b":"kronasta-bosque-b","kronasta-bosque-c":"kronasta-bosque-c","kronasta-industrial-a":"kronasta-industrial-a","kronasta-industrial-b":"kronasta-industrial-b","kronasta-industrial-c":"kronasta-industrial-c","kronasta-pantano-a":"kronasta-pantano-a","kronasta-pantano-b":"kronasta-pantano-b","kronasta-pantano-c":"kronasta-pantano-c","kronasta-montanha-a":"kronasta-montanha-a","kronasta-montanha-b":"kronasta-montanha-b","kronasta-montanha-c":"kronasta-montanha-c"}
+## Kronasta regions reached from the region screen. Each has parts A, B and C
+## (art/overworld/REGIOES-E-PARTES.md); scenes are kronasta-<region>-<part>.
+const REGIONS := ["bosque","industrial","pantano","montanha"]
 const Model = preload("res://scripts/overworld/map_model.gd")
 const Legacy = preload("res://scripts/campaign/park_data.gd")
 static var _maps: Dictionary = {}
@@ -9,6 +12,14 @@ static var _models: Dictionary = {}
 
 static func is_bosque(scene: String) -> bool:
 	return scene in ["kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c"]
+
+static func region_of(scene: String) -> String:
+	for region in REGIONS:
+		if scene.begins_with("kronasta-"+region+"-") and MAPS.has(scene): return region
+	return ""
+
+static func is_kronasta(scene: String) -> bool:
+	return not region_of(scene).is_empty()
 
 static func data(scene: String) -> Dictionary:
 	if not MAPS.has(scene): return {}
@@ -84,13 +95,13 @@ static func migrate(scene: String, point: Vector2) -> Vector2:
 	return safe(scene,best)
 
 static func make(scene: String, point: Vector2, space: String = "") -> Dictionary:
-	var resolved := safe(scene,point) if space==SPACE or is_bosque(scene) else migrate(scene,point)
+	var resolved := safe(scene,point) if space==SPACE or is_kronasta(scene) else migrate(scene,point)
 	return {"kind":"world","scene":scene,"position":[resolved.x,resolved.y],"space":SPACE}
 
 static func resolve(checkpoint: Dictionary) -> Vector2:
 	var raw: Array = checkpoint.get("position",[208,816])
 	var point := Vector2(raw[0],raw[1])
-	return safe(checkpoint.scene,point) if checkpoint.get("space","")==SPACE or is_bosque(checkpoint.scene) else migrate(checkpoint.scene,point)
+	return safe(checkpoint.scene,point) if checkpoint.get("space","")==SPACE or is_kronasta(checkpoint.scene) else migrate(checkpoint.scene,point)
 
 static func near(checkpoint: Dictionary, key: String, point: Vector2) -> bool:
 	if checkpoint.get("space","")!=SPACE: return false
@@ -138,7 +149,7 @@ static func exit_target(checkpoint: Dictionary, id: String, player: Dictionary) 
 			var authored:=Vector2(float(event.props.chegada_u)+.5,float(event.props.chegada_v)+.5)
 			if valid_position(destination,authored) and model_for(destination).point_walkable(authored):
 				return {"status":"ok","scene":destination,"point":authored,"space":SPACE}
-		if is_bosque(source) and is_bosque(destination):
+		if is_kronasta(source) and region_of(source)==region_of(destination):
 			if event.props.has("chegada_u") and event.props.has("chegada_v"):
 				point=safe(destination,Vector2(float(event.props.chegada_u)+.5,float(event.props.chegada_v)+.5))
 			return {"status":"ok","scene":destination,"point":point,"space":SPACE}

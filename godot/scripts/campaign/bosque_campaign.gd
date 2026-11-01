@@ -1,6 +1,8 @@
 extends RefCounted
-## Optional Kronasta region; authored map rewards use the campaign's atomic receipts.
+## Kronasta regions (Bosque, Distrito Industrial, Pântano, Montanha): travel, discovery
+## and authored map rewards, using the campaign's atomic receipts.
 const Checkpoint=preload("res://scripts/campaign/park_checkpoint.gd")
+const Story=preload("res://scripts/campaign/kronasta_story.gd")
 const NAMES={"moedas":"moedas","papel-seda":"papel de seda","vareta-bambu":"vareta de bambu","cola-reparo":"cola de reparo","linha-encerada":"linha encerada","pista-caderno-heleana-1":"página do caderno"}
 var session: Node
 func _init(local_session: Node) -> void: session=local_session
@@ -17,7 +19,9 @@ func travel(destination: String) -> Dictionary:
 	if saved.get("checkpoint",{}).get("kind","")!="world" or not available(saved.player): return {"status":"wrong_step"}
 	if source!="quintal" and not Checkpoint.MAPS.has(source): return {"status":"wrong_step"}
 	var target: Dictionary
-	if destination=="kronasta-bosque-a":
+	var region:=Checkpoint.region_of(destination)
+	# Regions are entered by part A, and only while the story keeps them open.
+	if not region.is_empty() and destination.ends_with("-a") and Story.can_travel(saved.player,region):
 		target=Checkpoint.make(destination,Checkpoint.spawn(destination),Checkpoint.SPACE)
 	elif destination=="quintal":
 		target=preload("res://scripts/campaign/neighborhood_checkpoint.gd").make(Vector2(1792,1808),saved.player)
@@ -26,13 +30,14 @@ func travel(destination: String) -> Dictionary:
 
 func arrive() -> Dictionary:
 	var saved: Dictionary=session.snapshot()
-	if not Checkpoint.is_bosque(saved.checkpoint.get("scene","")) or saved.checkpoint.get("space","")!=Checkpoint.SPACE or not available(saved.player): return {"status":"wrong_step"}
+	var region:=Checkpoint.region_of(saved.checkpoint.get("scene",""))
+	if region.is_empty() or saved.checkpoint.get("space","")!=Checkpoint.SPACE or not available(saved.player): return {"status":"wrong_step"}
 	var point:=Vector2(saved.checkpoint.position[0],saved.checkpoint.position[1])
 	if not Checkpoint.model_for(saved.checkpoint.scene).point_walkable(point): return {"status":"wrong_step"}
-	var part: String=saved.checkpoint.scene.trim_prefix("kronasta-bosque-")
-	var receipt: String="bosque-discovered-"+part+"-v1"
+	var part: String=saved.checkpoint.scene.trim_prefix("kronasta-"+region+"-")
+	var receipt: String=region+"-discovered-"+part+"-v1"
 	if receipt in saved.player.completedOperations: return {"status":"already_applied"}
-	saved.player.flags["bosqueParte"+part.to_upper()+"Descoberta"]=true
+	saved.player.flags[region+"Parte"+part.to_upper()+"Descoberta"]=true
 	if part=="c": saved.player.flags.bosqueClareiraDescoberta=true
 	return session.commit_operation(receipt,saved.checkpoint,saved.player)
 
@@ -74,5 +79,6 @@ static func rest_events(area: String, model) -> Array:
 	return result
 
 static func objective(player: Dictionary, scene: String) -> String:
+	if not Checkpoint.is_bosque(scene): return Story.region_objective(player,scene)
 	if preload("res://scripts/campaign/park_training.gd").needs_rest(player): return "Seu parceiro precisa descansar. Há bancos na Clareira do Marco."
 	return {"kronasta-bosque-a":"Exploração opcional · siga a trilha ou procure os desvios dos platôs.","kronasta-bosque-b":"Atravesse o riacho pela ponte e siga até a Clareira do Marco.","kronasta-bosque-c":"Clareira descoberta · explore o mirante, descanse ou use o atalho de volta."}.get(scene,"")

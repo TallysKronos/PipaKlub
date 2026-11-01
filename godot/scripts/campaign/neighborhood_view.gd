@@ -122,7 +122,7 @@ func _update_hint() -> void:
 	elif not near_person.is_empty():hint="Entrar no ateliê do professor" if near_person.id=="assis" else "Conversar com "+str(near_person.name)
 	elif not near_house.is_empty():hint="Entrar no ateliê" if near_house.id=="professor" else "Examinar a entrada"
 	exploration_hud.prompt.text=hint
-	exploration_hud.objective.text="Explore o parque ou siga para o Morro do Sol." if saved_player.get("journey",{}).get("phase")=="complete" else "Suba a ladeira e entre no ateliê do professor."
+	exploration_hud.objective.text=preload("res://scripts/campaign/kronasta_story.gd").objective(saved_player) if saved_player.get("journey",{}).get("phase")=="complete" else "Suba a ladeira e entre no ateliê do professor."
 
 func interact() -> void:
 	if paused:return
