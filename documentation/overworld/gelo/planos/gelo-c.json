@@ -3,36 +3,36 @@
   "shots": [
     {
       "name": "area-inteira",
-      "u": 22,
-      "v": 20,
-      "zoom": 0.4,
+      "u": 28,
+      "v": 24,
+      "zoom": 0.34,
       "kind": "geral",
-      "offsetY": 60
+      "offsetY": 70
     },
     {
       "name": "entrada",
-      "u": 22.5,
-      "v": 37.5,
+      "u": 28.5,
+      "v": 45.5,
       "zoom": 1,
       "kind": "jogo"
     },
     {
       "name": "centro",
-      "u": 22,
-      "v": 20,
+      "u": 28,
+      "v": 24,
       "zoom": 1,
       "kind": "jogo"
     },
     {
-      "name": "saida-22-39",
-      "u": 22.5,
-      "v": 39.5,
+      "name": "saida-28-47",
+      "u": 28.5,
+      "v": 47.5,
       "zoom": 1,
       "kind": "jogo"
     },
     {
-      "name": "saida-22-0",
-      "u": 22.5,
+      "name": "saida-28-0",
+      "u": 28.5,
       "v": 0.5,
       "zoom": 1,
       "kind": "jogo"
@@ -45,288 +45,155 @@
       "kind": "junta"
     },
     {
-      "name": "canto-n1-21-4",
-      "u": 21,
+      "name": "canto-n1-27-4",
+      "u": 27,
       "v": 4,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-24-4",
-      "u": 24,
+      "name": "canto-n1-30-4",
+      "u": 30,
       "v": 4,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-28-4",
-      "u": 28,
+      "name": "canto-n1-44-4",
+      "u": 44,
       "v": 4,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-8-6",
-      "u": 8,
-      "v": 6,
+      "name": "canto-n1-6-12",
+      "u": 6,
+      "v": 12,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-10-6",
+      "name": "canto-n1-10-12",
       "u": 10,
-      "v": 6,
+      "v": 12,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-28-6",
-      "u": 28,
-      "v": 6,
+      "name": "canto-n1-44-12",
+      "u": 44,
+      "v": 12,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-32-6",
-      "u": 32,
-      "v": 6,
+      "name": "canto-n1-48-12",
+      "u": 48,
+      "v": 12,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-6-8",
-      "u": 6,
-      "v": 8,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-8-8",
-      "u": 8,
-      "v": 8,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-32-8",
-      "u": 32,
-      "v": 8,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-34-8",
-      "u": 34,
-      "v": 8,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-4-10",
-      "u": 4,
-      "v": 10,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-6-10",
-      "u": 6,
-      "v": 10,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-34-10",
-      "u": 34,
-      "v": 10,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-36-10",
-      "u": 36,
-      "v": 10,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-36-14",
-      "u": 36,
-      "v": 14,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-38-14",
-      "u": 38,
-      "v": 14,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-38-18",
-      "u": 38,
+      "name": "canto-n1-17-18",
+      "u": 17,
       "v": 18,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-40-18",
-      "u": 40,
+      "name": "canto-n1-22-18",
+      "u": 22,
       "v": 18,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-27-20",
-      "u": 27,
+      "name": "canto-n1-17-20",
+      "u": 17,
       "v": 20,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-32-20",
-      "u": 32,
+      "name": "canto-n1-22-20",
+      "u": 22,
       "v": 20,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-27-22",
-      "u": 27,
-      "v": 22,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-32-22",
-      "u": 32,
-      "v": 22,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-4-24",
+      "name": "canto-n1-4-22",
       "u": 4,
-      "v": 24,
+      "v": 22,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-6-24",
+      "name": "canto-n1-6-22",
       "u": 6,
-      "v": 24,
+      "v": 22,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-20-25",
-      "u": 20,
-      "v": 25,
+      "name": "canto-n1-48-22",
+      "u": 48,
+      "v": 22,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-24-25",
-      "u": 24,
-      "v": 25,
+      "name": "canto-n1-52-22",
+      "u": 52,
+      "v": 22,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-6-28",
-      "u": 6,
+      "name": "canto-n1-39-28",
+      "u": 39,
       "v": 28,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-8-28",
-      "u": 8,
+      "name": "canto-n1-44-28",
+      "u": 44,
       "v": 28,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-38-28",
-      "u": 38,
-      "v": 28,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-40-28",
-      "u": 40,
-      "v": 28,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-8-30",
-      "u": 8,
+      "name": "canto-n1-39-30",
+      "u": 39,
       "v": 30,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-10-30",
-      "u": 10,
+      "name": "canto-n1-44-30",
+      "u": 44,
       "v": 30,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-10-32",
-      "u": 10,
+      "name": "canto-n1-26-32",
+      "u": 26,
       "v": 32,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-12-32",
-      "u": 12,
+      "name": "canto-n1-30-32",
+      "u": 30,
       "v": 32,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-36-32",
-      "u": 36,
-      "v": 32,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-38-32",
-      "u": 38,
-      "v": 32,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-20-33",
-      "u": 20,
-      "v": 33,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-24-33",
-      "u": 24,
-      "v": 33,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-12-34",
-      "u": 12,
-      "v": 34,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-15-34",
-      "u": 15,
+      "name": "canto-n1-30-34",
+      "u": 30,
       "v": 34,
       "zoom": 2.3,
       "kind": "junta"
@@ -339,305 +206,543 @@
       "kind": "junta"
     },
     {
-      "name": "canto-n1-36-34",
-      "u": 36,
-      "v": 34,
+      "name": "canto-n1-4-38",
+      "u": 4,
+      "v": 38,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-15-35",
-      "u": 15,
-      "v": 35,
+      "name": "canto-n1-10-38",
+      "u": 10,
+      "v": 38,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-16-35",
-      "u": 16,
-      "v": 35,
+      "name": "canto-n1-30-38",
+      "u": 30,
+      "v": 38,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-16-36",
-      "u": 16,
-      "v": 36,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-17-36",
-      "u": 17,
-      "v": 36,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-28-36",
-      "u": 28,
-      "v": 36,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-32-36",
+      "name": "canto-n1-32-38",
       "u": 32,
-      "v": 36,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-17-37",
-      "u": 17,
-      "v": 37,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-18-37",
-      "u": 18,
-      "v": 37,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-27-37",
-      "u": 27,
-      "v": 37,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-28-37",
-      "u": 28,
-      "v": 37,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n1-18-38",
-      "u": 18,
       "v": 38,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-19-38",
-      "u": 19,
+      "name": "canto-n1-49-38",
+      "u": 49,
       "v": 38,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-26-38",
+      "name": "canto-n1-52-38",
+      "u": 52,
+      "v": 38,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-26-40",
       "u": 26,
-      "v": 38,
+      "v": 40,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-27-38",
+      "name": "canto-n1-30-40",
+      "u": 30,
+      "v": 40,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-48-41",
+      "u": 48,
+      "v": 41,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-49-41",
+      "u": 49,
+      "v": 41,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-10-42",
+      "u": 10,
+      "v": 42,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-18-42",
+      "u": 18,
+      "v": 42,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-40-42",
+      "u": 40,
+      "v": 42,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-48-42",
+      "u": 48,
+      "v": 42,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-18-44",
+      "u": 18,
+      "v": 44,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-27-44",
       "u": 27,
-      "v": 38,
+      "v": 44,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-19-39",
-      "u": 19,
-      "v": 39,
+      "name": "canto-n1-30-44",
+      "u": 30,
+      "v": 44,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-20-39",
-      "u": 20,
-      "v": 39,
+      "name": "canto-n1-40-44",
+      "u": 40,
+      "v": 44,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-25-39",
-      "u": 25,
-      "v": 39,
+      "name": "canto-n4-24-26",
+      "u": 24,
+      "v": 26,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n1-26-39",
+      "name": "canto-n4-38-26",
+      "u": 38,
+      "v": 26,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n4-38-28",
+      "u": 38,
+      "v": 28,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n4-52-28",
+      "u": 52,
+      "v": 28,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n4-4-30",
+      "u": 4,
+      "v": 30,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n4-24-30",
+      "u": 24,
+      "v": 30,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n5-10-6",
+      "u": 10,
+      "v": 6,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n5-26-6",
       "u": 26,
-      "v": 39,
+      "v": 6,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n4-34-18",
-      "u": 34,
+      "name": "canto-n5-10-18",
+      "u": 10,
       "v": 18,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n4-20-20",
-      "u": 20,
-      "v": 20,
+      "name": "canto-n5-26-18",
+      "u": 26,
+      "v": 18,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n4-34-20",
-      "u": 34,
-      "v": 20,
+      "name": "rampa-topo-17-18",
+      "u": 17.5,
+      "v": 18.5,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "canto-n4-4-22",
-      "u": 4,
-      "v": 22,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "canto-n4-20-22",
-      "u": 20,
-      "v": 22,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "rampa-topo-27-20",
-      "u": 27.5,
-      "v": 20.5,
-      "zoom": 2.3,
-      "kind": "junta"
-    },
-    {
-      "name": "plato-27-20",
-      "u": 27.5,
-      "v": 20.5,
+      "name": "plato-17-18",
+      "u": 17.5,
+      "v": 18.5,
       "zoom": 1,
       "kind": "jogo"
     },
     {
-      "name": "rampa-topo-28-20",
-      "u": 28.5,
-      "v": 20.5,
+      "name": "rampa-topo-18-18",
+      "u": 18.5,
+      "v": 18.5,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "plato-28-20",
-      "u": 28.5,
-      "v": 20.5,
+      "name": "plato-18-18",
+      "u": 18.5,
+      "v": 18.5,
       "zoom": 1,
       "kind": "jogo"
     },
     {
-      "name": "rampa-topo-29-20",
-      "u": 29.5,
-      "v": 20.5,
+      "name": "rampa-topo-19-18",
+      "u": 19.5,
+      "v": 18.5,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "plato-29-20",
-      "u": 29.5,
-      "v": 20.5,
+      "name": "plato-19-18",
+      "u": 19.5,
+      "v": 18.5,
       "zoom": 1,
       "kind": "jogo"
     },
     {
-      "name": "rampa-topo-30-20",
-      "u": 30.5,
-      "v": 20.5,
+      "name": "rampa-topo-20-18",
+      "u": 20.5,
+      "v": 18.5,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "plato-30-20",
-      "u": 30.5,
-      "v": 20.5,
+      "name": "plato-20-18",
+      "u": 20.5,
+      "v": 18.5,
       "zoom": 1,
       "kind": "jogo"
     },
     {
-      "name": "rampa-topo-31-20",
-      "u": 31.5,
-      "v": 20.5,
+      "name": "rampa-topo-21-18",
+      "u": 21.5,
+      "v": 18.5,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "plato-31-20",
-      "u": 31.5,
-      "v": 20.5,
+      "name": "plato-21-18",
+      "u": 21.5,
+      "v": 18.5,
       "zoom": 1,
       "kind": "jogo"
     },
     {
-      "name": "rampa-pe-27-21",
-      "u": 27.5,
-      "v": 21.5,
+      "name": "rampa-pe-17-19",
+      "u": 17.5,
+      "v": 19.5,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "rampa-pe-28-21",
-      "u": 28.5,
-      "v": 21.5,
+      "name": "rampa-pe-18-19",
+      "u": 18.5,
+      "v": 19.5,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "rampa-pe-29-21",
-      "u": 29.5,
-      "v": 21.5,
+      "name": "rampa-pe-19-19",
+      "u": 19.5,
+      "v": 19.5,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "rampa-pe-30-21",
-      "u": 30.5,
-      "v": 21.5,
+      "name": "rampa-pe-20-19",
+      "u": 20.5,
+      "v": 19.5,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
-      "name": "rampa-pe-31-21",
-      "u": 31.5,
-      "v": 21.5,
+      "name": "rampa-pe-21-19",
+      "u": 21.5,
+      "v": 19.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "rampa-topo-39-28",
+      "u": 39.5,
+      "v": 28.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "plato-39-28",
+      "u": 39.5,
+      "v": 28.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "rampa-topo-40-28",
+      "u": 40.5,
+      "v": 28.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "plato-40-28",
+      "u": 40.5,
+      "v": 28.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "rampa-topo-41-28",
+      "u": 41.5,
+      "v": 28.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "plato-41-28",
+      "u": 41.5,
+      "v": 28.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "rampa-topo-42-28",
+      "u": 42.5,
+      "v": 28.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "plato-42-28",
+      "u": 42.5,
+      "v": 28.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "rampa-topo-43-28",
+      "u": 43.5,
+      "v": 28.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "plato-43-28",
+      "u": 43.5,
+      "v": 28.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "rampa-pe-39-29",
+      "u": 39.5,
+      "v": 29.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "rampa-pe-40-29",
+      "u": 40.5,
+      "v": 29.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "rampa-pe-41-29",
+      "u": 41.5,
+      "v": 29.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "rampa-pe-42-29",
+      "u": 42.5,
+      "v": 29.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "rampa-pe-43-29",
+      "u": 43.5,
+      "v": 29.5,
       "zoom": 2.3,
       "kind": "junta"
     },
     {
       "name": "chegada",
-      "u": 22,
-      "v": 30,
+      "u": 28,
+      "v": 38,
       "zoom": 1,
       "kind": "jogo"
     },
     {
       "name": "patamar",
-      "u": 22,
+      "u": 28,
+      "v": 23,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "mirante",
+      "u": 18,
       "v": 12,
       "zoom": 1,
       "kind": "jogo"
     },
     {
       "name": "desvio",
-      "u": 13,
-      "v": 30,
+      "u": 14,
+      "v": 37,
       "zoom": 1,
       "kind": "jogo"
     },
     {
       "name": "marco",
-      "u": 22,
-      "v": 29,
+      "u": 28,
+      "v": 36,
       "zoom": 1,
       "kind": "jogo"
+    },
+    {
+      "name": "lateral-rampa-39-28",
+      "u": 39.1,
+      "v": 29,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "lateral-rampa-17-18",
+      "u": 17.1,
+      "v": 19,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "borda-gelo-0-oeste",
+      "u": 34.5,
+      "v": 35.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "borda-gelo-0-leste",
+      "u": 43.5,
+      "v": 34.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "borda-gelo-0-norte",
+      "u": 35.5,
+      "v": 33.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "borda-gelo-0-sul",
+      "u": 37.5,
+      "v": 39.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "borda-gelo-1-oeste",
+      "u": 8.5,
+      "v": 25.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "borda-gelo-1-leste",
+      "u": 18.5,
+      "v": 25.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "borda-gelo-1-norte",
+      "u": 10.5,
+      "v": 23.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "borda-gelo-1-sul",
+      "u": 10.5,
+      "v": 28.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "borda-gelo-2-oeste",
+      "u": 12.5,
+      "v": 10.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "borda-gelo-2-leste",
+      "u": 21.5,
+      "v": 9.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "borda-gelo-2-norte",
+      "u": 15.5,
+      "v": 7.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "borda-gelo-2-sul",
+      "u": 15.5,
+      "v": 12.5,
+      "zoom": 2.3,
+      "kind": "junta"
     }
   ]
 }
