@@ -86,7 +86,7 @@ func start_boss(point: Vector2) -> Dictionary:
 	for entry in player.partners:
 		if entry.id == player.get("equippedPartnerId", ""): partner = entry
 	if partner.is_empty() or partner.get("condition", {}).get("line", 100) <= 0 or partner.get("condition", {}).get("structure", 100) <= 0: return {"status": "repair_needed"}
-	if partner.get("modelId") not in ["rabbito", "basica", "mata", "azulao", "raio", "lacertubo"]: return {"status": "wrong_step"}
+	if partner.get("modelId") not in ["rabbito", "basica", "mata", "azulao", "raio", "lacertubo", "doberman-c"]: return {"status": "wrong_step"}
 	var model := Model.new(partner)
 	Progression.discover(player, "lacertubo")
 	player.encounter = {"id": State.new_id(), "kind": "lacertubo", "returnPoint": [point.x, point.y], "state": model.snapshot()}

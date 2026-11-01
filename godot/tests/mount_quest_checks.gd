@@ -35,7 +35,40 @@ func run() -> void:
 	check(int(session.snapshot().player.inventory.get(Quest.ITEM,0))==1,"persistent key item")
 	check(quest.talk("zeca").status=="already_applied","reward idempotent")
 	check(session.resume_slot("slot-1").status=="ok" and Quest.owned(session.snapshot().player),"mount remains unlocked after reload")
+	var earned:Dictionary=session.snapshot().player
+	check(earned.partners.size()==1 and earned.partners[0].modelId==Quest.MODEL,"quest grants real battle partner")
+	check(Quest.eligible(earned),"healthy party mount is usable")
+	var mount:Dictionary=earned.partners[0]
+	mount.condition.line=0
+	check(not Quest.eligible(earned),"defeated line blocks mounting")
+	mount.condition.line=.5
+	check(not Quest.eligible(earned),"less than one HP blocks mounting")
+	mount.condition.line=1
+	check(Quest.eligible(earned),"exactly one HP permits mounting at Lv1")
+	mount.condition.structure=0
+	check(not Quest.eligible(earned),"broken hull blocks mounting")
+	mount.condition={"line":100,"structure":100}
+	var combat=load("res://scripts/campaign/encounter_model.gd").new(mount)
+	check(combat.model_id==Quest.MODEL and combat.p.hp==100,"mount participates in combat with real HP")
+	var absent:Dictionary=earned.duplicate(true);absent.partners=[]
+	check(not Quest.eligible(absent),"whistle without party mount is insufficient")
+	absent=earned.duplicate(true);absent.inventory.erase(Quest.ITEM)
+	check(not Quest.eligible(absent),"partner without whistle cannot mount")
+	check(quest.talk("zeca").status=="already_applied" and session.snapshot().player.partners.size()==1,"partner reward cannot duplicate")
+	var legacy:Dictionary=earned.duplicate(true);legacy.partners=[]
+	session.checkpoint(cp,legacy)
+	check(quest.talk("zeca").status=="ok" and session.snapshot().player.partners.size()==1,"legacy whistle-only reward is repaired at Zeca")
 	check(session.snapshot().player.coins==0,"no economy shortcut")
+	var ready:Dictionary=session.snapshot().player
+	ready.equippedPartnerId=ready.partners[0].id;ready.flags.ninaAccepted=true
+	var boss_point:Vector2=preload("res://scripts/campaign/park_data.gd").BOSS
+	check(session.checkpoint({"kind":"world","scene":"park-veredas","position":[boss_point.x,boss_point.y]},ready).status=="ok","battle checkpoint")
+	var encounters=load("res://scripts/campaign/encounters.gd").new(session)
+	check(encounters.start_boss(boss_point).status=="ok","mount accepted by real encounter service")
+	var battle=load("res://scripts/campaign/encounter_model.gd").new()
+	battle.restore(session.snapshot().player.encounter.state);battle.p.hp=0;battle.outcome="lost"
+	check(encounters.save_battle(battle.snapshot()).status=="ok","mount battle health saved")
+	check(encounters.settle().status=="ok" and not Quest.eligible(session.snapshot().player),"battle defeat prevents mounting after return")
 	var avatar=load("res://scripts/avatar.gd").new();root.add_child(avatar);avatar.set_mounted(true)
 	check(avatar.mount_rig.animations.size()==16,"16 animated directions loaded")
 	avatar.moving=true;avatar.running=false;avatar.facing="e";avatar._process(0)

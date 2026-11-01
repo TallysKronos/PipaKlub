@@ -263,7 +263,7 @@ func _show_slots(new_journey:bool=false) -> void:
 			var saved_player:Dictionary=inspection.data.get("player",{})
 			for partner in saved_player.get("partners",[]):
 				if partner.id!=saved_player.get("equippedPartnerId",""):continue
-				var art_id:String={"rabbito":"rabbito","basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","lacertubo":"lacertubo"}.get(partner.modelId,"")
+				var art_id:String={"rabbito":"rabbito","basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","doberman-c":"doberman-c","lacertubo":"lacertubo"}.get(partner.modelId,"")
 				if content.combat.has(art_id):
 					card.partner_portrait=load("res://scripts/campaign/battle_ink.gd").portrait(load("res://assets/campaign/"+content.combat[art_id].image),art_id)
 		page.add_child(card)
@@ -830,7 +830,7 @@ func _show_world() -> void:
 func _equip_room_companion()->void:
 	for partner in session.snapshot().player.partners:
 		if partner.id != session.snapshot().player.get("equippedPartnerId", ""): continue
-		var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
+		var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
 		room.companion.texture = load("res://assets/campaign/" + content.combat[id].image)
 		room.companion_frames = content.combat[id].animations.idle
 
@@ -903,12 +903,15 @@ func _mount_quest_talk(npc:String) -> void:
 		_notice("Zeca: Termine seu treino com o professor. Depois, passe na pracinha: tenho um companheiro para você conhecer.");return
 	var step:=quest.stage(player)
 	if step==3:
+		if npc=="zeca":
+			quest.new(session).talk(npc)
+			park.saved_player=session.snapshot().player
 		_notice("Zeca: O apito chama seu companheiro. Vá com calma nas curvas e deixe as passagens estreitas para atravessar a pé." if npc=="zeca" else "Lia: O fecho ficou firme! Agora é cuidar da guia e do seu companheiro.");return
 	if npc=="zeca" and step==1:
 		_notice("Zeca: A Lia está na rua alta, ao lado da Linha & Papel. Diga que é o fecho da guia; ela já sabe a medida.");return
 	if npc=="lia" and step!=1:
 		_notice("Lia: Leve o fecho de volta ao Zeca, na pracinha." if step==2 else "Lia: O Zeca está na pracinha. Ele anda precisando de uma mão com uma guia.");return
-	var text:String="Estou cuidando de uma montaria de papel. Ela é veloz, mas a guia ficou com o fecho solto. Não vou deixar ninguém montar assim. A Lia tem a peça certa. Pode buscar para mim?" if step==0 else "O Zeca mandou você? Separei um fecho de linha encerada: segura bem sem machucar a armação. Aqui está. Leve para ele conferir o ajuste." if npc=="lia" else "É o fecho certo! Agora a guia está segura. Você cuidou do que ela precisava antes de pensar em correr. Fique com este Apito de Elo: ele chama seu novo companheiro de estrada."
+	var text:String="Estou cuidando de uma montaria de papel. Ela é veloz, mas a guia ficou com o fecho solto. Não vou deixar ninguém montar assim. A Lia tem a peça certa. Pode buscar para mim?" if step==0 else "O Zeca mandou você? Separei um fecho de linha encerada: segura bem sem machucar a armação. Aqui está. Leve para ele conferir o ajuste." if npc=="lia" else "É o fecho certo! Agora a guia está segura. Você cuidou do que ela precisava antes de pensar em correr. Fique com este Apito de Elo: ele chama seu novo companheiro de estrada. O Dóber de papel vai entrar no seu grupo e também poderá batalhar."
 	flow_busy=true;park.paused=true;park.avatar.moving=false;park.avatar.running=false
 	var dialog:=_dialog("Zeca" if npc=="zeca" else "Lia",text,"Vou buscar" if step==0 else "Receber o fecho" if npc=="lia" else "Receber o apito","Agora não" if step==0 else "")
 	dialog.confirmed.connect(func():_complete_mount_quest(npc,dialog))
@@ -933,14 +936,15 @@ func _complete_mount_quest(npc:String,dialog:Control) -> void:
 	if quest.owned(player):
 		await _present_key_item(quest.ITEM,"Apito de Elo")
 		_finish_mount_conversation()
-		_notice("Apito guardado na mochila. Use B ou o direcional para cima para montar e desmontar nas áreas abertas. Segure Shift ou ative Correr para a montaria correr. Também pode chamar pela mochila → Apito de Elo.")
+		_notice("Dóber de papel entrou no grupo. Para montar, ele precisa estar no grupo, com ao menos 1 HP e sem estar derrotado. Apito guardado na mochila. Use B ou o direcional para cima para montar e desmontar nas áreas abertas. Segure Shift ou ative Correr para a montaria correr. Também pode chamar pela mochila → Apito de Elo.")
 	else:
 		_finish_mount_conversation()
 		if is_instance_valid(park):park.exploration_hud.push_notice(quest.objective(player),"item")
 
 func _use_mount_item() -> void:
 	var saved:Dictionary=session.snapshot()
-	if not preload("res://scripts/campaign/mount_quest.gd").owned(saved.player):return
+	if not preload("res://scripts/campaign/mount_quest.gd").eligible(saved.player):
+		_notice("Para montar, mantenha uma montaria no grupo com pelo menos 1 HP e sem estar derrotada.");return
 	if not _remember_world_position():return
 	menu_origin="";sound.set_game_paused(false);_show_saved()
 	while is_instance_valid(scene_loading):await get_tree().process_frame
@@ -1206,7 +1210,7 @@ func _finish_workshop_presentation(outcome:Dictionary)->void:
 	_clear("workshop:birth")
 	flow_busy=true
 	var birth:Control=load("res://scripts/campaign/workshop_birth_view.gd").new()
-	var art_id:String={"basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","lacertubo":"lacertubo"}.get(job.modelId,"rabbito")
+	var art_id:String={"basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","doberman-c":"doberman-c","lacertubo":"lacertubo"}.get(job.modelId,"rabbito")
 	birth.partner_name=Journey.CATALOG.get(job.modelId,job.modelId)
 	birth.partner_texture=load("res://assets/campaign/"+content.combat[art_id].image)
 	birth.frames=content.combat[art_id].animations.idle
@@ -1333,7 +1337,7 @@ func _pause_game() -> void:
 	pause_overlay.focus_action=menu_origin if not menu_origin.is_empty() else "team"
 	for partner in pause_overlay.player.get("partners",[]):
 		if partner.id!=pause_overlay.player.get("equippedPartnerId",""):continue
-		var art_id:String={"rabbito":"rabbito","basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","lacertubo":"lacertubo"}.get(partner.modelId,"")
+		var art_id:String={"rabbito":"rabbito","basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol","doberman-c":"doberman-c","lacertubo":"lacertubo"}.get(partner.modelId,"")
 		if content.combat.has(art_id):pause_overlay.partner_portrait=load("res://scripts/campaign/battle_ink.gd").portrait(load("res://assets/campaign/"+content.combat[art_id].image),art_id)
 	if is_instance_valid(battle):
 		pause_overlay.battle_paused=true
@@ -1701,7 +1705,7 @@ func _show_collection() -> void:
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation", 20)
 		card.add_child(row)
-		var art_id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
+		var art_id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
 		var art: Dictionary = content.combat[art_id]
 		var frame: Dictionary = art.animations.idle[0]
 		var texture := AtlasTexture.new()
@@ -1713,6 +1717,17 @@ func _show_collection() -> void:
 		portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		portrait.custom_minimum_size = Vector2(144, 118)
 		row.add_child(portrait)
+		if preload("res://scripts/campaign/mount_quest.gd").capable(partner):
+			var mount_icon:=TextureRect.new()
+			mount_icon.name="MountCapability"
+			mount_icon.texture=load("res://assets/ui/mount-capability.svg")
+			mount_icon.custom_minimum_size=Vector2(30,30)
+			mount_icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
+			mount_icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			mount_icon.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+			mount_icon.tooltip_text="Pode ser montado · requer 1 HP e armação intacta" if preload("res://scripts/campaign/mount_quest.gd").healthy(partner) else "Montaria derrotada · repare Linha e Armação antes de montar"
+			if not preload("res://scripts/campaign/mount_quest.gd").healthy(partner):mount_icon.modulate=Color(.45,.45,.45)
+			row.add_child(mount_icon)
 		var details := VBoxContainer.new()
 		details.add_theme_constant_override("separation",6)
 		details.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -2421,7 +2436,7 @@ func _return_morro_result() -> void:
 	dialog.popup_centered()
 
 func _partner_portrait(model_id: String) -> Texture2D:
-	var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "lacertubo": "lacertubo"}.get(model_id, "rabbito")
+	var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "lacertubo": "lacertubo"}.get(model_id, "rabbito")
 	var art: Dictionary = content.combat[id]
 	var frame: Dictionary = art.animations.idle[0]
 	var texture := AtlasTexture.new()

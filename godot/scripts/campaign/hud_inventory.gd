@@ -188,7 +188,7 @@ func select_item(id: String) -> void:
 	item_name.text = NAMES.get(id, id.replace("-", " ").capitalize()) if not id.is_empty() else "Nada por aqui"
 	quantity.text = ("MISSÃO · " if category(id) == "Missão" else "") + "%d na mochila" % inventory.get(id, 0) if not id.is_empty() else ""
 	description.text = "Esta categoria ainda está vazia." if id.is_empty() else "Nina está esperando por esta rabiola. Entregue-a pessoalmente." if id == "quest-nina-tail" else "Leve ao ateliê do Sr. Assis para trabalhar nesta rabiola." if category(id) == "Rabiolas" else "Material guardado para sua jornada."
-	if id=="apito-de-elo":description.text="Recebido de Zeca após reparar a guia. Na rua e nas trilhas, use B ou o direcional para cima para montar e desmontar. Não é consumido. Shift permite correr montado."
+	if id=="apito-de-elo":description.text="Recebido de Zeca após reparar a guia. Na rua e nas trilhas, use B ou o direcional para cima para montar e desmontar. Requer uma montaria no grupo com pelo menos 1 HP e armação intacta. Não é consumido. Shift permite correr montado."
 	if id=="quest-fecho-guia":description.text="Lia preparou este fecho para a guia da montaria. Leve-o a Zeca na pracinha."
 	if id=="insignia-morro-do-sol": description.text="Sua primeira insígnia, conquistada ao vencer Mikka no Morro do Sol. Guardada no primeiro espaço de Pausa → Porta-emblemas."
 	if id=="carteira-pipeiro": description.text="Seu registro de pipeiro, entregue pelo Sr. Assis. Consulte nome, nível de tamer e jornada no menu de pausa → Carteira de Pipeiro."

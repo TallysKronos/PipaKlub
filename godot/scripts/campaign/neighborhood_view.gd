@@ -53,7 +53,7 @@ func map_landmarks() -> Array[Dictionary]:
 		var title: String={"casa-kael":"Casa do Kael","professor":"Ateliê do professor","loja":"Loja da Lia"}.get(house.id,"")
 		if not title.is_empty():markers.append({"point":house.door,"text":title})
 	var quest=preload("res://scripts/campaign/mount_quest.gd")
-	if quest.available(saved_player) and not quest.owned(saved_player):
+	if quest.available(saved_player) and not quest.eligible(saved_player):
 		markers.append({"point":quest.LIA if quest.stage(saved_player)==1 else quest.ZECA,"text":"Lia · fecho da guia" if quest.stage(saved_player)==1 else "Zeca · montaria"})
 	return markers
 

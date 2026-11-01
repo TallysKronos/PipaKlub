@@ -127,7 +127,7 @@ func _ready() -> void:
 	var model := "rabbito"
 	for partner in saved_player.partners:
 		if partner.id == saved_player.get("equippedPartnerId", ""): model = partner.modelId
-	var art: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "lacertubo": "lacertubo"}.get(model, "rabbito")
+	var art: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "lacertubo": "lacertubo"}.get(model, "rabbito")
 	var atlas: Dictionary = content.combat[art]
 	companion.texture = load("res://assets/campaign/" + atlas.image)
 	companion.region_enabled = true

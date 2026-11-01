@@ -90,3 +90,13 @@ Nenhum save real foi modificado. Não foi reexportado o executável nesta tarefa
 aleta laranja de papel dobrado semelhante a orelha de pipa, alça curta de corda
 dourada, traço 2D mangá, cores cel, silhueta legível, sem texto ou cenário.
 Fonte integral e prompt preservados junto ao registro artístico do item.
+
+## Parceiro no grupo e saúde — 2026-11-01
+
+O apito não basta: `mount_quest.eligible` exige `doberman-c` na lista canônica `player.partners`, com HP de Linha >= 1 e HP de Armação >= 1. Os HP são calculados pelos mesmos atributos, nível e condição usados no EncounterModel. Equipar outro parceiro para batalha não remove a montaria do grupo. Ao perder a elegibilidade enquanto montado, o avatar desmonta.
+
+A entrega de Zeca agora inclui o parceiro real e o apito numa operação atômica. Não substitui o parceiro ativo. Para saves que receberam só o apito na versão anterior, conversar novamente com Zeca entrega o parceiro sem duplicação. Nome de interface provisório: Dóber de papel; ID técnico: doberman-c.
+
+A equipe mostra um ícone de sela ao lado do retrato; fica apagado quando derrotado. O modelo pode ser selecionado e entrar nos encontros, receber dano e XP e conservar sua condição ao retornar. Arte própria de combate, retratos e aliases de UI integrados; uma pose estática atende os estados visuais do contrato atual. Animações exclusivas de combate ainda não foram produzidas.
+
+Validação isolada: 40 verificações da missão/saúde/encontro real, 19 do fluxo de cidade, 9 da equipe/batalha nativa, 684 de montaria e 206 de campanha, todas sem falhas. Capturas 1280×720: `documentation/qa/mount-party-v1/`.

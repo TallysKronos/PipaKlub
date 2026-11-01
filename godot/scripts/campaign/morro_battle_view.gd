@@ -6,7 +6,7 @@ func configure(data: Dictionary, state: Dictionary) -> void:
 	content = data
 	model = TrailModel.new()
 	model.restore(state)
-	var assets := {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "lacertubo": "lacertubo"}
+	var assets := {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "lacertubo": "lacertubo"}
 	art_ids.append(assets.get(model.model_id, "rabbito"))
 	for actor in model.actors.slice(1): art_ids.append(["basic-carcara", "basic-raio-de-sol", "basic-mata-verde", "basic-azulao"][int(actor.color)])
 	for id in art_ids: textures.append(load("res://assets/campaign/" + content.combat[id].image))

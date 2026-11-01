@@ -21,6 +21,10 @@ func travel_multiplier() -> float:
 
 func _process(delta:float) -> void:
 	super(delta)
+	if mounted:
+		var world:=get_parent()
+		while world!=null and not "saved_player" in world:world=world.get_parent()
+		if world!=null and world.has_method("can_mount") and not world.can_mount():set_mounted(false)
 	if mounted and is_instance_valid(mount_rig):mount_rig.set_facing(facing)
 
 func _draw() -> void:

@@ -1864,7 +1864,7 @@ func toggle_run() -> void:
 func can_mount() -> bool:
 	if not campaign_mode:return true
 	var player_data=get("saved_player")
-	return player_data is Dictionary and preload("res://scripts/campaign/mount_quest.gd").owned(player_data)
+	return player_data is Dictionary and preload("res://scripts/campaign/mount_quest.gd").eligible(player_data)
 
 func toggle_mount() -> void:
 	if not can_mount():return

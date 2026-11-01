@@ -26,6 +26,7 @@ func run() -> void:
 		var original:Vector2=view.player
 		check(view.has_method("toggle_mount"),scenario+" mount available")
 		view.saved_player.inventory["apito-de-elo"]=1
+		preload("res://scripts/campaign/mount_quest.gd").grant_partner(view.saved_player)
 		view.toggle_mount();await settle()
 		check(view.avatar.mounted and view.avatar.mount_rig.visible,scenario+" mounted visual")
 		check(view.avatar.travel_multiplier()>1,scenario+" travel modifier")

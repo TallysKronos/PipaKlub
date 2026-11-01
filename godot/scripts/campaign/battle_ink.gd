@@ -84,7 +84,7 @@ static func strip(paper: bool = false) -> StyleBoxFlat:
 	return Hud.make_theme().get_stylebox("panel", "RecortePaperPanel" if paper else "RecorteBattlePanel")
 static func facing_flip(id:String, x:float, target_x:float) -> bool:
 	# These sheets are authored facing right. Keep HUD portraits stable; arena faces its target.
-	return id in ["rabbito","nozinho","lacertubo"] and x>target_x
+	return id in ["rabbito","nozinho","lacertubo","doberman-c"] and x>target_x
 
 static func live_sprite(canvas: CanvasItem, texture: Texture2D, id: String, frame: Dictionary, center: Vector2, extent: float, tint: Color = Tokens.UNTINTED, projection: Vector2 = Vector2.ONE, flip_horizontal:bool=false) -> void:
 	if sprite_bounds.is_empty(): sprite_bounds = JSON.parse_string(FileAccess.get_file_as_string(ROOT + "sprite-bounds.json"))
