@@ -15,10 +15,13 @@ func travel(destination: String) -> Dictionary:
 	var saved: Dictionary=session.snapshot()
 	var source: String=saved.get("checkpoint",{}).get("scene","")
 	if saved.get("checkpoint",{}).get("kind","")!="world" or not available(saved.player): return {"status":"wrong_step"}
-	if source!="quintal" and not Checkpoint.MAPS.has(source): return {"status":"wrong_step"}
+	if source!="quintal" and not Checkpoint.MAPS.has(source) and not preload("res://scripts/campaign/morro.gd").maps().has(source): return {"status":"wrong_step"}
+	if not preload("res://scripts/campaign/kronasta_atlas.gd").can_travel(destination):return {"status":"wrong_step"}
 	var target: Dictionary
-	if destination=="kronasta-bosque-a":
+	if Checkpoint.MAPS.has(destination):
 		target=Checkpoint.make(destination,Checkpoint.spawn(destination),Checkpoint.SPACE)
+	elif destination=="morro":
+		target={"kind":"world","scene":"morro","position":preload("res://scripts/campaign/morro.gd").maps().morro.spawn}
 	elif destination=="quintal":
 		target=preload("res://scripts/campaign/neighborhood_checkpoint.gd").make(Vector2(1792,1808),saved.player)
 	else: return {"status":"wrong_step"}

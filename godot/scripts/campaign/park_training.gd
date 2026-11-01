@@ -74,7 +74,7 @@ static func next_here(player: Dictionary,scene: String) -> Dictionary:
 static func objective(player: Dictionary,scene: String) -> String:
 	var flags: Dictionary=player.get("flags",{})
 	if needs_rest(player) and not flags.get("guardianDefeated",false): return "Seu parceiro precisa descansar. Procure um banco do parque."
-	if flags.get("ninaReturned",false): return "Resgate concluído. Explore o parque ou siga sua jornada."
+	if flags.get("ninaReturned",false): return "Demo concluída · continue explorando ou abra M para ver Kronasta."
 	if flags.get("ninaTail",false): return "Leve a rabiola para Nina. O atalho ao Jardim fica a leste do pátio." if scene=="park-veredas" else "Volte à entrada do Jardim e entregue a rabiola para Nina."
 	if not flags.get("ninaAccepted",false): return "Converse com Nina no Jardim das Pipas, perto da entrada."
 	if flags.get("guardianDefeated",false): return "Lacertubo vencido! Recolha a rabiola de Nina atrás dos canos, a leste."

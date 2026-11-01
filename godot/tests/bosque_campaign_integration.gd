@@ -77,7 +77,7 @@ func run() -> void:
 	var coins: int=player.coins
 	check(app.session.checkpoint({"kind":"world","scene":"quintal","position":[10.5,20.5],"space":"bairro-inicial-v2"},player).status=="ok","city checkpoint")
 	var service=Bosque.new(app.session)
-	check(service.travel("park-veredas").status=="wrong_step","arbitrary travel rejected")
+	check(service.travel("kronasta-vulcao-a").status=="wrong_step","unavailable travel rejected")
 	app._show_kronasta()
 	await shot("01-acesso-regional")
 	app._travel_kronasta("kronasta-bosque-a")

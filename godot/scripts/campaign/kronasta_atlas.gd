@@ -1,0 +1,26 @@
+extends RefCounted
+## Public destinations only. Undeveloped biomes are display entries, never travel targets.
+const REGIONS := [
+	{"id":"vila","name":"Vila do Primeiro Vento","at":Vector2(.20,.23),"scenes":["quintal"],"parts":["Voltar à vila"],"description":"Lar do Kael, ateliê do professor e ruas do bairro."},
+	{"id":"parque","name":"Parque dos Ventos","at":Vector2(.35,.34),"scenes":["park-trail","park-clearing","park-veredas"],"parts":["Jardim das Pipas","Clareira do Papel","Veredas do Encanamento"],"description":"Trilhas, duelos e a missão da Nina. A viagem não conclui missões nem libera recompensas."},
+	{"id":"bosque","name":"Bosque dos Ventos","at":Vector2(.40,.50),"scenes":["kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c"],"parts":["Trilha das Copas","Desvio do Riacho","Clareira do Marco"],"description":"Entre copas, riachos e mirantes. Três trilhas conectadas para explorar."},
+	{"id":"pantano","name":"Pântano dos Cipós","at":Vector2(.72,.30),"scenes":["kronasta-pantano-a","kronasta-pantano-b","kronasta-pantano-c"],"parts":["Entrada alagada","Desvio dos Cipós","Lago profundo"],"description":"Passarelas e margens entre águas escuras. Área em construção: exploração disponível, história e chefe ainda em desenvolvimento.","preview":true},
+	{"id":"montanha","name":"Montanhas de Kronasta","at":Vector2(.72,.60),"scenes":["kronasta-montanha-a","kronasta-montanha-b","kronasta-montanha-c"],"parts":["Sopé","Encosta","Cume"],"description":"Subidas em zigue-zague, paredões e caminhos elevados. Exploração disponível; história em desenvolvimento.","preview":true},
+	{"id":"industrial","name":"Distrito Industrial","at":Vector2(.88,.17),"scenes":["kronasta-industrial-a","kronasta-industrial-b","kronasta-industrial-c"],"parts":["Distrito · A","Distrito · B","Distrito · C"],"description":"Galpões, passagens e pátios de carga. Exploração disponível; história em desenvolvimento.","preview":true},
+	{"id":"morro","name":"Morro do Sol","at":Vector2(.32,.86),"scenes":["morro"],"parts":["Entrada do Morro"],"description":"Encontre os pipeiros do Morro. Os desafios continuam liberando os caminhos pela campanha."},
+	{"id":"porto","name":"Costa de Kronasta","at":Vector2(.14,.48),"scenes":[],"parts":[],"description":"Uma costa à espera de novas jornadas. Nome e percurso provisórios."},
+	{"id":"ruinas","name":"Ruínas antigas","at":Vector2(.54,.78),"scenes":[],"parts":[],"description":"Vestígios nas terras do norte. Esta região ainda não está disponível."},
+	{"id":"vulcao","name":"Vulcão de Kronasta","at":Vector2(.88,.78),"scenes":[],"parts":[],"description":"Além das montanhas, uma terra de cinzas e lava. Região futura; nome provisório."},
+	{"id":"cavernas","name":"Cavernas de cristal","at":Vector2(.84,.43),"scenes":[],"parts":[],"description":"Passagens sob as rochas. Região futura; nome provisório."},
+	{"id":"planicies","name":"Planícies de Kronasta","at":Vector2(.52,.20),"scenes":[],"parts":[],"description":"Campos abertos ao vento. Região futura; nome provisório."}
+]
+const LINKS := [[0,1],[0,6],[0,7],[1,2],[2,8],[2,3],[2,4],[4,9],[4,10],[3,10],[3,11],[11,5]]
+static func region_for(scene:String) -> String:
+	for region in REGIONS:
+		if scene in region.scenes:return region.id
+	if scene.begins_with("morro"):return "morro"
+	return "vila"
+static func can_travel(scene:String) -> bool:
+	for region in REGIONS:
+		if scene in region.scenes:return true
+	return false

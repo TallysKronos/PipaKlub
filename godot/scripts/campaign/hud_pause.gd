@@ -14,7 +14,7 @@ func _ready() -> void:
 	column.anchor_left = .07
 	column.anchor_right = .43
 	column.anchor_top = .06
-	column.anchor_bottom = .90
+	column.anchor_bottom = .94
 	column.add_theme_constant_override("separation",8)
 	add_child(column)
 	var title := Label.new()
@@ -29,9 +29,9 @@ func _ready() -> void:
 	column.add_child(subtitle)
 	var first: Button
 	var index := 0
-	for option in [["Retomar", "resume", "back"], ["Equipe", "team", "team"], ["Mochila", "bag", "bag"], ["Mapa", "map", "map"], ["Configurações", "settings", "settings"], ["Salvar jornada", "save", "save"], ["Voltar ao menu", "menu", "back"]]:
+	for option in [["Retomar", "resume", "back"], ["Equipe", "team", "team"], ["Mochila", "bag", "bag"], ["Carteira de Pipeiro", "identity", "team"], ["Porta-emblemas", "emblems", "tail"], ["Mapa", "map", "map"], ["Configurações", "settings", "settings"], ["Salvar jornada", "save", "save"], ["Voltar ao menu", "menu", "back"]]:
 		var margin := MarginContainer.new()
-		margin.add_theme_constant_override("margin_left", index * 18)
+		margin.add_theme_constant_override("margin_left", index * 14)
 		margin.add_theme_constant_override("margin_right", 24)
 		column.add_child(margin)
 		var button := Button.new()
@@ -40,13 +40,14 @@ func _ready() -> void:
 		button.icon = Hud.icon(option[2])
 		button.expand_icon = true
 		button.add_theme_constant_override("icon_max_width", 30)
-		button.custom_minimum_size.y = 46
+		button.custom_minimum_size.y = 42
 		button.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
 		button.tooltip_text=option[0]
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		button.pressed.connect(func(): chosen.emit(option[1]))
 		margin.add_child(button)
 		buttons[option[1]]=button
+		if option[1] in ["identity","emblems"]:button.disabled=not preload("res://scripts/campaign/pipeiro_identity.gd").issued(player)
 		if index == 0: first = button
 		index += 1
 	var hints := HBoxContainer.new()

@@ -41,6 +41,7 @@ func lesson_completed(index: int) -> Dictionary:
 	var point := {"kind": "practice", "lesson": index + 1} if index < 4 else {"kind": "starter"}
 	if index == 4:
 		player.journey.phase = "choose"
+		preload("res://scripts/campaign/pipeiro_identity.gd").issue_into(player)
 	return session.commit_operation("first-flight-lesson-%d" % index, point, player)
 
 func choose(model_id: String) -> Dictionary:

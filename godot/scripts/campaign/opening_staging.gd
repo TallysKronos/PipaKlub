@@ -36,10 +36,13 @@ static func walk(room: Variant,who: String,points: Array,speed: float=200.0,stai
 	if alive(room):room.cinematic_actor_moving=false;room.mother_walking=false
 
 static func pass_tail(room: Node2D,from: Vector2,to: Vector2) -> void:
+	await pass_item(room,from,to,preload("res://scripts/campaign/hud.gd").icon("tail"))
+
+static func pass_item(room: Node2D,from: Vector2,to: Vector2,texture: Texture2D,extent:float=30.0) -> void:
 	if not alive(room):return
 	var item:=Sprite2D.new()
-	item.texture=preload("res://scripts/campaign/hud.gd").icon("tail")
-	item.scale=Vector2.ONE*30.0/maxf(item.texture.get_width(),item.texture.get_height())
+	item.texture=texture
+	item.scale=Vector2.ONE*extent/maxf(item.texture.get_width(),item.texture.get_height())
 	item.z_index=200
 	room.add_child(item)
 	var start: Vector2=room.project(from)-Vector2(0,45)

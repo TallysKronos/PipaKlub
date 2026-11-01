@@ -62,7 +62,7 @@ static func inspect(value: Variant, slot_id: String) -> String:
 	if kind == "practice" and (not whole(checkpoint.get("lesson")) or checkpoint.lesson > 4):
 		return "invalid"
 	if kind == "world":
-		if checkpoint.get("scene") not in ["quintal", "professor-home", "park-trail", "park-clearing", "park-veredas", "morro", "morro-area-2", "morro-area-3", "morro-area-4", "morro-area-5","kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c"] or not checkpoint.get("position") is Array or checkpoint.position.size() != 2:
+		if checkpoint.get("scene") not in ["quintal", "professor-home", "park-trail", "park-clearing", "park-veredas", "morro", "morro-area-2", "morro-area-3", "morro-area-4", "morro-area-5","kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c","kronasta-pantano-a","kronasta-pantano-b","kronasta-pantano-c","kronasta-montanha-a","kronasta-montanha-b","kronasta-montanha-c","kronasta-industrial-a","kronasta-industrial-b","kronasta-industrial-c"] or not checkpoint.get("position") is Array or checkpoint.position.size() != 2:
 			return "invalid"
 		for coordinate in checkpoint.position:
 			if not (coordinate is float or coordinate is int) or not is_finite(float(coordinate)) or absf(coordinate) > 4096:
@@ -121,6 +121,8 @@ static func inspect(value: Variant, slot_id: String) -> String:
 			for entry in player[field]:
 				if not entry is String: return "invalid"
 	if player.has("morro") and not valid_morro(player.morro): return "invalid"
+	if player.has("pipeiroIdentity") and not preload("res://scripts/campaign/pipeiro_identity.gd").valid_identity(player.pipeiroIdentity): return "invalid"
+	if player.has("districtEmblems") and not preload("res://scripts/campaign/pipeiro_identity.gd").valid_emblems(player.districtEmblems): return "invalid"
 	if player.has("wildDrop"):
 		if not player.wildDrop is Dictionary or not player.wildDrop.get("intro") is bool or not whole(player.wildDrop.get("misses")): return "invalid"
 	if player.has("encounterGraceUntil"):

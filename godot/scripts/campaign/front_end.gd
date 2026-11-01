@@ -19,6 +19,8 @@ const Backdrop = preload("res://scripts/campaign/hud_backdrop.gd")
 const Hud = preload("res://scripts/campaign/hud.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
 const Sound = preload("res://scripts/campaign/sound_director.gd")
+const DemoFlow = preload("res://scripts/campaign/demo_flow.gd")
+const PipeiroIdentity = preload("res://scripts/campaign/pipeiro_identity.gd")
 var sound := Sound.new()
 var session := Session.new()
 var opening: RefCounted
@@ -337,6 +339,13 @@ func _result(result: Dictionary) -> bool:
 	return false
 
 func _show_saved() -> void:
+	if not _result(PipeiroIdentity.ensure_legacy(session)): return
+	if PipeiroIdentity.pending(session.snapshot()):
+		TutorialStaging.resume_documents(self)
+		return
+	if DemoFlow.pending(session.snapshot()):
+		_show_demo_complete()
+		return
 	match str(session.snapshot().checkpoint.kind):
 		"opening": _show_opening()
 		"world": _show_world()
@@ -344,6 +353,108 @@ func _show_saved() -> void:
 		"starter": _show_starter()
 		"workshop": _show_workshop()
 		"encounter": _show_encounter()
+
+func _show_identity() -> void:
+	if not PipeiroIdentity.issued(session.snapshot().get("player",{})):
+		_notice("Sua carteira será entregue pelo Sr. Assis ao concluir o treino.")
+		return
+	_clear("page:CARTEIRA DE PIPEIRO")
+	var card = load("res://scripts/campaign/hud_pipeiro_identity.gd").new()
+	card.saved = session.snapshot()
+	card.reduced_motion = preferences.reduced_motion
+	add_child(card)
+	card.closed.connect(_close_identity)
+	card.emblems_requested.connect(_open_emblem_case)
+
+func _open_emblem_case(index: int = 0) -> void:
+	for child in get_children():
+		if child.has_meta("emblem_case"): return
+	if not PipeiroIdentity.issued(session.snapshot().get("player",{})): return
+	var previous: Control = get_viewport().gui_get_focus_owner()
+	var focus_modes: Array = []
+	for control in find_children("*","Control",true,false):
+		if control.focus_mode!=Control.FOCUS_NONE:
+			focus_modes.append({"control":control,"mode":control.focus_mode})
+			control.focus_mode=Control.FOCUS_NONE
+	if is_instance_valid(pause_overlay): pause_overlay.hide()
+	var view = load("res://scripts/campaign/hud_emblem_case.gd").new()
+	view.player = session.snapshot().player
+	view.initial_slot = index
+	add_child(view)
+	view.closed.connect(func():
+		remove_child(view)
+		view.queue_free()
+		for entry in focus_modes:
+			if is_instance_valid(entry.control):entry.control.focus_mode=entry.mode
+		if is_instance_valid(pause_overlay): pause_overlay.show()
+		if is_instance_valid(previous): Hud.focus_later(previous))
+
+func _present_key_item(id: String, item_name: String) -> bool:
+	var generation := opening_generation
+	var was_walking: bool = is_instance_valid(room) and room.can_walk
+	var park_paused: bool = is_instance_valid(park) and park.paused
+	var battle_paused: bool = is_instance_valid(battle) and battle.paused
+	if is_instance_valid(room): room.can_walk=false
+	if is_instance_valid(park): park.paused=true
+	if is_instance_valid(battle): battle.suspend_actions(); battle.paused=true
+	var banner = load("res://scripts/campaign/hud_key_item_banner.gd").new()
+	banner.item_name = item_name
+	banner.item_texture = Hud.item_art(id)
+	banner.reduced_motion = preferences.reduced_motion
+	add_child(banner)
+	while TutorialStaging.valid(self,generation) and is_instance_valid(banner) and not banner.done:
+		await get_tree().process_frame
+	if is_instance_valid(banner): banner.queue_free()
+	var valid := TutorialStaging.valid(self,generation)
+	if valid:
+		if is_instance_valid(room): room.can_walk=was_walking
+		if is_instance_valid(park): park.paused=park_paused
+		if is_instance_valid(battle): battle.paused=battle_paused
+	return valid
+
+func _close_identity() -> void:
+	if not _result(PipeiroIdentity.acknowledge(session)): return
+	_return_to_game()
+
+func _complete_document_delivery() -> void:
+	var result: Dictionary = PipeiroIdentity.acknowledge(session)
+	if result.status in ["ok","already_applied"]:
+		_show_saved()
+		return
+	var dialog := _dialog("Salvar jornada",_error(result.status),"Tentar novamente","Voltar ao menu")
+	dialog.confirmed.connect(_complete_document_delivery.call_deferred)
+	dialog.confirmed.connect(dialog.queue_free)
+	dialog.canceled.connect(_menu.call_deferred)
+	dialog.canceled.connect(dialog.queue_free)
+	dialog.popup_centered()
+
+func _show_demo_complete() -> void:
+	if not DemoFlow.completed(session.snapshot()): return
+	menu_origin = ""
+	sound.set_game_paused(false)
+	_clear("page:DEMO CONCLUÍDA")
+	var ending = load("res://scripts/campaign/hud_demo_complete.gd").new()
+	ending.partner_portrait = load("res://scripts/campaign/battle_ink.gd").portrait(load("res://assets/campaign/" + content.combat.rabbito.image), "rabbito")
+	add_child(ending)
+	ending.chosen.connect(_finish_demo)
+
+func _finish_demo(action: String) -> void:
+	if action not in ["explore", "map", "menu"]: return
+	if not _result(DemoFlow.acknowledge(session)): return
+	menu_origin = ""
+	sound.set_game_paused(false)
+	match action:
+		"explore": _show_saved()
+		"map": _show_kronasta()
+		"menu": _menu()
+
+func _nina_homecoming() -> void:
+	park.path.clear()
+	park.paused = true
+	var dialog := _dialog("Nina", "Nina: [emo=brilho]Você encontrou! Eu reconheceria esse nó em qualquer lugar. Obrigada… Agora posso trazer meu Carcará de volta.\n\nKael: Cuida bem dele, Nina.", "Concluir este capítulo")
+	dialog.confirmed.connect(_show_demo_complete.call_deferred)
+	dialog.confirmed.connect(dialog.queue_free)
+	dialog.popup_centered(Vector2i(640, 300))
 
 func _return_to_game() -> void:
 	_show_saved()
@@ -1014,7 +1125,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and last_scene_key=="menu:slots":
 		_menu();get_viewport().set_input_as_handled();return
 	if (Controls.cancel(event) or event.is_action_pressed("ui_cancel")) and last_scene_key.begins_with("page:"):
-		if last_scene_key=="page:CUIDAR DO PARCEIRO":_show_collection()
+		if last_scene_key=="page:CARTEIRA DE PIPEIRO": _close_identity()
+		elif last_scene_key=="page:DEMO CONCLUÍDA": _finish_demo("explore")
+		elif last_scene_key=="page:CUIDAR DO PARCEIRO":_show_collection()
 		elif last_scene_key in ["page:Controles · Teclado","page:CONTROLES · TECLADO"]: _return_controls_settings()
 		elif session.snapshot().is_empty(): _menu()
 		else: _return_to_game()
@@ -1065,12 +1178,14 @@ func _pause_game() -> void:
 				partner.condition={"line":clampf(battle.model.p.hp/battle.model.p.stats.line*100,0,100),"structure":clampf(battle.model.p.hull/battle.model.p.stats.line*100,0,100)}
 	add_child(pause_overlay)
 	pause_overlay.chosen.connect(func(action: String):
-		if action in ["team", "bag", "settings","map","save"] and not _remember_world_position(): return
-		if action in ["team","bag","settings","map"]:menu_origin=action
+		if action in ["team", "bag", "settings","map","save","identity","emblems"] and not _remember_world_position(): return
+		if action in ["team","bag","settings","map","identity","emblems"]:menu_origin=action
 		match action:
 			"resume": _resume_game()
 			"team": _show_collection()
 			"bag": _show_bag()
+			"identity": _show_identity()
+			"emblems": _open_emblem_case()
 			"settings": _show_settings()
 			"map":_show_map()
 			"save":
@@ -1304,7 +1419,7 @@ func _park_action(id: String) -> void:
 		elif player.flags.get("ninaTail", false):
 			if _result(exploration.return_tail(point)):
 				park.refresh(session.snapshot().player)
-				_notice("Nina: [emo=brilho]Você encontrou! Eu reconheceria esse nó em qualquer lugar. Obrigada… Agora posso trazer meu Carcará de volta.\n\nJornada: Missão concluída · A rabiola de Nina")
+				_nina_homecoming()
 		elif not player.flags.get("ninaAccepted", false):
 			_confirm_park("Nina", "[emo=suor]Meu Carcará tentou me proteger daquele lagarto. A linha rompeu e ele se recolheu na rabiola… O vento levou ela para os canos. Você consegue trazer a rabiola dele?", "Vou recuperar a rabiola", func():
 				if _result(exploration.accept_nina(point)): park.refresh(session.snapshot().player))
@@ -1566,6 +1681,11 @@ func _show_bag() -> void:
 	Hud.input_hint(footer,"line","Próxima aba")
 
 func _show_map() -> void:
+	if load("res://scripts/campaign/bosque_campaign.gd").available(session.snapshot().get("player",{})):
+		_show_kronasta()
+	else:_show_local_map()
+
+func _show_local_map() -> void:
 	if not _remember_world_position(): return
 	sound.play_event("ui.map")
 	var subject:Node2D=park if is_instance_valid(park) else room
@@ -1615,21 +1735,16 @@ func _show_kronasta() -> void:
 	var saved: Dictionary=session.snapshot()
 	var region=load("res://scripts/campaign/bosque_campaign.gd")
 	if not region.available(saved.player): return
-	_simple_page("REGIÃO DE KRONASTA",true)
-	_label("Você está em "+_slot_location(saved).name,page,20)
-	_label("Bosque dos Ventos · uma trilha opcional por três áreas conectadas.",page,18)
-	_label("Trilha das Copas  →  Desvio do Riacho  →  Clareira do Marco",page,22)
-	var discovered: Array[String]=[]
-	for part in ["A","B","C"]:
-		if saved.player.flags.get("bosqueParte"+part+"Descoberta",false): discovered.append(part)
-	_label("Áreas descobertas: "+("nenhuma" if discovered.is_empty() else ", ".join(discovered)),page,18)
-	_label("Atravesse o riacho pela ponte. Na clareira, os bancos recuperam sua equipe e o atalho facilita a volta.",page,17)
-	var space:=Control.new()
-	space.size_flags_vertical=Control.SIZE_EXPAND_FILL
-	page.add_child(space)
-	_button("Entrar no Bosque · Trilha das Copas",page,func():_travel_kronasta("kronasta-bosque-a"))
-	_button("Voltar à Vila do Primeiro Vento",page,func():_travel_kronasta("quintal"))
-	_button("Continuar de onde parei",page,_return_to_game)
+	_clear("page:REGIÃO DE KRONASTA")
+	var atlas=load("res://scripts/campaign/hud_kronasta_map.gd").new()
+	atlas.current_scene=saved.checkpoint.get("scene","")
+	add_child(atlas)
+	atlas.travel_requested.connect(_travel_kronasta)
+	atlas.local_requested.connect(_show_local_map)
+	atlas.closed.connect(func():
+		menu_origin=""
+		sound.set_game_paused(false)
+		_show_saved())
 
 func _travel_kronasta(destination: String) -> void:
 	if not _result(load("res://scripts/campaign/bosque_campaign.gd").new(session).travel(destination)): return

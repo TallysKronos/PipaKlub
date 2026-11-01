@@ -174,6 +174,7 @@ func refresh(value: Dictionary) -> void:
 		exploration_hud.refresh(saved_player)
 		var scene: String=saved_checkpoint.get("scene","park-trail")
 		exploration_hud.objective.text = Bosque.objective(saved_player,scene) if Checkpoint.is_bosque(scene) else Training.objective(saved_player,scene)
+		if Checkpoint.is_regional_preview(scene):exploration_hud.objective.text="Explore os caminhos · M para viajar por Kronasta."
 
 func toggle_run() -> void:
 	if not paused and item_receipt.is_empty():super.toggle_run()
@@ -213,7 +214,7 @@ func _physics_process(delta: float) -> void:
 	save_distance+=moved
 	save_age+=delta
 	if moved>0:
-		var weight: float=0.0 if Training.needs_rest(saved_player) else Pacing.weight(model,player)
+		var weight: float=0.0 if Training.needs_rest(saved_player) or Checkpoint.is_regional_preview(saved_checkpoint.scene) else Pacing.weight(model,player)
 		if encounter_grace>0:
 			encounter_grace=maxf(0,encounter_grace-delta)
 		elif weight>0:

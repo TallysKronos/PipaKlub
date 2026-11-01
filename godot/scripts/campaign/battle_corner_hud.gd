@@ -31,8 +31,7 @@ static func draw_on(c:Control,actors:Array,faces:Array,names:Array,player:Dictio
 	c.draw_texture_rect_region(PILOT,Rect2(pilot.position+Vector2(8,4),Vector2(54,58)),Rect2(160,10,460,500))
 	text(c,pilot.position+Vector2(72,25),Ink.ellipsis(player.get("name","Kael"),Hud.font(true),20,205),20)
 	var xp:int=player.get("tamerXp",0)
-	var level:=1
-	while level<100 and xp>=20*level+3*level*level:level+=1
+	var level:=preload("res://scripts/campaign/pipeiro_identity.gd").tamer_level(xp)
 	text(c,pilot.position+Vector2(72,48),"Tamer · Nv. %d"%level,14,T.PAPEL_2)
 	diamonds(c,pilot.position+Vector2(240,46),actors[0].get("rounds",0),rounds,T.CEU)
 	for index in range(1,actors.size()):

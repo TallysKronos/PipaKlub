@@ -60,7 +60,7 @@ func exercise() -> bool:
 		for polygon in paths:falsely_paved=falsely_paved or Geometry2D.is_point_in_polygon(grass,polygon)
 		check(not falsely_paved,"grass is distinct from paths")
 		check(city.map_landmarks().size()==3,"only three public city landmarks")
-		front._show_map()
+		front._show_local_map()
 		await settle()
 		var maps=front.find_children("*","Control",true,false).filter(func(n):return n.get_script()==load("res://scripts/campaign/hud_area_map.gd"))
 		check(maps.size()==1,"area map uses the existing map screen")

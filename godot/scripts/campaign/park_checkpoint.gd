@@ -1,7 +1,7 @@
 extends RefCounted
 ## Explicit coordinate version: legacy illustrated pixels never become map cells by guesswork.
 const SPACE := "parque-overworld-v1"
-const MAPS := {"park-trail":"jardim-das-pipas","park-clearing":"clareira-do-papel","park-veredas":"veredas-do-encanamento","kronasta-bosque-a":"kronasta-bosque-a","kronasta-bosque-b":"kronasta-bosque-b","kronasta-bosque-c":"kronasta-bosque-c"}
+const MAPS := {"park-trail":"jardim-das-pipas","park-clearing":"clareira-do-papel","park-veredas":"veredas-do-encanamento","kronasta-bosque-a":"kronasta-bosque-a","kronasta-bosque-b":"kronasta-bosque-b","kronasta-bosque-c":"kronasta-bosque-c","kronasta-pantano-a":"kronasta-pantano-a","kronasta-pantano-b":"kronasta-pantano-b","kronasta-pantano-c":"kronasta-pantano-c","kronasta-montanha-a":"kronasta-montanha-a","kronasta-montanha-b":"kronasta-montanha-b","kronasta-montanha-c":"kronasta-montanha-c","kronasta-industrial-a":"kronasta-industrial-a","kronasta-industrial-b":"kronasta-industrial-b","kronasta-industrial-c":"kronasta-industrial-c"}
 const Model = preload("res://scripts/overworld/map_model.gd")
 const Legacy = preload("res://scripts/campaign/park_data.gd")
 static var _maps: Dictionary = {}
@@ -9,6 +9,9 @@ static var _models: Dictionary = {}
 
 static func is_bosque(scene: String) -> bool:
 	return scene in ["kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c"]
+
+static func is_regional_preview(scene:String) -> bool:
+	return scene.begins_with("kronasta-pantano-") or scene.begins_with("kronasta-montanha-") or scene.begins_with("kronasta-industrial-")
 
 static func data(scene: String) -> Dictionary:
 	if not MAPS.has(scene): return {}

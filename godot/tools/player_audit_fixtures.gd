@@ -33,7 +33,9 @@ static func show(front: Control, id: String) -> void:
 	saved.player.flags = {"ninaAccepted": true}
 	saved.checkpoint = {"kind": "world", "scene": "park-veredas", "position": [1160, 366]}
 	if id.begins_with("opening-"): saved.checkpoint = {"kind": "opening", "step": id.trim_prefix("opening-").to_int()}
-	elif id.begins_with("lesson-"): saved.checkpoint = {"kind": "practice", "lesson": id.split("-")[1].to_int()}
+	elif id.begins_with("lesson-"):
+		saved.checkpoint = {"kind": "practice", "lesson": id.split("-")[1].to_int()}
+		saved.player.journey = {"lesson":saved.checkpoint.lesson,"phase":"practice"}
 	elif id.begins_with("workshop-"):
 		var model := Workshop.new("basica", 7)
 		var stage := id.trim_prefix("workshop-").to_int() if id not in ["workshop-paused", "workshop-blocked"] else 1
@@ -81,6 +83,11 @@ static func show(front: Control, id: String) -> void:
 	if id == "team-long":
 		for index in 5:
 			saved.player.partners.append({"id": "partner-%d" % index, "modelId": "basica", "personalName": "Um nome bem comprido aqui", "xp": 120 + index * 60, "condition": {"line": 20, "structure": 40}})
+	# These visual fixtures have no disk slot; prepare already-issued documents in memory.
+	if saved.checkpoint.kind not in ["opening","practice"]:
+		preload("res://scripts/campaign/pipeiro_identity.gd").issue_into(saved.player)
+		saved.player.flags.pipeiroDocumentsSeen = true
+		if id=="bag-empty":saved.player.inventory.clear()
 	front.session._snapshot = saved
 	if id in ["bag-empty", "bag-full", "team-long", "starter"]:
 		front._clear()
