@@ -518,3 +518,10 @@ Novas na v2:
 - **Jamile:** não tem ligação com a família.
 - **Mundo:** o primeiro jogo se passa em Kronasta.
 - **Regiões:** toda região tem pelo menos 3 partes, A, B e C, com itens espalhados. Outras podem ter mais partes.
+
+## 17. Decisões registradas (01/11/2026)
+
+- **Viagem livre, história única.** O jogador vai e volta entre todos os lugares já liberados (grind, itens, selvagens). Partes da história não se repetem: chefe ou duelo de história vencido some daquele lugar, e a área continua aberta. Vale para o Lacertubo, os treinadores do parque e os duelos do Morro do Sol, incluindo a Mikka.
+- **Sem viagem por ato.** A tela de Kronasta mostra os lugares liberados e só o próximo destino da história; o que vem depois fica como surpresa. Os atos continuam como capítulos do roteiro.
+- **Prévias só para QA.** Mapas prontos cuja história ainda não existe (Distrito Industrial, Pântano, Montanha) abrem só em build de desenvolvimento. No jogo publicado ficam "em breve".
+

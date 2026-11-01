@@ -1640,14 +1640,10 @@ func _show_kronasta() -> void:
 	# Travel starts from the Vila or a map scene; elsewhere the list is read-only.
 	var here: String=saved.checkpoint.get("scene","")
 	var can_leave: bool=here=="quintal" or ParkCheckpoint.MAPS.has(here)
-	if not can_leave:_label("Para viajar, volte à Vila do Primeiro Vento ou a uma área do mapa.",page,16).add_theme_color_override("font_color",Hud.MUTED)
-	var shown_act:=-1
-	for entry in Story.PLACES:
-		var id: String=entry.id
-		var state: String=Story.state(player,id)
-		if int(entry.act)!=shown_act:
-			shown_act=int(entry.act)
-			_label(Story.ACTS[shown_act].to_upper(),list,16).add_theme_color_override("font_color",Hud.CYAN)
+	if not can_leave:_label("Para viajar, volte à Vila do Primeiro Vento ou a uma área do mapa.",list,16).add_theme_color_override("font_color",Hud.MUTED)
+	# Released places can be revisited freely; won duels and bosses stay won.
+	var section:=func(title:String):_label(title,list,16).add_theme_color_override("font_color",Hud.CYAN)
+	var row_for:=func(entry:Dictionary,status_text:String,status_color:Color):
 		var row:=HBoxContainer.new()
 		row.add_theme_constant_override("separation",16)
 		list.add_child(row)
@@ -1656,17 +1652,32 @@ func _show_kronasta() -> void:
 		title.autowrap_mode=TextServer.AUTOWRAP_OFF
 		title.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
 		title.tooltip_text=entry.note
-		if state=="em-breve":title.add_theme_color_override("font_color",Hud.MUTED)
-		if Story.can_travel(player,id) and can_leave:
-			var destination: String=Story.scene_for_travel(id)
+		if Story.scene_for_travel(entry.id)==here:
+			var status:=_label("Você está aqui",row,16)
+			status.autowrap_mode=TextServer.AUTOWRAP_OFF
+			status.add_theme_color_override("font_color",Hud.GOLD)
+		elif Story.can_travel(player,entry.id) and can_leave:
+			var destination: String=Story.scene_for_travel(entry.id)
 			# The row already names the place; the button stays short so it never truncates.
 			var go:=_button("Entrar",row,func():_travel_kronasta(destination))
 			go.custom_minimum_size=Vector2(170,44)
-			go.tooltip_text=entry.name+" · "+Story.requirement(player,id)
+			go.tooltip_text=entry.name+" · "+status_text
 		else:
-			var status:=_label(Story.requirement(player,id),row,16)
+			var status:=_label(status_text,row,16)
 			status.autowrap_mode=TextServer.AUTOWRAP_OFF
-			status.add_theme_color_override("font_color",Hud.GOLD if state=="vencido" else Hud.MUTED)
+			status.add_theme_color_override("font_color",status_color)
+	section.call("LUGARES LIBERADOS")
+	for entry in Story.released(player):
+		var won: bool=Story.state(player,entry.id)=="vencido"
+		row_for.call(entry,"Bairro vencido" if won else "Acesso pela Vila",Hud.GOLD if won else Hud.MUTED)
+	var next: Dictionary=Story.next_destination(player)
+	if not next.is_empty():
+		section.call("PRÓXIMO DESTINO DA HISTÓRIA")
+		row_for.call(next,Story.requirement(player,next.id),Hud.MUTED)
+	var qa_list: Array=Story.previews(player)
+	if not qa_list.is_empty():
+		section.call("QA · PRÉVIAS DE MAPA (não aparecem para jogadores)")
+		for entry in qa_list: row_for.call(entry,Story.requirement(player,entry.id),Hud.MUTED)
 	var footer:=HBoxContainer.new()
 	footer.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
 	page.add_child(footer)
@@ -2033,6 +2044,10 @@ func _morro_action(id: String) -> void:
 	if place.is_empty(): return
 	if park.player.distance_to(Vector2(place.point[0], place.point[1])) > 90: return
 	if place.has("stage"):
+		var names := " e ".join(Morro.Rules.stage(data.stage).foes.map(func(f): return f.name))
+		if session.snapshot().player.get("morro", Morro.Rules.defaults()).stars.has(data.stage):
+			_notice("Você já venceu %s aqui. Este desafio está concluído; o caminho segue aberto." % names)
+			return
 		var story: Dictionary = Morro.Rules.content().stories[data.stage]
 		var text := "\n\n".join(story.before.map(func(line): return "%s: %s" % [line[0], line[1]]))
 		text += "\n\nDica de voo: " + story.tactic

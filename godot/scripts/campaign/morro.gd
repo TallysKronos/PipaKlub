@@ -24,6 +24,8 @@ func start(point: Vector2) -> Dictionary:
 	var player: Dictionary = saved.player
 	var progress: Dictionary = player.get("morro", Rules.defaults())
 	if not Rules.unlocked(progress, data.stage): return {"status": "wrong_step"}
+	# Story duels are not replayed: a stage won stays won (the area stays open).
+	if progress.stars.has(data.stage): return {"status": "already_applied"}
 	var partner: Dictionary = {}
 	for entry in player.partners:
 		if entry.id == player.get("equippedPartnerId", ""): partner = entry

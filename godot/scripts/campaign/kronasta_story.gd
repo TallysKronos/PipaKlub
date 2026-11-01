@@ -10,7 +10,7 @@ const ACTS := ["Prólogo","Ato 1 · A rabiola cortada","Ato 2 · A porta","Ato 3
 
 ## kind: casa, bairro, natural, ruinas, final. levels: suggested range shown on the map.
 ## scene: where travel lands when the place can be entered from the region screen.
-## preview: built map whose story gate (a later neighbourhood) is not built yet.
+## preview: built map whose story gate (a later neighbourhood) is not built yet; QA only.
 const PLACES := [
 	{"id":"rua-dos-ventos","name":"Vila do Primeiro Vento","kind":"casa","act":0,"levels":"1–3","scene":"quintal","note":"Sua casa e o ateliê do Sr. Assis."},
 	{"id":"parque","name":"Parque dos Ventos","kind":"natural","act":1,"levels":"1–8","note":"Jardim, Clareira e Veredas. Acesso pela Vila."},
@@ -46,6 +46,15 @@ const BEATS := [
 	{"id":"mikka","act":1,"place":"morro","text":"Suba o Morro do Sol e vença a Mikka, campeã do primeiro bairro."},
 	{"id":"bosque","act":1,"place":"bosque","text":"Siga pelo Bosque dos Ventos até a Clareira do Marco. Pela pausa: Mapa → Região de Kronasta."},
 ]
+
+## QA previews: built maps whose story gate does not exist yet open only in development
+## builds (editor and debug exports), never for players in a release export. Set
+## SOULMONSTERS_QA=0 to play a debug build as a player would. Tests pin qa_override.
+static var qa_override := -1
+
+static func qa() -> bool:
+	if qa_override>=0: return qa_override==1
+	return OS.is_debug_build() and OS.get_environment("SOULMONSTERS_QA")!="0"
 
 static func flags(player: Dictionary) -> Dictionary:
 	return player.get("flags",{})
@@ -89,7 +98,23 @@ static func act(player: Dictionary) -> int:
 static func objective(player: Dictionary) -> String:
 	var beat:=current_beat(player)
 	if not beat.is_empty(): return beat.text
-	return "Ato 1 concluído no que já existe. Explore as prévias de Kronasta; a Vila do Bambuzal chega em breve."
+	return "Próximo destino: %s. Essa parte da história chega em breve." % next_destination(player).get("name","")
+
+## The first place of the story still ahead (not open and not won), in map order.
+## Only this one is named to the player; later places stay a surprise.
+static func next_destination(player: Dictionary = {}) -> Dictionary:
+	for entry in PLACES:
+		if entry.get("preview",false) or entry.kind=="casa": continue
+		if state(player,entry.id) in ["fechado","em-breve"]: return entry
+	return {}
+
+## Places the player can go back to freely: open or won. Story beats inside them
+## are not replayed (won duels and bosses stay gone).
+static func released(player: Dictionary) -> Array:
+	return PLACES.filter(func(entry): return state(player,entry.id) in ["aberto","vencido"] and not entry.get("preview",false))
+
+static func previews(player: Dictionary) -> Array:
+	return PLACES.filter(func(entry): return entry.get("preview",false) and qa() and state(player,entry.id)=="aberto")
 
 static func place(id: String) -> Dictionary:
 	for entry in PLACES:
@@ -113,7 +138,8 @@ static func state(player: Dictionary, id: String) -> String:
 		"parque": return "aberto" if prologue_done(player) else "fechado"
 		"morro": return "vencido" if mikka_defeated(player) else "aberto" if prologue_done(player) else "fechado"
 		"bosque": return "aberto" if prologue_done(player) else "fechado"
-	if entry.get("preview",false): return "aberto" if current_beat(player).is_empty() else "fechado"
+	# Previews follow only the prologue in QA; players see them as not built yet.
+	if entry.get("preview",false): return ("aberto" if prologue_done(player) else "fechado") if qa() else "em-breve"
 	return "em-breve"
 
 static func can_travel(player: Dictionary, id: String) -> bool:
@@ -123,9 +149,9 @@ static func can_travel(player: Dictionary, id: String) -> bool:
 static func requirement(player: Dictionary, id: String) -> String:
 	var entry:=place(id)
 	match state(player,id):
-		"aberto": return "Prévia · a história desta região ainda está em construção" if entry.get("preview",false) else "Aberto"
+		"aberto": return "QA · prévia sem história" if entry.get("preview",false) else "Aberto"
 		"vencido": return "Bairro vencido"
-		"fechado": return "Abre ao concluir o Ato 1 que já existe" if entry.get("preview",false) else "Abre ao terminar o prólogo"
+		"fechado": return "Abre ao terminar o prólogo"
 	return "Em breve"
 
 static func scene_for_travel(id: String) -> String:
@@ -139,7 +165,7 @@ static func region_objective(player: Dictionary, scene: String) -> String:
 	if not beat.is_empty() and beat.place==region and region!="bosque": return beat.text
 	var part:=scene.right(1)
 	return {
-		"industrial":{"a":"Prévia · siga pelo Pátio de Cargas até o Canal das Caldeiras.","b":"Atravesse o Canal das Caldeiras até a Usina do Vento.","c":"Usina do Vento · o atalho leva de volta ao Pátio de Cargas."},
-		"pantano":{"a":"Prévia · siga pela margem até o Desvio dos cipós.","b":"Passe pelos cipós até o Lago profundo.","c":"Lago profundo · a margem leva de volta à entrada."},
-		"montanha":{"a":"Prévia · comece a subida pelo Sopé.","b":"Continue pela Encosta até o Cume.","c":"Cume alcançado · o vento chega livre aqui."},
+		"industrial":{"a":"Siga pelo Pátio de Cargas até o Canal das Caldeiras.","b":"Atravesse o Canal das Caldeiras até a Usina do Vento.","c":"Usina do Vento · o atalho leva de volta ao Pátio de Cargas."},
+		"pantano":{"a":"Siga pela margem até o Desvio dos cipós.","b":"Passe pelos cipós até o Lago profundo.","c":"Lago profundo · a margem leva de volta à entrada."},
+		"montanha":{"a":"Comece a subida pelo Sopé.","b":"Continue pela Encosta até o Cume.","c":"Cume alcançado · o vento chega livre aqui."},
 	}.get(region,{}).get(part,"")
