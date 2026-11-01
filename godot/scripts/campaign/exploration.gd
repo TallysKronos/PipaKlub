@@ -60,6 +60,7 @@ func return_tail(point: Vector2) -> Dictionary:
 	if not player.flags.get("ninaTail", false) or not player.flags.get("ninaAccepted", false) or not player.flags.get("guardianDefeated", false) or int(player.inventory.get("quest-nina-tail", 0)) < 1: return {"status": "wrong_step"}
 	player.flags.ninaReturned = true
 	player.inventory.erase("quest-nina-tail")
+	preload("res://scripts/campaign/league_promotion.gd").award_into(player)
 	return session.commit_operation("nina-returned-v1", saved.checkpoint, player)
 
 func equip(id: String) -> Dictionary:

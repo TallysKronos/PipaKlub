@@ -44,5 +44,7 @@ func _initialize()->void:
 	p.flags.guardianDefeated=true
 	check(Story.current_beat(p).id=="nina-devolvida","then the handoff")
 	p.flags.ninaReturned=true
+	check(Story.current_beat(p).id=="promocao-verde","recognize first category exam after handoff")
+	preload("res://scripts/campaign/league_promotion.gd").award_into(p)
 	check(Story.current_beat(p).is_empty(),"authored story beats complete")
 	session.free();print("NINA ORDER: %d checks, %d failures"%[checks,failures.size()]);quit(0 if failures.is_empty() else 1)

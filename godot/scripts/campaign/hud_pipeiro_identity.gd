@@ -120,7 +120,7 @@ func profile(parent:Control) -> void:
 	name_label.add_theme_font_override("font",Hud.font(true))
 	name_label.autowrap_mode=TextServer.AUTOWRAP_OFF;name_label.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
 	name_label.tooltip_text=player.get("name","Kael")
-	copy("ID  #PIP-"+player.pipeiroIdentity.id,stats,19,Hud.MUTED)
+	copy("ID  #PIP-"+player.pipeiroIdentity.id+" · "+preload("res://scripts/campaign/kronasta_story.gd").category(player),stats,19,Hud.MUTED)
 	var xp:=int(player.get("tamerXp",0));var level:=Identity.tamer_level(xp)
 	var base:=0 if level==1 else 20*(level-1)+3*(level-1)*(level-1)
 	var ceiling:=20*level+3*level*level
@@ -194,6 +194,7 @@ func location() -> String:
 	if scene.begins_with("kronasta-"):return {"bosque":"Bosque de Kronasta","pantano":"Pântano de Kronasta","montanha":"Montanhas de Kronasta","industrial":"Distrito Industrial"}.get(scene.split("-")[1],"Kronasta")
 	return {"quintal":"Vila do Primeiro Vento","professor-home":"Ateliê do Sr. Assis","park-trail":"Jardim dos Ventos","park-clearing":"Clareira do Papel","park-veredas":"Veredas"}.get(scene,"Ateliê do Sr. Assis")
 func milestone() -> String:
+	if saved.player.get("flags",{}).get("leagueGreen",false):return "Exame Branca concluído"
 	if not saved.player.get("districtEmblems",{}).is_empty():return "Primeiro bairro conquistado"
 	if saved.player.get("flags",{}).get("guardianDefeated",false):return "O guardião das Veredas"
 	return "Os primeiros elos"

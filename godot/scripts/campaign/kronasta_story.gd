@@ -46,7 +46,8 @@ const BEATS := [
 	{"id":"lohan","act":1,"place":"bambuzal","text":"Explore a Vila do Bambuzal e vença o Lohan, campeão do segundo bairro."},
 	{"id":"tyler","act":1,"place":"parque","text":"Encontre Tyler e Rai na roda da Clareira do Papel."},
 	{"id":"lacertubo","act":2,"place":"parque","text":"A passagem pela Clareira está aberta. Explore as Veredas e recupere a rabiola de Nina no pátio do Lacertubo."},
-	{"id":"nina-devolvida","act":2,"place":"parque","text":"Leve a rabiola de volta para Nina, no Jardim das Pipas."},
+	{"id":"nina-devolvida","act":1,"place":"parque","text":"Leve a rabiola de volta para Nina, no Jardim das Pipas."},
+	{"id":"promocao-verde","act":1,"place":"parque","text":"Volte à Nina para reconhecer o exame e receber a categoria Rabiola Verde."},
 ]
 
 ## QA previews: built maps whose story gate does not exist yet open only in development
@@ -75,6 +76,7 @@ static func beat_done(player: Dictionary, id: String) -> bool:
 		"lacertubo": return f.get("guardianDefeated",false)
 		"nina-devolvida": return f.get("ninaReturned",false)
 		"mikka": return mikka_defeated(player)
+		"promocao-verde": return f.get("leagueGreen",false)
 		"tyler": return f.get("tylerClareiraMet",false)
 		"lohan": return preload("res://scripts/campaign/district_rules.gd").completed(player,"bambuzal")
 		"bosque": return f.get("bosqueClareiraDescoberta",false)
@@ -90,10 +92,9 @@ static func current_beat(player: Dictionary) -> Dictionary:
 static func neighbourhoods_won(player: Dictionary) -> int:
 	return preload("res://scripts/campaign/district_rules.gd").completed_count(player)
 
-## Categories rise with the exam of each pair of neighbourhoods (section 6). No exam is
-## built yet, so every save is in Rabiola Branca.
-static func category(_player: Dictionary) -> String:
-	return CATEGORIES[0]
+## First exam is explicit and saved; loss of a district title cannot demote it.
+static func category(player: Dictionary) -> String:
+	return CATEGORIES[1] if player.get("flags",{}).get("leagueGreen",false) else CATEGORIES[0]
 
 static func act(player: Dictionary) -> int:
 	var beat:=current_beat(player)

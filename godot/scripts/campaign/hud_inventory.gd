@@ -25,7 +25,7 @@ var load_state:="ready"
 var reduced_motion:=false
 var state_time:=0.0
 static var seen:Dictionary={}
-const NAMES := {"rabiola-rascunho-bicho-pau":"Rabiola de Bicho-pau [rascunho]","rabiola-rascunho-joaninha":"Rabiola de Joaninha-pião [rascunho]","apito-de-elo":"Apito de Elo","quest-fecho-guia":"Fecho da guia","insignia-morro-do-sol":"Insígnia do Morro do Sol","carteira-pipeiro":"Carteira de Pipeiro","porta-emblemas":"Porta-emblemas","kit-remendo":"Kit de Remendo","quest-nina-tail": "Rabiola do Carcará de Nina", "rabiola-lacertubo": "Rabiola de Lacertubo", "rabiola-basica": "Rabiola de Carcará", "rabiola-azulao": "Rabiola de Azulão", "rabiola-mata": "Rabiola de Mata verde", "rabiola-raio": "Rabiola de Raio de sol","papel-seda":"Papel de seda","vareta-bambu":"Vareta de bambu","cola-reparo":"Cola de reparo","linha-encerada":"Linha encerada","pista-caderno-heleana-1":"Página do caderno"}
+const NAMES := {"certificado-rabiola-verde":"Certificado · Rabiola Verde","emprestimo-carcara-nina":"Autorização · Carcará da Nina","rabiola-rascunho-bicho-pau":"Rabiola de Bicho-pau [rascunho]","rabiola-rascunho-joaninha":"Rabiola de Joaninha-pião [rascunho]","apito-de-elo":"Apito de Elo","quest-fecho-guia":"Fecho da guia","insignia-morro-do-sol":"Insígnia do Morro do Sol","carteira-pipeiro":"Carteira de Pipeiro","porta-emblemas":"Porta-emblemas","kit-remendo":"Kit de Remendo","quest-nina-tail": "Rabiola do Carcará de Nina", "rabiola-lacertubo": "Rabiola de Lacertubo", "rabiola-basica": "Rabiola de Carcará", "rabiola-azulao": "Rabiola de Azulão", "rabiola-mata": "Rabiola de Mata verde", "rabiola-raio": "Rabiola de Raio de sol","papel-seda":"Papel de seda","vareta-bambu":"Vareta de bambu","cola-reparo":"Cola de reparo","linha-encerada":"Linha encerada","pista-caderno-heleana-1":"Página do caderno"}
 func _ready() -> void:
 	size_flags_vertical = Control.SIZE_EXPAND_FILL
 	add_theme_constant_override("separation",16)
@@ -194,6 +194,8 @@ func select_item(id: String) -> void:
 	if id=="carteira-pipeiro": description.text="Seu registro de pipeiro, entregue pelo Sr. Assis. Consulte nome, nível de tamer e jornada no menu de pausa → Carteira de Pipeiro."
 	if id=="porta-emblemas": description.text="Estojo com doze espaços. Um emblema por chefe de bairro vencido. Consulte-o junto à Carteira de Pipeiro."
 	if id=="pista-caderno-heleana-1": description.text="Página encontrada em um dos platôs do Bosque dos Ventos. Guardada entre suas pistas."
+	if id=="certificado-rabiola-verde":description.text="Seu primeiro exame da Liga foi concluído. Categoria permanente: perder um título de bairro não a remove."
+	if id=="emprestimo-carcara-nina":description.text="Nina autorizou o empréstimo do Carcará para uma futura travessia de Planar. O percurso ainda está em preparação; não é um parceiro transferido para sua equipe."
 	if id=="kit-remendo":
 		item_name.text="Kit de Remendo"
 		description.text="Papel, cola e linha para cuidar de um Soulmonster. Restaura toda a linha e a armação ao concluir os cuidados."

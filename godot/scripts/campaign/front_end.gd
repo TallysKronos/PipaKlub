@@ -367,6 +367,8 @@ func _show_saved() -> void:
 	if DistrictBadges.pending(session.snapshot()):
 		_resume_first_insignia()
 		return
+	if preload("res://scripts/campaign/league_promotion.gd").pending(session.snapshot()):
+		_show_world();_present_green_promotion.call_deferred();return
 	if DemoFlow.pending(session.snapshot()):
 		_show_demo_complete()
 		return
@@ -530,7 +532,9 @@ func _nina_homecoming() -> void:
 	park.path.clear()
 	park.paused = true
 	var dialog := _dialog("Nina", "Nina: [emo=brilho]Você encontrou! Eu reconheceria esse nó em qualquer lugar. Obrigada… Agora posso trazer meu Carcará de volta.\n\nKael: Cuida bem dele, Nina.", "Concluir este capítulo")
-	dialog.confirmed.connect(_show_demo_complete.call_deferred)
+	dialog.confirmed.connect(func():
+		if preload("res://scripts/campaign/league_promotion.gd").pending(session.snapshot()):_present_green_promotion.call_deferred()
+		else:_show_demo_complete.call_deferred())
 	dialog.confirmed.connect(dialog.queue_free)
 	dialog.popup_centered(Vector2i(640, 300))
 
@@ -1603,6 +1607,9 @@ func _park_action(id: String) -> void:
 	elif id == "nina":
 		if not preload("res://scripts/campaign/kronasta_story.gd").mikka_defeated(player) and not player.flags.get("ninaAccepted",false):
 			_notice("Nina: A Mikka está esperando os novos pipeiros no Morro do Sol. Depois passa aqui para conversar comigo.");return
+		if player.flags.get("ninaReturned",false) and preload("res://scripts/campaign/league_promotion.gd").eligible(player) and not preload("res://scripts/campaign/league_promotion.gd").promoted(player):
+			if _result(preload("res://scripts/campaign/league_promotion.gd").claim(session,point)):_present_green_promotion()
+			return
 		if player.flags.get("ninaReturned", false): _notice("Nina: O Carcará está comigo de novo. Ainda quero te mostrar a pipa que eu estava construindo!")
 		elif player.flags.get("ninaTail", false):
 			if _result(exploration.return_tail(point)):
@@ -2562,3 +2569,17 @@ func _show_tyler_clareira()->void:
 	scene_dialog.canceled.connect(func():
 		scene_dialog.queue_free();park.paused=false;park.camera.zoom=Vector2.ONE*1.15;park.camera.position=camera_start)
 	scene_dialog.popup_centered()
+
+func _present_green_promotion()->void:
+	while is_instance_valid(scene_loading):await get_tree().process_frame
+	if not is_inside_tree() or not preload("res://scripts/campaign/league_promotion.gd").pending(session.snapshot()):return
+	if is_instance_valid(park):park.paused=true;park.path.clear()
+	var promotion_dialog:=_dialog("Rabiola Verde","Nina: [emo=brilho]Você trouxe meu Carcará de volta. Venceu os dois bairros e ajudou alguém fora da arena. Isso também é ser pipeiro.\n\nCarteira de Pipeiro: Exame da categoria Branca concluído. Categoria Rabiola Verde registrada.\n\nNina: Quando meu Carcará estiver pronto para a travessia, pode contar com ele. Guarde esta autorização de empréstimo.\n\nJornada: O próximo bairro é Beira-Canal. O trecho de Planar e as novas funções da categoria ainda estão em preparação.","Guardar e continuar")
+	promotion_dialog.allow_cancel=false
+	promotion_dialog._portraits["Carteira de Pipeiro"]=null
+	promotion_dialog.confirmed.connect(func():
+		if not _result(preload("res://scripts/campaign/league_promotion.gd").acknowledge(session)):return
+		promotion_dialog.queue_free()
+		if is_instance_valid(park):park.paused=false;park.refresh(session.snapshot().player)
+		if DemoFlow.pending(session.snapshot()):_show_demo_complete.call_deferred())
+	promotion_dialog.popup_centered()
