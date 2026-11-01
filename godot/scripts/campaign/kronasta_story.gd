@@ -48,6 +48,7 @@ const BEATS := [
 	{"id":"lacertubo","act":2,"place":"parque","text":"A passagem pela Clareira está aberta. Explore as Veredas e recupere a rabiola de Nina no pátio do Lacertubo."},
 	{"id":"nina-devolvida","act":1,"place":"parque","text":"Leve a rabiola de volta para Nina, no Jardim das Pipas."},
 	{"id":"promocao-verde","act":1,"place":"parque","text":"Volte à Nina para reconhecer o exame e receber a categoria Rabiola Verde."},
+	{"id":"planar-nina","act":1,"place":"parque","text":"Experimente Planar com o Carcará da Nina nas setas azuis junto ao rio das Veredas."},
 ]
 
 ## QA previews: built maps whose story gate does not exist yet open only in development
@@ -76,6 +77,7 @@ static func beat_done(player: Dictionary, id: String) -> bool:
 		"lacertubo": return f.get("guardianDefeated",false)
 		"nina-devolvida": return f.get("ninaReturned",false)
 		"mikka": return mikka_defeated(player)
+		"planar-nina": return f.get("ninaGlideTutorialDone",false)
 		"promocao-verde": return f.get("leagueGreen",false)
 		"tyler": return f.get("tylerClareiraMet",false)
 		"lohan": return preload("res://scripts/campaign/district_rules.gd").completed(player,"bambuzal")

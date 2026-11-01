@@ -122,6 +122,7 @@ static func inspect(value: Variant, slot_id: String) -> String:
 			if not player[field] is Array: return "invalid"
 			for entry in player[field]:
 				if not entry is String: return "invalid"
+	if player.has("ninaGlideFlight") and not preload("res://scripts/campaign/nina_glide.gd").valid_flight(player.ninaGlideFlight):return "invalid"
 	if player.has("tylerClareiraStep") and (not whole(player.tylerClareiraStep) or player.tylerClareiraStep>11):return "invalid"
 	if player.has("morro") and not valid_morro(player.morro): return "invalid"
 	if player.has("championship"):

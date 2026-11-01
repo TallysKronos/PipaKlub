@@ -169,7 +169,7 @@ func _process(delta:float) -> void:
 		_layout()
 func _layout() -> void:
 	if not is_instance_valid(area):return
-	run_button.visible=is_instance_valid(subject) and subject.has_method("toggle_run")
+	run_button.visible=is_instance_valid(subject) and subject.has_method("toggle_run") and (not subject.has_method("can_run") or subject.can_run())
 	run_button.set_pressed_no_signal(Locomotion.toggled)
 	run_button.text="Corrida ligada" if Locomotion.toggled else Controls.prompt("run")+" · Correr"
 	run_button.tooltip_text=("Pressione %s ou clique para alternar a corrida." if Controls.gamepad else "Segure %s para correr ou clique para alternar.")%Controls.prompt("run")

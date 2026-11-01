@@ -195,7 +195,7 @@ func select_item(id: String) -> void:
 	if id=="porta-emblemas": description.text="Estojo com doze espaços. Um emblema por chefe de bairro vencido. Consulte-o junto à Carteira de Pipeiro."
 	if id=="pista-caderno-heleana-1": description.text="Página encontrada em um dos platôs do Bosque dos Ventos. Guardada entre suas pistas."
 	if id=="certificado-rabiola-verde":description.text="Seu primeiro exame da Liga foi concluído. Categoria permanente: perder um título de bairro não a remove."
-	if id=="emprestimo-carcara-nina":description.text="Nina autorizou o empréstimo do Carcará para uma futura travessia de Planar. O percurso ainda está em preparação; não é um parceiro transferido para sua equipe."
+	if id=="emprestimo-carcara-nina":description.text="Nina autorizou o empréstimo do Carcará para uma futura travessia de Planar. Use as setas azuis junto ao rio das Veredas para Planar. Não é um parceiro transferido para sua equipe."
 	if id=="kit-remendo":
 		item_name.text="Kit de Remendo"
 		description.text="Papel, cola e linha para cuidar de um Soulmonster. Restaura toda a linha e a armação ao concluir os cuidados."

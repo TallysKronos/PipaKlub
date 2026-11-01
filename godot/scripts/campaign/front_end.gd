@@ -1457,6 +1457,8 @@ func _load_park() -> void:
 	if is_instance_valid(park): park.paused=false
 
 func _show_park() -> void:
+	if session.snapshot().player.has("ninaGlideFlight"):
+		if not _result(load("res://scripts/campaign/nina_glide.gd").new(session).recover()):return
 	_clear()
 	var container := SubViewportContainer.new()
 	container.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -1478,7 +1480,7 @@ func _show_park() -> void:
 			_result(discovery)
 			return
 		saved=session.snapshot()
-	park = ParkOverworldView.new()
+	park = load("res://scripts/campaign/park_glide_view.gd").new() if saved.checkpoint.scene=="park-veredas" else ParkOverworldView.new()
 	park.ui_theme = theme
 	park.content = content
 	park.saved_checkpoint = saved.checkpoint
@@ -1492,7 +1494,8 @@ func _show_park() -> void:
 
 func _save_park(quiet:bool=false) -> bool:
 	var space: String = park.get("checkpoint_space") if park.get("checkpoint_space")!=null else ""
-	var result: Dictionary = journey.enter_world(park.get_meta("campaign_scene"), park.player,space)
+	var at:Vector2=park.checkpoint_point() if park.has_method("checkpoint_point") else park.player
+	var result: Dictionary = journey.enter_world(park.get_meta("campaign_scene"), at,space)
 	if result.status != "ok":
 		park.paused = true
 		_notice(_error(result.status))
@@ -1521,6 +1524,8 @@ func _park_event(id: String) -> void:
 		if str(int(event.id))!=id or not ParkCheckpoint.allowed(event,player,park.area_id): continue
 		if park.player.distance_to(Vector2(event.u+.5,event.v+.5))>1.8: return
 		var action: String = event.props.get("acao","")
+		if action=="ninaGlide":
+			_request_nina_glide(str(event.props.glideLink));return
 		if action in ["tylerClareira","tylerRai"]:
 			_show_tyler_clareira();return
 		if action=="districtDuel":
@@ -1548,6 +1553,10 @@ func _park_event(id: String) -> void:
 		return
 
 func _park_action(id: String) -> void:
+	if id.begins_with("glide-land:"):
+		var result:Dictionary=load("res://scripts/campaign/nina_glide.gd").new(session).finish(id.trim_prefix("glide-land:"))
+		if _result(result):park.finish_glide();park.refresh(session.snapshot().player)
+		return
 	if id == "autosave":
 		_save_park()
 		return
@@ -2574,7 +2583,7 @@ func _present_green_promotion()->void:
 	while is_instance_valid(scene_loading):await get_tree().process_frame
 	if not is_inside_tree() or not preload("res://scripts/campaign/league_promotion.gd").pending(session.snapshot()):return
 	if is_instance_valid(park):park.paused=true;park.path.clear()
-	var promotion_dialog:=_dialog("Rabiola Verde","Nina: [emo=brilho]Você trouxe meu Carcará de volta. Venceu os dois bairros e ajudou alguém fora da arena. Isso também é ser pipeiro.\n\nCarteira de Pipeiro: Exame da categoria Branca concluído. Categoria Rabiola Verde registrada.\n\nNina: Quando meu Carcará estiver pronto para a travessia, pode contar com ele. Guarde esta autorização de empréstimo.\n\nJornada: O próximo bairro é Beira-Canal. O trecho de Planar e as novas funções da categoria ainda estão em preparação.","Guardar e continuar")
+	var promotion_dialog:=_dialog("Rabiola Verde","Nina: [emo=brilho]Você trouxe meu Carcará de volta. Venceu os dois bairros e ajudou alguém fora da arena. Isso também é ser pipeiro.\n\nCarteira de Pipeiro: Exame da categoria Branca concluído. Categoria Rabiola Verde registrada.\n\nNina: Quando meu Carcará estiver pronto para a travessia, pode contar com ele. Guarde esta autorização de empréstimo.\n\nJornada: Experimente Planar nas setas azuis junto ao rio das Veredas. O próximo bairro é Beira-Canal.","Guardar e continuar")
 	promotion_dialog.allow_cancel=false
 	promotion_dialog._portraits["Carteira de Pipeiro"]=null
 	promotion_dialog.confirmed.connect(func():
@@ -2583,3 +2592,13 @@ func _present_green_promotion()->void:
 		if is_instance_valid(park):park.paused=false;park.refresh(session.snapshot().player)
 		if DemoFlow.pending(session.snapshot()):_show_demo_complete.call_deferred())
 	promotion_dialog.popup_centered()
+
+func _request_nina_glide(id:String)->void:
+	var glide=load("res://scripts/campaign/nina_glide.gd")
+	if not glide.allowed(session.snapshot().player):
+		_notice("A seta marca um ponto de Planar. Devolva a rabiola da Nina e conclua o primeiro exame para contar com o Carcará dela.");return
+	var text:="Nina emprestou seu Carcará para este trecho. Aproxime-se da seta azul e confirme: ele leva você e seu parceiro até a outra margem. A ponte normal continua disponível. Se interromper a travessia, vocês retomam no ponto de partida seguro."
+	if session.snapshot().player.flags.get("ninaGlideTutorialDone",false):text="Planar até a outra margem com o Carcará da Nina?"
+	_confirm_park("Planar · Carcará da Nina",text,"Planar",func():
+		var result:Dictionary=glide.new(session).begin(id,park.player)
+		if _result(result):park.play_glide(session.snapshot().player.ninaGlideFlight))
