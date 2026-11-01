@@ -1,0 +1,169 @@
+{
+  "schema": "overworld-kit-1",
+  "biome": "gelo-v1",
+  "grid": {
+    "cell": [
+      64,
+      32
+    ],
+    "levelPx": 64
+  },
+  "approval": "pending_owner_review",
+  "renderer": "res://scripts/overworld/ice_structures.gd",
+  "pieces": {
+    "gelo-prop": {
+      "variants": {
+        "abrigo": {
+          "file": "pecas/abrigo.png",
+          "size": [
+            1774,
+            887
+          ],
+          "anchor": [
+            887,
+            771.6899999999999
+          ],
+          "displayWidthPx": 250,
+          "footprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "frames": 1,
+          "durationMs": 0,
+          "filter": "linear",
+          "alphaShader": "res://shaders/industrial_cutout.gdshader",
+          "alphaMin": 0,
+          "zeroAlphaSamplesStep4": 61878,
+          "semiAlphaSamplesStep4": 36619,
+          "source": "image_gen.imagegen; original retained in art/overworld/kits/gelo-v1/fontes/abrigo.png"
+        },
+        "cristal": {
+          "file": "pecas/cristal.png",
+          "size": [
+            1774,
+            887
+          ],
+          "anchor": [
+            887,
+            771.6899999999999
+          ],
+          "displayWidthPx": 190,
+          "footprint": [
+            2,
+            2
+          ],
+          "bloqueia": true,
+          "frames": 1,
+          "durationMs": 0,
+          "filter": "linear",
+          "alphaShader": "res://shaders/industrial_cutout.gdshader",
+          "alphaMin": 0,
+          "zeroAlphaSamplesStep4": 57545,
+          "semiAlphaSamplesStep4": 40877,
+          "source": "image_gen.imagegen; original retained in art/overworld/kits/gelo-v1/fontes/cristal.png"
+        },
+        "formacao": {
+          "file": "pecas/formacao.png",
+          "size": [
+            1024,
+            1536
+          ],
+          "anchor": [
+            512,
+            1336.32
+          ],
+          "displayWidthPx": 360,
+          "footprint": [
+            4,
+            3
+          ],
+          "bloqueia": true,
+          "frames": 1,
+          "durationMs": 0,
+          "filter": "linear",
+          "alphaShader": "res://shaders/industrial_cutout.gdshader",
+          "alphaMin": 0,
+          "zeroAlphaSamplesStep4": 46711,
+          "semiAlphaSamplesStep4": 51593,
+          "source": "image_gen.imagegen; original retained in art/overworld/kits/gelo-v1/fontes/formacao.png"
+        },
+        "pinheiro": {
+          "file": "pecas/pinheiro.png",
+          "size": [
+            1024,
+            1536
+          ],
+          "anchor": [
+            512,
+            1459.1999999999998
+          ],
+          "displayHeightPx": 240,
+          "footprint": [
+            1,
+            1
+          ],
+          "bloqueia": true,
+          "frames": 1,
+          "durationMs": 0,
+          "filter": "linear",
+          "alphaShader": "res://shaders/industrial_cutout.gdshader",
+          "alphaMin": 0,
+          "zeroAlphaSamplesStep4": 58664,
+          "semiAlphaSamplesStep4": 39640,
+          "source": "image_gen.imagegen; original retained in art/overworld/kits/gelo-v1/fontes/pinheiro.png"
+        },
+        "rocha": {
+          "file": "pecas/rocha.png",
+          "size": [
+            1774,
+            887
+          ],
+          "anchor": [
+            887,
+            771.6899999999999
+          ],
+          "displayWidthPx": 190,
+          "footprint": [
+            3,
+            2
+          ],
+          "bloqueia": true,
+          "frames": 1,
+          "durationMs": 0,
+          "filter": "linear",
+          "alphaShader": "res://shaders/industrial_cutout.gdshader",
+          "alphaMin": 0,
+          "zeroAlphaSamplesStep4": 54287,
+          "semiAlphaSamplesStep4": 44197,
+          "source": "image_gen.imagegen; original retained in art/overworld/kits/gelo-v1/fontes/rocha.png"
+        }
+      }
+    },
+    "gelo-marker": {
+      "native": true,
+      "footprint": [
+        1,
+        1
+      ],
+      "bloqueia": true,
+      "description": "Wooden post with blue cloth; native geometry"
+    }
+  },
+  "surfaces": {
+    "parede": {
+      "file": "superficies/parede.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "repeat": true,
+      "opaque": true
+    }
+  },
+  "notes": [
+    "Secondary formation width 255px, footprint 3x3; hero 360px, footprint 4x3.",
+    "Original semi-transparent halos are discarded by existing cutout shader; source PNGs unmodified.",
+    "Frozen lake is opaque traversable ground. No sliding, dynamic weather, boss or online reward implementation."
+  ]
+}

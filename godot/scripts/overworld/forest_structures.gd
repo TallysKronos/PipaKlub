@@ -31,7 +31,7 @@ static func floor_cut(model,node:Node2D,poly:Polygon2D,corners:Array,u:int,v:int
  if c.is_empty():c={"material":"grama","level":0}
  if model.data.get("forest",{}).get("mountain",false) and (u<0 or v<0 or u>=int(model.data.w) or v>=int(model.data.h)):
   c=model.cell_at(Vector2i(clampi(u,0,int(model.data.w)-1),clampi(v,0,int(model.data.h)-1)))
- if model.data.get("forest",{}).get("mountain",false) and int(c.level)<0:poly.free();return
+ if (model.data.get("forest",{}).get("mountain",false) or model.data.get("forest",{}).get("ice",false)) and int(c.level)<0:poly.free();return
  if model.data.get("forest",{}).get("mine",false) and c.get("material")=="rocha":
   var near:=false
   for y in range(v-3,v+4):
@@ -64,7 +64,7 @@ static func floor_cut(model,node:Node2D,poly:Polygon2D,corners:Array,u:int,v:int
   if bool(model.data.get("forest",{}).get("industrial",false)) and not geometry():
    target.uv=fragment
    target.color=shade
-  if c.get("material","")=="piso":
+  if c.get("material","")=="piso" and not model.data.get("forest",{}).get("ice",false):
    target.material=null
    target.texture=null if geometry() else load(BASE+"terrenos-v1/superficies/bloquete.png")
    target.color=Color("c5b88b") if geometry() else Color.WHITE
