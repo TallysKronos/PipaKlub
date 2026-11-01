@@ -10,7 +10,7 @@ Critério central: uma captura sem logo precisa ser reconhecível como Soulmonst
 | 2 | PIP-127 | Benchmark dos sete jogos; 10 princípios próprios | Estudo local entregue; 27 evidências, versões e limites em PIP-127.md |
 | 3 | PIP-128 | A papel/vareta; B muro; C carretel/Elo; 3 mocks por direção | V1 rejeitada; B ilustrada v2 preferida pelo dono e adotada na PIP-129 |
 | 4 | PIP-129 | Escolher direção e registrar justificativa | B — Mural de Kronasta; decisão local em DECISAO.md |
-| 5 | PIP-130 | Forma-assinatura, paleta, tipografia, ícones e Theme | Fundação opt-in implementada; 216 checks novos passaram; auditorias legadas falham em fontes inalteradas, ver PIP-130.md |
+| 5 | PIP-130 | Forma-assinatura, paleta, tipografia, ícones e Theme | Fundação opt-in e ícones salientes implementados; 977 checks novos passaram; auditorias legadas falham em fontes inalteradas, ver PIP-130.md |
 | 6 | PIP-131 | Logo e tela de título | Próxima etapa; sistema base B disponível |
 | 7 | PIP-132 | Exploração e Kronasta | Pendente do sistema |
 | 8 | PIP-133 | Batalha, VS de campeão, enroscada | Pendente do sistema |

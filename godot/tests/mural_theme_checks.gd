@@ -46,6 +46,15 @@ func run_checks() -> void:
 				var r:Rect2=button.get_global_rect()
 				check(r.position.x>=region.position.x-1 and r.end.x<=region.end.x+1,"no horizontal clipping: "+button.text+" "+str(resolution)+" "+str(scale))
 				check(button.size.x+1>=button.get_combined_minimum_size().x,"native text/icon minimum: "+button.text)
+				var illustration:=button.get_node_or_null("IllustratedIcon") as TextureRect
+				check(illustration!=null and illustration.size==Vector2(96,96),"large independent illustration: "+button.text)
+				var local:Rect2=button.call("icon_visual_bounds")
+				var optical:=Rect2(r.position+local.position,local.size)
+				check(optical.position.x>=region.position.x and optical.end.x<=region.end.x,"illustration inside viewport gutter: "+button.text)
+				check(button.get_theme_stylebox("normal").get_content_margin(SIDE_LEFT)>=local.end.x+12,"illustration leaves title space: "+button.text)
+				for other in lab.menu_buttons+lab.state_buttons:
+					if other!=button and other.get_parent()==button.get_parent():
+						check(not optical.intersects(other.get_global_rect()),"illustration avoids adjacent card: "+button.text+" / "+other.text)
 		lab.free()
 	root.size=Vector2i(1280,720)
 	var lab:=Lab.new();root.add_child(lab)
@@ -71,6 +80,11 @@ func run_checks() -> void:
 		Input.parse_input_event(click);await process_frame
 	check(lab.activations==3,"simulated mouse click confirms once")
 	check(root.gui_get_focus_owner()==lab.menu_buttons[1],"click transfers focus to its target")
+	position=lab.menu_buttons[1].get_global_position()+Vector2(-4,24)
+	for pressed in [true,false]:
+		var click:=InputEventMouseButton.new();click.button_index=MOUSE_BUTTON_LEFT;click.position=position;click.global_position=position;click.pressed=pressed
+		Input.parse_input_event(click);await process_frame
+	check(lab.activations==4,"protruding illustration remains clickable")
 	lab.state_buttons[0].grab_focus()
 	await key(KEY_TAB)
 	check(root.gui_get_focus_owner()!=lab.state_buttons[1],"Tab navigation skips disabled button")

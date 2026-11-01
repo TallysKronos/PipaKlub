@@ -54,7 +54,14 @@ icons = ['team', 'bag', 'missions', 'emblems', 'identity', 'workshop', 'save',
          'settings', 'dex', 'evolution', 'varal', 'puxao']
 for n, name in enumerate(icons):
     col, row = n % 4, n // 4
-    cut('icons-source.png', name, (xs[col], ys[row], xs[col+1], ys[row+1]), 'icons')
+    box = (xs[col], ys[row], xs[col+1], ys[row+1])
+    # The top row has different gutters: avoid importing the neighboring
+    # satchel/map's edge fragments into the larger pop-out illustrations.
+    if name == 'team': box = (0,0,370,402)
+    if name == 'bag': box = (370,0,730,402)
+    if name == 'missions': box = (730,0,1110,402)
+    if name == 'emblems': box = (1110,0,1448,402)
+    cut('icons-source.png', name, box, 'icons')
 
 manifest = dict(version=1, direction='Mural de Kronasta', pieces=records,
                 processing='Atlas cuts, alpha trim, uniform resample and transparent padding only; no repaint or palette conversion.',

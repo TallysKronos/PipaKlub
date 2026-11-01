@@ -20,6 +20,8 @@ func _ready() -> void:
 
 Variações de botão: `MuralButton`, `MuralMintButton`, `MuralInkButton`, `MuralSunButton`; foco usa `MuralFocusButton`. `MuralButton` é um Button real, não uma imagem clicável: mantém sinais, input e hitbox nativos. Não instalar `RecorteUX` sobre a mesma subárvore Mural, pois ele acrescenta a decoração antiga.
 
+Os ícones agora são recortes de 96×96 px, independentes da altura do texto, saindo pela borda esquerda/superior. Reserve 12 px à esquerda e 8 px acima do card e evite `clip_contents` em ancestrais que cortem a ilustração. O texto tem recuo fixo de 92 px. A área saliente continua clicável; o filho de ilustração ignora input para não roubar foco ou confirmação.
+
 Painéis: `MuralPaperPanel`, `MuralInkPanel`, `MuralSunPanel`, `MuralTitlePanel`. Ao usar superfície escura, escolha texto `MuralInverseText`. Não colocar ícones ou presilhas no trecho expansível de um slice.
 
 Fontes: `MuralTitle`, `MuralHeading`, `MuralBody`, `MuralCaption`; textos semânticos `MuralMutedText`, `MuralInverseText`, `MuralErrorText`, `MuralSuccessText`. Os nomes das variações são de Theme para controles nativos.

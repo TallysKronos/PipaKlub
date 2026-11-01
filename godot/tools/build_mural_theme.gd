@@ -46,16 +46,24 @@ func _initialize() -> void:
 	focus.border_color=T.MURAL_TEAL;focus.set_border_width_all(3)
 	result.set_stylebox("focus","Button",focus)
 	variation("MuralButton","Button")
+	# Native text reserves the illustration's independent left-hand footprint.
+	for state in ["normal","hover","pressed","disabled"]:
+		var face:=result.get_stylebox(state,"Button").duplicate() as StyleBoxTexture
+		face.content_margin_left=92
+		result.set_stylebox(state,"MuralButton",face)
 	variation("MuralMintButton","MuralButton")
 	var mint:=texture_box("paper");mint.modulate_color=T.MURAL_MINT
+	mint.content_margin_left=92
 	result.set_stylebox("normal","MuralMintButton",mint)
 	variation("MuralInkButton","MuralButton")
-	result.set_stylebox("normal","MuralInkButton",ink)
+	var menu_ink:=ink.duplicate() as StyleBoxTexture;menu_ink.content_margin_left=92
+	result.set_stylebox("normal","MuralInkButton",menu_ink)
 	result.set_color("font_color","MuralInkButton",T.MURAL_PAPER)
 	variation("MuralSunButton","MuralButton")
-	result.set_stylebox("normal","MuralSunButton",sun)
+	var menu_sun:=sun.duplicate() as StyleBoxTexture;menu_sun.content_margin_left=92
+	result.set_stylebox("normal","MuralSunButton",menu_sun)
 	variation("MuralFocusButton","MuralButton")
-	result.set_stylebox("normal","MuralFocusButton",sun)
+	result.set_stylebox("normal","MuralFocusButton",menu_sun)
 	result.set_stylebox("focus","MuralButton",StyleBoxEmpty.new())
 	result.set_stylebox("focus","MuralFocusButton",StyleBoxEmpty.new())
 	for type in ["Label","RichTextLabel","LineEdit","TextEdit","ItemList","TabBar","ProgressBar"]:

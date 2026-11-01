@@ -50,7 +50,9 @@ Fontes carregadas pelos tokens existentes; licenças OFL locais preservadas. Nã
 
 ## Ícones
 
-`team`, `bag`, `missions`, `emblems`, `identity`, `workshop`, `save`, `settings`, `dex`, `evolution`, `varal`, `puxao`: 12 PNGs RGBA de 256×256. Optical area até 224×224; uso comum de 48–80 px com redução filtrada e mipmaps. As divisões do atlas seguem seus gutters reais, não uma grade presumida que cortaria os desenhos. Os nomes e rótulos ficam fora das imagens.
+`team`, `bag`, `missions`, `emblems`, `identity`, `workshop`, `save`, `settings`, `dex`, `evolution`, `varal`, `puxao`: 12 PNGs RGBA de 256×256. Optical area até 224×224, com redução filtrada e mipmaps. Após a revisão do dono sobre ícones pequenos, os botões usam uma ilustração independente de **96×96 px** (aproximadamente 84 px de desenho visível), saindo cerca de 10 px à esquerda e 6 px acima do papel. Contorno claro e sombra curta destacam o recorte. Texto começa a 92 px, sem ocupar a ilustração. As divisões do atlas seguem seus gutters reais, com correções na primeira linha para não incluir fragmentos dos vizinhos. Os nomes e rótulos ficam fora das imagens.
+
+O recorte grande não é o `Button.icon` nativo, que diminuía conforme a altura do conteúdo. É um TextureRect sem captura de input. A parte exposta continua clicável por `_has_point()`. Reserve ao menos 12 px à esquerda e 8 px acima do cartão para o desenho/sombra; o ancestral de layout não deve recortar esses limites. ScrollContainer continua recortando somente nos limites do viewport, como esperado. A navegação, confirmação e foco continuam pertencendo ao Button.
 
 O ícone de emblema é a categoria de menu, não define nem concede uma das 12 insígnias. O retrato pequeno da identidade é um ícone ilustrado; telas de perfil continuam devendo usar o retrato canônico apropriado. O desenho de evolução não adiciona uma evolução aos dados.
 
