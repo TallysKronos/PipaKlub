@@ -1,5 +1,19 @@
 # Soulgen Studio — ateliê de animação
 
+## Editar montaria e Kael diretamente no jogo
+
+Abra **Editar sprites do jogo** no cabeçalho ou http://127.0.0.1:5240/game-sprites.html. O servidor é iniciado com `npm run studio:sprites`.
+
+Escolha **Kael montado** ou **Montaria C**, escolha uma das oito direções e clique **Desenhar / apagar**. O editor existente oferece pincel, borracha, conta-gotas, tamanho, opacidade, traço de pixel/nanquim, zoom, navegação com Espaço e desfazer/refazer. **Aplicar** retorna à prévia composta; **Salvar no jogo** grava somente aquele recorte no PNG efetivamente usado pelo Godot. Retoques de outras direções ficam pendentes sem se perder ao alternar. Baixar PNG permite guardar uma cópia antes de recarregar.
+
+O salvamento preserva os demais pixels da folha, as dimensões e o alpha. Margens compartilhadas entre dois recortes não aceitam alterações que afetariam a outra vista. Cada gravação tem backup em `.local/soulgen-history/`. Uma revisão SHA-256 impede sobrescrever modificações de outra aba. Somente os dois arquivos registrados no serviço podem ser gravados, em localhost e pela mesma origem; não há entrada de caminho arbitrário.
+
+Para atualização ao vivo, execute pelo projeto Godot e reinicie uma vez se ele já estava aberto antes desta integração. Depois, o loader compartilhado atualiza a textura em aproximadamente um segundo, inclusive as camadas de perna/pescoço. Um executável exportado mantém os recursos empacotados e precisa de nova exportação para receber edições.
+
+Esta página edita pixels, sem quantizar a ilustração para uma paleta indexada e sem alterar pivôs, máscaras de perna, missões ou saves. A prévia respeita a montagem atual do manifesto. A página antiga de animação continua trabalhando com seu projeto portátil, sem escrever os PNGs do jogo.
+
+Verificado: 23 testes Node (incluindo pintura com canvas real, fluxo funcional da página, PNG, backup, isolamento por direção e conflito de revisão); 684 verificações da montaria no Godot; teste nativo de atualização da mesma ImageTexture. A automação visual do navegador estava desativada, portanto o teste DOM não é apresentado como aprovação do layout em navegador.
+
 ## Nozinho artesanal em três quartos
 
 Abra `/?preset=nozinho` ou **Projeto e biblioteca → Abrir Nozinho · três quartos**. Corpo e quatro membros articulados, cinco ações e expressões registradas. O preset tem recuperação própria quando aberto pelo endereço direto. Projeto portátil, imagens e limites em [Nozinho](../../art/soulgen/keys/nozinho/README.md). Configurado para revisão; ainda não substitui o atlas antigo do jogo.

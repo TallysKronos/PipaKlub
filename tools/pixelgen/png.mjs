@@ -19,7 +19,10 @@ export function decodePNG(buffer){
  if(depth!==8||interlace)throw Error('Use PNG de 8 bits por canal, sem entrelaçamento.');
  if(w*h>16777216)throw Error('Use uma imagem de até 16 megapixels.');
  const channels={0:1,2:3,3:1,4:2,6:4}[type];if(!channels)throw Error('Tipo de cor PNG não suportado.');
- const raw=zlib.inflateSync(Buffer.concat(idat)),stride=w*channels,out=new Uint8ClampedArray(w*h*4);let prev=new Uint8Array(stride);
+ const stride=w*channels,expected=(stride+1)*h;
+ const raw=zlib.inflateSync(Buffer.concat(idat),{maxOutputLength:expected});
+ if(raw.length!==expected)throw Error('Dados PNG incompletos.');
+ const out=new Uint8ClampedArray(w*h*4);let prev=new Uint8Array(stride);
  for(let y=0;y<h;y++){const f=raw[y*(stride+1)],line=Uint8Array.from(raw.subarray(y*(stride+1)+1,(y+1)*(stride+1)));
   for(let x=0;x<stride;x++){const a=x>=channels?line[x-channels]:0,up=prev[x],c=x>=channels?prev[x-channels]:0;
    line[x]=(line[x]+(f===1?a:f===2?up:f===3?(a+up)>>1:f===4?(()=>{const q=a+up-c,pa=Math.abs(q-a),pb=Math.abs(q-up),pc=Math.abs(q-c);return pa<=pb&&pa<=pc?a:pb<=pc?up:c;})():0))&255;}

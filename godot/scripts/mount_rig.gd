@@ -1,4 +1,5 @@
 extends Node2D
+const LiveSprites=preload("res://scripts/pixelgen_sprites.gd")
 ## One ground root, one directional saddle socket, independent reusable rider.
 var definition:Dictionary={}
 var facing:="se"
@@ -13,11 +14,11 @@ func _ready() -> void:
 	definition=JSON.parse_string(FileAccess.get_file_as_string(definition_path))
 	use_parent_material=true
 	body=Sprite2D.new();body.name="MountBody";body.region_enabled=true;body.centered=false;add_child(body)
-	body.texture=load(definition.texture)
+	body.texture=LiveSprites.load_texture(definition.texture)
 	body.use_parent_material=true
 	seat=Marker2D.new();seat.name="RiderSocket";add_child(seat)
 	rider=Sprite2D.new();rider.name="Rider";rider.region_enabled=true;rider.centered=false;seat.add_child(rider)
-	rider.texture=load(definition.riderTexture)
+	rider.texture=LiveSprites.load_texture(definition.riderTexture)
 	seat.use_parent_material=true;rider.use_parent_material=true
 	far_leg=rider.duplicate();far_leg.name="FarLeg";seat.add_child(far_leg)
 	for layer in [rider,far_leg]:
