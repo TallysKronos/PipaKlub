@@ -43,6 +43,9 @@ func set_facing(value:String) -> void:
 	rider.position=-Vector2(frame.hip[0],frame.hip[1])*definition.riderScale
 	seat.z_index=0;rider.z_index=1;far_leg.z_index=-1
 	far_leg.region_rect=rider.region_rect;far_leg.scale=rider.scale;far_leg.position=rider.position
+	# Rotate only the distant limb around the shared hip, never around the sheet.
+	far_leg.rotation=deg_to_rad(float(frame.get("farLegAngle",0)))
+	far_leg.position=rider.position.rotated(far_leg.rotation)
 	for layer in [rider,far_leg]:
 		layer.material.set_shader_parameter("region_origin",rider.region_rect.position)
 		layer.material.set_shader_parameter("atlas_size",rider.texture.get_size())

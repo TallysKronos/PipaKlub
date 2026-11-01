@@ -36,7 +36,7 @@ func run() -> void:
 			check(view.avatar.mount_rig.seat.position.y<0,"socket above ground")
 			var rig:Node2D=view.avatar.mount_rig
 			check(rig.far_leg.z_index<rig.body.z_index and rig.rider.z_index>rig.body.z_index,"legs straddle body layers")
-			check(rig.far_leg.region_rect==rig.rider.region_rect and rig.far_leg.position==rig.rider.position,"layer masks use same aligned silhouette")
+			check(rig.far_leg.region_rect==rig.rider.region_rect and rig.far_leg.position.is_equal_approx(rig.rider.position.rotated(rig.far_leg.rotation)),"distant limb rotates around shared hip")
 			check(rig.far_leg.material.get_shader_parameter("far_layer")==true and rig.rider.material.get_shader_parameter("far_layer")==false,"complementary leg masks")
 			check(rig.seat.z_index==0,"whole rider never hidden behind creature")
 		view.avatar.facing="se";view.avatar._process(0);await settle()

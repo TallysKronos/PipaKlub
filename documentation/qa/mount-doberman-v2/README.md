@@ -13,6 +13,8 @@ A auditoria inicial foi preservada em `AUDITORIA-INICIAL.md`. Capturas da integr
 - Removida a dupla multiplicação da cor no shader, que escurecia a pele e a roupa. Oclusão do mapa da cidade preservada no shader das camadas.
 - Corrigidos os recortes E/NE para conservar as rabiolas inteiras sem fragmentos de outras vistas.
 
+Correção após feedback do dono: a máscara SE anterior deixava a raiz da coxa distante na camada próxima, produzindo uma perna que parecia entrar no ombro. A máscara agora inclui a coxa desde a raiz; essa perna tem um ajuste de 24° em torno do quadril para passar pelo lado distante do tronco. A perna próxima não muda. O teste verifica o pivô compartilhado mesmo quando a camada distante tem rotação própria. Capturas SE e comparação de escala atualizadas; a versão anterior continua no histórico Git.
+
 ## Evidência
 
 Inspeção visual das oito direções ampliadas (`detail-*.png`) e no mapa (`map-*.png`), além de rua, parque e Morro a 1280×720. São capturas do rig no Godot, não montagens de uma imagem de conceito sobre o cenário.
