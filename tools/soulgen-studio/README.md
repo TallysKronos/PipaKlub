@@ -212,3 +212,7 @@ Caimbira · Vigia das Marés Esquecidas: oito peças proporcionais e cinco açõ
 Tamoatá · Tecelão dos Caminhos: oito peças proporcionais e cinco ações, disponível em `/?preset=tamoata-memoria`.
 
 Herravento · Caçador das Rajadas: oito peças proporcionais e cinco ações em `/?preset=herravento`.
+
+## Dóber de papel · recorte fiel
+
+Abra `/?preset=doberman-c` ou **Projeto e biblioteca → Abrir Dóber de papel · recorte fiel**. A versão ativa recorta a imagem enviada pelo autor, preservando as coordenadas de oito peças e todos os pixels visíveis. Seis ações, pivôs editáveis, projeto portátil e atlas de combate. [Análise, recortes e limites](../../art/soulgen/keys/doberman-c/README.md).

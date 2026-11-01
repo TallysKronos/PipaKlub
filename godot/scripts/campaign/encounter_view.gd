@@ -33,6 +33,9 @@ var banner: Texture2D
 var paused := false
 var blocked := false
 var clock := 0.0
+var sprite_clock:=0.0
+var sprite_states:Dictionary={}
+var sprite_hurt_until:Dictionary={}
 var save_clock := 0.0
 var controls: Label
 var resume_button: Button
@@ -74,6 +77,7 @@ func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	impacts.reduced_motion = reduced_motion
 	model.damage_applied.connect(impacts.add)
+	model.damage_applied.connect(func(event:Dictionary):sprite_hurt_until[0 if event.get("player",false) else 1]=sprite_clock+.7)
 	model.combat_feedback.connect(impacts.add)
 	signature_banner=load("res://scripts/campaign/signature_banner.gd").new()
 	signature_banner.reduced_motion=reduced_motion
@@ -272,6 +276,7 @@ func _physics_process(delta: float) -> void:
 		var held:bool=ACTION_COPY.keys().any(func(action:String):return Controls.held(action) or bool(pointer_held.get(action,false)))
 		if not held:require_action_release=false
 	clock += delta
+	if not paused and not blocked:sprite_clock+=delta
 	if model.get("intermission")!=null and model.intermission>0 and round_wipe_number!=model.round_number:
 		round_wipe_number=model.round_number
 		var wipe=load("res://scripts/campaign/recorte_ink_wipe.gd").new()
@@ -460,7 +465,7 @@ func _draw() -> void:
 		if not model.outcome.is_empty(): action = "victory" if (model.outcome == "won") == (index == 0) else "defeat"
 		elif actor.attackCooldown > .5 or actor.signatureWindup > 0: action = "attack"
 		var frames: Array = content.combat[art_ids[index]].animations[action]
-		var frame: Dictionary = frames[int(clock * 12) % frames.size()]
+		var frame: Dictionary = _sprite_frame(index,actor,action)
 		var width := 230 if index == 1 and model.q.boss else 180
 		var opponent:Dictionary=model.q if index==0 else model.p
 		var flip:bool=Ink.facing_flip(art_ids[index],actor.x,opponent.x)
@@ -562,3 +567,23 @@ func draw_ellipse_stub(point: Vector2) -> void:
 	draw_set_transform(point, 0, Vector2(1, .25))
 	draw_circle(Vector2.ZERO, 18, Tokens.alpha(Tokens.NANQUIM, .25))
 	draw_set_transform(Vector2.ZERO)
+
+## Soulgen clips use their own start, pause clock and one-shot recovery. Legacy atlases retain their sampler.
+func _sprite_frame(index:int,actor:Dictionary,legacy_action:String) -> Dictionary:
+	var art:Dictionary=content.combat[art_ids[index]]
+	if not art.has("playback"):
+		var old_frames:Array=art.animations[legacy_action]
+		return old_frames[int(clock*12)%old_frames.size()]
+	var action:=legacy_action
+	if actor.get("hp",1)<=0 or actor.get("hull",1)<=0:action="defeat"
+	elif model.outcome.is_empty():
+		if sprite_clock<float(sprite_hurt_until.get(index,-1)):action="hurt"
+		elif actor.get("attackCooldown",0)>.5 or actor.get("signatureWindup",0)>0 or actor.get("skillTime",0)>0:action="attack"
+		elif model.intro<=0 and Vector2(actor.get("vx",0),actor.get("vy",0)).length()>12:action="flight"
+		else:action="idle"
+	if not sprite_states.has(index) or sprite_states[index].action!=action:sprite_states[index]={"action":action,"start":sprite_clock}
+	var frames:Array=art.animations[action]
+	var playback:Dictionary=art.playback[action]
+	var frame_index:=maxi(0,floori((sprite_clock-float(sprite_states[index].start))*float(playback.fps)))
+	frame_index=frame_index%frames.size() if playback.loop else mini(frame_index,frames.size()-1)
+	return frames[frame_index]

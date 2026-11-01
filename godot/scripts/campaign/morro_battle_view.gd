@@ -44,7 +44,7 @@ func _draw() -> void:
 		elif not model.outcome.is_empty(): animation = "victory" if (index == 0 and model.outcome == "won") or (index > 0 and actor.rounds >= model.rounds_to_win) else "defeat"
 		elif actor.attackCooldown > .5 or actor.signatureWindup > 0: animation = "attack"
 		var frames: Array = content.combat[art_ids[index]].animations[animation]
-		var frame: Dictionary = frames[int(clock * 12) % frames.size()]
+		var frame: Dictionary = _sprite_frame(index,actor,animation)
 		var target:Dictionary=model.q if index==0 else model.p
 		Ink.live_sprite(self, textures[index], art_ids[index], frame, Vector2(actor.x, actor.y), 180, Tokens.alpha(Tokens.UNTINTED, .45 if eliminated else 1), _field_scale(),Ink.facing_flip(art_ids[index],actor.x,target.x))
 

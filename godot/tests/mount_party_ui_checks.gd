@@ -52,5 +52,29 @@ func run() -> void:
 	view.model._apply_hit({"target":view.model.p,"body":false,"damage":10})
 	check(view.model.p.hp<hp,"mount receives combat damage")
 	await capture("02-battle")
+	view.sprite_hurt_until.clear();view.model.p.vx=0
+	view.sprite_states.clear();view.sprite_clock=0
+	var first:Dictionary=view._sprite_frame(0,view.model.p,"idle")
+	view.sprite_clock=.2
+	check(view._sprite_frame(0,view.model.p,"idle")!=first,"Soulgen idle frames advance")
+	var frozen:float=view.sprite_clock;view._physics_process(.1)
+	check(view.sprite_clock==frozen,"Soulgen animation pauses with battle")
+	view.sprite_hurt_until[0]=view.sprite_clock+.7
+	view._sprite_frame(0,view.model.p,"idle")
+	check(view.sprite_states[0].action=="hurt","damage selects Soulgen hurt")
+	view.sprite_clock+=1;view.sprite_hurt_until.clear();view.model.p.attackCooldown=.8
+	view._sprite_frame(0,view.model.p,"attack")
+	check(view.sprite_states[0].action=="attack","attack selects Soulgen skill")
+	view.sprite_clock+=3
+	check(view._sprite_frame(0,view.model.p,"attack")==view.content.combat[Quest.MODEL].animations.attack[-1],"one-shot attack holds recovery instead of looping")
+	view.model.p.attackCooldown=0;view.model.p.vx=30
+	view._sprite_frame(0,view.model.p,"idle")
+	check(view.sprite_states[0].action=="flight","movement selects Soulgen flight")
+	view.model.outcome="won";view._sprite_frame(0,view.model.p,"victory")
+	check(view.sprite_states[0].action=="victory","victory clip selected")
+	view.model.p.hp=0;view._sprite_frame(0,view.model.p,"defeat")
+	check(view.sprite_states[0].action=="defeat","defeat clip selected")
+	view.sprite_clock+=3
+	check(view._sprite_frame(0,view.model.p,"defeat")==view.content.combat[Quest.MODEL].animations.defeat[-1],"defeat stays collapsed")
 	app.free();print("Mount party UI: ",checks," checks, ",failures," failures")
 	quit(1 if failures else 0)

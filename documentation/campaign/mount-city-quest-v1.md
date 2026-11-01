@@ -100,3 +100,11 @@ A entrega de Zeca agora inclui o parceiro real e o apito numa operação atômic
 A equipe mostra um ícone de sela ao lado do retrato; fica apagado quando derrotado. O modelo pode ser selecionado e entrar nos encontros, receber dano e XP e conservar sua condição ao retornar. Arte própria de combate, retratos e aliases de UI integrados; uma pose estática atende os estados visuais do contrato atual. Animações exclusivas de combate ainda não foram produzidas.
 
 Validação isolada: 40 verificações da missão/saúde/encontro real, 19 do fluxo de cidade, 9 da equipe/batalha nativa, 684 de montaria e 206 de campanha, todas sem falhas. Capturas 1280×720: `documentation/qa/mount-party-v1/`.
+
+## Rig Soulgen fiel — 2026-11-01
+
+Após rejeição das peças redesenhadas, a versão ativa foi refeita por recorte da imagem indicada pelo autor. Projeto, análise e fontes em `art/soulgen/keys/doberman-c/README.md`; preset `?preset=doberman-c`. Oito peças; 109 frames a 12 FPS; seis ações. A remontagem conserva exatamente os 381.302 pixels visíveis da fonte. Não foram inventadas superfícies ocultas; amplitudes locais são pequenas.
+
+O atlas `combat-doberman-c-soulgen-v2.png` substitui a pose estática como fonte de combate, preservando o PNG anterior. Ações únicas usam seu próprio início e param no último frame; pausa interrompe o relógio. O amostrador também é compartilhado com as batalhas do Morro. A regra da cidade foi corrigida para consultar elegibilidade completa, e o marcador da missão continua consultando a posse do prêmio.
+
+Verificado: 14 testes Node (rig, recorte RGBA exato, projeto portátil, rotas, amostrador e Nozinho) e 18 verificações nativas de equipe/montaria/ações, todos passando. Capturas atualizadas em `documentation/qa/mount-party-v1/`. Prévia animada GIF e HTML junto ao rig.

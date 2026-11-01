@@ -53,7 +53,7 @@ func map_landmarks() -> Array[Dictionary]:
 		var title: String={"casa-kael":"Casa do Kael","professor":"Ateliê do professor","loja":"Loja da Lia"}.get(house.id,"")
 		if not title.is_empty():markers.append({"point":house.door,"text":title})
 	var quest=preload("res://scripts/campaign/mount_quest.gd")
-	if quest.available(saved_player) and not quest.eligible(saved_player):
+	if quest.available(saved_player) and not quest.owned(saved_player):
 		markers.append({"point":quest.LIA if quest.stage(saved_player)==1 else quest.ZECA,"text":"Lia · fecho da guia" if quest.stage(saved_player)==1 else "Zeca · montaria"})
 	return markers
 
@@ -141,7 +141,7 @@ func _update_hint() -> void:
 	if quest.available(saved_player) and quest.stage(saved_player) in [1,2]:exploration_hud.objective.text=quest.objective(saved_player)
 
 func can_mount() -> bool:
-	return preload("res://scripts/campaign/mount_quest.gd").owned(saved_player)
+	return preload("res://scripts/campaign/mount_quest.gd").eligible(saved_player)
 
 func toggle_mount() -> void:
 	if not can_mount() or not conversation.is_empty() or is_instance_valid(active_dialogue):return
