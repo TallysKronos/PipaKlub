@@ -73,6 +73,9 @@ static func next_here(player: Dictionary,scene: String) -> Dictionary:
 	return {}
 static func objective(player: Dictionary,scene: String) -> String:
 	var flags: Dictionary=player.get("flags",{})
+	var story=load("res://scripts/campaign/kronasta_story.gd")
+	if not story.mikka_defeated(player) and not flags.get("ninaAccepted",false):return story.objective(player)
+	if flags.get("ninaBambuzalOrder",false) and not story.park_access(player,"park-clearing"):return story.objective(player)
 	if needs_rest(player) and not flags.get("guardianDefeated",false): return "Seu parceiro precisa descansar. Procure um banco do parque."
 	if flags.get("ninaReturned",false): return preload("res://scripts/campaign/kronasta_story.gd").objective(player)
 	if flags.get("ninaTail",false): return "Leve a rabiola para Nina. O atalho ao Jardim fica a leste do pátio." if scene=="park-veredas" else "Volte à entrada do Jardim e entregue a rabiola para Nina."

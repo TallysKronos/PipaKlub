@@ -19,7 +19,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	var entry := Rules.stage(model.stage_id)
+	var entry := TrailModel.stage_definition(model.stage_id)
 	if not paused and model.outcome.is_empty():
 		if model.intermission > 0: controls.text = model.round_message + " · Próxima rodada em %.0f" % ceilf(model.intermission)
 		elif model.intro > 0: controls.text = "%s · Vence quem conquistar %d rodadas." % [entry.name, model.rounds_to_win]

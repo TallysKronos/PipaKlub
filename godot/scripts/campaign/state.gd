@@ -62,7 +62,7 @@ static func inspect(value: Variant, slot_id: String) -> String:
 	if kind == "practice" and (not whole(checkpoint.get("lesson")) or checkpoint.lesson > 4):
 		return "invalid"
 	if kind == "world":
-		if checkpoint.get("scene") not in ["quintal", "professor-home", "kite-shop", "park-trail", "park-clearing", "park-veredas", "morro", "morro-area-2", "morro-area-3", "morro-area-4", "morro-area-5","kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c","kronasta-pantano-a","kronasta-pantano-b","kronasta-pantano-c","kronasta-montanha-a","kronasta-montanha-b","kronasta-montanha-c","kronasta-industrial-a","kronasta-industrial-b","kronasta-industrial-c","mina-ferro-a","mina-ferro-b","mina-ferro-c","mina-ferro-d","gelo-a","gelo-b","gelo-c","gelo-d","submerso-a","submerso-b","submerso-c"] or not checkpoint.get("position") is Array or checkpoint.position.size() != 2:
+		if checkpoint.get("scene") not in ["kronasta-bambuzal-a","kronasta-bambuzal-b","kronasta-bambuzal-c","quintal", "professor-home", "kite-shop", "park-trail", "park-clearing", "park-veredas", "morro", "morro-area-2", "morro-area-3", "morro-area-4", "morro-area-5","kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c","kronasta-pantano-a","kronasta-pantano-b","kronasta-pantano-c","kronasta-montanha-a","kronasta-montanha-b","kronasta-montanha-c","kronasta-industrial-a","kronasta-industrial-b","kronasta-industrial-c","mina-ferro-a","mina-ferro-b","mina-ferro-c","mina-ferro-d","gelo-a","gelo-b","gelo-c","gelo-d","submerso-a","submerso-b","submerso-c"] or not checkpoint.get("position") is Array or checkpoint.position.size() != 2:
 			return "invalid"
 		for coordinate in checkpoint.position:
 			if not (coordinate is float or coordinate is int) or not is_finite(float(coordinate)) or absf(coordinate) > 4096:
@@ -208,7 +208,7 @@ static func valid_workshop(state: Dictionary) -> bool:
 
 static func valid_encounter(value: Variant) -> bool:
 	if value is Dictionary and value.has("rewardXp") and (not whole(value.rewardXp) or value.rewardXp>100000): return false
-	if not value is Dictionary or not value.get("id") is String or value.get("kind") not in ["lacertubo", "wild", "morro", "trainer"] or not value.get("state") is Dictionary: return false
+	if not value is Dictionary or not value.get("id") is String or value.get("kind") not in ["lacertubo", "wild", "morro", "trainer", "district"] or not value.get("state") is Dictionary: return false
 	if not value.get("returnPoint") is Array or value.returnPoint.size() != 2: return false
 	for point in value.returnPoint:
 		if not number(point) or point < 0 or point > 1536: return false
@@ -236,7 +236,17 @@ static func valid_encounter(value: Variant) -> bool:
 				if not d.stages.slice(0,4).any(func(s):return s.scene==value.get("scene") and s.npcId==context.opponent):return false
 			elif value.get("scene")!=scenes.get(state.trailStage):return false
 		elif value.get("scene")!=scenes.get(state.trailStage):return false
-	var actors: Array = state.actors if value.kind == "morro" else [state.get("p"), state.get("q")]
+	if value.kind=="district":
+		var context:Variant=value.get("districtContext")
+		var rules=preload("res://scripts/campaign/district_rules.gd")
+		if not rules.valid_context(context) or context.district!="bambuzal" or context.duel!=state.get("trailStage") or not valid_morro_state(state):return false
+		var d:Dictionary=rules.definition(context.district)
+		var stage:Dictionary=d.stages.filter(func(s):return s.id==context.duel)[0]
+		if context.mode=="defense":
+			if not d.stages.slice(0,4).any(func(s):return s.scene==value.get("scene") and s.npcId==context.opponent):return false
+		elif value.get("scene")!=stage.scene:return false
+		if value.get("space","")!="parque-overworld-v1":return false
+	var actors: Array = state.actors if value.kind in ["morro","district"] else [state.get("p"), state.get("q")]
 	for actor_value in actors:
 		if not actor_value is Dictionary: return false
 		var actor: Dictionary = actor_value
@@ -275,11 +285,12 @@ static func valid_morro(value: Variant) -> bool:
 
 static func valid_morro_state(state: Dictionary) -> bool:
 	var id: String = str(state.get("trailStage", ""))
-	if id not in ["morro-1", "morro-2", "morro-3", "morro-4", "morro-5"]: return false
+	var definition:Dictionary=preload("res://scripts/campaign/morro_model.gd").stage_definition(id)
+	if definition.is_empty(): return false
 	if not state.get("actors") is Array or state.actors.size() != (3 if id == "morro-3" else 2): return false
 	for key in ["roundNumber", "roundsToWin", "aiLevel"]:
 		if not whole(state.get(key)) or state[key] < 1: return false
-	if state.roundsToWin != (3 if id == "morro-5" else 2) or state.aiLevel > 10: return false
+	if state.roundsToWin != int(definition.rounds) or state.aiLevel > 10: return false
 	if not number(state.get("intermission")) or state.intermission < 0 or state.intermission > 3.2 or not state.get("roundMessage") is String: return false
 	for index in state.actors.size():
 		var actor: Variant = state.actors[index]

@@ -16,7 +16,7 @@ const PLACES := [
 	{"id":"parque","name":"Parque dos Ventos","kind":"natural","act":1,"levels":"1–8","note":"Jardim, Clareira e Veredas. Acesso pela Vila."},
 	{"id":"morro","name":"Morro do Sol","kind":"bairro","bairro":1,"act":1,"levels":"4–8","note":"Bairro 1 · Mikka. Acesso pela Vila."},
 	{"id":"bosque","name":"Bosque dos Ventos","kind":"natural","act":1,"levels":"1–5","scene":"kronasta-bosque-a","note":"Trilha das Copas, Desvio do Riacho e Clareira do Marco."},
-	{"id":"bambuzal","name":"Vila do Bambuzal","kind":"bairro","bairro":2,"act":1,"levels":"9–12","note":"Bairro 2 · Lohan."},
+	{"scene":"kronasta-bambuzal-a","id":"bambuzal","name":"Vila do Bambuzal","kind":"bairro","bairro":2,"act":1,"levels":"9–12","note":"Bairro 2 · Lohan."},
 	{"id":"beira-canal","name":"Beira-Canal","kind":"bairro","bairro":3,"act":2,"levels":"12–15","note":"Bairro 3 · Kleie."},
 	{"id":"feira","name":"Feira do Largo","kind":"bairro","bairro":4,"act":2,"levels":"15–18","note":"Bairro 4."},
 	{"id":"caverna","name":"Caverna do Mural","kind":"ruinas","act":2,"levels":"15–18","note":"O primeiro laço."},
@@ -40,11 +40,12 @@ const PLACES := [
 ## Each is complete when done(player) says so; the first open one is the objective.
 const BEATS := [
 	{"id":"prologo","act":0,"place":"rua-dos-ventos","text":"Termine o treino com o Sr. Assis e monte seu primeiro parceiro."},
-	{"id":"nina","act":1,"place":"parque","text":"Nina perdeu a rabiola do Carcará no Parque dos Ventos. Fale com ela no Jardim das Pipas."},
-	{"id":"lacertubo","act":1,"place":"parque","text":"A rabiola de Nina foi levada para os canos das Veredas. Vença o Lacertubo."},
-	{"id":"nina-devolvida","act":1,"place":"parque","text":"Leve a rabiola de volta para Nina, no Jardim das Pipas."},
 	{"id":"mikka","act":1,"place":"morro","text":"Suba o Morro do Sol e vença a Mikka, campeã do primeiro bairro."},
+	{"id":"nina","act":1,"place":"parque","text":"Depois da Mikka, fale com Nina no Jardim das Pipas. A rabiola do Carcará dela foi levada."},
 	{"id":"bosque","act":1,"place":"bosque","text":"Siga pelo Bosque dos Ventos até a Clareira do Marco. Pela pausa: Mapa → Região de Kronasta."},
+	{"id":"lohan","act":1,"place":"bambuzal","text":"Explore a Vila do Bambuzal e vença o Lohan, campeão do segundo bairro."},
+	{"id":"lacertubo","act":2,"place":"parque","text":"A passagem pela Clareira está aberta. Explore as Veredas e recupere a rabiola de Nina no pátio do Lacertubo."},
+	{"id":"nina-devolvida","act":2,"place":"parque","text":"Leve a rabiola de volta para Nina, no Jardim das Pipas."},
 ]
 
 ## QA previews: built maps whose story gate does not exist yet open only in development
@@ -73,6 +74,7 @@ static func beat_done(player: Dictionary, id: String) -> bool:
 		"lacertubo": return f.get("guardianDefeated",false)
 		"nina-devolvida": return f.get("ninaReturned",false)
 		"mikka": return mikka_defeated(player)
+		"lohan": return preload("res://scripts/campaign/district_rules.gd").completed(player,"bambuzal")
 		"bosque": return f.get("bosqueClareiraDescoberta",false)
 	return false
 
@@ -137,6 +139,8 @@ static func state(player: Dictionary, id: String) -> String:
 		"rua-dos-ventos": return "aberto"
 		"parque": return "aberto" if prologue_done(player) else "fechado"
 		"morro": return "vencido" if mikka_defeated(player) else "aberto" if prologue_done(player) else "fechado"
+		"beira-canal": return "fechado" if not preload("res://scripts/campaign/district_rules.gd").completed(player,"bambuzal") else "em-breve"
+		"bambuzal": return "vencido" if preload("res://scripts/campaign/district_rules.gd").completed(player,"bambuzal") else "aberto" if mikka_defeated(player) else "fechado"
 		"bosque": return "aberto" if prologue_done(player) else "fechado"
 	# Previews follow only the prologue in QA; players see them as not built yet.
 	if entry.get("preview",false): return ("aberto" if prologue_done(player) else "fechado") if qa() else "em-breve"
@@ -144,14 +148,14 @@ static func state(player: Dictionary, id: String) -> String:
 
 static func can_travel(player: Dictionary, id: String) -> bool:
 	var entry:=place(id)
-	return entry.has("scene") and state(player,id)=="aberto"
+	return entry.has("scene") and state(player,id) in ["aberto","vencido"]
 
 static func requirement(player: Dictionary, id: String) -> String:
 	var entry:=place(id)
 	match state(player,id):
 		"aberto": return "QA · prévia sem história" if entry.get("preview",false) else "Aberto"
 		"vencido": return "Bairro vencido"
-		"fechado": return "Abre ao terminar o prólogo"
+		"fechado": return "Vença a Mikka no Morro do Sol" if id=="bambuzal" else "Vença o Lohan na Vila do Bambuzal" if id=="beira-canal" else "Abre ao terminar o prólogo"
 	return "Em breve"
 
 static func scene_for_travel(id: String) -> String:
@@ -169,3 +173,11 @@ static func region_objective(player: Dictionary, scene: String) -> String:
 		"pantano":{"a":"Siga pela margem até o Desvio dos cipós.","b":"Passe pelos cipós até o Lago profundo.","c":"Lago profundo · a margem leva de volta à entrada."},
 		"montanha":{"a":"Comece a subida pelo Sopé.","b":"Continue pela Encosta até o Cume.","c":"Cume alcançado · o vento chega livre aqui."},
 	}.get(region,{}).get(part,"")
+
+## Pre-Bambuzal saves that already accepted Nina retain their existing route.
+## A newly accepted quest records the reordered route explicitly.
+static func park_access(player:Dictionary,scene:String)->bool:
+	if scene=="park-trail":return prologue_done(player)
+	if scene not in ["park-clearing","park-veredas"]:return false
+	var f:=flags(player)
+	return preload("res://scripts/campaign/district_rules.gd").completed(player,"bambuzal") or (f.get("ninaAccepted",false) and not f.get("ninaBambuzalOrder",false))

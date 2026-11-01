@@ -135,7 +135,9 @@ func select(index:int) -> void:
 	else:
 		for i in region.scenes.size():
 			var scene:String=region.scenes[i]
-			action(parts,region.parts[i],func():travel_requested.emit(scene))
+			var destination_button:=action(parts,region.parts[i],func():travel_requested.emit(scene))
+			if scene in ["park-clearing","park-veredas"] and not Story.park_access(saved_player,scene):
+				destination_button.disabled=true;destination_button.text="Vença o Lohan · "+region.parts[i]
 	for i in markers.size():markers[i].selected=i==index;markers[i].queue_redraw()
 	queue_redraw()
 func _draw() -> void:

@@ -252,7 +252,7 @@
       "id": "bambuzal",
       "number": 2,
       "name": "Vila do Bambuzal",
-      "playable": false,
+      "playable": true,
       "next": "beira-canal",
       "prerequisiteFlag": "",
       "unlocks": [
@@ -265,76 +265,184 @@
       },
       "emblem": {
         "slot": 1,
-        "name": "Insígnia do Vila do Bambuzal"
+        "name": "Insígnia da Vila do Bambuzal"
       },
       "stages": [
         {
           "id": "bambuzal-1",
           "part": "A",
           "role": "lieutenant",
-          "npcId": "bambuzal-capanga-1",
-          "name": "Capanga 1",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "bambu-1",
+          "name": "Nara",
+          "level": 9,
+          "before": [
+            [
+              "Nara",
+              "Aqui a gente aprende a ouvir o bambu antes de cortar. Vamos ver como você escuta o vento?"
+            ]
+          ],
+          "won": [
+            [
+              "Nara",
+              "Bom voo! O Dito está mais adiante, seguindo a praça."
+            ]
+          ],
+          "lost": [
+            [
+              "Nara",
+              "Descanse com seu parceiro. A gente pode tentar de novo quando vocês estiverem prontos."
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 20,
+            "xp": 46,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "npcName": "Nara",
+          "scene": "kronasta-bambuzal-a",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Nara",
+              "color": 2
+            }
+          ],
+          "styles": [
+            "mobile"
+          ]
         },
         {
           "id": "bambuzal-2",
           "part": "A",
           "role": "lieutenant",
-          "npcId": "bambuzal-capanga-2",
-          "name": "Capanga 2",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "bambu-2",
+          "name": "Dito",
+          "level": 9,
+          "before": [
+            [
+              "Dito",
+              "Vareta boa tem flexibilidade. Se tentar resolver tudo na força, ela quebra. Vamos testar?"
+            ]
+          ],
+          "won": [
+            [
+              "Dito",
+              "Pode seguir para o miolo. E olha os cortes no bambu: não foram feitos por quem cuida daqui."
+            ]
+          ],
+          "lost": [
+            [
+              "Dito",
+              "Descanse com seu parceiro. A gente pode tentar de novo quando vocês estiverem prontos."
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 25,
+            "xp": 34,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "npcName": "Dito",
+          "scene": "kronasta-bambuzal-a",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Dito",
+              "color": 0
+            }
+          ],
+          "styles": [
+            "patient"
+          ]
         },
         {
           "id": "bambuzal-3",
           "part": "B",
           "role": "lieutenant",
-          "npcId": "bambuzal-capanga-3",
-          "name": "Capanga 3",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "bambu-3",
+          "name": "Célia",
+          "level": 10,
+          "before": [
+            [
+              "Célia",
+              "Tem bambu sumindo de noite. Antes de seguir, mostre que você cuida do seu parceiro."
+            ]
+          ],
+          "won": [
+            [
+              "Célia",
+              "Seu parceiro confia em você. Há um banco adiante para vocês descansarem."
+            ]
+          ],
+          "lost": [
+            [
+              "Célia",
+              "Descanse com seu parceiro. A gente pode tentar de novo quando vocês estiverem prontos."
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 30,
+            "xp": 37,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "npcName": "Célia",
+          "scene": "kronasta-bambuzal-b",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Célia",
+              "color": 3
+            }
+          ],
+          "styles": [
+            "guard"
+          ]
         },
         {
           "id": "bambuzal-4",
           "part": "B",
           "role": "lieutenant",
-          "npcId": "bambuzal-capanga-4",
-          "name": "Capanga 4",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "bambu-4",
+          "name": "Bento",
+          "level": 11,
+          "before": [
+            [
+              "Bento",
+              "Encontramos cortes novos no bambuzal. O Lohan está esperando lá em cima. Primeiro, nosso duelo."
+            ]
+          ],
+          "won": [
+            [
+              "Bento",
+              "Os feixes cortados escondidos no bambuzal são a pista. Siga até o Lohan no alto."
+            ]
+          ],
+          "lost": [
+            [
+              "Bento",
+              "Descanse com seu parceiro. A gente pode tentar de novo quando vocês estiverem prontos."
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 35,
+            "xp": 54,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "npcName": "Bento",
+          "scene": "kronasta-bambuzal-b",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Bento",
+              "color": 2
+            }
+          ],
+          "styles": [
+            "reader"
+          ]
         },
         {
           "id": "bambuzal-5",
@@ -343,15 +451,42 @@
           "npcId": "lohan",
           "name": "Lohan",
           "level": 12,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "before": [
+            [
+              "Lohan",
+              "Este bairro não é só uma arena. Cada vareta leva o trabalho de alguém. Vamos voar juntos, Kael?"
+            ]
+          ],
+          "won": [
+            [
+              "Lohan",
+              "Você conquistou o Bambuzal! A Clareira do Papel está no seu caminho. E precisamos ficar de olho em quem compra as varetas cortadas."
+            ]
+          ],
+          "lost": [
+            [
+              "Lohan",
+              "Descanse com seu parceiro. A gente pode tentar de novo quando vocês estiverem prontos."
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 40,
+            "xp": 73,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "npcName": "Lohan",
+          "scene": "kronasta-bambuzal-c",
+          "rounds": 3,
+          "foes": [
+            {
+              "name": "Lohan",
+              "color": 1
+            }
+          ],
+          "styles": [
+            "patient"
+          ]
         }
       ]
     },

@@ -16,7 +16,11 @@ static func preview(player: Dictionary, encounter: Dictionary, model: RefCounted
 	if model.outcome not in ["won", "lost", "fled"]: return summary
 	var amount := 0
 	var won: bool = model.outcome == "won"
-	if encounter.get("kind", "") == "morro" and model.outcome != "fled":
+	if encounter.get("kind","")=="district":
+		var reward:Dictionary=preload("res://scripts/campaign/district_campaign.gd").reward(player,encounter.districtContext,model.outcome)
+		summary.coins=reward.coins;amount=reward.xp
+		if won and model.stage_id=="bambuzal-5" and not preload("res://scripts/campaign/district_rules.gd").completed(player,"bambuzal"):summary.unlock="Insígnia do Bambuzal · Clareira do Papel liberada"
+	elif encounter.get("kind", "") == "morro" and model.outcome != "fled":
 		var reward := Rules.settle(player.get("morro", Rules.defaults()), model.stage_id, won, model.rounds_lost())
 		summary.coins = reward.coins
 		summary.stars = reward.stars

@@ -84,16 +84,12 @@ func story_rules() -> void:
 	check(Story.current_beat(player).id=="prologo","fresh save starts at the prologue")
 	check(Story.state(player,"bosque")=="fechado","regions closed before the prologue ends")
 	player.partners=[{"id":"p"}];player.journey.phase="complete"
-	check(Story.current_beat(player).id=="nina","after the prologue: Nina")
-	player.flags.ninaAccepted=true
-	check(Story.current_beat(player).id=="lacertubo","then the Lacertubo")
-	player.flags.guardianDefeated=true
-	check(Story.current_beat(player).id=="nina-devolvida","then return the tail")
-	player.flags.ninaReturned=true
-	check(Story.current_beat(player).id=="mikka","then the Morro do Sol")
-	check(Story.neighbourhoods_won(player)==0 and Story.state(player,"morro")=="aberto","Morro open, not won")
+	check(Story.current_beat(player).id=="mikka","after the prologue: Mikka")
+	check(not Story.park_access(player,"park-clearing"),"Clareira waits for Lohan")
 	player.morro={"stars":{"morro-5":3}}
 	check(Story.neighbourhoods_won(player)==1 and Story.state(player,"morro")=="vencido","Mikka counts as neighbourhood 1")
+	check(Story.current_beat(player).id=="nina","then Nina's request")
+	player.flags.ninaAccepted=true;player.flags.ninaBambuzalOrder=true
 	check(Story.current_beat(player).id=="bosque","then the Bosque")
 	Story.qa_override=0
 	for region in ["industrial","pantano","montanha"]: check(not Story.can_travel(player,region) and Story.state(player,region)=="em-breve",region+" hidden from players")
@@ -103,12 +99,12 @@ func story_rules() -> void:
 	check(Story.previews(player).size()==3,"QA preview list")
 	check(not Story.released(player).any(func(e): return e.get("preview",false)),"previews never listed as released")
 	player.flags.bosqueClareiraDescoberta=true
-	check(Story.current_beat(player).is_empty(),"built act 1 complete")
-	check(Story.next_destination(player).id=="bambuzal","next destination is the next neighbourhood")
+	check(Story.current_beat(player).id=="lohan","after the Bosque: Lohan")
+	check(Story.next_destination(player).id=="beira-canal","next unavailable destination follows the opened Bambuzal")
 	check(Story.objective(player).contains("Vila do Bambuzal"),"objective names only the next destination")
-	check(Story.released(player).map(func(e): return e.id)==["rua-dos-ventos","parque","morro","bosque"],"released places")
-	check(Story.state(player,"bambuzal")=="em-breve","unbuilt neighbourhood stays em breve")
-	check(not Story.can_travel(player,"bambuzal"),"unbuilt place has no travel")
+	check(Story.released(player).map(func(e): return e.id)==["rua-dos-ventos","parque","morro","bosque","bambuzal"],"released places")
+	check(Story.state(player,"bambuzal")=="aberto","Bambuzal opens after Mikka")
+	check(Story.can_travel(player,"bambuzal"),"authored district can be travelled")
 	check(Story.category(player)=="Rabiola Branca","category waits for its exam")
 	check(Story.PLACES.filter(func(p): return p.kind=="bairro").size()==12,"twelve neighbourhoods on the map")
 	for entry in Story.PLACES:
@@ -119,7 +115,7 @@ func story_rules() -> void:
 	check(Pacing.wild_level("kronasta-montanha-c",0)>Pacing.wild_level("kronasta-bosque-a",0),"preview wild levels above the Bosque")
 	Story.qa_override=0
 	player={"partners":[{"id":"p"}],"journey":{"phase":"complete"},"flags":{}}
-	check(Story.next_destination(player).id=="bambuzal" and Story.objective(player).contains("Nina"),"before Mikka: objective follows the story, next locked place is the Bambuzal")
+	check(Story.next_destination(player).id=="bambuzal" and Story.objective(player).contains("Mikka"),"before Mikka: objective follows reordered story, next locked place is the Bambuzal")
 
 func run() -> void:
 	root.size=Vector2i(1280,720)

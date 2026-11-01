@@ -1,10 +1,10 @@
 extends RefCounted
 ## Explicit coordinate version: legacy illustrated pixels never become map cells by guesswork.
 const SPACE := "parque-overworld-v1"
-const MAPS := {"park-trail":"jardim-das-pipas","park-clearing":"clareira-do-papel","park-veredas":"veredas-do-encanamento","kronasta-bosque-a":"kronasta-bosque-a","kronasta-bosque-b":"kronasta-bosque-b","kronasta-bosque-c":"kronasta-bosque-c","kronasta-pantano-a":"kronasta-pantano-a","kronasta-pantano-b":"kronasta-pantano-b","kronasta-pantano-c":"kronasta-pantano-c","kronasta-montanha-a":"kronasta-montanha-a","kronasta-montanha-b":"kronasta-montanha-b","kronasta-montanha-c":"kronasta-montanha-c","kronasta-industrial-a":"kronasta-industrial-a","kronasta-industrial-b":"kronasta-industrial-b","kronasta-industrial-c":"kronasta-industrial-c","mina-ferro-a":"mina-ferro-a","mina-ferro-b":"mina-ferro-b","mina-ferro-c":"mina-ferro-c","mina-ferro-d":"mina-ferro-d","gelo-a":"gelo-a","gelo-b":"gelo-b","gelo-c":"gelo-c","gelo-d":"gelo-d","submerso-a":"submerso-a","submerso-b":"submerso-b","submerso-c":"submerso-c"}
+const MAPS := {"kronasta-bambuzal-a":"kronasta-bambuzal-a","kronasta-bambuzal-b":"kronasta-bambuzal-b","kronasta-bambuzal-c":"kronasta-bambuzal-c","park-trail":"jardim-das-pipas","park-clearing":"clareira-do-papel","park-veredas":"veredas-do-encanamento","kronasta-bosque-a":"kronasta-bosque-a","kronasta-bosque-b":"kronasta-bosque-b","kronasta-bosque-c":"kronasta-bosque-c","kronasta-pantano-a":"kronasta-pantano-a","kronasta-pantano-b":"kronasta-pantano-b","kronasta-pantano-c":"kronasta-pantano-c","kronasta-montanha-a":"kronasta-montanha-a","kronasta-montanha-b":"kronasta-montanha-b","kronasta-montanha-c":"kronasta-montanha-c","kronasta-industrial-a":"kronasta-industrial-a","kronasta-industrial-b":"kronasta-industrial-b","kronasta-industrial-c":"kronasta-industrial-c","mina-ferro-a":"mina-ferro-a","mina-ferro-b":"mina-ferro-b","mina-ferro-c":"mina-ferro-c","mina-ferro-d":"mina-ferro-d","gelo-a":"gelo-a","gelo-b":"gelo-b","gelo-c":"gelo-c","gelo-d":"gelo-d","submerso-a":"submerso-a","submerso-b":"submerso-b","submerso-c":"submerso-c"}
 ## Kronasta regions reached from the region screen. Each has parts A, B and C
 ## (art/overworld/REGIOES-E-PARTES.md); scenes are kronasta-<region>-<part>.
-const REGIONS := ["bosque","industrial","pantano","montanha"]
+const REGIONS := ["bosque","industrial","pantano","montanha","bambuzal"]
 const Model = preload("res://scripts/overworld/map_model.gd")
 const Legacy = preload("res://scripts/campaign/park_data.gd")
 static var _maps: Dictionary = {}
@@ -143,6 +143,7 @@ static func exit_target(checkpoint: Dictionary, id: String, player: Dictionary) 
 		if not allowed(event,player) or at.distance_to(Vector2(event.u+.5,event.v+.5))>1.8: return {"status":"wrong_step"}
 		if absf(model_for(source).height_at(at)-model_for(source).height_at(Vector2(event.u+.5,event.v+.5)))>=.25: return {"status":"wrong_step"}
 		var destination: String = event.props.get("destino","")
+		if destination in ["park-clearing","park-veredas"] and not preload("res://scripts/campaign/kronasta_story.gd").park_access(player,destination):return {"status":"story_gate"}
 		if destination=="quintal": return {"status":"ok","scene":destination,"point":Vector2(1792,1808),"space":""}
 		if not MAPS.has(destination): return {"status":"wrong_step"}
 		var entrance: String = event.props.get("entrada_destino","")

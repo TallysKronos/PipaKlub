@@ -16,6 +16,8 @@ func accept_nina(point: Vector2) -> Dictionary:
 	if not _near(point, Data.NINA,85,"nina"): return {"status": "wrong_step"}
 	var saved: Dictionary = session.snapshot()
 	var player: Dictionary = saved.player
+	if not preload("res://scripts/campaign/kronasta_story.gd").mikka_defeated(player):return {"status":"wrong_step"}
+	player.flags.ninaBambuzalOrder=true
 	player.flags.ninaAccepted = true
 	return session.commit_operation("nina-accepted-v1", saved.checkpoint, player)
 

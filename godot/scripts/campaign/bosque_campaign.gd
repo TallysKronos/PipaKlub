@@ -11,7 +11,7 @@ static func available(player: Dictionary) -> bool:
 	return not player.get("partners",[]).is_empty() and player.get("journey",{}).get("phase","")=="complete"
 
 static func authored_materials(scene: String) -> bool:
-	return Checkpoint.is_bosque(scene) or (Checkpoint.MAPS.has(scene) and Checkpoint.data(scene).get("forest",{}).get("nativeProps",false))
+	return Checkpoint.region_of(scene)=="bambuzal" or Checkpoint.is_bosque(scene) or (Checkpoint.MAPS.has(scene) and Checkpoint.data(scene).get("forest",{}).get("nativeProps",false))
 
 func travel(destination: String) -> Dictionary:
 	var saved: Dictionary=session.snapshot()
@@ -19,6 +19,7 @@ func travel(destination: String) -> Dictionary:
 	if saved.get("checkpoint",{}).get("kind","")!="world" or not available(saved.player): return {"status":"wrong_step"}
 	if source!="quintal" and not Checkpoint.MAPS.has(source) and not preload("res://scripts/campaign/morro.gd").maps().has(source): return {"status":"wrong_step"}
 	if not preload("res://scripts/campaign/kronasta_atlas.gd").can_travel(destination):return {"status":"wrong_step"}
+	if destination in ["park-trail","park-clearing","park-veredas"] and not Story.park_access(saved.player,destination):return {"status":"wrong_step"}
 	var target: Dictionary
 	var region:=Checkpoint.region_of(destination)
 	# Regions are entered by part A, and only while the story keeps them open.
@@ -43,7 +44,7 @@ func arrive() -> Dictionary:
 	var receipt: String=region+"-discovered-"+part+"-v1"
 	if receipt in saved.player.completedOperations: return {"status":"already_applied"}
 	saved.player.flags[region+"Parte"+part.to_upper()+"Descoberta"]=true
-	if part=="c": saved.player.flags.bosqueClareiraDescoberta=true
+	if region=="bosque" and part=="c": saved.player.flags.bosqueClareiraDescoberta=true
 	return session.commit_operation(receipt,saved.checkpoint,saved.player)
 
 func collect(id: String, point: Vector2) -> Dictionary:
@@ -84,6 +85,7 @@ static func rest_events(area: String, model) -> Array:
 	return result
 
 static func objective(player: Dictionary, scene: String) -> String:
+	if Checkpoint.region_of(scene)=="bambuzal":return preload("res://scripts/campaign/district_campaign.gd").objective(player)
 	if not Checkpoint.is_bosque(scene): return Story.region_objective(player,scene)
 	if preload("res://scripts/campaign/park_training.gd").needs_rest(player): return "Seu parceiro precisa descansar. Há bancos na Clareira do Marco."
 	return {"kronasta-bosque-a":"Exploração opcional · siga a trilha ou procure os desvios dos platôs.","kronasta-bosque-b":"Atravesse o riacho pela ponte e siga até a Clareira do Marco.","kronasta-bosque-c":"Clareira descoberta · explore o mirante, descanse ou use o atalho de volta."}.get(scene,"")

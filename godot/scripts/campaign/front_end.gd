@@ -1505,6 +1505,7 @@ func _park_exit(event: Dictionary) -> void:
 		_show_kronasta()
 		return
 	var destination: Dictionary = ParkCheckpoint.exit_target(saved.checkpoint,str(int(event.id)),saved.player)
+	if destination.status=="story_gate":_notice("A passagem para a Clareira abre depois de conquistar o Bambuzal. Vença o Lohan e volte por aqui.");return
 	if not _result(destination): return
 	park.paused=true
 	if _result(journey.enter_world(destination.scene,destination.point,destination.space)): _show_saved.call_deferred()
@@ -1516,7 +1517,15 @@ func _park_event(id: String) -> void:
 		if str(int(event.id))!=id or not ParkCheckpoint.allowed(event,player,park.area_id): continue
 		if park.player.distance_to(Vector2(event.u+.5,event.v+.5))>1.8: return
 		var action: String = event.props.get("acao","")
-		if ParkCheckpoint.is_kronasta(park.saved_checkpoint.scene) and event.type=="npc":
+		if action=="districtDuel":
+			_district_action(str(event.props.duel))
+			return
+		if action=="bambuzalClue":
+			var found:Dictionary=load("res://scripts/campaign/district_campaign.gd").new(session).inspect_clue(id,park.player)
+			if found.status in ["ok","already_applied"]:_notice("Os cortes ainda estão claros. Há feixes escondidos para vender ao Bando do Cerol. Alguém está levando o bambu durante a noite.")
+			else:_result(found)
+			return
+		if ParkCheckpoint.is_kronasta(park.saved_checkpoint.scene) and event.type=="npc" and action!="wildRest":
 			_notice(event.name+": "+str(event.props.get("texto","")))
 			return
 		if action=="parkMap": _show_map()
@@ -1590,14 +1599,17 @@ func _park_action(id: String) -> void:
 			park.refresh(session.snapshot().player)
 			_notice("Baú encontrado · " + {"lookout": "Rabiola de Azulão", "woodland": "25 moedas", "canal": "Rabiola de Mata verde", "ridge": "Rabiola de Raio de sol", "courtyard": "60 moedas"}[chest_id])
 	elif id == "nina":
+		if not preload("res://scripts/campaign/kronasta_story.gd").mikka_defeated(player) and not player.flags.get("ninaAccepted",false):
+			_notice("Nina: A Mikka está esperando os novos pipeiros no Morro do Sol. Depois passa aqui para conversar comigo.");return
 		if player.flags.get("ninaReturned", false): _notice("Nina: O Carcará está comigo de novo. Ainda quero te mostrar a pipa que eu estava construindo!")
 		elif player.flags.get("ninaTail", false):
 			if _result(exploration.return_tail(point)):
 				park.refresh(session.snapshot().player)
 				_nina_homecoming()
 		elif not player.flags.get("ninaAccepted", false):
-			_confirm_park("Nina", "[emo=suor]Meu Carcará tentou me proteger daquele lagarto. A linha rompeu e ele se recolheu na rabiola… O vento levou ela para os canos. Você consegue trazer a rabiola dele?", "Vou recuperar a rabiola", func():
+			_confirm_park("Nina", "[emo=suor]Cortaram a linha do meu Carcará com cerol… Ele se recolheu na rabiola e o vento levou ela. Achei pegadas palmadas seguindo para os canos. Você pode procurar por ele?", "Vou recuperar a rabiola", func():
 				if _result(exploration.accept_nina(point)): park.refresh(session.snapshot().player))
+		elif player.flags.get("ninaBambuzalOrder",false) and not preload("res://scripts/campaign/kronasta_story.gd").park_access(player,"park-clearing"):_notice("Nina: A passagem para a Clareira abre depois do campeonato do Bambuzal. Vá pelo Bosque e fale com o Lohan. Eu espero você aqui.")
 		else: _notice("Nina: Siga pelo Jardim até a Clareira e procure os canos nas Veredas. Os pipeiros pelo caminho podem treinar com você. Ele arma a vela antes de puxar… Depois fica parado por um instante.")
 	elif id == "tail":
 		if _result(exploration.collect_tail(point)):
@@ -1648,8 +1660,9 @@ func _confirm_park(title: String, text: String, accept: String, callback: Callab
 
 func _show_encounter() -> void:
 	_clear()
+	var is_district:bool=session.snapshot().player.encounter.get("kind","")=="district"
 	var is_morro: bool = session.snapshot().player.encounter.get("kind", "") == "morro"
-	battle = MorroBattleView.new() if is_morro else EncounterView.new()
+	battle = MorroBattleView.new() if is_morro or is_district else EncounterView.new()
 	battle.configure(content, session.snapshot().player.encounter.state)
 	battle.reward_player = session.snapshot().player
 	battle.reward_encounter = session.snapshot().player.encounter
@@ -1662,7 +1675,9 @@ func _show_encounter() -> void:
 	battle.leave_requested.connect(_menu)
 	battle.finish_requested.connect(func():
 		if not _result(encounters.save_battle(battle.model.snapshot())): return
-		if is_morro:
+		if is_district:
+			if _result(load("res://scripts/campaign/district_campaign.gd").new(session).settle()):_return_district_result.call_deferred()
+		elif is_morro:
 			if _result(morro.settle()): _return_morro_result.call_deferred()
 		elif _result(encounters.settle()): _show_saved.call_deferred())
 
@@ -2479,3 +2494,40 @@ func _partner_portrait(model_id: String) -> Texture2D:
 	texture.atlas = load("res://assets/campaign/" + art.image)
 	texture.region = Rect2(frame.x, frame.y, frame.w, frame.h)
 	return texture
+
+func _district_action(id:String)->void:
+	var service=load("res://scripts/campaign/district_campaign.gd").new(session)
+	var rules=load("res://scripts/campaign/district_rules.gd")
+	var player:Dictionary=session.snapshot().player
+	var title:Dictionary=rules.entry(player,"bambuzal")
+	var entry:Dictionary=service.stage(id)
+	if entry.is_empty():return
+	if title.champion=="player" and id!="bambuzal-5" and title.pendingDefense.is_empty():
+		if not _result(service.offer_defense(id,park.player)):return
+		player=session.snapshot().player;title=rules.entry(player,"bambuzal")
+	if not title.pendingDefense.is_empty():
+		if title.pendingDefense.challenger!=entry.npcId:
+			_notice(rules.objective(player,"bambuzal"));return
+		_confirm_park("Defender o Bambuzal",entry.name+" quer disputar seu título. Derrota ou fuga entrega o título ao desafiante e exige quatro novas vitórias para a reconquista. Você pode responder depois; o desafio permanece salvo.","Defender meu título",func():
+			if _result(service.start(id,park.player,true)):_show_saved.call_deferred())
+		return
+	var planned:Dictionary=rules.prepare(player,"bambuzal",id)
+	if planned.status=="already_applied":_notice("Este duelo já foi concluído. Você pode continuar explorando o bairro.");return
+	if planned.status!="ok":_notice("Vença os quatro pipeiros na ordem do percurso antes do campeão." if id=="bambuzal-5" else "Conclua o desafio anterior para continuar.");return
+	var speaker:String=rules.opponent_name(player,"bambuzal") if id=="bambuzal-5" and title.completed else entry.name
+	var text:String=entry.before[0][1] if planned.context.mode=="progress" else "Vamos disputar mais uma vez. O caminho para recuperar o título passa por estes quatro desafios."
+	_confirm_park(speaker,text+"\n\nAdversário Nv. %d · vence quem conquistar %d rodadas."%[entry.level,entry.rounds],"Disputar",func():
+		if _result(service.start(id,park.player)):_show_saved.call_deferred())
+
+func _return_district_result()->void:
+	_show_saved()
+	var player:Dictionary=session.snapshot().player
+	var result:Dictionary=player.get("lastDistrict",{})
+	if result.is_empty():return
+	var service=load("res://scripts/campaign/district_campaign.gd")
+	var entry:Dictionary=service.stage(result.duel)
+	var text:String=""
+	if result.mode=="progress":text=entry.won[0][1] if result.outcome=="won" else entry.lost[0][1]
+	else:text=service.objective(player)
+	if result.get("emblem",false):text+="\n\nInsígnia do Bambuzal recebida. Clareira do Papel liberada; Beira-Canal é o próximo bairro."
+	_notice(text)

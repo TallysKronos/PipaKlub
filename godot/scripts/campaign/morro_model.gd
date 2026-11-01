@@ -11,20 +11,23 @@ var ai_level := 1
 func _init(partner: Dictionary = {}, id: String = "morro-1", progress: Dictionary = {}) -> void:
 	super(partner, {"modelId": "basica", "level": 1})
 	stage_id = id
-	var entry := Rules.stage(id)
+	var entry := stage_definition(id)
 	if entry.is_empty(): return
-	ai_level = Rules.ai_level(entry, Rules.defaults() if progress.is_empty() else progress)
+	ai_level = Rules.ai_level(entry, Rules.defaults() if progress.is_empty() else progress) if id.begins_with("morro-") else clampi(int(entry.level)-4,1,10)
 	rounds_to_win = int(entry.rounds)
 	p.merge({"name": "Seu parceiro", "rounds": 0, "out": false, "target": -1, "slot": 0, "style": "", "threatTime": 0.0})
 	actors = [p]
-	var styles: Array = Rules.content().stories[id].styles
+	var styles: Array = Rules.content().stories[id].styles if id.begins_with("morro-") else entry.styles
 	for index in entry.foes.size():
 		var anchor: float = [910, 325][index]
-		var rival := _fighter(500 + (anchor - 500) * .8, anchor, stats(1))
+		var rival := _fighter(500 + (anchor - 500) * .8, anchor, stats(1 if id.begins_with("morro-") else int(entry.level)))
 		rival.color = entry.foes[index].color
+		if not id.begins_with("morro-"):rival.level=int(entry.level)
 		rival.merge({"name": entry.foes[index].name, "rounds": 0, "out": false, "target": -1, "slot": index + 1, "style": styles[index], "threatTime": 0.0})
 		actors.append(rival)
 	q = actors[1]
+	if not id.begins_with("morro-"):
+		enemy_model_id=["basica","raio","mata","azulao"][int(q.color)];enemy_level=int(entry.level)
 	intro = 3.0
 	duration = 60.0
 
@@ -100,6 +103,7 @@ func _new_round() -> void:
 		var old: Dictionary = actors[index]
 		var actor := _fighter(500 + (old.anchor - 500) * .8, old.anchor, old.stats)
 		for key in ["name", "rounds", "slot", "style", "color", "hull"]: actor[key] = old[key]
+		if old.has("level"):actor.level=old.level
 		actor.merge({"out": actor.hull <= 0, "target": -1, "threatTime": 0.0})
 		actors[index] = actor
 	p = actors[0]
@@ -202,3 +206,10 @@ func restore(saved: Dictionary) -> void:
 	round_message = saved.roundMessage
 	ai_level = int(saved.aiLevel)
 
+
+static func stage_definition(id:String) -> Dictionary:
+	if id.begins_with("morro-"):return Rules.stage(id)
+	for d:Dictionary in preload("res://scripts/campaign/district_rules.gd").catalog():
+		for stage:Dictionary in d.stages:
+			if stage.id==id and stage.get("authored",false):return stage
+	return {}

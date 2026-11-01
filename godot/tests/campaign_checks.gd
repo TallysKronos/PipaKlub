@@ -166,9 +166,12 @@ func _initialize() -> void:
 	var encounters := Encounters.new(session)
 	var saved := session.snapshot()
 	saved.player.journey = {"lesson": 5, "phase": "complete"}
+	saved.player.morro=preload("res://scripts/campaign/morro_rules.gd").defaults();saved.player.morro.stars["morro-5"]=3
 	saved.player.equippedPartnerId = saved.player.partners[0].id
 	check(session.checkpoint({"kind": "world", "scene": "park-veredas", "position": [816, 480]}, saved.player).status == "ok", "isolated park checkpoint")
 	check(domain.accept_nina(Park.ENTRY).status == "wrong_step", "Nina requires proximity")
+	saved=session.snapshot();saved.player.flags.ninaAccepted=true
+	check(session.checkpoint(saved.checkpoint,saved.player).status=="ok","legacy Nina route fixture")
 	check(domain.accept_nina(Park.NINA).status == "ok", "accept mission")
 	check(domain.chest("woodland", Park.CHESTS.woodland.point).status == "ok", "collect chest")
 	check(domain.chest("woodland", Park.CHESTS.woodland.point).status == "already_applied", "chest cannot repeat")
