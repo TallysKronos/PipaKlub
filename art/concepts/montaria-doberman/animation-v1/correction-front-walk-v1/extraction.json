@@ -1,0 +1,105 @@
+{
+  "sourceVideo": "../video-original/walk-s.mp4",
+  "sourceFps": 24,
+  "cell": [
+    384,
+    512
+  ],
+  "columns": 4,
+  "rows": 2,
+  "commonCrop": [
+    170,
+    120,
+    240,
+    360
+  ],
+  "drawRect": [
+    42,
+    31,
+    300,
+    450
+  ],
+  "frames": [
+    {
+      "sourceFrame": 24,
+      "rect": [
+        0,
+        0,
+        384,
+        512
+      ],
+      "durationMs": 166.6667
+    },
+    {
+      "sourceFrame": 28,
+      "rect": [
+        384,
+        0,
+        384,
+        512
+      ],
+      "durationMs": 166.6667
+    },
+    {
+      "sourceFrame": 32,
+      "rect": [
+        768,
+        0,
+        384,
+        512
+      ],
+      "durationMs": 166.6667
+    },
+    {
+      "sourceFrame": 36,
+      "rect": [
+        1152,
+        0,
+        384,
+        512
+      ],
+      "durationMs": 166.6667
+    },
+    {
+      "sourceFrame": 40,
+      "rect": [
+        0,
+        512,
+        384,
+        512
+      ],
+      "durationMs": 166.6667
+    },
+    {
+      "sourceFrame": 44,
+      "rect": [
+        384,
+        512,
+        384,
+        512
+      ],
+      "durationMs": 166.6667
+    },
+    {
+      "sourceFrame": 48,
+      "rect": [
+        768,
+        512,
+        384,
+        512
+      ],
+      "durationMs": 166.6667
+    },
+    {
+      "sourceFrame": 52,
+      "rect": [
+        1152,
+        512,
+        384,
+        512
+      ],
+      "durationMs": 166.6667
+    }
+  ],
+  "approval": "pending"
+}

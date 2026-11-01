@@ -11,7 +11,22 @@ export function createGameSpritesService(root){
  async function read(id){const asset=gameSprites.find(a=>a.id===id);if(!asset)throw fail(404,'Sprite não encontrado.');const bytes=await fs.readFile(path.join(root,asset.file));return {asset,bytes,revision:hash(bytes)};}
  async function definition(){return JSON.parse(await fs.readFile(path.join(root,ROOT+'mount.json'),'utf8'));}
  return {
-  async list(){const rig=await definition();return {assets:await Promise.all(gameSprites.map(async a=>{const d=await read(a.id);return {...a,revision:d.revision};})),rig};},
+  async list(){const bytes=await fs.readFile(path.join(root,ROOT+'mount.json')),rig=JSON.parse(bytes);return {assets:await Promise.all(gameSprites.map(async a=>{const d=await read(a.id);return {...a,revision:d.revision};})),rig,rigRevision:hash(bytes)};},
+  async saveRig(value){
+   const previous=locks.get('rig')||Promise.resolve(),task=previous.catch(()=>{}).then(async()=>{
+    const file=path.join(root,ROOT+'mount.json'),bytes=await fs.readFile(file);
+    if(value?.revision!==hash(bytes))throw fail(409,'O encaixe mudou em outra janela. Baixe suas alterações antes de recarregar.');
+    const rig=JSON.parse(bytes),frame=rig.directions[value.direction],patch=value.patch;
+    if(!Object.hasOwn(rig.directions,value.direction)||!frame||!patch||Array.isArray(patch)||Object.keys(patch).length!==4||Object.keys(patch).some(k=>!['seat','hip','ground','farLegAngle'].includes(k)))throw fail(422,'Envie apenas os pivôs e o ângulo da perna da direção selecionada.');
+    for(const k of ['seat','hip','ground'])if(!Array.isArray(patch[k])||patch[k].length!==2||patch[k].some(n=>typeof n!=='number'||!Number.isFinite(n)||Math.abs(n)>4096))throw fail(422,'Pivô inválido: '+k);
+    if(typeof patch.farLegAngle!=='number'||!Number.isFinite(patch.farLegAngle)||Math.abs(patch.farLegAngle)>180)throw fail(422,'Ângulo inválido.');
+    Object.assign(frame,structuredClone(patch));for(const f of frame.frames||[])f.seat=[...patch.seat];
+    const output=Buffer.from(JSON.stringify(rig,null,2)+'\n'),backup=path.join(root,'.local/soulgen-history/mount-layout',Date.now()+'-'+randomUUID()+'.json');
+    await fs.mkdir(path.dirname(backup),{recursive:true});await fs.writeFile(backup,bytes);
+    const temp=file+'.'+randomUUID()+'.tmp';try{await fs.writeFile(temp,output);await fs.rename(temp,file);}finally{await fs.rm(temp,{force:true});}
+    return {revision:hash(output),backup:path.relative(root,backup)};
+   });locks.set('rig',task);try{return await task;}finally{if(locks.get('rig')===task)locks.delete('rig');}
+  },
   async image(id){return (await read(id)).bytes;},
   async save(id,value){
    const previous=locks.get(id)||Promise.resolve();const task=previous.catch(()=>{}).then(async()=>{

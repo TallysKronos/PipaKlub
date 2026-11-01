@@ -1,5 +1,36 @@
 # Soulgen Studio — ateliê de animação
 
+## Montaria: pivôs e pintura com Kael sobre o Soulmonster
+
+Abra `http://127.0.0.1:5240/game-sprites.html` e escolha a direção.
+
+- A imagem isolada tem o pivô marcado por uma cruz ciano. Clique nela para
+  definir o quadril do Kael ou o ponto de apoio da montaria, conforme o sprite
+  selecionado. Os campos numéricos permitem ajuste preciso.
+- Arraste na montagem para mover o assento do Kael. Quadril, assento, apoio
+  da montaria e ângulo da perna distante são independentes por direção.
+- **Pintar / apagar na montagem** abre o pincel existente com a montagem
+  ativada. Selecione a borracha ou pressione E. Somente a imagem selecionada
+  recebe os traços; a outra permanece protegida. Desfazer funciona normalmente.
+  É possível voltar à pintura isolada desligando **Pintar na montagem**.
+- **Salvar sprite no jogo** aplica o retoque PNG. **Salvar encaixe no jogo**
+  grava os pivôs da direção atual e sincroniza `frames[].seat`. Os dois
+  salvamentos fazem backup em `.local/soulgen-history/`, verificam a revisão
+  do arquivo e recusam sobrescrever alterações mais recentes.
+- **Baixar encaixes JSON** preserva os ajustes de todas as direções, inclusive
+  os ainda não salvos. Trocar direção conserva os rascunhos da sessão; fechar
+  ou recarregar com alterações pendentes mostra o aviso de saída.
+
+Reinicie o projeto Godot uma vez após atualizar o código. Em seguida, PNGs
+e encaixes salvos no editor são recarregados pelo jogo em até um segundo.
+Executáveis exportados exigem nova exportação. Nenhum rig articulado é
+ativado por essa edição: os oito ângulos usam os sprites completos.
+
+Verificação: 21 testes Node (DOM + canvas real, pintura contextual, coordenadas,
+revisões, backups e rotas locais); 684 verificações da montaria; quatro do
+recarregamento de pivôs no Godot. Todos sem falhas. Os testes DOM não comprovam
+o layout visual no navegador.
+
 ## Editar montaria e Kael diretamente no jogo
 
 Abra **Editar sprites do jogo** no cabeçalho ou http://127.0.0.1:5240/game-sprites.html. O servidor é iniciado com `npm run studio:sprites`.

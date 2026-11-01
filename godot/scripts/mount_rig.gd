@@ -8,10 +8,13 @@ var seat:Marker2D
 var rider:Sprite2D
 var far_leg:Sprite2D
 var foreground:Sprite2D
+var layout_revision:=""
+var layout_poll:=0.0
 @export_file("*.json") var definition_path:="res://assets/mounts/doberman-c-v1/mount.json"
 
 func _ready() -> void:
 	definition=JSON.parse_string(FileAccess.get_file_as_string(definition_path))
+	layout_revision=FileAccess.get_file_as_string(definition_path).sha256_text()
 	use_parent_material=true
 	body=Sprite2D.new();body.name="MountBody";body.region_enabled=true;body.centered=false;add_child(body)
 	body.texture=LiveSprites.load_texture(definition.texture)
@@ -30,6 +33,17 @@ func _ready() -> void:
 	foreground=Sprite2D.new();foreground.name="NeckForeground";foreground.centered=false;foreground.region_enabled=true
 	foreground.texture=body.texture;foreground.use_parent_material=true;add_child(foreground);foreground.z_index=2
 	set_facing(facing)
+
+func _process(delta:float) -> void:
+	if not OS.has_feature("editor") or not is_visible_in_tree():return
+	layout_poll+=delta
+	if layout_poll<1:return
+	layout_poll=0
+	var text:=FileAccess.get_file_as_string(definition_path)
+	if text.sha256_text()==layout_revision:return
+	var next=JSON.parse_string(text)
+	if not next is Dictionary or not next.has("directions"):return
+	definition=next;layout_revision=text.sha256_text();set_facing(facing)
 
 func set_facing(value:String) -> void:
 	facing=value

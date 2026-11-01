@@ -1,0 +1,207 @@
+{
+  "entries": [
+    {
+      "id": "walk-e",
+      "source": "walk-e",
+      "mirrorTo": "walk-w",
+      "reference": "../../references/mount-edited-e.png",
+      "sourceFrames": [
+        24,
+        28,
+        32,
+        36,
+        40,
+        44,
+        48,
+        52
+      ],
+      "cell": [
+        384,
+        512
+      ],
+      "durationMs": 166.66666666666666,
+      "status": "prepared"
+    },
+    {
+      "id": "run-e",
+      "source": "run-e",
+      "mirrorTo": "run-w",
+      "reference": "../../references/mount-edited-e.png",
+      "sourceFrames": [
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33
+      ],
+      "cell": [
+        384,
+        512
+      ],
+      "durationMs": 125,
+      "status": "prepared"
+    },
+    {
+      "id": "walk-sw",
+      "source": "walk-sw",
+      "mirrorTo": "walk-se",
+      "reference": "../../references/mount-edited-sw.png",
+      "sourceFrames": [
+        24,
+        28,
+        32,
+        36,
+        40,
+        44,
+        48,
+        52
+      ],
+      "cell": [
+        384,
+        512
+      ],
+      "durationMs": 166.66666666666666,
+      "status": "prepared"
+    },
+    {
+      "id": "run-sw",
+      "source": "run-sw",
+      "mirrorTo": "run-se",
+      "reference": "../../references/mount-edited-sw.png",
+      "sourceFrames": [
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33
+      ],
+      "cell": [
+        384,
+        512
+      ],
+      "durationMs": 125,
+      "status": "prepared"
+    },
+    {
+      "id": "walk-ne",
+      "source": "walk-ne",
+      "mirrorTo": "walk-nw",
+      "reference": "../../references/mount-edited-ne.png",
+      "sourceFrames": [
+        24,
+        28,
+        32,
+        36,
+        40,
+        44,
+        48,
+        52
+      ],
+      "cell": [
+        384,
+        512
+      ],
+      "durationMs": 166.66666666666666,
+      "status": "prepared"
+    },
+    {
+      "id": "run-ne",
+      "source": "run-ne",
+      "mirrorTo": "run-nw",
+      "reference": "../../references/mount-edited-ne.png",
+      "sourceFrames": [
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33
+      ],
+      "cell": [
+        384,
+        512
+      ],
+      "durationMs": 125,
+      "status": "prepared"
+    },
+    {
+      "id": "walk-n",
+      "source": "walk-n",
+      "mirrorTo": null,
+      "reference": "../../references/mount-edited-n.png",
+      "sourceFrames": [
+        24,
+        28,
+        32,
+        36,
+        40,
+        44,
+        48,
+        52
+      ],
+      "cell": [
+        384,
+        512
+      ],
+      "durationMs": 166.66666666666666,
+      "status": "prepared"
+    },
+    {
+      "id": "run-n",
+      "source": "run-n",
+      "mirrorTo": null,
+      "reference": "../../references/mount-edited-n.png",
+      "sourceFrames": [
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33
+      ],
+      "cell": [
+        384,
+        512
+      ],
+      "durationMs": 125,
+      "status": "prepared"
+    },
+    {
+      "id": "run-s",
+      "source": "run-s",
+      "mirrorTo": null,
+      "reference": "../../references/mount-edited-s.png",
+      "sourceFrames": [
+        12,
+        15,
+        18,
+        21,
+        24,
+        27,
+        30,
+        33
+      ],
+      "cell": [
+        384,
+        512
+      ],
+      "durationMs": 125,
+      "status": "prepared"
+    }
+  ],
+  "notes": [
+    "walk-s uses the earlier jointly corrected front sheet",
+    "walk-se zooming take rejected; mirrored from corrected SW",
+    "run-n turning take rejected; rear run will be reconstructed from identity and gait phases"
+  ]
+}

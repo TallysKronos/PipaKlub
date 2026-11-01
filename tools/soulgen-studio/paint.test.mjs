@@ -68,6 +68,19 @@ test('paint dialog draws, erases, picks colors, undoes and returns actual croppe
   q('apply').onclick();const applied=await next;assert.ok(applied.palette.includes('#123456'));const restoredImage=await loadImage(applied.src);assert.equal(restoredImage.width,32);assert.equal(restoredImage.height,32);
 
 
+
+  const full=createCanvas(32,32);full.getContext('2d').fillStyle='#0000ff';full.getContext('2d').fillRect(0,0,32,32);
+  const custom=openPaintEditor({part:{id:'sprite',name:'Kael',asset:'atlas',source:[0,0,32,32]},assets:{atlas:{width:32,height:32}},images:{atlas:full},composition:{
+   draw(ctx,edited){ctx.clearRect(0,0,640,640);ctx.fillStyle='#00ff00';ctx.fillRect(0,0,640,640);ctx.drawImage(edited,100,100,96,96);},
+   point(x,y){return {x:(x-100)/3,y:(y-100)/3,layer:'near'};},scale(){return 3;}
+  }}),cd=document.querySelector('dialog'),cq=id=>cd.querySelector('[data-id="'+id+'"]'),surface=cq('contextCanvas'),sourceCanvas=cd.querySelector('canvas');
+  assert.equal(cq('inPlace').checked,true);assert.equal(cq('inPlace').disabled,false);
+  cq('tool').value='erase';cq('tip').value='pixel';cq('size').value='4';surface.onpointerdown(evt(148,148));surface.onpointerup();
+  assert.equal(sourceCanvas.getContext('2d').getImageData(16,16,1,1).data[3],0);
+  assert.equal(full.getContext('2d').getImageData(16,16,1,1).data[3],255);
+  assert.equal(surface.getContext('2d').getImageData(148,148,1,1).data[1],255);
+  cq('undo').onclick();assert.equal(sourceCanvas.getContext('2d').getImageData(16,16,1,1).data[3],255);
+  cq('apply').onclick();assert.equal((await loadImage((await custom).src)).width,32);
  }finally{globalThis.document=prior;}
 });
 

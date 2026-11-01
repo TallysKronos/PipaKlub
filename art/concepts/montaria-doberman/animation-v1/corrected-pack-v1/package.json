@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "kind": "mounted-animation-review-pack",
+  "cell": [
+    512,
+    512
+  ],
+  "pivot": [
+    256,
+    480
+  ],
+  "normalization": "56px median hair width, common ground line, per-sequence fixed scale",
+  "frameCount": 128,
+  "animations": [
+    {
+      "id": "walk-e",
+      "sheet": "walk-e/sheet.png",
+      "atlas": "walk-e/atlas.json",
+      "preview": "walk-e/loop.gif",
+      "video": "walk-e/loop.mp4",
+      "mirroredFrom": null,
+      "frameCount": 8,
+      "durationMs": 1200,
+      "review": "pending"
+    },
+    {
+      "id": "walk-w",
+      "sheet": "walk-w/sheet.png",
+      "atlas": "walk-w/atlas.json",
+      "preview": "walk-w/loop.gif",
+      "video": "walk-w/loop.mp4",
+      "mirroredFrom": "walk-e",
+      "frameCount": 8,
+      "durationMs": 1200,
+      "review": "pending"
+    },
+    {
+      "id": "run-e",
+      "sheet": "run-e/sheet.png",
+      "atlas": "run-e/atlas.json",
+      "preview": "run-e/loop.gif",
+      "video": "run-e/loop.mp4",
+      "mirroredFrom": null,
+      "frameCount": 8,
+      "durationMs": 800,
+      "review": "pending"
+    },
+    {
+      "id": "run-w",
+      "sheet": "run-w/sheet.png",
+      "atlas": "run-w/atlas.json",
+      "preview": "run-w/loop.gif",
+      "video": "run-w/loop.mp4",
+      "mirroredFrom": "run-e",
+      "frameCount": 8,
+      "durationMs": 800,
+      "review": "pending"
+    },
+    {
+      "id": "walk-sw",
+      "sheet": "walk-sw/sheet.png",
+      "atlas": "walk-sw/atlas.json",
+      "preview": "walk-sw/loop.gif",
+      "video": "walk-sw/loop.mp4",
+      "mirroredFrom": null,
+      "frameCount": 8,
+      "durationMs": 1200,
+      "review": "pending"
+    },
+    {
+      "id": "walk-se",
+      "sheet": "walk-se/sheet.png",
+      "atlas": "walk-se/atlas.json",
+      "preview": "walk-se/loop.gif",
+      "video": "walk-se/loop.mp4",
+      "mirroredFrom": "walk-sw",
+      "frameCount": 8,
+      "durationMs": 1200,
+      "review": "pending"
+    },
+    {
+      "id": "run-sw",
+      "sheet": "run-sw/sheet.png",
+      "atlas": "run-sw/atlas.json",
+      "preview": "run-sw/loop.gif",
+      "video": "run-sw/loop.mp4",
+      "mirroredFrom": null,
+      "frameCount": 8,
+      "durationMs": 800,
+      "review": "pending"
+    },
+    {
+      "id": "run-se",
+      "sheet": "run-se/sheet.png",
+      "atlas": "run-se/atlas.json",
+      "preview": "run-se/loop.gif",
+      "video": "run-se/loop.mp4",
+      "mirroredFrom": "run-sw",
+      "frameCount": 8,
+      "durationMs": 800,
+      "review": "pending"
+    },
+    {
+      "id": "walk-ne",
+      "sheet": "walk-ne/sheet.png",
+      "atlas": "walk-ne/atlas.json",
+      "preview": "walk-ne/loop.gif",
+      "video": "walk-ne/loop.mp4",
+      "mirroredFrom": null,
+      "frameCount": 8,
+      "durationMs": 1200,
+      "review": "pending"
+    },
+    {
+      "id": "walk-nw",
+      "sheet": "walk-nw/sheet.png",
+      "atlas": "walk-nw/atlas.json",
+      "preview": "walk-nw/loop.gif",
+      "video": "walk-nw/loop.mp4",
+      "mirroredFrom": "walk-ne",
+      "frameCount": 8,
+      "durationMs": 1200,
+      "review": "pending"
+    },
+    {
+      "id": "run-ne",
+      "sheet": "run-ne/sheet.png",
+      "atlas": "run-ne/atlas.json",
+      "preview": "run-ne/loop.gif",
+      "video": "run-ne/loop.mp4",
+      "mirroredFrom": null,
+      "frameCount": 8,
+      "durationMs": 800,
+      "review": "pending"
+    },
+    {
+      "id": "run-nw",
+      "sheet": "run-nw/sheet.png",
+      "atlas": "run-nw/atlas.json",
+      "preview": "run-nw/loop.gif",
+      "video": "run-nw/loop.mp4",
+      "mirroredFrom": "run-ne",
+      "frameCount": 8,
+      "durationMs": 800,
+      "review": "pending"
+    },
+    {
+      "id": "walk-n",
+      "sheet": "walk-n/sheet.png",
+      "atlas": "walk-n/atlas.json",
+      "preview": "walk-n/loop.gif",
+      "video": "walk-n/loop.mp4",
+      "mirroredFrom": null,
+      "frameCount": 8,
+      "durationMs": 1200,
+      "review": "pending"
+    },
+    {
+      "id": "run-n",
+      "sheet": "run-n/sheet.png",
+      "atlas": "run-n/atlas.json",
+      "preview": "run-n/loop.gif",
+      "video": "run-n/loop.mp4",
+      "mirroredFrom": null,
+      "frameCount": 8,
+      "durationMs": 800,
+      "review": "pending"
+    },
+    {
+      "id": "run-s",
+      "sheet": "run-s/sheet.png",
+      "atlas": "run-s/atlas.json",
+      "preview": "run-s/loop.gif",
+      "video": "run-s/loop.mp4",
+      "mirroredFrom": null,
+      "frameCount": 8,
+      "durationMs": 800,
+      "review": "pending"
+    },
+    {
+      "id": "walk-s",
+      "sheet": "walk-s/sheet.png",
+      "atlas": "walk-s/atlas.json",
+      "preview": "walk-s/loop.gif",
+      "video": "walk-s/loop.mp4",
+      "mirroredFrom": null,
+      "frameCount": 8,
+      "durationMs": 1200,
+      "review": "pending"
+    }
+  ],
+  "sourcePolicy": "one side per pair, mirrored cell-by-cell; complete rider and mount sprites",
+  "integrated": false
+}

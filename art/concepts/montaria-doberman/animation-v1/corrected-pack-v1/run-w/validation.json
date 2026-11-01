@@ -1,0 +1,96 @@
+{
+  "frameCount": 8,
+  "realAlpha": true,
+  "checks": [
+    {
+      "frame": 0,
+      "solidBounds": [
+        125,
+        175,
+        349,
+        296
+      ],
+      "marginClear": true,
+      "solidPixels": 37035
+    },
+    {
+      "frame": 1,
+      "solidBounds": [
+        102,
+        174,
+        364,
+        285
+      ],
+      "marginClear": true,
+      "solidPixels": 37764
+    },
+    {
+      "frame": 2,
+      "solidBounds": [
+        132,
+        175,
+        341,
+        300
+      ],
+      "marginClear": true,
+      "solidPixels": 37430
+    },
+    {
+      "frame": 3,
+      "solidBounds": [
+        125,
+        174,
+        345,
+        295
+      ],
+      "marginClear": true,
+      "solidPixels": 35922
+    },
+    {
+      "frame": 4,
+      "solidBounds": [
+        140,
+        177,
+        338,
+        287
+      ],
+      "marginClear": true,
+      "solidPixels": 33433
+    },
+    {
+      "frame": 5,
+      "solidBounds": [
+        103,
+        175,
+        357,
+        277
+      ],
+      "marginClear": true,
+      "solidPixels": 34918
+    },
+    {
+      "frame": 6,
+      "solidBounds": [
+        116,
+        172,
+        340,
+        276
+      ],
+      "marginClear": true,
+      "solidPixels": 36259
+    },
+    {
+      "frame": 7,
+      "solidBounds": [
+        125,
+        178,
+        331,
+        292
+      ],
+      "marginClear": true,
+      "solidPixels": 35032
+    }
+  ],
+  "mirroredFrom": "run-e",
+  "ingame": false
+}

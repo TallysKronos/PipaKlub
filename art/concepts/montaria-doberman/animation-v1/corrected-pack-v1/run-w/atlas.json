@@ -1,0 +1,111 @@
+{
+  "id": "run-w",
+  "image": "sheet.png",
+  "size": [
+    2048,
+    1024
+  ],
+  "cell": [
+    512,
+    512
+  ],
+  "columns": 4,
+  "rows": 2,
+  "pivot": [
+    256,
+    480
+  ],
+  "headAnchor": [
+    256,
+    195.26267281105993
+  ],
+  "scale": 1.0506912442396312,
+  "mirroredFrom": "run-e",
+  "sourceVideo": "run-e.mp4",
+  "frames": [
+    {
+      "rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "durationMs": 100,
+      "file": "frames/frame-01.png"
+    },
+    {
+      "rect": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "durationMs": 100,
+      "file": "frames/frame-02.png"
+    },
+    {
+      "rect": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "durationMs": 100,
+      "file": "frames/frame-03.png"
+    },
+    {
+      "rect": [
+        1536,
+        0,
+        512,
+        512
+      ],
+      "durationMs": 100,
+      "file": "frames/frame-04.png"
+    },
+    {
+      "rect": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "durationMs": 100,
+      "file": "frames/frame-05.png"
+    },
+    {
+      "rect": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "durationMs": 100,
+      "file": "frames/frame-06.png"
+    },
+    {
+      "rect": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "durationMs": 100,
+      "file": "frames/frame-07.png"
+    },
+    {
+      "rect": [
+        1536,
+        512,
+        512,
+        512
+      ],
+      "durationMs": 100,
+      "file": "frames/frame-08.png"
+    }
+  ],
+  "review": {
+    "state": "draft-for-visual-review",
+    "notes": []
+  }
+}

@@ -41,3 +41,19 @@ test('local editor routes, fixed files and cross-origin write rejection',async()
   assert.equal((await fetch(base+'/game-sprites-service.mjs')).status,404);
  }finally{await new Promise(r=>server.close(r));}
 });
+
+test('layout saves validate fixed fields, preserve other views, synchronize socket frames and backup',async()=>{
+ const root=await fs.mkdtemp(path.join(os.tmpdir(),'soulgen-layout-'));try{
+  const dest=path.join(root,'godot/assets/mounts/doberman-c-v1/mount.json');await fs.mkdir(path.dirname(dest),{recursive:true});
+  const frame={seat:[10,20],hip:[30,40],ground:[50,60],frames:[{seat:[10,20]}]},rig={directions:{se:frame,sw:structuredClone(frame)}};
+  await fs.writeFile(dest,JSON.stringify(rig));
+  for(const asset of gameSprites)await fs.writeFile(path.join(root,asset.file),encodePNG(new Uint8ClampedArray(4),1,1));
+  const service=createGameSpritesService(root),data=await service.list(),patch={seat:[12,25],hip:[35,42],ground:[54,64],farLegAngle:24};
+  await assert.rejects(service.saveRig({revision:data.rigRevision,direction:'se',patch:{...patch,texture:'outside.png'}}),e=>e.status===422);
+  await assert.rejects(service.saveRig({revision:data.rigRevision,direction:'se',patch:{...patch,seat:[Infinity,1]}}),e=>e.status===422);
+  const saved=await service.saveRig({revision:data.rigRevision,direction:'se',patch}),next=JSON.parse(await fs.readFile(dest));
+  assert.deepEqual(next.directions.sw,rig.directions.sw);assert.deepEqual(next.directions.se.frames[0].seat,patch.seat);assert.deepEqual(next.directions.se.hip,patch.hip);
+  assert.deepEqual(JSON.parse(await fs.readFile(path.join(root,saved.backup))),rig);
+  await assert.rejects(service.saveRig({revision:data.rigRevision,direction:'se',patch}),e=>e.status===409);
+ }finally{await fs.rm(root,{recursive:true,force:true});}
+});
