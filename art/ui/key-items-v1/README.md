@@ -1,5 +1,7 @@
 # Ícones de aquisição · Soulmonsters
 
+Atualização: `insignia-morro-do-sol.aseprite` adiciona a primeira conquista de bairro, com motivo de sol e pipa, 128×128 e paleta de nove cores. Exportada para `godot/assets/ui/key-items/insignia-morro-do-sol.png`. Revisão independente `morro_badge_critic`: 8/10, nenhum bloqueio. Integração e evidências em `documentation/qa/first-district-insignia-v1/README.md`.
+
 Dois arquivos Aseprite editáveis e PNGs nativos exportados para `godot/assets/ui/key-items/`.
 
 ## Especificação

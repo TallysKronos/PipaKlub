@@ -54,5 +54,7 @@ func settle() -> Dictionary:
 		partner.condition = {"line": clampf(model.p.hp / model.p.stats.line * 100, 0, 100), "structure": clampf(model.p.hull / model.p.stats.line * 100, 0, 100)}
 		if model.outcome != "fled": earned = Progression.award(player, partner, reward_amount(model.outcome == "won", reward.firstClear))
 	player.lastMorro = {"stage": model.stage_id, "outcome": model.outcome, "coins": reward.coins, "stars": reward.stars, "partnerXp": earned, "drop": reward.drop}
+	if model.outcome=="won" and model.stage_id=="morro-5":
+		player.lastMorro.insignia=preload("res://scripts/campaign/district_badges.gd").award_first_into(player)
 	player.erase("encounter")
 	return session.commit_operation("encounter-" + encounter.id, {"kind": "world", "scene": encounter.scene, "position": encounter.returnPoint}, player)

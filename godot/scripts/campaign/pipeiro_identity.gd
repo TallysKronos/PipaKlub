@@ -70,7 +70,7 @@ static func valid_emblems(value: Variant) -> bool:
 
 static func award_district(player: Dictionary, slot: int, boss_id: String, emblem_name: String, details:Dictionary={}) -> bool:
 	# Called by a district boss settlement inside its existing atomic victory commit.
-	# No demo opponent is a district chief yet; neither training nor Lacertubo calls this.
+	# Mikka is the first district champion. Training and Lacertubo do not call this.
 	if not issued(player) or slot < 0 or slot >= SLOT_COUNT: return false
 	var emblems: Dictionary = player.get("districtEmblems", {}).duplicate(true)
 	var key := slot_id(slot)

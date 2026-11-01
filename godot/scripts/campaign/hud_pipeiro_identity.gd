@@ -14,15 +14,20 @@ var name_label: Label
 class EmblemSlot extends Button:
 	var index := 0
 	var earned := false
+	var seal_texture:Texture2D
 	func _draw() -> void:
 		var center := Vector2(size.x * .5, size.y * .43)
 		var radius := minf(size.x * .27, size.y * .29)
 		var points := PackedVector2Array([center + Vector2(0,-radius),center + Vector2(radius,0),center + Vector2(0,radius),center + Vector2(-radius,0)])
-		draw_colored_polygon(points, Hud.GOLD if earned else Color("263b49"))
-		points.append(points[0])
-		draw_polyline(points, Hud.PAPER if earned else Color("60747c"), 2, true)
-		draw_line(center-Vector2(radius,0),center+Vector2(radius,0),Hud.INK if earned else Color("425764"),1,true)
-		draw_line(center-Vector2(0,radius),center+Vector2(0,radius),Hud.INK if earned else Color("425764"),1,true)
+		if earned and seal_texture!=null:
+			texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+			draw_texture_rect(seal_texture,Hud.fit_texture(seal_texture,Rect2(center-Vector2.ONE*radius*1.25,Vector2.ONE*radius*2.5)),false)
+		else:
+			draw_colored_polygon(points, Hud.GOLD if earned else Color("263b49"))
+			points.append(points[0])
+			draw_polyline(points, Hud.PAPER if earned else Color("60747c"), 2, true)
+			draw_line(center-Vector2(radius,0),center+Vector2(radius,0),Hud.INK if earned else Color("425764"),1,true)
+			draw_line(center-Vector2(0,radius),center+Vector2(0,radius),Hud.INK if earned else Color("425764"),1,true)
 		var text := "%02d" % (index + 1)
 		var font := Hud.font(true)
 		var width := font.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,16).x
@@ -114,6 +119,7 @@ func _ready() -> void:
 		grid.add_child(slot)
 		slots.append(slot)
 		var data: Dictionary = emblems.get(Identity.slot_id(index),{})
+		if data.get("bossId","")=="mikka":slot.seal_texture=load("res://assets/ui/key-items/insignia-morro-do-sol.png")
 		slot.tooltip_text = data.get("name","Espaço %02d · emblema ainda não conquistado" % (index+1))
 		slot.pressed.connect(func(): select_slot(index))
 	detail = copy("Um emblema por chefe de bairro.\nCada conquista guarda seu lugar aqui.",case_column,17,Hud.MUTED)

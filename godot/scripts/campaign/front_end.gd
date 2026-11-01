@@ -21,6 +21,7 @@ const Controls = preload("res://scripts/campaign/controls.gd")
 const Sound = preload("res://scripts/campaign/sound_director.gd")
 const DemoFlow = preload("res://scripts/campaign/demo_flow.gd")
 const PipeiroIdentity = preload("res://scripts/campaign/pipeiro_identity.gd")
+const DistrictBadges = preload("res://scripts/campaign/district_badges.gd")
 var sound := Sound.new()
 var session := Session.new()
 var opening: RefCounted
@@ -343,6 +344,10 @@ func _show_saved() -> void:
 	if PipeiroIdentity.pending(session.snapshot()):
 		TutorialStaging.resume_documents(self)
 		return
+	if not _result(DistrictBadges.ensure_legacy(session)):return
+	if DistrictBadges.pending(session.snapshot()):
+		_resume_first_insignia()
+		return
 	if DemoFlow.pending(session.snapshot()):
 		_show_demo_complete()
 		return
@@ -366,11 +371,60 @@ func _show_identity() -> void:
 	card.closed.connect(_close_identity)
 	card.emblems_requested.connect(_open_emblem_case)
 
+func _resume_first_insignia() -> void:
+	_show_world()
+	while is_instance_valid(scene_loading) or flow_busy:
+		await get_tree().process_frame
+	if last_scene_key.begins_with("world:") and DistrictBadges.pending(session.snapshot()):
+		_present_first_insignia(false)
+
+func _present_first_insignia(from_mikka:bool) -> void:
+	var generation:=opening_generation
+	if is_instance_valid(park):park.paused=true;park.path.clear()
+	if is_instance_valid(room):room.can_walk=false
+	if from_mikka:
+		var result:Dictionary=session.snapshot().player.lastMorro
+		var text:="Mikka: Você conquistou o Morro do Sol! Esta insígnia é sua. É o primeiro bairro de uma longa jornada.\n\nMikka: A rabiola que você ganhou também é o começo de um novo laço. Passe no ateliê do professor para montar seu próximo parceiro."
+		text+="\n\nJornada: +%d XP · %d estrelas · +%d moedas."%[result.partnerXp,result.stars,result.coins]
+		var dialog:=_dialog("Mikka",text,"Receber a insígnia")
+		dialog.allow_cancel=false
+		var accepted:=[false]
+		dialog.confirmed.connect(func():accepted[0]=true)
+		dialog.popup_centered()
+		while TutorialStaging.valid(self,generation) and is_instance_valid(dialog) and not accepted[0]:await get_tree().process_frame
+		if is_instance_valid(dialog):dialog.queue_free()
+		if not TutorialStaging.valid(self,generation):return
+	if not await _present_key_item(DistrictBadges.FIRST_ITEM,DistrictBadges.FIRST_NAME):return
+	_complete_first_insignia()
+
+func _complete_first_insignia() -> void:
+	var result:Dictionary=DistrictBadges.acknowledge(session)
+	if result.status not in ["ok","already_applied"]:
+		var retry:=_dialog("Salvar conquista",_error(result.status),"Tentar novamente","Voltar ao menu")
+		retry.confirmed.connect(_complete_first_insignia.call_deferred);retry.confirmed.connect(retry.queue_free)
+		retry.canceled.connect(_menu.call_deferred);retry.canceled.connect(retry.queue_free);retry.popup_centered()
+		return
+	var dialog:=_dialog("Primeiro bairro conquistado","Sua primeira insígnia está guardada no primeiro espaço do porta-emblemas.\n\nVocê pode consultá-la em Pausa → Porta-emblemas. A jornada continua: explore Kronasta e cuide dos seus parceiros.","Ver porta-emblemas","Continuar explorando")
+	dialog.confirmed.connect(func():
+		if is_instance_valid(park):park.paused=false
+		if is_instance_valid(room):room.can_walk=true
+		_open_emblem_case(0))
+	dialog.confirmed.connect(dialog.queue_free)
+	dialog.canceled.connect(func():
+		if is_instance_valid(park):park.paused=false
+		if is_instance_valid(room):room.can_walk=true)
+	dialog.canceled.connect(dialog.queue_free);dialog.popup_centered()
+
 func _open_emblem_case(index: int = 0) -> void:
 	for child in get_children():
 		if child.has_meta("emblem_case"): return
 	if not PipeiroIdentity.issued(session.snapshot().get("player",{})): return
-	var previous: Control = get_viewport().gui_get_focus_owner()
+	var previous_focus:Control=get_viewport().gui_get_focus_owner()
+	var previous:WeakRef=weakref(previous_focus) if is_instance_valid(previous_focus) else null
+	var park_paused:bool=is_instance_valid(park) and park.paused
+	var was_walking:bool=is_instance_valid(room) and room.can_walk
+	if is_instance_valid(park):park.paused=true
+	if is_instance_valid(room):room.can_walk=false
 	var focus_modes: Array = []
 	for control in find_children("*","Control",true,false):
 		if control.focus_mode!=Control.FOCUS_NONE:
@@ -387,7 +441,11 @@ func _open_emblem_case(index: int = 0) -> void:
 		for entry in focus_modes:
 			if is_instance_valid(entry.control):entry.control.focus_mode=entry.mode
 		if is_instance_valid(pause_overlay): pause_overlay.show()
-		if is_instance_valid(previous): Hud.focus_later(previous))
+		if is_instance_valid(park):park.paused=park_paused
+		if is_instance_valid(room):room.can_walk=was_walking
+		if previous!=null:
+			var focus:Control=previous.get_ref()
+			if is_instance_valid(focus): Hud.focus_later(focus))
 
 func _present_key_item(id: String, item_name: String) -> bool:
 	var generation := opening_generation
@@ -2139,6 +2197,11 @@ func _morro_action(id: String) -> void:
 		if _result(journey.enter_world(place.target, point)): _show_saved.call_deferred()
 
 func _return_morro_result() -> void:
+	if not _result(DistrictBadges.ensure_legacy(session)):return
+	if DistrictBadges.pending(session.snapshot()):
+		_show_world()
+		_present_first_insignia.call_deferred(bool(session.snapshot().player.lastMorro.get("insignia",false)))
+		return
 	_show_saved()
 	var result: Dictionary = session.snapshot().player.lastMorro
 	var lines: Array = Morro.Rules.content().stories[result.stage].won if result.outcome == "won" else Morro.Rules.content().stories[result.stage].lost

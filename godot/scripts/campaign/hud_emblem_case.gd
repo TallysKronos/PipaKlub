@@ -22,9 +22,14 @@ var filters := ["Todos", "Conquistados", "Pendentes"]
 class Seal extends Control:
 	var earned := false
 	var variant := 0
+	var seal_texture:Texture2D
 	func _draw() -> void:
 		var c := size/2
 		var r := minf(size.x,size.y)*.37
+		if earned and seal_texture!=null:
+			texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+			draw_texture_rect(seal_texture,Hud.fit_texture(seal_texture,Rect2(c-Vector2.ONE*r*1.22,Vector2.ONE*r*2.44)),false)
+			return
 		if not earned:
 			draw_arc(c-Vector2(0,r*.12),r*.3,PI,TAU,18,Color("697587"),r*.11,true)
 			draw_style_box(_box(Color("697587")),Rect2(c+Vector2(-r*.37,-r*.13),Vector2(r*.74,r*.65)))
@@ -90,6 +95,7 @@ func _ready() -> void:
 		socket.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);holder.add_child(socket)
 		var seal:=Seal.new();seal.mouse_filter=MOUSE_FILTER_IGNORE;seal.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);seal.offset_bottom=-12;socket.add_child(seal)
 		seal.earned=emblems().has(Identity.slot_id(index));seal.variant=index
+		if emblems().get(Identity.slot_id(index),{}).get("bossId","")=="mikka":seal.seal_texture=load("res://assets/ui/key-items/insignia-morro-do-sol.png")
 		var number:=copy("%02d"%(index+1),socket,13,Hud.MUTED);number.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 		number.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE);number.offset_top=-22;number.offset_bottom=-3
 		socket.pressed.connect(select_slot.bind(index));socket.focus_entered.connect(select_slot.bind(index))
@@ -133,6 +139,7 @@ func select_slot(index:int) -> void:
 	for i in slots.size():slots[i].active=i==index;slots[i].queue_redraw()
 	var entry:Dictionary=emblems().get(Identity.slot_id(index),{})
 	art.earned=not entry.is_empty();art.variant=index;art.queue_redraw()
+	art.seal_texture=load("res://assets/ui/key-items/insignia-morro-do-sol.png") if entry.get("bossId","")=="mikka" else null
 	if entry.is_empty():
 		title.text="Emblema %02d"%(index+1);location.text="Ainda não conquistado";chief.text="Chefe de bairro"
 		description.text="Este encaixe espera uma conquista sua.\n\nVença o chefe de um bairro para guardar o emblema correspondente aqui."

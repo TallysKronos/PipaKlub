@@ -1,5 +1,7 @@
 # Porta-emblemas · estojo de bairro
 
+Atualização: a primeira insígnia oficial já está ligada à vitória contra Mikka no Morro do Sol. Veja `../first-district-insignia-v1/README.md`; o trecho abaixo registra a versão anterior de apresentação do estojo.
+
 31/10/2026. Implementação local, ainda sem push.
 
 O porta-emblemas ganhou uma tela própria, aberta sobre o cenário pausado: estojo azul com fechos laranja, dobradiça, ilustrações de pipa na lombada, bordas de tinta e retícula discreta nas costuras. A grade mantém 12 posições em quatro colunas e três linhas. Os espaços pendentes têm cadeados; seleção e foco usam borda dourada.
