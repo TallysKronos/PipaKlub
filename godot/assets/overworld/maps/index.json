@@ -180,6 +180,24 @@
       "name": "Gelo · Coroa da geleira",
       "scene": "gelo-d",
       "biome": "floresta"
+    },
+    {
+      "id": "submerso-a",
+      "name": "Submerso · Recife de entrada",
+      "scene": "submerso-a",
+      "biome": "floresta"
+    },
+    {
+      "id": "submerso-b",
+      "name": "Submerso · Jardim de algas",
+      "scene": "submerso-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "submerso-c",
+      "name": "Submerso · Fenda abissal",
+      "scene": "submerso-c",
+      "biome": "floresta"
     }
   ],
   "scenes": {
@@ -211,7 +229,10 @@
     "gelo-a": "gelo-a",
     "gelo-b": "gelo-b",
     "gelo-c": "gelo-c",
-    "gelo-d": "gelo-d"
+    "gelo-d": "gelo-d",
+    "submerso-a": "submerso-a",
+    "submerso-b": "submerso-b",
+    "submerso-c": "submerso-c"
   },
   "campaignReplacement": false
 }

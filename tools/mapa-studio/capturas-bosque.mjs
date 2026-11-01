@@ -26,7 +26,7 @@ export function writeCapturePlan(map,features={},outputBase='documentation/overw
  for(const j of joins.values())if(j.sides.length===1||new Set(j.sides).size>1)add('mureta-junta-'+j.u+'-'+j.v,j.u,j.v);
  for(const shot of features.shots??[])add(shot.name,shot.u,shot.v,shot.zoom??2.3,shot.kind??'junta');
  // One frame covers every elevation on the same vertical cliff corner.
- if(features.mountain||features.mine||features.ice){if(features.mountain)shots[0].zoom=.30;const seen=new Set();for(let i=0;i<shots.length;){const s=shots[i],key=s.u+','+s.v;if(s.name.startsWith('canto-')&&seen.has(key)){shots.splice(i,1);continue;}if(s.name.startsWith('canto-'))seen.add(key);i++;}}
+ if(features.mountain||features.mine||features.ice||features.submerged){if(features.mountain)shots[0].zoom=.30;const seen=new Set();for(let i=0;i<shots.length;){const s=shots[i],key=s.u+','+s.v;if(s.name.startsWith('canto-')&&seen.has(key)){shots.splice(i,1);continue;}if(s.name.startsWith('canto-'))seen.add(key);i++;}}
  const dir=new URL(outputBase+'/planos/',root);fs.mkdirSync(dir,{recursive:true});
  fs.writeFileSync(new URL(map.id+'.json',dir),JSON.stringify({area:map.id,shots},null,2)+'\n');
  return shots;
