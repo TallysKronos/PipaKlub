@@ -148,6 +148,9 @@ func _refresh() -> void:
 	companion.region_rect = Rect2(frame.x, frame.y, frame.w, frame.h)
 	camera.position = project(player)
 
+func toggle_mount() -> void:
+	if not paused:avatar.set_mounted(not avatar.mounted)
+
 func _physics_process(delta: float) -> void:
 	clock += delta
 	if paused:
@@ -155,7 +158,7 @@ func _physics_process(delta: float) -> void:
 		return
 	var input := Controls.direction()
 	var before := player
-	var movement := Vector2(input.x + 2 * input.y, 2 * input.y - input.x).normalized() * input.length() * 300 * minf(delta, .05)
+	var movement:Vector2 = Vector2(input.x + 2 * input.y, 2 * input.y - input.x).normalized() * input.length() * 300 * avatar.travel_multiplier() * minf(delta, .05)
 	var steps := maxi(1, ceili(movement.length() / 3))
 	for index in steps:
 		var step := movement / steps
@@ -172,7 +175,7 @@ func _physics_process(delta: float) -> void:
 	for point in trail:
 		remaining += previous.distance_to(point)
 		previous = point
-	var budget := minf(300 * delta, maxf(0, remaining - 65))
+	var budget := minf(450 * delta if avatar.mounted else 300 * delta, maxf(0, remaining - 65))
 	while budget > .001 and not trail.is_empty():
 		var length := follower.distance_to(trail[0])
 		var amount := minf(budget, length)

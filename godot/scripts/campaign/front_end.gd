@@ -1182,6 +1182,10 @@ func _process(_delta: float) -> void:
 			status.text = ("Analógico · Mover" if Controls.gamepad else "WASD / setas · Mover") + "  ·  " + {3: "Aproxime-se da mesa de desenho.", 11: "Aproxime-se da escada para descer.", 13: "Aproxime-se da porta para sair."}[current_step]
 
 func _unhandled_input(event: InputEvent) -> void:
+	var mount_key:bool=event is InputEventKey and event.pressed and not event.echo and event.physical_keycode==KEY_B
+	var mount_pad:bool=event is InputEventJoypadButton and event.pressed and event.button_index==JOY_BUTTON_DPAD_UP
+	if (mount_key or mount_pad) and not flow_busy and not is_instance_valid(scene_loading) and last_scene_key.begins_with("world:") and is_instance_valid(park) and park.has_method("toggle_mount") and not park.paused and get_tree().get_nodes_in_group("manga_dialogue").is_empty():
+		park.toggle_mount();get_viewport().set_input_as_handled();return
 	if is_instance_valid(scene_loading):
 		get_viewport().set_input_as_handled();return
 	if flow_busy and event.is_action_pressed("campaign_map"):

@@ -1801,7 +1801,7 @@ func _build_hud() -> void:
 	Hud.fit_footer(footer,hint,83)
 
 func _refresh_positions() -> void:
-	_place_actor(player_root,avatar,player,84)
+	_place_actor(player_root,avatar,player,155 if avatar.mounted else 84)
 	_place_actor(follower_root,companion,follower,42)
 	CompanionFollow.orient(companion,avatar.facing)
 	for actor in npc_nodes:_place_actor(actor.root,actor.visual,actor.point,84)
@@ -1811,7 +1811,7 @@ func _refresh_positions() -> void:
 func _fade_occluders() -> void:
 	var pair:Array[Dictionary]=[]
 	# Project each actor once, rather than repeat height queries for every tree.
-	for member in [{"point":player,"height":84.0},{"point":follower,"height":42.0}]:
+	for member in [{"point":player,"height":155.0 if avatar.mounted else 84.0},{"point":follower,"height":42.0}]:
 		var at:Vector2=member.point
 		pair.append({"point":at,"body":Rect2(model.project(at)-Vector2(20,member.height),Vector2(40,member.height)),"ground":model.project(at,false).y})
 	for node in occluders:
@@ -1861,9 +1861,15 @@ func walk_to(point: Vector2) -> bool:
 func toggle_run() -> void:
 	Locomotion.toggle()
 
+func toggle_mount() -> void:
+	if campaign_mode and get("paused")==true:return
+	if not avatar.motion_action.is_empty() or avatar.jump_time>=0 or avatar.item_time>=0:return
+	avatar.set_mounted(not avatar.mounted)
+	path.clear()
+
 func _physics_process(delta: float) -> void:
 	Locomotion.update()
-	var speed := 3.0*Locomotion.multiplier()
+	var speed:float = 3.0*Locomotion.multiplier()*avatar.travel_multiplier()
 	clock += delta
 	var old := player
 	var input := Controls.direction()
@@ -1912,8 +1918,16 @@ func _adopt_player_step(next:Vector2) -> void:
 	follower_trail.append(player)
 
 func _follow_recorded_path(delta: float) -> void:
-	# Every map follows the accepted footsteps, never a newly chosen shortcut.
-	follower=CompanionFollow.advance(follower,follower_trail,delta,6.3,.8,model.clear_segment)
+	# Follow accepted footsteps; mounted corner recovery stays on walkable paths.
+	var previous:=follower
+	follower=CompanionFollow.advance(follower,follower_trail,delta,8.5 if avatar.mounted else 6.3,.8,model.clear_segment)
+	# At a tight corner, floating interpolation can leave the follower unable to
+	# enter the next recorded segment. Recover through the same walkable graph.
+	if avatar.mounted and follower==previous and follower.distance_to(player)>1:
+		var recovery:PackedVector2Array=model.path_to(follower,player)
+		if not recovery.is_empty():
+			follower_trail.assign(recovery)
+			follower=CompanionFollow.advance(follower,follower_trail,delta,8.5,.8,model.clear_segment)
 
 func interact() -> void:
 	if nearby.is_empty(): return

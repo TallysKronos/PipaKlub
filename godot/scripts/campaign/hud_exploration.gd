@@ -24,6 +24,7 @@ var prompt_panel:PanelContainer
 var partner_panel:Control
 var tools:HBoxContainer
 var run_button:Button
+var mount_button:Button
 var map:Control
 var notices:Array[Dictionary]=[]
 var notice_stack:VBoxContainer
@@ -101,6 +102,12 @@ func _ready() -> void:
 	run_button.pressed.connect(func():
 		if is_instance_valid(subject) and subject.has_method("toggle_run"):subject.toggle_run())
 	add_child(run_button)
+	mount_button=Button.new();mount_button.name="MountToggle";mount_button.focus_mode=Control.FOCUS_NONE
+	mount_button.custom_minimum_size=Vector2(184,44);Hud.navigation_button(mount_button,true)
+	mount_button.tooltip_text="Montaria em teste · B no teclado / direcional para cima no controle."
+	mount_button.pressed.connect(func():
+		if is_instance_valid(subject) and subject.has_method("toggle_mount"):subject.toggle_mount())
+	add_child(mount_button)
 	refresh(player_data)
 	_layout()
 func refresh(value:Dictionary) -> void:
@@ -167,6 +174,11 @@ func _layout() -> void:
 	run_button.text="Corrida ligada" if Locomotion.toggled else Controls.prompt("run")+" · Correr"
 	run_button.tooltip_text=("Pressione %s ou clique para alternar a corrida." if Controls.gamepad else "Segure %s para correr ou clique para alternar.")%Controls.prompt("run")
 	run_button.position=Vector2((size.x-run_button.size.x)/2,size.y-run_button.size.y-20)
+	mount_button.visible=is_instance_valid(subject) and subject.has_method("toggle_mount")
+	if mount_button.visible:
+		var riding:bool=is_instance_valid(subject.get("avatar")) and subject.avatar.mounted
+		mount_button.text=("↑" if Controls.gamepad else "B")+(" · Desmontar" if riding else " · Montar")
+		mount_button.position=run_button.position+Vector2(0,-52)
 	var factor:=size.y/1080.0
 	var compact:=area_age>=3
 	area_panel.position=Vector2(20,20)
