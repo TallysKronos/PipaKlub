@@ -1861,7 +1861,13 @@ func walk_to(point: Vector2) -> bool:
 func toggle_run() -> void:
 	Locomotion.toggle()
 
+func can_mount() -> bool:
+	if not campaign_mode:return true
+	var player_data=get("saved_player")
+	return player_data is Dictionary and preload("res://scripts/campaign/mount_quest.gd").owned(player_data)
+
 func toggle_mount() -> void:
+	if not can_mount():return
 	if campaign_mode and get("paused")==true:return
 	if not avatar.motion_action.is_empty() or avatar.jump_time>=0 or avatar.item_time>=0:return
 	avatar.set_mounted(not avatar.mounted)

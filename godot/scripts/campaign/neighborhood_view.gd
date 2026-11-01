@@ -52,6 +52,9 @@ func map_landmarks() -> Array[Dictionary]:
 	for house in world.houses:
 		var title: String={"casa-kael":"Casa do Kael","professor":"Ateliê do professor","loja":"Loja da Lia"}.get(house.id,"")
 		if not title.is_empty():markers.append({"point":house.door,"text":title})
+	var quest=preload("res://scripts/campaign/mount_quest.gd")
+	if quest.available(saved_player) and not quest.owned(saved_player):
+		markers.append({"point":quest.LIA if quest.stage(saved_player)==1 else quest.ZECA,"text":"Lia · fecho da guia" if quest.stage(saved_player)==1 else "Zeca · montaria"})
 	return markers
 
 func _ready() -> void:
@@ -109,6 +112,10 @@ func _process(delta: float) -> void:
 		action_requested.emit("autosave")
 
 func _goal() -> Dictionary:
+	var quest=preload("res://scripts/campaign/mount_quest.gd")
+	if quest.available(saved_player) and quest.stage(saved_player) in [1,2]:
+		var target:Vector2=quest.LIA if quest.stage(saved_player)==1 else quest.ZECA
+		return {"p":target,"h":world.support(target)}
 	var p: Vector2=Checkpoint.PARK if saved_player.get("journey",{}).get("phase")=="complete" else Checkpoint.PROFESSOR
 	return {"p":p,"h":world.support(p)} if is_instance_valid(world) else {"p":p,"h":8}
 
@@ -125,8 +132,20 @@ func _update_hint() -> void:
 	if not exit_id.is_empty():hint="Seguir para o Morro do Sol" if exit_id=="morro" else "Seguir para o parque"
 	elif not near_person.is_empty():hint="Entrar no ateliê do professor" if near_person.id=="assis" else "Conversar com "+str(near_person.name)
 	elif not near_house.is_empty():hint="Entrar na Linha & Papel" if near_house.id=="loja" else "Entrar no ateliê" if near_house.id=="professor" else "Examinar a entrada"
+	var quest=preload("res://scripts/campaign/mount_quest.gd")
+	if quest.available(saved_player) and quest.stage(saved_player)<3:
+		if near_person.get("id")=="zeca":hint+=" · Missão de montaria"
+		elif near_person.get("id")=="lia" and quest.stage(saved_player)==1:hint+=" · Fecho da guia"
 	exploration_hud.prompt.text=hint
 	exploration_hud.objective.text="Explore o parque ou siga para o Morro do Sol." if saved_player.get("journey",{}).get("phase")=="complete" else "Suba a ladeira e entre no ateliê do professor."
+	if quest.available(saved_player) and quest.stage(saved_player) in [1,2]:exploration_hud.objective.text=quest.objective(saved_player)
+
+func can_mount() -> bool:
+	return preload("res://scripts/campaign/mount_quest.gd").owned(saved_player)
+
+func toggle_mount() -> void:
+	if not can_mount() or not conversation.is_empty() or is_instance_valid(active_dialogue):return
+	super.toggle_mount()
 
 func interact() -> void:
 	if paused:return
@@ -143,6 +162,7 @@ func interact() -> void:
 		else:action_requested.emit(exit_id)
 	elif near_person.get("id")=="assis" or near_house.get("id")=="professor":action_requested.emit("professor-home")
 	elif near_house.get("id")=="loja":action_requested.emit("kite-shop")
+	elif near_person.get("id") in ["zeca","lia"]:action_requested.emit("mount-quest:"+str(near_person.id))
 	else:super.interact()
 
 func _say(speaker: String,lines: Array) -> void:

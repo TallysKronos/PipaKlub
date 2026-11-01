@@ -104,7 +104,7 @@ func _ready() -> void:
 	add_child(run_button)
 	mount_button=Button.new();mount_button.name="MountToggle";mount_button.focus_mode=Control.FOCUS_NONE
 	mount_button.custom_minimum_size=Vector2(184,44);Hud.navigation_button(mount_button,true)
-	mount_button.tooltip_text="Montaria em teste · B no teclado / direcional para cima no controle."
+	mount_button.tooltip_text="Apito de Elo · B no teclado / direcional para cima no controle."
 	mount_button.pressed.connect(func():
 		if is_instance_valid(subject) and subject.has_method("toggle_mount"):subject.toggle_mount())
 	add_child(mount_button)
@@ -174,7 +174,7 @@ func _layout() -> void:
 	run_button.text="Corrida ligada" if Locomotion.toggled else Controls.prompt("run")+" · Correr"
 	run_button.tooltip_text=("Pressione %s ou clique para alternar a corrida." if Controls.gamepad else "Segure %s para correr ou clique para alternar.")%Controls.prompt("run")
 	run_button.position=Vector2((size.x-run_button.size.x)/2,size.y-run_button.size.y-20)
-	mount_button.visible=is_instance_valid(subject) and subject.has_method("toggle_mount")
+	mount_button.visible=is_instance_valid(subject) and subject.has_method("toggle_mount") and (not subject.has_method("can_mount") or subject.can_mount())
 	if mount_button.visible:
 		var riding:bool=is_instance_valid(subject.get("avatar")) and subject.avatar.mounted
 		mount_button.text=("↑" if Controls.gamepad else "B")+(" · Desmontar" if riding else " · Montar")

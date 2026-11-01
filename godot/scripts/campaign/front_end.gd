@@ -876,7 +876,10 @@ func _show_neighborhood() -> void:
 	if is_instance_valid(park):park.paused=false
 
 func _neighborhood_action(id: String) -> void:
-	if not _save_park():return
+	if flow_busy:return
+	if not _save_park(true):return
+	if id.begins_with("mount-quest:"):
+		_mount_quest_talk(id.trim_prefix("mount-quest:"));return
 	match id:
 		"autosave":return
 		"collection":_show_collection()
@@ -892,6 +895,57 @@ func _neighborhood_action(id: String) -> void:
 			if session.snapshot().player.get("journey",{}).get("phase")=="complete" and _result(journey.enter_world("morro",Vector2(528,752))):_show_saved.call_deferred()
 		"park":
 			if session.snapshot().player.get("journey",{}).get("phase")=="complete" and _result(journey.enter_world("park-trail",Vector2(208,816))):_show_saved.call_deferred()
+
+func _mount_quest_talk(npc:String) -> void:
+	var quest=preload("res://scripts/campaign/mount_quest.gd")
+	var player:Dictionary=session.snapshot().player
+	if not quest.available(player):
+		_notice("Zeca: Termine seu treino com o professor. Depois, passe na pracinha: tenho um companheiro para você conhecer.");return
+	var step:=quest.stage(player)
+	if step==3:
+		_notice("Zeca: O apito chama seu companheiro. Vá com calma nas curvas e deixe as passagens estreitas para atravessar a pé." if npc=="zeca" else "Lia: O fecho ficou firme! Agora é cuidar da guia e do seu companheiro.");return
+	if npc=="zeca" and step==1:
+		_notice("Zeca: A Lia está na rua alta, ao lado da Linha & Papel. Diga que é o fecho da guia; ela já sabe a medida.");return
+	if npc=="lia" and step!=1:
+		_notice("Lia: Leve o fecho de volta ao Zeca, na pracinha." if step==2 else "Lia: O Zeca está na pracinha. Ele anda precisando de uma mão com uma guia.");return
+	var text:String="Estou cuidando de uma montaria de papel. Ela é veloz, mas a guia ficou com o fecho solto. Não vou deixar ninguém montar assim. A Lia tem a peça certa. Pode buscar para mim?" if step==0 else "O Zeca mandou você? Separei um fecho de linha encerada: segura bem sem machucar a armação. Aqui está. Leve para ele conferir o ajuste." if npc=="lia" else "É o fecho certo! Agora a guia está segura. Você cuidou do que ela precisava antes de pensar em correr. Fique com este Apito de Elo: ele chama seu novo companheiro de estrada."
+	flow_busy=true;park.paused=true;park.avatar.moving=false;park.avatar.running=false
+	var dialog:=_dialog("Zeca" if npc=="zeca" else "Lia",text,"Vou buscar" if step==0 else "Receber o fecho" if npc=="lia" else "Receber o apito","Agora não" if step==0 else "")
+	dialog.confirmed.connect(func():_complete_mount_quest(npc,dialog))
+	dialog.canceled.connect(func():dialog.queue_free();_finish_mount_conversation())
+	dialog.popup_centered()
+
+func _finish_mount_conversation() -> void:
+	flow_busy=false
+	if is_instance_valid(park):park.paused=false
+
+func _complete_mount_quest(npc:String,dialog:Control) -> void:
+	var quest=preload("res://scripts/campaign/mount_quest.gd")
+	var result:Dictionary=quest.new(session).talk(npc)
+	dialog.queue_free()
+	if result.status not in ["ok","already_applied"]:
+		_finish_mount_conversation();_result(result);return
+	if is_instance_valid(park):
+		park.saved_player=session.snapshot().player
+		park.exploration_hud.refresh(park.saved_player)
+		park._update_hint()
+	var player:Dictionary=session.snapshot().player
+	if quest.owned(player):
+		await _present_key_item(quest.ITEM,"Apito de Elo")
+		_finish_mount_conversation()
+		_notice("Apito guardado na mochila. Use B ou o direcional para cima para montar e desmontar nas áreas abertas. Segure Shift ou ative Correr para a montaria correr. Também pode chamar pela mochila → Apito de Elo.")
+	else:
+		_finish_mount_conversation()
+		if is_instance_valid(park):park.exploration_hud.push_notice(quest.objective(player),"item")
+
+func _use_mount_item() -> void:
+	var saved:Dictionary=session.snapshot()
+	if not preload("res://scripts/campaign/mount_quest.gd").owned(saved.player):return
+	if not _remember_world_position():return
+	menu_origin="";sound.set_game_paused(false);_show_saved()
+	while is_instance_valid(scene_loading):await get_tree().process_frame
+	if not is_inside_tree():return
+	if is_instance_valid(park) and park.has_method("toggle_mount"):park.toggle_mount()
 
 func _world_interact(id: String) -> void:
 	if flow_busy:return
@@ -1426,7 +1480,7 @@ func _show_park() -> void:
 	park.menu_requested.connect(_pause_game)
 	park.exit_requested.connect(_park_exit)
 
-func _save_park() -> bool:
+func _save_park(quiet:bool=false) -> bool:
 	var space: String = park.get("checkpoint_space") if park.get("checkpoint_space")!=null else ""
 	var result: Dictionary = journey.enter_world(park.get_meta("campaign_scene"), park.player,space)
 	if result.status != "ok":
@@ -1435,7 +1489,7 @@ func _save_park() -> bool:
 		return false
 	if is_instance_valid(park.exploration_hud):
 		park.exploration_hud.refresh(session.snapshot().player)
-		park.exploration_hud.push_notice("Progresso salvo","saved")
+		if not quiet:park.exploration_hud.push_notice("Progresso salvo","saved")
 	return true
 
 func _park_exit(event: Dictionary) -> void:
@@ -1819,7 +1873,9 @@ func _show_bag() -> void:
 	_label("%d moedas · Materiais e lembranças da sua jornada"%player.coins,page,18).add_theme_color_override("font_color",Hud.GOLD)
 	var inventory_view = load("res://scripts/campaign/hud_inventory.gd").new()
 	inventory_view.care_available=session.snapshot().checkpoint.get("kind","")=="world"
+	inventory_view.mount_available=session.snapshot().checkpoint.get("kind","")=="world" and session.snapshot().checkpoint.get("scene","") not in ["professor-home","kite-shop"]
 	inventory_view.care_requested.connect(func():_show_partner_care())
+	inventory_view.mount_requested.connect(_use_mount_item)
 	inventory_view.inventory = player.inventory
 	inventory_view.reduced_motion=preferences.reduced_motion
 	page.add_child(inventory_view)
@@ -1918,6 +1974,8 @@ func _show_missions() -> void:
 	var list:=VBoxContainer.new();list.size_flags_horizontal=Control.SIZE_EXPAND_FILL;list.add_theme_constant_override("separation",16);scroll.add_child(list)
 	var trained:bool=int(player.get("journey",{}).get("lesson",0))>=5
 	var entries:Array=[["Os primeiros elos","Conclua o treinamento com o Sr. Assis.",trained]]
+	var mount_quest=preload("res://scripts/campaign/mount_quest.gd")
+	if mount_quest.available(player):entries.append([mount_quest.TITLE,mount_quest.objective(player),mount_quest.owned(player)])
 	if trained:
 		entries.append(["Seu primeiro parceiro","Monte seu primeiro Pipamon na oficina.",not player.get("partners",[]).is_empty()])
 		var victories:int=player.get("morro",{}).get("stars",{}).size()

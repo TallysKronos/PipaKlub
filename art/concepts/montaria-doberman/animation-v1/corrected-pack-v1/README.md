@@ -90,3 +90,11 @@ Canvas local já instalado:
 
 O empacotador usa as saídas já geradas e a seleção em `manifest.json`;
 não gera novas imagens nem executa ComfyUI.
+
+## Atualização de integração
+
+Após esta revisão, o responsável solicitou aplicar a montaria no jogo. Os
+16 ciclos foram integrados localmente como texturas de runtime reduzidas,
+desbloqueadas pela missão do Apito de Elo. O estado de não integração descrito
+acima registra a entrega original; a implementação atual está em
+`documentation/campaign/mount-city-quest-v1.md`.

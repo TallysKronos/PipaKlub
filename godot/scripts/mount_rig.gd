@@ -8,6 +8,11 @@ var seat:Marker2D
 var rider:Sprite2D
 var far_leg:Sprite2D
 var foreground:Sprite2D
+var animated:Sprite2D
+var animations:Dictionary={}
+var animation_textures:Dictionary={}
+var animation_key:=""
+var animation_clock:=0.0
 var layout_revision:=""
 var layout_poll:=0.0
 @export_file("*.json") var definition_path:="res://assets/mounts/doberman-c-v1/mount.json"
@@ -32,9 +37,15 @@ func _ready() -> void:
 		layer.material=shader_material
 	foreground=Sprite2D.new();foreground.name="NeckForeground";foreground.centered=false;foreground.region_enabled=true
 	foreground.texture=body.texture;foreground.use_parent_material=true;add_child(foreground);foreground.z_index=2
+	animated=Sprite2D.new();animated.name="MountedAnimation";animated.centered=false;animated.region_enabled=true;animated.use_parent_material=true;animated.z_index=1;add_child(animated)
+	var manifest=JSON.parse_string(FileAccess.get_file_as_string("res://assets/mounts/doberman-animated-v1/animations.json"))
+	if manifest is Dictionary:animations=manifest.get("animations",{})
 	set_facing(facing)
 
 func _process(delta:float) -> void:
+	if not is_visible_in_tree():return
+	animation_clock+=delta
+	_update_animation()
 	if not OS.has_feature("editor") or not is_visible_in_tree():return
 	layout_poll+=delta
 	if layout_poll<1:return
@@ -81,3 +92,21 @@ func set_facing(value:String) -> void:
 		foreground.region_rect=Rect2(body.region_rect.position+Vector2(clip[0],clip[1]),Vector2(clip[2],clip[3]))
 		foreground.position=body.position+Vector2(clip[0],clip[1])*definition.scale
 		foreground.scale=body.scale
+	_update_animation()
+
+func _update_animation() -> void:
+	if not is_instance_valid(animated):return
+	var actor=get_parent()
+	var key:String=("run-" if actor.running else "walk-")+facing if actor.moving else ""
+	if key!=animation_key:animation_key=key;animation_clock=0
+	animated.visible=animations.has(key)
+	body.visible=not animated.visible;rider.visible=not animated.visible;far_leg.visible=not animated.visible
+	foreground.visible=not animated.visible and definition.directions.get(facing,{}).has("neck")
+	if not animated.visible:return
+	var clip:Dictionary=animations[key]
+	if not animation_textures.has(key):animation_textures[key]=LiveSprites.load_texture(clip.texture)
+	animated.texture=animation_textures[key]
+	var index:=int(animation_clock*1000/float(clip.durationMs))%int(clip.frames)
+	animated.region_rect=Rect2((index%int(clip.columns))*int(clip.cell[0]),(index/int(clip.columns))*int(clip.cell[1]),clip.cell[0],clip.cell[1])
+	animated.scale=Vector2.ONE*float(clip.scale)
+	animated.position=-Vector2(clip.pivot[0],clip.pivot[1])*float(clip.scale)

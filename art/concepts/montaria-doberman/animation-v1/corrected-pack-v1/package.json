@@ -190,5 +190,7 @@
     }
   ],
   "sourcePolicy": "one side per pair, mirrored cell-by-cell; complete rider and mount sprites",
-  "integrated": false
+  "integrated": true,
+  "runtime": "godot/assets/mounts/doberman-animated-v1",
+  "integrationNotes": "Manual runtime integration through Apito de Elo city quest; edited static poses retained at rest."
 }
