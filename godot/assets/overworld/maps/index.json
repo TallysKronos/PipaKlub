@@ -234,6 +234,24 @@
       "name": "Beira-Canal · C",
       "scene": "kronasta-beira-canal-c",
       "biome": "floresta"
+    },
+    {
+      "id": "kronasta-feira-a",
+      "name": "Feira do Largo · A",
+      "scene": "kronasta-feira-a",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-feira-b",
+      "name": "Feira do Largo · B",
+      "scene": "kronasta-feira-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-feira-c",
+      "name": "Feira do Largo · C",
+      "scene": "kronasta-feira-c",
+      "biome": "floresta"
     }
   ],
   "scenes": {
@@ -274,7 +292,10 @@
     "kronasta-bambuzal-c": "kronasta-bambuzal-c",
     "kronasta-beira-canal-a": "kronasta-beira-canal-a",
     "kronasta-beira-canal-b": "kronasta-beira-canal-b",
-    "kronasta-beira-canal-c": "kronasta-beira-canal-c"
+    "kronasta-beira-canal-c": "kronasta-beira-canal-c",
+    "kronasta-feira-a": "kronasta-feira-a",
+    "kronasta-feira-b": "kronasta-feira-b",
+    "kronasta-feira-c": "kronasta-feira-c"
   },
   "campaignReplacement": false
 }

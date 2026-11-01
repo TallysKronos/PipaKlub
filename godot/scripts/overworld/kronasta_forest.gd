@@ -78,7 +78,7 @@ static func build(view) -> void:
 	for v in range(-RING,h+RING):
 		for u in range(-RING,w+RING):
 			var inside:=u>=0 and v>=0 and u<w and v<h
-			if (mountain or mine or ice or bool(model.data.get("forest",{}).get("bamboo",false)) or model.data.get("forest",{}).get("canal",false)) and not inside:continue
+			if (mountain or mine or ice or bool(model.data.get("forest",{}).get("bamboo",false)) or model.data.get("forest",{}).get("canal",false) or model.data.get("forest",{}).get("market",false)) and not inside:continue
 			var node:=Node2D.new()
 			node.position=Vector2((u-v)*32,(u+v)*16+2)
 			view.actors.add_child(node)
@@ -136,8 +136,9 @@ static func build(view) -> void:
 			elif not industrial and not mountain and not mine and not ice and OS.get_environment("KRONASTA_GEOMETRIA")!="1" and _hash(u,v,7)<.82 and not Structures.is_water(model,Vector2(u+.5,v+.5)) and not _near_exit(u,v,w,h,exits) and _hidden_behind(model,u,v)>4:
 				_tree(view,model,Vector2(u+.5+(_hash(u,v,3)-.5)*.5,v+.5+(_hash(u,v,4)-.5)*.5),0,"a" if _hash(u,v,5)<.5 else "b",_hash(u,v,6),true)
 	Structures.build(view)
-	if bool(model.data.get("forest",{}).get("bamboo",false)) or bool(model.data.get("forest",{}).get("canal",false)):
+	if bool(model.data.get("forest",{}).get("bamboo",false)) or bool(model.data.get("forest",{}).get("canal",false)) or bool(model.data.get("forest",{}).get("market",false)):
 		preload("res://scripts/overworld/bamboo_structures.gd").build(view)
+	if model.data.get("forest",{}).get("market",false):preload("res://scripts/overworld/market_structures.gd").build(view)
 	if model.data.get("forest",{}).get("canal",false):preload("res://scripts/overworld/canal_structures.gd").build(view)
 	if bool(model.data.get("forest",{}).get("industrial",false)):
 		preload("res://scripts/overworld/industrial_structures.gd").build(view)
@@ -150,7 +151,7 @@ static func build(view) -> void:
 	if bool(model.data.get("forest",{}).get("nativeProps",false)):
 		var native_pieces: Array = []
 		for piece in model.data.pieces:
-			if piece.asset.begins_with("canal-"):continue
+			if piece.asset.begins_with("canal-") or piece.asset.begins_with("feira-"):continue
 			if piece.asset in ["bambuzal-touceira","bambuzal-casa","bambuzal-bancada"]:continue
 			if piece.asset=="industrial-volume":continue
 			if piece.asset in ["pantano-arvore","pantano-arvore-seca"]:continue

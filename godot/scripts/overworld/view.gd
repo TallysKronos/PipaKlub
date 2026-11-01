@@ -97,9 +97,9 @@ func load_area(id: String, arrival: Variant = "") -> void:
 	stairs_drawn.clear()
 	occluders.clear()
 	model.setup(JSON.parse_string(FileAccess.get_file_as_string(source)))
-	RenderingServer.set_default_clear_color(Color.BLACK if model.data.get("forest",{}).get("bamboo",false) or model.data.get("forest",{}).get("canal",false) else ProjectSettings.get_setting("rendering/environment/defaults/default_clear_color"))
+	RenderingServer.set_default_clear_color(Color.BLACK if model.data.get("forest",{}).get("bamboo",false) or model.data.get("forest",{}).get("canal",false) or model.data.get("forest",{}).get("market",false) else ProjectSettings.get_setting("rendering/environment/defaults/default_clear_color"))
 	kits.assign([kit_library.comum])
-	if bool(model.data.get("forest",{}).get("bamboo",false)) or model.data.get("forest",{}).get("canal",false):
+	if bool(model.data.get("forest",{}).get("bamboo",false)) or model.data.get("forest",{}).get("canal",false) or model.data.get("forest",{}).get("market",false):
 		kits.append(kit_library.parque.duplicate(true))
 	if kit_library.has(model.data.biome):
 		# Area overrides must never leak into the next map's shared kit.
