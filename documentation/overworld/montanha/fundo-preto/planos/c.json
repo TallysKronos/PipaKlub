@@ -1,0 +1,33 @@
+{
+  "area": "kronasta-montanha-c",
+  "shots": [
+    {
+      "name": "area-inteira",
+      "u": 28,
+      "v": 24,
+      "zoom": 0.3,
+      "kind": "geral"
+    },
+    {
+      "name": "entrada",
+      "u": 24.5,
+      "v": 44.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "travessia",
+      "u": 28,
+      "v": 34,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "patamar-alto",
+      "u": 24,
+      "v": 16,
+      "zoom": 1,
+      "kind": "jogo"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+# Entrega — Gelo A/B/C/D: revisão de composição
+
+## 1. Arquivos criados e alterados
+Revisão do brief ASCII, gerador determinístico desenhar-gelo.mjs e testes gelo.test.mjs. Quatro plantas Tiled e mapas compilados ampliados de 44×40 para 56×48, mantendo IDs e ligações. Atualizados ice_structures.gd (escala e espelhamento por instância, remoção das fissuras B com coordenadas antigas) e ice_ground.gdshader (placas de gelo e borda de neve contínuas no mapa, sombra sob massas de árvores). Kit gelo-v1 original reutilizado, com nota das escalas por instância no manifesto; nenhum kit alheio alterado. Planos, inventário, capturas e pranchas regenerados. Comparação com a versão anterior em comparacao/.
+
+## 2. Resultado automático
+Quatro partes: CONFERÊNCIA ZERO QUEBRA SEM ERRO, zero erros e zero avisos. Platôs A 61,2%, B 63,5%, C 61,1%, D 60,8%; métrica absoluta sobre o terreno. Cada área possui três pisos caminháveis: A 1/2/3, B 2/3/4, C 3/4/5, D 4/5/6. O terceiro piso ocupa respectivamente 180, 152, 192 e 240 células sem rampa. Dez acessos, todos v-, cinco faixas e duas células de comprimento: vinte células de rampa em A/B/C e quarenta em D. Zero degraus soltos ou bolsões inalcançáveis. Doze itens, quatro escondidos; todos alcançáveis. Ligações A↔B↔C↔D usam u=28, norte/sul e cotas/material coincidentes.
+Node: 23 testes aprovados. Incluem bloqueio de cada margem da fenda, bloqueio das rampas do terceiro piso para provar que ele não é acessível atravessando uma parede, alternativas de D, apoios de peças, árvores em massas, material/cota do gelo, ausência de furos isolados e conferência regional. Godot geral: 273326 verificações, zero falhas; Morro: 9386, zero falhas; corte da mina: 8841, zero falhas; margens do pântano: zero falhas.
+
+## 3. Capturas
+A 96, B 97, C 106, D 135 enquadramentos, cada um em geometria, arte e arte-terreno: 1302 PNGs nativos 1280×720. Geral em zoom .34; jogo em 1; juntas em 2,3. Sem personagem sobre juntas. Há vista do terceiro piso, bocas, pés e laterais das dez rampas, cantos dos barrancos e quatro trechos de borda de cada uma das doze manchas de gelo. Arte-terreno remove as peças para revelar a geometria. Inventário/dimensões/hashes em relatorios/capturas.json; planos em planos/; oito pranchas de contato nas pastas das partes. Gerais anteriores e quatro pranchas antes/depois em comparacao/. Não há ponte, água aberta, escada ou mureta nesta revisão.
+
+## 4. Percurso
+Controlador real da prévia Godot: A 44 destinos/88 viagens/30360 quadros; B 45/90/46400; C 45/90/38840; D 85/170/68700. Total 219 destinos, 438 viagens e 184300 quadros, zero falhas. Inclui todas as rampas e seus patamares, itens e saídas, nos dois sentidos, suporte dos pés e seguidor. Repetido após montar os bosques finais. A inspeção visual percorreu as quatro gerais, pranchas de arte/geometria e amostras nativas de cada conjunto de rampas, fenda e bordas de gelo. Nem todas as imagens foram abertas individualmente em tamanho integral; essa limitação continua explícita.
+
+## 5. Conteúdo e coerência
+A: clareira, abrigo, sete massas de pinheiros e mirante com item. B: bacia de gelo trincado, rota lateral e coroamento deslocado para a direita. C: fenda real com bolso lateral e duas margens contornáveis, cristais no mirante e formação secundária. D: ascensão em circuito com duas rampas em cada mudança de andar, culminando no grande marco natural. A circulação entre as partes usa o piso intermediário; os terceiros pisos A/B/C são desvios recompensados, D é o destino final.
+131 pinheiros: A 50, B 27, C 30, D 24. Massas com copas sobrepostas, sombra de chão, escala .91/1/1.09 e espelhamento, colisão 1×1 no tronco. Cada árvore tem suporte nivelado e vizinha; acessos têm faixa de exclusão. As manchas de encontro são opcionais. Três áreas de gelo por parte, com contorno irregular, neve de borda e placas/fissuras calculadas em coordenadas contínuas, sem costura por tile. As rachaduras são gráficas: todo gelo é sólido. Não há risco de quebra, escorregamento, clima com dano ou novas recompensas online. Nenhum elemento de história canônica foi introduzido.
+
+## 6. Pedidos ao integrador
+Disponível em overworld_preview com IDs gelo-a/b/c/d. Atualizadas coordenadas das saídas/chegadas internas junto com o tamanho dos mapas. Não foram alterados campanha, saves, combate, servidor ou economia. Integrar narrativa, som e regras de gelo requer escopo próprio. Branch local codex/mapa-gelo, sem merge, deploy ou push nesta revisão.
+
+## 7. Decisões do dono
+Aprovação artística desta composição e escolha futura de ligação com a campanha permanecem com o dono. Recomendação: conferir as três cotas em exploração antes de adicionar penalidade de movimento sobre gelo. Kit continua pending_owner_review.
+
+## 8. O que não foi verificado
+Sem teste manual com controle físico, export/Steam, outras GPUs, máquina fraca, campanha completa ou concessão online. Geometria e percursos foram testados; nem todo detalhe foi examinado individualmente em resolução integral. Gelo, pinheiros, neve e abrigos são estáticos. A textura de parede repete e a silhueta ainda segue os eixos da grade. O geral headless conserva diagnóstico legado do shader _painted_floor; Morro avisa recursos em uso ao encerrar. Ambos concluem com zero falhas. Esses testes gerais foram executados na nova planta antes do acabamento final de sombra sob bosques e shader; os percursos das quatro partes foram repetidos após a colocação final dos bosques. Capturas OpenGL atuais sem erro de script ou shader. Qualidade visual ainda depende da revisão do dono.

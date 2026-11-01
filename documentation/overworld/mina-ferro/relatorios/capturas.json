@@ -1,0 +1,3594 @@
+[
+  {
+    "area": "mina-ferro-a",
+    "mapSha256": "ea9be2a3aec043c43565eddcf6675623a60d7ce5dfe28d350e940ecd71546b06",
+    "planSha256": "880e8662cf5c7b410b6346292587b2f45e25935b23d1b1d1b60321d26ec63cb8",
+    "images": [
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/area-inteira.png",
+        "sha256": "e1b6cc252f14198805d7a14d29f31d1951ccb156a91d765a8f5332f4c8de15d4"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/entrada.png",
+        "sha256": "412dbd65a21895c676453b8181e8eaa868ff69d8f5fc00cc4a11c013a2601741"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/centro.png",
+        "sha256": "8738cd6242a8941937eebc5ea3c41cd6432fe219da19cbdea970614218967990"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/saida-25-0.png",
+        "sha256": "9bc192b88d7e16313596e930dfa0f1eb53dcdc7b11f0909831a373e81e694163"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-23-20.png",
+        "sha256": "c46afb57bbbca6398f4060c39dc3efe2ee0a1e979e6e5c8e26d49c3a4a203008"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-28-20.png",
+        "sha256": "3a10b9cac5ec1654bc6b3f11f75e912017cc251d711942be7ffe52d9c9910307"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-12-22.png",
+        "sha256": "353ac0904cc6cd8c07030e510b7ca51aa0235a0ebfc021037fdb16809d4ad796"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-23-22.png",
+        "sha256": "6be31043645181376c680c345cd2140acd8575b7baf13fc4d5e11c7bc1074604"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-8-24.png",
+        "sha256": "03ba4316cb1c8f0015ffac079784465b1e42230d3e4d66189db3242e539fc87d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-12-24.png",
+        "sha256": "4cb103bf9163112d4a0beb867ea4bce4c43d38a53c2f290eddbf364d4d4a6373"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-28-24.png",
+        "sha256": "b3a774e894a9765ae43ac88b1a97a30e453868fd9c15cb5d48dd8ff0fd4899b8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-32-24.png",
+        "sha256": "47d7a9b495796d9b355e449047ddb8d061cd35c9f7d7973e3990d72f62f665a7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-32-25.png",
+        "sha256": "72414123c1754515132a287f9812e1e9343f4aa9b657dbf9b8082ea2cee7264d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-33-25.png",
+        "sha256": "bebc86058b876dba17d5b980e31d1774f70b35ca2ce010bd2bfa6788635615d9"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-6-26.png",
+        "sha256": "f3ecbc7bfa30f00d1ee88b47585d04ad47f0fc5e0b6a4771849573f64d1756ce"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-8-26.png",
+        "sha256": "007ad26e12827ecd972c82cab9152ee5ed10a5bf06bc8a33e849537bfe9c6818"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-33-26.png",
+        "sha256": "ed2aa1ed7d4b5dfc8389800742d8b073c66bb061c305305f82264517dce06620"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-34-26.png",
+        "sha256": "5ba939144259092a812756cca74fe87bb2a46226179cac38eb1ed6387399cd86"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-6-32.png",
+        "sha256": "f400520229916aef7cddb4036da145817d675f792ba11e32c2eb39cc7cb0b6b1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-8-32.png",
+        "sha256": "fce3657b833fc041a765089845fbd590acea561b4bbfb10c6fc89bee6ade71cf"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-32-32.png",
+        "sha256": "23d621f90d8fccb6b42f39d714631abe41ac68da49b09afc58d55e65e7e17aee"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-34-32.png",
+        "sha256": "4bee6fd24b3e58fdd3a34af05b46c8ee8119ccaf6d0181228c58b883463cbea3"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-8-34.png",
+        "sha256": "5cafbe0181b7818693a056fee00171b3aca10c1849d2dee65e06d537ebf98d46"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-12-34.png",
+        "sha256": "cbf4b6fa2a5751fa128e986d96606d782fa6f3aa360f24b15854de54c733958d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-28-34.png",
+        "sha256": "5e0d6eb66c49acfb7fe74dfc18026d585739369a52d8e25959a8cf250327c777"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-32-34.png",
+        "sha256": "b66448c3fd60d4a57f16b5a29eaf0d59c29639fe802d957b0a4eb5da3e44746c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-12-36.png",
+        "sha256": "fce3657b833fc041a765089845fbd590acea561b4bbfb10c6fc89bee6ade71cf"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n1-23-36.png",
+        "sha256": "d1374faee9be8eb60b545b0a6e0cdf85d1effdd5f71e0dcb5808f96bec5ffbe7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-20-4.png",
+        "sha256": "680a58d90175bcc01613793169011ab5d5fb09447030852b405ada81fc302ad0"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-23-4.png",
+        "sha256": "6cef8775e13abd33694c3dd5d85681123c6e3d805c5c38ddf47a8adbbbb50214"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-28-4.png",
+        "sha256": "8daa0b936d088e06efbd5d4aac13c785c89b9f730ef970d79c0a742c334ee22a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-30-4.png",
+        "sha256": "e962b7e0e5fd5a5e7c5bb1eb11e0dba2ca8f2099691120aa9477903527020829"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-16-6.png",
+        "sha256": "49f73363323e90bf86f5283191adb20b26141f8cf5d00229162fdd5cc19efff3"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-20-6.png",
+        "sha256": "236c8f970f2305e77d44f2edce4b78f0f070b9b32fd1e3f527be984e5cfb24b8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-30-6.png",
+        "sha256": "89811951e652f2d8fe92a2a96a38812bf22ae99ae565ddca0cab955a65126ca7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-34-6.png",
+        "sha256": "ea2d2edfc07511c65f6ba192a324316e2a6168558baca6fe47b3cc645858e354"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-14-10.png",
+        "sha256": "12e9c00e621acd40da290133e3716026e49f4929757b227f0df2065a9d42405b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-16-10.png",
+        "sha256": "767315ea2ec4b5003312bfc727d8759db8050e484e16068eabc6bc6eb7f61cff"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-34-10.png",
+        "sha256": "12c7f236df3cae92c27cf8d3ef78f3d3f2c2749ff8a0d5a9245f6bbf0fd0f3ce"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-36-10.png",
+        "sha256": "37e31a75bc263cfe12392a7a788e86a9c2959e948c0389e8218083cf32c05a76"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-14-12.png",
+        "sha256": "d8e9a96fb6abe6dd83545c8c7adc9002463f186083b6e465b087714bb004a0df"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-16-12.png",
+        "sha256": "cf434f33978ca1713662ceb93bfa99cedf8d3e2232a8a8ce30f70b22fc548626"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-34-12.png",
+        "sha256": "b6badf44bfd839e3a51aa457cd01f62a0fe478531fe0b480ee73d81a58be4ac1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-36-12.png",
+        "sha256": "f7bb17550e5343ba35b59876ed41514c466487426ba989d507b67dbcdc04f7bf"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-16-16.png",
+        "sha256": "f84a2a3633766e04fece4867538143510cad9ad150cb37179fcbd92918c7bc7d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-20-16.png",
+        "sha256": "cbab3ef5bb17321bd4527b103877707d6ecc4358689dd239be4540ba9158513f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-30-16.png",
+        "sha256": "5d2509bb19258cb141e4ed6c6da5d751294d6f0219cde06475545423e8881e36"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-34-16.png",
+        "sha256": "db3abb3878db6aa7c44417e20881f65212ffca779af2c12821ad6aafb3191249"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-20-18.png",
+        "sha256": "95c59524dfe50dcee753bea9f6b5bc9a0b0697c36a5a6db0d040f1c6141911dc"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-23-18.png",
+        "sha256": "b72c3a0b1e8a5b69c78afd9e1373db7671a9d3f7a2f4ff4aa2105c3bc73620e2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-28-18.png",
+        "sha256": "3e1bee797d07831727355af111d51e8d809f5a609b65e879e3594ddc67f6a0a4"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/canto-n2-30-18.png",
+        "sha256": "3e65e0611214ab221492d7244a64eead88ba1917bb20a9737b0a0a106c35fda4"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/rampa-topo-23-20.png",
+        "sha256": "36c461460344823ec02e89908734429e737919ebf8448eed72b2fd4812fb2dfb"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/plato-23-20.png",
+        "sha256": "3006d0cd0781270633662ab3bc8c1087e3f80dcf3774dab8de98ba31edd9d264"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/rampa-topo-24-20.png",
+        "sha256": "b59179ed4fcd044feeea9448b39a44d3fd4f2c8d1065cbf9c1764e74aadfc154"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/plato-24-20.png",
+        "sha256": "aed9a8125313d7e381965999e2ead7d4e26412d980007c5d0db4c62e36c0d48b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/rampa-topo-25-20.png",
+        "sha256": "bc763cb10eec91de74471840963858ce3bd035101961244508bc7dea78faecc7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/plato-25-20.png",
+        "sha256": "500e0a7ce5f4401c02a2bd7c530b3095c8bb8c5d8ae7dd1c0246c1b19ed954cd"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/rampa-topo-26-20.png",
+        "sha256": "f787d3b0594ef3331a4a9c0746f1ef6dcb6bbdbf29658a2f2fb7b0d5b9025f80"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/plato-26-20.png",
+        "sha256": "f328843febcd96fbde35644e387923c18827e446a7463a403e6b86377d11c4ed"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/rampa-topo-27-20.png",
+        "sha256": "1e221aa1fcb3a965ce2f9e6278b303199461c0a4197701e1e4a2e9e586fc9774"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/plato-27-20.png",
+        "sha256": "61150694d840c9d228d8f8748bdd75ae5c5c101a6c6cfc3986a29936f2156709"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/rampa-pe-23-21.png",
+        "sha256": "9a2d3d89467733d467849f7d38054946ae24999b068cdd262baf7a9bcf5e384f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/rampa-pe-24-21.png",
+        "sha256": "c9a90bceaed08499ea4390ffac47a513c3314d7233476b394086d3b293374e3c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/rampa-pe-25-21.png",
+        "sha256": "c3c9f618c5f50c55e0c920f33429ffe745cd3f3e665a1abe2abbccf7de8ad203"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/rampa-pe-26-21.png",
+        "sha256": "65bbe94c523260410f2ac8ecb0806472b470a867e2f4d95143d895d8cb4bd83c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/rampa-pe-27-21.png",
+        "sha256": "a8c15235153106fb4d93558bfe235d696bb5243d0af4a9d4549992ba78988ab8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/carga.png",
+        "sha256": "8afd93438448088f8dc4c6a346467a842a497aa0226ece0dd74f82d8db505b61"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/galeria-alta.png",
+        "sha256": "00ce624ea71bef7b3da189af542c128c3317a5ee5ca020be639de6189dcb62f1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/desvio.png",
+        "sha256": "7459a8c83eb4a17dd003050446c5df8dcbcd0dc5681dadb5c3f0e8bdae3b476c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/geometria/marco.png",
+        "sha256": "2ddb0548cb93b8203699dfb5bb9e5611c1deabe27c5bef12b733681ba727068e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/area-inteira.png",
+        "sha256": "70f8d1c7471d8204a19cf2a275617199d2f2bccc05e38030ddf1664d31d68250"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/entrada.png",
+        "sha256": "139748cb4a8ffa4025a1359425a78e10d2e7f60ae4110779a38f2c0eb044efec"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/centro.png",
+        "sha256": "386d8c6f8186f5a76cb0db1fa205687b298cd7d27ba6dfc0da2b78faeba1725b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/saida-25-0.png",
+        "sha256": "99f09f2402e59cc12f8d6856255a050a2503eb1077427006470c060e788dead5"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-23-20.png",
+        "sha256": "4a35268a8af87df1b1cb6ac30831d144e13becca03c4c8cc706882414ca2bca5"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-28-20.png",
+        "sha256": "9886c47ffac694c8bc7f17b3c03ea26306c6ce1b3984350afcf21a7a1108113c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-12-22.png",
+        "sha256": "3bd8054b314e3e00386a157407bc72bf80b4cb619b3952926855dd68aa746e71"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-23-22.png",
+        "sha256": "fce7241360dbfc9c107112eefd9d090ca148ecef0fd6087b39701ebe4d698c1d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-8-24.png",
+        "sha256": "4eb95d77320491d68c6cb29ddac38a6a0c7fa0a95ece13808816fb033023c391"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-12-24.png",
+        "sha256": "c83e8170323d9d4cdf46fffa64ce06a9c01099299371d499abec53f59d820ac7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-28-24.png",
+        "sha256": "348b2664a1bbbd8cccf01a664ff2d332bda399844cbc809495606b6c62c02a28"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-32-24.png",
+        "sha256": "68d99b607eb6216093ed70418c3beeedabc9edea384c964e09ba6edfafca1499"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-32-25.png",
+        "sha256": "120b104ba2f4be2c462c198c97bd2abce233fed3c6c41d1fb4a739e4628138fc"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-33-25.png",
+        "sha256": "491263057551d80b857719894548cc01506c4bff27542e1ee977e97764d6c167"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-6-26.png",
+        "sha256": "b8751e5f46cca0f7950160ed7fd1d966cc2797d5aa7a14dedd228597d5f02208"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-8-26.png",
+        "sha256": "cc978c803e23a1c6b5c6e12092b813b348a6388e3c7c2a41dd4232f9a1813be1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-33-26.png",
+        "sha256": "bce7565dcd6abee6a260fb0b1ac6fcca74efd4fc988d1e7691dfa868f51123f0"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-34-26.png",
+        "sha256": "34e01a6bbe882522e612a8fccc0c32cb51bb873eac664945be6e707374eb1ffe"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-6-32.png",
+        "sha256": "fc0a0a9ac324840d228009a00c432cf0ce853916a3fcabca123f54fbecc9bdae"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-8-32.png",
+        "sha256": "0c13c6da4969a0ddbdbe81b5c819539980f219e75f7811efbbb3e91307f6018c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-32-32.png",
+        "sha256": "d32f03f25b846c433b95b50007541a9a934c966058f415b31ce1ed8fff09a219"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-34-32.png",
+        "sha256": "99b84232cc2987783fdf981204f219009568f5dbd14ba77ec73abaa749a4fe84"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-8-34.png",
+        "sha256": "f834043a9c13ad11a54cecdea99e8c1e08a3eaa77bb0144916321e252e38a5b8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-12-34.png",
+        "sha256": "551e9979675fd12db3f0e62b8de13539f49d64b014e7768f6b7a7735ff674881"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-28-34.png",
+        "sha256": "b2b4c859bd5e46075a52e8a4c630911a01f09e28fdd4d84c1dbeceedf8c1fd0f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-32-34.png",
+        "sha256": "5f2acce5d8f27453b711c03accb55fe80ed1f164bc4a3f089ec528691b7b80b2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-12-36.png",
+        "sha256": "0c13c6da4969a0ddbdbe81b5c819539980f219e75f7811efbbb3e91307f6018c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n1-23-36.png",
+        "sha256": "52d660d80c98d758a46af27be3d894231d42a39765d5fd7a07ddb2a36e029327"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-20-4.png",
+        "sha256": "140fee49cf1036c4ca08b47b4e99674e6a6e8ad3e4cded8264645573b6bb49bd"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-23-4.png",
+        "sha256": "8fbace469be9461740a2598b11a9a4a7770b6e00b8e972b6a9e3c9949b8e2bd0"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-28-4.png",
+        "sha256": "23f872f2e834ca40f70d306e435fc9122b9531ef11bf51c29b6f110bf0c04101"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-30-4.png",
+        "sha256": "d2a543c6fec31a0dfc500e1ce365d89a7c83607fa5a20f513a0fee4fcdaa452c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-16-6.png",
+        "sha256": "89c40d10ceed6c6cf060e857c90d4a59ccfa50bca61c340c2328f27c9241044a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-20-6.png",
+        "sha256": "7fbb227fbb2d8012d041381cef5597a050a2c9c26b2f84df60875ad18874a1b3"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-30-6.png",
+        "sha256": "81b04ba99455b74a0dfa88d286d8db9dc0a7285031b087b9c1c84686bc0420be"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-34-6.png",
+        "sha256": "d7d7bd31ac2e3f6073b29813ee713f728f884ee969d01aee7ed5506a0d07ba91"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-14-10.png",
+        "sha256": "01ffc8b13d510d39edc0d5d3384704bf980cc228bb9b114982247b90f4d41e00"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-16-10.png",
+        "sha256": "0d33f68f027ed7487e66248b4601f04d5fce21eb05e973ee8a24045986981938"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-34-10.png",
+        "sha256": "dee7ac8ec60e248def391ee2135be8e6bb71ce0fbc476a850f9b5b001134d639"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-36-10.png",
+        "sha256": "82de5fe7c988b1be4dc14d9e0571208c3ee87682cfa559abd0b1741b2605b13c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-14-12.png",
+        "sha256": "90ae3c0353dd5821b8b2105fe4fbfaec15e51aadffb13cb345621f8a233cc7ea"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-16-12.png",
+        "sha256": "85a43325be4478b80540320476168b3af73aa29942768e6794d5f91ca3423a03"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-34-12.png",
+        "sha256": "42b7852729000b258067825c7bb2928350d0833fe65f1c9d7ab9960689447743"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-36-12.png",
+        "sha256": "7959de87513ac8077be626e404e7e1d1ae8bd829505513859dce64c98d5e7f09"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-16-16.png",
+        "sha256": "4d86f55faed682c3d6458b55899e66ff0675ccfc2f6fc2e21503d3554dcb5038"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-20-16.png",
+        "sha256": "47c158d8afc6ebe582d7439d2c9110c83d9ed5daa84253d9c435e1f81640445c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-30-16.png",
+        "sha256": "9a8a9f4b1d110341405dadc7ceeab4d717c0dc4e18f28f04a35cf777427e7bd7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-34-16.png",
+        "sha256": "7cb0f48d7e1abddcba8d95d73aacb754ef28051a69105001b3d2bb6598a3059e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-20-18.png",
+        "sha256": "d3dd6073f436c054d020c43625ec9c6b66da3c9ac0cae433308df0d5b3ff0eda"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-23-18.png",
+        "sha256": "4a300efa382ac52a68925152c2f9e98fca001f7fe152b172167ed3254dc9ed6e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-28-18.png",
+        "sha256": "1d6bce0f7a4b74fc322dd71ea8f1b5d1010a3ded22d254e2b1fd39d017a0f651"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/canto-n2-30-18.png",
+        "sha256": "3bc9c5cb51f8246e20d7d039e734db8080ead988c7c24add3263a131feac92a7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/rampa-topo-23-20.png",
+        "sha256": "62ffef7730f636444bef6150fbc769c045b2b200e3c46501c02dfb4bf2ad1a4d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/plato-23-20.png",
+        "sha256": "9d4b8eaf9710c856aeb681bbaba44266978fa173841abcb970207717bb1d164d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/rampa-topo-24-20.png",
+        "sha256": "294b99755e612a061b7525d884dac52b5debae83847b649daac65e83678ed07d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/plato-24-20.png",
+        "sha256": "27a007922ce1ed61963ba0e5f6184daed295aef7fa86dd3552197b683027dccd"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/rampa-topo-25-20.png",
+        "sha256": "a915b0cc8224d2f08abb3044c43d90c6dccb545251640d1e5da79a0193085569"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/plato-25-20.png",
+        "sha256": "ec7f210e3a8633d2cf156116899744da1491fecdfcf5f2d8e372cc263c6d6416"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/rampa-topo-26-20.png",
+        "sha256": "05eb270a51b3bfa8901463c7aea34bedfd6544b1d8918ad23d34266c4d318940"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/plato-26-20.png",
+        "sha256": "e6035c17417b66c46e15b4026c281375f75044efaeaeafd9e6db0bdb7442a778"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/rampa-topo-27-20.png",
+        "sha256": "f3600bffe623986cbba68a15a482481ced53f53e0bbce5b6e408a5e7b27a396b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/plato-27-20.png",
+        "sha256": "d9d8fe2730ee49233f256245006a7b81549ff0059f6daefc36c2ceecda264ca3"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/rampa-pe-23-21.png",
+        "sha256": "5949aa8c41a5976c27bc8bb03a89f80e63b623835fa90593687c9c6be3d4f15f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/rampa-pe-24-21.png",
+        "sha256": "751e16547fa5769d9dea9a0681d1b3e55a7809877002188c3dcc9f8c654d5efb"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/rampa-pe-25-21.png",
+        "sha256": "6d14204d17404710f0644816274f8b4128ecf8949d4a6ed98b7ea2e2f40a783b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/rampa-pe-26-21.png",
+        "sha256": "5122922b2adc28987714bb98763fb580dde39c00c0200fc5eeaa5035df52f6a8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/rampa-pe-27-21.png",
+        "sha256": "4262b58e5d2973c0885f0bc1804fac4bf0a9401c1e37fdd92fe481dfb27eafd1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/carga.png",
+        "sha256": "7a16eb1f47558b8a80280caf01e16feb121c270cec7a909a0a94c69620e9d9b4"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/galeria-alta.png",
+        "sha256": "6324763d094385c0e02d339d85794bd8a86b0791ffe9469a26c4380e459ccbee"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/desvio.png",
+        "sha256": "587222980ca77405bcbff8df9ab5c4b437a2759bcd20c88d736002b55d09f0ed"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte/marco.png",
+        "sha256": "82beae067c701e0998b9351ac857664c3bd65fbd5c17af8e9e0fa6acb75ee0ae"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/area-inteira.png",
+        "sha256": "70f8d1c7471d8204a19cf2a275617199d2f2bccc05e38030ddf1664d31d68250"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/entrada.png",
+        "sha256": "139748cb4a8ffa4025a1359425a78e10d2e7f60ae4110779a38f2c0eb044efec"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/centro.png",
+        "sha256": "386d8c6f8186f5a76cb0db1fa205687b298cd7d27ba6dfc0da2b78faeba1725b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/saida-25-0.png",
+        "sha256": "99f09f2402e59cc12f8d6856255a050a2503eb1077427006470c060e788dead5"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-23-20.png",
+        "sha256": "4a35268a8af87df1b1cb6ac30831d144e13becca03c4c8cc706882414ca2bca5"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-28-20.png",
+        "sha256": "9886c47ffac694c8bc7f17b3c03ea26306c6ce1b3984350afcf21a7a1108113c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-12-22.png",
+        "sha256": "3bd8054b314e3e00386a157407bc72bf80b4cb619b3952926855dd68aa746e71"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-23-22.png",
+        "sha256": "fce7241360dbfc9c107112eefd9d090ca148ecef0fd6087b39701ebe4d698c1d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-8-24.png",
+        "sha256": "4eb95d77320491d68c6cb29ddac38a6a0c7fa0a95ece13808816fb033023c391"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-12-24.png",
+        "sha256": "c83e8170323d9d4cdf46fffa64ce06a9c01099299371d499abec53f59d820ac7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-28-24.png",
+        "sha256": "348b2664a1bbbd8cccf01a664ff2d332bda399844cbc809495606b6c62c02a28"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-32-24.png",
+        "sha256": "68d99b607eb6216093ed70418c3beeedabc9edea384c964e09ba6edfafca1499"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-32-25.png",
+        "sha256": "120b104ba2f4be2c462c198c97bd2abce233fed3c6c41d1fb4a739e4628138fc"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-33-25.png",
+        "sha256": "491263057551d80b857719894548cc01506c4bff27542e1ee977e97764d6c167"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-6-26.png",
+        "sha256": "b8751e5f46cca0f7950160ed7fd1d966cc2797d5aa7a14dedd228597d5f02208"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-8-26.png",
+        "sha256": "cc978c803e23a1c6b5c6e12092b813b348a6388e3c7c2a41dd4232f9a1813be1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-33-26.png",
+        "sha256": "bce7565dcd6abee6a260fb0b1ac6fcca74efd4fc988d1e7691dfa868f51123f0"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-34-26.png",
+        "sha256": "34e01a6bbe882522e612a8fccc0c32cb51bb873eac664945be6e707374eb1ffe"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-6-32.png",
+        "sha256": "fc0a0a9ac324840d228009a00c432cf0ce853916a3fcabca123f54fbecc9bdae"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-8-32.png",
+        "sha256": "0c13c6da4969a0ddbdbe81b5c819539980f219e75f7811efbbb3e91307f6018c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-32-32.png",
+        "sha256": "d32f03f25b846c433b95b50007541a9a934c966058f415b31ce1ed8fff09a219"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-34-32.png",
+        "sha256": "99b84232cc2987783fdf981204f219009568f5dbd14ba77ec73abaa749a4fe84"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-8-34.png",
+        "sha256": "f834043a9c13ad11a54cecdea99e8c1e08a3eaa77bb0144916321e252e38a5b8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-12-34.png",
+        "sha256": "551e9979675fd12db3f0e62b8de13539f49d64b014e7768f6b7a7735ff674881"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-28-34.png",
+        "sha256": "b2b4c859bd5e46075a52e8a4c630911a01f09e28fdd4d84c1dbeceedf8c1fd0f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-32-34.png",
+        "sha256": "5f2acce5d8f27453b711c03accb55fe80ed1f164bc4a3f089ec528691b7b80b2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-12-36.png",
+        "sha256": "0c13c6da4969a0ddbdbe81b5c819539980f219e75f7811efbbb3e91307f6018c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n1-23-36.png",
+        "sha256": "52d660d80c98d758a46af27be3d894231d42a39765d5fd7a07ddb2a36e029327"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-20-4.png",
+        "sha256": "140fee49cf1036c4ca08b47b4e99674e6a6e8ad3e4cded8264645573b6bb49bd"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-23-4.png",
+        "sha256": "8fbace469be9461740a2598b11a9a4a7770b6e00b8e972b6a9e3c9949b8e2bd0"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-28-4.png",
+        "sha256": "23f872f2e834ca40f70d306e435fc9122b9531ef11bf51c29b6f110bf0c04101"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-30-4.png",
+        "sha256": "d2a543c6fec31a0dfc500e1ce365d89a7c83607fa5a20f513a0fee4fcdaa452c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-16-6.png",
+        "sha256": "89c40d10ceed6c6cf060e857c90d4a59ccfa50bca61c340c2328f27c9241044a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-20-6.png",
+        "sha256": "7fbb227fbb2d8012d041381cef5597a050a2c9c26b2f84df60875ad18874a1b3"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-30-6.png",
+        "sha256": "81b04ba99455b74a0dfa88d286d8db9dc0a7285031b087b9c1c84686bc0420be"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-34-6.png",
+        "sha256": "d7d7bd31ac2e3f6073b29813ee713f728f884ee969d01aee7ed5506a0d07ba91"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-14-10.png",
+        "sha256": "01ffc8b13d510d39edc0d5d3384704bf980cc228bb9b114982247b90f4d41e00"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-16-10.png",
+        "sha256": "0d33f68f027ed7487e66248b4601f04d5fce21eb05e973ee8a24045986981938"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-34-10.png",
+        "sha256": "dee7ac8ec60e248def391ee2135be8e6bb71ce0fbc476a850f9b5b001134d639"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-36-10.png",
+        "sha256": "82de5fe7c988b1be4dc14d9e0571208c3ee87682cfa559abd0b1741b2605b13c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-14-12.png",
+        "sha256": "90ae3c0353dd5821b8b2105fe4fbfaec15e51aadffb13cb345621f8a233cc7ea"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-16-12.png",
+        "sha256": "85a43325be4478b80540320476168b3af73aa29942768e6794d5f91ca3423a03"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-34-12.png",
+        "sha256": "42b7852729000b258067825c7bb2928350d0833fe65f1c9d7ab9960689447743"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-36-12.png",
+        "sha256": "7959de87513ac8077be626e404e7e1d1ae8bd829505513859dce64c98d5e7f09"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-16-16.png",
+        "sha256": "4d86f55faed682c3d6458b55899e66ff0675ccfc2f6fc2e21503d3554dcb5038"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-20-16.png",
+        "sha256": "47c158d8afc6ebe582d7439d2c9110c83d9ed5daa84253d9c435e1f81640445c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-30-16.png",
+        "sha256": "9a8a9f4b1d110341405dadc7ceeab4d717c0dc4e18f28f04a35cf777427e7bd7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-34-16.png",
+        "sha256": "7cb0f48d7e1abddcba8d95d73aacb754ef28051a69105001b3d2bb6598a3059e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-20-18.png",
+        "sha256": "d3dd6073f436c054d020c43625ec9c6b66da3c9ac0cae433308df0d5b3ff0eda"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-23-18.png",
+        "sha256": "4a300efa382ac52a68925152c2f9e98fca001f7fe152b172167ed3254dc9ed6e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-28-18.png",
+        "sha256": "1d6bce0f7a4b74fc322dd71ea8f1b5d1010a3ded22d254e2b1fd39d017a0f651"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/canto-n2-30-18.png",
+        "sha256": "3bc9c5cb51f8246e20d7d039e734db8080ead988c7c24add3263a131feac92a7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/rampa-topo-23-20.png",
+        "sha256": "62ffef7730f636444bef6150fbc769c045b2b200e3c46501c02dfb4bf2ad1a4d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/plato-23-20.png",
+        "sha256": "9d4b8eaf9710c856aeb681bbaba44266978fa173841abcb970207717bb1d164d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/rampa-topo-24-20.png",
+        "sha256": "294b99755e612a061b7525d884dac52b5debae83847b649daac65e83678ed07d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/plato-24-20.png",
+        "sha256": "27a007922ce1ed61963ba0e5f6184daed295aef7fa86dd3552197b683027dccd"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/rampa-topo-25-20.png",
+        "sha256": "a915b0cc8224d2f08abb3044c43d90c6dccb545251640d1e5da79a0193085569"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/plato-25-20.png",
+        "sha256": "ec7f210e3a8633d2cf156116899744da1491fecdfcf5f2d8e372cc263c6d6416"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/rampa-topo-26-20.png",
+        "sha256": "05eb270a51b3bfa8901463c7aea34bedfd6544b1d8918ad23d34266c4d318940"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/plato-26-20.png",
+        "sha256": "e6035c17417b66c46e15b4026c281375f75044efaeaeafd9e6db0bdb7442a778"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/rampa-topo-27-20.png",
+        "sha256": "f3600bffe623986cbba68a15a482481ced53f53e0bbce5b6e408a5e7b27a396b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/plato-27-20.png",
+        "sha256": "d9d8fe2730ee49233f256245006a7b81549ff0059f6daefc36c2ceecda264ca3"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/rampa-pe-23-21.png",
+        "sha256": "5949aa8c41a5976c27bc8bb03a89f80e63b623835fa90593687c9c6be3d4f15f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/rampa-pe-24-21.png",
+        "sha256": "751e16547fa5769d9dea9a0681d1b3e55a7809877002188c3dcc9f8c654d5efb"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/rampa-pe-25-21.png",
+        "sha256": "6d14204d17404710f0644816274f8b4128ecf8949d4a6ed98b7ea2e2f40a783b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/rampa-pe-26-21.png",
+        "sha256": "5122922b2adc28987714bb98763fb580dde39c00c0200fc5eeaa5035df52f6a8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/rampa-pe-27-21.png",
+        "sha256": "4262b58e5d2973c0885f0bc1804fac4bf0a9401c1e37fdd92fe481dfb27eafd1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/carga.png",
+        "sha256": "7a16eb1f47558b8a80280caf01e16feb121c270cec7a909a0a94c69620e9d9b4"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/galeria-alta.png",
+        "sha256": "6324763d094385c0e02d339d85794bd8a86b0791ffe9469a26c4380e459ccbee"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/desvio.png",
+        "sha256": "587222980ca77405bcbff8df9ab5c4b437a2759bcd20c88d736002b55d09f0ed"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/a/arte-terreno/marco.png",
+        "sha256": "82beae067c701e0998b9351ac857664c3bd65fbd5c17af8e9e0fa6acb75ee0ae"
+      }
+    ]
+  },
+  {
+    "area": "mina-ferro-b",
+    "mapSha256": "2dffd133a6b8ea30cbae0e04c7b31ad3edf94a7aee6d713a8e02a15a57416b25",
+    "planSha256": "ea438e5287ce25e0a26731c285ecbe91af039749b6b87137b553a80f34189b23",
+    "images": [
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/area-inteira.png",
+        "sha256": "411600a6afeeda32e19f3fed688062bb189ffe667ff9eb46c3a3372a26e9e161"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/entrada.png",
+        "sha256": "e52dd6f58ee460fe14d1e3447a7b53427cdbe8eeaaa4e34afda97be0c1f25a2f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/centro.png",
+        "sha256": "0b14ca138f9febec0fc3b30459cf15f2ddd09404a0ce18fbb2d4ea1004b058bb"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/saida-25-39.png",
+        "sha256": "a7890157285077ae3f49c9f7a557039887ac8cd52769d1460299b8f4d49d5b0f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/saida-25-0.png",
+        "sha256": "32c1e33577933a228df99fbf16ae149d48b5bb3c83512a7c7594f9397ecad09d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n1-9-20.png",
+        "sha256": "6ac7adcff6a056e49e546391413e203c21f8117d0d25d6968d51e9f22b7037f8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n1-14-20.png",
+        "sha256": "dc3fd49585bc0b1bde4d61012c089318238b410ad38a0b93f10c25378f5bc016"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n1-9-22.png",
+        "sha256": "ebd6c85ec79287d4d796d38028b4dd33116543ac12bf0330d86f04780722546f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n1-14-22.png",
+        "sha256": "7e8883c7daa254910d45607af6c9f622eec8fef3007cecc31fdaad05aa5dd6a4"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n2-28-22.png",
+        "sha256": "4e0c3fb80515ac6ce7337ec3cc5ac92c8cc56b40c62aa2ee52c42ff949a497f3"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n2-30-23.png",
+        "sha256": "e026bc5695b8e0dd97102698d9aa4fa92b2571454957fce8d3c2a797d289c0b0"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n2-35-23.png",
+        "sha256": "2a5f3e68471a68788ba4cb0df3007857a5a31395cbed5084fcc191e9f031298f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n2-8-24.png",
+        "sha256": "136bd7d72dcc10e202490cc15f753508f82e6e2ecb0842bbe526d2cd70b1f1dd"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n2-9-24.png",
+        "sha256": "bf4af5cd5b4e525fc93b2151bf9e3b4adb583ea5a3722c79de1ead2ba84cd65e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n2-28-24.png",
+        "sha256": "9ec542af1ed3b6695409937d83880a0b6f81eea79166e9c560335f45e90125c2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n2-30-24.png",
+        "sha256": "1abca477c6962943affec7d0c0e00d74628f1112ecb9b53dd456150af446f8c1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n2-6-26.png",
+        "sha256": "cdb5c1dda4b767a10589a5ea8b476fbfcee0186ba03617a9f13cb6552df455df"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n2-8-26.png",
+        "sha256": "b255dfd5a6a633ca15aee9f84c91f1d1ffe711d911d15c848a2dd7f32cb03046"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n2-6-32.png",
+        "sha256": "3bc488818ec04caf7893670e0f793f660b5558df4845ecb3cfdaa8485f148e91"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n2-8-32.png",
+        "sha256": "0c4df01638b2b815ef7bc9072f2959b20820180553721d5583a81f56ad52c1fd"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n2-32-32.png",
+        "sha256": "024dd22c55f11e35a71a3e133293b44a8bf1754cc43a4224fddc8156dfd3ea74"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n2-35-32.png",
+        "sha256": "23a80403fb07551bf9a2eb2762d0ac1916ed024d7c8ece9f3ff8a2d214cece51"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n2-8-34.png",
+        "sha256": "a901ec90d1d3ce48331af8c4a51e8b85800c6be76df0aec3efa1363b2ff0e7d0"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n2-12-34.png",
+        "sha256": "f201c6f80b78d4dcca191832f8389133bdd85c2c1f27a66d5e25d1debe250028"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n2-31-34.png",
+        "sha256": "cc2d7f955462917c37d2187addabd25e98ab71aa8b0fa47fff097c0fc1e03f71"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n2-32-34.png",
+        "sha256": "6bffb498a219fe2e85bd01000f4e7af8ddce5cbeff1558a89d144e40daf6513b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n2-28-35.png",
+        "sha256": "3c5eb9e42ab92bede0972a35ffef5ceca1b9663eb6509f0bc63fa159ef38360d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n2-31-35.png",
+        "sha256": "05971e4c2d1ea5c92a081c71434c1daf32924fd438c0199ad70e2c233bf9ebb2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n2-12-36.png",
+        "sha256": "0c4df01638b2b815ef7bc9072f2959b20820180553721d5583a81f56ad52c1fd"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n2-23-36.png",
+        "sha256": "3401991feb8a4ce3b6fc73bcf9d20e76c600ff1f4e56dedaa0d7f12460b9941c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n3-8-4.png",
+        "sha256": "5291430ffadc87b6d197bff26abf4f6a73cc1d33d3ee4a3566266445d853672d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n3-20-4.png",
+        "sha256": "f0240068bf1c113096822943357d3724d848bb95cc1249bad5e46f363bf8210a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n3-6-6.png",
+        "sha256": "213441c4adfe3e0ce04511f96f390687f0a7693f623d31d6685d90a25f300d10"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n3-8-6.png",
+        "sha256": "46613fb5d339b6a5a76b3d0e7b1f19d627ed121650bd8e250db7ab1a8146f948"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n3-20-6.png",
+        "sha256": "e48cfab27c9cb10438946b375a3b3a4dbee7e1d3ff107936712645d9aba6cb8d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n3-23-6.png",
+        "sha256": "eb042c5b989479b31f34ad0f834283aef1e77a8693477eb7755464c9052b7b5c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n3-5-8.png",
+        "sha256": "8a5a697963465b24b7d3ff25ad54dd7a8b10284ec2c69e5c27bd3906cad28274"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n3-6-8.png",
+        "sha256": "8fbf1b9ba3a5630a60dd92fdabbce2301dd8aa8eae27c0919c779fdf3f876123"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n3-5-12.png",
+        "sha256": "71b47c286786a3a49768dd19827e7aaed7c8f7e317c0240e305098ee71972f69"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n3-6-12.png",
+        "sha256": "bbb6b9d026a84fb00fefc5cb3edbce64bd4099946a23390eac1a248c4bd9b3ed"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n3-22-12.png",
+        "sha256": "01b2d9b34d3d7e756bc06e00a5e16bd84c1243585fb2f001fb0e1ff3a7eafee4"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n3-28-12.png",
+        "sha256": "12b657fd0308aa2700f7ef65b57d41372444484f65db98ad5bb069ba08c37f9a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n3-6-14.png",
+        "sha256": "b58ed11a47e28e2794b4704728198bfcc551ba1334ff4aab78fb45f70fb5eace"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n3-8-14.png",
+        "sha256": "8762252b63b3c92a4eff246a196247fb777885c24076877acda39016cde01b61"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n3-20-14.png",
+        "sha256": "c8312f682ab758570851fcb9a16356e869c7745394ad2450a20ea494850a9545"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n3-22-14.png",
+        "sha256": "66b81e1bb03bb8f47af3da3c3aa12d72c37196c74d09b62705ca5e1768a71fbb"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n3-8-16.png",
+        "sha256": "fedc641f5f5ff1411e68f55ad66ce8427ab5ebd01f4e8863ae8d002ed0f7557d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n3-9-16.png",
+        "sha256": "ab3eaee19c44f8e4e5f99f415a36c1c9974353ca935a68b38b78fc80c151a7b6"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n3-14-16.png",
+        "sha256": "1a28a9d3fd0f65b3f14e4a2d90dad4e3350fd740c38e778ef666a54fa8f46ebe"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/canto-n3-20-16.png",
+        "sha256": "47a48bd624931bf8063e6157c60874b2c6f6727c72a2d27a983be4dbbb185e4a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/rampa-topo-9-20.png",
+        "sha256": "5801e76aca1a22f6b2fd9504dbea0b02b96f90b1279d526637ad05443010f0ff"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/plato-9-20.png",
+        "sha256": "1cf92c3f3433f364168b79e61ac1bd5477357368e1e3ad172d8e2bd151d8336f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/rampa-topo-10-20.png",
+        "sha256": "553cde01587dd877781b83849242558ce30798660482a8dd323d24d801732271"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/plato-10-20.png",
+        "sha256": "4c321a488b1ac981d5919071c94df740015de03e93c81a87fe353229fe3ceb88"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/rampa-topo-11-20.png",
+        "sha256": "5ae0dfb820c49bd9204ce256d9dd301bda596538d9d362407054c36f25ff2223"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/plato-11-20.png",
+        "sha256": "3eeedfa0aa80f6164f2dc502b7845cf339d93d933b8cccdfb995c957bb725265"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/rampa-topo-12-20.png",
+        "sha256": "a789327ea1b5b8dcf78b663e98d4299162d1afd088bdbbf38b1a3a68036c57e1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/plato-12-20.png",
+        "sha256": "4bc45894133f5bc0a57bf8990baa641777b7b97270e8273cd8d4e83357b5b847"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/rampa-topo-13-20.png",
+        "sha256": "e19c2d7983b4c9eec5291eac90e60a0fc8792cf4cdf6a2d6eb90fc9ee7a499a7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/plato-13-20.png",
+        "sha256": "f7d179688a938a01d5ee0f301ba85b5a0993f3bf1dedf58c3e98d91b57b43aba"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/rampa-pe-9-21.png",
+        "sha256": "affe8c557e9c97174f12ad53adb259e8441b5ea1b6411b3cb37c351b90c2b72a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/rampa-pe-10-21.png",
+        "sha256": "6ec7573395afdd248e3f95d86ec6415072dcebf4c4a2e99cdf0ed29e76c793a2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/rampa-pe-11-21.png",
+        "sha256": "54e0b3900d438e821fee6af264568296ea3343a7b6a0adb5fd18b938b46ddc80"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/rampa-pe-12-21.png",
+        "sha256": "076fe06f6cb7ff7f91c9d8f60e4b11ca70f51f9682d5faea4aacd546fa8eb0e2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/rampa-pe-13-21.png",
+        "sha256": "d60500debaa6a838e6237f7fced3d5839d8622e1c333c022e6965942bd59b880"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/carga.png",
+        "sha256": "2fb401abbe222982a03370aafeeea45e829a9aa59cdaab0a67ea8b3a0f749a3b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/galeria-alta.png",
+        "sha256": "48547ed60d1e593131820dc2d2ea6d4427cd831163af497a795a1027c0c9e97f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/desvio.png",
+        "sha256": "1e161e7fb4592407bdb3444af67f2c70e429cae6e12fac729ec5b446d03ca957"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/geometria/marco.png",
+        "sha256": "75c64486ff443c037bbc9fcfae0c1f8bd3c6453d355ada402d19c8bb656f2ebc"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/area-inteira.png",
+        "sha256": "6a40efb05c7f2b80703b6f3e849bdd738a1de657628b4348b512494ec9a9cfa3"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/entrada.png",
+        "sha256": "6770745d5c9c317ee67e746620b9cb9b003f54d30a591afc9c2712fb108e3f3c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/centro.png",
+        "sha256": "2a70bd1156485737191077ae312505ee28409a49e024742dd07992d6cca1f7dc"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/saida-25-39.png",
+        "sha256": "edec6b35b5a92c10f5025abb4ab7fe4b5e9e7b6fbc06c729f410dca3b28834c4"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/saida-25-0.png",
+        "sha256": "c8f700b2f5bed5dad7ad05e6eb367657cadf3ed41caf78e6bc4ebe3ea994d7ca"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n1-9-20.png",
+        "sha256": "f88c5751e399d9069e3fd7d2d549f874584bc8e2449a9de4f8022cc79852538e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n1-14-20.png",
+        "sha256": "d3cfc055a0722d8d90532670e13e0f0d82619af2a23803c40b714b6ff62b9332"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n1-9-22.png",
+        "sha256": "7f5aec3ce63d7b6564f34b392c0b18922e2b4f883ba2cd08071680c5eee2314c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n1-14-22.png",
+        "sha256": "097e41a0a0d9809f3f4220604c9b90b2bea023f35a2fc316de2f0fe8658ac6c7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n2-28-22.png",
+        "sha256": "803713297b22e7c2c3f9c99fd5951296ef47816f06524403877ec616a93c92f7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n2-30-23.png",
+        "sha256": "a860c28d63c2fd9e022f4718c5a65f37a54413470fe0771d7db68db6c1dac638"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n2-35-23.png",
+        "sha256": "84871944ada20ce41bb7731cde0f5f65f0ac18ca97c14524bbaba6f421c5844a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n2-8-24.png",
+        "sha256": "550c0ad27da8e8d25429a837c703afefaa8344cec2866cd4d834fcfa4972978a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n2-9-24.png",
+        "sha256": "2a7c84348ad2b865ca6d3c3bdd21210dfd6e84f44da66dc13a985968f12a5019"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n2-28-24.png",
+        "sha256": "cdf38a8ce468942aeabd3f2c00f9ea13a1c2e9acfb1d45ea5d3d8411d16e2c85"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n2-30-24.png",
+        "sha256": "1a10fc13efd98a71e681fd3251d2fac603f16580bba0e1bc4a4e9ce524fed417"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n2-6-26.png",
+        "sha256": "a55ca6d2a6fb283500b80e38fdaac8180b6d634ccc16643b9ea786c89aab556d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n2-8-26.png",
+        "sha256": "dc674739085025381017efd0501a6f3b0d921a324b9978437e1d1530024843fc"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n2-6-32.png",
+        "sha256": "b2637e5bbfe19c2cd00cc6a8d387ff0358d63bd8dbc22890c8fbf10c36a471d8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n2-8-32.png",
+        "sha256": "b69f97f0ce8a5b2a18950750cf144de0b4372e96cb3f07de11586babd1f065c2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n2-32-32.png",
+        "sha256": "c591ea75ccfc7023c12f5440ece0fdf2ef79f72c222cd60e402564d07b99faec"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n2-35-32.png",
+        "sha256": "c46f3fa703c3f47dedc38f8d8abbb90c23e9766a510179343811c3f7af7b64f4"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n2-8-34.png",
+        "sha256": "7dadd5df59e8d9d4fca92539e3c17b8739d6450ca7b6d92d4229d7acc1c7809f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n2-12-34.png",
+        "sha256": "c54429d84f0a140f0a845ae20819d49ba6b72dc7ba20880c690e08a878817dd8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n2-31-34.png",
+        "sha256": "4cbe102445d1b14d09f8a76cd502405f9d706882dee0526728600ac979016dce"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n2-32-34.png",
+        "sha256": "c60dace2bfca330b3c7310acecfb45220238a851348708269c2705b9a7ad00ba"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n2-28-35.png",
+        "sha256": "c4f4bfebce45ee3050cf11fde32e2878c2fb8f5b87559f34aad0c61b2a2de41e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n2-31-35.png",
+        "sha256": "527787811bcb7b90f31f49f3d9597ec3f83d8f969668e3b2ab0554f94d370972"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n2-12-36.png",
+        "sha256": "b69f97f0ce8a5b2a18950750cf144de0b4372e96cb3f07de11586babd1f065c2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n2-23-36.png",
+        "sha256": "85cab36e4d3717d7676802f77786bb9400b645a84eb0b3dd34c941160912da7a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n3-8-4.png",
+        "sha256": "92aeb9415595f2744fb97b5cf182558da667583f6cd50eb8d70fc0d07c772fa1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n3-20-4.png",
+        "sha256": "bad38649c3aeafb2f87c56be8c82c94eac9c56251ab649868a7bc599409e9baa"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n3-6-6.png",
+        "sha256": "81cdbce20782f7307e791108dc7dc59a96b2c98484daf3da57799517a0645163"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n3-8-6.png",
+        "sha256": "aa43098d64d416f540baba355e6f92502720ac148b7ed960df18bdcb9f100bd2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n3-20-6.png",
+        "sha256": "47e3cca550f6258218604c81ca90fc0d81d624707956dec0fd943cf26ca84724"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n3-23-6.png",
+        "sha256": "125414b0abb02447133f0d01a569fb0705d39987f7b039d4b3245526d6c78898"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n3-5-8.png",
+        "sha256": "98903bb66ff4bc48980274cd12bc8407d462db63c209cde41c731c528c30a26d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n3-6-8.png",
+        "sha256": "611c7e87995201c5fe2b4ebd1de3ada08e348f9773e470cc28dc95d8737c2087"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n3-5-12.png",
+        "sha256": "03b4008caf533759fc455151901a8e2d46cc33f801d04c1a3b5042304c70eaf2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n3-6-12.png",
+        "sha256": "d3507b06c314a0eeb80c26724f3dfaa56860dc5d2a6afe94bf66c77e4f93fb57"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n3-22-12.png",
+        "sha256": "4751cada86c72e37700a00533ee17a0f192606acef2b783a60aa9eb976fa83f1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n3-28-12.png",
+        "sha256": "1f72e5d61e5e89e8fac6b4f13b30a52e53a633175b6849ab245421be24b9da21"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n3-6-14.png",
+        "sha256": "b53b4a370c9aafc08296583211ee4bcae956c4acc85393053f3666eaca0b8a95"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n3-8-14.png",
+        "sha256": "71d1b8fd7656bb5a2632640ebef8cf9f3e98289a648df21635f398523fbea65b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n3-20-14.png",
+        "sha256": "2d7b45bb30ecc0d94a6c1b833b0c142ea220c6c4696de73f6e63dc5e16c5e022"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n3-22-14.png",
+        "sha256": "accef1c5558ccfb348663623b6af42c9333a7ef4f332f34ff4d0adae36169955"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n3-8-16.png",
+        "sha256": "e7bb72f7e251b4b708dee6cf4570b0863a488a1e6db43a54be7bf1dff63a4105"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n3-9-16.png",
+        "sha256": "6203eb2752abcfd6253986f5b90b643b6278ee4ff2209932824e877838bcaea1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n3-14-16.png",
+        "sha256": "a1250e3bb7364fc767a3ae84c7c85eecc58eff5dee2bb5f270c19b23caf99a7b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/canto-n3-20-16.png",
+        "sha256": "3b58d9b47ce52fc9cd16e00ecd664e4ec675051d6a6bd7b838bd85d15e6d0922"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/rampa-topo-9-20.png",
+        "sha256": "4ac7fb833927a27e5049fa4358fe78fba7e63682b4c4e1369920e85a41d740f9"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/plato-9-20.png",
+        "sha256": "f23d38ee75c12f0df15db4f9b574fa7afde1e3f1678b9fade5a3352662012f5b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/rampa-topo-10-20.png",
+        "sha256": "97cd50aea495a8f63448faddf67f5d42c3462efaf580f5cfde14e617d44b229b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/plato-10-20.png",
+        "sha256": "19b597f8dd6da3a93abeb157e247d1be30dd8ca7969404ead33380cc1176d5f4"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/rampa-topo-11-20.png",
+        "sha256": "98ce456b90a2a256cc34968dcd97fefc01bee131fc2bf07c15abc3e918bcdeee"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/plato-11-20.png",
+        "sha256": "eff33fc6131179daad2ed6d9dec1b52da8acfe306f120710f0747253c13bf6f1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/rampa-topo-12-20.png",
+        "sha256": "da112fc2ddedbfd8616737cbdb5ca7c017839cfa555f0509ecbe8d1b8891aeac"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/plato-12-20.png",
+        "sha256": "7bdf8d5a12b59e57ce13b61a5cedcdc7992bce8f51baf91d002b5e5d07fa1b14"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/rampa-topo-13-20.png",
+        "sha256": "ee9a53b9c972c4028bb8412098dcca2c42839e7bcf3628a2e5aa3cbf48e085b7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/plato-13-20.png",
+        "sha256": "e46a0c91d86a2a86bb1d6565f280b36a1f5c4b6ee2b4ad17dc3e06bd458c45f3"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/rampa-pe-9-21.png",
+        "sha256": "ae2829b59b7687559e2d6cf225629ce2002fbed54de33126504b82980f199f7a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/rampa-pe-10-21.png",
+        "sha256": "845829f166df6190c43a8e1c25fdd884284d034d9094167ab84cae7f83ae60ae"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/rampa-pe-11-21.png",
+        "sha256": "c7b18790f339a1fc02bf3f20bdc3694ff1f81f4b526ab76f27b134ed063e46aa"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/rampa-pe-12-21.png",
+        "sha256": "e7abe7062041e91566d2c92ce4ae2c74aab4833f2517214922fc7e81d84b23af"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/rampa-pe-13-21.png",
+        "sha256": "a2bcdaa1f30468555b8ab8bda49a8ed5cc5417c67d5e2eda0aa1285e205f164d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/carga.png",
+        "sha256": "fe6fd72b47aec8ee3a4fc69fcadf6c7b43a323fdae7964e035ca1139723ee2d7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/galeria-alta.png",
+        "sha256": "75fc06343a37d02ec052c3b9637166817c393e4287da1196e134dac0a1b20abe"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/desvio.png",
+        "sha256": "438ada491c5a48675445b5b055fc1d6ce8dc2e25c18a6628370c54d2217b1d55"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte/marco.png",
+        "sha256": "afde4763fc00b9de48aaa6eb2315f56b4b87f6478f8018d315b2299329d9e480"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/area-inteira.png",
+        "sha256": "6a40efb05c7f2b80703b6f3e849bdd738a1de657628b4348b512494ec9a9cfa3"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/entrada.png",
+        "sha256": "6770745d5c9c317ee67e746620b9cb9b003f54d30a591afc9c2712fb108e3f3c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/centro.png",
+        "sha256": "2a70bd1156485737191077ae312505ee28409a49e024742dd07992d6cca1f7dc"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/saida-25-39.png",
+        "sha256": "edec6b35b5a92c10f5025abb4ab7fe4b5e9e7b6fbc06c729f410dca3b28834c4"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/saida-25-0.png",
+        "sha256": "c8f700b2f5bed5dad7ad05e6eb367657cadf3ed41caf78e6bc4ebe3ea994d7ca"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n1-9-20.png",
+        "sha256": "f88c5751e399d9069e3fd7d2d549f874584bc8e2449a9de4f8022cc79852538e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n1-14-20.png",
+        "sha256": "d3cfc055a0722d8d90532670e13e0f0d82619af2a23803c40b714b6ff62b9332"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n1-9-22.png",
+        "sha256": "7f5aec3ce63d7b6564f34b392c0b18922e2b4f883ba2cd08071680c5eee2314c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n1-14-22.png",
+        "sha256": "097e41a0a0d9809f3f4220604c9b90b2bea023f35a2fc316de2f0fe8658ac6c7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n2-28-22.png",
+        "sha256": "803713297b22e7c2c3f9c99fd5951296ef47816f06524403877ec616a93c92f7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n2-30-23.png",
+        "sha256": "a860c28d63c2fd9e022f4718c5a65f37a54413470fe0771d7db68db6c1dac638"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n2-35-23.png",
+        "sha256": "84871944ada20ce41bb7731cde0f5f65f0ac18ca97c14524bbaba6f421c5844a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n2-8-24.png",
+        "sha256": "550c0ad27da8e8d25429a837c703afefaa8344cec2866cd4d834fcfa4972978a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n2-9-24.png",
+        "sha256": "2a7c84348ad2b865ca6d3c3bdd21210dfd6e84f44da66dc13a985968f12a5019"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n2-28-24.png",
+        "sha256": "cdf38a8ce468942aeabd3f2c00f9ea13a1c2e9acfb1d45ea5d3d8411d16e2c85"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n2-30-24.png",
+        "sha256": "1a10fc13efd98a71e681fd3251d2fac603f16580bba0e1bc4a4e9ce524fed417"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n2-6-26.png",
+        "sha256": "a55ca6d2a6fb283500b80e38fdaac8180b6d634ccc16643b9ea786c89aab556d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n2-8-26.png",
+        "sha256": "dc674739085025381017efd0501a6f3b0d921a324b9978437e1d1530024843fc"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n2-6-32.png",
+        "sha256": "b2637e5bbfe19c2cd00cc6a8d387ff0358d63bd8dbc22890c8fbf10c36a471d8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n2-8-32.png",
+        "sha256": "b69f97f0ce8a5b2a18950750cf144de0b4372e96cb3f07de11586babd1f065c2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n2-32-32.png",
+        "sha256": "c591ea75ccfc7023c12f5440ece0fdf2ef79f72c222cd60e402564d07b99faec"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n2-35-32.png",
+        "sha256": "c46f3fa703c3f47dedc38f8d8abbb90c23e9766a510179343811c3f7af7b64f4"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n2-8-34.png",
+        "sha256": "7dadd5df59e8d9d4fca92539e3c17b8739d6450ca7b6d92d4229d7acc1c7809f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n2-12-34.png",
+        "sha256": "c54429d84f0a140f0a845ae20819d49ba6b72dc7ba20880c690e08a878817dd8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n2-31-34.png",
+        "sha256": "4cbe102445d1b14d09f8a76cd502405f9d706882dee0526728600ac979016dce"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n2-32-34.png",
+        "sha256": "c60dace2bfca330b3c7310acecfb45220238a851348708269c2705b9a7ad00ba"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n2-28-35.png",
+        "sha256": "c4f4bfebce45ee3050cf11fde32e2878c2fb8f5b87559f34aad0c61b2a2de41e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n2-31-35.png",
+        "sha256": "527787811bcb7b90f31f49f3d9597ec3f83d8f969668e3b2ab0554f94d370972"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n2-12-36.png",
+        "sha256": "b69f97f0ce8a5b2a18950750cf144de0b4372e96cb3f07de11586babd1f065c2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n2-23-36.png",
+        "sha256": "85cab36e4d3717d7676802f77786bb9400b645a84eb0b3dd34c941160912da7a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n3-8-4.png",
+        "sha256": "92aeb9415595f2744fb97b5cf182558da667583f6cd50eb8d70fc0d07c772fa1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n3-20-4.png",
+        "sha256": "bad38649c3aeafb2f87c56be8c82c94eac9c56251ab649868a7bc599409e9baa"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n3-6-6.png",
+        "sha256": "81cdbce20782f7307e791108dc7dc59a96b2c98484daf3da57799517a0645163"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n3-8-6.png",
+        "sha256": "aa43098d64d416f540baba355e6f92502720ac148b7ed960df18bdcb9f100bd2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n3-20-6.png",
+        "sha256": "47e3cca550f6258218604c81ca90fc0d81d624707956dec0fd943cf26ca84724"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n3-23-6.png",
+        "sha256": "125414b0abb02447133f0d01a569fb0705d39987f7b039d4b3245526d6c78898"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n3-5-8.png",
+        "sha256": "98903bb66ff4bc48980274cd12bc8407d462db63c209cde41c731c528c30a26d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n3-6-8.png",
+        "sha256": "611c7e87995201c5fe2b4ebd1de3ada08e348f9773e470cc28dc95d8737c2087"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n3-5-12.png",
+        "sha256": "03b4008caf533759fc455151901a8e2d46cc33f801d04c1a3b5042304c70eaf2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n3-6-12.png",
+        "sha256": "d3507b06c314a0eeb80c26724f3dfaa56860dc5d2a6afe94bf66c77e4f93fb57"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n3-22-12.png",
+        "sha256": "4751cada86c72e37700a00533ee17a0f192606acef2b783a60aa9eb976fa83f1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n3-28-12.png",
+        "sha256": "1f72e5d61e5e89e8fac6b4f13b30a52e53a633175b6849ab245421be24b9da21"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n3-6-14.png",
+        "sha256": "b53b4a370c9aafc08296583211ee4bcae956c4acc85393053f3666eaca0b8a95"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n3-8-14.png",
+        "sha256": "71d1b8fd7656bb5a2632640ebef8cf9f3e98289a648df21635f398523fbea65b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n3-20-14.png",
+        "sha256": "2d7b45bb30ecc0d94a6c1b833b0c142ea220c6c4696de73f6e63dc5e16c5e022"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n3-22-14.png",
+        "sha256": "accef1c5558ccfb348663623b6af42c9333a7ef4f332f34ff4d0adae36169955"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n3-8-16.png",
+        "sha256": "e7bb72f7e251b4b708dee6cf4570b0863a488a1e6db43a54be7bf1dff63a4105"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n3-9-16.png",
+        "sha256": "6203eb2752abcfd6253986f5b90b643b6278ee4ff2209932824e877838bcaea1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n3-14-16.png",
+        "sha256": "a1250e3bb7364fc767a3ae84c7c85eecc58eff5dee2bb5f270c19b23caf99a7b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/canto-n3-20-16.png",
+        "sha256": "3b58d9b47ce52fc9cd16e00ecd664e4ec675051d6a6bd7b838bd85d15e6d0922"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/rampa-topo-9-20.png",
+        "sha256": "4ac7fb833927a27e5049fa4358fe78fba7e63682b4c4e1369920e85a41d740f9"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/plato-9-20.png",
+        "sha256": "f23d38ee75c12f0df15db4f9b574fa7afde1e3f1678b9fade5a3352662012f5b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/rampa-topo-10-20.png",
+        "sha256": "97cd50aea495a8f63448faddf67f5d42c3462efaf580f5cfde14e617d44b229b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/plato-10-20.png",
+        "sha256": "19b597f8dd6da3a93abeb157e247d1be30dd8ca7969404ead33380cc1176d5f4"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/rampa-topo-11-20.png",
+        "sha256": "98ce456b90a2a256cc34968dcd97fefc01bee131fc2bf07c15abc3e918bcdeee"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/plato-11-20.png",
+        "sha256": "eff33fc6131179daad2ed6d9dec1b52da8acfe306f120710f0747253c13bf6f1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/rampa-topo-12-20.png",
+        "sha256": "da112fc2ddedbfd8616737cbdb5ca7c017839cfa555f0509ecbe8d1b8891aeac"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/plato-12-20.png",
+        "sha256": "7bdf8d5a12b59e57ce13b61a5cedcdc7992bce8f51baf91d002b5e5d07fa1b14"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/rampa-topo-13-20.png",
+        "sha256": "ee9a53b9c972c4028bb8412098dcca2c42839e7bcf3628a2e5aa3cbf48e085b7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/plato-13-20.png",
+        "sha256": "e46a0c91d86a2a86bb1d6565f280b36a1f5c4b6ee2b4ad17dc3e06bd458c45f3"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/rampa-pe-9-21.png",
+        "sha256": "ae2829b59b7687559e2d6cf225629ce2002fbed54de33126504b82980f199f7a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/rampa-pe-10-21.png",
+        "sha256": "845829f166df6190c43a8e1c25fdd884284d034d9094167ab84cae7f83ae60ae"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/rampa-pe-11-21.png",
+        "sha256": "c7b18790f339a1fc02bf3f20bdc3694ff1f81f4b526ab76f27b134ed063e46aa"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/rampa-pe-12-21.png",
+        "sha256": "e7abe7062041e91566d2c92ce4ae2c74aab4833f2517214922fc7e81d84b23af"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/rampa-pe-13-21.png",
+        "sha256": "a2bcdaa1f30468555b8ab8bda49a8ed5cc5417c67d5e2eda0aa1285e205f164d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/carga.png",
+        "sha256": "fe6fd72b47aec8ee3a4fc69fcadf6c7b43a323fdae7964e035ca1139723ee2d7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/galeria-alta.png",
+        "sha256": "75fc06343a37d02ec052c3b9637166817c393e4287da1196e134dac0a1b20abe"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/desvio.png",
+        "sha256": "438ada491c5a48675445b5b055fc1d6ce8dc2e25c18a6628370c54d2217b1d55"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/b/arte-terreno/marco.png",
+        "sha256": "afde4763fc00b9de48aaa6eb2315f56b4b87f6478f8018d315b2299329d9e480"
+      }
+    ]
+  },
+  {
+    "area": "mina-ferro-c",
+    "mapSha256": "e6b7b4c316f978364a4845abdd40ef23a4995187e3619ab71b373499b350627c",
+    "planSha256": "ae75099039de871dab831a2b02931f4d891c1f0c932052d33b499ae46ed64d45",
+    "images": [
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/area-inteira.png",
+        "sha256": "0cc2531c36df19d048f7819637fad4889b9e73c7b40971721bd21d9f58cb7a11"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/entrada.png",
+        "sha256": "f7a0c46861faaaff5649c94d943314b2b5a31e3c8baeb5da983b9c2d5c3cfb09"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/centro.png",
+        "sha256": "955653140d67fd110d83ad92dd3dd48c76c14aa6b5368edc96dcf3c9937153cb"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/saida-25-39.png",
+        "sha256": "cecc2dd94e5153fa5a6698d3892a908661eaef113512c0d6f3137cd95ea4e22c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/saida-25-0.png",
+        "sha256": "84d14c442cf34ca3815e7a36f2331d0a69d6e3a0ba285d8d51d82b63544a1187"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n1-27-20.png",
+        "sha256": "bea2daa3a7db40126c7a84ea7915af6bdf135b267fc5a8c9f4a5d5379d1e5803"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n1-32-20.png",
+        "sha256": "995b1aeeff68e2cec718298eee414e5adb107d190ab4cd3e23dd22bdf5da2f4f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n1-27-22.png",
+        "sha256": "55870dd3b8cce3241c025108b7dded42c744a16fc9b0a6574549c99e940fedfb"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n1-32-22.png",
+        "sha256": "7720e655931cb0d89582310c5c3f1c26a8d547a08a8de85445f787361fd7f4c8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n3-18-22.png",
+        "sha256": "2e5338fb2306a57d62b96ea94f3426d00a225577b56e7d23d18b9813ab803f1b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n3-16-24.png",
+        "sha256": "db2db7a2f94b7bb2dfb1e32cfa38b1ebe7c7425e12f4b10adcf88645c5f7165d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n3-18-24.png",
+        "sha256": "ecbcfb85dc549b62a522be4122b6658dd0404f7a9b55a1c1b99ef80f479728c9"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n3-14-26.png",
+        "sha256": "b6d763239656c702498305a21a8b4df3297369259a9fd9818bf3801588fc97a5"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n3-16-26.png",
+        "sha256": "f5b079659ad328ada9fc6e3517315b70a1a29357110327b467b0c14a4f98a2e0"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n3-32-26.png",
+        "sha256": "52b3bbd78e8b7d66234072882b8afb295b1a62fec75ae0b5a24c489d732fd773"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n3-34-26.png",
+        "sha256": "8945d26bafd2b994d8ef8bc79141b4282045f476a142185ad193af9f819dc95f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n3-6-27.png",
+        "sha256": "1a36580fb9ed7f5b1b642184737434582a04a743519dbbcf61b544343cdb2470"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n3-14-27.png",
+        "sha256": "d3ed42b7e2b8f3b77897e62afbd8ece36a844200cc773929d7bd39a335d5b6d0"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n3-6-32.png",
+        "sha256": "5acc954975b06256aed155b755fe8462dd786dc5a5b5a991f45ed1849832e0fb"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n3-16-32.png",
+        "sha256": "e35af28b9a3d65d8de515df6a49a89a5ae62f0dc7db533fa37b40f36d41a95c8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n3-33-32.png",
+        "sha256": "e99fdf56c12ee19fe2c3eb3eaf8883fc1328898cb27b4cd62981432d17b94e2d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n3-34-32.png",
+        "sha256": "f4fabaaad2ccc57352b555f68c1350eb32014ffa4b891689824fbac2214a1373"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n3-32-33.png",
+        "sha256": "b62f133e72e15109512319aada42a2026b4c8bc14830f7bac32a50782630db1a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n3-33-33.png",
+        "sha256": "e4219dc4189757ce724ead53b1321072cda27dfba838cc0d14fa0472aa299105"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n3-16-34.png",
+        "sha256": "9aef837021e937b30b983a90cfe5499ea44e9c57117d30ec145b43c867096e18"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n3-18-34.png",
+        "sha256": "159638e5644ec208c70c21e39acc821523b9c3b1cb34a4eb5e182c9d8c3f437f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n3-30-34.png",
+        "sha256": "b6887fe88a45d661ee15f2e77047484bee40429ba1ca207fc63b74b757470bb7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n3-32-34.png",
+        "sha256": "faf4093fb8ba34d9c416fb18cda3296e36b8861d2c47d8fd8a4a5c9348ac1491"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n3-18-36.png",
+        "sha256": "181158c28664c4b0802c3ab4bc2edd83ed181f923f7980b12cd09a5f7ad75287"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n3-23-36.png",
+        "sha256": "79e7180793f7136422ce8c00b8ed4e9eb2dd0d0c367538de9fdf5e5217308554"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n3-28-36.png",
+        "sha256": "1ee38eeaf32a8fe6c4de2bc9380c78adf59ac6769c470f1b921fab396bfb3119"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n3-30-36.png",
+        "sha256": "24682a3d121240b37ff27778e585c970fca616967582c45919a8c6ac2926c049"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-20-4.png",
+        "sha256": "e69fe9cc96942b4930484b336764621a7f42eb65075f972d1a09cf9ef1eadbf2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-23-4.png",
+        "sha256": "00d7466a73035743bff947dd54f7a7306a55ccfc4b1ca42c0d3c0b28ba57bc57"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-28-4.png",
+        "sha256": "9c7c18ea7afce9efc5c58424830c02308915dd41a26bfef05dc86e3ddc579344"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-32-4.png",
+        "sha256": "24cbf580e5bba3946f4a1567d05a79eb30a683019b02673da6c8221e8ce35542"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-6-6.png",
+        "sha256": "a730b91fb7db7186bc0d885689529b1b0d1160f9fafb70092d2834bebe6ba7b7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-14-6.png",
+        "sha256": "9a357052934f5af19318f5b29fa21b7965cc09ea167540ce5aa7b0bda3e9c26d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-18-6.png",
+        "sha256": "65b0f99c2780388c36792bfb4f052eedaec62c0aee69ba2e6393857be781dfe7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-20-6.png",
+        "sha256": "24c8aefe650d56efcd5b0f156d8e5acffa5630ed6e76433a5f543760d2640470"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-32-6.png",
+        "sha256": "04260d4f29ad998b17d679b4df786baa0f907a68f4f9f2561ead47621a12ce47"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-34-6.png",
+        "sha256": "881b5ac319e4854ba061c6c9f0a8f369895e7b3962fa3fe98f50eb2d6ab3c5e0"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-4-8.png",
+        "sha256": "89204ae9fd6fc013355714925b86e1c0e10aacd5c6be144af91f55de42b1ec45"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-6-8.png",
+        "sha256": "27a2dc38d25a736129a1a3947d2b83e428fa0bfbd964b1df484c53a994bf9422"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-14-8.png",
+        "sha256": "6f3a786f1b79b81f0a1c9d6ecd7bb5b8cf67dad091d231c3da77366d505dd284"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-18-8.png",
+        "sha256": "7335b62eaf2a0e68d9325883bbc71c0a74debdfd5a945530424a45260e609dd4"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-34-8.png",
+        "sha256": "569bff2ea5660fbe71456dd6a8a7fafcb420734e70a3e28ff051bc5f364f24b4"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-36-8.png",
+        "sha256": "9e5189af0043e1467ff928c584afb3b27e32bf93b1c13c3fb96e3204e88e15a5"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-4-14.png",
+        "sha256": "0aa09ae87af43f0c65c5269f344b4adbbb80f803d77016c42658b015250c8ad5"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-6-14.png",
+        "sha256": "8d338e46ab04a2cae839d5ab6b9b373530aa6f75c94cd00dd2d6518d1843c692"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-14-14.png",
+        "sha256": "cea41e6833521e1f62a87c899aea83643cd7c40eb875b0f286c4e545b8366ea8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-18-14.png",
+        "sha256": "c7e2137fa18599cd0d63a9b0aeede0ae3f6bf21420fe592ccf89bddfbd6314a2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-34-14.png",
+        "sha256": "da97b66ac1c708933c76ac3b80439374c9048ba1dea791eff10430f8c40ded40"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-36-14.png",
+        "sha256": "ea8c084d10027514d2c1ffbaaba712d3134b04195a91b18594e34707918b31d4"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-6-16.png",
+        "sha256": "e6bc767aaed2364a12f1ca1ea265f6a8e9f5a4a3d2ba38efee392ea0d7c64c1f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-14-16.png",
+        "sha256": "2930136e4fef906ab5e3c44e7e002b00ecaa6ce50450ed3e58a44b46c228008e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-18-16.png",
+        "sha256": "1f74d507061551c667ee9d281c4dab804a510ad6bdb62ea33490abc6476943ae"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-20-16.png",
+        "sha256": "4708e466f28a8aa901cfb48c5c8eac25615790d86dbf1ff3f4d771385a4b8717"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-32-16.png",
+        "sha256": "171bd5193ab42c7f0c975adca4f6845a4ce140e1a41a67d12283709edd01bb91"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-34-16.png",
+        "sha256": "74ca347c8cc5d56eb7ef7e0a5103e35ee3b6580819660e21802d0413435be2a6"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-20-18.png",
+        "sha256": "a26bdc37742027fc4d92ac18add855b0013a56746b6312925e1e67262cdadb29"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/canto-n4-27-18.png",
+        "sha256": "71909b61bb718daf27e063beb036938b10de9be566817213b5536145bbeb6ae5"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/rampa-topo-27-20.png",
+        "sha256": "1554c58022c73b64820ed9b080fbac7d9f3602619f58344e1a58757b605dcd36"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/plato-27-20.png",
+        "sha256": "b6d07ea3f0d06341a006b94d3a7c50673a779a23ae1136f6946c7b58fbe62694"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/rampa-topo-28-20.png",
+        "sha256": "9a25bf0226ca8eda31dfc48dc9991ed8b980dfc6c49108ebf5f09bab905916f1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/plato-28-20.png",
+        "sha256": "8a2b375331eb168c7ef45cbb1db79f9610986ae4c5bab624ad015d6f4d92be55"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/rampa-topo-29-20.png",
+        "sha256": "a9756420ba250937036b757e97be778dd3a1dced444ed2d8631114832f1ef152"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/plato-29-20.png",
+        "sha256": "eeb7c4c56fa3ac6e00f99f8ca1598bfed67676bad2f543532189d17269bd579d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/rampa-topo-30-20.png",
+        "sha256": "88afe1297d6b3e5b0c607765925c1be15cde0f0d010988300835efce2ced0596"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/plato-30-20.png",
+        "sha256": "3d4e292bbfd23ed58bbf3b5cffa8dd3d922e3f224b8edb088fa98ea7885a3e09"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/rampa-topo-31-20.png",
+        "sha256": "14667602f1b5c265c99a7b7031d3df5bf3a2878da7d6bc7c316dcf64290eee86"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/plato-31-20.png",
+        "sha256": "7654dfa15e03a1ce11bd8969a848c71c44e709085dad1bddf571a94cfb332a97"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/rampa-pe-27-21.png",
+        "sha256": "d551e8999ed6e37485464d0d83f6fa3bdfa14a823c38e6f13ef59b7c43f888b0"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/rampa-pe-28-21.png",
+        "sha256": "885c48c49baea1e683fef28d17afd662d91e4d741e407150df04b8428ab01525"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/rampa-pe-29-21.png",
+        "sha256": "4a4d6ec660c2cb807189a9d2815030dd4a9eb16cc4e06c8be2c88bac55f7b615"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/rampa-pe-30-21.png",
+        "sha256": "f0b8fb857b35a50212321a021487702cf11aaca2d7b228e0087d3d0dc539fc95"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/rampa-pe-31-21.png",
+        "sha256": "8bdd2d8b1ec9c587f8c44ebf4aee5da6c8cbf2fb5eba711e8a500d748685b987"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/carga.png",
+        "sha256": "8a760a6fb196bcbd463e476ce42dbb064afe1788ad69814c27d9759be90f1660"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/galeria-alta.png",
+        "sha256": "335d2ff93c1387986ad3f766c7f481184435ff526fc7471d8b05ab2b4a09f966"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/desvio.png",
+        "sha256": "dec4019f8f313dd65eb03541251920c34d0e2aa531cee2cfd83805dd0dd3f286"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/geometria/marco.png",
+        "sha256": "e1dc256dd759dd904dc03cf87cdbbc8e60f9d3807f741564b6fb635ec06b7c96"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/area-inteira.png",
+        "sha256": "2802d50c58b34ba90de6cc43370e03c9dfe32d851ccc9f1db53fe54ee35c84cf"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/entrada.png",
+        "sha256": "19ae915b7f7dd405ea08bada203edbe3e05557cb139d070a4410620c2f97e8a1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/centro.png",
+        "sha256": "b96a8b27b88a8a0c1d6ea45bb22d7577d122e61928cf2bac39a39a9ef40e0fef"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/saida-25-39.png",
+        "sha256": "ab679d1db974267181904aa5949fbc0445fa01e469e436822093f18004a3df49"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/saida-25-0.png",
+        "sha256": "fa4d301ba00178124c149954a3958bb8d46df193a54246e4d84749644f1a151e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n1-27-20.png",
+        "sha256": "b6bd8f93c575b0fb08f8139a6b79b7f90cc4612b432ef2b241de9f9499037e7d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n1-32-20.png",
+        "sha256": "b568ce3a5b660c2c02da5d8abcf8bddca52378bdd40b41b7829f4c01490fff69"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n1-27-22.png",
+        "sha256": "2dcf9ec27d3d5b30e831a295054b46eeb86f8e167720d6f71b9740315821ffaf"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n1-32-22.png",
+        "sha256": "49d1aaabed3916d9802d979ab73d31b2d665690ecc75835eb30b4dac0e60335f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n3-18-22.png",
+        "sha256": "b97430620e4d6f9634dc852a4bec08ad5f6a8f86439feb90a56e0ea7799db1c0"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n3-16-24.png",
+        "sha256": "ef64f48ad56232e9af78c08874df0511d1b5a75ec25eb01e28443dbc75a410b2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n3-18-24.png",
+        "sha256": "906b5b698445d8f9e5b2232932eebe438f4021249faf169b0ba393ff75a54a34"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n3-14-26.png",
+        "sha256": "22e75efa1d7f01579b4292f985a304d52daf57cccfd87d3091d25131ca4c9701"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n3-16-26.png",
+        "sha256": "0a24f87d11470c30c03b70b3f5e2fd5e9092518ecb723dce51ddb2b6842acb77"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n3-32-26.png",
+        "sha256": "c3e465c8233dcb61dc675b19d496063d170f5c00fbbddff4c7b6df597e2719b5"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n3-34-26.png",
+        "sha256": "e80605c13053cef395ec6401a68b61764ee328ead6f882c8541d1c843395eae8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n3-6-27.png",
+        "sha256": "abbbb33149fd1c40d1b86dacfdbdc5c82131553aa4444f5e530937451ff8ad9f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n3-14-27.png",
+        "sha256": "2ec34fcd73ab25a7b443cd1299ee0ef71eec1a26b242807e6cb58bdb45f11b78"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n3-6-32.png",
+        "sha256": "8e7339889f2ae94df492543faf7ad3683e9c556494edcbfd98896a0b9fc1ec77"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n3-16-32.png",
+        "sha256": "24a19a608d4a6a9d6d712e4b48eaa600cd93679311f193511b4611011eec0207"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n3-33-32.png",
+        "sha256": "4f937fae4a1f464a60bcc7360088251afa30a4f34fcaff59a5c6abb9c51bca66"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n3-34-32.png",
+        "sha256": "d2550ab19f430a4dad10da153d035bfc44f959119f0f673e79713ee5e2a60ff5"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n3-32-33.png",
+        "sha256": "fc9e438d022e5871e53223790223f1d72fe0f154e47053ea8b434b1e09adc3fd"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n3-33-33.png",
+        "sha256": "79d73042830d07d1464f2cb38142ac7700035b3c56e1b1e35998f1750d8f2087"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n3-16-34.png",
+        "sha256": "d9b9d9cf86c9a150c6b3f77fae48ce200220aed8aeda6f4ff8d3e45f32fb8166"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n3-18-34.png",
+        "sha256": "10a6d566316ec7dff9e2b1d0fbc6dcdb9e614f8a228dbe3d88bc9971497412cc"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n3-30-34.png",
+        "sha256": "62c3734819841943d90ed15116cf112134c13c7dfa0176a405caf1efdfe3be21"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n3-32-34.png",
+        "sha256": "e31830ccfb557842582dc65ab6dad90e8df2d9fd224ade3a34b894693ca0d48a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n3-18-36.png",
+        "sha256": "10c0d3ae00f99f3cee19b0a8931ed22bc7a2a7bbbaa3aa400133db6a44d6bc34"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n3-23-36.png",
+        "sha256": "e4b8977cf0860fc5200bd485d45fbc148703fedc49d10bc302b14d6289b3110c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n3-28-36.png",
+        "sha256": "f98817a4a71b928e193ca0804941d92b5a1ffe2a5c3d8a592e5859d556708e5d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n3-30-36.png",
+        "sha256": "9b14268a2555af0b1af978402797799c84866becc91dcac8ab32f340e924c25c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-20-4.png",
+        "sha256": "38bc3d2c9aa46d55085df17404d65e1f190f19f82df142260f4d088f50846e16"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-23-4.png",
+        "sha256": "f7a94a3a54b2b2ffa4add0804f5a47b2cc7cd915a0f3b7ff65f828d815421662"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-28-4.png",
+        "sha256": "516fd09e868d6c1e6c68eba38adbc3c2f872b9841ea8753c3d5157596c4e0874"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-32-4.png",
+        "sha256": "e08143fc3a3dbaca500be2a689011e521f0f3e198774a144371233a969984121"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-6-6.png",
+        "sha256": "a9d39ce75d6501f4f51c5db621794fff51731fb5afbc90fb903b7f3b00981fd8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-14-6.png",
+        "sha256": "6d0d78ecdaf8a7fc6a32f6c021132c1030930587c1426707e5108b6706fb8638"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-18-6.png",
+        "sha256": "c8ae1451a27459d8448cca49c3efe010aad6427f41becc189eb5bbf1d2a4bdea"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-20-6.png",
+        "sha256": "edc4a5177ab4fa7b7da2ec0bfb807ead8d9c2aec8dd696d583263378b3b8edc8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-32-6.png",
+        "sha256": "90142b924c4392a34e352ede835f1ffa165130130a5d63282e4b654388cc56ef"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-34-6.png",
+        "sha256": "000a882d0eda37c8fe7eb8976e2031dc61ae7bfc48002cc6d61ad133f41b120c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-4-8.png",
+        "sha256": "32d5b61adf5ffab7714555e31047ece5a88e8a43da449250b58de96b905bded9"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-6-8.png",
+        "sha256": "12b7e7997ea7238422455ec06bafff9dd0859d91b289324f2774bc72852e9a6d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-14-8.png",
+        "sha256": "e6bad9e11ff854d746ffa9538f6a449a81dda68a28c90050f6bcb3874bf7313e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-18-8.png",
+        "sha256": "a76fdb23e29c806e4f0f3806d551c8ecd5d431c94a9e9d59cd8d1c76e09bbc45"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-34-8.png",
+        "sha256": "9b642a2efcc0db811cfba0823c3216f3d0f2b833b485570b68bbfc8c3af4ff5b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-36-8.png",
+        "sha256": "2fc6dcb0b8b5480620385127cca4f07f8defa5eb1f1bfdfa6343451697b5f9b8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-4-14.png",
+        "sha256": "b2ad165ae9e4c3f31c96ab597cd318cf910c1a88f8d9ecaeb03b5f0cb93aa5d9"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-6-14.png",
+        "sha256": "38b18635351a1c9a38faf37e7cd5fe7059b38827992801baf18025e8592d51a1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-14-14.png",
+        "sha256": "fa028349f0b752e94cb3042e7d76125b70901f35b1d9cd154d0262ca3440466d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-18-14.png",
+        "sha256": "07272c851009ad37aeff1fa11a4c894b149efd09fa5291ae576d1a6c44538d7b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-34-14.png",
+        "sha256": "ba049a27f8b2215c12f2719e110b4420d9a452f7901965fd86e034c99fbd9a44"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-36-14.png",
+        "sha256": "c4358b35da9c209636f9fb0becb5041493b39919ee59099f8fa9d7a86e981213"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-6-16.png",
+        "sha256": "fdc812be4e07099cf8c0058b9a061cecba9c56b6371e7f50d2898826ea75663a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-14-16.png",
+        "sha256": "bc56163bfba2c94892c46061d1a64f073ecfab1b3a5a037fae0cbe7e29fd989b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-18-16.png",
+        "sha256": "75963dd17ab041f59f064965faf27f1eea214523d50225855cba435025b7e5ae"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-20-16.png",
+        "sha256": "8f2bc1eb391c612c1d18cbabe50feb7e75b507b9e613aa70dfeda048e9ab835d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-32-16.png",
+        "sha256": "1ce53e47303ac0b41644c85edfb28dd0503040d2b0674aaadf638377c75a592a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-34-16.png",
+        "sha256": "6d14d8b6c14309e07bb72e9dd859223e87bf7f375b7ffc01fd1c91ce927fb72d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-20-18.png",
+        "sha256": "051d6a84f6223f623170ea8129817b57f012a446be527ff44bcc61c92d339011"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/canto-n4-27-18.png",
+        "sha256": "913481b5c716da2fd2f5b53899460e3e0738e326a9cb7e9cc272da6d92a6a47a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/rampa-topo-27-20.png",
+        "sha256": "da8bca1e2ba4b0cb7359afaf219f9aa9e770cda6cac4204af7401a6c68167595"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/plato-27-20.png",
+        "sha256": "a7486e468e29cc1ca4b9f0dd2214965bf9f7348e7c0215cb902ae930457dc06e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/rampa-topo-28-20.png",
+        "sha256": "7245ce8dba0f3ed46d8a6b8546248e027a97087a6e6b305d4d1060cd4e770e5a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/plato-28-20.png",
+        "sha256": "149f2d81b89b764fdec15b448a5f4bfa987adc998d6e17e98843a2e4faff52ba"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/rampa-topo-29-20.png",
+        "sha256": "ffb6efab4d84e6f5223a1e0051375c3ee7e4bd55898c1547dbb891627592169f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/plato-29-20.png",
+        "sha256": "04c147163b3ca72a8fbdd91d49f5de252f6b39256ea02220cc4f4d0ea5cc20a8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/rampa-topo-30-20.png",
+        "sha256": "a166900c0c53743a72aec6bcfc519b1ae643661ad857a86604420c8e977af2b0"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/plato-30-20.png",
+        "sha256": "4e6f25d27c2aab3545f843500817a13de303784b03720ff83fd73c3e7f32f3b6"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/rampa-topo-31-20.png",
+        "sha256": "3def6d1d49afe786e189c8dcf850b8c827ee1a6e8a7e74b92b471ab3642abff2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/plato-31-20.png",
+        "sha256": "62eca7c89a9c9f108e52366463e5b27bd04ea990096b91117159d5c3c566d510"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/rampa-pe-27-21.png",
+        "sha256": "4b96a1beaefdcd0df38d406a07fec1c7fee5ed5e19add0eae80ba5611ee3b30a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/rampa-pe-28-21.png",
+        "sha256": "db8c366d39f4387d1cacaf5845c6e52ffce62416bea8c80ac05b72e7f1653d6c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/rampa-pe-29-21.png",
+        "sha256": "d62b28f4353bc922c321116e4806aaee187b8cc73f8cbd94d1c925d3ee5bd5cd"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/rampa-pe-30-21.png",
+        "sha256": "88ad6050fad086944c292ee6dd930dacc4b647cb3fb7be0b0924f8dca2a9f775"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/rampa-pe-31-21.png",
+        "sha256": "1fe12e789be5b9b6d3cd43b149ff1e73916753747052966f09ede67f97d32de6"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/carga.png",
+        "sha256": "e2caa88472b9a097d5e4a931583047ad8b5904808b090e0fecc3bc601b390029"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/galeria-alta.png",
+        "sha256": "57b518944cc5393b9fe9801667aa9f47188deacb6b6d1491848e6d51ed7e8f02"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/desvio.png",
+        "sha256": "ba7db8389eb7a8e09fb7a6c657e423e58aff4ceb9570915fe65cf7bc1c75f163"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte/marco.png",
+        "sha256": "c86d9cb020bad8a1c028791b5e3bb093c7695498dcdf9016c869634edb6883bf"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/area-inteira.png",
+        "sha256": "2802d50c58b34ba90de6cc43370e03c9dfe32d851ccc9f1db53fe54ee35c84cf"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/entrada.png",
+        "sha256": "19ae915b7f7dd405ea08bada203edbe3e05557cb139d070a4410620c2f97e8a1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/centro.png",
+        "sha256": "b96a8b27b88a8a0c1d6ea45bb22d7577d122e61928cf2bac39a39a9ef40e0fef"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/saida-25-39.png",
+        "sha256": "ab679d1db974267181904aa5949fbc0445fa01e469e436822093f18004a3df49"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/saida-25-0.png",
+        "sha256": "fa4d301ba00178124c149954a3958bb8d46df193a54246e4d84749644f1a151e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n1-27-20.png",
+        "sha256": "b6bd8f93c575b0fb08f8139a6b79b7f90cc4612b432ef2b241de9f9499037e7d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n1-32-20.png",
+        "sha256": "b568ce3a5b660c2c02da5d8abcf8bddca52378bdd40b41b7829f4c01490fff69"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n1-27-22.png",
+        "sha256": "2dcf9ec27d3d5b30e831a295054b46eeb86f8e167720d6f71b9740315821ffaf"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n1-32-22.png",
+        "sha256": "49d1aaabed3916d9802d979ab73d31b2d665690ecc75835eb30b4dac0e60335f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n3-18-22.png",
+        "sha256": "b97430620e4d6f9634dc852a4bec08ad5f6a8f86439feb90a56e0ea7799db1c0"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n3-16-24.png",
+        "sha256": "ef64f48ad56232e9af78c08874df0511d1b5a75ec25eb01e28443dbc75a410b2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n3-18-24.png",
+        "sha256": "906b5b698445d8f9e5b2232932eebe438f4021249faf169b0ba393ff75a54a34"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n3-14-26.png",
+        "sha256": "22e75efa1d7f01579b4292f985a304d52daf57cccfd87d3091d25131ca4c9701"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n3-16-26.png",
+        "sha256": "0a24f87d11470c30c03b70b3f5e2fd5e9092518ecb723dce51ddb2b6842acb77"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n3-32-26.png",
+        "sha256": "c3e465c8233dcb61dc675b19d496063d170f5c00fbbddff4c7b6df597e2719b5"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n3-34-26.png",
+        "sha256": "e80605c13053cef395ec6401a68b61764ee328ead6f882c8541d1c843395eae8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n3-6-27.png",
+        "sha256": "abbbb33149fd1c40d1b86dacfdbdc5c82131553aa4444f5e530937451ff8ad9f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n3-14-27.png",
+        "sha256": "2ec34fcd73ab25a7b443cd1299ee0ef71eec1a26b242807e6cb58bdb45f11b78"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n3-6-32.png",
+        "sha256": "8e7339889f2ae94df492543faf7ad3683e9c556494edcbfd98896a0b9fc1ec77"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n3-16-32.png",
+        "sha256": "24a19a608d4a6a9d6d712e4b48eaa600cd93679311f193511b4611011eec0207"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n3-33-32.png",
+        "sha256": "4f937fae4a1f464a60bcc7360088251afa30a4f34fcaff59a5c6abb9c51bca66"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n3-34-32.png",
+        "sha256": "d2550ab19f430a4dad10da153d035bfc44f959119f0f673e79713ee5e2a60ff5"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n3-32-33.png",
+        "sha256": "fc9e438d022e5871e53223790223f1d72fe0f154e47053ea8b434b1e09adc3fd"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n3-33-33.png",
+        "sha256": "79d73042830d07d1464f2cb38142ac7700035b3c56e1b1e35998f1750d8f2087"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n3-16-34.png",
+        "sha256": "d9b9d9cf86c9a150c6b3f77fae48ce200220aed8aeda6f4ff8d3e45f32fb8166"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n3-18-34.png",
+        "sha256": "10a6d566316ec7dff9e2b1d0fbc6dcdb9e614f8a228dbe3d88bc9971497412cc"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n3-30-34.png",
+        "sha256": "62c3734819841943d90ed15116cf112134c13c7dfa0176a405caf1efdfe3be21"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n3-32-34.png",
+        "sha256": "e31830ccfb557842582dc65ab6dad90e8df2d9fd224ade3a34b894693ca0d48a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n3-18-36.png",
+        "sha256": "10c0d3ae00f99f3cee19b0a8931ed22bc7a2a7bbbaa3aa400133db6a44d6bc34"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n3-23-36.png",
+        "sha256": "e4b8977cf0860fc5200bd485d45fbc148703fedc49d10bc302b14d6289b3110c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n3-28-36.png",
+        "sha256": "f98817a4a71b928e193ca0804941d92b5a1ffe2a5c3d8a592e5859d556708e5d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n3-30-36.png",
+        "sha256": "9b14268a2555af0b1af978402797799c84866becc91dcac8ab32f340e924c25c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-20-4.png",
+        "sha256": "38bc3d2c9aa46d55085df17404d65e1f190f19f82df142260f4d088f50846e16"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-23-4.png",
+        "sha256": "f7a94a3a54b2b2ffa4add0804f5a47b2cc7cd915a0f3b7ff65f828d815421662"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-28-4.png",
+        "sha256": "516fd09e868d6c1e6c68eba38adbc3c2f872b9841ea8753c3d5157596c4e0874"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-32-4.png",
+        "sha256": "e08143fc3a3dbaca500be2a689011e521f0f3e198774a144371233a969984121"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-6-6.png",
+        "sha256": "a9d39ce75d6501f4f51c5db621794fff51731fb5afbc90fb903b7f3b00981fd8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-14-6.png",
+        "sha256": "6d0d78ecdaf8a7fc6a32f6c021132c1030930587c1426707e5108b6706fb8638"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-18-6.png",
+        "sha256": "c8ae1451a27459d8448cca49c3efe010aad6427f41becc189eb5bbf1d2a4bdea"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-20-6.png",
+        "sha256": "edc4a5177ab4fa7b7da2ec0bfb807ead8d9c2aec8dd696d583263378b3b8edc8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-32-6.png",
+        "sha256": "90142b924c4392a34e352ede835f1ffa165130130a5d63282e4b654388cc56ef"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-34-6.png",
+        "sha256": "000a882d0eda37c8fe7eb8976e2031dc61ae7bfc48002cc6d61ad133f41b120c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-4-8.png",
+        "sha256": "32d5b61adf5ffab7714555e31047ece5a88e8a43da449250b58de96b905bded9"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-6-8.png",
+        "sha256": "12b7e7997ea7238422455ec06bafff9dd0859d91b289324f2774bc72852e9a6d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-14-8.png",
+        "sha256": "e6bad9e11ff854d746ffa9538f6a449a81dda68a28c90050f6bcb3874bf7313e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-18-8.png",
+        "sha256": "a76fdb23e29c806e4f0f3806d551c8ecd5d431c94a9e9d59cd8d1c76e09bbc45"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-34-8.png",
+        "sha256": "9b642a2efcc0db811cfba0823c3216f3d0f2b833b485570b68bbfc8c3af4ff5b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-36-8.png",
+        "sha256": "2fc6dcb0b8b5480620385127cca4f07f8defa5eb1f1bfdfa6343451697b5f9b8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-4-14.png",
+        "sha256": "b2ad165ae9e4c3f31c96ab597cd318cf910c1a88f8d9ecaeb03b5f0cb93aa5d9"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-6-14.png",
+        "sha256": "38b18635351a1c9a38faf37e7cd5fe7059b38827992801baf18025e8592d51a1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-14-14.png",
+        "sha256": "fa028349f0b752e94cb3042e7d76125b70901f35b1d9cd154d0262ca3440466d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-18-14.png",
+        "sha256": "07272c851009ad37aeff1fa11a4c894b149efd09fa5291ae576d1a6c44538d7b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-34-14.png",
+        "sha256": "ba049a27f8b2215c12f2719e110b4420d9a452f7901965fd86e034c99fbd9a44"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-36-14.png",
+        "sha256": "c4358b35da9c209636f9fb0becb5041493b39919ee59099f8fa9d7a86e981213"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-6-16.png",
+        "sha256": "fdc812be4e07099cf8c0058b9a061cecba9c56b6371e7f50d2898826ea75663a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-14-16.png",
+        "sha256": "bc56163bfba2c94892c46061d1a64f073ecfab1b3a5a037fae0cbe7e29fd989b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-18-16.png",
+        "sha256": "75963dd17ab041f59f064965faf27f1eea214523d50225855cba435025b7e5ae"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-20-16.png",
+        "sha256": "8f2bc1eb391c612c1d18cbabe50feb7e75b507b9e613aa70dfeda048e9ab835d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-32-16.png",
+        "sha256": "1ce53e47303ac0b41644c85edfb28dd0503040d2b0674aaadf638377c75a592a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-34-16.png",
+        "sha256": "6d14d8b6c14309e07bb72e9dd859223e87bf7f375b7ffc01fd1c91ce927fb72d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-20-18.png",
+        "sha256": "051d6a84f6223f623170ea8129817b57f012a446be527ff44bcc61c92d339011"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/canto-n4-27-18.png",
+        "sha256": "913481b5c716da2fd2f5b53899460e3e0738e326a9cb7e9cc272da6d92a6a47a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/rampa-topo-27-20.png",
+        "sha256": "da8bca1e2ba4b0cb7359afaf219f9aa9e770cda6cac4204af7401a6c68167595"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/plato-27-20.png",
+        "sha256": "a7486e468e29cc1ca4b9f0dd2214965bf9f7348e7c0215cb902ae930457dc06e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/rampa-topo-28-20.png",
+        "sha256": "7245ce8dba0f3ed46d8a6b8546248e027a97087a6e6b305d4d1060cd4e770e5a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/plato-28-20.png",
+        "sha256": "149f2d81b89b764fdec15b448a5f4bfa987adc998d6e17e98843a2e4faff52ba"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/rampa-topo-29-20.png",
+        "sha256": "ffb6efab4d84e6f5223a1e0051375c3ee7e4bd55898c1547dbb891627592169f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/plato-29-20.png",
+        "sha256": "04c147163b3ca72a8fbdd91d49f5de252f6b39256ea02220cc4f4d0ea5cc20a8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/rampa-topo-30-20.png",
+        "sha256": "a166900c0c53743a72aec6bcfc519b1ae643661ad857a86604420c8e977af2b0"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/plato-30-20.png",
+        "sha256": "4e6f25d27c2aab3545f843500817a13de303784b03720ff83fd73c3e7f32f3b6"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/rampa-topo-31-20.png",
+        "sha256": "3def6d1d49afe786e189c8dcf850b8c827ee1a6e8a7e74b92b471ab3642abff2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/plato-31-20.png",
+        "sha256": "62eca7c89a9c9f108e52366463e5b27bd04ea990096b91117159d5c3c566d510"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/rampa-pe-27-21.png",
+        "sha256": "4b96a1beaefdcd0df38d406a07fec1c7fee5ed5e19add0eae80ba5611ee3b30a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/rampa-pe-28-21.png",
+        "sha256": "db8c366d39f4387d1cacaf5845c6e52ffce62416bea8c80ac05b72e7f1653d6c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/rampa-pe-29-21.png",
+        "sha256": "d62b28f4353bc922c321116e4806aaee187b8cc73f8cbd94d1c925d3ee5bd5cd"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/rampa-pe-30-21.png",
+        "sha256": "88ad6050fad086944c292ee6dd930dacc4b647cb3fb7be0b0924f8dca2a9f775"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/rampa-pe-31-21.png",
+        "sha256": "1fe12e789be5b9b6d3cd43b149ff1e73916753747052966f09ede67f97d32de6"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/carga.png",
+        "sha256": "e2caa88472b9a097d5e4a931583047ad8b5904808b090e0fecc3bc601b390029"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/galeria-alta.png",
+        "sha256": "57b518944cc5393b9fe9801667aa9f47188deacb6b6d1491848e6d51ed7e8f02"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/desvio.png",
+        "sha256": "ba7db8389eb7a8e09fb7a6c657e423e58aff4ceb9570915fe65cf7bc1c75f163"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/c/arte-terreno/marco.png",
+        "sha256": "c86d9cb020bad8a1c028791b5e3bb093c7695498dcdf9016c869634edb6883bf"
+      }
+    ]
+  },
+  {
+    "area": "mina-ferro-d",
+    "mapSha256": "468ebeaeef3fc235a00594168e25f3ed82e09f91c39d39f65b7ba38956aa4702",
+    "planSha256": "37708d80a449c0dede3476d64c8b9aef2e10f6eedd8da6b75a0c1f95da1ba987",
+    "images": [
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/area-inteira.png",
+        "sha256": "89caa803cb6285c4edbb90817a711d179f7e01e13709c9b98c689c3175ea1395"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/entrada.png",
+        "sha256": "ad0d471193a742c213fcf4bd45388916070f3107ea08975e10da5085bac555a5"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/centro.png",
+        "sha256": "75aa2bc360b49af2de79a9e3768843a1524bfdb9b7d3500700ca7aaed27157e2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/saida-25-39.png",
+        "sha256": "2140ff9110e78645f3396f4e5e5aaf3049a25dc815679be5597e68e9b9ae307e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n1-8-20.png",
+        "sha256": "922446eab016b3b6a38ea01e14d7eaf54121dd3ca2ff2608bc767955fe065e8f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n1-13-20.png",
+        "sha256": "9b575f54ca267a0a3a32ad67c0d4f2c6b18c8a35986a886c5cc1203ef58442a6"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n1-27-20.png",
+        "sha256": "0f24100e3ce55d4e0591ac5cd8628b098ed941e1467dcc0552cf5db7508c8216"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n1-32-20.png",
+        "sha256": "c397f21924cffcaa23bed84ef9aa7acb7f6276bc8e0e093a1168434ededdd863"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n1-8-22.png",
+        "sha256": "82367f49c5c680d0b67eb7296a3aa4c39a266dd76c09bda8f4ff5910f0a57376"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n1-13-22.png",
+        "sha256": "d232b7a52ab331d96a8920c3974eb282eb9c7884b8f37d7258ad7f55960f2e70"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n1-27-22.png",
+        "sha256": "ec66c747a7891ac82d9b99d9cca9459bf4fef78432d486601e1c6fc8529ec8d4"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n1-32-22.png",
+        "sha256": "abbccd3e1ff21ea0851ad476a2e55c56ace8f3f4387ee0664e9c5440a5c6f4b4"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n4-32-25.png",
+        "sha256": "3271ca9b7e3f2798cc591ccfad96bf4cb9e7e0c25130eb1b814050e0891568a7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n4-33-25.png",
+        "sha256": "adf67d68cdd6f55fe8e746ef97112b57ba4be15ecc62971b74af3ed26540cddd"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n4-6-26.png",
+        "sha256": "7859c23b540cc5e272a8297105615132836989be0bb7d825e12f91999546db21"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n4-8-26.png",
+        "sha256": "8cbfdbb389f3cac0dd4b28df1769c7f2da15a93451721dd2eaedeabbd225f1be"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n4-33-26.png",
+        "sha256": "5aae8af41660c3da2ac58dd6f11458c7c77aa2c54eb94821104f9218071cc868"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n4-34-26.png",
+        "sha256": "386203f61108d2c8292c6dc960709534ea3b31c2350e11e4e0858103843673c6"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n4-6-32.png",
+        "sha256": "9f9b125675bec8a963f43f079a9e8238d0536a21e34571184b703966c42708c0"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n4-7-32.png",
+        "sha256": "a21c3bf9abf03e61b783030fd2231b7f6c2f7e801c4a62e10107ee3689a69bd9"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n4-32-32.png",
+        "sha256": "39eb351c5d14502d63197e4c418ae55debf74292a6181223826c686a57b77825"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n4-34-32.png",
+        "sha256": "313cb9435e2f92888d4fd013a80a5a279090369bbfd35db265719d9e795d145d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n4-7-33.png",
+        "sha256": "b5d20d9af5e8f7c13e56e46600475ffb4807227976318af6ffb5e93b79c08c8a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n4-8-33.png",
+        "sha256": "ae928227773402cefd34f0aece07ab768413832bce04f3609bcc69e2e4bce85b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n4-8-34.png",
+        "sha256": "95604f384812e403e04f9d1535e78ae82079ebb6900d0472efb14e7719840b9e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n4-12-34.png",
+        "sha256": "1f908212fecd403130927635aa53257b858e9cc671c4b7efccc602d78ada185d"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n4-28-34.png",
+        "sha256": "001a4ea1ff5d49d4754afab5930e0ec6c38c9dcd988eebe4c7a1aff1b11d7b7f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n4-32-34.png",
+        "sha256": "801e5c7bbe8001cc05b6ab827342884a4782471b56affdfd8db7a0a72040b159"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n4-12-36.png",
+        "sha256": "d89e205d476fa3ab30ad4a684afc3352e337e4c1b9c89b974b7c501064d998a5"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n4-23-36.png",
+        "sha256": "67d0286c500fb27a882b59a2425960a637823512b469b173cc5b5d6d0a5086c1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n5-10-4.png",
+        "sha256": "9906a6c84d4da625197f26819e2b38b894a75d7da19c2a959a3a98640ae35621"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n5-30-4.png",
+        "sha256": "6cec78474c04497dc60ee3a2b7c50269138f6b0be21d6dd3245e06954b6122c9"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n5-8-6.png",
+        "sha256": "400d326dd778bcc2a2ce111b0efc91cf73ed210c1c4cc02cac2a36db440b6681"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n5-10-6.png",
+        "sha256": "e9c72cb1a59924350e043e6933750e086042b5ec4ca7d5e623565c493ee8c565"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n5-30-6.png",
+        "sha256": "d4a2f6ec5c1859dad609e471ea9a58af0c32f70e9c292c0d2bf362c6ebb0c928"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n5-32-6.png",
+        "sha256": "87e25795336932581929cd8249fc6dbb01fdd676f4c2fee9e2cae89af535f476"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n5-32-10.png",
+        "sha256": "b987ac517d4547689aa179e37ad81d313699816a4eed2c7e36a9bfe14c71ac0e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n5-33-10.png",
+        "sha256": "4c1762df94924505ad25822f2777b81dfafad75ca61cc0cc602280dba95a27d5"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n5-32-14.png",
+        "sha256": "2657f7f53893fda574c63ff8f42145214f00753c08f3f2effc1fd280dbf4336f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n5-33-14.png",
+        "sha256": "bdc02689b290a10a93938650e8b5a2d90b3553c33288a130881407009db9a23e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n5-13-16.png",
+        "sha256": "8d784baf9eb1a779c1822c82c6f3d96fd1ee161e429d11986bff70592d7692ac"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/canto-n5-27-16.png",
+        "sha256": "4b9cf92112aa5d4570a421af80d95d747c41640213f5a11e84ff5cc072336152"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/rampa-topo-8-20.png",
+        "sha256": "fc1eb3120a0f53b4fbe71cdc3e86bfa1742e5c637ba17c069432c75750f16c20"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/plato-8-20.png",
+        "sha256": "606413e08c94309df37fd5be31c66af299ab2a768a478acb6ebde295e62aa410"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/rampa-topo-9-20.png",
+        "sha256": "f078a3547ffe1f2760148743eef9c196a0df69b5c7f0fd3d4cffe582c8eb7662"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/plato-9-20.png",
+        "sha256": "333c534666846a2a04f81a8b77de97da84ff395d0256d1005320338f37c51f4c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/rampa-topo-10-20.png",
+        "sha256": "068a5e00ca3dafcc7b421e6b4414d77b37b31e512ca4000583e1d701b05cd51e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/plato-10-20.png",
+        "sha256": "e38baafa701055d0b76b09cd8d1930f87305a79be881fe40f1caa3d5a458971a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/rampa-topo-11-20.png",
+        "sha256": "628eac29447a5610f96dc2b90bb6d2a8d34b6e84f8e5c82901cea73515e6405c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/plato-11-20.png",
+        "sha256": "a8bd3af7d1b39800c6ac3cd0f2b04acaca82685550635f5b877280ed2e0a4154"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/rampa-topo-12-20.png",
+        "sha256": "8612d2dc3a391c95148de0c8a772931ed1740c56f16589ff5b6417f1b89f2038"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/plato-12-20.png",
+        "sha256": "4dee5f1296eca9ab965390d27be5b3dc8737238db3f9804598a2e4e6372a1b83"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/rampa-topo-27-20.png",
+        "sha256": "dd2b47b533c9ad076df150947e83a6661e8914fa0c71050ae83916dd37e1fb18"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/plato-27-20.png",
+        "sha256": "3cd6cc950e4bdac98c2b1a6971324da380e892c24a02cd3ffb70a5201da09d9b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/rampa-topo-28-20.png",
+        "sha256": "1a51a764cdaa24e05b60dd8d27ece01b72f4dd26de47d67f03eb9edfcda769c9"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/plato-28-20.png",
+        "sha256": "aecdfc7446dc1eaa4e5c25a890e8259c6743dba890ae3ca2070ce5f9992a0f37"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/rampa-topo-29-20.png",
+        "sha256": "d04d3a2395a77e74e92fffeac5a0dcf1b393aeca6b971af46dfe1cbcd07dd872"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/plato-29-20.png",
+        "sha256": "c6014478e027ff0c8f0ce2e3ce265081ae277237634b17eb09a5aa1d56334cd3"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/rampa-topo-30-20.png",
+        "sha256": "e466134819aa92725507979a4b9a638d1d44376437c69adbb398f790f2840350"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/plato-30-20.png",
+        "sha256": "592b4f75c612c6a087ff82859feb0c1fd9d9c941e2a1370d28fa54629f285b4f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/rampa-topo-31-20.png",
+        "sha256": "9dcb2f0b32d6b91b67e6520cecc398a2a4bae5a1401184f237810779b3592d75"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/plato-31-20.png",
+        "sha256": "e963e3e43f50fde19dd2dede2314fe6da04c0fad07bd9986b6e51394c9b99fde"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/rampa-pe-8-21.png",
+        "sha256": "8b334e539580f8b3b38efd4896f3f2a2861f4c538067649806e853a90c6c2c56"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/rampa-pe-9-21.png",
+        "sha256": "2a8c0ff4b558a2f0fd15fd9e5cdb6c3065d301275c6e34c73184a0aad92901d4"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/rampa-pe-10-21.png",
+        "sha256": "f0c095566775b0de9fcb2bb0e9017192b39ef9eb5ea341f6f2b6b1a832b8aeb1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/rampa-pe-11-21.png",
+        "sha256": "a6979f805a7c5d62e309cf4ddcf479655f8031b9885be2897b1cac6697767449"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/rampa-pe-12-21.png",
+        "sha256": "ed369da838ed1e9b00e7f458c212d3ee2f49ac5f7528321329a65c5cea9ec178"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/rampa-pe-27-21.png",
+        "sha256": "4fb9b12613558e1a9daaf7d83d99445d333a94bf7d2ba34461f4a53ed99114f7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/rampa-pe-28-21.png",
+        "sha256": "ae3a9ce4020f3563de34a812d0dfffc9c868a8e48f6ac5ebcac36278d29b19f2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/rampa-pe-29-21.png",
+        "sha256": "adf67d68cdd6f55fe8e746ef97112b57ba4be15ecc62971b74af3ed26540cddd"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/rampa-pe-30-21.png",
+        "sha256": "741561d1bac69850e42541f49705529e4ff87c003dc40b60ead7aba5e5ea5402"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/rampa-pe-31-21.png",
+        "sha256": "5636c7e06aed850ee3ea32f52b6208843d7929ef16539b55de04f4cb11e453c9"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/carga.png",
+        "sha256": "fb379c3a84a1cafcc61c8836b03d76c4b98757e0e22ed3bda6ad6b8fb7186fca"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/galeria-alta.png",
+        "sha256": "4a58a7947d00f1e06ae4cea751946578869f4a523f379e21bf54b92c24e2bad5"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/desvio.png",
+        "sha256": "917ca12304b0eaf8589347e8ee92e0eef42f7557b0621646c74c7b0348c63d0f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/geometria/marco.png",
+        "sha256": "a5223e07849cd09fcaba124c2d8d32f51ae729d31c98672e1d276c81c100504a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/area-inteira.png",
+        "sha256": "d71a17882fab0a7c407df588420d2a6c6046aaaa81db24ae92a06fc91549ff49"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/entrada.png",
+        "sha256": "24080f4675c57800b0485b63ba37326017418fee0d8e21d2b1032b2edab55287"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/centro.png",
+        "sha256": "4846c946e9b803794a73be8e91fe500ff3649d97dcc65240b3787680f74a8a96"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/saida-25-39.png",
+        "sha256": "686b72c5f685292ed251a0db22cdadf6d51e5d33fe471108ba82d566827dbb23"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n1-8-20.png",
+        "sha256": "65084f8e0523db298169f4e571212a451986d180d9c203512745f93c83795c8c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n1-13-20.png",
+        "sha256": "8568db5731c1729759078450055e9ac6a5768777fdcf1b386b964d87c1cca151"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n1-27-20.png",
+        "sha256": "c32b44075705d1a187115fad1e1373bff19031b429a94b1fc3906f6592aab3b6"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n1-32-20.png",
+        "sha256": "3e882188eb6d3241f81b047dc2952c178002cad6269c85d6b8510cea2d135048"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n1-8-22.png",
+        "sha256": "d795bd4db0112650a8ce8d74bcdbe54e903fdd23c005f175ef66a5d9394707ff"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n1-13-22.png",
+        "sha256": "c6022282d2ceb93672cacf87d71dc96d6cb06ed51ee96d1327678ac89d642f83"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n1-27-22.png",
+        "sha256": "bdfc405fd628545ad9315f366502428d912be0e7392fd78eded83bd4d7b3cc77"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n1-32-22.png",
+        "sha256": "7b90cc37a7093649586ac789f5f36da64a0099836b9bad974275ebb0178cb3c8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n4-32-25.png",
+        "sha256": "82c563848424fe693585ee99fb34219e921c5bb61765dc52a1730f928cbee9e7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n4-33-25.png",
+        "sha256": "ec5e89207c28c29b369d0411a68808e06614d5fcf0747466dfaa77508ca857f6"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n4-6-26.png",
+        "sha256": "9401cdb72923443498733252a1edfa63c52921cdc09efddf99152e3ab4cfe797"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n4-8-26.png",
+        "sha256": "4f3210af9ea589f509211f5dfd9962374feb0f63a552603a6a2e0cd1585288a9"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n4-33-26.png",
+        "sha256": "81c6b5f0d98336dccc3600509034a61fb8062a12bf4672f0e64b7fba1c415c78"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n4-34-26.png",
+        "sha256": "72db9c4edbf0c4038961d580f9235bcdb0288e653b7036d4d7156bcbf2a558c1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n4-6-32.png",
+        "sha256": "99e797e6cfc0ec624b594af6155967a2c7515c32d35e06bdc06425f8566f17cc"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n4-7-32.png",
+        "sha256": "910433f11ef8513e32b198bcd4da3db35f52c37dd6b578fcde5f2afca82d9662"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n4-32-32.png",
+        "sha256": "451dba7492be747b61b8064c013167c50ab222b9fc460cea91994f6e0229fcbe"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n4-34-32.png",
+        "sha256": "f02cb1a87d2b5d15a101358abd3cabb20d49c0fbcd6a9b9b346781559e2f6edc"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n4-7-33.png",
+        "sha256": "4cd2d4d9bcb3ac38b15ea0a34c4959b7c6183663a01f9c350d94985467c1a189"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n4-8-33.png",
+        "sha256": "0836cd080413dec99ce955e51822da241998357ef4aabab3671b29bb445142e2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n4-8-34.png",
+        "sha256": "aebc42f5728243c20d2cc5d028a67c428e8acab72fc2bbf664090e4270e60160"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n4-12-34.png",
+        "sha256": "ef3e966f78a584b5f490fa5b5b780b33b917dcead9b6e9183fa0e749fb919409"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n4-28-34.png",
+        "sha256": "180540703a047a91464656c3a53642d3883aa5b20ada3eaa0a27689c67053af3"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n4-32-34.png",
+        "sha256": "b8eb8f992570652ff99f0673074187df9a4eb050a6ad00f70669ab526383306e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n4-12-36.png",
+        "sha256": "abeec3ff11ad59251e7e2e67d018e37d27afbd5ec73b49d5419b49fba6a8fd3c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n4-23-36.png",
+        "sha256": "c50b7e06dcb88f71a20c04e64198ee9e9a0c9c4fac089d0494c59e35a963da43"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n5-10-4.png",
+        "sha256": "38fa1971150307f8663ace794cb74fdf001c3d33587413ebe5d5073f3fb74648"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n5-30-4.png",
+        "sha256": "2013231f8327de3db7e72dd5d3ae350057a3fcd6fc0c437c92c8ad8d0e47ca9c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n5-8-6.png",
+        "sha256": "45051c9cf424b7185df4b706185c606483f77d1ab029419a2ad6cddf2a303ee3"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n5-10-6.png",
+        "sha256": "8ae50cfb753b227a2292582459df5f6c99b32e6fc2a1570059fcef476ca765d5"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n5-30-6.png",
+        "sha256": "ec9b4bc272c2da2c59f1fe94a1afacfcf75c259c9f7d38ddc59f26558aad12c5"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n5-32-6.png",
+        "sha256": "05fd6a29b5cb695250b6631083bdff24cb2616b6a51f0aded8385521bbb685f0"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n5-32-10.png",
+        "sha256": "d1ff9aee2886950ee57d17ed4aef29c1b6ff35ae523d52a935b50b9316164522"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n5-33-10.png",
+        "sha256": "743ee9fce896408a36c4e0aa965459355490700091f1b3040af905c82fcd81fd"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n5-32-14.png",
+        "sha256": "f3ce131ae26159983ab4543ce5c0f0fc0e32114497f4481197b42d6ad5668278"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n5-33-14.png",
+        "sha256": "cf342e615d7a3e7ecf7cb9a8951047cd457aed8ca3dd7ec9a627ae45570de4d2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n5-13-16.png",
+        "sha256": "c1a32e272a1ee473c223deea1e3fc2c471683c89fb7ab101669d78b15fccac04"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/canto-n5-27-16.png",
+        "sha256": "27514aa6e3cf87129f68c399cf1a0f07956409c568625b662636ae4cd1de487c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/rampa-topo-8-20.png",
+        "sha256": "856ac70fe675ea67b2986250dbfdab67024e59cf3ffe45afbc5e2eea496d8757"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/plato-8-20.png",
+        "sha256": "c471350598cd23a7004b64976665fb7f94ec473681e10b64d0a30a1c778bb051"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/rampa-topo-9-20.png",
+        "sha256": "d590429812da3b50bb92bcb7fe361a8ac2ecef626c490567a534d526ec200e16"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/plato-9-20.png",
+        "sha256": "f97fc324a14fe9275cff4110398bfaca16042647a94e5d0a54a5cc201c881f0b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/rampa-topo-10-20.png",
+        "sha256": "cea8e35ff54cf94811eac54ac105d22ea51d80da172ee37c900e06f59c394057"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/plato-10-20.png",
+        "sha256": "81b2882205dadb3c34eb8a358524ca6be03ce4dffcc4cc2cace810832d592e9f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/rampa-topo-11-20.png",
+        "sha256": "ed19734515e459ceba87a717918df92b339e8e7b880231da341683b4b8c5140f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/plato-11-20.png",
+        "sha256": "d02e209d42bb9ed1a5bdeba19d8879417049138e071ef319771ba8962c237ab2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/rampa-topo-12-20.png",
+        "sha256": "5517b605a79a7714ee7abe4579536928fe9170368bdc193df7e4d6be0161b5a5"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/plato-12-20.png",
+        "sha256": "94d0859aff180cf9cd1457623bc39cf5d8e76cba9cb93c2a7ca8ce446a2aa7e4"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/rampa-topo-27-20.png",
+        "sha256": "4e63bb03d624d86e875dacc95c0f5923e4aa4ac88dc00bdcb697ab486825d7b4"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/plato-27-20.png",
+        "sha256": "53714e437f4d969128977172d6e73e94d97fd5f7ae54decaa214910de640a432"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/rampa-topo-28-20.png",
+        "sha256": "7063c4eb1f69993342ff3e0468401a00af9fb4ce7ce66d81ded5e2a80af7e87a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/plato-28-20.png",
+        "sha256": "9dedaf14c884ad99f91c3f7e2eec3be42de6a159e19c5f99f7af3a79c41dcf5e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/rampa-topo-29-20.png",
+        "sha256": "ccb0ec84b5e71082c0e844d8f21ee4922ea0d06dac2ac6c190d0a3fc0e45f732"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/plato-29-20.png",
+        "sha256": "572bcfdc226fa77b23e93883df00897fee14268d2e0e25861a5e8c862dfabd0a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/rampa-topo-30-20.png",
+        "sha256": "8e9e225fe4d9bb84938424bc771509d5dedbdf1a3f3667092fb4c5df8b1c5603"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/plato-30-20.png",
+        "sha256": "3ace7f5ef010966e6e2e800e2b8e2c3cbd022ecdf7a399401db6786c72f8d04c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/rampa-topo-31-20.png",
+        "sha256": "c8d7283b343b9f2b0e2e112c5dbc13f5f6df6355c60ebd2172b866fffaf4320a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/plato-31-20.png",
+        "sha256": "2143aa62bd1519c9f6ff8922520005589b55f7ffb1d1f4dc3b6694977b6f99e9"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/rampa-pe-8-21.png",
+        "sha256": "4dca70cfc536c990a6402cf8233d9c68c325ffa9577669892f53546f0d2dd266"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/rampa-pe-9-21.png",
+        "sha256": "ee7029c52920b27a9ce7e21180f751e9eea670636f606e6a1ee6242d9eaa0908"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/rampa-pe-10-21.png",
+        "sha256": "7f04f0692bce74cd0ff1b5d3648dafb83e0f27a9766c4fe8f470833f00309eaa"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/rampa-pe-11-21.png",
+        "sha256": "f566e6a90a36aa18e99be65aaca92203f67e1b13995cca54e0328bcd378d9b67"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/rampa-pe-12-21.png",
+        "sha256": "f248f80d5442b032156a1a33354e2c0b81248b846e5a87633c9351617dab1675"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/rampa-pe-27-21.png",
+        "sha256": "22b3cce89611d2842f8cb1d5aad16fa732651d482c407232d6bc0ed3ed01606c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/rampa-pe-28-21.png",
+        "sha256": "252fcab60d8b315f214f9db53b2738633d358d5ba98008a30de1477b328e99de"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/rampa-pe-29-21.png",
+        "sha256": "ec5e89207c28c29b369d0411a68808e06614d5fcf0747466dfaa77508ca857f6"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/rampa-pe-30-21.png",
+        "sha256": "bde28c5a28dd1d60be740b111f8decc7217ac374abe2de9a405fc8e4e85ffa2c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/rampa-pe-31-21.png",
+        "sha256": "64d9784a34b7ac82b19d30b2377d702387a4c0e58d5f433ff5dfd32bad7509a0"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/carga.png",
+        "sha256": "e9f5f4eb5ae52b904fd05632901fea22d7bf0916fcfc3ce1eb16610cd858cc62"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/galeria-alta.png",
+        "sha256": "ed0a639465f4394330690e096db969a106f7711ba7d77db14cb8d2f97eea47b0"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/desvio.png",
+        "sha256": "5115947e908c68d77de36c0a04dd50d9226334335ef4577b9ccc35c559376727"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte/marco.png",
+        "sha256": "c0f0a729461b1107473ac076e061a57a66f47d7cc56e04aae66f29a91adcefe0"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/area-inteira.png",
+        "sha256": "d71a17882fab0a7c407df588420d2a6c6046aaaa81db24ae92a06fc91549ff49"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/entrada.png",
+        "sha256": "24080f4675c57800b0485b63ba37326017418fee0d8e21d2b1032b2edab55287"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/centro.png",
+        "sha256": "4846c946e9b803794a73be8e91fe500ff3649d97dcc65240b3787680f74a8a96"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/saida-25-39.png",
+        "sha256": "686b72c5f685292ed251a0db22cdadf6d51e5d33fe471108ba82d566827dbb23"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n1-8-20.png",
+        "sha256": "65084f8e0523db298169f4e571212a451986d180d9c203512745f93c83795c8c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n1-13-20.png",
+        "sha256": "8568db5731c1729759078450055e9ac6a5768777fdcf1b386b964d87c1cca151"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n1-27-20.png",
+        "sha256": "c32b44075705d1a187115fad1e1373bff19031b429a94b1fc3906f6592aab3b6"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n1-32-20.png",
+        "sha256": "3e882188eb6d3241f81b047dc2952c178002cad6269c85d6b8510cea2d135048"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n1-8-22.png",
+        "sha256": "d795bd4db0112650a8ce8d74bcdbe54e903fdd23c005f175ef66a5d9394707ff"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n1-13-22.png",
+        "sha256": "c6022282d2ceb93672cacf87d71dc96d6cb06ed51ee96d1327678ac89d642f83"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n1-27-22.png",
+        "sha256": "bdfc405fd628545ad9315f366502428d912be0e7392fd78eded83bd4d7b3cc77"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n1-32-22.png",
+        "sha256": "7b90cc37a7093649586ac789f5f36da64a0099836b9bad974275ebb0178cb3c8"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n4-32-25.png",
+        "sha256": "82c563848424fe693585ee99fb34219e921c5bb61765dc52a1730f928cbee9e7"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n4-33-25.png",
+        "sha256": "ec5e89207c28c29b369d0411a68808e06614d5fcf0747466dfaa77508ca857f6"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n4-6-26.png",
+        "sha256": "9401cdb72923443498733252a1edfa63c52921cdc09efddf99152e3ab4cfe797"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n4-8-26.png",
+        "sha256": "4f3210af9ea589f509211f5dfd9962374feb0f63a552603a6a2e0cd1585288a9"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n4-33-26.png",
+        "sha256": "81c6b5f0d98336dccc3600509034a61fb8062a12bf4672f0e64b7fba1c415c78"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n4-34-26.png",
+        "sha256": "72db9c4edbf0c4038961d580f9235bcdb0288e653b7036d4d7156bcbf2a558c1"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n4-6-32.png",
+        "sha256": "99e797e6cfc0ec624b594af6155967a2c7515c32d35e06bdc06425f8566f17cc"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n4-7-32.png",
+        "sha256": "910433f11ef8513e32b198bcd4da3db35f52c37dd6b578fcde5f2afca82d9662"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n4-32-32.png",
+        "sha256": "451dba7492be747b61b8064c013167c50ab222b9fc460cea91994f6e0229fcbe"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n4-34-32.png",
+        "sha256": "f02cb1a87d2b5d15a101358abd3cabb20d49c0fbcd6a9b9b346781559e2f6edc"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n4-7-33.png",
+        "sha256": "4cd2d4d9bcb3ac38b15ea0a34c4959b7c6183663a01f9c350d94985467c1a189"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n4-8-33.png",
+        "sha256": "0836cd080413dec99ce955e51822da241998357ef4aabab3671b29bb445142e2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n4-8-34.png",
+        "sha256": "aebc42f5728243c20d2cc5d028a67c428e8acab72fc2bbf664090e4270e60160"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n4-12-34.png",
+        "sha256": "ef3e966f78a584b5f490fa5b5b780b33b917dcead9b6e9183fa0e749fb919409"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n4-28-34.png",
+        "sha256": "180540703a047a91464656c3a53642d3883aa5b20ada3eaa0a27689c67053af3"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n4-32-34.png",
+        "sha256": "b8eb8f992570652ff99f0673074187df9a4eb050a6ad00f70669ab526383306e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n4-12-36.png",
+        "sha256": "abeec3ff11ad59251e7e2e67d018e37d27afbd5ec73b49d5419b49fba6a8fd3c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n4-23-36.png",
+        "sha256": "c50b7e06dcb88f71a20c04e64198ee9e9a0c9c4fac089d0494c59e35a963da43"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n5-10-4.png",
+        "sha256": "38fa1971150307f8663ace794cb74fdf001c3d33587413ebe5d5073f3fb74648"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n5-30-4.png",
+        "sha256": "2013231f8327de3db7e72dd5d3ae350057a3fcd6fc0c437c92c8ad8d0e47ca9c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n5-8-6.png",
+        "sha256": "45051c9cf424b7185df4b706185c606483f77d1ab029419a2ad6cddf2a303ee3"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n5-10-6.png",
+        "sha256": "8ae50cfb753b227a2292582459df5f6c99b32e6fc2a1570059fcef476ca765d5"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n5-30-6.png",
+        "sha256": "ec9b4bc272c2da2c59f1fe94a1afacfcf75c259c9f7d38ddc59f26558aad12c5"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n5-32-6.png",
+        "sha256": "05fd6a29b5cb695250b6631083bdff24cb2616b6a51f0aded8385521bbb685f0"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n5-32-10.png",
+        "sha256": "d1ff9aee2886950ee57d17ed4aef29c1b6ff35ae523d52a935b50b9316164522"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n5-33-10.png",
+        "sha256": "743ee9fce896408a36c4e0aa965459355490700091f1b3040af905c82fcd81fd"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n5-32-14.png",
+        "sha256": "f3ce131ae26159983ab4543ce5c0f0fc0e32114497f4481197b42d6ad5668278"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n5-33-14.png",
+        "sha256": "cf342e615d7a3e7ecf7cb9a8951047cd457aed8ca3dd7ec9a627ae45570de4d2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n5-13-16.png",
+        "sha256": "c1a32e272a1ee473c223deea1e3fc2c471683c89fb7ab101669d78b15fccac04"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/canto-n5-27-16.png",
+        "sha256": "27514aa6e3cf87129f68c399cf1a0f07956409c568625b662636ae4cd1de487c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/rampa-topo-8-20.png",
+        "sha256": "856ac70fe675ea67b2986250dbfdab67024e59cf3ffe45afbc5e2eea496d8757"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/plato-8-20.png",
+        "sha256": "c471350598cd23a7004b64976665fb7f94ec473681e10b64d0a30a1c778bb051"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/rampa-topo-9-20.png",
+        "sha256": "d590429812da3b50bb92bcb7fe361a8ac2ecef626c490567a534d526ec200e16"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/plato-9-20.png",
+        "sha256": "f97fc324a14fe9275cff4110398bfaca16042647a94e5d0a54a5cc201c881f0b"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/rampa-topo-10-20.png",
+        "sha256": "cea8e35ff54cf94811eac54ac105d22ea51d80da172ee37c900e06f59c394057"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/plato-10-20.png",
+        "sha256": "81b2882205dadb3c34eb8a358524ca6be03ce4dffcc4cc2cace810832d592e9f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/rampa-topo-11-20.png",
+        "sha256": "ed19734515e459ceba87a717918df92b339e8e7b880231da341683b4b8c5140f"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/plato-11-20.png",
+        "sha256": "d02e209d42bb9ed1a5bdeba19d8879417049138e071ef319771ba8962c237ab2"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/rampa-topo-12-20.png",
+        "sha256": "5517b605a79a7714ee7abe4579536928fe9170368bdc193df7e4d6be0161b5a5"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/plato-12-20.png",
+        "sha256": "94d0859aff180cf9cd1457623bc39cf5d8e76cba9cb93c2a7ca8ce446a2aa7e4"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/rampa-topo-27-20.png",
+        "sha256": "4e63bb03d624d86e875dacc95c0f5923e4aa4ac88dc00bdcb697ab486825d7b4"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/plato-27-20.png",
+        "sha256": "53714e437f4d969128977172d6e73e94d97fd5f7ae54decaa214910de640a432"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/rampa-topo-28-20.png",
+        "sha256": "7063c4eb1f69993342ff3e0468401a00af9fb4ce7ce66d81ded5e2a80af7e87a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/plato-28-20.png",
+        "sha256": "9dedaf14c884ad99f91c3f7e2eec3be42de6a159e19c5f99f7af3a79c41dcf5e"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/rampa-topo-29-20.png",
+        "sha256": "ccb0ec84b5e71082c0e844d8f21ee4922ea0d06dac2ac6c190d0a3fc0e45f732"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/plato-29-20.png",
+        "sha256": "572bcfdc226fa77b23e93883df00897fee14268d2e0e25861a5e8c862dfabd0a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/rampa-topo-30-20.png",
+        "sha256": "8e9e225fe4d9bb84938424bc771509d5dedbdf1a3f3667092fb4c5df8b1c5603"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/plato-30-20.png",
+        "sha256": "3ace7f5ef010966e6e2e800e2b8e2c3cbd022ecdf7a399401db6786c72f8d04c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/rampa-topo-31-20.png",
+        "sha256": "c8d7283b343b9f2b0e2e112c5dbc13f5f6df6355c60ebd2172b866fffaf4320a"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/plato-31-20.png",
+        "sha256": "2143aa62bd1519c9f6ff8922520005589b55f7ffb1d1f4dc3b6694977b6f99e9"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/rampa-pe-8-21.png",
+        "sha256": "4dca70cfc536c990a6402cf8233d9c68c325ffa9577669892f53546f0d2dd266"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/rampa-pe-9-21.png",
+        "sha256": "ee7029c52920b27a9ce7e21180f751e9eea670636f606e6a1ee6242d9eaa0908"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/rampa-pe-10-21.png",
+        "sha256": "7f04f0692bce74cd0ff1b5d3648dafb83e0f27a9766c4fe8f470833f00309eaa"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/rampa-pe-11-21.png",
+        "sha256": "f566e6a90a36aa18e99be65aaca92203f67e1b13995cca54e0328bcd378d9b67"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/rampa-pe-12-21.png",
+        "sha256": "f248f80d5442b032156a1a33354e2c0b81248b846e5a87633c9351617dab1675"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/rampa-pe-27-21.png",
+        "sha256": "22b3cce89611d2842f8cb1d5aad16fa732651d482c407232d6bc0ed3ed01606c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/rampa-pe-28-21.png",
+        "sha256": "252fcab60d8b315f214f9db53b2738633d358d5ba98008a30de1477b328e99de"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/rampa-pe-29-21.png",
+        "sha256": "ec5e89207c28c29b369d0411a68808e06614d5fcf0747466dfaa77508ca857f6"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/rampa-pe-30-21.png",
+        "sha256": "bde28c5a28dd1d60be740b111f8decc7217ac374abe2de9a405fc8e4e85ffa2c"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/rampa-pe-31-21.png",
+        "sha256": "64d9784a34b7ac82b19d30b2377d702387a4c0e58d5f433ff5dfd32bad7509a0"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/carga.png",
+        "sha256": "e9f5f4eb5ae52b904fd05632901fea22d7bf0916fcfc3ce1eb16610cd858cc62"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/galeria-alta.png",
+        "sha256": "ed0a639465f4394330690e096db969a106f7711ba7d77db14cb8d2f97eea47b0"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/desvio.png",
+        "sha256": "5115947e908c68d77de36c0a04dd50d9226334335ef4577b9ccc35c559376727"
+      },
+      {
+        "path": "documentation/overworld/mina-ferro/captures/d/arte-terreno/marco.png",
+        "sha256": "c0f0a729461b1107473ac076e061a57a66f47d7cc56e04aae66f29a91adcefe0"
+      }
+    ]
+  }
+]

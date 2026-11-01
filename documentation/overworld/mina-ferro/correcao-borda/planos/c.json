@@ -1,0 +1,53 @@
+{
+  "area": "mina-ferro-c",
+  "shots": [
+    {
+      "name": "area-inteira",
+      "u": 20,
+      "v": 20,
+      "zoom": 0.46,
+      "kind": "geral",
+      "offsetY": 100
+    },
+    {
+      "name": "entrada",
+      "u": 25.5,
+      "v": 37.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "carga",
+      "u": 25,
+      "v": 29,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "desvio",
+      "u": 8,
+      "v": 29,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "borda-frontal",
+      "u": 18,
+      "v": 34,
+      "zoom": 1.6,
+      "offsetY": 20
+    },
+    {
+      "name": "ponta-esquerda",
+      "u": 7,
+      "v": 30,
+      "zoom": 2.3
+    },
+    {
+      "name": "encontro-entrada",
+      "u": 23,
+      "v": 35,
+      "zoom": 2.3
+    }
+  ]
+}

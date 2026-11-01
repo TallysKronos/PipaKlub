@@ -132,6 +132,72 @@
       "name": "Montanha · Cume",
       "scene": "kronasta-montanha-c",
       "biome": "floresta"
+    },
+    {
+      "id": "mina-ferro-a",
+      "name": "Mina de ferro · Pátio de carga",
+      "scene": "mina-ferro-a",
+      "biome": "floresta"
+    },
+    {
+      "id": "mina-ferro-b",
+      "name": "Mina de ferro · Entroncamento",
+      "scene": "mina-ferro-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "mina-ferro-c",
+      "name": "Mina de ferro · Frente de extração",
+      "scene": "mina-ferro-c",
+      "biome": "floresta"
+    },
+    {
+      "id": "mina-ferro-d",
+      "name": "Mina de ferro · Grande veio",
+      "scene": "mina-ferro-d",
+      "biome": "floresta"
+    },
+    {
+      "id": "gelo-a",
+      "name": "Gelo · Clareira nevada",
+      "scene": "gelo-a",
+      "biome": "floresta"
+    },
+    {
+      "id": "gelo-b",
+      "name": "Gelo · Lago congelado",
+      "scene": "gelo-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "gelo-c",
+      "name": "Gelo · Desfiladeiro de cristal",
+      "scene": "gelo-c",
+      "biome": "floresta"
+    },
+    {
+      "id": "gelo-d",
+      "name": "Gelo · Coroa da geleira",
+      "scene": "gelo-d",
+      "biome": "floresta"
+    },
+    {
+      "id": "submerso-a",
+      "name": "Submerso · Recife de entrada",
+      "scene": "submerso-a",
+      "biome": "floresta"
+    },
+    {
+      "id": "submerso-b",
+      "name": "Submerso · Jardim de algas",
+      "scene": "submerso-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "submerso-c",
+      "name": "Submerso · Fenda abissal",
+      "scene": "submerso-c",
+      "biome": "floresta"
     }
   ],
   "scenes": {
@@ -155,7 +221,18 @@
     "kronasta-pantano-c": "kronasta-pantano-c",
     "kronasta-montanha-a": "kronasta-montanha-a",
     "kronasta-montanha-b": "kronasta-montanha-b",
-    "kronasta-montanha-c": "kronasta-montanha-c"
+    "kronasta-montanha-c": "kronasta-montanha-c",
+    "mina-ferro-a": "mina-ferro-a",
+    "mina-ferro-b": "mina-ferro-b",
+    "mina-ferro-c": "mina-ferro-c",
+    "mina-ferro-d": "mina-ferro-d",
+    "gelo-a": "gelo-a",
+    "gelo-b": "gelo-b",
+    "gelo-c": "gelo-c",
+    "gelo-d": "gelo-d",
+    "submerso-a": "submerso-a",
+    "submerso-b": "submerso-b",
+    "submerso-c": "submerso-c"
   },
   "campaignReplacement": false
 }

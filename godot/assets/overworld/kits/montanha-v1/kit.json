@@ -125,6 +125,8 @@
       ]
     },
     "role": "Distant scenery only; never used as walkable surface or collision",
-    "source": "image_gen.imagegen 2026-10-30"
+    "source": "image_gen.imagegen 2026-10-30",
+    "active": false,
+    "replacedBy": "Solid black, owner preference"
   }
 }

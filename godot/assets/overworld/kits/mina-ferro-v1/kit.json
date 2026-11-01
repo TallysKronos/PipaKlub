@@ -1,0 +1,229 @@
+{
+  "schema": "overworld-kit-1",
+  "biome": "mina-ferro-v1",
+  "grid": {
+    "cell": [
+      64,
+      32
+    ],
+    "levelPx": 64
+  },
+  "approval": "pending_owner_review",
+  "renderer": "res://scripts/overworld/mine_structures.gd",
+  "pieces": {
+    "mina-prop": {
+      "variants": {
+        "cheio": {
+          "file": "pecas/cheio.png",
+          "size": [
+            1536,
+            1024
+          ],
+          "anchor": [
+            768,
+            819.2
+          ],
+          "displayWidthPx": 180,
+          "footprint": [
+            2,
+            2
+          ],
+          "bloqueia": true,
+          "frames": 1,
+          "durationMs": 0,
+          "filter": "linear",
+          "alphaMin": 0,
+          "zeroAlphaSamplesStep2": 264746,
+          "alphaShader": "res://shaders/industrial_cutout.gdshader",
+          "shadow": "../comum/sombras/contato.png",
+          "source": "image_gen.imagegen, 2026-10-31; original retained in art/overworld/kits/mina-ferro-v1/fontes/cheio.png"
+        },
+        "estoque": {
+          "file": "pecas/estoque.png",
+          "size": [
+            1536,
+            1024
+          ],
+          "anchor": [
+            768,
+            880.64
+          ],
+          "displayWidthPx": 155,
+          "footprint": [
+            2,
+            2
+          ],
+          "bloqueia": true,
+          "frames": 1,
+          "durationMs": 0,
+          "filter": "linear",
+          "alphaMin": 0,
+          "zeroAlphaSamplesStep2": 225042,
+          "alphaShader": "res://shaders/industrial_cutout.gdshader",
+          "shadow": "../comum/sombras/contato.png",
+          "source": "image_gen.imagegen, 2026-10-31; original retained in art/overworld/kits/mina-ferro-v1/fontes/estoque.png"
+        },
+        "ferramentas": {
+          "file": "pecas/ferramentas.png",
+          "size": [
+            1536,
+            1024
+          ],
+          "anchor": [
+            768,
+            931.84
+          ],
+          "displayWidthPx": 140,
+          "footprint": [
+            2,
+            1
+          ],
+          "bloqueia": true,
+          "frames": 1,
+          "durationMs": 0,
+          "filter": "linear",
+          "alphaMin": 0,
+          "zeroAlphaSamplesStep2": 241982,
+          "alphaShader": "res://shaders/industrial_cutout.gdshader",
+          "shadow": "../comum/sombras/contato.png",
+          "source": "image_gen.imagegen, 2026-10-31; original retained in art/overworld/kits/mina-ferro-v1/fontes/ferramentas.png"
+        },
+        "guincho": {
+          "file": "pecas/guincho.png",
+          "size": [
+            1536,
+            1024
+          ],
+          "anchor": [
+            768,
+            931.84
+          ],
+          "displayWidthPx": 230,
+          "footprint": [
+            2,
+            2
+          ],
+          "bloqueia": true,
+          "frames": 1,
+          "durationMs": 0,
+          "filter": "linear",
+          "alphaMin": 0,
+          "zeroAlphaSamplesStep2": 228014,
+          "alphaShader": "res://shaders/industrial_cutout.gdshader",
+          "shadow": "../comum/sombras/contato.png",
+          "source": "image_gen.imagegen, 2026-10-31; original retained in art/overworld/kits/mina-ferro-v1/fontes/guincho.png"
+        },
+        "vazio": {
+          "file": "pecas/vazio.png",
+          "size": [
+            1536,
+            1024
+          ],
+          "anchor": [
+            768,
+            860.16
+          ],
+          "displayWidthPx": 180,
+          "footprint": [
+            2,
+            2
+          ],
+          "bloqueia": true,
+          "frames": 1,
+          "durationMs": 0,
+          "filter": "linear",
+          "alphaMin": 0,
+          "zeroAlphaSamplesStep2": 224712,
+          "alphaShader": "res://shaders/industrial_cutout.gdshader",
+          "shadow": "../comum/sombras/contato.png",
+          "source": "image_gen.imagegen, 2026-10-31; original retained in art/overworld/kits/mina-ferro-v1/fontes/vazio.png"
+        },
+        "veio": {
+          "file": "pecas/veio.png",
+          "size": [
+            1536,
+            1024
+          ],
+          "anchor": [
+            768,
+            824.32
+          ],
+          "displayWidthPx": 230,
+          "footprint": [
+            3,
+            2
+          ],
+          "bloqueia": true,
+          "frames": 1,
+          "durationMs": 0,
+          "filter": "linear",
+          "alphaMin": 0,
+          "zeroAlphaSamplesStep2": 218759,
+          "alphaShader": "res://shaders/industrial_cutout.gdshader",
+          "shadow": "../comum/sombras/contato.png",
+          "source": "image_gen.imagegen, 2026-10-31; original retained in art/overworld/kits/mina-ferro-v1/fontes/veio.png"
+        }
+      }
+    }
+  },
+  "heroVariant": {
+    "name": "veio",
+    "displayWidthPx": 340,
+    "footprint": [
+      4,
+      2
+    ]
+  },
+  "reused": {
+    "sourceKit": "cavernas-v3",
+    "surfaces": [
+      "rocha-cinza",
+      "terra-gruta",
+      "parede-basalto"
+    ],
+    "props": [
+      "estalagmite-alta",
+      "estalagmite-baixa",
+      "rocha-solta",
+      "coluna-calcario",
+      "cogumelos-gruta",
+      "cristal-ambar"
+    ],
+    "license": "Existing repository assets; no new authorship or license assertion"
+  },
+  "procedural": {
+    "railDirections": [
+      "u",
+      "v"
+    ],
+    "curves": "Quadratic radius up to .8 cells; width follows actual terrain projection",
+    "gaugeCells": 0.8,
+    "sleeperWidthCells": 1.4,
+    "materials": [
+      "navy iron outline",
+      "grey steel highlight",
+      "brown timber",
+      "warm ochre braces"
+    ],
+    "families": [
+      "trilho-u",
+      "trilho-v",
+      "curva",
+      "junção",
+      "dormente",
+      "pórtico",
+      "escora",
+      "lanterna",
+      "poça de luz"
+    ],
+    "collision": "Posts use explicit 1x1 source footprints; rail geometry does not block movement"
+  },
+  "notes": [
+    "Static parked carts and equipment; no drivable vehicle or mining economy implemented",
+    "Raw generation has semi-transparent halos; runtime cutout discards alpha below .88",
+    "Contact shadows are procedural and follow measured terrain height",
+    "Large vein uses 340px width; other vein instances 230px",
+    "Prop pivots were adjusted at native game scale; no bitmap editing",
+    "Camera-facing ceiling is cut away to preserve visibility, in geometry and art"
+  ]
+}
