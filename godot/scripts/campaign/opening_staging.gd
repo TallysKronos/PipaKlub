@@ -79,6 +79,7 @@ static func play(room: Node2D,step: int) -> void:
 	elif step==4:
 		# Returning to the desk preserves the position reached by player movement.
 		await walk(room,"kael",[Vector2(block.kaelDesk[0],block.kaelDesk[1])],190)
+		if not alive(room):return
 		room.face_actor(Vector2(1200,432))
 		await wait(room,.4)
 	elif step==5:
@@ -88,6 +89,7 @@ static func play(room: Node2D,step: int) -> void:
 		await walk(room,"mother",[Vector2(624,784),Vector2(760,704),Vector2(880,640)],190)
 		if not alive(room):return
 		await walk(room,"kael",[Vector2(1120,560),Vector2(1030,610)],190)
+		if not alive(room):return
 		room.face_actor(room.mother_point);room.face_mother(room.actor)
 		await wait(room,.2)
 	elif step==7:

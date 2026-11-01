@@ -9,6 +9,8 @@ func _initialize() -> void:
 	call_deferred("_capture")
 
 func _capture() -> void:
+	# Static captures must not inherit a mouse hover/tooltip from the desktop cursor.
+	root.gui_disable_input = true
 	var shot := "menu"
 	var viewport_size := Vector2i(1280, 720)
 	for argument in OS.get_cmdline_user_args():
@@ -23,6 +25,7 @@ func _capture() -> void:
 	root.size = viewport_size
 	var view := FrontEnd.new()
 	root.add_child(view)
+	if "--reduced-motion" in OS.get_cmdline_user_args():view.preferences.reduced_motion=true
 	# Review window size must not inherit the user's fullscreen preference.
 	if DisplayServer.get_name() != "headless": DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	view.preferences.fullscreen = false
@@ -79,8 +82,12 @@ func _capture() -> void:
 			var model = load("res://scripts/campaign/workshop_model.gd").new()
 			saved.player.workshop = {"seed": 7, "state": model.run}
 			saved.checkpoint = {"kind": "workshop"}
+		if int(saved.player.get("journey",{}).get("lesson",0))>=5:
+			preload("res://scripts/campaign/pipeiro_identity.gd").issue_into(saved.player)
+			saved.player.flags.pipeiroDocumentsSeen=true
 		view.session._snapshot = saved
-		view._show_saved()
+		if saved.checkpoint.kind=="world" and ParkCheckpoint.MAPS.has(saved.checkpoint.get("scene","")):view._show_park()
+		else:view._show_saved()
 		# The park opens behind an animated loading cover; wait before switching pages.
 		for frame in 600:
 			if not view.flow_busy and not is_instance_valid(view.scene_loading): break

@@ -1807,7 +1807,6 @@ func _show_settings() -> void:
 	var category_row:=HBoxContainer.new()
 	category_row.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
 	var active_tab:Button
-	category_row.add_theme_constant_override("separation",20)
 	page.add_child(category_row)
 	for category in ["Vídeo","Áudio","Acessibilidade","Controles"]:
 		var tab:=Button.new();tab.text=category;Hud.navigation_button(tab,true)
@@ -1903,7 +1902,6 @@ func _show_settings() -> void:
 	Hud.secondary_button(keyboard_button)
 	var footer:=HBoxContainer.new()
 	footer.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
-	footer.add_theme_constant_override("separation",20)
 	page.add_child(footer)
 	_button("Voltar", footer, _menu if session.snapshot().is_empty() else _return_to_game).custom_minimum_size.x=180
 	Hud.input_hint(footer,"accept","Alterar")
@@ -1996,7 +1994,6 @@ func _show_controls() -> void:
 	_label("Setas e Enter continuam disponíveis para navegar. Esc cancela a troca de tecla. A bancada usa mouse e teclado.",page,16).add_theme_color_override("font_color",Hud.MUTED)
 	var footer:=HBoxContainer.new()
 	footer.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
-	footer.add_theme_constant_override("separation",24)
 	page.add_child(footer)
 	_button("Voltar",footer,_return_controls_settings).custom_minimum_size.x=180
 	var restore:=_button("Restaurar padrão", footer, _confirm_restore_controls)
