@@ -1,0 +1,476 @@
+{
+  "version": 1,
+  "direction": "Mural de Kronasta",
+  "pieces": [
+    {
+      "id": "paper",
+      "file": "godot/assets/ui/mural-v1/pieces/paper.png",
+      "source": "panels-source.png",
+      "cell": [
+        0,
+        0,
+        724,
+        362
+      ],
+      "alphaBounds": [
+        27,
+        124,
+        711,
+        353
+      ],
+      "dimensions": [
+        328,
+        115
+      ],
+      "sha256": "9cdbd890df714dbdf15ae7655f7cdfd01eb240a0db70e628cb7ba8b40ad5305a"
+    },
+    {
+      "id": "selected",
+      "file": "godot/assets/ui/mural-v1/pieces/selected.png",
+      "source": "panels-source.png",
+      "cell": [
+        724,
+        0,
+        1448,
+        362
+      ],
+      "alphaBounds": [
+        10,
+        111,
+        711,
+        362
+      ],
+      "dimensions": [
+        328,
+        123
+      ],
+      "sha256": "3a6bebf39aa0074911ef413c56e331c30c36736df9136ddc659b2f1298813753"
+    },
+    {
+      "id": "ink",
+      "file": "godot/assets/ui/mural-v1/pieces/ink.png",
+      "source": "panels-source.png",
+      "cell": [
+        1448,
+        0,
+        2172,
+        362
+      ],
+      "alphaBounds": [
+        16,
+        121,
+        696,
+        361
+      ],
+      "dimensions": [
+        328,
+        121
+      ],
+      "sha256": "f2da1c29e7bad1825d3e0ebb5aa6f75be4ca683c20155d80cc06a8d2d36e3a9d"
+    },
+    {
+      "id": "title-paper",
+      "file": "godot/assets/ui/mural-v1/pieces/title-paper.png",
+      "source": "panels-source.png",
+      "cell": [
+        0,
+        362,
+        724,
+        724
+      ],
+      "alphaBounds": [
+        37,
+        42,
+        717,
+        271
+      ],
+      "dimensions": [
+        328,
+        116
+      ],
+      "sha256": "66fb95bce3e6d2c8627661ff0785c756bb983668561fca910dee07d210b2d969"
+    },
+    {
+      "id": "title-sun",
+      "file": "godot/assets/ui/mural-v1/pieces/title-sun.png",
+      "source": "panels-source.png",
+      "cell": [
+        724,
+        362,
+        1448,
+        724
+      ],
+      "alphaBounds": [
+        23,
+        0,
+        704,
+        263
+      ],
+      "dimensions": [
+        328,
+        132
+      ],
+      "sha256": "aaa3e2dea87bba99f2af25e40e48ebbf75ca03e88ddd539ad45f2f5172a8e41d"
+    },
+    {
+      "id": "clips",
+      "file": "godot/assets/ui/mural-v1/pieces/clips.png",
+      "source": "panels-source.png",
+      "cell": [
+        1448,
+        362,
+        2172,
+        724
+      ],
+      "alphaBounds": [
+        15,
+        63,
+        680,
+        295
+      ],
+      "dimensions": [
+        328,
+        120
+      ],
+      "sha256": "e4973221c7e062b057963c7c6ce6f327f927981a84e1cc24c3a5023e7a2c3acf"
+    },
+    {
+      "id": "board-paper",
+      "file": "godot/assets/ui/mural-v1/pieces/board-paper.png",
+      "source": "boards-source.png",
+      "cell": [
+        0,
+        0,
+        724,
+        724
+      ],
+      "alphaBounds": [
+        46,
+        41,
+        691,
+        666
+      ],
+      "dimensions": [
+        328,
+        318
+      ],
+      "sha256": "d8fc670698eca24cc153c27843ef7e17340f77530e954afa50ab1dfd61f85e57"
+    },
+    {
+      "id": "board-ink",
+      "file": "godot/assets/ui/mural-v1/pieces/board-ink.png",
+      "source": "boards-source.png",
+      "cell": [
+        724,
+        0,
+        1448,
+        724
+      ],
+      "alphaBounds": [
+        37,
+        41,
+        691,
+        670
+      ],
+      "dimensions": [
+        328,
+        316
+      ],
+      "sha256": "f63170f377ce56ef3553e10521969ea0f7b7b872fa48b7baf4a39cd28d105b8d"
+    },
+    {
+      "id": "board-sun",
+      "file": "godot/assets/ui/mural-v1/pieces/board-sun.png",
+      "source": "boards-source.png",
+      "cell": [
+        1448,
+        0,
+        2172,
+        724
+      ],
+      "alphaBounds": [
+        32,
+        41,
+        681,
+        664
+      ],
+      "dimensions": [
+        328,
+        315
+      ],
+      "sha256": "ecac640b0dacd0bda1cd27dce1b59f043a040287a57d2dba4ab3edfc8dfc1737"
+    },
+    {
+      "id": "team",
+      "file": "godot/assets/ui/mural-v1/icons/team.png",
+      "source": "icons-source.png",
+      "cell": [
+        0,
+        0,
+        386,
+        402
+      ],
+      "alphaBounds": [
+        64,
+        23,
+        386,
+        397
+      ],
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "31427ff22d2bd335883e880638607bf400f2cab5aba658fe5679b2a85ffa8ea3"
+    },
+    {
+      "id": "bag",
+      "file": "godot/assets/ui/mural-v1/icons/bag.png",
+      "source": "icons-source.png",
+      "cell": [
+        386,
+        0,
+        730,
+        402
+      ],
+      "alphaBounds": [
+        0,
+        62,
+        332,
+        373
+      ],
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "8cf180fcfa16a82cc16334210cf42815e36208aef606dbe87b78d9b6fbc2e296"
+    },
+    {
+      "id": "missions",
+      "file": "godot/assets/ui/mural-v1/icons/missions.png",
+      "source": "icons-source.png",
+      "cell": [
+        730,
+        0,
+        1094,
+        402
+      ],
+      "alphaBounds": [
+        8,
+        68,
+        364,
+        386
+      ],
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "b5449d541fbad6e02f453aa7848582c659db1a83f4138eb387547d285bccb1d0"
+    },
+    {
+      "id": "emblems",
+      "file": "godot/assets/ui/mural-v1/icons/emblems.png",
+      "source": "icons-source.png",
+      "cell": [
+        1094,
+        0,
+        1448,
+        402
+      ],
+      "alphaBounds": [
+        0,
+        53,
+        315,
+        393
+      ],
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "e07014c7f17d3eff0b53315dec58e614b1cfe9e1fec73de71c8cec265f5c49ef"
+    },
+    {
+      "id": "identity",
+      "file": "godot/assets/ui/mural-v1/icons/identity.png",
+      "source": "icons-source.png",
+      "cell": [
+        0,
+        402,
+        386,
+        735
+      ],
+      "alphaBounds": [
+        47,
+        7,
+        380,
+        321
+      ],
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "49e271696ba8e707665f8de23b4214e02096422c558682559c6d7492abc7400d"
+    },
+    {
+      "id": "workshop",
+      "file": "godot/assets/ui/mural-v1/icons/workshop.png",
+      "source": "icons-source.png",
+      "cell": [
+        386,
+        402,
+        730,
+        735
+      ],
+      "alphaBounds": [
+        31,
+        5,
+        330,
+        315
+      ],
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "40e4e0916f4694d551a0eacaa0f7924d85e522bdf3384af73ea4ac5c368c9618"
+    },
+    {
+      "id": "save",
+      "file": "godot/assets/ui/mural-v1/icons/save.png",
+      "source": "icons-source.png",
+      "cell": [
+        730,
+        402,
+        1094,
+        735
+      ],
+      "alphaBounds": [
+        11,
+        7,
+        332,
+        327
+      ],
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "a1b1a7adeb3988bddbc518f97c8d379746a0d2cedb8b3610e65d757a3e6e257f"
+    },
+    {
+      "id": "settings",
+      "file": "godot/assets/ui/mural-v1/icons/settings.png",
+      "source": "icons-source.png",
+      "cell": [
+        1094,
+        402,
+        1448,
+        735
+      ],
+      "alphaBounds": [
+        13,
+        26,
+        308,
+        323
+      ],
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "864b26566f1ff1b4a0c2835d7d74722f822d916b13b855d42fd6f566768ddc8f"
+    },
+    {
+      "id": "dex",
+      "file": "godot/assets/ui/mural-v1/icons/dex.png",
+      "source": "icons-source.png",
+      "cell": [
+        0,
+        735,
+        386,
+        1086
+      ],
+      "alphaBounds": [
+        35,
+        28,
+        381,
+        301
+      ],
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "fd1137c2ffd28e60a833a688ae5f0ef9770043d15a1826b7c4bd399d9e42c38a"
+    },
+    {
+      "id": "evolution",
+      "file": "godot/assets/ui/mural-v1/icons/evolution.png",
+      "source": "icons-source.png",
+      "cell": [
+        386,
+        735,
+        730,
+        1086
+      ],
+      "alphaBounds": [
+        5,
+        5,
+        337,
+        311
+      ],
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "a2333ec00a1a5a24065bc9c14eb2df3a6f368daeaf032a7272580abdc128386e"
+    },
+    {
+      "id": "varal",
+      "file": "godot/assets/ui/mural-v1/icons/varal.png",
+      "source": "icons-source.png",
+      "cell": [
+        730,
+        735,
+        1094,
+        1086
+      ],
+      "alphaBounds": [
+        0,
+        14,
+        349,
+        308
+      ],
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "54f8ca30e0c6e8cea8689fa842cf444b0e07aa7678010a4751e1ed60be5418be"
+    },
+    {
+      "id": "puxao",
+      "file": "godot/assets/ui/mural-v1/icons/puxao.png",
+      "source": "icons-source.png",
+      "cell": [
+        1094,
+        735,
+        1448,
+        1086
+      ],
+      "alphaBounds": [
+        5,
+        19,
+        326,
+        296
+      ],
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "a1941efe330e688d401efd46be823f8e4532e3939ca31d7cc6c8654aeb9dfb01"
+    }
+  ],
+  "processing": "Atlas cuts, alpha trim, uniform resample and transparent padding only; no repaint or palette conversion.",
+  "styleboxTextureMargins": {
+    "left": 28,
+    "top": 36,
+    "right": 28,
+    "bottom": 28
+  },
+  "nativeText": true
+}

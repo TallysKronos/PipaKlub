@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-01",
+  "direction": "B — Mural de Kronasta",
+  "images": [
+    {
+      "id": "panels",
+      "tool": "image_gen__imagegen",
+      "source": "fontes/panels-source.png",
+      "prompt": "panels-prompt.txt",
+      "original": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-2dbd933b-2b44-4201-b888-289c1a016cb9.png",
+      "reference": "art/ui/soulmonsters-v2/pip-128-v2/B-prancha.png",
+      "referenceRole": "Chosen direction, linework, palette and original game subject material"
+    },
+    {
+      "id": "icons",
+      "tool": "image_gen__imagegen",
+      "source": "fontes/icons-source.png",
+      "prompt": "icons-prompt.txt",
+      "original": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-0b6913f7-8ec2-443a-a724-d00443f49b3a.png",
+      "reference": "art/ui/soulmonsters-v2/pip-128-v2/B-prancha.png",
+      "referenceRole": "Chosen direction, linework, palette and original game subject material"
+    },
+    {
+      "id": "boards",
+      "tool": "image_gen__imagegen",
+      "source": "fontes/boards-source.png",
+      "prompt": "boards-prompt.txt",
+      "original": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-16bc0a54-26b8-4082-8dbf-11e227e6e308.png",
+      "reference": "art/ui/soulmonsters-v2/pip-128-v2/B-prancha.png",
+      "referenceRole": "Chosen direction, linework, palette and original game subject material"
+    }
+  ],
+  "processing": "Mechanical cuts and uniform resample only, original drawing preserved; see slice_assets.py. No generated text used in runtime."
+}

@@ -1,0 +1,65 @@
+{
+  "method": "Relative luminance calculation on declared token pairs and median center of opaque raster surfaces. Not a formal accessibility certification or minimum over every pixel.",
+  "pairs": [
+    {
+      "role": "Texto/tinta no papel",
+      "foreground": "#123442",
+      "background": "#fff1d2",
+      "ratio": 11.76
+    },
+    {
+      "role": "Foco/texto",
+      "foreground": "#123442",
+      "background": "#ffc53e",
+      "ratio": 8.34
+    },
+    {
+      "role": "Texto inverso",
+      "foreground": "#fff1d2",
+      "background": "#123442",
+      "ratio": 11.76
+    },
+    {
+      "role": "Texto secundário",
+      "foreground": "#496261",
+      "background": "#fff1d2",
+      "ratio": 5.86
+    },
+    {
+      "role": "Mensagem de erro",
+      "foreground": "#ad382c",
+      "background": "#fff1d2",
+      "ratio": 5.55
+    },
+    {
+      "role": "Linha contínua",
+      "foreground": "#126c76",
+      "background": "#fff1d2",
+      "ratio": 5.47
+    },
+    {
+      "role": "Centro raster: board-paper",
+      "foreground": "#123442",
+      "background": "#fbebc5",
+      "ratio": 11.15
+    },
+    {
+      "role": "Centro raster: paper",
+      "foreground": "#123442",
+      "background": "#f3e3c5",
+      "ratio": 10.41
+    },
+    {
+      "role": "Centro raster: selected",
+      "foreground": "#123442",
+      "background": "#fbc12f",
+      "ratio": 8.0
+    },
+    {
+      "role": "Centro raster: ink",
+      "foreground": "#fff1d2",
+      "background": "#023248",
+      "ratio": 12.09
+    }
+  ]
+}

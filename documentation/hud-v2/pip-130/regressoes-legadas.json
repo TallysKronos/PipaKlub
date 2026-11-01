@@ -1,0 +1,234 @@
+{
+  "suites": [
+    {
+      "name": "ui_tokens_checks.gd",
+      "checks": 203,
+      "failures": 53
+    },
+    {
+      "name": "recorte_theme_checks.gd",
+      "checks": 222,
+      "failures": 1
+    }
+  ],
+  "sourceComparison": [
+    {
+      "file": "godot/scripts/campaign/care_camp_transition.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/campaign/front_end.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/campaign/house_modern.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/campaign/hud_emblem_case.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/campaign/hud_key_item_banner.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/campaign/hud_kronasta_map.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/campaign/hud_pause.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/campaign/hud_pipeiro_identity.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/campaign/lacertubo_cinematic.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/campaign/lacertubo_movie.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/campaign/mount_quest.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/campaign/neighborhood_view.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/campaign/opening_tv.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/campaign/park_overworld_view.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/campaign/park_view.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/campaign/partner_care_view.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/campaign/professor_modern.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/campaign/room_view.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/campaign/shop_modern.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/campaign/workshop_birth_view.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/campaign/workshop_view.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/cave_basin.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/cave_ground.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/cave_wind.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/clareira_banks.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/clareira_terrain.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/forest_structures.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/ice_structures.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/industrial_dressing.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/industrial_structures.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/japanese_street.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/kronasta_forest.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/lava_showcase.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/mine_structures.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/mobility_marks.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/mountain_structures.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/park_landscape.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/parque_shoreline.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/parque_surfaces.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/pier_play.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/pier_precision.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/pier_visibility.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/plains_showcase.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/sand_showcase.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/starter_neighborhood.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/street_building.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/submerged_ambience.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/submerged_structures.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/swamp_structures.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/underwater_showcase.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/underwater_terrain.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/veredas_modular_landscape.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/veredas_reference_landscape.gd",
+      "unchangedFromHEAD": true
+    },
+    {
+      "file": "godot/scripts/overworld/view.gd",
+      "unchangedFromHEAD": true
+    }
+  ],
+  "allReportedFilesUnchanged": true,
+  "scope": "Source comparison with pre-PIP-130 HEAD c2761c2e; legacy suites are NOT marked passed. No exceptions/test expectations were weakened."
+}

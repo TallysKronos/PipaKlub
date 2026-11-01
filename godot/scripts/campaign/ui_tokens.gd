@@ -25,6 +25,18 @@ const LABEL_PATH := FONT_ROOT + "BarlowCondensed-Bold.ttf"
 const DISPLAY_PATH := FONT_ROOT + "LilitaOne-Regular.ttf"
 const LETTERING_PATH := FONT_ROOT + "Bangers-Regular.ttf"
 const TITLE_SLANT_DEGREES := 8.0
+# PIP-130: opt-in Mural de Kronasta palette. Recorte consumers keep their aliases
+# until their screen task migrates; one token file still owns all UI color/font ink.
+const MURAL_INK := Color("123442")
+const MURAL_PAPER := Color("fff1d2")
+const MURAL_SUN := Color("ffc53e")
+const MURAL_MINT := Color("77d0bc")
+const MURAL_TEAL := Color("126c76")
+const MURAL_RED := Color("ad382c")
+const MURAL_MUTED := Color("496261")
+const MURAL_GROUND := Color("0c2530")
+const MURAL_COLORS := {"ink":MURAL_INK,"paper":MURAL_PAPER,"sun":MURAL_SUN,
+	"mint":MURAL_MINT,"teal":MURAL_TEAL,"red":MURAL_RED,"muted":MURAL_MUTED,"ground":MURAL_GROUND}
 static var _fonts: Dictionary = {}
 
 static func alpha(color: Color, opacity: float) -> Color:

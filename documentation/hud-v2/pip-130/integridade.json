@@ -1,0 +1,11 @@
+{
+  "status": "pass",
+  "images": 20,
+  "assets": 21,
+  "checks": [
+    "20 requested/obtained native capture dimensions",
+    "21 RGBA assets with real alpha",
+    "Export SHA-256 matches current production files"
+  ],
+  "errors": []
+}
