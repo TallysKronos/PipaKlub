@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-01",
+  "status": "concepts-pending-user-review",
+  "supersedes": "pip-128 — geometric art direction rejected by user",
+  "images": [
+    {
+      "direction": "A",
+      "file": "A-prancha.png",
+      "prompt": "A-prompt.txt",
+      "generatedOriginal": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-894c38e8-0834-4250-9321-567c077c4b89.png",
+      "tool": "image_gen__imagegen",
+      "referenceRoles": {
+        "target": "fontes/A-layout.png",
+        "style": [
+          "art/characters/parque-pipeiros-v2/references/kael-autoral.png",
+          "art/characters/parque-pipeiros-v2/references/locutor-aprovado.png"
+        ]
+      }
+    },
+    {
+      "direction": "B",
+      "file": "B-prancha.png",
+      "prompt": "B-prompt.txt",
+      "generatedOriginal": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-ab93c8e0-d08b-48af-8782-3bc0142cb1c8.png",
+      "tool": "image_gen__imagegen",
+      "referenceRoles": {
+        "target": "fontes/B-layout.png",
+        "style": [
+          "art/characters/parque-pipeiros-v2/references/kael-autoral.png",
+          "art/characters/parque-pipeiros-v2/references/locutor-aprovado.png"
+        ]
+      }
+    },
+    {
+      "direction": "C",
+      "file": "C-prancha.png",
+      "prompt": "C-prompt.txt",
+      "generatedOriginal": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-9ecf4b9a-8184-4b7c-a910-137416b1fc89.png",
+      "tool": "image_gen__imagegen",
+      "referenceRoles": {
+        "target": "fontes/C-layout.png",
+        "style": [
+          "art/characters/parque-pipeiros-v2/references/kael-autoral.png",
+          "art/characters/parque-pipeiros-v2/references/locutor-aprovado.png"
+        ]
+      }
+    }
+  ]
+}

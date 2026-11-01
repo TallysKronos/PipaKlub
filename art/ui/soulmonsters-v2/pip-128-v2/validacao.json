@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-01",
+  "status": "pass",
+  "scope": "Presença, dimensões e hashes dos arquivos; links locais. Não é auditoria de UI ou de fidelidade dos textos gerados.",
+  "images": [
+    {
+      "direction": "A",
+      "file": "A-prancha.png",
+      "dimensions": [
+        966,
+        1629
+      ],
+      "sha256": "c775c57db40d467b48c625e53c6d998064c7b1039fb49d1cc4011bcfe27740c0",
+      "promptSha256": "3fd81614e7b3085a8f098ecf4ddad7cd30c9b57e995a5a93a4c762d20e35f89b",
+      "visualInspection": "Prancha completa vista após geração; observações em REVISAO.md"
+    },
+    {
+      "direction": "B",
+      "file": "B-prancha.png",
+      "dimensions": [
+        965,
+        1629
+      ],
+      "sha256": "7031005a4f9fa663d851e2305bfb3e04ebe59d725312ef46ff786e338e7032a6",
+      "promptSha256": "1d34b50096cf618fd953386725c8cce660177c275c936f5f953eec589c869b2a",
+      "visualInspection": "Prancha completa vista após geração; observações em REVISAO.md"
+    },
+    {
+      "direction": "C",
+      "file": "C-prancha.png",
+      "dimensions": [
+        965,
+        1629
+      ],
+      "sha256": "d3ef001b3d61efb6efc46ca3e9353c0add0caeeabe9942a2cf4b5049324c318f",
+      "promptSha256": "b39479c18697fcf82bd3a55428ff9dd527b4ba363ccd0298c1eb65c8cc0fe820",
+      "visualInspection": "Prancha completa vista após geração; observações em REVISAO.md"
+    }
+  ],
+  "brokenLinks": [],
+  "productionAudit": false
+}
