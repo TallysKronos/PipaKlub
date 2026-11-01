@@ -66,7 +66,7 @@ func layout_art() -> void:
 func refresh_focus() -> void:
 	if marker == null or not is_instance_valid(target) or not target.is_inside_tree() or not is_inside_tree(): return
 	var disabled: bool = target is BaseButton and target.disabled
-	active = not disabled and (target.has_focus() or target.get_global_rect().has_point(target.get_global_mouse_position()))
+	active = not disabled and (target.has_focus() or (not target.get_viewport().gui_disable_input and target.get_global_rect().has_point(target.get_global_mouse_position())))
 	if _tween != null: _tween.kill()
 	_tween = create_tween().set_parallel(true)
 	var duration := .08 if reduced_motion else .12

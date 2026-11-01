@@ -13,7 +13,7 @@ Antes da integração, o trabalho local foi preservado em `cbc9c146` (atlas de K
 
 - Removidas três sobrescritas que voltavam o espaçamento novo de 32 px para 20/24 px em configurações e controles.
 - A ferramenta de captura prepara documentos nas cópias visuais em memória e abre o parque sincronamente. Ela continua sem criar/gravar saves.
-- Capturas estáticas ignoram input da janela, para que a posição do cursor no desktop não abra um tooltip incidental sobre a tela auditada. `--reduced-motion` é opcional na ferramenta e não altera as preferências persistidas do jogador.
+- Capturas estáticas ignoram input da janela, para que a posição do cursor no desktop não abra um tooltip ou efeito de hover incidental sobre a tela auditada. A decoração Recorte também respeita essa propriedade do viewport. `--reduced-motion` é opcional na ferramenta e não altera as preferências persistidas do jogador.
 - Acrescentadas duas verificações de validade do quarto após movimentos assíncronos da abertura: trocar/fechar a cena durante esses movimentos não acessa um quarto já liberado.
 
 ## Verificações executadas
@@ -31,6 +31,8 @@ Saves e preferências isolados em `tmp/playtest-humanlike/appdata`.
 | `campaign_checks.gd` | 206 verificações, zero falhas |
 
 Total: **672 verificações aprovadas**. As duas suítes de HUD usaram o modo rápido (1280×720); não se trata de reauditoria de todas as resoluções. As execuções headless dessas suítes que dependem de carregamento/encenação foram interrompidas e substituídas pelo renderer nativo; não foram contadas no total. Alguns runners mantêm avisos de recursos em uso ao finalizar.
+
+Verificação adicional `recorte_theme_checks.gd`: 197 de 198 verificações aprovadas. A falha é a regra estática que proíbe `Theme.new(` em `pier_play.gd`, já presente no commit local anterior ao merge (`cbc9c146`). Essa cena de demonstração do cais não foi alterada nesta integração. O resultado se repete com e sem renderer; não é registrado como sucesso da suíte.
 
 Capturas nativas em 1280×720, inspecionadas:
 
