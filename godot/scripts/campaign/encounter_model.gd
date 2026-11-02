@@ -179,6 +179,7 @@ func _move_fighter(actor: Dictionary, raw: Dictionary, dt: float, wind: float) -
 	actor.energy = clampf(actor.energy + (6 if cut else actor.stats.regen) * dt, 0, actor.stats.energy)
 
 func _boss_input(dt: float) -> Dictionary:
+	if enemy_model_id=="mormaco-possuido":return _mormaco_input(dt)
 	var phase := 2 if minf(q.hp, q.hull) <= 250 * .55 else 1
 	if phase != q.phase:
 		q.phase = phase
@@ -251,6 +252,7 @@ func _wild_input(dt: float) -> Dictionary:
 	return {"x": clampf((target.x - q.x) / 80, -.6, .6), "y": clampf((target.y - q.y) / 80, -.6, .6), "cut": pull, "skill": pull and q.energy >= 40}
 
 func signature_profile(actor: Dictionary) -> Dictionary:
+	if is_same(actor,q) and enemy_model_id=="mormaco-possuido":return {"radius":110.0,"windup":2.1}
 	return {"radius":95.0 if actor.boss else 85.0,"windup":1.5 if actor.boss else 1.4}
 
 func attack_notice(actor: Dictionary) -> Dictionary:
@@ -358,4 +360,20 @@ static func _decode(value: Variant) -> Variant:
 	return value
 
 func wind_strength() -> float:
+	if enemy_model_id=="mormaco-possuido":return 0.0
 	return sin(time/9)*12
+
+func _mormaco_input(dt:float)->Dictionary:
+	var phase:=2 if minf(q.hp,q.hull)<=q.stats.line*.55 else 1
+	if phase!=q.phase:q.phase=phase;q.recovery=2.0;q.charge=0;q.telegraph=0
+	if q.signatureWindup>0:return {}
+	var crossing:=Vector2(p.anchor,585).lerp(Vector2(p.x,p.y),.65)
+	var target:=Vector2(clampf(q.anchor+(crossing.x-q.anchor)/.7,55,945),clampf(585+(crossing.y-585)/.7,70,480))
+	var speed:=.5 if phase==2 else .35
+	var input:={"x":clampf((target.x-q.x)/100,-speed,speed),"y":clampf((target.y-q.y)/100,-speed,speed),"cut":false}
+	if q.recovery>0:q.recovery=maxf(0,q.recovery-dt);input.x*=.15;input.y*=.15;return input
+	if q.charge>0 or contact(q,p).get("valid",false):
+		q.charge+=dt;q.telegraph=minf(1,q.charge/1.2)
+		if q.telegraph>.5:input.x=0.0;input.y=0.0
+		if q.charge>=1.2:input.cut=true;q.charge=0;q.telegraph=0;q.recovery=1.8
+	return input

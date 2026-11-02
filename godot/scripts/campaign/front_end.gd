@@ -1545,6 +1545,8 @@ func _park_event(id: String) -> void:
 		var action: String = event.props.get("acao","")
 		if action=="blueExam":
 			_blue_station(str(event.props.blueAction));return
+		if action in ["mormacoSignals","mormacoStory","mormacoRest"]:
+			_request_mormaco(action);return
 		if action=="retalhoTrust":
 			_show_retalho_trust();return
 		if action=="retalhoTrustRest":
@@ -1772,6 +1774,8 @@ func _show_encounter() -> void:
 			if _result(load("res://scripts/campaign/district_campaign.gd").new(session).settle()):_return_district_result.call_deferred()
 		elif is_morro:
 			if _result(morro.settle()): _return_morro_result.call_deferred()
+		elif session.snapshot().player.encounter.kind=="mormaco-story":
+			if _result(load("res://scripts/campaign/mormaco_story.gd").new(session).settle()):_return_mormaco.call_deferred()
 		elif session.snapshot().player.encounter.kind=="retalho-rescue":
 			if _result(load("res://scripts/campaign/retalho_trust.gd").new(session).settle()):_show_saved.call_deferred()
 		elif session.snapshot().player.encounter.kind=="warehouse-story":
@@ -3080,3 +3084,24 @@ func _request_marisol_row(id:String)->void:
 	_confirm_park("Remar · capivara de Marisol","A capivara de apoio acompanha sua pequena balsa. Segure "+Controls.prompt("interact")+" ou o botão Remar para avançar; solte para descansar. A ponte continua disponível. Interromper e carregar o save devolve você à margem de partida. Nenhum parceiro é transferido ao seu banco.","Embarcar",func():
 		var result:Dictionary=row.new(session).begin(id,park.player)
 		if _result(result):park.play_row(session.snapshot().player.marisolRowTrip))
+
+func _request_mormaco(action:String)->void:
+	var story=load("res://scripts/campaign/mormaco_story.gd").new(session)
+	var point:Vector2=park.player
+	if action=="mormacoSignals":
+		_confirm_park("O vento parou","A água está imóvel. As rabiolas pendem sem força e o ar pesa entre as árvores.\n\nKael: Até aqui… O que está prendendo o vento?\n\nUm som de pressão vem do lago, no fundo do Pântano.","Seguir o som",func():
+			if _result(story.observe(point)):park.refresh(session.snapshot().player))
+	elif action=="mormacoRest":
+		_confirm_park("Pouso da margem","Descansar e recuperar linha e armação da equipe? Sem custo ou experiência.","Descansar",func():
+			if _result(story.rest(point)):park.refresh(session.snapshot().player))
+	elif story.freed(session.snapshot().player):_notice("Mormaço: O frio sabe onde estão os outros. Não confunda pressa com vento, pequeno pipeiro.")
+	elif story.won(session.snapshot().player):
+		_confirm_park("O primeiro Vento livre","Os cordões perdem a tensão. O brilho violeta desaparece dos olhos de Mormaço; a água volta a subir clara. Ele respira fundo e observa Kael.\n\nMormaço: Enfim… Achou que eu estava dormindo?\n\nKael: Os outros Ventos também estão presos?\n\nMormaço: O frio sabe onde estão os outros.","Escutar o Vento",func():
+			if _result(story.release(point)):park.refresh(session.snapshot().player))
+	elif not session.snapshot().player.flags.get("mormacoVentosPararam",false):_notice("O ar parado chamou sua atenção na entrada. Examine o sinal junto ao caminho da parte A antes de enfrentar o guardião.")
+	else:
+		_confirm_park("Mormaço · amarrado","Os olhos do guardião brilham contra sua vontade. O mesmo fio negro do galpão aperta as placas e as saídas de água quente.\n\nKael: Não é ele que está escolhendo lutar. Precisamos desfazer esse controle.\n\nDuelo Nv.27. O jato marca o ponto de impacto antes de disparar. Você pode recuar e descansar na margem.","Enfrentar",func():
+			if _result(story.begin(point)):_show_saved.call_deferred())
+func _return_mormaco()->void:
+	_show_saved()
+	if session.snapshot().player.get("lastMormaco","")=="won":_notice.call_deferred("Os nós do Carretel Negro cederam. Mormaço continua vivo. Aproxime-se da margem para escutar o guardião.")

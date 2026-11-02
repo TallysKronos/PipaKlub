@@ -13,6 +13,7 @@ var saved_checkpoint: Dictionary = {}
 var saved_player: Dictionary = {}
 var content: Dictionary = {}
 var paused := false
+var mormaco:Node2D
 var blue_guide:Node2D
 var ui_theme: Theme
 var exploration_hud: Control
@@ -94,6 +95,8 @@ func _ready() -> void:
 			guardian_frames=content.combat.lacertubo.animations.idle
 	_roll_encounter_distance()
 	encounter_grace=Pacing.walking_grace(saved_player)
+	if saved_checkpoint.scene=="kronasta-pantano-c" and load("res://scripts/campaign/mormaco_story.gd").available(saved_player):
+		mormaco=load("res://scripts/campaign/mormaco_overworld.gd").new();add_child(mormaco)
 	if saved_checkpoint.scene=="park-trail" and load("res://scripts/campaign/blue_exam_preparation.gd").eligible(saved_player):
 		var entry:=Node2D.new();entry.position=model.project(Vector2(34.5,31.5));actors.add_child(entry)
 		var arrow:=Line2D.new();arrow.width=3;arrow.default_color=Color("43c5df");arrow.points=PackedVector2Array([Vector2(-14,7),Vector2(14,-7),Vector2(3,-9),Vector2(14,-7),Vector2(9,3)]);entry.add_child(arrow)
@@ -105,6 +108,11 @@ func _ready() -> void:
 		exploration_hud.objective.text=marks.objective(saved_player)
 
 func _build_events() -> void:
+	if load("res://scripts/campaign/mormaco_story.gd").available(saved_player):
+		interaction_events.append_array(load("res://scripts/campaign/mormaco_story.gd").events(saved_checkpoint.scene))
+		if saved_checkpoint.scene=="kronasta-pantano-c":
+			for e:Dictionary in interaction_events:
+				if int(e.id)==7:e.name="Pouso da margem · descansar";e.props.acao="mormacoRest"
 	if saved_checkpoint.scene=="parque-patio-liga":
 		var start:Vector2=load("res://scripts/campaign/blue_exam.gd").escort_start(saved_player)
 		for event:Dictionary in interaction_events:
@@ -222,6 +230,7 @@ func refresh(value: Dictionary) -> void:
 		exploration_hud.objective.text = Bosque.objective(saved_player,scene) if Checkpoint.is_kronasta(scene) else Training.objective(saved_player,scene)
 		if Checkpoint.is_regional_preview(scene) and not Checkpoint.is_kronasta(scene):exploration_hud.objective.text="Explore os caminhos · M para viajar por Kronasta."
 		if scene=="parque-patio-liga":exploration_hud.objective.text=load("res://scripts/campaign/blue_exam.gd").objective(saved_player)
+	if is_instance_valid(mormaco):mormaco.refresh()
 
 func toggle_run() -> void:
 	if not paused and item_receipt.is_empty():super.toggle_run()

@@ -69,6 +69,8 @@ const BEATS := [
 	{"id":"remar-pratica","act":3,"place":"pantano","text":"Experimente Remar com a capivara de Marisol nas setas azuis da Entrada alagada, no Pântano."},
 	{"id":"retalho-atelie","act":3,"place":"rua-dos-ventos","text":"Arco pessoal · volte ao ateliê e aproxime-se de Retalho sem puxar sua rabiola."},
 	{"id":"retalho-confianca","act":3,"place":"rua-dos-ventos","text":"Arco pessoal · acompanhe Retalho, sem exigir que ele fique."},
+	{"id":"mormaco-sinais","act":4,"place":"pantano","text":"O ar parou. Observe o caminho da Entrada alagada, no Pântano."},
+	{"id":"mormaco-liberto","act":4,"place":"pantano","text":"Siga até o lago da parte C e liberte Mormaço do Carretel Negro."},
 ]
 
 ## QA previews: built maps whose story gate does not exist yet open only in development
@@ -97,6 +99,8 @@ static func beat_done(player: Dictionary, id: String) -> bool:
 		"bruno-emblema":return preload("res://scripts/campaign/district_rules.gd").completed(player,"industrial")
 		"retalho-atelie":return f.get("assisReconheceuNoRetalho",false)
 		"retalho-confianca":return f.get("retalhoAcolhido",false)
+		"mormaco-sinais":return f.get("mormacoVentosPararam",false)
+		"mormaco-liberto":return f.get("mormacoLiberto",false)
 		"remar-pratica":return f.get("marisolRemarPratica",false)
 		"remar-orientacao":return f.get("marisolRemarOrientado",false)
 		"exame-azul":return f.get("leagueBlue",false)
@@ -145,9 +149,11 @@ static func act(player: Dictionary) -> int:
 
 static func objective(player: Dictionary) -> String:
 	var beat:=current_beat(player)
+	if beat.get("id","").begins_with("mormaco-"):return load("res://scripts/campaign/mormaco_story.gd").objective(player)
 	if beat.get("id")=="exame-azul":return "Pátio da Liga · "+load("res://scripts/campaign/blue_exam.gd").objective(player)
 	if beat.get("id")=="retalho-confianca":return load("res://scripts/campaign/retalho_trust.gd").objective(player)
 	if not beat.is_empty(): return beat.text
+	if player.get("flags",{}).get("mormacoLiberto",false):return load("res://scripts/campaign/mormaco_story.gd").objective(player)
 	if preload("res://scripts/campaign/blue_exam_preparation.gd").prepared(player):return preload("res://scripts/campaign/blue_exam_preparation.gd").data().prepared
 	return "Próximo destino: %s. Essa parte da história chega em breve." % next_destination(player).get("name","")
 

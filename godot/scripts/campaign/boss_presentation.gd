@@ -7,6 +7,7 @@ const Ink=preload("res://scripts/campaign/battle_ink.gd")
 const INTRO_SECONDS:=3.2
 var remaining:=INTRO_SECONDS
 var title:="Lacertubo"
+var subtitle:="Guardião dos Canos"
 var face:Texture2D
 var reduced_motion:=false
 
@@ -73,6 +74,6 @@ func _draw() -> void:
 	draw_string_outline(font,Vector2(-215,3),"BOSS À VISTA!",HORIZONTAL_ALIGNMENT_LEFT,-1,82,14,T.alpha(T.NANQUIM,opacity))
 	draw_string(font,Vector2(-215,3),"BOSS À VISTA!",HORIZONTAL_ALIGNMENT_LEFT,-1,82,T.alpha(T.PAPEL,opacity))
 	Ink.plate(self,Rect2(-180,25,550,56),T.TINTA,T.SOL,14)
-	draw_string(Hud.font(true),Vector2(-156,62),title+" · Guardião dos Canos",HORIZONTAL_ALIGNMENT_LEFT,500,25,T.alpha(T.PAPEL,opacity))
+	draw_string(Hud.font(true),Vector2(-156,62),title+" · "+subtitle,HORIZONTAL_ALIGNMENT_LEFT,500,25,T.alpha(T.PAPEL,opacity))
 	draw_set_transform(Vector2.ZERO)
 

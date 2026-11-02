@@ -212,13 +212,14 @@ static func valid_workshop(state: Dictionary) -> bool:
 
 static func valid_encounter(value: Variant) -> bool:
 	if value is Dictionary and value.has("rewardXp") and (not whole(value.rewardXp) or value.rewardXp>100000): return false
-	if not value is Dictionary or not value.get("id") is String or value.get("kind") not in ["lacertubo", "wild", "morro", "trainer", "district","canal-gate","feira-story","retalho-story","warehouse-story","retalho-rescue"] or not value.get("state") is Dictionary: return false
+	if not value is Dictionary or not value.get("id") is String or value.get("kind") not in ["lacertubo", "wild", "morro", "trainer", "district","canal-gate","feira-story","retalho-story","warehouse-story","retalho-rescue","mormaco-story"] or not value.get("state") is Dictionary: return false
 	if not value.get("returnPoint") is Array or value.returnPoint.size() != 2: return false
 	for point in value.returnPoint:
 		if not number(point) or point < 0 or point > 1536: return false
 	if value.has("space"):
 		if value.space!="parque-overworld-v1" or not preload("res://scripts/campaign/park_checkpoint.gd").loadable_position(value.get("scene","park-veredas"),Vector2(value.returnPoint[0],value.returnPoint[1])): return false
 	var state: Dictionary = value.state
+	if value.kind=="mormaco-story" and (value.get("scene")!="kronasta-pantano-c" or value.get("space")!="parque-overworld-v1" or state.get("enemyModelId")!="mormaco-possuido" or state.get("enemyLevel")!=27 or value.get("rewardXp")!=0):return false
 	if value.kind=="retalho-rescue" and (value.get("scene")!="kronasta-palafitas-c" or value.get("space")!="parque-overworld-v1" or state.get("enemyModelId")!="mata" or state.get("enemyLevel")!=24 or value.get("rewardXp")!=0):return false
 	if value.kind=="warehouse-story":
 		var opponent:String=value.get("warehouseOpponent","")

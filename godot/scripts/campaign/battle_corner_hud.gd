@@ -75,7 +75,7 @@ static func draw_on(c:Control,actors:Array,faces:Array,names:Array,player:Dictio
 	if boss:
 		Boss.draw_meter(c,actors[1],faces[1],seconds,int(actors[1].get("level",1)))
 		Ink.plate(c,boxes.weather,T.TINTA,T.TINTA,6)
-		text(c,boxes.weather.position+Vector2(14,20),"Vento %s · %s"%["leve" if absf(wind)<6 else "moderado","→" if wind>=0 else "←"],14,T.PAPEL_2)
+		text(c,boxes.weather.position+Vector2(14,20),("Ar parado" if absf(wind)<.001 else "Vento %s · %s"%["leve" if absf(wind)<6 else "moderado","→" if wind>=0 else "←"]),14,T.PAPEL_2)
 		return
 	var center:Vector2=boxes.clock.get_center()
 	var diamond:=PackedVector2Array([center+Vector2(0,-45),center+Vector2(55,0),center+Vector2(0,45),center+Vector2(-55,0)])
@@ -86,6 +86,6 @@ static func draw_on(c:Control,actors:Array,faces:Array,names:Array,player:Dictio
 	Ink.plate(c,Rect2(center+Vector2(-60,49),Vector2(120,24)),T.TINTA,T.TINTA,4)
 	text(c,center+Vector2(-35,66),"RODADA %d"%round_no if lesson<0 else "TREINO",14)
 	Ink.plate(c,boxes.weather,T.TINTA,T.TINTA,6)
-	text(c,boxes.weather.position+Vector2(14,20),"Vento %s · %s"%["leve" if absf(wind)<6 else "moderado","→" if wind>=0 else "←"],14,T.PAPEL_2)
+	text(c,boxes.weather.position+Vector2(14,20),("Ar parado" if absf(wind)<.001 else "Vento %s · %s"%["leve" if absf(wind)<6 else "moderado","→" if wind>=0 else "←"]),14,T.PAPEL_2)
 	if seconds<=10 and lesson<0:
 		text(c,Vector2(c.size.x/2-57,187),"ÚLTIMOS 10 s",16,T.RABIOLA)

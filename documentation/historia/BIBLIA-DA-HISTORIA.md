@@ -295,6 +295,8 @@ Se as 30 vagas do banco do save estiverem ocupadas, a escolha fica registrada e 
 
 **Revelação de reunião (P20 e a reunião de domadores de Digimon World DS):** depois do Aracati, todos os campeões já vencidos se reúnem na Praça da Matriz. A Mikka, o Lohan, a Kleie e os outros decidem **patrulhar Kronasta juntos**. É o momento em que o campeonato vira comunidade.
 
+**Integração do Mormaço (02/11/2026):** após Azul e prática de Remar, observar o ar parado no Pântano A e seguir ao lago C. Confronto Nv.27, jato com aviso de 2,1s e recuperação; derrota/fuga permitem retorno e descanso. Vitória desfaz o controle; conversa na margem registra a libertação e a pista “o frio sabe onde estão os outros”. Não concede captura, categoria Vermelha ou recompensas repetíveis. Primeira apresentação usa poses ilustradas e transição de cor, não rig Soulgen completo.
+
 ### 7.6 Ato 5 — Rabiola Dourada: "A noite do cerol"
 
 | Ordem | Lugar | Acontece | Chefe ou duelo | Abre |

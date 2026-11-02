@@ -67,7 +67,7 @@ func configure(data: Dictionary, state: Dictionary) -> void:
 	model = Model.new()
 	model.restore(state)
 	var assets := {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "lacertubo": "lacertubo"}
-	art_ids.assign([assets.get(model.model_id, "rabbito"), model.enemy_model_id if model.enemy_model_id.begins_with("rascunho-") or model.enemy_model_id in ["platyx-draft","retalho-original","pipa-dragao-desatada"] else assets.get(model.enemy_model_id, "lacertubo")])
+	art_ids.assign([assets.get(model.model_id, "rabbito"), model.enemy_model_id if model.enemy_model_id.begins_with("rascunho-") or model.enemy_model_id in ["platyx-draft","retalho-original","pipa-dragao-desatada","mormaco-possuido"] else assets.get(model.enemy_model_id, "lacertubo")])
 	for id in art_ids: textures.append(load("res://assets/campaign/" + content.combat[id].image))
 	background = load("res://assets/campaign/veredas-arena-wide-v2.png")
 	guardian_frame = load("res://assets/campaign/guardian-frame.png")
@@ -86,6 +86,7 @@ func _ready() -> void:
 	if model.q.get("boss",false):
 		boss_intro=load("res://scripts/campaign/boss_presentation.gd").new()
 		boss_intro.face=Ink.portrait(textures[1],art_ids[1])
+		if model.enemy_model_id=="mormaco-possuido":boss_intro.title="Mormaço";boss_intro.subtitle="O primeiro Vento"
 		boss_intro.reduced_motion=reduced_motion
 		boss_intro.remaining=model.intro
 		boss_intro.visible=model.intro>0 and model.outcome.is_empty()
@@ -327,13 +328,15 @@ func _physics_process(delta: float) -> void:
 	controls.text = ("Analógico · Mover" if Controls.gamepad else "Mover: %s %s %s %s / setas" % [Controls.prompt("up"), Controls.prompt("left"), Controls.prompt("down"), Controls.prompt("right")]) + (" · %s: Pulo do Elo" % Controls.prompt("signature") if model.model_id == "rabbito" else "")
 	if paused: controls.text = "Jogo pausado. " + ACTION_COPY[selected_action] if not blocked else "Não foi possível salvar. Tente novamente antes de continuar."
 	elif model.intro > 0: controls.text = "Lacertubo · O guardião dos canos — Leia o vento. Espere a abertura." if model.q.boss else ("%s · duelo de preparação" % reward_encounter.get("trainerName","Pipeiro") if reward_encounter.get("kind","")=="trainer" else "Um Soulmon selvagem cruzou seu caminho!")
-	elif model.q.signatureWindup > 0: controls.text = "Ruptura dos Canos! Saia do círculo ou proteja-se no impacto."
+	if model.intro>0 and model.enemy_model_id=="mormaco-possuido":controls.text="Mormaço · os gêiseres estão represados. Espere o sinal e procure a abertura."
+	elif model.q.signatureWindup > 0: controls.text = ("Jato represado!" if model.enemy_model_id=="mormaco-possuido" else "Ruptura dos Canos!")+" Saia do círculo ou proteja-se no impacto."
 	elif model.q.recovery > 0: controls.text = "O guardião está vulnerável!"
 	elif model.q.telegraph > .6: controls.text = "Ele vai puxar!"
 	elif model.intro <= 0 and model.q.signatureWindup <= 0 and model.q.recovery <= 0 and model.q.telegraph <= .6:
 		controls.text = ACTION_COPY[selected_action]
 	if not model.outcome.is_empty():
 		controls.text = ("Vitória · Confira sua experiência e os itens recebidos.") if model.outcome == "won" else "Seu parceiro continua com você. Descanse em um banco do parque ou procure o professor."
+	if model.outcome=="won" and model.enemy_model_id=="mormaco-possuido":controls.text="Os nós cederam. Volte ao lago para libertar o primeiro Vento."
 	if blocked: controls.text = "Não foi possível salvar. Tente novamente antes de continuar."
 	_layout_actions()
 	queue_redraw()
@@ -468,7 +471,7 @@ func _draw() -> void:
 		var frames: Array = content.combat[art_ids[index]].animations[action]
 		var frame: Dictionary = _sprite_frame(index,actor,action)
 		var width := 230 if index == 1 and model.q.boss else 180
-		if index==1 and model.enemy_model_id=="pipa-dragao-desatada":width=290
+		if index==1 and model.enemy_model_id in ["pipa-dragao-desatada","mormaco-possuido"]:width=290
 		var opponent:Dictionary=model.q if index==0 else model.p
 		var flip:bool=Ink.facing_flip(art_ids[index],actor.x,opponent.x)
 		Ink.live_sprite(self, textures[index], art_ids[index], frame, Vector2(actor.x, actor.y), width, Tokens.UNTINTED, _field_scale(),flip)
@@ -513,6 +516,7 @@ func _draw_status() -> void:
 					title=partner.get("personalName",title)
 					level=Model.level_for_xp(partner.get("xp",0))
 		if index>0 and model.enemy_model_id.begins_with("rascunho-"):title="Bicho-pau de Vareta [rascunho]" if model.enemy_model_id=="rascunho-bicho-pau" else "Joaninha-pião [rascunho]"
+		if index>0 and model.enemy_model_id=="mormaco-possuido":title="Mormaço · Possuído"
 		if index>0 and model.enemy_model_id=="pipa-dragao-desatada":title="Pipa-Dragão desatada"
 		names.append("%s · Nv. %d"%[title,level])
 	var cost:int=0
