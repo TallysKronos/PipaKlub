@@ -1,6 +1,6 @@
 # Capivara de boia · exploração V1
 
-Proposta visual para o apoio de Remar ensinado por Marisol. A espécie já consta na Bíblia entre os encontros raros do Pântano. O uso de um indivíduo de apoio da Marisol ainda é uma proposta; não foi integrado à história nem concedido ao jogador.
+Proposta visual para o apoio de Remar ensinado por Marisol. A espécie já consta na Bíblia entre os encontros raros do Pântano. O dono escolheu D como direção para o apoio de Marisol em 02/11/2026 e pediu para preservar as demais opções. A/B/C permanecem nesta prancha. Sem integração no jogo ou concessão ao jogador.
 
 Platyx permanece único e reservado ao arco de redenção de Grampo.
 
