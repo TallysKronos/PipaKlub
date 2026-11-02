@@ -1,4 +1,6 @@
-# Mormaço · exploração V1
+# Reserva de quatro Soulmonsters · antiga exploração do Mormaço
+
+**Decisão do dono, 02/11/2026:** preservar A, B, C e D para futuros Soulmonsters. Nenhum deles é o Mormaço nesta direção. A prancha, as quatro silhuetas e os prompts originais ficam intactos; nomes e usos futuros ainda não foram definidos. O texto abaixo registra o brief histórico, não uma atribuição de espécie ou história.
 
 Primeiro dos Quatro Ventos, segundo a Bíblia: almática antiga do Pântano, calor parado, preguiçoso e esperto; testa com enigmas. No Ato 4 aparece amarrado pelo Carretel Negro, é libertado após o duelo de nível 27 e deixa a pista do frio. Não é campeão de bairro.
 
