@@ -288,6 +288,12 @@
       "name": "Cais Velho · C",
       "scene": "kronasta-cais-c",
       "biome": "floresta"
+    },
+    {
+      "id": "kronasta-bosque-d",
+      "name": "Bosque dos Ventos · D",
+      "scene": "kronasta-bosque-d",
+      "biome": "floresta"
     }
   ],
   "scenes": {
@@ -337,7 +343,8 @@
     "caverna-mural-c": "caverna-mural-c",
     "kronasta-cais-a": "kronasta-cais-a",
     "kronasta-cais-b": "kronasta-cais-b",
-    "kronasta-cais-c": "kronasta-cais-c"
+    "kronasta-cais-c": "kronasta-cais-c",
+    "kronasta-bosque-d": "kronasta-bosque-d"
   },
   "campaignReplacement": false
 }

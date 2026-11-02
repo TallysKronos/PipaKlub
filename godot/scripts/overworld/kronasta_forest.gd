@@ -198,7 +198,8 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 		var neighbour:Dictionary=model.cell_at(n)
 		var mountain:bool=bool(model.data.get("forest",{}).get("mountain",false))
 		var ice:bool=bool(model.data.get("forest",{}).get("ice",false)) or bool(model.data.get("forest",{}).get("submerged",false))
-		if neighbour.is_empty() and not mountain and not ice:continue
+		var seal_boundary:bool=bool(model.data.get("forest",{}).get("sealBoundary",false))
+		if neighbour.is_empty() and not mountain and not ice and not seal_boundary:continue
 		var a:=Vector2(u+1,v) if side=="u" else Vector2(u,v+1)
 		var b:=Vector2(u+1,v+1)
 		var top_a:=_corner_height(model,u,v,a)
@@ -207,6 +208,7 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 		var low_b:float=-18 if neighbour.is_empty() else _corner_height(model,n.x,n.y,b)
 		if mountain and (neighbour.is_empty() or float(neighbour.get("level",0))<0):low_a=-18;low_b=-18
 		if ice and neighbour.is_empty():low_a=-2;low_b=-2
+		if seal_boundary and neighbour.is_empty():low_a=0;low_b=0
 		if top_a<=low_a+.001 and top_b<=low_b+.001:continue
 		low_a=minf(low_a,top_a);low_b=minf(low_b,top_b)
 		var wall:=Polygon2D.new()

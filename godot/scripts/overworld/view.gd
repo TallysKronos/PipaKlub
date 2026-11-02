@@ -539,7 +539,7 @@ func _draw_parque_floor(at: Vector2i, cell: Dictionary) -> void:
 	_encounter_tufts(at,cell)
 
 func _encounter_tufts(at: Vector2i, cell: Dictionary) -> void:
-	var kit: Dictionary = kits[1]
+	var kit: Dictionary = kits[1] if kits.size()>1 else kit_library.veredas
 	var grass: Dictionary=kit.get("encounterGrass",{"shader":"res://shaders/parque_grass.gdshader","files":["decalques/capim-a.png","decalques/capim-b.png"],"anchor":[26,45]})
 	if parque_grass_material == null:
 		parque_grass_material = ShaderMaterial.new()

@@ -118,6 +118,10 @@
     10,
     10,
     10,
+    2,
+    2,
+    2,
+    2,
     10,
     10,
     10,
@@ -166,6 +170,10 @@
     10,
     10,
     10,
+    2,
+    2,
+    2,
+    2,
     10,
     10,
     10,
@@ -214,6 +222,10 @@
     10,
     10,
     10,
+    2,
+    2,
+    2,
+    2,
     10,
     10,
     10,
@@ -262,22 +274,10 @@
     10,
     10,
     10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
+    2,
+    2,
+    2,
+    2,
     10,
     10,
     10,
@@ -326,10 +326,10 @@
     1,
     1,
     1,
-    1,
-    1,
-    1,
-    1,
+    2,
+    2,
+    2,
+    2,
     1,
     1,
     1,
@@ -2414,6 +2414,10 @@
     0,
     0,
     0,
+    17,
+    17,
+    17,
+    17,
     0,
     0,
     0,
@@ -2462,6 +2466,10 @@
     0,
     0,
     0,
+    17,
+    17,
+    17,
+    17,
     0,
     0,
     0,
@@ -2510,6 +2518,10 @@
     0,
     0,
     0,
+    17,
+    17,
+    17,
+    17,
     0,
     0,
     0,
@@ -2558,22 +2570,10 @@
     0,
     0,
     0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
+    17,
+    17,
+    17,
+    17,
     0,
     0,
     0,
@@ -5066,146 +5066,6 @@
      ]
     },
     {
-     "id": 25,
-     "name": "Mata em massa",
-     "type": "peca",
-     "x": 688,
-     "y": 16,
-     "point": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "arvore"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "b"
-      }
-     ]
-    },
-    {
-     "id": 26,
-     "name": "Mata em massa",
-     "type": "peca",
-     "x": 720,
-     "y": 16,
-     "point": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "arvore"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "a"
-      }
-     ]
-    },
-    {
-     "id": 27,
-     "name": "Mata em massa",
-     "type": "peca",
-     "x": 752,
-     "y": 16,
-     "point": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "arvore"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "a"
-      }
-     ]
-    },
-    {
-     "id": 28,
-     "name": "Mata em massa",
-     "type": "peca",
-     "x": 784,
-     "y": 16,
-     "point": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "arvore"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "b"
-      }
-     ]
-    },
-    {
-     "id": 29,
-     "name": "Mata em massa",
-     "type": "peca",
-     "x": 848,
-     "y": 16,
-     "point": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "arvore"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "a"
-      }
-     ]
-    },
-    {
-     "id": 30,
-     "name": "Mata em massa",
-     "type": "peca",
-     "x": 880,
-     "y": 16,
-     "point": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "arvore"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "b"
-      }
-     ]
-    },
-    {
-     "id": 31,
-     "name": "Mata em massa",
-     "type": "peca",
-     "x": 912,
-     "y": 16,
-     "point": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "arvore"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "a"
-      }
-     ]
-    },
-    {
      "id": 32,
      "name": "Mata em massa",
      "type": "peca",
@@ -5906,126 +5766,6 @@
      ]
     },
     {
-     "id": 67,
-     "name": "Mata em massa",
-     "type": "peca",
-     "x": 720,
-     "y": 48,
-     "point": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "arvore"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "a"
-      }
-     ]
-    },
-    {
-     "id": 68,
-     "name": "Mata em massa",
-     "type": "peca",
-     "x": 752,
-     "y": 48,
-     "point": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "arvore"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "b"
-      }
-     ]
-    },
-    {
-     "id": 69,
-     "name": "Mata em massa",
-     "type": "peca",
-     "x": 784,
-     "y": 48,
-     "point": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "arvore"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "a"
-      }
-     ]
-    },
-    {
-     "id": 70,
-     "name": "Mata em massa",
-     "type": "peca",
-     "x": 816,
-     "y": 48,
-     "point": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "arvore"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "a"
-      }
-     ]
-    },
-    {
-     "id": 71,
-     "name": "Mata em massa",
-     "type": "peca",
-     "x": 880,
-     "y": 48,
-     "point": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "arvore"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "a"
-      }
-     ]
-    },
-    {
-     "id": 72,
-     "name": "Mata em massa",
-     "type": "peca",
-     "x": 912,
-     "y": 48,
-     "point": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "arvore"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "a"
-      }
-     ]
-    },
-    {
      "id": 73,
      "name": "Mata em massa",
      "type": "peca",
@@ -6722,126 +6462,6 @@
        "name": "variante",
        "type": "string",
        "value": "a"
-      }
-     ]
-    },
-    {
-     "id": 108,
-     "name": "Mata em massa",
-     "type": "peca",
-     "x": 688,
-     "y": 80,
-     "point": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "arvore"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "a"
-      }
-     ]
-    },
-    {
-     "id": 109,
-     "name": "Mata em massa",
-     "type": "peca",
-     "x": 752,
-     "y": 80,
-     "point": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "arvore"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "a"
-      }
-     ]
-    },
-    {
-     "id": 110,
-     "name": "Mata em massa",
-     "type": "peca",
-     "x": 784,
-     "y": 80,
-     "point": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "arvore"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "a"
-      }
-     ]
-    },
-    {
-     "id": 111,
-     "name": "Mata em massa",
-     "type": "peca",
-     "x": 816,
-     "y": 80,
-     "point": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "arvore"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "b"
-      }
-     ]
-    },
-    {
-     "id": 112,
-     "name": "Mata em massa",
-     "type": "peca",
-     "x": 848,
-     "y": 80,
-     "point": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "arvore"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "a"
-      }
-     ]
-    },
-    {
-     "id": 113,
-     "name": "Mata em massa",
-     "type": "peca",
-     "x": 912,
-     "y": 80,
-     "point": true,
-     "properties": [
-      {
-       "name": "asset",
-       "type": "string",
-       "value": "arvore"
-      },
-      {
-       "name": "variante",
-       "type": "string",
-       "value": "b"
       }
      ]
     },
@@ -20673,6 +20293,36 @@
        "name": "visibilidade",
        "type": "string",
        "value": "visivel"
+      }
+     ]
+    },
+    {
+     "id": 18999,
+     "type": "saida",
+     "name": "Desvio do Retalho · após o Cais",
+     "x": 784,
+     "y": 16,
+     "point": true,
+     "properties": [
+      {
+       "name": "destino",
+       "type": "string",
+       "value": "kronasta-bosque-d"
+      },
+      {
+       "name": "chegada_u",
+       "type": "int",
+       "value": 24
+      },
+      {
+       "name": "chegada_v",
+       "type": "int",
+       "value": 37
+      },
+      {
+       "name": "requer",
+       "type": "string",
+       "value": "cais"
       }
      ]
     }
