@@ -7,3 +7,5 @@ Esta entrega prepara fonte visual; normalização, importação Godot, ligação
 Seyran também possui fonte transparente e prévia conjunta preview-dupla.png. Relatório visual em revisao-seyran.md. Próximos da família: Oruvo, Kessai e Veldren; depois normalização e revisão no mapa.
 
 Oruvo: fonte e preview-trio.png adicionados. Ver revisao-oruvo.md para a pendência de pixels residuais nas bordas antes de normalizar. Próximos: Kessai e Veldren.
+
+Kessai: fonte transparente e preview-quarteto.png adicionados. Ver revisao-kessai.md. Falta Veldren para completar as cinco fontes de Palafitas; normalização e integração continuam pendentes.
