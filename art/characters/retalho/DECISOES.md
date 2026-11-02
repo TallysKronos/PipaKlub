@@ -7,3 +7,5 @@
 ## Arquivos
 - concept-v1/opcoes-coloridas.png: A aprovada como arquitetura original; B/C/D preservadas.
 - possessao-v1/prancha.png: nova proposta, ainda em revisão artística pelo dono.
+
+- original-v1/prancha.png: documentação de frente/costas/expressões da opção A original. Novas vistas em revisão; não é forma evoluída nem sprite integrado.
