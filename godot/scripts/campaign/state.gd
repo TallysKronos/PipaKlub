@@ -269,6 +269,7 @@ static func valid_encounter(value: Variant) -> bool:
 			if not d.stages.slice(0,4).any(func(s):return s.scene==value.get("scene") and s.npcId==context.opponent):return false
 		elif value.get("scene")!=stage.scene:return false
 		if value.get("space","")!="parque-overworld-v1":return false
+		if state.get("enemyModelId")=="veskoro" and (context.district!="palafitas" or context.opponent!="caio-garca"):return false
 	var actors: Array = state.actors if value.kind in ["morro","district"] else [state.get("p"), state.get("q")]
 	for actor_value in actors:
 		if not actor_value is Dictionary: return false
@@ -307,6 +308,9 @@ static func valid_morro(value: Variant) -> bool:
 	return value.items.is_empty() or value.items == ["rabiola-raio-de-sol"]
 
 static func valid_morro_state(state: Dictionary) -> bool:
+	if state.get("enemyModelId")=="veskoro":
+		if not preload("res://scripts/campaign/veskoro_moves.gd").valid(state.get("veskoro")):return false
+	elif state.has("veskoro"):return false
 	var id: String = str(state.get("trailStage", ""))
 	var definition:Dictionary=preload("res://scripts/campaign/morro_model.gd").stage_definition(id)
 	if definition.is_empty(): return false

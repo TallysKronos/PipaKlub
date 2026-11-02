@@ -54,6 +54,21 @@ func _initialize()->void:
 			var started:Dictionary=service.start(id,point)
 			check(started.status=="ok","start "+id+" "+outcome+" "+str(started))
 			if started.status!="ok":session.free();quit(1);return
+			if i==4:
+				var active:Dictionary=session.snapshot()
+				var active_model:=Model.new();active_model.restore(active.player.encounter.state)
+				check(active_model.enemy_model_id=="veskoro","Caio battle uses Veskoro")
+				var legacy:Dictionary=active.player.encounter.duplicate(true)
+				legacy.state.enemyModelId="mata";legacy.state.erase("veskoro")
+				check(State.valid_encounter(legacy),"old in-progress Caio placeholder save remains loadable")
+				var forged:Dictionary=active.player.encounter.duplicate(true)
+				forged.districtContext.opponent="seyran"
+				check(not State.valid_encounter(forged),"Veskoro cannot be attached to another owner")
+				active_model.intro=0
+				for tick in 190:active_model.tick(1.0/60,{})
+				check(active_model.veskoro.phase=="warn","suspend while poison warning is active")
+				active.player.encounter.state=active_model.snapshot()
+				check(session.checkpoint(active.checkpoint,active.player).status=="ok","save active warning")
 			check(session.resume_slot("slot-1").status=="ok","encounter resumes")
 			finish(outcome)
 			check(service.settle().status=="ok","settle "+outcome)

@@ -7,6 +7,13 @@ var rounds_to_win := 2
 var intermission := 0.0
 var round_message := ""
 var ai_level := 1
+const Veskoro=preload("res://scripts/campaign/veskoro_moves.gd")
+var veskoro:Dictionary={}
+static func foe_model(entry:Dictionary,index:int=0)->String:
+	return str(entry.foes[index].get("modelId",["basica","raio","mata","azulao"][int(entry.foes[index].color)]))
+func set_enemy_model(id:String)->void:
+	enemy_model_id=id
+	veskoro=Veskoro.fresh() if id=="veskoro" else {}
 
 func _init(partner: Dictionary = {}, id: String = "morro-1", progress: Dictionary = {}) -> void:
 	super(partner, {"modelId": "basica", "level": 1})
@@ -27,7 +34,7 @@ func _init(partner: Dictionary = {}, id: String = "morro-1", progress: Dictionar
 		actors.append(rival)
 	q = actors[1]
 	if not id.begins_with("morro-"):
-		enemy_model_id=["basica","raio","mata","azulao"][int(q.color)];enemy_level=int(entry.level)
+		set_enemy_model(foe_model(entry));enemy_level=int(entry.level)
 	intro = 3.0
 	duration = 60.0
 
@@ -73,6 +80,7 @@ func tick(delta: float, input: Dictionary) -> void:
 	# Collect first, apply second: every rival can hit every other rival on the same tick.
 	for hit in hits:
 		_apply_hit(hit)
+	if enemy_model_id=="veskoro" and alive(p) and alive(q):Veskoro.tick(self,veskoro,dt)
 	for actor in actors:
 		if actor.hp <= 0 or actor.hull <= 0: actor.out = true
 	var survivors := actors.filter(alive)
@@ -96,6 +104,7 @@ func _finish_round(survivors: Array) -> void:
 	intermission = 3.2
 
 func _new_round() -> void:
+	if enemy_model_id=="veskoro":veskoro=Veskoro.fresh()
 	round_number += 1
 	intro = 3.0
 	duration = 60.0
@@ -135,6 +144,7 @@ func _hunters(slot: int, self_slot: int) -> int:
 	return actors.filter(func(a: Dictionary): return a.slot != 0 and a.slot != self_slot and alive(a) and a.target == slot).size()
 
 func _rival_input(actor: Dictionary, dt: float) -> Dictionary:
+	if is_same(actor,q) and enemy_model_id=="veskoro" and veskoro.get("phase","rest")!="rest":return {"x":0.0,"y":0.0}
 	var b := _brain(actor.style)
 	var foes := actors.filter(func(a: Dictionary): return a.slot != actor.slot and alive(a))
 	if foes.is_empty(): return {}
@@ -192,6 +202,7 @@ func attack_notice(actor: Dictionary) -> Dictionary:
 func snapshot() -> Dictionary:
 	var saved := super.snapshot()
 	saved.merge({"trailStage": stage_id, "actors": _encode(actors), "roundNumber": round_number, "roundsToWin": rounds_to_win, "intermission": intermission, "roundMessage": round_message, "aiLevel": ai_level})
+	if enemy_model_id=="veskoro":saved.veskoro=veskoro.duplicate(true)
 	return saved
 
 func restore(saved: Dictionary) -> void:
@@ -205,6 +216,7 @@ func restore(saved: Dictionary) -> void:
 	intermission = saved.intermission
 	round_message = saved.roundMessage
 	ai_level = int(saved.aiLevel)
+	veskoro=saved.get("veskoro",Veskoro.fresh()).duplicate(true) if enemy_model_id=="veskoro" else {}
 
 
 static func stage_definition(id:String) -> Dictionary:

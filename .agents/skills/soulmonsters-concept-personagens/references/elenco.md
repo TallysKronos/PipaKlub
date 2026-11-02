@@ -56,3 +56,5 @@ Kessai — prancha em art/characters/kessai/concept-v1/, frente/costas/expressõ
 Veldren — prancha em art/characters/veldren/concept-v1/, integração visual de Soulmonster através de gola/punhos de placas e maquiagem. Em revisão; corrigir lado anatômico e nós da rabiola antes de produção. Parceiro não definido.
 
 Veldren — V1 aprovada; V2 corrige continuidade da rabiola no quadril direito. Caio tem fonte estática transparente de overworld em art/characters/palafitas-overworld-v1/caio-source.png, ainda sem integração ao mapa.
+
+Caio Garça — parceiro definido pelo usuário: Veskoro, crocodiliano arredondado de veneno roxo. Pose de batalha própria em art/creatures/veskoro/battle-v1/, integração local e efeitos procedurais; rig Soulgen ainda pendente.

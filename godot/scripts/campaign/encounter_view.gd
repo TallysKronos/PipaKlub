@@ -517,6 +517,7 @@ func _draw_status() -> void:
 					level=Model.level_for_xp(partner.get("xp",0))
 		if index>0 and model.enemy_model_id.begins_with("rascunho-"):title="Bicho-pau de Vareta [rascunho]" if model.enemy_model_id=="rascunho-bicho-pau" else "Joaninha-pião [rascunho]"
 		if index>0 and model.enemy_model_id=="mormaco-possuido":title="Mormaço · Possuído"
+		if index>0 and model.enemy_model_id=="veskoro":title="Veskoro"
 		if index>0 and model.enemy_model_id=="pipa-dragao-desatada":title="Pipa-Dragão desatada"
 		names.append("%s · Nv. %d"%[title,level])
 	var cost:int=0

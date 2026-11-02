@@ -19,5 +19,6 @@ for i,(npc,name,level,at,style,before,won,lost) in enumerate(cast):
  s.update(npcId=npc,name=name,npcName=name,level=level,scene='kronasta-palafitas-'+s['part'].lower(),storySpritePath='res://assets/npc-ds/palafitas-v1/'+('caio' if i==4 else npc)+'.png',point=at,authored=True,rounds=3 if i==4 else 2,styles=[style],foes=[{'name':name,'color':[2,3,1,2,2][i]}])
  s['before']=[[name,before]];s['won']=[[name,won]];s['lost']=[[name,lost]]
  s['reward']={'coins':38+i*2,'xp':360+i*20,'item':''}
+ if i==4:s['foes'][0]['modelId']='veskoro'
 path.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-print('Authored five Palafitas duels; existing battle species palette, crocodilian combat art pending')
+print('Authored five Palafitas duels; Caio uses Veskoro, other partners retain existing battle palette')

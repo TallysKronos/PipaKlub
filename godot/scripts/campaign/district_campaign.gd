@@ -30,7 +30,7 @@ static func reward(player:Dictionary,context:Dictionary,outcome:String)->Diction
 	if context.mode in ["defense","reclaim"]:
 		for source:Dictionary in Rules.definition(context.district).stages:
 			if source.npcId==context.opponent:
-				var species:String=["basica","raio","mata","azulao"][int(source.foes[0].color)]
+				var species:String=Model.foe_model(source)
 				amount=preload("res://scripts/campaign/opponent_rewards.gd").xp(species,int(entry.level))
 	return {"coins":int(entry.reward.coins)*(2 if first else 1) if outcome=="won" else 0,"xp":amount if outcome=="won" else 20 if outcome=="lost" else 0}
 func _near(saved:Dictionary,id:String,point:Vector2)->bool:
@@ -61,7 +61,7 @@ func start(id:String,point:Vector2,defense:bool=false)->Dictionary:
 		for source:Dictionary in Rules.definition(district).stages:
 			if source.npcId!=planned.context.opponent:continue
 			model.q.name=source.name;model.q.color=source.foes[0].color;model.q.style=source.styles[0]
-			model.enemy_model_id=["basica","raio","mata","azulao"][int(model.q.color)]
+			model.set_enemy_model(Model.foe_model(source))
 	Progression.discover(saved.player,model.enemy_model_id)
 	saved.player.encounter={"id":State.new_id(),"kind":"district","scene":saved.checkpoint.scene,"space":Checkpoint.SPACE,"returnPoint":[point.x,point.y],"districtContext":planned.context,"state":model.snapshot()}
 	return session.checkpoint({"kind":"encounter"},saved.player)
