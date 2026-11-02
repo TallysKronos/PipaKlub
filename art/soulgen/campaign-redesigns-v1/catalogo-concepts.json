@@ -12,7 +12,12 @@
       "sha256": "8cee1978bc0e00362eaf950633c7a28935d476688f0d15e5ba5fe215ae840761",
       "rig_pronto": false,
       "integrado": false,
-      "nome": "Trovareta"
+      "nome": "Trovareta",
+      "contorno_carcara": {
+        "fonte": "contorno-carcara-v1/trovareta.png",
+        "estado": "acabamento-em-revisao",
+        "rig_pronto": false
+      }
     },
     {
       "id": "rabiolava",
@@ -23,7 +28,12 @@
       "sha256": "2b93e09a8be00cb529e8f1c186bb0263d52ed2e3ee1e804223d477ee1dca9881",
       "rig_pronto": false,
       "integrado": false,
-      "nome": "Rabiolava"
+      "nome": "Rabiolava",
+      "contorno_carcara": {
+        "fonte": "contorno-carcara-v1/rabiolava.png",
+        "estado": "acabamento-em-revisao",
+        "rig_pronto": false
+      }
     },
     {
       "id": "reserva-trovao-quadrupede",
@@ -78,7 +88,12 @@
       "sha256": "6dd712b8bce10bb0d780b4cb266b505366971f6154e6c8ad771fb5228aa1d49d",
       "rig_pronto": false,
       "integrado": false,
-      "nome": "Glacerol"
+      "nome": "Glacerol",
+      "contorno_carcara": {
+        "fonte": "contorno-carcara-v1/glacerol.png",
+        "estado": "acabamento-em-revisao",
+        "rig_pronto": false
+      }
     },
     {
       "id": "reserva-gelo-crustaceo",
@@ -111,7 +126,12 @@
       "sha256": "aa2e7be270fe633341517b9ebe3147492889e5227eb4b9d9569a6e8838d2a664",
       "rig_pronto": false,
       "integrado": false,
-      "nome": "Tufanocorte"
+      "nome": "Tufanocorte",
+      "contorno_carcara": {
+        "fonte": "contorno-carcara-v1/tufanocorte.png",
+        "estado": "acabamento-em-revisao",
+        "rig_pronto": false
+      }
     },
     {
       "id": "reserva-vento-tamandua",
