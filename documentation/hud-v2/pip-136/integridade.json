@@ -1,0 +1,584 @@
+{
+  "renderer": "Godot 4.7.2 native OpenGL compatibility",
+  "method": "Viewport PNG, unchanged pixels, one resolution per process",
+  "fixture": "standalone production encounter/milestone views with in-memory player state, not a full campaign playthrough",
+  "source": "res://tools/mural_result_capture.gd",
+  "captures": [
+    {
+      "file": "capturas/1024x768-blocked-150.png",
+      "size": [
+        1024,
+        768
+      ],
+      "sha256": "3f8214af9d39c7ed5c330eba73d1fa739ed82e2d1a98c4321ae9368161c43d68"
+    },
+    {
+      "file": "capturas/1024x768-blocked.png",
+      "size": [
+        1024,
+        768
+      ],
+      "sha256": "7375c5db43f4e675fd592f7c41fb03465a27c9c9e3952992a3b4b9c56b41e9ce"
+    },
+    {
+      "file": "capturas/1024x768-boss-150.png",
+      "size": [
+        1024,
+        768
+      ],
+      "sha256": "83553b3ccb9185dfd56a2c2a612f1e5e48daa4d195a4319155fb58681e88c214"
+    },
+    {
+      "file": "capturas/1024x768-boss.png",
+      "size": [
+        1024,
+        768
+      ],
+      "sha256": "dc33ed51084a0336682fcc5efd931ab42de9c18d767e0ecd475b7275e6a2a3a8"
+    },
+    {
+      "file": "capturas/1024x768-emblem-150.png",
+      "size": [
+        1024,
+        768
+      ],
+      "sha256": "11acffcc66fa4a803d18c906835c9b2345c0850fb9e50131b8be6b9359001cea"
+    },
+    {
+      "file": "capturas/1024x768-emblem.png",
+      "size": [
+        1024,
+        768
+      ],
+      "sha256": "dcdadb6d3708d2fa5080fa40cf2cf33a53a4468b0bb845a48b478992009e85e9"
+    },
+    {
+      "file": "capturas/1024x768-fled-150.png",
+      "size": [
+        1024,
+        768
+      ],
+      "sha256": "69e58715414ec8bcb49b9722f8b305568793d098fa84bc02088718c9e8c44b15"
+    },
+    {
+      "file": "capturas/1024x768-fled.png",
+      "size": [
+        1024,
+        768
+      ],
+      "sha256": "61daf425646837a770ea35b673956340ba68bfc5cf589ba6e63966c756008638"
+    },
+    {
+      "file": "capturas/1024x768-item-150.png",
+      "size": [
+        1024,
+        768
+      ],
+      "sha256": "3c65b8eda5a6e7189dd4e05f65cde20bf651f9930bf5d3d6d81e164bee58fe60"
+    },
+    {
+      "file": "capturas/1024x768-item.png",
+      "size": [
+        1024,
+        768
+      ],
+      "sha256": "9ea9f9b0125507e13b3efbf8b7a717b421b42017f5c55201c2e0012c75bfe40b"
+    },
+    {
+      "file": "capturas/1024x768-level-150.png",
+      "size": [
+        1024,
+        768
+      ],
+      "sha256": "6647539f376fb7d2420ee5c4537c4f98e822a8360030f9dcd5ab078d3b1e7b75"
+    },
+    {
+      "file": "capturas/1024x768-level.png",
+      "size": [
+        1024,
+        768
+      ],
+      "sha256": "a0dbc289136ce3e08dc9f8085ef10915d3ad1c8eafab7ddc4c80bbca56b9e731"
+    },
+    {
+      "file": "capturas/1024x768-lost-150.png",
+      "size": [
+        1024,
+        768
+      ],
+      "sha256": "c12b8fbde2914cbddae43ef35384ff417662316653ef90bc9f1480d010cdfafd"
+    },
+    {
+      "file": "capturas/1024x768-lost.png",
+      "size": [
+        1024,
+        768
+      ],
+      "sha256": "0577ead6ff1541f3e7a4b7fa7697f84591f1b4d0d39cafb31f4a98f1d22d2712"
+    },
+    {
+      "file": "capturas/1024x768-morro-150.png",
+      "size": [
+        1024,
+        768
+      ],
+      "sha256": "0ea4dbab21854e712b6d1e2d9ebc959cb67b86a06fca36c03b194d5822fa6aef"
+    },
+    {
+      "file": "capturas/1024x768-morro.png",
+      "size": [
+        1024,
+        768
+      ],
+      "sha256": "8b4d8df4d4ecb0e1f4b348e913c2aa24ca25c098ae9b17dbde2a2c0a44a9d5f0"
+    },
+    {
+      "file": "capturas/1024x768-won-150.png",
+      "size": [
+        1024,
+        768
+      ],
+      "sha256": "5418d4ff4e75aa7687c0680b7261dcabe8132632357394e1e8c77d8eb2d17d18"
+    },
+    {
+      "file": "capturas/1024x768-won.png",
+      "size": [
+        1024,
+        768
+      ],
+      "sha256": "6d9f89d3df68670cff29386864028ec25a62514f79c8340ac15d821b80848d66"
+    },
+    {
+      "file": "capturas/1280x720-blocked-150.png",
+      "size": [
+        1280,
+        720
+      ],
+      "sha256": "e7526d7fc0f564b7edb818aabfdf1bf1dce56da8e07d33ab525f3f28234d30bb"
+    },
+    {
+      "file": "capturas/1280x720-blocked.png",
+      "size": [
+        1280,
+        720
+      ],
+      "sha256": "4ad19fc5e1d2e52fb3f84fa2381d5aa40c574aea142d3ce8f334ca86b5973447"
+    },
+    {
+      "file": "capturas/1280x720-boss-150.png",
+      "size": [
+        1280,
+        720
+      ],
+      "sha256": "1e75e3ac2a55e17d0d900f3d549b0107a5f5ba53be873c82c8b45b12c8657a8e"
+    },
+    {
+      "file": "capturas/1280x720-boss.png",
+      "size": [
+        1280,
+        720
+      ],
+      "sha256": "1b7302889de1c3596c077a0591282c8974b98bacd98a294db637d8a2a9d01438"
+    },
+    {
+      "file": "capturas/1280x720-emblem-150.png",
+      "size": [
+        1280,
+        720
+      ],
+      "sha256": "3b2c1abaa47c6f6d5304c716dbb25b62c2a8fd8e049a2fabd2b31272198868a8"
+    },
+    {
+      "file": "capturas/1280x720-emblem.png",
+      "size": [
+        1280,
+        720
+      ],
+      "sha256": "f81df396bd038b32696bd93c9796d34b8a37f15ce170779ef591c037111a7762"
+    },
+    {
+      "file": "capturas/1280x720-fled-150.png",
+      "size": [
+        1280,
+        720
+      ],
+      "sha256": "1163dc2d433532784f5f245e432be8ee347a31d7e85a67653adf9cbca29898d6"
+    },
+    {
+      "file": "capturas/1280x720-fled.png",
+      "size": [
+        1280,
+        720
+      ],
+      "sha256": "bf01e7f06d530822a613a840a6dad2c851e1501cba5fb7a27e87f5483a694502"
+    },
+    {
+      "file": "capturas/1280x720-item-150.png",
+      "size": [
+        1280,
+        720
+      ],
+      "sha256": "29e1fb8fc1c6d31ff8c436c3d1a92304d79ff5a4184b1a93180ba8ffbfdfcc48"
+    },
+    {
+      "file": "capturas/1280x720-item.png",
+      "size": [
+        1280,
+        720
+      ],
+      "sha256": "4d2ccd829ee13ccfb3c4574946d16cffe43aab1fba82107518d18706b6683c62"
+    },
+    {
+      "file": "capturas/1280x720-level-150.png",
+      "size": [
+        1280,
+        720
+      ],
+      "sha256": "6d4327c4fdddd431668909d8bfd406e5debf0acabf559c8944bdaee03232158f"
+    },
+    {
+      "file": "capturas/1280x720-level.png",
+      "size": [
+        1280,
+        720
+      ],
+      "sha256": "ada2f81f97b1b4375f5cfcbfc82db408ade95b417901fcc25495bb3f29179efd"
+    },
+    {
+      "file": "capturas/1280x720-lost-150.png",
+      "size": [
+        1280,
+        720
+      ],
+      "sha256": "39df336b39bd5301911a3ca54dbc344964734fda60024987ab0757ca006b691f"
+    },
+    {
+      "file": "capturas/1280x720-lost.png",
+      "size": [
+        1280,
+        720
+      ],
+      "sha256": "bd0610880835441de8d7633976442da3eae7bc49e48ce12e2c63250cc634a2e5"
+    },
+    {
+      "file": "capturas/1280x720-morro-150.png",
+      "size": [
+        1280,
+        720
+      ],
+      "sha256": "7d5362f0f7c829eb8c9fe36c80c3496f34e4266057a325cdb93b75345c9de654"
+    },
+    {
+      "file": "capturas/1280x720-morro.png",
+      "size": [
+        1280,
+        720
+      ],
+      "sha256": "97cde0481223542c8e8d7288349b5a58bb2a77891c8c2739b254b5bbd6146ee5"
+    },
+    {
+      "file": "capturas/1280x720-won-150.png",
+      "size": [
+        1280,
+        720
+      ],
+      "sha256": "2d9e35de9da2476704760ba87b8143c4341fae6f7dececcb6a7205b2a1c0473e"
+    },
+    {
+      "file": "capturas/1280x720-won.png",
+      "size": [
+        1280,
+        720
+      ],
+      "sha256": "e2338df898c37735511ccd2d2e15eb497cd8ebc732c76c8092b32f6d71862f20"
+    },
+    {
+      "file": "capturas/1280x800-blocked-150.png",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "7183670102211323e2b7494eb38b72ccc24a2f118dc12188805929962380cfaa"
+    },
+    {
+      "file": "capturas/1280x800-blocked.png",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "59e494c4633e44e5464f8854ab17f85f15941fd88b432660cd21ffbb2078e464"
+    },
+    {
+      "file": "capturas/1280x800-boss-150.png",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "9a18d12cc37a078a218ba97ba1bbde531ca4fb0ee095943c58f908bbcdf6e44c"
+    },
+    {
+      "file": "capturas/1280x800-boss.png",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "8c996d1c929e7fc5511dd2ab6f85749a1ad86ab2ff6a34e1267dad51fd3aab90"
+    },
+    {
+      "file": "capturas/1280x800-emblem-150.png",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "202b60fcf3cd651f3bcbf93fbdd7f02fc4b57415c0ef9fa2d01b92b7b096e0c1"
+    },
+    {
+      "file": "capturas/1280x800-emblem.png",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "ef7ed27e792b0200ecd07cc15119cfa243ede0d75249ea8a256d0a4c372a9f9f"
+    },
+    {
+      "file": "capturas/1280x800-fled-150.png",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "7ee7f948b23493d5bbb0c75cce1eedf0bc3cec24f1a3a4a51cfce2ef046861e3"
+    },
+    {
+      "file": "capturas/1280x800-fled.png",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "c68fbb5039499be58c73c12b0af33a2b2e49bda1703767772b43455c58c1ee4c"
+    },
+    {
+      "file": "capturas/1280x800-item-150.png",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "157e39714c0a63c3af110be042b79a27cd4b3085094c967cbe5289e49fa5563f"
+    },
+    {
+      "file": "capturas/1280x800-item.png",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "b47e4481f27fbe9d74c8cf0ace93313b122561389ff490b39db546fca9e5d221"
+    },
+    {
+      "file": "capturas/1280x800-level-150.png",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "ffde0359ed18c95f5540a5b6637f9f8dbf42114ea0ea39b7f5f183b3b90fd4fb"
+    },
+    {
+      "file": "capturas/1280x800-level.png",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "cc64eb8dec88f51e046041b60b3613d47a287f4efa86362078bb3488f6f3bb6d"
+    },
+    {
+      "file": "capturas/1280x800-lost-150.png",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "2ddfdb768b21007179fcdb4c5d32875dfcd6e055d46f2a689847696d7afd7533"
+    },
+    {
+      "file": "capturas/1280x800-lost.png",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "40ce681fc1a348063189e205ebe718135c1f46a723669ef1d418a928379f0f35"
+    },
+    {
+      "file": "capturas/1280x800-morro-150.png",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "d011a764977eb481e6bd6474b801f6351c3d60b4bba1a49091cdef86e57f6ddc"
+    },
+    {
+      "file": "capturas/1280x800-morro.png",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "5bbff8646d1c71f990f8f9e1c450398b9f266c3705c9f6e1975c085a22df0d41"
+    },
+    {
+      "file": "capturas/1280x800-won-150.png",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "f65ae56df57712b1929dc476006bb3e6ed00f47af003cc8e5c0f394766b75028"
+    },
+    {
+      "file": "capturas/1280x800-won.png",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "27a1dc33aa6e2543b38ccbd4b24db7a4d0dea48e1b1230eb86c1bffa565f0564"
+    },
+    {
+      "file": "capturas/1920x1080-blocked-150.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "f38e9ae6992f8839cd006f1e1fdf12a9e9eabb154cd2d8875634cea3b7b1234b"
+    },
+    {
+      "file": "capturas/1920x1080-blocked.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "d06250d891ba9b6a1866ac720cd3347f4732a9643b05120749681b4da8bdffe6"
+    },
+    {
+      "file": "capturas/1920x1080-boss-150.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "0420b49b804635d05eb0c094277c2d0c51523c03d7ee3b0f327b461dc438097c"
+    },
+    {
+      "file": "capturas/1920x1080-boss.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "eeed61a4e5e080a2971424da34e7dd720afac4cf475635e949d6babfffc0eee6"
+    },
+    {
+      "file": "capturas/1920x1080-emblem-150.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "30942cf72f33ba0aa4d902e4aa53cfa1186d0889502cb47ff2a626875f26b218"
+    },
+    {
+      "file": "capturas/1920x1080-emblem.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "c2490fe4bf1fca09103f6a97ea5538c2e01832ac4a0b9331cdbfc6b98c0f4f6c"
+    },
+    {
+      "file": "capturas/1920x1080-fled-150.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "f2b9d9c0c3e6aa1b185bf3501087671f1f20faf8732e3375fd51e604d56370ec"
+    },
+    {
+      "file": "capturas/1920x1080-fled.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "7edd07c7cc7f23d3d94361a8689e6193fbea1ab756118018abaad4427b568b68"
+    },
+    {
+      "file": "capturas/1920x1080-item-150.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "360fc75eb9e51f6dbce6307118970151fd3b4720f9ff8e069d1cd164be9738c7"
+    },
+    {
+      "file": "capturas/1920x1080-item.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "4fc158202c57d8e95f6c980c53cbf89df091d63832d0bc1eb7e9dfbc3991e59d"
+    },
+    {
+      "file": "capturas/1920x1080-level-150.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "07b1c522605bbee2335d17fc58824542183f5b8b5c58a7282239d5bbad2d78f5"
+    },
+    {
+      "file": "capturas/1920x1080-level.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "f8f9570f415cba3745896d159d66f3d65c89ea6ccf7ce4c6529282003e020b6a"
+    },
+    {
+      "file": "capturas/1920x1080-lost-150.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "5822a5116cd7880c19e60bfa701d3c2757233f7576dadff48fc1a333751610ae"
+    },
+    {
+      "file": "capturas/1920x1080-lost.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "682480f138f5c078a2399565249650cd8f6951bb2e63df56bca1a035fc8f38b1"
+    },
+    {
+      "file": "capturas/1920x1080-morro-150.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "72b6fea082bc4405d4060e782397f2d5e45c8e226d4e75fd7f7be096d132390d"
+    },
+    {
+      "file": "capturas/1920x1080-morro.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "2499f5c86bb0a4863ccca048d975c455cd5c7137f41de0951dc6f134fccf7da4"
+    },
+    {
+      "file": "capturas/1920x1080-won-150.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "315aef2172d6e7c2c1332aa804bcd77dd1f1ec56f753b1adb89e758b22e8d4a7"
+    },
+    {
+      "file": "capturas/1920x1080-won.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "be2b5f44f7c1f21db09bc4a292a9af20269f95a119ae9be3cf7c955a120e70b4"
+    }
+  ]
+}

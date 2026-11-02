@@ -1,0 +1,36 @@
+{
+  "sourceCommit": "3b34f93b66049d819101f71344d035d421409cd2",
+  "input": "Native injected keyboard, mouse and gamepad; no physical-device test",
+  "suites": [
+    {
+      "checks": 1548,
+      "failures": 0,
+      "command": "godot --headless --path godot --script res://tests/mural_result_checks.gd"
+    },
+    {
+      "checks": 892,
+      "failures": 0,
+      "command": "godot --headless --path godot --script res://tests/reward_layout_checks.gd"
+    },
+    {
+      "checks": 27,
+      "failures": 0,
+      "command": "godot --headless --path godot --script res://tests/morro_result_presentation_checks.gd"
+    },
+    {
+      "checks": 28,
+      "failures": 0,
+      "command": "godot --headless --path godot --script res://tests/key_item_banner_checks.gd"
+    },
+    {
+      "checks": 8,
+      "failures": 0,
+      "command": "godot --headless --path godot --script res://tests/result_settlement_checks.gd"
+    },
+    {
+      "checks": 795,
+      "failures": 0,
+      "command": "godot --headless --path godot --script res://tests/mural_battle_checks.gd"
+    }
+  ]
+}
