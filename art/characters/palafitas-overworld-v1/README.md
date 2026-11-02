@@ -9,3 +9,5 @@ Seyran também possui fonte transparente e prévia conjunta preview-dupla.png. R
 Oruvo: fonte e preview-trio.png adicionados. Ver revisao-oruvo.md para a pendência de pixels residuais nas bordas antes de normalizar. Próximos: Kessai e Veldren.
 
 Kessai: fonte transparente e preview-quarteto.png adicionados. Ver revisao-kessai.md. Falta Veldren para completar as cinco fontes de Palafitas; normalização e integração continuam pendentes.
+
+As cinco fontes estáticas estão presentes: Caio, Seyran, Oruvo, Kessai e Veldren. Prévia conjunta preview-grupo.png. Falta normalização, tratamento de pixels residuais, comparação em escala real e integração no mapa. Não são spritesheets de caminhada.
