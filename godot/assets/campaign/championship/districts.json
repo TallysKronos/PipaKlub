@@ -1000,13 +1000,22 @@
           "name": "Neril",
           "level": 18,
           "before": [
-            "O vento muda quando passa entre os barcos. Sente antes de puxar a linha."
+            [
+              "Neril",
+              "O vento muda quando passa entre os barcos. Sente antes de puxar a linha."
+            ]
           ],
           "won": [
-            "Boa leitura! Pode seguir pelo ancoradouro."
+            [
+              "Neril",
+              "Boa leitura! Pode seguir pelo ancoradouro."
+            ]
           ],
           "lost": [
-            "Observe as bandeiras e tente de novo."
+            [
+              "Neril",
+              "Observe as bandeiras e tente de novo."
+            ]
           ],
           "reward": {
             "coins": 18,
@@ -1035,13 +1044,22 @@
           "name": "Ossian",
           "level": 19,
           "before": [
-            "Uma linha bem cuidada aguenta mais que um puxão apressado. Vamos testar?"
+            [
+              "Ossian",
+              "Uma linha bem cuidada aguenta mais que um puxão apressado. Vamos testar?"
+            ]
           ],
           "won": [
-            "Essa linha está em boas mãos. Continue."
+            [
+              "Ossian",
+              "Essa linha está em boas mãos. Continue."
+            ]
           ],
           "lost": [
-            "Descanse nas docas e volte com a linha inteira."
+            [
+              "Ossian",
+              "Descanse nas docas e volte com a linha inteira."
+            ]
           ],
           "reward": {
             "coins": 20,
@@ -1070,13 +1088,22 @@
           "name": "Vaelis",
           "level": 19,
           "before": [
-            "Veja as bandeiras! Quero uma disputa que faça todo o cais olhar para cima."
+            [
+              "Vaelis",
+              "Veja as bandeiras! Quero uma disputa que faça todo o cais olhar para cima."
+            ]
           ],
           "won": [
-            "Que voo! Até as bandeiras acompanharam."
+            [
+              "Vaelis",
+              "Que voo! Até as bandeiras acompanharam."
+            ]
           ],
           "lost": [
-            "Quero ver esse voo mais uma vez!"
+            [
+              "Vaelis",
+              "Quero ver esse voo mais uma vez!"
+            ]
           ],
           "reward": {
             "coins": 22,
@@ -1105,13 +1132,22 @@
           "name": "Rhuna",
           "level": 20,
           "before": [
-            "Eu espero a rajada certa. Não confunda silêncio com falta de coragem."
+            [
+              "Rhuna",
+              "Eu espero a rajada certa. Não confunda silêncio com falta de coragem."
+            ]
           ],
           "won": [
-            "Você encontrou a abertura antes de mim."
+            [
+              "Rhuna",
+              "Você encontrou a abertura antes de mim."
+            ]
           ],
           "lost": [
-            "Respire. A próxima rajada ainda vem."
+            [
+              "Rhuna",
+              "Respire. A próxima rajada ainda vem."
+            ]
           ],
           "reward": {
             "coins": 24,
@@ -1140,13 +1176,22 @@
           "name": "Marisol",
           "level": 21,
           "before": [
-            "Você chegou ao alto do cais. Aqui, saber ceder ao vento também é força."
+            [
+              "Marisol",
+              "Você chegou ao alto do cais. Aqui, saber ceder ao vento também é força."
+            ]
           ],
           "won": [
-            "O quinto emblema é seu. Leve o vento do cais na próxima jornada."
+            [
+              "Marisol",
+              "O quinto emblema é seu. Leve o vento do cais na próxima jornada."
+            ]
           ],
           "lost": [
-            "O mar não se vence com pressa. Cuide do parceiro e volte."
+            [
+              "Marisol",
+              "O mar não se vence com pressa. Cuide do parceiro e volte."
+            ]
           ],
           "reward": {
             "coins": 26,

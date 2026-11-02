@@ -48,6 +48,9 @@ func _initialize()->void:
 			check(collect.collect(str(int(e.id)),item_at).status=="ok","collect "+scene)
 			var copy_item:Dictionary=session.snapshot()
 			check(collect.collect(str(int(e.id)),item_at).status=="already_applied" and session.snapshot()==copy_item,"item receipt prevents duplicate")
+	for stage:Dictionary in Rules.definition("cais").stages:
+		for field:String in ["before","won","lost"]:
+			check(stage[field][0] is Array and stage[field][0].size()==2 and str(stage[field][0][1]).length()>20,"complete dialogue "+stage.id+" "+field)
 	var service:=Service.new(session)
 	check(service.start("cais-5",Vector2.INF).status=="wrong_step","invalid position rejected")
 	var at:=visit("cais-5");check(service.start("cais-5",at).status=="wrong_step","champion waits for four wins")
