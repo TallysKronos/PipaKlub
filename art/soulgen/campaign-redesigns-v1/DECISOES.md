@@ -18,3 +18,9 @@ Três propostas de arquitetura, com paletas próprias. Lava e rabiola definem o 
 - A indicação “assim como os anteriores” autoriza também reservar Trovareta B (quadrúpede ressonante) e C (serpente elétrica) como outros Soulmonsters.
 - Nomes, região, poderes, aquisição, raridade e eventual relação evolutiva dos quatro reservados continuam indefinidos. IDs no catálogo são técnicos e provisórios, não nomes de Dex.
 - As folhas originais e as versões refinadas permanecem preservadas. O catálogo `catalogo-concepts.json` aponta para os arquivos e opções exatos sem recortes destrutivos ou reinterpretação da identidade.
+
+## Escolha da Glacerol
+
+- Glacerol: **A**, a criatura felina de geleira com fios cortantes, é a arquitetura escolhida pelo dono.
+- B (crustáceo de pinças de gelo) e C (mariposa de seda gelada) ficam reservadas como **outros Soulmonsters**, ainda sem nomes, poderes, raridade ou relações evolutivas definidos.
+- Preservar a folha original e sua referência de opção no catálogo. Escolha de conceito não significa rig pronto ou integração no jogo.

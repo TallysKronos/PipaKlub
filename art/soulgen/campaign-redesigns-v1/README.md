@@ -19,7 +19,7 @@ Estado: levantamento e propostas visuais. Nenhum modelo novo integrado ao jogo.
 | Rai | Tigre dente-de-sabre, parceiro do Tyler | Conferir identidade existente e alias Saber; não criar uma segunda espécie por diferença de nome |
 | Trovareta | Trovão + vareta; floresta à noite durante tempestade | Arquitetura A escolhida pelo dono após refinamento de trovão; rig pendente |
 | Rabiolava | Lava + rabiola; vulcão | B escolhida pelo dono; A/C reservadas como outros Soulmonsters; rig pendente |
-| Glacerol | Geleira + cerol; gelo | Exploração A/B/C: lince de fio cortante, crustáceo de pinças e mariposa de seda gelada; sem escolha do dono ainda |
+| Glacerol | Geleira + cerol; gelo | A escolhida pelo dono; B/C reservadas como outros Soulmonsters; rig pendente |
 | Tufanocorte | Tufão + corte; montanha | Nome, força e região decididos; anatomia e paleta são propostas |
 | Pipa-Dragão | Corpo com três rabiolas roubadas; forma desatada menor | Precisa diferenciar as duas formas sem inventar espécie canônica |
 | Parceiro do Gollia | Forma sobrecarregada pelo Carretel Negro | Primeiro identificar o parceiro normal; não inventar substituto |
@@ -59,4 +59,4 @@ Branch de trabalho: `codex/soulgen-redesigns`. Sem merge, push ou alteração de
 
 ## Banco de criaturas reservado pelo dono
 
-Índice persistente: `catalogo-concepts.json`. São quatro conceitos para outros Soulmonsters, ainda sem nomes: quadrúpede ressonante (Trovareta B), serpente elétrica (Trovareta C), fera de rabiolas de lava (Rabiolava A) e caititu vulcânico (Rabiolava C). As opções escolhidas, Trovareta A e Rabiolava B, também estão no índice. Nenhum desses registros adiciona uma espécie ao runtime ou declara um rig pronto.
+Índice persistente: `catalogo-concepts.json`. São seis conceitos para outros Soulmonsters, ainda sem nomes: quadrúpede ressonante (Trovareta B), serpente elétrica (Trovareta C), fera de rabiolas de lava (Rabiolava A), caititu vulcânico (Rabiolava C), crustáceo de gelo (Glacerol B) e mariposa de seda gelada (Glacerol C). As opções escolhidas, Trovareta A, Rabiolava B e Glacerol A, também estão no índice. Nenhum desses registros adiciona uma espécie ao runtime ou declara um rig pronto.
