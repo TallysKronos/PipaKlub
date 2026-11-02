@@ -169,13 +169,28 @@
       "fonte": "tufanocorte-propostas-v1.png",
       "opcao": "A",
       "sha256": "aa2e7be270fe633341517b9ebe3147492889e5227eb4b9d9569a6e8838d2a664",
-      "rig_pronto": false,
+      "rig_pronto": true,
       "integrado": false,
       "nome": "Tufanocorte",
       "contorno_carcara": {
         "fonte": "contorno-carcara-v1/tufanocorte.png",
         "estado": "acabamento-em-revisao",
         "rig_pronto": false
+      },
+      "soulgen": {
+        "project": "art/soulgen/keys/tufanocorte/cutout-rig-v1/tufanocorte.soulgen.json",
+        "preset": "tufanocorte",
+        "parts": 10,
+        "actions": 6,
+        "faces": [
+          "normal",
+          "fierce",
+          "hurt",
+          "happy"
+        ],
+        "status": "rig-local-em-revisao",
+        "browser_visual_tested": false,
+        "game_integrated": false
       }
     },
     {
