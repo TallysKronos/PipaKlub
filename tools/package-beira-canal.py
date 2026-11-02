@@ -2,6 +2,7 @@
 from pathlib import Path
 from PIL import Image
 import json
+import runpy
 root=Path(__file__).resolve().parent.parent
 source=root/'art/characters/beira-canal-v1/source.png'
 im=Image.open(source).convert('RGBA')
@@ -23,7 +24,9 @@ print('Packed 10 non-overlapping alpha sprites:',out.size)
 
 # Provisional story art. Packing preserves generated alpha; no painted retouching.
 story=root/'godot/assets/campaign/beira-canal-v1';story.mkdir(parents=True,exist_ok=True)
-grampo=Image.open(source.parent/'grampo-source.png').convert('RGBA')
+grampo_source=root/'art/characters/grampo/overworld-v2/source.png'
+if not grampo_source.exists():grampo_source=source.parent/'grampo-source.png'
+grampo=Image.open(grampo_source).convert('RGBA')
 box=grampo.getchannel('A').point(lambda a:255 if a>32 else 0).getbbox();grampo=grampo.crop(box)
 grampo.resize((round(grampo.width*112/grampo.height),112),Image.Resampling.NEAREST).save(story/'grampo.png')
 platyx=Image.open(source.parent/'platyx-source.png').convert('RGBA')
@@ -38,3 +41,5 @@ sheet.save(story/'platyx.png')
 p=root/'godot/assets/campaign/content.json';content=json.loads(p.read_text(encoding='utf-8'))
 content['combat']['platyx-draft']={'image':'beira-canal-v1/platyx.png','animations':{key:frames for key in content['combat']['basic-carcara']['animations']}}
 p.write_text(json.dumps(content,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+if (root/'art/characters/platyx/animation-v1/source.png').exists():
+ runpy.run_path(str(root/'tools/package-platyx-v2.py'),run_name='__main__')
