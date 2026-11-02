@@ -545,3 +545,7 @@ Novas na v2:
 - **Sem viagem por ato.** A tela de Kronasta mostra os lugares liberados e só o próximo destino da história; o que vem depois fica como surpresa. Os atos continuam como capítulos do roteiro.
 - **Prévias só para QA.** Mapas prontos cuja história ainda não existe (Distrito Industrial, Pântano, Montanha) abrem só em build de desenvolvimento. No jogo publicado ficam "em breve".
 
+
+### Elenco secundário de Palafitas [Decidido, 02/11/2026]
+
+Quatro adversários anteriores a Caio Garça, com nomes e papéis aprovados pelo dono: **Seyran**, pipeiro ligado ao equilíbrio nas passarelas; **Oruvo**, confeccionador de velas e pipeiro; **Kessai**, pipeiro das travessias; **Veldren**, cuidador das passarelas e pipeiro veterano. Usam, respectivamente, os designs A, B, C e D preservados em art/characters/caio-garca/concept-v2/. Sem novas revelações da história; parceiros e idades exatas ainda não definidos. Esta definição de elenco não significa que o campeonato já esteja integrado.

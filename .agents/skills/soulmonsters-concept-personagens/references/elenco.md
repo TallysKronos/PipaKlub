@@ -46,3 +46,5 @@ Caio Garça — V4 aprovada pelo usuário: rosto de senhor mais mangá, nariz si
 Caio Garça — prancha V5 com costas e expressões em revisão. V4 continua identidade aprovada. Conferir posição lateral da rabiola antes de produção.
 
 Caio Garça — V6 corrige continuidade da rabiola no quadril esquerdo; prancha em art/characters/caio-garca/concept-v6/prancha.png. Inspeção visual concluída, sem integração no jogo.
+
+Palafitas — Seyran (A, equilíbrio), Oruvo (B, velas), Kessai (C, travessias) e Veldren (D, passarelas) com nomes e papéis aprovados. Seyran possui prancha em art/characters/seyran/concept-v1/, em revisão. Designs fonte preservados em caio-garca/concept-v2/.
