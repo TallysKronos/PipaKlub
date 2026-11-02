@@ -87,6 +87,8 @@ A v2 mantém tudo o que era decidido ou canônico na v1 e acrescenta a progress�
 | **Minuano** | Frio do sul | Montanha (Serra do Minuano) | Exigente, só respeita quem chega sem atalho |
 | **Aracati** | Brisa do mar, à tarde | Ilha do Aracati (litoral) | Brincalhão, o mais próximo dos humanos |
 
+**Mormaço · visual aprovado (02/11/2026):** opção C da exploração de gêiseres: animal baixo e robusto de inspiração tatu/pangolim da areia, corpo magenta, grandes placas roxas, ventre ocre, garras claras e dois gêiseres turquesa de água quente e vapor. Conserva o olhar sonolento e esperto, varetas, pipa e rabiola. O animal de referência não muda sua região de história: continua guardião do Pântano. As demais opções ficam reservadas para outros Soulmonsters, sem atribuição automática a outros Ventos.
+
 Eles não são supervisores de rank, como os guardiões de Digimon World DS. Eles ficam fora do campeonato: são a ponte entre a trajetória 1 e a 2.
 
 ### 2.5 Habilidades de campo

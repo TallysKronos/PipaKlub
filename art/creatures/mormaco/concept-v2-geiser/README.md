@@ -1,5 +1,7 @@
 # Mormaço · areia e gêiseres · exploração V2
 
+**Escolha do dono, 02/11/2026: C.** A, B e D foram aprovados para preservação como conceitos de outros Soulmonsters. A prancha A/B/C/D e as silhuetas permanecem intactas.
+
 Direção explícita do dono: animal associado à areia, gêiseres no corpo, cores e elementos exagerados, mantendo o mangá 2D simples. As quatro criaturas V1 ficam reservadas para outros Soulmonsters, sem reaproveitamento automático nesta função.
 
 Alternativas propostas: A feneco/lobo da areia, B dromedário/antílope, C tatu/pangolim, D lagarto da areia. Gêiseres de água quente e vapor integrados à anatomia, com grandes massas de cor; não fogo ou lava. Olhar sonolento e esperto preserva a personalidade da Bíblia.
