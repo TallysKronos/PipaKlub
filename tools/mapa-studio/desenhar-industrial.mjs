@@ -58,6 +58,15 @@ export function industrialPart(part){
  for(const [name,u,v,item,vis]of [['Material na doca',18,25,'papel-seda','brilho'],['Peças atrás da carga',5,25,'vareta-bambu','escondido'],['Cola na plataforma',42,28,'cola-reparo','brilho']])event('item',name,u,v,{item,quantidade:1,visibilidade:vis,trajetoria:'ambas'});
  event('interacao','Banco da manutenção',21,25,{texto:'Um canto tranquilo junto à doca. Prévia sem recuperação ou recompensas.'});
  piece('banco','Banco da manutenção',21,24,2,1);
+ // Story cast only: existing ground/footprints/connections remain unchanged.
+ const cast={A:[['Vasken','vasken',10,32,1],['Rivka','rivka',17,26,2]],B:[['Odrik','odrik',30,27,3],['Teyra','teyra',42,25,4]],C:[['Bruno Solda','bruno-solda',29,13,5]]}[part];
+ const district=JSON.parse(fs.readFileSync(root+'godot/assets/campaign/championship/districts.json')).districts.find(d=>d.id==='industrial');
+ for(const [name,actor,u,v,stage] of cast){
+  const entry=district.stages[stage-1];
+  const npc=obj('npc',name,u,v,{acao:'districtDuel',district:'industrial',duel:'industrial-'+stage,storySpritePath:'res://assets/npc-ds/vila-operaria-v1/'+actor+'.png',texto:entry.before[0][1]});
+  npc.id=68000+stage;events.push(npc);
+  feature.shots.push({name:'encontro-'+actor,u:u+.5,v:v+.5,zoom:1,kind:'jogo'});
+ }
  feature.guards=feature.guards.filter(g=>height[ix(g.u,g.v)]>height[ix(g.u,g.v+1)]&&!ramps[ix(g.u,g.v)]&&!ramps[ix(g.u,g.v+1)]);
  feature.shots.push({name:'doca-principal',u:12,v:22,zoom:1,kind:'jogo'},{name:'deposito',u:26,v:11,zoom:1,kind:'jogo'},{name:'maquinas',u:41,v:25,zoom:1,kind:'jogo'});
  const raw=()=>({type:'map',version:'1.10',orientation:'isometric',width:W,height:H,tilewidth:64,tileheight:32,infinite:false,nextobjectid:next,properties:props({nome:'Distrito Industrial · '+names[part.charCodeAt(0)-65],regras:'overworld-1',bioma:'parque',cena_jogo:id(part),regiao:'distrito-industrial',parte:part,trajetoria:'ambas',rampa_comprimento:2,forest:JSON.stringify(feature)}),tilesets:[{firstgid:1,source:'../tiles/rascunho.tsj'}],layers:[{name:'chao',type:'tilelayer',width:W,height:H,data:mat.map(m=>gid[m])},{name:'altura',type:'tilelayer',width:W,height:H,data:height.map((l,i)=>ramps[i]||(l?16+l:0))},{name:'pecas',type:'objectgroup',objects:pieces},{name:'eventos',type:'objectgroup',objects:events}]});

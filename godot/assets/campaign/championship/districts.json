@@ -1220,7 +1220,7 @@
       "name": "Vila Operária",
       "playable": false,
       "next": "palafitas",
-      "prerequisiteFlag": "",
+      "prerequisiteFlag": "pipaDragaoDesatadaVencida",
       "unlocks": [
         "arquivo-atelie"
       ],
@@ -1231,76 +1231,188 @@
       },
       "emblem": {
         "slot": 5,
-        "name": "Insígnia do Vila Operária"
+        "name": "Insígnia da Vila Operária"
       },
       "stages": [
         {
           "id": "industrial-1",
           "part": "A",
           "role": "lieutenant",
-          "npcId": "industrial-capanga-1",
-          "name": "Capanga 1",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "vasken",
+          "name": "Vasken",
+          "npcName": "Vasken",
+          "scene": "kronasta-industrial-a",
+          "storySpritePath": "res://assets/npc-ds/vila-operaria-v1/vasken.png",
+          "level": 21,
+          "before": [
+            [
+              "Vasken",
+              "Não adianta puxar forte se você perde o ritmo. Vamos ver como sua linha responde!"
+            ]
+          ],
+          "won": [
+            [
+              "Vasken",
+              "Essa puxada foi boa! Quero aprender esse tempo aí."
+            ]
+          ],
+          "lost": [
+            [
+              "Vasken",
+              "Respira antes de puxar. Força sem ritmo só cansa os braços."
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 28,
+            "xp": 260,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Vasken",
+              "color": 1
+            }
+          ],
+          "styles": [
+            "aggressive"
+          ]
         },
         {
           "id": "industrial-2",
           "part": "A",
           "role": "lieutenant",
-          "npcId": "industrial-capanga-2",
-          "name": "Capanga 2",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "rivka",
+          "name": "Rivka",
+          "npcName": "Rivka",
+          "scene": "kronasta-industrial-a",
+          "storySpritePath": "res://assets/npc-ds/vila-operaria-v1/rivka.png",
+          "level": 22,
+          "before": [
+            [
+              "Rivka",
+              "Um movimento basta, quando ele vem na hora exata. Observe minhas mãos."
+            ]
+          ],
+          "won": [
+            [
+              "Rivka",
+              "Você encontrou uma abertura que eu não tinha previsto. Interessante."
+            ]
+          ],
+          "lost": [
+            [
+              "Rivka",
+              "Você mostrou a intenção cedo demais. Experimente deixar o vento falar primeiro."
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 30,
+            "xp": 280,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Rivka",
+              "color": 3
+            }
+          ],
+          "styles": [
+            "reader"
+          ]
         },
         {
           "id": "industrial-3",
           "part": "B",
           "role": "lieutenant",
-          "npcId": "industrial-capanga-3",
-          "name": "Capanga 3",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "odrik",
+          "name": "Odrik",
+          "npcName": "Odrik",
+          "scene": "kronasta-industrial-b",
+          "storySpritePath": "res://assets/npc-ds/vila-operaria-v1/odrik.png",
+          "level": 22,
+          "before": [
+            [
+              "Odrik",
+              "Se piscar, eu já mudei de lado! Pronto para acompanhar?"
+            ]
+          ],
+          "won": [
+            [
+              "Odrik",
+              "Tá, essa eu não vi chegando! Mais tarde quero revanche."
+            ]
+          ],
+          "lost": [
+            [
+              "Odrik",
+              "Quase! Mas quase não segura linha. Tenta outra vez!"
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 32,
+            "xp": 300,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Odrik",
+              "color": 0
+            }
+          ],
+          "styles": [
+            "aggressive"
+          ]
         },
         {
           "id": "industrial-4",
           "part": "B",
           "role": "lieutenant",
-          "npcId": "industrial-capanga-4",
-          "name": "Capanga 4",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "teyra",
+          "name": "Teyra",
+          "npcName": "Teyra",
+          "scene": "kronasta-industrial-b",
+          "storySpritePath": "res://assets/npc-ds/vila-operaria-v1/teyra.png",
+          "level": 23,
+          "before": [
+            [
+              "Teyra",
+              "Antes de avançar, aprenda a firmar o apoio. Seu parceiro depende de você."
+            ]
+          ],
+          "won": [
+            [
+              "Teyra",
+              "Bom apoio. Você soube proteger o parceiro e esperar sua vez."
+            ]
+          ],
+          "lost": [
+            [
+              "Teyra",
+              "Recuar para cuidar do parceiro também é uma decisão firme."
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 34,
+            "xp": 320,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Teyra",
+              "color": 2
+            }
+          ],
+          "styles": [
+            "patient"
+          ]
         },
         {
           "id": "industrial-5",
@@ -1308,16 +1420,44 @@
           "role": "champion",
           "npcId": "bruno-solda",
           "name": "Bruno Solda",
+          "npcName": "Bruno Solda",
+          "scene": "kronasta-industrial-c",
+          "storySpritePath": "res://assets/npc-ds/vila-operaria-v1/bruno-solda.png",
           "level": 24,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "before": [
+            [
+              "Bruno Solda",
+              "Linha boa não é a que nunca rompe. É a que a gente aprende a refazer. Vamos voar?"
+            ]
+          ],
+          "won": [
+            [
+              "Bruno Solda",
+              "O bairro tem um novo campeão. Cuide desse laço: força nenhuma substitui confiança."
+            ]
+          ],
+          "lost": [
+            [
+              "Bruno Solda",
+              "Seu parceiro precisa de cuidado, não de pressa. Descanse; eu espero vocês aqui."
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 36,
+            "xp": 340,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "rounds": 3,
+          "foes": [
+            {
+              "name": "Bruno Solda",
+              "color": 1
+            }
+          ],
+          "styles": [
+            "patient"
+          ]
         }
       ]
     },

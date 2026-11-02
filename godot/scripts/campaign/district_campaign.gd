@@ -20,6 +20,7 @@ static func objective(player:Dictionary,district:String="bambuzal")->String:
 	for entry:Dictionary in Rules.definition(district).stages:
 		if entry.role=="lieutenant" and entry.id not in value.qualification:return "Converse com %s · %d/4 desafios vencidos."%[entry.name,value.qualification.size()]
 	if district=="feira" and Rules.status(player,district)=="prerequisite":return preload("res://scripts/campaign/feira_story.gd").objective(player)
+	if district=="industrial" and Rules.status(player,district)=="prerequisite":return "Resolva o confronto no galpão e vença a Pipa-Dragão desatada antes do duelo com Bruno Solda."
 	return "Destranque a comporta nas Veredas antes do duelo com Kleie." if Rules.status(player,district)=="prerequisite" else "Siga até a arena do bairro."
 static func reward(player:Dictionary,context:Dictionary,outcome:String)->Dictionary:
 	var entry:=stage(context.duel)
