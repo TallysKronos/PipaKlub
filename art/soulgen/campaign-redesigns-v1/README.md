@@ -17,8 +17,8 @@ Estado: levantamento e propostas visuais. Nenhum modelo novo integrado ao jogo.
 | Retalho | Parceira da Heleana; original e posterior forma marcada pelo ataque do lendário | Identidade aprovada já existe em outra branch; converter sem reinventar |
 | Platyx | Ornitorrinco, parceiro do Grampo; contraste entre saque e recusa em obedecer | Arte existente em outra branch; inspecionar antes da conversão |
 | Rai | Tigre dente-de-sabre, parceiro do Tyler | Conferir identidade existente e alias Saber; não criar uma segunda espécie por diferença de nome |
-| Trovareta | Trovão + vareta; floresta à noite durante tempestade | Nome, força e região decididos; anatomia e paleta são propostas |
-| Rabiolava | Lava + rabiola; vulcão | Nome, força e região decididos; anatomia e paleta são propostas |
+| Trovareta | Trovão + vareta; floresta à noite durante tempestade | Arquitetura A escolhida pelo dono após refinamento de trovão; rig pendente |
+| Rabiolava | Lava + rabiola; vulcão | Três arquiteturas em exploração; mais cor e identidade de criatura, sem remendos obrigatórios |
 | Glacerol | Geleira + cerol; gelo | Nome, força e região decididos; anatomia e paleta são propostas |
 | Tufanocorte | Tufão + corte; montanha | Nome, força e região decididos; anatomia e paleta são propostas |
 | Pipa-Dragão | Corpo com três rabiolas roubadas; forma desatada menor | Precisa diferenciar as duas formas sem inventar espécie canônica |
