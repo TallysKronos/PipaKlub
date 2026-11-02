@@ -50,3 +50,5 @@ Caio Garça — V6 corrige continuidade da rabiola no quadril esquerdo; prancha 
 Palafitas — Seyran (A, equilíbrio), Oruvo (B, velas), Kessai (C, travessias) e Veldren (D, passarelas) com nomes e papéis aprovados. Seyran possui prancha em art/characters/seyran/concept-v1/, em revisão. Designs fonte preservados em caio-garca/concept-v2/.
 
 Oruvo — prancha individual em art/characters/oruvo/concept-v1/, com frente, costas, expressões e estudo de linha. Design B preservado; em revisão, sem integração de runtime.
+
+Kessai — prancha em art/characters/kessai/concept-v1/, frente/costas/expressões/linha. Design C preservado; em revisão, sem integração no jogo.
