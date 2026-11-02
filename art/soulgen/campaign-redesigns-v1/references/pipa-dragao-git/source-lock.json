@@ -1,0 +1,17 @@
+{
+  "ref": "origin/feature/retalho-bosque-d",
+  "commit": "c4fb5da01e4ac9ec65c1e9f32d55f47767f2ba02",
+  "files": [
+    {
+      "source": "art/creatures/pipa-dragao/quimico-b-v1/prancha.png",
+      "local": "prancha.png",
+      "sha256": "c2b811b5e023ba1630f33c105880063a112957d7dfaa21c4a554090488d35835"
+    },
+    {
+      "source": "art/creatures/pipa-dragao/quimico-b-v1/desatada-estudo.png",
+      "local": "desatada-estudo.png",
+      "sha256": "9bf1c713381a82f5f8477417f6aa6ebffa94e160460305f60536d4bb71e3eb0d"
+    }
+  ],
+  "decision": "Existing chemical B identity; do not replace with new dragon concept."
+}

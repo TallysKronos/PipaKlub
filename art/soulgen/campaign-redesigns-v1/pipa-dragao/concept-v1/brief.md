@@ -1,5 +1,7 @@
 # Pipa-Dragão — proposta v1
 
+**DESCARTADA PELO DONO.** Esta proposta foi criada sem recuperar a identidade existente no Git. Não usar suas imagens, paleta, anatomia ou divisão de formas como referência para o Soulgen. A identidade correta é o químico B pesado, recuperado de `origin/feature/retalho-bosque-d`, em `../../references/pipa-dragao-git/`. O dono confirmou que a forma desatada já estava no Git. Esta pasta permanece apenas como histórico de tentativa rejeitada.
+
 Bíblia §7.4: Bando costura três rabiolas roubadas em um corpo. Retalho protege Kael e perde; Tyler desata nós, duas almas se soltam e o corpo encolhe. A forma desatada enfrenta o jogador no nível 25. O design visual não estava definido; esta folha é proposta, não aprovação ou rig pronto.
 
 Arquitetura proposta: dragão de corpo índigo/creme, duas asas de vela, dois braços e três rabiolas coral/azul/âmbar na forma forçada. Amarras negras tensionam o corpo. A forma desatada é menor, sem as amarras negras, com uma rabiola azul e asas coerentes na mesma paleta. Os nós comuns de bambu da criatura continuam existindo; não são os laços de coerção.

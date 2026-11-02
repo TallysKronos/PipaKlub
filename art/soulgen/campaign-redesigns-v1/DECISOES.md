@@ -1,5 +1,13 @@
 # Decisões do dono
 
+## Correção da Pipa-Dragão
+
+- O dono informou que a forma desatada já existe no Git. Não criar outra identidade.
+- Fonte recuperada: `origin/feature/retalho-bosque-d:art/creatures/pipa-dragao/quimico-b-v1/` (prancha e desatada-estudo). O brief dessa fonte registra a seleção explícita do químico B pesado.
+- Preservar porte pesado, cinza-lilás manchado, tubos/cilindro verdes, peitoral de radiação, vela ocre e rabiola. Adaptar somente acabamento/partes para o Soulgen.
+- A proposta nova de dragão azul em `pipa-dragao/concept-v1/` foi descartada pelo dono e não deve orientar produção.
+- O estudo desatado existente ainda contém detalhes de transição em revisão segundo a revisão original; não inventar nova transformação por isso.
+
 ## 02/11/2026
 
 - Trovareta: seguir com A, a ave, após as pranchas de integração de trovão. B e C inicialmente arquivadas como alternativas, agora reservadas para outros Soulmonsters conforme a orientação posterior abaixo.
