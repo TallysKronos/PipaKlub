@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import crypto from 'node:crypto';
 import {validate,sample} from '../../../../tools/soulgen-studio/model.mjs';
 import {anatomyReport} from '../../../../tools/soulgen-studio/workflow.mjs';
 const dir=new URL('./cutout-rig-v1/',import.meta.url);
@@ -14,4 +15,11 @@ test('Riscaz keeps independent mantle, complete tail and full expression heads a
  const head=p.parts.find(x=>x.id==='head');for(const face of Object.values(head.faces))assert.deepEqual(face.source,head.source);
  for(const face of Object.values(read('registration.json').expressions)){assert(face.complete_head);assert(face.canvas_identical);assert(face.opaque_ratio>.75);}
  assert.equal(read('validation.json').atlas.borderPixels,0);assert.equal(sample(p,'defeat',9).done,true);
+});
+test('Final Riscaz preserves author geometry, animation and PNG bytes',()=>{
+ const raw=fs.readFileSync(new URL('author-approved.portable.soulgen.json',dir));
+ const author=JSON.parse(raw),p=read('riscaz.soulgen.json');
+ assert.equal(crypto.createHash('sha256').update(raw).digest('hex'),read('author-import.json').sha256);
+ assert.equal(p.rigRevision,2);assert.deepEqual(p.parts,author.parts);assert.deepEqual(p.clips,author.clips);
+ for(const [id,a]of Object.entries(author.assets))assert.deepEqual(fs.readFileSync(new URL(p.assets[id].src.split('/').at(-1),dir)),Buffer.from(a.src.split(',')[1],'base64'));
 });

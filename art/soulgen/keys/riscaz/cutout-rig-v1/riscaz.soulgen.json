@@ -4,7 +4,7 @@
   "name": "Riscaz · direção A",
   "creatureId": "riscaz",
   "artRevision": 1,
-  "rigRevision": 1,
+  "rigRevision": 2,
   "preserveSourceAspect": true,
   "width": 800,
   "height": 650,
@@ -15,67 +15,67 @@
   "assets": {
     "body": {
       "name": "body",
-      "src": "/art/soulgen/keys/riscaz/cutout-rig-v1/body.png",
+      "src": "/art/soulgen/keys/riscaz/cutout-rig-v1/author-body.png",
       "width": 379,
       "height": 248
     },
     "head": {
       "name": "head",
-      "src": "/art/soulgen/keys/riscaz/cutout-rig-v1/head.png",
+      "src": "/art/soulgen/keys/riscaz/cutout-rig-v1/author-head.png",
       "width": 322,
       "height": 346
     },
     "frontNear": {
       "name": "frontNear",
-      "src": "/art/soulgen/keys/riscaz/cutout-rig-v1/frontNear.png",
+      "src": "/art/soulgen/keys/riscaz/cutout-rig-v1/author-frontNear.png",
       "width": 236,
       "height": 234
     },
     "frontFar": {
       "name": "frontFar",
-      "src": "/art/soulgen/keys/riscaz/cutout-rig-v1/frontFar.png",
+      "src": "/art/soulgen/keys/riscaz/cutout-rig-v1/author-frontFar.png",
       "width": 199,
       "height": 226
     },
     "rearNear": {
       "name": "rearNear",
-      "src": "/art/soulgen/keys/riscaz/cutout-rig-v1/rearNear.png",
+      "src": "/art/soulgen/keys/riscaz/cutout-rig-v1/author-rearNear.png",
       "width": 198,
       "height": 266
     },
     "rearFar": {
       "name": "rearFar",
-      "src": "/art/soulgen/keys/riscaz/cutout-rig-v1/rearFar.png",
+      "src": "/art/soulgen/keys/riscaz/cutout-rig-v1/author-rearFar.png",
       "width": 173,
       "height": 246
     },
     "sail": {
       "name": "sail",
-      "src": "/art/soulgen/keys/riscaz/cutout-rig-v1/sail.png",
+      "src": "/art/soulgen/keys/riscaz/cutout-rig-v1/author-sail.png",
       "width": 362,
       "height": 255
     },
     "tail": {
       "name": "tail",
-      "src": "/art/soulgen/keys/riscaz/cutout-rig-v1/tail.png",
+      "src": "/art/soulgen/keys/riscaz/cutout-rig-v1/author-tail.png",
       "width": 274,
       "height": 370
     },
     "fierce": {
       "name": "fierce",
-      "src": "/art/soulgen/keys/riscaz/cutout-rig-v1/head-fierce.png",
+      "src": "/art/soulgen/keys/riscaz/cutout-rig-v1/author-fierce.png",
       "width": 322,
       "height": 346
     },
     "hurt": {
       "name": "hurt",
-      "src": "/art/soulgen/keys/riscaz/cutout-rig-v1/head-hurt.png",
+      "src": "/art/soulgen/keys/riscaz/cutout-rig-v1/author-hurt.png",
       "width": 322,
       "height": 346
     },
     "happy": {
       "name": "happy",
-      "src": "/art/soulgen/keys/riscaz/cutout-rig-v1/head-happy.png",
+      "src": "/art/soulgen/keys/riscaz/cutout-rig-v1/author-happy.png",
       "width": 322,
       "height": 346
     }
@@ -92,14 +92,14 @@
         248
       ],
       "rect": [
-        297.5,
-        272.5,
+        274.5359199341925,
+        219.48839228589713,
         284.25,
         186
       ],
       "pivot": [
-        440,
-        355
+        417.0359199341925,
+        301.98839228589713
       ],
       "z": 3,
       "parent": null,
@@ -117,14 +117,14 @@
         346
       ],
       "rect": [
-        154.5,
-        175,
+        186.77538616214235,
+        125.64436523169724,
         209.3,
         224.9
       ],
       "pivot": [
-        330,
-        370
+        362.27538616214235,
+        320.64436523169724
       ],
       "z": 7,
       "parent": "body",
@@ -179,16 +179,16 @@
         234
       ],
       "rect": [
-        266,
-        338,
+        277.3677908783475,
+        334.3440270541998,
         141.6,
         140.4
       ],
       "pivot": [
-        320,
-        350
+        331.3677908783475,
+        346.3440270541998
       ],
-      "z": 3.5,
+      "z": 6,
       "parent": "body",
       "visible": true,
       "lag": 0
@@ -229,16 +229,16 @@
         266
       ],
       "rect": [
-        511.5,
-        349,
+        446.09235901654324,
+        328.8921487980989,
         108.9,
         146.3
       ],
       "pivot": [
-        550,
-        360
+        484.59235901654324,
+        339.8921487980989
       ],
-      "z": 3.5,
+      "z": 4,
       "parent": "body",
       "visible": true,
       "lag": 0
@@ -254,14 +254,14 @@
         246
       ],
       "rect": [
-        532.9,
-        334.4,
+        374.26504889863804,
+        310.63617585229866,
         91.69,
         130.38
       ],
       "pivot": [
-        570,
-        345
+        411.36504889863807,
+        321.2361758522987
       ],
       "z": 0,
       "parent": "body",
@@ -279,19 +279,25 @@
         255
       ],
       "rect": [
-        279,
-        264,
+        285.4550772324285,
+        315.18362124120284,
         289.6,
         204
       ],
       "pivot": [
-        431,
-        288
+        437.45507723242855,
+        339.18362124120284
       ],
-      "z": 4,
+      "z": 5,
       "parent": "body",
       "visible": true,
-      "lag": 0.03
+      "lag": 0.03,
+      "artTransform": {
+        "rotation": 135,
+        "scale": 1,
+        "flipX": true,
+        "flipY": false
+      }
     },
     {
       "id": "tail",
@@ -304,14 +310,14 @@
         370
       ],
       "rect": [
-        539.2,
-        187.5,
+        501.2121561100448,
+        130.83241934009686,
         178.1,
         240.5
       ],
       "pivot": [
-        560,
-        350
+        522.0121561100448,
+        293.33241934009686
       ],
       "z": 2,
       "parent": "body",
@@ -3875,8 +3881,8 @@
           0.8670520231213873
         ],
         "socket": [
-          0.11433597185576078,
-          0.5241935483870968
+          0.30867006588548757,
+          0.5438493169129037
         ],
         "maxGap": 2
       },
@@ -3888,8 +3894,8 @@
           0.08547008547008547
         ],
         "socket": [
-          0.079155672823219,
-          0.4166666666666667
+          0.1999362214394194,
+          0.682019541765068
         ],
         "maxGap": 2
       },
@@ -3901,8 +3907,8 @@
           0.08849557522123877
         ],
         "socket": [
-          0.008795074758135445,
-          0.3521505376344086
+          0.08958339513036932,
+          0.6371591812586176
         ],
         "maxGap": 2
       },
@@ -3914,8 +3920,8 @@
           0.07518796992481203
         ],
         "socket": [
-          0.8883025505716798,
-          0.47043010752688175
+          0.7389848340627994,
+          0.6473320242591493
         ],
         "maxGap": 2
       },
@@ -3927,8 +3933,8 @@
           0.08130081300813026
         ],
         "socket": [
-          0.9586631486367634,
-          0.3897849462365591
+          0.4813689673331418,
+          0.5470310944430191
         ],
         "maxGap": 2
       },
@@ -3936,12 +3942,12 @@
         "part": "sail",
         "parent": "body",
         "anchor": [
-          0.5248618784530387,
+          0.5248618784530388,
           0.11764705882352941
         ],
         "socket": [
-          0.46965699208443273,
-          0.08333333333333333
+          0.5731544671881654,
+          0.6435227363188479
         ],
         "maxGap": 2
       },
@@ -3953,8 +3959,8 @@
           0.6756756756756757
         ],
         "socket": [
-          0.9234828496042217,
-          0.4166666666666667
+          0.8706287992114415,
+          0.39701089814085877
         ],
         "maxGap": 2
       }

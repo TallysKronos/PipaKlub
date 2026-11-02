@@ -1,6 +1,8 @@
 # Riscaz — direção A no Soulgen
 
-Fonte de identidade recuperada de `codex/concepts-personagens`, em `art/characters/riscaz/concept-v1/prancha.png`. Cópias, decisões, revisão e hashes em `art/soulgen/campaign-redesigns-v1/references/riscaz-git/`. A arquitetura A foi escolhida pelo autor; esta conversão e sua montagem ainda aguardam revisão artística. O vínculo definitivo com Rato e os atributos não são decididos por este rig.
+**Versão final aprovada pelo autor.** O projeto enviado `riscaz-direcao-a.soulgen.json` foi incorporado como rig revisão 2, preservando suas peças, pivôs, hierarquia, clipes e PNGs embutidos. Cópia integral em `author-approved.portable.soulgen.json`, hash e normalizações em `author-import.json`. Metadados de auditoria das juntas foram recalibrados; não alteram a montagem. O construtor protege a edição final por padrão e o editor arquiva o rascunho anterior ao carregar esta revisão. A aprovação deste asset não define por inferência vínculo narrativo, poderes ou integração no jogo.
+
+Fonte de identidade recuperada de `codex/concepts-personagens`, em `art/characters/riscaz/concept-v1/prancha.png`. Cópias, decisões, revisão e hashes em `art/soulgen/campaign-redesigns-v1/references/riscaz-git/`. A arquitetura A e a montagem final editada foram aprovadas pelo autor. O vínculo definitivo com Rato e os atributos não são decididos por este rig.
 
 Abrir: http://127.0.0.1:5241/?preset=riscaz
 
