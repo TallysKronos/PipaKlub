@@ -845,7 +845,7 @@ func _show_world() -> void:
 func _equip_room_companion()->void:
 	for partner in session.snapshot().player.partners:
 		if partner.id != session.snapshot().player.get("equippedPartnerId", ""): continue
-		var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
+		var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
 		room.companion.texture = load("res://assets/campaign/" + content.combat[id].image)
 		room.companion_frames = content.combat[id].animations.idle
 
@@ -1541,6 +1541,12 @@ func _park_event(id: String) -> void:
 		if str(int(event.id))!=id or not ParkCheckpoint.allowed(event,player,park.area_id): continue
 		if park.player.distance_to(Vector2(event.u+.5,event.v+.5))>1.8: return
 		var action: String = event.props.get("acao","")
+		if action=="retalhoTrust":
+			_show_retalho_trust();return
+		if action=="retalhoTrustRest":
+			_confirm_park("Descanso das docas","Recuperar linha e armação da equipe? Este ponto de apoio é gratuito.","Descansar",func():
+				if _result(load("res://scripts/campaign/retalho_trust.gd").new(session).rest(park.player)):park.refresh(session.snapshot().player))
+			return
 		if action in ["warehouseGollia","warehouseStory"]:
 			_request_warehouse(action=="warehouseGollia");return
 		if action=="warehouseRest":
@@ -1748,6 +1754,8 @@ func _show_encounter() -> void:
 			if _result(load("res://scripts/campaign/district_campaign.gd").new(session).settle()):_return_district_result.call_deferred()
 		elif is_morro:
 			if _result(morro.settle()): _return_morro_result.call_deferred()
+		elif session.snapshot().player.encounter.kind=="retalho-rescue":
+			if _result(load("res://scripts/campaign/retalho_trust.gd").new(session).settle()):_show_saved.call_deferred()
 		elif session.snapshot().player.encounter.kind=="warehouse-story":
 			if _result(load("res://scripts/campaign/warehouse_story.gd").new(session).settle()):_return_warehouse.call_deferred()
 		elif session.snapshot().player.encounter.kind=="retalho-story":
@@ -1788,7 +1796,7 @@ func _show_collection() -> void:
 	list.add_theme_constant_override("separation",16)
 	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.add_child(list)
-	var team_capacity:=maxi(1,floori((size.y-250)/(190*preferences.text_scale)))
+	var team_capacity:=maxi(1,floori((size.y-300)/(260*preferences.text_scale)))
 	var team_pages:=maxi(1,ceili(float(player.partners.size())/team_capacity))
 	team_page=clampi(team_page,0,team_pages-1)
 	for partner in player.partners.slice(team_page*team_capacity,(team_page+1)*team_capacity):
@@ -1799,7 +1807,7 @@ func _show_collection() -> void:
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation", 20)
 		card.add_child(row)
-		var art_id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
+		var art_id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
 		var art: Dictionary = content.combat[art_id]
 		var frame: Dictionary = art.animations.idle[0]
 		var texture := AtlasTexture.new()
@@ -1878,7 +1886,10 @@ func _show_collection() -> void:
 	if team_pages>1:
 		_button("Anterior",footer,func():team_page-=1;_show_collection()).disabled=team_page==0
 		_button("Próxima",footer,func():team_page+=1;_show_collection()).disabled=team_page==team_pages-1
-		_label("%d / %d"%[team_page+1,team_pages],footer,16)
+		var page_number:=_label("%d / %d"%[team_page+1,team_pages],footer,16)
+		page_number.autowrap_mode=TextServer.AUTOWRAP_OFF
+		page_number.custom_minimum_size.x=90
+		page_number.size_flags_vertical=Control.SIZE_SHRINK_CENTER
 
 func _route_action(id: String) -> void:
 	for place in park.data.places:
@@ -2564,7 +2575,7 @@ func _return_morro_result() -> void:
 	dialog.popup_centered()
 
 func _partner_portrait(model_id: String) -> Texture2D:
-	var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "lacertubo": "lacertubo"}.get(model_id, "rabbito")
+	var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "lacertubo": "lacertubo"}.get(model_id, "rabbito")
 	var art: Dictionary = content.combat[id]
 	var frame: Dictionary = art.animations.idle[0]
 	var texture := AtlasTexture.new()
@@ -2821,7 +2832,7 @@ func _show_retalho_care()->void:
 	if not service.near(room.actor):return
 	var index:int=service.step(session.snapshot().player)
 	if index>=service.nodes().size():
-		_notice("Sr. Assis: Ele aceitou nossa ajuda. Agora vamos deixar Retalho descansar, sem mexer no nó da rabiola.");return
+		_show_retalho_trust();return
 	var node:Dictionary=service.nodes()[index]
 	flow_busy=true;room.can_walk=false;room.set_story_paused(true)
 	room.face_actor(service.AT);room.face_mother(service.AT)
@@ -2842,7 +2853,7 @@ func _show_retalho_care()->void:
 			room.can_walk=true;room.set_story_paused(false)
 			var overlay:Control=room.get_meta("exploration_hud",null)
 			if is_instance_valid(overlay):overlay.objective.text=service.objective(session.snapshot().player)
-		if continue_scene[0] and TutorialStaging.valid(self,generation):_show_retalho_care.call_deferred())
+		if continue_scene[0] and index<service.nodes().size()-1 and TutorialStaging.valid(self,generation):_show_retalho_care.call_deferred())
 	dialog.popup_centered()
 
 func _show_blue_preparation()->void:
@@ -2867,3 +2878,87 @@ func _show_blue_preparation()->void:
 			var overlay:Control=room.get_meta("exploration_hud",null)
 			if is_instance_valid(overlay):overlay.objective.text=preload("res://scripts/campaign/kronasta_story.gd").objective(session.snapshot().player))
 	dialog.popup_centered()
+
+func _show_retalho_trust()->void:
+	if flow_busy:return
+	var service=load("res://scripts/campaign/retalho_trust.gd").new(session)
+	var p:Dictionary=session.snapshot().player
+	if not service.available(p):return
+	var n:int=service.stage(p)
+	if n==8:
+		_notice("Retalho escolheu acompanhar você. Ele está no banco de parceiros deste save.");return
+	var at:Vector2=room.actor if is_instance_valid(room) else park.player if is_instance_valid(park) else Vector2.INF
+	var scene:String=session.snapshot().checkpoint.get("scene","")
+	if not service.near(scene,at):return
+	if n<2 and scene!="professor-home" or n in [2,4] and scene!=service.A or n==3 and scene!=service.B or n>=5 and scene!=service.C:
+		_notice(service.objective(p));return
+	if is_instance_valid(park):
+		var subject:Vector2=service.SICK if scene==service.A else service.HERB if scene==service.B else service.RESCUE
+		if at.distance_to(subject)<.7:
+			for offset in [Vector2(0,1),Vector2(1,0),Vector2(0,-1),Vector2(-1,0)]:
+				var candidate:Vector2=subject+offset
+				if not park.model.clear_segment(at,candidate) or not service.near(scene,candidate):continue
+				park.player=candidate;at=candidate;park._refresh_positions();break
+	if n==7 and p.partners.size()>=service.CAPACITY:
+		_show_retalho_bank();return
+	var entry:Dictionary=service.nodes()[n]
+	flow_busy=true
+	if is_instance_valid(room):room.can_walk=false;room.set_story_paused(true)
+	if is_instance_valid(park):park.path.clear();park.paused=true
+	if n==6 and is_instance_valid(park) and not preferences.reduced_motion:
+		var companion_spot:Vector2=at+Vector2(2,0)
+		if park.model.point_walkable(companion_spot) and absf(park.model.height_at(companion_spot)-park.model.height_at(at))<.25:
+			park.follower=companion_spot;park._refresh_positions()
+		for actor:Dictionary in park.npc_nodes:
+			if actor.root.get_meta("event",{}).get("props",{}).get("acao","")!="retalhoTrust":continue
+			var original:Vector2=actor.root.position
+			var toward:Vector2=park.model.project(at,false)-original
+			var approach:=toward.limit_length(6)
+			var tween:Tween=actor.root.create_tween()
+			tween.tween_property(actor.root,"position",original-approach*.4,.45)
+			tween.tween_interval(.4)
+			tween.tween_property(actor.root,"position",original+approach,.85).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	var generation:=opening_generation
+	var dialog:=_dialog(entry.title,entry.text,"Proteger Retalho" if n==5 else "Acolher Retalho" if n==7 else "Continuar","Continuar depois")
+	dialog.name="RetalhoTrustDialogue"
+	var committed:=[false]
+	dialog.confirmed.connect(func():
+		if not TutorialStaging.valid(self,generation):return
+		var result:Dictionary=service.begin(at) if n==5 else service.claim(at) if n==7 else service.advance(n,at)
+		if not _result(result):return
+		committed[0]=true;dialog.queue_free())
+	dialog.canceled.connect(dialog.queue_free)
+	dialog.tree_exiting.connect(func():
+		flow_busy=false
+		if is_instance_valid(room):room.can_walk=true;room.set_story_paused(false)
+		if is_instance_valid(park):park.paused=false
+		if committed[0] and TutorialStaging.valid(self,generation):_after_retalho_trust.call_deferred(n)
+		elif n==6 and TutorialStaging.valid(self,generation):_show_world.call_deferred())
+	dialog.popup_centered()
+
+func _after_retalho_trust(n:int)->void:
+	_show_saved()
+	while is_instance_valid(scene_loading):await get_tree().process_frame
+	if n==7 and is_instance_valid(park):park.celebrate_item("Retalho escolheu acompanhar você")
+
+func _show_retalho_bank()->void:
+	var service=load("res://scripts/campaign/retalho_trust.gd").new(session)
+	var p:Dictionary=session.snapshot().player
+	if service.stage(p)!=7:return
+	_simple_page("Banco cheio · Retalho está esperando",true)
+	_label("Retalho já escolheu você. Libere uma vaga quando quiser; ele não será perdido.",page,22)
+	var scroll:=ScrollContainer.new();scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;scroll.follow_focus=true;page.add_child(scroll)
+	var list:=VBoxContainer.new();list.size_flags_horizontal=Control.SIZE_EXPAND_FILL;scroll.add_child(list)
+	for partner:Dictionary in p.partners:
+		var id:String=partner.id
+		if id==p.get("equippedPartnerId","") or partner.get("origin","")==service.ORIGIN:continue
+		var partner_name:String=partner.get("personalName",partner.modelId)
+		_button("Liberar "+partner_name+" · Nv. "+str(preload("res://scripts/campaign/partner_levels.gd").level_for_xp(partner.get("xp",0))),list,func():
+			var dialog:=_dialog("Liberar parceiro?",partner_name+" sairá permanentemente do banco deste save. Esta ação não pode ser desfeita. Nenhum outro parceiro será alterado.","Liberar permanentemente","Manter parceiro")
+			dialog.name="RetalhoBankReleaseDialogue"
+			dialog.confirmed.connect(func():
+				if _result(service.release(id)):
+					dialog.queue_free();_show_retalho_bank.call_deferred())
+			dialog.canceled.connect(dialog.queue_free);dialog.popup_centered())
+	_button("Voltar sem liberar ninguém",page,_show_saved)
+	if p.partners.size()<service.CAPACITY:_button("Voltar para acolher Retalho",page,_show_saved)

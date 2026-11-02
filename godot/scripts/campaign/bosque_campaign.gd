@@ -18,7 +18,7 @@ func travel(destination: String) -> Dictionary:
 	var source: String=saved.get("checkpoint",{}).get("scene","")
 	if saved.get("checkpoint",{}).get("kind","")!="world" or not available(saved.player): return {"status":"wrong_step"}
 	if source!="quintal" and not Checkpoint.MAPS.has(source) and not preload("res://scripts/campaign/morro.gd").maps().has(source): return {"status":"wrong_step"}
-	if not preload("res://scripts/campaign/kronasta_atlas.gd").can_travel(destination):return {"status":"wrong_step"}
+	if not preload("res://scripts/campaign/kronasta_atlas.gd").can_travel(destination,saved.player):return {"status":"wrong_step"}
 	if destination in ["park-trail","park-clearing","park-veredas"] and not Story.park_access(saved.player,destination):return {"status":"wrong_step"}
 	var target: Dictionary
 	var region:=Checkpoint.region_of(destination)
@@ -85,6 +85,7 @@ static func rest_events(area: String, model) -> Array:
 	return result
 
 static func objective(player: Dictionary, scene: String) -> String:
+	if scene.begins_with("kronasta-pantano-") and load("res://scripts/campaign/retalho_trust.gd").swamp_open(player) or scene.begins_with("kronasta-palafitas-"):return load("res://scripts/campaign/retalho_trust.gd").objective(player)
 	if scene=="kronasta-industrial-d":return preload("res://scripts/campaign/warehouse_story.gd").objective(player)
 	if scene=="kronasta-bosque-d":return "Retalho recuou. Guarde a pista do nó de expedição e volte pela trilha." if player.get("flags",{}).get("retalhoBosqueVencido",false) else "Procure Retalho na clareira elevada · Nv.22. O mato dos desvios é opcional."
 	if Checkpoint.region_of(scene) in ["bambuzal","beira-canal","feira","cais","industrial"]:return preload("res://scripts/campaign/district_campaign.gd").objective(player,Checkpoint.region_of(scene))

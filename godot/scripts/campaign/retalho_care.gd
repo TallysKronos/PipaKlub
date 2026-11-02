@@ -19,11 +19,11 @@ static func step(p:Dictionary)->int:
  return entries.size()
 static func objective(p:Dictionary)->String:
  if step(p)<nodes().size():return "Aproxime-se de Retalho no tapete · respeite o espaço dele."
- return "Retalho descansa no ateliê. Seu cuidado continua, no ritmo dele."
+ return load("res://scripts/campaign/retalho_trust.gd").objective(p)
 static func room_data(data:Dictionary,p:Dictionary)->Dictionary:
  var result:=data.duplicate(true)
- if available(p) and not result.hotspots.any(func(h):return h.id=="retalho-care"):
-  result.hotspots.append({"id":"retalho-care","name":"Cuidar de Retalho","x":AT.x,"y":AT.y})
+ if available(p) and not p.flags.get("retalhoFugiuVaral",false) and not result.hotspots.any(func(h):return h.id=="retalho-care"):
+  result.hotspots.append({"id":"retalho-care","name":"Verificar o Varal" if p.flags.get("retalhoVaralLivre",false) else "Cuidar de Retalho","x":AT.x,"y":AT.y})
  return result
 static func walkable(point:Vector2)->bool:
  if not point.is_finite():return false
@@ -44,7 +44,7 @@ func advance(expected:String,point:Vector2)->Dictionary:
  saved.player.flags[entry.flag]=true
  return session.commit_operation(entry.id+"-v1",{"kind":"world","scene":SPACE,"position":[point.x,point.y]},saved.player)
 static func build(room:Node2D,p:Dictionary)->void:
- if not available(p):return
+ if not available(p) or p.flags.get("retalhoVaralLivre",false):return
  var art:=Sprite2D.new();art.name="RetalhoAtelie"
  art.texture=load("res://assets/campaign/retalho-v1/overworld.png")
  art.scale=Vector2.ONE*76.0/art.texture.get_height()

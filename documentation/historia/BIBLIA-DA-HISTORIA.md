@@ -271,6 +271,10 @@ Essa estrutura está aprovada; cenário da prova, espécie usada na avaliação,
 
 **Arco pessoal de Retalho [Proposta mantida]:** trazê-lo de volta **sem cortar a rabiola** é uma escolha de Kael, não uma tarefa da Liga. Retalho foge do Varal, come uma flor que faz mal (é preciso achar o remédio no Pântano) e depois é pego por valentões das Palafitas. No fim, ele aceita ficar. A revelação de quem ele é fica para o ato 4. Essa experiência pode preparar emocionalmente Kael para o exame, sem condicionar sua inscrição ou aprovação.
 
+**Conquista de Retalho [Decidido, 02/11/2026]:** após o cuidado no ateliê, Kael oferece descanso livre no Varal. Retalho foge; Kael encontra-o doente no Pântano e busca o remédio, sem exigir que volte. Nas Palafitas, Kael o protege dos valentões e deixa a passagem livre. Retalho começa a partir, para e retorna espontaneamente, aproximando sua rabiola da mão de Kael. A cena apresenta **“Retalho escolheu acompanhar você”**. Ele se torna um parceiro do banco do save, uma única vez, pela confiança — não por captura, corte ou aprovação no exame Azul.
+
+Se as 30 vagas do banco do save estiverem ocupadas, a escolha fica registrada e Retalho aguarda acolhimento até o jogador organizar espaço. Nenhum parceiro é substituído automaticamente; liberar um parceiro exige confirmação e não pode atingir o parceiro equipado. Isso não ocupa automaticamente uma das 20 vagas globais da conta. A revelação futura sobre Heleana aprofunda o vínculo sem retirar Retalho do jogador. Nesta primeira integração, a ida ao Varal e a passagem da noite usam uma elipse narrativa; o Varal livre em overworld ainda não foi construído. Palafitas A–C recebe o percurso de resgate; seu campeonato continua separado e ainda pendente.
+
 ### 7.5 Ato 4 — Rabiola Vermelha: "Os Quatro Ventos"
 
 | Ordem | Lugar | Acontece | Chefe ou duelo | Abre |

@@ -23,7 +23,7 @@ const PLACES := [
 	{"scene":"kronasta-cais-a","id":"cais","name":"Cais Velho","kind":"bairro","bairro":5,"act":3,"levels":"18–21","note":"Bairro 5."},
 	{"id":"industrial","name":"Distrito Industrial","kind":"bairro","bairro":6,"act":3,"levels":"4–6 na prévia","scene":"kronasta-industrial-a","preview":true,"note":"Pátio de Cargas, Canal das Caldeiras e Usina do Vento."},
 	{"id":"pantano","name":"Pântano do Mormaço","kind":"natural","act":4,"levels":"5–7 na prévia","scene":"kronasta-pantano-a","preview":true,"note":"Entrada alagada, Desvio dos cipós e Lago profundo."},
-	{"id":"palafitas","name":"Palafitas","kind":"bairro","bairro":7,"act":4,"levels":"24–27","note":"Bairro 7."},
+	{"id":"palafitas","scene":"kronasta-palafitas-a","name":"Palafitas · resgate","kind":"bairro","bairro":7,"act":4,"levels":"24","note":"Resgate de Retalho. Campeonato do bairro em desenvolvimento."},
 	{"id":"montanha","name":"Serra do Minuano","kind":"natural","act":4,"levels":"6–8 na prévia","scene":"kronasta-montanha-a","preview":true,"note":"Sopé, Encosta e Cume."},
 	{"id":"alto-da-serra","name":"Alto da Serra","kind":"bairro","bairro":8,"act":4,"levels":"27–30","note":"Bairro 8."},
 	{"id":"aracati","name":"Ilha do Aracati","kind":"natural","act":4,"levels":"30–34","note":"A ponte está fechada."},
@@ -65,6 +65,7 @@ const BEATS := [
 	{"id":"bruno-emblema","act":3,"place":"industrial","text":"Depois do galpão, vença os desafios da Vila Operária e dispute o emblema com Bruno Solda."},
 	{"id":"azul-preparacao","act":3,"place":"rua-dos-ventos","text":"Converse com o Sr. Assis sobre a prova de condução e cuidado da Liga."},
 	{"id":"retalho-atelie","act":3,"place":"rua-dos-ventos","text":"Arco pessoal · volte ao ateliê e aproxime-se de Retalho sem puxar sua rabiola."},
+	{"id":"retalho-confianca","act":3,"place":"rua-dos-ventos","text":"Arco pessoal · acompanhe Retalho, sem exigir que ele fique."},
 ]
 
 ## QA previews: built maps whose story gate does not exist yet open only in development
@@ -92,6 +93,7 @@ static func beat_done(player: Dictionary, id: String) -> bool:
 		"galpao-retalho":return f.get("pipaDragaoDesatadaVencida",false)
 		"bruno-emblema":return preload("res://scripts/campaign/district_rules.gd").completed(player,"industrial")
 		"retalho-atelie":return f.get("assisReconheceuNoRetalho",false)
+		"retalho-confianca":return f.get("retalhoAcolhido",false)
 		"azul-preparacao":return preload("res://scripts/campaign/blue_exam_preparation.gd").prepared(player)
 		"foto-expedicao":return f.get("fotoExpedicaoLida",false)
 		"retalho-bosque":return f.get("retalhoBosqueVencido",false)
@@ -136,6 +138,7 @@ static func act(player: Dictionary) -> int:
 
 static func objective(player: Dictionary) -> String:
 	var beat:=current_beat(player)
+	if beat.get("id")=="retalho-confianca":return load("res://scripts/campaign/retalho_trust.gd").objective(player)
 	if not beat.is_empty(): return beat.text
 	if preload("res://scripts/campaign/blue_exam_preparation.gd").prepared(player):return preload("res://scripts/campaign/blue_exam_preparation.gd").data().prepared
 	return "Próximo destino: %s. Essa parte da história chega em breve." % next_destination(player).get("name","")
@@ -151,7 +154,7 @@ static func next_destination(player: Dictionary = {}) -> Dictionary:
 ## Places the player can go back to freely: open or won. Story beats inside them
 ## are not replayed (won duels and bosses stay gone).
 static func released(player: Dictionary) -> Array:
-	return PLACES.filter(func(entry): return state(player,entry.id) in ["aberto","vencido"] and not entry.get("preview",false))
+	return PLACES.filter(func(entry): return state(player,entry.id) in ["aberto","vencido"] and (not entry.get("preview",false) or entry.id=="pantano" and load("res://scripts/campaign/retalho_trust.gd").swamp_open(player)))
 
 static func previews(player: Dictionary) -> Array:
 	return PLACES.filter(func(entry): return entry.get("preview",false) and qa() and state(player,entry.id)=="aberto")
@@ -174,6 +177,9 @@ static func state(player: Dictionary, id: String) -> String:
 	var entry:=place(id)
 	if entry.is_empty(): return "em-breve"
 	match id:
+		"palafitas":return "aberto" if load("res://scripts/campaign/retalho_trust.gd").docks_open(player) else "fechado"
+		"pantano":
+			if load("res://scripts/campaign/retalho_trust.gd").swamp_open(player):return "aberto"
 		"rua-dos-ventos": return "aberto"
 		"parque": return "aberto" if prologue_done(player) else "fechado"
 		"morro": return "vencido" if mikka_defeated(player) else "aberto" if prologue_done(player) else "fechado"
@@ -193,9 +199,10 @@ static func can_travel(player: Dictionary, id: String) -> bool:
 
 static func requirement(player: Dictionary, id: String) -> String:
 	var entry:=place(id)
+	if id=="palafitas" and state(player,id)=="fechado":return "O caminho abre durante o arco pessoal de Retalho"
 	if id=="beira-canal" and preload("res://scripts/campaign/district_rules.gd").completed(player,"bambuzal") and not flags(player).get("leagueGreen",false):return "Conclua o primeiro exame com Nina"
 	match state(player,id):
-		"aberto": return "QA · prévia sem história" if entry.get("preview",false) else "Aberto"
+		"aberto": return "Resgate de Retalho disponível" if id in ["pantano","palafitas"] and load("res://scripts/campaign/retalho_trust.gd").swamp_open(player) else "QA · prévia sem história" if entry.get("preview",false) else "Aberto"
 		"vencido": return "Bairro vencido"
 		"fechado": return "Vença a Mikka no Morro do Sol" if id=="bambuzal" else "Vença o Lohan na Vila do Bambuzal" if id=="beira-canal" else "Vença o Kleie em Beira-Canal" if id=="feira" else "Vença a Feira do Largo e recupere o apito verdadeiro" if id=="caverna" else "Vença Dona Zulmira na Feira do Largo" if id=="cais" else "Abre ao terminar o prólogo"
 	return "Em breve"
