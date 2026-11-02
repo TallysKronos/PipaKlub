@@ -1,0 +1,13 @@
+{
+  "sourceCommit": "736b3751",
+  "suites": [
+    {"script": "mural_transition_checks.gd", "checks": 47, "failures": 0, "runners": ["headless", "native-gl-compatibility"]},
+    {"script": "result_settlement_checks.gd", "checks": 8, "failures": 0, "runners": ["headless"]}
+  ],
+  "uniqueFunctionalChecks": 55,
+  "nativeCaptures": 24,
+  "nativePaddingChecks": 24,
+  "nativePaddingFailures": 0,
+  "physicalController": false,
+  "auditoryMixReview": false
+}
