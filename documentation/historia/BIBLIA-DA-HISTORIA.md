@@ -191,13 +191,13 @@ Eles não são supervisores de rank, como os guardiões de Digimon World DS. Ele
 
 ## 6. Categorias do campeonato (ranks)
 
-**[Proposta]** A escada de rank de Digimon World DS (P1, P2), trocada por categorias da Liga. Cada categoria vale para 2 bairros e termina num **exame** dado pela Dona Cida. O exame é sempre uma tarefa da trajetória 2 vista pelo lado da Liga, para as duas trajetórias andarem juntas.
+**[Proposta]** A escada de rank de Digimon World DS (P1, P2), trocada por categorias da Liga. Cada categoria vale para 2 bairros e termina num **exame** dado pela Dona Cida. **[Decidido, 02/11/2026]** O exame Azul é uma avaliação comum a todos os candidatos, independente dos acontecimentos exclusivos da história de Kael. Experiências da trajetória pessoal podem prepará-lo, mas não substituem a prova da Liga. Os demais exames da tabela permanecem propostas a revisar segundo esse princípio.
 
 | Categoria | Bairros | Exame para subir | O que libera |
 | --- | --- | --- | --- |
 | **Rabiola Branca** | 1 e 2 | Achar a rabiola da Nina no Parque dos Ventos | 2 vagas no Varal. Remonta até o estágio Pipa |
 | **Rabiola Verde** | 3 e 4 | Achar o Tyler, que a Liga dá como desaparecido | Loja da Liga, ala 2. Pedidos de parceiro da categoria Verde |
-| **Rabiola Azul** | 5 e 6 | Trazer o Retalho de volta sem cortar a rabiola dele | Remonta até o estágio Arraia. 4 vagas no Varal |
+| **Rabiola Azul** | 5 e 6 | Prova de condução e cuidado: observação, condução e controle, aplicada por Dona Cida a todos os candidatos | Remonta até o estágio Arraia. 4 vagas no Varal |
 | **Rabiola Vermelha** | 7 e 8 | Libertar os Quatro Ventos | Loja da Liga, ala 3. Torneio da TV |
 | **Rabiola Dourada** | 9 e 10 | **Copa Relâmpago**: 3 duelos seguidos, 3 parceiros fixos, sem itens (P24) | Remonta até o estágio Pandorga. 6 vagas no Varal |
 | **Campeão de Kronasta** | 11 e 12 | A final contra a Jamile | Pós-jogo |
@@ -259,9 +259,17 @@ Já existe: abertura, aniversário de 15 anos, Rabbito, oficina, treino com o Sr
 | 4 | Vila Operária A–B | Bairro 6. Fábrica de linha. A Gollia está lá e aceita o Carretel Negro do Bando "só para testar". | Gollia (23) | — |
 | 5 | Vila Operária D, galpão | **O chefe impossível (P9).** O Bando costurou três rabiolas roubadas num só corpo, a **Pipa-Dragão**. O Kael não tem como vencer. O Retalho se joga na frente para defender o Kael e perde, como o lobo solitário de Digimon World DS. O Tyler chega e **desata os nós**, soltando duas das três almas. A Pipa-Dragão encolhe. | Pipa-Dragão (impossível) → Pipa-Dragão desatada (25) | **Agulha de desatar**: permite desmontar um parceiro e remontar por outra rota |
 | 6 | Vila Operária C | Duelo pelo bairro. | Campeão 6, **Bruno Solda** (24) | Bairro 7 |
-| 7 | Ateliê | O Retalho, ferido, deixa o Kael chegar perto. O Assis reconhece o nó da rabiola. | — | Exame da categoria Azul |
+| 7 | Ateliê | O Retalho, ferido, deixa o Kael chegar perto. O Assis reconhece o nó da rabiola. | — | Continuação do arco pessoal de Retalho, independente do exame Azul |
 
-**Exame da categoria Azul [Proposta]:** trazer o Retalho de volta **sem cortar a rabiola**. É o arco do Pagumon de Digimon World DS: o Retalho foge do Varal, come uma flor que faz mal (é preciso achar o remédio no Pântano) e depois é pego por valentões das Palafitas. No fim, ele aceita ficar. A revelação de quem ele é fica para o ato 4.
+**Exame da categoria Azul [Decidido, 02/11/2026]:** prova de condução e cuidado aplicada por Dona Cida. Qualquer jovem do universo pode realizá-la, sem conhecer Retalho ou participar da história de Kael. Após a categoria anterior e os bairros 5 e 6, a orientação apresenta três competências:
+
+1. **Observação:** identificar o estado de um Soulmonster e escolher o cuidado adequado.
+2. **Condução:** acompanhá-lo por um percurso com obstáculos, respeitando seu ritmo.
+3. **Controle:** resolver um desafio prático usando técnica, sem colocar o parceiro em risco desnecessário. Uma vitória em batalha, sozinha, não basta.
+
+Essa estrutura está aprovada; cenário da prova, espécie usada na avaliação, métricas, condições de reprovação e repetição ainda precisam de definição antes da implementação da prova jogável. A orientação de Assis não concede categoria nem atesta aprovação. O arco de Retalho não é pré-requisito do exame, não dá pontos e não substitui nenhuma etapa.
+
+**Arco pessoal de Retalho [Proposta mantida]:** trazê-lo de volta **sem cortar a rabiola** é uma escolha de Kael, não uma tarefa da Liga. Retalho foge do Varal, come uma flor que faz mal (é preciso achar o remédio no Pântano) e depois é pego por valentões das Palafitas. No fim, ele aceita ficar. A revelação de quem ele é fica para o ato 4. Essa experiência pode preparar emocionalmente Kael para o exame, sem condicionar sua inscrição ou aprovação.
 
 ### 7.5 Ato 4 — Rabiola Vermelha: "Os Quatro Ventos"
 

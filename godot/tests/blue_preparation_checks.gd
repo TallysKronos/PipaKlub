@@ -28,7 +28,7 @@ func run()->void:
  root.add_child(app);app.preferences.reduced_motion=true
  check(app.session.start("slot-1").status=="ok","isolated save")
  var p:Dictionary=app.session.snapshot().player
- check(not Prep.eligible(p),"cannot skip care")
+ check(not Prep.eligible(p),"league prerequisites required")
  p.partners=[{"id":"r","modelId":"rabbito","xp":4000}];p.equippedPartnerId="r";p.journey={"phase":"complete","lesson":5}
  # Historical records, including a lost title, must not undo narrative guidance.
  for id in ["morro","bambuzal","beira-canal","feira","cais","industrial"]:
@@ -39,6 +39,13 @@ func run()->void:
   Rules.store(p,id,district)
  for flag in ["ninaAccepted","guardianDefeated","ninaReturned","bosqueClareiraDescoberta","tylerClareiraMet","leagueGreen","ninaGlideTutorialDone","comportaVeredasAberta","feiraApitoComprado","feiraApitoFalsoTestado","feiraApitoVerdadeiro","muralPrimeiroLaco","retalhoBosqueVencido","fotoExpedicaoLida","golliaCarretelVencida","pipaDragaoDesatadaVencida","retalhoAtelieAproximacao","retalhoAtelieCuidado","assisReconheceuNoRetalho","exameAzulPreparacao"]:p.flags[flag]=true
  check(Prep.eligible(p),"orientation eligible")
+ var independent:Dictionary=p.duplicate(true)
+ for flag in ["retalhoBosqueVencido","pipaDragaoDesatadaVencida","retalhoAtelieAproximacao","retalhoAtelieCuidado","assisReconheceuNoRetalho","exameAzulPreparacao"]:independent.flags.erase(flag)
+ check(Prep.eligible(independent),"league orientation independent of Retalho arc")
+ independent.flags.exameAzulOrientado=true
+ check(not Prep.prepared(independent),"legacy orientation must receive corrected briefing")
+ independent.flags.erase("leagueGreen")
+ check(not Prep.eligible(independent),"previous category still required")
  for beat in ["galpao-gollia","galpao-retalho","bruno-emblema","retalho-atelie"]:check(Story.beat_done(p,beat),"journal reads "+beat)
  check(Story.current_beat(p).id=="azul-preparacao","journal guides to orientation")
  var cp:={"kind":"world","scene":Care.SPACE,"position":[Care.APPROACH.x,Care.APPROACH.y]}
@@ -52,13 +59,13 @@ func run()->void:
  check(Prep.confirm(app.session,Care.APPROACH).status=="io_error","write failure")
  check(app.session.snapshot()==baseline,"failure preserves progress")
  app.session._store=working
- app._show_world();await frames();app._world_interact("retalho-care");await frames()
+ app._show_world();await frames();app._world_interact("professor");await frames()
  var dialog:Control=app.get_node_or_null("BlueExamPreparationDialogue")
  check(is_instance_valid(dialog) and app.flow_busy and not app.room.can_walk,"orientation captures input")
  if not is_instance_valid(dialog):app.free();quit(1);return
  dialog.canceled.emit();await frames()
  check(not Prep.prepared(app.session.snapshot().player) and app.room.can_walk and not app.flow_busy,"cancel restores exploration")
- app._world_interact("retalho-care");await frames();dialog=app.get_node("BlueExamPreparationDialogue")
+ app._world_interact("professor");await frames();dialog=app.get_node("BlueExamPreparationDialogue")
  while dialog.page_index<dialog.pages.size()-2:dialog.next_page()
  await capture("01-orientacao")
  while dialog.page_index<dialog.pages.size()-1:dialog.next_page()
@@ -74,5 +81,9 @@ func run()->void:
  check(current.partners==original.partners and current.inventory==original.inventory and current.coins==original.coins,"no creature, coin or item reward")
  check(Prep.confirm(app.session,Care.APPROACH).status=="already_applied" and app.session.snapshot()==after,"replay read only")
  app._show_world();await frames();await capture("02-preparacao-registrada")
+ independent.flags.leagueGreen=true
+ check(app.session.start("slot-2").status=="ok" and app.session.commit_operation("blue-exam.orientation-v1",cp,independent).status=="ok","legacy candidate without Retalho saved separately")
+ check(Prep.confirm(app.session,Care.APPROACH).status=="ok","candidate without Retalho receives orientation")
+ check(not app.session.snapshot().player.flags.get("assisReconheceuNoRetalho",false) and app.session.snapshot().player.flags.get("exameAzulOrientado",false) and Prep.prepared(app.session.snapshot().player),"legacy progress preserved without inventing care")
  print("BLUE PREPARATION ",checks," checks; ",failures," failures")
  app.free();quit(0 if failures==0 else 1)

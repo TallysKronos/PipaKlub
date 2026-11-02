@@ -79,7 +79,7 @@ func run()->void:
   check(app.session.resume_slot("slot-1").status=="ok" and Care.step(app.session.snapshot().player)==i+1,"resume at next unread beat")
   app._show_world();await frames()
  var after:Dictionary=app.session.snapshot()
- check(after.player.flags.get("assisReconheceuNoRetalho",false) and after.player.flags.get("exameAzulPreparacao",false),"recognition and preparation stored")
+ check(after.player.flags.get("assisReconheceuNoRetalho",false) and not after.player.flags.get("exameAzulOrientadoV2",false),"recognition does not grant league orientation")
  check(not after.player.flags.get("leagueBlue",false),"no automatic blue promotion")
  var original:Dictionary=JSON.parse_string(JSON.stringify(before.player))
  var current:Dictionary=JSON.parse_string(JSON.stringify(after.player))

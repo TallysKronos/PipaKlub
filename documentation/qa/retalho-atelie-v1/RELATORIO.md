@@ -4,7 +4,7 @@
 
 Cena posterior à vitória no galpão e à conclusão histórica da Vila Operária, conforme a seção 7.4 da Bíblia. Retalho permite a aproximação de Kael, recebe cuidado e Assis reconhece o nó da expedição. O acesso continua válido caso o jogador perca o título do bairro depois.
 
-Três etapas possuem identificadores estáveis e gravação por operação. Interromper conserva somente as etapas confirmadas; retomar abre o próximo trecho. Falha de gravação não avança a história. A conclusão marca a preparação do exame Azul, sem conceder a categoria, capturar Retalho, curar o grupo ou alterar itens, moedas e XP.
+Três etapas possuem identificadores estáveis e gravação por operação. Interromper conserva somente as etapas confirmadas; retomar abre o próximo trecho. Falha de gravação não avança a história. Desde a revisão de 02/11/2026, a conclusão registra apenas o reconhecimento do nó: não habilita nem conclui orientação ou exame da Liga. Não concede categoria, captura Retalho, cura o grupo ou altera itens, moedas e XP. As capturas abaixo são o registro visual original; a última fala teve a referência à categoria Azul removida nessa revisão.
 
 Reutiliza o ateliê, os retratos e o sprite aprovado de Retalho. Nenhuma geometria ou passagem foi alterada. O sprite ainda é estático e ereto: uma pose específica de repouso e animação de cuidado continuam pendentes.
 

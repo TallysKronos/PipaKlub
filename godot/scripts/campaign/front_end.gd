@@ -831,6 +831,7 @@ func _show_world() -> void:
 	overlay.player_data=session.snapshot().player
 	add_child(overlay)
 	if professor and preload("res://scripts/campaign/retalho_care.gd").available(session.snapshot().player):overlay.objective.text=preload("res://scripts/campaign/retalho_care.gd").objective(session.snapshot().player)
+	if professor and preload("res://scripts/campaign/blue_exam_preparation.gd").eligible(session.snapshot().player) and not preload("res://scripts/campaign/blue_exam_preparation.gd").prepared(session.snapshot().player):overlay.objective.text=preload("res://scripts/campaign/blue_exam_preparation.gd").data().pending
 	overlay.map=Hud.map_for(room,overlay)
 	status=overlay.prompt
 	room.set_meta("exploration_hud",overlay)
@@ -989,7 +990,9 @@ func _world_interact(id: String) -> void:
 	elif id == "exit":
 		TutorialStaging.leave_atelier(self)
 	elif id == "professor":
-		TutorialStaging.meet_professor(self)
+		var preparation=preload("res://scripts/campaign/blue_exam_preparation.gd")
+		if preparation.eligible(session.snapshot().player) and not preparation.prepared(session.snapshot().player):_show_blue_preparation()
+		else:TutorialStaging.meet_professor(self)
 	elif id=="study" and point.scene=="professor-home" and preload("res://scripts/campaign/expedition_photo.gd").available(session.snapshot().player):
 		_show_expedition_photo()
 	elif id == "workbench":
@@ -2818,7 +2821,7 @@ func _show_retalho_care()->void:
 	if not service.near(room.actor):return
 	var index:int=service.step(session.snapshot().player)
 	if index>=service.nodes().size():
-		_show_blue_preparation();return
+		_notice("Sr. Assis: Ele aceitou nossa ajuda. Agora vamos deixar Retalho descansar, sem mexer no nó da rabiola.");return
 	var node:Dictionary=service.nodes()[index]
 	flow_busy=true;room.can_walk=false;room.set_story_paused(true)
 	room.face_actor(service.AT);room.face_mother(service.AT)
@@ -2845,10 +2848,9 @@ func _show_retalho_care()->void:
 func _show_blue_preparation()->void:
 	if flow_busy or not is_instance_valid(room):return
 	var preparation=preload("res://scripts/campaign/blue_exam_preparation.gd")
-	var care=preload("res://scripts/campaign/retalho_care.gd").new(session)
-	if not preparation.eligible(session.snapshot().player) or not care.near(room.actor):return
+	if not preparation.eligible(session.snapshot().player) or not preparation.near(session,room.actor):return
 	if preparation.prepared(session.snapshot().player):
-		_notice("Sr. Assis: Hoje ele precisa descansar. A continuação do exame Azul ainda não está disponível nesta versão.");return
+		_notice("Sr. Assis: A orientação está registrada. A prova da Liga com Dona Cida ainda não está disponível nesta versão.");return
 	var entry:Dictionary=preparation.data()
 	flow_busy=true;room.can_walk=false;room.set_story_paused(true)
 	var generation:=opening_generation
@@ -2863,5 +2865,5 @@ func _show_blue_preparation()->void:
 		if is_instance_valid(room):
 			room.can_walk=true;room.set_story_paused(false)
 			var overlay:Control=room.get_meta("exploration_hud",null)
-			if is_instance_valid(overlay):overlay.objective.text=care.objective(session.snapshot().player))
+			if is_instance_valid(overlay):overlay.objective.text=preload("res://scripts/campaign/kronasta_story.gd").objective(session.snapshot().player))
 	dialog.popup_centered()

@@ -63,8 +63,8 @@ const BEATS := [
 	{"id":"galpao-gollia","act":3,"place":"industrial","text":"Na Vila Operária, encontre Gollia no depósito da parte B."},
 	{"id":"galpao-retalho","act":3,"place":"industrial","text":"Atravesse a porta do depósito e investigue o galpão com Tyler e Retalho."},
 	{"id":"bruno-emblema","act":3,"place":"industrial","text":"Depois do galpão, vença os desafios da Vila Operária e dispute o emblema com Bruno Solda."},
-	{"id":"retalho-atelie","act":3,"place":"rua-dos-ventos","text":"Volte ao ateliê do Sr. Assis. Aproxime-se de Retalho sem puxar sua rabiola."},
-	{"id":"azul-preparacao","act":3,"place":"rua-dos-ventos","text":"Converse novamente junto de Retalho sobre a preparação para o exame Azul."},
+	{"id":"azul-preparacao","act":3,"place":"rua-dos-ventos","text":"Converse com o Sr. Assis sobre a prova de condução e cuidado da Liga."},
+	{"id":"retalho-atelie","act":3,"place":"rua-dos-ventos","text":"Arco pessoal · volte ao ateliê e aproxime-se de Retalho sem puxar sua rabiola."},
 ]
 
 ## QA previews: built maps whose story gate does not exist yet open only in development
@@ -92,7 +92,7 @@ static func beat_done(player: Dictionary, id: String) -> bool:
 		"galpao-retalho":return f.get("pipaDragaoDesatadaVencida",false)
 		"bruno-emblema":return preload("res://scripts/campaign/district_rules.gd").completed(player,"industrial")
 		"retalho-atelie":return f.get("assisReconheceuNoRetalho",false)
-		"azul-preparacao":return f.get("exameAzulOrientado",false)
+		"azul-preparacao":return preload("res://scripts/campaign/blue_exam_preparation.gd").prepared(player)
 		"foto-expedicao":return f.get("fotoExpedicaoLida",false)
 		"retalho-bosque":return f.get("retalhoBosqueVencido",false)
 		"cais-emblema":return preload("res://scripts/campaign/district_rules.gd").completed(player,"cais")
@@ -132,12 +132,12 @@ static func category(player: Dictionary) -> String:
 
 static func act(player: Dictionary) -> int:
 	var beat:=current_beat(player)
-	return int(beat.act) if not beat.is_empty() else 3 if flags(player).get("exameAzulPreparacao",false) else 2 if flags(player).get("leagueGreen",false) else 1
+	return int(beat.act) if not beat.is_empty() else 3 if preload("res://scripts/campaign/district_rules.gd").completed(player,"industrial") else 2 if flags(player).get("leagueGreen",false) else 1
 
 static func objective(player: Dictionary) -> String:
 	var beat:=current_beat(player)
 	if not beat.is_empty(): return beat.text
-	if flags(player).get("exameAzulOrientado",false):return preload("res://scripts/campaign/blue_exam_preparation.gd").data().prepared
+	if preload("res://scripts/campaign/blue_exam_preparation.gd").prepared(player):return preload("res://scripts/campaign/blue_exam_preparation.gd").data().prepared
 	return "Próximo destino: %s. Essa parte da história chega em breve." % next_destination(player).get("name","")
 
 ## The first place of the story still ahead (not open and not won), in map order.

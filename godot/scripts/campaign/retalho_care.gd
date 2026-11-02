@@ -19,8 +19,7 @@ static func step(p:Dictionary)->int:
  return entries.size()
 static func objective(p:Dictionary)->String:
  if step(p)<nodes().size():return "Aproxime-se de Retalho no tapete · respeite o espaço dele."
- var preparation:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/retalho-care-v1/blue-preparation.json"))
- return preparation.prepared if p.get("flags",{}).get("exameAzulOrientado",false) else preparation.pending
+ return "Retalho descansa no ateliê. Seu cuidado continua, no ritmo dele."
 static func room_data(data:Dictionary,p:Dictionary)->Dictionary:
  var result:=data.duplicate(true)
  if available(p) and not result.hotspots.any(func(h):return h.id=="retalho-care"):
@@ -43,7 +42,6 @@ func advance(expected:String,point:Vector2)->Dictionary:
  var entry:Dictionary=entries[index]
  if expected!=entry.id:return {"status":"wrong_step"}
  saved.player.flags[entry.flag]=true
- if index==entries.size()-1:saved.player.flags.exameAzulPreparacao=true
  return session.commit_operation(entry.id+"-v1",{"kind":"world","scene":SPACE,"position":[point.x,point.y]},saved.player)
 static func build(room:Node2D,p:Dictionary)->void:
  if not available(p):return
