@@ -11,3 +11,5 @@ Oruvo: fonte e preview-trio.png adicionados. Ver revisao-oruvo.md para a pendên
 Kessai: fonte transparente e preview-quarteto.png adicionados. Ver revisao-kessai.md. Falta Veldren para completar as cinco fontes de Palafitas; normalização e integração continuam pendentes.
 
 As cinco fontes estáticas estão presentes: Caio, Seyran, Oruvo, Kessai e Veldren. Prévia conjunta preview-grupo.png. Falta normalização, tratamento de pixels residuais, comparação em escala real e integração no mapa. Não são spritesheets de caminhada.
+
+Atualização: cinco saídas normalizadas a112px em godot/assets/npc-ds/palafitas-v1/, qa.json e preview-112.png. Revisão nativa e403 checks de caminhada concluídos; ver documentation/qa/palafitas-art-v1/RELATORIO.md. Ainda sem eventos definitivos de campeonato.
