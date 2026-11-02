@@ -2696,23 +2696,24 @@ func _show_mural_story()->void:
 	var node:Dictionary=service.nodes()[index]
 	park.path.clear();park.paused=true
 	var scene_dialog:=_dialog(node.title,node.text,"Guardar esta lembrança","Continuar depois")
-	var illustration:=TextureRect.new()
-	illustration.texture=load("res://assets/overworld/kits/mural-v1/primeiro-laco.png")
-	illustration.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
-	illustration.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	illustration.mouse_filter=Control.MOUSE_FILTER_IGNORE
-	illustration.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
-	illustration.anchor_left=.06;illustration.anchor_right=.94
-	illustration.offset_top=18;illustration.offset_bottom=320
-	scene_dialog.add_child(illustration)
+	var cinematic:Control=get_tree().get_first_node_in_group("mural_cinematic")
+	if not is_instance_valid(cinematic):
+		cinematic=load("res://scripts/campaign/mural_cinematic.gd").new()
+		cinematic.reduced_motion=preferences.reduced_motion
+		add_child(cinematic)
 	scene_dialog.confirmed.connect(func():
 		var result:Dictionary=service.advance(index,park.player)
 		if not _result(result):return
 		scene_dialog.queue_free()
 		if service.step(session.snapshot().player)<3:_show_mural_story.call_deferred()
 		else:
+			if is_instance_valid(cinematic):cinematic.queue_free()
 			park.paused=false;park.refresh(session.snapshot().player)
 			park.celebrate_item("A Rabiola Antiga respondeu ao mural"))
-	scene_dialog.canceled.connect(func():scene_dialog.queue_free();park.paused=false)
+	scene_dialog.canceled.connect(func():
+		scene_dialog.queue_free()
+		if is_instance_valid(cinematic):cinematic.queue_free()
+		park.paused=false)
+	scene_dialog.show_portraits=false
 	scene_dialog.popup_centered()
 	scene_dialog.portrait.hide();scene_dialog.other_portrait.hide()

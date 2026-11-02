@@ -43,3 +43,9 @@ Aprovar a proposta pictográfica do mural. Próxima região de campeonato perman
 
 ## 8. Não verificado
 Não foi feita inspeção individual em tamanho nativo de cada uma das432 imagens; os detalhes foram revisados por pranchas e amostras, portanto o acabamento visual não recebe aprovação final. Não houve sessão manual longa com controle físico, Steam Deck ou build exportada. O teste de fluxo usa fixture local com pré-requisitos preparados; não repete desde o prólogo. Sem avaliação de duração narrativa com jogadores externos. Não implementa movimento dramatizado, dublagem, música própria, animação da luz da rabiola ou Soulgen para Tyler. Reaproveita formações do kit de cavernas. Sem merge/push/deploy nesta etapa.
+
+
+## Revisão — câmera frontal do mural
+Substituída a imagem solta sobre a exploração por um palco cinematográfico com Camera3D em viewport independente: parede de calcário, chão e moldura com espessura, mantendo a ilustração 2D original. Movimento oblíquo→frontal em 1,15s, uma vez por entrada na leitura; não reinicia entre as três etapas. Movimento reduzido vai direto à posição frontal. Cancelamento e conclusão removem o palco e liberam a exploração sem alterar a posição do jogador. Retratos ficam ocultos durante todas as páginas para não tapar o painel. Geometria e colisões do mapa permanecem iguais.
+
+Fluxo nativo atualizado:27 verificações sem falhas, incluindo início oblíquo, chegada frontal, continuidade entre etapas, cancelamento, retomada com movimento reduzido e liberação ao concluir. Capturas 03a-camera-entrada.png e 03-primeiro-laco.png mostram os dois ângulos em 1280×720. É um enquadramento de leitura separado; não converte o mapa inteiro em 3D nem anima Tyler de costas. Não foi medido em Steam Deck/build exportada.

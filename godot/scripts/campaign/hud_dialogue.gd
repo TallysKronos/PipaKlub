@@ -16,6 +16,7 @@ var ok_button_text:="Entendi"
 var cancel_button_text:=""
 var options:Array=[]
 var option_buttons:Array[Button]=[]
+var show_portraits:=true
 var reduced_motion:=false
 var allow_cancel:=true
 var body:Label
@@ -164,6 +165,7 @@ func _show_page() -> void:
 		if earlier.speaker!=page.speaker:
 			other_portrait.texture=_portrait_for(earlier.speaker)
 			other_portrait.visible=other_portrait.texture!=null
+	if not show_portraits:portrait.hide();other_portrait.hide()
 	box.shouted=page.shout;box.queue_redraw()
 	reaction_age=0
 	var last:=page_index==pages.size()-1
