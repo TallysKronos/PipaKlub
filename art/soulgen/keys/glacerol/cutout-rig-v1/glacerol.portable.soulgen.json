@@ -1,10 +1,10 @@
 {
   "schema": "soulgen-studio",
   "version": 1,
-  "name": "Glacerol · guardiã da geleira",
+  "name": "Glacerol Â· guardiÃ£ da geleira",
   "creatureId": "glacerol",
   "artRevision": 1,
-  "rigRevision": 1,
+  "rigRevision": 2,
   "preserveSourceAspect": true,
   "width": 640,
   "height": 420,
@@ -122,7 +122,7 @@
     },
     {
       "id": "head",
-      "name": "Cabeça e expressão",
+      "name": "CabeÃ§a e expressÃ£o",
       "asset": "head",
       "source": [
         0,
@@ -131,14 +131,14 @@
         344
       ],
       "rect": [
-        184.24,
-        52.28,
+        184.5598976327575,
+        62.516724248240564,
         117.36,
         123.83999999999999
       ],
       "pivot": [
-        244,
-        170
+        244.3198976327575,
+        180.23672424824056
       ],
       "z": 7,
       "parent": "body",
@@ -184,7 +184,7 @@
     },
     {
       "id": "frontNear",
-      "name": "Pata dianteira próxima",
+      "name": "Pata dianteira prÃ³xima",
       "asset": "frontNear",
       "source": [
         0,
@@ -234,7 +234,7 @@
     },
     {
       "id": "hindNear",
-      "name": "Pata traseira próxima",
+      "name": "Pata traseira prÃ³xima",
       "asset": "hindNear",
       "source": [
         0,
@@ -309,7 +309,7 @@
     },
     {
       "id": "threadNear",
-      "name": "Fio da orelha próxima · completo",
+      "name": "Fio da orelha prÃ³xima Â· completo",
       "asset": "threadNear",
       "source": [
         0,
@@ -334,7 +334,7 @@
     },
     {
       "id": "threadFar",
-      "name": "Fio da orelha distante · completo",
+      "name": "Fio da orelha distante Â· completo",
       "asset": "threadFar",
       "source": [
         0,
@@ -5327,8 +5327,8 @@
           0.9505813953488372
         ],
         "socket": [
-          0.25111607142857145,
-          0.14088475626937164
+          0.25260369062852256,
+          0.21299467630487856
         ],
         "maxGap": 0.05
       },
@@ -5405,8 +5405,8 @@
           0.8018867924528301
         ],
         "socket": [
-          0.8159509202453987,
-          0.33688630490956073
+          0.8132251394618482,
+          0.25422541789211434
         ],
         "maxGap": 0.05
       },
@@ -5418,8 +5418,8 @@
           0.848780487804878
         ],
         "socket": [
-          0.4239945466939331,
-          0.28843669250646
+          0.4212687659103826,
+          0.20577580548901356
         ],
         "maxGap": 0.05
       }
