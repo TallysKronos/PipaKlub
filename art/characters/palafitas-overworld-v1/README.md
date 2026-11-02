@@ -5,3 +5,5 @@ Caio: fonte estática transparente, identidade concept-v6, proporções de overw
 Esta entrega prepara fonte visual; normalização, importação Godot, ligação a eventos e revisão no mapa continuam etapas separadas. Não inclui caminhada ou rig Soulgen.
 
 Seyran também possui fonte transparente e prévia conjunta preview-dupla.png. Relatório visual em revisao-seyran.md. Próximos da família: Oruvo, Kessai e Veldren; depois normalização e revisão no mapa.
+
+Oruvo: fonte e preview-trio.png adicionados. Ver revisao-oruvo.md para a pendência de pixels residuais nas bordas antes de normalizar. Próximos: Kessai e Veldren.
