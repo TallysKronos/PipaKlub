@@ -252,6 +252,24 @@
       "name": "Feira do Largo · C",
       "scene": "kronasta-feira-c",
       "biome": "floresta"
+    },
+    {
+      "id": "caverna-mural-a",
+      "name": "Caverna do Mural · Vestíbulo do Nó",
+      "scene": "caverna-mural-a",
+      "biome": "floresta"
+    },
+    {
+      "id": "caverna-mural-b",
+      "name": "Caverna do Mural · Galeria do Vento",
+      "scene": "caverna-mural-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "caverna-mural-c",
+      "name": "Caverna do Mural · Salão do Primeiro Laço",
+      "scene": "caverna-mural-c",
+      "biome": "floresta"
     }
   ],
   "scenes": {
@@ -295,7 +313,10 @@
     "kronasta-beira-canal-c": "kronasta-beira-canal-c",
     "kronasta-feira-a": "kronasta-feira-a",
     "kronasta-feira-b": "kronasta-feira-b",
-    "kronasta-feira-c": "kronasta-feira-c"
+    "kronasta-feira-c": "kronasta-feira-c",
+    "caverna-mural-a": "caverna-mural-a",
+    "caverna-mural-b": "caverna-mural-b",
+    "caverna-mural-c": "caverna-mural-c"
   },
   "campaignReplacement": false
 }

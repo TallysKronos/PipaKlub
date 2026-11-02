@@ -40,7 +40,7 @@ static func build(view) -> void:
 		material.set_shader_parameter("mountain_rock",preload("res://scripts/overworld/industrial_structures.gd").texture(KITS+"montanha-v1/superficies/rocha.png"))
 		material.set_shader_parameter("terrain_mask",preload("res://scripts/overworld/mountain_structures.gd").mask(model))
 	if mine:
-		material.shader=preload("res://shaders/mine_ground.gdshader")
+		material.shader=preload("res://shaders/mural_ground.gdshader") if model.data.get("forest",{}).get("mural",false) else preload("res://shaders/mine_ground.gdshader")
 		material.set_shader_parameter("masks",_masks(model))
 		material.set_shader_parameter("map_size",Vector2(w,h))
 		material.set_shader_parameter("stone",load(KITS+"cavernas-v3/surfaces/rocha-cinza.png"))
@@ -69,7 +69,7 @@ static func build(view) -> void:
 	var concrete:Texture2D=preload("res://scripts/overworld/industrial_structures.gd").texture(KITS+"industrial-v1/superficies/concreto.png") if industrial else null
 	var wall_texture:Texture2D=concrete if industrial else load(KITS+"terrenos-v1/superficies/terra-barranco.png")
 	if mountain:wall_texture=preload("res://scripts/overworld/industrial_structures.gd").texture(KITS+"montanha-v1/superficies/rocha.png")
-	if mine:wall_texture=load(KITS+"cavernas-v3/surfaces/parede-basalto.png")
+	if mine:wall_texture=load(KITS+"cavernas-v3/surfaces/parede-calcario.png" if model.data.get("forest",{}).get("mural",false) else KITS+"cavernas-v3/surfaces/parede-basalto.png")
 	if ice:
 		var path:String=KITS+"gelo-v1/superficies/parede.png"
 		wall_texture=preload("res://scripts/overworld/industrial_structures.gd").texture(path) if FileAccess.file_exists(path) else load(KITS+"cavernas-v3/surfaces/parede-basalto.png")
@@ -79,6 +79,8 @@ static func build(view) -> void:
 		for u in range(-RING,w+RING):
 			var inside:=u>=0 and v>=0 and u<w and v<h
 			if (mountain or mine or ice or bool(model.data.get("forest",{}).get("bamboo",false)) or model.data.get("forest",{}).get("canal",false) or model.data.get("forest",{}).get("market",false)) and not inside:continue
+			# Mural chambers use the continuous short cut-border, without broad foreground roof tiles.
+			if inside and model.data.get("forest",{}).get("mural",false) and Structures.mine_cutaway(model,u,v):continue
 			var node:=Node2D.new()
 			node.position=Vector2((u-v)*32,(u+v)*16+2)
 			view.actors.add_child(node)
@@ -146,6 +148,7 @@ static func build(view) -> void:
 		preload("res://scripts/overworld/swamp_structures.gd").build(view)
 	if mountain:preload("res://scripts/overworld/mountain_structures.gd").build(view)
 	if mine:preload("res://scripts/overworld/mine_structures.gd").build(view)
+	if model.data.get("forest",{}).get("mural",false):preload("res://scripts/overworld/mural_structures.gd").build(view)
 	if submerged:preload("res://scripts/overworld/submerged_structures.gd").build(view)
 	elif ice:preload("res://scripts/overworld/ice_structures.gd").build(view)
 	if bool(model.data.get("forest",{}).get("nativeProps",false)):
