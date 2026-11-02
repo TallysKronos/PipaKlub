@@ -86,6 +86,7 @@ static func rest_events(area: String, model) -> Array:
 	return result
 
 static func objective(player: Dictionary, scene: String) -> String:
+	if Checkpoint.region_of(scene)=="palafitas" and preload("res://scripts/campaign/district_rules.gd").unlocked(player,"palafitas"):return preload("res://scripts/campaign/district_campaign.gd").objective(player,"palafitas")
 	if scene.begins_with("kronasta-pantano-") and load("res://scripts/campaign/retalho_trust.gd").swamp_open(player) or scene.begins_with("kronasta-palafitas-"):return load("res://scripts/campaign/retalho_trust.gd").objective(player)
 	if scene=="kronasta-industrial-d":return preload("res://scripts/campaign/warehouse_story.gd").objective(player)
 	if scene=="kronasta-bosque-d":return "Retalho recuou. Guarde a pista do nó de expedição e volte pela trilha." if player.get("flags",{}).get("retalhoBosqueVencido",false) else "Procure Retalho na clareira elevada · Nv.22. O mato dos desvios é opcional."

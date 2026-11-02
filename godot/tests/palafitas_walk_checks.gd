@@ -13,7 +13,7 @@ func run()->void:
   root.add_child(view);view.set_physics_process(false)
   var start:Vector2=view.player
   var targets:Array=[]
-  for e:Dictionary in view.model.data.events:targets.append(Vector2(e.u+.5,e.v+.5))
+  for e:Dictionary in preload("res://scripts/campaign/park_checkpoint.gd").data(view.area_id).events:targets.append(Vector2(e.u+.5,e.v+.5))
   for v in int(view.model.data.h):
    for u in int(view.model.data.w):
     var cell:Dictionary=view.model.cell_at(Vector2i(u,v))

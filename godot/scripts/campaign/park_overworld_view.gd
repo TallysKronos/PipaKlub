@@ -80,6 +80,8 @@ func _ready() -> void:
 	exploration_hud = load("res://scripts/campaign/hud_exploration.gd").new()
 	exploration_hud.subject = self
 	exploration_hud.area_name = model.data.name
+	if Checkpoint.region_of(saved_checkpoint.scene)=="palafitas":
+		exploration_hud.area_name={"a":"Palafitas · Docas de chegada","b":"Palafitas · Passarelas","c":"Palafitas · Doca de Caio"}.get(saved_checkpoint.scene.right(1),model.data.name)
 	exploration_hud.player_data = saved_player
 	ui.add_child(exploration_hud)
 	hint = exploration_hud.prompt
@@ -108,6 +110,10 @@ func _ready() -> void:
 		exploration_hud.objective.text=marks.objective(saved_player)
 
 func _build_events() -> void:
+	if Checkpoint.region_of(saved_checkpoint.scene)=="palafitas":
+		for e:Dictionary in Checkpoint.data(saved_checkpoint.scene).events:
+			if e.props.get("district","")=="palafitas" and Checkpoint.allowed(e,saved_player,area_id) and not interaction_events.any(func(existing):return int(existing.id)==int(e.id)):
+				interaction_events.append(e.duplicate(true))
 	if load("res://scripts/campaign/mormaco_story.gd").available(saved_player):
 		interaction_events.append_array(load("res://scripts/campaign/mormaco_story.gd").events(saved_checkpoint.scene))
 		if saved_checkpoint.scene=="kronasta-pantano-c":
@@ -122,7 +128,7 @@ func _build_events() -> void:
 		for event:Dictionary in preload("res://scripts/campaign/canal_gate.gd").events(saved_player):
 			if Checkpoint.allowed(event,saved_player,area_id):interaction_events.append(event)
 	var district_region:=Checkpoint.region_of(saved_checkpoint.scene)
-	if district_region in ["bambuzal","beira-canal","feira","cais","industrial"]:
+	if district_region in ["bambuzal","beira-canal","feira","cais","industrial","palafitas"]:
 		var rules=preload("res://scripts/campaign/district_rules.gd")
 		var title:Dictionary=rules.entry(saved_player,district_region)
 		for event:Dictionary in model.data.events+interaction_events:
@@ -131,6 +137,11 @@ func _build_events() -> void:
 		for event:Dictionary in model.data.events+interaction_events:
 			if event.props.get("duel","")=="cais-5":
 				event.props.storySpritePath="res://assets/npc-ds/cais-v1/"+event.name.to_lower()+".png"
+	if district_region=="palafitas":
+		for event:Dictionary in interaction_events:
+			if event.props.get("duel","")=="palafitas-5":
+				var actor_id:String="caio" if event.name=="Caio Garça" else event.name.to_lower()
+				event.props.storySpritePath="res://assets/npc-ds/palafitas-v1/"+actor_id+".png"
 	if district_region=="industrial":
 		for event:Dictionary in model.data.events+interaction_events:
 			if event.props.get("duel","")=="industrial-5":

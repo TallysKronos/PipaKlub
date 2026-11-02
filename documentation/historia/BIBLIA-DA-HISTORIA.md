@@ -549,3 +549,7 @@ Novas na v2:
 ### Elenco secundário de Palafitas [Decidido, 02/11/2026]
 
 Quatro adversários anteriores a Caio Garça, com nomes e papéis aprovados pelo dono: **Seyran**, pipeiro ligado ao equilíbrio nas passarelas; **Oruvo**, confeccionador de velas e pipeiro; **Kessai**, pipeiro das travessias; **Veldren**, cuidador das passarelas e pipeiro veterano. Usam, respectivamente, os designs A, B, C e D preservados em art/characters/caio-garca/concept-v2/. Sem novas revelações da história; parceiros e idades exatas ainda não definidos. Esta definição de elenco não significa que o campeonato já esteja integrado.
+
+### Palafitas · estado da implementação [02/11/2026]
+
+O campeonato está integrado localmente após o emblema de Bruno e Mormaço livre: Seyran/Oruvo na parte A, Kessai/Veldren na B e Caio na C, níveis24–27. Resgate de Retalho preservado e separado. Sequência, retomada, emblema e defesa usam as regras de bairros. A arte de batalha ainda usa modelos existentes como protótipo; **Mata verde não é o parceiro canônico de Caio**. Seu Soulmonster crocodiliano de veneno permanece visual aprovado, sem nome/dados de combate definidos. Alto da Serra segue sem acesso jogável até sua integração.

@@ -38,6 +38,8 @@ static func data(scene: String) -> Dictionary:
 	if scene=="park-trail" and not _maps[scene].events.any(func(e):return int(e.id)==19100):
 		_maps[scene].events.append({"id":19100,"type":"saida","name":"Pátio da Liga","u":34,"v":31,"props":{"destino":"parque-patio-liga","chegada_u":20,"chegada_v":29,"blueEntry":true}})
 	var trust_event:Dictionary=load("res://scripts/campaign/retalho_trust.gd").event(scene)
+	if region_of(scene)=="palafitas" and not _maps[scene].events.any(func(e):return int(e.id)>=19801 and int(e.id)<=19805):
+		_maps[scene].events.append_array(preload("res://scripts/campaign/palafitas_championship.gd").events(scene))
 	if not trust_event.is_empty() and not _maps[scene].events.any(func(e):return int(e.id)==int(trust_event.id)):_maps[scene].events.append(trust_event)
 	return _maps[scene]
 
@@ -131,6 +133,10 @@ static func encounter_weight(checkpoint: Dictionary, point: Vector2) -> float:
 static func allowed(event: Dictionary, player: Dictionary, area: String = "") -> bool:
 	var props: Dictionary = event.get("props",{})
 	var flags: Dictionary = player.get("flags",{})
+	if props.get("district","")=="palafitas" and props.get("acao","")=="districtDuel":
+		var rules=preload("res://scripts/campaign/district_rules.gd")
+		if not rules.unlocked(player,"palafitas"):return false
+		if props.get("duel","")=="palafitas-5" and not rules.qualified(rules.entry(player,"palafitas"),rules.definition("palafitas")) and not rules.completed(player,"palafitas"):return false
 	if props.get("blueEntry",false) and not load("res://scripts/campaign/blue_exam_preparation.gd").eligible(player):return false
 	if props.get("acao","")=="retalhoTrust":return load("res://scripts/campaign/retalho_trust.gd").visible(props.get("trustScene",""),player)
 	if props.get("acao","") in ["tylerClareira","tylerRai"] and not preload("res://scripts/campaign/tyler_clareira.gd").unlocked(player):return false
