@@ -1,5 +1,13 @@
 # Pipa-Dragão desatada — químico B no Soulgen
 
+## Revisão 3 — cabeça completa e encaixes dos membros
+
+Preset ativo: `cutout-rig-v3/`, artRevision 3. Corrigido o relato de perda da face na investida: cada variante agora contém **a cabeça inteira**, registrada no mesmo canvas/retângulo, sem overlay apenas de boca. Verificação exige pelo menos 75% da área opaca da cabeça normal em todas as expressões; as três atuais têm mais de 100%. Novas URLs evitam reutilização dos PNGs anteriores em cache. Draft anterior é arquivado pelo editor ao abrir esta revisão, não apagado.
+
+Arte corrigida por image_gen: retirados tubos/sockets metálicos ocos dos encaixes dos quatro membros e bracelete verde da pata dianteira. Raízes agora são carne/pele manchada fechada, sobreposta sob o torso. Também fechados os cotos visíveis do pescoço/cauda na folha, mantendo a identidade. As três mangueiras verdes continuam no torso com suas flanges; cilindro e vela permanecem na unidade dorsal. Sem membro com tubulação conectada internamente.
+
+Reexportadas as seis ações e inspecionada a pose de impacto com rosto completo, sem corte nas bordas do atlas. Isto substitui os contratos de alpha/janelas faciais v2 descritos abaixo: v3 usa troca de cabeça completa. As revisões anteriores estão preservadas; não estão ativas.
+
 ## Revisão 2 — spritelização pedida pelo dono
 
 O preset ativo agora usa `cutout-rig-v2/`, `artRevision=2`: peças redesenhadas por image_gen no acabamento dos guardiões (Tufanocorte + Carcará como referências de renderização), preservando o químico B como identidade. Contorno escuro em degraus, sombras agrupadas, manchas e brilhos em blocos, menos linha fina e detalhe pequeno. Não é filtro nearest-neighbor aplicado à ilustração anterior nem promessa de pixel art em grade nativa única.

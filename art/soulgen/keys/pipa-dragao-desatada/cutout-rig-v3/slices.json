@@ -1,0 +1,75 @@
+{
+  "sourceSize": [
+    1536,
+    1024
+  ],
+  "boxes": {
+    "body": [
+      32,
+      21,
+      576,
+      435
+    ],
+    "head": [
+      575,
+      112,
+      911,
+      370
+    ],
+    "frontNear": [
+      868,
+      47,
+      1169,
+      439
+    ],
+    "frontFar": [
+      1213,
+      42,
+      1488,
+      399
+    ],
+    "rearNear": [
+      32,
+      424,
+      280,
+      731
+    ],
+    "rearFar": [
+      337,
+      424,
+      601,
+      732
+    ],
+    "tail": [
+      584,
+      424,
+      1193,
+      752
+    ],
+    "equipment": [
+      1132,
+      409,
+      1531,
+      740
+    ],
+    "fierce": [
+      35,
+      726,
+      416,
+      995
+    ],
+    "hurt": [
+      454,
+      728,
+      817,
+      983
+    ],
+    "happy": [
+      835,
+      732,
+      1220,
+      983
+    ]
+  },
+  "method": "Generated sprite component extraction; no redraw or palette substitution."
+}

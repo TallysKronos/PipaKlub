@@ -2,7 +2,7 @@
 from pathlib import Path
 from PIL import Image,ImageChops
 import cv2,numpy as np,json
-P=Path(__file__).parent/'cutout-rig-v2'
+P=Path(__file__).parent/'cutout-rig-v3'
 image=np.array(Image.open(P/'source.png').convert('RGBA'))
 n,labels,stats,_=cv2.connectedComponentsWithStats((image[:,:,3]>100).astype('uint8'))
 regions=[(i,s) for i,s in enumerate(stats) if i and s[4]>2000]
@@ -16,17 +16,19 @@ for name,(label,s) in zip(ids,sum(rows,[])):
  mask=cv2.dilate((labels==label).astype('uint8'),np.ones((5,5),np.uint8))
  layer=image[y0:y1,x0:x1].copy();layer[:,:,3]*=mask[y0:y1,x0:x1];layer[layer[:,:,3]==0]=0
  Image.fromarray(layer).save(P/(name+'.png'));boxes[name]=[x0,y0,x1,y1]
-head=Image.open(P/'head.png');windows=[(35,147,105,190),(0,178,166,258)]
-report={'windows':[[a,b,c-a,d-b] for a,b,c,d in windows],'method':'Generated sprite heads aligned; eye/mouth windows replaced including jaw alpha to avoid a duplicate closed jaw beneath the open mouth. Outside-window RGBA unchanged.','expressions':{}}
+head=Image.open(P/'head.png')
+report={'windows':[[0,0,head.width,head.height]],'method':'Each expression is a complete registered head, including opaque face, neck, spikes, eyes and mouth. Never a mouth-only overlay.','expressions':{}}
+normal_bounds=head.getbbox()
 for face in ['fierce','hurt','happy']:
- raw=Image.open(P/(face+'.png'));raw=raw.crop(raw.getbbox()).resize((327,250),Image.Resampling.NEAREST)
- aligned=Image.new('RGBA',head.size);aligned.alpha_composite(raw,(4,4))
- result=head.copy()
- for box in windows:result.paste(aligned.crop(box),box[:2])
+ raw=Image.open(P/(face+'.png')).convert('RGBA')
+ bounds=raw.getbbox()
+ result=Image.new('RGBA',head.size)
+ target=(normal_bounds[2]-normal_bounds[0],normal_bounds[3]-normal_bounds[1])
+ result.alpha_composite(raw.crop(bounds).resize(target,Image.Resampling.NEAREST),normal_bounds[:2])
  result.save(P/('head-'+face+'.png'))
- diff=ImageChops.difference(head,result)
- for box in windows:diff.paste((0,0,0,0),box)
- assert not diff.convert('RGB').getbbox()
- report['expressions'][face]={'outside_window_identical':True,'mouth_alpha_can_change':True}
+ normal_count=int((np.array(head)[:,:,3]>100).sum())
+ face_count=int((np.array(result)[:,:,3]>100).sum())
+ assert face_count>normal_count*.75,(face,face_count,normal_count)
+ report['expressions'][face]={'complete_head':True,'opaque_ratio':face_count/normal_count,'canvas_identical':result.size==head.size}
 (P/'registration.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
 (P/'slices.json').write_text(json.dumps({'sourceSize':[image.shape[1],image.shape[0]],'boxes':boxes,'method':'Generated sprite component extraction; no redraw or palette substitution.'},indent=2),encoding='utf-8')
