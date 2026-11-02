@@ -7,6 +7,14 @@ signal leave_requested
 const Model = preload("res://scripts/campaign/encounter_model.gd")
 const Ink = preload("res://scripts/campaign/battle_ink.gd")
 const Field=preload("res://scripts/campaign/battle_field.gd")
+const Mural=preload("res://scripts/ui_mural/mural_theme.gd")
+const MuralHud=preload("res://scripts/ui_mural/battle_hud.gd")
+const Enroscada=preload("res://scripts/ui_mural/enroscada.gd")
+const Versus=preload("res://scripts/ui_mural/champion_vs.gd")
+var text_scale:=1.0
+var duel_intro:Control
+var champion:=false
+func _init() -> void:set_meta("owns_ui_theme",true)
 const CornerHud=preload("res://scripts/campaign/battle_corner_hud.gd")
 var flee_hold:=0.0
 var flee_pointer:=false
@@ -75,6 +83,8 @@ func configure(data: Dictionary, state: Dictionary) -> void:
 
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	text_scale=maxf(text_scale,Mural.text_scale_for(self))
+	Mural.install(self)
 	impacts.reduced_motion = reduced_motion
 	model.damage_applied.connect(impacts.add)
 	model.damage_applied.connect(func(event:Dictionary):sprite_hurt_until[0 if event.get("player",false) else 1]=sprite_clock+.7)
@@ -90,6 +100,20 @@ func _ready() -> void:
 		boss_intro.remaining=model.intro
 		boss_intro.visible=model.intro>0 and model.outcome.is_empty()
 		add_child(boss_intro)
+		boss_intro.skip_requested.connect(skip_presentation)
+		if boss_intro.visible:boss_intro.skip.grab_focus.call_deferred()
+	if model.get("stage_id")!=null:
+		champion=bool(preload("res://scripts/campaign/morro_rules.gd").stage(model.stage_id).get("boss",false))
+	if champion or reward_encounter.get("kind","")=="trainer":
+		duel_intro=Versus.new()
+		duel_intro.rival_name=model.q.get("name",reward_encounter.get("trainerName","Rival")) if champion else reward_encounter.get("trainerName","Rival")
+		duel_intro.player_name=reward_player.get("name","Kael")
+		duel_intro.subtitle="Campeã do Morro do Sol" if champion else "Duelo de pipeiros"
+		duel_intro.partner_name={"basic-azulao":"Azulão","basic-carcara":"Carcará","basic-mata-verde":"Mata verde","basic-raio-de-sol":"Raio de sol"}.get(art_ids[1],"Soulmonster rival")
+		duel_intro.face=Ink.portrait(textures[1],art_ids[1]);duel_intro.reduced_motion=reduced_motion
+		add_child(duel_intro);duel_intro.skip_requested.connect(skip_presentation)
+		duel_intro.visible=model.intro>0
+		if duel_intro.visible:duel_intro.skip.grab_focus.call_deferred()
 	var bottom := VBoxContainer.new()
 	footer_contents=bottom
 	bottom.add_theme_constant_override("separation", 6)
@@ -123,6 +147,7 @@ func _ready() -> void:
 		command_row.add_child(command)
 		var art = load("res://scripts/campaign/hud_action.gd").new()
 		art.icon_id = entry[2]
+		art.mural=true;art.text_scale=text_scale
 		art.title = entry[1]
 		art.cost = entry[4]
 		command.add_child(art)
@@ -149,7 +174,7 @@ func _ready() -> void:
 	controls.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var description_panel := PanelContainer.new()
 	description_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	description_panel.theme_type_variation = "RecorteBattlePanel"
+	description_panel.theme_type_variation = "MuralHudPanel"
 	status_row.add_child(description_panel)
 	description_panel.add_child(controls)
 	resume_button = Button.new()
@@ -164,11 +189,10 @@ func _ready() -> void:
 		pointer_tapped.clear()
 		if not paused: resume_button.release_focus()
 		resume_button.text = "Retomar" if paused else "Pausar")
-	resume_button.theme_type_variation = "RecorteSecondaryButton"
+	resume_button.add_theme_font_size_override("font_size",roundi(20*text_scale))
 	resume_button.custom_minimum_size.x = 150
 	add_child(resume_button)
 	flee_button=Button.new()
-	Hud.navigation_button(flee_button,true)
 	flee_button.add_theme_font_size_override("font_size",14)
 	flee_button.button_down.connect(func():flee_pointer=true)
 	flee_button.button_up.connect(func():flee_pointer=false)
@@ -181,16 +205,8 @@ func _ready() -> void:
 	resume_button.custom_minimum_size.y = 40
 	finish_button = Button.new()
 	finish_button.text = "Continuar"
-	Hud.navigation_button(finish_button,false,"back")
 	finish_button.icon=Controls.glyph("accept")
 	Controls.events.changed.connect(func():finish_button.icon=Controls.glyph("accept"))
-	for state in ["normal","hover","pressed","disabled"]:
-		var style:StyleBoxFlat=finish_button.get_theme_stylebox(state).duplicate()
-		style.bg_color=Tokens.SOL.darkened(.15) if state=="pressed" else Tokens.PAPEL if state=="hover" else Tokens.SOL
-		finish_button.add_theme_stylebox_override(state,style)
-	finish_button.add_theme_color_override("font_color",Tokens.NANQUIM)
-	finish_button.add_theme_color_override("font_hover_color",Tokens.NANQUIM)
-	finish_button.add_theme_color_override("font_pressed_color",Tokens.NANQUIM)
 	finish_button.visible = false
 	finish_button.pressed.connect(func(): finish_requested.emit())
 	bottom.add_child(finish_button)
@@ -200,7 +216,6 @@ func _ready() -> void:
 	for option in [["Salvar e voltar ao menu", "menu"], ["Fugir sem recompensa", "flee"]]:
 		var button := Button.new()
 		button.text = option[0]
-		Hud.navigation_button(button,true,"save" if option[1]=="menu" else "back")
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var id: String = option[1]
 		button.pressed.connect(func():
@@ -224,18 +239,18 @@ func _layout_actions() -> void:
 			resume_button.reparent(target,false)
 			resume_button.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT if target==status_row else Control.PRESET_BOTTOM_LEFT)
 			if target==self:
-				resume_button.offset_left=20;resume_button.offset_top=-size.y+88
-				resume_button.offset_right=150;resume_button.offset_bottom=-size.y+128
+				resume_button.offset_left=20;resume_button.offset_top=-size.y+(MuralHud.regions(size,1,text_scale).partner.end.y if text_scale>1.1 else MuralHud.regions(size,1,text_scale).pilot.end.y)+8
+				resume_button.offset_right=150;resume_button.offset_bottom=resume_button.offset_top+64
 			if focused and get_parent().get("pause_overlay")==null:Hud.focus_later(resume_button)
 	bottom_panel.anchor_top = 1
 	if resume_button.get_parent()==self:
-		resume_button.offset_top=-size.y+88
-		resume_button.offset_bottom=-size.y+128
+		resume_button.offset_top=-size.y+(MuralHud.regions(size,1,text_scale).partner.end.y if text_scale>1.1 else MuralHud.regions(size,1,text_scale).pilot.end.y)+8
+		resume_button.offset_bottom=resume_button.offset_top+64
 	var result:bool=not model.outcome.is_empty()
 	if is_instance_valid(flee_button):
 		flee_button.visible=not result and model.get("actors")==null and not paused and not blocked
 		flee_button.text="Segure %s para fugir"%Controls.prompt("interact")
-		flee_button.position=Vector2(20,size.y-184)
+		flee_button.position=Vector2(24,MuralHud.regions(size,1,text_scale).partner.end.y+76) if text_scale>1.1 else MuralHud.regions(size,1,text_scale).partner.position-Vector2(0,68)
 		flee_button.size=Vector2(250,40)
 	# Decorative strokes extend outside the content box. Only item lists scroll/clip.
 	footer_contents.get_parent().clip_contents=not result
@@ -256,12 +271,12 @@ func _layout_actions() -> void:
 		bottom_panel.set_meta("covering",covering)
 		if covering:bottom_panel.add_theme_stylebox_override("panel",_panel("dark"))
 		else:bottom_panel.remove_theme_stylebox_override("panel")
-	var height:=size.y*.12 if fighting else maxf(140,footer_contents.get_combined_minimum_size().y+8)
+	var height:=MuralHud.action_size(text_scale).y+12 if fighting else maxf(140,footer_contents.get_combined_minimum_size().y+8)
 	bottom_panel.offset_top=bottom_panel.offset_bottom-height
-	var unit := size.y / 1080.0
-	command_row.add_theme_constant_override("separation", roundi(12 * unit))
+	var unit := text_scale
+	command_row.add_theme_constant_override("separation", 8)
 	for command in move_cards:
-		command.tile.custom_minimum_size = Vector2(112,128) * unit
+		command.tile.custom_minimum_size = MuralHud.action_size(unit)
 		command.tile.size = command.tile.custom_minimum_size
 
 
@@ -299,6 +314,11 @@ func _physics_process(delta: float) -> void:
 			save_clock = 0
 			save_requested.emit(model.snapshot())
 	finish_button.visible = not model.outcome.is_empty()
+	if is_instance_valid(duel_intro):
+		duel_intro.remaining=model.intro
+		duel_intro.visible=model.intro>0 and (model.get("round_number")==null or model.round_number==1) and model.outcome.is_empty() and not paused and not blocked
+		duel_intro.queue_redraw()
+	if model.intro>0:require_action_release=true
 	if is_instance_valid(boss_intro):
 		boss_intro.remaining=model.intro
 		boss_intro.visible=model.intro>0 and model.outcome.is_empty() and not paused and not blocked
@@ -306,7 +326,7 @@ func _physics_process(delta: float) -> void:
 		if model.intro>0:require_action_release=true
 	_update_result(delta)
 	for command in move_cards:
-		command.node.visible = model.outcome.is_empty() and not paused and not (model.q.get("boss",false) and model.intro>0)
+		command.node.visible = model.outcome.is_empty() and not paused and not (model.intro>0 and (model.q.get("boss",false) or (is_instance_valid(duel_intro) and duel_intro.visible)))
 		var cooldown: float = model.p[command.cooldown]
 		var action: String = {"attackCooldown": "cut", "skillCooldown": "skill", "dodgeCooldown": "dodge", "lineCooldown": "line", "guardCooldown": "guard", "signatureCooldown": "signature"}[command.cooldown]
 		command.label.text = "%s · %d energia" % [command.name, command.cost]
@@ -375,6 +395,7 @@ func _update_result(delta: float) -> void:
 	result_age += delta
 	if not is_instance_valid(reward_card):
 		reward_card = load("res://scripts/campaign/hud_reward_card.gd").new()
+		reward_card.theme=Hud.make_theme()
 		result_summary = RewardPreview.preview(reward_player, reward_encounter, model)
 		result_summary.outcome = model.outcome
 		reward_card.portrait_texture = AtlasTexture.new()
@@ -513,12 +534,14 @@ func _draw_status() -> void:
 	for command in move_cards:
 		if _action_held(command.tile.action_id):cost=command.cost
 	_draw_phase()
-	CornerHud.draw_on(self,actors,faces,names,reward_player,model.duration,model.round_number if model.get("round_number")!=null else 1,model.rounds_to_win if model.get("rounds_to_win")!=null else 1,model.wind_strength(),cost)
+	MuralHud.draw_on(self,actors,faces,names,reward_player,model.duration,model.round_number if model.get("round_number")!=null else 1,model.rounds_to_win if model.get("rounds_to_win")!=null else 1,model.wind_strength(),text_scale,champion)
+	if not paused and not blocked:Enroscada.draw_on(self,model,text_scale)
 	if flee_hold>0:
 		draw_arc(Vector2(286,size.y-160),14,-PI/2,-PI/2+TAU*flee_hold,32,Tokens.SOL,3,true)
 
 func _draw_phase() -> void:
 	if model.q.get("boss",false) and model.intro>0:return
+	if is_instance_valid(duel_intro) and duel_intro.visible:return
 	var message:=""
 	if model.get("intermission")!=null and model.intermission>0:
 		message="EMPATE" if "empatada" in model.round_message else "CORTOU!" if model.round_message.begins_with(model.p.name+" venceu") else "RODADA PERDIDA"
@@ -528,10 +551,10 @@ func _draw_phase() -> void:
 	if message.is_empty():return
 	var rect:=_phase_rect()
 	if not rect.has_area():return
-	Ink.plate(self,rect,Tokens.TINTA,Tokens.TINTA)
+	draw_style_box(Mural.shared().get_stylebox("panel","MuralSunPanel"),rect)
 	var font_size:=28
 	var width:=Hud.lettering().get_string_size(message,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x
-	draw_string(Hud.lettering(),Vector2(size.x/2-width/2,rect.position.y+32),message,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,Tokens.RABIOLA)
+	draw_string(Hud.lettering(),Vector2(size.x/2-width/2,rect.position.y+32),message,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,Tokens.MURAL_INK)
 	if model.get("intermission")!=null and model.intermission>0:
 		for index in model.actors.size():
 			var actor_name:String=Ink.ellipsis(model.actors[index].name,Hud.font(true),14,70)
@@ -541,7 +564,8 @@ func _draw_phase() -> void:
 func _phase_rect() -> Rect2:
 	var actors:Array=model.actors if model.get("actors")!=null else [model.p,model.q]
 	var extent:=Vector2(560,72) if model.get("intermission")!=null and model.intermission>0 else Vector2(360,48)
-	for y in [174.0,size.y*.67]:
+	var top:float=MuralHud.boss_region(size,text_scale).end.y+12 if champion or model.q.get("boss",false) else MuralHud.regions(size,actors.size()-1,text_scale).weather.end.y+12
+	for y in [top,size.y*.67]:
 		var candidate:=Rect2(Vector2(size.x/2-extent.x/2,y),extent)
 		var blocked:=false
 		for actor:Dictionary in actors:
@@ -587,3 +611,11 @@ func _sprite_frame(index:int,actor:Dictionary,legacy_action:String) -> Dictionar
 	var frame_index:=maxi(0,floori((sprite_clock-float(sprite_states[index].start))*float(playback.fps)))
 	frame_index=frame_index%frames.size() if playback.loop else mini(frame_index,frames.size()-1)
 	return frames[frame_index]
+
+func skip_presentation() -> void:
+	if paused or blocked or model.intro<=0:return
+	model.intro=0
+	require_action_release=true
+	pointer_held.clear();pointer_tapped.clear()
+	if is_instance_valid(duel_intro):duel_intro.hide()
+	if is_instance_valid(boss_intro):boss_intro.hide()

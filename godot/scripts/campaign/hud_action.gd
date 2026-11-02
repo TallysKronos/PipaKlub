@@ -5,6 +5,8 @@ const Ink = preload("res://scripts/campaign/battle_ink.gd")
 const Hud = preload("res://scripts/campaign/hud.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
 var action_texture: Texture2D
+var mural:=false
+var text_scale:=1.0
 signal held_changed(held: bool)
 var title := "Cortar"
 var lock_reason := ""
@@ -56,6 +58,8 @@ func fill_polygons(progress: float) -> Array[PackedVector2Array]:
 	return Geometry2D.intersect_polygons(inset,band)
 
 func _draw() -> void:
+	if mural:
+		_draw_mural();return
 	var factor := size.y / 128.0
 	var readable:=ceili(14/maxf(.01,factor))
 	draw_set_transform(Vector2((size.x-112*factor)/2,0),0,Vector2.ONE*factor)
@@ -108,3 +112,27 @@ func _gui_input(event: InputEvent) -> void:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_WINDOW_FOCUS_OUT or what == NOTIFICATION_VISIBILITY_CHANGED or what == NOTIFICATION_MOUSE_EXIT:
 		held_changed.emit(false)
+
+func _draw_mural() -> void:
+	var paper=preload("res://scripts/ui_mural/paper_layout.gd")
+	paper.begin(self)
+	var scale:=text_scale
+	var box:=Rect2(0,10,size.x,size.y-10)
+	paper.frame(self,box,"MuralSunPanel" if selected or has_focus() else "MuralPaperPanel",.30)
+	var safe:Rect2=paper.content(box,.30)
+	var title_h:float=paper.height(roundi(18*scale))
+	var state_h:float=paper.height(roundi(14*scale))
+	var art_h:=safe.size.y-title_h-state_h-12
+	var icon_size:=minf(safe.size.x,art_h)
+	var icon_box:=Rect2(safe.position+Vector2((safe.size.x-icon_size)/2,0),Vector2.ONE*icon_size)
+	paper.record(self,icon_box,safe,"action_icon")
+	var tint:=Tokens.UNTINTED if enough_energy and lock_reason.is_empty() else Tokens.alpha(Tokens.UNTINTED,.4)
+	if action_texture!=null:draw_texture_rect(action_texture,Hud.fit_texture(action_texture,icon_box),false,tint)
+	var glyph:=Controls.glyph(action_id)
+	if glyph!=null:draw_texture_rect(glyph,Hud.fit_texture(glyph,Rect2(size.x-30,0,28,28)),false)
+	else:draw_string(Tokens.label(),Vector2(size.x-28,20),key_text,HORIZONTAL_ALIGNMENT_LEFT,-1,18,Tokens.MURAL_INK)
+	paper.label(self,Rect2(safe.position+Vector2(0,art_h+6),Vector2(safe.size.x,title_h)),title,roundi(18*scale),Tokens.MURAL_INK,true,safe)
+	var state:=lock_reason if not lock_reason.is_empty() else "Sem energia" if not enough_energy else "%ds"%ceili(cooldown) if cooldown>0 else "%d energia"%cost
+	paper.label(self,Rect2(safe.position+Vector2(0,art_h+title_h+12),Vector2(safe.size.x,state_h)),state,roundi(14*scale),Tokens.MURAL_RED if not enough_energy else Tokens.MURAL_INK,true,safe)
+	if charge>0:draw_line(Vector2(safe.position.x,size.y-5),Vector2(safe.position.x+safe.size.x*charge,size.y-5),Tokens.MURAL_TEAL,3,true)
+	if has_focus():draw_line(Vector2(safe.position.x,size.y-3),Vector2(safe.end.x,size.y-3),Tokens.MURAL_INK,3,true)

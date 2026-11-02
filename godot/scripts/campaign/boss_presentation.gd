@@ -1,5 +1,8 @@
 extends Control
 ## Live lettering and approved creature portrait; no baked names or combat state.
+signal skip_requested
+var skip:Button
+const Mural=preload("res://scripts/ui_mural/mural_theme.gd")
 const T=preload("res://scripts/campaign/ui_tokens.gd")
 const Hud=preload("res://scripts/campaign/hud.gd")
 const Ink=preload("res://scripts/campaign/battle_ink.gd")
@@ -14,6 +17,13 @@ func _ready() -> void:
 	set_anchors_and_offsets_preset(PRESET_FULL_RECT)
 	mouse_filter=MOUSE_FILTER_IGNORE
 	z_index=20
+	skip=Button.new();skip.text="Pular apresentação";skip.custom_minimum_size=Vector2(240,56)
+	skip.add_theme_font_size_override("font_size",20);add_child(skip)
+	skip.pressed.connect(func():skip_requested.emit())
+	resized.connect(_layout);_layout()
+func _layout() -> void:
+	if skip!=null:skip.position=Vector2(size.x-284,size.y-88);skip.size=Vector2(260,64)
+
 
 static func meter_rect(viewport:Vector2) -> Rect2:
 	return Rect2(344,18,maxf(400,viewport.x-368),102)
@@ -46,33 +56,12 @@ static func draw_meter(c:Control,actor:Dictionary,portrait:Texture2D,seconds:flo
 
 func _draw() -> void:
 	if remaining<=0:return
-	var elapsed:=INTRO_SECONDS-minf(remaining,INTRO_SECONDS)
-	var opacity:=minf(1,remaining/.35) if reduced_motion else 1.0
-	draw_rect(Rect2(Vector2.ZERO,size),T.alpha(T.NANQUIM,.7*opacity))
-	var scale_factor:=minf(size.x/1280.0,size.y/720.0)
-	var origin:=size/2
-	var slide:=0.0 if reduced_motion else -1400*pow(maxf(0,1-elapsed/.32),3)+1400*pow(maxf(0,1-remaining/.3),3)
-	draw_set_transform(origin+Vector2(slide,0),0,Vector2.ONE*scale_factor)
-	var edge:=T.alpha(T.SOL,opacity)
-	var points:=PackedVector2Array([Vector2(-720,-58),Vector2(720,-154),Vector2(720,70),Vector2(-720,162)])
-	draw_colored_polygon(points,T.NANQUIM)
-	var band:=PackedVector2Array([Vector2(-720,-42),Vector2(720,-138),Vector2(720,54),Vector2(-720,146)])
-	draw_colored_polygon(band,T.alpha(T.RABIOLA,opacity))
-	points.append(points[0]);draw_polyline(points,edge,5,true)
-	for i in 16:
-		var x:float=-720+i*100
-		var y:float=-62-(x+720)/15
-		draw_line(Vector2(x,y),Vector2(x+45,y-3),edge,6,true)
-		for j in 3:draw_circle(Vector2(x+12,j*17+y+32),2,T.alpha(T.NANQUIM,.25*opacity))
-	for i in 7:
-		draw_line(Vector2(-620+i*23,-178+i*6),Vector2(-240+i*23,-152+i*6),T.alpha(T.PAPEL,.3*opacity),2,true)
-	var portrait_box:=Rect2(-490,-137,234,265)
-	draw_texture_rect(Ink.brush(1),portrait_box.grow(25),false,T.alpha(T.PAPEL,opacity))
-	if face!=null:draw_texture_rect(face,Hud.fit_texture(face,portrait_box),false,T.alpha(T.UNTINTED,opacity))
-	var font:=Hud.lettering()
-	draw_string_outline(font,Vector2(-215,3),"BOSS À VISTA!",HORIZONTAL_ALIGNMENT_LEFT,-1,82,14,T.alpha(T.NANQUIM,opacity))
-	draw_string(font,Vector2(-215,3),"BOSS À VISTA!",HORIZONTAL_ALIGNMENT_LEFT,-1,82,T.alpha(T.PAPEL,opacity))
-	Ink.plate(self,Rect2(-180,25,550,56),T.TINTA,T.SOL,14)
-	draw_string(Hud.font(true),Vector2(-156,62),title+" · Guardião dos Canos",HORIZONTAL_ALIGNMENT_LEFT,500,25,T.alpha(T.PAPEL,opacity))
+	draw_rect(Rect2(Vector2.ZERO,size),T.alpha(T.MURAL_GROUND,.85))
+	var factor:=minf(size.x/1280,size.y/720)
+	draw_set_transform(size/2,0,Vector2.ONE*factor)
+	draw_style_box(Mural.shared().get_stylebox("panel","MuralSunPanel"),Rect2(-580,-154,1160,328))
+	if face!=null:draw_texture_rect(face,Hud.fit_texture(face,Rect2(-540,-174,300,350)),false)
+	draw_string(T.lettering(),Vector2(-196,-25),"BOSS À VISTA!",HORIZONTAL_ALIGNMENT_LEFT,-1,66,T.MURAL_INK)
+	draw_string(T.label(),Vector2(-196,36),title,HORIZONTAL_ALIGNMENT_LEFT,700,42,T.MURAL_INK)
+	draw_string(T.label(),Vector2(-196,88),"Guardião dos Canos",HORIZONTAL_ALIGNMENT_LEFT,700,26,T.MURAL_INK)
 	draw_set_transform(Vector2.ZERO)
-

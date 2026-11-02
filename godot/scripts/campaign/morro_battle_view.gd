@@ -33,6 +33,7 @@ func _draw() -> void:
 	draw_set_transform(_field_origin(), 0, _field_scale())
 
 	for index in model.actors.size():
+		if champion and model.intro>0 and model.round_number==1:continue
 		var actor: Dictionary = model.actors[index]
 		var eliminated: bool = not model.alive(actor)
 		if not eliminated:

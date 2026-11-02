@@ -4,6 +4,7 @@ const Fixtures=preload("res://tools/player_audit_fixtures.gd")
 const Store=preload("res://scripts/campaign/save_store.gd")
 const State=preload("res://scripts/campaign/state.gd")
 const Corners=preload("res://scripts/campaign/battle_corner_hud.gd")
+const Mural=preload("res://scripts/ui_mural/battle_hud.gd")
 const Controls=preload("res://scripts/campaign/controls.gd")
 var checks:=0
 var failures:=0
@@ -29,8 +30,8 @@ func run() -> void:
 			view.model.intro=0;view.paused=false;view.launch_age=1
 			view._physics_process(0);await settle()
 			var actors:Array=view.model.actors if view.model.get("actors")!=null else [view.model.p,view.model.q]
-			var boxes:Dictionary=Corners.regions(view.size,actors.size()-1)
-			for rect:Rect2 in boxes.values():check(view.get_global_rect().encloses(rect),"corner inside screen")
+			var boxes:Dictionary=Mural.regions(view.size,actors.size()-1,view.text_scale)
+			for id in ["pilot","partner","clock","weather","rivals"]:check(view.get_global_rect().encloses(boxes[id]),"corner inside screen")
 			check(not boxes.pilot.intersects(boxes.clock) and not boxes.rivals.intersects(boxes.clock),"corner and clock separation")
 			check(not boxes.weather.intersects(boxes.clock),"wind chip separated")
 			check(view._field_scale().y*585>=view.size.y*.7,"flight projection occupies at least 70 percent height")

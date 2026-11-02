@@ -1,0 +1,21 @@
+{
+  "checks": 10428,
+  "failures": [],
+  "resolutions": [
+    "1280x720",
+    "1920x1080",
+    "1024x768",
+    "1280x800"
+  ],
+  "textScales": [
+    1,
+    1.5
+  ],
+  "method": "Actual font ascent/descent glyph rectangles, bars and action icons inside content rect excluding fixed corner bleed + 8px clearance. OpenGL native rendering.",
+  "sources": [
+    "padding-audit-1280x720.json",
+    "padding-audit-1920x1080.json",
+    "padding-audit-1024x768.json",
+    "padding-audit-1280x800.json"
+  ]
+}
