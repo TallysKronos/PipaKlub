@@ -1528,6 +1528,12 @@ func _park_event(id: String) -> void:
 		if str(int(event.id))!=id or not ParkCheckpoint.allowed(event,player,park.area_id): continue
 		if park.player.distance_to(Vector2(event.u+.5,event.v+.5))>1.8: return
 		var action: String = event.props.get("acao","")
+		if action=="muralStory":
+			_show_mural_story();return
+		if action=="muralRest":
+			_confirm_park("Pausa na galeria","Descansar e recuperar linha e armação de toda a equipe?","Descansar",func():
+				if _result(load("res://scripts/campaign/mural_story.gd").new(session).rest(park.player)):park.refresh(session.snapshot().player))
+			return
 		if action=="feiraStory":
 			_request_feira_story(str(event.props.feiraAction));return
 		if action=="districtRest" and event.props.get("district")=="feira":
@@ -2649,7 +2655,11 @@ func _request_feira_story(who:String)->void:
 				if _result(service.test_door(park.player)):
 					park.refresh(session.snapshot().player)
 					_notice("O apito solta um chiado fino. É de plástico! A fechadura não se move. Kael: Lalau vai ter que explicar isso."))
-		elif phase=="complete":_notice("O apito verdadeiro ressoa com a Rabiola Antiga. Kael guarda o instrumento com cuidado.")
+		elif phase=="complete":
+			if preload("res://scripts/campaign/mural_story.gd").available(player):
+				_confirm_park("A porta das Ruínas","O apito verdadeiro ressoa com a Rabiola Antiga. A passagem para a Caverna do Mural está aberta.","Entrar",func():
+					if _result(load("res://scripts/campaign/bosque_campaign.gd").new(session).travel("caverna-mural-a")):_show_park.call_deferred())
+			else:_notice("O apito verdadeiro responde à porta. Antes de seguir, conclua o campeonato da Feira do Largo.")
 		else:_notice(service.objective(player))
 		return
 	if who=="lalau" and phase=="buy":
@@ -2677,3 +2687,32 @@ func _return_feira_story()->void:
 	else:_notice("Grampo: Leva esse apito e sai do meu caminho.
 
 Recebido · Apito de vento verdadeiro. Platyx se esconde nas dobras da cabeça, aliviado por parar de lutar.")
+
+func _show_mural_story()->void:
+	var service=load("res://scripts/campaign/mural_story.gd").new(session)
+	if not service.near("caverna-mural-c",service.AT,park.player):return
+	var index:int=service.step(session.snapshot().player)
+	if index>=3:_notice("Tyler: A ponta da linha foi oferecida. Vamos lembrar disso quando encontrarmos outras marcas.");return
+	var node:Dictionary=service.nodes()[index]
+	park.path.clear();park.paused=true
+	var scene_dialog:=_dialog(node.title,node.text,"Guardar esta lembrança","Continuar depois")
+	var illustration:=TextureRect.new()
+	illustration.texture=load("res://assets/overworld/kits/mural-v1/primeiro-laco.png")
+	illustration.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
+	illustration.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	illustration.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	illustration.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
+	illustration.anchor_left=.06;illustration.anchor_right=.94
+	illustration.offset_top=18;illustration.offset_bottom=320
+	scene_dialog.add_child(illustration)
+	scene_dialog.confirmed.connect(func():
+		var result:Dictionary=service.advance(index,park.player)
+		if not _result(result):return
+		scene_dialog.queue_free()
+		if service.step(session.snapshot().player)<3:_show_mural_story.call_deferred()
+		else:
+			park.paused=false;park.refresh(session.snapshot().player)
+			park.celebrate_item("A Rabiola Antiga respondeu ao mural"))
+	scene_dialog.canceled.connect(func():scene_dialog.queue_free();park.paused=false)
+	scene_dialog.popup_centered()
+	scene_dialog.portrait.hide();scene_dialog.other_portrait.hide()

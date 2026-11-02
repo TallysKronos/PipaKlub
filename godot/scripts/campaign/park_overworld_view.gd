@@ -233,7 +233,7 @@ func _physics_process(delta: float) -> void:
 	save_distance+=moved
 	save_age+=delta
 	if moved>0:
-		var weight: float=0.0 if Training.needs_rest(saved_player) or Checkpoint.is_regional_preview(saved_checkpoint.scene) else Pacing.weight(model,player)
+		var weight: float=0.0 if saved_checkpoint.scene.begins_with("caverna-mural-") or Training.needs_rest(saved_player) or Checkpoint.is_regional_preview(saved_checkpoint.scene) else Pacing.weight(model,player)
 		if encounter_grace>0:
 			encounter_grace=maxf(0,encounter_grace-delta)
 		elif weight>0:

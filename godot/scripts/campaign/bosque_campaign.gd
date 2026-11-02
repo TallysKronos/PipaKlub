@@ -40,7 +40,7 @@ func arrive() -> Dictionary:
 	if region.is_empty() or saved.checkpoint.get("space","")!=Checkpoint.SPACE or not available(saved.player): return {"status":"wrong_step"}
 	var point:=Vector2(saved.checkpoint.position[0],saved.checkpoint.position[1])
 	if not Checkpoint.model_for(saved.checkpoint.scene).point_walkable(point): return {"status":"wrong_step"}
-	var part: String=saved.checkpoint.scene.trim_prefix("kronasta-"+region+"-")
+	var part: String=saved.checkpoint.scene.right(1) if region=="caverna" else saved.checkpoint.scene.trim_prefix("kronasta-"+region+"-")
 	var receipt: String=region+"-discovered-"+part+"-v1"
 	if receipt in saved.player.completedOperations: return {"status":"already_applied"}
 	saved.player.flags[region+"Parte"+part.to_upper()+"Descoberta"]=true

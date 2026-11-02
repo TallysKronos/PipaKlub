@@ -18,9 +18,10 @@ const REGIONS := [
 	{"id":"submerso","name":"Recifes de Kronasta","at":Vector2(.10,.71),"scenes":["submerso-a","submerso-b","submerso-c"],"parts":["Recife de entrada","Jardim de algas","Fenda abissal"],"description":"Explore o leito entre corais e formações rochosas. História em desenvolvimento; sem nado livre ou sistema de oxigênio.","preview":true},
 	{"id":"bambuzal","name":"Vila do Bambuzal","at":Vector2(.45,.68),"scenes":["kronasta-bambuzal-a","kronasta-bambuzal-b","kronasta-bambuzal-c"],"parts":["Praça do Bambuzal","Caminho das Varetas","Arena do Lohan"],"description":"Praças e patamares entre os bambus. Quatro pipeiros guardam o caminho até o campeão."},
 {"id":"beira-canal","name":"Beira-Canal","at":Vector2(.56,.58),"scenes":["kronasta-beira-canal-a","kronasta-beira-canal-b","kronasta-beira-canal-c"],"parts":["Chegada ao canal","Oficina hidráulica","Pátio do campeão"],"description":"Pontes e patamares junto ao canal. Ajude o bairro e dispute o terceiro emblema."},
-{"id":"feira","name":"Feira do Largo","at":Vector2(.64,.68),"scenes":["kronasta-feira-a","kronasta-feira-b","kronasta-feira-c"],"parts":["Praça da Feira","Mercado alto","Largo da campeã"],"description":"Bancas, pipeiros e um apito de origem duvidosa. Dispute o quarto emblema."}
+{"id":"feira","name":"Feira do Largo","at":Vector2(.64,.68),"scenes":["kronasta-feira-a","kronasta-feira-b","kronasta-feira-c"],"parts":["Praça da Feira","Mercado alto","Largo da campeã"],"description":"Bancas, pipeiros e um apito de origem duvidosa. Dispute o quarto emblema."},
+{"id":"caverna","name":"Caverna do Mural","at":Vector2(.54,.74),"scenes":["caverna-mural-a","caverna-mural-b","caverna-mural-c"],"parts":["Vestíbulo do Nó","Galeria do Vento","Salão do Primeiro Laço"],"description":"Tyler encontrou marcas antigas na pedra. A Rabiola Antiga pode responder a elas."}
 ]
-const LINKS := [[0,1],[0,6],[0,7],[1,2],[2,8],[2,3],[2,4],[4,9],[4,10],[3,10],[3,11],[11,5],[4,12],[4,13],[7,14],[15,16],[16,17]]
+const LINKS := [[0,1],[0,6],[0,7],[1,2],[2,8],[2,3],[2,4],[4,9],[4,10],[3,10],[3,11],[11,5],[4,12],[4,13],[7,14],[15,16],[16,17],[17,18]]
 static func region_for(scene:String) -> String:
 	for region in REGIONS:
 		if scene in region.scenes:return region.id
