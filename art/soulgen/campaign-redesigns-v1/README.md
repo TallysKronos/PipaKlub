@@ -20,7 +20,7 @@ Estado: levantamento e propostas visuais. Nenhum modelo novo integrado ao jogo.
 | Trovareta | Trovão + vareta; floresta à noite durante tempestade | Arquitetura A escolhida pelo dono após refinamento de trovão; rig pendente |
 | Rabiolava | Lava + rabiola; vulcão | B escolhida pelo dono; A/C reservadas como outros Soulmonsters; rig pendente |
 | Glacerol | Geleira + cerol; gelo | A escolhida pelo dono; B/C reservadas como outros Soulmonsters; rig pendente |
-| Tufanocorte | Tufão + corte; montanha | Nome, força e região decididos; anatomia e paleta são propostas |
+| Tufanocorte | Tufão + corte; montanha | Exploração A/B/C: carneiro de espirais cortantes, tamanduá de cauda em leque e náutilo aéreo; escolha pendente |
 | Pipa-Dragão | Corpo com três rabiolas roubadas; forma desatada menor | Precisa diferenciar as duas formas sem inventar espécie canônica |
 | Parceiro do Gollia | Forma sobrecarregada pelo Carretel Negro | Primeiro identificar o parceiro normal; não inventar substituto |
 | Grande Carretel | Chefe em partes, quatro carretéis menores e duas fases | Objeto/constructo de chefe; não cadastrar automaticamente como espécie capturável |
