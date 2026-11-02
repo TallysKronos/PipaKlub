@@ -16,7 +16,7 @@ static func build(view) -> void:
  if interior:
   # Continuous cutaway shell follows the blocking frame, never an apparent doorway.
   block(view,Vector2(4,3),32,1,128,"parede-galpao",simple)
-  block(view,Vector2(3,4),1,28,192,"parede-galpao",simple,0)
+  block(view,Vector2(3,4),1,28,192,"parede-galpao",simple,float(model.data.forest.get("baseLevel",0))*64)
   block(view,Vector2(36,4),1,28,22,"barreira",simple)
   block(view,Vector2(4,32),4,1,22,"barreira",simple)
   block(view,Vector2(12,32),24,1,22,"barreira",simple)
