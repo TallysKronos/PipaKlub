@@ -4,7 +4,7 @@
   "name": "Rai · Saber · parceiro do Tyler",
   "creatureId": "rai",
   "artRevision": 1,
-  "rigRevision": 1,
+  "rigRevision": 2,
   "preserveSourceAspect": true,
   "width": 760,
   "height": 620,
@@ -15,67 +15,67 @@
   "assets": {
     "body": {
       "name": "body",
-      "src": "/art/soulgen/keys/rai/cutout-rig-v1/body.png",
+      "src": "/art/soulgen/keys/rai/cutout-rig-v1/author-body.png",
       "width": 365,
       "height": 242
     },
     "head": {
       "name": "head",
-      "src": "/art/soulgen/keys/rai/cutout-rig-v1/head.png",
+      "src": "/art/soulgen/keys/rai/cutout-rig-v1/author-head.png",
       "width": 268,
       "height": 309
     },
     "frontNear": {
       "name": "frontNear",
-      "src": "/art/soulgen/keys/rai/cutout-rig-v1/frontNear.png",
+      "src": "/art/soulgen/keys/rai/cutout-rig-v1/author-frontNear.png",
       "width": 182,
       "height": 310
     },
     "frontFar": {
       "name": "frontFar",
-      "src": "/art/soulgen/keys/rai/cutout-rig-v1/frontFar.png",
+      "src": "/art/soulgen/keys/rai/cutout-rig-v1/author-frontFar.png",
       "width": 160,
       "height": 309
     },
     "rearNear": {
       "name": "rearNear",
-      "src": "/art/soulgen/keys/rai/cutout-rig-v1/rearNear.png",
+      "src": "/art/soulgen/keys/rai/cutout-rig-v1/author-rearNear.png",
       "width": 149,
       "height": 300
     },
     "rearFar": {
       "name": "rearFar",
-      "src": "/art/soulgen/keys/rai/cutout-rig-v1/rearFar.png",
+      "src": "/art/soulgen/keys/rai/cutout-rig-v1/author-rearFar.png",
       "width": 142,
       "height": 299
     },
     "sail": {
       "name": "sail",
-      "src": "/art/soulgen/keys/rai/cutout-rig-v1/sail.png",
+      "src": "/art/soulgen/keys/rai/cutout-rig-v1/author-sail.png",
       "width": 255,
       "height": 292
     },
     "tail": {
       "name": "tail",
-      "src": "/art/soulgen/keys/rai/cutout-rig-v1/tail.png",
+      "src": "/art/soulgen/keys/rai/cutout-rig-v1/author-tail.png",
       "width": 302,
       "height": 304
     },
     "fierce": {
       "name": "fierce",
-      "src": "/art/soulgen/keys/rai/cutout-rig-v1/head-fierce.png",
+      "src": "/art/soulgen/keys/rai/cutout-rig-v1/author-fierce.png",
       "width": 268,
       "height": 309
     },
     "hurt": {
       "name": "hurt",
-      "src": "/art/soulgen/keys/rai/cutout-rig-v1/head-hurt.png",
+      "src": "/art/soulgen/keys/rai/cutout-rig-v1/author-hurt.png",
       "width": 268,
       "height": 309
     },
     "happy": {
       "name": "happy",
-      "src": "/art/soulgen/keys/rai/cutout-rig-v1/head-happy.png",
+      "src": "/art/soulgen/keys/rai/cutout-rig-v1/author-happy.png",
       "width": 268,
       "height": 309
     }
@@ -117,14 +117,14 @@
         309
       ],
       "rect": [
-        97,
-        144,
+        180.73606160314415,
+        123.16095420893885,
         182.24,
         210.12
       ],
       "pivot": [
-        250,
-        280
+        333.73606160314415,
+        259.16095420893885
       ],
       "z": 6,
       "parent": "body",
@@ -179,14 +179,14 @@
         310
       ],
       "rect": [
-        236,
-        335,
+        265.9018599762362,
+        308.95119276117356,
         109.2,
         186
       ],
       "pivot": [
-        275,
-        350
+        304.9018599762362,
+        323.95119276117356
       ],
       "z": 5,
       "parent": "body",
@@ -204,14 +204,14 @@
         309
       ],
       "rect": [
-        207.95,
-        322.75,
+        223.95916278219542,
+        298.4377799104286,
         91.19999999999999,
         176.13
       ],
       "pivot": [
-        245,
-        337
+        261.0091627821954,
+        312.6877799104286
       ],
       "z": 1,
       "parent": "body",
@@ -229,14 +229,14 @@
         300
       ],
       "rect": [
-        396,
-        335,
+        396.37987843889954,
+        293.3219084178777,
         89.39999999999999,
         180
       ],
       "pivot": [
-        435,
-        350
+        435.37987843889954,
+        308.3219084178777
       ],
       "z": 4,
       "parent": "body",
@@ -254,14 +254,14 @@
         299
       ],
       "rect": [
-        432.95,
-        322.75,
+        369.076153916461,
+        289.75484416415316,
         80.94,
         170.42999999999998
       ],
       "pivot": [
-        470,
-        337
+        406.126153916461,
+        304.00484416415316
       ],
       "z": 0,
       "parent": "body",
@@ -279,14 +279,14 @@
         292
       ],
       "rect": [
-        277.5,
-        68.5,
+        291.77257563294035,
+        89.33904579106115,
         178.5,
         204.39999999999998
       ],
       "pivot": [
-        365,
-        240
+        379.27257563294035,
+        260.83904579106115
       ],
       "z": 2,
       "parent": "body",
@@ -304,14 +304,14 @@
         304
       ],
       "rect": [
-        429.5,
-        234.5,
+        429.8798784388996,
+        279.6512658806325,
         211.39999999999998,
         212.79999999999998
       ],
       "pivot": [
-        440,
-        245
+        440.3798784388996,
+        290.1512658806325
       ],
       "z": -1,
       "parent": "sail",
@@ -3879,8 +3879,8 @@
           0.6472491909385113
         ],
         "socket": [
-          0.10176125244618396,
-          0.3305785123966943
+          0.4294953487402903,
+          0.20756171315784447
         ],
         "maxGap": 2
       },
@@ -3892,8 +3892,8 @@
           0.08064516129032258
         ],
         "socket": [
-          0.1996086105675147,
-          0.7438016528925621
+          0.31664133063106153,
+          0.5900306538439999
         ],
         "maxGap": 2
       },
@@ -3901,12 +3901,12 @@
         "part": "frontFar",
         "parent": "body",
         "anchor": [
-          0.40625000000000017,
+          0.4062499999999999,
           0.08090614886731391
         ],
         "socket": [
-          0.08219178082191782,
-          0.6670602125147581
+          0.14484995218080393,
+          0.5235406134027664
         ],
         "maxGap": 2
       },
@@ -3918,8 +3918,8 @@
           0.08333333333333333
         ],
         "socket": [
-          0.8258317025440314,
-          0.7438016528925621
+          0.8273185066101744,
+          0.4977680544148625
         ],
         "maxGap": 2
       },
@@ -3931,8 +3931,8 @@
           0.08361204013377928
         ],
         "socket": [
-          0.9628180039138944,
-          0.6670602125147581
+          0.7128225202209826,
+          0.47228361371991245
         ],
         "maxGap": 2
       },
@@ -3944,8 +3944,8 @@
           0.8390410958904111
         ],
         "socket": [
-          0.5518590998043054,
-          0.09445100354191265
+          0.6077204525751091,
+          0.21746780278076244
         ],
         "maxGap": 2
       },
@@ -3957,8 +3957,8 @@
           0.049342105263157895
         ],
         "socket": [
-          0.9103641456582633,
-          0.8635029354207437
+          0.8325339092770826,
+          0.9824472607121886
         ],
         "maxGap": 2
       }

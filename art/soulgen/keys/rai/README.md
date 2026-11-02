@@ -1,5 +1,11 @@
 # Rai / Saber — parceiro do Tyler
 
+## Projeto do dono incorporado
+
+Recebido `rai-saber-parceiro-do-tyler.soulgen.json` com autorização de envio. Preservados retângulos, pivôs, hierarquia, pixels embutidos e os seis clipes do arquivo. Original integral em `cutout-rig-v1/author-approved.portable.soulgen.json`; hash em `author-import.json`. Rig ativo revision 2, artRevision 1. Auditoria de juntas recalibrada aos encaixes do autor, sem resetar sua geometria. O exportador reusa esse projeto aprovado por padrão. Rascunhos de revisão anterior no navegador são arquivados antes de abrir o atualizado.
+
+Reexportados oito componentes, quatro rostos e 132 frames sem corte nas bordas; 18 testes passaram com a regressão do Platyx e do sampler/editor. Importação não integra no jogo nem cria nova espécie para o alias Saber.
+
 Rai é o nome na bíblia; Saber é o nome anterior da prancha existente, não outra espécie. Identidade recuperada de `origin/feature/retalho-bosque-d:art/tyler-saber-manga-v2/saber-sheet-v2.png`, com cópia/hash em `art/soulgen/campaign-redesigns-v1/references/rai-saber-git/`. A referência original não foi sobrescrita, e não houve renomeação automática de IDs do jogo.
 
 Conversão spritelizada com image_gen nativo: tigre branco de sabre, olhos vermelhos, manchas rosadas em losango, patas escuras, colar vermelho/sino pequeno, vela dorsal vermelho-creme com flor e armação de bambu, rabiola de quatro pétalas. Carcará e Tufanocorte fornecem somente o acabamento de contorno em degraus e sombras em blocos. Não substitui o tigre por um novo monstro e não transforma as marcas em remendos.
