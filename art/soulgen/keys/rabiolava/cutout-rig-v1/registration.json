@@ -1,0 +1,49 @@
+{
+  "method": "Generated eye windows aligned by silhouette bounds; canonical alpha and external pixels unchanged.",
+  "windows": [
+    [
+      169,
+      148,
+      104,
+      71
+    ],
+    [
+      327,
+      196,
+      35,
+      44
+    ]
+  ],
+  "expressions": {
+    "fierce": {
+      "alpha_identical": true,
+      "outside_windows_identical": true,
+      "source_bounds": [
+        8,
+        15,
+        723,
+        676
+      ]
+    },
+    "hurt": {
+      "alpha_identical": true,
+      "outside_windows_identical": true,
+      "source_bounds": [
+        7,
+        15,
+        723,
+        676
+      ]
+    },
+    "happy": {
+      "alpha_identical": true,
+      "outside_windows_identical": true,
+      "source_bounds": [
+        7,
+        15,
+        723,
+        676
+      ]
+    }
+  }
+}

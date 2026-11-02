@@ -41,13 +41,28 @@
       "fonte": "rabiolava-propostas-v1.png",
       "opcao": "B",
       "sha256": "2b93e09a8be00cb529e8f1c186bb0263d52ed2e3ee1e804223d477ee1dca9881",
-      "rig_pronto": false,
+      "rig_pronto": true,
       "integrado": false,
       "nome": "Rabiolava",
       "contorno_carcara": {
         "fonte": "contorno-carcara-v1/rabiolava.png",
         "estado": "acabamento-em-revisao",
         "rig_pronto": false
+      },
+      "soulgen": {
+        "project": "art/soulgen/keys/rabiolava/cutout-rig-v1/rabiolava.soulgen.json",
+        "preset": "rabiolava",
+        "parts": 6,
+        "actions": 6,
+        "faces": [
+          "normal",
+          "fierce",
+          "hurt",
+          "happy"
+        ],
+        "status": "rig-local-em-revisao",
+        "browser_visual_tested": false,
+        "game_integrated": false
       }
     },
     {
