@@ -4,6 +4,7 @@ signal confirmed
 signal canceled
 signal choice_selected(id:String)
 const Hud=preload("res://scripts/campaign/hud.gd")
+const Layout=preload("res://scripts/campaign/hud_layout.gd")
 const Surface=preload("res://scripts/campaign/hud_dialogue_surface.gd")
 const Portrait=preload("res://scripts/campaign/hud_dialogue_portrait.gd")
 const Controls=preload("res://scripts/campaign/controls.gd")
@@ -28,6 +29,7 @@ var choices:VBoxContainer
 var accept:Button
 var decline:Button
 var advance:Button
+var _box_rect:=Rect2()
 var pages:Array[Dictionary]=[]
 var page_index:=0
 var elapsed:=0.0
@@ -78,6 +80,11 @@ func _ready() -> void:
 	name_label=Label.new();name_label.add_theme_font_override("font",Hud.display());nameplate.add_child(name_label)
 	choices=VBoxContainer.new();choices.add_theme_constant_override("separation",8);add_child(choices)
 	advance=_button("Continuar",func():next_page())
+	# Shows the confirm button of the active device (A on Switch and Xbox, × on PS).
+	advance.icon=Controls.glyph("accept")
+	advance.expand_icon=true
+	advance.add_theme_constant_override("icon_max_width",28)
+	Controls.events.changed.connect(func():if is_instance_valid(advance):advance.icon=Controls.glyph("accept"))
 	decline=_button(cancel_button_text,func():_finish(false))
 	accept=_button(ok_button_text,func():_finish(true))
 	for option in options.slice(0,4):
@@ -115,21 +122,31 @@ func _portrait_for(speaker:String) -> Texture2D:
 func _rebuild() -> void:
 	if not is_instance_valid(body):return
 	var factor:=size.y/1080.0
-	var height:=maxf(180,240*factor)
-	box.position=Vector2(maxf(24,size.x*.16),size.y-height-24)
-	box.size=Vector2(size.x-box.position.x-32,height)
-	var font_size:=maxi(20,roundi(30*factor))
+	var safe:=Layout.safe_rect(size)
+	# Body text at the handheld reading size; the box fits exactly three lines
+	# (text_pages() paginates at three) plus the surface insets, on the safe rect.
+	var font_size:=Layout.type("heading")
 	body.add_theme_font_size_override("font_size",font_size)
-	nameplate.position=box.position-Vector2(-20,40)
-	nameplate.size=Vector2(360*factor,48)
-	name_label.add_theme_font_size_override("font_size",maxi(22,roundi(32*factor)))
-	portrait.position=Vector2(16,box.position.y-340*factor)
+	var line_height:=Hud.font().get_height(font_size)+float(body.get_theme_constant("line_spacing"))
+	var height:=Layout.snap(line_height*3+44)
+	var left:=maxf(safe.position.x,safe.position.x+safe.size.x*.14)
+	_box_rect=Rect2(Vector2(left,safe.end.y-height),Vector2(safe.end.x-left,height))
+	box.position=_box_rect.position
+	box.size=_box_rect.size
+	nameplate.size=Vector2(minf(360,box.size.x*.5),44)
+	nameplate.position=box.position+Vector2(Layout.space("l"),-nameplate.size.y+Layout.space("xs"))
+	name_label.add_theme_font_size_override("font_size",Layout.type("title"))
 	portrait.size=Vector2(400,520)*factor
-	other_portrait.position=portrait.position+Vector2(290*factor,25*factor)
+	portrait.position=Vector2(safe.position.x-Layout.space("l"),box.position.y-portrait.size.y*.62)
 	other_portrait.size=Vector2(340,470)*factor
-	choices.size=Vector2(minf(640*factor,size.x*.45),0)
-	choices.position=Vector2(size.x-choices.size.x-32,box.position.y-choices.get_combined_minimum_size().y-60)
-	_indicator=Vector2(size.x-54,size.y-46)
+	other_portrait.position=portrait.position+Vector2(290*factor,25*factor)
+	for button in choices.get_children():button.add_theme_font_size_override("font_size",Layout.type("label"))
+	# Choices and Continuar break out of the box's top edge on the right, like a
+	# Persona title tab, instead of floating over the scene.
+	choices.size=Vector2(minf(420,box.size.x*.42),0)
+	var stack:=choices.get_combined_minimum_size().y
+	choices.position=Vector2(box.position.x+box.size.x-choices.size.x-Layout.space("l"),box.position.y-stack+Layout.space("xs"))
+	_indicator=box.position+box.size-Vector2(Surface.side_margin(box.size.y)*.6,Layout.space("xl"))
 	pages.clear()
 	var speaker:=title if title!="Aviso" else "Jornada"
 	for paragraph in dialog_text.split("\n\n",false):
@@ -180,10 +197,15 @@ func _show_page() -> void:
 	Hud.focus_later(target)
 	call_deferred("_align_choices")
 func _align_choices() -> void:
-	box.size=Vector2(size.x-box.position.x-32,maxf(180,240*size.y/1080.0))
-	# Containers can grow to a button's minimum width after _rebuild().
-	choices.position.x=size.x-choices.size.x-64
-	choices.position.y=box.position.y-choices.get_combined_minimum_size().y-60
+	# The surface container can grow to its label's one-line width; put it back.
+	box.position=_box_rect.position
+	box.size=_box_rect.size
+	# Runs after the page set which buttons are visible: the tab sits on the box's top
+	# edge, right side, sized to the buttons actually shown.
+	choices.size=Vector2(minf(420,box.size.x*.42),0)
+	choices.size=choices.get_combined_minimum_size().max(choices.size)
+	choices.position.x=box.position.x+box.size.x-choices.size.x-Layout.space("l")
+	choices.position.y=box.position.y-choices.size.y+Layout.space("xs")
 func next_page() -> void:
 	preload("res://scripts/campaign/sound_director.gd").cue(self, "dialogue.advance")
 	if page_index<pages.size()-1:page_index+=1;_show_page()
