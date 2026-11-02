@@ -57,7 +57,7 @@ func copy(text:String,parent:Node,font_size:int=18) -> Label:
 	label.add_theme_font_size_override("font_size",font_size);parent.add_child(label);return label
 func panel() -> PanelContainer:
 	var result:=PanelContainer.new();var style:=StyleBoxFlat.new()
-	style.bg_color=Color("253844ed");style.border_color=Color("d6b887");style.set_border_width_all(1);style.set_corner_radius_all(12)
+	style.bg_color=Hud.Tokens.alpha(Hud.Tokens.TINTA_2,.93);style.border_color=Hud.Tokens.PAPEL_2;style.set_border_width_all(1);style.set_corner_radius_all(12)
 	style.content_margin_left=16;style.content_margin_right=16;style.content_margin_top=10;style.content_margin_bottom=10
 	result.add_theme_stylebox_override("panel",style);return result
 func button(text:String,parent:Node,callback:Callable,icon_name:String="") -> Button:

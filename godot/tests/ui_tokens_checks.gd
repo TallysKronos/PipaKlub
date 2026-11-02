@@ -6,20 +6,42 @@ const Ink = preload("res://scripts/campaign/battle_ink.gd")
 const TOKEN_FILE := "res://scripts/campaign/ui_tokens.gd"
 const ART_RENDERERS := {
 	"res://scripts/region.gd": "Legacy terrain/material renderer, not interface ink.",
-	"res://scripts/illustrated_tree.gd": "Tree ground shadow, not interface ink."
+	"res://scripts/illustrated_tree.gd": "Tree ground shadow, not interface ink.",
+	"res://scripts/campaign/lacertubo_cinematic.gd": "Boss cutscene grading and letterbox, not interface ink.",
+	"res://scripts/campaign/lacertubo_movie.gd": "Cutscene film backdrop.",
+	"res://scripts/campaign/neighborhood_view.gd": "Neighbourhood terrain map colours.",
+	"res://scripts/campaign/opening_tv.gd": "Opening TV screen grading and bezel.",
+	"res://scripts/campaign/workshop_birth_view.gd": "Partner birth light effect."
 }
+## World renderers (terrain, water, structures, showcases): materials, not interface ink.
+const ART_DIRECTORIES := {"res://scripts/overworld/": "World material renderers."}
 const ART_EXPRESSIONS := {
 	"res://scripts/main.gd": {
 		'chests[nearest].modulate=Color(.55,.65,.55)': "Desaturates an already opened world chest sprite.",
 		'chests[id].modulate=Color(.55,.65,.55)': "Restores the opened chest art when loading the prototype."
 	},
 	"res://scripts/campaign/workshop_view.gd": {
-		'draw_colored_polygon(points, Color("f4db9c"))': "Physical kite paper pigment on the workbench.",
-		'draw_line(Workshop.CENTER, point, Color("8b572b"), 8)': "Bamboo outer grain.",
-		'draw_line(Workshop.CENTER, point, Color("e7b86b"), 3)': "Bamboo lit face.",
-		'draw_rect(Rect2(760, 150, 180, 350), Color("604628"))': "Wooden supply tray.",
-		'draw_line(Vector2(790 + i * 24, 190), Vector2(800 + i * 24, 450), Color("e7b86b"), 8)': "Supply rods.",
-		'draw_line(cursor - Vector2(0, 80), cursor + Vector2(0, 80), Color("f8d58e"), 8)': "Held bamboo rod pigment."
+		'draw_rect(Rect2(Vector2.ZERO,size),Color("101d29"))': "Workbench table surface.",
+		'draw_colored_polygon(_shift(points,Vector2(3,5)),Color(0.02,0.08,0.1,.35))': "Paper sheet contact shadow.",
+		'draw_colored_polygon(points, Color("f5e9cb"))': "Kite paper pigment.",
+		'draw_colored_polygon(PackedVector2Array([Workshop.CENTER,p,q]),Color("f5e9cb") if i%2 else Color("e6d3a6"))': "Kite paper panels.",
+		'draw_line(p,q,Color("26394d"),2,true)': "Paper seam ink.",
+		'draw_dashed_line(Workshop.CENTER, point, Color("91b4ad"), 2, 7,true)': "Line guide on the paper.",
+		'draw_circle(point,11,Color("203b40"))': "Bamboo socket.",
+		'draw_circle(point,7,Color("e8bc58") if installed else Color("9abbb3"))': "Socket state on the physical frame.",
+		'draw_line(point+Vector2(-6,-4+wrap*4),point+Vector2(6,-2+wrap*4),Color("f5e9cb"),2,true)': "Wrapped line on a rod.",
+		'draw_circle(Workshop.CENTER,7,Color("e8bc58"))': "Kite centre knot.",
+		'draw_line(Vector2(810,510),points[model.run.step.holding],Color("f5e9cb"),2,true)': "Line held from the spool.",
+		'draw_arc(Workshop.CENTER,55+r*14,0,TAU,64,Color(.3,.85,.86,.18+pulse*.15),2,true)': "Glue glow on the frame.",
+		'draw_circle(Workshop.CENTER,42,Color("26394d"))': "Centre hub.",
+		'draw_polygon(PackedVector2Array([from-normal,from+normal,to+normal,to-normal]),PackedColorArray([Color.WHITE]),PackedVector2Array([Vector2(0,0),Vector2(1,0),Vector2(1,1),Vector2(0,1)]),bamboo)': "Identity modulation of the bamboo texture.",
+		'draw_polygon(corners,PackedColorArray([Color.WHITE]),PackedVector2Array([Vector2(0,0),Vector2(1,0),Vector2(1,1),Vector2(0,1)]),texture)': "Identity modulation of the paper texture."
+	},
+	"res://scripts/campaign/partner_care_view.gd": {
+		'stage.draw_rect(Rect2(Vector2.ZERO,stage.size),Color("202d36"))': "Care stage floor behind the creature.",
+		'stage.draw_set_transform(center,0,Vector2(1,.27));stage.draw_circle(Vector2.ZERO,pet_height*.27,Color(0.1,.2,.2,.22));stage.draw_set_transform(Vector2.ZERO)': "Creature ground shadow.",
+		'if state=="care" and progress>0:stage.draw_arc(center+Vector2(0,10),30,-PI/2,-PI/2+TAU*progress,40,Color("f6d48c"),4,true)': "Care progress ring on the stage.",
+		'stage.draw_texture_rect(images.heart,Rect2(at,Vector2(28,28)),false,Color(1,1,1,1-mark.age/1.5))': "Heart sprite fade (identity tint)."
 	},
 	"res://scripts/overworld/view.gd": {
 		'water.color = Color("77B3AF")': "World water material, not UI ink.",
@@ -51,6 +73,8 @@ func scripts_at(directory: String) -> Array[String]:
 func violations(path: String, source: String) -> Array[String]:
 	var result: Array[String] = []
 	if path == TOKEN_FILE or ART_RENDERERS.has(path): return result
+	for directory in ART_DIRECTORIES:
+		if path.begins_with(directory): return result
 	var regex := RegEx.new()
 	regex.compile("\\bColor\\s*\\(\\s*(?:[\"']|[-+.0-9])|\\bColor\\.[A-Z_]+")
 	var lines := source.split("\n")

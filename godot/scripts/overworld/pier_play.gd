@@ -330,10 +330,7 @@ func _build_ui() -> void:
 	hud_root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	hud_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	layer.add_child(hud_root)
-	var theme := Theme.new()
-	theme.default_font = Hud.font()
-	theme.default_font_size = 19
-	hud_root.theme = theme
+	hud_root.theme = load("res://scripts/campaign/recorte_theme.gd").shared()
 	var panel := PanelContainer.new()
 	panel.position = Vector2(22,20)
 	panel.custom_minimum_size = Vector2(460,0)

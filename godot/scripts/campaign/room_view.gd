@@ -1,4 +1,5 @@
 extends Node2D
+const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
 const CompanionFollow = preload("res://scripts/campaign/companion_follow.gd")
 const Locomotion = preload("res://scripts/campaign/locomotion.gd")
@@ -265,6 +266,6 @@ func _draw_target() -> void:
 	for spot in data.get("hotspots",[]):
 		if spot.id!=target_hotspot:continue
 		var at:=project(Vector2(spot.x,spot.y))
-		var color:=Color("55CCD5")
+		var color:=Tokens.CEU
 		target_marker.draw_arc(at,20,0,TAU,32,color,2,true)
 		target_marker.draw_colored_polygon(PackedVector2Array([at+Vector2(-7,-38),at+Vector2(7,-38),at+Vector2(0,-27)]),color)

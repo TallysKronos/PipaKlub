@@ -126,7 +126,7 @@ func _build_jump_markers() -> void:
 			line.position=at
 			line.z_index=landscape.depth(entry.from)+1
 			line.points=PackedVector2Array([tip-direction*4+side,tip,tip-direction*4-side])
-			line.width=1.5;line.default_color=Color("e3c77d");line.antialiased=true
+			line.width=1.5;line.default_color=Tokens.SOL;line.antialiased=true
 			jump_marker.add_child(line)
 
 func _near_jump() -> Dictionary:

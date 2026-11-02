@@ -1,5 +1,6 @@
 extends "res://scripts/overworld/view.gd"
 ## Campaign adapter over the reviewed renderer/controller, with no preview grants or warps.
+const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 const Checkpoint = preload("res://scripts/campaign/park_checkpoint.gd")
 const Park = preload("res://scripts/campaign/park_data.gd")
 const Training=preload("res://scripts/campaign/park_training.gd")
@@ -143,7 +144,7 @@ func _build_markers() -> void:
 		if tail:
 			var ring:=Line2D.new()
 			ring.width=2.0
-			ring.default_color=Color(1.0,.8,.3,.8)
+			ring.default_color=Tokens.alpha(Tokens.SOL,.8)
 			ring.position=Vector2(0,-model.height_at(point)*64)
 			for i in 33:
 				var angle: float=TAU*i/32
