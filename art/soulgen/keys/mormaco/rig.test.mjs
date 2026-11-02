@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import crypto from 'node:crypto';
+import crypto from 'node:crypto';
 import {validate,sample} from '../../../../tools/soulgen-studio/model.mjs';
 import {anatomyReport} from '../../../../tools/soulgen-studio/workflow.mjs';
 const dir=new URL('./cutout-rig-v1/',import.meta.url);
@@ -19,5 +20,12 @@ test('Mormaco preserves eleven parts and valid joints through six clips',()=>{
  const head=p.parts.find(x=>x.id==='head');
  for(const face of Object.values(head.faces))assert.deepEqual(face.source,head.source,'expression must replace the COMPLETE head rectangle');
  assert.equal(p.artRevision,1);
+});
+test('Approved Mormaco preserves author geometry, pivots, clips and PNG bytes',()=>{
+ const raw=fs.readFileSync(new URL('author-approved.portable.soulgen.json',dir)),author=JSON.parse(raw),p=read('mormaco.soulgen.json');
+ assert.equal(crypto.createHash('sha256').update(raw).digest('hex'),read('author-import.json').sha256);
+ assert.equal(p.rigRevision,2);assert.deepEqual(p.parts,author.parts);assert.deepEqual(p.clips,author.clips);
+ for(const [id,a]of Object.entries(author.assets))assert.deepEqual(fs.readFileSync(new URL(p.assets[id].src.split('/').at(-1),dir)),Buffer.from(a.src.split(',')[1],'base64'));
+ assert.deepEqual(read('author-external-pivot-joints.json'),[]);
 });
 

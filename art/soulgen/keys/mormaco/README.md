@@ -1,5 +1,7 @@
 # Mormaço C — forma livre no Soulgen
 
+**Edição aprovada do autor, rig revisão 2.** `mormaco-forma-livre.soulgen.json` incorporado preservando geometria, pivôs, hierarquia, clipes e PNGs embutidos. Cópia integral e hash em `author-approved.portable.soulgen.json` e `author-import.json`. Todas as seis juntas anatômicas recalibradas passaram na auditoria normalizada, sem exclusões. O editor arquiva rascunhos da revisão anterior antes de carregar a aprovada. Construtor respeita esta edição por padrão.
+
 Identidade existente recuperada de `origin/feature/retalho-bosque-d`: `art/creatures/mormaco/model-c-v1/prancha-c-livre.png`, opção C de areia/gêiseres escolhida pelo autor. Cópia e hashes em `art/soulgen/campaign-redesigns-v1/references/mormaco-git/`. Não confundir com Rabiolava nem substituir outras criaturas por causa dos nomes antigos do roteiro.
 
 Abrir: http://127.0.0.1:5241/?preset=mormaco
