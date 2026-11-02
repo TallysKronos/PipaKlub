@@ -18,7 +18,7 @@ Estado: levantamento e propostas visuais. Nenhum modelo novo integrado ao jogo.
 | Platyx | Ornitorrinco, parceiro do Grampo; contraste entre saque e recusa em obedecer | Arte existente em outra branch; inspecionar antes da conversão |
 | Rai | Tigre dente-de-sabre, parceiro do Tyler | Conferir identidade existente e alias Saber; não criar uma segunda espécie por diferença de nome |
 | Trovareta | Trovão + vareta; floresta à noite durante tempestade | Arquitetura A escolhida pelo dono após refinamento de trovão; rig pendente |
-| Rabiolava | Lava + rabiola; vulcão | Três arquiteturas em exploração; mais cor e identidade de criatura, sem remendos obrigatórios |
+| Rabiolava | Lava + rabiola; vulcão | B escolhida pelo dono; A/C reservadas como outros Soulmonsters; rig pendente |
 | Glacerol | Geleira + cerol; gelo | Nome, força e região decididos; anatomia e paleta são propostas |
 | Tufanocorte | Tufão + corte; montanha | Nome, força e região decididos; anatomia e paleta são propostas |
 | Pipa-Dragão | Corpo com três rabiolas roubadas; forma desatada menor | Precisa diferenciar as duas formas sem inventar espécie canônica |
@@ -56,3 +56,7 @@ Os nomes abaixo são nomes de trabalho do roteiro, não novos nomes aprovados pa
 6. Só depois exportar/integrar quando solicitado. Manter fontes e PNGs aprovados, sem sobrescrever rascunhos manuais do editor.
 
 Branch de trabalho: `codex/soulgen-redesigns`. Sem merge, push ou alteração de código do jogo nesta etapa.
+
+## Banco de criaturas reservado pelo dono
+
+Índice persistente: `catalogo-concepts.json`. São quatro conceitos para outros Soulmonsters, ainda sem nomes: quadrúpede ressonante (Trovareta B), serpente elétrica (Trovareta C), fera de rabiolas de lava (Rabiolava A) e caititu vulcânico (Rabiolava C). As opções escolhidas, Trovareta A e Rabiolava B, também estão no índice. Nenhum desses registros adiciona uma espécie ao runtime ou declara um rig pronto.

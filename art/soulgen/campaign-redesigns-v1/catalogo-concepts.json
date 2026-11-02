@@ -1,0 +1,73 @@
+{
+  "schema": "soulgen-concept-reservations-v1",
+  "decisao": "Dono escolheu Trovareta A e Rabiolava B; demais propostas reservadas como outros Soulmonsters.",
+  "observacao": "IDs de reserva sao tecnicos. Sem nomes de Dex, atributos, evolucoes ou integracao decididos. Fontes preservadas integralmente.",
+  "concepts": [
+    {
+      "id": "trovareta",
+      "descricao": "Ave de trovao",
+      "estado": "arquitetura-escolhida",
+      "fonte": "trovareta-trovao-v2.png",
+      "opcao": "A",
+      "sha256": "8cee1978bc0e00362eaf950633c7a28935d476688f0d15e5ba5fe215ae840761",
+      "rig_pronto": false,
+      "integrado": false,
+      "nome": "Trovareta"
+    },
+    {
+      "id": "rabiolava",
+      "descricao": "Raia aerea de rabiolas incandescentes",
+      "estado": "arquitetura-escolhida",
+      "fonte": "rabiolava-propostas-v1.png",
+      "opcao": "B",
+      "sha256": "2b93e09a8be00cb529e8f1c186bb0263d52ed2e3ee1e804223d477ee1dca9881",
+      "rig_pronto": false,
+      "integrado": false,
+      "nome": "Rabiolava"
+    },
+    {
+      "id": "reserva-trovao-quadrupede",
+      "descricao": "Quadrupede ressonante com para-raios dorsais",
+      "estado": "reservado-outro-soulmonster",
+      "fonte": "trovareta-b-trovao-v2.png",
+      "opcao": "B",
+      "sha256": "6e0d3138a1a7d36f148a7a9073e5ec5f62fd492ef494c1abdc70779ae986487d",
+      "rig_pronto": false,
+      "integrado": false,
+      "nome": null
+    },
+    {
+      "id": "reserva-trovao-serpente",
+      "descricao": "Serpente eletrica de nos e armacao angular",
+      "estado": "reservado-outro-soulmonster",
+      "fonte": "trovareta-c-trovao-v2.png",
+      "opcao": "C",
+      "sha256": "fa02e2de642c8c3af87ca810d20b44e5844b12145182494b3f0675531e80d7d4",
+      "rig_pronto": false,
+      "integrado": false,
+      "nome": null
+    },
+    {
+      "id": "reserva-lava-fera",
+      "descricao": "Fera robusta com leque de tres rabiolas de lava",
+      "estado": "reservado-outro-soulmonster",
+      "fonte": "rabiolava-propostas-v1.png",
+      "opcao": "A",
+      "sha256": "2b93e09a8be00cb529e8f1c186bb0263d52ed2e3ee1e804223d477ee1dca9881",
+      "rig_pronto": false,
+      "integrado": false,
+      "nome": null
+    },
+    {
+      "id": "reserva-lava-caititu",
+      "descricao": "Caititu vulcanico com crina de lava",
+      "estado": "reservado-outro-soulmonster",
+      "fonte": "rabiolava-propostas-v1.png",
+      "opcao": "C",
+      "sha256": "2b93e09a8be00cb529e8f1c186bb0263d52ed2e3ee1e804223d477ee1dca9881",
+      "rig_pronto": false,
+      "integrado": false,
+      "nome": null
+    }
+  ]
+}
