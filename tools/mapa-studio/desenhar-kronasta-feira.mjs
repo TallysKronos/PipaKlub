@@ -33,8 +33,8 @@ for(const part of ['A','B','C']){
   for(let v=5;v<17;v++)f.guards.push({u:15,v,side:'u'});
   stall(6,7,'ochre');stall(12,7,'teal');stall(6,12);stall(18,24,'teal');stall(28,24);stall(33,15,'ochre');
   P('banco','Banco do descanso',19,30,{pegada:'2x1',bloqueia:true});
-  E('interacao','Descanso do mercado',21,31,{acao:'feiraRestPreview',texto:'Ponto seguro do mercado. Serviço de descanso será integrado na etapa narrativa.'});
-  E('npc','Grampo',34,17,{storySpritePath:'res://assets/campaign/beira-canal-v1/grampo.png',fala:'Grampo',texto:'Você está procurando alguma coisa?',preview:true});
+  E('interacao','Descanso do mercado',21,31,{acao:'districtRest',district:'feira'});
+  E('npc','Grampo',34,17,{storySpritePath:'res://assets/campaign/beira-canal-v1/grampo.png',fala:'Grampo',texto:'Você está procurando alguma coisa?',acao:'feiraStory',feiraAction:'grampo',ocultar_apos:'feiraApitoVerdadeiro'});
  }
  if(part==='C'){
   rect(16,4,16,13,'piso',1);rect(16,4,16,6,'piso',2);rect(16,0,16,4,'bosque',2);
@@ -44,8 +44,8 @@ for(const part of ['A','B','C']){
   stall(17,6,'ochre');stall(28,6,'teal');stall(18,25);stall(28,25,'ochre');
   E('saida','Retorno à praça',27,37,{destino:'kronasta-feira-a',chegada_u:24,chegada_v:37,requer:'feira',atalho:true});rect(25,35,4,5,'piso',0);
  }
- const npc=(name,u,v,n)=>E('npc',name,u,v,{fala:name,texto:'Estamos preparando o campeonato da Feira do Largo.',preview:true,futureDuel:'feira-'+n});
- if(part==='A'){npc('Veyra',24,31,1);npc('Orven',24,12,2);E('npc','Seu Lalau',20,26,{fala:'Seu Lalau',texto:'Apitos e novidades do mercado.',preview:true});}
+ const npc=(name,u,v,n)=>E('npc',name,u,v,{fala:name,texto:'Estamos preparando o campeonato da Feira do Largo.',district:'feira',acao:'districtDuel',duel:'feira-'+n,npcId:n===5?'zulmira':'feira-'+name.toLowerCase(),storySpritePath:'res://assets/npc-ds/feira-v1/'+(n===5?'zulmira':name.toLowerCase())+'.png'});
+ if(part==='A'){npc('Veyra',24,31,1);npc('Orven',24,12,2);E('npc','Seu Lalau',20,26,{fala:'Seu Lalau',texto:'Apitos e novidades do mercado.',acao:'feiraStory',feiraAction:'lalau',storySpritePath:'res://assets/npc-ds/feira-v1/lalau.png'});}
  if(part==='B'){npc('Zafri',24,31,3);npc('Nymel',24,12,4);}
  if(part==='C')npc('Dona Zulmira',24,6,5);
  E('entrada','Chegada Feira '+part,24,37);

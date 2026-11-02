@@ -95,15 +95,21 @@ func _ready() -> void:
 	encounter_grace=Pacing.walking_grace(saved_player)
 
 func _build_events() -> void:
+	if saved_checkpoint.scene=="park-veredas":interaction_events.append_array(preload("res://scripts/campaign/feira_story.gd").door_events(saved_player))
 	if saved_checkpoint.scene=="park-veredas":
 		for event:Dictionary in preload("res://scripts/campaign/canal_gate.gd").events(saved_player):
 			if Checkpoint.allowed(event,saved_player,area_id):interaction_events.append(event)
 	var district_region:=Checkpoint.region_of(saved_checkpoint.scene)
-	if district_region in ["bambuzal","beira-canal"]:
+	if district_region in ["bambuzal","beira-canal","feira"]:
 		var rules=preload("res://scripts/campaign/district_rules.gd")
 		var title:Dictionary=rules.entry(saved_player,district_region)
 		for event:Dictionary in model.data.events+interaction_events:
 			if event.props.get("duel","")==district_region+"-5":event.name=rules.opponent_name(saved_player,district_region) if title.completed and title.champion!="player" else rules.definition(district_region).champion.name
+	if district_region=="feira":
+		for event:Dictionary in model.data.events+interaction_events:
+			if event.props.get("duel","")=="feira-5":
+				var actor_id:String={"Veyra":"veyra","Orven":"orven","Zafri":"zafri","Nymel":"nymel","Dona Zulmira":"zulmira"}.get(event.name,"zulmira")
+				event.props.storySpritePath="res://assets/npc-ds/feira-v1/"+actor_id+".png"
 	if model.data.get("forest",{}).get("nativeProps",false):
 		for event in Checkpoint.data(saved_checkpoint.scene).events:
 			if model.data.events.any(func(existing: Dictionary): return int(existing.id)==int(event.id)): continue

@@ -72,6 +72,7 @@ static func next_here(player: Dictionary,scene: String) -> Dictionary:
 		if entry.scene==scene and not completed(player,entry.id): return entry
 	return {}
 static func objective(player: Dictionary,scene: String) -> String:
+	if scene=="park-veredas" and player.get("flags",{}).get("feiraApitoComprado",false) and not player.flags.get("feiraApitoFalsoTestado",false):return "Experimente o apito na entrada das Ruínas · antigo pátio do guardião."
 	var flags: Dictionary=player.get("flags",{})
 	var story=load("res://scripts/campaign/kronasta_story.gd")
 	if not story.mikka_defeated(player) and not flags.get("ninaAccepted",false):return story.objective(player)

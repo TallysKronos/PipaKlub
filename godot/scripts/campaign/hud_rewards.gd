@@ -21,6 +21,7 @@ static func preview(player: Dictionary, encounter: Dictionary, model: RefCounted
 		summary.coins=reward.coins;amount=reward.xp
 		if won and model.stage_id=="bambuzal-5" and not preload("res://scripts/campaign/district_rules.gd").completed(player,"bambuzal"):summary.unlock="Insígnia do Bambuzal · Clareira do Papel liberada"
 		if won and model.stage_id=="beira-canal-5" and not preload("res://scripts/campaign/district_rules.gd").completed(player,"beira-canal"):summary.unlock="Insígnia de Beira-Canal · Feira do Largo é o próximo destino"
+		if won and model.stage_id=="feira-5" and not preload("res://scripts/campaign/district_rules.gd").completed(player,"feira"):summary.unlock="Insígnia da Feira do Largo · caminho do Mural reconhecido"
 	elif encounter.get("kind", "") == "morro" and model.outcome != "fled":
 		var reward := Rules.settle(player.get("morro", Rules.defaults()), model.stage_id, won, model.rounds_lost())
 		summary.coins = reward.coins
@@ -30,6 +31,10 @@ static func preview(player: Dictionary, encounter: Dictionary, model: RefCounted
 			summary.unlock="Passagem liberada · "+str(Rules.stage(Rules.IDS[next_index]).get("name","próximo desafio"))
 		amount = Morro.reward_amount(won, reward.firstClear)
 		if reward.get("drop") != null: summary.items.append("Rabiola de Raio de sol")
+	elif encounter.get("kind","")=="feira-story":
+		if won:
+			summary.unlock="Lalau confessou · procure Grampo no beco do mercado" if encounter.feiraOpponent=="lalau" else "Recebido · Apito de vento verdadeiro"
+			if encounter.feiraOpponent=="lalau":summary.coins=20
 	elif encounter.get("kind","")=="canal-gate":
 		if won:summary.unlock="Grampo recuou · a comporta pode ser destrancada"
 	elif won:

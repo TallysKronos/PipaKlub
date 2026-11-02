@@ -297,7 +297,8 @@ func _error(code: String) -> String:
 		"future": "Este save precisa de uma versão mais recente do jogo.",
 		"unsupported": "Versão do save incompatível.", "occupied": "Esta jornada já existe.",
 		"invalid_name": "Use um nome de até 24 caracteres, sem quebras de linha.",
-		"not_enough_coins":"Você precisa de 12 moedas para descansar na oficina. O ateliê do professor continua gratuito.",
+		"feira_no_coins":"O apito custa 20 moedas. Os desafios do bairro ajudam a conseguir moedas.",
+		"not_enough_coins":"Você precisa de 12 moedas para descansar aqui. O ateliê do professor continua gratuito.",
 		"stale": "A jornada foi alterada. Volte ao menu e carregue novamente.",
 		"repair_needed": "Seu parceiro precisa de reparos. Use um Kit de Remendo em Equipe → Cuidar ou procure o professor.",
 		"io_error": "Não foi possível acessar o save. Confira o espaço e a permissão da pasta."}.get(code, "Não foi possível continuar. Seu último save foi mantido.")
@@ -1527,6 +1528,12 @@ func _park_event(id: String) -> void:
 		if str(int(event.id))!=id or not ParkCheckpoint.allowed(event,player,park.area_id): continue
 		if park.player.distance_to(Vector2(event.u+.5,event.v+.5))>1.8: return
 		var action: String = event.props.get("acao","")
+		if action=="feiraStory":
+			_request_feira_story(str(event.props.feiraAction));return
+		if action=="districtRest" and event.props.get("district")=="feira":
+			_confirm_park("Descansar no mercado","Recuperar toda a equipe por 12 moedas? Se todos estiverem bem, nada será cobrado.","Descansar",func():
+				if _result(load("res://scripts/campaign/feira_story.gd").new(session).rest(park.player)):park.refresh(session.snapshot().player))
+			return
 		if action=="canalClue":
 			_notice(event.props.texto);return
 		if action=="districtRest" and event.props.get("district")=="beira-canal":
@@ -1708,6 +1715,8 @@ func _show_encounter() -> void:
 			if _result(load("res://scripts/campaign/district_campaign.gd").new(session).settle()):_return_district_result.call_deferred()
 		elif is_morro:
 			if _result(morro.settle()): _return_morro_result.call_deferred()
+		elif session.snapshot().player.encounter.kind=="feira-story":
+			if _result(load("res://scripts/campaign/feira_story.gd").new(session).settle()):_return_feira_story.call_deferred()
 		elif session.snapshot().player.encounter.kind=="canal-gate":
 			if _result(load("res://scripts/campaign/canal_gate.gd").new(session).settle()):_show_saved.call_deferred()
 		elif _result(encounters.settle()): _show_saved.call_deferred())
@@ -2628,3 +2637,43 @@ func _request_canal_gate()->void:
 	else:
 		_confirm_park("Grampo","Vai mexer no controle? Achei essas peças primeiro! Platyx, segura a linha.\n\nDuelo de história · adversário Nv. 14. Derrota ou fuga permitem tentar novamente.","Enfrentar Grampo",func():
 			if _result(service.begin(park.player)):_show_saved.call_deferred())
+
+func _request_feira_story(who:String)->void:
+	var service=load("res://scripts/campaign/feira_story.gd").new(session)
+	var player:Dictionary=session.snapshot().player
+	var phase:String=service.phase(player)
+	if who=="door":
+		if phase=="buy":_notice("A fechadura das Ruínas responde a um apito de vento. Talvez alguém na Feira saiba onde encontrar um.");return
+		if phase=="door":
+			_confirm_park("A porta das Ruínas","Kael aproxima o apito da fechadura antiga. Experimentar?","Soprar o apito",func():
+				if _result(service.test_door(park.player)):
+					park.refresh(session.snapshot().player)
+					_notice("O apito solta um chiado fino. É de plástico! A fechadura não se move. Kael: Lalau vai ter que explicar isso."))
+		elif phase=="complete":_notice("O apito verdadeiro ressoa com a Rabiola Antiga. Kael guarda o instrumento com cuidado.")
+		else:_notice(service.objective(player))
+		return
+	if who=="lalau" and phase=="buy":
+		_confirm_park("Seu Lalau","Apito de vento original! Vinte moedas. Com ele, porta nenhuma resiste!
+
+Comprar por 20 moedas?","Comprar apito",func():
+			if _result(service.buy(park.player)):
+				park.refresh(session.snapshot().player);park.celebrate_item("Recebido · Apito anunciado como original"))
+		return
+	if phase==who:
+		var message:String="Eu devolvo suas moedas, mas primeiro quero ver se você sabe voar. O verdadeiro? Pode estar com o Grampo…" if who=="lalau" else "Lalau falou demais. Platyx, vamos!
+
+Platyx recolhe as patas e olha para Grampo, inseguro."
+		_confirm_park("Seu Lalau" if who=="lalau" else "Grampo",message+"
+
+Duelo de história · Nv. "+("16" if who=="lalau" else "17")+". Derrota ou fuga permitem tentar novamente.","Disputar",func():
+			if _result(service.begin(who,park.player)):_show_saved.call_deferred())
+	else:_notice(service.objective(player))
+
+func _return_feira_story()->void:
+	_show_saved()
+	var result:Dictionary=session.snapshot().player.get("lastFeira",{})
+	if result.get("outcome")!="won":return
+	if result.opponent=="lalau":_notice("Seu Lalau devolve as 20 moedas: Está bem! Troquei o apito verdadeiro com o Grampo por cerol. Ele está no beco da parte B do mercado.")
+	else:_notice("Grampo: Leva esse apito e sai do meu caminho.
+
+Recebido · Apito de vento verdadeiro. Platyx se esconde nas dobras da cabeça, aliviado por parar de lutar.")

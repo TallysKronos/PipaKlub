@@ -1,5 +1,7 @@
 # Feira do Largo — etapa de construção dos três mapas
 
+Atualização: integração local da campanha feita posteriormente, documentada em documentation/campaign/feira-do-largo-v1.md. As pendências narrativas abaixo descrevem a entrega inicial dos mapas; as pendências de acabamento continuam válidas.
+
 ## 1. Arquivos
 
 Brief art/overworld/briefs/kronasta-feira.md; gerador tools/mapa-studio/desenhar-kronasta-feira.mjs; plantas art/overworld/mapas/kronasta-feira-{a,b,c}.tmj; compilados godot/assets/overworld/maps/kronasta-feira-{a,b,c}.json e índice. Renderer novo market_structures.gd e kit feira-v1/kit.json. Integração de montagem em kronasta_forest.gd e view.gd isolada por forest.market. Teste feira_navigation_checks.gd.

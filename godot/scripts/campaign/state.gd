@@ -62,7 +62,7 @@ static func inspect(value: Variant, slot_id: String) -> String:
 	if kind == "practice" and (not whole(checkpoint.get("lesson")) or checkpoint.lesson > 4):
 		return "invalid"
 	if kind == "world":
-		if checkpoint.get("scene") not in ["kronasta-beira-canal-a","kronasta-beira-canal-b","kronasta-beira-canal-c","kronasta-bambuzal-a","kronasta-bambuzal-b","kronasta-bambuzal-c","quintal", "professor-home", "kite-shop", "park-trail", "park-clearing", "park-veredas", "morro", "morro-area-2", "morro-area-3", "morro-area-4", "morro-area-5","kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c","kronasta-pantano-a","kronasta-pantano-b","kronasta-pantano-c","kronasta-montanha-a","kronasta-montanha-b","kronasta-montanha-c","kronasta-industrial-a","kronasta-industrial-b","kronasta-industrial-c","mina-ferro-a","mina-ferro-b","mina-ferro-c","mina-ferro-d","gelo-a","gelo-b","gelo-c","gelo-d","submerso-a","submerso-b","submerso-c"] or not checkpoint.get("position") is Array or checkpoint.position.size() != 2:
+		if checkpoint.get("scene") not in ["kronasta-feira-a","kronasta-feira-b","kronasta-feira-c","kronasta-beira-canal-a","kronasta-beira-canal-b","kronasta-beira-canal-c","kronasta-bambuzal-a","kronasta-bambuzal-b","kronasta-bambuzal-c","quintal", "professor-home", "kite-shop", "park-trail", "park-clearing", "park-veredas", "morro", "morro-area-2", "morro-area-3", "morro-area-4", "morro-area-5","kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c","kronasta-pantano-a","kronasta-pantano-b","kronasta-pantano-c","kronasta-montanha-a","kronasta-montanha-b","kronasta-montanha-c","kronasta-industrial-a","kronasta-industrial-b","kronasta-industrial-c","mina-ferro-a","mina-ferro-b","mina-ferro-c","mina-ferro-d","gelo-a","gelo-b","gelo-c","gelo-d","submerso-a","submerso-b","submerso-c"] or not checkpoint.get("position") is Array or checkpoint.position.size() != 2:
 			return "invalid"
 		for coordinate in checkpoint.position:
 			if not (coordinate is float or coordinate is int) or not is_finite(float(coordinate)) or absf(coordinate) > 4096:
@@ -210,18 +210,24 @@ static func valid_workshop(state: Dictionary) -> bool:
 
 static func valid_encounter(value: Variant) -> bool:
 	if value is Dictionary and value.has("rewardXp") and (not whole(value.rewardXp) or value.rewardXp>100000): return false
-	if not value is Dictionary or not value.get("id") is String or value.get("kind") not in ["lacertubo", "wild", "morro", "trainer", "district","canal-gate"] or not value.get("state") is Dictionary: return false
+	if not value is Dictionary or not value.get("id") is String or value.get("kind") not in ["lacertubo", "wild", "morro", "trainer", "district","canal-gate","feira-story"] or not value.get("state") is Dictionary: return false
 	if not value.get("returnPoint") is Array or value.returnPoint.size() != 2: return false
 	for point in value.returnPoint:
 		if not number(point) or point < 0 or point > 1536: return false
 	if value.has("space"):
 		if value.space!="parque-overworld-v1" or not preload("res://scripts/campaign/park_checkpoint.gd").loadable_position(value.get("scene","park-veredas"),Vector2(value.returnPoint[0],value.returnPoint[1])): return false
 	var state: Dictionary = value.state
+	if value.kind=="feira-story":
+		var who:String=value.get("feiraOpponent","")
+		if who not in ["lalau","grampo"] or value.get("space")!="parque-overworld-v1":return false
+		if value.get("scene")!=("kronasta-feira-a" if who=="lalau" else "kronasta-feira-b") or state.get("enemyModelId")!=("mata" if who=="lalau" else "platyx-draft") or state.get("enemyLevel")!=(16 if who=="lalau" else 17):return false
 	if value.kind=="canal-gate" and (value.get("scene")!="park-veredas" or value.get("space")!="parque-overworld-v1" or state.get("enemyModelId")!="platyx-draft" or state.get("enemyLevel")!=14):return false
 	if value.kind in ["wild","trainer"]:
 		if not number(value.get("dropRoll")) or value.dropRoll < 0 or value.dropRoll >= 1 or not whole(state.get("enemyLevel")):return false
 		if value.kind=="wild" and str(value.get("scene","")).begins_with("kronasta-beira-canal-"):
 			if state.get("enemyModelId")!="lacertubo" or state.enemyLevel<12 or state.enemyLevel>14:return false
+		elif value.kind=="wild" and str(value.get("scene","")).begins_with("kronasta-feira-"):
+			if state.get("enemyModelId") not in ["rascunho-bicho-pau","rascunho-joaninha"] or state.enemyLevel<15 or state.enemyLevel>17:return false
 		elif state.get("enemyModelId") not in ["basica", "mata", "raio","rascunho-bicho-pau","rascunho-joaninha"] or state.enemyLevel<1 or state.enemyLevel>9:return false
 	if value.kind=="trainer":
 		var duel: Dictionary=preload("res://scripts/campaign/park_training.gd").duel(str(value.get("trainerId","")))
@@ -245,7 +251,7 @@ static func valid_encounter(value: Variant) -> bool:
 	if value.kind=="district":
 		var context:Variant=value.get("districtContext")
 		var rules=preload("res://scripts/campaign/district_rules.gd")
-		if not rules.valid_context(context) or context.district not in ["bambuzal","beira-canal"] or context.duel!=state.get("trailStage") or not valid_morro_state(state):return false
+		if not rules.valid_context(context) or context.district not in ["bambuzal","beira-canal","feira"] or context.duel!=state.get("trailStage") or not valid_morro_state(state):return false
 		var d:Dictionary=rules.definition(context.district)
 		var stage:Dictionary=d.stages.filter(func(s):return s.id==context.duel)[0]
 		if context.mode=="defense":

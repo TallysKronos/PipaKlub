@@ -736,9 +736,9 @@
       "id": "feira",
       "number": 4,
       "name": "Feira do Largo",
-      "playable": false,
+      "playable": true,
       "next": "cais",
-      "prerequisiteFlag": "",
+      "prerequisiteFlag": "feiraApitoVerdadeiro",
       "unlocks": [
         "caverna"
       ],
@@ -749,76 +749,184 @@
       },
       "emblem": {
         "slot": 3,
-        "name": "Insígnia do Feira do Largo"
+        "name": "Insígnia da Feira do Largo"
       },
       "stages": [
         {
           "id": "feira-1",
           "part": "A",
           "role": "lieutenant",
-          "npcId": "feira-capanga-1",
-          "name": "Capanga 1",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "feira-veyra",
+          "name": "Veyra",
+          "level": 15,
+          "before": [
+            [
+              "Veyra",
+              "A linha não pode atravessar a rua dos outros. Vamos treinar?"
+            ]
+          ],
+          "won": [
+            [
+              "Veyra",
+              "Boa disputa! Continue pelo mercado."
+            ]
+          ],
+          "lost": [
+            [
+              "Veyra",
+              "Recupere seu parceiro e volte quando quiser."
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 50,
+            "xp": 100,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "npcName": "Veyra",
+          "scene": "kronasta-feira-a",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Vaeli",
+              "color": 2
+            }
+          ],
+          "styles": [
+            "patient"
+          ]
         },
         {
           "id": "feira-2",
           "part": "A",
           "role": "lieutenant",
-          "npcId": "feira-capanga-2",
-          "name": "Capanga 2",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "feira-orven",
+          "name": "Orven",
+          "level": 16,
+          "before": [
+            [
+              "Orven",
+              "Eu observo o vento pelos toldos. Consegue acompanhar?"
+            ]
+          ],
+          "won": [
+            [
+              "Orven",
+              "Boa disputa! Continue pelo mercado."
+            ]
+          ],
+          "lost": [
+            [
+              "Orven",
+              "Recupere seu parceiro e volte quando quiser."
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 55,
+            "xp": 110,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "npcName": "Orven",
+          "scene": "kronasta-feira-a",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Noxen",
+              "color": 3
+            }
+          ],
+          "styles": [
+            "reader"
+          ]
         },
         {
           "id": "feira-3",
           "part": "B",
           "role": "lieutenant",
-          "npcId": "feira-capanga-3",
-          "name": "Capanga 3",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "feira-zafri",
+          "name": "Zafri",
+          "level": 16,
+          "before": [
+            [
+              "Zafri",
+              "Nem toda oferta é o que parece. Observe antes de puxar."
+            ]
+          ],
+          "won": [
+            [
+              "Zafri",
+              "Boa disputa! Continue pelo mercado."
+            ]
+          ],
+          "lost": [
+            [
+              "Zafri",
+              "Recupere seu parceiro e volte quando quiser."
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 60,
+            "xp": 120,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "npcName": "Zafri",
+          "scene": "kronasta-feira-b",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Soryn",
+              "color": 0
+            }
+          ],
+          "styles": [
+            "aggressive"
+          ]
         },
         {
           "id": "feira-4",
           "part": "B",
           "role": "lieutenant",
-          "npcId": "feira-capanga-4",
-          "name": "Capanga 4",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "feira-nymel",
+          "name": "Nymel",
+          "level": 17,
+          "before": [
+            [
+              "Nymel",
+              "O largo é de todos. Cuide do seu parceiro."
+            ]
+          ],
+          "won": [
+            [
+              "Nymel",
+              "Boa disputa! Continue pelo mercado."
+            ]
+          ],
+          "lost": [
+            [
+              "Nymel",
+              "Recupere seu parceiro e volte quando quiser."
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 65,
+            "xp": 130,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "npcName": "Nymel",
+          "scene": "kronasta-feira-b",
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Eriska",
+              "color": 1
+            }
+          ],
+          "styles": [
+            "reader"
+          ]
         },
         {
           "id": "feira-5",
@@ -827,15 +935,42 @@
           "npcId": "zulmira",
           "name": "Dona Zulmira",
           "level": 18,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "before": [
+            [
+              "Dona Zulmira",
+              "O melhor pipeiro sabe escutar seu parceiro. Mostre o que aprenderam."
+            ]
+          ],
+          "won": [
+            [
+              "Dona Zulmira",
+              "O emblema é seu! O próximo bairro é o Cais."
+            ]
+          ],
+          "lost": [
+            [
+              "Dona Zulmira",
+              "Recupere seu parceiro e volte quando quiser."
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 70,
+            "xp": 140,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "npcName": "Dona Zulmira",
+          "scene": "kronasta-feira-c",
+          "rounds": 3,
+          "foes": [
+            {
+              "name": "Kleie",
+              "color": 1
+            }
+          ],
+          "styles": [
+            "patient"
+          ]
         }
       ]
     },

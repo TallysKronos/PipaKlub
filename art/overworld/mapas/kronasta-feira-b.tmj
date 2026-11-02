@@ -7171,12 +7171,12 @@
       {
        "name": "acao",
        "type": "string",
-       "value": "feiraRestPreview"
+       "value": "districtRest"
       },
       {
-       "name": "texto",
+       "name": "district",
        "type": "string",
-       "value": "Ponto seguro do mercado. Serviço de descanso será integrado na etapa narrativa."
+       "value": "feira"
       }
      ]
     },
@@ -7204,9 +7204,19 @@
        "value": "Você está procurando alguma coisa?"
       },
       {
-       "name": "preview",
-       "type": "bool",
-       "value": true
+       "name": "acao",
+       "type": "string",
+       "value": "feiraStory"
+      },
+      {
+       "name": "feiraAction",
+       "type": "string",
+       "value": "grampo"
+      },
+      {
+       "name": "ocultar_apos",
+       "type": "string",
+       "value": "feiraApitoVerdadeiro"
       }
      ]
     },
@@ -7229,14 +7239,29 @@
        "value": "Estamos preparando o campeonato da Feira do Largo."
       },
       {
-       "name": "preview",
-       "type": "bool",
-       "value": true
+       "name": "district",
+       "type": "string",
+       "value": "feira"
       },
       {
-       "name": "futureDuel",
+       "name": "acao",
+       "type": "string",
+       "value": "districtDuel"
+      },
+      {
+       "name": "duel",
        "type": "string",
        "value": "feira-3"
+      },
+      {
+       "name": "npcId",
+       "type": "string",
+       "value": "feira-zafri"
+      },
+      {
+       "name": "storySpritePath",
+       "type": "string",
+       "value": "res://assets/npc-ds/feira-v1/zafri.png"
       }
      ]
     },
@@ -7259,14 +7284,29 @@
        "value": "Estamos preparando o campeonato da Feira do Largo."
       },
       {
-       "name": "preview",
-       "type": "bool",
-       "value": true
+       "name": "district",
+       "type": "string",
+       "value": "feira"
       },
       {
-       "name": "futureDuel",
+       "name": "acao",
+       "type": "string",
+       "value": "districtDuel"
+      },
+      {
+       "name": "duel",
        "type": "string",
        "value": "feira-4"
+      },
+      {
+       "name": "npcId",
+       "type": "string",
+       "value": "feira-nymel"
+      },
+      {
+       "name": "storySpritePath",
+       "type": "string",
+       "value": "res://assets/npc-ds/feira-v1/nymel.png"
       }
      ]
     },

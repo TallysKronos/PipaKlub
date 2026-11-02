@@ -18,7 +18,7 @@ const PLACES := [
 	{"id":"bosque","name":"Bosque dos Ventos","kind":"natural","act":1,"levels":"1–5","scene":"kronasta-bosque-a","note":"Trilha das Copas, Desvio do Riacho e Clareira do Marco."},
 	{"scene":"kronasta-bambuzal-a","id":"bambuzal","name":"Vila do Bambuzal","kind":"bairro","bairro":2,"act":1,"levels":"9–12","note":"Bairro 2 · Lohan."},
 	{"scene":"kronasta-beira-canal-a","id":"beira-canal","name":"Beira-Canal","kind":"bairro","bairro":3,"act":2,"levels":"12–15","note":"Bairro 3 · Kleie."},
-	{"id":"feira","name":"Feira do Largo","kind":"bairro","bairro":4,"act":2,"levels":"15–18","note":"Bairro 4."},
+	{"scene":"kronasta-feira-a","id":"feira","name":"Feira do Largo","kind":"bairro","bairro":4,"act":2,"levels":"15–18","note":"Bairro 4."},
 	{"id":"caverna","name":"Caverna do Mural","kind":"ruinas","act":2,"levels":"15–18","note":"O primeiro laço."},
 	{"id":"cais","name":"Cais Velho","kind":"bairro","bairro":5,"act":3,"levels":"18–21","note":"Bairro 5."},
 	{"id":"industrial","name":"Distrito Industrial","kind":"bairro","bairro":6,"act":3,"levels":"4–6 na prévia","scene":"kronasta-industrial-a","preview":true,"note":"Pátio de Cargas, Canal das Caldeiras e Usina do Vento."},
@@ -52,6 +52,10 @@ const BEATS := [
 	{"id":"canal-pipeiros","act":2,"place":"beira-canal","text":"Explore Beira-Canal e vença os quatro pipeiros do percurso."},
 	{"id":"canal-comporta","act":2,"place":"parque","text":"Volte às Veredas. Enfrente Grampo junto ao controle do canal e destranque a comporta."},
 	{"id":"canal-kleie","act":2,"place":"beira-canal","text":"A comporta está aberta. Volte ao pátio e dispute o emblema com Kleie."},
+	{"id":"feira-apito","act":2,"place":"feira","text":"Na praça da Feira, procure Seu Lalau e o apito de vento."},
+	{"id":"feira-falso","act":2,"place":"parque","text":"Experimente o apito na porta das Ruínas, no antigo pátio do guardião das Veredas."},
+	{"id":"feira-verdadeiro","act":2,"place":"feira","text":"Confronte Lalau e procure Grampo no beco da parte B para recuperar o apito verdadeiro."},
+	{"id":"feira-zulmira","act":2,"place":"feira","text":"Vença os quatro desafios e Dona Zulmira para conquistar o quarto emblema."},
 ]
 
 ## QA previews: built maps whose story gate does not exist yet open only in development
@@ -77,6 +81,10 @@ static func beat_done(player: Dictionary, id: String) -> bool:
 	match id:
 		"canal-pipeiros":return preload("res://scripts/campaign/district_rules.gd").qualified(preload("res://scripts/campaign/district_rules.gd").entry(player,"beira-canal"),preload("res://scripts/campaign/district_rules.gd").definition("beira-canal"))
 		"canal-comporta":return f.get("comportaVeredasAberta",false)
+		"feira-apito":return f.get("feiraApitoComprado",false)
+		"feira-falso":return f.get("feiraApitoFalsoTestado",false)
+		"feira-verdadeiro":return f.get("feiraApitoVerdadeiro",false)
+		"feira-zulmira":return preload("res://scripts/campaign/district_rules.gd").completed(player,"feira")
 		"canal-kleie":return preload("res://scripts/campaign/district_rules.gd").completed(player,"beira-canal")
 		"prologo": return prologue_done(player)
 		"nina": return f.get("ninaAccepted",false)
@@ -150,6 +158,7 @@ static func state(player: Dictionary, id: String) -> String:
 		"rua-dos-ventos": return "aberto"
 		"parque": return "aberto" if prologue_done(player) else "fechado"
 		"morro": return "vencido" if mikka_defeated(player) else "aberto" if prologue_done(player) else "fechado"
+		"feira": return "vencido" if preload("res://scripts/campaign/district_rules.gd").completed(player,id) else "aberto" if preload("res://scripts/campaign/district_rules.gd").completed(player,"beira-canal") else "fechado"
 		"beira-canal": return "vencido" if preload("res://scripts/campaign/district_rules.gd").completed(player,id) else "aberto" if flags(player).get("leagueGreen",false) else "fechado"
 		"bambuzal": return "vencido" if preload("res://scripts/campaign/district_rules.gd").completed(player,"bambuzal") else "aberto" if mikka_defeated(player) else "fechado"
 		"bosque": return "aberto" if prologue_done(player) else "fechado"
@@ -167,7 +176,7 @@ static func requirement(player: Dictionary, id: String) -> String:
 	match state(player,id):
 		"aberto": return "QA · prévia sem história" if entry.get("preview",false) else "Aberto"
 		"vencido": return "Bairro vencido"
-		"fechado": return "Vença a Mikka no Morro do Sol" if id=="bambuzal" else "Vença o Lohan na Vila do Bambuzal" if id=="beira-canal" else "Abre ao terminar o prólogo"
+		"fechado": return "Vença a Mikka no Morro do Sol" if id=="bambuzal" else "Vença o Lohan na Vila do Bambuzal" if id=="beira-canal" else "Vença o Kleie em Beira-Canal" if id=="feira" else "Abre ao terminar o prólogo"
 	return "Em breve"
 
 static func scene_for_travel(id: String) -> String:

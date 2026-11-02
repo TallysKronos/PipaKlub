@@ -7129,14 +7129,29 @@
        "value": "Estamos preparando o campeonato da Feira do Largo."
       },
       {
-       "name": "preview",
-       "type": "bool",
-       "value": true
+       "name": "district",
+       "type": "string",
+       "value": "feira"
       },
       {
-       "name": "futureDuel",
+       "name": "acao",
+       "type": "string",
+       "value": "districtDuel"
+      },
+      {
+       "name": "duel",
        "type": "string",
        "value": "feira-5"
+      },
+      {
+       "name": "npcId",
+       "type": "string",
+       "value": "zulmira"
+      },
+      {
+       "name": "storySpritePath",
+       "type": "string",
+       "value": "res://assets/npc-ds/feira-v1/zulmira.png"
       }
      ]
     },

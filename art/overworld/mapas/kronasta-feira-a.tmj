@@ -7154,14 +7154,29 @@
        "value": "Estamos preparando o campeonato da Feira do Largo."
       },
       {
-       "name": "preview",
-       "type": "bool",
-       "value": true
+       "name": "district",
+       "type": "string",
+       "value": "feira"
       },
       {
-       "name": "futureDuel",
+       "name": "acao",
+       "type": "string",
+       "value": "districtDuel"
+      },
+      {
+       "name": "duel",
        "type": "string",
        "value": "feira-1"
+      },
+      {
+       "name": "npcId",
+       "type": "string",
+       "value": "feira-veyra"
+      },
+      {
+       "name": "storySpritePath",
+       "type": "string",
+       "value": "res://assets/npc-ds/feira-v1/veyra.png"
       }
      ]
     },
@@ -7184,14 +7199,29 @@
        "value": "Estamos preparando o campeonato da Feira do Largo."
       },
       {
-       "name": "preview",
-       "type": "bool",
-       "value": true
+       "name": "district",
+       "type": "string",
+       "value": "feira"
       },
       {
-       "name": "futureDuel",
+       "name": "acao",
+       "type": "string",
+       "value": "districtDuel"
+      },
+      {
+       "name": "duel",
        "type": "string",
        "value": "feira-2"
+      },
+      {
+       "name": "npcId",
+       "type": "string",
+       "value": "feira-orven"
+      },
+      {
+       "name": "storySpritePath",
+       "type": "string",
+       "value": "res://assets/npc-ds/feira-v1/orven.png"
       }
      ]
     },
@@ -7214,9 +7244,19 @@
        "value": "Apitos e novidades do mercado."
       },
       {
-       "name": "preview",
-       "type": "bool",
-       "value": true
+       "name": "acao",
+       "type": "string",
+       "value": "feiraStory"
+      },
+      {
+       "name": "feiraAction",
+       "type": "string",
+       "value": "lalau"
+      },
+      {
+       "name": "storySpritePath",
+       "type": "string",
+       "value": "res://assets/npc-ds/feira-v1/lalau.png"
       }
      ]
     },

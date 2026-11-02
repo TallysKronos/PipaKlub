@@ -75,7 +75,7 @@ func _initialize()->void:
 	at=enter("beira-canal-5");check(district.start("beira-canal-5",at).status=="ok","Kleie now accepts")
 	terminal("won");check(district.settle().status=="ok","Kleie settlement")
 	check(Rules.completed(session.snapshot().player,"beira-canal") and session.snapshot().player.districtEmblems.has("bairro-03"),"third emblem and completion")
-	check(Rules.unlocked(session.snapshot().player,"feira") and Story.state(session.snapshot().player,"feira")=="em-breve","next district recorded but unfinished map stays closed")
+	check(Rules.unlocked(session.snapshot().player,"feira") and Story.state(session.snapshot().player,"feira")=="aberto","next authored district opens after Kleie")
 	at=enter("beira-canal-1");check(district.offer_defense("beira-canal-1",at).status=="ok","defense offered")
 	check(district.start("beira-canal-1",at,true).status=="ok","defense starts")
 	terminal("lost");check(district.settle().status=="ok","title lost")

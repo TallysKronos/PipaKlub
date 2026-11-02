@@ -41,6 +41,11 @@ func exercise() -> bool:
 				var unchanged:Dictionary=app.session.snapshot()
 				check(service.travel(scene).status=="wrong_step" and app.session.snapshot()==unchanged,"parts B/C require walking: "+scene)
 				continue
+			var story_rules=preload("res://scripts/campaign/kronasta_story.gd")
+			if Checkpoint.is_kronasta(scene) and not story_rules.can_travel(app.session.snapshot().player,Checkpoint.region_of(scene)):
+				var locked:Dictionary=app.session.snapshot()
+				check(service.travel(scene).status=="wrong_step" and app.session.snapshot()==locked,"story-gated region cannot mutate save: "+scene)
+				continue
 			check(service.travel(scene).status=="ok","travel to "+scene)
 			var cp:Dictionary=app.session.snapshot().checkpoint
 			check(cp.scene==scene and State.inspect(app.session.snapshot(),"slot-1")=="ok","save validates "+scene)
