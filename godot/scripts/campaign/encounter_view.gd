@@ -97,6 +97,7 @@ func _ready() -> void:
 		boss_intro=load("res://scripts/campaign/boss_presentation.gd").new()
 		boss_intro.face=Ink.portrait(textures[1],art_ids[1])
 		boss_intro.reduced_motion=reduced_motion
+		boss_intro.text_scale=text_scale
 		boss_intro.remaining=model.intro
 		boss_intro.visible=model.intro>0 and model.outcome.is_empty()
 		add_child(boss_intro)
@@ -111,6 +112,7 @@ func _ready() -> void:
 		duel_intro.subtitle="Campeã do Morro do Sol" if champion else "Duelo de pipeiros"
 		duel_intro.partner_name={"basic-azulao":"Azulão","basic-carcara":"Carcará","basic-mata-verde":"Mata verde","basic-raio-de-sol":"Raio de sol"}.get(art_ids[1],"Soulmonster rival")
 		duel_intro.face=Ink.portrait(textures[1],art_ids[1]);duel_intro.reduced_motion=reduced_motion
+		duel_intro.text_scale=text_scale
 		add_child(duel_intro);duel_intro.skip_requested.connect(skip_presentation)
 		duel_intro.visible=model.intro>0
 		if duel_intro.visible:duel_intro.skip.grab_focus.call_deferred()

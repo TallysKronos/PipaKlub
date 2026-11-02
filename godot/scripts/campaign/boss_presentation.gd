@@ -14,17 +14,25 @@ var remaining:=INTRO_SECONDS
 var title:="Lacertubo"
 var face:Texture2D
 var reduced_motion:=false
+var text_scale:=1.0
+func _init()->void:set_meta("owns_ui_theme",true)
 
 func _ready() -> void:
+	text_scale=maxf(text_scale,Mural.text_scale_for(self))
+	Mural.install(self)
 	set_anchors_and_offsets_preset(PRESET_FULL_RECT)
 	mouse_filter=MOUSE_FILTER_IGNORE
 	z_index=20
-	skip=Button.new();skip.text="Pular apresentação";skip.custom_minimum_size=Vector2(240,56)
-	skip.add_theme_font_size_override("font_size",20);add_child(skip)
+	skip=preload("res://scripts/ui_mural/dialogue_option.gd").new();skip.text="Pular apresentação";skip.text_scale=text_scale;skip.font_base=20;skip.density=.2;skip.custom_minimum_size=Vector2(240,56)
+	add_child(skip)
 	skip.pressed.connect(func():skip_requested.emit())
+	skip.minimum_size_changed.connect(_layout)
 	resized.connect(_layout);_layout()
 func _layout() -> void:
-	if skip!=null:skip.position=Vector2(size.x-284,size.y-88);skip.size=Vector2(260,64)
+	if skip!=null:
+		var width:=maxf(260,skip.get_combined_minimum_size().x)
+		var height:=maxf(64,skip.get_combined_minimum_size().y)
+		skip.position=Vector2(size.x-width-24,size.y-height-24);skip.size=Vector2(width,height)
 
 
 static func meter_rect(viewport:Vector2) -> Rect2:
@@ -60,7 +68,7 @@ func _draw() -> void:
 	if remaining<=0:return
 	Paper.begin(self)
 	draw_rect(Rect2(Vector2.ZERO,size),T.alpha(T.MURAL_GROUND,.8))
-	var height:=minf(380,size.y*.55)
+	var height:=minf(380+(text_scale-1)*160,size.y*.68)
 	var band:=Rect2(24,size.y/2-height/2,size.x-48,height)
 	EventArt.draw(self,band,"boss-warning")
 	var safe:=EventArt.content(band,"boss-warning")
@@ -70,9 +78,12 @@ func _draw() -> void:
 	safe.size.x=band.end.x-safe.position.x-210
 	var extra:=minf(24,maxf(0,safe.size.y-160))
 	safe.position.y+=extra;safe.size.y-=extra
-	var title_size:=roundi(clampf(size.x/22,40,64))
+	# The red warning is ornament; smaller names need a quiet, high-contrast field.
+	draw_colored_polygon(Ink.shape(safe.grow(24),18),T.NANQUIM)
+	var title_size:=roundi(clampf(size.x/22,40,64)*text_scale)
 	var h:=Paper.height(title_size)
 	Paper.label(self,Rect2(safe.position,Vector2(safe.size.x,h)),"BOSS À VISTA!",title_size,T.MURAL_PAPER,false,safe)
-	var name_h:=Paper.height(32)
-	Paper.label(self,Rect2(safe.position+Vector2(0,h+8),Vector2(safe.size.x,name_h)),title,32,T.MURAL_PAPER,false,safe)
-	Paper.label(self,Rect2(safe.position+Vector2(0,h+name_h+16),Vector2(safe.size.x,Paper.height(22))),"Guardião dos Canos",22,T.MURAL_PAPER,false,safe)
+	var name_font:=roundi(32*text_scale);var subtitle_font:=roundi(22*text_scale)
+	var name_h:=Paper.height(name_font)
+	Paper.label(self,Rect2(safe.position+Vector2(0,h+8),Vector2(safe.size.x,name_h)),title,name_font,T.MURAL_PAPER,false,safe)
+	Paper.label(self,Rect2(safe.position+Vector2(0,h+name_h+16),Vector2(safe.size.x,Paper.height(subtitle_font))),"Guardião dos Canos",subtitle_font,T.MURAL_PAPER,false,safe)

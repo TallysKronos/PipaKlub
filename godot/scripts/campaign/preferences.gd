@@ -9,6 +9,7 @@ var audio_levels := {"master": .85, "sfx": .8, "ui": .65, "ambience": .45, "musi
 var dialogue_blips := false
 var storage_path := "user://settings.cfg"
 const Controls = preload("res://scripts/campaign/controls.gd")
+const TEXT_SCALES := [1.0,1.15,1.3,1.5]
 var bindings: Dictionary = Controls.DEFAULTS.duplicate()
 
 func load_settings(path: String = "") -> void:
@@ -27,7 +28,7 @@ func load_settings(path: String = "") -> void:
 	value = config.get_value("video", "reduced_motion", false)
 	reduced_motion = value if value is bool else false
 	value=config.get_value("accessibility","text_scale",1.0)
-	text_scale=float(value) if (value is float or value is int) and float(value) in [1.0,1.15,1.3] else 1.0
+	text_scale=float(value) if (value is float or value is int) and float(value) in TEXT_SCALES else 1.0
 	value = config.get_value("controls", "keys", Controls.DEFAULTS)
 	bindings = value.duplicate() if Controls.validate(value) else Controls.DEFAULTS.duplicate()
 	value = config.get_value("controls","glyph_family","auto")

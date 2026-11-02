@@ -10,6 +10,7 @@ var suppress_secondary := false
 var visible_rect := Rect2()
 var serial := 0
 var last_labels: Array[Rect2] = []
+func lifetime()->float:return .8 if reduced_motion else .6
 func add(event:Dictionary) -> void:
 	if event.get("amount",0)<=0 and event.get("kind","") not in ["evade","block"]:return
 	var burst := event.duplicate()
@@ -18,7 +19,7 @@ func add(event:Dictionary) -> void:
 	if bursts.size()>3:bursts.pop_front()
 func step(delta:float) -> void:
 	for burst in bursts:burst.age+=delta
-	bursts=bursts.filter(func(burst:Dictionary):return burst.age<(.08 if reduced_motion else .6))
+	bursts=bursts.filter(func(burst:Dictionary):return burst.age<lifetime())
 func clear_paint(point:Vector2,diameter:float) -> bool:
 	for kite in protected_points:
 		if kite.distance_to(point)<40+diameter/2:return false
@@ -46,7 +47,7 @@ func draw_on(canvas:CanvasItem,project:Callable=Callable()) -> void:
 	for burst in bursts:
 		var point:Vector2=project.call(burst.point) if project.is_valid() else burst.point
 		var age:float=burst.age
-		var opacity := clampf(1-age/(.08 if reduced_motion else .6),0,1)
+		var opacity := clampf((lifetime()-age)/.2,0,1) if reduced_motion else clampf(1-age/.6,0,1)
 		var critical:bool=burst.get("critical",false)
 		var color:Color=[T.CEU,T.SOL,T.FOLHA,T.RABIOLA][int(burst.get("color",0))%4]
 		if not reduced_motion:
@@ -66,9 +67,9 @@ func draw_on(canvas:CanvasItem,project:Callable=Callable()) -> void:
 					var b:=point+direction*105
 					if Signals.safe_segment(a,b,protected_points):canvas.draw_line(a,b,T.alpha(T.SOL,opacity),2,true)
 		var word := "CRAAC!" if burst.get("cut_line",false) else "VUPT!" if burst.get("kind","")=="evade" else "TOC!" if burst.get("kind","")=="block" or burst.get("body",false) else "TCHAC!" if critical else ""
-		if age<.25 and not word.is_empty():
-			labels.append({"point":point+Vector2(0,55),"text":word,"size":120 if critical else 38,"font":T.lettering(),"color":T.alpha(T.SOL if critical else T.CEU,opacity),"priority":2})
-		if age<.5 and burst.get("amount",0)>0:
+		if age<(.8 if reduced_motion else .25) and not word.is_empty():
+			labels.append({"point":point+Vector2(0,55),"text":word,"size":40 if reduced_motion else 120 if critical else 38,"font":T.lettering(),"color":T.alpha(T.SOL if critical else T.CEU,opacity),"priority":2})
+		if age<(.8 if reduced_motion else .5) and burst.get("amount",0)>0:
 			labels.append({"point":point+Vector2(0,-28 if reduced_motion else -28-24*minf(1,age/.5)),"text":"−%d"%roundi(burst.amount),"size":40 if critical else 28,"font":T.label(),"color":T.alpha(T.SOL if critical else T.PAPEL,opacity),"priority":1})
 	labels.sort_custom(func(a:Dictionary,b:Dictionary):return a.priority>b.priority)
 	for label:Dictionary in labels:

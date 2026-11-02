@@ -2035,15 +2035,18 @@ func _show_settings() -> void:
 	scroll.add_child(page)
 	_label("CONFIGURAÇÕES",page,38)
 	_label("Seu jeito de jogar. As alterações são salvas automaticamente.",page,17)
-	var category_row:=HBoxContainer.new()
-	category_row.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
+	var category_row:=GridContainer.new()
+	category_row.columns=2 if size.x<1500 or preferences.text_scale>1.15 else 4
+	category_row.add_theme_constant_override("h_separation",32)
+	category_row.add_theme_constant_override("v_separation",16)
 	var active_tab:Button
 	page.add_child(category_row)
 	for category in ["Vídeo","Áudio","Acessibilidade","Controles"]:
 		var tab:=Button.new();tab.text=category;Hud.navigation_button(tab,true)
 		tab.theme_type_variation="RecorteTabButton"
 		tab.toggle_mode=true;tab.button_pressed=category==settings_tab
-		tab.custom_minimum_size=Vector2(200,48)
+		tab.custom_minimum_size=Vector2(200*preferences.text_scale,48)
+		tab.clip_text=false;tab.text_overrun_behavior=TextServer.OVERRUN_NO_TRIMMING
 		category_row.add_child(tab)
 		if category==settings_tab:active_tab=tab
 		tab.pressed.connect(func():sound.play_event("ui.tab");settings_tab=category;_show_settings())
@@ -2087,14 +2090,15 @@ func _show_settings() -> void:
 	_label("Tamanho do texto",text_row,20).size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	var text_size:=OptionButton.new()
 	Hud.navigation_button(text_size,true)
-	text_size.custom_minimum_size=Vector2(260,48)
-	for caption in ["Padrão · 100%","Ampliado · 115%","Grande · 130%"]:text_size.add_item(caption)
-	text_size.select([1.0,1.15,1.3].find(preferences.text_scale))
+	text_size.custom_minimum_size=Vector2(260*preferences.text_scale,48)
+	text_size.clip_text=false;text_size.text_overrun_behavior=TextServer.OVERRUN_NO_TRIMMING
+	for caption in ["Padrão · 100%","Ampliado · 115%","Grande · 130%","Máximo · 150%"]:text_size.add_item(caption)
+	text_size.select(Preferences.TEXT_SCALES.find(preferences.text_scale))
 	text_row.add_child(text_size)
 	text_size.item_selected.connect(func(index:int):
 		var old:float=preferences.text_scale
-		preferences.text_scale=[1.0,1.15,1.3][index]
-		if preferences.save_settings()!=OK:preferences.text_scale=old;text_size.select([1.0,1.15,1.3].find(old))
+		preferences.text_scale=Preferences.TEXT_SCALES[index]
+		if preferences.save_settings()!=OK:preferences.text_scale=old;text_size.select(Preferences.TEXT_SCALES.find(old))
 		_apply_preferences())
 	var controls_card=load("res://scripts/campaign/hud_result_plate.gd").new()
 	controls_card.visible=settings_tab=="Controles"
@@ -2111,7 +2115,8 @@ func _show_settings() -> void:
 	_label("Escolha os botões exibidos nas instruções.",family_copy,15).add_theme_color_override("font_color",Hud.MUTED)
 	var family_choice := OptionButton.new()
 	Hud.navigation_button(family_choice,true)
-	family_choice.custom_minimum_size=Vector2(260,56)
+	family_choice.custom_minimum_size=Vector2(260*preferences.text_scale,56)
+	family_choice.clip_text=false;family_choice.text_overrun_behavior=TextServer.OVERRUN_NO_TRIMMING
 	var families := ["auto","xbox","ps","switch"]
 	for caption in ["Automático","Xbox","PlayStation","Nintendo Switch"]: family_choice.add_item(caption)
 	family_choice.select(families.find(preferences.pad_family))
@@ -2131,8 +2136,9 @@ func _show_settings() -> void:
 	var keyboard_button:=_button("Controles · Teclado",keyboard_row,_show_controls)
 	keyboard_button.custom_minimum_size.x=260
 	Hud.secondary_button(keyboard_button)
-	var footer:=HBoxContainer.new()
-	footer.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
+	var footer:=HFlowContainer.new()
+	footer.add_theme_constant_override("h_separation",32)
+	footer.add_theme_constant_override("v_separation",16)
 	page.add_child(footer)
 	_button("Voltar", footer, _menu if session.snapshot().is_empty() else _return_to_game).custom_minimum_size.x=180
 	Hud.input_hint(footer,"accept","Alterar")

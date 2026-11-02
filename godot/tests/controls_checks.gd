@@ -71,7 +71,7 @@ func run_checks() -> void:
 	check(Controls.pressed(event, "interact"), "interact edge recognized")
 	event.echo = true
 	check(not Controls.pressed(event, "interact"), "key repeats do not double interact")
-	var directory := "user://controls-checks-" + State.new_id()
+	var directory := ProjectSettings.globalize_path("res://../tmp/controls-checks-" + State.new_id())
 	DirAccess.make_dir_recursive_absolute(directory)
 	var prefs := Preferences.new()
 	prefs.bindings = changed
