@@ -2,13 +2,13 @@ import fs from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {identity} from '../../../../tools/soulgen-studio/model.mjs';
 import {exportReview} from '../../../../tools/soulgen-studio/export-review.mjs';
-const dir=fileURLToPath(new URL('./cutout-rig-v1/',import.meta.url));
+const dir=fileURLToPath(new URL('./cutout-rig-v2/',import.meta.url));
 const boxes=JSON.parse(fs.readFileSync(dir+'slices.json')).boxes;
-const project={schema:'soulgen-studio',version:1,name:'Retalho original · parceira de Heleana',creatureId:'retalho-original',artRevision:1,rigRevision:1,preserveSourceAspect:true,width:600,height:760,rootPivot:[260,330],assets:{},parts:[],clips:{},brief:{species:'Retalho original, opção A aprovada',view:'Três quartos para a direita',notes:'Não é a forma mascarada/evoluída. Novas peças e montagem em revisão; sem integração no jogo.'}};
+const project={schema:'soulgen-studio',version:1,name:'Retalho original · parceira de Heleana',creatureId:'retalho-original',artRevision:2,rigRevision:1,preserveSourceAspect:true,width:600,height:760,rootPivot:[260,330],assets:{},parts:[],clips:{},brief:{species:'Retalho original, opção A aprovada',view:'Três quartos para a direita',notes:'Não é a forma mascarada/evoluída. Novas peças e montagem em revisão; sem integração no jogo.'}};
 const placement={
  body:{s:.72,anchor:[98,160],pivot:[260,300],z:3},
- head:{s:.64,anchor:[246,298],pivot:[255,202],z:6},
- armNear:{s:.60,anchor:[145,22],pivot:[286,278],z:5},
+ head:{s:.64,anchor:[246,298],pivot:[255,252],z:6},
+ armNear:{s:.60,anchor:[160,-23],pivot:[271,270],z:5},
  armFar:{s:.60,anchor:[36,27],pivot:[230,278],z:1},
  legNear:{s:.64,anchor:[72,22],pivot:[274,407],z:4},
  legFar:{s:.64,anchor:[95,28],pivot:[240,405],z:2},
@@ -16,12 +16,12 @@ const placement={
 };
 for(const [id,p] of Object.entries(placement)){
  const b=boxes[id],w=b[2]-b[0],h=b[3]-b[1];
- project.assets[id]={name:id,src:`/art/soulgen/keys/retalho-original/cutout-rig-v1/${id}.png`,width:w,height:h};
+ project.assets[id]={name:id,src:`/art/soulgen/keys/retalho-original/cutout-rig-v2/${id}.png`,width:w,height:h};
  project.parts.push({id,name:id,asset:id,source:[0,0,w,h],rect:[p.pivot[0]-p.anchor[0]*p.s,p.pivot[1]-p.anchor[1]*p.s,w*p.s,h*p.s],pivot:p.pivot,z:p.z,parent:id==='body'?null:'body',visible:true,lag:p.lag||0});
 }
 const head=project.parts.find(p=>p.id==='head');head.faces={};
 const registration=JSON.parse(fs.readFileSync(dir+'registration.json'));head.faceWindows=registration.windows;
-for(const face of ['fierce','hurt','happy']){const a=project.assets.head;project.assets[face]={...a,name:face,src:`/art/soulgen/keys/retalho-original/cutout-rig-v1/head-${face}.png`};head.faces[face]={asset:face,source:[0,0,a.width,a.height]};}
+for(const face of ['fierce','hurt','happy']){const a=project.assets.head;project.assets[face]={...a,name:face,src:`/art/soulgen/keys/retalho-original/cutout-rig-v2/head-${face}.png`};head.faces[face]={asset:face,source:[0,0,a.width,a.height]};}
 const frame=(time,values={})=>({t:time,ease:'smooth',values:Object.fromEntries(['root',...project.parts.map(p=>p.id)].map(id=>[id,{...identity(),...values[id]}]))});
 function cycle(id,label,seconds,fn){const frames=Array.from({length:17},(_,i)=>frame(seconds*i/16,fn(TAU*i/16)));frames.at(-1).values=structuredClone(frames[0].values);project.clips[id]={label,seconds,loop:true,frames,expressions:[]};}
 const TAU=Math.PI*2;
