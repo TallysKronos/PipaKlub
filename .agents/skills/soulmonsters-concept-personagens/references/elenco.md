@@ -54,3 +54,5 @@ Oruvo — prancha individual em art/characters/oruvo/concept-v1/, com frente, co
 Kessai — prancha em art/characters/kessai/concept-v1/, frente/costas/expressões/linha. Design C preservado; em revisão, sem integração no jogo.
 
 Veldren — prancha em art/characters/veldren/concept-v1/, integração visual de Soulmonster através de gola/punhos de placas e maquiagem. Em revisão; corrigir lado anatômico e nós da rabiola antes de produção. Parceiro não definido.
+
+Veldren — V1 aprovada; V2 corrige continuidade da rabiola no quadril direito. Caio tem fonte estática transparente de overworld em art/characters/palafitas-overworld-v1/caio-source.png, ainda sem integração ao mapa.
