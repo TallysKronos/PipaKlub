@@ -2818,7 +2818,7 @@ func _show_retalho_care()->void:
 	if not service.near(room.actor):return
 	var index:int=service.step(session.snapshot().player)
 	if index>=service.nodes().size():
-		_notice("Sr. Assis: Ele aceitou nossa ajuda. Agora vamos deixar Retalho descansar, sem mexer no nó da rabiola.");return
+		_show_blue_preparation();return
 	var node:Dictionary=service.nodes()[index]
 	flow_busy=true;room.can_walk=false;room.set_story_paused(true)
 	room.face_actor(service.AT);room.face_mother(service.AT)
@@ -2840,4 +2840,28 @@ func _show_retalho_care()->void:
 			var overlay:Control=room.get_meta("exploration_hud",null)
 			if is_instance_valid(overlay):overlay.objective.text=service.objective(session.snapshot().player)
 		if continue_scene[0] and TutorialStaging.valid(self,generation):_show_retalho_care.call_deferred())
+	dialog.popup_centered()
+
+func _show_blue_preparation()->void:
+	if flow_busy or not is_instance_valid(room):return
+	var preparation=preload("res://scripts/campaign/blue_exam_preparation.gd")
+	var care=preload("res://scripts/campaign/retalho_care.gd").new(session)
+	if not preparation.eligible(session.snapshot().player) or not care.near(room.actor):return
+	if preparation.prepared(session.snapshot().player):
+		_notice("Sr. Assis: Hoje ele precisa descansar. A continuação do exame Azul ainda não está disponível nesta versão.");return
+	var entry:Dictionary=preparation.data()
+	flow_busy=true;room.can_walk=false;room.set_story_paused(true)
+	var generation:=opening_generation
+	var dialog:=_dialog(entry.title,entry.text,"Registrar preparação","Conversar depois")
+	dialog.name="BlueExamPreparationDialogue"
+	dialog.confirmed.connect(func():
+		if not TutorialStaging.valid(self,generation) or not is_instance_valid(room):return
+		if _result(preparation.confirm(session,room.actor)):dialog.queue_free())
+	dialog.canceled.connect(dialog.queue_free)
+	dialog.tree_exiting.connect(func():
+		flow_busy=false
+		if is_instance_valid(room):
+			room.can_walk=true;room.set_story_paused(false)
+			var overlay:Control=room.get_meta("exploration_hud",null)
+			if is_instance_valid(overlay):overlay.objective.text=care.objective(session.snapshot().player))
 	dialog.popup_centered()

@@ -18,7 +18,9 @@ static func step(p:Dictionary)->int:
   if not p.get("flags",{}).get(entries[i].flag,false):return i
  return entries.size()
 static func objective(p:Dictionary)->String:
- return "Retalho descansa no ateliê. Seu cuidado continua." if step(p)==nodes().size() else "Aproxime-se de Retalho no tapete · respeite o espaço dele."
+ if step(p)<nodes().size():return "Aproxime-se de Retalho no tapete · respeite o espaço dele."
+ var preparation:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/retalho-care-v1/blue-preparation.json"))
+ return preparation.prepared if p.get("flags",{}).get("exameAzulOrientado",false) else preparation.pending
 static func room_data(data:Dictionary,p:Dictionary)->Dictionary:
  var result:=data.duplicate(true)
  if available(p) and not result.hotspots.any(func(h):return h.id=="retalho-care"):

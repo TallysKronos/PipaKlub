@@ -60,6 +60,11 @@ const BEATS := [
 	{"id":"cais-emblema","act":3,"place":"cais","text":"Explore o Cais Velho, vença os quatro pipeiros e dispute o quinto emblema com Marisol."},
 	{"id":"retalho-bosque","act":3,"place":"bosque","text":"Após vencer o Cais, siga pela saída norte da Clareira do Marco e encontre Retalho no Bosque D."},
 	{"id":"foto-expedicao","act":3,"place":"rua-dos-ventos","text":"Volte ao ateliê do Sr. Assis e examine o arquivo na mesa de estudos."},
+	{"id":"galpao-gollia","act":3,"place":"industrial","text":"Na Vila Operária, encontre Gollia no depósito da parte B."},
+	{"id":"galpao-retalho","act":3,"place":"industrial","text":"Atravesse a porta do depósito e investigue o galpão com Tyler e Retalho."},
+	{"id":"bruno-emblema","act":3,"place":"industrial","text":"Depois do galpão, vença os desafios da Vila Operária e dispute o emblema com Bruno Solda."},
+	{"id":"retalho-atelie","act":3,"place":"rua-dos-ventos","text":"Volte ao ateliê do Sr. Assis. Aproxime-se de Retalho sem puxar sua rabiola."},
+	{"id":"azul-preparacao","act":3,"place":"rua-dos-ventos","text":"Converse novamente junto de Retalho sobre a preparação para o exame Azul."},
 ]
 
 ## QA previews: built maps whose story gate does not exist yet open only in development
@@ -83,6 +88,11 @@ static func mikka_defeated(player: Dictionary) -> bool:
 static func beat_done(player: Dictionary, id: String) -> bool:
 	var f:=flags(player)
 	match id:
+		"galpao-gollia":return f.get("golliaCarretelVencida",false)
+		"galpao-retalho":return f.get("pipaDragaoDesatadaVencida",false)
+		"bruno-emblema":return preload("res://scripts/campaign/district_rules.gd").completed(player,"industrial")
+		"retalho-atelie":return f.get("assisReconheceuNoRetalho",false)
+		"azul-preparacao":return f.get("exameAzulOrientado",false)
 		"foto-expedicao":return f.get("fotoExpedicaoLida",false)
 		"retalho-bosque":return f.get("retalhoBosqueVencido",false)
 		"cais-emblema":return preload("res://scripts/campaign/district_rules.gd").completed(player,"cais")
@@ -122,11 +132,12 @@ static func category(player: Dictionary) -> String:
 
 static func act(player: Dictionary) -> int:
 	var beat:=current_beat(player)
-	return int(beat.act) if not beat.is_empty() else 2 if flags(player).get("leagueGreen",false) else 1
+	return int(beat.act) if not beat.is_empty() else 3 if flags(player).get("exameAzulPreparacao",false) else 2 if flags(player).get("leagueGreen",false) else 1
 
 static func objective(player: Dictionary) -> String:
 	var beat:=current_beat(player)
 	if not beat.is_empty(): return beat.text
+	if flags(player).get("exameAzulOrientado",false):return preload("res://scripts/campaign/blue_exam_preparation.gd").data().prepared
 	return "Próximo destino: %s. Essa parte da história chega em breve." % next_destination(player).get("name","")
 
 ## The first place of the story still ahead (not open and not won), in map order.
