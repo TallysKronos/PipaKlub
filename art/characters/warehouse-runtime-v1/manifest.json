@@ -1,0 +1,30 @@
+{
+  "gollia": {
+    "size": [
+      57,
+      112
+    ],
+    "source": "art\\characters\\warehouse-runtime-v1\\gollia-source.png",
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": 1,
+    "facing": "southeast",
+    "status": "integrated draft; static pose; not a rig"
+  },
+  "dragon": {
+    "size": [
+      471,
+      320
+    ],
+    "source": "art\\characters\\warehouse-runtime-v1\\dragon-source.png",
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": 1,
+    "facing": "left",
+    "status": "integrated draft; static pose; not a rig"
+  }
+}

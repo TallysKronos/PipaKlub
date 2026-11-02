@@ -8443,6 +8443,59 @@
         ]
       },
       "note": "Static original form; Soulgen rig pending. Not a collectible species."
+    },
+    "pipa-dragao-desatada": {
+      "image": "warehouse-v1/dragon.png",
+      "animations": {
+        "idle": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 471,
+            "h": 320
+          }
+        ],
+        "flight": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 471,
+            "h": 320
+          }
+        ],
+        "attack": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 471,
+            "h": 320
+          }
+        ],
+        "hurt": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 471,
+            "h": 320
+          }
+        ],
+        "defeat": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 471,
+            "h": 320
+          }
+        ],
+        "victory": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 471,
+            "h": 320
+          }
+        ]
+      }
     }
   },
   "broadcast": [
