@@ -1,6 +1,6 @@
 {
-  "status": "awaiting-external-human",
-  "responses": [],
+  "status": "review-reported-problems",
+  "responses": [{"source":"user report","statement":"Foi testado mas encontrou muitos problemas, vamos construir essas telas todas no figma","individualFindingsProvided":false,"requestedAction":"Rebuild all UI screens in the user-provided Figma file"}],
   "screens": [
     {
       "number": 1,

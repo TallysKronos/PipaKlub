@@ -1,5 +1,7 @@
 # PIP-139 · Auditoria final e guia vivo
 
+**Atualização após a revisão humana:** o dono informou que o teste encontrou muitos problemas e determinou reconstruir as telas no Figma. A aprovação visual não foi obtida. O plano de reconstrução está em [figma-rebuild/BRIEF.md](../figma-rebuild/BRIEF.md). Os achados individuais ainda não foram fornecidos; as métricas abaixo conservam seu alcance técnico e não são usadas para invalidar o relato.
+
 **Parte técnica local pronta; aceite final pendente.** O [HUD-KIT v2](../../../HUD-KIT-v2.md) está disponível no repositório local para as telas futuras da campanha PIP-91. Não houve push, merge, comentário ou mudança de estado no Linear.
 
 Código auditado: commit `149fa2fb`. Resumo verificável em [suites.json](suites.json).

@@ -4,6 +4,10 @@ import json, shutil, hashlib
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'documentation/hud-v2/pip-139/teste-cego'
 OUT.mkdir(parents=True,exist_ok=True)
+review_path=OUT.parent/'blind-review-key.json'
+if review_path.exists() and json.loads(review_path.read_text(encoding='utf-8')).get('responses'):
+    print('Existing reviewed set and responses preserved. Create a new review version before replacing it.')
+    raise SystemExit(0)
 sources=['live','pause','team','dex','evolution','bag','identity','emblems','workshop','kronasta']
 cards=[];key=[]
 for index,source in enumerate(sources,1):

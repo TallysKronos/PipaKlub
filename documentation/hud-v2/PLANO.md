@@ -2,6 +2,8 @@
 
 Origem: instrução do dono nesta conversa, 01/11/2026. Branch de trabalho: `codex/hud-identidade-soulmonsters`. Nenhum merge autorizado. Este documento acompanha trabalho local; não declara sincronização com o Linear.
 
+Atualização de direção após a revisão externa: o dono relatou muitos problemas e pediu reconstrução de todas as telas no arquivo Figma PipaKlub. O aceite visual continua aberto. Escopo e estado de acesso em [figma-rebuild/BRIEF.md](figma-rebuild/BRIEF.md).
+
 Critério central: uma captura sem logo precisa ser reconhecível como Soulmonsters pela própria HUD. Matérias: pipa, bairro de Kronasta, almática, Elo e Pipa TV. A infraestrutura Recorte pode ser reaproveitada; sua estética não é a resposta automática.
 
 | Ordem | Tarefa | Entrega/limite | Estado local |
