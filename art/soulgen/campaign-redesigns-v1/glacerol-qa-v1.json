@@ -1,0 +1,26 @@
+{
+  "status": "conceito-em-revisao",
+  "tool": "image_gen.imagegen",
+  "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-77acdc04-5c11-472a-ab2c-d3d6d2177954.png",
+  "dimensions": [
+    2172,
+    724
+  ],
+  "mode": "RGB",
+  "reference": "rabiolava-propostas-v1.png, somente acabamento",
+  "review": {
+    "meets": [
+      "Tres silhuetas: felino, crustaceo, mariposa.",
+      "Gelo legivel nas extremidades; fio escuro visivel em cada alternativa.",
+      "Paletas com turquesa, coral e menta/lilas sem remendos obrigatorios."
+    ],
+    "limitations": [
+      "A abre a cauda em mais pontas que as duas laminas do brief; definir contagem antes de gerar pecas.",
+      "B exige conferir contagem de pernas e ligacoes do fio no modelo individual.",
+      "C precisa conferir raizes e comprimento das fitas antes do rig.",
+      "A transparencia de gelo e o corte por cerol sao intencoes visuais, nao efeitos ou mecanicas implementados."
+    ]
+  },
+  "rig_complete": false,
+  "integrated": false
+}

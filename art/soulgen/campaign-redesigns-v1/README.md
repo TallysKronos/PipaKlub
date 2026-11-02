@@ -19,7 +19,7 @@ Estado: levantamento e propostas visuais. Nenhum modelo novo integrado ao jogo.
 | Rai | Tigre dente-de-sabre, parceiro do Tyler | Conferir identidade existente e alias Saber; não criar uma segunda espécie por diferença de nome |
 | Trovareta | Trovão + vareta; floresta à noite durante tempestade | Arquitetura A escolhida pelo dono após refinamento de trovão; rig pendente |
 | Rabiolava | Lava + rabiola; vulcão | B escolhida pelo dono; A/C reservadas como outros Soulmonsters; rig pendente |
-| Glacerol | Geleira + cerol; gelo | Nome, força e região decididos; anatomia e paleta são propostas |
+| Glacerol | Geleira + cerol; gelo | Exploração A/B/C: lince de fio cortante, crustáceo de pinças e mariposa de seda gelada; sem escolha do dono ainda |
 | Tufanocorte | Tufão + corte; montanha | Nome, força e região decididos; anatomia e paleta são propostas |
 | Pipa-Dragão | Corpo com três rabiolas roubadas; forma desatada menor | Precisa diferenciar as duas formas sem inventar espécie canônica |
 | Parceiro do Gollia | Forma sobrecarregada pelo Carretel Negro | Primeiro identificar o parceiro normal; não inventar substituto |
