@@ -1,0 +1,54 @@
+{
+  "area": "kronasta-pantano-a",
+  "shots": [
+    {
+      "name": "area-inteira",
+      "u": 24,
+      "v": 20,
+      "zoom": 0.36,
+      "kind": "geral"
+    },
+    {
+      "name": "margem-sul",
+      "u": 16.5,
+      "v": 25.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "meio",
+      "u": 16.5,
+      "v": 22,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "margem-norte",
+      "u": 16.5,
+      "v": 18.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "ponte-alternativa",
+      "u": 24,
+      "v": 22,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "embarque-sul",
+      "u": 16.5,
+      "v": 25.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "embarque-norte",
+      "u": 16.5,
+      "v": 18.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    }
+  ]
+}

@@ -1474,6 +1474,8 @@ func _load_park() -> void:
 	if is_instance_valid(park): park.paused=false
 
 func _show_park() -> void:
+	if session.snapshot().player.has("marisolRowTrip"):
+		if not _result(load("res://scripts/campaign/marisol_row_trip.gd").new(session).recover()):return
 	if session.snapshot().player.has("ninaGlideFlight"):
 		if not _result(load("res://scripts/campaign/nina_glide.gd").new(session).recover()):return
 	_clear()
@@ -1497,7 +1499,7 @@ func _show_park() -> void:
 			_result(discovery)
 			return
 		saved=session.snapshot()
-	park = load("res://scripts/campaign/park_glide_view.gd").new() if saved.checkpoint.scene in ["park-veredas","kronasta-beira-canal-b"] else ParkOverworldView.new()
+	park = load("res://scripts/campaign/park_row_view.gd").new() if saved.checkpoint.scene=="kronasta-pantano-a" else load("res://scripts/campaign/park_glide_view.gd").new() if saved.checkpoint.scene in ["park-veredas","kronasta-beira-canal-b"] else ParkOverworldView.new()
 	park.ui_theme = theme
 	park.content = content
 	park.saved_checkpoint = saved.checkpoint
@@ -1583,6 +1585,8 @@ func _park_event(id: String) -> void:
 			return
 		if action=="canalGate":
 			_request_canal_gate();return
+		if action=="marisolRow":
+			_request_marisol_row(str(event.props.rowLink));return
 		if action=="ninaGlide":
 			_request_nina_glide(str(event.props.glideLink));return
 		if action in ["tylerClareira","tylerRai"]:
@@ -1612,6 +1616,10 @@ func _park_event(id: String) -> void:
 		return
 
 func _park_action(id: String) -> void:
+	if id.begins_with("row-land:"):
+		var result:Dictionary=load("res://scripts/campaign/marisol_row_trip.gd").new(session).finish(id.trim_prefix("row-land:"),park.row_motion)
+		if _result(result):park.finish_row();park.refresh(session.snapshot().player)
+		return
 	if id=="blue-exam-checkpoint":
 		var result:Dictionary=load("res://scripts/campaign/blue_exam.gd").new(session).escort_checkpoint(park.blue_guide.course,park.player)
 		if _result(result):
@@ -3038,7 +3046,7 @@ func _show_row_lesson(lesson:RefCounted,origin:Vector2)->void:
 		_button("Voltar ao Cais",page,_show_saved)
 		return
 	if lesson.step==lesson.data().lessons.size():
-		_label("Corrente, ritmo e margem. Você concluiu a orientação; a prática aquática continua separada.",page,24)
+		_label("Corrente, ritmo e margem. Registre a orientação para praticar com a capivara de Marisol na Entrada alagada, no Pântano.",page,24)
 		var feedback:=_label("Registre a orientação antes de sair.",page,22)
 		_button("Registrar orientação",page,func():
 			var result:Dictionary=lesson.finish(origin)
@@ -3064,3 +3072,11 @@ func _return_row_championship(id:String)->void:
 		if is_instance_valid(park) and not is_instance_valid(scene_loading):
 			_district_action(id,true)
 			return
+
+func _request_marisol_row(id:String)->void:
+	var row=load("res://scripts/campaign/marisol_row_trip.gd")
+	if not row.allowed(session.snapshot().player):
+		_notice("A seta marca Remar. Após o Exame Azul, converse com Marisol no Cais Velho para aprender a conduzir a travessia.");return
+	_confirm_park("Remar · capivara de Marisol","A capivara de apoio acompanha sua pequena balsa. Segure "+Controls.prompt("interact")+" ou o botão Remar para avançar; solte para descansar. A ponte continua disponível. Interromper e carregar o save devolve você à margem de partida. Nenhum parceiro é transferido ao seu banco.","Embarcar",func():
+		var result:Dictionary=row.new(session).begin(id,park.player)
+		if _result(result):park.play_row(session.snapshot().player.marisolRowTrip))

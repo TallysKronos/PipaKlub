@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "scene": "kronasta-pantano-a",
+  "links": [
+    {
+      "id": "pantano-sul-norte",
+      "from": [
+        16.5,
+        25.5
+      ],
+      "to": [
+        16.5,
+        18.5
+      ]
+    },
+    {
+      "id": "pantano-norte-sul",
+      "from": [
+        16.5,
+        18.5
+      ],
+      "to": [
+        16.5,
+        25.5
+      ]
+    }
+  ]
+}

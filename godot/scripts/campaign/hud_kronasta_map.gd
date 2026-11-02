@@ -82,7 +82,7 @@ func _ready() -> void:
 		marker.focus_mode=FOCUS_ALL;marker.custom_minimum_size=Vector2(42,42)
 		marker.set_meta("recorte_decorated",true)
 		add_child(marker);markers.append(marker)
-		if not Story.qa() and ((region.get("preview",false) and not (region.id=="pantano" and load("res://scripts/campaign/retalho_trust.gd").swamp_open(saved_player))) or region.scenes.is_empty()):marker.hide();marker.focus_mode=FOCUS_NONE
+		if not Story.qa() and ((region.get("preview",false) and not (region.id=="pantano" and Story.swamp_open(saved_player))) or region.scenes.is_empty()):marker.hide();marker.focus_mode=FOCUS_NONE
 		marker.pressed.connect(func():select(i))
 		marker.focus_entered.connect(func():select(i))
 	footer=HBoxContainer.new();footer.add_theme_constant_override("separation",14);add_child(footer)
@@ -123,7 +123,7 @@ func select(index:int) -> void:
 	if story_region:state_label.text=Story.requirement(saved_player,region.id)
 	detail.tooltip_text=Story.objective(saved_player)
 	for child in parts.get_children():parts.remove_child(child);child.queue_free()
-	if region.get("preview",false) and not Story.qa() and not (region.id=="pantano" and load("res://scripts/campaign/retalho_trust.gd").swamp_open(saved_player)):
+	if region.get("preview",false) and not Story.qa() and not (region.id=="pantano" and Story.swamp_open(saved_player)):
 		var disabled:=action(parts,"Ainda não disponível",func():pass);disabled.disabled=true
 	elif story_region and not Story.can_travel(saved_player,region.id):
 		var disabled:=action(parts,"Caminho ainda fechado",func():pass);disabled.disabled=true

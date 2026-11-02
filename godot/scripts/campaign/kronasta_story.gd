@@ -66,6 +66,7 @@ const BEATS := [
 	{"id":"azul-preparacao","act":3,"place":"rua-dos-ventos","text":"Converse com o Sr. Assis sobre a prova de condução e cuidado da Liga."},
 	{"id":"exame-azul","act":3,"place":"parque","text":"Faça a prova de condução e cuidado no Pátio da Liga, junto ao Parque."},
 	{"id":"remar-orientacao","act":3,"place":"cais","text":"Volte à Marisol, no Cais Velho, para preparar a travessia pela água."},
+	{"id":"remar-pratica","act":3,"place":"pantano","text":"Experimente Remar com a capivara de Marisol nas setas azuis da Entrada alagada, no Pântano."},
 	{"id":"retalho-atelie","act":3,"place":"rua-dos-ventos","text":"Arco pessoal · volte ao ateliê e aproxime-se de Retalho sem puxar sua rabiola."},
 	{"id":"retalho-confianca","act":3,"place":"rua-dos-ventos","text":"Arco pessoal · acompanhe Retalho, sem exigir que ele fique."},
 ]
@@ -96,6 +97,7 @@ static func beat_done(player: Dictionary, id: String) -> bool:
 		"bruno-emblema":return preload("res://scripts/campaign/district_rules.gd").completed(player,"industrial")
 		"retalho-atelie":return f.get("assisReconheceuNoRetalho",false)
 		"retalho-confianca":return f.get("retalhoAcolhido",false)
+		"remar-pratica":return f.get("marisolRemarPratica",false)
 		"remar-orientacao":return f.get("marisolRemarOrientado",false)
 		"exame-azul":return f.get("leagueBlue",false)
 		"azul-preparacao":return preload("res://scripts/campaign/blue_exam_preparation.gd").prepared(player)
@@ -179,13 +181,16 @@ static func place_for_scene(scene: String) -> Dictionary:
 
 ## aberto: can be entered now · vencido: neighbourhood won · fechado: story gate not
 ## reached · em-breve: not built yet.
+static func swamp_open(player:Dictionary)->bool:
+	return load("res://scripts/campaign/retalho_trust.gd").swamp_open(player) or load("res://scripts/campaign/marisol_row_trip.gd").allowed(player)
+
 static func state(player: Dictionary, id: String) -> String:
 	var entry:=place(id)
 	if entry.is_empty(): return "em-breve"
 	match id:
 		"palafitas":return "aberto" if load("res://scripts/campaign/retalho_trust.gd").docks_open(player) else "fechado"
 		"pantano":
-			if load("res://scripts/campaign/retalho_trust.gd").swamp_open(player):return "aberto"
+			if swamp_open(player):return "aberto"
 		"rua-dos-ventos": return "aberto"
 		"parque": return "aberto" if prologue_done(player) else "fechado"
 		"morro": return "vencido" if mikka_defeated(player) else "aberto" if prologue_done(player) else "fechado"
@@ -208,7 +213,9 @@ static func requirement(player: Dictionary, id: String) -> String:
 	if id=="palafitas" and state(player,id)=="fechado":return "O caminho abre durante o arco pessoal de Retalho"
 	if id=="beira-canal" and preload("res://scripts/campaign/district_rules.gd").completed(player,"bambuzal") and not flags(player).get("leagueGreen",false):return "Conclua o primeiro exame com Nina"
 	match state(player,id):
-		"aberto": return "Resgate de Retalho disponível" if id in ["pantano","palafitas"] and load("res://scripts/campaign/retalho_trust.gd").swamp_open(player) else "QA · prévia sem história" if entry.get("preview",false) else "Aberto"
+		"aberto":
+			if id=="pantano" and load("res://scripts/campaign/marisol_row_trip.gd").allowed(player):return "Prática de Remar disponível · Pântano A"
+			return "Resgate de Retalho disponível" if id in ["pantano","palafitas"] and load("res://scripts/campaign/retalho_trust.gd").swamp_open(player) else "QA · prévia sem história" if entry.get("preview",false) else "Aberto"
 		"vencido": return "Bairro vencido"
 		"fechado": return "Vença a Mikka no Morro do Sol" if id=="bambuzal" else "Vença o Lohan na Vila do Bambuzal" if id=="beira-canal" else "Vença o Kleie em Beira-Canal" if id=="feira" else "Vença a Feira do Largo e recupere o apito verdadeiro" if id=="caverna" else "Vença Dona Zulmira na Feira do Largo" if id=="cais" else "Abre ao terminar o prólogo"
 	return "Em breve"
