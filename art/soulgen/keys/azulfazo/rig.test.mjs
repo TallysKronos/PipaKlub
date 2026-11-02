@@ -2,7 +2,6 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import crypto from 'node:crypto';
-import crypto from 'node:crypto';
 import {validate,sample} from '../../../../tools/soulgen-studio/model.mjs';
 import {anatomyReport} from '../../../../tools/soulgen-studio/workflow.mjs';
 const dir=new URL('./cutout-rig-v1/',import.meta.url);
