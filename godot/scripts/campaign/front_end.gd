@@ -390,6 +390,7 @@ func _show_identity() -> void:
 	card.saved = session.snapshot()
 	card.backdrop_texture = _slot_location(card.saved).texture
 	card.reduced_motion = preferences.reduced_motion
+	card.text_scale = preferences.text_scale
 	add_child(card)
 	card.closed.connect(_close_identity)
 
@@ -1053,7 +1054,7 @@ func _continue_practice(view:Control)->void:
 			await view.reel_in()
 			if TutorialStaging.valid(self,generation):TutorialStaging.after_practice(self)
 
-func _simple_page(title: String, illustrated:bool=false) -> void:
+func _simple_page(title: String, illustrated:bool=false, scroll_content:bool=false) -> void:
 	sound.play_event("ui.open")
 	_clear("page:" + title)
 	if illustrated:
@@ -1069,7 +1070,10 @@ func _simple_page(title: String, illustrated:bool=false) -> void:
 	add_child(margin)
 	page = VBoxContainer.new()
 	page.add_theme_constant_override("separation", 18)
-	margin.add_child(page)
+	if scroll_content:
+		var scroll:=ScrollContainer.new();scroll.follow_focus=true;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;scroll.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+		margin.add_child(scroll);page.size_flags_horizontal=Control.SIZE_EXPAND_FILL;scroll.add_child(page)
+	else:margin.add_child(page)
 	var heading_row := HBoxContainer.new()
 	page.add_child(heading_row)
 	var heading := _label(title, heading_row, 36)
@@ -1834,7 +1838,7 @@ func _show_bag() -> void:
 	if not _remember_world_position(): return
 	sound.play_event("inventory.bag")
 	var player: Dictionary = session.snapshot().player
-	_simple_page("MOCHILA",true)
+	_simple_page("MOCHILA",true,true)
 	_label("%d moedas · Materiais e lembranças da sua jornada"%player.coins,page,18).add_theme_color_override("font_color",Hud.GOLD)
 	var inventory_view = load("res://scripts/campaign/hud_inventory.gd").new()
 	inventory_view.care_available=session.snapshot().checkpoint.get("kind","")=="world"
@@ -1849,11 +1853,12 @@ func _show_bag() -> void:
 		if not fresh.get("inventory") is Dictionary:inventory_view.set_load_state("error");return
 		inventory_view.inventory=fresh.inventory
 		inventory_view.set_load_state("ready"))
-	var footer:=HBoxContainer.new()
-	footer.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
+	var footer:=HFlowContainer.new()
+	footer.add_theme_constant_override("h_separation",32);footer.add_theme_constant_override("v_separation",16)
 	page.add_child(footer)
 	_button("Voltar", footer, _return_to_game).custom_minimum_size.x=180
 	var care_button:=_button("Cuidar do parceiro",footer,func():_show_partner_care())
+	care_button.custom_minimum_size.x=260*preferences.text_scale
 	care_button.disabled=player.partners.is_empty() or session.snapshot().checkpoint.get("kind","")!="world"
 	Hud.input_hint(footer,"guard","Aba anterior")
 	Hud.input_hint(footer,"line","Próxima aba")
@@ -2219,6 +2224,7 @@ func _show_controls() -> void:
 			var id:String=action
 			var binding_button:=_button("%s   ·   %s"%[Controls.LABELS[id],OS.get_keycode_string(int(preferences.bindings[id]))],list,func():_capture_binding(id))
 			binding_button.custom_minimum_size.y=46
+			binding_button.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;binding_button.clip_text=false;binding_button.text_overrun_behavior=TextServer.OVERRUN_NO_TRIMMING
 			binding_button.set_meta("binding_action",id)
 			Hud.secondary_button(binding_button)
 			binding_button.icon=Controls.glyph(id,true)

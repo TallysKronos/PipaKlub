@@ -4,6 +4,9 @@ const Hud=preload("res://scripts/campaign/hud.gd")
 const Identity=preload("res://scripts/campaign/pipeiro_identity.gd")
 const Levels=preload("res://scripts/campaign/partner_levels.gd")
 const Ink=preload("res://scripts/campaign/battle_ink.gd")
+const Mural=preload("res://scripts/ui_mural/mural_theme.gd")
+var text_scale:=1.0
+func _init()->void:set_meta("owns_ui_theme",true)
 var saved:Dictionary={}
 var reduced_motion:=false
 var backdrop_texture:Texture2D
@@ -15,6 +18,7 @@ var canvas:Control
 var selected_tab:=0
 
 class Board extends Control:
+	var side_width:=180.0
 	func _draw() -> void:
 		var r:=Rect2(Vector2.ZERO,size)
 		frame(r,Color("0a1424"),Hud.BLACK,8)
@@ -26,8 +30,8 @@ class Board extends Control:
 				draw_line(Vector2(x,y),Vector2(x,y+70),Color("f49143"),9)
 				draw_line(Vector2(x-2,y+3),Vector2(x-2,y+65),Hud.GOLD,2)
 		draw_line(Vector2(42,7),Vector2(size.x-50,7),Hud.CYAN,2)
-		draw_line(Vector2(178,20),Vector2(178,size.y-20),Color("071625"),6)
-		draw_line(Vector2(182,22),Vector2(182,size.y-22),Color("506b90"),2)
+		draw_line(Vector2(side_width-2,20),Vector2(side_width-2,size.y-20),Color("071625"),6)
+		draw_line(Vector2(side_width+2,22),Vector2(side_width+2,size.y-22),Color("506b90"),2)
 		for x in range(30,int(size.x)-28,12):
 			for y in [28,int(size.y)-30]:draw_circle(Vector2(x,y+(x%5)*2),1.5,Color("2b4664"))
 		for i in 7:
@@ -69,10 +73,12 @@ class TitlePlate extends Control:
 		for i in 5:draw_line(Vector2(size.x-55-i*7,4),Vector2(size.x-72-i*7,19),Hud.CYAN,2)
 
 func _ready() -> void:
+	text_scale=maxf(text_scale,Mural.text_scale_for(self));Mural.install(self)
 	set_anchors_and_offsets_preset(PRESET_FULL_RECT)
 	canvas=Control.new();canvas.size=Vector2(1280,720);add_child(canvas)
-	var heading_art:=TitlePlate.new();place(heading_art,Vector2(28,20),Vector2(660,72));heading_art.mouse_filter=MOUSE_FILTER_IGNORE;canvas.add_child(heading_art)
+	var heading_art:=TitlePlate.new();place(heading_art,Vector2(28,20),Vector2(660,72+(text_scale-1)*40));heading_art.mouse_filter=MOUSE_FILTER_IGNORE;canvas.add_child(heading_art)
 	var board:=Board.new();board.position=Vector2(28,110);board.size=Vector2(1224,528);board.mouse_filter=MOUSE_FILTER_IGNORE
+	board.side_width=180+(text_scale-1)*166
 	# Keep decoration separate from the interactive content.
 	canvas.add_child(board)
 	var title:=copy("Identidade do Pipeiro",canvas,42)
@@ -85,10 +91,10 @@ func _ready() -> void:
 		var tab:=Button.new();tab.text=["Perfil","Histórico"][i]
 		tab.icon=Hud.icon(["info","salvar"][i]);tab.expand_icon=true
 		tab.add_theme_constant_override("icon_max_width",24)
-		tab.add_theme_font_size_override("font_size",23)
+		tab.add_theme_font_size_override("font_size",roundi(23*text_scale))
 		tab.add_theme_font_override("font",Hud.font(true))
 		tab.toggle_mode=true;tab.set_meta("recorte_decorated",true)
-		canvas.add_child(tab);place(tab,Vector2(42,166+i*76),Vector2(166,62))
+		canvas.add_child(tab);place(tab,Vector2(42,166+i*76),Vector2(166*text_scale,62))
 		for state in ["normal","hover","pressed","focus"]:tab.add_theme_stylebox_override(state,skin(Hud.GOLD if state=="pressed" else Color("20334c"),Hud.CYAN if state=="focus" else Color("527193")))
 		tab.add_theme_color_override("font_pressed_color",Hud.INK)
 		for state in ["font_color","font_hover_color","font_focus_color"]:tab.add_theme_color_override(state,Hud.PAPER)
@@ -98,13 +104,20 @@ func _ready() -> void:
 			select_tab(index))
 		tabs.append(tab)
 	for i in 2:
+		var scroll:=ScrollContainer.new();scroll.follow_focus=true;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;scroll.focus_mode=FOCUS_ALL
+		canvas.add_child(scroll);place(scroll,Vector2(238+(text_scale-1)*166,146),Vector2(980-(text_scale-1)*166,460));pages.append(scroll)
 		var page:=VBoxContainer.new();page.add_theme_constant_override("separation",14)
-		canvas.add_child(page);place(page,Vector2(238,146),Vector2(980,460));pages.append(page)
-	profile(pages[0]);history(pages[1])
+		page.size_flags_horizontal=SIZE_EXPAND_FILL;page.size_flags_vertical=SIZE_EXPAND_FILL;scroll.add_child(page)
+		if i==0:profile(page)
+		else:history(page)
+		scroll.gui_input.connect(func(event:InputEvent):
+			if event.is_action_pressed("ui_down") or event.is_action_pressed("ui_up"):
+				scroll.scroll_vertical+=roundi(64*text_scale)*(1 if event.is_action_pressed("ui_down") else -1);scroll.accept_event())
 	var footer:=copy("SEU REGISTRO · KRONASTA    /    Dados da jornada salva",canvas,17,Hud.MUTED)
-	place(footer,Vector2(44,662),Vector2(830,38))
+	place(footer,Vector2(44,652),Vector2(830,38))
 	back=Button.new();back.text="Voltar";Hud.navigation_button(back)
 	canvas.add_child(back);place(back,Vector2(1002,652),Vector2(220,48))
+	back.add_theme_font_size_override("font_size",roundi(20*text_scale));back.position.y=720-maxf(48,back.get_combined_minimum_size().y)-24
 	back.pressed.connect(func():closed.emit())
 	select_tab(0);Hud.focus_later(back)
 	resized.connect(fit);fit()
@@ -146,7 +159,7 @@ func profile(parent:Control) -> void:
 	var cards:=HBoxContainer.new();cards.add_theme_constant_override("separation",7);cards.size_flags_vertical=SIZE_EXPAND_FILL;team.add_child(cards)
 	var partners:Array=player.get("partners",[])
 	for i in 5:
-		var box:=PanelContainer.new();box.size_flags_horizontal=SIZE_EXPAND_FILL;box.add_theme_stylebox_override("panel",skin(Color("14263c"),Color("536783"),4));cards.add_child(box)
+		var box:=PanelContainer.new();box.size_flags_horizontal=SIZE_EXPAND_FILL;box.add_theme_stylebox_override("panel",skin(Color("14263c"),Color("536783"),8));cards.add_child(box)
 		var column:=VBoxContainer.new();column.add_theme_constant_override("separation",0);box.add_child(column)
 		if i>=partners.size():
 			var empty:=copy("+",column,36,Color("4f6683"));empty.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
@@ -227,6 +240,6 @@ static func skin(fill:Color,edge:Color,padding:int=8) -> StyleBoxFlat:
 	return style
 func copy(value:String,parent:Node,font_size:int,color:Color=Hud.PAPER) -> Label:
 	var label:=Label.new();label.text=value;label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;label.size_flags_horizontal=SIZE_EXPAND_FILL
-	label.add_theme_font_size_override("font_size",font_size);label.add_theme_color_override("font_color",color)
+	label.add_theme_font_size_override("font_size",roundi(font_size*text_scale));label.add_theme_color_override("font_color",color)
 	if font_size>=25:label.add_theme_font_override("font",Hud.lettering())
 	parent.add_child(label);return label

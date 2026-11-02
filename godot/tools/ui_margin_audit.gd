@@ -11,7 +11,7 @@ static func report(root: Window, shot: String) -> void:
 	for control in _controls(root):
 		for issue in _check(control, screen):
 			found += 1
-			print("AUDIT ", JSON.stringify({"shot": shot, "path": _short(control), "text": _text(control).left(48), "issue": issue}))
+			print("AUDIT ", JSON.stringify({"shot": shot, "path": _short(control), "text": _text(control).left(48), "issue": issue,"ink":str(_ink(control)),"screen":str(screen),"control":str(control.get_global_rect())}))
 	print("AUDIT_DONE ", shot, " textos=", _controls(root).size(), " problemas=", found)
 
 static func _controls(node: Node) -> Array:
@@ -48,11 +48,14 @@ static func _scale(control: Control) -> float:
 # Rectangle the glyphs really occupy, in screen space.
 static func _ink(control: Control) -> Rect2:
 	var rect := Rect2(Vector2.ZERO, control.size)
-	if control is Label and not control.clip_text and control.autowrap_mode == TextServer.AUTOWRAP_OFF:
+	if control is Label and not control.clip_text:
 		var font: Font = control.get_theme_font("font")
 		var size: int = control.get_theme_font_size("font_size")
 		var width := 0.0
 		for line in control.text.split("\n"): width = maxf(width, font.get_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, -1, size).x)
+		if control.autowrap_mode != TextServer.AUTOWRAP_OFF:
+			width=minf(width,control.size.x)
+			if control.get_line_count()>1:width=font.get_multiline_string_size(control.text,control.horizontal_alignment,control.size.x,size).x
 		var height: float = control.get_line_count() * control.get_line_height() + max(0, control.get_line_count() - 1) * control.get_theme_constant("line_spacing")
 		var x := 0.0
 		if control.horizontal_alignment == HORIZONTAL_ALIGNMENT_CENTER: x = (control.size.x - width) * .5
@@ -74,6 +77,7 @@ static func _ink(control: Control) -> Rect2:
 			if control.expand_icon: icon_w = minf(icon_w, inner.size.y + control.get_theme_constant("h_separation"))
 		var x: float = inner.position.x + icon_w
 		if control is CheckButton or control is CheckBox: inner.size.x -= control.get_theme_icon("checked").get_width() + control.get_theme_constant("h_separation")
+		if control.autowrap_mode!=TextServer.AUTOWRAP_OFF:text_size=font.get_multiline_string_size(control.text,control.alignment,maxf(1,inner.size.x-icon_w),fsize)
 		if control.alignment == HORIZONTAL_ALIGNMENT_CENTER: x = inner.position.x + icon_w + (inner.size.x - icon_w - text_size.x) * .5
 		elif control.alignment == HORIZONTAL_ALIGNMENT_RIGHT: x = inner.end.x - text_size.x
 		rect = Rect2(x, inner.position.y + (inner.size.y - text_size.y) * .5, text_size.x, text_size.y)
@@ -82,6 +86,18 @@ static func _ink(control: Control) -> Rect2:
 
 static func _check(control: Control, screen: Rect2) -> Array:
 	var issues: Array = []
+	var original_ink:=_ink(control)
+	var ink:=original_ink
+	# Scroll content is deliberately outside its viewport until navigated to.
+	# Measure only pixels that can actually be painted; keep focused clipping a fault.
+	var ancestor:=control.get_parent()
+	while ancestor!=null and ancestor!=control.get_viewport():
+		if ancestor is Control and ancestor.clip_contents:
+			var bounds:=Rect2(ancestor.get_global_transform_with_canvas().origin,ancestor.size*ancestor.get_global_transform_with_canvas().get_scale())
+			ink=ink.intersection(bounds)
+		ancestor=ancestor.get_parent()
+	if control.has_focus() and not ink.grow(.5).encloses(original_ink):issues.append("texto com foco cortado pelo scroll")
+	if not ink.has_area():return issues
 	var own := Rect2(control.get_global_transform_with_canvas().origin, control.size * _scale(control))
 	if control is Label:
 		if control.autowrap_mode == TextServer.AUTOWRAP_OFF and not control.clip_text and control.text_overrun_behavior == TextServer.OVERRUN_NO_TRIMMING:
@@ -96,7 +112,6 @@ static func _check(control: Control, screen: Rect2) -> Array:
 		if need > control.size.x + 1.0 and not control.clip_text: issues.append("rótulo do botão maior que o botão (%d > %d)" % [need, control.size.x])
 	elif control is RichTextLabel:
 		if not control.fit_content and not control.scroll_active and control.get_content_height() > control.size.y + 1.0: issues.append("texto rico mais alto que a caixa")
-	var ink := _ink(control)
 	if not screen.encloses(ink.grow(-1.0)): issues.append("texto sai da tela")
 	else:
 		var gap: float = minf(minf(ink.position.x - screen.position.x, ink.position.y - screen.position.y), minf(screen.end.x - ink.end.x, screen.end.y - ink.end.y))
