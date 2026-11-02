@@ -818,9 +818,11 @@ func _show_world() -> void:
 	if professor and preload("res://scripts/campaign/expedition_photo.gd").available(session.snapshot().player):
 		for spot:Dictionary in data.hotspots:
 			if spot.id=="study":spot.name="Arquivo de expedições"
+	if professor:data=preload("res://scripts/campaign/retalho_care.gd").room_data(data,session.snapshot().player)
 	room = Room.new()
 	stage.add_child(room)
 	room.configure(data, point.position, true, "*", professor, true)
+	if professor:preload("res://scripts/campaign/retalho_care.gd").build(room,session.snapshot().player)
 	_equip_room_companion()
 	room.interacted.connect(_world_interact)
 	var overlay=load("res://scripts/campaign/hud_exploration.gd").new()
@@ -828,6 +830,7 @@ func _show_world() -> void:
 	overlay.area_name="Linha & Papel" if shop else "Ateliê do Sr. Assis" if professor else "Bairro dos Ventos"
 	overlay.player_data=session.snapshot().player
 	add_child(overlay)
+	if professor and preload("res://scripts/campaign/retalho_care.gd").available(session.snapshot().player):overlay.objective.text=preload("res://scripts/campaign/retalho_care.gd").objective(session.snapshot().player)
 	overlay.map=Hud.map_for(room,overlay)
 	status=overlay.prompt
 	room.set_meta("exploration_hud",overlay)
@@ -965,6 +968,8 @@ func _use_mount_item() -> void:
 
 func _world_interact(id: String) -> void:
 	if flow_busy:return
+	if id=="retalho-care":
+		_show_retalho_care();return
 	var point: Dictionary = session.snapshot().checkpoint
 	if point.scene=="kite-shop":
 		_shop_interact(id);return
@@ -1274,7 +1279,7 @@ func _confirm_cancel_workshop() -> void:
 
 func _process(_delta: float) -> void:
 	if is_instance_valid(room) and room.can_walk and is_instance_valid(status):
-		status.text = Controls.prompt("interact") + " · " + {"desk": "Montar Rabbito", "stairs": "Descer para a sala", "exit": "Sair", "professor": "Conversar com Sr. Assis", "professor-home": "Entrar no ateliê", "morro": "Entrar no Morro do Sol", "park": "Entrar no parque", "workbench": "Usar bancada"}.get(room.near, "Interagir") if not room.near.is_empty() and (room.near == room.target_hotspot or room.target_hotspot == "*") else ("Analógico · Mover" if Controls.gamepad else "Setas · Mover")
+		status.text = Controls.prompt("interact") + " · " + {"desk": "Montar Rabbito", "stairs": "Descer para a sala", "exit": "Sair", "professor": "Conversar com Sr. Assis", "professor-home": "Entrar no ateliê", "morro": "Entrar no Morro do Sol", "park": "Entrar no parque", "workbench": "Usar bancada", "retalho-care":"Cuidar de Retalho"}.get(room.near, "Interagir") if not room.near.is_empty() and (room.near == room.target_hotspot or room.target_hotspot == "*") else ("Analógico · Mover" if Controls.gamepad else "Setas · Mover")
 		if status.get_parent() is PanelContainer and status.get_parent().theme_type_variation == "RecortePromptPanel":
 			status.text = status.text.trim_prefix(Controls.prompt("interact")+" · ")
 		if room.has_meta("exploration_hud"):
@@ -2805,4 +2810,34 @@ func _show_expedition_photo()->void:
 		if is_instance_valid(photo):photo.queue_free()
 		if is_instance_valid(room):room.can_walk=true
 		flow_busy=false)
+	dialog.popup_centered()
+
+func _show_retalho_care()->void:
+	if flow_busy or not is_instance_valid(room):return
+	var service=preload("res://scripts/campaign/retalho_care.gd").new(session)
+	if not service.near(room.actor):return
+	var index:int=service.step(session.snapshot().player)
+	if index>=service.nodes().size():
+		_notice("Sr. Assis: Ele aceitou nossa ajuda. Agora vamos deixar Retalho descansar, sem mexer no nó da rabiola.");return
+	var node:Dictionary=service.nodes()[index]
+	flow_busy=true;room.can_walk=false;room.set_story_paused(true)
+	room.face_actor(service.AT);room.face_mother(service.AT)
+	var generation:=opening_generation
+	var dialog:=_dialog(node.title,node.text,"Continuar","Continuar depois")
+	dialog.name="RetalhoCareDialogue"
+	var continue_scene:=[false]
+	dialog.confirmed.connect(func():
+		if not TutorialStaging.valid(self,generation) or not is_instance_valid(room):return
+		if not _result(service.advance(node.id,room.actor)):return
+		continue_scene[0]=true
+		dialog.queue_free()
+		)
+	dialog.canceled.connect(dialog.queue_free)
+	dialog.tree_exiting.connect(func():
+		flow_busy=false
+		if is_instance_valid(room):
+			room.can_walk=true;room.set_story_paused(false)
+			var overlay:Control=room.get_meta("exploration_hud",null)
+			if is_instance_valid(overlay):overlay.objective.text=service.objective(session.snapshot().player)
+		if continue_scene[0] and TutorialStaging.valid(self,generation):_show_retalho_care.call_deferred())
 	dialog.popup_centered()
