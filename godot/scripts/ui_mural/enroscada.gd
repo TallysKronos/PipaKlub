@@ -2,6 +2,7 @@ extends RefCounted
 ## Read-only projection of contact, quality and action availability; no new combat state.
 const T=preload("res://scripts/campaign/ui_tokens.gd")
 const Controls=preload("res://scripts/campaign/controls.gd")
+const EventArt=preload("res://scripts/ui_mural/event_art.gd")
 const Paint=preload("res://scripts/ui_mural/battle_hud.gd")
 const Paper=preload("res://scripts/ui_mural/paper_layout.gd")
 static func state(model:RefCounted) -> Dictionary:
@@ -26,18 +27,19 @@ static func region(size:Vector2,rivals:int,scale:float,boss:bool=false) -> Rect2
 	var boxes:=Paint.regions(size,rivals,scale)
 	if size.x<1160 or scale>1.1:
 		if scale>1.1:
-			var height:=Paper.inset(.35)*2+Paper.height(roundi(22*scale))+Paper.height(roundi(18*scale))+8
+			var height:=92+Paper.height(roundi(22*scale))+Paper.height(roundi(18*scale))+8
 			return Rect2(24,size.y-24-Paint.action_size(scale).y-height-16,size.x*.4,height)
 		var x:float=boxes.partner.end.x+16
-		return Rect2(x,boxes.partner.position.y,size.x-x-24,Paper.inset(.35)*2+Paper.height(roundi(22*scale))+Paper.height(roundi(18*scale))+8)
-	var height:=Paper.inset(.35)*2+Paper.height(roundi(22*scale))+Paper.height(roundi(18*scale))+8
+		return Rect2(x,boxes.partner.position.y,size.x-x-24,92+Paper.height(roundi(22*scale))+Paper.height(roundi(18*scale))+8)
+	var height:=92+Paper.height(roundi(22*scale))+Paper.height(roundi(18*scale))+8
 	return Rect2(size.x-544,size.y-24-Paint.action_size(scale).y-height-16,520,height)
 static func draw_on(view:Control,model:RefCounted,scale:float) -> void:
 	var status:=state(model)
 	if status.is_empty():return
 	var box:=region(view.size,model.actors.size()-1 if model.get("actors")!=null else 1,scale,model.q.get("boss",false))
-	Paint.paper(view,box,"MuralSunPanel" if status.ready else "MuralPaperPanel")
-	var safe:=Paper.content(box,.35)
+	EventArt.draw(view,box,"crossing")
+	var safe:=EventArt.content(box,"crossing")
 	var h:=Paper.height(roundi(22*scale))
 	Paper.label(view,Rect2(safe.position,Vector2(safe.size.x,h)),"ENROSCADA"+(" · "+str(status.rival) if model.get("actors")!=null and model.actors.size()>2 else ""),roundi(22*scale),T.MURAL_INK,false,safe)
-	Paper.label(view,Rect2(safe.position+Vector2(0,h+8),Vector2(safe.size.x,Paper.height(roundi(18*scale)))),status.message,roundi(18*scale),T.MURAL_INK,false,safe)
+	var message:String=str(status.message).replace("Corte crítico!","Crítico!").replace("Cortar agora","Cortar")
+	Paper.label(view,Rect2(safe.position+Vector2(0,h+8),Vector2(safe.size.x,Paper.height(roundi(18*scale)))),message,roundi(18*scale),T.MURAL_INK,false,safe)

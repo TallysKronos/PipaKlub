@@ -3,6 +3,8 @@ extends Control
 signal skip_requested
 var skip:Button
 const Mural=preload("res://scripts/ui_mural/mural_theme.gd")
+const EventArt=preload("res://scripts/ui_mural/event_art.gd")
+const Paper=preload("res://scripts/ui_mural/paper_layout.gd")
 const T=preload("res://scripts/campaign/ui_tokens.gd")
 const Hud=preload("res://scripts/campaign/hud.gd")
 const Ink=preload("res://scripts/campaign/battle_ink.gd")
@@ -56,12 +58,21 @@ static func draw_meter(c:Control,actor:Dictionary,portrait:Texture2D,seconds:flo
 
 func _draw() -> void:
 	if remaining<=0:return
-	draw_rect(Rect2(Vector2.ZERO,size),T.alpha(T.MURAL_GROUND,.85))
-	var factor:=minf(size.x/1280,size.y/720)
-	draw_set_transform(size/2,0,Vector2.ONE*factor)
-	draw_style_box(Mural.shared().get_stylebox("panel","MuralSunPanel"),Rect2(-580,-154,1160,328))
-	if face!=null:draw_texture_rect(face,Hud.fit_texture(face,Rect2(-540,-174,300,350)),false)
-	draw_string(T.lettering(),Vector2(-196,-25),"BOSS À VISTA!",HORIZONTAL_ALIGNMENT_LEFT,-1,66,T.MURAL_INK)
-	draw_string(T.label(),Vector2(-196,36),title,HORIZONTAL_ALIGNMENT_LEFT,700,42,T.MURAL_INK)
-	draw_string(T.label(),Vector2(-196,88),"Guardião dos Canos",HORIZONTAL_ALIGNMENT_LEFT,700,26,T.MURAL_INK)
-	draw_set_transform(Vector2.ZERO)
+	Paper.begin(self)
+	draw_rect(Rect2(Vector2.ZERO,size),T.alpha(T.MURAL_GROUND,.8))
+	var height:=minf(380,size.y*.55)
+	var band:=Rect2(24,size.y/2-height/2,size.x-48,height)
+	EventArt.draw(self,band,"boss-warning")
+	var safe:=EventArt.content(band,"boss-warning")
+	var portrait_width:=minf(300,size.x*.26)
+	if face!=null:draw_texture_rect(face,Hud.fit_texture(face,Rect2(band.position+Vector2(24,-20),Vector2(portrait_width,height+40))),false)
+	safe.position.x=band.position.x+portrait_width+50
+	safe.size.x=band.end.x-safe.position.x-210
+	var extra:=minf(24,maxf(0,safe.size.y-160))
+	safe.position.y+=extra;safe.size.y-=extra
+	var title_size:=roundi(clampf(size.x/22,40,64))
+	var h:=Paper.height(title_size)
+	Paper.label(self,Rect2(safe.position,Vector2(safe.size.x,h)),"BOSS À VISTA!",title_size,T.MURAL_PAPER,false,safe)
+	var name_h:=Paper.height(32)
+	Paper.label(self,Rect2(safe.position+Vector2(0,h+8),Vector2(safe.size.x,name_h)),title,32,T.MURAL_PAPER,false,safe)
+	Paper.label(self,Rect2(safe.position+Vector2(0,h+name_h+16),Vector2(safe.size.x,Paper.height(22))),"Guardião dos Canos",22,T.MURAL_PAPER,false,safe)

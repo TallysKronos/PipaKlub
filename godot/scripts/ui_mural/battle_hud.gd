@@ -1,5 +1,6 @@
 extends RefCounted
 ## Public fighter values only; ornament bleed is excluded by Paper.content().
+const EventArt=preload("res://scripts/ui_mural/event_art.gd")
 const T=preload("res://scripts/campaign/ui_tokens.gd")
 const Paper=preload("res://scripts/ui_mural/paper_layout.gd")
 const Hud=preload("res://scripts/campaign/hud.gd")
@@ -26,28 +27,30 @@ static func regions(size:Vector2,rivals:int=1,scale:float=1.0) -> Dictionary:
 static func paper(c:CanvasItem,box:Rect2,variant:String="MuralPaperPanel") -> void:Paper.frame(c,box,variant,.35)
 static func text(c:CanvasItem,at:Vector2,value:String,width:float,font:int=18,color:Color=T.MURAL_INK) -> void:
 	Paper.label(c,Rect2(at-Vector2(0,Paper.height(font)),Vector2(width,Paper.height(font))),value,font,color)
-static func bar(c:CanvasItem,box:Rect2,fraction:float,kind:String="line") -> void:
+static func bar(c:CanvasItem,box:Rect2,fraction:float,kind:String="line",inverse:bool=false) -> void:
 	var value:=clampf(fraction,0,1)
-	c.draw_rect(box,T.alpha(T.MURAL_INK,.15))
-	if kind=="line":c.draw_rect(Rect2(box.position,Vector2(box.size.x*value,box.size.y)),T.MURAL_RED if value<.35 else T.MURAL_TEAL)
+	c.draw_rect(box,T.alpha(T.MURAL_PAPER if inverse else T.MURAL_INK,.2))
+	if kind=="line":c.draw_rect(Rect2(box.position,Vector2(box.size.x*value,box.size.y)),T.RABIOLA if inverse else T.MURAL_RED if value<.25 else T.MURAL_TEAL)
 	else:
 		for index in 10:
 			if index>=ceili(value*10):continue
-			c.draw_rect(Rect2(box.position+Vector2(index*box.size.x/10,0),Vector2(maxf(1,box.size.x/10-2),box.size.y)),T.MURAL_INK if kind=="hull" else T.MURAL_TEAL)
-static func row(c:CanvasItem,safe:Rect2,y:float,title:String,fraction:float,scale:float,kind:String="line") -> void:
+			c.draw_rect(Rect2(box.position+Vector2(index*box.size.x/10,0),Vector2(maxf(1,box.size.x/10-2),box.size.y)),(T.MURAL_PAPER if inverse else T.MURAL_INK) if kind=="hull" else T.MURAL_TEAL)
+static func row(c:CanvasItem,safe:Rect2,y:float,title:String,fraction:float,scale:float,kind:String="line",inverse:bool=false) -> void:
+	var color:=T.MURAL_PAPER if inverse else T.MURAL_INK
 	var font:=roundi(16*scale)
 	var h:=line_height(scale)
 	var label_w:=T.label().get_string_size("Armação",HORIZONTAL_ALIGNMENT_LEFT,-1,font).x+8
 	var value_w:=T.label().get_string_size("100%",HORIZONTAL_ALIGNMENT_LEFT,-1,font).x+6
 	var available:=safe.size.x-label_w-value_w-14
 	if available<24:
-		Paper.label(c,Rect2(safe.position+Vector2(0,y),Vector2(safe.size.x,h)),title+" %d%%"%roundi(clampf(fraction,0,1)*100),font,T.MURAL_INK,false,safe)
+		Paper.label(c,Rect2(safe.position+Vector2(0,y),Vector2(safe.size.x,h)),title+" %d%%"%roundi(clampf(fraction,0,1)*100),font,color,false,safe)
 		return
-	Paper.label(c,Rect2(safe.position+Vector2(0,y),Vector2(label_w,h)),title,font,T.MURAL_INK,false,safe)
-	var track:=Rect2(safe.position+Vector2(label_w,y+(h-8)/2),Vector2(available,8))
-	bar(c,track,fraction,kind)
+	Paper.label(c,Rect2(safe.position+Vector2(0,y),Vector2(label_w,h)),title,font,color,false,safe)
+	var bar_height:=14.0 if inverse and kind=="line" else 8.0
+	var track:=Rect2(safe.position+Vector2(label_w,y+(h-bar_height)/2),Vector2(available,bar_height))
+	bar(c,track,fraction,kind,inverse)
 	Paper.record(c,track,safe,"bar:"+title)
-	Paper.label(c,Rect2(Vector2(track.end.x+8,safe.position.y+y),Vector2(value_w,h)),"%d%%"%roundi(clampf(fraction,0,1)*100),font,T.MURAL_INK,false,safe)
+	Paper.label(c,Rect2(Vector2(track.end.x+8,safe.position.y+y),Vector2(value_w,h)),"%d%%"%roundi(clampf(fraction,0,1)*100),font,color,false,safe)
 static func draw_on(c:Control,actors:Array,faces:Array,names:Array,player:Dictionary,seconds:float,round_no:int,rounds:int,wind:float,scale:float=1.0,champion:bool=false) -> void:
 	Paper.begin(c)
 	var boxes:=regions(c.size,actors.size()-1,scale)
@@ -86,20 +89,19 @@ static func draw_on(c:Control,actors:Array,faces:Array,names:Array,player:Dictio
 	Paper.label(c,safe,"Vento %s · %s"%["leve" if absf(wind)<6 else "moderado","→" if wind>=0 else "←"],roundi(16*scale),T.MURAL_INK,true,safe)
 static func boss_region(size:Vector2,scale:float) -> Rect2:
 	var x:float=regions(size,1,scale).partner.end.x+16 if scale>1.1 else regions(size,1,scale).pilot.end.x+16
-	return Rect2(x,18,size.x-x-24,Paper.inset(.35)*2+line_height(scale,20)*2+line_height(scale)*3+8)
+	var width:=minf(1040,size.x-x-24)
+	return Rect2(size.x-width-24,18,width,120+line_height(scale,20)*2+line_height(scale)*2+8)
 static func draw_boss(c:Control,actor:Dictionary,face:Texture2D,name:String,seconds:float,rounds:int,scale:float,champion:bool,wind:float) -> void:
 	var box:=boss_region(c.size,scale)
-	paper(c,box,"MuralSunPanel")
-	var safe:=Paper.content(box,.35)
-	if face!=null:c.draw_texture_rect(face,Hud.fit_texture(face,Rect2(safe.position-Vector2(20,10),Vector2(84,safe.size.y+20))),false)
-	safe.position.x+=80;safe.size.x-=80
+	EventArt.draw(c,box,"boss-status")
+	var safe:=EventArt.content(box,"boss-status")
+	if face!=null:c.draw_texture_rect(face,Hud.fit_texture(face,Rect2(box.position+Vector2(0,-8),Vector2(128,box.size.y+16))),false)
 	var h:=line_height(scale,20)
-	var heading:="CAMPEÃ · MORRO DO SOL" if champion else "BOSS · FASE %d"%actor.get("phase",1)
-	Paper.label(c,Rect2(safe.position,Vector2(safe.size.x,h)),heading,roundi(20*scale),T.MURAL_INK,false,safe)
-	Paper.label(c,Rect2(safe.position+Vector2(0,h),Vector2(safe.size.x,h)),(str(actor.get("name","Mikka")) if champion else name)+" · %d s"%ceili(seconds),roundi(20*scale),T.MURAL_INK,false,safe)
-	row(c,safe,h*2+4,"Linha",actor.hp/actor.stats.line,scale)
-	row(c,safe,h*2+4+line_height(scale),"Armação",actor.hull/actor.stats.line,scale,"hull")
-	Paper.label(c,Rect2(safe.position+Vector2(0,h*2+4+line_height(scale)*2),Vector2(safe.size.x,line_height(scale))),"Rodadas %d/%d · Vento %s"%[actor.get("rounds",0),rounds,"→" if wind>=0 else "←"],roundi(16*scale),T.MURAL_INK,false,safe)
+	var heading:="CAMPEÃ · %d/%d RODADAS"%[actor.get("rounds",0),rounds] if champion else "BOSS · FASE %d · Vento %s"%[actor.get("phase",1),"→" if wind>=0 else "←"]
+	Paper.label(c,Rect2(safe.position,Vector2(safe.size.x,h)),heading,roundi(20*scale),T.MURAL_MINT if champion else T.RABIOLA,false,safe)
+	Paper.label(c,Rect2(safe.position+Vector2(0,h),Vector2(safe.size.x,h)),(str(actor.get("name","Mikka")) if champion else name)+" · %d s"%ceili(seconds),roundi(20*scale),T.MURAL_PAPER,false,safe)
+	row(c,safe,h*2+4,"Linha",actor.hp/actor.stats.line,scale,"line",true)
+	row(c,safe,h*2+4+line_height(scale),"Armação",actor.hull/actor.stats.line,scale,"hull",true)
 
 
 static func draw_pilot(c:Control,pilot:Rect2,player:Dictionary,actors:Array,rounds:int,scale:float) -> void:

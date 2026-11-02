@@ -1,0 +1,51 @@
+{
+  "generation": {
+    "tool": "image_gen.imagegen",
+    "reference": "art/ui/soulmonsters-v2/pip-128-v2/B-prancha.png",
+    "initial": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-ce389d7e-e114-4777-8f5c-367dffe86acd.png",
+    "final": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-bf2a8240-393e-482a-9dea-8de0029e293c.png",
+    "source": "art/ui/soulmonsters-v2/pip-133-v2/source.png",
+    "mechanicalProcessing": "crop rows 0..374,374..710,710..1024; alpha bounding box; uniform resize to 220px height; no painted edits"
+  },
+  "assets": [
+    {
+      "file": "godot\\assets\\ui\\mural-v1\\events-v1\\boss-status.png",
+      "size": [
+        988,
+        220
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "b4482a7fda6ab90db18f458f7de730b5c75f588a8fa925efdb80b04c8262e406"
+    },
+    {
+      "file": "godot\\assets\\ui\\mural-v1\\events-v1\\boss-warning.png",
+      "size": [
+        962,
+        220
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "f35a026422655b4aedcf143561597e97dc12f60716a95877aa551cb5136f0dac"
+    },
+    {
+      "file": "godot\\assets\\ui\\mural-v1\\events-v1\\crossing.png",
+      "size": [
+        1138,
+        220
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "030fb5958ba166569f75206444f66506e624c1a446267e50dc540a674098c26a"
+    }
+  ]
+}

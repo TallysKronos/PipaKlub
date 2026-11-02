@@ -1,0 +1,547 @@
+{
+  "padding": {
+    "checks": 9996,
+    "failures": [],
+    "resolutions": [
+      "1280x720",
+      "1920x1080",
+      "1024x768",
+      "1280x800"
+    ],
+    "textScales": [
+      1,
+      1.5
+    ]
+  },
+  "assets": [
+    {
+      "file": "godot\\assets\\ui\\mural-v1\\events-v1\\boss-status.png",
+      "size": [
+        988,
+        220
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "b4482a7fda6ab90db18f458f7de730b5c75f588a8fa925efdb80b04c8262e406"
+    },
+    {
+      "file": "godot\\assets\\ui\\mural-v1\\events-v1\\boss-warning.png",
+      "size": [
+        962,
+        220
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "f35a026422655b4aedcf143561597e97dc12f60716a95877aa551cb5136f0dac"
+    },
+    {
+      "file": "godot\\assets\\ui\\mural-v1\\events-v1\\crossing.png",
+      "size": [
+        1138,
+        220
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ],
+      "sha256": "030fb5958ba166569f75206444f66506e624c1a446267e50dc540a674098c26a"
+    }
+  ],
+  "captures": [
+    {
+      "file": "1024x768-boss-150.png",
+      "requested": [
+        1024,
+        768
+      ],
+      "obtained": [
+        1024,
+        768
+      ],
+      "sha256": "a6926eabd8106dc5aaaf7a0ebcf0fbec220bbb9984ecb60ceac2da04fa9c2207"
+    },
+    {
+      "file": "1024x768-boss-intro-150.png",
+      "requested": [
+        1024,
+        768
+      ],
+      "obtained": [
+        1024,
+        768
+      ],
+      "sha256": "6dfd46f15b94f9867cdb9717b855b21ab153869b586727320e288112cc76dbd5"
+    },
+    {
+      "file": "1024x768-boss-intro.png",
+      "requested": [
+        1024,
+        768
+      ],
+      "obtained": [
+        1024,
+        768
+      ],
+      "sha256": "b3067e457fa5743bce029a619af7ec430df533995ed863ac775b50eb2400906c"
+    },
+    {
+      "file": "1024x768-boss.png",
+      "requested": [
+        1024,
+        768
+      ],
+      "obtained": [
+        1024,
+        768
+      ],
+      "sha256": "920e7b4f5573a7a322e0ef0ee15e95ce0e90025e27f8be88b10274787973ebf3"
+    },
+    {
+      "file": "1024x768-campea-150.png",
+      "requested": [
+        1024,
+        768
+      ],
+      "obtained": [
+        1024,
+        768
+      ],
+      "sha256": "3d640fdfabf46e4d586ef2b77ffe125bb2d860deb8911e5e2c5c455dd6b1b92a"
+    },
+    {
+      "file": "1024x768-campea.png",
+      "requested": [
+        1024,
+        768
+      ],
+      "obtained": [
+        1024,
+        768
+      ],
+      "sha256": "e0ae3d14a5631dba6e4d1e262a43c0fb33a7f3b01d3c945503d8340a7fd06a38"
+    },
+    {
+      "file": "1024x768-duelo-150.png",
+      "requested": [
+        1024,
+        768
+      ],
+      "obtained": [
+        1024,
+        768
+      ],
+      "sha256": "52916c44f6759eee15a7d38e747291ade61041a5f4f4e3c9c77e3d966bf91e28"
+    },
+    {
+      "file": "1024x768-duelo.png",
+      "requested": [
+        1024,
+        768
+      ],
+      "obtained": [
+        1024,
+        768
+      ],
+      "sha256": "7a85c0c54af9b1c3cd2860b14feee1d7959b10b7b3401d73655c4017715859ec"
+    },
+    {
+      "file": "1024x768-enroscada-150.png",
+      "requested": [
+        1024,
+        768
+      ],
+      "obtained": [
+        1024,
+        768
+      ],
+      "sha256": "719dd93a518e9f18cf515d6d2ccd438e133af0997a478803a8dfd65e109add72"
+    },
+    {
+      "file": "1024x768-enroscada.png",
+      "requested": [
+        1024,
+        768
+      ],
+      "obtained": [
+        1024,
+        768
+      ],
+      "sha256": "8df18c1039454ce71e953f263231e347168c1fdbde51976ab599177caa593f3c"
+    },
+    {
+      "file": "1280x720-boss-150.png",
+      "requested": [
+        1280,
+        720
+      ],
+      "obtained": [
+        1280,
+        720
+      ],
+      "sha256": "b579b14f5333f5ec9f71990c288341ee4efce13a9d8c84940e20a2fc311c3615"
+    },
+    {
+      "file": "1280x720-boss-intro-150.png",
+      "requested": [
+        1280,
+        720
+      ],
+      "obtained": [
+        1280,
+        720
+      ],
+      "sha256": "858271ba2e6b6a7966ba42d244fc859a4e0af399bfe3c86ad0acf1ed7d3f2f8c"
+    },
+    {
+      "file": "1280x720-boss-intro.png",
+      "requested": [
+        1280,
+        720
+      ],
+      "obtained": [
+        1280,
+        720
+      ],
+      "sha256": "695ddf6c304a42dba7aa343c07ba3dd51173ba870123b228c548e1a5712296a8"
+    },
+    {
+      "file": "1280x720-boss.png",
+      "requested": [
+        1280,
+        720
+      ],
+      "obtained": [
+        1280,
+        720
+      ],
+      "sha256": "b4953f574c551abaeb0f32bb760307932e13ad595cf97c8e688bbfb7f1afdf06"
+    },
+    {
+      "file": "1280x720-campea-150.png",
+      "requested": [
+        1280,
+        720
+      ],
+      "obtained": [
+        1280,
+        720
+      ],
+      "sha256": "e01ac5d7fb605e7d618a3dbd812169d06c2fcf77f31b0cbcf99ef142fe77604a"
+    },
+    {
+      "file": "1280x720-campea.png",
+      "requested": [
+        1280,
+        720
+      ],
+      "obtained": [
+        1280,
+        720
+      ],
+      "sha256": "6618dc3f02dc74e1514cc8d92c0d06c95e6d135f599eb9646b78ff3b6d944a82"
+    },
+    {
+      "file": "1280x720-duelo-150.png",
+      "requested": [
+        1280,
+        720
+      ],
+      "obtained": [
+        1280,
+        720
+      ],
+      "sha256": "f6382123c763ee17fe38adb35994e37933f44ab11646c857579a85a2245c3970"
+    },
+    {
+      "file": "1280x720-duelo.png",
+      "requested": [
+        1280,
+        720
+      ],
+      "obtained": [
+        1280,
+        720
+      ],
+      "sha256": "56b1074c326273d0fd39f87604a87ce6bdf1c4155fb6ebcf7af364790010d0ec"
+    },
+    {
+      "file": "1280x720-enroscada-150.png",
+      "requested": [
+        1280,
+        720
+      ],
+      "obtained": [
+        1280,
+        720
+      ],
+      "sha256": "15f1f3139e465f7e1d4fc327d880955dd305eb83486dd0654f190ec7119e8767"
+    },
+    {
+      "file": "1280x720-enroscada.png",
+      "requested": [
+        1280,
+        720
+      ],
+      "obtained": [
+        1280,
+        720
+      ],
+      "sha256": "c9fbc53c7b7ac325b596297cba48f0c2186f0ad347ee4e84a9eec95d78d55e5a"
+    },
+    {
+      "file": "1280x800-boss-150.png",
+      "requested": [
+        1280,
+        800
+      ],
+      "obtained": [
+        1280,
+        800
+      ],
+      "sha256": "8b4d22b7f63102e63b1a75968f88d3690126e795704addbac25272b97d66baad"
+    },
+    {
+      "file": "1280x800-boss-intro-150.png",
+      "requested": [
+        1280,
+        800
+      ],
+      "obtained": [
+        1280,
+        800
+      ],
+      "sha256": "6b84893d522f48849e04d083fc74793672ce878be023e7a42f59a9edf6f7a993"
+    },
+    {
+      "file": "1280x800-boss-intro.png",
+      "requested": [
+        1280,
+        800
+      ],
+      "obtained": [
+        1280,
+        800
+      ],
+      "sha256": "290f774489458277f97bb96bd9fcc50287b32e706a68dddd53ecc89882e5e2f1"
+    },
+    {
+      "file": "1280x800-boss.png",
+      "requested": [
+        1280,
+        800
+      ],
+      "obtained": [
+        1280,
+        800
+      ],
+      "sha256": "e02f12ce1a7f0be95c9b0de9daa69659e9072982011bdcbaa2a90fd15cd02de7"
+    },
+    {
+      "file": "1280x800-campea-150.png",
+      "requested": [
+        1280,
+        800
+      ],
+      "obtained": [
+        1280,
+        800
+      ],
+      "sha256": "d6ebb16eafcbc750a0478907694fa99c6b3ff4f52d7047937875b2291394d0ce"
+    },
+    {
+      "file": "1280x800-campea.png",
+      "requested": [
+        1280,
+        800
+      ],
+      "obtained": [
+        1280,
+        800
+      ],
+      "sha256": "099e9e1dd32e13b749e9d5261cf2d25225400e74b8257d170f7de85e9230ac65"
+    },
+    {
+      "file": "1280x800-duelo-150.png",
+      "requested": [
+        1280,
+        800
+      ],
+      "obtained": [
+        1280,
+        800
+      ],
+      "sha256": "7993dad23cead11694d50d1e5f89733cb6b3d20c86b180058bfbb61dc3603672"
+    },
+    {
+      "file": "1280x800-duelo.png",
+      "requested": [
+        1280,
+        800
+      ],
+      "obtained": [
+        1280,
+        800
+      ],
+      "sha256": "21222b9fe1cd7d8218da4936b12c6ef9b844d88f1e8bb7fdf2e236421cf87fbc"
+    },
+    {
+      "file": "1280x800-enroscada-150.png",
+      "requested": [
+        1280,
+        800
+      ],
+      "obtained": [
+        1280,
+        800
+      ],
+      "sha256": "d5be9695f0249c08d353ed9c151c888ddaefbaa8a6eefeff3216f0e924a17eb3"
+    },
+    {
+      "file": "1280x800-enroscada.png",
+      "requested": [
+        1280,
+        800
+      ],
+      "obtained": [
+        1280,
+        800
+      ],
+      "sha256": "f19b71b2daf6091c4adb2681094b628f4b60dad172c3251b1f08c3cddcff0efd"
+    },
+    {
+      "file": "1920x1080-boss-150.png",
+      "requested": [
+        1920,
+        1080
+      ],
+      "obtained": [
+        1920,
+        1080
+      ],
+      "sha256": "f516c49cf3304794c5b2110e0a63084ae7c597cb54ce1ce25d2e059a9f58c479"
+    },
+    {
+      "file": "1920x1080-boss-intro-150.png",
+      "requested": [
+        1920,
+        1080
+      ],
+      "obtained": [
+        1920,
+        1080
+      ],
+      "sha256": "88805bf42987510d1095699e583837f970325f2d03ddf498db391cbb49c63b51"
+    },
+    {
+      "file": "1920x1080-boss-intro.png",
+      "requested": [
+        1920,
+        1080
+      ],
+      "obtained": [
+        1920,
+        1080
+      ],
+      "sha256": "6cce0fa9b7d3a4fca5b6278ff56c97b4cc303a1fd06a70f5d43a11aa941443b6"
+    },
+    {
+      "file": "1920x1080-boss.png",
+      "requested": [
+        1920,
+        1080
+      ],
+      "obtained": [
+        1920,
+        1080
+      ],
+      "sha256": "34a25cc0065c865de32013b811ffc9d1ac1ff66bbd97e547d86d4034233bc5e5"
+    },
+    {
+      "file": "1920x1080-campea-150.png",
+      "requested": [
+        1920,
+        1080
+      ],
+      "obtained": [
+        1920,
+        1080
+      ],
+      "sha256": "df2228d8c900245e73442779d8fcd0918b4aa6c264b21b32576b4f3bde997803"
+    },
+    {
+      "file": "1920x1080-campea.png",
+      "requested": [
+        1920,
+        1080
+      ],
+      "obtained": [
+        1920,
+        1080
+      ],
+      "sha256": "b0e49752899f46349376f383fa49851002a984486116dc16948680f0d3651245"
+    },
+    {
+      "file": "1920x1080-duelo-150.png",
+      "requested": [
+        1920,
+        1080
+      ],
+      "obtained": [
+        1920,
+        1080
+      ],
+      "sha256": "5c664f297f7a190528a458fee4057d3f10cfdca6f08dc50ed12fef368226a310"
+    },
+    {
+      "file": "1920x1080-duelo.png",
+      "requested": [
+        1920,
+        1080
+      ],
+      "obtained": [
+        1920,
+        1080
+      ],
+      "sha256": "1abb7060ba88505a7cb8447db1a89ce5146e1c8efe7aea09c545cda188299018"
+    },
+    {
+      "file": "1920x1080-enroscada-150.png",
+      "requested": [
+        1920,
+        1080
+      ],
+      "obtained": [
+        1920,
+        1080
+      ],
+      "sha256": "25b91e426cf354298d8dce54801fcdf832230c8bd63b23cb48541238ec533328"
+    },
+    {
+      "file": "1920x1080-enroscada.png",
+      "requested": [
+        1920,
+        1080
+      ],
+      "obtained": [
+        1920,
+        1080
+      ],
+      "sha256": "511ce85cddc8dd12fbcaf2ed47dbe27efdd17dfc0ac4046ec67a47ef9e0da43e"
+    }
+  ],
+  "generation": {
+    "tool": "image_gen.imagegen",
+    "reference": "art/ui/soulmonsters-v2/pip-128-v2/B-prancha.png",
+    "initial": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-ce389d7e-e114-4777-8f5c-367dffe86acd.png",
+    "final": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-bf2a8240-393e-482a-9dea-8de0029e293c.png",
+    "source": "art/ui/soulmonsters-v2/pip-133-v2/source.png",
+    "mechanicalProcessing": "crop rows 0..374,374..710,710..1024; alpha bounding box; uniform resize to 220px height; no painted edits"
+  }
+}

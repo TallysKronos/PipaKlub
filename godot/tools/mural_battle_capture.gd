@@ -11,7 +11,8 @@ func capture() -> void:
 	Paper.auditing=true
 	preload("res://scripts/campaign/controls.gd").install()
 	root.content_scale_size=Vector2i.ZERO
-	var output:=ProjectSettings.globalize_path("res://../documentation/hud-v2/pip-133/capturas")
+	var revision:="pip-133-v2" if "--revision=2" in OS.get_cmdline_user_args() else "pip-133"
+	var output:=ProjectSettings.globalize_path("res://../documentation/hud-v2/"+revision+"/capturas")
 	DirAccess.make_dir_recursive_absolute(output)
 	var content:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/content.json"))
 	for dimensions in [Vector2i(1280,720),Vector2i(1920,1080),Vector2i(1024,768),Vector2i(1280,800)]:
@@ -40,6 +41,7 @@ func capture() -> void:
 				for command in view.move_cards:
 					if command.node.visible:canvases.append(command.tile)
 				if is_instance_valid(view.duel_intro) and view.duel_intro.visible:canvases.append(view.duel_intro)
+				if is_instance_valid(view.boss_intro) and view.boss_intro.visible:canvases.append(view.boss_intro)
 				for canvas in canvases:
 					var entries:Array=Paper.audit.get(canvas.get_instance_id(),[])
 					for item in entries:
@@ -61,7 +63,7 @@ func capture() -> void:
 	var suffix:=""
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--size="):suffix="-"+arg.trim_prefix("--size=")
-	var report_file:=FileAccess.open("res://../documentation/hud-v2/pip-133/padding-audit"+suffix+".json",FileAccess.WRITE)
+	var report_file:=FileAccess.open("res://../documentation/hud-v2/"+revision+"/padding-audit"+suffix+".json",FileAccess.WRITE)
 	report_file.store_string(JSON.stringify(report,"\t"));report_file.close()
 	print("PADDING AUDIT: ",checks," checks; ",failures.size()," failures")
 	quit(0 if failures.is_empty() else 1)

@@ -90,3 +90,7 @@ godot --path godot res://scenes/mural_lab.tscn
 ```
 
 O corte requer Pillow; o laboratório só requer Godot. `tools/mural_lab_capture.gd` requer renderização real (não `--headless`) e produz 20 capturas nas quatro resoluções. As configurações de importação dos ícones com mipmaps fazem parte do pacote versionado.
+
+## Variação por função — revisão PIP-133 v2
+
+Não usar o mesmo cartão amarelo para todo evento. Amarelo identifica seleção/tempo. Entrada de boss usa faixa de perigo vermelha e preta; status persistente de boss usa armação escura e Linha vermelha; enroscada usa flâmula verde-água com linhas cruzadas. A silhueta, o material e a densidade também mudam, não apenas a cor. Elementos variáveis permanecem nativos; pontas, nós e varetas ficam fora da área segura. Peças e provas: `documentation/hud-v2/pip-133-v2/REVISAO.md`.
