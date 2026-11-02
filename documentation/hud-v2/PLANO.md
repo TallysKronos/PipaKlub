@@ -14,8 +14,8 @@ Critério central: uma captura sem logo precisa ser reconhecível como Soulmonst
 | 6 | PIP-131 | Logo e tela de título | Marca e menu real implementados; 336 checks novos, 16 capturas em quatro resoluções; ver PIP-131.md |
 | 7 | PIP-132 | Exploração e Kronasta | Integrada à HUD compartilhada e carta regional; 616 checks novos, 153 do Atlas, 163 nativos da exploração; ver PIP-132.md |
 | 8 | PIP-133 | Batalha, VS de campeão, enroscada | Integrada; área segura compartilhada, 792 checks novos e 10.428 de padding nativo; ver PIP-133.md |
-| 9 | PIP-134 | Diálogo | Próxima etapa; aplicar também a regra AREA-SEGURA.md |
-| 10 | PIP-135 | Pipa Dex, evolução, Varal, 12 emblemas | Pendente do sistema |
+| 9 | PIP-134 | Diálogo | Integrado ao diálogo compartilhado e à abertura; 384 verificações sem falhas, quatro resoluções e texto 100/150%; ver pip-134/REVISAO.md |
+| 10 | PIP-135 | Pipa Dex, evolução, Varal, 12 emblemas | Próxima etapa |
 | 11 | PIP-136 | Resultado e grandes momentos | Pendente do sistema |
 | 12 | PIP-137 | Transições e sons | Pendente das telas |
 | 13 | PIP-138 | Acessibilidade | Critérios desde o início; auditoria consolidada ao final |

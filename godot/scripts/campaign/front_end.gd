@@ -146,9 +146,12 @@ func _label(text: String, target: Node, font_size: int = 22) -> Label:
 	return label
 
 func _button(text: String, target: Node, action: Callable) -> Button:
-	var button := Button.new()
+	var owner_node:=target
+	while owner_node!=null and not owner_node.has_meta("mural_dialogue_controls"):owner_node=owner_node.get_parent()
+	var button:Button=load("res://scripts/ui_mural/dialogue_option.gd").new() if owner_node!=null else Button.new()
+	if owner_node!=null:button.text_scale=preferences.text_scale
 	button.text = text
-	Hud.navigation_button(button)
+	if owner_node==null:Hud.navigation_button(button)
 	button.custom_minimum_size.y = 56
 	button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	button.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
@@ -605,14 +608,16 @@ func _show_opening() -> void:
 	portrait.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(portrait)
 	var panel=load("res://scripts/campaign/hud_dialogue_surface.gd").new()
-	panel.anchor_top = .72
+	panel.mural=true;panel.set_meta("owns_ui_theme",true);panel.set_meta("mural_dialogue_controls",true)
+	panel.z_index=90;portrait.z_index=90
+	panel.theme=load("res://scripts/ui_mural/mural_theme.gd").shared()
+	panel.anchor_top = 1
 	panel.anchor_right = 1
 	panel.anchor_bottom = 1
 	panel.offset_left = 230
 	panel.offset_right = -40
-	panel.offset_top = -12
+	panel.offset_top = -maxf(286,178*preferences.text_scale+120)
 	panel.offset_bottom = -20
-	panel.theme_type_variation = "RecorteDialoguePanel"
 	add_child(panel)
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 20)
@@ -630,31 +635,40 @@ func _show_opening() -> void:
 	if content.portraits.has(speaker):
 		portrait.texture = load("res://assets/campaign/" + content.portraits[speaker])
 	portrait.visible = portrait.texture != null
-	var nameplate=load("res://scripts/campaign/hud_result_plate.gd").new()
-	nameplate.accent=Hud.CORAL
-	nameplate.position = Vector2(22, -34)
-	nameplate.custom_minimum_size = Vector2(maxf(180, Hud.font().get_string_size(speaker, HORIZONTAL_ALIGNMENT_LEFT, -1, 24).x + 48), 48)
-	nameplate.theme_type_variation = "RecorteNamePanel"
+	var nameplate:=PanelContainer.new()
+	nameplate.theme_type_variation="MuralHudInkPanel"
+	var heading_size:=roundi(24*preferences.text_scale)
+	var heading_height:=Hud.Tokens.label().get_height(heading_size)+58
+	nameplate.position = Vector2(0, -heading_height-12)
+	nameplate.custom_minimum_size = Vector2(maxf(180, Hud.Tokens.label().get_string_size(speaker, HORIZONTAL_ALIGNMENT_LEFT, -1, heading_size).x + 64), heading_height)
+	var heading_space:=StyleBoxEmpty.new()
+	for edge in [SIDE_LEFT,SIDE_RIGHT]:heading_space.set_content_margin(edge,32)
+	for edge in [SIDE_TOP,SIDE_BOTTOM]:heading_space.set_content_margin(edge,29)
+	nameplate.add_theme_stylebox_override("panel",heading_space)
+	nameplate.draw.connect(func():preload("res://scripts/ui_mural/paper_layout.gd").frame(nameplate,Rect2(Vector2.ZERO,nameplate.size),"MuralInkPanel",.35))
+	nameplate.theme_type_variation = "MuralHudInkPanel"
 	nameplate.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var plate_holder := Node2D.new()
 	panel.add_child(plate_holder)
 	plate_holder.add_child(nameplate)
-	var heading := _label(speaker, nameplate, 24)
-	heading.add_theme_font_override("font",Hud.display())
+	var heading := _label(speaker, nameplate, heading_size)
+	heading.add_theme_font_override("font",Hud.Tokens.label())
+	heading.add_theme_color_override("font_color",Hud.Tokens.MURAL_PAPER)
 	heading.autowrap_mode = TextServer.AUTOWRAP_OFF
 	nameplate.visible = not speaker.is_empty()
 	heading.theme_type_variation = "Label"
-	speech = _label(dialogue_tags.text, page, 22)
+	speech = _label(dialogue_tags.text, page, roundi(22*preferences.text_scale))
+	speech.add_theme_font_override("font",Hud.font())
 	opening_pages.clear()
 	opening_page_index=0
 	var paginate_opening:=func():
 		if not is_instance_valid(speech) or not speech.is_visible_in_tree() or current_step in [3,10,11,13,14]:return
-		opening_pages=load("res://scripts/campaign/hud_dialogue_surface.gd").text_pages(dialogue_tags.text,Hud.font(),22,maxf(160,speech.size.x-12))
+		opening_pages=load("res://scripts/campaign/hud_dialogue_surface.gd").text_pages(dialogue_tags.text,Hud.font(),speech.get_theme_font_size("font_size"),maxf(160,speech.size.x-12))
 		speech.text=opening_pages[0]
 	paginate_opening.call_deferred()
 	speech.theme_type_variation = "Label"
 	status = _label("", page, 16)
-	status.theme_type_variation = "RecorteMutedText"
+	status.theme_type_variation = "MuralMutedText"
 	status.visible = current_step in [3, 11, 13]
 	if current_step in [3, 11, 13]:
 		speech.text = ""
@@ -673,6 +687,14 @@ func _show_opening() -> void:
 		name_input = LineEdit.new()
 		name_input.placeholder_text = "Nome do parceiro · Rabbito"
 		name_input.max_length = 24
+		name_input.add_theme_font_override("font",Hud.font())
+		name_input.add_theme_font_size_override("font_size",roundi(22*preferences.text_scale))
+		var input_style:=StyleBoxFlat.new()
+		input_style.bg_color=Hud.Tokens.MURAL_PAPER;input_style.border_color=Hud.Tokens.MURAL_TEAL
+		input_style.set_border_width_all(2)
+		for edge in [SIDE_LEFT,SIDE_RIGHT]:input_style.set_content_margin(edge,20)
+		for edge in [SIDE_TOP,SIDE_BOTTOM]:input_style.set_content_margin(edge,14)
+		name_input.add_theme_stylebox_override("normal",input_style)
 		page.add_child(name_input)
 		name_input.text_submitted.connect(func(_value: String): _name())
 		next = _button("Confirmar nome", Hud.focus_space(page), _name)
@@ -720,7 +742,7 @@ func _present_opening(step: int,generation: int,panel: Control,hidden_for_action
 		if generation!=opening_generation or not is_instance_valid(speech):return
 		var story: Dictionary=content.opening[mini(step,13)]
 		var text: String=load("res://scripts/campaign/hud_dialogue_surface.gd").parse_tags(story.text).text
-		opening_pages=load("res://scripts/campaign/hud_dialogue_surface.gd").text_pages(text,Hud.font(),22,maxf(160,speech.size.x-12))
+		opening_pages=load("res://scripts/campaign/hud_dialogue_surface.gd").text_pages(text,Hud.font(),speech.get_theme_font_size("font_size"),maxf(160,speech.size.x-12))
 		opening_page_index=0
 		speech.text=opening_pages[0]
 	if is_instance_valid(next):Hud.focus_later(next)

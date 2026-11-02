@@ -4,6 +4,8 @@ const Hud=preload("res://scripts/campaign/hud.gd")
 const Ink=preload("res://scripts/campaign/battle_ink.gd")
 const Art=preload("res://scripts/campaign/recorte_ink.gd")
 const EMOTIONS={"suor":"sweat","raiva":"anger","brilho":"sparkle","surpresa":"surprise","duvida":"question","suspiro":"sigh"}
+const Paper=preload("res://scripts/ui_mural/paper_layout.gd")
+var mural:=false
 var shouted:=false
 func _ready() -> void:
 	set_meta("recorte_decorated",true)
@@ -12,7 +14,8 @@ func _ready() -> void:
 	_fit_margins()
 	resized.connect(func():_fit_margins();queue_redraw())
 func _draw() -> void:
-	draw_box(self,size,shouted)
+	if mural:Paper.frame(self,Rect2(Vector2.ZERO,size),"MuralPaperPanel",.45)
+	else:draw_box(self,size,shouted)
 # The plate is a parallelogram: its top-left and bottom-right corners move in by
 # cut(). The text keeps 20 px from the slanted sides, not from the bounding box.
 static func cut(height:float) -> float:
@@ -22,8 +25,8 @@ static func side_margin(height:float) -> float:
 func _fit_margins() -> void:
 	var spacing:=get_theme_stylebox("panel") as StyleBoxEmpty
 	if spacing==null:return
-	for side in [SIDE_LEFT,SIDE_RIGHT]:spacing.set_content_margin(side,side_margin(size.y))
-	for side in [SIDE_TOP,SIDE_BOTTOM]:spacing.set_content_margin(side,20)
+	for side in [SIDE_LEFT,SIDE_RIGHT]:spacing.set_content_margin(side,Paper.inset(.45) if mural else side_margin(size.y))
+	for side in [SIDE_TOP,SIDE_BOTTOM]:spacing.set_content_margin(side,Paper.inset(.45) if mural else 20)
 static func draw_box(canvas:CanvasItem,extent:Vector2,shout:bool=false) -> void:
 	Ink.plate(canvas,Rect2(Vector2.ZERO,extent),Hud.INK,Hud.PAPER,cut(extent.y))
 	if shout:
@@ -41,15 +44,24 @@ static func parse_tags(text:String) -> Dictionary:
 			"voz":result.shout=value=="grito"
 	result.text=regex.sub(text,"",true).strip_edges()
 	return result
-static func text_pages(text:String,font:Font,font_size:int,width:float) -> Array[String]:
+static func wrapped_lines(text:String,font:Font,font_size:int,width:float) -> Array[String]:
 	var lines:Array[String]=[]
 	var line:=""
 	for word in text.replace("\n"," ").split(" ",false):
+		if font.get_string_size(word,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x>width:
+			if not line.is_empty():lines.append(line);line=""
+			for character in word:
+				if not line.is_empty() and font.get_string_size(line+character,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x>width:lines.append(line);line=""
+				line+=character
+			continue
 		var candidate:=word if line.is_empty() else line+" "+word
 		if font.get_string_size(candidate,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x>width and not line.is_empty():lines.append(line);line=word
 		else:line=candidate
 	if not line.is_empty():lines.append(line)
+	if lines.is_empty():lines.append("")
+	return lines
+static func text_pages(text:String,font:Font,font_size:int,width:float) -> Array[String]:
+	var lines:=wrapped_lines(text,font,font_size,width)
 	var result:Array[String]=[]
 	for start in range(0,lines.size(),3):result.append("\n".join(lines.slice(start,mini(start+3,lines.size()))))
-	if result.is_empty():result.append("")
 	return result

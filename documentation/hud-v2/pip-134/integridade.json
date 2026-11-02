@@ -1,0 +1,248 @@
+{
+  "renderer": "Godot 4.7.2 native OpenGL compatibility",
+  "source": "res://tools/mural_dialogue_capture.gd",
+  "method": "Viewport PNG, unchanged pixels; opening captured one process per resolution",
+  "fixtures": "24 shared-dialogue states over existing illustration; 16 isolated opening states",
+  "captures": [
+    {
+      "file": "capturas/1024x768-abertura-10-150.png",
+      "width": 1024,
+      "height": 768,
+      "sha256": "ae58e881e592d4d70237bbeab80dcc6bc66017cbe944eec2d95b9a114cac80ac"
+    },
+    {
+      "file": "capturas/1024x768-abertura-10.png",
+      "width": 1024,
+      "height": 768,
+      "sha256": "cb490984156da13258885ff930bd64dbe3935b97ed7e4d35489dfa52834a5c80"
+    },
+    {
+      "file": "capturas/1024x768-abertura-5-150.png",
+      "width": 1024,
+      "height": 768,
+      "sha256": "25c581b6bb6ded89b7693d9d7844b5a4c06cf8ec92df87f5c42f7dbf9a119fe5"
+    },
+    {
+      "file": "capturas/1024x768-abertura-5.png",
+      "width": 1024,
+      "height": 768,
+      "sha256": "14ef21b32394d9fbd499dd8e1d3fd0eda17b2af646d6ef10716b4d82f7b3f0bc"
+    },
+    {
+      "file": "capturas/1024x768-dupla-150.png",
+      "width": 1024,
+      "height": 768,
+      "sha256": "1193620eb70a90b6da79254f49be39f0a2296fdfad0b2d705e9a05f61385f962"
+    },
+    {
+      "file": "capturas/1024x768-dupla.png",
+      "width": 1024,
+      "height": 768,
+      "sha256": "a52f90099d5d650fe88235bb9d806883ee573860dbfb6624491993bd4373fa8c"
+    },
+    {
+      "file": "capturas/1024x768-escolhas-150.png",
+      "width": 1024,
+      "height": 768,
+      "sha256": "dd6d08226ceeeedfa1d3dce3e8e4b3cef4f34d947cccf27b5df0ff6bed3152fa"
+    },
+    {
+      "file": "capturas/1024x768-escolhas.png",
+      "width": 1024,
+      "height": 768,
+      "sha256": "dc1c4b761d2b55884570d58a6edfbb6fe1ff2f6dddbcdff906824acfcdbb90a0"
+    },
+    {
+      "file": "capturas/1024x768-fala-150.png",
+      "width": 1024,
+      "height": 768,
+      "sha256": "ae90dd84396de49ac39f564190190c28bbf9aef211c5b0004de7ba8a096e9f3e"
+    },
+    {
+      "file": "capturas/1024x768-fala.png",
+      "width": 1024,
+      "height": 768,
+      "sha256": "80c3604b398f88bcc63656b54ce6f358a542cb4a6b2d64f8ccb99465df11a54e"
+    },
+    {
+      "file": "capturas/1280x720-abertura-10-150.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "1bf4a35e3897736eb5853c24188ca1671cf6200a73c94cf5a35cdf3182886d53"
+    },
+    {
+      "file": "capturas/1280x720-abertura-10.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "29e3795212d7275a1bd13a26793169d1c117999a97d6126a4963142436efed1c"
+    },
+    {
+      "file": "capturas/1280x720-abertura-5-150.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "382d9891602c67e73e42bcd6f1444b35c3268f34156108e880762c2ce8de9010"
+    },
+    {
+      "file": "capturas/1280x720-abertura-5.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "4dd74c2bc97d576a66afbd311e595791ce4dc7ec1d2741c63167f4a48c82442b"
+    },
+    {
+      "file": "capturas/1280x720-dupla-150.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "b247200a4d5be5434b68ff1d24a74ce55589e8548c56cf16881b3ba4731817b3"
+    },
+    {
+      "file": "capturas/1280x720-dupla.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "54db35c03a4d4058ee0494227f6243ef52845cb7cec543e5ca52bfddd552c7db"
+    },
+    {
+      "file": "capturas/1280x720-escolhas-150.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "1560b5d67e8f1b51045a35d3ee10e5033500cfd6f7eda8bd26c4e05c028fe595"
+    },
+    {
+      "file": "capturas/1280x720-escolhas.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "f11cacd1647d5cc5687e551c50a27a5920a5c9d612b18e642fe60338e70fe8ef"
+    },
+    {
+      "file": "capturas/1280x720-fala-150.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "411ea3b18511447d71a704db3cb49c6ddc1335a87e945b07bf510093cb206a51"
+    },
+    {
+      "file": "capturas/1280x720-fala.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "882d76cc502e3f736e669d0a80b2a17b453a52dbdca00cd0e24af8e6632887e9"
+    },
+    {
+      "file": "capturas/1280x800-abertura-10-150.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "68d2fd12fa387f2473ea9943121f18b1978a29b900b317cf96f8154b86bd7f9c"
+    },
+    {
+      "file": "capturas/1280x800-abertura-10.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "a7cb6b60a3bfeff50864852e6a03f34757aa2777c6521efd7448ffb5b59badb6"
+    },
+    {
+      "file": "capturas/1280x800-abertura-5-150.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "95990ad7e24deb292e3e7b76a8575521207afc48407e928213e495065fc13496"
+    },
+    {
+      "file": "capturas/1280x800-abertura-5.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "145f032a37e0e6d2786a8a7a63bf6a719aea5d4730d64a40da03a6c8ce8914df"
+    },
+    {
+      "file": "capturas/1280x800-dupla-150.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "2f91ce39ad148502668f0b7d7dc6f063bfe9ab735c07ce95167247241d5e335c"
+    },
+    {
+      "file": "capturas/1280x800-dupla.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "229b00ee12d1de8b3a63c00df4616bf9f47b0c4d6fe05a059fe076a5b9016992"
+    },
+    {
+      "file": "capturas/1280x800-escolhas-150.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "10b23b4b9b3073e84d62ba1e7131cda1306e84e3ea71276086e967c5e848181a"
+    },
+    {
+      "file": "capturas/1280x800-escolhas.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "20e418f04fe61d0133ff3d38c54a7cf12bf4111a1d84ff063efb748ede54bf59"
+    },
+    {
+      "file": "capturas/1280x800-fala-150.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "15d97a98dfc3a753197fd14aa93e7ac8abb60266fb01d40ee50a857de82cef92"
+    },
+    {
+      "file": "capturas/1280x800-fala.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "368ecf717418d40d0cfa47fb9957ddf75331a92706ff9e896b8a273cccf3764d"
+    },
+    {
+      "file": "capturas/1920x1080-abertura-10-150.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "95c0eaa86d671ed1a632ab39cd51700b04c4eaacc8352e020ab0d3289262f226"
+    },
+    {
+      "file": "capturas/1920x1080-abertura-10.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "cacd28c4cc9004e9611e8e32fac3e1298b676eacbfdd4103cc95f69aeb1e4806"
+    },
+    {
+      "file": "capturas/1920x1080-abertura-5-150.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "64a61bf9361a031281b4bfcb49c1d0b3f79d80d55bc45cc1cc0c269dc3b98bba"
+    },
+    {
+      "file": "capturas/1920x1080-abertura-5.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "ba040bd5a9e8ca3ef984abcde9999f8d8dfd0422637efc2d916bde653b2f8028"
+    },
+    {
+      "file": "capturas/1920x1080-dupla-150.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "5ef25d5c0f67b9311b6a0f6bf5ee513161790179c4aedafd1b034ca4e2ef169c"
+    },
+    {
+      "file": "capturas/1920x1080-dupla.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "43e63072f262a9b65a96042d017676eca6682500c541716936f765933636a338"
+    },
+    {
+      "file": "capturas/1920x1080-escolhas-150.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "fa2b8a6ce9772ab3712c1ed7bc4e365e3daf6d9d8bbf0a24d9f38e7e2148ea00"
+    },
+    {
+      "file": "capturas/1920x1080-escolhas.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "9516c25bc6772b4c964e14f9a6e1caa2efdeb34adab8289bb9f06aa01f23c3d8"
+    },
+    {
+      "file": "capturas/1920x1080-fala-150.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "584a4934cc5adf55ee075344a1a0e314684bc4693dc86372d7b2b7c68bc8c150"
+    },
+    {
+      "file": "capturas/1920x1080-fala.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "b6bf6287d7f8a7cdadef89cf278a58d66f91393e1de3deb9e4c56bcd31aca920"
+    }
+  ]
+}

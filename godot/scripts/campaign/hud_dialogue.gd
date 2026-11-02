@@ -3,6 +3,13 @@ extends Control
 signal confirmed
 signal canceled
 signal choice_selected(id:String)
+const T=preload("res://scripts/campaign/ui_tokens.gd")
+const Mural=preload("res://scripts/ui_mural/mural_theme.gd")
+const Paper=preload("res://scripts/ui_mural/paper_layout.gd")
+const Option=preload("res://scripts/ui_mural/dialogue_option.gd")
+var text_scale:=1.0
+var choice_scroll:ScrollContainer
+func _init() -> void:set_meta("owns_ui_theme",true)
 const Hud=preload("res://scripts/campaign/hud.gd")
 const Surface=preload("res://scripts/campaign/hud_dialogue_surface.gd")
 const Portrait=preload("res://scripts/campaign/hud_dialogue_portrait.gd")
@@ -41,7 +48,8 @@ func _ready() -> void:
 	z_index=80
 	add_to_group("manga_dialogue")
 	add_to_group("recorte_motion")
-	theme=Hud.make_theme()
+	text_scale=maxf(text_scale,Mural.text_scale_for(self))
+	Mural.install(self)
 	var previous_focus:Control=get_viewport().gui_get_focus_owner()
 	if previous_focus!=null:
 		var previous_reference:WeakRef=weakref(previous_focus)
@@ -65,18 +73,24 @@ func _ready() -> void:
 	portrait=Portrait.new();add_child(portrait)
 	other_portrait=Portrait.new();other_portrait.modulate=Hud.Tokens.alpha(Hud.Tokens.UNTINTED,.65);add_child(other_portrait)
 	move_child(other_portrait,0)
-	box=Surface.new();add_child(box)
+	box=Surface.new();box.mural=true;add_child(box)
 	body=Label.new()
 	body.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	body.size_flags_vertical=Control.SIZE_FILL
 	body.vertical_alignment=VERTICAL_ALIGNMENT_TOP
-	body.add_theme_font_override("font",Hud.font())
+	body.add_theme_font_override("font",T.text())
 	box.add_child(body)
-	nameplate=load("res://scripts/campaign/hud_result_plate.gd").new()
-	nameplate.accent=Hud.CORAL
-	add_child(nameplate)
-	name_label=Label.new();name_label.add_theme_font_override("font",Hud.display());nameplate.add_child(name_label)
-	choices=VBoxContainer.new();choices.add_theme_constant_override("separation",8);add_child(choices)
+	nameplate=PanelContainer.new();nameplate.theme_type_variation="MuralInkPanel";add_child(nameplate)
+	name_label=Label.new();name_label.add_theme_font_override("font",T.label());name_label.add_theme_color_override("font_color",T.MURAL_PAPER)
+	name_label.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+	nameplate.add_child(name_label)
+	nameplate.resized.connect(func():
+		nameplate.position.y=box.position.y-nameplate.size.y-12
+		_align_choices.call_deferred())
+	choice_scroll=ScrollContainer.new();choice_scroll.follow_focus=true;choice_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;add_child(choice_scroll)
+	choice_scroll.get_v_scroll_bar().custom_minimum_size.x=12
+	choices=VBoxContainer.new();choices.size_flags_horizontal=SIZE_EXPAND_FILL;choices.add_theme_constant_override("separation",10);choice_scroll.add_child(choices)
+	choices.minimum_size_changed.connect(_align_choices.call_deferred)
 	advance=_button("Continuar",func():next_page())
 	decline=_button(cancel_button_text,func():_finish(false))
 	accept=_button(ok_button_text,func():_finish(true))
@@ -88,11 +102,14 @@ func _ready() -> void:
 		option_buttons.append(button)
 	resized.connect(_rebuild)
 	_rebuild()
+	_sync_glyphs()
+func _sync_glyphs() -> void:
+	for button in [advance,accept,decline]+option_buttons:
+		button.icon=Controls.glyph("back" if button==decline else "accept")
+		button.expand_icon=true;button.add_theme_constant_override("icon_max_width",24)
 func _button(text:String,callback:Callable) -> Button:
-	var button:=Button.new()
+	var button:=Option.new();button.text_scale=text_scale
 	button.text=text
-	Hud.navigation_button(button,true)
-	button.add_theme_font_size_override("font_size",20)
 	button.pressed.connect(callback)
 	choices.add_child(button)
 	return button
@@ -114,22 +131,27 @@ func _portrait_for(speaker:String) -> Texture2D:
 	return texture
 func _rebuild() -> void:
 	if not is_instance_valid(body):return
-	var factor:=size.y/1080.0
-	var height:=maxf(180,240*factor)
-	box.position=Vector2(maxf(24,size.x*.16),size.y-height-24)
-	box.size=Vector2(size.x-box.position.x-32,height)
-	var font_size:=maxi(20,roundi(30*factor))
+	var font_size:=roundi(24*text_scale)
 	body.add_theme_font_size_override("font_size",font_size)
-	nameplate.position=box.position-Vector2(-20,40)
-	nameplate.size=Vector2(360*factor,48)
-	name_label.add_theme_font_size_override("font_size",maxi(22,roundi(32*factor)))
-	portrait.position=Vector2(16,box.position.y-340*factor)
-	portrait.size=Vector2(400,520)*factor
-	other_portrait.position=portrait.position+Vector2(290*factor,25*factor)
-	other_portrait.size=Vector2(340,470)*factor
-	choices.size=Vector2(minf(640*factor,size.x*.45),0)
-	choices.position=Vector2(size.x-choices.size.x-32,box.position.y-choices.get_combined_minimum_size().y-60)
-	_indicator=Vector2(size.x-54,size.y-46)
+	var padding:=Paper.inset(.45)
+	var height:=maxf(200,ceilf(T.text().get_height(font_size)*3+body.get_theme_constant("line_spacing")*2+padding*2+12))
+	var portrait_width:=clampf(size.x*.23,180,300)
+	box.position=Vector2(portrait_width+40,size.y-height-24)
+	box.size=Vector2(size.x-box.position.x-24,height)
+	var name_height:=maxf(76,T.label().get_height(roundi(26*text_scale))+58)
+	nameplate.position=Vector2(box.position.x,box.position.y-name_height-12)
+	nameplate.size=Vector2(minf(380*text_scale,box.size.x),name_height)
+	var name_space:=StyleBoxEmpty.new()
+	for edge in [SIDE_LEFT,SIDE_RIGHT]:name_space.set_content_margin(edge,32)
+	for edge in [SIDE_TOP,SIDE_BOTTOM]:name_space.set_content_margin(edge,29)
+	nameplate.add_theme_stylebox_override("panel",name_space)
+	nameplate.draw.connect(_draw_nameplate) if not nameplate.draw.is_connected(_draw_nameplate) else null
+	name_label.add_theme_font_size_override("font_size",roundi(26*text_scale))
+	portrait.position=Vector2(24,maxf(40,box.position.y-270))
+	portrait.size=Vector2(portrait_width,size.y-portrait.position.y-24)
+	other_portrait.position=portrait.position+Vector2(30,-30)
+	other_portrait.size=portrait.size*Vector2(.78,.85)
+	_indicator=Vector2(box.get_rect().end.x-18,box.get_rect().end.y-18)
 	pages.clear()
 	var speaker:=title if title!="Aviso" else "Jornada"
 	for paragraph in dialog_text.split("\n\n",false):
@@ -138,15 +160,8 @@ func _rebuild() -> void:
 			speaker=paragraph.left(colon)
 			paragraph=paragraph.substr(colon+2)
 		var parsed:=Surface.parse_tags(paragraph)
-		var lines:Array[String]=[]
-		var line:=""
-		var width:=maxf(180,box.size.x-2*Surface.side_margin(box.size.y))
-		for word in str(parsed.text).replace("\n"," ").split(" ",false):
-			var candidate:=word if line.is_empty() else line+" "+word
-			if Hud.font().get_string_size(candidate,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x>width and not line.is_empty():lines.append(line);line=word
-			else:line=candidate
-		if not line.is_empty():lines.append(line)
-		if lines.is_empty():lines.append("")
+		var width:=maxf(180,box.size.x-padding*2-4)
+		var lines:=Surface.wrapped_lines(str(parsed.text),T.text(),font_size,width)
 		for start in range(0,lines.size(),3):pages.append({"speaker":speaker,"text":"\n".join(lines.slice(start,mini(start+3,lines.size()))),"emotion":parsed.emotion,"reaction":parsed.reaction,"shout":parsed.shout})
 	if pages.is_empty():pages.append({"speaker":speaker,"text":"","emotion":"","reaction":"","shout":false})
 	page_index=clampi(page_index,0,pages.size()-1)
@@ -156,6 +171,8 @@ func _show_page() -> void:
 	var page:Dictionary=pages[page_index]
 	body.text=page.text
 	name_label.text=page.speaker
+	name_label.tooltip_text=page.speaker
+	nameplate.size.x=minf(box.size.x,maxf(180,T.label().get_string_size(page.speaker,HORIZONTAL_ALIGNMENT_LEFT,-1,roundi(26*text_scale)).x+64))
 	portrait.texture=_portrait_for(page.speaker)
 	portrait.visible=portrait.texture!=null
 	portrait.emotion=page.emotion;portrait.reaction=page.reaction;portrait.queue_redraw()
@@ -180,10 +197,15 @@ func _show_page() -> void:
 	Hud.focus_later(target)
 	call_deferred("_align_choices")
 func _align_choices() -> void:
-	box.size=Vector2(size.x-box.position.x-32,maxf(180,240*size.y/1080.0))
-	# Containers can grow to a button's minimum width after _rebuild().
-	choices.position.x=size.x-choices.size.x-64
-	choices.position.y=box.position.y-choices.get_combined_minimum_size().y-60
+	if not is_instance_valid(choices):return
+	choice_scroll.size.x=minf(500*text_scale,size.x*.52)
+	choice_scroll.position.x=size.x-choice_scroll.size.x-24
+	var limit:=box.position.y-12 if choice_scroll.position.x>nameplate.get_rect().end.x+12 else nameplate.position.y-12
+	choice_scroll.size.y=minf(maxf(76,choices.get_combined_minimum_size().y),maxf(76,limit-24))
+	choice_scroll.position.y=limit-choice_scroll.size.y
+	choices.custom_minimum_size.x=choice_scroll.size.x-16
+func _draw_nameplate() -> void:
+	Paper.frame(nameplate,Rect2(Vector2.ZERO,nameplate.size),"MuralInkPanel",.35)
 func next_page() -> void:
 	preload("res://scripts/campaign/sound_director.gd").cue(self, "dialogue.advance")
 	if page_index<pages.size()-1:page_index+=1;_show_page()
@@ -203,11 +225,17 @@ func set_reduced_motion(value:bool) -> void:reduced_motion=value
 func _process(delta:float) -> void:
 	elapsed+=delta;reaction_age+=delta;queue_redraw()
 func _input(event:InputEvent) -> void:
+	Controls.observe(event)
+	if is_instance_valid(accept):_sync_glyphs()
 	if Controls.cancel(event) or event.is_action_pressed("ui_cancel"):
 		get_viewport().set_input_as_handled()
-		if allow_cancel:_finish(cancel_button_text.is_empty())
+		if not allow_cancel:return
+		if not cancel_button_text.is_empty():_finish(false)
+		elif not option_buttons.is_empty():return
+		elif page_index<pages.size()-1:next_page()
+		else:_finish(true)
 func _draw() -> void:
-	draw_rect(Rect2(Vector2.ZERO,size),Color(Hud.BLACK,.38))
+	draw_rect(Rect2(Vector2.ZERO,size),T.alpha(T.MURAL_GROUND,.3))
 	if not is_instance_valid(box):return
 	if box.shouted and reaction_age<.25 and not reduced_motion:
 		for index in 12:
@@ -216,4 +244,4 @@ func _draw() -> void:
 			draw_line(size*.5+vector*size.y*.42,size*.5+vector*size.y*.5,Hud.PAPER,2)
 	var offset:=0.0 if reduced_motion else 2*(1-cos(elapsed*PI/.6))
 	var center:=_indicator+Vector2(0,offset)
-	draw_colored_polygon(PackedVector2Array([center+Vector2(0,-7),center+Vector2(6,0),center+Vector2(0,7),center+Vector2(-6,0)]),Hud.CORAL)
+	draw_colored_polygon(PackedVector2Array([center+Vector2(0,-7),center+Vector2(6,0),center+Vector2(0,7),center+Vector2(-6,0)]),T.MURAL_TEAL)
