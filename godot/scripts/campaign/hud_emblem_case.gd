@@ -3,6 +3,13 @@ signal closed
 const Hud = preload("res://scripts/campaign/hud.gd")
 const Identity = preload("res://scripts/campaign/pipeiro_identity.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
+const T=preload("res://scripts/campaign/ui_tokens.gd")
+const Mural=preload("res://scripts/ui_mural/mural_theme.gd")
+const Surface=preload("res://scripts/ui_mural/menu_surface.gd")
+const Option=preload("res://scripts/ui_mural/dialogue_option.gd")
+const Paper=preload("res://scripts/ui_mural/paper_layout.gd")
+var text_scale:=1.0
+var detail_scroll:ScrollContainer
 var player: Dictionary = {}
 var initial_slot := 0
 var selected := 0
@@ -66,77 +73,52 @@ class Seal extends Control:
 class Socket extends Button:
 	var active := false
 	func _draw() -> void:
-		var rect:=Rect2(Vector2(3,3),size-Vector2(6,6))
-		var p:=PackedVector2Array([rect.position+Vector2(14,0),Vector2(rect.end.x-14,rect.position.y),Vector2(rect.end.x,rect.position.y+14),rect.end-Vector2(0,14),rect.end-Vector2(14,0),Vector2(rect.position.x+14,rect.end.y),Vector2(rect.position.x,rect.end.y-14),rect.position+Vector2(0,14)])
-		draw_colored_polygon(p,Color("1b2435"))
-		p.append(p[0])
-		if active:draw_polyline(p,Color(Hud.GOLD,.15),9,true)
-		draw_polyline(p,Hud.GOLD if active or has_focus() else Color("66738b"),3 if active else 2,true)
+		Paper.frame(self,Rect2(Vector2(3,3),size-Vector2(6,6)),"MuralSunPanel" if active or has_focus() else "MuralInkPanel",.18)
 
+func _init() -> void:set_meta("owns_ui_theme",true)
 func _ready() -> void:
-	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	mouse_filter=MOUSE_FILTER_STOP
-	z_index=240
-	set_meta("emblem_case",true)
-	var body:=HBoxContainer.new()
-	body.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	body.offset_left=142;body.offset_right=-68;body.offset_top=90;body.offset_bottom=-126
-	body.add_theme_constant_override("separation",56)
-	add_child(body)
-	var left:=VBoxContainer.new();left.size_flags_horizontal=SIZE_EXPAND_FILL;left.add_theme_constant_override("separation",12);body.add_child(left)
-	copy("Porta-Emblemas",left,36)
-	copy("Emblemas dos Chefes de Bairro",left,20,Hud.GOLD)
-	var grid:=GridContainer.new();grid.columns=4;grid.size_flags_vertical=SIZE_EXPAND_FILL
-	grid.add_theme_constant_override("h_separation",10);grid.add_theme_constant_override("v_separation",12);left.add_child(grid)
+	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);mouse_filter=MOUSE_FILTER_STOP;z_index=240;set_meta("emblem_case",true)
+	text_scale=maxf(text_scale,Mural.text_scale_for(self));Mural.install(self)
+	var margin:=MarginContainer.new();margin.set_anchors_and_offsets_preset(PRESET_FULL_RECT)
+	for side in ["left","right","top","bottom"]:margin.add_theme_constant_override("margin_"+side,24)
+	add_child(margin)
+	var column:=VBoxContainer.new();column.add_theme_constant_override("separation",12);margin.add_child(column)
+	copy("Porta-Emblemas",column,32,T.MURAL_PAPER)
+	var filters_row:=HBoxContainer.new();filters_row.add_theme_constant_override("separation",12);column.add_child(filters_row)
+	for index in filters.size():
+		var tab:=Option.new();tab.text=filters[index];tab.text_scale=text_scale;tab.size_flags_horizontal=SIZE_EXPAND_FILL;filters_row.add_child(tab);tab.pressed.connect(set_filter.bind(index));tabs.append(tab)
+	var body:=HBoxContainer.new();body.size_flags_vertical=SIZE_EXPAND_FILL;body.add_theme_constant_override("separation",20);column.add_child(body)
+	var sheet:=Surface.new();sheet.family="case";sheet.size_flags_horizontal=SIZE_EXPAND_FILL;body.add_child(sheet)
+	var grid:=GridContainer.new();grid.columns=4;grid.size_flags_vertical=SIZE_EXPAND_FILL;grid.add_theme_constant_override("h_separation",10);grid.add_theme_constant_override("v_separation",10);sheet.add_child(grid)
 	for index in 12:
-		var holder:=Control.new();holder.custom_minimum_size=Vector2(72,74);holder.size_flags_horizontal=SIZE_EXPAND_FILL;holder.size_flags_vertical=SIZE_EXPAND_FILL;grid.add_child(holder)
-		var socket:=Socket.new();socket.set_meta("recorte_decorated",true)
+		var holder:=Control.new();holder.custom_minimum_size=Vector2(64,68);holder.size_flags_horizontal=SIZE_EXPAND_FILL;holder.size_flags_vertical=SIZE_EXPAND_FILL;grid.add_child(holder)
+		var socket:=Socket.new();socket.set_anchors_and_offsets_preset(PRESET_FULL_RECT);holder.add_child(socket)
 		for state in ["normal","hover","pressed","focus","disabled"]:socket.add_theme_stylebox_override(state,StyleBoxEmpty.new())
-		socket.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);holder.add_child(socket)
-		var seal:=Seal.new();seal.mouse_filter=MOUSE_FILTER_IGNORE;seal.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);seal.offset_bottom=-12;socket.add_child(seal)
+		var seal:=Seal.new();seal.mouse_filter=MOUSE_FILTER_IGNORE;seal.set_anchors_and_offsets_preset(PRESET_FULL_RECT);seal.offset_bottom=-T.text().get_height(roundi(13*text_scale))-28;socket.add_child(seal)
 		seal.earned=emblems().has(Identity.slot_id(index));seal.variant=index
 		if emblems().get(Identity.slot_id(index),{}).get("bossId","")=="mikka":seal.seal_texture=load("res://assets/ui/key-items/insignia-morro-do-sol.png")
-		var number:=copy("%02d"%(index+1),socket,13,Hud.MUTED);number.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
-		number.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE);number.offset_top=-22;number.offset_bottom=-3
-		socket.pressed.connect(select_slot.bind(index));socket.focus_entered.connect(select_slot.bind(index))
-		socket.tooltip_text="Espaço %02d"%(index+1)
-		slots.append(socket)
-	var right:=VBoxContainer.new();right.size_flags_horizontal=SIZE_EXPAND_FILL;right.add_theme_constant_override("separation",12);body.add_child(right)
-	var tab_row:=HBoxContainer.new();tab_row.add_theme_constant_override("separation",8);right.add_child(tab_row)
-	for index in filters.size():
-		var tab:=Button.new();tab.text=filters[index];tab.size_flags_horizontal=SIZE_EXPAND_FILL;tab.custom_minimum_size.y=42
-		Hud.secondary_button(tab);tab.pressed.connect(set_filter.bind(index));tab_row.add_child(tab);tabs.append(tab)
-	var heading:=HBoxContainer.new();heading.custom_minimum_size.y=142;heading.add_theme_constant_override("separation",14);right.add_child(heading)
-	art=Seal.new();art.custom_minimum_size.x=132;heading.add_child(art)
-	var labels:=VBoxContainer.new();labels.size_flags_horizontal=SIZE_EXPAND_FILL;labels.add_theme_constant_override("separation",12);heading.add_child(labels)
-	title=copy("",labels,30,Hud.PAPER)
-	location=copy("",labels,18,Hud.GOLD)
-	chief=copy("",labels,18,Hud.MUTED)
-	for label in [title,location,chief]:label.max_lines_visible=2;label.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
-	var plate:=PanelContainer.new();plate.size_flags_vertical=SIZE_EXPAND_FILL;plate.set_meta("recorte_decorated",true)
-	var panel_style:=StyleBoxFlat.new();panel_style.bg_color=Color("202d40");panel_style.border_color=Color("526580");panel_style.set_border_width_all(2);panel_style.set_corner_radius_all(3);plate.add_theme_stylebox_override("panel",panel_style);right.add_child(plate)
-	var inset:=MarginContainer.new()
-	for side in ["left","right","top","bottom"]:inset.add_theme_constant_override("margin_"+side,18)
-	plate.add_child(inset)
-	var scroll:=ScrollContainer.new();scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;scroll.follow_focus=true;inset.add_child(scroll)
-	description=copy("",scroll,21,Hud.PAPER);description.size_flags_horizontal=SIZE_EXPAND_FILL
-	empty=copy("",right,16,Hud.MUTED)
-	count=copy("",right,24,Hud.GOLD)
-	var footer:=HBoxContainer.new();footer.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE);footer.offset_left=42;footer.offset_right=-42;footer.offset_top=-74;footer.offset_bottom=-18
-	footer.add_theme_constant_override("separation",16);add_child(footer)
-	Hud.input_hint(footer,"accept","Selecionar")
-	var gap:=Control.new();gap.custom_minimum_size.x=24;footer.add_child(gap)
-	var help:=copy("Tab · filtros",footer,17,Hud.MUTED);help.size_flags_horizontal=SIZE_EXPAND_FILL
-	back=Button.new();back.text="Fechar";back.custom_minimum_size=Vector2(190,48);Hud.secondary_button(back);footer.add_child(back);back.pressed.connect(func():closed.emit())
-	select_slot(clampi(initial_slot,0,11))
-	set_filter(0)
-	Hud.focus_later(slots[selected])
-	resized.connect(queue_redraw)
+		var number:=copy("%02d"%(index+1),socket,13,T.MURAL_PAPER);number.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;number.set_anchors_and_offsets_preset(PRESET_BOTTOM_WIDE);number.offset_top=-20-T.text().get_height(roundi(13*text_scale));number.offset_bottom=-20
+		socket.pressed.connect(select_slot.bind(index));socket.focus_entered.connect(select_slot.bind(index));socket.tooltip_text="Espaço %02d"%(index+1);slots.append(socket)
+	var details_paper:=Surface.new();details_paper.family="case";details_paper.size_flags_horizontal=SIZE_EXPAND_FILL;body.add_child(details_paper)
+	var scroll:=ScrollContainer.new();scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;scroll.follow_focus=true;scroll.focus_mode=FOCUS_ALL;details_paper.add_child(scroll)
+	detail_scroll=scroll;scroll.gui_input.connect(_detail_input)
+	var right:=VBoxContainer.new();right.size_flags_horizontal=SIZE_EXPAND_FILL;right.add_theme_constant_override("separation",12);scroll.add_child(right)
+	art=Seal.new();art.custom_minimum_size=Vector2(132,142);right.add_child(art)
+	title=copy("",right,28,T.MURAL_PAPER);location=copy("",right,20,T.MURAL_MINT);chief=copy("",right,18,T.MURAL_PAPER)
+	description=copy("",right,20,T.MURAL_PAPER)
+	empty=copy("",right,18,T.MURAL_PAPER)
+	var footer:=HBoxContainer.new();footer.add_theme_constant_override("separation",20);column.add_child(footer)
+	count=copy("",footer,22,T.MURAL_PAPER);count.size_flags_horizontal=SIZE_EXPAND_FILL
+	back=Option.new();back.text="Fechar";back.text_scale=text_scale;back.custom_minimum_size.x=200;footer.add_child(back);back.pressed.connect(func():closed.emit())
+	select_slot(clampi(initial_slot,0,11));set_filter(0);Hud.focus_later(slots[selected]);resized.connect(queue_redraw)
 
 func emblems() -> Dictionary: return player.get("districtEmblems",{})
 func select_slot(index:int) -> void:
 	selected=index
-	for i in slots.size():slots[i].active=i==index;slots[i].queue_redraw()
+	for i in slots.size():
+		slots[i].active=i==index;slots[i].queue_redraw()
+		for child in slots[i].get_children():
+			if child is Label:child.add_theme_color_override("font_color",T.MURAL_INK if i==index else T.MURAL_PAPER)
 	var entry:Dictionary=emblems().get(Identity.slot_id(index),{})
 	art.earned=not entry.is_empty();art.variant=index;art.queue_redraw()
 	art.seal_texture=load("res://assets/ui/key-items/insignia-morro-do-sol.png") if entry.get("bossId","")=="mikka" else null
@@ -159,8 +141,11 @@ func set_filter(index:int) -> void:
 		var earned:=emblems().has(Identity.slot_id(i))
 		var visible_slot:=filter_index==0 or (filter_index==1 and earned) or (filter_index==2 and not earned)
 		slots[i].visible=visible_slot
+		slots[i].get_parent().visible=visible_slot
 		if visible_slot:matches.append(i)
-	for i in tabs.size():tabs[i].modulate=Color.WHITE if i==filter_index else Color(.65,.7,.8)
+	for i in tabs.size():
+		tabs[i].selected=i==filter_index
+		if is_instance_valid(tabs[i].backing):tabs[i].backing.queue_redraw()
 	empty.text="Nenhum emblema conquistado ainda." if matches.is_empty() and filter_index==1 else "Todos os espaços foram conquistados." if matches.is_empty() else ""
 	if not matches.is_empty() and selected not in matches:select_slot(matches[0])
 	if matches.is_empty():
@@ -178,44 +163,14 @@ func _input(event:InputEvent) -> void:
 
 func _unhandled_input(_event:InputEvent) -> void:
 	get_viewport().set_input_as_handled()
+func _detail_input(event:InputEvent) -> void:
+	if event.is_action_pressed("ui_down") or event.is_action_pressed("ui_up"):
+		detail_scroll.scroll_vertical+=roundi(64*text_scale)*(1 if event.is_action_pressed("ui_down") else -1);detail_scroll.accept_event()
+	elif event.is_action_pressed("ui_left") and slots[selected].is_visible_in_tree():slots[selected].grab_focus();detail_scroll.accept_event()
 
-func copy(value:String,parent:Node,font_size:int,color:Color=Hud.PAPER) -> Label:
-	var label:=Label.new();label.text=value;label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;label.add_theme_font_size_override("font_size",font_size);label.add_theme_color_override("font_color",color)
-	if font_size>=24:label.add_theme_font_override("font",Hud.display())
-	parent.add_child(label);return label
-
-func frame(rect:Rect2,color:Color,edge:Color,width:float=3) -> void:
-	var c:=18.0
-	var p:=PackedVector2Array([rect.position+Vector2(c,0),Vector2(rect.end.x-c,rect.position.y),Vector2(rect.end.x,rect.position.y+c),rect.end-Vector2(0,c),rect.end-Vector2(c,0),Vector2(rect.position.x+c,rect.end.y),Vector2(rect.position.x,rect.end.y-c),rect.position+Vector2(0,c)])
-	draw_colored_polygon(p,color);p.append(p[0]);draw_polyline(p,edge,width,true)
+func copy(value:String,parent:Node,font_size:int,color:Color=T.MURAL_INK) -> Label:
+	var label:=Label.new();label.text=value;label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;label.add_theme_font_size_override("font_size",roundi(font_size*text_scale));label.add_theme_color_override("font_color",color);label.add_theme_font_override("font",T.label() if font_size>=24 else T.text());parent.add_child(label);return label
 
 func _draw() -> void:
-	draw_rect(Rect2(Vector2.ZERO,size),Color(0.02,.035,.06,.72))
-	draw_rect(Rect2(0,size.y-88,size.x,88),Hud.INK)
-	var book:=Rect2(30,34,size.x-60,size.y-128)
-	frame(Rect2(book.position+Vector2(5,8),book.size),Color(0,0,0,.45),Color(0,0,0,.4),7)
-	frame(book,Color("24324e"),Hud.BLACK,8)
-	frame(book.grow(-5),Color("263954"),Color("6486ad"),3)
-	frame(book.grow(-14),Color("172236"),Color("3f5878"),4)
-	var spine:=Rect2(book.position+Vector2(8,0),Vector2(78,book.size.y))
-	frame(spine,Color("263754"),Color("617a9a"),3)
-	for y in [book.position.y+70,book.end.y-160]:
-		draw_rect(Rect2(spine.position.x+6,y,14,94),Color("f6a04b"))
-		draw_line(Vector2(spine.position.x+9,y+4),Vector2(spine.position.x+9,y+88),Hud.GOLD,2)
-		draw_rect(Rect2(spine.position.x+1,y+30,23,28),Color("334c6c"));draw_line(Vector2(spine.position.x+2,y+30),Vector2(spine.position.x+22,y+30),Color("9aadc5"),2)
-		draw_rect(Rect2(book.end.x-16,y,10,94),Color("e98c46"));draw_line(Vector2(book.end.x-13,y+4),Vector2(book.end.x-13,y+88),Hud.GOLD,2)
-	var hinge:=size.x*.51
-	draw_line(Vector2(hinge,book.position.y+28),Vector2(hinge,book.end.y-22),Hud.BLACK,12,true)
-	for y in [book.position.y+80,book.end.y-100]:
-		draw_rect(Rect2(hinge-6,y,12,40),Color("5e7b99"));draw_line(Vector2(hinge-3,y+3),Vector2(hinge-3,y+35),Color("a9bdcb"),2)
-	for x in [book.position.x+105,book.end.x-16]:
-		draw_rect(Rect2(x,book.end.y-20,70 if x<1000 else 9,12),Color("ea8a43"))
-	# Ink stipple remains at the seams, away from text and emblems.
-	for x in range(128,int(book.end.x)-24,11):
-		for y in [int(book.position.y)+24,int(book.end.y)-25]:draw_circle(Vector2(x,y+(x%3)*2),1.3,Color("4d6585"))
-	var portrait:Texture2D=preload("res://assets/campaign/portrait-kael-manga-v4.png")
-	draw_texture_rect(portrait,Hud.fit_texture(portrait,Rect2(book.end.x-290,book.end.y-255,240,240)),false,Color(.65,.75,1,.085))
-	for offset in [0,150]:
-		var c:=Vector2(spine.get_center().x,book.position.y+165+offset)
-		var kite:=PackedVector2Array([c+Vector2(0,-24),c+Vector2(23,0),c+Vector2(0,32),c+Vector2(-23,0),c+Vector2(0,-24)])
-		draw_polyline(kite,Color("8c9ac3"),2,true);draw_line(c-Vector2(20,0),c+Vector2(20,0),Color("8c9ac3"),2,true)
+	draw_rect(Rect2(Vector2.ZERO,size),T.alpha(T.MURAL_GROUND,.98))
+	for y in range(24,int(size.y),36):draw_line(Vector2(0,y),Vector2(size.x,y),T.alpha(T.MURAL_MINT,.04),1)

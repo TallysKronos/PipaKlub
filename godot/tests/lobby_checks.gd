@@ -19,7 +19,7 @@ func run() -> void:
 	root.gui_disable_input=true
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(output))
 	app=load("res://scripts/campaign/front_end.gd").new()
-	var folder:="user://lobby-"+State.new_id()
+	var folder:=ProjectSettings.globalize_path("res://../tmp/lobby-"+State.new_id())
 	app.session._store=load("res://scripts/campaign/save_store.gd").new(folder);app.preferences.storage_path=folder+".cfg"
 	root.add_child(app);app.preferences.reduced_motion=true
 	check(app.session.start("slot-1").status=="ok","isolated slot")

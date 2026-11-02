@@ -1,0 +1,86 @@
+{
+  "method": "Alpha >=64 bounding box, crop, uniform LANCZOS resize to width 1200; no repaint",
+  "styleReference": "art/ui/soulmonsters-v2/pip-128-v2/B-prancha.png",
+  "assets": [
+    {
+      "id": "cloth",
+      "source": "art/ui/soulmonsters-v2/pip-135-v2/fontes/cloth-scalable.png",
+      "sourceSHA256": "86d505fee01010524cc4fd3d1da4b85f2367416acfcd39e4ac55c35dd2a9cb9c",
+      "crop": [
+        69,
+        74,
+        1724,
+        777
+      ],
+      "size": [
+        1200,
+        510
+      ],
+      "file": "godot/assets/ui/mural-v1/menus-v2/cloth.png"
+    },
+    {
+      "id": "dex",
+      "source": "art/ui/soulmonsters-v2/pip-135-v2/fontes/dex-scalable.png",
+      "sourceSHA256": "7dee8b61053c5897547152cacd2ded08f9803f80122f38b2045b0243a8e0d432",
+      "crop": [
+        11,
+        34,
+        1767,
+        857
+      ],
+      "size": [
+        1200,
+        562
+      ],
+      "file": "godot/assets/ui/mural-v1/menus-v2/dex.png"
+    },
+    {
+      "id": "evolution",
+      "source": "art/ui/soulmonsters-v2/pip-135-v2/fontes/evolution-scalable.png",
+      "sourceSHA256": "9578dfa05cb149a001e69f30048333247cc0bcc5a6988673aaf403e57019a3ac",
+      "crop": [
+        22,
+        73,
+        1756,
+        827
+      ],
+      "size": [
+        1200,
+        522
+      ],
+      "file": "godot/assets/ui/mural-v1/menus-v2/evolution.png"
+    },
+    {
+      "id": "case",
+      "source": "art/ui/soulmonsters-v2/pip-135-v2/fontes/case-scalable.png",
+      "sourceSHA256": "750ec5b480eed8ae5a60794c9b2f5691de584521af940b1503cfa2ec7bcb14b5",
+      "crop": [
+        24,
+        68,
+        1754,
+        811
+      ],
+      "size": [
+        1200,
+        515
+      ],
+      "file": "godot/assets/ui/mural-v1/menus-v2/case.png"
+    },
+    {
+      "id": "tag",
+      "source": "art/ui/soulmonsters-v2/pip-135-v2/fontes/tag.png",
+      "sourceSHA256": "b1f52cc21e4f131a4b602ae212a025bd46e238b1bab35d23a4bea81e71f82c0b",
+      "crop": [
+        57,
+        77,
+        2115,
+        663
+      ],
+      "size": [
+        1200,
+        342
+      ],
+      "file": "godot/assets/ui/mural-v1/menus-v2/tag.png"
+    }
+  ]
+}

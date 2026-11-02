@@ -1700,118 +1700,21 @@ func _remember_world_position() -> bool:
 
 func _show_collection() -> void:
 	sound.play_event("inventory.inspect")
-	if not _remember_world_position(): return
-	var player: Dictionary = session.snapshot().player
-	_simple_page("EQUIPE",true)
-	_label("Escolha quem vai voar ao seu lado.",page,17).add_theme_color_override("font_color",Hud.MUTED)
-	if team_load_state!="ready":
-		var state_view=load("res://scripts/campaign/hud_list_state.gd").new()
-		state_view.state=team_load_state
-		state_view.reduced_motion=preferences.reduced_motion
-		page.add_child(state_view)
-		state_view.retry_requested.connect(func():team_load_state="ready";_show_collection())
-		_button("Voltar",page,_return_to_game)
-		return
-	var scroll := ScrollContainer.new()
-	scroll.follow_focus = true
-	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	page.add_child(scroll)
-	var list := VBoxContainer.new()
-	list.add_theme_constant_override("separation",16)
-	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	scroll.add_child(list)
-	var team_capacity:=maxi(1,floori((size.y-250)/(190*preferences.text_scale)))
-	var team_pages:=maxi(1,ceili(float(player.partners.size())/team_capacity))
-	team_page=clampi(team_page,0,team_pages-1)
-	for partner in player.partners.slice(team_page*team_capacity,(team_page+1)*team_capacity):
-		var card=load("res://scripts/campaign/hud_result_plate.gd").new()
-		var selected:bool=partner.id==player.get("equippedPartnerId", "")
-		card.accent=Hud.CYAN if selected else Hud.Tokens.TINTA_3
-		list.add_child(card)
-		var row := HBoxContainer.new()
-		row.add_theme_constant_override("separation", 20)
-		card.add_child(row)
-		var art_id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
-		var art: Dictionary = content.combat[art_id]
-		var frame: Dictionary = art.animations.idle[0]
-		var texture := AtlasTexture.new()
-		texture.atlas = load("res://assets/campaign/" + art.image)
-		texture.region = Rect2(frame.x, frame.y, frame.w, frame.h)
-		var portrait := TextureRect.new()
-		portrait.texture = load("res://scripts/campaign/battle_ink.gd").portrait(texture.atlas,art_id)
-		portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		portrait.custom_minimum_size = Vector2(144, 118)
-		row.add_child(portrait)
-		if preload("res://scripts/campaign/mount_quest.gd").capable(partner):
-			var mount_icon:=TextureRect.new()
-			mount_icon.name="MountCapability"
-			mount_icon.texture=load("res://assets/ui/mount-capability.svg")
-			mount_icon.custom_minimum_size=Vector2(30,30)
-			mount_icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
-			mount_icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-			mount_icon.size_flags_vertical=Control.SIZE_SHRINK_CENTER
-			mount_icon.tooltip_text="Pode ser montado · requer 1 HP e armação intacta" if preload("res://scripts/campaign/mount_quest.gd").healthy(partner) else "Montaria derrotada · repare Linha e Armação antes de montar"
-			if not preload("res://scripts/campaign/mount_quest.gd").healthy(partner):mount_icon.modulate=Color(.45,.45,.45)
-			row.add_child(mount_icon)
-		var details := VBoxContainer.new()
-		details.add_theme_constant_override("separation",6)
-		details.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		row.add_child(details)
-		var condition: Dictionary = partner.get("condition", {"line": 100, "structure": 100})
-		var level: int = EncounterView.Model.level_for_xp(partner.get("xp", 0))
-		if selected:
-			_label("PARCEIRO ATIVO",details,16).theme_type_variation="RecorteAccentText"
-		var partner_title:=_label("%s · Nv. %d" % [partner.get("personalName", partner.modelId), level], details,26)
-		partner_title.autowrap_mode=TextServer.AUTOWRAP_OFF
-		partner_title.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
-		partner_title.tooltip_text=partner_title.text
-		for stat in [["Linha",condition.line,Hud.LINE],["Armação",condition.structure,Hud.GOLD]]:
-			var stat_row:=HBoxContainer.new()
-			details.add_child(stat_row)
-			_label("%s · %d%%"%[stat[0],stat[1]],stat_row,15).custom_minimum_size.x=140
-			var bar:=ProgressBar.new()
-			bar.value=clampf(stat[1],0,100)
-			bar.show_percentage=false
-			bar.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-			bar.size_flags_vertical=Control.SIZE_SHRINK_CENTER
-			bar.custom_minimum_size.y=8
-			var fill:=StyleBoxFlat.new()
-			fill.bg_color=stat[2]
-			bar.add_theme_stylebox_override("fill",fill)
-			stat_row.add_child(bar)
-		var progress := ProgressBar.new()
-		progress.theme_type_variation="RecorteXPBar"
-		var xp: int = partner.get("xp", 0)
-		var previous: int = EncounterView.Model.xp_for_level(level)
-		var threshold: int = EncounterView.Model.xp_for_level(level+1) if level<50 else previous+1
-		progress.max_value = threshold - previous
-		progress.value = xp - previous if level<50 else progress.max_value
-		progress.show_percentage = false
-		progress.custom_minimum_size.y = 12
-		details.add_child(progress)
-		_label("Nível máximo" if level == 50 else "%d / %d XP para o próximo nível" % [xp - previous, threshold - previous], details, 16).theme_type_variation="RecorteMutedText"
-		var id: String = partner.id
-		var care_id:String=partner.id
-		_button("Cuidar",details,func():_show_partner_care(care_id)).disabled=session.snapshot().checkpoint.get("kind","")!="world"
-		var action_space := Hud.focus_space(row)
-		action_space.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		var button := _button("Selecionado" if id == player.get("equippedPartnerId", "") else "Escolher parceiro", action_space, func():
-			if _result(exploration.equip(id)): _show_collection())
-		button.custom_minimum_size.x = 256
-		Hud.secondary_button(button)
-		button.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		button.disabled = id == player.get("equippedPartnerId", "")
-	if player.partners.is_empty():_label("Sua equipe começa com o primeiro elo. Continue sua história com o professor.",list,22)
-	var footer:=HBoxContainer.new()
-	footer.add_theme_constant_override("separation",32) # the focused button shifts right and grows its rabiola (see Hud.focus_space)
-	page.add_child(footer)
-	_button("Voltar", footer, _return_to_game).custom_minimum_size.x=180
-	if team_pages>1:
-		_button("Anterior",footer,func():team_page-=1;_show_collection()).disabled=team_page==0
-		_button("Próxima",footer,func():team_page+=1;_show_collection()).disabled=team_page==team_pages-1
-		_label("%d / %d"%[team_page+1,team_pages],footer,16)
+	if not _remember_world_position():return
+	_clear("page:EQUIPE")
+	var album=load("res://scripts/ui_mural/partner_album.gd").new()
+	album.player=session.snapshot().player
+	album.content=content
+	album.text_scale=preferences.text_scale
+	album.load_state=team_load_state
+	album.can_care=session.snapshot().checkpoint.get("kind","")=="world"
+	add_child(album)
+	album.closed.connect(_return_to_game)
+	album.equip_requested.connect(func(id:String):
+		if _result(exploration.equip(id)):_show_collection())
+	album.care_requested.connect(_show_partner_care)
+	album.emblems_requested.connect(_open_emblem_case)
+	album.retry_requested.connect(func():team_load_state="ready";_show_collection())
 
 func _route_action(id: String) -> void:
 	for place in park.data.places:

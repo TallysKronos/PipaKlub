@@ -23,7 +23,7 @@ func capture(view:Control,name:String) -> void:
 	root.get_texture().get_image().save_png(directory.path_join(name+".png"))
 func run() -> void:
 	app=load("res://scripts/campaign/front_end.gd").new()
-	var folder:="user://emblem-case-"+State.new_id()
+	var folder:=ProjectSettings.globalize_path("res://../tmp/emblem-case-"+State.new_id())
 	app.session._store=Store.new(folder);app.preferences.storage_path=folder+".cfg"
 	root.add_child(app);app.preferences.reduced_motion=true
 	check(app.session.start("slot-1").status=="ok","isolated slot")

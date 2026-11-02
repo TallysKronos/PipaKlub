@@ -82,7 +82,8 @@ func run() -> void:
 		check(front.binding_target.is_empty(),"Escape cancels inline capture")
 		front.preferences.text_scale=1.0;front._apply_preferences()
 		front.team_load_state="error";front._show_collection();await settle()
-		check(front.page.get_child(2).state=="error","team error has retry state")
+		var albums:=front.get_children().filter(func(child):return child.get_script()==load("res://scripts/ui_mural/partner_album.gd"))
+		check(albums.size()==1 and albums[0].load_state=="error" and albums[0].actions.size()==1,"team error has retry state")
 		front.team_load_state="ready"
 		front.menu_origin="";front._show_saved();await settle()
 	front.queue_free();await settle()
