@@ -1,0 +1,30 @@
+{
+  "ok": true,
+  "issues": [
+    {
+      "level": "ok",
+      "rule": "Mapa",
+      "text": "Planta conferida: entrada, acessos, rampas, pontes e trilhas. 847 células alcançáveis."
+    },
+    {
+      "level": "warn",
+      "rule": "Partes da região",
+      "text": "Prévia isolada: ligações da região NÃO verificadas."
+    }
+  ],
+  "stats": {
+    "plateau": 0.5333333333333333,
+    "items": 3,
+    "hidden": 1,
+    "ramps": 16,
+    "unreachable": 0,
+    "loose": 0,
+    "isolatedTrees": 0,
+    "accesses": 41
+  },
+  "lines": [
+    "CONFERÊNCIA ZERO QUEBRA: SEM ERRO · 0 erros · 1 avisos",
+    "Platô 53.3% · 3 itens (1 escondidos) · 16 células de rampa · 0 inalcançáveis · 0 degraus soltos",
+    "AVISO [Partes da região] Prévia isolada: ligações da região NÃO verificadas."
+  ]
+}

@@ -15,7 +15,7 @@ export function wideReachable(m,start,solid=blockedByPiece(m)){
  const seen=new Set();if(!start||!walkable(m,start.u,start.v,solid))return seen;
  const queue=[start];seen.add(key(m,start));for(let i=0;i<queue.length;i++)for(const d of D){const p=plus(queue[i],d),k=key(m,p);if(!at(m,p.u,p.v)||seen.has(k)||!wideEdge(m,queue[i],p,solid))continue;seen.add(k);queue.push(p);}return seen;
 }
-export function auditZeroBreak(m,{region=[],links=[],requiredRoute,accesses=[],guards=[],frameDepth=4}={}){
+export function auditZeroBreak(m,{region=[],links=[],requiredRoute,accesses=[],guards=[],frameDepth=4,requireRegion=true}={}){
  const issues=[...audit(m)],solid=blockedByPiece(m),seen=reachable(m,m.spawn,solid);
  const add=(level,rule,text,cell)=>issues.push({level,rule,text,...(cell?{cell}: {})});
  let plateau=0,unreachable=0,loose=0,ramps=0;
@@ -67,7 +67,7 @@ export function auditZeroBreak(m,{region=[],links=[],requiredRoute,accesses=[],g
  if(frame.length)add('warn','Moldura',`${frame.length} células caminháveis na moldura fora dos acessos; conferir captura.`,frame[0]);
  if(region.length){const parts=new Set(region.map(r=>r.part));if(!['A','B','C'].every(p=>parts.has(p)))add('fail','Partes da região','Região precisa das partes A, B e C.');
   for(const r of region)for(const other of region.filter(q=>Math.abs(q.part.charCodeAt(0)-r.part.charCodeAt(0))===1))if(!r.map.events.some(e=>e.type==='saida'&&e.props?.destino===other.id))add('fail','Ligação entre partes',`${r.id} não tem saída para ${other.id}.`);
- }else add('fail','Partes da região','Informe as três partes para conferir a região.');
+ }else add(requireRegion?'fail':'warn','Partes da região',requireRegion?'Informe as três partes para conferir a região.':'Prévia isolada: ligações da região NÃO verificadas.');
  const lookup=id=>region.find(r=>r.id===id)?.map;
  for(const link of links){const a=link.from,b=link.to,ma=lookup(a.area),mb=lookup(b.area),ca=ma&&at(ma,a.u,a.v),cb=mb&&at(mb,b.u,b.v);
   if(!ca||!cb){add('fail','Ligação entre partes','Extremidade de ligação ausente.');continue;}

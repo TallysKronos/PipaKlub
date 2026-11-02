@@ -79,6 +79,7 @@ static func build(view) -> void:
 	for v in range(-RING,h+RING):
 		for u in range(-RING,w+RING):
 			var inside:=u>=0 and v>=0 and u<w and v<h
+			if model.data.get("forest",{}).get("interior",false) and (not inside or model.cell_at(Vector2i(u,v)).get("material")=="rocha"):continue
 			if (mountain or mine or ice or bool(model.data.get("forest",{}).get("bamboo",false)) or model.data.get("forest",{}).get("canal",false) or model.data.get("forest",{}).get("market",false) or model.data.get("forest",{}).get("harbor",false)) and not inside:continue
 			# Mural chambers use the continuous short cut-border, without broad foreground roof tiles.
 			if inside and model.data.get("forest",{}).get("mural",false) and Structures.mine_cutaway(model,u,v):continue

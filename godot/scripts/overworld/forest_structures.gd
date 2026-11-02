@@ -203,6 +203,13 @@ static func _stairs(view,s:Dictionary) -> void:
   var node:=Node2D.new();node.position=iso((a+c)*.5)+Vector2(0,4);view.actors.add_child(node)
   quad(node,PackedVector2Array([iso(a,height)-node.position,iso(b,height)-node.position,iso(c,height)-node.position,iso(d,height)-node.position]),Color("d1c69e"))
   quad(node,PackedVector2Array([iso(d,height)-node.position,iso(c,height)-node.position,iso(c,height-8)-node.position,iso(d,height-8)-node.position]),Color("807c67"))
+  if view.model.data.get("forest",{}).get("closedStairs",false):
+   # The sloped collision surface cannot seal the triangular void under each tread.
+   # Close the actual stepped prism, inside its measured footprint, per depth slice.
+   for edge in [[a,d],[b,c]]:
+    var first:Vector2=edge[0];var last:Vector2=edge[1]
+    var side:=Node2D.new();side.position=iso((first+last)*.5)+Vector2(0,4);view.actors.add_child(side)
+    quad(side,PackedVector2Array([iso(first,height)-side.position,iso(last,height)-side.position,iso(last,base)-side.position,iso(first,base)-side.position]),Color("807c67"))
 static func _landmark(view,p:Dictionary) -> void:
  var point:=Vector2(p.u,p.v);var pos:Vector2=view.model.project(point);var node:=Node2D.new();node.position=view.model.project(point,false);view.actors.add_child(node)
  node.z_index=1

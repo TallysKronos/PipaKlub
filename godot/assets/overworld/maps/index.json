@@ -294,6 +294,12 @@
       "name": "Bosque dos Ventos · D",
       "scene": "kronasta-bosque-d",
       "biome": "floresta"
+    },
+    {
+      "id": "kronasta-industrial-d",
+      "name": "Vila Operária · Galpão",
+      "scene": "kronasta-industrial-d",
+      "biome": "parque"
     }
   ],
   "scenes": {
@@ -344,7 +350,8 @@
     "kronasta-cais-a": "kronasta-cais-a",
     "kronasta-cais-b": "kronasta-cais-b",
     "kronasta-cais-c": "kronasta-cais-c",
-    "kronasta-bosque-d": "kronasta-bosque-d"
+    "kronasta-bosque-d": "kronasta-bosque-d",
+    "kronasta-industrial-d": "kronasta-industrial-d"
   },
   "campaignReplacement": false
 }

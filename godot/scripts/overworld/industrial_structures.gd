@@ -12,17 +12,27 @@ static func texture(file:String) -> Texture2D:
 static func build(view) -> void:
  var model=view.model
  var simple:=S.geometry()
+ var interior:bool=model.data.forest.get("interior",false)
+ if interior:
+  # Continuous cutaway shell follows the blocking frame, never an apparent doorway.
+  block(view,Vector2(4,3),32,1,128,"parede-galpao",simple)
+  block(view,Vector2(3,4),1,28,192,"parede-galpao",simple,0)
+  block(view,Vector2(36,4),1,28,22,"barreira",simple)
+  block(view,Vector2(4,32),4,1,22,"barreira",simple)
+  block(view,Vector2(12,32),24,1,22,"barreira",simple)
  # Boundary architecture is a continuous wall, not props hiding terrain seams.
  for v in int(model.data.h):
   for u in int(model.data.w):
    var c:Dictionary=model.cell_at(Vector2i(u,v))
-   if c.material=="rocha":block(view,Vector2(u,v),1,1,36,"barreira",simple)
+   if c.material=="rocha" and not interior:block(view,Vector2(u,v),1,1,36,"barreira",simple)
  for b:Dictionary in model.data.forest.get("buildings",[]):
   block(view,Vector2(b.u,b.v),float(b.w),float(b.h),float(b.z),str(b.style),simple)
- if model.data.forest.get("mangaDressing",false) and not simple:D.yard(view)
-static func block(view,at:Vector2,w:float,h:float,z:float,style:String,simple:bool) -> void:
+ if model.data.forest.get("mangaDressing",false) and not simple:
+  if interior:D.warehouse(view)
+  else:D.yard(view)
+static func block(view,at:Vector2,w:float,h:float,z:float,style:String,simple:bool,base_height:float=-1) -> void:
  var model=view.model
- var level:float=model.height_at(at+Vector2(.5,.5))*64
+ var level:float=model.height_at(at+Vector2(.5,.5))*64 if base_height<0 else base_height
  var root:=Node2D.new();root.set_meta("scenery",true)
  root.position=S.iso(at+Vector2(w,h));view.actors.add_child(root)
  var a:=S.iso(at,level)-root.position
@@ -76,6 +86,22 @@ static func block(view,at:Vector2,w:float,h:float,z:float,style:String,simple:bo
  else:top.color=face_color.lightened(.18)
  if style!="barreira":S.line(root,PackedVector2Array([a-lift,b-lift,c-lift,d-lift,a-lift]),2,Color("34464d"))
  if simple:return
+ if style=="parede-galpao":
+  # All details are mounted on the shell's measured faces, not floating props.
+  for edge in [[d,c,int(w/4)],[c,b,int(h/4)]]:
+   var first:Vector2=edge[0];var last:Vector2=edge[1];var count:int=edge[2]
+   S.line(root,PackedVector2Array([first-Vector2(0,z-92),last-Vector2(0,z-92)]),4,Color("b18a59"))
+   S.line(root,PackedVector2Array([first,last]),5,Color("3d505b"))
+   for k in range(count):
+    var p:=first.lerp(last,(k+.08)/maxi(count,1))
+    var q:=first.lerp(last,(k+.88)/maxi(count,1))
+    S.line(root,PackedVector2Array([p,p-lift]),6,Color("405966"))
+    var points:=PackedVector2Array([p-Vector2(0,z-40),q-Vector2(0,z-40),q-Vector2(0,z-10),p-Vector2(0,z-10)])
+    S.quad(root,points,Color("86b0b4"));S.line(root,PackedVector2Array([points[0],points[1],points[2],points[3],points[0]]),2,Color("314753"))
+    var middle:=p.lerp(q,.5)
+    S.line(root,PackedVector2Array([middle-Vector2(0,z-40),middle-Vector2(0,z-10)]),2,Color("405966"))
+    S.line(root,PackedVector2Array([p-Vector2(0,z-64),q-Vector2(0,z-64)]),3,Color("536b76"))
+  return
  if style in ["galpao","usina"]:
   # Brick courses follow measured wall edges; no baked perspective in the art.
   for y in range(16,int(z),16):

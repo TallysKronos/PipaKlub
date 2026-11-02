@@ -105,3 +105,19 @@ static func decal(view,at:Vector2) -> Node2D:
  var anchor:=Node2D.new();anchor.position=S.iso(at+Vector2(2,2))+Vector2(0,3);view.actors.add_child(anchor)
  var canvas:=Node2D.new();canvas.position=-anchor.position;anchor.add_child(canvas)
  return canvas
+static func warehouse(view) -> void:
+ # Floor-only language: loading lane and containment workspace, not magical seals.
+ var model=view.model
+ for at in [Vector2(21,16),Vector2(29,16),Vector2(21,24),Vector2(29,24)]:
+  var root:=decal(view,at)
+  var h:float=model.height_at(at)*64+.2
+  S.line(root,PackedVector2Array([S.iso(at+Vector2(0,1.5),h),S.iso(at,h),S.iso(at+Vector2(1.5,0),h)]),3,Color("d4b46a"))
+ for v in range(22,32,2):
+  var at:=Vector2(17,v);var root:=decal(view,at)
+  S.line(root,PackedVector2Array([S.iso(at,.2),S.iso(at+Vector2(0,1),.2)]),2.5,Color("d4b46a"))
+ # Flush service hatches remain walkable, with no false pit silhouette.
+ for at in [Vector2(29,28),Vector2(18,12)]:
+  var root:=decal(view,at);var h:float=model.height_at(at)*64+.2
+  var points:=[S.iso(at,h),S.iso(at+Vector2(1,0),h),S.iso(at+Vector2(1,1),h),S.iso(at+Vector2(0,1),h)]
+  panel(root,points,Color("6e8382"))
+  for t in [.25,.5,.75]:S.line(root,PackedVector2Array([points[0].lerp(points[1],t),points[3].lerp(points[2],t)]),1,INK)
