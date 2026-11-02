@@ -1,0 +1,31 @@
+{
+  "windows": [
+    [
+      35,
+      147,
+      70,
+      43
+    ],
+    [
+      0,
+      178,
+      166,
+      80
+    ]
+  ],
+  "method": "Generated sprite heads aligned; eye/mouth windows replaced including jaw alpha to avoid a duplicate closed jaw beneath the open mouth. Outside-window RGBA unchanged.",
+  "expressions": {
+    "fierce": {
+      "outside_window_identical": true,
+      "mouth_alpha_can_change": true
+    },
+    "hurt": {
+      "outside_window_identical": true,
+      "mouth_alpha_can_change": true
+    },
+    "happy": {
+      "outside_window_identical": true,
+      "mouth_alpha_can_change": true
+    }
+  }
+}

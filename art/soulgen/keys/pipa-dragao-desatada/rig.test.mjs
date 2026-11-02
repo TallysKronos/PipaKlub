@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {validate,sample} from '../../../../tools/soulgen-studio/model.mjs';
 import {anatomyReport} from '../../../../tools/soulgen-studio/workflow.mjs';
-const dir=new URL('./cutout-rig-v1/',import.meta.url);
+const dir=new URL('./cutout-rig-v2/',import.meta.url);
 const read=name=>JSON.parse(fs.readFileSync(new URL(name,dir)));
 test('Pipa-Dragão desatada preserves eight parts and valid joints through six clips',()=>{
  const p=read('pipa-dragao-desatada.soulgen.json');assert.deepEqual(validate(p),{ok:true,errors:[],warnings:[]});
@@ -14,5 +14,6 @@ test('Pipa-Dragão desatada preserves eight parts and valid joints through six c
  for(const [id,time,face]of [['skill',.8,'fierce'],['hurt',.2,'hurt'],['victory',.8,'happy']])assert.equal(sample(p,id,time).face,face);
  assert.equal(sample(p,'defeat',9).done,true);assert.equal(p.clips.skill.hitTime,.8);
  assert.equal(read('validation.json').atlas.borderPixels,0);
- for(const face of Object.values(read('registration.json').expressions)){assert(face.alpha_identical);assert(face.outside_window_identical);}
+ for(const face of Object.values(read('registration.json').expressions)){assert(face.mouth_alpha_can_change);assert(face.outside_window_identical);}
+ assert.equal(p.artRevision,2);
 });

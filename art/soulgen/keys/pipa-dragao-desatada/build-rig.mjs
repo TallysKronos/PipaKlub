@@ -2,9 +2,9 @@ import fs from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {identity} from '../../../../tools/soulgen-studio/model.mjs';
 import {exportReview} from '../../../../tools/soulgen-studio/export-review.mjs';
-const dir=fileURLToPath(new URL('./cutout-rig-v1/',import.meta.url));
+const dir=fileURLToPath(new URL('./cutout-rig-v2/',import.meta.url));
 const boxes=JSON.parse(fs.readFileSync(dir+'slices.json')).boxes;
-const project={schema:'soulgen-studio',version:1,name:'Pipa-Dragão desatada · químico B',creatureId:'pipa-dragao-desatada',artRevision:1,rigRevision:1,preserveSourceAspect:true,width:860,height:600,rootPivot:[390,300],assets:{},parts:[],clips:{},brief:{species:'Pipa-Dragão desatada, identidade químico B existente',view:'Três quartos para a esquerda',notes:'Fonte: origin/feature/retalho-bosque-d, quimico-b-v1/desatada-estudo.png. Peças derivadas e montagem em revisão; não é novo design ou integração.'}};
+const project={schema:'soulgen-studio',version:1,name:'Pipa-Dragão desatada · químico B',creatureId:'pipa-dragao-desatada',artRevision:2,rigRevision:1,preserveSourceAspect:true,width:860,height:600,rootPivot:[390,300],assets:{},parts:[],clips:{},brief:{species:'Pipa-Dragão desatada, identidade químico B existente',view:'Três quartos para a esquerda',notes:'Fonte: origin/feature/retalho-bosque-d, quimico-b-v1/desatada-estudo.png. Peças derivadas e montagem em revisão; não é novo design ou integração.'}};
 const placement={
  body:{s:.70,anchor:[265,210],pivot:[390,300],z:3},
  head:{s:.72,anchor:[259,111],pivot:[235,291],z:7},
@@ -17,11 +17,11 @@ const placement={
 };
 for(const [id,p]of Object.entries(placement)){
  const b=boxes[id],w=b[2]-b[0],h=b[3]-b[1];
- project.assets[id]={name:id,src:`/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v1/${id}.png`,width:w,height:h};
+ project.assets[id]={name:id,src:`/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v2/${id}.png`,width:w,height:h};
  project.parts.push({id,name:id,asset:id,source:[0,0,w,h],rect:[p.pivot[0]-p.anchor[0]*p.s,p.pivot[1]-p.anchor[1]*p.s,w*p.s,h*p.s],pivot:p.pivot,z:p.z,parent:id==='body'?null:'body',visible:true,lag:p.lag||0});
 }
 const registration=JSON.parse(fs.readFileSync(dir+'registration.json'));const head=project.parts.find(p=>p.id==='head');head.faces={};head.faceWindows=registration.windows;
-for(const face of ['fierce','hurt','happy']){const a=project.assets.head;project.assets[face]={...a,name:face,src:`/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v1/head-${face}.png`};head.faces[face]={asset:face,source:[0,0,a.width,a.height]};}
+for(const face of ['fierce','hurt','happy']){const a=project.assets.head;project.assets[face]={...a,name:face,src:`/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v2/head-${face}.png`};head.faces[face]={asset:face,source:[0,0,a.width,a.height]};}
 const body=project.parts[0];
 project.anatomy={version:1,ratios:[],behind:[{part:'frontFar',other:'body'},{part:'rearFar',other:'body'},{part:'tail',other:'body'}],joints:project.parts.filter(p=>p.parent).map(p=>({part:p.id,parent:'body',anchor:[(p.pivot[0]-p.rect[0])/p.rect[2],(p.pivot[1]-p.rect[1])/p.rect[3]],socket:[(p.pivot[0]-body.rect[0])/body.rect[2],(p.pivot[1]-body.rect[1])/body.rect[3]],maxGap:2}))};
 // Equipment socket is above body bounds, not an anatomical bone joint.

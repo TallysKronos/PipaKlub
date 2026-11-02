@@ -1,5 +1,15 @@
 # Pipa-Dragão desatada — químico B no Soulgen
 
+## Revisão 2 — spritelização pedida pelo dono
+
+O preset ativo agora usa `cutout-rig-v2/`, `artRevision=2`: peças redesenhadas por image_gen no acabamento dos guardiões (Tufanocorte + Carcará como referências de renderização), preservando o químico B como identidade. Contorno escuro em degraus, sombras agrupadas, manchas e brilhos em blocos, menos linha fina e detalhe pequeno. Não é filtro nearest-neighbor aplicado à ilustração anterior nem promessa de pixel art em grade nativa única.
+
+Oito partes, quatro rostos e seis ações foram reexportados na nova fonte: 145 frames/12 fps, nenhum pixel cortado na borda do atlas. A expressão de ataque substitui também o alpha da mandíbula dentro da janela facial para não duplicar a boca fechada; RGBA fora das janelas permanece idêntico. Testes ativos apontam para v2. A versão ilustrada v1 permanece arquivada, não é mais o preset ativo.
+
+`prepare-sprites.py` extrai os onze componentes gerados e registra rostos; não inventa pixels ou recolore o desenho. Revisar o resultado interativamente antes de aprovar. Nenhuma integração no jogo. O editor arquiva o draft de artRevision anterior antes de abrir v2, preservando o rascunho em chave de histórico.
+
+As notas abaixo registram a entrega ilustrada anterior; quando houver conflito, prevalece a revisão 2 acima.
+
 Fonte de identidade: `origin/feature/retalho-bosque-d:art/creatures/pipa-dragao/quimico-b-v1/desatada-estudo.png`, criatura menor à direita. Cópia e hash preservados em `art/soulgen/campaign-redesigns-v1/references/pipa-dragao-git/`. Não usa a proposta azul descartada nem inventa nova espécie.
 
 Mantidos: quadrúpede pesado cinza-lilás manchado, crista escura, olho âmbar, presas, tubos verdes com flanges no tronco, cilindro dorsal, peitoral ocre com símbolo, vela rasgada e rabiola com fitas ocres. A montagem foi derivada com image_gen nativo, seguida de recortes mecânicos; a arte original do Git não foi sobrescrita.
