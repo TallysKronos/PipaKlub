@@ -79,6 +79,7 @@ static func award_emblem(player:Dictionary,id:String) -> bool:
 static func unlocked(player:Dictionary,id:String) -> bool:
 	var d:=definition(id)
 	if d.is_empty():return false
+	if not completed(player,id) and not str(d.get("startFlag","")).is_empty() and not player.get("flags",{}).get(d.startFlag,false):return false
 	return completed(player,id) or (player.get("journey",{}).get("phase")=="complete" if d.number==1 else completed(player,catalog()[int(d.number)-2].id))
 static func qualified(value:Dictionary,d:Dictionary) -> bool:
 	return d.stages.slice(0,4).all(func(s):return s.id in value.qualification)

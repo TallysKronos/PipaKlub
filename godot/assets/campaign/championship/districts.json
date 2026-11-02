@@ -1465,7 +1465,7 @@
       "id": "palafitas",
       "number": 7,
       "name": "Palafitas",
-      "playable": false,
+      "playable": true,
       "next": "alto-da-serra",
       "prerequisiteFlag": "",
       "unlocks": [],
@@ -1476,76 +1476,204 @@
       },
       "emblem": {
         "slot": 6,
-        "name": "Insígnia do Palafitas"
+        "name": "Insígnia das Palafitas"
       },
       "stages": [
         {
           "id": "palafitas-1",
           "part": "A",
           "role": "lieutenant",
-          "npcId": "palafitas-capanga-1",
-          "name": "Capanga 1",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "seyran",
+          "name": "Seyran",
+          "level": 24,
+          "before": [
+            [
+              "Seyran",
+              "O piso pode oscilar. Sua atenção, não. Vamos encontrar o equilíbrio."
+            ]
+          ],
+          "won": [
+            [
+              "Seyran",
+              "Você encontrou apoio sem prender o movimento. Boa linha."
+            ]
+          ],
+          "lost": [
+            [
+              "Seyran",
+              "Relaxe os ombros e encontre o apoio antes de puxar."
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 38,
+            "xp": 360,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "npcName": "Seyran",
+          "scene": "kronasta-palafitas-a",
+          "storySpritePath": "res://assets/npc-ds/palafitas-v1/seyran.png",
+          "point": [
+            22,
+            28
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Seyran",
+              "color": 2
+            }
+          ]
         },
         {
           "id": "palafitas-2",
           "part": "A",
           "role": "lieutenant",
-          "npcId": "palafitas-capanga-2",
-          "name": "Capanga 2",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "oruvo",
+          "name": "Oruvo",
+          "level": 25,
+          "before": [
+            [
+              "Oruvo",
+              "Uma vela precisa de espaço para respirar. Seu parceiro também! Vamos voar?"
+            ]
+          ],
+          "won": [
+            [
+              "Oruvo",
+              "Olha só esse voo! Tem lugar para você na nossa roda."
+            ]
+          ],
+          "lost": [
+            [
+              "Oruvo",
+              "Não tente vencer o vento no grito. Deixe a linha responder."
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 40,
+            "xp": 380,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "npcName": "Oruvo",
+          "scene": "kronasta-palafitas-a",
+          "storySpritePath": "res://assets/npc-ds/palafitas-v1/oruvo.png",
+          "point": [
+            30,
+            16
+          ],
+          "rounds": 2,
+          "styles": [
+            "reader"
+          ],
+          "foes": [
+            {
+              "name": "Oruvo",
+              "color": 3
+            }
+          ]
         },
         {
           "id": "palafitas-3",
           "part": "B",
           "role": "lieutenant",
-          "npcId": "palafitas-capanga-3",
-          "name": "Capanga 3",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "kessai",
+          "name": "Kessai",
+          "level": 25,
+          "before": [
+            [
+              "Kessai",
+              "Na travessia, hesitar também muda o rumo. Quero ver suas decisões!"
+            ]
+          ],
+          "won": [
+            [
+              "Kessai",
+              "Você acompanhou minha mudança de lado. Boa travessia!"
+            ]
+          ],
+          "lost": [
+            [
+              "Kessai",
+              "Olhou só para mim e esqueceu o vento. Tente outra vez!"
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 42,
+            "xp": 400,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "npcName": "Kessai",
+          "scene": "kronasta-palafitas-b",
+          "storySpritePath": "res://assets/npc-ds/palafitas-v1/kessai.png",
+          "point": [
+            18,
+            28
+          ],
+          "rounds": 2,
+          "styles": [
+            "aggressive"
+          ],
+          "foes": [
+            {
+              "name": "Kessai",
+              "color": 1
+            }
+          ]
         },
         {
           "id": "palafitas-4",
           "part": "B",
           "role": "lieutenant",
-          "npcId": "palafitas-capanga-4",
-          "name": "Capanga 4",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "veldren",
+          "name": "Veldren",
+          "level": 26,
+          "before": [
+            [
+              "Veldren",
+              "Uma passarela firme começa em cada apoio. Mostre como cuida da sua linha."
+            ]
+          ],
+          "won": [
+            [
+              "Veldren",
+              "Vocês souberam esperar. Caio está na doca da parte C."
+            ]
+          ],
+          "lost": [
+            [
+              "Veldren",
+              "Pressa não conserta apoio ruim. Descanse e tente de novo."
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 44,
+            "xp": 420,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "npcName": "Veldren",
+          "scene": "kronasta-palafitas-b",
+          "storySpritePath": "res://assets/npc-ds/palafitas-v1/veldren.png",
+          "point": [
+            30,
+            12
+          ],
+          "rounds": 2,
+          "styles": [
+            "patient"
+          ],
+          "foes": [
+            {
+              "name": "Veldren",
+              "color": 2
+            }
+          ]
         },
         {
           "id": "palafitas-5",
@@ -1554,17 +1682,50 @@
           "npcId": "caio-garca",
           "name": "Caio Garça",
           "level": 27,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "before": [
+            [
+              "Caio Garça",
+              "O vento chega para todos. Quero ver o que vocês fazem quando ele muda."
+            ]
+          ],
+          "won": [
+            [
+              "Caio Garça",
+              "O emblema é de vocês. Mantenham firme o vínculo, não a mão."
+            ]
+          ],
+          "lost": [
+            [
+              "Caio Garça",
+              "Ainda há vento para outra tentativa. Cuide do parceiro; eu espero."
+            ]
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 46,
+            "xp": 440,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "npcName": "Caio Garça",
+          "scene": "kronasta-palafitas-c",
+          "storySpritePath": "res://assets/npc-ds/palafitas-v1/caio.png",
+          "point": [
+            26,
+            12
+          ],
+          "rounds": 3,
+          "styles": [
+            "reader"
+          ],
+          "foes": [
+            {
+              "name": "Caio Garça",
+              "color": 2
+            }
+          ]
         }
-      ]
+      ],
+      "startFlag": "mormacoLiberto"
     },
     {
       "id": "alto-da-serra",

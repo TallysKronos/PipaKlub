@@ -40,6 +40,7 @@ func pure_model()->void:
 	var p:=base_player()
 	check(Rules.catalog().size()==12,"twelve district definitions")
 	for d:Dictionary in Rules.catalog():
+		if not str(d.get("startFlag","")).is_empty():p.flags[d.startFlag]=true
 		check(d.stages.size()==5 and d.stages.map(func(s):return s.part)==["A","A","B","B","C"],"AABB C "+d.id)
 		check(Rules.unlocked(p,d.id),"previous victory unlocks "+d.id)
 		for i in 5:

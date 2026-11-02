@@ -262,7 +262,7 @@ static func valid_encounter(value: Variant) -> bool:
 	if value.kind=="district":
 		var context:Variant=value.get("districtContext")
 		var rules=preload("res://scripts/campaign/district_rules.gd")
-		if not rules.valid_context(context) or context.district not in ["bambuzal","beira-canal","feira","cais","industrial"] or context.duel!=state.get("trailStage") or not valid_morro_state(state):return false
+		if not rules.valid_context(context) or context.district not in ["bambuzal","beira-canal","feira","cais","industrial","palafitas"] or context.duel!=state.get("trailStage") or not valid_morro_state(state):return false
 		var d:Dictionary=rules.definition(context.district)
 		var stage:Dictionary=d.stages.filter(func(s):return s.id==context.duel)[0]
 		if context.mode=="defense":
