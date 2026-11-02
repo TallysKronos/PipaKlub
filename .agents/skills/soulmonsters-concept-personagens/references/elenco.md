@@ -34,3 +34,5 @@ Bruno Solda: alternativa D escolhida pelo dono; prancha com costas e expressões
 - Cores principais: o azul do Kael não é a cor principal de outro jovem protagonista ou rival.
 - Grupo tem linguagem comum (seção 4 de `design-de-personagem.md`); indivíduo tem silhueta própria.
 - Personagem novo, parceiro novo ou nome novo é **proposta** até o dono aprovar.
+
+Caio Garça: campeão7 das Palafitas, Nv.27, definido na Bíblia atual. Exploração A/B/C/D colorida com silhuetas em `art/characters/caio-garca/concept-v1/`, em revisão. Idade, corpo, roupa e parceiro ainda não definidos. A tabela antiga de campeões pendentes acima não prevalece sobre os nomes atuais da Bíblia.
