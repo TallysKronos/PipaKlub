@@ -4,7 +4,7 @@
   "name": "Retalho mascarada · cicatrizes das Ruínas",
   "creatureId": "retalho-mascarada",
   "artRevision": 1,
-  "rigRevision": 1,
+  "rigRevision": 2,
   "preserveSourceAspect": true,
   "width": 760,
   "height": 800,
@@ -15,61 +15,61 @@
   "assets": {
     "body": {
       "name": "body",
-      "src": "/art/soulgen/keys/retalho-mascarada/cutout-rig-v1/body.png",
+      "src": "/art/soulgen/keys/retalho-mascarada/cutout-rig-v1/author-body.png",
       "width": 317,
       "height": 340
     },
     "head": {
       "name": "head",
-      "src": "/art/soulgen/keys/retalho-mascarada/cutout-rig-v1/head.png",
+      "src": "/art/soulgen/keys/retalho-mascarada/cutout-rig-v1/author-head.png",
       "width": 315,
       "height": 328
     },
     "armNear": {
       "name": "armNear",
-      "src": "/art/soulgen/keys/retalho-mascarada/cutout-rig-v1/armNear.png",
+      "src": "/art/soulgen/keys/retalho-mascarada/cutout-rig-v1/author-armNear.png",
       "width": 230,
       "height": 344
     },
     "armFar": {
       "name": "armFar",
-      "src": "/art/soulgen/keys/retalho-mascarada/cutout-rig-v1/armFar.png",
+      "src": "/art/soulgen/keys/retalho-mascarada/cutout-rig-v1/author-armFar.png",
       "width": 207,
       "height": 344
     },
     "legNear": {
       "name": "legNear",
-      "src": "/art/soulgen/keys/retalho-mascarada/cutout-rig-v1/legNear.png",
+      "src": "/art/soulgen/keys/retalho-mascarada/cutout-rig-v1/author-legNear.png",
       "width": 231,
       "height": 322
     },
     "legFar": {
       "name": "legFar",
-      "src": "/art/soulgen/keys/retalho-mascarada/cutout-rig-v1/legFar.png",
+      "src": "/art/soulgen/keys/retalho-mascarada/cutout-rig-v1/author-legFar.png",
       "width": 248,
       "height": 327
     },
     "tail": {
       "name": "tail",
-      "src": "/art/soulgen/keys/retalho-mascarada/cutout-rig-v1/tail.png",
+      "src": "/art/soulgen/keys/retalho-mascarada/cutout-rig-v1/author-tail.png",
       "width": 298,
       "height": 346
     },
     "fierce": {
       "name": "fierce",
-      "src": "/art/soulgen/keys/retalho-mascarada/cutout-rig-v1/head-fierce.png",
+      "src": "/art/soulgen/keys/retalho-mascarada/cutout-rig-v1/author-fierce.png",
       "width": 315,
       "height": 328
     },
     "hurt": {
       "name": "hurt",
-      "src": "/art/soulgen/keys/retalho-mascarada/cutout-rig-v1/head-hurt.png",
+      "src": "/art/soulgen/keys/retalho-mascarada/cutout-rig-v1/author-hurt.png",
       "width": 315,
       "height": 328
     },
     "happy": {
       "name": "happy",
-      "src": "/art/soulgen/keys/retalho-mascarada/cutout-rig-v1/head-happy.png",
+      "src": "/art/soulgen/keys/retalho-mascarada/cutout-rig-v1/author-happy.png",
       "width": 315,
       "height": 328
     }
@@ -86,14 +86,14 @@
         340
       ],
       "rect": [
-        252.5,
-        214,
+        265.0359884836852,
+        207.0536514029796,
         269.45,
         289
       ],
       "pivot": [
-        380,
-        350
+        392.5359884836852,
+        343.0536514029796
       ],
       "z": 3,
       "parent": null,
@@ -111,16 +111,16 @@
         328
       ],
       "rect": [
-        390,
-        113.75,
+        336.5456768119916,
+        136.3256329403162,
         236.25,
         246
       ],
       "pivot": [
-        480,
-        320
+        426.5456768119916,
+        342.5756329403162
       ],
-      "z": 7,
+      "z": 5,
       "parent": "body",
       "visible": true,
       "lag": 0,
@@ -173,14 +173,14 @@
         344
       ],
       "rect": [
-        375,
-        337.5,
+        346.23777534046246,
+        323.60730280595925,
         172.5,
         258
       ],
       "pivot": [
-        435,
-        360
+        406.23777534046246,
+        346.10730280595925
       ],
       "z": 6,
       "parent": "body",
@@ -198,19 +198,25 @@
         344
       ],
       "rect": [
-        327.5,
-        314,
+        416.8257014898091,
+        312.2634128507449,
         144.89999999999998,
         240.79999999999998
       ],
       "pivot": [
-        380,
-        335
+        469.3257014898091,
+        333.2634128507449
       ],
       "z": 1,
       "parent": "body",
       "visible": true,
-      "lag": 0
+      "lag": 0,
+      "artTransform": {
+        "rotation": -15,
+        "scale": 0.9090909090909091,
+        "flipX": false,
+        "flipY": false
+      }
     },
     {
       "id": "legNear",
@@ -223,16 +229,16 @@
         322
       ],
       "rect": [
-        285,
-        456.25,
+        276.6969426926241,
+        442.3573028059593,
         173.25,
         241.5
       ],
       "pivot": [
-        330,
-        475
+        321.6969426926241,
+        461.1073028059593
       ],
-      "z": 5,
+      "z": 4,
       "parent": "body",
       "visible": true,
       "lag": 0
@@ -248,14 +254,14 @@
         327
       ],
       "rect": [
-        224.6,
-        447,
+        319.1354629375743,
+        441.7902385522347,
         178.56,
         235.44
       ],
       "pivot": [
-        275,
-        465
+        369.53546293757427,
+        459.7902385522347
       ],
       "z": 2,
       "parent": "body",
@@ -273,14 +279,14 @@
         346
       ],
       "rect": [
-        111.5,
-        404,
+        103.19694269262405,
+        402.2634128507449,
         208.6,
         242.2
       ],
       "pivot": [
-        290,
-        460
+        281.696942692624,
+        458.2634128507449
       ],
       "z": 0,
       "parent": "body",
@@ -3494,8 +3500,8 @@
           0.8384146341463414
         ],
         "socket": [
-          0.844312488402301,
-          0.36678200692041524
+          0.5994050411145163,
+          0.4689341921707149
         ],
         "maxGap": 2
       },
@@ -3507,8 +3513,8 @@
           0.0872093023255814
         ],
         "socket": [
-          0.6773056225644832,
-          0.5051903114186851
+          0.5240370638588877,
+          0.4811545031244971
         ],
         "maxGap": 2
       },
@@ -3520,8 +3526,8 @@
           0.0872093023255814
         ],
         "socket": [
-          0.47318611987381703,
-          0.4186851211072664
+          0.7581729931568897,
+          0.43671197732790756
         ],
         "maxGap": 2
       },
@@ -3533,8 +3539,8 @@
           0.07763975155279502
         ],
         "socket": [
-          0.2876229356095751,
-          0.903114186851211
+          0.21028374172922215,
+          0.8790783785570232
         ],
         "maxGap": 2
       },
@@ -3542,12 +3548,12 @@
         "part": "legFar",
         "parent": "body",
         "anchor": [
-          0.28225806451612906,
+          0.2822580645161289,
           0.0764525993883792
         ],
         "socket": [
-          0.0835034329189089,
-          0.8685121107266436
+          0.3878251046720694,
+          0.8745210628001907
         ],
         "maxGap": 2
       },
@@ -3555,12 +3561,12 @@
         "part": "tail",
         "parent": "body",
         "anchor": [
-          0.8557046979865772,
+          0.8557046979865771,
           0.23121387283236997
         ],
         "socket": [
-          0.13917238819818148,
-          0.8512110726643599
+          0.06183319431782835,
+          0.869237928885001
         ],
         "maxGap": 2
       }
