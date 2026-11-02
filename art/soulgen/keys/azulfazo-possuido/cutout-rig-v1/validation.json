@@ -1,0 +1,45 @@
+{
+  "structure": {
+    "ok": true,
+    "errors": [],
+    "warnings": []
+  },
+  "anatomy": {
+    "warnings": [],
+    "notes": [
+      "OK · Encaixe head: desvio máximo 0.00 unidades.",
+      "OK · Encaixe wingLeft: desvio máximo 0.00 unidades.",
+      "OK · Encaixe wingRight: desvio máximo 0.00 unidades.",
+      "OK · Encaixe legLeft: desvio máximo 0.00 unidades.",
+      "OK · Encaixe legRight: desvio máximo 0.00 unidades.",
+      "OK · Encaixe tail: desvio máximo 0.00 unidades."
+    ]
+  },
+  "expressions": {
+    "fierce": {
+      "complete_head": true,
+      "opaque_ratio": 1.0143808307203963,
+      "canvas_identical": true
+    },
+    "hurt": {
+      "complete_head": true,
+      "opaque_ratio": 1.0286455309100762,
+      "canvas_identical": true
+    },
+    "happy": {
+      "complete_head": true,
+      "opaque_ratio": 1.0361940154066505,
+      "canvas_identical": true
+    }
+  },
+  "atlas": {
+    "frames": 132,
+    "size": [
+      2048,
+      4352
+    ],
+    "fps": 12,
+    "borderPixels": 0
+  },
+  "note": "Technical validation and rendered pose review; not author approval or game integration."
+}
