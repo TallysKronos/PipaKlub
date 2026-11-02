@@ -1,5 +1,7 @@
 # Platyx C — conversão spritelizada para Soulgen
 
+**Aprovação do dono registrada:** “aprovado next”. Refere-se à montagem spritelizada revision 1 apresentada no Soulgen. Nenhum novo arquivo editado foi anexado a essa aprovação; preservado o projeto atual, sem inventar ajustes manuais ou integração no jogo.
+
 Identidade recuperada de `origin/feature/retalho-bosque-d:art/characters/platyx/exploracao-v3/design-c.png`. A seleção C pelo dono está documentada no README da fonte. Cópia, decisão e hash em `art/soulgen/campaign-redesigns-v1/references/platyx-git/`. A/B e o conceito v2 são alternativas arquivadas, não identidade deste rig.
 
 Conversão com image_gen nativo, mantendo o ornitorrinco-pipa tímido e medroso: cabeça teal larga em losango, olhos castanhos preocupados sobre creme, bico e pés ocres, corpo índigo/creme, braços dobrados junto ao rosto e cauda larga teal/índigo com nó, vareta e duas fitas. Carcará e Tufanocorte usados somente como acabamento: contorno escuro em degraus, sombras em blocos, sem ilustrar novamente em linha fina. Não é garantia de pixel art de grade única.
