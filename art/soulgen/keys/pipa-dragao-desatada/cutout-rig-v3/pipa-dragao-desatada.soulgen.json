@@ -4,7 +4,7 @@
   "name": "Pipa-Dragão desatada · químico B",
   "creatureId": "pipa-dragao-desatada",
   "artRevision": 3,
-  "rigRevision": 1,
+  "rigRevision": 2,
   "preserveSourceAspect": true,
   "width": 860,
   "height": 600,
@@ -15,67 +15,67 @@
   "assets": {
     "body": {
       "name": "body",
-      "src": "/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/body.png",
+      "src": "/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/author-body.png",
       "width": 544,
       "height": 414
     },
     "head": {
       "name": "head",
-      "src": "/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/head.png",
+      "src": "/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/author-head.png",
       "width": 336,
       "height": 258
     },
     "frontNear": {
       "name": "frontNear",
-      "src": "/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/frontNear.png",
+      "src": "/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/author-frontNear.png",
       "width": 301,
       "height": 392
     },
     "frontFar": {
       "name": "frontFar",
-      "src": "/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/frontFar.png",
+      "src": "/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/author-frontFar.png",
       "width": 275,
       "height": 357
     },
     "rearNear": {
       "name": "rearNear",
-      "src": "/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/rearNear.png",
+      "src": "/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/author-rearNear.png",
       "width": 248,
       "height": 307
     },
     "rearFar": {
       "name": "rearFar",
-      "src": "/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/rearFar.png",
+      "src": "/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/author-rearFar.png",
       "width": 264,
       "height": 308
     },
     "tail": {
       "name": "tail",
-      "src": "/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/tail.png",
+      "src": "/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/author-tail.png",
       "width": 609,
       "height": 328
     },
     "equipment": {
       "name": "equipment",
-      "src": "/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/equipment.png",
+      "src": "/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/author-equipment.png",
       "width": 399,
       "height": 331
     },
     "fierce": {
       "name": "fierce",
-      "src": "/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/head-fierce.png",
+      "src": "/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/author-fierce.png",
       "width": 336,
       "height": 258
     },
     "hurt": {
       "name": "hurt",
-      "src": "/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/head-hurt.png",
+      "src": "/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/author-hurt.png",
       "width": 336,
       "height": 258
     },
     "happy": {
       "name": "happy",
-      "src": "/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/head-happy.png",
+      "src": "/art/soulgen/keys/pipa-dragao-desatada/cutout-rig-v3/author-happy.png",
       "width": 336,
       "height": 258
     }
@@ -117,14 +117,14 @@
         258
       ],
       "rect": [
-        48.52000000000001,
-        211.07999999999998,
+        88.25157161137011,
+        156.05760716570694,
         241.92,
         185.76
       ],
       "pivot": [
-        235,
-        291
+        274.7315716113701,
+        235.97760716570696
       ],
       "z": 7,
       "parent": "body",
@@ -179,14 +179,14 @@
         392
       ],
       "rect": [
-        248.8,
-        283.6,
+        306.2173407366786,
+        287.53017091673524,
         192.64000000000001,
         250.88
       ],
       "pivot": [
-        300,
-        322
+        357.41734073667857,
+        325.9301709167352
       ],
       "z": 6,
       "parent": "body",
@@ -204,14 +204,14 @@
         357
       ],
       "rect": [
-        198.98000000000002,
-        268.78,
+        228.88614431953204,
+        296.29119641714647,
         162.25,
         210.63
       ],
       "pivot": [
-        245,
-        303
+        274.906144319532,
+        330.5111964171465
       ],
       "z": 1,
       "parent": "body",
@@ -229,14 +229,14 @@
         307
       ],
       "rect": [
-        445.2,
-        316.2,
+        484.9315716113701,
+        304.4094872497943,
         158.72,
         196.48000000000002
       ],
       "pivot": [
-        490,
-        345
+        529.7315716113701,
+        333.20948724979434
       ],
       "z": 5,
       "parent": "body",
@@ -254,14 +254,14 @@
         308
       ],
       "rect": [
-        468.7,
-        298.45,
+        436.15327209578635,
+        304.3452563751028,
         155.76,
         181.72
       ],
       "pivot": [
-        510,
-        325
+        477.45327209578636,
+        330.8952563751028
       ],
       "z": 0,
       "parent": "body",
@@ -304,14 +304,14 @@
         331
       ],
       "rect": [
-        281,
-        64.5,
+        283.3949479023855,
+        60.56982908326478,
         259.35,
         215.15
       ],
       "pivot": [
-        411,
-        201
+        413.3949479023855,
+        197.06982908326478
       ],
       "z": 4,
       "parent": "body",
@@ -3875,8 +3875,8 @@
           0.430232558139535
         ],
         "socket": [
-          0.08009453781512606,
-          0.4761904761904763
+          0.18443164813910218,
+          0.28632714687959615
         ],
         "maxGap": 2
       },
@@ -3888,8 +3888,8 @@
           0.15306122448979584
         ],
         "socket": [
-          0.2507878151260505,
-          0.583160800552105
+          0.4015686468925383,
+          0.5967224669314536
         ],
         "maxGap": 2
       },
@@ -3901,8 +3901,8 @@
           0.1624649859943979
         ],
         "socket": [
-          0.10635504201680673,
-          0.5175983436853003
+          0.18489008487272066,
+          0.6125300083407402
         ],
         "maxGap": 2
       },
@@ -3914,8 +3914,8 @@
           0.14657980456026062
         ],
         "socket": [
-          0.7497373949579833,
-          0.6625258799171844
+          0.8540745052819594,
+          0.6218408807791386
         ],
         "maxGap": 2
       },
@@ -3927,8 +3927,8 @@
           0.14610389610389618
         ],
         "socket": [
-          0.8022584033613447,
-          0.593512767425811
+          0.7167890548733886,
+          0.6138552669948338
         ],
         "maxGap": 2
       },

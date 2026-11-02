@@ -3,6 +3,10 @@ import {fileURLToPath} from 'node:url';
 import {identity} from '../../../../tools/soulgen-studio/model.mjs';
 import {exportReview} from '../../../../tools/soulgen-studio/export-review.mjs';
 const dir=fileURLToPath(new URL('./cutout-rig-v3/',import.meta.url));
+if(fs.existsSync(dir+'author-import.json')&&!process.argv.includes('--rebuild-source')){
+ await exportReview(JSON.parse(fs.readFileSync(dir+'pipa-dragao-desatada.soulgen.json')),dir,{registration:JSON.parse(fs.readFileSync(dir+'registration.json'))});
+ process.exit(0);
+}
 const boxes=JSON.parse(fs.readFileSync(dir+'slices.json')).boxes;
 const project={schema:'soulgen-studio',version:1,name:'Pipa-Dragão desatada · químico B',creatureId:'pipa-dragao-desatada',artRevision:3,rigRevision:1,preserveSourceAspect:true,width:860,height:600,rootPivot:[390,300],assets:{},parts:[],clips:{},brief:{species:'Pipa-Dragão desatada, identidade químico B existente',view:'Três quartos para a esquerda',notes:'Fonte: origin/feature/retalho-bosque-d, quimico-b-v1/desatada-estudo.png. Peças derivadas e montagem em revisão; não é novo design ou integração.'}};
 const placement={

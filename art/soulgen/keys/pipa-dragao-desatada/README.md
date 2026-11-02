@@ -1,5 +1,11 @@
 # Pipa-Dragão desatada — químico B no Soulgen
 
+## Aprovada pelo dono — importação do projeto editado
+
+Arquivo recebido: `pipa-dragao-desatada-quimico-b.soulgen.json`. Preservados pixels embutidos e todos os ajustes de retângulos/pivôs da cabeça, pernas e equipamento; clipes mantidos como no arquivo exportado. Original integral em `cutout-rig-v3/author-approved.portable.soulgen.json`, SHA-256 em `author-import.json`. Rig ativo revision 2, artRevision 3. A exportação padrão agora respeita esse projeto aprovado em vez de reconstruir os encaixes iniciais. Drafts de revisão anterior são arquivados pelo editor.
+
+Reexportação validou oito partes, seis ações e 145 frames sem corte de borda. Aprovação visual registrada, sem integração no jogo nesta branch de arte.
+
 ## Revisão 3 — cabeça completa e encaixes dos membros
 
 Preset ativo: `cutout-rig-v3/`, artRevision 3. Corrigido o relato de perda da face na investida: cada variante agora contém **a cabeça inteira**, registrada no mesmo canvas/retângulo, sem overlay apenas de boca. Verificação exige pelo menos 75% da área opaca da cabeça normal em todas as expressões; as três atuais têm mais de 100%. Novas URLs evitam reutilização dos PNGs anteriores em cache. Draft anterior é arquivado pelo editor ao abrir esta revisão, não apagado.
