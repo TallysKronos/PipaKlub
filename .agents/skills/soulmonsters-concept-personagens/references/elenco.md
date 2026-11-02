@@ -40,3 +40,5 @@ Caio Garça: campeão7 das Palafitas, Nv.27, definido na Bíblia atual. Explora�
 Caio Garça — revisão V2: quatro opções coloridas e silhuetas em art/characters/caio-garca/concept-v2/, inspiradas em Makoko de Lagos como fantasia ancestral, conforme confirmação do usuário. V1 preservada; escolha pendente, sem canonizar figurino, idade ou parceiro.
 
 Caio Garça — direção V3 do usuário: velho esguio, máscara e punhos de um novo Soulmonster crocodiliano arredondado que emana veneno roxo. Concepts V2 A/B/C/D aprovados como reserva para outros personagens, sem atribuições definidas. V3 em exploração, criatura ainda sem nome.
+
+Caio Garça — V4 aprovada pelo usuário: rosto de senhor mais mangá, nariz simplificado. Arte em art/characters/caio-garca/concept-v4/caio-rosto-manga.png. V3 preservada; nenhuma integração de runtime nesta etapa.
