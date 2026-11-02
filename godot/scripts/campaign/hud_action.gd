@@ -1,4 +1,5 @@
 extends Control
+const Layout=preload("res://scripts/campaign/hud_layout.gd")
 ## Shared PIP-68 action. Reference volume 112×128 at 1080p; fixed art proportions.
 const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 const Ink = preload("res://scripts/campaign/battle_ink.gd")
@@ -57,7 +58,8 @@ func fill_polygons(progress: float) -> Array[PackedVector2Array]:
 
 func _draw() -> void:
 	var factor := size.y / 128.0
-	var readable:=ceili(14/maxf(.01,factor))
+	# Local units are scaled by factor; captions and numbers keep the handheld minimum.
+	var readable:=ceili(Layout.type("micro")/maxf(.01,factor))
 	draw_set_transform(Vector2((size.x-112*factor)/2,0),0,Vector2.ONE*factor)
 	var color: Color = Ink.COLORS.get(icon_id,Tokens.CEU)
 	var points := button_polygon()
@@ -93,6 +95,10 @@ func _draw() -> void:
 	var caption := "ESPECIAL" if action_id=="signature" else title.to_upper()
 	var font_size := maxi(18,readable)
 	var w := Tokens.label().get_string_size(caption,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x
+	# Long captions (HABILIDADE) shrink to the tile instead of crossing its stroke.
+	while w>108 and font_size>14:
+		font_size-=1
+		w=Tokens.label().get_string_size(caption,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size).x
 	draw_string_outline(Tokens.label(),Vector2((112-w)/2,126),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,4,Tokens.NANQUIM)
 	draw_string(Tokens.label(),Vector2((112-w)/2,126),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,Tokens.PAPEL)
 func _gui_input(event: InputEvent) -> void:

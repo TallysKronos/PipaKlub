@@ -4,8 +4,13 @@ const Hud=preload("res://scripts/campaign/hud.gd")
 const Ink=preload("res://scripts/campaign/battle_ink.gd")
 const T=preload("res://scripts/campaign/ui_tokens.gd")
 const PILOT=preload("res://assets/campaign/portrait-kael.png")
+const Layout=preload("res://scripts/campaign/hud_layout.gd")
+## Corners sit on the shared safe rectangle (hud_layout.gd), so the battle lines up
+## with exploration on Switch handheld, Steam Deck 16:10 and ultrawide.
 static func regions(size:Vector2,rivals:int=1) -> Dictionary:
-	return {"pilot":Rect2(20,14,300,66),"partner":Rect2(20,size.y-126,400,108),"clock":Rect2(size.x/2-45,12,90,90),"weather":Rect2(size.x/2-100,138,200,28),"rivals":Rect2(size.x-320,14,300,104 if rivals==1 else 66*rivals)}
+	var safe:=Layout.safe_rect(size)
+	var middle:=safe.get_center().x
+	return {"pilot":Rect2(safe.position,Vector2(300,64)),"partner":Rect2(safe.position.x,safe.end.y-112,400,112),"clock":Rect2(middle-45,safe.position.y-8,90,90),"weather":Rect2(middle-100,safe.position.y+116,200,28),"rivals":Rect2(safe.end.x-300,safe.position.y,300,104 if rivals==1 else 66*rivals)}
 static func text(c:CanvasItem,p:Vector2,value:String,font_size:int=16,color:Color=T.PAPEL) -> void:
 	c.draw_string(Hud.font(true),p,value,HORIZONTAL_ALIGNMENT_LEFT,-1,font_size,color)
 static func line_color(fraction:float) -> Color:
@@ -22,7 +27,7 @@ static func diamonds(c:CanvasItem,start:Vector2,won:int,total:int,color:Color) -
 		c.draw_colored_polygon(shape,color if index<won else T.TINTA_3)
 static func draw_on(c:Control,actors:Array,faces:Array,names:Array,player:Dictionary,seconds:float,round_no:int,rounds:int,wind:float,cost:int=0,lesson:int=-1,footer_top:float=-1) -> void:
 	var boxes:=regions(c.size,actors.size()-1)
-	if footer_top>=0:boxes.partner.position.y=footer_top-116
+	if footer_top>=0:boxes.partner.position.y=footer_top-boxes.partner.size.y-4
 	if actors[0].hp/actors[0].stats.line<.25:
 		var thickness:float=minf(c.size.x,c.size.y)*.06
 		for r in [Rect2(0,0,c.size.x,thickness),Rect2(0,c.size.y-thickness,c.size.x,thickness),Rect2(0,0,thickness,c.size.y),Rect2(c.size.x-thickness,0,thickness,c.size.y)]:c.draw_rect(r,T.alpha(T.TINTA,.3))
@@ -33,7 +38,7 @@ static func draw_on(c:Control,actors:Array,faces:Array,names:Array,player:Dictio
 	var xp:int=player.get("tamerXp",0)
 	var level:=1
 	while level<100 and xp>=20*level+3*level*level:level+=1
-	text(c,pilot.position+Vector2(72,48),"Tamer · Nv. %d"%level,14,T.PAPEL_2)
+	text(c,pilot.position+Vector2(72,48),"Tamer · Nv. %d"%level,Layout.type("micro"),T.PAPEL_2)
 	diamonds(c,pilot.position+Vector2(240,46),actors[0].get("rounds",0),rounds,T.CEU)
 	for index in range(1,actors.size()):
 		var a:Dictionary=rival_summary(actors[index])
@@ -43,33 +48,33 @@ static func draw_on(c:Control,actors:Array,faces:Array,names:Array,player:Dictio
 		var title:String=a.get("name","Selvagem")
 		text(c,box.position+Vector2(14,21),Ink.ellipsis(title+" · "+names[index],Hud.font(true),18,270),18)
 		var fraction:float=a.hp/a.stats.line
-		text(c,box.position+Vector2(14,43),"Linha",14)
+		text(c,box.position+Vector2(14,43),"Linha",Layout.type("micro"))
 		bar(c,Rect2(box.position+Vector2(66,32),Vector2(164,10)),fraction,line_color(fraction))
-		text(c,box.position+Vector2(240,43),"%d%%"%roundi(fraction*100),14)
+		text(c,box.position+Vector2(240,43),"%d%%"%roundi(fraction*100),Layout.type("micro"))
 		if compact:diamonds(c,box.position+Vector2(210,55),a.get("rounds",0),rounds,T.RABIOLA)
 		else:
-			text(c,box.position+Vector2(14,67),"Armação",14,T.PAPEL_2)
-			bar(c,Rect2(box.position+Vector2(80,57),Vector2(150,7)),a.hull/a.stats.line,T.PAPEL_2)
-			text(c,box.position+Vector2(240,67),"%d%%"%roundi(a.hull/a.stats.line*100),14)
-			text(c,box.position+Vector2(14,91),"Parceiro rival",14,T.PAPEL_2)
+			text(c,box.position+Vector2(14,67),"Armação",Layout.type("micro"),T.PAPEL_2)
+			bar(c,Rect2(box.position+Vector2(88,57),Vector2(142,7)),a.hull/a.stats.line,T.PAPEL_2)
+			text(c,box.position+Vector2(240,67),"%d%%"%roundi(a.hull/a.stats.line*100),Layout.type("micro"))
+			text(c,box.position+Vector2(14,91),"Parceiro rival",Layout.type("micro"),T.PAPEL_2)
 	var p:Dictionary=actors[0]
 	var card:Rect2=boxes.partner
 	Ink.plate(c,card,T.TINTA,T.CEU,12)
 	if faces[0]!=null:c.draw_texture_rect(faces[0],Hud.fit_texture(faces[0],Rect2(card.position+Vector2(5,5),Vector2(76,98))),false)
 	text(c,card.position+Vector2(90,23),Ink.ellipsis(names[0],Hud.font(true),20,290),20)
 	var f:float=p.hp/p.stats.line
-	text(c,card.position+Vector2(90,46),"Linha",14)
-	bar(c,Rect2(card.position+Vector2(154,34),Vector2(174,14)),f,line_color(f))
-	text(c,card.position+Vector2(339,46),"%d%%"%roundi(f*100),14)
-	text(c,card.position+Vector2(90,68),"Armação",14,T.PAPEL_2)
-	bar(c,Rect2(card.position+Vector2(154,58),Vector2(174,6)),p.hull/p.stats.line,T.PAPEL_2)
-	text(c,card.position+Vector2(339,68),"%d%%"%roundi(p.hull/p.stats.line*100),14)
-	text(c,card.position+Vector2(90,92),"Energia",14)
+	text(c,card.position+Vector2(90,46),"Linha",Layout.type("micro"))
+	bar(c,Rect2(card.position+Vector2(164,34),Vector2(168,14)),f,line_color(f))
+	text(c,card.position+Vector2(339,46),"%d%%"%roundi(f*100),Layout.type("micro"))
+	text(c,card.position+Vector2(90,68),"Armação",Layout.type("micro"),T.PAPEL_2)
+	bar(c,Rect2(card.position+Vector2(164,58),Vector2(168,6)),p.hull/p.stats.line,T.PAPEL_2)
+	text(c,card.position+Vector2(339,68),"%d%%"%roundi(p.hull/p.stats.line*100),Layout.type("micro"))
+	text(c,card.position+Vector2(90,92),"Energia",Layout.type("micro"))
 	for cell in 10:
-		var cell_rect:=Rect2(card.position+Vector2(154+cell*18,79),Vector2(15,10))
+		var cell_rect:=Rect2(card.position+Vector2(164+cell*17,80),Vector2(14,10))
 		c.draw_rect(cell_rect,T.CEU if p.energy/p.stats.energy>cell/10.0 else T.TINTA_3)
 		if cell<ceili(cost/p.stats.energy*10) and cost>0:c.draw_rect(cell_rect.grow(1),T.SOL,false,1)
-	text(c,card.position+Vector2(339,92),"%d%%"%roundi(p.energy/p.stats.energy*100),14)
+	text(c,card.position+Vector2(339,92),"%d%%"%roundi(p.energy/p.stats.energy*100),Layout.type("micro"))
 	var center:Vector2=boxes.clock.get_center()
 	var diamond:=PackedVector2Array([center+Vector2(0,-45),center+Vector2(55,0),center+Vector2(0,45),center+Vector2(-55,0)])
 	c.draw_colored_polygon(diamond,T.TINTA)
@@ -77,8 +82,8 @@ static func draw_on(c:Control,actors:Array,faces:Array,names:Array,player:Dictio
 	var color:=T.RABIOLA if seconds<=10 and lesson<0 else T.SOL
 	text(c,center+Vector2(-23,9),str(int(ceilf(seconds))) if lesson<0 else "%d/5"%(lesson+1),32,color)
 	Ink.plate(c,Rect2(center+Vector2(-60,49),Vector2(120,24)),T.TINTA,T.TINTA,4)
-	text(c,center+Vector2(-35,66),"RODADA %d"%round_no if lesson<0 else "TREINO",14)
+	text(c,center+Vector2(-35,66),"RODADA %d"%round_no if lesson<0 else "TREINO",Layout.type("micro"))
 	Ink.plate(c,boxes.weather,T.TINTA,T.TINTA,6)
-	text(c,boxes.weather.position+Vector2(14,20),"Vento %s · %s"%["leve" if absf(wind)<6 else "moderado","→" if wind>=0 else "←"],14,T.PAPEL_2)
+	text(c,boxes.weather.position+Vector2(14,20),"Vento %s · %s"%["leve" if absf(wind)<6 else "moderado","→" if wind>=0 else "←"],Layout.type("micro"),T.PAPEL_2)
 	if seconds<=10 and lesson<0:
 		text(c,Vector2(c.size.x/2-57,187),"ÚLTIMOS 10 s",16,T.RABIOLA)

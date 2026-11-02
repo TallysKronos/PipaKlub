@@ -1,6 +1,7 @@
 extends Control
 const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
+const Layout = preload("res://scripts/campaign/hud_layout.gd")
 signal save_requested(state: Dictionary)
 signal finish_requested
 signal leave_requested
@@ -197,6 +198,19 @@ func _ready() -> void:
 	_layout_actions()
 	footer_contents.minimum_size_changed.connect(_layout_actions.call_deferred)
 
+## Pause sits under the pilot plate, on the safe column; on a controller the + / Menu
+## button does the same, and the glyph shows which.
+func _place_resume() -> void:
+	var pilot:Rect2=CornerHud.regions(size).pilot
+	resume_button.offset_left=pilot.position.x
+	resume_button.offset_right=pilot.position.x+150
+	resume_button.offset_top=-size.y+pilot.end.y+Layout.space("s")
+	resume_button.offset_bottom=resume_button.offset_top+40
+	resume_button.icon=Controls.glyph("pause")
+	resume_button.expand_icon=true
+	resume_button.add_theme_constant_override("icon_max_width",26)
+	resume_button.add_theme_font_size_override("font_size",Layout.type("small"))
+
 func _layout_actions() -> void:
 	if not is_instance_valid(bottom_panel): return
 	var fighting: bool = model.outcome.is_empty() and not paused and not blocked
@@ -206,20 +220,22 @@ func _layout_actions() -> void:
 			var focused:=resume_button.has_focus()
 			resume_button.reparent(target,false)
 			resume_button.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT if target==status_row else Control.PRESET_BOTTOM_LEFT)
-			if target==self:
-				resume_button.offset_left=20;resume_button.offset_top=-size.y+88
-				resume_button.offset_right=150;resume_button.offset_bottom=-size.y+128
+			if target==self:_place_resume()
 			if focused and get_parent().get("pause_overlay")==null:Hud.focus_later(resume_button)
 	bottom_panel.anchor_top = 1
-	if resume_button.get_parent()==self:
-		resume_button.offset_top=-size.y+88
-		resume_button.offset_bottom=-size.y+128
+	if resume_button.get_parent()==self:_place_resume()
 	var result:bool=not model.outcome.is_empty()
 	if is_instance_valid(flee_button):
 		flee_button.visible=not result and model.get("actors")==null and not paused and not blocked
-		flee_button.text="Segure %s para fugir"%Controls.prompt("interact")
-		flee_button.position=Vector2(20,size.y-184)
-		flee_button.size=Vector2(250,40)
+		flee_button.text="Segure para fugir"
+		flee_button.icon=Controls.glyph("interact")
+		flee_button.expand_icon=true
+		flee_button.add_theme_constant_override("icon_max_width",28)
+		flee_button.add_theme_font_size_override("font_size",Layout.type("small"))
+		# Above the partner card, on the same safe column as every other corner.
+		var partner_box:Rect2=CornerHud.regions(size).partner
+		flee_button.size=Vector2(248,40)
+		flee_button.position=Vector2(partner_box.position.x,partner_box.position.y-flee_button.size.y-Layout.space("s"))
 	# Decorative strokes extend outside the content box. Only item lists scroll/clip.
 	footer_contents.get_parent().clip_contents=not result
 	var panel_width:=minf(1180,size.x-80) if result else size.x-48
@@ -228,7 +244,11 @@ func _layout_actions() -> void:
 	finish_button.size_flags_horizontal=Control.SIZE_SHRINK_END
 	finish_button.custom_minimum_size=Vector2(240,48)
 	if is_instance_valid(reward_card):reward_card.custom_minimum_size.y=clampf(size.y*.56,390,490)
-	bottom_panel.offset_bottom = -16 if fighting else -12
+	var safe:=Layout.safe_rect(size)
+	bottom_panel.offset_bottom = -(size.y-safe.end.y) if fighting else -12
+	if fighting:
+		bottom_panel.offset_left=safe.position.x
+		bottom_panel.offset_right=-(size.x-safe.end.x)
 	# The pause line has no place on the result screen: losing window focus pauses
 	# the view, and the bar would otherwise slide under the VITÓRIA header.
 	status_row.visible = blocked or (paused and not result)
@@ -489,7 +509,7 @@ func _draw_status() -> void:
 	_draw_phase()
 	CornerHud.draw_on(self,actors,faces,names,reward_player,model.duration,model.round_number if model.get("round_number")!=null else 1,model.rounds_to_win if model.get("rounds_to_win")!=null else 1,model.wind_strength(),cost)
 	if flee_hold>0:
-		draw_arc(Vector2(286,size.y-160),14,-PI/2,-PI/2+TAU*flee_hold,32,Tokens.SOL,3,true)
+		draw_arc(flee_button.position+Vector2(flee_button.size.x-22,flee_button.size.y/2),12,-PI/2,-PI/2+TAU*flee_hold,32,Tokens.SOL,3,true)
 
 func _draw_phase() -> void:
 	var message:=""
