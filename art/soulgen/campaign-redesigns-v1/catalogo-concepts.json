@@ -10,13 +10,28 @@
       "fonte": "trovareta-trovao-v2.png",
       "opcao": "A",
       "sha256": "8cee1978bc0e00362eaf950633c7a28935d476688f0d15e5ba5fe215ae840761",
-      "rig_pronto": false,
+      "rig_pronto": true,
       "integrado": false,
       "nome": "Trovareta",
       "contorno_carcara": {
         "fonte": "contorno-carcara-v1/trovareta.png",
         "estado": "acabamento-em-revisao",
         "rig_pronto": false
+      },
+      "soulgen": {
+        "project": "art/soulgen/keys/trovareta/cutout-rig-v1/trovareta.soulgen.json",
+        "preset": "trovareta",
+        "parts": 8,
+        "actions": 6,
+        "faces": [
+          "normal",
+          "fierce",
+          "hurt",
+          "happy"
+        ],
+        "status": "rig-local-em-revisao",
+        "browser_visual_tested": false,
+        "game_integrated": false
       }
     },
     {
