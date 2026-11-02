@@ -37,6 +37,10 @@ func exercise() -> bool:
 	var before:Dictionary=app.session.snapshot().player.duplicate(true)
 	for region in Atlas.REGIONS:
 		for scene in region.scenes:
+			if scene=="parque-patio-liga":
+				var locked:Dictionary=app.session.snapshot()
+				check(service.travel(scene).status=="wrong_step" and app.session.snapshot()==locked,"league patio requires historical qualification")
+				continue
 			if Checkpoint.is_kronasta(scene) and not scene.ends_with("-a"):
 				var unchanged:Dictionary=app.session.snapshot()
 				check(service.travel(scene).status=="wrong_step" and app.session.snapshot()==unchanged,"parts B/C require walking: "+scene)

@@ -13,6 +13,7 @@ var saved_checkpoint: Dictionary = {}
 var saved_player: Dictionary = {}
 var content: Dictionary = {}
 var paused := false
+var blue_guide:Node2D
 var ui_theme: Theme
 var exploration_hud: Control
 var markers: Array = []
@@ -93,8 +94,21 @@ func _ready() -> void:
 			guardian_frames=content.combat.lacertubo.animations.idle
 	_roll_encounter_distance()
 	encounter_grace=Pacing.walking_grace(saved_player)
+	if saved_checkpoint.scene=="park-trail" and load("res://scripts/campaign/blue_exam_preparation.gd").eligible(saved_player):
+		var entry:=Node2D.new();entry.position=model.project(Vector2(34.5,31.5));actors.add_child(entry)
+		var arrow:=Line2D.new();arrow.width=3;arrow.default_color=Color("43c5df");arrow.points=PackedVector2Array([Vector2(-14,7),Vector2(14,-7),Vector2(3,-9),Vector2(14,-7),Vector2(9,3)]);entry.add_child(arrow)
+		var label:=Label.new();label.text="Pátio da Liga";label.position=Vector2(-45,-32);label.add_theme_font_size_override("font_size",14);label.add_theme_color_override("font_outline_color",Color.BLACK);label.add_theme_constant_override("outline_size",5);entry.add_child(label)
+	if saved_checkpoint.scene=="parque-patio-liga":
+		follower_root.hide();exploration_hud.show_partner=false;exploration_hud.partner_panel.hide()
+		blue_guide=load("res://scripts/campaign/blue_exam_guide.gd").new();add_child(blue_guide)
+		var marks=load("res://scripts/campaign/blue_exam.gd")
+		exploration_hud.objective.text=marks.objective(saved_player)
 
 func _build_events() -> void:
+	if saved_checkpoint.scene=="parque-patio-liga":
+		var start:Vector2=load("res://scripts/campaign/blue_exam.gd").escort_start(saved_player)
+		for event:Dictionary in interaction_events:
+			if event.props.get("blueAction","")=="escort":event.u=int(start.x);event.v=int(start.y)
 	if saved_checkpoint.scene=="park-veredas":interaction_events.append_array(preload("res://scripts/campaign/feira_story.gd").door_events(saved_player))
 	if saved_checkpoint.scene=="park-veredas":
 		for event:Dictionary in preload("res://scripts/campaign/canal_gate.gd").events(saved_player):
@@ -182,6 +196,10 @@ func _build_markers() -> void:
 
 func refresh(value: Dictionary) -> void:
 	saved_player = value.duplicate(true)
+	if saved_checkpoint.get("scene")=="parque-patio-liga":
+		var at:Vector2=load("res://scripts/campaign/blue_exam.gd").escort_start(saved_player)
+		for event:Dictionary in interaction_events:
+			if event.props.get("blueAction","")=="escort":event.u=int(at.x);event.v=int(at.y)
 	collected_pieces.clear()
 	for actor in npc_nodes:
 		for event in model.data.events:
@@ -203,6 +221,7 @@ func refresh(value: Dictionary) -> void:
 		var scene: String=saved_checkpoint.get("scene","park-trail")
 		exploration_hud.objective.text = Bosque.objective(saved_player,scene) if Checkpoint.is_kronasta(scene) else Training.objective(saved_player,scene)
 		if Checkpoint.is_regional_preview(scene) and not Checkpoint.is_kronasta(scene):exploration_hud.objective.text="Explore os caminhos · M para viajar por Kronasta."
+		if scene=="parque-patio-liga":exploration_hud.objective.text=load("res://scripts/campaign/blue_exam.gd").objective(saved_player)
 
 func toggle_run() -> void:
 	if not paused and item_receipt.is_empty():super.toggle_run()

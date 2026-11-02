@@ -1,5 +1,5 @@
 extends RefCounted
-## Orientation only. Cida's exam and its rescue events are separate future content.
+## Orientation only. The playable patio exam is independent of Retalho's rescue.
 const Rules=preload("res://scripts/campaign/district_rules.gd")
 const AT=Vector2(1152,864)
 const SPACE="professor-home"

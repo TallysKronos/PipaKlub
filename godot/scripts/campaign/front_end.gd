@@ -1541,6 +1541,8 @@ func _park_event(id: String) -> void:
 		if str(int(event.id))!=id or not ParkCheckpoint.allowed(event,player,park.area_id): continue
 		if park.player.distance_to(Vector2(event.u+.5,event.v+.5))>1.8: return
 		var action: String = event.props.get("acao","")
+		if action=="blueExam":
+			_blue_station(str(event.props.blueAction));return
 		if action=="retalhoTrust":
 			_show_retalho_trust();return
 		if action=="retalhoTrustRest":
@@ -1610,6 +1612,14 @@ func _park_event(id: String) -> void:
 		return
 
 func _park_action(id: String) -> void:
+	if id=="blue-exam-checkpoint":
+		var result:Dictionary=load("res://scripts/campaign/blue_exam.gd").new(session).escort_checkpoint(park.blue_guide.course,park.player)
+		if _result(result):
+			park.blue_guide.course.accept();park.blue_guide.running=not park.blue_guide.course.complete;park.refresh(session.snapshot().player)
+		else:
+			park.blue_guide.course=load("res://scripts/campaign/blue_escort_model.gd").new(int(load("res://scripts/campaign/blue_exam.gd").record(session.snapshot().player).escort))
+			park.exploration_hud.objective.text="Não foi possível gravar o marco. O Carcará voltou ao último marco salvo; inicie a condução ali."
+		return
 	if id.begins_with("glide-land:"):
 		var result:Dictionary=load("res://scripts/campaign/nina_glide.gd").new(session).finish(id.trim_prefix("glide-land:"))
 		if _result(result):park.finish_glide();park.refresh(session.snapshot().player)
@@ -2861,7 +2871,7 @@ func _show_blue_preparation()->void:
 	var preparation=preload("res://scripts/campaign/blue_exam_preparation.gd")
 	if not preparation.eligible(session.snapshot().player) or not preparation.near(session,room.actor):return
 	if preparation.prepared(session.snapshot().player):
-		_notice("Sr. Assis: A orientação está registrada. A prova da Liga com Dona Cida ainda não está disponível nesta versão.");return
+		_notice("Sr. Assis: A orientação está registrada. Dona Cida aplica a prova no Pátio da Liga, junto ao Parque.");return
 	var entry:Dictionary=preparation.data()
 	flow_busy=true;room.can_walk=false;room.set_story_paused(true)
 	var generation:=opening_generation
@@ -2962,3 +2972,50 @@ func _show_retalho_bank()->void:
 			dialog.canceled.connect(dialog.queue_free);dialog.popup_centered())
 	_button("Voltar sem liberar ninguém",page,_show_saved)
 	if p.partners.size()<service.CAPACITY:_button("Voltar para acolher Retalho",page,_show_saved)
+
+func _blue_station(action:String)->void:
+	if flow_busy or not is_instance_valid(park):return
+	var exam=load("res://scripts/campaign/blue_exam.gd").new(session)
+	var p:Dictionary=session.snapshot().player
+	var point:Vector2=park.player
+	if action=="register":
+		if not exam.near(point,exam.CIDA):return
+		if exam.promoted(p):_notice("Dona Cida: Sua categoria Rabiola Azul está registrada. O campo de controle continua disponível para treino, sem novas recompensas.");return
+		if exam.stage(p)==3:
+			_confirm_park("Dona Cida · resultado da avaliação","Você observou o parceiro, respeitou seu ritmo e demonstrou controle. Posso registrar sua aprovação na categoria Rabiola Azul.","Registrar aprovação",func():
+				if _result(exam.claim(park.player)):
+					park.refresh(session.snapshot().player);park.celebrate_item("Categoria Rabiola Azul conquistada"))
+		else:_notice("Dona Cida: A avaliação tem três competências: observação, condução e controle. Todos usam o Carcará da Liga. Nenhum item ou recurso da sua equipe será gasto.\n\n"+exam.objective(p))
+	elif action=="observe":
+		if not _result(exam.observe(point)):return
+		_show_blue_observation(point)
+	elif action=="escort":
+		if not exam.near(point,exam.escort_start(p)):return
+		if not exam.record(p).care:_notice("Dona Cida: Primeiro, examine o Carcará e escolha o cuidado adequado na bancada elevada.");return
+		if exam.record(p).escort==3 and not exam.promoted(p):_notice("Dona Cida: Condução aprovada. Siga ao campo de controle.");return
+		park.blue_guide.begin();park.exploration_hud.objective.text="Acompanhe o Carcará. Ele vai parar se você se afastar demais."
+	elif action=="control":
+		if not exam.near(point,exam.CONTROL):return
+		if int(exam.record(p).escort)!=3:_notice("Dona Cida: Conclua primeiro a condução pelos três marcos.");return
+		_clear("page:EXAME AZUL · CONTROLE")
+		var view=load("res://scripts/campaign/blue_control_view.gd").new();view.name="BlueControlView";add_child(view)
+		view.left.connect(_show_saved)
+		view.finished.connect(func():
+			if _result(exam.control(view.model,point)):_show_saved())
+
+func _show_blue_observation(point:Vector2)->void:
+	var exam=load("res://scripts/campaign/blue_exam.gd").new(session)
+	_simple_page("OBSERVAÇÃO · Carcará da Liga",true)
+	var row:=HBoxContainer.new();row.add_theme_constant_override("separation",24);page.add_child(row)
+	var content_art:Dictionary=content.combat["basic-carcara"];var frame:Dictionary=content_art.animations.idle[0]
+	var texture:=AtlasTexture.new();texture.atlas=load("res://assets/campaign/"+content_art.image);texture.region=Rect2(frame.x,frame.y,frame.w,frame.h)
+	var art:=TextureRect.new();art.texture=texture;art.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;art.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;art.custom_minimum_size=Vector2(220,190);row.add_child(art)
+	_label("Armação íntegra. Linha íntegra. Movimentos lentos e sinais de cansaço.\n\nQual cuidado atende ao que você observou?",row,24).size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	var feedback:=_label("Escolha o cuidado. Nenhum material da sua bolsa será utilizado.",page,22)
+	for option in [["rest","Oferecer descanso · respeitar o cansaço"],["frame","Reparar a armação"],["line","Trocar a linha"]]:
+		var id:String=option[0]
+		_button(option[1],page,func():
+			var result:Dictionary=exam.care(id,point)
+			if result.status=="try_again":feedback.text=result.hint
+			elif _result(result):_show_saved())
+	_button("Voltar sem concluir o cuidado",page,_show_saved)

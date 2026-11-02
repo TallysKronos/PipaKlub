@@ -14,6 +14,7 @@ var objective_age:=0.0
 var idle_age:=0.0
 var coin_age:=10.0
 var pointer_mode:=false
+var show_partner:=true
 var objective:Label
 var prompt:Label
 var area:Label
@@ -201,7 +202,7 @@ func _layout() -> void:
 	objective_panel.visible=not objective.text.is_empty() and objective_age<4
 	partner_panel.position=Vector2(20,size.y-120*factor-20)
 	partner_panel.size=Vector2(360,120)*factor
-	partner_panel.visible=not partner.is_empty()
+	partner_panel.visible=show_partner and not partner.is_empty()
 	coins.text="%d moedas"%int(player_data.get("coins",0))
 	coins.position=partner_panel.position-Vector2(0,32)
 	coins.visible=coin_age<3

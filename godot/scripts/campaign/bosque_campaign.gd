@@ -20,6 +20,7 @@ func travel(destination: String) -> Dictionary:
 	if source!="quintal" and not Checkpoint.MAPS.has(source) and not preload("res://scripts/campaign/morro.gd").maps().has(source): return {"status":"wrong_step"}
 	if not preload("res://scripts/campaign/kronasta_atlas.gd").can_travel(destination,saved.player):return {"status":"wrong_step"}
 	if destination in ["park-trail","park-clearing","park-veredas"] and not Story.park_access(saved.player,destination):return {"status":"wrong_step"}
+	if destination=="parque-patio-liga" and not load("res://scripts/campaign/blue_exam_preparation.gd").eligible(saved.player):return {"status":"wrong_step"}
 	var target: Dictionary
 	var region:=Checkpoint.region_of(destination)
 	# Regions are entered by part A, and only while the story keeps them open.

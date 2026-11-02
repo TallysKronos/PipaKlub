@@ -1,6 +1,6 @@
 # Exame Azul — proposta jogável
 
-Estado: desenho de implementação, ainda sem novo mapa ou concessão de categoria. A estrutura de observação, condução e controle já foi aprovada. Local e Soulmonster da prova aguardam a escolha do dono nesta conversa. Os números abaixo são parâmetros propostos para o primeiro teste, não balanceamento aprovado.
+Estado: primeira versão jogável implementada. Local aprovado: Pátio da Liga no Parque; espécie aprovada: Carcará de avaliação emprestado. As opções abaixo preservam o estudo inicial; a implementação usa cansaço/descanso, três marcos de condução e três fases de controle. Ver `documentation/qa/blue-exam-v1/RELATORIO.md` para resultados e limites.
 
 ## Princípio
 
@@ -8,9 +8,9 @@ Dona Cida avalia qualquer candidato segundo o mesmo procedimento. Retalho, seus 
 
 Inscrição: categoria Verde e conclusão histórica dos bairros 5 e 6; perder o título de um bairro não apaga a qualificação. O Soulmonster de avaliação é emprestado pela Liga e nunca entra no banco. Sua condição é simulada: a prova não gasta itens, altera saúde, concede XP ou exige espaço no save.
 
-## Cenário proposto, aguardando confirmação
+## Cenário aprovado
 
-Recomendação: pátio de treinamento da Liga ligado ao Parque, com um Carcará de avaliação padronizado. É um anexo de uma região que já tem A/B/C, não uma região de mapa único. Alternativa: avaliação provisória no ateliê de Assis, sem antecipar uma sede nova da Liga.
+Decisão: pátio de treinamento da Liga ligado ao Parque, com um Carcará de avaliação padronizado. É um anexo de uma região que já tem A/B/C, não uma região de mapa único. Alternativa: avaliação provisória no ateliê de Assis, sem antecipar uma sede nova da Liga.
 
 ```
                [controle: campo de vento protegido]

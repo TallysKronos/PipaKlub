@@ -64,6 +64,7 @@ const BEATS := [
 	{"id":"galpao-retalho","act":3,"place":"industrial","text":"Atravesse a porta do depósito e investigue o galpão com Tyler e Retalho."},
 	{"id":"bruno-emblema","act":3,"place":"industrial","text":"Depois do galpão, vença os desafios da Vila Operária e dispute o emblema com Bruno Solda."},
 	{"id":"azul-preparacao","act":3,"place":"rua-dos-ventos","text":"Converse com o Sr. Assis sobre a prova de condução e cuidado da Liga."},
+	{"id":"exame-azul","act":3,"place":"parque","text":"Faça a prova de condução e cuidado no Pátio da Liga, junto ao Parque."},
 	{"id":"retalho-atelie","act":3,"place":"rua-dos-ventos","text":"Arco pessoal · volte ao ateliê e aproxime-se de Retalho sem puxar sua rabiola."},
 	{"id":"retalho-confianca","act":3,"place":"rua-dos-ventos","text":"Arco pessoal · acompanhe Retalho, sem exigir que ele fique."},
 ]
@@ -94,6 +95,7 @@ static func beat_done(player: Dictionary, id: String) -> bool:
 		"bruno-emblema":return preload("res://scripts/campaign/district_rules.gd").completed(player,"industrial")
 		"retalho-atelie":return f.get("assisReconheceuNoRetalho",false)
 		"retalho-confianca":return f.get("retalhoAcolhido",false)
+		"exame-azul":return f.get("leagueBlue",false)
 		"azul-preparacao":return preload("res://scripts/campaign/blue_exam_preparation.gd").prepared(player)
 		"foto-expedicao":return f.get("fotoExpedicaoLida",false)
 		"retalho-bosque":return f.get("retalhoBosqueVencido",false)
@@ -130,6 +132,7 @@ static func neighbourhoods_won(player: Dictionary) -> int:
 
 ## First exam is explicit and saved; loss of a district title cannot demote it.
 static func category(player: Dictionary) -> String:
+	if player.get("flags",{}).get("leagueBlue",false):return CATEGORIES[2]
 	return CATEGORIES[1] if player.get("flags",{}).get("leagueGreen",false) else CATEGORIES[0]
 
 static func act(player: Dictionary) -> int:
@@ -138,6 +141,7 @@ static func act(player: Dictionary) -> int:
 
 static func objective(player: Dictionary) -> String:
 	var beat:=current_beat(player)
+	if beat.get("id")=="exame-azul":return "Pátio da Liga · "+load("res://scripts/campaign/blue_exam.gd").objective(player)
 	if beat.get("id")=="retalho-confianca":return load("res://scripts/campaign/retalho_trust.gd").objective(player)
 	if not beat.is_empty(): return beat.text
 	if preload("res://scripts/campaign/blue_exam_preparation.gd").prepared(player):return preload("res://scripts/campaign/blue_exam_preparation.gd").data().prepared

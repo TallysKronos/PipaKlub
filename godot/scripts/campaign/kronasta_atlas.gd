@@ -2,7 +2,7 @@ extends RefCounted
 ## Public destinations only. Undeveloped biomes are display entries, never travel targets.
 const REGIONS := [
 	{"id":"vila","name":"Vila do Primeiro Vento","at":Vector2(.20,.23),"scenes":["quintal"],"parts":["Voltar à vila"],"description":"Lar do Kael, ateliê do professor e ruas do bairro."},
-	{"id":"parque","name":"Parque dos Ventos","at":Vector2(.35,.34),"scenes":["park-trail","park-clearing","park-veredas"],"parts":["Jardim das Pipas","Clareira do Papel","Veredas do Encanamento"],"description":"Trilhas, duelos e a missão da Nina. A viagem não conclui missões nem libera recompensas."},
+	{"id":"parque","name":"Parque dos Ventos","at":Vector2(.35,.34),"scenes":["park-trail","park-clearing","park-veredas","parque-patio-liga"],"parts":["Jardim das Pipas","Clareira do Papel","Veredas do Encanamento","Pátio da Liga · exame Azul"],"description":"Trilhas, duelos e a missão da Nina. A viagem não conclui missões nem libera recompensas."},
 	{"id":"bosque","name":"Bosque dos Ventos","at":Vector2(.40,.50),"scenes":["kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c"],"parts":["Trilha das Copas","Desvio do Riacho","Clareira do Marco"],"description":"Entre copas, riachos e mirantes. Três trilhas conectadas para explorar."},
 	{"id":"pantano","name":"Pântano dos Cipós","at":Vector2(.72,.30),"scenes":["kronasta-pantano-a","kronasta-pantano-b","kronasta-pantano-c"],"parts":["Entrada alagada","Desvio dos Cipós","Lago profundo"],"description":"Passarelas e margens entre águas escuras. Área em construção: exploração disponível, história e chefe ainda em desenvolvimento.","preview":true},
 	{"id":"montanha","name":"Montanhas de Kronasta","at":Vector2(.72,.60),"scenes":["kronasta-montanha-a","kronasta-montanha-b","kronasta-montanha-c"],"parts":["Sopé","Encosta","Cume"],"description":"Subidas em zigue-zague, paredões e caminhos elevados. Exploração disponível; história em desenvolvimento.","preview":true},
@@ -30,6 +30,7 @@ static func region_for(scene:String) -> String:
 	if scene.begins_with("morro"):return "morro"
 	return "vila"
 static func can_travel(scene:String,player:Dictionary={}) -> bool:
+	if scene=="parque-patio-liga":return load("res://scripts/campaign/blue_exam_preparation.gd").eligible(player)
 	for region in REGIONS:
 		if scene in region.scenes:return not region.get("preview",false) or preload("res://scripts/campaign/kronasta_story.gd").qa() or (region.id=="pantano" and load("res://scripts/campaign/retalho_trust.gd").swamp_open(player))
 	return false

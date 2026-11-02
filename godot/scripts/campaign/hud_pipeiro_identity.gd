@@ -194,6 +194,7 @@ func location() -> String:
 	if scene.begins_with("kronasta-"):return {"bosque":"Bosque de Kronasta","pantano":"Pântano de Kronasta","montanha":"Montanhas de Kronasta","industrial":"Distrito Industrial"}.get(scene.split("-")[1],"Kronasta")
 	return {"quintal":"Vila do Primeiro Vento","professor-home":"Ateliê do Sr. Assis","park-trail":"Jardim dos Ventos","park-clearing":"Clareira do Papel","park-veredas":"Veredas"}.get(scene,"Ateliê do Sr. Assis")
 func milestone() -> String:
+	if saved.player.get("flags",{}).get("leagueBlue",false):return "Exame Azul concluído"
 	if saved.player.get("flags",{}).get("leagueGreen",false):return "Exame Branca concluído"
 	if not saved.player.get("districtEmblems",{}).is_empty():return "Primeiro bairro conquistado"
 	if saved.player.get("flags",{}).get("guardianDefeated",false):return "O guardião das Veredas"

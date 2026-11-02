@@ -138,6 +138,8 @@ func select(index:int) -> void:
 			var destination_button:=action(parts,region.parts[i],func():travel_requested.emit(scene))
 			if scene in ["park-clearing","park-veredas"] and not Story.park_access(saved_player,scene):
 				destination_button.disabled=true;destination_button.text="Vença o Lohan · "+region.parts[i]
+			if scene=="parque-patio-liga" and not load("res://scripts/campaign/blue_exam_preparation.gd").eligible(saved_player):
+				destination_button.disabled=true;destination_button.text="Após bairros 5 e 6 · Pátio da Liga"
 	for i in markers.size():markers[i].selected=i==index;markers[i].queue_redraw()
 	queue_redraw()
 func _draw() -> void:
