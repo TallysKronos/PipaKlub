@@ -1,10 +1,10 @@
 {
   "schema": "soulgen-studio",
   "version": 1,
-  "name": "Rabiolava · guardiã da lava",
+  "name": "Rabiolava Â· guardiÃ£ da lava",
   "creatureId": "rabiolava",
   "artRevision": 1,
-  "rigRevision": 1,
+  "rigRevision": 2,
   "preserveSourceAspect": true,
   "width": 560,
   "height": 420,
@@ -104,7 +104,7 @@
     },
     {
       "id": "head",
-      "name": "Cabeça e expressão",
+      "name": "CabeÃ§a e expressÃ£o",
       "asset": "head",
       "source": [
         0,
@@ -113,14 +113,14 @@
         335
       ],
       "rect": [
-        242.84,
-        83.28,
+        257.19540626999355,
+        92.2371337172105,
         95.16,
         87.10000000000001
       ],
       "pivot": [
-        299,
-        167
+        313.3554062699936,
+        175.9571337172105
       ],
       "z": 5,
       "parent": "body",
@@ -172,7 +172,7 @@
     },
     {
       "id": "finNear",
-      "name": "Nadadeira próxima",
+      "name": "Nadadeira prÃ³xima",
       "asset": "finNear",
       "source": [
         0,
@@ -222,7 +222,7 @@
     },
     {
       "id": "tailNear",
-      "name": "Rabiola próxima · seda completa",
+      "name": "Rabiola prÃ³xima Â· seda completa",
       "asset": "tailNear",
       "source": [
         0,
@@ -247,7 +247,7 @@
     },
     {
       "id": "tailFar",
-      "name": "Rabiola distante · seda completa",
+      "name": "Rabiola distante Â· seda completa",
       "asset": "tailFar",
       "source": [
         0,
@@ -3888,12 +3888,12 @@
         "part": "head",
         "parent": "body",
         "anchor": [
-          0.5901639344262295,
+          0.5901639344262298,
           0.9611940298507462
         ],
         "socket": [
-          0.5145356315924878,
-          0.12572027239392353
+          0.6376417654574529,
+          0.21956137996029854
         ],
         "maxGap": 0.05
       },
