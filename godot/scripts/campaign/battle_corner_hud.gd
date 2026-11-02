@@ -43,7 +43,7 @@ static func draw_on(c:Control,actors:Array,faces:Array,names:Array,player:Dictio
 		var box:=Rect2(boxes.rivals.position+Vector2(0,(index-1)*66),Vector2(300,60 if compact else 104))
 		Ink.plate(c,box,T.TINTA,T.RABIOLA,10)
 		var title:String=a.get("name","Selvagem")
-		text(c,box.position+Vector2(14,21),Ink.ellipsis(title+" · "+names[index],Hud.font(true),18,270),18)
+		text(c,box.position+Vector2(14,21),Ink.ellipsis(names[index] if title.is_empty() else title+" · "+names[index],Hud.font(true),18,270),18)
 		var fraction:float=a.hp/a.stats.line
 		text(c,box.position+Vector2(14,43),"Linha",14)
 		bar(c,Rect2(box.position+Vector2(66,32),Vector2(164,10)),fraction,line_color(fraction))

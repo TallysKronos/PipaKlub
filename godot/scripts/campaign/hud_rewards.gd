@@ -31,6 +31,12 @@ static func preview(player: Dictionary, encounter: Dictionary, model: RefCounted
 			summary.unlock="Passagem liberada · "+str(Rules.stage(Rules.IDS[next_index]).get("name","próximo desafio"))
 		amount = Morro.reward_amount(won, reward.firstClear)
 		if reward.get("drop") != null: summary.items.append("Rabiola de Raio de sol")
+	elif encounter.get("kind","")=="warehouse-story":
+		if won:
+			if encounter.get("warehouseOpponent")=="gollia":summary.unlock="Porta do galpão liberada · parte B"
+			else:
+				summary.unlock="Pipa-Dragão livre · duelo com Bruno Solda liberado"
+				summary.items.append("Agulha de desatar")
 	elif encounter.get("kind","")=="feira-story":
 		if won:
 			summary.unlock="Lalau confessou · procure Grampo no beco do mercado" if encounter.feiraOpponent=="lalau" else "Recebido · Apito de vento verdadeiro"

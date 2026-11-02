@@ -53,7 +53,7 @@ func _initialize()->void:
 	check(service.start("industrial-5",point).status=="wrong_step","four wins cannot bypass warehouse")
 	check(service.objective(session.snapshot().player,"industrial").contains("Pipa-Dragão"),"warehouse objective is accurate")
 	var saved:Dictionary=session.snapshot()
-	# Test-only fixture; no production code grants the warehouse result.
+	# Isolated prerequisite fixture; the real warehouse receipt is covered in warehouse_story_checks.gd.
 	saved.player.flags.pipaDragaoDesatadaVencida=true
 	check(session.checkpoint(saved.checkpoint,saved.player).status=="ok","test warehouse result")
 	check(service.start("industrial-5",point).status=="ok","champion after prerequisite")

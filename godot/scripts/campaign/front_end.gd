@@ -1533,6 +1533,12 @@ func _park_event(id: String) -> void:
 		if str(int(event.id))!=id or not ParkCheckpoint.allowed(event,player,park.area_id): continue
 		if park.player.distance_to(Vector2(event.u+.5,event.v+.5))>1.8: return
 		var action: String = event.props.get("acao","")
+		if action in ["warehouseGollia","warehouseStory"]:
+			_request_warehouse(action=="warehouseGollia");return
+		if action=="warehouseRest":
+			_confirm_park("Banco de manutenção","Recuperar a linha e a armação da equipe?","Descansar",func():
+				if _result(load("res://scripts/campaign/warehouse_story.gd").new(session).rest(park.player)):park.refresh(session.snapshot().player))
+			return
 		if action=="retalhoStory":
 			_confirm_park("Retalho","Quem tem dono é fraco.\n\nRetalho estica as orelhas de papel e desafia Rabbito. Adversário Nv.22. Você pode recuar ou tentar novamente após uma derrota.","Aceitar desafio",func():
 				if _result(load("res://scripts/campaign/retalho_story.gd").new(session).begin(park.player)):_show_saved.call_deferred())
@@ -1734,6 +1740,8 @@ func _show_encounter() -> void:
 			if _result(load("res://scripts/campaign/district_campaign.gd").new(session).settle()):_return_district_result.call_deferred()
 		elif is_morro:
 			if _result(morro.settle()): _return_morro_result.call_deferred()
+		elif session.snapshot().player.encounter.kind=="warehouse-story":
+			if _result(load("res://scripts/campaign/warehouse_story.gd").new(session).settle()):_return_warehouse.call_deferred()
 		elif session.snapshot().player.encounter.kind=="retalho-story":
 			if _result(load("res://scripts/campaign/retalho_story.gd").new(session).settle()):_return_retalho.call_deferred()
 		elif session.snapshot().player.encounter.kind=="feira-story":
@@ -2738,6 +2746,47 @@ func _return_retalho()->void:
 	while is_instance_valid(scene_loading):await get_tree().process_frame
 	if session.snapshot().player.flags.get("retalhoBosqueVencido",false):
 		_notice("Retalho recua entre as copas antes que Kael se aproxime. Na base da rabiola, há um nó bem diferente dos outros.\n\nKael: Esse nó… parece feito para uma expedição.")
+
+func _request_warehouse(gollia:bool=false)->void:
+	var service=load("res://scripts/campaign/warehouse_story.gd").new(session)
+	var player:Dictionary=session.snapshot().player
+	if not service.available(player):
+		_notice("Antes de seguir: conclua o Cais Velho, encontre Retalho no Bosque e examine a foto da expedição no arquivo do ateliê.");return
+	if gollia:
+		if player.flags.get("golliaCarretelVencida",false):_notice("Gollia: Eu só aceitei o Carretel Negro para testar. Tem alguma coisa acontecendo no galpão, pela porta do depósito.");return
+		_confirm_park("Gollia · Nv. 23","Só vou testar esse Carretel Negro. Uma disputa, Kael?\n\nAzulão se prepara. Você pode recuar; derrota ou fuga permitem tentar novamente.","Disputar",func():
+			if _result(service.begin("gollia",park.player)):_show_saved.call_deferred())
+		return
+	if player.flags.get("pipaDragaoDesatadaVencida",false):_notice("As rabiolas já não estão presas juntas. Retalho precisa de cuidados no ateliê. O duelo com Bruno Solda está liberado.");return
+	if not player.flags.get("golliaCarretelVencida",false):_notice("Encontre Gollia junto ao depósito, na parte B.");return
+	var index:int=service.step(player)
+	var tableau=load("res://scripts/campaign/warehouse_tableau.gd").new()
+	tableau.beat=index;tableau.reduced_motion=preferences.reduced_motion;add_child(tableau)
+	park.path.clear();park.paused=true
+	var entry:Dictionary=service.nodes()[index] if index<3 else {"title":"Pipa-Dragão desatada · Nv. 25","text":"Tyler: As duas almas estão livres. Agora mantenha a linha firme, sem cortar a rabiola.\n\nO confronto pode ser vencido. Derrota ou fuga permitem tentar novamente, sem repetir a intervenção. A Agulha de desatar é uma recompensa única."}
+	var dialog:=_dialog(entry.title,entry.text,"Continuar" if index<3 else "Iniciar confronto","Continuar depois")
+	dialog.show_portraits=false
+	dialog.confirmed.connect(func():
+		var result:Dictionary=service.advance(index,park.player) if index<3 else service.begin("dragon",park.player)
+		if not _result(result):return
+		dialog.queue_free()
+		if index<3:_request_warehouse.call_deferred(false)
+		else:_show_saved.call_deferred())
+	dialog.canceled.connect(dialog.queue_free)
+	dialog.tree_exiting.connect(func():
+		if is_instance_valid(tableau):tableau.queue_free()
+		if is_instance_valid(park):park.paused=false)
+	dialog.popup_centered()
+
+func _return_warehouse()->void:
+	_show_saved()
+	while is_instance_valid(scene_loading):await get_tree().process_frame
+	var result:Dictionary=session.snapshot().player.get("lastWarehouse",{})
+	if result.get("outcome")!="won":return
+	if result.opponent=="gollia":_notice("Gollia recua. A porta do galpão está adiante, na frente do depósito.")
+	else:
+		if is_instance_valid(park):park.celebrate_item("Recebido · Agulha de desatar")
+		_notice("As almas estão livres. Kael se aproxima de Retalho, ainda ferido.\n\nTyler: Vamos levá-lo ao ateliê.\n\nAgulha de desatar guardada. Sua função de remontagem será integrada depois. Bruno Solda já pode ser desafiado.")
 
 func _show_expedition_photo()->void:
 	if not is_instance_valid(room) or room.actor.distance_to(preload("res://scripts/campaign/expedition_photo.gd").AT)>110:return

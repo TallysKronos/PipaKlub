@@ -67,7 +67,7 @@ func configure(data: Dictionary, state: Dictionary) -> void:
 	model = Model.new()
 	model.restore(state)
 	var assets := {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "lacertubo": "lacertubo"}
-	art_ids.assign([assets.get(model.model_id, "rabbito"), model.enemy_model_id if model.enemy_model_id.begins_with("rascunho-") or model.enemy_model_id in ["platyx-draft","retalho-original"] else assets.get(model.enemy_model_id, "lacertubo")])
+	art_ids.assign([assets.get(model.model_id, "rabbito"), model.enemy_model_id if model.enemy_model_id.begins_with("rascunho-") or model.enemy_model_id in ["platyx-draft","retalho-original","pipa-dragao-desatada"] else assets.get(model.enemy_model_id, "lacertubo")])
 	for id in art_ids: textures.append(load("res://assets/campaign/" + content.combat[id].image))
 	background = load("res://assets/campaign/veredas-arena-wide-v2.png")
 	guardian_frame = load("res://assets/campaign/guardian-frame.png")
@@ -422,6 +422,7 @@ func _project_field(point: Vector2) -> Vector2:
 	return _field_origin() + point * _field_scale()
 
 func _draw_foreground() -> void:
+	if reward_encounter.get("kind")=="warehouse-story":return
 	var source: Texture2D = foreground
 	var cap := source.get_width() / 4.0
 	var height := size.y * .15
@@ -467,6 +468,7 @@ func _draw() -> void:
 		var frames: Array = content.combat[art_ids[index]].animations[action]
 		var frame: Dictionary = _sprite_frame(index,actor,action)
 		var width := 230 if index == 1 and model.q.boss else 180
+		if index==1 and model.enemy_model_id=="pipa-dragao-desatada":width=290
 		var opponent:Dictionary=model.q if index==0 else model.p
 		var flip:bool=Ink.facing_flip(art_ids[index],actor.x,opponent.x)
 		Ink.live_sprite(self, textures[index], art_ids[index], frame, Vector2(actor.x, actor.y), width, Tokens.UNTINTED, _field_scale(),flip)
@@ -488,6 +490,8 @@ func _action_held(action: String) -> bool:
 	return Controls.held(action) or bool(pointer_held.get(action, false)) or bool(pointer_tapped.get(action, false))
 
 func _draw_field_background() -> void:
+	if reward_encounter.get("kind")=="warehouse-story":
+		preload("res://scripts/campaign/warehouse_battle_field.gd").draw_on(self,size);return
 	var height := size.y
 	var bounds := Rect2(0, 0, size.x, height)
 	var scale := maxf(bounds.size.x / background.get_width(), bounds.size.y / background.get_height())
@@ -509,6 +513,7 @@ func _draw_status() -> void:
 					title=partner.get("personalName",title)
 					level=Model.level_for_xp(partner.get("xp",0))
 		if index>0 and model.enemy_model_id.begins_with("rascunho-"):title="Bicho-pau de Vareta [rascunho]" if model.enemy_model_id=="rascunho-bicho-pau" else "Joaninha-pião [rascunho]"
+		if index>0 and model.enemy_model_id=="pipa-dragao-desatada":title="Pipa-Dragão desatada"
 		names.append("%s · Nv. %d"%[title,level])
 	var cost:int=0
 	for command in move_cards:
