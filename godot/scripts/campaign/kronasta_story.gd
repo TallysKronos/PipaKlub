@@ -59,6 +59,7 @@ const BEATS := [
 	{"id":"mural-primeiro-laco","act":2,"place":"caverna","text":"Atravesse a Caverna do Mural e encontre Tyler no salão das marcas antigas."},
 	{"id":"cais-emblema","act":3,"place":"cais","text":"Explore o Cais Velho, vença os quatro pipeiros e dispute o quinto emblema com Marisol."},
 	{"id":"retalho-bosque","act":3,"place":"bosque","text":"Após vencer o Cais, siga pela saída norte da Clareira do Marco e encontre Retalho no Bosque D."},
+	{"id":"foto-expedicao","act":3,"place":"rua-dos-ventos","text":"Volte ao ateliê do Sr. Assis e examine o arquivo na mesa de estudos."},
 ]
 
 ## QA previews: built maps whose story gate does not exist yet open only in development
@@ -82,6 +83,7 @@ static func mikka_defeated(player: Dictionary) -> bool:
 static func beat_done(player: Dictionary, id: String) -> bool:
 	var f:=flags(player)
 	match id:
+		"foto-expedicao":return f.get("fotoExpedicaoLida",false)
 		"retalho-bosque":return f.get("retalhoBosqueVencido",false)
 		"cais-emblema":return preload("res://scripts/campaign/district_rules.gd").completed(player,"cais")
 		"canal-pipeiros":return preload("res://scripts/campaign/district_rules.gd").qualified(preload("res://scripts/campaign/district_rules.gd").entry(player,"beira-canal"),preload("res://scripts/campaign/district_rules.gd").definition("beira-canal"))

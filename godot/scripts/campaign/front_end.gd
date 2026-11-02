@@ -815,6 +815,9 @@ func _show_world() -> void:
 	var data: Dictionary = ShopData.room() if shop else (content.rooms.professor if professor else content.rooms.street).duplicate(true)
 	if not professor and not shop and not data.hotspots.any(func(h: Dictionary): return h.id == "morro"):
 		data.hotspots.append({"id": "morro", "name": "Morro do Sol", "x": 2592, "y": 1040})
+	if professor and preload("res://scripts/campaign/expedition_photo.gd").available(session.snapshot().player):
+		for spot:Dictionary in data.hotspots:
+			if spot.id=="study":spot.name="Arquivo de expedições"
 	room = Room.new()
 	stage.add_child(room)
 	room.configure(data, point.position, true, "*", professor, true)
@@ -982,6 +985,8 @@ func _world_interact(id: String) -> void:
 		TutorialStaging.leave_atelier(self)
 	elif id == "professor":
 		TutorialStaging.meet_professor(self)
+	elif id=="study" and point.scene=="professor-home" and preload("res://scripts/campaign/expedition_photo.gd").available(session.snapshot().player):
+		_show_expedition_photo()
 	elif id == "workbench":
 		TutorialStaging.open_workbench(self)
 	else:
@@ -2733,3 +2738,22 @@ func _return_retalho()->void:
 	while is_instance_valid(scene_loading):await get_tree().process_frame
 	if session.snapshot().player.flags.get("retalhoBosqueVencido",false):
 		_notice("Retalho recua entre as copas antes que Kael se aproxime. Na base da rabiola, há um nó bem diferente dos outros.\n\nKael: Esse nó… parece feito para uma expedição.")
+
+func _show_expedition_photo()->void:
+	if not is_instance_valid(room) or room.actor.distance_to(preload("res://scripts/campaign/expedition_photo.gd").AT)>110:return
+	var service=preload("res://scripts/campaign/expedition_photo.gd").new(session)
+	room.can_walk=false;flow_busy=true
+	var photo:=preload("res://scripts/campaign/expedition_photo_view.gd").new()
+	photo.name="ExpeditionPhotograph";add_child(photo)
+	var dialog:=_dialog("Uma foto entre os arquivos",service.pages(),"Guardar lembrança","Fechar por enquanto")
+	dialog.name="ExpeditionPhotoDialogue"
+	dialog.confirmed.connect(func():
+		var result:Dictionary=service.read(room.actor)
+		if result.status in ["ok","already_applied"]:dialog.queue_free()
+		else:_result(result))
+	dialog.canceled.connect(dialog.queue_free)
+	dialog.tree_exiting.connect(func():
+		if is_instance_valid(photo):photo.queue_free()
+		if is_instance_valid(room):room.can_walk=true
+		flow_busy=false)
+	dialog.popup_centered()
