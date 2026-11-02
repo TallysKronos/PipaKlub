@@ -1,0 +1,6442 @@
+{
+  "batches": [
+    {
+      "batch": "1280x720-100-world",
+      "exitCode": 0,
+      "seconds": 22.9,
+      "images": [
+        {
+          "shot": "bedroom",
+          "file": "capturas\\100\\bedroom.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "street",
+          "file": "capturas\\100\\street.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "professor",
+          "file": "capturas\\100\\professor.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "park",
+          "file": "capturas\\100\\park.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "trail",
+          "file": "capturas\\100\\trail.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "clearing",
+          "file": "capturas\\100\\clearing.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro",
+          "file": "capturas\\100\\morro.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-2",
+          "file": "capturas\\100\\morro-2.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-3",
+          "file": "capturas\\100\\morro-3.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-4",
+          "file": "capturas\\100\\morro-4.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-5",
+          "file": "capturas\\100\\morro-5.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-dialog",
+          "file": "capturas\\100\\morro-dialog.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        }
+      ],
+      "nativeFindings": [],
+      "paper": [
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "bedroom"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "street"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "professor"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "park"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "trail"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "clearing"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "morro"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "morro-2"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "morro-3"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "morro-4"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "morro-5"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "morro-dialog"
+        }
+      ],
+      "scriptError": false
+    },
+    {
+      "batch": "1280x720-100-interface",
+      "exitCode": 0,
+      "seconds": 46.3,
+      "images": [
+        {
+          "shot": "menu",
+          "file": "capturas\\100\\menu.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "slots",
+          "file": "capturas\\100\\slots.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "settings",
+          "file": "capturas\\100\\settings.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "controls",
+          "file": "capturas\\100\\controls.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "map",
+          "file": "capturas\\100\\map.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "kronasta",
+          "file": "capturas\\100\\kronasta.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "practice",
+          "file": "capturas\\100\\practice.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "workshop",
+          "file": "capturas\\100\\workshop.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "care",
+          "file": "capturas\\100\\care.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "boss",
+          "file": "capturas\\100\\boss.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "live",
+          "file": "capturas\\100\\live.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "impact",
+          "file": "capturas\\100\\impact.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "paused",
+          "file": "capturas\\100\\paused.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "victory",
+          "file": "capturas\\100\\victory.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "victory-unfocused",
+          "file": "capturas\\100\\victory-unfocused.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "defeat",
+          "file": "capturas\\100\\defeat.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "team",
+          "file": "capturas\\100\\team.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "bag",
+          "file": "capturas\\100\\bag.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "pause",
+          "file": "capturas\\100\\pause.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-battle",
+          "file": "capturas\\100\\morro-battle.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "dex",
+          "file": "capturas\\100\\dex.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "evolution",
+          "file": "capturas\\100\\evolution.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "emblems",
+          "file": "capturas\\100\\emblems.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "identity",
+          "file": "capturas\\100\\identity.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "missions",
+          "file": "capturas\\100\\missions.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        }
+      ],
+      "nativeFindings": [
+        {
+          "control": "[P: (24.0, 678.0), S: (319.0, 64.0)]",
+          "ink": "[P: (123.0, 698.0), S: (121.0, 24.0)]",
+          "issue": "texto sai da tela",
+          "path": "@HBoxContainer@114957/@ScrollContainer@114960/@VBoxContainer@114961/@Button@115000<dialogue_option>",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "dex",
+          "text": "??? · registro 07"
+        },
+        {
+          "control": "[P: (437.0, 586.0), S: (752.0, 61.0)]",
+          "ink": "[P: (437.0, 586.0), S: (190.0, 61.0)]",
+          "issue": "texto sai do painel @PanelContainer@129236",
+          "path": "@PanelContainer@129236<menu_surface>/@ScrollContainer@129239/@VBoxContainer@129240/@Label@129272",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "evolution",
+          "text": "Próximo marco · Nv. 2\nFaltam 40 XP"
+        },
+        {
+          "control": "[P: (437.0, 661.0), S: (752.0, 61.0)]",
+          "ink": "[P: (437.0, 661.0), S: (686.0, 61.0)]",
+          "issue": "texto sai da tela",
+          "path": "@PanelContainer@129236<menu_surface>/@ScrollContainer@129239/@VBoxContainer@129240/@Label@129273",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "evolution",
+          "text": "Este parceiro mantém sua forma ao ganhar níveis."
+        },
+        {
+          "control": "[P: (437.0, 661.0), S: (752.0, 61.0)]",
+          "ink": "[P: (437.0, 661.0), S: (686.0, 61.0)]",
+          "issue": "texto sai do painel @PanelContainer@129236",
+          "path": "@PanelContainer@129236<menu_surface>/@ScrollContainer@129239/@VBoxContainer@129240/@Label@129273",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "evolution",
+          "text": "Este parceiro mantém sua forma ao ganhar níveis."
+        },
+        {
+          "control": "[P: (437.0, 736.0), S: (752.0, 93.0)]",
+          "ink": "[P: (437.0, 736.0), S: (173.0, 93.0)]",
+          "issue": "texto sai da tela",
+          "path": "@PanelContainer@129236<menu_surface>/@ScrollContainer@129239/@VBoxContainer@129240/@Label@129274",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "evolution",
+          "text": "Linha base · 100\nPotência · 100%\nResistência · 1"
+        },
+        {
+          "control": "[P: (437.0, 736.0), S: (752.0, 93.0)]",
+          "ink": "[P: (437.0, 736.0), S: (173.0, 93.0)]",
+          "issue": "texto sai do painel @PanelContainer@129236",
+          "path": "@PanelContainer@129236<menu_surface>/@ScrollContainer@129239/@VBoxContainer@129240/@Label@129274",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "evolution",
+          "text": "Linha base · 100\nPotência · 100%\nResistência · 1"
+        },
+        {
+          "control": "[P: (713.0, 502.0), S: (479.0, 125.0)]",
+          "ink": "[P: (713.0, 502.0), S: (391.0, 125.0)]",
+          "issue": "texto sai do painel @PanelContainer@143540",
+          "path": "@PanelContainer@143540<menu_surface>/@ScrollContainer@143543/@VBoxContainer@143544/@Label@143549",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "emblems",
+          "text": "Este encaixe espera uma conquista sua.\n\nVença o "
+        }
+      ],
+      "paper": [
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "menu"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "slots"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "settings"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "controls"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "map"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "kronasta"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "practice"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "workshop"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "care"
+        },
+        {
+          "failures": 0,
+          "glyphs": 41,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "boss"
+        },
+        {
+          "failures": 0,
+          "glyphs": 38,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "live"
+        },
+        {
+          "failures": 0,
+          "glyphs": 38,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "impact"
+        },
+        {
+          "failures": 0,
+          "glyphs": 38,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "paused"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "victory"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "victory-unfocused"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "defeat"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "team"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "bag"
+        },
+        {
+          "failures": 0,
+          "glyphs": 8,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "pause"
+        },
+        {
+          "failures": 0,
+          "glyphs": 49,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "morro-battle"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "dex"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "evolution"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "emblems"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "identity"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "missions"
+        }
+      ],
+      "scriptError": false
+    },
+    {
+      "batch": "1920x1080-100-world",
+      "exitCode": 0,
+      "seconds": 25.2,
+      "images": [
+        {
+          "shot": "bedroom",
+          "file": "capturas\\100\\bedroom-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "street",
+          "file": "capturas\\100\\street-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "professor",
+          "file": "capturas\\100\\professor-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "park",
+          "file": "capturas\\100\\park-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "trail",
+          "file": "capturas\\100\\trail-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "clearing",
+          "file": "capturas\\100\\clearing-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro",
+          "file": "capturas\\100\\morro-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-2",
+          "file": "capturas\\100\\morro-2-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-3",
+          "file": "capturas\\100\\morro-3-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-4",
+          "file": "capturas\\100\\morro-4-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-5",
+          "file": "capturas\\100\\morro-5-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-dialog",
+          "file": "capturas\\100\\morro-dialog-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        }
+      ],
+      "nativeFindings": [],
+      "paper": [
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "bedroom"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "street"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "professor"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "park"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "trail"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "clearing"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "morro"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "morro-2"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "morro-3"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "morro-4"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "morro-5"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "morro-dialog"
+        }
+      ],
+      "scriptError": false
+    },
+    {
+      "batch": "1920x1080-100-interface",
+      "exitCode": 0,
+      "seconds": 51.4,
+      "images": [
+        {
+          "shot": "menu",
+          "file": "capturas\\100\\menu-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "slots",
+          "file": "capturas\\100\\slots-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "settings",
+          "file": "capturas\\100\\settings-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "controls",
+          "file": "capturas\\100\\controls-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "map",
+          "file": "capturas\\100\\map-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "kronasta",
+          "file": "capturas\\100\\kronasta-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "practice",
+          "file": "capturas\\100\\practice-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "workshop",
+          "file": "capturas\\100\\workshop-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "care",
+          "file": "capturas\\100\\care-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "boss",
+          "file": "capturas\\100\\boss-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "live",
+          "file": "capturas\\100\\live-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "impact",
+          "file": "capturas\\100\\impact-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "paused",
+          "file": "capturas\\100\\paused-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "victory",
+          "file": "capturas\\100\\victory-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "victory-unfocused",
+          "file": "capturas\\100\\victory-unfocused-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "defeat",
+          "file": "capturas\\100\\defeat-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "team",
+          "file": "capturas\\100\\team-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "bag",
+          "file": "capturas\\100\\bag-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "pause",
+          "file": "capturas\\100\\pause-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-battle",
+          "file": "capturas\\100\\morro-battle-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "dex",
+          "file": "capturas\\100\\dex-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "evolution",
+          "file": "capturas\\100\\evolution-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "emblems",
+          "file": "capturas\\100\\emblems-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "identity",
+          "file": "capturas\\100\\identity-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "missions",
+          "file": "capturas\\100\\missions-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        }
+      ],
+      "nativeFindings": [
+        {
+          "control": "[P: (24.0, 678.0), S: (319.0, 64.0)]",
+          "ink": "[P: (123.0, 698.0), S: (121.0, 24.0)]",
+          "issue": "texto sai da tela",
+          "path": "@HBoxContainer@114957/@ScrollContainer@114960/@VBoxContainer@114961/@Button@115000<dialogue_option>",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "dex-1920x1080",
+          "text": "??? · registro 07"
+        },
+        {
+          "control": "[P: (437.0, 586.0), S: (752.0, 61.0)]",
+          "ink": "[P: (437.0, 586.0), S: (190.0, 61.0)]",
+          "issue": "texto sai do painel @PanelContainer@129236",
+          "path": "@PanelContainer@129236<menu_surface>/@ScrollContainer@129239/@VBoxContainer@129240/@Label@129272",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "evolution-1920x1080",
+          "text": "Próximo marco · Nv. 2\nFaltam 40 XP"
+        },
+        {
+          "control": "[P: (437.0, 661.0), S: (752.0, 61.0)]",
+          "ink": "[P: (437.0, 661.0), S: (686.0, 61.0)]",
+          "issue": "texto sai da tela",
+          "path": "@PanelContainer@129236<menu_surface>/@ScrollContainer@129239/@VBoxContainer@129240/@Label@129273",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "evolution-1920x1080",
+          "text": "Este parceiro mantém sua forma ao ganhar níveis."
+        },
+        {
+          "control": "[P: (437.0, 661.0), S: (752.0, 61.0)]",
+          "ink": "[P: (437.0, 661.0), S: (686.0, 61.0)]",
+          "issue": "texto sai do painel @PanelContainer@129236",
+          "path": "@PanelContainer@129236<menu_surface>/@ScrollContainer@129239/@VBoxContainer@129240/@Label@129273",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "evolution-1920x1080",
+          "text": "Este parceiro mantém sua forma ao ganhar níveis."
+        },
+        {
+          "control": "[P: (437.0, 736.0), S: (752.0, 93.0)]",
+          "ink": "[P: (437.0, 736.0), S: (173.0, 93.0)]",
+          "issue": "texto sai da tela",
+          "path": "@PanelContainer@129236<menu_surface>/@ScrollContainer@129239/@VBoxContainer@129240/@Label@129274",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "evolution-1920x1080",
+          "text": "Linha base · 100\nPotência · 100%\nResistência · 1"
+        },
+        {
+          "control": "[P: (437.0, 736.0), S: (752.0, 93.0)]",
+          "ink": "[P: (437.0, 736.0), S: (173.0, 93.0)]",
+          "issue": "texto sai do painel @PanelContainer@129236",
+          "path": "@PanelContainer@129236<menu_surface>/@ScrollContainer@129239/@VBoxContainer@129240/@Label@129274",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "evolution-1920x1080",
+          "text": "Linha base · 100\nPotência · 100%\nResistência · 1"
+        },
+        {
+          "control": "[P: (713.0, 502.0), S: (479.0, 125.0)]",
+          "ink": "[P: (713.0, 502.0), S: (391.0, 125.0)]",
+          "issue": "texto sai do painel @PanelContainer@143540",
+          "path": "@PanelContainer@143540<menu_surface>/@ScrollContainer@143543/@VBoxContainer@143544/@Label@143549",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "emblems-1920x1080",
+          "text": "Este encaixe espera uma conquista sua.\n\nVença o "
+        }
+      ],
+      "paper": [
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "menu"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "slots"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "settings"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "controls"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "map"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "kronasta"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "practice"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "workshop"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "care"
+        },
+        {
+          "failures": 0,
+          "glyphs": 41,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "boss"
+        },
+        {
+          "failures": 0,
+          "glyphs": 38,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "live"
+        },
+        {
+          "failures": 0,
+          "glyphs": 38,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "impact"
+        },
+        {
+          "failures": 0,
+          "glyphs": 38,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "paused"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "victory"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "victory-unfocused"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "defeat"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "team"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "bag"
+        },
+        {
+          "failures": 0,
+          "glyphs": 8,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "pause"
+        },
+        {
+          "failures": 0,
+          "glyphs": 49,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "morro-battle"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "dex"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "evolution"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "emblems"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "identity"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "missions"
+        }
+      ],
+      "scriptError": false
+    },
+    {
+      "batch": "1024x768-100-world",
+      "exitCode": 0,
+      "seconds": 21.0,
+      "images": [
+        {
+          "shot": "bedroom",
+          "file": "capturas\\100\\bedroom-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "street",
+          "file": "capturas\\100\\street-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "professor",
+          "file": "capturas\\100\\professor-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "park",
+          "file": "capturas\\100\\park-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "trail",
+          "file": "capturas\\100\\trail-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "clearing",
+          "file": "capturas\\100\\clearing-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro",
+          "file": "capturas\\100\\morro-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-2",
+          "file": "capturas\\100\\morro-2-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-3",
+          "file": "capturas\\100\\morro-3-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-4",
+          "file": "capturas\\100\\morro-4-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-5",
+          "file": "capturas\\100\\morro-5-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-dialog",
+          "file": "capturas\\100\\morro-dialog-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        }
+      ],
+      "nativeFindings": [],
+      "paper": [
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "bedroom"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "street"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "professor"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "park"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "trail"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "clearing"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "morro"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "morro-2"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "morro-3"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "morro-4"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "morro-5"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "morro-dialog"
+        }
+      ],
+      "scriptError": false
+    },
+    {
+      "batch": "1024x768-100-interface",
+      "exitCode": 0,
+      "seconds": 46.6,
+      "images": [
+        {
+          "shot": "menu",
+          "file": "capturas\\100\\menu-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "slots",
+          "file": "capturas\\100\\slots-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "settings",
+          "file": "capturas\\100\\settings-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "controls",
+          "file": "capturas\\100\\controls-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "map",
+          "file": "capturas\\100\\map-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "kronasta",
+          "file": "capturas\\100\\kronasta-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "practice",
+          "file": "capturas\\100\\practice-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "workshop",
+          "file": "capturas\\100\\workshop-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "care",
+          "file": "capturas\\100\\care-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "boss",
+          "file": "capturas\\100\\boss-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "live",
+          "file": "capturas\\100\\live-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "impact",
+          "file": "capturas\\100\\impact-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "paused",
+          "file": "capturas\\100\\paused-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "victory",
+          "file": "capturas\\100\\victory-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "victory-unfocused",
+          "file": "capturas\\100\\victory-unfocused-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "defeat",
+          "file": "capturas\\100\\defeat-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "team",
+          "file": "capturas\\100\\team-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "bag",
+          "file": "capturas\\100\\bag-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "pause",
+          "file": "capturas\\100\\pause-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-battle",
+          "file": "capturas\\100\\morro-battle-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "dex",
+          "file": "capturas\\100\\dex-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "evolution",
+          "file": "capturas\\100\\evolution-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "emblems",
+          "file": "capturas\\100\\emblems-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "identity",
+          "file": "capturas\\100\\identity-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "missions",
+          "file": "capturas\\100\\missions-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        }
+      ],
+      "nativeFindings": [],
+      "paper": [
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "menu"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "slots"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "settings"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "controls"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "map"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "kronasta"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "practice"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "workshop"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "care"
+        },
+        {
+          "failures": 0,
+          "glyphs": 41,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "boss"
+        },
+        {
+          "failures": 0,
+          "glyphs": 38,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "live"
+        },
+        {
+          "failures": 0,
+          "glyphs": 38,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "impact"
+        },
+        {
+          "failures": 0,
+          "glyphs": 38,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "paused"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "victory"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "victory-unfocused"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "defeat"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "team"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "bag"
+        },
+        {
+          "failures": 0,
+          "glyphs": 8,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "pause"
+        },
+        {
+          "failures": 0,
+          "glyphs": 49,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "morro-battle"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "dex"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "evolution"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "emblems"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "identity"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "missions"
+        }
+      ],
+      "scriptError": false
+    },
+    {
+      "batch": "1280x800-100-world",
+      "exitCode": 0,
+      "seconds": 22.2,
+      "images": [
+        {
+          "shot": "bedroom",
+          "file": "capturas\\100\\bedroom-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "street",
+          "file": "capturas\\100\\street-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "professor",
+          "file": "capturas\\100\\professor-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "park",
+          "file": "capturas\\100\\park-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "trail",
+          "file": "capturas\\100\\trail-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "clearing",
+          "file": "capturas\\100\\clearing-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro",
+          "file": "capturas\\100\\morro-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-2",
+          "file": "capturas\\100\\morro-2-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-3",
+          "file": "capturas\\100\\morro-3-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-4",
+          "file": "capturas\\100\\morro-4-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-5",
+          "file": "capturas\\100\\morro-5-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-dialog",
+          "file": "capturas\\100\\morro-dialog-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        }
+      ],
+      "nativeFindings": [],
+      "paper": [
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "bedroom"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "street"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "professor"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "park"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "trail"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "clearing"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "morro"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "morro-2"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "morro-3"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "morro-4"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "morro-5"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "morro-dialog"
+        }
+      ],
+      "scriptError": false
+    },
+    {
+      "batch": "1280x800-100-interface",
+      "exitCode": 0,
+      "seconds": 47.2,
+      "images": [
+        {
+          "shot": "menu",
+          "file": "capturas\\100\\menu-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "slots",
+          "file": "capturas\\100\\slots-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "settings",
+          "file": "capturas\\100\\settings-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "controls",
+          "file": "capturas\\100\\controls-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "map",
+          "file": "capturas\\100\\map-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "kronasta",
+          "file": "capturas\\100\\kronasta-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "practice",
+          "file": "capturas\\100\\practice-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "workshop",
+          "file": "capturas\\100\\workshop-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "care",
+          "file": "capturas\\100\\care-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "boss",
+          "file": "capturas\\100\\boss-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "live",
+          "file": "capturas\\100\\live-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "impact",
+          "file": "capturas\\100\\impact-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "paused",
+          "file": "capturas\\100\\paused-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "victory",
+          "file": "capturas\\100\\victory-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "victory-unfocused",
+          "file": "capturas\\100\\victory-unfocused-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "defeat",
+          "file": "capturas\\100\\defeat-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "team",
+          "file": "capturas\\100\\team-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "bag",
+          "file": "capturas\\100\\bag-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "pause",
+          "file": "capturas\\100\\pause-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-battle",
+          "file": "capturas\\100\\morro-battle-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "dex",
+          "file": "capturas\\100\\dex-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "evolution",
+          "file": "capturas\\100\\evolution-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "emblems",
+          "file": "capturas\\100\\emblems-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "identity",
+          "file": "capturas\\100\\identity-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "missions",
+          "file": "capturas\\100\\missions-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        }
+      ],
+      "nativeFindings": [],
+      "paper": [
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "menu"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "slots"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "settings"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "controls"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "map"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "kronasta"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "practice"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "workshop"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "care"
+        },
+        {
+          "failures": 0,
+          "glyphs": 41,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "boss"
+        },
+        {
+          "failures": 0,
+          "glyphs": 38,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "live"
+        },
+        {
+          "failures": 0,
+          "glyphs": 38,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "impact"
+        },
+        {
+          "failures": 0,
+          "glyphs": 38,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "paused"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "victory"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "victory-unfocused"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "defeat"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "team"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "bag"
+        },
+        {
+          "failures": 0,
+          "glyphs": 8,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "pause"
+        },
+        {
+          "failures": 0,
+          "glyphs": 49,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "morro-battle"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "dex"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "evolution"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "emblems"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "identity"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "missions"
+        }
+      ],
+      "scriptError": false
+    },
+    {
+      "batch": "1280x720-150-world",
+      "exitCode": 0,
+      "seconds": 21.5,
+      "images": [
+        {
+          "shot": "bedroom",
+          "file": "capturas\\150\\bedroom.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "street",
+          "file": "capturas\\150\\street.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "professor",
+          "file": "capturas\\150\\professor.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "park",
+          "file": "capturas\\150\\park.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "trail",
+          "file": "capturas\\150\\trail.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "clearing",
+          "file": "capturas\\150\\clearing.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro",
+          "file": "capturas\\150\\morro.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-2",
+          "file": "capturas\\150\\morro-2.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-3",
+          "file": "capturas\\150\\morro-3.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-4",
+          "file": "capturas\\150\\morro-4.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-5",
+          "file": "capturas\\150\\morro-5.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-dialog",
+          "file": "capturas\\150\\morro-dialog.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        }
+      ],
+      "nativeFindings": [],
+      "paper": [
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "bedroom"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "street"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "professor"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "park"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "trail"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "clearing"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "morro"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "morro-2"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "morro-3"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "morro-4"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "morro-5"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "morro-dialog"
+        }
+      ],
+      "scriptError": false
+    },
+    {
+      "batch": "1920x1080-150-world",
+      "exitCode": 0,
+      "seconds": 24.9,
+      "images": [
+        {
+          "shot": "bedroom",
+          "file": "capturas\\150\\bedroom-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "street",
+          "file": "capturas\\150\\street-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "professor",
+          "file": "capturas\\150\\professor-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "park",
+          "file": "capturas\\150\\park-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "trail",
+          "file": "capturas\\150\\trail-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "clearing",
+          "file": "capturas\\150\\clearing-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro",
+          "file": "capturas\\150\\morro-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-2",
+          "file": "capturas\\150\\morro-2-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-3",
+          "file": "capturas\\150\\morro-3-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-4",
+          "file": "capturas\\150\\morro-4-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-5",
+          "file": "capturas\\150\\morro-5-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-dialog",
+          "file": "capturas\\150\\morro-dialog-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        }
+      ],
+      "nativeFindings": [],
+      "paper": [
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "bedroom"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "street"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "professor"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "park"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "trail"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "clearing"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "morro"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "morro-2"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "morro-3"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "morro-4"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "morro-5"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "morro-dialog"
+        }
+      ],
+      "scriptError": false
+    },
+    {
+      "batch": "1920x1080-150-interface",
+      "exitCode": 0,
+      "seconds": 51.2,
+      "images": [
+        {
+          "shot": "menu",
+          "file": "capturas\\150\\menu-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "slots",
+          "file": "capturas\\150\\slots-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "settings",
+          "file": "capturas\\150\\settings-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "controls",
+          "file": "capturas\\150\\controls-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "map",
+          "file": "capturas\\150\\map-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "kronasta",
+          "file": "capturas\\150\\kronasta-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "practice",
+          "file": "capturas\\150\\practice-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "workshop",
+          "file": "capturas\\150\\workshop-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "care",
+          "file": "capturas\\150\\care-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "boss",
+          "file": "capturas\\150\\boss-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "live",
+          "file": "capturas\\150\\live-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "impact",
+          "file": "capturas\\150\\impact-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "paused",
+          "file": "capturas\\150\\paused-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "victory",
+          "file": "capturas\\150\\victory-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "victory-unfocused",
+          "file": "capturas\\150\\victory-unfocused-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "defeat",
+          "file": "capturas\\150\\defeat-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "team",
+          "file": "capturas\\150\\team-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "bag",
+          "file": "capturas\\150\\bag-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "pause",
+          "file": "capturas\\150\\pause-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-battle",
+          "file": "capturas\\150\\morro-battle-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "dex",
+          "file": "capturas\\150\\dex-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "evolution",
+          "file": "capturas\\150\\evolution-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "emblems",
+          "file": "capturas\\150\\emblems-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "identity",
+          "file": "capturas\\150\\identity-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        },
+        {
+          "shot": "missions",
+          "file": "capturas\\150\\missions-1920x1080.png",
+          "expected": [
+            1920,
+            1080
+          ],
+          "actual": [
+            1920,
+            1080
+          ],
+          "pass": true
+        }
+      ],
+      "nativeFindings": [
+        {
+          "control": "[P: (670.0, 393.0), S: (492.0, 68.0)]",
+          "ink": "[P: (736.0, 405.0), S: (529.0, 44.0)]",
+          "issue": "texto sai do painel @Button@283",
+          "path": "@HBoxContainer@260/@PanelContainer@276<hud_result_plate>/@VBoxContainer@277/@Button@283",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "controls-1920x1080",
+          "text": "Esquiva / corrida na exploração   ·   Shift"
+        },
+        {
+          "control": "[P: (90.0, 655.0), S: (150.0, 68.0)]",
+          "ink": "[P: (111.5, 667.0), S: (107.0, 44.0)]",
+          "issue": "texto a 9 px da borda da tela",
+          "path": "@VBoxContainer@86316/@VBoxContainer@86326<hud_inventory>/@HBoxContainer@86344/@Button@86345",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "bag-1920x1080",
+          "text": "Anterior"
+        },
+        {
+          "control": "[P: (256.0, 655.0), S: (150.0, 68.0)]",
+          "ink": "[P: (277.5, 667.0), S: (107.0, 44.0)]",
+          "issue": "texto a 9 px da borda da tela",
+          "path": "@VBoxContainer@86316/@VBoxContainer@86326<hud_inventory>/@HBoxContainer@86344/@Button@86346",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "bag-1920x1080",
+          "text": "Próxima"
+        },
+        {
+          "control": "[P: (422.0, 666.0), S: (195.0, 46.0)]",
+          "ink": "[P: (422.0, 666.0), S: (195.0, 46.0)]",
+          "issue": "texto a 8 px da borda da tela",
+          "path": "@VBoxContainer@86316/@VBoxContainer@86326<hud_inventory>/@HBoxContainer@86344/@Label@86347",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "bag-1920x1080",
+          "text": "1 / 2 · 5 itens"
+        },
+        {
+          "control": "[P: (90.0, 741.0), S: (180.0, 68.0)]",
+          "ink": "[P: (152.0, 753.0), S: (77.0, 44.0)]",
+          "issue": "texto sai da tela",
+          "path": "@MarginContainer@86315/@VBoxContainer@86316/@HBoxContainer@86352/@Button@86353",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "bag-1920x1080",
+          "text": "Voltar"
+        },
+        {
+          "control": "[P: (302.0, 741.0), S: (206.0, 68.0)]",
+          "ink": "[P: (324.0, 753.0), S: (240.0, 44.0)]",
+          "issue": "texto sai da tela",
+          "path": "@MarginContainer@86315/@VBoxContainer@86316/@HBoxContainer@86352/@Button@86354",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "bag-1920x1080",
+          "text": "Cuidar do parceiro"
+        },
+        {
+          "control": "[P: (302.0, 741.0), S: (206.0, 68.0)]",
+          "ink": "[P: (324.0, 753.0), S: (240.0, 44.0)]",
+          "issue": "texto sai do painel @Button@86354",
+          "path": "@MarginContainer@86315/@VBoxContainer@86316/@HBoxContainer@86352/@Button@86354",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "bag-1920x1080",
+          "text": "Cuidar do parceiro"
+        },
+        {
+          "control": "[P: (592.0, 752.0), S: (188.0, 46.0)]",
+          "ink": "[P: (592.0, 752.0), S: (188.0, 46.0)]",
+          "issue": "texto sai da tela",
+          "path": "@VBoxContainer@86316/@HBoxContainer@86352/@HBoxContainer@86355<recorte_input_hint>/@Label@86357",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "bag-1920x1080",
+          "text": "Aba anterior"
+        },
+        {
+          "control": "[P: (864.0, 752.0), S: (187.0, 46.0)]",
+          "ink": "[P: (864.0, 752.0), S: (187.0, 46.0)]",
+          "issue": "texto sai da tela",
+          "path": "@VBoxContainer@86316/@HBoxContainer@86352/@HBoxContainer@86358<recorte_input_hint>/@Label@86360",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "bag-1920x1080",
+          "text": "Próxima aba"
+        },
+        {
+          "control": "[P: (256.0, 711.0), S: (86.0, 37.0)]",
+          "ink": "[P: (269.0, 711.0), S: (60.0, 37.0)]",
+          "issue": "texto sai da tela",
+          "path": "@HBoxContainer@157803/@PanelContainer@157804/@VBoxContainer@157805/@Label@157807",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "identity-1920x1080",
+          "text": "Nv. 1"
+        },
+        {
+          "control": "[P: (827.0, 671.0), S: (381.0, 42.0)]",
+          "ink": "[P: (827.0, 671.0), S: (351.0, 42.0)]",
+          "issue": "texto a 7 px da borda da tela",
+          "path": "@HBoxContainer@157799/@PanelContainer@157820/@VBoxContainer@157821/@Label@157824",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "identity-1920x1080",
+          "text": "Parceiros na coleção       1"
+        },
+        {
+          "control": "[P: (827.0, 715.0), S: (381.0, 41.0)]",
+          "ink": "[P: (827.0, 715.0), S: (354.0, 41.0)]",
+          "issue": "texto sai da tela",
+          "path": "@HBoxContainer@157799/@PanelContainer@157820/@VBoxContainer@157821/@Label@157825",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "identity-1920x1080",
+          "text": "Documentos da jornada   2"
+        },
+        {
+          "control": "[P: (1002.0, 652.0), S: (220.0, 68.0)]",
+          "ink": "[P: (1073.5, 664.0), S: (77.0, 44.0)]",
+          "issue": "texto a 12 px da borda da tela",
+          "path": "@Control@143556<front_end>/@Control@157765<hud_pipeiro_identity>/@Control@157766/@Button@157837",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 720.0)]",
+          "shot": "identity-1920x1080",
+          "text": "Voltar"
+        }
+      ],
+      "paper": [
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "menu"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "slots"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "settings"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "controls"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "map"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "kronasta"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "practice"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "workshop"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "care"
+        },
+        {
+          "failures": 0,
+          "glyphs": 39,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "boss"
+        },
+        {
+          "failures": 0,
+          "glyphs": 36,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "live"
+        },
+        {
+          "failures": 0,
+          "glyphs": 36,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "impact"
+        },
+        {
+          "failures": 0,
+          "glyphs": 36,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "paused"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "victory"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "victory-unfocused"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "defeat"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "team"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "bag"
+        },
+        {
+          "failures": 0,
+          "glyphs": 8,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "pause"
+        },
+        {
+          "failures": 0,
+          "glyphs": 47,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "morro-battle"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "dex"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "evolution"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "emblems"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "identity"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1920, 1080)",
+          "shot": "missions"
+        }
+      ],
+      "scriptError": false
+    },
+    {
+      "batch": "1024x768-150-world",
+      "exitCode": 0,
+      "seconds": 21.4,
+      "images": [
+        {
+          "shot": "bedroom",
+          "file": "capturas\\150\\bedroom-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "street",
+          "file": "capturas\\150\\street-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "professor",
+          "file": "capturas\\150\\professor-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "park",
+          "file": "capturas\\150\\park-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "trail",
+          "file": "capturas\\150\\trail-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "clearing",
+          "file": "capturas\\150\\clearing-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro",
+          "file": "capturas\\150\\morro-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-2",
+          "file": "capturas\\150\\morro-2-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-3",
+          "file": "capturas\\150\\morro-3-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-4",
+          "file": "capturas\\150\\morro-4-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-5",
+          "file": "capturas\\150\\morro-5-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-dialog",
+          "file": "capturas\\150\\morro-dialog-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        }
+      ],
+      "nativeFindings": [],
+      "paper": [
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "bedroom"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "street"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "professor"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "park"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "trail"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "clearing"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "morro"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "morro-2"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "morro-3"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "morro-4"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "morro-5"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "morro-dialog"
+        }
+      ],
+      "scriptError": false
+    },
+    {
+      "batch": "1024x768-150-interface",
+      "exitCode": 0,
+      "seconds": 46.3,
+      "images": [
+        {
+          "shot": "menu",
+          "file": "capturas\\150\\menu-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "slots",
+          "file": "capturas\\150\\slots-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "settings",
+          "file": "capturas\\150\\settings-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "controls",
+          "file": "capturas\\150\\controls-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "map",
+          "file": "capturas\\150\\map-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "kronasta",
+          "file": "capturas\\150\\kronasta-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "practice",
+          "file": "capturas\\150\\practice-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "workshop",
+          "file": "capturas\\150\\workshop-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "care",
+          "file": "capturas\\150\\care-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "boss",
+          "file": "capturas\\150\\boss-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "live",
+          "file": "capturas\\150\\live-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "impact",
+          "file": "capturas\\150\\impact-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "paused",
+          "file": "capturas\\150\\paused-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "victory",
+          "file": "capturas\\150\\victory-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "victory-unfocused",
+          "file": "capturas\\150\\victory-unfocused-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "defeat",
+          "file": "capturas\\150\\defeat-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "team",
+          "file": "capturas\\150\\team-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "bag",
+          "file": "capturas\\150\\bag-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "pause",
+          "file": "capturas\\150\\pause-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-battle",
+          "file": "capturas\\150\\morro-battle-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "dex",
+          "file": "capturas\\150\\dex-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "evolution",
+          "file": "capturas\\150\\evolution-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "emblems",
+          "file": "capturas\\150\\emblems-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "identity",
+          "file": "capturas\\150\\identity-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        },
+        {
+          "shot": "missions",
+          "file": "capturas\\150\\missions-1024x768.png",
+          "expected": [
+            1024,
+            768
+          ],
+          "actual": [
+            1024,
+            768
+          ],
+          "pass": true
+        }
+      ],
+      "nativeFindings": [
+        {
+          "control": "[P: (674.0, 393.0), S: (496.0, 68.0)]",
+          "ink": "[P: (740.0, 405.0), S: (529.0, 44.0)]",
+          "issue": "texto sai do painel @Button@283",
+          "path": "@HBoxContainer@260/@PanelContainer@276<hud_result_plate>/@VBoxContainer@277/@Button@283",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 960.0)]",
+          "shot": "controls-1024x768",
+          "text": "Esquiva / corrida na exploração   ·   Shift"
+        },
+        {
+          "control": "[P: (302.0, 844.0), S: (206.0, 68.0)]",
+          "ink": "[P: (324.0, 856.0), S: (240.0, 44.0)]",
+          "issue": "texto sai do painel @Button@86354",
+          "path": "@MarginContainer@86315/@VBoxContainer@86316/@HBoxContainer@86352/@Button@86354",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 960.0)]",
+          "shot": "bag-1024x768",
+          "text": "Cuidar do parceiro"
+        }
+      ],
+      "paper": [
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "menu"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "slots"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "settings"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "controls"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "map"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "kronasta"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "practice"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "workshop"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "care"
+        },
+        {
+          "failures": 0,
+          "glyphs": 39,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "boss"
+        },
+        {
+          "failures": 0,
+          "glyphs": 36,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "live"
+        },
+        {
+          "failures": 0,
+          "glyphs": 36,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "impact"
+        },
+        {
+          "failures": 0,
+          "glyphs": 36,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "paused"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "victory"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "victory-unfocused"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "defeat"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "team"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "bag"
+        },
+        {
+          "failures": 0,
+          "glyphs": 8,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "pause"
+        },
+        {
+          "failures": 0,
+          "glyphs": 47,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "morro-battle"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "dex"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "evolution"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "emblems"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "identity"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 960.0)",
+          "physical": "(1024, 768)",
+          "shot": "missions"
+        }
+      ],
+      "scriptError": false
+    },
+    {
+      "batch": "1280x800-150-world",
+      "exitCode": 0,
+      "seconds": 21.9,
+      "images": [
+        {
+          "shot": "bedroom",
+          "file": "capturas\\150\\bedroom-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "street",
+          "file": "capturas\\150\\street-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "professor",
+          "file": "capturas\\150\\professor-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "park",
+          "file": "capturas\\150\\park-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "trail",
+          "file": "capturas\\150\\trail-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "clearing",
+          "file": "capturas\\150\\clearing-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro",
+          "file": "capturas\\150\\morro-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-2",
+          "file": "capturas\\150\\morro-2-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-3",
+          "file": "capturas\\150\\morro-3-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-4",
+          "file": "capturas\\150\\morro-4-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-5",
+          "file": "capturas\\150\\morro-5-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-dialog",
+          "file": "capturas\\150\\morro-dialog-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        }
+      ],
+      "nativeFindings": [],
+      "paper": [
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "bedroom"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "street"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "professor"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "park"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "trail"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "clearing"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "morro"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "morro-2"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "morro-3"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "morro-4"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "morro-5"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "morro-dialog"
+        }
+      ],
+      "scriptError": false
+    },
+    {
+      "batch": "1280x800-150-interface",
+      "exitCode": 0,
+      "seconds": 47.2,
+      "images": [
+        {
+          "shot": "menu",
+          "file": "capturas\\150\\menu-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "slots",
+          "file": "capturas\\150\\slots-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "settings",
+          "file": "capturas\\150\\settings-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "controls",
+          "file": "capturas\\150\\controls-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "map",
+          "file": "capturas\\150\\map-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "kronasta",
+          "file": "capturas\\150\\kronasta-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "practice",
+          "file": "capturas\\150\\practice-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "workshop",
+          "file": "capturas\\150\\workshop-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "care",
+          "file": "capturas\\150\\care-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "boss",
+          "file": "capturas\\150\\boss-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "live",
+          "file": "capturas\\150\\live-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "impact",
+          "file": "capturas\\150\\impact-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "paused",
+          "file": "capturas\\150\\paused-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "victory",
+          "file": "capturas\\150\\victory-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "victory-unfocused",
+          "file": "capturas\\150\\victory-unfocused-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "defeat",
+          "file": "capturas\\150\\defeat-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "team",
+          "file": "capturas\\150\\team-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "bag",
+          "file": "capturas\\150\\bag-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "pause",
+          "file": "capturas\\150\\pause-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-battle",
+          "file": "capturas\\150\\morro-battle-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "dex",
+          "file": "capturas\\150\\dex-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "evolution",
+          "file": "capturas\\150\\evolution-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "emblems",
+          "file": "capturas\\150\\emblems-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "identity",
+          "file": "capturas\\150\\identity-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        },
+        {
+          "shot": "missions",
+          "file": "capturas\\150\\missions-1280x800.png",
+          "expected": [
+            1280,
+            800
+          ],
+          "actual": [
+            1280,
+            800
+          ],
+          "pass": true
+        }
+      ],
+      "nativeFindings": [
+        {
+          "control": "[P: (670.0, 393.0), S: (492.0, 68.0)]",
+          "ink": "[P: (736.0, 405.0), S: (529.0, 44.0)]",
+          "issue": "texto sai do painel @Button@283",
+          "path": "@HBoxContainer@260/@PanelContainer@276<hud_result_plate>/@VBoxContainer@277/@Button@283",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 800.0)]",
+          "shot": "controls-1280x800",
+          "text": "Esquiva / corrida na exploração   ·   Shift"
+        },
+        {
+          "control": "[P: (90.0, 741.0), S: (180.0, 68.0)]",
+          "ink": "[P: (152.0, 753.0), S: (77.0, 44.0)]",
+          "issue": "texto a 3 px da borda da tela",
+          "path": "@MarginContainer@86315/@VBoxContainer@86316/@HBoxContainer@86352/@Button@86353",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 800.0)]",
+          "shot": "bag-1280x800",
+          "text": "Voltar"
+        },
+        {
+          "control": "[P: (302.0, 741.0), S: (206.0, 68.0)]",
+          "ink": "[P: (324.0, 753.0), S: (240.0, 44.0)]",
+          "issue": "texto a 3 px da borda da tela",
+          "path": "@MarginContainer@86315/@VBoxContainer@86316/@HBoxContainer@86352/@Button@86354",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 800.0)]",
+          "shot": "bag-1280x800",
+          "text": "Cuidar do parceiro"
+        },
+        {
+          "control": "[P: (302.0, 741.0), S: (206.0, 68.0)]",
+          "ink": "[P: (324.0, 753.0), S: (240.0, 44.0)]",
+          "issue": "texto sai do painel @Button@86354",
+          "path": "@MarginContainer@86315/@VBoxContainer@86316/@HBoxContainer@86352/@Button@86354",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 800.0)]",
+          "shot": "bag-1280x800",
+          "text": "Cuidar do parceiro"
+        },
+        {
+          "control": "[P: (592.0, 752.0), S: (188.0, 46.0)]",
+          "ink": "[P: (592.0, 752.0), S: (188.0, 46.0)]",
+          "issue": "texto a 2 px da borda da tela",
+          "path": "@VBoxContainer@86316/@HBoxContainer@86352/@HBoxContainer@86355<recorte_input_hint>/@Label@86357",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 800.0)]",
+          "shot": "bag-1280x800",
+          "text": "Aba anterior"
+        },
+        {
+          "control": "[P: (864.0, 752.0), S: (187.0, 46.0)]",
+          "ink": "[P: (864.0, 752.0), S: (187.0, 46.0)]",
+          "issue": "texto a 2 px da borda da tela",
+          "path": "@VBoxContainer@86316/@HBoxContainer@86352/@HBoxContainer@86358<recorte_input_hint>/@Label@86360",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 800.0)]",
+          "shot": "bag-1280x800",
+          "text": "Próxima aba"
+        },
+        {
+          "control": "[P: (256.0, 751.0), S: (86.0, 37.0)]",
+          "ink": "[P: (269.0, 751.0), S: (60.0, 37.0)]",
+          "issue": "texto a 12 px da borda da tela",
+          "path": "@HBoxContainer@157803/@PanelContainer@157804/@VBoxContainer@157805/@Label@157807",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 800.0)]",
+          "shot": "identity-1280x800",
+          "text": "Nv. 1"
+        },
+        {
+          "control": "[P: (827.0, 755.0), S: (381.0, 41.0)]",
+          "ink": "[P: (827.0, 755.0), S: (354.0, 41.0)]",
+          "issue": "texto a 4 px da borda da tela",
+          "path": "@HBoxContainer@157799/@PanelContainer@157820/@VBoxContainer@157821/@Label@157825",
+          "screen": "[P: (0.0, 0.0), S: (1280.0, 800.0)]",
+          "shot": "identity-1280x800",
+          "text": "Documentos da jornada   2"
+        }
+      ],
+      "paper": [
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "menu"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "slots"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "settings"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "controls"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "map"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "kronasta"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "practice"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "workshop"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "care"
+        },
+        {
+          "failures": 0,
+          "glyphs": 39,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "boss"
+        },
+        {
+          "failures": 0,
+          "glyphs": 36,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "live"
+        },
+        {
+          "failures": 0,
+          "glyphs": 36,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "impact"
+        },
+        {
+          "failures": 0,
+          "glyphs": 36,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "paused"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "victory"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "victory-unfocused"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "defeat"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "team"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "bag"
+        },
+        {
+          "failures": 0,
+          "glyphs": 8,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "pause"
+        },
+        {
+          "failures": 0,
+          "glyphs": 47,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "morro-battle"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "dex"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "evolution"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "emblems"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "identity"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 800.0)",
+          "physical": "(1280, 800)",
+          "shot": "missions"
+        }
+      ],
+      "scriptError": false
+    },
+    {
+      "batch": "1280x720-150-interface",
+      "exitCode": 0,
+      "seconds": 47.4,
+      "images": [
+        {
+          "shot": "menu",
+          "file": "capturas\\150\\menu.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "slots",
+          "file": "capturas\\150\\slots.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "settings",
+          "file": "capturas\\150\\settings.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "controls",
+          "file": "capturas\\150\\controls.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "map",
+          "file": "capturas\\150\\map.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "kronasta",
+          "file": "capturas\\150\\kronasta.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "practice",
+          "file": "capturas\\150\\practice.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "workshop",
+          "file": "capturas\\150\\workshop.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "care",
+          "file": "capturas\\150\\care.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "boss",
+          "file": "capturas\\150\\boss.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "live",
+          "file": "capturas\\150\\live.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "impact",
+          "file": "capturas\\150\\impact.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "paused",
+          "file": "capturas\\150\\paused.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "victory",
+          "file": "capturas\\150\\victory.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "victory-unfocused",
+          "file": "capturas\\150\\victory-unfocused.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "defeat",
+          "file": "capturas\\150\\defeat.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "team",
+          "file": "capturas\\150\\team.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "bag",
+          "file": "capturas\\150\\bag.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "pause",
+          "file": "capturas\\150\\pause.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "morro-battle",
+          "file": "capturas\\150\\morro-battle.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "dex",
+          "file": "capturas\\150\\dex.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "evolution",
+          "file": "capturas\\150\\evolution.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "emblems",
+          "file": "capturas\\150\\emblems.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "identity",
+          "file": "capturas\\150\\identity.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        },
+        {
+          "shot": "missions",
+          "file": "capturas\\150\\missions.png",
+          "expected": [
+            1280,
+            720
+          ],
+          "actual": [
+            1280,
+            720
+          ],
+          "pass": true
+        }
+      ],
+      "nativeFindings": [],
+      "paper": [
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "menu"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "slots"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "settings"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "controls"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "map"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "kronasta"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "practice"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "workshop"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "care"
+        },
+        {
+          "failures": 0,
+          "glyphs": 39,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "boss"
+        },
+        {
+          "failures": 0,
+          "glyphs": 36,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "live"
+        },
+        {
+          "failures": 0,
+          "glyphs": 36,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "impact"
+        },
+        {
+          "failures": 0,
+          "glyphs": 36,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "paused"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "victory"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "victory-unfocused"
+        },
+        {
+          "failures": 0,
+          "glyphs": 20,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "defeat"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "team"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "bag"
+        },
+        {
+          "failures": 0,
+          "glyphs": 8,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "pause"
+        },
+        {
+          "failures": 0,
+          "glyphs": 47,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "morro-battle"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "dex"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "evolution"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "emblems"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "identity"
+        },
+        {
+          "failures": 0,
+          "glyphs": 0,
+          "logical": "(1280.0, 720.0)",
+          "physical": "(1280, 720)",
+          "shot": "missions"
+        }
+      ],
+      "scriptError": false
+    }
+  ],
+  "fullMatrix": true,
+  "expectedImages": 296,
+  "physicalController": false,
+  "earnedPlaythrough": false
+}

@@ -1,5 +1,7 @@
 # Mural de Kronasta — fundação PIP-130
 
+Guia de uso consolidado: [HUD-KIT v2](../../../../HUD-KIT-v2.md). O texto abaixo registra a fundação PIP-130; o guia novo apresenta consumidores integrados, compatibilidade, margens e critérios atuais.
+
 Sistema ilustrado opt-in. Guia: `art/ui/soulmonsters-v2/pip-130/SISTEMA.md`. Cenas atuais do jogo mantêm o Theme anterior até as tarefas de migração.
 
 ```gdscript

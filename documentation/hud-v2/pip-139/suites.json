@@ -1,0 +1,28 @@
+{
+  "sourceCommit": "149fa2fb",
+  "nativeMatrix": {
+    "script": "res://tools/capture_campaign.gd --audit",
+    "batches": 16,
+    "scenarios": 37,
+    "textScales": [1.0, 1.5],
+    "resolutions": ["1280x720", "1920x1080", "1024x768", "1280x800"],
+    "captures": 296,
+    "nativeTextObservations": 2312,
+    "instrumentedGlyphObservations": 2136,
+    "finalFindings": 0,
+    "scriptExceptions": 0
+  },
+  "suites": [
+    {"script": "mural_auditor_checks.gd", "checks": 4, "failures": 0},
+    {"script": "mural_content_layout_checks.gd", "checks": 80, "failures": 0}
+  ],
+  "guideLinkChecks": 34,
+  "guideLinkFailures": 0,
+  "humanReview": "awaiting-external-human",
+  "physicalControllerTested": false,
+  "earnedCampaignPlaythrough": false,
+  "fullVisualMigrationDeclared": false,
+  "linearStateChanges": false,
+  "pushOrMerge": false,
+  "pip139Closed": false
+}

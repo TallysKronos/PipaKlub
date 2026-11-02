@@ -1,5 +1,7 @@
 # HUD modular
 
+Este documento preserva o contrato do kit do **cliente web**. Para novas telas Godot da campanha PIP-91, use [Soulmonsters · HUD-KIT v2](HUD-KIT-v2.md), direção Mural de Kronasta. A implementação Godot e seus limites de migração estão documentados nesse guia; a atualização não altera o renderer web.
+
 O kit usa **3-slice** nos botões e faixas, e **9-slice** nos painéis. Os recortes são regiões independentes do atlas PNG original: não há recompressão, imagens duplicadas ou dependência de um serviço de imagens.
 
 - Cantos e pontas têm dimensões em pixels, independentemente da largura do componente.

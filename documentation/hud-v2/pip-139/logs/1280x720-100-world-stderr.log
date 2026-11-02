@@ -1,0 +1,92 @@
+ERROR: Failed to open log file for writing: user://logs/godot.log
+   at: rotate_file (core/io/logger.cpp:169)
+ERROR: Can't create shader cache folder, no shader caching will happen: user://
+   at: RasterizerGLES3 (drivers/gles3/rasterizer_gles3.cpp:345)
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/campaign/casa-moderna-v1/janela.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] create_prop (res://scripts/campaign/house_modern.gd:134)
+       [1] configure (res://scripts/campaign/room_view.gd:74)
+       [2] _show_opening (res://scripts/campaign/front_end.gd:582)
+       [3] _show_saved (res://scripts/campaign/front_end.gd:377)
+       [4] _capture_once (res://tools/capture_campaign.gd:112)
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/campaign/casa-moderna-v1/cama.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] create_prop (res://scripts/campaign/house_modern.gd:134)
+       [1] configure (res://scripts/campaign/room_view.gd:74)
+       [2] _show_opening (res://scripts/campaign/front_end.gd:582)
+       [3] _show_saved (res://scripts/campaign/front_end.gd:377)
+       [4] _capture_once (res://tools/capture_campaign.gd:112)
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/campaign/casa-moderna-v1/estante.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] create_prop (res://scripts/campaign/house_modern.gd:134)
+       [1] configure (res://scripts/campaign/room_view.gd:74)
+       [2] _show_opening (res://scripts/campaign/front_end.gd:582)
+       [3] _show_saved (res://scripts/campaign/front_end.gd:377)
+       [4] _capture_once (res://tools/capture_campaign.gd:112)
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/campaign/casa-moderna-v1/tv.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] create_prop (res://scripts/campaign/house_modern.gd:134)
+       [1] configure (res://scripts/campaign/room_view.gd:74)
+       [2] _show_opening (res://scripts/campaign/front_end.gd:582)
+       [3] _show_saved (res://scripts/campaign/front_end.gd:377)
+       [4] _capture_once (res://tools/capture_campaign.gd:112)
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/campaign/casa-moderna-v1/guarda-roupa.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] create_prop (res://scripts/campaign/house_modern.gd:134)
+       [1] configure (res://scripts/campaign/room_view.gd:74)
+       [2] _show_opening (res://scripts/campaign/front_end.gd:582)
+       [3] _show_saved (res://scripts/campaign/front_end.gd:377)
+       [4] _capture_once (res://tools/capture_campaign.gd:112)
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/campaign/casa-moderna-v1/mesa.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] create_prop (res://scripts/campaign/house_modern.gd:134)
+       [1] configure (res://scripts/campaign/room_view.gd:74)
+       [2] _show_opening (res://scripts/campaign/front_end.gd:582)
+       [3] _show_saved (res://scripts/campaign/front_end.gd:377)
+       [4] _capture_once (res://tools/capture_campaign.gd:112)
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/campaign/professor-moderno-v1/library.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] create_prop (res://scripts/campaign/professor_modern.gd:65)
+       [1] configure (res://scripts/campaign/room_view.gd:72)
+       [2] _show_world (res://scripts/campaign/front_end.gd:837)
+       [3] _show_saved (res://scripts/campaign/front_end.gd:378)
+       [4] _capture_once (res://tools/capture_campaign.gd:112)
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/campaign/professor-moderno-v1/study.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] create_prop (res://scripts/campaign/professor_modern.gd:65)
+       [1] configure (res://scripts/campaign/room_view.gd:72)
+       [2] _show_world (res://scripts/campaign/front_end.gd:837)
+       [3] _show_saved (res://scripts/campaign/front_end.gd:378)
+       [4] _capture_once (res://tools/capture_campaign.gd:112)
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/campaign/professor-moderno-v1/workbench.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] create_prop (res://scripts/campaign/professor_modern.gd:65)
+       [1] configure (res://scripts/campaign/room_view.gd:72)
+       [2] _show_world (res://scripts/campaign/front_end.gd:837)
+       [3] _show_saved (res://scripts/campaign/front_end.gd:378)
+       [4] _capture_once (res://tools/capture_campaign.gd:112)
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/campaign/professor-moderno-v1/desk.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] create_prop (res://scripts/campaign/professor_modern.gd:65)
+       [1] configure (res://scripts/campaign/room_view.gd:72)
+       [2] _show_world (res://scripts/campaign/front_end.gd:837)
+       [3] _show_saved (res://scripts/campaign/front_end.gd:378)
+       [4] _capture_once (res://tools/capture_campaign.gd:112)
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/campaign/professor-moderno-v1/chest.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+   at: load_from_file (core/io/image.cpp:2780)
+   GDScript backtrace (most recent call first):
+       [0] create_prop (res://scripts/campaign/professor_modern.gd:65)
+       [1] configure (res://scripts/campaign/room_view.gd:72)
+       [2] _show_world (res://scripts/campaign/front_end.gd:837)
+       [3] _show_saved (res://scripts/campaign/front_end.gd:378)
+       [4] _capture_once (res://tools/capture_campaign.gd:112)

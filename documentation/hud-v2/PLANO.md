@@ -19,20 +19,20 @@ Critério central: uma captura sem logo precisa ser reconhecível como Soulmonst
 | 11 | PIP-136 | Resultado e grandes momentos | Integrada localmente; três chamadas ilustradas, prévia explícita, nível após gravação e momentos de item/insígnia. 3.298 verificações incluindo regressão, 72 capturas; ver pip-136/REVISAO.md |
 | 12 | PIP-137 | Transições e sons | Implementada localmente: cortina Mural, gate de primeiro frame, foco, áudio de viagem no bus UI e prioridade de jingles. 55 checks e 24 capturas; ver pip-137/REVISAO.md |
 | 13 | PIP-138 | Acessibilidade | Implementada e auditada localmente: texto 150% persistido, foco por forma, dano legível em movimento reduzido, contraste do boss e apresentações ampliadas. 2.176 checks, 20 casos de contraste, 40 capturas; ver pip-138/REVISAO.md |
-| 14 | PIP-139 | Auditoria final e HUD-KIT v2 para a campanha PIP-91 | Pendente da implementação |
+| 14 | PIP-139 | Auditoria final e HUD-KIT v2 para a campanha PIP-91 | Parte técnica e guia entregues localmente: 296 capturas, correções de layout, 84 checks novos e inventário real de 17 tarefas. Aceite externo e destinos de absorções parciais pendentes; ver pip-139/REVISAO.md |
 
 O agrupamento individual PIP-130/131 e PIP-132–137 segue a ordem descrita pelo dono; conferir os títulos exatos no Linear antes de atualizar tarefas.
 
 ## Relação com PIP-61
 
-A direção B foi escolhida na PIP-129. Levantar IDs/títulos reais das 12 tarefas antigas e mapear cada uma para absorção em tarefa nova ou encerramento como substituída; inventário ainda pendente, critérios em ABSORCAO-PIP-61.md. Não reabrir trabalho visual antigo em paralelo por hábito. Preservar Theme, tokens, fontes/licenças e testes de margem úteis. O vínculo entre os dois épicos foi informado pelo dono; não foi alterado nem auditado nesta sessão.
+A direção B foi escolhida na PIP-129. A consulta da PIP-139 encontrou 17 subtarefas reais (15 abertas), agora mapeadas em ABSORCAO-PIP-61.md. Há absorções parciais; nenhum ticket foi fechado. Preservar Theme, tokens, fontes/licenças e testes de margem úteis. O vínculo entre os dois épicos foi conferido em leitura, sem alterações no serviço.
 
 ## Restrições e provas
 
 - Quatro resoluções e teclado/controle/mouse. As suítes consultadas cobrem principalmente três resoluções; proposta inicial de quarta: 1280×800, além de 1280×720, 1920×1080 e 1024×768. Confirmar se a descrição do épico prescreve outra.
 - Sem merge até autorização explícita. Não há autorização permanente de push derivada do pedido anterior de envio da montaria.
 - Nenhum gameplay/save/runtime foi alterado na PIP-126.
-- Conector Linear indisponível nesta sessão. Os IDs e a sequência vêm da instrução do dono; não há mudanças de status no serviço.
+- Nas etapas iniciais o conector estava indisponível; na PIP-139 foi possível consultar a tarefa e o épico antigo. O inventário e suas descrições foram registrados localmente. Não há mudanças de status no serviço.
 
 ## Pontos de entrada
 

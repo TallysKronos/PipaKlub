@@ -1,0 +1,1199 @@
+{
+  "summary": {
+    "images": 296,
+    "nativeTextObservations": 2312,
+    "instrumentedGlyphObservations": 2136,
+    "localLinkChecks": 34,
+    "failures": [],
+    "campaignIsolated": true,
+    "humanReview": "pending",
+    "physicalController": false,
+    "migrationComplete": false
+  },
+  "images": [
+    {
+      "file": "capturas\\100\\bag-1024x768.png",
+      "sha256": "501e7de0520878b0a809579acb3d54dc0c4a81b2767a40b690eaf0834f32e63a"
+    },
+    {
+      "file": "capturas\\100\\boss-1024x768.png",
+      "sha256": "198a9b4f691b578c764dc6cf88e2e78a3e5ecef845db2c5a3d5a2e649558b26d"
+    },
+    {
+      "file": "capturas\\100\\care-1024x768.png",
+      "sha256": "7268995ec381721587eb87ca83796252207ac6586e20c2ba240cadf61b6ceaf6"
+    },
+    {
+      "file": "capturas\\100\\controls-1024x768.png",
+      "sha256": "d83ceee9607117e986797c62522ca3ae99b16f28e8916a77ab02190467e8ddd4"
+    },
+    {
+      "file": "capturas\\100\\defeat-1024x768.png",
+      "sha256": "6cc4cf22708f225d64835c085ea62ac47c7014e102b66151bb080988d1451605"
+    },
+    {
+      "file": "capturas\\100\\dex-1024x768.png",
+      "sha256": "87a485000770e1c1c4f3422dc1e1e1ebb4832aae659fc8e88de0237984dcf70e"
+    },
+    {
+      "file": "capturas\\100\\emblems-1024x768.png",
+      "sha256": "45bb59199725b5392e87370f9427d77c1dd9cfc3fd7b25dfc670dca5fbbfadbf"
+    },
+    {
+      "file": "capturas\\100\\evolution-1024x768.png",
+      "sha256": "3177f97f1bc18c169ca5f2b054191f83df20f3a5549ee91f2884dbad10c740ba"
+    },
+    {
+      "file": "capturas\\100\\identity-1024x768.png",
+      "sha256": "1fe41825e9d1648dd6e1c3c219f41926178e1a4d1f13471e9832a0d3ea1f94b2"
+    },
+    {
+      "file": "capturas\\100\\impact-1024x768.png",
+      "sha256": "0539628a48c1176dcaf6838d0e14c3f57e512c7d0460a822ab572aaa1086c280"
+    },
+    {
+      "file": "capturas\\100\\kronasta-1024x768.png",
+      "sha256": "f8fb08e565cb49a2510934f0467bc938d384bbdcccf9f2d827af9d3400306914"
+    },
+    {
+      "file": "capturas\\100\\live-1024x768.png",
+      "sha256": "813ffcc27bed30b77846f8003ff9269cd0ee3506c11452454784e6cf5bfcc5f8"
+    },
+    {
+      "file": "capturas\\100\\map-1024x768.png",
+      "sha256": "f8fb08e565cb49a2510934f0467bc938d384bbdcccf9f2d827af9d3400306914"
+    },
+    {
+      "file": "capturas\\100\\menu-1024x768.png",
+      "sha256": "6e48b0d90457d585f8f54aa314fcaca897090e204f63c10a31f6e01ddb712afb"
+    },
+    {
+      "file": "capturas\\100\\missions-1024x768.png",
+      "sha256": "afdc6e94cf79654e2a03b2ef8977769ef0fbf74fe66f03409599e387c031b574"
+    },
+    {
+      "file": "capturas\\100\\morro-battle-1024x768.png",
+      "sha256": "4c1085111593862ca250ca4f5ee0e5501816f165fbb9dc33950a0de19d2e853d"
+    },
+    {
+      "file": "capturas\\100\\pause-1024x768.png",
+      "sha256": "91cb42216b1be15dfa2f17af0e81b84dbdcff3518b03a18bcaebeb2c39906886"
+    },
+    {
+      "file": "capturas\\100\\paused-1024x768.png",
+      "sha256": "01f18645bc6ff3c42814387cb7fc8305975009e5381bd48b48d6e812c2606848"
+    },
+    {
+      "file": "capturas\\100\\practice-1024x768.png",
+      "sha256": "a012e93bb5cf74d96137a46c64c500edec44271655f9ffff7c664531f282cfd6"
+    },
+    {
+      "file": "capturas\\100\\settings-1024x768.png",
+      "sha256": "73c67a2fa4ddd430939226ca663c18409295c7fbb8e2bb399d7f95f884265cd7"
+    },
+    {
+      "file": "capturas\\100\\slots-1024x768.png",
+      "sha256": "05fa1f0575e583f6614d9f675d640bfd4231fde4b22db093b262d5bb966d7367"
+    },
+    {
+      "file": "capturas\\100\\team-1024x768.png",
+      "sha256": "d82f5b546afb95488093bdcc8dc719d69c670f9e33edd0cdf7f3e5366fc1fded"
+    },
+    {
+      "file": "capturas\\100\\victory-1024x768.png",
+      "sha256": "bb7573e7dbc463bafcdef322c10beb22202d7c02bfa11e5cabdefd80448b4402"
+    },
+    {
+      "file": "capturas\\100\\victory-unfocused-1024x768.png",
+      "sha256": "a26106e61be68897fc0c10030b182f79749dc64a4f744ed0b3ae7a0a873fb40c"
+    },
+    {
+      "file": "capturas\\100\\workshop-1024x768.png",
+      "sha256": "b99dd403aa8809ef7b059999ba4258f31f6c80c216eccfb18b7709f2aec8bff6"
+    },
+    {
+      "file": "capturas\\100\\bedroom-1024x768.png",
+      "sha256": "145d6ea5211df492f3e462ed8251ac8ee1b3b9ca98ffb66f3a1cb29a80ef37ed"
+    },
+    {
+      "file": "capturas\\100\\clearing-1024x768.png",
+      "sha256": "61cf81fd0ca342a8aaf26f2a59dc6257faca4ba96ec4f40645b08db4294df445"
+    },
+    {
+      "file": "capturas\\100\\morro-1024x768.png",
+      "sha256": "e3329c5af2bd172e5cc6b916775890a87c9e7f02d893b72c32cbf25d2bccfd3f"
+    },
+    {
+      "file": "capturas\\100\\morro-2-1024x768.png",
+      "sha256": "a756a3f819165c0ab38b2ba2ecab1b1fcbd642d563e69e861efb0080ccb0944c"
+    },
+    {
+      "file": "capturas\\100\\morro-3-1024x768.png",
+      "sha256": "f143c528c09353524012875e14e1b783369e654442f73be89ed3a2bd6a5cbfa3"
+    },
+    {
+      "file": "capturas\\100\\morro-4-1024x768.png",
+      "sha256": "0b8727bf9390515d06a5645163f8e02c31bbd9e9da3800eea69774ab3220a700"
+    },
+    {
+      "file": "capturas\\100\\morro-5-1024x768.png",
+      "sha256": "2f7af6b647fde58e096c918cc7f441273aacd1c029a72218d71f0e82adc84a0f"
+    },
+    {
+      "file": "capturas\\100\\morro-dialog-1024x768.png",
+      "sha256": "8794cc47b481766bd5a98f20d038cd5e33e6f2b48739381016a41a217e3e9f1d"
+    },
+    {
+      "file": "capturas\\100\\park-1024x768.png",
+      "sha256": "548920cd5251f7e90411cb8641930874db9f8aa0df1eefa41eba35099d5f5d8c"
+    },
+    {
+      "file": "capturas\\100\\professor-1024x768.png",
+      "sha256": "a6cc192df40e2a11ae243475ba273afe3bee18f7e88bf87c6742c78b1ee82db3"
+    },
+    {
+      "file": "capturas\\100\\street-1024x768.png",
+      "sha256": "3925f96bc8ec9c677e54af08f04be163dd277a6a719d085e2f88b6255b809f66"
+    },
+    {
+      "file": "capturas\\100\\trail-1024x768.png",
+      "sha256": "661e0768b3f783a36ef3ceb8cbde32c0fddebab13e26135185f2e49666978af0"
+    },
+    {
+      "file": "capturas\\150\\bag-1024x768.png",
+      "sha256": "f3490d3f1370d4fdb85091a7cac391c730a9ed45caada47229f8a35562c4aa7f"
+    },
+    {
+      "file": "capturas\\150\\boss-1024x768.png",
+      "sha256": "b4d2d0909092db7f57ad9363c9010b06942e53e1fa854c79acbad5b344c77517"
+    },
+    {
+      "file": "capturas\\150\\care-1024x768.png",
+      "sha256": "bfe91d9c96dbc263b49e90af02a00af4b13cab3fb8962ba484f442ce36f18262"
+    },
+    {
+      "file": "capturas\\150\\controls-1024x768.png",
+      "sha256": "a3a8d3d92e7da28cd7e8a639eff46383c62b2f569361ad16fead0642dadeb2be"
+    },
+    {
+      "file": "capturas\\150\\defeat-1024x768.png",
+      "sha256": "04ca82aa8a70a0011ebfb56d4af9cd4d3f77af8e81af19573ba959dcebf2ee95"
+    },
+    {
+      "file": "capturas\\150\\dex-1024x768.png",
+      "sha256": "01ed552a76fe4f4de321c4d65cc311f7f32b994b6d6c29c56835ac95f6f38a82"
+    },
+    {
+      "file": "capturas\\150\\emblems-1024x768.png",
+      "sha256": "db768e994939bed778437149e6986452217214d57ec814976e0826610b432075"
+    },
+    {
+      "file": "capturas\\150\\evolution-1024x768.png",
+      "sha256": "0e213be86d38b19d65a4e52f19f1198d34ccaa68adacd2e7947438cfe55a8bbc"
+    },
+    {
+      "file": "capturas\\150\\identity-1024x768.png",
+      "sha256": "8bdc58564f6fc0449fefe57d7ddcf0569fb07390af9b8689309380c02c95bdd9"
+    },
+    {
+      "file": "capturas\\150\\impact-1024x768.png",
+      "sha256": "ca969d5c1cc0fda14de9616ae336c6b8c740257210233140c0175a9633a9f497"
+    },
+    {
+      "file": "capturas\\150\\kronasta-1024x768.png",
+      "sha256": "277fe25102c3807503b47f3f7142d9a5c373f365f072bc82146b80a2e02cdcc2"
+    },
+    {
+      "file": "capturas\\150\\live-1024x768.png",
+      "sha256": "1458b4a9fff55f6779b5a6179df8622c5dc4b86646da06f399630ae051bb9a7a"
+    },
+    {
+      "file": "capturas\\150\\map-1024x768.png",
+      "sha256": "277fe25102c3807503b47f3f7142d9a5c373f365f072bc82146b80a2e02cdcc2"
+    },
+    {
+      "file": "capturas\\150\\menu-1024x768.png",
+      "sha256": "6e48b0d90457d585f8f54aa314fcaca897090e204f63c10a31f6e01ddb712afb"
+    },
+    {
+      "file": "capturas\\150\\missions-1024x768.png",
+      "sha256": "05d3997c78ba11c643d0bd40c9002302571403d6df4e21a229e73d0f9f9df83d"
+    },
+    {
+      "file": "capturas\\150\\morro-battle-1024x768.png",
+      "sha256": "1c6fc5a0960f8f1a6a2b3e19063773ba723c60c817c03b2ca512177cfdfa0fac"
+    },
+    {
+      "file": "capturas\\150\\pause-1024x768.png",
+      "sha256": "bb6d5077687cb9b349925b6de93f2023c0cd5fb15cc3bbdce81cee712adf6606"
+    },
+    {
+      "file": "capturas\\150\\paused-1024x768.png",
+      "sha256": "eb5d1d19c1cd3ee608f2c2888fbc6968d65872afde3c79c4e4e092b253449139"
+    },
+    {
+      "file": "capturas\\150\\practice-1024x768.png",
+      "sha256": "5a5cad2042d0b00d960ff6c6d4dec57f325c7adf9265ac930bf54a920488567f"
+    },
+    {
+      "file": "capturas\\150\\settings-1024x768.png",
+      "sha256": "89b74d0f752a92521b402c45fa3304e7865fd329622bd28b98234321795f3f01"
+    },
+    {
+      "file": "capturas\\150\\slots-1024x768.png",
+      "sha256": "95a61c6bf641083074109a82c075f87f46081953c44f7555bc22cc564305f5e2"
+    },
+    {
+      "file": "capturas\\150\\team-1024x768.png",
+      "sha256": "13d1576877321e2e7f4fba96fa435bcbafe77f00ca1df37a475c48e56df6acac"
+    },
+    {
+      "file": "capturas\\150\\victory-1024x768.png",
+      "sha256": "b58249bc9b23328487f56e868f7403b48d88425d0c2f936d01591c4b2b03504e"
+    },
+    {
+      "file": "capturas\\150\\victory-unfocused-1024x768.png",
+      "sha256": "b07b509adfd1cecc8235c7d12c7f7b49b706ae13689a0c7e28f2fa93f2cb3362"
+    },
+    {
+      "file": "capturas\\150\\workshop-1024x768.png",
+      "sha256": "6e79265c9dd622545a7ea3ae6a424b283ebadc96bbcba7d09c93338f92e4c544"
+    },
+    {
+      "file": "capturas\\150\\bedroom-1024x768.png",
+      "sha256": "543c06bb162a6337f15133b14522d185ed906c6c47013b471995375086347a3e"
+    },
+    {
+      "file": "capturas\\150\\clearing-1024x768.png",
+      "sha256": "15f5608dd23d868f6b58208d9a92e9a88220b41e2cff66ee243afe09923e74ff"
+    },
+    {
+      "file": "capturas\\150\\morro-1024x768.png",
+      "sha256": "91a209b037bace4ae13ba682269c27973cbd3e624ee6d95a3ddd8073bca9597a"
+    },
+    {
+      "file": "capturas\\150\\morro-2-1024x768.png",
+      "sha256": "cf74242613c0575c16bef9778bcc90c297bbe92d953d9563131b7cc075c218c9"
+    },
+    {
+      "file": "capturas\\150\\morro-3-1024x768.png",
+      "sha256": "be2d3aab8f75dcec279c25b0763e01b5d1f7c613da6dad745bcd2b91ae421ac5"
+    },
+    {
+      "file": "capturas\\150\\morro-4-1024x768.png",
+      "sha256": "80aa1c0e38394d8b4e9dbc24eb8dbbe8f172b8e688c2488c8a02d78e4118b9e5"
+    },
+    {
+      "file": "capturas\\150\\morro-5-1024x768.png",
+      "sha256": "9eddcc23e395e80fe748299cd8ba6fb47c236ca8a8f2d5e609c73448796185b9"
+    },
+    {
+      "file": "capturas\\150\\morro-dialog-1024x768.png",
+      "sha256": "537fef2d0496345643b863fec97914e0aba9b24aaf0425fef31de302bcb7e809"
+    },
+    {
+      "file": "capturas\\150\\park-1024x768.png",
+      "sha256": "e261803875b5c76516a4a7e1be3d9b584e48fe528db021e5e3f03a2ba7ceb36e"
+    },
+    {
+      "file": "capturas\\150\\professor-1024x768.png",
+      "sha256": "2dae600ef77320724ebbacd22b4f533789a55c274b8362f7a8ba4add3483c7fb"
+    },
+    {
+      "file": "capturas\\150\\street-1024x768.png",
+      "sha256": "3ec6b8d8e6ce83c099707923fc21783638b91490c0d3f63950de37706c4ba02f"
+    },
+    {
+      "file": "capturas\\150\\trail-1024x768.png",
+      "sha256": "e65b09d616c34653d5b04f139ee1147b00b2881537d5781221084c559473ef71"
+    },
+    {
+      "file": "capturas\\100\\bag.png",
+      "sha256": "51ae00b7cf118e778ac9c1d17c9baa503f4652b1fbea014894f80e57607acf33"
+    },
+    {
+      "file": "capturas\\100\\boss.png",
+      "sha256": "80533df11b7c757558b03fbc68dadf6271b52f30447c82319f0c7ec968ce9074"
+    },
+    {
+      "file": "capturas\\100\\care.png",
+      "sha256": "c8bc98b349b0e1e544657b60178f59e1780d497973363827d6c50e7eacf1f8b0"
+    },
+    {
+      "file": "capturas\\100\\controls.png",
+      "sha256": "b1c8507e9d64992ced73377fe55b3b1da8fc974baa01d558122a40bc27749702"
+    },
+    {
+      "file": "capturas\\100\\defeat.png",
+      "sha256": "21e32d99122851826c13eb235a2427ea336169336682edbe4317fa4b3f1f4fde"
+    },
+    {
+      "file": "capturas\\100\\dex.png",
+      "sha256": "cd8962da4095d3b7cc63112f3c89f7b956383ba8b66652b4f9876bd1efece372"
+    },
+    {
+      "file": "capturas\\100\\emblems.png",
+      "sha256": "3e2649494fcf5137f03110cd22440ca4a66c80fb156659cffdcb176c8382754d"
+    },
+    {
+      "file": "capturas\\100\\evolution.png",
+      "sha256": "4113a111278a7179abcc5b9cee27eab224ae0623586a634fe2c7b957c9a0c988"
+    },
+    {
+      "file": "capturas\\100\\identity.png",
+      "sha256": "49516cc44f39f1dc8ef394f92064e1dad65acc5bcf0d1181fee0cd76150beaf1"
+    },
+    {
+      "file": "capturas\\100\\impact.png",
+      "sha256": "1544399453a828df865b9d5c58e5c8172e8c79486a2ce6a5fd160850ed8b86e7"
+    },
+    {
+      "file": "capturas\\100\\kronasta.png",
+      "sha256": "9bbcb7de86841a2993e5866d5a092100f9762608d33e0545d6d0c5c61da1d643"
+    },
+    {
+      "file": "capturas\\100\\live.png",
+      "sha256": "8a4798e1842bd1050fd86b19a394fd63f128a37b9eb6049013f6d358d1776fe1"
+    },
+    {
+      "file": "capturas\\100\\map.png",
+      "sha256": "9bbcb7de86841a2993e5866d5a092100f9762608d33e0545d6d0c5c61da1d643"
+    },
+    {
+      "file": "capturas\\100\\menu.png",
+      "sha256": "fd793fc56ab5554baf6c8b5a13bf0ae148329dadbe60e05fc6dc3c91f276f9fe"
+    },
+    {
+      "file": "capturas\\100\\missions.png",
+      "sha256": "9b42dba41cc4faf7ca9aa9ca04c94416bdda7f746233331f5203affca90aa7d0"
+    },
+    {
+      "file": "capturas\\100\\morro-battle.png",
+      "sha256": "fae1514329d0e6240daa07d5366906dbb459b20ae88ff1112144b9ee19146891"
+    },
+    {
+      "file": "capturas\\100\\pause.png",
+      "sha256": "6b47c4284298b9853d7d542f66d07e8a2a3e75322b204ec40ababbecf4ea3bf1"
+    },
+    {
+      "file": "capturas\\100\\paused.png",
+      "sha256": "5a84275cc0ee206960ab2df55cfa752d3242a8fbdeaf056d9c7ec8e21dae92f0"
+    },
+    {
+      "file": "capturas\\100\\practice.png",
+      "sha256": "ddffff40fd9e4df6b4c70afecec2e14f4542af2c4c24c3724d9a829fd9c4f319"
+    },
+    {
+      "file": "capturas\\100\\settings.png",
+      "sha256": "30c4fe926e32d79678b5232fba7c5ff837ee832cdc2677f94eb9f57857e41e4f"
+    },
+    {
+      "file": "capturas\\100\\slots.png",
+      "sha256": "c1ce61a720f653587ed4078f41efcedee3bb11ed9bfc419c7c1288925f93c59e"
+    },
+    {
+      "file": "capturas\\100\\team.png",
+      "sha256": "d8c63940635b7dccc2120931d12f1996167be952bb63058d38381ad8e1b484c3"
+    },
+    {
+      "file": "capturas\\100\\victory.png",
+      "sha256": "5a6abf09bfa4fd88b9cb7b254ac5a7068eb814acca7f2078255afe213c1bd4ad"
+    },
+    {
+      "file": "capturas\\100\\victory-unfocused.png",
+      "sha256": "4dd4e759001af962e7b6587afa5f9b5255850f3aac7794d734e4091fb5671740"
+    },
+    {
+      "file": "capturas\\100\\workshop.png",
+      "sha256": "948ad16a7d33cf416ac1615d48c058523d7061b5e5e4f68e10f3b829c92c8d85"
+    },
+    {
+      "file": "capturas\\100\\bedroom.png",
+      "sha256": "87e6c43706ffd4fdd25a4dc96bb183838332eb9eae86b4cdf622ad11498ffb29"
+    },
+    {
+      "file": "capturas\\100\\clearing.png",
+      "sha256": "f50f0d9aa6eeaaeb6137efa60a550b370f8d557f57a8c6d3ec7bd2d37c0b7eb4"
+    },
+    {
+      "file": "capturas\\100\\morro.png",
+      "sha256": "ddde15a01feb433ad598dc042691142d21b8694fbc7e56f815188634ab14c6b5"
+    },
+    {
+      "file": "capturas\\100\\morro-2.png",
+      "sha256": "1e266b42b342cb600b8b355e6fec0871f3842f2ddd30678b3681613a33d864ef"
+    },
+    {
+      "file": "capturas\\100\\morro-3.png",
+      "sha256": "0a6a1283f8661a8c2356d06bb7e6dc93882d09908e993212358c782376749a4b"
+    },
+    {
+      "file": "capturas\\100\\morro-4.png",
+      "sha256": "77cf2036a1a9073098b66c986db95282c65aad47bdfda0261bce2234da96b96b"
+    },
+    {
+      "file": "capturas\\100\\morro-5.png",
+      "sha256": "b099274792ee4a641e91ae4234c96e99f50f0b62610d5539445ea3ecef340be5"
+    },
+    {
+      "file": "capturas\\100\\morro-dialog.png",
+      "sha256": "2b1efb4baa45cc0c10986fbf4edf52a68c94ec50ce01820ecc69fe59f0c5f877"
+    },
+    {
+      "file": "capturas\\100\\park.png",
+      "sha256": "2b700912bfaa6e6e9d75c02b5a01bcf7830edcab683a41dd9dccb64bceb324d0"
+    },
+    {
+      "file": "capturas\\100\\professor.png",
+      "sha256": "206ddea53392e22af5414165453e7cee1964a083f290668df8796b87b2c2c6b5"
+    },
+    {
+      "file": "capturas\\100\\street.png",
+      "sha256": "4ce6bd3038b2c0bc7a2cbe4ba869026675bf5462171a2b257b46253cbffd4740"
+    },
+    {
+      "file": "capturas\\100\\trail.png",
+      "sha256": "0d0044507df8591b096f66808a9db8cb454ce3139808374792de562d176f1f96"
+    },
+    {
+      "file": "capturas\\150\\bag.png",
+      "sha256": "630bdae089bc53815949de03fe17f7059dd60a0b33cd3014887ad761dd9dddf2"
+    },
+    {
+      "file": "capturas\\150\\boss.png",
+      "sha256": "c5f5b2792c1b5423ce83cbdd6ad259eaa26c35595eed224c0eb9c546cc509ec9"
+    },
+    {
+      "file": "capturas\\150\\care.png",
+      "sha256": "a0604b4ffdf8accc3d299e04f37f2b13cfceacc799a52a5a7f85d0bbe12eb11d"
+    },
+    {
+      "file": "capturas\\150\\controls.png",
+      "sha256": "b783c185bc530d4691679b2426f89cb73530cd9e907eb07f01435b2c95ff8c0b"
+    },
+    {
+      "file": "capturas\\150\\defeat.png",
+      "sha256": "af1396f9b9cb7e64812d087bbba7f341a5bb2dcf3bed9f195fbd275368db8cec"
+    },
+    {
+      "file": "capturas\\150\\dex.png",
+      "sha256": "720e08099e0788cc9b5df5ae5c214b226b6234ca35f36ba684ffbec1805e9c72"
+    },
+    {
+      "file": "capturas\\150\\emblems.png",
+      "sha256": "b581e49ecaf844fcf811b9bdad3b23a5e45e6e628ef8e24e4bb306173e771a6e"
+    },
+    {
+      "file": "capturas\\150\\evolution.png",
+      "sha256": "12df7937ab04f34b5b9e4bb886644b76162e51be15a195bc8a1695c4bd1a4a85"
+    },
+    {
+      "file": "capturas\\150\\identity.png",
+      "sha256": "426e08080feb7c9d8eb97ba39723c023e58cdc31f4b176d3737063b64182a6c0"
+    },
+    {
+      "file": "capturas\\150\\impact.png",
+      "sha256": "c0a0e97d9655ffa62c2e8789bdc8ea7e9051f6cf6e1961603bb1a933a55e1ec7"
+    },
+    {
+      "file": "capturas\\150\\kronasta.png",
+      "sha256": "63cfe58b7152cc85c6b1bf728a234f1521fda26e9bc8be032e1a79b41c290b79"
+    },
+    {
+      "file": "capturas\\150\\live.png",
+      "sha256": "053f9a5ac299de0cf4da0a84d55abbf4d01cc1f36cd521c1a4aa83dc6661c5ea"
+    },
+    {
+      "file": "capturas\\150\\map.png",
+      "sha256": "63cfe58b7152cc85c6b1bf728a234f1521fda26e9bc8be032e1a79b41c290b79"
+    },
+    {
+      "file": "capturas\\150\\menu.png",
+      "sha256": "fd793fc56ab5554baf6c8b5a13bf0ae148329dadbe60e05fc6dc3c91f276f9fe"
+    },
+    {
+      "file": "capturas\\150\\missions.png",
+      "sha256": "6f8a9127ebe27628d2c3429ccdbc8fe36ec59df0fd9973dcdacdd42a4fe81c52"
+    },
+    {
+      "file": "capturas\\150\\morro-battle.png",
+      "sha256": "dedeb5c450c4c9024b5cdad176626f8fc97aabd6adee197514af62e1fa2d52fa"
+    },
+    {
+      "file": "capturas\\150\\pause.png",
+      "sha256": "998182ee861e13d94291fdb886bf17e6a73b1f41a1da0dac2200fe423dd37ede"
+    },
+    {
+      "file": "capturas\\150\\paused.png",
+      "sha256": "4d7d078ea4002aad201729bcdf341c222d3ef2fc995f0c359a465d0b699e5a44"
+    },
+    {
+      "file": "capturas\\150\\practice.png",
+      "sha256": "b447eb43b4de8854229f3959318391cca0b6aa51d3aaf1d402bd01465df683b3"
+    },
+    {
+      "file": "capturas\\150\\settings.png",
+      "sha256": "0c1e3d971a6a1f6e5c16a44df609d1dc7f2f1e45e55b497b9731bdab335a217e"
+    },
+    {
+      "file": "capturas\\150\\slots.png",
+      "sha256": "167c0b4523c4699027e76ed6bd061d5b4bd0607afc4963ca0093590f149a9eaf"
+    },
+    {
+      "file": "capturas\\150\\team.png",
+      "sha256": "74c67c9480557acd2ba8a9594f14a57d9eb5d830c156e00fd8803beafc886b36"
+    },
+    {
+      "file": "capturas\\150\\victory.png",
+      "sha256": "2ee95da87ad2e4deeb00ad714749e78ee013d3d0d313f6643b233f675e45cc02"
+    },
+    {
+      "file": "capturas\\150\\victory-unfocused.png",
+      "sha256": "d84edfed3203ae476e9b3e64aa18b48c975549dc24f7af1c5ff9425de42e9f54"
+    },
+    {
+      "file": "capturas\\150\\workshop.png",
+      "sha256": "03a139a60c8d835fe8f5f0deae725f4fafcb6268bc4bfb675cc2ef1e4900633f"
+    },
+    {
+      "file": "capturas\\150\\bedroom.png",
+      "sha256": "8f220e8fa238e43f599533a98c6fd0263c7b3b446854d25d60047570eddb63cf"
+    },
+    {
+      "file": "capturas\\150\\clearing.png",
+      "sha256": "cdae87d62edd8b8ef5898186b9c5c2d52e32faff0a8617103afdc83d5ced16b7"
+    },
+    {
+      "file": "capturas\\150\\morro.png",
+      "sha256": "816c31011362b930dafcf925dffe2ee214bf604ea5afc74aaf7260dcfcefb6fe"
+    },
+    {
+      "file": "capturas\\150\\morro-2.png",
+      "sha256": "7357de64f1c9d195c2142fd4e8465daa6b3cf6402d888b9ef11881880000e519"
+    },
+    {
+      "file": "capturas\\150\\morro-3.png",
+      "sha256": "5b56e40028b3947c87a157a9a52becfbaefd9bfce8995213ca0475553da40f14"
+    },
+    {
+      "file": "capturas\\150\\morro-4.png",
+      "sha256": "2b9ade9ef76a1b8812afc06ab28c10b83bd79f8c677e8bfbf5c7a48d782c274e"
+    },
+    {
+      "file": "capturas\\150\\morro-5.png",
+      "sha256": "8c3b5f2c979cd7ddafddf7f6690fb9a13c4753b12c850cbb0d3c89f68d1671d6"
+    },
+    {
+      "file": "capturas\\150\\morro-dialog.png",
+      "sha256": "fecde4aad57168615b2e27231bb200c736b51e900fa2eaf684080949a6bd19a7"
+    },
+    {
+      "file": "capturas\\150\\park.png",
+      "sha256": "d19d1584bc5d91e606290a8d0b61f8a2ee16bc502a115a3edf6a287a414635ab"
+    },
+    {
+      "file": "capturas\\150\\professor.png",
+      "sha256": "9da4065f654301d94fcf30cfa095d874fc02e5364f9de00345f7dc29854caed7"
+    },
+    {
+      "file": "capturas\\150\\street.png",
+      "sha256": "9340629eec9af2a6c67e6a5b6a56da8878c135d944968f865141fda40e3fba9c"
+    },
+    {
+      "file": "capturas\\150\\trail.png",
+      "sha256": "c6eb26ed31c3c7685244d92a5ece66078b6ffc73531248054a35fd05bb945ce9"
+    },
+    {
+      "file": "capturas\\100\\bag-1280x800.png",
+      "sha256": "e40c118d2e175d3fb55ee17cb56a2880e9c34cdf4ed3c78f9940aa75676efa93"
+    },
+    {
+      "file": "capturas\\100\\boss-1280x800.png",
+      "sha256": "344fa41bb17f2076cdc930b26ebd6a27f2b5a7ff6896f1385b7109e7370264a6"
+    },
+    {
+      "file": "capturas\\100\\care-1280x800.png",
+      "sha256": "2883a1cb3e8af8b1efc5b4997fe9c32f58799c808b0b715d0f507402346869d3"
+    },
+    {
+      "file": "capturas\\100\\controls-1280x800.png",
+      "sha256": "432618fa4c7528cae7a6c67a48504038fa0e62300cdc45fa50612fb14f3df451"
+    },
+    {
+      "file": "capturas\\100\\defeat-1280x800.png",
+      "sha256": "c44a10cb361ecb74127ae0647905c82d4eb20c64e6e164648dee4cee220e84f8"
+    },
+    {
+      "file": "capturas\\100\\dex-1280x800.png",
+      "sha256": "4196a4dbabb7e3c75c61a484a29dd5e6ca96b4ae53d4aec98634a05fdbec863a"
+    },
+    {
+      "file": "capturas\\100\\emblems-1280x800.png",
+      "sha256": "0166cd74dc55d862299f4b304243f2f81e4c856a3eb93db7900ebe74640479d7"
+    },
+    {
+      "file": "capturas\\100\\evolution-1280x800.png",
+      "sha256": "7c202356b8be03c23a707954a1f1e79c296a991fdf8d045a84a8492f8028a839"
+    },
+    {
+      "file": "capturas\\100\\identity-1280x800.png",
+      "sha256": "e18472c49a3f8dd2f0b84a4703d5ef60e13d383a583636e3d85e95cd42ecb94b"
+    },
+    {
+      "file": "capturas\\100\\impact-1280x800.png",
+      "sha256": "ef2a3c0953e791584ee52e47b42a08b8f8ed4247926e2dd053946b5ec89ae220"
+    },
+    {
+      "file": "capturas\\100\\kronasta-1280x800.png",
+      "sha256": "d2afc6143d69210adfd854376493cdb71c015dfd24743669f47f60c4f3284d3a"
+    },
+    {
+      "file": "capturas\\100\\live-1280x800.png",
+      "sha256": "3e3817fe3c1295231a9c179bc626f5b90f3b957a129d4601ad61157f52107df3"
+    },
+    {
+      "file": "capturas\\100\\map-1280x800.png",
+      "sha256": "d2afc6143d69210adfd854376493cdb71c015dfd24743669f47f60c4f3284d3a"
+    },
+    {
+      "file": "capturas\\100\\menu-1280x800.png",
+      "sha256": "6e3b94ec4d95273e8fb7f88b3ecde6aff334288801982118101439988c6d8fba"
+    },
+    {
+      "file": "capturas\\100\\missions-1280x800.png",
+      "sha256": "050364530a989cdab14d6fcdc6796520d233438105c5e775ffe01a24496b7338"
+    },
+    {
+      "file": "capturas\\100\\morro-battle-1280x800.png",
+      "sha256": "d47ee9d217d122968627109f280f7135eed7d620964f5384ae8f5940bccea4b7"
+    },
+    {
+      "file": "capturas\\100\\pause-1280x800.png",
+      "sha256": "43ed0e7ba181d4dd7f5a5efab31736caedfbbd8c3126f720b5f105ed44bd5b23"
+    },
+    {
+      "file": "capturas\\100\\paused-1280x800.png",
+      "sha256": "f7ef36bdfed174f1ef414594dded2a9f7fa20734be57557ae5cc476dcd35a635"
+    },
+    {
+      "file": "capturas\\100\\practice-1280x800.png",
+      "sha256": "c758a0faaf3d68b8eb1c997edb2533a4cabed59e3599ca7dada813e6b34731ac"
+    },
+    {
+      "file": "capturas\\100\\settings-1280x800.png",
+      "sha256": "41c5af201639e894e2e2d03076d6b0e710f3444bd1a3e4181f8a69a977f9d2b7"
+    },
+    {
+      "file": "capturas\\100\\slots-1280x800.png",
+      "sha256": "f52f2d098f4077bc561ec587e7538f3d3487385cde259a17ceb464d8bfbb501b"
+    },
+    {
+      "file": "capturas\\100\\team-1280x800.png",
+      "sha256": "c9fc90e99235df8b95ef59c290df08be19eeee5c03b330bd9ce1296ea6d87e3f"
+    },
+    {
+      "file": "capturas\\100\\victory-1280x800.png",
+      "sha256": "5fa612c60483694288518fca85dc8c3aee5d336f6d5bfdac76a1d91f3e55f2bf"
+    },
+    {
+      "file": "capturas\\100\\victory-unfocused-1280x800.png",
+      "sha256": "244fba7f1692f5eb1daca4a4b874378bebc736e916a83451c6fa49c674493789"
+    },
+    {
+      "file": "capturas\\100\\workshop-1280x800.png",
+      "sha256": "4bab51b38ec011a42815642209923616a88519933350d6474279c32b85cd699d"
+    },
+    {
+      "file": "capturas\\100\\bedroom-1280x800.png",
+      "sha256": "59150f902b9e764c0d65a0d04bb7df58aaf40d5d5261c62ece9acf3ee8b98518"
+    },
+    {
+      "file": "capturas\\100\\clearing-1280x800.png",
+      "sha256": "3a5fe4558e1052782a6c0fc10a0cc9363dfeb11163ff65ee69c792bd3058a7a6"
+    },
+    {
+      "file": "capturas\\100\\morro-1280x800.png",
+      "sha256": "9d89a90779c580b88802e55da6cfffa66331ae9fce6aedb694ed44fc921a0f78"
+    },
+    {
+      "file": "capturas\\100\\morro-2-1280x800.png",
+      "sha256": "91aa0c3168c6002165d18fdf956d4d82b72dac299eb06c2a9feee9a4e5d2eb81"
+    },
+    {
+      "file": "capturas\\100\\morro-3-1280x800.png",
+      "sha256": "6a8f48bacfec52624efd5e68caa7239590ffcc87e79d2288d14f8da74b9c5a8f"
+    },
+    {
+      "file": "capturas\\100\\morro-4-1280x800.png",
+      "sha256": "2d063ec06bf2131a3a3549ee08b27251bcbde2444c2d0f0c6fb1122117d69769"
+    },
+    {
+      "file": "capturas\\100\\morro-5-1280x800.png",
+      "sha256": "e7f5cca80e6cdc5a1556534aaa867cc506708939da86a07b5e7f49fda6b34735"
+    },
+    {
+      "file": "capturas\\100\\morro-dialog-1280x800.png",
+      "sha256": "811160e09e43b7539d2e77e86f12b7e763c45a00cbc1dc0c4fb99634f974df55"
+    },
+    {
+      "file": "capturas\\100\\park-1280x800.png",
+      "sha256": "8f36e00beb91b37830e296ca671f5d1dfcfeb6001412e273eac07f4f268a9623"
+    },
+    {
+      "file": "capturas\\100\\professor-1280x800.png",
+      "sha256": "debda62d3dfaaa5c97ae8f1135fc733038d61bc655bc88a02404a98499ed64e6"
+    },
+    {
+      "file": "capturas\\100\\street-1280x800.png",
+      "sha256": "2aebfbae1341a7875cda729d3f104d873842e29765eaaac2d730d71b805c7f4d"
+    },
+    {
+      "file": "capturas\\100\\trail-1280x800.png",
+      "sha256": "f4e7f86e2bd3f80bf025ed1fe93a2d82d7df333bced841d3d1088a2d199139cd"
+    },
+    {
+      "file": "capturas\\150\\bag-1280x800.png",
+      "sha256": "ba2bf150bd3ae3b80aa241403f4a62685d022c9df54a16bbdb8af0aed01e1ef2"
+    },
+    {
+      "file": "capturas\\150\\boss-1280x800.png",
+      "sha256": "e85d304d10566f8903f9ea8a5ff475d86d8357bc0d941b71b78332047dc93c8f"
+    },
+    {
+      "file": "capturas\\150\\care-1280x800.png",
+      "sha256": "fd4da7f9e53f68f96fa40ca4c66532a65b317b1a31b8778fc635685e0b0de41c"
+    },
+    {
+      "file": "capturas\\150\\controls-1280x800.png",
+      "sha256": "6804f9690e4eb76a54bc8978414d892cab2630b7e387acce7fbd1227a2f44209"
+    },
+    {
+      "file": "capturas\\150\\defeat-1280x800.png",
+      "sha256": "adff1be51ad1b3fdfd3e9ad1223efe80806dcc64d5ceaf78d069b577a83b92a5"
+    },
+    {
+      "file": "capturas\\150\\dex-1280x800.png",
+      "sha256": "be55ae24d90dba8b4bf3432da1c100814d448e83924feb41f95ac193b75c6288"
+    },
+    {
+      "file": "capturas\\150\\emblems-1280x800.png",
+      "sha256": "a345e9b10a3afe5ca905959943afe964ca1f6f01c187e1a4f09c33167e354432"
+    },
+    {
+      "file": "capturas\\150\\evolution-1280x800.png",
+      "sha256": "9a994b0dc1f0b7a21c4c99255335088aa8d0a9c185bd3c6d75775d8f18c08312"
+    },
+    {
+      "file": "capturas\\150\\identity-1280x800.png",
+      "sha256": "d3ebed6a50a9dd0818ea813e79fe4177c740abb44309057ca5d60b70ef472d12"
+    },
+    {
+      "file": "capturas\\150\\impact-1280x800.png",
+      "sha256": "8d8ea1f88bc8483b178c9d46b91fad1178711b8e37ce67f037d69b6986d7d8ff"
+    },
+    {
+      "file": "capturas\\150\\kronasta-1280x800.png",
+      "sha256": "1150802ec257fea39354160d74123393d1ce48e6c2f24b8381c4db97bcab3d76"
+    },
+    {
+      "file": "capturas\\150\\live-1280x800.png",
+      "sha256": "185badc917ed0c7341d1ac67b0a883fcb46fb9c8946e094688925225057700e6"
+    },
+    {
+      "file": "capturas\\150\\map-1280x800.png",
+      "sha256": "1150802ec257fea39354160d74123393d1ce48e6c2f24b8381c4db97bcab3d76"
+    },
+    {
+      "file": "capturas\\150\\menu-1280x800.png",
+      "sha256": "6e3b94ec4d95273e8fb7f88b3ecde6aff334288801982118101439988c6d8fba"
+    },
+    {
+      "file": "capturas\\150\\missions-1280x800.png",
+      "sha256": "52bc3d1abab4e5736159ceabd0afd2940fe0d03a385ebbc23f9713110732ad98"
+    },
+    {
+      "file": "capturas\\150\\morro-battle-1280x800.png",
+      "sha256": "f2ecb535bb9607aa1e31f90241da6b108cb99861203aa4db7c81e52f31d0309d"
+    },
+    {
+      "file": "capturas\\150\\pause-1280x800.png",
+      "sha256": "7ec513f27794b772f3af8b84f870f3cbd42fbeef10f6432cd0f3dc6c008e546f"
+    },
+    {
+      "file": "capturas\\150\\paused-1280x800.png",
+      "sha256": "4dda1d0e32c1ba3b7f335622ddaf7d3bce86dcb0b39b617460bab1040fa471ea"
+    },
+    {
+      "file": "capturas\\150\\practice-1280x800.png",
+      "sha256": "ec7cdc3517a52edd749f644fd28ae5820a46d602937d3d4bc14459002387150f"
+    },
+    {
+      "file": "capturas\\150\\settings-1280x800.png",
+      "sha256": "07dc9cd83e2899cf5a5fff68ed8bc812bbc268b036b5e2e38b5d35ab080d6da0"
+    },
+    {
+      "file": "capturas\\150\\slots-1280x800.png",
+      "sha256": "dd0eaf56d3b1ad170ddabde84990503ef10d9de0823c4470e6cd2665a48285fe"
+    },
+    {
+      "file": "capturas\\150\\team-1280x800.png",
+      "sha256": "676be88a132bdcfe433843301854d28d0c05ec3f0f1a3997cf817d7c760b17ac"
+    },
+    {
+      "file": "capturas\\150\\victory-1280x800.png",
+      "sha256": "b3a3a40aad972d09045683b26fdba6d7066bf0172055e42e59e6e7523f80b5f2"
+    },
+    {
+      "file": "capturas\\150\\victory-unfocused-1280x800.png",
+      "sha256": "75a3d5bc1087f2e2331a8a9eb4c2d40f20f72cd28d6474a94acde0e01b56fe8c"
+    },
+    {
+      "file": "capturas\\150\\workshop-1280x800.png",
+      "sha256": "415b9efde9fa3e0cea27772a5a05dd666f5657c4407989ede3f74613b5cde351"
+    },
+    {
+      "file": "capturas\\150\\bedroom-1280x800.png",
+      "sha256": "9e46fd40f0eb24f7cac1df2bf3aa8fb2dbe9996b19de682f8d8ab25a9905751a"
+    },
+    {
+      "file": "capturas\\150\\clearing-1280x800.png",
+      "sha256": "3ac367b1ee61c2d51985dfb49e433756ff48d060d4d77b3dfa05f4e2dcf30b13"
+    },
+    {
+      "file": "capturas\\150\\morro-1280x800.png",
+      "sha256": "195e3427ef269998f98b465c6caf848b7a711348d89bab4807d006174b39b57e"
+    },
+    {
+      "file": "capturas\\150\\morro-2-1280x800.png",
+      "sha256": "79348cef72a136e4b3b42427ca419613b33c82ca409e395f0711ac3737040de0"
+    },
+    {
+      "file": "capturas\\150\\morro-3-1280x800.png",
+      "sha256": "f162a4a195ea4c8bd1cf0cbbe0367238013075ddd12084ecb8afc533d26df54d"
+    },
+    {
+      "file": "capturas\\150\\morro-4-1280x800.png",
+      "sha256": "9cdb6f8b57ffb436c52571151b183366aa16052b7ba26623b6039fd3d0c01dc3"
+    },
+    {
+      "file": "capturas\\150\\morro-5-1280x800.png",
+      "sha256": "756721e4113144e081f94dd0d37a70ab213292712131a096affa801d36342c72"
+    },
+    {
+      "file": "capturas\\150\\morro-dialog-1280x800.png",
+      "sha256": "729a19717df003940959476b6067bb8e3df061628e44bb1ceda5065e742ff6cc"
+    },
+    {
+      "file": "capturas\\150\\park-1280x800.png",
+      "sha256": "bdae6cf77ded08ac71950d27adac4e86a0800d398b956b7f887d06e939e81bb5"
+    },
+    {
+      "file": "capturas\\150\\professor-1280x800.png",
+      "sha256": "b6a361af6ec3fb1604fdabb5a3d3501d7df66f4a77e23adddec5265cab8222d4"
+    },
+    {
+      "file": "capturas\\150\\street-1280x800.png",
+      "sha256": "78b10c92a5f53bc7dfade0a472bd92a05264a0e33509d912092239a9a4e004bc"
+    },
+    {
+      "file": "capturas\\150\\trail-1280x800.png",
+      "sha256": "2fc0601f0f607a787473c439160f90e8c505aeb78ed937e7717cad183f32f83a"
+    },
+    {
+      "file": "capturas\\100\\bag-1920x1080.png",
+      "sha256": "4a5d9ec06654189cd149c3d30300cd4e8cbbacaa2795e3854ea88026d9e473fc"
+    },
+    {
+      "file": "capturas\\100\\boss-1920x1080.png",
+      "sha256": "923c784dbf1cabd226a73b4da1a6d5bd37f16a528f34564e853d27f22912c1d9"
+    },
+    {
+      "file": "capturas\\100\\care-1920x1080.png",
+      "sha256": "54392a98f44e7dd0f8c4208d6293742333cdc593ffd8fba2bea11ad8de249b4c"
+    },
+    {
+      "file": "capturas\\100\\controls-1920x1080.png",
+      "sha256": "01559e915272241bf28a2a368713659ae67a1c6c61d0e489937dea5a270061d1"
+    },
+    {
+      "file": "capturas\\100\\defeat-1920x1080.png",
+      "sha256": "176a7b862a0f5e7359b7ea42f1106149ad1b9dfe0fe0fbbeb4d7c0e52383c22f"
+    },
+    {
+      "file": "capturas\\100\\dex-1920x1080.png",
+      "sha256": "83eb97ed1481283465f1b785ea974040b1a52042d1e828f1c597e17b3645c8e7"
+    },
+    {
+      "file": "capturas\\100\\emblems-1920x1080.png",
+      "sha256": "46102219411e2170c93c0094b57056c86fd332d194c2717af0564c96e3338a19"
+    },
+    {
+      "file": "capturas\\100\\evolution-1920x1080.png",
+      "sha256": "58ba180cd25c849501f0331105434e7c5c08b521eb9842bdf6ff3e53a8f6a876"
+    },
+    {
+      "file": "capturas\\100\\identity-1920x1080.png",
+      "sha256": "205a026dd8712f52835742795244dfea4497fae73b53a1220a842a73ad9fd0f7"
+    },
+    {
+      "file": "capturas\\100\\impact-1920x1080.png",
+      "sha256": "28255fdac0f44cbea606eba969be28a8f2281ac90a665cbc992b00125e0139e1"
+    },
+    {
+      "file": "capturas\\100\\kronasta-1920x1080.png",
+      "sha256": "4fd12dbc24227964756a411676afe85a420932095754fa1bf3ed03edf8cf1218"
+    },
+    {
+      "file": "capturas\\100\\live-1920x1080.png",
+      "sha256": "1f71f97b31c46a73919982eed555602a89ffa0f1a4c97c7cf3d87509810b8144"
+    },
+    {
+      "file": "capturas\\100\\map-1920x1080.png",
+      "sha256": "4fd12dbc24227964756a411676afe85a420932095754fa1bf3ed03edf8cf1218"
+    },
+    {
+      "file": "capturas\\100\\menu-1920x1080.png",
+      "sha256": "aaaa38b7c61ac30d85aeecf9ffb21922b67de6d7135d38bf0f7287f7d5bacfcf"
+    },
+    {
+      "file": "capturas\\100\\missions-1920x1080.png",
+      "sha256": "28624594cfc9d0d05dc1c5870fbc418ae35f16cf1139e99b94fba937f4f7febc"
+    },
+    {
+      "file": "capturas\\100\\morro-battle-1920x1080.png",
+      "sha256": "b88f163a1682b50c3c25e98ac09926e50359cfb98afeb79e901d6fd2671b88c6"
+    },
+    {
+      "file": "capturas\\100\\pause-1920x1080.png",
+      "sha256": "c8b5a37ad6b9e103a19ac264177a6863e85168f1fcc382b8a0d21cd1c0aec05e"
+    },
+    {
+      "file": "capturas\\100\\paused-1920x1080.png",
+      "sha256": "eaf45c288a294f4181de3f8bf790579462415394560f607a542031a84c10f861"
+    },
+    {
+      "file": "capturas\\100\\practice-1920x1080.png",
+      "sha256": "71012654bc5ad3cf9cf4babcb558fd16bbde6acc43c244c0c86de9c85882b1d2"
+    },
+    {
+      "file": "capturas\\100\\settings-1920x1080.png",
+      "sha256": "36966ea8df82c29e9b5439c8c744266b2e54564502090fc8e17d7808685b002c"
+    },
+    {
+      "file": "capturas\\100\\slots-1920x1080.png",
+      "sha256": "cdc5152778d2b6a77942f54f7c80ec7ea7de3ac1f6fd4a0bf4603401c8a660ef"
+    },
+    {
+      "file": "capturas\\100\\team-1920x1080.png",
+      "sha256": "9dc6e3d6a46d7e4e40ce5773224373802e0ea580a8e954c7fa3894e3509dba7e"
+    },
+    {
+      "file": "capturas\\100\\victory-1920x1080.png",
+      "sha256": "cb1873e6c1d19fc3644d61228e371722ff12603951bcb580758632ba6f03b052"
+    },
+    {
+      "file": "capturas\\100\\victory-unfocused-1920x1080.png",
+      "sha256": "9a07b641b7484a190ef700c88c91c796580272c3b37d9407438b0e694d2d04ea"
+    },
+    {
+      "file": "capturas\\100\\workshop-1920x1080.png",
+      "sha256": "44c42db98990473d0691144f1f73634ae72d61c88eb6995eadce11b9b295b49d"
+    },
+    {
+      "file": "capturas\\100\\bedroom-1920x1080.png",
+      "sha256": "416eadab0ab670bc9c3c0a47a40a8e66f4d366b74bbf82858ba8a1f82e4dd0d5"
+    },
+    {
+      "file": "capturas\\100\\clearing-1920x1080.png",
+      "sha256": "c3f0475522d528619a3d344efdbe39b3553bad93f109e5f1f14b96d206351729"
+    },
+    {
+      "file": "capturas\\100\\morro-1920x1080.png",
+      "sha256": "0ea5fc0efa2f78930ff3af199dcbb1a0dc86d9fb78ca1e9cd8fbc16a6f7c1b0a"
+    },
+    {
+      "file": "capturas\\100\\morro-2-1920x1080.png",
+      "sha256": "a77aaeb8f80436a11b119c27559f031720e702b9cfe23b886dc6741c3010e9e4"
+    },
+    {
+      "file": "capturas\\100\\morro-3-1920x1080.png",
+      "sha256": "7b43ffc003dd247865f53e5b7ce38c4967f102318fe5ff219e720183dcc9efae"
+    },
+    {
+      "file": "capturas\\100\\morro-4-1920x1080.png",
+      "sha256": "a2fbba5495d0bb2c450223359db8f4a3bdec96ea2f87ed4c36f41c921ae36e88"
+    },
+    {
+      "file": "capturas\\100\\morro-5-1920x1080.png",
+      "sha256": "c1e2dd3f48a506c104a972d9419e485aeef43cd783bbaf517531a25f120d6b3b"
+    },
+    {
+      "file": "capturas\\100\\morro-dialog-1920x1080.png",
+      "sha256": "602985ec54ec5308f1ab7691d73ede93836fd4b1bd5eb70eb575f7f48920ca70"
+    },
+    {
+      "file": "capturas\\100\\park-1920x1080.png",
+      "sha256": "5e295c22d25345476f14be68188e44a970f7545494017eb532b01f74248e5d97"
+    },
+    {
+      "file": "capturas\\100\\professor-1920x1080.png",
+      "sha256": "cb3644c1cec8d017b09201c7ce333095152d2996ace1576b12ac1739394ad6d5"
+    },
+    {
+      "file": "capturas\\100\\street-1920x1080.png",
+      "sha256": "dc91f679ce31bf37e8c172361fd062672ddefe46889ed30312f069bace9baa63"
+    },
+    {
+      "file": "capturas\\100\\trail-1920x1080.png",
+      "sha256": "0b430ef95ba380a8c1d98b3244ca212447182284ec2194a3c05881f0016d5a11"
+    },
+    {
+      "file": "capturas\\150\\bag-1920x1080.png",
+      "sha256": "81eae68f2421dc32d4f2fa09fc929faf01a5a198b273a5a1ba38c618bd4bb80a"
+    },
+    {
+      "file": "capturas\\150\\boss-1920x1080.png",
+      "sha256": "2cce7f3b8365e397543e2ee57797679dbee2c6a5ddf006197f1bc690d36d53ba"
+    },
+    {
+      "file": "capturas\\150\\care-1920x1080.png",
+      "sha256": "d96e6b2c6ba56d9865066f1568bceb15e714e65850f65cf28d6c277b9890b0ef"
+    },
+    {
+      "file": "capturas\\150\\controls-1920x1080.png",
+      "sha256": "7c325c65427baa6b75d009b2c7ee8a764d280c190ed96fe9605b14010a1b942b"
+    },
+    {
+      "file": "capturas\\150\\defeat-1920x1080.png",
+      "sha256": "eb457932195e7d206604e6a258b2fa429b4a0c10cec3ad292f88b5a452899b73"
+    },
+    {
+      "file": "capturas\\150\\dex-1920x1080.png",
+      "sha256": "8921e448284ee669655cb125d1ba9c0c80897018ede9764e3bac1a08e77e9dd4"
+    },
+    {
+      "file": "capturas\\150\\emblems-1920x1080.png",
+      "sha256": "e05b2f727b0438451617fb1dc3a87b5ca8e45f90155cc40c436352f5b4190181"
+    },
+    {
+      "file": "capturas\\150\\evolution-1920x1080.png",
+      "sha256": "71e651be8f515c44075af7f833bf378ab2f1a31325a3635972aeb924c6fd6db8"
+    },
+    {
+      "file": "capturas\\150\\identity-1920x1080.png",
+      "sha256": "e872fe045d7db58d20bc4451e6a9ca2b4868636cb028cc433f3b81b5bfb0b290"
+    },
+    {
+      "file": "capturas\\150\\impact-1920x1080.png",
+      "sha256": "06e9d4076c0f69b5ba45fff661c0bf72f9b03b0660b418a105fb604b7dcf5ac4"
+    },
+    {
+      "file": "capturas\\150\\kronasta-1920x1080.png",
+      "sha256": "bfcb84b052f2872e37f8d0a85857b2bf5848cd7bb60172298204783174b7fd10"
+    },
+    {
+      "file": "capturas\\150\\live-1920x1080.png",
+      "sha256": "361f2752379a6b4eca4b96e3128e3c4096cd3989ad21afeb94bdc68f3736142f"
+    },
+    {
+      "file": "capturas\\150\\map-1920x1080.png",
+      "sha256": "bfcb84b052f2872e37f8d0a85857b2bf5848cd7bb60172298204783174b7fd10"
+    },
+    {
+      "file": "capturas\\150\\menu-1920x1080.png",
+      "sha256": "aaaa38b7c61ac30d85aeecf9ffb21922b67de6d7135d38bf0f7287f7d5bacfcf"
+    },
+    {
+      "file": "capturas\\150\\missions-1920x1080.png",
+      "sha256": "9f14be3a82caafa943df38cbaa7165a62e7166ac111422521ce9d86849feaf93"
+    },
+    {
+      "file": "capturas\\150\\morro-battle-1920x1080.png",
+      "sha256": "f63785c54e076b17223303aaa0cec1fc02dc761cb2456d00c341266f8a2d3051"
+    },
+    {
+      "file": "capturas\\150\\pause-1920x1080.png",
+      "sha256": "e9ffb012670b0e925f70912019b2938dd41ff328f6f0b1cb4593bdcd96a3d196"
+    },
+    {
+      "file": "capturas\\150\\paused-1920x1080.png",
+      "sha256": "b6b315264c3762f9aee37e0e44d082b5d02eaf7b2a95e7730a18a85ba75038b9"
+    },
+    {
+      "file": "capturas\\150\\practice-1920x1080.png",
+      "sha256": "a969c0a9e84fe292f105d1014e85ef6b016c058ac02103e8c0c9f728683812dd"
+    },
+    {
+      "file": "capturas\\150\\settings-1920x1080.png",
+      "sha256": "00e7d6eeb48e9a636a47f192921cf1f2129f270651951a07ae30e3fdc2deff08"
+    },
+    {
+      "file": "capturas\\150\\slots-1920x1080.png",
+      "sha256": "84263be586ca3eeb21e0ab7d6cf918cec5963d6dd41cd62a082c7dfff0850a35"
+    },
+    {
+      "file": "capturas\\150\\team-1920x1080.png",
+      "sha256": "872ab5867ad05d9a57bd10081445c82f4c7173592054c5f4b5df785243601a66"
+    },
+    {
+      "file": "capturas\\150\\victory-1920x1080.png",
+      "sha256": "2127d79d08c1268e956b813aa4b0f5680d358b1042df855a1513cf23e0a01f59"
+    },
+    {
+      "file": "capturas\\150\\victory-unfocused-1920x1080.png",
+      "sha256": "4756f395350da76e38268f74ef1b27ca90c79377859400b392c8f732ddbb6197"
+    },
+    {
+      "file": "capturas\\150\\workshop-1920x1080.png",
+      "sha256": "162a8265bdb51c42fbfde77a156c6b77094be725db734526e784cfc13e0c66a5"
+    },
+    {
+      "file": "capturas\\150\\bedroom-1920x1080.png",
+      "sha256": "d6347bce708a15dc6fca965ac7603a247070fe245c38f3b0bf1c7b5482032a5f"
+    },
+    {
+      "file": "capturas\\150\\clearing-1920x1080.png",
+      "sha256": "ae2066566a3a4c5cb7690f99cbd8639c074ee14f084a8149ae45860608c0b83c"
+    },
+    {
+      "file": "capturas\\150\\morro-1920x1080.png",
+      "sha256": "4010568640cefb27b9216bc0142c7663f6c7dd2636e394930f60cd5fc6e18c56"
+    },
+    {
+      "file": "capturas\\150\\morro-2-1920x1080.png",
+      "sha256": "ec8bd9f1c0ce60bf72a53b65abe60d1cb3e708dd4427fd9702ad646af4324ded"
+    },
+    {
+      "file": "capturas\\150\\morro-3-1920x1080.png",
+      "sha256": "a6f88c38d52df4a2bb7f406d416c398fbf4686a0c1d8f448aca4739856bbf4ce"
+    },
+    {
+      "file": "capturas\\150\\morro-4-1920x1080.png",
+      "sha256": "03e23761dc7632a7a62407cfec9cdc2c0d50029503f39053bb32566b163c6b8b"
+    },
+    {
+      "file": "capturas\\150\\morro-5-1920x1080.png",
+      "sha256": "a96d0b833b8b945e25220f421570008d5bfdc6d5f79482a4edb8b6d754ebc799"
+    },
+    {
+      "file": "capturas\\150\\morro-dialog-1920x1080.png",
+      "sha256": "5b7094984cbc38ed645797fa3b8f181f5da310fcfc71018fe879e5757d9e20bd"
+    },
+    {
+      "file": "capturas\\150\\park-1920x1080.png",
+      "sha256": "830d9cfd9c94a7581c4f911a955ce3bb42ec5bea883c5674be045fff8771772a"
+    },
+    {
+      "file": "capturas\\150\\professor-1920x1080.png",
+      "sha256": "a95aee65bd069c1f8d4a92c8745c73127ed30da49c6af71c40d02bde13e9e744"
+    },
+    {
+      "file": "capturas\\150\\street-1920x1080.png",
+      "sha256": "7e281bcfe953b67325dd62cb920268ff2b2ef24a481ab09ffe4e5f9cc8169e03"
+    },
+    {
+      "file": "capturas\\150\\trail-1920x1080.png",
+      "sha256": "5e4d0b04580f6be0bbfdfef0c9586d1bb925b1f3c0819acf76b1fc3e1cc3ab24"
+    }
+  ]
+}
