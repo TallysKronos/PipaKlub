@@ -97,7 +97,7 @@ Eles não são supervisores de rank, como os guardiões de Digimon World DS. Ele
 | --- | --- | --- | --- |
 | **Pulo do Elo** | Rabbito (já existe como golpe) | Vãos curtos e degraus altos | Ato 1 |
 | **Planar** | Espécies-ave, como o Carcará | Descer de platôs para longe, atravessar ravinas no sentido da descida | Ato 2 |
-| **Remar** | Espécies d'água, como o Platyx | Atravessar água rasa e canais | Ato 3 |
+| **Remar** | Espécies d'água; Platyx reservado ao arco de Grampo | Atravessar água rasa e canais | Ato 3 |
 | **Cavar** | Uma espécie-tatu (a criar) | Buracos marcados no chão, que levam a galerias | Ato 4 |
 | **Corrente de ar** | Presente do Aracati | Subir por correntes de vento em penhascos | Ato 4 |
 
@@ -275,6 +275,8 @@ O cenário aprovado é o **Pátio da Liga no Parque**, anexo D do Jardim das Pip
 
 Se as 30 vagas do banco do save estiverem ocupadas, a escolha fica registrada e Retalho aguarda acolhimento até o jogador organizar espaço. Nenhum parceiro é substituído automaticamente; liberar um parceiro exige confirmação e não pode atingir o parceiro equipado. Isso não ocupa automaticamente uma das 20 vagas globais da conta. A revelação futura sobre Heleana aprofunda o vínculo sem retirar Retalho do jogador. Nesta primeira integração, a ida ao Varal e a passagem da noite usam uma elipse narrativa; o Varal livre em overworld ainda não foi construído. Palafitas A–C recebe o percurso de resgate; seu campeonato continua separado e ainda pendente.
 
+**Remar [Decisão, 02/11/2026]:** Marisol ensina a habilidade após o Exame Azul. **Platyx é único e reservado ao enredo de redenção de Grampo**: não emprestar outro indivíduo, não distribuir a espécie e não colocá-la como encontro selvagem. O parceiro de apoio para Remar ainda será definido. Primeira integração: orientação interativa de corrente, ritmo e margem, registrada no save, sem conceder criatura nem liberar travessia prática ainda.
+
 ### 7.5 Ato 4 — Rabiola Vermelha: "Os Quatro Ventos"
 
 | Ordem | Lugar | Acontece | Chefe ou duelo | Abre |
@@ -370,7 +372,7 @@ Esta tabela é a da v1, com a ordem detalhada acima.
 | Parque dos Ventos | Mata-verde, Carcará, Azulão | Raio | — |
 | Bosque de Kronasta | Mata-verde; **coruja de papel-manteiga**; **sagui de rabiola longa** | Espécie-tatu (Cavar) | **Onça de bambu**, que só anda à noite |
 | Vila do Bambuzal | **Bicho-pau de vareta**; Mata-verde | **Joaninha-pião** | — |
-| Beira-Canal e Veredas | Lacertubo jovem (o chefe é o adulto); **sapo-cano** | Platyx selvagem | — |
+| Beira-Canal e Veredas | Lacertubo jovem (o chefe é o adulto); **sapo-cano** | A definir; não usar Platyx selvagem | — |
 | Feira do Largo | **Pombo de jornal**; **gato de saco de papel** | **Papagaio de feira**, que repete as falas dos NPCs | — |
 | Cais Velho e Porto Novo | **Caranguejo-carretel**; **gaivota de sinalização** | **Peixe-voador de seda** | — |
 | Vila Operária | **Mariposa de lâmpada**; **rato de bobina** (mascote do Bando) | **Tatu-bola de engrenagem** | **Pipa-Dragão** remendada, solta depois do ato 3 |

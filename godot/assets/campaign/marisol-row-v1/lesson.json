@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "id": "marisol-row-orientation-v1",
+  "title": "Marisol · Antes de remar",
+  "intro": "A água também tem seu vento. Antes de atravessar, você precisa aprender a escutá-la. Hoje vamos preparar a travessia; a prática na água virá depois.",
+  "lessons": [
+    {
+      "id": "current",
+      "prompt": "A corrente está puxando para o meio do canal. O que você faz antes de entrar?",
+      "options": [
+        {
+          "id": "observe",
+          "text": "Observar a corrente e escolher uma margem segura"
+        },
+        {
+          "id": "rush",
+          "text": "Entrar rápido para vencer a corrente"
+        }
+      ],
+      "answer": "observe",
+      "hint": "Marisol: Pressa não muda a direção da água. Olhe para onde a corrente leva e encontre uma margem de apoio."
+    },
+    {
+      "id": "rhythm",
+      "prompt": "O parceiro perdeu o ritmo e demonstra cansaço. Como você conduz?",
+      "options": [
+        {
+          "id": "pull",
+          "text": "Puxar mais forte para terminar logo"
+        },
+        {
+          "id": "rest",
+          "text": "Reduzir o esforço e parar num apoio seguro"
+        }
+      ],
+      "answer": "rest",
+      "hint": "Marisol: Conduzir não é arrastar. Respeite o ritmo do parceiro e procure um apoio seguro."
+    },
+    {
+      "id": "shore",
+      "prompt": "Você se aproxima da outra margem. Qual é o melhor desembarque?",
+      "options": [
+        {
+          "id": "safe",
+          "text": "Reduzir o ritmo e confirmar onde apoiar os pés"
+        },
+        {
+          "id": "jump",
+          "text": "Saltar assim que enxergar terra"
+        }
+      ],
+      "answer": "safe",
+      "hint": "Marisol: Enxergar terra não basta. Aproxime-se devagar e confira se a margem sustenta o desembarque."
+    }
+  ],
+  "done": "Marisol: Corrente, ritmo e margem. Guarde essas três coisas. Quando o apoio da travessia estiver pronto, faremos a prática. A orientação ficou registrada; você ainda não recebeu acesso a rotas de Remar."
+}

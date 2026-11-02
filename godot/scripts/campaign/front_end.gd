@@ -2593,7 +2593,17 @@ func _partner_portrait(model_id: String) -> Texture2D:
 	texture.region = Rect2(frame.x, frame.y, frame.w, frame.h)
 	return texture
 
-func _district_action(id:String)->void:
+func _district_action(id:String,skip_row:bool=false)->void:
+	if id=="cais-5" and not skip_row and load("res://scripts/campaign/marisol_row.gd").eligible(session.snapshot().player):
+		var origin:Vector2=park.player
+		if not load("res://scripts/campaign/marisol_row.gd").new(session).near(origin):return
+		_simple_page("Marisol · Cais Velho",true)
+		_label("Você veio pela água ou pelo emblema?",page,26)
+		_button("Conversar sobre Remar",page,func():_show_row_lesson(load("res://scripts/campaign/marisol_row.gd").new(session),origin))
+		_button("Assuntos do campeonato",page,func():
+			_return_row_championship(id))
+		_button("Voltar ao Cais",page,_show_saved)
+		return
 	var service=load("res://scripts/campaign/district_campaign.gd").new(session)
 	var rules=load("res://scripts/campaign/district_rules.gd")
 	var player:Dictionary=session.snapshot().player
@@ -3019,3 +3029,38 @@ func _show_blue_observation(point:Vector2)->void:
 			if result.status=="try_again":feedback.text=result.hint
 			elif _result(result):_show_saved())
 	_button("Voltar sem concluir o cuidado",page,_show_saved)
+
+func _show_row_lesson(lesson:RefCounted,origin:Vector2)->void:
+	if not lesson.near(origin):return
+	_simple_page(lesson.data().title,true)
+	if lesson.learned(session.snapshot().player):
+		_label(lesson.data().done,page,24)
+		_button("Voltar ao Cais",page,_show_saved)
+		return
+	if lesson.step==lesson.data().lessons.size():
+		_label("Corrente, ritmo e margem. Você concluiu a orientação; a prática aquática continua separada.",page,24)
+		var feedback:=_label("Registre a orientação antes de sair.",page,22)
+		_button("Registrar orientação",page,func():
+			var result:Dictionary=lesson.finish(origin)
+			if _result(result):_show_row_lesson(lesson,origin)
+			else:feedback.text="Não foi possível salvar. Tente registrar novamente; suas respostas continuam nesta tela.")
+	else:
+		var entry:Dictionary=lesson.data().lessons[lesson.step]
+		_label(lesson.data().intro if lesson.step==0 else "Marisol · corrente, ritmo e margem",page,22)
+		_label("%d / %d · %s"%[lesson.step+1,lesson.data().lessons.size(),entry.prompt],page,26)
+		var feedback:=_label("Escolha como você conduziria a travessia.",page,22)
+		for option:Dictionary in entry.options:
+			var choice:String=option.id
+			_button(option.text,page,func():
+				var result:Dictionary=lesson.answer(choice,origin)
+				if result.status=="try_again":feedback.text=result.hint
+				elif _result(result):_show_row_lesson(lesson,origin))
+	_button("Sair sem registrar",page,_show_saved)
+
+func _return_row_championship(id:String)->void:
+	_show_saved()
+	for frame in 900:
+		await get_tree().process_frame
+		if is_instance_valid(park) and not is_instance_valid(scene_loading):
+			_district_action(id,true)
+			return
