@@ -42,3 +42,5 @@ Caio Garça — revisão V2: quatro opções coloridas e silhuetas em art/charac
 Caio Garça — direção V3 do usuário: velho esguio, máscara e punhos de um novo Soulmonster crocodiliano arredondado que emana veneno roxo. Concepts V2 A/B/C/D aprovados como reserva para outros personagens, sem atribuições definidas. V3 em exploração, criatura ainda sem nome.
 
 Caio Garça — V4 aprovada pelo usuário: rosto de senhor mais mangá, nariz simplificado. Arte em art/characters/caio-garca/concept-v4/caio-rosto-manga.png. V3 preservada; nenhuma integração de runtime nesta etapa.
+
+Caio Garça — prancha V5 com costas e expressões em revisão. V4 continua identidade aprovada. Conferir posição lateral da rabiola antes de produção.
