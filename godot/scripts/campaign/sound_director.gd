@@ -20,6 +20,20 @@ var focused := true
 var dialogue_blips := false
 var context_generation := 0
 var connected_events: Dictionary = {}
+const REWARD_PRIORITY = {"progress.coins":1, "progress.xp":2, "progress.item":3, "progress.discovery":4, "progress.objective":5, "progress.tutorial":6, "progress.quest_complete":7, "progress.level_up":8}
+var pending_reward := ""
+var pending_reward_gain := 0.0
+var reward_flush_scheduled := false
+
+func _flush_reward() -> void:
+	reward_flush_scheduled = false
+	var id := pending_reward
+	pending_reward = ""
+	if not id.is_empty(): _play_event(id, pending_reward_gain)
+
+func transition() -> void:
+	# Travel survives scene disposal and respects the UI volume and pause policy.
+	_play_event("world.transition", -5.0, true)
 
 static func cue(node: Node, id: String) -> void:
 	if not node.is_inside_tree(): return
@@ -58,15 +72,28 @@ func configure(levels: Dictionary, blips: bool) -> void:
 		AudioServer.set_bus_volume_db(index, linear_to_db(maxf(.0001, gain * gain)))
 
 func play_event(id: String, gain_db: float = 0) -> void:
+	if REWARD_PRIORITY.has(id):
+		if int(REWARD_PRIORITY[id]) > int(REWARD_PRIORITY.get(pending_reward, 0)):
+			pending_reward = id
+			pending_reward_gain = gain_db
+		if not reward_flush_scheduled:
+			reward_flush_scheduled = true
+			_flush_reward.call_deferred()
+		return
+	if id == "progress.save_error": pending_reward = ""
+	_play_event(id, gain_db)
+
+func _play_event(id: String, gain_db: float = 0, travel: bool = false) -> void:
 	if not events.has(id): return
 	if id == "dialogue.blip" and not dialogue_blips: return
 	var entry: Dictionary = events[id]
-	var ui: bool = entry.bus == "UI"
+	var ui: bool = travel or entry.bus == "UI"
 	var persistent: bool = str(entry.category) in ["progress", "inventory"] or id == "workshop.birth"
 	var pause_safe: bool = ui or persistent
 	if not focused or ((game_paused or scene_paused) and not pause_safe): return
 	var now := Time.get_ticks_msec()
 	var cooldown := int(entry.get("cooldown_ms", 100))
+	if travel: cooldown = maxi(cooldown,650)
 	if id == "workshop.paper_cut": cooldown = 250
 	if id == "progress.save_error": cooldown = 5000
 	if now - int(last_play.get(id, -100000)) < cooldown: return
@@ -95,7 +122,7 @@ func play_event(id: String, gain_db: float = 0) -> void:
 	var stream := _stream(path)
 	if stream == null: return
 	var player := AudioStreamPlayer.new()
-	player.bus = str(entry.bus)
+	player.bus = "UI" if travel else str(entry.bus)
 	player.stream = stream
 	player.volume_db = gain_db
 	if id.begins_with("world.step_"): player.volume_db += randf_range(-1.5, 0.0)
@@ -235,8 +262,7 @@ func saved(snapshot: Dictionary) -> void:
 	if old.is_empty() or snapshot.is_empty() or old.get("slotId") != snapshot.get("slotId"): return
 	var a: Dictionary = old.player
 	var b: Dictionary = snapshot.player
-	if old.checkpoint.get("scene", "") != snapshot.checkpoint.get("scene", "") and old.checkpoint.get("kind") == "world" and snapshot.checkpoint.get("kind") == "world":
-		play_event.call_deferred("world.door_open" if snapshot.checkpoint.scene in ["kael-home", "professor-home"] else "world.transition")
+	# Presentation owns travel audio; a checkpoint write alone is not travel.
 	if b.get("equippedPartnerId", "") != a.get("equippedPartnerId", ""):
 		play_event("inventory.equip")
 		for partner: Dictionary in b.get("partners", []):
