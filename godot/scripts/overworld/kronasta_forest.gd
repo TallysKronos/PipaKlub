@@ -74,11 +74,12 @@ static func build(view) -> void:
 		var path:String=KITS+"gelo-v1/superficies/parede.png"
 		wall_texture=preload("res://scripts/overworld/industrial_structures.gd").texture(path) if FileAccess.file_exists(path) else load(KITS+"cavernas-v3/surfaces/parede-basalto.png")
 	if submerged:wall_texture=load(KITS+"cavernas-v3/surfaces/parede-basalto.png")
+	if model.data.get("forest",{}).get("harbor",false):wall_texture=load(KITS+"industrial-v1/superficies/concreto.png")
 	var exits:=_exit_columns(model)
 	for v in range(-RING,h+RING):
 		for u in range(-RING,w+RING):
 			var inside:=u>=0 and v>=0 and u<w and v<h
-			if (mountain or mine or ice or bool(model.data.get("forest",{}).get("bamboo",false)) or model.data.get("forest",{}).get("canal",false) or model.data.get("forest",{}).get("market",false)) and not inside:continue
+			if (mountain or mine or ice or bool(model.data.get("forest",{}).get("bamboo",false)) or model.data.get("forest",{}).get("canal",false) or model.data.get("forest",{}).get("market",false) or model.data.get("forest",{}).get("harbor",false)) and not inside:continue
 			# Mural chambers use the continuous short cut-border, without broad foreground roof tiles.
 			if inside and model.data.get("forest",{}).get("mural",false) and Structures.mine_cutaway(model,u,v):continue
 			var node:=Node2D.new()
@@ -142,6 +143,7 @@ static func build(view) -> void:
 		preload("res://scripts/overworld/bamboo_structures.gd").build(view)
 	if model.data.get("forest",{}).get("market",false):preload("res://scripts/overworld/market_structures.gd").build(view)
 	if model.data.get("forest",{}).get("canal",false):preload("res://scripts/overworld/canal_structures.gd").build(view)
+	if model.data.get("forest",{}).get("harbor",false):preload("res://scripts/overworld/harbor_structures.gd").build(view)
 	if bool(model.data.get("forest",{}).get("industrial",false)):
 		preload("res://scripts/overworld/industrial_structures.gd").build(view)
 	if bool(model.data.get("forest",{}).get("swamp",false)):
@@ -154,7 +156,7 @@ static func build(view) -> void:
 	if bool(model.data.get("forest",{}).get("nativeProps",false)):
 		var native_pieces: Array = []
 		for piece in model.data.pieces:
-			if piece.asset.begins_with("canal-") or piece.asset.begins_with("feira-"):continue
+			if piece.asset.begins_with("canal-") or piece.asset.begins_with("feira-") or piece.asset.begins_with("cais-"):continue
 			if piece.asset in ["bambuzal-touceira","bambuzal-casa","bambuzal-bancada"]:continue
 			if piece.asset=="industrial-volume":continue
 			if piece.asset in ["pantano-arvore","pantano-arvore-seca"]:continue
@@ -235,7 +237,7 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 			lip_pts.append(pts[0].lerp(pts[1],t)-node.position+Vector2(0,drop))
 		lip.polygon=lip_pts
 		lip.color=Color("4a7a2a") if side=="u" else Color("3d6824")
-		if bool(model.data.get("forest",{}).get("industrial",false)):lip.color=Color("7c8381")
+		if bool(model.data.get("forest",{}).get("industrial",false)) or model.data.get("forest",{}).get("harbor",false):lip.color=Color("7c8381")
 		if bool(model.data.get("forest",{}).get("mountain",false)):lip.color=Color("666951")
 		if bool(model.data.get("forest",{}).get("mine",false)):lip.color=Color("252a35")
 		if ice:lip.color=Color("9dbed7")

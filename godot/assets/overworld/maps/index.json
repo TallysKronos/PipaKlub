@@ -270,6 +270,24 @@
       "name": "Caverna do Mural · Salão do Primeiro Laço",
       "scene": "caverna-mural-c",
       "biome": "floresta"
+    },
+    {
+      "id": "kronasta-cais-a",
+      "name": "Cais Velho · A",
+      "scene": "kronasta-cais-a",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-cais-b",
+      "name": "Cais Velho · B",
+      "scene": "kronasta-cais-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-cais-c",
+      "name": "Cais Velho · C",
+      "scene": "kronasta-cais-c",
+      "biome": "floresta"
     }
   ],
   "scenes": {
@@ -316,7 +334,10 @@
     "kronasta-feira-c": "kronasta-feira-c",
     "caverna-mural-a": "caverna-mural-a",
     "caverna-mural-b": "caverna-mural-b",
-    "caverna-mural-c": "caverna-mural-c"
+    "caverna-mural-c": "caverna-mural-c",
+    "kronasta-cais-a": "kronasta-cais-a",
+    "kronasta-cais-b": "kronasta-cais-b",
+    "kronasta-cais-c": "kronasta-cais-c"
   },
   "campaignReplacement": false
 }

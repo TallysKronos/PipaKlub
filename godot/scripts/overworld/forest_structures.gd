@@ -12,6 +12,7 @@ static func shapes(model) -> Array:
  var w:Dictionary=model.data.get("forest",{}).get("water",{}) if model.data.get("forest",{}).get("water")!=null else {}
  return [uv_points(w.contour),uv_points(w.channel)] if not w.is_empty() else []
 static func is_water(model,p:Vector2) -> bool:
+ if model.data.get("forest",{}).get("harbor",false):return model.cell_at(Vector2i(p.floor())).get("material","")=="agua"
  for shape:PackedVector2Array in shapes(model):
   if shape.is_empty():continue
   if Geometry2D.is_point_in_polygon(p,shape):return true
@@ -76,6 +77,13 @@ static func floor_cut(model,node:Node2D,poly:Polygon2D,corners:Array,u:int,v:int
    target.material=null
    target.texture=null
    target.color=Color("a8b9b9") if model.data.get("forest",{}).get("industrial",false) else Color("b08a52")
+  if model.data.get("forest",{}).get("harbor",false) and c.get("material","")=="agua":
+   target.material=null;target.texture=null if geometry() else load(BASE+"aguas-v1/surfaces/rio-claro.png")
+   target.vertex_colors=PackedColorArray();target.color=Color("2a7490") if geometry() else Color("5f9bac")
+   target.texture_repeat=CanvasItem.TEXTURE_REPEAT_ENABLED
+   var water_uv:=PackedVector2Array()
+   for p in points:water_uv.append((p+node.position)*.7)
+   target.uv=water_uv
   node.add_child(target)
 static func line(parent:Node2D,points:PackedVector2Array,width:float,color:Color) -> void:
  var node:=Line2D.new();node.points=points;node.width=width;node.default_color=color;parent.add_child(node)
@@ -149,7 +157,8 @@ static func build(view) -> void:
    if f.get("swamp",false) and not geometry():continue
    if model.cell_at(Vector2i(u,v)).material!="ponte":continue
    var plank:=Node2D.new();plank.position=iso(Vector2(u,v))+Vector2(0,3);view.actors.add_child(plank)
-   for t in [0.0,.33,.66]:line(plank,PackedVector2Array([iso(Vector2(u,v+t))-plank.position,iso(Vector2(u+1,v+t))-plank.position]),1.4,Color("667b80") if f.get("industrial",false) else Color("735333"))
+   var deck_height:float=float(model.cell_at(Vector2i(u,v)).level)*64 if f.get("harbor",false) else 0.0
+   for t in [0.0,.33,.66]:line(plank,PackedVector2Array([iso(Vector2(u,v+t),deck_height)-plank.position,iso(Vector2(u+1,v+t),deck_height)-plank.position]),1.4,Color("667b80") if f.get("industrial",false) else Color("735333"))
  if not w.is_empty() and not w.get("noBridge",false) and (not f.get("swamp",false) or geometry()):
   var bridge:Dictionary=w.get("bridge",{"u":23,"v":19,"w":3,"h":6})
   for at in [Vector2(bridge.u,bridge.v),Vector2(bridge.u+bridge.w,bridge.v),Vector2(bridge.u,bridge.v+bridge.h),Vector2(bridge.u+bridge.w,bridge.v+bridge.h)]:
