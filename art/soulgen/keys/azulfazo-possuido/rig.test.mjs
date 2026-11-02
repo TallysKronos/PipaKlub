@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import crypto from 'node:crypto';
 import {validate,sample} from '../../../../tools/soulgen-studio/model.mjs';
 import {anatomyReport} from '../../../../tools/soulgen-studio/workflow.mjs';
 const dir=new URL('./cutout-rig-v1/',import.meta.url);
@@ -15,4 +16,11 @@ test('Azulfazo has articulated wings, legs, full tail and registered complete he
  for(const id of ['idle','flight'])assert.deepEqual(sample(p,id,0).values,sample(p,id,p.clips[id].seconds).values);
  for(const [id,time,face]of [['skill',.72,'fierce'],['hurt',.2,'hurt'],['victory',.8,'happy']])assert.equal(sample(p,id,time).face,face);
  assert.equal(sample(p,'defeat',9).done,true);assert.equal(read('validation.json').atlas.borderPixels,0);
+});
+test('Author approved geometry, pivots and PNG bytes remain untouched',()=>{
+ const raw=fs.readFileSync(new URL('author-approved.portable.soulgen.json',dir)),author=JSON.parse(raw),p=read('azulfazo-possuido.soulgen.json');
+ assert.equal(crypto.createHash('sha256').update(raw).digest('hex'),read('author-import.json').sha256);
+ assert.equal(p.rigRevision,2);assert.deepEqual(p.parts,author.parts);assert.deepEqual(p.clips,author.clips);
+ for(const [id,a]of Object.entries(author.assets))assert.deepEqual(fs.readFileSync(new URL(p.assets[id].src.split('/').at(-1),dir)),Buffer.from(a.src.split(',')[1],'base64'));
+ const external=read('author-external-pivot-joints.json');assert.deepEqual(external.map(j=>j.part).sort(),['wingLeft','wingRight']);
 });

@@ -1,0 +1,15 @@
+{
+  "source": "C:\\Users\\user\\Downloads\\azulfazo-possuido-parceiro-do-gollia.soulgen.json",
+  "sha256": "c459240458226759ca651ae89cd49a0b46faef437ae00ee984be7a6cffa4dee8",
+  "preserved": "Author geometry, pivots, hierarchy, clips and PNG bytes.",
+  "normalization": "Local PNG paths, recalibrated joint audit, rigRevision=2.",
+  "changedParts": [
+    "head",
+    "wingLeft",
+    "wingRight",
+    "legLeft",
+    "legRight"
+  ],
+  "clipsChanged": false,
+  "auditLimitation": "Wing pivots lie outside normalized UV bounds after author edits; retained unchanged in parts. Those two joints saved in author-external-pivot-joints.json and excluded only from normalized joint audit. Render review remains required."
+}

@@ -1,5 +1,7 @@
 # Azulfazo possuído — rig para revisão
 
+**Edição do autor incorporada, revisão 2.** Arquivo original integral e hash em `author-approved.portable.soulgen.json` e `author-import.json`. Peças, pivôs, pixels e clipes preservados. Pivôs das asas editadas estão fora do domínio UV normalizado exigido pela auditoria automática: foram mantidos na montagem e seus registros guardados em `author-external-pivot-joints.json`, fora apenas dessa auditoria. A revisão renderizada continua necessária. Rascunho anterior do navegador é arquivado ao carregar a revisão aprovada.
+
 Identidade: evolução A/Ataque do Azulão do Gollia, estado possuído da prancha `art/soulgen/campaign-redesigns-v1/azulfazo/possuido-v1/prancha.png`, aprovado para conversão pelo autor. A evolução livre e B/Velocidade e C/Inteligência permanecem preservadas como concepts. Este projeto não converte automaticamente essas outras formas.
 
 Abrir: http://127.0.0.1:5241/?preset=azulfazo-possuido
