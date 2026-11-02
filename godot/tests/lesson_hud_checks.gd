@@ -34,9 +34,14 @@ func run() -> void:
 					check(view._project(point)==Field.origin(view.size)+point*Field.scale_for(view.size),"world limits project identically to battle")
 				check(not view.save_button.visible,"save stays outside active gameplay")
 				check(view.next_button.disabled and view.next_button.icon!=null,"locked advance has lock symbol")
-				var partner:Rect2=Corners.regions(view.size).partner
+				var corners:Dictionary=Corners.regions(view.size)
+				var partner:Rect2=corners.partner
 				check(not view.next_button.get_global_rect().intersects(partner),"advance never covers partner status")
-				check(not view.coach.get_global_rect().grow(4).intersects(view.next_button.get_global_rect()),"coach and advance have breathing room")
+				# The advance lives inside the coach card (hud_lesson_coach.add_advance).
+				check(view.coach.get_global_rect().grow(1).encloses(view.next_button.get_global_rect()),"advance sits inside the coach card")
+				check(not view.coach.get_global_rect().intersects(partner),"coach never covers partner status")
+				check(not view.coach.get_global_rect().intersects(view.command_row.get_global_rect()) or view.command_row.get_combined_minimum_size().x<=0,"coach clear of the action cards")
+				check(not view.pause_button.get_global_rect().intersects(corners.pilot),"pause clear of the pilot plate")
 				var initial_height:float=view.coach.size.y
 				view.activity_age=0;view._layout_lesson();await settle()
 				check(view.coach.compact and view.coach.size.y<initial_height,"coach shrinks during action")

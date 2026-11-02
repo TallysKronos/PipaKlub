@@ -12,7 +12,9 @@ func _ready() -> void:
 	set_meta("recorte_decorated",true)
 	theme_type_variation="RecorteEmptyPanel"
 	var style:=StyleBoxEmpty.new()
-	for side in [SIDE_LEFT,SIDE_RIGHT]:style.set_content_margin(side,16)
+	# The plate's diagonal cut reaches ~38 px on a full card; keep text clear of it.
+	style.set_content_margin(SIDE_LEFT,18)
+	style.set_content_margin(SIDE_RIGHT,30)
 	for side in [SIDE_TOP,SIDE_BOTTOM]:style.set_content_margin(side,12)
 	add_theme_stylebox_override("panel",style)
 	var row:=HBoxContainer.new()

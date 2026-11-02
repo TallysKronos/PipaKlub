@@ -26,8 +26,11 @@ func run_checks() -> void:
 	await settle()
 	front._process(0)
 	await settle()
-	check(front.status.get_line_count()<=2 and front.status.size.x>=180,"interaction prompt uses at most two readable lines")
-	check(front.status.get_parent().size.x > 180 and front.status.size.y < 60, "interaction prompt has readable dimensions")
+	# The street is the neighbourhood city view, whose exploration HUD owns the prompt.
+	var prompt: Label = front.status if is_instance_valid(front.status) else front.park.exploration_hud.prompt
+	print("street prompt: ", prompt.text, " ", prompt.size, " visible=", prompt.is_visible_in_tree())
+	check(prompt.get_line_count()<=2 and prompt.size.x>=180,"interaction prompt uses at most two readable lines")
+	check(prompt.get_parent().size.x > 180 and prompt.size.y < 60, "interaction prompt has readable dimensions")
 	Fixtures.show(front, "battle")
 	await settle()
 	freeze(front)

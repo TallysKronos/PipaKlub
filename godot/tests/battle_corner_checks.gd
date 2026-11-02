@@ -33,7 +33,10 @@ func run() -> void:
 			for rect:Rect2 in boxes.values():check(view.get_global_rect().encloses(rect),"corner inside screen")
 			check(not boxes.pilot.intersects(boxes.clock) and not boxes.rivals.intersects(boxes.clock),"corner and clock separation")
 			check(not boxes.weather.intersects(boxes.clock),"wind chip separated")
-			check(view._field_scale().y*585>=view.size.y*.7,"flight projection occupies at least 70 percent height")
+			# With the action bar on the TV-safe bottom margin, the field ends above it:
+			# about 68 percent of the height at 720 lines, the rest is HUD and margin.
+			check(view._field_scale().y*585>=view.size.y*.66,"flight projection occupies at least 66 percent height")
+			check(view._project_field(Vector2(90,585)).y<view.bottom_panel.position.y-12,"lowest string anchor stays above the action bar")
 			for command in view.move_cards:check(not boxes.partner.intersects(command.tile.get_global_rect()),"partner and action tile stay separate")
 			check(not boxes.partner.intersects(view.resume_button.get_global_rect()),"pause does not cover partner")
 			check(view.flee_button.visible==(fixture!="morro-battle"),"flee only appears in wild encounter")

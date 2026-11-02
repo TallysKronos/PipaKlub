@@ -9,6 +9,7 @@ const Hud = preload("res://scripts/campaign/hud.gd")
 const Field=preload("res://scripts/campaign/battle_field.gd")
 const Coach=preload("res://scripts/campaign/hud_lesson_coach.gd")
 const CornerHud=preload("res://scripts/campaign/battle_corner_hud.gd")
+const Layout=preload("res://scripts/campaign/hud_layout.gd")
 const Ink = preload("res://scripts/campaign/battle_ink.gd")
 var model: RefCounted
 var content: Dictionary
@@ -107,14 +108,32 @@ func _layout_lesson() -> void:
 	coach.visible=not paused
 	next_button.visible=not paused
 	command_row.visible=not paused
-	var width:=minf(400,size.x*.36)
-	coach.size=Vector2(width,0)
+	# Same safe rectangle and corners as combat: the coach never covers the partner
+	# status (bottom-left) or the pilot plate (top-left).
+	var safe:=Layout.safe_rect(size)
+	var corners:Dictionary=CornerHud.regions(size)
+	var partner:Rect2=corners.partner
+	var gap:=Layout.space("l")
+	var action_height:=size.y*Field.ACTION_BAR
+	var row_left:=partner.end.x+gap
+	command_row.position=Vector2(row_left,safe.end.y-action_height)
+	command_row.size=Vector2(maxf(0,safe.end.x-row_left),action_height)
+	var cards_left:=maxf(row_left,safe.end.x-command_row.get_combined_minimum_size().x)
+	# The row hugs its cards so nothing else is laid out under an empty strip.
+	command_row.position.x=cards_left
+	command_row.size.x=safe.end.x-cards_left
 	next_button.custom_minimum_size.y=48
-	coach.position=Vector2(20,size.y-28-coach.get_combined_minimum_size().y)
-	var action_height:=128*size.y/1080.0
-	command_row.position=Vector2(440,size.y-action_height-16)
-	command_row.size=Vector2(maxf(0,size.x-464),action_height)
-	pause_button.position=Vector2(20,88)
+	var room:=cards_left-gap-row_left
+	const COACH_WIDTH:=400.0
+	if room>=COACH_WIDTH:
+		# Wide screens: between the partner card and the action cards, on the safe edge.
+		coach.size=Vector2(minf(440,room),0)
+		coach.position=Vector2(row_left,safe.end.y-coach.get_combined_minimum_size().y)
+	else:
+		# 16:9 and narrower: above the action cards, on the right safe edge (low field).
+		coach.size=Vector2(COACH_WIDTH,0)
+		coach.position=Vector2(safe.end.x-COACH_WIDTH,command_row.position.y-gap-coach.get_combined_minimum_size().y)
+	pause_button.position=Vector2(corners.pilot.position.x,corners.pilot.end.y+Layout.space("s"))
 	pause_button.size=Vector2(150,40)
 	pause_button.visible=not paused
 	resume_button.visible=paused
