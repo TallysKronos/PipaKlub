@@ -52,3 +52,5 @@ Palafitas — Seyran (A, equilíbrio), Oruvo (B, velas), Kessai (C, travessias) 
 Oruvo — prancha individual em art/characters/oruvo/concept-v1/, com frente, costas, expressões e estudo de linha. Design B preservado; em revisão, sem integração de runtime.
 
 Kessai — prancha em art/characters/kessai/concept-v1/, frente/costas/expressões/linha. Design C preservado; em revisão, sem integração no jogo.
+
+Veldren — prancha em art/characters/veldren/concept-v1/, integração visual de Soulmonster através de gola/punhos de placas e maquiagem. Em revisão; corrigir lado anatômico e nós da rabiola antes de produção. Parceiro não definido.
