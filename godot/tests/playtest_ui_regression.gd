@@ -93,7 +93,10 @@ func exercise() -> bool:
 		check(city.exploration_hud.is_visible_in_tree() and city.exploration_hud.map.is_visible_in_tree(),"HUD and minimap return after dialogue")
 		for step in [3,11,13]:
 			fixtures.show(front,"opening-%d"%step)
-			await create_timer(3).timeout
+			# Each step stages its actors (step 11: the mother walks out) before control returns.
+			for wait in 40:
+				await create_timer(.25).timeout
+				if is_instance_valid(front.room) and front.room.can_walk and not front.opening_busy: break
 			await settle()
 			var room:Node2D=front.room
 			room.set_process(false)

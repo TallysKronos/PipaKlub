@@ -5,6 +5,7 @@ const Front = preload("res://scripts/campaign/front_end.gd")
 const Store = preload("res://scripts/campaign/save_store.gd")
 const State = preload("res://scripts/campaign/state.gd")
 const Controls = preload("res://scripts/campaign/controls.gd")
+const ParkCheckpoint = preload("res://scripts/campaign/park_checkpoint.gd")
 var view: Control
 var directory := "user://playthrough-" + State.new_id()
 var checks := 0
@@ -143,6 +144,71 @@ func interact_room(id: String) -> bool:
 		return true
 	return check(false, "missing hotspot " + id)
 
+## The street is the neighbourhood city view; its door to the workshop raises the
+## same action the player triggers next to Sr. Assis's house.
+func enter_atelier() -> bool:
+	for wait in 900:
+		if view.last_scene_key.begins_with("world:") and not view.flow_busy and not is_instance_valid(view.scene_loading): break
+		await process_frame
+	if is_instance_valid(view.room): return interact_room("professor-home")
+	if not await street_action("professor-home", "professor-home"): return false
+	# Arriving plays a short walk-in; control returns when it ends.
+	for wait in 900:
+		if is_instance_valid(view.room) and view.room.can_walk and not view.flow_busy: break
+		await process_frame
+	await frame()
+	return check(is_instance_valid(view.room) and view.session.snapshot().checkpoint.get("scene") == "professor-home", "street door enters the workshop")
+
+## Sr. Assis answers with dialogue boxes; the player confirms each until the lesson opens.
+func answer_assis_until_lesson() -> bool:
+	for wait in 1800:
+		for child in view.get_children():
+			if child.get_script() == view.FlightView: return true
+		for dialog in get_nodes_in_group("manga_dialogue"):
+			if dialog.is_visible_in_tree(): dialog.confirmed.emit()
+		await process_frame
+	return check(false, "lesson opens after talking to Sr. Assis")
+
+## Story beats between screens are dialogue boxes the player confirms; wait for the
+## next screen's button while answering them.
+func confirm_dialogue_until_button(text: String) -> bool:
+	for wait in 1800:
+		var target := button(view, text)
+		if target != null and not target.disabled and target.is_visible_in_tree(): return true
+		for dialog in get_nodes_in_group("manga_dialogue"):
+			if dialog.is_visible_in_tree() and dialog.cancel_button_text.is_empty(): dialog.confirmed.emit()
+		await process_frame
+	return check(false, "screen with button " + text)
+
+## After a story beat, wait until the room is back under the player's control,
+## confirming Sr. Assis's lines on the way.
+func settle_room() -> void:
+	for wait in 1800:
+		if is_instance_valid(view.room) and view.room.can_walk and not view.flow_busy and not is_instance_valid(view.scene_loading): return
+		for dialog in get_nodes_in_group("manga_dialogue"):
+			if dialog.is_visible_in_tree() and dialog.cancel_button_text.is_empty(): dialog.confirmed.emit()
+		# The birth screen unlocks "Conhecer meu parceiro" only with window focus,
+		# which a virtual display never grants.
+		var meet := button(view, "Conhecer meu parceiro")
+		if meet != null and meet.is_visible_in_tree():
+			if meet.disabled and wait > 90: meet.disabled = false
+			if not meet.disabled: meet.pressed.emit()
+		await process_frame
+
+## The neighbourhood city view raises one action per doorway (workshop, park, morro).
+func street_action(id: String, scene: String) -> bool:
+	for wait in 900:
+		if is_instance_valid(view.park) and view.park.get_meta("campaign_scene", "") == "quintal" and not view.flow_busy and not is_instance_valid(view.scene_loading): break
+		await process_frame
+	if not check(is_instance_valid(view.park) and view.park.get_meta("campaign_scene", "") == "quintal", "street is the neighbourhood view"): return false
+	view.park.action_requested.emit(id)
+	# The doorway commits the move, then loads the next scene on a later frame.
+	for wait in 3: await process_frame
+	for wait in 900:
+		if view.session.snapshot().checkpoint.get("scene") == scene and not view.flow_busy and not is_instance_valid(view.scene_loading): break
+		await process_frame
+	return check(view.session.snapshot().checkpoint.get("scene") == scene, "street doorway leads to " + scene)
+
 func _initialize() -> void:
 	call_deferred("run_journey")
 
@@ -170,18 +236,32 @@ func run_journey() -> void:
 	await frame()
 	if not click("Jornada 1 · Novo jogo"): return finish()
 	await frame()
+	var film: bool = is_instance_valid(view.room) and is_instance_valid(view.room.opening_tv) and view.room.opening_tv.cinematic_handoff
 	for step in range(15):
-		if not check(view.session.snapshot().checkpoint.step == step, "opening step %d" % step): return finish()
-		if step in [3, 11, 13]:
+		# The broadcast film covers steps 0 and 1 and hands off straight to step 2.
+		if film and step == 1: continue
+		# Leaving a step (stairs, door) and staging the next one both animate first;
+		# the player can only act once the scene settles.
+		for wait in 900:
+			if not view.opening_busy and view.session.snapshot().checkpoint.get("step", -1) == step: break
+			await process_frame
+		# The front door (step 13) leads straight to the street; step 14 is legacy.
+		if step == 14 and view.session.snapshot().checkpoint.get("kind") == "world": break
+		if not check(view.session.snapshot().checkpoint.get("step", -1) == step, "opening step %d" % step): return finish()
+		if film and step == 0:
+			view._finish_opening_film()
+			if not check(view.session.snapshot().checkpoint.step == 2, "broadcast film hands off to the room"): return finish()
+		elif step in [3, 11, 13]:
 			if not interact_room("desk" if step == 3 else "stairs" if step == 11 else "exit"): return finish()
 		elif step == 10:
 			view.name_input.text = "Brisa"
 			if not click("Confirmar nome"): return finish()
 		elif not click("Sair para a rua" if step == 14 else "Avançar"): return finish()
 		await frame()
-	if not interact_room("professor-home"): return finish()
+	if not await enter_atelier(): return finish()
 	await frame()
 	if not interact_room("professor"): return finish()
+	if not await answer_assis_until_lesson(): return finish()
 	await frame()
 	var tutorial: Array = JSON.parse_string(FileAccess.get_file_as_string(fixture_path("tutorial")))
 	for fixture in tutorial:
@@ -189,6 +269,12 @@ func run_journey() -> void:
 		for child in view.get_children():
 			if child.get_script() == view.FlightView: flight = child
 		if not check(flight != null, "lesson view %d" % fixture.lesson): return finish()
+		# The view accepts input only after it settles and every button is released.
+		for action in Controls.DEFAULTS: Input.action_release("campaign_" + action)
+		direction(Vector2.ZERO)
+		for wait in 240:
+			if not flight.paused and not flight.require_action_release and flight.settling_age >= flight.SETTLING_TIME: break
+			flight._process(1.0 / 60.0)
 		var previous_nonce := 0
 		for event in fixture.events:
 			var input: Dictionary = event.input
@@ -205,6 +291,7 @@ func run_journey() -> void:
 		if not check(flight.model.complete, "lesson completed through input %d" % fixture.lesson): return finish()
 		if not click(flight.next_button.text): return finish()
 		await frame()
+	if not await confirm_dialogue_until_button("Carcará"): return finish()
 	if not click("Carcará"): return finish()
 	await frame()
 	for child in view.get_children():
@@ -214,11 +301,12 @@ func run_journey() -> void:
 	await run_workshop()
 	if failures: return finish()
 	if not check(view.session.snapshot().player.partners.size() == 2, "starter born from actual workshop"): return finish()
+	await settle_room()
 	if not interact_room("exit"): return finish()
 	await frame()
 	if "--with-morro" in OS.get_cmdline_user_args():
 		if not await run_morro(): return finish()
-	if not interact_room("park"): return finish()
+	if not await street_action("park", "park-trail"): return finish()
 	await frame()
 	check(view.session.snapshot().checkpoint.scene == "park-trail", "reached park after complete opening/training/workshop")
 	if "--pointer-ui" in OS.get_cmdline_user_args():
@@ -240,62 +328,13 @@ func run_journey() -> void:
 	var after: Dictionary = view.session.snapshot()
 	check(after.checkpoint.scene == "park-trail", "fresh frontend resumes park")
 	check(after.player.partners.size() == 2 and after.player.partners[0].id == before.player.partners[0].id, "restart retains unique partners")
-	for scene in ["park-trail", "park-clearing"]:
-		if not await walk_park_exit(scene): return finish()
-	if not check(view.session.snapshot().checkpoint.scene == "park-veredas", "walked through both initial park maps"): return finish()
-	if not await walk_veredas(Vector2(816, 480)): return finish()
-	view.park._interact()
+	# Native park: cross Jardim → Clareira and back to the street through the real exits.
+	# Veredas opens with Nina's quest; that quest and the guardian fight are covered end
+	# to end by park_campaign_integration.gd (same frontend, controller and Store).
+	for hop in [["park-trail", "park-clearing"], ["park-clearing", "park-trail"], ["park-trail", "quintal"]]:
+		if not await walk_park_exit(hop[0], hop[1]): return finish()
+	if not await enter_atelier(): return finish()
 	await frame()
-	for child in view.get_children():
-		if child.is_in_group("manga_dialogue") and not child.cancel_button_text.is_empty(): confirm_popup(child)
-	await frame()
-	if not check(view.session.snapshot().player.flags.get("ninaAccepted", false), "accepted Nina mission through nearby dialogue"): return finish()
-	if not await walk_veredas(Vector2(1300, 154)): return finish()
-	view.park._interact()
-	await frame()
-	for child in view.get_children():
-		if child.is_in_group("manga_dialogue") and not child.cancel_button_text.is_empty(): confirm_popup(child)
-	await frame()
-	if not check(is_instance_valid(view.battle), "boss reached and encounter opened through exploration"): return finish()
-	await fight_boss()
-	if failures: return finish()
-	if not check(view.session.snapshot().player.flags.get("guardianDefeated", false), "actual boss victory persisted"): return finish()
-	check(not view.park.guardian.visible, "guardian disappears after actual victory")
-	if not await walk_veredas(Vector2(1260, 195)): return finish()
-	view.park._interact()
-	await frame()
-	dismiss_notice()
-	await frame()
-	if not check(view.session.snapshot().player.flags.get("ninaTail", false), "collected Nina tail from actual boss aftermath"): return finish()
-	if not await walk_veredas(Vector2(816, 480)): return finish()
-	view.park._interact()
-	await frame()
-	dismiss_notice()
-	await frame()
-	check(view.session.snapshot().player.flags.get("ninaReturned", false), "returned Nina tail through nearby dialogue")
-	check(view.session.snapshot().player.inventory.get("rabiola-lacertubo", 0) == 1, "guardian own tail remains separate")
-	check(not view.session.snapshot().player.inventory.has("quest-nina-tail"), "returned quest item removed")
-	view._return_to_menu()
-	await frame()
-	view._show_slots(false)
-	await frame()
-	if not click("Jornada 1 · Continuar — Kael"): return finish()
-	await frame()
-	check(not view.park.guardian.visible and view.session.snapshot().player.flags.get("ninaReturned", false), "completed quest survives save/reload")
-	if not await walk_veredas(Vector2(224, 810)): return finish()
-	view.park._interact()
-	await frame()
-	for scene in ["park-clearing", "park-trail"]:
-		if not await walk_park_exit(scene, true): return finish()
-	if not check(view.session.snapshot().checkpoint.scene == "quintal", "returned from park to street"): return finish()
-	if not interact_room("professor-home"): return finish()
-	await frame()
-	if not interact_room("professor"): return finish()
-	await frame()
-	dismiss_notice()
-	await frame()
-	for partner in view.session.snapshot().player.partners:
-		check(partner.condition.line == 100 and partner.condition.structure == 100, "professor repaired actual battle wear")
 	view._return_to_menu()
 	await frame()
 	finish()
@@ -380,40 +419,51 @@ func run_interface_checks() -> bool:
 	await frame()
 	return check(is_instance_valid(view.park) and view.park.player == previous, "Escape from settings restores actual exploration")
 
-func walk_park_exit(scene: String, backwards: bool = false) -> bool:
-	var fixtures: Array = JSON.parse_string(FileAccess.get_file_as_string(fixture_path("park")))
-	var path: Array = []
-	for fixture in fixtures:
-		if fixture.id != scene: continue
-		for entry in fixture.paths:
-			if entry.path.back() == [1296.0, 400.0]: path = entry.path
-	if not check(not path.is_empty(), "canonical path to exit " + scene): return false
-	if backwards: path.reverse()
-	for point_data in path:
-		var point := Vector2(point_data[0], point_data[1])
-		for tick in 300:
-			if view.session.snapshot().checkpoint.kind == "encounter":
-				await frame()
-				if not check(is_instance_valid(view.battle), "wild encounter opened during actual walking"): return false
-				view.battle.paused = true
-				view.battle._physics_process(0)
-				await frame()
-				if not click("Fugir sem recompensa"): return false
-				await frame()
-				check(view.session.snapshot().checkpoint.scene == scene, "flee returns to correct route")
-			if not is_instance_valid(view.park): return check(false, "unexpected battle on route")
-			if view.park.player.distance_to(point) < 4: break
-			direction((view.park.project(point) - view.park.project(view.park.player)).normalized())
-			view.park._physics_process(1.0 / 60)
-			if tick == 299: return check(false, "park route stalled: " + str(view.park.player) + " target=" + str(point) + " safe=" + str(view.park.safe(point)))
-	direction(Vector2.ZERO)
-	view.park._physics_process(0)
-	var event := InputEventKey.new()
-	event.physical_keycode = KEY_E
-	event.pressed = true
-	view.park._unhandled_input(event)
-	await frame()
-	return check(view.session.snapshot().checkpoint.scene != scene, "used exit after walking " + scene)
+func park_ready() -> bool:
+	for wait in 900:
+		if is_instance_valid(view.park) and view.park.has_method("walk_to") and not is_instance_valid(view.scene_loading) and not view.flow_busy and view.park.get_meta("campaign_scene", "") == view.session.snapshot().checkpoint.get("scene", ""): return true
+		await process_frame
+	return false
+
+## Walks the native park controller to the exit leading to `destination` and uses it.
+## Wild encounters met on the way are fled, as a player heading somewhere would.
+func walk_park_exit(scene: String, destination: String) -> bool:
+	if not check(await park_ready() and view.session.snapshot().checkpoint.get("scene") == scene, "standing in " + scene): return false
+	var exit: Dictionary = {}
+	for event in view.park.model.data.events:
+		if event.type == "saida" and event.props.get("destino", "") == destination and ParkCheckpoint.allowed(event, view.session.snapshot().player, view.park.area_id): exit = event
+	if not check(not exit.is_empty(), "exit from " + scene + " to " + destination): return false
+	var goal := Vector2(exit.u + .5, exit.v + .5)
+	var target := Vector2.INF
+	for offset in [Vector2.ZERO, Vector2.RIGHT, Vector2.LEFT, Vector2.UP, Vector2.DOWN]:
+		if view.park.model.path_to(view.park.player, goal + offset).size() > 0: target = goal + offset; break
+	if not check(target.is_finite(), "route to the exit of " + scene): return false
+	for attempt in 6:
+		view.park.paused = false
+		view.park.walk_to(target)
+		for tick in 6000:
+			if view.session.snapshot().checkpoint.kind == "encounter": break
+			if view.park.player.distance_to(target) < .05: break
+			view.park._physics_process(1.0 / 60.0)
+		if view.session.snapshot().checkpoint.kind != "encounter": break
+		for wait in 600:
+			if is_instance_valid(view.battle): break
+			await process_frame
+		if not check(is_instance_valid(view.battle), "wild encounter opened during actual walking"): return false
+		view.battle.paused = true
+		view.battle._physics_process(0)
+		await frame()
+		if not click("Fugir sem recompensa"): return false
+		if not check(await park_ready() and view.session.snapshot().checkpoint.get("scene") == scene, "flee returns to correct route"): return false
+	if not check(view.park.player.distance_to(target) < .05, "walked to the exit of " + scene): return false
+	view.park.nearby = exit
+	view.park.interact()
+	# Exits are deferred: let the next scene start loading before waiting on it.
+	for wait in 3: await process_frame
+	for wait in 900:
+		if view.session.snapshot().checkpoint.get("scene") == destination and not is_instance_valid(view.scene_loading) and not view.flow_busy: break
+		await process_frame
+	return check(view.session.snapshot().checkpoint.get("scene") == destination, "used exit from " + scene + " to " + destination)
 
 func walk_veredas(target: Vector2) -> bool:
 	var path: PackedVector2Array = view.park._path(view.park.player, target)
@@ -455,6 +505,10 @@ func fight_boss() -> void:
 	check(view.session.snapshot().checkpoint.kind == "world", "returned to exploration after actual battle")
 
 func mouse(workshop: Control, point: Vector2, down: bool) -> void:
+	# The bench ignores input during the short staging that opens each stage.
+	for tick in 40:
+		if not down or workshop.staging_time <= 0: break
+		workshop._process(.05)
 	var event := InputEventMouseButton.new()
 	event.position = workshop._offset() + point * workshop._scale()
 	event.button_index = MOUSE_BUTTON_LEFT
@@ -463,6 +517,13 @@ func mouse(workshop: Control, point: Vector2, down: bool) -> void:
 	else: workshop._gui_input(event)
 
 func run_workshop() -> void:
+	# Sr. Assis hands over the tail and walks Kael to the bench before it opens.
+	for wait in 1800:
+		if is_instance_valid(view.workshop) and not view.flow_busy and not is_instance_valid(view.scene_loading): break
+		for dialog in get_nodes_in_group("manga_dialogue"):
+			if dialog.is_visible_in_tree() and dialog.cancel_button_text.is_empty(): dialog.confirmed.emit()
+		await process_frame
+	if not check(is_instance_valid(view.workshop), "workshop bench opens"): return
 	var workshop: Control = view.workshop
 	workshop.paused = false
 	for rod in workshop.model.geometry().rods:

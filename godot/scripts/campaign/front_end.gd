@@ -53,6 +53,7 @@ var pause_overlay: Control
 var pause_previous: Dictionary = {}
 var last_scene_key := ""
 var menu_origin:=""
+var pause_after_load:=false
 var binding_rows:Dictionary={}
 var controls_focus_action:=""
 var team_page:=0
@@ -351,7 +352,10 @@ func _return_to_game() -> void:
 	_show_saved()
 	# Returning from a page must not restart combat while the player is still orienting.
 	if is_instance_valid(battle): battle.paused = true
-	if not menu_origin.is_empty():_pause_game()
+	if menu_origin.is_empty(): return
+	# An async scene load clears the stage when it lands: reopen the pause after it.
+	if is_instance_valid(scene_loading): pause_after_load=true
+	else: _pause_game()
 
 func _show_opening() -> void:
 	var saved: Dictionary=session.snapshot()
@@ -681,7 +685,10 @@ func _show_neighborhood() -> void:
 	await scene_loading.reveal()
 	scene_loading.queue_free()
 	scene_loading=null
-	if is_instance_valid(park):park.paused=false
+	if pause_after_load:
+		pause_after_load=false
+		_pause_game()
+	elif is_instance_valid(park):park.paused=false
 
 func _neighborhood_action(id: String) -> void:
 	if not _save_park():return
@@ -796,7 +803,7 @@ func _workshop_page(title:String)->void:
 	backdrop.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	add_child(backdrop)
 	var shade:=ColorRect.new()
-	shade.color=Color(.025,.07,.1,.38)
+	shade.color=Hud.Tokens.alpha(Hud.Tokens.NANQUIM,.38)
 	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	shade.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	add_child(shade)
@@ -822,8 +829,8 @@ func _workshop_page(title:String)->void:
 	panel.offset_left=0;panel.offset_right=-28
 	panel.offset_top=38;panel.offset_bottom=-32
 	var style:=StyleBoxFlat.new()
-	style.bg_color=Color("20333e")
-	style.border_color=Color("e8bc58")
+	style.bg_color=Hud.Tokens.TINTA_2
+	style.border_color=Hud.Tokens.SOL
 	style.set_border_width_all(2)
 	style.set_corner_radius_all(12)
 	style.content_margin_left=24;style.content_margin_right=24
@@ -1150,8 +1157,15 @@ func _load_park() -> void:
 	add_child(scene_loading)
 	flow_busy=true
 	if is_instance_valid(park): park.paused=true
+	var generation:=opening_generation
 	await scene_loading.cover()
 	if not is_inside_tree(): return
+	# Leaving to the menu (or any other screen) during the cover cancels this load.
+	if generation!=opening_generation or session.snapshot().is_empty():
+		if is_instance_valid(scene_loading): scene_loading.queue_free()
+		scene_loading=null
+		pause_after_load=false
+		return
 	_show_park()
 	flow_busy=true
 	if is_instance_valid(park): park.paused=true
@@ -1162,7 +1176,10 @@ func _load_park() -> void:
 		scene_loading.queue_free()
 	scene_loading=null
 	flow_busy=false
-	if is_instance_valid(park): park.paused=false
+	if pause_after_load:
+		pause_after_load=false
+		_pause_game()
+	elif is_instance_valid(park): park.paused=false
 
 func _show_park() -> void:
 	_clear()
