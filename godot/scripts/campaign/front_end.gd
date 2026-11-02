@@ -1528,6 +1528,10 @@ func _park_event(id: String) -> void:
 		if str(int(event.id))!=id or not ParkCheckpoint.allowed(event,player,park.area_id): continue
 		if park.player.distance_to(Vector2(event.u+.5,event.v+.5))>1.8: return
 		var action: String = event.props.get("acao","")
+		if action=="retalhoStory":
+			_confirm_park("Retalho","Quem tem dono é fraco.\n\nRetalho estica as orelhas de papel e desafia Rabbito. Adversário Nv.22. Você pode recuar ou tentar novamente após uma derrota.","Aceitar desafio",func():
+				if _result(load("res://scripts/campaign/retalho_story.gd").new(session).begin(park.player)):_show_saved.call_deferred())
+			return
 		if action=="muralStory":
 			_show_mural_story();return
 		if action=="muralRest":
@@ -1725,6 +1729,8 @@ func _show_encounter() -> void:
 			if _result(load("res://scripts/campaign/district_campaign.gd").new(session).settle()):_return_district_result.call_deferred()
 		elif is_morro:
 			if _result(morro.settle()): _return_morro_result.call_deferred()
+		elif session.snapshot().player.encounter.kind=="retalho-story":
+			if _result(load("res://scripts/campaign/retalho_story.gd").new(session).settle()):_return_retalho.call_deferred()
 		elif session.snapshot().player.encounter.kind=="feira-story":
 			if _result(load("res://scripts/campaign/feira_story.gd").new(session).settle()):_return_feira_story.call_deferred()
 		elif session.snapshot().player.encounter.kind=="canal-gate":
@@ -2721,3 +2727,9 @@ func _show_mural_story()->void:
 	scene_dialog.show_portraits=false
 	scene_dialog.popup_centered()
 	scene_dialog.portrait.hide();scene_dialog.other_portrait.hide()
+
+func _return_retalho()->void:
+	_show_saved()
+	while is_instance_valid(scene_loading):await get_tree().process_frame
+	if session.snapshot().player.flags.get("retalhoBosqueVencido",false):
+		_notice("Retalho recua entre as copas antes que Kael se aproxime. Na base da rabiola, há um nó bem diferente dos outros.\n\nKael: Esse nó… parece feito para uma expedição.")

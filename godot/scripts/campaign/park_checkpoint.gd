@@ -1,7 +1,7 @@
 extends RefCounted
 ## Explicit coordinate version: legacy illustrated pixels never become map cells by guesswork.
 const SPACE := "parque-overworld-v1"
-const MAPS := {"kronasta-cais-a":"kronasta-cais-a","kronasta-cais-b":"kronasta-cais-b","kronasta-cais-c":"kronasta-cais-c","caverna-mural-a":"caverna-mural-a","caverna-mural-b":"caverna-mural-b","caverna-mural-c":"caverna-mural-c","kronasta-feira-a":"kronasta-feira-a","kronasta-feira-b":"kronasta-feira-b","kronasta-feira-c":"kronasta-feira-c","kronasta-beira-canal-a":"kronasta-beira-canal-a","kronasta-beira-canal-b":"kronasta-beira-canal-b","kronasta-beira-canal-c":"kronasta-beira-canal-c","kronasta-bambuzal-a":"kronasta-bambuzal-a","kronasta-bambuzal-b":"kronasta-bambuzal-b","kronasta-bambuzal-c":"kronasta-bambuzal-c","park-trail":"jardim-das-pipas","park-clearing":"clareira-do-papel","park-veredas":"veredas-do-encanamento","kronasta-bosque-a":"kronasta-bosque-a","kronasta-bosque-b":"kronasta-bosque-b","kronasta-bosque-c":"kronasta-bosque-c","kronasta-pantano-a":"kronasta-pantano-a","kronasta-pantano-b":"kronasta-pantano-b","kronasta-pantano-c":"kronasta-pantano-c","kronasta-montanha-a":"kronasta-montanha-a","kronasta-montanha-b":"kronasta-montanha-b","kronasta-montanha-c":"kronasta-montanha-c","kronasta-industrial-a":"kronasta-industrial-a","kronasta-industrial-b":"kronasta-industrial-b","kronasta-industrial-c":"kronasta-industrial-c","mina-ferro-a":"mina-ferro-a","mina-ferro-b":"mina-ferro-b","mina-ferro-c":"mina-ferro-c","mina-ferro-d":"mina-ferro-d","gelo-a":"gelo-a","gelo-b":"gelo-b","gelo-c":"gelo-c","gelo-d":"gelo-d","submerso-a":"submerso-a","submerso-b":"submerso-b","submerso-c":"submerso-c"}
+const MAPS := {"kronasta-bosque-d":"kronasta-bosque-d","kronasta-cais-a":"kronasta-cais-a","kronasta-cais-b":"kronasta-cais-b","kronasta-cais-c":"kronasta-cais-c","caverna-mural-a":"caverna-mural-a","caverna-mural-b":"caverna-mural-b","caverna-mural-c":"caverna-mural-c","kronasta-feira-a":"kronasta-feira-a","kronasta-feira-b":"kronasta-feira-b","kronasta-feira-c":"kronasta-feira-c","kronasta-beira-canal-a":"kronasta-beira-canal-a","kronasta-beira-canal-b":"kronasta-beira-canal-b","kronasta-beira-canal-c":"kronasta-beira-canal-c","kronasta-bambuzal-a":"kronasta-bambuzal-a","kronasta-bambuzal-b":"kronasta-bambuzal-b","kronasta-bambuzal-c":"kronasta-bambuzal-c","park-trail":"jardim-das-pipas","park-clearing":"clareira-do-papel","park-veredas":"veredas-do-encanamento","kronasta-bosque-a":"kronasta-bosque-a","kronasta-bosque-b":"kronasta-bosque-b","kronasta-bosque-c":"kronasta-bosque-c","kronasta-pantano-a":"kronasta-pantano-a","kronasta-pantano-b":"kronasta-pantano-b","kronasta-pantano-c":"kronasta-pantano-c","kronasta-montanha-a":"kronasta-montanha-a","kronasta-montanha-b":"kronasta-montanha-b","kronasta-montanha-c":"kronasta-montanha-c","kronasta-industrial-a":"kronasta-industrial-a","kronasta-industrial-b":"kronasta-industrial-b","kronasta-industrial-c":"kronasta-industrial-c","mina-ferro-a":"mina-ferro-a","mina-ferro-b":"mina-ferro-b","mina-ferro-c":"mina-ferro-c","mina-ferro-d":"mina-ferro-d","gelo-a":"gelo-a","gelo-b":"gelo-b","gelo-c":"gelo-c","gelo-d":"gelo-d","submerso-a":"submerso-a","submerso-b":"submerso-b","submerso-c":"submerso-c"}
 ## Kronasta regions reached from the region screen. Each has parts A, B and C
 ## (art/overworld/REGIOES-E-PARTES.md); scenes are kronasta-<region>-<part>.
 const REGIONS := ["bosque","industrial","pantano","montanha","bambuzal","beira-canal","feira","cais"]
@@ -11,7 +11,7 @@ static var _maps: Dictionary = {}
 static var _models: Dictionary = {}
 
 static func is_bosque(scene: String) -> bool:
-	return scene in ["kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c"]
+	return scene in ["kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c","kronasta-bosque-d"]
 
 static func is_regional_preview(scene:String) -> bool:
 	return scene.begins_with("kronasta-pantano-") or scene.begins_with("kronasta-montanha-") or scene.begins_with("kronasta-industrial-") or scene.begins_with("mina-ferro-") or scene.begins_with("gelo-") or scene.begins_with("submerso-")
@@ -136,6 +136,7 @@ static func allowed(event: Dictionary, player: Dictionary, area: String = "") ->
 	# Lacertubo leaves the Veredas once defeated; only the quest tail remains.
 	if props.get("acao","")=="parkBoss" and flags.get("guardianDefeated",false): return false
 	if props.get("acao","")=="veredasTail" and (not flags.get("guardianDefeated",false) or not flags.get("ninaAccepted",false) or flags.get("ninaTail",false)): return false
+	if props.get("acao","")=="retalhoStory" and flags.get("retalhoBosqueVencido",false):return false
 	if event.get("type","")=="item" and ("park-item-"+area+"-"+str(int(event.id))) in player.get("completedOperations",[]): return false
 	return true
 

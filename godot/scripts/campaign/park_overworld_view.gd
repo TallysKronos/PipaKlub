@@ -122,7 +122,7 @@ func _build_events() -> void:
 	# Dito has no approved overworld sprite in the delivery. Do not duplicate another
 	# character or leave an invisible person as an interaction target.
 	if Checkpoint.is_bosque(area_id):
-		interaction_events=interaction_events.filter(func(event: Dictionary): return event.type!="npc" or event.props.has("npcIdentity"))
+		interaction_events=interaction_events.filter(func(event: Dictionary): return event.type!="npc" or event.props.has("npcIdentity") or event.props.has("storySpritePath"))
 	if saved_checkpoint.scene=="park-clearing":
 		for e:Dictionary in preload("res://scripts/campaign/tyler_clareira.gd").events():
 			if not interaction_events.any(func(existing):return int(existing.id)==int(e.id)):interaction_events.append(e)

@@ -8389,6 +8389,60 @@
           "loop": true
         }
       }
+    },
+    "retalho-original": {
+      "image": "retalho-v1/battle.png",
+      "animations": {
+        "idle": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 242,
+            "h": 320
+          }
+        ],
+        "flight": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 242,
+            "h": 320
+          }
+        ],
+        "attack": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 242,
+            "h": 320
+          }
+        ],
+        "hurt": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 242,
+            "h": 320
+          }
+        ],
+        "defeat": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 242,
+            "h": 320
+          }
+        ],
+        "victory": [
+          {
+            "x": 0,
+            "y": 0,
+            "w": 242,
+            "h": 320
+          }
+        ]
+      },
+      "note": "Static original form; Soulgen rig pending. Not a collectible species."
     }
   },
   "broadcast": [

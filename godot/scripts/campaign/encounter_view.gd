@@ -67,7 +67,7 @@ func configure(data: Dictionary, state: Dictionary) -> void:
 	model = Model.new()
 	model.restore(state)
 	var assets := {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "lacertubo": "lacertubo"}
-	art_ids.assign([assets.get(model.model_id, "rabbito"), model.enemy_model_id if model.enemy_model_id.begins_with("rascunho-") or model.enemy_model_id=="platyx-draft" else assets.get(model.enemy_model_id, "lacertubo")])
+	art_ids.assign([assets.get(model.model_id, "rabbito"), model.enemy_model_id if model.enemy_model_id.begins_with("rascunho-") or model.enemy_model_id in ["platyx-draft","retalho-original"] else assets.get(model.enemy_model_id, "lacertubo")])
 	for id in art_ids: textures.append(load("res://assets/campaign/" + content.combat[id].image))
 	background = load("res://assets/campaign/veredas-arena-wide-v2.png")
 	guardian_frame = load("res://assets/campaign/guardian-frame.png")
@@ -501,7 +501,7 @@ func _draw_status() -> void:
 	var names:Array=[]
 	for index in actors.size():
 		faces.append(Ink.portrait(textures[index],art_ids[index]))
-		var title:String={"rabbito":"Rabbito","basic-carcara":"Carcará","basic-mata-verde":"Mata verde","basic-azulao":"Azulão","basic-raio-de-sol":"Raio de sol","doberman-c":"Dóber de papel","lacertubo":"Lacertubo"}.get(art_ids[index],"Parceiro")
+		var title:String={"rabbito":"Rabbito","basic-carcara":"Carcará","basic-mata-verde":"Mata verde","basic-azulao":"Azulão","basic-raio-de-sol":"Raio de sol","doberman-c":"Dóber de papel","lacertubo":"Lacertubo","retalho-original":"Retalho"}.get(art_ids[index],"Parceiro")
 		var level:int=model.enemy_level if index>0 else 1
 		if index==0:
 			for partner in reward_player.get("partners",[]):
