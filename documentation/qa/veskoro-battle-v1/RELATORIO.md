@@ -31,3 +31,7 @@ A vitória programada usa Rabbito de nível50 com bônus de criação12 contra V
 Avisos do ambiente: cache de shader sem escrita; a suíte de Mormaço ainda reporta recursos em uso na saída, com contagem de falhas zero. A captura final registra as ações de controle antes de iniciar a cena e não tem os avisos de InputMap da primeira tentativa descartada.
 
 Sem push, merge ou deploy nesta etapa. Prompts, fonte e metadados preservados no pacote de arte.
+
+## Atualização · arena de Palafitas
+
+O cenário de telhado foi substituído por arena original das docas para todos os duelos palafitas-*. As cinco capturas deste diretório foram atualizadas com o novo cenário. Removida a faixa de vegetação de terra firme. Repetidos19 checks de Veskoro e112 de campeonato, zero falhas; captura nativa das cinco fases concluída. Esta atualização substitui a pendência anterior de cenário das docas; animação articulada continua pendente.

@@ -10,12 +10,17 @@ func configure(data: Dictionary, state: Dictionary) -> void:
 	art_ids.append(assets.get(model.model_id, "rabbito"))
 	for actor in model.actors.slice(1): art_ids.append("veskoro" if model.enemy_model_id=="veskoro" else ["basic-carcara", "basic-raio-de-sol", "basic-mata-verde", "basic-azulao"][int(actor.color)])
 	for id in art_ids: textures.append(load("res://assets/campaign/" + content.combat[id].image))
-	background = load("res://assets/campaign/rooftop-arena-wide-v2.png")
+	background = load("res://assets/campaign/palafitas-arena-v1.png" if model.stage_id.begins_with("palafitas-") else "res://assets/campaign/rooftop-arena-wide-v2.png")
 	for role in ["dark", "danger", "danger"]: panel_styles.append(_panel(role))
 
 func _ready() -> void:
 	super._ready()
 	finish_button.text = "Continuar"
+
+func _draw_foreground() -> void:
+	# The dock illustration already has a clear foreground; do not overlay inland vegetation.
+	if model!=null and model.stage_id.begins_with("palafitas-"):return
+	super._draw_foreground()
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
