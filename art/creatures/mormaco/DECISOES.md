@@ -13,3 +13,7 @@ Reservas preservadas, sem nomes ou papéis canônicos atribuídos:
 Desenvolvimento de C em `model-c-v1/`: prancha da forma livre com costas e expressões. Esta prancha derivada precisa de revisão; a escolha da silhueta C não valida por si só todo turnaround ou rig.
 
 A versão amarrada pelo Carretel Negro e a integração de batalha ainda não foram feitas nesta etapa.
+
+Atualização do estado controlado: o dono pediu mudança visível de paleta e olhos possuídos, além das amarras. V1 amarrada preservada; V2 sombria em `possessed-c-v2/`. A transformação continua reversível; não muda a espécie C aprovada.
+
+**Estado possuído V2 aprovado em 02/11/2026:** corpo ameixa escuro, placas azul-negras, olhos violeta luminosos, marcas magenta, jatos ciano/violeta e vapor escuro. Preservar o contraste visual com a forma livre na futura libertação. Autoridade de arte: `possessed-c-v2/prancha-possuido.png`. A aprovação visual não significa implementação da batalha ou transformação em runtime.
