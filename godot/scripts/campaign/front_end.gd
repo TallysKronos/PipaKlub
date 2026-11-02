@@ -812,8 +812,9 @@ func _show_world() -> void:
 	var point: Dictionary = session.snapshot().checkpoint
 	var professor: bool = point.scene == "professor-home"
 	var shop:bool=point.scene=="kite-shop"
-	var data: Dictionary = ShopData.room() if shop else (content.rooms.professor if professor else content.rooms.street).duplicate(true)
-	if not professor and not shop and not data.hotspots.any(func(h: Dictionary): return h.id == "morro"):
+	var home:bool=point.scene=="kael-home"
+	var data: Dictionary = ShopData.room() if shop else (content.rooms.home if home else content.rooms.professor if professor else content.rooms.street).duplicate(true)
+	if not professor and not shop and not home and not data.hotspots.any(func(h: Dictionary): return h.id == "morro"):
 		data.hotspots.append({"id": "morro", "name": "Morro do Sol", "x": 2592, "y": 1040})
 	if professor and preload("res://scripts/campaign/expedition_photo.gd").available(session.snapshot().player):
 		for spot:Dictionary in data.hotspots:
@@ -821,20 +822,26 @@ func _show_world() -> void:
 	if professor:data=preload("res://scripts/campaign/retalho_care.gd").room_data(data,session.snapshot().player)
 	room = Room.new()
 	stage.add_child(room)
-	room.configure(data, point.position, true, "*", professor, true)
+	room.configure(data, point.position, true, "*", professor or home, true)
 	if professor:preload("res://scripts/campaign/retalho_care.gd").build(room,session.snapshot().player)
 	_equip_room_companion()
 	room.interacted.connect(_world_interact)
 	var overlay=load("res://scripts/campaign/hud_exploration.gd").new()
 	overlay.subject=room
-	overlay.area_name="Linha & Papel" if shop else "Ateliê do Sr. Assis" if professor else "Bairro dos Ventos"
+	overlay.area_name="Casa do Kael" if home else "Linha & Papel" if shop else "Ateliê do Sr. Assis" if professor else "Bairro dos Ventos"
 	overlay.player_data=session.snapshot().player
 	add_child(overlay)
+	if home:
+		overlay.objective.text="Converse com Heleana." if preload("res://scripts/campaign/heleana_confession.gd").available(session.snapshot().player) else "Sua casa · converse com sua mãe ou saia pela porta."
+		if preload("res://scripts/campaign/heleana_confession.gd").available(session.snapshot().player):
+			var night:=CanvasModulate.new();night.color=Color("9aabc7");room.add_child(night)
 	if professor and preload("res://scripts/campaign/retalho_care.gd").available(session.snapshot().player):overlay.objective.text=preload("res://scripts/campaign/retalho_care.gd").objective(session.snapshot().player)
 	if professor and preload("res://scripts/campaign/blue_exam_preparation.gd").eligible(session.snapshot().player) and not preload("res://scripts/campaign/blue_exam_preparation.gd").prepared(session.snapshot().player):overlay.objective.text=preload("res://scripts/campaign/blue_exam_preparation.gd").data().pending
 	overlay.map=Hud.map_for(room,overlay)
 	status=overlay.prompt
 	room.set_meta("exploration_hud",overlay)
+	if home and preload("res://scripts/campaign/heleana_confession.gd").refused(session.snapshot().player) and not session.snapshot().player.flags.get("heleanaReconheceuRetalho",false):
+		_show_heleana_confession.call_deferred()
 	overlay.chosen.connect(func(id:String):
 		if id=="collection":_show_collection()
 		elif id=="bag":_show_bag()
@@ -890,6 +897,10 @@ func _show_neighborhood() -> void:
 	scene_loading.queue_free()
 	scene_loading=null
 	if is_instance_valid(park):park.paused=false
+	var reunion=preload("res://scripts/campaign/heleana_confession.gd")
+	if reunion.outside(saved.player) and not saved.player.flags.get("heleanaReconheceuRetalho",false):
+		park.build_heleana_reunion()
+		_show_heleana_confession.call_deferred()
 
 func _neighborhood_action(id: String) -> void:
 	if flow_busy:return
@@ -897,6 +908,7 @@ func _neighborhood_action(id: String) -> void:
 	if id.begins_with("mount-quest:"):
 		_mount_quest_talk(id.trim_prefix("mount-quest:"));return
 	match id:
+		"heleana-confession":_show_heleana_confession()
 		"autosave":return
 		"collection":_show_collection()
 		"bag":_show_bag()
@@ -907,6 +919,8 @@ func _neighborhood_action(id: String) -> void:
 			if _result(journey.enter_world("professor-home",Vector2(entry[0],entry[1]))):_show_saved.call_deferred()
 		"kite-shop":
 			if _result(journey.enter_world("kite-shop",ShopData.ENTRY)):_show_saved.call_deferred()
+		"kael-home":
+			if _result(session.checkpoint({"kind":"world","scene":"kael-home","position":[432,1008]},session.snapshot().player)):_show_saved.call_deferred()
 		"morro":
 			if session.snapshot().player.get("journey",{}).get("phase")=="complete" and _result(journey.enter_world("morro",Vector2(528,752))):_show_saved.call_deferred()
 		"park":
@@ -968,6 +982,12 @@ func _use_mount_item() -> void:
 	if is_instance_valid(park) and park.has_method("toggle_mount"):park.toggle_mount()
 
 func _world_interact(id: String) -> void:
+	if session.snapshot().checkpoint.get("scene")=="kael-home":
+		if id=="mother":_show_heleana_confession();return
+		if id=="exit":
+			if _result(journey.enter_world("quintal",preload("res://scripts/campaign/neighborhood_checkpoint.gd").HOME)):_show_saved.call_deferred()
+			return
+		if id=="seat" or id=="upstairs":_notice("Kael: Vou ficar um pouco aqui embaixo.");return
 	if flow_busy:return
 	if id=="retalho-care":
 		_show_retalho_care();return
@@ -2015,7 +2035,7 @@ func _show_bag() -> void:
 	_label("%d moedas · Materiais e lembranças da sua jornada"%player.coins,page,18).add_theme_color_override("font_color",Hud.GOLD)
 	var inventory_view = load("res://scripts/campaign/hud_inventory.gd").new()
 	inventory_view.care_available=session.snapshot().checkpoint.get("kind","")=="world"
-	inventory_view.mount_available=session.snapshot().checkpoint.get("kind","")=="world" and session.snapshot().checkpoint.get("scene","") not in ["professor-home","kite-shop"]
+	inventory_view.mount_available=session.snapshot().checkpoint.get("kind","")=="world" and session.snapshot().checkpoint.get("scene","") not in ["professor-home","kite-shop","kael-home"]
 	inventory_view.care_requested.connect(func():_show_partner_care())
 	inventory_view.mount_requested.connect(_use_mount_item)
 	inventory_view.inventory = player.inventory
@@ -2888,6 +2908,45 @@ func _show_retalho_care()->void:
 		if continue_scene[0] and index<service.nodes().size()-1 and TutorialStaging.valid(self,generation):_show_retalho_care.call_deferred())
 	dialog.popup_centered()
 
+func _show_heleana_confession()->void:
+	if flow_busy or (not is_instance_valid(room) and not is_instance_valid(park)):return
+	var service=load("res://scripts/campaign/heleana_confession.gd").new(session)
+	if not service.available(session.snapshot().player):_notice("Heleana: Vá com cuidado. Estarei aqui quando voltar.");return
+	var p:Dictionary=session.snapshot().player
+	var outdoors:bool=service.outside(p)
+	var point:Vector2=park.cell if outdoors and is_instance_valid(park) else room.actor if is_instance_valid(room) else Vector2.INF
+	if not service.near(point):return
+	if service.done(p) and not service.recognition(p):_notice("Heleana: Obrigada por me escutar. Você e seus parceiros sempre terão lugar aqui.");return
+	var step:int=service.index(p)
+	if service.refused(p) and not service.done(p) and step==0:service.play_grunt(self)
+	var node:Array=service.nodes(p)[step]
+	flow_busy=true
+	if is_instance_valid(room):
+		room.can_walk=false;room.set_story_paused(true)
+		room.face_actor(Vector2(960,864));room.face_mother(room.actor)
+	if is_instance_valid(park):park.paused=true
+	var generation:=opening_generation
+	var dialog:=_dialog(node[0],node[1],"Continuar","Continuar depois")
+	dialog.name="HeleanaConfessionDialogue"
+	dialog._portraits["Heleana"]=load("res://assets/campaign/"+content.portraits["Mãe"])
+	var follow:=[false]
+	var leave_house:=[false]
+	dialog.confirmed.connect(func():
+		if not TutorialStaging.valid(self,generation):return
+		if _result(service.advance(step,point)):
+			follow[0]=true
+			leave_house[0]=not outdoors and service.outside(session.snapshot().player)
+			dialog.queue_free())
+	dialog.canceled.connect(dialog.queue_free)
+	dialog.tree_exiting.connect(func():
+		flow_busy=false
+		if is_instance_valid(room):room.can_walk=true;room.set_story_paused(false)
+		if is_instance_valid(park):park.paused=false
+		if not follow[0] or not TutorialStaging.valid(self,generation):return
+		if leave_house[0]:_show_saved.call_deferred()
+		elif not service.done(session.snapshot().player) or service.recognition(session.snapshot().player):_show_heleana_confession.call_deferred())
+	dialog.popup_centered()
+
 func _show_blue_preparation()->void:
 	if flow_busy or not is_instance_valid(room):return
 	var preparation=preload("res://scripts/campaign/blue_exam_preparation.gd")
@@ -2952,6 +3011,13 @@ func _show_retalho_trust()->void:
 			tween.tween_property(actor.root,"position",original+approach,.85).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	var generation:=opening_generation
 	var dialog:=_dialog(entry.title,entry.text,"Proteger Retalho" if n==5 else "Acolher Retalho" if n==7 else "Continuar","Continuar depois")
+	if n==7:
+		dialog.options=[{"id":"accept","text":"Acolher Retalho"},{"id":"refuse","text":"Não formar esse laço"},{"id":"later","text":"Decidir depois","safe":true}]
+		dialog.choice_selected.connect(func(id:String):
+			if not TutorialStaging.valid(self,generation):return
+			if id=="accept":dialog.confirmed.emit()
+			elif id=="later":dialog.canceled.emit()
+			elif id=="refuse" and _result(service.refuse(at)):dialog.queue_free();_show_saved.call_deferred())
 	dialog.name="RetalhoTrustDialogue"
 	var committed:=[false]
 	dialog.confirmed.connect(func():

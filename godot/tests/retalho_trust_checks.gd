@@ -132,7 +132,7 @@ func current_full_bank_test()->void:
  while p.partners.size()<30:p.partners.append({"id":State.new_id(),"modelId":"basica","xp":0})
  app.session.checkpoint(app.session.snapshot().checkpoint,p)
  var before:Dictionary=app.session.snapshot()
- check(service.claim(Trust.RESCUE).status=="bank_full" and app.session.snapshot()==before,"full bank preserves choice")
+ check(service.claim(Trust.RESCUE).status=="bank_full" and app.session.snapshot().player.flags.get("retalhoAceitoKael",false) and app.session.snapshot().player.partners==before.player.partners,"full bank records acceptance without replacing partners")
  app._show_retalho_bank();await frames();await shot("04-banco-cheio")
  check(app.session.resume_slot("slot-1").status=="ok" and Trust.stage(app.session.snapshot().player)==7,"pending choice survives reload")
  check(service.release("r").status=="equipped","cannot release equipped partner")

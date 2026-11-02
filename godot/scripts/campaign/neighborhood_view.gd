@@ -148,6 +148,8 @@ func toggle_mount() -> void:
 	super.toggle_mount()
 
 func interact() -> void:
+	if has_node("HeleanaReunionMother") and cell.distance_to(Checkpoint.HOME)<=2.0:
+		action_requested.emit("heleana-confession");return
 	if paused:return
 	if is_instance_valid(active_dialogue):
 		if active_dialogue.page_index<active_dialogue.pages.size()-1:active_dialogue.next_page()
@@ -162,6 +164,7 @@ func interact() -> void:
 		else:action_requested.emit(exit_id)
 	elif near_person.get("id")=="assis" or near_house.get("id")=="professor":action_requested.emit("professor-home")
 	elif near_house.get("id")=="loja":action_requested.emit("kite-shop")
+	elif near_house.get("id")=="casa-kael":action_requested.emit("kael-home")
 	elif near_person.get("id") in ["zeca","lia"]:action_requested.emit("mount-quest:"+str(near_person.id))
 	else:super.interact()
 
@@ -203,3 +206,19 @@ func _unhandled_input(event: InputEvent) -> void:
 		action_requested.emit("map");get_viewport().set_input_as_handled()
 	elif Controls.pressed(event,"interact"):
 		interact();get_viewport().set_input_as_handled()
+
+# Same directional mother art as the house, staged at its real exterior entrance.
+func build_heleana_reunion()->void:
+	var mother:=Sprite2D.new()
+	mother.name="HeleanaReunionMother"
+	preload("res://scripts/npc_pixel_sprite.gd").setup(mother,"mae",48.0,"se")
+	mother.position=project(Checkpoint.HOME+Vector2(1.0,1.0))
+	add_child(mother)
+	var retalho:=Sprite2D.new()
+	retalho.name="HeleanaReunionRetalho"
+	retalho.texture=load("res://assets/campaign/retalho-v1/overworld.png")
+	var bounds:=retalho.texture.get_image().get_used_rect()
+	retalho.scale=Vector2.ONE*35.0/maxf(1.0,bounds.size.y)
+	retalho.offset=Vector2(retalho.texture.get_width()*.5-bounds.get_center().x,retalho.texture.get_height()*.5-bounds.end.y)
+	retalho.position=project(Checkpoint.HOME+Vector2(2.0,.4))
+	add_child(retalho)

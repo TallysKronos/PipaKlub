@@ -23,6 +23,8 @@ static func stage(p:Dictionary)->int:
 static func nodes()->Array:
  return JSON.parse_string(FileAccess.get_file_as_string("res://assets/campaign/retalho-care-v1/trust.json")).nodes
 static func objective(p:Dictionary)->String:
+ if p.get("flags",{}).get("retalhoParceiraHeleana",false):return "Retalho e Heleana estão juntas outra vez."
+ if p.get("flags",{}).get("retalhoRecusadoKael",false):return "Volte para casa."
  if not available(p):return "Cuide de Retalho no ateliê."
  return "Retalho escolheu acompanhar você." if stage(p)==8 else str(nodes()[stage(p)].objective)
 static func swamp_open(p:Dictionary)->bool:return available(p) and stage(p)>=2
@@ -36,6 +38,7 @@ static func event(scene:String)->Dictionary:
  else:return {}
  return {"id":19001 if scene==A else 19002 if scene==B else 19003,"type":"npc","name":name,"u":int(point.x),"v":int(point.y),"props":{"acao":"retalhoTrust","trustScene":scene,"bloqueia":false,"storySpritePath":"res://assets/overworld/kits/comum/pecas/flores-azul.png" if scene==B else "res://assets/campaign/retalho-v1/overworld.png"}}
 static func visible(scene:String,p:Dictionary)->bool:
+ if p.get("flags",{}).get("retalhoRecusadoKael",false) or p.get("flags",{}).get("retalhoParceiraHeleana",false):return false
  if not available(p):return false
  var n:=stage(p)
  return (scene==A and n in [2,3,4]) or (scene==B and n==3) or (scene==C and n in [5,6,7])
@@ -77,15 +80,28 @@ func settle()->Dictionary:
  return session.commit_operation("encounter-"+e.id,CP.make(C,CP.spawn(C) if s.outcome=="lost" else Vector2(e.returnPoint[0],e.returnPoint[1]),CP.SPACE),saved.player)
 func claim(point:Vector2)->Dictionary:
  var saved:Dictionary=session.snapshot();var p:Dictionary=saved.player
+ if p.flags.get("retalhoParceiraHeleana",false) or (p.flags.get("heleanaConfissao0",false) and not p.flags.get("heleanaLacoKael",false)):return {"status":"already_applied"}
+ if p.flags.get("retalhoRecusadoKael",false):return {"status":"already_applied"}
  if not near(C,point):return {"status":"wrong_step"}
  if stage(p)==8:return {"status":"already_applied"}
  if stage(p)!=7:return {"status":"wrong_step"}
- if p.partners.size()>=CAPACITY:return {"status":"bank_full"}
+ if p.partners.size()>=CAPACITY:
+  if not p.flags.get("retalhoAceitoKael",false):
+   p.flags.retalhoAceitoKael=true
+   var accepted:Dictionary=session.commit_operation("retalho-accepted-pending-bank",saved.checkpoint,p)
+   if accepted.status!="ok":return accepted
+  return {"status":"bank_full"}
  if p.partners.any(func(partner):return partner.get("origin","")==ORIGIN):return {"status":"already_applied"}
  p.partners.append({"id":State.new_id(),"modelId":"retalho-original","personalName":"Retalho","xp":Levels.xp_for_level(22),"craftBonus":0,"condition":{"line":100,"structure":100},"origin":ORIGIN,"certification":"unverified"})
  preload("res://scripts/campaign/progression.gd").acquire(p,"retalho-original")
  p.flags.retalhoAcolhido=true
+ p.flags.retalhoAceitoKael=true
  return session.commit_operation(ORIGIN,CP.make(C,point,CP.SPACE),p)
+func refuse(point:Vector2)->Dictionary:
+ var saved:Dictionary=session.snapshot();var p:Dictionary=saved.player
+ if not near(C,point) or stage(p)!=7 or p.flags.get("retalhoAcolhido",false) or p.flags.get("retalhoAceitoKael",false):return {"status":"wrong_step"}
+ p.flags.retalhoRecusadoKael=true
+ return session.commit_operation("retalho-refused-kael",saved.checkpoint,p)
 func rest(point:Vector2)->Dictionary:
  var saved:Dictionary=session.snapshot();var scene:="kronasta-palafitas-b";var at:=Vector2(12.5,30.5)
  if saved.checkpoint.get("kind")!="world" or saved.checkpoint.get("scene")!=scene or saved.checkpoint.get("space")!=CP.SPACE or not docks_open(saved.player) or not point.is_finite() or point.distance_to(at)>1.8:return {"status":"wrong_step"}

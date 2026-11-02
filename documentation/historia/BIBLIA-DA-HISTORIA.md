@@ -557,3 +557,10 @@ O campeonato está integrado localmente após o emblema de Bruno e Mormaço livr
 ### Veskoro [Decidido e integrado localmente, 02/11/2026]
 
 O crocodiliano de Caio se chama **Veskoro**, nome aprovado pelo dono. Corpo arredondado, feixes de veneno roxo, vela/varetas e rabiola conforme conceito aprovado. Sua identidade inspira máscara e punhos de Caio. Novos duelos do campeão usam Veskoro27, com jato e nuvem tóxicos antecipados por marcação e recuperação para contra-ataque. O antigo Mata verde permanece somente para compatibilidade de duelos já salvos. Não foi liberado como captura/recompensa; animação Soulgen e arena de docas continuam pendentes. Esta atualização substitui a observação anterior de nome e arte de combate indefinidos.
+
+
+### Decisão do dono · reencontro de Heleana e Retalho
+
+O gatilho é Retalho, sem exigência de emblema. Se Kael aceitou o convite dela, deve levá-la como parceiro ativo à mãe: o novo nome/laço transcreve o anterior, Retalho não se lembrará de Heleana novamente, mas Heleana reconhece, chora e conta o ocorrido. Preservar o nome dado pelo jogador.
+
+Se Kael recusou, ao voltar para casa ouve um grunhido externo. Ele e Heleana saem: Retalho seguiu Tyler às escondidas, movida por algo dentro dela. Heleana se emociona, toca a rabiola, Retalho recupera as lembranças e as duas voltam a ser parceiras. Não conceder Retalho a Kael nesta vertente. Adiar não é recusar; falta de vaga após aceitar também não é recusa. Esta decisão substitui as propostas anteriores de retorno incondicional a Heleana e de revelar um nome antigo obrigatório.

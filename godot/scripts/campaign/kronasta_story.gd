@@ -95,12 +95,13 @@ static func mikka_defeated(player: Dictionary) -> bool:
 static func beat_done(player: Dictionary, id: String) -> bool:
 	var f:=flags(player)
 	match id:
+		"heleana-confissao":return f.get("heleanaConfessouRabiola",false)
 		"palafitas-emblema":return preload("res://scripts/campaign/district_rules.gd").completed(player,"palafitas")
 		"galpao-gollia":return f.get("golliaCarretelVencida",false)
 		"galpao-retalho":return f.get("pipaDragaoDesatadaVencida",false)
 		"bruno-emblema":return preload("res://scripts/campaign/district_rules.gd").completed(player,"industrial")
 		"retalho-atelie":return f.get("assisReconheceuNoRetalho",false)
-		"retalho-confianca":return f.get("retalhoAcolhido",false)
+		"retalho-confianca":return f.get("retalhoAcolhido",false) or f.get("retalhoParceiraHeleana",false)
 		"mormaco-sinais":return f.get("mormacoVentosPararam",false)
 		"mormaco-liberto":return f.get("mormacoLiberto",false)
 		"remar-pratica":return f.get("marisolRemarPratica",false)
@@ -150,6 +151,9 @@ static func act(player: Dictionary) -> int:
 	return int(beat.act) if not beat.is_empty() else 3 if preload("res://scripts/campaign/district_rules.gd").completed(player,"industrial") else 2 if flags(player).get("leagueGreen",false) else 1
 
 static func objective(player: Dictionary) -> String:
+	var reunion=preload("res://scripts/campaign/heleana_confession.gd")
+	if reunion.available(player) and not player.get("flags",{}).get("heleanaReconheceuRetalho",false):
+		return "Volte para casa." if reunion.refused(player) else "Leve Retalho até Heleana."
 	var beat:=current_beat(player)
 	if beat.get("id","").begins_with("mormaco-"):return load("res://scripts/campaign/mormaco_story.gd").objective(player)
 	if beat.get("id")=="exame-azul":return "Pátio da Liga · "+load("res://scripts/campaign/blue_exam.gd").objective(player)
