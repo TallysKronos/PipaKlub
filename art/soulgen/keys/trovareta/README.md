@@ -2,6 +2,8 @@
 
 Primeira dos quatro guardiões, executada antes das demais conforme pedido do dono.
 
+Atualização aprovada pelo dono: incorporado `trovareta-guardia-do-trovao.soulgen.json` exportado do editor. Posição/pivô da asa próxima, profundidades, animações e PNGs preservados. Revisão de rig 2; arquivo recebido arquivado integralmente e hash em `author-import.json`. O build reexporta o projeto editado por padrão, sem sobrescrever os ajustes com a montagem inicial.
+
 - Preset local: `http://127.0.0.1:5241/?preset=trovareta`.
 - Oito peças: torso, cabeça, asa próxima/distante, pata próxima/distante, duas rabiolas inteiras com seus fios e nós.
 - Expressões: neutra, ataque, dano e vitória. O alpha e os pixels externos à janela do olho são idênticos à cabeça canônica.

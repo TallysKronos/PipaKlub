@@ -1,10 +1,10 @@
 {
   "schema": "soulgen-studio",
   "version": 1,
-  "name": "Trovareta · guardiã do trovão",
+  "name": "Trovareta Â· guardiÃ£ do trovÃ£o",
   "creatureId": "trovareta",
   "artRevision": 1,
-  "rigRevision": 1,
+  "rigRevision": 2,
   "preserveSourceAspect": true,
   "width": 480,
   "height": 340,
@@ -109,14 +109,14 @@
         260,
         175
       ],
-      "z": 4,
+      "z": 5,
       "parent": null,
       "visible": true,
       "lag": 0
     },
     {
       "id": "head",
-      "name": "Cabeça e expressão",
+      "name": "CabeÃ§a e expressÃ£o",
       "asset": "head",
       "source": [
         0,
@@ -134,7 +134,7 @@
         263,
         141
       ],
-      "z": 6,
+      "z": 7,
       "parent": "body",
       "visible": true,
       "lag": 0,
@@ -178,7 +178,7 @@
     },
     {
       "id": "wingNear",
-      "name": "Asa próxima · vareta bifurcada",
+      "name": "Asa prÃ³xima Â· vareta bifurcada",
       "asset": "wingNear",
       "source": [
         0,
@@ -187,23 +187,23 @@
         403
       ],
       "rect": [
-        85.03999999999999,
-        36.019999999999996,
+        83.32626268165615,
+        30.536040581299673,
         160.36,
         153.14000000000001
       ],
       "pivot": [
-        234,
-        158
+        232.28626268165615,
+        152.51604058129968
       ],
-      "z": 3,
+      "z": 6,
       "parent": "body",
       "visible": true,
       "lag": 0.025
     },
     {
       "id": "wingFar",
-      "name": "Asa distante · vareta bifurcada",
+      "name": "Asa distante Â· vareta bifurcada",
       "asset": "wingFar",
       "source": [
         0,
@@ -221,14 +221,14 @@
         282,
         158
       ],
-      "z": 2,
+      "z": 3,
       "parent": "body",
       "visible": true,
       "lag": 0.05
     },
     {
       "id": "legNear",
-      "name": "Pata próxima",
+      "name": "Pata prÃ³xima",
       "asset": "legNear",
       "source": [
         0,
@@ -246,7 +246,7 @@
         251,
         208
       ],
-      "z": 3,
+      "z": 4,
       "parent": "body",
       "visible": true,
       "lag": 0
@@ -271,14 +271,14 @@
         270,
         208
       ],
-      "z": 1,
+      "z": 2,
       "parent": "body",
       "visible": true,
       "lag": 0
     },
     {
       "id": "tailNear",
-      "name": "Rabiola próxima · fio e vela",
+      "name": "Rabiola prÃ³xima Â· fio e vela",
       "asset": "tailNear",
       "source": [
         0,
@@ -296,14 +296,14 @@
         239,
         192
       ],
-      "z": 0,
+      "z": 1,
       "parent": "body",
       "visible": true,
       "lag": 0.1
     },
     {
       "id": "tailFar",
-      "name": "Rabiola distante · fio e vela",
+      "name": "Rabiola distante Â· fio e vela",
       "asset": "tailFar",
       "source": [
         0,
@@ -321,7 +321,7 @@
         245,
         207
       ],
-      "z": -1,
+      "z": 0,
       "parent": "body",
       "visible": true,
       "lag": 0.14
@@ -4305,8 +4305,8 @@
           0.7965260545905707
         ],
         "socket": [
-          0.18711574445335474,
-          0.32840722495894914
+          0.1642109420162544,
+          0.2640868001559897
         ],
         "maxGap": 0.05
       },

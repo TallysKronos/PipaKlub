@@ -4,6 +4,12 @@ import {identity} from '../../../../tools/soulgen-studio/model.mjs';
 import {exportReview} from '../../../../tools/soulgen-studio/export-review.mjs';
 
 const folder=fileURLToPath(new URL('./cutout-rig-v1/',import.meta.url));
+// Once the author has edited the project, its saved rig owns geometry and animation.
+// Re-export it by default; never silently reset the author's pivots to the initial layout.
+if(fs.existsSync(folder+'author-import.json')&&!process.argv.includes('--rebuild-source')){
+ await exportReview(JSON.parse(fs.readFileSync(folder+'trovareta.soulgen.json')),folder,{registration:JSON.parse(fs.readFileSync(folder+'registration.json'))});
+ process.exit(0);
+}
 const slices=JSON.parse(fs.readFileSync(folder+'slices.json'));
 const project={schema:'soulgen-studio',version:1,name:'Trovareta · guardiã do trovão',creatureId:'trovareta',artRevision:1,rigRevision:1,preserveSourceAspect:true,width:480,height:340,rootPivot:[260,175],brief:{species:'Trovareta · arquitetura A aprovada',personality:'Paciente e temível',view:'Três quartos para a direita',reference:'art/soulgen/campaign-redesigns-v1/contorno-carcara-v1/trovareta.png',kiteAnatomy:'Asas de vareta bifurcada; torso de papel; duas patas e duas rabiolas completas.',notes:'Peças redesenhadas a partir da base aprovada. Oito PNGs separados; expressões registradas numa janela fixa. Ferramenta local, sem integração em batalha.'},assets:{},parts:[],clips:{}};
 // Each socket is measured on the painted root; proportions of each source PNG stay unchanged.
