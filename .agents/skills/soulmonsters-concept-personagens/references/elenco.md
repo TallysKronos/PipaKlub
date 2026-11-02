@@ -25,6 +25,10 @@ e preserve o DNA. Atualize a coluna "Estado" a cada entrega.
 
 ## Regras do elenco
 
+Vila Operária: o dono aprovou distribuir as quatro alternativas revisadas: A Vasken (expansivo), B Rivka (teatral), C Odrik (impulsivo), D Teyra (protetor). Fonte e registro em `art/characters/vila-operaria/elenco-v1/`. Pranchas individuais pendentes. Parceiros indefinidos; sem integração ao jogo.
+
+Bruno Solda: alternativa D escolhida pelo dono; prancha com costas e expressões em `art/characters/bruno-solda/concept-v1/prancha.png`, em revisão. Parceiro indefinido. Sem integração ao jogo.
+
 - Nenhuma assinatura repetida: dois personagens não usam a mesma peça de destaque (fone de cristal é
   do Kael; gola de penas é do Locutor).
 - Cores principais: o azul do Kael não é a cor principal de outro jovem protagonista ou rival.
