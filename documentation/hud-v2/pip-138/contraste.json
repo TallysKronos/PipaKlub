@@ -1,0 +1,257 @@
+{
+  "method": "sRGB luminance; opaque central 16% texture crop, 5th percentile; solid semantic pairs; not a screen-wide conformance claim",
+  "correctedFinding": {
+    "component": "boss_presentation.gd",
+    "oldBackground": "events-v1/boss-warning.png",
+    "oldContrastP05": 3.5,
+    "fix": "Native cut-ink backing (#0b1017) behind title/name/subtitle; warning red remains decoration. Backing measured as a solid semantic pair."
+  },
+  "checks": 20,
+  "failures": [],
+  "entries": [
+    {
+      "texture": "pieces/paper.png",
+      "foreground": "#123442",
+      "sampleBox": [
+        137,
+        48,
+        190,
+        66
+      ],
+      "samplePixels": 954,
+      "contrastP05": 10.14,
+      "contrastMedian": 10.4,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "texture": "pieces/selected.png",
+      "foreground": "#123442",
+      "sampleBox": [
+        137,
+        51,
+        190,
+        71
+      ],
+      "samplePixels": 1060,
+      "contrastP05": 7.72,
+      "contrastMedian": 7.95,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "texture": "pieces/ink.png",
+      "foreground": "#fff1d2",
+      "sampleBox": [
+        137,
+        50,
+        190,
+        70
+      ],
+      "samplePixels": 1060,
+      "contrastP05": 11.73,
+      "contrastMedian": 12.1,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "texture": "pieces/board-paper.png",
+      "foreground": "#123442",
+      "sampleBox": [
+        137,
+        133,
+        190,
+        184
+      ],
+      "samplePixels": 2703,
+      "contrastP05": 11.04,
+      "contrastMedian": 11.14,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "texture": "pieces/board-sun.png",
+      "foreground": "#123442",
+      "sampleBox": [
+        137,
+        132,
+        190,
+        182
+      ],
+      "samplePixels": 2650,
+      "contrastP05": 8.12,
+      "contrastMedian": 8.23,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "texture": "pieces/board-ink.png",
+      "foreground": "#fff1d2",
+      "sampleBox": [
+        137,
+        132,
+        190,
+        183
+      ],
+      "samplePixels": 2703,
+      "contrastP05": 11.39,
+      "contrastMedian": 11.56,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "texture": "menus-v2/cloth.png",
+      "foreground": "#fff1d2",
+      "sampleBox": [
+        504,
+        214,
+        696,
+        295
+      ],
+      "samplePixels": 15552,
+      "contrastP05": 13.38,
+      "contrastMedian": 13.56,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "texture": "menus-v2/dex.png",
+      "foreground": "#123442",
+      "sampleBox": [
+        504,
+        236,
+        696,
+        325
+      ],
+      "samplePixels": 17088,
+      "contrastP05": 10.39,
+      "contrastMedian": 10.58,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "texture": "menus-v2/evolution.png",
+      "foreground": "#123442",
+      "sampleBox": [
+        504,
+        219,
+        696,
+        302
+      ],
+      "samplePixels": 15936,
+      "contrastP05": 11.19,
+      "contrastMedian": 11.49,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "texture": "menus-v2/case.png",
+      "foreground": "#fff1d2",
+      "sampleBox": [
+        504,
+        216,
+        696,
+        298
+      ],
+      "samplePixels": 15744,
+      "contrastP05": 11.26,
+      "contrastMedian": 12.07,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "texture": "menus-v2/tag.png",
+      "foreground": "#123442",
+      "sampleBox": [
+        504,
+        143,
+        696,
+        198
+      ],
+      "samplePixels": 10560,
+      "contrastP05": 10.96,
+      "contrastMedian": 11.26,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "texture": "events-v1/crossing.png",
+      "foreground": "#123442",
+      "sampleBox": [
+        477,
+        92,
+        660,
+        127
+      ],
+      "samplePixels": 6405,
+      "contrastP05": 9.45,
+      "contrastMedian": 9.77,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "texture": "events-v1/boss-status.png",
+      "foreground": "#fff1d2",
+      "sampleBox": [
+        414,
+        92,
+        573,
+        127
+      ],
+      "samplePixels": 5565,
+      "contrastP05": 13.11,
+      "contrastMedian": 13.72,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "#496261",
+      "background": "#fff1d2",
+      "contrast": 5.86,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "#ad382c",
+      "background": "#fff1d2",
+      "contrast": 5.55,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "#126c76",
+      "background": "#fff1d2",
+      "contrast": 5.47,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "#77d0bc",
+      "background": "#0c2530",
+      "contrast": 8.72,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "#f4e9d2",
+      "background": "#22303f",
+      "contrast": 11.16,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "#d8c9ac",
+      "background": "#22303f",
+      "contrast": 8.24,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "foreground": "#fff1d2",
+      "background": "#0b1017",
+      "contrast": 17.05,
+      "target": 4.5,
+      "pass": true
+    }
+  ]
+}

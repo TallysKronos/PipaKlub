@@ -1,0 +1,21 @@
+{
+  "sourceCommit": "eb86b4c2",
+  "suites": [
+    {"script": "mural_accessibility_checks.gd", "checks": 295, "failures": 0, "runners": ["headless", "native-gl-compatibility"]},
+    {"script": "mural_dialogue_checks.gd", "checks": 292, "failures": 0},
+    {"script": "mural_menu_checks.gd", "checks": 683, "failures": 0},
+    {"script": "mural_battle_checks.gd", "checks": 795, "failures": 0},
+    {"script": "controls_checks.gd", "checks": 44, "failures": 0},
+    {"script": "boss_presentation_checks.gd", "checks": 67, "failures": 0}
+  ],
+  "uniqueFunctionalChecks": 2176,
+  "contrastChecks": 20,
+  "contrastFailures": 0,
+  "nativeCaptures": 40,
+  "nativeGlyphChecks": 64,
+  "nativeGlyphFailures": 0,
+  "textScales": [1.0, 1.5],
+  "resolutions": ["1280x720", "1920x1080", "1024x768", "1280x800"],
+  "physicalController": false,
+  "formalAccessibilityCertification": false
+}

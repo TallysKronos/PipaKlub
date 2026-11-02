@@ -18,7 +18,7 @@ Critério central: uma captura sem logo precisa ser reconhecível como Soulmonst
 | 10 | PIP-135 | Pipa Dex, evolução, Varal, 12 emblemas | Implementada localmente; revisão artística v2 após crítica ao aspecto chapado. 810 checks de menus e 292 de regressão do diálogo; ver pip-135/REVISAO.md. Aprovação visual do dono ainda não declarada |
 | 11 | PIP-136 | Resultado e grandes momentos | Integrada localmente; três chamadas ilustradas, prévia explícita, nível após gravação e momentos de item/insígnia. 3.298 verificações incluindo regressão, 72 capturas; ver pip-136/REVISAO.md |
 | 12 | PIP-137 | Transições e sons | Implementada localmente: cortina Mural, gate de primeiro frame, foco, áudio de viagem no bus UI e prioridade de jingles. 55 checks e 24 capturas; ver pip-137/REVISAO.md |
-| 13 | PIP-138 | Acessibilidade | Critérios desde o início; auditoria consolidada ao final |
+| 13 | PIP-138 | Acessibilidade | Implementada e auditada localmente: texto 150% persistido, foco por forma, dano legível em movimento reduzido, contraste do boss e apresentações ampliadas. 2.176 checks, 20 casos de contraste, 40 capturas; ver pip-138/REVISAO.md |
 | 14 | PIP-139 | Auditoria final e HUD-KIT v2 para a campanha PIP-91 | Pendente da implementação |
 
 O agrupamento individual PIP-130/131 e PIP-132–137 segue a ordem descrita pelo dono; conferir os títulos exatos no Linear antes de atualizar tarefas.
