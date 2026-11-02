@@ -300,6 +300,24 @@
       "name": "Vila Operária · Galpão",
       "scene": "kronasta-industrial-d",
       "biome": "parque"
+    },
+    {
+      "id": "kronasta-palafitas-a",
+      "name": "Palafitas · Chegada do resgate",
+      "scene": "kronasta-palafitas-a",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-palafitas-b",
+      "name": "Palafitas · Travessia das docas",
+      "scene": "kronasta-palafitas-b",
+      "biome": "floresta"
+    },
+    {
+      "id": "kronasta-palafitas-c",
+      "name": "Palafitas · Patamar do resgate",
+      "scene": "kronasta-palafitas-c",
+      "biome": "floresta"
     }
   ],
   "scenes": {
@@ -351,7 +369,10 @@
     "kronasta-cais-b": "kronasta-cais-b",
     "kronasta-cais-c": "kronasta-cais-c",
     "kronasta-bosque-d": "kronasta-bosque-d",
-    "kronasta-industrial-d": "kronasta-industrial-d"
+    "kronasta-industrial-d": "kronasta-industrial-d",
+    "kronasta-palafitas-a": "kronasta-palafitas-a",
+    "kronasta-palafitas-b": "kronasta-palafitas-b",
+    "kronasta-palafitas-c": "kronasta-palafitas-c"
   },
   "campaignReplacement": false
 }
