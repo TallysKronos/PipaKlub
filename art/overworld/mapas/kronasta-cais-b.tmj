@@ -4295,6 +4295,11 @@
        "name": "npcId",
        "type": "string",
        "value": "vaelis"
+      },
+      {
+       "name": "storySpritePath",
+       "type": "string",
+       "value": "res://assets/npc-ds/cais-v1/vaelis.png"
       }
      ]
     },
@@ -4302,8 +4307,8 @@
      "id": 7,
      "type": "npc",
      "name": "Rhuna",
-     "x": 1104,
-     "y": 1008,
+     "x": 1008,
+     "y": 1040,
      "point": true,
      "properties": [
       {
@@ -4325,6 +4330,11 @@
        "name": "npcId",
        "type": "string",
        "value": "rhuna"
+      },
+      {
+       "name": "storySpritePath",
+       "type": "string",
+       "value": "res://assets/npc-ds/cais-v1/rhuna.png"
       }
      ]
     },

@@ -104,3 +104,21 @@ func inspect_clue(id:String,point:Vector2)->Dictionary:
 		saved.player.flags.bambuzalCorteDescoberto=true
 		return session.commit_operation("bambuzal-corte-v1",saved.checkpoint,saved.player)
 	return {"status":"wrong_step"}
+
+## Rest is validated against the authored event, never an arbitrary caller position.
+func rest(point:Vector2)->Dictionary:
+	var saved:Dictionary=session.snapshot();var cp:Dictionary=saved.checkpoint
+	if cp.kind!="world" or cp.get("space")!=Checkpoint.SPACE or Checkpoint.region_of(cp.get("scene",""))!="cais" or not point.is_finite():return {"status":"wrong_step"}
+	var map=Checkpoint.model_for(cp.scene)
+	if not map.point_walkable(point):return {"status":"wrong_step"}
+	var near:=false
+	for e:Dictionary in map.data.events:
+		if e.props.get("acao","")!="districtRest" or e.props.get("district","")!="cais":continue
+		var at:=Vector2(e.u+.5,e.v+.5)
+		if point.distance_to(at)<=1.8 and absf(map.height_at(point)-map.height_at(at))<.25:near=true
+	if not near:return {"status":"wrong_step"}
+	if saved.player.partners.all(func(p):return p.get("condition",{}).get("line",100)>=100 and p.get("condition",{}).get("structure",100)>=100):return {"status":"already_applied"}
+	if saved.player.coins<12:return {"status":"not_enough_coins"}
+	saved.player.coins-=12
+	for p:Dictionary in saved.player.partners:p.condition={"line":100,"structure":100}
+	return session.checkpoint(cp,saved.player)

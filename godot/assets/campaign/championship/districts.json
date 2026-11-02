@@ -978,7 +978,7 @@
       "id": "cais",
       "number": 5,
       "name": "Cais Velho",
-      "playable": false,
+      "playable": true,
       "next": "industrial",
       "prerequisiteFlag": "",
       "unlocks": [],
@@ -996,69 +996,141 @@
           "id": "cais-1",
           "part": "A",
           "role": "lieutenant",
-          "npcId": "cais-capanga-1",
-          "name": "Capanga 1",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "neril",
+          "name": "Neril",
+          "level": 18,
+          "before": [
+            "O vento muda quando passa entre os barcos. Sente antes de puxar a linha."
+          ],
+          "won": [
+            "Boa leitura! Pode seguir pelo ancoradouro."
+          ],
+          "lost": [
+            "Observe as bandeiras e tente de novo."
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 18,
+            "xp": 160,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Neril",
+              "color": 3
+            }
+          ],
+          "styles": [
+            "patient"
+          ],
+          "npcName": "Neril",
+          "scene": "kronasta-cais-a"
         },
         {
           "id": "cais-2",
           "part": "A",
           "role": "lieutenant",
-          "npcId": "cais-capanga-2",
-          "name": "Capanga 2",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "ossian",
+          "name": "Ossian",
+          "level": 19,
+          "before": [
+            "Uma linha bem cuidada aguenta mais que um puxão apressado. Vamos testar?"
+          ],
+          "won": [
+            "Essa linha está em boas mãos. Continue."
+          ],
+          "lost": [
+            "Descanse nas docas e volte com a linha inteira."
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 20,
+            "xp": 180,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Ossian",
+              "color": 0
+            }
+          ],
+          "styles": [
+            "reader"
+          ],
+          "npcName": "Ossian",
+          "scene": "kronasta-cais-a"
         },
         {
           "id": "cais-3",
           "part": "B",
           "role": "lieutenant",
-          "npcId": "cais-capanga-3",
-          "name": "Capanga 3",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "vaelis",
+          "name": "Vaelis",
+          "level": 19,
+          "before": [
+            "Veja as bandeiras! Quero uma disputa que faça todo o cais olhar para cima."
+          ],
+          "won": [
+            "Que voo! Até as bandeiras acompanharam."
+          ],
+          "lost": [
+            "Quero ver esse voo mais uma vez!"
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 22,
+            "xp": 200,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Vaelis",
+              "color": 1
+            }
+          ],
+          "styles": [
+            "aggressive"
+          ],
+          "npcName": "Vaelis",
+          "scene": "kronasta-cais-b"
         },
         {
           "id": "cais-4",
           "part": "B",
           "role": "lieutenant",
-          "npcId": "cais-capanga-4",
-          "name": "Capanga 4",
-          "level": null,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "npcId": "rhuna",
+          "name": "Rhuna",
+          "level": 20,
+          "before": [
+            "Eu espero a rajada certa. Não confunda silêncio com falta de coragem."
+          ],
+          "won": [
+            "Você encontrou a abertura antes de mim."
+          ],
+          "lost": [
+            "Respire. A próxima rajada ainda vem."
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 24,
+            "xp": 220,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "rounds": 2,
+          "foes": [
+            {
+              "name": "Rhuna",
+              "color": 2
+            }
+          ],
+          "styles": [
+            "reader"
+          ],
+          "npcName": "Rhuna",
+          "scene": "kronasta-cais-b"
         },
         {
           "id": "cais-5",
@@ -1067,15 +1139,33 @@
           "npcId": "marisol",
           "name": "Marisol",
           "level": 21,
-          "before": [],
-          "won": [],
-          "lost": [],
+          "before": [
+            "Você chegou ao alto do cais. Aqui, saber ceder ao vento também é força."
+          ],
+          "won": [
+            "O quinto emblema é seu. Leve o vento do cais na próxima jornada."
+          ],
+          "lost": [
+            "O mar não se vence com pressa. Cuide do parceiro e volte."
+          ],
           "reward": {
-            "coins": 0,
-            "xp": 0,
+            "coins": 26,
+            "xp": 240,
             "item": ""
           },
-          "authored": false
+          "authored": true,
+          "rounds": 3,
+          "foes": [
+            {
+              "name": "Marisol",
+              "color": 3
+            }
+          ],
+          "styles": [
+            "patient"
+          ],
+          "npcName": "Marisol",
+          "scene": "kronasta-cais-c"
         }
       ]
     },

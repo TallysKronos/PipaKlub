@@ -4272,8 +4272,8 @@
      "id": 6,
      "type": "npc",
      "name": "Neril",
-     "x": 784,
-     "y": 976,
+     "x": 720,
+     "y": 1040,
      "point": true,
      "properties": [
       {
@@ -4295,6 +4295,11 @@
        "name": "npcId",
        "type": "string",
        "value": "neril"
+      },
+      {
+       "name": "storySpritePath",
+       "type": "string",
+       "value": "res://assets/npc-ds/cais-v1/neril.png"
       }
      ]
     },
@@ -4325,6 +4330,11 @@
        "name": "npcId",
        "type": "string",
        "value": "ossian"
+      },
+      {
+       "name": "storySpritePath",
+       "type": "string",
+       "value": "res://assets/npc-ds/cais-v1/ossian.png"
       }
      ]
     },

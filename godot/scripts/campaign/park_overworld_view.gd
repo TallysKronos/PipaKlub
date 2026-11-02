@@ -100,11 +100,15 @@ func _build_events() -> void:
 		for event:Dictionary in preload("res://scripts/campaign/canal_gate.gd").events(saved_player):
 			if Checkpoint.allowed(event,saved_player,area_id):interaction_events.append(event)
 	var district_region:=Checkpoint.region_of(saved_checkpoint.scene)
-	if district_region in ["bambuzal","beira-canal","feira"]:
+	if district_region in ["bambuzal","beira-canal","feira","cais"]:
 		var rules=preload("res://scripts/campaign/district_rules.gd")
 		var title:Dictionary=rules.entry(saved_player,district_region)
 		for event:Dictionary in model.data.events+interaction_events:
 			if event.props.get("duel","")==district_region+"-5":event.name=rules.opponent_name(saved_player,district_region) if title.completed and title.champion!="player" else rules.definition(district_region).champion.name
+	if district_region=="cais":
+		for event:Dictionary in model.data.events+interaction_events:
+			if event.props.get("duel","")=="cais-5":
+				event.props.storySpritePath="res://assets/npc-ds/cais-v1/"+event.name.to_lower()+".png"
 	if district_region=="feira":
 		for event:Dictionary in model.data.events+interaction_events:
 			if event.props.get("duel","")=="feira-5":

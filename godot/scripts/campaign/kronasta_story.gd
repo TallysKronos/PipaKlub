@@ -20,7 +20,7 @@ const PLACES := [
 	{"scene":"kronasta-beira-canal-a","id":"beira-canal","name":"Beira-Canal","kind":"bairro","bairro":3,"act":2,"levels":"12–15","note":"Bairro 3 · Kleie."},
 	{"scene":"kronasta-feira-a","id":"feira","name":"Feira do Largo","kind":"bairro","bairro":4,"act":2,"levels":"15–18","note":"Bairro 4."},
 	{"scene":"caverna-mural-a","id":"caverna","name":"Caverna do Mural","kind":"ruinas","act":2,"levels":"15–18","note":"O primeiro laço."},
-	{"id":"cais","name":"Cais Velho","kind":"bairro","bairro":5,"act":3,"levels":"18–21","note":"Bairro 5."},
+	{"scene":"kronasta-cais-a","id":"cais","name":"Cais Velho","kind":"bairro","bairro":5,"act":3,"levels":"18–21","note":"Bairro 5."},
 	{"id":"industrial","name":"Distrito Industrial","kind":"bairro","bairro":6,"act":3,"levels":"4–6 na prévia","scene":"kronasta-industrial-a","preview":true,"note":"Pátio de Cargas, Canal das Caldeiras e Usina do Vento."},
 	{"id":"pantano","name":"Pântano do Mormaço","kind":"natural","act":4,"levels":"5–7 na prévia","scene":"kronasta-pantano-a","preview":true,"note":"Entrada alagada, Desvio dos cipós e Lago profundo."},
 	{"id":"palafitas","name":"Palafitas","kind":"bairro","bairro":7,"act":4,"levels":"24–27","note":"Bairro 7."},
@@ -57,6 +57,7 @@ const BEATS := [
 	{"id":"feira-verdadeiro","act":2,"place":"feira","text":"Confronte Lalau e procure Grampo no beco da parte B para recuperar o apito verdadeiro."},
 	{"id":"feira-zulmira","act":2,"place":"feira","text":"Vença os quatro desafios e Dona Zulmira para conquistar o quarto emblema."},
 	{"id":"mural-primeiro-laco","act":2,"place":"caverna","text":"Atravesse a Caverna do Mural e encontre Tyler no salão das marcas antigas."},
+	{"id":"cais-emblema","act":3,"place":"cais","text":"Explore o Cais Velho, vença os quatro pipeiros e dispute o quinto emblema com Marisol."},
 ]
 
 ## QA previews: built maps whose story gate does not exist yet open only in development
@@ -80,6 +81,7 @@ static func mikka_defeated(player: Dictionary) -> bool:
 static func beat_done(player: Dictionary, id: String) -> bool:
 	var f:=flags(player)
 	match id:
+		"cais-emblema":return preload("res://scripts/campaign/district_rules.gd").completed(player,"cais")
 		"canal-pipeiros":return preload("res://scripts/campaign/district_rules.gd").qualified(preload("res://scripts/campaign/district_rules.gd").entry(player,"beira-canal"),preload("res://scripts/campaign/district_rules.gd").definition("beira-canal"))
 		"canal-comporta":return f.get("comportaVeredasAberta",false)
 		"mural-primeiro-laco":return f.get("muralPrimeiroLaco",false)
@@ -161,6 +163,7 @@ static func state(player: Dictionary, id: String) -> String:
 		"parque": return "aberto" if prologue_done(player) else "fechado"
 		"morro": return "vencido" if mikka_defeated(player) else "aberto" if prologue_done(player) else "fechado"
 		"caverna":return "aberto" if preload("res://scripts/campaign/mural_story.gd").available(player) else "fechado"
+		"cais": return "vencido" if preload("res://scripts/campaign/district_rules.gd").completed(player,id) else "aberto" if preload("res://scripts/campaign/district_rules.gd").completed(player,"feira") else "fechado"
 		"feira": return "vencido" if preload("res://scripts/campaign/district_rules.gd").completed(player,id) else "aberto" if preload("res://scripts/campaign/district_rules.gd").completed(player,"beira-canal") else "fechado"
 		"beira-canal": return "vencido" if preload("res://scripts/campaign/district_rules.gd").completed(player,id) else "aberto" if flags(player).get("leagueGreen",false) else "fechado"
 		"bambuzal": return "vencido" if preload("res://scripts/campaign/district_rules.gd").completed(player,"bambuzal") else "aberto" if mikka_defeated(player) else "fechado"
@@ -179,7 +182,7 @@ static func requirement(player: Dictionary, id: String) -> String:
 	match state(player,id):
 		"aberto": return "QA · prévia sem história" if entry.get("preview",false) else "Aberto"
 		"vencido": return "Bairro vencido"
-		"fechado": return "Vença a Mikka no Morro do Sol" if id=="bambuzal" else "Vença o Lohan na Vila do Bambuzal" if id=="beira-canal" else "Vença o Kleie em Beira-Canal" if id=="feira" else "Vença a Feira do Largo e recupere o apito verdadeiro" if id=="caverna" else "Abre ao terminar o prólogo"
+		"fechado": return "Vença a Mikka no Morro do Sol" if id=="bambuzal" else "Vença o Lohan na Vila do Bambuzal" if id=="beira-canal" else "Vença o Kleie em Beira-Canal" if id=="feira" else "Vença a Feira do Largo e recupere o apito verdadeiro" if id=="caverna" else "Vença Dona Zulmira na Feira do Largo" if id=="cais" else "Abre ao terminar o prólogo"
 	return "Em breve"
 
 static func scene_for_travel(id: String) -> String:

@@ -1,10 +1,10 @@
 extends RefCounted
 ## Explicit coordinate version: legacy illustrated pixels never become map cells by guesswork.
 const SPACE := "parque-overworld-v1"
-const MAPS := {"caverna-mural-a":"caverna-mural-a","caverna-mural-b":"caverna-mural-b","caverna-mural-c":"caverna-mural-c","kronasta-feira-a":"kronasta-feira-a","kronasta-feira-b":"kronasta-feira-b","kronasta-feira-c":"kronasta-feira-c","kronasta-beira-canal-a":"kronasta-beira-canal-a","kronasta-beira-canal-b":"kronasta-beira-canal-b","kronasta-beira-canal-c":"kronasta-beira-canal-c","kronasta-bambuzal-a":"kronasta-bambuzal-a","kronasta-bambuzal-b":"kronasta-bambuzal-b","kronasta-bambuzal-c":"kronasta-bambuzal-c","park-trail":"jardim-das-pipas","park-clearing":"clareira-do-papel","park-veredas":"veredas-do-encanamento","kronasta-bosque-a":"kronasta-bosque-a","kronasta-bosque-b":"kronasta-bosque-b","kronasta-bosque-c":"kronasta-bosque-c","kronasta-pantano-a":"kronasta-pantano-a","kronasta-pantano-b":"kronasta-pantano-b","kronasta-pantano-c":"kronasta-pantano-c","kronasta-montanha-a":"kronasta-montanha-a","kronasta-montanha-b":"kronasta-montanha-b","kronasta-montanha-c":"kronasta-montanha-c","kronasta-industrial-a":"kronasta-industrial-a","kronasta-industrial-b":"kronasta-industrial-b","kronasta-industrial-c":"kronasta-industrial-c","mina-ferro-a":"mina-ferro-a","mina-ferro-b":"mina-ferro-b","mina-ferro-c":"mina-ferro-c","mina-ferro-d":"mina-ferro-d","gelo-a":"gelo-a","gelo-b":"gelo-b","gelo-c":"gelo-c","gelo-d":"gelo-d","submerso-a":"submerso-a","submerso-b":"submerso-b","submerso-c":"submerso-c"}
+const MAPS := {"kronasta-cais-a":"kronasta-cais-a","kronasta-cais-b":"kronasta-cais-b","kronasta-cais-c":"kronasta-cais-c","caverna-mural-a":"caverna-mural-a","caverna-mural-b":"caverna-mural-b","caverna-mural-c":"caverna-mural-c","kronasta-feira-a":"kronasta-feira-a","kronasta-feira-b":"kronasta-feira-b","kronasta-feira-c":"kronasta-feira-c","kronasta-beira-canal-a":"kronasta-beira-canal-a","kronasta-beira-canal-b":"kronasta-beira-canal-b","kronasta-beira-canal-c":"kronasta-beira-canal-c","kronasta-bambuzal-a":"kronasta-bambuzal-a","kronasta-bambuzal-b":"kronasta-bambuzal-b","kronasta-bambuzal-c":"kronasta-bambuzal-c","park-trail":"jardim-das-pipas","park-clearing":"clareira-do-papel","park-veredas":"veredas-do-encanamento","kronasta-bosque-a":"kronasta-bosque-a","kronasta-bosque-b":"kronasta-bosque-b","kronasta-bosque-c":"kronasta-bosque-c","kronasta-pantano-a":"kronasta-pantano-a","kronasta-pantano-b":"kronasta-pantano-b","kronasta-pantano-c":"kronasta-pantano-c","kronasta-montanha-a":"kronasta-montanha-a","kronasta-montanha-b":"kronasta-montanha-b","kronasta-montanha-c":"kronasta-montanha-c","kronasta-industrial-a":"kronasta-industrial-a","kronasta-industrial-b":"kronasta-industrial-b","kronasta-industrial-c":"kronasta-industrial-c","mina-ferro-a":"mina-ferro-a","mina-ferro-b":"mina-ferro-b","mina-ferro-c":"mina-ferro-c","mina-ferro-d":"mina-ferro-d","gelo-a":"gelo-a","gelo-b":"gelo-b","gelo-c":"gelo-c","gelo-d":"gelo-d","submerso-a":"submerso-a","submerso-b":"submerso-b","submerso-c":"submerso-c"}
 ## Kronasta regions reached from the region screen. Each has parts A, B and C
 ## (art/overworld/REGIOES-E-PARTES.md); scenes are kronasta-<region>-<part>.
-const REGIONS := ["bosque","industrial","pantano","montanha","bambuzal","beira-canal","feira"]
+const REGIONS := ["bosque","industrial","pantano","montanha","bambuzal","beira-canal","feira","cais"]
 const Model = preload("res://scripts/overworld/map_model.gd")
 const Legacy = preload("res://scripts/campaign/park_data.gd")
 static var _maps: Dictionary = {}
@@ -128,7 +128,9 @@ static func allowed(event: Dictionary, player: Dictionary, area: String = "") ->
 	var props: Dictionary = event.get("props",{})
 	var flags: Dictionary = player.get("flags",{})
 	if props.get("acao","") in ["tylerClareira","tylerRai"] and not preload("res://scripts/campaign/tyler_clareira.gd").unlocked(player):return false
-	if props.has("requer") and not flags.get(str(props.requer),false): return false
+	if props.get("requer","")=="cais":
+		if not preload("res://scripts/campaign/district_rules.gd").completed(player,"cais"):return false
+	elif props.has("requer") and not flags.get(str(props.requer),false): return false
 	if props.has("ocultar_apos") and flags.get(str(props.ocultar_apos),false): return false
 	if props.get("descoberta","")=="clareira-do-marco" and not flags.get("bosqueClareiraDescoberta",false): return false
 	# Lacertubo leaves the Veredas once defeated; only the quest tail remains.

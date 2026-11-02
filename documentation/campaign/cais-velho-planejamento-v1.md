@@ -35,3 +35,12 @@ Vaelis A em art/characters/vaelis/concept-v2/prancha.png; Rhuna C em art/charact
 
 ## Construção visual dos mapas
 A/B/C agora possuem TMJ/JSON, kit de seis assets, navegação conferida e capturas geométricas/arte. Relatório em documentation/overworld/cais/RELATORIO.md. A integração de sprites/duelos/atlas ainda está pendente, sem liberar campeonato prematuramente.
+
+## Integração jogável — 01/11/2026
+Os cinco conceitos foram adaptados em sprites estáticos transparentes (112px) e integrados aos eventos. Cais liberado após concluir a Feira, sem exigir repetir o mural. A/B/C registrados no atlas, checkpoint e validador de encontros. Cinco duelos Nv.18,19,19,20,21, quinto emblema, defesa/reconquista, descanso B por12 moedas e atalho C→A após conclusão permanente. Neril deslocado duas células para ficar visível fora da fachada; sem alterar pisos.
+
+Elenco e motivos visuais aprovados não definem novas espécies: confrontos provisórios usam Azulão, Básica, Raio, Mata e Azulão, respectivamente. Recompensas de moedas/XP são configuração inicial, sem balanceamento de longa duração. O Distrito Industrial continua prévia de exploração, sem história liberada como conteúdo completo. Pranchas/silhuetas anteriores preservadas; estes sprites não são rigs Soulgen nem ciclos de caminhada.
+
+Ver documentação de execução em documentation/qa/cais-v1/RELATORIO.md.
+
+Rhuna também reposicionada de(34,31) para(31,32) após captura mostrar oclusão pela casa da doca. Sem alteração da geometria.

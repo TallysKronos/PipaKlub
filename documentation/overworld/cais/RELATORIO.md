@@ -43,3 +43,8 @@ Não foi inspecionado cada PNG individual em tamanho nativo; todas as imagens fo
 
 ### Correção de recorte no kit
 Na inspeção nativa foi encontrado fragmento da âncora do barco dentro da caixa de recorte da banca. Corrigido por separação do maior objeto conectado do alpha, preservando arte/fonte original e alpha nas bordas. Empacotador reproduzível tools/package-cais-kit.py; capturas de arte refeitas após reimportar. Não era objeto de jogo colocado no muro.
+
+## Atualização posterior: integração da campanha
+A seção6 descreve o estado da entrega visual anterior. A integração foi implementada posteriormente: sprites estáticos dos cinco NPCs, catálogo de duelos, atlas/checkpoints, quinto emblema, descanso e retorno. O requisito textual `cais` do atalho agora consulta a conclusão permanente do campeonato, não uma flag inexistente. Neril foi reposicionado de(24,30) para(22,32) para evitar oclusão pela casa; nenhuma geometria mudou. Capturas de campanha e limites da verificação estão em ../../qa/cais-v1/RELATORIO.md. A aprovação dos conceitos não foi tratada como aprovação automática dos novos sprites.
+
+Rhuna também reposicionada de(34,31) para(31,32) após captura mostrar oclusão pela casa da doca. Sem alteração da geometria.

@@ -1536,6 +1536,10 @@ func _park_event(id: String) -> void:
 			return
 		if action=="feiraStory":
 			_request_feira_story(str(event.props.feiraAction));return
+		if action=="districtRest" and event.props.get("district")=="cais":
+			_confirm_park("Descansar nas docas","Recuperar toda a equipe por 12 moedas? Se todos estiverem bem, nada será cobrado.","Descansar",func():
+				if _result(load("res://scripts/campaign/district_campaign.gd").new(session).rest(park.player)):park.refresh(session.snapshot().player))
+			return
 		if action=="districtRest" and event.props.get("district")=="feira":
 			_confirm_park("Descansar no mercado","Recuperar toda a equipe por 12 moedas? Se todos estiverem bem, nada será cobrado.","Descansar",func():
 				if _result(load("res://scripts/campaign/feira_story.gd").new(session).rest(park.player)):park.refresh(session.snapshot().player))

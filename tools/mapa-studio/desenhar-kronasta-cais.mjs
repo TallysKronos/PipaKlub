@@ -29,7 +29,7 @@ export function caisPart(part){
   rect(4,4,16,14,'piso',2);stairs(12,18,1);
   rect(34,22,8,5);rect(34,10,6,4);f.docks.push({u:32,v:22,w:10,h:5},{u:32,v:10,w:8,h:4});
   building(5,5,6,5,'Oficina de velame');building(6,26,5,5,'Casa do ancoradouro');building(14,25,5,5,'Casa das redes');building(27,28,5,5,'Casa do barco azul');building(13,5,4,5,'Oficina de costura');
-  E('npc','Neril',24,30,{acao:'districtDuel',district:'cais',duel:'cais-1',npcId:'neril'});
+  E('npc','Neril',22,32,{acao:'districtDuel',district:'cais',duel:'cais-1',npcId:'neril'});
   E('npc','Ossian',16,11,{acao:'districtDuel',district:'cais',duel:'cais-2',npcId:'ossian'});
  }
  if(part==='B'){
@@ -37,7 +37,7 @@ export function caisPart(part){
   rect(4,4,14,12,'piso',2);stairs(10,16,1);
   building(5,5,4,5,'Depósito de redes');building(32,6,6,6,'Galpão dos mastros');building(6,26,5,4,'Casa do pescador');building(11,5,5,4,'Casa do vigia');building(36,30,4,4,'Casa da doca');
   E('npc','Vaelis',15,10,{acao:'districtDuel',district:'cais',duel:'cais-3',npcId:'vaelis'});
-  E('npc','Rhuna',34,31,{acao:'districtDuel',district:'cais',duel:'cais-4',npcId:'rhuna'});
+  E('npc','Rhuna',31,32,{acao:'districtDuel',district:'cais',duel:'cais-4',npcId:'rhuna'});
   E('interacao','Descanso das docas',12,30,{acao:'districtRest',district:'cais'});
   f.docks.push({u:24,v:20,w:4,h:8});
   f.shots.push({name:'ponte-cabeceira-sul',u:26,v:28},{name:'ponte-cabeceira-norte',u:26,v:20});
@@ -69,6 +69,7 @@ export function caisPart(part){
   }
  }
  for(const [name,u,v]of [['praca',24,30],['patamar',15,12],['margem',33,23],['saida',25,3]])f.shots.push({name,u,v,zoom:1,kind:'jogo'});
+ for(const e of events){const id=e.properties?.find(p=>p.name==='npcId')?.value;if(id)e.properties.push({name:'storySpritePath',type:'string',value:'res://assets/npc-ds/cais-v1/'+id+'.png'});}
  const raw={type:'map',version:'1.10',orientation:'isometric',width:W,height:H,tilewidth:64,tileheight:32,infinite:false,properties:props({nome:'Cais Velho · '+part,regras:'overworld-1',bioma:'floresta',cena_jogo:id(part),regiao:'cais',parte:part,trajetoria:'1',rampa_comprimento:2,forest:JSON.stringify(f)}),tilesets:[{firstgid:1,source:'../tiles/rascunho.tsj'},heights],layers:[{name:'chao',type:'tilelayer',width:W,height:H,data:mat.map(m=>gid[m])},{name:'altura',type:'tilelayer',width:W,height:H,data:level.map((l,i)=>101+l+(ramp.has(i)?8:0))},{name:'pecas',type:'objectgroup',objects:pieces},{name:'eventos',type:'objectgroup',objects:events}]};
  return {id:id(part),part,raw,feature:f};
 }
