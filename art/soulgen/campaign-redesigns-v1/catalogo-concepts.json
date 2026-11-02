@@ -1,6 +1,6 @@
 {
   "schema": "soulgen-concept-reservations-v1",
-  "decisao": "Dono escolheu Trovareta A, Rabiolava B e Glacerol A; demais seis propostas reservadas como outros Soulmonsters.",
+  "decisao": "Dono escolheu Trovareta A, Rabiolava B, Glacerol A e Tufanocorte A; demais oito propostas reservadas como outros Soulmonsters.",
   "observacao": "IDs de reserva sao tecnicos. Sem nomes de Dex, atributos, evolucoes ou integracao decididos. Fontes preservadas integralmente.",
   "concepts": [
     {
@@ -103,20 +103,20 @@
       "nome": null
     },
     {
-      "id": "proposta-tufanocorte-a",
+      "id": "tufanocorte",
       "descricao": "Carneiro de espirais cortantes",
-      "estado": "proposta-em-revisao",
+      "estado": "arquitetura-escolhida",
       "fonte": "tufanocorte-propostas-v1.png",
       "opcao": "A",
       "sha256": "aa2e7be270fe633341517b9ebe3147492889e5227eb4b9d9569a6e8838d2a664",
       "rig_pronto": false,
       "integrado": false,
-      "nome": null
+      "nome": "Tufanocorte"
     },
     {
-      "id": "proposta-tufanocorte-b",
+      "id": "reserva-vento-tamandua",
       "descricao": "Tamandua de cauda em leque espiralado",
-      "estado": "proposta-em-revisao",
+      "estado": "reservado-outro-soulmonster",
       "fonte": "tufanocorte-propostas-v1.png",
       "opcao": "B",
       "sha256": "aa2e7be270fe633341517b9ebe3147492889e5227eb4b9d9569a6e8838d2a664",
@@ -125,9 +125,9 @@
       "nome": null
     },
     {
-      "id": "proposta-tufanocorte-c",
+      "id": "reserva-vento-espiral",
       "descricao": "Criatura aerea de espiral vazada",
-      "estado": "proposta-em-revisao",
+      "estado": "reservado-outro-soulmonster",
       "fonte": "tufanocorte-propostas-v1.png",
       "opcao": "C",
       "sha256": "aa2e7be270fe633341517b9ebe3147492889e5227eb4b9d9569a6e8838d2a664",

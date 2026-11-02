@@ -20,7 +20,7 @@ Estado: levantamento e propostas visuais. Nenhum modelo novo integrado ao jogo.
 | Trovareta | Trovão + vareta; floresta à noite durante tempestade | Arquitetura A escolhida pelo dono após refinamento de trovão; rig pendente |
 | Rabiolava | Lava + rabiola; vulcão | B escolhida pelo dono; A/C reservadas como outros Soulmonsters; rig pendente |
 | Glacerol | Geleira + cerol; gelo | A escolhida pelo dono; B/C reservadas como outros Soulmonsters; rig pendente |
-| Tufanocorte | Tufão + corte; montanha | Exploração A/B/C: carneiro de espirais cortantes, tamanduá de cauda em leque e náutilo aéreo; escolha pendente |
+| Tufanocorte | Tufão + corte; montanha | A escolhida pelo dono; B/C reservadas como outros Soulmonsters; rig pendente |
 | Pipa-Dragão | Corpo com três rabiolas roubadas; forma desatada menor | Precisa diferenciar as duas formas sem inventar espécie canônica |
 | Parceiro do Gollia | Forma sobrecarregada pelo Carretel Negro | Primeiro identificar o parceiro normal; não inventar substituto |
 | Grande Carretel | Chefe em partes, quatro carretéis menores e duas fases | Objeto/constructo de chefe; não cadastrar automaticamente como espécie capturável |
@@ -59,4 +59,4 @@ Branch de trabalho: `codex/soulgen-redesigns`. Sem merge, push ou alteração de
 
 ## Banco de criaturas reservado pelo dono
 
-Índice persistente: `catalogo-concepts.json`. São seis conceitos para outros Soulmonsters, ainda sem nomes: quadrúpede ressonante (Trovareta B), serpente elétrica (Trovareta C), fera de rabiolas de lava (Rabiolava A), caititu vulcânico (Rabiolava C), crustáceo de gelo (Glacerol B) e mariposa de seda gelada (Glacerol C). As opções escolhidas, Trovareta A, Rabiolava B e Glacerol A, também estão no índice. Nenhum desses registros adiciona uma espécie ao runtime ou declara um rig pronto.
+Índice persistente: `catalogo-concepts.json`. São oito conceitos para outros Soulmonsters, ainda sem nomes: quadrúpede ressonante (Trovareta B), serpente elétrica (Trovareta C), fera de rabiolas de lava (Rabiolava A), caititu vulcânico (Rabiolava C), crustáceo de gelo (Glacerol B), mariposa de seda gelada (Glacerol C), tamanduá de vento (Tufanocorte B) e criatura aérea de espiral vazada (Tufanocorte C). As opções escolhidas, Trovareta A, Rabiolava B, Glacerol A e Tufanocorte A, também estão no índice. Nenhum desses registros adiciona uma espécie ao runtime ou declara um rig pronto.

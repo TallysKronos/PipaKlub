@@ -24,3 +24,9 @@ Três propostas de arquitetura, com paletas próprias. Lava e rabiola definem o 
 - Glacerol: **A**, a criatura felina de geleira com fios cortantes, é a arquitetura escolhida pelo dono.
 - B (crustáceo de pinças de gelo) e C (mariposa de seda gelada) ficam reservadas como **outros Soulmonsters**, ainda sem nomes, poderes, raridade ou relações evolutivas definidos.
 - Preservar a folha original e sua referência de opção no catálogo. Escolha de conceito não significa rig pronto ou integração no jogo.
+
+## Escolha do Tufanocorte
+
+- Tufanocorte: **A**, o carneiro de montanha com espirais cortantes, é a arquitetura escolhida pelo dono.
+- B (tamanduá de cauda em leque espiralado) e C (criatura aérea de espiral vazada) ficam reservadas como **outros Soulmonsters**, ainda sem nomes ou relações evolutivas definidos.
+- As quatro arquiteturas dos Quatro Ventos estão escolhidas: Trovareta A, Rabiolava B, Glacerol A e Tufanocorte A. Os oito conceitos restantes estão preservados para futuras criaturas. Rigs e integração continuam pendentes.
