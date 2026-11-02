@@ -1,6 +1,6 @@
 extends Control
 ## Quiet inspection of an old photograph; existing manga dialogue remains the controller UI.
-var photo:Texture2D=preload("res://assets/campaign/foto-expedicao-v1/foto.png")
+var photo:Texture2D=preload("res://assets/campaign/foto-expedicao-v1/foto-v2.png")
 func _ready()->void:
  set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
  z_index=70

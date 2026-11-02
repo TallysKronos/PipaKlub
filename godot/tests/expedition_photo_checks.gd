@@ -18,7 +18,7 @@ func dialog()->Control:return app.get_node_or_null("ExpeditionPhotoDialogue")
 func capture(name:String)->void:
  if DisplayServer.get_name()=="headless":return
  await frames();await RenderingServer.frame_post_draw
- var folder:=ProjectSettings.globalize_path("res://../documentation/qa/foto-expedicao-v1")
+ var folder:=ProjectSettings.globalize_path("res://../documentation/qa/foto-expedicao-v2")
  DirAccess.make_dir_recursive_absolute(folder)
  check(root.get_texture().get_image().save_png(folder.path_join(name+".png"))==OK,"capture "+name)
 func _initialize()->void:call_deferred("run")
