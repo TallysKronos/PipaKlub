@@ -2,6 +2,8 @@
 
 Quarto e último guardião escolhido deste lote. Identidade: carneiro A da montanha, duas espirais de seda cortante, paleta jade/azul-marinho/marfim/ocre/coral e duas rabiolas.
 
+Atualização aprovada pelo dono: recebido `tufanocorte-guardiao-da-montanha.soulgen.json`, preservado integralmente em `author-approved.portable.soulgen.json`. Incorporados cabeça, pivôs dos chifres e animações editadas. Revisão de rig 2; hash e normalizações em `author-import.json`. O build reexporta o projeto aprovado por padrão sem recalcular a montagem inicial.
+
 Contrato de peças: torso limpo, cabeça, quatro patas com cascos fendidos, dois chifres completos com centros vazados e duas rabiolas completas. Chifres se articulam com a cabeça; rabiolas com o quadril. Não incorporar metade de um apêndice no torso para facilitar a montagem.
 
 Direção de movimento: repouso firme e pequenas compensações na crina/cabeça; passo pesado contido; preparação do golpe recua e baixa a cabeça antes de avançar para a esquerda; dano e vitória recuperam postura; derrota sustenta a pose final. As espirais não giram continuamente como peças mecânicas.

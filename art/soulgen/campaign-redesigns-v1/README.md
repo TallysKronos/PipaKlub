@@ -1,6 +1,6 @@
 # Soulmonsters da campanha — conversão Soulgen
 
-Estado: levantamento e propostas visuais. Nenhum modelo novo integrado ao jogo.
+Estado: quatro rigs montados no Soulgen, ajustados e aprovados pelo dono por exportação de projeto. Nenhum modelo novo integrado ao jogo.
 
 ## Fontes e precedência
 
@@ -17,10 +17,10 @@ Estado: levantamento e propostas visuais. Nenhum modelo novo integrado ao jogo.
 | Retalho | Parceira da Heleana; original e posterior forma marcada pelo ataque do lendário | Identidade aprovada já existe em outra branch; converter sem reinventar |
 | Platyx | Ornitorrinco, parceiro do Grampo; contraste entre saque e recusa em obedecer | Arte existente em outra branch; inspecionar antes da conversão |
 | Rai | Tigre dente-de-sabre, parceiro do Tyler | Conferir identidade existente e alias Saber; não criar uma segunda espécie por diferença de nome |
-| Trovareta | Trovão + vareta; floresta à noite durante tempestade | Arquitetura A escolhida pelo dono após refinamento de trovão; rig pendente |
-| Rabiolava | Lava + rabiola; vulcão | B escolhida pelo dono; A/C reservadas como outros Soulmonsters; rig pendente |
-| Glacerol | Geleira + cerol; gelo | A escolhida pelo dono; B/C reservadas como outros Soulmonsters; rig pendente |
-| Tufanocorte | Tufão + corte; montanha | A escolhida pelo dono; B/C reservadas como outros Soulmonsters; rig pendente |
+| Trovareta | Trovão + vareta; floresta à noite durante tempestade | Arquitetura A escolhida pelo dono após refinamento de trovão; rig aprovado no Soulgen, revisão 2 |
+| Rabiolava | Lava + rabiola; vulcão | B escolhida pelo dono; A/C reservadas como outros Soulmonsters; rig aprovado no Soulgen, revisão 2 |
+| Glacerol | Geleira + cerol; gelo | A escolhida pelo dono; B/C reservadas como outros Soulmonsters; rig aprovado no Soulgen, revisão 2 |
+| Tufanocorte | Tufão + corte; montanha | A escolhida pelo dono; B/C reservadas como outros Soulmonsters; rig aprovado no Soulgen, revisão 2 |
 | Pipa-Dragão | Corpo com três rabiolas roubadas; forma desatada menor | Precisa diferenciar as duas formas sem inventar espécie canônica |
 | Parceiro do Gollia | Forma sobrecarregada pelo Carretel Negro | Primeiro identificar o parceiro normal; não inventar substituto |
 | Grande Carretel | Chefe em partes, quatro carretéis menores e duas fases | Objeto/constructo de chefe; não cadastrar automaticamente como espécie capturável |
@@ -55,7 +55,7 @@ Os nomes abaixo são nomes de trabalho do roteiro, não novos nomes aprovados pa
 5. Inspecionar repouso, voo/deslocamento, golpe, dano e vitória; propor ação coerente com anatomia, sem copiar amplitudes de outro rig.
 6. Só depois exportar/integrar quando solicitado. Manter fontes e PNGs aprovados, sem sobrescrever rascunhos manuais do editor.
 
-Branch de trabalho: `codex/soulgen-redesigns`. Sem merge, push ou alteração de código do jogo nesta etapa.
+Branch de trabalho: `codex/soulgen-redesigns`. Os envios dos rigs aprovados foram autorizados pelo dono e publicados nessa branch. Sem merge ou alteração de código do jogo.
 
 ## Banco de criaturas reservado pelo dono
 

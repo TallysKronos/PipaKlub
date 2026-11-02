@@ -1,10 +1,10 @@
 {
   "schema": "soulgen-studio",
   "version": 1,
-  "name": "Tufanocorte · guardião da montanha",
+  "name": "Tufanocorte Â· guardiÃ£o da montanha",
   "creatureId": "tufanocorte",
   "artRevision": 1,
-  "rigRevision": 1,
+  "rigRevision": 2,
   "preserveSourceAspect": true,
   "width": 600,
   "height": 460,
@@ -128,7 +128,7 @@
     },
     {
       "id": "head",
-      "name": "Cabeça e expressão",
+      "name": "CabeÃ§a e expressÃ£o",
       "asset": "head",
       "source": [
         0,
@@ -137,14 +137,14 @@
         259
       ],
       "rect": [
-        222,
-        98.6,
+        212.70297504798467,
+        123.27781738415135,
         96.80000000000001,
         103.60000000000001
       ],
       "pivot": [
-        258,
-        195
+        248.70297504798467,
+        219.67781738415135
       ],
       "z": 8,
       "parent": "body",
@@ -190,7 +190,7 @@
     },
     {
       "id": "hornNear",
-      "name": "Chifre espiral próximo",
+      "name": "Chifre espiral prÃ³ximo",
       "asset": "hornNear",
       "source": [
         0,
@@ -199,14 +199,14 @@
         375
       ],
       "rect": [
-        274.9,
-        23.25,
+        272.45792432136,
+        32.84692898272553,
         162,
         168.75
       ],
       "pivot": [
-        292,
-        156
+        289.55792432136,
+        165.59692898272553
       ],
       "z": 3,
       "parent": "head",
@@ -224,14 +224,14 @@
         335
       ],
       "rect": [
-        223.94,
-        18.739999999999995,
+        218.75594461200987,
+        29.707918837400612,
         152.22,
         144.05
       ],
       "pivot": [
-        242,
-        140
+        236.81594461200987,
+        150.96791883740062
       ],
       "z": -1,
       "parent": "head",
@@ -246,7 +246,7 @@
     },
     {
       "id": "frontNear",
-      "name": "Pata dianteira próxima",
+      "name": "Pata dianteira prÃ³xima",
       "asset": "frontNear",
       "source": [
         0,
@@ -296,7 +296,7 @@
     },
     {
       "id": "hindNear",
-      "name": "Pata traseira próxima",
+      "name": "Pata traseira prÃ³xima",
       "asset": "hindNear",
       "source": [
         0,
@@ -346,7 +346,7 @@
     },
     {
       "id": "tailNear",
-      "name": "Rabiola próxima · completa",
+      "name": "Rabiola prÃ³xima Â· completa",
       "asset": "tailNear",
       "source": [
         0,
@@ -371,7 +371,7 @@
     },
     {
       "id": "tailFar",
-      "name": "Rabiola distante · completa",
+      "name": "Rabiola distante Â· completa",
       "asset": "tailFar",
       "source": [
         0,
@@ -5812,8 +5812,8 @@
           0.9305019305019305
         ],
         "socket": [
-          0.2821869488536155,
-          0.09775171065493644
+          0.22753071750725848,
+          0.25857163495699803
         ],
         "maxGap": 0.05
       },
@@ -5825,8 +5825,8 @@
           0.7866666666666666
         ],
         "socket": [
-          0.7231404958677685,
-          0.5540540540540541
+          0.7939560875348692,
+          0.40848563319087045
         ],
         "maxGap": 0.05
       },
@@ -5838,8 +5838,8 @@
           0.8417910447761193
         ],
         "socket": [
-          0.20661157024793386,
-          0.39961389961389965
+          0.24910092524819424,
+          0.26727897155646013
         ],
         "maxGap": 0.05
       },
