@@ -116,13 +116,28 @@
       "fonte": "glacerol-propostas-v1.png",
       "opcao": "A",
       "sha256": "6dd712b8bce10bb0d780b4cb266b505366971f6154e6c8ad771fb5228aa1d49d",
-      "rig_pronto": false,
+      "rig_pronto": true,
       "integrado": false,
       "nome": "Glacerol",
       "contorno_carcara": {
         "fonte": "contorno-carcara-v1/glacerol.png",
         "estado": "acabamento-em-revisao",
         "rig_pronto": false
+      },
+      "soulgen": {
+        "project": "art/soulgen/keys/glacerol/cutout-rig-v1/glacerol.soulgen.json",
+        "preset": "glacerol",
+        "parts": 9,
+        "actions": 6,
+        "faces": [
+          "normal",
+          "fierce",
+          "hurt",
+          "happy"
+        ],
+        "status": "rig-local-em-revisao",
+        "browser_visual_tested": false,
+        "game_integrated": false
       }
     },
     {
