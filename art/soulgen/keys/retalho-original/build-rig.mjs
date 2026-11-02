@@ -3,6 +3,9 @@ import {fileURLToPath} from 'node:url';
 import {identity} from '../../../../tools/soulgen-studio/model.mjs';
 import {exportReview} from '../../../../tools/soulgen-studio/export-review.mjs';
 const dir=fileURLToPath(new URL('./cutout-rig-v2/',import.meta.url));
+if(fs.existsSync(dir+'author-import.json')&&!process.argv.includes('--rebuild-source')){
+ await exportReview(JSON.parse(fs.readFileSync(dir+'retalho-original.soulgen.json')),dir,{registration:JSON.parse(fs.readFileSync(dir+'registration.json'))});process.exit(0);
+}
 const boxes=JSON.parse(fs.readFileSync(dir+'slices.json')).boxes;
 const project={schema:'soulgen-studio',version:1,name:'Retalho original · parceira de Heleana',creatureId:'retalho-original',artRevision:2,rigRevision:1,preserveSourceAspect:true,width:600,height:760,rootPivot:[260,330],assets:{},parts:[],clips:{},brief:{species:'Retalho original, opção A aprovada',view:'Três quartos para a direita',notes:'Não é a forma mascarada/evoluída. Novas peças e montagem em revisão; sem integração no jogo.'}};
 const placement={

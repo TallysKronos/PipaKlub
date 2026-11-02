@@ -4,7 +4,7 @@
   "name": "Retalho original · parceira de Heleana",
   "creatureId": "retalho-original",
   "artRevision": 2,
-  "rigRevision": 1,
+  "rigRevision": 2,
   "preserveSourceAspect": true,
   "width": 600,
   "height": 760,
@@ -15,61 +15,61 @@
   "assets": {
     "body": {
       "name": "body",
-      "src": "/art/soulgen/keys/retalho-original/cutout-rig-v2/body.png",
+      "src": "/art/soulgen/keys/retalho-original/cutout-rig-v2/author-body.png",
       "width": 200,
       "height": 372
     },
     "head": {
       "name": "head",
-      "src": "/art/soulgen/keys/retalho-original/cutout-rig-v2/head.png",
+      "src": "/art/soulgen/keys/retalho-original/cutout-rig-v2/author-head.png",
       "width": 365,
       "height": 341
     },
     "armNear": {
       "name": "armNear",
-      "src": "/art/soulgen/keys/retalho-original/cutout-rig-v2/armNear.png",
+      "src": "/art/soulgen/keys/retalho-original/cutout-rig-v2/author-armNear.png",
       "width": 227,
       "height": 318
     },
     "armFar": {
       "name": "armFar",
-      "src": "/art/soulgen/keys/retalho-original/cutout-rig-v2/armFar.png",
+      "src": "/art/soulgen/keys/retalho-original/cutout-rig-v2/author-armFar.png",
       "width": 187,
       "height": 355
     },
     "legNear": {
       "name": "legNear",
-      "src": "/art/soulgen/keys/retalho-original/cutout-rig-v2/legNear.png",
+      "src": "/art/soulgen/keys/retalho-original/cutout-rig-v2/author-legNear.png",
       "width": 183,
       "height": 376
     },
     "legFar": {
       "name": "legFar",
-      "src": "/art/soulgen/keys/retalho-original/cutout-rig-v2/legFar.png",
+      "src": "/art/soulgen/keys/retalho-original/cutout-rig-v2/author-legFar.png",
       "width": 191,
       "height": 373
     },
     "tail": {
       "name": "tail",
-      "src": "/art/soulgen/keys/retalho-original/cutout-rig-v2/tail.png",
+      "src": "/art/soulgen/keys/retalho-original/cutout-rig-v2/author-tail.png",
       "width": 365,
       "height": 295
     },
     "fierce": {
       "name": "fierce",
-      "src": "/art/soulgen/keys/retalho-original/cutout-rig-v2/head-fierce.png",
+      "src": "/art/soulgen/keys/retalho-original/cutout-rig-v2/author-fierce.png",
       "width": 365,
       "height": 341
     },
     "hurt": {
       "name": "hurt",
-      "src": "/art/soulgen/keys/retalho-original/cutout-rig-v2/head-hurt.png",
+      "src": "/art/soulgen/keys/retalho-original/cutout-rig-v2/author-hurt.png",
       "width": 365,
       "height": 341
     },
     "happy": {
       "name": "happy",
-      "src": "/art/soulgen/keys/retalho-original/cutout-rig-v2/head-happy.png",
+      "src": "/art/soulgen/keys/retalho-original/cutout-rig-v2/author-happy.png",
       "width": 365,
       "height": 341
     }
@@ -173,14 +173,14 @@
         318
       ],
       "rect": [
-        175,
-        283.8,
+        134.890642303433,
+        274.08878098645545,
         136.2,
         190.79999999999998
       ],
       "pivot": [
-        271,
-        270
+        230.890642303433,
+        260.28878098645544
       ],
       "z": 5,
       "parent": "body",
@@ -198,19 +198,25 @@
         355
       ],
       "rect": [
-        208.4,
-        261.8,
+        264.13835079649033,
+        265.03707300451487,
         112.2,
         213
       ],
       "pivot": [
-        230,
-        278
+        285.73835079649035,
+        281.23707300451485
       ],
       "z": 1,
       "parent": "body",
       "visible": true,
-      "lag": 0
+      "lag": 0,
+      "artTransform": {
+        "rotation": -60,
+        "scale": 1,
+        "flipX": true,
+        "flipY": false
+      }
     },
     {
       "id": "legNear",
@@ -223,14 +229,14 @@
         376
       ],
       "rect": [
-        227.92000000000002,
-        392.92,
+        168.74225913621268,
+        391.30146349774265,
         117.12,
         240.64000000000001
       ],
       "pivot": [
-        274,
-        407
+        214.82225913621266,
+        405.38146349774263
       ],
       "z": 4,
       "parent": "body",
@@ -248,14 +254,14 @@
         373
       ],
       "rect": [
-        179.2,
-        387.08,
+        234.93835079649034,
+        378.9873174887129,
         122.24000000000001,
         238.72
       ],
       "pivot": [
-        240,
-        405
+        295.7383507964903,
+        396.9073174887129
       ],
       "z": 2,
       "parent": "body",

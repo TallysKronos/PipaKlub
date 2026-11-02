@@ -1,5 +1,7 @@
 # Retalho original — revisão spritelizada v2
 
+Autor aprovou e enviou o projeto editado. Revisão do rig 2 preserva seus quatro membros reposicionados, pivôs, animações e PNGs embutidos. `author-import.json` registra hash e origem; `author-approved.portable.soulgen.json` é a cópia integral. O construtor respeita essa edição por padrão; `--rebuild-source` é exclusivamente para reconstrução explícita da base.
+
 Identidade preservada: opção A da antiga parceira de Heleana. Esta é a forma original, não a evolução mascarada. A arte de possessão encontrada no Git continua sendo proposta; não foi incorporada.
 
 Abrir: http://127.0.0.1:5241/?preset=retalho-original
