@@ -36,3 +36,5 @@ Bruno Solda: alternativa D escolhida pelo dono; prancha com costas e expressões
 - Personagem novo, parceiro novo ou nome novo é **proposta** até o dono aprovar.
 
 Caio Garça: campeão7 das Palafitas, Nv.27, definido na Bíblia atual. Exploração A/B/C/D colorida com silhuetas em `art/characters/caio-garca/concept-v1/`, em revisão. Idade, corpo, roupa e parceiro ainda não definidos. A tabela antiga de campeões pendentes acima não prevalece sobre os nomes atuais da Bíblia.
+
+Caio Garça — revisão V2: quatro opções coloridas e silhuetas em art/characters/caio-garca/concept-v2/, inspiradas em Makoko de Lagos como fantasia ancestral, conforme confirmação do usuário. V1 preservada; escolha pendente, sem canonizar figurino, idade ou parceiro.
