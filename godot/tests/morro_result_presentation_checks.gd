@@ -18,7 +18,7 @@ func run() -> void:
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(output))
 	root.size=Vector2i(1280,720);root.gui_disable_input=true
 	app=load("res://scripts/campaign/front_end.gd").new()
-	var folder:="user://morro-result-"+State.new_id()
+	var folder:=ProjectSettings.globalize_path("res://../tmp/morro-result-"+State.new_id())
 	app.session._store=load("res://scripts/campaign/save_store.gd").new(folder);app.preferences.storage_path=folder+".cfg"
 	root.add_child(app);app.preferences.reduced_motion=true
 	# The same native reward view is used by wild, boss and district battles.

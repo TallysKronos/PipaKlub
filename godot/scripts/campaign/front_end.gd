@@ -480,6 +480,7 @@ func _present_key_item(id: String, item_name: String) -> bool:
 	if is_instance_valid(battle): battle.suspend_actions(); battle.paused=true
 	var banner = load("res://scripts/campaign/hud_key_item_banner.gd").new()
 	banner.item_name = item_name
+	banner.moment="emblem" if id.begins_with("insignia-") else "item"
 	banner.item_texture = Hud.item_art(id)
 	banner.reduced_motion = preferences.reduced_motion
 	add_child(banner)
@@ -1686,10 +1687,29 @@ func _show_encounter() -> void:
 		if battle.blocked: battle.suspend_actions())
 	battle.leave_requested.connect(_menu)
 	battle.finish_requested.connect(func():
+		if flow_busy:return
+		var previous_levels:=preload("res://scripts/ui_mural/result_milestones.gd").levels(session.snapshot().player)
 		if not _result(encounters.save_battle(battle.model.snapshot())): return
 		if is_morro:
-			if _result(morro.settle()): _return_morro_result.call_deferred()
-		elif _result(encounters.settle()): _show_saved.call_deferred())
+			if _result(morro.settle()):flow_busy=true;_present_result_milestones.call_deferred(previous_levels,true)
+		elif _result(encounters.settle()):flow_busy=true;_present_result_milestones.call_deferred(previous_levels,false))
+
+func _present_result_milestones(previous_levels:Dictionary,is_morro:bool) -> void:
+	var generation:=opening_generation
+	var milestones:=preload("res://scripts/ui_mural/result_milestones.gd").changes(previous_levels,session.snapshot().player)
+	if is_instance_valid(battle):battle.paused=true
+	for change in milestones:
+		var banner=load("res://scripts/campaign/hud_key_item_banner.gd").new()
+		banner.moment="level";banner.item_name="%s · Nv. %d → %d"%[change.name,change.before,change.after];banner.reduced_motion=preferences.reduced_motion
+		var art_id:String={"basica":"basic-carcara","mata":"basic-mata-verde","azulao":"basic-azulao","raio":"basic-raio-de-sol"}.get(change.model,change.model)
+		if content.combat.has(art_id):banner.item_texture=preload("res://scripts/campaign/battle_ink.gd").portrait(load("res://assets/campaign/"+content.combat[art_id].image),art_id)
+		add_child(banner)
+		while TutorialStaging.valid(self,generation) and is_instance_valid(banner) and not banner.done:await get_tree().process_frame
+		if is_instance_valid(banner):banner.queue_free()
+		if not TutorialStaging.valid(self,generation):return
+	flow_busy=false
+	if is_morro:_return_morro_result()
+	else:_show_saved()
 
 func _remember_world_position() -> bool:
 	if is_instance_valid(workshop):return _result(journey.save_workshop(workshop.model.run.duplicate(true)))

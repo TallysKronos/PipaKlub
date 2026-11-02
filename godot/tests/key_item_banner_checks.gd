@@ -14,7 +14,7 @@ func settle() -> void:
 	for frame in 8: await process_frame
 func run() -> void:
 	app = load("res://scripts/campaign/front_end.gd").new()
-	var folder := "user://key-banner-"+State.new_id()
+	var folder := ProjectSettings.globalize_path("res://../tmp/key-banner-"+State.new_id())
 	app.session._store = Store.new(folder)
 	app.preferences.storage_path = folder+".cfg"
 	root.add_child(app)

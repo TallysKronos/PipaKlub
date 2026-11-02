@@ -172,7 +172,8 @@ func _ready() -> void:
 	status_row = HBoxContainer.new()
 	bottom.add_child(status_row)
 	controls.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var description_panel := PanelContainer.new()
+	var description_panel := preload("res://scripts/ui_mural/menu_surface.gd").new()
+	description_panel.density=.35
 	description_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	description_panel.theme_type_variation = "MuralHudPanel"
 	status_row.add_child(description_panel)
@@ -190,6 +191,7 @@ func _ready() -> void:
 		if not paused: resume_button.release_focus()
 		resume_button.text = "Retomar" if paused else "Pausar")
 	resume_button.add_theme_font_size_override("font_size",roundi(20*text_scale))
+	resume_button.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	resume_button.custom_minimum_size.x = 150
 	add_child(resume_button)
 	flee_button=Button.new()
@@ -203,9 +205,11 @@ func _ready() -> void:
 	resume_button.offset_right = 150
 	resume_button.offset_bottom = -18
 	resume_button.custom_minimum_size.y = 40
-	finish_button = Button.new()
+	finish_button = preload("res://scripts/ui_mural/dialogue_option.gd").new()
+	finish_button.text_scale=text_scale;finish_button.density=.2;finish_button.font_base=20
 	finish_button.text = "Continuar"
 	finish_button.icon=Controls.glyph("accept")
+	finish_button.expand_icon=true;finish_button.add_theme_constant_override("icon_max_width",24)
 	Controls.events.changed.connect(func():finish_button.icon=Controls.glyph("accept"))
 	finish_button.visible = false
 	finish_button.pressed.connect(func(): finish_requested.emit())
@@ -247,6 +251,7 @@ func _layout_actions() -> void:
 		resume_button.offset_top=-size.y+(MuralHud.regions(size,1,text_scale).partner.end.y if text_scale>1.1 else MuralHud.regions(size,1,text_scale).pilot.end.y)+8
 		resume_button.offset_bottom=resume_button.offset_top+64
 	var result:bool=not model.outcome.is_empty()
+	if result and blocked:resume_button.custom_minimum_size.x=minf(420,size.x*.38)
 	if is_instance_valid(flee_button):
 		flee_button.visible=not result and model.get("actors")==null and not paused and not blocked
 		flee_button.text="Segure %s para fugir"%Controls.prompt("interact")
@@ -259,8 +264,11 @@ func _layout_actions() -> void:
 	bottom_panel.offset_right=-(size.x-panel_width)/2
 	finish_button.size_flags_horizontal=Control.SIZE_SHRINK_END
 	finish_button.custom_minimum_size=Vector2(240,48)
-	if is_instance_valid(reward_card):reward_card.custom_minimum_size.y=clampf(size.y*.56,390,490)
-	bottom_panel.offset_bottom = -16 if fighting else -12
+	if result and is_instance_valid(reward_card):
+		var header_bottom:float=preload("res://scripts/ui_mural/result_art.gd").layout(size,text_scale,model.outcome).bottom
+		reward_card.custom_minimum_size.y=minf(520,maxf(180,size.y-header_bottom-finish_button.get_combined_minimum_size().y-44-(100 if blocked else 0)))
+	finish_button.disabled=blocked
+	bottom_panel.offset_bottom = -24 if result else -16 if fighting else -12
 	# The pause line has no place on the result screen: losing window focus pauses
 	# the view, and the bar would otherwise slide under the VITÓRIA header.
 	status_row.visible = blocked or (paused and not result)
@@ -313,7 +321,7 @@ func _physics_process(delta: float) -> void:
 		if save_clock >= 5 or not model.outcome.is_empty():
 			save_clock = 0
 			save_requested.emit(model.snapshot())
-	finish_button.visible = not model.outcome.is_empty()
+	finish_button.visible = not model.outcome.is_empty() and not blocked
 	if is_instance_valid(duel_intro):
 		duel_intro.remaining=model.intro
 		duel_intro.visible=model.intro>0 and (model.get("round_number")==null or model.round_number==1) and model.outcome.is_empty() and not paused and not blocked
@@ -353,7 +361,7 @@ func _physics_process(delta: float) -> void:
 	elif model.intro <= 0 and model.q.signatureWindup <= 0 and model.q.recovery <= 0 and model.q.telegraph <= .6:
 		controls.text = ACTION_COPY[selected_action]
 	if not model.outcome.is_empty():
-		controls.text = ("Vitória · Confira sua experiência e os itens recebidos.") if model.outcome == "won" else "Seu parceiro continua com você. Descanse em um banco do parque ou procure o professor."
+		controls.text = ("Vitória · Confira a prévia. Confirme para guardar sua jornada.") if model.outcome == "won" else "Seu parceiro continua com você. Descanse em um banco do parque ou procure o professor."
 	if blocked: controls.text = "Não foi possível salvar. Tente novamente antes de continuar."
 	_layout_actions()
 	queue_redraw()
@@ -377,10 +385,12 @@ func _update_result(delta: float) -> void:
 		result_header=load("res://scripts/campaign/hud_result_header.gd").new()
 		add_child(result_header)
 	result_header.outcome=model.outcome
+	result_header.blocked=blocked
+	result_header.text_scale=text_scale
 	result_header.context="RECOMPENSAS DO DESAFIO · MORRO DO SOL" if reward_encounter.get("kind","")=="morro" else "RECOMPENSAS DO ENCONTRO"
 	result_header.left=bottom_panel.position.x+12
 	result_header.queue_redraw()
-	if not result_wipe_started:
+	if not result_wipe_started and not blocked:
 		result_wipe_started = true
 		if model.outcome != "fled":
 			var winner: Dictionary = model.p if model.outcome == "won" else model.q
@@ -393,11 +403,13 @@ func _update_result(delta: float) -> void:
 			wipe.finished.connect(wipe.queue_free,CONNECT_ONE_SHOT)
 			wipe.play([Tokens.CEU,Tokens.SOL,Tokens.FOLHA,Tokens.RABIOLA][int(winner.color)%4],reduced_motion,false)
 	result_age += delta
+	if blocked:controls.add_theme_font_size_override("font_size",roundi(18*text_scale))
 	if not is_instance_valid(reward_card):
 		reward_card = load("res://scripts/campaign/hud_reward_card.gd").new()
-		reward_card.theme=Hud.make_theme()
+		reward_card.text_scale=text_scale
 		result_summary = RewardPreview.preview(reward_player, reward_encounter, model)
 		result_summary.outcome = model.outcome
+		result_summary.committed=false
 		reward_card.portrait_texture = AtlasTexture.new()
 		reward_card.portrait_texture.atlas = textures[0]
 		reward_card.summary = result_summary
@@ -406,8 +418,11 @@ func _update_result(delta: float) -> void:
 		column.add_child(reward_card)
 		column.move_child(reward_card, finish_button.get_index())
 		reward_card.visible = true
+		Hud.focus_later(resume_button if blocked else finish_button)
 	controls.get_parent().get_parent().visible = blocked
 	reward_card.advance(delta)
+	if not blocked and not reward_card.visible:Hud.focus_later(finish_button)
+	reward_card.visible=not blocked
 	var poses: Array = content.combat[art_ids[0]].animations["victory" if model.outcome == "won" else "defeat"]
 	var pose: Dictionary = poses[0 if reduced_motion else int(clock * 12) % poses.size()]
 	reward_card.portrait_texture.region = Rect2(pose.x, pose.y, pose.w, pose.h)

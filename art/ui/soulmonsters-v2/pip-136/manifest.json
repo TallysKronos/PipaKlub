@@ -1,0 +1,50 @@
+{
+  "method": "alpha>=64 bbox crop; uniform resize to width 1200; no repaint",
+  "assets": [
+    {
+      "id": "won",
+      "crop": [
+        15,
+        177,
+        1758,
+        710
+      ],
+      "size": [
+        1200,
+        367
+      ],
+      "source": "art/ui/soulmonsters-v2/pip-136/fontes/won.png",
+      "sha256": "0eb191d60dfb83d29fc7c12cc396391f914b5e072350281be99d44ba5846b7aa"
+    },
+    {
+      "id": "lost",
+      "crop": [
+        38,
+        184,
+        2139,
+        552
+      ],
+      "size": [
+        1200,
+        210
+      ],
+      "source": "art/ui/soulmonsters-v2/pip-136/fontes/lost.png",
+      "sha256": "f62edbc6dc2f8c3a1f5d85caf414f71a8f679a78bc1b9acbd6889884cb862d10"
+    },
+    {
+      "id": "fled",
+      "crop": [
+        14,
+        176,
+        2147,
+        578
+      ],
+      "size": [
+        1200,
+        226
+      ],
+      "source": "art/ui/soulmonsters-v2/pip-136/fontes/fled.png",
+      "sha256": "35e7ecbc31be4678fa1be7f17bd4bf63bc6e6830c9115e9bae1aa9aa8b15263c"
+    }
+  ]
+}

@@ -1,17 +1,19 @@
 extends Control
-const Hud=preload("res://scripts/campaign/hud.gd")
-const Ink=preload("res://scripts/campaign/battle_ink.gd")
+const Art=preload("res://scripts/ui_mural/result_art.gd")
+const Paper=preload("res://scripts/ui_mural/paper_layout.gd")
+const T=preload("res://scripts/campaign/ui_tokens.gd")
 var outcome:="won"
 var left:=60.0
+var text_scale:=1.0
+var blocked:=false
 var context:="RECOMPENSAS DO ENCONTRO"
-func _ready() -> void:
-	mouse_filter=Control.MOUSE_FILTER_IGNORE
-	z_index=5
+func _ready() -> void:mouse_filter=MOUSE_FILTER_IGNORE;z_index=5
 func _draw() -> void:
-	var title:="VITÓRIA!" if outcome=="won" else "DERROTA" if outcome=="lost" else "VOCÊ RECUOU"
-	draw_texture_rect(Ink.brush(0),Rect2(left-30,0,650,108),false,Hud.CYAN if outcome=="won" else Hud.MUTED)
-	draw_string_outline(Hud.display(),Vector2(left,86),title,HORIZONTAL_ALIGNMENT_LEFT,-1,76,5,Ink.BLACK)
-	draw_string(Hud.display(),Vector2(left,86),title,HORIZONTAL_ALIGNMENT_LEFT,-1,76,Ink.WHITE)
-	var subtitle:=context if outcome=="won" else "Seu parceiro está com você. Vamos de novo!" if outcome=="lost" else "Você escolheu voltar em segurança."
-	Ink.plate(self,Rect2(left+4,102,470,34),Hud.INK,Hud.INK,8)
-	draw_string(Hud.font(),Vector2(left+16,126),subtitle,HORIZONTAL_ALIGNMENT_LEFT,-1,18,Hud.GOLD if outcome=="won" else Hud.PAPER)
+	var extent:Vector2=get_parent().size
+	var variant:="fled" if blocked else outcome
+	var layout:=Art.layout(extent,text_scale,variant)
+	Paper.begin(self);Art.draw(self,layout,variant)
+	Paper.label(self,layout.safe,"NÃO SALVO" if blocked else "VITÓRIA!" if outcome=="won" else "DERROTA" if outcome=="lost" else "RECUO",layout.font,T.MURAL_INK,true,layout.safe)
+	var subtitle:="Sua jornada aguarda uma nova tentativa de gravação." if blocked else context if outcome=="won" else "A linha rompeu. O Elo continua." if outcome=="lost" else "Você escolheu voltar em segurança."
+	var slot:=Rect2(32,layout.rect.end.y+8,extent.x-64,T.label().get_height(roundi(18*text_scale)))
+	Paper.label(self,slot,subtitle,roundi(18*text_scale),T.MURAL_PAPER,true,slot)
