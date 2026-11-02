@@ -1,0 +1,23 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+import {validate,sample} from '../../../../tools/soulgen-studio/model.mjs';
+import {anatomyReport} from '../../../../tools/soulgen-studio/workflow.mjs';
+const dir=new URL('./cutout-rig-v1/',import.meta.url);
+const read=name=>JSON.parse(fs.readFileSync(new URL(name,dir)));
+test('Mormaco preserves eleven parts and valid joints through six clips',()=>{
+ const p=read('mormaco.soulgen.json');assert.deepEqual(validate(p),{ok:true,errors:[],warnings:[]});
+ assert.deepEqual(anatomyReport(p).warnings,[]);assert.equal(p.parts.length,11);
+ for(const id of ['frontNear','frontFar','rearNear','rearFar','tail','sail','ribbon','geyserNear','geyserFar'])assert(p.parts.find(x=>x.id===id));
+ for(const [id,a]of Object.entries(p.assets)){const bytes=fs.readFileSync(new URL(a.src.split('/').at(-1),dir));assert.equal(bytes.readUInt32BE(16),a.width,id);assert.equal(bytes.readUInt32BE(20),a.height,id);}
+ for(const id of ['idle','flight'])assert.deepEqual(sample(p,id,0).values,sample(p,id,p.clips[id].seconds).values);
+ for(const [id,time,face]of [['skill',.8,'fierce'],['hurt',.2,'hurt'],['victory',.8,'happy']])assert.equal(sample(p,id,time).face,face);
+ assert.equal(sample(p,'defeat',9).done,true);assert.equal(p.clips.skill.hitTime,.8);
+ assert.equal(read('validation.json').atlas.borderPixels,0);
+ for(const face of Object.values(read('registration.json').expressions)){assert(face.complete_head);assert(face.canvas_identical);assert(face.opaque_ratio>.75);}
+ const head=p.parts.find(x=>x.id==='head');
+ for(const face of Object.values(head.faces))assert.deepEqual(face.source,head.source,'expression must replace the COMPLETE head rectangle');
+ assert.equal(p.artRevision,1);
+});
+
