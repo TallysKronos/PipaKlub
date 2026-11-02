@@ -318,6 +318,12 @@
       "name": "Palafitas · Patamar do resgate",
       "scene": "kronasta-palafitas-c",
       "biome": "floresta"
+    },
+    {
+      "id": "parque-patio-liga",
+      "name": "Parque · Pátio da Liga",
+      "scene": "parque-patio-liga",
+      "biome": "floresta"
     }
   ],
   "scenes": {
@@ -372,7 +378,8 @@
     "kronasta-industrial-d": "kronasta-industrial-d",
     "kronasta-palafitas-a": "kronasta-palafitas-a",
     "kronasta-palafitas-b": "kronasta-palafitas-b",
-    "kronasta-palafitas-c": "kronasta-palafitas-c"
+    "kronasta-palafitas-c": "kronasta-palafitas-c",
+    "parque-patio-liga": "parque-patio-liga"
   },
   "campaignReplacement": false
 }
