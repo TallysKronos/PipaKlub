@@ -55,7 +55,7 @@ func run()->void:
  at(Story.A,Story.SIGNAL);await world();app._request_mormaco("mormacoSignals");await frames();await shot("01-vento-parou");await approve()
  check(app.session.snapshot().player.flags.get("mormacoVentosPararam",false),"actual intro persists")
  at(Story.C,Story.AT);await world()
- check(is_instance_valid(app.park.mormaco),"guardian rendered in actual pond")
+ check(is_instance_valid(app.park.mormaco) and app.park.mormaco.sprite.texture.resource_path.ends_with("submerged.png"),"guardian starts normal in actual pond")
  for point in [Story.AT,Story.REST]:check(not CP.model_for(Story.C).path_to(CP.spawn(Story.C),point).is_empty(),"walkable station")
  await shot("02-possuido")
  check(service.release(Story.AT).status=="wrong_step","no release without victory")
@@ -67,13 +67,45 @@ func run()->void:
  check(is_instance_valid(app.battle),"actual duel opens")
  if not is_instance_valid(app.battle):app.free();quit(1);return
  app.battle.set_process(false);app.battle.set_physics_process(false)
- check(app.battle.art_ids[1]=="mormaco-possuido" and app.battle.boss_intro.title=="Mormaço","boss art and name correct")
+ check(app.battle.art_ids==["rabbito","mormaco-normal"] and app.battle.boss_intro.title=="Mormaço","Kael fights with his partner against Soulgen Mormaço")
  await shot("03-duelo")
  var battle:RefCounted=app.battle.model
  check(battle.enemy_level==27 and battle.q.boss and battle.q.phase==1 and battle.wind_strength()==0,"authored boss level and still air")
  check(battle.signature_profile(battle.q).windup>=2,"clear geyser warning")
  check(app.session.resume_slot("slot-1").status=="ok","battle can reload")
- # Exercise the full combat model with a scripted controller, not an injected win.
+ for i in 10000:
+  if not battle.outcome.is_empty():break
+  var towards:=Vector2(battle.q.x-battle.p.x,battle.q.y-battle.p.y).normalized()
+  battle.tick(.05,{"x":towards.x,"y":towards.y,"cut":true,"signature":true})
+ check(battle.mormaco_ambush() and is_equal_approx(battle.q.hp,battle.q.stats.line*.7),"at 70% the first duel stops for the ambush")
+ check(app.encounters.save_battle(battle.snapshot()).status=="ok" and app.session.resume_slot("slot-1").status=="ok","interruption survives reload")
+ app._show_saved()
+ for i in 900:
+  if is_instance_valid(app.park) and not is_instance_valid(app.scene_loading) and is_instance_valid(app.park.mormaco):break
+  await process_frame
+ await frames()
+ check(app.session.snapshot().checkpoint.kind=="world" and not Story.won(app.session.snapshot().player),"threshold returns to the pond without boss victory")
+ check(app.park.mormaco.sprite.texture.resource_path.ends_with("submerged.png"),"possession has not started on return")
+ await approve()
+ for i in 360:
+  if is_instance_valid(app.park.mormaco.tyler) and not app.flow_busy:break
+  await physics_frame
+ check(is_instance_valid(app.park.mormaco.tyler) and app.session.snapshot().player.flags.get("mormacoTylerChegou",false),"overworld animation ends with Tyler's arrival")
+ await approve()
+ for i in 300:
+  if is_instance_valid(app.battle):break
+  await process_frame
+ check(is_instance_valid(app.battle),"second duel opens")
+ if not is_instance_valid(app.battle):app.free();quit(1);return
+ battle=app.battle.model
+ check(battle.q.get("tylerAlly",false) and app.battle.rai_ally!=null and app.battle.art_ids[1]=="mormaco-possuido","Tyler and Rai join Kael against possessed Mormaço")
+ check(is_equal_approx(battle.q.hp,battle.q.stats.line*.7),"second duel retains 70% HP")
+ var assistance:=Model.new()
+ assistance.restore(battle.snapshot())
+ assistance.intro=0
+ assistance.q.tylerCooldown=.01
+ assistance.tick(.05,{})
+ check(assistance.q.hp<battle.q.hp and assistance.q.tylerCooldown==5.0,"Rai's assist deals real damage")
  for i in 10000:
   if not battle.outcome.is_empty():break
   var towards:=Vector2(battle.q.x-battle.p.x,battle.q.y-battle.p.y).normalized()
@@ -93,9 +125,9 @@ func run()->void:
  check(service.release(Story.AT).status=="io_error" and app.session.snapshot()==before,"failed liberation stays pending")
  app.session._store=store;await approve()
  check(Story.freed(app.session.snapshot().player),"release and clue persist")
- check(app.park.mormaco.sprite.texture.resource_path.ends_with("free.png"),"approved free colors restored")
+ check(app.park.mormaco.sprite.texture.resource_path.ends_with("submerged.png"),"approved free colors restored")
  check(service.begin(Story.AT).status=="already_applied" and service.release(Story.AT).status=="already_applied","no replay rewards")
- check(app.session.snapshot().player.partners.size()==1 and app.session.snapshot().player.inventory==before.player.inventory and app.session.snapshot().player.coins==before.player.coins,"guardian not captured or duplicated")
+ check(app.session.snapshot().player.partners.size()==before.player.partners.size() and app.session.snapshot().player.inventory==before.player.inventory and app.session.snapshot().player.coins==before.player.coins,"guardian not captured or duplicated")
  check(app.session.resume_slot("slot-1").status=="ok" and Story.freed(app.session.snapshot().player),"liberation reload")
  await shot("05-livre")
  # Independent failure paths retain eligibility and keep the same guardian.

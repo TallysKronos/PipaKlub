@@ -65,7 +65,15 @@ static func floor_cut(model,node:Node2D,poly:Polygon2D,corners:Array,u:int,v:int
   if bool(model.data.get("forest",{}).get("industrial",false)) and not geometry():
    target.uv=fragment
    target.color=shade
-  if c.get("material","")=="piso" and not model.data.get("forest",{}).get("ice",false) and not model.data.get("forest",{}).get("submerged",false):
+  if c.get("material","")=="piso" and model.data.get("forest",{}).get("gallery",false) and not geometry():
+   target.material=null
+   target.texture=load(BASE+"cavernas-v3/surfaces/rocha-cinza.png")
+   target.texture_repeat=CanvasItem.TEXTURE_REPEAT_ENABLED
+   target.color=Color("#918ca7") if u in range(22,26) else Color("#6e6884")
+   var stone_uv:=PackedVector2Array()
+   for p in fragment:stone_uv.append(p*48.0)
+   target.uv=stone_uv
+  if c.get("material","")=="piso" and model.data.get("id")!="kronasta-estadio-a" and not model.data.get("forest",{}).get("chamber",false) and not model.data.get("forest",{}).get("ice",false) and not model.data.get("forest",{}).get("submerged",false):
    target.material=null
    target.texture=null if geometry() else load(BASE+"terrenos-v1/superficies/bloquete.png")
    target.color=Color("c5b88b") if geometry() else Color.WHITE
@@ -196,20 +204,23 @@ static func _guard(view,g:Dictionary) -> void:
 static func _stairs(view,s:Dictionary) -> void:
  var u:float=s.u;var v:float=s.v;var width:float=s.width
  var base:float=float(view.model.cell_at(Vector2i(int(u),int(v))).get("level",0))*64
+ var chamber: bool = view.model.data.get("forest",{}).get("chamber",false)
+ var tread := Color("#636077") if chamber else Color("d1c69e")
+ var riser := Color("#38364c") if chamber else Color("807c67")
  for k in 8:
   var low:float=float(k)/8;var high:float=float(k+1)/8;var height:float=base+high*64
   var a:=Vector2(u,v+2-high*2);var b:=Vector2(u+width,v+2-high*2)
   var c:=Vector2(u+width,v+2-low*2);var d:=Vector2(u,v+2-low*2)
   var node:=Node2D.new();node.position=iso((a+c)*.5)+Vector2(0,4);view.actors.add_child(node)
-  quad(node,PackedVector2Array([iso(a,height)-node.position,iso(b,height)-node.position,iso(c,height)-node.position,iso(d,height)-node.position]),Color("d1c69e"))
-  quad(node,PackedVector2Array([iso(d,height)-node.position,iso(c,height)-node.position,iso(c,height-8)-node.position,iso(d,height-8)-node.position]),Color("807c67"))
+  quad(node,PackedVector2Array([iso(a,height)-node.position,iso(b,height)-node.position,iso(c,height)-node.position,iso(d,height)-node.position]),tread)
+  quad(node,PackedVector2Array([iso(d,height)-node.position,iso(c,height)-node.position,iso(c,height-8)-node.position,iso(d,height-8)-node.position]),riser)
   if view.model.data.get("forest",{}).get("closedStairs",false):
    # The sloped collision surface cannot seal the triangular void under each tread.
    # Close the actual stepped prism, inside its measured footprint, per depth slice.
    for edge in [[a,d],[b,c]]:
     var first:Vector2=edge[0];var last:Vector2=edge[1]
     var side:=Node2D.new();side.position=iso((first+last)*.5)+Vector2(0,4);view.actors.add_child(side)
-    quad(side,PackedVector2Array([iso(first,height)-side.position,iso(last,height)-side.position,iso(last,base)-side.position,iso(first,base)-side.position]),Color("807c67"))
+    quad(side,PackedVector2Array([iso(first,height)-side.position,iso(last,height)-side.position,iso(last,base)-side.position,iso(first,base)-side.position]),riser)
 static func _landmark(view,p:Dictionary) -> void:
  var point:=Vector2(p.u,p.v);var pos:Vector2=view.model.project(point);var node:=Node2D.new();node.position=view.model.project(point,false);view.actors.add_child(node)
  node.z_index=1
@@ -220,3 +231,4 @@ static func _landmark(view,p:Dictionary) -> void:
  for k in 5:
   var x:float=-54+k*26;var color:Color=[Color("edb849"),Color("dc7462"),Color("61afae"),Color("6b93b4"),Color("d6b978")][k]
   quad(node,PackedVector2Array([base+Vector2(x,-169),base+Vector2(x+14,-169),base+Vector2(x+30,-88-k%2*18),base+Vector2(x+16,-93-k%2*18)]),color)
+

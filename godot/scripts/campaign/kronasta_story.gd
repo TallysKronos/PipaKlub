@@ -24,16 +24,16 @@ const PLACES := [
 	{"id":"industrial","name":"Distrito Industrial","kind":"bairro","bairro":6,"act":3,"levels":"4–6 na prévia","scene":"kronasta-industrial-a","preview":true,"note":"Pátio de Cargas, Canal das Caldeiras e Usina do Vento."},
 	{"id":"pantano","name":"Pântano do Mormaço","kind":"natural","act":4,"levels":"5–7 na prévia","scene":"kronasta-pantano-a","preview":true,"note":"Entrada alagada, Desvio dos cipós e Lago profundo."},
 	{"id":"palafitas","scene":"kronasta-palafitas-a","name":"Palafitas","kind":"bairro","bairro":7,"act":4,"levels":"24–27","note":"Resgate de Retalho e campeonato de Caio Garça."},
-	{"id":"montanha","name":"Serra do Minuano","kind":"natural","act":4,"levels":"6–8 na prévia","scene":"kronasta-montanha-a","preview":true,"note":"Sopé, Encosta e Cume."},
+	{"id":"montanha","name":"Serra de Kronasta","kind":"natural","act":4,"levels":"26–32","scene":"kronasta-montanha-a","note":"Sopé, Encosta e Cume."},
+	{"id":"centro","name":"Centro","kind":"bairro","bairro":9,"act":4,"levels":"30–33","scene":"kronasta-centro-a","note":"Praça da Matriz e Pipa TV."},
 	{"id":"alto-da-serra","name":"Alto da Serra","kind":"bairro","bairro":8,"act":4,"levels":"27–30","note":"Bairro 8."},
 	{"id":"aracati","name":"Ilha do Aracati","kind":"natural","act":4,"levels":"30–34","note":"A ponte está fechada."},
-	{"id":"centro","name":"Centro","kind":"bairro","bairro":9,"act":5,"levels":"30–33","note":"Bairro 9 · estúdio da Pipa TV."},
-	{"id":"lajes","name":"Conjunto das Lajes","kind":"bairro","bairro":10,"act":5,"levels":"33–36","note":"Bairro 10."},
-	{"id":"porto","name":"Porto Novo","kind":"bairro","bairro":11,"act":6,"levels":"36–40","note":"Bairro 11."},
-	{"id":"coracao","name":"Coração das Ruínas","kind":"ruinas","act":6,"levels":"40–45","note":"O Elo."},
-	{"id":"mirante","name":"Alto do Mirante","kind":"bairro","bairro":12,"act":6,"levels":"40–44","note":"Bairro 12."},
+	{"id":"lajes","name":"Condomínio","scene":"kronasta-lajes-a","kind":"bairro","bairro":10,"act":5,"levels":"33–36","note":"Bairro 10."},
+	{"id":"porto","scene":"kronasta-porto-a","name":"Porto Novo","kind":"bairro","bairro":11,"act":6,"levels":"36–40","note":"Bairro 11."},
+	{"id":"coracao","scene":"kronasta-coracao-a","name":"Coração das Ruínas","kind":"ruinas","act":6,"levels":"40–45","note":"O Elo."},
+	{"id":"mirante","scene":"kronasta-mirante-a","name":"Alto do Mirante","kind":"bairro","bairro":12,"act":6,"levels":"40–44","note":"Bairro 12."},
 	{"id":"santuario","name":"Santuário do Lendário","kind":"ruinas","act":6,"levels":"46","note":"O lendário."},
-	{"id":"estadio","name":"Estádio de Kronasta","kind":"final","act":6,"levels":"48–50","note":"A final contra a Jamile."},
+	{"id":"estadio","scene":"kronasta-estadio-a","name":"Estádio de Kronasta","kind":"final","act":6,"levels":"48–50","note":"A final contra a Jamile."},
 ]
 
 ## Story beats that exist in the game today, in the order the objective follows.
@@ -159,6 +159,13 @@ static func objective(player: Dictionary) -> String:
 	if beat.get("id")=="exame-azul":return "Pátio da Liga · "+load("res://scripts/campaign/blue_exam.gd").objective(player)
 	if beat.get("id")=="retalho-confianca":return load("res://scripts/campaign/retalho_trust.gd").objective(player)
 	if not beat.is_empty(): return beat.text
+	if flags(player).get("tufanocorteLiberto",false):
+		if not flags(player).get("canCavar",false):return "Observe o tatu no cume da Serra para aprender Cavar."
+		if "serra-primeira-escavacao-v1" not in player.get("completedOperations",[]):return "Experimente Cavar na terra fofa do cume."
+		if "serra-galeria-cavar-v1" not in player.get("completedOperations",[]):return "Volte à terra fofa para abrir a galeria sob a Serra."
+		if "serra-corrente-de-ar-v1" not in player.get("completedOperations",[]):return "Use Corrente de Ar no paredão abaixo do mirante."
+		return preload("res://scripts/campaign/district_campaign.gd").objective(player,"alto-da-serra")
+	if serra_open(player):return "Siga para o sopé da Serra de Kronasta. O próximo Vento está na montanha."
 	if player.get("flags",{}).get("mormacoLiberto",false):return load("res://scripts/campaign/mormaco_story.gd").objective(player)
 	if preload("res://scripts/campaign/blue_exam_preparation.gd").prepared(player):return preload("res://scripts/campaign/blue_exam_preparation.gd").data().prepared
 	return "Próximo destino: %s. Essa parte da história chega em breve." % next_destination(player).get("name","")
@@ -196,10 +203,20 @@ static func place_for_scene(scene: String) -> Dictionary:
 static func swamp_open(player:Dictionary)->bool:
 	return load("res://scripts/campaign/retalho_trust.gd").swamp_open(player) or load("res://scripts/campaign/marisol_row_trip.gd").allowed(player)
 
+static func serra_open(player:Dictionary)->bool:
+	return flags(player).get("mormacoLiberto",false) and preload("res://scripts/campaign/district_rules.gd").completed(player,"palafitas")
+
 static func state(player: Dictionary, id: String) -> String:
 	var entry:=place(id)
 	if entry.is_empty(): return "em-breve"
 	match id:
+		"mirante":return "aberto" if preload("res://scripts/campaign/district_rules.gd").unlocked(player,"mirante") else "fechado"
+		"estadio":return "aberto" if preload("res://scripts/campaign/district_rules.gd").city_final_unlocked(player) else "fechado"
+		"coracao":return "aberto" if preload("res://scripts/campaign/district_rules.gd").completed(player,"porto") else "fechado"
+		"porto":return "aberto" if preload("res://scripts/campaign/district_rules.gd").unlocked(player,"porto") else "fechado"
+		"lajes":return "aberto" if preload("res://scripts/campaign/district_rules.gd").unlocked(player,"lajes") else "fechado"
+		"centro":return "aberto" if preload("res://scripts/campaign/district_rules.gd").unlocked(player,"centro") else "fechado"
+		"montanha":return "aberto" if serra_open(player) or (qa() and prologue_done(player)) else "fechado"
 		"palafitas":return "vencido" if preload("res://scripts/campaign/district_rules.gd").completed(player,id) else "aberto" if preload("res://scripts/campaign/district_rules.gd").unlocked(player,id) or load("res://scripts/campaign/retalho_trust.gd").docks_open(player) else "fechado"
 		"pantano":
 			if swamp_open(player):return "aberto"
@@ -222,6 +239,7 @@ static func can_travel(player: Dictionary, id: String) -> bool:
 
 static func requirement(player: Dictionary, id: String) -> String:
 	var entry:=place(id)
+	if id=="montanha" and state(player,id)=="fechado":return "Liberte Mormaço e vença Caio Garça em Palafitas."
 	if id=="palafitas" and state(player,id)=="fechado":return "O resgate abre durante o arco de Retalho; o campeonato exige o emblema de Bruno e Mormaço livre."
 	if id=="beira-canal" and preload("res://scripts/campaign/district_rules.gd").completed(player,"bambuzal") and not flags(player).get("leagueGreen",false):return "Conclua o primeiro exame com Nina"
 	match state(player,id):
@@ -239,6 +257,7 @@ static func scene_for_travel(id: String) -> String:
 ## points to this place; otherwise the part's own exploration hint.
 static func region_objective(player: Dictionary, scene: String) -> String:
 	var region:=Checkpoint.region_of(scene)
+	if region=="montanha" and preload("res://scripts/campaign/district_rules.gd").unlocked(player,"alto-da-serra"):return preload("res://scripts/campaign/district_campaign.gd").objective(player,"alto-da-serra")
 	if region=="palafitas" and preload("res://scripts/campaign/district_rules.gd").unlocked(player,region):return preload("res://scripts/campaign/district_campaign.gd").objective(player,region)
 	var beat:=current_beat(player)
 	if not beat.is_empty() and beat.place==region and region!="bosque": return beat.text

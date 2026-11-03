@@ -25,6 +25,7 @@ var pointer_tapped: Dictionary = {}
 var require_action_release := false
 var model: RefCounted
 var content: Dictionary
+var rai_ally:Texture2D
 var textures: Array[Texture2D] = []
 var art_ids: Array[String] = []
 var foreground: Texture2D = preload("res://assets/campaign/battle-ink/foreground-veredas-v1.png")
@@ -66,10 +67,13 @@ func configure(data: Dictionary, state: Dictionary) -> void:
 	content = data
 	model = Model.new()
 	model.restore(state)
-	var assets := {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "lacertubo": "lacertubo"}
-	art_ids.assign([assets.get(model.model_id, "rabbito"), model.enemy_model_id if model.enemy_model_id.begins_with("rascunho-") or model.enemy_model_id in ["platyx-draft","retalho-original","pipa-dragao-desatada","mormaco-possuido"] else assets.get(model.enemy_model_id, "lacertubo")])
+	var assets := {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "rai":"rai", "lacertubo": "lacertubo"}
+	art_ids.assign([assets.get(model.model_id, "rabbito"), model.enemy_model_id if model.enemy_model_id.begins_with("rascunho-") or model.enemy_model_id in ["platyx-draft","retalho-original","pipa-dragao-desatada","mormaco-possuido","tufanocorte","eremor"] else assets.get(model.enemy_model_id, "lacertubo")])
+	if model.q.has("mormacoForm"):
+		if model.q.get("tylerAlly",false):rai_ally=load("res://assets/campaign/tyler-clareira-v1/rai.png")
+		if model.q.mormacoForm!="possessed":art_ids[1]="mormaco-normal"
 	for id in art_ids: textures.append(load("res://assets/campaign/" + content.combat[id].image))
-	background = load("res://assets/campaign/veredas-arena-wide-v2.png")
+	background = load("res://assets/campaign/elo-arena.png" if reward_encounter.get("scene","").begins_with("kronasta-coracao-") else "res://assets/campaign/veredas-arena-wide-v2.png")
 	guardian_frame = load("res://assets/campaign/guardian-frame.png")
 	panel_styles.assign([_panel("dark"), _panel("danger")])
 
@@ -86,6 +90,8 @@ func _ready() -> void:
 	if model.q.get("boss",false):
 		boss_intro=load("res://scripts/campaign/boss_presentation.gd").new()
 		boss_intro.face=Ink.portrait(textures[1],art_ids[1])
+		boss_intro.title=str(model.q.get("name",boss_intro.title))
+		if model.q.has("name"):boss_intro.subtitle=""
 		if model.enemy_model_id=="mormaco-possuido":boss_intro.title="Mormaço";boss_intro.subtitle="O primeiro Vento"
 		boss_intro.reduced_motion=reduced_motion
 		boss_intro.remaining=model.intro
@@ -116,7 +122,7 @@ func _ready() -> void:
 	resized.connect(_layout_actions)
 	bottom.add_child(command_row)
 	var entries := [["Espaço", "Cortar", "attack", "attackCooldown", 12], ["Q", "Habilidade", "energy", "skillCooldown", 25], ["Shift", "Esquiva", "dodge", "dodgeCooldown", 18], ["R", "Puxão", "puxao", "lineCooldown", 28], ["G", "Guarda", "line", "guardCooldown", 0]]
-	if model.model_id == "rabbito": entries.append(["F", "Especial", "team", "signatureCooldown", 40])
+	if model.model_id in ["rabbito","rai"]: entries.append(["F", "Especial", "team", "signatureCooldown", 40])
 	for entry in entries:
 		var command := VBoxContainer.new()
 		command.add_theme_constant_override("separation", 2)
@@ -292,11 +298,12 @@ func _physics_process(delta: float) -> void:
 	impacts.step(delta) # Paint expires even while gameplay is paused.
 	signature_banner.advance(delta,paused or blocked,not model.outcome.is_empty())
 	if not paused and not blocked and model.outcome.is_empty():
+		var previous_form:String=model.q.get("mormacoForm","")
 		var direction := Controls.direction()
 		model.tick(delta, {"x": direction.x, "y": direction.y, "cut": _action_held("cut"), "skill": _action_held("skill"), "dodge": _action_held("dodge"), "line": _action_held("line"), "guard": _action_held("guard"), "signature": _action_held("signature")})
 		pointer_tapped.clear()
 		save_clock += delta
-		if save_clock >= 5 or not model.outcome.is_empty():
+		if previous_form!=model.q.get("mormacoForm","") or save_clock>=5 or not model.outcome.is_empty():
 			save_clock = 0
 			save_requested.emit(model.snapshot())
 	finish_button.visible = not model.outcome.is_empty()
@@ -305,7 +312,7 @@ func _physics_process(delta: float) -> void:
 		boss_intro.visible=model.intro>0 and model.outcome.is_empty() and not paused and not blocked
 		boss_intro.queue_redraw()
 		if model.intro>0:require_action_release=true
-	_update_result(delta)
+	if model.q.get("mormacoForm","")!="ambush":_update_result(delta)
 	for command in move_cards:
 		command.node.visible = model.outcome.is_empty() and not paused and not (model.q.get("boss",false) and model.intro>0)
 		var cooldown: float = model.p[command.cooldown]
@@ -325,9 +332,9 @@ func _physics_process(delta: float) -> void:
 	resume_button.visible = model.outcome.is_empty() or blocked
 	resume_button.text = "Tentar salvar novamente" if blocked else "Retomar" if paused else "Pausar"
 	actions.visible = model.outcome.is_empty() and paused
-	controls.text = ("Analógico · Mover" if Controls.gamepad else "Mover: %s %s %s %s / setas" % [Controls.prompt("up"), Controls.prompt("left"), Controls.prompt("down"), Controls.prompt("right")]) + (" · %s: Pulo do Elo" % Controls.prompt("signature") if model.model_id == "rabbito" else "")
+	controls.text = ("Analógico · Mover" if Controls.gamepad else "Mover: %s %s %s %s / setas" % [Controls.prompt("up"), Controls.prompt("left"), Controls.prompt("down"), Controls.prompt("right")]) + (" · %s: Pulo do Elo" % Controls.prompt("signature") if model.model_id == "rabbito" else " · %s: Especial" % Controls.prompt("signature") if model.model_id=="rai" else "")
 	if paused: controls.text = "Jogo pausado. " + ACTION_COPY[selected_action] if not blocked else "Não foi possível salvar. Tente novamente antes de continuar."
-	elif model.intro > 0: controls.text = "Lacertubo · O guardião dos canos — Leia o vento. Espere a abertura." if model.q.boss else ("%s · duelo de preparação" % reward_encounter.get("trainerName","Pipeiro") if reward_encounter.get("kind","")=="trainer" else "Um Soulmon selvagem cruzou seu caminho!")
+	elif model.intro > 0: controls.text = str(model.q.get("name","Lacertubo")) + " — Leia o vento. Espere a abertura." if model.q.boss else ("%s · duelo de preparação" % reward_encounter.get("trainerName","Pipeiro") if reward_encounter.get("kind","")=="trainer" else "Um Soulmon selvagem cruzou seu caminho!")
 	if model.intro>0 and model.enemy_model_id=="mormaco-possuido":controls.text="Mormaço · os gêiseres estão represados. Espere o sinal e procure a abertura."
 	elif model.q.signatureWindup > 0: controls.text = ("Jato represado!" if model.enemy_model_id=="mormaco-possuido" else "Ruptura dos Canos!")+" Saia do círculo ou proteja-se no impacto."
 	elif model.q.recovery > 0: controls.text = "O guardião está vulnerável!"
@@ -336,7 +343,8 @@ func _physics_process(delta: float) -> void:
 		controls.text = ACTION_COPY[selected_action]
 	if not model.outcome.is_empty():
 		controls.text = ("Vitória · Confira sua experiência e os itens recebidos.") if model.outcome == "won" else "Seu parceiro continua com você. Descanse em um banco do parque ou procure o professor."
-	if model.outcome=="won" and model.enemy_model_id=="mormaco-possuido":controls.text="Os nós cederam. Volte ao lago para libertar o primeiro Vento."
+	if model.q.get("mormacoForm","")=="ambush":controls.text="Mormaço voltou para o poço."
+	elif model.outcome=="won" and model.enemy_model_id=="mormaco-possuido":controls.text="Os nós cederam. Volte ao lago para libertar o primeiro Vento."
 	if blocked: controls.text = "Não foi possível salvar. Tente novamente antes de continuar."
 	_layout_actions()
 	queue_redraw()
@@ -471,19 +479,25 @@ func _draw() -> void:
 		var frames: Array = content.combat[art_ids[index]].animations[action]
 		var frame: Dictionary = _sprite_frame(index,actor,action)
 		var width := 230 if index == 1 and model.q.boss else 180
-		if index==1 and model.enemy_model_id in ["pipa-dragao-desatada","mormaco-possuido"]:width=290
+		if index==1 and model.enemy_model_id in ["pipa-dragao-desatada","mormaco-possuido","eremor"]:width=290
 		var opponent:Dictionary=model.q if index==0 else model.p
 		var flip:bool=Ink.facing_flip(art_ids[index],actor.x,opponent.x)
 		Ink.live_sprite(self, textures[index], art_ids[index], frame, Vector2(actor.x, actor.y), width, Tokens.UNTINTED, _field_scale(),flip)
 
+	if rai_ally!=null:
+		var ally_position:=Vector2(clampf(model.p.x+145,75,900),clampf(model.p.y-120,90,455))
+		draw_line(Vector2(235,585),ally_position,Hud.GOLD,2,true)
+		var ally_frame:Dictionary=content.combat.rai.animations.idle[0]
+		Ink.live_sprite(self,rai_ally,"rai",ally_frame,ally_position,115,Tokens.UNTINTED,_field_scale(),ally_position.x>model.q.x)
+		draw_string(Hud.font(),ally_position+Vector2(-45,-55),"Tyler · Rai",HORIZONTAL_ALIGNMENT_LEFT,-1,18,Color.WHITE)
+
 	_draw_feedback()
 
-	if not model.outcome.is_empty():
+	if not model.outcome.is_empty() and model.q.get("mormacoForm","")!="ambush":
 		_draw_result()
 	draw_set_transform(Vector2.ZERO)
 	_draw_foreground()
 	_draw_status()
-	# Specials are signalled beside their source kite, without a blocking panel.
 
 func _panel(role: String = "dark") -> StyleBox:
 	return Hud.panel(role)
@@ -508,15 +522,17 @@ func _draw_status() -> void:
 	var names:Array=[]
 	for index in actors.size():
 		faces.append(Ink.portrait(textures[index],art_ids[index]))
-		var title:String={"rabbito":"Rabbito","basic-carcara":"Carcará","basic-mata-verde":"Mata verde","basic-azulao":"Azulão","basic-raio-de-sol":"Raio de sol","doberman-c":"Dóber de papel","lacertubo":"Lacertubo","retalho-original":"Retalho"}.get(art_ids[index],"Parceiro")
+		var title:String={"rabbito":"Rabbito","basic-carcara":"Carcará","basic-mata-verde":"Mata verde","basic-azulao":"Azulão","basic-raio-de-sol":"Raio de sol","doberman-c":"Dóber de papel","lacertubo":"Lacertubo","retalho-original":"Retalho","rai":"Rai","eremor":"Eremor","tufanocorte":"Tufanocorte","mormaco-normal":"Mormaço","mormaco-possuido":"Mormaço · Possuído"}.get(art_ids[index],"Parceiro")
 		var level:int=model.enemy_level if index>0 else 1
-		if index==0:
+		if index==0 and model.model_id=="rai":
+			level=int(actors[index].level)
+		elif index==0:
 			for partner in reward_player.get("partners",[]):
 				if partner.id==reward_player.get("equippedPartnerId",""):
 					title=partner.get("personalName",title)
 					level=Model.level_for_xp(partner.get("xp",0))
 		if index>0 and model.enemy_model_id.begins_with("rascunho-"):title="Bicho-pau de Vareta [rascunho]" if model.enemy_model_id=="rascunho-bicho-pau" else "Joaninha-pião [rascunho]"
-		if index>0 and model.enemy_model_id=="mormaco-possuido":title="Mormaço · Possuído"
+		if index>0 and art_ids[index]=="mormaco-possuido":title="Mormaço · Possuído"
 		if index>0 and model.enemy_model_id=="veskoro":title="Veskoro"
 		if index>0 and model.enemy_model_id=="pipa-dragao-desatada":title="Pipa-Dragão desatada"
 		names.append("%s · Nv. %d"%[title,level])
@@ -534,7 +550,7 @@ func _draw_phase() -> void:
 	if model.get("intermission")!=null and model.intermission>0:
 		message="EMPATE" if "empatada" in model.round_message else "CORTOU!" if model.round_message.begins_with(model.p.name+" venceu") else "RODADA PERDIDA"
 	elif model.intro>0:
-		message=str(reward_encounter.get("trainerName","DUELO")) if reward_encounter.get("kind","")=="trainer" else "LACERTUBO" if model.q.boss else "RODADA %d · %d"%[model.round_number if model.get("round_number")!=null else 1,mini(3,ceili(model.intro))]
+		message=str(reward_encounter.get("trainerName","DUELO")) if reward_encounter.get("kind","")=="trainer" else str(model.q.get("name","Lacertubo")).to_upper() if model.q.boss else "RODADA %d · %d"%[model.round_number if model.get("round_number")!=null else 1,mini(3,ceili(model.intro))]
 	elif launch_age<.4:message="JÁ!"
 	if message.is_empty():return
 	var rect:=_phase_rect()

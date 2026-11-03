@@ -36,7 +36,7 @@ static func event(scene:String)->Dictionary:
  elif scene==B:point=HERB;name="Material para o remédio"
  elif scene==C:point=RESCUE;name="Retalho · linha tensionada"
  else:return {}
- return {"id":19001 if scene==A else 19002 if scene==B else 19003,"type":"npc","name":name,"u":int(point.x),"v":int(point.y),"props":{"acao":"retalhoTrust","trustScene":scene,"bloqueia":false,"storySpritePath":"res://assets/overworld/kits/comum/pecas/flores-azul.png" if scene==B else "res://assets/campaign/retalho-v1/overworld.png"}}
+ return {"id":19001 if scene==A else 19002 if scene==B else 19003,"type":"npc","name":name,"u":int(point.x),"v":int(point.y),"props":{"acao":"retalhoTrust","trustScene":scene,"bloqueia":false,"storySpritePath":"res://assets/overworld/kits/comum/pecas/flores-azul.png" if scene==B else "res://assets/campaign/retalho-mascarada-v1/overworld.png"}}
 static func visible(scene:String,p:Dictionary)->bool:
  if p.get("flags",{}).get("retalhoRecusadoKael",false) or p.get("flags",{}).get("retalhoParceiraHeleana",false):return false
  if not available(p):return false

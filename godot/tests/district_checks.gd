@@ -61,7 +61,10 @@ func pure_model()->void:
 		check(Rules.award_emblem(p,d.id),"first emblem "+d.id)
 		check(not Rules.award_emblem(p,d.id),"no duplicate emblem "+d.id)
 		check(Story.neighbourhoods_won(p)==int(d.number),"story counts generic history")
-	check(Rules.city_final_unlocked(p),"twelve historical completions open municipal final")
+	check(Rules.city_final_unlocked(p),"Mirante opens municipal final")
+	var before_mirante := base_player()
+	before_mirante.flags.enamorDerrotado=true
+	check(not Rules.city_final_unlocked(before_mirante),"Enamor alone does not open municipal final")
 	check(p.districtEmblems.size()==12,"twelve emblem slots")
 	var old:=base_player();old.morro=Morro.Rules.defaults();old.morro.stars={"morro-1":3,"morro-2":2,"morro-3":1,"morro-4":3,"morro-5":2}
 	var copy:=old.duplicate(true)

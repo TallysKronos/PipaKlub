@@ -15,8 +15,10 @@ static func freed(p:Dictionary)->bool:return p.get("flags",{}).get("mormacoLiber
 static func objective(p:Dictionary)->String:
  if freed(p):return "Mormaço livre · o frio sabe onde estão os outros Ventos."
  if won(p):return "Converse com Mormaço na margem do lago e escute seu enigma."
+ if p.get("flags",{}).get("mormacoTylerChegou",false):return "Volte à margem e enfrente Mormaço Sombrio com Tyler e Rai."
+ if p.get("flags",{}).get("mormacoEmboscada",false):return "Olhe para o poço. Alguém se esconde na outra margem."
  if not p.get("flags",{}).get("mormacoVentosPararam",false):return "Observe o ar parado na Entrada alagada, perto do caminho de chegada."
- return "Siga pelas margens até o lago da parte C · Mormaço está amarrado. Duelo Nv.27; você pode recuar."
+ return "Siga pelas margens até o lago da parte C · Desafie Mormaço. Duelo Nv.27; você pode recuar."
 static func events(scene:String)->Array:
  if scene==A:return [{"id":19300,"type":"interacao","name":"O vento parou","u":24,"v":31,"props":{"acao":"mormacoSignals"}}]
  if scene==C:return [{"id":19301,"type":"interacao","name":"Mormaço · o primeiro Vento","u":24,"v":28,"props":{"acao":"mormacoStory"}}]
@@ -39,9 +41,22 @@ func begin(point:Vector2)->Dictionary:
  if not saved.player.flags.get("mormacoVentosPararam",false):return {"status":"wrong_step"}
  var partner:Dictionary=preload("res://scripts/campaign/park_training.gd").active(saved.player)
  if partner.is_empty() or partner.get("condition",{}).get("line",100)<=0 or partner.get("condition",{}).get("structure",100)<=0:return {"status":"repair_needed"}
+ var ambush:bool=saved.player.flags.get("mormacoEmboscada",false)
+ if ambush and not saved.player.flags.get("mormacoTylerChegou",false):return {"status":"wrong_step"}
  var model:=Model.new(partner,{"modelId":"mormaco-possuido","level":27})
- model.q.boss=true;model.q.color=3;model.q.name="Mormaço · Possuído";model.q.bossTitle="Mormaço · Possuído";model.duration=150
- model.q.stats.line*=1.6;model.q.hp=model.q.stats.line;model.q.hull=model.q.stats.line;model.q.stats.speed*=.8
+ model.q.boss=true
+ model.q.color=3 if ambush else 1
+ model.q.name="Mormaço · Sombrio" if ambush else "Mormaço"
+ model.q.bossTitle=model.q.name
+ model.q.mormacoForm="possessed" if ambush else "normal"
+ model.q.tylerAlly=ambush
+ model.q.tylerCooldown=4.0
+ model.q.phase=2 if ambush else 1
+ model.duration=150
+ model.q.stats.line*=1.6
+ model.q.hp=model.q.stats.line*(.7 if ambush else 1.0)
+ model.q.hull=model.q.hp
+ model.q.stats.speed*=.8
  saved.player.encounter={"id":State.new_id(),"kind":"mormaco-story","scene":C,"space":CP.SPACE,"returnPoint":[point.x,point.y],"rewardXp":0,"state":model.snapshot()}
  return session.checkpoint({"kind":"encounter"},saved.player)
 func settle()->Dictionary:
@@ -51,9 +66,21 @@ func settle()->Dictionary:
  if not State.valid_encounter(e) or not available(saved.player) or state.outcome not in ["won","lost","fled"]:return {"status":"wrong_step"}
  for partner:Dictionary in saved.player.partners:
   if partner.id==state.partnerId:partner.condition={"line":clampf(state.p.hp/state.p.stats.line*100,0,100),"structure":clampf(state.p.hull/state.p.stats.line*100,0,100)}
+ if state.q.get("mormacoForm","")=="ambush" and state.outcome=="won":
+  saved.player.flags.mormacoEmboscada=true
+  saved.player.erase("encounter")
+  return session.commit_operation("mormaco-ambush-"+e.id,CP.make(C,Vector2(e.returnPoint[0],e.returnPoint[1]),CP.SPACE),saved.player)
  if state.outcome=="won":saved.player.flags.mormacoLacosDesfeitos=true
  saved.player.lastMormaco=state.outcome;saved.player.erase("encounter")
  return session.commit_operation("encounter-"+e.id,CP.make(C,CP.spawn(C) if state.outcome=="lost" else Vector2(e.returnPoint[0],e.returnPoint[1]),CP.SPACE),saved.player)
+func finish_ambush(point:Vector2)->Dictionary:
+ if not near(C,AT,point):return {"status":"wrong_step"}
+ var saved:Dictionary=session.snapshot()
+ if saved.player.flags.get("mormacoTylerChegou",false):return {"status":"already_applied"}
+ if not saved.player.flags.get("mormacoEmboscada",false):return {"status":"wrong_step"}
+ saved.player.flags.mormacoTylerChegou=true
+ return session.commit_operation("mormaco-tyler-arrival-v1",CP.make(C,point,CP.SPACE),saved.player)
+
 func release(point:Vector2)->Dictionary:
  if not near(C,AT,point):return {"status":"wrong_step"}
  var saved:Dictionary=session.snapshot()

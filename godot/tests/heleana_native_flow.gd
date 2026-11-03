@@ -57,6 +57,21 @@ func run()->void:
 	if DisplayServer.get_name()!="headless":
 		await RenderingServer.frame_post_draw
 		root.get_texture().get_image().save_png(ProjectSettings.globalize_path("res://../documentation/qa/heleana-confession-v1/reuniao-exterior.png"))
+	p=app.session.snapshot().player
+	check(app.session.checkpoint({"kind":"world","scene":"kael-home","position":[432,1008]},p).status=="ok","return home after reunion")
+	app._show_world()
+	for frame in 20:await process_frame
+	check(is_instance_valid(app.room.retalho_resident),"Heleana's partner appears inside the house")
+	if is_instance_valid(app.room.retalho_resident):
+		var start:Vector2=app.room.retalho_point
+		var safe:=true
+		for frame in 180:
+			app.room._process(1.0/60.0)
+			safe=safe and app.room._safe(app.room.retalho_point)
+		check(safe and start.distance_to(app.room.retalho_point)>12,"Retalho roams through walkable interior")
+		if DisplayServer.get_name()!="headless":
+			await RenderingServer.frame_post_draw
+			root.get_texture().get_image().save_png(ProjectSettings.globalize_path("res://../documentation/qa/heleana-confession-v1/retalho-em-casa.png"))
 	check(app.session.start("slot-2").status=="ok","accepted branch save")
 	p=app.session.snapshot().player
 	p.partners=[{"id":"ret","modelId":"retalho-original","personalName":"Nuvem","xp":0}]
@@ -65,6 +80,7 @@ func run()->void:
 	app._show_world()
 	for frame in 20:await process_frame
 	check(not is_instance_valid(app.get_node_or_null("HeleanaConfessionDialogue")),"accepted branch waits for interaction")
+	check(not is_instance_valid(app.room.retalho_resident) and app.room.retalho_follower,"Kael's Retalho uses the directional sheet as follower")
 	app._world_interact("mother")
 	for step in 13:
 		for frame in 6:await process_frame

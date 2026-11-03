@@ -1731,15 +1731,16 @@ func _build_events() -> void:
 		if event.type=="npc":
 			var list: Array = npc_data.morro.get(model.data.scene,[]) if model.data.biome=="morro" else [npc_data.nina] if event.name=="Nina" else [npc_data.lacertubo] if event.props.get("acao", "")=="parkBoss" else [npc_data.assis] if model.data.biome=="parque" and event.props.get("acao","")=="wildGuide" else []
 			if event.props.has("storySprite"):
-				var path:String="res://assets/campaign/tyler-clareira-v1/"+str(event.props.storySprite)+".png"
-				var tex:Texture2D=load(path)
-				list=[{"name":event.name,"image":path,"bounds":{"x":0,"y":0,"w":tex.get_width(),"h":tex.get_height()}}]
+				var path:String="res://assets/campaign/tyler-clareira-v1/"+str(event.props.storySprite)+"-overworld-idle-eight.png"
+				list=[{"name":event.name,"image":path,"bounds":{"x":192,"y":96,"w":64,"h":96}}]
 			if event.props.has("storySpritePath"):
 				var path:String=event.props.storySpritePath
 				var tex:Texture2D=load(path)
-				list=[{"name":event.name,"image":path,"bounds":{"x":0,"y":0,"w":tex.get_width(),"h":tex.get_height()}}]
+				var region: Dictionary = {"x":0,"y":0,"w":tex.get_width(),"h":tex.get_height()}
+				if event.props.has("storySpriteRegion"):region=event.props.storySpriteRegion
+				list=[{"name":event.name,"image":path,"bounds":region}]
 			if event.props.has("npcIdentity"):
-				list=[{"name":str(event.props.npcIdentity),"bounds":{"x":0,"y":0,"w":64,"h":96}}]
+				list=[{"name":event.name if event.props.get("acao","")=="ruinasDuel" or event.props.get("district","") in ["alto-da-serra","centro","lajes","porto","mirante"] else str(event.props.npcIdentity),"spriteIdentity":str(event.props.npcIdentity),"bounds":{"x":0,"y":0,"w":64,"h":96}}]
 			if event.props.get("district","") in ["bambuzal","beira-canal"]:
 				var atlas_path:String="res://assets/npc-ds/"+str(event.props.district)+"-v1/"
 				var atlas:Dictionary=JSON.parse_string(FileAccess.get_file_as_string(atlas_path+"atlas.json"))
@@ -1756,7 +1757,7 @@ func _build_events() -> void:
 				var sprite := Sprite2D.new()
 				var native_height := 128.0 if entry.name=="Lacertubo" else 84.0
 				var pixels=preload("res://scripts/npc_pixel_sprite.gd")
-				var identity: String=pixels.identity(entry.name)
+				var identity: String=entry.get("spriteIdentity",pixels.identity(entry.name))
 				if not identity.is_empty():pixels.setup(sprite,identity,pixels.height_for(identity,.85*Avatar.BODY_SCALE))
 				else:
 					sprite.texture=load(entry.image);sprite.region_enabled=true
@@ -1764,6 +1765,14 @@ func _build_events() -> void:
 					sprite.region_rect=Rect2(bounds.x,bounds.y,bounds.w,bounds.h)
 					sprite.scale=Vector2.ONE*native_height/float(bounds.h)
 					sprite.offset=Vector2(0,-bounds.h*.5)
+				if str(event.props.get("storySpritePath","")).begins_with("res://assets/overworld/kits/camara-do-elo-v1/"):
+					sprite.scale=Vector2.ONE
+					sprite.offset=Vector2(0,-46)
+					sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+				if event.props.has("storySprite"):
+					sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+					sprite.scale=Vector2.ONE*.85
+					sprite.offset=Vector2(0,-44)
 				sprite.position.x=(i-(list.size()-1)*.5)*30
 				holder.add_child(sprite)
 				if event.props.get("storySprite","")=="tyler":
@@ -1772,6 +1781,9 @@ func _build_events() -> void:
 				names.append(entry.name)
 			if not names.is_empty():event.name=" e ".join(names)
 			npc_nodes.append({"root":node,"visual":holder,"point":Vector2(event.u+.5,event.v+.5)})
+
+	if area_id == "kronasta-coracao-c":
+		preload("res://scripts/campaign/platyx_overworld.gd").place(self)
 
 func hide_characters() -> void:
 	player_root.hide();follower_root.hide()

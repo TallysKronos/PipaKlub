@@ -19,6 +19,7 @@ static func objective(player:Dictionary,district:String="bambuzal")->String:
 	var value:=Rules.entry(player,district)
 	for entry:Dictionary in Rules.definition(district).stages:
 		if entry.role=="lieutenant" and entry.id not in value.qualification:return "Converse com %s · %d/4 desafios vencidos."%[entry.name,value.qualification.size()]
+	if district=="alto-da-serra" and Rules.status(player,district)=="champion":return "Quatro desafios vencidos · encontre Dona Neve no cume."
 	if district=="palafitas" and Rules.status(player,district)=="champion":return "Quatro desafios vencidos · converse com Caio Garça na parte C."
 	if district=="feira" and Rules.status(player,district)=="prerequisite":return preload("res://scripts/campaign/feira_story.gd").objective(player)
 	if district=="industrial" and Rules.status(player,district)=="prerequisite":return "Resolva o confronto no galpão e vença a Pipa-Dragão desatada antes do duelo com Bruno Solda."
@@ -35,7 +36,7 @@ static func reward(player:Dictionary,context:Dictionary,outcome:String)->Diction
 	return {"coins":int(entry.reward.coins)*(2 if first else 1) if outcome=="won" else 0,"xp":amount if outcome=="won" else 20 if outcome=="lost" else 0}
 func _near(saved:Dictionary,id:String,point:Vector2)->bool:
 	var cp:Dictionary=saved.checkpoint
-	if cp.kind!="world" or cp.get("space","")!=Checkpoint.SPACE or Checkpoint.region_of(cp.get("scene",""))!=stage(id).get("district","") or not point.is_finite():return false
+	if cp.kind!="world" or cp.get("space","")!=Checkpoint.SPACE or cp.get("scene","")!=stage(id).get("scene","") or not point.is_finite():return false
 	var map=Checkpoint.model_for(cp.scene)
 	if not map.point_walkable(point):return false
 	for event:Dictionary in map.data.events:

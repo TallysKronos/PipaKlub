@@ -5,7 +5,7 @@ const REGIONS := [
 	{"id":"parque","name":"Parque dos Ventos","at":Vector2(.35,.34),"scenes":["park-trail","park-clearing","park-veredas","parque-patio-liga"],"parts":["Jardim das Pipas","Clareira do Papel","Veredas do Encanamento","Pátio da Liga · exame Azul"],"description":"Trilhas, duelos e a missão da Nina. A viagem não conclui missões nem libera recompensas."},
 	{"id":"bosque","name":"Bosque dos Ventos","at":Vector2(.40,.50),"scenes":["kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c"],"parts":["Trilha das Copas","Desvio do Riacho","Clareira do Marco"],"description":"Entre copas, riachos e mirantes. Três trilhas conectadas para explorar."},
 	{"id":"pantano","name":"Pântano dos Cipós","at":Vector2(.72,.30),"scenes":["kronasta-pantano-a","kronasta-pantano-b","kronasta-pantano-c"],"parts":["Entrada alagada","Desvio dos Cipós","Lago profundo"],"description":"Passarelas e margens entre águas escuras. Prática de Remar após a orientação de Marisol; história do guardião e chefe ainda em desenvolvimento.","preview":true},
-	{"id":"montanha","name":"Montanhas de Kronasta","at":Vector2(.72,.60),"scenes":["kronasta-montanha-a","kronasta-montanha-b","kronasta-montanha-c"],"parts":["Sopé","Encosta","Cume"],"description":"Subidas em zigue-zague, paredões e caminhos elevados. Exploração disponível; história em desenvolvimento.","preview":true},
+	{"id":"montanha","name":"Serra de Kronasta","at":Vector2(.72,.60),"scenes":["kronasta-montanha-a","kronasta-montanha-b","kronasta-montanha-c"],"parts":["Sopé","Encosta","Cume"],"description":"A pista de Mormaço leva ao sopé. Siga pela encosta para alcançar o cume."},
 	{"id":"industrial","name":"Distrito Industrial","at":Vector2(.88,.17),"scenes":["kronasta-industrial-a","kronasta-industrial-b","kronasta-industrial-c"],"parts":["Distrito · A","Distrito · B","Distrito · C"],"description":"Galpões, passagens e pátios de carga. Exploração disponível; história em desenvolvimento.","preview":true},
 	{"id":"morro","name":"Morro do Sol","at":Vector2(.32,.86),"scenes":["morro"],"parts":["Entrada do Morro"],"description":"Encontre os pipeiros do Morro. Os desafios continuam liberando os caminhos pela campanha."},
 	{"id":"porto","name":"Costa de Kronasta","at":Vector2(.14,.48),"scenes":[],"parts":[],"description":"Uma costa à espera de novas jornadas. Nome e percurso provisórios."},
@@ -30,6 +30,8 @@ static func region_for(scene:String) -> String:
 	if scene.begins_with("morro"):return "morro"
 	return "vila"
 static func can_travel(scene:String,player:Dictionary={}) -> bool:
+	if scene.begins_with("kronasta-montanha-"):
+		return scene=="kronasta-montanha-a" and preload("res://scripts/campaign/kronasta_story.gd").can_travel(player,"montanha")
 	if scene=="parque-patio-liga":return load("res://scripts/campaign/blue_exam_preparation.gd").eligible(player)
 	for region in REGIONS:
 		if scene in region.scenes:return not region.get("preview",false) or preload("res://scripts/campaign/kronasta_story.gd").qa() or (region.id=="pantano" and preload("res://scripts/campaign/kronasta_story.gd").swamp_open(player))

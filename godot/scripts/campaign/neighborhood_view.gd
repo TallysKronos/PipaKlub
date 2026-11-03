@@ -216,9 +216,11 @@ func build_heleana_reunion()->void:
 	add_child(mother)
 	var retalho:=Sprite2D.new()
 	retalho.name="HeleanaReunionRetalho"
-	retalho.texture=load("res://assets/campaign/retalho-v1/overworld.png")
-	var bounds:=retalho.texture.get_image().get_used_rect()
-	retalho.scale=Vector2.ONE*35.0/maxf(1.0,bounds.size.y)
-	retalho.offset=Vector2(retalho.texture.get_width()*.5-bounds.get_center().x,retalho.texture.get_height()*.5-bounds.end.y)
+	retalho.texture=load("res://assets/campaign/retalho-v1/overworld-idle-eight.png")
+	retalho.region_enabled=true
+	retalho.region_rect=Rect2(64,0,64,96)
+	retalho.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+	retalho.scale=Vector2.ONE*48.0/82.0
+	retalho.offset=Vector2(0,-44)
 	retalho.position=project(Checkpoint.HOME+Vector2(2.0,.4))
 	add_child(retalho)

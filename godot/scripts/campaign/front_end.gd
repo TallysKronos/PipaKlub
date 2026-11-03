@@ -376,7 +376,9 @@ func _show_saved() -> void:
 		return
 	match str(session.snapshot().checkpoint.kind):
 		"opening": _show_opening()
-		"world": _show_world()
+		"world":
+			_show_world()
+			_present_pending_ending.call_deferred()
 		"practice": _show_practice()
 		"starter": _show_starter()
 		"workshop": _show_workshop()
@@ -824,6 +826,7 @@ func _show_world() -> void:
 	stage.add_child(room)
 	room.configure(data, point.position, true, "*", professor or home, true)
 	if professor:preload("res://scripts/campaign/retalho_care.gd").build(room,session.snapshot().player)
+	if home and session.snapshot().player.flags.get("retalhoParceiraHeleana",false):room.add_retalho_resident()
 	_equip_room_companion()
 	room.interacted.connect(_world_interact)
 	var overlay=load("res://scripts/campaign/hud_exploration.gd").new()
@@ -832,9 +835,16 @@ func _show_world() -> void:
 	overlay.player_data=session.snapshot().player
 	add_child(overlay)
 	if home:
-		overlay.objective.text="Converse com Heleana." if preload("res://scripts/campaign/heleana_confession.gd").available(session.snapshot().player) else "Sua casa · converse com sua mãe ou saia pela porta."
-		if preload("res://scripts/campaign/heleana_confession.gd").available(session.snapshot().player):
-			var night:=CanvasModulate.new();night.color=Color("9aabc7");room.add_child(night)
+		var player:Dictionary=session.snapshot().player
+		var confession_pending:bool=preload("res://scripts/campaign/heleana_confession.gd").available(player) and not player.flags.get("heleanaReconheceuRetalho",false)
+		overlay.objective.text="Sua casa · converse com sua mãe ou saia pela porta."
+		if player.flags.get("retalhoParceiraHeleana",false):
+			overlay.objective.text="Retalho mora com Heleana."
+		elif confession_pending:
+			overlay.objective.text="Converse com Heleana."
+			var night:=CanvasModulate.new()
+			night.color=Color("9aabc7")
+			room.add_child(night)
 	if professor and preload("res://scripts/campaign/retalho_care.gd").available(session.snapshot().player):overlay.objective.text=preload("res://scripts/campaign/retalho_care.gd").objective(session.snapshot().player)
 	if professor and preload("res://scripts/campaign/blue_exam_preparation.gd").eligible(session.snapshot().player) and not preload("res://scripts/campaign/blue_exam_preparation.gd").prepared(session.snapshot().player):overlay.objective.text=preload("res://scripts/campaign/blue_exam_preparation.gd").data().pending
 	overlay.map=Hud.map_for(room,overlay)
@@ -852,6 +862,9 @@ func _show_world() -> void:
 func _equip_room_companion()->void:
 	for partner in session.snapshot().player.partners:
 		if partner.id != session.snapshot().player.get("equippedPartnerId", ""): continue
+		if partner.modelId=="retalho-original":
+			room.equip_retalho_follower()
+			return
 		var id: String = {"rabbito": "rabbito", "basica": "basic-carcara", "mata": "basic-mata-verde", "azulao": "basic-azulao", "raio": "basic-raio-de-sol", "doberman-c": "doberman-c", "retalho-original":"retalho-original", "lacertubo": "lacertubo"}.get(partner.modelId, "rabbito")
 		room.companion.texture = load("res://assets/campaign/" + content.combat[id].image)
 		room.companion_frames = content.combat[id].animations.idle
@@ -1013,6 +1026,8 @@ func _world_interact(id: String) -> void:
 		var preparation=preload("res://scripts/campaign/blue_exam_preparation.gd")
 		if preparation.eligible(session.snapshot().player) and not preparation.prepared(session.snapshot().player):_show_blue_preparation()
 		else:TutorialStaging.meet_professor(self)
+	elif id=="study" and point.scene=="professor-home" and _tyler_study():
+		pass
 	elif id=="study" and point.scene=="professor-home" and preload("res://scripts/campaign/expedition_photo.gd").available(session.snapshot().player):
 		_show_expedition_photo()
 	elif id == "workbench":
@@ -1565,6 +1580,41 @@ func _park_event(id: String) -> void:
 		var action: String = event.props.get("acao","")
 		if action=="blueExam":
 			_blue_station(str(event.props.blueAction));return
+		if action=="serraWind":
+			_confirm_park("Corrente de Ar","O vento sobe pela face da rocha. Kael pode usá-lo para alcançar o patamar acima.","Subir com o vento",func():_ride_serra_wind.call_deferred())
+			return
+		if action in ["learnDig","serraDig","serraGalleryReturn"]:
+			var lesson=preload("res://scripts/campaign/tufanocorte_story.gd").new(session)
+			var point:Vector2=park.player
+			if action=="serraGalleryReturn":
+				if _result(lesson.leave_gallery(point)):_show_saved.call_deferred()
+			elif action=="learnDig":
+				_confirm_park("Tatutrama","O tatu arranha a terra com as garras, para, depois escuta o chão. Sob a camada solta, aparece a ponta de uma vareta.\n\nKael: Entendi. Primeiro eu procuro onde a terra cede. Depois cavo sem forçar.","Aprender Cavar",func():
+					var result:Dictionary=lesson.learn_dig(point)
+					if _result(result):
+						park.refresh(session.snapshot().player)
+						_notice.call_deferred("Cavar aprendido. Experimente na terra fofa perto do mirante."))
+			elif not session.snapshot().player.flags.get("canCavar",false):
+				_notice("A terra está solta. Observe o tatu perto do mirante para aprender a cavar.")
+			elif "serra-primeira-escavacao-v1" in session.snapshot().player.completedOperations:
+				_confirm_park("Passagem sob a Serra","Kael: Tem uma galeria aqui embaixo. Posso voltar por esta abertura.","Entrar na galeria",func():
+					if _result(lesson.enter_gallery(point)):_show_saved.call_deferred())
+			else:
+				_confirm_park("Terra fofa","Há algo logo abaixo da superfície.","Cavar",func():
+					var result:Dictionary=lesson.dig(point)
+					if result.status=="already_applied":_notice.call_deferred("Você já escavou este ponto.")
+					elif _result(result):
+						park.refresh(session.snapshot().player)
+						park.celebrate_item("Vareta de bambu"))
+			return
+		if action=="tufanocorteStory":
+			var serra=preload("res://scripts/campaign/tufanocorte_story.gd").new(session)
+			if not serra.available(session.snapshot().player):return
+			if session.snapshot().player.flags.get("tufanocorteLiberto",false):
+				_notice("Tufanocorte: Aprenda a ler o ar antes de tentar subir com ele.");return
+			_confirm_park("Tufanocorte","Tufanocorte: Você subiu até aqui a pé. Agora corte os fios que prendem o meu vento.\n\nKael: Aguente firme. Vou soltar você.","Enfrentar",func():
+				if _result(serra.begin(park.player)):_show_saved.call_deferred())
+			return
 		if action in ["mormacoSignals","mormacoStory","mormacoRest"]:
 			_request_mormaco(action);return
 		if action=="retalhoTrust":
@@ -1613,6 +1663,34 @@ func _park_event(id: String) -> void:
 			_request_nina_glide(str(event.props.glideLink));return
 		if action in ["tylerClareira","tylerRai"]:
 			_show_tyler_clareira();return
+		if action=="ruinasRefem":
+			var lines = preload("res://scripts/campaign/ruinas_dialogue.gd")
+			var rescued: bool = session.snapshot().player.flags.get(event.props.rescueFlag,false)
+			var conversation: Dictionary = lines.RESCUES[park.saved_checkpoint.scene]
+			_notice(conversation.freed if rescued else conversation.bound)
+			return
+		if action=="ruinasChamber":
+			_confirm_park("Câmara do Elo","Depois de entrar, só será possível sair após derrotar Eremor.","Entrar",func():
+				var scene := "kronasta-coracao-d"
+				if _result(session.checkpoint(ParkCheckpoint.make(scene,ParkCheckpoint.spawn(scene),ParkCheckpoint.SPACE),session.snapshot().player)):_show_saved.call_deferred())
+			return
+		if action=="ruinasDuel":
+			var ruins = load("res://scripts/campaign/ruinas_elo.gd")
+			var scene: String=park.saved_checkpoint.scene
+			if scene=="kronasta-estadio-a":
+				_show_stadium_bracket(ruins)
+				return
+			if scene=="kronasta-coracao-d":
+				_request_enamor(ruins)
+				return
+			var intro: String=preload("res://scripts/campaign/ruinas_dialogue.gd").RESCUES[scene].guard
+			_confirm_park(event.name,intro,"Enfrentar",func():
+				if _result(ruins.begin(session,park.player)):_show_saved.call_deferred())
+			return
+		if action=="pipeiroFantasma":
+			_confirm_park("Pipeiro Fantasma","Tyler: Era eu nos fios. Eu soltava as almas antes que o Bando chegasse. Uma flor caiu junto da última pipa. Guarda pra mim?","Receber Flor de Cerejeira",func():
+				if _result(load("res://scripts/campaign/tyler_arcs.gd").finish_ghost(session)):_show_saved.call_deferred())
+			return
 		if action=="districtDuel":
 			_district_action(str(event.props.duel))
 			return
@@ -1774,19 +1852,30 @@ func _confirm_park(title: String, text: String, accept: String, callback: Callab
 	dialog.popup_centered(Vector2i(620, 200))
 
 func _show_encounter() -> void:
+	var saved_encounter:Dictionary=session.snapshot().player.encounter
+	if _finish_platyx_refusal(saved_encounter):return
+	if saved_encounter.get("kind")=="mormaco-story" and saved_encounter.state.q.get("mormacoForm","")=="ambush":
+		if _finish_mormaco_ambush():return
 	_clear()
 	var is_district:bool=session.snapshot().player.encounter.get("kind","")=="district"
 	var is_morro: bool = session.snapshot().player.encounter.get("kind", "") == "morro"
 	battle = MorroBattleView.new() if is_morro or is_district else EncounterView.new()
-	battle.configure(content, session.snapshot().player.encounter.state)
+	battle.reward_encounter = saved_encounter
+	battle.configure(content, saved_encounter.state)
 	battle.reward_player = session.snapshot().player
-	battle.reward_encounter = session.snapshot().player.encounter
+
 	battle.reduced_motion = preferences.reduced_motion
 	add_child(battle)
 	battle.save_requested.connect(func(state: Dictionary):
 		var result: Dictionary = encounters.save_battle(state)
 		battle.blocked = result.status != "ok"
-		if battle.blocked: battle.suspend_actions())
+		if battle.blocked: battle.suspend_actions()
+		elif saved_encounter.get("kind")=="mormaco-story" and state.q.get("mormacoForm","")=="ambush":
+			battle.paused=true
+			_finish_mormaco_ambush.call_deferred()
+		elif saved_encounter.get("scene")=="kronasta-coracao-c" and state.q.get("platyxRefusal","")=="stopped":
+			battle.paused=true
+			_finish_platyx_refusal.call_deferred(session.snapshot().player.encounter))
 	battle.leave_requested.connect(_menu)
 	battle.finish_requested.connect(func():
 		if not _result(encounters.save_battle(battle.model.snapshot())): return
@@ -1794,6 +1883,13 @@ func _show_encounter() -> void:
 			if _result(load("res://scripts/campaign/district_campaign.gd").new(session).settle()):_return_district_result.call_deferred()
 		elif is_morro:
 			if _result(morro.settle()): _return_morro_result.call_deferred()
+		elif session.snapshot().player.encounter.kind=="ruinas-elo":
+			var outcome: String = session.snapshot().player.encounter.state.outcome
+			if _result(load("res://scripts/campaign/ruinas_elo.gd").settle(session)):_return_ruinas.call_deferred(outcome)
+		elif session.snapshot().player.encounter.kind=="tyler-lab":
+			if _result(load("res://scripts/campaign/tyler_arcs.gd").settle_lab(session)):_return_tyler_lab.call_deferred()
+		elif session.snapshot().player.encounter.kind=="tufanocorte-story":
+			if _result(preload("res://scripts/campaign/tufanocorte_story.gd").new(session).settle()):_return_tufanocorte.call_deferred()
 		elif session.snapshot().player.encounter.kind=="mormaco-story":
 			if _result(load("res://scripts/campaign/mormaco_story.gd").new(session).settle()):_return_mormaco.call_deferred()
 		elif session.snapshot().player.encounter.kind=="retalho-rescue":
@@ -3160,14 +3256,302 @@ func _request_mormaco(action:String)->void:
 	elif action=="mormacoRest":
 		_confirm_park("Pouso da margem","Descansar e recuperar linha e armação da equipe? Sem custo ou experiência.","Descansar",func():
 			if _result(story.rest(point)):park.refresh(session.snapshot().player))
+	elif session.snapshot().player.flags.get("mormacoEmboscada",false) and not session.snapshot().player.flags.get("mormacoTylerChegou",false):
+		_confirm_park("Kael","Mormaço recua para o poço. — Espera… tem alguém na margem!\n\nVoz entre as árvores: Agora! Lancem o Carretel Negro!","Olhar para o poço",func():_play_mormaco_ambush.call_deferred(point))
 	elif story.freed(session.snapshot().player):_notice("Mormaço: O frio sabe onde estão os outros. Não confunda pressa com vento, pequeno pipeiro.")
 	elif story.won(session.snapshot().player):
 		_confirm_park("O primeiro Vento livre","Os cordões perdem a tensão. O brilho violeta desaparece dos olhos de Mormaço; a água volta a subir clara. Ele respira fundo e observa Kael.\n\nMormaço: Enfim… Achou que eu estava dormindo?\n\nKael: Os outros Ventos também estão presos?\n\nMormaço: O frio sabe onde estão os outros.","Escutar o Vento",func():
 			if _result(story.release(point)):park.refresh(session.snapshot().player))
 	elif not session.snapshot().player.flags.get("mormacoVentosPararam",false):_notice("O ar parado chamou sua atenção na entrada. Examine o sinal junto ao caminho da parte A antes de enfrentar o guardião.")
-	else:
-		_confirm_park("Mormaço · amarrado","Os olhos do guardião brilham contra sua vontade. O mesmo fio negro do galpão aperta as placas e as saídas de água quente.\n\nKael: Não é ele que está escolhendo lutar. Precisamos desfazer esse controle.\n\nDuelo Nv.27. O jato marca o ponto de impacto antes de disparar. Você pode recuar e descansar na margem.","Enfrentar",func():
+	elif session.snapshot().player.flags.get("mormacoTylerChegou",false):
+		_confirm_park("Kael e Tyler","Tyler: Rai e eu vamos abrir espaço. Mire nos fios do Carretel, Kael!\n\nKael: Entendido. Vamos trazer Mormaço de volta.","Lutar juntos",func():
 			if _result(story.begin(point)):_show_saved.call_deferred())
+	else:
+		_confirm_park("Kael · Mormaço","Mormaço ergue a cabeça sobre a água e aceita o desafio.\n\nKael: Quero ver o que o primeiro Vento sabe fazer.","Enfrentar",func():
+			if _result(story.begin(point)):_show_saved.call_deferred())
+
+func _finish_mormaco_ambush()->bool:
+	var story=load("res://scripts/campaign/mormaco_story.gd").new(session)
+	if not _result(story.settle()):return false
+	_return_mormaco_ambush.call_deferred()
+	return true
+
+func _return_mormaco_ambush()->void:
+	_show_saved()
+	while is_instance_valid(scene_loading):await get_tree().process_frame
+	if is_instance_valid(park) and is_instance_valid(park.get("mormaco")):_request_mormaco("mormacoStory")
+
+func _play_mormaco_ambush(point:Vector2)->void:
+	if not is_instance_valid(park) or not is_instance_valid(park.get("mormaco")):return
+	var stage_view:Node2D=park
+	flow_busy=true
+	await get_tree().process_frame
+	if not is_instance_valid(stage_view) or park!=stage_view:return
+	stage_view.paused=true
+	await stage_view.mormaco.play_possession()
+	if not is_instance_valid(stage_view) or park!=stage_view:return
+	stage_view.paused=false
+	flow_busy=false
+	var story=load("res://scripts/campaign/mormaco_story.gd").new(session)
+	if not _result(story.finish_ambush(point)):return
+	stage_view.refresh(session.snapshot().player)
+	stage_view.mormaco.staging=false
+	_confirm_park("Tyler","Tyler chega à margem com Rai. — Kael! Aquele carretel está controlando o Mormaço. Se você enfrentar os jatos sozinho, ele vai te encurralar.\n\nKael: Eu seguro a linha. Vocês atacam quando ele baixar a guarda.\n\nTyler: Vamos juntos, Rai!","Lutar juntos",func():
+		if _result(story.begin(point)):_show_saved.call_deferred())
 func _return_mormaco()->void:
 	_show_saved()
 	if session.snapshot().player.get("lastMormaco","")=="won":_notice.call_deferred("Os nós do Carretel Negro cederam. Mormaço continua vivo. Aproxime-se da margem para escutar o guardião.")
+
+func _return_tufanocorte()->void:
+	_show_saved()
+	if session.snapshot().player.flags.get("tufanocorteLiberto",false):
+		_notice.call_deferred("Tufanocorte: Os fios cederam. Agora escute o vento que sobe pela pedra.\n\nCorrente de Ar registrada.")
+
+func _ride_serra_wind()->void:
+	var view:Node2D=park
+	await get_tree().process_frame
+	if not is_instance_valid(view) or view!=park:return
+	var script=preload("res://scripts/campaign/tufanocorte_story.gd")
+	var service=script.new(session)
+	if not _result(service.ride_wind(view.player)):return
+	flow_busy=true
+	view.paused=true
+	if not preferences.reduced_motion:
+		var landing:Vector2=view.model.project(script.WIND_END)
+		var actor_root:Node2D=view.player_root
+		var rise:=create_tween()
+		rise.tween_property(actor_root,"position",actor_root.position.lerp(landing,.5)+Vector2(0,-65),.4).set_trans(Tween.TRANS_SINE)
+		rise.tween_property(actor_root,"position",landing,.35).set_trans(Tween.TRANS_SINE)
+		await rise.finished
+	if not is_instance_valid(view) or view!=park:return
+	flow_busy=false
+	_show_saved()
+
+func _tyler_study() -> bool:
+	var arcs = load("res://scripts/campaign/tyler_arcs.gd")
+	var player: Dictionary = session.snapshot().player
+	if arcs.finale_ready(player):
+		var dialog := _dialog("Tyler · Flor de Cerejeira", "Tyler: O DNA é do Assis. Sou uma cópia dele. Se eu fui feito pra ser alguém que já existe, quem sobra quando eu tiro isso?\n\nKael: Você é alguém que se importa, Tyler. Foi você quem escolheu ajudar. Vem, vamos sair daqui.", "Entregar a flor")
+		dialog.confirmed.connect(func():
+			if _result(arcs.finish_finale(session)):_show_saved.call_deferred())
+		dialog.confirmed.connect(dialog.queue_free)
+		dialog.canceled.connect(dialog.queue_free)
+		return true
+	if not arcs.Rules.completed(player, "centro") or player.flags.get("tylerCreatedKnown", false):
+		return false
+	var dialog := _dialog("Laboratório do Professor", "Tyler: Os registros estão ali. A sentinela fechou a saída. Kael, fica comigo.", "Enfrentar a sentinela", "Voltar")
+	dialog.confirmed.connect(func():
+		if _result(arcs.begin_lab(session)):_show_saved.call_deferred())
+	dialog.confirmed.connect(dialog.queue_free)
+	dialog.canceled.connect(dialog.queue_free)
+	return true
+
+func _return_tyler_lab() -> void:
+	_show_saved()
+	if session.snapshot().player.flags.get("tylerCreatedKnown", false):
+		_notice("Tyler: Esse registro diz que eu fui criado aqui. O resto foi apagado.\n\nKael: O Rabbito também foi feito, e ninguém manda no que ele escolhe.")
+
+func _return_ruinas(outcome: String = "") -> void:
+	_show_saved()
+	var saved: Dictionary = session.snapshot()
+	var scene: String = saved.checkpoint.get("scene","")
+	var lines = preload("res://scripts/campaign/ruinas_dialogue.gd")
+	if scene!="kronasta-coracao-d" and not lines.RESCUES.has(scene):return
+	while is_instance_valid(scene_loading) or flow_busy:
+		await get_tree().process_frame
+	if not is_instance_valid(park) or park.saved_checkpoint.scene!=scene:return
+	if lines.RESCUES.has(scene):
+		if scene == "kronasta-coracao-c" and outcome == "won":
+			park.path.clear()
+			park.paused = true
+			await preload("res://scripts/campaign/platyx_overworld.gd").refuse(park, preferences.reduced_motion)
+		_notice(lines.RESCUES[scene].freed if outcome=="won" else lines.LOST_GUARD)
+		return
+	var flags: Dictionary = session.snapshot().player.flags
+	if flags.get("enamorDerrotado",false):
+		_notice(lines.VICTORY)
+	elif flags.get("ruinasChefeVencido",false) and not flags.get("enamorDesperto",false):
+		_request_enamor(load("res://scripts/campaign/ruinas_elo.gd"))
+	elif outcome in ["lost","fled"]:
+		_notice(lines.REMATCH if flags.get("enamorDesperto",false) else lines.LOST_CHIEF)
+
+func _show_stadium_bracket(finals: GDScript) -> void:
+	var view = park
+	view.path.clear()
+	view.paused = true
+	var flags: Dictionary = session.snapshot().player.flags
+	var round: int = finals.round_index(flags)
+	var panel := ConfirmationDialog.new()
+	panel.title = "Campeonato de Kronasta"
+	panel.ok_button_text = "Enfrentar " + str(finals.BRACKET[round][0]) if round < 4 else "Concluir"
+	panel.cancel_button_text = "Voltar"
+	var layout := VBoxContainer.new()
+	layout.add_theme_constant_override("separation", 16)
+	panel.add_child(layout)
+	var columns := HBoxContainer.new()
+	columns.add_theme_constant_override("separation", 24)
+	layout.add_child(columns)
+	var rounds := [
+		["Quartas de final", "Kael × Grampo", "Tyler venceu Mikka", "Faye venceu Kleie", "Tainá venceu Lohan"],
+		["Semifinais", "Kael × Tyler", "Faye venceu Tainá"],
+		["Final da chave", "Kael × Faye"],
+	]
+	for index in rounds.size():
+		var column := VBoxContainer.new()
+		column.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		columns.add_child(column)
+		for row in rounds[index].size():
+			var label := Label.new()
+			label.text = rounds[index][row] if row == 0 or round >= index else "A definir"
+			if row == 1 and round > index: label.text += "  ✓"
+			if index == round: label.add_theme_color_override("font_color", Color("#ffd78e"))
+			column.add_child(label)
+	layout.add_child(HSeparator.new())
+	var title := Label.new()
+	title.text = "Duelo pelo título · Jamile — " + ("Campeão: Kael" if round == 4 else "Desafio liberado" if round == 3 else "Reservado ao vencedor da chave")
+	layout.add_child(title)
+	panel.confirmed.connect(func():
+		if round < 4 and _result(finals.begin(session,view.player)):_show_saved.call_deferred()
+		panel.queue_free())
+	panel.canceled.connect(panel.queue_free)
+	panel.tree_exiting.connect(func():
+		if is_instance_valid(view):view.paused = false)
+	add_child(panel)
+	panel.popup_centered(Vector2i(650, 270))
+	var accept := panel.get_ok_button()
+	var back := panel.get_cancel_button()
+	accept.focus_neighbor_left = accept.get_path_to(back)
+	accept.focus_neighbor_right = accept.get_path_to(back)
+	back.focus_neighbor_left = back.get_path_to(accept)
+	back.focus_neighbor_right = back.get_path_to(accept)
+	accept.grab_focus()
+
+func _present_pending_ending() -> void:
+	var saved: Dictionary = session.snapshot()
+	if saved.checkpoint.get("scene") != "kronasta-estadio-a" or not saved.player.flags.get("campeaoKronasta",false) or saved.player.flags.get("kronastaEndingSeen",false):
+		return
+	while is_instance_valid(scene_loading) or flow_busy:
+		await get_tree().process_frame
+	if not is_instance_valid(park) or session.snapshot().checkpoint.get("scene") != "kronasta-estadio-a":
+		return
+	var view = park
+	view.path.clear()
+	view.paused = true
+	var dialog := _dialog("Campeão de Kronasta", "A arquibancada explode em aplausos. Heleana se levanta, e Tyler ergue a mão para Kael.\n\nJamile: A linha é sua, campeão.", "Ver créditos")
+	dialog.confirmed.connect(dialog.queue_free)
+	dialog.confirmed.connect(_show_kronasta_credits.call_deferred)
+	dialog.popup_centered(Vector2i(640,240))
+
+func _show_kronasta_credits() -> void:
+	var credits := _dialog("Soulmonsters", "CAMPEONATO DE KRONASTA\n\nCriação e desenvolvimento\nEquipe Soulmonsters\n\nObrigado por jogar!", "Voltar à cidade")
+	credits.confirmed.connect(func():
+		var saved: Dictionary = session.snapshot()
+		saved.player.flags.kronastaEndingSeen = true
+		var city := preload("res://scripts/campaign/neighborhood_checkpoint.gd").HOME
+		var result: Dictionary = session.commit_operation("kronasta-ending-v1", {"kind":"world","scene":"quintal","position":[city.x,city.y]}, saved.player)
+		if _result(result):
+			credits.queue_free()
+			_show_saved.call_deferred())
+	credits.popup_centered(Vector2i(640,320))
+
+func _request_enamor(ruins: GDScript) -> void:
+	var flags: Dictionary = session.snapshot().player.flags
+	if not flags.get("ruinasChefeVencido",false) and not flags.get("enamorDesperto",false):
+		_confirm_park("Rato · Bando do Cerol",preload("res://scripts/campaign/ruinas_dialogue.gd").CHIEF,"Enfrentar Rato",func():
+			if _result(ruins.begin(session,park.player)):_show_saved.call_deferred())
+		return
+	if session.snapshot().player.flags.get("enamorDesperto",false):
+		_confirm_park("Eremor",preload("res://scripts/campaign/ruinas_dialogue.gd").REMATCH,"Enfrentar",func():
+			if _result(ruins.begin(session,park.player)):_show_saved.call_deferred())
+		return
+	_confirm_park("Altar do Elo",preload("res://scripts/campaign/ruinas_dialogue.gd").BETRAYAL,"Continuar",_play_enamor_awaken.call_deferred)
+
+func _play_enamor_awaken() -> void:
+	if flow_busy or not is_instance_valid(park):
+		return
+	var view = park
+	var saved: Dictionary = session.snapshot()
+	if saved.checkpoint.get("scene")!="kronasta-coracao-d" or saved.player.flags.get("enamorDesperto",false):
+		return
+	var point: Vector2 = view.player
+	saved.player.flags.enamorDesperto = true
+	if not _result(session.commit_operation("enamor-despertar-v1",ParkCheckpoint.make("kronasta-coracao-d",point,ParkCheckpoint.SPACE),saved.player)):
+		return
+	flow_busy = true
+	view.paused = true
+	var camera: Camera2D = view.camera
+	var offset := camera.offset
+	var focus: Vector2 = view.model.project(Vector2(24,15.5)) - camera.position
+	var chamber_art = preload("res://scripts/overworld/elo_chamber.gd")
+	var gag: Dictionary = chamber_art.prepare_rock_gag(view)
+	await chamber_art.move_culprit(view,gag,preferences.reduced_motion)
+	if not is_instance_valid(view):
+		flow_busy=false
+		return
+	var effect := chamber_art.rupture(view)
+	var shapes = preload("res://scripts/overworld/forest_structures.gd")
+	effect.modulate.a = 0
+	var tween := view.create_tween()
+	tween.tween_property(camera,"offset",offset+focus,.32 if not preferences.reduced_motion else 0.0)
+	tween.tween_property(effect,"modulate:a",1.0,.48)
+	if not preferences.reduced_motion:
+		for shake in [Vector2(4,-3),Vector2(-5,2),Vector2(3,1),Vector2.ZERO]:
+			tween.tween_property(camera,"offset",offset+focus+shake,.06)
+	await tween.finished
+	if not is_instance_valid(view):
+		flow_busy = false
+		return
+	var chamber = preload("res://scripts/overworld/elo_chamber.gd")
+	var creature: AnimatedSprite2D = chamber.awakening_sprite(view)
+	if creature != null:
+		var roar := AudioStreamPlayer.new()
+		roar.stream = load("res://assets/overworld/kits/camara-do-elo-v1/enamor-rugido.wav")
+		roar.bus = "SFX"
+		roar.volume_db = -8
+		view.add_child(roar)
+		roar.finished.connect(roar.queue_free)
+		creature.frame_changed.connect(func():
+			if creature.frame==6:
+				if is_instance_valid(roar):roar.play()
+				chamber.drop_rock(gag,preferences.reduced_motion))
+		creature.play()
+		await creature.animation_finished
+		if not is_instance_valid(view):
+			flow_busy = false
+			return
+	chamber.collapse(view)
+	var awakened: AnimatedSprite2D = chamber.eremor_advance(view)
+	if not preferences.reduced_motion:
+		awakened.play()
+		var step := view.create_tween()
+		step.tween_property(awakened,"position",view.model.project(Vector2(24,16.5)),.48)
+		await step.finished
+		if not is_instance_valid(view):
+			flow_busy = false
+			return
+		awakened.stop()
+	for i in 12:
+		var angle := TAU*i/12.0
+		var at := Vector2.from_angle(angle)*float(28+i*4)
+		shapes.quad(effect,PackedVector2Array([at+Vector2(-15,0),at+Vector2(0,-9),at+Vector2(15,0),at+Vector2(0,9)]),Color(.76,.65,.79,.55))
+	var fade := view.create_tween()
+	fade.tween_property(effect,"modulate:a",0.0,.65)
+	await fade.finished
+	if not is_instance_valid(view):
+		flow_busy = false
+		return
+	effect.queue_free()
+	camera.offset = offset
+	await chamber.evacuate(view)
+	flow_busy = false
+	var ruins = load("res://scripts/campaign/ruinas_elo.gd")
+	_confirm_park("Eremor desperto",preload("res://scripts/campaign/ruinas_dialogue.gd").AWAKENED,"Enfrentar",func():
+		if _result(ruins.begin(session,view.player)):_show_saved.call_deferred())
+
+func _finish_platyx_refusal(encounter: Dictionary) -> bool:
+	if encounter.get("kind")!="ruinas-elo" or encounter.get("scene")!="kronasta-coracao-c" or encounter.state.q.get("platyxRefusal","")!="stopped":
+		return false
+	if not _result(load("res://scripts/campaign/ruinas_elo.gd").settle(session)):
+		return false
+	_return_ruinas.call_deferred("won")
+	return true

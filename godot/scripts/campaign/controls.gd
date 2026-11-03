@@ -142,7 +142,11 @@ static func held(action: String) -> bool:
 	return Input.is_action_pressed("campaign_" + action)
 
 static func pressed(event: InputEvent, action: String) -> bool:
-	return event.is_action_pressed("campaign_" + action) and not (event is InputEventKey and event.echo)
+	if event is InputEventKey:
+		if event.echo or not event.pressed: return false
+		if action == "interact" and event.physical_keycode == 0:
+			return event.keycode in [key_for(action), KEY_ENTER]
+	return event.is_action_pressed("campaign_" + action)
 
 static func prompt(action: String) -> String:
 	if action=="run" and gamepad:return "L3" if family()!="switch" else "Analógico E"

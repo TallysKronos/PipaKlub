@@ -127,6 +127,10 @@ func _build_events() -> void:
 	if saved_checkpoint.scene=="park-veredas":
 		for event:Dictionary in preload("res://scripts/campaign/canal_gate.gd").events(saved_player):
 			if Checkpoint.allowed(event,saved_player,area_id):interaction_events.append(event)
+	if Checkpoint.region_of(saved_checkpoint.scene)=="montanha":
+		for event:Dictionary in Checkpoint.data(saved_checkpoint.scene).events:
+			if event.props.get("district","")=="alto-da-serra" and Checkpoint.allowed(event,saved_player,area_id) and not interaction_events.any(func(existing):return int(existing.id)==int(event.id)):
+				interaction_events.append(event.duplicate(true))
 	var district_region:=Checkpoint.region_of(saved_checkpoint.scene)
 	if district_region in ["bambuzal","beira-canal","feira","cais","industrial","palafitas"]:
 		var rules=preload("res://scripts/campaign/district_rules.gd")
@@ -164,6 +168,11 @@ func _build_events() -> void:
 	if saved_checkpoint.scene=="park-clearing":
 		for e:Dictionary in preload("res://scripts/campaign/tyler_clareira.gd").events():
 			if not interaction_events.any(func(existing):return int(existing.id)==int(e.id)):interaction_events.append(e)
+	if saved_checkpoint.scene=="kronasta-montanha-c":
+		interaction_events.append_array(preload("res://scripts/campaign/tufanocorte_story.gd").lesson_events(saved_player))
+		interaction_events.append_array(preload("res://scripts/campaign/tufanocorte_story.gd").wind_events(saved_player))
+	if saved_checkpoint.scene=="mina-ferro-a":
+		interaction_events.append_array(preload("res://scripts/campaign/tufanocorte_story.gd").gallery_events(saved_player))
 	interaction_events.append_array(Training.events(area_id,model))
 	interaction_events.append_array(Bosque.rest_events(area_id,model))
 	super()

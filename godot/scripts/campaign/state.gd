@@ -62,7 +62,7 @@ static func inspect(value: Variant, slot_id: String) -> String:
 	if kind == "practice" and (not whole(checkpoint.get("lesson")) or checkpoint.lesson > 4):
 		return "invalid"
 	if kind == "world":
-		if checkpoint.get("scene") not in ["parque-patio-liga","kael-home","kronasta-palafitas-a","kronasta-palafitas-b","kronasta-palafitas-c","kronasta-industrial-d","kronasta-bosque-d","kronasta-cais-a","kronasta-cais-b","kronasta-cais-c","caverna-mural-a","caverna-mural-b","caverna-mural-c","kronasta-feira-a","kronasta-feira-b","kronasta-feira-c","kronasta-beira-canal-a","kronasta-beira-canal-b","kronasta-beira-canal-c","kronasta-bambuzal-a","kronasta-bambuzal-b","kronasta-bambuzal-c","quintal", "professor-home", "kite-shop", "park-trail", "park-clearing", "park-veredas", "morro", "morro-area-2", "morro-area-3", "morro-area-4", "morro-area-5","kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c","kronasta-pantano-a","kronasta-pantano-b","kronasta-pantano-c","kronasta-montanha-a","kronasta-montanha-b","kronasta-montanha-c","kronasta-industrial-a","kronasta-industrial-b","kronasta-industrial-c","mina-ferro-a","mina-ferro-b","mina-ferro-c","mina-ferro-d","gelo-a","gelo-b","gelo-c","gelo-d","submerso-a","submerso-b","submerso-c"] or not checkpoint.get("position") is Array or checkpoint.position.size() != 2:
+		if checkpoint.get("scene") not in ["kronasta-estadio-a","kronasta-mirante-a","kronasta-mirante-b","kronasta-mirante-c","kronasta-coracao-a","kronasta-coracao-b","kronasta-coracao-c","kronasta-coracao-d","kronasta-porto-a","kronasta-porto-b","kronasta-porto-c","kronasta-centro-a","kronasta-centro-b","kronasta-centro-c","kronasta-lajes-a","kronasta-lajes-b","kronasta-lajes-c","parque-patio-liga","kael-home","kronasta-palafitas-a","kronasta-palafitas-b","kronasta-palafitas-c","kronasta-industrial-d","kronasta-bosque-d","kronasta-cais-a","kronasta-cais-b","kronasta-cais-c","caverna-mural-a","caverna-mural-b","caverna-mural-c","kronasta-feira-a","kronasta-feira-b","kronasta-feira-c","kronasta-beira-canal-a","kronasta-beira-canal-b","kronasta-beira-canal-c","kronasta-bambuzal-a","kronasta-bambuzal-b","kronasta-bambuzal-c","quintal", "professor-home", "kite-shop", "park-trail", "park-clearing", "park-veredas", "morro", "morro-area-2", "morro-area-3", "morro-area-4", "morro-area-5","kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c","kronasta-pantano-a","kronasta-pantano-b","kronasta-pantano-c","kronasta-montanha-a","kronasta-montanha-b","kronasta-montanha-c","kronasta-industrial-a","kronasta-industrial-b","kronasta-industrial-c","mina-ferro-a","mina-ferro-b","mina-ferro-c","mina-ferro-d","gelo-a","gelo-b","gelo-c","gelo-d","submerso-a","submerso-b","submerso-c"] or not checkpoint.get("position") is Array or checkpoint.position.size() != 2:
 			return "invalid"
 		for coordinate in checkpoint.position:
 			if not (coordinate is float or coordinate is int) or not is_finite(float(coordinate)) or absf(coordinate) > 4096:
@@ -212,13 +212,19 @@ static func valid_workshop(state: Dictionary) -> bool:
 
 static func valid_encounter(value: Variant) -> bool:
 	if value is Dictionary and value.has("rewardXp") and (not whole(value.rewardXp) or value.rewardXp>100000): return false
-	if not value is Dictionary or not value.get("id") is String or value.get("kind") not in ["lacertubo", "wild", "morro", "trainer", "district","canal-gate","feira-story","retalho-story","warehouse-story","retalho-rescue","mormaco-story"] or not value.get("state") is Dictionary: return false
+	if not value is Dictionary or not value.get("id") is String or value.get("kind") not in ["lacertubo", "wild", "morro", "trainer", "district","canal-gate","feira-story","retalho-story","warehouse-story","retalho-rescue","mormaco-story","tufanocorte-story","tyler-lab","ruinas-elo"] or not value.get("state") is Dictionary: return false
 	if not value.get("returnPoint") is Array or value.returnPoint.size() != 2: return false
 	for point in value.returnPoint:
 		if not number(point) or point < 0 or point > 1536: return false
 	if value.has("space"):
 		if value.space!="parque-overworld-v1" or not preload("res://scripts/campaign/park_checkpoint.gd").loadable_position(value.get("scene","park-veredas"),Vector2(value.returnPoint[0],value.returnPoint[1])): return false
 	var state: Dictionary = value.state
+	if value.kind=="ruinas-elo":
+		var stage: Array = load("res://scripts/campaign/ruinas_elo.gd").battle_stage(value)
+		var legacy_eremor: bool = value.get("scene")=="kronasta-coracao-d" and state.get("enemyModelId")=="pipa-dragao-desatada"
+		if stage.is_empty() or value.get("space")!="parque-overworld-v1" or (state.get("enemyModelId")!=stage[1] and not legacy_eremor) or state.get("enemyLevel")!=stage[2] or value.get("rewardXp")!=0:return false
+	if value.kind=="tyler-lab" and (value.get("scene")!="professor-home" or value.has("space") or state.get("enemyModelId")!="lacertubo" or state.get("enemyLevel")!=33 or value.get("rewardXp")!=0):return false
+	if value.kind=="tufanocorte-story" and (value.get("scene")!="kronasta-montanha-c" or value.get("space")!="parque-overworld-v1" or state.get("enemyModelId")!="tufanocorte" or state.get("enemyLevel")!=29 or value.get("rewardXp")!=0):return false
 	if value.kind=="mormaco-story" and (value.get("scene")!="kronasta-pantano-c" or value.get("space")!="parque-overworld-v1" or state.get("enemyModelId")!="mormaco-possuido" or state.get("enemyLevel")!=27 or value.get("rewardXp")!=0):return false
 	if value.kind=="retalho-rescue" and (value.get("scene")!="kronasta-palafitas-c" or value.get("space")!="parque-overworld-v1" or state.get("enemyModelId")!="mata" or state.get("enemyLevel")!=24 or value.get("rewardXp")!=0):return false
 	if value.kind=="warehouse-story":
@@ -262,7 +268,7 @@ static func valid_encounter(value: Variant) -> bool:
 	if value.kind=="district":
 		var context:Variant=value.get("districtContext")
 		var rules=preload("res://scripts/campaign/district_rules.gd")
-		if not rules.valid_context(context) or context.district not in ["bambuzal","beira-canal","feira","cais","industrial","palafitas"] or context.duel!=state.get("trailStage") or not valid_morro_state(state):return false
+		if not rules.valid_context(context) or context.district not in ["bambuzal","beira-canal","feira","cais","industrial","palafitas","alto-da-serra","centro","lajes","porto","mirante"] or context.duel!=state.get("trailStage") or not valid_morro_state(state):return false
 		var d:Dictionary=rules.definition(context.district)
 		var stage:Dictionary=d.stages.filter(func(s):return s.id==context.duel)[0]
 		if context.mode=="defense":

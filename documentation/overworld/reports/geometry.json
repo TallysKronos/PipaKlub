@@ -67,19 +67,265 @@
       "walkable": 921
     },
     {
-      "directed_edges": 4516,
+      "directed_edges": 4572,
       "id": "kronasta-bosque-c",
       "ramp_probes": 70,
-      "walkable": 1241
+      "walkable": 1257
     },
     {
       "directed_edges": 4026,
       "id": "kronasta-bosque-a",
       "ramp_probes": 80,
       "walkable": 1141
+    },
+    {
+      "directed_edges": 4078,
+      "id": "kronasta-industrial-a",
+      "ramp_probes": 70,
+      "walkable": 1140
+    },
+    {
+      "directed_edges": 4064,
+      "id": "kronasta-industrial-b",
+      "ramp_probes": 70,
+      "walkable": 1132
+    },
+    {
+      "directed_edges": 4232,
+      "id": "kronasta-industrial-c",
+      "ramp_probes": 70,
+      "walkable": 1168
+    },
+    {
+      "directed_edges": 3586,
+      "id": "kronasta-pantano-a",
+      "ramp_probes": 80,
+      "walkable": 1032
+    },
+    {
+      "directed_edges": 3574,
+      "id": "kronasta-pantano-b",
+      "ramp_probes": 80,
+      "walkable": 1024
+    },
+    {
+      "directed_edges": 3552,
+      "id": "kronasta-pantano-c",
+      "ramp_probes": 40,
+      "walkable": 984
+    },
+    {
+      "directed_edges": 2366,
+      "id": "kronasta-montanha-a",
+      "ramp_probes": 60,
+      "walkable": 687
+    },
+    {
+      "directed_edges": 2286,
+      "id": "kronasta-montanha-b",
+      "ramp_probes": 60,
+      "walkable": 663
+    },
+    {
+      "directed_edges": 2720,
+      "id": "kronasta-montanha-c",
+      "ramp_probes": 120,
+      "walkable": 771
+    },
+    {
+      "directed_edges": 2092,
+      "id": "mina-ferro-a",
+      "ramp_probes": 50,
+      "walkable": 585
+    },
+    {
+      "directed_edges": 2180,
+      "id": "mina-ferro-b",
+      "ramp_probes": 50,
+      "walkable": 613
+    },
+    {
+      "directed_edges": 2292,
+      "id": "mina-ferro-c",
+      "ramp_probes": 50,
+      "walkable": 641
+    },
+    {
+      "directed_edges": 2444,
+      "id": "mina-ferro-d",
+      "ramp_probes": 100,
+      "walkable": 674
+    },
+    {
+      "directed_edges": 5776,
+      "id": "gelo-a",
+      "ramp_probes": 100,
+      "walkable": 1567
+    },
+    {
+      "directed_edges": 6142,
+      "id": "gelo-b",
+      "ramp_probes": 100,
+      "walkable": 1652
+    },
+    {
+      "directed_edges": 5846,
+      "id": "gelo-c",
+      "ramp_probes": 100,
+      "walkable": 1588
+    },
+    {
+      "directed_edges": 5810,
+      "id": "gelo-d",
+      "ramp_probes": 200,
+      "walkable": 1576
+    },
+    {
+      "directed_edges": 5636,
+      "id": "submerso-a",
+      "ramp_probes": 100,
+      "walkable": 1542
+    },
+    {
+      "directed_edges": 6052,
+      "id": "submerso-b",
+      "ramp_probes": 100,
+      "walkable": 1636
+    },
+    {
+      "directed_edges": 5672,
+      "id": "submerso-c",
+      "ramp_probes": 100,
+      "walkable": 1552
+    },
+    {
+      "directed_edges": 4068,
+      "id": "kronasta-bambuzal-a",
+      "ramp_probes": 60,
+      "walkable": 1130
+    },
+    {
+      "directed_edges": 3902,
+      "id": "kronasta-bambuzal-b",
+      "ramp_probes": 90,
+      "walkable": 1086
+    },
+    {
+      "directed_edges": 4098,
+      "id": "kronasta-bambuzal-c",
+      "ramp_probes": 140,
+      "walkable": 1135
+    },
+    {
+      "directed_edges": 4370,
+      "id": "kronasta-beira-canal-a",
+      "ramp_probes": 60,
+      "walkable": 1202
+    },
+    {
+      "directed_edges": 4290,
+      "id": "kronasta-beira-canal-b",
+      "ramp_probes": 90,
+      "walkable": 1200
+    },
+    {
+      "directed_edges": 4302,
+      "id": "kronasta-beira-canal-c",
+      "ramp_probes": 140,
+      "walkable": 1190
+    },
+    {
+      "directed_edges": 4424,
+      "id": "kronasta-feira-a",
+      "ramp_probes": 80,
+      "walkable": 1220
+    },
+    {
+      "directed_edges": 4314,
+      "id": "kronasta-feira-b",
+      "ramp_probes": 120,
+      "walkable": 1218
+    },
+    {
+      "directed_edges": 4416,
+      "id": "kronasta-feira-c",
+      "ramp_probes": 160,
+      "walkable": 1220
+    },
+    {
+      "directed_edges": 2254,
+      "id": "caverna-mural-a",
+      "ramp_probes": 50,
+      "walkable": 610
+    },
+    {
+      "directed_edges": 2110,
+      "id": "caverna-mural-b",
+      "ramp_probes": 50,
+      "walkable": 575
+    },
+    {
+      "directed_edges": 2392,
+      "id": "caverna-mural-c",
+      "ramp_probes": 50,
+      "walkable": 644
+    },
+    {
+      "directed_edges": 3346,
+      "id": "kronasta-cais-a",
+      "ramp_probes": 40,
+      "walkable": 925
+    },
+    {
+      "directed_edges": 3564,
+      "id": "kronasta-cais-b",
+      "ramp_probes": 40,
+      "walkable": 986
+    },
+    {
+      "directed_edges": 3762,
+      "id": "kronasta-cais-c",
+      "ramp_probes": 80,
+      "walkable": 1038
+    },
+    {
+      "directed_edges": 3912,
+      "id": "kronasta-bosque-d",
+      "ramp_probes": 80,
+      "walkable": 1081
+    },
+    {
+      "directed_edges": 3074,
+      "id": "kronasta-industrial-d",
+      "ramp_probes": 80,
+      "walkable": 845
+    },
+    {
+      "directed_edges": 3346,
+      "id": "kronasta-palafitas-a",
+      "ramp_probes": 40,
+      "walkable": 925
+    },
+    {
+      "directed_edges": 3564,
+      "id": "kronasta-palafitas-b",
+      "ramp_probes": 40,
+      "walkable": 986
+    },
+    {
+      "directed_edges": 3762,
+      "id": "kronasta-palafitas-c",
+      "ramp_probes": 80,
+      "walkable": 1038
+    },
+    {
+      "directed_edges": 2896,
+      "id": "parque-patio-liga",
+      "ramp_probes": 80,
+      "walkable": 772
     }
   ],
-  "checks": 88039,
+  "checks": 507287,
   "failures": [],
   "scope": "isolated geometry and preview; no campaign saves touched"
 }

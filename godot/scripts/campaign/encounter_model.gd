@@ -24,6 +24,12 @@ func _apply_hit(hit: Dictionary) -> void:
 		var penalty:=Pacing.level_penalty(absi(int(p.level)-int(q.level)))
 		multiplier=1.0+penalty if is_same(target,lower) else 1.0-penalty
 	target[field] = maxf(0, previous - hit.damage*multiplier)
+	if is_same(target,q) and q.get("mormacoForm","")=="normal":
+		if field=="hp":
+			target.hp=maxf(target.hp,target.stats.line*.7)
+		else:
+			target.hull=maxf(target.hull,1.0)
+			target.hp=maxf(target.stats.line*.7,target.hp-(previous-target.hull))
 	var amount: float = previous - target[field]
 	if amount > 0:
 		var event := {"amount":amount,"body":hit.body,"point":hit.get("point",Vector2(target.x,target.y)),"player":is_same(target,p),"critical":hit.get("critical",false),"color":hit.get("color",0),"kind":"cut" if not hit.body else "hit","cut_line":target.hp<=0}
@@ -88,13 +94,22 @@ func tick(delta: float, input: Dictionary) -> void:
 	_move_fighter(p, input, dt, wind)
 	_move_fighter(q, _boss_input(dt) if q.boss else _trainer_input(dt) if q.has("trainingRank") else _wild_input(dt), dt, wind)
 	var hits: Array = []
-	if q.boss: _signature_hit(q, p, dt, true, hits)
-	_signature_hit(p, q, dt, input.get("signature", false) and model_id == "rabbito", hits)
+	if q.boss: _signature_hit(q, p, dt, q.get("mormacoForm","")!="normal", hits)
+	_signature_hit(p, q, dt, input.get("signature", false) and model_id in ["rabbito","rai"], hits)
 	_strike(p, q, hits)
 	_strike(q, p, hits)
+	_tyler_assist(dt,hits)
 	for hit in hits:
 		_apply_hit(hit)
 	if p.hp <= 0 or p.hull <= 0: outcome = "lost"
+	elif q.get("platyxRefusal","")=="pending" and q.hp<=q.stats.line*.5:
+		q.platyxRefusal="stopped"
+		q.hp=maxf(q.hp,q.stats.line*.5)
+		outcome="won"
+	elif q.get("mormacoForm","")=="normal" and q.hp<=q.stats.line*.7:
+		q.mormacoForm="ambush"
+		outcome="won"
+	elif q.get("platyxRefusal","")=="pending" and (q.hull<=0 or duration<=0): outcome = "lost"
 	elif q.hp <= 0 or q.hull <= 0: outcome = "won"
 	elif duration <= 0:
 		if not q.boss and q.hp == p.hp:
@@ -114,6 +129,17 @@ func tick(delta: float, input: Dictionary) -> void:
 				actor.lineCooldown = 0.0
 		else: outcome = "lost" if q.boss or q.hp > p.hp else "won"
 	complete = not outcome.is_empty()
+
+func mormaco_ambush()->bool:
+	return q.get("mormacoForm","")=="ambush"
+
+func _tyler_assist(dt:float,hits:Array)->void:
+	if not q.get("tylerAlly",false):return
+	q.tylerCooldown=maxf(0.0,float(q.get("tylerCooldown",0.0))-dt)
+	if q.tylerCooldown>0.0:return
+	q.tylerCooldown=5.0
+	hits.append({"target":q,"body":false,"damage":8.0,"point":Vector2(q.x,q.y),"color":3})
+	combat_feedback.emit({"kind":"cut","amount":0,"point":Vector2(q.x,q.y),"player":false})
 
 func _move_fighter(actor: Dictionary, raw: Dictionary, dt: float, wind: float) -> void:
 	actor.strike = false
@@ -364,7 +390,7 @@ func wind_strength() -> float:
 	return sin(time/9)*12
 
 func _mormaco_input(dt:float)->Dictionary:
-	var phase:=2 if minf(q.hp,q.hull)<=q.stats.line*.55 else 1
+	var phase:=2 if q.get("mormacoForm","")=="possessed" or minf(q.hp,q.hull)<=q.stats.line*.55 else 1
 	if phase!=q.phase:q.phase=phase;q.recovery=2.0;q.charge=0;q.telegraph=0
 	if q.signatureWindup>0:return {}
 	var crossing:=Vector2(p.anchor,585).lerp(Vector2(p.x,p.y),.65)

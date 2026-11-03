@@ -47,7 +47,7 @@ static func unlocked_areas(player:Dictionary) -> Array:
 			if area not in result:result.append(area)
 	return result
 static func city_final_unlocked(player:Dictionary) -> bool:
-	return completed_count(player)==12
+	return completed(player,"mirante")
 static func opponent_name(player:Dictionary,id:String) -> String:
 	var d:=definition(id);var value:=entry(player,id)
 	if d.is_empty():return ""

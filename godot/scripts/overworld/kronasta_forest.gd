@@ -75,10 +75,14 @@ static func build(view) -> void:
 		wall_texture=preload("res://scripts/overworld/industrial_structures.gd").texture(path) if FileAccess.file_exists(path) else load(KITS+"cavernas-v3/surfaces/parede-basalto.png")
 	if submerged:wall_texture=load(KITS+"cavernas-v3/surfaces/parede-basalto.png")
 	if model.data.get("forest",{}).get("harbor",false):wall_texture=load(KITS+"industrial-v1/superficies/concreto.png")
+	var chamber: bool = model.data.get("forest",{}).get("chamber",false)
+	if chamber:wall_texture=load(KITS+"cavernas-v3/surfaces/parede-basalto.png")
+	var stadium: bool = model.data.get("id")=="kronasta-estadio-a"
 	var exits:=_exit_columns(model)
 	for v in range(-RING,h+RING):
 		for u in range(-RING,w+RING):
 			var inside:=u>=0 and v>=0 and u<w and v<h
+			if stadium and (not inside or model.cell_at(Vector2i(u,v)).material!="piso"):continue
 			if model.data.get("forest",{}).get("interior",false) and (not inside or model.cell_at(Vector2i(u,v)).get("material")=="rocha"):continue
 			if (mountain or mine or ice or bool(model.data.get("forest",{}).get("bamboo",false)) or model.data.get("forest",{}).get("canal",false) or model.data.get("forest",{}).get("market",false) or model.data.get("forest",{}).get("harbor",false)) and not inside:continue
 			# Mural chambers use the continuous short cut-border, without broad foreground roof tiles.
@@ -118,6 +122,11 @@ static func build(view) -> void:
 				for corner in corners:concrete_uv.append(corner)
 				poly.uv=concrete_uv
 				poly.color=Color.WHITE
+			if model.data.get("id")=="kronasta-estadio-a" and inside and model.cell_at(Vector2i(u,v)).material=="piso":
+				poly.material=null
+				var shade:=Color("253751") if u in [23,24,25] else Color("dfc7a2")
+				shade=shade.lightened(.05*_hash(u,v,3))
+				poly.vertex_colors=PackedColorArray([shade,shade,shade,shade])
 			if OS.get_environment("KRONASTA_GEOMETRIA")=="1":
 				# Conferência geométrica: cores chapadas por nível, rampa em vermelho.
 				poly.material=null
@@ -132,7 +141,15 @@ static func build(view) -> void:
 				if not c.is_empty() and c.material=="terra":flat=Color("cbac72")
 				if not c.is_empty() and c.get("ramp")!=null:flat=Color("d0473b") if str(c.ramp) in ["u+","v+"] else Color("e0a03a")
 				poly.vertex_colors=PackedColorArray([flat,flat,flat,flat])
+			if chamber:poly.z_index=-1
+			if chamber and OS.get_environment("KRONASTA_GEOMETRIA")!="1":
+				poly.material=null
+				var shade:=Color("#55596f") if u in range(22,26) else Color("#383b50")
+				shade=shade.lightened(.035*_hash(u,v,2))
+				poly.vertex_colors=PackedColorArray([shade,shade,shade,shade])
 			Structures.floor_cut(model,node,poly,corners,u,v)
+			if stadium and OS.get_environment("KRONASTA_GEOMETRIA")!="1":
+				preload("res://scripts/overworld/stadium_structures.gd").trim_floor(node,points,u)
 			if inside:
 				if not mountain or level>=0:_walls(view,model,node,u,v,wall_texture)
 				if bool(model.data.get("forest",{}).get("nativeProps",false)) and not mountain and not mine and not ice and not bool(model.data.get("forest",{}).get("swamp",false)) and model.cell_at(Vector2i(u,v)).material=="mato" and OS.get_environment("KRONASTA_GEOMETRIA")!="1":
@@ -140,6 +157,7 @@ static func build(view) -> void:
 			elif not industrial and not mountain and not mine and not ice and OS.get_environment("KRONASTA_GEOMETRIA")!="1" and _hash(u,v,7)<.82 and not Structures.is_water(model,Vector2(u+.5,v+.5)) and not _near_exit(u,v,w,h,exits) and _hidden_behind(model,u,v)>4:
 				_tree(view,model,Vector2(u+.5+(_hash(u,v,3)-.5)*.5,v+.5+(_hash(u,v,4)-.5)*.5),0,"a" if _hash(u,v,5)<.5 else "b",_hash(u,v,6),true)
 	Structures.build(view)
+	if model.data.get("id")=="kronasta-estadio-a":preload("res://scripts/overworld/stadium_structures.gd").build(view)
 	if bool(model.data.get("forest",{}).get("bamboo",false)) or bool(model.data.get("forest",{}).get("canal",false)) or bool(model.data.get("forest",{}).get("market",false)):
 		preload("res://scripts/overworld/bamboo_structures.gd").build(view)
 	if model.data.get("forest",{}).get("market",false):preload("res://scripts/overworld/market_structures.gd").build(view)
@@ -154,7 +172,11 @@ static func build(view) -> void:
 	if model.data.get("forest",{}).get("mural",false):preload("res://scripts/overworld/mural_structures.gd").build(view)
 	if submerged:preload("res://scripts/overworld/submerged_structures.gd").build(view)
 	elif ice:preload("res://scripts/overworld/ice_structures.gd").build(view)
-	if bool(model.data.get("forest",{}).get("nativeProps",false)):
+	if chamber:
+		preload("res://scripts/overworld/elo_chamber.gd").build(view)
+	elif stadium:
+		pass
+	elif bool(model.data.get("forest",{}).get("nativeProps",false)):
 		var native_pieces: Array = []
 		for piece in model.data.pieces:
 			if piece.asset.begins_with("canal-") or piece.asset.begins_with("feira-") or piece.asset.begins_with("cais-"):continue
@@ -231,6 +253,7 @@ static func _walls(view,model,node:Node2D,u:int,v:int,texture:Texture2D) -> void
 		if OS.get_environment("KRONASTA_GEOMETRIA")=="1":lit=Color("9a7652") if side=="u" else Color("775b46")
 		wall.vertex_colors=PackedColorArray([lit,lit,lit*Color(.62,.60,.62),lit*Color(.62,.60,.62)])
 		node.add_child(wall)
+		if model.data.get("forest",{}).get("chamber",false):continue
 		# Borda de grama que dobra por cima do paredão, com recorte irregular.
 		var lip:=Polygon2D.new()
 		var lip_pts:=PackedVector2Array([pts[0]-node.position,pts[1]-node.position])
@@ -454,3 +477,5 @@ static func _masks(model) -> ImageTexture:
 				return lerpf(lerpf(g[v0*w+u0],g[v0*w+u1],tx),lerpf(g[v1*w+u0],g[v1*w+u1],tx),ty)
 			image.set_pixel(x,y,Color(sample.call(grids[0]),sample.call(grids[1]),noise.get_noise_2d(x*.25,y*.25)*.5+.5,sample.call(grids[2])))
 	return ImageTexture.create_from_image(image)
+
+

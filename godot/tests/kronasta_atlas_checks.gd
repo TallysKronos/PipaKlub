@@ -105,6 +105,22 @@ func exercise() -> bool:
 		for scene in region.scenes:
 			var unchanged:Dictionary=app.session.snapshot()
 			check(service.travel(scene).status=="wrong_step" and app.session.snapshot()==unchanged,"player cannot enter QA preview "+scene)
+	var before_serra:Dictionary=app.session.snapshot()
+	var serra_player:Dictionary=before_serra.player.duplicate(true)
+	check(service.travel("kronasta-montanha-a").status=="wrong_step","Serra closed before campaign requirements")
+	serra_player.flags.mormacoLiberto=true
+	check(app.session.checkpoint(before_serra.checkpoint,serra_player).status=="ok","Mormaço freed fixture")
+	check(service.travel("kronasta-montanha-a").status=="wrong_step","Mormaço alone does not open Serra")
+	var districts=preload("res://scripts/campaign/district_rules.gd")
+	var palafitas:Dictionary=districts.fresh("palafitas")
+	palafitas.completed=true
+	palafitas.rewardClaimed=true
+	palafitas.champion="player"
+	districts.store(serra_player,"palafitas",palafitas)
+	check(app.session.checkpoint(before_serra.checkpoint,serra_player).status=="ok","Caio defeated fixture")
+	check(service.travel("kronasta-montanha-c").status=="wrong_step","atlas cannot skip to summit")
+	check(service.travel("kronasta-montanha-a").status=="ok" and app.session.snapshot().checkpoint.scene=="kronasta-montanha-a","campaign opens the foothill")
+	check(app.session.checkpoint(before_serra.checkpoint,before_serra.player).status=="ok","restore atlas fixture")
 	story.qa_override=-1
 	app._show_local_map()
 	await settle()

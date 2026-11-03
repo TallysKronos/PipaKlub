@@ -87,7 +87,7 @@ static func facing_flip(id:String, x:float, target_x:float) -> bool:
 	# These sheets are authored facing right. Keep HUD portraits stable; arena faces its target.
 	if id.begins_with("mormaco-"):return x<target_x
 	if id.begins_with("rascunho-"):return x<target_x
-	if id=="pipa-dragao-desatada":return x<target_x
+	if id in ["pipa-dragao-desatada","eremor"]:return x<target_x
 	return id in ["rabbito","nozinho","lacertubo","doberman-c","platyx-draft","retalho-original"] and x>target_x
 
 static func live_sprite(canvas: CanvasItem, texture: Texture2D, id: String, frame: Dictionary, center: Vector2, extent: float, tint: Color = Tokens.UNTINTED, projection: Vector2 = Vector2.ONE, flip_horizontal:bool=false) -> void:

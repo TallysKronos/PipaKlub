@@ -34,7 +34,7 @@ static func draw_meter(c:Control,actor:Dictionary,portrait:Texture2D,seconds:flo
 	var x:=box.position.x+104
 	var width:=box.size.x-126
 	text(c,Vector2(x,box.position.y+23),"BOSS  /  "+("FASE 2" if actor.get("phase",1)==2 else "FASE 1"),15,T.SOL)
-	var name:=str(actor.get("bossTitle","Lacertubo"))
+	var name:=str(actor.get("name",actor.get("bossTitle","Lacertubo")))
 	text(c,Vector2(x,box.position.y+48),Ink.ellipsis(name.to_upper(),Hud.lettering(),26,width-120),26)
 	text(c,Vector2(box.end.x-126,box.position.y+25),"Nv. %d  ·  %ds"%[level,ceili(seconds)],16,T.PAPEL_2)
 	var track:=Rect2(x,box.position.y+57,width-56,18)
