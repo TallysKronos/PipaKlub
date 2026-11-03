@@ -1,0 +1,31 @@
+import fs from 'node:fs';
+import {fileURLToPath} from 'node:url';
+import {identity} from '../../../../tools/soulgen-studio/model.mjs';
+import {exportReview} from '../../../../tools/soulgen-studio/export-review.mjs';
+const folder=fileURLToPath(new URL('./cutout-rig-v1/',import.meta.url));
+if(fs.existsSync(folder+'author-import.json')&&!process.argv.includes('--rebuild-source')){
+ await exportReview(JSON.parse(fs.readFileSync(folder+'rabiolava.soulgen.json')),folder,{registration:JSON.parse(fs.readFileSync(folder+'registration.json'))});process.exit(0);
+}
+const slices=JSON.parse(fs.readFileSync(folder+'slices.json'));
+const project={schema:'soulgen-studio',version:1,name:'Rabiolava · guardiã da lava',creatureId:'rabiolava',artRevision:1,rigRevision:1,preserveSourceAspect:true,width:560,height:420,rootPivot:[295,205],brief:{species:'Rabiolava · raia aérea B aprovada',personality:'Furiosa e difícil de acalmar (proposta da bíblia)',view:'Três quartos para a direita',reference:'art/soulgen/campaign-redesigns-v1/contorno-carcara-v1/rabiolava.png',kiteAnatomy:'Duas nadadeiras de seda dobrada e duas rabiolas contínuas de lava, com raízes completas.',notes:'Seis PNGs separados, cabeça registrada por janelas faciais e movimento próprio de raia. Sem patas, armação ou retalhos acrescentados. Não integrada ao jogo.'},assets:{},parts:[],clips:{}};
+const placement={body:{xy:[239,155],scale:.23,pivot:[295,205],z:3},head:{anchor:[216,322],scale:.26,pivot:[299,167],z:5},finNear:{anchor:[535,343],scale:.4,pivot:[253,190],z:2,lag:.025},finFar:{anchor:[33,362],scale:.35,pivot:[342,190],z:1,lag:.07},tailNear:{anchor:[590,35],scale:.37,pivot:[291,235],z:0,lag:.16},tailFar:{anchor:[501,42],scale:.4,pivot:[305,232],z:-1,lag:.24}};
+const names={body:'Torso e ventre',head:'Cabeça e expressão',finNear:'Nadadeira próxima',finFar:'Nadadeira distante',tailNear:'Rabiola próxima · seda completa',tailFar:'Rabiola distante · seda completa'};
+for(const [id,p]of Object.entries(placement)){
+ const [,,w,h]=slices.parts[id].crop,xy=p.xy||[p.pivot[0]-p.anchor[0]*p.scale,p.pivot[1]-p.anchor[1]*p.scale];
+ project.assets[id]={name:names[id],src:`/art/soulgen/keys/rabiolava/cutout-rig-v1/${id}.png`,width:w,height:h};
+ project.parts.push({id,name:names[id],asset:id,source:[0,0,w,h],rect:[...xy,w*p.scale,h*p.scale],pivot:p.pivot,z:p.z,parent:id==='body'?null:'body',visible:true,lag:p.lag||0});
+}
+const registration=JSON.parse(fs.readFileSync(folder+'registration.json')),head=project.parts.find(p=>p.id==='head');head.faces={};head.faceWindows=registration.windows;
+for(const face of ['fierce','hurt','happy']){const a=project.assets.head;project.assets[face]={name:face,src:`/art/soulgen/keys/rabiolava/cutout-rig-v1/head-${face}.png`,width:a.width,height:a.height};head.faces[face]={asset:face,source:[0,0,a.width,a.height]};}
+const body=project.parts.find(p=>p.id==='body');
+project.anatomy={version:1,ratios:[],behind:[{part:'finFar',other:'body'},{part:'tailNear',other:'body'},{part:'tailFar',other:'body'}],joints:project.parts.filter(p=>p.parent).map(p=>({part:p.id,parent:'body',anchor:[(p.pivot[0]-p.rect[0])/p.rect[2],(p.pivot[1]-p.rect[1])/p.rect[3]],socket:[(p.pivot[0]-body.rect[0])/body.rect[2],(p.pivot[1]-body.rect[1])/body.rect[3]],maxGap:.05}))};
+const frame=(t,changes={},ease='smooth')=>({t,ease,values:Object.fromEntries(['root',...project.parts.map(p=>p.id)].map(id=>[id,{...identity(),...changes[id]}]))});
+function cycle(id,label,seconds,fn){const frames=Array.from({length:21},(_,i)=>frame(i*seconds/20,fn(i*Math.PI*2/20),'spline'));frames.at(-1).values=structuredClone(frames[0].values);project.clips[id]={label,seconds,loop:true,frames,expressions:[]};}
+cycle('idle','Maré de lava',3.2,t=>({root:{y:2.2*Math.sin(t),rotation:.65*Math.sin(t)},head:{rotation:.7*Math.sin(t)},finNear:{rotation:2.8*Math.sin(t)},finFar:{rotation:-2.4*Math.sin(t)},tailNear:{rotation:4.2*Math.sin(t)},tailFar:{rotation:3.8*Math.sin(t+.45)}}));
+cycle('flight','Deslize incandescente',1.6,t=>({root:{y:3.5*Math.sin(t),rotation:1.3*Math.sin(t)},head:{rotation:-1.1*Math.sin(t)},finNear:{rotation:9*Math.sin(t)},finFar:{rotation:-7.5*Math.sin(t)},tailNear:{rotation:7*Math.sin(t)},tailFar:{rotation:6*Math.sin(t+.4)}}));
+project.clips.skill={label:'Chicote de lava',seconds:1.85,loop:false,hitTime:.78,frames:[frame(0),frame(.25,{root:{x:-4,y:2,rotation:-1},finNear:{rotation:7},finFar:{rotation:-6},tailNear:{rotation:-9},tailFar:{rotation:-6}}),frame(.52,{root:{x:-8,y:3,rotation:-2},head:{rotation:-2},finNear:{rotation:11},finFar:{rotation:-8},tailNear:{rotation:-13},tailFar:{rotation:-10}}),frame(.78,{root:{x:16,y:-5,rotation:3},head:{rotation:1},finNear:{rotation:-10},finFar:{rotation:8},tailNear:{rotation:14},tailFar:{rotation:11}}),frame(1.05,{root:{x:7,y:-2,rotation:1},tailNear:{rotation:8},tailFar:{rotation:6}}),frame(1.45),frame(1.85)],expressions:[{start:.2,end:1.45,face:'fierce'}]};
+project.clips.hurt={label:'Seda em recuo',seconds:.9,loop:false,frames:[frame(0),frame(.13,{root:{x:-9,y:3,rotation:-3},head:{rotation:3},finNear:{rotation:6},finFar:{rotation:-6},tailNear:{rotation:-8},tailFar:{rotation:-6}}),frame(.36,{root:{x:-3,rotation:1},head:{rotation:-1},tailNear:{rotation:3}}),frame(.65),frame(.9)],expressions:[{start:.01,end:.65,face:'hurt'}]};
+project.clips.victory={label:'Rabiolas ao alto',seconds:2.5,loop:false,frames:[frame(0),frame(.4,{root:{y:-4},head:{rotation:-2},finNear:{rotation:5},finFar:{rotation:-4}}),frame(.9,{root:{y:-8,rotation:1},head:{rotation:-3},finNear:{rotation:10},finFar:{rotation:-9},tailNear:{rotation:10},tailFar:{rotation:8}}),frame(1.45,{root:{y:-4},finNear:{rotation:4},finFar:{rotation:-3},tailNear:{rotation:-5},tailFar:{rotation:-3}}),frame(2.1),frame(2.5)],expressions:[{start:.2,end:2.1,face:'happy'}]};
+const down={root:{y:12,rotation:-4},head:{rotation:5},finNear:{rotation:-10},finFar:{rotation:9},tailNear:{rotation:-8},tailFar:{rotation:-6}};
+project.clips.defeat={label:'Brasa abatida',seconds:1.2,loop:false,frames:[frame(0),frame(.4,{root:{y:5,rotation:-2},head:{rotation:2},finNear:{rotation:-5},finFar:{rotation:4}}),frame(.9,down),frame(1.2,down)],expressions:[{start:.1,end:1.2,face:'hurt'}]};
+await exportReview(project,folder,{registration});

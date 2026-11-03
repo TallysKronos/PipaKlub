@@ -1,0 +1,59 @@
+{
+  "structure": {
+    "ok": true,
+    "errors": [],
+    "warnings": []
+  },
+  "anatomy": {
+    "warnings": [],
+    "notes": [
+      "OK · Encaixe CabeÃ§a e expressÃ£o: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Nadadeira prÃ³xima: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Nadadeira distante: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Rabiola prÃ³xima Â· seda completa: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Rabiola distante Â· seda completa: desvio máximo 0.00 unidades."
+    ]
+  },
+  "expressions": {
+    "fierce": {
+      "alpha_identical": true,
+      "outside_windows_identical": true,
+      "source_bounds": [
+        8,
+        15,
+        723,
+        676
+      ]
+    },
+    "hurt": {
+      "alpha_identical": true,
+      "outside_windows_identical": true,
+      "source_bounds": [
+        7,
+        15,
+        723,
+        676
+      ]
+    },
+    "happy": {
+      "alpha_identical": true,
+      "outside_windows_identical": true,
+      "source_bounds": [
+        7,
+        15,
+        723,
+        676
+      ]
+    }
+  },
+  "atlas": {
+    "frames": 142,
+    "size": [
+      2048,
+      4608
+    ],
+    "fps": 12,
+    "borderPixels": 0
+  },
+  "note": "Technical validation and rendered pose review; not author approval or game integration."
+}

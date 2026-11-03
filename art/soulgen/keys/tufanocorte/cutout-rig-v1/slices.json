@@ -1,0 +1,99 @@
+{
+  "sourceSize": [
+    1024,
+    1536
+  ],
+  "method": "Ten disjoint source alpha ink components; preserve original RGBA within four pixels of each part; exclude distant generated haze.",
+  "parts": {
+    "body": {
+      "crop": [
+        7,
+        60,
+        378,
+        341
+      ],
+      "seed_pixels": 85037
+    },
+    "head": {
+      "crop": [
+        402,
+        149,
+        242,
+        259
+      ],
+      "seed_pixels": 34790
+    },
+    "hornNear": {
+      "crop": [
+        661,
+        43,
+        360,
+        375
+      ],
+      "seed_pixels": 82169
+    },
+    "hornFar": {
+      "crop": [
+        20,
+        433,
+        354,
+        335
+      ],
+      "seed_pixels": 71855
+    },
+    "frontNear": {
+      "crop": [
+        435,
+        476,
+        192,
+        350
+      ],
+      "seed_pixels": 35301
+    },
+    "frontFar": {
+      "crop": [
+        764,
+        475,
+        170,
+        339
+      ],
+      "seed_pixels": 28743
+    },
+    "hindNear": {
+      "crop": [
+        51,
+        819,
+        298,
+        369
+      ],
+      "seed_pixels": 48624
+    },
+    "hindFar": {
+      "crop": [
+        424,
+        868,
+        197,
+        307
+      ],
+      "seed_pixels": 29458
+    },
+    "tailNear": {
+      "crop": [
+        644,
+        854,
+        377,
+        311
+      ],
+      "seed_pixels": 50133
+    },
+    "tailFar": {
+      "crop": [
+        9,
+        1212,
+        441,
+        301
+      ],
+      "seed_pixels": 54769
+    }
+  }
+}

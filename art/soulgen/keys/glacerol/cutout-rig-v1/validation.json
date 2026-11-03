@@ -1,0 +1,62 @@
+{
+  "structure": {
+    "ok": true,
+    "errors": [],
+    "warnings": []
+  },
+  "anatomy": {
+    "warnings": [],
+    "notes": [
+      "OK · Encaixe CabeÃ§a e expressÃ£o: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Pata dianteira prÃ³xima: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Pata dianteira distante: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Pata traseira prÃ³xima: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Pata traseira distante: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Cauda bifurcada completa: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Fio da orelha prÃ³xima Â· completo: desvio máximo 0.00 unidades.",
+      "OK · Encaixe Fio da orelha distante Â· completo: desvio máximo 0.00 unidades."
+    ]
+  },
+  "expressions": {
+    "fierce": {
+      "alpha_identical": true,
+      "outside_window_identical": true,
+      "source_bounds": [
+        31,
+        7,
+        693,
+        702
+      ]
+    },
+    "hurt": {
+      "alpha_identical": true,
+      "outside_window_identical": true,
+      "source_bounds": [
+        32,
+        7,
+        693,
+        702
+      ]
+    },
+    "happy": {
+      "alpha_identical": true,
+      "outside_window_identical": true,
+      "source_bounds": [
+        32,
+        7,
+        693,
+        702
+      ]
+    }
+  },
+  "atlas": {
+    "frames": 126,
+    "size": [
+      2048,
+      4096
+    ],
+    "fps": 12,
+    "borderPixels": 0
+  },
+  "note": "Technical validation and rendered pose review; not author approval or game integration."
+}
