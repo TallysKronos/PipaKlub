@@ -362,7 +362,11 @@ static func region_objective(player: Dictionary, scene: String) -> String:
 	var rules=preload("res://scripts/campaign/district_rules.gd")
 	if region=="mirante":
 		if rules.city_final_unlocked(player):return "A Liga espera por você. Abra o mapa da cidade e viaje ao Estádio de Kronasta."
-		if rules.unlocked(player,"mirante"):return preload("res://scripts/campaign/district_campaign.gd").objective(player,"mirante")
+		if rules.unlocked(player,"mirante"):
+			var course:String=preload("res://scripts/campaign/district_campaign.gd").objective(player,"mirante")
+			# F25: on arrival, the course and Ícaro come before the first challenge.
+			if rules.entry(player,"mirante").get("qualification",[]).is_empty():return "Último bairro · quatro pipeiros guardam a subida até Ícaro, o ex-campeão que largou o título. "+course
+			return course
 	if region=="coracao" and flags(player).get("enamorDerrotado",false):
 		return "Eremor foi contido. Recupere sua equipe e viaje pelo mapa da cidade ao Alto do Mirante, o último bairro."
 	if scene=="kronasta-estadio-a":

@@ -31,6 +31,12 @@ func _initialize() -> void:
 	check(said(icaro.before).contains("Ruínas") and said(icaro.before).contains("gerador"), "Ícaro recognizes what Kael did")
 	check(said(icaro.before).contains("aceito"), "Ícaro says why he accepts")
 	check(said(icaro.won).contains("Estádio") and said(icaro.won).contains("Jamile"), "defeat points to the Estádio and Jamile")
+	# F25: arrival presents the course; after Ícaro the Mirante points to the Estádio.
+	var Story = load("res://scripts/campaign/kronasta_story.gd")
+	var QA = load("res://scripts/campaign/qa_jump.gd")
+	var arrival: String = Story.region_objective(QA.build("mirante").player, "kronasta-mirante-a")
+	check(arrival.contains("Ícaro") and arrival.contains("Vael"), "arrival presents the course and Ícaro")
+	check(Story.region_objective(QA.build("final").player, "kronasta-mirante-c").contains("Estádio"), "after Ícaro the Mirante points to the Estádio")
 	var view := FrontEnd.new()
 	var joined: String = view._stage_lines(icaro.before, "Ícaro")
 	check(joined.split("\n\n").size() == icaro.before.size() and not joined.begins_with("Ícaro:"), "all of Ícaro's lines shown without repeating the speaker")
