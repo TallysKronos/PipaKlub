@@ -1622,6 +1622,7 @@ func _park_exit(event: Dictionary) -> void:
 		return
 	var destination: Dictionary = ParkCheckpoint.exit_target(saved.checkpoint,str(int(event.id)),saved.player)
 	if destination.status=="story_gate":_notice("A passagem para a Clareira abre depois de conquistar o Bambuzal. Vença o Lohan e volte por aqui.");return
+	if destination.status=="night_barrier":_notice("Capanga do Bando: Sem braçadeira, ninguém passa nesta noite.\n\nUma capanga com braçadeira guarda a Praça da Matriz, no Centro A.");return
 	if not _result(destination): return
 	park.paused=true
 	if _result(journey.enter_world(destination.scene,destination.point,destination.space)): _show_saved.call_deferred()
@@ -3473,7 +3474,8 @@ func _tyler_study() -> bool:
 		return true
 	if not arcs.Rules.completed(player, "centro") or player.flags.get("tylerCreatedKnown", false):
 		return false
-	var dialog := _dialog("Laboratório do Professor", "Tyler: Os registros estão ali. A sentinela fechou a saída. Kael, fica comigo.", "Enfrentar a sentinela", "Voltar")
+	# F21: what wakes the Sentinela comes before the fight.
+	var dialog := _dialog("Laboratório do Professor", "Debaixo da mesa de estudos do Sr. Assis, um alçapão leva ao laboratório. Tyler encontra a gaveta com o nome dele e puxa os registros.\n\nUm zumbido: a sentinela do laboratório acorda e fecha a escada.\n\nTyler: Kael, fica comigo.", "Enfrentar a sentinela", "Voltar")
 	dialog.confirmed.connect(func():
 		if _result(arcs.begin_lab(session)):_show_saved.call_deferred())
 	dialog.confirmed.connect(dialog.queue_free)
@@ -3483,9 +3485,10 @@ func _tyler_study() -> bool:
 func _return_tyler_lab() -> void:
 	_show_saved()
 	if session.snapshot().player.flags.get("tylerCreatedKnown", false):
-		var lab_text:="Tyler: Esse registro diz que eu fui criado aqui. O resto foi apagado.\n\nKael: O Rabbito também foi feito, e ninguém manda no que ele escolhe."
-		if session.snapshot().player.flags.get("pipeiroFantasmaResolvido",false):lab_text="Tyler: Esse registro diz que eu fui criado aqui. O resto foi apagado.\n\nKael: Nos fios, você escolheu soltar as almas. O Rabbito também foi feito, e ninguém manda no que ele escolhe. Com você é igual."
-		_notice(lab_text)
+		# F21: reading, discovery and consequence, in that order; the night starts here.
+		var kael:="Kael: O Rabbito também foi feito, e ninguém manda no que ele escolhe."
+		if session.snapshot().player.flags.get("pipeiroFantasmaResolvido",false):kael="Kael: Nos fios, você escolheu soltar as almas. O Rabbito também foi feito, e ninguém manda no que ele escolhe. Com você é igual."
+		_notice("A sentinela se apaga. Os registros estão espalhados pelo chão.\n\nTyler: Esse registro diz que eu fui criado aqui. O resto foi apagado.\n\n"+kael+"\n\nLá em cima, as luzes da Vila se apagam de uma vez. O Bando escolheu esta noite: começou a noite do cerol.")
 
 func _return_ruinas(outcome: String = "") -> void:
 	_show_saved()

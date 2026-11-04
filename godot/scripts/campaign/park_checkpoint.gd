@@ -148,7 +148,6 @@ static func allowed(event: Dictionary, player: Dictionary, area: String = "") ->
 	if props.get("acao","")=="endgameStep": return endgame.ready(player,str(props.get("step","")))
 	# The Rato makes his invitation in the Bosque storm (decision of 04/11), not in Aracati.
 	if props.get("acao","")=="aracatiRato": return false
-	if endgame.exit_blocked(event,player,area): return false
 	if props.get("acao","")=="ruinasDuel":
 		return not flags.get(props.rescueFlag,false)
 	if props.get("acao","")=="pipeiroFantasma":
@@ -188,6 +187,8 @@ static func exit_target(checkpoint: Dictionary, id: String, player: Dictionary) 
 		if absf(model_for(source).height_at(at)-model_for(source).height_at(Vector2(event.u+.5,event.v+.5)))>=.25: return {"status":"wrong_step"}
 		var destination: String = event.props.get("destino","")
 		if destination in ["park-clearing","park-veredas"] and not preload("res://scripts/campaign/kronasta_story.gd").park_access(player,destination):return {"status":"story_gate"}
+		# F22: at night the exit stays visible; the Bando barrier explains what opens it.
+		if load("res://scripts/campaign/endgame_story.gd").exit_blocked(event,player,source):return {"status":"night_barrier"}
 		if destination=="quintal": return {"status":"ok","scene":destination,"point":Vector2(1792,1808),"space":""}
 		if not MAPS.has(destination): return {"status":"wrong_step"}
 		var entrance: String = event.props.get("entrada_destino","")

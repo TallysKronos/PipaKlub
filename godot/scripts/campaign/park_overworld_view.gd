@@ -525,6 +525,7 @@ func _apply_story_light() -> void:
 	var endgame=load("res://scripts/campaign/endgame_story.gd")
 	var tint:=Tokens.UNTINTED
 	_stage_storm_cast()
+	if load("res://scripts/campaign/endgame_story.gd").night_active(saved_player):_stage_night_marks()
 	var storm: bool=endgame.storm_active(saved_player) and Checkpoint.is_bosque(saved_checkpoint.scene)
 	if endgame.night_active(saved_player) and saved_checkpoint.scene in endgame.NIGHT_SCENES:tint=Tokens.TINTA_3.lightened(.2)
 	elif storm:tint=Tokens.TINTA_3.lightened(.32)
@@ -587,6 +588,47 @@ func _stage_storm_cast() -> void:
 		rato.offset.y=-48
 		rato.position=model.project(edge)
 		cast.add_child(rato)
+
+## F22: at night each locked exit has a visible Bando guard, and the warehouse padlock
+## shows its three knots, one removed after each lieutenant (Peteca, Cola-Fina, Navalha).
+func _stage_night_marks() -> void:
+	if actors.has_node("NightMarks"):return
+	var endgame=load("res://scripts/campaign/endgame_story.gd")
+	var marks := Node2D.new()
+	marks.name="NightMarks"
+	marks.y_sort_enabled=true
+	actors.add_child(marks)
+	for event:Dictionary in model.data.events:
+		if not endgame.exit_blocked(event,saved_player,area_id):continue
+		var door:=Vector2(event.u+.5,event.v+.5)
+		var spot:=door
+		for offset in [Vector2(1,0),Vector2(-1,0),Vector2(0,-1),Vector2(0,1)]:
+			if model.point_walkable(door+offset):spot=door+offset;break
+		var guard := Sprite2D.new()
+		guard.name="BandoBarrier"
+		guard.texture=load("res://assets/overworld/kits/camara-do-elo-v1/capanga-feminina-idle-eight.png")
+		guard.region_enabled=true
+		guard.region_rect=Rect2(448,0,64,96)
+		guard.offset.y=-48
+		guard.position=model.project(spot)
+		marks.add_child(guard)
+	if saved_checkpoint.scene=="kronasta-industrial-d" and endgame.ready(saved_player,"galpao"):
+		var lock: Vector2=endgame.point(saved_checkpoint.scene,endgame.STEPS.galpao.anchor)
+		if not lock.is_finite():return
+		var base: Vector2=model.project(lock)+Vector2(0,-118)
+		for i in 3:
+			if saved_player.get("flags",{}).get("endgame-galpao-%d"%i,false):continue
+			var knot := Polygon2D.new()
+			knot.name="Knot%d"%i
+			var c:=base+Vector2((i-1)*22,0)
+			knot.polygon=PackedVector2Array([c+Vector2(0,-9),c+Vector2(9,0),c+Vector2(0,9),c+Vector2(-9,0)])
+			knot.color=Tokens.POSSESSED
+			knot.z_index=2
+			marks.add_child(knot)
+			var rope := Line2D.new()
+			rope.width=2.0;rope.default_color=Tokens.NANQUIM;rope.z_index=2
+			rope.points=PackedVector2Array([c+Vector2(0,9),model.project(lock)+Vector2(0,-60)])
+			marks.add_child(rope)
 
 func present_championship_victory() -> void:
 	var route: PackedVector2Array=model.path_to(player,Vector2(24.5,14.5))
