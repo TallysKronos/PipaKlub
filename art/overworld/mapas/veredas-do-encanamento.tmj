@@ -65,7 +65,7 @@
    "source": "../tiles/rascunho.tsj"
   }
  ],
- "nextobjectid": 628,
+ "nextobjectid": 1202,
  "layers": [
   {
    "name": "chao",
@@ -17583,6 +17583,49 @@
        "name": "trajetoria",
        "type": "string",
        "value": "ambas"
+      }
+     ]
+    },
+    {
+     "id": 1200,
+     "name": "Chegada pela trilha alta",
+     "type": "entrada",
+     "x": 144,
+     "y": 912,
+     "point": true,
+     "width": 0,
+     "height": 0,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "entrada",
+       "type": "string",
+       "value": "canal-alto"
+      }
+     ]
+    },
+    {
+     "id": 1201,
+     "name": "Clareira pelo mirante alto",
+     "type": "saida",
+     "x": 144,
+     "y": 880,
+     "point": true,
+     "width": 0,
+     "height": 0,
+     "rotation": 0,
+     "visible": true,
+     "properties": [
+      {
+       "name": "destino",
+       "type": "string",
+       "value": "park-clearing"
+      },
+      {
+       "name": "entrada_destino",
+       "type": "string",
+       "value": "mirante-alto"
       }
      ]
     }

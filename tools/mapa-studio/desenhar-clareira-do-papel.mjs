@@ -38,6 +38,10 @@ export function generateClareira(){
  feature.guards=feature.guards.filter(g=>level[ix(g.u,g.v)]>level[ix(g.u,g.v+1)]&&!ramps[ix(g.u,g.v)]&&!ramps[ix(g.u,g.v+1)]);
  const setArrival=(event,u,v)=>{event.properties=event.properties.filter(p=>!['chegada_u','chegada_v'].includes(p.name));event.properties.push(...props({chegada_u:u,chegada_v:v}));};
  setArrival(events.find(e=>e.id===28),36,2);setArrival(events.find(e=>e.id===29),2,13);
+ // Passagem alta B↔C (brief parque-dos-ventos-abc): entrada e saída próprias no platô leste.
+ for(const id of [1200,1201]){const at=events.findIndex(e=>e.id===id);if(at>=0)events.splice(at,1);}
+ events.push({...object('entrada','Chegada pelo mirante alto',43,26,{entrada:'mirante-alto'}),id:1200});
+ events.push({...object('saida','Veredas pela trilha alta',43,24,{destino:'park-veredas',entrada_destino:'canal-alto'}),id:1201});next--;next--;
  const mapProperties=props({nome:'Parque dos Ventos · Clareira do Papel',regras:'overworld-1',bioma:'parque',cena_jogo:'park-clearing',regiao:'parque-dos-ventos',parte:'B',trajetoria:'ambas',rampa_comprimento:2,forest:JSON.stringify(feature),origem:'desenhar-clareira-do-papel.mjs'});
  const raw=()=>({type:'map',version:'1.10',orientation:'isometric',width:W,height:H,tilewidth:64,tileheight:32,infinite:false,properties:mapProperties,tilesets:[{firstgid:1,source:'../tiles/rascunho.tsj'}],nextobjectid:next,layers:[{name:'chao',type:'tilelayer',width:W,height:H,data:mat.map(m=>gid[m])},{name:'altura',type:'tilelayer',width:W,height:H,data:level.map((l,i)=>ramps[i]||(l?16+l:0))},{name:'pecas',type:'objectgroup',objects:pieces},{name:'eventos',type:'objectgroup',objects:events}]});
  let m=parseTiled(raw(),{'rascunho.tsj':ts}),seen=reachable(m,m.spawn);
@@ -45,11 +49,18 @@ export function generateClareira(){
  const trees=originals.filter(o=>o.properties.some(p=>p.name==='asset'&&p.value==='arvore'));let tree=0;
  for(let v=0;v<H;v++)for(let u=0;u<W;u++)if(mat[ix(u,v)]==='bosque'&&(u*17+v*13)%7!==0){const old=trees[tree++];pieces.push(old?{...structuredClone(old),x:u*32+16,y:v*32+16}:object('peca','Mata da clareira',u,v,{asset:'arvore',variante:(u+v)%13===0?'florida':(u+v)%2?'a':'b'}));}
  for(const [u,v]of [[37,24],[38,24],[39,24],[40,24],[37,25]])pieces.push(object('peca','Canteiro do descanso',u,v,{asset:'flores',variante:'amarela',bloqueia:false}));
+ next=Math.max(next,1202); // ids 1200/1201 da passagem alta ficam fora da sequência das peças
  const out=raw();m=parseTiled(out,{'rascunho.tsj':ts});
  const neighbor=id=>JSON.parse(fs.readFileSync(root+'art/overworld/mapas/'+id+'.tmj'));
  const a=neighbor('jardim-das-pipas'),c=neighbor('veredas-do-encanamento');
  const exitTo=(map,dest)=>map.layers.find(l=>l.name==='eventos').objects.find(e=>e.type==='saida'&&e.properties.some(p=>p.name==='destino'&&p.value===dest));
  setArrival(exitTo(a,'park-clearing'),8,36);setArrival(exitTo(c,'park-clearing'),44,8);
+ // Lado C da passagem alta: platô oeste das Veredas, volta ao mirante alto da Clareira.
+ {const ev=c.layers.find(l=>l.name==='eventos').objects;for(const id of [1200,1201]){const at=ev.findIndex(e=>e.id===id);if(at>=0)ev.splice(at,1);}
+  const point=(id,type,name,u,v,p)=>({id,name,type,x:u*32+16,y:v*32+16,point:true,width:0,height:0,rotation:0,visible:true,properties:props(p)});
+  ev.push(point(1200,'entrada','Chegada pela trilha alta',4,28,{entrada:'canal-alto'}));
+  ev.push(point(1201,'saida','Clareira pelo mirante alto',4,27,{destino:'park-clearing',entrada_destino:'mirante-alto'}));
+  c.nextobjectid=Math.max(c.nextobjectid||0,1202);}
  const region=[{id:'park-trail',part:'A',map:parseTiled(a,{'rascunho.tsj':ts})},{id:'park-clearing',part:'B',map:m},{id:'park-veredas',part:'C',map:parseTiled(c,{'rascunho.tsj':ts})}];
  const links=[{from:{area:'park-trail',u:36,v:0,direction:'v-'},to:{area:'park-clearing',u:8,v:39,direction:'v+'}},{from:{area:'park-clearing',u:47,v:8,direction:'u+'},to:{area:'park-veredas',u:0,v:13,direction:'u-'}}];
  const result=auditZeroBreak(m,{region,links,guards:feature.guards});console.log(result.lines.join('\n'));if(!result.ok)throw Error('Clareira geometry rejected');

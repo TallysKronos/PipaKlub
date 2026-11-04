@@ -10,7 +10,8 @@ func run() -> void:
 	view.art_preview=true
 	root.add_child(view)
 	await process_frame
-	for test in [["clareira-do-papel","mirante-alto",Vector2(61.5,18.5)], ["veredas-do-encanamento","canal-alto",Vector2(61.5,25.5)]]:
+	# High passage B↔C: Clareira east plateau (43,26) ↔ Veredas west plateau (4,28).
+	for test in [["clareira-do-papel","mirante-alto",Vector2(43.5,26.5)], ["veredas-do-encanamento","canal-alto",Vector2(4.5,28.5)]]:
 		view.load_area(test[0],test[1])
 		if view.player != test[2]: failures.append("Entrada alta incorreta: "+test[0])
 		var origin: Vector2 = view.player
@@ -22,7 +23,7 @@ func run() -> void:
 			continue
 		view.nearby = exit
 		view.interact()
-		var expected := Vector2(61.5,25.5) if test[0]=="clareira-do-papel" else Vector2(61.5,18.5)
+		var expected := Vector2(4.5,28.5) if test[0]=="clareira-do-papel" else Vector2(43.5,26.5)
 		if view.player != expected: failures.append("Transição perdeu entrada de destino")
 		for event in view.model.data.events:
 			if event.id == 1201: view.nearby = event

@@ -65,7 +65,7 @@
    "source": "../tiles/rascunho.tsj"
   }
  ],
- "nextobjectid": 569,
+ "nextobjectid": 1202,
  "layers": [
   {
    "name": "chao",
@@ -15462,6 +15462,41 @@
        "name": "trajetoria",
        "type": "string",
        "value": "ambas"
+      }
+     ]
+    },
+    {
+     "id": 1200,
+     "name": "Chegada pelo mirante alto",
+     "type": "entrada",
+     "x": 1392,
+     "y": 848,
+     "point": true,
+     "properties": [
+      {
+       "name": "entrada",
+       "type": "string",
+       "value": "mirante-alto"
+      }
+     ]
+    },
+    {
+     "id": 1201,
+     "name": "Veredas pela trilha alta",
+     "type": "saida",
+     "x": 1392,
+     "y": 784,
+     "point": true,
+     "properties": [
+      {
+       "name": "destino",
+       "type": "string",
+       "value": "park-veredas"
+      },
+      {
+       "name": "entrada_destino",
+       "type": "string",
+       "value": "canal-alto"
       }
      ]
     }
