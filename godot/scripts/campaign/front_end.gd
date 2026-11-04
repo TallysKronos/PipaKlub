@@ -1907,7 +1907,7 @@ func _park_training(id: String) -> void:
 		var result: Dictionary=encounters.start_training(id,park.player)
 		if _result(result) and result.status=="ok": _show_saved.call_deferred())
 
-func _confirm_park(title: String, text: String, accept: String, callback: Callable) -> void:
+func _confirm_park(title: String, text: String, accept: String, callback: Callable) -> Control:
 	park.path.clear()
 	park.paused = true
 	var dialog := _dialog(title, text, accept, "Agora não")
@@ -1917,6 +1917,7 @@ func _confirm_park(title: String, text: String, accept: String, callback: Callab
 	dialog.tree_exiting.connect(func():
 		if is_instance_valid(park): park.paused = false)
 	dialog.popup_centered(Vector2i(620, 200))
+	return dialog
 
 func _show_encounter() -> void:
 	var saved_encounter:Dictionary=session.snapshot().player.encounter
@@ -3381,10 +3382,18 @@ func _endgame_step(id:String)->void:
 	var story=endgame.new(session)
 	var at:Vector2=park.player
 	if not step.has("duels"):
-		_confirm_park(step.name,step.intro,"Continuar",func():
+		park.stage_endgame(id)
+		if id=="gollia-arrependimento":
+			var view=park
+			view.path.clear()
+			view.paused=true
+			await view.animate_gollia_entrance()
+			if not is_instance_valid(view) or park!=view:return
+		var dialog := _confirm_park(step.name,step.intro,"Continuar",func():
 			if _result(story.talk(id,at)):
 				park.refresh(session.snapshot().player)
 				_notice.call_deferred(step.outro))
+		dialog.tree_exiting.connect(park.clear_endgame_staging)
 		return
 	# The title follows the opponent in front of the player (Navalha, then Trovareta...).
 	var index:int=endgame.duel_index(player,id)
@@ -3566,7 +3575,12 @@ func _present_pending_ending() -> void:
 	var view = park
 	view.path.clear()
 	view.paused = true
-	var dialog := _dialog("Campeão de Kronasta", "A arquibancada explode em aplausos. Heleana se levanta, e Tyler ergue a mão para Kael.\n\nJamile: A linha é sua, campeão.", "Ver créditos")
+	if view.ending_presented:return
+	view.ending_presented=true
+	await view.present_championship_victory()
+	if not is_instance_valid(view) or park!=view:return
+	sound.play_event("progress.quest_complete")
+	var dialog := _dialog("Jamile", "Você chegou até aqui, Kael.\n\nA linha é sua, campeão.", "Ver créditos")
 	dialog.confirmed.connect(dialog.queue_free)
 	dialog.confirmed.connect(_show_kronasta_credits.call_deferred)
 	dialog.popup_centered(Vector2i(640,240))

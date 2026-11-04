@@ -52,15 +52,15 @@ const STEPS:={
 		"intro":"No fundo do galpão, o Gollia espera com o Carretel Negro preso ao parceiro.\n\nGollia: O Rato me deu força. Eu fico do lado de quem tem força.",
 		"duels":[["Gollia","azulao",36,"Gollia: Vem."],["Parceiro descontrolado","pipa-dragao-desatada",37,"O Carretel Negro sobrecarrega o parceiro do Gollia. Ele perde o controle e ataca tudo.\n\nGollia: Para! Eu não mandei isso!"]],
 		"outro":"O Retalho se põe na frente do Gollia e segura o golpe. O parceiro dele cai, sem forças.\n\nGollia: ...Eu não queria isso.\n\nEle foge com o Bando, abalado."},
-	"gerador":{"act":5,"scene":"kronasta-montanha-c","anchor":Vector2i(28,13),"name":"Torre do vento","sprite":{"path":"res://assets/campaign/tufanocorte.png"},"flag":"geradorLigado","requires":"golliaFugiu",
-		"intro":"No alto da Serra, a velha torre do vento. O Tufanocorte, a Rabiolava, a Trovareta e o Mormaço chegam ao mesmo tempo.\n\nKael: Juntos, vocês conseguem devolver as almas.",
+	"gerador":{"act":5,"scene":"kronasta-montanha-c","anchor":Vector2i(28,13),"name":"Torre do vento","sprite":{"path":"res://assets/campaign/tufanocorte.png","region":{"x":0,"y":0,"w":384,"h":354}},"flag":"geradorLigado","requires":"golliaFugiu",
+		"intro":"Kael: Juntos, vocês conseguem devolver as almas.",
 		"outro":"Os Quatro Ventos sopram juntos da torre. As almas cortadas voltam aos corpos e Kronasta amanhece.\n\nA noite do cerol acabou. A Pipa TV anuncia a Copa Relâmpago."},
 	"copa-relampago":{"act":5,"scene":"kronasta-centro-a","anchor":Vector2i(29,28),"name":"Copa Relâmpago","sprite":{"path":"res://assets/npc-ds/celina.png","region":NPC_FRAME},"flag":"leagueGold","requires":"geradorLigado",
 		"intro":"Dona Cida: Exame da categoria Dourada: a Copa Relâmpago. Três rodadas seguidas, ao vivo na Pipa TV.",
 		"duels":[["Copa · 1ª rodada","raio",34,"Locutor: Primeira rodada da Copa Relâmpago!"],["Copa · 2ª rodada","mata",35,"Locutor: Segunda rodada, sem descanso!"],["Copa · final","azulao",36,"Locutor: A final da Copa Relâmpago!"]],
 		"outro":"Dona Cida: Categoria Rabiola Dourada. O Porto Novo espera por você."},
 	"gollia-arrependimento":{"act":6,"scene":"kronasta-coracao-d","anchor":Vector2i(22,30),"name":"Gollia","sprite":{"path":"res://assets/campaign/warehouse-v1/gollia.png"},"flag":"golliaArrependido","requires":"ruinasJamileLivre",
-		"intro":"Na porta da câmara, os capangas do Bando cercam o Kael. Então o Gollia aparece e se põe entre eles.\n\nGollia: No galpão, o Retalho me protegeu. Eu não esqueci.\n\nGollia: Vai, Kael. Eu seguro a porta.",
+		"intro":"Gollia: No galpão, o Retalho me protegeu. Eu não esqueci.\n\nGollia: Vai, Kael. Eu seguro a porta.",
 		"outro":"O Gollia larga o Bando e segura os capangas na entrada. O caminho até o Rato está livre."},
 }
 ## Story order of the steps (the beat list in kronasta_story.gd uses the same ids).

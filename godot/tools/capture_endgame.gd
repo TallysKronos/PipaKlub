@@ -35,7 +35,7 @@ func run() -> void:
 	root.size = Vector2i(1280, 720)
 	var view := FrontEnd.new()
 	root.add_child(view)
-	view.preferences.reduced_motion = true
+	view.preferences.reduced_motion = not "--motion" in OS.get_cmdline_user_args()
 	view.preferences.fullscreen = false
 	await process_frame
 	var saved := State.fresh("slot-1")
@@ -78,7 +78,7 @@ func run() -> void:
 		if "--black" in OS.get_cmdline_user_args() and veil != null: veil.color = Color(0.2,0.2,0.2)
 		print("DBG veil=", veil, " storm=", Endgame.storm_active(view.park.saved_player), " night=", Endgame.night_active(view.park.saved_player), " objective='", view.park.exploration_hud.objective.text, "' region=", load("res://scripts/campaign/kronasta_story.gd").region_objective(view.park.saved_player, step.scene))
 	if dialog:
-		view._endgame_step(step_id)
+		await view._endgame_step(step_id)
 		for frame in 30: await process_frame
 	await create_timer(.6).timeout
 	await RenderingServer.frame_post_draw
