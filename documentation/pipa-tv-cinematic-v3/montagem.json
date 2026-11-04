@@ -1,0 +1,22 @@
+{
+  "sources": [
+    {
+      "path": "art\\pipa-tv-cinematic-v2\\video-original\\pipa-tv-v2-montagem-nativa.mp4",
+      "seconds": 19.42,
+      "audio": true
+    },
+    {
+      "path": "art\\pipa-tv-cinematic-v3\\video-original\\04-kael-quarto\\9f9b21a2_000.mp4",
+      "seconds": 8.0,
+      "audio": true
+    }
+  ],
+  "transition_seconds": 0.16,
+  "film": "documentation\\pipa-tv-cinematic-v3\\pipa-tv-abertura-completa-v3.mp4",
+  "master_metadata": {
+    "seconds": 27.26,
+    "audio": true
+  },
+  "runtime": "godot\\assets\\campaign\\cinematics\\pipa-tv-abertura-v3.ogv",
+  "resolution_note": "Generated at 864x480 / 24 fps; 1280x720 export is resized."
+}

@@ -1,0 +1,55 @@
+{
+  "tool": "built-in image_gen",
+  "pieces": {
+    "canopy": {
+      "prompt": "Create ONE transparent game sprite asset: a detached coconut palm canopy ONLY, no trunk, no coconuts, no ground. For a 2D isometric manga videogame Soulmonsters, living paper art. Seven broad sweeping palm fronds radiating from ONE central short stem junction at 50% width, 66% height. Broad folded paper leaf silhouettes with only 5 to 7 large angular cuts per frond, NOT dozens of needle leaflets. Restrained sage green #799859, deep teal #355B4E, soft light olive #AEC17A highlights. 3 flat cel color planes, bold clean dark blue-black ink contour with expressive selective interior vein lines. Very graphic hand-drawn manga background prop, elegant asymmetric silhouette, readable when reduced to 90 pixels width. Light from upper left. No gradients, no grain, no watercolor, no glow, no neon lime, no pixel art, no realistic feather texture, no tiny details. Whole silhouette fully inside canvas with 6% padding, isolated on true transparent alpha. Wide composition 3:2. This will replace the over-detailed green palm canopy in an isometric wooden pier.",
+      "path": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-2bcb08b0-d0c2-4ea7-b016-953342939c56.png",
+      "workspaceOriginal": "art\\overworld\\kits\\cais-v1\\fontes\\coqueiro-manga\\canopy.png",
+      "opaqueCrop": [
+        46,
+        39,
+        1497,
+        995
+      ],
+      "runtimeSize": [
+        256,
+        169
+      ]
+    },
+    "trunk": {
+      "prompt": "One isolated curved coconut palm TRUNK sprite only, no leaves or coconuts, transparent background. 2D flat manga hand inked game prop for isometric Soulmonsters wooden pier. Tall slim trunk bends gently LEFT at the top, base center 55% width and top at35% width, a small solid cut upper stem hidden under canopy when assembled. Wide modest flared roots meeting SAME ground plane, viewed slightly from above. Muted warm ochre brown #AE8053, pale tan #D5B17B, dark desaturated brown shadow #715A46, dark blue-black ink #263C40. Exactly three flat cel shaded planes, 8 irregular spaced ring marks total, clean expressive bold silhouette. Broad geometric folded-paper facets, minimalist but organic. No stacked bevel bands, no gradients, no grain, no realistic bark, no ground patch, no cast shadow, no pot. Entire isolated trunk visible with margin, tall composition.",
+      "path": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-95f7c484-99e3-40c9-97e1-82e6242004f6.png",
+      "workspaceOriginal": "art\\overworld\\kits\\cais-v1\\fontes\\coqueiro-manga\\trunk.png",
+      "opaqueCrop": [
+        312,
+        22,
+        811,
+        1500
+      ],
+      "runtimeSize": [
+        130,
+        384
+      ]
+    },
+    "fruit": {
+      "prompt": "A single coconut, isolated transparent game sprite, no leaves no trunk no ground, stylized 2D flat manga cel game art. Small squat oval olive green coconut with short stem at top, clean dark blue-black ink outline #263C40, THREE broad flat color patches muted moss green #799859, shade #355B4E and cream olive #AEC17A. Slight three quarter view from above. No hair, no grain, no gradients, no glow, no cast shadow. Readable icon silhouette reduced to 10 pixels, generously padded square canvas.",
+      "path": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-fdf3fea0-54ce-4b29-b4f9-730206f43fcc.png",
+      "workspaceOriginal": "art\\overworld\\kits\\cais-v1\\fontes\\coqueiro-manga\\fruit.png",
+      "opaqueCrop": [
+        244,
+        235,
+        1014,
+        1026
+      ],
+      "runtimeSize": [
+        62,
+        64
+      ]
+    }
+  },
+  "mount": [
+    132.73173207036538,
+    101.90933694181327
+  ],
+  "scope": "pier asset library; original fruit tree library preserved"
+}

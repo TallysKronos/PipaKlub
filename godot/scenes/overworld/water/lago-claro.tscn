@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/overworld/water_patch.gd" id="1_acixw"]
+
+[node name="lago-claro" type="Node2D" unique_id=517042343]
+script = ExtResource("1_acixw")
+flow_direction = Vector2(0, 0)

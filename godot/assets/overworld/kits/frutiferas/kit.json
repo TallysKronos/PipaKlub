@@ -1,0 +1,587 @@
+{
+  "schema": "overworld-kit-1",
+  "biome": "frutiferas",
+  "grid": {
+    "cell": [
+      64,
+      32
+    ],
+    "height": 32,
+    "levelPx": 64
+  },
+  "approval": "pending_owner_review",
+  "role": "articulated_fruit_tree_library",
+  "campaignIntegrated": false,
+  "inventoryIntegrated": false,
+  "pieces": {
+    "mangueira": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/mangueira-default.png",
+          "size": [
+            320,
+            282
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            4,
+            4
+          ],
+          "bloqueia": true,
+          "height": 7,
+          "anchor": [
+            160,
+            234
+          ],
+          "isoAnchor": [
+            128,
+            282
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            320,
+            210
+          ],
+          "displayName": "Mangueira",
+          "species": "mangueira",
+          "articulatedScene": "res://scenes/overworld/fruit-trees/mangueira.tscn",
+          "rig": "res://assets/overworld/kits/frutiferas/rigs/mangueira/rig.json",
+          "source": {
+            "file": "art/soulgen/keys/arvores-frutiferas/mangueira/mangueira.soulgen.json",
+            "tool": "image_gen.imagegen; Soulgen sampler",
+            "note": "Assembled from separately authored complete hidden parts."
+          },
+          "collisionStatus": "proposed_trunk_cell_requires_map_fit",
+          "approval": "pending_owner_review"
+        }
+      }
+    },
+    "jabuticabeira": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/jabuticabeira-default.png",
+          "size": [
+            320,
+            254
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "height": 6,
+          "anchor": [
+            160,
+            206
+          ],
+          "isoAnchor": [
+            96,
+            254
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            320,
+            182
+          ],
+          "displayName": "Jabuticabeira",
+          "species": "jabuticabeira",
+          "articulatedScene": "res://scenes/overworld/fruit-trees/jabuticabeira.tscn",
+          "rig": "res://assets/overworld/kits/frutiferas/rigs/jabuticabeira/rig.json",
+          "source": {
+            "file": "art/soulgen/keys/arvores-frutiferas/jabuticabeira/jabuticabeira.soulgen.json",
+            "tool": "image_gen.imagegen; Soulgen sampler",
+            "note": "Assembled from separately authored complete hidden parts."
+          },
+          "collisionStatus": "proposed_trunk_cell_requires_map_fit",
+          "approval": "pending_owner_review"
+        }
+      }
+    },
+    "laranjeira": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/laranjeira-default.png",
+          "size": [
+            320,
+            244
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "height": 6,
+          "anchor": [
+            160,
+            196
+          ],
+          "isoAnchor": [
+            96,
+            244
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            320,
+            172
+          ],
+          "displayName": "Laranjeira",
+          "species": "laranjeira",
+          "articulatedScene": "res://scenes/overworld/fruit-trees/laranjeira.tscn",
+          "rig": "res://assets/overworld/kits/frutiferas/rigs/laranjeira/rig.json",
+          "source": {
+            "file": "art/soulgen/keys/arvores-frutiferas/laranjeira/laranjeira.soulgen.json",
+            "tool": "image_gen.imagegen; Soulgen sampler",
+            "note": "Assembled from separately authored complete hidden parts."
+          },
+          "collisionStatus": "proposed_trunk_cell_requires_map_fit",
+          "approval": "pending_owner_review"
+        }
+      }
+    },
+    "limoeiro": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/limoeiro-default.png",
+          "size": [
+            320,
+            240
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "height": 6,
+          "anchor": [
+            160,
+            192
+          ],
+          "isoAnchor": [
+            96,
+            240
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            320,
+            168
+          ],
+          "displayName": "Limoeiro",
+          "species": "limoeiro",
+          "articulatedScene": "res://scenes/overworld/fruit-trees/limoeiro.tscn",
+          "rig": "res://assets/overworld/kits/frutiferas/rigs/limoeiro/rig.json",
+          "source": {
+            "file": "art/soulgen/keys/arvores-frutiferas/limoeiro/limoeiro.soulgen.json",
+            "tool": "image_gen.imagegen; Soulgen sampler",
+            "note": "Assembled from separately authored complete hidden parts."
+          },
+          "collisionStatus": "proposed_trunk_cell_requires_map_fit",
+          "approval": "pending_owner_review"
+        }
+      }
+    },
+    "goiabeira": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/goiabeira-default.png",
+          "size": [
+            320,
+            257
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "height": 6,
+          "anchor": [
+            160,
+            209
+          ],
+          "isoAnchor": [
+            96,
+            257
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            320,
+            185
+          ],
+          "displayName": "Goiabeira",
+          "species": "goiabeira",
+          "articulatedScene": "res://scenes/overworld/fruit-trees/goiabeira.tscn",
+          "rig": "res://assets/overworld/kits/frutiferas/rigs/goiabeira/rig.json",
+          "source": {
+            "file": "art/soulgen/keys/arvores-frutiferas/goiabeira/goiabeira.soulgen.json",
+            "tool": "image_gen.imagegen; Soulgen sampler",
+            "note": "Assembled from separately authored complete hidden parts."
+          },
+          "collisionStatus": "proposed_trunk_cell_requires_map_fit",
+          "approval": "pending_owner_review"
+        }
+      }
+    },
+    "aceroleira": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/aceroleira-default.png",
+          "size": [
+            320,
+            214
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "height": 5,
+          "anchor": [
+            160,
+            166
+          ],
+          "isoAnchor": [
+            96,
+            214
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            320,
+            142
+          ],
+          "displayName": "Aceroleira",
+          "species": "aceroleira",
+          "articulatedScene": "res://scenes/overworld/fruit-trees/aceroleira.tscn",
+          "rig": "res://assets/overworld/kits/frutiferas/rigs/aceroleira/rig.json",
+          "source": {
+            "file": "art/soulgen/keys/arvores-frutiferas/aceroleira/aceroleira.soulgen.json",
+            "tool": "image_gen.imagegen; Soulgen sampler",
+            "note": "Assembled from separately authored complete hidden parts."
+          },
+          "collisionStatus": "proposed_trunk_cell_requires_map_fit",
+          "approval": "pending_owner_review"
+        }
+      }
+    },
+    "cajueiro": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/cajueiro-default.png",
+          "size": [
+            320,
+            267
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            4,
+            4
+          ],
+          "bloqueia": true,
+          "height": 7,
+          "anchor": [
+            160,
+            219
+          ],
+          "isoAnchor": [
+            128,
+            267
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            320,
+            195
+          ],
+          "displayName": "Cajueiro",
+          "species": "cajueiro",
+          "articulatedScene": "res://scenes/overworld/fruit-trees/cajueiro.tscn",
+          "rig": "res://assets/overworld/kits/frutiferas/rigs/cajueiro/rig.json",
+          "source": {
+            "file": "art/soulgen/keys/arvores-frutiferas/cajueiro/cajueiro.soulgen.json",
+            "tool": "image_gen.imagegen; Soulgen sampler",
+            "note": "Assembled from separately authored complete hidden parts."
+          },
+          "collisionStatus": "proposed_trunk_cell_requires_map_fit",
+          "approval": "pending_owner_review"
+        }
+      }
+    },
+    "pitangueira": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/pitangueira-default.png",
+          "size": [
+            320,
+            230
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "height": 5,
+          "anchor": [
+            160,
+            182
+          ],
+          "isoAnchor": [
+            96,
+            230
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            320,
+            158
+          ],
+          "displayName": "Pitangueira",
+          "species": "pitangueira",
+          "articulatedScene": "res://scenes/overworld/fruit-trees/pitangueira.tscn",
+          "rig": "res://assets/overworld/kits/frutiferas/rigs/pitangueira/rig.json",
+          "source": {
+            "file": "art/soulgen/keys/arvores-frutiferas/pitangueira/pitangueira.soulgen.json",
+            "tool": "image_gen.imagegen; Soulgen sampler",
+            "note": "Assembled from separately authored complete hidden parts."
+          },
+          "collisionStatus": "proposed_trunk_cell_requires_map_fit",
+          "approval": "pending_owner_review"
+        }
+      }
+    },
+    "amoreira": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/amoreira-default.png",
+          "size": [
+            320,
+            262
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "height": 6,
+          "anchor": [
+            160,
+            214
+          ],
+          "isoAnchor": [
+            96,
+            262
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            320,
+            190
+          ],
+          "displayName": "Amoreira",
+          "species": "amoreira",
+          "articulatedScene": "res://scenes/overworld/fruit-trees/amoreira.tscn",
+          "rig": "res://assets/overworld/kits/frutiferas/rigs/amoreira/rig.json",
+          "source": {
+            "file": "art/soulgen/keys/arvores-frutiferas/amoreira/amoreira.soulgen.json",
+            "tool": "image_gen.imagegen; Soulgen sampler",
+            "note": "Assembled from separately authored complete hidden parts."
+          },
+          "collisionStatus": "proposed_trunk_cell_requires_map_fit",
+          "approval": "pending_owner_review"
+        }
+      }
+    },
+    "caramboleira": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/caramboleira-default.png",
+          "size": [
+            320,
+            257
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "height": 6,
+          "anchor": [
+            160,
+            209
+          ],
+          "isoAnchor": [
+            96,
+            257
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            320,
+            185
+          ],
+          "displayName": "Caramboleira",
+          "species": "caramboleira",
+          "articulatedScene": "res://scenes/overworld/fruit-trees/caramboleira.tscn",
+          "rig": "res://assets/overworld/kits/frutiferas/rigs/caramboleira/rig.json",
+          "source": {
+            "file": "art/soulgen/keys/arvores-frutiferas/caramboleira/caramboleira.soulgen.json",
+            "tool": "image_gen.imagegen; Soulgen sampler",
+            "note": "Assembled from separately authored complete hidden parts."
+          },
+          "collisionStatus": "proposed_trunk_cell_requires_map_fit",
+          "approval": "pending_owner_review"
+        }
+      }
+    },
+    "bananeira": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/bananeira-default.png",
+          "size": [
+            320,
+            280
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "height": 7,
+          "anchor": [
+            160,
+            232
+          ],
+          "isoAnchor": [
+            96,
+            280
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            320,
+            208
+          ],
+          "displayName": "Bananeira",
+          "species": "bananeira",
+          "articulatedScene": "res://scenes/overworld/fruit-trees/bananeira.tscn",
+          "rig": "res://assets/overworld/kits/frutiferas/rigs/bananeira/rig.json",
+          "source": {
+            "file": "art/soulgen/keys/arvores-frutiferas/bananeira/bananeira.soulgen.json",
+            "tool": "image_gen.imagegen; Soulgen sampler",
+            "note": "Assembled from separately authored complete hidden parts."
+          },
+          "collisionStatus": "proposed_trunk_cell_requires_map_fit",
+          "approval": "pending_owner_review"
+        }
+      }
+    },
+    "coqueiro": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/coqueiro-default.png",
+          "size": [
+            320,
+            317
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "height": 8,
+          "anchor": [
+            160,
+            269
+          ],
+          "isoAnchor": [
+            96,
+            317
+          ],
+          "groundAnchor": "center",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            320,
+            245
+          ],
+          "displayName": "Coqueiro",
+          "species": "coqueiro",
+          "articulatedScene": "res://scenes/overworld/fruit-trees/coqueiro.tscn",
+          "rig": "res://assets/overworld/kits/frutiferas/rigs/coqueiro/rig.json",
+          "source": {
+            "file": "art/soulgen/keys/arvores-frutiferas/coqueiro/coqueiro.soulgen.json",
+            "tool": "image_gen.imagegen; Soulgen sampler",
+            "note": "Assembled from separately authored complete hidden parts."
+          },
+          "collisionStatus": "proposed_trunk_cell_requires_map_fit",
+          "approval": "pending_owner_review"
+        }
+      }
+    }
+  },
+  "materials": {},
+  "transitions": {},
+  "walls": {},
+  "stairs": {},
+  "bridges": {}
+}

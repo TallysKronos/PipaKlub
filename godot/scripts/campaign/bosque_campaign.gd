@@ -1,0 +1,99 @@
+extends RefCounted
+## Kronasta regions (Bosque, Distrito Industrial, Pântano, Montanha): travel, discovery
+## and authored map rewards, using the campaign's atomic receipts.
+const Checkpoint=preload("res://scripts/campaign/park_checkpoint.gd")
+const Story=preload("res://scripts/campaign/kronasta_story.gd")
+const NAMES={"moedas":"moedas","papel-seda":"papel de seda","vareta-bambu":"vareta de bambu","cola-reparo":"cola de reparo","linha-encerada":"linha encerada","pista-caderno-heleana-1":"página do caderno"}
+var session: Node
+func _init(local_session: Node) -> void: session=local_session
+
+static func available(player: Dictionary) -> bool:
+	return not player.get("partners",[]).is_empty() and player.get("journey",{}).get("phase","")=="complete"
+
+static func authored_materials(scene: String) -> bool:
+	return Checkpoint.region_of(scene)=="bambuzal" or Checkpoint.is_bosque(scene) or (Checkpoint.MAPS.has(scene) and Checkpoint.data(scene).get("forest",{}).get("nativeProps",false))
+
+func travel(destination: String) -> Dictionary:
+	var saved: Dictionary=session.snapshot()
+	var source: String=saved.get("checkpoint",{}).get("scene","")
+	if saved.get("checkpoint",{}).get("kind","")!="world" or not available(saved.player): return {"status":"wrong_step"}
+	if source!="quintal" and not Checkpoint.MAPS.has(source) and not preload("res://scripts/campaign/morro.gd").maps().has(source): return {"status":"wrong_step"}
+	if not preload("res://scripts/campaign/kronasta_atlas.gd").can_travel(destination,saved.player):return {"status":"wrong_step"}
+	if destination in ["park-trail","park-clearing","park-veredas"] and not Story.park_access(saved.player,destination):return {"status":"wrong_step"}
+	if destination=="parque-patio-liga" and not load("res://scripts/campaign/blue_exam_preparation.gd").eligible(saved.player):return {"status":"wrong_step"}
+	var target: Dictionary
+	var region:=Checkpoint.region_of(destination)
+	# Regions are entered by part A, and only while the story keeps them open.
+	if not region.is_empty() and destination.ends_with("-a") and Story.can_travel(saved.player,region):
+		target=Checkpoint.make(destination,Checkpoint.spawn(destination),Checkpoint.SPACE)
+	elif region.is_empty() and Checkpoint.MAPS.has(destination):
+		target=Checkpoint.make(destination,Checkpoint.spawn(destination),Checkpoint.SPACE)
+	elif destination=="morro":
+		target={"kind":"world","scene":"morro","position":preload("res://scripts/campaign/morro.gd").maps().morro.spawn}
+	elif destination=="quintal":
+		target=preload("res://scripts/campaign/neighborhood_checkpoint.gd").make(Vector2(1792,1808),saved.player)
+	else: return {"status":"wrong_step"}
+	return session.checkpoint(target,saved.player)
+
+func arrive() -> Dictionary:
+	var saved: Dictionary=session.snapshot()
+	var region:=Checkpoint.region_of(saved.checkpoint.get("scene",""))
+	if region.is_empty() or saved.checkpoint.get("space","")!=Checkpoint.SPACE or not available(saved.player): return {"status":"wrong_step"}
+	var point:=Vector2(saved.checkpoint.position[0],saved.checkpoint.position[1])
+	if not Checkpoint.model_for(saved.checkpoint.scene).point_walkable(point): return {"status":"wrong_step"}
+	var part: String=saved.checkpoint.scene.right(1) if region=="caverna" else saved.checkpoint.scene.trim_prefix("kronasta-"+region+"-")
+	var receipt: String=region+"-discovered-"+part+"-v1"
+	if receipt in saved.player.completedOperations: return {"status":"already_applied"}
+	saved.player.flags[region+"Parte"+part.to_upper()+"Descoberta"]=true
+	if region=="bosque" and part=="c": saved.player.flags.bosqueClareiraDescoberta=true
+	return session.commit_operation(receipt,saved.checkpoint,saved.player)
+
+func collect(id: String, point: Vector2) -> Dictionary:
+	var saved: Dictionary=session.snapshot()
+	var scene: String=saved.checkpoint.get("scene","")
+	if not authored_materials(scene) or saved.checkpoint.get("space","")!=Checkpoint.SPACE or not available(saved.player): return {"status":"wrong_step"}
+	var model=Checkpoint.model_for(scene)
+	if not point.is_finite() or not model.point_walkable(point): return {"status":"wrong_step"}
+	for event in model.data.events:
+		if str(int(event.id))!=id or event.type!="item": continue
+		var receipt: String="park-item-"+Checkpoint.MAPS[scene]+"-"+id
+		if receipt in saved.player.completedOperations: return {"status":"already_applied"}
+		var target:=Vector2(event.u+.5,event.v+.5)
+		if point.distance_to(target)>1.8 or absf(model.height_at(point)-model.height_at(target))>=.25 or not Checkpoint.allowed(event,saved.player,scene): return {"status":"wrong_step"}
+		var item: String=event.props.get("item","")
+		var count: int=int(event.props.get("quantidade",0))
+		if not NAMES.has(item) or count<1 or count>30: return {"status":"wrong_step"}
+		if item=="moedas": saved.player.coins+=count
+		else: saved.player.inventory[item]=saved.player.inventory.get(item,0)+count
+		# Preserve the existing clue without inventing its text or a new revelation.
+		if item=="pista-caderno-heleana-1": saved.player.flags.bosquePaginaEncontrada=true
+		var result: Dictionary=session.commit_operation(receipt,saved.checkpoint,saved.player)
+		if result.status=="ok": result.reward="%d %s"%[count,NAMES[item]]
+		return result
+	return {"status":"wrong_step"}
+
+static func rest_events(area: String, model) -> Array:
+	if area!="kronasta-bosque-c": return []
+	var result: Array=[]
+	for piece in model.data.pieces:
+		if piece.asset!="banco": continue
+		# Bench origins are blocked. Use a reachable adjacent cell at its own height.
+		for delta in [Vector2i.DOWN,Vector2i.RIGHT,Vector2i.UP,Vector2i.LEFT]:
+			var at: Vector2i=Vector2i(piece.u,piece.v)+delta
+			if not model.walkable(at) or int(model.cell_at(at).level)!=int(model.cell_at(Vector2i(piece.u,piece.v)).level): continue
+			result.append({"id":9700+int(piece.id),"type":"interacao","name":"Descansar no banco","u":at.x,"v":at.y,"props":{"acao":"wildRest"}})
+			break
+	return result
+
+static func objective(player: Dictionary, scene: String) -> String:
+	if Checkpoint.region_of(scene)=="palafitas" and preload("res://scripts/campaign/district_rules.gd").unlocked(player,"palafitas"):return preload("res://scripts/campaign/district_campaign.gd").objective(player,"palafitas")
+	if scene.begins_with("kronasta-pantano-") and load("res://scripts/campaign/retalho_trust.gd").swamp_open(player) or scene.begins_with("kronasta-palafitas-"):return load("res://scripts/campaign/retalho_trust.gd").objective(player)
+	if scene=="kronasta-industrial-d" and Story.current_beat(player).get("id","") in ["galpao","gollia-bando"]:return Story.current_beat(player).text
+	if scene=="kronasta-industrial-d":return preload("res://scripts/campaign/warehouse_story.gd").objective(player)
+	if scene=="kronasta-bosque-d":return "Retalho recuou. Guarde a pista do nó de expedição e volte pela trilha." if player.get("flags",{}).get("retalhoBosqueVencido",false) else "Procure Retalho na clareira elevada · Nv.22. O mato dos desvios é opcional."
+	if Checkpoint.region_of(scene) in ["bambuzal","beira-canal","feira","cais","industrial"]:return preload("res://scripts/campaign/district_campaign.gd").objective(player,Checkpoint.region_of(scene))
+	if not Checkpoint.is_bosque(scene): return Story.region_objective(player,scene)
+	# The Trovareta storm (act 4) overrides the Bosque's exploration hints.
+	if Story.current_beat(player).get("id","")=="trovareta": return Story.current_beat(player).text
+	if preload("res://scripts/campaign/park_training.gd").needs_rest(player): return "Seu parceiro precisa descansar. Há bancos na Clareira do Marco."
+	return {"kronasta-bosque-a":"Exploração opcional · siga a trilha ou procure os desvios dos platôs.","kronasta-bosque-b":"Atravesse o riacho pela ponte e siga até a Clareira do Marco.","kronasta-bosque-c":"Clareira descoberta · explore o mirante, descanse ou use o atalho de volta."}.get(scene,"")

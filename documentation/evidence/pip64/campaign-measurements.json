@@ -1,0 +1,702 @@
+[
+	{
+		"actual_pixels": [
+			1280,
+			720
+		],
+		"findings": [],
+		"focus": "Jornada 1 · Novo jogo",
+		"image": "menu-1280x720.png",
+		"requested_pixels": [
+			1280,
+			720
+		],
+		"scenario": "menu",
+		"ui_units": [
+			1280.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					110.0,
+					48.0,
+					1060.0,
+					26.0
+				],
+				"text": "CAMPANHA  /  SEU PRÓXIMO VENTO",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					110.0,
+					92.0,
+					1060.0,
+					65.0
+				],
+				"text": "PipaKlub",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					110.0,
+					175.0,
+					1060.0,
+					34.0
+				],
+				"text": "Um fio de sorte",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					110.0,
+					227.0,
+					1060.0,
+					31.0
+				],
+				"text": "Escolha sua jornada. Seu progresso fica neste computador.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					158.0,
+					292.0,
+					244.0,
+					26.0
+				],
+				"text": "JORNADA  01",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					158.0,
+					454.0,
+					244.0,
+					34.0
+				],
+				"text": "Um novo começo",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					158.0,
+					500.0,
+					244.0,
+					56.0
+				],
+				"text": "Jornada 1 · Novo jogo",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					518.0,
+					292.0,
+					244.0,
+					26.0
+				],
+				"text": "JORNADA  02",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					518.0,
+					454.0,
+					244.0,
+					34.0
+				],
+				"text": "Um novo começo",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					518.0,
+					500.0,
+					244.0,
+					56.0
+				],
+				"text": "Jornada 2 · Novo jogo",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					878.0,
+					292.0,
+					244.0,
+					26.0
+				],
+				"text": "JORNADA  03",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					878.0,
+					454.0,
+					244.0,
+					34.0
+				],
+				"text": "Um novo começo",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					878.0,
+					500.0,
+					244.0,
+					56.0
+				],
+				"text": "Jornada 3 · Novo jogo",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					110.0,
+					592.0,
+					217.0,
+					56.0
+				],
+				"text": "Configurações",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					339.0,
+					592.0,
+					140.0,
+					56.0
+				],
+				"text": "Sair",
+				"type": "Button",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			720
+		],
+		"findings": [],
+		"focus": "Filtro de TV (CRT)",
+		"image": "settings-1280x720.png",
+		"requested_pixels": [
+			1280,
+			720
+		],
+		"scenario": "settings",
+		"ui_units": [
+			1280.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					48.0,
+					52.0,
+					1012.0,
+					42.0
+				],
+				"text": "Configurações",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					116.0,
+					1062.0,
+					40.0
+				],
+				"text": "Filtro de TV (CRT)",
+				"type": "CheckButton",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1122.0,
+					120.0,
+					110.0,
+					31.0
+				],
+				"text": "Ligado",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					174.0,
+					1062.0,
+					40.0
+				],
+				"text": "Tela cheia",
+				"type": "CheckButton",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1122.0,
+					178.0,
+					110.0,
+					31.0
+				],
+				"text": "Desligado",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					232.0,
+					1062.0,
+					40.0
+				],
+				"text": "Reduzir animações da interface",
+				"type": "CheckButton",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1122.0,
+					236.0,
+					110.0,
+					31.0
+				],
+				"text": "Ligado",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					290.0,
+					1184.0,
+					56.0
+				],
+				"text": "Controles",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					364.0,
+					1184.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			720
+		],
+		"findings": [],
+		"focus": "Avançar",
+		"image": "opening-2-1280x720.png",
+		"requested_pixels": [
+			1280,
+			720
+		],
+		"scenario": "opening-2",
+		"ui_units": [
+			1280.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					252.0,
+					528.400024414063,
+					966.0,
+					31.0
+				],
+				"text": "Esse ano eu vou participar da liga regional. Pode apostar!",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1038.0,
+					565.400024414063,
+					180.0,
+					56.0
+				],
+				"text": "Avançar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					274.0,
+					479.400024414063,
+					136.0,
+					34.0
+				],
+				"text": "Kael",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					965.0,
+					16.0,
+					291.0,
+					56.0
+				],
+				"text": "Salvar e voltar ao menu",
+				"type": "Button",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			720
+		],
+		"findings": [
+			{
+				"fraction": 0.578,
+				"kind": "scroll_row_partial",
+				"priority": "P3",
+				"text": "Rabiola de Raio de sol  × 2"
+			}
+		],
+		"focus": "Tudo",
+		"focus_reachable_rows": 6,
+		"image": "bag-full-1280x720.png",
+		"requested_pixels": [
+			1280,
+			720
+		],
+		"scenario": "bag-full",
+		"ui_units": [
+			1280.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					48.0,
+					52.0,
+					1012.0,
+					42.0
+				],
+				"text": "Bolsa · 0 moedas",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					116.0,
+					125.0,
+					53.0
+				],
+				"text": "Tudo",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					177.0,
+					116.0,
+					125.0,
+					53.0
+				],
+				"text": "Rabiolas",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					306.0,
+					116.0,
+					125.0,
+					53.0
+				],
+				"text": "Missão",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					435.0,
+					116.0,
+					125.0,
+					53.0
+				],
+				"text": "Materiais",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					181.0,
+					569.0,
+					64.0
+				],
+				"text": "Rabiola de Carcará  × 2",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					257.0,
+					569.0,
+					64.0
+				],
+				"text": "Rabiola do Carcará de Nina  × 1",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					333.0,
+					569.0,
+					64.0
+				],
+				"text": "Rabiola de Lacertubo  × 1",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					409.0,
+					569.0,
+					64.0
+				],
+				"text": "Rabiola de Azulão  × 3",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					485.0,
+					569.0,
+					64.0
+				],
+				"text": "Rabiola de Mata verde  × 4",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					561.0,
+					569.0,
+					64.0
+				],
+				"text": "Rabiola de Raio de sol  × 2",
+				"type": "Button",
+				"visible_fraction": 0.578
+			},
+			{
+				"rect": [
+					703.0,
+					354.0,
+					481.0,
+					33.0
+				],
+				"text": "Rabiola de Carcará",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					703.0,
+					399.0,
+					481.0,
+					31.0
+				],
+				"text": "2 na mochila",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					703.0,
+					442.0,
+					481.0,
+					65.0
+				],
+				"text": "Leve ao ateliê do Sr. Assis para trabalhar nesta rabiola.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					48.0,
+					616.0,
+					1184.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			720
+		],
+		"findings": [],
+		"focus": "none",
+		"image": "battle-1280x720.png",
+		"requested_pixels": [
+			1280,
+			720
+		],
+		"scenario": "battle",
+		"ui_units": [
+			1280.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					52.0,
+					660.0,
+					1014.0,
+					26.0
+				],
+				"text": "Cortar a linha do oponente em um cruzamento.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1106.0,
+					647.0,
+					150.0,
+					53.0
+				],
+				"text": "Pausar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			720
+		],
+		"findings": [],
+		"focus": "none",
+		"image": "long-notice-1280x720.png",
+		"requested_pixels": [
+			1280,
+			720
+		],
+		"scenario": "long-notice",
+		"ui_units": [
+			1280.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					42.0,
+					36.0,
+					276.0,
+					27.0
+				],
+				"text": "Veredas do Encantamento",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					870.0,
+					20.0,
+					122.0,
+					61.0
+				],
+				"text": "Equipe",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1004.0,
+					20.0,
+					122.0,
+					61.0
+				],
+				"text": "Bolsa",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1138.0,
+					20.0,
+					122.0,
+					61.0
+				],
+				"text": "Menu",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					42.0,
+					109.0,
+					276.0,
+					55.0
+				],
+				"text": "Recupere a rabiola do Carcará de Nina.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					42.0,
+					210.0,
+					276.0,
+					27.0
+				],
+				"text": "Kael  ·  0 moedas",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					42.0,
+					651.0,
+					1.0,
+					31.0
+				],
+				"text": "",
+				"type": "Label",
+				"visible_fraction": 1.0
+			}
+		]
+	}
+]

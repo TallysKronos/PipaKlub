@@ -1,0 +1,435 @@
+{
+  "meta": {
+    "app": "Pixelgen",
+    "version": 2,
+    "image": "kael-walk.png",
+    "size": {
+      "w": 192,
+      "h": 64
+    },
+    "scale": 1
+  },
+  "style": {
+    "id": "soulmon-ds-v1",
+    "body": "jovem",
+    "baseReviewed": false,
+    "cycleReviewed": false
+  },
+  "palette": [
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      21,
+      32,
+      51,
+      255
+    ],
+    [
+      34,
+      51,
+      78,
+      255
+    ],
+    [
+      53,
+      79,
+      128,
+      255
+    ],
+    [
+      88,
+      117,
+      162,
+      255
+    ],
+    [
+      183,
+      121,
+      96,
+      255
+    ],
+    [
+      237,
+      183,
+      140,
+      255
+    ],
+    [
+      255,
+      225,
+      176,
+      255
+    ],
+    [
+      33,
+      71,
+      115,
+      255
+    ],
+    [
+      50,
+      100,
+      155,
+      255
+    ],
+    [
+      96,
+      137,
+      181,
+      255
+    ],
+    [
+      48,
+      61,
+      82,
+      255
+    ],
+    [
+      105,
+      121,
+      143,
+      255
+    ],
+    [
+      233,
+      229,
+      212,
+      255
+    ],
+    [
+      46,
+      156,
+      174,
+      255
+    ],
+    [
+      133,
+      213,
+      210,
+      255
+    ],
+    [
+      197,
+      163,
+      101,
+      255
+    ]
+  ],
+  "sequences": [
+    {
+      "name": "walk-E",
+      "start": 0,
+      "end": 3,
+      "loop": true,
+      "direction": "forward"
+    }
+  ],
+  "frames": [
+    {
+      "name": "walk-E-1",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pose": {
+        "topo": [
+          25,
+          8
+        ],
+        "queixo": [
+          29,
+          24
+        ],
+        "pescoco": [
+          26,
+          27
+        ],
+        "quadril": [
+          25,
+          43
+        ],
+        "ombroTras": [
+          26,
+          29
+        ],
+        "cotoveloTras": [
+          29,
+          35
+        ],
+        "maoTras": [
+          31,
+          40
+        ],
+        "ombroFrente": [
+          23,
+          29
+        ],
+        "cotoveloFrente": [
+          20,
+          35
+        ],
+        "maoFrente": [
+          18,
+          41
+        ],
+        "joelhoTras": [
+          21,
+          51
+        ],
+        "peTras": [
+          18,
+          60
+        ],
+        "joelhoFrente": [
+          29,
+          51
+        ],
+        "peFrente": [
+          32,
+          60
+        ]
+      },
+      "support": [
+        "peTras",
+        "peFrente"
+      ],
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 130
+    },
+    {
+      "name": "walk-E-2",
+      "frame": {
+        "x": 48,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pose": {
+        "topo": [
+          25,
+          7
+        ],
+        "queixo": [
+          29,
+          23
+        ],
+        "pescoco": [
+          26,
+          26
+        ],
+        "quadril": [
+          25,
+          42
+        ],
+        "ombroTras": [
+          26,
+          28
+        ],
+        "cotoveloTras": [
+          28,
+          34
+        ],
+        "maoTras": [
+          28,
+          40
+        ],
+        "ombroFrente": [
+          23,
+          28
+        ],
+        "cotoveloFrente": [
+          23,
+          35
+        ],
+        "maoFrente": [
+          24,
+          41
+        ],
+        "joelhoTras": [
+          31,
+          49
+        ],
+        "peTras": [
+          26,
+          55
+        ],
+        "joelhoFrente": [
+          25,
+          51
+        ],
+        "peFrente": [
+          25,
+          60
+        ]
+      },
+      "support": [
+        "peFrente"
+      ],
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 120
+    },
+    {
+      "name": "walk-E-3",
+      "frame": {
+        "x": 96,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pose": {
+        "topo": [
+          25,
+          8
+        ],
+        "queixo": [
+          29,
+          24
+        ],
+        "pescoco": [
+          26,
+          27
+        ],
+        "quadril": [
+          25,
+          43
+        ],
+        "ombroTras": [
+          26,
+          29
+        ],
+        "cotoveloTras": [
+          23,
+          35
+        ],
+        "maoTras": [
+          21,
+          41
+        ],
+        "ombroFrente": [
+          23,
+          29
+        ],
+        "cotoveloFrente": [
+          27,
+          35
+        ],
+        "maoFrente": [
+          30,
+          40
+        ],
+        "joelhoTras": [
+          29,
+          51
+        ],
+        "peTras": [
+          32,
+          60
+        ],
+        "joelhoFrente": [
+          21,
+          51
+        ],
+        "peFrente": [
+          18,
+          60
+        ]
+      },
+      "support": [
+        "peTras",
+        "peFrente"
+      ],
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 130
+    },
+    {
+      "name": "walk-E-4",
+      "frame": {
+        "x": 144,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pose": {
+        "topo": [
+          25,
+          7
+        ],
+        "queixo": [
+          29,
+          23
+        ],
+        "pescoco": [
+          26,
+          26
+        ],
+        "quadril": [
+          25,
+          42
+        ],
+        "ombroTras": [
+          26,
+          28
+        ],
+        "cotoveloTras": [
+          26,
+          34
+        ],
+        "maoTras": [
+          26,
+          40
+        ],
+        "ombroFrente": [
+          23,
+          28
+        ],
+        "cotoveloFrente": [
+          24,
+          35
+        ],
+        "maoFrente": [
+          25,
+          41
+        ],
+        "joelhoTras": [
+          25,
+          51
+        ],
+        "peTras": [
+          25,
+          60
+        ],
+        "joelhoFrente": [
+          31,
+          49
+        ],
+        "peFrente": [
+          26,
+          55
+        ]
+      },
+      "support": [
+        "peTras"
+      ],
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 120
+    }
+  ]
+}

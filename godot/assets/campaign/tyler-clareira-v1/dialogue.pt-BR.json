@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "nodes": [
+    {"id":"chegada","speaker":"Tyler","text":"Rai, devagar. Esse remendo ainda está segurando.","cue":"rai"},
+    {"id":"encontro","speaker":"Kael","text":"Oi! Você também está procurando alguma coisa na clareira?"},
+    {"id":"apresentacao","speaker":"Tyler","text":"Estava separando papel para o ateliê. Sou Tyler. E esse é o Rai.","cue":"tyler"},
+    {"id":"assis","speaker":"Tyler","text":"Meu pai deve ter falado de mim. O Sr. Assis."},
+    {"id":"surpresa","speaker":"Kael","text":"O professor é seu pai?! Eu conheço o ateliê desde pequeno… Nunca soube que ele tinha um filho."},
+    {"id":"resposta","speaker":"Tyler","text":"Ele fala mais das pipas do que dele mesmo. Você é o Kael, né? Ele comentou do seu parceiro."},
+    {"id":"remendo","speaker":"Kael","text":"Esse pedaço no seu carretel… é outro tipo de linha?","cue":"reel"},
+    {"id":"pista","speaker":"Tyler","text":"Um remendo. Eu reponho o que falta. Puxar mais forte nem sempre resolve."},
+    {"id":"nina","speaker":"Kael","text":"A rabiola do Carcará da Nina sumiu. As marcas seguem para os canos."},
+    {"id":"canos","speaker":"Tyler","text":"Então vamos ficar atentos. Não mexe na linha se ela estiver presa. Primeiro encontra onde ela enroscou."},
+    {"id":"despedida","speaker":"Tyler","text":"Rai e eu vamos conferir este lado. Se precisar descansar, tem um banco mais adiante. A gente se encontra, Kael."}
+  ]
+}

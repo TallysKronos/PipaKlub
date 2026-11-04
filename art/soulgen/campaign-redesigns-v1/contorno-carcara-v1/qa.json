@@ -1,0 +1,119 @@
+{
+  "tool": "image_gen.imagegen",
+  "images": [
+    {
+      "id": "trovareta",
+      "file": "trovareta.png",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-74d20d23-e036-45d2-a39b-effc3c936dcf.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "35292ab638b7d6b4021a22ace6a0590c019e73deb0f789263ed86fe0f5f6e627",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "alpha_zero_pixels": 981281,
+      "alpha_partial_pixels": 591583,
+      "alpha_240_plus_pixels": 465684,
+      "solid_bounds_alpha_200": [
+        58,
+        17,
+        1479,
+        1010
+      ],
+      "status": "fonte-visual-em-revisao",
+      "rig_complete": false,
+      "integrated": false
+    },
+    {
+      "id": "rabiolava",
+      "file": "rabiolava.png",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-42245fd9-731f-4ea6-abf3-51ceddd48706.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "8a0104e3a3324b47e8bdbc2bd31996ed98a31bf61398cb405b35e1493b9bcd5f",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "alpha_zero_pixels": 765839,
+      "alpha_partial_pixels": 807025,
+      "alpha_240_plus_pixels": 723941,
+      "solid_bounds_alpha_200": [
+        31,
+        19,
+        1513,
+        1005
+      ],
+      "status": "fonte-visual-em-revisao",
+      "rig_complete": false,
+      "integrated": false
+    },
+    {
+      "id": "glacerol",
+      "file": "glacerol.png",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-2285084c-eacb-4300-98e8-9132e7043ce2.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "f91b32ad506b5af4efa0e34a1099317bb8b276b0822806b8ff1af9696b1fb726",
+      "alpha_extrema": [
+        0,
+        254
+      ],
+      "alpha_zero_pixels": 886890,
+      "alpha_partial_pixels": 685974,
+      "alpha_240_plus_pixels": 578228,
+      "solid_bounds_alpha_200": [
+        157,
+        39,
+        1483,
+        1001
+      ],
+      "status": "fonte-visual-em-revisao",
+      "rig_complete": false,
+      "integrated": false
+    },
+    {
+      "id": "tufanocorte",
+      "file": "tufanocorte.png",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a17924-9eaf-7951-8ded-c6920198ad3f\\exec-8125c097-36dc-4912-808d-9f33479e34ac.png",
+      "dimensions": [
+        1312,
+        1199
+      ],
+      "mode": "RGBA",
+      "sha256": "19ed99bd5bf1d30988f2f3da8d5d1b69c225fa52ecf20a0ae035f72c1b74db2c",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "alpha_zero_pixels": 680629,
+      "alpha_partial_pixels": 891832,
+      "alpha_240_plus_pixels": 766674,
+      "solid_bounds_alpha_200": [
+        41,
+        73,
+        1290,
+        1161
+      ],
+      "status": "fonte-visual-em-revisao",
+      "rig_complete": false,
+      "integrated": false
+    }
+  ],
+  "notes": [
+    "Contorno hibrido solicitado, sem garantia de grade nativa uniforme.",
+    "As fontes contêm alpha parcial e possiveis halos, a revisar antes de recorte final.",
+    "Folhas de pecas, expressoes e rigs ainda pendentes.",
+    "A previa apenas redimensiona e compoe fontes para diagnostico; nenhum pixel fonte foi alterado."
+  ]
+}

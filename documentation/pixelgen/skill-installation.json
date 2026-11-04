@@ -1,0 +1,50 @@
+{
+  "installed_on": "2026-10-28",
+  "skills": [
+    {
+      "name": "pixel-art",
+      "source": "https://github.com/omer-metin/skills-for-antigravity/tree/main/skills/pixel-art",
+      "source_ref": "main",
+      "installed_path": "C:\\Users\\user\\.codex\\skills\\pixel-art",
+      "sha256": "76fa5e5c2144a358f7d309943e04915bcb2a8ad6a31a8a5e4f7fc09f45ebb7a4",
+      "compatibility_note": "Unmodified installed skill."
+    },
+    {
+      "name": "pixel-art-animator",
+      "source": "https://github.com/willibrandon/pixel-plugin/tree/main/skills/pixel-art-animator",
+      "source_ref": "main",
+      "installed_path": "C:\\Users\\user\\.codex\\skills\\pixel-art-animator",
+      "sha256": "0f310743bea3c24cb48c92f95d8b54404a68feb289f7ecb9b592520711dfb074",
+      "compatibility_note": "Frontmatter name normalized; upstream copy preserved."
+    },
+    {
+      "name": "pixel-art-professional",
+      "source": "https://github.com/willibrandon/pixel-plugin/tree/main/skills/pixel-art-professional",
+      "source_ref": "main",
+      "installed_path": "C:\\Users\\user\\.codex\\skills\\pixel-art-professional",
+      "sha256": "7e00cc1190dc27bd1811bf659f9e01dda1487aee46eac2fe73c6d2cf2057292d",
+      "compatibility_note": "Frontmatter name normalized; upstream copy preserved."
+    },
+    {
+      "name": "aseprite-ai-artist",
+      "source": "https://github.com/with-pebbly/aseprite-ai-artist/tree/main/skills/studio",
+      "source_ref": "main",
+      "installed_path": "C:\\Users\\user\\.codex\\skills\\aseprite-ai-artist",
+      "sha256": "d59658d497eae7360ad1d493b5f56c766aef4f9088b59de24f8a0a2096d964fe",
+      "compatibility_note": "Frontmatter name normalized; upstream copy preserved."
+    }
+  ],
+  "aseprite_integration": {
+    "package": "@pebbly/aseprite-ai-artist",
+    "version": "0.8.2",
+    "source": "https://github.com/with-pebbly/aseprite-ai-artist",
+    "local_installation": "C:/Users/user/produto/.local-tools/aseprite-ai-artist",
+    "aseprite_path": "C:/Program Files (x86)/Steam/steamapps/common/Aseprite/Aseprite.exe",
+    "aseprite_version": "1.3.18.6-x64",
+    "extension_path": "C:/Users/user/AppData/Roaming/Aseprite/extensions/aseprite-ai-artist",
+    "codex_configuration": "C:/Users/user/.codex/config.toml",
+    "default_mode": "headless",
+    "preflight": "READY; no sprite open",
+    "note": "The two willibrandon skills describe pixel-mcp APIs; AI Artist exposes its own API. Discover actual tools instead of assuming names match."
+  }
+}

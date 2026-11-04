@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-26",
+  "tool": "Built-in image_gen",
+  "purpose": "Quieter 2D battle backgrounds matching Veredas, no UI or characters baked in",
+  "assets": [
+    {
+      "file": "veredas-arena-v1.png",
+      "generated_original": "exec-2fcd5cc0-37e7-4ff0-a302-0c58df006541.png",
+      "reference": "res://assets/illustrated/veredas-clean.png",
+      "generation_brief": "Front/side battle view of Veredas. Broad flat 2D green ink cartoon shapes, quiet sky upper 60%, terracotta drainage pipes at edges, ruined courtyard lower third, no characters, text or HUD.",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "import": "linear; opaque background; runtime aspect-preserving crop",
+      "validation": "Inspected original and in-engine rendered composition. Static art, no collision role."
+    },
+    {
+      "file": "rooftop-arena-v1.png",
+      "generated_original": "exec-d1cb22c5-61de-4219-bc60-99957d0ae6b9.png",
+      "reference": "res://assets/campaign/veredas-arena-v1.png",
+      "generation_brief": "Same flat broad cartoon treatment in a Brazilian hillside rooftop courtyard. Quiet sky upper 65%, simplified cream plaster and terracotta roofs along low horizon. No characters, text or HUD.",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "import": "linear; opaque background; runtime aspect-preserving crop",
+      "validation": "Inspected original and in-engine rendered composition. Static art, no collision role."
+    }
+  ]
+}

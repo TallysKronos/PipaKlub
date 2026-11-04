@@ -1,0 +1,1226 @@
+{
+  "issue": "PIP-87",
+  "id": "morro-mirante-da-caixa-dagua",
+  "identity": "Caixa azul, guarda-corpo e vista distante da cidade",
+  "source": "art/overworld/mapas/morro-mirante-da-caixa-dagua.tmj",
+  "sourceSha256": "5794ad3c210f2d633faf39a9e0010b7c06077763c5231d56d801d95bedd4e7fa",
+  "projection": {
+    "cell": [
+      64,
+      32
+    ],
+    "levelPx": 64
+  },
+  "size": [
+    24,
+    16
+  ],
+  "stage": "facades_access_and_railing_native_review",
+  "approval": "pending_owner_review",
+  "alignment": "painting_not_pixel_verified",
+  "pieces": [
+    {
+      "id": 1,
+      "name": "caixa dagua",
+      "asset": "caixa-dagua",
+      "u": 7,
+      "v": 0,
+      "fu": 2,
+      "fv": 2,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "caixa-dagua",
+        "pegada": "2x2"
+      }
+    },
+    {
+      "id": 2,
+      "name": "mirante guarda corpo",
+      "asset": "mirante-guarda-corpo",
+      "u": 8,
+      "v": 4,
+      "fu": 2,
+      "fv": 2,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "mirante-guarda-corpo",
+        "pegada": "2x2"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Casa do morro",
+      "asset": "casa-morro",
+      "u": 17,
+      "v": 0,
+      "fu": 3,
+      "fv": 3,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "casa-morro",
+        "pegada": "3x3",
+        "variante": "telha",
+        "bloqueia": true
+      }
+    },
+    {
+      "id": 4,
+      "name": "Casa do morro",
+      "asset": "casa-morro",
+      "u": 3,
+      "v": 5,
+      "fu": 3,
+      "fv": 3,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "casa-morro",
+        "pegada": "3x3",
+        "variante": "laje",
+        "bloqueia": true
+      }
+    },
+    {
+      "id": 5,
+      "name": "Casa do morro",
+      "asset": "casa-morro",
+      "u": 3,
+      "v": 9,
+      "fu": 3,
+      "fv": 3,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "casa-morro",
+        "pegada": "3x3",
+        "variante": "muro-chapisco",
+        "bloqueia": false
+      }
+    },
+    {
+      "id": 6,
+      "name": "Casa do morro",
+      "asset": "casa-morro",
+      "u": 18,
+      "v": 9,
+      "fu": 3,
+      "fv": 3,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "casa-morro",
+        "pegada": "3x3",
+        "variante": "telha",
+        "bloqueia": true
+      }
+    },
+    {
+      "id": 7,
+      "name": "Casa do morro",
+      "asset": "casa-morro",
+      "u": 7,
+      "v": 12,
+      "fu": 3,
+      "fv": 3,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "casa-morro",
+        "pegada": "3x3",
+        "variante": "laje",
+        "bloqueia": true
+      }
+    },
+    {
+      "id": 8,
+      "name": "Casa do morro",
+      "asset": "casa-morro",
+      "u": 13,
+      "v": 12,
+      "fu": 3,
+      "fv": 3,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "casa-morro",
+        "pegada": "3x3",
+        "variante": "muro-chapisco",
+        "bloqueia": false
+      }
+    },
+    {
+      "id": 9,
+      "name": "Casa do morro",
+      "asset": "casa-morro",
+      "u": 17,
+      "v": 13,
+      "fu": 3,
+      "fv": 3,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "casa-morro",
+        "pegada": "3x3",
+        "variante": "telha-direita",
+        "bloqueia": true
+      }
+    },
+    {
+      "id": 15,
+      "name": "Casa de fundo",
+      "asset": "casa-morro",
+      "u": 0,
+      "v": 0,
+      "fu": 3,
+      "fv": 3,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "casa-morro",
+        "variante": "telha",
+        "pegada": "3x3",
+        "bloqueia": true,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 16,
+      "name": "Casa de fundo",
+      "asset": "casa-morro",
+      "u": 3,
+      "v": 0,
+      "fu": 3,
+      "fv": 3,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "casa-morro",
+        "variante": "laje",
+        "pegada": "3x3",
+        "bloqueia": true,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 17,
+      "name": "Casa de fundo",
+      "asset": "casa-morro",
+      "u": 20,
+      "v": 0,
+      "fu": 3,
+      "fv": 3,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "casa-morro",
+        "variante": "muro-chapisco",
+        "pegada": "3x3",
+        "bloqueia": true,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 19,
+      "name": "Casa de fundo",
+      "asset": "casa-morro",
+      "u": 17,
+      "v": 3,
+      "fu": 3,
+      "fv": 3,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "casa-morro",
+        "variante": "laje",
+        "pegada": "3x3",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 20,
+      "name": "Casa de fundo",
+      "asset": "casa-morro",
+      "u": 20,
+      "v": 3,
+      "fu": 3,
+      "fv": 3,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "casa-morro",
+        "variante": "muro-chapisco",
+        "pegada": "3x3",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 21,
+      "name": "Casa de fundo",
+      "asset": "casa-morro",
+      "u": 0,
+      "v": 5,
+      "fu": 3,
+      "fv": 3,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "casa-morro",
+        "variante": "telha",
+        "pegada": "3x3",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 22,
+      "name": "Casa de fundo",
+      "asset": "casa-morro",
+      "u": 21,
+      "v": 6,
+      "fu": 3,
+      "fv": 3,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "casa-morro",
+        "variante": "laje",
+        "pegada": "3x3",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 23,
+      "name": "Casa de fundo",
+      "asset": "casa-morro",
+      "u": 0,
+      "v": 8,
+      "fu": 3,
+      "fv": 3,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "casa-morro",
+        "variante": "muro-chapisco",
+        "pegada": "3x3",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 24,
+      "name": "Casa de fundo",
+      "asset": "casa-morro",
+      "u": 21,
+      "v": 9,
+      "fu": 3,
+      "fv": 3,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "casa-morro",
+        "variante": "telha",
+        "pegada": "3x3",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 25,
+      "name": "Casa de fundo",
+      "asset": "casa-morro",
+      "u": 0,
+      "v": 11,
+      "fu": 3,
+      "fv": 3,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "casa-morro",
+        "variante": "laje",
+        "pegada": "3x3",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 26,
+      "name": "Casa de fundo",
+      "asset": "casa-morro",
+      "u": 3,
+      "v": 12,
+      "fu": 3,
+      "fv": 3,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "casa-morro",
+        "variante": "muro-chapisco",
+        "pegada": "3x3",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 27,
+      "name": "Casa de fundo",
+      "asset": "casa-morro",
+      "u": 20,
+      "v": 12,
+      "fu": 3,
+      "fv": 3,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "casa-morro",
+        "variante": "telha",
+        "pegada": "3x3",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 28,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 9,
+      "v": 1,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 29,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 10,
+      "v": 1,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 30,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 11,
+      "v": 1,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 31,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 12,
+      "v": 1,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 32,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 13,
+      "v": 1,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 33,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 14,
+      "v": 1,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 34,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 15,
+      "v": 1,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 35,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 16,
+      "v": 1,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 36,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 9,
+      "v": 4,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v-",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 37,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 10,
+      "v": 4,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v-",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 38,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 14,
+      "v": 4,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v-",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 39,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 15,
+      "v": 4,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v-",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 40,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 16,
+      "v": 4,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v-",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 41,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 10,
+      "v": 5,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "u+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 42,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 14,
+      "v": 5,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "u-",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 43,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 10,
+      "v": 6,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "u+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 44,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 14,
+      "v": 6,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "u-",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 45,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 7,
+      "v": 7,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 46,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 8,
+      "v": 7,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 47,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 9,
+      "v": 7,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 48,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 10,
+      "v": 7,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "u+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 49,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 10,
+      "v": 7,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 50,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 14,
+      "v": 7,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "u-",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 51,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 14,
+      "v": 7,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 52,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 15,
+      "v": 7,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 53,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 16,
+      "v": 7,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 54,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 17,
+      "v": 7,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 55,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 6,
+      "v": 8,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "u+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 56,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 18,
+      "v": 8,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "u-",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 57,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 6,
+      "v": 9,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "u+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 58,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 6,
+      "v": 10,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "u+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 59,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 7,
+      "v": 11,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v-",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 60,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 8,
+      "v": 11,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "u+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 61,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 8,
+      "v": 11,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v-",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 62,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 16,
+      "v": 11,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "u-",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 63,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 16,
+      "v": 11,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v-",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 64,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 17,
+      "v": 11,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v-",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 65,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 10,
+      "v": 12,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "u+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 66,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 10,
+      "v": 12,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "v-",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 67,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 10,
+      "v": 13,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "u+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 68,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 10,
+      "v": 14,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "u+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    },
+    {
+      "id": 69,
+      "name": "Mureta de quintal",
+      "asset": "muro-quintal",
+      "u": 10,
+      "v": 15,
+      "fu": 1,
+      "fv": 1,
+      "blocks": false,
+      "interact": null,
+      "props": {
+        "asset": "muro-quintal",
+        "variante": "u+",
+        "pegada": "1x1",
+        "bloqueia": false,
+        "origem": "PIP-87 vestir lote bloqueado"
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": 10,
+      "type": "entrada",
+      "name": "Entrada sul",
+      "u": 12,
+      "v": 12,
+      "props": {}
+    },
+    {
+      "id": 11,
+      "type": "saida",
+      "name": "Voltar para a Laje dos Ventos",
+      "u": 12,
+      "v": 15,
+      "props": {
+        "destino": "morro-area-3"
+      }
+    },
+    {
+      "id": 12,
+      "type": "saida",
+      "name": "Seguir para o Parque dos Ventos",
+      "u": 12,
+      "v": 3,
+      "props": {
+        "destino": "morro-area-5",
+        "requer": "morro-4"
+      }
+    },
+    {
+      "id": 13,
+      "type": "npc",
+      "name": "Encontro do bairro",
+      "u": 9,
+      "v": 9,
+      "props": {
+        "desafio": "morro-4"
+      }
+    },
+    {
+      "id": 14,
+      "type": "interacao",
+      "name": "Passagem para a próxima área",
+      "u": 12,
+      "v": 9,
+      "props": {
+        "acao": "road_gate",
+        "requer": "morro-4"
+      }
+    }
+  ],
+  "ramps": [
+    {
+      "u": 11,
+      "v": 4,
+      "material": "calcada",
+      "level": 0,
+      "ramp": "v-"
+    },
+    {
+      "u": 12,
+      "v": 4,
+      "material": "calcada",
+      "level": 0,
+      "ramp": "v-"
+    },
+    {
+      "u": 13,
+      "v": 4,
+      "material": "calcada",
+      "level": 0,
+      "ramp": "v-"
+    }
+  ],
+  "locks": [
+    "Source cells and source event positions remain authoritative",
+    "Approved floor and stair geometry retained",
+    "Do not use whole concept as runtime ground",
+    "Review every stair mouth and wall corner without characters obscuring it",
+    "No generated backdrop forest; houses selected explicitly from existing lots"
+  ]
+}

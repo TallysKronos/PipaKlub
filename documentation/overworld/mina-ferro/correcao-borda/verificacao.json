@@ -1,0 +1,243 @@
+{
+  "captures": 56,
+  "sources": [
+    {
+      "path": "godot/scripts/overworld/mine_structures.gd",
+      "sha256": "b5de1f1f09b370b273afc4bd2483fee097ae06df552f76924ab5913d9056dd86"
+    },
+    {
+      "path": "godot/scripts/overworld/forest_structures.gd",
+      "sha256": "30b68abf3b231303ee85539f98629a842fc9d0fcc071770ecba5955bc3ec5937"
+    },
+    {
+      "path": "godot/scripts/overworld/kronasta_forest.gd",
+      "sha256": "bfe0439a411239b0ee26b74982ed7ba8ea98037bbd1b0c8fd631dd13dcac851b"
+    }
+  ],
+  "images": [
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/a/arte/area-inteira.png",
+      "sha256": "4faaf0bca0aa41c58e9b979a86fc7323d7730ad29f0ab595773a24b3bd78efd6"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/a/arte/entrada.png",
+      "sha256": "6b4de9246e51cab58c2635f6ef919d1cf1c736d455f8e2fe0b925bf313315ce9"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/a/arte/carga.png",
+      "sha256": "853752cd944f6bc4aba8b4faeb00c18ee2aa708cd83159a3ff04931678bdcc02"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/a/arte/desvio.png",
+      "sha256": "e76a7234ccee074d7d526f6e501e9ced02b4f5ca63c6feb9fa3ad830790ce65e"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/a/arte/borda-frontal.png",
+      "sha256": "9a61658fccc4e4c6e1e23cf3ab541419e6ae0fef1f54fec1bfb58798d9c040b2"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/a/arte/ponta-esquerda.png",
+      "sha256": "eac0081f26e2d8c2da409aa7e1f2169768cfaf53e5de333ff6032a1d2f19b7ed"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/a/arte/encontro-entrada.png",
+      "sha256": "9e7f45e4c4e3ab93048c560e680fb4f728e04ef53fe70e6eac7bb733cc0bdcd5"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/a/geometria/area-inteira.png",
+      "sha256": "1f6366d0e594012a50b218c15a50c9420521aeaba18d4a4f284fc4924adc18f3"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/a/geometria/entrada.png",
+      "sha256": "df2d1b2a61f10b46824903b6c616a6a0be6f0fc77114fb9e32efedbe274ac52e"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/a/geometria/carga.png",
+      "sha256": "34bc10f15541ea72f625889f2c4379d2382b7c45fab31fd6f3ca747d2c5ec284"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/a/geometria/desvio.png",
+      "sha256": "f42ec3d4999c0a119e6b676487643acb0c12a1a33aaff4bbf79daa631ebba4e2"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/a/geometria/borda-frontal.png",
+      "sha256": "1b3b4387839fb7e5d2b6a4c13a6a12587765ad9cb2440eaf4349a328556bf92c"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/a/geometria/ponta-esquerda.png",
+      "sha256": "4c381f38be03ce6c5ae5d36777733a86967c21f6e60c7f0704ef3939f111dc87"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/a/geometria/encontro-entrada.png",
+      "sha256": "f21c65108b233422460bde967825189b26f3dc4088a982b9b9c74a04222a0314"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/b/arte/area-inteira.png",
+      "sha256": "fea97281570fd8eb3f357b30ddb52ad4157948459a897deb77aa17dac97c033e"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/b/arte/entrada.png",
+      "sha256": "f62c50113ade9859d3d9532784e48c641cd39a6e2ec8cbe209f705a7b52bb056"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/b/arte/carga.png",
+      "sha256": "b11f391c7b863b6cc7c410fa05fc1eaa232a839dafccdd5abc3924faec7a2b2e"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/b/arte/desvio.png",
+      "sha256": "4f3ec023cb6de45b96067bd425bd5618f152e87b834e00078360986e61be45f1"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/b/arte/borda-frontal.png",
+      "sha256": "596dd1cfe86eed9636b7bb061a0d48c8a2abd33d24af5a5ccf811a036fe222f0"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/b/arte/ponta-esquerda.png",
+      "sha256": "17c90f70df3851cda275307c976397a8faa548dfdb59d776865ca823d5a9da63"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/b/arte/encontro-entrada.png",
+      "sha256": "3cffa46423f2fd0a7e781a083bfe0516bdecea21d590efc02576a220cd34fe71"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/b/geometria/area-inteira.png",
+      "sha256": "441d5f47729b48876f79946c7df1801fbebeba8d74d33b1c5c4908215d08355f"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/b/geometria/entrada.png",
+      "sha256": "7523e7664c7e80d655d89a14095bb565b30bf38f32a32e6acd058ce3297bc244"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/b/geometria/carga.png",
+      "sha256": "87a293115bd71fe1f10928ed3c21fca3178eb27d077a74f73a8407c805c4a405"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/b/geometria/desvio.png",
+      "sha256": "986d36282eb1368731ec11c7a1d9e476b5ef957a3f6dc2c87307e74b5dde480b"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/b/geometria/borda-frontal.png",
+      "sha256": "72ee831254c355fb87948d30a3bbe54d32d9e48e0981b44879d42ceb901b13a4"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/b/geometria/ponta-esquerda.png",
+      "sha256": "e5a0ada732593f9217bd84c48e220e4c37b699c31703e079687ebf5c3af217e0"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/b/geometria/encontro-entrada.png",
+      "sha256": "2698cc4bcc64fe479c7f2648cc4b61cf2e6fdfe2d4680b60b24ecc847dd9f606"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/c/arte/area-inteira.png",
+      "sha256": "649c9dd867fffaabf4922de9fde549e3b2f3ce2141f005287065124a66e93ef7"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/c/arte/entrada.png",
+      "sha256": "cb562f1427cf416a1d346bb04a7fb091acc4f51492c18dd84fcd954ae9fb2a6b"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/c/arte/carga.png",
+      "sha256": "07acc8baf392abf6ff2dca333f28ee035ab920aada000314f8a36146ecf119ea"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/c/arte/desvio.png",
+      "sha256": "6e8daf762617ca26137e53f5539e5f2aaa33e4a95c2176df1d1d6f4aa10a9e28"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/c/arte/borda-frontal.png",
+      "sha256": "a40bd99d9860558481c4a11bf24ca90267ed0743938408af7b4346d9fd023c2f"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/c/arte/ponta-esquerda.png",
+      "sha256": "349ce23fe05ed905e270f2454eb07ea258970d22360e0fefe181672c73902a24"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/c/arte/encontro-entrada.png",
+      "sha256": "b1d3569dfbcf4012d21522a7a9a13c4afaa95f927ba791464a6de2d622819fa3"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/c/geometria/area-inteira.png",
+      "sha256": "176e9092cf8aebd6fe92ffb2a3d9d3cdbf66879f09437d906dde79c743c28a0a"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/c/geometria/entrada.png",
+      "sha256": "b9584f595c18697c17ff5798364cec1679774a31ba5cc4aaaa871fe9a4a0a2d4"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/c/geometria/carga.png",
+      "sha256": "a323f91b81d738309b03d2d84c1b0a5fb37d18b91842c06551e83fb222f5cedf"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/c/geometria/desvio.png",
+      "sha256": "940beab2d06c17482402b3dcdd3ef270a6b0e8b31384efef3787b958a65abbfb"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/c/geometria/borda-frontal.png",
+      "sha256": "7baef3cfd25945e6df7ded787ea1ab3501043ab5a2ee1b1ab15c30544a95a48a"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/c/geometria/ponta-esquerda.png",
+      "sha256": "2808990760eda4f60a6505f316eeeb60e1cd331d2b826367838a16f90cdb1f9e"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/c/geometria/encontro-entrada.png",
+      "sha256": "5c0c96556b9c227d9c056b8611dd85442d178f0b6777e45eea166ca87699e5d6"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/d/arte/area-inteira.png",
+      "sha256": "3df0d197296cea70d04db517c15a47875784a031428f1dd0f4833ac91536ffe1"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/d/arte/entrada.png",
+      "sha256": "3f4ef0ad931a20205da79632b688c241ed48b174694ea83445284b4581e6c1f1"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/d/arte/carga.png",
+      "sha256": "b9e01d0441f1f1af773d9ea873c2d1575d4130ac87055c767b0d90efee81b3ec"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/d/arte/desvio.png",
+      "sha256": "191b9097f4577d784dfd0956ff40a17ea3029a84f5cbf992431bbfa1743ef73b"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/d/arte/borda-frontal.png",
+      "sha256": "17f560620577f54ef651ca6124475407fe7fc4e2b467437d4c98d85a1577ab4a"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/d/arte/ponta-esquerda.png",
+      "sha256": "c5b9b0773f2f82c2d5bf55489897f5b080bf19e9c9acd5dd5a2d5e05c68aab3b"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/d/arte/encontro-entrada.png",
+      "sha256": "9c06d75d48d90a930d39e2400b4bb16e693f29126b36aeaa70057671a06f7e2c"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/d/geometria/area-inteira.png",
+      "sha256": "ff665eef8bf1e02fe2b532bf169faaadb2faab6b2c16472278c9c1d07a9242ba"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/d/geometria/entrada.png",
+      "sha256": "df9abfbd2ec5803235bcb2428054b2ff6cebc99b16a467bf65daf665cf50f70f"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/d/geometria/carga.png",
+      "sha256": "7ab7405aea82dbf6c12e626d50d0f59ed6438e2bb2c2fcec59ba78f3e74423d2"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/d/geometria/desvio.png",
+      "sha256": "3d4a429bbadb4153a456a7603b112b1d418744aced453776fd4dc38c3e5389ce"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/d/geometria/borda-frontal.png",
+      "sha256": "d7405c68421995ca32f9aeb370e39d6012f40904996d980d4a5cf714026d9061"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/d/geometria/ponta-esquerda.png",
+      "sha256": "9cd234322746c300149f94e1bcda6da61aeb887b542959847bcd42d11d6bf518"
+    },
+    {
+      "path": "documentation/overworld/mina-ferro/correcao-borda/d/geometria/encontro-entrada.png",
+      "sha256": "264e315f988f42ab19d8caf3ed8b2c0985ad34722dcfadf3ff662315e67bf8b3"
+    }
+  ]
+}

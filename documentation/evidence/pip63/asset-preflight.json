@@ -1,0 +1,1679 @@
+{
+  "issue": "PIP-63",
+  "assets": 64,
+  "exports": 128,
+  "issues": [],
+  "rasters": [
+    {
+      "file": "ink/frames/frame-panel.png",
+      "size": [
+        160,
+        160
+      ],
+      "bytes": 9805,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 5668,
+      "sha256": "ccd8de6605bf8d1958afe116ce986eff14f9aa2ff7c5a32e036f2c245f5ae3f9"
+    },
+    {
+      "file": "ink/frames/frame-panel@2x.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 21916,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 19079,
+      "sha256": "2e19e3c57b5e29fbde7e9f041b0be4c2a9574378ed55327910e4e98c062d26eb"
+    },
+    {
+      "file": "ink/frames/frame-ribbon.png",
+      "size": [
+        160,
+        160
+      ],
+      "bytes": 5548,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 4558,
+      "sha256": "655cac497bc2b3542e8bcce1c49642ba0e12005209d981d6ffb7e269b3ef6808"
+    },
+    {
+      "file": "ink/frames/frame-ribbon@2x.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 12086,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 14822,
+      "sha256": "48855ddd7b8258ff34bda31e9e47ec2ef21f768e63ee750e2ddeafb91c72bcc8"
+    },
+    {
+      "file": "ink/frames/frame-button.png",
+      "size": [
+        160,
+        160
+      ],
+      "bytes": 7102,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 5442,
+      "sha256": "a428a5062225d59ff4177bcf95593b9de954a92932aaf8d95825e4887480dbb3"
+    },
+    {
+      "file": "ink/frames/frame-button@2x.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 15499,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 17907,
+      "sha256": "8199ad2f00bfbec014f2cb3c941ca0391a9ca11156f14d02000c04d5a50ba07a"
+    },
+    {
+      "file": "ink/frames/frame-list-item.png",
+      "size": [
+        160,
+        160
+      ],
+      "bytes": 5353,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 4657,
+      "sha256": "57667b4a5c6d5bf3c91e1c2ab61a79a2ba1d4423dc3dc676231b8053bb25d707"
+    },
+    {
+      "file": "ink/frames/frame-list-item@2x.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 11521,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 14687,
+      "sha256": "c27556d45045a84432408423e443facaf0bd8bb79d7bb84a612e6533c6485076"
+    },
+    {
+      "file": "ink/frames/frame-speech.png",
+      "size": [
+        160,
+        160
+      ],
+      "bytes": 7966,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 4995,
+      "sha256": "e49abe7a2414d48c4c2599e4b095e358cfdfdf51d66dee5709642dc5f2d76f5c"
+    },
+    {
+      "file": "ink/frames/frame-speech@2x.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 17563,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 16479,
+      "sha256": "0c22581653e430c8836aa49fb19e46def18d918eb0ba2ac086d618e86959fc0a"
+    },
+    {
+      "file": "ink/balloons/balloon-speech.png",
+      "size": [
+        160,
+        160
+      ],
+      "bytes": 7175,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 5048,
+      "sha256": "034a9f5c0d3a63683a3535274d8e7b32403b16c3d1ff91d49264f18fa8a2553f"
+    },
+    {
+      "file": "ink/balloons/balloon-speech@2x.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 19543,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 14816,
+      "sha256": "f71e41dcd62b2e1fc16a9d99b2aa2a524d4a9919a4f871a764774b7039df1a14"
+    },
+    {
+      "file": "ink/balloons/balloon-shout.png",
+      "size": [
+        160,
+        160
+      ],
+      "bytes": 9624,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 5376,
+      "sha256": "16387d8c6b66ef194b6b9096ae2b9e1e8b1b06a042d47873573feed3e2f9f2b2"
+    },
+    {
+      "file": "ink/balloons/balloon-shout@2x.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 28510,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 17648,
+      "sha256": "95a8ec7cb4bd8961f857072e331d2c141ea67d97717516a1048d89f4a92d4b26"
+    },
+    {
+      "file": "ink/balloons/balloon-thought.png",
+      "size": [
+        160,
+        160
+      ],
+      "bytes": 8180,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 4700,
+      "sha256": "b08afc3fba04ac3ae9fbe708ac7b26f9d59723bda8ff5b7d0a43a785f2ad3e72"
+    },
+    {
+      "file": "ink/balloons/balloon-thought@2x.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 22107,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 13604,
+      "sha256": "2a5b8c8370cfafbf06916590bf3a2957d8990879efceb31ed3e5d831c0e20cf3"
+    },
+    {
+      "file": "ink/balloons/balloon-whisper.png",
+      "size": [
+        160,
+        160
+      ],
+      "bytes": 6650,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 3660,
+      "sha256": "36ba70f8fbe17ca4b88b7dd6ff5798307117284552ea0f36f23a0341c8381c72"
+    },
+    {
+      "file": "ink/balloons/balloon-whisper@2x.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 17736,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 10244,
+      "sha256": "bb9c2c299e047998612aab251578d127255d81ffa3e8317d299881902ff3afc0"
+    },
+    {
+      "file": "ink/balloons/tail-left.png",
+      "size": [
+        80,
+        64
+      ],
+      "bytes": 1492,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 550,
+      "sha256": "fd6cac1871b54fb430d0f5eef8e38bcf67810a5973f2b53690f4e1235fbf945d"
+    },
+    {
+      "file": "ink/balloons/tail-left@2x.png",
+      "size": [
+        160,
+        128
+      ],
+      "bytes": 3553,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 1665,
+      "sha256": "552e421ae5de644b42cf565e90aa16f27958fb48c1bba1fad9740396e2d7730e"
+    },
+    {
+      "file": "ink/balloons/tail-right.png",
+      "size": [
+        80,
+        64
+      ],
+      "bytes": 1608,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 609,
+      "sha256": "85f73035fc2346e7dd890de8bc6599d7baa7150bdd6f17a73f17a41ae7878fcf"
+    },
+    {
+      "file": "ink/balloons/tail-right@2x.png",
+      "size": [
+        160,
+        128
+      ],
+      "bytes": 3869,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 1878,
+      "sha256": "061cbd5a7f1b976cae651663cf4fcb6189e04070dc6bc40ea58438fb779dab75"
+    },
+    {
+      "file": "ink/balloons/tail-thought.png",
+      "size": [
+        80,
+        64
+      ],
+      "bytes": 2276,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 932,
+      "sha256": "197da591e48fc35af6bfe89de96be4d381e176413c1b87cee12eac1981b8a0c3"
+    },
+    {
+      "file": "ink/balloons/tail-thought@2x.png",
+      "size": [
+        160,
+        128
+      ],
+      "bytes": 5484,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 2781,
+      "sha256": "a4684eafd15aad172efc98f64ee3a7901019d64afaf533c7e0c286ecb09481a3"
+    },
+    {
+      "file": "ink/balloons/tail-whisper.png",
+      "size": [
+        80,
+        64
+      ],
+      "bytes": 1138,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 375,
+      "sha256": "31c8556891c6f371cf465828c055e5eff57c6e5c97c39312b23c9bae9179063b"
+    },
+    {
+      "file": "ink/balloons/tail-whisper@2x.png",
+      "size": [
+        160,
+        128
+      ],
+      "bytes": 2589,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 994,
+      "sha256": "3ba6d8d7dbe69558840f2680f50c9486a1987591720b93e2b922ff1dea4db05a"
+    },
+    {
+      "file": "ink/strokes/selection-1.png",
+      "size": [
+        320,
+        64
+      ],
+      "bytes": 6599,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 7541,
+      "sha256": "8586a40b009a6b69ecbbf9d66c12696a19d295460c549702166ce8f860682df9"
+    },
+    {
+      "file": "ink/strokes/selection-1@2x.png",
+      "size": [
+        640,
+        128
+      ],
+      "bytes": 17060,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 28108,
+      "sha256": "caf2edb8a141f97907ed00f1ecbd7116ec198087840d26b0a7461a0502d86cf2"
+    },
+    {
+      "file": "ink/strokes/selection-2.png",
+      "size": [
+        320,
+        64
+      ],
+      "bytes": 8524,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 12003,
+      "sha256": "742bb19bbf28ee07fbac6249c95796d6e5348905d232761bd167668a78ba391c"
+    },
+    {
+      "file": "ink/strokes/selection-2@2x.png",
+      "size": [
+        640,
+        128
+      ],
+      "bytes": 22112,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 45267,
+      "sha256": "a5c3af727517e6d960e5ea7ede3a85a08304669040e2621e88cc662b8ea8c526"
+    },
+    {
+      "file": "ink/strokes/selection-3.png",
+      "size": [
+        320,
+        64
+      ],
+      "bytes": 6368,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 7258,
+      "sha256": "1c7d99255896dae763dbd4fa74916b45398108b531502e4008f08c9b66a6f7c9"
+    },
+    {
+      "file": "ink/strokes/selection-3@2x.png",
+      "size": [
+        640,
+        128
+      ],
+      "bytes": 16412,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 26971,
+      "sha256": "b6a65b561f90123b9f8319b8806577e000e934bfb39b0aa5314e9672a2a6dc66"
+    },
+    {
+      "file": "ink/splats/small-1.png",
+      "size": [
+        48,
+        48
+      ],
+      "bytes": 1511,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 1107,
+      "sha256": "77cd3fe2a848c09de3f66031e227627d0be892a38c03fb414333fcd317b91f0c"
+    },
+    {
+      "file": "ink/splats/small-1@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "bytes": 3032,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 3621,
+      "sha256": "f13d361ec2d9260dc0fa99e47edf24b498091954841e1a2f086579fa04dfa073"
+    },
+    {
+      "file": "ink/splats/small-1-outline.png",
+      "size": [
+        48,
+        48
+      ],
+      "bytes": 1651,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 871,
+      "sha256": "20c44b51e442ff258707764a43a1e8471e95ddac70b0abd79b9528e5e0363f66"
+    },
+    {
+      "file": "ink/splats/small-1-outline@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "bytes": 3748,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 2807,
+      "sha256": "aab077207c9df2752a7e31d76e153f2dd9f07571887dfc468fa7bd07d9d29a55"
+    },
+    {
+      "file": "ink/splats/small-2.png",
+      "size": [
+        48,
+        48
+      ],
+      "bytes": 1241,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 756,
+      "sha256": "01b9886f8e7c6c22d4140ac89c17c05e32627cfab60c9466a503f042c005d784"
+    },
+    {
+      "file": "ink/splats/small-2@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "bytes": 2574,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 2442,
+      "sha256": "3113b02ec5c1e196f4b431eea1c6b6c98187011bca2279c03cc5b363d38c177b"
+    },
+    {
+      "file": "ink/splats/small-2-outline.png",
+      "size": [
+        48,
+        48
+      ],
+      "bytes": 1291,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 653,
+      "sha256": "8968929b73d75a20e354a0145312bb8d19d7ee72c5f22701aec836d329a461da"
+    },
+    {
+      "file": "ink/splats/small-2-outline@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "bytes": 2986,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 2062,
+      "sha256": "dde63729e321e7bb2fc4bf94d3e7cf1885e98f8340a0675de0ba9fbe147caa29"
+    },
+    {
+      "file": "ink/splats/small-3.png",
+      "size": [
+        48,
+        48
+      ],
+      "bytes": 1313,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 781,
+      "sha256": "2083e20d250488d4cbd95d199e18102d93b1e59a8ec0c5fb0d901ed5e602356b"
+    },
+    {
+      "file": "ink/splats/small-3@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "bytes": 2689,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 2487,
+      "sha256": "c80331d973d78331d5f070a4515a30a8dd52a57216d91cbf8520f5fcf8b2933b"
+    },
+    {
+      "file": "ink/splats/small-3-outline.png",
+      "size": [
+        48,
+        48
+      ],
+      "bytes": 1356,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 676,
+      "sha256": "18e789517a60ace0f780cabe113559195419548e5be00024bcc3ffc6f034e456"
+    },
+    {
+      "file": "ink/splats/small-3-outline@2x.png",
+      "size": [
+        96,
+        96
+      ],
+      "bytes": 3109,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 2096,
+      "sha256": "78dd1b96e4a681c9234372062fb4182056dae23ff5d3bf76fd11ce161af1e4da"
+    },
+    {
+      "file": "ink/splats/medium-1.png",
+      "size": [
+        120,
+        120
+      ],
+      "bytes": 4089,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 3556,
+      "sha256": "f98a61f9ffb04c65f26598e87a3e0879bc38c561cfda8d33f8ae62f09a3b5f7e"
+    },
+    {
+      "file": "ink/splats/medium-1@2x.png",
+      "size": [
+        240,
+        240
+      ],
+      "bytes": 9372,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 12331,
+      "sha256": "886a471779a7d139fa3123d50f9f5e0106689d9dced6f1a549efd356bd7e4c26"
+    },
+    {
+      "file": "ink/splats/medium-1-outline.png",
+      "size": [
+        120,
+        120
+      ],
+      "bytes": 4478,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 2857,
+      "sha256": "cab96e0b7f8487ab7d06ace050079984ce58bbe203d91ff1b23a267620a23831"
+    },
+    {
+      "file": "ink/splats/medium-1-outline@2x.png",
+      "size": [
+        240,
+        240
+      ],
+      "bytes": 11567,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 9876,
+      "sha256": "61546a4fd4c3d8a967db65595374181d07223b90ec6a8f03ef9b62b4a718aefc"
+    },
+    {
+      "file": "ink/splats/medium-2.png",
+      "size": [
+        120,
+        120
+      ],
+      "bytes": 4434,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 3604,
+      "sha256": "a11a198b88a892dd44a90a3d1dccdce4e3760fecb0b1c619ef0587f922a91f17"
+    },
+    {
+      "file": "ink/splats/medium-2@2x.png",
+      "size": [
+        240,
+        240
+      ],
+      "bytes": 10353,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 12385,
+      "sha256": "78108d02684b1a86226abf33b515dcf45b6bdfd8b432713047205207c8bb80cf"
+    },
+    {
+      "file": "ink/splats/medium-2-outline.png",
+      "size": [
+        120,
+        120
+      ],
+      "bytes": 4801,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 3093,
+      "sha256": "707eadc06a789e78b7584c405e25a2633ec9da1a73da2f5a09d67f52f7a1511f"
+    },
+    {
+      "file": "ink/splats/medium-2-outline@2x.png",
+      "size": [
+        240,
+        240
+      ],
+      "bytes": 12327,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 10661,
+      "sha256": "1d915dcd5f6c20e56a0dd191bb4ccdba344c1a7b76274f64262f3c6edd4fd49b"
+    },
+    {
+      "file": "ink/splats/medium-3.png",
+      "size": [
+        120,
+        120
+      ],
+      "bytes": 4596,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 4148,
+      "sha256": "d5e3c8aea2e45d836cec27a2317f784fb0334008d75986dfb7e1c9cba3f51521"
+    },
+    {
+      "file": "ink/splats/medium-3@2x.png",
+      "size": [
+        240,
+        240
+      ],
+      "bytes": 10469,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 14423,
+      "sha256": "59d841ad54c170698d33c828c960a72b15c9705e230e937cc40903f320b495c2"
+    },
+    {
+      "file": "ink/splats/medium-3-outline.png",
+      "size": [
+        120,
+        120
+      ],
+      "bytes": 5047,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 3246,
+      "sha256": "db5bf012e976466c34a105ebe37ca144041eb9d3aa3c9a95fa4816fe14b890ee"
+    },
+    {
+      "file": "ink/splats/medium-3-outline@2x.png",
+      "size": [
+        240,
+        240
+      ],
+      "bytes": 13042,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 11267,
+      "sha256": "42391843858827147a2972b85da7cde50bd32f53824b6270adb07935d2b35ab7"
+    },
+    {
+      "file": "ink/splats/large-1.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 19027,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 35280,
+      "sha256": "3845a6daf39fcbe898e63e6c8de756c8e04ad57e28b4262bebaaf2ffb19fe7a2"
+    },
+    {
+      "file": "ink/splats/large-1@2x.png",
+      "size": [
+        640,
+        640
+      ],
+      "bytes": 48851,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 131898,
+      "sha256": "7f9636b83dff222cde71df33b73c5d9b2d9d174e67e3e1316bc636776f96bff8"
+    },
+    {
+      "file": "ink/splats/large-1-outline.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 22755,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 17402,
+      "sha256": "579def935a7bd07c82ce0ee5f0906cae3843f0aba69ae4efec30d21c83a94341"
+    },
+    {
+      "file": "ink/splats/large-1-outline@2x.png",
+      "size": [
+        640,
+        640
+      ],
+      "bytes": 67140,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 60848,
+      "sha256": "2aff2a6775eb7737904e29687145466b04ac1f04a2d1ff939e60fcdeb2befe44"
+    },
+    {
+      "file": "ink/splats/large-2.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 19864,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 31370,
+      "sha256": "ae81778b755e82c1277120d45a3304eaa3850bcc89ae8c10079bc6332bc8514c"
+    },
+    {
+      "file": "ink/splats/large-2@2x.png",
+      "size": [
+        640,
+        640
+      ],
+      "bytes": 51391,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 117086,
+      "sha256": "19dafff5323b5c4fb7535fbd6e745ae3c4efa1667b6b4a3f8873b21b66c304f0"
+    },
+    {
+      "file": "ink/splats/large-2-outline.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 23834,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 18022,
+      "sha256": "025d898fd4c95575227d8b7417ad116a2fda72cd283381b6bfcd0cc78c7916d4"
+    },
+    {
+      "file": "ink/splats/large-2-outline@2x.png",
+      "size": [
+        640,
+        640
+      ],
+      "bytes": 70853,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 63613,
+      "sha256": "37d33f717e2e649c119c26b2cd56fe6e50df068e7c1c4f0b0d33f107d7f8c2ec"
+    },
+    {
+      "file": "ink/splats/drip-1.png",
+      "size": [
+        120,
+        120
+      ],
+      "bytes": 2224,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 1744,
+      "sha256": "1b6f8429f7e1b85942c8a186aa026d096bb4e54268c5a49dde81254745b8d430"
+    },
+    {
+      "file": "ink/splats/drip-1@2x.png",
+      "size": [
+        240,
+        240
+      ],
+      "bytes": 5011,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 5941,
+      "sha256": "9934d2ef4b7503ea42cfe8a87aa5a95e11fac5451e5437c3ca9dae792d9c3a32"
+    },
+    {
+      "file": "ink/splats/drip-1-outline.png",
+      "size": [
+        120,
+        120
+      ],
+      "bytes": 2460,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 1431,
+      "sha256": "d614ea6eb84bafd5af1f195c7d739f04da09b5bebf0895f80ba78eb7e5204f94"
+    },
+    {
+      "file": "ink/splats/drip-1-outline@2x.png",
+      "size": [
+        240,
+        240
+      ],
+      "bytes": 6329,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 4990,
+      "sha256": "c18abfa6c2eb6b29229764e065a3126e2b93443c80bf731cfbfc3f3b168da59f"
+    },
+    {
+      "file": "ink/splats/drip-2.png",
+      "size": [
+        120,
+        120
+      ],
+      "bytes": 2037,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 1189,
+      "sha256": "0d121d508e683c8ff7d906be96b65e2774a04e5702552b0e80fd0d7121646f9a"
+    },
+    {
+      "file": "ink/splats/drip-2@2x.png",
+      "size": [
+        240,
+        240
+      ],
+      "bytes": 4520,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 3714,
+      "sha256": "33e893369af80c2c0e1fe588032659273b204e1394ce938c378ddaf56ed8c925"
+    },
+    {
+      "file": "ink/splats/drip-2-outline.png",
+      "size": [
+        120,
+        120
+      ],
+      "bytes": 2131,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 1140,
+      "sha256": "8bab9c186c20aa85569667133dd242321adba283a42706243e78b09100b1a737"
+    },
+    {
+      "file": "ink/splats/drip-2-outline@2x.png",
+      "size": [
+        240,
+        240
+      ],
+      "bytes": 5213,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 3671,
+      "sha256": "ee641a09e7a787bd129f95a5d7699107c7b3781f5df347ff2b57262a535af956"
+    },
+    {
+      "file": "ink/splats/drip-3.png",
+      "size": [
+        120,
+        120
+      ],
+      "bytes": 2492,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 2316,
+      "sha256": "b01ba1f4f47341e94eb0720b26e22e3f79412f0b123fc7574ae07b9aa5ac3011"
+    },
+    {
+      "file": "ink/splats/drip-3@2x.png",
+      "size": [
+        240,
+        240
+      ],
+      "bytes": 5522,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 8199,
+      "sha256": "fb94446389857ea2735f9c29c3c0c28129a1288f1107774d6a7f0c3a8759b1ca"
+    },
+    {
+      "file": "ink/splats/drip-3-outline.png",
+      "size": [
+        120,
+        120
+      ],
+      "bytes": 2984,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 1726,
+      "sha256": "afa87e87b9be0c06b914b72e7e3aef9abe83bee70705ff75671cad8e5eb957ee"
+    },
+    {
+      "file": "ink/splats/drip-3-outline@2x.png",
+      "size": [
+        240,
+        240
+      ],
+      "bytes": 7415,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 6164,
+      "sha256": "be0705667d2f4501c725097a9b706ae249af8b1c2d6aa9e4eeb6b3bb4fb1c56d"
+    },
+    {
+      "file": "ink/splats/drip-4.png",
+      "size": [
+        120,
+        120
+      ],
+      "bytes": 2544,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 2058,
+      "sha256": "a0dbb1ab2be2a0e7f7fab545358e877451068ccadf579adf48932f9568a7842a"
+    },
+    {
+      "file": "ink/splats/drip-4@2x.png",
+      "size": [
+        240,
+        240
+      ],
+      "bytes": 6017,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 7162,
+      "sha256": "5692fba748b2cee7c1744b2c89652e4ea6f4c07a8f74756c93ff371949ebac8c"
+    },
+    {
+      "file": "ink/splats/drip-4-outline.png",
+      "size": [
+        120,
+        120
+      ],
+      "bytes": 2893,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 1703,
+      "sha256": "46c60bde7da2291bad872a2c343f1146987b6c8b008b23387e987097a6a6bc88"
+    },
+    {
+      "file": "ink/splats/drip-4-outline@2x.png",
+      "size": [
+        240,
+        240
+      ],
+      "bytes": 7733,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 5970,
+      "sha256": "c65f702c99622cc47cf84b53a8bdea6a4049c3ac183289f8fa1844966bfc50fb"
+    },
+    {
+      "file": "ink/splats/trail-1.png",
+      "size": [
+        120,
+        120
+      ],
+      "bytes": 2441,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 1804,
+      "sha256": "5ca37690ae8eb62a0865a38190ca5190be504c38895f5408f14779dde5676814"
+    },
+    {
+      "file": "ink/splats/trail-1@2x.png",
+      "size": [
+        240,
+        240
+      ],
+      "bytes": 5750,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 6160,
+      "sha256": "dc5c6a08b1b28801a8d0e73cc76195037275037defa5daf03f3c724b50e0c554"
+    },
+    {
+      "file": "ink/splats/trail-1-outline.png",
+      "size": [
+        120,
+        120
+      ],
+      "bytes": 2773,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 1617,
+      "sha256": "95806f2d950f712f70b82aee47c1b7fe3273d60aa61617a2f7a76a3f0b2c1be2"
+    },
+    {
+      "file": "ink/splats/trail-1-outline@2x.png",
+      "size": [
+        240,
+        240
+      ],
+      "bytes": 7422,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 5639,
+      "sha256": "40763e4f3ad1ef4b71b233a633bc972c5a4b2dd15b408fc664e27e154dc25661"
+    },
+    {
+      "file": "ink/splats/trail-2.png",
+      "size": [
+        120,
+        120
+      ],
+      "bytes": 2294,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 1566,
+      "sha256": "a998671c4174f6592a07a912f6fc5cf58d0dfc1c44129af49837b972840f7bf9"
+    },
+    {
+      "file": "ink/splats/trail-2@2x.png",
+      "size": [
+        240,
+        240
+      ],
+      "bytes": 5402,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 5260,
+      "sha256": "9226bcd73ef1b0dce465ecb7bfca2e4c370fa8c46a478f3fe4e42a154a03ce4b"
+    },
+    {
+      "file": "ink/splats/trail-2-outline.png",
+      "size": [
+        120,
+        120
+      ],
+      "bytes": 2572,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 1430,
+      "sha256": "28d3b3b3f078257e6fb442823044c2115fc255f64530f35e7062089f475679fb"
+    },
+    {
+      "file": "ink/splats/trail-2-outline@2x.png",
+      "size": [
+        240,
+        240
+      ],
+      "bytes": 6888,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 4919,
+      "sha256": "0e14c6dd9af9309cefc49d76c3883e9b5f63a6ffa4fc4ade79c9a7010a3c9ff7"
+    },
+    {
+      "file": "ink/splats/trail-3.png",
+      "size": [
+        120,
+        120
+      ],
+      "bytes": 2215,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 1573,
+      "sha256": "c389d4cc77c528462d0ee2c467b965f5d3ce01ef8f3969615d755d55086eb4de"
+    },
+    {
+      "file": "ink/splats/trail-3@2x.png",
+      "size": [
+        240,
+        240
+      ],
+      "bytes": 5070,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 5303,
+      "sha256": "9f44ca72d42405b212796367e7b077c97c323b26d4e635d358f72e7f26caa646"
+    },
+    {
+      "file": "ink/splats/trail-3-outline.png",
+      "size": [
+        120,
+        120
+      ],
+      "bytes": 2474,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 1362,
+      "sha256": "3834ffe32718bff35186d68f1a91a128464e094c7002f56a66ad98b83408fd95"
+    },
+    {
+      "file": "ink/splats/trail-3-outline@2x.png",
+      "size": [
+        240,
+        240
+      ],
+      "bytes": 6302,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 4679,
+      "sha256": "0b6bb04ac5c5adabab5f32ebbf93321efc90d958ecf6f67ba501a0173cea6ed0"
+    },
+    {
+      "file": "ink/emotes/sweat.png",
+      "size": [
+        96,
+        96
+      ],
+      "bytes": 7172,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 3312,
+      "sha256": "c3d5d6c346884a194f3b1c8592a65fa47748b9760dcfdf70526667328108f30f"
+    },
+    {
+      "file": "ink/emotes/sweat@2x.png",
+      "size": [
+        192,
+        192
+      ],
+      "bytes": 15418,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 12400,
+      "sha256": "643499e3e3e888141903ff9005f0720aa28a23995685289a4c92330ccdf0050f"
+    },
+    {
+      "file": "ink/emotes/anger.png",
+      "size": [
+        96,
+        96
+      ],
+      "bytes": 13179,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 5666,
+      "sha256": "c021aefcd4586a210e9dce75228c979258da99c3f3ded3bba4d20f086f4afd4d"
+    },
+    {
+      "file": "ink/emotes/anger@2x.png",
+      "size": [
+        192,
+        192
+      ],
+      "bytes": 27308,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 21593,
+      "sha256": "b578d82c4871e7c638e0a214b55bf40664e0ab00f64727e1a0383dc077e0b736"
+    },
+    {
+      "file": "ink/emotes/sparkle.png",
+      "size": [
+        96,
+        96
+      ],
+      "bytes": 7468,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 2835,
+      "sha256": "04e381560d3b2916c3651efb2682c27fa5a8eded369afb8b6216058aec955aa4"
+    },
+    {
+      "file": "ink/emotes/sparkle@2x.png",
+      "size": [
+        192,
+        192
+      ],
+      "bytes": 16449,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 10409,
+      "sha256": "e916c24dd4287bb2bbf0235618960cb1b64259bc47ed0e0731ab3aa1c994a6dd"
+    },
+    {
+      "file": "ink/emotes/surprise.png",
+      "size": [
+        96,
+        96
+      ],
+      "bytes": 7037,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 2893,
+      "sha256": "e9372ccfb99582b273403725b79bcadce739e8a431dbfcae82bb3d3d3f133333"
+    },
+    {
+      "file": "ink/emotes/surprise@2x.png",
+      "size": [
+        192,
+        192
+      ],
+      "bytes": 15260,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 10726,
+      "sha256": "2028c743e29763cf23b99214fe57677b3d119632e57adecab1933dc8758d98a4"
+    },
+    {
+      "file": "ink/emotes/question.png",
+      "size": [
+        96,
+        96
+      ],
+      "bytes": 8796,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 3729,
+      "sha256": "7b32b1913b6be000247081e919c4dff74479abc321196ca984ec7fd9c4b85cc3"
+    },
+    {
+      "file": "ink/emotes/question@2x.png",
+      "size": [
+        192,
+        192
+      ],
+      "bytes": 19455,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 13955,
+      "sha256": "d387ec67e8f5e3719aa8146b1f903f1d23fa232920edd3bb2dde6cd19b656666"
+    },
+    {
+      "file": "ink/emotes/heart.png",
+      "size": [
+        96,
+        96
+      ],
+      "bytes": 8110,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 4851,
+      "sha256": "5c7cf951f817895ed46fee7e8fe4c022aaf9c28085aa34ee61bebe51322ca864"
+    },
+    {
+      "file": "ink/emotes/heart@2x.png",
+      "size": [
+        192,
+        192
+      ],
+      "bytes": 17557,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 18405,
+      "sha256": "27460369248e05b354efc232308bc48877a60a1e48c85da36bfdb14e40c683da"
+    },
+    {
+      "file": "ink/emotes/dizzy.png",
+      "size": [
+        96,
+        96
+      ],
+      "bytes": 12136,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 5114,
+      "sha256": "a7e6b70b1194b6566d47eff158c90c55e90d587dc26583ce0f1c3f0379d706b0"
+    },
+    {
+      "file": "ink/emotes/dizzy@2x.png",
+      "size": [
+        192,
+        192
+      ],
+      "bytes": 26391,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 19421,
+      "sha256": "df22607f95bf3cbdb5862ea42220a930047ee6f91272ba097907c1e7b0705c6f"
+    },
+    {
+      "file": "ink/emotes/sigh.png",
+      "size": [
+        96,
+        96
+      ],
+      "bytes": 9082,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 4626,
+      "sha256": "0ed44b2cb47d3b4d8c2e3cfd1a39a2df54ec23aeb67c4c99bf3d54f409cea298"
+    },
+    {
+      "file": "ink/emotes/sigh@2x.png",
+      "size": [
+        192,
+        192
+      ],
+      "bytes": 20187,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 17464,
+      "sha256": "7a1e8d149d143708fe92e66a263d7ff4d7cd5487d07af84d31cd1866150d126e"
+    },
+    {
+      "file": "ink/stickers/sticker-new.png",
+      "size": [
+        160,
+        160
+      ],
+      "bytes": 14836,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 9109,
+      "sha256": "9ffd9af2e0b349afcb88bdd23e69b4b3f0c361cf369cf6b7a9df64916ec21975"
+    },
+    {
+      "file": "ink/stickers/sticker-new@2x.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 33532,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 34546,
+      "sha256": "17f94b4706016dcab80e875fed3371579d3ff9b5e60e3a0a32990a0e81029792"
+    },
+    {
+      "file": "ink/stickers/sticker-rare.png",
+      "size": [
+        160,
+        160
+      ],
+      "bytes": 12038,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 6300,
+      "sha256": "85b67efa2bd162a247a597f5d2a0d4ee2b161bbbf56847bc69a860c5bf3d3920"
+    },
+    {
+      "file": "ink/stickers/sticker-rare@2x.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 29258,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 23531,
+      "sha256": "980bb17df409542bcec84a8d4376665812d9fcfbc8a997961260d02196e20cfd"
+    },
+    {
+      "file": "ink/stickers/sticker-level.png",
+      "size": [
+        160,
+        160
+      ],
+      "bytes": 12551,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 7754,
+      "sha256": "de71042c014e186da6ece31b86109609754ffc9036cda7440273d2be1deddb15"
+    },
+    {
+      "file": "ink/stickers/sticker-level@2x.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 29551,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 29335,
+      "sha256": "96bbb5a319790d284b422e2a9fc4c4727bc475892c81a4ccce0039a60d835289"
+    },
+    {
+      "file": "ink/stickers/sticker-double.png",
+      "size": [
+        160,
+        160
+      ],
+      "bytes": 12260,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 8147,
+      "sha256": "0808b567065337c0d82a739773dc951a47e9732dc55c734587e8fdc5309c847e"
+    },
+    {
+      "file": "ink/stickers/sticker-double@2x.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 29142,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 30983,
+      "sha256": "67ca1e372ca980310cdc9071066eeb8de074acb7e5cb234422d80566ed28e83e"
+    },
+    {
+      "file": "ink/speedlines/concentration.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 768855,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 590156,
+      "sha256": "a828ef3dca68cb3d53a3c78a811e6d09fcee6d9bb1c7442ab52edf9bd5dcf02a"
+    },
+    {
+      "file": "ink/speedlines/concentration@2x.png",
+      "size": [
+        4096,
+        4096
+      ],
+      "bytes": 2265930,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 2249305,
+      "sha256": "e95b4e108c0a21851cce86b154fea3e9635e25726558311727cea881cfe5d98f"
+    },
+    {
+      "file": "ink/speedlines/parallel.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 660466,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 592796,
+      "sha256": "078367cbeaf632711cd853b0f69780f9f66185747628dcfab4bf17669710fc4c"
+    },
+    {
+      "file": "ink/speedlines/parallel@2x.png",
+      "size": [
+        4096,
+        4096
+      ],
+      "bytes": 1888074,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 2243450,
+      "sha256": "fc6fd1f948d89189b37fb0f3b6996136fe124b71d01d5b905d744d040ae7d9e3"
+    },
+    {
+      "file": "ink/splat_mask.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 182506,
+      "alphaMin": 255,
+      "alphaMax": 255,
+      "visiblePixels": 1048576,
+      "sha256": "3369cf0ecd47fe8d0e7ddfb5496e042ed292beef74066b5d5ebfffc7c6fd67ab"
+    },
+    {
+      "file": "ink/splat_mask@2x.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "bytes": 548439,
+      "alphaMin": 255,
+      "alphaMax": 255,
+      "visiblePixels": 4194304,
+      "sha256": "b20a8933f9ac682a8a560233627b173a07d6fcf7a2a3bf7e5bf4e9b5b0ea0c0d"
+    },
+    {
+      "file": "ink/halftone/dots-fine.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 2409,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 24576,
+      "sha256": "995e75cfdfc0730b8ebbf6c59a6872192ef4e43e70516973abc1cfd1bad1acf3"
+    },
+    {
+      "file": "ink/halftone/dots-fine@2x.png",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 8085,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 37888,
+      "sha256": "cb4eb447c69020886c1e6e57d9bf0bfcfdd1909949e29ad9266fc1929c420531"
+    },
+    {
+      "file": "ink/halftone/dots-dense.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 2924,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 38848,
+      "sha256": "925acbbf848c2bc52a998022ba8e86df90d36fd908583f6b9883564fda3f478a"
+    },
+    {
+      "file": "ink/halftone/dots-dense@2x.png",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 8656,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 70656,
+      "sha256": "ceeb00d98c5bfaf3b4f289806fbaba646c2d6a66001df88b5ac0d8091768790c"
+    },
+    {
+      "file": "ink/halftone/dots-ramp.png",
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 12035,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 19292,
+      "sha256": "1ca28ce476515bc88b17d8e331ab146b56cfd4a2d140ac016b4a36f0fd2342eb"
+    },
+    {
+      "file": "ink/halftone/dots-ramp@2x.png",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 36790,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visiblePixels": 22258,
+      "sha256": "3ba0efc154954fd7851a042dba16ec9bac92cc5e8d111ec6b090b546006a5016"
+    }
+  ],
+  "native_corner_comparisons": [
+    {
+      "asset": "frame-panel",
+      "widths": [
+        200,
+        400,
+        800,
+        1600
+      ],
+      "logicalCorner": 48,
+      "identicalPixels": true
+    },
+    {
+      "asset": "frame-ribbon",
+      "widths": [
+        200,
+        400,
+        800,
+        1600
+      ],
+      "logicalCorner": 48,
+      "identicalPixels": true
+    },
+    {
+      "asset": "frame-button",
+      "widths": [
+        200,
+        400,
+        800,
+        1600
+      ],
+      "logicalCorner": 48,
+      "identicalPixels": true
+    },
+    {
+      "asset": "frame-list-item",
+      "widths": [
+        200,
+        400,
+        800,
+        1600
+      ],
+      "logicalCorner": 48,
+      "identicalPixels": true
+    },
+    {
+      "asset": "frame-speech",
+      "widths": [
+        200,
+        400,
+        800,
+        1600
+      ],
+      "logicalCorner": 48,
+      "identicalPixels": true
+    },
+    {
+      "asset": "balloon-speech",
+      "widths": [
+        200,
+        400,
+        800,
+        1600
+      ],
+      "logicalCorner": 48,
+      "identicalPixels": true
+    },
+    {
+      "asset": "balloon-shout",
+      "widths": [
+        200,
+        400,
+        800,
+        1600
+      ],
+      "logicalCorner": 48,
+      "identicalPixels": true
+    },
+    {
+      "asset": "balloon-thought",
+      "widths": [
+        200,
+        400,
+        800,
+        1600
+      ],
+      "logicalCorner": 48,
+      "identicalPixels": true
+    },
+    {
+      "asset": "balloon-whisper",
+      "widths": [
+        200,
+        400,
+        800,
+        1600
+      ],
+      "logicalCorner": 48,
+      "identicalPixels": true
+    },
+    {
+      "asset": "selection-1",
+      "widths": [
+        200,
+        400,
+        800,
+        1600
+      ],
+      "logicalCorner": 32,
+      "identicalPixels": true
+    },
+    {
+      "asset": "selection-2",
+      "widths": [
+        200,
+        400,
+        800,
+        1600
+      ],
+      "logicalCorner": 32,
+      "identicalPixels": true
+    },
+    {
+      "asset": "selection-3",
+      "widths": [
+        200,
+        400,
+        800,
+        1600
+      ],
+      "logicalCorner": 32,
+      "identicalPixels": true
+    }
+  ],
+  "scope": "PNG dimensions, alpha, center transparency, native fixed-corner comparison; not gameplay tests or owner visual approval"
+}

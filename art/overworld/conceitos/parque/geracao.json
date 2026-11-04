@@ -1,0 +1,42 @@
+{
+  "issue": "PIP-85",
+  "tool": "image_gen.imagegen",
+  "date": "2026-10-26",
+  "approval": "pending_owner_review",
+  "use": "art-direction studies; not runtime backgrounds",
+  "inputs": [
+    "<area>-referencia.png",
+    "art/overworld/conceitos/bairro/rua-estudo-v2.png",
+    "art/overworld/estilo/fontes/manga-v2/esquina-parque.png"
+  ],
+  "prompts": [
+    {
+      "id": "jardim-das-pipas",
+      "prompt": "Use case: sketch-to-render. Production CONCEPT paintover for PipaKlub, a Brazilian neighborhood 2D adventure RPG. INPUT 1 is the authoritative complete isometric map blockout; paint this exact same map and preserve camera, diamond silhouette, framing, tree trunk locations, ground/path/grass footprints and furniture positions. INPUT 2 is STYLE ONLY, the approved neighboring street. INPUT 3 is STYLE ONLY, the park material family: do NOT copy its stairs or walls. View is elevated orthographic ISOMETRIC 2:1, no perspective convergence. Same complete full-map view as input 1. Render the map as a beautifully hand-drawn anime environment: confident expressive navy ink contours, broad clean cel-shaded masses, leaf clusters, subtle warm ground wear, sunlight upper left, ochre dirt paths, fresh quiet short lawn, teal ironwork, terracotta pots and honey-colored wood. Not 3D, not watercolor, not gritty noisy pixel art. All terrain is FLAT level zero; NO invented steps, cliffs, raised terraces, ponds or rivers. Keep the path generous and visibly walkable. Dark green perimeter strips are impassable dense woodland, express with shrubs and tightly layered tree canopies; do not close the existing entrance and exit. Retain each trunk on its original spot. Brown small block placeholders are benches, lamps, bins, planters and noticeboard; substitute appropriate real illustrated props in place, not rocks/crates. Furniture shared at the southwest entry must retain the same silhouette vocabulary in both maps. Sparse flat warm-cream stone on the entry plaza, discreet seams, no regular dark paving grid. Tall encounter-grass rectangles in input1 become clearly separate darker emerald waist-high grass clumps with varied leaf fans and uneven tips, gentle bent stalks suggesting wind, never identical repeating ^ symbols; keep their overall footprints and adjoining dirt paths. Clear distinction between short lawn (walk) and dense boundary forest (blocked). No people, creatures, typography, labels, arrows, HUD, frame, watermark, quest symbols, or magic. Do not add permanent actors. Background beyond woodland is quiet deep blue-green, no exposed floating earth slab. Output landscape full map concept, ratio 2720:1520, matching blockout composition.\nAREA: JARDIM DAS PIPAS, the welcoming tended neighborhood park. Replace the LARGE brown 4x4 block in upper-left of blockout with ONE open community gazebo/coreto: cream plaster slim pillars (five support pillars), low simple terracotta hipped roof, navy roof trim, open floor at exactly ground level, no walls and no stair/platform. Keep its footprint exactly at this block. The floor underneath is open and readable, without a new building. The two flowering trees and small curated flower borders around existing tree bases give a cared-for community feeling. No additional gazebo elsewhere. Existing tall grass has TWO patches: upper-right and central foreground, preserve both. No new patches elsewhere. Use coherent round broadleaf Brazilian trees, two flowering pink trees in prescribed places."
+    },
+    {
+      "id": "clareira-do-papel",
+      "prompt": "Use case: sketch-to-render. Production CONCEPT paintover for PipaKlub, a Brazilian neighborhood 2D adventure RPG. INPUT 1 is the authoritative complete isometric map blockout; paint this exact same map and preserve camera, diamond silhouette, framing, tree trunk locations, ground/path/grass footprints and furniture positions. INPUT 2 is STYLE ONLY, the approved neighboring street. INPUT 3 is STYLE ONLY, the park material family: do NOT copy its stairs or walls. View is elevated orthographic ISOMETRIC 2:1, no perspective convergence. Same complete full-map view as input 1. Render the map as a beautifully hand-drawn anime environment: confident expressive navy ink contours, broad clean cel-shaded masses, leaf clusters, subtle warm ground wear, sunlight upper left, ochre dirt paths, fresh quiet short lawn, teal ironwork, terracotta pots and honey-colored wood. Not 3D, not watercolor, not gritty noisy pixel art. All terrain is FLAT level zero; NO invented steps, cliffs, raised terraces, ponds or rivers. Keep the path generous and visibly walkable. Dark green perimeter strips are impassable dense woodland, express with shrubs and tightly layered tree canopies; do not close the existing entrance and exit. Retain each trunk on its original spot. Brown small block placeholders are benches, lamps, bins, planters and noticeboard; substitute appropriate real illustrated props in place, not rocks/crates. Furniture shared at the southwest entry must retain the same silhouette vocabulary in both maps. Sparse flat warm-cream stone on the entry plaza, discreet seams, no regular dark paving grid. Tall encounter-grass rectangles in input1 become clearly separate darker emerald waist-high grass clumps with varied leaf fans and uneven tips, gentle bent stalks suggesting wind, never identical repeating ^ symbols; keep their overall footprints and adjoining dirt paths. Clear distinction between short lawn (walk) and dense boundary forest (blocked). No people, creatures, typography, labels, arrows, HUD, frame, watermark, quest symbols, or magic. Do not add permanent actors. Background beyond woodland is quiet deep blue-green, no exposed floating earth slab. Output landscape full map concept, ratio 2720:1520, matching blockout composition.\nAREA: CLAREIRA DO PAPEL, the slightly wilder counterpart to Jardim, a quiet clearing at the edge of town. There is NO gazebo or building on this map. Keep the existing pale stone entry plaza and matching benches/noticeboard/pots. Preserve ALL THREE tall-grass patches exactly where indicated: small upper-left behind entry plaza, longer upper-right beside the main path, broad lower-right foreground. Emphasize varied pointed grass silhouettes, distinct from calm lawn. Small torn red, yellow and teal kite-paper scraps and short cotton kite tails caught in branches of a FEW EXISTING trees give identity, integrated naturally, not glowing/magical loot, not on every tree. Denser mature woodland boundary, slightly cooler emerald greens, but same sunny time of day, same clean navy linework and material finish as neighboring park. Preserve wide ochre dirt path linking entry left and destination right."
+    }
+  ],
+  "outputs": [
+    {
+      "file": "jardim-das-pipas-estudo-v1.png",
+      "size": [
+        1677,
+        938
+      ],
+      "sha256": "55132d19f1e1817593af0b694b410801f52827489edfa6166eac755e9649c4a0",
+      "resampled": false
+    },
+    {
+      "file": "clareira-do-papel-estudo-v1.png",
+      "size": [
+        1677,
+        938
+      ],
+      "sha256": "802c1bd4243958f438c37939d1d97d139c7acafca3467ad15c51ab96d97dcf89",
+      "resampled": false
+    }
+  ]
+}

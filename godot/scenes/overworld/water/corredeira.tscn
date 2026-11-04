@@ -1,0 +1,9 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/overworld/water_patch.gd" id="1_xil1g"]
+
+[node name="corredeira" type="Node2D" unique_id=988365036]
+script = ExtResource("1_xil1g")
+water_id = "corredeira"
+layout = "river"
+flow_direction = Vector2(0, 2)

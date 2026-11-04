@@ -1,0 +1,24 @@
+{
+  "renderer": "Godot 4.7.2 native OpenGL",
+  "captureSize": [
+    1280,
+    720
+  ],
+  "framesPerLoop": 48,
+  "loopSeconds": 4,
+  "campaignIntegrated": false,
+  "animations": [
+    {
+      "id": "agua",
+      "loopBoundaryMaximumChannelDifference": 1,
+      "loopBoundaryMeanChannelDifference": 1.0127314814814815e-05,
+      "quarterCycleChangedPixels": 66082
+    },
+    {
+      "id": "cachoeiras",
+      "loopBoundaryMaximumChannelDifference": 1,
+      "loopBoundaryMeanChannelDifference": 4.340277777777778e-06,
+      "quarterCycleChangedPixels": 97683
+    }
+  ]
+}

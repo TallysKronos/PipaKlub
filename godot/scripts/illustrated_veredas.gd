@@ -1,4 +1,6 @@
 extends Node2D
+const Recorte = preload("res://scripts/campaign/recorte_theme.gd")
+const Tokens = preload("res://scripts/campaign/ui_tokens.gd")
 ## Pixel coordinates refer directly to the approved 1536x1024 clean plate.
 ## Separate experimental slice: no connection to the JS game's save/economy.
 const Avatar = preload("res://scripts/avatar.gd")
@@ -34,18 +36,19 @@ var chest: Sprite2D
 
 func _ready() -> void:
 	data=JSON.parse_string(FileAccess.get_file_as_string("res://assets/illustrated/routes-v2.json"))
+	if not _build_landscape():
+		ground_material=ShaderMaterial.new()
+		ground_material.shader=preload("res://shaders/ground_patch.gdshader")
+		ground_material.set_shader_parameter("corrected_plate",preload("res://assets/illustrated/tree-test/ground-without-tree.png"))
+		ground_material.set_shader_parameter("patch_uv",Vector4(300.0/1536,405.0/1024,540.0/1536,655.0/1024))
+		var background:=Sprite2D.new()
+		background.texture=PLATE
+		background.centered=false
+		background.show_behind_parent=true
+		background.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
+		background.material=ground_material
+		add_child(background)
 	ground=Ground.new(data)
-	ground_material=ShaderMaterial.new()
-	ground_material.shader=preload("res://shaders/ground_patch.gdshader")
-	ground_material.set_shader_parameter("corrected_plate",preload("res://assets/illustrated/tree-test/ground-without-tree.png"))
-	ground_material.set_shader_parameter("patch_uv",Vector4(300.0/1536,405.0/1024,540.0/1536,655.0/1024))
-	var background:=Sprite2D.new()
-	background.texture=PLATE
-	background.centered=false
-	background.show_behind_parent=true
-	background.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
-	background.material=ground_material
-	add_child(background)
 	_build_navigation()
 	trail.assign(_path(follower,player))
 	actors=Node2D.new()
@@ -53,7 +56,7 @@ func _ready() -> void:
 	add_child(actors)
 	avatar=Avatar.new()
 	actors.add_child(avatar)
-	avatar.scale=Vector2.ONE*.62
+	avatar.scale=Vector2.ONE*.62*Avatar.BODY_SCALE
 	companion=Sprite2D.new()
 	companion.texture=preload("res://assets/rabbito.png")
 	companion.region_enabled=true
@@ -65,10 +68,8 @@ func _ready() -> void:
 		var frame: Dictionary=atlas.frames[frame_name].frame
 		companion_frames.append(Rect2(frame.x,frame.y,frame.w,frame.h))
 	nina=Sprite2D.new()
-	nina.texture=preload("res://assets/nina.png")
-	nina.scale=Vector2.ONE*.047
-	nina.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
-	nina.offset=Vector2(-18,-712)
+	var npc_pixels=preload("res://scripts/npc_pixel_sprite.gd")
+	npc_pixels.setup(nina,"nina",npc_pixels.height_for("nina",avatar.scale.y))
 	nina.position=Vector2(data.nina[0],data.nina[1])
 	actors.add_child(nina)
 	chest=Sprite2D.new()
@@ -77,35 +78,36 @@ func _ready() -> void:
 	chest.offset=Vector2(0,-115)
 	chest.position=Vector2(1040,775)
 	actors.add_child(chest)
-	for entry in data.separated_trees:
-		var tree:=TreeScene.instantiate()
-		tree.name=entry.id
-		tree.position=Vector2(entry.position[0],entry.position[1])
-		tree.root_offset=Vector2(entry.root_offset[0],entry.root_offset[1])
-		tree.root_radius=Vector2(entry.root_radius[0],entry.root_radius[1])
-		actors.add_child(tree)
-		separated_trees.append(tree)
-	# Reproject selected foreground contours from the unchanged plate; no new raster art.
-	for mask in data.foreground:
-		var tree:=Node2D.new()
-		tree.name=mask.name
-		tree.position.y=float(mask.baseline)
-		actors.add_child(tree)
-		var polygon:=Polygon2D.new()
-		var vertices:=PackedVector2Array()
-		var uv:=PackedVector2Array()
-		for point in mask.points:
-			uv.append(Vector2(point[0],point[1]))
-			vertices.append(Vector2(point[0],point[1]-float(mask.baseline)))
-		polygon.polygon=vertices
-		polygon.uv=uv
-		polygon.texture=PLATE
-		polygon.material=ground_material
-		# This adjacent tree was also changed by generation outside the requested target.
-		# Keep its original foreground art, including its roots along the patch boundary.
-		if mask.name=="Arvore junto ao mato": polygon.material=null
-		polygon.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
-		tree.add_child(polygon)
+	if not _has_landscape():
+		for entry in data.separated_trees:
+			var tree:=TreeScene.instantiate()
+			tree.name=entry.id
+			tree.position=Vector2(entry.position[0],entry.position[1])
+			tree.root_offset=Vector2(entry.root_offset[0],entry.root_offset[1])
+			tree.root_radius=Vector2(entry.root_radius[0],entry.root_radius[1])
+			actors.add_child(tree)
+			separated_trees.append(tree)
+		# Reproject selected foreground contours from the unchanged plate; no new raster art.
+		for mask in data.foreground:
+			var tree:=Node2D.new()
+			tree.name=mask.name
+			tree.position.y=float(mask.baseline)
+			actors.add_child(tree)
+			var polygon:=Polygon2D.new()
+			var vertices:=PackedVector2Array()
+			var uv:=PackedVector2Array()
+			for point in mask.points:
+				uv.append(Vector2(point[0],point[1]))
+				vertices.append(Vector2(point[0],point[1]-float(mask.baseline)))
+			polygon.polygon=vertices
+			polygon.uv=uv
+			polygon.texture=PLATE
+			polygon.material=ground_material
+			# This adjacent tree was also changed by generation outside the requested target.
+			# Keep its original foreground art, including its roots along the patch boundary.
+			if mask.name=="Arvore junto ao mato": polygon.material=null
+			polygon.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
+			tree.add_child(polygon)
 	camera=Camera2D.new()
 	camera.zoom=Vector2.ONE*1.6
 	camera.position_smoothing_enabled=true
@@ -128,12 +130,13 @@ func walkable(point: Vector2) -> bool:
 	return ground.walkable(point)
 
 func _build_navigation() -> void:
-	for y in range(0,1024,STEP):
-		for x in range(0,1536,STEP):
+	var stride := _navigation_stride()
+	for y in range(0,1024,stride):
+		for x in range(0,1536,stride):
 			var p:=Vector2(x,y)
 			if ground.walkable(p,1.5):
 				var id:=navigation.get_available_point_id()
-				cells[Vector2i(x/STEP,y/STEP)]=id
+				cells[Vector2i(x/stride,y/stride)]=id
 				navigation.add_point(id,p)
 	for cell: Vector2i in cells:
 		for offset in [Vector2i.RIGHT,Vector2i.DOWN,Vector2i(1,1),Vector2i(-1,1)]:
@@ -144,6 +147,8 @@ func _build_navigation() -> void:
 				continue
 			if ground.clear_segment(navigation.get_point_position(cells[cell]),navigation.get_point_position(cells[neighbor]),1.5):
 				navigation.connect_points(cells[cell],cells[neighbor])
+
+func _navigation_stride() -> int:return STEP
 
 func _path(from: Vector2, to: Vector2) -> PackedVector2Array:
 	if not walkable(to):
@@ -176,12 +181,7 @@ func _physics_process(delta: float) -> void:
 	if modal.visible or paused:
 		avatar.moving=false
 		return
-	var direction:=Vector2(float(Input.is_physical_key_pressed(KEY_D) or Input.is_physical_key_pressed(KEY_RIGHT))-float(Input.is_physical_key_pressed(KEY_A) or Input.is_physical_key_pressed(KEY_LEFT)),float(Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN))-float(Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP)))
-	if not Input.get_connected_joypads().is_empty():
-		var device: int=Input.get_connected_joypads()[0]
-		var stick:=Vector2(Input.get_joy_axis(device,JOY_AXIS_LEFT_X),Input.get_joy_axis(device,JOY_AXIS_LEFT_Y))
-		if stick.length()>.2:
-			direction=stick
+	var direction := _movement_direction()
 	var before:=player
 	if direction.length()>.1:
 		route.clear()
@@ -191,7 +191,7 @@ func _physics_process(delta: float) -> void:
 	var displacement:=player-before
 	avatar.moving=displacement.length()>.01
 	if avatar.moving:
-		avatar.facing=("n" if displacement.y<0 else "s")+("w" if displacement.x<0 else "e")
+		avatar.face_motion(_facing_displacement(before,player))
 		_follow_companion(145*delta)
 	_refresh_positions()
 	if not overview:
@@ -205,6 +205,9 @@ func _move(motion: Vector2) -> void:
 		player=ground.slide_step(player,step)
 		if trail.is_empty() or trail.back().distance_to(player)>=1.5:
 			trail.append(player)
+
+func _facing_displacement(a: Vector2,b: Vector2) -> Vector2:
+	return b-a
 
 func _follow_route(budget: float) -> void:
 	# Consume the whole frame's travel budget, including several tiny waypoints.
@@ -332,17 +335,11 @@ func _build_ui() -> void:
 	spacer.size_flags_vertical=Control.SIZE_EXPAND_FILL
 	layout.add_child(spacer)
 	modal=PanelContainer.new()
-	var style:=StyleBoxFlat.new()
-	style.bg_color=Color("fff0cf")
-	style.border_color=Color("ad854b")
-	style.set_border_width_all(3)
-	style.content_margin_left=24
-	style.content_margin_top=16
-	style.content_margin_bottom=16
-	modal.add_theme_stylebox_override("panel",style)
+	modal.theme = Recorte.shared()
+	modal.theme_type_variation = "RecortePaperPanel"
 	layout.add_child(modal)
 	speech=Label.new()
-	speech.add_theme_color_override("font_color",Color("173b3c"))
+	speech.theme_type_variation = "RecortePaperText"
 	speech.add_theme_font_size_override("font_size",22)
 	modal.add_child(speech)
 	modal.hide()
@@ -355,13 +352,13 @@ func _build_ui() -> void:
 func _draw() -> void:
 	if debug_routes:
 		for polygon in ground.floors:
-			draw_colored_polygon(polygon,Color(0,.9,.6,.30))
+			draw_colored_polygon(polygon,Tokens.alpha(Tokens.FOLHA, .30))
 		for polygon in ground.obstacles:
-			draw_colored_polygon(polygon,Color(1,.15,.05,.65))
+			draw_colored_polygon(polygon,Tokens.alpha(Tokens.RABIOLA, .65))
 		for landmark in data.landmarks:
 			var point:=Vector2(landmark.point[0],landmark.point[1])
-			draw_circle(point,6,Color.WHITE)
-			draw_string(ThemeDB.fallback_font,point+Vector2(8,-8),landmark.name,HORIZONTAL_ALIGNMENT_LEFT,-1,14,Color.WHITE)
+			draw_circle(point,6,Tokens.UNTINTED)
+			draw_string(ThemeDB.fallback_font,point+Vector2(8,-8),landmark.name,HORIZONTAL_ALIGNMENT_LEFT,-1,14,Tokens.UNTINTED)
 
 func _smoke() -> void:
 	var failures: Array[String]=[]
@@ -477,3 +474,15 @@ func _proof() -> void:
 	await RenderingServer.frame_post_draw
 	get_viewport().get_texture().get_image().save_png("res://proof-illustrated.png")
 	get_tree().quit(0)
+
+func _movement_direction() -> Vector2:
+	var direction:=Vector2(float(Input.is_physical_key_pressed(KEY_D) or Input.is_physical_key_pressed(KEY_RIGHT))-float(Input.is_physical_key_pressed(KEY_A) or Input.is_physical_key_pressed(KEY_LEFT)),float(Input.is_physical_key_pressed(KEY_S) or Input.is_physical_key_pressed(KEY_DOWN))-float(Input.is_physical_key_pressed(KEY_W) or Input.is_physical_key_pressed(KEY_UP)))
+	if not Input.get_connected_joypads().is_empty():
+		var device: int=Input.get_connected_joypads()[0]
+		var stick:=Vector2(Input.get_joy_axis(device,JOY_AXIS_LEFT_X),Input.get_joy_axis(device,JOY_AXIS_LEFT_Y))
+		if stick.length()>.2:
+			direction=stick
+	return direction
+
+func _build_landscape() -> bool:return false
+func _has_landscape() -> bool:return false

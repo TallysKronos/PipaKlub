@@ -1,0 +1,624 @@
+{
+  "meta": {
+    "app": "Pixelgen",
+    "version": 2,
+    "image": "kael-swim.png",
+    "size": {
+      "w": 384,
+      "h": 512
+    },
+    "scale": 1
+  },
+  "palette": [
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      17,
+      26,
+      46,
+      255
+    ],
+    [
+      23,
+      35,
+      63,
+      255
+    ],
+    [
+      40,
+      63,
+      113,
+      255
+    ],
+    [
+      69,
+      95,
+      152,
+      255
+    ],
+    [
+      186,
+      121,
+      94,
+      255
+    ],
+    [
+      242,
+      188,
+      142,
+      255
+    ],
+    [
+      255,
+      225,
+      179,
+      255
+    ],
+    [
+      24,
+      55,
+      85,
+      255
+    ],
+    [
+      44,
+      84,
+      139,
+      255
+    ],
+    [
+      71,
+      118,
+      178,
+      255
+    ],
+    [
+      32,
+      41,
+      54,
+      255
+    ],
+    [
+      75,
+      86,
+      108,
+      255
+    ],
+    [
+      238,
+      233,
+      214,
+      255
+    ],
+    [
+      64,
+      183,
+      199,
+      255
+    ],
+    [
+      155,
+      225,
+      219,
+      255
+    ],
+    [
+      48,
+      60,
+      81,
+      255
+    ]
+  ],
+  "sequences": [
+    {
+      "name": "swim-S",
+      "start": 0,
+      "end": 3,
+      "loop": true,
+      "direction": "forward"
+    },
+    {
+      "name": "swim-SO",
+      "start": 4,
+      "end": 7,
+      "loop": true,
+      "direction": "forward"
+    },
+    {
+      "name": "swim-O",
+      "start": 8,
+      "end": 11,
+      "loop": true,
+      "direction": "forward"
+    },
+    {
+      "name": "swim-NO",
+      "start": 12,
+      "end": 15,
+      "loop": true,
+      "direction": "forward"
+    },
+    {
+      "name": "swim-N",
+      "start": 16,
+      "end": 19,
+      "loop": true,
+      "direction": "forward"
+    },
+    {
+      "name": "swim-NE",
+      "start": 20,
+      "end": 23,
+      "loop": true,
+      "direction": "forward"
+    },
+    {
+      "name": "swim-E",
+      "start": 24,
+      "end": 27,
+      "loop": true,
+      "direction": "forward"
+    },
+    {
+      "name": "swim-SE",
+      "start": 28,
+      "end": 31,
+      "loop": true,
+      "direction": "forward"
+    }
+  ],
+  "frames": [
+    {
+      "name": "swim-S-1",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "swim-S-2",
+      "frame": {
+        "x": 48,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "swim-S-3",
+      "frame": {
+        "x": 96,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "swim-S-4",
+      "frame": {
+        "x": 144,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "swim-SO-1",
+      "frame": {
+        "x": 0,
+        "y": 64,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "swim-SO-2",
+      "frame": {
+        "x": 48,
+        "y": 64,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "swim-SO-3",
+      "frame": {
+        "x": 96,
+        "y": 64,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "swim-SO-4",
+      "frame": {
+        "x": 144,
+        "y": 64,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "swim-O-1",
+      "frame": {
+        "x": 0,
+        "y": 128,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "swim-O-2",
+      "frame": {
+        "x": 48,
+        "y": 128,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "swim-O-3",
+      "frame": {
+        "x": 96,
+        "y": 128,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "swim-O-4",
+      "frame": {
+        "x": 144,
+        "y": 128,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "swim-NO-1",
+      "frame": {
+        "x": 0,
+        "y": 192,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "swim-NO-2",
+      "frame": {
+        "x": 48,
+        "y": 192,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "swim-NO-3",
+      "frame": {
+        "x": 96,
+        "y": 192,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "swim-NO-4",
+      "frame": {
+        "x": 144,
+        "y": 192,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "swim-N-1",
+      "frame": {
+        "x": 0,
+        "y": 256,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "swim-N-2",
+      "frame": {
+        "x": 48,
+        "y": 256,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "swim-N-3",
+      "frame": {
+        "x": 96,
+        "y": 256,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "swim-N-4",
+      "frame": {
+        "x": 144,
+        "y": 256,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "swim-NE-1",
+      "frame": {
+        "x": 0,
+        "y": 320,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "swim-NE-2",
+      "frame": {
+        "x": 48,
+        "y": 320,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "swim-NE-3",
+      "frame": {
+        "x": 96,
+        "y": 320,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "swim-NE-4",
+      "frame": {
+        "x": 144,
+        "y": 320,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "swim-E-1",
+      "frame": {
+        "x": 0,
+        "y": 384,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "swim-E-2",
+      "frame": {
+        "x": 48,
+        "y": 384,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "swim-E-3",
+      "frame": {
+        "x": 96,
+        "y": 384,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "swim-E-4",
+      "frame": {
+        "x": 144,
+        "y": 384,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "swim-SE-1",
+      "frame": {
+        "x": 0,
+        "y": 448,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "swim-SE-2",
+      "frame": {
+        "x": 48,
+        "y": 448,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    },
+    {
+      "name": "swim-SE-3",
+      "frame": {
+        "x": 96,
+        "y": 448,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "swim-SE-4",
+      "frame": {
+        "x": 144,
+        "y": 448,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 140
+    }
+  ]
+}

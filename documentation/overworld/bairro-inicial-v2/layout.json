@@ -1,0 +1,184 @@
+{
+  "campaignIntegrated": false,
+  "depth": {
+    "centroidFallbackFaces": 0,
+    "cuts": 9366,
+    "hiddenFaces": 120,
+    "method": "projected opaque visibility with affine depth and convex fragments",
+    "sourceFaces": 2226,
+    "visibleConvexFragments": 4182
+  },
+  "houses": [
+    {
+      "bounds": [
+        1.74290136803692,
+        12.2570986319631,
+        7,
+        16
+      ],
+      "door": "(4.266309, 16.9)",
+      "groundCorners": [
+        [
+          44.8436724565757,
+          605.12158808933
+        ],
+        [
+          440.75957432372,
+          788.702704597559
+        ],
+        [
+          722.640198511166,
+          637.518610421836
+        ]
+      ],
+      "height": 8.0,
+      "id": "casa-kael",
+      "paintedModel": "kael",
+      "variant": "kael"
+    },
+    {
+      "bounds": [
+        3.64854894612255,
+        -6.64854894612255,
+        8,
+        -1.7
+      ],
+      "door": "(5.737246, -0.8)",
+      "groundCorners": [
+        [
+          54.2424735557364,
+          540.413344182262
+        ],
+        [
+          386.688364524003,
+          734.13181448332
+        ],
+        [
+          764.751830756713,
+          541.038242473556
+        ]
+      ],
+      "height": 56.0,
+      "id": "professor",
+      "paintedModel": "professor",
+      "variant": "professor"
+    },
+    {
+      "bounds": [
+        24.3121266083297,
+        -6.31212660832973,
+        29,
+        -1.7
+      ],
+      "door": "(26.56231, -0.8)",
+      "groundCorners": [
+        [
+          40.7491638795987,
+          542.903010033445
+        ],
+        [
+          398.421404682274,
+          714.996655518395
+        ],
+        [
+          750.314381270903,
+          537.123745819398
+        ]
+      ],
+      "height": 56.0,
+      "id": "loja",
+      "paintedModel": "shop",
+      "variant": "shop"
+    },
+    {
+      "bounds": [
+        13.8537898418976,
+        -6.85378984189761,
+        18,
+        -2.7
+      ],
+      "door": "(15.84397, -1.8)",
+      "groundCorners": [
+        [
+          33.2020725388601,
+          559.79274611399
+        ],
+        [
+          395.979274611399,
+          734.880829015544
+        ],
+        [
+          759.419689119171,
+          561.119170984456
+        ]
+      ],
+      "height": 56.0,
+      "id": "vizinha-norte",
+      "paintedModel": "neighbor-north",
+      "variant": "neighbor"
+    },
+    {
+      "bounds": [
+        24.504109626812,
+        11.495890373188,
+        29,
+        16
+      ],
+      "door": "(26.66214, 16.9)",
+      "groundCorners": [
+        [
+          27.5585738539898,
+          541.949066213922
+        ],
+        [
+          384.176570458404,
+          714.064516129032
+        ],
+        [
+          741.446519524618,
+          543.252971137521
+        ]
+      ],
+      "height": 8.0,
+      "id": "vizinha-sul",
+      "paintedModel": "neighbor-south",
+      "variant": "neighbor"
+    }
+  ],
+  "people": [
+    {
+      "id": "assis",
+      "image": "res://assets/campaign/assis-overworld.png",
+      "line": "Bom dia, Kael! O vento ganha vida nas mãos de quem cuida dele. Conheça a lojinha da Lia, aqui na rua alta.",
+      "name": "Prof. Assis",
+      "p": "(6.8, -0.65)"
+    },
+    {
+      "id": "nina",
+      "image": "res://assets/nina.png",
+      "line": "Aqui embaixo é a Rua do Primeiro Vento. A ladeira leva ao professor. Pela faixa, você cruza sem esbarrar nos carros!",
+      "name": "Nina",
+      "p": "(7.2, 19.7)"
+    },
+    {
+      "id": "lia",
+      "image": "res://assets/campaign/morro/bia.png",
+      "line": "Pode chegar! Linha, papel e um bom conselho nunca faltam. Escolha um papel que goste de dançar com o vento, não só um que brilhe na vitrine.",
+      "name": "Lia · Linha & Papel",
+      "p": "(25.8, -0.6)"
+    },
+    {
+      "id": "zeca",
+      "image": "res://assets/campaign/morro/zeca.png",
+      "line": "Um banco na sombra e espaço pra empinar pipa… essa pracinha é nosso ponto de encontro.",
+      "name": "Zeca",
+      "p": "(22.8, 18.5)"
+    }
+  ],
+  "roads": [
+    "Rua do Primeiro Vento",
+    "Ladeira das Rabiolas",
+    "Rua dos Inventos"
+  ],
+  "surfaces": 1120
+}

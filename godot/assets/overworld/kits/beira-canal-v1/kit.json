@@ -1,0 +1,12 @@
+{
+  "schema": "native-structure-kit-1",
+  "grid": [64, 32],
+  "levelPx": 64,
+  "renderer": "res://scripts/overworld/canal_structures.gd",
+  "pieces": {
+    "canal-bomba": {"footprint": [2, 2], "blocks": true, "kind": "native-geometry", "palette": ["#354e60", "#62a8b5", "#dbab62"]},
+    "canal-bobinas": {"footprint": [2, 1], "blocks": true, "kind": "native-geometry", "palette": ["#bf8a50", "#ebc68b", "#704e3a"]}
+  },
+  "reuses": ["bambuzal-casa", "comum/banco", "terrenos-v1", "aguas-v1"],
+  "notes": "Water aperture and support derive from the map; geometric review uses flat colors. No generated map background."
+}

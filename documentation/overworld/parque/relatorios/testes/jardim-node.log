@@ -1,0 +1,24 @@
+✔ two-lane check rejects a one-cell throat even when both rooms are reachable (7.4142ms)
+✔ forbidden ramps, isolated raised cells, and single-cell unreachable pockets are errors (1.3335ms)
+✔ ramps require terrain at the foot, two landing cells, and no decorative or event obstruction (3.2224ms)
+✔ regional audit verifies three parts, reciprocal exits, direction, material and elevation (4.153ms)
+✔ items and tree density remain explicit warnings; inaccessible items are errors (7.7947ms)
+✔ mandatory exits must remain reachable without encounter grass; optional grass is allowed (1.6235ms)
+✔ edge guards must follow a drop and cannot close a ramp mouth or a same-level connection (1.1604ms)
+✔ Jardim preserves every old object ID, action and destination while replacing the layout (1.9413ms)
+✔ Jardim compiled data includes the same measured structures as its Tiled source (53.1147ms)
+✔ Jardim has four reachable material rewards and preserves the mission tail elsewhere (4.6899ms)
+✔ lê só mapas isométricos 64×32 e entende chão, altura e objetos (2.8176ms)
+✔ rampa liga os dois níveis só no sentido da seta; o lado é barranco (2.867ms)
+✔ ponte precisa encostar em terra firme nas duas pontas (0.5751ms)
+✔ evento sem acesso reprova; área isolada avisa (0.4779ms)
+✔ árvore bloqueia a célula; baú precisa ser alcançável (1.333ms)
+✔ o mapa piloto das Veredas passa na conferência (9.6432ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 166.8057

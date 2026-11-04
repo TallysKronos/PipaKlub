@@ -15,4 +15,10 @@ node --test tools/mapa-studio/model.test.mjs tools/mapa-studio/server.test.mjs
 - **Baixar referência para o Codex**: PNG 2× sem textos, sem grade e sem eventos, para pintar por cima. **Com legendas**: grade, nomes e coordenadas, para conversar sobre a planta.
 - O servidor só lê arquivos: nada é gravado no repositório.
 
+### Revisão PIP-81
+
+O auditor também detecta duas peças sólidas ocupando a mesma célula. A camada opcional `zonas` contém retângulos de orientação visual (`uso`), sem alterar navegação; aparece apenas na versão com legendas.
+
+Para salvar referências diretamente na pasta fixa `documentation/overworld/pip81/references`, inicie com `MAPA_STUDIO_EXPORT=1` e abra `?mapa=<id>&salvar=1`. Esse modo opcional aceita somente PNGs de referências de plantas existentes, originados na própria bancada local. Fora dele o servidor continua somente leitura e a exportação baixa o PNG normalmente.
+
 No jogo, abra `/?overworld=veredas-piloto` e use **Jogar → Exploração e campanha → Mapa piloto** para iniciar a conferência na entrada. A passagem das Veredas na Clareira também leva ao piloto com esse parâmetro. Sem o parâmetro, o atalho não aparece. A prévia não concede recompensas nem salva posição de campanha.

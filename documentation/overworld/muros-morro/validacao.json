@@ -1,0 +1,36 @@
+{
+  "wallTileSize": [
+    32,
+    80
+  ],
+  "cornerSize": [
+    64,
+    96
+  ],
+  "yardPieceSize": [
+    64,
+    96
+  ],
+  "masterSize": [
+    512,
+    512
+  ],
+  "materials": [
+    "pedra",
+    "chapisco"
+  ],
+  "geometryChanged": false,
+  "collisionChanged": false,
+  "periodicEdges": {
+    "pedra": 0,
+    "chapisco": 0
+  },
+  "mirrorMismatches": [],
+  "nativeRenderErrors": 0,
+  "nativeCaptures": [
+    "morro-escadaria-da-sombra-1280x720.png",
+    "morro-parque-dos-ventos-1280x720.png",
+    "morro-praca-da-chegada-1280x720.png",
+    "muros-detalhe-1280x720.png"
+  ]
+}

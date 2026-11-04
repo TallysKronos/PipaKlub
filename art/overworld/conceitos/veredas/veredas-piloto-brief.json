@@ -1,0 +1,523 @@
+{
+  "issue": "PIP-86",
+  "id": "veredas-piloto",
+  "source": "art/overworld/mapas/veredas-piloto.tmj",
+  "sourceSha256": "7b4086a10b452a68c97fff15ce9cb0e38f925dcdab9097b07cad6af71b8dd4c8",
+  "stage": "pilot_assembly",
+  "conceptFeedback": "Owner liked initial study and requested faithful implementation; not a pixel-alignment approval",
+  "projection": {
+    "cell": [
+      64,
+      32
+    ],
+    "levelPx": 64
+  },
+  "size": [
+    36,
+    30
+  ],
+  "materials": {
+    "grama": 790,
+    "agua": 84,
+    "terra": 126,
+    "mato": 50,
+    "piso": 24,
+    "ponte": 6
+  },
+  "transitions": {
+    "agua/grama": 68,
+    "grama/terra": 133,
+    "grama/mato": 40,
+    "grama/piso": 14,
+    "piso/terra": 6,
+    "grama/ponte": 1,
+    "agua/ponte": 5,
+    "agua/terra": 1,
+    "ponte/terra": 4
+  },
+  "pieces": [
+    {
+      "id": 4,
+      "name": "Baú do mirante",
+      "asset": "bau",
+      "u": 5,
+      "v": 6,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": "abrir",
+      "props": {
+        "asset": "bau",
+        "interacao": "abrir",
+        "texto": "Neste trecho de teste, os baús ainda não dão recompensas."
+      }
+    },
+    {
+      "id": 5,
+      "name": "Baú da margem",
+      "asset": "bau",
+      "u": 23,
+      "v": 26,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": "abrir",
+      "props": {
+        "asset": "bau",
+        "interacao": "abrir",
+        "texto": "Neste trecho de teste, os baús ainda não dão recompensas."
+      }
+    },
+    {
+      "id": 6,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 1,
+      "v": 22,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 6,
+      "v": 24,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore"
+      }
+    },
+    {
+      "id": 8,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 11,
+      "v": 26,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore"
+      }
+    },
+    {
+      "id": 9,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 13,
+      "v": 16,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore"
+      }
+    },
+    {
+      "id": 10,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 11,
+      "v": 13,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore"
+      }
+    },
+    {
+      "id": 11,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 1,
+      "v": 9,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore"
+      }
+    },
+    {
+      "id": 12,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 14,
+      "v": 6,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore"
+      }
+    },
+    {
+      "id": 13,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 2,
+      "v": 1,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore"
+      }
+    },
+    {
+      "id": 14,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 10,
+      "v": 1,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore"
+      }
+    },
+    {
+      "id": 15,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 24,
+      "v": 4,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore"
+      }
+    },
+    {
+      "id": 16,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 23,
+      "v": 10,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore"
+      }
+    },
+    {
+      "id": 17,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 31,
+      "v": 10,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore"
+      }
+    },
+    {
+      "id": 18,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 34,
+      "v": 14,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore"
+      }
+    },
+    {
+      "id": 19,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 33,
+      "v": 19,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore"
+      }
+    },
+    {
+      "id": 20,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 24,
+      "v": 24,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore"
+      }
+    },
+    {
+      "id": 21,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 27,
+      "v": 28,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore"
+      }
+    },
+    {
+      "id": 22,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 34,
+      "v": 29,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore"
+      }
+    },
+    {
+      "id": 23,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 13,
+      "v": 24,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore"
+      }
+    },
+    {
+      "id": 24,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 13,
+      "v": 1,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore"
+      }
+    },
+    {
+      "id": 25,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 34,
+      "v": 8,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore"
+      }
+    },
+    {
+      "id": 26,
+      "name": "Pedra",
+      "asset": "pedra",
+      "u": 15,
+      "v": 13,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "pedra"
+      }
+    },
+    {
+      "id": 27,
+      "name": "Pedra",
+      "asset": "pedra",
+      "u": 23,
+      "v": 9,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "pedra"
+      }
+    },
+    {
+      "id": 28,
+      "name": "Pedra",
+      "asset": "pedra",
+      "u": 14,
+      "v": 28,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "pedra"
+      }
+    },
+    {
+      "id": 29,
+      "name": "Pedra",
+      "asset": "pedra",
+      "u": 22,
+      "v": 15,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "pedra"
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "type": "entrada",
+      "name": "Entrada das Veredas",
+      "u": 3,
+      "v": 28,
+      "props": {
+        "destino": "park-clearing"
+      }
+    },
+    {
+      "id": 2,
+      "type": "npc",
+      "name": "Nina",
+      "u": 27,
+      "v": 17,
+      "props": {
+        "fala": "nina-ponte",
+        "texto": "Atravessou a ponte? O mirante do outro lado tem um baú. A rampa fica perto do mato alto."
+      }
+    },
+    {
+      "id": 3,
+      "type": "saida",
+      "name": "Rumo às Veredas do Encanamento",
+      "u": 33,
+      "v": 3,
+      "props": {
+        "destino": "park-veredas"
+      }
+    }
+  ],
+  "ramps": [
+    {
+      "u": 8,
+      "v": 11,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.75,
+      "rampTo": 1
+    },
+    {
+      "u": 9,
+      "v": 11,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.75,
+      "rampTo": 1
+    },
+    {
+      "u": 8,
+      "v": 12,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.5,
+      "rampTo": 0.75
+    },
+    {
+      "u": 9,
+      "v": 12,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.5,
+      "rampTo": 0.75
+    },
+    {
+      "u": 8,
+      "v": 13,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.25,
+      "rampTo": 0.5
+    },
+    {
+      "u": 9,
+      "v": 13,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0.25,
+      "rampTo": 0.5
+    },
+    {
+      "u": 8,
+      "v": 14,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0,
+      "rampTo": 0.25
+    },
+    {
+      "u": 9,
+      "v": 14,
+      "material": "terra",
+      "level": 0,
+      "ramp": "v-",
+      "rampFrom": 0,
+      "rampTo": 0.25
+    }
+  ],
+  "locks": [
+    "Source map is geometry authority",
+    "Five chests, Nina, Lacertubo and all interactions stay at exact source cells",
+    "Ramp tops and cheeks derive from height_at",
+    "Bridge deck spans water and meets both banks",
+    "No canopy sampled into floor",
+    "Sparse upright vegetation only; no automatic tree fill"
+  ]
+}

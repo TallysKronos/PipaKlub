@@ -1,0 +1,129 @@
+{
+  "collection": "Gruta dos Elos — identidade Soulmonsters, proposta v2",
+  "assets": [
+    {
+      "id": "rocha-cinza",
+      "name": "Leito de dobras",
+      "kind": "floor",
+      "brief": "Flat top-down cave floor, quiet large blue-grey stone planes separated by a few thin interrupted fold-like navy fissures. Geological layers echo folded paper, but remain walkable rock. VERY LOW CONTRAST. No raised paving slabs, no boulders, no bevel shadows, no thick grout, no diamond-grid pattern. At most 3 sparse crease intersections in the whole image.",
+      "width": 64
+    },
+    {
+      "id": "terra-gruta",
+      "name": "Terra de papel",
+      "kind": "floor",
+      "brief": "Flat top-down warm muted clay cave soil, broad near-solid earthy beige colour with sparse tiny triangular slate flakes, only two tiny cream flecks like old paper fragments in the whole image. Quiet walkable material, no regular pattern or object scene.",
+      "width": 64
+    },
+    {
+      "id": "rocha-umida",
+      "name": "Pedra de maré",
+      "kind": "floor",
+      "brief": "Flat top-down wet muted deep teal-slate cave floor with large quiet flat blue colour fields and a few thin aqua current-like crease marks, no photoreal reflections or paving blocks, no raised masses. No open water.",
+      "width": 64
+    },
+    {
+      "id": "cascalho-gruta",
+      "name": "Lascas de vela",
+      "kind": "floor",
+      "brief": "Flat top-down low-contrast dusty slate cave floor, sparse small triangular and trapezoid rock fragments whose forms echo torn kite sail scraps. Broad quiet grey-taupe base, only a handful of fragments, no dense gravel texture.",
+      "width": 64
+    },
+    {
+      "id": "parede-calcario",
+      "name": "Dobras de calcário",
+      "kind": "wall",
+      "brief": "Flat straight-on cave wall material, large angular natural limestone planar layers resembling folds in cream and slate paper, thin navy crease linework, sparse terracotta strata. Three solid colour planes, no brick courses, no photoreal boulders, no 3D bevel.",
+      "width": 64
+    },
+    {
+      "id": "parede-basalto",
+      "name": "Ardósia do vento",
+      "kind": "wall",
+      "brief": "Flat straight-on cave wall material, broad midnight blue and desaturated petrol-blue angular natural slate folds, with a few thin cream mineral creases angled like a kite frame. Low detail, 3 solid planes, no bricks or manufactured tiles, no shine.",
+      "width": 64
+    },
+    {
+      "id": "parede-umida",
+      "name": "Parede de ecos",
+      "kind": "wall",
+      "brief": "Flat straight-on cave wall material, broad teal blue stone folds, sparse restrained pale cyan meandering fissures that connect irregularly like kite string traces. Matte solid colour masses, no dense glowing runes, no busy texture.",
+      "width": 64
+    },
+    {
+      "id": "parede-mineral",
+      "name": "Veios de elo",
+      "kind": "wall",
+      "brief": "Flat straight-on slate cave wall material, broad quiet blue-grey paper-like geological planes, only two restrained ochre mineral seams with one small diamond junction and one knot-like loop. Natural irregular geology inspired by kite lines, not a wallpaper of icons, no runes.",
+      "width": 64
+    },
+    {
+      "id": "rocha-solta",
+      "name": "Pedras dobradas",
+      "kind": "prop",
+      "brief": "One low compact pile of three broad natural slate fragments shaped like folded paper fans, irregular simple silhouette, cream top planes and petrol blue shadow planes, one small terracotta mineral seam, NOT literal paper objects. Strong clean navy contour, no many tiny rocks.",
+      "width": 100
+    },
+    {
+      "id": "estalagmite-baixa",
+      "name": "Nós de pedra",
+      "kind": "prop",
+      "brief": "One squat cave mineral growth, two naturally fused looped bands of cream and blue slate creating a knot-like silhouette with a small open hole, tiny broken stone shards at its roots. Looks like geological knot sculpture, no literal rope, no face, not a spool prop.",
+      "width": 82
+    },
+    {
+      "id": "estalagmite-alta",
+      "name": "Agulha do vento",
+      "kind": "prop",
+      "brief": "One tall thick limestone stalagmite with two small side spikes at its base, broad angular tapered silhouette, grey slate facets and muted ivory edge.",
+      "width": 74
+    },
+    {
+      "id": "coluna-calcario",
+      "name": "Coluna de rabiolas",
+      "kind": "prop",
+      "brief": "One cave column formed from broad slate geological folds that flare into three alternating bow-shaped ledges, suggesting the rhythm of kite-tail bows. A stout tapered central support and wide root. Muted petrol blue, cream light planes, two terracotta strata. It must read as stone shaped by wind, not a stack of actual kites. Very few large shapes.",
+      "width": 96
+    },
+    {
+      "id": "cristal-azul",
+      "name": "Ecos de Azulão",
+      "kind": "prop",
+      "brief": "One low cave mineral fan formation with one large asymmetric diamond-shaped turquoise stone plate and two wing-like folded mineral plates, joined by a small cream mineral knot at the base. Its broad silhouette echoes a living bird kite without an animal head or face. Flat teal and cream planes with navy linework, minimal bright edges. No generic quartz spikes.",
+      "width": 88
+    },
+    {
+      "id": "cristal-ambar",
+      "name": "Brasa de Carcará",
+      "kind": "prop",
+      "brief": "One warm amber cave mineral fan shaped like three layered angular feather-sail plates, one off-centre diamond joint and a tiny bent ribbon-like stone spur at base. Suggest the spirit of Carcará through feather-shaped geological planes, no animal face or eyes, not a literal bird. Flat ochre terracotta cream and navy outline, no quartz crystal spikes, no lighting halo.",
+      "width": 82
+    },
+    {
+      "id": "cogumelos-gruta",
+      "name": "Flores de linha",
+      "kind": "prop",
+      "brief": "One small low cave flora cluster with five curled ink-blue slender stems and broad folded diamond-shaped cream and turquoise caps, one tiny ochre stem-joint. Plantlike mushrooms whose caps echo folded kite paper. Asymmetric readable silhouette, only five large caps, strong navy lines and solid fill, no tiny speckled texture or halo.",
+      "width": 64
+    },
+    {
+      "id": "entrada-gruta",
+      "name": "Portal do elo",
+      "kind": "prop",
+      "brief": "One isolated broad cave arch opening formed from LARGE folded-looking blue slate rock planes, cream edge planes, a simple off-centre diamond keystone with a terracotta mineral knot at its base and two thin line-shaped mineral seams across the arch shoulders. Large empty dark tunnel, open entrance base, no stairs or plinth. Kite-inspired natural geology, not a constructed ornate castle gate. Only a few large graphic forms.",
+      "width": 220
+    },
+    {
+      "id": "agua-linhas",
+      "name": "Água de linhas",
+      "kind": "water",
+      "brief": "Flat directly overhead cave pool water, deep muted navy-petrol base with only a few broad broken cyan curling ripple ribbons, line rhythm reminiscent of kite strings and wind strokes, 3 solid colours, huge calm negative space. NO foam field, no caustic network, no realistic shading, no dense pattern."
+    },
+    {
+      "id": "queda-fitas",
+      "name": "Queda de fitas",
+      "kind": "fall",
+      "brief": "Flat straight-on falling cave water texture, long mostly straight vertical cream-white and muted turquoise ribbons on a petrol-blue base. A few slightly tapering angular ribbons echo kite tails, but remain liquid water, no literal paper bows. Very broad clean 2D ink shapes, three colours, no droplets or bubbles, no realistic shading. No top lip or bottom splash."
+    }
+  ]
+}

@@ -1,0 +1,377 @@
+{
+  "campaignIntegrated": false,
+  "corrections": {
+    "ladderPositions": [
+      [
+        -0.6,
+        5.6
+      ],
+      [
+        1.3,
+        6.4
+      ]
+    ],
+    "ladderRockMounts": [
+      -1,
+      1
+    ],
+    "postsUseHighestLowerSupport": true,
+    "towerBaseRug": [
+      8.8,
+      -1.3,
+      9.7,
+      -0.3
+    ],
+    "towerNearbyPalmsRemoved": true
+  },
+  "orderingReview": {
+    "centroidFallbackFaces": 0,
+    "cuts": 10006,
+    "hiddenFaces": 663,
+    "method": "projected opaque visibility with affine depth and convex fragments",
+    "sourceFaces": 2660,
+    "visibleConvexFragments": 3986
+  },
+  "projection": [
+    64,
+    32
+  ],
+  "reference": "user pier image",
+  "surfaces": [
+    {
+      "bounds": [
+        -3,
+        4,
+        -0.65,
+        6
+      ],
+      "height": 288.0,
+      "id": "peak",
+      "neighbors": [
+        "middle"
+      ]
+    },
+    {
+      "bounds": [
+        -1,
+        4,
+        1.25,
+        7
+      ],
+      "height": 224.0,
+      "id": "middle",
+      "neighbors": [
+        "peak",
+        "cliff_landing"
+      ]
+    },
+    {
+      "bounds": [
+        1,
+        5,
+        3,
+        8
+      ],
+      "height": 128.0,
+      "id": "cliff_landing",
+      "neighbors": [
+        "middle",
+        "left_bridge"
+      ]
+    },
+    {
+      "bounds": [
+        3,
+        7,
+        5,
+        8
+      ],
+      "height": 128.0,
+      "id": "left_bridge",
+      "neighbors": [
+        "cliff_landing",
+        "upper_hub"
+      ]
+    },
+    {
+      "bounds": [
+        5,
+        6,
+        9,
+        9
+      ],
+      "height": 128.0,
+      "id": "upper_hub",
+      "neighbors": [
+        "left_bridge",
+        "north_bridge",
+        "hub_stairs"
+      ]
+    },
+    {
+      "bounds": [
+        6.5,
+        2,
+        8,
+        6
+      ],
+      "height": 128.0,
+      "id": "north_bridge",
+      "neighbors": [
+        "upper_hub",
+        "tower_base"
+      ]
+    },
+    {
+      "bounds": [
+        5,
+        -2,
+        10,
+        2
+      ],
+      "height": 128.0,
+      "id": "tower_base",
+      "neighbors": [
+        "north_bridge",
+        "outpost",
+        "tower_stairs"
+      ]
+    },
+    {
+      "bounds": [
+        10,
+        -1,
+        12,
+        1
+      ],
+      "height": 128.0,
+      "id": "outpost",
+      "neighbors": [
+        "tower_base"
+      ]
+    },
+    {
+      "bounds": [
+        5.5,
+        -2,
+        8.5,
+        0
+      ],
+      "height": 192.0,
+      "id": "tower_floor",
+      "neighbors": [
+        "tower_stairs",
+        "tower_upper"
+      ]
+    },
+    {
+      "bounds": [
+        5.5,
+        -2,
+        8.5,
+        0
+      ],
+      "height": 256.0,
+      "id": "tower_upper",
+      "neighbors": [
+        "tower_floor"
+      ]
+    },
+    {
+      "bounds": [
+        5,
+        11,
+        11,
+        14
+      ],
+      "height": 64.0,
+      "id": "lower_hub",
+      "neighbors": [
+        "hub_stairs",
+        "underpass",
+        "east_branch",
+        "dock_stairs"
+      ]
+    },
+    {
+      "bounds": [
+        8,
+        7.5,
+        9,
+        11
+      ],
+      "height": 64.0,
+      "id": "underpass",
+      "neighbors": [
+        "lower_hub",
+        "east_branch"
+      ]
+    },
+    {
+      "bounds": [
+        9,
+        9,
+        12,
+        11
+      ],
+      "height": 64.0,
+      "id": "east_branch",
+      "neighbors": [
+        "underpass",
+        "lower_hub",
+        "beach_approach"
+      ]
+    },
+    {
+      "bounds": [
+        12,
+        10,
+        14,
+        11
+      ],
+      "height": 64.0,
+      "id": "beach_approach",
+      "neighbors": [
+        "east_branch",
+        "beach_stairs"
+      ]
+    },
+    {
+      "bounds": [
+        16,
+        8,
+        20,
+        13
+      ],
+      "height": 8.0,
+      "id": "beach",
+      "neighbors": [
+        "beach_stairs"
+      ]
+    },
+    {
+      "bounds": [
+        5,
+        16,
+        7,
+        18
+      ],
+      "height": 12.0,
+      "id": "dock",
+      "neighbors": [
+        "dock_stairs",
+        "cross_dock"
+      ]
+    },
+    {
+      "bounds": [
+        5,
+        18,
+        9,
+        19
+      ],
+      "height": 12.0,
+      "id": "cross_dock",
+      "neighbors": [
+        "dock",
+        "zigzag"
+      ]
+    },
+    {
+      "bounds": [
+        8,
+        19,
+        9,
+        22
+      ],
+      "height": 12.0,
+      "id": "zigzag",
+      "neighbors": [
+        "cross_dock",
+        "terminal"
+      ]
+    },
+    {
+      "bounds": [
+        7,
+        22,
+        10,
+        23
+      ],
+      "height": 12.0,
+      "id": "terminal",
+      "neighbors": [
+        "zigzag"
+      ]
+    },
+    {
+      "axis": "v",
+      "bounds": [
+        7,
+        9,
+        8.5,
+        11
+      ],
+      "end_height": 64,
+      "height": 128,
+      "id": "hub_stairs",
+      "neighbors": [
+        "upper_hub",
+        "lower_hub"
+      ],
+      "steps": 8
+    },
+    {
+      "axis": "v",
+      "bounds": [
+        7,
+        0,
+        8,
+        2
+      ],
+      "end_height": 128,
+      "height": 192,
+      "id": "tower_stairs",
+      "neighbors": [
+        "tower_floor",
+        "tower_base",
+        "north_bridge"
+      ],
+      "steps": 8
+    },
+    {
+      "axis": "u",
+      "bounds": [
+        14,
+        10,
+        16,
+        11
+      ],
+      "end_height": 8,
+      "height": 64,
+      "id": "beach_stairs",
+      "neighbors": [
+        "beach_approach",
+        "beach"
+      ],
+      "steps": 8
+    },
+    {
+      "axis": "v",
+      "bounds": [
+        5,
+        14,
+        7,
+        16
+      ],
+      "end_height": 12,
+      "height": 64,
+      "id": "dock_stairs",
+      "neighbors": [
+        "lower_hub",
+        "dock"
+      ],
+      "steps": 13
+    }
+  ]
+}

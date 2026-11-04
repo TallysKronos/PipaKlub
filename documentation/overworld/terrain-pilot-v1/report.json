@@ -1,0 +1,55 @@
+{
+  "captures": [
+    {
+      "file": "01-antes.png",
+      "geometryOnly": false,
+      "objects": true,
+      "pilot": false,
+      "zoom": 1.55
+    },
+    {
+      "file": "02-antes-sem-objetos.png",
+      "geometryOnly": false,
+      "objects": false,
+      "pilot": false,
+      "zoom": 1.55
+    },
+    {
+      "file": "03-depois.png",
+      "geometryOnly": false,
+      "objects": true,
+      "pilot": true,
+      "zoom": 1.55
+    },
+    {
+      "file": "04-depois-sem-objetos.png",
+      "geometryOnly": false,
+      "objects": false,
+      "pilot": true,
+      "zoom": 1.55
+    },
+    {
+      "file": "05-cores-chapadas.png",
+      "geometryOnly": true,
+      "objects": false,
+      "pilot": true,
+      "zoom": 1.55
+    },
+    {
+      "file": "06-juntas-ampliadas.png",
+      "geometryOnly": false,
+      "objects": false,
+      "pilot": true,
+      "zoom": 2.5
+    }
+  ],
+  "mapDataUnchanged": true,
+  "pilotCells": [
+    23,
+    33,
+    15,
+    12
+  ],
+  "scope": "opt-in visual prototype; campaign unchanged; no saves",
+  "togglePreservesPosition": true
+}

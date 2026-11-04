@@ -1,0 +1,81 @@
+{
+  "status": "Concept proposal; not approved or integrated",
+  "characters": [
+    {
+      "id": "iara",
+      "name": "Iara",
+      "area": "Jardim das Pipas",
+      "replaces": "Bia (reused NPC)",
+      "partner": "Mata verde",
+      "age": 17,
+      "silhouette": "Tranças em laço lateral; jaqueta curta com ombros em folhas dobradas; saia dividida sobre shorts.",
+      "palette": [
+        "sálvia",
+        "creme",
+        "carvão"
+      ],
+      "role": "Primeiro treino de defesa, ao lado do caminho leste."
+    },
+    {
+      "id": "nilo",
+      "name": "Nilo",
+      "area": "Clareira do Papel",
+      "replaces": "Juninho (reused NPC)",
+      "partner": "Carcará",
+      "age": 15,
+      "silhouette": "Topete largo achatado; capa curta assimétrica com um painel de asa; pernas alongadas.",
+      "palette": [
+        "mostarda",
+        "ferrugem",
+        "azul-marinho"
+      ],
+      "role": "Treino de movimento e cruzamento de fios no largo."
+    },
+    {
+      "id": "dora",
+      "name": "Dora",
+      "area": "Clareira do Papel",
+      "replaces": "Lia (reused NPC)",
+      "partner": "Raio de sol",
+      "age": 22,
+      "silhouette": "Baixinha e encorpada; bob ameixa; gola V grande dobrada; calça curta ampla.",
+      "palette": [
+        "coral",
+        "creme",
+        "grafite"
+      ],
+      "role": "Treino de gestão de energia junto ao banco leste."
+    },
+    {
+      "id": "caue",
+      "name": "Cauê",
+      "area": "Veredas do Encanamento",
+      "replaces": "Zeca (reused NPC)",
+      "partner": "Mata verde",
+      "age": 19,
+      "silhouette": "Alto e esguio; cabelo crespo curto com tufo quadrado; colete comprido com duas caudas de pipa.",
+      "palette": [
+        "oliva",
+        "ocre",
+        "bege"
+      ],
+      "role": "Observação e resposta aos sinais do adversário, perto da chegada."
+    },
+    {
+      "id": "celina",
+      "name": "Celina",
+      "area": "Veredas do Encanamento",
+      "replaces": "Tião (reused NPC)",
+      "partner": "Raio de sol",
+      "age": 48,
+      "silhouette": "Baixa e larga; coque baixo horizontal grisalho; casaco de trabalho com painel dourado assimétrico.",
+      "palette": [
+        "azul-ardósia",
+        "terracota",
+        "creme",
+        "dourado"
+      ],
+      "role": "Artesã experiente: último duelo opcional antes do guardião."
+    }
+  ]
+}

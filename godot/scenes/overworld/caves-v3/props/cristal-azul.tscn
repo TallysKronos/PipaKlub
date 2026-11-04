@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/overworld/kits/cavernas-v3/props/cristal-azul.png" id="1"]
+[ext_resource type="Shader" path="res://shaders/overworld/cave_prop_outline.gdshader" id="2"]
+
+[sub_resource type="ShaderMaterial" id="Outline"]
+shader = ExtResource("2")
+
+[node name="cristal-azul" type="Node2D"]
+
+[node name="ContactShadow" type="Polygon2D" parent="."]
+color = Color(0.035, 0.045, 0.075, 0.65)
+polygon = PackedVector2Array(29.920, -2.000, 28.901, -0.296, 25.911, 1.291, 21.157, 2.654, 14.960, 3.701, 7.744, 4.358, 0.000, 4.582, -7.744, 4.358, -14.960, 3.701, -21.157, 2.654, -25.911, 1.291, -28.901, -0.296, -29.920, -2.000, -28.901, -3.704, -25.911, -5.291, -21.157, -6.654, -14.960, -7.701, -7.744, -8.358, -0.000, -8.582, 7.744, -8.358, 14.960, -7.701, 21.157, -6.654, 25.911, -5.291, 28.901, -3.704)
+
+[node name="Visual" type="Sprite2D" parent="."]
+material = SubResource("Outline")
+texture_filter = 1
+texture = ExtResource("1")
+centered = false
+position = Vector2(-55.0, -63)

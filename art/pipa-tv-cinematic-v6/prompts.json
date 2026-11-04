@@ -1,0 +1,31 @@
+{
+  "tool": "image_gen + local ComfyUI H3",
+  "bridge_prompt": "Create an INTERMEDIATE CAMERA KEYFRAME for a continuous 2D anime tracking shot. Image1 is exact bedroom start and interior layout; image2 is the destination outdoor environment and Tyler/Saber identity, not a separate disconnected place. Camera has moved from image1 LEFTWARD to the bedroom's WINDOW beside teal bed and is now at the open window looking OUT into the same nearby cherry-tree courtyard. Interior wooden window jamb and a tiny edge of teal bed occupy only near left/lower edges, no entire room. Outside immediately below window a stone footpath leads toward the SAME cherry tree as image2, with sparse pink petals drifting naturally, open blue sky and distant hillside. Tyler and Saber from image2 are small but recognizable under tree at middle distance, both entirely outdoors on path. Tyler black hair with three white side tufts, ivory/burgundy jacket, black trousers, no blue clothes/headphones. This is the spatial bridge between a bedroom window and an actual courtyard, not a portal, not a montage. Place tree and characters at RIGHT CENTER, camera can glide through opening and lower toward them without cut. The window opens toward courtyard, unobstructed path for virtual camera, no glass or grills. Keep scale and viewpoint physically plausible, natural perspective, horizon level, no extreme wide lens or exaggerated dutch angle. Thin delicate dark-gray manga line, clean flat color, restrained cel shadows, simple angular environment planes; same exact calm anime style as references, no painterly texture, no collage, no borders, no text, no UI. Landscape16:9 single keyframe with generous clear space around window opening. No big curtain of petals, no full flowers covering lens, only a few individual petals. Kael remains in room off camera, do not put him outdoors or transform him into Tyler.",
+  "video_prompt": "ONE UNBROKEN EIGHT SECOND ANIME CAMERA SHOT in ONE coherent physical location. NO CUTS, NO TRANSITIONS, NO DISSOLVES, NO PETAL WIPE, NO MORPHING. <Picture 1> is the EXACT START: Kael remains inside his upstairs bedroom in blue jacket and neck headphones. <Picture 2> is destination view outside: Tyler and Saber under cherry tree. <Picture 3> is TYLER identity only, not a scene or panel to show: black swept hair, ONLY three outer white side tufts, central fringe black, red eyes, ivory short sleeve hooded jacket with burgundy tails, black shirt and cropped trousers, red/ivory shoes. The timed WINDOW GUIDE at3 seconds establishes actual spatial continuity between room and SAME courtyard; respect it. Camera begins in Kael bedroom, smoothly glides LEFT toward the OPEN WINDOW beside teal bed during first3 seconds. Kael stays indoors and leaves frame naturally as camera moves; he never transforms into Tyler. Camera approaches the open unobstructed window; visible sill/jamb pass gently outside image as camera travels through opening into fresh air during seconds3 to4.5. The SAME distant stone footpath, hillside, blue sky and cherry tree seen through window stay spatially fixed. Continue same forward tracking motion toward Tyler and Saber during seconds4.5 to7. At7 seconds arrive at exact final outdoor guide composition, subtle low-angle manga framing and gentle tilted horizon, then ease camera to near stop by8 seconds. Tyler and Saber were outside all along, never teleport or appear indoors. Tyler looks back slightly and blinks, jacket tails and black/white hair tips move subtly. Saber is one white/pink LIVING PAPER KITE feline, two attached upper saber fangs, four dark paws, bamboo burgundy shoulder kite and connected petal ribbon tail. Saber raises head slightly toward breeze, feet grounded. A FEW individual cherry petals drift through open window and along camera path naturally; they NEVER obscure entire frame, no full flowers or full-screen pink curtain. Camera movement motivated and continuous, no lateral direction reversal, no jump in scale, no sudden zoom or scene replacement. Final background remains fully visible in daylight until END, never fades to black or disappears. Keep identity/face/head proportions precise from images, delicate fine gray anime ink, soft flat local colors and restrained cel shadows, slender bodies, quiet expressions. No broad cartoon grins,3D,painterly texture,collage,panels,text,logos,subtitles. Audio one continuous soft breeze, quiet indoor TV gradually muffles behind camera, leaves and paper rustle outside; no speech/music. Timed latent guides constrain position, preserve continuous motion BETWEEN them, do not display still slides.",
+  "guides": [
+    {
+      "frame": 0,
+      "image": "pipatv-v5-kael-final.png"
+    },
+    {
+      "frame": 72,
+      "image": "pipatv-v6-janela-jardim.png"
+    },
+    {
+      "frame": 168,
+      "image": "pipatv-v5-tyler-cerejeira.png"
+    },
+    {
+      "frame": -1,
+      "image": "pipatv-v5-tyler-cerejeira.png"
+    }
+  ],
+  "requested_seconds": 8,
+  "requested_megapixels": 0.4,
+  "steps": 20,
+  "seed": 2810202611,
+  "method": "One shared generated AV latent, image guides encoded by VAE and added to conditioning. Not recovered original V4 latent.",
+  "status": "completed_review",
+  "prompt_id": "812d220a-5278-4ab7-a9e7-211671a5f292",
+  "output": "video-original/812d220a_000.mp4"
+}

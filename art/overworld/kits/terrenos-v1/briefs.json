@@ -1,0 +1,223 @@
+{
+  "collection": "Soulmonsters — pisos e revestimentos modulares",
+  "floors": 24,
+  "walls": 12,
+  "assets": [
+    {
+      "id": "grama-campo",
+      "name": "Grama de campo",
+      "kind": "floor",
+      "brief": "Muted fresh green short grass, subtle uneven turf and sparse tiny blades, two broad quiet patches, no flowers or footprints."
+    },
+    {
+      "id": "grama-seca",
+      "name": "Grama seca",
+      "kind": "floor",
+      "brief": "Warm olive and straw-green sparse dry turf with subdued fine straw, no large clumps."
+    },
+    {
+      "id": "grama-musgo",
+      "name": "Grama de musgo",
+      "kind": "floor",
+      "brief": "Soft muted sage-green moss carpet in broad calm rounded patches, tiny subtle granular structure, not leaf shapes."
+    },
+    {
+      "id": "terra-ocre",
+      "name": "Terra ocre",
+      "kind": "floor",
+      "brief": "Warm ochre packed earth with a few embedded small rounded stones and quiet broad earthen patches."
+    },
+    {
+      "id": "terra-vermelha",
+      "name": "Terra vermelha",
+      "kind": "floor",
+      "brief": "Muted terracotta Brazilian red earth with sparse tiny grit, light wear and broad quiet stretches, not cracked desert."
+    },
+    {
+      "id": "areia-clara",
+      "name": "Areia clara",
+      "kind": "floor",
+      "brief": "Warm pale cream beach sand with faint natural grain and a few tiny shell flecks, no wave lines or footprints."
+    },
+    {
+      "id": "cascalho",
+      "name": "Cascalho fino",
+      "kind": "floor",
+      "brief": "Warm grey and tan small rounded gravel embedded in pale dust, subtle varied stone sizes, restrained contrast."
+    },
+    {
+      "id": "barro-umido",
+      "name": "Barro úmido",
+      "kind": "floor",
+      "brief": "Muted warm brown damp clay with soft darker patches, smooth low sheen, sparse tiny grit, no puddles."
+    },
+    {
+      "id": "pedra-clara",
+      "name": "Pedra clara",
+      "kind": "floor",
+      "brief": "Large pale warm sandstone paving slabs, irregular rectilinear joints with THIN low-contrast mortar, sparse chipped corners, calm broad surfaces."
+    },
+    {
+      "id": "pedra-cinza",
+      "name": "Pedra cinza",
+      "kind": "floor",
+      "brief": "Muted blue-grey slate paving, broad irregular polygonal slabs, thin restrained seams, not dark grid."
+    },
+    {
+      "id": "paralelepipedo",
+      "name": "Paralelepípedo",
+      "kind": "floor",
+      "brief": "Small warm grey granite cobblestones in offset rows, soft worn corners, fine narrow joints, calm contrast."
+    },
+    {
+      "id": "pedra-mosaico",
+      "name": "Mosaico de pedra",
+      "kind": "floor",
+      "brief": "Warm cream and pale ochre irregular small stone paving mosaic, broad connected pieces, thin quiet beige joints."
+    },
+    {
+      "id": "calcada-concreto",
+      "name": "Calçada de concreto",
+      "kind": "floor",
+      "brief": "Warm light grey concrete sidewalk slabs, very faint straight expansion joints, sparse gentle weathering, no scuffs or random long scratches."
+    },
+    {
+      "id": "cimento-polido",
+      "name": "Cimento polido",
+      "kind": "floor",
+      "brief": "Smooth pale grey-green polished cement with subtle broad material variation, almost no seams, no mirror reflection."
+    },
+    {
+      "id": "asfalto",
+      "name": "Asfalto",
+      "kind": "floor",
+      "brief": "Muted charcoal warm-grey asphalt with fine subtle aggregate, no painted lines or markings, no potholes."
+    },
+    {
+      "id": "bloquete",
+      "name": "Bloquete intertravado",
+      "kind": "floor",
+      "brief": "Muted warm ochre interlocking concrete pavers, simple repeating rectangular offset pattern with narrow soft joints."
+    },
+    {
+      "id": "tijolo-piso",
+      "name": "Tijolo de piso",
+      "kind": "floor",
+      "brief": "Warm muted terracotta rectangular brick paving in running bond, thin warm cream mortar, matte worn surfaces."
+    },
+    {
+      "id": "ladrilho-hidraulico",
+      "name": "Ladrilho hidráulico",
+      "kind": "floor",
+      "brief": "Brazilian hydraulic cement floor tiles with a restrained repeating cream and muted teal four-petal geometric motif, medium-scale pattern, thin joints."
+    },
+    {
+      "id": "ceramica-creme",
+      "name": "Cerâmica creme",
+      "kind": "floor",
+      "brief": "Warm cream square ceramic tiles, soft pale beige joints, matte highlights, subtle surface variation."
+    },
+    {
+      "id": "ceramica-azul",
+      "name": "Cerâmica azul",
+      "kind": "floor",
+      "brief": "Muted petrol-blue ceramic square tiles with warm cream narrow grout, restrained satin finish, no specular glare."
+    },
+    {
+      "id": "madeira-mel",
+      "name": "Madeira mel",
+      "kind": "floor",
+      "brief": "Honey brown wooden floor boards laid horizontally, restrained long grain, narrow dark joins, no knots as focal points."
+    },
+    {
+      "id": "madeira-escura",
+      "name": "Madeira escura",
+      "kind": "floor",
+      "brief": "Warm walnut floor boards, simple quiet grain, long straight planks, thin dark joints, matte finish."
+    },
+    {
+      "id": "piso-laboratorio",
+      "name": "Piso de laboratório",
+      "kind": "floor",
+      "brief": "Warm ivory modular laboratory floor panels, narrow muted teal inset joints and rare small diamond screws, clean civilian design, NO glowing lines."
+    },
+    {
+      "id": "piso-oficina",
+      "name": "Piso de oficina",
+      "kind": "floor",
+      "brief": "Warm muted brown-teal workshop floor of large practical rubberized square panels, fine inset joints and slight wear, no objects or tools."
+    },
+    {
+      "id": "reboco-creme",
+      "name": "Reboco creme",
+      "kind": "wall",
+      "brief": "Warm cream painted plaster with restrained broad patches and fine texture, no cracks or architectural features."
+    },
+    {
+      "id": "reboco-coral",
+      "name": "Reboco coral",
+      "kind": "wall",
+      "brief": "Muted coral painted stucco, broad quiet texture, no dirt streaks."
+    },
+    {
+      "id": "reboco-azul",
+      "name": "Reboco azul",
+      "kind": "wall",
+      "brief": "Muted petrol-blue painted plaster, clean flat matte finish, faint surface grain."
+    },
+    {
+      "id": "tijolo-aparente",
+      "name": "Tijolo aparente",
+      "kind": "wall",
+      "brief": "Warm terracotta exposed brick wall in running bond, thin warm pale mortar, varied subdued brick faces."
+    },
+    {
+      "id": "pedra-arenito",
+      "name": "Pedra de arenito",
+      "kind": "wall",
+      "brief": "Warm pale sandstone masonry blocks in running bond, thin quiet mortar, restrained worn edges."
+    },
+    {
+      "id": "pedra-basaltica",
+      "name": "Pedra basáltica",
+      "kind": "wall",
+      "brief": "Muted blue-grey basalt masonry broad blocks, thin medium-grey mortar, subtle warm edge wear."
+    },
+    {
+      "id": "concreto-parede",
+      "name": "Concreto aparente",
+      "kind": "wall",
+      "brief": "Pale warm grey cast concrete wall with a few restrained broad formwork seams and small tie holes, calm material."
+    },
+    {
+      "id": "azulejo-branco",
+      "name": "Azulejo branco",
+      "kind": "wall",
+      "brief": "Warm ivory small square ceramic wall tiles with thin grey-beige grout, matte satin highlights."
+    },
+    {
+      "id": "azulejo-teal",
+      "name": "Azulejo teal",
+      "kind": "wall",
+      "brief": "Muted teal square ceramic wall tiles with thin cream grout and restrained satin variation."
+    },
+    {
+      "id": "madeira-parede",
+      "name": "Tábuas de parede",
+      "kind": "wall",
+      "brief": "Honey brown horizontal timber siding with narrow shadow joins, simple calm wood grain."
+    },
+    {
+      "id": "metal-laboratorio",
+      "name": "Painel de laboratório",
+      "kind": "wall",
+      "brief": "Warm ivory and muted teal scientific wall panels, broad modular rectangles and tiny diamond-shaped fasteners, no text or glowing lines."
+    },
+    {
+      "id": "terra-barranco",
+      "name": "Terra de barranco",
+      "kind": "wall",
+      "brief": "Warm ochre exposed earthen embankment face, subtle horizontal soil layers, a few embedded stones, no roots, grass or ledges."
+    }
+  ]
+}

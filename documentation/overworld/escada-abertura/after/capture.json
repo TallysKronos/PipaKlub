@@ -1,0 +1,101 @@
+[
+	{
+		"area": "morro-praca-da-chegada",
+		"finishComponents": [
+			{
+				"faces": 15,
+				"finish": "chapisco"
+			},
+			{
+				"faces": 3,
+				"finish": "chapisco"
+			},
+			{
+				"faces": 4,
+				"finish": "chapisco"
+			},
+			{
+				"faces": 2,
+				"finish": "chapisco"
+			},
+			{
+				"faces": 5,
+				"finish": "pedra"
+			},
+			{
+				"faces": 1,
+				"finish": "chapisco"
+			}
+		],
+		"retainingFaces": 30,
+		"scope": "art preview, no saves or navigation changes",
+		"size": [
+			1280,
+			720
+		],
+		"stairBevels": 0
+	},
+	{
+		"arrived": true,
+		"follower": [
+			12.6164903640747,
+			4.28259563446045
+		],
+		"pathAccepted": true,
+		"target": [
+			12.5,
+			3.5
+		]
+	},
+	{
+		"arrived": true,
+		"follower": [
+			12.5758485794067,
+			4.70732402801514
+		],
+		"pathAccepted": true,
+		"target": [
+			12.5,
+			5.5
+		]
+	},
+	{
+		"area": "morro-escadaria-da-sombra",
+		"finishComponents": [
+			{
+				"faces": 15,
+				"finish": "chapisco"
+			},
+			{
+				"faces": 8,
+				"finish": "chapisco"
+			},
+			{
+				"faces": 6,
+				"finish": "pedra"
+			},
+			{
+				"faces": 1,
+				"finish": "chapisco"
+			}
+		],
+		"retainingFaces": 30,
+		"scope": "art preview, no saves or navigation changes",
+		"size": [
+			1280,
+			720
+		],
+		"stairBevels": 0
+	},
+	{
+		"area": "morro-parque-dos-ventos",
+		"finishComponents": [],
+		"retainingFaces": 0,
+		"scope": "art preview, no saves or navigation changes",
+		"size": [
+			1280,
+			720
+		],
+		"stairBevels": 0
+	}
+]

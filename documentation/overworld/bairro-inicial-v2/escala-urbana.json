@@ -1,0 +1,14 @@
+{
+  "backdrop": "#0B1525",
+  "personPx": 51,
+  "busStopPx": 130,
+  "benchPx": 38,
+  "vehiclesPx": {
+    "fusca": 100,
+    "jipe": 118,
+    "kombi": 128
+  },
+  "inspection": "native static 1280x720 captures, actor and object on same ground height",
+  "collidersResized": true,
+  "walkthroughRerun": false
+}

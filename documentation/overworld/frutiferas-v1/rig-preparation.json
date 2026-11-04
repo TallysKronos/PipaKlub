@@ -1,0 +1,1554 @@
+[
+  {
+    "id": "mangueira",
+    "parts": [
+      {
+        "id": "trunk",
+        "parent": null,
+        "pivot": [
+          160,
+          234
+        ],
+        "rect": [
+          100.968,
+          104.11099999999999,
+          118.064,
+          129.889
+        ]
+      },
+      {
+        "id": "canopy",
+        "parent": "trunk",
+        "pivot": [
+          160,
+          130.47
+        ],
+        "rect": [
+          59.946,
+          24,
+          200.108,
+          136.5
+        ]
+      },
+      {
+        "id": "fruit1",
+        "parent": "canopy",
+        "pivot": [
+          115.97623999999999,
+          78.6
+        ],
+        "rect": [
+          110.01123999999999,
+          78.6,
+          11.93,
+          20
+        ]
+      },
+      {
+        "id": "fruit2",
+        "parent": "canopy",
+        "pivot": [
+          202.02268,
+          88.155
+        ],
+        "rect": [
+          196.05768,
+          88.155,
+          11.93,
+          20
+        ]
+      },
+      {
+        "id": "fruit3",
+        "parent": "canopy",
+        "pivot": [
+          151.99568,
+          104.535
+        ],
+        "rect": [
+          146.03068,
+          104.535,
+          11.93,
+          20
+        ]
+      },
+      {
+        "id": "fruit4",
+        "parent": "canopy",
+        "pivot": [
+          220.0324,
+          64.94999999999999
+        ],
+        "rect": [
+          214.0674,
+          64.94999999999999,
+          11.93,
+          20
+        ]
+      }
+    ],
+    "clips": [
+      "idle",
+      "hit",
+      "drop"
+    ],
+    "schemaValid": true,
+    "warnings": [],
+    "jointNotes": [
+      "OK · Copa/tronco aprovado para esta espécie: 1.695.",
+      "OK · Encaixe Copa — balanço: desvio máximo 0.00 unidades."
+    ],
+    "sourceBounds": [
+      [
+        24,
+        16,
+        639,
+        703
+      ],
+      [
+        679,
+        15,
+        1013,
+        691
+      ],
+      [
+        1841,
+        192,
+        238,
+        399
+      ]
+    ]
+  },
+  {
+    "id": "jabuticabeira",
+    "parts": [
+      {
+        "id": "trunk",
+        "parent": null,
+        "pivot": [
+          160,
+          206
+        ],
+        "rect": [
+          106.336,
+          103.242,
+          107.328,
+          102.758
+        ]
+      },
+      {
+        "id": "canopy",
+        "parent": "trunk",
+        "pivot": [
+          160,
+          116.274
+        ],
+        "rect": [
+          69.044,
+          24,
+          181.912,
+          118.3
+        ]
+      },
+      {
+        "id": "fruit1",
+        "parent": "trunk",
+        "pivot": [
+          131.6937142857143,
+          141.3
+        ],
+        "rect": [
+          128.9437142857143,
+          141.3,
+          5.5,
+          5.877
+        ]
+      },
+      {
+        "id": "fruit2",
+        "parent": "trunk",
+        "pivot": [
+          146.87885714285716,
+          144.3
+        ],
+        "rect": [
+          144.12885714285716,
+          144.3,
+          5.5,
+          5.877
+        ]
+      },
+      {
+        "id": "fruit3",
+        "parent": "trunk",
+        "pivot": [
+          178.42857142857144,
+          146.3
+        ],
+        "rect": [
+          175.67857142857144,
+          146.3,
+          5.5,
+          5.877
+        ]
+      },
+      {
+        "id": "fruit4",
+        "parent": "trunk",
+        "pivot": [
+          148.94285714285715,
+          149.3
+        ],
+        "rect": [
+          146.19285714285715,
+          149.3,
+          5.5,
+          5.877
+        ]
+      },
+      {
+        "id": "fruit5",
+        "parent": "trunk",
+        "pivot": [
+          166.48685714285713,
+          153.3
+        ],
+        "rect": [
+          163.73685714285713,
+          153.3,
+          5.5,
+          5.877
+        ]
+      },
+      {
+        "id": "fruit6",
+        "parent": "trunk",
+        "pivot": [
+          156.75657142857142,
+          156.3
+        ],
+        "rect": [
+          154.00657142857142,
+          156.3,
+          5.5,
+          5.877
+        ]
+      },
+      {
+        "id": "fruit7",
+        "parent": "trunk",
+        "pivot": [
+          153.2182857142857,
+          162.3
+        ],
+        "rect": [
+          150.4682857142857,
+          162.3,
+          5.5,
+          5.877
+        ]
+      },
+      {
+        "id": "fruit8",
+        "parent": "trunk",
+        "pivot": [
+          161.4742857142857,
+          165.3
+        ],
+        "rect": [
+          158.7242857142857,
+          165.3,
+          5.5,
+          5.877
+        ]
+      },
+      {
+        "id": "fruit9",
+        "parent": "trunk",
+        "pivot": [
+          164.7177142857143,
+          168.3
+        ],
+        "rect": [
+          161.9677142857143,
+          168.3,
+          5.5,
+          5.877
+        ]
+      },
+      {
+        "id": "fruit10",
+        "parent": "trunk",
+        "pivot": [
+          157.49371428571428,
+          171.3
+        ],
+        "rect": [
+          154.74371428571428,
+          171.3,
+          5.5,
+          5.877
+        ]
+      },
+      {
+        "id": "fruit11",
+        "parent": "trunk",
+        "pivot": [
+          162.06400000000002,
+          174.3
+        ],
+        "rect": [
+          159.31400000000002,
+          174.3,
+          5.5,
+          5.877
+        ]
+      },
+      {
+        "id": "fruit12",
+        "parent": "trunk",
+        "pivot": [
+          153.66057142857142,
+          179.3
+        ],
+        "rect": [
+          150.91057142857142,
+          179.3,
+          5.5,
+          5.877
+        ]
+      },
+      {
+        "id": "fruit13",
+        "parent": "trunk",
+        "pivot": [
+          160.29485714285715,
+          182.3
+        ],
+        "rect": [
+          157.54485714285715,
+          182.3,
+          5.5,
+          5.877
+        ]
+      },
+      {
+        "id": "fruit14",
+        "parent": "trunk",
+        "pivot": [
+          167.8137142857143,
+          185.3
+        ],
+        "rect": [
+          165.0637142857143,
+          185.3,
+          5.5,
+          5.877
+        ]
+      },
+      {
+        "id": "fruit15",
+        "parent": "trunk",
+        "pivot": [
+          152.9234285714286,
+          189.3
+        ],
+        "rect": [
+          150.1734285714286,
+          189.3,
+          5.5,
+          5.877
+        ]
+      },
+      {
+        "id": "fruit16",
+        "parent": "trunk",
+        "pivot": [
+          167.66628571428572,
+          192.3
+        ],
+        "rect": [
+          164.91628571428572,
+          192.3,
+          5.5,
+          5.877
+        ]
+      }
+    ],
+    "clips": [
+      "idle",
+      "hit",
+      "drop"
+    ],
+    "schemaValid": true,
+    "warnings": [],
+    "jointNotes": [
+      "OK · Copa/tronco aprovado para esta espécie: 1.695.",
+      "OK · Encaixe Copa — balanço: desvio máximo 0.00 unidades."
+    ],
+    "sourceBounds": [
+      [
+        52,
+        29,
+        728,
+        697
+      ],
+      [
+        732,
+        89,
+        958,
+        623
+      ],
+      [
+        1757,
+        405,
+        204,
+        218
+      ]
+    ]
+  },
+  {
+    "id": "laranjeira",
+    "parts": [
+      {
+        "id": "trunk",
+        "parent": null,
+        "pivot": [
+          160,
+          196
+        ],
+        "rect": [
+          109.807,
+          89.878,
+          100.386,
+          106.122
+        ]
+      },
+      {
+        "id": "canopy",
+        "parent": "trunk",
+        "pivot": [
+          160,
+          111.20400000000001
+        ],
+        "rect": [
+          74.9275,
+          24,
+          170.145,
+          111.8
+        ]
+      },
+      {
+        "id": "fruit1",
+        "parent": "canopy",
+        "pivot": [
+          122.56809999999999,
+          68.72
+        ],
+        "rect": [
+          114.92109999999998,
+          68.72,
+          15.294,
+          20
+        ]
+      },
+      {
+        "id": "fruit2",
+        "parent": "canopy",
+        "pivot": [
+          195.73045,
+          76.54599999999999
+        ],
+        "rect": [
+          188.08345,
+          76.54599999999999,
+          15.294,
+          20
+        ]
+      },
+      {
+        "id": "fruit3",
+        "parent": "canopy",
+        "pivot": [
+          153.1942,
+          89.96199999999999
+        ],
+        "rect": [
+          145.5472,
+          89.96199999999999,
+          15.294,
+          20
+        ]
+      },
+      {
+        "id": "fruit4",
+        "parent": "canopy",
+        "pivot": [
+          211.0435,
+          57.54
+        ],
+        "rect": [
+          203.3965,
+          57.54,
+          15.294,
+          20
+        ]
+      }
+    ],
+    "clips": [
+      "idle",
+      "hit",
+      "drop"
+    ],
+    "schemaValid": true,
+    "warnings": [],
+    "jointNotes": [
+      "OK · Copa/tronco aprovado para esta espécie: 1.695.",
+      "OK · Encaixe Copa — balanço: desvio máximo 0.00 unidades."
+    ],
+    "sourceBounds": [
+      [
+        21,
+        13,
+        665,
+        703
+      ],
+      [
+        698,
+        18,
+        1044,
+        686
+      ],
+      [
+        1878,
+        293,
+        260,
+        340
+      ]
+    ]
+  },
+  {
+    "id": "limoeiro",
+    "parts": [
+      {
+        "id": "trunk",
+        "parent": null,
+        "pivot": [
+          160,
+          192
+        ],
+        "rect": [
+          111.0215,
+          94.745,
+          97.957,
+          97.255
+        ]
+      },
+      {
+        "id": "canopy",
+        "parent": "trunk",
+        "pivot": [
+          160,
+          109.176
+        ],
+        "rect": [
+          76.9855,
+          24,
+          166.029,
+          109.2
+        ]
+      },
+      {
+        "id": "fruit1",
+        "parent": "canopy",
+        "pivot": [
+          123.47362000000001,
+          67.68
+        ],
+        "rect": [
+          117.07462000000001,
+          67.68,
+          12.798,
+          20
+        ]
+      },
+      {
+        "id": "fruit2",
+        "parent": "canopy",
+        "pivot": [
+          194.86608999999999,
+          75.324
+        ],
+        "rect": [
+          188.46708999999998,
+          75.324,
+          12.798,
+          20
+        ]
+      },
+      {
+        "id": "fruit3",
+        "parent": "canopy",
+        "pivot": [
+          153.35884,
+          88.428
+        ],
+        "rect": [
+          146.95983999999999,
+          88.428,
+          12.798,
+          20
+        ]
+      },
+      {
+        "id": "fruit4",
+        "parent": "canopy",
+        "pivot": [
+          209.8087,
+          56.76
+        ],
+        "rect": [
+          203.4097,
+          56.76,
+          12.798,
+          20
+        ]
+      }
+    ],
+    "clips": [
+      "idle",
+      "hit",
+      "drop"
+    ],
+    "schemaValid": true,
+    "warnings": [],
+    "jointNotes": [
+      "OK · Copa/tronco aprovado para esta espécie: 1.695.",
+      "OK · Encaixe Copa — balanço: desvio máximo 0.00 unidades."
+    ],
+    "sourceBounds": [
+      [
+        26,
+        20,
+        698,
+        693
+      ],
+      [
+        714,
+        17,
+        1043,
+        686
+      ],
+      [
+        1890,
+        233,
+        247,
+        386
+      ]
+    ]
+  },
+  {
+    "id": "goiabeira",
+    "parts": [
+      {
+        "id": "trunk",
+        "parent": null,
+        "pivot": [
+          160,
+          209
+        ],
+        "rect": [
+          105.72,
+          90.949,
+          108.56,
+          118.051
+        ]
+      },
+      {
+        "id": "canopy",
+        "parent": "trunk",
+        "pivot": [
+          160,
+          116.60238000000001
+        ],
+        "rect": [
+          68,
+          24,
+          184,
+          118.721
+        ]
+      },
+      {
+        "id": "fruit1",
+        "parent": "canopy",
+        "pivot": [
+          119.52000000000001,
+          71.48840000000001
+        ],
+        "rect": [
+          112.9985,
+          71.48840000000001,
+          13.043,
+          20
+        ]
+      },
+      {
+        "id": "fruit2",
+        "parent": "canopy",
+        "pivot": [
+          198.64,
+          79.79887
+        ],
+        "rect": [
+          192.11849999999998,
+          79.79887,
+          13.043,
+          20
+        ]
+      },
+      {
+        "id": "fruit3",
+        "parent": "canopy",
+        "pivot": [
+          152.64,
+          94.04539
+        ],
+        "rect": [
+          146.11849999999998,
+          94.04539,
+          13.043,
+          20
+        ]
+      },
+      {
+        "id": "fruit4",
+        "parent": "canopy",
+        "pivot": [
+          215.2,
+          59.6163
+        ],
+        "rect": [
+          208.67849999999999,
+          59.6163,
+          13.043,
+          20
+        ]
+      }
+    ],
+    "clips": [
+      "idle",
+      "hit",
+      "drop"
+    ],
+    "schemaValid": true,
+    "warnings": [],
+    "jointNotes": [
+      "OK · Copa/tronco aprovado para esta espécie: 1.695.",
+      "OK · Encaixe Copa — balanço: desvio máximo 0.00 unidades."
+    ],
+    "sourceBounds": [
+      [
+        20,
+        12,
+        652,
+        709
+      ],
+      [
+        683,
+        10,
+        1088,
+        702
+      ],
+      [
+        1918,
+        278,
+        225,
+        345
+      ]
+    ]
+  },
+  {
+    "id": "aceroleira",
+    "parts": [
+      {
+        "id": "trunk",
+        "parent": null,
+        "pivot": [
+          160,
+          166
+        ],
+        "rect": [
+          119.768,
+          78.593,
+          80.464,
+          87.407
+        ]
+      },
+      {
+        "id": "canopy",
+        "parent": "trunk",
+        "pivot": [
+          160,
+          95.994
+        ],
+        "rect": [
+          91.81,
+          24,
+          136.38,
+          92.3
+        ]
+      },
+      {
+        "id": "fruit1",
+        "parent": "canopy",
+        "pivot": [
+          129.9964,
+          60.92
+        ],
+        "rect": [
+          121.4964,
+          60.92,
+          17,
+          16.091
+        ]
+      },
+      {
+        "id": "fruit2",
+        "parent": "canopy",
+        "pivot": [
+          188.6398,
+          67.381
+        ],
+        "rect": [
+          180.1398,
+          67.381,
+          17,
+          16.091
+        ]
+      },
+      {
+        "id": "fruit3",
+        "parent": "canopy",
+        "pivot": [
+          154.5448,
+          78.457
+        ],
+        "rect": [
+          146.0448,
+          78.457,
+          17,
+          16.091
+        ]
+      },
+      {
+        "id": "fruit4",
+        "parent": "canopy",
+        "pivot": [
+          200.914,
+          51.69
+        ],
+        "rect": [
+          192.414,
+          51.69,
+          17,
+          16.091
+        ]
+      }
+    ],
+    "clips": [
+      "idle",
+      "hit",
+      "drop"
+    ],
+    "schemaValid": true,
+    "warnings": [],
+    "jointNotes": [
+      "OK · Copa/tronco aprovado para esta espécie: 1.695.",
+      "OK · Encaixe Copa — balanço: desvio máximo 0.00 unidades."
+    ],
+    "sourceBounds": [
+      [
+        21,
+        13,
+        649,
+        705
+      ],
+      [
+        679,
+        15,
+        1021,
+        691
+      ],
+      [
+        1827,
+        239,
+        318,
+        301
+      ]
+    ]
+  },
+  {
+    "id": "cajueiro",
+    "parts": [
+      {
+        "id": "trunk",
+        "parent": null,
+        "pivot": [
+          160,
+          219
+        ],
+        "rect": [
+          99.0945,
+          84.457,
+          121.811,
+          134.543
+        ]
+      },
+      {
+        "id": "canopy",
+        "parent": "trunk",
+        "pivot": [
+          160,
+          122.86500000000001
+        ],
+        "rect": [
+          56.7705,
+          24,
+          206.459,
+          126.75
+        ]
+      },
+      {
+        "id": "fruit1",
+        "parent": "canopy",
+        "pivot": [
+          114.57902,
+          74.7
+        ],
+        "rect": [
+          108.84352,
+          74.7,
+          11.471,
+          20
+        ]
+      },
+      {
+        "id": "fruit2",
+        "parent": "canopy",
+        "pivot": [
+          203.35639,
+          83.57249999999999
+        ],
+        "rect": [
+          197.62089,
+          83.57249999999999,
+          11.471,
+          20
+        ]
+      },
+      {
+        "id": "fruit3",
+        "parent": "canopy",
+        "pivot": [
+          151.74164,
+          98.7825
+        ],
+        "rect": [
+          146.00614,
+          98.7825,
+          11.471,
+          20
+        ]
+      },
+      {
+        "id": "fruit4",
+        "parent": "canopy",
+        "pivot": [
+          221.9377,
+          62.025
+        ],
+        "rect": [
+          216.2022,
+          62.025,
+          11.471,
+          20
+        ]
+      }
+    ],
+    "clips": [
+      "idle",
+      "hit",
+      "drop"
+    ],
+    "schemaValid": true,
+    "warnings": [],
+    "jointNotes": [
+      "OK · Copa/tronco aprovado para esta espécie: 1.695.",
+      "OK · Encaixe Copa — balanço: desvio máximo 0.00 unidades."
+    ],
+    "sourceBounds": [
+      [
+        23,
+        16,
+        641,
+        708
+      ],
+      [
+        659,
+        27,
+        1106,
+        679
+      ],
+      [
+        1895,
+        226,
+        230,
+        401
+      ]
+    ]
+  },
+  {
+    "id": "pitangueira",
+    "parts": [
+      {
+        "id": "trunk",
+        "parent": null,
+        "pivot": [
+          160,
+          182
+        ],
+        "rect": [
+          114.096,
+          82.684,
+          91.808,
+          99.316
+        ]
+      },
+      {
+        "id": "canopy",
+        "parent": "trunk",
+        "pivot": [
+          160,
+          104.10600000000001
+        ],
+        "rect": [
+          82.197,
+          24,
+          155.606,
+          102.7
+        ]
+      },
+      {
+        "id": "fruit1",
+        "parent": "canopy",
+        "pivot": [
+          125.76668000000001,
+          65.08000000000001
+        ],
+        "rect": [
+          117.91718,
+          65.08000000000001,
+          15.699,
+          20
+        ]
+      },
+      {
+        "id": "fruit2",
+        "parent": "canopy",
+        "pivot": [
+          192.67726,
+          72.269
+        ],
+        "rect": [
+          184.82775999999998,
+          72.269,
+          15.699,
+          20
+        ]
+      },
+      {
+        "id": "fruit3",
+        "parent": "canopy",
+        "pivot": [
+          153.77576,
+          84.59299999999999
+        ],
+        "rect": [
+          145.92625999999998,
+          84.59299999999999,
+          15.699,
+          20
+        ]
+      },
+      {
+        "id": "fruit4",
+        "parent": "canopy",
+        "pivot": [
+          206.6818,
+          54.81
+        ],
+        "rect": [
+          198.8323,
+          54.81,
+          15.699,
+          20
+        ]
+      }
+    ],
+    "clips": [
+      "idle",
+      "hit",
+      "drop"
+    ],
+    "schemaValid": true,
+    "warnings": [],
+    "jointNotes": [
+      "OK · Copa/tronco aprovado para esta espécie: 1.695.",
+      "OK · Encaixe Copa — balanço: desvio máximo 0.00 unidades."
+    ],
+    "sourceBounds": [
+      [
+        20,
+        15,
+        648,
+        701
+      ],
+      [
+        703,
+        15,
+        1050,
+        693
+      ],
+      [
+        1904,
+        270,
+        219,
+        279
+      ]
+    ]
+  },
+  {
+    "id": "amoreira",
+    "parts": [
+      {
+        "id": "trunk",
+        "parent": null,
+        "pivot": [
+          160,
+          214
+        ],
+        "rect": [
+          105.775,
+          99.616,
+          108.45,
+          114.384
+        ]
+      },
+      {
+        "id": "canopy",
+        "parent": "trunk",
+        "pivot": [
+          160,
+          120.33
+        ],
+        "rect": [
+          68.093,
+          24,
+          183.814,
+          123.5
+        ]
+      },
+      {
+        "id": "fruit1",
+        "parent": "canopy",
+        "pivot": [
+          119.56092000000001,
+          73.4
+        ],
+        "rect": [
+          114.83142000000001,
+          73.4,
+          9.459,
+          20
+        ]
+      },
+      {
+        "id": "fruit2",
+        "parent": "canopy",
+        "pivot": [
+          198.60093999999998,
+          82.04499999999999
+        ],
+        "rect": [
+          193.87143999999998,
+          82.04499999999999,
+          9.459,
+          20
+        ]
+      },
+      {
+        "id": "fruit3",
+        "parent": "canopy",
+        "pivot": [
+          152.64744,
+          96.865
+        ],
+        "rect": [
+          147.91794,
+          96.865,
+          9.459,
+          20
+        ]
+      },
+      {
+        "id": "fruit4",
+        "parent": "canopy",
+        "pivot": [
+          215.1442,
+          61.05
+        ],
+        "rect": [
+          210.4147,
+          61.05,
+          9.459,
+          20
+        ]
+      }
+    ],
+    "clips": [
+      "idle",
+      "hit",
+      "drop"
+    ],
+    "schemaValid": true,
+    "warnings": [],
+    "jointNotes": [
+      "OK · Copa/tronco aprovado para esta espécie: 1.695.",
+      "OK · Encaixe Copa — balanço: desvio máximo 0.00 unidades."
+    ],
+    "sourceBounds": [
+      [
+        31,
+        22,
+        658,
+        694
+      ],
+      [
+        717,
+        15,
+        1024,
+        688
+      ],
+      [
+        1933,
+        224,
+        175,
+        370
+      ]
+    ]
+  },
+  {
+    "id": "caramboleira",
+    "parts": [
+      {
+        "id": "trunk",
+        "parent": null,
+        "pivot": [
+          160,
+          209
+        ],
+        "rect": [
+          105.72,
+          90.861,
+          108.56,
+          118.139
+        ]
+      },
+      {
+        "id": "canopy",
+        "parent": "trunk",
+        "pivot": [
+          160,
+          116.19444
+        ],
+        "rect": [
+          68,
+          24,
+          184,
+          118.198
+        ]
+      },
+      {
+        "id": "fruit1",
+        "parent": "canopy",
+        "pivot": [
+          119.52000000000001,
+          71.2792
+        ],
+        "rect": [
+          113.70250000000001,
+          71.2792,
+          11.635,
+          20
+        ]
+      },
+      {
+        "id": "fruit2",
+        "parent": "canopy",
+        "pivot": [
+          198.64,
+          79.55305999999999
+        ],
+        "rect": [
+          192.8225,
+          79.55305999999999,
+          11.635,
+          20
+        ]
+      },
+      {
+        "id": "fruit3",
+        "parent": "canopy",
+        "pivot": [
+          152.64,
+          93.73682
+        ],
+        "rect": [
+          146.8225,
+          93.73682,
+          11.635,
+          20
+        ]
+      },
+      {
+        "id": "fruit4",
+        "parent": "canopy",
+        "pivot": [
+          215.2,
+          59.459399999999995
+        ],
+        "rect": [
+          209.3825,
+          59.459399999999995,
+          11.635,
+          20
+        ]
+      }
+    ],
+    "clips": [
+      "idle",
+      "hit",
+      "drop"
+    ],
+    "schemaValid": true,
+    "warnings": [],
+    "jointNotes": [
+      "OK · Copa/tronco aprovado para esta espécie: 1.695.",
+      "OK · Encaixe Copa — balanço: desvio máximo 0.00 unidades."
+    ],
+    "sourceBounds": [
+      [
+        33,
+        12,
+        646,
+        703
+      ],
+      [
+        671,
+        27,
+        1043,
+        670
+      ],
+      [
+        1864,
+        227,
+        217,
+        373
+      ]
+    ]
+  },
+  {
+    "id": "bananeira",
+    "parts": [
+      {
+        "id": "trunk",
+        "parent": null,
+        "pivot": [
+          160,
+          232
+        ],
+        "rect": [
+          114,
+          98.619,
+          92,
+          133.381
+        ]
+      },
+      {
+        "id": "canopy",
+        "parent": "trunk",
+        "pivot": [
+          160,
+          108.53094
+        ],
+        "rect": [
+          68,
+          24,
+          184,
+          108.373
+        ]
+      },
+      {
+        "id": "fruit1",
+        "parent": "canopy",
+        "pivot": [
+          174.72,
+          77.10276999999999
+        ],
+        "rect": [
+          168.8505,
+          77.10276999999999,
+          11.739,
+          20
+        ]
+      }
+    ],
+    "clips": [
+      "idle",
+      "hit",
+      "drop"
+    ],
+    "schemaValid": true,
+    "warnings": [],
+    "jointNotes": [
+      "OK · Copa/tronco aprovado para esta espécie: 2.000.",
+      "OK · Encaixe Copa — balanço: desvio máximo 0.00 unidades."
+    ],
+    "sourceBounds": [
+      [
+        92,
+        17,
+        478,
+        693
+      ],
+      [
+        599,
+        12,
+        1180,
+        695
+      ],
+      [
+        1838,
+        267,
+        243,
+        414
+      ]
+    ]
+  },
+  {
+    "id": "coqueiro",
+    "parts": [
+      {
+        "id": "trunk",
+        "parent": null,
+        "pivot": [
+          160,
+          269
+        ],
+        "rect": [
+          117.125,
+          97.5,
+          85.75,
+          171.5
+        ]
+      },
+      {
+        "id": "canopy",
+        "parent": "trunk",
+        "pivot": [
+          139.65254237288136,
+          110.3625
+        ],
+        "rect": [
+          56.03355237288136,
+          23.926500000000004,
+          170.651,
+          120.05
+        ]
+      },
+      {
+        "id": "fruit1",
+        "parent": "canopy",
+        "pivot": [
+          133.65254237288136,
+          108.3625
+        ],
+        "rect": [
+          129.04704237288135,
+          108.3625,
+          9.211,
+          12
+        ]
+      },
+      {
+        "id": "fruit2",
+        "parent": "canopy",
+        "pivot": [
+          142.65254237288136,
+          111.3625
+        ],
+        "rect": [
+          138.04704237288135,
+          111.3625,
+          9.211,
+          12
+        ]
+      },
+      {
+        "id": "fruit3",
+        "parent": "canopy",
+        "pivot": [
+          138.65254237288136,
+          118.3625
+        ],
+        "rect": [
+          134.04704237288135,
+          118.3625,
+          9.211,
+          12
+        ]
+      }
+    ],
+    "clips": [
+      "idle",
+      "hit",
+      "drop"
+    ],
+    "schemaValid": true,
+    "warnings": [],
+    "jointNotes": [
+      "OK · Copa/tronco aprovado para esta espécie: 1.990.",
+      "OK · Encaixe Copa — balanço: desvio máximo 0.00 unidades."
+    ],
+    "sourceBounds": [
+      [
+        198,
+        13,
+        354,
+        708
+      ],
+      [
+        674,
+        9,
+        1005,
+        707
+      ],
+      [
+        1854,
+        342,
+        218,
+        284
+      ]
+    ]
+  }
+]

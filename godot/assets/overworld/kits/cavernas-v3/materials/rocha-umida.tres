@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://shaders/overworld/cave_floor.gdshader" id="1_5dmd2"]
+[ext_resource type="Texture2D" path="res://assets/overworld/kits/cavernas-v3/surfaces/rocha-umida.png" id="2_em5ko"]
+
+[resource]
+shader = ExtResource("1_5dmd2")
+shader_parameter/surface_texture = ExtResource("2_em5ko")
+shader_parameter/cells_per_repeat = 8.0
+shader_parameter/surface_contrast = 0.72
+shader_parameter/base_tone = Color(0.16078432, 0.24313726, 0.28627452, 1)

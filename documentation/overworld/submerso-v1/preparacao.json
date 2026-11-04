@@ -1,0 +1,42 @@
+{
+  "algas": {
+    "file": "props/algas.png",
+    "source": "fontes/algas.png",
+    "pivot": [
+      38.0,
+      79
+    ],
+    "size": [
+      68,
+      88
+    ],
+    "palette": [
+      "397C70",
+      "67A28C",
+      "285357",
+      "293A49",
+      "7C9360"
+    ],
+    "collision": "none-visual-only"
+  },
+  "coral": {
+    "file": "props/coral.png",
+    "source": "fontes/coral.png",
+    "pivot": [
+      64.5,
+      57
+    ],
+    "size": [
+      120,
+      66
+    ],
+    "palette": [
+      "C77965",
+      "DEA28A",
+      "76546A",
+      "293A49",
+      "AA796F"
+    ],
+    "collision": "none-visual-only"
+  }
+}

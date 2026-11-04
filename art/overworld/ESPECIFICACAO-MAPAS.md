@@ -4,6 +4,8 @@ Este documento cobre as áreas grandes do jogo: a Rua inicial, as Veredas, o Pá
 
 Regra de ouro, a mesma de `documentation/continuidade-terreno-isometrico.md`: **primeiro a planta, depois a arte**. A planta é feita em cores lisas: onde se anda, onde tem desnível, onde tem rampa e ponte. Ela é conferida automaticamente e percorrida com o Kael. Só depois dessa conferência a arte é pintada por cima. Vegetação nunca esconde junta quebrada.
 
+**Regiões em partes:** a revisão de 29/10/2026 acrescenta [REGIOES-E-PARTES.md](REGIOES-E-PARTES.md): no mínimo A/B/C, itens por parte e critérios contra mapas planos. O lote atual do Parque usa essas regras; condições de campanha e tempos ainda pendentes são registrados na revisão regional. As referências à engine JavaScript abaixo são históricas; a migração para Godot foi autorizada posteriormente pelo criador.
+
 ## 1. Fluxo de trabalho
 
 | Etapa | Quem | Ferramenta | Sai |

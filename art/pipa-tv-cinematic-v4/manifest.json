@@ -1,0 +1,41 @@
+{
+  "sources": [
+    {
+      "path": "art\\pipa-tv-cinematic-v2\\video-original\\pipa-tv-v2-montagem-nativa.mp4",
+      "seconds": 19.42,
+      "audio": true,
+      "dimensions": [
+        864,
+        480
+      ]
+    },
+    {
+      "path": "art\\pipa-tv-cinematic-v4\\video-original\\04-kael-anime\\104e8f27_000.mp4",
+      "seconds": 6.58,
+      "audio": true,
+      "dimensions": [
+        1056,
+        608
+      ]
+    }
+  ],
+  "transition_seconds": 0.16,
+  "film": "documentation\\pipa-tv-cinematic-v4\\pipa-tv-abertura-completa-v4.mp4",
+  "master_metadata": {
+    "seconds": 25.84,
+    "audio": true,
+    "dimensions": [
+      1056,
+      608
+    ]
+  },
+  "runtime": "godot\\assets\\campaign\\cinematics\\pipa-tv-abertura-v4.ogv",
+  "edit_raster": [
+    1056,
+    608
+  ],
+  "resolution_note": "V2 base is 864x480/24fps. V4 edit uses the bedroom clip native raster; older V3 uses 864x480. 1280x720 exports are resized, not native HD.",
+  "status": "completed",
+  "job": "104e8f27-13be-4a66-867b-4ceb5ab34606",
+  "review": "Quadros revisados: rosto e proporções mais próximos do retrato; H3 ainda abre brevemente o sorriso. Sem playthrough. Checagem estática: zero erros e quatro avisos preexistentes."
+}

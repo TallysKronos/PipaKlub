@@ -1,0 +1,146 @@
+{
+  "tool": "built-in image_gen",
+  "approval": "pending-owner-review",
+  "runtime": "godot\\assets\\campaign\\battle-ink\\actions-painted-v1",
+  "filter": "linear",
+  "assets": [
+    {
+      "id": "attack",
+      "sourceSha256": "bab865da9b4923aaca3f5d492c78d533117d92f9e4cfb3317e6068bb2a64d4f2",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sourceCrop": [
+        0,
+        22,
+        1254,
+        1228
+      ],
+      "runtimeSize": [
+        256,
+        256
+      ],
+      "processing": "alpha bounds crop, uniform fit within 232px, centered transparent padding; no repaint or palette replacement"
+    },
+    {
+      "id": "energy",
+      "sourceSha256": "4e518c2f6ea56b11f1c5ae3f5d05882594bf23d5fd9ab350211284bdda30c157",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sourceCrop": [
+        58,
+        56,
+        1204,
+        1199
+      ],
+      "runtimeSize": [
+        256,
+        256
+      ],
+      "processing": "alpha bounds crop, uniform fit within 232px, centered transparent padding; no repaint or palette replacement"
+    },
+    {
+      "id": "dodge",
+      "sourceSha256": "a8b50bad705f7cecfa23b1b172cffa2a39b92592d81f3d0b1f91aa031e50c805",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sourceCrop": [
+        58,
+        62,
+        1202,
+        1208
+      ],
+      "runtimeSize": [
+        256,
+        256
+      ],
+      "processing": "alpha bounds crop, uniform fit within 232px, centered transparent padding; no repaint or palette replacement"
+    },
+    {
+      "id": "puxao",
+      "sourceSha256": "8d18ab613be704df958617aad7349b09fd9ccd1e51d1674e318b7c3b5f2986ba",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sourceCrop": [
+        37,
+        0,
+        1235,
+        1228
+      ],
+      "runtimeSize": [
+        256,
+        256
+      ],
+      "processing": "alpha bounds crop, uniform fit within 232px, centered transparent padding; no repaint or palette replacement"
+    },
+    {
+      "id": "line",
+      "sourceSha256": "bb53a53c0c4cb9feec62962e119218fbdba39832b4530e67150de78f1f4d9149",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sourceCrop": [
+        178,
+        55,
+        1204,
+        1198
+      ],
+      "runtimeSize": [
+        256,
+        256
+      ],
+      "processing": "alpha bounds crop, uniform fit within 232px, centered transparent padding; no repaint or palette replacement"
+    },
+    {
+      "id": "team",
+      "sourceSha256": "3a9bd755fa49cddc6294d73b620bb8a6e6717e17fe2d69fee74c8023de3907d7",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "sourceCrop": [
+        104,
+        30,
+        1180,
+        1217
+      ],
+      "runtimeSize": [
+        256,
+        256
+      ],
+      "processing": "alpha bounds crop, uniform fit within 232px, centered transparent padding; no repaint or palette replacement"
+    }
+  ]
+}

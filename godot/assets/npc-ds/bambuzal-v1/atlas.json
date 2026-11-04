@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "image": "atlas.png",
+  "sprites": [
+    {
+      "name": "Nara",
+      "facing": "se",
+      "bounds": [
+        0,
+        23,
+        397,
+        373
+      ]
+    },
+    {
+      "name": "Dito",
+      "facing": "se",
+      "bounds": [
+        398,
+        15,
+        378,
+        381
+      ]
+    },
+    {
+      "name": "Célia",
+      "facing": "se",
+      "bounds": [
+        807,
+        9,
+        370,
+        387
+      ]
+    },
+    {
+      "name": "Bento",
+      "facing": "se",
+      "bounds": [
+        1194,
+        17,
+        392,
+        379
+      ]
+    },
+    {
+      "name": "Lohan",
+      "facing": "se",
+      "bounds": [
+        1587,
+        31,
+        300,
+        365
+      ]
+    },
+    {
+      "name": "Nara",
+      "facing": "nw",
+      "bounds": [
+        0,
+        396,
+        395,
+        397
+      ]
+    },
+    {
+      "name": "Dito",
+      "facing": "nw",
+      "bounds": [
+        398,
+        396,
+        392,
+        385
+      ]
+    },
+    {
+      "name": "Célia",
+      "facing": "nw",
+      "bounds": [
+        829,
+        396,
+        360,
+        384
+      ]
+    },
+    {
+      "name": "Bento",
+      "facing": "nw",
+      "bounds": [
+        1192,
+        396,
+        392,
+        385
+      ]
+    },
+    {
+      "name": "Lohan",
+      "facing": "nw",
+      "bounds": [
+        1605,
+        396,
+        358,
+        385
+      ]
+    }
+  ]
+}

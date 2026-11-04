@@ -1,0 +1,5525 @@
+[
+	{
+		"actual_pixels": [
+			1280,
+			720
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0863588651462836,
+		"findings": [],
+		"focus": "Retomar",
+		"image": "pause-1280x720.png",
+		"requested_pixels": [
+			1280,
+			720
+		],
+		"scenario": "pause",
+		"ui_units": [
+			1280.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					89.5999984741211,
+					43.2000007629395,
+					460.0,
+					49.0
+				],
+				"text": "UM RESPIRO",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					89.5999984741211,
+					100.199996948242,
+					460.0,
+					24.0
+				],
+				"text": "A aventura espera por você.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					89.5999984741211,
+					132.199996948242,
+					436.0,
+					53.0
+				],
+				"text": "Retomar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					107.599998474121,
+					193.199996948242,
+					418.0,
+					53.0
+				],
+				"text": "Equipe",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					125.599998474121,
+					254.199996948242,
+					400.0,
+					53.0
+				],
+				"text": "Mochila",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					143.600006103516,
+					315.200012207031,
+					382.0,
+					53.0
+				],
+				"text": "Mapa",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					161.600006103516,
+					376.200012207031,
+					364.0,
+					53.0
+				],
+				"text": "Configurações",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					179.600006103516,
+					437.200012207031,
+					346.0,
+					53.0
+				],
+				"text": "Salvar jornada",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					197.600006103516,
+					498.200012207031,
+					328.0,
+					53.0
+				],
+				"text": "Voltar ao menu",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					141.600006103516,
+					563.200012207031,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					304.600006103516,
+					563.200012207031,
+					86.0,
+					31.0
+				],
+				"text": "Retomar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					728.799987792969,
+					173.600006103516,
+					449.0,
+					23.0
+				],
+				"text": "SUA JORNADA",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					728.799987792969,
+					206.600006103516,
+					449.0,
+					37.0
+				],
+				"text": "Kael",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					728.799987792969,
+					253.600006103516,
+					449.0,
+					26.0
+				],
+				"text": "0 moedas",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					856.799987792969,
+					303.600006103516,
+					321.0,
+					31.0
+				],
+				"text": "Rabbito",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					856.799987792969,
+					342.600006103516,
+					321.0,
+					23.0
+				],
+				"text": "Linha · 100%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					856.799987792969,
+					389.600006103516,
+					321.0,
+					23.0
+				],
+				"text": "Armação · 100%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					728.799987792969,
+					441.600006103516,
+					449.0,
+					23.0
+				],
+				"text": "Pronto para explorar.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			720
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0,
+		"findings": [],
+		"focus": "Tudo",
+		"image": "bag-empty-1280x720.png",
+		"requested_pixels": [
+			1280,
+			720
+		],
+		"scenario": "bag-empty",
+		"ui_units": [
+			1280.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					90.0,
+					48.0,
+					812.0,
+					42.0
+				],
+				"text": "MOCHILA",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					966.0,
+					53.0,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1129.0,
+					53.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					108.0,
+					1100.0,
+					26.0
+				],
+				"text": "0 moedas · Materiais e lembranças da sua jornada",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Tudo",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					219.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Rabiolas",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					348.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Missão",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					477.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Materiais",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					221.0,
+					535.0,
+					55.0
+				],
+				"text": "Nenhum item nesta categoria.\nExplore para encontrar materiais e rabiolas.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					284.0,
+					535.0,
+					53.0
+				],
+				"text": "Ver todos os itens",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					667.0,
+					386.0,
+					511.0,
+					33.0
+				],
+				"text": "Nada por aqui",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					667.0,
+					431.0,
+					511.0,
+					27.0
+				],
+				"text": "",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					667.0,
+					470.0,
+					511.0,
+					26.0
+				],
+				"text": "Esta categoria ainda está vazia.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					545.0,
+					150.0,
+					53.0
+				],
+				"text": "Anterior",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					256.0,
+					545.0,
+					150.0,
+					53.0
+				],
+				"text": "Próxima",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					422.0,
+					556.0,
+					128.0,
+					31.0
+				],
+				"text": "1 / 1 · 0 itens",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					616.0,
+					180.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					334.0,
+					628.0,
+					125.0,
+					31.0
+				],
+				"text": "Aba anterior",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					523.0,
+					628.0,
+					124.0,
+					31.0
+				],
+				"text": "Próxima aba",
+				"type": "Label",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			720
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0,
+		"findings": [],
+		"focus": "Tudo",
+		"focus_reachable_rows": 1,
+		"image": "bag-full-1280x720.png",
+		"requested_pixels": [
+			1280,
+			720
+		],
+		"scenario": "bag-full",
+		"ui_units": [
+			1280.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					90.0,
+					48.0,
+					812.0,
+					42.0
+				],
+				"text": "MOCHILA",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					966.0,
+					53.0,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1129.0,
+					53.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					108.0,
+					1100.0,
+					26.0
+				],
+				"text": "0 moedas · Materiais e lembranças da sua jornada",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Tudo",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					219.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Rabiolas",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					348.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Missão",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					477.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Materiais",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					221.0,
+					535.0,
+					72.0
+				],
+				"text": "Rabiola de Carcará  × 2",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					301.0,
+					535.0,
+					72.0
+				],
+				"text": "Rabiola do Carcará de Nina  × 1 · NOVO!",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					381.0,
+					535.0,
+					72.0
+				],
+				"text": "Rabiola de Lacertubo  × 1 · NOVO!",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					667.0,
+					386.0,
+					511.0,
+					33.0
+				],
+				"text": "Rabiola de Carcará",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					667.0,
+					431.0,
+					511.0,
+					27.0
+				],
+				"text": "2 na mochila",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					667.0,
+					470.0,
+					511.0,
+					26.0
+				],
+				"text": "Leve ao ateliê do Sr. Assis para trabalhar nesta rabiola.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					545.0,
+					150.0,
+					53.0
+				],
+				"text": "Anterior",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					256.0,
+					545.0,
+					150.0,
+					53.0
+				],
+				"text": "Próxima",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					422.0,
+					556.0,
+					128.0,
+					31.0
+				],
+				"text": "1 / 2 · 6 itens",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					616.0,
+					180.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					334.0,
+					628.0,
+					125.0,
+					31.0
+				],
+				"text": "Aba anterior",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					523.0,
+					628.0,
+					124.0,
+					31.0
+				],
+				"text": "Próxima aba",
+				"type": "Label",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			720
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0,
+		"findings": [],
+		"focus": "Escolher parceiro",
+		"focus_reachable_rows": 1,
+		"image": "team-long-1280x720.png",
+		"requested_pixels": [
+			1280,
+			720
+		],
+		"scenario": "team-long",
+		"ui_units": [
+			1280.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					90.0,
+					48.0,
+					812.0,
+					42.0
+				],
+				"text": "EQUIPE",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					966.0,
+					53.0,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1129.0,
+					53.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					108.0,
+					1100.0,
+					24.0
+				],
+				"text": "Escolha quem vai voar ao seu lado.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					158.0,
+					600.0,
+					23.0
+				],
+				"text": "PARCEIRO ATIVO",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					187.0,
+					600.0,
+					37.0
+				],
+				"text": "Rabbito · Nv. 1",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					230.0,
+					140.0,
+					22.0
+				],
+				"text": "Linha · 100%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					258.0,
+					140.0,
+					22.0
+				],
+				"text": "Armação · 100%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					304.0,
+					600.0,
+					23.0
+				],
+				"text": "0 / 50 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					890.0,
+					214.0,
+					256.0,
+					56.0
+				],
+				"text": "Selecionado",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					359.0,
+					600.0,
+					37.0
+				],
+				"text": "Um nome bem comprido aqui · Nv. 3",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					402.0,
+					140.0,
+					22.0
+				],
+				"text": "Linha · 20%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					430.0,
+					140.0,
+					22.0
+				],
+				"text": "Armação · 40%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					476.0,
+					600.0,
+					23.0
+				],
+				"text": "0 / 90 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					890.0,
+					401.0,
+					256.0,
+					56.0
+				],
+				"text": "Escolher parceiro",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					571.0,
+					180.0,
+					101.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					282.0,
+					571.0,
+					140.0,
+					101.0
+				],
+				"text": "Anterior",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					434.0,
+					571.0,
+					140.0,
+					101.0
+				],
+				"text": "Próxima",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					586.0,
+					571.0,
+					1.0,
+					101.0
+				],
+				"text": "1 / 3",
+				"type": "Label",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			720
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0,
+		"findings": [],
+		"focus": "Vídeo",
+		"image": "settings-1280x720.png",
+		"requested_pixels": [
+			1280,
+			720
+		],
+		"scenario": "settings",
+		"ui_units": [
+			1280.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					130.0,
+					32.0,
+					1020.0,
+					45.0
+				],
+				"text": "CONFIGURAÇÕES",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					130.0,
+					89.0,
+					1020.0,
+					24.0
+				],
+				"text": "Seu jeito de jogar. As alterações são salvas automaticamente.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					130.0,
+					125.0,
+					240.0,
+					53.0
+				],
+				"text": "Vídeo",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					390.0,
+					125.0,
+					240.0,
+					53.0
+				],
+				"text": "Acessibilidade",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					650.0,
+					125.0,
+					240.0,
+					53.0
+				],
+				"text": "Controles",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					130.0,
+					190.0,
+					1020.0,
+					29.0
+				],
+				"text": "VÍDEO",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					142.0,
+					239.0,
+					802.0,
+					29.0
+				],
+				"text": "Filtro de TV (CRT)",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					142.0,
+					280.0,
+					802.0,
+					22.0
+				],
+				"text": "Linhas suaves de uma TV de tubo sobre o jogo.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					968.0,
+					239.0,
+					170.0,
+					63.0
+				],
+				"text": "Ligado",
+				"type": "CheckButton",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					142.0,
+					330.0,
+					802.0,
+					29.0
+				],
+				"text": "Tela cheia",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					142.0,
+					371.0,
+					802.0,
+					22.0
+				],
+				"text": "Use toda a tela para explorar e batalhar.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					968.0,
+					330.0,
+					170.0,
+					63.0
+				],
+				"text": "Desligado",
+				"type": "CheckButton",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					130.0,
+					413.0,
+					180.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					382.0,
+					425.0,
+					71.0,
+					31.0
+				],
+				"text": "Alterar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					525.0,
+					425.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					606.0,
+					429.0,
+					158.0,
+					23.0
+				],
+				"text": "LB / RB · Trocar seção",
+				"type": "Label",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			720
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0,
+		"findings": [],
+		"focus": "Mover à esquerda   ·   A",
+		"focus_reachable_rows": 12,
+		"image": "controls-1280x720.png",
+		"requested_pixels": [
+			1280,
+			720
+		],
+		"scenario": "controls",
+		"ui_units": [
+			1280.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					90.0,
+					48.0,
+					812.0,
+					42.0
+				],
+				"text": "CONTROLES · TECLADO",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					966.0,
+					53.0,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1129.0,
+					53.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					108.0,
+					1100.0,
+					24.0
+				],
+				"text": "Selecione uma ação e pressione a nova tecla.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					102.0,
+					158.0,
+					508.0,
+					26.0
+				],
+				"text": "EXPLORAÇÃO",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					102.0,
+					192.0,
+					508.0,
+					53.0
+				],
+				"text": "Mover à esquerda   ·   A",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					102.0,
+					253.0,
+					508.0,
+					53.0
+				],
+				"text": "Mover à direita   ·   D",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					102.0,
+					314.0,
+					508.0,
+					53.0
+				],
+				"text": "Mover para cima   ·   W",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					102.0,
+					375.0,
+					508.0,
+					53.0
+				],
+				"text": "Mover para baixo   ·   S",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					102.0,
+					436.0,
+					508.0,
+					53.0
+				],
+				"text": "Interagir   ·   E",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					102.0,
+					497.0,
+					508.0,
+					53.0
+				],
+				"text": "Mapa   ·   M",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					662.0,
+					158.0,
+					508.0,
+					26.0
+				],
+				"text": "BATALHA",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					662.0,
+					192.0,
+					508.0,
+					53.0
+				],
+				"text": "Cortar   ·   Space",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					662.0,
+					253.0,
+					508.0,
+					53.0
+				],
+				"text": "Habilidade   ·   Q",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					662.0,
+					314.0,
+					508.0,
+					53.0
+				],
+				"text": "Esquiva   ·   Shift",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					662.0,
+					375.0,
+					508.0,
+					53.0
+				],
+				"text": "Puxão   ·   R",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					662.0,
+					436.0,
+					508.0,
+					53.0
+				],
+				"text": "Guarda   ·   G",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					662.0,
+					497.0,
+					508.0,
+					53.0
+				],
+				"text": "Especial   ·   F",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					575.0,
+					1100.0,
+					23.0
+				],
+				"text": "Setas e Enter continuam disponíveis para navegar. Esc cancela a troca de tecla. A bancada usa mouse e teclado.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					616.0,
+					180.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					294.0,
+					616.0,
+					320.0,
+					56.0
+				],
+				"text": "Restaurar padrão",
+				"type": "Button",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			800
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0958775769535896,
+		"findings": [],
+		"focus": "Retomar",
+		"image": "pause-1280x800.png",
+		"requested_pixels": [
+			1280,
+			800
+		],
+		"scenario": "pause",
+		"ui_units": [
+			1280.0,
+			800.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					89.5999984741211,
+					48.0,
+					460.0,
+					49.0
+				],
+				"text": "UM RESPIRO",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					89.5999984741211,
+					105.0,
+					460.0,
+					24.0
+				],
+				"text": "A aventura espera por você.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					89.5999984741211,
+					137.0,
+					436.0,
+					53.0
+				],
+				"text": "Retomar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					107.599998474121,
+					198.0,
+					418.0,
+					53.0
+				],
+				"text": "Equipe",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					125.599998474121,
+					259.0,
+					400.0,
+					53.0
+				],
+				"text": "Mochila",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					143.600006103516,
+					320.0,
+					382.0,
+					53.0
+				],
+				"text": "Mapa",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					161.600006103516,
+					381.0,
+					364.0,
+					53.0
+				],
+				"text": "Configurações",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					179.600006103516,
+					442.0,
+					346.0,
+					53.0
+				],
+				"text": "Salvar jornada",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					197.600006103516,
+					503.0,
+					328.0,
+					53.0
+				],
+				"text": "Voltar ao menu",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					141.600006103516,
+					568.0,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					304.600006103516,
+					568.0,
+					86.0,
+					31.0
+				],
+				"text": "Retomar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					728.799987792969,
+					192.0,
+					449.0,
+					23.0
+				],
+				"text": "SUA JORNADA",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					728.799987792969,
+					225.0,
+					449.0,
+					37.0
+				],
+				"text": "Kael",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					728.799987792969,
+					272.0,
+					449.0,
+					26.0
+				],
+				"text": "0 moedas",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					856.799987792969,
+					322.0,
+					321.0,
+					31.0
+				],
+				"text": "Rabbito",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					856.799987792969,
+					361.0,
+					321.0,
+					23.0
+				],
+				"text": "Linha · 100%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					856.799987792969,
+					408.0,
+					321.0,
+					23.0
+				],
+				"text": "Armação · 100%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					728.799987792969,
+					460.0,
+					449.0,
+					23.0
+				],
+				"text": "Pronto para explorar.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			800
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0,
+		"findings": [],
+		"focus": "Tudo",
+		"image": "bag-empty-1280x800.png",
+		"requested_pixels": [
+			1280,
+			800
+		],
+		"scenario": "bag-empty",
+		"ui_units": [
+			1280.0,
+			800.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					90.0,
+					48.0,
+					812.0,
+					42.0
+				],
+				"text": "MOCHILA",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					966.0,
+					53.0,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1129.0,
+					53.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					108.0,
+					1100.0,
+					26.0
+				],
+				"text": "0 moedas · Materiais e lembranças da sua jornada",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Tudo",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					219.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Rabiolas",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					348.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Missão",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					477.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Materiais",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					221.0,
+					535.0,
+					55.0
+				],
+				"text": "Nenhum item nesta categoria.\nExplore para encontrar materiais e rabiolas.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					284.0,
+					535.0,
+					53.0
+				],
+				"text": "Ver todos os itens",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					667.0,
+					386.0,
+					511.0,
+					33.0
+				],
+				"text": "Nada por aqui",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					667.0,
+					431.0,
+					511.0,
+					27.0
+				],
+				"text": "",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					667.0,
+					470.0,
+					511.0,
+					26.0
+				],
+				"text": "Esta categoria ainda está vazia.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					625.0,
+					150.0,
+					53.0
+				],
+				"text": "Anterior",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					256.0,
+					625.0,
+					150.0,
+					53.0
+				],
+				"text": "Próxima",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					422.0,
+					636.0,
+					128.0,
+					31.0
+				],
+				"text": "1 / 1 · 0 itens",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					696.0,
+					180.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					334.0,
+					708.0,
+					125.0,
+					31.0
+				],
+				"text": "Aba anterior",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					523.0,
+					708.0,
+					124.0,
+					31.0
+				],
+				"text": "Próxima aba",
+				"type": "Label",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			800
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0,
+		"findings": [],
+		"focus": "Tudo",
+		"focus_reachable_rows": 4,
+		"image": "bag-full-1280x800.png",
+		"requested_pixels": [
+			1280,
+			800
+		],
+		"scenario": "bag-full",
+		"ui_units": [
+			1280.0,
+			800.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					90.0,
+					48.0,
+					812.0,
+					42.0
+				],
+				"text": "MOCHILA",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					966.0,
+					53.0,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1129.0,
+					53.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					108.0,
+					1100.0,
+					26.0
+				],
+				"text": "0 moedas · Materiais e lembranças da sua jornada",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Tudo",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					219.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Rabiolas",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					348.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Missão",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					477.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Materiais",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					221.0,
+					535.0,
+					72.0
+				],
+				"text": "Rabiola de Carcará  × 2",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					301.0,
+					535.0,
+					72.0
+				],
+				"text": "Rabiola do Carcará de Nina  × 1",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					381.0,
+					535.0,
+					72.0
+				],
+				"text": "Rabiola de Lacertubo  × 1 · NOVO!",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					461.0,
+					535.0,
+					72.0
+				],
+				"text": "Rabiola de Azulão  × 3 · NOVO!",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					667.0,
+					386.0,
+					511.0,
+					33.0
+				],
+				"text": "Rabiola de Carcará",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					667.0,
+					431.0,
+					511.0,
+					27.0
+				],
+				"text": "2 na mochila",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					667.0,
+					470.0,
+					511.0,
+					26.0
+				],
+				"text": "Leve ao ateliê do Sr. Assis para trabalhar nesta rabiola.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					625.0,
+					150.0,
+					53.0
+				],
+				"text": "Anterior",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					256.0,
+					625.0,
+					150.0,
+					53.0
+				],
+				"text": "Próxima",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					422.0,
+					636.0,
+					128.0,
+					31.0
+				],
+				"text": "1 / 2 · 6 itens",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					696.0,
+					180.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					334.0,
+					708.0,
+					125.0,
+					31.0
+				],
+				"text": "Aba anterior",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					523.0,
+					708.0,
+					124.0,
+					31.0
+				],
+				"text": "Próxima aba",
+				"type": "Label",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			800
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0,
+		"findings": [],
+		"focus": "Escolher parceiro",
+		"focus_reachable_rows": 1,
+		"image": "team-long-1280x800.png",
+		"requested_pixels": [
+			1280,
+			800
+		],
+		"scenario": "team-long",
+		"ui_units": [
+			1280.0,
+			800.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					90.0,
+					48.0,
+					812.0,
+					42.0
+				],
+				"text": "EQUIPE",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					966.0,
+					53.0,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1129.0,
+					53.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					108.0,
+					1100.0,
+					24.0
+				],
+				"text": "Escolha quem vai voar ao seu lado.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					158.0,
+					600.0,
+					23.0
+				],
+				"text": "PARCEIRO ATIVO",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					187.0,
+					600.0,
+					37.0
+				],
+				"text": "Rabbito · Nv. 1",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					230.0,
+					140.0,
+					22.0
+				],
+				"text": "Linha · 100%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					258.0,
+					140.0,
+					22.0
+				],
+				"text": "Armação · 100%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					304.0,
+					600.0,
+					23.0
+				],
+				"text": "0 / 50 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					890.0,
+					214.0,
+					256.0,
+					56.0
+				],
+				"text": "Selecionado",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					359.0,
+					600.0,
+					37.0
+				],
+				"text": "Um nome bem comprido aqui · Nv. 3",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					402.0,
+					140.0,
+					22.0
+				],
+				"text": "Linha · 20%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					430.0,
+					140.0,
+					22.0
+				],
+				"text": "Armação · 40%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					476.0,
+					600.0,
+					23.0
+				],
+				"text": "0 / 90 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					890.0,
+					401.0,
+					256.0,
+					56.0
+				],
+				"text": "Escolher parceiro",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					651.0,
+					180.0,
+					101.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					282.0,
+					651.0,
+					140.0,
+					101.0
+				],
+				"text": "Anterior",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					434.0,
+					651.0,
+					140.0,
+					101.0
+				],
+				"text": "Próxima",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					586.0,
+					651.0,
+					1.0,
+					101.0
+				],
+				"text": "1 / 3",
+				"type": "Label",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			800
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0,
+		"findings": [],
+		"focus": "Vídeo",
+		"image": "settings-1280x800.png",
+		"requested_pixels": [
+			1280,
+			800
+		],
+		"scenario": "settings",
+		"ui_units": [
+			1280.0,
+			800.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					130.0,
+					32.0,
+					1020.0,
+					45.0
+				],
+				"text": "CONFIGURAÇÕES",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					130.0,
+					89.0,
+					1020.0,
+					24.0
+				],
+				"text": "Seu jeito de jogar. As alterações são salvas automaticamente.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					130.0,
+					125.0,
+					240.0,
+					53.0
+				],
+				"text": "Vídeo",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					390.0,
+					125.0,
+					240.0,
+					53.0
+				],
+				"text": "Acessibilidade",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					650.0,
+					125.0,
+					240.0,
+					53.0
+				],
+				"text": "Controles",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					130.0,
+					190.0,
+					1020.0,
+					29.0
+				],
+				"text": "VÍDEO",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					142.0,
+					239.0,
+					802.0,
+					29.0
+				],
+				"text": "Filtro de TV (CRT)",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					142.0,
+					280.0,
+					802.0,
+					22.0
+				],
+				"text": "Linhas suaves de uma TV de tubo sobre o jogo.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					968.0,
+					239.0,
+					170.0,
+					63.0
+				],
+				"text": "Ligado",
+				"type": "CheckButton",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					142.0,
+					330.0,
+					802.0,
+					29.0
+				],
+				"text": "Tela cheia",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					142.0,
+					371.0,
+					802.0,
+					22.0
+				],
+				"text": "Use toda a tela para explorar e batalhar.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					968.0,
+					330.0,
+					170.0,
+					63.0
+				],
+				"text": "Desligado",
+				"type": "CheckButton",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					130.0,
+					413.0,
+					180.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					382.0,
+					425.0,
+					71.0,
+					31.0
+				],
+				"text": "Alterar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					525.0,
+					425.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					606.0,
+					429.0,
+					158.0,
+					23.0
+				],
+				"text": "LB / RB · Trocar seção",
+				"type": "Label",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1280,
+			800
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0,
+		"findings": [],
+		"focus": "Mover à esquerda   ·   A",
+		"focus_reachable_rows": 12,
+		"image": "controls-1280x800.png",
+		"requested_pixels": [
+			1280,
+			800
+		],
+		"scenario": "controls",
+		"ui_units": [
+			1280.0,
+			800.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					90.0,
+					48.0,
+					812.0,
+					42.0
+				],
+				"text": "CONTROLES · TECLADO",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					966.0,
+					53.0,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1129.0,
+					53.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					108.0,
+					1100.0,
+					24.0
+				],
+				"text": "Selecione uma ação e pressione a nova tecla.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					102.0,
+					158.0,
+					512.0,
+					26.0
+				],
+				"text": "EXPLORAÇÃO",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					102.0,
+					192.0,
+					512.0,
+					53.0
+				],
+				"text": "Mover à esquerda   ·   A",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					102.0,
+					253.0,
+					512.0,
+					53.0
+				],
+				"text": "Mover à direita   ·   D",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					102.0,
+					314.0,
+					512.0,
+					53.0
+				],
+				"text": "Mover para cima   ·   W",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					102.0,
+					375.0,
+					512.0,
+					53.0
+				],
+				"text": "Mover para baixo   ·   S",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					102.0,
+					436.0,
+					512.0,
+					53.0
+				],
+				"text": "Interagir   ·   E",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					102.0,
+					497.0,
+					512.0,
+					53.0
+				],
+				"text": "Mapa   ·   M",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					666.0,
+					158.0,
+					512.0,
+					26.0
+				],
+				"text": "BATALHA",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					666.0,
+					192.0,
+					512.0,
+					53.0
+				],
+				"text": "Cortar   ·   Space",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					666.0,
+					253.0,
+					512.0,
+					53.0
+				],
+				"text": "Habilidade   ·   Q",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					666.0,
+					314.0,
+					512.0,
+					53.0
+				],
+				"text": "Esquiva   ·   Shift",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					666.0,
+					375.0,
+					512.0,
+					53.0
+				],
+				"text": "Puxão   ·   R",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					666.0,
+					436.0,
+					512.0,
+					53.0
+				],
+				"text": "Guarda   ·   G",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					666.0,
+					497.0,
+					512.0,
+					53.0
+				],
+				"text": "Especial   ·   F",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					655.0,
+					1100.0,
+					23.0
+				],
+				"text": "Setas e Enter continuam disponíveis para navegar. Esc cancela a troca de tecla. A bancada usa mouse e teclado.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					696.0,
+					180.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					294.0,
+					696.0,
+					320.0,
+					56.0
+				],
+				"text": "Restaurar padrão",
+				"type": "Button",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1920,
+			1080
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0863588651462836,
+		"findings": [],
+		"focus": "Retomar",
+		"image": "pause-1920x1080.png",
+		"requested_pixels": [
+			1920,
+			1080
+		],
+		"scenario": "pause",
+		"ui_units": [
+			1280.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					89.5999984741211,
+					43.2000007629395,
+					460.0,
+					49.0
+				],
+				"text": "UM RESPIRO",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					89.5999984741211,
+					100.199996948242,
+					460.0,
+					24.0
+				],
+				"text": "A aventura espera por você.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					89.5999984741211,
+					132.199996948242,
+					436.0,
+					53.0
+				],
+				"text": "Retomar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					107.599998474121,
+					193.199996948242,
+					418.0,
+					53.0
+				],
+				"text": "Equipe",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					125.599998474121,
+					254.199996948242,
+					400.0,
+					53.0
+				],
+				"text": "Mochila",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					143.600006103516,
+					315.200012207031,
+					382.0,
+					53.0
+				],
+				"text": "Mapa",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					161.600006103516,
+					376.200012207031,
+					364.0,
+					53.0
+				],
+				"text": "Configurações",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					179.600006103516,
+					437.200012207031,
+					346.0,
+					53.0
+				],
+				"text": "Salvar jornada",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					197.600006103516,
+					498.200012207031,
+					328.0,
+					53.0
+				],
+				"text": "Voltar ao menu",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					141.600006103516,
+					563.200012207031,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					304.600006103516,
+					563.200012207031,
+					86.0,
+					31.0
+				],
+				"text": "Retomar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					728.799987792969,
+					173.600006103516,
+					449.0,
+					23.0
+				],
+				"text": "SUA JORNADA",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					728.799987792969,
+					206.600006103516,
+					449.0,
+					37.0
+				],
+				"text": "Kael",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					728.799987792969,
+					253.600006103516,
+					449.0,
+					26.0
+				],
+				"text": "0 moedas",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					856.799987792969,
+					303.600006103516,
+					321.0,
+					31.0
+				],
+				"text": "Rabbito",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					856.799987792969,
+					342.600006103516,
+					321.0,
+					23.0
+				],
+				"text": "Linha · 100%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					856.799987792969,
+					389.600006103516,
+					321.0,
+					23.0
+				],
+				"text": "Armação · 100%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					728.799987792969,
+					441.600006103516,
+					449.0,
+					23.0
+				],
+				"text": "Pronto para explorar.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1920,
+			1080
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0,
+		"findings": [],
+		"focus": "Tudo",
+		"image": "bag-empty-1920x1080.png",
+		"requested_pixels": [
+			1920,
+			1080
+		],
+		"scenario": "bag-empty",
+		"ui_units": [
+			1280.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					90.0,
+					48.0,
+					812.0,
+					42.0
+				],
+				"text": "MOCHILA",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					966.0,
+					53.0,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1129.0,
+					53.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					108.0,
+					1100.0,
+					26.0
+				],
+				"text": "0 moedas · Materiais e lembranças da sua jornada",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Tudo",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					219.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Rabiolas",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					348.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Missão",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					477.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Materiais",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					221.0,
+					535.0,
+					55.0
+				],
+				"text": "Nenhum item nesta categoria.\nExplore para encontrar materiais e rabiolas.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					284.0,
+					535.0,
+					53.0
+				],
+				"text": "Ver todos os itens",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					667.0,
+					386.0,
+					511.0,
+					33.0
+				],
+				"text": "Nada por aqui",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					667.0,
+					431.0,
+					511.0,
+					27.0
+				],
+				"text": "",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					667.0,
+					470.0,
+					511.0,
+					26.0
+				],
+				"text": "Esta categoria ainda está vazia.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					545.0,
+					150.0,
+					53.0
+				],
+				"text": "Anterior",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					256.0,
+					545.0,
+					150.0,
+					53.0
+				],
+				"text": "Próxima",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					422.0,
+					556.0,
+					128.0,
+					31.0
+				],
+				"text": "1 / 1 · 0 itens",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					616.0,
+					180.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					334.0,
+					628.0,
+					125.0,
+					31.0
+				],
+				"text": "Aba anterior",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					523.0,
+					628.0,
+					124.0,
+					31.0
+				],
+				"text": "Próxima aba",
+				"type": "Label",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1920,
+			1080
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0,
+		"findings": [],
+		"focus": "Tudo",
+		"focus_reachable_rows": 1,
+		"image": "bag-full-1920x1080.png",
+		"requested_pixels": [
+			1920,
+			1080
+		],
+		"scenario": "bag-full",
+		"ui_units": [
+			1280.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					90.0,
+					48.0,
+					812.0,
+					42.0
+				],
+				"text": "MOCHILA",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					966.0,
+					53.0,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1129.0,
+					53.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					108.0,
+					1100.0,
+					26.0
+				],
+				"text": "0 moedas · Materiais e lembranças da sua jornada",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Tudo",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					219.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Rabiolas",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					348.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Missão",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					477.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Materiais",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					221.0,
+					535.0,
+					72.0
+				],
+				"text": "Rabiola de Carcará  × 2",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					301.0,
+					535.0,
+					72.0
+				],
+				"text": "Rabiola do Carcará de Nina  × 1",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					381.0,
+					535.0,
+					72.0
+				],
+				"text": "Rabiola de Lacertubo  × 1",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					667.0,
+					386.0,
+					511.0,
+					33.0
+				],
+				"text": "Rabiola de Carcará",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					667.0,
+					431.0,
+					511.0,
+					27.0
+				],
+				"text": "2 na mochila",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					667.0,
+					470.0,
+					511.0,
+					26.0
+				],
+				"text": "Leve ao ateliê do Sr. Assis para trabalhar nesta rabiola.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					545.0,
+					150.0,
+					53.0
+				],
+				"text": "Anterior",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					256.0,
+					545.0,
+					150.0,
+					53.0
+				],
+				"text": "Próxima",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					422.0,
+					556.0,
+					128.0,
+					31.0
+				],
+				"text": "1 / 2 · 6 itens",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					616.0,
+					180.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					334.0,
+					628.0,
+					125.0,
+					31.0
+				],
+				"text": "Aba anterior",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					523.0,
+					628.0,
+					124.0,
+					31.0
+				],
+				"text": "Próxima aba",
+				"type": "Label",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1920,
+			1080
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0,
+		"findings": [],
+		"focus": "Escolher parceiro",
+		"focus_reachable_rows": 1,
+		"image": "team-long-1920x1080.png",
+		"requested_pixels": [
+			1920,
+			1080
+		],
+		"scenario": "team-long",
+		"ui_units": [
+			1280.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					90.0,
+					48.0,
+					812.0,
+					42.0
+				],
+				"text": "EQUIPE",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					966.0,
+					53.0,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1129.0,
+					53.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					108.0,
+					1100.0,
+					24.0
+				],
+				"text": "Escolha quem vai voar ao seu lado.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					158.0,
+					600.0,
+					23.0
+				],
+				"text": "PARCEIRO ATIVO",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					187.0,
+					600.0,
+					37.0
+				],
+				"text": "Rabbito · Nv. 1",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					230.0,
+					140.0,
+					22.0
+				],
+				"text": "Linha · 100%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					258.0,
+					140.0,
+					22.0
+				],
+				"text": "Armação · 100%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					304.0,
+					600.0,
+					23.0
+				],
+				"text": "0 / 50 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					890.0,
+					214.0,
+					256.0,
+					56.0
+				],
+				"text": "Selecionado",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					359.0,
+					600.0,
+					37.0
+				],
+				"text": "Um nome bem comprido aqui · Nv. 3",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					402.0,
+					140.0,
+					22.0
+				],
+				"text": "Linha · 20%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					430.0,
+					140.0,
+					22.0
+				],
+				"text": "Armação · 40%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					266.0,
+					476.0,
+					600.0,
+					23.0
+				],
+				"text": "0 / 90 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					890.0,
+					401.0,
+					256.0,
+					56.0
+				],
+				"text": "Escolher parceiro",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					571.0,
+					180.0,
+					101.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					282.0,
+					571.0,
+					140.0,
+					101.0
+				],
+				"text": "Anterior",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					434.0,
+					571.0,
+					140.0,
+					101.0
+				],
+				"text": "Próxima",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					586.0,
+					571.0,
+					1.0,
+					101.0
+				],
+				"text": "1 / 3",
+				"type": "Label",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1920,
+			1080
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0,
+		"findings": [],
+		"focus": "Vídeo",
+		"image": "settings-1920x1080.png",
+		"requested_pixels": [
+			1920,
+			1080
+		],
+		"scenario": "settings",
+		"ui_units": [
+			1280.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					130.0,
+					32.0,
+					1020.0,
+					45.0
+				],
+				"text": "CONFIGURAÇÕES",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					130.0,
+					89.0,
+					1020.0,
+					24.0
+				],
+				"text": "Seu jeito de jogar. As alterações são salvas automaticamente.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					130.0,
+					125.0,
+					240.0,
+					53.0
+				],
+				"text": "Vídeo",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					390.0,
+					125.0,
+					240.0,
+					53.0
+				],
+				"text": "Acessibilidade",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					650.0,
+					125.0,
+					240.0,
+					53.0
+				],
+				"text": "Controles",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					130.0,
+					190.0,
+					1020.0,
+					29.0
+				],
+				"text": "VÍDEO",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					142.0,
+					239.0,
+					802.0,
+					29.0
+				],
+				"text": "Filtro de TV (CRT)",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					142.0,
+					280.0,
+					802.0,
+					22.0
+				],
+				"text": "Linhas suaves de uma TV de tubo sobre o jogo.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					968.0,
+					239.0,
+					170.0,
+					63.0
+				],
+				"text": "Ligado",
+				"type": "CheckButton",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					142.0,
+					330.0,
+					802.0,
+					29.0
+				],
+				"text": "Tela cheia",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					142.0,
+					371.0,
+					802.0,
+					22.0
+				],
+				"text": "Use toda a tela para explorar e batalhar.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					968.0,
+					330.0,
+					170.0,
+					63.0
+				],
+				"text": "Desligado",
+				"type": "CheckButton",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					130.0,
+					413.0,
+					180.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					382.0,
+					425.0,
+					71.0,
+					31.0
+				],
+				"text": "Alterar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					525.0,
+					425.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					606.0,
+					429.0,
+					158.0,
+					23.0
+				],
+				"text": "LB / RB · Trocar seção",
+				"type": "Label",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			1920,
+			1080
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0,
+		"findings": [],
+		"focus": "Mover à esquerda   ·   A",
+		"focus_reachable_rows": 12,
+		"image": "controls-1920x1080.png",
+		"requested_pixels": [
+			1920,
+			1080
+		],
+		"scenario": "controls",
+		"ui_units": [
+			1280.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					90.0,
+					48.0,
+					812.0,
+					42.0
+				],
+				"text": "CONTROLES · TECLADO",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					966.0,
+					53.0,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1129.0,
+					53.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					108.0,
+					1100.0,
+					24.0
+				],
+				"text": "Selecione uma ação e pressione a nova tecla.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					102.0,
+					158.0,
+					508.0,
+					26.0
+				],
+				"text": "EXPLORAÇÃO",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					102.0,
+					192.0,
+					508.0,
+					53.0
+				],
+				"text": "Mover à esquerda   ·   A",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					102.0,
+					253.0,
+					508.0,
+					53.0
+				],
+				"text": "Mover à direita   ·   D",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					102.0,
+					314.0,
+					508.0,
+					53.0
+				],
+				"text": "Mover para cima   ·   W",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					102.0,
+					375.0,
+					508.0,
+					53.0
+				],
+				"text": "Mover para baixo   ·   S",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					102.0,
+					436.0,
+					508.0,
+					53.0
+				],
+				"text": "Interagir   ·   E",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					102.0,
+					497.0,
+					508.0,
+					53.0
+				],
+				"text": "Mapa   ·   M",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					662.0,
+					158.0,
+					508.0,
+					26.0
+				],
+				"text": "BATALHA",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					662.0,
+					192.0,
+					508.0,
+					53.0
+				],
+				"text": "Cortar   ·   Space",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					662.0,
+					253.0,
+					508.0,
+					53.0
+				],
+				"text": "Habilidade   ·   Q",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					662.0,
+					314.0,
+					508.0,
+					53.0
+				],
+				"text": "Esquiva   ·   Shift",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					662.0,
+					375.0,
+					508.0,
+					53.0
+				],
+				"text": "Puxão   ·   R",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					662.0,
+					436.0,
+					508.0,
+					53.0
+				],
+				"text": "Guarda   ·   G",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					662.0,
+					497.0,
+					508.0,
+					53.0
+				],
+				"text": "Especial   ·   F",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					575.0,
+					1100.0,
+					23.0
+				],
+				"text": "Setas e Enter continuam disponíveis para navegar. Esc cancela a troca de tecla. A bancada usa mouse e teclado.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					90.0,
+					616.0,
+					180.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					294.0,
+					616.0,
+					320.0,
+					56.0
+				],
+				"text": "Restaurar padrão",
+				"type": "Button",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			2560,
+			1080
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0647944591953359,
+		"findings": [],
+		"focus": "Retomar",
+		"image": "pause-2560x1080.png",
+		"requested_pixels": [
+			2560,
+			1080
+		],
+		"scenario": "pause",
+		"ui_units": [
+			1706.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					119.419998168945,
+					43.2000007629395,
+					614.0,
+					49.0
+				],
+				"text": "UM RESPIRO",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					119.419998168945,
+					100.199996948242,
+					614.0,
+					24.0
+				],
+				"text": "A aventura espera por você.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					119.419998168945,
+					132.199996948242,
+					590.0,
+					53.0
+				],
+				"text": "Retomar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					137.419998168945,
+					193.199996948242,
+					572.0,
+					53.0
+				],
+				"text": "Equipe",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					155.419998168945,
+					254.199996948242,
+					554.0,
+					53.0
+				],
+				"text": "Mochila",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					173.419998168945,
+					315.200012207031,
+					536.0,
+					53.0
+				],
+				"text": "Mapa",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					191.419998168945,
+					376.200012207031,
+					518.0,
+					53.0
+				],
+				"text": "Configurações",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					209.419998168945,
+					437.200012207031,
+					500.0,
+					53.0
+				],
+				"text": "Salvar jornada",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					227.419998168945,
+					498.200012207031,
+					482.0,
+					53.0
+				],
+				"text": "Voltar ao menu",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					171.419998168945,
+					563.200012207031,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					334.419982910156,
+					563.200012207031,
+					86.0,
+					31.0
+				],
+				"text": "Retomar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					967.359985351563,
+					173.600006103516,
+					607.0,
+					23.0
+				],
+				"text": "SUA JORNADA",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					967.359985351563,
+					206.600006103516,
+					607.0,
+					37.0
+				],
+				"text": "Kael",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					967.359985351563,
+					253.600006103516,
+					607.0,
+					26.0
+				],
+				"text": "0 moedas",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1095.35998535156,
+					303.600006103516,
+					479.0,
+					31.0
+				],
+				"text": "Rabbito",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1095.35998535156,
+					342.600006103516,
+					479.0,
+					23.0
+				],
+				"text": "Linha · 100%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1095.35998535156,
+					389.600006103516,
+					479.0,
+					23.0
+				],
+				"text": "Armação · 100%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					967.359985351563,
+					441.600006103516,
+					607.0,
+					23.0
+				],
+				"text": "Pronto para explorar.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			2560,
+			1080
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0,
+		"findings": [],
+		"focus": "Tudo",
+		"image": "bag-empty-2560x1080.png",
+		"requested_pixels": [
+			2560,
+			1080
+		],
+		"scenario": "bag-empty",
+		"ui_units": [
+			1706.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					303.0,
+					48.0,
+					812.0,
+					42.0
+				],
+				"text": "MOCHILA",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1179.0,
+					53.0,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1342.0,
+					53.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					303.0,
+					108.0,
+					1100.0,
+					26.0
+				],
+				"text": "0 moedas · Materiais e lembranças da sua jornada",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					303.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Tudo",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					432.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Rabiolas",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					561.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Missão",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					690.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Materiais",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					303.0,
+					221.0,
+					535.0,
+					55.0
+				],
+				"text": "Nenhum item nesta categoria.\nExplore para encontrar materiais e rabiolas.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					303.0,
+					284.0,
+					535.0,
+					53.0
+				],
+				"text": "Ver todos os itens",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					880.0,
+					386.0,
+					511.0,
+					33.0
+				],
+				"text": "Nada por aqui",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					880.0,
+					431.0,
+					511.0,
+					27.0
+				],
+				"text": "",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					880.0,
+					470.0,
+					511.0,
+					26.0
+				],
+				"text": "Esta categoria ainda está vazia.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					303.0,
+					545.0,
+					150.0,
+					53.0
+				],
+				"text": "Anterior",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					469.0,
+					545.0,
+					150.0,
+					53.0
+				],
+				"text": "Próxima",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					635.0,
+					556.0,
+					128.0,
+					31.0
+				],
+				"text": "1 / 1 · 0 itens",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					303.0,
+					616.0,
+					180.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					547.0,
+					628.0,
+					125.0,
+					31.0
+				],
+				"text": "Aba anterior",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					736.0,
+					628.0,
+					124.0,
+					31.0
+				],
+				"text": "Próxima aba",
+				"type": "Label",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			2560,
+			1080
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0,
+		"findings": [],
+		"focus": "Tudo",
+		"focus_reachable_rows": 1,
+		"image": "bag-full-2560x1080.png",
+		"requested_pixels": [
+			2560,
+			1080
+		],
+		"scenario": "bag-full",
+		"ui_units": [
+			1706.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					303.0,
+					48.0,
+					812.0,
+					42.0
+				],
+				"text": "MOCHILA",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1179.0,
+					53.0,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1342.0,
+					53.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					303.0,
+					108.0,
+					1100.0,
+					26.0
+				],
+				"text": "0 moedas · Materiais e lembranças da sua jornada",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					303.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Tudo",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					432.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Rabiolas",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					561.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Missão",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					690.0,
+					152.0,
+					125.0,
+					53.0
+				],
+				"text": "Materiais",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					303.0,
+					221.0,
+					535.0,
+					72.0
+				],
+				"text": "Rabiola de Carcará  × 2",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					303.0,
+					301.0,
+					535.0,
+					72.0
+				],
+				"text": "Rabiola do Carcará de Nina  × 1",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					303.0,
+					381.0,
+					535.0,
+					72.0
+				],
+				"text": "Rabiola de Lacertubo  × 1",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					880.0,
+					386.0,
+					511.0,
+					33.0
+				],
+				"text": "Rabiola de Carcará",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					880.0,
+					431.0,
+					511.0,
+					27.0
+				],
+				"text": "2 na mochila",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					880.0,
+					470.0,
+					511.0,
+					26.0
+				],
+				"text": "Leve ao ateliê do Sr. Assis para trabalhar nesta rabiola.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					303.0,
+					545.0,
+					150.0,
+					53.0
+				],
+				"text": "Anterior",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					469.0,
+					545.0,
+					150.0,
+					53.0
+				],
+				"text": "Próxima",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					635.0,
+					556.0,
+					128.0,
+					31.0
+				],
+				"text": "1 / 2 · 6 itens",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					303.0,
+					616.0,
+					180.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					547.0,
+					628.0,
+					125.0,
+					31.0
+				],
+				"text": "Aba anterior",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					736.0,
+					628.0,
+					124.0,
+					31.0
+				],
+				"text": "Próxima aba",
+				"type": "Label",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			2560,
+			1080
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0,
+		"findings": [],
+		"focus": "Escolher parceiro",
+		"focus_reachable_rows": 1,
+		"image": "team-long-2560x1080.png",
+		"requested_pixels": [
+			2560,
+			1080
+		],
+		"scenario": "team-long",
+		"ui_units": [
+			1706.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					303.0,
+					48.0,
+					812.0,
+					42.0
+				],
+				"text": "EQUIPE",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1179.0,
+					53.0,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1342.0,
+					53.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					303.0,
+					108.0,
+					1100.0,
+					24.0
+				],
+				"text": "Escolha quem vai voar ao seu lado.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					479.0,
+					158.0,
+					600.0,
+					23.0
+				],
+				"text": "PARCEIRO ATIVO",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					479.0,
+					187.0,
+					600.0,
+					37.0
+				],
+				"text": "Rabbito · Nv. 1",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					479.0,
+					230.0,
+					140.0,
+					22.0
+				],
+				"text": "Linha · 100%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					479.0,
+					258.0,
+					140.0,
+					22.0
+				],
+				"text": "Armação · 100%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					479.0,
+					304.0,
+					600.0,
+					23.0
+				],
+				"text": "0 / 50 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1103.0,
+					214.0,
+					256.0,
+					56.0
+				],
+				"text": "Selecionado",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					479.0,
+					359.0,
+					600.0,
+					37.0
+				],
+				"text": "Um nome bem comprido aqui · Nv. 3",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					479.0,
+					402.0,
+					140.0,
+					22.0
+				],
+				"text": "Linha · 20%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					479.0,
+					430.0,
+					140.0,
+					22.0
+				],
+				"text": "Armação · 40%",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					479.0,
+					476.0,
+					600.0,
+					23.0
+				],
+				"text": "0 / 90 XP para o próximo nível",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1103.0,
+					401.0,
+					256.0,
+					56.0
+				],
+				"text": "Escolher parceiro",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					303.0,
+					571.0,
+					180.0,
+					101.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					495.0,
+					571.0,
+					140.0,
+					101.0
+				],
+				"text": "Anterior",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					647.0,
+					571.0,
+					140.0,
+					101.0
+				],
+				"text": "Próxima",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					799.0,
+					571.0,
+					1.0,
+					101.0
+				],
+				"text": "1 / 3",
+				"type": "Label",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			2560,
+			1080
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0,
+		"findings": [],
+		"focus": "Vídeo",
+		"image": "settings-2560x1080.png",
+		"requested_pixels": [
+			2560,
+			1080
+		],
+		"scenario": "settings",
+		"ui_units": [
+			1706.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					343.0,
+					32.0,
+					1020.0,
+					45.0
+				],
+				"text": "CONFIGURAÇÕES",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					343.0,
+					89.0,
+					1020.0,
+					24.0
+				],
+				"text": "Seu jeito de jogar. As alterações são salvas automaticamente.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					343.0,
+					125.0,
+					240.0,
+					53.0
+				],
+				"text": "Vídeo",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					603.0,
+					125.0,
+					240.0,
+					53.0
+				],
+				"text": "Acessibilidade",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					863.0,
+					125.0,
+					240.0,
+					53.0
+				],
+				"text": "Controles",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					343.0,
+					190.0,
+					1020.0,
+					29.0
+				],
+				"text": "VÍDEO",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					355.0,
+					239.0,
+					802.0,
+					29.0
+				],
+				"text": "Filtro de TV (CRT)",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					355.0,
+					280.0,
+					802.0,
+					22.0
+				],
+				"text": "Linhas suaves de uma TV de tubo sobre o jogo.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1181.0,
+					239.0,
+					170.0,
+					63.0
+				],
+				"text": "Ligado",
+				"type": "CheckButton",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					355.0,
+					330.0,
+					802.0,
+					29.0
+				],
+				"text": "Tela cheia",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					355.0,
+					371.0,
+					802.0,
+					22.0
+				],
+				"text": "Use toda a tela para explorar e batalhar.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1181.0,
+					330.0,
+					170.0,
+					63.0
+				],
+				"text": "Desligado",
+				"type": "CheckButton",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					343.0,
+					413.0,
+					180.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					595.0,
+					425.0,
+					71.0,
+					31.0
+				],
+				"text": "Alterar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					738.0,
+					425.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					819.0,
+					429.0,
+					158.0,
+					23.0
+				],
+				"text": "LB / RB · Trocar seção",
+				"type": "Label",
+				"visible_fraction": 1.0
+			}
+		]
+	},
+	{
+		"actual_pixels": [
+			2560,
+			1080
+		],
+		"decorations_checked": 0,
+		"exploration_hud_fraction": 0.0,
+		"findings": [],
+		"focus": "Mover à esquerda   ·   A",
+		"focus_reachable_rows": 12,
+		"image": "controls-2560x1080.png",
+		"requested_pixels": [
+			2560,
+			1080
+		],
+		"scenario": "controls",
+		"ui_units": [
+			1706.0,
+			720.0
+		],
+		"widgets": [
+			{
+				"rect": [
+					303.0,
+					48.0,
+					812.0,
+					42.0
+				],
+				"text": "CONTROLES · TECLADO",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1179.0,
+					53.0,
+					99.0,
+					31.0
+				],
+				"text": "Confirmar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					1342.0,
+					53.0,
+					61.0,
+					31.0
+				],
+				"text": "Voltar",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					303.0,
+					108.0,
+					1100.0,
+					24.0
+				],
+				"text": "Selecione uma ação e pressione a nova tecla.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					315.0,
+					158.0,
+					508.0,
+					26.0
+				],
+				"text": "EXPLORAÇÃO",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					315.0,
+					192.0,
+					508.0,
+					53.0
+				],
+				"text": "Mover à esquerda   ·   A",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					315.0,
+					253.0,
+					508.0,
+					53.0
+				],
+				"text": "Mover à direita   ·   D",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					315.0,
+					314.0,
+					508.0,
+					53.0
+				],
+				"text": "Mover para cima   ·   W",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					315.0,
+					375.0,
+					508.0,
+					53.0
+				],
+				"text": "Mover para baixo   ·   S",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					315.0,
+					436.0,
+					508.0,
+					53.0
+				],
+				"text": "Interagir   ·   E",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					315.0,
+					497.0,
+					508.0,
+					53.0
+				],
+				"text": "Mapa   ·   M",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					875.0,
+					158.0,
+					508.0,
+					26.0
+				],
+				"text": "BATALHA",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					875.0,
+					192.0,
+					508.0,
+					53.0
+				],
+				"text": "Cortar   ·   Space",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					875.0,
+					253.0,
+					508.0,
+					53.0
+				],
+				"text": "Habilidade   ·   Q",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					875.0,
+					314.0,
+					508.0,
+					53.0
+				],
+				"text": "Esquiva   ·   Shift",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					875.0,
+					375.0,
+					508.0,
+					53.0
+				],
+				"text": "Puxão   ·   R",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					875.0,
+					436.0,
+					508.0,
+					53.0
+				],
+				"text": "Guarda   ·   G",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					875.0,
+					497.0,
+					508.0,
+					53.0
+				],
+				"text": "Especial   ·   F",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					303.0,
+					575.0,
+					1100.0,
+					23.0
+				],
+				"text": "Setas e Enter continuam disponíveis para navegar. Esc cancela a troca de tecla. A bancada usa mouse e teclado.",
+				"type": "Label",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					303.0,
+					616.0,
+					180.0,
+					56.0
+				],
+				"text": "Voltar",
+				"type": "Button",
+				"visible_fraction": 1.0
+			},
+			{
+				"rect": [
+					507.0,
+					616.0,
+					320.0,
+					56.0
+				],
+				"text": "Restaurar padrão",
+				"type": "Button",
+				"visible_fraction": 1.0
+			}
+		]
+	}
+]

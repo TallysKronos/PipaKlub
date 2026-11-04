@@ -1,0 +1,1095 @@
+{
+  "version": 1,
+  "source": "https://kenney.nl/assets/input-prompts",
+  "archive": "https://kenney.nl/media/pages/assets/input-prompts/8de120163f-1783763952/kenney_input-prompts_1.5.zip",
+  "license": "CC0-1.0",
+  "upstreamVersion": "1.5A (bundled License.txt)",
+  "changes": "Recolored vector paths; added paper keycap and ink contour. Positional action mapping; no changes to gameplay bindings.",
+  "assets": [
+    {
+      "family": "kbd",
+      "id": "0",
+      "file": "kbd/0.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_0_outline.svg",
+      "sourceSha256": "c43a9e24adc61e3897369ec4f099b0046699160ae23d5d9306b190b7c4293c05"
+    },
+    {
+      "family": "kbd",
+      "id": "1",
+      "file": "kbd/1.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_1_outline.svg",
+      "sourceSha256": "9e2de5a79b583ee9a2600b75622a3341d536cd4e800650445cb132da2aef4d8e"
+    },
+    {
+      "family": "kbd",
+      "id": "2",
+      "file": "kbd/2.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_2_outline.svg",
+      "sourceSha256": "f0db544b03a60890ff5594c8c4a144ca2c88a7a2045e13439a6d3311926b2fea"
+    },
+    {
+      "family": "kbd",
+      "id": "3",
+      "file": "kbd/3.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_3_outline.svg",
+      "sourceSha256": "f29848c734e0b51ac45bc4fb2ff3605db31740529e3e57a4bbbbc0dab8c5ec20"
+    },
+    {
+      "family": "kbd",
+      "id": "4",
+      "file": "kbd/4.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_4_outline.svg",
+      "sourceSha256": "e0402a0eb7720e110a77acc048c5208047dffaa941150dcda42904106769963f"
+    },
+    {
+      "family": "kbd",
+      "id": "5",
+      "file": "kbd/5.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_5_outline.svg",
+      "sourceSha256": "26e8f03e3049d41b7d99527d0574aedb235ef9f7fffdc78c9e9e7737478b7320"
+    },
+    {
+      "family": "kbd",
+      "id": "6",
+      "file": "kbd/6.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_6_outline.svg",
+      "sourceSha256": "386b0ed492bfc506eaeb23b7d1ae458aca9f1b828a102840f6aab4af44e034f8"
+    },
+    {
+      "family": "kbd",
+      "id": "7",
+      "file": "kbd/7.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_7_outline.svg",
+      "sourceSha256": "842bbd10e27ea81a4d9cd5593954dbb4583ad5adb6f48367563e4862a8866c35"
+    },
+    {
+      "family": "kbd",
+      "id": "8",
+      "file": "kbd/8.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_8_outline.svg",
+      "sourceSha256": "8bf64ba5720aac053ad2b994ec53ebd561c10ca3333393977982b61be1ed1be9"
+    },
+    {
+      "family": "kbd",
+      "id": "9",
+      "file": "kbd/9.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_9_outline.svg",
+      "sourceSha256": "b045aac49326edd59444aea59c4afe5a505f94fa17931224219aa63b34f6ef83"
+    },
+    {
+      "family": "kbd",
+      "id": "alt",
+      "file": "kbd/alt.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_alt_outline.svg",
+      "sourceSha256": "377146ca2c7fa7c4a17ae29a25c1c619026bff2b41ee2b1c1fd966b758285805"
+    },
+    {
+      "family": "kbd",
+      "id": "any",
+      "file": "kbd/any.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_any_outline.svg",
+      "sourceSha256": "2ddadcc34d8e785e369eb4b877a39300be68237b79853c870b90c0f8e70a8534"
+    },
+    {
+      "family": "kbd",
+      "id": "apostrophe",
+      "file": "kbd/apostrophe.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_apostrophe_outline.svg",
+      "sourceSha256": "3c0c247f9d9b802fee07a328f8175590b3a1fa6c8428b98c3546fac830f2a2f1"
+    },
+    {
+      "family": "kbd",
+      "id": "arrows_down",
+      "file": "kbd/arrows_down.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_arrows_down_outline.svg",
+      "sourceSha256": "d3e278adc0ef8056e27ce8f0e91c5449b17e9d8e641e0dd72c895d73e58e57a1"
+    },
+    {
+      "family": "kbd",
+      "id": "arrows_horizontal",
+      "file": "kbd/arrows_horizontal.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_arrows_horizontal_outline.svg",
+      "sourceSha256": "2c1cd7fe3f4a751a47948386993cf70703b87173871619245328f441f5fbf7fd"
+    },
+    {
+      "family": "kbd",
+      "id": "arrows_left",
+      "file": "kbd/arrows_left.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_arrows_left_outline.svg",
+      "sourceSha256": "c4bd07a82b40932ae4c21a73078239303afeed67565a6f6d883dde921d770ff1"
+    },
+    {
+      "family": "kbd",
+      "id": "arrows_right",
+      "file": "kbd/arrows_right.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_arrows_right_outline.svg",
+      "sourceSha256": "c707e8c511ea639e5095d53bc4c8dfbfd98234a7f7fd766ac88b48fecf0f10da"
+    },
+    {
+      "family": "kbd",
+      "id": "arrows_up",
+      "file": "kbd/arrows_up.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_arrows_up_outline.svg",
+      "sourceSha256": "21a068ff404e2e8cc0e6774ae5d265f4ffc48d4b3738227ab02e1ce5b89a9d19"
+    },
+    {
+      "family": "kbd",
+      "id": "arrows_vertical",
+      "file": "kbd/arrows_vertical.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_arrows_vertical_outline.svg",
+      "sourceSha256": "5bdebc2bff962c6e3180770f86a00a6a057345a326f699b7379496f637ce32c7"
+    },
+    {
+      "family": "kbd",
+      "id": "arrow_down",
+      "file": "kbd/arrow_down.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_arrow_down_outline.svg",
+      "sourceSha256": "9c31b4886ae73f98f420172e4208ed8b0d370f91ffe87512b26d1b365126bf53"
+    },
+    {
+      "family": "kbd",
+      "id": "arrow_left",
+      "file": "kbd/arrow_left.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_arrow_left_outline.svg",
+      "sourceSha256": "2bc6aa8f4805fbcc1161e998e3ee3a66677120a52d9a3f63424b54c12bd7b82c"
+    },
+    {
+      "family": "kbd",
+      "id": "arrow_right",
+      "file": "kbd/arrow_right.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_arrow_right_outline.svg",
+      "sourceSha256": "bc68756d07a943080298d936369586489ee7f4f2ae01ae5fd0e601e16e4294e7"
+    },
+    {
+      "family": "kbd",
+      "id": "arrow_up",
+      "file": "kbd/arrow_up.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_arrow_up_outline.svg",
+      "sourceSha256": "45b488284d017507cdc3a1779185767f1046dca012cd155466d0df47ea832803"
+    },
+    {
+      "family": "kbd",
+      "id": "asterisk",
+      "file": "kbd/asterisk.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_asterisk_outline.svg",
+      "sourceSha256": "9b39972116c8e99ea1527e20d2ce6740bd2ad4b6745686dc9d6777fc1b6afec9"
+    },
+    {
+      "family": "kbd",
+      "id": "a",
+      "file": "kbd/a.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_a_outline.svg",
+      "sourceSha256": "039daef258acf4479adb490d52aeef48abdb67b0786b99e6f0ed95761086f2b0"
+    },
+    {
+      "family": "kbd",
+      "id": "backspace_icon_alternative",
+      "file": "kbd/backspace_icon_alternative.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_backspace_icon_alternative_outline.svg",
+      "sourceSha256": "47ae248f65bc0e75dea002e1bb535cff4bda96cbfc64704d32068923f441f078"
+    },
+    {
+      "family": "kbd",
+      "id": "backspace_icon",
+      "file": "kbd/backspace_icon.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_backspace_icon_outline.svg",
+      "sourceSha256": "af25e2f2b2f12b81552ae86364f1ae7576174aa2e67edcf8cc55a554dc4dff12"
+    },
+    {
+      "family": "kbd",
+      "id": "backspace",
+      "file": "kbd/backspace.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_backspace_outline.svg",
+      "sourceSha256": "ab7b133e4953ac336dd41ae1b7091821419c80fe51ea7267cad3a13e20726b8b"
+    },
+    {
+      "family": "kbd",
+      "id": "bracket_close",
+      "file": "kbd/bracket_close.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_bracket_close_outline.svg",
+      "sourceSha256": "e3d796b2dddd8a3ce8eccbf274fd91610f3e357143fb62f06f0023d8821366b1"
+    },
+    {
+      "family": "kbd",
+      "id": "bracket_greater",
+      "file": "kbd/bracket_greater.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_bracket_greater_outline.svg",
+      "sourceSha256": "8f14551cba330da9241946ded7664085b092b603ed45891958c3e3953e8aff68"
+    },
+    {
+      "family": "kbd",
+      "id": "bracket_less",
+      "file": "kbd/bracket_less.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_bracket_less_outline.svg",
+      "sourceSha256": "eb3caf31637cb5d6202c579b43ec83e0078cecebdf29db65b94a556184d53ec8"
+    },
+    {
+      "family": "kbd",
+      "id": "bracket_open",
+      "file": "kbd/bracket_open.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_bracket_open_outline.svg",
+      "sourceSha256": "64e6d66ab6c828da5c596d82481b9fd2a9b427736963ee9237c205da07de6735"
+    },
+    {
+      "family": "kbd",
+      "id": "b",
+      "file": "kbd/b.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_b_outline.svg",
+      "sourceSha256": "2b7d20fe5d1a8de2b714639e68a77e5adbf485f161496e89b54a3551776048f8"
+    },
+    {
+      "family": "kbd",
+      "id": "capslock_icon",
+      "file": "kbd/capslock_icon.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_capslock_icon_outline.svg",
+      "sourceSha256": "d1490ff5b2d329f9b4308a49405edd4f91ad7f6139f85d0a25242951b26bc0a2"
+    },
+    {
+      "family": "kbd",
+      "id": "capslock",
+      "file": "kbd/capslock.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_capslock_outline.svg",
+      "sourceSha256": "e9ccf39eabf27d48ad3586062014ab8a0c9350f521870ac93e85f74f63f75471"
+    },
+    {
+      "family": "kbd",
+      "id": "caret",
+      "file": "kbd/caret.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_caret_outline.svg",
+      "sourceSha256": "34a7ac20133066752409383a97896840b50bf773714ac364525998109088c932"
+    },
+    {
+      "family": "kbd",
+      "id": "colon",
+      "file": "kbd/colon.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_colon_outline.svg",
+      "sourceSha256": "08b2de3496e5ff94ff24253f0f24267ea0b032f5e26afd369ac68f8b71649d80"
+    },
+    {
+      "family": "kbd",
+      "id": "command",
+      "file": "kbd/command.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_command_outline.svg",
+      "sourceSha256": "4c14ff763b0708621a0682d6213f3737bceb646b3e9427fc58cbd88c4c9c25bf"
+    },
+    {
+      "family": "kbd",
+      "id": "comma",
+      "file": "kbd/comma.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_comma_outline.svg",
+      "sourceSha256": "3e3ea8475ef5dc94880b2b53adb47c9ae18b71bfb2d9f1db46a5bf63c9c7bde7"
+    },
+    {
+      "family": "kbd",
+      "id": "ctrl",
+      "file": "kbd/ctrl.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_ctrl_outline.svg",
+      "sourceSha256": "5acc2358a0d9935bcc22217b1945983a0e39cc2353eb7ce640312cbf9532d772"
+    },
+    {
+      "family": "kbd",
+      "id": "c",
+      "file": "kbd/c.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_c_outline.svg",
+      "sourceSha256": "564a099aefa3f5910f5b11b1cc993d820b336ab48a2d53753d1f07fb0c6a8f11"
+    },
+    {
+      "family": "kbd",
+      "id": "delete",
+      "file": "kbd/delete.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_delete_outline.svg",
+      "sourceSha256": "c37dcd0ac212450d33fd7df0b86f8406658182c2a14e9bff5f97665bec8289cb"
+    },
+    {
+      "family": "kbd",
+      "id": "d",
+      "file": "kbd/d.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_d_outline.svg",
+      "sourceSha256": "81505eca44bc73d2cbfcbd654c6e113bd6161c46b2c35f0ffcd1dd4af27cc2cf"
+    },
+    {
+      "family": "kbd",
+      "id": "end",
+      "file": "kbd/end.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_end_outline.svg",
+      "sourceSha256": "f5c4a4350a748a1e8b35bc1c5f8e37d68edffbc870cbbcfcc252ccb4a39a172f"
+    },
+    {
+      "family": "kbd",
+      "id": "enter",
+      "file": "kbd/enter.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_enter_outline.svg",
+      "sourceSha256": "a45d27c3a850c7c100e73958c5c1df55800b624faabea6fd87ddd7e839094ae5"
+    },
+    {
+      "family": "kbd",
+      "id": "equals",
+      "file": "kbd/equals.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_equals_outline.svg",
+      "sourceSha256": "7489116063df7488c4a010574730cfdbc216331fc260dd45202fbf41829f4fcc"
+    },
+    {
+      "family": "kbd",
+      "id": "escape",
+      "file": "kbd/escape.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_escape_outline.svg",
+      "sourceSha256": "69eb4e771f205a60fd85555eb62d039ccf1aa46ed7ee38ff666912fef73e2fee"
+    },
+    {
+      "family": "kbd",
+      "id": "exclamation",
+      "file": "kbd/exclamation.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_exclamation_outline.svg",
+      "sourceSha256": "447d0ab109e399bf78fbe3fada066a616e3d1623e297305e1511e86177b4d027"
+    },
+    {
+      "family": "kbd",
+      "id": "e",
+      "file": "kbd/e.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_e_outline.svg",
+      "sourceSha256": "85140a555a54d23a85d992ff3583836951eb1003ca26cc671e3724b60a5809ac"
+    },
+    {
+      "family": "kbd",
+      "id": "f10",
+      "file": "kbd/f10.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_f10_outline.svg",
+      "sourceSha256": "8cf3cd1aa86e004eb7a51900028173046e2cb779e6bea9187eef72edb1fb197a"
+    },
+    {
+      "family": "kbd",
+      "id": "f11",
+      "file": "kbd/f11.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_f11_outline.svg",
+      "sourceSha256": "d127ff97dde5c4a915f7efa59030cc74e2dbcd73e8aadfb267d8f44e5e100519"
+    },
+    {
+      "family": "kbd",
+      "id": "f12",
+      "file": "kbd/f12.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_f12_outline.svg",
+      "sourceSha256": "7d6620afe25982885a853c26ca05d4f2f41559777af25f45ece8b9a7709f992f"
+    },
+    {
+      "family": "kbd",
+      "id": "f1",
+      "file": "kbd/f1.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_f1_outline.svg",
+      "sourceSha256": "848b890afce05d356745f9b7cde3bb0df12b5520d9e44685e2c0fcd9f34be5a4"
+    },
+    {
+      "family": "kbd",
+      "id": "f2",
+      "file": "kbd/f2.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_f2_outline.svg",
+      "sourceSha256": "f3fa334e605b2b3a862eab2f1abb897eeaba760cce1a825bb01d49d2aca51c93"
+    },
+    {
+      "family": "kbd",
+      "id": "f3",
+      "file": "kbd/f3.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_f3_outline.svg",
+      "sourceSha256": "fd4a3d2455425544d5dce08d95be638c379ac03f0bfd74c66730f9b6026af5d3"
+    },
+    {
+      "family": "kbd",
+      "id": "f4",
+      "file": "kbd/f4.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_f4_outline.svg",
+      "sourceSha256": "098278a3a437782cb9e7bd221dcc3d4aad0e78207d9137f1e229f0498aefc7d5"
+    },
+    {
+      "family": "kbd",
+      "id": "f5",
+      "file": "kbd/f5.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_f5_outline.svg",
+      "sourceSha256": "72daff54d86dcbbd4817bbd05c9869358d46f5cf116a75a0e763b5e9a2a996bf"
+    },
+    {
+      "family": "kbd",
+      "id": "f6",
+      "file": "kbd/f6.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_f6_outline.svg",
+      "sourceSha256": "6f748ce778721fac65c273023555152a3800d4213f8a0cea31f5ed689b10d2ad"
+    },
+    {
+      "family": "kbd",
+      "id": "f7",
+      "file": "kbd/f7.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_f7_outline.svg",
+      "sourceSha256": "4b2d6aa8974dc74ee61cc52460292e95d7f7925bf6cf0692aaa27b95c046d334"
+    },
+    {
+      "family": "kbd",
+      "id": "f8",
+      "file": "kbd/f8.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_f8_outline.svg",
+      "sourceSha256": "f3dfc155f242119cc067f1977788997f0fa882ca08ab6563a20e7bcf3ca01fb6"
+    },
+    {
+      "family": "kbd",
+      "id": "f9",
+      "file": "kbd/f9.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_f9_outline.svg",
+      "sourceSha256": "127b7616f900725e285d63494a6c1c5acc45c57dd7680c08b0a336c6a37d113c"
+    },
+    {
+      "family": "kbd",
+      "id": "function",
+      "file": "kbd/function.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_function_outline.svg",
+      "sourceSha256": "772b208ebb19f3ff0aca846c249d5c6d21446c6938c5e7f51b5fc127a79da1fc"
+    },
+    {
+      "family": "kbd",
+      "id": "f",
+      "file": "kbd/f.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_f_outline.svg",
+      "sourceSha256": "2d1bc581e2fca5a5fe84990f8f957f82a166daf59883a6d7a0741620ee54d670"
+    },
+    {
+      "family": "kbd",
+      "id": "g",
+      "file": "kbd/g.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_g_outline.svg",
+      "sourceSha256": "0410b2ec083a423248b03359df386cdbc7f7686437048ad14977494fcd3c03aa"
+    },
+    {
+      "family": "kbd",
+      "id": "home",
+      "file": "kbd/home.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_home_outline.svg",
+      "sourceSha256": "b5c6cdc30751fb9a601639c9a7770a64eabcba9b9ac82c5c59edfcef4d5d68d5"
+    },
+    {
+      "family": "kbd",
+      "id": "h",
+      "file": "kbd/h.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_h_outline.svg",
+      "sourceSha256": "8c76edd5257826c22a28a945197873558dbfa1f4913f412d291453aef1901877"
+    },
+    {
+      "family": "kbd",
+      "id": "insert",
+      "file": "kbd/insert.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_insert_outline.svg",
+      "sourceSha256": "327e93f1cbf4b6c2bd702b4c1685438493c0d0f2cbd9f451b1fb12fe7d01ce3d"
+    },
+    {
+      "family": "kbd",
+      "id": "i",
+      "file": "kbd/i.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_i_outline.svg",
+      "sourceSha256": "4662876cd1140758a51bc15ad77d5c6435ed905f81eacd38d38545bb83de6e93"
+    },
+    {
+      "family": "kbd",
+      "id": "j",
+      "file": "kbd/j.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_j_outline.svg",
+      "sourceSha256": "a95d8c9e8ec520bb2dff4c17cc83c039c518b2d98ba459af0e199ebac14031d2"
+    },
+    {
+      "family": "kbd",
+      "id": "k",
+      "file": "kbd/k.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_k_outline.svg",
+      "sourceSha256": "7e65da33cd04e368e81ecb91367e1dc10f2af6c1e5fa6c9b0cf897b04364538f"
+    },
+    {
+      "family": "kbd",
+      "id": "l",
+      "file": "kbd/l.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_l_outline.svg",
+      "sourceSha256": "9aa21a5b4f32a4721b0418ff0f97b162f71db0adec9622a5a8da9ffbeb760844"
+    },
+    {
+      "family": "kbd",
+      "id": "minus",
+      "file": "kbd/minus.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_minus_outline.svg",
+      "sourceSha256": "77abb6f6cc2f45d397d4d809a8c7d7f7f018a7c8efcfc0cda825225299fb8fdf"
+    },
+    {
+      "family": "kbd",
+      "id": "m",
+      "file": "kbd/m.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_m_outline.svg",
+      "sourceSha256": "3cd4d299c5f899f32abbe047b054f85e39ff73c54de0cdf527e3a42b7e2b4e75"
+    },
+    {
+      "family": "kbd",
+      "id": "numlock",
+      "file": "kbd/numlock.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_numlock_outline.svg",
+      "sourceSha256": "06aad2ad0e48fc6e46d3504657e0efc11a92ff988e78aefc63ac3024f2973869"
+    },
+    {
+      "family": "kbd",
+      "id": "numpad_enter",
+      "file": "kbd/numpad_enter.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_numpad_enter_outline.svg",
+      "sourceSha256": "63b6d35c21aa1f769c833f2e28ea8396f593fb5abb520ff40c77b025aa9cccb3"
+    },
+    {
+      "family": "kbd",
+      "id": "numpad_plus",
+      "file": "kbd/numpad_plus.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_numpad_plus_outline.svg",
+      "sourceSha256": "960fdf2721b59171de804e3079fa24ecca06cf6d19a1319738dd90216b1545af"
+    },
+    {
+      "family": "kbd",
+      "id": "n",
+      "file": "kbd/n.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_n_outline.svg",
+      "sourceSha256": "c7cbfc509cac5471700fbdff14961f4c0e2f8808d25c3a4409af219ba3e4ef8d"
+    },
+    {
+      "family": "kbd",
+      "id": "option",
+      "file": "kbd/option.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_option_outline.svg",
+      "sourceSha256": "38242dbe3d38c1dbaea963035a899857382da64272677a4557622bf2055aee3d"
+    },
+    {
+      "family": "kbd",
+      "id": "outline.svg",
+      "file": "kbd/outline.svg.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_outline.svg",
+      "sourceSha256": "bb711bacce20959478c7d8b9c82d8394748b1b4c57d8e95ba93db44e572af591"
+    },
+    {
+      "family": "kbd",
+      "id": "o",
+      "file": "kbd/o.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_o_outline.svg",
+      "sourceSha256": "d3fcaf817242b6490ffed4d69aed6df0840f19efdc8a6131f9ed56187e4f14c2"
+    },
+    {
+      "family": "kbd",
+      "id": "page_down",
+      "file": "kbd/page_down.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_page_down_outline.svg",
+      "sourceSha256": "bc018e878d5caa8f1e4e73d7e5b348681a23b31a485b43e0e827f7dc6759236d"
+    },
+    {
+      "family": "kbd",
+      "id": "page_up",
+      "file": "kbd/page_up.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_page_up_outline.svg",
+      "sourceSha256": "6e51b15835c77e7f2e9859305cdac2696d42e999ec91f79446c00a1423695da9"
+    },
+    {
+      "family": "kbd",
+      "id": "pause_break",
+      "file": "kbd/pause_break.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_pause_break_outline.svg",
+      "sourceSha256": "bbeef2cd22a530fcc7dadefec6e5bce0fea403c46663c3c3b4833eb7e1192bbf"
+    },
+    {
+      "family": "kbd",
+      "id": "pause",
+      "file": "kbd/pause.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_pause_outline.svg",
+      "sourceSha256": "ccb68f56604d0b30d3bd49d436c4b95ff3d18e46c2cf164531aff76e1a05c470"
+    },
+    {
+      "family": "kbd",
+      "id": "period",
+      "file": "kbd/period.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_period_outline.svg",
+      "sourceSha256": "9c6743242552dc94c2177b280d172cd506a02c2048e883e6884dc079eb011421"
+    },
+    {
+      "family": "kbd",
+      "id": "plus",
+      "file": "kbd/plus.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_plus_outline.svg",
+      "sourceSha256": "00c3eda4a6668f0588449df8446b3486855ad855673a7a57f29848dda5e9f098"
+    },
+    {
+      "family": "kbd",
+      "id": "printscreen",
+      "file": "kbd/printscreen.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_printscreen_outline.svg",
+      "sourceSha256": "cd2e17ca96cfa8fc49873e0d9b6be75ffb794d757dd45a587281dd2cf6be2744"
+    },
+    {
+      "family": "kbd",
+      "id": "p",
+      "file": "kbd/p.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_p_outline.svg",
+      "sourceSha256": "e7c08af4fdef715873d637871d15e6ecc8c5d2586832db353677be359540a80e"
+    },
+    {
+      "family": "kbd",
+      "id": "question",
+      "file": "kbd/question.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_question_outline.svg",
+      "sourceSha256": "2360f752ff612f0641d45d7fd710fbc2674383ceceecfcb4aa44c894d81ebfc7"
+    },
+    {
+      "family": "kbd",
+      "id": "quote",
+      "file": "kbd/quote.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_quote_outline.svg",
+      "sourceSha256": "b6aa28be1dd026964f905c25b04b4643ecb47f216ab76a3742e8080b09e17ff3"
+    },
+    {
+      "family": "kbd",
+      "id": "q",
+      "file": "kbd/q.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_q_outline.svg",
+      "sourceSha256": "a08e73740fe935f4f9c1b7f17c5f88e7cb3890ed3a0c1281f810f38395a61a10"
+    },
+    {
+      "family": "kbd",
+      "id": "return",
+      "file": "kbd/return.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_return_outline.svg",
+      "sourceSha256": "c7037be02203896164b410b5893122c3195b72be0c74a04d4d2fe6b9cd3a70b4"
+    },
+    {
+      "family": "kbd",
+      "id": "r",
+      "file": "kbd/r.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_r_outline.svg",
+      "sourceSha256": "55d697327f6e788466570c7778020609774c0defa4e83a0ada23ccd4d41b69ba"
+    },
+    {
+      "family": "kbd",
+      "id": "scroll_lock",
+      "file": "kbd/scroll_lock.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_scroll_lock_outline.svg",
+      "sourceSha256": "69d5713023f15380bc92e88bfd1f559ff9074be151db496ec5ba6a476c655800"
+    },
+    {
+      "family": "kbd",
+      "id": "semicolon",
+      "file": "kbd/semicolon.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_semicolon_outline.svg",
+      "sourceSha256": "da2ecca96c732488387f1723e0c145b3e22dece3f985aee6e5d4d82d937c2a79"
+    },
+    {
+      "family": "kbd",
+      "id": "shift_icon",
+      "file": "kbd/shift_icon.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_shift_icon_outline.svg",
+      "sourceSha256": "96534fb1752c544dc4018e177edb7738f7e1188cfc97a9062bb7e21ebf97fdb7"
+    },
+    {
+      "family": "kbd",
+      "id": "shift",
+      "file": "kbd/shift.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_shift_outline.svg",
+      "sourceSha256": "b8a50952f9a12379484872c089a4e3ad59dd7b8e360580dc2a02cf1c12d6e2e2"
+    },
+    {
+      "family": "kbd",
+      "id": "slash_back",
+      "file": "kbd/slash_back.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_slash_back_outline.svg",
+      "sourceSha256": "206a6d3041f2f9d5325bf2d92b5de8679f29b786082f7ce61edad6ef17c2e9b0"
+    },
+    {
+      "family": "kbd",
+      "id": "slash_forward",
+      "file": "kbd/slash_forward.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_slash_forward_outline.svg",
+      "sourceSha256": "781bc9daaedef2cde89284680d24258619c04f743fa0d24c530235edcd7144e7"
+    },
+    {
+      "family": "kbd",
+      "id": "space_icon",
+      "file": "kbd/space_icon.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_space_icon_outline.svg",
+      "sourceSha256": "4f50299f3b46f66358a8f9260d1926102676020fc1692bf92daec36d6948df08"
+    },
+    {
+      "family": "kbd",
+      "id": "space",
+      "file": "kbd/space.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_space_outline.svg",
+      "sourceSha256": "eed73b94c4340c5eaafd3f5c2b156dcea30eb177496aafc07197eda9b5b5a660"
+    },
+    {
+      "family": "kbd",
+      "id": "s",
+      "file": "kbd/s.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_s_outline.svg",
+      "sourceSha256": "f7b763be5ccfb36aa4e186186821ee88975dd3ba592f0a546d7484cbf5c960d4"
+    },
+    {
+      "family": "kbd",
+      "id": "tab_icon_alternative",
+      "file": "kbd/tab_icon_alternative.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_tab_icon_alternative_outline.svg",
+      "sourceSha256": "e3180afa64cf1bda22b29d1f13935e8e88a95f2105a4dec76cad4c3230cee200"
+    },
+    {
+      "family": "kbd",
+      "id": "tab_icon",
+      "file": "kbd/tab_icon.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_tab_icon_outline.svg",
+      "sourceSha256": "a677c756ffa3173104991e6b0c23ebb71a1645641b84b90eb53759cd56db968d"
+    },
+    {
+      "family": "kbd",
+      "id": "tab",
+      "file": "kbd/tab.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_tab_outline.svg",
+      "sourceSha256": "5a23e698ab7e0c8ea2203f4718cf2e99d57a802fb87b30443c28c555f502f898"
+    },
+    {
+      "family": "kbd",
+      "id": "tilde",
+      "file": "kbd/tilde.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_tilde_outline.svg",
+      "sourceSha256": "be51eae937e5fd544da88d35103116705d300a21701720258e11cf1d0b2cdd34"
+    },
+    {
+      "family": "kbd",
+      "id": "t",
+      "file": "kbd/t.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_t_outline.svg",
+      "sourceSha256": "6282cd19d41dc1cc96130bdd82714d1a41ce5bc4f8f75dcb04056d73fb4eb4f2"
+    },
+    {
+      "family": "kbd",
+      "id": "underscore",
+      "file": "kbd/underscore.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_underscore_outline.svg",
+      "sourceSha256": "d9d95950e9973a13c4d8af4461555067ac105149bf72c154500a1d59f20fda59"
+    },
+    {
+      "family": "kbd",
+      "id": "u",
+      "file": "kbd/u.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_u_outline.svg",
+      "sourceSha256": "0c0fb10afc01c451dc84f22f3c20c6fb6d1f2a143a9219a6f0054558a70128a9"
+    },
+    {
+      "family": "kbd",
+      "id": "v",
+      "file": "kbd/v.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_v_outline.svg",
+      "sourceSha256": "72bb07c2d9d3c39df1c1c8fe1ecee8095eec9aae3b402bcbe001211d3c587a35"
+    },
+    {
+      "family": "kbd",
+      "id": "win",
+      "file": "kbd/win.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_win_outline.svg",
+      "sourceSha256": "4c807854fd63db0cdd2fd239229f1386acb5209c360795f9cf720b985a5dcb65"
+    },
+    {
+      "family": "kbd",
+      "id": "w",
+      "file": "kbd/w.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_w_outline.svg",
+      "sourceSha256": "27d6f57760db45b7244a6fba74e6c4c11caa31e6c415550825e36f11072633ee"
+    },
+    {
+      "family": "kbd",
+      "id": "x",
+      "file": "kbd/x.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_x_outline.svg",
+      "sourceSha256": "3c94c24e3d8c71abae801e7bedf7da51dbf6c7d06d235ec35541bdae86161d6a"
+    },
+    {
+      "family": "kbd",
+      "id": "y",
+      "file": "kbd/y.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_y_outline.svg",
+      "sourceSha256": "2b196e359e588d0e703093844cc51b5baffe323cf98c90b4fe7a4189fa601b66"
+    },
+    {
+      "family": "kbd",
+      "id": "z",
+      "file": "kbd/z.svg",
+      "source": "Keyboard & Mouse/Vector/keyboard_z_outline.svg",
+      "sourceSha256": "4ba269b4c80c1d644ef6038747b5d3982a989afc3572c7c7f2657a8299a04cbe"
+    },
+    {
+      "family": "xbox",
+      "id": "south",
+      "file": "xbox/south.svg",
+      "source": "Xbox Series/Vector/xbox_button_a_outline.svg",
+      "sourceSha256": "d4e5a26168d9ca3cc5f880befea9cc851359f410d6582ea7397e0da51a08c685"
+    },
+    {
+      "family": "xbox",
+      "id": "east",
+      "file": "xbox/east.svg",
+      "source": "Xbox Series/Vector/xbox_button_b_outline.svg",
+      "sourceSha256": "ff2dff9ca5f8ef0e9d7f32ce97f83db807b7a67679d914c10ef0b5aaaf845f75"
+    },
+    {
+      "family": "xbox",
+      "id": "west",
+      "file": "xbox/west.svg",
+      "source": "Xbox Series/Vector/xbox_button_x_outline.svg",
+      "sourceSha256": "025d0ba752f08e010ebc8eec4970f0a9b85143f971626547059bab43da75e640"
+    },
+    {
+      "family": "xbox",
+      "id": "north",
+      "file": "xbox/north.svg",
+      "source": "Xbox Series/Vector/xbox_button_y_outline.svg",
+      "sourceSha256": "86bb6b4010c8c9266d3dde3c2d6652e40af295b6a40dd2a3fc9d33fdd1f85d46"
+    },
+    {
+      "family": "xbox",
+      "id": "lb",
+      "file": "xbox/lb.svg",
+      "source": "Xbox Series/Vector/xbox_lb_outline.svg",
+      "sourceSha256": "8646bcb49937539bb150f5f6713448dcae0bfdedc27ffd6e16767cb16f15211a"
+    },
+    {
+      "family": "xbox",
+      "id": "rb",
+      "file": "xbox/rb.svg",
+      "source": "Xbox Series/Vector/xbox_rb_outline.svg",
+      "sourceSha256": "c18817fc50574852e77826d07764f3f33a7a8f0897782f9f5020a486e8954456"
+    },
+    {
+      "family": "xbox",
+      "id": "lt",
+      "file": "xbox/lt.svg",
+      "source": "Xbox Series/Vector/xbox_lt_outline.svg",
+      "sourceSha256": "fac6ac0a51b3baba208708b17a0834c63a56ee19e32a276f705a9858a9518f47"
+    },
+    {
+      "family": "xbox",
+      "id": "rt",
+      "file": "xbox/rt.svg",
+      "source": "Xbox Series/Vector/xbox_rt_outline.svg",
+      "sourceSha256": "bf6220a227abbba88caf0b26b4511114df31d59d3181bcca1bad13e3648dfa0b"
+    },
+    {
+      "family": "xbox",
+      "id": "ls",
+      "file": "xbox/ls.svg",
+      "source": "Xbox Series/Vector/xbox_stick_l.svg",
+      "sourceSha256": "c5097b1eab526cddc799ae77a6bf8d29b759408be2420357ba85b7441d6430e2"
+    },
+    {
+      "family": "xbox",
+      "id": "rs",
+      "file": "xbox/rs.svg",
+      "source": "Xbox Series/Vector/xbox_stick_r_press.svg",
+      "sourceSha256": "1f17890ab137d84c44eacaaf56ffa861ba7107b709926427218f4c4743024c0f"
+    },
+    {
+      "family": "xbox",
+      "id": "back",
+      "file": "xbox/back.svg",
+      "source": "Xbox Series/Vector/xbox_button_view_outline.svg",
+      "sourceSha256": "bec7a4076d86f83a29c2aef6f2ec11350c3186b472a0814108ab7f80b8cc8681"
+    },
+    {
+      "family": "xbox",
+      "id": "start",
+      "file": "xbox/start.svg",
+      "source": "Xbox Series/Vector/xbox_button_menu_outline.svg",
+      "sourceSha256": "b3452fb97956b9d4621f117a4531e88d52d90595f96a12caa4e369972e733059"
+    },
+    {
+      "family": "ps",
+      "id": "south",
+      "file": "ps/south.svg",
+      "source": "PlayStation Series/Vector/playstation_button_cross_outline.svg",
+      "sourceSha256": "bd861ae29336011eca5ffddc0622ba936bd1ad721e32a8dba04450f2c22299a9"
+    },
+    {
+      "family": "ps",
+      "id": "east",
+      "file": "ps/east.svg",
+      "source": "PlayStation Series/Vector/playstation_button_circle_outline.svg",
+      "sourceSha256": "ae89d8b6fcce6abf720795aa31c8000b4ba51b6f0674f33c3f415a677484b592"
+    },
+    {
+      "family": "ps",
+      "id": "west",
+      "file": "ps/west.svg",
+      "source": "PlayStation Series/Vector/playstation_button_square_outline.svg",
+      "sourceSha256": "0771443cba075eb5319e2c70fe5e7a3f5d6ce254ec9496305728d71a60d21589"
+    },
+    {
+      "family": "ps",
+      "id": "north",
+      "file": "ps/north.svg",
+      "source": "PlayStation Series/Vector/playstation_button_triangle_outline.svg",
+      "sourceSha256": "dc52cd4b312b6acd8f21718674d803ae6dc19aae116c7b1484e0be3f60d40afc"
+    },
+    {
+      "family": "ps",
+      "id": "lb",
+      "file": "ps/lb.svg",
+      "source": "PlayStation Series/Vector/playstation_trigger_l1_outline.svg",
+      "sourceSha256": "b3cfc5d2ccaf289c7ae3c20d8348a549f8723bf7305560db35e0584468ed9188"
+    },
+    {
+      "family": "ps",
+      "id": "rb",
+      "file": "ps/rb.svg",
+      "source": "PlayStation Series/Vector/playstation_trigger_r1_outline.svg",
+      "sourceSha256": "727219e6900ccf30c5831832e4fac2827ef71ca0e7a93d70d9601fcb76703ea9"
+    },
+    {
+      "family": "ps",
+      "id": "lt",
+      "file": "ps/lt.svg",
+      "source": "PlayStation Series/Vector/playstation_trigger_l2_outline.svg",
+      "sourceSha256": "3480a079952a7e919e7a1c1e68b2654a9247f77bd641a1c882495c84fc73a2a3"
+    },
+    {
+      "family": "ps",
+      "id": "rt",
+      "file": "ps/rt.svg",
+      "source": "PlayStation Series/Vector/playstation_trigger_r2_outline.svg",
+      "sourceSha256": "89d66f57477b11f209dd74f0f8a3dde56d1b2b22d662761e6839d6490dd7ad55"
+    },
+    {
+      "family": "ps",
+      "id": "ls",
+      "file": "ps/ls.svg",
+      "source": "PlayStation Series/Vector/playstation_stick_l.svg",
+      "sourceSha256": "c5097b1eab526cddc799ae77a6bf8d29b759408be2420357ba85b7441d6430e2"
+    },
+    {
+      "family": "ps",
+      "id": "rs",
+      "file": "ps/rs.svg",
+      "source": "PlayStation Series/Vector/playstation_button_r3_outline.svg",
+      "sourceSha256": "bfcc2beb5c1700c18941bd04cbd51d269ecddbe8ccb2dd898c490acf6e1c76cb"
+    },
+    {
+      "family": "ps",
+      "id": "back",
+      "file": "ps/back.svg",
+      "source": "PlayStation Series/Vector/playstation4_button_share_outline.svg",
+      "sourceSha256": "c6268c3aa754e3dc789572e9f034cb0354499651e5a3263ee1ab2505e993abaf"
+    },
+    {
+      "family": "ps",
+      "id": "back-ps3",
+      "file": "ps/back-ps3.svg",
+      "source": "PlayStation Series/Vector/playstation3_button_select_outline.svg",
+      "sourceSha256": "62f5da820cb71e5c80acbcd03ed6730f23f6379fbd2c9600d2a7e71bcc71a68a"
+    },
+    {
+      "family": "ps",
+      "id": "back-ps5",
+      "file": "ps/back-ps5.svg",
+      "source": "PlayStation Series/Vector/playstation5_button_create_outline.svg",
+      "sourceSha256": "37e259e466236f6fe628826a353db60901bb79e21ae848daf3d64cb3c0853d49"
+    },
+    {
+      "family": "ps",
+      "id": "start",
+      "file": "ps/start.svg",
+      "source": "PlayStation Series/Vector/playstation4_button_options_outline.svg",
+      "sourceSha256": "8cd90ace8e17fcb8d0900c8d1238d8cd873bf204dbaa2a8044cf1bebc6113dfa"
+    },
+    {
+      "family": "ps",
+      "id": "start-ps3",
+      "file": "ps/start-ps3.svg",
+      "source": "PlayStation Series/Vector/playstation3_button_start_outline.svg",
+      "sourceSha256": "9baa803bf173f10858d1cfe513d2c3f8608acbf6bb7d5cfc30afb6ae1730ad6c"
+    },
+    {
+      "family": "ps",
+      "id": "start-ps5",
+      "file": "ps/start-ps5.svg",
+      "source": "PlayStation Series/Vector/playstation5_button_options_outline.svg",
+      "sourceSha256": "9a5fd0cd08cc1bfd9a64bfdb2611b92f873c44a73f0f2ff9f6dbd41310f5403c"
+    },
+    {
+      "family": "switch",
+      "id": "south",
+      "file": "switch/south.svg",
+      "source": "Nintendo Switch/Vector/switch_button_b_outline.svg",
+      "sourceSha256": "ff2dff9ca5f8ef0e9d7f32ce97f83db807b7a67679d914c10ef0b5aaaf845f75"
+    },
+    {
+      "family": "switch",
+      "id": "east",
+      "file": "switch/east.svg",
+      "source": "Nintendo Switch/Vector/switch_button_a_outline.svg",
+      "sourceSha256": "d4e5a26168d9ca3cc5f880befea9cc851359f410d6582ea7397e0da51a08c685"
+    },
+    {
+      "family": "switch",
+      "id": "west",
+      "file": "switch/west.svg",
+      "source": "Nintendo Switch/Vector/switch_button_y_outline.svg",
+      "sourceSha256": "86bb6b4010c8c9266d3dde3c2d6652e40af295b6a40dd2a3fc9d33fdd1f85d46"
+    },
+    {
+      "family": "switch",
+      "id": "north",
+      "file": "switch/north.svg",
+      "source": "Nintendo Switch/Vector/switch_button_x_outline.svg",
+      "sourceSha256": "025d0ba752f08e010ebc8eec4970f0a9b85143f971626547059bab43da75e640"
+    },
+    {
+      "family": "switch",
+      "id": "lb",
+      "file": "switch/lb.svg",
+      "source": "Nintendo Switch/Vector/switch_button_l_outline.svg",
+      "sourceSha256": "a5858e363c608a8d795b492b7e321d6d4693dacb0995bc1f9fbac637e57021fc"
+    },
+    {
+      "family": "switch",
+      "id": "rb",
+      "file": "switch/rb.svg",
+      "source": "Nintendo Switch/Vector/switch_button_r_outline.svg",
+      "sourceSha256": "c0832563c08dd4d25adaf5aa739053dc11fe5f8bc2ecb12b5fcf8ebe3aac2ef9"
+    },
+    {
+      "family": "switch",
+      "id": "lt",
+      "file": "switch/lt.svg",
+      "source": "Nintendo Switch/Vector/switch_button_zl_outline.svg",
+      "sourceSha256": "5a7c07b8de3fb75b5a3779c7fcf15e3514b1a910d1755f4f9bc1b372e2b52d76"
+    },
+    {
+      "family": "switch",
+      "id": "rt",
+      "file": "switch/rt.svg",
+      "source": "Nintendo Switch/Vector/switch_button_zr_outline.svg",
+      "sourceSha256": "bc4e1c30893197a7d0a2b27c47ead613d8f2db149c36652289bcc6fe90f9cbb8"
+    },
+    {
+      "family": "switch",
+      "id": "ls",
+      "file": "switch/ls.svg",
+      "source": "Nintendo Switch/Vector/switch_stick_l.svg",
+      "sourceSha256": "c5097b1eab526cddc799ae77a6bf8d29b759408be2420357ba85b7441d6430e2"
+    },
+    {
+      "family": "switch",
+      "id": "rs",
+      "file": "switch/rs.svg",
+      "source": "Nintendo Switch/Vector/switch_stick_r_press.svg",
+      "sourceSha256": "1f17890ab137d84c44eacaaf56ffa861ba7107b709926427218f4c4743024c0f"
+    },
+    {
+      "family": "switch",
+      "id": "back",
+      "file": "switch/back.svg",
+      "source": "Nintendo Switch/Vector/switch_button_minus_outline.svg",
+      "sourceSha256": "f0173bb981d54301c19769bab149c3b437d4209202c5ad80bbeb6ec469d974ca"
+    },
+    {
+      "family": "switch",
+      "id": "start",
+      "file": "switch/start.svg",
+      "source": "Nintendo Switch/Vector/switch_button_plus_outline.svg",
+      "sourceSha256": "e3bcd324fe553c2b4542d13a664fcc37dd09b91f0b7288b926429697ba04e2ff"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "tileSize": [
+    64,
+    32
+  ],
+  "materials": 4,
+  "tileSamples": 32,
+  "transitionPairs": 6,
+  "transitionStates": 96,
+  "atlasSize": [
+    1536,
+    512
+  ],
+  "bakedYardShadow": false,
+  "collisionChanges": false,
+  "mirrorMismatches": [],
+  "periodicEdgeMismatch": {
+    "grama": 0,
+    "calcada": 0,
+    "piso": 0
+  },
+  "nativeFields": [
+    {
+      "material": "grama",
+      "size": [
+        1280,
+        720
+      ],
+      "zoom": 1.4,
+      "interiorPixelsTested": 126024,
+      "blackGaps": 0
+    },
+    {
+      "material": "calcada",
+      "size": [
+        1280,
+        720
+      ],
+      "zoom": 1.4,
+      "interiorPixelsTested": 126024,
+      "blackGaps": 0
+    },
+    {
+      "material": "piso",
+      "size": [
+        1280,
+        720
+      ],
+      "zoom": 1.4,
+      "interiorPixelsTested": 126024,
+      "blackGaps": 0
+    },
+    {
+      "material": "encontros",
+      "size": [
+        1280,
+        720
+      ],
+      "zoom": 1.4,
+      "interiorPixelsTested": 126024,
+      "blackGaps": 0
+    }
+  ],
+  "nativeRenderErrors": 0
+}

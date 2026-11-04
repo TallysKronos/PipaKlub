@@ -1,0 +1,1151 @@
+{
+  "schema": "overworld-kit-1",
+  "biome": "urbano",
+  "grid": {
+    "cell": [
+      64,
+      32
+    ],
+    "height": 32,
+    "levelPx": 64
+  },
+  "approval": "pending_owner_review",
+  "styleBoard": "../../estilo/PRANCHA-ESTILO.png",
+  "pieces": {
+    "casa-jardim": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/casa-jardim-default.png",
+          "size": [
+            256,
+            320
+          ],
+          "footprint": [
+            4,
+            4
+          ],
+          "visualFootprint": [
+            4,
+            4
+          ],
+          "bloqueia": true,
+          "height": 4,
+          "anchor": [
+            128,
+            256
+          ],
+          "isoAnchor": [
+            128,
+            320
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            252,
+            239
+          ],
+          "doorFace": "v+",
+          "category": "casas",
+          "displayName": "Casa térrea com jardim",
+          "stories": 1,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/casa-jardim.png",
+            "geometryGuide": "fontes/geometria/casa-jardim.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    },
+    "sobrado-varanda": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/sobrado-varanda-default.png",
+          "size": [
+            256,
+            352
+          ],
+          "footprint": [
+            4,
+            4
+          ],
+          "visualFootprint": [
+            4,
+            4
+          ],
+          "bloqueia": true,
+          "height": 5,
+          "anchor": [
+            128,
+            288
+          ],
+          "isoAnchor": [
+            128,
+            352
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            252,
+            272
+          ],
+          "doorFace": "u+",
+          "category": "casas",
+          "displayName": "Sobrado com varanda",
+          "stories": 2,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/sobrado-varanda.png",
+            "geometryGuide": "fontes/geometria/sobrado-varanda.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    },
+    "casa-geminada": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/casa-geminada-default.png",
+          "size": [
+            256,
+            480
+          ],
+          "footprint": [
+            4,
+            4
+          ],
+          "visualFootprint": [
+            4,
+            4
+          ],
+          "bloqueia": true,
+          "height": 9,
+          "anchor": [
+            128,
+            416
+          ],
+          "isoAnchor": [
+            128,
+            480
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            252,
+            387
+          ],
+          "doorFace": "v+",
+          "category": "casas",
+          "displayName": "Casa geminada urbana",
+          "stories": 2,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/casa-geminada.png",
+            "geometryGuide": "fontes/geometria/casa-geminada.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    },
+    "casa-atelie": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/casa-atelie-default.png",
+          "size": [
+            256,
+            384
+          ],
+          "footprint": [
+            4,
+            4
+          ],
+          "visualFootprint": [
+            4,
+            4
+          ],
+          "bloqueia": true,
+          "height": 5,
+          "anchor": [
+            128,
+            320
+          ],
+          "isoAnchor": [
+            128,
+            384
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            252,
+            283
+          ],
+          "doorFace": "u+",
+          "category": "casas",
+          "displayName": "Casa com ateliê de pipas",
+          "stories": 2,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/casa-atelie.png",
+            "geometryGuide": "fontes/geometria/casa-atelie.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    },
+    "casa-ecologica": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/casa-ecologica-default.png",
+          "size": [
+            256,
+            320
+          ],
+          "footprint": [
+            4,
+            4
+          ],
+          "visualFootprint": [
+            4,
+            4
+          ],
+          "bloqueia": true,
+          "height": 4,
+          "anchor": [
+            128,
+            256
+          ],
+          "isoAnchor": [
+            128,
+            320
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            252,
+            232
+          ],
+          "doorFace": "v+",
+          "category": "casas",
+          "displayName": "Casa ecológica",
+          "stories": 1,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/casa-ecologica.png",
+            "geometryGuide": "fontes/geometria/casa-ecologica.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    },
+    "residencia-terraco": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/residencia-terraco-default.png",
+          "size": [
+            256,
+            352
+          ],
+          "footprint": [
+            4,
+            4
+          ],
+          "visualFootprint": [
+            4,
+            4
+          ],
+          "bloqueia": true,
+          "height": 5,
+          "anchor": [
+            128,
+            288
+          ],
+          "isoAnchor": [
+            128,
+            352
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            252,
+            267
+          ],
+          "doorFace": "u+",
+          "category": "casas",
+          "displayName": "Residência com terraço",
+          "stories": 2,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/residencia-terraco.png",
+            "geometryGuide": "fontes/geometria/residencia-terraco.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    },
+    "loja-pipas": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/loja-pipas-default.png",
+          "size": [
+            320,
+            416
+          ],
+          "footprint": [
+            5,
+            5
+          ],
+          "visualFootprint": [
+            5,
+            5
+          ],
+          "bloqueia": true,
+          "height": 5,
+          "anchor": [
+            160,
+            336
+          ],
+          "isoAnchor": [
+            160,
+            416
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            316,
+            293
+          ],
+          "doorFace": "v+",
+          "category": "comercios",
+          "displayName": "Loja de pipas e linhas",
+          "stories": 1,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/loja-pipas.png",
+            "geometryGuide": "fontes/geometria/loja-pipas.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    },
+    "oficina-reparos": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/oficina-reparos-default.png",
+          "size": [
+            320,
+            416
+          ],
+          "footprint": [
+            5,
+            5
+          ],
+          "visualFootprint": [
+            5,
+            5
+          ],
+          "bloqueia": true,
+          "height": 5,
+          "anchor": [
+            160,
+            336
+          ],
+          "isoAnchor": [
+            160,
+            416
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            316,
+            293
+          ],
+          "doorFace": "u+",
+          "category": "comercios",
+          "displayName": "Oficina de reparos",
+          "stories": 1,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/oficina-reparos.png",
+            "geometryGuide": "fontes/geometria/oficina-reparos.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    },
+    "cafe-do-vento": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/cafe-do-vento-default.png",
+          "size": [
+            320,
+            448
+          ],
+          "footprint": [
+            5,
+            5
+          ],
+          "visualFootprint": [
+            5,
+            5
+          ],
+          "bloqueia": true,
+          "height": 6,
+          "anchor": [
+            160,
+            368
+          ],
+          "isoAnchor": [
+            160,
+            448
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            316,
+            324
+          ],
+          "doorFace": "v+",
+          "category": "comercios",
+          "displayName": "Café do Vento",
+          "stories": 2,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/cafe-do-vento.png",
+            "geometryGuide": "fontes/geometria/cafe-do-vento.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    },
+    "papelaria": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/papelaria-default.png",
+          "size": [
+            320,
+            384
+          ],
+          "footprint": [
+            5,
+            5
+          ],
+          "visualFootprint": [
+            5,
+            5
+          ],
+          "bloqueia": true,
+          "height": 4,
+          "anchor": [
+            160,
+            304
+          ],
+          "isoAnchor": [
+            160,
+            384
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            316,
+            275
+          ],
+          "doorFace": "u+",
+          "category": "comercios",
+          "displayName": "Papelaria de bairro",
+          "stories": 1,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/papelaria.png",
+            "geometryGuide": "fontes/geometria/papelaria.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    },
+    "clinica-elos": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/clinica-elos-default.png",
+          "size": [
+            320,
+            416
+          ],
+          "footprint": [
+            5,
+            5
+          ],
+          "visualFootprint": [
+            5,
+            5
+          ],
+          "bloqueia": true,
+          "height": 5,
+          "anchor": [
+            160,
+            336
+          ],
+          "isoAnchor": [
+            160,
+            416
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            316,
+            293
+          ],
+          "doorFace": "v+",
+          "category": "comercios",
+          "displayName": "Clínica de vínculos",
+          "stories": 2,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/clinica-elos.png",
+            "geometryGuide": "fontes/geometria/clinica-elos.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    },
+    "clube-pipeiros": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/clube-pipeiros-default.png",
+          "size": [
+            320,
+            416
+          ],
+          "footprint": [
+            5,
+            5
+          ],
+          "visualFootprint": [
+            5,
+            5
+          ],
+          "bloqueia": true,
+          "height": 5,
+          "anchor": [
+            160,
+            336
+          ],
+          "isoAnchor": [
+            160,
+            416
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            316,
+            309
+          ],
+          "doorFace": "u+",
+          "category": "comercios",
+          "displayName": "Clube dos pipeiros",
+          "stories": 2,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/clube-pipeiros.png",
+            "geometryGuide": "fontes/geometria/clube-pipeiros.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    },
+    "coworking": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/coworking-default.png",
+          "size": [
+            320,
+            512
+          ],
+          "footprint": [
+            5,
+            5
+          ],
+          "visualFootprint": [
+            5,
+            5
+          ],
+          "bloqueia": true,
+          "height": 8,
+          "anchor": [
+            160,
+            432
+          ],
+          "isoAnchor": [
+            160,
+            512
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            316,
+            395
+          ],
+          "doorFace": "v+",
+          "category": "empresariais",
+          "displayName": "Coworking de inventores",
+          "stories": 3,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/coworking.png",
+            "geometryGuide": "fontes/geometria/coworking.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    },
+    "torre-elos": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/torre-elos-default.png",
+          "size": [
+            384,
+            768
+          ],
+          "footprint": [
+            6,
+            6
+          ],
+          "visualFootprint": [
+            6,
+            6
+          ],
+          "bloqueia": true,
+          "height": 15,
+          "anchor": [
+            192,
+            672
+          ],
+          "isoAnchor": [
+            192,
+            768
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            380,
+            654
+          ],
+          "doorFace": "u+",
+          "category": "empresariais",
+          "displayName": "Torre empresarial dos elos",
+          "stories": 6,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/torre-elos.png",
+            "geometryGuide": "fontes/geometria/torre-elos.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    },
+    "centro-logistico": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/centro-logistico-default.png",
+          "size": [
+            384,
+            480
+          ],
+          "footprint": [
+            6,
+            6
+          ],
+          "visualFootprint": [
+            6,
+            6
+          ],
+          "bloqueia": true,
+          "height": 6,
+          "anchor": [
+            192,
+            384
+          ],
+          "isoAnchor": [
+            192,
+            480
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            380,
+            356
+          ],
+          "doorFace": "v+",
+          "category": "empresariais",
+          "displayName": "Centro de logística",
+          "stories": 2,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/centro-logistico.png",
+            "geometryGuide": "fontes/geometria/centro-logistico.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    },
+    "estacao-meteorologica": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/estacao-meteorologica-default.png",
+          "size": [
+            320,
+            640
+          ],
+          "footprint": [
+            5,
+            5
+          ],
+          "visualFootprint": [
+            5,
+            5
+          ],
+          "bloqueia": true,
+          "height": 12,
+          "anchor": [
+            160,
+            560
+          ],
+          "isoAnchor": [
+            160,
+            640
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            316,
+            538
+          ],
+          "doorFace": "u+",
+          "category": "empresariais",
+          "displayName": "Instituto do vento",
+          "stories": 4,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/estacao-meteorologica.png",
+            "geometryGuide": "fontes/geometria/estacao-meteorologica.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    },
+    "editora-cartografica": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/editora-cartografica-default.png",
+          "size": [
+            320,
+            576
+          ],
+          "footprint": [
+            5,
+            5
+          ],
+          "visualFootprint": [
+            5,
+            5
+          ],
+          "bloqueia": true,
+          "height": 10,
+          "anchor": [
+            160,
+            496
+          ],
+          "isoAnchor": [
+            160,
+            576
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            316,
+            449
+          ],
+          "doorFace": "v+",
+          "category": "empresariais",
+          "displayName": "Editora e cartografia",
+          "stories": 3,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/editora-cartografica.png",
+            "geometryGuide": "fontes/geometria/editora-cartografica.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    },
+    "sede-cooperativa": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/sede-cooperativa-default.png",
+          "size": [
+            384,
+            800
+          ],
+          "footprint": [
+            6,
+            6
+          ],
+          "visualFootprint": [
+            6,
+            6
+          ],
+          "bloqueia": true,
+          "height": 15,
+          "anchor": [
+            192,
+            704
+          ],
+          "isoAnchor": [
+            192,
+            800
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            380,
+            657
+          ],
+          "doorFace": "u+",
+          "category": "empresariais",
+          "displayName": "Sede da cooperativa",
+          "stories": 4,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/sede-cooperativa.png",
+            "geometryGuide": "fontes/geometria/sede-cooperativa.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    },
+    "laboratorio-elos": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/laboratorio-elos-default.png",
+          "size": [
+            384,
+            480
+          ],
+          "footprint": [
+            6,
+            6
+          ],
+          "visualFootprint": [
+            6,
+            6
+          ],
+          "bloqueia": true,
+          "height": 6,
+          "anchor": [
+            192,
+            384
+          ],
+          "isoAnchor": [
+            192,
+            480
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            380,
+            361
+          ],
+          "doorFace": "v+",
+          "category": "laboratorios",
+          "displayName": "Laboratório de vínculos",
+          "stories": 2,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/laboratorio-elos.png",
+            "geometryGuide": "fontes/geometria/laboratorio-elos.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    },
+    "laboratorio-campo": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/laboratorio-campo-default.png",
+          "size": [
+            320,
+            384
+          ],
+          "footprint": [
+            5,
+            5
+          ],
+          "visualFootprint": [
+            5,
+            5
+          ],
+          "bloqueia": true,
+          "height": 4,
+          "anchor": [
+            160,
+            304
+          ],
+          "isoAnchor": [
+            160,
+            384
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            316,
+            281
+          ],
+          "doorFace": "u+",
+          "category": "laboratorios",
+          "displayName": "Estação de pesquisa de campo",
+          "stories": 1,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/laboratorio-campo.png",
+            "geometryGuide": "fontes/geometria/laboratorio-campo.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    },
+    "laboratorio-papel": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/laboratorio-papel-default.png",
+          "size": [
+            384,
+            576
+          ],
+          "footprint": [
+            6,
+            6
+          ],
+          "visualFootprint": [
+            6,
+            6
+          ],
+          "bloqueia": true,
+          "height": 9,
+          "anchor": [
+            192,
+            480
+          ],
+          "isoAnchor": [
+            192,
+            576
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            380,
+            453
+          ],
+          "doorFace": "v+",
+          "category": "laboratorios",
+          "displayName": "Laboratório de papel vivo",
+          "stories": 3,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/laboratorio-papel.png",
+            "geometryGuide": "fontes/geometria/laboratorio-papel.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    },
+    "laboratorio-aerodinamica": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/laboratorio-aerodinamica-default.png",
+          "size": [
+            384,
+            576
+          ],
+          "footprint": [
+            6,
+            6
+          ],
+          "visualFootprint": [
+            6,
+            6
+          ],
+          "bloqueia": true,
+          "height": 9,
+          "anchor": [
+            192,
+            480
+          ],
+          "isoAnchor": [
+            192,
+            576
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            380,
+            455
+          ],
+          "doorFace": "u+",
+          "category": "laboratorios",
+          "displayName": "Laboratório de aerodinâmica",
+          "stories": 3,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/laboratorio-aerodinamica.png",
+            "geometryGuide": "fontes/geometria/laboratorio-aerodinamica.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    },
+    "observatorio-almatico": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/observatorio-almatico-default.png",
+          "size": [
+            384,
+            512
+          ],
+          "footprint": [
+            6,
+            6
+          ],
+          "visualFootprint": [
+            6,
+            6
+          ],
+          "bloqueia": true,
+          "height": 7,
+          "anchor": [
+            192,
+            416
+          ],
+          "isoAnchor": [
+            192,
+            512
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            380,
+            388
+          ],
+          "doorFace": "v+",
+          "category": "laboratorios",
+          "displayName": "Observatório almático",
+          "stories": 2,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/observatorio-almatico.png",
+            "geometryGuide": "fontes/geometria/observatorio-almatico.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    },
+    "centro-restauracao": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/centro-restauracao-default.png",
+          "size": [
+            384,
+            512
+          ],
+          "footprint": [
+            6,
+            6
+          ],
+          "visualFootprint": [
+            6,
+            6
+          ],
+          "bloqueia": true,
+          "height": 6,
+          "anchor": [
+            192,
+            416
+          ],
+          "isoAnchor": [
+            192,
+            512
+          ],
+          "groundAnchor": "front",
+          "shadow": "sombras/contato.png",
+          "rasterSize": [
+            380,
+            380
+          ],
+          "doorFace": "u+",
+          "category": "laboratorios",
+          "displayName": "Centro de restauração",
+          "stories": 2,
+          "approval": "pending_owner_review",
+          "source": {
+            "file": "fontes/geradas/centro-restauracao.png",
+            "geometryGuide": "fontes/geometria/centro-restauracao.png",
+            "tool": "image_gen.imagegen",
+            "normalization": "alpha haze cleanup; tight crop; uniform width fit; front anchor; original retained"
+          }
+        }
+      }
+    }
+  },
+  "materials": {},
+  "transitions": {},
+  "walls": {},
+  "stairs": {},
+  "bridges": {},
+  "role": "reusable_architecture_library",
+  "campaignIntegrated": false
+}

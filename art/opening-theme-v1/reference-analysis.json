@@ -1,0 +1,29 @@
+{
+  "source": "o-vento-nos-chamou-v1.mp3",
+  "sha256": "b024520ce85bc8c2a009eab149065218a29bac176253114236ca6ea45e08e550",
+  "duration_seconds": 90.0,
+  "estimated_bpm": 88,
+  "estimated_key": "D major",
+  "estimate_warning": "Spectral/autocorrelation estimates, not a transcription or listening judgment.",
+  "key_candidates": [
+    [
+      0.8679935960996945,
+      "D major"
+    ],
+    [
+      0.7299800612083591,
+      "F# minor"
+    ],
+    [
+      0.7072967567983356,
+      "A major"
+    ],
+    [
+      0.5506999617934627,
+      "B minor"
+    ]
+  ],
+  "excerpt_start_seconds": 0,
+  "excerpt_seconds": 87.27272727272727,
+  "reference_use": "Audio-to-audio latent conditioning; melody retention and absence of voice require listening."
+}

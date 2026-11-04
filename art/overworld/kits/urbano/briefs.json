@@ -1,0 +1,300 @@
+{
+  "collection": "Soulmonsters — arquitetura moderna",
+  "schema": "architecture-library-1",
+  "grid": [
+    64,
+    32
+  ],
+  "light": "upper-left",
+  "status": "in_production",
+  "assets": [
+    {
+      "id": "casa-jardim",
+      "name": "Casa térrea com jardim",
+      "category": "casas",
+      "footprint": [
+        4,
+        4
+      ],
+      "stories": 1,
+      "doorFace": "v+",
+      "brief": "A welcoming contemporary single-storey Brazilian home, ivory plaster and muted sage accents, flat parapet roof, narrow attached timber sunshade, large petrol-blue living-room window, one built-in planter and a discreet kite-shaped door light. No garage."
+    },
+    {
+      "id": "sobrado-varanda",
+      "name": "Sobrado com varanda",
+      "category": "casas",
+      "footprint": [
+        4,
+        4
+      ],
+      "stories": 2,
+      "doorFace": "u+",
+      "brief": "A compact modern two-storey family home, coral and cream plaster, deep blue balcony railing with a tiny paper-kite charm, recessed entry, warm wood slat sunshade, roof terrace with low parapet. The upper balcony is structurally supported."
+    },
+    {
+      "id": "casa-geminada",
+      "name": "Casa geminada urbana",
+      "category": "casas",
+      "footprint": [
+        4,
+        4
+      ],
+      "stories": 2,
+      "doorFace": "v+",
+      "brief": "One modern Brazilian attached townhouse unit, two storeys, narrow practical frontage, ochre plaster and ivory concrete, vertical brise-soleil, a small upper balcony, single blue front entry and bicycle hook fixed to wall. ONE house, not two buildings."
+    },
+    {
+      "id": "casa-atelie",
+      "name": "Casa com ateliê de pipas",
+      "category": "casas",
+      "footprint": [
+        4,
+        4
+      ],
+      "stories": 2,
+      "doorFace": "u+",
+      "brief": "A modern home with a ground-floor kite-maker atelier integrated into the house, muted teal and cream, glass storefront with visible rolls of paper and bamboo spars, residential upper storey, small external blank sign bearing only a simple diamond-and-thread emblem."
+    },
+    {
+      "id": "casa-ecologica",
+      "name": "Casa ecológica",
+      "category": "casas",
+      "footprint": [
+        4,
+        4
+      ],
+      "stories": 1,
+      "doorFace": "v+",
+      "brief": "A modern single-storey environmentally conscious Brazilian home, pale clay plaster, warm timber shutters, flat roof with flush solar panels and a small planted roof strip, compact rainwater barrel attached to rear wall, one deep-blue door. Practical clean architecture, no fantasy giant leaf roof."
+    },
+    {
+      "id": "residencia-terraco",
+      "name": "Residência com terraço",
+      "category": "casas",
+      "footprint": [
+        4,
+        4
+      ],
+      "stories": 2,
+      "doorFace": "u+",
+      "brief": "A contemporary two-storey corner residence, sandy cream concrete with muted rust accents, broad shaded upper terrace, thin structural columns supporting it, deep-blue railings and shaded windows, small wind chime made of paper diamonds. Stylish believable home, no pool."
+    },
+    {
+      "id": "loja-pipas",
+      "name": "Loja de pipas e linhas",
+      "category": "comercios",
+      "footprint": [
+        5,
+        5
+      ],
+      "stories": 1,
+      "doorFace": "v+",
+      "brief": "A lively modern neighborhood kite and thread shop, teal facade and coral striped fabric awning, broad display windows showing orderly paper diamonds and spools, wide recessed glass entry, blank cream shop fascia with a diamond-kite pictogram only."
+    },
+    {
+      "id": "oficina-reparos",
+      "name": "Oficina de reparos",
+      "category": "comercios",
+      "footprint": [
+        5,
+        5
+      ],
+      "stories": 1,
+      "doorFace": "u+",
+      "brief": "A modern repair workshop for Soulmonsters made of living paper, warm ochre and petrol-blue facade, large service doorway, tidy visible workbench with bamboo spars and thread reels, roll-up side shutter, simple wrench-and-kite pictogram on an otherwise blank sign. No vehicles."
+    },
+    {
+      "id": "cafe-do-vento",
+      "name": "Café do Vento",
+      "category": "comercios",
+      "footprint": [
+        5,
+        5
+      ],
+      "stories": 2,
+      "doorFace": "v+",
+      "brief": "A warm modern two-storey neighborhood cafe, cream stucco and terracotta accent panels, dark teal window frames, ground-floor glass entry with small attached service counter, upper seating balcony with one compact table and potted herb, coffee-cup and paper-kite pictogram on blank sign."
+    },
+    {
+      "id": "papelaria",
+      "name": "Papelaria de bairro",
+      "category": "comercios",
+      "footprint": [
+        5,
+        5
+      ],
+      "stories": 1,
+      "doorFace": "u+",
+      "brief": "A contemporary artisan paper and stationery shop, butter-cream facade and muted coral trim, shaded blue-framed windows displaying neat colorful paper rolls and folded patterns, modest flat roof, small stationery-and-diamond pictogram over entry, no writing."
+    },
+    {
+      "id": "clinica-elos",
+      "name": "Clínica de vínculos",
+      "category": "comercios",
+      "footprint": [
+        5,
+        5
+      ],
+      "stories": 2,
+      "doorFace": "v+",
+      "brief": "A welcoming two-storey clinic for restoring paper Soulmonster partners, ivory and soft turquoise architecture, rounded-corner entrance canopy integrated into rectilinear isometric building, tall blue windows, a kite-and-gentle-thread-loop pictogram. No red cross, no Pokeball, no creatures or characters."
+    },
+    {
+      "id": "clube-pipeiros",
+      "name": "Clube dos pipeiros",
+      "category": "comercios",
+      "footprint": [
+        5,
+        5
+      ],
+      "stories": 2,
+      "doorFace": "u+",
+      "brief": "A contemporary community kite trainers' club, warm cream and navy blue with restrained gold accents, double-height entry hall within two storeys, side balcony with pennants, decorative diamond window, folded-paper-and-thread emblem on blank fascia. Brazilian civic neighborhood character, no sports franchise logos."
+    },
+    {
+      "id": "coworking",
+      "name": "Coworking de inventores",
+      "category": "empresariais",
+      "footprint": [
+        5,
+        5
+      ],
+      "stories": 3,
+      "doorFace": "v+",
+      "brief": "A three-storey contemporary coworking building for inventors and kite artisans, warm cream and muted coral fins, petrol-blue glass, recessed welcoming lobby, supported shaded balconies, flat roof with a small wind sensor. Restrained original diamond-and-node emblem."
+    },
+    {
+      "id": "torre-elos",
+      "name": "Torre empresarial dos elos",
+      "category": "empresariais",
+      "footprint": [
+        6,
+        6
+      ],
+      "stories": 6,
+      "doorFace": "u+",
+      "brief": "A distinctive SIX-storey corporate office tower in the Soulmonsters world, slender vertical mass on a square base, ivory concrete frame and deep petrol-blue glass panels, recessed ground lobby, discreet copper diamond-and-thread medallion, flat roof with small service enclosure. Modern Brazilian architecture, not cyberpunk."
+    },
+    {
+      "id": "centro-logistico",
+      "name": "Centro de logística",
+      "category": "empresariais",
+      "footprint": [
+        6,
+        6
+      ],
+      "stories": 2,
+      "doorFace": "v+",
+      "brief": "A modern TWO-storey logistics and distribution office for paper, bamboo and thread supplies, cream concrete with ochre panels, blue glazed upper offices, one wide ground service bay and separate pedestrian door, orderly loading recess within the building base, subtle spool-and-route pictogram. No truck, no crates outside footprint."
+    },
+    {
+      "id": "estacao-meteorologica",
+      "name": "Instituto do vento",
+      "category": "empresariais",
+      "footprint": [
+        5,
+        5
+      ],
+      "stories": 4,
+      "doorFace": "u+",
+      "brief": "A FOUR-storey civilian meteorology and wind research office, ivory and pale blue concrete, petrol glazing, rounded cylindrical wind instrument and small anemometer mounted on roof, strong shaded entrance, small wind-swirl and diamond emblem. It is an office building, not a factory or rocket."
+    },
+    {
+      "id": "editora-cartografica",
+      "name": "Editora e cartografia",
+      "category": "empresariais",
+      "footprint": [
+        5,
+        5
+      ],
+      "stories": 3,
+      "doorFace": "v+",
+      "brief": "A THREE-storey modern publishing and mapping company office, sand plaster and terracotta brick accent band, blue window ribbons with cream sunbreakers, recessed lobby, a geometric folded-map and thread-loop pictogram. Practical contemporary Brazilian city building."
+    },
+    {
+      "id": "sede-cooperativa",
+      "name": "Sede da cooperativa",
+      "category": "empresariais",
+      "footprint": [
+        6,
+        6
+      ],
+      "stories": 4,
+      "doorFace": "u+",
+      "brief": "A FOUR-storey headquarters for a cooperative of kite artisans, warm cream concrete with muted sage inset panels and navy glazing, strong shaded public ground entry, supported upper terraces, a restrained original intertwined-thread diamond crest. Warm civic architecture, no monumental stairs outside footprint."
+    },
+    {
+      "id": "laboratorio-elos",
+      "name": "Laboratório de vínculos",
+      "category": "laboratorios",
+      "footprint": [
+        6,
+        6
+      ],
+      "stories": 2,
+      "doorFace": "v+",
+      "brief": "A TWO-storey modern research laboratory studying human and living-paper Soulmonster bonds, ivory concrete and teal glass, a protected central glass entrance, interior silhouettes of circular thread-tension instruments and paper frames, small rooftop ventilation box, understated diamond-and-thread-loop emblem. Humane and welcoming, no giant tanks or monsters."
+    },
+    {
+      "id": "laboratorio-campo",
+      "name": "Estação de pesquisa de campo",
+      "category": "laboratorios",
+      "footprint": [
+        5,
+        5
+      ],
+      "stories": 1,
+      "doorFace": "u+",
+      "brief": "A compact ONE-storey contemporary field research laboratory, pale sand modular architecture with blue windows and sage panels, small rooftop solar panels and wind mast, attached folded-paper sample cabinet visible through side glass, accessible entry canopy. No terrain or expedition vehicle."
+    },
+    {
+      "id": "laboratorio-papel",
+      "name": "Laboratório de papel vivo",
+      "category": "laboratorios",
+      "footprint": [
+        6,
+        6
+      ],
+      "stories": 3,
+      "doorFace": "v+",
+      "brief": "A THREE-storey modern materials laboratory for living paper, cream concrete with muted jade accent columns, petrol-blue windows, orderly sample racks visible in one ground window with paper strips and bamboo structures, shaded lobby, roof ventilation integrated into a low parapet. Leaf-fibre and paper-diamond pictogram."
+    },
+    {
+      "id": "laboratorio-aerodinamica",
+      "name": "Laboratório de aerodinâmica",
+      "category": "laboratorios",
+      "footprint": [
+        6,
+        6
+      ],
+      "stories": 3,
+      "doorFace": "u+",
+      "brief": "A THREE-storey clean contemporary aerodynamic research lab for Soulmonster flight, ivory and petrol-blue architecture, one compact attached cylindrical wind-tunnel housing integrated inside the building footprint, small roof anemometer, broad glazed entry, elegant wind-swirl and diamond emblem. No huge turbine, no smoke or glowing energy."
+    },
+    {
+      "id": "observatorio-almatico",
+      "name": "Observatório almático",
+      "category": "laboratorios",
+      "footprint": [
+        6,
+        6
+      ],
+      "stories": 2,
+      "doorFace": "v+",
+      "brief": "A TWO-storey contemporary observatory for wind and bond phenomena, ivory walls and deep teal glass, small navy segmented observation dome contained on the flat roof, a modest telescope sensor visible within dome slit, shaded entrance, subtle star-and-paper-diamond emblem. Modern Brazilian research campus, no magic floating tower."
+    },
+    {
+      "id": "centro-restauracao",
+      "name": "Centro de restauração",
+      "category": "laboratorios",
+      "footprint": [
+        6,
+        6
+      ],
+      "stories": 2,
+      "doorFace": "u+",
+      "brief": "A TWO-storey conservation laboratory for damaged living-paper Soulmonsters, cream concrete and warm coral accent panels, tall navy windows, protected glass entry, careful archival drawers and suspended paper frameworks visible through one window, rooftop service enclosure, understated paper-patch and thread emblem. No hospital cross, no captive animals."
+    }
+  ]
+}

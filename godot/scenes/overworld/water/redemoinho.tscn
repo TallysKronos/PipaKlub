@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/overworld/water_effect.gd" id="1_r2edj"]
+
+[node name="redemoinho" type="Sprite2D" unique_id=1680614372]
+script = ExtResource("1_r2edj")
+effect_id = "redemoinho"

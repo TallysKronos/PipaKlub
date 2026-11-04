@@ -1,0 +1,34 @@
+{
+  "tool": "image_gen.imagegen",
+  "stage": "concept studies; not runtime assets",
+  "sourceGeometry": "documentation/overworld/pip81/references/rua-dos-ventos-referencia.png",
+  "styleReference": "art/overworld/estilo/revisao-manga-v2/ESQUINA-ALVO-SIMPLIFICADA.png",
+  "firstPrompt": "Create a polished 2D isometric game environment PAINTOVER for PipaKlub, a Brazilian neighborhood kite adventure. Reference 1 is the EXACT spatial blockout to repaint. Reference 2 ONLY defines the approved clean anime ink / flat cel color finish; do not use its composition or stairs.\nLOCK CAMERA AND LAYOUT: orthographic isometric 2:1, identical full diamond map framing to reference1, long blue-grey road diagonally upper-left to lower-right, two cream sidewalks of unchanged widths, extended cream plaza on near side, dirt park exit at bottom-center, three houses on far side in the exact three block positions. Leftmost is Kael home 4x4, middle Assis home/workshop 4x3, rightmost kite shop4x3. Front doors face near-left sidewalk at their block front edge. Ground is entirely level: absolutely no stairs, elevated terraces, cliff faces or retaining walls. Preserve continuous road and all traversable paths. Keep silhouettes outside walkways. The three homes must have full finished terracotta gable roofs with both planes, dark blue eaves, cream or muted warm plaster, teal wood doors, window shutters. Assis atelier has restrained kite tools at window. Shop has several colorful handmade diamond kites and spools, but no signs/text.\nNEAR PLAZA: replace five small brown placeholders at their exact locations with 3 wooden benches, a community noticeboard, and a low kite workbench. Dirt exit remains visible and open. FAR GARDENS: low boundary walls, closed gates/hedges mark the impassable green plots; tasteful shrubs and pots, residential back plots continue beyond map. No new paths. Two simple electricity posts on the green verge with wire and one tangled kite, no wires crossing door focal points. Continue street at both map ends into a soft cropped edge instead of isolated toy diorama, but retain original image rectangle/map diamond.\nART: match reference2's confident navy chromatic ink, strong broad color shapes, one hard shadow per material, grouped roof tiles and leaf masses, warm pale cream sidewalk, muted blue asphalt, terracotta orange, natural light green. Overhead upper-left sun. Calm readable floor, richer detail confined to houses and garden edges. Hand-drawn 2D anime background, no watercolor wash, no 3D bevel or toy render, no photoreal textures. Far building walls and low hedges visually explain impassable areas. All three houses distinct but same scale/style. NO characters, UI, labels, text, frame, watermark. Output landscape aspect matching reference1, complete map visible, do not zoom/crop. This is a concept paintover, not an asset sheet.",
+  "revisionPrompt": "Edit the first image, a concept study for PipaKlub's Rua dos Ventos. Preserve its exact canvas, isometric camera, continuous road, sidewalk/plaza outlines, three house positions, all roof shapes, all three main doors, object arrangement, flat ink color style and upper-left light. SECOND image is the authoritative original map footprint; preserve the roads and entrances shown there.\nMake these targeted design corrections:\n1. MIDDLE HOUSE is Sr Assis's residential workshop, NOT a second retail kite shop. Remove its open retail display and hanging colorful kite merchandise. Keep its door in place. Replace the retail window with a closed deep-teal shuttered window with a modest wooden tool ledge, only a small spool and a few slender bamboo rods leaning INSIDE the recess. Give this house warm pale-coral plaster to differentiate it from Kael's creamy home at left and the lively kite shop at right.\n2. Near-side green areas at lower-left and lower-right are IMPASSABLE planted gardens. They currently look like open walkable grass. Add continuous dense LOW shrub borders along their sidewalk interfaces, about waist high, built from broad green cel-shaded masses; no picket fence and no tall retaining wall. The hedges must stay completely within green areas, never narrow the cream walkway/plaza. Keep the brown park-exit path at lower center unobstructed, with two clearly open hedge ends framing that opening. Do NOT add any other opening or path into lawns.\n3. Road must visually continue through both left and right map ends, without hedge across asphalt. Do not invent steps, elevation, platforms, extra homes, UI, labels, text or people. Keep the geometry untouched. Reduce fine speckled grass texture to calmer broad green masses, no watercolor. Confident dark navy outlines, base plus one hard shadow per material. Everything else stays unchanged. Deliver a clean 2D environment concept image, same wide aspect as original.",
+  "files": [
+    {
+      "path": "fontes/rua-estudo-v1.png",
+      "size": [
+        1720,
+        914
+      ],
+      "sha256": "d5fe56e7e3f34137df692694623bf92d9ad06152cd16216d20a43a7552540179"
+    },
+    {
+      "path": "rua-estudo-v2.png",
+      "size": [
+        1720,
+        914
+      ],
+      "sha256": "f5e8675b59c0b24104427e5259370a164291c312b4ba545528f00d620e9e0238"
+    },
+    {
+      "path": "referencia.png",
+      "size": [
+        5088,
+        2704
+      ],
+      "sha256": "069d05ca86e1ce47a1d9af74c014552aeb22501a9da43013ae5d9af1dcb6139f"
+    }
+  ]
+}

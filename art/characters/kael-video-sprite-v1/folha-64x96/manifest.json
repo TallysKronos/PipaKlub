@@ -1,0 +1,41 @@
+{
+  "sourceVideo": "C:\\Users\\user\\produto\\pipa-club-pip88\\art\\characters\\kael-video-sprite-v1\\video-original\\2ee8f5c1_000.mp4",
+  "timestamps": [
+    1.1666667,
+    1.3125000375,
+    1.458333375,
+    1.6041667124999999,
+    1.75000005,
+    1.8958333875,
+    2.041666725,
+    2.1875000625
+  ],
+  "cell": [
+    64,
+    96
+  ],
+  "paletteColors": 24,
+  "alignment": {
+    "crop": [
+      146,
+      58,
+      364,
+      460
+    ],
+    "scale": 0.22388059701492538,
+    "resized": [
+      49,
+      90
+    ],
+    "offset": [
+      7,
+      4
+    ]
+  },
+  "status": "rascunho: revisar identidade, juntas, loop, clusters e leitura 1x",
+  "limitations": [
+    "A quantização limita cores; não recupera automaticamente clusters desenhados.",
+    "Sem separação anatômica ou pose inferida: camada única para retoque.",
+    "Loop e anatomia exigem inspeção; timestamps são seleção de quadros, não certificação."
+  ]
+}

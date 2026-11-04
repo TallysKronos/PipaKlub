@@ -1,0 +1,27 @@
+{
+  "issue": "PIP-63",
+  "created": "2026-10-26",
+  "tool": "built-in image_gen",
+  "intent": "Original drawn raster source atlases for the Godot Recorte ink kit",
+  "reference": "art/ui/hud-recorte-v1/ESPECIFICACAO.md, section 3.1",
+  "source_policy": "Original generated files copied without alteration, including their embedded provenance. Runtime files are normalized derivatives; no third-party franchise art was supplied or copied.",
+  "shared_prompt_constraints": "Original Brazilian paper-kite creature game. Transparent RGBA, clean variable-weight brush ink, near-black #0B1017 or white masks, no words, labels, numbers, logos, backgrounds, glow, watercolor or copied franchise shapes. Isolated complete silhouettes with transparent gutters. Empty centers on frames. Sticker letters remain live Godot Labels.",
+  "sources": [
+    {"file":"sources/frames.png","generated_file":"exec-daa03e6f-3f99-4d40-8a06-472792348131.png","prompt_brief":"One 3-column by 2-row transparent production source atlas: panel, ribbon, button, list-item and speech frame outlines, last cell blank. Variable ink weight, heavier under/right, modest clipped corners, straight quiet middle edges for tiling, transparent interiors. No tails, fill or ornaments."},
+    {"file":"sources/balloons.png","generated_file":"exec-647ca9bd-e386-4ed3-b005-8b8d639fadd4.png","prompt_brief":"One 4-column by 2-row transparent manga balloon source atlas: calm speech outline, pointed shout, cloud thought and dashed whisper bodies above; separate left/right speech tails, thought bubbles and dashed whisper tail below. Near-black ink only, fully transparent centers, clean variable line weight."},
+    {"file":"sources/splats.png","generated_file":"exec-2619676a-a19f-423d-bf9f-3edfb18859ed.png","prompt_brief":"One 4-column by 2-row transparent sprite atlas: eight distinct white hand-inked splashes, three compact, three energetic medium and two broad large. Each main blob with 3-7 satellite drops and at most one drip. Organic, directional silhouettes, no polygonal starbursts or creature shapes."},
+    {"file":"sources/emotes.png","generated_file":"exec-175105b8-50e7-44d4-87dd-29a97a6c871e.png","prompt_brief":"One 4-column by 2-row transparent reaction atlas: sweat, anger vein, sparkle, exclamation, question, heart, dizziness spiral and sigh cloud. Ivory paper fill and outer sticker edge, near-black variable outline. Clean bold symbols legible at 96px, no faces or text except punctuation pictograms."},
+    {"file":"sources/strokes.png","generated_file":"exec-7ae9497b-0360-4708-9c8a-949804889794.png","prompt_brief":"One transparent atlas in three rows: three separate white horizontal selection brush strokes. First sweeps upward at left, second firm with forked tip, third dynamic with two tails. Long opaque core, tapered bristle ends, restrained dry-brush cuts, quiet middle 60 percent for 3-slice."},
+    {"file":"sources/drips.png","generated_file":"exec-9ece8e01-f91e-45db-b3f3-63693e197c1d.png","prompt_brief":"One 4-column by 2-row transparent white ink atlas. Four hanging drips of varying length/curvature above; three diagonal trails of 3-5 decreasing teardrops below, last cell blank. Complete clean smooth silhouettes, no outline, gray fill, text or background."},
+    {"file":"sources/stickers.png","generated_file":"exec-9a57998b-f055-4533-bbcf-0dfd211871d4.png","prompt_brief":"One 2-column by 2-row transparent empty badge atlas: compact splash, wide diagonal splat, lozenge splash and twin-lobed splash. Near-black bodies and paper outer borders, broad blank centers for live text, no writing or icons baked into images."},
+    {"file":"sources/speed-concentration.png","generated_file":"exec-c2c842f1-abd2-4976-84db-f2743e55ba05.png","prompt_brief":"One square transparent critical-hit overlay: about 40 white tapered radial brush streaks from the outside toward a clear center near 52% x 47%, sparse empty center, modest asymmetry, no radial glow, rings, solid burst center or background."},
+    {"file":"sources/speed-parallel.png","generated_file":"exec-fc2f1ff3-3bd3-4191-995b-e9341027219b.png","prompt_brief":"One square transparent critical overlay: about 32 white long parallel brush streaks, slight upward diagonal, irregular tapered tips and varied lengths, sparse center, stronger edges. No radial center, text, shadows, gradients or background."}
+  ],
+  "normalization": {
+    "script": "scripts/build-recorte-ink.mjs",
+    "steps": ["Reviewed source crop rectangles", "Transparent gutter cleanup and canonical pigment normalization", "Uniform source corner sizing and repositioned edge runs", "Feathered tile joins in alpha", "Derived inner contour masks from filled splash alpha", "1x and 2x PNG export"],
+    "technical_data_images": "The grayscale center-out wipe field is derived from the drawn large-2 silhouette. Halftone fallback tiles and ramp are procedural sampling data, not generated illustrations.",
+    "notes": "Emote 4px outline/border values are art targets, not a claim of uniform width on every curved hand-drawn edge. 2048px speedline and 320px large splash exports are normalized from generated raster sources; 2x variants preserve that source detail and are not a claim of native 4096px drawn detail."
+  },
+  "approval": "pending-owner-review"
+}

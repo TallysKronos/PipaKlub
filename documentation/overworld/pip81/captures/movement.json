@@ -1,0 +1,417 @@
+{
+	"areas": [
+		{
+			"area": "clareira-do-papel",
+			"size": [
+				1280,
+				720
+			],
+			"visits": [
+				{
+					"arrived": true,
+					"followerDistance": 0.786666870117188,
+					"name": "Voltar ao Jardim das Pipas",
+					"type": "saida"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.7253338098526,
+					"name": "Além da cidade · Veredas do Encanamento",
+					"type": "saida"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.694655776023865,
+					"name": "Placa: habitats e encontros",
+					"type": "interacao"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.694655776023865,
+					"name": "Descansar no largo",
+					"type": "interacao"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.725048124790192,
+					"name": "Descansar no banco leste",
+					"type": "interacao"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.760284543037415,
+					"name": "Mapa do Parque dos Ventos",
+					"type": "interacao"
+				}
+			]
+		},
+		{
+			"area": "jardim-das-pipas",
+			"size": [
+				1280,
+				720
+			],
+			"visits": [
+				{
+					"arrived": true,
+					"followerDistance": 0.786666870117188,
+					"name": "Voltar à Rua dos Ventos",
+					"type": "saida"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.719295918941498,
+					"name": "Seguir para a Clareira",
+					"type": "saida"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.743892252445221,
+					"name": "Sr. Assis",
+					"type": "npc"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.783822238445282,
+					"name": "Descansar no largo",
+					"type": "interacao"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.717506349086761,
+					"name": "Descansar no banco leste",
+					"type": "interacao"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.70547741651535,
+					"name": "Mapa do Parque dos Ventos",
+					"type": "interacao"
+				}
+			]
+		},
+		{
+			"area": "morro-escadaria-da-sombra",
+			"size": [
+				1280,
+				720
+			],
+			"visits": [
+				{
+					"arrived": true,
+					"followerDistance": 0.786666870117188,
+					"name": "Voltar para a Praça da Chegada",
+					"type": "saida"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.720005035400391,
+					"name": "Seguir para a Laje dos Ventos",
+					"type": "saida"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.718224346637726,
+					"name": "Bia",
+					"type": "npc"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.30941453576088,
+					"name": "Passagem para a próxima área",
+					"type": "interacao"
+				}
+			]
+		},
+		{
+			"area": "morro-laje-dos-ventos",
+			"size": [
+				1280,
+				720
+			],
+			"visits": [
+				{
+					"arrived": true,
+					"followerDistance": 0.760002136230469,
+					"name": "Voltar para a Escadaria da Sombra",
+					"type": "saida"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.746669769287109,
+					"name": "Seguir para o Mirante da Caixa-d’água",
+					"type": "saida"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.718222439289093,
+					"name": "Juninho e Lia",
+					"type": "npc"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.761128127574921,
+					"name": "Passagem para a próxima área",
+					"type": "interacao"
+				}
+			]
+		},
+		{
+			"area": "morro-mirante-da-caixa-dagua",
+			"size": [
+				1280,
+				720
+			],
+			"visits": [
+				{
+					"arrived": true,
+					"followerDistance": 0.720001220703125,
+					"name": "Voltar para a Laje dos Ventos",
+					"type": "saida"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.746670722961426,
+					"name": "Seguir para o Parque dos Ventos",
+					"type": "saida"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.694497406482697,
+					"name": "Tião",
+					"type": "npc"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.702704012393951,
+					"name": "Passagem para a próxima área",
+					"type": "interacao"
+				}
+			]
+		},
+		{
+			"area": "morro-parque-dos-ventos",
+			"size": [
+				1280,
+				720
+			],
+			"visits": [
+				{
+					"arrived": true,
+					"followerDistance": 0.786666870117188,
+					"name": "Voltar para o Mirante da Caixa-d’água",
+					"type": "saida"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.720005035400391,
+					"name": "Sair para a cidade",
+					"type": "saida"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.799995422363281,
+					"name": "Mikka",
+					"type": "npc"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.773338317871094,
+					"name": "Passagem para a próxima área",
+					"type": "interacao"
+				}
+			]
+		},
+		{
+			"area": "morro-praca-da-chegada",
+			"size": [
+				1280,
+				720
+			],
+			"visits": [
+				{
+					"arrived": true,
+					"followerDistance": 0.702559888362885,
+					"name": "Voltar à Rua dos Ventos",
+					"type": "saida"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.795378506183624,
+					"name": "Seguir para a Escadaria da Sombra",
+					"type": "saida"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.775550305843353,
+					"name": "Zeca",
+					"type": "npc"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.748638212680817,
+					"name": "Oficina de pipas",
+					"type": "interacao"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.791519522666931,
+					"name": "Subir a escadaria",
+					"type": "interacao"
+				}
+			]
+		},
+		{
+			"area": "rua-dos-ventos",
+			"size": [
+				1280,
+				720
+			],
+			"visits": [
+				{
+					"arrived": true,
+					"followerDistance": 0.786666870117188,
+					"name": "Casa de Kael",
+					"type": "saida"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.740393400192261,
+					"name": "Casa do Sr. Assis",
+					"type": "saida"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.788449883460999,
+					"name": "Loja de pipas",
+					"type": "saida"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.716058909893036,
+					"name": "Explorar a cidade",
+					"type": "saida"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.74481725692749,
+					"name": "Mural · amigos",
+					"type": "interacao"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.780404269695282,
+					"name": "Mural · trocas",
+					"type": "interacao"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.719738245010376,
+					"name": "Seus parceiros",
+					"type": "interacao"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.744310796260834,
+					"name": "Parque dos Ventos · exploração",
+					"type": "interacao"
+				}
+			]
+		},
+		{
+			"area": "veredas-do-encanamento",
+			"size": [
+				1280,
+				720
+			],
+			"visits": [
+				{
+					"arrived": true,
+					"followerDistance": 0.786666870117188,
+					"name": "Voltar à Clareira do Papel",
+					"type": "saida"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.761689722537994,
+					"name": "Lacertubo",
+					"type": "npc"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.716537714004517,
+					"name": "Banco do pátio",
+					"type": "interacao"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.708888649940491,
+					"name": "Sinais no bosque",
+					"type": "interacao"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.708888649940491,
+					"name": "Mapa das Veredas",
+					"type": "interacao"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.797174036502838,
+					"name": "Papel rasgado entre as folhas",
+					"type": "interacao"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.706274032592773,
+					"name": "Canos marcados",
+					"type": "interacao"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.757918655872345,
+					"name": "Rabiola do Carcará de Nina",
+					"type": "interacao"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.726450204849243,
+					"name": "Nina",
+					"type": "npc"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.711731314659119,
+					"name": "Baú do mirante",
+					"type": "piece"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.718734800815582,
+					"name": "Baú entre as raízes",
+					"type": "piece"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.796166956424713,
+					"name": "Baú da margem escondida",
+					"type": "piece"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.722681939601898,
+					"name": "Baú da encosta",
+					"type": "piece"
+				},
+				{
+					"arrived": true,
+					"followerDistance": 0.708723902702332,
+					"name": "Baú dos canos antigos",
+					"type": "piece"
+				}
+			]
+		}
+	],
+	"failures": [],
+	"scope": "isolated preview; no rewards or saves; real movement with simulated 1/30s ticks"
+}

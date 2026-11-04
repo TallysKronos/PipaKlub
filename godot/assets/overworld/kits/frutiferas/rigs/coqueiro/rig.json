@@ -1,0 +1,1163 @@
+{
+  "schema": "soulgen-studio",
+  "version": 1,
+  "name": "Coqueiro · árvore articulada",
+  "width": 320,
+  "height": 317,
+  "rootPivot": [
+    160.0,
+    269
+  ],
+  "assets": {
+    "trunk": {
+      "src": "/art/soulgen/keys/arvores-frutiferas/coqueiro/trunk.png",
+      "width": 354,
+      "height": 708,
+      "name": "trunk"
+    },
+    "canopy": {
+      "src": "/art/soulgen/keys/arvores-frutiferas/coqueiro/canopy.png",
+      "width": 768,
+      "height": 540,
+      "name": "canopy"
+    },
+    "fruit": {
+      "src": "/art/soulgen/keys/arvores-frutiferas/coqueiro/fruit.png",
+      "width": 218,
+      "height": 284,
+      "name": "fruit"
+    }
+  },
+  "parts": [
+    {
+      "id": "trunk",
+      "name": "Tronco e raízes — base fixa",
+      "asset": "trunk",
+      "source": [
+        0,
+        0,
+        354,
+        708
+      ],
+      "rect": [
+        117.125,
+        97.5,
+        85.75,
+        171.5
+      ],
+      "pivot": [
+        160.0,
+        269
+      ],
+      "z": 0,
+      "parent": null,
+      "visible": true
+    },
+    {
+      "id": "canopy",
+      "name": "Copa — balanço",
+      "asset": "canopy",
+      "source": [
+        0,
+        0,
+        768,
+        540
+      ],
+      "rect": [
+        56.03355237288136,
+        23.926500000000004,
+        170.651,
+        120.05
+      ],
+      "pivot": [
+        139.65254237288136,
+        110.3625
+      ],
+      "z": 1,
+      "parent": "trunk",
+      "visible": true
+    },
+    {
+      "id": "fruit1",
+      "name": "Fruto 1 — destacável",
+      "asset": "fruit",
+      "source": [
+        0,
+        0,
+        218,
+        284
+      ],
+      "rect": [
+        129.04704237288135,
+        108.3625,
+        9.211,
+        12.0
+      ],
+      "pivot": [
+        133.65254237288136,
+        108.3625
+      ],
+      "z": 2,
+      "parent": "canopy",
+      "visible": true
+    },
+    {
+      "id": "fruit2",
+      "name": "Fruto 2 — destacável",
+      "asset": "fruit",
+      "source": [
+        0,
+        0,
+        218,
+        284
+      ],
+      "rect": [
+        138.04704237288135,
+        111.3625,
+        9.211,
+        12.0
+      ],
+      "pivot": [
+        142.65254237288136,
+        111.3625
+      ],
+      "z": 3,
+      "parent": "canopy",
+      "visible": true
+    },
+    {
+      "id": "fruit3",
+      "name": "Fruto 3 — destacável",
+      "asset": "fruit",
+      "source": [
+        0,
+        0,
+        218,
+        284
+      ],
+      "rect": [
+        134.04704237288135,
+        118.3625,
+        9.211,
+        12.0
+      ],
+      "pivot": [
+        138.65254237288136,
+        118.3625
+      ],
+      "z": 4,
+      "parent": "canopy",
+      "visible": true
+    }
+  ],
+  "clips": {
+    "idle": {
+      "seconds": 3.2,
+      "loop": true,
+      "frames": [
+        {
+          "t": 0,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "trunk": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "canopy": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit1": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit2": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit3": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.8,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "trunk": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "canopy": {
+              "x": 0,
+              "y": 0,
+              "rotation": 1.25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit1": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit2": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit3": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 1.6,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "trunk": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "canopy": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit1": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit2": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit3": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 2.4,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "trunk": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "canopy": {
+              "x": 0,
+              "y": 0,
+              "rotation": -1.25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit1": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit2": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit3": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 3.2,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "trunk": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "canopy": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit1": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit2": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit3": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        }
+      ]
+    },
+    "hit": {
+      "seconds": 1.2,
+      "loop": false,
+      "hitTime": 0.14,
+      "frames": [
+        {
+          "t": 0,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "trunk": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "canopy": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit1": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit2": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit3": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.08,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "trunk": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "canopy": {
+              "x": 0,
+              "y": 0,
+              "rotation": -6,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit1": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit2": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit3": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.18,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "trunk": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "canopy": {
+              "x": 0,
+              "y": 0,
+              "rotation": 8,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit1": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit2": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit3": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.34,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "trunk": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "canopy": {
+              "x": 0,
+              "y": 0,
+              "rotation": -4,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit1": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit2": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit3": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.56,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "trunk": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "canopy": {
+              "x": 0,
+              "y": 0,
+              "rotation": 2,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit1": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit2": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit3": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.8,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "trunk": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "canopy": {
+              "x": 0,
+              "y": 0,
+              "rotation": -0.7,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit1": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit2": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit3": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 1.2,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "trunk": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "canopy": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit1": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit2": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit3": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        }
+      ]
+    },
+    "drop": {
+      "seconds": 1.6,
+      "loop": false,
+      "hitTime": 0.14,
+      "frames": [
+        {
+          "t": 0,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "trunk": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "canopy": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit1": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit2": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit3": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.14,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "trunk": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "canopy": {
+              "x": 0,
+              "y": 0,
+              "rotation": 7,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit1": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit2": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit3": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.32,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "trunk": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "canopy": {
+              "x": 0,
+              "y": 0,
+              "rotation": -4,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit1": {
+              "x": 7,
+              "y": 18,
+              "rotation": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit2": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit3": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.62,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "trunk": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "canopy": {
+              "x": 0,
+              "y": 0,
+              "rotation": 2,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit1": {
+              "x": 18,
+              "y": 148.6375,
+              "rotation": 65,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit2": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit3": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.75,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "trunk": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "canopy": {
+              "x": 0,
+              "y": 0,
+              "rotation": -1,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit1": {
+              "x": 22,
+              "y": 139.6375,
+              "rotation": 77,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit2": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit3": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 0.95,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "trunk": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "canopy": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit1": {
+              "x": 25,
+              "y": 148.6375,
+              "rotation": 85,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit2": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit3": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        },
+        {
+          "t": 1.6,
+          "ease": "smooth",
+          "values": {
+            "root": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "trunk": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "canopy": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit1": {
+              "x": 25,
+              "y": 148.6375,
+              "rotation": 85,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit2": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "fruit3": {
+              "x": 0,
+              "y": 0,
+              "rotation": 0,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          }
+        }
+      ]
+    }
+  },
+  "brief": {
+    "species": "Coqueiro",
+    "personality": "Cenário vivo e interativo",
+    "kiteAnatomy": "Não é criatura: árvore com tronco fixo, copa articulada e frutos destacados.",
+    "view": "Overworld isométrico",
+    "notes": "idle: brisa; hit: reação sem queda; drop: estudo visual de queda de um fruto. Runtime usa evento separado e esgota frutos visíveis."
+  },
+  "environment": {
+    "kind": "fruit-tree",
+    "species": "coqueiro",
+    "rootContact": [
+      160.0,
+      269
+    ],
+    "trunkCollision": [
+      1,
+      1
+    ],
+    "harvestAttachment": "canopy",
+    "dropTime": 0.14,
+    "cropBounds": [
+      [
+        198,
+        13,
+        354,
+        708
+      ],
+      [
+        674,
+        9,
+        1005,
+        707
+      ],
+      [
+        1854,
+        342,
+        218,
+        284
+      ]
+    ],
+    "jointStatus": "requires_visual_extremes_review"
+  },
+  "anatomy": {
+    "version": 1,
+    "ratios": [
+      {
+        "part": "canopy",
+        "relativeTo": "trunk",
+        "min": 1.791,
+        "max": 2.189,
+        "label": "Copa/tronco aprovado para esta espécie"
+      }
+    ],
+    "behind": [
+      {
+        "part": "trunk",
+        "other": "canopy"
+      }
+    ],
+    "joints": [
+      {
+        "part": "canopy",
+        "parent": "trunk",
+        "anchor": [
+          0.49,
+          0.72
+        ],
+        "socket": [
+          0.2627118644067797,
+          0.07499999999999998
+        ],
+        "maxGap": 0.5
+      }
+    ],
+    "notes": "Frutos não têm junta permanente: o clip drop demonstra desprendimento intencional."
+  }
+}

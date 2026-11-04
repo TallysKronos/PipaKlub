@@ -1,0 +1,127 @@
+{
+  "schema": "overworld-kit-1",
+  "biome": "industrial-v1",
+  "grid": {
+    "cell": [
+      64,
+      32
+    ],
+    "levelPx": 64
+  },
+  "approval": "pending_owner_review",
+  "renderer": "res://scripts/overworld/industrial_structures.gd",
+  "surfaces": {
+    "metal": {
+      "file": "superficies/metal-azul.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "role": "warehouse roof and container cladding",
+      "source": "image_gen.imagegen; original retained in art/overworld/kits/industrial-v1/fontes"
+    },
+    "concrete": {
+      "file": "superficies/concreto.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "role": "continuous yard and retaining walls",
+      "detailShader": "res://shaders/industrial_surface.gdshader",
+      "source": "image_gen.imagegen"
+    },
+    "facadeManga": {
+      "file": "superficies/fachada-manga.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "role": "orthographic loading facade mapped to measured wall in part A",
+      "source": "image_gen.imagegen, 2026-10-30; original preserved under art/overworld/kits/industrial-v1/fontes/fachada-manga.png",
+      "frames": 1,
+      "alpha": "opaque",
+      "filter": "linear",
+      "approval": "pending_owner_review"
+    }
+  },
+  "pieces": {
+    "caldeira": {
+      "default": "a",
+      "variants": {
+        "a": {
+          "file": "pecas/caldeiras.png",
+          "size": [
+            1536,
+            1024
+          ],
+          "anchor": [
+            768,
+            850
+          ],
+          "scale": 0.23,
+          "footprint": [
+            3,
+            4
+          ],
+          "frames": 1,
+          "durationMs": 0,
+          "alphaShader": "res://shaders/industrial_cutout.gdshader",
+          "source": "image_gen.imagegen; clean-alpha edit; originals retained"
+        }
+      }
+    },
+    "industrial-volume": {
+      "source": "native measured geometry",
+      "styles": [
+        "galpao",
+        "usina",
+        "container",
+        "barreira",
+        "carga",
+        "carretel",
+        "tambor"
+      ],
+      "anchor": "front footprint corner",
+      "collision": "Tiled footprint; style does not change navigation",
+      "dressingRenderer": "res://scripts/overworld/industrial_dressing.gd"
+    },
+    "cargaManga": {
+      "file": "pecas/carga-manga.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "frames": 1,
+      "defaultFootprint": [
+        3,
+        2
+      ],
+      "sourceContacts": [
+        [
+          310,
+          660
+        ],
+        [
+          1260,
+          640
+        ],
+        [
+          800,
+          966
+        ]
+      ],
+      "filter": "linear",
+      "alphaMin": 0,
+      "zeroAlphaSamplesStep4": 60443,
+      "alphaShader": "res://shaders/industrial_cutout.gdshader",
+      "source": "image_gen.imagegen; original retained in art/overworld/kits/industrial-v1/fontes/carga-manga.png",
+      "approval": "pending_owner_review"
+    }
+  },
+  "limitations": [
+    "No rig or animation in this static asset family",
+    "Caldeira alpha sampled 0..254; shader rejects faint outer haze",
+    "Native roof/walls derive from the same 2:1 footprint; no painted building base",
+    "Runtime preview reads PNG sources directly because full-project import stalled while processing unrelated fonts"
+  ]
+}

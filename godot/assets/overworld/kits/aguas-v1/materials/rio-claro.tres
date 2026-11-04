@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://shaders/overworld/water_surface.gdshader" id="1_o608p"]
+[ext_resource type="Texture2D" path="res://assets/overworld/kits/aguas-v1/masks/shore-atlas.png" id="2_lo5bn"]
+[ext_resource type="Texture2D" path="res://assets/overworld/kits/aguas-v1/surfaces/rio-claro.png" id="3_2ytxl"]
+
+[resource]
+shader = ExtResource("1_o608p")
+shader_parameter/shore_texture = ExtResource("2_lo5bn")
+shader_parameter/surface_texture = ExtResource("3_2ytxl")
+shader_parameter/flow_direction = Vector2(0, 1)
+shader_parameter/cycle_seconds = 4.0
+shader_parameter/preview_time = -1.0
+shader_parameter/ripple_strength = 0.014

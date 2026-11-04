@@ -1,0 +1,117 @@
+{
+  "collection": "Cavernas — Soulmonsters",
+  "assets": [
+    {
+      "id": "rocha-cinza",
+      "name": "Rocha cinza",
+      "kind": "floor",
+      "brief": "Flat seamless top-down cave bedrock floor, broad muted blue-grey interlocking natural rock masses, sparse shallow fissures, low contrast, no raised boulders.",
+      "width": 64
+    },
+    {
+      "id": "terra-gruta",
+      "name": "Terra da gruta",
+      "kind": "floor",
+      "brief": "Flat seamless top-down muted warm umber cave dirt, compact earth with sparse small slate chips, broad quiet masses, no scattered large objects.",
+      "width": 64
+    },
+    {
+      "id": "rocha-umida",
+      "name": "Rocha úmida",
+      "kind": "floor",
+      "brief": "Flat seamless top-down damp cool slate cave floor, low contrast broad teal blue-grey masses, sparse restrained damp cyan glints, no open water.",
+      "width": 64
+    },
+    {
+      "id": "cascalho-gruta",
+      "name": "Cascalho da gruta",
+      "kind": "floor",
+      "brief": "Flat seamless top-down muted dusty cave gravel, small flat slate fragments partly embedded in cool taupe earth, readable sparse distribution.",
+      "width": 64
+    },
+    {
+      "id": "parede-calcario",
+      "name": "Calcário",
+      "kind": "wall",
+      "brief": "Flat straight-on seamless natural limestone cave rock face, large irregular organically layered angular stone masses, muted grey warm ivory facets and blue-grey recesses. No bricks.",
+      "width": 64
+    },
+    {
+      "id": "parede-basalto",
+      "name": "Basalto",
+      "kind": "wall",
+      "brief": "Flat straight-on seamless natural dark blue slate basalt cave rock face, large irregular vertical angular rock fractures and broad blue-grey facets, not shiny, readable dark mids.",
+      "width": 64
+    },
+    {
+      "id": "parede-umida",
+      "name": "Parede úmida",
+      "kind": "wall",
+      "brief": "Flat straight-on seamless natural damp cave rock face, broad irregular slate and muted grey-teal limestone layers with restrained wet highlights, no waterfall, no moss.",
+      "width": 64
+    },
+    {
+      "id": "parede-mineral",
+      "name": "Veios minerais",
+      "kind": "wall",
+      "brief": "Flat straight-on seamless natural slate cave rock face, broad blue-grey geology with only a few restrained thin amber mineral seams, no glowing whole surface, no bricks.",
+      "width": 64
+    },
+    {
+      "id": "rocha-solta",
+      "name": "Rocha solta",
+      "kind": "prop",
+      "brief": "One squat low group of three adjoining natural slate boulders, broad cool grey angular facets, compact irregular footprint, no large ground slab.",
+      "width": 100
+    },
+    {
+      "id": "estalagmite-baixa",
+      "name": "Estalagmites baixas",
+      "kind": "prop",
+      "brief": "One compact group of three short tapered limestone stalagmites growing upward, thick rounded polygonal cones, cool grey warm ivory tips, no ceiling.",
+      "width": 82
+    },
+    {
+      "id": "estalagmite-alta",
+      "name": "Estalagmite alta",
+      "kind": "prop",
+      "brief": "One tall thick limestone stalagmite with two small side spikes at its base, broad angular tapered silhouette, grey slate facets and muted ivory edge.",
+      "width": 74
+    },
+    {
+      "id": "coluna-calcario",
+      "name": "Coluna de calcário",
+      "kind": "prop",
+      "brief": "One massive natural limestone column formed by stalactite and stalagmite fused together, irregular broad waist, rounded angular fluted rock shape, free standing isolated.",
+      "width": 96
+    },
+    {
+      "id": "cristal-azul",
+      "name": "Cristais azuis",
+      "kind": "prop",
+      "brief": "One compact cluster of five faceted aquamarine crystals growing from a small natural slate base, uneven heights, restrained bright turquoise cores, dark teal facets, no floating particles or background glow.",
+      "width": 88
+    },
+    {
+      "id": "cristal-ambar",
+      "name": "Cristais de âmbar",
+      "kind": "prop",
+      "brief": "One compact cluster of four warm amber-gold mineral crystals growing from small natural slate base, asymmetrical heights, orange shaded facets, restrained bright yellow tips, no background glow.",
+      "width": 82
+    },
+    {
+      "id": "cogumelos-gruta",
+      "name": "Cogumelos luminosos",
+      "kind": "prop",
+      "brief": "One low compact group of seven tiny cave mushrooms with pale stems and rounded turquoise teal caps, uneven sizes, subtle pale cyan gill undersides, no glow halo outside silhouette, no large ground slab.",
+      "width": 64
+    },
+    {
+      "id": "entrada-gruta",
+      "name": "Boca da gruta",
+      "kind": "prop",
+      "brief": "One broad natural cave opening built of irregular slate rock in a hillside outcrop, visible front-right rock wall oriented along isometric U axis, thick irregular arch around a large dark empty tunnel hole, no stairs, no ground platform, no landscape outside arch.",
+      "width": 220
+    }
+  ]
+}

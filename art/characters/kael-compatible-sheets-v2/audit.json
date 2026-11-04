@@ -1,0 +1,339 @@
+[
+  {
+    "motion": "idle",
+    "colors": 13,
+    "frames": 16,
+    "empty": 0,
+    "edge": 0,
+    "alpha": "0 / 255",
+    "warnings": [],
+    "delivery": {
+      "pass": true,
+      "errors": [],
+      "warnings": [
+        "No chão escuro (noite) 100% da borda some; considere um realce de luz na borda."
+      ],
+      "metrics": {
+        "darkEdge": 1,
+        "grounds": {
+          "grama": 0,
+          "terra": 0,
+          "calcada": 0,
+          "noite": 1
+        },
+        "confusingNeighbours": 0.06796989102348051,
+        "colorsUsed": 13
+      }
+    }
+  },
+  {
+    "motion": "walk",
+    "colors": 13,
+    "frames": 32,
+    "empty": 0,
+    "edge": 14,
+    "alpha": "0 / 255",
+    "warnings": [
+      "14 pixel(s) na borda: confira cortes e margem."
+    ],
+    "delivery": {
+      "pass": true,
+      "errors": [],
+      "warnings": [
+        "No chão escuro (noite) 100% da borda some; considere um realce de luz na borda.",
+        "Quadro 2: pixels tocam a borda.",
+        "Quadro 4: pixels tocam a borda.",
+        "Quadro 6: pixels tocam a borda.",
+        "Quadro 8: pixels tocam a borda.",
+        "Quadro 10: pixels tocam a borda.",
+        "Quadro 12: pixels tocam a borda.",
+        "Quadro 26: pixels tocam a borda.",
+        "Quadro 28: pixels tocam a borda.",
+        "Quadro 30: pixels tocam a borda.",
+        "Quadro 32: pixels tocam a borda.",
+        "Quadro 2 (walk-S-3): bracoTras 9.0px, referência 13.0px (encurtar só por perspectiva).",
+        "Quadro 2 (walk-S-3): bracoFrente 13.0px, referência 9.0px (encurtar só por perspectiva).",
+        "Quadro 6 (walk-SO-3): bracoFrente 12.4px, referência 9.0px (encurtar só por perspectiva).",
+        "Quadro 8 (walk-O-1): bracoFrente 11.7px, referência 9.0px (encurtar só por perspectiva).",
+        "Quadro 10 (walk-O-3): bracoFrente 11.7px, referência 9.0px (encurtar só por perspectiva).",
+        "Quadro 12 (walk-NO-1): bracoFrente 12.4px, referência 9.0px (encurtar só por perspectiva).",
+        "Quadro 16 (walk-N-1): bracoTras 9.0px, referência 13.0px (encurtar só por perspectiva).",
+        "Quadro 16 (walk-N-1): bracoFrente 13.0px, referência 9.0px (encurtar só por perspectiva).",
+        "Quadro 20 (walk-NE-1): bracoFrente 12.4px, referência 9.0px (encurtar só por perspectiva).",
+        "Quadro 24 (walk-E-1): bracoFrente 11.7px, referência 9.0px (encurtar só por perspectiva).",
+        "Quadro 26 (walk-E-3): bracoFrente 11.7px, referência 9.0px (encurtar só por perspectiva).",
+        "Quadro 30 (walk-SE-3): bracoFrente 12.4px, referência 9.0px (encurtar só por perspectiva)."
+      ],
+      "metrics": {
+        "darkEdge": 1,
+        "grounds": {
+          "grama": 0,
+          "terra": 0,
+          "calcada": 0,
+          "noite": 1
+        },
+        "confusingNeighbours": 0.07771653113573104,
+        "colorsUsed": 13
+      }
+    }
+  },
+  {
+    "motion": "run",
+    "colors": 13,
+    "frames": 48,
+    "empty": 0,
+    "edge": 14,
+    "alpha": "0 / 255",
+    "warnings": [
+      "14 pixel(s) na borda: confira cortes e margem."
+    ],
+    "delivery": {
+      "pass": true,
+      "errors": [],
+      "warnings": [
+        "No chão escuro (noite) 100% da borda some; considere um realce de luz na borda.",
+        "run-S: o apoio dos pés varia 4px.",
+        "run-SO: o apoio dos pés varia 4px.",
+        "run-O: o apoio dos pés varia 4px.",
+        "run-NO: o apoio dos pés varia 4px.",
+        "run-N: o apoio dos pés varia 4px.",
+        "run-NE: o apoio dos pés varia 4px.",
+        "run-E: o apoio dos pés varia 4px.",
+        "run-SE: o apoio dos pés varia 4px.",
+        "Quadro 3: pixels tocam a borda.",
+        "Quadro 6: pixels tocam a borda.",
+        "Quadro 9: pixels tocam a borda.",
+        "Quadro 12: pixels tocam a borda.",
+        "Quadro 15: pixels tocam a borda.",
+        "Quadro 18: pixels tocam a borda.",
+        "Quadro 39: pixels tocam a borda.",
+        "Quadro 42: pixels tocam a borda.",
+        "Quadro 45: pixels tocam a borda.",
+        "Quadro 48: pixels tocam a borda."
+      ],
+      "metrics": {
+        "darkEdge": 1,
+        "grounds": {
+          "grama": 0,
+          "terra": 0,
+          "calcada": 0,
+          "noite": 1
+        },
+        "confusingNeighbours": 0.07269184652278178,
+        "colorsUsed": 13
+      }
+    }
+  },
+  {
+    "motion": "interact",
+    "colors": 13,
+    "frames": 32,
+    "empty": 0,
+    "edge": 0,
+    "alpha": "0 / 255",
+    "warnings": [],
+    "delivery": {
+      "pass": true,
+      "errors": [],
+      "warnings": [
+        "No chão escuro (noite) 100% da borda some; considere um realce de luz na borda.",
+        "Quadro 3 (interact-S-4): bracoFrente 7.0px, referência 11.0px (encurtar só por perspectiva).",
+        "Quadro 7 (interact-SO-4): bracoFrente 7.1px, referência 11.0px (encurtar só por perspectiva).",
+        "Quadro 9 (interact-O-2): bracoFrente 7.2px, referência 11.0px (encurtar só por perspectiva).",
+        "Quadro 11 (interact-O-4): bracoFrente 6.3px, referência 11.0px (encurtar só por perspectiva).",
+        "Quadro 13 (interact-NO-2): bracoFrente 5.0px, referência 11.0px (encurtar só por perspectiva).",
+        "Quadro 14 (interact-NO-3): bracoFrente 6.1px, referência 11.0px (encurtar só por perspectiva).",
+        "Quadro 15 (interact-NO-4): bracoFrente 5.1px, referência 11.0px (encurtar só por perspectiva).",
+        "Quadro 17 (interact-N-2): bracoFrente 3.0px, referência 11.0px (encurtar só por perspectiva).",
+        "Quadro 18 (interact-N-3): bracoFrente 1.0px, referência 11.0px (encurtar só por perspectiva).",
+        "Quadro 19 (interact-N-4): bracoFrente 5.0px, referência 11.0px (encurtar só por perspectiva).",
+        "Quadro 21 (interact-NE-2): bracoFrente 5.0px, referência 11.0px (encurtar só por perspectiva).",
+        "Quadro 22 (interact-NE-3): bracoFrente 6.1px, referência 11.0px (encurtar só por perspectiva).",
+        "Quadro 23 (interact-NE-4): bracoFrente 5.1px, referência 11.0px (encurtar só por perspectiva).",
+        "Quadro 25 (interact-E-2): bracoFrente 7.2px, referência 11.0px (encurtar só por perspectiva).",
+        "Quadro 27 (interact-E-4): bracoFrente 6.3px, referência 11.0px (encurtar só por perspectiva).",
+        "Quadro 31 (interact-SE-4): bracoFrente 7.1px, referência 11.0px (encurtar só por perspectiva)."
+      ],
+      "metrics": {
+        "darkEdge": 1,
+        "grounds": {
+          "grama": 0,
+          "terra": 0,
+          "calcada": 0,
+          "noite": 1
+        },
+        "confusingNeighbours": 0.067905045176497,
+        "colorsUsed": 13
+      }
+    }
+  },
+  {
+    "motion": "attack",
+    "colors": 13,
+    "frames": 48,
+    "empty": 0,
+    "edge": 0,
+    "alpha": "0 / 255",
+    "warnings": [],
+    "delivery": {
+      "pass": true,
+      "errors": [],
+      "warnings": [
+        "No chão escuro (noite) 100% da borda some; considere um realce de luz na borda."
+      ],
+      "metrics": {
+        "darkEdge": 1,
+        "grounds": {
+          "grama": 0,
+          "terra": 0,
+          "calcada": 0,
+          "noite": 1
+        },
+        "confusingNeighbours": 0.06728725353661218,
+        "colorsUsed": 13
+      }
+    }
+  },
+  {
+    "motion": "hurt",
+    "colors": 13,
+    "frames": 16,
+    "empty": 0,
+    "edge": 0,
+    "alpha": "0 / 255",
+    "warnings": [],
+    "delivery": {
+      "pass": true,
+      "errors": [],
+      "warnings": [
+        "No chão escuro (noite) 100% da borda some; considere um realce de luz na borda."
+      ],
+      "metrics": {
+        "darkEdge": 1,
+        "grounds": {
+          "grama": 0,
+          "terra": 0,
+          "calcada": 0,
+          "noite": 1
+        },
+        "confusingNeighbours": 0.06544226303567659,
+        "colorsUsed": 13
+      }
+    }
+  },
+  {
+    "motion": "victory",
+    "colors": 13,
+    "frames": 32,
+    "empty": 0,
+    "edge": 7,
+    "alpha": "0 / 255",
+    "warnings": [
+      "7 pixel(s) na borda: confira cortes e margem."
+    ],
+    "delivery": {
+      "pass": true,
+      "errors": [],
+      "warnings": [
+        "No chão escuro (noite) 100% da borda some; considere um realce de luz na borda.",
+        "Quadro 2: pixels tocam a borda.",
+        "Quadro 6: pixels tocam a borda.",
+        "Quadro 10: pixels tocam a borda.",
+        "Quadro 26: pixels tocam a borda.",
+        "Quadro 30: pixels tocam a borda."
+      ],
+      "metrics": {
+        "darkEdge": 1,
+        "grounds": {
+          "grama": 0,
+          "terra": 0,
+          "calcada": 0,
+          "noite": 1
+        },
+        "confusingNeighbours": 0.062416930784173395,
+        "colorsUsed": 13
+      }
+    }
+  },
+  {
+    "motion": "defeat",
+    "colors": 13,
+    "frames": 32,
+    "empty": 0,
+    "edge": 0,
+    "alpha": "0 / 255",
+    "warnings": [],
+    "delivery": {
+      "pass": true,
+      "errors": [],
+      "warnings": [
+        "No chão escuro (noite) 100% da borda some; considere um realce de luz na borda."
+      ],
+      "metrics": {
+        "darkEdge": 1,
+        "grounds": {
+          "grama": 0,
+          "terra": 0,
+          "calcada": 0,
+          "noite": 1
+        },
+        "confusingNeighbours": 0.07806313536650615,
+        "colorsUsed": 13
+      }
+    }
+  },
+  {
+    "motion": "swim",
+    "colors": 12,
+    "frames": 32,
+    "empty": 0,
+    "edge": 0,
+    "alpha": "0 / 255",
+    "warnings": [],
+    "delivery": {
+      "pass": true,
+      "errors": [],
+      "warnings": [
+        "No chão escuro (noite) 100% da borda some; considere um realce de luz na borda."
+      ],
+      "metrics": {
+        "darkEdge": 1,
+        "grounds": {
+          "grama": 0,
+          "terra": 0,
+          "calcada": 0,
+          "noite": 1
+        },
+        "confusingNeighbours": 0.04754488072792852,
+        "colorsUsed": 12
+      }
+    }
+  },
+  {
+    "motion": "climb",
+    "colors": 11,
+    "frames": 4,
+    "empty": 0,
+    "edge": 0,
+    "alpha": "0 / 255",
+    "warnings": [],
+    "delivery": {
+      "pass": true,
+      "errors": [],
+      "warnings": [
+        "No chão escuro (noite) 100% da borda some; considere um realce de luz na borda."
+      ],
+      "metrics": {
+        "darkEdge": 1,
+        "grounds": {
+          "grama": 0,
+          "terra": 0,
+          "calcada": 0,
+          "noite": 1
+        },
+        "confusingNeighbours": 0.08818342151675485,
+        "colorsUsed": 11
+      }
+    }
+  }
+]

@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "image": "capivara-d-swim.png",
+  "size": [
+    1536,
+    1024
+  ],
+  "mode": "RGBA",
+  "alphaRange": [
+    0,
+    254
+  ],
+  "fps": 6,
+  "frames": [
+    {
+      "x": 0,
+      "y": 0,
+      "w": 768,
+      "h": 512,
+      "pivot": [
+        384,
+        512
+      ],
+      "visibleBounds": [
+        114,
+        12,
+        748,
+        507
+      ]
+    },
+    {
+      "x": 768,
+      "y": 0,
+      "w": 768,
+      "h": 512,
+      "pivot": [
+        384,
+        512
+      ],
+      "visibleBounds": [
+        107,
+        12,
+        716,
+        507
+      ]
+    },
+    {
+      "x": 0,
+      "y": 512,
+      "w": 768,
+      "h": 512,
+      "pivot": [
+        384,
+        512
+      ],
+      "visibleBounds": [
+        113,
+        6,
+        747,
+        501
+      ]
+    },
+    {
+      "x": 768,
+      "y": 512,
+      "w": 768,
+      "h": 512,
+      "pivot": [
+        384,
+        512
+      ],
+      "visibleBounds": [
+        107,
+        6,
+        716,
+        502
+      ]
+    }
+  ],
+  "source": "image_gen, approved capivara D; original and cleanup prompts in art/creatures/capivara-boia/swim-v1/"
+}

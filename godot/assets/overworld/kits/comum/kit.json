@@ -1,0 +1,1184 @@
+{
+  "schema": "overworld-kit-1",
+  "biome": "comum",
+  "grid": {
+    "cell": [
+      64,
+      32
+    ],
+    "height": 32,
+    "levelPx": 64
+  },
+  "approval": "pending_owner_review",
+  "styleBoard": "../../estilo/PRANCHA-ESTILO.png",
+  "pieces": {
+    "arvore": {
+      "default": "a",
+      "variants": {
+        "a": {
+          "file": "pecas/arvore-a.png",
+          "size": [
+            192,
+            320
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "height": 7,
+          "anchor": [
+            96,
+            272
+          ],
+          "isoAnchor": [
+            96,
+            320
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/estilo/fontes/manga-v2/arvore-fonte.png"
+          },
+          "rasterSize": [
+            137,
+            160
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/arvore-a.tscn"
+        },
+        "b": {
+          "file": "pecas/arvore-b.png",
+          "size": [
+            192,
+            320
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "height": 7,
+          "anchor": [
+            96,
+            272
+          ],
+          "isoAnchor": [
+            96,
+            320
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/comum/fontes/familia-1.png",
+            "slot": 0,
+            "grid": [
+              3,
+              3
+            ],
+            "alpha_bbox": [
+              13,
+              17,
+              416,
+              417
+            ]
+          },
+          "rasterSize": [
+            161,
+            160
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/arvore-b.tscn"
+        },
+        "florida": {
+          "file": "pecas/arvore-florida.png",
+          "size": [
+            192,
+            320
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "height": 7,
+          "anchor": [
+            96,
+            272
+          ],
+          "isoAnchor": [
+            96,
+            320
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/comum/fontes/familia-1.png",
+            "slot": 1,
+            "grid": [
+              3,
+              3
+            ],
+            "alpha_bbox": [
+              13,
+              23,
+              389,
+              413
+            ]
+          },
+          "rasterSize": [
+            153,
+            160
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/arvore-florida.tscn"
+        },
+        "tronco-largo": {
+          "file": "pecas/arvore-tronco-largo.png",
+          "size": [
+            192,
+            320
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "height": 7,
+          "anchor": [
+            96,
+            272
+          ],
+          "isoAnchor": [
+            96,
+            320
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/comum/fontes/familia-1.png",
+            "slot": 2,
+            "grid": [
+              3,
+              3
+            ],
+            "alpha_bbox": [
+              0,
+              17,
+              406,
+              416
+            ]
+          },
+          "rasterSize": [
+            163,
+            160
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/arvore-tronco-largo.tscn"
+        }
+      }
+    },
+    "banco": {
+      "default": "madeira",
+      "variants": {
+        "madeira": {
+          "file": "pecas/banco-madeira.png",
+          "size": [
+            96,
+            144
+          ],
+          "footprint": [
+            2,
+            1
+          ],
+          "visualFootprint": [
+            2,
+            1
+          ],
+          "bloqueia": false,
+          "height": 3,
+          "anchor": [
+            48,
+            120
+          ],
+          "isoAnchor": [
+            64,
+            144
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/estilo/fontes/manga-v2/banco-fonte.png"
+          },
+          "rasterSize": [
+            64,
+            56
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/banco-madeira.tscn"
+        },
+        "concreto": {
+          "file": "pecas/banco-concreto.png",
+          "size": [
+            96,
+            144
+          ],
+          "footprint": [
+            2,
+            1
+          ],
+          "visualFootprint": [
+            2,
+            1
+          ],
+          "bloqueia": false,
+          "height": 3,
+          "anchor": [
+            48,
+            120
+          ],
+          "isoAnchor": [
+            64,
+            144
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/comum/fontes/familia-1.png",
+            "slot": 3,
+            "grid": [
+              3,
+              3
+            ],
+            "alpha_bbox": [
+              50,
+              116,
+              418,
+              399
+            ]
+          },
+          "rasterSize": [
+            73,
+            56
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/banco-concreto.tscn"
+        }
+      }
+    },
+    "poste": {
+      "default": "ferro",
+      "variants": {
+        "ferro": {
+          "file": "pecas/poste-ferro.png",
+          "size": [
+            64,
+            192
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "bloqueia": true,
+          "height": 5,
+          "anchor": [
+            32,
+            176
+          ],
+          "isoAnchor": [
+            32,
+            192
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/estilo/fontes/manga-v2/poste-fonte.png"
+          },
+          "rasterSize": [
+            30,
+            144
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/poste-ferro.tscn"
+        },
+        "rua": {
+          "file": "pecas/poste-rua.png",
+          "size": [
+            128,
+            256
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            2,
+            2
+          ],
+          "bloqueia": true,
+          "height": 6,
+          "anchor": [
+            64,
+            224
+          ],
+          "isoAnchor": [
+            64,
+            256
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/comum/fontes/familia-1.png",
+            "slot": 4,
+            "grid": [
+              3,
+              3
+            ],
+            "alpha_bbox": [
+              109,
+              16,
+              340,
+              415
+            ]
+          },
+          "rasterSize": [
+            92,
+            160
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/poste-rua.tscn"
+        }
+      }
+    },
+    "placa-mapa": {
+      "default": "parque",
+      "variants": {
+        "parque": {
+          "file": "pecas/placa-mapa-parque.png",
+          "size": [
+            128,
+            192
+          ],
+          "footprint": [
+            2,
+            1
+          ],
+          "visualFootprint": [
+            2,
+            2
+          ],
+          "bloqueia": false,
+          "height": 4,
+          "anchor": [
+            64,
+            160
+          ],
+          "isoAnchor": [
+            64,
+            192
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/comum/fontes/familia-1.png",
+            "slot": 5,
+            "grid": [
+              3,
+              3
+            ],
+            "alpha_bbox": [
+              58,
+              42,
+              378,
+              417
+            ]
+          },
+          "rasterSize": [
+            75,
+            88
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/placa-mapa-parque.tscn"
+        },
+        "veredas": {
+          "file": "pecas/placa-mapa-veredas.png",
+          "size": [
+            128,
+            192
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            2,
+            2
+          ],
+          "bloqueia": false,
+          "height": 4,
+          "anchor": [
+            64,
+            160
+          ],
+          "isoAnchor": [
+            64,
+            192
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/comum/fontes/familia-1.png",
+            "slot": 6,
+            "grid": [
+              3,
+              3
+            ],
+            "alpha_bbox": [
+              55,
+              11,
+              400,
+              384
+            ]
+          },
+          "rasterSize": [
+            82,
+            88
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/placa-mapa-veredas.tscn"
+        }
+      }
+    },
+    "vaso": {
+      "default": "ceramica",
+      "variants": {
+        "ceramica": {
+          "file": "pecas/vaso-ceramica.png",
+          "size": [
+            64,
+            128
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "bloqueia": true,
+          "height": 3,
+          "anchor": [
+            32,
+            112
+          ],
+          "isoAnchor": [
+            32,
+            128
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/comum/fontes/familia-1.png",
+            "slot": 7,
+            "grid": [
+              3,
+              3
+            ],
+            "alpha_bbox": [
+              41,
+              6,
+              397,
+              378
+            ]
+          },
+          "rasterSize": [
+            48,
+            50
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/vaso-ceramica.tscn"
+        },
+        "pneu": {
+          "file": "pecas/vaso-pneu.png",
+          "size": [
+            64,
+            96
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            32,
+            80
+          ],
+          "isoAnchor": [
+            32,
+            96
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/comum/fontes/familia-1.png",
+            "slot": 8,
+            "grid": [
+              3,
+              3
+            ],
+            "alpha_bbox": [
+              62,
+              88,
+              368,
+              370
+            ]
+          },
+          "rasterSize": [
+            39,
+            36
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/vaso-pneu.tscn"
+        }
+      }
+    },
+    "lixeira": {
+      "default": "parque",
+      "variants": {
+        "parque": {
+          "file": "pecas/lixeira-parque.png",
+          "size": [
+            64,
+            96
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            32,
+            80
+          ],
+          "isoAnchor": [
+            32,
+            96
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/comum/fontes/familia-2.png",
+            "slot": 0,
+            "grid": [
+              3,
+              3
+            ],
+            "alpha_bbox": [
+              107,
+              56,
+              335,
+              418
+            ]
+          },
+          "rasterSize": [
+            30,
+            48
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/lixeira-parque.tscn"
+        },
+        "rua": {
+          "file": "pecas/lixeira-rua.png",
+          "size": [
+            64,
+            96
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            32,
+            80
+          ],
+          "isoAnchor": [
+            32,
+            96
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/comum/fontes/familia-2.png",
+            "slot": 1,
+            "grid": [
+              3,
+              3
+            ],
+            "alpha_bbox": [
+              75,
+              46,
+              342,
+              409
+            ]
+          },
+          "rasterSize": [
+            35,
+            48
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/lixeira-rua.tscn"
+        }
+      }
+    },
+    "flores": {
+      "default": "coral",
+      "variants": {
+        "coral": {
+          "file": "pecas/flores-coral.png",
+          "size": [
+            64,
+            96
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "bloqueia": false,
+          "height": 2,
+          "anchor": [
+            32,
+            80
+          ],
+          "isoAnchor": [
+            32,
+            96
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/comum/fontes/familia-2.png",
+            "slot": 2,
+            "grid": [
+              3,
+              3
+            ],
+            "alpha_bbox": [
+              14,
+              112,
+              387,
+              416
+            ]
+          },
+          "rasterSize": [
+            29,
+            24
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/flores-coral.tscn"
+        },
+        "amarela": {
+          "file": "pecas/flores-amarela.png",
+          "size": [
+            64,
+            96
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "bloqueia": false,
+          "height": 2,
+          "anchor": [
+            32,
+            80
+          ],
+          "isoAnchor": [
+            32,
+            96
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/comum/fontes/familia-2.png",
+            "slot": 3,
+            "grid": [
+              3,
+              3
+            ],
+            "alpha_bbox": [
+              43,
+              82,
+              387,
+              354
+            ]
+          },
+          "rasterSize": [
+            30,
+            24
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/flores-amarela.tscn"
+        },
+        "azul": {
+          "file": "pecas/flores-azul.png",
+          "size": [
+            64,
+            96
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "bloqueia": false,
+          "height": 2,
+          "anchor": [
+            32,
+            80
+          ],
+          "isoAnchor": [
+            32,
+            96
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/comum/fontes/familia-2.png",
+            "slot": 4,
+            "grid": [
+              3,
+              3
+            ],
+            "alpha_bbox": [
+              37,
+              94,
+              380,
+              353
+            ]
+          },
+          "rasterSize": [
+            32,
+            24
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/flores-azul.tscn"
+        }
+      }
+    },
+    "bau": {
+      "default": "fechado",
+      "variants": {
+        "fechado": {
+          "file": "pecas/bau-fechado.png",
+          "size": [
+            64,
+            96
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            32,
+            80
+          ],
+          "isoAnchor": [
+            32,
+            96
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/comum/fontes/familia-2.png",
+            "slot": 5,
+            "grid": [
+              3,
+              3
+            ],
+            "alpha_bbox": [
+              44,
+              79,
+              364,
+              378
+            ]
+          },
+          "rasterSize": [
+            43,
+            40
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/bau-fechado.tscn"
+        },
+        "aberto": {
+          "file": "pecas/bau-aberto.png",
+          "size": [
+            64,
+            96
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            32,
+            80
+          ],
+          "isoAnchor": [
+            32,
+            96
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/comum/fontes/familia-2.png",
+            "slot": 6,
+            "grid": [
+              3,
+              3
+            ],
+            "alpha_bbox": [
+              56,
+              10,
+              398,
+              369
+            ]
+          },
+          "rasterSize": [
+            46,
+            48
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/bau-aberto.tscn"
+        }
+      }
+    },
+    "biruta": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/biruta-default.png",
+          "size": [
+            64,
+            192
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "bloqueia": false,
+          "height": 5,
+          "anchor": [
+            32,
+            176
+          ],
+          "isoAnchor": [
+            32,
+            192
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/comum/fontes/familia-2.png",
+            "slot": 7,
+            "grid": [
+              3,
+              3
+            ],
+            "alpha_bbox": [
+              73,
+              0,
+              382,
+              374
+            ]
+          },
+          "rasterSize": [
+            60,
+            73
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/biruta-default.tscn"
+        }
+      }
+    },
+    "pipa-presa": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/pipa-presa-default.png",
+          "size": [
+            64,
+            128
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "bloqueia": false,
+          "height": 3,
+          "anchor": [
+            32,
+            112
+          ],
+          "isoAnchor": [
+            32,
+            128
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/comum/fontes/familia-2.png",
+            "slot": 8,
+            "grid": [
+              3,
+              3
+            ],
+            "alpha_bbox": [
+              54,
+              7,
+              372,
+              378
+            ]
+          },
+          "rasterSize": [
+            48,
+            56
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/pipa-presa-default.tscn"
+        }
+      }
+    },
+    "arvore-grande": {
+      "default": "default",
+      "variants": {
+        "default": {
+          "file": "pecas/arvore-grande-default.png",
+          "size": [
+            256,
+            416
+          ],
+          "footprint": [
+            2,
+            2
+          ],
+          "visualFootprint": [
+            4,
+            4
+          ],
+          "bloqueia": true,
+          "height": 9,
+          "anchor": [
+            128,
+            352
+          ],
+          "isoAnchor": [
+            128,
+            416
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "file": "art/overworld/kits/comum/fontes/familia-1.png",
+            "slot": 2,
+            "grid": [
+              3,
+              3
+            ],
+            "alpha_bbox": [
+              0,
+              17,
+              406,
+              416
+            ]
+          },
+          "rasterSize": [
+            212,
+            208
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/arvore-grande-default.tscn"
+        }
+      }
+    },
+    "pedra": {
+      "default": "0",
+      "variants": {
+        "0": {
+          "file": "pecas/pedra-0.png",
+          "size": [
+            64,
+            96
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            32,
+            80
+          ],
+          "isoAnchor": [
+            32,
+            96
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "generator": "tools/overworld/build_art.py"
+          },
+          "rasterSize": [
+            35,
+            30
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/pedra-0.tscn"
+        },
+        "1": {
+          "file": "pecas/pedra-1.png",
+          "size": [
+            64,
+            96
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            32,
+            80
+          ],
+          "isoAnchor": [
+            32,
+            96
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "generator": "tools/overworld/build_art.py"
+          },
+          "rasterSize": [
+            38,
+            30
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/pedra-1.tscn"
+        },
+        "2": {
+          "file": "pecas/pedra-2.png",
+          "size": [
+            64,
+            96
+          ],
+          "footprint": [
+            1,
+            1
+          ],
+          "visualFootprint": [
+            1,
+            1
+          ],
+          "bloqueia": true,
+          "height": 2,
+          "anchor": [
+            32,
+            80
+          ],
+          "isoAnchor": [
+            32,
+            96
+          ],
+          "shadow": "sombras/contato.png",
+          "source": {
+            "generator": "tools/overworld/build_art.py"
+          },
+          "rasterSize": [
+            39,
+            30
+          ],
+          "approval": "pending_owner_review",
+          "scene": "res://scenes/overworld/pieces/comum/pedra-2.tscn"
+        }
+      }
+    }
+  },
+  "materials": {},
+  "transitions": {},
+  "walls": {},
+  "stairs": {},
+  "bridges": {
+    "u": {
+      "file": "pontes/tabuleiro-u.png",
+      "axis": "u",
+      "footprint": [
+        1,
+        1
+      ],
+      "head": "pontes/cabeceira-u.png"
+    },
+    "v": {
+      "file": "pontes/tabuleiro-v.png",
+      "axis": "v",
+      "footprint": [
+        1,
+        1
+      ],
+      "head": "pontes/cabeceira-v.png"
+    }
+  }
+}

@@ -5,7 +5,8 @@ export const CELL={w:64,h:32},LEVEL_PX=64,RULES='overworld-1';
 export const MATERIALS={
  grama:{name:'Grama',color:'#7fb85a',walk:true},terra:{name:'Terra (trilha)',color:'#d9a24b',walk:true},mato:{name:'Mato alto (encontros)',color:'#3f8f3a',walk:true,encounter:true},
  agua:{name:'Água',color:'#3aa7c4',walk:false},rocha:{name:'Rocha (bloqueio)',color:'#8d8478',walk:false},ponte:{name:'Ponte',color:'#a8743d',walk:true,bridge:true},
- piso:{name:'Piso de pedra',color:'#b9ab90',walk:true},calcada:{name:'Calçada',color:'#cfc8ba',walk:true},asfalto:{name:'Asfalto',color:'#5b6066',walk:true}};
+ piso:{name:'Piso de pedra',color:'#b9ab90',walk:true},calcada:{name:'Calçada',color:'#cfc8ba',walk:true},asfalto:{name:'Asfalto',color:'#5b6066',walk:true},
+ bosque:{name:'Mata fechada (bloqueio)',color:'#2f5d34',walk:false},construcao:{name:'Construção / muro (bloqueio)',color:'#a0705a',walk:false},canteiro:{name:'Canteiro / gramado (bloqueio)',color:'#93b86a',walk:false}};
 // Rampa: a seta aponta para onde sobe. u = coluna do Tiled (desce para a direita na tela), v = linha (desce para a esquerda).
 export const RAMP_DIRS={'u+':[1,0],'u-':[-1,0],'v+':[0,1],'v-':[0,-1]};
 const DIR4=[[1,0],[-1,0],[0,1],[0,-1]];
@@ -30,7 +31,23 @@ export function parseTiled(map,tilesets={}){
  const pieces=objects('pecas').map(o=>{const p=props(o.properties),[fu,fv]=String(p.pegada||'1x1').split('x').map(Number),{u,v}=cellOf(o);return {id:o.id,name:o.name||p.asset,asset:p.asset||o.name,u,v,fu:fu||1,fv:fv||1,blocks:p.bloqueia!==false,interact:p.interacao||null,props:p};});
  const events=objects('eventos').map(o=>{const p=props(o.properties),{u,v}=cellOf(o);return {id:o.id,type:o.type||o.class||p.tipo||'evento',name:o.name||'',u,v,props:p};});
  const spawn=events.find(e=>e.type==='entrada');
- return {name:props(map.properties).nome||'Mapa',w:W,h:H,cells,pieces,events,spawn};
+ const zones=objects('zonas').map(o=>({name:o.name,u:o.x/CELL.h,v:o.y/CELL.h,fu:o.width/CELL.h,fv:o.height/CELL.h,props:props(o.properties)}));
+ // A long ramp occupies existing trail cells downhill from the original
+ // landing marker. The map explicitly opts in; other biomes keep one cell.
+ const length=Number(props(map.properties).rampa_comprimento||1);
+ if(length>1){
+  const seeds=cells.flatMap((c,i)=>c.ramp?[{...c,u:i%W,v:Math.floor(i/W)}]:[]);
+  for(const seed of seeds){
+   const d=RAMP_DIRS[seed.ramp];if(!d)continue;
+   for(let n=0;n<length;n++){
+    const u=seed.u-d[0]*n,v=seed.v-d[1]*n,c=cells[v*W+u];
+    if(u<0||v<0||u>=W||v>=H||!c||c.level!==seed.level||c.material!=='terra')throw Error(`Rampa longa sai da trilha em ${u},${v}.`);
+    if(pieces.some(p=>p.blocks&&u>=p.u&&u<p.u+p.fu&&v>=p.v&&v<p.v+p.fv)||events.some(e=>e.u===u&&e.v===v))throw Error(`Rampa longa ocupa peça ou evento em ${u},${v}.`);
+    c.ramp=seed.ramp;c.rampFrom=(length-n-1)/length;c.rampTo=(length-n)/length;
+   }
+  }
+ }
+ return {name:props(map.properties).nome||'Mapa',w:W,h:H,cells,pieces,events,spawn,zones,closedTerrain:length>1};
 }
 // ---------- movimento ----------
 export const at=(m,u,v)=>u>=0&&v>=0&&u<m.w&&v<m.h?m.cells[v*m.w+u]:null;
@@ -40,6 +57,12 @@ export function walkable(m,u,v,solid=blockedByPiece(m)){const c=at(m,u,v);return
 export function canStep(m,a,b,solid){
  if(!walkable(m,a.u,a.v,solid)||!walkable(m,b.u,b.v,solid))return false;
  const ca=at(m,a.u,a.v),cb=at(m,b.u,b.v),du=b.u-a.u,dv=b.v-a.v;
+ if((ca.rampFrom!=null||cb.rampFrom!=null)&&(ca.ramp||cb.ramp)){
+  const d=RAMP_DIRS[(ca.ramp?ca:cb).ramp];
+  if(d[0]*du+d[1]*dv===0)return ca.ramp===cb.ramp&&ca.level===cb.level&&(ca.rampFrom??0)===(cb.rampFrom??0)&&(ca.rampTo??1)===(cb.rampTo??1);
+  const x=a.u+.5+du*.5,y=a.v+.5+dv*.5,e=.000001;
+  return Math.abs(heightAt(m,x-du*e,y-dv*e)-heightAt(m,x+du*e,y+dv*e))<.00001;
+ }
  const up=(c,d)=>c.ramp&&RAMP_DIRS[c.ramp][0]===d[0]&&RAMP_DIRS[c.ramp][1]===d[1];
  if(ca.ramp&&up(ca,[du,dv]))return cb.level===ca.level+1;
  if(cb.ramp&&up(cb,[-du,-dv]))return ca.level===cb.level+1;
@@ -55,14 +78,44 @@ export function findPath(m,from,to,solid=blockedByPiece(m)){const key=p=>p.v*m.w
   for(const [du,dv] of DIR4){const b={u:a.u+du,v:a.v+dv};if(!at(m,b.u,b.v)||!canStep(m,a,b,solid))continue;const ng=g.get(key(a))+1;if(ng<(g.get(key(b))??Infinity)){g.set(key(b),ng);came.set(key(b),{u:a.u,v:a.v});open.push({...b,g:ng,f:ng+Math.abs(b.u-to.u)+Math.abs(b.v-to.v)});}}}
  return null;}
 // Altura contínua para desenhar o personagem na rampa.
-export function heightAt(m,u,v){const c=at(m,Math.floor(u),Math.floor(v));if(!c)return 0;if(!c.ramp)return c.level;const d=RAMP_DIRS[c.ramp],fu=u-Math.floor(u),fv=v-Math.floor(v),t=d[0]>0?fu:d[0]<0?1-fu:d[1]>0?fv:1-fv;return c.level+t;}
+export function heightAt(m,u,v){const c=at(m,Math.floor(u),Math.floor(v));if(!c)return 0;if(!c.ramp)return c.level;const d=RAMP_DIRS[c.ramp],fu=u-Math.floor(u),fv=v-Math.floor(v),t=d[0]>0?fu:d[0]<0?1-fu:d[1]>0?fv:1-fv;return c.level+(c.rampFrom??0)+t*((c.rampTo??1)-(c.rampFrom??0));}
 export const toScreen=(u,v,h=0)=>({x:(u-v)*CELL.w/2,y:(u+v)*CELL.h/2-h*LEVEL_PX});
 // ---------- barrancos ----------
 // Faces visíveis na vista 2:1: as que olham para u+ (sudeste) e v+ (sudoeste), quando o vizinho é mais baixo.
 export function cliffs(m){const out=[];for(let v=0;v<m.h;v++)for(let u=0;u<m.w;u++){const c=at(m,u,v);if(!c||!c.level)continue;
- for(const [du,dv,side] of [[1,0,'u'],[0,1,'v']]){const n=at(m,u+du,v+dv),low=n?n.level:0;if(low>=c.level)continue;if(n?.ramp&&RAMP_DIRS[n.ramp][0]===-du&&RAMP_DIRS[n.ramp][1]===-dv&&n.level===c.level-1)continue;out.push({u,v,side,top:c.level,bottom:low});}}return out;}
+ for(const [du,dv,side] of [[1,0,'u'],[0,1,'v']]){const n=at(m,u+du,v+dv),low=n?n.level:0;if(low>=c.level)continue;
+  if(n?.rampFrom!=null){
+   const e=.000001,ax=side==='u'?u+1+e:u+e,ay=side==='u'?v+e:v+1+e;
+   const bx=u+1+(side==='u'?e:-e),by=v+1+(side==='v'?e:-e);
+   const bottomA=heightAt(m,ax,ay),bottomB=heightAt(m,bx,by);
+   if(Math.min(bottomA,bottomB)>=c.level-e*2)continue;
+   out.push({u,v,side,top:c.level,bottom:Math.min(bottomA,bottomB),bottomA,bottomB});continue;
+  }
+  if(n?.ramp&&RAMP_DIRS[n.ramp][0]===-du&&RAMP_DIRS[n.ramp][1]===-dv&&n.level===c.level-1)continue;out.push({u,v,side,top:c.level,bottom:low});}}
+ // Concave stepped boundaries need their reverse faces as well. Native
+ // ground-depth sorting puts these behind their own top and over low ground.
+ if(m.closedTerrain)for(let v=0;v<m.h;v++)for(let u=0;u<m.w;u++){
+  const c=at(m,u,v);if(!c?.level)continue;
+  for(const [du,dv,side]of[[-1,0,'u-'],[0,-1,'v-']]){
+   const n=at(m,u+du,v+dv);if(n&&n.level>=c.level)continue;
+   const a=side==='u-'?[u,v+1]:[u+1,v],b=[u,v],e=.000001;
+   const sample=p=>n?heightAt(m,Math.min(u+du+1-e,Math.max(u+du+e,p[0])),Math.min(v+dv+1-e,Math.max(v+dv+e,p[1]))):0;
+   const bottomA=sample(a),bottomB=sample(b);
+   if(Math.min(bottomA,bottomB)>=c.level-e*2)continue;
+   out.push({u,v,side,top:c.level,bottom:Math.min(bottomA,bottomB),bottomA,bottomB});
+  }
+ }
+ return out;}
 // ---------- conferência ----------
 export function audit(m){const items=[],solid=blockedByPiece(m),add=(level,rule,text,cell)=>items.push({level,rule,text,cell});
+ // Separate solid props cannot occupy the same footprint. Non-blocking edge
+ // ornaments (e.g. two perpendicular fence faces) may intentionally meet.
+ const occupied=new Map(),collisions=new Set();
+ for(const p of m.pieces.filter(p=>p.blocks))for(let dv=0;dv<p.fv;dv++)for(let du=0;du<p.fu;du++){
+  const u=p.u+du,v=p.v+dv,k=v*m.w+u,other=occupied.get(k);
+  if(other){const pair=[other.id,p.id].sort((a,b)=>a-b).join(':');if(!collisions.has(pair)){collisions.add(pair);add('fail','Sobreposição',`${other.name} e ${p.name} ocupam a mesma célula (${u},${v}).`,{u,v});}}
+  else occupied.set(k,p);
+ }
  for(const [i,c] of m.cells.entries())if(c.material&&!MATERIALS[c.material])add('fail','Material',`Material desconhecido "${c.material}".`,{u:i%m.w,v:Math.floor(i/m.w)});
  const empty=m.cells.filter(c=>!c.material).length;if(empty)add('warn','Chão',`${empty} células sem chão: aparecem como vazio.`);
  if(!m.spawn)add('fail','Entrada','Falta o evento "entrada" (onde o jogador aparece).');else if(!walkable(m,m.spawn.u,m.spawn.v,solid))add('fail','Entrada','A entrada está numa célula onde não se anda.',m.spawn);
@@ -77,6 +130,11 @@ export function audit(m){const items=[],solid=blockedByPiece(m),add=(level,rule,
  // Rampas: pé no nível de baixo e chegada no de cima.
  for(let v=0;v<m.h;v++)for(let u=0;u<m.w;u++){const c=at(m,u,v);if(!c?.ramp)continue;const d=RAMP_DIRS[c.ramp];if(!d){add('fail','Rampa',`Direção de rampa inválida "${c.ramp}".`,{u,v});continue;}
   const hi=at(m,u+d[0],v+d[1]),lo=at(m,u-d[0],v-d[1]);
+  if(c.rampFrom!=null){
+   if(!hi||!canStep(m,{u,v},{u:u+d[0],v:v+d[1]},solid))add('fail','Rampa',`Trecho em ${u},${v} não encaixa na chegada.`,{u,v});
+   if(!lo||!canStep(m,{u,v},{u:u-d[0],v:v-d[1]},solid))add('fail','Rampa',`Trecho em ${u},${v} não encaixa no pé.`,{u,v});
+   continue;
+  }
   if(!hi||hi.level!==c.level+1||!walkable(m,u+d[0],v+d[1],solid))add('fail','Rampa',`Rampa em ${u},${v} não chega ao nível ${c.level+1}.`,{u,v});
   if(!lo||(lo.level!==c.level&&!(lo.ramp===c.ramp&&lo.level===c.level-1))||!walkable(m,u-d[0],v-d[1],solid))add('fail','Rampa',`Rampa em ${u},${v} não começa no chão do nível ${c.level}.`,{u,v});}
  // Pontes: cada ponte precisa tocar terra firme nas duas pontas.

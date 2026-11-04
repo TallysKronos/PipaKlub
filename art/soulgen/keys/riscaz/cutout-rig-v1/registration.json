@@ -1,0 +1,28 @@
+{
+  "windows": [
+    [
+      0,
+      0,
+      322,
+      346
+    ]
+  ],
+  "method": "Each expression is a complete registered head, including opaque face, neck, spikes, eyes and mouth. Never a mouth-only overlay.",
+  "expressions": {
+    "fierce": {
+      "complete_head": true,
+      "opaque_ratio": 1.0330511203288066,
+      "canvas_identical": true
+    },
+    "hurt": {
+      "complete_head": true,
+      "opaque_ratio": 1.040437903668769,
+      "canvas_identical": true
+    },
+    "happy": {
+      "complete_head": true,
+      "opaque_ratio": 1.0266871223743774,
+      "canvas_identical": true
+    }
+  }
+}

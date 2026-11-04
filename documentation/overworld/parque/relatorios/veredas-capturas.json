@@ -1,0 +1,883 @@
+{
+  "area": "veredas-do-encanamento",
+  "mapSha256": "7e3757a11d1e9495c754bde7300e17be1139e3a2879bfa0c559ab941b67758ac",
+  "planSha256": "4ae49ef5f7ee27227b8c7de1806c464b13c34f60bd017db4a5b1d860d7a923ff",
+  "images": [
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/area-inteira.png",
+      "sha256": "a27d869f9731f0bec089a30d5b6530d9b7dca281db8aa19ea1b860c94ae63504"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/entrada.png",
+      "sha256": "a1d75ea282547618d8f38ecbd0ff3455b775d810a53b9c8cca71b2cd52ac970d"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/centro.png",
+      "sha256": "cc96bd965199aba114d7ab35c78b29e90838722778be8ee258107c3916bb3834"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/saida-0-13.png",
+      "sha256": "4aac215eb1486748f70c2dd009863a011e09d2e6d49d29abe9a62a712ff5ca16"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/canto-n1-48-4.png",
+      "sha256": "3c5eed18a9a52de739ecb6a053dbb9bdc73a86a3f24674cb980bcc4c4183bdb0"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/canto-n1-18-10.png",
+      "sha256": "fc83415a3b9dd015bbef0769d7819edb9eed065c65809ebff36e133925042691"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/canto-n1-18-12.png",
+      "sha256": "9bbb1f081ece54826083123e2ce05e359aba51f5103d02f90e0b9dc3d02044d6"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/canto-n1-26-12.png",
+      "sha256": "d8296543fab34fe62941a0689f530fc5fc97f61a7ee2925da037cc678f06360b"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/canto-n1-26-14.png",
+      "sha256": "f7d1dc137f6692d3df0e213d834254a99cd9a621687fa1d0a90314107a5a9d18"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/canto-n1-48-14.png",
+      "sha256": "2285cdb84839035d7c6df5ea648861383bf3a8d6767c1f3a4fb71580e34cec0c"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/canto-n1-4-16.png",
+      "sha256": "24453978fab6f1bc4e987d46c82c92e15cb7a963735c18ba573dc45d2798b3ec"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/canto-n1-4-20.png",
+      "sha256": "d8ff6248bcf9182cc371d41d8971164a14f52a8a5021fd516824120424380bd3"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/canto-n1-4-26.png",
+      "sha256": "1797a1cdd003dac773e4eba9d62a7b246292276e75e4ac0661eafc97302d036b"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/canto-n1-20-26.png",
+      "sha256": "22334e24e723856cb2e2bdf300575d879ee40c50eaccaeca2ab5a2bc91ba801f"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/canto-n1-30-26.png",
+      "sha256": "a20fdd2583c4d49c0c20ee42f34d32375579476e0315b1d33536d708bf76f7ea"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/canto-n1-48-26.png",
+      "sha256": "e27ec0e60a88fe0b60e1a12c0189cd0bb6a5bb02bda95df2f9fd65754fd30b6b"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/canto-n1-30-30.png",
+      "sha256": "f70e794649f7657a2495d2f1f472731bd943259b0b04896785879bd720c267a9"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/canto-n1-32-30.png",
+      "sha256": "5f20d45f7cd29ad7abd37296cee3dd7a2e7e1a676fa18c32dbc005008bc78fc5"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/canto-n1-30-33.png",
+      "sha256": "fc0b95034dc1bf1e227f359d9be1bc8449715964ddfef241af76afdfdf23c4da"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/canto-n1-32-33.png",
+      "sha256": "9419c20027a9e57a89984ffc98b6196cef6351b4b578cd7edcd373fb03aa988f"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/canto-n1-16-34.png",
+      "sha256": "125318a175b2d910fe335e11e1241700ae4b5208251c1c8e167006b46395219d"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/canto-n1-20-34.png",
+      "sha256": "6122c93d4f70571d44fa7ca3b6be26c2fcf0ee6e6b3f20eae831ac45c3eceb0a"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/canto-n1-4-36.png",
+      "sha256": "278e7ce5268779c3141a5aaa0f2d9a34799970d71839586f0452b952067524c7"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/canto-n1-16-36.png",
+      "sha256": "b2257d870f38595e395d8033b0ac5ebb743efbdb8f312297bdf1f736f8d29184"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/canto-n1-30-36.png",
+      "sha256": "205b9494e6d2d79c46966ab5e2544292581023d7e7a9ed49bd246d60a6b2841f"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/canto-n1-48-36.png",
+      "sha256": "9a0237b97c334f6e5c0a9adf6e995ed7da76c988a67a553d5ee1d522db9cda7d"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/rampa-topo-12-10.png",
+      "sha256": "c6826851a93441a216b4b9e8b22da6eee7c510cc46a3d74de2a53083a3eacd37"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/plato-12-10.png",
+      "sha256": "5eaed46bd10de92a5005cff259acc45c5648914eeff01d20fbf8fdb4b7e138ba"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/rampa-topo-13-10.png",
+      "sha256": "7daf1185bc328e0dd352ca5803e95e4645ec154f985753855946598a210f5ab1"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/plato-13-10.png",
+      "sha256": "c9df5a0b063e9c33fed44e2087ca4b6c00dd04d8b293d1dfe77fbb5a047bf331"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/rampa-pe-12-11.png",
+      "sha256": "b9c88872e3e934cb656c691bd01113439b14422efba4ac990c4fe6d7e3ce2483"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/rampa-pe-13-11.png",
+      "sha256": "37188a43ba7e1cdf0c148732fbf3dc4b04f6a9cd02fd7bf447d1db70325edc53"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/rampa-topo-36-14.png",
+      "sha256": "a17a5ad2d23695ae04ce941131179b322df7ab53b23db5d4389d1a682f1f6d81"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/plato-36-14.png",
+      "sha256": "b1a861681cf39cea171f335e92f3e0b78de93c25b7768d0f5a6379b4bbd730ba"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/rampa-topo-37-14.png",
+      "sha256": "b1259e008bea6b140be5d599d9b220e8add680cc95403c203fbce48272505130"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/plato-37-14.png",
+      "sha256": "3fe924b93a6ee4d1c9313fadce0db65be2013347bb327febf5faddb0af19cbf3"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/rampa-pe-36-15.png",
+      "sha256": "0038b1cd1f321a385e577556b20c1809c3c41f765eabb6f5432200ebf56832be"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/rampa-pe-37-15.png",
+      "sha256": "7fd4af8043fb2f6d0cf66a8f578cd701a4c5d99f7a372eb2aed92ad46048e9c6"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/rampa-topo-12-36.png",
+      "sha256": "cc524dc659175632cfd0d887c547217bd9e3aa5d1e6c8c3e3269bba3e1b64fd1"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/plato-12-36.png",
+      "sha256": "be8a7fac556c7bfaba07a42f0eecd73655fc3269dfa3b13884f2e35de95b0127"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/rampa-topo-13-36.png",
+      "sha256": "924ea053bb1b1b06ef33a7cadf9852fb16000f5a83c9e52ecd7b6a1b29cfd3bf"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/plato-13-36.png",
+      "sha256": "c8ea1bcd1e91c76a7cd2cb10dd486206a0405a9f17633afe3102a5b89ec72f4b"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/rampa-topo-40-36.png",
+      "sha256": "9f436c1c40eb342145ca57534915e33454708782efd394dc3fbdd177b3d007ae"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/plato-40-36.png",
+      "sha256": "d47dea647c0daa692554d84d3cad453b96aa1d8fd42857e1a96db45366cf72f7"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/rampa-topo-41-36.png",
+      "sha256": "2aeec2a68ce27db5aca728a020f300095039ce9a9cef61a85ec4704efb6ff202"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/plato-41-36.png",
+      "sha256": "c057db92a8416b2615d743cde3c2381995ab8f0d815fc46addfae8d1f1b56201"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/rampa-topo-42-36.png",
+      "sha256": "1caa2bd8f8679da33076346ab6efbbab1cab9af58ff96ee0bb5a837227cb7ca5"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/plato-42-36.png",
+      "sha256": "33898b056cbbafea7eb9dc21984d96cbd9423b53ceedb23372c1b94b7ffdfcdd"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/rampa-pe-12-37.png",
+      "sha256": "73de7a27fd69c07cefb57e5c551ee5b0b1f90b7c7e2e701c3b765fac29fe6b86"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/rampa-pe-13-37.png",
+      "sha256": "2ddcdb97dcf79d389386d79f59b73b94b63efe5f618bc386d26bef95832b21a2"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/rampa-pe-40-37.png",
+      "sha256": "b5fecee37566941804d247ef9c82d3c5f9118b306588e70887bc6c21ff0433e3"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/rampa-pe-41-37.png",
+      "sha256": "271d262d00b9e5c8b02320f46d3a7e52deb15c5c6b33e4ff618dd06ecfb5aacd"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/rampa-pe-42-37.png",
+      "sha256": "e5707ccded2a983a2ebebec15d60ee0ebe20ddeb2c221a154a8232a201b30d19"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/riacho-margem-0.png",
+      "sha256": "3640b117a905e9a1272b0f06379715ea5ca6ab2b299e708decc5ff8828d88fae"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/riacho-margem-12.png",
+      "sha256": "de39c655a0c3bd47db80dce771b911c280fec46b814c0c3b5b7d885b1b02d4d3"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/riacho-margem-24.png",
+      "sha256": "48e7f5afc3cef1ab425341d83df5b6e672a15c1d60ec4f6141e3ea6088edad40"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/riacho-margem-36.png",
+      "sha256": "b1d2b03f1601dfb6923443cc70bb478142a2542751c7a0e4b481e8ba2423d096"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/riacho-margem-51.png",
+      "sha256": "7a8d8a8c86c0922ae04d63e62ae2ace97e7fbd4deb05c9ff129dd96d1016cd99"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/mureta-junta-30-36.png",
+      "sha256": "205b9494e6d2d79c46966ab5e2544292581023d7e7a9ed49bd246d60a6b2841f"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/mureta-junta-40-36.png",
+      "sha256": "c0842f79c1ec92849eb8acacbb84f9221dd5d517fd4b08023ef7ac251c830333"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/mureta-junta-43-36.png",
+      "sha256": "c10c42d1eb53e7f3dc18a0362035523f40e335eac1438863ddf6073b4bbb1dbd"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/mureta-junta-48-36.png",
+      "sha256": "9a0237b97c334f6e5c0a9adf6e995ed7da76c988a67a553d5ee1d522db9cda7d"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/mureta-junta-48-26.png",
+      "sha256": "e27ec0e60a88fe0b60e1a12c0189cd0bb6a5bb02bda95df2f9fd65754fd30b6b"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/patio-dos-canos.png",
+      "sha256": "6f404df7d18cd3521b569125be9368e959723be140103d6615778795e686c2e2"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/mirante-norte.png",
+      "sha256": "e528a04c48fc87747c4bd83d54fd51e6db9dc523eb7686bde281d3d7a5782c26"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/bosque-sul.png",
+      "sha256": "e914cbee11a821a0a982195d1b71c587e6ba6986f3678c32697843a5614004b9"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/mesa-do-norte.png",
+      "sha256": "09d56b1752fefc881274348b616739fcdcc66f028efd68b02ec09c371866b386"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/ponte-cabeceira-norte.png",
+      "sha256": "23c9fa73ad21a837a2a64f1de04ec495278c0b07630fcdcc6a17947fb8d76671"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/ponte-cabeceira-sul.png",
+      "sha256": "d53d61fe67437f4eeb03d106bc35d2f5de2ff767a5212d8880de1af76239f5eb"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/ponte-tabuleiro.png",
+      "sha256": "ec9c287169b9ed4dd9581160970727707ac0bc020ffba8e9fd393506550b428a"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/escada-pe.png",
+      "sha256": "e2035d404c91d5adc86fc5d038ac7751808f734c1e50eb432e6e165881f6a13d"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/escada-chegada.png",
+      "sha256": "a7a28b5faf037c5f5f3a1c693183030414a3bd298283c0779a9ca00dbe3bd64f"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/geometria/canos-implantacao.png",
+      "sha256": "1ef6c93c52a731b525184544cbb4f1b368e93a12f42cf5c32817372d23221a25"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/area-inteira.png",
+      "sha256": "0511427792ab9faa05de4d9af52f640e54dc3e948923d337091a4422d947fb46"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/entrada.png",
+      "sha256": "27317a286767f1348b00333926e9a33ad096c384bf5b071dc133571593815728"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/centro.png",
+      "sha256": "ec27efdd94ed54ebe144e45e605046a5cb59e5b2cb88fc85ef6215b10e1d6939"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/saida-0-13.png",
+      "sha256": "48a1c80cc06bf5ccbbd831dfd0c6c5e61f0890befd9df590cf0e661cd6534538"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/canto-n1-48-4.png",
+      "sha256": "5b63dd402643afed3465b9549f253323c0450c97899bc5deda1cac4bc8927990"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/canto-n1-18-10.png",
+      "sha256": "b0e48415dcaa7e0d087ca5d0bcac93d9e0f090c17079f19124cc0fb138e19793"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/canto-n1-18-12.png",
+      "sha256": "404f06d91075f0b2a2f5393b5e7431c2c02f99dee81752fa3089c5642f8c6543"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/canto-n1-26-12.png",
+      "sha256": "aaeac5540994d2e0db61fac6740a315b60beba9e656d796e7f124dcce8482973"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/canto-n1-26-14.png",
+      "sha256": "776483b6aefd40bc5d6fe84871406c255c1df1038fa345159a7f254667ca0a35"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/canto-n1-48-14.png",
+      "sha256": "a4c8d3f8284e4b7501bc1d224145bcdc51a86090bcabbf791289e39dcc9d06fc"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/canto-n1-4-16.png",
+      "sha256": "061d6ed18beac7e94e95f7c7418b8e66eca34236c8d43950af55ee98ee47e507"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/canto-n1-4-20.png",
+      "sha256": "aa7dcf86a5a015dd0db56df85528ba9ed7d9feedb2a585a922c5f72309288836"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/canto-n1-4-26.png",
+      "sha256": "48b5cf62df1048e565329a3004757e528d47d46d9290d9067fede130e9ba77c0"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/canto-n1-20-26.png",
+      "sha256": "183b657a27e368c17ea2bf34747bcf4a39fec447dbc39feec65ebb00cf88a3ed"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/canto-n1-30-26.png",
+      "sha256": "5a8dee2611666d671aa9b462ac431a32d0268c06c55b14df7ab1f2a764f79b2d"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/canto-n1-48-26.png",
+      "sha256": "f70940ff280ec247e773de3291030f01ab4809794f1d91a2eb6fa7a09f6641d6"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/canto-n1-30-30.png",
+      "sha256": "74e7e49a085468535d6551153cce07e53ea53e24ea3184fba12db58daecfd949"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/canto-n1-32-30.png",
+      "sha256": "829d09b7ab48a4e82c5c489141d9185edba4aa2278a30d9316584058a769058f"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/canto-n1-30-33.png",
+      "sha256": "d3fd7abb7ce022b9dfdb61522f902bbfbceb7d7abf36688c7291ba463b301ec3"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/canto-n1-32-33.png",
+      "sha256": "6c56c9a419aebb9e4acf37e4b043711c3a519bd0951925c708b907b4c8154663"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/canto-n1-16-34.png",
+      "sha256": "3dea015709b1f23b140942bb2c1e7ba5ec58242e7d1d4b4c7b23a452d3a423b7"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/canto-n1-20-34.png",
+      "sha256": "7d464300712867ab3ecdcfe44598a8567fa522c353dc5de83c1bfdfb4ce36547"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/canto-n1-4-36.png",
+      "sha256": "6f51fecf83e79a80b8564b13fcd592455fb95cfb29f8e467136652157090be7c"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/canto-n1-16-36.png",
+      "sha256": "b5e4fcf2690f35ce341ad6e431c72e4eaaa345c4b2828345518e9100f13e6ecd"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/canto-n1-30-36.png",
+      "sha256": "91c14fe9209ca034d060564d03852fb957f6d6f8d9af6977e9f6448ef132d9dc"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/canto-n1-48-36.png",
+      "sha256": "8cff4c7fe619ca5ad466e5eae12b5938e6b5ecc1d96a37d59308668ff5049ffd"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/rampa-topo-12-10.png",
+      "sha256": "1464008ed65c1bc45d4e25a0e49bf594a1a71914f9d6edfcfa9c43122222d483"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/plato-12-10.png",
+      "sha256": "516fc31efc2a0037bcea72dcb5acf57a60243cc6914ba0d031757a35b0f63bcb"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/rampa-topo-13-10.png",
+      "sha256": "1ae052313e0eae993b57ffe6817721468b8be24b97b360d364f8dc360af501f6"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/plato-13-10.png",
+      "sha256": "9f6aa3d21f2a269df24425ca3c93c68c294bf044b4dfd980da3eaf54db9c43d2"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/rampa-pe-12-11.png",
+      "sha256": "8a450bab8b002fd560b7202b9f4911efb9045534509a05ea94fb9a071198d0b6"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/rampa-pe-13-11.png",
+      "sha256": "11d970f6bc4d0ec7a597767a691f4bc07d6b965d40ebb5908ad223d1ea85e628"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/rampa-topo-36-14.png",
+      "sha256": "33251a7665259d0747979c1563e9818b5bc82fc485e6094756d8b0d385c88d32"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/plato-36-14.png",
+      "sha256": "f6b544943a37029a30a9dfa48b1d715adb0c2926e1ce82016e3362af98344044"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/rampa-topo-37-14.png",
+      "sha256": "8c5cb150b49fe49b251b9d0382c6da9c1b0dec447673c132252a439fca10df8c"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/plato-37-14.png",
+      "sha256": "9c1d93155bd25098c89ba0aed847f1a8d6bbcdf9aa4627ed8d4e8ebd3b566fb5"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/rampa-pe-36-15.png",
+      "sha256": "3c37122ed05779b2f7400de9c0294465e11eb3c795ad07958240e17bc53eb299"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/rampa-pe-37-15.png",
+      "sha256": "876146995472da95456a08e4d0a63fd0d83fb83be729ef6379ea0f5164626a4d"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/rampa-topo-12-36.png",
+      "sha256": "aeff7a1c08024288a6d0620f9ef55cc4d6be31d0f226002a0888c9f3528218f0"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/plato-12-36.png",
+      "sha256": "3cd69f5982ed70fbf564b3ebaf32cc758ffa4f59ee6b972d60fcfecb88bc8cb2"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/rampa-topo-13-36.png",
+      "sha256": "1cf1f89d858f974304b4e6437c762f54b8076eedf6ee3abeef0047dde79cc1ea"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/plato-13-36.png",
+      "sha256": "5ca22c020a769060e511e7c5e9f38c0f07f257b1c11abf91c6408416cec80f69"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/rampa-topo-40-36.png",
+      "sha256": "c4820c4822f901a0faeeda9a489f23463e7de80801e97af4e4e2b970eb7f161c"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/plato-40-36.png",
+      "sha256": "355b57734ffd3e836bd15aca3edb7c7e21f53bfbeefb8098d19ddb7ca1a6e941"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/rampa-topo-41-36.png",
+      "sha256": "74d43d96ce506e2c36675d915faddffc87f2dfa9c2e9c5fc7b9f4871e1a0e88c"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/plato-41-36.png",
+      "sha256": "216a03a673eaf54bfb36d8245f2d33e888ff9595900ee31a0cd5acd93d06247f"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/rampa-topo-42-36.png",
+      "sha256": "da6a1dc78bbf87072b0f6123e17401c7c41dccf0f97baf595ab7c7a10543051c"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/plato-42-36.png",
+      "sha256": "f567928f95fd2af9276141669da93dbd4d4ce39f950f94cfd9da15a3d4a2928e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/rampa-pe-12-37.png",
+      "sha256": "9065b8e33a1c495192dcbf3b90f5e89b5ddbcaf3aec2d6d1aa3c39036017ee1e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/rampa-pe-13-37.png",
+      "sha256": "707430d2121cb6ddc4a29889a3c09f56e2a4d6d4edf94442b40b0e0f8ab3c050"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/rampa-pe-40-37.png",
+      "sha256": "efead9cd3dba20c5752b34e4b3f56ff5791b0068ec74359b83d3ba7a2fcb8ab0"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/rampa-pe-41-37.png",
+      "sha256": "fd60b9f88bf17abb95c75927b0d7642c271897e1d299e963ee4a4230e048f2e8"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/rampa-pe-42-37.png",
+      "sha256": "13cfb5b3d0155389b59a4faa15300dd1cb7b9ef471ed40f9506f677a5e3f2645"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/riacho-margem-0.png",
+      "sha256": "cfc146a6afb695f853d52db2aa42528e74b42a38574a75839b0220fece223982"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/riacho-margem-12.png",
+      "sha256": "a6c9859b379fabca95d10ebf66f5d3070a0b3afe71d16b19108b385ac2395c1c"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/riacho-margem-24.png",
+      "sha256": "a42f6282b0419f81414e00a2fc98be61557528d15073e51c0b14389b974a51fc"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/riacho-margem-36.png",
+      "sha256": "4734753acf77ae1add98f789453682df696c4151ef1be3b777fce27850002ec6"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/riacho-margem-51.png",
+      "sha256": "0c461916b455ec4e3788314d3c2bd810a968b6c79024e841f921822a54eda587"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/mureta-junta-30-36.png",
+      "sha256": "35fadee8524c255aecedbb160afc551393aeb7ebd6efd73fb94b0ae9f4dee0bc"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/mureta-junta-40-36.png",
+      "sha256": "5440e8505c51e25938a3a5364d650eeee3df20e667fb5aec6e172a4c93b9c82c"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/mureta-junta-43-36.png",
+      "sha256": "a69c2f08e949e418c708665114a314bb4698b9d02aa03d903855f7db76e9c738"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/mureta-junta-48-36.png",
+      "sha256": "8cff4c7fe619ca5ad466e5eae12b5938e6b5ecc1d96a37d59308668ff5049ffd"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/mureta-junta-48-26.png",
+      "sha256": "f70940ff280ec247e773de3291030f01ab4809794f1d91a2eb6fa7a09f6641d6"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/patio-dos-canos.png",
+      "sha256": "72044ae9007fe3b698cd1af508bf597b292dce9c4417089cc9ae1c4c9e9f72af"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/mirante-norte.png",
+      "sha256": "3f0dba58dfaa8de48b6b2a2a5e2fda078f516993ed2006eed88111ae8d022d8e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/bosque-sul.png",
+      "sha256": "03c5572ffa8b9860c2256bb6ad9ed51db3b43240691306a84829023e28d2651b"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/mesa-do-norte.png",
+      "sha256": "93cae9a4d618407ed4d33eeb5bc18c3fed0eccf931b5d439bf384f53c9e2ee2c"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/ponte-cabeceira-norte.png",
+      "sha256": "4f06e14c69c25724b991cf22da84873a4fe7b7db00d527cd7edc404773577194"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/ponte-cabeceira-sul.png",
+      "sha256": "b44bec938aa3999558eb13f4811d0c74f4f371cd9ef28e1c49ec5a71f6a23350"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/ponte-tabuleiro.png",
+      "sha256": "532b414f1d116ba7751374ec8fb020281463fb293c26b7ab4960a35d6468f132"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/escada-pe.png",
+      "sha256": "dea500f179c5229a094001e2ce2b637f155d93be41f70dac980e6ea3fad9bac2"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/escada-chegada.png",
+      "sha256": "0f23e7632c95dc32702bd5c17a54ff2ef6d5de5f521fe6cdeccd11c7a7962985"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte/canos-implantacao.png",
+      "sha256": "f5e6099571b403292568d653705078bd10f399179f77b7879eff31403d3d0342"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/area-inteira.png",
+      "sha256": "db64e2af9dd2dec6f31e8d50421d1d532120676ee193a761d045b5b83956672f"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/entrada.png",
+      "sha256": "e94cdb122cfdbe967b17f4e053869d80dda352dea9fee76b93de2efda074f475"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/centro.png",
+      "sha256": "9715dfcb60c0d0a51e3c3cc5dd9d7074f5213e3901505241e72e9a0af001ddc9"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/saida-0-13.png",
+      "sha256": "24fd3ceee047942e421c73f3d8bb1c3af9723b4d3eba9f3ffbc53452259939f7"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/canto-n1-48-4.png",
+      "sha256": "3e7cb3b9549fa855c58e0818d8dc483a4781f62350d9a0339deab193c1e82e68"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/canto-n1-18-10.png",
+      "sha256": "8bf4de394257f697aea573d6e78f50062cb6a066e476a8d8740bf731c33fe88e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/canto-n1-18-12.png",
+      "sha256": "d372c50b4322c509763dccd6dd5b633995843748153cb1e253cae565b3c15a96"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/canto-n1-26-12.png",
+      "sha256": "8eee52ef4ccb0168756274fe7e394ab4b1288b086b1e26d7313a61010c0f6295"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/canto-n1-26-14.png",
+      "sha256": "14b4b036d9815917efd03af394c8cbddeae1ec3947f48a8e4499eb27e63cb69a"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/canto-n1-48-14.png",
+      "sha256": "146b2be9d70533193b9e671e708106b8cf55019c55a26b54e3eb83ebc04afaa2"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/canto-n1-4-16.png",
+      "sha256": "35c9fae9fc48c942f8d3db6bba50c7634f22fb5c0402d5f1cbc2dfa872ebadfc"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/canto-n1-4-20.png",
+      "sha256": "1a000590f4a7efc59f0d6b5da3c98734667926fb1fa014b51bb40b0ca5c4f8dd"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/canto-n1-4-26.png",
+      "sha256": "0d165ff97e21828b34fd2f57c2f2ab36dcf50c022c5d2de7ef73c69be4c3f776"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/canto-n1-20-26.png",
+      "sha256": "cdbbf35c57cc7b891404c9372f4f16bb29f46fc031fcd3d40e9262f3d7cc4e7a"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/canto-n1-30-26.png",
+      "sha256": "e6fb0d995d355605ee14c123faad2b51c76daefbaf4bd3f8c9afaefa47e7476e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/canto-n1-48-26.png",
+      "sha256": "482c359d7b3feb988b372422cf4a5313e2a088425aa8df18d1877a688a04dd8c"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/canto-n1-30-30.png",
+      "sha256": "0751548a92ef947cdbf1652cb24c116f202c349efb6b58affa23f342fa008a3d"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/canto-n1-32-30.png",
+      "sha256": "33c0d066b51ebba1d37a720be5e3a5aaa7223fb0ed6e971568dce2628b21a084"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/canto-n1-30-33.png",
+      "sha256": "ca74b046fe8980c6fe8e0f9de7f02c63fff72a1a6d9ebac1c01667db914ee083"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/canto-n1-32-33.png",
+      "sha256": "78c7e645e595d9923825c169a8f8f235a70a702c530bb1f6fb8f825ee280f9e4"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/canto-n1-16-34.png",
+      "sha256": "a781e09d920e88afa45abc922bf3b19263a6618f724f7cb4dee4116af2a25ad0"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/canto-n1-20-34.png",
+      "sha256": "72f53c9f1efaa51b83ccc477550981841e76d6d61be068292dea7fa17a23964e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/canto-n1-4-36.png",
+      "sha256": "de3ac6b666b95a108f1c78210d579e404973dca1b9bf5accaf1dcc0db956ed31"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/canto-n1-16-36.png",
+      "sha256": "b4eb8c1a9be1bb9e6c116c4345e65e7db3cad99326b816adad1a640e8f4fd51b"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/canto-n1-30-36.png",
+      "sha256": "5137be4583639a2dc5c9b3fc2c82785205a2acd62e648e637dbb3dbd8b076f13"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/canto-n1-48-36.png",
+      "sha256": "605f80ab5b6ef200ddbfe098b22144e88e3fd12cb4c03b91be9c26159b8c9084"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/rampa-topo-12-10.png",
+      "sha256": "a10fc40bf4275bd5a3e66c2f6b2a9b02f524b02ed6c2c4138b9409ea201c40b4"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/plato-12-10.png",
+      "sha256": "00626daf79937de9191c39f6c59a3a1d26396025656b19485fb06c2bfc5d42e1"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/rampa-topo-13-10.png",
+      "sha256": "693a1cd9e7510ffaac9d452eadddb76f4db0c07482a23e4ec83ceb85eef4111e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/plato-13-10.png",
+      "sha256": "0df076cf41443bdbc9742787be371ce85722485bc2b9eb03eb0c88df0236ac80"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/rampa-pe-12-11.png",
+      "sha256": "e3f794e437ee6c9a7cb1351a8784df2168c49d7612ddf2304a87b59b66fe1093"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/rampa-pe-13-11.png",
+      "sha256": "efb0a19e55cb8810ea482b38656bd56041890b4f6d4de76653f1ac6bb7b2c86e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/rampa-topo-36-14.png",
+      "sha256": "7051171e13340e569050953d20a51d1b239aeef6b685bb38bd37615509e63ec5"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/plato-36-14.png",
+      "sha256": "7084cdb22cf81a1aeb20a466d934f6ae810fb6a1a9053e92b5c69b55ded3fe10"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/rampa-topo-37-14.png",
+      "sha256": "c430ecb71441051d87a012e678ca53095c4fcd541604a48a0a5ea5b9c0d83928"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/plato-37-14.png",
+      "sha256": "79b69943822b1fbeae188ccd223f6c64b3c53a21c7f7ab67532f73b450491af3"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/rampa-pe-36-15.png",
+      "sha256": "cfa1c46d39968b1b02bf96dd3e1860d5155d43d5761e35aa6d28403528aa4914"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/rampa-pe-37-15.png",
+      "sha256": "b2423e1fe5a461d540c066543713b4039aca9b6d2eb6c36910bc7ab0ef15788f"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/rampa-topo-12-36.png",
+      "sha256": "a93f2c9d5a74af60a587e172553b76e999d6d6533af6361d2ff93cdae829e732"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/plato-12-36.png",
+      "sha256": "0512cd67f99032ababc9df3b91414bc13557b61561c3ad9d1726bb248477b517"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/rampa-topo-13-36.png",
+      "sha256": "a0eae5edb806710d61384ee3ac6f7597cc9a4610d0a2352aa6bbde68b31abea9"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/plato-13-36.png",
+      "sha256": "9376db73668b9813a37d1ef8e1aadfde9b5c73441718dab66ebdfa81e2909a17"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/rampa-topo-40-36.png",
+      "sha256": "524b8e9eebe8b752d8448bed6b747ff8ab547278f70e38f076b38a3075c6cf8d"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/plato-40-36.png",
+      "sha256": "3c06dc475fc78a484af073ff45f697efaa7361bf9c4633817031c245ec2af8d1"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/rampa-topo-41-36.png",
+      "sha256": "2980e72018b232aee6cc372ba945c7b8d533cd087996af80b171e3fb3d79c8cf"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/plato-41-36.png",
+      "sha256": "43a967edd24319457dad972ecd0a07418cc73061459ece6cef02335b89f9ef56"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/rampa-topo-42-36.png",
+      "sha256": "17cfb25031cc0f132881c51f7a36c552f7298145a5a48d28b05a68b23574d63c"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/plato-42-36.png",
+      "sha256": "03ca0f6b8ae65091344b39007b7729f602be0fb785e1e406a1f4e5569b9c96ff"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/rampa-pe-12-37.png",
+      "sha256": "27f11286b62b0551866161c86586348c1c4adce1cb9b4aa7d79ca9a1ea623882"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/rampa-pe-13-37.png",
+      "sha256": "3662d196e63ebb0040e4af2fa27236292fb5212d5029548643bd98955d9af956"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/rampa-pe-40-37.png",
+      "sha256": "6ca0c208602101af5357892a33b4c6f70eed78ecab8d8f6af5cac9083b127a49"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/rampa-pe-41-37.png",
+      "sha256": "7468b7569432521d71ec8c14fd685606897c725504de9cd6d62797d63e826388"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/rampa-pe-42-37.png",
+      "sha256": "b01e6cd71dc451f7897af27aca8a9ae47da25de4f3319869c95e4e1ff8eb771b"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/riacho-margem-0.png",
+      "sha256": "7cc98bef378953f54fb58b9b7acf42e4b7bfc83bd64b7fbd9c41ea938741ed28"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/riacho-margem-12.png",
+      "sha256": "94f572a4d0af258ece35df08c9d5603fb827f8790782435179533f5a5cd7368e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/riacho-margem-24.png",
+      "sha256": "04594288d06f34080a50b32d5121e9b71b1316c5e6d3a9b6c95975ab4752cfcf"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/riacho-margem-36.png",
+      "sha256": "6d4d5f636eb29353cf5274c5e1c7fadb756e8577fbfbed68cf1e8e31cc24fd2d"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/riacho-margem-51.png",
+      "sha256": "7e3159433561e291af4b4a08a20966b7897d9d3b9223bed1afcd065c44cbdbe7"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/mureta-junta-30-36.png",
+      "sha256": "b97a96e5a78f3d6f1685b1af85c5094288069f1cdfab0cb3c7a57961c18f8af1"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/mureta-junta-40-36.png",
+      "sha256": "4d009c42e69e624f8bdf08dc02e937379a119335407f1c57fe5857de719476c2"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/mureta-junta-43-36.png",
+      "sha256": "def65c668a88c89e37fa20caa23c5caf00ffeacd701753791ba22975bb73b20e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/mureta-junta-48-36.png",
+      "sha256": "605f80ab5b6ef200ddbfe098b22144e88e3fd12cb4c03b91be9c26159b8c9084"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/mureta-junta-48-26.png",
+      "sha256": "482c359d7b3feb988b372422cf4a5313e2a088425aa8df18d1877a688a04dd8c"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/patio-dos-canos.png",
+      "sha256": "1b9858780c2c267eddb06d9704ecb9bc8390d7325f189367c4224340ca1d0752"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/mirante-norte.png",
+      "sha256": "5cf30de1272cc2770a09b483e9806e3b317fb51c1189f58c3e6fee1bcd3d5eb2"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/bosque-sul.png",
+      "sha256": "0d76a94e41c7cd8e50278afa178dec54953649f853db4febdfa749a717f06162"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/mesa-do-norte.png",
+      "sha256": "bbb22f9c4bdb30b6627b988ab86245ecf1fc969413a630cdd2b3b087cf85e23c"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/ponte-cabeceira-norte.png",
+      "sha256": "d61312c59bbcb49a45c25dcf6296053051fa5250f721f1b4192e020e09b21a42"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/ponte-cabeceira-sul.png",
+      "sha256": "dee1c74264c715a025c4c58c19eade8a4b4e2200bb20650477063648b6283554"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/ponte-tabuleiro.png",
+      "sha256": "32eea9857b5a537a55cebada98445415fb62f29a6b00e642053cb9a37877c155"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/escada-pe.png",
+      "sha256": "b9fff0867975a7bd6466091a80b2569526e4c701e31175344a36cbceb3518b50"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/escada-chegada.png",
+      "sha256": "13c0a67d552ac789ed6586c2c0e34630fd37744f69ea80d57ced2b77dcded1de"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/veredas-do-encanamento/arte-terreno/canos-implantacao.png",
+      "sha256": "5ad2676bda48192a280d6fdcb69122f6bc3ee70100b474ef5b46fee88b941520"
+    }
+  ]
+}

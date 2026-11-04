@@ -1,0 +1,9 @@
+{
+ "schema":"native-structure-kit-1",
+ "grid":[64,32],
+ "levelPx":64,
+ "renderer":"res://scripts/overworld/mural_structures.gd",
+ "pieces":{"primeiro-laco":{"image":"primeiro-laco.png","kind":"wall-surface","blocks":false,"support":"continuous cave wall at v=5","widthCells":12,"heightPx":112}},
+ "reuses":["cavernas-v3","mina-ferro-v1/cave-formations"],
+ "notes":"Symbolic visitor, egg and voluntary bond. Does not define the pending legendary species."
+}

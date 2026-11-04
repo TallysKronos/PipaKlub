@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/overworld/waterfall.gd" id="1_mtts8"]
+
+[node name="cachoeira-v-1" type="Node2D" unique_id=1515140838]
+script = ExtResource("1_mtts8")

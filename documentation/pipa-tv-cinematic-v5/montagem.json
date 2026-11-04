@@ -1,0 +1,35 @@
+{
+  "sources": [
+    {
+      "path": "art\\pipa-tv-cinematic-v4\\video-original\\pipa-tv-v4-montagem-nativa.mp4",
+      "seconds": 25.84,
+      "audio": true,
+      "dimensions": [
+        1056,
+        608
+      ]
+    },
+    {
+      "path": "art\\pipa-tv-cinematic-v5\\video-original\\05-tyler-petalas\\transicao-revisada.mp4",
+      "seconds": 4.5,
+      "audio": true,
+      "dimensions": [
+        864,
+        480
+      ]
+    }
+  ],
+  "preview": "documentation\\pipa-tv-cinematic-v5\\pipa-tv-abertura-completa-v5.mp4",
+  "standalone": "documentation\\pipa-tv-cinematic-v5\\kael-tyler-petalas.mp4",
+  "film_metadata": {
+    "seconds": 30.14,
+    "audio": true,
+    "dimensions": [
+      1280,
+      720
+    ]
+  },
+  "overlap_seconds": 0.2,
+  "export_note": "1280x720 is an aspect-preserving resized review export, not native HD generation.",
+  "runtime_changed": false
+}

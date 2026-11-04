@@ -1,0 +1,31 @@
+{
+  "sources": [
+    {
+      "path": "art\\pipa-tv-cinematic-v2\\video-original\\01-locutor\\6998f953_000.mp4",
+      "seconds": 6.58,
+      "audio": true
+    },
+    {
+      "path": "art\\pipa-tv-cinematic-v2\\video-original\\02-pipeiros\\b5c7ca75_000.mp4",
+      "seconds": 6.58,
+      "audio": true
+    },
+    {
+      "path": "art\\pipa-tv-cinematic-v2\\video-original\\03-batalha\\18dfc0df_000.mp4",
+      "seconds": 6.58,
+      "audio": true
+    }
+  ],
+  "transition": {
+    "kind": "short dissolve with audio crossfade",
+    "seconds": 0.16
+  },
+  "master": "art\\pipa-tv-cinematic-v2\\video-original\\pipa-tv-v2-montagem-nativa.mp4",
+  "master_metadata": {
+    "seconds": 19.42,
+    "audio": true
+  },
+  "preview": "documentation\\pipa-tv-cinematic-v2\\pipa-tv-apresentacao-pipeiros-batalha.mp4",
+  "runtime": "godot\\assets\\campaign\\cinematics\\pipa-tv-abertura-v2.ogv",
+  "native_generation": "864x480, 24 fps; 1280x720 exports are resized, not native HD"
+}

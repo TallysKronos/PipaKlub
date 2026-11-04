@@ -1,0 +1,136 @@
+{
+  "schema": "overworld-kit-1",
+  "biome": "submerso-v2",
+  "approval": "pending_owner_review",
+  "grid": {
+    "cell": [
+      64,
+      32
+    ],
+    "levelPx": 64
+  },
+  "renderer": "res://scripts/overworld/submerged_structures.gd",
+  "pieces": {
+    "submerso-prop": {
+      "variants": {
+        "alga": {
+          "file": "pecas/alga.png",
+          "size": [
+            1086,
+            1448
+          ],
+          "anchor": [
+            543,
+            1361.12
+          ],
+          "displayHeightPx": 175,
+          "footprint": [
+            1,
+            1
+          ],
+          "bloqueia": true,
+          "frames": 1,
+          "animation": "rooted vertex sway; no collision movement",
+          "filter": "linear",
+          "alphaShader": "res://shaders/submerged_sprite.gdshader",
+          "alphaMin": 0,
+          "zeroAlphaSamplesStep4": 60471,
+          "source": "image_gen.imagegen, 2026-11-01; original retained in art/overworld/kits/submerso-v2/fontes/alga.png"
+        },
+        "colonia": {
+          "file": "pecas/colonia.png",
+          "size": [
+            1536,
+            1024
+          ],
+          "anchor": [
+            768,
+            890.88
+          ],
+          "displayWidthPx": 270,
+          "footprint": [
+            3,
+            3
+          ],
+          "bloqueia": true,
+          "frames": 1,
+          "animation": "static",
+          "filter": "linear",
+          "alphaShader": "res://shaders/submerged_sprite.gdshader",
+          "alphaMin": 0,
+          "zeroAlphaSamplesStep4": 45374,
+          "source": "image_gen.imagegen, 2026-11-01; original retained in art/overworld/kits/submerso-v2/fontes/colonia.png"
+        },
+        "coral": {
+          "file": "pecas/coral.png",
+          "size": [
+            1536,
+            1024
+          ],
+          "anchor": [
+            768,
+            890.88
+          ],
+          "displayWidthPx": 190,
+          "footprint": [
+            2,
+            2
+          ],
+          "bloqueia": true,
+          "frames": 1,
+          "animation": "static",
+          "filter": "linear",
+          "alphaShader": "res://shaders/submerged_sprite.gdshader",
+          "alphaMin": 0,
+          "zeroAlphaSamplesStep4": 53269,
+          "source": "image_gen.imagegen, 2026-11-01; original retained in art/overworld/kits/submerso-v2/fontes/coral.png"
+        },
+        "espirao": {
+          "file": "pecas/espirao.png",
+          "size": [
+            1028,
+            1530
+          ],
+          "anchor": [
+            514,
+            1331.1
+          ],
+          "displayHeightPx": 330,
+          "footprint": [
+            2,
+            2
+          ],
+          "bloqueia": true,
+          "frames": 1,
+          "animation": "static",
+          "filter": "linear",
+          "alphaShader": "res://shaders/submerged_sprite.gdshader",
+          "alphaMin": 0,
+          "zeroAlphaSamplesStep4": 48135,
+          "source": "image_gen.imagegen, 2026-11-01; original retained in art/overworld/kits/submerso-v2/fontes/espirao.png"
+        }
+      }
+    },
+    "submerso-marker": {
+      "native": true,
+      "footprint": [
+        1,
+        1
+      ],
+      "bloqueia": true,
+      "description": "Three amber polyps on a rooted coral stone, no sign text"
+    }
+  },
+  "reuse": {
+    "rocha": "res://assets/overworld/kits/cavernas-v3/props/rocha-solta.png",
+    "wall": "res://assets/overworld/kits/cavernas-v3/surfaces/parede-basalto.png",
+    "grain": "res://assets/overworld/kits/cavernas-v3/surfaces/rocha-cinza.png"
+  },
+  "notes": [
+    "Original submerso-v1 library remains unchanged.",
+    "Coral footprints vary 2x2/3x3; colony hero 4x3 at width340; secondary 3x3 at width270. Spire footprints 2x2/3x2/3x3.",
+    "Kelp scale .91/1/1.09, optional mirror. Vertex sway vanishes at the .94 root anchor.",
+    "Original alpha retained; semi-transparent generation halos discarded in shader.",
+    "SUBMERSO_CAPTURE=1 freezes caustics, kelp sway and bubbles for deterministic visual QA."
+  ]
+}

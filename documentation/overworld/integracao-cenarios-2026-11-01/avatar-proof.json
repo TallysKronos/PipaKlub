@@ -1,0 +1,58 @@
+[
+  {
+    "avatarBase": "res://scripts/kael_video_avatar.gd",
+    "idlePixelsMatchSource": true,
+    "idleSource": "res://assets/kael-video/kael-idle-eight.png",
+    "room": "bedroom",
+    "scale": [
+      1.08606064319611,
+      1.08606064319611
+    ],
+    "walkTextureSize": [
+      512,
+      768
+    ]
+  },
+  {
+    "avatarBase": "res://scripts/kael_video_avatar.gd",
+    "idlePixelsMatchSource": true,
+    "idleSource": "res://assets/kael-video/kael-idle-eight.png",
+    "room": "home",
+    "scale": [
+      0.896000027656555,
+      0.896000027656555
+    ],
+    "walkTextureSize": [
+      512,
+      768
+    ]
+  },
+  {
+    "avatarBase": "res://scripts/kael_video_avatar.gd",
+    "idlePixelsMatchSource": true,
+    "idleSource": "res://assets/kael-video/kael-idle-eight.png",
+    "room": "professor",
+    "scale": [
+      0.882215440273285,
+      0.882215440273285
+    ],
+    "walkTextureSize": [
+      512,
+      768
+    ]
+  },
+  {
+    "avatarBase": "res://scripts/kael_video_avatar.gd",
+    "idlePixelsMatchSource": true,
+    "idleSource": "res://assets/kael-video/kael-idle-eight.png",
+    "room": "kite-shop",
+    "scale": [
+      0.73471999168396,
+      0.73471999168396
+    ],
+    "walkTextureSize": [
+      512,
+      768
+    ]
+  }
+]

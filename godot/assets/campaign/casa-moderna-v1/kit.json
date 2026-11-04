@@ -1,0 +1,225 @@
+{
+  "schema": "house-modern-1",
+  "approval": "pending_owner_review",
+  "projection": [
+    64,
+    32
+  ],
+  "renderer": "res://scripts/campaign/house_modern.gd",
+  "pieces": {
+    "cama": {
+      "zeroAlphaSamplesStep2": 204026,
+      "id": "cama",
+      "size": [
+        1375,
+        1144
+      ],
+      "alphaMin": 0,
+      "bounds": [
+        28,
+        30,
+        1335,
+        1111
+      ],
+      "file": "cama.png",
+      "frames": 1,
+      "scale": "uniform fit to canonical rectangle",
+      "filter": "linear"
+    },
+    "estante": {
+      "zeroAlphaSamplesStep2": 169776,
+      "id": "estante",
+      "size": [
+        1378,
+        1141
+      ],
+      "alphaMin": 0,
+      "bounds": [
+        18,
+        32,
+        1343,
+        1109
+      ],
+      "file": "estante.png",
+      "frames": 1,
+      "scale": "uniform fit to canonical rectangle",
+      "filter": "linear"
+    },
+    "guarda-roupa": {
+      "zeroAlphaSamplesStep2": 81688,
+      "id": "guarda-roupa",
+      "size": [
+        926,
+        1699
+      ],
+      "alphaMin": 0,
+      "bounds": [
+        18,
+        12,
+        891,
+        1675
+      ],
+      "file": "guarda-roupa.png",
+      "frames": 1,
+      "scale": "uniform fit to canonical rectangle",
+      "filter": "linear"
+    },
+    "home-banco": {
+      "zeroAlphaSamplesStep2": 275184,
+      "id": "home-banco",
+      "size": [
+        1466,
+        1073
+      ],
+      "alphaMin": 0,
+      "bounds": [
+        24,
+        48,
+        1419,
+        993
+      ],
+      "file": "home-banco.png",
+      "frames": 1,
+      "scale": "uniform fit to canonical rectangle",
+      "filter": "linear"
+    },
+    "home-cozinha": {
+      "zeroAlphaSamplesStep2": 193218,
+      "id": "home-cozinha",
+      "size": [
+        1145,
+        1374
+      ],
+      "alphaMin": 0,
+      "bounds": [
+        8,
+        324,
+        1131,
+        1045
+      ],
+      "file": "home-cozinha.png",
+      "frames": 1,
+      "scale": "uniform fit to canonical rectangle",
+      "filter": "linear"
+    },
+    "home-mesa-centro": {
+      "zeroAlphaSamplesStep2": 241555,
+      "id": "home-mesa-centro",
+      "size": [
+        1349,
+        1166
+      ],
+      "alphaMin": 0,
+      "bounds": [
+        60,
+        72,
+        1231,
+        1037
+      ],
+      "file": "home-mesa-centro.png",
+      "frames": 1,
+      "scale": "uniform fit to canonical rectangle",
+      "filter": "linear"
+    },
+    "home-mesa-jantar": {
+      "zeroAlphaSamplesStep2": 255606,
+      "id": "home-mesa-jantar",
+      "size": [
+        1402,
+        1122
+      ],
+      "alphaMin": 0,
+      "bounds": [
+        58,
+        68,
+        1293,
+        1027
+      ],
+      "file": "home-mesa-jantar.png",
+      "frames": 1,
+      "scale": "uniform fit to canonical rectangle",
+      "filter": "linear"
+    },
+    "home-sofa": {
+      "zeroAlphaSamplesStep2": 149979,
+      "id": "home-sofa",
+      "size": [
+        1279,
+        1230
+      ],
+      "alphaMin": 0,
+      "bounds": [
+        0,
+        4,
+        1279,
+        1217
+      ],
+      "file": "home-sofa.png",
+      "frames": 1,
+      "scale": "uniform fit to canonical rectangle",
+      "filter": "linear"
+    },
+    "janela": {
+      "zeroAlphaSamplesStep2": 233380,
+      "id": "janela",
+      "size": [
+        1402,
+        1122
+      ],
+      "alphaMin": 0,
+      "bounds": [
+        264,
+        12,
+        875,
+        1110
+      ],
+      "file": "janela.png",
+      "frames": 1,
+      "scale": "uniform fit to canonical rectangle",
+      "filter": "linear"
+    },
+    "mesa": {
+      "zeroAlphaSamplesStep2": 228219,
+      "id": "mesa",
+      "size": [
+        1402,
+        1122
+      ],
+      "alphaMin": 0,
+      "bounds": [
+        122,
+        10,
+        1165,
+        1063
+      ],
+      "file": "mesa.png",
+      "frames": 1,
+      "scale": "uniform fit to canonical rectangle",
+      "filter": "linear"
+    },
+    "tv": {
+      "zeroAlphaSamplesStep2": 186823,
+      "id": "tv",
+      "size": [
+        1334,
+        1179
+      ],
+      "alphaMin": 0,
+      "bounds": [
+        146,
+        76,
+        1049,
+        1059
+      ],
+      "file": "tv.png",
+      "frames": 1,
+      "scale": "uniform fit to canonical rectangle",
+      "filter": "linear"
+    }
+  },
+  "notes": [
+    "Original generated PNGs preserved unchanged",
+    "Runtime alpha crop, uniform scale only",
+    "Canonical navigation, staging and content.json unchanged"
+  ]
+}

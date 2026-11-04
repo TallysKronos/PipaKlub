@@ -1,0 +1,122 @@
+{
+	"kbd": {
+		"cut": {
+			"glyph": "space",
+			"label": "Espaço"
+		},
+		"dodge": {
+			"glyph": "shift",
+			"label": "Shift"
+		},
+		"guard": {
+			"glyph": "g",
+			"label": "G"
+		},
+		"interact": {
+			"glyph": "e",
+			"label": "E"
+		},
+		"pause": {
+			"glyph": "escape",
+			"label": "Escape"
+		},
+		"signature": {
+			"glyph": "f",
+			"label": "F"
+		},
+		"skill": {
+			"glyph": "q",
+			"label": "Q"
+		}
+	},
+	"ps": {
+		"cut": {
+			"glyph": "west",
+			"label": "□"
+		},
+		"dodge": {
+			"glyph": "east",
+			"label": "○"
+		},
+		"guard": {
+			"glyph": "lb",
+			"label": "L1"
+		},
+		"interact": {
+			"glyph": "south",
+			"label": "×"
+		},
+		"pause": {
+			"glyph": "start",
+			"label": "Options"
+		},
+		"signature": {
+			"glyph": "rs",
+			"label": "R3"
+		},
+		"skill": {
+			"glyph": "north",
+			"label": "△"
+		}
+	},
+	"switch": {
+		"cut": {
+			"glyph": "west",
+			"label": "Y"
+		},
+		"dodge": {
+			"glyph": "south",
+			"label": "B"
+		},
+		"guard": {
+			"glyph": "lb",
+			"label": "L"
+		},
+		"interact": {
+			"glyph": "east",
+			"label": "A"
+		},
+		"pause": {
+			"glyph": "start",
+			"label": "+"
+		},
+		"signature": {
+			"glyph": "rs",
+			"label": "Analógico D"
+		},
+		"skill": {
+			"glyph": "north",
+			"label": "X"
+		}
+	},
+	"xbox": {
+		"cut": {
+			"glyph": "west",
+			"label": "X"
+		},
+		"dodge": {
+			"glyph": "east",
+			"label": "B"
+		},
+		"guard": {
+			"glyph": "lb",
+			"label": "LB"
+		},
+		"interact": {
+			"glyph": "south",
+			"label": "A"
+		},
+		"pause": {
+			"glyph": "start",
+			"label": "Menu"
+		},
+		"signature": {
+			"glyph": "rs",
+			"label": "R3"
+		},
+		"skill": {
+			"glyph": "north",
+			"label": "Y"
+		}
+	}
+}

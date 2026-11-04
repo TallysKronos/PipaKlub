@@ -1,0 +1,102 @@
+[
+  {
+    "name": "arvore",
+    "source_x_range": [
+      0,
+      662
+    ],
+    "source_alpha_bbox": [
+      12,
+      76,
+      657,
+      827
+    ],
+    "padding_alpha_noise_threshold": 8,
+    "size": [
+      137,
+      160
+    ],
+    "pivot": [
+      68,
+      160
+    ],
+    "preserve_aspect": true,
+    "role": "style and scale reference; not runtime asset",
+    "approval": "pending_family_review"
+  },
+  {
+    "name": "banco",
+    "source_x_range": [
+      662,
+      1129
+    ],
+    "source_alpha_bbox": [
+      7,
+      416,
+      458,
+      809
+    ],
+    "padding_alpha_noise_threshold": 8,
+    "size": [
+      64,
+      56
+    ],
+    "pivot": [
+      32,
+      56
+    ],
+    "preserve_aspect": true,
+    "role": "style and scale reference; not runtime asset",
+    "approval": "pending_family_review"
+  },
+  {
+    "name": "poste",
+    "source_x_range": [
+      1129,
+      1358
+    ],
+    "source_alpha_bbox": [
+      9,
+      58,
+      166,
+      818
+    ],
+    "padding_alpha_noise_threshold": 8,
+    "size": [
+      30,
+      144
+    ],
+    "pivot": [
+      15,
+      144
+    ],
+    "preserve_aspect": true,
+    "role": "style and scale reference; not runtime asset",
+    "approval": "pending_family_review"
+  },
+  {
+    "name": "porta",
+    "source_x_range": [
+      1358,
+      1774
+    ],
+    "source_alpha_bbox": [
+      62,
+      160,
+      384,
+      810
+    ],
+    "padding_alpha_noise_threshold": 8,
+    "size": [
+      55,
+      112
+    ],
+    "pivot": [
+      27,
+      112
+    ],
+    "preserve_aspect": true,
+    "role": "style and scale reference; not runtime asset",
+    "approval": "pending_family_review"
+  }
+]

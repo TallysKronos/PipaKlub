@@ -1,0 +1,197 @@
+{
+  "issue": "PIP-85",
+  "revision": "volume-correction",
+  "automaticTreeFill": false,
+  "contextTrees": {
+    "automatic": false,
+    "authoredPerArea": 2
+  },
+  "areas": {
+    "jardim-das-pipas": {
+      "keep": [
+        2,
+        4,
+        6,
+        8,
+        9,
+        11,
+        13,
+        14,
+        15,
+        17,
+        18,
+        20,
+        21
+      ],
+      "relocate": {
+        "21": [
+          20,
+          11
+        ]
+      },
+      "landmarks": [
+        "coreto",
+        "entry-map",
+        "east-bench"
+      ],
+      "rest": "Open lawn and sightline between entry plaza, coreto and first encounter patch",
+      "retainedTreeCount": 13,
+      "removedTrees": [
+        {
+          "id": 3,
+          "cell": [
+            6.5,
+            3.5
+          ]
+        },
+        {
+          "id": 5,
+          "cell": [
+            12.5,
+            3.5
+          ]
+        },
+        {
+          "id": 7,
+          "cell": [
+            20.5,
+            4.5
+          ]
+        },
+        {
+          "id": 10,
+          "cell": [
+            1.5,
+            11.5
+          ]
+        },
+        {
+          "id": 12,
+          "cell": [
+            23.5,
+            8.5
+          ]
+        },
+        {
+          "id": 16,
+          "cell": [
+            9.5,
+            15.5
+          ]
+        },
+        {
+          "id": 19,
+          "cell": [
+            7.5,
+            3.5
+          ]
+        },
+        {
+          "id": 26,
+          "cell": [
+            11.5,
+            9.5
+          ]
+        },
+        {
+          "id": 27,
+          "cell": [
+            14.5,
+            9.5
+          ]
+        },
+        {
+          "id": 28,
+          "cell": [
+            15.5,
+            9.5
+          ]
+        }
+      ],
+      "source": "art/overworld/mapas/jardim-das-pipas.tmj"
+    },
+    "clareira-do-papel": {
+      "keep": [
+        1,
+        2,
+        4,
+        5,
+        7,
+        8,
+        10,
+        12,
+        13,
+        14,
+        16,
+        17,
+        19,
+        20
+      ],
+      "relocate": {
+        "20": [
+          21,
+          12
+        ]
+      },
+      "landmarks": [
+        "flowering-tree",
+        "encounter-grass",
+        "Veredas exit"
+      ],
+      "rest": "Open central lawn; foreground tree screen interrupted near the trail",
+      "retainedTreeCount": 14,
+      "removedTrees": [
+        {
+          "id": 3,
+          "cell": [
+            10.5,
+            3.5
+          ]
+        },
+        {
+          "id": 6,
+          "cell": [
+            20.5,
+            4.5
+          ]
+        },
+        {
+          "id": 9,
+          "cell": [
+            1.5,
+            11.5
+          ]
+        },
+        {
+          "id": 11,
+          "cell": [
+            23.5,
+            8.5
+          ]
+        },
+        {
+          "id": 15,
+          "cell": [
+            9.5,
+            15.5
+          ]
+        },
+        {
+          "id": 18,
+          "cell": [
+            7.5,
+            3.5
+          ]
+        },
+        {
+          "id": 21,
+          "cell": [
+            6.5,
+            7.5
+          ]
+        }
+      ],
+      "source": "art/overworld/mapas/clareira-do-papel.tmj"
+    }
+  }
+}

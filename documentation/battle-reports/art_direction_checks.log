@@ -1,0 +1,14 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS interaction prompt cannot wrap one letter per line
+PASS interaction prompt has readable dimensions
+PASS actual pointer click queues skill
+PASS pointer skill reaches real combat rules and consumes energy
+PASS pointer release cannot leave skill held
+PASS exclusive action displays actual energy cost
+PASS usable battle span fills over 80 percent of the viewport
+PASS string anchors remain above the action cards
+PASS PIP-68 action bar occupies at most 12 percent
+PASS upper flight limit stays below status HUD
+PASS lower flight limit stays above action cards
+ART DIRECTION: 11 checks, 0 failures

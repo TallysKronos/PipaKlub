@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PIP-85 · Jardim e Clareira</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#172a35;color:#f6ebce;font:16px system-ui}header,main{max-width:1500px;margin:auto;padding:22px}h1{font:700 32px Georgia;margin:8px 0}p{max-width:950px;color:#d3dbc8;line-height:1.5}nav{display:flex;gap:12px;margin:20px 0}button{background:#263f49;color:#f6ebce;border:1px solid #81927a;padding:12px 22px;cursor:pointer;font:inherit}button[aria-pressed=true]{background:#ebc568;color:#172a35}label{display:flex;gap:16px;align-items:center}input{width:240px;accent-color:#ebc568}.stage{position:relative;aspect-ratio:2720/1520;background:#1b2d37;margin-top:18px;overflow:hidden}.stage img{position:absolute;width:100%;height:100%;object-fit:contain}.base{opacity:0;pointer-events:none}small{display:block;margin-top:14px;color:#e3bf82}a{color:#a6e3e1}
+</style>
+<header><span>PIP-85 · ESTUDOS DE ARTE</span><h1>Do bairro à mata</h1><p>Jardim das Pipas e Clareira do Papel: mesma família visual, lugares com personalidades distintas. Estudos de acabamento para revisão; posições e alinhamento ainda precisam de refinamento.</p></header>
+<main><nav aria-label="Área"><button data-id="jardim-das-pipas" aria-pressed="true">Jardim das Pipas</button><button data-id="clareira-do-papel" aria-pressed="false">Clareira do Papel</button></nav><label>Sobrepor planta <input aria-label="Opacidade da planta" type="range" min="0" max="100" value="0"><output>0%</output></label><div class="stage"><img class="concept" src="jardim-das-pipas-estudo-v1.png" alt="Conceito do Jardim das Pipas"><img class="base" src="jardim-das-pipas-referencia.png" alt="Planta original da área"></div><small>O estudo não substitui a planta: móveis e troncos deslocados serão corrigidos antes da integração. Não há novo mapa jogável nesta etapa.</small><p><a href="README.md">Diretriz e pendências</a> · <a href="geracao.json">Prompts e origem</a></p></main>
+<script>
+const concept=document.querySelector('.concept'),base=document.querySelector('.base');
+document.querySelectorAll('button').forEach(button=>button.onclick=()=>{document.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b===button));concept.src=button.dataset.id+'-estudo-v1.png';concept.alt='Conceito de '+button.textContent;base.src=button.dataset.id+'-referencia.png'});
+document.querySelector('input').oninput=e=>{base.style.opacity=e.target.value/100;document.querySelector('output').textContent=e.target.value+'%'};
+</script></html>

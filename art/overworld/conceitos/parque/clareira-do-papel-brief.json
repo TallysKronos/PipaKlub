@@ -1,0 +1,1255 @@
+{
+  "issue": "PIP-85",
+  "id": "clareira-do-papel",
+  "source": "art/overworld/mapas/clareira-do-papel.tmj",
+  "sourceSha256": "3bb9d9a68c05932a4ee68731bac46922a1d52e2355980f7684d62c01ba678923",
+  "stage": "concept_review",
+  "approval": "pending_owner_review",
+  "alignment": "pending_pixel_review",
+  "style": "art/overworld/estilo/PRANCHA-ESTILO.png",
+  "projection": {
+    "cell": [
+      64,
+      32
+    ],
+    "levelPx": 64,
+    "exportScale": 2,
+    "bounds": {
+      "x0": -552,
+      "x1": 808,
+      "y0": -90,
+      "y1": 670
+    },
+    "imageSize": [
+      2720,
+      1520
+    ],
+    "edgeTolerancePx": 4
+  },
+  "materials": [
+    {
+      "id": "bosque",
+      "cells": 120,
+      "walk": false,
+      "plannedTileVariants": 4
+    },
+    {
+      "id": "grama",
+      "cells": 148,
+      "walk": true,
+      "plannedTileVariants": 4
+    },
+    {
+      "id": "mato",
+      "cells": 31,
+      "walk": true,
+      "plannedTileVariants": 4
+    },
+    {
+      "id": "terra",
+      "cells": 72,
+      "walk": true,
+      "plannedTileVariants": 4
+    },
+    {
+      "id": "piso",
+      "cells": 13,
+      "walk": true,
+      "plannedTileVariants": 4
+    }
+  ],
+  "transitions": [
+    {
+      "pair": "bosque/grama",
+      "edges": 65,
+      "plannedCornerMasks": 16
+    },
+    {
+      "pair": "grama/mato",
+      "edges": 32,
+      "plannedCornerMasks": 16
+    },
+    {
+      "pair": "grama/terra",
+      "edges": 50,
+      "plannedCornerMasks": 16
+    },
+    {
+      "pair": "grama/piso",
+      "edges": 9,
+      "plannedCornerMasks": 16
+    },
+    {
+      "pair": "mato/terra",
+      "edges": 8,
+      "plannedCornerMasks": 16
+    },
+    {
+      "pair": "mato/piso",
+      "edges": 2,
+      "plannedCornerMasks": 16
+    },
+    {
+      "pair": "piso/terra",
+      "edges": 5,
+      "plannedCornerMasks": 16
+    },
+    {
+      "pair": "bosque/terra",
+      "edges": 3,
+      "plannedCornerMasks": 16
+    }
+  ],
+  "pieces": [
+    {
+      "id": 1,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 0,
+      "v": 4,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "a"
+      },
+      "polygon": [
+        [
+          848,
+          308
+        ],
+        [
+          912,
+          340
+        ],
+        [
+          848,
+          372
+        ],
+        [
+          784,
+          340
+        ]
+      ],
+      "groundCenter": [
+        848,
+        340
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 6,
+      "v": 3,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "b"
+      },
+      "polygon": [
+        [
+          1296,
+          468
+        ],
+        [
+          1360,
+          500
+        ],
+        [
+          1296,
+          532
+        ],
+        [
+          1232,
+          500
+        ]
+      ],
+      "groundCenter": [
+        1296,
+        500
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 12,
+      "v": 3,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "a"
+      },
+      "polygon": [
+        [
+          1680,
+          660
+        ],
+        [
+          1744,
+          692
+        ],
+        [
+          1680,
+          724
+        ],
+        [
+          1616,
+          692
+        ]
+      ],
+      "groundCenter": [
+        1680,
+        692
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 17,
+      "v": 3,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "b"
+      },
+      "polygon": [
+        [
+          2000,
+          820
+        ],
+        [
+          2064,
+          852
+        ],
+        [
+          2000,
+          884
+        ],
+        [
+          1936,
+          852
+        ]
+      ],
+      "groundCenter": [
+        2000,
+        852
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 23,
+      "v": 4,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "a"
+      },
+      "polygon": [
+        [
+          2320,
+          1044
+        ],
+        [
+          2384,
+          1076
+        ],
+        [
+          2320,
+          1108
+        ],
+        [
+          2256,
+          1076
+        ]
+      ],
+      "groundCenter": [
+        2320,
+        1076
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 0,
+      "v": 8,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "b"
+      },
+      "polygon": [
+        [
+          592,
+          436
+        ],
+        [
+          656,
+          468
+        ],
+        [
+          592,
+          500
+        ],
+        [
+          528,
+          468
+        ]
+      ],
+      "groundCenter": [
+        592,
+        468
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 0,
+      "v": 15,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "a"
+      },
+      "polygon": [
+        [
+          144,
+          660
+        ],
+        [
+          208,
+          692
+        ],
+        [
+          144,
+          724
+        ],
+        [
+          80,
+          692
+        ]
+      ],
+      "groundCenter": [
+        144,
+        692
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 23,
+      "v": 11,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "b"
+      },
+      "polygon": [
+        [
+          1872,
+          1268
+        ],
+        [
+          1936,
+          1300
+        ],
+        [
+          1872,
+          1332
+        ],
+        [
+          1808,
+          1300
+        ]
+      ],
+      "groundCenter": [
+        1872,
+        1300
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 22,
+      "v": 15,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "a"
+      },
+      "polygon": [
+        [
+          1552,
+          1364
+        ],
+        [
+          1616,
+          1396
+        ],
+        [
+          1552,
+          1428
+        ],
+        [
+          1488,
+          1396
+        ]
+      ],
+      "groundCenter": [
+        1552,
+        1396
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 6,
+      "v": 15,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "b"
+      },
+      "polygon": [
+        [
+          528,
+          852
+        ],
+        [
+          592,
+          884
+        ],
+        [
+          528,
+          916
+        ],
+        [
+          464,
+          884
+        ]
+      ],
+      "groundCenter": [
+        528,
+        884
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 13,
+      "v": 15,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "a"
+      },
+      "polygon": [
+        [
+          976,
+          1076
+        ],
+        [
+          1040,
+          1108
+        ],
+        [
+          976,
+          1140
+        ],
+        [
+          912,
+          1108
+        ]
+      ],
+      "groundCenter": [
+        976,
+        1108
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 17,
+      "v": 15,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "b"
+      },
+      "polygon": [
+        [
+          1232,
+          1204
+        ],
+        [
+          1296,
+          1236
+        ],
+        [
+          1232,
+          1268
+        ],
+        [
+          1168,
+          1236
+        ]
+      ],
+      "groundCenter": [
+        1232,
+        1236
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 3,
+      "v": 4,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "florida"
+      },
+      "polygon": [
+        [
+          1040,
+          404
+        ],
+        [
+          1104,
+          436
+        ],
+        [
+          1040,
+          468
+        ],
+        [
+          976,
+          436
+        ]
+      ],
+      "groundCenter": [
+        1040,
+        436
+      ]
+    },
+    {
+      "id": 20,
+      "name": "Árvore",
+      "asset": "arvore",
+      "u": 21,
+      "v": 12,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "arvore",
+        "variante": "b"
+      },
+      "polygon": [
+        [
+          1680,
+          1236
+        ],
+        [
+          1744,
+          1268
+        ],
+        [
+          1680,
+          1300
+        ],
+        [
+          1616,
+          1268
+        ]
+      ],
+      "groundCenter": [
+        1680,
+        1268
+      ]
+    },
+    {
+      "id": 22,
+      "name": "bench",
+      "asset": "banco",
+      "u": 5,
+      "v": 10,
+      "fu": 2,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "banco",
+        "pegada": "2x1"
+      },
+      "polygon": [
+        [
+          784,
+          660
+        ],
+        [
+          912,
+          724
+        ],
+        [
+          848,
+          756
+        ],
+        [
+          720,
+          692
+        ]
+      ],
+      "groundCenter": [
+        816,
+        708
+      ]
+    },
+    {
+      "id": 23,
+      "name": "bench",
+      "asset": "banco",
+      "u": 16,
+      "v": 9,
+      "fu": 2,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "banco",
+        "pegada": "2x1"
+      },
+      "polygon": [
+        [
+          1552,
+          980
+        ],
+        [
+          1680,
+          1044
+        ],
+        [
+          1616,
+          1076
+        ],
+        [
+          1488,
+          1012
+        ]
+      ],
+      "groundCenter": [
+        1584,
+        1028
+      ]
+    },
+    {
+      "id": 24,
+      "name": "lamp",
+      "asset": "poste",
+      "u": 4,
+      "v": 10,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "poste"
+      },
+      "polygon": [
+        [
+          720,
+          628
+        ],
+        [
+          784,
+          660
+        ],
+        [
+          720,
+          692
+        ],
+        [
+          656,
+          660
+        ]
+      ],
+      "groundCenter": [
+        720,
+        660
+      ]
+    },
+    {
+      "id": 25,
+      "name": "lamp",
+      "asset": "poste",
+      "u": 18,
+      "v": 9,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "poste"
+      },
+      "polygon": [
+        [
+          1680,
+          1044
+        ],
+        [
+          1744,
+          1076
+        ],
+        [
+          1680,
+          1108
+        ],
+        [
+          1616,
+          1076
+        ]
+      ],
+      "groundCenter": [
+        1680,
+        1076
+      ]
+    },
+    {
+      "id": 26,
+      "name": "entry-map",
+      "asset": "placa-mapa",
+      "u": 3,
+      "v": 11,
+      "fu": 2,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "placa-mapa",
+        "pegada": "2x1"
+      },
+      "polygon": [
+        [
+          592,
+          628
+        ],
+        [
+          720,
+          692
+        ],
+        [
+          656,
+          724
+        ],
+        [
+          528,
+          660
+        ]
+      ],
+      "groundCenter": [
+        624,
+        676
+      ]
+    },
+    {
+      "id": 27,
+      "name": "planter-west",
+      "asset": "vaso",
+      "u": 4,
+      "v": 9,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "vaso"
+      },
+      "polygon": [
+        [
+          784,
+          596
+        ],
+        [
+          848,
+          628
+        ],
+        [
+          784,
+          660
+        ],
+        [
+          720,
+          628
+        ]
+      ],
+      "groundCenter": [
+        784,
+        628
+      ]
+    },
+    {
+      "id": 28,
+      "name": "planter-east",
+      "asset": "vaso",
+      "u": 7,
+      "v": 9,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "vaso"
+      },
+      "polygon": [
+        [
+          976,
+          692
+        ],
+        [
+          1040,
+          724
+        ],
+        [
+          976,
+          756
+        ],
+        [
+          912,
+          724
+        ]
+      ],
+      "groundCenter": [
+        976,
+        724
+      ]
+    },
+    {
+      "id": 29,
+      "name": "bin-west",
+      "asset": "lixeira",
+      "u": 3,
+      "v": 9,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "lixeira"
+      },
+      "polygon": [
+        [
+          720,
+          564
+        ],
+        [
+          784,
+          596
+        ],
+        [
+          720,
+          628
+        ],
+        [
+          656,
+          596
+        ]
+      ],
+      "groundCenter": [
+        720,
+        596
+      ]
+    },
+    {
+      "id": 30,
+      "name": "bin-east",
+      "asset": "lixeira",
+      "u": 19,
+      "v": 9,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "lixeira"
+      },
+      "polygon": [
+        [
+          1744,
+          1076
+        ],
+        [
+          1808,
+          1108
+        ],
+        [
+          1744,
+          1140
+        ],
+        [
+          1680,
+          1108
+        ]
+      ],
+      "groundCenter": [
+        1744,
+        1108
+      ]
+    },
+    {
+      "id": 31,
+      "name": "lamp-west",
+      "asset": "poste",
+      "u": 4,
+      "v": 7,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "poste"
+      },
+      "polygon": [
+        [
+          912,
+          532
+        ],
+        [
+          976,
+          564
+        ],
+        [
+          912,
+          596
+        ],
+        [
+          848,
+          564
+        ]
+      ],
+      "groundCenter": [
+        912,
+        564
+      ]
+    },
+    {
+      "id": 32,
+      "name": "lamp-east",
+      "asset": "poste",
+      "u": 20,
+      "v": 5,
+      "fu": 1,
+      "fv": 1,
+      "blocks": true,
+      "interact": null,
+      "props": {
+        "asset": "poste"
+      },
+      "polygon": [
+        [
+          2064,
+          980
+        ],
+        [
+          2128,
+          1012
+        ],
+        [
+          2064,
+          1044
+        ],
+        [
+          2000,
+          1012
+        ]
+      ],
+      "groundCenter": [
+        2064,
+        1012
+      ]
+    }
+  ],
+  "events": [
+    {
+      "id": 33,
+      "type": "entrada",
+      "name": "Chegada ao parque",
+      "u": 3,
+      "v": 12,
+      "props": {},
+      "center": [
+        528,
+        692
+      ]
+    },
+    {
+      "id": 34,
+      "type": "saida",
+      "name": "Voltar ao Jardim das Pipas",
+      "u": 3,
+      "v": 14,
+      "props": {
+        "destino": "park-trail"
+      },
+      "center": [
+        400,
+        756
+      ]
+    },
+    {
+      "id": 35,
+      "type": "saida",
+      "name": "Além da cidade · Veredas do Encanamento",
+      "u": 20,
+      "v": 6,
+      "props": {
+        "destino": "park-veredas"
+      },
+      "center": [
+        2000,
+        1044
+      ]
+    },
+    {
+      "id": 36,
+      "type": "interacao",
+      "name": "Placa: habitats e encontros",
+      "u": 5,
+      "v": 12,
+      "props": {
+        "acao": "wildGuide"
+      },
+      "center": [
+        656,
+        756
+      ]
+    },
+    {
+      "id": 37,
+      "type": "interacao",
+      "name": "Descansar no largo",
+      "u": 6,
+      "v": 11,
+      "props": {
+        "acao": "wildRest"
+      },
+      "center": [
+        784,
+        756
+      ]
+    },
+    {
+      "id": 38,
+      "type": "interacao",
+      "name": "Descansar no banco leste",
+      "u": 17,
+      "v": 10,
+      "props": {
+        "acao": "wildRest"
+      },
+      "center": [
+        1552,
+        1076
+      ]
+    },
+    {
+      "id": 39,
+      "type": "interacao",
+      "name": "Mapa do Parque dos Ventos",
+      "u": 5,
+      "v": 12,
+      "props": {
+        "acao": "parkMap"
+      },
+      "center": [
+        656,
+        756
+      ]
+    }
+  ],
+  "encounterCells": [
+    [
+      3,
+      5
+    ],
+    [
+      12,
+      5
+    ],
+    [
+      13,
+      5
+    ],
+    [
+      14,
+      5
+    ],
+    [
+      15,
+      5
+    ],
+    [
+      16,
+      5
+    ],
+    [
+      2,
+      6
+    ],
+    [
+      3,
+      6
+    ],
+    [
+      4,
+      6
+    ],
+    [
+      12,
+      6
+    ],
+    [
+      13,
+      6
+    ],
+    [
+      14,
+      6
+    ],
+    [
+      15,
+      6
+    ],
+    [
+      16,
+      6
+    ],
+    [
+      2,
+      7
+    ],
+    [
+      3,
+      7
+    ],
+    [
+      4,
+      7
+    ],
+    [
+      16,
+      11
+    ],
+    [
+      17,
+      11
+    ],
+    [
+      18,
+      11
+    ],
+    [
+      19,
+      11
+    ],
+    [
+      20,
+      11
+    ],
+    [
+      16,
+      12
+    ],
+    [
+      17,
+      12
+    ],
+    [
+      18,
+      12
+    ],
+    [
+      19,
+      12
+    ],
+    [
+      20,
+      12
+    ],
+    [
+      16,
+      13
+    ],
+    [
+      17,
+      13
+    ],
+    [
+      18,
+      13
+    ],
+    [
+      19,
+      13
+    ]
+  ],
+  "locks": [
+    "Preserve map dimensions, events, pieces and traversal",
+    "Level zero throughout: no stairs, raised platforms, rivers or cliffs",
+    "Bosque must look impassable; grama and terra must remain visibly open",
+    "Tall encounter grass differs from short lawn; no regular caret pattern",
+    "Shared entry furniture keeps its existing positions",
+    "No characters, creatures, UI or baked quest indicators"
+  ],
+  "integrationNotes": []
+}

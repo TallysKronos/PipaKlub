@@ -1,0 +1,22 @@
+{
+  "source": "C:\\Users\\user\\Downloads\\azulfazo-evolucao-de-ataque.soulgen.json",
+  "sha256": "4cce231081840e40613cd036a905365b2f501ce7e55102cf7a7f7a34bd395f03",
+  "preserved": "Author geometry, pivots, hierarchy, clips and PNG bytes.",
+  "normalization": "Local PNG paths; recalibrated joint audit, rigRevision=2. External UV joints kept separately without changing actual author pivots.",
+  "changedParts": [
+    "body",
+    "head",
+    "wingLeft",
+    "wingRight",
+    "legLeft",
+    "legRight",
+    "tail"
+  ],
+  "externalAuditJoints": [
+    "head",
+    "wingLeft",
+    "wingRight",
+    "tail"
+  ],
+  "clipsChanged": false
+}

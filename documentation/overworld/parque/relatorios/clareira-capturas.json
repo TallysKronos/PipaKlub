@@ -1,0 +1,631 @@
+{
+  "area": "clareira-do-papel",
+  "mapSha256": "033ec50cd51219620aa333e7e6d5bd01e9731383117294ba9588c99b0dc7cbd0",
+  "planSha256": "a6b2ca70a93e41688a680aa14bbbd0e2dc81f5144e433fda76ca49aaa2b8affc",
+  "images": [
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/area-inteira.png",
+      "sha256": "3cb604ec7c329acb38a90bd18c6eeda9c541d20823f3037224e5ec188807a3aa"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/entrada.png",
+      "sha256": "083a5e4e17788eb962de51bb860f83b0253e5e832c1c4cc65d28dd20fae5806d"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/centro.png",
+      "sha256": "27d83b9e54ad3cc29517473952ef3eb7d924f5d4744261ffcad778f11856c5e4"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/saida-8-39.png",
+      "sha256": "36a4062b34fb4fd0ee564f9bdb71461145fee6ab42c95cba79c1ed318a90fcd1"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/saida-47-8.png",
+      "sha256": "cd09c3dfe89d688e157c69efbe2106ce6c621f6e420a0f4182ed07ef08e0936f"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/canto-n1-4-4.png",
+      "sha256": "6f2c0eb3d236b5c13f6b2a57f3bfebf9be0b672d92c791d7ff746b6f3f994f1b"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/canto-n1-18-4.png",
+      "sha256": "ff79f8aa613da9ac3fb18e3d9e01fd38ab53d7361f959f649fa3652a5831cf20"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/canto-n1-34-6.png",
+      "sha256": "343b6d5e18d5910d0ffeee31a508d69e2248f811915fd46fdad0d9c443cf800f"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/canto-n1-38-10.png",
+      "sha256": "f2d368fdab44587124f017e2caf96dd7dd335357ae1ddf649fec7aeb8681ccdd"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/canto-n1-24-14.png",
+      "sha256": "0f3558af9f5a34849dcd59b2f7dd864732ed876e53606fb2df3704275fb6daef"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/canto-n1-34-14.png",
+      "sha256": "ac972250e19fdaf9125fea0acce0c50b62d28d2de42b119fcc873489e0ecf21d"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/canto-n1-38-14.png",
+      "sha256": "dd074c4a2c8781df2345b8b6030d3140d736a3b8eedc136d6f75b7e4d4eb55ac"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/canto-n1-32-22.png",
+      "sha256": "e33ad7e14d9784613072a32c7001e6eef94c0d438e9930479f78281771c51aa4"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/canto-n1-44-22.png",
+      "sha256": "c054e546a49b5e91cf3fdc176bb8def5ffd769750a979191f99730877a2eb034"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/canto-n1-18-28.png",
+      "sha256": "87af0ad523f4837dcc33befd7867291902fe442b90dfd57f3c522db1dbb76d0b"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/canto-n1-32-30.png",
+      "sha256": "fb72e5904b46df4b0ba7f615457c341911a0b4a6831fd456f908f644714fd85d"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/canto-n1-34-30.png",
+      "sha256": "e1211f6b9e7a13a8e4065303c84017b55cd3a28347cd9f3486b2adc19b9567a5"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/canto-n1-34-32.png",
+      "sha256": "e0ce5a13270e3a34782c2e1d31cc506329fec049ed57a80213ea92a0137469e9"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/canto-n1-44-32.png",
+      "sha256": "2f05ea1ea7aa8bd04f5b5e81a505e0ac0c68eca1a9271e4e17483c22fecc8f48"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/rampa-topo-28-14.png",
+      "sha256": "1e1fe16e8d806cb0f457dcaaca2ca238dce6a5ddb5549fc89d998bec3a9d1876"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/plato-28-14.png",
+      "sha256": "be520a7f4cddc1c4d067d0e1587740e15193ad3aff513b4b683dafd36181e7aa"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/rampa-topo-29-14.png",
+      "sha256": "e0004f40ade2ea032dc16c2495a1d5df51c306619bae07e2311b8f3d5f925b32"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/plato-29-14.png",
+      "sha256": "50446a2834a1ad873db69f725f9c0640388e805c7544c9421aed9a8411bc31df"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/rampa-pe-28-15.png",
+      "sha256": "a4a3ebd78dfed2c82e13e21bc9cab9a5a7df66e45de389732a8cfed5beb7a8f0"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/rampa-pe-29-15.png",
+      "sha256": "649d08c3b5c05d3c6b0934eab2d7a2e04d7d5c8ca065389e7ab24dafcb7542a4"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/rampa-topo-6-28.png",
+      "sha256": "ce7ccb79bcfe7716f439eee35ac5e0abae094bff9fecd6b9b66cbebf4cb15b25"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/plato-6-28.png",
+      "sha256": "8635234f53e829c3b9b32622ff336e83e3e34870ab8d0131de440c5a52acac94"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/rampa-topo-7-28.png",
+      "sha256": "c135430fdc6bbe86bb76a1fea6706aa343b08fbc3b3a621281017a0cf5391149"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/plato-7-28.png",
+      "sha256": "ebd2a8578a85b1097dc94b93de774b01328646b3bec4dc14704dddedc9520f8f"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/rampa-topo-12-28.png",
+      "sha256": "2ac580a17c4b4e8c5f986aeb22350832417c129da098bbe0e6aecc01f9388e16"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/plato-12-28.png",
+      "sha256": "af0471fcc72ebcf5f6fa9966bbd2bbafa336443f35a2a48b325d0de36dbb0a35"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/rampa-topo-13-28.png",
+      "sha256": "76c947ac7b3d38bf4f707f64b6f6fd87ee748da1cb3c2e90198c895bf33b82fa"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/plato-13-28.png",
+      "sha256": "c2ad6b156a645e54b6dc58c22b70168798082ba8956db76e8c6aa6db087abd95"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/rampa-pe-6-29.png",
+      "sha256": "3b7dc5d638483a23f4605c005f8999f7c44bf3603b90aa4ff8bc39256b5a525f"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/rampa-pe-7-29.png",
+      "sha256": "f99179902e78d4ab14d8cffdd9a5efe2bf4dc194b3b2d52b3ffb05a2795e8df9"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/rampa-pe-12-29.png",
+      "sha256": "b6c25defe824f99c7afd4761a17f1c13d0295d2714c7b9b292513457572464e2"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/rampa-pe-13-29.png",
+      "sha256": "b549f846a6c24b2dc6431a1dfe88e25c7029dca024ee8d8b694b8c58dca71b1e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/rampa-topo-36-32.png",
+      "sha256": "b7880df978096355e0ccfbef27aaa69006d18e8394e867ac9962bf6f66e89775"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/plato-36-32.png",
+      "sha256": "4d2709e17b795908821a828c4f38a62ec8ae1a7606ec2dfd338949f23943dbef"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/rampa-topo-37-32.png",
+      "sha256": "e3c9892544e6a3b4b5b604117de96ce84d653204a19aee888861ead21a842f30"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/plato-37-32.png",
+      "sha256": "370029f1fa99349ab1c548330d6fa710e4645ad73ffc1e0f3c23707bb66eb340"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/rampa-pe-36-33.png",
+      "sha256": "1bd0a50f302cfe4e0d124ea4ad4f8de87e479bd72f14fa958dfb5e2603f5f4c7"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/rampa-pe-37-33.png",
+      "sha256": "3310bfe3d976922b43b48ce20cee2647c3aed6720d6f6553f142c7faf2fd3667"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/mureta-junta-34-32.png",
+      "sha256": "e0ce5a13270e3a34782c2e1d31cc506329fec049ed57a80213ea92a0137469e9"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/mureta-junta-36-32.png",
+      "sha256": "10165be00e7a6df81196dc8b11823ff97e2ce7e7095dcc46ae3cb2e9b06bf3a9"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/mureta-junta-38-32.png",
+      "sha256": "06bcd73118e7e559815dd2910acc2740ffb0f4b6d9b2d36b5c737e546cae9044"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/mureta-junta-44-32.png",
+      "sha256": "2f05ea1ea7aa8bd04f5b5e81a505e0ac0c68eca1a9271e4e17483c22fecc8f48"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/roda-do-encontro.png",
+      "sha256": "27968a51061a73b63b5db9b7042131f15212bf6c8c06b966f115252fe23c3198"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/biruta-do-alto.png",
+      "sha256": "54fbecc7f63665bc9884ed86feff113847e878d250aae36db024a369c386cf3d"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/descanso-alto.png",
+      "sha256": "1678cf333c95b846bde32943c4dcd85c5e869a0bfa8af9e84fd42eb8af845146"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/desvio-do-capim.png",
+      "sha256": "da839d0632b67747fd012cee72b0ea84f48a6a32b3953f280e4c095b0dbe519c"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/geometria/pipas-nas-copas.png",
+      "sha256": "3022f2f7ce3d9a156760977c74914b7a085dac6eab414644c9a7f8394f12531b"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/area-inteira.png",
+      "sha256": "31afc4708061e2cd88823a2e556401f57b259195d54a5e4ec4ea11ba4c498ff7"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/entrada.png",
+      "sha256": "6939b00aacce4856f448d646d0011e843698226baf9ee33cd363d95d50f48090"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/centro.png",
+      "sha256": "0a4ec0dd9f0d2181399ca6a2d170982bf0b7faf2e8e5d0d29c0a7b3fe776b854"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/saida-8-39.png",
+      "sha256": "8f6f4245962bff76205b28afd2e779b06a5c5eca6604ad7954e2a04acaf52a41"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/saida-47-8.png",
+      "sha256": "b5633dd2fcbfbe182da14f330f52de13d85d5b305a804806de6eb2927fd705bc"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/canto-n1-4-4.png",
+      "sha256": "6a8bc5d781850a321a8694ddf12da7d7083cebfa1ecee2af699bc22a50f8e424"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/canto-n1-18-4.png",
+      "sha256": "8538d2bbf402d17c8280777f39e0ae982d2226763c7ce117cab52f56e9834f85"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/canto-n1-34-6.png",
+      "sha256": "6ed48f97bd3f9911a49824f586f747315623253453f53032f206a39defd5ecf8"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/canto-n1-38-10.png",
+      "sha256": "8ef15fb5f4f50124cc827d1d890adefb00253e54dc3d3e090648a5691c23fa96"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/canto-n1-24-14.png",
+      "sha256": "59930cd233ba8f9a95a63cd508e4866596ef03f2de2231e61d19ec0a9b82a0ff"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/canto-n1-34-14.png",
+      "sha256": "eb420b76f24dcf373f7dfcfb608e566620d7f09b04420d1810580cd0afeaf5ba"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/canto-n1-38-14.png",
+      "sha256": "7c43927cafd6054afc00e3a1fdbff7768fb9d4e880fa4fd6a2a92b1aa8294fca"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/canto-n1-32-22.png",
+      "sha256": "ccdf097ceec9cc8909e5e22eaaa3e2122a98a6869d7a19b45367490bbd4799f8"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/canto-n1-44-22.png",
+      "sha256": "2619dff17a2d97aab598d9ef7e947e93bf1418f183ee780edacddd8245edaca5"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/canto-n1-18-28.png",
+      "sha256": "b5864eb8fd08e6dc52865fdae8a6703f256f2b27151b8a1fab3016f2ef441894"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/canto-n1-32-30.png",
+      "sha256": "177d9eb1e6f5993d4e6551d163f20016c6d73a4bdaf39da98db59cb4e8531dc2"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/canto-n1-34-30.png",
+      "sha256": "e625c99e0b30ce52971888c0dbd9019a747ab6bb800f21f30ec84020ef837b50"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/canto-n1-34-32.png",
+      "sha256": "c3e9e65682c8836fa9ce91cacec088fac14f78cc7d29d43aaf0f98cd1e741889"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/canto-n1-44-32.png",
+      "sha256": "2c279fef9060ffd089896b10c9abd7ab503025cf044c5638c890524f76893f6e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/rampa-topo-28-14.png",
+      "sha256": "4aaca40f7e992c8f9cb6b192b955a3775bc528d3572777dbfc1489b7a7f87f3a"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/plato-28-14.png",
+      "sha256": "2bd264daa19ad0dd2ad4b4ea8ebf179416ad8b9e994faff791a1d07248966916"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/rampa-topo-29-14.png",
+      "sha256": "c171858171e32f4e3faba6c10a4064b4dcf125c5590bd7e4d6ccd9f1eabeaf68"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/plato-29-14.png",
+      "sha256": "39026267c69d25a74251a6d44897b4da27ea8478b7628ca3cf64a5157af3a529"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/rampa-pe-28-15.png",
+      "sha256": "1f9c48430788ed76ba7f77e96adc62c7e4d9ccd0e6862c7b0e3e1c9b2e2598fc"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/rampa-pe-29-15.png",
+      "sha256": "b2230f351c2de8738e925fdf878f57994ee80ab27bfee58ea84e739ce78f8b66"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/rampa-topo-6-28.png",
+      "sha256": "7b8ae5abc814ce56baa51c43d68e95d56f71884fffc5ef34720df1b54c50ae98"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/plato-6-28.png",
+      "sha256": "56c379d448a739678179d6e5610b9773deccd9c725bb3211c0e9ff9a8454b6f8"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/rampa-topo-7-28.png",
+      "sha256": "c18ad6ddb3a48a0f3dbd64695e661bd19baa1747c3524782c1ac955d3f4b0250"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/plato-7-28.png",
+      "sha256": "8667076830f81d2d81cfc2aaa3f5603bef1ba4a17849b5ca9c7265a6c02485d4"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/rampa-topo-12-28.png",
+      "sha256": "fc1810c767d876d3ac08cee325706109178b3b5ab5bded2c69f973634efd30ea"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/plato-12-28.png",
+      "sha256": "267c1d6c84f5fd29f9dc83137d1e5e70821b03bb48310e2031fbd6f35a2d932c"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/rampa-topo-13-28.png",
+      "sha256": "5cb311212fa3ca6d15d8531608bfe73624487e047065133737ed339675bcd485"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/plato-13-28.png",
+      "sha256": "29daa97675afb431db15d864b2f181818725be917db0d879d9bd530376c54810"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/rampa-pe-6-29.png",
+      "sha256": "7f45e355ed282dd84e23714806541b16c8023398504bdd71d47ab2ca0effe232"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/rampa-pe-7-29.png",
+      "sha256": "d3d234023c60a15b1d439ef731bc3d64323bd7ff959549bc1d222e66c23fa2b6"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/rampa-pe-12-29.png",
+      "sha256": "5de9468d4451f9c48445b5cd2e998b4e83a9c556ef737b2aff084c4ca20c2cd9"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/rampa-pe-13-29.png",
+      "sha256": "e110785631b7ae4d96df5ecc8db07d3540d3e4b4384a4a5885b8c2e4d9bbf097"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/rampa-topo-36-32.png",
+      "sha256": "98e7c37cd3b30f7c12327d8ee704bb7dc6444c10a4756f9fce14b7166b3c66d4"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/plato-36-32.png",
+      "sha256": "08cfc6bd8d58ea3e18a70edd53b5515e66e34715c86cf73e14e0d9dfd6e003df"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/rampa-topo-37-32.png",
+      "sha256": "3fe8fa24171c0beefef2892f501b22874f8bd7628b703f9c8c415cfff1950f91"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/plato-37-32.png",
+      "sha256": "7b7a72527170c15b5e5827f98252ffb5c1219e3098450632f99b3c3f0f8450c5"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/rampa-pe-36-33.png",
+      "sha256": "3483bed5750ba95587cc17109784c3457444f52ad19e1d43f7a9c1704aa6e5fe"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/rampa-pe-37-33.png",
+      "sha256": "e5ebc16b0145b586a5d18b18fe211ab448afde273f9c789fdec3bdb536615269"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/mureta-junta-34-32.png",
+      "sha256": "11c1c784dea90b956c6d30db5e6076fe7cf0dcca6c0a8f8b882c8d5d58cc903c"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/mureta-junta-36-32.png",
+      "sha256": "5d3f5afc3cfd1826d49abf208ce052e440e93784dedad020638cb935404929ce"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/mureta-junta-38-32.png",
+      "sha256": "2d7f0443c117c5c63fd1d4ff2040b1f4939ad912cab1f697291a8ddbc2bdfb0a"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/mureta-junta-44-32.png",
+      "sha256": "2c279fef9060ffd089896b10c9abd7ab503025cf044c5638c890524f76893f6e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/roda-do-encontro.png",
+      "sha256": "1b585feb0644142f25d374d30b012d94d914f4ba1e6462bdae3c2e923c707120"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/biruta-do-alto.png",
+      "sha256": "c8116895c4e5040e329efc74ffc239484dc48647677f3c91c09876b9f5d7b523"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/descanso-alto.png",
+      "sha256": "6bed1e6d99cc572c812fe7e368e28923838b119bff4fa89607ecb8db8c1e868b"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/desvio-do-capim.png",
+      "sha256": "a90cedf01d4a24fce06cee2abf4c6329787279cf4770b1641702277da897e36e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte/pipas-nas-copas.png",
+      "sha256": "606b1902ec330b69e19a6a6e3e8248abc10ab5e689bfcd17f2318b6cf0fceaa9"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/area-inteira.png",
+      "sha256": "e8d05dfaf2ea95e8aec8b6940d64dc95c2ff08975e088a75a270baca0c80e70c"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/entrada.png",
+      "sha256": "ff8d081691bf983c739030e61ec12ff856387c607d8396a35565379ec207c09a"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/centro.png",
+      "sha256": "0319bc4348f30a415cb5734ecc1e728c20b9f6f224793e6ffb0e674af5a2a96c"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/saida-8-39.png",
+      "sha256": "6af1c9dfac9e14715a5ba8cc889d60ac7b403c55e1893145f43ec2e4fa1de610"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/saida-47-8.png",
+      "sha256": "78497c048f49b949065d0beab5df5d4db45703ffd91532bd39bb36b56d835fd8"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/canto-n1-4-4.png",
+      "sha256": "08fb5b526dace5bc56da1a90e0d12a217c0c41dacd14048ebcdddcaba5a3b0d9"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/canto-n1-18-4.png",
+      "sha256": "c581f4f2cc4b4ab7ee1bbf71db68fdbf743801bc081c538ac1801d086e5fd110"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/canto-n1-34-6.png",
+      "sha256": "485df9f6ec5bf9d3907b02f864c0b9222d21620522c85b10b5a0c9fe762aee7a"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/canto-n1-38-10.png",
+      "sha256": "d9d2b546f6d155bc1e0699bda2144bc4a3b2a9af74c99904c9591cf3f37ef0d2"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/canto-n1-24-14.png",
+      "sha256": "da56933ab474efc07700b44cd4c23b738a7d8cadf9d7a2f93766bc6d88495b6a"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/canto-n1-34-14.png",
+      "sha256": "e9b3a59a59c2ca4806b14a28978dc9a1ceba3d84785144a0a8270fd71d6a5950"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/canto-n1-38-14.png",
+      "sha256": "295aadb803682b1849e53257553dedd641b663ce6568b049f77e83163115de3e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/canto-n1-32-22.png",
+      "sha256": "d5d6f883c70a26d6b596e5a73d9b3267ba8399dca10f8c6760fa8897cb6fd522"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/canto-n1-44-22.png",
+      "sha256": "4416b4a038741b32281d15a172df09c439e6958900fc1e142c650612ad8e0134"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/canto-n1-18-28.png",
+      "sha256": "fe8e1ce7d56c3134d8eae141e758eb256df2e45ddb009d4c57626e0f11363c87"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/canto-n1-32-30.png",
+      "sha256": "622ba3108885ab227d840083057b94643deef59e42abba125bfdbcb41a2aad0b"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/canto-n1-34-30.png",
+      "sha256": "b1e08cc903d64dd5b192cc11be8ce89135bc504f1694a21f90d0df7fec023d4f"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/canto-n1-34-32.png",
+      "sha256": "8fce66d2276ab93681378009001076bd5c4aed05377e22d688cdaad51c599b17"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/canto-n1-44-32.png",
+      "sha256": "8a79f10090cbafc3a3c7fbd322da44495cf9504b6605fff17b17315f89fd7722"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/rampa-topo-28-14.png",
+      "sha256": "f28b1030969920407d692a0305f790dfb938c5fada840ef8a594a2db75c59c1f"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/plato-28-14.png",
+      "sha256": "30077da36f0015c38ffc7ef07b526c5acfada5d136a77461da40be716d2d27ed"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/rampa-topo-29-14.png",
+      "sha256": "36dfa2f0fcc294d694de03339f52d90604ddc4b6f193d7a29cf67239ef9daf4e"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/plato-29-14.png",
+      "sha256": "f381c61504f1503be7608e8a4d64debb6149b1f020fdb3258bedde0085718998"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/rampa-pe-28-15.png",
+      "sha256": "a5da9002393565efa7e55498be903d239fcd73a299ffb0f78eed97bbab97b857"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/rampa-pe-29-15.png",
+      "sha256": "5c95b63efd6e7001b40250ae78d110e1a9a45fdc00adfbb4ab7c02b7ff29a660"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/rampa-topo-6-28.png",
+      "sha256": "6a8f9867c5cd1d47bb1009f9b986d4f26c47b985005441c6a021a8d752cf9115"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/plato-6-28.png",
+      "sha256": "27067337effa5ef5e463ce95d1e6b15dbcacb5827660abfd8047f602ca42be61"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/rampa-topo-7-28.png",
+      "sha256": "35b5e23c54f39c4ee5da987c1bfa65a0c1caa30ec465b0faa61f2552353fba02"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/plato-7-28.png",
+      "sha256": "3df178268435ad5a6737f723c029f0b65bcf7c7c2105013eb80ec01540d951ce"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/rampa-topo-12-28.png",
+      "sha256": "7462206b07ae97d02abead735a139d0728b32f3218a98050b7c16755aaced561"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/plato-12-28.png",
+      "sha256": "ffb7f5c31a67c06959b49f4f446d3adf36769607e3cbdbb0e1474d58cb102408"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/rampa-topo-13-28.png",
+      "sha256": "76c30932009dbd834158b4b79cba4669eb99dac473a470f7cc084887ba821302"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/plato-13-28.png",
+      "sha256": "4f4cf6f4435a1a52ac96f3d6dbb4ea60ee4ddef9fca8ff7f47d50318ca4743d8"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/rampa-pe-6-29.png",
+      "sha256": "a4eb2ce83f720b9fde658ed61e56b87d4ff8c3e32f3979f096feafa173fdb0b0"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/rampa-pe-7-29.png",
+      "sha256": "520fb32e6dbdf6b537912c0323bd3ce620f708565f10ef196843688ed91ae7e0"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/rampa-pe-12-29.png",
+      "sha256": "fa959b6d673440f7d84b7408f98f3f8e9d9bc79d2fd094d5b58659b17508d772"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/rampa-pe-13-29.png",
+      "sha256": "68b91f777ac7f31526f6079e0f543c9b730511eedf7695cebc4f51d42e9cdab7"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/rampa-topo-36-32.png",
+      "sha256": "7aa2dace735a6bc9079109d004ddd4e92a565ebca06e92160ecf965433fc07b1"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/plato-36-32.png",
+      "sha256": "29e8284bec397b40969670e10229f4d7eb06c4b8fe33a84712430d3c1a2382bb"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/rampa-topo-37-32.png",
+      "sha256": "2eed78bb7324bbebbdad35a37c78067a042fff5f59bfe4fefaa04066c4a34ec7"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/plato-37-32.png",
+      "sha256": "cf049a2cf673e07b3f83d2faf1bb79051d027e28d009957605e170ac3f052f56"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/rampa-pe-36-33.png",
+      "sha256": "86f656f3471b08c046d9f920643d0bc4c576c85c48be78521cb300ca1dd74d96"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/rampa-pe-37-33.png",
+      "sha256": "6c5f08f60c7a698a31711a2bebfc46d55c709aeeabba2bfb10d213194cc07582"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/mureta-junta-34-32.png",
+      "sha256": "0237bc33ad544d8d1be7c9a82327ce06b54a1cfec6047ce5b336a06c2759db37"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/mureta-junta-36-32.png",
+      "sha256": "f2f25dd6b91bef82f8485065d18743bb99e046398c788be3441681d4188c0dea"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/mureta-junta-38-32.png",
+      "sha256": "08de834a736acdb3606040cb50fc130ec39c2639b7ff63c3f2347a4d7c969689"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/mureta-junta-44-32.png",
+      "sha256": "8a79f10090cbafc3a3c7fbd322da44495cf9504b6605fff17b17315f89fd7722"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/roda-do-encontro.png",
+      "sha256": "a6ecf3dabc5116c31866794c279163034ecf61a226f173d46877339b11e08767"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/biruta-do-alto.png",
+      "sha256": "6434e98a9e455fa0d64340ac51b03f83056ce75ab020d638f06b377d46f9b515"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/descanso-alto.png",
+      "sha256": "df2b7b8531304eeedc9af8e231b95ff18492a758ff6104dc8bbc2e333393f509"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/desvio-do-capim.png",
+      "sha256": "bd0a32fcb67dfb476003f86861841ebc44c1a839873538fe6cc2003cb3b1c4d7"
+    },
+    {
+      "path": "documentation/overworld/parque/captures/clareira-do-papel/arte-terreno/pipas-nas-copas.png",
+      "sha256": "0a90c429aaab1ee6af4dc6d43de44b36c7a67fdc57baab73b04acd5341b1bb31"
+    }
+  ]
+}

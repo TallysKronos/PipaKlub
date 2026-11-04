@@ -1,0 +1,456 @@
+{
+  "ui": [
+    {
+      "at_seconds": 0,
+      "title": "Mover foco"
+    },
+    {
+      "at_seconds": 0.52,
+      "title": "Confirmar"
+    },
+    {
+      "at_seconds": 1.19,
+      "title": "Voltar"
+    },
+    {
+      "at_seconds": 1.83,
+      "title": "Abrir painel"
+    },
+    {
+      "at_seconds": 2.53,
+      "title": "Fechar painel"
+    },
+    {
+      "at_seconds": 3.18,
+      "title": "Ação indisponível"
+    },
+    {
+      "at_seconds": 3.83,
+      "title": "Trocar aba"
+    },
+    {
+      "at_seconds": 4.38,
+      "title": "Ajustar opção"
+    },
+    {
+      "at_seconds": 4.895,
+      "title": "Pausar"
+    },
+    {
+      "at_seconds": 5.625,
+      "title": "Retomar"
+    },
+    {
+      "at_seconds": 6.375,
+      "title": "Confirmação destrutiva"
+    },
+    {
+      "at_seconds": 7.245,
+      "title": "Abrir mapa"
+    }
+  ],
+  "dialogue": [
+    {
+      "at_seconds": 0,
+      "title": "Iniciar conversa"
+    },
+    {
+      "at_seconds": 0.65,
+      "title": "Avançar fala"
+    },
+    {
+      "at_seconds": 1.18,
+      "title": "Escolher resposta"
+    },
+    {
+      "at_seconds": 1.85,
+      "title": "Encerrar conversa"
+    },
+    {
+      "at_seconds": 2.56,
+      "title": "Pulso de texto opcional"
+    }
+  ],
+  "progress": [
+    {
+      "at_seconds": 0,
+      "title": "Gravação confirmada"
+    },
+    {
+      "at_seconds": 0.95,
+      "title": "Falha ao gravar"
+    },
+    {
+      "at_seconds": 1.8,
+      "title": "Objetivo recebido"
+    },
+    {
+      "at_seconds": 3.05,
+      "title": "Objetivo concluído"
+    },
+    {
+      "at_seconds": 4.7,
+      "title": "Item recebido"
+    },
+    {
+      "at_seconds": 5.5,
+      "title": "Moedas recebidas"
+    },
+    {
+      "at_seconds": 6.37,
+      "title": "XP concedido"
+    },
+    {
+      "at_seconds": 7.17,
+      "title": "Subiu de nível"
+    },
+    {
+      "at_seconds": 8.92,
+      "title": "Espécie descoberta"
+    },
+    {
+      "at_seconds": 10.27,
+      "title": "Área descoberta"
+    },
+    {
+      "at_seconds": 11.72,
+      "title": "Exercício concluído"
+    }
+  ],
+  "inventory": [
+    {
+      "at_seconds": 0,
+      "title": "Abrir bolsa"
+    },
+    {
+      "at_seconds": 0.75,
+      "title": "Equipar parceiro"
+    },
+    {
+      "at_seconds": 1.65,
+      "title": "Retirar equipamento"
+    },
+    {
+      "at_seconds": 2.35,
+      "title": "Inspecionar parceiro"
+    },
+    {
+      "at_seconds": 3.02,
+      "title": "Iniciar reparo"
+    },
+    {
+      "at_seconds": 4.27,
+      "title": "Reparo concluído"
+    },
+    {
+      "at_seconds": 6.12,
+      "title": "Restaurar rabiola"
+    },
+    {
+      "at_seconds": 7.47,
+      "title": "Usar consumível"
+    }
+  ],
+  "world": [
+    {
+      "at_seconds": 0,
+      "title": "Passo em pedra/calçada"
+    },
+    {
+      "at_seconds": 0.64,
+      "title": "Passo em terra"
+    },
+    {
+      "at_seconds": 1.31,
+      "title": "Passo em grama"
+    },
+    {
+      "at_seconds": 2.01,
+      "title": "Passo em madeira/escada"
+    },
+    {
+      "at_seconds": 2.68,
+      "title": "Atravessar matinho"
+    },
+    {
+      "at_seconds": 3.58,
+      "title": "Abrir porta"
+    },
+    {
+      "at_seconds": 4.68,
+      "title": "Fechar porta"
+    },
+    {
+      "at_seconds": 5.53,
+      "title": "Contato no degrau"
+    },
+    {
+      "at_seconds": 6.18,
+      "title": "Abrir baú"
+    },
+    {
+      "at_seconds": 7.43,
+      "title": "Recolher rabiola"
+    },
+    {
+      "at_seconds": 8.48,
+      "title": "Bater na árvore"
+    },
+    {
+      "at_seconds": 9.38,
+      "title": "Balanço da copa"
+    },
+    {
+      "at_seconds": 10.73,
+      "title": "Fruto soltando"
+    },
+    {
+      "at_seconds": 11.58,
+      "title": "Fruto no chão"
+    },
+    {
+      "at_seconds": 12.33,
+      "title": "Trocar de área"
+    },
+    {
+      "at_seconds": 13.43,
+      "title": "Interagir"
+    },
+    {
+      "at_seconds": 14.02,
+      "title": "Passo em água rasa"
+    }
+  ],
+  "workshop": [
+    {
+      "at_seconds": 0,
+      "title": "Escolher rabiola"
+    },
+    {
+      "at_seconds": 0.9,
+      "title": "Escolher gabarito"
+    },
+    {
+      "at_seconds": 1.6,
+      "title": "Encaixar vareta"
+    },
+    {
+      "at_seconds": 2.27,
+      "title": "Vareta fora do encaixe"
+    },
+    {
+      "at_seconds": 2.97,
+      "title": "Tensionar nó"
+    },
+    {
+      "at_seconds": 3.8,
+      "title": "Nó correto"
+    },
+    {
+      "at_seconds": 4.55,
+      "title": "Recortar papel"
+    },
+    {
+      "at_seconds": 5.36,
+      "title": "Rasgar papel por erro"
+    },
+    {
+      "at_seconds": 6.31,
+      "title": "Rajada no teste"
+    },
+    {
+      "at_seconds": 7.46,
+      "title": "Retomar equilíbrio"
+    },
+    {
+      "at_seconds": 8.31,
+      "title": "Carregar elo"
+    },
+    {
+      "at_seconds": 10.26,
+      "title": "Etapa concluída"
+    },
+    {
+      "at_seconds": 11.36,
+      "title": "Nascimento do parceiro"
+    },
+    {
+      "at_seconds": 14.21,
+      "title": "Cancelar montagem"
+    },
+    {
+      "at_seconds": 15.11,
+      "title": "Repor materiais"
+    }
+  ],
+  "battle": [
+    {
+      "at_seconds": 0,
+      "title": "Encontro selvagem"
+    },
+    {
+      "at_seconds": 1.3,
+      "title": "Lançar pipa"
+    },
+    {
+      "at_seconds": 2.45,
+      "title": "Início de rodada"
+    },
+    {
+      "at_seconds": 3.65,
+      "title": "Ataque sem confirmar dano"
+    },
+    {
+      "at_seconds": 4.35,
+      "title": "Acertou a linha"
+    },
+    {
+      "at_seconds": 5.08,
+      "title": "Dano na estrutura"
+    },
+    {
+      "at_seconds": 5.91,
+      "title": "Acerto crítico"
+    },
+    {
+      "at_seconds": 6.84,
+      "title": "Linha rompida"
+    },
+    {
+      "at_seconds": 7.79,
+      "title": "Estrutura quebrada"
+    },
+    {
+      "at_seconds": 8.99,
+      "title": "Puxão de linha"
+    },
+    {
+      "at_seconds": 10.04,
+      "title": "Esquiva ativada"
+    },
+    {
+      "at_seconds": 10.79,
+      "title": "Golpe evitado"
+    },
+    {
+      "at_seconds": 11.59,
+      "title": "Guarda de 0,5 s"
+    },
+    {
+      "at_seconds": 12.54,
+      "title": "Golpe bloqueado"
+    },
+    {
+      "at_seconds": 13.34,
+      "title": "Janela de contra-ataque"
+    },
+    {
+      "at_seconds": 14.24,
+      "title": "Energia suficiente"
+    },
+    {
+      "at_seconds": 15.04,
+      "title": "Sem energia"
+    },
+    {
+      "at_seconds": 15.67,
+      "title": "Recarga concluída"
+    },
+    {
+      "at_seconds": 16.36,
+      "title": "Preparação de assinatura"
+    },
+    {
+      "at_seconds": 18.31,
+      "title": "Entrada do banner"
+    },
+    {
+      "at_seconds": 19.31,
+      "title": "Rabbito · Pulo do Elo"
+    },
+    {
+      "at_seconds": 20.76,
+      "title": "Nozinho · proposta de nó de vento"
+    },
+    {
+      "at_seconds": 22.31,
+      "title": "Lacertubo · pressão tubular"
+    },
+    {
+      "at_seconds": 24.11,
+      "title": "Entrada do Lacertubo"
+    },
+    {
+      "at_seconds": 26.36,
+      "title": "Mudança de fase"
+    },
+    {
+      "at_seconds": 27.96,
+      "title": "Linha em estado crítico"
+    },
+    {
+      "at_seconds": 28.91,
+      "title": "Vitória"
+    },
+    {
+      "at_seconds": 31.26,
+      "title": "Derrota"
+    },
+    {
+      "at_seconds": 33.11,
+      "title": "Fuga concluída"
+    }
+  ],
+  "creature": [
+    {
+      "at_seconds": 0,
+      "title": "Chamado · Rabbito"
+    },
+    {
+      "at_seconds": 1.15,
+      "title": "Chamado · Carcará"
+    },
+    {
+      "at_seconds": 2.3,
+      "title": "Chamado · Azulão"
+    },
+    {
+      "at_seconds": 3.45,
+      "title": "Chamado · Mata Verde"
+    },
+    {
+      "at_seconds": 4.6,
+      "title": "Chamado · Raio de Sol"
+    },
+    {
+      "at_seconds": 5.75,
+      "title": "Chamado · Lacertubo"
+    }
+  ],
+  "ambience": [
+    {
+      "at_seconds": 0,
+      "title": "Vento de campo"
+    },
+    {
+      "at_seconds": 3.45,
+      "title": "Folhagem"
+    },
+    {
+      "at_seconds": 6.9,
+      "title": "Água corrente"
+    },
+    {
+      "at_seconds": 10.35,
+      "title": "Ar de caverna"
+    },
+    {
+      "at_seconds": 13.8,
+      "title": "Borbulhar vulcânico"
+    },
+    {
+      "at_seconds": 17.25,
+      "title": "Água do cais"
+    }
+  ]
+}

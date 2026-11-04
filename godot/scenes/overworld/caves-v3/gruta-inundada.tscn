@@ -1,0 +1,88 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/overworld/kits/cavernas-v3/surfaces/parede-umida.png" id="1_i457d"]
+[ext_resource type="Texture2D" path="res://assets/overworld/kits/cavernas-v3/surfaces/parede-basalto.png" id="2_wlfob"]
+[ext_resource type="Script" path="res://scripts/overworld/cave_basin.gd" id="3_55skw"]
+[ext_resource type="PackedScene" path="res://scenes/overworld/caves-v3/props/estalagmite-alta.tscn" id="4_28h00"]
+[ext_resource type="PackedScene" path="res://scenes/overworld/caves-v3/props/estalagmite-baixa.tscn" id="5_1qtmy"]
+[ext_resource type="PackedScene" path="res://scenes/overworld/caves-v3/props/coluna-calcario.tscn" id="6_hwpa0"]
+[ext_resource type="PackedScene" path="res://scenes/overworld/caves-v3/props/rocha-solta.tscn" id="7_vhb0h"]
+[ext_resource type="PackedScene" path="res://scenes/overworld/caves-v3/props/cristal-ambar.tscn" id="8_xwght"]
+[ext_resource type="PackedScene" path="res://scenes/overworld/caves-v3/props/cristal-azul.tscn" id="9_5adje"]
+[ext_resource type="PackedScene" path="res://scenes/overworld/caves-v3/props/cogumelos-gruta.tscn" id="10_4xajc"]
+
+[node name="GrutaInundada" type="Node2D" unique_id=1907146095]
+
+[node name="@Node2D@148" type="Node2D" parent="." unique_id=2031053142]
+
+[node name="@Polygon2D@149" type="Polygon2D" parent="@Node2D@148" unique_id=1758908514]
+texture_repeat = 2
+texture = ExtResource("1_i457d")
+polygon = PackedVector2Array(0, -144, -320, 16, -320, 144, 0, -16)
+uv = PackedVector2Array(0, 0, 640, 0, 640, 512, 0, 512)
+
+[node name="@Polygon2D@150" type="Polygon2D" parent="@Node2D@148" unique_id=2069310997]
+texture_repeat = 2
+texture = ExtResource("2_wlfob")
+polygon = PackedVector2Array(-12, -150, -332, 10, -320, 16, 0, -144)
+uv = PackedVector2Array(0, 0, 640, 0, 640, 512, 0, 512)
+
+[node name="@Polygon2D@151" type="Polygon2D" parent="@Node2D@148" unique_id=662529104]
+texture_repeat = 2
+color = Color(0.7, 0.7, 0.7, 1)
+texture = ExtResource("2_wlfob")
+polygon = PackedVector2Array(-320, 16, -332, 10, -332, 138, -320, 144)
+uv = PackedVector2Array(0, 0, 48, 0, 48, 512, 0, 512)
+
+[node name="@Polygon2D@152" type="Polygon2D" parent="@Node2D@148" unique_id=1365716891]
+texture_repeat = 2
+color = Color(0.86, 0.86, 0.86, 1)
+texture = ExtResource("1_i457d")
+polygon = PackedVector2Array(0, -144, 320, 16, 320, 144, 0, -16)
+uv = PackedVector2Array(0, 0, 640, 0, 640, 512, 0, 512)
+
+[node name="@Polygon2D@153" type="Polygon2D" parent="@Node2D@148" unique_id=548953533]
+texture_repeat = 2
+texture = ExtResource("2_wlfob")
+polygon = PackedVector2Array(12, -150, 332, 10, 320, 16, 0, -144)
+uv = PackedVector2Array(0, 0, 640, 0, 640, 512, 0, 512)
+
+[node name="@Polygon2D@154" type="Polygon2D" parent="@Node2D@148" unique_id=212307622]
+texture_repeat = 2
+color = Color(0.7, 0.7, 0.7, 1)
+texture = ExtResource("2_wlfob")
+polygon = PackedVector2Array(320, 16, 332, 10, 332, 138, 320, 144)
+uv = PackedVector2Array(0, 0, 48, 0, 48, 512, 0, 512)
+
+[node name="RecessedBasin" type="Node2D" parent="." unique_id=1177064577]
+script = ExtResource("3_55skw")
+
+[node name="DepthSortedProps" type="Node2D" parent="." unique_id=1423256470]
+y_sort_enabled = true
+
+[node name="estalagmite-alta" type="Node2D" parent="DepthSortedProps" unique_id=1327818352 instance=ExtResource("4_28h00")]
+position = Vector2(0, 32)
+
+[node name="estalagmite-baixa" type="Node2D" parent="DepthSortedProps" unique_id=1885244016 instance=ExtResource("5_1qtmy")]
+position = Vector2(-32, 80)
+
+[node name="coluna-calcario" type="Node2D" parent="DepthSortedProps" unique_id=911242316 instance=ExtResource("6_hwpa0")]
+position = Vector2(-128, 96)
+
+[node name="rocha-solta" type="Node2D" parent="DepthSortedProps" unique_id=2019188292 instance=ExtResource("7_vhb0h")]
+position = Vector2(-32, 240)
+
+[node name="estalagmite-baixa2" type="Node2D" parent="DepthSortedProps" unique_id=444242895 instance=ExtResource("5_1qtmy")]
+position = Vector2(64, 224)
+
+[node name="cristal-ambar" type="Node2D" parent="DepthSortedProps" unique_id=383990053 instance=ExtResource("8_xwght")]
+position = Vector2(-160, 144)
+
+[node name="cristal-azul" type="Node2D" parent="DepthSortedProps" unique_id=453293395 instance=ExtResource("9_5adje")]
+position = Vector2(96, 208)
+
+[node name="cogumelos-gruta" type="Node2D" parent="DepthSortedProps" unique_id=814133023 instance=ExtResource("10_4xajc")]
+position = Vector2(0, 192)
+
+[node name="cogumelos-gruta2" type="Node2D" parent="DepthSortedProps" unique_id=49786635 instance=ExtResource("10_4xajc")]
+position = Vector2(-224, 176)

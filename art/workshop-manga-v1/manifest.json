@@ -1,0 +1,66 @@
+{
+  "generator": "built-in image_gen",
+  "assets": [
+    {
+      "id": "bancada",
+      "source": "bancada-manga.png",
+      "source_size": [
+        1536,
+        1024
+      ],
+      "crop": null,
+      "size": [
+        1440,
+        960
+      ],
+      "alpha": false,
+      "pivot": "center",
+      "collision": "none; existing model owns hit regions",
+      "status": "integrated locally; artistic review pending"
+    },
+    {
+      "id": "vareta",
+      "source": "vareta.png",
+      "source_size": [
+        957,
+        1644
+      ],
+      "crop": [
+        449,
+        32,
+        510,
+        1612
+      ],
+      "size": [
+        15,
+        384
+      ],
+      "alpha": true,
+      "pivot": "center",
+      "collision": "none; existing model owns hit regions",
+      "status": "integrated locally; artistic review pending"
+    },
+    {
+      "id": "tesoura",
+      "source": "tesoura.png",
+      "source_size": [
+        1073,
+        1466
+      ],
+      "crop": [
+        159,
+        35,
+        914,
+        1426
+      ],
+      "size": [
+        167,
+        308
+      ],
+      "alpha": true,
+      "pivot": "center",
+      "collision": "none; existing model owns hit regions",
+      "status": "integrated locally; artistic review pending"
+    }
+  ]
+}

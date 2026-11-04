@@ -1,0 +1,127 @@
+{
+  "id": "lia",
+  "name": "Lia",
+  "source": "../../fontes/lia.png",
+  "identityReference": "assets/characters/morro-rivals/lia-v1.png",
+  "cell": [
+    64,
+    96
+  ],
+  "pivot": [
+    32,
+    94
+  ],
+  "directions": [
+    "S",
+    "SO",
+    "O",
+    "NO",
+    "N",
+    "NE",
+    "E",
+    "SE"
+  ],
+  "sourceOrder": [
+    0,
+    1,
+    6,
+    3,
+    4,
+    5,
+    2,
+    7
+  ],
+  "sharedScale": 0.16182572614107885,
+  "sourceBounds": [
+    [
+      131,
+      17,
+      334,
+      499
+    ],
+    [
+      101,
+      20,
+      320,
+      499
+    ],
+    [
+      87,
+      4,
+      287,
+      482
+    ],
+    [
+      63,
+      21,
+      267,
+      499
+    ],
+    [
+      125,
+      0,
+      318,
+      473
+    ],
+    [
+      99,
+      0,
+      309,
+      476
+    ],
+    [
+      70,
+      25,
+      267,
+      501
+    ],
+    [
+      49,
+      4,
+      269,
+      481
+    ]
+  ],
+  "colors": 31,
+  "cleanup": [
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 300
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 304
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 231
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 283
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 308
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 291
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 239
+    },
+    {
+      "detachedPixelsRemoved": 0,
+      "edgePixelsInked": 298
+    }
+  ],
+  "animation": "static directional bases; no walk cycle",
+  "status": "integrated locally; independent art review 8/10; awaiting user visual approval in game",
+  "nativeRoundtripExact": true,
+  "integratedInGame": true,
+  "reviewScore": 8,
+  "targetedCorrection": "shorts plum ramp restored in eight annotated regions",
+  "runtimePath": "godot/assets/npc-ds/lia.png"
+}

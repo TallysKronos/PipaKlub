@@ -1,0 +1,34 @@
+{
+  "issue": "PIP-82",
+  "version": 1,
+  "approval": "rejected_by_owner",
+  "rejection_reason": "Visual de maquete distante do estilo 2D mangá e energia gráfica de Splatoon",
+  "replacement_target": "revisao-manga-v2",
+  "role": "style-board; not runtime tileset",
+  "generator": "gerar_prancha.py",
+  "technical_source": "vector diagrams and coordinate functions",
+  "illustration_source": "fontes/esquinas-v2.png",
+  "biomes": [
+    "BAIRRO",
+    "PARQUE",
+    "VEREDAS",
+    "MORRO"
+  ],
+  "reference_branch": "claude/mapas-areas",
+  "reference_commit": "469cb4e4c498faf6afcca9ee3f6782d72538f4a7",
+  "morro_decision": "isometric 2:1; previous 3/4 art is content reference only",
+  "files": [
+    {
+      "path": "PRANCHA-ESTILO.png",
+      "sha256": "74898691b7a38e067ed50d4ef1ab35fda1713919f1dca689b84373f602c4d917"
+    },
+    {
+      "path": "PRANCHA-ESTILO.svg",
+      "sha256": "f24fe77e520f54397109ddc302ad6839c17b540da29687a9cba45aa720d4bfad"
+    },
+    {
+      "path": "fontes/esquinas-v2.png",
+      "sha256": "6385078c908a667bf971253793a912ac0ab7bf4a697aff1fd4b50b33a43cf52c"
+    }
+  ]
+}

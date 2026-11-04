@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/overworld/water_patch.gd" id="1_lrn3w"]
+
+[node name="agua-pantano" type="Node2D" unique_id=395081745]
+script = ExtResource("1_lrn3w")
+water_id = "agua-pantano"

@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/overworld/water_effect.gd" id="1_bcndw"]
+
+[node name="respingo-base" type="Sprite2D" unique_id=492167274]
+script = ExtResource("1_bcndw")
+effect_id = "respingo-base"

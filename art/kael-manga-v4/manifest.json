@@ -1,0 +1,13 @@
+{
+  "character": "Kael",
+  "source": "Built-in image_gen; user's original Kael concept for identity; approved Locutor V4 for line and color treatment",
+  "status": "New art for user review",
+  "assets": [
+    {"file":"kael-conceito-v4.png","role":"Model sheet: full body, rear, expressions and line study","background":"white","rigged":false},
+    {"file":"kael-portrait-v4.png","role":"Original dialogue portrait generation","runtime":false},
+    {"file":"kael-portrait-v4-clean.png","role":"Background cleanup edit, transparent dialogue cutout","runtime":"godot/assets/campaign/portrait-kael-manga-v4.png","runtime_size":[800,1200],"alpha":"Verified by compositing on cream; hidden RGB haze is transparent, not a visible background"}
+  ],
+  "identity": "Fifteen, navy high swept quiff, reddish-brown eyes, slender build, blue jacket and ivory sleeve stripes, turquoise headphones around neck, left thigh band, dark ankle shoes",
+  "prompts": "../pipa-tv-cinematic-v3/prompts.json",
+  "limits": "World sprite remains the existing sprite; this task updates cinematic reference and dialogue portrait, not a new overworld animation rig."
+}

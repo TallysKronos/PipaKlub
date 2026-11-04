@@ -1,0 +1,72 @@
+[
+  {
+    "suite": "ui_tokens_checks",
+    "exitCode": 0,
+    "log": "pip78-fixed-ui_tokens_checks.log"
+  },
+  {
+    "suite": "campaign_checks",
+    "exitCode": 0,
+    "log": "pip78-campaign_checks.log"
+  },
+  {
+    "suite": "campaign_view_checks",
+    "exitCode": 0,
+    "log": "pip78-campaign_view_checks.log"
+  },
+  {
+    "suite": "controls_checks",
+    "exitCode": 0,
+    "log": "pip78-controls_checks.log"
+  },
+  {
+    "suite": "park_checks",
+    "exitCode": 0,
+    "log": "pip78-park_checks.log"
+  },
+  {
+    "suite": "art_direction_checks",
+    "exitCode": 0,
+    "log": "pip78-fixed-art_direction_checks.log"
+  },
+  {
+    "suite": "binding_window_checks",
+    "exitCode": 0,
+    "log": "pip78-binding_window_checks.log"
+  },
+  {
+    "suite": "hud_checks",
+    "exitCode": 0,
+    "log": "pip78-fixed-hud_checks.log"
+  },
+  {
+    "suite": "hud_effects_checks",
+    "exitCode": 0,
+    "log": "pip78-hud_effects_checks.log"
+  },
+  {
+    "suite": "morro_checks",
+    "exitCode": 0,
+    "log": "pip78-morro_checks.log"
+  },
+  {
+    "suite": "morro_map_checks",
+    "exitCode": 0,
+    "log": "pip78-morro_map_checks.log"
+  },
+  {
+    "suite": "morro_transaction_checks",
+    "exitCode": 0,
+    "log": "pip78-morro_transaction_checks.log"
+  },
+  {
+    "suite": "player_flow_checks",
+    "exitCode": 0,
+    "log": "pip78-player_flow_checks.log"
+  },
+  {
+    "suite": "journey-with-morro",
+    "exitCode": 0,
+    "log": "pip78-journey.log"
+  }
+]

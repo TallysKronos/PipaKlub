@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-29",
+  "approval": "pending_owner_visual_review",
+  "direction": "restrained 2D manga cel painting; quiet sage grass, tan packed earth without large cracks, broad earth strata",
+  "repetition": "mirrored world-space sampling, audited at game scale and 3x3",
+  "files": [
+    {
+      "file": "grama.png",
+      "source": "fontes/grama.png",
+      "originalSize": [
+        1254,
+        1254
+      ],
+      "size": [
+        512,
+        512
+      ],
+      "generator": "image_gen.imagegen",
+      "normalization": "RGB and uniform 512x512 Lanczos resize; no painted edits",
+      "role": "orthographic material; native geometry owns height and silhouette"
+    },
+    {
+      "file": "terra.png",
+      "source": "fontes/terra.png",
+      "originalSize": [
+        1254,
+        1254
+      ],
+      "size": [
+        512,
+        512
+      ],
+      "generator": "image_gen.imagegen",
+      "normalization": "RGB and uniform 512x512 Lanczos resize; no painted edits",
+      "role": "orthographic material; native geometry owns height and silhouette"
+    },
+    {
+      "file": "barranco.png",
+      "source": "fontes/barranco.png",
+      "originalSize": [
+        1254,
+        1254
+      ],
+      "size": [
+        512,
+        512
+      ],
+      "generator": "image_gen.imagegen",
+      "normalization": "RGB and uniform 512x512 Lanczos resize; no painted edits",
+      "role": "orthographic material; native geometry owns height and silhouette"
+    }
+  ]
+}

@@ -1,0 +1,624 @@
+{
+  "meta": {
+    "app": "Pixelgen",
+    "version": 2,
+    "image": "kael-defeat.png",
+    "size": {
+      "w": 384,
+      "h": 512
+    },
+    "scale": 1
+  },
+  "palette": [
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      17,
+      26,
+      46,
+      255
+    ],
+    [
+      23,
+      35,
+      63,
+      255
+    ],
+    [
+      40,
+      63,
+      113,
+      255
+    ],
+    [
+      69,
+      95,
+      152,
+      255
+    ],
+    [
+      186,
+      121,
+      94,
+      255
+    ],
+    [
+      242,
+      188,
+      142,
+      255
+    ],
+    [
+      255,
+      225,
+      179,
+      255
+    ],
+    [
+      24,
+      55,
+      85,
+      255
+    ],
+    [
+      44,
+      84,
+      139,
+      255
+    ],
+    [
+      71,
+      118,
+      178,
+      255
+    ],
+    [
+      32,
+      41,
+      54,
+      255
+    ],
+    [
+      75,
+      86,
+      108,
+      255
+    ],
+    [
+      238,
+      233,
+      214,
+      255
+    ],
+    [
+      64,
+      183,
+      199,
+      255
+    ],
+    [
+      155,
+      225,
+      219,
+      255
+    ],
+    [
+      48,
+      60,
+      81,
+      255
+    ]
+  ],
+  "sequences": [
+    {
+      "name": "defeat-S",
+      "start": 0,
+      "end": 3,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "defeat-SO",
+      "start": 4,
+      "end": 7,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "defeat-O",
+      "start": 8,
+      "end": 11,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "defeat-NO",
+      "start": 12,
+      "end": 15,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "defeat-N",
+      "start": 16,
+      "end": 19,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "defeat-NE",
+      "start": 20,
+      "end": 23,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "defeat-E",
+      "start": 24,
+      "end": 27,
+      "loop": false,
+      "direction": "forward"
+    },
+    {
+      "name": "defeat-SE",
+      "start": 28,
+      "end": 31,
+      "loop": false,
+      "direction": "forward"
+    }
+  ],
+  "frames": [
+    {
+      "name": "defeat-S-1",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "defeat-S-2",
+      "frame": {
+        "x": 48,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "defeat-S-3",
+      "frame": {
+        "x": 96,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 240
+    },
+    {
+      "name": "defeat-S-4",
+      "frame": {
+        "x": 144,
+        "y": 0,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 900
+    },
+    {
+      "name": "defeat-SO-1",
+      "frame": {
+        "x": 0,
+        "y": 64,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "defeat-SO-2",
+      "frame": {
+        "x": 48,
+        "y": 64,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "defeat-SO-3",
+      "frame": {
+        "x": 96,
+        "y": 64,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 240
+    },
+    {
+      "name": "defeat-SO-4",
+      "frame": {
+        "x": 144,
+        "y": 64,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 900
+    },
+    {
+      "name": "defeat-O-1",
+      "frame": {
+        "x": 0,
+        "y": 128,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "defeat-O-2",
+      "frame": {
+        "x": 48,
+        "y": 128,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "defeat-O-3",
+      "frame": {
+        "x": 96,
+        "y": 128,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 240
+    },
+    {
+      "name": "defeat-O-4",
+      "frame": {
+        "x": 144,
+        "y": 128,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 900
+    },
+    {
+      "name": "defeat-NO-1",
+      "frame": {
+        "x": 0,
+        "y": 192,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "defeat-NO-2",
+      "frame": {
+        "x": 48,
+        "y": 192,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "defeat-NO-3",
+      "frame": {
+        "x": 96,
+        "y": 192,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 240
+    },
+    {
+      "name": "defeat-NO-4",
+      "frame": {
+        "x": 144,
+        "y": 192,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 900
+    },
+    {
+      "name": "defeat-N-1",
+      "frame": {
+        "x": 0,
+        "y": 256,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "defeat-N-2",
+      "frame": {
+        "x": 48,
+        "y": 256,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "defeat-N-3",
+      "frame": {
+        "x": 96,
+        "y": 256,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 240
+    },
+    {
+      "name": "defeat-N-4",
+      "frame": {
+        "x": 144,
+        "y": 256,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 900
+    },
+    {
+      "name": "defeat-NE-1",
+      "frame": {
+        "x": 0,
+        "y": 320,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "defeat-NE-2",
+      "frame": {
+        "x": 48,
+        "y": 320,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "defeat-NE-3",
+      "frame": {
+        "x": 96,
+        "y": 320,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 240
+    },
+    {
+      "name": "defeat-NE-4",
+      "frame": {
+        "x": 144,
+        "y": 320,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 900
+    },
+    {
+      "name": "defeat-E-1",
+      "frame": {
+        "x": 0,
+        "y": 384,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "defeat-E-2",
+      "frame": {
+        "x": 48,
+        "y": 384,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "defeat-E-3",
+      "frame": {
+        "x": 96,
+        "y": 384,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 240
+    },
+    {
+      "name": "defeat-E-4",
+      "frame": {
+        "x": 144,
+        "y": 384,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 900
+    },
+    {
+      "name": "defeat-SE-1",
+      "frame": {
+        "x": 0,
+        "y": 448,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 150
+    },
+    {
+      "name": "defeat-SE-2",
+      "frame": {
+        "x": 48,
+        "y": 448,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 180
+    },
+    {
+      "name": "defeat-SE-3",
+      "frame": {
+        "x": 96,
+        "y": 448,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 240
+    },
+    {
+      "name": "defeat-SE-4",
+      "frame": {
+        "x": 144,
+        "y": 448,
+        "w": 48,
+        "h": 64
+      },
+      "pivot": {
+        "x": 24,
+        "y": 62
+      },
+      "duration": 900
+    }
+  ]
+}

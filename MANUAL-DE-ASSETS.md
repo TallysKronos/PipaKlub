@@ -202,7 +202,9 @@ Não usar uma única imagem espremida para todos esses papéis. Expressões reco
 
 Definir o alvo visual em coordenadas da composição: quem olha para quem, quem acompanha um movimento e quem olha para o jogador. Conferir a cena completa após gerar cada personagem. O fato de cada rosto isolado estar correto não garante que Rabbito e Nevagume estejam olhando para Yaguarú na cena.
 
-Não espelhar uma imagem assimétrica sem revisar acessórios, lado do cabelo, roupa, luz e gesto. Quando a identidade não permite espelhamento, gerar a direção necessária.
+Para vídeos de animação, **gerar um lado e espelhar o spritesheet para o lado oposto por padrão**, conforme decisão do responsável. Em oito direções, gerar frente (S), costas (N), direita (E), diagonal frontal direita (SE) e diagonal traseira direita (NE); derivar W de E, SW de SE e NW de NE. Não gastar uma geração de vídeo independente com cada lado.
+
+Espelhar cada frame dentro da sua própria célula, preservando a ordem e os tempos da animação. Refletir também pivôs, pontos de encaixe e máscaras laterais no espaço correto. Revisar acessórios, cabelo, roupa e luz; somente uma assimetria essencial justifica registrar uma exceção e gerar o lado separado. Não espelhar a folha inteira de modo que inverta a sequência de frames.
 
 ## 08. Chibis e sprites direcionais do overworld
 

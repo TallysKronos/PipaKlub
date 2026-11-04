@@ -1,0 +1,96 @@
+{
+  "frameCount": 8,
+  "realAlpha": true,
+  "checks": [
+    {
+      "frame": 0,
+      "solidBounds": [
+        143,
+        132,
+        288,
+        337
+      ],
+      "marginClear": true,
+      "solidPixels": 41824
+    },
+    {
+      "frame": 1,
+      "solidBounds": [
+        145,
+        133,
+        291,
+        342
+      ],
+      "marginClear": true,
+      "solidPixels": 41232
+    },
+    {
+      "frame": 2,
+      "solidBounds": [
+        145,
+        132,
+        301,
+        335
+      ],
+      "marginClear": true,
+      "solidPixels": 41369
+    },
+    {
+      "frame": 3,
+      "solidBounds": [
+        145,
+        131,
+        295,
+        332
+      ],
+      "marginClear": true,
+      "solidPixels": 38019
+    },
+    {
+      "frame": 4,
+      "solidBounds": [
+        142,
+        131,
+        286,
+        333
+      ],
+      "marginClear": true,
+      "solidPixels": 39778
+    },
+    {
+      "frame": 5,
+      "solidBounds": [
+        146,
+        132,
+        304,
+        326
+      ],
+      "marginClear": true,
+      "solidPixels": 41254
+    },
+    {
+      "frame": 6,
+      "solidBounds": [
+        133,
+        133,
+        318,
+        329
+      ],
+      "marginClear": true,
+      "solidPixels": 41694
+    },
+    {
+      "frame": 7,
+      "solidBounds": [
+        144,
+        133,
+        304,
+        342
+      ],
+      "marginClear": true,
+      "solidPixels": 41894
+    }
+  ],
+  "mirroredFrom": "walk-ne",
+  "ingame": false
+}

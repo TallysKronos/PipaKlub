@@ -1,0 +1,25 @@
+{
+  "generator": "image_gen.imagegen",
+  "date": "2026-10-26",
+  "revision": "calcada-placas.png",
+  "prompt": "Create a replacement production ground texture for the cream sidewalk in the provided ORIGINAL PipaKlub neighborhood concept. The previous mathematical dark grid was rejected: do not draw a grid or dark crossing straight lines.\nSUBJECT: warm pale cream Brazilian poured-concrete sidewalk, with just a FEW LARGE broad irregular rectangular slabs of slightly varied sizes in a staggered arrangement. Distinguish slab edges almost entirely through tiny differences in warm cream/beige value and shallow worn edge shading. Any seam is a very fine soft warm-beige recess, only 5-10% darker than the concrete, never a dark ink stroke. Avoid long uninterrupted seams crossing the entire texture, perfect square grids, diagonal crosshatching, outlined diamonds, thick black grout, cobblestones, brick paving and decorative patterns. Keep most of each slab broad and calm. Small corner chips and subtle worn cement patches add craftsmanship. The concrete should feel lightly hand-painted rather than flat digital geometry.\nVIEW: perfectly flat TOP-DOWN square material texture, no perspective, no isometric diamond, no height, no vignette. Seamless opposite edges. Target material base #E9DCB6; warm soft cel-color anime environment painting matching reference, no watercolor bloom or 3D render. Approximate 3 to 4 large panel divisions over the whole square, sizes varied, offset joints with soft endpoints instead of long continuous lines. No cast shadows, street furniture, plants, asphalt, curb, labels or UI. Opaque texture filling all canvas edges. The original concept is a style reference only.",
+  "original": "C:/Users/user/.codex/generated_images/01a17924-9eaf-7951-8ded-c6920198ad3f/exec-aa949973-f3cd-40a0-b278-f1165c03a108.png",
+  "materials": [
+    [
+      "calcada",
+      "Warm pale buttery cream / ivory concrete, main color #E9DCB6. Quiet broad hand-painted patches of worn cement, subtle warm beige mottling and a few pale scraped marks. NO joints, NO cracks, NO borders: slab joints will be drawn separately by the game. Soft large color shapes, not clouds, not mottled marble. Low contrast."
+    ],
+    [
+      "asfalto",
+      "Blue-grey aged asphalt, main color #5A6C85. Subtle blue slate repaired patches, matte warm-grey worn areas and a very small amount of fine aggregate. Broad quiet brush-painted value variation like the road in the reference. NO lane lines, NO curb, NO cracks, NO weeds or shadows. Not photoreal gravel, no visible pebbles."
+    ],
+    [
+      "canteiro",
+      "Short Brazilian neighborhood garden grass in muted fresh olive/lime greens, mid color #90AD64 with a few broader dark olive #7B9A55 patches and light #A6BD71. Hand-drawn 2D anime grass carpet: irregular low leafy clusters interspersed with nearly smooth quiet green regions. Small stylized grouped grass strokes, no repeating V or caret symbols. NO flowers, bushes, trees, dirt path, cast shadow or border. No glossy 3D blades."
+    ],
+    [
+      "terra",
+      "Warm compacted sandy ochre path, main color #CBA36A, with irregular flat patches of lighter dust #DCBD83, a few tiny muted ochre pebbles and tiny worn scuffs. Clean stylized anime game ground. NO large rocks, no cracks, no foliage, no shadow, no footprints, no borders."
+    ]
+  ]
+}

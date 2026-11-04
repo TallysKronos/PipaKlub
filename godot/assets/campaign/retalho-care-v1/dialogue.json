@@ -1,0 +1,23 @@
+{
+  "locale": "pt-BR",
+  "nodes": [
+    {
+      "id": "retalho-care.approach",
+      "flag": "retalhoAtelieAproximacao",
+      "title": "Sem puxar a linha",
+      "text": "Kael: Eu não vou prender você. Só quero ajudar.\n\nRetalho encolhe as orelhas quando Kael se aproxima. Kael para, deixa o material de reparo ao alcance e espera.\n\nDepois de um instante, Retalho baixa as patas. Desta vez, não foge."
+    },
+    {
+      "id": "retalho-care.support",
+      "flag": "retalhoAtelieCuidado",
+      "title": "Um cuidado de cada vez",
+      "text": "Sr. Assis: Apoie a armação por baixo. Devagar. Não puxe a rabiola.\n\nKael: Assim?\n\nSr. Assis: Isso. Podemos cuidar das dobras sem apertar os nós. Deixe que ele mostre até onde aceita nossa ajuda.\n\nRetalho permite que Kael acomode a armação. Sua respiração começa a se acalmar."
+    },
+    {
+      "id": "retalho-care.knot",
+      "flag": "assisReconheceuNoRetalho",
+      "title": "O nó da rabiola",
+      "text": "Sr. Assis: Espere… Esse nó. Eu reconheço. É um nó de expedição.\n\nKael: Vi um parecido na foto do arquivo. O senhor sabe de onde ele veio?\n\nAssis permanece olhando para a ponta da rabiola, mas afasta as mãos para não incomodar Retalho.\n\nSr. Assis: Agora ele precisa descansar. Não vamos apressar nem o cuidado, nem as respostas."
+    }
+  ]
+}

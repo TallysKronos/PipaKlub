@@ -1,0 +1,47 @@
+{
+  "schema": "plains-showcase-1",
+  "grid": [
+    64,
+    32
+  ],
+  "campaignIntegrated": false,
+  "collision": "not-authored",
+  "grass": {
+    "file": "surfaces/grama.png",
+    "size": [
+      512,
+      512
+    ],
+    "repeatCells": 8,
+    "source": "fontes/grama-flat-v2.png"
+  },
+  "props": {
+    "arvore": {
+      "file": "props/arvore.png",
+      "size": [
+        202,
+        162
+      ],
+      "pivot": [
+        107.0,
+        153
+      ],
+      "source": "fontes/arvore.png"
+    }
+  },
+  "reusedAssets": [
+    "cavernas-v3/surfaces/rocha-cinza.png",
+    "cavernas-v3/props/rocha-solta.png",
+    "comum/pecas/flores-amarela.png"
+  ],
+  "transitionImplementation": "res://shaders/overworld/terrain_transition.gdshaderinc",
+  "revision": "flat-manga-v2",
+  "earth": {
+    "file": "surfaces/terra.png",
+    "source": "fontes/terra-flat-v2.png",
+    "size": [
+      512,
+      512
+    ]
+  }
+}

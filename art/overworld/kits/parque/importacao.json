@@ -1,0 +1,1426 @@
+{
+  "revision": "18dec6b87808a45ec23853ff4eb526c37a331b9a",
+  "files": [
+    {
+      "file": "chao/bosque-0.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "30736562fe2af77385655a19b100d735c845ebde29255b89353fc18ed804c950",
+      "alpha_min": 0
+    },
+    {
+      "file": "chao/bosque-1.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "fda172fc403c0e9f4427754f98cc51d559f775a33c8a0833316539aaefc63f06",
+      "alpha_min": 0
+    },
+    {
+      "file": "chao/bosque-2.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "e1dbe3d9c32c94d4c359eada06d7cf0ba8b348a2d3ff132491265a22d29509c2",
+      "alpha_min": 0
+    },
+    {
+      "file": "chao/bosque-3.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "7b6f7d28c1f57576a55e00d09dfb71875568041469b0cadcd67dfbce35f29b88",
+      "alpha_min": 0
+    },
+    {
+      "file": "chao/grama-0.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "717878bb33ece0ce4244459c6a64184a6bbd45667ce38367afd5cc3158447c05",
+      "alpha_min": 0
+    },
+    {
+      "file": "chao/grama-1.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "b2f712bedf1c696e2b7a8f920a93600451f87c26accafbeed8a20c1ab7e0bf0e",
+      "alpha_min": 0
+    },
+    {
+      "file": "chao/grama-2.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "15578f0edb814ab3c75a26b8fdbeb68de8988201ff66da675baf56e3edf1beee",
+      "alpha_min": 0
+    },
+    {
+      "file": "chao/grama-3.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "27de3c4b4691687a24c940f9f888a905a8d911c61b04c4e968f5a1ddd2817096",
+      "alpha_min": 0
+    },
+    {
+      "file": "chao/mato-0.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "d3805d3cb06123b977f784dcc1d83f0a8ed8561087893d5f8e9b3574df10cd2a",
+      "alpha_min": 0
+    },
+    {
+      "file": "chao/mato-1.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "1368794d9b8f1dfc22ed71f7d7c3950e4d8a3aad6fd2578c55cff53d253bbc1b",
+      "alpha_min": 0
+    },
+    {
+      "file": "chao/mato-2.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "1cc7ebb5c254fa0b29a6593badb1a34a0e181ba3677e4a1e254b844451883842",
+      "alpha_min": 0
+    },
+    {
+      "file": "chao/mato-3.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "6cd71dbc89cb6e73fa96c5dd831c4e708f96b79737fa25d4086a0d9484a2a7a2",
+      "alpha_min": 0
+    },
+    {
+      "file": "chao/piso-0.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "68bc18055ea14eb3a0ca584419ff67b848b4bd0681ad74d624e4d43e14983d0f",
+      "alpha_min": 0
+    },
+    {
+      "file": "chao/piso-1.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "ba6e2ca00c438bf98efabc7958e9e6e5115fc243e1afa75c59fefa2e2aa20add",
+      "alpha_min": 0
+    },
+    {
+      "file": "chao/piso-2.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "825bcb9e4973b1f5eb3df86c95c383ae9f68c5008b0fca5563e8d301c22e36e8",
+      "alpha_min": 0
+    },
+    {
+      "file": "chao/piso-3.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "abed4c4ee201595a00482e9c399c3749335761be6159ec4eeab1952a380d62b9",
+      "alpha_min": 0
+    },
+    {
+      "file": "chao/terra-0.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "a0626e09c9c7d9fb13ed949864cacdde2891b5cf47b66b80c86d33bf4a5932ad",
+      "alpha_min": 0
+    },
+    {
+      "file": "chao/terra-1.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "7d01acc0118a6eae6dd5b99ea7ffe7e0d779c3482912d103e1b57c8d1df6923c",
+      "alpha_min": 0
+    },
+    {
+      "file": "chao/terra-2.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "53d1ba3a63a89145efae81c9035ac6e60e9971af1bb2fd83f5e20003643f986d",
+      "alpha_min": 0
+    },
+    {
+      "file": "chao/terra-3.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "d528edba5b9bc5ed48f6eef7ddda7a6e94f69b28117dafb67ff8142d68d43c38",
+      "alpha_min": 0
+    },
+    {
+      "file": "pecas/arvore-a.png",
+      "size": [
+        113,
+        132
+      ],
+      "sha256": "4235c3759c369075546b1cc6e395268e808973ed2259b3d1b9cb5196d969c682",
+      "alpha_min": 0
+    },
+    {
+      "file": "pecas/arvore-b.png",
+      "size": [
+        133,
+        132
+      ],
+      "sha256": "f9c4a7859cbda84df98650a1e89934d240dd136335299688ce5ea2266053043d",
+      "alpha_min": 0
+    },
+    {
+      "file": "pecas/arvore-florida.png",
+      "size": [
+        138,
+        144
+      ],
+      "sha256": "f46b5931d8c35aed739a82b53a50f9ca3a5fb88675df37fdca88c472d14b3d04",
+      "alpha_min": 0
+    },
+    {
+      "file": "pecas/coreto.png",
+      "size": [
+        280,
+        304
+      ],
+      "sha256": "104ded217bc6e719a9d5c28d958a46e14620f961b85f7c8ea1c4a9439a1af74c",
+      "alpha_min": 0
+    },
+    {
+      "file": "sombras/contato.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "53923ac48d03315757d60480d3f3c1c182a4d4b675f2ac10c4b013338fcf181a",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-grama-0.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "30736562fe2af77385655a19b100d735c845ebde29255b89353fc18ed804c950",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-grama-1.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "9796488f591a7a415fc6adb359862d19e01ef5715169de398b87b8d636abb989",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-grama-10.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "13a878324156e6025873bb5be238f4b113d7729321e4dfdd813a3b33b6c3f803",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-grama-11.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "d9e53c2c70b3b2aea1dfa008b1f27a03ea98bfa7574f05247b8f9435afbc6db3",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-grama-12.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "a4e6b171c4089a8d9b89b5e3b8d108ea500ec1c4ae9746e7d4ecb0c3acbbd6f3",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-grama-13.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "ab690f632a5e9976d18b4ab3f75faa1fbb58874701b71a32bf9d8fe51772fa14",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-grama-14.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "a73cb827bb6f7c3a4f288f66ff64ad0d0c4c7b262377f7f1be6c1d220752a5c6",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-grama-15.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "717878bb33ece0ce4244459c6a64184a6bbd45667ce38367afd5cc3158447c05",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-grama-2.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "c9dc25853ce03414beceba36821286bcc33d03b6b61f1936a938fe2bf739a73a",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-grama-3.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "47902119d707ec52040a488e49336cf982e7aa18283c1446e687e9ee8cbba040",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-grama-4.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "5c3a3abed8231229d0afbcdfac80e61d2ada4475545468a59e5c0564e2ab72c8",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-grama-5.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "fd534b9bff48496ed7d2132e42f0ebb762f8c3ae8f6adac36e0f598f4414b0bd",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-grama-6.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "cd3817330c86411caf6a2bc86856433663cb5b6bf721a9dcee30f539ae24a268",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-grama-7.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "ea27c9de2ba4a2361a3605a5accf1d9f84a66114030ab657f9470946c5d14307",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-grama-8.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "4a5dc12881b15895736d95ba3b4d0e1d7f8deebbba4f337d65b9ba83dff0d653",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-grama-9.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "60326b219df109727490516223353e0a7a2a391b4a7a2c6b19ad8c5a7b55e9db",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-terra-0.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "30736562fe2af77385655a19b100d735c845ebde29255b89353fc18ed804c950",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-terra-1.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "1f989eed0cc7eefbedd6336d401bdc874eda80e07dcfa9c98e59beb87d2a4bf2",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-terra-10.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "c33c701155eb80f3dfd1e337f41674890c4bfb8dc549cbc995c7fe08ae8f7d77",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-terra-11.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "734b81120ac9f256245414a65685137bfcb8311c00a0bbd4149ce86c03d0f709",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-terra-12.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "dab4e25c6d1f475b81b8ee05baef657054df292f6d026fde2968c4279ee1a608",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-terra-13.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "f827b8a7a352da993225fe50053f60f1344553e03294dad38ff55a2141d25ec0",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-terra-14.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "5a73bd21fdd77a21d0df864117567363549fd82b4689a86c715d4fb283c2e2bc",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-terra-15.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "a0626e09c9c7d9fb13ed949864cacdde2891b5cf47b66b80c86d33bf4a5932ad",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-terra-2.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "863d526f5c804e20e12e47a1f3cfe12c4576bc4a4552e3ce2bb01f9887bc8d3b",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-terra-3.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "07032aa39663f4362cf26144392a1880f3e9fce3aeeb19ac18410ca729f4dbfa",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-terra-4.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "01ed94dea04a257928bd81fb42440e7b9b1b38bebd481a83553dd4cc9912209b",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-terra-5.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "3e865d783fb8b9a5f74c327b777085f39781ca73502bce2b2c420e01de9c3c8d",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-terra-6.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "9b7a941d52c69ca937e06ae39d5e945663a3d5bd70b1143f36700f89f63296ed",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-terra-7.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "27da8cca4df2eb69712bf524c758539808bcb78b457fbfd5ecec0b46b9b35177",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-terra-8.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "591fab71af61da1777773553e12753f51780b85932956a481d061a2521cd0348",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/bosque-terra-9.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "f8c046d655c31d00b737e95fe836922923579d7983600f99e7b51a38dfc210f4",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-mato-0.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "717878bb33ece0ce4244459c6a64184a6bbd45667ce38367afd5cc3158447c05",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-mato-1.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "e5b2659bea37a3166566991e4142e873aa5fdd564560099500748c266e167234",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-mato-10.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "1700d108f035661366371f24a4dc33a49570032fc3aa613a6f43fa562b7d5c1e",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-mato-11.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "2dc1c5b9452b57acf10c1907dac58389c716dc53aba7cfd3624efc5571182b98",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-mato-12.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "bb31fe0183c0b513bbafd10c1fa8de8bf6f8440167d353c9b5d74e282734eee6",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-mato-13.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "664c5f3e1376f3ef302b5b898ea8d778e9f128d47f1b26f7ef1b5cb4019e6297",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-mato-14.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "a0086de5f2e4a87d5fb019539bd16b69898cdcc608222b4771fa71a4f985e454",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-mato-15.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "d3805d3cb06123b977f784dcc1d83f0a8ed8561087893d5f8e9b3574df10cd2a",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-mato-2.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "904e9c8fe8e95a8e2c44377d90783f7b2cf6b3e509e53d032a7043e25fd27a50",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-mato-3.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "1e1cefc4a866316ac941a54fcdb3aa905d24169d4a0b69dd9a52b321c9b79fb8",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-mato-4.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "fe27d9213377d5ec80e309cc88b28855c17b59a6f1bbf6bd787c663fe2d8f007",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-mato-5.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "3c0990c8ad1c9c72bfa0f990da488beee7f8918628aeb6259655f67ca60742f4",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-mato-6.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "9efc50caef8fb36e11609f03af7485b64d057dd527c9b043716ebb84ff4abf45",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-mato-7.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "892ce511d9ce046ca9848ef48898db2b731b40432a76b3c698c80377c772cca2",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-mato-8.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "330eb05668d71faed72d62abc99c3dbb905d530aa5039c0e12094ba46b4ba62b",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-mato-9.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "c9b389da767fb2952eff3cf8357227e664650e2f80eca6417d9ef804ea626279",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-piso-0.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "717878bb33ece0ce4244459c6a64184a6bbd45667ce38367afd5cc3158447c05",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-piso-1.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "552c0cf605e3ebc29efad4ac5d5411ee3e6af5e013d8ab8c1f4d35700036dcb2",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-piso-10.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "2d2f06ff5a0eded5deb2b2c55c73dfe31d767e6157bc7470c572e9018cd18680",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-piso-11.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "9ace9c1978a25704237b351e89d7bfa2e02a0ece2bd58f1a863d31c946444df3",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-piso-12.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "0202d38d32fc557fb9be743ea71507b5f1dbe01ca15c68e4e9bbe3baac5c8a09",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-piso-13.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "19ee53d6f00d566d6ceecb227e274e1c5ac4bacd7e11062afa464e020916995f",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-piso-14.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "e8081bbbca16ff598b181130c2f89e197f8001cc0b2f519e78ea8b220a4260fa",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-piso-15.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "68bc18055ea14eb3a0ca584419ff67b848b4bd0681ad74d624e4d43e14983d0f",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-piso-2.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "1eb4c8b3e836da417f965e3572cda65230e9f17ae9b165fd562636d897153a8e",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-piso-3.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "c8dad183a632cd93fe9e2fe5e6fc87f8886d73e122bdf4ca0a576b785b02c99e",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-piso-4.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "b120a8ebb27b3422a31c77ab310457f43076d1438bb3649b938d740e48ffb2d0",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-piso-5.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "bc4d26a15f611c49bb5c4158c6a2f713c9ec2e81da04edad19052153f7dc5eff",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-piso-6.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "707b4432a4b952bbab3663ace9237a5e5b8ee2284aebe555ff0f02ffb92cc451",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-piso-7.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "3086c234cc8307f625dcd257d2aec0c0bf79a1e26a5080d9654ec0426f4c224b",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-piso-8.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "5d556e070716b8dba6f8c801c54e05a4c46e1d737634386d4edd2a4d15c5e90b",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-piso-9.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "d0129a8841c82e9cfd70db26b11e355e7c36cd36ee9ce7dec1c44c621eb0a543",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-terra-0.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "717878bb33ece0ce4244459c6a64184a6bbd45667ce38367afd5cc3158447c05",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-terra-1.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "84117380bde40386f65cf7b43d81ddbd6667769e02b17ca6b9388c466b838d1a",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-terra-10.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "13707792cf431e4374fe84c09b8102fd4b513f1bff6b976a29b4b765f174bb04",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-terra-11.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "fe294a800d11d0b79e36c3c2ff84ac6d330229b8a95add67bdb2063803c9c620",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-terra-12.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "9b02793cc09411b162ace2645b51e700193ca102c23085af69bd6809ef75dc48",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-terra-13.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "361563453b9dd438ece71bf451c24690e9dd95a5c86872602890f28d1cbd2492",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-terra-14.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "5fd33488bcbd69b75c3c728985c07f60e09b52f788d877571d51ca0dfe68d2f1",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-terra-15.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "a0626e09c9c7d9fb13ed949864cacdde2891b5cf47b66b80c86d33bf4a5932ad",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-terra-2.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "0a250619be6a72d04b8ba594812e2e0d5ed729d5ef7c0f66916ade125242059d",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-terra-3.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "aaff1430e604023dedd73673a1a01439ccc4b6b1220f1d1bfcd7a99cab5859bd",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-terra-4.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "8c9fa93ddf7471e5a7edf9cabc507c831afd7e125347c2ea032e998bf4ea84d5",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-terra-5.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "7e3f75cf3bd9f8974d47f92c36534732a25a2f54e2b569968af836272543a0e6",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-terra-6.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "21e5e9cad697172813b3cb39cf81abc9a76cb2b842ef7ba00510af924af23a97",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-terra-7.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "6a1cf3f65d41837d2e5a30a7bd002daf44f286b379f698fc5ad40835f1baac14",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-terra-8.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "a11efd3c737999e115ac3f736e6dbe49554b747a56a68b0bf845fa20ca8b7b1a",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/grama-terra-9.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "5453265034747a52deb3337e8ba006d6b0aeb55e073d7a376e231dd1c8ee2602",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-piso-0.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "d3805d3cb06123b977f784dcc1d83f0a8ed8561087893d5f8e9b3574df10cd2a",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-piso-1.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "2c18cd77db8e6c6d4d22c8563599ac07b98c2d53acd167b38e01d4ee4143ce9e",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-piso-10.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "00d5503918b0fe1edd0eb69f870f4fd58f8f40af96edb3e0b7be998d2eee093b",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-piso-11.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "14ad38853d2ee29053c35a1c1c6f67392c20a0fe31057402c69ec498b64f67c2",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-piso-12.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "21db6a1e38bf43dab57c597bbef4ef82d6dbda0447e6846cbdef0ad587e66ea4",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-piso-13.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "5f486bdf2db44118bbd1c9e176910b5b0228d43595449e3fc01beb628b428330",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-piso-14.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "a4e64e6b8cb6e3da043ba2cdfb295dcb7e11a7781564a15fae85036169a8406e",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-piso-15.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "68bc18055ea14eb3a0ca584419ff67b848b4bd0681ad74d624e4d43e14983d0f",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-piso-2.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "2cedd3db122edd44f75e663573a99ff80080f4e25a9fc2b7727ce4bcc6032176",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-piso-3.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "8c4d17c8a2938df68a3de56ed56593102c261a7c24f9e7d16659dff67bbcba36",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-piso-4.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "3eb7da4f109a6f8af4568026d56493fbb9d2ff7bbd44a264c364c7cc606dbb32",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-piso-5.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "3b53f9867ac17e105fb9ff8054728eee5b79184b68985a53c20ab96033f746e9",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-piso-6.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "1531e37782f5eba993f7950d2bb4131a182224e1fc1c49ebd9d6f6793482a904",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-piso-7.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "9271d273b2eb987375b1a97355bd35bf3298a97a36f7dd31539aa26d5a6fd17c",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-piso-8.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "a34a8225e395a0d0f29c4d8b403db87017f29e03c64cdc7de4d28c3cc179516e",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-piso-9.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "9f4695f8b2c79dc6d8d4b7557cd5a571dc49f0ff61324f4346acee2244e7bf8f",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-terra-0.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "d3805d3cb06123b977f784dcc1d83f0a8ed8561087893d5f8e9b3574df10cd2a",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-terra-1.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "ffa76fcd5bd052c49242f65e13adbf2af493b2214c3a6803d1cebd96b46f32ac",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-terra-10.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "208f5e4338e729f722a3fa10afb7ac40dcac7bb5e7ee8433ad5ffe79c8dcd5c5",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-terra-11.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "b880255e476a0750b195569981ac97c98adc64a1a0b852314b3c453abde7f8c1",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-terra-12.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "f60862dd6fd2286a42023cecf44a6b62b6b8e7c5f5b7c7914b1c69999d4d354d",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-terra-13.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "54f97a1b6d52169f823bdaa580c88280787a1135235ebe924265b9b0125ec4fc",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-terra-14.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "f41a53ca4b690ffc0030ad51ee430fe3779542165a160be0f48ce80c57408ec8",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-terra-15.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "a0626e09c9c7d9fb13ed949864cacdde2891b5cf47b66b80c86d33bf4a5932ad",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-terra-2.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "8ca605ee582356df92f8d4c7e1943e36beaedfb8915382815a826b728a0a40f1",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-terra-3.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "2bba0ac0e4456a48d6f50a5215187232f9c539374834c2848674bc31fe7e4c34",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-terra-4.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "8e8f1bc110c5408c331dff0975b3d6ec32567682267a7d2a036d89461e37631a",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-terra-5.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "f4aba1bf2b6d83983f177e81ccef5231091f8633e4e1d8f1cbf9b1582b18a71d",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-terra-6.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "6ac7165f4a489b849d024b548289e9097b5b77575298e89250b8a313e3425e6f",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-terra-7.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "70feb2c5ceb3de4c38a43652bc9b268f244773f81a64216069fe2a8f1c6719bd",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-terra-8.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "55dc8a386a7c924ae7dde25852b6e6bd102e7f7230912fa379c321b569ccd346",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/mato-terra-9.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "321c71776354a7b4bada46d47595877cd440f493a326b0e53763f69ae2e3e466",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/piso-terra-0.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "68bc18055ea14eb3a0ca584419ff67b848b4bd0681ad74d624e4d43e14983d0f",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/piso-terra-1.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "406280364a2d5699d586708c0ce475073733525449ff0bb89fe611fd230e7640",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/piso-terra-10.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "b1d74f666679a958117e4224c010f9a1a649fb4d74ef65a1d58c29ffd44367e0",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/piso-terra-11.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "c866ec374d296cc2b15bcb809b08e3cca89cc0b9c9f5401039463061d28e0fa2",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/piso-terra-12.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "43a697eb670dd0c7af8b913b99ae8880cf0ef773951ddd038ae39518a06e87e8",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/piso-terra-13.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "b7bcdb061b215f449bccf20640d44ae21951286931b91a3871876d56cf28fdc8",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/piso-terra-14.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "b8f544079d0f94908065b261f68c14d36bf17f259b68d6e9273f44dbb305546d",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/piso-terra-15.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "a0626e09c9c7d9fb13ed949864cacdde2891b5cf47b66b80c86d33bf4a5932ad",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/piso-terra-2.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "98f12ec1148e943861523981e55b84310c048c18aa568fad782dd9bb7c92a49d",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/piso-terra-3.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "2f20b0a6356aaa749cb5757a2958ad04c192991249a64ec0778b2e319ee195d5",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/piso-terra-4.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "32f94ce60a4f1096dfa923f3afef72b99da4623f424cee3745f49e6282e01d05",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/piso-terra-5.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "100659bdd59af70303bdac1718e0304f5c5fe6e228cffadebbf2186303abe358",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/piso-terra-6.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "7d718fbb8208bd5b698e33eb2e4f3bcb7c2c872a9614a52fb5116dd8d1df65e4",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/piso-terra-7.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "94aab7cdf056f3f8745dc6ab49935ed5e5f5e91d988bb93d243f2d3e97dc6334",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/piso-terra-8.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "cff5cb4dd49f0fef410b08980426c49858ab5930659d7361cc9ab47701b8fb80",
+      "alpha_min": 0
+    },
+    {
+      "file": "transicoes/piso-terra-9.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "e18da2429809770bd6fd59d24f6a265e415b9f592e96203d719d60946f6f5513",
+      "alpha_min": 0
+    },
+    {
+      "file": "muros-reuso/pedra-u-0.png",
+      "source": "art/overworld/kits/morro/muros/pedra-u-0.png",
+      "sha256": "5d1b239b38fe6e3f75a0a259d5639689758e4d29cc0dad3fc790b21112a8d48b"
+    },
+    {
+      "file": "muros-reuso/pedra-u-1.png",
+      "source": "art/overworld/kits/morro/muros/pedra-u-1.png",
+      "sha256": "5d1b239b38fe6e3f75a0a259d5639689758e4d29cc0dad3fc790b21112a8d48b"
+    },
+    {
+      "file": "muros-reuso/pedra-v-0.png",
+      "source": "art/overworld/kits/morro/muros/pedra-v-0.png",
+      "sha256": "c0af69120cbc3bff2923c2b74f2d97e55f8e3dbb318fce62ecccf56c7ef00751"
+    },
+    {
+      "file": "muros-reuso/pedra-v-1.png",
+      "source": "art/overworld/kits/morro/muros/pedra-v-1.png",
+      "sha256": "c0af69120cbc3bff2923c2b74f2d97e55f8e3dbb318fce62ecccf56c7ef00751"
+    },
+    {
+      "file": "muros-reuso/pedra-canto-interno-0.png",
+      "source": "art/overworld/kits/morro/muros/pedra-canto-interno-0.png",
+      "sha256": "7a08d826d7dda19d248fc15bb1ab7316ccea933b77cf03a2d584b1ccd7044db3"
+    },
+    {
+      "file": "muros-reuso/pedra-canto-interno-1.png",
+      "source": "art/overworld/kits/morro/muros/pedra-canto-interno-1.png",
+      "sha256": "7a08d826d7dda19d248fc15bb1ab7316ccea933b77cf03a2d584b1ccd7044db3"
+    },
+    {
+      "file": "muros-reuso/pedra-canto-externo-0.png",
+      "source": "art/overworld/kits/morro/muros/pedra-canto-externo-0.png",
+      "sha256": "cba70c06195d7a69541ebd034d0afeda737888308ff58ee9b0b7303be74fb924"
+    },
+    {
+      "file": "muros-reuso/pedra-canto-externo-1.png",
+      "source": "art/overworld/kits/morro/muros/pedra-canto-externo-1.png",
+      "sha256": "cba70c06195d7a69541ebd034d0afeda737888308ff58ee9b0b7303be74fb924"
+    }
+  ],
+  "files_count": 161,
+  "map_geometry_edited": false,
+  "engine_code_edited": false,
+  "approval": "pending_owner_review"
+}

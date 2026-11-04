@@ -1,0 +1,128 @@
+{
+  "nina": {
+    "image": "res://assets/nina.png",
+    "bounds": {
+      "x": 57,
+      "y": 71,
+      "w": 915,
+      "h": 1441
+    },
+    "name": "Nina"
+  },
+  "assis": {
+    "image": "res://assets/campaign/assis-overworld.png",
+    "bounds": {
+      "x": 0,
+      "y": 0,
+      "w": 199,
+      "h": 368
+    },
+    "name": "Sr. Assis"
+  },
+  "morro": {
+    "morro": [
+      {
+        "name": "Zeca",
+        "image": "res://assets/campaign/morro/zeca.png",
+        "bounds": {
+          "x": 122,
+          "y": 60,
+          "w": 221,
+          "h": 387
+        },
+        "point": [
+          586,
+          621
+        ]
+      }
+    ],
+    "morro-area-2": [
+      {
+        "name": "Bia",
+        "image": "res://assets/campaign/morro/bia.png",
+        "bounds": {
+          "x": 125,
+          "y": 65,
+          "w": 232,
+          "h": 380
+        },
+        "point": [
+          682,
+          621
+        ]
+      }
+    ],
+    "morro-area-3": [
+      {
+        "name": "Juninho",
+        "image": "res://assets/campaign/morro/juninho.png",
+        "bounds": {
+          "x": 128,
+          "y": 74,
+          "w": 217,
+          "h": 383
+        },
+        "point": [
+          714,
+          493
+        ]
+      },
+      {
+        "name": "Lia",
+        "image": "res://assets/campaign/morro/lia.png",
+        "bounds": {
+          "x": 92,
+          "y": 41,
+          "w": 248,
+          "h": 405
+        },
+        "point": [
+          760,
+          493
+        ]
+      }
+    ],
+    "morro-area-4": [
+      {
+        "name": "Tião",
+        "image": "res://assets/campaign/morro/tiao.png",
+        "bounds": {
+          "x": 129,
+          "y": 64,
+          "w": 211,
+          "h": 389
+        },
+        "point": [
+          650,
+          589
+        ]
+      }
+    ],
+    "morro-area-5": [
+      {
+        "name": "Mikka",
+        "image": "res://assets/campaign/morro/sprites-v1.png",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 271.5,
+          "h": 362
+        },
+        "point": [
+          778,
+          557
+        ]
+      }
+    ]
+  },
+  "lacertubo": {
+    "name": "Lacertubo",
+    "image": "res://assets/campaign/combat-lacertubo.png",
+    "bounds": {
+      "x": 0,
+      "y": 0,
+      "w": 256,
+      "h": 256
+    }
+  }
+}

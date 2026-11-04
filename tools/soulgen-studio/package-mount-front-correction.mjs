@@ -1,0 +1,11 @@
+import fs from 'node:fs/promises';import path from 'node:path';import {createRequire} from 'node:module';import {decodePNG,encodePNG} from '../pixelgen/png.mjs';
+const require=createRequire(import.meta.url),{createCanvas,loadImage}=require(process.env.SOULGEN_CANVAS_MODULE||'@napi-rs/canvas');const out='art/concepts/montaria-doberman/animation-v1/correction-front-walk-v1',file=out+'/corrected-sheet-v1.png',im=decodePNG(await fs.readFile(file));if(im.width!==1536||im.height!==1024)throw Error('Unexpected sheet grid.');await fs.mkdir(out+'/preview-frames',{recursive:true});
+const atlas={image:'corrected-sheet-v1.png',size:[im.width,im.height],cell:[384,512],columns:4,rows:2,pivot:[150,450],animation:{name:'walk-s-corrected',loop:true,fps:6,frames:[]},approval:'visual draft, not integrated'};
+const diagnostics=[];
+for(let i=0;i<8;i++){const x=i%4*384,y=Math.floor(i/4)*512,data=new Uint8Array(384*512*4);for(let row=0;row<512;row++)data.set(im.data.subarray(((y+row)*im.width+x)*4,((y+row)*im.width+x+384)*4),row*384*4);
+ const name='frame-'+String(i+1).padStart(2,'0')+'.png';await fs.writeFile(out+'/frames/'+name,encodePNG(data,384,512));const sprite=await loadImage(out+'/frames/'+name),p=createCanvas(512,512),g=p.getContext('2d');for(let yy=0;yy<512;yy+=16)for(let xx=0;xx<512;xx+=16){g.fillStyle=(xx/16+yy/16)%2?'#263c46':'#20323d';g.fillRect(xx,yy,16,16);}g.drawImage(sprite,80,0);await fs.writeFile(out+'/preview-frames/'+name,p.toBuffer('image/png'));
+ const solid=[];let left=384,top=512,right=0,bottom=0,nonzero=0;for(let py=0;py<512;py++)for(let px=0;px<384;px++){const a=data[(py*384+px)*4+3];if(a>0)nonzero++;if(a>=128){left=Math.min(left,px);right=Math.max(right,px);top=Math.min(top,py);bottom=Math.max(bottom,py);}}
+ diagnostics.push({frame:i+1,opaqueBounds:[left,top,right-left+1,bottom-top+1],nonzeroAlpha:nonzero,marginClear:left>0&&top>0&&right<383&&bottom<511});atlas.animation.frames.push({file:'frames/'+name,rect:[x,y,384,512],durationMs:1000/6});}
+await fs.writeFile(out+'/atlas.json',JSON.stringify(atlas,null,2));await fs.writeFile(out+'/validation.json',JSON.stringify({tool:'imagegen edit then deterministic slicing',realAlpha:true,frames:diagnostics,frameCount:8,noFrameClipped:diagnostics.every(f=>f.marginClear),ingame:false},null,2));console.log(JSON.stringify(diagnostics));
+
+

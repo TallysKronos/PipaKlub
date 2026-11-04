@@ -1,0 +1,402 @@
+{
+  "images": [
+    {
+      "file": "arte-detalhe-balcao.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "1e108aa329e6764229bbce27c2d2e3661bf10bb1a4c9aa0425ada11149e295f5"
+    },
+    {
+      "file": "arte-detalhe-canto.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "275415c1cb4f29321d8de0c693460ea706cf39c5a4a88a6a0e34eaad8de02e80"
+    },
+    {
+      "file": "arte-detalhe-entrada.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "7926f9b9047829fd418992f7f630f498bce5bbcf47ad82f596ba0eb06d1aa928"
+    },
+    {
+      "file": "arte-detalhe-estantes.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "14e31b58cd754f5b6ed4c4c7b989596e8ccf0d524b214c106a736e9a0bf1beb4"
+    },
+    {
+      "file": "arte-detalhe-expositores.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "f266042bb3329c07044fed5244b4728700fc907222e24226811d3eeace152129"
+    },
+    {
+      "file": "arte-detalhe-mesas.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "de5f14ef5d5b9dc33e516d1970e2aa62c4ceb549e8c9e7ec5b9caeb0fd2d70bc"
+    },
+    {
+      "file": "arte-dono-balcao.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "7f83d76a67951978c23f77383d5ea529fcdc82d8c84a6d09aff3206c998934a8"
+    },
+    {
+      "file": "arte-geral.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "5213b4c2a5dd4122c838af164f6e38e18da8e64945a246019960d13e8c3dedda"
+    },
+    {
+      "file": "arte-oclusao-atras-balcao.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "a2ace09d4e3cac29bbf89d8d99629103a72ed5d56f75d645373351acd36466aa"
+    },
+    {
+      "file": "arte-oclusao-atras-mesa.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "51e8832ca2a9a778d631abb86d63860d8969539d1e76ce00f2c5e32f2a9fb8aa"
+    },
+    {
+      "file": "arte-oclusao-frente-balcao.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "8d85e657da07fa9051917bb706399a72d9bcfab9ebc25c97a4f5d66a0ea1b1cf"
+    },
+    {
+      "file": "arte-oclusao-frente-mesa.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "a00ec28102063c30e487607a48984dc86ee68321d856def79438be190f6d96d6"
+    },
+    {
+      "file": "arte-sem-atores.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "0fd6850b422847137675b844467ea1b5d0c179baa040b3af8883491f0e80c3c2"
+    },
+    {
+      "file": "corredores-antes-depois.png",
+      "width": 1280,
+      "height": 390,
+      "sha256": "86c62edd96c254144cd56464d4a47fcffc51b71a207bf3b5e485ff1b76a3c940"
+    },
+    {
+      "file": "corredores-arte-detalhe-balcao.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "43d91e73329b1a60e2e834308fa5d17df24f7514e7c2adf37e7a79c04d3169c7"
+    },
+    {
+      "file": "corredores-arte-detalhe-canto.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "f664358a9638a415f491efeac93e4d2c9529f24d373834e1c7700bec9a9ab574"
+    },
+    {
+      "file": "corredores-arte-detalhe-entrada.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "3826a398184e3accb775409d13e1afe7f3a235abac7bc1f62f7f5c4c221244ec"
+    },
+    {
+      "file": "corredores-arte-detalhe-estantes.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "1bffc00bb52860577416fb16ed3e2ecc29e36d67ed37c8045d9f7e5b2f56feb9"
+    },
+    {
+      "file": "corredores-arte-detalhe-expositores.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "090b75ea4fd448981d6cd0933548f13f75034035300035d85fa25c5c76215827"
+    },
+    {
+      "file": "corredores-arte-detalhe-mesas.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "03d96279afbc6e58ef27fe3f0b40db140740ea06324ea99f0da3a3c2ff996cf0"
+    },
+    {
+      "file": "corredores-arte-dono-balcao.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "25d4217359329e3165665b8e73371d048712e632ae9d1e737541327a89ad0237"
+    },
+    {
+      "file": "corredores-arte-geral.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "9ff0bf9e1cc93669adcc4462a895926a9e6032282af09ef3504379d636d42b85"
+    },
+    {
+      "file": "corredores-arte-oclusao-atras-balcao.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "77bcfd9486c6a4c27452614e1262cb0bbc4061cfc55e8c34f5bb3f4104785712"
+    },
+    {
+      "file": "corredores-arte-oclusao-atras-mesa.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "cfb75181c64792bda53e70f8d2cc1e78b0e90bee5b0ccf6f110191ed1b9a1746"
+    },
+    {
+      "file": "corredores-arte-oclusao-frente-balcao.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "b634ce07c6fdc90b13de870f7771a21c1f8b904519b6a02b3a55dc8c34336cf7"
+    },
+    {
+      "file": "corredores-arte-oclusao-frente-mesa.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "178fd22876ff27bd6e0ea98909f9bcb895545adcac4a50def79aa396dfb9e920"
+    },
+    {
+      "file": "corredores-arte-sem-atores.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "0766d31f1fe6ef22eb2cacaecbf18db23e88ed6055eaf0d0ecb1f996348d62a9"
+    },
+    {
+      "file": "corredores-geometria-detalhe-balcao.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "1791cba008afe80bad02bfe052029231d75c3a2068b87a9f50f5c31e3485d257"
+    },
+    {
+      "file": "corredores-geometria-detalhe-canto.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "dbfb8d3b490c4d6256678999b6d37d2467a18c387dfcf84e7eb68c07aa844d0d"
+    },
+    {
+      "file": "corredores-geometria-detalhe-entrada.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "726b97809451c224e1d26b4d336d15c753757cb5b7e7fc5d20888c1f5967c9a1"
+    },
+    {
+      "file": "corredores-geometria-detalhe-estantes.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "44cca72d5949e0e073ef111fce80b70c8c3f338db542208360c924920382d1a1"
+    },
+    {
+      "file": "corredores-geometria-detalhe-expositores.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "ee10873360ce9dea4a7b625f4f9c9479b63d654ac8435100250f5007bef43982"
+    },
+    {
+      "file": "corredores-geometria-detalhe-mesas.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "e16180cc307df6a2670d06d97ef456c851383a14e4db0650e5a139a5ade3ea8f"
+    },
+    {
+      "file": "corredores-geometria-dono-balcao.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "732c4eb7be83fce7c4ee9b5f0e342f0928d95dc4f442be1eeb027c7f8decc98f"
+    },
+    {
+      "file": "corredores-geometria-geral.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "51623389ea2b37974acb2475a4b8be4f8eda4ae5e1db1e99500715e6075c5628"
+    },
+    {
+      "file": "corredores-geometria-oclusao-atras-balcao.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "c03801b0f0d58be27f42e0b75ca5fdd181313e3df18f944f4d12f106fe45495e"
+    },
+    {
+      "file": "corredores-geometria-oclusao-atras-mesa.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "773a65f962b105e099c0d36c8ba5fcfc458b50aa2f5522ab41499d004d9f4ffe"
+    },
+    {
+      "file": "corredores-geometria-oclusao-frente-balcao.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "2af3b7cf6ba696cdf08e1321373280c3cf286a409f8e7bc37cbb02244517b493"
+    },
+    {
+      "file": "corredores-geometria-oclusao-frente-mesa.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "41696120aad3dc75fb70ee71b3aa6e79511e53acbe2687c41ecd7d319446e600"
+    },
+    {
+      "file": "corredores-geometria-sem-atores.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "054d57c4d796e23b1714d7dbfa4692ab5f3afada750a71c9b93a7807600dc57e"
+    },
+    {
+      "file": "detalhes-contato.png",
+      "width": 1200,
+      "height": 1000,
+      "sha256": "03a7a34d190f42d6fd51b672c841d84a93ad3947c17b8fe80f4957658b207c0a"
+    },
+    {
+      "file": "geometria-detalhe-balcao.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "23e05c275ae56c4c9a8207bc121f345c148e7cdc4e7da4871fd54499e350bc89"
+    },
+    {
+      "file": "geometria-detalhe-canto.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "8960fd34c9c02f9cb4b3f6a8ad5f16eb4ebe5bc7fe756e33f0b270b85492e19f"
+    },
+    {
+      "file": "geometria-detalhe-entrada.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "719bf104f392e532dc704e95027db53859b175f759e19af7bc475e70a5406c08"
+    },
+    {
+      "file": "geometria-detalhe-estantes.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "aa6bd05ee7a38da50dc2be8b5531a46b796a269f106f0142930caff892f55ef4"
+    },
+    {
+      "file": "geometria-detalhe-expositores.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "677c83002ddd5e4f3e2c83456f6a174514fef4a45f720fcf7772348fe807f756"
+    },
+    {
+      "file": "geometria-detalhe-mesas.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "af1e37bcb8258a11c64a217f02ec4b49ff299464fa10ce99c3561ba42854fb3a"
+    },
+    {
+      "file": "geometria-dono-balcao.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "7fb6ed143a4a97acb9dd1fc26546a035615b5781dd15e698059f774babbde8a1"
+    },
+    {
+      "file": "geometria-geral.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "9372edb09b38d6ed8193dad0077542bc5c34a2a49928ed0bc2592803a1f884ab"
+    },
+    {
+      "file": "geometria-oclusao-atras-balcao.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "fc702a23f00a72c95b6facd76046c3080012b711b5e96f78ebe8a4eec74c08a9"
+    },
+    {
+      "file": "geometria-oclusao-atras-mesa.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "e613e2767705b4f30791a2d4dab40340c7cdae9a5d13396586ed0d0f6096ff06"
+    },
+    {
+      "file": "geometria-oclusao-frente-balcao.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "b68451d6796c048140b83c213f377da1e25eee9da56c24cc15a0360c4a14d828"
+    },
+    {
+      "file": "geometria-oclusao-frente-mesa.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "ea63ec9b888153b61960d0c1f74ee975d6fcc06be4cf2162ab369efb4759bded"
+    },
+    {
+      "file": "geometria-sem-atores.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "7ba0d11e02eac52ba633cca58379a9214202f38773f5c9c810c41225010bc0d7"
+    },
+    {
+      "file": "kit-contato.png",
+      "width": 1200,
+      "height": 680,
+      "sha256": "dd2ca18046f240b4a6ed8c5e8d4c6bdcac9ee61abda5429c5e7861c7e7bb0487"
+    },
+    {
+      "file": "fluxo\\01-porta-bairro.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "312473f455e6e6652a125e2b154b9bcfa2c53e0f67d1eab72b8e4fdd40fdd360"
+    },
+    {
+      "file": "fluxo\\02-interior-hud.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "00632c84bcf1afeec301a54485ded87466917955fc7fe7da5a28876c4fa54c09"
+    },
+    {
+      "file": "fluxo\\02b-corredor-livre.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "a348d18b9c3f296449ffe93bfc85c30330c6ca7d27823f7f58ff464fa253012c"
+    },
+    {
+      "file": "fluxo\\03-dono-conversa.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "468a4584a8be7c01c0843b939c3da4d9732ee7a1b170b29649e2e7a86ab8078b"
+    },
+    {
+      "file": "fluxo\\04-retomada.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "e2b520a9edc34fb4205c6851e608212e5b413642ae9820d8bf0c5690e62f1dbf"
+    },
+    {
+      "file": "fluxo\\05-retorno-bairro.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "3e5e4c2f2217667cf22d79e345ec89ab57132911aefcc3b257a6fe30ade0cead"
+    }
+  ],
+  "sources": [
+    {
+      "file": "counter.png",
+      "sha256": "4e8e8a491756514a2c5e1fc82c50563aabece253e6bf9c2a7cfe0cbdd1f305a3",
+      "identical": true
+    },
+    {
+      "file": "display.png",
+      "sha256": "5ab480ea3f340374ded2cd59ec8d28c04816f365e18611985d3d7ae27553a94c",
+      "identical": true
+    },
+    {
+      "file": "gondola.png",
+      "sha256": "bb00adbf6205a7ba34fe36e4cd048a4201e40874f8d1430079a76193bc6734cd",
+      "identical": true
+    },
+    {
+      "file": "owner.png",
+      "sha256": "9d311b274c721d47b029b39d0ce5cafe770be51e94038edf66b7f2f686218994",
+      "identical": true
+    },
+    {
+      "file": "shelf.png",
+      "sha256": "04da6599ce444ea1640c4e6250381e386da6156477e35e5affe24ca5892d444c",
+      "identical": true
+    },
+    {
+      "file": "table.png",
+      "sha256": "2a6055be0c01b8be03b30f3c2b691d7a291a1bce2301a1eae04a2a98a07e8137",
+      "identical": true
+    }
+  ]
+}

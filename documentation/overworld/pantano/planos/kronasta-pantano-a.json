@@ -1,0 +1,362 @@
+{
+  "area": "kronasta-pantano-a",
+  "shots": [
+    {
+      "name": "area-inteira",
+      "u": 24,
+      "v": 20,
+      "zoom": 0.36,
+      "kind": "geral"
+    },
+    {
+      "name": "entrada",
+      "u": 24.5,
+      "v": 37.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "centro",
+      "u": 24,
+      "v": 20,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "saida-24-0",
+      "u": 24.5,
+      "v": 0.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "canto-n1-20-16",
+      "u": 20,
+      "v": 16,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-28-16",
+      "u": 28,
+      "v": 16,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-18-28",
+      "u": 18,
+      "v": 28,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-30-28",
+      "u": 30,
+      "v": 28,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-18-32",
+      "u": 18,
+      "v": 32,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-30-32",
+      "u": 30,
+      "v": 32,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "rampa-topo-10-16",
+      "u": 10.5,
+      "v": 16.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "plato-10-16",
+      "u": 10.5,
+      "v": 16.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "rampa-topo-11-16",
+      "u": 11.5,
+      "v": 16.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "plato-11-16",
+      "u": 11.5,
+      "v": 16.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "rampa-topo-34-16",
+      "u": 34.5,
+      "v": 16.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "plato-34-16",
+      "u": 34.5,
+      "v": 16.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "rampa-topo-35-16",
+      "u": 35.5,
+      "v": 16.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "plato-35-16",
+      "u": 35.5,
+      "v": 16.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "rampa-pe-10-17",
+      "u": 10.5,
+      "v": 17.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "rampa-pe-11-17",
+      "u": 11.5,
+      "v": 17.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "rampa-pe-34-17",
+      "u": 34.5,
+      "v": 17.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "rampa-pe-35-17",
+      "u": 35.5,
+      "v": 17.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "rampa-topo-10-32",
+      "u": 10.5,
+      "v": 32.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "plato-10-32",
+      "u": 10.5,
+      "v": 32.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "rampa-topo-11-32",
+      "u": 11.5,
+      "v": 32.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "plato-11-32",
+      "u": 11.5,
+      "v": 32.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "rampa-topo-34-32",
+      "u": 34.5,
+      "v": 32.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "plato-34-32",
+      "u": 34.5,
+      "v": 32.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "rampa-topo-35-32",
+      "u": 35.5,
+      "v": 32.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "plato-35-32",
+      "u": 35.5,
+      "v": 32.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "rampa-pe-10-33",
+      "u": 10.5,
+      "v": 33.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "rampa-pe-11-33",
+      "u": 11.5,
+      "v": 33.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "rampa-pe-34-33",
+      "u": 34.5,
+      "v": 33.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "rampa-pe-35-33",
+      "u": 35.5,
+      "v": 33.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "travessia",
+      "u": 24.5,
+      "v": 23,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "aterro-seco",
+      "u": 12,
+      "v": 30,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "raizes-norte",
+      "u": 37,
+      "v": 11,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "cabeceira-norte",
+      "u": 24.5,
+      "v": 19,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "cabeceira-sul",
+      "u": 24.5,
+      "v": 27,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "margem-norte-4",
+      "u": 4,
+      "v": 20.637352946441133,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "margem-sul-4",
+      "u": 4,
+      "v": 25.502744997785058,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "margem-norte-12",
+      "u": 12,
+      "v": 19.56896004035253,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "margem-sul-12",
+      "u": 12,
+      "v": 24.175890822802693,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "margem-norte-20",
+      "u": 20,
+      "v": 20.125709168371717,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "margem-sul-20",
+      "u": 20,
+      "v": 25.23728236084173,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "margem-norte-28",
+      "u": 28,
+      "v": 21.12614101643359,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "margem-sul-28",
+      "u": 28,
+      "v": 25.510867454352965,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "margem-norte-36",
+      "u": 36,
+      "v": 21.47795293447487,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "margem-sul-36",
+      "u": 36,
+      "v": 26.777196202369907,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "margem-norte-44",
+      "u": 44,
+      "v": 20.80969737967547,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "margem-sul-44",
+      "u": 44,
+      "v": 25.05020467609834,
+      "zoom": 2.3,
+      "kind": "junta"
+    }
+  ]
+}

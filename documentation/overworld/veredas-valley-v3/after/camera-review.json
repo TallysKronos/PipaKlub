@@ -1,0 +1,66 @@
+{
+  "before": false,
+  "failures": [],
+  "samples": [
+    {
+      "cameraError": 0.00000762939453125,
+      "id": "lookout",
+      "point": [
+        300.0,
+        115.0
+      ],
+      "screenFeet": [
+        639.999938964844,
+        359.999969482422
+      ]
+    },
+    {
+      "cameraError": 0.0,
+      "id": "woodland",
+      "point": [
+        440.0,
+        730.0
+      ],
+      "screenFeet": [
+        639.999938964844,
+        359.999938964844
+      ]
+    },
+    {
+      "cameraError": 0.0,
+      "id": "canal",
+      "point": [
+        1040.0,
+        775.0
+      ],
+      "screenFeet": [
+        639.999938964844,
+        359.999938964844
+      ]
+    },
+    {
+      "cameraError": 0.0,
+      "id": "ridge",
+      "point": [
+        810.0,
+        206.0
+      ],
+      "screenFeet": [
+        639.999938964844,
+        360.0
+      ]
+    },
+    {
+      "cameraError": 0.00000762939453125,
+      "id": "courtyard",
+      "point": [
+        1220.0,
+        180.0
+      ],
+      "screenFeet": [
+        640.0,
+        360.0
+      ]
+    }
+  ]
+}

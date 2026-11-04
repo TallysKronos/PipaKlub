@@ -1,5 +1,50 @@
 # Soulgen Studio — ateliê de animação
 
+## Montaria: pivôs e pintura com Kael sobre o Soulmonster
+
+Abra `http://127.0.0.1:5240/game-sprites.html` e escolha a direção.
+
+- A imagem isolada tem o pivô marcado por uma cruz ciano. Clique nela para
+  definir o quadril do Kael ou o ponto de apoio da montaria, conforme o sprite
+  selecionado. Os campos numéricos permitem ajuste preciso.
+- Arraste na montagem para mover o assento do Kael. Quadril, assento, apoio
+  da montaria e ângulo da perna distante são independentes por direção.
+- **Pintar / apagar na montagem** abre o pincel existente com a montagem
+  ativada. Selecione a borracha ou pressione E. Somente a imagem selecionada
+  recebe os traços; a outra permanece protegida. Desfazer funciona normalmente.
+  É possível voltar à pintura isolada desligando **Pintar na montagem**.
+- **Salvar sprite no jogo** aplica o retoque PNG. **Salvar encaixe no jogo**
+  grava os pivôs da direção atual e sincroniza `frames[].seat`. Os dois
+  salvamentos fazem backup em `.local/soulgen-history/`, verificam a revisão
+  do arquivo e recusam sobrescrever alterações mais recentes.
+- **Baixar encaixes JSON** preserva os ajustes de todas as direções, inclusive
+  os ainda não salvos. Trocar direção conserva os rascunhos da sessão; fechar
+  ou recarregar com alterações pendentes mostra o aviso de saída.
+
+Reinicie o projeto Godot uma vez após atualizar o código. Em seguida, PNGs
+e encaixes salvos no editor são recarregados pelo jogo em até um segundo.
+Executáveis exportados exigem nova exportação. Nenhum rig articulado é
+ativado por essa edição: os oito ângulos usam os sprites completos.
+
+Verificação: 21 testes Node (DOM + canvas real, pintura contextual, coordenadas,
+revisões, backups e rotas locais); 684 verificações da montaria; quatro do
+recarregamento de pivôs no Godot. Todos sem falhas. Os testes DOM não comprovam
+o layout visual no navegador.
+
+## Editar montaria e Kael diretamente no jogo
+
+Abra **Editar sprites do jogo** no cabeçalho ou http://127.0.0.1:5240/game-sprites.html. O servidor é iniciado com `npm run studio:sprites`.
+
+Escolha **Kael montado** ou **Montaria C**, escolha uma das oito direções e clique **Desenhar / apagar**. O editor existente oferece pincel, borracha, conta-gotas, tamanho, opacidade, traço de pixel/nanquim, zoom, navegação com Espaço e desfazer/refazer. **Aplicar** retorna à prévia composta; **Salvar no jogo** grava somente aquele recorte no PNG efetivamente usado pelo Godot. Retoques de outras direções ficam pendentes sem se perder ao alternar. Baixar PNG permite guardar uma cópia antes de recarregar.
+
+O salvamento preserva os demais pixels da folha, as dimensões e o alpha. Margens compartilhadas entre dois recortes não aceitam alterações que afetariam a outra vista. Cada gravação tem backup em `.local/soulgen-history/`. Uma revisão SHA-256 impede sobrescrever modificações de outra aba. Somente os dois arquivos registrados no serviço podem ser gravados, em localhost e pela mesma origem; não há entrada de caminho arbitrário.
+
+Para atualização ao vivo, execute pelo projeto Godot e reinicie uma vez se ele já estava aberto antes desta integração. Depois, o loader compartilhado atualiza a textura em aproximadamente um segundo, inclusive as camadas de perna/pescoço. Um executável exportado mantém os recursos empacotados e precisa de nova exportação para receber edições.
+
+Esta página edita pixels, sem quantizar a ilustração para uma paleta indexada e sem alterar pivôs, máscaras de perna, missões ou saves. A prévia respeita a montagem atual do manifesto. A página antiga de animação continua trabalhando com seu projeto portátil, sem escrever os PNGs do jogo.
+
+Verificado: 23 testes Node (incluindo pintura com canvas real, fluxo funcional da página, PNG, backup, isolamento por direção e conflito de revisão); 684 verificações da montaria no Godot; teste nativo de atualização da mesma ImageTexture. A automação visual do navegador estava desativada, portanto o teste DOM não é apresentado como aprovação do layout em navegador.
+
 ## Nozinho artesanal em três quartos
 
 Abra `/?preset=nozinho` ou **Projeto e biblioteca → Abrir Nozinho · três quartos**. Corpo e quatro membros articulados, cinco ações e expressões registradas. O preset tem recuperação própria quando aberto pelo endereço direto. Projeto portátil, imagens e limites em [Nozinho](../../art/soulgen/keys/nozinho/README.md). Configurado para revisão; ainda não substitui o atlas antigo do jogo.
@@ -167,3 +212,11 @@ Caimbira · Vigia das Marés Esquecidas: oito peças proporcionais e cinco açõ
 Tamoatá · Tecelão dos Caminhos: oito peças proporcionais e cinco ações, disponível em `/?preset=tamoata-memoria`.
 
 Herravento · Caçador das Rajadas: oito peças proporcionais e cinco ações em `/?preset=herravento`.
+
+## Dóber de papel · recorte fiel
+
+Abra `/?preset=doberman-c` ou **Projeto e biblioteca → Abrir Dóber de papel · recorte fiel**. A versão ativa recorta a imagem enviada pelo autor, preservando as coordenadas de oito peças e todos os pixels visíveis. Seis ações, pivôs editáveis, projeto portátil e atlas de combate. [Análise, recortes e limites](../../art/soulgen/keys/doberman-c/README.md).
+
+## Refinamento do Dóber · revisão 3
+
+O preset `?preset=doberman-c` agora carrega `refined-rig-v3`: torso sem a rabiola, quatro patas recortadas e rabiola completa com fios/nós/duas folhas. Três faces registradas (ataque, vitória, dano) entram nas ações. A recuperação da revisão 2 é arquivada antes da atualização. [Detalhes e imagens](../../art/soulgen/keys/doberman-c/README.md).

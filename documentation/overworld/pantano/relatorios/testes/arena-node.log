@@ -1,0 +1,25 @@
+✔ two-lane check rejects a one-cell throat even when both rooms are reachable (9.8729ms)
+✔ forbidden ramps, isolated raised cells, and single-cell unreachable pockets are errors (1.5771ms)
+✔ ramps require terrain at the foot, two landing cells, and no decorative or event obstruction (3.5929ms)
+✔ regional audit verifies three parts, reciprocal exits, direction, material and elevation (3.6336ms)
+✔ items and tree density remain explicit warnings; inaccessible items are errors (7.6595ms)
+✔ mandatory exits must remain reachable without encounter grass; optional grass is allowed (1.2643ms)
+✔ edge guards must follow a drop and cannot close a ramp mouth or a same-level connection (1.3093ms)
+✔ industrial source matches compiled geometry and every footprint owns its volume (109.8107ms)
+✔ industrial parts preserve reachable materials and optional exit loop (59.8781ms)
+✔ lê só mapas isométricos 64×32 e entende chão, altura e objetos (4.5231ms)
+✔ rampa liga os dois níveis só no sentido da seta; o lado é barranco (5.3489ms)
+✔ ponte precisa encostar em terra firme nas duas pontas (1.1746ms)
+✔ evento sem acesso reprova; área isolada avisa (0.7774ms)
+✔ árvore bloqueia a célula; baú precisa ser alcançável (4.1699ms)
+✔ o mapa piloto das Veredas passa na conferência (11.4953ms)
+✔ swamp region is deterministic, reachable and optional encounters do not block exits (200.2334ms)
+✔ new B route and C arena have different terrain and water topology (39.0581ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 446.0068

@@ -1,0 +1,425 @@
+{
+  "sheets": {
+    "panels": {
+      "image": "ui/hud-papel-bambu-v1/panels.png",
+      "width": 1536,
+      "height": 1024
+    },
+    "icons": {
+      "image": "ui/hud-papel-bambu-v1/icons.png",
+      "width": 1254,
+      "height": 1254
+    }
+  },
+  "frames": {
+    "portrait": [
+      "panels",
+      35,
+      14,
+      310,
+      310
+    ],
+    "nameplate": [
+      "panels",
+      355,
+      119,
+      437,
+      160
+    ],
+    "clock": [
+      "panels",
+      805,
+      44,
+      343,
+      267
+    ],
+    "ranking": [
+      "panels",
+      1172,
+      45,
+      327,
+      270
+    ],
+    "hp-track": [
+      "panels",
+      22,
+      385,
+      405,
+      103
+    ],
+    "hp-fill": [
+      "panels",
+      440,
+      407,
+      308,
+      59
+    ],
+    "energy-track": [
+      "panels",
+      760,
+      385,
+      405,
+      103
+    ],
+    "energy-fill": [
+      "panels",
+      1180,
+      407,
+      324,
+      59
+    ],
+    "button-normal": [
+      "panels",
+      20,
+      555,
+      375,
+      165
+    ],
+    "button-hover": [
+      "panels",
+      395,
+      555,
+      375,
+      165
+    ],
+    "button-pressed": [
+      "panels",
+      770,
+      555,
+      375,
+      165
+    ],
+    "button-disabled": [
+      "panels",
+      1145,
+      555,
+      375,
+      165
+    ],
+    "slot": [
+      "panels",
+      71,
+      747,
+      231,
+      223
+    ],
+    "slot-ready": [
+      "panels",
+      401,
+      738,
+      257,
+      253
+    ],
+    "divider": [
+      "panels",
+      678,
+      810,
+      455,
+      86
+    ],
+    "round-empty": [
+      "panels",
+      1202,
+      765,
+      133,
+      197
+    ],
+    "round-won": [
+      "panels",
+      1335,
+      765,
+      140,
+      197
+    ],
+    "attack": [
+      "icons",
+      0,
+      0,
+      313,
+      313
+    ],
+    "dodge": [
+      "icons",
+      313,
+      0,
+      314,
+      313
+    ],
+    "line": [
+      "icons",
+      627,
+      0,
+      313,
+      313
+    ],
+    "energy": [
+      "icons",
+      940,
+      0,
+      314,
+      313
+    ],
+    "puxao": [
+      "icons",
+      0,
+      313,
+      313,
+      313
+    ],
+    "chicote": [
+      "icons",
+      313,
+      313,
+      314,
+      313
+    ],
+    "estilingue": [
+      "icons",
+      627,
+      313,
+      313,
+      313
+    ],
+    "laco": [
+      "icons",
+      940,
+      313,
+      314,
+      313
+    ],
+    "folha": [
+      "icons",
+      0,
+      626,
+      313,
+      314
+    ],
+    "duplo": [
+      "icons",
+      313,
+      626,
+      314,
+      314
+    ],
+    "guard": [
+      "icons",
+      627,
+      626,
+      313,
+      314
+    ],
+    "critical": [
+      "icons",
+      940,
+      626,
+      314,
+      314
+    ],
+    "pause": [
+      "icons",
+      0,
+      940,
+      313,
+      314
+    ],
+    "settings": [
+      "icons",
+      313,
+      940,
+      314,
+      314
+    ],
+    "sound": [
+      "icons",
+      627,
+      940,
+      313,
+      314
+    ],
+    "win": [
+      "icons",
+      940,
+      940,
+      314,
+      314
+    ],
+    "button-compact-normal": [
+      "panels",
+      20,
+      555,
+      375,
+      165
+    ],
+    "button-compact-hover": [
+      "panels",
+      395,
+      555,
+      375,
+      165
+    ],
+    "button-compact-pressed": [
+      "panels",
+      770,
+      555,
+      375,
+      165
+    ],
+    "button-compact-disabled": [
+      "panels",
+      1145,
+      555,
+      375,
+      165
+    ]
+  },
+  "slices": {
+    "ranking": {
+      "mode": "nine",
+      "insets": [
+        200,
+        100,
+        46,
+        100
+      ],
+      "scale": 0.45
+    },
+    "nameplate": {
+      "mode": "three",
+      "insets": [
+        0,
+        110,
+        0,
+        110
+      ],
+      "scale": 0.55
+    },
+    "hp-track": {
+      "mode": "three",
+      "insets": [
+        0,
+        70,
+        0,
+        70
+      ],
+      "scale": 0.17475728155339806
+    },
+    "energy-track": {
+      "mode": "three",
+      "insets": [
+        0,
+        70,
+        0,
+        70
+      ],
+      "scale": 0.17475728155339806
+    },
+    "button-normal": {
+      "mode": "three",
+      "insets": [
+        0,
+        62,
+        0,
+        102
+      ],
+      "scale": 0.3393939393939394
+    },
+    "button-compact-normal": {
+      "mode": "three",
+      "insets": [
+        0,
+        62,
+        0,
+        62
+      ],
+      "scale": 0.26666666666666666,
+      "mirrorLeft": true,
+      "centerStart": 102
+    },
+    "button-hover": {
+      "mode": "three",
+      "insets": [
+        0,
+        62,
+        0,
+        102
+      ],
+      "scale": 0.3393939393939394
+    },
+    "button-compact-hover": {
+      "mode": "three",
+      "insets": [
+        0,
+        62,
+        0,
+        62
+      ],
+      "scale": 0.26666666666666666,
+      "mirrorLeft": true,
+      "centerStart": 102
+    },
+    "button-pressed": {
+      "mode": "three",
+      "insets": [
+        0,
+        62,
+        0,
+        102
+      ],
+      "scale": 0.3393939393939394
+    },
+    "button-compact-pressed": {
+      "mode": "three",
+      "insets": [
+        0,
+        62,
+        0,
+        62
+      ],
+      "scale": 0.26666666666666666,
+      "mirrorLeft": true,
+      "centerStart": 102
+    },
+    "button-disabled": {
+      "mode": "three",
+      "insets": [
+        0,
+        62,
+        0,
+        102
+      ],
+      "scale": 0.3393939393939394
+    },
+    "button-compact-disabled": {
+      "mode": "three",
+      "insets": [
+        0,
+        62,
+        0,
+        62
+      ],
+      "scale": 0.26666666666666666,
+      "mirrorLeft": true,
+      "centerStart": 102
+    },
+    "hp-fill": {
+      "mode": "three",
+      "insets": [
+        0,
+        8,
+        0,
+        8
+      ],
+      "scale": 0.3389830508474576
+    },
+    "energy-fill": {
+      "mode": "three",
+      "insets": [
+        0,
+        8,
+        0,
+        8
+      ],
+      "scale": 0.3389830508474576
+    }
+  }
+}

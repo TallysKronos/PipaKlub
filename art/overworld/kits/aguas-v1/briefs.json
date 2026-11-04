@@ -1,0 +1,130 @@
+{
+  "collection": "Soulmonsters — água animada, rio e cachoeira",
+  "assets": [
+    {
+      "id": "lago-claro",
+      "name": "Lago claro",
+      "kind": "water",
+      "brief": "Warm turquoise shallow lake water, broad clean calm teal color masses, sparse delicate pale aqua ripple curves, restrained hand-painted caustic shapes, no visible stones or sand.",
+      "flow": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "lago-profundo",
+      "name": "Lago profundo",
+      "kind": "water",
+      "brief": "Deep muted petrol-blue lake water, dark blue broad calm surfaces, sparse thin soft blue-white ripple curves, very restrained reflections, no objects.",
+      "flow": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "rio-claro",
+      "name": "Rio claro",
+      "kind": "water",
+      "brief": "Fresh turquoise river water seen from directly above, broad teal masses and restrained long light aqua flowing ribbons aligned along the vertical image axis, clean illustrated currents.",
+      "flow": [
+        0,
+        0.22
+      ]
+    },
+    {
+      "id": "rio-escuro",
+      "name": "Rio escuro",
+      "kind": "water",
+      "brief": "Deep blue-green river surface with smooth broad dark teal color masses and sparse pale teal long current ribbons aligned vertically, low contrast and clear game-scale read.",
+      "flow": [
+        0,
+        0.16
+      ]
+    },
+    {
+      "id": "corredeira",
+      "name": "Corredeira",
+      "kind": "water",
+      "brief": "Lively turquoise rapids water seen directly above, flowing aqua ribbons and broken white foam streaks aligned vertically, clear broad cel-shaded shapes, no rocks or banks.",
+      "flow": [
+        0,
+        0.4
+      ]
+    },
+    {
+      "id": "agua-pantano",
+      "name": "Água de brejo",
+      "kind": "water",
+      "brief": "Quiet muted olive-teal swamp water, gentle dark green water masses, sparse soft pale green ripple rings, no algae islands, no plants or debris.",
+      "flow": [
+        0,
+        0.04
+      ]
+    },
+    {
+      "id": "cortina-suave",
+      "name": "Cachoeira suave",
+      "kind": "fall",
+      "brief": "A flat rectangular repeatable material of falling water viewed straight-on: clean turquoise vertical flowing ribbons, broad pale cyan translucent-looking bands and a few narrow white downward streaks. NO bottom splash or ledge. Seamless vertically and horizontally.",
+      "flow": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "cortina-forte",
+      "name": "Cachoeira forte",
+      "kind": "fall",
+      "brief": "A flat rectangular repeatable material of strong falling water viewed straight-on: bright white and pale cyan vertical falling sheets separated by muted turquoise thin streaks, energetic yet clean 2D ribbons, NO rocks, ledge or bottom pool. Seamless vertically and horizontally.",
+      "flow": [
+        0,
+        1.6
+      ]
+    },
+    {
+      "id": "respingo-base",
+      "name": "Respingo de impacto",
+      "kind": "effect",
+      "brief": "ONE isolated low broad oval splash crown for the FOOT of a waterfall in isometric 2:1 view: white and pale aqua foam lobes connected in a wide ellipse with a few tiny attached spray fingers, open transparent centre. No water pool rectangle, no waterfall column, no rocks.",
+      "flow": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "espuma-labio",
+      "name": "Espuma da borda",
+      "kind": "effect",
+      "brief": "ONE isolated long narrow gently wavy foam ribbon for the LIP of a waterfall, horizontal across canvas, clean white and pale aqua connected rounded foam lobes, slight 2:1 isometric depth, complete ends, no water background or falling curtain.",
+      "flow": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "anel-ondulacao",
+      "name": "Anel de ondulação",
+      "kind": "effect",
+      "brief": "ONE isolated thin gently broken water ripple RING viewed isometrically, wide flat ellipse 2:1, pale aqua and white fine clean arcs with transparent interior, no shadows, no droplets or water background.",
+      "flow": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "redemoinho",
+      "name": "Redemoinho",
+      "kind": "effect",
+      "brief": "ONE isolated stylized aqua-white spiral foam eddy, wide flat 2:1 isometric ellipse with three gently curling connected tapered ripple arms, transparent gaps and centre, no water background, no rocks, no glow.",
+      "flow": [
+        0,
+        0
+      ]
+    }
+  ],
+  "grid": [
+    64,
+    32
+  ],
+  "levelPx": 64
+}

@@ -1,0 +1,203 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "type": "minimax",
+      "device": "default"
+    }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+    }
+  },
+  "4": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+    }
+  },
+  "5": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "kael-angle-SE-v1.png"
+    }
+  },
+  "8": {
+    "class_type": "MiniMaxH3ReferenceToVideo",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "audio_vae": [
+        "4",
+        0
+      ],
+      "prompt": "Animate ONE original Kael game sprite, matching this directional reference exactly. FRONT-RIGHT THREE-QUARTER view facing diagonally toward viewer and screen RIGHT. Preserve this exact front-right yaw. Locked orthographic camera, no zoom, no yaw, no perspective change. Same head size, hair silhouette and body height throughout. The character walks IN PLACE with four natural complete alternating gait cycles over five seconds, then ends on the starting stance. Readable foot contact, bent swing knee, passing pose and toe push-off, arms counter-swinging opposite the legs. Feet stay on the SAME ground line and inside frame. No translation toward or away from camera: WALKING ON A TREADMILL with invisible treadmill, fixed scale and fixed canvas center. Maintain exactly the clean pixel-cluster anime sprite style of reference: navy swept hair, blue jacket with thin ivory sleeve stripes and hanging ivory-trimmed straps, black shirt, cyan headphones around neck, gray trousers and dark boots with ivory soles. Rear views retain the same outfit from behind; do not invent a backpack, hood over head or extra hair spikes. Solid uniform vivid magenta #ff00ff background for every pixel outside character, no floor, no shadow, no scenery. No speech, text, gradient, glow, motion blur, smearing, duplicate figures, turning, 3D, live action, camera motion or costume transformation. Silent.",
+      "width": 512,
+      "height": 512,
+      "length": 124,
+      "ref_image_size": "match",
+      "ref_images.ref_image_0": [
+        "5",
+        0
+      ]
+    }
+  },
+  "9": {
+    "class_type": "MiniMaxH3AddGuide",
+    "inputs": {
+      "positive": [
+        "8",
+        0
+      ],
+      "latent": [
+        "8",
+        1
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "image": [
+        "5",
+        0
+      ],
+      "frame_idx": 0
+    }
+  },
+  "10": {
+    "class_type": "BasicGuider",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "conditioning": [
+        "19",
+        0
+      ]
+    }
+  },
+  "11": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 2910202707
+    }
+  },
+  "12": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "res_multistep"
+    }
+  },
+  "13": {
+    "class_type": "BasicScheduler",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "scheduler": "beta",
+      "steps": 16,
+      "denoise": 1.0
+    }
+  },
+  "14": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "11",
+        0
+      ],
+      "guider": [
+        "10",
+        0
+      ],
+      "sampler": [
+        "12",
+        0
+      ],
+      "sigmas": [
+        "13",
+        0
+      ],
+      "latent_image": [
+        "8",
+        1
+      ]
+    }
+  },
+  "15": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "14",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "17": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "15",
+        0
+      ],
+      "fps": 24
+    }
+  },
+  "18": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "17",
+        0
+      ],
+      "filename_prefix": "Pixelgen/Kael_walk_SE_angles_v1",
+      "format": "auto",
+      "format.codec": "auto",
+      "codec": "auto"
+    }
+  },
+  "19": {
+    "class_type": "MiniMaxH3AddGuide",
+    "inputs": {
+      "positive": [
+        "9",
+        0
+      ],
+      "latent": [
+        "8",
+        1
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "image": [
+        "5",
+        0
+      ],
+      "frame_idx": -1
+    }
+  }
+}

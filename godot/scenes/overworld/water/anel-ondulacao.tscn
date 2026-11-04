@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/overworld/water_effect.gd" id="1_itk8q"]
+
+[node name="anel-ondulacao" type="Sprite2D" unique_id=559783808]
+script = ExtResource("1_itk8q")

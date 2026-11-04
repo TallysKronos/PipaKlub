@@ -1,0 +1,105 @@
+{
+  "image": "corrected-sheet-v1.png",
+  "size": [
+    1536,
+    1024
+  ],
+  "cell": [
+    384,
+    512
+  ],
+  "columns": 4,
+  "rows": 2,
+  "pivot": [
+    150,
+    450
+  ],
+  "animation": {
+    "name": "walk-s-corrected",
+    "loop": true,
+    "fps": 6,
+    "frames": [
+      {
+        "file": "frames/frame-01.png",
+        "rect": [
+          0,
+          0,
+          384,
+          512
+        ],
+        "durationMs": 166.66666666666666
+      },
+      {
+        "file": "frames/frame-02.png",
+        "rect": [
+          384,
+          0,
+          384,
+          512
+        ],
+        "durationMs": 166.66666666666666
+      },
+      {
+        "file": "frames/frame-03.png",
+        "rect": [
+          768,
+          0,
+          384,
+          512
+        ],
+        "durationMs": 166.66666666666666
+      },
+      {
+        "file": "frames/frame-04.png",
+        "rect": [
+          1152,
+          0,
+          384,
+          512
+        ],
+        "durationMs": 166.66666666666666
+      },
+      {
+        "file": "frames/frame-05.png",
+        "rect": [
+          0,
+          512,
+          384,
+          512
+        ],
+        "durationMs": 166.66666666666666
+      },
+      {
+        "file": "frames/frame-06.png",
+        "rect": [
+          384,
+          512,
+          384,
+          512
+        ],
+        "durationMs": 166.66666666666666
+      },
+      {
+        "file": "frames/frame-07.png",
+        "rect": [
+          768,
+          512,
+          384,
+          512
+        ],
+        "durationMs": 166.66666666666666
+      },
+      {
+        "file": "frames/frame-08.png",
+        "rect": [
+          1152,
+          512,
+          384,
+          512
+        ],
+        "durationMs": 166.66666666666666
+      }
+    ]
+  },
+  "approval": "visual draft, not integrated"
+}

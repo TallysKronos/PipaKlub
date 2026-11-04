@@ -1,0 +1,55 @@
+{
+  "node": {
+    "tests": 18,
+    "failures": 0
+  },
+  "godot": {
+    "overworld": {
+      "checks": 219019,
+      "failures": 0
+    },
+    "morro": {
+      "checks": 9386,
+      "failures": 0
+    },
+    "swampWater": {
+      "failures": 0
+    }
+  },
+  "movement": [
+    {
+      "part": "A",
+      "targets": 24,
+      "trips": 48,
+      "frames": 9280,
+      "failures": 0
+    },
+    {
+      "part": "B",
+      "targets": 25,
+      "trips": 50,
+      "frames": 15020,
+      "failures": 0
+    },
+    {
+      "part": "C",
+      "targets": 25,
+      "trips": 50,
+      "frames": 10820,
+      "failures": 0
+    },
+    {
+      "part": "D",
+      "targets": 45,
+      "trips": 90,
+      "frames": 23540,
+      "failures": 0
+    }
+  ],
+  "captureCount": 891,
+  "notes": [
+    "Native rendering OpenGL3 compatibility on GTX1650",
+    "Legacy _painted_floor diagnostics in headless general test",
+    "No physical controller or export validation"
+  ]
+}

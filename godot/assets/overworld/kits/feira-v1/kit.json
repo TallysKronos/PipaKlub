@@ -1,0 +1,11 @@
+{
+  "schema": "native-structure-kit-1",
+  "grid": [64, 32],
+  "levelPx": 64,
+  "renderer": "res://scripts/overworld/market_structures.gd",
+  "pieces": {
+    "feira-banca": {"footprint": [3, 2], "blocks": true, "kind": "native-geometry", "variants": ["coral", "teal", "ochre"], "heightPx": 104}
+  },
+  "reuses": ["bambuzal-casa", "comum/banco", "terrenos-v1"],
+  "notes": "Native flat-colour market-stall blockout/art pass. Structural posts, counter and striped awning share the exact floor projection. Geometric validation precedes painted replacement."
+}

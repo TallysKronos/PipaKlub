@@ -1,0 +1,453 @@
+{
+  "area": "kronasta-palafitas-b",
+  "shots": [
+    {
+      "name": "area-inteira",
+      "u": 24,
+      "v": 20,
+      "zoom": 0.36,
+      "kind": "geral"
+    },
+    {
+      "name": "entrada",
+      "u": 25.5,
+      "v": 37.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "centro",
+      "u": 24,
+      "v": 20,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "saida-25-39",
+      "u": 25.5,
+      "v": 39.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "saida-25-0",
+      "u": 25.5,
+      "v": 0.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "canto-n1-4-4",
+      "u": 4,
+      "v": 4,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-23-4",
+      "u": 23,
+      "v": 4,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-28-4",
+      "u": 28,
+      "v": 4,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-42-4",
+      "u": 42,
+      "v": 4,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-10-16",
+      "u": 10,
+      "v": 16,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-14-16",
+      "u": 14,
+      "v": 16,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-10-18",
+      "u": 10,
+      "v": 18,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-14-18",
+      "u": 14,
+      "v": 18,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-20-20",
+      "u": 20,
+      "v": 20,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-24-20",
+      "u": 24,
+      "v": 20,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-28-20",
+      "u": 28,
+      "v": 20,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-42-20",
+      "u": 42,
+      "v": 20,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-20-28",
+      "u": 20,
+      "v": 28,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-24-28",
+      "u": 24,
+      "v": 28,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-28-28",
+      "u": 28,
+      "v": 28,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-42-28",
+      "u": 42,
+      "v": 28,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-4-36",
+      "u": 4,
+      "v": 36,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-23-36",
+      "u": 23,
+      "v": 36,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-28-36",
+      "u": 28,
+      "v": 36,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n1-42-36",
+      "u": 42,
+      "v": 36,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n2-4-4",
+      "u": 4,
+      "v": 4,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n2-18-4",
+      "u": 18,
+      "v": 4,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n2-4-16",
+      "u": 4,
+      "v": 16,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "canto-n2-18-16",
+      "u": 18,
+      "v": 16,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "rampa-topo-10-16",
+      "u": 10.5,
+      "v": 16.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "plato-10-16",
+      "u": 10.5,
+      "v": 16.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "rampa-topo-11-16",
+      "u": 11.5,
+      "v": 16.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "plato-11-16",
+      "u": 11.5,
+      "v": 16.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "rampa-topo-12-16",
+      "u": 12.5,
+      "v": 16.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "plato-12-16",
+      "u": 12.5,
+      "v": 16.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "rampa-topo-13-16",
+      "u": 13.5,
+      "v": 16.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "plato-13-16",
+      "u": 13.5,
+      "v": 16.5,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "rampa-pe-10-17",
+      "u": 10.5,
+      "v": 17.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "rampa-pe-11-17",
+      "u": 11.5,
+      "v": 17.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "rampa-pe-12-17",
+      "u": 12.5,
+      "v": 17.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "rampa-pe-13-17",
+      "u": 13.5,
+      "v": 17.5,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "mureta-junta-18-4",
+      "u": 18,
+      "v": 4,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "mureta-junta-42-4",
+      "u": 42,
+      "v": 4,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "mureta-junta-4-16",
+      "u": 4,
+      "v": 16,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "mureta-junta-10-16",
+      "u": 10,
+      "v": 16,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "mureta-junta-14-16",
+      "u": 14,
+      "v": 16,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "mureta-junta-18-16",
+      "u": 18,
+      "v": 16,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "mureta-junta-20-20",
+      "u": 20,
+      "v": 20,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "mureta-junta-24-20",
+      "u": 24,
+      "v": 20,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "mureta-junta-28-20",
+      "u": 28,
+      "v": 20,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "mureta-junta-42-20",
+      "u": 42,
+      "v": 20,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "mureta-junta-20-28",
+      "u": 20,
+      "v": 28,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "mureta-junta-28-28",
+      "u": 28,
+      "v": 28,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "mureta-junta-42-28",
+      "u": 42,
+      "v": 28,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "mureta-junta-4-36",
+      "u": 4,
+      "v": 36,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "mureta-junta-23-36",
+      "u": 23,
+      "v": 36,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "mureta-junta-28-36",
+      "u": 28,
+      "v": 36,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "mureta-junta-42-36",
+      "u": 42,
+      "v": 36,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "ponte-cabeceira-sul",
+      "u": 26,
+      "v": 28,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "ponte-cabeceira-norte",
+      "u": 26,
+      "v": 20,
+      "zoom": 2.3,
+      "kind": "junta"
+    },
+    {
+      "name": "praca",
+      "u": 24,
+      "v": 30,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "patamar",
+      "u": 15,
+      "v": 12,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "margem",
+      "u": 33,
+      "v": 23,
+      "zoom": 1,
+      "kind": "jogo"
+    },
+    {
+      "name": "saida",
+      "u": 25,
+      "v": 3,
+      "zoom": 1,
+      "kind": "jogo"
+    }
+  ]
+}

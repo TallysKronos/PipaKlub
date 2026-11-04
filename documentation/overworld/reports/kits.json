@@ -1,0 +1,46 @@
+{
+  "kits": [
+    {
+      "biome": "comum",
+      "pieceVariants": 25,
+      "studioFootprintIssues": [],
+      "approval": "pending_owner_review"
+    },
+    {
+      "biome": "morro",
+      "pieceVariants": 14,
+      "studioFootprintIssues": [],
+      "approval": "pending_owner_review"
+    }
+  ],
+  "areas": [
+    {
+      "id": "morro-escadaria-da-sombra.tmj",
+      "pieces": 61,
+      "missing": []
+    },
+    {
+      "id": "morro-laje-dos-ventos.tmj",
+      "pieces": 64,
+      "missing": []
+    },
+    {
+      "id": "morro-mirante-da-caixa-dagua.tmj",
+      "pieces": 64,
+      "missing": []
+    },
+    {
+      "id": "morro-parque-dos-ventos.tmj",
+      "pieces": 53,
+      "missing": []
+    },
+    {
+      "id": "morro-praca-da-chegada.tmj",
+      "pieces": 58,
+      "missing": []
+    }
+  ],
+  "checks": 216,
+  "failures": [],
+  "scope": "Studio model footprint audit + manifest coverage; irregular sprite edge slope audit is separate"
+}

@@ -1,0 +1,158 @@
+{
+  "geometry": {
+    "canonicalStates": 47,
+    "consistentHorizontalPairs": 169,
+    "edgePortMismatches": [],
+    "note": "Rotationally symmetric geometry; horizontal port audit covers rotated edges. Raster/layout review still required."
+  },
+  "materials": [
+    {
+      "id": "rocha-cinza",
+      "xBoundaryError": 0,
+      "yBoundaryError": 0
+    },
+    {
+      "id": "terra-gruta",
+      "xBoundaryError": 0,
+      "yBoundaryError": 0
+    },
+    {
+      "id": "rocha-umida",
+      "xBoundaryError": 0,
+      "yBoundaryError": 0
+    },
+    {
+      "id": "cascalho-gruta",
+      "xBoundaryError": 0,
+      "yBoundaryError": 0
+    },
+    {
+      "id": "parede-calcario",
+      "xBoundaryError": 0,
+      "yBoundaryError": 0
+    },
+    {
+      "id": "parede-basalto",
+      "xBoundaryError": 0,
+      "yBoundaryError": 0
+    },
+    {
+      "id": "parede-umida",
+      "xBoundaryError": 0,
+      "yBoundaryError": 0
+    },
+    {
+      "id": "parede-mineral",
+      "xBoundaryError": 0,
+      "yBoundaryError": 0
+    },
+    {
+      "id": "agua-linhas",
+      "xBoundaryError": 0,
+      "yBoundaryError": 0
+    },
+    {
+      "id": "queda-fitas",
+      "xBoundaryError": 0,
+      "yBoundaryError": 0
+    }
+  ],
+  "props": [
+    {
+      "id": "rocha-solta",
+      "size": [
+        116,
+        82
+      ],
+      "realAlpha": true,
+      "pivot": [
+        69.0,
+        63
+      ]
+    },
+    {
+      "id": "estalagmite-baixa",
+      "size": [
+        98,
+        75
+      ],
+      "realAlpha": true,
+      "pivot": [
+        49.0,
+        64
+      ]
+    },
+    {
+      "id": "estalagmite-alta",
+      "size": [
+        90,
+        83
+      ],
+      "realAlpha": true,
+      "pivot": [
+        38.0,
+        70
+      ]
+    },
+    {
+      "id": "coluna-calcario",
+      "size": [
+        112,
+        93
+      ],
+      "realAlpha": true,
+      "pivot": [
+        54.0,
+        84
+      ]
+    },
+    {
+      "id": "cristal-azul",
+      "size": [
+        104,
+        73
+      ],
+      "realAlpha": true,
+      "pivot": [
+        55.0,
+        61
+      ]
+    },
+    {
+      "id": "cristal-ambar",
+      "size": [
+        98,
+        69
+      ],
+      "realAlpha": true,
+      "pivot": [
+        47.0,
+        57
+      ]
+    },
+    {
+      "id": "cogumelos-gruta",
+      "size": [
+        80,
+        63
+      ],
+      "realAlpha": true,
+      "pivot": [
+        39.0,
+        53
+      ]
+    },
+    {
+      "id": "entrada-gruta",
+      "size": [
+        236,
+        172
+      ],
+      "realAlpha": true,
+      "pivot": [
+        164.5,
+        163
+      ]
+    }
+  ]
+}

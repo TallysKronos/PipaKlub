@@ -1,0 +1,135 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "acestep_v1.5_turbo.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "DualCLIPLoader",
+    "inputs": {
+      "clip_name1": "qwen_0.6b_ace15.safetensors",
+      "clip_name2": "qwen_1.7b_ace15.safetensors",
+      "type": "ace",
+      "device": "default"
+    }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "ace_1.5_vae.safetensors"
+    }
+  },
+  "4": {
+    "class_type": "LoadAudio",
+    "inputs": {
+      "audio": "soulmonsters-vento-reference.wav"
+    }
+  },
+  "5": {
+    "class_type": "VAEEncodeAudio",
+    "inputs": {
+      "audio": [
+        "4",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "6": {
+    "class_type": "TextEncodeAceStepAudio1.5",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "tags": "Instrumental monster-adventure RPG opening theme arranged from the supplied song. Transfer the vocal melody into bright clear sampled clarinet and a small warm trumpet, keeping the reference phrase contours, chord movement and sense of adventure. Tuneful sampled-game style, light marimba arpeggios, independently moving plucked bass, crisp but quiet snare and acoustic kick, occasional short strings answering only in melody gaps. Youthful soaring paper-kite journey, hopeful and heartfelt with a wistful middle section. Sparse readable voices, singable hook in the foreground, no ambient wash, no EDM drop or rock distortion. No singer, words, humming, choir, breaths or vocal chops: melody performed entirely by instruments. Brief pickup, main theme, contrasting bridge, return and a concise turnaround, no fadeout.",
+      "lyrics": "[Instrumental]",
+      "seed": 28102842,
+      "bpm": 88,
+      "duration": 87.27272727272727,
+      "timesignature": "4",
+      "language": "unknown",
+      "keyscale": "D major",
+      "generate_audio_codes": false,
+      "cfg_scale": 2.0,
+      "temperature": 0.85,
+      "top_p": 0.9,
+      "top_k": 0,
+      "min_p": 0.0
+    }
+  },
+  "7": {
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "6",
+        0
+      ]
+    }
+  },
+  "8": {
+    "class_type": "ModelSamplingAuraFlow",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "shift": 3.0
+    }
+  },
+  "9": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "8",
+        0
+      ],
+      "seed": 28102842,
+      "steps": 12,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "positive": [
+        "6",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "latent_image": [
+        "5",
+        0
+      ],
+      "denoise": 0.84
+    }
+  },
+  "10": {
+    "class_type": "VAEDecodeAudio",
+    "inputs": {
+      "samples": [
+        "9",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "11": {
+    "class_type": "SaveAudio",
+    "inputs": {
+      "audio": [
+        "10",
+        0
+      ],
+      "filename_prefix": "Soulmonsters/opening-theme-v1/02-vento-aventura"
+    }
+  }
+}
