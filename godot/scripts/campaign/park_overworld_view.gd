@@ -525,6 +525,7 @@ func _apply_story_light() -> void:
 	var endgame=load("res://scripts/campaign/endgame_story.gd")
 	var tint:=Tokens.UNTINTED
 	_stage_storm_cast()
+	_stage_stadium_lobby()
 	if load("res://scripts/campaign/endgame_story.gd").night_active(saved_player):_stage_night_marks()
 	var storm: bool=endgame.storm_active(saved_player) and Checkpoint.is_bosque(saved_checkpoint.scene)
 	if endgame.night_active(saved_player) and saved_checkpoint.scene in endgame.NIGHT_SCENES:tint=Tokens.TINTA_3.lightened(.2)
@@ -588,6 +589,43 @@ func _stage_storm_cast() -> void:
 		rato.offset.y=-48
 		rato.position=model.project(edge)
 		cast.add_child(rato)
+
+## F27: the next opponent waits by the attendant; earlier opponents watch from the side.
+func _stage_stadium_lobby() -> void:
+	if saved_checkpoint.scene!="kronasta-estadio-a" or actors.has_node("StadiumLobby"):return
+	var finals=load("res://scripts/campaign/ruinas_elo.gd")
+	var endgame=load("res://scripts/campaign/endgame_story.gd")
+	var current: int=finals.round_index(saved_player.get("flags",{}))
+	if current>=4:return
+	var lobby := Node2D.new()
+	lobby.name="StadiumLobby"
+	lobby.y_sort_enabled=true
+	actors.add_child(lobby)
+	var groups := [[finals.LOBBY[current],finals.LOBBY_SPOT]]
+	var watching := []
+	for index in current:watching.append_array(finals.LOBBY[index])
+	groups.append([watching,finals.STANDS_SPOT])
+	var used := {}
+	for group in groups:
+		for i in group[0].size():
+			var point: Vector2=endgame.point(saved_checkpoint.scene,group[1]+Vector2i(i,0))
+			if not point.is_finite() or used.has(point) or point.distance_to(player)<1.0:continue
+			used[point]=true
+			var entry: Array=group[0][i][1]
+			var sprite := Sprite2D.new()
+			sprite.name=str(group[0][i][0])
+			sprite.texture=load(str(entry[0]))
+			var height: float=float(sprite.texture.get_height())
+			if entry[1]:
+				sprite.region_enabled=true
+				sprite.region_rect=Rect2(sprite.texture.get_width()*.75,sprite.texture.get_height()*.5,sprite.texture.get_width()*.25,sprite.texture.get_height()*.5)
+				height=sprite.region_rect.size.y
+			sprite.scale=Vector2.ONE*float(entry[2])/height
+			sprite.offset.y=-height*.5+(4.0 if entry[1] else 0.0)
+			sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+			sprite.position=model.project(point)
+			sprite.set_meta("ground_point",point)
+			lobby.add_child(sprite)
 
 ## F22: at night each locked exit has a visible Bando guard, and the warehouse padlock
 ## shows its three knots, one removed after each lieutenant (Peteca, Cola-Fina, Navalha).

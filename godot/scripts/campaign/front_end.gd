@@ -3504,6 +3504,12 @@ func _return_ruinas(outcome: String = "") -> void:
 	var saved: Dictionary = session.snapshot()
 	var scene: String = saved.checkpoint.get("scene","")
 	var lines = preload("res://scripts/campaign/ruinas_dialogue.gd")
+	if scene=="kronasta-estadio-a":
+		# F27: each round ends with the opponent's reaction and the next step; the
+		# title round goes to the ending instead.
+		var after: String=load("res://scripts/campaign/ruinas_elo.gd").stadium_return_text(saved.player.flags,outcome)
+		if after!="":_notice(after)
+		return
 	if scene not in ["kronasta-coracao-d","kronasta-aracati-c"] and not lines.RESCUES.has(scene):return
 	while is_instance_valid(scene_loading) or flow_busy:
 		await get_tree().process_frame

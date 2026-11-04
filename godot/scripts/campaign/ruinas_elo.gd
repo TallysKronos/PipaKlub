@@ -31,6 +31,37 @@ static func bracket_text(flags: Dictionary) -> String:
 	if current>=3:rows.append("Duelo pelo título: Kael × Jamile")
 	return "\n\n".join(rows)
 
+## F27: the lobby between rounds. "lobby" is who waits by the attendant before each
+## round; earlier opponents watch from the side. Faye has no overworld art yet.
+const GRAMPO := ["res://assets/campaign/beira-canal-v1/grampo-idle-eight.png", true, 80.0]
+const PLATYX := ["res://assets/campaign/beira-canal-v1/platyx-overworld-eight.png", true, 52.0]
+const TYLER := ["res://assets/campaign/tyler-clareira-v1/tyler-overworld-idle-eight.png", true, 80.0]
+const JAMILE := ["res://assets/overworld/kits/camara-do-elo-v1/jamile-0.png", false, 76.0]
+const LOBBY := [[["Grampo",GRAMPO],["Platyx",PLATYX]], [["Tyler",TYLER]], [], [["Jamile",JAMILE]]]
+const LOBBY_SPOT := Vector2i(27, 7)
+const STANDS_SPOT := Vector2i(20, 9)
+## Reactions after each round, and what the attendant says about the next one.
+const AFTER := [
+	{"won":"Grampo: Perdemos, mas o Platyx puxou porque quis. Ele nunca voou assim comigo.\n\nPlatyx encosta a cabeça na mão de Grampo.\n\nGrampo: A gente assiste ao resto da chave daqui de baixo.",
+	"lost":"Grampo: Viu? O Platyx escolheu lutar, e lutou bem. Recupere a equipe; a gente espera."},
+	{"won":"Tyler: A gente aguentou até o fim, Rai. Kael, desde a Clareira eu sabia que essa luta ia acontecer.\n\nTyler: Vou torcer com a Heleana e o Assis.",
+	"lost":"Tyler: Foi por pouco. Respire, cuide da equipe e volte. Na revanche eu também puxo com tudo."},
+	{"won":"Faye: Então essa é a linha que chegou à final. Guarde esta luta, Kael. Um dia eu volto para a revanche.",
+	"lost":"Faye: Agora você sabe como eu puxo. Volte quando tiver uma resposta."},
+	{"won":"","lost":"Jamile: A final continua aqui, Kael. Cuide da equipe e volte quando estiver pronto."},
+]
+const NEXT := [
+	"Atendente: Próxima rodada: semifinal contra Tyler. Dá tempo de cuidar da equipe e salvar; fale comigo quando estiver pronto.",
+	"Atendente: Você está na final da chave. Faye espera no lobby. Fale comigo quando estiver pronto.",
+	"Atendente: A chave é sua. Só falta o duelo pelo título: Jamile já está no lobby.",
+]
+
+static func stadium_return_text(flags: Dictionary, outcome: String) -> String:
+	var current := round_index(flags)
+	if current >= 4: return ""
+	if outcome == "won" and current >= 1:
+		return AFTER[current - 1].won + "\n\n" + NEXT[current - 1]
+	return AFTER[current].lost + "\n\nAtendente: Sua vaga continua na chave. Fale comigo quando quiser tentar de novo."
 
 const CHIEF := ["Rato", "azulao", 44, "ruinasChefeVencido"]
 
