@@ -42,6 +42,9 @@ func run() -> void:
 				for npc in view.npc_nodes:
 					if npc.point==Story.point(scene,Story.STEPS[id].anchor):
 						check(npc.visual.position.length()<1,"Gollia returns to anchor")
+			await view.finish_endgame_scene(id)
+			await process_frame
+			check(view.actors.get_node_or_null("WindRelease")==null,"wind effect cleaned")
 			view.clear_endgame_staging()
 			await process_frame
 			check(view.actors.get_node_or_null("EndgameStaging")==null,"staging cleaned")

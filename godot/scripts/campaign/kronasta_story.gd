@@ -335,6 +335,14 @@ static func scene_for_travel(id: String) -> String:
 ## points to this place; otherwise the part's own exploration hint.
 static func region_objective(player: Dictionary, scene: String) -> String:
 	var region:=Checkpoint.region_of(scene)
+	var rules=preload("res://scripts/campaign/district_rules.gd")
+	if region=="mirante":
+		if rules.city_final_unlocked(player):return "A Liga espera por você. Abra o mapa da cidade e viaje ao Estádio de Kronasta."
+		if rules.unlocked(player,"mirante"):return preload("res://scripts/campaign/district_campaign.gd").objective(player,"mirante")
+	if region=="coracao" and flags(player).get("enamorDerrotado",false):
+		return "Eremor foi contido. Recupere sua equipe e viaje pelo mapa da cidade ao Alto do Mirante, o último bairro."
+	if scene=="kronasta-estadio-a":
+		return "Campeão de Kronasta · seus amigos esperam por você." if flags(player).get("campeaoKronasta",false) else "Fale com o atendente no balcão para disputar a próxima rodada. Você pode salvar e cuidar da equipe no lobby."
 	# An act 4-6 story step placed here wins over the area's district progress.
 	var step_beat:=current_beat(player)
 	if load("res://scripts/campaign/endgame_story.gd").STEPS.has(step_beat.get("id","")) and step_beat.place==str(place_for_scene(scene).get("id",region)):return step_beat.text

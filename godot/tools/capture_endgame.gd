@@ -80,11 +80,31 @@ func run() -> void:
 	if dialog:
 		await view._endgame_step(step_id)
 		for frame in 30: await process_frame
+	if "--finish" in OS.get_cmdline_user_args() or "--cancel" in OS.get_cmdline_user_args():
+		for panel in view.find_children("*","Control",true,false):
+			if panel.visible and panel.get("ok_button_text")=="Continuar" and panel.has_signal("confirmed"):
+				if "--cancel" in OS.get_cmdline_user_args():panel.canceled.emit()
+				else:panel.confirmed.emit()
+				break
+		await create_timer(.1).timeout
 	await create_timer(.6).timeout
-	await RenderingServer.frame_post_draw
+	if DisplayServer.get_name()!="headless":await RenderingServer.frame_post_draw
 	var folder := ProjectSettings.globalize_path("res://").get_base_dir().path_join("../tmp/endgame-review").simplify_path()
 	DirAccess.make_dir_recursive_absolute(folder)
-	var path := folder.path_join(step_id + ("-dialog" if dialog else "") + ".png")
-	root.get_texture().get_image().save_png(path)
+	var path := folder.path_join(step_id + ("-release" if "--finish" in OS.get_cmdline_user_args() else "-dialog" if dialog else "") + ".png")
+	if DisplayServer.get_name()!="headless":root.get_texture().get_image().save_png(path)
 	print(path)
+	if "--validate" in OS.get_cmdline_user_args():
+		await create_timer(2.0).timeout
+		var accepted := "--finish" in OS.get_cmdline_user_args()
+		if Endgame.done(view.session.snapshot().player,step_id)!=accepted:
+			printerr("Unexpected completion state");quit(1);return
+		if view.park.actors.get_node_or_null("EndgameStaging")!=null:
+			printerr("Staging survived closing");quit(1);return
+		for panel in view.find_children("*","Control",true,false):
+			if panel.visible and panel.has_signal("confirmed") and panel.get("ok_button_text")=="Entendi":panel.confirmed.emit()
+		await process_frame
+		if view.park.paused:
+			printerr("Player control not restored");quit(1);return
+		print("Story scene accepted/cancelled and control restored")
 	quit()

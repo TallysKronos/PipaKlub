@@ -440,6 +440,7 @@ func stage_endgame(id: String) -> void:
 		sprite.offset.y=-size.y*.5
 		sprite.position=model.project(Vector2(cell)+Vector2(.5,.5))
 		sprite.set_meta("rest_y",sprite.position.y)
+		sprite.set_meta("ground_point",Vector2(cell)+Vector2(.5,.5))
 		staging.add_child(sprite)
 
 func animate_gollia_entrance() -> void:
@@ -538,3 +539,53 @@ func present_championship_victory() -> void:
 	camera.position=model.project(Vector2(24.5,11.5))
 	camera.zoom=Vector2.ONE*1.15
 	if not reduced_motion:await get_tree().create_timer(.8).timeout
+func finish_endgame_scene(id: String) -> void:
+	if reduced_motion:return
+	if id=="gollia-arrependimento":
+		var staging := actors.get_node_or_null("EndgameStaging")
+		if staging == null:return
+		var retreat := create_tween().set_parallel(true)
+		for actor: Node2D in staging.get_children():
+			var start: Vector2=actor.get_meta("ground_point")
+			var destination := start+Vector2(0,2)
+			if model.clear_segment(start,destination) and absf(model.height_at(start)-model.height_at(destination))<.25:
+				retreat.tween_property(actor,"position",model.project(destination),.7)
+			retreat.tween_property(actor,"modulate:a",0.0,.7)
+		await retreat.finished
+	elif id=="gerador":
+		var release := Node2D.new()
+		release.name="WindRelease"
+		release.z_index=2
+		release.position=model.project(player)
+		actors.add_child(release)
+		var colors := [Color("#bce9e3"),Color("#f4c27d"),Color("#d2c6f1"),Color("#d5e6a8")]
+		for i in 4:
+			var ribbon := Line2D.new()
+			ribbon.width=3.0
+			ribbon.default_color=colors[i]
+			for step in 40:
+				var angle := float(step)*.12+float(i)*TAU/4.0
+				var radius := 26.0+float(step)*3.0
+				ribbon.add_point(Vector2(cos(angle)*radius,sin(angle)*radius*.5-float(step)*1.3))
+			release.add_child(ribbon)
+		var dawn := ColorRect.new()
+		dawn.mouse_filter=Control.MOUSE_FILTER_IGNORE
+		dawn.color=Color("#eadbb0")
+		dawn.modulate.a=0.0
+		dawn.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		var material := CanvasItemMaterial.new()
+		material.blend_mode=CanvasItemMaterial.BLEND_MODE_ADD
+		dawn.material=material
+		var layer := exploration_hud.get_parent()
+		layer.add_child(dawn)
+		layer.move_child(dawn,0)
+		var wind := create_tween().set_parallel(true)
+		wind.tween_property(release,"position:y",release.position.y-90.0,1.4)
+		wind.tween_property(release,"modulate:a",0.0,1.4)
+		wind.tween_property(dawn,"modulate:a",.22,.7)
+		await wind.finished
+		var clear := create_tween()
+		clear.tween_property(dawn,"modulate:a",0.0,.5)
+		await clear.finished
+		release.queue_free()
+		dawn.queue_free()
