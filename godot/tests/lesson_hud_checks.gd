@@ -37,8 +37,9 @@ func run() -> void:
 				var corners:Dictionary=Corners.regions(view.size)
 				var partner:Rect2=corners.partner
 				check(not view.next_button.get_global_rect().intersects(partner),"advance never covers partner status")
-				# The advance lives inside the coach card (hud_lesson_coach.add_advance).
-				check(view.coach.get_global_rect().grow(1).encloses(view.next_button.get_global_rect()),"advance sits inside the coach card")
+				# The advance replaces the action cards when the exercise ends; it never
+				# lands on the coach card.
+				check(not view.coach.get_global_rect().intersects(view.next_button.get_global_rect()),"advance clear of the coach card")
 				check(not view.coach.get_global_rect().intersects(partner),"coach never covers partner status")
 				check(not view.coach.get_global_rect().intersects(view.command_row.get_global_rect()) or view.command_row.get_combined_minimum_size().x<=0,"coach clear of the action cards")
 				check(not view.pause_button.get_global_rect().intersects(corners.pilot),"pause clear of the pilot plate")
