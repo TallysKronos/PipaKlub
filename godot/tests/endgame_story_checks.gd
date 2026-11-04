@@ -132,11 +132,14 @@ func _initialize() -> void:
 	player.flags.enamorDerrotado = true
 	check(save(player), "persist Rato and Eremor")
 	check(Rules.unlocked(player, "mirante"), "Eremor opens the Mirante")
+	check(Story.region_objective(player,"kronasta-coracao-d").contains("Alto do Mirante"), "Ruins direct the player to the final district")
 	check(not Rules.city_final_unlocked(player), "final waits for Ícaro")
 	win_district(player, "mirante")
 	check(save(player), "persist Ícaro")
 	check(Rules.city_final_unlocked(player) and Story.state(player, "estadio") == "aberto", "12 districts, Rato and Eremor open the final")
 	check(Story.current_beat(player).id == "final", "story points to the final")
+	check(Story.region_objective(player,"kronasta-mirante-c").contains("Estádio"), "Mirante points to stadium travel")
+	check(Story.region_objective(player,"kronasta-estadio-a").contains("atendente"), "lobby explains next-round interaction")
 	check(Ruins.INTRO["kronasta-estadio-a"].contains("Gollia") and Ruins.INTRO["kronasta-estadio-a"].contains("Grampo"), "Gollia and Grampo in the stands")
 	player.flags.campeaoKronasta = true
 	check(Story.current_beat(player).is_empty() and Story.category(player) == "Campeão de Kronasta", "story complete")

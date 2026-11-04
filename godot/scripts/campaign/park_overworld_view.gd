@@ -33,9 +33,19 @@ var guardian_focus := false
 var guardian_art: Sprite2D
 var guardian_frames: Array = []
 var presentation_age := 0.0
+var ending_presented := false
 
 func _process(delta: float) -> void:
 	presentation_age+=delta
+	var staging := actors.get_node_or_null("EndgameStaging") if is_instance_valid(actors) else null
+	if staging != null:
+		for sprite in staging.get_children():
+			if sprite.has_meta("idle_frames"):
+				var frames: Array=sprite.get_meta("idle_frames")
+				var frame: Dictionary=frames[int(presentation_age*8)%frames.size()]
+				sprite.region_rect=Rect2(frame.x,frame.y,frame.w,frame.h)
+			if sprite.has_meta("rest_y") and not reduced_motion:
+				sprite.position.y=float(sprite.get_meta("rest_y"))+sin(presentation_age*2.2+sprite.get_index())*2.0
 	if is_instance_valid(guardian_art) and not guardian_frames.is_empty() and (not paused or guardian_focus):
 		var frame: Dictionary=guardian_frames[int(presentation_age*8)%guardian_frames.size()]
 		guardian_art.region_rect=Rect2(frame.x,frame.y,frame.w,frame.h)
@@ -364,10 +374,218 @@ func _unhandled_input(event: InputEvent) -> void:
 
 ## Night of the cerol (Centro and Condomínio) and the Trovareta storm (Bosque):
 ## a veil over the world, under the HUD.
+func stage_endgame(id: String) -> void:
+	if id not in ["gerador","gollia-arrependimento"]:return
+	var previous := actors.get_node_or_null("EndgameStaging")
+	if previous != null:return
+	var staging := Node2D.new()
+	staging.name="EndgameStaging"
+	staging.y_sort_enabled=true
+	staging.z_index=1
+	actors.add_child(staging)
+	var center := Vector2i(player.floor())
+	if id=="gerador":
+		var story=preload("res://scripts/campaign/endgame_story.gd")
+		var anchor: Vector2=story.point(area_id,story.STEPS[id].anchor)
+		var hidden_points := [anchor]
+		for event in interaction_events:
+			if event.props.get("acao") in ["tufanocorteStory","learnDig"]:
+				hidden_points.append(Vector2(event.u+.5,event.v+.5))
+		for npc in npc_nodes:
+			if npc.point in hidden_points:
+				npc.root.hide()
+				staging.tree_exiting.connect(npc.root.show)
+	var occupied := {center:true,Vector2i(follower.floor()):true}
+	var occupied_screen := [model.project(player),model.project(follower)]
+	var offsets := [Vector2i(-4,-1),Vector2i(4,-1),Vector2i(-3,3),Vector2i(3,3)] if id=="gerador" else [Vector2i(-3,-1),Vector2i(3,1)]
+	var cast := ["tufanocorte","rabiolava","basic-raio-de-sol","mormaco-normal"] if id=="gerador" else ["capanga-feminina","capanga-masculino"]
+	for i in cast.size():
+		var desired: Vector2i=center+offsets[i]
+		var cell := Vector2i(-1,-1)
+		for delta in [Vector2i.ZERO,Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP,Vector2i.DOWN,Vector2i(-2,0),Vector2i(2,0),Vector2i(0,-2),Vector2i(0,2)]:
+			var candidate: Vector2i = desired+delta
+			var point := Vector2(candidate)+Vector2(.5,.5)
+			var screen: Vector2=model.project(point)
+			var separate := true
+			for used: Vector2 in occupied_screen:
+				if screen.distance_to(used)<80.0:separate=false
+			if separate and not occupied.has(candidate) and model.point_walkable(point) and (id=="gerador" or absf(model.height_at(point)-model.height_at(player))<.25):
+				cell=candidate
+				break
+		if cell.x<0:continue
+		occupied[cell]=true
+		occupied_screen.append(model.project(Vector2(cell)+Vector2(.5,.5)))
+		var sprite := Sprite2D.new()
+		if cast[i]=="rabiolava":
+			sprite.texture=load("res://assets/overworld/kits/aracati-v1/rabiolava.png")
+		elif id=="gerador":
+			var atlas: Dictionary=content.combat[cast[i]]
+			var frame: Dictionary=atlas.animations.idle[0]
+			sprite.texture=load("res://assets/campaign/"+atlas.image)
+			sprite.region_enabled=true
+			var frames: Array=[]
+			var source_image: Image=sprite.texture.get_image()
+			for raw_frame: Dictionary in atlas.animations.idle:
+				var raw_rect:=Rect2i(raw_frame.x,raw_frame.y,raw_frame.w,raw_frame.h)
+				var used: Rect2i=source_image.get_region(raw_rect).get_used_rect()
+				if not used.has_area():used=Rect2i(Vector2i.ZERO,raw_rect.size)
+				frames.append({"x":raw_rect.position.x+used.position.x,"y":raw_rect.position.y+used.position.y,"w":used.size.x,"h":used.size.y})
+			frame=frames[0]
+			sprite.region_rect=Rect2(frame.x,frame.y,frame.w,frame.h)
+			sprite.set_meta("idle_frames",frames)
+		else:
+			sprite.texture=load("res://assets/overworld/kits/camara-do-elo-v1/"+cast[i]+"-0.png")
+		var size: Vector2=sprite.region_rect.size if sprite.region_enabled else sprite.texture.get_size()
+		sprite.scale=Vector2.ONE*(96.0/size.y)
+		sprite.offset.y=-size.y*.5
+		sprite.position=model.project(Vector2(cell)+Vector2(.5,.5))
+		sprite.set_meta("rest_y",sprite.position.y)
+		sprite.set_meta("ground_point",Vector2(cell)+Vector2(.5,.5))
+		staging.add_child(sprite)
+
+func animate_gollia_entrance() -> void:
+	if reduced_motion:return
+	var story=preload("res://scripts/campaign/endgame_story.gd")
+	var target: Vector2=story.point(area_id,story.STEPS["gollia-arrependimento"].anchor)
+	for npc in npc_nodes:
+		if npc.point!=target:continue
+		var visual: Node2D=npc.visual
+		var origin := target + Vector2(0,-2)
+		if not model.clear_segment(origin,target):
+			origin=target+Vector2(2,0)
+		if not model.clear_segment(origin,target):return
+		var rest := visual.position
+		visual.position=rest+model.project(origin)-model.project(target)
+		var tween := visual.create_tween()
+		tween.tween_property(visual,"position",rest,.65).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		await tween.finished
+		return
+
+func clear_endgame_staging() -> void:
+	var staging := actors.get_node_or_null("EndgameStaging")
+	if staging != null:staging.queue_free()
+
 func _apply_story_light() -> void:
 	var endgame=load("res://scripts/campaign/endgame_story.gd")
 	var tint:=Tokens.UNTINTED
+	var storm: bool=endgame.storm_active(saved_player) and Checkpoint.is_bosque(saved_checkpoint.scene)
 	if endgame.night_active(saved_player) and saved_checkpoint.scene in endgame.NIGHT_SCENES:tint=Tokens.TINTA_3.lightened(.2)
-	elif endgame.storm_active(saved_player) and Checkpoint.is_bosque(saved_checkpoint.scene):tint=Tokens.TINTA_3.lightened(.32)
+	elif storm:tint=Tokens.TINTA_3.lightened(.32)
 	if tint==Tokens.UNTINTED:return
-	endgame.veil(exploration_hud.get_parent() if is_instance_valid(exploration_hud) else null,tint)
+	var layer: Node = exploration_hud.get_parent() if is_instance_valid(exploration_hud) else null
+	endgame.veil(layer,tint)
+	if storm and layer != null and not layer.has_node("StoryRain"):
+		var rain := ColorRect.new()
+		rain.name="StoryRain"
+		rain.mouse_filter=Control.MOUSE_FILTER_IGNORE
+		rain.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		var surface := ShaderMaterial.new()
+		surface.shader=preload("res://shaders/story_storm.gdshader")
+		surface.set_shader_parameter("motion",not reduced_motion)
+		rain.material=surface
+		layer.add_child(rain)
+		layer.move_child(rain,1)
+
+func present_championship_victory() -> void:
+	var route: PackedVector2Array=model.path_to(player,Vector2(24.5,14.5))
+	for destination: Vector2 in route:
+		if reduced_motion:
+			player=destination
+		else:
+			var walk := create_tween()
+			avatar.moving=true
+			walk.tween_method(func(at: Vector2):
+				var movement: Vector2=model.project(at,false)-model.project(player,false)
+				avatar.face_motion(movement)
+				player=at
+				_refresh_positions(),player,destination,.12)
+			await walk.finished
+	avatar.moving=false
+	_refresh_positions()
+	var previous := actors.get_node_or_null("ChampionshipVictory")
+	if previous != null:return
+	var gathering := Node2D.new()
+	gathering.name="ChampionshipVictory"
+	gathering.y_sort_enabled=true
+	gathering.z_index=1
+	actors.add_child(gathering)
+	var cells := [Vector2i(21,12),Vector2i(27,12),Vector2i(21,16)]
+	var identities := ["mae","professor","tyler"]
+	for i in identities.size():
+		var point := Vector2(cells[i])+Vector2(.5,.5)
+		if not model.point_walkable(point):continue
+		var holder := Node2D.new()
+		holder.position=model.project(point,false)
+		gathering.add_child(holder)
+		var sprite := Sprite2D.new()
+		holder.add_child(sprite)
+		if identities[i]=="tyler":
+			sprite.texture=load("res://assets/campaign/tyler-clareira-v1/tyler-overworld-idle-eight.png")
+			sprite.region_enabled=true
+			sprite.region_rect=Rect2(192,96,64,96)
+			sprite.scale=Vector2.ONE*.85
+			sprite.offset.y=-48
+		else:
+			preload("res://scripts/npc_pixel_sprite.gd").setup(sprite,identities[i],82.0)
+		holder.position.y-=model.height_at(point)*64.0
+		if not reduced_motion:
+			sprite.modulate.a=0
+			var entrance := sprite.create_tween()
+			entrance.tween_property(sprite,"modulate:a",1.0,.35)
+			for cheer in 2:
+				entrance.tween_property(sprite,"position:y",-5.0,.12).set_trans(Tween.TRANS_SINE)
+				entrance.tween_property(sprite,"position:y",0.0,.16).set_trans(Tween.TRANS_SINE)
+	camera.position_smoothing_enabled=false
+	camera.position=model.project(Vector2(24.5,11.5))
+	camera.zoom=Vector2.ONE*1.15
+	if not reduced_motion:await get_tree().create_timer(.8).timeout
+func finish_endgame_scene(id: String) -> void:
+	if reduced_motion:return
+	if id=="gollia-arrependimento":
+		var staging := actors.get_node_or_null("EndgameStaging")
+		if staging == null:return
+		var retreat := create_tween().set_parallel(true)
+		for actor: Node2D in staging.get_children():
+			var start: Vector2=actor.get_meta("ground_point")
+			var destination := start+Vector2(0,2)
+			if model.clear_segment(start,destination) and absf(model.height_at(start)-model.height_at(destination))<.25:
+				retreat.tween_property(actor,"position",model.project(destination),.7)
+			retreat.tween_property(actor,"modulate:a",0.0,.7)
+		await retreat.finished
+	elif id=="gerador":
+		var release := Node2D.new()
+		release.name="WindRelease"
+		release.z_index=2
+		release.position=model.project(player)
+		actors.add_child(release)
+		var colors := [Color("#bce9e3"),Color("#f4c27d"),Color("#d2c6f1"),Color("#d5e6a8")]
+		for i in 4:
+			var ribbon := Line2D.new()
+			ribbon.width=3.0
+			ribbon.default_color=colors[i]
+			for step in 40:
+				var angle := float(step)*.12+float(i)*TAU/4.0
+				var radius := 26.0+float(step)*3.0
+				ribbon.add_point(Vector2(cos(angle)*radius,sin(angle)*radius*.5-float(step)*1.3))
+			release.add_child(ribbon)
+		var dawn := ColorRect.new()
+		dawn.mouse_filter=Control.MOUSE_FILTER_IGNORE
+		dawn.color=Color("#eadbb0")
+		dawn.modulate.a=0.0
+		dawn.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		var material := CanvasItemMaterial.new()
+		material.blend_mode=CanvasItemMaterial.BLEND_MODE_ADD
+		dawn.material=material
+		var layer := exploration_hud.get_parent()
+		layer.add_child(dawn)
+		layer.move_child(dawn,0)
+		var wind := create_tween().set_parallel(true)
+		wind.tween_property(release,"position:y",release.position.y-90.0,1.4)
+		wind.tween_property(release,"modulate:a",0.0,1.4)
+		wind.tween_property(dawn,"modulate:a",.22,.7)
+		await wind.finished
+		var clear := create_tween()
+		clear.tween_property(dawn,"modulate:a",0.0,.5)
+		await clear.finished
+		release.queue_free()
+		dawn.queue_free()

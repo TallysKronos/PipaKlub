@@ -1907,7 +1907,7 @@ func _park_training(id: String) -> void:
 		var result: Dictionary=encounters.start_training(id,park.player)
 		if _result(result) and result.status=="ok": _show_saved.call_deferred())
 
-func _confirm_park(title: String, text: String, accept: String, callback: Callable) -> void:
+func _confirm_park(title: String, text: String, accept: String, callback: Callable) -> Control:
 	park.path.clear()
 	park.paused = true
 	var dialog := _dialog(title, text, accept, "Agora não")
@@ -1917,6 +1917,7 @@ func _confirm_park(title: String, text: String, accept: String, callback: Callab
 	dialog.tree_exiting.connect(func():
 		if is_instance_valid(park): park.paused = false)
 	dialog.popup_centered(Vector2i(620, 200))
+	return dialog
 
 func _show_encounter() -> void:
 	var saved_encounter:Dictionary=session.snapshot().player.encounter
@@ -3381,10 +3382,32 @@ func _endgame_step(id:String)->void:
 	var story=endgame.new(session)
 	var at:Vector2=park.player
 	if not step.has("duels"):
-		_confirm_park(step.name,step.intro,"Continuar",func():
+		park.stage_endgame(id)
+		if id=="gollia-arrependimento":
+			var view=park
+			view.path.clear()
+			view.paused=true
+			await view.animate_gollia_entrance()
+			if not is_instance_valid(view) or park!=view:return
+		var closing := {"accepted":false,"finished":false}
+		var scene_view=park
+		var dialog := _confirm_park(step.name,step.intro,"Continuar",func():
 			if _result(story.talk(id,at)):
-				park.refresh(session.snapshot().player)
+				closing.accepted=true
+				scene_view.paused=true
+				await scene_view.finish_endgame_scene(id)
+				if not is_instance_valid(scene_view) or park!=scene_view:return
+				scene_view.clear_endgame_staging()
+				await get_tree().process_frame
+				if not is_instance_valid(scene_view) or park!=scene_view:return
+				scene_view.refresh(session.snapshot().player)
+				closing.finished=true
+				scene_view.paused=false
 				_notice.call_deferred(step.outro))
+		dialog.tree_exiting.connect(func():
+			if is_instance_valid(scene_view):
+				scene_view.paused=closing.accepted and not closing.finished
+				if not closing.accepted:scene_view.clear_endgame_staging())
 		return
 	# The title follows the opponent in front of the player (Navalha, then Trovareta...).
 	var index:int=endgame.duel_index(player,id)
@@ -3498,7 +3521,7 @@ func _return_ruinas(outcome: String = "") -> void:
 		return
 	var flags: Dictionary = session.snapshot().player.flags
 	if flags.get("enamorDerrotado",false):
-		_notice(lines.VICTORY)
+		_notice(lines.VICTORY+"\n\nKael: Primeiro, vamos recuperar a equipe. Depois, falta o Alto do Mirante. Ícaro é o último campeão de bairro.")
 	elif flags.get("ruinasChefeVencido",false) and not flags.get("enamorDesperto",false):
 		_request_enamor(load("res://scripts/campaign/ruinas_elo.gd"))
 	elif outcome in ["lost","fled"]:
@@ -3535,6 +3558,17 @@ func _show_stadium_bracket(finals: GDScript) -> void:
 			if row == 1 and round > index: label.text += "  ✓"
 			if index == round: label.add_theme_color_override("font_color", Hud.Tokens.HIGHLIGHT)
 			column.add_child(label)
+	var exchange := Label.new()
+	exchange.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	exchange.custom_minimum_size.x=620
+	exchange.text=[
+		"Grampo: O Platyx quis entrar nessa chave. Desta vez, eu perguntei a ele.\nKael: Então vamos fazer uma boa luta.",
+		"Tyler: Você chegou longe, Kael. Hoje eu quero enfrentar você com tudo que aprendi ao seu lado.",
+		"Faye: A última vaga ficou entre nós dois. Quero que você se lembre desta luta.",
+		"Jamile: Você viu uma final pela televisão. Agora tem alguém em casa assistindo à sua. Pronto, Kael?",
+		"A Liga reconhece Kael como Campeão de Kronasta."
+	][mini(round,4)]
+	layout.add_child(exchange)
 	layout.add_child(HSeparator.new())
 	var title := Label.new()
 	title.text = "Duelo pelo título · Jamile — " + ("Campeão: Kael" if round == 4 else "Desafio liberado" if round == 3 else "Reservado ao vencedor da chave")
@@ -3566,8 +3600,17 @@ func _present_pending_ending() -> void:
 	var view = park
 	view.path.clear()
 	view.paused = true
-	var dialog := _dialog("Campeão de Kronasta", "A arquibancada explode em aplausos. Heleana se levanta, e Tyler ergue a mão para Kael.\n\nJamile: A linha é sua, campeão.", "Ver créditos")
+	if view.ending_presented:return
+	view.ending_presented=true
+	await view.present_championship_victory()
+	if not is_instance_valid(view) or park!=view:return
+	sound.play_event("progress.quest_complete")
+	var broadcast=load("res://scripts/campaign/championship_broadcast.gd").new()
+	broadcast.reduced_motion=preferences.reduced_motion
+	add_child(broadcast)
+	var dialog := _dialog("Jamile", "Você chegou até aqui, Kael.\n\nA linha é sua, campeão.", "Ver créditos")
 	dialog.confirmed.connect(dialog.queue_free)
+	dialog.confirmed.connect(broadcast.queue_free)
 	dialog.confirmed.connect(_show_kronasta_credits.call_deferred)
 	dialog.popup_centered(Vector2i(640,240))
 
