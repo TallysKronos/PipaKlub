@@ -67,8 +67,6 @@ const BEATS := [
 	{"id":"exame-azul","act":3,"place":"parque","text":"Faça a prova de condução e cuidado no Pátio da Liga, junto ao Parque."},
 	{"id":"remar-orientacao","act":3,"place":"cais","text":"Volte à Marisol, no Cais Velho, para preparar a travessia pela água."},
 	{"id":"remar-pratica","act":3,"place":"pantano","text":"Experimente Remar com a capivara de Marisol nas setas azuis da Entrada alagada, no Pântano."},
-	{"id":"retalho-atelie","act":3,"place":"rua-dos-ventos","text":"Arco pessoal · volte ao ateliê e aproxime-se de Retalho sem puxar sua rabiola."},
-	{"id":"retalho-confianca","act":3,"place":"rua-dos-ventos","text":"Arco pessoal · acompanhe Retalho, sem exigir que ele fique."},
 	{"id":"mormaco-sinais","act":4,"place":"pantano","text":"O ar parou. Observe o caminho da Entrada alagada, no Pântano."},
 	{"id":"mormaco-liberto","act":4,"place":"pantano","text":"Siga até o lago da parte C e liberte Mormaço do Carretel Negro."},
 	{"id":"palafitas-emblema","act":4,"place":"palafitas","text":"Vença Seyran, Oruvo, Kessai e Veldren nas Palafitas e dispute o emblema com Caio Garça."},
@@ -83,7 +81,6 @@ const BEATS := [
 	{"id":"exame-vermelho","act":4,"place":"centro","text":"Faça o exame da categoria Vermelha com a Dona Cida, na Praça da Matriz."},
 	{"id":"pipa-tv","act":5,"place":"centro","text":"Converse com o produtor da Pipa TV na Praça da Matriz."},
 	{"id":"leo-antena","act":5,"place":"centro","text":"Vença os quatro desafios do Centro e dispute o emblema com o Leo Antena."},
-	{"id":"fantasma","act":5,"place":"centro","text":"Procure o Pipeiro Fantasma na parte C do Centro."},
 	{"id":"homunculo","act":5,"place":"rua-dos-ventos","text":"Volte ao ateliê e desça ao laboratório sob a casa do Sr. Assis."},
 	{"id":"barreira","act":5,"place":"centro","text":"A noite do cerol caiu. No Centro, tire a braçadeira de um capanga do Bando."},
 	{"id":"taina","act":5,"place":"lajes","text":"Com a braçadeira, entre no Condomínio e vença a Tainá, mesmo de noite."},
@@ -175,6 +172,36 @@ static func beat_done(player: Dictionary, id: String) -> bool:
 		"bosque": return f.get("bosqueClareiraDescoberta",false)
 	return false
 
+## Side activities: never part of the main chain (BEATS), listed apart in the diary.
+## Each entry: title, current instruction, done. Only what the player can act on.
+static func optional_quests(player: Dictionary) -> Array:
+	var f:=flags(player)
+	var rules=preload("res://scripts/campaign/district_rules.gd")
+	var result:Array=[]
+	if f.get("pipaTvPedido",false) and rules.completed(player,"centro"):
+		var ghost:bool=f.get("pipeiroFantasmaResolvido",false)
+		result.append({"title":"O Pipeiro Fantasma","text":"Você descobriu quem soltava as pipas presas nos fios." if ghost else "Pedido da Pipa TV · procure o Pipeiro Fantasma na parte C do Centro.","done":ghost})
+	if f.get("pipeiroFantasmaResolvido",false):
+		var given:bool=f.get("tylerFlowerGiven",false)
+		var ready:bool=load("res://scripts/campaign/tyler_arcs.gd").finale_ready(player)
+		result.append({"title":"A Flor de Cerejeira","text":"Você entregou a flor ao Tyler." if given else "Leve a flor ao laboratório do Sr. Assis e converse com o Tyler." if ready else "Guarde a flor. O Tyler vai precisar dela depois da final.","done":given})
+	# Retalho's personal arc (F02): a choice of Kael, never a gate of the campaign.
+	if f.get("retalhoBosqueVencido",false):
+		var trust=load("res://scripts/campaign/retalho_trust.gd")
+		var reunion=preload("res://scripts/campaign/heleana_confession.gd")
+		var welcomed:bool=f.get("retalhoAcolhido",false) or f.get("retalhoParceiraHeleana",false)
+		var text:="Volte ao ateliê e aproxime-se de Retalho sem puxar a rabiola dele." if not f.get("assisReconheceuNoRetalho",false) else str(trust.objective(player))
+		if f.get("retalhoAcolhido",false):text="Retalho escolheu acompanhar você."
+		result.append({"title":"Retalho","text":text,"done":welcomed or reunion.refused(player)})
+		if reunion.available(player) or f.get("heleanaReconheceuRetalho",false):
+			var met:bool=f.get("heleanaReconheceuRetalho",false)
+			result.append({"title":"Heleana e Retalho","text":"Heleana reconheceu Retalho." if met else "Volte para casa." if reunion.refused(player) else "Leve Retalho até Heleana.","done":met})
+	var endgame=load("res://scripts/campaign/endgame_story.gd")
+	if endgame.night_active(player) and f.get("bracadeiraBando",false):
+		var calmed:=int(f.get("desalmadoCentro",false))+int(f.get("desalmadoLajes",false))
+		result.append({"title":"Desalmados","text":"%d / 2 acalmados · procure-os no Centro B e no Condomínio A."%calmed,"done":calmed==2})
+	return result
+
 static func current_beat(player: Dictionary) -> Dictionary:
 	for beat in BEATS:
 		if not beat_done(player,beat.id): return beat
@@ -198,9 +225,6 @@ static func act(player: Dictionary) -> int:
 	return int(beat.act) if not beat.is_empty() else 3 if preload("res://scripts/campaign/district_rules.gd").completed(player,"industrial") else 2 if flags(player).get("leagueGreen",false) else 1
 
 static func objective(player: Dictionary) -> String:
-	var reunion=preload("res://scripts/campaign/heleana_confession.gd")
-	if reunion.available(player) and not player.get("flags",{}).get("heleanaReconheceuRetalho",false):
-		return "Volte para casa." if reunion.refused(player) else "Leve Retalho até Heleana."
 	var beat:=current_beat(player)
 	if beat.get("id","").begins_with("mormaco-"):return load("res://scripts/campaign/mormaco_story.gd").objective(player)
 	if beat.get("id")=="exame-azul":return "Pátio da Liga · "+load("res://scripts/campaign/blue_exam.gd").objective(player)

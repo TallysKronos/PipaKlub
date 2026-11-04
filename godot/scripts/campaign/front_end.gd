@@ -1755,7 +1755,10 @@ func _park_event(id: String) -> void:
 				if _result(ruins.begin(session,park.player)):_show_saved.call_deferred())
 			return
 		if action=="pipeiroFantasma":
-			_confirm_park("Pipeiro Fantasma","Tyler: Era eu nos fios. Eu soltava as almas antes que o Bando chegasse. Uma flor caiu junto da última pipa. Guarda pra mim?","Receber Flor de Cerejeira",func():
+			# F04: the identity (Fantasma) and the origin (laboratório) are separate discoveries.
+			var ghost_text:="Tyler: Era eu nos fios. Eu soltava as almas antes que o Bando chegasse. Uma flor caiu junto da última pipa. Guarda pra mim?"
+			if session.snapshot().player.flags.get("tylerCreatedKnown",false):ghost_text="Tyler: Depois do laboratório, achei que você ia ligar os pontos. Era eu nos fios. Pelo menos isso eu escolhi fazer: soltar as almas antes que o Bando chegasse.\n\nTyler: Uma flor caiu junto da última pipa. Guarda pra mim?"
+			_confirm_park("Pipeiro Fantasma",ghost_text,"Receber Flor de Cerejeira",func():
 				if _result(load("res://scripts/campaign/tyler_arcs.gd").finish_ghost(session)):_show_saved.call_deferred())
 			return
 		if action=="districtDuel":
@@ -2303,6 +2306,19 @@ func _show_missions() -> void:
 	var scroll:=ScrollContainer.new();scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;page.add_child(scroll)
 	var list:=VBoxContainer.new();list.size_flags_horizontal=Control.SIZE_EXPAND_FILL;list.add_theme_constant_override("separation",16);scroll.add_child(list)
 	var trained:bool=int(player.get("journey",{}).get("lesson",0))>=5
+	# Main story first (one current step), then side activities apart from it.
+	var Story=load("res://scripts/campaign/kronasta_story.gd")
+	var main_beat:Dictionary=Story.current_beat(player)
+	if trained and not main_beat.is_empty():
+		var main:=load("res://scripts/campaign/hud_result_plate.gd").new();list.add_child(main)
+		var main_column:=VBoxContainer.new();main_column.add_theme_constant_override("separation",6);main.add_child(main_column)
+		_label("PRINCIPAL · Ato %d"%int(main_beat.act),main_column,25).add_theme_color_override("font_color",Hud.GOLD)
+		_label(Story.objective(player),main_column,21)
+	for side:Dictionary in Story.optional_quests(player):
+		var plate_side=load("res://scripts/campaign/hud_result_plate.gd").new();list.add_child(plate_side)
+		var side_column:=VBoxContainer.new();side_column.add_theme_constant_override("separation",6);plate_side.add_child(side_column)
+		_label(("CONCLUÍDA · " if side.done else "OPCIONAL · ")+str(side.title),side_column,25).add_theme_color_override("font_color",Hud.GOLD if side.done else Hud.CYAN)
+		_label(str(side.text),side_column,21)
 	var entries:Array=[["Os primeiros elos","Conclua o treinamento com o Sr. Assis.",trained]]
 	var mount_quest=preload("res://scripts/campaign/mount_quest.gd")
 	if mount_quest.available(player):entries.append([mount_quest.TITLE,mount_quest.objective(player),mount_quest.owned(player)])
@@ -3467,7 +3483,9 @@ func _tyler_study() -> bool:
 func _return_tyler_lab() -> void:
 	_show_saved()
 	if session.snapshot().player.flags.get("tylerCreatedKnown", false):
-		_notice("Tyler: Esse registro diz que eu fui criado aqui. O resto foi apagado.\n\nKael: O Rabbito também foi feito, e ninguém manda no que ele escolhe.")
+		var lab_text:="Tyler: Esse registro diz que eu fui criado aqui. O resto foi apagado.\n\nKael: O Rabbito também foi feito, e ninguém manda no que ele escolhe."
+		if session.snapshot().player.flags.get("pipeiroFantasmaResolvido",false):lab_text="Tyler: Esse registro diz que eu fui criado aqui. O resto foi apagado.\n\nKael: Nos fios, você escolheu soltar as almas. O Rabbito também foi feito, e ninguém manda no que ele escolhe. Com você é igual."
+		_notice(lab_text)
 
 func _return_ruinas(outcome: String = "") -> void:
 	_show_saved()

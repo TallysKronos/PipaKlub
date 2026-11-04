@@ -324,10 +324,10 @@ Se as 30 vagas do banco do save estiverem ocupadas, a escolha fica registrada e 
 | Ordem | Lugar | Acontece | Chefe ou duelo | Abre |
 | --- | --- | --- | --- | --- |
 | 1 | Porto Novo | Bairro 11. | Campeão 11, **Capitão Jurandir** (40) | Coração das Ruínas |
-| 2 | Coração das Ruínas A, B e C | **Aliados amarrados:** capangas guardam a Nina, a Mikka e a Jamile. Na parte C, o Grampo e o Platyx; o Platyx se recusa a puxar. | Capangas (40, 41) → Platyx (43) | — |
+| 2 | Coração das Ruínas A, B e C | **Aliados amarrados:** capangas guardam a Nina (A) e a Mikka (B). Na parte C, o Grampo e o Platyx guardam a Jamile; o Platyx se recusa a puxar, e o Grampo decide ajudar a soltá-la. Cada amiga solta volta pelo corredor para ajudar a seguinte. | Capangas (40, 41) → Platyx (43) | — |
 | 3 | Coração das Ruínas D | **O arrependimento do Gollia:** ele larga o Bando e segura os capangas na porta para o Kael passar. | — | — |
 | 4 | Coração das Ruínas D | **O Rato.** | Rato (44) | — |
-| 5 | Coração das Ruínas D | **O lendário é o Eremor.** O Bando o desperta; os pilares cedem. Heleana, Assis e Tyler seguram a saída. | **Eremor** (45) | Bairro 12 |
+| 5 | Coração das Ruínas D | **O lendário é o Eremor.** O Bando o desperta; os pilares cedem. O Tyler leva Nina, Mikka e Jamile para a saída, e o Grampo e o Platyx seguram a retaguarda. Heleana e Assis não descem às Ruínas: reaparecem depois, na arquibancada da final. | **Eremor** (45) | Bairro 12 |
 | 6 | Alto do Mirante | Bairro 12. Ícaro, que achava o campeonato "vendido para a TV". | Campeão 12, **Ícaro** (44) | Estádio |
 | 7 | Estádio de Kronasta | **A chave final:** Grampo (47), Tyler (48), Faye (49) e o título contra a Jamile (50). Na arquibancada: a Heleana, o Assis, o Tyler, o Gollia, o Grampo e os campeões dos bairros. | Chave de 4 rodadas | Créditos |
 

@@ -47,7 +47,7 @@ const INTRO := {
 	"kronasta-coracao-a": "Capanga: Se quiser soltar a Nina, vai ter que passar por mim.",
 	"kronasta-coracao-b": "Capanga: A Mikka fica onde está. Mostre sua linha, Kael.",
 	"kronasta-coracao-c": "Capanga: Rato já entrou na câmara. Você não vai tirar a Jamile daqui.",
-	"kronasta-coracao-d": "O Bando desperta Eremor. Os pilares cedem, e o piso se abre. Heleana, Assis e Tyler seguram a saída com as aliadas.\n\nKael: Se ele passar daqui, a região inteira corre perigo. Segurem a passagem. Eu vou enfrentá-lo.",
+	"kronasta-coracao-d": "O Bando desperta Eremor. Os pilares cedem, e o piso se abre. Tyler leva Nina, Mikka e Jamile para a saída; Grampo e Platyx seguram a retaguarda.\n\nKael: Se ele passar daqui, a região inteira corre perigo. Segurem a passagem. Eu vou enfrentá-lo.",
 }
 
 static func begin(session: Node, point: Vector2) -> Dictionary:
