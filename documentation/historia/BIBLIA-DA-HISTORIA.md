@@ -572,3 +572,6 @@ Se Kael recusou, ao voltar para casa ouve um grunhido externo. Ele e Heleana sae
 - **Noite do cerol:** versão enxuta, com Vila, Centro e Condomínio à noite; os demais lugares fecham até o gerador (§7.6).
 - **Lendário:** é o Eremor, nas Ruínas D, depois do Rato. Sai o Santuário (§7.7).
 - **Final:** a chave de quatro rodadas no Estádio, terminando na Jamile (§7.7).
+- **Passagem do título [Decidido no refino F28, 04/11]:** depois do duelo, Jamile vem do lado da arena até Kael e amarra a **fita dourada da Liga** no carretel dele. Rabbito fica ao lado de Kael e puxa a ponta da fita. A fala retoma a abertura: Kael viu a final da Jamile pela TV, no quarto; agora a cidade assistiu à dele. A arte e a animação definitivas da fita seguem esse gesto.
+- **Ícaro [refino F26]:** aceita o desafio porque Kael fez coisas que nenhuma câmera filmou (Ventos, gerador, Ruínas). Ao perder, manda Kael ao Estádio para fazer a TV ver uma final que ela não escreveu.
+- **Lobby do Estádio [refino F27]:** o adversário da rodada espera ao lado do atendente; os já enfrentados assistem ao lado do sofá. O Grampo entra com o Platyx porque perguntou a ele antes.

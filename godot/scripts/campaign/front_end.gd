@@ -2900,7 +2900,9 @@ func _show_tyler_clareira()->void:
 func _present_green_promotion()->void:
 	while is_instance_valid(scene_loading):await get_tree().process_frame
 	if not is_inside_tree() or not preload("res://scripts/campaign/league_promotion.gd").pending(session.snapshot()):return
-	if is_instance_valid(park):park.paused=true;park.path.clear()
+	if is_instance_valid(park):
+		park.paused=true
+		if "path" in park:park.path.clear()
 	var promotion_dialog:=_dialog("Rabiola Verde","Nina: [emo=brilho]Você trouxe meu Carcará de volta. Venceu os dois bairros e ajudou alguém fora da arena. Isso também é ser pipeiro.\n\nCarteira de Pipeiro: Exame da categoria Branca concluído. Categoria Rabiola Verde registrada.\n\nNina: Quando meu Carcará estiver pronto para a travessia, pode contar com ele. Guarde esta autorização de empréstimo.\n\nJornada: Experimente Planar nas setas azuis junto ao rio das Veredas. O próximo bairro é Beira-Canal.","Guardar e continuar")
 	promotion_dialog.allow_cancel=false
 	promotion_dialog._portraits["Carteira de Pipeiro"]=null
@@ -3625,6 +3627,10 @@ func _show_stadium_bracket(finals: GDScript) -> void:
 	back.focus_neighbor_right = back.get_path_to(accept)
 	accept.grab_focus()
 
+## F28: the title passes from Jamile to Kael, and the group reacts. Kael started the
+## journey watching Jamile's final on TV in his room.
+const CHAMPION_LINES := "Jamile: Da última vez, você assistiu à minha final pela TV, do seu quarto. Hoje a cidade inteira assistiu à sua.\n\nJamile amarra a fita dourada da Liga no carretel de Kael.\n\nJamile: A linha é sua, campeão. Cuide bem dela.\n\nRabbito pula de alegria e puxa a ponta da fita.\n\nTyler: Eu falei que ia ser você!\n\nGrampo: O Platyx quer ver a fita de perto.\n\nHeleana: Você foi lá e voltou com todo mundo, filho."
+
 func _present_pending_ending() -> void:
 	var saved: Dictionary = session.snapshot()
 	if saved.checkpoint.get("scene") != "kronasta-estadio-a" or not saved.player.flags.get("campeaoKronasta",false) or saved.player.flags.get("kronastaEndingSeen",false):
@@ -3644,11 +3650,11 @@ func _present_pending_ending() -> void:
 	var broadcast=load("res://scripts/campaign/championship_broadcast.gd").new()
 	broadcast.reduced_motion=preferences.reduced_motion
 	add_child(broadcast)
-	var dialog := _dialog("Jamile", "Você chegou até aqui, Kael.\n\nA linha é sua, campeão.", "Ver créditos")
+	var dialog := _dialog("Jamile", CHAMPION_LINES, "Ver créditos")
 	dialog.confirmed.connect(dialog.queue_free)
 	dialog.confirmed.connect(broadcast.queue_free)
 	dialog.confirmed.connect(_show_kronasta_credits.call_deferred)
-	dialog.popup_centered(Vector2i(640,240))
+	dialog.popup_centered(Vector2i(680,420))
 
 func _show_kronasta_credits() -> void:
 	var credits := _dialog("Soulmonsters", "CAMPEONATO DE KRONASTA\n\nCriação e desenvolvimento\nEquipe Soulmonsters\n\nObrigado por jogar!", "Voltar à cidade")
@@ -3659,7 +3665,10 @@ func _show_kronasta_credits() -> void:
 		var result: Dictionary = session.commit_operation("kronasta-ending-v1", {"kind":"world","scene":"quintal","position":[city.x,city.y]}, saved.player)
 		if _result(result):
 			credits.queue_free()
-			_show_saved.call_deferred())
+			_show_saved.call_deferred()
+		else:
+			# F28: a failed save keeps the title and the credits; the button works again.
+			credits._closed=false)
 	credits.popup_centered(Vector2i(640,320))
 
 func _request_enamor(ruins: GDScript) -> void:

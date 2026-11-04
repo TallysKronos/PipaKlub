@@ -611,21 +611,24 @@ func _stage_stadium_lobby() -> void:
 			var point: Vector2=endgame.point(saved_checkpoint.scene,group[1]+Vector2i(i,0))
 			if not point.is_finite() or used.has(point) or point.distance_to(player)<1.0:continue
 			used[point]=true
-			var entry: Array=group[0][i][1]
-			var sprite := Sprite2D.new()
-			sprite.name=str(group[0][i][0])
-			sprite.texture=load(str(entry[0]))
-			var height: float=float(sprite.texture.get_height())
-			if entry[1]:
-				sprite.region_enabled=true
-				sprite.region_rect=Rect2(sprite.texture.get_width()*.75,sprite.texture.get_height()*.5,sprite.texture.get_width()*.25,sprite.texture.get_height()*.5)
-				height=sprite.region_rect.size.y
-			sprite.scale=Vector2.ONE*float(entry[2])/height
-			sprite.offset.y=-height*.5+(4.0 if entry[1] else 0.0)
-			sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
-			sprite.position=model.project(point)
-			sprite.set_meta("ground_point",point)
-			lobby.add_child(sprite)
+			lobby.add_child(_cast_sprite(str(group[0][i][0]),group[0][i][1],point))
+
+## A story cast member: [texture, eight-way sheet?, height in pixels] at a ground point.
+func _cast_sprite(cast_name: String, entry: Array, point: Vector2) -> Sprite2D:
+	var sprite := Sprite2D.new()
+	sprite.name=cast_name
+	sprite.texture=load(str(entry[0]))
+	var height: float=float(sprite.texture.get_height())
+	if entry[1]:
+		sprite.region_enabled=true
+		sprite.region_rect=Rect2(sprite.texture.get_width()*.75,sprite.texture.get_height()*.5,sprite.texture.get_width()*.25,sprite.texture.get_height()*.5)
+		height=sprite.region_rect.size.y
+	sprite.scale=Vector2.ONE*float(entry[2])/height
+	sprite.offset.y=-height*.5+(4.0 if entry[1] else 0.0)
+	sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+	sprite.position=model.project(point)
+	sprite.set_meta("ground_point",point)
+	return sprite
 
 ## F22: at night each locked exit has a visible Bando guard, and the warehouse padlock
 ## shows its three knots, one removed after each lieutenant (Peteca, Cola-Fina, Navalha).
@@ -717,10 +720,62 @@ func present_championship_victory() -> void:
 			for cheer in 2:
 				entrance.tween_property(sprite,"position:y",-5.0,.12).set_trans(Tween.TRANS_SINE)
 				entrance.tween_property(sprite,"position:y",0.0,.16).set_trans(Tween.TRANS_SINE)
+	var finals=load("res://scripts/campaign/ruinas_elo.gd")
+	for extra in [["Grampo",finals.GRAMPO,Vector2(27.5,15.5)],["Platyx",finals.PLATYX,Vector2(28.5,15.5)]]:
+		if model.point_walkable(extra[2]):gathering.add_child(_cast_sprite(extra[0],extra[1],extra[2]))
 	camera.position_smoothing_enabled=false
 	camera.position=model.project(Vector2(24.5,11.5))
 	camera.zoom=Vector2.ONE*1.15
 	if not reduced_motion:await get_tree().create_timer(.8).timeout
+	# Rabbito stands with Kael for the title (F28), on the side Jamile leaves free.
+	for side in [Vector2(-1,0),Vector2(0,1),Vector2(0,-1)]:
+		if model.point_walkable(player+side):
+			follower=player+side
+			follower_trail.clear()
+			_refresh_positions()
+			break
+	await _pass_title(gathering,finals)
+
+## F28: Jamile comes from the arena side to Kael and ties the Liga's golden ribbon on
+## his reel (BIBLIA §19). The ribbon stays with Kael for the rest of the scene.
+func _pass_title(gathering: Node2D, finals) -> void:
+	var beside := player+Vector2(1,0)
+	if not model.point_walkable(beside):beside=player+Vector2(-1,0)
+	var start: Vector2=Vector2(finals.LOBBY_SPOT)+Vector2(.5,.5)
+	var jamile := _cast_sprite("Jamile",finals.JAMILE,beside if reduced_motion else start)
+	gathering.add_child(jamile)
+	camera.position=model.project((player+beside)*.5)
+	camera.zoom=Vector2.ONE*1.35
+	if not reduced_motion:
+		var route: PackedVector2Array=model.path_to(start,beside)
+		var walk := create_tween()
+		for step: Vector2 in route:walk.tween_property(jamile,"position",model.project(step),.16)
+		if route.is_empty():walk.tween_property(jamile,"position",model.project(beside),.6)
+		await walk.finished
+	jamile.set_meta("ground_point",beside)
+	jamile.flip_h=beside.x>player.x
+	avatar.face_motion(model.project(beside,false)-model.project(player,false))
+	var ribbon := Line2D.new()
+	ribbon.name="TitleRibbon"
+	ribbon.width=4.0
+	ribbon.default_color=Tokens.SOL
+	ribbon.points=PackedVector2Array([Vector2(-8,0),Vector2(-2,-5),Vector2(4,2),Vector2(10,-3)])
+	ribbon.z_index=3
+	ribbon.position=jamile.position+Vector2(0,-44)
+	gathering.add_child(ribbon)
+	var hand: Vector2=model.project(player)+Vector2(8,-36)
+	if reduced_motion:ribbon.position=hand
+	else:
+		var tie := create_tween()
+		tie.tween_property(ribbon,"position",hand,.45).set_trans(Tween.TRANS_SINE)
+		tie.tween_property(ribbon,"rotation",.35,.12)
+		tie.tween_property(ribbon,"rotation",0.0,.12)
+		await tie.finished
+		if is_instance_valid(companion):
+			var hop := create_tween()
+			hop.tween_property(companion,"position:y",companion.position.y-14.0,.14).set_trans(Tween.TRANS_SINE)
+			hop.tween_property(companion,"position:y",companion.position.y,.18).set_trans(Tween.TRANS_SINE)
+			await hop.finished
 func finish_endgame_scene(id: String) -> void:
 	if reduced_motion:return
 	if id in ["gollia-arrependimento","reuniao"]:

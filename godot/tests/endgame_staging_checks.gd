@@ -26,7 +26,12 @@ func run() -> void:
 		if id=="ending":
 			await view.present_championship_victory()
 			var crowd=view.actors.get_node("ChampionshipVictory")
-			check(crowd.get_child_count()==3,"three supporters at ending")
+			# Heleana, Assis, Tyler, Grampo with Platyx, Jamile and the title ribbon (F28).
+			for cast in ["Grampo","Platyx","Jamile","TitleRibbon"]:check(crowd.has_node(cast),"ending staging has "+cast)
+			check(crowd.get_child_count()==7,"supporters, Jamile and the ribbon at ending (got "+str(crowd.get_child_count())+")")
+			var jamile: Node2D=crowd.get_node("Jamile")
+			check(jamile.get_meta("ground_point").distance_to(view.player)<=1.01,"Jamile stands beside Kael")
+			check(crowd.get_node("TitleRibbon").position.distance_to(view.model.project(view.player))<60,"ribbon ends at Kael's reel")
 			await view.present_championship_victory()
 			check(view.actors.get_node("ChampionshipVictory")==crowd,"ending staging is idempotent")
 		else:
