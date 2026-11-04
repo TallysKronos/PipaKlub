@@ -184,7 +184,7 @@ static func optional_quests(player: Dictionary) -> Array:
 	if f.get("pipeiroFantasmaResolvido",false):
 		var given:bool=f.get("tylerFlowerGiven",false)
 		var ready:bool=load("res://scripts/campaign/tyler_arcs.gd").finale_ready(player)
-		result.append({"title":"A Flor de Cerejeira","text":"Você entregou a flor ao Tyler." if given else "Leve a flor ao laboratório do Sr. Assis e converse com o Tyler." if ready else "Guarde a flor. O Tyler vai precisar dela depois da final.","done":given})
+		result.append({"title":"A Flor de Cerejeira","text":"Você entregou a flor ao Tyler." if given else "Leve a flor ao laboratório do Sr. Assis e converse com o Tyler." if ready else "Guarde a flor. Quando a final de Kronasta abrir, o Tyler vai querer conversar no laboratório do Sr. Assis.","done":given})
 	# Retalho's personal arc (F02): a choice of Kael, never a gate of the campaign.
 	if f.get("retalhoBosqueVencido",false):
 		var trust=load("res://scripts/campaign/retalho_trust.gd")

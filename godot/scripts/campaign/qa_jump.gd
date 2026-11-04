@@ -61,6 +61,8 @@ static func build(id:String)->Dictionary:
 		for op in entry.get("ops",[]):player.completedOperations.append(op)
 		if entry.id==id:break
 	for district in districts:_win(player,district)
+	# The Fantasma leaves the flower of the optional epilogue (F29).
+	if player.flags.get("pipeiroFantasmaResolvido",false):player.inventory["flor-de-cerejeira"]=1
 	var at:String=target.at
 	var scene:String=Endgame.STEPS[at].scene if Endgame.STEPS.has(at) else at
 	var point:Vector2=CP.spawn(scene)

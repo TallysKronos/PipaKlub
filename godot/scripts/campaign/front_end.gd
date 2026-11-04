@@ -2859,6 +2859,7 @@ func _return_district_result()->void:
 	if result.get("emblem",false):
 		var place:String=str(load("res://scripts/campaign/district_rules.gd").definition(result.district).get("name",result.district))
 		text+="\n\nInsígnia recebida · "+place+". "+("Todas as insígnias de Kronasta estão com você. Próximo destino: Estádio de Kronasta." if result.district=="mirante" else "O próximo destino está no mapa de Kronasta.")
+		if load("res://scripts/campaign/tyler_arcs.gd").finale_ready(player):text+="\n\nOpcional · Tyler quer conversar no laboratório do Sr. Assis. Leve a flor de cerejeira."
 	_notice(text)
 
 ## Joins a stage's authored lines; lines from someone other than the dialog's
@@ -3477,9 +3478,15 @@ func _tyler_study() -> bool:
 	var arcs = load("res://scripts/campaign/tyler_arcs.gd")
 	var player: Dictionary = session.snapshot().player
 	if arcs.finale_ready(player):
-		var dialog := _dialog("Tyler · Flor de Cerejeira", "Tyler: O DNA é do Assis. Sou uma cópia dele. Se eu fui feito pra ser alguém que já existe, quem sobra quando eu tiro isso?\n\nKael: Você é alguém que se importa, Tyler. Foi você quem escolheu ajudar. Vem, vamos sair daqui.", "Entregar a flor")
+		# F29: Kael already knows Tyler was made here (laboratory); the new part is whose
+		# DNA it is. Kael answers with choices the player saw: the Fantasma and the Câmara.
+		var dialog := _dialog("Tyler · Flor de Cerejeira", "Tyler está sentado diante da gaveta com o nome dele.\n\nTyler: Você já sabe que eu fui criado aqui. O que eu não contei é o resto do registro: o DNA é do Assis. Se eu fui feito para ser alguém que já existe, quem sobra quando eu tiro isso?\n\nKael: Sobra quem soltava as almas presas nos fios antes do Bando chegar. Quem tirou a Nina, a Mikka e a Jamile da Câmara do Elo. Ninguém mandou você fazer isso. Você se importa, Tyler.", "Entregar a flor", "Agora não")
 		dialog.confirmed.connect(func():
-			if _result(arcs.finish_finale(session)):_show_saved.call_deferred())
+			if not _result(arcs.finish_finale(session)):return
+			_show_saved()
+			var given := _dialog("Tyler · Flor de Cerejeira", "Kael tira a flor de cerejeira da bolsa e coloca na mão de Tyler.\n\nTyler gira a flor entre os dedos, devagar.\n\nTyler: Caiu junto da última pipa que eu soltei. Achei que tinha perdido.\n\nTyler: Vamos subir. O Rai deve estar com fome.\n\nOs dois sobem a escada, e o laboratório fica para trás.", "Continuar")
+			given.confirmed.connect(given.queue_free)
+			given.canceled.connect(given.queue_free))
 		dialog.confirmed.connect(dialog.queue_free)
 		dialog.canceled.connect(dialog.queue_free)
 		return true
