@@ -2842,7 +2842,7 @@ func _district_action(id:String,skip_row:bool=false)->void:
 		if rules.status(player,district)=="prerequisite":_notice(service.objective(player,district));return
 		_notice("Vença os quatro pipeiros na ordem do percurso antes do campeão." if id==district+"-5" else "Conclua o desafio anterior para continuar.");return
 	var speaker:String=rules.opponent_name(player,district) if id==district+"-5" and title.completed else entry.name
-	var text:String=entry.before[0][1] if planned.context.mode=="progress" else "Vamos disputar mais uma vez. O caminho para recuperar o título passa por estes quatro desafios."
+	var text:String=_stage_lines(entry.before,speaker) if planned.context.mode=="progress" else "Vamos disputar mais uma vez. O caminho para recuperar o título passa por estes quatro desafios."
 	_confirm_park(speaker,text+"\n\nAdversário Nv. %d · vence quem conquistar %d rodadas."%[entry.level,entry.rounds],"Disputar",func():
 		if _result(service.start(id,park.player)):_show_saved.call_deferred())
 
@@ -2854,10 +2854,19 @@ func _return_district_result()->void:
 	var service=load("res://scripts/campaign/district_campaign.gd")
 	var entry:Dictionary=service.stage(result.duel)
 	var text:String=""
-	if result.mode=="progress":text=entry.won[0][1] if result.outcome=="won" else entry.lost[0][1]
+	if result.mode=="progress":text=_stage_lines(entry.won if result.outcome=="won" else entry.lost,"")
 	else:text=service.objective(player,result.district)
-	if result.get("emblem",false):text+="\n\nInsígnia recebida · "+str(result.district)+". O próximo destino está no mapa de Kronasta."
+	if result.get("emblem",false):
+		var place:String=str(load("res://scripts/campaign/district_rules.gd").definition(result.district).get("name",result.district))
+		text+="\n\nInsígnia recebida · "+place+". "+("Todas as insígnias de Kronasta estão com você. Próximo destino: Estádio de Kronasta." if result.district=="mirante" else "O próximo destino está no mapa de Kronasta.")
 	_notice(text)
+
+## Joins a stage's authored lines; lines from someone other than the dialog's
+## speaker carry their name.
+func _stage_lines(lines:Array,speaker:String)->String:
+	var parts:=PackedStringArray()
+	for line in lines:parts.append(line[1] if line[0]==speaker else "%s: %s"%[line[0],line[1]])
+	return "\n\n".join(parts)
 
 func _show_tyler_clareira()->void:
 	var service=load("res://scripts/campaign/tyler_clareira.gd").new(session)

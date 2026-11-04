@@ -2810,19 +2810,19 @@
           "before": [
             [
               "Vael",
-              "Aqui a subida muda o vento. Quer testar sua linha?"
+              "Você é quem desceu às Ruínas e voltou com o Eremor acalmado? Então veio ver o Ícaro. Primeiro, a subida: aqui o vento muda a cada passo."
             ]
           ],
           "won": [
             [
               "Vael",
-              "Bom duelo. Pode seguir."
+              "Puxou contra a virada sem perder a linha. Ilyra cuida das bandeiras logo acima."
             ]
           ],
           "lost": [
             [
               "Vael",
-              "Recupere a linha e tente de novo."
+              "A subida cobra quem puxa cedo demais. Recupere a linha e volte."
             ]
           ],
           "reward": {
@@ -2858,19 +2858,19 @@
           "before": [
             [
               "Ilyra",
-              "Observe as bandeiras antes de puxar."
+              "Repare nas bandeiras. O Ícaro ensinou a gente a ler o céu antes de ler o placar."
             ]
           ],
           "won": [
             [
               "Ilyra",
-              "Bom duelo. Pode seguir."
+              "Você leu o vento, e não a plateia. É isso que ele quer ver. Orvik guarda as passagens."
             ]
           ],
           "lost": [
             [
               "Ilyra",
-              "Recupere a linha e tente de novo."
+              "Você puxou olhando para mim, e não para as bandeiras. Tente de novo."
             ]
           ],
           "reward": {
@@ -2906,19 +2906,19 @@
           "before": [
             [
               "Orvik",
-              "Cuido das passagens do mirante. Vamos ver como você lida com as rajadas."
+              "Cuido das passagens do mirante. Quando a Pipa TV quis subir com câmeras, fomos nós que fechamos a trilha."
             ]
           ],
           "won": [
             [
               "Orvik",
-              "Bom duelo. Pode seguir."
+              "Rajada nenhuma te tirou do eixo. Pode passar. Senael espera na praça do topo."
             ]
           ],
           "lost": [
             [
               "Orvik",
-              "Recupere a linha e tente de novo."
+              "As rajadas aqui não avisam. Recupere a linha e tente de novo."
             ]
           ],
           "reward": {
@@ -2954,19 +2954,19 @@
           "before": [
             [
               "Senael",
-              "O vento da praça sobe até o topo. Sinta a mudança antes de enfrentar Ícaro."
+              "O Ícaro só desafia quem passou por nós quatro. Ele largou o título no dia em que viu a final decidida num estúdio. Prove que sua linha é sua."
             ]
           ],
           "won": [
             [
               "Senael",
-              "Bom duelo. Pode seguir."
+              "Pronto. Ele já sabe que você está subindo. Sinta a mudança do vento antes de chegar até ele."
             ]
           ],
           "lost": [
             [
               "Senael",
-              "Recupere a linha e tente de novo."
+              "Quase. O Ícaro não recebe quem chega cansado. Cuide da equipe e volte."
             ]
           ],
           "reward": {
@@ -3002,19 +3002,31 @@
           "before": [
             [
               "Ícaro",
-              "Já fui campeão. Saí quando achei que a TV decidia quem merecia vencer. Aqui em cima, a linha é nossa."
+              "Já fui campeão de Kronasta. Saí quando percebi que a TV escolhia quem merecia vencer antes do primeiro corte."
+            ],
+            [
+              "Ícaro",
+              "Mas ouvi falar de você: soltou os Ventos do Carretel, ligou o gerador na noite do cerol e desceu às Ruínas pelos seus amigos. Ninguém filmou isso."
+            ],
+            [
+              "Ícaro",
+              "Por isso aceito. Aqui em cima não tem câmera nem patrocínio. Só a linha. Mostre se ela aguenta o topo."
             ]
           ],
           "won": [
             [
               "Ícaro",
-              "A última insígnia é sua. Jamile espera no Estádio de Kronasta."
+              "Fazia tempo que eu não perdia assim, de verdade. Essa luta ninguém comprou."
+            ],
+            [
+              "Ícaro",
+              "A última insígnia é sua. Leve essa linha para o Estádio de Kronasta. A Jamile defende o título lá, e o título dela ainda vale alguma coisa. Faça a TV ver uma final que ela não escreveu."
             ]
           ],
           "lost": [
             [
               "Ícaro",
-              "Recupere a linha e tente de novo."
+              "O topo não perdoa pressa. Desça, cuide da equipe e volte quando sua linha estiver inteira. Eu espero."
             ]
           ],
           "reward": {
