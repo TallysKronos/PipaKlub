@@ -524,6 +524,7 @@ func clear_endgame_staging() -> void:
 func _apply_story_light() -> void:
 	var endgame=load("res://scripts/campaign/endgame_story.gd")
 	var tint:=Tokens.UNTINTED
+	_stage_storm_cast()
 	var storm: bool=endgame.storm_active(saved_player) and Checkpoint.is_bosque(saved_checkpoint.scene)
 	if endgame.night_active(saved_player) and saved_checkpoint.scene in endgame.NIGHT_SCENES:tint=Tokens.TINTA_3.lightened(.2)
 	elif storm:tint=Tokens.TINTA_3.lightened(.32)
@@ -541,6 +542,51 @@ func _apply_story_light() -> void:
 		rain.material=surface
 		layer.add_child(rain)
 		layer.move_child(rain,1)
+
+## F19: Bosque C during the storm shows the bound Trovareta and the black line from
+## Navalha; after her release the Rato watches from the edge until the next story step.
+func _stage_storm_cast() -> void:
+	if saved_checkpoint.scene!="kronasta-bosque-c" or actors.has_node("StormCast"):return
+	var endgame=load("res://scripts/campaign/endgame_story.gd")
+	var flags_now: Dictionary=saved_player.get("flags",{})
+	var anchor: Vector2i=endgame.STEPS.trovareta.anchor
+	var navalha: Vector2=endgame.point(saved_checkpoint.scene,anchor)
+	if not navalha.is_finite():return
+	var cast := Node2D.new()
+	cast.name="StormCast"
+	cast.y_sort_enabled=true
+	actors.add_child(cast)
+	if endgame.storm_active(saved_player):
+		var bound: Vector2=endgame.point(saved_checkpoint.scene,anchor+Vector2i(0,-4))
+		if not bound.is_finite() or bound.distance_to(navalha)<2.0:return
+		var atlas: Dictionary=content.combat["basic-raio-de-sol"]
+		var frame: Dictionary=atlas.animations.idle[0]
+		var creature := Sprite2D.new()
+		creature.name="TrovaretaBound"
+		creature.texture=load("res://assets/campaign/"+atlas.image)
+		creature.region_enabled=true
+		creature.region_rect=Rect2(frame.x,frame.y,frame.w,frame.h)
+		creature.scale=Vector2.ONE*(150.0/float(frame.h))
+		creature.offset.y=-float(frame.h)*.5
+		creature.position=model.project(bound)
+		creature.modulate=Tokens.POSSESSED
+		cast.add_child(creature)
+		var cord := Line2D.new()
+		cord.name="CarretelLine"
+		cord.width=3.0
+		cord.default_color=Tokens.NANQUIM
+		cord.z_index=1
+		cord.points=PackedVector2Array([model.project(navalha)+Vector2(0,-48),model.project(bound)+Vector2(0,-70)])
+		cast.add_child(cord)
+	elif flags_now.get("trovaretaLivre",false) and not flags_now.get("reuniaoCampeoes",false):
+		var edge: Vector2=endgame.point(saved_checkpoint.scene,anchor+Vector2i(5,-2))
+		if not edge.is_finite():return
+		var rato := Sprite2D.new()
+		rato.name="RatoWatching"
+		rato.texture=load("res://assets/overworld/kits/camara-do-elo-v1/rato-0.png")
+		rato.offset.y=-48
+		rato.position=model.project(edge)
+		cast.add_child(rato)
 
 func present_championship_victory() -> void:
 	var route: PackedVector2Array=model.path_to(player,Vector2(24.5,14.5))
@@ -614,7 +660,7 @@ func finish_endgame_scene(id: String) -> void:
 		release.z_index=2
 		release.position=model.project(player)
 		actors.add_child(release)
-		var colors := [Color("#bce9e3"),Color("#f4c27d"),Color("#d2c6f1"),Color("#d5e6a8")]
+		var colors: Array = Tokens.WIND_RIBBONS
 		for i in 4:
 			var ribbon := Line2D.new()
 			ribbon.width=3.0
@@ -626,7 +672,7 @@ func finish_endgame_scene(id: String) -> void:
 			release.add_child(ribbon)
 		var dawn := ColorRect.new()
 		dawn.mouse_filter=Control.MOUSE_FILTER_IGNORE
-		dawn.color=Color("#eadbb0")
+		dawn.color=Tokens.DAWN
 		dawn.modulate.a=0.0
 		dawn.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 		var material := CanvasItemMaterial.new()

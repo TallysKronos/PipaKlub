@@ -47,6 +47,9 @@ const NIGHT_ROOM := Color("9aabc7")
 const POSSESSED := Color("b978dd")
 const MIST := Color(.76, .65, .79, .55)
 const MUTED_ICON := Color(.45, .45, .45)
+## Torre do Vento: one ribbon per Wind (Tufanocorte, Rabiolava, Trovareta, Mormaço) and dawn.
+const WIND_RIBBONS := [Color("bce9e3"), Color("f4c27d"), Color("d2c6f1"), Color("d5e6a8")]
+const DAWN := Color("eadbb0")
 const ACTION_COLORS := {"attack": RABIOLA, "energy": FOLHA, "dodge": CEU,
 	"puxao": SOL, "line": PAPEL, "team": SOL}
 const FONT_ROOT := "res://assets/campaign/ui-modern/fonts/"
