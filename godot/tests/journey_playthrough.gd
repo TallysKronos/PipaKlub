@@ -328,10 +328,11 @@ func run_journey() -> void:
 	var after: Dictionary = view.session.snapshot()
 	check(after.checkpoint.scene == "park-trail", "fresh frontend resumes park")
 	check(after.player.partners.size() == 2 and after.player.partners[0].id == before.player.partners[0].id, "restart retains unique partners")
-	# Native park: cross Jardim → Clareira and back to the street through the real exits.
-	# Veredas opens with Nina's quest; that quest and the guardian fight are covered end
-	# to end by park_campaign_integration.gd (same frontend, controller and Store).
-	for hop in [["park-trail", "park-clearing"], ["park-clearing", "park-trail"], ["park-trail", "quintal"]]:
+	# Native park: walk the Jardim and leave through its real exit back to the street.
+	# The Clareira opens after Lohan (story reorder) and Veredas with Nina's quest; both
+	# are covered end to end by park_campaign_integration.gd and kronasta_regions_checks.gd.
+	check(not load("res://scripts/campaign/kronasta_story.gd").park_access(view.session.snapshot().player, "park-clearing"), "Clareira waits for Lohan")
+	for hop in [["park-trail", "quintal"]]:
 		if not await walk_park_exit(hop[0], hop[1]): return finish()
 	if not await enter_atelier(): return finish()
 	await frame()

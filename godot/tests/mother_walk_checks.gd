@@ -39,7 +39,11 @@ func run() -> void:
 		var output:="res://../documentation/qa/tutorial-guidance-v1"
 		DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(output))
 		await RenderingServer.frame_post_draw;root.get_texture().get_image().save_png(output.path_join("mae-subindo.png"))
-	await create_timer(3.5).timeout
+	# The enlarged house (kit contemporâneo) makes the walk length vary; wait for arrival.
+	for i in 80:
+		if not app.room.mother_walking: break
+		await create_timer(.1).timeout
+	await create_timer(.1).timeout
 	check(not app.room.mother_walking and not app.room.mother_sprite.get_meta("walking",false),"mother rests after arriving")
 	# Let Kael's response to her entrance finish before starting the next beat.
 	for i in 300:
@@ -51,7 +55,9 @@ func run() -> void:
 	check(app.room.mother_stair==-1 and app.room.mother_sprite.get_meta("walking",false),"descent also animates legs")
 	if "--capture" in OS.get_cmdline_user_args():
 		await RenderingServer.frame_post_draw;root.get_texture().get_image().save_png("res://../documentation/qa/tutorial-guidance-v1/mae-descendo.png")
-	await create_timer(.7).timeout
+	for i in 40:
+		if not app.room.mother_walking: break
+		await create_timer(.1).timeout
 	check(not app.room.mother_walking,"descent returns to resting pose")
 	app.free();await process_frame
 	print("MOTHER WALK: %d checks; %d failures"%[count,failures]);quit(1 if failures else 0)

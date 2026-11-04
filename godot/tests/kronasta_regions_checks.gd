@@ -92,17 +92,20 @@ func story_rules() -> void:
 	player.flags.ninaAccepted=true;player.flags.ninaBambuzalOrder=true
 	check(Story.current_beat(player).id=="bosque","then the Bosque")
 	Story.qa_override=0
-	for region in ["industrial","pantano","montanha"]: check(not Story.can_travel(player,region) and Story.state(player,region)=="em-breve",region+" hidden from players")
+	for region in ["industrial","pantano"]: check(not Story.can_travel(player,region) and Story.state(player,region)=="em-breve",region+" hidden from players")
+	# The Serra has its own story gate now (Mormaço and Palafitas), not a preview.
+	check(not Story.can_travel(player,"montanha") and Story.state(player,"montanha")=="fechado","montanha closed by the story for players")
 	check(Story.previews(player).is_empty(),"players get no preview list")
 	Story.qa_override=1
 	for region in ["industrial","pantano","montanha"]: check(Story.can_travel(player,region),region+" open for QA after the prologue")
-	check(Story.previews(player).size()==3,"QA preview list")
+	check(Story.previews(player).size()==2,"QA preview list: industrial and pantano")
 	check(not Story.released(player).any(func(e): return e.get("preview",false)),"previews never listed as released")
 	player.flags.bosqueClareiraDescoberta=true
 	check(Story.current_beat(player).id=="lohan","after the Bosque: Lohan")
 	check(Story.next_destination(player).id=="beira-canal","next unavailable destination follows the opened Bambuzal")
 	check(Story.objective(player).contains("Vila do Bambuzal"),"objective names only the next destination")
-	check(Story.released(player).map(func(e): return e.id)==["rua-dos-ventos","parque","morro","bosque","bambuzal"],"released places")
+	# QA mode: the Serra opens right after the prologue for testing.
+	check(Story.released(player).map(func(e): return e.id)==["rua-dos-ventos","parque","morro","bosque","bambuzal","montanha"],"released places")
 	check(Story.state(player,"bambuzal")=="aberto","Bambuzal opens after Mikka")
 	check(Story.can_travel(player,"bambuzal"),"authored district can be travelled")
 	check(Story.category(player)=="Rabiola Branca","category waits for its exam")
@@ -110,7 +113,9 @@ func story_rules() -> void:
 	for entry in Story.PLACES:
 		if entry.has("scene") and entry.scene!="quintal": check(Checkpoint.MAPS.has(entry.scene),"travel scene registered: "+entry.scene)
 	for region in Checkpoint.REGIONS:
-		for part in "abc": check(Checkpoint.region_of("kronasta-%s-%s"%[region,part])==region,"region of %s %s"%[region,part])
+		for part in "abc":
+			var scene:="kronasta-%s-%s"%[region,part]
+			if Checkpoint.MAPS.has(scene) or part=="a": check(Checkpoint.region_of(scene)==region,"region of %s %s"%[region,part])
 	check(Checkpoint.region_of("park-veredas").is_empty(),"park is not a free-roam region")
 	check(Pacing.wild_level("kronasta-montanha-c",0)>Pacing.wild_level("kronasta-bosque-a",0),"preview wild levels above the Bosque")
 	Story.qa_override=0

@@ -97,7 +97,10 @@ func set_facing(value:String) -> void:
 func _update_animation() -> void:
 	if not is_instance_valid(animated):return
 	var actor=get_parent()
-	var key:String=("run-" if actor.running else "walk-")+facing if actor.moving else ""
+	# Any parent works: a still preview (no avatar fields) shows the static pose.
+	var moving:bool=bool(actor.get("moving")) if actor!=null and actor.get("moving")!=null else false
+	var running:bool=bool(actor.get("running")) if actor!=null and actor.get("running")!=null else false
+	var key:String=("run-" if running else "walk-")+facing if moving else ""
 	if key!=animation_key:animation_key=key;animation_clock=0
 	animated.visible=animations.has(key)
 	body.visible=not animated.visible;rider.visible=not animated.visible;far_leg.visible=not animated.visible

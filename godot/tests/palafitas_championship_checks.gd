@@ -78,7 +78,10 @@ func _initialize()->void:
 			check(service.settle().status=="wrong_step" and session.snapshot()==saved,"duplicate settlement has no effect")
 	player=session.snapshot().player
 	check(player.districtEmblems.has("bairro-07"),"seventh emblem recorded")
-	check(Rules.completed(player,"palafitas") and Rules.unlocked(player,"alto-da-serra"),"historical next district unlock")
+	# Alto da Serra also waits for the Tufanocorte on the Serra (startFlag tufanocorteLiberto).
+	check(Rules.completed(player,"palafitas") and not Rules.unlocked(player,"alto-da-serra"),"Alto da Serra waits for the Tufanocorte")
+	player.flags.tufanocorteLiberto=true
+	check(Rules.unlocked(player,"alto-da-serra"),"historical next district unlock")
 	check(not load("res://scripts/campaign/kronasta_story.gd").can_travel(player,"alto-da-serra"),"unbuilt Serra not falsely travelable")
 	var offer:=Rules.offer(player,"palafitas","seyran","palafitas-defense","kronasta-palafitas-a")
 	check(offer.status=="ok","defense offered")

@@ -44,7 +44,8 @@ func run() -> void:
 		front._pause_game()
 		await settle()
 		check(is_instance_valid(front.pause_overlay),"pause displayed")
-		check(root.gui_get_focus_owner().text=="Retomar","resume has default focus")
+		# The lobby opens on its first tile, Pipamons (front_end focus_action default "team").
+		check(root.gui_get_focus_owner().text=="Pipamons","lobby opens on the Pipamons tile")
 		check(front.park.paused,"world suspended")
 		for button in front.pause_overlay.find_children("*","Button",true,false):
 			check(Rect2(Vector2.ZERO,front.size).encloses(button.get_global_rect()),"pause command visible")
@@ -57,8 +58,15 @@ func run() -> void:
 		front._show_collection()
 		await settle()
 		check(front.last_scene_key=="page:EQUIPE","team route displayed")
-		for button in front.page.find_children("*","Button",true,false):
-			if button.text=="Escolher parceiro":button.pressed.emit();break
+		# The team is paged; the second partner may sit on the next page.
+		for page_turn in 4:
+			var chosen:=false
+			for button in front.page.find_children("*","Button",true,false):
+				if button.text=="Escolher parceiro":button.pressed.emit();chosen=true;break
+			if chosen:break
+			for button in front.page.find_children("*","Button",true,false):
+				if button.text=="Próxima" and not button.disabled:button.pressed.emit();break
+			await settle()
 		await settle()
 		check(front.session.snapshot().player.equippedPartnerId=="partner-2","selecting partner persists")
 		check(front.exploration.equip("partner-1").status=="ok","restore fixture partner")

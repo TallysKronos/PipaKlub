@@ -123,11 +123,11 @@ func run() -> void:
 	check(app.session.resume_slot("slot-1").status=="ok" and Badges.has_first(app.session.snapshot().player) and not Badges.pending(app.session.snapshot()),"earned insignia survives restart without replay")
 	player=app.session.snapshot().player;player.partners[0].condition={"line":100,"structure":100}
 	check(app.session.checkpoint(app.session.snapshot().checkpoint,player).status=="ok","rematch recovery")
-	check(app.morro.start(final_point).status=="ok","Mikka rematch remains available")
-	terminal("won");check(app.morro.settle().status=="ok","rematch settled")
+	# District rules: a won title is not replayed; only a pending defense reopens Mikka.
+	check(app.morro.start(final_point).status=="already_applied","won Mikka duel is not replayed")
 	player=app.session.snapshot().player
-	check(player.inventory[Badges.FIRST_ITEM]==1 and player.districtEmblems.size()==1 and player.districtEmblems["bairro-01"].earnedAt==badge_date,"rematch never duplicates or re-dates insignia")
-	check(not player.lastMorro.insignia and not Badges.pending(app.session.snapshot()),"rematch does not replay ceremony")
+	check(player.inventory[Badges.FIRST_ITEM]==1 and player.districtEmblems.size()==1 and player.districtEmblems["bairro-01"].earnedAt==badge_date,"revisit never duplicates or re-dates insignia")
+	check(not Badges.pending(app.session.snapshot()),"revisit does not replay ceremony")
 	check(player.inventory["rabiola-raio"]==1,"unique tail remains unique")
 	# Legacy completion receives only the missing insignia, never old combat rewards.
 	check(app.session.start("slot-2").status=="ok","legacy fixture")
