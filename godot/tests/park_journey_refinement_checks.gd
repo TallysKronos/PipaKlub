@@ -50,6 +50,11 @@ func run() -> void:
 	session.data.player.partners=[partner]
 	session.data.player.equippedPartnerId=partner.id
 	session.data.player.journey={"lesson":5,"phase":"complete"}
+	# Story order: Nina's quest comes after Mikka and Lohan.
+	session.data.player.morro=load("res://scripts/campaign/morro.gd").Rules.defaults();session.data.player.morro.stars={"morro-1":3,"morro-2":3,"morro-3":3,"morro-4":3,"morro-5":3}
+	var lohan:Dictionary=preload("res://scripts/campaign/district_rules.gd").entry(session.data.player,"bambuzal")
+	lohan.completed=true;lohan.rewardClaimed=true;lohan.champion="player"
+	preload("res://scripts/campaign/district_rules.gd").store(session.data.player,"bambuzal",lohan)
 	var encounters:=Encounters.new(session)
 	var exploration:=Exploration.new(session)
 	var nina_start:=Checkpoint.target("park-trail","nina")

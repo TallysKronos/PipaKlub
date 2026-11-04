@@ -107,6 +107,11 @@ func run() -> void:
 	player.partners=[{"id":"test-rabbito","modelId":"rabbito","personalName":"Rabbito","xp":preload("res://scripts/campaign/partner_levels.gd").xp_for_level(8),"craftBonus":0,"condition":{"line":100,"structure":100}}]
 	player.equippedPartnerId="test-rabbito"
 	player.journey={"phase":"complete","lesson":5}
+	# Story order: Nina's quest and the Clareira come after Mikka and Lohan.
+	player.morro=load("res://scripts/campaign/morro.gd").Rules.defaults();player.morro.stars={"morro-1":3,"morro-2":3,"morro-3":3,"morro-4":3,"morro-5":3}
+	var lohan:Dictionary=preload("res://scripts/campaign/district_rules.gd").entry(player,"bambuzal")
+	lohan.completed=true;lohan.rewardClaimed=true;lohan.champion="player"
+	preload("res://scripts/campaign/district_rules.gd").store(player,"bambuzal",lohan)
 	# This synchronous controller traversal starts after the introduction.
 	# The actual camera/intro branch is exercised by lacertubo_flow_review.gd.
 	player.flags.lacertuboIntroduced=true

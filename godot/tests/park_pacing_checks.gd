@@ -22,7 +22,11 @@ func _initialize() -> void:
 			if weight>0 and cell.material=="mato": grass+=1
 			elif weight>0: outside+=1
 			if cell.material in ["ponte","piso"] or cell.get("ramp")!=null: check(weight==0,"bridge, square and ramp safe: "+scene)
-		check(outside>30,scene+" has encounters beyond grass")
+		# Natural free-roam areas spread encounters beyond the grass. Districts, the
+		# Bosque D detour, ruins, arenas and story maps keep them in the grass only
+		# (or have none) by design (park_pacing.gd).
+		var natural: bool = str(scene).begins_with("park-") or scene in ["kronasta-bosque-a","kronasta-bosque-b","kronasta-bosque-c"] or scene.begins_with("kronasta-pantano-") or scene.begins_with("kronasta-montanha-")
+		if natural: check(outside>30,scene+" has encounters beyond grass")
 		# Original park maps promise encounter grass. Bosque B's authored grass
 		# surrounds protected interactions; ordinary terrain still hosts encounters.
 		if scene in ["park-clearing","park-veredas"]: check(grass>0,scene+" retains high-grass encounters")
